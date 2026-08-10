@@ -17,13 +17,19 @@ Two pillars from SPEC.md, and where each now stands:
   because `politics.rs` and `war.rs` move state directly rather than through the
   command queue. A new system should take political capital as a cost from the
   start rather than be retrofitted.
-- **Spheres of influence is the namesake system**, and it is still only a bare
-  relations matrix. **Do not implement it here.** `feat/statecraft` already
-  implements it, is green on its own branch, and is parked on two calibration
-  collisions (see ROADMAP). Writing a second version against master would make
-  it the third rival implementation this project has had to adjudicate, after
-  tech-eras against the tree and the two biotech domains. Unblock the branch
-  instead.
+- **Spheres of influence is the namesake system**, and it is now built.
+  `spheres-sim/src/statecraft.rs` holds it: mutual defence pacts with an upkeep
+  both signatories pay, patronage as a standing transfer of the patron's output
+  capped at what the Soviet Union actually disbursed, trade dependency that
+  accumulates and then becomes leverage, and covert action that is deniable
+  until it is not. Relations are no longer the whole of diplomacy.
+
+  The two collisions that parked this branch for weeks were not statecraft's
+  fault and were never fixed directly. They dissolved when the growth model
+  underneath them was repaired: a trade-dependency asymmetry that read 8.5x
+  against an expected 10x, and an Iraqi embargo that would not lift. Both were
+  the base being wrong, not the system on top of it. Worth remembering the next
+  time a branch looks like it needs its thresholds widened.
 
 ## Iron rules
 1. **Determinism is sacred.** One RNG (SplitMix64 in `WorldState.rng`). Never add

@@ -10,7 +10,7 @@ federations come apart, a 253-technology tree, monthly ticks.
     cargo run --release -p spheres-cli -- play 42       # different history
     cargo run --release -p spheres-cli -- run 30 1990   # headless 30-year report
     cargo run --release -p spheres-cli -- resume save.json
-    cargo test                                          # 38 calibration/invariant tests
+    cargo test                                          # 46 calibration/invariant tests
 
 `spheres-web` opens http://127.0.0.1:7777 in your browser: a strategic map of the
 world sized by GDP and coloured by your relations, policy sliders, GDP/oil history
