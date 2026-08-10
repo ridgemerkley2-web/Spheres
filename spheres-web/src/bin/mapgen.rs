@@ -10,19 +10,50 @@ use std::collections::BTreeMap;
 use std::fmt::Write as _;
 
 const W: f64 = 1000.0;
-// Equirectangular, clipped north and south: Antarctica and the high Arctic are
-// dead space in a game whose southernmost actor is Saudi Arabia.
-const LAT_TOP: f64 = 84.0;
-const LAT_BOT: f64 = -56.0;
+// Robinson: the compromise projection used on most printed world maps. Neither
+// equal-area nor conformal, but it is the one that "looks like a map" — the
+// high latitudes are not smeared the way equirectangular smears them.
+const LAT_TOP: f64 = 83.0;
+const LAT_BOT: f64 = -58.0;
+
+/// Robinson's published table, at 5-degree steps from the equator to the pole.
+/// X scales the length of each parallel, Y its distance from the equator.
+const RX: [f64; 19] = [
+    1.0000, 0.9986, 0.9954, 0.9900, 0.9822, 0.9730, 0.9600, 0.9427, 0.9216,
+    0.8962, 0.8679, 0.8350, 0.7986, 0.7597, 0.7186, 0.6732, 0.6213, 0.5722, 0.5322,
+];
+const RY: [f64; 19] = [
+    0.0000, 0.0620, 0.1240, 0.1860, 0.2480, 0.3100, 0.3720, 0.4340, 0.4958,
+    0.5571, 0.6176, 0.6769, 0.7346, 0.7903, 0.8435, 0.8936, 0.9394, 0.9761, 1.0000,
+];
+
+fn interp(table: &[f64; 19], lat_abs: f64) -> f64 {
+    let t = (lat_abs / 5.0).min(18.0);
+    let i = t.floor() as usize;
+    if i >= 18 {
+        return table[18];
+    }
+    table[i] + (t - i as f64) * (table[i + 1] - table[i])
+}
+
+/// Radius chosen so a full 360 degrees of equator spans exactly W.
+fn radius() -> f64 {
+    W / (2.0 * 0.8487 * std::f64::consts::PI)
+}
+
+/// Signed vertical offset from the equator, positive north.
+fn robinson_y(lat: f64) -> f64 {
+    1.3523 * radius() * interp(&RY, lat.abs()) * if lat < 0.0 { -1.0 } else { 1.0 }
+}
 
 fn height() -> f64 {
-    (LAT_TOP - LAT_BOT) * (W / 360.0)
+    robinson_y(LAT_TOP) - robinson_y(LAT_BOT)
 }
 
 fn project(lon: f64, lat: f64) -> (f64, f64) {
-    let x = (lon + 180.0) / 360.0 * W;
     let lat = lat.clamp(LAT_BOT, LAT_TOP);
-    let y = (LAT_TOP - lat) / (LAT_TOP - LAT_BOT) * height();
+    let x = W / 2.0 + 0.8487 * radius() * interp(&RX, lat.abs()) * lon.to_radians();
+    let y = robinson_y(LAT_TOP) - robinson_y(lat);
     (x, y)
 }
 
@@ -79,6 +110,36 @@ fn ring_to_path(ring: &[serde_json::Value], out: &mut String) -> Option<(f64, f6
     Some((cx, cy, area.abs()))
 }
 
+/// Meridians and parallels, sampled finely enough to curve smoothly.
+fn graticule() -> Vec<String> {
+    let mut out = vec![];
+    let mut lon = -180.0;
+    while lon <= 180.0 {
+        let mut d = String::new();
+        let mut lat = LAT_BOT;
+        while lat <= LAT_TOP {
+            let (x, y) = project(lon, lat);
+            let _ = write!(d, "{}{:.1} {:.1}", if d.is_empty() { "M" } else { "L" }, x, y);
+            lat += 2.0;
+        }
+        out.push(d);
+        lon += 30.0;
+    }
+    let mut lat = -40.0;
+    while lat <= 80.0 {
+        let mut d = String::new();
+        let mut lon = -180.0;
+        while lon <= 180.0 {
+            let (x, y) = project(lon, lat);
+            let _ = write!(d, "{}{:.1} {:.1}", if d.is_empty() { "M" } else { "L" }, x, y);
+            lon += 4.0;
+        }
+        out.push(d);
+        lat += 20.0;
+    }
+    out
+}
+
 fn main() {
     let path = std::env::args().nth(1).unwrap_or_else(|| {
         eprintln!("usage: mapgen <world.geojson>");
@@ -97,7 +158,9 @@ fn main() {
             .or_else(|| props["ISO_A3"].as_str())
             .unwrap_or("")
             .to_string();
-        if code.is_empty() || code == "-99" {
+        // Antarctica is a wall of ice across the bottom of the frame and no
+        // actor in this game; the projection is clipped short of it anyway.
+        if code.is_empty() || code == "-99" || code == "ATA" {
             continue;
         }
         let geom = &f["geometry"];
@@ -150,7 +213,26 @@ fn main() {
             out, "{}\"{}\":[{:.1},{:.1}]", if i > 0 { "," } else { "" }, code, cx, cy
         );
     }
-    out.push_str("}};\n");
+    out.push_str("},graticule:[");
+    for (i, g) in graticule().iter().enumerate() {
+        let _ = write!(out, "{}\"{}\"", if i > 0 { "," } else { "" }, g);
+    }
+    // The edge of the projection itself — the curved envelope the map sits in.
+    let mut frame = String::new();
+    let mut lat = LAT_BOT;
+    while lat <= LAT_TOP {
+        let (x, y) = project(-180.0, lat);
+        let _ = write!(frame, "{}{:.1} {:.1}", if frame.is_empty() { "M" } else { "L" }, x, y);
+        lat += 2.0;
+    }
+    let mut lat = LAT_TOP;
+    while lat >= LAT_BOT {
+        let (x, y) = project(180.0, lat);
+        let _ = write!(frame, "L{:.1} {:.1}", x, y);
+        lat -= 2.0;
+    }
+    frame.push('Z');
+    let _ = write!(out, "],frame:\"{}\"}};\n", frame);
 
     let dest = "spheres-web/ui/world.js";
     std::fs::write(dest, &out).expect("write world.js");

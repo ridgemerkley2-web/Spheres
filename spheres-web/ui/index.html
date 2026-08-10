@@ -219,14 +219,17 @@ const TERRITORY = {
 };
 // Where to hang a nation's label. Defaults to its largest landmass centroid;
 // overridden where that lands somewhere unhelpful.
+// Robinson pixel space (see mapgen.rs). Only where a centroid misleads.
 const LABEL_AT = {
-  USSR: [700, 95],   // central Asia, not Russia's island-skewed centroid
-  USA: [212, 128],   // the lower 48, not the Alaska/Pacific average
-  France: [503, 106], // Paris-ish; its centroid is dragged to French Guiana
-  UK: [492, 84],
-  Germany: [529, 91],
-  Kuwait: [641, 158], // nudged into the Gulf so it clears Iraq and Saudi
+  USSR: [667, 72],    // central Asia, not Russia's dateline-skewed centroid
+  USA: [243, 121],    // the lower 48, not the Alaska/Pacific average
+  France: [506, 98],  // Paris-ish; its centroid is dragged to French Guiana
+  UK: [495, 75],
+  Germany: [525, 84],
+  Kuwait: [636, 157], // nudged into the Gulf so it clears Iraq and Saudi
 };
+/// Nations whose label sits off their own territory and needs a leader line.
+const LEADER = new Set(["Kuwait"]);
 
 let S = null;            // latest state from the server
 let queued = [];         // commands not yet sent
@@ -449,27 +452,31 @@ function renderMap() {
   s += `<defs>
       <radialGradient id="glow"><stop offset="0%" stop-color="#e05c5c" stop-opacity=".5"/>
         <stop offset="100%" stop-color="#e05c5c" stop-opacity="0"/></radialGradient>
+      <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0d1826"/>
+        <stop offset="45%" stop-color="#0a1420"/>
+        <stop offset="100%" stop-color="#0c1a2a"/>
+      </linearGradient>
       <filter id="halo" x="-40%" y="-60%" width="180%" height="220%">
         <feDropShadow dx="0" dy="0" stdDeviation="2.2" flood-color="#05080d" flood-opacity="1"/>
       </filter>
+      <filter id="landshade" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="1" stdDeviation="1.6" flood-color="#000" flood-opacity=".55"/>
+      </filter>
     </defs>`;
-  s += `<rect width="${W}" height="${H}" fill="#080c12"/>`;
-  // graticule beneath the land, so the ocean reads as a chart
-  for (let lat = 60; lat >= -40; lat -= 20) {
-    const y = ((84 - lat) / 140) * H;
-    s += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#101722"/>`;
-  }
-  for (let lon = -150; lon <= 150; lon += 30) {
-    const x = ((lon + 180) / 360) * W;
-    s += `<line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="#101722"/>`;
-  }
+  // The ocean is the projection's own envelope, not a rectangle.
+  s += `<path d="${WORLD.frame}" fill="url(#ocean)" stroke="#2a3a4e" stroke-width="1"/>`;
+  s += WORLD.graticule
+    .map((g) => `<path d="${g}" fill="none" stroke="#16202e" stroke-width=".6"/>`)
+    .join("");
 
   // 1. the unaligned world
   let scenery = "";
   for (const code in WORLD.countries) {
     if (!claimed[code]) scenery += WORLD.countries[code];
   }
-  s += `<path d="${scenery}" fill="#1a2331" stroke="#243040" stroke-width=".5" fill-rule="evenodd"/>`;
+  s += `<g filter="url(#landshade)">
+      <path d="${scenery}" fill="#243141" stroke="#33445a" stroke-width=".4" fill-rule="evenodd"/></g>`;
 
   // 2. the powers, coloured by how they regard you
   S.nations.forEach((n) => {
@@ -499,6 +506,16 @@ function renderMap() {
   S.nations.forEach((n) => {
     const p = anchorOf(n.id);
     if (!p) return;
+    // Nations too small to hold their own name get the label set offshore,
+    // tied back to the territory so the offset reads as deliberate.
+    if (LEADER.has(n.id)) {
+      const home = (TERRITORY[n.id] || []).map((c) => WORLD.centroids[c]).find(Boolean);
+      if (home) {
+        s += `<line x1="${p[0] - 12}" y1="${p[1] - 3}" x2="${home[0]}" y2="${home[1]}"
+                stroke="#8fa0b6" stroke-width=".6" opacity=".8"/>
+              <circle cx="${home[0]}" cy="${home[1]}" r="1.6" fill="#cfd9e6"/>`;
+      }
+    }
     const isMe = m && n.id === m.id;
     const marks = (n.nuclear ? "☢" : "") + (n.sanctioned_by_count > 0 ? "⊘" : "");
     s += `<g class="nodeg" data-id="${n.id}">
