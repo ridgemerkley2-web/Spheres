@@ -67,9 +67,12 @@ pub fn tick(w: &mut WorldState) {
         if !alive {
             continue;
         }
+        let is_yugo = id == NationId::Yugoslavia;
         if is_ussr && (stab < 25.0 || sep > 0.9) && !w.has_flag("ussr_dissolved") {
             dissolve_ussr(w);
-        } else if !is_ussr && stab < 12.0 && w.rng.chance(0.10 * w.rules.crisis_intensity) {
+        } else if is_yugo && (stab < 25.0 || sep > 0.9) && !w.has_flag("yugoslavia_dissolved") {
+            dissolve_yugoslavia(w);
+        } else if !is_ussr && !is_yugo && stab < 12.0 && w.rng.chance(0.10 * w.rules.crisis_intensity) {
             // Generic regime collapse: chaos, then a new regime
             let auth_shift = w.rng.range(-0.3, 0.2);
             let n = w.nation_mut(id);
@@ -183,21 +186,123 @@ fn dissolve_ussr(w: &mut WorldState) {
     w.headline("Newly independent republics abstracted; Russia inherits the arsenal.".into());
 }
 
+/// Yugoslavia comes apart into republics of unequal wealth and — the part that
+/// decides everything — unequal ethnic homogeneity. Each successor inherits a
+/// separatism value drawn from its real 1991 census: Slovenia is nearly all
+/// Slovene and leaves almost intact, while Bosnia inherits a state with no
+/// majority at all. Nothing here schedules a war; the strain is simply handed to
+/// the successors, and the existing war machinery does what it does with it.
+fn dissolve_yugoslavia(w: &mut WorldState) {
+    w.set_flag("yugoslavia_dissolved");
+    let (gdp, pop, oil, strength, infl, debt) = {
+        let y = w.nation(NationId::Yugoslavia);
+        (y.gdp, y.population, y.oil_mbd, y.mil_strength, y.inflation, y.debt_gdp)
+    };
+    {
+        let y = w.nation_mut(NationId::Yugoslavia);
+        y.alive = false;
+        y.gdp = 0.0;
+    }
+
+    // (id, GDP share, pop share, JNA share, separatism, authoritarianism, stability, tfp)
+    // Macedonia's ~5% of output and ~9% of the people leave with it, unsimulated:
+    // it seceded without a shot and never fought anyone.
+    let parts: [(NationId, f64, f64, f64, f64, f64, f64, f64); 4] = [
+        // Belgrade keeps the army, and Kosovo and Vojvodina keep Belgrade busy.
+        (NationId::Serbia,   0.36, 0.42, 0.70, 0.45, 0.75, 40.0, 0.002),
+        // A twelve percent Serb minority concentrated in the Krajina.
+        (NationId::Croatia,  0.25, 0.20, 0.12, 0.35, 0.45, 45.0, 0.012),
+        // ~88% Slovene, no minority worth a war, and the richest republic.
+        (NationId::Slovenia, 0.20, 0.085, 0.08, 0.05, 0.25, 62.0, 0.020),
+        // 44% Bosniak, 31% Serb, 17% Croat — a republic that is all minorities.
+        (NationId::Bosnia,   0.13, 0.19, 0.05, 0.85, 0.40, 30.0, 0.006),
+    ];
+    for (id, g, p, m, sep, auth, stab, tfp) in parts {
+        w.nations.push(Nation {
+            id,
+            alive: true,
+            system: EconomySystem::Market, // the plan dies with the federation
+            authoritarianism: auth,
+            gdp: gdp * g,
+            population: pop * p,
+            tfp_trend: tfp,
+            inflation: infl,
+            interest_rate: 0.25,
+            tax_rate: 0.33,
+            mil_spend_gdp: 0.05,
+            state_invest_gdp: 0.05,
+            priv_invest_gdp: 0.10,
+            debt_gdp: debt,
+            oil_mbd: oil * g,
+            bubble: 0.0,
+            growth_last: -0.06,
+            stability: stab,
+            separatism: sep,
+            mil_strength: strength * m,
+            war_exhaustion: 0.0,
+            nuclear: false,
+        });
+    }
+
+    // Successors inherit the federation's standing abroad, thinned out.
+    let inherited: Vec<(NationId, f64)> = ALL_START_NATIONS
+        .iter()
+        .filter(|x| **x != NationId::Yugoslavia)
+        .map(|x| (*x, w.relation(NationId::Yugoslavia, *x) * 0.6))
+        .collect();
+    for (id, _, _, _, _, _, _, _) in parts {
+        for (other, v) in &inherited {
+            w.set_relation(id, *other, *v);
+        }
+    }
+    // Bonn recognised Slovenia and Croatia early and over everyone's objections.
+    w.shift_relation(NationId::Germany, NationId::Slovenia, 25.0);
+    w.shift_relation(NationId::Germany, NationId::Croatia, 25.0);
+
+    // How the republics regard each other on day one. Belgrade's claim on the
+    // Serb minorities abroad is the fault line; Ljubljana has no such quarrel.
+    let between: &[(NationId, NationId, f64)] = &[
+        (NationId::Serbia, NationId::Croatia, -45.0),
+        (NationId::Serbia, NationId::Bosnia, -35.0),
+        (NationId::Serbia, NationId::Slovenia, -20.0),
+        (NationId::Croatia, NationId::Bosnia, -10.0),
+        (NationId::Croatia, NationId::Slovenia, 20.0),
+        (NationId::Bosnia, NationId::Slovenia, 5.0),
+    ];
+    for (a, b, v) in between {
+        w.set_relation(*a, *b, *v);
+    }
+
+    w.headline("YUGOSLAVIA HAS DISSOLVED. Slovenia, Croatia, Bosnia and Serbia stand alone.".into());
+    w.headline("The JNA's divisions, and its arsenal, remain in Belgrade's hands.".into());
+}
+
 fn ai_wars(w: &mut WorldState) {
     // Iraq's Kuwait calculus: debt-strained oil state eyeing a rich, weak neighbor.
     let candidates: Vec<(NationId, NationId, f64)> = {
         let mut v = vec![];
-        let aggressors = [NationId::Iraq, NationId::Iran, NationId::Pakistan, NationId::India];
+        let aggressors = [
+            NationId::Iraq, NationId::Iran, NationId::Pakistan, NationId::India,
+            NationId::Serbia, NationId::Croatia,
+        ];
+        // Successor states are not in ALL_START_NATIONS, so consider everyone alive.
+        let living: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
         for a in aggressors {
-            let an = w.nation(a);
+            let an = match w.nation_opt(a) {
+                Some(n) => n,
+                None => continue, // has not been born yet, if it ever is
+            };
             if !an.alive || Some(a) == w.player || w.at_war(a) || an.war_exhaustion > 0.3 {
                 continue;
             }
-            for t in ALL_START_NATIONS {
+            for t in living.iter().copied() {
                 if t == a {
                     continue;
                 }
-                let tn = w.nation(t);
+                let tn = match w.nation_opt(t) {
+                    Some(n) => n,
+                    None => continue,
+                };
                 if !tn.alive || w.at_war(t) {
                     continue;
                 }
@@ -209,6 +314,12 @@ fn ai_wars(w: &mut WorldState) {
                     (NationId::Iran, NationId::Iraq) => 0.002,
                     (NationId::Pakistan, NationId::India) => 0.001,
                     (NationId::India, NationId::Pakistan) => 0.001,
+                    // Wars of succession: neighbours of a state that just came
+                    // apart, with kin on the wrong side of the new borders.
+                    (NationId::Serbia, NationId::Croatia) => 0.022,
+                    (NationId::Serbia, NationId::Bosnia) => 0.030,
+                    (NationId::Serbia, NationId::Slovenia) => 0.010,
+                    (NationId::Croatia, NationId::Bosnia) => 0.014,
                     _ => 0.0,
                 };
                 if base <= 0.0 {
@@ -221,8 +332,10 @@ fn ai_wars(w: &mut WorldState) {
                 let learned = w.has_flag(&format!("burned_{:?}_{:?}", a, t));
                 let mut expected_def = tn.mil_strength;
                 let coalition_discount = if learned { 1.0 } else { 0.10 };
-                for m in [NationId::USA, NationId::UK, NationId::France] {
-                    if m != a && w.nation(m).alive && w.relation(m, t) >= 40.0 {
+                // Read the same list the coalition actually forms from, or the
+                // lesson of a repelled invasion is never available to be learned.
+                for m in war::MAJORS {
+                    if war::would_intervene(w, m, t, a) {
                         expected_def += w.nation(m).mil_strength * coalition_discount;
                     }
                 }
@@ -232,9 +345,12 @@ fn ai_wars(w: &mut WorldState) {
                 }
                 // Fiscal desperation raises appetite (Iraq 1990); bad relations too
                 let desperation = (an.debt_gdp - 0.6).max(0.0) * 1.5 + (0.4 - an.growth_last * 10.0).max(0.0) * 0.2;
+                // A neighbour that cannot hold itself together is an invitation:
+                // its own minorities are a lever, and its army is busy at home.
                 let mut p = base
                     * w.rules.ai_aggression
                     * (1.0 + desperation)
+                    * (1.0 + tn.separatism * 1.5)
                     * strength_ratio.min(4.0)
                     * if rel < -20.0 { 1.5 } else { 0.5 };
                 // Deterrence: never attack a nuclear power without your own arsenal

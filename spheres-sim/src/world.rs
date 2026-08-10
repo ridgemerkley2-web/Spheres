@@ -33,12 +33,19 @@ impl Rng {
 pub enum NationId {
     USA, USSR, Russia, China, Japan, Germany, UK, France, Italy,
     India, Pakistan, Iraq, Kuwait, SaudiArabia, Iran, SouthKorea, Poland,
+    Yugoslavia, Serbia, Croatia, Slovenia, Bosnia,
 }
-pub const ALL_START_NATIONS: [NationId; 16] = [
+pub const ALL_START_NATIONS: [NationId; 17] = [
     NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
     NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
     NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
     NationId::SaudiArabia, NationId::Iran, NationId::SouthKorea, NationId::Poland,
+    NationId::Yugoslavia,
+];
+/// States that only exist if a federation comes apart.
+pub const SUCCESSOR_NATIONS: [NationId; 5] = [
+    NationId::Russia, NationId::Serbia, NationId::Croatia,
+    NationId::Slovenia, NationId::Bosnia,
 ];
 
 impl NationId {
@@ -61,6 +68,11 @@ impl NationId {
             NationId::Iran => "Iran",
             NationId::SouthKorea => "South Korea",
             NationId::Poland => "Poland",
+            NationId::Yugoslavia => "Yugoslavia",
+            NationId::Serbia => "Serbia",
+            NationId::Croatia => "Croatia",
+            NationId::Slovenia => "Slovenia",
+            NationId::Bosnia => "Bosnia",
         }
     }
     pub fn parse(s: &str) -> Option<NationId> {
@@ -83,6 +95,11 @@ impl NationId {
             "iran" => NationId::Iran,
             "south korea" | "korea" | "rok" => NationId::SouthKorea,
             "poland" => NationId::Poland,
+            "yugoslavia" | "sfry" | "yugo" => NationId::Yugoslavia,
+            "serbia" | "serbia and montenegro" | "fry" => NationId::Serbia,
+            "croatia" => NationId::Croatia,
+            "slovenia" => NationId::Slovenia,
+            "bosnia" | "bosnia and herzegovina" | "bih" => NationId::Bosnia,
             _ => return None,
         })
     }
@@ -197,6 +214,11 @@ impl WorldState {
     }
     pub fn nation_mut(&mut self, id: NationId) -> &mut Nation {
         self.nations.iter_mut().find(|n| n.id == id).expect("nation")
+    }
+    /// For nations that may not exist in this world at all — successor states
+    /// before their federation falls, or an older save with a smaller roster.
+    pub fn nation_opt(&self, id: NationId) -> Option<&Nation> {
+        self.nations.iter().find(|n| n.id == id)
     }
     pub fn has_flag(&self, f: &str) -> bool {
         self.flags.iter().any(|x| x == f)

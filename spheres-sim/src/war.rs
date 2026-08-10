@@ -152,9 +152,12 @@ fn conquer(w: &mut WorldState, winner: NationId, loser: NationId) {
         let l = w.nation(loser);
         (l.gdp, l.population, l.oil_mbd)
     };
-    // Annexing a whole large nation is beyond anyone's digestion — only small
-    // states can be swallowed. Larger defeated nations are subjugated instead.
-    if lpop < 8.0 {
+    // Annexing a whole nation is beyond anyone's digestion. Only small states
+    // can be swallowed — and only quiet ones: a territory that is all minorities
+    // is an occupation, not an acquisition. Larger or angrier nations are
+    // subjugated instead, and survive to resent it.
+    let lsep = w.nation(loser).separatism;
+    if lpop < 8.0 && lsep < 0.6 {
         {
             let l = w.nation_mut(loser);
             l.alive = false;
@@ -213,6 +216,24 @@ pub fn war_participants(war: &War) -> Vec<NationId> {
     v
 }
 
+/// The powers that sanction an aggressor and may intervene for its victim.
+/// The AI's expectations in `politics::ai_wars` read from this same list — if
+/// they diverge, aggressors invade into coalitions they never saw coming and
+/// never learn better.
+pub const MAJORS: [NationId; 5] = [
+    NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan,
+];
+
+/// Would `m` come to `victim`'s defence?
+pub fn would_intervene(w: &WorldState, m: NationId, victim: NationId, attacker: NationId) -> bool {
+    if m == attacker || m == victim || w.nation_opt(m).map_or(true, |n| !n.alive) {
+        return false;
+    }
+    let att_nuclear = w.nation(attacker).nuclear;
+    let m_nuclear = w.nation(m).nuclear;
+    w.relation(m, victim) >= 40.0 && (!att_nuclear || m_nuclear)
+}
+
 /// Declare war, triggering coalition sanctions and possible interventions.
 pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -> Result<(), String> {
     if attacker == defender {
@@ -243,7 +264,7 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
     };
 
     // Coalition response: majors sanction the aggressor...
-    let majors = [NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan];
+    let majors = MAJORS;
     for m in majors {
         if m == attacker || !w.nation(m).alive {
             continue;
@@ -258,13 +279,7 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
     // ...and friends of the victim may intervene (never against a nuclear attacker directly
     // unless they're nuclear too — abstracted: majors intervene if relation with victim high).
     for m in majors {
-        if m == attacker || !w.nation(m).alive {
-            continue;
-        }
-        let rel = w.relation(m, defender);
-        let att_nuclear = w.nation(attacker).nuclear;
-        let m_nuclear = w.nation(m).nuclear;
-        if rel >= 40.0 && (!att_nuclear || m_nuclear) {
+        if would_intervene(w, m, defender, attacker) {
             war.defender_allies.push(m);
             w.headline(format!("{} joins the war in defense of {}.", m.name(), defender.name()));
         }

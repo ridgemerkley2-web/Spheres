@@ -189,6 +189,52 @@ mod tests {
     }
 
     #[test]
+    fn yugoslavia_comes_apart_in_the_nineties() {
+        let mut broke = 0;
+        for seed in 0..10u64 {
+            let mut rules = GameRules::default();
+            rules.seed = seed;
+            let mut w = world_1990(rules);
+            run_months(&mut w, 120); // to 2000
+            if w.has_flag("yugoslavia_dissolved") {
+                broke += 1;
+            }
+        }
+        assert!(broke >= 8, "Yugoslavia held together too often: {}/10", broke);
+    }
+
+    #[test]
+    fn slovenia_escapes_the_wars_that_consume_bosnia() {
+        // The asymmetry of the breakup is the whole point, and it must come from
+        // inherited ethnic strain rather than a script: Slovenia is homogeneous
+        // and gets out; Bosnia has no majority at all and is fought over.
+        let (mut slovenia_wars, mut bosnia_wars) = (0, 0);
+        for seed in 0..10u64 {
+            let mut rules = GameRules::default();
+            rules.seed = seed;
+            let mut w = world_1990(rules);
+            for _ in 0..120 {
+                let headlines = tick_month(&mut w, &[]);
+                for h in &headlines {
+                    if h.starts_with("WAR:") {
+                        if h.contains("Slovenia") {
+                            slovenia_wars += 1;
+                        }
+                        if h.contains("Bosnia") {
+                            bosnia_wars += 1;
+                        }
+                    }
+                }
+            }
+        }
+        assert!(
+            bosnia_wars > slovenia_wars * 3,
+            "breakup was not asymmetric: Bosnia {} wars vs Slovenia {}",
+            bosnia_wars, slovenia_wars
+        );
+    }
+
+    #[test]
     fn some_wars_end_at_the_table() {
         // Not every war runs to a capital or to mutual collapse. Across seeds,
         // negotiated settlements should be a real way for wars to end.

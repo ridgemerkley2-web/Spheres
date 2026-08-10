@@ -23,6 +23,12 @@ pub fn world_1990(rules: GameRules) -> WorldState {
         n(Iran,       Command, 0.85,  120.0,  56.0, 0.006, 0.090, 0.060, 0.18, 0.030, 0.090, 0.06, 0.30, 3.1, 55.0, 0.10, 20.0, false),
         n(SouthKorea, Market,  0.35,  280.0,  43.0, 0.028, 0.086, 0.100, 0.18, 0.037, 0.060, 0.30, 0.13, 0.0, 66.0, 0.00, 18.0, false),
         n(Poland,     Market,  0.35,   66.0,  38.0, 0.010, 0.550, 0.300, 0.30, 0.027, 0.050, 0.10, 0.80, 0.0, 55.0, 0.05, 12.0, false),
+        // Yugoslavia: GDP ~$88bn and 23.5m people. The game opens three weeks
+        // into Markovic's stabilisation programme (18 Dec 1989) — hence the
+        // punishing policy rate against still-enormous inflation — and the same
+        // month the League of Communists broke up at its 14th Congress, which
+        // is why separatism starts higher than the USSR's 0.55.
+        n(Yugoslavia, Command, 0.65,   88.0,  23.5, -0.010, 0.600, 0.300, 0.36, 0.048, 0.120, 0.08, 0.28, 0.05, 44.0, 0.72, 20.0, false),
     ];
 
     let mut w = WorldState {
@@ -57,6 +63,11 @@ pub fn world_1990(rules: GameRules) -> WorldState {
         (UK, France, 55.0), (UK, Germany, 55.0), (France, Germany, 60.0),
         (Japan, SouthKorea, 15.0), (China, Japan, -5.0),
         (Kuwait, SaudiArabia, 45.0), (UK, Kuwait, 50.0),
+        // Non-aligned: on cordial terms with both blocs and neither's client.
+        // Bonn's warmth here is what makes its later push for recognition bite.
+        (Yugoslavia, USA, 25.0), (Yugoslavia, Germany, 30.0), (Yugoslavia, Italy, 25.0),
+        (Yugoslavia, UK, 20.0), (Yugoslavia, France, 20.0), (Yugoslavia, USSR, 5.0),
+        (Yugoslavia, Poland, 10.0), (Yugoslavia, India, 30.0),
     ];
     for (a, b, v) in pairs {
         w.set_relation(*a, *b, *v);
