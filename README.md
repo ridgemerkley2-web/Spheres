@@ -4,13 +4,20 @@ Grand strategy simulation, January 1990 start. Deterministic core (SplitMix64,
 single command queue, seeded), 16 nations, monthly ticks.
 
 ## Run it
+    cargo run --release -p spheres-web                  # browser UI — map, charts, diplomacy
     cargo run --release -p spheres-cli -- play          # interactive, default seed
     cargo run --release -p spheres-cli -- play 42       # different history
     cargo run --release -p spheres-cli -- run 30 1990   # headless 30-year report
     cargo run --release -p spheres-cli -- resume save.json
     cargo test                                          # 10 calibration/invariant tests
 
-Type `help` in-game. Core loop: read briefing -> set policy (rate/tax/military/
+`spheres-web` opens http://127.0.0.1:7777 in your browser: a strategic map of the
+world sized by GDP and coloured by your relations, policy sliders, GDP/oil history
+charts, a league table, and a dispatch feed. Click a nation to open it and act on it.
+Time advances in months; a war or a collapse interrupts a long advance so you can
+respond.
+
+In the CLI, type `help`. Core loop: read briefing -> set policy (rate/tax/military/
 invest), act diplomatically (improve/sanction/war) -> `next`, `year`, or `6` to
 advance -> world reacts.
 

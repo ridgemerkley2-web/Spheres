@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPHERES</title>
+<style>
+  :root {
+    --bg: #0a0e14;
+    --panel: #121822;
+    --panel-2: #1a2230;
+    --line: #26303f;
+    --ink: #dfe6ef;
+    --dim: #8a97a8;
+    --amber: #e0a44c;
+    --cyan: #4cc7e0;
+    --red: #e05c5c;
+    --green: #5cc98a;
+    --violet: #a07ce0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 14px/1.45 "Segoe UI", system-ui, sans-serif;
+    height: 100vh; overflow: hidden;
+  }
+  h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: .04em; }
+  button {
+    font: inherit; color: var(--ink); background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: 4px; padding: 6px 12px;
+    cursor: pointer; transition: .12s;
+  }
+  button:hover:not(:disabled) { background: #23304a; border-color: #3d5480; }
+  button:disabled { opacity: .4; cursor: default; }
+  button.primary { background: #2b4a72; border-color: #3f6da8; }
+  button.primary:hover { background: #35598a; }
+  button.danger { border-color: #6b3030; color: #f0a0a0; }
+  button.danger:hover { background: #4a2020; }
+
+  /* ---------- setup ---------- */
+  #setup {
+    position: fixed; inset: 0; background: var(--bg); z-index: 50;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  #setup .title {
+    font-size: 60px; letter-spacing: .5em; margin-bottom: 4px;
+    color: var(--amber); text-indent: .5em;
+  }
+  #setup .sub { color: var(--dim); margin-bottom: 40px; letter-spacing: .2em; font-size: 13px; }
+  #nationPick {
+    display: grid; grid-template-columns: repeat(4, 150px); gap: 8px; margin-bottom: 28px;
+  }
+  #nationPick .opt {
+    padding: 10px; border: 1px solid var(--line); border-radius: 5px;
+    background: var(--panel); cursor: pointer; text-align: center; transition: .12s;
+  }
+  #nationPick .opt:hover { border-color: var(--amber); background: var(--panel-2); }
+  #nationPick .opt.sel { border-color: var(--amber); background: #2a2114; }
+  #nationPick .opt .nm { font-weight: 600; }
+  #nationPick .opt .gd { color: var(--dim); font-size: 11px; }
+  .seedrow { display: flex; gap: 10px; align-items: center; margin-bottom: 24px; color: var(--dim); }
+  .seedrow input {
+    width: 90px; background: var(--panel); border: 1px solid var(--line);
+    color: var(--ink); padding: 6px; border-radius: 4px; font: inherit;
+  }
+
+  /* ---------- layout ---------- */
+  #app { display: none; height: 100vh; grid-template-rows: auto 1fr; }
+  header {
+    display: flex; align-items: center; gap: 20px; padding: 8px 16px;
+    background: var(--panel); border-bottom: 1px solid var(--line);
+  }
+  header .brand { color: var(--amber); letter-spacing: .35em; font-weight: 600; }
+  header .date { font-size: 20px; font-variant-numeric: tabular-nums; min-width: 110px; }
+  header .metric { color: var(--dim); font-size: 12px; }
+  header .metric b { color: var(--ink); font-size: 14px; font-weight: 600; }
+  header .spacer { flex: 1; }
+  .timebtns { display: flex; gap: 6px; }
+
+  main { display: grid; grid-template-columns: 300px 1fr 330px; overflow: hidden; }
+  .col { overflow-y: auto; padding: 12px; }
+  .col::-webkit-scrollbar { width: 8px; }
+  .col::-webkit-scrollbar-thumb { background: #2a3444; border-radius: 4px; }
+  #left { border-right: 1px solid var(--line); background: #0d121a; }
+  #right { border-left: 1px solid var(--line); background: #0d121a; }
+
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px; margin-bottom: 12px; }
+  .card h3 { font-size: 11px; letter-spacing: .18em; color: var(--dim); text-transform: uppercase; margin-bottom: 10px; }
+
+  .stat { display: flex; justify-content: space-between; padding: 3px 0; font-variant-numeric: tabular-nums; }
+  .stat .k { color: var(--dim); }
+  .stat .v { font-weight: 600; }
+  .up { color: var(--green); } .down { color: var(--red); }
+
+  .bar { height: 5px; background: #1e2735; border-radius: 3px; overflow: hidden; margin-top: 3px; }
+  .bar > i { display: block; height: 100%; }
+
+  .slider { margin: 12px 0; }
+  .slider label { display: flex; justify-content: space-between; font-size: 12px; color: var(--dim); }
+  .slider label b { color: var(--cyan); font-variant-numeric: tabular-nums; }
+  .slider input { width: 100%; accent-color: var(--cyan); margin-top: 2px; }
+  .slider .orig { color: #5a6a80; }
+
+  /* ---------- map ---------- */
+  #center { display: flex; flex-direction: column; overflow: hidden; }
+  .tabs { display: flex; gap: 4px; padding: 8px 12px 0; }
+  .tabs .tab {
+    padding: 5px 14px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--dim); border: 1px solid transparent; border-radius: 4px 4px 0 0; cursor: pointer;
+  }
+  .tabs .tab.on { color: var(--amber); border-color: var(--line); border-bottom-color: transparent; background: var(--panel); }
+  .pane { flex: 1; overflow: auto; padding: 10px 12px; display: none; }
+  .pane.on { display: block; }
+  svg { display: block; width: 100%; }
+  .nodeg { cursor: pointer; }
+  .nodeg:hover circle.body { stroke: var(--amber); stroke-width: 2.5; }
+
+  /* ---------- feed ---------- */
+  .feed .item { padding: 7px 0; border-bottom: 1px solid #1b2330; font-size: 13px; }
+  .feed .item .d { color: var(--dim); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .feed .item.war { color: #f0a8a8; }
+  .feed .item.big { color: var(--amber); }
+
+  .warcard { border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 10px; }
+  .progbar { height: 8px; background: #1e2735; border-radius: 4px; position: relative; margin-top: 4px; }
+  .progbar .mid { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #4a5a70; }
+  .progbar .fill { position: absolute; top: 0; bottom: 0; background: var(--amber); border-radius: 4px; }
+
+  /* ---------- nation detail ---------- */
+  #detail { position: fixed; right: 342px; top: 60px; width: 300px; z-index: 20; display: none; }
+  #detail .card { box-shadow: 0 8px 40px #000a; }
+  #detail .close { float: right; cursor: pointer; color: var(--dim); }
+  .actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .actions button { font-size: 12px; padding: 5px 10px; }
+
+  #banner {
+    position: fixed; top: 52px; left: 50%; transform: translateX(-50%);
+    background: #3a2a12; border: 1px solid var(--amber); color: #ffd89a;
+    padding: 8px 18px; border-radius: 5px; z-index: 40; display: none;
+    box-shadow: 0 6px 30px #000a; max-width: 60vw; text-align: center;
+  }
+  .queued { color: var(--cyan); font-size: 12px; min-height: 16px; }
+  .muted { color: var(--dim); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div id="setup">
+  <div class="title">SPHERES</div>
+  <div class="sub">JANUARY 1990 &middot; THE WORLD IS UNWRITTEN</div>
+  <div id="nationPick"></div>
+  <div class="seedrow">
+    <span>SEED</span><input id="seed" value="1990">
+    <span class="muted">— same seed, same history</span>
+  </div>
+  <button class="primary" id="startBtn" disabled>CHOOSE A NATION</button>
+</div>
+
+<div id="app">
+  <header>
+    <span class="brand">SPHERES</span>
+    <span class="date" id="hdrDate">—</span>
+    <span class="metric">OIL <b id="hdrOil">—</b></span>
+    <span class="metric">YOU <b id="hdrYou">—</b></span>
+    <span class="metric">GDP <b id="hdrGdp">—</b></span>
+    <span class="spacer"></span>
+    <span class="queued" id="queuedNote"></span>
+    <div class="timebtns">
+      <button data-adv="1">+1 MO</button>
+      <button data-adv="6">+6 MO</button>
+      <button data-adv="12">+1 YR</button>
+      <button data-adv="60">+5 YR</button>
+      <button id="saveBtn">SAVE</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="col" id="left"></div>
+    <div id="center">
+      <div class="tabs">
+        <div class="tab on" data-pane="map">Map</div>
+        <div class="tab" data-pane="charts">History</div>
+        <div class="tab" data-pane="table">League</div>
+      </div>
+      <div class="pane on" id="pane-map"></div>
+      <div class="pane" id="pane-charts"></div>
+      <div class="pane" id="pane-table"></div>
+    </div>
+    <div class="col" id="right"></div>
+  </main>
+</div>
+
+<div id="detail"></div>
+<div id="banner"></div>
+
+<script>
+"use strict";
+
+// Rough geographic placement on a 1000x560 field. Not a projection — a
+// strategic map: position suggests where, size shows weight.
+const POS = {
+  USA:          [150, 205], UK:     [412, 138], France:  [420, 180],
+  Germany:      [455, 146], Italy:  [462, 196], Poland:  [497, 138],
+  USSR:         [645, 105], Russia: [645, 105], China:   [795, 205],
+  Japan:        [905, 195], SouthKorea: [848, 222], India: [722, 300],
+  Pakistan:     [676, 262], Iran:   [612, 244], Iraq:    [556, 246],
+  Kuwait:       [588, 284], SaudiArabia: [552, 312], Yugoslavia: [498, 192],
+};
+const REGIONS = [
+  { label: "AMERICAS", x: 150, y: 300 },
+  { label: "EUROPE",   x: 452, y: 92 },
+  { label: "SOVIET SPHERE", x: 700, y: 62 },
+  { label: "MIDDLE EAST", x: 560, y: 348 },
+  { label: "ASIA",     x: 850, y: 300 },
+];
+
+let S = null;            // latest state from the server
+let queued = [];         // commands not yet sent
+let selected = null;     // nation id shown in detail panel
+let pickedNation = null;
+
+const $ = (s) => document.querySelector(s);
+const fmt = {
+  money(v) {
+    if (v >= 1000) return "$" + (v / 1000).toFixed(1) + "tn";
+    return "$" + v.toFixed(0) + "bn";
+  },
+  pct(v, d = 1) { return (v * 100).toFixed(d) + "%"; },
+  signed(v, d = 1) { return (v >= 0 ? "+" : "") + (v * 100).toFixed(d) + "%"; },
+};
+
+async function api(path, body) {
+  const r = await fetch(path, {
+    method: body === undefined ? "GET" : "POST",
+    headers: { "Content-Type": "application/json" },
+    body: body === undefined ? undefined : JSON.stringify(body),
+  });
+  return r.json();
+}
+
+/* ================= setup ================= */
+
+async function buildSetup() {
+  const st = await api("/api/state");
+  const grid = $("#nationPick");
+  grid.innerHTML = "";
+  st.nations.forEach((n) => {
+    const d = document.createElement("div");
+    d.className = "opt";
+    d.innerHTML = `<div class="nm">${n.name}</div><div class="gd">${fmt.money(n.gdp)}</div>`;
+    d.onclick = () => {
+      pickedNation = n.name;
+      [...grid.children].forEach((c) => c.classList.remove("sel"));
+      d.classList.add("sel");
+      const b = $("#startBtn");
+      b.disabled = false;
+      b.textContent = "GOVERN " + n.name.toUpperCase();
+    };
+    grid.appendChild(d);
+  });
+}
+
+$("#startBtn").onclick = async () => {
+  const seed = parseInt($("#seed").value, 10) || 1990;
+  S = await api("/api/new", { seed, nation: pickedNation });
+  $("#setup").style.display = "none";
+  $("#app").style.display = "grid";
+  render();
+};
+
+/* ================= time ================= */
+
+document.querySelectorAll("[data-adv]").forEach((b) => {
+  b.onclick = async () => {
+    document.querySelectorAll("[data-adv]").forEach((x) => (x.disabled = true));
+    S = await api("/api/advance", { months: +b.dataset.adv, commands: queued });
+    queued = [];
+    document.querySelectorAll("[data-adv]").forEach((x) => (x.disabled = false));
+    render();
+    if (S.interrupt) banner(S.interrupt);
+  };
+});
+
+$("#saveBtn").onclick = async () => {
+  const r = await api("/api/save", {});
+  banner(r.ok ? "Saved to save.json" : "Save failed: " + r.error);
+};
+
+function banner(text) {
+  const b = $("#banner");
+  b.textContent = text;
+  b.style.display = "block";
+  clearTimeout(banner._t);
+  banner._t = setTimeout(() => (b.style.display = "none"), 5200);
+}
+
+/* ================= render ================= */
+
+function me() { return S.nations.find((n) => n.id === S.player); }
+
+function render() {
+  const m = me();
+  $("#hdrDate").textContent = S.date;
+  $("#hdrOil").textContent = "$" + S.oil_price.toFixed(0);
+  $("#hdrYou").textContent = S.player_name || "—";
+  $("#hdrGdp").textContent = m ? fmt.money(m.gdp) : "—";
+  $("#queuedNote").textContent = queued.length ? queued.length + " order(s) queued for next month" : "";
+  renderLeft(m);
+  renderRight();
+  renderMap();
+  renderCharts();
+  renderTable();
+  if (selected) showDetail(selected);
+}
+
+function statRow(k, v, cls) {
+  return `<div class="stat"><span class="k">${k}</span><span class="v ${cls || ""}">${v}</span></div>`;
+}
+function barRow(k, v, frac, color) {
+  return `<div class="stat"><span class="k">${k}</span><span class="v">${v}</span></div>
+          <div class="bar"><i style="width:${Math.max(0, Math.min(1, frac)) * 100}%;background:${color}"></i></div>`;
+}
+
+function renderLeft(m) {
+  if (!m) { $("#left").innerHTML = ""; return; }
+  const g = m.growth;
+  $("#left").innerHTML = `
+    <div class="card">
+      <h3>${m.name}</h3>
+      ${statRow("GDP", fmt.money(m.gdp))}
+      ${statRow("Growth", fmt.signed(g), g >= 0 ? "up" : "down")}
+      ${statRow("GDP / person", "$" + m.gdp_pc.toFixed(0))}
+      ${statRow("Population", m.population.toFixed(0) + "m")}
+      ${statRow("Inflation", fmt.pct(m.inflation), m.inflation > 0.08 ? "down" : "")}
+      ${statRow("Debt", fmt.pct(m.debt, 0) + " of GDP", m.debt > 0.9 ? "down" : "")}
+      ${barRow("Stability", m.stability.toFixed(0) + "/100", m.stability / 100,
+               m.stability < 30 ? "var(--red)" : m.stability < 55 ? "var(--amber)" : "var(--green)")}
+      ${m.separatism > 0.01 ? barRow("Separatism", fmt.pct(m.separatism, 0), m.separatism, "var(--red)") : ""}
+      ${m.war_exhaustion > 0.01 ? barRow("War exhaustion", fmt.pct(m.war_exhaustion, 0), m.war_exhaustion, "var(--red)") : ""}
+      ${m.oil_mbd > 0 ? statRow("Oil exports", (m.oil_mbd * m.export_share).toFixed(1) + " / " + m.oil_mbd.toFixed(1) + " mbd",
+                                m.export_share < 0.9 ? "down" : "") : ""}
+      ${m.sanctioned_by_count > 0 ? statRow("Sanctioned by", m.sanctioned_by_count + " nations", "down") : ""}
+    </div>
+
+    <div class="card">
+      <h3>Policy</h3>
+      ${sliderHtml("rate", "Interest rate", m.rate, 0, 0.4)}
+      ${sliderHtml("tax", "Tax take", m.tax, 0.02, 0.6)}
+      ${sliderHtml("military", "Military spending", m.mil_spend, 0, 0.35)}
+      ${sliderHtml("invest", "State investment", m.state_invest, 0, 0.4)}
+      <div class="muted">Orders take effect when you advance time.</div>
+    </div>`;
+  wireSliders();
+}
+
+function sliderHtml(kind, label, val, lo, hi) {
+  const q = queued.find((c) => c.kind === kind);
+  const shown = q ? q.value : val;
+  return `<div class="slider" data-kind="${kind}" data-orig="${val}">
+      <label>${label} <b>${(shown * 100).toFixed(1)}%</b></label>
+      <input type="range" min="${lo * 1000}" max="${hi * 1000}" value="${shown * 1000}" step="1">
+    </div>`;
+}
+
+function wireSliders() {
+  document.querySelectorAll(".slider").forEach((el) => {
+    const kind = el.dataset.kind;
+    const orig = parseFloat(el.dataset.orig);
+    const input = el.querySelector("input");
+    input.oninput = () => {
+      const v = +input.value / 1000;
+      el.querySelector("b").textContent = (v * 100).toFixed(1) + "%";
+      queued = queued.filter((c) => c.kind !== kind);
+      if (Math.abs(v - orig) > 1e-9) queued.push({ kind, value: v });
+      $("#queuedNote").textContent = queued.length ? queued.length + " order(s) queued for next month" : "";
+    };
+  });
+}
+
+function renderRight() {
+  const wars = S.wars.map((w) => {
+    const p = (w.progress + 100) / 200;
+    const allies = [...w.attacker_allies, ...w.defender_allies];
+    return `<div class="warcard">
+      <div><b>${w.attacker}</b> vs <b>${w.defender}</b></div>
+      <div class="progbar"><div class="mid"></div>
+        <div class="fill" style="${w.progress >= 0
+            ? `left:50%;width:${(p - 0.5) * 100}%`
+            : `right:50%;width:${(0.5 - p) * 100}%`}"></div></div>
+      ${allies.length ? `<div class="muted">+ ${allies.join(", ")}</div>` : ""}
+    </div>`;
+  }).join("");
+
+  const feed = S.log.map((e) => {
+    const t = e.text.toLowerCase();
+    const cls = t.startsWith("war:") ? "war"
+      : (t.includes("dissolved") || t.includes("annexed") || t.includes("peace") ||
+         t.includes("capitulates") || t.includes("revolution")) ? "big" : "";
+    return `<div class="item ${cls}"><span class="d">${e.date}</span> ${e.text}</div>`;
+  }).join("");
+
+  $("#right").innerHTML =
+    (S.wars.length ? `<div class="card"><h3>Wars</h3>${wars}</div>` : "") +
+    `<div class="card feed"><h3>Dispatches</h3>${feed || '<div class="muted">Quiet, so far.</div>'}</div>`;
+}
+
+/* ================= map ================= */
+
+function relColor(r) {
+  if (r === null || r === undefined) return "#5b6b80";
+  if (r >= 40) return "#4c8ee0";
+  if (r >= 10) return "#4c9e8a";
+  if (r > -20) return "#7d8798";
+  if (r > -50) return "#c08040";
+  return "#e05c5c";
+}
+
+function renderMap() {
+  const W = 1000, H = 560;
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="max-height:calc(100vh - 130px)">`;
+  s += `<defs>
+      <radialGradient id="glow"><stop offset="0%" stop-color="#e05c5c" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#e05c5c" stop-opacity="0"/></radialGradient>
+    </defs>`;
+  // graticule
+  for (let y = 60; y < H; y += 62) {
+    s += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#151d29"/>`;
+  }
+  for (let x = 60; x < W; x += 62) {
+    s += `<line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="#151d29"/>`;
+  }
+  REGIONS.forEach((r) => {
+    s += `<text x="${r.x}" y="${r.y}" font-size="11" letter-spacing="3"
+           text-anchor="middle" fill="#2f3d50">${r.label}</text>`;
+  });
+
+  // war lines first, so nodes sit on top
+  S.wars.forEach((w) => {
+    const a = POS[w.attacker_id], b = POS[w.defender_id];
+    if (!a || !b) return;
+    s += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"
+            stroke="#e05c5c" stroke-width="2" stroke-dasharray="6 4" opacity=".8"/>`;
+  });
+
+  const m = me();
+  S.nations.forEach((n) => {
+    const p = POS[n.id];
+    if (!p) return;
+    const r = 6 + Math.sqrt(n.gdp) * 0.22;
+    const isMe = m && n.id === m.id;
+    const col = isMe ? "#e0a44c" : relColor(n.relation);
+    if (n.at_war) {
+      s += `<circle cx="${p[0]}" cy="${p[1]}" r="${r + 18}" fill="url(#glow)"/>`;
+    }
+    s += `<g class="nodeg" data-id="${n.id}">`;
+    s += `<circle class="body" cx="${p[0]}" cy="${p[1]}" r="${r}" fill="${col}" fill-opacity=".22"
+            stroke="${col}" stroke-width="${isMe ? 3 : 1.5}"/>`;
+    if (n.nuclear) {
+      s += `<circle cx="${p[0]}" cy="${p[1]}" r="${r + 4}" fill="none" stroke="${col}"
+              stroke-width="1" stroke-dasharray="2 3" opacity=".8"/>`;
+    }
+    if (n.sanctioned_by_count > 0) {
+      s += `<circle cx="${p[0] + r * .72}" cy="${p[1] - r * .72}" r="4" fill="#e0a44c"/>`;
+    }
+    s += `<text x="${p[0]}" y="${p[1] + r + 13}" text-anchor="middle" font-size="11"
+            fill="#c3ccd8">${n.name}</text>`;
+    s += `<text x="${p[0]}" y="${p[1] + 4}" text-anchor="middle" font-size="10"
+            fill="#eef3f9" opacity=".85">${fmt.money(n.gdp)}</text>`;
+    s += `</g>`;
+  });
+  s += `</svg>`;
+  $("#pane-map").innerHTML = s;
+  document.querySelectorAll(".nodeg").forEach((g) => {
+    g.onclick = () => showDetail(g.dataset.id);
+  });
+}
+
+/* ================= detail ================= */
+
+function showDetail(id) {
+  const n = S.nations.find((x) => x.id === id);
+  const m = me();
+  if (!n) { closeDetail(); return; }
+  selected = id;
+  const isMe = m && n.id === m.id;
+  const rel = n.relation;
+  const d = $("#detail");
+  d.style.display = "block";
+  d.innerHTML = `<div class="card">
+      <span class="close" onclick="closeDetail()">&times;</span>
+      <h3>${n.name}</h3>
+      ${statRow("GDP", fmt.money(n.gdp))}
+      ${statRow("Growth", fmt.signed(n.growth), n.growth >= 0 ? "up" : "down")}
+      ${statRow("GDP / person", "$" + n.gdp_pc.toFixed(0))}
+      ${statRow("Inflation", fmt.pct(n.inflation))}
+      ${statRow("Stability", n.stability.toFixed(0) + "/100")}
+      ${statRow("Military", n.mil_strength.toFixed(0) + (n.nuclear ? " ☢" : ""))}
+      ${n.oil_mbd > 0 ? statRow("Oil", n.oil_mbd.toFixed(1) + " mbd" +
+          (n.export_share < 0.99 ? ` (${fmt.pct(n.export_share, 0)} shipping)` : "")) : ""}
+      ${!isMe ? statRow("Relations", (rel >= 0 ? "+" : "") + rel.toFixed(0),
+          rel >= 20 ? "up" : rel < -20 ? "down" : "") : ""}
+      ${n.sanctioning_me ? `<div class="muted">Sanctioning you.</div>` : ""}
+      ${isMe ? "" : `<div class="actions">
+        <button onclick="act('improve','${n.name}')">Improve relations</button>
+        ${n.sanctioned_by_me
+          ? `<button onclick="act('lift','${n.name}')">Lift sanctions</button>`
+          : `<button onclick="act('sanction','${n.name}')">Sanction</button>`}
+        <button class="danger" onclick="declareWar('${n.name}')">Declare war</button>
+      </div>`}
+    </div>`;
+}
+function closeDetail() { selected = null; $("#detail").style.display = "none"; }
+window.closeDetail = closeDetail;
+
+window.act = async function (kind, target) {
+  const r = await api("/api/command", { commands: [{ kind, target }] });
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  S = r;
+  render();
+};
+
+window.declareWar = async function (target) {
+  if (!confirm("Declare war on " + target + "?\n\nThis will bring sanctions, and may bring their friends.")) return;
+  const r = await api("/api/command", { commands: [{ kind: "war", target }] });
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  S = r;
+  render();
+};
+
+/* ================= charts ================= */
+
+function lineChart(series, opts) {
+  const W = 900, H = 300, PADL = 60, PADB = 28, PADT = 14, PADR = 90;
+  const all = series.flatMap((s) => s.pts.map((p) => p[1]));
+  if (!all.length) return "<div class='muted'>No history yet — advance time.</div>";
+  const maxY = Math.max(...all) * 1.08;
+  const xs = series[0].pts.map((p) => p[0]);
+  const minX = Math.min(...xs), maxX = Math.max(...xs);
+  const X = (v) => PADL + ((v - minX) / Math.max(1, maxX - minX)) * (W - PADL - PADR);
+  const Y = (v) => H - PADB - (v / maxY) * (H - PADB - PADT);
+  let s = `<svg viewBox="0 0 ${W} ${H}">`;
+  for (let i = 0; i <= 4; i++) {
+    const v = (maxY / 4) * i;
+    s += `<line x1="${PADL}" y1="${Y(v)}" x2="${W - PADR}" y2="${Y(v)}" stroke="#1c2634"/>
+          <text x="${PADL - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="10" fill="#6b788a">${opts.fmt(v)}</text>`;
+  }
+  [minX, Math.round((minX + maxX) / 2), maxX].forEach((t) => {
+    s += `<text x="${X(t)}" y="${H - 8}" text-anchor="middle" font-size="10" fill="#6b788a">${t}</text>`;
+  });
+  series.forEach((ser) => {
+    const dpath = ser.pts.map((p, i) => (i ? "L" : "M") + X(p[0]) + " " + Y(p[1])).join(" ");
+    s += `<path d="${dpath}" fill="none" stroke="${ser.color}" stroke-width="${ser.width || 2}"/>`;
+    const last = ser.pts[ser.pts.length - 1];
+    s += `<text x="${X(last[0]) + 6}" y="${Y(last[1]) + 4}" font-size="11" fill="${ser.color}">${ser.name}</text>`;
+  });
+  s += `</svg>`;
+  return s;
+}
+
+const PALETTE = ["#4cc7e0", "#e0a44c", "#5cc98a", "#c07ce0", "#e05c5c", "#8aa0e0", "#e0c84c"];
+
+function renderCharts() {
+  const H = S.history;
+  if (H.length < 2) { $("#pane-charts").innerHTML = "<div class='muted'>Advance time to build a history.</div>"; return; }
+  const last = H[H.length - 1].gdp;
+  const top = Object.entries(last).sort((a, b) => b[1] - a[1]).slice(0, 6).map((e) => e[0]);
+  const mine = S.player;
+  if (mine && !top.includes(mine)) top.push(mine);
+  const series = top.map((id, i) => ({
+    name: (S.nations.find((n) => n.id === id) || { name: id }).name,
+    color: id === mine ? "#e0a44c" : PALETTE[i % PALETTE.length],
+    width: id === mine ? 3 : 2,
+    pts: H.filter((h) => h.gdp[id] !== undefined).map((h) => [h.year, h.gdp[id]]),
+  })).filter((s) => s.pts.length > 1);
+
+  const oil = [{ name: "Oil $/bbl", color: "#e0a44c", pts: H.map((h) => [h.year, h.oil]) }];
+  $("#pane-charts").innerHTML =
+    `<div class="card"><h3>Economies (GDP $bn)</h3>${lineChart(series, { fmt: (v) => (v / 1000).toFixed(1) + "tn" })}</div>
+     <div class="card"><h3>Oil price</h3>${lineChart(oil, { fmt: (v) => "$" + v.toFixed(0) })}</div>`;
+}
+
+function renderTable() {
+  const rows = [...S.nations].sort((a, b) => b.gdp - a.gdp).map((n) => `
+    <tr style="${n.id === S.player ? "color:var(--amber)" : ""}">
+      <td>${n.name}</td>
+      <td style="text-align:right">${fmt.money(n.gdp)}</td>
+      <td style="text-align:right" class="${n.growth >= 0 ? "up" : "down"}">${fmt.signed(n.growth)}</td>
+      <td style="text-align:right">${fmt.pct(n.inflation)}</td>
+      <td style="text-align:right">${fmt.pct(n.debt, 0)}</td>
+      <td style="text-align:right">${n.stability.toFixed(0)}</td>
+      <td style="text-align:right">${n.mil_strength.toFixed(0)}${n.nuclear ? " ☢" : ""}</td>
+    </tr>`).join("");
+  const dead = S.dead.length
+    ? `<div class="muted" style="margin-top:10px">Gone: ${S.dead.map((d) => d.name).join(", ")}</div>` : "";
+  $("#pane-table").innerHTML = `<div class="card">
+      <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+        <tr style="color:var(--dim);font-size:11px;letter-spacing:.1em">
+          <th style="text-align:left">NATION</th><th style="text-align:right">GDP</th>
+          <th style="text-align:right">GROWTH</th><th style="text-align:right">INFL</th>
+          <th style="text-align:right">DEBT</th><th style="text-align:right">STAB</th>
+          <th style="text-align:right">MIL</th></tr>
+        ${rows}
+      </table>${dead}</div>`;
+}
+
+document.querySelectorAll(".tab").forEach((t) => {
+  t.onclick = () => {
+    document.querySelectorAll(".tab").forEach((x) => x.classList.remove("on"));
+    document.querySelectorAll(".pane").forEach((x) => x.classList.remove("on"));
+    t.classList.add("on");
+    $("#pane-" + t.dataset.pane).classList.add("on");
+  };
+});
+
+buildSetup();
+</script>
+</body>
+</html>

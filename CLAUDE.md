@@ -21,9 +21,16 @@ history emerges from mechanics (no scripted events except proliferation dates).
 - `spheres-sim/` — the library. world.rs (state/RNG), init.rs (1990 data),
   economy.rs, war.rs, politics.rs (AI/events), lib.rs (commands, tick loop, tests)
 - `spheres-cli/` — `run` (headless), `play` (interactive), `resume`
+- `spheres-web/` — local server + browser UI (`ui/index.html`, one self-contained
+  file, no build step and no CDN). It owns no game logic: it holds one WorldState,
+  routes player actions through the same `Command` queue, and renders. Keep it that
+  way — the sim stays the single source of truth.
 
 ## Owner preferences
-- Owner: Ridge. Wants playable results early; CLI play mode is the current game surface.
+- Owner: Ridge. Wants playable results early, and wants to SEE the game — prefer
+  work on the visible surface over deepening sim internals unless asked.
+- The browser UI (`spheres-web`) is the primary game surface; the CLI remains for
+  headless runs and quick calibration checks.
 - Eventual goal: nightly autonomous dev sessions via cron on his Proxmox box,
   driven by this file + ROADMAP.md. Keep both current as work completes.
 - Monthly ticks for now (v0.4 had hourly cadence; reintroduce only with a
