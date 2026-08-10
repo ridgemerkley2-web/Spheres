@@ -15,7 +15,8 @@ any new work must not contradict:
   meant to be a buyer of one or both.
 - **Spheres of influence is the namesake system.** Influence projection —
   great powers spending to hold clients, influence decaying as upkeep — is
-  still only a bare relations matrix.
+  still only a bare relations matrix. `feat/statecraft` implements it and is
+  green on its own branch, but collides with the expanded roster; see ROADMAP.
 
 ## Iron rules
 1. **Determinism is sacred.** One RNG (SplitMix64 in `WorldState.rng`). Never add
@@ -29,11 +30,28 @@ any new work must not contradict:
    `china_growth_miracle`). Events should *usually* happen across seeds, not always.
 4. **Starting data is transcribed, not invented** — real 1990 figures in `init.rs`.
 5. Run `cargo test` before considering any change done. Never delete a
-   regression test to make a change pass.
+   regression test to make a change pass, and never widen a tolerance to make
+   one pass — a test that cannot fail is worse than no test. When you tighten
+   or add a calibration test, check it goes red against the behaviour it is
+   meant to catch. Several here were wide enough to admit a full point of
+   annual growth without noticing.
+6. **Do not trust a green test you did not watch build.** `.cargo/config.toml`
+   is tracked, so every worktree under `.claude/worktrees/` builds into the
+   same `target-dir` as the main checkout, and OneDrive resets mtimes often
+   enough that cargo will reuse a test binary compiled from a different
+   branch's source. That reads as a passing suite that never ran your code.
+   Export a separate `CARGO_TARGET_DIR` when testing a worktree, and if a
+   result is surprising in either direction, confirm the binary is yours
+   before believing it.
 
 ## Layout
 - `spheres-sim/` — the library. world.rs (state/RNG), init.rs (1990 data),
   economy.rs, war.rs, politics.rs (AI/events), lib.rs (commands, tick loop, tests)
+- `spheres-sim/src/tech/` — the technology tree. mod.rs is the engine and the
+  foundation set; the eight domain files beside it are data only. Productivity
+  is scored against what the world on average knows, not added on top of the
+  1990 trend, and convergence is the distance to the frontier. Tick order is
+  economy -> tech -> war -> politics.
 - `spheres-cli/` — `run` (headless), `play` (interactive), `resume`
 - `spheres-web/` — local server + browser UI (`ui/index.html`, one self-contained
   file, no build step and no CDN). It owns no game logic: it holds one WorldState,
