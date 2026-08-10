@@ -3,6 +3,20 @@
 Grand strategy simulation game in Rust. Deterministic world sim, Jan 1990 start,
 history emerges from mechanics (no scripted events except proliferation dates).
 
+**SPEC.md is the authoritative statement of what this game is** — vision,
+pillars, architecture, and every system's intended design. Read it before
+proposing anything structural. This file is how to work; SPEC.md is what to
+build; ROADMAP.md is what is built and what is next.
+
+Two pillars from SPEC.md that the current code does NOT yet honour, and that
+any new work must not contradict:
+- **Two spend-currencies spine the game: economic output and political
+  capital.** Political capital does not exist in the code yet. Every system is
+  meant to be a buyer of one or both.
+- **Spheres of influence is the namesake system.** Influence projection —
+  great powers spending to hold clients, influence decaying as upkeep — is
+  still only a bare relations matrix.
+
 ## Iron rules
 1. **Determinism is sacred.** One RNG (SplitMix64 in `WorldState.rng`). Never add
    another RNG, never use HashMap iteration order for anything that affects state,
