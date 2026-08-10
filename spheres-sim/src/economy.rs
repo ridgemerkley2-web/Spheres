@@ -19,14 +19,25 @@ pub fn tick(w: &mut WorldState) {
         let invest = n.state_invest_gdp + n.priv_invest_gdp;
         let gdp_pc = n.gdp * 1000.0 / n.population; // $ per capita
         let dev = (gdp_pc / 24000.0).min(1.0);
-        // Capital deepening has diminishing returns as economies mature
-        let invest_effect = invest * (0.030 + 0.080 * (1.0 - dev));
+        // Capital deepening has diminishing returns as economies mature — and
+        // diminishing returns to itself. The return was linear in the investment
+        // share, so a nation could buy growth indefinitely by simply investing
+        // more of its output, and Japan's 29% of GDP earned it two-thirds again
+        // what America's 17.5% earned forever. Concave around a 20% reference:
+        // the same at that point, worth progressively less above it.
+        let intensity = (invest / 0.20).max(0.0).powf(0.55) * 0.20;
+        let invest_effect = intensity * (0.030 + 0.080 * (1.0 - dev));
         // Convergence used to be a flat bonus for being poor, added here on top
         // of a technology system that already models diffusion — the same effect
         // counted twice. It now arrives through `tfp_trend`, out of the distance
         // between what a nation knows and what the frontier knows.
         let catchup = (1.0 - dev) * 0.020;
-        let mut potential = n.tfp_trend + invest_effect + catchup;
+        // Growth accounting: output growth is productivity, plus capital's
+        // contribution, plus labour's share of the change in the workforce. A
+        // shrinking workforce is a headwind no amount of investment offsets,
+        // which is the fact about Japan the model was missing entirely.
+        let labour = population_growth(gdp_pc) * 0.60;
+        let mut potential = n.tfp_trend + invest_effect + catchup + labour;
 
         // Command economies pay an allocation penalty that worsens as they develop
         if n.system == EconomySystem::Command {
@@ -112,23 +123,7 @@ pub fn tick(w: &mut WorldState) {
         n.debt_gdp = n.debt_gdp.max(0.0);
 
         // ---- Population ----
-        // The demographic transition runs all the way down. Getting rich cuts
-        // fertility below replacement and does not stop there: Japan peaked in
-        // 2010 and has shrunk every year since, and Italy has been below
-        // replacement since the late 1970s. A flat +0.5% for every rich country
-        // forever was quietly handing the mature economies a growth rate their
-        // real populations never delivered.
-        let pop_growth = if gdp_pc < 3000.0 {
-            0.021
-        } else if gdp_pc < 12000.0 {
-            0.012
-        } else if gdp_pc < 25000.0 {
-            0.005
-        } else {
-            // Tapering to outright decline at the top of the income scale.
-            (0.005 - (gdp_pc - 25000.0) / 25000.0 * 0.007).max(-0.004)
-        };
-        n.population *= 1.0 + pop_growth / 12.0;
+        n.population *= 1.0 + population_growth(gdp_pc) / 12.0;
 
         // ---- Stability ----
         let mut ds = 0.0;
@@ -150,6 +145,25 @@ pub fn tick(w: &mut WorldState) {
                 n.separatism = (n.separatism - 0.002).max(0.0);
             }
         }
+    }
+}
+
+/// The demographic transition, as an annual rate, read off income per head.
+///
+/// It runs all the way down: getting rich cuts fertility below replacement and
+/// does not stop there. Japan peaked in 2010 and has shrunk every year since;
+/// Italy has been below replacement since the late 1970s. One definition, used
+/// both to age the population and to price labour's contribution to output —
+/// they must not be allowed to disagree.
+fn population_growth(gdp_pc: f64) -> f64 {
+    if gdp_pc < 3000.0 {
+        0.021
+    } else if gdp_pc < 12000.0 {
+        0.012
+    } else if gdp_pc < 25000.0 {
+        0.005
+    } else {
+        (0.005 - (gdp_pc - 25000.0) / 25000.0 * 0.007).max(-0.004)
     }
 }
 

@@ -29,6 +29,40 @@
   floor now falls away as a technology approaches universal, which is what lets a
   small poor economy pick up ordinary things it could previously never afford
 - **Political capital** exists as a currency (see below)
+- **Statecraft — the namesake system**: mutual defence pacts with an upkeep both
+  signatories pay, patronage as a standing share of the patron's output, trade
+  dependency that accumulates and then becomes leverage, covert action that is
+  deniable until it is caught. Every one of its seven commands is priced in
+  political capital, and the acts that amount to breaking your word — renouncing
+  a guarantee, cutting a client loose, tearing up a treaty — are charged to
+  bankruptcy rather than refused, because a government can always renege
+
+## Known calibration gap: the whole world is about twice too large
+
+Measured on the default seed, clean builds, `run 35 1990`:
+
+| | 1990 | sim 2025 | real 2025 (1990 $) | sim CAGR | real CAGR |
+|---|---|---|---|---|---|
+| USA | $5,980bn | $30,762bn | ~$14,000bn | 4.8% | 2.5% |
+| Japan | $3,140bn | $13,742bn | ~$4,300bn | 4.3% | 0.9% |
+
+Every mature economy *reads* about 2% growth in the 2025 table, because growth
+has decayed by then — the excess is accumulated earlier in the run and never
+given back. Japan is the worst case but it is not a Japan problem: the United
+States is 2.2 points a year too fast over 35 years, and 2.2 points is almost
+exactly the technology tree's productivity cap of +0.020.
+
+That is the first place to look. `apply_bonuses` caps the whole technological
+contribution at two points of annual trend growth, and if the leaders are
+sitting at the cap for most of the run then the cap is doing all the work and
+the tree is inflating everyone rather than differentiating them — which is the
+precise failure the productivity rework was meant to prevent. Check whether the
+leaders saturate it, and for how long, before touching anything else.
+
+Nothing guards this. `china_growth_miracle` asserts a floor (>6x in 30 years)
+and every other calibration test is about a *relative* outcome, so a world that
+uniformly doubles passes all of them. A test that locks the frontier economy's
+35-year trajectory would have caught it years of game-time earlier.
 
 ## Known calibration gap: output ignores labour
 
@@ -54,16 +88,6 @@ change. Do not land one half without the other.
 ## Next (rough priority)
 
 ### 1. Blocked on a decision, not on work
-Both branches are green in isolation and collide with the expanded roster.
-
-- **`feat/statecraft`** — pacts, patronage, covert action, trade. This is the
-  namesake system: spheres of influence are still only a bare relations matrix
-  without it. Merging turns two tests red. Its own trade test wants the small
-  partner to lose 10x what the large one does on abrogation and gets 8.5x, because
-  the wider roster left the United States marginally more trade-dependent; and
-  Iraq keeps a sanction 25 years on, because statecraft couples pacts and trade to
-  sanction state and there are now more parties to sustain one. Decide whether the
-  thresholds or the models move.
 - **`feat/financial-system`** — currencies, FX regimes, contagion. `WorldState.finance`
   covers only the original 16 nations and `fin()` panics on the rest, so seven new
   nations and Ukraine need transcribed 1990 balance sheets (stance, reserves,
@@ -84,9 +108,9 @@ afforded is refused rather than quietly applied. It is visible in the CLI
 briefing, the headless report and the browser panel.
 
 What is missing is the other half of SPEC's sentence: *every system* is meant to
-be a buyer. Today only the player's commands are, because `politics.rs` and
-`war.rs` move state directly instead of going through the command queue, so the
-AI neither earns nor spends. Routing the AI's own decisions — the fiscal and
+be a buyer. Statecraft is — all seven of its commands are priced — but the AI
+still is not, because `politics.rs` and `war.rs` move state directly instead of
+going through the command queue, so it neither earns nor spends. Routing the AI's own decisions — the fiscal and
 monetary rules, and above all the decision to go to war — through the same
 pricing is what would make it bite for everyone. That is a real change to how
 those systems are written, and it will move emergent history, so it wants its own
