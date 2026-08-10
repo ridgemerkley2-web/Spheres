@@ -111,6 +111,76 @@ pub enum EconomySystem {
     Command,
 }
 
+/// The paradigm the technological frontier is currently working through. Eras are
+/// not dated: one opens when the frontier crosses its onset level, so *when* the
+/// internet arrives and *who* is standing at the frontier when it does are both
+/// outcomes. Each paradigm pays for different things, which is why the leader of
+/// one era is so often the laggard of the next.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum TechEra {
+    /// Electro-mechanical mass production. Rewards capital poured into plant —
+    /// which a command economy can do by decree, and did.
+    Industrial,
+    /// Networked computing. Rewards openness and schooling, and punishes an
+    /// economy whose capital is sunk in the paradigm before it.
+    Information,
+    /// Cheap universal devices. The one paradigm that mostly diffuses rather than
+    /// raising the ceiling — it reaches the poor world faster than any before it.
+    Mobile,
+    /// Machine intelligence. Rewards schooling and sheer accumulated capital
+    /// again, which puts a high-investment state back in contention.
+    Intelligence,
+}
+
+impl TechEra {
+    pub fn name(&self) -> &'static str {
+        match self {
+            TechEra::Industrial => "Industrial",
+            TechEra::Information => "Information",
+            TechEra::Mobile => "Mobile",
+            TechEra::Intelligence => "Machine Intelligence",
+        }
+    }
+    /// Frontier technology level at which this paradigm opens. The 1990 frontier
+    /// (the United States) is 1.00 by construction, so the Industrial era opens
+    /// well below the start: the world begins forty years into a mature paradigm.
+    pub fn onset(&self) -> f64 {
+        match self {
+            TechEra::Industrial => 0.55,
+            TechEra::Information => 1.10,
+            TechEra::Mobile => 1.38,
+            TechEra::Intelligence => 1.90,
+        }
+    }
+    pub fn next(&self) -> Option<TechEra> {
+        match self {
+            TechEra::Industrial => Some(TechEra::Information),
+            TechEra::Information => Some(TechEra::Mobile),
+            TechEra::Mobile => Some(TechEra::Intelligence),
+            TechEra::Intelligence => None,
+        }
+    }
+    /// How far the frontier travels before the next paradigm takes over. The last
+    /// era has no successor yet, so it is given a nominal run.
+    pub fn span(&self) -> f64 {
+        match self.next() {
+            Some(n) => n.onset() - self.onset(),
+            None => 1.20,
+        }
+    }
+    /// How much a paradigm raises the ceiling at the frontier. Networked computing
+    /// and machine intelligence are ceiling-raisers; mobile mostly spread what
+    /// already existed.
+    pub fn frontier_yield(&self) -> f64 {
+        match self {
+            TechEra::Industrial => 1.00,
+            TechEra::Information => 1.15,
+            TechEra::Mobile => 0.75,
+            TechEra::Intelligence => 1.20,
+        }
+    }
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Nation {
     pub id: NationId,
@@ -124,8 +194,17 @@ pub struct Nation {
     pub gdp: f64,
     /// Population, millions
     pub population: f64,
-    /// Total factor productivity growth trend, annual (e.g. 0.012)
+    /// Structural productivity drift that is not about the technological
+    /// frontier — sectoral mix, institutions, the residual. The frontier itself
+    /// lives in `tech`.
     pub tfp_trend: f64,
+    /// Technology level. US 1990 = 1.00; the world's maximum is the frontier.
+    pub tech: f64,
+    /// Mean years of schooling, adults 15+. The binding constraint on how much of
+    /// the frontier a nation can actually absorb, and the slowest thing to move.
+    pub education: f64,
+    /// Smoothed annual growth of `tech` — for briefings.
+    pub tech_growth: f64,
     /// Annual inflation rate (0.04 = 4%)
     pub inflation: f64,
     /// Central bank policy rate, annual
@@ -201,6 +280,10 @@ pub struct WorldState {
     pub wars: Vec<War>,
     /// Brent-ish oil price, USD/barrel
     pub oil_price: f64,
+    /// The best technology anyone has reached. It ratchets: a state can dissolve,
+    /// but what it knew does not leave the world.
+    pub tech_frontier: f64,
+    pub era: TechEra,
     /// Event log for the current month (drained by UI)
     pub headlines: Vec<String>,
     /// One-shot flags
@@ -282,6 +365,29 @@ impl WorldState {
     pub fn oil_export_share(&self, id: NationId) -> f64 {
         let war_share = if self.at_war(id) { 0.25 } else { 1.0 };
         (1.0 - self.oil_blockade(id)) * war_share
+    }
+    /// Where a nation stands against the frontier, 0..1.
+    pub fn tech_rel(&self, id: NationId) -> f64 {
+        let f = self.tech_frontier.max(1e-6);
+        self.nation_opt(id).map_or(0.0, |n| (n.tech / f).clamp(0.0, 1.0))
+    }
+    /// The nation standing at the frontier. Ties break on roster order, which is
+    /// fixed, so this stays deterministic.
+    pub fn tech_leader(&self) -> Option<NationId> {
+        self.nations
+            .iter()
+            .filter(|n| n.alive)
+            .fold(None::<&Nation>, |best, n| match best {
+                Some(b) if b.tech >= n.tech => Some(b),
+                _ => Some(n),
+            })
+            .map(|n| n.id)
+    }
+    /// What a technological edge is worth to an army. The same budget buys a very
+    /// different force at the frontier than two paradigms behind it — this is the
+    /// multiplier on what military spending sustains.
+    pub fn tech_edge(&self, id: NationId) -> f64 {
+        0.80 + 0.35 * self.tech_rel(id)
     }
     pub fn at_war(&self, id: NationId) -> bool {
         self.wars.iter().any(|w| w.involves(id))

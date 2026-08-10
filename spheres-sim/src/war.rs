@@ -5,10 +5,14 @@ pub fn tick(w: &mut WorldState) {
     // ---- Strength accumulation from spending ----
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     for id in &ids {
+        // A dollar buys a very different army at the frontier than two paradigms
+        // behind it, so the technological lead is a military lead — and it shows
+        // up in what deters, not only in what wins.
+        let edge = w.tech_edge(*id);
         let n = w.nation_mut(*id);
         let budget = n.gdp * n.mil_spend_gdp; // $bn/yr
         // Strength drifts toward what the budget sustains
-        let sustained = (budget * 0.30).sqrt() * 8.0;
+        let sustained = (budget * 0.30).sqrt() * 8.0 * edge;
         n.mil_strength += (sustained - n.mil_strength) * 0.02;
         // Exhaustion decays in peace
         n.war_exhaustion = (n.war_exhaustion - 0.01).max(0.0);

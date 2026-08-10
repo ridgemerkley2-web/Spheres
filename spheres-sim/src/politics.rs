@@ -138,9 +138,9 @@ pub fn tick(w: &mut WorldState) {
 
 fn dissolve_ussr(w: &mut WorldState) {
     w.set_flag("ussr_dissolved");
-    let (gdp, pop, oil, strength) = {
+    let (gdp, pop, oil, strength, tech, school) = {
         let u = w.nation(NationId::USSR);
-        (u.gdp, u.population, u.oil_mbd, u.mil_strength)
+        (u.gdp, u.population, u.oil_mbd, u.mil_strength, u.tech, u.education)
     };
     {
         let u = w.nation_mut(NationId::USSR);
@@ -156,6 +156,12 @@ fn dissolve_ussr(w: &mut WorldState) {
         gdp: gdp * 0.55,
         population: pop * 0.51,
         tfp_trend: 0.008,
+        // Russia was where the institutes and the design bureaus were, so it
+        // inherits the union's technology intact. What it does not inherit is an
+        // economy able to fund any of it.
+        tech,
+        education: school,
+        tech_growth: 0.0,
         inflation: 0.90, // transition price liberalization
         interest_rate: 0.20,
         tax_rate: 0.28,
@@ -194,9 +200,9 @@ fn dissolve_ussr(w: &mut WorldState) {
 /// the successors, and the existing war machinery does what it does with it.
 fn dissolve_yugoslavia(w: &mut WorldState) {
     w.set_flag("yugoslavia_dissolved");
-    let (gdp, pop, oil, strength, infl, debt) = {
+    let (gdp, pop, oil, strength, infl, debt, tech) = {
         let y = w.nation(NationId::Yugoslavia);
-        (y.gdp, y.population, y.oil_mbd, y.mil_strength, y.inflation, y.debt_gdp)
+        (y.gdp, y.population, y.oil_mbd, y.mil_strength, y.inflation, y.debt_gdp, y.tech)
     };
     {
         let y = w.nation_mut(NationId::Yugoslavia);
@@ -204,20 +210,27 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
         y.gdp = 0.0;
     }
 
-    // (id, GDP share, pop share, JNA share, separatism, authoritarianism, stability, tfp)
+    // (id, GDP share, pop share, JNA share, separatism, authoritarianism, stability, tfp,
+    //  technology vs the federation, mean years of schooling)
     // Macedonia's ~5% of output and ~9% of the people leave with it, unsimulated:
     // it seceded without a shot and never fought anyone.
-    let parts: [(NationId, f64, f64, f64, f64, f64, f64, f64); 4] = [
+    //
+    // The federation was one country in name and four in productivity. Slovenia's
+    // and Croatia's technology multipliers come from their own 1990 PWT10 output
+    // per hour ($29.5 and $17.6 against a federal ~$20); Serbia's and Bosnia's from
+    // output per head implied by the shares in this table, under the same 2/3 rule
+    // used in init.rs. Schooling is the 1990 OWID series by republic.
+    let parts: [(NationId, f64, f64, f64, f64, f64, f64, f64, f64, f64); 4] = [
         // Belgrade keeps the army, and Kosovo and Vojvodina keep Belgrade busy.
-        (NationId::Serbia,   0.36, 0.42, 0.70, 0.45, 0.75, 40.0, 0.002),
+        (NationId::Serbia,   0.36, 0.42, 0.70, 0.45, 0.75, 40.0, 0.002, 0.90, 6.30),
         // A twelve percent Serb minority concentrated in the Krajina.
-        (NationId::Croatia,  0.25, 0.20, 0.12, 0.35, 0.45, 45.0, 0.012),
+        (NationId::Croatia,  0.25, 0.20, 0.12, 0.35, 0.45, 45.0, 0.012, 1.02, 6.57),
         // ~88% Slovene, no minority worth a war, and the richest republic.
-        (NationId::Slovenia, 0.20, 0.085, 0.08, 0.05, 0.25, 62.0, 0.020),
+        (NationId::Slovenia, 0.20, 0.085, 0.08, 0.05, 0.25, 62.0, 0.020, 1.44, 7.19),
         // 44% Bosniak, 31% Serb, 17% Croat — a republic that is all minorities.
-        (NationId::Bosnia,   0.13, 0.19, 0.05, 0.85, 0.40, 30.0, 0.006),
+        (NationId::Bosnia,   0.13, 0.19, 0.05, 0.85, 0.40, 30.0, 0.006, 0.78, 6.61),
     ];
-    for (id, g, p, m, sep, auth, stab, tfp) in parts {
+    for (id, g, p, m, sep, auth, stab, tfp, t, school) in parts {
         w.nations.push(Nation {
             id,
             alive: true,
@@ -226,6 +239,9 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             gdp: gdp * g,
             population: pop * p,
             tfp_trend: tfp,
+            tech: tech * t,
+            education: school,
+            tech_growth: 0.0,
             inflation: infl,
             interest_rate: 0.25,
             tax_rate: 0.33,
@@ -250,7 +266,7 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
         .filter(|x| **x != NationId::Yugoslavia)
         .map(|x| (*x, w.relation(NationId::Yugoslavia, *x) * 0.6))
         .collect();
-    for (id, _, _, _, _, _, _, _) in parts {
+    for (id, ..) in parts {
         for (other, v) in &inherited {
             w.set_relation(id, *other, *v);
         }

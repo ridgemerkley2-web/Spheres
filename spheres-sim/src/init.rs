@@ -41,6 +41,8 @@ pub fn world_1990(rules: GameRules) -> WorldState {
         sanctions: vec![],
         wars: vec![],
         oil_price: 20.0,
+        tech_frontier: 1.00,
+        era: TechEra::Industrial,
         headlines: vec![],
         flags: vec![],
         player: None,
@@ -48,6 +50,50 @@ pub fn world_1990(rules: GameRules) -> WorldState {
 
     // Japan's bubble is at its peak on day one.
     w.nation_mut(Japan).bubble = 0.95;
+
+    // (id, technology level, mean years of schooling 15+)
+    //
+    // Schooling is transcribed directly: Our World in Data's 1990 series (Barro-Lee
+    // / Lee-Lee), https://ourworldindata.org/grapher/average-years-of-schooling.
+    // The USSR takes Russia's 9.65 and Yugoslavia the mean of its republics'.
+    //
+    // Technology level is derived, not invented: it is 1990 real GDP per hour
+    // worked from Penn World Table 10 relative to the United States' $48.25
+    // (https://ourworldindata.org/grapher/labor-productivity-per-hour-PennWorldTable),
+    // raised to the power 2/3. That exponent is the standard development-accounting
+    // result — with a capital share near a third and similar capital-output ratios,
+    // relative TFP goes as relative output per worker to the 2/3. It is why China
+    // enters at 0.10 rather than the 0.03 its raw productivity would suggest: most
+    // of the gap in 1990 was missing capital, not missing knowledge.
+    //
+    // PWT has no hours series for the four oil states, so they are anchored on
+    // Maddison 1990 GDP per capita net of oil rents (World Bank), against the US
+    // $36,982, under the same 2/3 rule — a barrel of crude is income, not
+    // technology, and counting it as technology would make Kuwait a frontier power.
+    let tech_school: &[(NationId, f64, f64)] = &[
+        (USA, 1.00, 12.98),
+        (France, 0.96, 7.55),
+        (Italy, 0.91, 7.44),
+        (UK, 0.88, 9.64),
+        (Germany, 0.87, 10.36),
+        (Japan, 0.75, 11.64),
+        (Poland, 0.53, 9.67),
+        (USSR, 0.46, 9.65),
+        (SouthKorea, 0.44, 9.27),
+        (Yugoslavia, 0.50, 6.65),
+        (SaudiArabia, 0.35, 5.58),
+        (Kuwait, 0.30, 5.64),
+        (Iran, 0.24, 5.74),
+        (Pakistan, 0.21, 2.32),
+        (Iraq, 0.21, 4.87),
+        (India, 0.10, 2.78),
+        (China, 0.10, 4.14),
+    ];
+    for (id, tech, school) in tech_school {
+        let n = w.nation_mut(*id);
+        n.tech = *tech;
+        n.education = *school;
+    }
 
     // Cold War-shaped relations
     let pairs: &[(NationId, NationId, f64)] = &[
@@ -89,6 +135,9 @@ fn n(
         gdp,
         population: pop,
         tfp_trend: tfp,
+        tech: 0.40,
+        education: 6.0,
+        tech_growth: 0.0,
         inflation: infl,
         interest_rate: rate,
         tax_rate: tax,
