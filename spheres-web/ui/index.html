@@ -113,7 +113,14 @@
   .pane.on { display: block; }
   svg { display: block; width: 100%; }
   .nodeg { cursor: pointer; }
-  .nodeg:hover circle.body { stroke: var(--amber); stroke-width: 2.5; }
+  .nodeg:hover path { fill-opacity: .62; stroke: var(--amber); stroke-width: 1.6; }
+  .nodeg text { pointer-events: none; user-select: none; }
+  .legend {
+    display: flex; gap: 16px; flex-wrap: wrap; padding: 8px 4px 0;
+    color: var(--dim); font-size: 11px; letter-spacing: .06em;
+  }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px;
+              margin-right: 5px; vertical-align: -1px; opacity: .75; }
 
   /* ---------- feed ---------- */
   .feed .item { padding: 7px 0; border-bottom: 1px solid #1b2330; font-size: 13px; }
@@ -193,26 +200,33 @@
 <div id="detail"></div>
 <div id="banner"></div>
 
+<script src="/world.js"></script>
 <script>
 "use strict";
+const WORLD = window.WORLD;
 
-// Rough geographic placement on a 1000x560 field. Not a projection — a
-// strategic map: position suggests where, size shows weight.
-const POS = {
-  USA:          [150, 205], UK:     [412, 138], France:  [420, 180],
-  Germany:      [455, 146], Italy:  [462, 196], Poland:  [497, 138],
-  USSR:         [645, 105], Russia: [645, 105], China:   [795, 205],
-  Japan:        [905, 195], SouthKorea: [848, 222], India: [722, 300],
-  Pakistan:     [676, 262], Iran:   [612, 244], Iraq:    [556, 246],
-  Kuwait:       [588, 284], SaudiArabia: [552, 312], Yugoslavia: [498, 192],
+// Which real-world territory each sim nation holds. The USSR is drawn as the
+// union of its republics; when it dissolves, Russia keeps only RUS and the rest
+// fall back to unaligned land.
+const TERRITORY = {
+  USA: ["USA"], Russia: ["RUS"], China: ["CHN"], Japan: ["JPN"],
+  Germany: ["DEU"], UK: ["GBR"], France: ["FRA"], Italy: ["ITA"],
+  India: ["IND"], Pakistan: ["PAK"], Iraq: ["IRQ"], Kuwait: ["KWT"],
+  SaudiArabia: ["SAU"], Iran: ["IRN"], SouthKorea: ["KOR"], Poland: ["POL"],
+  USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
+         "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
+  Yugoslavia: ["SRB", "HRV", "SVN", "BIH", "MKD", "MNE"],
 };
-const REGIONS = [
-  { label: "AMERICAS", x: 150, y: 300 },
-  { label: "EUROPE",   x: 452, y: 92 },
-  { label: "SOVIET SPHERE", x: 700, y: 62 },
-  { label: "MIDDLE EAST", x: 560, y: 348 },
-  { label: "ASIA",     x: 850, y: 300 },
-];
+// Where to hang a nation's label. Defaults to its largest landmass centroid;
+// overridden where that lands somewhere unhelpful.
+const LABEL_AT = {
+  USSR: [700, 95],   // central Asia, not Russia's island-skewed centroid
+  USA: [212, 128],   // the lower 48, not the Alaska/Pacific average
+  France: [503, 106], // Paris-ish; its centroid is dragged to French Guiana
+  UK: [492, 84],
+  Germany: [529, 91],
+  Kuwait: [641, 158], // nudged into the Gulf so it clears Iraq and Saudi
+};
 
 let S = null;            // latest state from the server
 let queued = [];         // commands not yet sent
@@ -415,60 +429,96 @@ function relColor(r) {
   return "#e05c5c";
 }
 
+function anchorOf(id) {
+  if (LABEL_AT[id]) return LABEL_AT[id];
+  const codes = TERRITORY[id] || [];
+  for (const c of codes) {
+    if (WORLD.centroids[c]) return WORLD.centroids[c];
+  }
+  return null;
+}
+
 function renderMap() {
-  const W = 1000, H = 560;
-  let s = `<svg viewBox="0 0 ${W} ${H}" style="max-height:calc(100vh - 130px)">`;
-  s += `<defs>
-      <radialGradient id="glow"><stop offset="0%" stop-color="#e05c5c" stop-opacity=".55"/>
-      <stop offset="100%" stop-color="#e05c5c" stop-opacity="0"/></radialGradient>
-    </defs>`;
-  // graticule
-  for (let y = 60; y < H; y += 62) {
-    s += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#151d29"/>`;
-  }
-  for (let x = 60; x < W; x += 62) {
-    s += `<line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="#151d29"/>`;
-  }
-  REGIONS.forEach((r) => {
-    s += `<text x="${r.x}" y="${r.y}" font-size="11" letter-spacing="3"
-           text-anchor="middle" fill="#2f3d50">${r.label}</text>`;
-  });
-
-  // war lines first, so nodes sit on top
-  S.wars.forEach((w) => {
-    const a = POS[w.attacker_id], b = POS[w.defender_id];
-    if (!a || !b) return;
-    s += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"
-            stroke="#e05c5c" stroke-width="2" stroke-dasharray="6 4" opacity=".8"/>`;
-  });
-
+  const W = WORLD.w, H = WORLD.h;
   const m = me();
+  // Every code held by a living sim nation, so the rest can be drawn as scenery.
+  const claimed = {};
+  S.nations.forEach((n) => (TERRITORY[n.id] || []).forEach((c) => (claimed[c] = n)));
+
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="max-height:calc(100vh - 150px)">`;
+  s += `<defs>
+      <radialGradient id="glow"><stop offset="0%" stop-color="#e05c5c" stop-opacity=".5"/>
+        <stop offset="100%" stop-color="#e05c5c" stop-opacity="0"/></radialGradient>
+      <filter id="halo" x="-40%" y="-60%" width="180%" height="220%">
+        <feDropShadow dx="0" dy="0" stdDeviation="2.2" flood-color="#05080d" flood-opacity="1"/>
+      </filter>
+    </defs>`;
+  s += `<rect width="${W}" height="${H}" fill="#080c12"/>`;
+  // graticule beneath the land, so the ocean reads as a chart
+  for (let lat = 60; lat >= -40; lat -= 20) {
+    const y = ((84 - lat) / 140) * H;
+    s += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#101722"/>`;
+  }
+  for (let lon = -150; lon <= 150; lon += 30) {
+    const x = ((lon + 180) / 360) * W;
+    s += `<line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="#101722"/>`;
+  }
+
+  // 1. the unaligned world
+  let scenery = "";
+  for (const code in WORLD.countries) {
+    if (!claimed[code]) scenery += WORLD.countries[code];
+  }
+  s += `<path d="${scenery}" fill="#1a2331" stroke="#243040" stroke-width=".5" fill-rule="evenodd"/>`;
+
+  // 2. the powers, coloured by how they regard you
   S.nations.forEach((n) => {
-    const p = POS[n.id];
-    if (!p) return;
-    const r = 6 + Math.sqrt(n.gdp) * 0.22;
+    const codes = (TERRITORY[n.id] || []).filter((c) => WORLD.countries[c]);
+    if (!codes.length) return;
     const isMe = m && n.id === m.id;
     const col = isMe ? "#e0a44c" : relColor(n.relation);
-    if (n.at_war) {
-      s += `<circle cx="${p[0]}" cy="${p[1]}" r="${r + 18}" fill="url(#glow)"/>`;
-    }
-    s += `<g class="nodeg" data-id="${n.id}">`;
-    s += `<circle class="body" cx="${p[0]}" cy="${p[1]}" r="${r}" fill="${col}" fill-opacity=".22"
-            stroke="${col}" stroke-width="${isMe ? 3 : 1.5}"/>`;
-    if (n.nuclear) {
-      s += `<circle cx="${p[0]}" cy="${p[1]}" r="${r + 4}" fill="none" stroke="${col}"
-              stroke-width="1" stroke-dasharray="2 3" opacity=".8"/>`;
-    }
-    if (n.sanctioned_by_count > 0) {
-      s += `<circle cx="${p[0] + r * .72}" cy="${p[1] - r * .72}" r="4" fill="#e0a44c"/>`;
-    }
-    s += `<text x="${p[0]}" y="${p[1] + r + 13}" text-anchor="middle" font-size="11"
-            fill="#c3ccd8">${n.name}</text>`;
-    s += `<text x="${p[0]}" y="${p[1] + 4}" text-anchor="middle" font-size="10"
-            fill="#eef3f9" opacity=".85">${fmt.money(n.gdp)}</text>`;
-    s += `</g>`;
+    const d = codes.map((c) => WORLD.countries[c]).join("");
+    s += `<g class="nodeg" data-id="${n.id}">
+        <path d="${d}" fill="${col}" fill-opacity="${isMe ? .5 : .32}"
+              stroke="${col}" stroke-width="${isMe ? 1.4 : .8}" fill-rule="evenodd"/>
+      </g>`;
+  });
+
+  // 3. war: a glow on each belligerent and a line between them
+  S.wars.forEach((w) => {
+    const a = anchorOf(w.attacker_id), b = anchorOf(w.defender_id);
+    if (!a || !b) return;
+    [a, b].forEach((p) => {
+      s += `<circle cx="${p[0]}" cy="${p[1]}" r="34" fill="url(#glow)"/>`;
+    });
+    s += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"
+            stroke="#ff6b6b" stroke-width="1.8" stroke-dasharray="5 4" opacity=".9"/>`;
+  });
+
+  // 4. labels last, with a click target that works even for Kuwait
+  S.nations.forEach((n) => {
+    const p = anchorOf(n.id);
+    if (!p) return;
+    const isMe = m && n.id === m.id;
+    const marks = (n.nuclear ? "☢" : "") + (n.sanctioned_by_count > 0 ? "⊘" : "");
+    s += `<g class="nodeg" data-id="${n.id}">
+        <circle cx="${p[0]}" cy="${p[1]}" r="13" fill="transparent"/>
+        <text x="${p[0]}" y="${p[1]}" text-anchor="middle" font-size="11" filter="url(#halo)"
+          fill="${isMe ? "#ffd89a" : "#dbe3ee"}" font-weight="${isMe ? 700 : 400}">${n.name}${marks ? " " + marks : ""}</text>
+        <text x="${p[0]}" y="${p[1] + 12}" text-anchor="middle" font-size="10" filter="url(#halo)"
+          fill="#9fb0c4">${fmt.money(n.gdp)}</text>
+      </g>`;
   });
   s += `</svg>`;
+
+  s += `<div class="legend">
+      <span><i style="background:#4c8ee0"></i>ally</span>
+      <span><i style="background:#7d8798"></i>neutral</span>
+      <span><i style="background:#e05c5c"></i>hostile</span>
+      <span><i style="background:#e0a44c"></i>you</span>
+      <span>☢ nuclear</span><span>⊘ sanctioned</span>
+    </div>`;
+
   $("#pane-map").innerHTML = s;
   document.querySelectorAll(".nodeg").forEach((g) => {
     g.onclick = () => showDetail(g.dataset.id);

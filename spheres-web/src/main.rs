@@ -11,6 +11,8 @@ use std::sync::Mutex;
 use tiny_http::{Header, Method, Response, Server};
 
 const INDEX: &str = include_str!("../ui/index.html");
+/// Baked country outlines — see `src/bin/mapgen.rs`.
+const WORLD_JS: &str = include_str!("../ui/world.js");
 
 /// A year-end snapshot, kept so the UI can draw history rather than a single frame.
 struct Snapshot {
@@ -262,6 +264,17 @@ fn main() {
                 let r = Response::from_string(INDEX).with_header(
                     Header::from_bytes(&b"Content-Type"[..], &b"text/html; charset=utf-8"[..])
                         .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/world.js") => {
+                let r = Response::from_string(WORLD_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
                 );
                 let _ = request.respond(r);
                 continue;
