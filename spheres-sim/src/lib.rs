@@ -189,6 +189,32 @@ mod tests {
     }
 
     #[test]
+    fn some_wars_end_at_the_table() {
+        // Not every war runs to a capital or to mutual collapse. Across seeds,
+        // negotiated settlements should be a real way for wars to end.
+        let mut settled = 0;
+        for seed in 0..12u64 {
+            let mut rules = GameRules::default();
+            rules.seed = seed;
+            let mut w = world_1990(rules);
+            let mut saw = false;
+            for _ in 0..360 {
+                let headlines = tick_month(&mut w, &[]);
+                if headlines
+                    .iter()
+                    .any(|h| h.contains("sues for peace") || h.contains("agree peace terms"))
+                {
+                    saw = true;
+                }
+            }
+            if saw {
+                settled += 1;
+            }
+        }
+        assert!(settled >= 3, "negotiated peace never happens: {}/12 runs", settled);
+    }
+
+    #[test]
     fn embargo_starves_the_aggressor_and_outlasts_the_war() {
         // An embargo must bite through exports, not just as a vague GDP drag: the
         // aggressor loses the revenue from barrels it cannot ship, and the

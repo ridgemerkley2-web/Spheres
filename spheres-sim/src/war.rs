@@ -53,6 +53,8 @@ pub fn tick(w: &mut WorldState) {
                     war.attacker.name(), war.defender.name()
                 ));
                 // drop the war
+            } else if let Some((winner, loser)) = settlement_ripe(w, &war) {
+                negotiated_peace(w, winner, loser);
             } else {
                 continuing.push(war);
             }
@@ -74,6 +76,74 @@ pub fn tick(w: &mut WorldState) {
                 war.defender.name(), war.attacker.name()
             ));
         }
+    }
+}
+
+/// Most wars end at a table, not in a capital. A side losing clearly but not yet
+/// catastrophically will buy its way out — if it is weary enough to swallow terms
+/// and its enemy is weary enough to offer them instead of pressing for the whole prize.
+fn settlement_ripe(w: &mut WorldState, war: &War) -> Option<(NationId, NationId)> {
+    let lead = war.progress.abs();
+    if !(35.0..100.0).contains(&lead) {
+        return None;
+    }
+    let (winner, loser) = if war.progress > 0.0 {
+        (war.attacker, war.defender)
+    } else {
+        (war.defender, war.attacker)
+    };
+    let loser_ex = w.nation(loser).war_exhaustion;
+    let winner_ex = w.nation(winner).war_exhaustion;
+    if loser_ex < 0.55 {
+        return None; // still has fight in it
+    }
+    // The riper the position and the wearier both sides, the likelier the deal.
+    let p = 0.10 * (lead / 100.0) * loser_ex * (0.5 + winner_ex);
+    if w.rng.chance(p) {
+        Some((winner, loser))
+    } else {
+        None
+    }
+}
+
+/// Terms short of conquest: reparations always, territory only from a state that
+/// cannot answer with annihilation.
+fn negotiated_peace(w: &mut WorldState, winner: NationId, loser: NationId) {
+    let (lgdp, lpop, loil, lnuclear) = {
+        let l = w.nation(loser);
+        (l.gdp, l.population, l.oil_mbd, l.nuclear)
+    };
+    let cede = if lnuclear { 0.0 } else { 0.12 };
+    {
+        let l = w.nation_mut(loser);
+        l.gdp -= lgdp * (0.03 + cede * 0.5);
+        l.population -= lpop * cede;
+        l.oil_mbd -= loil * cede;
+        l.stability = (l.stability - 10.0).max(5.0);
+        l.mil_strength *= 0.80;
+    }
+    {
+        let n = w.nation_mut(winner);
+        n.gdp += lgdp * (0.02 + cede * 0.4);
+        n.population += lpop * cede;
+        n.oil_mbd += loil * cede;
+        n.stability = (n.stability + 4.0).min(100.0);
+        if cede > 0.0 {
+            // Swallowed land comes with people who did not choose you.
+            n.separatism = (n.separatism + 0.05).min(1.0);
+        }
+    }
+    w.set_relation(winner, loser, -55.0);
+    if cede > 0.0 {
+        w.headline(format!(
+            "{} sues for peace, ceding territory to {}.",
+            loser.name(), winner.name()
+        ));
+    } else {
+        w.headline(format!(
+            "{} and {} agree peace terms — reparations, no territory.",
+            loser.name(), winner.name()
+        ));
     }
 }
 
