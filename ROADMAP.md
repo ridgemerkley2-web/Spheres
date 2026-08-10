@@ -30,6 +30,27 @@
   small poor economy pick up ordinary things it could previously never afford
 - **Political capital** exists as a currency (see below)
 
+## Known calibration gap: output ignores labour
+
+Growth is `TFP + investment effect + catch-up - drags`. Population appears only
+through GDP per head, which feeds the development proxy — and that proxy is
+already capped at 1.0 for every rich nation. So **population growth has no
+effect whatever on the output of a developed economy**: the demographic
+transition added in economy.rs makes Japan's population decline correctly and
+changes its GDP by exactly zero.
+
+That is why Japan still reads $7.2tn growing 2.7% in 2025 and stays ahead of
+China, when the real figures are roughly $4.3tn, ~0.9%/yr, and overtaken in
+2010. `japans_bubble_becomes_a_lost_decade` only guards the ten years after the
+peak, so the long-run miss is currently untested.
+
+The fix is the labour term SPEC section 3 already calls for: growth accounting
+says output growth is TFP plus a capital contribution plus roughly 0.6 times
+labour-force growth. Adding it makes a shrinking workforce cost output, which
+is most of Japan's story — but it also hands every high-fertility poor nation a
+growth bonus, so the catch-up term has to be rebalanced against it in the same
+change. Do not land one half without the other.
+
 ## Next (rough priority)
 
 ### 1. Blocked on a decision, not on work

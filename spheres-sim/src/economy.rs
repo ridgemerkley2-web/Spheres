@@ -112,7 +112,22 @@ pub fn tick(w: &mut WorldState) {
         n.debt_gdp = n.debt_gdp.max(0.0);
 
         // ---- Population ----
-        let pop_growth = if gdp_pc < 3000.0 { 0.021 } else if gdp_pc < 12000.0 { 0.012 } else { 0.005 };
+        // The demographic transition runs all the way down. Getting rich cuts
+        // fertility below replacement and does not stop there: Japan peaked in
+        // 2010 and has shrunk every year since, and Italy has been below
+        // replacement since the late 1970s. A flat +0.5% for every rich country
+        // forever was quietly handing the mature economies a growth rate their
+        // real populations never delivered.
+        let pop_growth = if gdp_pc < 3000.0 {
+            0.021
+        } else if gdp_pc < 12000.0 {
+            0.012
+        } else if gdp_pc < 25000.0 {
+            0.005
+        } else {
+            // Tapering to outright decline at the top of the income scale.
+            (0.005 - (gdp_pc - 25000.0) / 25000.0 * 0.007).max(-0.004)
+        };
         n.population *= 1.0 + pop_growth / 12.0;
 
         // ---- Stability ----
