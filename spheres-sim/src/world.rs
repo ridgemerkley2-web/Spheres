@@ -33,20 +33,23 @@ impl Rng {
 
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum NationId {
-    USA, USSR, Russia, China, Japan, Germany, UK, France, Italy,
+    USA, USSR, Russia, Ukraine, China, Japan, Germany, UK, France, Italy,
     India, Pakistan, Iraq, Kuwait, SaudiArabia, Iran, SouthKorea, Poland,
+    Brazil, Indonesia, Egypt, Israel, Turkey, Nigeria, Vietnam,
     Yugoslavia, Serbia, Croatia, Slovenia, Bosnia,
 }
-pub const ALL_START_NATIONS: [NationId; 17] = [
+pub const ALL_START_NATIONS: [NationId; 24] = [
     NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
     NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
     NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
     NationId::SaudiArabia, NationId::Iran, NationId::SouthKorea, NationId::Poland,
+    NationId::Brazil, NationId::Indonesia, NationId::Egypt, NationId::Israel,
+    NationId::Turkey, NationId::Nigeria, NationId::Vietnam,
     NationId::Yugoslavia,
 ];
 /// States that only exist if a federation comes apart.
-pub const SUCCESSOR_NATIONS: [NationId; 5] = [
-    NationId::Russia, NationId::Serbia, NationId::Croatia,
+pub const SUCCESSOR_NATIONS: [NationId; 6] = [
+    NationId::Russia, NationId::Ukraine, NationId::Serbia, NationId::Croatia,
     NationId::Slovenia, NationId::Bosnia,
 ];
 
@@ -56,6 +59,7 @@ impl NationId {
             NationId::USA => "United States",
             NationId::USSR => "Soviet Union",
             NationId::Russia => "Russia",
+            NationId::Ukraine => "Ukraine",
             NationId::China => "China",
             NationId::Japan => "Japan",
             NationId::Germany => "Germany",
@@ -70,6 +74,13 @@ impl NationId {
             NationId::Iran => "Iran",
             NationId::SouthKorea => "South Korea",
             NationId::Poland => "Poland",
+            NationId::Brazil => "Brazil",
+            NationId::Indonesia => "Indonesia",
+            NationId::Egypt => "Egypt",
+            NationId::Israel => "Israel",
+            NationId::Turkey => "Turkey",
+            NationId::Nigeria => "Nigeria",
+            NationId::Vietnam => "Vietnam",
             NationId::Yugoslavia => "Yugoslavia",
             NationId::Serbia => "Serbia",
             NationId::Croatia => "Croatia",
@@ -83,6 +94,7 @@ impl NationId {
             "usa" | "us" | "united states" | "america" => NationId::USA,
             "ussr" | "soviet union" | "soviets" => NationId::USSR,
             "russia" => NationId::Russia,
+            "ukraine" | "ukr" => NationId::Ukraine,
             "china" | "prc" => NationId::China,
             "japan" => NationId::Japan,
             "germany" => NationId::Germany,
@@ -97,6 +109,13 @@ impl NationId {
             "iran" => NationId::Iran,
             "south korea" | "korea" | "rok" => NationId::SouthKorea,
             "poland" => NationId::Poland,
+            "brazil" | "bra" => NationId::Brazil,
+            "indonesia" | "idn" => NationId::Indonesia,
+            "egypt" | "egy" | "uar" => NationId::Egypt,
+            "israel" | "isr" => NationId::Israel,
+            "turkey" | "turkiye" | "tur" => NationId::Turkey,
+            "nigeria" | "nga" => NationId::Nigeria,
+            "vietnam" | "viet nam" | "vnm" => NationId::Vietnam,
             "yugoslavia" | "sfry" | "yugo" => NationId::Yugoslavia,
             "serbia" | "serbia and montenegro" | "fry" => NationId::Serbia,
             "croatia" => NationId::Croatia,

@@ -148,6 +148,9 @@ fn dissolve_ussr(w: &mut WorldState) {
         u.gdp = 0.0;
     }
     // Russia inherits roughly 60% of the economy, half the people, most oil, the arsenal.
+    // The rest of the union is abstracted away except Ukraine, which is too big
+    // to fold into the scenery: 52m of the USSR's 289m people, and the second
+    // economy of the union.
     let russia = Nation {
         id: NationId::Russia,
         alive: true,
@@ -176,17 +179,69 @@ fn dissolve_ussr(w: &mut WorldState) {
         tech: crate::tech::TechState::inherit(&inherited_tech, 0.008),
     };
     w.nations.push(russia);
-    // Inherit a thawed version of USSR relations
+
+    // Ukraine: about a fifth of Soviet output — 17% of net material product but a
+    // heavier share than that of the heavy industry, since the Donbas coalfield,
+    // the Krivoy Rog ore, the Zaporizhzhia steel and the Yuzhmash missile plant
+    // were all inside it. That inheritance is a liability in a transition, not an
+    // asset: the plants it got were the ones with no market, and it starts with
+    // worse inflation and a shallower reform than Russia. Almost none of the oil
+    // was Ukrainian. Debt is low because of the 1994 "zero option" — Moscow took
+    // all Soviet foreign debt and, with it, all Soviet foreign assets.
+    let ukraine = Nation {
+        id: NationId::Ukraine,
+        alive: true,
+        system: EconomySystem::Market,
+        authoritarianism: 0.40,
+        gdp: gdp * 0.19,
+        population: pop * 0.18,
+        tfp_trend: 0.002,
+        inflation: 1.10,
+        interest_rate: 0.18,
+        tax_rate: 0.30,
+        mil_spend_gdp: 0.035,
+        state_invest_gdp: 0.04,
+        priv_invest_gdp: 0.08,
+        debt_gdp: 0.15,
+        oil_mbd: oil * 0.01,
+        bubble: 0.0,
+        growth_last: -0.06,
+        stability: 34.0,
+        separatism: 0.35, // Crimea and the Donbas, from the day the flag went up
+        mil_strength: strength * 0.15,
+        war_exhaustion: 0.0,
+        // Ukraine woke up with the third-largest nuclear arsenal on earth — some
+        // 1,900 strategic warheads left on its territory — and gave every one of
+        // them back. The Budapest Memorandum of December 1994 traded them for
+        // security assurances from Russia, the United States and Britain. It is
+        // the only nuclear disarmament of its size ever carried out, and it is
+        // why Ukraine enters the sim without the deterrent Russia keeps.
+        nuclear: false,
+        // Yuzhmash and Antonov were Soviet design bureaux before they were
+        // Ukrainian ones: the knowledge is inherited in full, and it is the
+        // economy underneath it, not the engineers, that fails to keep up.
+        tech: crate::tech::TechState::inherit(&inherited_tech, 0.002),
+    };
+    w.nations.push(ukraine);
+
+    // Both successors inherit a thawed version of USSR relations
     let rels: Vec<(NationId, f64)> = ALL_START_NATIONS
         .iter()
         .filter(|x| **x != NationId::USSR)
         .map(|x| (*x, w.relation(NationId::USSR, *x) * 0.5 + 10.0))
         .collect();
-    for (other, v) in rels {
-        w.set_relation(NationId::Russia, other, v);
+    for successor in [NationId::Russia, NationId::Ukraine] {
+        for (other, v) in &rels {
+            w.set_relation(successor, *other, *v);
+        }
     }
-    w.headline("THE SOVIET UNION HAS DISSOLVED. Russia emerges as successor state.".into());
-    w.headline("Newly independent republics abstracted; Russia inherits the arsenal.".into());
+    // Kyiv and Moscow start as quarrelling relatives rather than enemies: the
+    // Black Sea Fleet and Crimea are already in dispute, but the divorce of
+    // December 1991 was signed, not fought.
+    w.set_relation(NationId::Russia, NationId::Ukraine, 15.0);
+
+    w.headline("THE SOVIET UNION HAS DISSOLVED. Russia and Ukraine emerge as successor states.".into());
+    w.headline("Russia inherits the arsenal; Ukraine's warheads go back east under the Budapest assurances.".into());
 }
 
 /// Yugoslavia comes apart into republics of unequal wealth and — the part that
@@ -290,6 +345,7 @@ fn ai_wars(w: &mut WorldState) {
         let aggressors = [
             NationId::Iraq, NationId::Iran, NationId::Pakistan, NationId::India,
             NationId::Serbia, NationId::Croatia,
+            NationId::China, NationId::Israel, NationId::Turkey,
         ];
         // Successor states are not in ALL_START_NATIONS, so consider everyone alive.
         let living: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
@@ -320,6 +376,33 @@ fn ai_wars(w: &mut WorldState) {
                     (NationId::Iran, NationId::Iraq) => 0.002,
                     (NationId::Pakistan, NationId::India) => 0.001,
                     (NationId::India, NationId::Pakistan) => 0.001,
+                    // The Sino-Vietnamese quarrel is the live one in Asia in
+                    // 1990: a border war in 1979, artillery duels along it until
+                    // 1988, and three Vietnamese ships sunk off Johnson Reef in
+                    // the Spratlys that March. Relations are not normalised until
+                    // November 1991, and Hanoi's Soviet guarantor is dying. Only
+                    // this direction: Beijing has the bomb and Hanoi does not.
+                    // Kept low because the quarrel was cooling, not heating: the
+                    // multipliers below (relations at -45, a strength ratio near
+                    // two) already triple whatever base it is given.
+                    (NationId::China, NationId::Vietnam) => 0.0003,
+                    // Osirak is the precedent and it is only nine years old.
+                    // Israel struck Iraq's reactor from the air in 1981 and was
+                    // arguing internally about doing it again through 1990, up to
+                    // and past the point where Scuds were landing on Tel Aviv.
+                    // What it never became was an invasion, which is what this
+                    // table declares — hence a base an order below Iraq's own
+                    // appetite for Kuwait, further damped because Israel's 132%
+                    // debt would otherwise read to the AI as fiscal desperation.
+                    (NationId::Israel, NationId::Iraq) => 0.0003,
+                    // Turkey put divisions across the Iraqi border repeatedly in
+                    // the nineties — 1992, 1995, 1997 — chasing the PKK into a
+                    // north Iraq Baghdad no longer controlled, and Ozal pressed
+                    // his allies for a share of the outcome, Mosul included. The
+                    // appetite is real but conditional: it needs Baghdad to be
+                    // beaten first, which the coalition's sanctions and the
+                    // relations shift after an invasion supply.
+                    (NationId::Turkey, NationId::Iraq) => 0.002,
                     // Wars of succession: neighbours of a state that just came
                     // apart, with kin on the wrong side of the new borders.
                     (NationId::Serbia, NationId::Croatia) => 0.022,
