@@ -205,6 +205,103 @@ pub struct Nation {
     pub tech: TechState,
 }
 
+/// What a patron sends a client. Money keeps a government standing; guns let it
+/// fight the neighbour the patron would rather not fight itself.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum AidKind {
+    Economic,
+    Arms,
+}
+impl AidKind {
+    pub fn label(&self) -> &'static str {
+        match self {
+            AidKind::Economic => "economic aid",
+            AidKind::Arms => "arms",
+        }
+    }
+    pub fn parse(s: &str) -> Option<AidKind> {
+        match s.trim().to_lowercase().as_str() {
+            "economic" | "aid" | "money" => Some(AidKind::Economic),
+            "arms" | "weapons" | "military" => Some(AidKind::Arms),
+            _ => None,
+        }
+    }
+}
+
+/// A standing commitment of a share of the patron's output, renewed every month
+/// until someone cancels it.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct AidFlow {
+    pub patron: NationId,
+    pub client: NationId,
+    pub kind: AidKind,
+    /// Annual share of the patron's GDP
+    pub share_gdp: f64,
+    pub since_year: i32,
+}
+
+/// A mutual defence guarantee. Stored with `a <= b` so the pair is canonical.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct Pact {
+    pub a: NationId,
+    pub b: NationId,
+    pub since_year: i32,
+    pub since_month: u32,
+}
+
+/// A trade agreement, and how far integration has actually gone since signature.
+/// Depth is the whole point: a fresh treaty is a gesture, a mature one is a
+/// dependency that the larger partner can pull on.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct TradePact {
+    pub a: NationId,
+    pub b: NationId,
+    /// 0..1
+    pub depth: f64,
+}
+
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum CovertOp {
+    FundOpposition,
+    StirSeparatists,
+    SabotageIndustry,
+}
+impl CovertOp {
+    pub fn label(&self) -> &'static str {
+        match self {
+            CovertOp::FundOpposition => "funding the opposition",
+            CovertOp::StirSeparatists => "arming separatists",
+            CovertOp::SabotageIndustry => "industrial sabotage",
+        }
+    }
+    pub fn parse(s: &str) -> Option<CovertOp> {
+        match s.trim().to_lowercase().as_str() {
+            "opposition" | "fund" | "coup" => Some(CovertOp::FundOpposition),
+            "separatists" | "separatism" | "stir" => Some(CovertOp::StirSeparatists),
+            "sabotage" | "industry" => Some(CovertOp::SabotageIndustry),
+            _ => None,
+        }
+    }
+}
+
+/// What a state has done for and to other states short of war, kept together so
+/// that `WorldState` grows by one field rather than five.
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+pub struct Statecraft {
+    pub pacts: Vec<Pact>,
+    pub aid: Vec<AidFlow>,
+    pub trade: Vec<TradePact>,
+    /// (sponsor, target, heat 0..1) — how well-trodden a covert channel has
+    /// become. Nothing gets a service caught like using the same one twice.
+    pub covert_heat: Vec<(NationId, NationId, f64)>,
+    /// Sparse, like `relations`: a state that has never broken its word is
+    /// simply absent and reads as the baseline.
+    pub reputation: Vec<(NationId, f64)>,
+}
+
+/// What a state's word is worth before it has spent any of it.
+pub const BASE_REPUTATION: f64 = 70.0;
+
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct War {
     pub attacker: NationId,
@@ -243,6 +340,10 @@ pub struct WorldState {
     /// sanctions: (imposer, target)
     pub sanctions: Vec<(NationId, NationId)>,
     pub wars: Vec<War>,
+    /// Pacts, patronage, trade and the intelligence services. Defaulted so that
+    /// a save written before statecraft existed still loads.
+    #[serde(default)]
+    pub statecraft: Statecraft,
     /// Brent-ish oil price, USD/barrel
     pub oil_price: f64,
     /// Event log for the current month (drained by UI)
@@ -296,6 +397,125 @@ impl WorldState {
     pub fn shift_relation(&mut self, a: NationId, b: NationId, d: f64) {
         let cur = self.relation(a, b);
         self.set_relation(a, b, cur + d);
+    }
+    pub fn allied(&self, a: NationId, b: NationId) -> bool {
+        let (x, y) = if a <= b { (a, b) } else { (b, a) };
+        self.statecraft.pacts.iter().any(|p| p.a == x && p.b == y)
+    }
+    /// Everyone who has guaranteed `id`, in NationId order — the order matters
+    /// because each of them will be asked, with a die roll, to honour it.
+    pub fn pact_partners(&self, id: NationId) -> Vec<NationId> {
+        let mut v: Vec<NationId> = self
+            .statecraft
+            .pacts
+            .iter()
+            .filter_map(|p| {
+                if p.a == id {
+                    Some(p.b)
+                } else if p.b == id {
+                    Some(p.a)
+                } else {
+                    None
+                }
+            })
+            .collect();
+        v.sort();
+        v
+    }
+    pub fn aid_flow(&self, patron: NationId, client: NationId, kind: AidKind) -> Option<&AidFlow> {
+        self.statecraft
+            .aid
+            .iter()
+            .find(|f| f.patron == patron && f.client == client && f.kind == kind)
+    }
+    /// Share of its own output a patron has already promised away.
+    pub fn aid_share_committed(&self, patron: NationId) -> f64 {
+        self.statecraft
+            .aid
+            .iter()
+            .filter(|f| f.patron == patron)
+            .map(|f| f.share_gdp)
+            .sum()
+    }
+    /// Everything one patron sends one client, across cash and weapons alike.
+    pub fn aid_share_to(&self, patron: NationId, client: NationId) -> f64 {
+        self.statecraft
+            .aid
+            .iter()
+            .filter(|f| f.patron == patron && f.client == client)
+            .map(|f| f.share_gdp)
+            .sum()
+    }
+    /// Everyone paying `client`, deduplicated and ordered.
+    pub fn patrons_of(&self, client: NationId) -> Vec<NationId> {
+        let mut v: Vec<NationId> = self
+            .statecraft
+            .aid
+            .iter()
+            .filter(|f| f.client == client)
+            .map(|f| f.patron)
+            .collect();
+        v.sort();
+        v.dedup();
+        v
+    }
+    pub fn trade_depth(&self, a: NationId, b: NationId) -> f64 {
+        let (x, y) = if a <= b { (a, b) } else { (b, a) };
+        self.statecraft
+            .trade
+            .iter()
+            .find(|t| t.a == x && t.b == y)
+            .map(|t| t.depth)
+            .unwrap_or(0.0)
+    }
+    /// How much of `id`'s trade runs through `partner`, 0..1. This is leverage:
+    /// the side with the smaller number can afford to walk away.
+    pub fn trade_dependency(&self, id: NationId, partner: NationId) -> f64 {
+        let depth = self.trade_depth(id, partner);
+        if depth <= 0.0 {
+            return 0.0;
+        }
+        let (mine, theirs) = match (self.nation_opt(id), self.nation_opt(partner)) {
+            (Some(m), Some(t)) => (m.gdp, t.gdp),
+            _ => return 0.0,
+        };
+        depth * (theirs / (mine + theirs).max(1.0))
+    }
+    pub fn reputation(&self, id: NationId) -> f64 {
+        self.statecraft
+            .reputation
+            .iter()
+            .find(|(x, _)| *x == id)
+            .map(|(_, v)| *v)
+            .unwrap_or(BASE_REPUTATION)
+    }
+    pub fn shift_reputation(&mut self, id: NationId, d: f64) {
+        let v = (self.reputation(id) + d).clamp(0.0, 100.0);
+        if let Some(e) = self.statecraft.reputation.iter_mut().find(|(x, _)| *x == id) {
+            e.1 = v;
+        } else {
+            self.statecraft.reputation.push((id, v));
+        }
+    }
+    pub fn covert_heat(&self, sponsor: NationId, target: NationId) -> f64 {
+        self.statecraft
+            .covert_heat
+            .iter()
+            .find(|(s, t, _)| *s == sponsor && *t == target)
+            .map(|(_, _, v)| *v)
+            .unwrap_or(0.0)
+    }
+    pub fn add_covert_heat(&mut self, sponsor: NationId, target: NationId, d: f64) {
+        if let Some(e) = self
+            .statecraft
+            .covert_heat
+            .iter_mut()
+            .find(|(s, t, _)| *s == sponsor && *t == target)
+        {
+            e.2 = (e.2 + d).clamp(0.0, 1.0);
+        } else {
+            self.statecraft.covert_heat.push((sponsor, target, d.clamp(0.0, 1.0)));
+        }
     }
     pub fn sanctioned_by_count(&self, target: NationId) -> usize {
         self.sanctions.iter().filter(|(_, t)| *t == target).count()

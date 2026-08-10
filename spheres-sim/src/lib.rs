@@ -1,6 +1,7 @@
 pub mod economy;
 pub mod init;
 pub mod politics;
+pub mod statecraft;
 pub mod tech;
 pub mod war;
 pub mod world;
@@ -19,6 +20,16 @@ pub enum Command {
     LiftSanction { imposer: NationId, target: NationId },
     ImproveRelations { from: NationId, to: NationId },
     DeclareWar { attacker: NationId, defender: NationId },
+    /// Offer a mutual defence guarantee. The other government decides.
+    ProposeAlliance { from: NationId, to: NationId },
+    /// Walk away from one. Cheap in peacetime, ruinous while the ally is under attack.
+    BreakAlliance { from: NationId, to: NationId },
+    /// A standing transfer of `share_gdp` of the patron's output, until cancelled.
+    PledgeAid { patron: NationId, client: NationId, kind: AidKind, share_gdp: f64 },
+    EndAid { patron: NationId, client: NationId, kind: AidKind },
+    CovertAction { sponsor: NationId, target: NationId, op: CovertOp },
+    ProposeTrade { from: NationId, to: NationId },
+    AbrogateTrade { from: NationId, to: NationId },
 }
 
 /// What a command asks of the government that issues it, and who it asks.
@@ -110,6 +121,17 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::DeclareWar { attacker, defender } => {
             war::declare_war(w, *attacker, *defender)?;
         }
+        Command::ProposeAlliance { from, to } => statecraft::propose_pact(w, *from, *to)?,
+        Command::BreakAlliance { from, to } => statecraft::break_pact(w, *from, *to)?,
+        Command::PledgeAid { patron, client, kind, share_gdp } => {
+            statecraft::pledge_aid(w, *patron, *client, *kind, *share_gdp)?
+        }
+        Command::EndAid { patron, client, kind } => statecraft::end_aid(w, *patron, *client, *kind)?,
+        Command::CovertAction { sponsor, target, op } => {
+            statecraft::covert_action(w, *sponsor, *target, *op)?
+        }
+        Command::ProposeTrade { from, to } => statecraft::propose_trade(w, *from, *to)?,
+        Command::AbrogateTrade { from, to } => statecraft::abrogate_trade(w, *from, *to)?,
     }
     Ok(())
 }
@@ -127,6 +149,10 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
     // what it unlocks is in the nation's hands before the soldiers and the
     // politicians get their turn with it.
     tech::tick(w);
+    // Pacts decide who is obliged to join a war and patronage decides who can
+    // still afford one, so the standing arrangements are settled before the
+    // fighting is worked out.
+    statecraft::tick(w);
     war::tick(w);
     politics::tick(w);
 
@@ -651,6 +677,277 @@ mod tests {
             0,
             "Iraq still embargoed 25 years on"
         );
+    }
+
+    // ---- Statecraft: pacts, patronage, subversion, trade --------------------
+
+    fn seeded(seed: u64) -> WorldState {
+        let mut rules = GameRules::default();
+        rules.seed = seed;
+        world_1990(rules)
+    }
+
+    /// Keep asking until they say yes. An arrangement a test is about to
+    /// interrogate has to exist first, and consent is a die roll.
+    fn force_pact(w: &mut WorldState, a: NationId, b: NationId) {
+        for _ in 0..300 {
+            if w.allied(a, b) {
+                return;
+            }
+            apply_command(w, &Command::ProposeAlliance { from: a, to: b }).unwrap();
+        }
+        panic!("{:?} and {:?} never signed", a, b);
+    }
+
+    fn force_trade(w: &mut WorldState, a: NationId, b: NationId) {
+        for _ in 0..300 {
+            if w.trade_depth(a, b) > 0.0 {
+                return;
+            }
+            apply_command(w, &Command::ProposeTrade { from: a, to: b }).unwrap();
+        }
+        panic!("{:?} and {:?} never came to terms", a, b);
+    }
+
+    #[test]
+    fn superpowers_compete_for_the_same_clients() {
+        // The texture of the Cold War is two hostile patrons bankrolling the same
+        // government at the same time. It should not need a script: a client the
+        // other side is already buying is simply worth more.
+        let mut contested = 0;
+        for seed in 0..12u64 {
+            let mut w = seeded(seed);
+            let mut saw = false;
+            for _ in 0..240 {
+                tick_month(&mut w, &[]);
+                saw |= w.nations.iter().filter(|n| n.alive).any(|n| {
+                    let backers = w.patrons_of(n.id);
+                    backers
+                        .iter()
+                        .any(|x| backers.iter().any(|y| w.relation(*x, *y) < -20.0))
+                });
+            }
+            if saw {
+                contested += 1;
+            }
+        }
+        assert!(
+            contested >= 7,
+            "the powers never bid against each other: {}/12 runs",
+            contested
+        );
+    }
+
+    #[test]
+    fn a_pact_drags_a_great_power_into_a_war_it_did_not_start() {
+        // Not every run — a guarantee that is always called is not a guarantee,
+        // it is a border. But across seeds, somebody's client gets invaded and
+        // its protector has to show up.
+        let mut dragged = 0;
+        for seed in 0..12u64 {
+            let mut w = seeded(seed);
+            let mut saw = false;
+            for _ in 0..360 {
+                for h in tick_month(&mut w, &[]) {
+                    if h.contains("honours its defence pact")
+                        && politics::PATRONS.iter().any(|p| h.starts_with(p.name()))
+                    {
+                        saw = true;
+                    }
+                }
+            }
+            if saw {
+                dragged += 1;
+            }
+        }
+        assert!(
+            (3..12).contains(&dragged),
+            "pacts pulled a great power into someone else's war in {}/12 runs",
+            dragged
+        );
+    }
+
+    #[test]
+    fn guarantees_are_usually_but_not_always_honoured() {
+        // The whole point of making commitment explicit is that it can fail.
+        // Across seeds the guarantor mostly turns up, and sometimes does not.
+        let (mut honoured, mut abandoned) = (0, 0);
+        for seed in 0..40u64 {
+            let mut w = seeded(seed);
+            force_pact(&mut w, NationId::USA, NationId::Kuwait);
+            w.headlines.clear();
+            war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+            if w.headlines.iter().any(|h| h.contains("United States honours its defence pact")) {
+                honoured += 1;
+            }
+            if w.headlines.iter().any(|h| h.contains("United States abandons its pact")) {
+                abandoned += 1;
+            }
+        }
+        assert_eq!(honoured + abandoned, 40, "a guarantee went unanswered");
+        assert!(
+            honoured > abandoned * 2,
+            "pacts are worthless: {} kept, {} broken",
+            honoured,
+            abandoned
+        );
+        assert!(abandoned >= 1, "no pact was ever broken in 40 invasions");
+    }
+
+    #[test]
+    fn abandoning_an_ally_is_felt_by_every_other_ally() {
+        let mut w = seeded(11);
+        w.rules.ai_aggression = 0.0;
+        war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+        force_pact(&mut w, NationId::USA, NationId::SouthKorea);
+        force_pact(&mut w, NationId::USA, NationId::Kuwait);
+        let rep = w.reputation(NationId::USA);
+        let seoul = w.relation(NationId::USA, NationId::SouthKorea);
+
+        apply_command(&mut w, &Command::BreakAlliance { from: NationId::USA, to: NationId::Kuwait })
+            .unwrap();
+
+        assert!(!w.allied(NationId::USA, NationId::Kuwait));
+        assert!(
+            w.reputation(NationId::USA) <= rep - 25.0,
+            "walking out on a war cost nothing: {} -> {}",
+            rep,
+            w.reputation(NationId::USA)
+        );
+        assert!(
+            w.relation(NationId::USA, NationId::SouthKorea) < seoul - 5.0,
+            "Seoul did not notice what Washington's word is worth"
+        );
+    }
+
+    #[test]
+    fn aid_props_up_a_client_regime_and_the_patron_pays_for_it() {
+        let (mut base, mut aided) = (seeded(4), seeded(4));
+        for w in [&mut base, &mut aided] {
+            w.rules.ai_aggression = 0.0;
+            w.player = Some(NationId::USA); // freeze Washington's own AI in both
+        }
+        apply_command(
+            &mut aided,
+            &Command::PledgeAid {
+                patron: NationId::USA,
+                client: NationId::Poland,
+                kind: AidKind::Economic,
+                share_gdp: 0.004,
+            },
+        )
+        .unwrap();
+        run_months(&mut base, 120);
+        run_months(&mut aided, 120);
+
+        let (bp, ap) = (base.nation(NationId::Poland), aided.nation(NationId::Poland));
+        assert!(
+            ap.stability > bp.stability + 5.0,
+            "aid did not hold the regime up: {:.1} vs {:.1}",
+            ap.stability,
+            bp.stability
+        );
+        assert!(ap.gdp > bp.gdp * 1.10, "aid bought no growth: {:.0} vs {:.0}", ap.gdp, bp.gdp);
+        assert!(
+            aided.nation(NationId::USA).debt_gdp > base.nation(NationId::USA).debt_gdp,
+            "the patron got its sphere for free"
+        );
+    }
+
+    #[test]
+    fn arms_transfers_build_a_client_army() {
+        let (mut base, mut armed) = (seeded(6), seeded(6));
+        for w in [&mut base, &mut armed] {
+            w.rules.ai_aggression = 0.0;
+            w.player = Some(NationId::USA);
+        }
+        apply_command(
+            &mut armed,
+            &Command::PledgeAid {
+                patron: NationId::USA,
+                client: NationId::Kuwait,
+                kind: AidKind::Arms,
+                share_gdp: 0.003,
+            },
+        )
+        .unwrap();
+        run_months(&mut base, 96);
+        run_months(&mut armed, 96);
+        let (b, a) = (
+            base.nation(NationId::Kuwait).mil_strength,
+            armed.nation(NationId::Kuwait).mil_strength,
+        );
+        assert!(a > b * 1.5, "arms bought no army: {:.1} vs {:.1}", a, b);
+    }
+
+    #[test]
+    fn a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it() {
+        let (mut base, mut open) = (seeded(2), seeded(2));
+        for w in [&mut base, &mut open] {
+            w.rules.ai_aggression = 0.0;
+            w.player = Some(NationId::USA);
+        }
+        force_trade(&mut open, NationId::USA, NationId::Poland);
+        run_months(&mut base, 240);
+        run_months(&mut open, 240);
+        let (b, o) = (base.nation(NationId::Poland).gdp, open.nation(NationId::Poland).gdp);
+        assert!(o > b * 1.20, "twenty years of integration bought nothing: {:.0} vs {:.0}", o, b);
+
+        // ...and the growth is the leash. Tearing the agreement up costs the
+        // small partner an order of magnitude more than the large one.
+        let (p0, u0) = (
+            open.nation(NationId::Poland).gdp,
+            open.nation(NationId::USA).gdp,
+        );
+        apply_command(
+            &mut open,
+            &Command::AbrogateTrade { from: NationId::USA, to: NationId::Poland },
+        )
+        .unwrap();
+        let warsaw = 1.0 - open.nation(NationId::Poland).gdp / p0;
+        let washington = 1.0 - open.nation(NationId::USA).gdp / u0;
+        assert!(warsaw > 0.02, "the dependent partner shrugged it off: {:.4}", warsaw);
+        assert!(
+            warsaw > washington * 10.0,
+            "dependency was symmetric: {:.4} vs {:.4}",
+            warsaw,
+            washington
+        );
+    }
+
+    #[test]
+    fn covert_action_is_deniable_until_it_is_not() {
+        // A service that keeps going back to the same well gets rolled up, and
+        // the bill lands on the relationship rather than on the operation.
+        let mut w = seeded(3);
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::USA);
+        let start = w.relation(NationId::USA, NationId::Iran);
+        let (mut caught, mut clean) = (0, 0);
+        for _ in 0..40 {
+            let hl = tick_month(
+                &mut w,
+                &[Command::CovertAction {
+                    sponsor: NationId::USA,
+                    target: NationId::Iran,
+                    op: CovertOp::FundOpposition,
+                }],
+            );
+            if hl.iter().any(|h| h.contains("exposes United States")) {
+                caught += 1;
+            } else {
+                clean += 1;
+            }
+        }
+        assert!(caught > 0, "forty operations and never once caught");
+        assert!(clean > 0, "covert action was never actually covert");
+        assert!(
+            w.relation(NationId::USA, NationId::Iran) < start - 30.0,
+            "getting caught cost nothing: {} -> {}",
+            start,
+            w.relation(NationId::USA, NationId::Iran)
+        );
+        assert!(w.covert_heat(NationId::USA, NationId::Iran) > 0.5, "the channel never got hot");
     }
 
     #[test]

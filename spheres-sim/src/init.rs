@@ -95,6 +95,7 @@ pub fn world_1990(rules: GameRules) -> WorldState {
         relations: vec![],
         sanctions: vec![],
         wars: vec![],
+        statecraft: Statecraft::default(),
         oil_price: 20.0,
         headlines: vec![],
         flags: vec![],

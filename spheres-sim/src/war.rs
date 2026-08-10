@@ -278,9 +278,17 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
     }
     w.headline(format!("Coalition sanctions slam {}.", attacker.name()));
 
+    // Written guarantees are called in first. A pact is a harder claim than
+    // affinity and, unlike affinity, it can be publicly broken — so anyone who
+    // walks away here must not be quietly walked back in by the looser rule below.
+    let refused = crate::statecraft::call_the_guarantors(w, &mut war);
+
     // ...and friends of the victim may intervene (never against a nuclear attacker directly
     // unless they're nuclear too — abstracted: majors intervene if relation with victim high).
     for m in majors {
+        if war.defender_allies.contains(&m) || refused.contains(&m) {
+            continue;
+        }
         if would_intervene(w, m, defender, attacker) {
             war.defender_allies.push(m);
             w.headline(format!("{} joins the war in defense of {}.", m.name(), defender.name()));

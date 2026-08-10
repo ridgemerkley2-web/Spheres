@@ -118,7 +118,9 @@ pub fn tick(w: &mut WorldState) {
         }
     }
 
-    // ---- AI war decisions ----
+    // ---- AI statecraft, then AI wars: a guarantee signed this month is a
+    // guarantee the aggressor has to price in this month. ----
+    ai_statecraft(w);
     ai_wars(w);
 
     // ---- Grievances fade; alliances are institutional and do not ----
@@ -379,6 +381,258 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
     w.headline("The JNA's divisions, and its arsenal, remain in Belgrade's hands.".into());
 }
 
+/// The powers that keep clients. Not simply the strongest — the ones with a bloc
+/// to hold together and something to lose if it goes over to the other side.
+/// Japan belongs here despite its two-decimal army: it passed the United States
+/// in 1989 to become the largest aid donor in the world and stayed there until
+/// 2000. https://ies.princeton.edu/pdf/E196.pdf
+pub const PATRONS: [NationId; 8] = [
+    NationId::USA, NationId::USSR, NationId::Russia, NationId::China,
+    NationId::UK, NationId::France, NationId::Germany, NationId::Japan,
+];
+
+/// What a great power does in the eleven months of the year it is not invading
+/// anyone. Each patron gets a handful of independent low-probability chances per
+/// month to open a chequebook, sign a guarantee, open a market, or pay somebody
+/// to make a rival's client ungovernable. Everything goes through the same
+/// `Command` the player uses, so the AI cannot do anything a player could not.
+fn ai_statecraft(w: &mut WorldState) {
+    let patrons: Vec<NationId> = PATRONS
+        .iter()
+        .copied()
+        .filter(|p| w.nation_opt(*p).map_or(false, |n| n.alive) && Some(*p) != w.player)
+        .collect();
+
+    for p in patrons {
+        // A patron with its own house on fire stops buying friends.
+        if w.nation(p).stability < 25.0 {
+            continue;
+        }
+
+        // ---- Patronage. The scoring is where the competition lives. ----
+        let headroom = crate::statecraft::MAX_AID_SHARE - w.aid_share_committed(p);
+        if headroom > 0.0008 && w.rng.chance(0.10) {
+            if let Some(c) = best_client(w, p) {
+                // Guns for a client with an enemy, money for one with a problem.
+                let threatened = w.at_war(c)
+                    || w.nations.iter().any(|n| {
+                        n.alive && n.id != c && n.id != p && w.relation(c, n.id) < -30.0
+                    });
+                let kind = if threatened { AidKind::Arms } else { AidKind::Economic };
+                let current = w.aid_flow(p, c, kind).map(|f| f.share_gdp).unwrap_or(0.0);
+                let room = headroom
+                    .min(crate::statecraft::MAX_CLIENT_SHARE - w.aid_share_to(p, c))
+                    .max(0.0);
+                let share = current + 0.002_f64.min(room);
+                let _ = crate::apply_command(
+                    w,
+                    &crate::Command::PledgeAid { patron: p, client: c, kind, share_gdp: share },
+                );
+            }
+        }
+
+        // ---- Cut a client loose once it has drifted out of the sphere. ----
+        let lapsed: Vec<(NationId, AidKind)> = w
+            .statecraft
+            .aid
+            .iter()
+            .filter(|f| f.patron == p && w.relation(p, f.client) < -10.0)
+            .map(|f| (f.client, f.kind))
+            .collect();
+        for (c, kind) in lapsed {
+            let _ = crate::apply_command(w, &crate::Command::EndAid { patron: p, client: c, kind });
+        }
+
+        // ---- A guarantee, but only for a client you are already paying for and
+        // cannot afford to lose. Handing them out cheaply is how a great power
+        // ends up in a war over a country it could not find on a map. ----
+        if w.rng.chance(0.05) {
+            let candidate = w
+                .statecraft
+                .aid
+                .iter()
+                .filter(|f| f.patron == p)
+                .map(|f| f.client)
+                .filter(|c| !w.allied(p, *c) && w.relation(p, *c) >= 60.0)
+                .max_by(|a, b| {
+                    w.relation(p, *a)
+                        .partial_cmp(&w.relation(p, *b))
+                        .unwrap_or(std::cmp::Ordering::Equal)
+                });
+            if let Some(c) = candidate {
+                let _ = crate::apply_command(w, &crate::Command::ProposeAlliance { from: p, to: c });
+            }
+        }
+
+        // ---- Subversion, aimed at whoever is both hostile and brittle. ----
+        if w.rng.chance(0.022) {
+            if let Some(t) = best_covert_target(w, p) {
+                let (stab, sep) = {
+                    let n = w.nation(t);
+                    (n.stability, n.separatism)
+                };
+                let op = if sep > 0.25 {
+                    CovertOp::StirSeparatists
+                } else if stab < 50.0 {
+                    CovertOp::FundOpposition
+                } else {
+                    CovertOp::SabotageIndustry
+                };
+                let _ = crate::apply_command(
+                    w,
+                    &crate::Command::CovertAction { sponsor: p, target: t, op },
+                );
+            }
+        }
+    }
+
+    // ---- Trade is not a great-power monopoly: anybody on decent terms with a
+    // bigger market will try to get into it. ----
+    let traders: Vec<NationId> = w
+        .nations
+        .iter()
+        .filter(|n| n.alive)
+        .map(|n| n.id)
+        .filter(|id| Some(*id) != w.player)
+        .collect();
+    for a in traders {
+        if w.statecraft.trade.iter().filter(|t| t.a == a || t.b == a).count() >= 4 {
+            continue;
+        }
+        if !w.rng.chance(0.015) {
+            continue;
+        }
+        let partner = w
+            .nations
+            .iter()
+            .filter(|n| n.alive && n.id != a)
+            .map(|n| (n.id, n.gdp))
+            .filter(|(b, _)| {
+                w.relation(a, *b) >= 40.0
+                    && w.trade_depth(a, *b) <= 0.0
+                    && !w.is_sanctioning(a, *b)
+                    && !w.is_sanctioning(*b, a)
+                    && !crate::statecraft::belligerents(w, a, *b)
+            })
+            .max_by(|x, y| x.1.partial_cmp(&y.1).unwrap_or(std::cmp::Ordering::Equal))
+            .map(|(b, _)| b);
+        if let Some(b) = partner {
+            let _ = crate::apply_command(w, &crate::Command::ProposeTrade { from: a, to: b });
+        }
+    }
+
+    // ---- The other side of the market for guarantees. A small state with a
+    // stronger enemy goes looking for a protector, and looks first at whoever is
+    // already paying its bills — which is how patronage turns into commitment. ----
+    let seekers: Vec<NationId> = w
+        .nations
+        .iter()
+        .filter(|n| n.alive)
+        .map(|n| n.id)
+        .filter(|id| Some(*id) != w.player && !PATRONS.contains(id))
+        .collect();
+    for s in seekers {
+        let strength = w.nation(s).mil_strength;
+        let threatened = w.nations.iter().any(|n| {
+            n.alive && n.id != s && n.mil_strength > strength * 1.3 && w.relation(s, n.id) < -30.0
+        });
+        if !threatened || !w.rng.chance(0.07) {
+            continue;
+        }
+        let protector = w
+            .nations
+            .iter()
+            .filter(|n| n.alive && n.id != s && !w.allied(s, n.id))
+            .filter(|n| {
+                let rel = w.relation(s, n.id);
+                // Nobody underwrites a country they have no stake in. Either the
+                // friendship is deep already, or the cheques have made it so.
+                rel >= 60.0 || (rel >= 45.0 && w.aid_share_to(n.id, s) > 0.0)
+            })
+            .max_by(|x, y| {
+                x.mil_strength
+                    .partial_cmp(&y.mil_strength)
+                    .unwrap_or(std::cmp::Ordering::Equal)
+            })
+            .map(|n| n.id);
+        if let Some(p) = protector {
+            let _ = crate::apply_command(w, &crate::Command::ProposeAlliance { from: s, to: p });
+        }
+    }
+}
+
+/// What a client is worth to a patron. The decisive term is the last one: a
+/// government your rival is already buying is worth *more* to you, not less.
+/// That single inversion is what turns a list of aid budgets into a Cold War.
+fn client_score(w: &WorldState, patron: NationId, client: NationId) -> f64 {
+    let rel = w.relation(patron, client);
+    if rel < -25.0 {
+        return 0.0;
+    }
+    if w.aid_share_to(patron, client) >= crate::statecraft::MAX_CLIENT_SHARE - 1e-9 {
+        return 0.0; // this one is already taking all it can be given
+    }
+    let c = w.nation(client);
+    // A country rich enough to fund its own government is not for sale, whatever
+    // else it can be talked into.
+    if c.gdp * 1000.0 / c.population > 15000.0 {
+        return 0.0;
+    }
+    // Oil, an economy worth having on your side of the ledger, and an army that
+    // can hold a line you would rather not send your own soldiers to.
+    let value = c.oil_mbd * 1.4 + (c.gdp / 150.0).min(5.0) + c.mil_strength / 12.0;
+    // Squared, because patrons do not shop on price alone: who a government
+    // already leans toward dominates what it is objectively worth.
+    let affinity = ((rel + 40.0) / 140.0).clamp(0.05, 1.0).powi(2);
+    let backers = w.patrons_of(client);
+    let contested = backers
+        .iter()
+        .any(|q| *q != patron && w.relation(patron, *q) < -20.0);
+    let already_mine = backers.contains(&patron);
+    value
+        * affinity
+        * if contested { 2.2 } else { 1.0 }
+        * if already_mine { 0.60 } else { 1.0 }
+}
+
+fn best_client(w: &WorldState, patron: NationId) -> Option<NationId> {
+    w.nations
+        .iter()
+        .filter(|n| n.alive && n.id != patron)
+        .map(|n| n.id)
+        .filter(|c| !PATRONS.contains(c) && !war::MAJORS.contains(c))
+        .filter(|c| !crate::statecraft::belligerents(w, patron, *c))
+        .map(|c| (c, client_score(w, patron, c)))
+        .filter(|(_, s)| *s > 0.0)
+        .max_by(|x, y| x.1.partial_cmp(&y.1).unwrap_or(std::cmp::Ordering::Equal))
+        .map(|(c, _)| c)
+}
+
+/// Subversion goes where hostility meets brittleness. A rival's client is the
+/// classic target: cheaper to break than the rival, and it hurts the rival anyway.
+fn best_covert_target(w: &WorldState, sponsor: NationId) -> Option<NationId> {
+    w.nations
+        .iter()
+        .filter(|n| n.alive && n.id != sponsor)
+        .map(|n| n.id)
+        .filter(|t| w.relation(sponsor, *t) <= -30.0 && !w.allied(sponsor, *t))
+        .map(|t| {
+            let n = w.nation(t);
+            let brittle = (70.0 - n.stability).max(0.0) / 70.0 + n.separatism * 0.5;
+            // A channel already half-blown is a reason to wait, not to press.
+            let caution = 1.0 - w.covert_heat(sponsor, t) * 0.8;
+            let proxy = if w.patrons_of(t).iter().any(|q| w.relation(sponsor, *q) < -20.0) {
+                1.6
+            } else {
+                1.0
+            };
+            (t, brittle * caution * proxy)
+        })
+        .filter(|(_, s)| *s > 0.05)
+        .max_by(|x, y| x.1.partial_cmp(&y.1).unwrap_or(std::cmp::Ordering::Equal))
+        .map(|(t, _)| t)
+}
+
 fn ai_wars(w: &mut WorldState) {
     // Iraq's Kuwait calculus: debt-strained oil state eyeing a rich, weak neighbor.
     let candidates: Vec<(NationId, NationId, f64)> = {
@@ -468,6 +722,19 @@ fn ai_wars(w: &mut WorldState) {
                     if war::would_intervene(w, m, t, a) {
                         expected_def += w.nation(m).mil_strength * coalition_discount;
                     }
+                }
+                // A signed guarantee is the one commitment an aggressor cannot
+                // pretend not to have seen. It is still discounted — pacts are
+                // broken — but far less than a hoped-for coalition.
+                for g in w.pact_partners(t) {
+                    if g == a || war::MAJORS.contains(&g) && war::would_intervene(w, g, t, a) {
+                        continue;
+                    }
+                    if w.nation_opt(g).map_or(true, |n| !n.alive) {
+                        continue;
+                    }
+                    let honoured = if learned { 0.75 } else { 0.20 };
+                    expected_def += w.nation(g).mil_strength * honoured;
                 }
                 let strength_ratio = an.mil_strength / expected_def.max(1.0);
                 if strength_ratio < 0.8 {
