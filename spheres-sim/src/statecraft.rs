@@ -13,6 +13,15 @@
 
 use crate::world::*;
 
+/// What full integration with a market of overwhelming size is worth as a
+/// permanent uplift to output. Paid once, as integration deepens, rather than
+/// every month forever. A quarter is a large number and it is meant to be: it
+/// is the gain to a small open economy that gets access to a market a hundred
+/// times its size, and it is scaled down by relative size for everyone else, so
+/// the giant on the other side of the same agreement collects a fraction of a
+/// percent.
+const TRADE_LEVEL_GAIN: f64 = 0.25;
+
 /// Annual share of GDP a guarantee costs both signatories: garrisons, exercises,
 /// and forces sized for somebody else's border.
 const PACT_UPKEEP: f64 = 0.003;
@@ -155,23 +164,32 @@ fn trade_deepens(w: &mut WorldState) {
             ));
             continue;
         }
-        let depth = {
+        let deepened = {
             let t = w
                 .statecraft
                 .trade
                 .iter_mut()
                 .find(|t| t.a == a && t.b == b)
                 .expect("trade pact");
+            let before = t.depth;
             t.depth = (t.depth + 0.012).min(1.0);
-            t.depth
+            t.depth - before
         };
         let (ga, gb) = (w.nation(a).gdp, w.nation(b).gdp);
+        // Opening a market is a LEVEL effect, not a permanent growth rate. This
+        // paid out on the depth of the pact every month it existed, so each
+        // agreement raised its signatories' growth for good: the United States
+        // held enough of them to compound 4.5% a year while its briefing
+        // reported 1.8%, because none of this passes through the growth
+        // accounting where anyone would see it. The gain is now paid only as
+        // integration actually deepens, so a mature pact is worth a permanently
+        // larger economy rather than a permanently faster one.
+        //
         // Gains scale with the size of the market you gained access to relative
         // to your own, which is why the small partner is the one transformed.
         for (me, mine, theirs) in [(a, ga, gb), (b, gb, ga)] {
             let reach = theirs / (mine + theirs).max(1.0);
-            let annual = 0.024 * depth * reach;
-            w.nation_mut(me).gdp *= 1.0 + annual / 12.0;
+            w.nation_mut(me).gdp *= 1.0 + TRADE_LEVEL_GAIN * reach * deepened;
         }
         if w.relation(a, b) < 70.0 {
             w.shift_relation(a, b, 0.15);
