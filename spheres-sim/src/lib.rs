@@ -84,6 +84,20 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
     w.headlines.clone()
 }
 
+/// FNV-1a over the serialized world — a cheap, stable fingerprint of an entire
+/// timeline. Two runs that agree here agree everywhere, which makes this the
+/// oracle for determinism tests and, later, for replay verification.
+pub fn state_hash(w: &WorldState) -> u64 {
+    const OFFSET_BASIS: u64 = 0xcbf2_9ce4_8422_2325;
+    const PRIME: u64 = 0x0000_0100_0000_01b3;
+    let mut h = OFFSET_BASIS;
+    for b in save(w).as_bytes() {
+        h ^= *b as u64;
+        h = h.wrapping_mul(PRIME);
+    }
+    h
+}
+
 pub fn save(w: &WorldState) -> String {
     serde_json::to_string_pretty(w).expect("serialize")
 }
@@ -109,6 +123,102 @@ mod tests {
         run_months(&mut a, 240);
         run_months(&mut b, 240);
         assert_eq!(save(&a), save(&b));
+    }
+
+    #[test]
+    fn different_seeds_diverge() {
+        // The other half of determinism, and the one that catches a seed being
+        // silently ignored: identical rules but a different seed must produce a
+        // genuinely different history, not a cosmetic reshuffle.
+        let mut a = world_1990(GameRules::default());
+        let mut b = world_1990(GameRules { seed: 7, ..GameRules::default() });
+        run_months(&mut a, 240);
+        run_months(&mut b, 240);
+        assert_ne!(state_hash(&a), state_hash(&b), "different seeds produced identical worlds");
+    }
+
+    #[test]
+    fn state_hash_agrees_with_the_serialized_world() {
+        let mut a = world_1990(GameRules::default());
+        let mut b = world_1990(GameRules::default());
+        run_months(&mut a, 120);
+        run_months(&mut b, 120);
+        assert_eq!(state_hash(&a), state_hash(&b));
+        run_months(&mut b, 1);
+        assert_ne!(state_hash(&a), state_hash(&b), "hash blind to a month passing");
+    }
+
+    #[test]
+    fn japans_bubble_becomes_a_lost_decade() {
+        // Japan starts with a bubble at 0.95. It must pop, and the hangover must
+        // be a decade of stagnation rather than a single bad year — and Japan
+        // must not overtake the United States on the way through.
+        let mut w = world_1990(GameRules::default());
+        run_months(&mut w, 24);
+        let peak = w.nation(NationId::Japan).gdp;
+        run_months(&mut w, 120); // through to ~2002
+        let japan = w.nation(NationId::Japan);
+        let decade_growth = japan.gdp / peak;
+        assert!(
+            decade_growth < 1.45,
+            "no lost decade: Japan grew {:.2}x in the ten years after the peak",
+            decade_growth
+        );
+        assert!(
+            japan.gdp < w.nation(NationId::USA).gdp,
+            "Japan overtook the USA: {:.0} vs {:.0}",
+            japan.gdp,
+            w.nation(NationId::USA).gdp
+        );
+    }
+
+    #[test]
+    fn stable_democracies_never_hyperinflate() {
+        // A standing invariant, not a calibration: if an open, stable economy
+        // can spiral in this model, the monetary framework is broken.
+        let democracies = [
+            NationId::USA, NationId::Japan, NationId::Germany,
+            NationId::UK, NationId::France, NationId::Italy,
+        ];
+        for seed in 0..5u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..480 {
+                tick_month(&mut w, &[]);
+                for id in democracies {
+                    let n = w.nation(id);
+                    if !n.alive || n.stability < 40.0 || w.at_war(id) {
+                        continue; // a state in crisis is allowed to be a mess
+                    }
+                    assert!(
+                        n.inflation < 0.50,
+                        "{:?} hyperinflated to {:.0}% at {} on seed {}",
+                        id, n.inflation * 100.0, w.date_str(), seed
+                    );
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn rich_democracies_settle_near_target() {
+        // The quiet background condition the whole model rests on: absent shocks,
+        // a mature economy converges on modest growth and inflation near target.
+        let mut w = world_1990(GameRules::default());
+        w.rules.ai_aggression = 0.0; // no wars: we are testing the resting state
+        run_months(&mut w, 480);
+        for id in [NationId::USA, NationId::Germany, NationId::France] {
+            let n = w.nation(id);
+            assert!(
+                (-0.01..0.06).contains(&n.growth_last),
+                "{:?} resting growth {:.1}% is not a mature economy",
+                id, n.growth_last * 100.0
+            );
+            assert!(
+                (-0.02..0.10).contains(&n.inflation),
+                "{:?} resting inflation {:.1}% never converged",
+                id, n.inflation * 100.0
+            );
+        }
     }
 
     #[test]
@@ -321,3 +431,4 @@ mod tests {
         assert!(js > jb, "Japan inflation didn't rise with oil: {} vs {}", js, jb);
     }
 }
+
