@@ -206,15 +206,19 @@
 const WORLD = window.WORLD;
 
 // Which real-world territory each sim nation holds. The USSR is drawn as the
-// union of its republics; when it dissolves, Russia keeps only RUS and the rest
-// fall back to unaligned land.
+// union of its republics; when it dissolves, Russia keeps RUS and Ukraine keeps
+// UKR, and the twelve republics that are not simulated fall back to unaligned
+// land.
 const TERRITORY = {
   USA: ["USA"], Russia: ["RUS"], China: ["CHN"], Japan: ["JPN"],
   Germany: ["DEU"], UK: ["GBR"], France: ["FRA"], Italy: ["ITA"],
   India: ["IND"], Pakistan: ["PAK"], Iraq: ["IRQ"], Kuwait: ["KWT"],
   SaudiArabia: ["SAU"], Iran: ["IRN"], SouthKorea: ["KOR"], Poland: ["POL"],
+  Brazil: ["BRA"], Indonesia: ["IDN"], Egypt: ["EGY"], Israel: ["ISR"],
+  Turkey: ["TUR"], Nigeria: ["NGA"], Vietnam: ["VNM"],
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
+  Ukraine: ["UKR"],
   Yugoslavia: ["SRB", "HRV", "SVN", "BIH", "MKD", "MNE"],
   // Successors. Macedonia is not simulated — it left without a shot — so it
   // falls back to unaligned scenery when the federation breaks.
