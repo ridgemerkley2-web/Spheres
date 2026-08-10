@@ -1,0 +1,4 @@
+# Build artifacts live outside OneDrive: syncing target/ locks the freshly
+# linked .exe and breaks the next build with "Access is denied".
+[build]
+target-dir = "C:/Users/ridge/.cargo-target/spheres"

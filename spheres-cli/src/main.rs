@@ -216,8 +216,30 @@ fn advance(w: &mut WorldState, queued: &mut Vec<Command>, months: usize) {
         if !w.nation(me).alive {
             return;
         }
+        // History does not wait politely for your turn to end: a war or a
+        // collapse cuts a long advance short so you can actually respond to it.
+        if i + 1 < months {
+            if let Some(event) = headlines.iter().find(|h| is_major(h, me)) {
+                println!("\n  ** {} **", event.trim_end_matches('.'));
+                println!("  The world stops for you. ({} months left unrun.)", months - i - 1);
+                break;
+            }
+        }
     }
     briefing(w, me);
+}
+
+/// Events worth interrupting a multi-month advance for.
+fn is_major(headline: &str, me: NationId) -> bool {
+    let h = headline.to_lowercase();
+    let structural = h.starts_with("war:")
+        || h.contains("dissolved")
+        || h.contains("has annexed")
+        || h.contains("capitulates")
+        || h.contains("revolution in")
+        || h.contains("repels");
+    // Anything naming you is your business, whoever it happened to.
+    structural || h.contains(&me.name().to_lowercase())
 }
 
 fn briefing(w: &WorldState, me: NationId) {
