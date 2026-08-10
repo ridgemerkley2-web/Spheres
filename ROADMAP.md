@@ -46,44 +46,54 @@ Measured on the default seed, clean builds, `run 35 1990`:
 | USA | $5,980bn | $30,762bn | ~$14,000bn | 4.8% | 2.5% |
 | Japan | $3,140bn | $13,742bn | ~$4,300bn | 4.3% | 0.9% |
 
-Every mature economy *reads* about 2% growth in the 2025 table, because growth
-has decayed by then — the excess is accumulated earlier in the run and never
-given back. Japan is the worst case but it is not a Japan problem: the United
-States is 2.2 points a year too fast over 35 years, and 2.2 points is almost
-exactly the technology tree's productivity cap of +0.020.
+**Diagnosed, and it was not the technology tree.** An earlier version of this
+entry blamed the tree's +0.020 productivity cap on the arithmetic that 2.2
+points of excess growth matches a 2.0-point cap. That was a coincidence.
 
-That is the first place to look. `apply_bonuses` caps the whole technological
-contribution at two points of annual trend growth, and if the leaders are
-sitting at the cap for most of the run then the cap is doing all the work and
-the tree is inflating everyone rather than differentiating them — which is the
-precise failure the productivity rework was meant to prevent. Check whether the
-leaders saturate it, and for how long, before touching anything else.
+The cause is `statecraft.rs`. A trade agreement multiplied *both* signatories'
+GDP by up to 2.4% a year for every month it existed, applied directly and
+outside the growth accounting. Each pact therefore raised its signatories'
+growth rate permanently rather than their output level, and they stack: the
+United States signs enough of them to compound 4.5% a year while its own
+briefing reports 1.8%, because none of it passes through the growth model where
+anybody would see it. That gap between reported and realised growth is the
+tell, and it is worth remembering as a smell — if a nation's GDP series and its
+growth series disagree, something is writing to GDP directly.
+
+Fixed on branch `fix/trade-level-effect`: the gain is paid only as integration
+deepens, so a mature pact is worth a permanently larger economy rather than a
+permanently faster one. That alone takes the USA at 2025 from $30.8tn to
+$16.5tn against a real ~$14tn. The branch is not merged because it re-breaks
+`embargoes_eventually_lift` — Iraq stays under embargo 25 years on, probably
+because AI statecraft keeps renewing the grievance the relief rule reads, which
+may be correct behaviour the test predates. Diagnose that before merging, and
+do not widen the test to fit.
+
+Japan remains roughly twice its real size even after the fix, so there is a
+second, smaller cause still outstanding there.
 
 Nothing guards this. `china_growth_miracle` asserts a floor (>6x in 30 years)
 and every other calibration test is about a *relative* outcome, so a world that
 uniformly doubles passes all of them. A test that locks the frontier economy's
 35-year trajectory would have caught it years of game-time earlier.
 
-## Known calibration gap: output ignores labour
+## Closed: output ignores labour
 
-Growth is `TFP + investment effect + catch-up - drags`. Population appears only
-through GDP per head, which feeds the development proxy — and that proxy is
-already capped at 1.0 for every rich nation. So **population growth has no
-effect whatever on the output of a developed economy**: the demographic
-transition added in economy.rs makes Japan's population decline correctly and
-changes its GDP by exactly zero.
+Growth was `TFP + investment effect + catch-up - drags`, with population reaching
+output only through GDP per head — a proxy already capped at 1.0 for every rich
+nation, so population growth had no effect whatever on a developed economy. The
+demographic transition made Japan's population fall correctly and changed its GDP
+by exactly zero.
 
-That is why Japan still reads $7.2tn growing 2.7% in 2025 and stays ahead of
-China, when the real figures are roughly $4.3tn, ~0.9%/yr, and overtaken in
-2010. `japans_bubble_becomes_a_lost_decade` only guards the ten years after the
-peak, so the long-run miss is currently untested.
+Closed by the labour term SPEC section 3 asks for: output growth now carries
+0.6 times workforce growth, so a shrinking workforce is a headwind investment
+cannot offset. It landed with the other half the entry demanded — returns to
+investment made concave around a 20% reference, so a nation can no longer buy
+growth indefinitely by raising its investment share.
 
-The fix is the labour term SPEC section 3 already calls for: growth accounting
-says output growth is TFP plus a capital contribution plus roughly 0.6 times
-labour-force growth. Adding it makes a shrinking workforce cost output, which
-is most of Japan's story — but it also hands every high-fertility poor nation a
-growth bonus, so the catch-up term has to be rebalanced against it in the same
-change. Do not land one half without the other.
+Still untested, and worth knowing that. No assertion locks a frontier economy's
+long-run trajectory, so a world that uniformly doubles still passes every
+calibration test we have.
 
 ## Next (rough priority)
 
