@@ -1,5 +1,6 @@
 use crate::world::*;
 
+
 /// Transcribed-not-invented: approximate 1990 historical starting conditions.
 pub fn world_1990(rules: GameRules) -> WorldState {
     use EconomySystem::*;
@@ -104,5 +105,6 @@ fn n(
         mil_strength: strength,
         war_exhaustion: 0.0,
         nuclear,
+        tech: crate::tech::TechState::new(tfp),
     }
 }

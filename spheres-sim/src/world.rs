@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
 
+use crate::tech::TechState;
+
 /// SplitMix64 — the single seeded RNG. Determinism is sacred.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct Rng {
@@ -159,6 +161,12 @@ pub struct Nation {
     /// 0..1, accumulates in war, decays in peace
     pub war_exhaustion: f64,
     pub nuclear: bool,
+
+    // --- Technology ---
+    /// What this nation knows, what it is paying to learn, and what that
+    /// knowledge has done to it. Defaulted so older saves still load.
+    #[serde(default)]
+    pub tech: TechState,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]

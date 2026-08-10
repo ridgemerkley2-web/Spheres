@@ -7,8 +7,10 @@ pub fn tick(w: &mut WorldState) {
     for id in &ids {
         let n = w.nation_mut(*id);
         let budget = n.gdp * n.mil_spend_gdp; // $bn/yr
-        // Strength drifts toward what the budget sustains
-        let sustained = (budget * 0.30).sqrt() * 8.0;
+        // Strength drifts toward what the budget sustains — and what a budget
+        // sustains depends on what the arsenal it buys is made of.
+        let sustained = (budget * 0.30).sqrt() * 8.0 * crate::tech::military_multiplier(n)
+            + crate::tech::military_floor(n);
         n.mil_strength += (sustained - n.mil_strength) * 0.02;
         // Exhaustion decays in peace
         n.war_exhaustion = (n.war_exhaustion - 0.01).max(0.0);

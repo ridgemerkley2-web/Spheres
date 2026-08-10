@@ -67,10 +67,13 @@ pub fn tick(w: &mut WorldState) {
         // actually ship. An embargoed producer watches the price it caused spike
         // while its own revenue collapses.
         let oil_revenue_gdp = n.oil_mbd * export_share * oil_price * 0.365 / n.gdp; // $bn/yr per $bn GDP
+        // An importer that has learned to do more with a barrel is hurt less by
+        // what the barrel costs.
+        let exposure = crate::tech::energy_exposure(n);
         let oil_effect = if n.oil_mbd > 0.5 {
             (oil_price - 20.0) / 20.0 * oil_revenue_gdp * 0.5
         } else {
-            -(oil_price - 20.0) / 20.0 * 0.006
+            -(oil_price - 20.0) / 20.0 * 0.006 * exposure
         };
         // Barrels that never ship are income that never arrives — the hard edge
         // of an embargo for a petro-economy.
@@ -90,7 +93,7 @@ pub fn tick(w: &mut WorldState) {
 
         // ---- Inflation (annual rate, adjusts monthly) ----
         // Demand pressure plus oil pass-through for importers; tight money disinflates.
-        let oil_infl = if n.oil_mbd < 0.5 { ((oil_price - 20.0) / 20.0).max(-0.5) * 0.012 } else { 0.0 };
+        let oil_infl = if n.oil_mbd < 0.5 { ((oil_price - 20.0) / 20.0).max(-0.5) * 0.012 * exposure } else { 0.0 };
         let target_infl = 0.02 + demand_gap * 1.6 + oil_infl + if at_war { 0.015 } else { 0.0 };
         n.inflation += (target_infl - n.inflation) * 0.10;
         n.inflation = n.inflation.clamp(-0.05, 3.0);

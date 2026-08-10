@@ -138,9 +138,9 @@ pub fn tick(w: &mut WorldState) {
 
 fn dissolve_ussr(w: &mut WorldState) {
     w.set_flag("ussr_dissolved");
-    let (gdp, pop, oil, strength) = {
+    let (gdp, pop, oil, strength, inherited_tech) = {
         let u = w.nation(NationId::USSR);
-        (u.gdp, u.population, u.oil_mbd, u.mil_strength)
+        (u.gdp, u.population, u.oil_mbd, u.mil_strength, u.tech.clone())
     };
     {
         let u = w.nation_mut(NationId::USSR);
@@ -171,6 +171,9 @@ fn dissolve_ussr(w: &mut WorldState) {
         mil_strength: strength * 0.65,
         war_exhaustion: 0.0,
         nuclear: true,
+        // The institutes and the engineers do not vanish with the flag over the
+        // Kremlin; the research programmes they were working to do.
+        tech: crate::tech::TechState::inherit(&inherited_tech, 0.008),
     };
     w.nations.push(russia);
     // Inherit a thawed version of USSR relations
@@ -194,9 +197,9 @@ fn dissolve_ussr(w: &mut WorldState) {
 /// the successors, and the existing war machinery does what it does with it.
 fn dissolve_yugoslavia(w: &mut WorldState) {
     w.set_flag("yugoslavia_dissolved");
-    let (gdp, pop, oil, strength, infl, debt) = {
+    let (gdp, pop, oil, strength, infl, debt, inherited_tech) = {
         let y = w.nation(NationId::Yugoslavia);
-        (y.gdp, y.population, y.oil_mbd, y.mil_strength, y.inflation, y.debt_gdp)
+        (y.gdp, y.population, y.oil_mbd, y.mil_strength, y.inflation, y.debt_gdp, y.tech.clone())
     };
     {
         let y = w.nation_mut(NationId::Yugoslavia);
@@ -241,6 +244,9 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             mil_strength: strength * m,
             war_exhaustion: 0.0,
             nuclear: false,
+            // Each republic keeps the federation's technical base and starts its
+            // own research from nothing.
+            tech: crate::tech::TechState::inherit(&inherited_tech, tfp),
         });
     }
 

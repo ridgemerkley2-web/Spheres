@@ -1,6 +1,7 @@
 pub mod economy;
 pub mod init;
 pub mod politics;
+pub mod tech;
 pub mod war;
 pub mod world;
 
@@ -67,6 +68,10 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         }
     }
     economy::tick(w);
+    // Research is funded out of the output the economy has just produced, and
+    // what it unlocks is in the nation's hands before the soldiers and the
+    // politicians get their turn with it.
+    tech::tick(w);
     war::tick(w);
     politics::tick(w);
 
