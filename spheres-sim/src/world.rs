@@ -237,6 +237,30 @@ impl WorldState {
     pub fn is_sanctioning(&self, imposer: NationId, target: NationId) -> bool {
         self.sanctions.iter().any(|(i, t)| *i == imposer && *t == target)
     }
+    /// Share of a producer's exports shut out of the market by embargo, 0..1.
+    /// Weighted by the sanctioners' share of world GDP — an embargo bites in
+    /// proportion to the demand that closes its doors. Smuggling keeps a floor.
+    pub fn oil_blockade(&self, target: NationId) -> f64 {
+        let world_gdp: f64 = self.nations.iter().filter(|n| n.alive).map(|n| n.gdp).sum();
+        if world_gdp <= 0.0 {
+            return 0.0;
+        }
+        let blocking: f64 = self
+            .sanctions
+            .iter()
+            .filter(|(_, t)| *t == target)
+            .filter_map(|(i, _)| self.nations.iter().find(|n| n.id == *i && n.alive))
+            .map(|n| n.gdp)
+            .sum();
+        (blocking / world_gdp * 1.15).min(0.85)
+    }
+    /// Share of a producer's barrels that still reach the market. Embargo shuts
+    /// buyers out; war shuts the terminals themselves. Both the world price and
+    /// the producer's own revenue read from this one number.
+    pub fn oil_export_share(&self, id: NationId) -> f64 {
+        let war_share = if self.at_war(id) { 0.25 } else { 1.0 };
+        (1.0 - self.oil_blockade(id)) * war_share
+    }
     pub fn at_war(&self, id: NationId) -> bool {
         self.wars.iter().any(|w| w.involves(id))
     }

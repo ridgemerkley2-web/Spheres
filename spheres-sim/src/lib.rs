@@ -189,6 +189,42 @@ mod tests {
     }
 
     #[test]
+    fn embargo_starves_the_aggressor_and_outlasts_the_war() {
+        // An embargo must bite through exports, not just as a vague GDP drag: the
+        // aggressor loses the revenue from barrels it cannot ship, and the
+        // coalition's sanctions do not evaporate the moment the shooting stops.
+        let mut base = world_1990(GameRules::default());
+        let mut embargoed = world_1990(GameRules::default());
+        base.rules.ai_aggression = 0.0;
+        embargoed.rules.ai_aggression = 0.0;
+        war::declare_war(&mut embargoed, NationId::Iraq, NationId::Kuwait).unwrap();
+        run_months(&mut base, 60);
+        run_months(&mut embargoed, 60);
+
+        assert!(
+            embargoed.sanctioned_by_count(NationId::Iraq) > 0,
+            "embargo evaporated with the war"
+        );
+        let bi = base.nation(NationId::Iraq).gdp;
+        let ei = embargoed.nation(NationId::Iraq).gdp;
+        assert!(ei < bi * 0.8, "embargoed Iraq barely suffered: {:.0} vs {:.0}", ei, bi);
+    }
+
+    #[test]
+    fn embargoes_eventually_lift() {
+        // ...but they are not eternal. Grievance cools, and the market reopens.
+        let mut w = world_1990(GameRules::default());
+        w.rules.ai_aggression = 0.0;
+        war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+        run_months(&mut w, 12 * 25);
+        assert_eq!(
+            w.sanctioned_by_count(NationId::Iraq),
+            0,
+            "Iraq still embargoed 25 years on"
+        );
+    }
+
+    #[test]
     fn oil_shock_propagates_to_importer_inflation() {
         // The open thread from last session, now as a test: a Gulf war must
         // raise oil prices and push importer (Japan) inflation up vs baseline.

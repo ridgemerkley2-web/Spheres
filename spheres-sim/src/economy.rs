@@ -10,6 +10,7 @@ pub fn tick(w: &mut WorldState) {
     for id in ids {
         let sanction_count = w.sanctioned_by_count(id) as f64;
         let at_war = w.at_war(id);
+        let export_share = w.oil_export_share(id);
         let noise = w.rng.range(-0.004, 0.004);
         let crisis_mult = w.rules.crisis_intensity;
         let n = w.nation_mut(id);
@@ -62,16 +63,27 @@ pub fn tick(w: &mut WorldState) {
         let instability_drag = if n.stability < 40.0 { (40.0 - n.stability) * 0.0009 } else { 0.0 };
 
         // ---- Oil terms of trade ----
-        // Producers gain when oil is dear; importers lose a little.
-        let oil_revenue_gdp = n.oil_mbd * oil_price * 0.365 / n.gdp; // $bn/yr per $bn GDP
+        // Producers gain when oil is dear — but only on the barrels they can
+        // actually ship. An embargoed producer watches the price it caused spike
+        // while its own revenue collapses.
+        let oil_revenue_gdp = n.oil_mbd * export_share * oil_price * 0.365 / n.gdp; // $bn/yr per $bn GDP
         let oil_effect = if n.oil_mbd > 0.5 {
             (oil_price - 20.0) / 20.0 * oil_revenue_gdp * 0.5
         } else {
             -(oil_price - 20.0) / 20.0 * 0.006
         };
+        // Barrels that never ship are income that never arrives — the hard edge
+        // of an embargo for a petro-economy.
+        // Capped: this is a ratio to a shrinking GDP, and an uncapped version
+        // would feed on its own collapse.
+        let embargo_drag = if n.oil_mbd > 0.5 {
+            ((1.0 - export_share) * n.oil_mbd * oil_price * 0.365 / n.gdp * 0.30).min(0.12)
+        } else {
+            0.0
+        };
 
         let growth_annual = potential + demand_gap + bubble_boost + oil_effect
-            - sanction_drag - war_drag - debt_drag - instability_drag + noise;
+            - sanction_drag - war_drag - debt_drag - instability_drag - embargo_drag + noise;
 
         n.gdp *= 1.0 + growth_annual / 12.0;
         n.growth_last = n.growth_last * 0.9 + growth_annual * 0.1;
@@ -121,22 +133,25 @@ pub fn tick(w: &mut WorldState) {
 }
 
 fn oil_market(w: &mut WorldState) {
-    // Supply disruption: war involving a producer takes its barrels off the market.
+    // Supply disruption: whatever a producer cannot ship — because its terminals
+    // are a war zone, or because the world's buyers have shut it out — is supply
+    // the market does not get.
+    let producers: Vec<(NationId, f64)> = w
+        .nations
+        .iter()
+        .filter(|n| n.alive && n.oil_mbd > 0.0)
+        .map(|n| (n.id, n.oil_mbd))
+        .collect();
     let mut disrupted = 0.0;
     let mut total = 0.0;
-    for n in &w.nations {
-        if !n.alive { continue; }
-        total += n.oil_mbd;
-        if w.wars.iter().any(|war| war.involves(n.id)) {
-            disrupted += n.oil_mbd;
-        }
-        // Sanctioned producers sell less
-        if w.sanctioned_by_count(n.id) >= 2 {
-            disrupted += n.oil_mbd * 0.5;
-        }
+    for (id, mbd) in producers {
+        total += mbd;
+        disrupted += mbd * (1.0 - w.oil_export_share(id));
     }
     let disruption_share = if total > 0.0 { (disrupted / total).min(0.6) } else { 0.0 };
-    let target = 20.0 * (1.0 + disruption_share * 3.0);
+    // Oil demand is famously inelastic: a tenth of supply off the market moves
+    // the price far more than a tenth.
+    let target = 20.0 * (1.0 + disruption_share * 4.0);
     let noise = w.rng.range(-0.6, 0.6);
     w.oil_price += (target - w.oil_price) * 0.18 + noise;
     w.oil_price = w.oil_price.clamp(8.0, 120.0);

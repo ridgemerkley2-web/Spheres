@@ -83,22 +83,54 @@ pub fn tick(w: &mut WorldState) {
     // ---- AI war decisions ----
     ai_wars(w);
 
-    // ---- AI sanctions relief: relations mend slowly, sanctions lift when wars end ----
-    let war_free: Vec<NationId> = w
-        .nations
-        .iter()
-        .filter(|n| n.alive && !w.at_war(n.id))
-        .map(|n| n.id)
-        .collect();
-    w.sanctions.retain(|(imposer, target)| {
-        // Keep sanctions while target is at war or relations are dire
-        if !war_free.contains(target) {
-            return true;
+    // ---- Grievances fade; alliances are institutional and do not ----
+    let belligerents: Vec<(NationId, NationId)> =
+        w.wars.iter().map(|war| (war.attacker, war.defender)).collect();
+    for (a, b, v) in w.relations.iter_mut() {
+        if *v >= 0.0 {
+            continue;
         }
-        // lifted probabilistically? Determinism: use relations threshold instead
-        false // lift once at peace — simple v0.5 rule
-    });
-    let _ = war_free;
+        if belligerents.iter().any(|(x, y)| (x == a && y == b) || (x == b && y == a)) {
+            continue; // an active war keeps the wound open
+        }
+        *v -= *v * 0.008; // ~9%/yr toward indifference
+    }
+
+    // ---- Sanctions relief: an embargo outlasts the war that caused it, and
+    // lifts only once the grievance behind it has cooled. ----
+    let decisions: Vec<((NationId, NationId), bool)> = w
+        .sanctions
+        .iter()
+        .map(|&(imposer, target)| {
+            let target_alive = w.nations.iter().any(|n| n.id == target && n.alive);
+            // Grievance decay sets the clock: a minor partner's embargo fades in
+            // ~5 years, a principal antagonist's holds for a decade.
+            let keep = target_alive && (w.at_war(target) || w.relation(imposer, target) < -15.0);
+            ((imposer, target), keep)
+        })
+        .collect();
+    let mut kept: Vec<(NationId, NationId)> = vec![];
+    let mut lifted: Vec<(NationId, NationId)> = vec![];
+    for (pair, keep) in decisions {
+        if keep {
+            kept.push(pair);
+        } else {
+            lifted.push(pair);
+        }
+    }
+    w.sanctions = kept;
+    // Headline only when a target comes fully in from the cold.
+    let freed: Vec<NationId> = lifted
+        .iter()
+        .map(|(_, t)| *t)
+        .filter(|t| w.nations.iter().any(|n| n.id == *t && n.alive))
+        .filter(|t| w.sanctioned_by_count(*t) == 0)
+        .collect();
+    for t in freed {
+        if !w.headlines.iter().any(|h| h.contains(&format!("Sanctions on {}", t.name()))) {
+            w.headline(format!("Sanctions on {} are lifted.", t.name()));
+        }
+    }
 }
 
 fn dissolve_ussr(w: &mut WorldState) {
