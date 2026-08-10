@@ -140,8 +140,9 @@ impl Era {
 /// scope of their domain, not found a gap.
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq)]
 pub enum Effect {
-    /// Permanent addition to `tfp_trend`, an annual rate. 0.0004 is a useful
-    /// tool; 0.0020 is a general-purpose technology that reorganises an economy.
+    /// Permanent addition to `tfp_trend`, an annual rate. 0.00005 is a useful
+    /// tool; 0.00040 is a general-purpose technology that reorganises an
+    /// economy. A domain's Productivity values should sum to about 0.0020.
     Productivity(f64),
     /// Multiplier on research output. 0.03 = this nation now researches 3% faster.
     ResearchRate(f64),
@@ -244,14 +245,14 @@ fn foundation() -> Vec<TechDef> {
         tech(
             "core_cmos_submicron", "Sub-Micron CMOS Fabrication", Computing, Information,
             &[], 45.0, 1990,
-            &[Productivity(0.0010), ResearchRate(0.04)],
+            &[Productivity(0.00025), ResearchRate(0.04)],
         ),
         // TCP/IP internetworking: the ARPANET was decommissioned in 1990 and the
         // NSFNET backbone carried the traffic it had proved could be carried.
         tech(
             "core_packet_internetworking", "Packet Internetworking", Communications, Information,
             &[], 40.0, 1990,
-            &[Productivity(0.0008), DiffusionSpeed(0.05), DiffusionEmission(0.05)],
+            &[Productivity(0.00020), DiffusionSpeed(0.05), DiffusionEmission(0.05)],
         ),
         // Single-mode long-haul fibre: TAT-8, the first transatlantic fibre
         // cable, entered service in 1988 and carried more than every copper
@@ -259,21 +260,21 @@ fn foundation() -> Vec<TechDef> {
         tech(
             "core_single_mode_fiber", "Single-Mode Optical Trunk", Communications, Information,
             &[], 45.0, 1990,
-            &[Productivity(0.0007), DiffusionEmission(0.04)],
+            &[Productivity(0.00018), DiffusionEmission(0.04)],
         ),
         // Carbon-fibre primary structure: in service through the 1980s on the
         // AV-8B's wing and the Boeing 767's control surfaces.
         tech(
             "core_carbon_composites", "Carbon-Fibre Composite Structures", Materials, Information,
             &[], 50.0, 1990,
-            &[Productivity(0.0005), MilitaryEfficiency(0.03)],
+            &[Productivity(0.00012), MilitaryEfficiency(0.03)],
         ),
         // Combined-cycle gas turbine: GE's Frame 7F entered commercial service
         // in 1990 and took thermal efficiency past 50% for the first time.
         tech(
             "core_combined_cycle_turbine", "Combined-Cycle Gas Turbine", Energy, Information,
             &[], 55.0, 1990,
-            &[EnergyEfficiency(0.05), Productivity(0.0005)],
+            &[EnergyEfficiency(0.05), Productivity(0.00012)],
         ),
         // PCR: Mullis conceived it in 1983, and Cetus shipped Taq polymerase and
         // the first thermal cycler in 1987, which is when it became a method
@@ -288,27 +289,27 @@ fn foundation() -> Vec<TechDef> {
         tech(
             "core_gnss", "Satellite Navigation Constellation", Communications, Information,
             &["core_packet_internetworking"], 90.0, 1993,
-            &[Productivity(0.0006), MilitaryEfficiency(0.05), InvestmentEfficiency(0.02)],
+            &[Productivity(0.00015), MilitaryEfficiency(0.05), InvestmentEfficiency(0.02)],
         ),
         // The first GSM call was placed on Radiolinja's network in Finland on
         // 1 July 1991.
         tech(
             "core_digital_cellular", "Digital Cellular Network", Communications, Information,
             &["core_cmos_submicron"], 70.0, 1991,
-            &[Productivity(0.0009), DiffusionSpeed(0.04)],
+            &[Productivity(0.00022), DiffusionSpeed(0.04)],
         ),
         // Sony commercialised the lithium-ion cell in 1991.
         tech(
             "core_lithium_ion_cell", "Lithium-Ion Cell", Materials, Information,
             &[], 60.0, 1991,
-            &[Productivity(0.0004), EnergyEfficiency(0.03)],
+            &[Productivity(0.00010), EnergyEfficiency(0.03)],
         ),
         // 248nm KrF deep-ultraviolet steppers went into volume production in the
         // mid-1990s and carried the industry down to 250nm and below.
         tech(
             "core_duv_lithography", "Deep-Ultraviolet Lithography", Computing, Information,
             &["core_cmos_submicron"], 105.0, 1997,
-            &[Productivity(0.0012), ResearchRate(0.05), CostReduction { domain: Computing, frac: 0.05 }],
+            &[Productivity(0.00030), ResearchRate(0.05), CostReduction { domain: Computing, frac: 0.05 }],
         ),
         // The Human Genome Project and Celera published draft sequences in
         // February 2001.
@@ -322,7 +323,7 @@ fn foundation() -> Vec<TechDef> {
         tech(
             "core_gpu_deep_learning", "GPU Deep Learning", Computing, Platform,
             &["core_duv_lithography"], 260.0, 2012,
-            &[Productivity(0.0014), ResearchRate(0.10), CostReduction { domain: Computing, frac: 0.06 }],
+            &[Productivity(0.00035), ResearchRate(0.10), CostReduction { domain: Computing, frac: 0.06 }],
         ),
         // Jinek et al. showed programmable Cas9 cutting in 2012; Zhang and Church
         // showed it working in mammalian cells in January 2013.
@@ -338,7 +339,7 @@ fn foundation() -> Vec<TechDef> {
             &["core_carbon_composites"], 300.0, 2016,
             &[
                 MilitaryEfficiency(0.06),
-                Productivity(0.0004),
+                Productivity(0.00010),
                 CostReduction { domain: Aerospace, frac: 0.08 },
             ],
         ),
@@ -477,7 +478,7 @@ impl TechBonuses {
     // simulation must absorb that rather than fly apart. Raw sums are what gets
     // stored; these are what gets read.
     pub fn productivity_eff(&self) -> f64 {
-        saturate(self.productivity, 0.030)
+        saturate(self.productivity, 0.012)
     }
     pub fn research_rate_eff(&self) -> f64 {
         saturate(self.research_rate, 2.50)
@@ -645,7 +646,7 @@ fn development(n: &Nation) -> f64 {
 /// out why it keeps breaking are doing research whatever the budget calls it.
 fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     let invest = n.state_invest_gdp + n.priv_invest_gdp;
-    let intensity = (0.006 + 0.019 * dev) * (0.55 + 1.5 * invest);
+    let intensity = (0.008 + 0.017 * dev) * (0.55 + 1.5 * invest);
     let mut out = n.gdp * intensity / 12.0;
 
     // Better tools make more research out of the same money.
@@ -712,7 +713,7 @@ fn absorptive_capacity(w: &WorldState, n: &Nation, dev: f64) -> f64 {
 
     let mut a = 0.30 + 0.40 * dev + 0.25 * openness + n.tech.bonus.diffusion_speed_eff();
     if n.system == EconomySystem::Command {
-        a -= 0.20;
+        a -= 0.15;
     }
     a -= 0.04 * w.sanctioned_by_count(n.id) as f64;
     a.clamp(0.05, 1.20)
@@ -727,12 +728,22 @@ fn absorptive_capacity(w: &WorldState, n: &Nation, dev: f64) -> f64 {
 /// still gates the whole thing — a state nobody trades with, or that has nobody
 /// trained to read the textbook, sits next to a cheap technology and cannot buy
 /// it.
-fn effective_cost(def: &TechDef, adopter_share: f64, absorb: f64, bonus: &TechBonuses) -> f64 {
+fn effective_cost(
+    def: &TechDef,
+    adopter_share: f64,
+    absorb: f64,
+    scale: f64,
+    bonus: &TechBonuses,
+) -> f64 {
     let capacity = (absorb / 1.20).clamp(0.0, 1.0);
-    let reach = adopter_share.clamp(0.0, 1.0).powf(0.40) * (0.55 + 0.45 * capacity);
-    let copy = (1.0 - reach).clamp(0.0, 1.0).powi(4);
+    let reach = adopter_share.clamp(0.0, 1.0).powf(0.70) * (0.45 + 0.50 * capacity);
+    let copy = (1.0 - reach).clamp(0.0, 1.0).powi(5);
     let own = (1.0 - bonus.cost_reduction_for(def.domain)).clamp(0.35, 1.0);
-    (def.cost * copy * own).max(def.cost * 0.002)
+    // However ordinary a technology becomes, somebody still has to build it,
+    // and the bill for building it is the size of the country that is building
+    // it. That floor is what lets a small poor state pick up the ordinary
+    // things without ever putting the frontier within reach.
+    (def.cost * copy * own).max(def.cost * 0.30 * scale)
 }
 
 /// Pick a project for one domain. Deterministic: cheapest first, ties broken by
@@ -747,6 +758,7 @@ fn pick_focus(
     weight: &[f64],
     world_weight: f64,
     absorb: f64,
+    scale: f64,
 ) -> Option<u16> {
     let reg = registry();
     let pre = prereq_table();
@@ -770,7 +782,7 @@ fn pick_focus(
         } else {
             0.0
         };
-        let cost = effective_cost(def, share, absorb, &n.tech.bonus);
+        let cost = effective_cost(def, share, absorb, scale, &n.tech.bonus);
         // Work up to two years ahead of a floor; further ahead than that and a
         // nation is holding a whole branch hostage to one distant project.
         if def.earliest_year <= year + 2 {
@@ -803,6 +815,7 @@ pub fn tick(w: &mut WorldState) {
         }
     }
     let mut claimed = vec![false; reg.len()];
+    let world_gdp: f64 = w.nations.iter().filter(|n| n.alive).map(|n| n.gdp.max(0.0)).sum();
 
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     let year = w.year;
@@ -811,6 +824,13 @@ pub fn tick(w: &mut WorldState) {
     for id in ids {
         let dev = development(w.nation(id));
         let absorb = absorptive_capacity(w, w.nation(id), dev);
+        // Square root of the share of world output: what it costs this nation to
+        // actually build a thing, rather than to work out that it can be built.
+        let scale = if world_gdp > 0.0 {
+            (w.nation(id).gdp.max(0.0) / world_gdp).sqrt().clamp(0.005, 1.0)
+        } else {
+            1.0
+        };
         let output = research_output(w, w.nation(id), dev);
         let weights = domain_weights(w, w.nation(id), dev);
 
@@ -828,7 +848,7 @@ pub fn tick(w: &mut WorldState) {
                 // catching up looks like — but invention never comes in floods.
                 for _ in 0..6 {
                     if n.tech.focus[di].is_none() {
-                        let picked = pick_focus(d, n, year, &weight, world_weight, absorb);
+                        let picked = pick_focus(d, n, year, &weight, world_weight, absorb, scale);
                         n.tech.focus[di] = picked;
                     }
                     let Some(t) = n.tech.focus[di] else { break };
@@ -843,7 +863,7 @@ pub fn tick(w: &mut WorldState) {
                     } else {
                         0.0
                     };
-                    let cost = effective_cost(def, share, absorb, &n.tech.bonus);
+                    let cost = effective_cost(def, share, absorb, scale, &n.tech.bonus);
                     if n.tech.progress[di] < cost || year < def.earliest_year {
                         break;
                     }
@@ -879,11 +899,17 @@ pub fn tick(w: &mut WorldState) {
 fn apply_bonuses(n: &mut Nation) {
     let b = &n.tech.bonus;
     let invest = n.state_invest_gdp + n.priv_invest_gdp;
-    n.tfp_trend = n.tech.tfp_base
-        + b.productivity_eff()
-        + b.resource_yield_eff() * 0.35
-        + b.investment_efficiency_eff() * invest * 0.50
-        + b.health_eff() * 0.0004;
+    // Productivity is the one stock among the effects, so it is recomputed
+    // rather than accumulated. Richer ore, better logistics and a healthier
+    // workforce all read through to it at their own weights, and the whole
+    // technological contribution is capped: no tree an author can write may add
+    // more than two points of annual growth to a nation's trend.
+    let tech_tfp = (b.productivity_eff()
+        + b.resource_yield_eff() * 0.010
+        + b.investment_efficiency_eff() * invest * 0.030
+        + b.health_eff() * 0.0004)
+        .min(0.020);
+    n.tfp_trend = n.tech.tfp_base + tech_tfp;
 
     // Recovery works its way into producing fields over years, and the barrels
     // it finds stay found even if the field changes hands in a war.
@@ -1019,8 +1045,8 @@ mod tests {
     fn diffusion_makes_the_follower_cheaper_than_the_leader() {
         let def = &registry()[0];
         let b = TechBonuses::default();
-        let alone = effective_cost(def, 0.0, 0.7, &b);
-        let following = effective_cost(def, 0.6, 0.7, &b);
+        let alone = effective_cost(def, 0.0, 0.7, 0.5, &b);
+        let following = effective_cost(def, 0.6, 0.7, 0.02, &b);
         assert!(
             following < alone * 0.6,
             "copying is not meaningfully cheaper than inventing: {} vs {}",
@@ -1028,7 +1054,7 @@ mod tests {
         );
         // ...but capacity still gates it. A closed economy next to the frontier
         // pays far more for the same copy than an open one does.
-        let closed = effective_cost(def, 0.6, 0.10, &b);
+        let closed = effective_cost(def, 0.6, 0.10, 0.02, &b);
         assert!(closed > following * 1.5, "absorptive capacity did nothing");
     }
 
@@ -1060,5 +1086,48 @@ mod tests {
             "diffusion never reached a poor open economy"
         );
     }
+
+    #[test]
+    fn a_generous_tree_cannot_break_the_world() {
+        // Eight authors who cannot see each other will collectively overspend
+        // every effect budget. Saturation is what makes that a balance problem
+        // rather than a correctness one, and this is the test that says so:
+        // hand every nation a tree ten times richer than any author should
+        // write, and the economy must still be an economy fifty years later.
+        let mut w = world_1990(GameRules::default());
+        for n in w.nations.iter_mut() {
+            n.tech.bonus = TechBonuses {
+                productivity: 1.00,
+                research_rate: 40.0,
+                military_strength: 900.0,
+                military_efficiency: 20.0,
+                oil_yield: 8.0,
+                energy_efficiency: 9.0,
+                resource_yield: 7.0,
+                health: 30.0,
+                fertility: -20.0,
+                stability: 60.0,
+                diffusion_speed: 8.0,
+                diffusion_emission: 12.0,
+                environment: 25.0,
+                investment_efficiency: 9.0,
+                cost_reduction: vec![0.9; DOMAIN_COUNT],
+            };
+        }
+        for _ in 0..600 {
+            crate::tick_month(&mut w, &[]);
+            for n in w.nations.iter().filter(|n| n.alive) {
+                assert!(n.gdp.is_finite() && n.gdp > 0.0, "{:?} gdp broke", n.id);
+                assert!(n.population.is_finite() && n.population > 0.0);
+                assert!(n.inflation.is_finite());
+                assert!(n.debt_gdp.is_finite() && n.debt_gdp < 6.0);
+                assert!((0.0..=100.0).contains(&n.stability));
+                assert!(n.mil_strength.is_finite());
+                assert!(n.tfp_trend < 0.10, "{:?} runaway tfp: {}", n.id, n.tfp_trend);
+            }
+            assert!(w.oil_price.is_finite() && w.oil_price > 0.0);
+        }
+    }
 }
+
 
