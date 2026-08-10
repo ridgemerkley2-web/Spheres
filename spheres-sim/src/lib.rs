@@ -40,12 +40,26 @@ pub enum Command {
 /// play spends — but a government cannot reverse its whole programme twice in a
 /// year, and one that has just spent a war's worth of standing cannot do
 /// anything at all until it has delivered something.
-fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64)> {
+/// Returns who pays, what it costs, and whether the price can refuse the act.
+///
+/// Most things a government does need standing it does not have: it cannot
+/// simply decide to raise taxes it has no authority to raise. But a government
+/// can always break its word. Renouncing a guarantee, cutting a client loose,
+/// tearing up a trade treaty — these are always available and merely ruinous,
+/// so they are charged to the point of bankruptcy rather than refused. A model
+/// that stopped a discredited government from abandoning its allies would have
+/// it exactly backwards; that is the government most likely to.
+fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
     let swing = |before: f64, after: f64, per_point: f64| (after - before).abs() * per_point;
+    /// Needs the standing to act.
+    const REFUSABLE: bool = true;
+    /// Always available, and charged anyway.
+    const ALWAYS: bool = false;
     Some(match c {
         Command::SetInterestRate { nation, rate } => (
             *nation,
             swing(w.nation(*nation).interest_rate, rate.clamp(0.0, 0.60), 90.0),
+            REFUSABLE,
         ),
         Command::SetTaxRate { nation, rate } => (
             *nation,
@@ -56,36 +70,79 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64)> {
                 let after = rate.clamp(0.02, 0.60);
                 if after > before { swing(before, after, 320.0) } else { swing(before, after, 110.0) }
             },
+            REFUSABLE,
         ),
         Command::SetMilSpend { nation, share } => (
             *nation,
             swing(w.nation(*nation).mil_spend_gdp, share.clamp(0.0, 0.35), 150.0),
+            REFUSABLE,
         ),
         Command::SetStateInvest { nation, share } => (
             *nation,
             swing(w.nation(*nation).state_invest_gdp, share.clamp(0.0, 0.40), 120.0),
+            REFUSABLE,
         ),
-        Command::Sanction { imposer, .. } => (*imposer, 6.0),
-        Command::LiftSanction { imposer, .. } => (*imposer, 3.0),
-        Command::ImproveRelations { from, .. } => (*from, 2.0),
+        Command::Sanction { imposer, .. } => (*imposer, 6.0, REFUSABLE),
+        Command::LiftSanction { imposer, .. } => (*imposer, 3.0, REFUSABLE),
+        Command::ImproveRelations { from, .. } => (*from, 2.0, REFUSABLE),
         // The most expensive thing a government can decide to do.
-        Command::DeclareWar { attacker, .. } => (*attacker, 30.0),
+        Command::DeclareWar { attacker, .. } => (*attacker, 30.0, REFUSABLE),
+
+        // --- Statecraft: holding a sphere is what the currency is for ---
+        // Promising to fight somebody else's war is a commitment made at home
+        // before it is made abroad, and a government without standing cannot
+        // credibly make it.
+        Command::ProposeAlliance { from, .. } => (*from, 12.0, REFUSABLE),
+        // Cheap when nothing is happening and the most expensive thing in this
+        // list when it is not: abandoning an ally under attack is the act a
+        // government is remembered for. Never refused, because a government can
+        // always renege — statecraft charges the reputation, this charges what
+        // is left of the standing.
+        Command::BreakAlliance { from, to } => (
+            *from,
+            if w.at_war(*to) { 45.0 } else { 8.0 },
+            ALWAYS,
+        ),
+        // Sending output abroad has to be explained to the people it was taxed
+        // from, and the bill scales with how much is being sent. A patron near
+        // the ceiling of what it can promise spends real standing to stay there,
+        // which is the mechanism by which a sphere is expensive to *hold* and
+        // not merely expensive to buy.
+        Command::PledgeAid { patron, share_gdp, .. } => (
+            *patron,
+            share_gdp.abs() * 1500.0 + 3.0,
+            REFUSABLE,
+        ),
+        // Cutting a client loose is cheap at home and catastrophic at the other
+        // end, which is why the threat works while the money still flows.
+        Command::EndAid { patron, .. } => (*patron, 3.0, ALWAYS),
+        // Deniable by construction: what a government spends on an operation
+        // nobody is supposed to know about is small. The bill for it landing in
+        // the newspapers is charged by statecraft, not here.
+        Command::CovertAction { sponsor, .. } => (*sponsor, 5.0, REFUSABLE),
+        // Opening a market is the popular half of the trade.
+        Command::ProposeTrade { from, .. } => (*from, 2.0, REFUSABLE),
+        // Closing one is the unpopular half, and it is your own importers who
+        // notice first.
+        Command::AbrogateTrade { from, .. } => (*from, 10.0, ALWAYS),
     })
 }
 
 pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
     // Priced and charged before anything happens, so a command that cannot be
     // afforded also cannot take effect.
-    if let Some((payer, price)) = command_price(w, c) {
+    if let Some((payer, price, refusable)) = command_price(w, c) {
         if price > 0.0 {
             let held = w.nation(payer).political_capital;
-            if held < price {
+            if refusable && held < price {
                 return Err(format!(
                     "{} has not the standing: {:.0} political capital held, {:.0} needed.",
                     payer.name(), held, price
                 ));
             }
-            w.nation_mut(payer).political_capital = held - price;
+            // A government that reneges past the end of its credit does not get
+            // to owe political capital; it simply has none left.
+            w.nation_mut(payer).political_capital = (held - price).max(0.0);
         }
     }
     match c {
