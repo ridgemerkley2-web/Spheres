@@ -19,9 +19,16 @@
   and openness, unlocks gated by prerequisites and year floors
 - **Productivity rebuilt on the tree**: the tree is scored against the technology
   the world economy on average operates with rather than added on top of a 1990
-  trend that already priced it in. Convergence comes from the distance to the
-  frontier — the flat bonus for being poor is gone, because the tree already
-  modelled diffusion and the two together counted it twice
+  trend that already priced it in, so it differentiates nations instead of
+  inflating all of them by the same amount
+- **Convergence separated from diffusion**: two different things that were once
+  conflated. Income catch-up — capital deepening and reallocation — stays in
+  `economy.rs` where it always was. Technological adoption is paid on technology
+  a nation actually puts into service, not on how far behind it is, so a country
+  that learns nothing is no longer paid as though it were catching up. The cost
+  floor now falls away as a technology approaches universal, which is what lets a
+  small poor economy pick up ordinary things it could previously never afford
+- **Political capital** exists as a currency (see below)
 
 ## Next (rough priority)
 
@@ -48,10 +55,21 @@ Both branches are green in isolation and collide with the expanded roster.
 stated preference is to see the game; this is the largest gap between what the sim
 knows and what the screen shows.
 
-### 3. Political capital
-SPEC names two spend-currencies — economic output and political capital — and the
-second does not exist in the code. Every system is meant to be a buyer of one or
-both.
+### 3. Political capital — half done
+The currency exists. Every nation holds a stock, seated from the order it keeps
+and the prices it holds, earned by delivering growth and lost to recession and
+war exhaustion; every player command is priced against it, and one that cannot be
+afforded is refused rather than quietly applied. It is visible in the CLI
+briefing, the headless report and the browser panel.
+
+What is missing is the other half of SPEC's sentence: *every system* is meant to
+be a buyer. Today only the player's commands are, because `politics.rs` and
+`war.rs` move state directly instead of going through the command queue, so the
+AI neither earns nor spends. Routing the AI's own decisions — the fiscal and
+monetary rules, and above all the decision to go to war — through the same
+pricing is what would make it bite for everyone. That is a real change to how
+those systems are written, and it will move emergent history, so it wants its own
+branch and its own calibration pass.
 
 ### 4. Harvested from `feat/tech-eras`, deferred (tag `archive/tech-eras`)
 The scalar model was retired in favour of the tree, but two of its ideas were not
@@ -63,18 +81,28 @@ ported and are worth their own branches:
 - **Human capital.** `absorptive_capacity` reads development, openness, the command
   penalty and sanctions — but not schooling.
 
-### 5. Known modelling gap: Japan
+### 5. Known modelling gap: the tail of the roster
+Growth for the smallest and poorest states is the least trustworthy part of the
+model. The tree now lets them absorb ordinary technology instead of nothing at
+all, but a nation the size of Bosnia is carried almost entirely by the income
+catch-up term and the investment term, with the tree contributing little either
+way. Sanctioned and post-war states swing hard between runs — Iraq rebounding at
+double digits after an embargo lifts is the clearest case. Nothing here is wrong
+enough to name a bug; it is simply where the model is thinnest, and it is worth
+knowing that before reading any single small nation's numbers as a result.
+
+### 6. Known modelling gap: Japan
 Japan carries the highest transcribed 1990 trend of any nation and nothing ever
 takes it away, so it settles near 2.8% and outgrows the United States for the whole
 run. The lost decade is modelled as a bubble hangover rather than the permanent
 break it was. Wants a demographic or balance-sheet mechanism.
 
-### 6. Two domains have rival implementations
+### 7. Two domains have rival implementations
 `feat/tech-biotech` and `feat/tech-transport` hold uncommitted second versions —
 32 biotech techs against the 29 merged, 27 transport against 26, sharing only about
 five ids with what is on master. Someone has to pick, or merge the best of both.
 
-### 7. Later
+### 8. Later
 Hourly-cadence scheduler, WASM, multiplayer spheres.
 
 ## Housekeeping

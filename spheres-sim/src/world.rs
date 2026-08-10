@@ -181,6 +181,23 @@ pub struct Nation {
     pub war_exhaustion: f64,
     pub nuclear: bool,
 
+    // --- Political capital ---
+    /// 0..100. The second of the two currencies SPEC spines the game on, beside
+    /// economic output: what a government can still spend on doing things its
+    /// people will not thank it for. Earned by delivering — growth, stable
+    /// prices, order — and burned by asking for sacrifice.
+    ///
+    /// An authoritarian government is not exempt. It holds capital differently,
+    /// drawing on coercion rather than consent, which makes its stock steadier
+    /// and its ceiling lower: it can act without permission and cannot recover
+    /// quickly from spending everything.
+    ///
+    /// Defaulted so older saves load; `ensure_political_capital` seats it from
+    /// the nation's own condition rather than from a transcribed figure, since
+    /// there is no such figure to transcribe.
+    #[serde(default)]
+    pub political_capital: f64,
+
     // --- Technology ---
     /// What this nation knows, what it is paying to learn, and what that
     /// knowledge has done to it. Defaulted so older saves still load.

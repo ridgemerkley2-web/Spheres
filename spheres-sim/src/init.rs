@@ -218,6 +218,11 @@ fn n(
         mil_strength: strength,
         war_exhaustion: 0.0,
         nuclear,
+        // Derived, not transcribed: a government's standing in January 1990 is
+        // not a number anyone recorded, so it is read off the conditions that
+        // are. Order held and prices under control is a government with room to
+        // act; the ones that opened at 55% inflation had none.
+        political_capital: crate::politics::seated_political_capital(stab, infl, auth),
         tech: crate::tech::TechState::new(tfp),
     }
 }

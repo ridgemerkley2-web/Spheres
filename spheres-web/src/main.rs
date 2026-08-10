@@ -229,6 +229,7 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "tfp": n.tfp_trend,
         "debt": n.debt_gdp,
         "stability": n.stability,
+        "political_capital": n.political_capital,
         "separatism": n.separatism,
         "mil_strength": n.mil_strength,
         "war_exhaustion": n.war_exhaustion,

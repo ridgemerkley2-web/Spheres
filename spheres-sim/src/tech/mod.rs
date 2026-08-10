@@ -1149,7 +1149,6 @@ mod tests {
     use crate::init::world_1990;
     use crate::world::GameRules;
 
-    #[test]
     /// A canary for a build that is not the build you think it is.
     ///
     /// `.cargo/config.toml` is tracked, so every worktree points at the same
@@ -1374,7 +1373,11 @@ mod diag {
         }
         let reference = refw / world_gdp;
         println!("\nDIAG reference={:.5} frontier_known={}", reference, front);
-        println!("{:<14}{:>6}{:>7}{:>8}{:>9}{:>9}{:>9}{:>8}", "nation", "techs", "gap", "absorb/y", "adopt", "diff", "tfp", "grow%");
+        // `cap` is absorptive capacity — what gates how fast anything is picked
+        // up at all. `new/y` is technologies actually fielded per year, which is
+        // what adoption is paid on.
+        println!("{:<14}{:>6}{:>7}{:>7}{:>8}{:>9}{:>9}{:>9}{:>8}",
+            "nation", "techs", "gap", "cap", "new/y", "adopt", "diff", "tfp", "grow%");
         let mut rows: Vec<_> = w.nations.iter().filter(|n| n.alive).collect();
         rows.sort_by(|a, b| b.gdp.partial_cmp(&a.gdp).unwrap());
         for n in rows {
@@ -1383,8 +1386,9 @@ mod diag {
             let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
             let absorb = absorptive_capacity(&w, n, dev);
             let adopt = (ADOPTION_PER_TECH * n.tech.absorption_rate * gap.powf(TACIT)).min(ADOPTION_MAX);
-            println!("{:<14}{:>6}{:>7.3}{:>8.3}{:>9.5}{:>9.5}{:>9.5}{:>8.2}",
-                n.id.name(), n.tech.count(), gap, n.tech.absorption_rate, adopt, sat - reference, n.tfp_trend, n.growth_last * 100.0);
+            println!("{:<14}{:>6}{:>7.3}{:>7.2}{:>8.2}{:>9.5}{:>9.5}{:>9.5}{:>8.2}",
+                n.id.name(), n.tech.count(), gap, absorb, n.tech.absorption_rate, adopt,
+                sat - reference, n.tfp_trend, n.growth_last * 100.0);
         }
     }
 }

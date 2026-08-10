@@ -2,7 +2,42 @@ use crate::war;
 use crate::world::*;
 
 /// Monthly politics & AI tick: central banks, elections, collapses, AI wars, peace.
+/// Where a government's standing sits when it has neither earned nor spent
+/// anything — a function of the order it keeps and the prices it holds, with
+/// coercion substituting for consent the more authoritarian it is.
+pub fn seated_political_capital(stability: f64, inflation: f64, authoritarianism: f64) -> f64 {
+    let order = (stability / 100.0).clamp(0.0, 1.0);
+    let prices = (1.0 - (inflation / 0.30).clamp(0.0, 1.0)).clamp(0.0, 1.0);
+    let consent = 0.60 * order + 0.40 * prices;
+    // A police state holds a floor it did not earn and a ceiling it cannot pass.
+    let floor = 18.0 * authoritarianism;
+    (floor + (78.0 - 30.0 * authoritarianism) * consent).clamp(0.0, 100.0)
+}
+
+/// The stock walks toward what the government's record currently justifies. It
+/// is a stock and not a flow: a government that has spent everything cannot act
+/// again until it has delivered something, which is the whole point of having
+/// the currency at all.
+fn political_capital(w: &mut WorldState) {
+    let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+    for id in ids {
+        let n = w.nation_mut(id);
+        let mut target = seated_political_capital(n.stability, n.inflation, n.authoritarianism);
+        // Delivering growth is the ordinary way a government earns the right to
+        // ask for anything, and a recession is the ordinary way it loses it.
+        target += (n.growth_last * 100.0).clamp(-6.0, 6.0) * 2.2;
+        // A war costs a government at home long before it costs it at the front.
+        target -= n.war_exhaustion * 45.0;
+        let target = target.clamp(0.0, 100.0);
+        // Standing is slow to build and quicker to lose.
+        let rate = if target < n.political_capital { 0.055 } else { 0.028 };
+        n.political_capital += (target - n.political_capital) * rate;
+        n.political_capital = n.political_capital.clamp(0.0, 100.0);
+    }
+}
+
 pub fn tick(w: &mut WorldState) {
+    political_capital(w);
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
 
     // ---- Proliferation: India & Pakistan test in 1998 (if alive and unconquered) ----
@@ -174,6 +209,10 @@ fn dissolve_ussr(w: &mut WorldState) {
         mil_strength: strength * 0.65,
         war_exhaustion: 0.0,
         nuclear: true,
+        // A successor government starts on what its own condition earns it and
+        // no record of its own to trade on. In Moscow in 1991 that is very
+        // little: the shops are empty and the prices are about to be freed.
+        political_capital: seated_political_capital(38.0, 0.90, 0.45),
         // The institutes and the engineers do not vanish with the flag over the
         // Kremlin; the research programmes they were working to do.
         tech: crate::tech::TechState::inherit(&inherited_tech, 0.008),
@@ -217,6 +256,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         // the only nuclear disarmament of its size ever carried out, and it is
         // why Ukraine enters the sim without the deterrent Russia keeps.
         nuclear: false,
+        political_capital: seated_political_capital(34.0, 1.10, 0.40),
         // Yuzhmash and Antonov were Soviet design bureaux before they were
         // Ukrainian ones: the knowledge is inherited in full, and it is the
         // economy underneath it, not the engineers, that fails to keep up.
@@ -299,6 +339,7 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             mil_strength: strength * m,
             war_exhaustion: 0.0,
             nuclear: false,
+            political_capital: seated_political_capital(stab, infl, auth),
             // Each republic keeps the federation's technical base and starts its
             // own research from nothing.
             tech: crate::tech::TechState::inherit(&inherited_tech, tfp),

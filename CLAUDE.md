@@ -8,15 +8,22 @@ pillars, architecture, and every system's intended design. Read it before
 proposing anything structural. This file is how to work; SPEC.md is what to
 build; ROADMAP.md is what is built and what is next.
 
-Two pillars from SPEC.md that the current code does NOT yet honour, and that
-any new work must not contradict:
+Two pillars from SPEC.md, and where each now stands:
 - **Two spend-currencies spine the game: economic output and political
-  capital.** Political capital does not exist in the code yet. Every system is
-  meant to be a buyer of one or both.
-- **Spheres of influence is the namesake system.** Influence projection —
-  great powers spending to hold clients, influence decaying as upkeep — is
-  still only a bare relations matrix. `feat/statecraft` implements it and is
-  green on its own branch, but collides with the expanded roster; see ROADMAP.
+  capital.** Political capital now exists: every nation holds a stock, earns it
+  by delivering growth and order and stable prices, loses it to war and
+  recession, and every player command is priced against it. What is not done is
+  the other half of the sentence — the AI systems do not buy with it yet,
+  because `politics.rs` and `war.rs` move state directly rather than through the
+  command queue. A new system should take political capital as a cost from the
+  start rather than be retrofitted.
+- **Spheres of influence is the namesake system**, and it is still only a bare
+  relations matrix. **Do not implement it here.** `feat/statecraft` already
+  implements it, is green on its own branch, and is parked on two calibration
+  collisions (see ROADMAP). Writing a second version against master would make
+  it the third rival implementation this project has had to adjudicate, after
+  tech-eras against the tree and the two biotech domains. Unblock the branch
+  instead.
 
 ## Iron rules
 1. **Determinism is sacred.** One RNG (SplitMix64 in `WorldState.rng`). Never add

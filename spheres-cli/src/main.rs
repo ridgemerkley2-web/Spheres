@@ -47,12 +47,12 @@ fn headless(years: usize, seed: u64) {
 fn report(w: &WorldState) {
     let mut rows: Vec<&Nation> = w.nations.iter().filter(|n| n.alive).collect();
     rows.sort_by(|a, b| b.gdp.partial_cmp(&a.gdp).unwrap());
-    println!("{:<16} {:>10} {:>7} {:>7} {:>6} {:>6} {:>6}", "Nation", "GDP $bn", "Grow%", "Infl%", "Debt%", "Stab", "Mil");
+    println!("{:<16} {:>10} {:>7} {:>7} {:>6} {:>6} {:>6} {:>6}", "Nation", "GDP $bn", "Grow%", "Infl%", "Debt%", "Stab", "PolCap", "Mil");
     for n in rows {
         println!(
-            "{:<16} {:>10.0} {:>6.1}% {:>6.1}% {:>5.0}% {:>6.0} {:>6.0}",
+            "{:<16} {:>10.0} {:>6.1}% {:>6.1}% {:>5.0}% {:>6.0} {:>6.0} {:>6.0}",
             n.id.name(), n.gdp, n.growth_last * 100.0, n.inflation * 100.0,
-            n.debt_gdp * 100.0, n.stability, n.mil_strength
+            n.debt_gdp * 100.0, n.stability, n.political_capital, n.mil_strength
         );
     }
     println!("Oil: ${:.0}/bbl   Wars: {}   Sanction pairs: {}", w.oil_price, w.wars.len(), w.sanctions.len());
@@ -254,6 +254,10 @@ fn briefing(w: &WorldState, me: NationId) {
         "Tax {:.0}%   Mil spend {:.1}% (str {:.0})   State invest {:.1}%   Stability {:.0}/100",
         n.tax_rate * 100.0, n.mil_spend_gdp * 100.0, n.mil_strength,
         n.state_invest_gdp * 100.0, n.stability
+    );
+    println!(
+        "Political capital {:.0}/100 — what you can still spend on what they will not thank you for.",
+        n.political_capital
     );
     if n.war_exhaustion > 0.01 {
         println!("War exhaustion: {:.0}%", n.war_exhaustion * 100.0);

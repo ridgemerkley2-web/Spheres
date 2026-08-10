@@ -653,6 +653,7 @@ function renderLeft(m) {
       ${statRow("Debt", fmt.pct(m.debt, 0) + " of GDP", m.debt > 0.9 ? "down" : "")}
       ${statRow("Military", m.mil_strength.toFixed(0) + (m.nuclear ? " ☢" : ""))}
       ${barRow("Stability", m.stability.toFixed(0) + "/100", m.stability / 100, stabColor(m.stability))}
+      ${barRow("Political capital", m.political_capital.toFixed(0) + "/100", m.political_capital / 100, stabColor(m.political_capital))}
       ${m.separatism > 0.01 ? barRow("Separatism", fmt.pct(m.separatism, 0), m.separatism, "var(--red)") : ""}
       ${m.war_exhaustion > 0.01 ? barRow("War exhaustion", fmt.pct(m.war_exhaustion, 0), m.war_exhaustion, "var(--red)") : ""}
       ${m.oil_mbd > 0 ? statRow("Oil exports", (m.oil_mbd * m.export_share).toFixed(1) + " / " + m.oil_mbd.toFixed(1) + " mbd",

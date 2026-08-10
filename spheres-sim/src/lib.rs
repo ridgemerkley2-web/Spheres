@@ -21,7 +21,62 @@ pub enum Command {
     DeclareWar { attacker: NationId, defender: NationId },
 }
 
+/// What a command asks of the government that issues it, and who it asks.
+///
+/// Policy is priced on how far it moves, not on being touched: nudging a rate a
+/// quarter point is free in a way that doubling it is not. Nothing here is a
+/// toll on playing the game — an idle government accrues faster than ordinary
+/// play spends — but a government cannot reverse its whole programme twice in a
+/// year, and one that has just spent a war's worth of standing cannot do
+/// anything at all until it has delivered something.
+fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64)> {
+    let swing = |before: f64, after: f64, per_point: f64| (after - before).abs() * per_point;
+    Some(match c {
+        Command::SetInterestRate { nation, rate } => (
+            *nation,
+            swing(w.nation(*nation).interest_rate, rate.clamp(0.0, 0.60), 90.0),
+        ),
+        Command::SetTaxRate { nation, rate } => (
+            *nation,
+            // Taxes are the most expensive thing a government touches, and
+            // raising them costs about three times what cutting them does.
+            {
+                let before = w.nation(*nation).tax_rate;
+                let after = rate.clamp(0.02, 0.60);
+                if after > before { swing(before, after, 320.0) } else { swing(before, after, 110.0) }
+            },
+        ),
+        Command::SetMilSpend { nation, share } => (
+            *nation,
+            swing(w.nation(*nation).mil_spend_gdp, share.clamp(0.0, 0.35), 150.0),
+        ),
+        Command::SetStateInvest { nation, share } => (
+            *nation,
+            swing(w.nation(*nation).state_invest_gdp, share.clamp(0.0, 0.40), 120.0),
+        ),
+        Command::Sanction { imposer, .. } => (*imposer, 6.0),
+        Command::LiftSanction { imposer, .. } => (*imposer, 3.0),
+        Command::ImproveRelations { from, .. } => (*from, 2.0),
+        // The most expensive thing a government can decide to do.
+        Command::DeclareWar { attacker, .. } => (*attacker, 30.0),
+    })
+}
+
 pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
+    // Priced and charged before anything happens, so a command that cannot be
+    // afforded also cannot take effect.
+    if let Some((payer, price)) = command_price(w, c) {
+        if price > 0.0 {
+            let held = w.nation(payer).political_capital;
+            if held < price {
+                return Err(format!(
+                    "{} has not the standing: {:.0} political capital held, {:.0} needed.",
+                    payer.name(), held, price
+                ));
+            }
+            w.nation_mut(payer).political_capital = held - price;
+        }
+    }
     match c {
         Command::SetInterestRate { nation, rate } => {
             w.nation_mut(*nation).interest_rate = rate.clamp(0.0, 0.60);
@@ -336,6 +391,57 @@ mod tests {
         // third without anything noticing.
         assert!(x > 6.0, "China grew only {:.1}x in 30y", x);
         assert!(x < 14.0, "China ran away: {:.1}x in 30y", x);
+    }
+
+    #[test]
+    fn a_government_cannot_spend_standing_it_has_not_got() {
+        // Political capital is a stock, and the point of a stock is that it runs
+        // out. A government may tear up its tax policy once; doing it again the
+        // same month is a different kind of act and the model should say so.
+        let mut w = world_1990(GameRules::default());
+        let before = w.nation(NationId::USA).political_capital;
+        assert!(before > 20.0, "a stable 1990 USA should open with standing, not {:.0}", before);
+
+        let hike = Command::SetTaxRate { nation: NationId::USA, rate: 0.45 };
+        apply_command(&mut w, &hike).expect("the first hike is affordable");
+        let after = w.nation(NationId::USA).political_capital;
+        assert!(after < before, "the hike cost nothing: {:.1} -> {:.1}", before, after);
+
+        // Drain the rest, then confirm the next ask is refused rather than
+        // silently applied.
+        w.nation_mut(NationId::USA).political_capital = 1.0;
+        let rate_before = w.nation(NationId::USA).tax_rate;
+        let err = apply_command(
+            &mut w,
+            &Command::SetTaxRate { nation: NationId::USA, rate: 0.60 },
+        );
+        assert!(err.is_err(), "a bankrupt government got its tax rise anyway");
+        assert_eq!(
+            w.nation(NationId::USA).tax_rate, rate_before,
+            "a refused command still moved the world"
+        );
+    }
+
+    #[test]
+    fn a_war_costs_a_government_at_home() {
+        // The other half of the currency: it is earned and lost by what the
+        // government's record is, not only spent by what it does.
+        let mut w = world_1990(GameRules::default());
+        w.rules.ai_aggression = 0.0;
+        run_months(&mut w, 24);
+        let peacetime = w.nation(NationId::USA).political_capital;
+
+        let mut at_war = world_1990(GameRules::default());
+        at_war.rules.ai_aggression = 0.0;
+        at_war.nation_mut(NationId::USA).war_exhaustion = 0.5;
+        run_months(&mut at_war, 24);
+        let strained = at_war.nation(NationId::USA).political_capital;
+
+        assert!(
+            strained < peacetime - 5.0,
+            "war cost the government nothing at home: {:.0} at war against {:.0} at peace",
+            strained, peacetime
+        );
     }
 
     #[test]
