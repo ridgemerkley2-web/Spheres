@@ -5,11 +5,14 @@
 - Economy: growth/catchup/diminishing returns, inflation, budgets/debt, oil market, bubbles+hangover
 - War: coalitions, exhaustion, annexation vs subjugation, burned-hand learning, nuclear taboo
 - Politics: central bank AI, fiscal AI, elections, USSR dissolution, 1998 proliferation
-- Interactive CLI play mode; 8 regression tests
+- Oil embargo: sanctions cut *exports* via `oil_export_share`, hitting the producer's
+  revenue and budget, not just a GDP drag; embargoes outlast their war and lift as
+  grievance decays (Iraq's runs ~10y, against the historical 1990-2003)
+- Interactive CLI play mode; 10 regression tests
 
 ## Next (rough priority)
-1. **Restore v0.4 scope**: Yugoslavia + successor states; full oil embargo mechanics
-   (sanctions should cut oil *exports* specifically, not just GDP drag)
+1. **Restore v0.4 scope**: Yugoslavia + successor states (the breakup and its wars
+   should emerge from separatism + war mechanics, not be scripted)
 2. **Roster expansion**: Brazil, Indonesia, Egypt, Israel, Turkey, Nigeria, Vietnam,
    Ukraine (as USSR successor alongside Russia)
 3. **Tech eras**: internet boom (~1995+ TFP for open economies), mobile, AI era;
