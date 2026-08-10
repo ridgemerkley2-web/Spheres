@@ -111,6 +111,125 @@ pub enum EconomySystem {
     Command,
 }
 
+/// What a government promises about the price of its money. The promise is the
+/// point: a peg buys credibility now and is paid for later, in reserves.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum FxStance {
+    /// The market clears the rate. Nothing to defend, nothing to break.
+    Floating,
+    /// A crawl or a band — the rate is steered, and it can yield without a crisis.
+    Managed,
+    /// A number the central bank will spend its reserves to hold.
+    Pegged,
+}
+
+/// Where a nation sits on the mental map investors carry. Contagion travels
+/// along this and along the shape of a balance sheet, not along trade flows.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum Region {
+    NorthAmerica,
+    WesternEurope,
+    EasternEurope,
+    PostSoviet,
+    EastAsia,
+    SouthAsia,
+    MiddleEast,
+}
+
+/// The financial side of a nation, kept beside `Nation` rather than inside it so
+/// that states born mid-game (successors of a dissolution) can be given a
+/// balance sheet when they appear.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Finance {
+    pub id: NationId,
+    pub stance: FxStance,
+    /// Nominal exchange rate index; 1.0 is this currency's Jan-1990 value.
+    /// Falling means a weaker currency.
+    pub fx_index: f64,
+    /// The level the authorities defend. Meaningless while floating.
+    pub peg_rate: f64,
+    /// Where the rate would sit if nobody defended it. Drifts with relative
+    /// inflation, productivity and the terms of trade.
+    pub fair_index: f64,
+    /// Hard-currency reserves, $bn.
+    pub reserves: f64,
+    /// Debt owed in someone else's currency, as a share of GDP. This is the
+    /// channel that turns a devaluation into a depression.
+    pub fx_debt_gdp: f64,
+    /// Foreign money that can leave within the month, as a share of GDP.
+    pub hot_money_gdp: f64,
+    /// How freely capital crosses the border, 0..1. A closed capital account is
+    /// a firewall against both the boom and the panic.
+    pub capital_openness: f64,
+    /// The premium the market charges this borrower, 0..1. Contagion is a jump
+    /// in this number for people who did nothing.
+    pub risk: f64,
+    /// Months since the last devaluation; -1 if the currency has never broken.
+    pub months_since_break: i32,
+}
+
+impl Finance {
+    /// Short-term foreign claims the reserves have to stand against, $bn. Hot
+    /// money can leave outright; only a slice of term debt rolls over each year.
+    pub fn short_term_liabilities(&self, gdp: f64) -> f64 {
+        gdp * (self.hot_money_gdp + self.fx_debt_gdp * 0.25)
+    }
+    /// Reserves as a multiple of what could be demanded of them. Below 1 the
+    /// central bank is bluffing, and the market can see the cards.
+    pub fn reserve_cover(&self, gdp: f64) -> f64 {
+        let liab = self.short_term_liabilities(gdp).max(gdp * 0.01);
+        (self.reserves / liab).clamp(0.0, 6.0)
+    }
+}
+
+impl FxStance {
+    pub fn label(&self) -> &'static str {
+        match self {
+            FxStance::Floating => "floating",
+            FxStance::Managed => "managed",
+            FxStance::Pegged => "pegged",
+        }
+    }
+}
+
+impl NationId {
+    /// For headlines. The successors issued their own money on independence.
+    pub fn currency(&self) -> &'static str {
+        use NationId::*;
+        match self {
+            USA => "dollar",
+            USSR | Russia => "rouble",
+            China => "yuan",
+            Japan => "yen",
+            Germany => "mark",
+            UK => "pound",
+            France => "franc",
+            Italy => "lira",
+            India | Pakistan => "rupee",
+            Iraq | Kuwait | Yugoslavia | Serbia => "dinar",
+            SaudiArabia => "riyal",
+            Iran => "rial",
+            SouthKorea => "won",
+            Poland => "zloty",
+            Croatia => "kuna",
+            Slovenia => "tolar",
+            Bosnia => "convertible mark",
+        }
+    }
+    pub fn region(&self) -> Region {
+        use NationId::*;
+        match self {
+            USA => Region::NorthAmerica,
+            UK | France | Germany | Italy => Region::WesternEurope,
+            Poland | Yugoslavia | Serbia | Croatia | Slovenia | Bosnia => Region::EasternEurope,
+            USSR | Russia => Region::PostSoviet,
+            China | Japan | SouthKorea => Region::EastAsia,
+            India | Pakistan => Region::SouthAsia,
+            Iraq | Kuwait | SaudiArabia | Iran => Region::MiddleEast,
+        }
+    }
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Nation {
     pub id: NationId,
@@ -180,10 +299,22 @@ pub struct GameRules {
     pub ai_aggression: f64,
     /// Crisis intensity multiplier (bubbles, collapses)
     pub crisis_intensity: f64,
+    /// Multiplier on how violently money moves: the size of capital swings, how
+    /// readily a peg breaks, and how far panic spreads from the first break.
+    #[serde(default = "one")]
+    pub financial_volatility: f64,
+}
+fn one() -> f64 {
+    1.0
 }
 impl Default for GameRules {
     fn default() -> Self {
-        GameRules { seed: 1990, ai_aggression: 1.0, crisis_intensity: 1.0 }
+        GameRules {
+            seed: 1990,
+            ai_aggression: 1.0,
+            crisis_intensity: 1.0,
+            financial_volatility: 1.0,
+        }
     }
 }
 
@@ -194,6 +325,10 @@ pub struct WorldState {
     pub year: i32,
     pub month: u32, // 1..=12
     pub nations: Vec<Nation>,
+    /// Balance sheets, one per nation that has ever existed. Kept in the order
+    /// nations acquire them so iteration never depends on a hash.
+    #[serde(default)]
+    pub finance: Vec<Finance>,
     /// relations[(a,b)] symmetric, -100..100 — stored as sorted-pair list
     pub relations: Vec<(NationId, NationId, f64)>,
     /// sanctions: (imposer, target)
@@ -219,6 +354,15 @@ impl WorldState {
     /// before their federation falls, or an older save with a smaller roster.
     pub fn nation_opt(&self, id: NationId) -> Option<&Nation> {
         self.nations.iter().find(|n| n.id == id)
+    }
+    pub fn fin(&self, id: NationId) -> &Finance {
+        self.finance.iter().find(|f| f.id == id).expect("finance")
+    }
+    pub fn fin_mut(&mut self, id: NationId) -> &mut Finance {
+        self.finance.iter_mut().find(|f| f.id == id).expect("finance")
+    }
+    pub fn fin_opt(&self, id: NationId) -> Option<&Finance> {
+        self.finance.iter().find(|f| f.id == id)
     }
     pub fn has_flag(&self, f: &str) -> bool {
         self.flags.iter().any(|x| x == f)

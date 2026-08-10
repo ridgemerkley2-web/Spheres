@@ -1,4 +1,5 @@
 pub mod economy;
+pub mod finance;
 pub mod init;
 pub mod politics;
 pub mod war;
@@ -18,6 +19,11 @@ pub enum Command {
     LiftSanction { imposer: NationId, target: NationId },
     ImproveRelations { from: NationId, to: NationId },
     DeclareWar { attacker: NationId, defender: NationId },
+    /// Fix, manage or free the currency. Pegging at today's rate is free to
+    /// announce and expensive to keep.
+    SetFxStance { nation: NationId, stance: FxStance },
+    /// Break the rate deliberately, before the reserves make the decision.
+    Devalue { nation: NationId },
 }
 
 pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
@@ -54,6 +60,32 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::DeclareWar { attacker, defender } => {
             war::declare_war(w, *attacker, *defender)?;
         }
+        Command::SetFxStance { nation, stance } => {
+            if w.fin_opt(*nation).is_none() {
+                return Err("That state has no currency of its own.".into());
+            }
+            let f = w.fin_mut(*nation);
+            if f.stance == *stance {
+                return Ok(());
+            }
+            f.stance = *stance;
+            f.peg_rate = f.fx_index;
+            w.headline(format!(
+                "{} moves to a {} exchange rate.",
+                nation.name(),
+                stance.label()
+            ));
+        }
+        Command::Devalue { nation } => {
+            match w.fin_opt(*nation) {
+                None => return Err("That state has no currency of its own.".into()),
+                Some(f) if f.stance == FxStance::Floating => {
+                    return Err("A floating currency has nothing to devalue from.".into())
+                }
+                Some(_) => {}
+            }
+            finance::break_peg(w, *nation);
+        }
     }
     Ok(())
 }
@@ -67,6 +99,7 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         }
     }
     economy::tick(w);
+    finance::tick(w);
     war::tick(w);
     politics::tick(w);
 
@@ -293,6 +326,211 @@ mod tests {
             w.sanctioned_by_count(NationId::Iraq),
             0,
             "Iraq still embargoed 25 years on"
+        );
+    }
+
+    /// The trap has to close on its own: a country that pegs, grows fast and
+    /// borrows abroad while the peg holds must sometimes find out that the three
+    /// of those are the same decision. Nothing here names a country or a year.
+    #[test]
+    fn a_boom_on_a_peg_sometimes_breaks_it() {
+        let mut seeds_with_a_boom_bust = 0;
+        for seed in 0..16u64 {
+            let mut rules = GameRules::default();
+            rules.seed = seed;
+            let mut w = world_1990(rules);
+            let mut saw = false;
+            for _ in 0..(12 * 30) {
+                // Who was riding a boom on a fixed rate before the month began.
+                let exposed: Vec<NationId> = w
+                    .nations
+                    .iter()
+                    .filter(|n| n.alive && n.growth_last > 0.035)
+                    .filter(|n| {
+                        w.fin_opt(n.id).map_or(false, |f| {
+                            f.stance != FxStance::Floating && f.fx_debt_gdp > 0.08
+                        })
+                    })
+                    .map(|n| n.id)
+                    .collect();
+                let headlines = tick_month(&mut w, &[]);
+                for h in &headlines {
+                    if h.contains("CURRENCY CRISIS")
+                        && exposed.iter().any(|id| h.contains(id.name()))
+                    {
+                        saw = true;
+                    }
+                }
+            }
+            if saw {
+                seeds_with_a_boom_bust += 1;
+            }
+        }
+        assert!(
+            seeds_with_a_boom_bust >= 9,
+            "a pegged boom never ends badly: {}/16 seeds",
+            seeds_with_a_boom_bust
+        );
+    }
+
+    /// The centrepiece. When a currency breaks, the money does not reassess the
+    /// country that broke — it reassesses everyone who looked like it. So the
+    /// repricing has to land measurably harder on economies with the same
+    /// regime, the same neighbourhood or the same foreign-currency leverage than
+    /// on everyone else in the world that month.
+    #[test]
+    fn a_devaluation_is_repriced_onto_its_lookalikes() {
+        let (mut alike_sum, mut alike_n) = (0.0, 0usize);
+        let (mut other_sum, mut other_n) = (0.0, 0usize);
+        for seed in 0..16u64 {
+            let mut rules = GameRules::default();
+            rules.seed = seed;
+            let mut w = world_1990(rules);
+            for _ in 0..(12 * 30) {
+                let before: Vec<(NationId, FxStance, Region, f64, f64)> = w
+                    .nations
+                    .iter()
+                    .filter(|n| n.alive)
+                    .filter_map(|n| {
+                        w.fin_opt(n.id)
+                            .map(|f| (n.id, f.stance, n.id.region(), f.fx_debt_gdp, f.risk))
+                    })
+                    .collect();
+                let headlines = tick_month(&mut w, &[]);
+                let broke: Vec<NationId> = before
+                    .iter()
+                    .map(|b| b.0)
+                    .filter(|id| {
+                        headlines
+                            .iter()
+                            .any(|h| h.contains("CURRENCY CRISIS") && h.contains(id.name()))
+                    })
+                    .collect();
+                let source = match broke.first() {
+                    Some(id) => *before.iter().find(|b| b.0 == *id).unwrap(),
+                    None => continue,
+                };
+                for b in before.iter().filter(|b| !broke.contains(&b.0)) {
+                    // Resembling the casualty: fixed like it, and either next
+                    // door to it or leveraged in the same foreign money.
+                    let alike = b.1 != FxStance::Floating
+                        && source.1 != FxStance::Floating
+                        && (b.2 == source.2 || b.3.min(source.3) > 0.15);
+                    let repriced = w.fin(b.0).risk - b.4;
+                    if alike {
+                        alike_sum += repriced;
+                        alike_n += 1;
+                    } else {
+                        other_sum += repriced;
+                        other_n += 1;
+                    }
+                }
+            }
+        }
+        assert!(alike_n > 40, "too few lookalikes to judge: {}", alike_n);
+        let alike = alike_sum / alike_n as f64;
+        let other = other_sum / other_n.max(1) as f64;
+        assert!(
+            alike > other * 1.3,
+            "contagion did not discriminate: lookalikes +{:.4} vs everyone else +{:.4}",
+            alike,
+            other
+        );
+    }
+
+    /// The transmission channel, isolated. Two identical worlds; in one, the
+    /// country that devalues owes its money to foreigners. The devaluation is
+    /// the same size in both — what differs is whose balance sheet it lands on.
+    #[test]
+    fn foreign_currency_debt_turns_a_devaluation_into_a_depression() {
+        let victim = NationId::France;
+        let mut indebted = world_1990(GameRules::default());
+        let mut clean = world_1990(GameRules::default());
+        indebted.rules.ai_aggression = 0.0;
+        clean.rules.ai_aggression = 0.0;
+        indebted.fin_mut(victim).fx_debt_gdp = 0.60;
+        clean.fin_mut(victim).fx_debt_gdp = 0.0;
+
+        let cmd = [Command::Devalue { nation: victim }];
+        tick_month(&mut indebted, &cmd);
+        tick_month(&mut clean, &cmd);
+        run_months(&mut indebted, 36);
+        run_months(&mut clean, 36);
+
+        let a = indebted.nation(victim).gdp;
+        let b = clean.nation(victim).gdp;
+        assert!(
+            a < b * 0.90,
+            "foreign-currency debt cost nothing: {:.0} vs {:.0}",
+            a,
+            b
+        );
+        assert!(
+            indebted.nation(victim).stability < clean.nation(victim).stability,
+            "a banking collapse left the regime untouched"
+        );
+    }
+
+    /// A peg is cheap when the fundamentals agree with it and ruinous when they
+    /// do not, and the roster starts with one of each: a riyal backed by the
+    /// largest oil revenues on earth, and a zloty fixed against 550% inflation
+    /// with $2.5bn in the vault. Neither outcome is written anywhere.
+    #[test]
+    fn a_peg_is_only_worth_what_backs_it() {
+        let (mut riyal_broke, mut zloty_broke) = (0, 0);
+        for seed in 0..12u64 {
+            let mut rules = GameRules::default();
+            rules.seed = seed;
+            let mut w = world_1990(rules);
+            for _ in 0..(12 * 8) {
+                let headlines = tick_month(&mut w, &[]);
+                for h in &headlines {
+                    if !h.contains("CURRENCY CRISIS") {
+                        continue;
+                    }
+                    if h.contains("Saudi Arabia") {
+                        riyal_broke += 1;
+                    }
+                    if h.contains("Poland") {
+                        zloty_broke += 1;
+                    }
+                }
+            }
+        }
+        assert!(zloty_broke >= 8, "the zloty peg survived: {}/12", zloty_broke);
+        assert!(
+            riyal_broke <= 2,
+            "the riyal peg broke {} times despite the reserves behind it",
+            riyal_broke
+        );
+    }
+
+    /// The knob has to move the thing it names.
+    #[test]
+    fn financial_volatility_changes_how_often_money_runs() {
+        let count = |vol: f64| {
+            let mut breaks = 0;
+            for seed in 0..8u64 {
+                let mut rules = GameRules::default();
+                rules.seed = seed;
+                rules.financial_volatility = vol;
+                let mut w = world_1990(rules);
+                for _ in 0..(12 * 25) {
+                    breaks += tick_month(&mut w, &[])
+                        .iter()
+                        .filter(|h| h.contains("CURRENCY CRISIS"))
+                        .count();
+                }
+            }
+            breaks
+        };
+        let calm = count(0.35);
+        let wild = count(2.0);
+        assert!(
+            wild > calm,
+            "volatility knob did nothing: {} breaks calm vs {} wild",
+            calm,
+            wild
         );
     }
 

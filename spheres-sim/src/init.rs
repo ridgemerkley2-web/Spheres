@@ -37,6 +37,7 @@ pub fn world_1990(rules: GameRules) -> WorldState {
         year: 1990,
         month: 1,
         nations: rows,
+        finance: finance_1990(),
         relations: vec![],
         sanctions: vec![],
         wars: vec![],
@@ -73,6 +74,82 @@ pub fn world_1990(rules: GameRules) -> WorldState {
         w.set_relation(*a, *b, *v);
     }
     w
+}
+
+/// The world's balance sheets in January 1990.
+///
+/// Reserves are hard-currency reserves excluding gold, in $bn, from the IMF IFS
+/// / World Bank WDI 1990 series. External debt is the country's foreign-currency
+/// obligations divided by the GDP figure used above, so the ratios are internally
+/// consistent with this roster rather than lifted from a published debt/GDP.
+///
+/// The regimes are the ones actually in force that month, and several of them are
+/// the reason a crisis is waiting:
+///   Poland  — zloty fixed at 9,500/$ on 1 Jan 1990 as the nominal anchor of the
+///             Balcerowicz plan, against 550% inflation and $42.3bn of inherited
+///             foreign debt. Reserves were $2.5bn entering 1990.
+///   Yugoslavia — dinar pegged at 7 to the Deutsche Mark on 18 Dec 1989 under
+///             Markovic's convertibility decree, likewise against triple-digit
+///             inflation. (UPI, 20 Dec 1989.)
+///   India   — basket peg with a slow crawl, and reserves of only a few billion;
+///             they fell to $1.2bn by January 1991, about three weeks of imports.
+///   Korea   — the Market Average Rate System replaced the basket peg in March
+///             1990: a tightly managed float, and an increasingly open one.
+///   China   — official rate devalued 4.78 -> 5.22/$ in November 1990, with a
+///             closed capital account. The closed account is the whole point.
+///   Saudi   — 3.745 riyal/$ since 1986, the hardest peg on the board, bought and
+///             re-bought with oil revenue.
+///   France/Italy — ERM, pegged to the mark. The lira moved into the narrow
+///             2.25% band in January 1990.
+///   UK      — shadowing the Deutsche Mark in January; formally in the ERM from
+///             8 October 1990.
+/// The dollar and the yen anchor rather than peg, and both borrow in their own
+/// money, which is why neither can have this kind of crisis at all.
+fn finance_1990() -> Vec<Finance> {
+    use FxStance::*;
+    use NationId::*;
+    // (id, stance, reserves $bn, fx debt / GDP, capital openness, hot money / GDP, risk)
+    let rows: [(NationId, FxStance, f64, f64, f64, f64, f64); 17] = [
+        (USA,         Floating, 73.0, 0.00, 1.00, 0.02, 0.02),
+        // Soviet hard-currency reserves were nearly exhausted by 1990 against
+        // roughly $59bn of external debt; the rouble's rate was an accounting
+        // fiction defended by an exit ban rather than by reserves.
+        (USSR,        Pegged,    5.0, 0.037, 0.03, 0.00, 0.50),
+        (China,       Pegged,   29.6, 0.14, 0.10, 0.01, 0.15),
+        (Japan,       Floating, 78.5, 0.00, 0.95, 0.03, 0.03),
+        // The mark is the thing the ERM is pegged *to*; it floats against the
+        // dollar and has nothing of its own to defend.
+        (Germany,     Floating, 68.0, 0.00, 0.95, 0.03, 0.03),
+        (UK,          Managed,  36.0, 0.05, 1.00, 0.05, 0.06),
+        (France,      Pegged,   36.8, 0.04, 0.90, 0.04, 0.05),
+        (Italy,       Pegged,   62.9, 0.08, 0.85, 0.05, 0.10),
+        (India,       Managed,   3.4, 0.22, 0.15, 0.02, 0.30),
+        (Pakistan,    Managed,   1.0, 0.45, 0.20, 0.01, 0.35),
+        // A decade of war debt, most of it to the Gulf states it would shortly
+        // threaten. This is the arithmetic behind the invasion of Kuwait.
+        (Iraq,        Pegged,    1.5, 1.20, 0.05, 0.00, 0.70),
+        (Kuwait,      Pegged,    3.0, 0.05, 0.70, 0.02, 0.05),
+        (SaudiArabia, Pegged,   12.0, 0.05, 0.60, 0.01, 0.05),
+        (Iran,        Pegged,    6.0, 0.06, 0.05, 0.00, 0.40),
+        (SouthKorea,  Managed,  14.8, 0.11, 0.45, 0.03, 0.10),
+        (Poland,      Pegged,    2.5, 0.64, 0.25, 0.01, 0.55),
+        (Yugoslavia,  Pegged,    6.0, 0.20, 0.30, 0.01, 0.50),
+    ];
+    rows.iter()
+        .map(|&(id, stance, reserves, fx_debt, open, hot, risk)| Finance {
+            id,
+            stance,
+            fx_index: 1.0,
+            peg_rate: 1.0,
+            fair_index: 1.0,
+            reserves,
+            fx_debt_gdp: fx_debt,
+            hot_money_gdp: hot,
+            capital_openness: open,
+            risk,
+            months_since_break: -1,
+        })
+        .collect()
 }
 
 #[allow(clippy::too_many_arguments)]
