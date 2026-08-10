@@ -557,6 +557,12 @@ pub struct TechState {
     /// `economy::tick` reads it before `tech::tick` gets a chance to rebuild,
     /// so a freshly loaded save must arrive with it already correct.
     pub bonus: TechBonuses,
+    /// Technologies actually put into service per year, smoothed. Catching up is
+    /// something a nation *does*, not a position it occupies, and this is the
+    /// measure of it doing so. Defaulted on older saves, where it rebuilds
+    /// within a year or two of play.
+    #[serde(default)]
+    pub absorption_rate: f64,
     /// False on a save written before this module existed, or on a default.
     pub initialized: bool,
 }
@@ -615,6 +621,7 @@ impl TechState {
             tfp_base,
             oil_yield_applied: 0.0,
             bonus: TechBonuses::default(),
+            absorption_rate: 0.0,
             initialized: true,
         }
     }
@@ -630,6 +637,10 @@ impl TechState {
             tfp_base,
             oil_yield_applied: parent.oil_yield_applied,
             bonus: parent.bonus.clone(),
+            // The programme stops; the plants that were already being fitted out
+            // do not. A successor carries its parent's absorption into its first
+            // years and then has to earn it.
+            absorption_rate: parent.absorption_rate * 0.5,
             initialized: true,
         }
     }
@@ -807,14 +818,30 @@ fn effective_cost(
     bonus: &TechBonuses,
 ) -> f64 {
     let capacity = (absorb / 1.20).clamp(0.0, 1.0);
-    let reach = adopter_share.clamp(0.0, 1.0).powf(0.70) * (0.45 + 0.50 * capacity);
+    let share = adopter_share.clamp(0.0, 1.0);
+    // Something the whole world already runs on has stopped being knowledge
+    // anyone has to acquire and become a thing in a textbook, and the textbook
+    // does not care how poor the reader is. Without this term absorptive
+    // capacity gated everything, and a small closed economy could not pick up
+    // even universal technology: Vietnam finished a thirty-year run knowing
+    // nothing at all. The cube keeps it worth almost nothing until a technology
+    // is genuinely everywhere, so it never cheapens the frontier.
+    let textbook = 0.35 * share.powi(3);
+    let reach = (share.powf(0.70) * (0.45 + 0.50 * capacity) + textbook).clamp(0.0, 0.98);
     let copy = (1.0 - reach).clamp(0.0, 1.0).powi(5);
     let own = (1.0 - bonus.cost_reduction_for(def.domain)).clamp(0.35, 1.0);
     // However ordinary a technology becomes, somebody still has to build it,
     // and the bill for building it is the size of the country that is building
     // it. That floor is what lets a small poor state pick up the ordinary
     // things without ever putting the frontier within reach.
-    (def.cost * copy * own).max(def.cost * 0.30 * scale)
+    //
+    // What it costs to build, though, depends on what is being built. Frontier
+    // plant is bespoke and the floor should say so; something the whole world
+    // already manufactures is bought off a shelf, and holding both to the same
+    // floor is what shut the smallest economies out of even commodity
+    // technology — the floor bound long before the copying discount could bite.
+    let build = 0.30 * (1.0 - 0.70 * share.powi(2));
+    (def.cost * copy * own).max(def.cost * build * scale)
 }
 
 /// Pick a project for one domain. Deterministic: cheapest first, ties broken by
@@ -908,6 +935,15 @@ pub fn tick(w: &mut WorldState) {
         let absorb = absorptive_capacity(w, w.nation(id), dev);
         // Square root of the share of world output: what it costs this nation to
         // actually build a thing, rather than to work out that it can be built.
+        // What it costs this nation to build a thing, rather than to work out
+        // that it can be built, as a share of world output.
+        //
+        // Kept as the square root, so size still helps and helps less the bigger
+        // you are. Holding it linear instead removes the size term entirely, and
+        // with the budget linear in output too, affordability stops depending on
+        // anything except development — China then absorbs at Japan's rate and
+        // finishes a run level with it, which is not what happened. The tail is
+        // dealt with in the cost floor instead.
         let scale = if world_gdp > 0.0 {
             (w.nation(id).gdp.max(0.0) / world_gdp).sqrt().clamp(0.005, 1.0)
         } else {
@@ -921,6 +957,7 @@ pub fn tick(w: &mut WorldState) {
             let n = w.nation_mut(id);
             n.tech.ensure_shape(n.tfp_trend);
             n.tech.research_total += output;
+            let known_before = n.tech.count();
 
             for d in DOMAINS {
                 let di = d.index();
@@ -958,6 +995,14 @@ pub fn tick(w: &mut WorldState) {
                 }
             }
 
+            // Technologies fielded this month, annualised, folded into the
+            // running rate. Done here rather than in `learn` so that a month
+            // with no unlock pulls the rate down as surely as a month with one
+            // pushes it up.
+            let fielded = (n.tech.count() - known_before) as f64 * 12.0;
+            n.tech.absorption_rate +=
+                (fielded - n.tech.absorption_rate) * ABSORPTION_MEMORY;
+
             apply_bonuses(n, reference, frontier_known, absorb);
         }
 
@@ -980,11 +1025,15 @@ pub fn tick(w: &mut WorldState) {
 /// returns, so two frontier economies with different trees do not land on the
 /// same number the way a hard cap made them.
 const TECH_CEILING: f64 = 0.022;
-/// Annual growth adoption is worth to a nation at the maximum distance from the
-/// frontier, before its capacity to absorb is applied. This is the convergence
-/// engine: it replaced a flat bonus for being poor, which double-counted the
-/// diffusion the tree already models.
-const ADOPTION: f64 = 0.120;
+/// Annual growth one technology a year of sustained absorption is worth to a
+/// nation far behind the frontier. This is the convergence engine: it replaced a
+/// flat bonus for being poor, which double-counted the diffusion the tree
+/// already models.
+const ADOPTION_PER_TECH: f64 = 0.0085;
+/// How fast the absorption rate follows what a nation is actually fielding.
+/// Slow enough that one good year does not become a decade of growth, fast
+/// enough that a country which stops absorbing stops being paid for it.
+const ABSORPTION_MEMORY: f64 = 0.15;
 /// The most annual growth adoption may ever be worth, whatever the tree says.
 /// Korea and China sustained something close to this for a generation and no
 /// one has ever done better for as long.
@@ -1026,25 +1075,32 @@ fn saturated_tech_tfp(n: &Nation) -> f64 {
 /// world pulls ahead, one that falls behind loses ground — and in January 1990,
 /// when nobody knows anything and the reference is zero, every nation sits
 /// exactly on the trend `init.rs` transcribed for it.
-fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, absorb: f64) {
+fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, _absorb: f64) {
     let b = &n.tech.bonus;
     let tech_tfp = saturated_tech_tfp(n);
-    // What is left to copy, counted in technologies rather than in the
-    // productivity they are worth. Saturation compresses the productivity of a
-    // large known set into a narrow band, so measuring the gap that way said a
-    // nation holding a quarter of the frontier's technologies was only a third
-    // of the way behind it. What can be copied is a count of things.
+    // How far behind there is still to be, counted in technologies rather than
+    // in the productivity they are worth: saturation compresses the value of a
+    // large known set into a narrow band, so measured that way a nation holding
+    // a quarter of the frontier's technologies looked a third of the way behind.
     let gap = if frontier_known > 0.0 {
         ((frontier_known - n.tech.count() as f64) / frontier_known).clamp(0.0, 1.0)
     } else {
         0.0
     };
-    // Capped for the same reason the tree's own productivity is: an author who
-    // hands out DiffusionSpeed by the bucket drives absorptive capacity to its
-    // clamp, and convergence must not become a way to buy unbounded growth.
-    // No nation catches up faster than the fastest that ever has.
-    let adoption = (ADOPTION * gap.powf(TACIT) * absorb.clamp(0.0, 1.2)).min(ADOPTION_MAX);
-    n.tfp_trend = n.tech.tfp_base + (tech_tfp - reference) + adoption;
+    // Catching up is something a nation does, not a position it occupies. The
+    // first version of this paid out on the gap alone, which meant a country
+    // that learned nothing for thirty years collected the convergence bonus for
+    // all thirty of them — the flat bonus for being poor that this was supposed
+    // to replace, wearing the tree's clothes. Vietnam finished a run knowing no
+    // technology at all and growing 5.4% a year on the strength of it.
+    //
+    // So it is paid on absorption actually achieved. The gap still governs how
+    // much each technology is worth when it lands: reorganising an economy
+    // around something the rest of the world already runs on is worth more to
+    // the nation twenty years behind than to the one at the frontier, which has
+    // nothing left to copy and must invent instead.
+    let adoption = ADOPTION_PER_TECH * n.tech.absorption_rate * gap.powf(TACIT);
+    n.tfp_trend = n.tech.tfp_base + (tech_tfp - reference) + adoption.min(ADOPTION_MAX);
 
     // Recovery works its way into producing fields over years, and the barrels
     // it finds stay found even if the field changes hands in a war.
@@ -1092,6 +1148,29 @@ mod tests {
     use super::*;
     use crate::init::world_1990;
     use crate::world::GameRules;
+
+    #[test]
+    /// A canary for a build that is not the build you think it is.
+    ///
+    /// `.cargo/config.toml` is tracked, so every worktree points at the same
+    /// target directory as the main checkout, and OneDrive resets mtimes often
+    /// enough that cargo will happily reuse a test binary compiled from another
+    /// branch's source. That reads as a full green suite that never ran your
+    /// code, and it is not hypothetical: it has already reported eight domain
+    /// merges as verified when none of them had been compiled.
+    ///
+    /// Branches differ in how many technologies they define, so the count is a
+    /// cheap thing to be wrong. If this fails and you did not add or remove a
+    /// technology, you are looking at a stale binary — not a broken tree.
+    #[test]
+    fn the_registry_is_the_size_this_source_says_it_is() {
+        assert_eq!(
+            registry().len(),
+            253,
+            "registry has {} entries, not 253 — added a technology, or running a stale binary?",
+            registry().len()
+        );
+    }
 
     #[test]
     fn tree_is_well_formed() {
@@ -1267,3 +1346,45 @@ mod tests {
 
 
 
+
+/// Calibration instrument, not a test. Prints what every nation's productivity
+/// trend is actually made of after thirty years, so a change to the growth model
+/// can be judged on the whole roster instead of on the four or five countries
+/// whose numbers one happens to remember. Tuning this model on the G7 alone is
+/// how it came to pay a convergence bonus to nations that had learned nothing.
+///
+///     cargo test -p spheres-sim --lib roster_decomposition -- --ignored --nocapture
+#[cfg(test)]
+mod diag {
+    use super::*;
+    use crate::init::world_1990;
+    use crate::world::GameRules;
+
+    #[test]
+    #[ignore]
+    fn roster_decomposition() {
+        let mut w = world_1990(GameRules::default());
+        for _ in 0..360 { crate::tick_month(&mut w, &[]); }
+        let world_gdp: f64 = w.nations.iter().filter(|n| n.alive).map(|n| n.gdp.max(0.0)).sum();
+        let mut refw = 0.0;
+        let mut front = 0.0f64;
+        for n in w.nations.iter().filter(|n| n.alive) {
+            refw += saturated_tech_tfp(n) * n.gdp.max(0.0);
+            front = front.max(n.tech.count() as f64);
+        }
+        let reference = refw / world_gdp;
+        println!("\nDIAG reference={:.5} frontier_known={}", reference, front);
+        println!("{:<14}{:>6}{:>7}{:>8}{:>9}{:>9}{:>9}{:>8}", "nation", "techs", "gap", "absorb/y", "adopt", "diff", "tfp", "grow%");
+        let mut rows: Vec<_> = w.nations.iter().filter(|n| n.alive).collect();
+        rows.sort_by(|a, b| b.gdp.partial_cmp(&a.gdp).unwrap());
+        for n in rows {
+            let sat = saturated_tech_tfp(n);
+            let gap = ((front - n.tech.count() as f64) / front).clamp(0.0, 1.0);
+            let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
+            let absorb = absorptive_capacity(&w, n, dev);
+            let adopt = (ADOPTION_PER_TECH * n.tech.absorption_rate * gap.powf(TACIT)).min(ADOPTION_MAX);
+            println!("{:<14}{:>6}{:>7.3}{:>8.3}{:>9.5}{:>9.5}{:>9.5}{:>8.2}",
+                n.id.name(), n.tech.count(), gap, n.tech.absorption_rate, adopt, sat - reference, n.tfp_trend, n.growth_last * 100.0);
+        }
+    }
+}

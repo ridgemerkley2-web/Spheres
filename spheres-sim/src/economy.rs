@@ -25,7 +25,8 @@ pub fn tick(w: &mut WorldState) {
         // of a technology system that already models diffusion — the same effect
         // counted twice. It now arrives through `tfp_trend`, out of the distance
         // between what a nation knows and what the frontier knows.
-        let mut potential = n.tfp_trend + invest_effect;
+        let catchup = (1.0 - dev) * 0.020;
+        let mut potential = n.tfp_trend + invest_effect + catchup;
 
         // Command economies pay an allocation penalty that worsens as they develop
         if n.system == EconomySystem::Command {

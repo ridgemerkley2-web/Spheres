@@ -339,6 +339,32 @@ mod tests {
     }
 
     #[test]
+    fn a_poor_nation_still_picks_up_what_everyone_has() {
+        // The frontier is supposed to be out of a poor nation's reach. The
+        // ordinary is not. For a long time both were: the cost floor stood for
+        // having to build the thing and took no account of whether the thing was
+        // a bespoke fab or a shipping container, so it bound long before the
+        // copying discount could bite and the smallest economies were shut out
+        // of the whole tree. Vietnam finished a thirty-year run knowing nothing
+        // whatsoever, and no test in the suite objected.
+        for seed in [1990u64, 7, 42] {
+            let mut rules = GameRules::default();
+            rules.seed = seed;
+            let mut w = world_1990(rules);
+            run_months(&mut w, 360);
+            let frontier = w.nations.iter().filter(|n| n.alive).map(|n| n.tech.count()).max().unwrap();
+            assert!(frontier > 60, "seed {}: nobody got anywhere: frontier {}", seed, frontier);
+            for n in w.nations.iter().filter(|n| n.alive) {
+                assert!(
+                    n.tech.count() >= 5,
+                    "seed {}: {:?} knows {} technologies after thirty years while the frontier holds {}",
+                    seed, n.id, n.tech.count(), frontier
+                );
+            }
+        }
+    }
+
+    #[test]
     fn convergence_outruns_the_frontier() {
         // The structural claim of the whole growth model: a nation behind the
         // technological frontier closes on it, because copying is cheaper than
