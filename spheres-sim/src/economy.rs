@@ -17,13 +17,15 @@ pub fn tick(w: &mut WorldState) {
 
         // ---- Investment & potential growth (annual rates) ----
         let invest = n.state_invest_gdp + n.priv_invest_gdp;
-        // Catch-up: poorer nations grow faster per unit of investment
         let gdp_pc = n.gdp * 1000.0 / n.population; // $ per capita
         let dev = (gdp_pc / 24000.0).min(1.0);
-        let catchup = (1.0 - dev) * 0.020;
         // Capital deepening has diminishing returns as economies mature
         let invest_effect = invest * (0.030 + 0.080 * (1.0 - dev));
-        let mut potential = n.tfp_trend + invest_effect + catchup;
+        // Convergence used to be a flat bonus for being poor, added here on top
+        // of a technology system that already models diffusion — the same effect
+        // counted twice. It now arrives through `tfp_trend`, out of the distance
+        // between what a nation knows and what the frontier knows.
+        let mut potential = n.tfp_trend + invest_effect;
 
         // Command economies pay an allocation penalty that worsens as they develop
         if n.system == EconomySystem::Command {

@@ -240,13 +240,17 @@ mod tests {
         run_months(&mut w, 480);
         for id in [NationId::USA, NationId::Germany, NationId::France] {
             let n = w.nation(id);
+            // Measured across seeds the resting state is far tighter than the
+            // bands these assertions used to allow: growth settles near 2% and
+            // inflation within a few basis points of target. Tolerances wide
+            // enough to admit anything cannot fail when something moves.
             assert!(
-                (-0.01..0.06).contains(&n.growth_last),
+                (0.005..0.035).contains(&n.growth_last),
                 "{:?} resting growth {:.1}% is not a mature economy",
                 id, n.growth_last * 100.0
             );
             assert!(
-                (-0.02..0.10).contains(&n.inflation),
+                (0.010..0.035).contains(&n.inflation),
                 "{:?} resting inflation {:.1}% never converged",
                 id, n.inflation * 100.0
             );
@@ -325,7 +329,81 @@ mod tests {
         let start = w.nation(NationId::China).gdp;
         run_months(&mut w, 360); // 30 years
         let end = w.nation(NationId::China).gdp;
-        assert!(end / start > 6.0, "China grew only {:.1}x in 30y", end / start);
+        let x = end / start;
+        // Bounded on both sides. The floor is the miracle; the ceiling is there
+        // because an unbounded assertion cannot tell a miracle from a runaway,
+        // and a one-sided bound let the tree's arrival move this figure by a
+        // third without anything noticing.
+        assert!(x > 6.0, "China grew only {:.1}x in 30y", x);
+        assert!(x < 14.0, "China ran away: {:.1}x in 30y", x);
+    }
+
+    #[test]
+    fn convergence_outruns_the_frontier() {
+        // The structural claim of the whole growth model: a nation behind the
+        // technological frontier closes on it, because copying is cheaper than
+        // inventing. Convergence now arrives entirely through the tree — the
+        // flat bonus for being poor is gone — so if adoption is ever mistuned
+        // to nothing, this is what says so. It is a coarse guard and it is
+        // meant to be: it holds the sign of the effect, not its size.
+        for seed in [1990u64, 7, 42, 2024] {
+            let mut rules = GameRules::default();
+            rules.seed = seed;
+            let mut w = world_1990(rules);
+            let before: Vec<f64> = [NationId::China, NationId::India, NationId::Japan, NationId::Italy]
+                .iter()
+                .map(|id| w.nation(*id).gdp)
+                .collect();
+            run_months(&mut w, 360);
+            let after: Vec<f64> = [NationId::China, NationId::India, NationId::Japan, NationId::Italy]
+                .iter()
+                .map(|id| w.nation(*id).gdp)
+                .collect();
+            let (china, india) = (after[0] / before[0], after[1] / before[1]);
+            let (japan, italy) = (after[2] / before[2], after[3] / before[3]);
+            for (name, follower) in [("China", china), ("India", india)] {
+                for (fname, frontier) in [("Japan", japan), ("Italy", italy)] {
+                    assert!(
+                        follower > frontier * 1.5,
+                        "seed {}: {} grew {:.2}x against {}'s {:.2}x — the frontier is not being caught",
+                        seed, name, follower, fname, frontier
+                    );
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn mature_economies_do_not_run_hot() {
+        // The exact quantity the tech tree broke when it landed. Its
+        // productivity was added on top of a 1990 trend that already priced the
+        // same technology in, and every developed economy gained about a point
+        // of annual growth for it: measured on this run the United States went
+        // to 3.0%, Germany 3.2%, France 2.9% and Italy 2.7%, all of them pinned
+        // against the same cap. Nothing failed, because the tolerances then in
+        // the suite were wide enough to admit almost anything.
+        //
+        // Japan is deliberately not here. It carries the highest transcribed
+        // 1990 trend of any nation (0.018, correct for 1990) and the model has
+        // no mechanism that ever takes it away, so Japan settles near 2.8% and
+        // outgrows the United States for the whole run. That is a real gap —
+        // the lost decade is modelled as a bubble hangover rather than the
+        // permanent break it was — and it wants a demographic or balance-sheet
+        // mechanism, not a wider tolerance here.
+        for seed in [1990u64, 7, 42] {
+            let mut rules = GameRules::default();
+            rules.seed = seed;
+            let mut w = world_1990(rules);
+            run_months(&mut w, 360);
+            for id in [NationId::USA, NationId::Germany, NationId::France, NationId::Italy] {
+                let g = w.nation(id).growth_last;
+                assert!(
+                    (0.008..0.026).contains(&g),
+                    "seed {}: {:?} is growing {:.1}% thirty years in — not a mature economy",
+                    seed, id, g * 100.0
+                );
+            }
+        }
     }
 
     #[test]

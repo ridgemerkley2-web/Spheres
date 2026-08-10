@@ -888,6 +888,17 @@ pub fn tick(w: &mut WorldState) {
     let mut claimed = vec![false; reg.len()];
     let world_gdp: f64 = w.nations.iter().filter(|n| n.alive).map(|n| n.gdp.max(0.0)).sum();
 
+    // The technology the world economy on average operates with, and the best
+    // anyone has. Both are read off the state at the top of the tick, so what
+    // one nation is scored against never depends on who was ticked first.
+    let mut ref_weighted = 0.0;
+    let mut frontier_known = 0.0f64;
+    for n in w.nations.iter().filter(|n| n.alive) {
+        ref_weighted += saturated_tech_tfp(n) * n.gdp.max(0.0);
+        frontier_known = frontier_known.max(n.tech.count() as f64);
+    }
+    let reference = if world_gdp > 0.0 { ref_weighted / world_gdp } else { 0.0 };
+
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     let year = w.year;
     let mut news: Vec<String> = vec![];
@@ -947,7 +958,7 @@ pub fn tick(w: &mut WorldState) {
                 }
             }
 
-            apply_bonuses(n);
+            apply_bonuses(n, reference, frontier_known, absorb);
         }
 
         for t in firsts {
@@ -964,23 +975,76 @@ pub fn tick(w: &mut WorldState) {
     }
 }
 
+/// Asymptotic annual productivity a saturated tree is worth. Approached, never
+/// reached: a richer tree always buys something, but with sharply diminishing
+/// returns, so two frontier economies with different trees do not land on the
+/// same number the way a hard cap made them.
+const TECH_CEILING: f64 = 0.022;
+/// Annual growth adoption is worth to a nation at the maximum distance from the
+/// frontier, before its capacity to absorb is applied. This is the convergence
+/// engine: it replaced a flat bonus for being poor, which double-counted the
+/// diffusion the tree already models.
+const ADOPTION: f64 = 0.120;
+/// The most annual growth adoption may ever be worth, whatever the tree says.
+/// Korea and China sustained something close to this for a generation and no
+/// one has ever done better for as long.
+const ADOPTION_MAX: f64 = 0.045;
+/// Adoption is worse than linear in the gap. The first nine tenths of a gap is
+/// machinery and manuals that can be bought; the last tenth is tacit and is not
+/// for sale. A nation that has copied everything copyable has to start
+/// inventing, and most discover they cannot.
+const TACIT: f64 = 1.35;
+
+/// What a nation's known set is worth in annual productivity, before saturation.
+/// Richer ore, better logistics and a healthier workforce all read through to it
+/// at their own weights.
+fn raw_tech_tfp(n: &Nation) -> f64 {
+    let b = &n.tech.bonus;
+    let invest = n.state_invest_gdp + n.priv_invest_gdp;
+    b.productivity_eff()
+        + b.resource_yield_eff() * 0.010
+        + b.investment_efficiency_eff() * invest * 0.030
+        + b.health_eff() * 0.0004
+}
+
+/// Saturating productivity value of a known set.
+fn saturated_tech_tfp(n: &Nation) -> f64 {
+    let raw = raw_tech_tfp(n).max(0.0);
+    TECH_CEILING * (1.0 - (-raw / TECH_CEILING).exp())
+}
+
 /// Reapply the running totals to the nation every month. Productivity is a
 /// stock and is simply recomputed; the rest are flows that arrive gradually,
 /// because a technology that exists on paper still has to be built.
-fn apply_bonuses(n: &mut Nation) {
+///
+/// `reference` is the technology the world economy on average operates with, and
+/// `frontier` the best anyone has. The tree is scored *against* the reference
+/// rather than added on top of it, because `tfp_base` is a transcribed 1990
+/// trend that already prices in the technology of 1990: adding to it counted the
+/// same knowledge twice and inflated every developed economy by the same amount.
+/// Scored this way the tree redistributes — a nation that out-researches the
+/// world pulls ahead, one that falls behind loses ground — and in January 1990,
+/// when nobody knows anything and the reference is zero, every nation sits
+/// exactly on the trend `init.rs` transcribed for it.
+fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, absorb: f64) {
     let b = &n.tech.bonus;
-    let invest = n.state_invest_gdp + n.priv_invest_gdp;
-    // Productivity is the one stock among the effects, so it is recomputed
-    // rather than accumulated. Richer ore, better logistics and a healthier
-    // workforce all read through to it at their own weights, and the whole
-    // technological contribution is capped: no tree an author can write may add
-    // more than two points of annual growth to a nation's trend.
-    let tech_tfp = (b.productivity_eff()
-        + b.resource_yield_eff() * 0.010
-        + b.investment_efficiency_eff() * invest * 0.030
-        + b.health_eff() * 0.0004)
-        .min(0.020);
-    n.tfp_trend = n.tech.tfp_base + tech_tfp;
+    let tech_tfp = saturated_tech_tfp(n);
+    // What is left to copy, counted in technologies rather than in the
+    // productivity they are worth. Saturation compresses the productivity of a
+    // large known set into a narrow band, so measuring the gap that way said a
+    // nation holding a quarter of the frontier's technologies was only a third
+    // of the way behind it. What can be copied is a count of things.
+    let gap = if frontier_known > 0.0 {
+        ((frontier_known - n.tech.count() as f64) / frontier_known).clamp(0.0, 1.0)
+    } else {
+        0.0
+    };
+    // Capped for the same reason the tree's own productivity is: an author who
+    // hands out DiffusionSpeed by the bucket drives absorptive capacity to its
+    // clamp, and convergence must not become a way to buy unbounded growth.
+    // No nation catches up faster than the fastest that ever has.
+    let adoption = (ADOPTION * gap.powf(TACIT) * absorb.clamp(0.0, 1.2)).min(ADOPTION_MAX);
+    n.tfp_trend = n.tech.tfp_base + (tech_tfp - reference) + adoption;
 
     // Recovery works its way into producing fields over years, and the barrels
     // it finds stay found even if the field changes hands in a war.
@@ -1200,5 +1264,6 @@ mod tests {
         }
     }
 }
+
 
 
