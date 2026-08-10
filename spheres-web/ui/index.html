@@ -17,17 +17,19 @@
     --red: #e05c5c;
     --green: #5cc98a;
     --violet: #a07ce0;
+    --mono: "JetBrains Mono", "JetBrains Mono NL", ui-monospace, "Cascadia Mono",
+            Consolas, "DejaVu Sans Mono", monospace;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0; background: var(--bg); color: var(--ink);
-    font: 14px/1.45 "Segoe UI", system-ui, sans-serif;
+    font: 13px/1.5 var(--mono);
     height: 100vh; overflow: hidden;
   }
   h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: .04em; }
   button {
     font: inherit; color: var(--ink); background: var(--panel-2);
-    border: 1px solid var(--line); border-radius: 4px; padding: 6px 12px;
+    border: 1px solid var(--line); border-radius: 4px; padding: 5px 11px;
     cursor: pointer; transition: .12s;
   }
   button:hover:not(:disabled) { background: #23304a; border-color: #3d5480; }
@@ -36,6 +38,11 @@
   button.primary:hover { background: #35598a; }
   button.danger { border-color: #6b3030; color: #f0a0a0; }
   button.danger:hover { background: #4a2020; }
+  input, select { font: inherit; }
+  kbd {
+    font: 11px/1.4 var(--mono); background: #1d2635; border: 1px solid #33415a;
+    border-bottom-width: 2px; border-radius: 3px; padding: 0 5px; color: #b9c6d8;
+  }
 
   /* ---------- setup ---------- */
   #setup {
@@ -46,9 +53,9 @@
     font-size: 60px; letter-spacing: .5em; margin-bottom: 4px;
     color: var(--amber); text-indent: .5em;
   }
-  #setup .sub { color: var(--dim); margin-bottom: 40px; letter-spacing: .2em; font-size: 13px; }
+  #setup .sub { color: var(--dim); margin-bottom: 40px; letter-spacing: .2em; font-size: 12px; }
   #nationPick {
-    display: grid; grid-template-columns: repeat(4, 150px); gap: 8px; margin-bottom: 28px;
+    display: grid; grid-template-columns: repeat(4, 158px); gap: 8px; margin-bottom: 28px;
   }
   #nationPick .opt {
     padding: 10px; border: 1px solid var(--line); border-radius: 5px;
@@ -61,54 +68,74 @@
   .seedrow { display: flex; gap: 10px; align-items: center; margin-bottom: 24px; color: var(--dim); }
   .seedrow input {
     width: 90px; background: var(--panel); border: 1px solid var(--line);
-    color: var(--ink); padding: 6px; border-radius: 4px; font: inherit;
+    color: var(--ink); padding: 6px; border-radius: 4px;
   }
 
   /* ---------- layout ---------- */
   #app { display: none; height: 100vh; grid-template-rows: auto 1fr; }
   header {
-    display: flex; align-items: center; gap: 20px; padding: 8px 16px;
+    display: flex; align-items: center; gap: 18px; padding: 8px 16px;
     background: var(--panel); border-bottom: 1px solid var(--line);
   }
   header .brand { color: var(--amber); letter-spacing: .35em; font-weight: 600; }
-  header .date { font-size: 20px; font-variant-numeric: tabular-nums; min-width: 110px; }
-  header .metric { color: var(--dim); font-size: 12px; }
-  header .metric b { color: var(--ink); font-size: 14px; font-weight: 600; }
+  header .date { font-size: 19px; font-variant-numeric: tabular-nums; min-width: 108px; }
+  header .metric { color: var(--dim); font-size: 11px; letter-spacing: .1em; }
+  header .metric b { color: var(--ink); font-size: 13px; font-weight: 600; letter-spacing: 0; }
   header .spacer { flex: 1; }
   .timebtns { display: flex; gap: 6px; }
+  .timebtns button { position: relative; }
+  .timebtns button i {
+    font-style: normal; color: var(--dim); font-size: 10px; margin-left: 5px;
+  }
 
-  main { display: grid; grid-template-columns: 300px 1fr 330px; overflow: hidden; }
+  main { display: grid; grid-template-columns: 312px 1fr 348px; overflow: hidden; }
   .col { overflow-y: auto; padding: 12px; }
-  .col::-webkit-scrollbar { width: 8px; }
-  .col::-webkit-scrollbar-thumb { background: #2a3444; border-radius: 4px; }
+  .col::-webkit-scrollbar, .pane::-webkit-scrollbar, #sheet::-webkit-scrollbar { width: 8px; }
+  .col::-webkit-scrollbar-thumb, .pane::-webkit-scrollbar-thumb,
+  #sheet::-webkit-scrollbar-thumb { background: #2a3444; border-radius: 4px; }
   #left { border-right: 1px solid var(--line); background: #0d121a; }
-  #right { border-left: 1px solid var(--line); background: #0d121a; }
+  #right { border-left: 1px solid var(--line); background: #0d121a; display: flex; flex-direction: column; }
 
   .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px; margin-bottom: 12px; }
-  .card h3 { font-size: 11px; letter-spacing: .18em; color: var(--dim); text-transform: uppercase; margin-bottom: 10px; }
+  .card h3 { font-size: 10px; letter-spacing: .18em; color: var(--dim); text-transform: uppercase; margin-bottom: 10px; }
+  .card h3 span { color: #55637a; letter-spacing: .08em; }
 
-  .stat { display: flex; justify-content: space-between; padding: 3px 0; font-variant-numeric: tabular-nums; }
+  .stat { display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; font-variant-numeric: tabular-nums; }
   .stat .k { color: var(--dim); }
-  .stat .v { font-weight: 600; }
+  .stat .v { font-weight: 600; white-space: nowrap; }
   .up { color: var(--green); } .down { color: var(--red); }
 
   .bar { height: 5px; background: #1e2735; border-radius: 3px; overflow: hidden; margin-top: 3px; }
   .bar > i { display: block; height: 100%; }
 
-  .slider { margin: 12px 0; }
-  .slider label { display: flex; justify-content: space-between; font-size: 12px; color: var(--dim); }
-  .slider label b { color: var(--cyan); font-variant-numeric: tabular-nums; }
-  .slider input { width: 100%; accent-color: var(--cyan); margin-top: 2px; }
-  .slider .orig { color: #5a6a80; }
+  /* ---------- policy ---------- */
+  .slider { margin: 0 0 14px; }
+  .slider .top { display: flex; justify-content: space-between; align-items: baseline; }
+  .slider .nm { color: var(--dim); font-size: 12px; }
+  .slider .val { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--cyan); }
+  .slider .val.moved { color: var(--amber); }
+  .slider .val em { font-style: normal; color: #5a6a80; font-size: 11px; margin-left: 6px; }
+  .slider .track { position: relative; height: 18px; margin-top: 1px; }
+  .slider input { width: 100%; accent-color: var(--cyan); margin: 0; position: relative; z-index: 2; }
+  .slider .ghost {
+    position: absolute; top: 1px; bottom: 5px; width: 1px; background: #6b7c93; z-index: 1;
+  }
+  .slider .fx { font-size: 11px; color: #7e8da0; min-height: 15px; }
+  .slider .fx b { color: #b9c6d8; font-weight: 600; }
+  .ledger { border-top: 1px solid var(--line); margin-top: 4px; padding-top: 8px; }
+  .ledger .stat .v { font-weight: 600; }
+  .ledger .note { color: #6b788a; font-size: 11px; margin-top: 6px; }
 
   /* ---------- map ---------- */
   #center { display: flex; flex-direction: column; overflow: hidden; }
-  .tabs { display: flex; gap: 4px; padding: 8px 12px 0; }
+  .tabs { display: flex; gap: 4px; padding: 8px 12px 0; align-items: flex-end; }
   .tabs .tab {
-    padding: 5px 14px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+    padding: 5px 14px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
     color: var(--dim); border: 1px solid transparent; border-radius: 4px 4px 0 0; cursor: pointer;
   }
   .tabs .tab.on { color: var(--amber); border-color: var(--line); border-bottom-color: transparent; background: var(--panel); }
+  .tabs .tab b { color: #55637a; font-weight: 400; margin-left: 6px; }
+  .tabs .grow { flex: 1; }
   .pane { flex: 1; overflow: auto; padding: 10px 12px; display: none; }
   .pane.on { display: block; }
   svg { display: block; width: 100%; }
@@ -120,34 +147,106 @@
     color: var(--dim); font-size: 11px; letter-spacing: .06em;
   }
   .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px;
-              margin-right: 5px; vertical-align: -1px; opacity: .75; }
+              margin-right: 5px; vertical-align: -1px; opacity: .85; }
 
-  /* ---------- feed ---------- */
-  .feed .item { padding: 7px 0; border-bottom: 1px solid #1b2330; font-size: 13px; }
-  .feed .item .d { color: var(--dim); font-size: 11px; font-variant-numeric: tabular-nums; }
-  .feed .item.war { color: #f0a8a8; }
-  .feed .item.big { color: var(--amber); }
+  .chips { display: flex; gap: 5px; flex-wrap: wrap; }
+  .chip {
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px;
+    color: var(--dim); cursor: pointer; user-select: none; background: #121822;
+  }
+  .chip:hover { border-color: #3d5480; color: var(--ink); }
+  .chip.on { color: var(--bg); background: var(--cyan); border-color: var(--cyan); font-weight: 600; }
+  .chip.on.amber { background: var(--amber); border-color: var(--amber); }
+  .chip .sw { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; }
 
-  .warcard { border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 10px; }
+  /* ---------- charts ---------- */
+  .chartbox { position: relative; }
+  .chartbox .readout {
+    font-size: 11px; color: var(--dim); min-height: 16px; margin-bottom: 2px;
+    font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden;
+  }
+  .chartbox .readout b { color: var(--ink); font-weight: 600; margin-right: 4px; }
+  .chartbox svg { cursor: crosshair; }
+  .chartgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 1400px) { .chartgrid { grid-template-columns: 1fr; } }
+
+  /* ---------- event log ---------- */
+  #right .card.feed { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+  #logList { overflow-y: auto; flex: 1; margin-top: 8px; }
+  #logSearch {
+    width: 100%; margin-top: 7px; background: #0d121a; border: 1px solid var(--line);
+    color: var(--ink); padding: 4px 8px; border-radius: 4px; font-size: 12px;
+  }
+  #logSearch:focus { outline: none; border-color: var(--cyan); }
+  .feed .item {
+    padding: 6px 0 6px 8px; border-bottom: 1px solid #1b2330; font-size: 12px;
+    border-left: 2px solid transparent; cursor: default;
+  }
+  .feed .item.hit { cursor: pointer; }
+  .feed .item.hit:hover { background: #151d29; }
+  .feed .item .d { color: var(--dim); font-size: 10px; font-variant-numeric: tabular-nums; letter-spacing: .06em; }
+  .feed .item.war { border-left-color: var(--red); color: #f0b6b6; }
+  .feed .item.politics { border-left-color: var(--violet); color: #d6c4f0; }
+  .feed .item.diplomacy { border-left-color: var(--cyan); }
+  .feed .item.economy { border-left-color: var(--green); }
+  .feed .item.mine { background: #1a1509; }
+
+  .warcard { border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 10px; cursor: pointer; }
+  .warcard:hover { background: #151d29; }
   .progbar { height: 8px; background: #1e2735; border-radius: 4px; position: relative; margin-top: 4px; }
   .progbar .mid { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #4a5a70; }
   .progbar .fill { position: absolute; top: 0; bottom: 0; background: var(--amber); border-radius: 4px; }
 
-  /* ---------- nation detail ---------- */
-  #detail { position: fixed; right: 342px; top: 60px; width: 300px; z-index: 20; display: none; }
-  #detail .card { box-shadow: 0 8px 40px #000a; }
-  #detail .close { float: right; cursor: pointer; color: var(--dim); }
-  .actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  /* ---------- nation dashboard ---------- */
+  #sheetbg { position: fixed; inset: 0; background: #05080d99; z-index: 30; display: none; }
+  #sheet {
+    position: fixed; z-index: 31; display: none; inset: 54px 3vw 3vh auto;
+    width: min(1080px, 94vw); right: 3vw; left: auto;
+    background: var(--panel); border: 1px solid #33415a; border-radius: 8px;
+    box-shadow: 0 20px 80px #000c; overflow-y: auto; padding: 16px 18px 22px;
+  }
+  #sheet .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  #sheet .head h2 { font-size: 22px; letter-spacing: .06em; }
+  #sheet .head .tagline { color: var(--dim); font-size: 12px; }
+  #sheet .head .spacer { flex: 1; }
+  #sheet .close { cursor: pointer; color: var(--dim); font-size: 20px; line-height: 1; padding: 0 4px; }
+  #sheet .close:hover { color: var(--ink); }
+  .statgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 2px 18px; }
+  .cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 1100px) { .cols2 { grid-template-columns: 1fr; } }
+  .relrow { display: grid; grid-template-columns: 1fr 46px 92px; align-items: center; gap: 8px; padding: 2px 0; cursor: pointer; }
+  .relrow:hover { background: #151d29; }
+  .relrow .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .relrow .num { text-align: right; font-variant-numeric: tabular-nums; font-size: 12px; }
+  .relbar { position: relative; height: 6px; background: #1e2735; border-radius: 3px; }
+  .relbar .z { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #46536a; }
+  .relbar i { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 6px; }
   .actions button { font-size: 12px; padding: 5px 10px; }
+  .loglines { max-height: 260px; overflow-y: auto; }
 
+  /* ---------- overlays ---------- */
   #banner {
     position: fixed; top: 52px; left: 50%; transform: translateX(-50%);
     background: #3a2a12; border: 1px solid var(--amber); color: #ffd89a;
-    padding: 8px 18px; border-radius: 5px; z-index: 40; display: none;
+    padding: 8px 18px; border-radius: 5px; z-index: 60; display: none;
     box-shadow: 0 6px 30px #000a; max-width: 60vw; text-align: center;
   }
-  .queued { color: var(--cyan); font-size: 12px; min-height: 16px; }
+  #keys {
+    position: fixed; inset: 0; background: #05080dd8; z-index: 70; display: none;
+    align-items: center; justify-content: center;
+  }
+  #keys .box {
+    background: var(--panel); border: 1px solid #33415a; border-radius: 8px;
+    padding: 22px 26px; min-width: 460px; box-shadow: 0 20px 80px #000c;
+  }
+  #keys h3 { margin-bottom: 14px; }
+  #keys .row { display: flex; justify-content: space-between; gap: 30px; padding: 3px 0; color: var(--dim); }
+  #keys .row span:last-child { color: var(--ink); }
+  .queued { color: var(--cyan); font-size: 11px; min-height: 15px; }
   .muted { color: var(--dim); font-size: 12px; }
+  .tiny { color: #6b788a; font-size: 11px; }
 </style>
 </head>
 <body>
@@ -170,14 +269,16 @@
     <span class="metric">OIL <b id="hdrOil">—</b></span>
     <span class="metric">YOU <b id="hdrYou">—</b></span>
     <span class="metric">GDP <b id="hdrGdp">—</b></span>
+    <span class="metric">GROWTH <b id="hdrGrowth">—</b></span>
     <span class="spacer"></span>
     <span class="queued" id="queuedNote"></span>
     <div class="timebtns">
-      <button data-adv="1">+1 MO</button>
-      <button data-adv="6">+6 MO</button>
-      <button data-adv="12">+1 YR</button>
-      <button data-adv="60">+5 YR</button>
-      <button id="saveBtn">SAVE</button>
+      <button data-adv="1">+1 MO<i>SPC</i></button>
+      <button data-adv="6">+6 MO<i>2</i></button>
+      <button data-adv="12">+1 YR<i>3</i></button>
+      <button data-adv="60">+5 YR<i>4</i></button>
+      <button id="saveBtn">SAVE<i>S</i></button>
+      <button id="keysBtn">?</button>
     </div>
   </header>
 
@@ -185,20 +286,45 @@
     <div class="col" id="left"></div>
     <div id="center">
       <div class="tabs">
-        <div class="tab on" data-pane="map">Map</div>
-        <div class="tab" data-pane="charts">History</div>
-        <div class="tab" data-pane="table">League</div>
+        <div class="tab on" data-pane="map">Map<b>M</b></div>
+        <div class="tab" data-pane="charts">History<b>H</b></div>
+        <div class="tab" data-pane="table">League<b>L</b></div>
+        <span class="grow"></span>
+        <span class="tiny" id="mapModes"></span>
       </div>
       <div class="pane on" id="pane-map"></div>
       <div class="pane" id="pane-charts"></div>
       <div class="pane" id="pane-table"></div>
     </div>
-    <div class="col" id="right"></div>
+    <div class="col" id="right">
+      <div id="warsCard"></div>
+      <div class="card feed">
+        <h3>Event log <span id="logCount"></span></h3>
+        <div class="chips" id="logCats"></div>
+        <input id="logSearch" placeholder="filter dispatches…  (E)">
+        <div id="logList"></div>
+      </div>
+    </div>
   </main>
 </div>
 
-<div id="detail"></div>
+<div id="sheetbg"></div>
+<div id="sheet"></div>
 <div id="banner"></div>
+<div id="keys"><div class="box">
+  <h3>KEYBOARD</h3>
+  <div class="row"><span>Advance one month</span><span><kbd>Space</kbd> / <kbd>1</kbd></span></div>
+  <div class="row"><span>Advance six months / a year / five years</span><span><kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd></span></div>
+  <div class="row"><span>Map / History / League</span><span><kbd>M</kbd> <kbd>H</kbd> <kbd>L</kbd></span></div>
+  <div class="row"><span>Cycle map shading</span><span><kbd>C</kbd></span></div>
+  <div class="row"><span>Filter the event log</span><span><kbd>E</kbd></span></div>
+  <div class="row"><span>Open the nation dashboard</span><span>click a country</span></div>
+  <div class="row"><span>Previous / next nation in the dashboard</span><span><kbd>[</kbd> <kbd>]</kbd></span></div>
+  <div class="row"><span>Save</span><span><kbd>S</kbd></span></div>
+  <div class="row"><span>Revert queued orders</span><span><kbd>R</kbd></span></div>
+  <div class="row"><span>Close anything open</span><span><kbd>Esc</kbd></span></div>
+  <div class="row"><span>This card</span><span><kbd>?</kbd></span></div>
+</div></div>
 
 <script src="/world.js"></script>
 <script>
@@ -234,10 +360,26 @@ const LABEL_AT = {
 /// Nations whose label sits off their own territory and needs a leader line.
 const LEADER = new Set(["Kuwait"]);
 
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
 let S = null;            // latest state from the server
-let queued = [];         // commands not yet sent
-let selected = null;     // nation id shown in detail panel
+let HIST = null;         // recorded time series from /api/history
+let queued = [];         // policy orders not yet sent
+let selected = null;     // nation id shown in the dashboard
 let pickedNation = null;
+
+// Everything the UI remembers between renders that is not game state.
+const ui = {
+  tab: "map",
+  mapMode: "relations",
+  logCat: "all",
+  logQuery: "",
+  metric: "gdp",
+  indexed: false,
+  picked: [],            // nation ids plotted in the history workbench
+  sortKey: "gdp",
+  sortDir: -1,
+};
 
 const $ = (s) => document.querySelector(s);
 const fmt = {
@@ -245,9 +387,13 @@ const fmt = {
     if (v >= 1000) return "$" + (v / 1000).toFixed(1) + "tn";
     return "$" + v.toFixed(0) + "bn";
   },
+  bn(v) { return (v >= 1000 ? "$" + (v / 1000).toFixed(2) + "tn" : "$" + v.toFixed(0) + "bn"); },
   pct(v, d = 1) { return (v * 100).toFixed(d) + "%"; },
   signed(v, d = 1) { return (v >= 0 ? "+" : "") + (v * 100).toFixed(d) + "%"; },
+  pp(v, d = 1) { return (v >= 0 ? "+" : "") + (v * 100).toFixed(d) + "pp"; },
+  num(v, d = 0) { return v.toFixed(d); },
 };
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
 async function api(path, body) {
   const r = await fetch(path, {
@@ -282,29 +428,48 @@ async function buildSetup() {
 
 $("#startBtn").onclick = async () => {
   const seed = parseInt($("#seed").value, 10) || 1990;
-  S = await api("/api/new", { seed, nation: pickedNation });
+  const st = await api("/api/new", { seed, nation: pickedNation });
   $("#setup").style.display = "none";
   $("#app").style.display = "grid";
-  render();
+  await adopt(st, true);
 };
 
 /* ================= time ================= */
 
-document.querySelectorAll("[data-adv]").forEach((b) => {
-  b.onclick = async () => {
-    document.querySelectorAll("[data-adv]").forEach((x) => (x.disabled = true));
-    S = await api("/api/advance", { months: +b.dataset.adv, commands: queued });
+/// Take a fresh state from the server; pull the time series with it, since every
+/// chart on the page reads from that and not from the state blob.
+async function adopt(state, withHistory) {
+  S = state;
+  if (withHistory !== false) HIST = await api("/api/history");
+  if (!ui.picked.length) ui.picked = defaultPicks();
+  render();
+}
+
+let advancing = false;
+async function advance(months) {
+  if (advancing) return;
+  advancing = true;
+  document.querySelectorAll("[data-adv]").forEach((x) => (x.disabled = true));
+  try {
+    const st = await api("/api/advance", { months, commands: queued });
     queued = [];
+    await adopt(st);
+    if (st.interrupt) banner(st.interrupt);
+  } finally {
+    advancing = false;
     document.querySelectorAll("[data-adv]").forEach((x) => (x.disabled = false));
-    render();
-    if (S.interrupt) banner(S.interrupt);
-  };
+  }
+}
+
+document.querySelectorAll("[data-adv]").forEach((b) => {
+  b.onclick = () => advance(+b.dataset.adv);
 });
 
-$("#saveBtn").onclick = async () => {
+$("#saveBtn").onclick = doSave;
+async function doSave() {
   const r = await api("/api/save", {});
   banner(r.ok ? "Saved to save.json" : "Save failed: " + r.error);
-};
+}
 
 function banner(text) {
   const b = $("#banner");
@@ -314,23 +479,89 @@ function banner(text) {
   banner._t = setTimeout(() => (b.style.display = "none"), 5200);
 }
 
+/* ================= keyboard ================= */
+
+function typing(e) {
+  const t = e.target;
+  return t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    if (typing(e)) { e.target.blur(); return; }
+    if ($("#keys").style.display === "flex") { $("#keys").style.display = "none"; return; }
+    closeSheet();
+    return;
+  }
+  if (typing(e) || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (!S || $("#app").style.display === "none") return;
+  const k = e.key;
+  if (k === " " || k === "1") { e.preventDefault(); advance(1); }
+  else if (k === "2") advance(6);
+  else if (k === "3") advance(12);
+  else if (k === "4") advance(60);
+  else if (k === "m" || k === "M") showTab("map");
+  else if (k === "h" || k === "H") showTab("charts");
+  else if (k === "l" || k === "L") showTab("table");
+  else if (k === "c" || k === "C") cycleMapMode();
+  else if (k === "e" || k === "E") { e.preventDefault(); $("#logSearch").focus(); $("#logSearch").select(); }
+  else if (k === "s" || k === "S") doSave();
+  else if (k === "r" || k === "R") revertOrders();
+  else if (k === "[" || k === "]") stepSelection(k === "]" ? 1 : -1);
+  else if (k === "?" || (k === "/" && e.shiftKey)) {
+    const el = $("#keys");
+    el.style.display = el.style.display === "flex" ? "none" : "flex";
+  }
+});
+$("#keysBtn").onclick = () => {
+  const el = $("#keys");
+  el.style.display = el.style.display === "flex" ? "none" : "flex";
+};
+$("#keys").onclick = (e) => { if (e.target.id === "keys") $("#keys").style.display = "none"; };
+
+function stepSelection(dir) {
+  const order = [...S.nations].sort((a, b) => b.gdp - a.gdp).map((n) => n.id);
+  if (!order.length) return;
+  const i = order.indexOf(selected);
+  openNation(order[(i + dir + order.length) % order.length]);
+}
+
+function showTab(pane) {
+  ui.tab = pane;
+  document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("on", x.dataset.pane === pane));
+  document.querySelectorAll(".pane").forEach((x) => x.classList.toggle("on", x.id === "pane-" + pane));
+}
+document.querySelectorAll(".tab").forEach((t) => { t.onclick = () => showTab(t.dataset.pane); });
+
 /* ================= render ================= */
 
 function me() { return S.nations.find((n) => n.id === S.player); }
+function nationById(id) { return S.nations.find((n) => n.id === id); }
 
 function render() {
   const m = me();
+  // Every chart on the page is about to be rebuilt, so the hover registry from
+  // the last frame is dead weight.
+  for (const k in CHARTS) delete CHARTS[k];
   $("#hdrDate").textContent = S.date;
   $("#hdrOil").textContent = "$" + S.oil_price.toFixed(0);
   $("#hdrYou").textContent = S.player_name || "—";
   $("#hdrGdp").textContent = m ? fmt.money(m.gdp) : "—";
-  $("#queuedNote").textContent = queued.length ? queued.length + " order(s) queued for next month" : "";
+  $("#hdrGrowth").textContent = m ? fmt.signed(m.growth) : "—";
+  noteQueued();
   renderLeft(m);
-  renderRight();
+  renderWars();
+  renderLog();
   renderMap();
   renderCharts();
   renderTable();
-  if (selected) showDetail(selected);
+  if (selected) openNation(selected, true);
+}
+
+function noteQueued() {
+  $("#queuedNote").textContent = queued.length
+    ? queued.length + (queued.length > 1 ? " orders take" : " order takes") + " effect next month  ·  R to revert"
+    : "";
 }
 
 function statRow(k, v, cls) {
@@ -338,7 +569,70 @@ function statRow(k, v, cls) {
 }
 function barRow(k, v, frac, color) {
   return `<div class="stat"><span class="k">${k}</span><span class="v">${v}</span></div>
-          <div class="bar"><i style="width:${Math.max(0, Math.min(1, frac)) * 100}%;background:${color}"></i></div>`;
+          <div class="bar"><i style="width:${clamp(frac, 0, 1) * 100}%;background:${color}"></i></div>`;
+}
+function stabColor(s) { return s < 30 ? "var(--red)" : s < 55 ? "var(--amber)" : "var(--green)"; }
+
+/* ================= the economic forecast =================
+   These four functions mirror the arithmetic in spheres-sim/economy.rs so the
+   player can read what a policy change will do before paying a month for it.
+   They compute nothing the sim does not; if economy.rs changes, change these.  */
+
+function devOf(n) { return Math.min((n.gdp * 1000 / n.population) / 24000, 1); }
+
+function potentialGrowth(n, invest) {
+  const dev = devOf(n);
+  let p = n.tfp + (invest + n.priv_invest) * (0.030 + 0.080 * (1 - dev)) + (1 - dev) * 0.020;
+  if (n.command_economy) p -= 0.004 + 0.010 * dev;
+  return p;
+}
+
+/// The gap demand opens above potential, and the inflation the model steers to.
+function demandOf(n, rate) {
+  const gap = (0.025 - (rate - n.inflation)) * 0.55;
+  const oilInfl = n.oil_mbd < 0.5 ? Math.max((S.oil_price - 20) / 20, -0.5) * 0.012 : 0;
+  return { gap, target: 0.02 + gap * 1.6 + oilInfl + (n.at_war ? 0.015 : 0) };
+}
+
+function dragsOf(n) {
+  const oilRev = n.oil_mbd * n.export_share * S.oil_price * 0.365 / n.gdp;
+  const oil = n.oil_mbd > 0.5
+    ? (S.oil_price - 20) / 20 * oilRev * 0.5
+    : -(S.oil_price - 20) / 20 * 0.006;
+  const embargo = n.oil_mbd > 0.5
+    ? Math.min((1 - n.export_share) * n.oil_mbd * S.oil_price * 0.365 / n.gdp * 0.30, 0.12)
+    : 0;
+  return {
+    oil, embargo, oilRev,
+    sanctions: n.sanctioned_by_count * 0.006,
+    war: n.at_war ? 0.020 + n.war_exhaustion * 0.03 : 0,
+    debt: n.debt > 0.9 ? (n.debt - 0.9) * 0.02 : 0,
+    unrest: n.stability < 40 ? (40 - n.stability) * 0.0009 : 0,
+  };
+}
+
+/// Revenue and spending as shares of GDP, exactly as the budget is struck.
+function ledgerOf(n, tax, mil, invest) {
+  const d = dragsOf(n);
+  const revenue = tax + (n.oil_mbd > 0.5 ? d.oilRev * 0.55 : 0);
+  const social = 0.17 + (1 - n.authoritarianism) * 0.05;
+  const spend = social + mil + invest;
+  return { revenue, social, spend, deficit: spend - revenue };
+}
+
+/* ================= left column: you ================= */
+
+function proposed(m) {
+  const q = (k, fallback) => {
+    const c = queued.find((x) => x.kind === k);
+    return c ? c.value : fallback;
+  };
+  return {
+    rate: q("rate", m.rate),
+    tax: q("tax", m.tax),
+    military: q("military", m.mil_spend),
+    invest: q("invest", m.state_invest),
+  };
 }
 
 function renderLeft(m) {
@@ -346,82 +640,209 @@ function renderLeft(m) {
   const g = m.growth;
   $("#left").innerHTML = `
     <div class="card">
-      <h3>${m.name}</h3>
+      <h3>${m.name} <span>· ${m.command_economy ? "command" : "market"}</span></h3>
       ${statRow("GDP", fmt.money(m.gdp))}
       ${statRow("Growth", fmt.signed(g), g >= 0 ? "up" : "down")}
       ${statRow("GDP / person", "$" + m.gdp_pc.toFixed(0))}
       ${statRow("Population", m.population.toFixed(0) + "m")}
       ${statRow("Inflation", fmt.pct(m.inflation), m.inflation > 0.08 ? "down" : "")}
       ${statRow("Debt", fmt.pct(m.debt, 0) + " of GDP", m.debt > 0.9 ? "down" : "")}
-      ${barRow("Stability", m.stability.toFixed(0) + "/100", m.stability / 100,
-               m.stability < 30 ? "var(--red)" : m.stability < 55 ? "var(--amber)" : "var(--green)")}
+      ${statRow("Military", m.mil_strength.toFixed(0) + (m.nuclear ? " ☢" : ""))}
+      ${barRow("Stability", m.stability.toFixed(0) + "/100", m.stability / 100, stabColor(m.stability))}
       ${m.separatism > 0.01 ? barRow("Separatism", fmt.pct(m.separatism, 0), m.separatism, "var(--red)") : ""}
       ${m.war_exhaustion > 0.01 ? barRow("War exhaustion", fmt.pct(m.war_exhaustion, 0), m.war_exhaustion, "var(--red)") : ""}
       ${m.oil_mbd > 0 ? statRow("Oil exports", (m.oil_mbd * m.export_share).toFixed(1) + " / " + m.oil_mbd.toFixed(1) + " mbd",
                                 m.export_share < 0.9 ? "down" : "") : ""}
       ${m.sanctioned_by_count > 0 ? statRow("Sanctioned by", m.sanctioned_by_count + " nations", "down") : ""}
+      <div class="tiny" style="margin-top:6px;cursor:pointer" onclick="openNation('${m.id}')">Open full dashboard →</div>
     </div>
 
     <div class="card">
       <h3>Policy</h3>
-      ${sliderHtml("rate", "Interest rate", m.rate, 0, 0.4)}
-      ${sliderHtml("tax", "Tax take", m.tax, 0.02, 0.6)}
+      ${sliderHtml("rate", "Interest rate", m.rate, 0, 0.40)}
+      ${sliderHtml("tax", "Tax take", m.tax, 0.02, 0.60)}
       ${sliderHtml("military", "Military spending", m.mil_spend, 0, 0.35)}
-      ${sliderHtml("invest", "State investment", m.state_invest, 0, 0.4)}
-      <div class="muted">Orders take effect when you advance time.</div>
+      ${sliderHtml("invest", "State investment", m.state_invest, 0, 0.40)}
+      <div class="ledger" id="ledger"></div>
+      <div style="display:flex;gap:6px;margin-top:10px">
+        <button id="revertBtn">Revert</button>
+        <button class="primary" onclick="advance(1)">Enact &amp; advance</button>
+      </div>
     </div>`;
-  wireSliders();
+  wireSliders(m);
+  $("#revertBtn").onclick = revertOrders;
 }
 
 function sliderHtml(kind, label, val, lo, hi) {
   const q = queued.find((c) => c.kind === kind);
   const shown = q ? q.value : val;
-  return `<div class="slider" data-kind="${kind}" data-orig="${val}">
-      <label>${label} <b>${(shown * 100).toFixed(1)}%</b></label>
-      <input type="range" min="${lo * 1000}" max="${hi * 1000}" value="${shown * 1000}" step="1">
+  const ghost = ((val - lo) / (hi - lo)) * 100;
+  return `<div class="slider" data-kind="${kind}" data-orig="${val}" data-lo="${lo}" data-hi="${hi}">
+      <div class="top">
+        <span class="nm">${label}</span>
+        <span class="val${q ? " moved" : ""}">${(shown * 100).toFixed(1)}%${
+          q ? `<em>was ${(val * 100).toFixed(1)}%</em>` : ""}</span>
+      </div>
+      <div class="track">
+        <i class="ghost" style="left:${ghost.toFixed(1)}%"></i>
+        <input type="range" min="${Math.round(lo * 1000)}" max="${Math.round(hi * 1000)}"
+               value="${Math.round(shown * 1000)}" step="1">
+      </div>
+      <div class="fx"></div>
     </div>`;
 }
 
-function wireSliders() {
+function wireSliders(m) {
   document.querySelectorAll(".slider").forEach((el) => {
     const kind = el.dataset.kind;
     const orig = parseFloat(el.dataset.orig);
     const input = el.querySelector("input");
     input.oninput = () => {
       const v = +input.value / 1000;
-      el.querySelector("b").textContent = (v * 100).toFixed(1) + "%";
+      const val = el.querySelector(".val");
+      val.innerHTML = (v * 100).toFixed(1) + "%" +
+        (Math.abs(v - orig) > 1e-9 ? `<em>was ${(orig * 100).toFixed(1)}%</em>` : "");
+      val.classList.toggle("moved", Math.abs(v - orig) > 1e-9);
       queued = queued.filter((c) => c.kind !== kind);
       if (Math.abs(v - orig) > 1e-9) queued.push({ kind, value: v });
-      $("#queuedNote").textContent = queued.length ? queued.length + " order(s) queued for next month" : "";
+      noteQueued();
+      paintPolicy(m);
     };
   });
+  paintPolicy(m);
 }
 
-function renderRight() {
+/// The consequence line under each slider, and the budget beneath them all.
+function paintPolicy(m) {
+  const p = proposed(m);
+  const d = demandOf(m, p.rate);
+  const base = demandOf(m, m.rate);
+  const pot = potentialGrowth(m, p.invest);
+  const potBase = potentialGrowth(m, m.state_invest);
+  const drag = dragsOf(m);
+  const led = ledgerOf(m, p.tax, p.military, p.invest);
+  const ledBase = ledgerOf(m, m.tax, m.mil_spend, m.state_invest);
+  const force = Math.sqrt(m.gdp * p.military * 0.30) * 8;
+
+  const fx = {
+    rate: `real <b>${fmt.pct(p.rate - m.inflation)}</b> · demand <b>${fmt.signed(d.gap)}</b>/yr` +
+          ` · inflation heads to <b>${fmt.pct(d.target)}</b>` +
+          (p.rate !== m.rate ? ` <span style="color:var(--amber)">(${fmt.pp(d.gap - base.gap)} demand)</span>` : ""),
+    tax: `<b>${fmt.bn(p.tax * m.gdp)}</b>/yr revenue · ` +
+         (led.deficit >= 0 ? `deficit <b>${fmt.pct(led.deficit)}</b>` : `surplus <b>${fmt.pct(-led.deficit)}</b>`) +
+         ` of GDP`,
+    military: `<b>${fmt.bn(p.military * m.gdp)}</b>/yr sustains a force of <b>${force.toFixed(0)}</b>` +
+              ` (now ${m.mil_strength.toFixed(0)})`,
+    invest: `potential growth <b>${fmt.signed(pot)}</b>/yr` +
+            (p.invest !== m.state_invest ? ` <span style="color:var(--amber)">(${fmt.pp(pot - potBase)})</span>` : ""),
+  };
+  document.querySelectorAll(".slider").forEach((el) => {
+    el.querySelector(".fx").innerHTML = fx[el.dataset.kind] || "";
+  });
+
+  const expected = pot + d.gap + drag.oil - drag.sanctions - drag.war - drag.debt - drag.unrest - drag.embargo;
+  // Debt as a share of GDP falls when nominal growth outruns the deficit.
+  const drift = led.deficit - m.debt * (expected + m.inflation);
+  const dragList = [
+    drag.war > 0 ? `war ${fmt.pp(-drag.war)}` : "",
+    drag.sanctions > 0 ? `sanctions ${fmt.pp(-drag.sanctions)}` : "",
+    drag.embargo > 0 ? `embargo ${fmt.pp(-drag.embargo)}` : "",
+    drag.debt > 0 ? `debt ${fmt.pp(-drag.debt)}` : "",
+    drag.unrest > 0 ? `unrest ${fmt.pp(-drag.unrest)}` : "",
+    Math.abs(drag.oil) > 0.0005 ? `oil ${fmt.pp(drag.oil)}` : "",
+  ].filter(Boolean).join(" · ");
+
+  const el = $("#ledger");
+  if (!el) return;
+  el.innerHTML =
+    statRow("Revenue", fmt.pct(led.revenue) + " of GDP") +
+    statRow("Spending", fmt.pct(led.spend) + " of GDP") +
+    statRow(led.deficit >= 0 ? "Deficit" : "Surplus", fmt.pct(Math.abs(led.deficit)),
+            led.deficit > 0.04 ? "down" : led.deficit <= 0 ? "up" : "") +
+    statRow("Debt drift", fmt.pp(drift) + "/yr", drift > 0 ? "down" : "up") +
+    statRow("Expected growth", fmt.signed(expected), expected >= 0 ? "up" : "down") +
+    (dragList ? `<div class="note">drags: ${dragList}</div>` : "") +
+    (Math.abs(led.deficit - ledBase.deficit) > 1e-9
+      ? `<div class="note" style="color:var(--amber)">budget moves ${fmt.pp(led.deficit - ledBase.deficit)} of GDP</div>`
+      : "");
+}
+
+function revertOrders() {
+  if (!queued.length) return;
+  queued = [];
+  noteQueued();
+  const m = me();
+  if (m) renderLeft(m);
+}
+window.revertOrders = revertOrders;
+window.advance = advance;
+
+/* ================= right column: wars + event log ================= */
+
+function renderWars() {
+  if (!S.wars.length) { $("#warsCard").innerHTML = ""; return; }
   const wars = S.wars.map((w) => {
     const p = (w.progress + 100) / 200;
     const allies = [...w.attacker_allies, ...w.defender_allies];
-    return `<div class="warcard">
-      <div><b>${w.attacker}</b> vs <b>${w.defender}</b></div>
+    const edge = w.progress > 8 ? `${w.attacker} pressing` : w.progress < -8 ? `${w.defender} holding` : "stalemate";
+    return `<div class="warcard" onclick="openNation('${w.attacker_id}')">
+      <div><b>${w.attacker}</b> vs <b>${w.defender}</b> <span class="tiny">since ${w.start}</span></div>
       <div class="progbar"><div class="mid"></div>
         <div class="fill" style="${w.progress >= 0
             ? `left:50%;width:${(p - 0.5) * 100}%`
             : `right:50%;width:${(0.5 - p) * 100}%`}"></div></div>
-      ${allies.length ? `<div class="muted">+ ${allies.join(", ")}</div>` : ""}
+      <div class="tiny">${edge}${allies.length ? " · + " + allies.join(", ") : ""}</div>
     </div>`;
   }).join("");
+  $("#warsCard").innerHTML = `<div class="card"><h3>Wars</h3>${wars}</div>`;
+}
 
-  const feed = S.log.map((e) => {
-    const t = e.text.toLowerCase();
-    const cls = t.startsWith("war:") ? "war"
-      : (t.includes("dissolved") || t.includes("annexed") || t.includes("peace") ||
-         t.includes("capitulates") || t.includes("revolution")) ? "big" : "";
-    return `<div class="item ${cls}"><span class="d">${e.date}</span> ${e.text}</div>`;
-  }).join("");
+const CATS = [
+  ["all", "All", "#8a97a8"], ["war", "War", "#e05c5c"], ["politics", "Politics", "#a07ce0"],
+  ["diplomacy", "Diplomacy", "#4cc7e0"], ["economy", "Economy", "#5cc98a"],
+  ["other", "Other", "#5b6b80"], ["mine", "You", "#e0a44c"],
+];
 
-  $("#right").innerHTML =
-    (S.wars.length ? `<div class="card"><h3>Wars</h3>${wars}</div>` : "") +
-    `<div class="card feed"><h3>Dispatches</h3>${feed || '<div class="muted">Quiet, so far.</div>'}</div>`;
+function logMatches(e) {
+  if (ui.logCat === "mine") { if (!S.player || !e.tags.includes(S.player)) return false; }
+  else if (ui.logCat !== "all" && e.cat !== ui.logCat) return false;
+  if (ui.logQuery && !e.text.toLowerCase().includes(ui.logQuery)) return false;
+  return true;
+}
+
+function renderLog() {
+  const cats = $("#logCats");
+  if (!cats.dataset.built) {
+    $("#logSearch").oninput = (e) => { ui.logQuery = e.target.value.trim().toLowerCase(); renderLog(); };
+    cats.dataset.built = "1";
+  }
+  // Only offer a filter the world has actually produced — the sim writes no
+  // headline for some categories until something happens to cause one.
+  const present = new Set(S.log.map((e) => e.cat));
+  cats.innerHTML = CATS.filter(([k]) => k === "all" || (k === "mine" ? !!S.player : present.has(k)))
+    .map(([k, label, col]) =>
+      `<span class="chip${k === ui.logCat ? " on" : ""}" data-cat="${k}">
+         <i class="sw" style="background:${col}"></i>${label}</span>`).join("");
+  cats.querySelectorAll(".chip").forEach((c) => {
+    c.onclick = () => { ui.logCat = c.dataset.cat; renderLog(); };
+  });
+
+  const shown = S.log.filter(logMatches);
+  $("#logCount").textContent = `· ${shown.length} of ${S.log.length}`;
+  $("#logList").innerHTML = shown.length
+    ? shown.slice(0, 500).map((e) => logItem(e)).join("") +
+      (shown.length > 500 ? `<div class="tiny" style="padding:8px 0">…${shown.length - 500} older dispatches</div>` : "")
+    : `<div class="muted" style="padding:8px 0">Nothing matches.</div>`;
+  $("#logList").querySelectorAll("[data-open]").forEach((el) => {
+    el.onclick = () => openNation(el.dataset.open);
+  });
+}
+
+function logItem(e) {
+  const mine = S.player && e.tags.includes(S.player) ? " mine" : "";
+  const open = e.tags.length ? ` data-open="${e.tags[0]}"` : "";
+  return `<div class="item ${e.cat}${mine}${e.tags.length ? " hit" : ""}"${open}>
+      <span class="d">${e.date}</span> ${e.text}</div>`;
 }
 
 /* ================= map ================= */
@@ -435,18 +856,53 @@ function relColor(r) {
   return "#e05c5c";
 }
 
-function anchorOf(id) {
-  if (LABEL_AT[id]) return LABEL_AT[id];
-  const codes = TERRITORY[id] || [];
-  for (const c of codes) {
-    if (WORLD.centroids[c]) return WORLD.centroids[c];
-  }
-  return null;
+/// Linear blend between two hex colours; the map ramps are built from these.
+function mix(a, b, t) {
+  t = clamp(t, 0, 1);
+  const p = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const [ar, ag, ab] = p(a), [br, bg, bb] = p(b);
+  const c = (x, y) => Math.round(x + (y - x) * t).toString(16).padStart(2, "0");
+  return "#" + c(ar, br) + c(ag, bg) + c(ab, bb);
+}
+
+const MAP_MODES = {
+  relations: {
+    label: "Relations",
+    color: (n, m) => (m && n.id === m.id ? "#e0a44c" : relColor(n.relation)),
+    legend: [["#4c8ee0", "ally"], ["#7d8798", "neutral"], ["#e05c5c", "hostile"], ["#e0a44c", "you"]],
+  },
+  stability: {
+    label: "Stability",
+    color: (n) => (n.stability < 50
+      ? mix("#e05c5c", "#e0a44c", n.stability / 50)
+      : mix("#e0a44c", "#5cc98a", (n.stability - 50) / 50)),
+    legend: [["#e05c5c", "0"], ["#e0a44c", "50"], ["#5cc98a", "100"]],
+  },
+  growth: {
+    label: "Growth",
+    color: (n) => (n.growth < 0
+      ? mix("#e05c5c", "#5b6b80", clamp(n.growth / -0.04 + 1, 0, 1))
+      : mix("#5b6b80", "#5cc98a", clamp(n.growth / 0.06, 0, 1))),
+    legend: [["#e05c5c", "−4%"], ["#5b6b80", "0"], ["#5cc98a", "+6%"]],
+  },
+  economy: {
+    label: "Economy",
+    color: (n) => mix("#1d3a5c", "#4cc7e0", Math.log10(Math.max(n.gdp, 10) / 10) / 3),
+    legend: [["#1d3a5c", "$10bn"], ["#4cc7e0", "$10tn"]],
+  },
+};
+
+function cycleMapMode() {
+  const ks = Object.keys(MAP_MODES);
+  ui.mapMode = ks[(ks.indexOf(ui.mapMode) + 1) % ks.length];
+  showTab("map");
+  renderMap();
 }
 
 function renderMap() {
   const W = WORLD.w, H = WORLD.h;
   const m = me();
+  const mode = MAP_MODES[ui.mapMode];
   // Every code held by a living sim nation, so the rest can be drawn as scenery.
   const claimed = {};
   S.nations.forEach((n) => (TERRITORY[n.id] || []).forEach((c) => (claimed[c] = n)));
@@ -481,16 +937,17 @@ function renderMap() {
   s += `<g filter="url(#landshade)">
       <path d="${scenery}" fill="#243141" stroke="#33445a" stroke-width=".4" fill-rule="evenodd"/></g>`;
 
-  // 2. the powers, coloured by how they regard you
+  // 2. the powers, shaded by whichever reading of the world is selected
   S.nations.forEach((n) => {
     const codes = (TERRITORY[n.id] || []).filter((c) => WORLD.countries[c]);
     if (!codes.length) return;
     const isMe = m && n.id === m.id;
-    const col = isMe ? "#e0a44c" : relColor(n.relation);
+    const col = mode.color(n, m);
+    const on = n.id === selected;
     const d = codes.map((c) => WORLD.countries[c]).join("");
     s += `<g class="nodeg" data-id="${n.id}">
-        <path d="${d}" fill="${col}" fill-opacity="${isMe ? .5 : .32}"
-              stroke="${col}" stroke-width="${isMe ? 1.4 : .8}" fill-rule="evenodd"/>
+        <path d="${d}" fill="${col}" fill-opacity="${isMe ? .5 : on ? .55 : .32}"
+              stroke="${on ? "#ffffff" : col}" stroke-width="${on ? 1.8 : isMe ? 1.4 : .8}" fill-rule="evenodd"/>
       </g>`;
   });
 
@@ -526,161 +983,527 @@ function renderMap() {
         <text x="${p[0]}" y="${p[1]}" text-anchor="middle" font-size="11" filter="url(#halo)"
           fill="${isMe ? "#ffd89a" : "#dbe3ee"}" font-weight="${isMe ? 700 : 400}">${n.name}${marks ? " " + marks : ""}</text>
         <text x="${p[0]}" y="${p[1] + 12}" text-anchor="middle" font-size="10" filter="url(#halo)"
-          fill="#9fb0c4">${fmt.money(n.gdp)}</text>
+          fill="#9fb0c4">${mapSub(n)}</text>
       </g>`;
   });
   s += `</svg>`;
 
   s += `<div class="legend">
-      <span><i style="background:#4c8ee0"></i>ally</span>
-      <span><i style="background:#7d8798"></i>neutral</span>
-      <span><i style="background:#e05c5c"></i>hostile</span>
-      <span><i style="background:#e0a44c"></i>you</span>
+      ${mode.legend.map(([c, l]) => `<span><i style="background:${c}"></i>${l}</span>`).join("")}
       <span>☢ nuclear</span><span>⊘ sanctioned</span>
+      <span style="color:#55637a">click a nation for its dossier · C to change shading</span>
     </div>`;
 
   $("#pane-map").innerHTML = s;
-  document.querySelectorAll(".nodeg").forEach((g) => {
-    g.onclick = () => showDetail(g.dataset.id);
+  document.querySelectorAll("#pane-map .nodeg").forEach((g) => {
+    g.onclick = () => openNation(g.dataset.id);
+  });
+
+  $("#mapModes").innerHTML = `<span class="chips">` + Object.entries(MAP_MODES).map(([k, v]) =>
+    `<span class="chip${k === ui.mapMode ? " on amber" : ""}" data-mode="${k}">${v.label}</span>`).join("") + `</span>`;
+  $("#mapModes").querySelectorAll("[data-mode]").forEach((c) => {
+    c.onclick = () => { ui.mapMode = c.dataset.mode; renderMap(); };
   });
 }
 
-/* ================= detail ================= */
+/// The second line under a map label follows the shading, so the map answers the
+/// question it is currently being asked.
+function mapSub(n) {
+  switch (ui.mapMode) {
+    case "stability": return n.stability.toFixed(0) + "/100";
+    case "growth": return fmt.signed(n.growth);
+    default: return fmt.money(n.gdp);
+  }
+}
 
-function showDetail(id) {
-  const n = S.nations.find((x) => x.id === id);
-  const m = me();
-  if (!n) { closeDetail(); return; }
+function anchorOf(id) {
+  if (LABEL_AT[id]) return LABEL_AT[id];
+  const codes = TERRITORY[id] || [];
+  for (const c of codes) {
+    if (WORLD.centroids[c]) return WORLD.centroids[c];
+  }
+  return null;
+}
+
+/* ================= charts =================
+   Hand-rolled SVG. A series is {name, color, t0, vals}: t0 is the index of the
+   snapshot its first value belongs to, so a nation that dies simply stops.      */
+
+const CHARTS = {};
+let chartSeq = 0;
+const PALETTE = ["#4cc7e0", "#5cc98a", "#c07ce0", "#e05c5c", "#8aa0e0", "#e0c84c", "#e08a4c"];
+
+function niceStep(range, n) {
+  const raw = range / n;
+  if (!(raw > 0)) return 1;
+  const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const k = raw / mag;
+  return (k <= 1 ? 1 : k <= 2 ? 2 : k <= 5 ? 5 : 10) * mag;
+}
+
+function labelAt(i) {
+  if (HIST && HIST.labels[i]) return HIST.labels[i];
+  return "";
+}
+
+function chart(cfg) {
+  const N = HIST ? HIST.t.length : 0;
+  const ser = (cfg.series || []).filter((s) => s && s.vals && s.vals.length);
+  if (N < 2 || !ser.length) return `<div class="muted">Advance time to build a history.</div>`;
+
+  const id = "ch" + (++chartSeq);
+  const W = 960, H = cfg.h || 250;
+  const PADL = 64, PADR = cfg.padr === undefined ? 108 : cfg.padr, PADT = 12, PADB = 24;
+  let lo = Infinity, hi = -Infinity;
+  ser.forEach((s) => s.vals.forEach((v) => { if (v < lo) lo = v; if (v > hi) hi = v; }));
+  if (cfg.base0) lo = Math.min(lo, 0);
+  if (cfg.zeroLine) { lo = Math.min(lo, 0); hi = Math.max(hi, 0); }
+  if (hi === lo) { hi = lo + Math.abs(lo || 1) * 0.1 + 1; }
+  const span = hi - lo;
+  lo -= span * 0.06; hi += span * 0.06;
+  if (cfg.base0 && lo > 0) lo = 0;
+  if (cfg.clampLo !== undefined) lo = Math.max(lo, cfg.clampLo);
+
+  const PW = W - PADL - PADR, PH = H - PADT - PADB;
+  const X = (i) => PADL + (i / (N - 1)) * PW;
+  const Y = (v) => PADT + PH - ((v - lo) / (hi - lo)) * PH;
+  const f = cfg.fmtY || ((v) => v.toFixed(1));
+
+  let s = `<svg viewBox="0 0 ${W} ${H}" data-chart="${id}">`;
+  // horizontal grid
+  const step = niceStep(hi - lo, 4);
+  for (let v = Math.ceil(lo / step) * step; v <= hi + 1e-9; v += step) {
+    const zero = Math.abs(v) < step * 1e-6;
+    s += `<line x1="${PADL}" y1="${Y(v).toFixed(1)}" x2="${W - PADR}" y2="${Y(v).toFixed(1)}"
+            stroke="${zero ? "#3a4759" : "#1c2634"}"/>
+          <text x="${PADL - 8}" y="${(Y(v) + 4).toFixed(1)}" text-anchor="end" font-size="10"
+            fill="#6b788a">${f(v)}</text>`;
+  }
+  // year ticks
+  const ticks = Math.min(8, Math.max(2, Math.floor(N / 24) + 1));
+  for (let k = 0; k <= ticks; k++) {
+    const i = Math.round((k / ticks) * (N - 1));
+    s += `<line x1="${X(i).toFixed(1)}" y1="${PADT}" x2="${X(i).toFixed(1)}" y2="${PADT + PH}" stroke="#161f2c"/>
+          <text x="${X(i).toFixed(1)}" y="${H - 7}" text-anchor="middle" font-size="10"
+            fill="#6b788a">${(labelAt(i).split(" ")[1] || "")}</text>`;
+  }
+  // event marks along the axis
+  (cfg.marks || []).forEach((mk) => {
+    s += `<rect x="${(X(mk.i) - 1).toFixed(1)}" y="${PADT + PH - 4}" width="2" height="8"
+            fill="${mk.color}" opacity=".85"><title>${mk.title}</title></rect>`;
+  });
+  // series
+  ser.forEach((se) => {
+    let d = "";
+    se.vals.forEach((v, k) => { d += (k ? "L" : "M") + X(se.t0 + k).toFixed(1) + " " + Y(v).toFixed(1) + " "; });
+    s += `<path d="${d}" fill="none" stroke="${se.color}" stroke-width="${se.width || 1.8}"
+            stroke-linejoin="round" ${se.dash ? `stroke-dasharray="${se.dash}"` : ""}/>`;
+  });
+  // right-hand labels, pushed apart so they never overprint
+  if (PADR > 20) {
+    const tips = ser.map((se, k) => ({
+      k, y: Y(se.vals[se.vals.length - 1]), name: se.name, color: se.color,
+    })).sort((a, b) => a.y - b.y);
+    for (let k = 1; k < tips.length; k++) {
+      if (tips[k].y - tips[k - 1].y < 12) tips[k].y = tips[k - 1].y + 12;
+    }
+    tips.forEach((t) => {
+      s += `<text x="${W - PADR + 8}" y="${(t.y + 3.5).toFixed(1)}" font-size="11" fill="${t.color}">${t.name}</text>`;
+    });
+  }
+  // hover furniture
+  s += `<line class="cur" x1="0" y1="${PADT}" x2="0" y2="${PADT + PH}" stroke="#5c6b80" stroke-dasharray="3 3" opacity="0"/>`;
+  ser.forEach((se, k) => {
+    s += `<circle class="dot" data-k="${k}" r="3" fill="${se.color}" opacity="0"/>`;
+  });
+  s += `<rect class="hit" x="${PADL}" y="${PADT}" width="${PW}" height="${PH}" fill="transparent"/>`;
+  s += `</svg>`;
+
+  CHARTS[id] = { N, W, PADL, PADR, PADT, PADB, PW, PH, lo, hi, ser, fmt: cfg.fmtHover || f };
+  return `<div class="chartbox"><div class="readout" id="ro-${id}">${cfg.hint || ""}</div>${s}</div>`;
+}
+
+function wireCharts(root) {
+  (root || document).querySelectorAll("svg[data-chart]").forEach((svg) => {
+    const c = CHARTS[svg.dataset.chart];
+    if (!c) return;
+    const ro = document.getElementById("ro-" + svg.dataset.chart);
+    const cur = svg.querySelector(".cur");
+    const dots = [...svg.querySelectorAll(".dot")];
+    const base = ro ? ro.textContent : "";
+    const move = (e) => {
+      const r = svg.getBoundingClientRect();
+      const vx = ((e.clientX - r.left) / r.width) * c.W;
+      const i = clamp(Math.round(((vx - c.PADL) / c.PW) * (c.N - 1)), 0, c.N - 1);
+      const x = c.PADL + (i / (c.N - 1)) * c.PW;
+      cur.setAttribute("x1", x); cur.setAttribute("x2", x);
+      cur.setAttribute("opacity", ".7");
+      const parts = [];
+      c.ser.forEach((se, k) => {
+        const j = i - se.t0;
+        const dot = dots[k];
+        if (j >= 0 && j < se.vals.length) {
+          const v = se.vals[j];
+          const y = c.PADT + c.PH - ((v - c.lo) / (c.hi - c.lo)) * c.PH;
+          dot.setAttribute("cx", x); dot.setAttribute("cy", y); dot.setAttribute("opacity", "1");
+          parts.push(`<span style="color:${se.color}">${se.name} ${c.fmt(v)}</span>`);
+        } else {
+          dot.setAttribute("opacity", "0");
+        }
+      });
+      if (ro) ro.innerHTML = `<b>${labelAt(i)}</b>` + (parts.length ? " · " + parts.join(" · ") : "");
+    };
+    svg.addEventListener("mousemove", move);
+    svg.addEventListener("mouseleave", () => {
+      cur.setAttribute("opacity", "0");
+      dots.forEach((d) => d.setAttribute("opacity", "0"));
+      if (ro) ro.textContent = base;
+    });
+  });
+}
+
+function seriesFor(id, metric, opts) {
+  const h = HIST && HIST.nations[id];
+  if (!h || !h[metric] || !h[metric].length) return null;
+  let vals = h[metric];
+  if (opts && opts.indexed) {
+    const b = vals[0] || 1;
+    vals = vals.map((v) => (v / b) * 100);
+  }
+  const n = nationById(id);
+  return {
+    name: (n && n.name) || h.name || id,
+    color: id === S.player ? "#e0a44c" : (opts && opts.color) || "#4cc7e0",
+    width: id === S.player ? 2.6 : 1.8,
+    t0: h.t0, vals,
+  };
+}
+
+const METRICS = {
+  gdp: { label: "GDP", fmtY: (v) => (v >= 1000 ? (v / 1000).toFixed(1) + "tn" : v.toFixed(0) + "bn"),
+         fmtH: (v) => fmt.money(v), base0: true },
+  growth: { label: "Growth", fmtY: (v) => (v * 100).toFixed(1) + "%", fmtH: (v) => fmt.signed(v), zeroLine: true },
+  inflation: { label: "Inflation", fmtY: (v) => (v * 100).toFixed(1) + "%", fmtH: (v) => fmt.pct(v), zeroLine: true },
+  debt: { label: "Debt / GDP", fmtY: (v) => (v * 100).toFixed(0) + "%", fmtH: (v) => fmt.pct(v, 0), base0: true },
+  stability: { label: "Stability", fmtY: (v) => v.toFixed(0), fmtH: (v) => v.toFixed(0) + "/100", base0: true },
+  mil: { label: "Military", fmtY: (v) => v.toFixed(0), fmtH: (v) => v.toFixed(0), base0: true },
+};
+
+function defaultPicks() {
+  if (!S) return [];
+  const top = [...S.nations].sort((a, b) => b.gdp - a.gdp).slice(0, 5).map((n) => n.id);
+  if (S.player && !top.includes(S.player)) top.push(S.player);
+  return top;
+}
+
+/// Ticks under the axis for the events worth remembering — a chart of the
+/// nineties should show you where the wars were.
+function marksFor(ids) {
+  if (!HIST) return [];
+  const t0 = HIST.t[0];
+  const want = new Set(ids || []);
+  return S.log.filter((e) => (e.cat === "war" || e.cat === "politics") &&
+      (!ids || e.tags.some((t) => want.has(t))))
+    .map((e) => ({
+      i: clamp(e.t - t0, 0, HIST.t.length - 1),
+      color: e.cat === "war" ? "#e05c5c" : "#a07ce0",
+      title: e.date + " — " + e.text,
+    })).slice(0, 400);
+}
+
+function renderCharts() {
+  const box = $("#pane-charts");
+  if (!HIST || HIST.t.length < 2) {
+    box.innerHTML = `<div class="muted">Advance time to build a history.</div>`;
+    return;
+  }
+  const met = METRICS[ui.metric];
+  const ids = ui.picked.filter((id) => HIST.nations[id]);
+  const series = ids.map((id, i) =>
+    seriesFor(id, ui.metric, { color: PALETTE[i % PALETTE.length], indexed: ui.indexed && ui.metric === "gdp" })
+  ).filter(Boolean);
+
+  const indexed = ui.indexed && ui.metric === "gdp";
+  const main = chart({
+    series, h: 300,
+    fmtY: indexed ? (v) => v.toFixed(0) : met.fmtY,
+    fmtHover: indexed ? (v) => v.toFixed(0) : met.fmtH,
+    base0: met.base0, zeroLine: met.zeroLine,
+    marks: marksFor(ids),
+    hint: `hover for a reading · ticks on the axis are wars and upheavals`,
+  });
+
+  const oil = chart({
+    series: [{ name: "Oil", color: "#e0a44c", t0: 0, vals: HIST.oil }],
+    h: 170, base0: true, padr: 60,
+    fmtY: (v) => "$" + v.toFixed(0), fmtHover: (v) => "$" + v.toFixed(1) + "/bbl",
+    hint: "world price, $/bbl",
+  });
+
+  const all = [...S.nations].sort((a, b) => b.gdp - a.gdp);
+  const gone = S.dead.filter((d) => HIST.nations[d.id]);
+
+  box.innerHTML = `
+    <div class="card">
+      <h3>Metric</h3>
+      <div class="chips">${Object.entries(METRICS).map(([k, v]) =>
+        `<span class="chip${k === ui.metric ? " on" : ""}" data-metric="${k}">${v.label}</span>`).join("")}
+        ${ui.metric === "gdp"
+          ? `<span class="chip${ui.indexed ? " on amber" : ""}" data-index="1">Index = 100</span>` : ""}
+      </div>
+      <h3 style="margin-top:12px">Nations</h3>
+      <div class="chips">${[...all, ...gone].map((n) =>
+        `<span class="chip${ui.picked.includes(n.id) ? " on" : ""}" data-pick="${n.id}">${n.name}</span>`).join("")}
+      </div>
+    </div>
+    <div class="card"><h3>${met.label}${indexed ? " — indexed to the first month" : ""}</h3>${main}</div>
+    <div class="card"><h3>Oil price</h3>${oil}</div>`;
+
+  box.querySelectorAll("[data-metric]").forEach((c) => {
+    c.onclick = () => { ui.metric = c.dataset.metric; renderCharts(); };
+  });
+  box.querySelectorAll("[data-index]").forEach((c) => {
+    c.onclick = () => { ui.indexed = !ui.indexed; renderCharts(); };
+  });
+  box.querySelectorAll("[data-pick]").forEach((c) => {
+    c.onclick = () => {
+      const id = c.dataset.pick;
+      ui.picked = ui.picked.includes(id) ? ui.picked.filter((x) => x !== id) : [...ui.picked, id];
+      renderCharts();
+    };
+  });
+  wireCharts(box);
+}
+
+/* ================= league table ================= */
+
+const COLS = [
+  ["name", "NATION", (n) => n.name, "left"],
+  ["gdp", "GDP", (n) => fmt.money(n.gdp)],
+  ["gdp_pc", "GDP/PC", (n) => "$" + n.gdp_pc.toFixed(0)],
+  ["growth", "GROWTH", (n) => `<span class="${n.growth >= 0 ? "up" : "down"}">${fmt.signed(n.growth)}</span>`],
+  ["inflation", "INFL", (n) => fmt.pct(n.inflation)],
+  ["debt", "DEBT", (n) => fmt.pct(n.debt, 0)],
+  ["stability", "STAB", (n) => n.stability.toFixed(0)],
+  ["mil_strength", "MIL", (n) => n.mil_strength.toFixed(0) + (n.nuclear ? " ☢" : "")],
+  ["relation", "REL", (n) => (n.relation === null || n.relation === undefined ? "—" : n.relation.toFixed(0))],
+];
+
+function renderTable() {
+  const rows = [...S.nations].sort((a, b) => {
+    const k = ui.sortKey;
+    const av = k === "name" ? a.name : a[k], bv = k === "name" ? b.name : b[k];
+    if (typeof av === "string") return ui.sortDir * av.localeCompare(bv);
+    return ui.sortDir * (((av === null || av === undefined) ? -1e9 : av) -
+                         ((bv === null || bv === undefined) ? -1e9 : bv));
+  }).map((n) => `
+    <tr data-id="${n.id}" style="cursor:pointer;${n.id === S.player ? "color:var(--amber)" : ""}">
+      ${COLS.map(([, , f, align]) =>
+        `<td style="text-align:${align || "right"};padding:2px 6px">${f(n)}</td>`).join("")}
+    </tr>`).join("");
+  const dead = S.dead.length
+    ? `<div class="muted" style="margin-top:10px">Gone: ${S.dead.map((d) => d.name).join(", ")}</div>` : "";
+  $("#pane-table").innerHTML = `<div class="card">
+      <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+        <tr style="color:var(--dim);font-size:10px;letter-spacing:.1em">
+          ${COLS.map(([k, label, , align]) =>
+            `<th data-sort="${k}" style="text-align:${align || "right"};padding:2px 6px;cursor:pointer">${
+              label}${ui.sortKey === k ? (ui.sortDir < 0 ? " ▾" : " ▴") : ""}</th>`).join("")}
+        </tr>
+        ${rows}
+      </table>${dead}
+      <div class="tiny" style="margin-top:8px">click a heading to sort · click a row for the dossier</div></div>`;
+  $("#pane-table").querySelectorAll("[data-sort]").forEach((th) => {
+    th.onclick = () => {
+      if (ui.sortKey === th.dataset.sort) ui.sortDir *= -1;
+      else { ui.sortKey = th.dataset.sort; ui.sortDir = th.dataset.sort === "name" ? 1 : -1; }
+      renderTable();
+    };
+  });
+  $("#pane-table").querySelectorAll("tr[data-id]").forEach((tr) => {
+    tr.onclick = () => openNation(tr.dataset.id);
+  });
+}
+
+/* ================= nation dashboard ================= */
+
+function openNation(id, keepScroll) {
+  const n = nationById(id);
+  const sheet = $("#sheet");
+  if (!n) {
+    // A dead nation still has a history worth reading.
+    const d = S.dead.find((x) => x.id === id);
+    if (!d) { closeSheet(); return; }
+    selected = id;
+    sheet.innerHTML = deadSheet(d);
+    openSheetEl(keepScroll);
+    return;
+  }
   selected = id;
+  const m = me();
   const isMe = m && n.id === m.id;
-  const rel = n.relation;
-  const d = $("#detail");
-  d.style.display = "block";
-  d.innerHTML = `<div class="card">
-      <span class="close" onclick="closeDetail()">&times;</span>
-      <h3>${n.name}</h3>
-      ${statRow("GDP", fmt.money(n.gdp))}
-      ${statRow("Growth", fmt.signed(n.growth), n.growth >= 0 ? "up" : "down")}
-      ${statRow("GDP / person", "$" + n.gdp_pc.toFixed(0))}
-      ${statRow("Inflation", fmt.pct(n.inflation))}
-      ${statRow("Stability", n.stability.toFixed(0) + "/100")}
-      ${statRow("Military", n.mil_strength.toFixed(0) + (n.nuclear ? " ☢" : ""))}
-      ${n.oil_mbd > 0 ? statRow("Oil", n.oil_mbd.toFixed(1) + " mbd" +
-          (n.export_share < 0.99 ? ` (${fmt.pct(n.export_share, 0)} shipping)` : "")) : ""}
-      ${!isMe ? statRow("Relations", (rel >= 0 ? "+" : "") + rel.toFixed(0),
-          rel >= 20 ? "up" : rel < -20 ? "down" : "") : ""}
-      ${n.sanctioning_me ? `<div class="muted">Sanctioning you.</div>` : ""}
-      ${isMe ? "" : `<div class="actions">
+  const scroll = sheet.scrollTop;
+
+  const rels = [...(n.relations || [])].sort((a, b) => b.value - a.value);
+  const wars = S.wars.filter((w) => w.attacker_id === id || w.defender_id === id ||
+    w.attacker_allies.includes(n.name) || w.defender_allies.includes(n.name));
+  const news = S.log.filter((e) => e.tags.includes(id));
+
+  const h = HIST && HIST.nations[id];
+  const charts = h ? `
+    <div class="chartgrid">
+      <div class="card"><h3>GDP</h3>${chart({
+        series: [seriesFor(id, "gdp")], h: 180, base0: true, padr: 24,
+        fmtY: METRICS.gdp.fmtY, fmtHover: METRICS.gdp.fmtH, marks: marksFor([id]) })}</div>
+      <div class="card"><h3>Growth &amp; inflation</h3>${chart({
+        series: [
+          { ...seriesFor(id, "growth"), name: "growth", color: "#5cc98a" },
+          { ...seriesFor(id, "inflation"), name: "inflation", color: "#e05c5c" },
+        ], h: 180, zeroLine: true, padr: 70,
+        fmtY: (v) => (v * 100).toFixed(0) + "%", fmtHover: (v) => fmt.signed(v) })}</div>
+      <div class="card"><h3>Debt &amp; stability</h3>${chart({
+        series: [
+          { ...seriesFor(id, "debt"), name: "debt/GDP", color: "#e0a44c", vals: HIST.nations[id].debt.map((v) => v * 100) },
+          { ...seriesFor(id, "stability"), name: "stability", color: "#4cc7e0" },
+        ], h: 180, base0: true, padr: 72,
+        fmtY: (v) => v.toFixed(0), fmtHover: (v) => v.toFixed(0) })}</div>
+      <div class="card"><h3>Military strength</h3>${chart({
+        series: [{ ...seriesFor(id, "mil"), color: "#a07ce0" }], h: 180, base0: true, padr: 24,
+        fmtY: (v) => v.toFixed(0), fmtHover: (v) => v.toFixed(0), marks: marksFor([id]) })}</div>
+    </div>` : `<div class="muted">No recorded history yet.</div>`;
+
+  sheet.innerHTML = `
+    <div class="head">
+      <h2 style="color:${isMe ? "var(--amber)" : "var(--ink)"}">${n.name}</h2>
+      <span class="tagline">${describe(n)}</span>
+      <span class="spacer"></span>
+      ${isMe ? "" : `<span class="actions">
         <button onclick="act('improve','${n.name}')">Improve relations</button>
         ${n.sanctioned_by_me
           ? `<button onclick="act('lift','${n.name}')">Lift sanctions</button>`
           : `<button onclick="act('sanction','${n.name}')">Sanction</button>`}
         <button class="danger" onclick="declareWar('${n.name}')">Declare war</button>
-      </div>`}
+      </span>`}
+      <span class="close" onclick="closeSheet()">&times;</span>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="statgrid">
+        ${statRow("GDP", fmt.money(n.gdp))}
+        ${statRow("GDP / person", "$" + n.gdp_pc.toFixed(0))}
+        ${statRow("Population", n.population.toFixed(0) + "m")}
+        ${statRow("Growth", fmt.signed(n.growth), n.growth >= 0 ? "up" : "down")}
+        ${statRow("Inflation", fmt.pct(n.inflation))}
+        ${statRow("Interest rate", fmt.pct(n.rate))}
+        ${statRow("Tax take", fmt.pct(n.tax, 0))}
+        ${statRow("Military spend", fmt.pct(n.mil_spend, 1) + " of GDP")}
+        ${statRow("State investment", fmt.pct(n.state_invest, 1) + " of GDP")}
+        ${statRow("Debt", fmt.pct(n.debt, 0) + " of GDP", n.debt > 0.9 ? "down" : "")}
+        ${statRow("Stability", n.stability.toFixed(0) + "/100")}
+        ${statRow("Separatism", fmt.pct(n.separatism, 0), n.separatism > 0.4 ? "down" : "")}
+        ${statRow("Military", n.mil_strength.toFixed(0) + (n.nuclear ? " ☢" : ""))}
+        ${statRow("War exhaustion", fmt.pct(n.war_exhaustion, 0), n.war_exhaustion > 0.4 ? "down" : "")}
+        ${n.oil_mbd > 0 ? statRow("Oil", n.oil_mbd.toFixed(1) + " mbd") : ""}
+        ${n.oil_mbd > 0 ? statRow("Shipping", fmt.pct(n.export_share, 0), n.export_share < 0.9 ? "down" : "") : ""}
+        ${statRow("Sanctioned by", n.sanctioned_by_count + " nations", n.sanctioned_by_count ? "down" : "")}
+        ${isMe ? "" : statRow("Regards you", (n.relation >= 0 ? "+" : "") + (n.relation || 0).toFixed(0),
+            n.relation >= 20 ? "up" : n.relation < -20 ? "down" : "")}
+      </div>
+    </div>
+
+    ${charts}
+
+    <div class="cols2">
+      <div class="card"><h3>Standing in the world</h3>
+        ${rels.map((r) => `<div class="relrow" data-id="${r.id}">
+            <span class="nm">${r.name}${r.sanctioning ? " ⊘" : ""}${r.sanctioned_by ? " ⊗" : ""}</span>
+            <span class="num" style="color:${relColor(r.value)}">${r.value >= 0 ? "+" : ""}${r.value.toFixed(0)}</span>
+            <span class="relbar"><span class="z"></span>
+              <i style="background:${relColor(r.value)};${r.value >= 0
+                ? `left:50%;width:${(r.value / 100) * 50}%`
+                : `right:50%;width:${(-r.value / 100) * 50}%`}"></i></span>
+          </div>`).join("")}
+        <div class="tiny" style="margin-top:6px">⊘ sanctions them · ⊗ sanctioned by them</div>
+      </div>
+      <div class="card"><h3>Wars</h3>
+        ${wars.length ? wars.map((w) => `<div class="warcard">
+            <div><b>${w.attacker}</b> vs <b>${w.defender}</b> <span class="tiny">since ${w.start}</span></div>
+            <div class="progbar"><div class="mid"></div>
+              <div class="fill" style="${w.progress >= 0
+                ? `left:50%;width:${((w.progress + 100) / 200 - 0.5) * 100}%`
+                : `right:50%;width:${(0.5 - (w.progress + 100) / 200) * 100}%`}"></div></div>
+          </div>`).join("") : `<div class="muted">At peace.</div>`}
+        <h3 style="margin-top:14px">Its history <span>· ${news.length} dispatches</span></h3>
+        <div class="loglines feed">${news.length
+          ? news.map((e) => logItem(e)).join("")
+          : `<div class="muted">Nothing has been written about it yet.</div>`}</div>
+      </div>
     </div>`;
+
+  openSheetEl(keepScroll, scroll);
+  sheet.querySelectorAll(".relrow[data-id]").forEach((r) => {
+    r.onclick = () => openNation(r.dataset.id);
+  });
 }
-function closeDetail() { selected = null; $("#detail").style.display = "none"; }
-window.closeDetail = closeDetail;
+window.openNation = openNation;
+
+function deadSheet(d) {
+  const h = HIST && HIST.nations[d.id];
+  const news = S.log.filter((e) => e.tags.includes(d.id));
+  return `<div class="head"><h2>${d.name}</h2>
+      <span class="tagline">no longer exists</span><span class="spacer"></span>
+      <span class="close" onclick="closeSheet()">&times;</span></div>
+    ${h ? `<div class="card" style="margin-top:12px"><h3>GDP, to the end</h3>${chart({
+        series: [{ name: d.name, color: "#8a97a8", t0: h.t0, vals: h.gdp }],
+        h: 200, base0: true, padr: 24, fmtY: METRICS.gdp.fmtY, fmtHover: METRICS.gdp.fmtH,
+        marks: marksFor([d.id]) })}</div>` : ""}
+    <div class="card feed"><h3>Its history <span>· ${news.length} dispatches</span></h3>
+      <div class="loglines">${news.map((e) => logItem(e)).join("") || `<div class="muted">Nothing.</div>`}</div></div>`;
+}
+
+function openSheetEl(keepScroll, scroll) {
+  const sheet = $("#sheet");
+  sheet.style.display = "block";
+  $("#sheetbg").style.display = "block";
+  if (keepScroll && scroll) sheet.scrollTop = scroll;
+  else if (!keepScroll) sheet.scrollTop = 0;
+  wireCharts(sheet);
+}
+
+function closeSheet() {
+  selected = null;
+  $("#sheet").style.display = "none";
+  $("#sheetbg").style.display = "none";
+  if (S) renderMap();
+}
+window.closeSheet = closeSheet;
+$("#sheetbg").onclick = closeSheet;
+
+/// A one-line character sketch, so the dossier opens with a sentence rather than
+/// a wall of numbers.
+function describe(n) {
+  const bits = [];
+  bits.push(n.command_economy ? "command economy" : "market economy");
+  bits.push(n.authoritarianism > 0.6 ? "authoritarian" : n.authoritarianism < 0.35 ? "democratic" : "semi-free");
+  if (n.nuclear) bits.push("nuclear armed");
+  if (n.at_war) bits.push("at war");
+  if (n.oil_mbd > 0.5) bits.push(n.oil_mbd.toFixed(1) + " mbd of oil");
+  if (n.sanctioned_by_count > 0) bits.push("sanctioned by " + n.sanctioned_by_count);
+  return bits.join(" · ");
+}
 
 window.act = async function (kind, target) {
   const r = await api("/api/command", { commands: [{ kind, target }] });
   if (r.errors && r.errors.length) banner(r.errors[0]);
-  S = r;
-  render();
+  await adopt(r, false);
 };
 
 window.declareWar = async function (target) {
   if (!confirm("Declare war on " + target + "?\n\nThis will bring sanctions, and may bring their friends.")) return;
   const r = await api("/api/command", { commands: [{ kind: "war", target }] });
   if (r.errors && r.errors.length) banner(r.errors[0]);
-  S = r;
-  render();
+  await adopt(r, false);
 };
-
-/* ================= charts ================= */
-
-function lineChart(series, opts) {
-  const W = 900, H = 300, PADL = 60, PADB = 28, PADT = 14, PADR = 90;
-  const all = series.flatMap((s) => s.pts.map((p) => p[1]));
-  if (!all.length) return "<div class='muted'>No history yet — advance time.</div>";
-  const maxY = Math.max(...all) * 1.08;
-  const xs = series[0].pts.map((p) => p[0]);
-  const minX = Math.min(...xs), maxX = Math.max(...xs);
-  const X = (v) => PADL + ((v - minX) / Math.max(1, maxX - minX)) * (W - PADL - PADR);
-  const Y = (v) => H - PADB - (v / maxY) * (H - PADB - PADT);
-  let s = `<svg viewBox="0 0 ${W} ${H}">`;
-  for (let i = 0; i <= 4; i++) {
-    const v = (maxY / 4) * i;
-    s += `<line x1="${PADL}" y1="${Y(v)}" x2="${W - PADR}" y2="${Y(v)}" stroke="#1c2634"/>
-          <text x="${PADL - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="10" fill="#6b788a">${opts.fmt(v)}</text>`;
-  }
-  [minX, Math.round((minX + maxX) / 2), maxX].forEach((t) => {
-    s += `<text x="${X(t)}" y="${H - 8}" text-anchor="middle" font-size="10" fill="#6b788a">${t}</text>`;
-  });
-  series.forEach((ser) => {
-    const dpath = ser.pts.map((p, i) => (i ? "L" : "M") + X(p[0]) + " " + Y(p[1])).join(" ");
-    s += `<path d="${dpath}" fill="none" stroke="${ser.color}" stroke-width="${ser.width || 2}"/>`;
-    const last = ser.pts[ser.pts.length - 1];
-    s += `<text x="${X(last[0]) + 6}" y="${Y(last[1]) + 4}" font-size="11" fill="${ser.color}">${ser.name}</text>`;
-  });
-  s += `</svg>`;
-  return s;
-}
-
-const PALETTE = ["#4cc7e0", "#e0a44c", "#5cc98a", "#c07ce0", "#e05c5c", "#8aa0e0", "#e0c84c"];
-
-function renderCharts() {
-  const H = S.history;
-  if (H.length < 2) { $("#pane-charts").innerHTML = "<div class='muted'>Advance time to build a history.</div>"; return; }
-  const last = H[H.length - 1].gdp;
-  const top = Object.entries(last).sort((a, b) => b[1] - a[1]).slice(0, 6).map((e) => e[0]);
-  const mine = S.player;
-  if (mine && !top.includes(mine)) top.push(mine);
-  const series = top.map((id, i) => ({
-    name: (S.nations.find((n) => n.id === id) || { name: id }).name,
-    color: id === mine ? "#e0a44c" : PALETTE[i % PALETTE.length],
-    width: id === mine ? 3 : 2,
-    pts: H.filter((h) => h.gdp[id] !== undefined).map((h) => [h.year, h.gdp[id]]),
-  })).filter((s) => s.pts.length > 1);
-
-  const oil = [{ name: "Oil $/bbl", color: "#e0a44c", pts: H.map((h) => [h.year, h.oil]) }];
-  $("#pane-charts").innerHTML =
-    `<div class="card"><h3>Economies (GDP $bn)</h3>${lineChart(series, { fmt: (v) => (v / 1000).toFixed(1) + "tn" })}</div>
-     <div class="card"><h3>Oil price</h3>${lineChart(oil, { fmt: (v) => "$" + v.toFixed(0) })}</div>`;
-}
-
-function renderTable() {
-  const rows = [...S.nations].sort((a, b) => b.gdp - a.gdp).map((n) => `
-    <tr style="${n.id === S.player ? "color:var(--amber)" : ""}">
-      <td>${n.name}</td>
-      <td style="text-align:right">${fmt.money(n.gdp)}</td>
-      <td style="text-align:right" class="${n.growth >= 0 ? "up" : "down"}">${fmt.signed(n.growth)}</td>
-      <td style="text-align:right">${fmt.pct(n.inflation)}</td>
-      <td style="text-align:right">${fmt.pct(n.debt, 0)}</td>
-      <td style="text-align:right">${n.stability.toFixed(0)}</td>
-      <td style="text-align:right">${n.mil_strength.toFixed(0)}${n.nuclear ? " ☢" : ""}</td>
-    </tr>`).join("");
-  const dead = S.dead.length
-    ? `<div class="muted" style="margin-top:10px">Gone: ${S.dead.map((d) => d.name).join(", ")}</div>` : "";
-  $("#pane-table").innerHTML = `<div class="card">
-      <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
-        <tr style="color:var(--dim);font-size:11px;letter-spacing:.1em">
-          <th style="text-align:left">NATION</th><th style="text-align:right">GDP</th>
-          <th style="text-align:right">GROWTH</th><th style="text-align:right">INFL</th>
-          <th style="text-align:right">DEBT</th><th style="text-align:right">STAB</th>
-          <th style="text-align:right">MIL</th></tr>
-        ${rows}
-      </table>${dead}</div>`;
-}
-
-document.querySelectorAll(".tab").forEach((t) => {
-  t.onclick = () => {
-    document.querySelectorAll(".tab").forEach((x) => x.classList.remove("on"));
-    document.querySelectorAll(".pane").forEach((x) => x.classList.remove("on"));
-    t.classList.add("on");
-    $("#pane-" + t.dataset.pane).classList.add("on");
-  };
-});
 
 buildSetup();
 </script>

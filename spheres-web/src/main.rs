@@ -14,16 +14,45 @@ const INDEX: &str = include_str!("../ui/index.html");
 /// Baked country outlines — see `src/bin/mapgen.rs`.
 const WORLD_JS: &str = include_str!("../ui/world.js");
 
-/// A year-end snapshot, kept so the UI can draw history rather than a single frame.
-struct Snapshot {
-    year: i32,
-    gdp: Vec<(NationId, f64)>,
-    oil: f64,
+/// The six per-nation numbers the UI plots. Recorded every month so a decade of
+/// stagnation reads as a shape rather than a pair of endpoints.
+#[derive(Clone, Copy)]
+struct Row {
+    gdp: f64,
+    growth: f64,
+    inflation: f64,
+    debt: f64,
+    stability: f64,
+    mil: f64,
 }
+
+/// The world as it stood at the start of one month.
+struct Snapshot {
+    t: u32, // months since Jan 1990
+    year: i32,
+    month: u32,
+    oil: f64,
+    rows: Vec<(NationId, Row)>,
+}
+
+/// A headline plus the handles the UI filters on: when it happened, what kind of
+/// event it was, and who it was about.
+struct Event {
+    t: u32,
+    date: String,
+    text: String,
+    cat: &'static str,
+    tags: Vec<NationId>,
+}
+
+/// Sixty years of monthly history is 720 rows; the caps are there so a player who
+/// runs the clock for centuries cannot make the server eat the machine.
+const MAX_HISTORY: usize = 3000;
+const MAX_LOG: usize = 4000;
 
 struct Game {
     world: WorldState,
-    log: Vec<(String, String)>, // (date, headline)
+    log: Vec<Event>,
     history: Vec<Snapshot>,
 }
 
@@ -39,17 +68,48 @@ impl Game {
     }
 
     fn snapshot(&mut self) {
+        let w = &self.world;
         self.history.push(Snapshot {
-            year: self.world.year,
-            gdp: self
-                .world
+            t: month_index(w.year, w.month),
+            year: w.year,
+            month: w.month,
+            oil: w.oil_price,
+            rows: w
                 .nations
                 .iter()
                 .filter(|n| n.alive)
-                .map(|n| (n.id, n.gdp))
+                .map(|n| {
+                    (
+                        n.id,
+                        Row {
+                            gdp: n.gdp,
+                            growth: n.growth_last,
+                            inflation: n.inflation,
+                            debt: n.debt_gdp,
+                            stability: n.stability,
+                            mil: n.mil_strength,
+                        },
+                    )
+                })
                 .collect(),
-            oil: self.world.oil_price,
         });
+        if self.history.len() > MAX_HISTORY {
+            self.history.remove(0);
+        }
+    }
+
+    fn record(&mut self, text: String) {
+        let w = &self.world;
+        self.log.push(Event {
+            t: month_index(w.year, w.month),
+            date: w.date_str(),
+            cat: classify(&text),
+            tags: mentioned(&text),
+            text,
+        });
+        if self.log.len() > MAX_LOG {
+            self.log.remove(0);
+        }
     }
 
     /// Advance up to `months`, stopping early on an event worth reacting to.
@@ -58,15 +118,11 @@ impl Game {
         let mut queued = commands;
         for i in 0..months {
             let cmds = std::mem::take(&mut queued);
-            let year_before = self.world.year;
             let headlines = tick_month(&mut self.world, &cmds);
-            let date = self.world.date_str();
             for h in &headlines {
-                self.log.push((date.clone(), h.clone()));
+                self.record(h.clone());
             }
-            if self.world.year != year_before {
-                self.snapshot();
-            }
+            self.snapshot();
             if let Some(me) = self.world.player {
                 if !self.world.nation(me).alive {
                     return (true, Some(format!("{} no longer exists.", me.name())));
@@ -80,6 +136,64 @@ impl Game {
         }
         (false, None)
     }
+}
+
+fn month_index(year: i32, month: u32) -> u32 {
+    (((year - 1990) * 12) + month as i32 - 1).max(0) as u32
+}
+
+const MONTH_NAMES: [&str; 12] = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+];
+
+fn month_name(month: u32, year: i32) -> String {
+    format!("{} {}", MONTH_NAMES[(month.clamp(1, 12) - 1) as usize], year)
+}
+
+/// Bucket a headline for the event log's filters. Order matters: a nuclear test
+/// that "the world condemns" is politics, not diplomacy.
+fn classify(h: &str) -> &'static str {
+    let t = h.to_lowercase();
+    let war = t.starts_with("war:")
+        || t.contains("invades")
+        || t.contains("joins the war")
+        || t.contains("capitulates")
+        || t.contains("annexed")
+        || t.contains("sues for peace")
+        || t.contains("peace terms")
+        || t.contains("white peace")
+        || t.contains("repels");
+    let politics = t.contains("dissolved")
+        || t.contains("revolution")
+        || t.contains("nuclear test")
+        || t.contains("republics")
+        || t.contains("regime");
+    let diplomacy = t.contains("sanction") || t.contains("diplomatic hand");
+    let economy = t.contains("oil") || t.contains("inflation") || t.contains("recession");
+    if war {
+        "war"
+    } else if politics {
+        "politics"
+    } else if diplomacy {
+        "diplomacy"
+    } else if economy {
+        "economy"
+    } else {
+        "other"
+    }
+}
+
+/// Which nations a headline is about. The sim writes headlines with `id.name()`,
+/// so a substring match on the full names is exact rather than a guess.
+fn mentioned(h: &str) -> Vec<NationId> {
+    let hay = h.to_lowercase(); // dissolution headlines shout in capitals
+    let mut out = vec![];
+    for id in ALL_START_NATIONS.iter().chain(SUCCESSOR_NATIONS.iter()) {
+        if hay.contains(&id.name().to_lowercase()) && !out.contains(id) {
+            out.push(*id);
+        }
+    }
+    out
 }
 
 fn is_major(headline: &str, me: Option<NationId>) -> bool {
@@ -109,6 +223,10 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "tax": n.tax_rate,
         "mil_spend": n.mil_spend_gdp,
         "state_invest": n.state_invest_gdp,
+        // The UI's policy readout reproduces the growth arithmetic, and cannot do
+        // it without the two terms the player never sets directly.
+        "priv_invest": n.priv_invest_gdp,
+        "tfp": n.tfp_trend,
         "debt": n.debt_gdp,
         "stability": n.stability,
         "separatism": n.separatism,
@@ -124,7 +242,110 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "sanctioning_me": me.map_or(false, |m| w.is_sanctioning(n.id, m)),
         "sanctioned_by_count": w.sanctioned_by_count(n.id),
         "export_share": if n.oil_mbd > 0.0 { w.oil_export_share(n.id) } else { 1.0 },
+        // Every standing it holds, not just the one with the player — the detail
+        // view is a dossier on that nation, not on your relationship with it.
+        "relations": w
+            .nations
+            .iter()
+            .filter(|o| o.alive && o.id != n.id)
+            .map(|o| serde_json::json!({
+                "id": format!("{:?}", o.id),
+                "name": o.id.name(),
+                "value": w.relation(n.id, o.id),
+                "sanctioning": w.is_sanctioning(n.id, o.id),
+                "sanctioned_by": w.is_sanctioning(o.id, n.id),
+            }))
+            .collect::<Vec<_>>(),
     })
+}
+
+fn round(v: f64, places: i32) -> f64 {
+    if !v.is_finite() {
+        return 0.0;
+    }
+    let m = 10f64.powi(places);
+    (v * m).round() / m
+}
+
+/// The recorded time series, column-major. One nation's arrays start at `t0`
+/// (successor states appear late) and simply stop when it dies, so a dead power's
+/// line ends rather than running flat to the end of the game.
+fn history_json(g: &Game, only: Option<NationId>) -> serde_json::Value {
+    let mut order: Vec<NationId> = vec![];
+    for s in &g.history {
+        for (id, _) in &s.rows {
+            if !order.contains(id) {
+                order.push(*id);
+            }
+        }
+    }
+    if let Some(one) = only {
+        order.retain(|id| *id == one);
+    }
+
+    let mut nations = serde_json::Map::new();
+    for id in &order {
+        let mut t0: Option<usize> = None;
+        let mut gap = 0usize;
+        let mut last: Option<Row> = None;
+        let (mut gdp, mut growth, mut infl, mut debt, mut stab, mut mil) =
+            (vec![], vec![], vec![], vec![], vec![], vec![]);
+        let mut push = |r: Row| {
+            gdp.push(round(r.gdp, 2));
+            growth.push(round(r.growth, 5));
+            infl.push(round(r.inflation, 5));
+            debt.push(round(r.debt, 4));
+            stab.push(round(r.stability, 2));
+            mil.push(round(r.mil, 2));
+        };
+        for (i, s) in g.history.iter().enumerate() {
+            match s.rows.iter().find(|(x, _)| x == id).map(|(_, r)| *r) {
+                Some(r) => {
+                    if t0.is_none() {
+                        t0 = Some(i);
+                    }
+                    for _ in 0..std::mem::take(&mut gap) {
+                        if let Some(p) = last {
+                            push(p);
+                        }
+                    }
+                    push(r);
+                    last = Some(r);
+                }
+                None => {
+                    if t0.is_some() {
+                        gap += 1;
+                    }
+                }
+            }
+        }
+        if let Some(t0) = t0 {
+            nations.insert(
+                format!("{:?}", id),
+                serde_json::json!({
+                    "name": id.name(),
+                    "t0": t0,
+                    "gdp": gdp, "growth": growth, "inflation": infl,
+                    "debt": debt, "stability": stab, "mil": mil,
+                }),
+            );
+        }
+    }
+
+    serde_json::json!({
+        "t": g.history.iter().map(|s| s.t).collect::<Vec<_>>(),
+        "labels": g.history.iter().map(|s| s.date_label()).collect::<Vec<_>>(),
+        "oil": g.history.iter().map(|s| round(s.oil, 2)).collect::<Vec<_>>(),
+        "metrics": ["gdp", "growth", "inflation", "debt", "stability", "mil"],
+        "order": order.iter().map(|id| format!("{:?}", id)).collect::<Vec<_>>(),
+        "nations": nations,
+    })
+}
+
+impl Snapshot {
+    fn date_label(&self) -> String {
+        month_name(self.month, self.year)
+    }
 }
 
 fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
@@ -153,34 +374,32 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
                 "progress": war.progress,
                 "attacker_allies": war.attacker_allies.iter().map(|a| a.name()).collect::<Vec<_>>(),
                 "defender_allies": war.defender_allies.iter().map(|a| a.name()).collect::<Vec<_>>(),
-                "start": format!("{} {}", war.start_month, war.start_year),
+                "start": month_name(war.start_month, war.start_year),
             })
         })
         .collect();
-    let history: Vec<serde_json::Value> = g
-        .history
-        .iter()
-        .map(|s| {
-            serde_json::json!({
-                "year": s.year,
-                "oil": s.oil,
-                "gdp": s.gdp.iter().map(|(id, v)| (format!("{:?}", id), *v)).collect::<std::collections::BTreeMap<_, _>>(),
-            })
-        })
-        .collect();
-    // Most recent first, capped — the UI shows a feed, not an archive.
+    // Newest first, and the whole archive — the event log is meant to be scrolled
+    // back through, not just glanced at.
     let log: Vec<serde_json::Value> = g
         .log
         .iter()
         .rev()
-        .take(300)
-        .map(|(d, h)| serde_json::json!({ "date": d, "text": h }))
+        .map(|e| {
+            serde_json::json!({
+                "date": e.date,
+                "t": e.t,
+                "text": e.text,
+                "cat": e.cat,
+                "tags": e.tags.iter().map(|id| format!("{:?}", id)).collect::<Vec<_>>(),
+            })
+        })
         .collect();
 
     serde_json::json!({
         "date": w.date_str(),
         "year": w.year,
         "month": w.month,
+        "t": month_index(w.year, w.month),
         "player": w.player.map(|p| format!("{:?}", p)),
         "player_name": w.player.map(|p| p.name()),
         "oil_price": w.oil_price,
@@ -188,7 +407,6 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "dead": dead,
         "wars": wars,
         "log": log,
-        "history": history,
         "flags": w.flags,
         "interrupt": interrupt,
     })
@@ -283,6 +501,14 @@ fn main() {
                 let g = game.lock().unwrap();
                 json_response(state_json(&g, None))
             }
+            (Method::Get, "/api/history") => {
+                let only = request
+                    .url()
+                    .split_once("nation=")
+                    .and_then(|(_, q)| NationId::parse(q.split('&').next().unwrap_or("")));
+                let g = game.lock().unwrap();
+                json_response(history_json(&g, only))
+            }
             (Method::Post, "/api/new") => {
                 let seed = payload.get("seed").and_then(|s| s.as_u64()).unwrap_or(1990);
                 let player = payload
@@ -326,6 +552,9 @@ fn main() {
                     }
                 };
                 let mut errors: Vec<String> = vec![];
+                // The tick's own headlines are still sitting in the world and are
+                // already in the log; only what these commands add is news.
+                let before = g.world.headlines.len();
                 if let Some(list) = payload.get("commands").and_then(|c| c.as_array()) {
                     for v in list {
                         if let Some(cmd) = parse_command(v, me) {
@@ -335,10 +564,9 @@ fn main() {
                         }
                     }
                 }
-                let date = g.world.date_str();
-                let fresh: Vec<String> = g.world.headlines.clone();
+                let fresh: Vec<String> = g.world.headlines[before..].to_vec();
                 for h in fresh {
-                    g.log.push((date.clone(), h));
+                    g.record(h);
                 }
                 let mut out = state_json(&g, None);
                 out["errors"] = serde_json::json!(errors);
@@ -375,4 +603,89 @@ fn open_browser(url: &str) {
     let _ = std::process::Command::new("open").arg(url).spawn();
     #[cfg(all(unix, not(target_os = "macos")))]
     let _ = std::process::Command::new("xdg-open").arg(url).spawn();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn headlines_land_in_the_right_bucket() {
+        assert_eq!(classify("WAR: Iraq invades Kuwait!"), "war");
+        assert_eq!(classify("Kuwait repels Iraq's invasion — the aggressor's regime totters."), "war");
+        assert_eq!(classify("THE SOVIET UNION HAS DISSOLVED. Russia emerges as successor state."), "politics");
+        assert_eq!(classify("Revolution in Poland — the old regime falls."), "politics");
+        assert_eq!(classify("India conducts nuclear tests. The world condemns; deterrence descends on the subcontinent."), "politics");
+        assert_eq!(classify("United States imposes sanctions on Iraq."), "diplomacy");
+        assert_eq!(classify("Sanctions on Iraq are lifted."), "diplomacy");
+    }
+
+    #[test]
+    fn headlines_name_the_nations_they_are_about() {
+        assert_eq!(mentioned("WAR: Iraq invades Kuwait!"), vec![NationId::Iraq, NationId::Kuwait]);
+        // Dissolution headlines shout, and the tag must survive the capitals.
+        assert_eq!(
+            mentioned("THE SOVIET UNION HAS DISSOLVED. Russia emerges as successor state."),
+            vec![NationId::USSR, NationId::Russia]
+        );
+        assert!(mentioned("Oil steadies.").is_empty());
+    }
+
+    #[test]
+    fn month_index_counts_from_january_1990() {
+        assert_eq!(month_index(1990, 1), 0);
+        assert_eq!(month_index(1990, 12), 11);
+        assert_eq!(month_index(1991, 1), 12);
+    }
+
+    /// A power that dies must leave a line that ends, not one that runs flat to
+    /// the end of the game, and a successor must start where it appeared.
+    #[test]
+    fn the_series_ends_when_a_nation_does() {
+        let mut g = Game::new(1990, None);
+        for _ in 0..360 {
+            let hs = tick_month(&mut g.world, &[]);
+            for h in hs {
+                g.record(h);
+            }
+            g.snapshot();
+        }
+        let h = history_json(&g, None);
+        let n = h["nations"].as_object().unwrap();
+        let months = h["t"].as_array().unwrap().len();
+        assert_eq!(months, 361, "one row per month plus the opening snapshot");
+
+        let ussr = &n["USSR"];
+        let ussr_end = ussr["t0"].as_u64().unwrap() as usize + ussr["gdp"].as_array().unwrap().len();
+        assert!(ussr_end < months, "the USSR's line should stop when it does");
+
+        let russia = &n["Russia"];
+        assert_eq!(
+            russia["t0"].as_u64().unwrap() as usize,
+            ussr_end,
+            "Russia picks up the month the Union ends"
+        );
+        for id in n.keys() {
+            let s = &n[id];
+            let len = s["gdp"].as_array().unwrap().len();
+            for m in ["growth", "inflation", "debt", "stability", "mil"] {
+                assert_eq!(s[m].as_array().unwrap().len(), len, "{} {} misaligned", id, m);
+            }
+            assert!(s["t0"].as_u64().unwrap() as usize + len <= months);
+        }
+    }
+
+    #[test]
+    fn one_nation_can_be_asked_for_alone() {
+        let mut g = Game::new(1990, None);
+        for _ in 0..24 {
+            tick_month(&mut g.world, &[]);
+            g.snapshot();
+        }
+        let h = history_json(&g, Some(NationId::Japan));
+        let n = h["nations"].as_object().unwrap();
+        assert_eq!(n.len(), 1);
+        assert!(n.contains_key("Japan"));
+        assert_eq!(h["oil"].as_array().unwrap().len(), 25);
+    }
 }
