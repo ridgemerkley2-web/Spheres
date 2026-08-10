@@ -535,9 +535,13 @@ fn saturate(x: f64, cap: f64) -> f64 {
 /// kept sorted, which keeps saves compact and comparisons total.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Default)]
 pub struct TechState {
-    /// Sorted ascending, no duplicates.
+    /// Sorted ascending, no duplicates. Held as registry indices for speed, but
+    /// written to disk as stable ids — see `known_serde`.
+    #[serde(with = "known_serde")]
     pub known: Vec<u16>,
-    /// One project per domain, or none if nothing is eligible.
+    /// One project per domain, or none if nothing is eligible. Also written by
+    /// id, so a resumed save carries on researching the same thing.
+    #[serde(with = "focus_serde")]
     pub focus: Vec<Option<u16>>,
     /// Research points banked against the current project in each domain.
     pub progress: Vec<f64>,
@@ -548,9 +552,57 @@ pub struct TechState {
     /// How much of the accumulated oil-yield bonus has been worked into the
     /// wells so far. Recovery arrives gradually and cannot be undone.
     pub oil_yield_applied: f64,
+    /// Rebuilt from `known` every tick, so the totals can never drift away from
+    /// the technologies that justify them. Still written to disk because
+    /// `economy::tick` reads it before `tech::tick` gets a chance to rebuild,
+    /// so a freshly loaded save must arrive with it already correct.
     pub bonus: TechBonuses,
     /// False on a save written before this module existed, or on a default.
     pub initialized: bool,
+}
+
+// The registry is a concatenation of eight independently-authored files, so a
+// technology's index moves whenever any earlier domain gains an entry. Indices
+// are therefore a runtime detail and never touch the disk: saves carry the
+// stable ids from `TechDef::id`, and an id this build no longer knows is
+// dropped rather than silently reinterpreted as its neighbour.
+
+mod known_serde {
+    use super::*;
+    use serde::{Deserialize, Deserializer, Serialize, Serializer};
+
+    pub fn serialize<S: Serializer>(v: &[u16], s: S) -> Result<S::Ok, S::Error> {
+        let reg = registry();
+        let ids: Vec<&str> = v.iter().filter_map(|i| reg.get(*i as usize).map(|d| d.id)).collect();
+        ids.serialize(s)
+    }
+
+    pub fn deserialize<'de, D: Deserializer<'de>>(d: D) -> Result<Vec<u16>, D::Error> {
+        let ids = Vec::<String>::deserialize(d)?;
+        let mut out: Vec<u16> = ids.iter().filter_map(|id| index_of(id)).collect();
+        out.sort_unstable();
+        out.dedup();
+        Ok(out)
+    }
+}
+
+mod focus_serde {
+    use super::*;
+    use serde::{Deserialize, Deserializer, Serialize, Serializer};
+
+    pub fn serialize<S: Serializer>(v: &[Option<u16>], s: S) -> Result<S::Ok, S::Error> {
+        let reg = registry();
+        let ids: Vec<Option<&str>> = v
+            .iter()
+            .map(|o| o.and_then(|i| reg.get(i as usize).map(|d| d.id)))
+            .collect();
+        ids.serialize(s)
+    }
+
+    pub fn deserialize<'de, D: Deserializer<'de>>(d: D) -> Result<Vec<Option<u16>>, D::Error> {
+        let ids = Vec::<Option<String>>::deserialize(d)?;
+        Ok(ids.iter().map(|o| o.as_deref().and_then(index_of)).collect())
+    }
 }
 
 impl TechState {
@@ -600,11 +652,30 @@ impl TechState {
         self.known.iter().map(|i| reg[*i as usize].name).collect()
     }
 
+    /// Recompute the running totals from scratch. Cheap, and it makes the
+    /// bonuses a pure function of what the nation knows — a save that loses or
+    /// drops a technology loses its effect too, rather than keeping a total
+    /// nothing accounts for.
+    fn rebuild_bonus(&mut self) {
+        let reg = registry();
+        let mut fresh = TechBonuses::default();
+        fresh.cost_reduction.resize(DOMAIN_COUNT, 0.0);
+        for i in &self.known {
+            if let Some(def) = reg.get(*i as usize) {
+                for e in &def.effects {
+                    fresh.absorb(e);
+                }
+            }
+        }
+        self.bonus = fresh;
+    }
+
     fn ensure_shape(&mut self, tfp_now: f64) {
         if !self.initialized {
             self.tfp_base = tfp_now;
             self.initialized = true;
         }
+        self.rebuild_bonus();
         if self.focus.len() != DOMAIN_COUNT {
             self.focus.resize(DOMAIN_COUNT, None);
         }

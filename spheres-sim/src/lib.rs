@@ -126,6 +126,38 @@ mod tests {
     }
 
     #[test]
+    fn saves_name_technologies_rather_than_numbering_them() {
+        // The registry is eight independently-authored files concatenated, so
+        // adding one technology renumbers every later one. A save that stored
+        // indices would silently reinterpret on the next build — a nation that
+        // knew one thing would wake up knowing another, with nothing to detect
+        // it. Saves must therefore carry ids, and an id this build cannot
+        // resolve must be dropped rather than mapped onto its neighbour.
+        let mut w = world_1990(GameRules::default());
+        run_months(&mut w, 240);
+        let text = save(&w);
+
+        // Whatever anyone knows, it is written down by name.
+        let known_by_number = text.contains("\"known\": [\n          0")
+            || text.contains("\"known\": [0");
+        assert!(!known_by_number, "save is storing raw registry indices");
+
+        // An id from a build that had a technology this one does not must be
+        // dropped, leaving a world that still loads and still runs.
+        const GHOST: &str = "xx_technology_from_a_later_build";
+        let doctored = if text.contains("\"known\": []") {
+            text.replace("\"known\": []", &format!("\"known\": [\"{}\"]", GHOST))
+        } else {
+            text.replace("\"known\": [\n", &format!("\"known\": [\n          \"{}\",\n", GHOST))
+        };
+        let mut reloaded = load(&doctored).expect("a save with an unknown tech id must still load");
+        run_months(&mut reloaded, 12);
+        for n in reloaded.nations.iter().filter(|n| n.alive) {
+            assert!(n.gdp.is_finite() && n.gdp > 0.0, "{:?} broke after reload", n.id);
+        }
+    }
+
+    #[test]
     fn different_seeds_diverge() {
         // The other half of determinism, and the one that catches a seed being
         // silently ignored: identical rules but a different seed must produce a
