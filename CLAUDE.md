@@ -5,8 +5,13 @@ history emerges from mechanics (no scripted events except proliferation dates).
 
 **SPEC.md is the authoritative statement of what this game is** — vision,
 pillars, architecture, and every system's intended design. Read it before
-proposing anything structural. This file is how to work; SPEC.md is what to
-build; ROADMAP.md is what is built and what is next.
+proposing anything structural.
+
+- **SPEC.md** — what the game is.
+- **PLAN.md** — the whole sequence from here to 1.0, ordered by what it costs to
+  defer each piece. Start here when choosing what to work on next.
+- **ROADMAP.md** — what is built, what is broken, what is immediately next.
+- **CLAUDE.md** (this file) — how to work.
 
 Two pillars from SPEC.md, and where each now stands:
 - **Two spend-currencies spine the game: economic output and political
