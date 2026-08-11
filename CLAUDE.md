@@ -7,7 +7,10 @@ history emerges from mechanics (no scripted events except proliferation dates).
 pillars, architecture, and every system's intended design. Read it before
 proposing anything structural.
 
-- **SPEC.md** — what the game is.
+- **BIBLE.md** — what the game IS and refuses to be, and how to decide when
+  those conflict. The target is a better version of HOI4 Millennium Dawn.
+  Read it first; it outranks everything below when they disagree.
+- **SPEC.md** — the technical design.
 - **PLAN.md** — the whole sequence from here to 1.0, ordered by what it costs to
   defer each piece. Start here when choosing what to work on next.
 - **ROADMAP.md** — what is built, what is broken, what is immediately next.
