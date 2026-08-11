@@ -27,10 +27,16 @@ pub fn tick(w: &mut WorldState) {
         // the same at that point, worth progressively less above it.
         let intensity = (invest / 0.20).max(0.0).powf(0.55) * 0.20;
         let invest_effect = intensity * (0.030 + 0.080 * (1.0 - dev));
-        // Convergence used to be a flat bonus for being poor, added here on top
-        // of a technology system that already models diffusion — the same effect
-        // counted twice. It now arrives through `tfp_trend`, out of the distance
-        // between what a nation knows and what the frontier knows.
+        // Income convergence: capital deepening and the reallocation of labour
+        // out of subsistence, which is most of what makes a poor country grow
+        // fast. This is *not* the technological diffusion the tech tree models,
+        // and the two are not one effect counted twice — that was the argument
+        // for deleting this line, and it was wrong. Diffusion governs what it
+        // costs to acquire a technology; this governs what happens when a
+        // country moves its people from a field to a factory. A nation can hold
+        // most of the frontier's technologies and still be ten times poorer per
+        // head, which is the gap this closes and the tree does not. Deleting it
+        // collapsed emerging growth, and it is staying.
         let catchup = (1.0 - dev) * 0.020;
         // Growth accounting: output growth is productivity, plus capital's
         // contribution, plus labour's share of the change in the workforce. A
