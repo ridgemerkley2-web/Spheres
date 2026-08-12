@@ -37,8 +37,9 @@ pub enum NationId {
     India, Pakistan, Iraq, Kuwait, SaudiArabia, Iran, SouthKorea, Poland,
     Brazil, Indonesia, Egypt, Israel, Turkey, Nigeria, Vietnam,
     Yugoslavia, Serbia, Croatia, Slovenia, Bosnia,
+    Czechoslovakia, Hungary, Romania, Bulgaria, Albania, EastGermany,
 }
-pub const ALL_START_NATIONS: [NationId; 24] = [
+pub const ALL_START_NATIONS: [NationId; 30] = [
     NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
     NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
     NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
@@ -46,6 +47,8 @@ pub const ALL_START_NATIONS: [NationId; 24] = [
     NationId::Brazil, NationId::Indonesia, NationId::Egypt, NationId::Israel,
     NationId::Turkey, NationId::Nigeria, NationId::Vietnam,
     NationId::Yugoslavia,
+    NationId::Czechoslovakia, NationId::Hungary, NationId::Romania,
+    NationId::Bulgaria, NationId::Albania, NationId::EastGermany,
 ];
 /// States that only exist if a federation comes apart.
 pub const SUCCESSOR_NATIONS: [NationId; 6] = [
@@ -86,6 +89,12 @@ impl NationId {
             NationId::Croatia => "Croatia",
             NationId::Slovenia => "Slovenia",
             NationId::Bosnia => "Bosnia",
+            NationId::Czechoslovakia => "Czechoslovakia",
+            NationId::Hungary => "Hungary",
+            NationId::Romania => "Romania",
+            NationId::Bulgaria => "Bulgaria",
+            NationId::Albania => "Albania",
+            NationId::EastGermany => "East Germany",
         }
     }
     pub fn parse(s: &str) -> Option<NationId> {
@@ -121,6 +130,12 @@ impl NationId {
             "croatia" => NationId::Croatia,
             "slovenia" => NationId::Slovenia,
             "bosnia" | "bosnia and herzegovina" | "bih" => NationId::Bosnia,
+            "czechoslovakia" | "csfr" | "cssr" | "csk" => NationId::Czechoslovakia,
+            "hungary" | "hun" | "magyarorszag" => NationId::Hungary,
+            "romania" | "rou" | "rom" => NationId::Romania,
+            "bulgaria" | "bgr" | "bul" => NationId::Bulgaria,
+            "albania" | "alb" | "shqiperia" => NationId::Albania,
+            "east germany" | "gdr" | "ddr" => NationId::EastGermany,
             _ => return None,
         })
     }
@@ -137,8 +152,10 @@ pub const ALL_NATION_IDS: [NationId; NATION_COUNT] = [
     NationId::Egypt, NationId::Israel, NationId::Turkey, NationId::Nigeria,
     NationId::Vietnam, NationId::Yugoslavia, NationId::Serbia, NationId::Croatia,
     NationId::Slovenia, NationId::Bosnia,
+    NationId::Czechoslovakia, NationId::Hungary, NationId::Romania,
+    NationId::Bulgaria, NationId::Albania, NationId::EastGermany,
 ];
-pub const NATION_COUNT: usize = 30;
+pub const NATION_COUNT: usize = 36;
 
 /// Symmetric relations, held as a dense lower triangle so a lookup is an index
 /// rather than a search.

@@ -1,0 +1,41 @@
+{
+  "id": "Albania",
+  "name": "Albania",
+  "system": "Command",
+  "authoritarianism": 0.88,
+  "economy": {
+    "gdp_bn": 2.2,
+    "population_m": 3.28,
+    "tfp_trend": -0.01,
+    "inflation": 0.02,
+    "interest_rate": 0.04,
+    "tax_rate": 0.45,
+    "mil_spend_gdp": 0.07,
+    "state_invest_gdp": 0.25,
+    "priv_invest_gdp": 0.0,
+    "debt_gdp": 0.02,
+    "oil_mbd": 0.015,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 50.0,
+    "separatism": 0.08
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $2.2bn: the World Bank's Albania series begins at about $2.1bn for 1990, converted at an official lek rate that no transaction used, in an economy that published no national accounts on any international standard and had refused IMF and World Bank membership until 1991. This is the least reliable figure in this region and is entered as an order of magnitude. Population 3.28m at the 1989 census (INSTAT), the highest birth rate in Europe.",
+    "Inflation 2.0%: nominal only. Every retail price in Albania was administered and most had not moved in years; the 1990 official print is effectively zero and describes the price list, not the economy. The repressed inflation behind it surfaced as soon as controls went: 35.5% in 1991 and 226% in 1992. Entered near zero because that is what the January 1990 state actually was, with the caveat recorded here rather than hidden in the number.",
+    "Interest rate 4%: the administered savings rate at the State Bank of Albania, which was simultaneously the central bank, the only commercial bank and the treasury. There was no monetary policy.",
+    "priv_invest_gdp 0.0: transcribed, not rounded. Article 11 of the 1976 constitution forbade private property in the means of production, and Albania was the only European state in 1990 with no legal private sector at all — no private plots, no artisan cooperatives, no restaurants. Private activity was legalised only in 1991.",
+    "debt_gdp 0.02: also constitutional. Article 28 of the 1976 constitution prohibited the state from accepting foreign credits or investment. Albania entered 1990 with no meaningful external debt and no way to acquire any.",
+    "mil_spend_gdp 0.07: no audited figure exists. Albania maintained roughly 40,000 regulars plus a universal militia against a doctrine of defence against everyone, and built on the order of 170,000 concrete bunkers between 1967 and 1986 at a cost repeatedly estimated at several percent of national income a year. 7% is an estimate on the low side of the published range and is flagged as such.",
+    "oil_mbd 0.015: Albanian crude output was roughly 0.8-1.0 million tonnes a year in 1990, about 0.016-0.020 mbd, from the Patos-Marinza heavy oil field, the largest onshore field in continental Europe. Refining capacity at Ballsh and Fier was in poor repair.",
+    "authoritarianism 0.88: in January 1990 Albania is the last orthodox Stalinist state in Europe. Ramiz Alia had succeeded Hoxha in 1985 and changed almost nothing; religion had been constitutionally abolished since 1967; the Sigurimi ran an internal-exile system. Opposition parties were legalised only on 11 December 1990 and the first multi-party election was held on 31 March 1991. The regime therefore holds no election the model should fire in the start state.",
+    "stability 50.0: the regime still holds when the game opens, but only just. The Shkoder and Kavaje protests came in January 1990, roughly 5,000 Albanians stormed foreign embassies in Tirana in July 1990, and the Vlore boat exodus followed in early 1991.",
+    "separatism 0.08: the Greek minority of the south, roughly 60,000 by the official count and several times that by the Greek one, organised as Omonia from January 1990 and won a seat in 1991. Albania's other national question, the roughly two million Albanians in Kosovo, is irredentism directed outward and is not carried by this field.",
+    "military strength 3.0: about 40,000 regulars with equipment of Chinese and 1950s Soviet origin, no functioning air defence and no ally since the 1978 break with Beijing. Indexed just above Kuwait's 2.0."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "Romania",
+  "name": "Romania",
+  "system": "Command",
+  "authoritarianism": 0.42,
+  "economy": {
+    "gdp_bn": 38.3,
+    "population_m": 23.2,
+    "tfp_trend": -0.006,
+    "inflation": 0.051,
+    "interest_rate": 0.03,
+    "tax_rate": 0.4,
+    "mil_spend_gdp": 0.035,
+    "state_invest_gdp": 0.2,
+    "priv_invest_gdp": 0.02,
+    "debt_gdp": 0.03,
+    "oil_mbd": 0.16,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 40.0,
+    "separatism": 0.18
+  },
+  "military": {
+    "strength": 8.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $38.3bn and population 23.2m in 1990 (World Bank, current USD; INS gives 23.21m at 1 January 1990). The dollar figure rests on the pre-liberalisation official leu rate and should be read as indicative.",
+    "Inflation 5.1%: the official 1990 CPI. Romanian prices were still administered for most of the year; the first liberalisation step came on 1 November 1990 and the true shock landed in 1991 at about 170%. The 5.1% print therefore measures the price controls, not the monetary overhang behind them, and the overhang is real — queues, rationing of bread, sugar, eggs and petrol until early 1990.",
+    "Interest rate 3%: administered. There was no monetary policy to speak of; the National Bank of Romania was split from the commercial banking system only in December 1990.",
+    "debt_gdp 0.03: the single most distinctive figure in this file and a hard historical fact. Ceausescu ordered the entire hard-currency foreign debt repaid, and the last instalment cleared in March 1989 — about $11bn extinguished in eight years by exporting food and refusing imports, at the cost of the rationing and the unheated winters that produced December 1989. Romania opens the game with essentially no external debt and no domestic public debt market either.",
+    "oil_mbd 0.16: crude output was about 7.9 million tonnes in 1990, roughly 0.158 mbd, down from a 1976 peak near 15 million tonnes. Romania was the oldest oil province in Europe and by 1990 a net importer, running refineries at Ploiesti and Midia built for four times the crude the country could still lift.",
+    "mil_spend_gdp 0.035: the Ceausescu defence budget ran near 4.5% of GDP; the provisional government cut it in the 1990 budget and abolished the Patriotic Guards. Romania had been the least integrated Warsaw Pact member since 1968 and no Soviet troops had been stationed there since 1958.",
+    "authoritarianism 0.42: the National Salvation Front declared itself a provisional authority on 22 December 1989, then reversed its pledge and contested the 20 May 1990 election, which it won with two-thirds of the vote against opposition parties with no access to state television and no organisation outside the cities. Elections are held and they are not fair — hence a figure well above Hungary's and Czechoslovakia's but below the electoral ceiling.",
+    "stability 40.0: the government is five weeks old when the game opens. The 28-29 January and 18-19 February assaults on opposition headquarters, the Targu Mures clashes of 19-21 March, and the Mineriad of 13-15 June 1990, in which miners bussed to Bucharest beat demonstrators in University Square, all fall inside the first six months.",
+    "separatism 0.18: the Hungarian minority of Transylvania numbered about 1.62 million, 7.1% of the population, at the 1992 census. UDMR was founded on 25 December 1989 and the Targu Mures violence of March 1990 was the first ethnic bloodshed in post-communist Europe. Also carried here: roughly 400,000 Germans, most of whom emigrated in 1990."
+  ]
+}
