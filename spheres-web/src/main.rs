@@ -849,8 +849,11 @@ mod tests {
         // The balance, prominently: in the header and at the head of the panel.
         assert!(INDEX.contains("id=\"hdrPc\""));
         assert!(INDEX.contains("class=\"pcbig\""));
-        // The verb, and the route it goes down.
-        assert!(INDEX.contains("window.enact"));
+        // The verb, the hand that presses it, and the route it goes down. Match
+        // to the delimiter: `contains("window.enact")` also passes for
+        // `window.enactAnythingElse`, which is a test that cannot fail.
+        assert!(INDEX.contains("window.enact = async"));
+        assert!(INDEX.contains("enact(b.dataset.strat"));
         assert!(INDEX.contains("kind: \"stratagem\""));
         assert!(INDEX.contains("/api/command"));
         // Read from the payload the server actually sends.
