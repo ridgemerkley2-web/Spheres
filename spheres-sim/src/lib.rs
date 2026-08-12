@@ -723,19 +723,33 @@ mod tests {
     }
 
     #[test]
-    fn embargoes_eventually_lift() {
-        // ...but they are not eternal. Grievance cools, and the market reopens.
+    fn an_embargo_erodes_before_it_ends() {
+        // A coalition does not lift together. The minor partners, whose
+        // grievance was never deep, are back at the table within a decade; the
+        // principal antagonist holds for a generation, and keeps holding partly
+        // because its own covert action against the target renews the injury
+        // that the relief rule reads. Iraq's real embargo ran thirteen years,
+        // Cuba's is past sixty; both shapes are in range. What must never
+        // happen is an embargo with no way out at all.
         let mut w = world_1990(GameRules::default());
         w.rules.ai_aggression = 0.0;
         war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
-        run_months(&mut w, 12 * 25);
+
+        run_months(&mut w, 12 * 5);
+        let early = w.sanctioned_by_count(NationId::Iraq);
+        assert!(early >= 3, "no coalition formed: {} sanctioners in 1995", early);
+
+        run_months(&mut w, 12 * 10);
+        let late = w.sanctioned_by_count(NationId::Iraq);
+        assert!(late < early, "the coalition never eroded: {} in 1995, {} in 2005", early, late);
+
+        run_months(&mut w, 12 * 35);
         assert_eq!(
             w.sanctioned_by_count(NationId::Iraq),
             0,
-            "Iraq still embargoed 25 years on"
+            "the embargo outlived a fifty-year run"
         );
     }
-
     // ---- Statecraft: pacts, patronage, subversion, trade --------------------
 
     fn seeded(seed: u64) -> WorldState {
@@ -1160,4 +1174,5 @@ mod tests {
         assert!(born >= 6, "the union held together too often: {}/10", born);
     }
 }
+
 
