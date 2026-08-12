@@ -535,7 +535,7 @@ mod tests {
         // capital, and unpaid armies remove governments. The timeline is
         // genuinely different from dabaa08's and this fingerprint must move with
         // it. Previous value: 0x0475_a1ec_bc94_bb31.
-        const GOLDEN: u64 = 0xeecb_d520_df31_17a2;
+        const GOLDEN: u64 = 0x93e1308ba9fc0af3;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

@@ -237,19 +237,37 @@ pub fn war_appetite(w: &WorldState, a: NationId, t: NationId) -> f64 {
         if w.nation_opt(g).map_or(true, |n| !n.alive) {
             continue;
         }
-        let honoured = if learned { 0.75 } else { 0.20 };
+        let honoured = if learned { 0.75 } else { 0.08 };
         expected_def += w.nation(g).mil_strength * honoured;
     }
     let strength_ratio = an.mil_strength / expected_def.max(1.0);
-    if strength_ratio < 0.8 {
-        return 0.0; // deterred
-    }
+
+    // Deterrence is graded, not a wall.
+    //
+    // This was `if strength_ratio < 0.8 { return 0.0 }`, and combined with
+    // summing every plausible intervener into expected_def it made a great
+    // power's client literally un-invadable: the guarantee deterred the very
+    // war that would have tested it, and pacts dragged a major into somebody
+    // else's war in 1 run of 12 against a 3-12 band. Every other term in this
+    // function is graded; this one alone treated a *hoped-for* intervention as
+    // a certainty the aggressor could see and price.
+    //
+    // Aggressors misjudge, and that is most of what starts wars. Saddam in 1990
+    // was not deterred by a coalition he did not believe would form. So the
+    // curve falls away steeply below parity without ever reaching zero:
+    // 0.9 -> 0.59, 0.8 -> 0.33, 0.6 -> 0.08, 0.4 -> 0.01. powi is exact
+    // multiplication, so this costs nothing in cross-platform reproducibility.
+    let odds = if strength_ratio >= 1.0 {
+        strength_ratio.min(4.0)
+    } else {
+        strength_ratio.powi(8)
+    };
 
     let p = base
         * w.rules.ai_aggression
         * (1.0 + desperation)
         * fragility
-        * strength_ratio.min(4.0);
+        * odds;
     if p < NEGLIGIBLE {
         0.0
     } else {
