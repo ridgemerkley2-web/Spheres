@@ -1,4 +1,5 @@
 pub mod economy;
+pub mod government;
 pub mod init;
 pub mod politics;
 pub mod statecraft;
@@ -34,6 +35,18 @@ pub enum Command {
     /// Take one of the options the world is currently offering this government.
     /// Carries the stratagem's stable id, never an index into the deck.
     EnactStratagem { nation: NationId, id: String },
+
+    // --- Government: who holds office, and what holding it costs ---
+    /// Bring a party into the cabinet. Carries the party's stable id.
+    InviteToGovernment { nation: NationId, party: String },
+    /// Throw one out. Cheap, always available, and frequently the end of your
+    /// majority.
+    ExpelFromGovernment { nation: NationId, party: String },
+    /// Go back to the country before you have to.
+    CallElection { nation: NationId },
+    /// What a regime that does not hold elections does instead: pay one of the
+    /// institutions that could remove it.
+    SecurePillar { nation: NationId, pillar: government::Pillar },
 }
 
 /// What a command asks of the government that issues it, and who it asks.
@@ -137,6 +150,23 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             stratagems::by_id(id).map_or(0.0, |s| s.cost),
             REFUSABLE,
         ),
+
+        // A coalition partner is bought, not persuaded, and the bill is the
+        // distance between you: a neighbouring party wants a ministry, one at
+        // the other end of the plane wants most of your programme.
+        Command::InviteToGovernment { nation, party } => (
+            *nation,
+            government::invite_price(w, *nation, party),
+            REFUSABLE,
+        ),
+        // Breaking up your own government is always available and never free —
+        // the same rule as walking out on an ally.
+        Command::ExpelFromGovernment { nation, .. } => (*nation, 12.0, ALWAYS),
+        // Going to the country early is a gamble a weak government cannot pay
+        // for, which is exactly why weak governments limp on.
+        Command::CallElection { nation } => (*nation, 25.0, REFUSABLE),
+        // Patronage. Cheaper than an election and it has to be paid again.
+        Command::SecurePillar { nation, .. } => (*nation, 14.0, REFUSABLE),
     })
 }
 
@@ -214,6 +244,16 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
                 ));
             }
             (s.enact)(w, *nation);
+        }
+        Command::InviteToGovernment { nation, party } => {
+            government::invite(w, *nation, party)?
+        }
+        Command::ExpelFromGovernment { nation, party } => {
+            government::expel(w, *nation, party)?
+        }
+        Command::CallElection { nation } => government::call_election(w, *nation)?,
+        Command::SecurePillar { nation, pillar } => {
+            government::secure_pillar(w, *nation, *pillar)?
         }
     }
     Ok(())

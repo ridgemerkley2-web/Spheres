@@ -448,6 +448,12 @@ pub struct WorldState {
     /// a save written before statecraft existed still loads.
     #[serde(default)]
     pub statecraft: Statecraft,
+    /// Parties, elections, coalitions, and the pillars an unelected regime has
+    /// to keep paying. Defaulted for the same reason `statecraft` is: a save
+    /// written before governments existed still loads, and `government::ensure`
+    /// seats each one from the transcribed 1990 party table on the next tick.
+    #[serde(default)]
+    pub governments: crate::government::Governments,
     /// Brent-ish oil price, USD/barrel
     pub oil_price: f64,
     /// Event log for the current month (drained by UI)

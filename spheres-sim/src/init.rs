@@ -96,6 +96,7 @@ pub fn world_1990(rules: GameRules) -> WorldState {
         sanctions: vec![],
         wars: vec![],
         statecraft: Statecraft::default(),
+        governments: Default::default(),
         oil_price: 20.0,
         headlines: vec![],
         flags: vec![],
@@ -187,6 +188,10 @@ pub fn world_1990(rules: GameRules) -> WorldState {
     for (a, b, v) in pairs {
         w.set_relation(*a, *b, *v);
     }
+    // Seat every government from the transcribed party tables before the first
+    // tick, so that a player choosing a nation in January 1990 can see their
+    // parliament rather than an empty chamber that fills in in February.
+    crate::government::ensure_all(&mut w);
     w
 }
 
