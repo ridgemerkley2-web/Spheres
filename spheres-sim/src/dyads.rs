@@ -162,6 +162,19 @@ pub fn war_appetite(w: &WorldState, a: NationId, t: NationId) -> f64 {
         return 0.0;
     }
 
+    // Nor does anyone invade a state it has guaranteed. Without this the
+    // region floors gave every pair of neighbours a standing appetite with
+    // nothing institutional to damp it, and the result was France invading
+    // Italy and Saudi Arabia invading Kuwait — eleven of seventy-five wars
+    // across twelve runs had no basis in the period, and one was inside NATO.
+    // The bible sells playing the present with real names; that is the credit
+    // this spends. A guarantee is not a modifier, it is a bar.
+    if w.statecraft.pacts.iter().any(|p| {
+        (p.a == a && p.b == t) || (p.a == t && p.b == a)
+    }) {
+        return 0.0;
+    }
+
     // --- What it wants. A claim already taken by force is no longer a war
     // aim, however sour the relationship stays. ---
     let settled = w.has_flag(&settled_flag(a, t));
@@ -265,7 +278,16 @@ mod tests {
             kuwait,
             saudi
         );
-        assert!(kuwait > iran * 3.0, "Kuwait {:.5} against Iran {:.5}", kuwait, iran);
+        // The old table put Kuwait fifteen times above Iran on the base rate
+        // (0.030 against 0.002). The derived model delivers about 5.9x, so the
+        // separation has genuinely eroded and Baghdad is keener on Tehran in
+        // 1990 than it should be — a war it had just fought to a standstill
+        // over eight years. That is recorded in ROADMAP as an open calibration
+        // item rather than papered over. The threshold below locks what the
+        // model actually holds today so it cannot erode further unnoticed; it
+        // is deliberately NOT set at 3.0, which would have admitted a further
+        // halving without failing.
+        assert!(kuwait > iran * 5.0, "Kuwait {:.5} against Iran {:.5}", kuwait, iran);
         // ...and it is the claim doing it, not Iraq being generally warlike.
         assert!(saudi > 0.0, "an armed neighbour is never at absolute zero");
 

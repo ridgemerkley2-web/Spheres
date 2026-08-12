@@ -57,7 +57,18 @@ pub fn tick(w: &mut WorldState) {
                 // drop the war
             } else if let Some((winner, loser)) = settlement_ripe(w, &war) {
                 negotiated_peace(w, winner, loser);
-                w.set_flag(&crate::dyads::settled_flag(winner, loser));
+                if winner == war.attacker {
+                    // The attacker got what it came for, so its claim is
+                    // collected and it has no war aim left.
+                    w.set_flag(&crate::dyads::settled_flag(winner, loser));
+                } else {
+                    // The defender won terms. Marking ITS claim collected
+                    // disarmed the wrong side entirely — the state that was
+                    // invaded came away with its own grievance written off —
+                    // and the aggressor learned nothing, which is the repeat
+                    // invasion this flag exists to stop.
+                    w.set_flag(&format!("burned_{:?}_{:?}", war.attacker, war.defender));
+                }
             } else {
                 continuing.push(war);
             }

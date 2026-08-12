@@ -540,7 +540,36 @@ pub fn successor_nations() -> &'static [NationId] {
 /// until 2000. https://ies.princeton.edu/pdf/E196.pdf
 pub fn patrons() -> &'static [NationId] {
     static P: OnceLock<Vec<NationId>> = OnceLock::new();
-    P.get_or_init(|| all_nations().iter().copied().filter(|n| n.def().patron).collect())
+    P.get_or_init(|| ordered_by(PATRON_ORDER, |d| d.patron))
+}
+
+/// Precedence, not membership. Which nations are patrons and majors is data on
+/// the roster row; the ORDER they are walked in is behaviour, because the first
+/// power to reach a client claims it and the first to answer a call joins the
+/// war. Deriving that order from registry position made it an accident of where
+/// a nation sits in a file, which silently moved 2025 China by 38%. It is
+/// therefore stated, and stated in the order the hand-written arrays used to
+/// hold before the roster became data.
+const PATRON_ORDER: &[&str] = &["USA", "USSR", "Russia", "China", "UK", "France", "Germany", "Japan"];
+const MAJOR_ORDER: &[&str] = &["USA", "UK", "France", "Germany", "Japan"];
+
+/// Everything matching `flag`, in the precedence order given, with anything the
+/// order forgot appended in registry order so a new patron cannot vanish.
+fn ordered_by(order: &[&str], flag: fn(&NationDef) -> bool) -> Vec<NationId> {
+    let mut out: Vec<NationId> = vec![];
+    for code in order {
+        if let Some(id) = NationId::from_code(code) {
+            if flag(id.def()) && !out.contains(&id) {
+                out.push(id);
+            }
+        }
+    }
+    for id in all_nations() {
+        if flag(id.def()) && !out.contains(id) {
+            out.push(*id);
+        }
+    }
+    out
 }
 
 /// The powers that sanction an aggressor and may intervene for its victim.
@@ -549,7 +578,7 @@ pub fn patrons() -> &'static [NationId] {
 /// learn better.
 pub fn majors() -> &'static [NationId] {
     static M: OnceLock<Vec<NationId>> = OnceLock::new();
-    M.get_or_init(|| all_nations().iter().copied().filter(|n| n.def().major).collect())
+    M.get_or_init(|| ordered_by(MAJOR_ORDER, |d| d.major))
 }
 
 /// Do these two share a border?
