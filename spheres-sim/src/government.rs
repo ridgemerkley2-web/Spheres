@@ -982,10 +982,19 @@ pub const POLITIES: &[Polity] = &[
     // Peru — Chamber of Deputies, 14 April 1985: APRA 50.1%, Izquierda Unida
     // 23.0%, the Convergencia Democratica around the PPC 12.0%, Accion Popular
     // 7.3%. Alan Garcia's single term ends in hyperinflation and a war he is
-    // losing. Cambio 90 did not exist when this was voted — Alberto Fujimori
-    // built it in 1989 out of evangelical churches and informal traders' guilds
-    // — so it is entered at 16.5%, its share at the first election it contested,
-    // on 8 April 1990, which is the next one due here.
+    // losing, and the next election is due in three months.
+    //
+    // Cambio 90 is deliberately NOT in this table, and the omission is the
+    // honest reading rather than an oversight. Alberto Fujimori built it in
+    // 1989 out of evangelical congregations and informal traders' guilds, and
+    // it took 16.5% of the Chamber on 8 April 1990. The convention this module
+    // uses elsewhere — enter a party founded after the last election at its
+    // first contested share, as Colombia's AD M-19 is entered — cannot be
+    // applied here: 50.1 + 23.0 + 12.0 + 7.3 already accounts for 92.4% of the
+    // 1985 vote, so adding 16.5 gives a chamber where 108.9% of the electorate
+    // voted. A 1985 table with a 1990 party in it is not a transcription of
+    // either election. Fujimori's outsider is left for the model to produce
+    // from a collapsing party system, which is the whole premise.
     Polity {
         nation: NationId::Peru,
         system: Electoral::Proportional,
@@ -994,7 +1003,6 @@ pub const POLITIES: &[Polity] = &[
         parties: &[
             p("pe_apra", "Peruvian Aprista Party", "Partido Aprista Peruano", Family::SocialDemocratic, 0.501),
             p("pe_iu", "United Left", "Izquierda Unida", Family::Communist, 0.230),
-            p("pe_c90", "Change 90", "Cambio 90", Family::BigTent, 0.165),
             p("pe_ppc", "Christian People's Party", "Partido Popular Cristiano", Family::ChristianDemocratic, 0.120),
             p("pe_ap", "Popular Action", "Accion Popular", Family::Liberal, 0.073),
         ],
