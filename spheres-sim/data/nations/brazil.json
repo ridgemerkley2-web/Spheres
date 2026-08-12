@@ -1,0 +1,33 @@
+{
+  "id": "Brazil",
+  "name": "Brazil",
+  "system": "Market",
+  "authoritarianism": 0.2,
+  "economy": {
+    "gdp_bn": 385.0,
+    "population_m": 149.1,
+    "tfp_trend": -0.005,
+    "inflation": 2.95,
+    "interest_rate": 2.9,
+    "tax_rate": 0.29,
+    "mil_spend_gdp": 0.024,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.15,
+    "debt_gdp": 0.4,
+    "oil_mbd": 0.63,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 40.0,
+    "separatism": 0.02
+  },
+  "military": {
+    "strength": 16.0,
+    "nuclear": false
+  },
+  "sources": [
+    "World Bank has 1990 GDP at $385bn and 149.1m people, with CPI inflation of 2948% — the year of the Collor Plan.",
+    "Nothing here scripts that plan: the game opens in January, ten weeks before Collor took office and froze prices and confiscated the savings accounts. What the start state carries is the position he inherited — prices doubling every six weeks, and an overnight rate chasing them (the World Bank's 1990 deposit rate for Brazil is 9394%). The disinflation is left to the sim's central bank, which is the same treatment Yugoslavia gets.",
+    "Oil: Petrobras pumped 0.63 mbd from Campos against 1.4 mbd of demand, so Brazil was buying, not selling."
+  ]
+}

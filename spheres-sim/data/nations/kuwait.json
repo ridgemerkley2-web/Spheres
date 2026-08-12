@@ -1,0 +1,32 @@
+{
+  "id": "Kuwait",
+  "name": "Kuwait",
+  "system": "Market",
+  "authoritarianism": 0.6,
+  "economy": {
+    "gdp_bn": 18.0,
+    "population_m": 2.1,
+    "tfp_trend": 0.01,
+    "inflation": 0.035,
+    "interest_rate": 0.07,
+    "tax_rate": 0.05,
+    "mil_spend_gdp": 0.05,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.1,
+    "debt_gdp": 0.1,
+    "oil_mbd": 1.7,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 70.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 2.0,
+    "nuclear": false
+  },
+  "sources": [
+    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
+    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance."
+  ]
+}

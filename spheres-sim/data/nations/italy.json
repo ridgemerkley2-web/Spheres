@@ -1,0 +1,32 @@
+{
+  "id": "Italy",
+  "name": "Italy",
+  "system": "Market",
+  "authoritarianism": 0.14,
+  "economy": {
+    "gdp_bn": 1180.0,
+    "population_m": 57.0,
+    "tfp_trend": 0.012,
+    "inflation": 0.065,
+    "interest_rate": 0.12,
+    "tax_rate": 0.38,
+    "mil_spend_gdp": 0.021,
+    "state_invest_gdp": 0.032,
+    "priv_invest_gdp": 0.15,
+    "debt_gdp": 0.94,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 68.0,
+    "separatism": 0.05
+  },
+  "military": {
+    "strength": 26.0,
+    "nuclear": false
+  },
+  "sources": [
+    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
+    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance."
+  ]
+}

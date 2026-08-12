@@ -1,0 +1,33 @@
+{
+  "id": "Vietnam",
+  "name": "Vietnam",
+  "system": "Command",
+  "authoritarianism": 0.92,
+  "economy": {
+    "gdp_bn": 6.5,
+    "population_m": 65.5,
+    "tfp_trend": 0.022,
+    "inflation": 0.67,
+    "interest_rate": 0.55,
+    "tax_rate": 0.14,
+    "mil_spend_gdp": 0.079,
+    "state_invest_gdp": 0.07,
+    "priv_invest_gdp": 0.06,
+    "debt_gdp": 1.2,
+    "oil_mbd": 0.06,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 55.0,
+    "separatism": 0.02
+  },
+  "military": {
+    "strength": 18.0,
+    "nuclear": false
+  },
+  "sources": [
+    "The World Bank's 1990 GDP is $6.5bn for 65.5m people, which is an artefact of an official exchange rate nobody transacted at — but it is the transcribed figure, and it is the one the sim's catch-up term reads.",
+    "Inflation ran 67% in 1990 as Doi Moi let prices go. Still a command economy: the reforms are four years old and the plan is intact.",
+    "The army is the outlier — 1.2m men demobilising out of Cambodia, which is why the military index sits near South Korea's on a hundredth of the GDP. Soviet aid ends this year and there is nothing to replace it."
+  ]
+}

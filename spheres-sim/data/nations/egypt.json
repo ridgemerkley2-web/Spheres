@@ -1,0 +1,33 @@
+{
+  "id": "Egypt",
+  "name": "Egypt",
+  "system": "Market",
+  "authoritarianism": 0.75,
+  "economy": {
+    "gdp_bn": 43.0,
+    "population_m": 58.4,
+    "tfp_trend": 0.008,
+    "inflation": 0.168,
+    "interest_rate": 0.14,
+    "tax_rate": 0.2,
+    "mil_spend_gdp": 0.035,
+    "state_invest_gdp": 0.13,
+    "priv_invest_gdp": 0.16,
+    "debt_gdp": 1.1,
+    "oil_mbd": 0.87,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 58.0,
+    "separatism": 0.05
+  },
+  "military": {
+    "strength": 14.0,
+    "nuclear": false
+  },
+  "sources": [
+    "$43bn on the World Bank's series and 58.4m people.",
+    "Mubarak's Egypt is the second-largest recipient of US aid after Israel, and its debt is crushing — external debt alone is 79% of GNI on the eve of the Paris Club write-off it earned by joining the coalition.",
+    "A modest producer: 0.87 mbd from the Gulf of Suez and the Western Desert."
+  ]
+}

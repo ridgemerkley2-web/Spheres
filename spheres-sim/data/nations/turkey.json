@@ -1,0 +1,33 @@
+{
+  "id": "Turkey",
+  "name": "Turkey",
+  "system": "Market",
+  "authoritarianism": 0.35,
+  "economy": {
+    "gdp_bn": 151.0,
+    "population_m": 56.0,
+    "tfp_trend": 0.014,
+    "inflation": 0.603,
+    "interest_rate": 0.5,
+    "tax_rate": 0.15,
+    "mil_spend_gdp": 0.035,
+    "state_invest_gdp": 0.08,
+    "priv_invest_gdp": 0.17,
+    "debt_gdp": 0.3,
+    "oil_mbd": 0.07,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 55.0,
+    "separatism": 0.3
+  },
+  "military": {
+    "strength": 24.0,
+    "nuclear": false
+  },
+  "sources": [
+    "$151bn and 56.0m, inflation at 60% and interbank rates chasing it.",
+    "Ozal's Turkey is NATO's southern flank and about to become the hinge of the coalition's northern front.",
+    "Separatism is the PKK war in the southeast, escalating every year since 1984."
+  ]
+}

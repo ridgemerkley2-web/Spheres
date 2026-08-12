@@ -1,0 +1,33 @@
+{
+  "id": "Indonesia",
+  "name": "Indonesia",
+  "system": "Market",
+  "authoritarianism": 0.8,
+  "economy": {
+    "gdp_bn": 106.0,
+    "population_m": 183.5,
+    "tfp_trend": 0.02,
+    "inflation": 0.078,
+    "interest_rate": 0.15,
+    "tax_rate": 0.19,
+    "mil_spend_gdp": 0.014,
+    "state_invest_gdp": 0.09,
+    "priv_invest_gdp": 0.24,
+    "debt_gdp": 0.46,
+    "oil_mbd": 1.5,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 62.0,
+    "separatism": 0.35
+  },
+  "military": {
+    "strength": 8.0,
+    "nuclear": false
+  },
+  "sources": [
+    "$106bn and 183.5m (1990 census: 179m, WB series 183.5m).",
+    "Suharto's New Order is 24 years old and unchallenged; the strain is at the edges — Aceh, where the military operations zone was declared in 1990, plus East Timor and Papua.",
+    "Bank Indonesia was still running the 1990 \"Sumarlin shock\" squeeze, hence a policy rate far above inflation."
+  ]
+}
