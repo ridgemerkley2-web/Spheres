@@ -1,7 +1,7 @@
 {
   "id": "Laos",
   "name": "Laos",
-  "system": "Command",
+  "system": "Market",
   "authoritarianism": 0.92,
   "economy": {
     "gdp_bn": 0.87,
@@ -11,8 +11,8 @@
     "interest_rate": 0.35,
     "tax_rate": 0.09,
     "mil_spend_gdp": 0.045,
-    "state_invest_gdp": 0.05,
-    "priv_invest_gdp": 0.04,
+    "state_invest_gdp": 0.08,
+    "priv_invest_gdp": 0.05,
     "debt_gdp": 1.7,
     "oil_mbd": 0.0,
     "bubble": 0.0
@@ -26,6 +26,7 @@
     "nuclear": false
   },
   "sources": [
+    "system Market, and this is the least comfortable call in the file. The New Economic Mechanism adopted at the Fourth Party Congress in November 1986 is the same vintage as Vietnam's doi moi, and Vietnam ships as Command on the grounds that the plan was intact. Laos had gone further by January 1990 on dated measures: prices were decontrolled and the Lao Food Corporation and Lao Trade Corporation, which held the rice procurement and distribution monopolies, were liquidated in 1988; the multiple exchange rates were unified in 1988; the foreign investment law passed the same year; mandatory plan targets for state enterprises were dropped and enterprises were leased or sold. Contemporary Bank and Fund reporting treated Laos as the most thoroughly liberalised of the Indochinese transition economies. Read the last note in this file before relying on the classification.",
     "GDP $865.6m and population 4.312m (World Bank, 1990). The smallest economy on the roster.",
     "CPI inflation 35.6% (World Bank, 1990) — the price level finding itself as the New Economic Mechanism, adopted in 1986, removed state pricing and let the kip float.",
     "interest_rate 0.35 is entered against that inflation to hold the real rate near zero. The Bank of the Lao PDR was still being separated from the commercial banking function in 1990 and published no policy rate; this is a construction, not a transcription, and it is flagged as one.",
@@ -33,6 +34,8 @@
     "External debt near 1.7x GDP, overwhelmingly non-convertible ruble obligations to the Soviet Union. The dollar value of that debt was disputed until it was written down in the 1990s, which is why the ratio looks worse than the country's actual position.",
     "The Lao People's Revolutionary Party had ruled without a constitution since 1975; one was finally promulgated in 1991. Stability 58 is a durable regime in an undemanding country, not a popular one.",
     "separatism 0.09 is the Hmong insurgency in Xaisomboun, a remnant of the CIA's Secret Army that was still being fought in 1990.",
-    "Military index 2: about 55,000 under arms, no capacity beyond internal security."
+    "Military index 2: about 55,000 under arms, no capacity beyond internal security.",
+    "Investment 13% of GDP, split 8 state and 5 private. The World Bank publishes no gross capital formation series for Laos in 1990; the split is weighted to the state side because most fixed investment in the country was aid-financed and passed through the budget.",
+    "Same caveat as Cambodia's, and for the same reason. Entered as a command economy Laos finishes thirty years holding four technologies against a frontier of a hundred and thirty, and the poor-nation technology test goes red. The 0.80 command multiplier on research output is what decides it at this scale, not anything about Laos. The classification above is independently arguable, but it is doing work in the model that a classification should not have to do."
   ]
 }
