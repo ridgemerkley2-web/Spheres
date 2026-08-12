@@ -56,6 +56,10 @@ pub const ALL_START_NATIONS: [NationId; 32] = [
     Algeria, Morocco, Tunisia, Libya, Sudan,
 }
 pub const ALL_START_NATIONS: [NationId; 29] = [
+    SouthAfrica, Ethiopia, Kenya, Ghana, Zaire, Angola, Zimbabwe, Tanzania,
+    Uganda, Senegal, CoteDIvoire, Cameroon,
+}
+pub const ALL_START_NATIONS: [NationId; 36] = [
     NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
     NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
     NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
@@ -75,6 +79,9 @@ pub const ALL_START_NATIONS: [NationId; 29] = [
     NationId::Qatar, NationId::Oman, NationId::Yemen, NationId::Bahrain,
     NationId::Algeria, NationId::Morocco, NationId::Tunisia, NationId::Libya,
     NationId::Sudan,
+    NationId::SouthAfrica, NationId::Ethiopia, NationId::Kenya, NationId::Ghana,
+    NationId::Zaire, NationId::Angola, NationId::Zimbabwe, NationId::Tanzania,
+    NationId::Uganda, NationId::Senegal, NationId::CoteDIvoire, NationId::Cameroon,
 ];
 /// States that only exist if a federation comes apart.
 pub const SUCCESSOR_NATIONS: [NationId; 16] = [
@@ -169,6 +176,18 @@ impl NationId {
             NationId::Tunisia => "Tunisia",
             NationId::Libya => "Libya",
             NationId::Sudan => "Sudan",
+            NationId::SouthAfrica => "South Africa",
+            NationId::Ethiopia => "Ethiopia",
+            NationId::Kenya => "Kenya",
+            NationId::Ghana => "Ghana",
+            NationId::Zaire => "Zaire",
+            NationId::Angola => "Angola",
+            NationId::Zimbabwe => "Zimbabwe",
+            NationId::Tanzania => "Tanzania",
+            NationId::Uganda => "Uganda",
+            NationId::Senegal => "Senegal",
+            NationId::CoteDIvoire => "Cote d'Ivoire",
+            NationId::Cameroon => "Cameroon",
         }
     }
     pub fn parse(s: &str) -> Option<NationId> {
@@ -255,6 +274,20 @@ impl NationId {
             "tunisia" | "tun" | "tunisie" => NationId::Tunisia,
             "libya" | "lby" | "jamahiriya" => NationId::Libya,
             "sudan" | "sdn" | "the sudan" => NationId::Sudan,
+            "south africa" | "southafrica" | "rsa" | "zaf" => NationId::SouthAfrica,
+            "ethiopia" | "eth" => NationId::Ethiopia,
+            "kenya" | "ken" => NationId::Kenya,
+            "ghana" | "gha" => NationId::Ghana,
+            "zaire" | "zar" | "congo" | "drc" | "dr congo" => NationId::Zaire,
+            "angola" | "ago" => NationId::Angola,
+            "zimbabwe" | "zwe" | "rhodesia" => NationId::Zimbabwe,
+            "tanzania" | "tza" => NationId::Tanzania,
+            "uganda" | "uga" => NationId::Uganda,
+            "senegal" | "sen" => NationId::Senegal,
+            "cote d'ivoire" | "cote divoire" | "cote d ivoire" | "ivory coast" | "civ" => {
+                NationId::CoteDIvoire
+            }
+            "cameroon" | "cameroun" | "cmr" => NationId::Cameroon,
             _ => return None,
         })
     }
@@ -297,6 +330,11 @@ pub const NATION_COUNT: usize = 38;
     NationId::Tunisia, NationId::Libya, NationId::Sudan,
 ];
 pub const NATION_COUNT: usize = 35;
+    NationId::SouthAfrica, NationId::Ethiopia, NationId::Kenya, NationId::Ghana,
+    NationId::Zaire, NationId::Angola, NationId::Zimbabwe, NationId::Tanzania,
+    NationId::Uganda, NationId::Senegal, NationId::CoteDIvoire, NationId::Cameroon,
+];
+pub const NATION_COUNT: usize = 42;
 
 /// Symmetric relations, held as a dense lower triangle so a lookup is an index
 /// rather than a search.

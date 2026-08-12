@@ -2019,6 +2019,81 @@ pub const POLITIES: &[Polity] = &[
     // becomes live again if the regime opens, not what governs in 1990.
     Polity {
         nation: NationId::Sudan,
+    // South Africa — House of Assembly, 6 September 1989, the last election held
+    // on a whites-only roll: the National Party 48.0%, the Conservative Party
+    // 31.2%, the Democratic Party 20.0%. De Klerk lost seats in both directions
+    // and read it as a mandate to negotiate. Shares are of the white vote, which
+    // is 13% of the population, so this is a franchise with a parliament rather
+    // than a democracy — the tricameral coloured and Indian chambers were
+    // boycotted into irrelevance and Africans had no vote at all. The pillars
+    // are listed because the securocrats of the State Security Council were a
+    // real veto on the reform, and the third force killings of 1990-93 were
+    // them exercising it.
+    Polity {
+        nation: NationId::SouthAfrica,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1994, 9),
+        parties: &[
+            p("za_np", "National Party", "Nasionale Party", Family::Conservative, 0.480),
+            p("za_cp", "Conservative Party", "Konserwatiewe Party", Family::Nationalist, 0.312),
+            p("za_dp", "Democratic Party", "Demokratiese Party", Family::Liberal, 0.200),
+        ],
+        ruling: "the House of Assembly",
+        pillars: &[
+            pl(Pillar::Army, "the South African Defence Force"),
+            pl(Pillar::Security, "the Security Branch"),
+            pl(Pillar::Business, "the mining houses"),
+        ],
+    },
+    // Ethiopia — the Workers' Party of Ethiopia, sole legal party under the 1987
+    // constitution, which converted the Derg into the People's Democratic
+    // Republic and Mengistu from chairman into president. The National Shengo
+    // was elected on a single WPE list in June 1987 and had no other function.
+    // No further national election was held: the regime fell in May 1991.
+    Polity {
+        nation: NationId::Ethiopia,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("et_wpe", "Workers' Party of Ethiopia", "Ye'ityop'ya Serategnoch Party", Family::Communist, 1.00),
+        ],
+        ruling: "the Workers' Party of Ethiopia",
+        pillars: &[
+            pl(Pillar::Army, "the Ethiopian People's Revolutionary Army"),
+            pl(Pillar::Party, "the WPE Central Committee"),
+            pl(Pillar::Security, "the Ministry of Public and National Security"),
+        ],
+    },
+    // Kenya — National Assembly, 21 March 1988, the mlolongo election: voters
+    // queued in public behind their candidate's agent rather than marking a
+    // ballot, and KANU was the only party allowed to stand, so the shares below
+    // are of a nomination contest rather than a general election. KANU's 1.00 is
+    // literal. Section 2A made the one-party state constitutional in 1982 and
+    // was repealed in December 1991; the next multiparty election was 1992.
+    Polity {
+        nation: NationId::Kenya,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1993, 3),
+        parties: &[
+            p("ke_kanu", "Kenya African National Union", "", Family::BigTent, 1.00),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[
+            pl(Pillar::Party, "KANU"),
+            pl(Pillar::Security, "the Special Branch"),
+            pl(Pillar::Army, "the Kenya Army"),
+        ],
+    },
+    // Ghana — the Provisional National Defence Council, ruling by decree since
+    // 31 December 1981 with all parties banned and no national election held
+    // since 1979. The shares are the 3 November 1992 presidential result, the
+    // vote that ended the ban: Rawlings' NDC 58.4%, Adu Boahen's New Patriotic
+    // Party 30.3%, Limann's People's National Convention 6.7%.
+    Polity {
+        nation: NationId::Ghana,
         system: Electoral::FirstPastThePost,
         term_months: 48,
         next: (0, 0),
@@ -2032,6 +2107,192 @@ pub const POLITIES: &[Polity] = &[
             pl(Pillar::Army, "the Sudanese Armed Forces"),
             pl(Pillar::Party, "the National Islamic Front"),
             pl(Pillar::Security, "the National Security Service"),
+            p("gh_ndc", "National Democratic Congress", "", Family::SocialDemocratic, 0.584),
+            p("gh_npp", "New Patriotic Party", "", Family::Conservative, 0.303),
+            p("gh_pnc", "People's National Convention", "", Family::SocialDemocratic, 0.067),
+        ],
+        ruling: "the Provisional National Defence Council",
+        pillars: &[
+            pl(Pillar::Army, "the Ghana Armed Forces"),
+            pl(Pillar::Security, "the Bureau of National Investigations"),
+        ],
+    },
+    // Zaire — the Popular Movement of the Revolution, to which every citizen
+    // belonged from birth by the 1974 constitution. The single-list legislative
+    // election of 6 September 1987 filled the National Legislative Council with
+    // MPR candidates. Mobutu announced multipartism on 24 April 1990, then
+    // capped it at three parties, then had students killed at Lubumbashi in May.
+    // No national election was ever held under him; he was driven out in 1997.
+    Polity {
+        nation: NationId::Zaire,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cd_mpr", "Popular Movement of the Revolution", "Mouvement Populaire de la Revolution", Family::BigTent, 1.00),
+        ],
+        ruling: "the Popular Movement of the Revolution",
+        pillars: &[
+            pl(Pillar::Army, "the Special Presidential Division"),
+            pl(Pillar::Security, "the Service National d'Intelligence"),
+            pl(Pillar::Party, "the MPR Political Bureau"),
+            pl(Pillar::Business, "Gecamines"),
+        ],
+    },
+    // Angola — the MPLA-Workers' Party, sole legal party and still explicitly
+    // Marxist-Leninist in January 1990; its Third Congress dropped that in
+    // December 1990 and the Bicesse Accords set the first election for 1992.
+    // The shares are the 29-30 September 1992 legislative result, the only
+    // election of the period: MPLA 53.7%, UNITA 34.1%, FNLA 2.4%. Savimbi
+    // rejected the presidential runoff and the war resumed within weeks, which
+    // is why UNITA is entered as a party and also as an armed pillar's absence:
+    // it is the one organisation that could remove the regime and could not be
+    // bought.
+    Polity {
+        nation: NationId::Angola,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ao_mpla", "MPLA-Workers' Party", "MPLA-Partido do Trabalho", Family::Communist, 0.537),
+            p("ao_unita", "UNITA", "Uniao Nacional para a Independencia Total de Angola", Family::Nationalist, 0.341),
+            p("ao_fnla", "National Front for the Liberation of Angola", "Frente Nacional de Libertacao de Angola", Family::Nationalist, 0.024),
+        ],
+        ruling: "the MPLA-Workers' Party",
+        pillars: &[
+            pl(Pillar::Army, "the People's Armed Forces of Liberation of Angola"),
+            pl(Pillar::Party, "the MPLA Political Bureau"),
+            pl(Pillar::Security, "the Ministry of State Security"),
+            pl(Pillar::Business, "Sonangol"),
+        ],
+    },
+    // Zimbabwe — the general election of 28-30 March 1990, the first after the
+    // Unity Accord folded ZAPU into ZANU-PF: ZANU-PF 80.6%, Edgar Tekere's
+    // Zimbabwe Unity Movement 16.9%, ZANU-Ndonga 1.4%. ZANU-PF took 117 of the
+    // 120 elected seats on 81% of the vote, which is what first-past-the-post
+    // does to a divided opposition. Mugabe put a formal one-party state to the
+    // ZANU-PF central committee in August 1990 and lost the vote.
+    Polity {
+        nation: NationId::Zimbabwe,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1995, 4),
+        parties: &[
+            p("zw_zanupf", "Zimbabwe African National Union - Patriotic Front", "ZANU-PF", Family::SocialDemocratic, 0.806),
+            p("zw_zum", "Zimbabwe Unity Movement", "ZUM", Family::BigTent, 0.169),
+            p("zw_ndonga", "ZANU-Ndonga", "ZANU-Ndonga", Family::Conservative, 0.014),
+        ],
+        ruling: "the House of Assembly",
+        pillars: &[
+            pl(Pillar::Army, "the Zimbabwe National Army"),
+            pl(Pillar::Security, "the Central Intelligence Organisation"),
+        ],
+    },
+    // Tanzania — the general election of 27 October 1985, held under Article 3
+    // of the constitution making Chama Cha Mapinduzi the only party: two CCM
+    // candidates per seat, one party on the ballot. Nyerere stood down as
+    // president for Ali Hassan Mwinyi at that election and kept the party
+    // chairmanship until August 1990. The next election fell due in October 1990
+    // and was held on the same single-party basis; multipartism arrived in 1992
+    // after the Nyalali Commission reported.
+    Polity {
+        nation: NationId::Tanzania,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1990, 10),
+        parties: &[
+            p("tz_ccm", "Party of the Revolution", "Chama Cha Mapinduzi", Family::BigTent, 1.00),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[
+            pl(Pillar::Party, "the CCM National Executive Committee"),
+            pl(Pillar::Army, "the Tanzania People's Defence Force"),
+        ],
+    },
+    // Uganda — no national election since December 1980, the disputed vote that
+    // sent Museveni into the bush. The National Resistance Council was an
+    // appointed body whose term was extended by five years in October 1989
+    // without asking anyone. Under the Movement system parties legally existed
+    // but could not hold conferences, field candidates or open branches, so the
+    // three below are organisations without a franchise; the shares are the
+    // 1980 result that started the war: UPC 47.1%, DP 45.3%, UPM 1.7%.
+    Polity {
+        nation: NationId::Uganda,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("ug_upc", "Uganda People's Congress", "", Family::SocialDemocratic, 0.471),
+            p("ug_dp", "Democratic Party", "", Family::ChristianDemocratic, 0.453),
+            p("ug_upm", "Uganda Patriotic Movement", "", Family::BigTent, 0.017),
+        ],
+        ruling: "the National Resistance Council",
+        pillars: &[
+            pl(Pillar::Army, "the National Resistance Army"),
+            pl(Pillar::Party, "the NRM Secretariat"),
+        ],
+    },
+    // Senegal — National Assembly, 28 February 1988: Abdou Diouf's Socialist
+    // Party 71.3%, Abdoulaye Wade's Senegalese Democratic Party 25.4%, the PIT
+    // and the rest sharing the remainder. Wade was arrested after the result,
+    // Dakar rioted and a state of emergency ran for three months. A genuinely
+    // multiparty system since 1981 with a governing party that had never lost
+    // and did not intend to; it finally did, to Wade, in 2000.
+    Polity {
+        nation: NationId::Senegal,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1993, 2),
+        parties: &[
+            p("sn_ps", "Socialist Party", "Parti Socialiste", Family::SocialDemocratic, 0.713),
+            p("sn_pds", "Senegalese Democratic Party", "Parti Democratique Senegalais", Family::Liberal, 0.254),
+            p("sn_pit", "Party of Independence and Labour", "Parti de l'Independance et du Travail", Family::Communist, 0.019),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+    // Cote d'Ivoire — National Assembly, 10 November 1985, a single PDCI list
+    // under the constitution Houphouet-Boigny had run unchanged since 1960; he
+    // took 100% of the concurrent presidential vote. The five-year term put the
+    // next election in November 1990, and by the time it came round the strikes
+    // of February-May 1990 had forced him to legalise opposition on 30 April.
+    // Laurent Gbagbo's Ivorian Popular Front then took 18.3% of the presidential
+    // vote in October 1990 and two seats in November, which is the arithmetic a
+    // thirty-year single party produces on its first contested day.
+    Polity {
+        nation: NationId::CoteDIvoire,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1990, 11),
+        parties: &[
+            p("ci_pdci", "Democratic Party of Cote d'Ivoire", "Parti Democratique de Cote d'Ivoire", Family::BigTent, 1.00),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[
+            pl(Pillar::Party, "the PDCI Political Bureau"),
+            pl(Pillar::Army, "the Ivorian armed forces"),
+            pl(Pillar::Business, "the planter bourgeoisie"),
+        ],
+    },
+    // Cameroon — National Assembly, 24 April 1988, a single CPDM list; Biya had
+    // taken 98.75% of the presidential vote in October 1988 running unopposed.
+    // Parties other than the CPDM were illegal until Law 90/056 of 19 December
+    // 1990, so the Social Democratic Front's launch at Bamenda on 26 May 1990
+    // was a criminal act and six people were shot at it. The next legislative
+    // election fell due in April 1993 and was postponed to March 1992.
+    Polity {
+        nation: NationId::Cameroon,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1993, 4),
+        parties: &[
+            p("cm_rdpc", "Cameroon People's Democratic Movement", "Rassemblement Democratique du Peuple Camerounais", Family::BigTent, 1.00),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[
+            pl(Pillar::Party, "the CPDM Central Committee"),
+            pl(Pillar::Army, "the Presidential Guard"),
+            pl(Pillar::Security, "the Direction Generale de la Recherche Exterieure"),
         ],
     },
 ];

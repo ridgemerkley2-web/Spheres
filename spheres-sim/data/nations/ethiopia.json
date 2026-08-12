@@ -1,0 +1,37 @@
+{
+  "id": "Ethiopia",
+  "name": "Ethiopia",
+  "system": "Command",
+  "authoritarianism": 0.92,
+  "economy": {
+    "gdp_bn": 12.2,
+    "population_m": 48.3,
+    "tfp_trend": -0.006,
+    "inflation": 0.052,
+    "interest_rate": 0.06,
+    "tax_rate": 0.17,
+    "mil_spend_gdp": 0.088,
+    "state_invest_gdp": 0.08,
+    "priv_invest_gdp": 0.04,
+    "debt_gdp": 0.62,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 20.0,
+    "separatism": 0.66
+  },
+  "military": {
+    "strength": 8.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $12.2bn and 48.3m people (World Bank, 1990). Ethiopia's figures here include Eritrea, which was a province of the People's Democratic Republic in January 1990 and did not become independent until May 1993.",
+    "Inflation 5.2% (National Bank of Ethiopia, 1990) is the administered price index of a command economy under rationing; the parallel market for grain and fuel bore no relation to it. Interest rates were set by decree, not by a policy rate: 6% is the National Bank's lending rate to the state banks.",
+    "Defence 8.8% of GDP. Mengistu fielded the largest army in sub-Saharan Africa, roughly 300,000 men, against the EPLF in Eritrea and the TPLF in Tigray simultaneously. Soviet materiel arrived on credit and is not in the cash budget, so the real burden is understated even at this figure.",
+    "Command system and authoritarianism 0.92: the Workers' Party of Ethiopia, the 1987 constitution, villagisation and forced resettlement. Mengistu's March 1990 announcement abandoning Marxism-Leninism came two months after the start date and changed nothing on the ground.",
+    "Stability 20: Massawa fell to the EPLF on 10 February 1990, closing the port that fed Asmara; the TPLF took Endaselassie in February. The 16 May 1989 coup attempt had already cost Mengistu his General Staff.",
+    "Separatism 0.66, second only to Yugoslavia in the shipped roster: Eritrea, Tigray, the Oromo Liberation Front, the Ogaden and Afar fronts. Eritrea is a distinct national question rather than a regional grievance, which is why this sits above the Soviet Union's 0.55.",
+    "Military strength 8 for an army of 300,000: mass without projection, no deployable fraction, and losing on both fronts to light infantry."
+  ]
+}

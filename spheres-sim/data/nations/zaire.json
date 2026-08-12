@@ -1,0 +1,39 @@
+{
+  "id": "Zaire",
+  "name": "Zaire",
+  "system": "Market",
+  "authoritarianism": 0.90,
+  "economy": {
+    "gdp_bn": 9.3,
+    "population_m": 34.9,
+    "tfp_trend": -0.012,
+    "inflation": 0.813,
+    "interest_rate": 0.55,
+    "tax_rate": 0.09,
+    "mil_spend_gdp": 0.021,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.05,
+    "debt_gdp": 1.05,
+    "oil_mbd": 0.025,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 22.0,
+    "separatism": 0.55
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $9.3bn and 34.9m people (World Bank, 1990). Any dollar GDP for Zaire in this period is a convention rather than a measurement: the official exchange rate and the parallel rate differed by a factor that moved weekly, and a large majority of activity was outside the recorded economy entirely.",
+    "Inflation 81.3% in 1990 (Banque du Zaire), the year before the hyperinflation proper: 2,154% in 1991 and roughly 4,100% in 1992 after the September 1991 mutiny and pillage. The 1990 figure is inside the model's 3.0 ceiling and is the honest start value; the collapse that follows is for the model to produce, not for the data to assert.",
+    "Interest rate 55% (Banque du Zaire rediscount rate, 1990). Deeply negative in real terms, which is the point: the central bank was printing to pay the presidency.",
+    "Tax take 9% of GDP and falling. Gecamines, the copper and cobalt parastatal that was the treasury's main source, produced 440,000 tonnes of copper in 1990 and lost the Kamoto mine to a cave-in in September 1990, after which output fell by roughly 90% inside three years.",
+    "Public and publicly guaranteed external debt was around $10bn against a $9bn economy; 1.05 is the servicing-relevant public stock, and Zaire was in continuous arrears.",
+    "oil_mbd 0.025: about 25,000 barrels a day from the small offshore Atlantic strip at Muanda, operated by Chevron's Zairian affiliate.",
+    "Stability 22 and authoritarianism 0.90: Mobutu announced the end of the single party and a Third Republic on 24 April 1990, then had the presidential guard kill students at Lubumbashi University on the night of 11 May 1990. The National Sovereign Conference that followed never displaced him and he never held a national election.",
+    "Separatism 0.55: Katanga, whose 1960-63 secession is the founding wound and whose copper is the fiscal base; the Kasai diamond region; and the Kivus. Mobutu's answer to all three was to expel the other province's people, which is what happened to the Kasaians in Shaba in 1992.",
+    "Military strength 3 for a nominal 50,000-man FAZ. The Division Speciale Presidentielle was paid and equipped; the rest of the army was not paid at all and lived off the population, which is why it mutinied rather than fought."
+  ]
+}

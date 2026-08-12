@@ -1,0 +1,40 @@
+{
+  "id": "SouthAfrica",
+  "name": "South Africa",
+  "system": "Market",
+  "authoritarianism": 0.62,
+  "economy": {
+    "gdp_bn": 112.0,
+    "population_m": 35.2,
+    "tfp_trend": -0.002,
+    "inflation": 0.144,
+    "interest_rate": 0.18,
+    "tax_rate": 0.26,
+    "mil_spend_gdp": 0.037,
+    "state_invest_gdp": 0.07,
+    "priv_invest_gdp": 0.12,
+    "debt_gdp": 0.38,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 52.0,
+    "separatism": 0.28
+  },
+  "military": {
+    "strength": 18.0,
+    "nuclear": true
+  },
+  "sources": [
+    "GDP $112bn and 35.2m people (World Bank / South African Reserve Bank, 1990). The population figure excludes nobody but is the mid-year estimate before the 1991 census reconciled the nominally independent TBVC homelands.",
+    "Inflation 14.4% (Central Statistical Service CPI, 1990); SARB Bank rate held at 18% through 1990 under Gerhard de Kock's and then Chris Stals's disinflation, with prime at 21%. This is the tightest real rate in the shipped roster and it is deliberate.",
+    "Defence 3.7% of GDP: the SADF at the end of the Border War, with the Angolan deployment over (Tripartite Accord, December 1988) and the budget already falling from its 1982 peak near 4.5%.",
+    "Gross fixed capital formation 19.1% of GDP in 1990, split public 7 / private 12; parastatals (Eskom, Iscor, Sasol) carry the public share.",
+    "Public debt 38% of GDP. Sanctions closed offshore borrowing after the August 1985 debt standstill, so the debt is domestic and the constraint is the current account, not the stock.",
+    "oil_mbd 0.0: no crude production. Sasol's coal-to-liquids plants covered roughly a third of liquid fuel demand and are capital, not reserves.",
+    "Stability 52 and authoritarianism 0.62: F.W. de Klerk unbanned the ANC, PAC and SACP on 2 February 1990 and released Mandela on 11 February. A tricameral parliament elected on a racial franchise by 13% of the population is not a democracy, but it is not a one-man regime either; the number sits between Nigeria's 0.85 and Spain's 0.12 on purpose.",
+    "Separatism 0.28 is Inkatha and the KwaZulu question, the Afrikaner Weerstandsbeweging and the Conservative Party's volkstaat demand, and the four TBVC states whose reincorporation was not yet agreed.",
+    "Military strength 18, far above what $112bn buys elsewhere in Africa: Ratel and Olifant fleets, the Cheetah upgrade, G5/G6 artillery that outranged everything Cuba fielded, and a conscript-expandable force of roughly 100,000 with a 400,000 Citizen Force reserve.",
+    "nuclear: true. Six gun-type devices were assembled and a seventh was in build at Advena in January 1990. De Klerk ordered the programme terminated on 26 February 1990; dismantlement ran to July 1991 and accession to the NPT followed on 10 July 1991. South Africa is the only state to have built weapons and given them up, and at the start date it still had them."
+  ]
+}

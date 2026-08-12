@@ -1,0 +1,38 @@
+{
+  "id": "Angola",
+  "name": "Angola",
+  "system": "Command",
+  "authoritarianism": 0.88,
+  "economy": {
+    "gdp_bn": 10.3,
+    "population_m": 11.8,
+    "tfp_trend": -0.004,
+    "inflation": 0.26,
+    "interest_rate": 0.20,
+    "tax_rate": 0.30,
+    "mil_spend_gdp": 0.17,
+    "state_invest_gdp": 0.08,
+    "priv_invest_gdp": 0.05,
+    "debt_gdp": 0.80,
+    "oil_mbd": 0.475,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 25.0,
+    "separatism": 0.33
+  },
+  "military": {
+    "strength": 9.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $10.3bn and 11.8m people (World Bank, 1990). The population is an estimate: no census had been taken since 1970 and the next was 2014.",
+    "Inflation 26% (official, Banco Nacional de Angola 1990). A controlled-price economy in which the kwanza traded at roughly one-thirtieth of the official rate on the candonga parallel market, so the official print understates the price level badly. The 1991 official figure was 175% and 1993 exceeded 1,000%.",
+    "oil_mbd 0.475: Angola produced around 475,000 barrels a day in 1990, almost all of it offshore Cabinda through Chevron's Cabinda Gulf operation, and the war never touched it. Oil was over 90% of export earnings and the reason a state losing a civil war could still pay for one.",
+    "Defence 17% of GDP (SIPRI, 1990) — the highest share in the shipped roster outside a shooting war, because this is a shooting war. FAPLA against UNITA had run since 1975 and Cuito Cuanavale had ended eighteen months before the start date.",
+    "Command system and authoritarianism 0.88: the MPLA-PT was a Marxist-Leninist vanguard party in January 1990. Its Third Congress in December 1990 dropped Marxism-Leninism and accepted multipartism, and the Bicesse Accords followed in May 1991 — both after the start date.",
+    "Stability 25: the Cuban withdrawal under the December 1988 Tripartite Accord was running to schedule and completed in May 1991, removing the force that had held the government's line. Savimbi still held the southeast and American covert aid through Zaire continued.",
+    "Separatism 0.33: Cabinda, physically separated from Angola by the Zaire river mouth, carrying most of the oil, with FLEC in the bush since 1963. UNITA is a civil war for the state rather than a secession and is not in this number.",
+    "Military strength 9: FAPLA fielded T-55 and T-62 armour, an integrated Soviet air defence network built around SA-8s and SA-13s that shot down South African aircraft, and MiG-23s flown partly by Cuban pilots. Materiel far above what the economy earns, delivered on Soviet credit that stops arriving in this period."
+  ]
+}

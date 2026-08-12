@@ -1,0 +1,37 @@
+{
+  "id": "Cameroon",
+  "name": "Cameroon",
+  "system": "Market",
+  "authoritarianism": 0.82,
+  "economy": {
+    "gdp_bn": 11.2,
+    "population_m": 11.6,
+    "tfp_trend": -0.006,
+    "inflation": 0.015,
+    "interest_rate": 0.11,
+    "tax_rate": 0.15,
+    "mil_spend_gdp": 0.017,
+    "state_invest_gdp": 0.04,
+    "priv_invest_gdp": 0.09,
+    "debt_gdp": 0.58,
+    "oil_mbd": 0.155,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 46.0,
+    "separatism": 0.30
+  },
+  "military": {
+    "strength": 2.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $11.2bn and 11.6m people (World Bank, 1990). Nominally the largest economy in the CFA franc zone at the start date, and in the fourth year of a slump that cut real output per head by roughly half between 1986 and 1994.",
+    "Inflation 1.5% (Direction de la Statistique, 1990), held down by the CFA peg to the French franc; interest 11%, the BEAC discount rate set for the Central African monetary union.",
+    "oil_mbd 0.155: around 155,000 barrels a day from the Rio del Rey basin, down from the 1985 peak near 186,000. Oil revenue was held in an off-budget account outside the treasury and outside published accounts, which is why the tax_rate here is a formal-budget figure and understates what the presidency actually controlled.",
+    "Defence 1.7% of GDP for roughly 15,000 personnel, plus a Presidential Guard rebuilt on different recruitment after the 6 April 1984 coup attempt by the Republican Guard.",
+    "Debt 0.58 of GDP and rising fast: Cameroon had refused an IMF programme through the 1986-88 collapse, spending reserves instead, and signed its first standby only in September 1988.",
+    "Authoritarianism 0.82 and stability 46: Paul Biya's CPDM was the sole legal party under the 1966 unification of parties. The Social Democratic Front launched illegally at Bamenda on 26 May 1990 and six people were killed; Law 90/056 legalising political parties passed on 19 December 1990, eleven months after the start date, and the ghost towns campaign followed in 1991.",
+    "Separatism 0.30: the Anglophone question. The Southern Cameroons voted to join the Republic in the 1961 plebiscite as a federated state, the federation was abolished by the 1972 referendum, and the two Anglophone provinces have contested that ever since. Also the Bakassi peninsula dispute with Nigeria, which went to the ICJ in 1994."
+  ]
+}

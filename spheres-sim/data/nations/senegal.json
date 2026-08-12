@@ -1,0 +1,37 @@
+{
+  "id": "Senegal",
+  "name": "Senegal",
+  "system": "Market",
+  "authoritarianism": 0.35,
+  "economy": {
+    "gdp_bn": 5.7,
+    "population_m": 7.5,
+    "tfp_trend": 0.003,
+    "inflation": 0.003,
+    "interest_rate": 0.11,
+    "tax_rate": 0.16,
+    "mil_spend_gdp": 0.020,
+    "state_invest_gdp": 0.04,
+    "priv_invest_gdp": 0.09,
+    "debt_gdp": 0.65,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 60.0,
+    "separatism": 0.25
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $5.7bn and 7.5m people (World Bank, 1990).",
+    "Inflation 0.3% (Direction de la Prevision et de la Statistique, 1990). Near-zero because the CFA franc was pegged to the French franc at 50:1 with convertibility guaranteed by the French Treasury, and Senegal had no monetary policy of its own. The peg held until the 50% devaluation of 12 January 1994.",
+    "Interest rate 11%: the BCEAO discount rate, set in Dakar for the whole West African monetary union rather than for Senegal. A real rate above 10% under a hard peg is the cost of that arrangement and is the mechanism the 1994 devaluation was meant to relieve.",
+    "Defence 2.0% of GDP: a small force with an unusually strong external record — Senegalese troops took the Gambian coup in 1981 and deployed to Saudi Arabia for Desert Shield in 1990, losing 92 men in the Sakoto air crash of March 1991.",
+    "Authoritarianism 0.35, low for the region and earned: Senghor's 1974-81 reopening made Senegal one of the few continuously multiparty states in Africa. Abdou Diouf's Socialist Party won the 28 February 1988 elections against Abdoulaye Wade's PDS amid opposition fraud claims, riots in Dakar and a state of emergency, so this is a competitive system with a thumb on the scale rather than a clean one.",
+    "Separatism 0.25: the Movement of Democratic Forces of Casamance, in arms since December 1982 in the province physically separated from the rest of the country by The Gambia. Compounded by the collapse of the Senegambia Confederation in September 1989 and the 1989 Mauritania border crisis that produced mutual expulsions.",
+    "Military strength 3 for roughly 10,000 personnel, with a French garrison at Dakar under the defence accords."
+  ]
+}
