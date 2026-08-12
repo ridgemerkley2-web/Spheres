@@ -719,10 +719,19 @@ fn main() {
                 let before = g.world.headlines.len();
                 if let Some(list) = payload.get("commands").and_then(|c| c.as_array()) {
                     for v in list {
-                        if let Some(cmd) = parse_command(&g.world, v, me) {
-                            if let Err(e) = apply_command(&mut g.world, &cmd) {
-                                errors.push(e);
+                        // A command this build cannot parse used to be dropped in
+                        // silence, which from the player's side is a button that
+                        // does nothing and says nothing. Say it.
+                        match parse_command(&g.world, v, me) {
+                            Some(cmd) => {
+                                if let Err(e) = apply_command(&mut g.world, &cmd) {
+                                    errors.push(e);
+                                }
                             }
+                            None => errors.push(format!(
+                                "That order did not make sense: {}",
+                                serde_json::to_string(v).unwrap_or_default()
+                            )),
                         }
                     }
                 }

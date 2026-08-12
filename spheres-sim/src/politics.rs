@@ -787,10 +787,26 @@ fn ai_wars(w: &mut WorldState) {
         v
     };
     for (a, t, p) in candidates {
-        if w.at_war(a) || w.conflict_between(a, t).is_some() {
+        if w.at_war(a) {
             continue;
         }
         if !w.rng.chance(p) {
+            continue;
+        }
+        // The appetite does not go away because there is already an argument.
+        // When it comes up again and the quarrel is open, it is a push up the
+        // ladder — which is where the political reasons for a war (debt, a
+        // neighbour coming apart, a border nobody accepts) finally reach the
+        // commitment ladder instead of only deciding whether there is an
+        // argument at all. Priced like any other rung, and refusable.
+        if let Some(c) = w.conflict_between(a, t) {
+            let (id, rung) = (c.id, c.posture_of(a).map_or(1, |b| b.rung));
+            if rung < INVASION_RUNG {
+                let _ = crate::apply_command(
+                    w,
+                    &crate::Command::SetCommitment { conflict: id, nation: a, rung: rung + 1 },
+                );
+            }
             continue;
         }
         // What this roll used to do was launch an invasion. It now opens a

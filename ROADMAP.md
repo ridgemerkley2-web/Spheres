@@ -153,18 +153,63 @@ and Kuwait alive, through the new arithmetic. `gulf_war_emerges`,
 `yugoslavia_comes_apart_in_the_nineties` and
 `slovenia_escapes_the_wars_that_consume_bosnia` all still pass.
 
+## Landed: the ladder is climbed, invasions are decided, and there is a way in
+
+Three findings from QA playing the ladder branch, all fixed on
+`feat/ladder-fixes`. Measured with `war_census` (`#[ignore]`d, eight seeds x 35
+years) before and after.
+
+1. **Conflicts were born at rung 8.** All 82 of them, because the coalition,
+   the guarantors and the interveners were welded to the act of *creating* a
+   conflict rather than to the act of crossing a border in force. The whole
+   nine-rung design behaved as a three-state machine: born at 8, collapse to 5,
+   decay to 1. `war::invasion_begins` is now lifted out of `declare_war` and
+   hangs off the rung, firing once per conflict when somebody on the aggressor's
+   side reaches 8; `politics::ai_wars` opens a quarrel at rung 1 instead;
+   `commitment::ai_ladder` has an `ambition` and climbs toward it, paying at
+   every step and paced by political capital rather than by a timer. Nothing in
+   the world is born above rung 1 any more, and Iraq spends nineteen months
+   climbing to Kuwait.
+2. **Nothing resolved.** A resolve collapse always slid a belligerent one rung
+   down and reset its will to a quarter, so a beaten state never stopped being
+   a belligerent and the war just went quiet: one capitulation in 82 conflicts.
+   Now a collapse *while the enemy holds your ground at a campaign rung* is a
+   capitulation, and an invasion that goes quiet gets a verdict within six
+   months — settled if the aggressor holds what it took, repelled if not. 27 of
+   the last census's conflicts became invasions and 28 endings were recorded.
+3. **No way in.** Playing the USA there was no verb that made you a party to
+   anything, so every ladder command answered "not a party to that conflict".
+   `Command::JoinConflict` (14 pc, enters at rung 1) and a browser/CLI surface
+   for it and for opening a quarrel.
+
+Also: `apply_command` no longer charges for a command the world refuses;
+escalating on your own ground is charged at 0.30, because a parliament has to
+be talked into an expedition and not into a defence; and defensive objectives
+mirror only *shooting*, since a state need not run a deniable service because
+somebody is running one at it.
+
 ### Open, and deliberately not done in this branch
-- **The AI knows one rule.** `commitment::ai_ladder` climbs a rung when it is
-  losing the ground and still has resolve, steps back when it does not, and
-  stands down out of a frozen quarrel. It IS routed through `apply_command`, so
-  the AI pays the player's price — but that is the whole of its judgement. It
-  does not read the opponent's announced ceiling, does not weigh access before
-  committing, and never chooses an objective or rules of engagement. That is a
-  branch of its own and it wants its own calibration pass.
-- **Interveners still join for free.** `war::declare_war` pushes majors and
+- **Rung 5 is still the resting place of the world.** 9,747 belligerent-months
+  of 26,800 in the last census, against rung 1's 11,359. It is the highest rung
+  reachable without a consenting host, so everyone who cannot project parks
+  there, and long multi-party wars keep their quiet fronts there for years. It
+  is no longer the collapse point it was — the ladder is climbed through it
+  rather than falling back to it — but a state standing on deniable forces for
+  a decade with nothing happening should get bored, and nothing makes it.
+- **Capitulation is reachable but rare, and annexation never happens.** One
+  capitulation and no annexations across the last census; wars end at a table
+  (19 settlements) or with the aggressor thrown back (5). Whether that is right
+  for 1990-2025 is a judgement call — it is nearly right for the period — but
+  the conquest path deserves its own look, since `conquer` is now reached almost
+  only through a side emptying.
+- **The AI's judgement is still thin.** `ambition` reads the objective, the
+  force ratio it could field in that theatre, and its own announced ceiling. It
+  does not weigh access before committing, never chooses an objective or rules
+  of engagement, and does not read the opponent's announced ceiling.
+- **Interveners still join for free.** `invasion_begins` pushes majors and
   guarantors onto a side at rung 8 without charging anybody, which is the
   standing PLAN 2.1 "no side doors" violation and predates this work. The rung
-  changes are priced; the joining is not.
+  changes are priced; the joining is not — though a player's own joining now is.
 - **Deviation from the design's burn table, stated plainly.** The design
   specified `BURN_BY_RUNG[8] = 0.140`. Measured, that empties the United States'
   magazines in eight months of a rung-8 campaign — before the control track can

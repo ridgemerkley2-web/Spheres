@@ -139,11 +139,12 @@ pub fn set_commitment(
     {
         let c = w.conflict_mut(conflict).expect("checked");
         if rung > old {
-            // A quarrel somebody has just escalated is not a frozen one, however
-            // long it has been since the last shot. Without this the freeze
-            // clock ran while a state was climbing and killed the climb halfway
-            // up: eighteen months is less than it takes a poor government to
-            // save the standing for seven rungs.
+            // A quarrel somebody is actively climbing is not a frozen one, and
+            // the freeze clock must not be allowed to kill a climb halfway up:
+            // eighteen months is less than it takes a poor government to save
+            // the standing for seven rungs. Only a climb does this — walking
+            // back down leaves the clock running, which is what lets a quarrel
+            // nobody is prosecuting finally fall off the board.
             c.quiet_months = 0;
             c.frozen_since = None;
         }
@@ -646,11 +647,18 @@ pub fn ambition(w: &WorldState, c: &Conflict, b: &Belligerent) -> u8 {
         .map(|x| x.rung)
         .max()
         .unwrap_or(1);
+    // ...and what an answer answers is SHOOTING. A state does not have to run a
+    // deniable service because somebody else is running one at it; it can simply
+    // endure the thing and let the other government keep paying for it. Mirror
+    // the bottom of the ladder as well and every quarrel in the world ratchets:
+    // two sides holding each other at rung 5 with neither able to stop, which
+    // measured at three quarters of every belligerent-month on the board.
+    let answer = if opp >= SHOOTING_RUNG { opp } else { 1 };
     let want = match b.objective {
         Objective::Seize => INVASION_RUNG,
         Objective::Stabilise => 9,
         Objective::Degrade => SHOOTING_RUNG,
-        Objective::Deny | Objective::Hold => opp,
+        Objective::Deny | Objective::Hold => answer,
         Objective::Withdraw => 1,
     };
     let mine = fieldable(w, c, b.nation);
@@ -663,7 +671,7 @@ pub fn ambition(w: &WorldState, c: &Conflict, b: &Belligerent) -> u8 {
     // A state on its own ground answers whatever is offered it, and does not
     // consult the balance of forces first — that is what home ground means.
     if defending_home(w, c, b.nation) {
-        return want.max(opp).min(b.ceiling);
+        return want.max(answer).min(b.ceiling);
     }
     let ratio = mine / theirs.max(0.001);
     // How much of the ladder the balance of forces lets it contemplate. The
@@ -700,7 +708,7 @@ pub fn ambition(w: &WorldState, c: &Conflict, b: &Belligerent) -> u8 {
 /// whether it can pay for the next step. A state that means to invade does not
 /// spend a year on rhetoric first — it moves quickly through the rungs that are
 /// beneath its intention and slowly through the ones near it.
-pub const CLIMB_CHANCE: f64 = 0.35;
+pub const CLIMB_CHANCE: f64 = 0.45;
 pub const CLIMB_URGENCY: f64 = 0.12;
 /// A government that changes its mind monthly has none. Two months on a rung
 /// before the next step.

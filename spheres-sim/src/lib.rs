@@ -626,8 +626,10 @@ mod tests {
         // Confirmed by re-running the three determinism tests and by watching
         // the census in `war_census` move from 82 conflicts all born at rung 8
         // with one capitulation between them, to a spread across the ladder with
-        // most invasions resolving.
-        const GOLDEN: u64 = 0x575dde89874d0de9;
+        // most invasions resolving. Pinned once at the end of the branch rather
+        // than at each step, and confirmed identical across three runs of a
+        // binary watched to build.
+        const GOLDEN: u64 = 0x3cc36e0e41f1ed8b;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -1581,6 +1583,67 @@ mod tests {
         println!("endings:");
         for (name, n) in endings {
             println!("  {:<20} {}", name, n);
+        }
+        let mut who: std::collections::BTreeMap<String, u64> = Default::default();
+        for seed in 0..8u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..12 * years {
+                tick_month(&mut w, &[]);
+                for c in &w.conflicts {
+                    for b in c.posture.iter().filter(|b| b.rung == 5) {
+                        *who.entry(format!(
+                            "{} in {} (frozen {})",
+                            b.nation.name(),
+                            c.theatre.name(),
+                            c.frozen_since.is_some()
+                        ))
+                        .or_default() += 1;
+                    }
+                }
+            }
+        }
+        {
+            let mut w = world_1990(GameRules { seed: 0, ..GameRules::default() });
+            let mut said = 0;
+            for _ in 0..12 * years {
+                tick_month(&mut w, &[]);
+                let probes: Vec<(NationId, u32, u8, u8, String, f64)> = w
+                    .conflicts
+                    .iter()
+                    .flat_map(|c| {
+                        c.posture
+                            .iter()
+                            .filter(|b| b.rung == 5 && b.months_at_rung > 24)
+                            .map(|b| {
+                                (
+                                    b.nation,
+                                    c.id,
+                                    b.rung,
+                                    commitment::ambition(&w, c, b),
+                                    commitment::rung_blocked(&w, c, b.nation, 6)
+                                        .unwrap_or_else(|| "-".into()),
+                                    w.nation(b.nation).political_capital,
+                                )
+                            })
+                            .collect::<Vec<_>>()
+                    })
+                    .collect();
+                for (n, cid, r, want, why, pc) in probes {
+                    if said < 8 {
+                        said += 1;
+                        println!(
+                            "  stuck: {} c{} at {} wants {} pc {:.0} — blocked: {}",
+                            n.name(), cid, r, want, pc, why
+                        );
+                    }
+                }
+            }
+        }
+        let mut v: Vec<_> = who.into_iter().collect();
+        v.sort_by_key(|(_, n)| std::cmp::Reverse(*n));
+        println!("who is standing on rung 5:");
+        for (k, n) in v.iter().take(12) {
+            println!("  {:<50} {}", k, n);
         }
     }
 
