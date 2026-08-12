@@ -1,0 +1,41 @@
+{
+  "id": "Oman",
+  "name": "Oman",
+  "system": "Market",
+  "authoritarianism": 0.88,
+  "economy": {
+    "gdp_bn": 13.31,
+    "population_m": 1.76,
+    "tfp_trend": 0.01,
+    "inflation": 0.045,
+    "interest_rate": 0.0985,
+    "tax_rate": 0.07,
+    "mil_spend_gdp": 0.124,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.048,
+    "debt_gdp": 0.25,
+    "oil_mbd": 0.642,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 68.0,
+    "separatism": 0.08
+  },
+  "military": {
+    "strength": 2.5,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $13.31bn and population 1.76m: World Bank WDI, NY.GDP.MKTP.CD and SP.POP.TOTL, Oman, 1990.",
+    "Inflation 4.5% is an estimate: the World Bank publishes no CPI series for Oman in this period. The GDP deflator prints 42.2% for 1990, which is the oil price spike passing through an economy that is mostly oil and says nothing about consumer prices; the rial has been pegged to the dollar since 1973 and Omani consumer inflation ran low single digits. Flagged as unverified.",
+    "Interest rate 9.85%: World Bank FR.INR.LEND, Oman, 1990.",
+    "Tax 7% of GDP: Oman levies corporate income tax, unusually for the Gulf, but no personal income tax. Revenue is overwhelmingly hydrocarbon. Estimate, following the roster's treatment of Saudi Arabia (0.08).",
+    "Defence 12.4% of GDP: World Bank MS.MIL.XPND.GD.ZS, Oman, 1990. Oman spent a larger share of output on defence than almost any state on earth through this period — the legacy of the Dhofar rebellion, which ran from 1963 until 1976 and was won with British, Iranian and Jordanian help.",
+    "Debt 25% of GDP is an estimate; no published series for 1990. Oman borrowed heavily during the 1986 oil price collapse and was the most indebted of the Gulf monarchies in relative terms.",
+    "Investment: gross fixed capital formation 10.8% of GDP (World Bank NE.GDI.FTOT.ZS, 1990) — strikingly low, and the lowest in this region — split 6.0 public and 4.8 private.",
+    "Oil 0.642 mbd: Energy Institute Statistical Review of World Energy via Our World in Data, 1990 (398.2 TWh), converted at 620.5 TWh per million barrels a day. Oman is not an OPEC member and never has been.",
+    "Authoritarianism 0.88: Sultan Qaboos bin Said ruled by decree, held the portfolios of prime minister, defence, foreign affairs and finance simultaneously, and there was no constitution until the Basic Law of 1996. The State Consultative Council of 1981 was appointed; the Majlis al-Shura that replaced it in November 1991 was indirectly selected, not elected.",
+    "Separatism 0.08 is Dhofar, quiet since 1976 but distinct in language and history from the Omani interior, and the older Ibadi imamate claim of the interior against the coastal sultanate that produced the Jebel Akhdar war of 1954-59.",
+    "Military index 2.5: about 30,000 men in the Sultan's Armed Forces, still with British officers on loan in 1990, and a strategic position on the Strait of Hormuz that matters more than the force does."
+  ]
+}

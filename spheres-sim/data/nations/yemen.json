@@ -1,0 +1,44 @@
+{
+  "id": "Yemen",
+  "name": "Yemen",
+  "system": "Market",
+  "authoritarianism": 0.55,
+  "economy": {
+    "gdp_bn": 12.64,
+    "population_m": 13.89,
+    "tfp_trend": 0.005,
+    "inflation": 0.3,
+    "interest_rate": 0.16,
+    "tax_rate": 0.12,
+    "mil_spend_gdp": 0.066,
+    "state_invest_gdp": 0.09,
+    "priv_invest_gdp": 0.08,
+    "debt_gdp": 0.5,
+    "oil_mbd": 0.163,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 40.0,
+    "separatism": 0.45
+  },
+  "military": {
+    "strength": 4.0,
+    "nuclear": false
+  },
+  "sources": [
+    "THE UNIFICATION PROBLEM, STATED PLAINLY. On 1 January 1990 there was no country called Yemen. There were two: the Yemen Arab Republic in the north, capital Sanaa, and the People's Democratic Republic of Yemen in the south, capital Aden — the only Marxist-Leninist state the Arab world produced. They merged on 22 May 1990, four and a half months into this game, under Ali Abdullah Saleh as president and Ali Salim al-Beidh as vice-president. SPHERES has no mechanism for two nations becoming one, and BIBLE section 7 forbids scripting an event on a date to fake it. So Yemen ships already unified, with figures for the combined territory, and this note is the honest record of what that costs: the game cannot play the unification, and cannot play a Yemen where it fails. What it can play is the consequence, because the two armies were never merged and the south seceded in May 1994.",
+    "GDP $12.64bn and population 13.89m: World Bank WDI, NY.GDP.MKTP.CD and SP.POP.TOTL, Yemen Rep., 1990. The World Bank's Yemen series begins in 1990 and is already reported for the unified republic, which is convenient here and is also the reason this file is possible at all.",
+    "That GDP figure needs its own warning. It converts at the unification-era official rate and is not credible against later prints: the same series falls to roughly $4-6bn by the mid-1990s after the rial collapsed, and Yemen's real output did not fall by half. It is entered because it is the transcribed World Bank number for 1990 and because Syria, Jordan and Lebanon in this roster are converted the same way, so the distortion is at least consistent across the region.",
+    "Inflation 0.30 is an estimate. The World Bank CPI series for Yemen begins in 1991 at 36.0%, then 29.4% in 1992 and 35.8% in 1993; there is no 1990 print. 30% is entered as the nearest defensible figure and is flagged as unverified.",
+    "Interest rate 16% is an estimate. The World Bank lending-rate series for Yemen begins in 1996 at 31.5%. Rates were administered in 1990 in both halves of the country.",
+    "Tax 12% of GDP is an estimate; no World Bank revenue series for 1990. Both predecessor states depended on external transfers and remittances rather than domestic taxation — remittances from Yemeni workers in Saudi Arabia were the largest single source of foreign exchange, and Riyadh expelled roughly 800,000 of them in late 1990 in retaliation for Yemen's stance on the Gulf crisis.",
+    "Defence 6.6% of GDP: World Bank MS.MIL.XPND.GD.ZS, Yemen Rep., 1990.",
+    "Debt 50% of GDP: total external debt $6.354bn (World Bank DT.DOD.DECT.CD, 1990) against the $12.64bn GDP above; the same series reads 50.6% of GNI. Most of it was the PDRY's obligations to the Soviet Union.",
+    "Investment: no World Bank capital formation series for 1990. Split 9.0 public and 8.0 private. Estimate.",
+    "Oil 0.163 mbd: Energy Institute Statistical Review of World Energy via Our World in Data, 1990 (101.3 TWh), converted at 620.5 TWh per million barrels a day. Production came from the Marib-Jawf fields in the north, discovered by Hunt Oil in 1984; the Masila block in Hadhramaut does not come onstream until 1993, which is why Yemeni output roughly triples over the decade.",
+    "System is Market, and that is a real choice rather than a default: the PDRY's command economy was dissolved into the YAR's at unification, not the other way round. Ali Abdullah Saleh's north had the larger population, the larger army and the oil.",
+    "Authoritarianism 0.55 is deliberately below this model's electoral ceiling. The unification constitution legalised parties, and the parliamentary election of 27 April 1993 — 4,700 candidates, an opposition that won seats, international observers — was the freest held in the Arabian Peninsula in the twentieth century. Saleh was still Saleh, hence 0.55 rather than 0.3.",
+    "Stability 40 and separatism 0.45: two states with two armies that had fought border wars in 1972 and 1979 merged without merging their forces, their currencies or their security services. The Yemeni Socialist Party's leadership withdrew to Aden in 1993 and declared secession in May 1994.",
+    "Military index 4.0: roughly 65,000 men combined, Soviet-equipped on both sides of the old border, with substantial armour and no capacity to sustain it."
+  ]
+}

@@ -715,6 +715,188 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the Knesset",
         pillars: &[],
     },
+    // Syria — People's Council, 10-11 February 1986. The National Progressive
+    // Front, which the Ba'ath created in 1972 and has led ever since, took all
+    // 195 seats; the Ba'ath itself took 129 of them. The Front allocates seats
+    // rather than contesting them, so the sub-shares below are the documented
+    // Ba'athist two-thirds and an even division of the remainder among the four
+    // allied parties. No election is due because none can change anything: the
+    // constitution of 1973 names the Ba'ath as the leading party of state.
+    Polity {
+        nation: NationId::Syria,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("sy_baath", "Arab Socialist Ba'ath Party", "Hizb al-Ba'th al-'Arabi al-Ishtiraki", Family::Nationalist, 0.66),
+            p("sy_ascp", "Syrian Communist Party", "al-Hizb al-Shuyu'i al-Suri", Family::Communist, 0.09),
+            p("sy_asu", "Arab Socialist Union", "al-Ittihad al-Ishtiraki al-'Arabi", Family::Nationalist, 0.09),
+            p("sy_sum", "Socialist Unionist Movement", "al-Haraka al-Ishtirakiyya al-Wahdawiyya", Family::Nationalist, 0.09),
+            p("sy_asp", "Arab Socialist Party", "al-Hizb al-Ishtiraki al-'Arabi", Family::SocialDemocratic, 0.07),
+        ],
+        ruling: "the Regional Command of the Ba'ath Party",
+        pillars: &[
+            pl(Pillar::Army, "the Republican Guard and the Special Forces"),
+            pl(Pillar::Party, "the Ba'ath Party Regional Command"),
+            pl(Pillar::Security, "the Mukhabarat directorates"),
+            pl(Pillar::Business, "the Damascus and Aleppo merchant families"),
+        ],
+    },
+    // Jordan — House of Representatives, 8 November 1989: the first election in
+    // twenty-two years, held because the dinar collapsed and Ma'an rioted. Parties
+    // were still banned, so every candidate ran as an independent and the results
+    // are counted in blocs, which is how they were counted at the time: Muslim
+    // Brotherhood 22 seats of 80, independent Islamists 12, leftists and Arab
+    // nationalists 13, tribal and pro-palace independents the remaining 33. Parties
+    // were legalised in 1992 and the next election came on 8 November 1993.
+    Polity {
+        nation: NationId::Jordan,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (1993, 11),
+        parties: &[
+            p("jo_tribal", "Tribal and Independent Loyalists", "", Family::BigTent, 0.4125),
+            p("jo_ikhwan", "Muslim Brotherhood", "al-Ikhwan al-Muslimun", Family::Religious, 0.2750),
+            p("jo_islamists", "Independent Islamists", "", Family::Religious, 0.1500),
+            p("jo_left", "Leftist and Arab Nationalist Bloc", "", Family::SocialDemocratic, 0.1625),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[
+            pl(Pillar::Army, "the Jordanian Armed Forces"),
+            pl(Pillar::Security, "the General Intelligence Directorate"),
+        ],
+    },
+    // Lebanon — the last parliamentary election was in April 1972. The Chamber
+    // elected then was never renewed: the civil war began in 1975 and members who
+    // died were replaced by appointment. The 1972 chamber was dominated by the
+    // za'im notables rather than by parties, which is the 0.65 below. Amal was
+    // founded in 1974 and Hezbollah in 1985, so both carry their result at the
+    // first election either contested — 8 seats of 128 each, in August-September
+    // 1992 — under the convention this table already uses elsewhere. The Taif
+    // Agreement of 22 October 1989 is what makes that 1992 election possible.
+    Polity {
+        nation: NationId::Lebanon,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1992, 8),
+        parties: &[
+            p("lb_independents", "Independent Notables", "", Family::BigTent, 0.65),
+            p("lb_kataeb", "Kataeb Party", "Hizb al-Kata'ib al-Lubnaniyya", Family::ChristianDemocratic, 0.09),
+            p("lb_nlp", "National Liberal Party", "Hizb al-Wataniyyin al-Ahrar", Family::Conservative, 0.08),
+            p("lb_psp", "Progressive Socialist Party", "al-Hizb al-Taqaddumi al-Ishtiraki", Family::SocialDemocratic, 0.06),
+            p("lb_amal", "Amal Movement", "Harakat Amal", Family::Religious, 0.06),
+            p("lb_hezbollah", "Hezbollah", "Hizb Allah", Family::Religious, 0.06),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[pl(Pillar::Army, "the Lebanese Armed Forces")],
+    },
+    // United Arab Emirates — a federation of seven hereditary monarchies whose
+    // Supreme Council is the seven rulers themselves. No national election has
+    // ever been held; the Federal National Council was wholly appointed until
+    // 2006 and parties are prohibited. Power sits where the oil is: Abu Dhabi
+    // under Zayed bin Sultan Al Nahyan, president since the union in 1971, with
+    // Dubai under Al Maktoum holding the vice-presidency and the trade.
+    Polity {
+        nation: NationId::UAE,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Federal Supreme Council",
+        pillars: &[
+            pl(Pillar::Party, "the Al Nahyan and Al Maktoum ruling families"),
+            pl(Pillar::Army, "the Union Defence Force"),
+            pl(Pillar::Business, "the Dubai merchant houses"),
+        ],
+    },
+    // Qatar — no elections of any kind. The Advisory Council created in 1972 was
+    // appointed and its term was simply extended by decree. Khalifa bin Hamad Al
+    // Thani took power from his cousin in a bloodless coup in February 1972 and
+    // lost it to his own son in another in June 1995, which is the risk this
+    // block is describing: in Qatar the threat to a ruler is the family.
+    Polity {
+        nation: NationId::Qatar,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the House of Thani",
+        pillars: &[
+            pl(Pillar::Party, "the Al Thani family council"),
+            pl(Pillar::Army, "the Qatar Armed Forces"),
+            pl(Pillar::Clergy, "the ulema"),
+            pl(Pillar::Business, "the merchant houses"),
+        ],
+    },
+    // Oman — Sultan Qaboos bin Said ruled by decree, holding the offices of prime
+    // minister, defence, foreign affairs and finance at once. There was no
+    // constitution until the Basic Law of 1996 and no election ever: the State
+    // Consultative Council of 1981 was appointed, and the Majlis al-Shura that
+    // replaced it in November 1991 was indirectly selected from tribal nominees.
+    // The Ibadi imamate of the interior is listed as a pillar because it is the
+    // one rival source of legitimacy Oman has, and it fought for it until 1959.
+    Polity {
+        nation: NationId::Oman,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Sultan",
+        pillars: &[
+            pl(Pillar::Army, "the Sultan's Armed Forces"),
+            pl(Pillar::Security, "the Internal Security Service"),
+            pl(Pillar::Clergy, "the Ibadi ulema of the interior"),
+            pl(Pillar::Business, "the Muscat merchant houses"),
+        ],
+    },
+    // Yemen — the transitional House of Representatives of the unified republic,
+    // seated 22 May 1990 by merging the north's 159-member Consultative Assembly
+    // with the south's 111-member Supreme People's Council and 31 presidential
+    // appointees. The two shares below are those two chambers as fractions of the
+    // 301 seats; the appointees are left out because they were not a party. The
+    // first election of the unified state was held on 27 April 1993, and it was
+    // real. See yemen.json for why this nation ships already unified.
+    Polity {
+        nation: NationId::Yemen,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (1993, 4),
+        parties: &[
+            p("ye_gpc", "General People's Congress", "al-Mu'tamar al-Sha'bi al-'Amm", Family::BigTent, 0.528),
+            p("ye_ysp", "Yemeni Socialist Party", "al-Hizb al-Ishtiraki al-Yamani", Family::Communist, 0.369),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[
+            pl(Pillar::Army, "the northern and southern armies, never merged"),
+            pl(Pillar::Party, "the Hashid tribal confederation"),
+            pl(Pillar::Security, "the Political Security Organisation"),
+        ],
+    },
+    // Bahrain — the last election was on 7 December 1973, for the National
+    // Assembly created by the 1973 constitution: the People's Bloc took 8 of the
+    // 30 elected seats, the Religious Bloc 6, and independents 16. The Emir
+    // dissolved the Assembly on 26 August 1975 when it refused to pass the State
+    // Security Law, suspended the constitutional articles requiring elections,
+    // and ruled by decree. Nothing is due; the Assembly does not return until
+    // 2002.
+    Polity {
+        nation: NationId::Bahrain,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("bh_independents", "Independents", "", Family::BigTent, 0.533),
+            p("bh_peoples", "People's Bloc", "al-Kutla al-Sha'biyya", Family::SocialDemocratic, 0.267),
+            p("bh_religious", "Religious Bloc", "al-Kutla al-Diniyya", Family::Religious, 0.200),
+        ],
+        ruling: "the House of Khalifa",
+        pillars: &[
+            pl(Pillar::Party, "the Al Khalifa family council"),
+            pl(Pillar::Army, "the Bahrain Defence Force"),
+            pl(Pillar::Security, "the State Security Directorate"),
+            pl(Pillar::Business, "the merchant houses"),
+        ],
+    },
     // Turkey — Grand National Assembly, 29 November 1987: ANAP 36.3%, SHP 24.7%,
     // DYP 19.1%, DSP 8.5%, Welfare 7.2%. The 10% national threshold, written
     // into the 1982 constitution by the generals who had just left office, gave

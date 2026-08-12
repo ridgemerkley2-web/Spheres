@@ -37,8 +37,9 @@ pub enum NationId {
     India, Pakistan, Iraq, Kuwait, SaudiArabia, Iran, SouthKorea, Poland,
     Brazil, Indonesia, Egypt, Israel, Turkey, Nigeria, Vietnam,
     Yugoslavia, Serbia, Croatia, Slovenia, Bosnia,
+    Syria, Jordan, Lebanon, UAE, Qatar, Oman, Yemen, Bahrain,
 }
-pub const ALL_START_NATIONS: [NationId; 24] = [
+pub const ALL_START_NATIONS: [NationId; 32] = [
     NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
     NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
     NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
@@ -46,6 +47,8 @@ pub const ALL_START_NATIONS: [NationId; 24] = [
     NationId::Brazil, NationId::Indonesia, NationId::Egypt, NationId::Israel,
     NationId::Turkey, NationId::Nigeria, NationId::Vietnam,
     NationId::Yugoslavia,
+    NationId::Syria, NationId::Jordan, NationId::Lebanon, NationId::UAE,
+    NationId::Qatar, NationId::Oman, NationId::Yemen, NationId::Bahrain,
 ];
 /// States that only exist if a federation comes apart.
 pub const SUCCESSOR_NATIONS: [NationId; 6] = [
@@ -86,6 +89,14 @@ impl NationId {
             NationId::Croatia => "Croatia",
             NationId::Slovenia => "Slovenia",
             NationId::Bosnia => "Bosnia",
+            NationId::Syria => "Syria",
+            NationId::Jordan => "Jordan",
+            NationId::Lebanon => "Lebanon",
+            NationId::UAE => "United Arab Emirates",
+            NationId::Qatar => "Qatar",
+            NationId::Oman => "Oman",
+            NationId::Yemen => "Yemen",
+            NationId::Bahrain => "Bahrain",
         }
     }
     pub fn parse(s: &str) -> Option<NationId> {
@@ -121,6 +132,14 @@ impl NationId {
             "croatia" => NationId::Croatia,
             "slovenia" => NationId::Slovenia,
             "bosnia" | "bosnia and herzegovina" | "bih" => NationId::Bosnia,
+            "syria" | "syrian arab republic" | "syr" => NationId::Syria,
+            "jordan" | "jor" => NationId::Jordan,
+            "lebanon" | "lbn" => NationId::Lebanon,
+            "uae" | "united arab emirates" | "emirates" | "are" => NationId::UAE,
+            "qatar" | "qat" => NationId::Qatar,
+            "oman" | "omn" => NationId::Oman,
+            "yemen" | "north yemen" | "south yemen" | "yem" => NationId::Yemen,
+            "bahrain" | "bhr" => NationId::Bahrain,
             _ => return None,
         })
     }
@@ -137,8 +156,10 @@ pub const ALL_NATION_IDS: [NationId; NATION_COUNT] = [
     NationId::Egypt, NationId::Israel, NationId::Turkey, NationId::Nigeria,
     NationId::Vietnam, NationId::Yugoslavia, NationId::Serbia, NationId::Croatia,
     NationId::Slovenia, NationId::Bosnia,
+    NationId::Syria, NationId::Jordan, NationId::Lebanon, NationId::UAE,
+    NationId::Qatar, NationId::Oman, NationId::Yemen, NationId::Bahrain,
 ];
-pub const NATION_COUNT: usize = 30;
+pub const NATION_COUNT: usize = 38;
 
 /// Symmetric relations, held as a dense lower triangle so a lookup is an index
 /// rather than a search.
