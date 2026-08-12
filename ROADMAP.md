@@ -43,6 +43,55 @@
   a guarantee, cutting a client loose, tearing up a treaty — are charged to
   bankruptcy rather than refused, because a government can always renege
 
+## Closed: nation identity is a runtime value, and dyads are derived
+
+**Phase 1.1.** `NationId` was a closed 30-variant enum with hand-written
+`name()`/`parse()` arms, fixed-size roster arrays, and — the part that could
+not survive the roster growing — a `match (attacker, target)` in `ai_wars`
+holding fourteen hand-set war appetites. At 190 nations that is ~380 match arms
+and ~36,000 ordered dyads, and the second of those cannot be a match statement
+at any size.
+
+- **Identity is now an interned index.** `nations.rs` holds the roster as data
+  (code, display name, aliases, region, land borders, claims, and the two
+  flags that used to be the `PATRONS` and `MAJORS` arrays); `NationId` is a
+  `u16` handle into it. Adding a country is adding a row. The static table can
+  become a JSON file without anything above that module noticing, because
+  nothing above it knows how many nations there are.
+- **Saves carry codes, never indices.** `NationId` serializes as its stable
+  code and the relations matrix — dense in memory, keyed by index — writes
+  named triples and *drops* a code this build cannot resolve rather than
+  reinterpreting it as whoever now holds that slot. Exactly the discipline the
+  technology tree already follows, for exactly the reason it had to.
+- **War appetite is derived.** `dyads.rs` computes it from reach (border or
+  region), claim (the *share of the target* a state says is its own), grudge,
+  the aggressor's own authoritarianism and militarisation, digestibility and
+  worth — then the same circumstance terms as before. Iraq still wants Kuwait
+  an order of magnitude more than Saudi Arabia, and Belgrade still wants Bosnia
+  and not Slovenia, but now because the 1991 census put 31% Serbs in Bosnia and
+  2% in Slovenia and because Serbia and Slovenia share no border.
+- **The missing half of `burned_`.** A repelled invasion was remembered; a
+  *successful* one was not, so a state that took what it claimed came back for
+  it every two years. Measured across twelve thirty-year runs on master, 182 of
+  300 wars were somebody invading Bosnia again. A claim pressed to a conclusion
+  is now a claim collected (`pressed_A_B`): the grievance survives, the war aim
+  does not.
+
+**The golden hash moved and was re-pinned** (`0xb675826e8941683d` ->
+`0x19c5c5dafb18dbd9`). The identity half is separately proven not to move it:
+with the runtime id in place and master's literal dyad table restored on top,
+the fingerprint and the 2025 league table reproduce master exactly. All of the
+movement is the derived model, which is the point of it.
+
+**Known thin spots, in order of how much they should worry you.** The world is
+quieter than master — 75 wars across twelve thirty-year runs against 300 — but
+most of what went is the repeat-invasion loop above. `china_growth_miracle`
+asserts a 14x ceiling that master clears only on the default seed (it runs
+14.9x, 16.8x and 15.1x on seeds 0, 42 and 3), so it is a one-seed test standing
+on luck and the next timeline change will likely tip it. And
+`a_pact_drags_a_great_power_into_a_war_it_did_not_start` now lands on 3/12
+against a floor of 3 — passing, but with no margin.
+
 ## Closed: the whole world was about twice too large
 
 Measured on the default seed, clean builds, `run 35 1990`:

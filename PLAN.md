@@ -42,7 +42,13 @@ pre-0.1 behaviour; a golden hash is pinned.
 *The expensive-to-defer work. Nothing here is visible to a player, and all of it
 gets dramatically more expensive after the roster grows.*
 
-### 1.1 Nations become data, and ids become runtime — **XL, critical path**
+### 1.1 Nations become data, and ids become runtime — **DONE, see ROADMAP**
+*`NationId` is a `u16` handle into the `nations.rs` roster; the dyad table is
+derived in `dyads.rs`; saves carry codes. What remains of this item is moving
+the roster from a static Rust table to a JSON file with `deny_unknown_fields`
+and two-pass validation, which is now a change to one module.*
+
+### 1.1 (as written)
 `NationId` is a closed Rust enum with hand-written `name()`/`parse()` arms,
 fixed-size roster arrays, and per-dyad `match` tables for war appetite. At 190
 nations that is ~380 match arms and ~36,000 ordered dyads, which cannot be a

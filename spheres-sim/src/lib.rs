@@ -1,7 +1,9 @@
 pub mod data;
+pub mod dyads;
 pub mod economy;
 pub mod government;
 pub mod init;
+pub mod nations;
 pub mod politics;
 pub mod statecraft;
 pub mod stratagems;
@@ -358,6 +360,52 @@ mod tests {
             text.replace("\"known\": [\n", &format!("\"known\": [\n          \"{}\",\n", GHOST))
         };
         let mut reloaded = load(&doctored).expect("a save with an unknown tech id must still load");
+        run_months(&mut reloaded, 12);
+        for n in reloaded.nations.iter().filter(|n| n.alive) {
+            assert!(n.gdp.is_finite() && n.gdp > 0.0, "{:?} broke after reload", n.id);
+        }
+    }
+
+    #[test]
+
+    fn saves_name_nations_rather_than_numbering_them() {
+        // The same lesson as `saves_name_technologies_rather_than_numbering_them`,
+        // and the reason `NationId` serializes as its code. A nation's id is an
+        // index into the roster and into the relations matrix; inserting one
+        // country in the middle of the roster moves every later index. A save
+        // that stored those indices would come back describing a different
+        // world, with nothing to detect it.
+        let mut w = world_1990(GameRules::default());
+        run_months(&mut w, 120);
+        let text = save(&w);
+
+        assert!(text.contains("\"id\": \"USA\""), "a nation's id is not written by name");
+        // The relations matrix in particular: dense in memory, named on disk.
+        assert!(
+            text.contains("\"USSR\""),
+            "the relations triples are not carrying codes"
+        );
+        // No nation is written as a bare number anywhere.
+        assert!(!text.contains("\"id\": 0"), "save is storing raw roster indices");
+
+        // A code from a build with a country this one does not have must be
+        // dropped from the relations matrix rather than resolved onto its
+        // neighbour, leaving a world that still loads and still runs.
+        const GHOST: &str = "xx_nation_from_a_later_build";
+        let doctored = text.replacen(
+            "\"relations\": [",
+            &format!("\"relations\": [\n    [\n      \"{}\",\n      \"USA\",\n      -40.0\n    ],", GHOST),
+            1,
+        );
+        assert_ne!(doctored, text, "the save has no relations to doctor");
+        let mut reloaded =
+            load(&doctored).expect("a save naming an unknown nation must still load");
+        // The ghost was dropped, not mapped onto whoever holds slot zero.
+        assert_eq!(
+            reloaded.relation(NationId::USA, NationId::USSR),
+            w.relation(NationId::USA, NationId::USSR),
+            "an unresolvable code was reinterpreted as a real nation"
+        );
         run_months(&mut reloaded, 12);
         for n in reloaded.nations.iter().filter(|n| n.alive) {
             assert!(n.gdp.is_finite() && n.gdp > 0.0, "{:?} broke after reload", n.id);
@@ -772,13 +820,35 @@ mod tests {
     fn a_war_costs_a_government_at_home() {
         // The other half of the currency: it is earned and lost by what the
         // government's record is, not only spent by what it does.
+        //
+        // Both worlds put the player in Washington, and that is load-bearing
+        // rather than decoration. `politics.rs` skips AI statecraft for any
+        // nation with `war_exhaustion > 0.3`, so an exhausted USA quietly stops
+        // pledging aid and stops SPENDING its standing. Measured without this
+        // line, the strained world ended on 43 against the peaceful world's 40
+        // — war appeared to pay, purely because the peaceful USA was busy
+        // buying clients with the capital the exhausted one was not spending.
+        // The `- n.war_exhaustion * 45.0` term was working the whole time; the
+        // AI's spending was larger than it and pointed the other way.
+        //
+        // Making the USA the player suppresses that same AI route in BOTH
+        // worlds — symmetrically, and through a condition already in the model
+        // rather than a back door — so what is left is the thing the test
+        // names. The gap is 63.6 at peace against 52.4 at war.
+        //
+        // This is the confound that surfaced when patron precedence was
+        // restored on the runtime-ids branch: that fix changed how much the
+        // peacetime USA spends, which is what pushed an already-masked
+        // assertion over the line. The threshold below is untouched.
         let mut w = world_1990(GameRules::default());
         w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::USA);
         run_months(&mut w, 24);
         let peacetime = w.nation(NationId::USA).political_capital;
 
         let mut at_war = world_1990(GameRules::default());
         at_war.rules.ai_aggression = 0.0;
+        at_war.player = Some(NationId::USA);
         at_war.nation_mut(NationId::USA).war_exhaustion = 0.5;
         run_months(&mut at_war, 24);
         let strained = at_war.nation(NationId::USA).political_capital;
@@ -1084,7 +1154,7 @@ mod tests {
             for _ in 0..360 {
                 for h in tick_month(&mut w, &[]) {
                     if h.contains("honours its defence pact")
-                        && politics::PATRONS.iter().any(|p| h.starts_with(p.name()))
+                        && patrons().iter().any(|p| h.starts_with(p.name()))
                     {
                         saw = true;
                     }
