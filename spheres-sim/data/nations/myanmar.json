@@ -1,0 +1,43 @@
+{
+  "id": "Myanmar",
+  "name": "Myanmar",
+  "system": "Command",
+  "authoritarianism": 0.88,
+  "economy": {
+    "gdp_bn": 11.0,
+    "population_m": 41.3,
+    "tfp_trend": 0.004,
+    "inflation": 0.176,
+    "interest_rate": 0.059,
+    "tax_rate": 0.062,
+    "mil_spend_gdp": 0.029,
+    "state_invest_gdp": 0.08,
+    "priv_invest_gdp": 0.06,
+    "debt_gdp": 0.51,
+    "oil_mbd": 0.015,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 30.0,
+    "separatism": 0.55
+  },
+  "military": {
+    "strength": 13.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $11.0bn at $280 a head (FY88 est.) and population 41,277,389 (July 1990): CIA World Factbook 1990. The World Bank series NY.GDP.MKTP.CD gives $2.115bn for the same year — a fifth of the Factbook figure, and $53 a head, which would make Myanmar poorer per person than any country in recorded history. The difference is the exchange rate: the kyat had an official SDR peg and a parallel rate many times weaker, and a dollar GDP for Myanmar in 1990 is not a single well-defined quantity. The Factbook pair is taken because it is internally consistent and produces a per-capita figure in the plausible range. This is recorded as unverified.",
+    "Inflation 17.6%: World Bank FP.CPI.TOTL.ZG, 1990 (17.627%) — a domestic price index, so unlike the GDP figure it does not depend on which exchange rate is used. The CIA World Factbook 1990 gives 22.6% for FY89.",
+    "Interest rate 5.88%: World Bank FR.INR.DPST, the deposit rate, 1990. It had been 1.5% in 1988 and 1989 and went to 9% in 1991, so 1990 sits in the middle of an administered adjustment rather than reflecting any market price. It is nevertheless a real published observation, which is why it is used in preference to a constructed figure.",
+    "Tax 6.2% of GDP: World Bank GC.TAX.TOTL.GD.ZS, 1990 (6.198%). Total revenue including grants was 10.46%.",
+    "Military spending 2.9% of GDP: CIA World Factbook 1990, $315.0m and 21.0% of the central government budget for FY88, against the Factbook's own $11.0bn GDP. The World Bank MS.MIL.XPND.GD.ZS gives 3.396% for 1990. Both understate what SLORC was actually doing, which was roughly doubling the size of the Tatmadaw between 1988 and 1994.",
+    "Investment: the World Bank has no gross capital formation observation for Myanmar in 1990. 8.0 public and 6.0 private are entered against the Factbook's FY89 budget, which gives capital expenditure of $0.7bn of $5.0bn total spending in a state-owned economy where private fixed investment had only been legal since the Foreign Investment Law of November 1988. Recorded as unverified.",
+    "Debt 51%: CIA World Factbook 1990, external debt $5.6bn (December 1989 est.) against the Factbook's $11.0bn GDP. The World Bank's own pair — $5.328bn of external debt (DT.DOD.DECT.CD) over its $2.115bn GDP — gives 254% instead, which is the same exchange-rate artefact as the GDP figure and is why both numbers here come from one source rather than two.",
+    "Oil 0.015 mbd: Myanmar's onshore crude output, which the US Energy Information Administration series shows peaking at 31,000 barrels a day in 1984 and declining through the late eighties. Roughly fifteen thousand barrels a day in 1990, all of it refined domestically. The figure is an interpolation on a declining series rather than a transcribed observation and is recorded as unverified.",
+    "System Command: the Burmese Way to Socialism's state sector still owned industry, trade and banking in January 1990. SLORC's Foreign Investment Law of November 1988 had opened the door to joint ventures but had barely taken effect.",
+    "Authoritarianism 0.88: the State Law and Order Restoration Council, the junta formed by General Saw Maung on 18 September 1988 after the army shot its way through the 8888 uprising. It held a general election on 27 May 1990 which the National League for Democracy won overwhelmingly, and then refused to convene the parliament — so a vote is not what removes this government, and the model treats it as unelected.",
+    "Stability 30: eighteen months after the 8888 uprising, with the NLD's leadership under detention — Aung San Suu Kyi from 20 July 1989 — and an election five months away that the regime would annul.",
+    "Separatism 0.55: the highest on this roster outside Yugoslavia and the Soviet Union, and the right reading. Ethnic minorities were about a third of the population, and the Karen National Union, the Kachin Independence Army, the Shan armies, the Mon and the United Wa State Army — the last formed in 1989 out of the collapse of the Communist Party of Burma — held territory, taxed it and ran it. The state did not control its own borders.",
+    "Military strength 13: a Tatmadaw of roughly 200,000 in 1990, large but equipped for internal war, with Chinese arms arriving under the 1989 agreement and no ability to project force beyond its own frontier."
+  ]
+}

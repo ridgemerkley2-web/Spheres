@@ -169,6 +169,43 @@
         { "a": "Vietnam", "b": "SouthKorea", "value": -10.0 },
         { "a": "Vietnam", "b": "Poland", "value": 25.0 }
       ]
+    },
+    {
+      "note": [
+        "South Asia in January 1990, where the organising fact is that India is the only neighbour every one of these states has and none of them can balance it alone.",
+        "Nepal is in the eleventh month of an Indian squeeze: on 23 March 1989 Delhi let the trade and transit treaties lapse and closed thirteen of the fifteen border entry points, cutting a landlocked country off from its fuel. Kathmandu's answer since the 1988 arms purchase has been Beijing, which is what provoked the squeeze in the first place.",
+        "Sri Lanka is watching the Indian Peace Keeping Force leave under protest. President Premadasa demanded the withdrawal of a force his predecessor had invited in under the 1987 accord; the last of it went on 24 March 1990, and while it was still there Colombo was arming the LTTE it had come to disarm.",
+        "Bangladesh owes its existence to the Indian intervention of 1971 and has spent every year since arguing with Delhi about the Ganges at Farakka. Pakistan recognised it only in 1974. China, which vetoed its UN membership until 1974, is now its principal arms supplier.",
+        "Afghanistan is the Cold War's last live proxy war. Moscow's combat troops left in February 1989 but the money and the weapons did not; Washington, Islamabad and Riyadh are on the other side of the same war, and Pakistan holds three million Afghan refugees and the mujahideen command that runs out of Peshawar. India was the only South Asian state that recognised the Kabul government throughout.",
+        "Myanmar under SLORC is isolated from the West after the 1988 crackdown and has replaced it with China, which signed the border trade agreement in August 1988 and began the arms relationship in 1989. Japan, its largest aid donor, recognised the junta in February 1989 and resumed assistance."
+      ],
+      "pairs": [
+        { "a": "Nepal", "b": "India", "value": -25.0 },
+        { "a": "Nepal", "b": "China", "value": 30.0 },
+        { "a": "Nepal", "b": "UK", "value": 45.0 },
+        { "a": "Nepal", "b": "Bangladesh", "value": 20.0 },
+        { "a": "SriLanka", "b": "India", "value": -10.0 },
+        { "a": "SriLanka", "b": "UK", "value": 30.0 },
+        { "a": "SriLanka", "b": "Pakistan", "value": 25.0 },
+        { "a": "SriLanka", "b": "China", "value": 20.0 },
+        { "a": "Bangladesh", "b": "India", "value": 15.0 },
+        { "a": "Bangladesh", "b": "Pakistan", "value": -10.0 },
+        { "a": "Bangladesh", "b": "China", "value": 35.0 },
+        { "a": "Bangladesh", "b": "SaudiArabia", "value": 30.0 },
+        { "a": "Bangladesh", "b": "USA", "value": 20.0 },
+        { "a": "Bangladesh", "b": "Myanmar", "value": -10.0 },
+        { "a": "Afghanistan", "b": "USSR", "value": 70.0 },
+        { "a": "Afghanistan", "b": "USA", "value": -55.0 },
+        { "a": "Afghanistan", "b": "Pakistan", "value": -50.0 },
+        { "a": "Afghanistan", "b": "SaudiArabia", "value": -40.0 },
+        { "a": "Afghanistan", "b": "Iran", "value": -30.0 },
+        { "a": "Afghanistan", "b": "India", "value": 30.0 },
+        { "a": "Myanmar", "b": "China", "value": 45.0 },
+        { "a": "Myanmar", "b": "USA", "value": -40.0 },
+        { "a": "Myanmar", "b": "UK", "value": -30.0 },
+        { "a": "Myanmar", "b": "Japan", "value": 25.0 },
+        { "a": "Myanmar", "b": "India", "value": -10.0 }
+      ]
     }
   ]
 }

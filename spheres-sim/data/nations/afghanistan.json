@@ -1,0 +1,44 @@
+{
+  "id": "Afghanistan",
+  "name": "Afghanistan",
+  "system": "Command",
+  "authoritarianism": 0.85,
+  "economy": {
+    "gdp_bn": 3.0,
+    "population_m": 15.9,
+    "tfp_trend": -0.012,
+    "inflation": 0.5,
+    "interest_rate": 0.525,
+    "tax_rate": 0.05,
+    "mil_spend_gdp": 0.091,
+    "state_invest_gdp": 0.12,
+    "priv_invest_gdp": 0.03,
+    "debt_gdp": 0.6,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 20.0,
+    "separatism": 0.4
+  },
+  "military": {
+    "strength": 9.0,
+    "nuclear": false
+  },
+  "sources": [
+    "The World Bank has NO 1990 observation for Afghanistan on GDP, population, inflation, investment, tax, military spending or debt — every series is empty. Every economic figure in this file therefore comes from the CIA World Factbook 1990, which is the contemporaneous published source, and the whole set is recorded as unverified.",
+    "GDP $3.0bn at $200 a head, real growth 0% (1989 est.): CIA World Factbook 1990. Population 15,862,293 (July 1990), same source; the modern World Bank back-series gives 12.05m for 1990, and the gap is the several million Afghans then living as refugees in Pakistan and Iran. The Factbook's own pair of numbers is used because $3.0bn over 15.9m people reproduces its stated $200 per capita, and mixing the two sources would not.",
+    "Inflation 50%: the CIA World Factbook 1990 states 'over 50% (1989 est.)' and gives no upper figure. Contemporary accounts of Kabul after the February 1989 Soviet troop withdrawal describe worse, and no CPI series for Afghanistan exists for this period at all. 0.50 is the published floor rather than an estimate of the truth.",
+    "Interest rate 0.525 is NOT transcribed and no source for it exists. Da Afghanistan Bank's rates were administered, the afghani had an official rate and a bazaar rate that diverged wildly, and there was no policy rate in any meaningful sense. It is entered at exactly the model's neutral real rate against the 50% inflation figure, so that the demand channel neither stimulates nor contracts an economy about which the model in fact knows nothing. Recorded as unverified.",
+    "Tax 5% of GDP: the CIA World Factbook 1990 gives expenditures of $646.7m for FY87 and lists revenues as not available. IMF staff work on the period records the ratio of revenues to estimated net material product falling to 3 per cent by 1991. The Najibullah state was financed by Soviet transfers, not by taxation, and 0.05 reflects that.",
+    "Military spending 9.1% of GDP: CIA World Factbook 1990, which cites 1984 as the last year for which it had a figure. The true 1990 share was certainly higher — the regime was fielding an army, a militia system and Scud batteries on Soviet money — but 9.1% is what is published and the invented alternative is not.",
+    "State investment 12% of GDP: CIA World Factbook 1990, capital expenditures of $370.2m against GDP of $3.0bn (FY87). Private investment 0.03 is a war economy with no capital market, entered low and recorded as unverified.",
+    "Debt 60%: CIA World Factbook 1990, external debt $1.8bn (December 1989 est.) against GDP of $3.0bn. This understates what was owed to Moscow — Russia wrote off around $11bn of Soviet-era Afghan debt in 2007 — but the 1989 published stock is the transcribed figure and the write-off total mixes aid with credit.",
+    "Oil 0.0: Afghanistan produced no crude. Its hydrocarbon export was natural gas piped to the Soviet Union from Sheberghan, and output fell away when the Soviet technicians left in 1989.",
+    "System Command: the People's Democratic Party of Afghanistan ran a state economy on the Soviet model, funded by Soviet transfers, even after the 'national reconciliation' policy of 1987 restored a private trading sector.",
+    "Authoritarianism 0.85: Mohammad Najibullah's Republic of Afghanistan, a one-party state under the PDPA — renamed the Watan Party in June 1990 — with no contested national vote. The Soviet Union had withdrawn its combat troops by 15 February 1989 and was still supplying the regime.",
+    "Stability 20: the lowest figure entered anywhere on this roster. The government held the cities and the ring road; the countryside was mujahideen ground. Shahnawaz Tanai's defence minister's coup attempt came on 6 March 1990, ten weeks into the game.",
+    "Separatism 0.40: the fracture is ethnic and it is what the resistance organised along. Pashtun, Tajik, Uzbek, Hazara and Turkmen commands held distinct territory, and Abdul Rashid Dostum's Uzbek militia was the regime's own instrument in the north until it defected in 1992.",
+    "Military strength 9: an army and militia establishment of roughly 100,000 to 150,000 with Soviet armour, aircraft and Scud missiles it used at Jalalabad in 1989, offset by a desertion rate that made the paper strength meaningless."
+  ]
+}
