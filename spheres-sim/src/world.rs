@@ -67,6 +67,9 @@ pub const ALL_START_NATIONS: [NationId; 29] = [
     Cambodia, Laos, Mongolia,
 }
 pub const ALL_START_NATIONS: [NationId; 33] = [
+    Canada, Australia, NewZealand,
+}
+pub const ALL_START_NATIONS: [NationId; 27] = [
     NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
     NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
     NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
@@ -94,6 +97,7 @@ pub const ALL_START_NATIONS: [NationId; 33] = [
     NationId::NorthKorea, NationId::Taiwan, NationId::Thailand,
     NationId::Malaysia, NationId::Singapore, NationId::Philippines,
     NationId::Cambodia, NationId::Laos, NationId::Mongolia,
+    NationId::Canada, NationId::Australia, NationId::NewZealand,
 ];
 /// States that only exist if a federation comes apart.
 pub const SUCCESSOR_NATIONS: [NationId; 16] = [
@@ -214,6 +218,9 @@ impl NationId {
             NationId::Cambodia => "Cambodia",
             NationId::Laos => "Laos",
             NationId::Mongolia => "Mongolia",
+            NationId::Canada => "Canada",
+            NationId::Australia => "Australia",
+            NationId::NewZealand => "New Zealand",
         }
     }
     pub fn parse(s: &str) -> Option<NationId> {
@@ -328,6 +335,9 @@ impl NationId {
             "cambodia" | "kampuchea" | "khm" => NationId::Cambodia,
             "laos" | "lao" | "lao pdr" => NationId::Laos,
             "mongolia" | "mng" => NationId::Mongolia,
+            "canada" | "can" => NationId::Canada,
+            "australia" | "aus" | "oz" => NationId::Australia,
+            "new zealand" | "newzealand" | "nzl" | "nz" => NationId::NewZealand,
             _ => return None,
         })
     }
@@ -384,6 +394,9 @@ pub const NATION_COUNT: usize = 35;
     NationId::Cambodia, NationId::Laos, NationId::Mongolia,
 ];
 pub const NATION_COUNT: usize = 39;
+    NationId::Canada, NationId::Australia, NationId::NewZealand,
+];
+pub const NATION_COUNT: usize = 33;
 
 /// Symmetric relations, held as a dense lower triangle so a lookup is an index
 /// rather than a search.

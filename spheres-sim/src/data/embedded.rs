@@ -103,6 +103,9 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
     Source { file: "data/nations/cambodia.json", json: include_str!("../../data/nations/cambodia.json") },
     Source { file: "data/nations/laos.json", json: include_str!("../../data/nations/laos.json") },
     Source { file: "data/nations/mongolia.json", json: include_str!("../../data/nations/mongolia.json") },
+    Source { file: "data/nations/canada.json", json: include_str!("../../data/nations/canada.json") },
+    Source { file: "data/nations/australia.json", json: include_str!("../../data/nations/australia.json") },
+    Source { file: "data/nations/newzealand.json", json: include_str!("../../data/nations/newzealand.json") },
 ];
 
 pub const EMBEDDED_RELATIONS: Source<'static> = Source {

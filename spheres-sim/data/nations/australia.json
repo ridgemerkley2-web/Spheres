@@ -1,0 +1,37 @@
+{
+  "id": "Australia",
+  "name": "Australia",
+  "system": "Market",
+  "authoritarianism": 0.08,
+  "economy": {
+    "gdp_bn": 311.0,
+    "population_m": 17.1,
+    "tfp_trend": 0.012,
+    "inflation": 0.073,
+    "interest_rate": 0.175,
+    "tax_rate": 0.34,
+    "mil_spend_gdp": 0.021,
+    "state_invest_gdp": 0.045,
+    "priv_invest_gdp": 0.21,
+    "debt_gdp": 0.22,
+    "oil_mbd": 0.6,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 76.0,
+    "separatism": 0.04
+  },
+  "military": {
+    "strength": 14.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $311bn current US$ and population 17.1m (World Bank national accounts, 1990).",
+    "Inflation 7.3%: ABS Consumer Price Index, year to 1990. Interest rate 0.175 is the RBA cash rate in January 1990, the peak of the tightening Keating used to break the late-1980s asset boom; it was cut through the year and reached about 12% by December, so this is a start-of-game figure rather than an annual average.",
+    "Tax 34% of GDP: total general-government revenue, ABS government finance statistics. Debt 22% of GDP: general-government gross debt was unusually low after four consecutive Commonwealth budget surpluses from 1987-88.",
+    "Defence 2.1% of GDP (SIPRI). Strength 14 reflects a 70,000-strong ADF built for continental defence under the 1987 white paper, with real naval and air reach in the near region and none beyond it.",
+    "Oil 0.6 mbd is 1990 crude oil production, chiefly Bass Strait and the North West Shelf; totals including condensate run nearer 0.68 mbd (BP Statistical Review).",
+    "Separatism 0.04 is residual Western Australian secessionism and unresolved Indigenous land rights; Mabo was still two years away. Stability 76: Hawke won a fourth term in March 1990 with the Labor Party's leadership succession already contested.",
+    "Investment shares: gross fixed capital formation about 25.5% of GDP in 1990, roughly 4.5% public and 21% private (ABS)."
+  ]
+}

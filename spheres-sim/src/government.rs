@@ -2621,6 +2621,67 @@ pub const POLITIES: &[Polity] = &[
             pl(Pillar::Party, "the Central Committee"),
             pl(Pillar::Security, "the Ministry of Public Security"),
         ],
+    // Canada — House of Commons, 21 November 1988, the free-trade election:
+    // Progressive Conservative 43.0%, Liberal 31.9%, New Democratic Party
+    // 20.4%, Reform 2.1%. Mulroney's second majority. Single-member plurality
+    // in 295 ridings, a five-year maximum term, and the next election came on
+    // 25 October 1993 — the one that reduced the governing party to two seats.
+    Polity {
+        nation: NationId::Canada,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1993, 10),
+        parties: &[
+            p("ca_pc", "Progressive Conservative Party", "", Family::Conservative, 0.430),
+            p("ca_lib", "Liberal Party of Canada", "", Family::Liberal, 0.319),
+            p("ca_ndp", "New Democratic Party", "", Family::SocialDemocratic, 0.204),
+            p("ca_reform", "Reform Party of Canada", "", Family::Conservative, 0.021),
+        ],
+        ruling: "the House of Commons",
+        pillars: &[],
+    },
+    // Australia — House of Representatives, 11 July 1987, first-preference vote:
+    // Labor 45.8%, Liberal 34.4%, National 11.5%, Australian Democrats 6.0%.
+    // Hawke's third term, and the next election fell on 24 March 1990, weeks
+    // into the game. Australia votes by full preferential ballot in
+    // single-member seats; the nearest thing this model holds is a runoff, so
+    // it is entered as TwoRound rather than plurality — a seat is not won on a
+    // plurality of first preferences and the Liberal-National coalition
+    // depends on preferences flowing between its two halves.
+    Polity {
+        nation: NationId::Australia,
+        system: Electoral::TwoRound,
+        term_months: 36,
+        next: (1990, 3),
+        parties: &[
+            p("au_alp", "Australian Labor Party", "", Family::SocialDemocratic, 0.458),
+            p("au_lib", "Liberal Party of Australia", "", Family::Conservative, 0.344),
+            p("au_nat", "National Party of Australia", "", Family::Agrarian, 0.115),
+            p("au_dem", "Australian Democrats", "", Family::Liberal, 0.060),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+    // New Zealand — House of Representatives, 15 August 1987: Labour 48.0%,
+    // National 44.0%, Democrats 5.7%. Lange's second term, won on the back of
+    // Rogernomics and the nuclear-free legislation, and it consumed itself:
+    // Douglas was sacked in December 1988, Lange resigned in August 1989, and
+    // Palmer held the office at the 1990 start. First past the post in 97
+    // single-member seats on a three-year term — the two-party system that
+    // 48% against 44% for two seats' difference eventually killed, with the
+    // 1993 referendum voting it out for MMP. Next election 27 October 1990.
+    Polity {
+        nation: NationId::NewZealand,
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (1990, 10),
+        parties: &[
+            p("nz_lab", "New Zealand Labour Party", "", Family::SocialDemocratic, 0.480),
+            p("nz_nat", "New Zealand National Party", "", Family::Conservative, 0.440),
+            p("nz_dem", "Democratic Party", "Social Credit", Family::Liberal, 0.057),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
     },
 ];
 
