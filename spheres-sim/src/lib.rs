@@ -296,6 +296,71 @@ mod tests {
     }
 
     #[test]
+    #[test]
+    fn the_frontier_does_not_run_away() {
+        // The guard that was missing, and whose absence let the world run at
+        // twice its real size undetected for weeks. Every other calibration test
+        // asserts a *relative* outcome — China grows faster than Japan, Slovenia
+        // escapes what Bosnia does not — so a world where everyone doubles
+        // together passes all of them. This one is absolute.
+        //
+        // Real 35-year growth for these economies runs about 0.9%/yr (Japan) to
+        // 2.5%/yr (USA). The ceiling here is 4.0% rather than 3.0% because Japan
+        // is a known outstanding gap at ~3.0% (see ROADMAP), and a test that is
+        // red on arrival teaches nothing. It is still tight enough to have
+        // caught the bug that prompted it: trade agreements paying a permanent
+        // growth rate put the USA at 4.8%/yr.
+        let mature = [
+            NationId::USA, NationId::Japan, NationId::Germany,
+            NationId::France, NationId::UK, NationId::Italy,
+        ];
+        let start: Vec<(NationId, f64)> = {
+            let w = world_1990(GameRules::default());
+            mature.iter().map(|id| (*id, w.nation(*id).gdp)).collect()
+        };
+        let mut w = world_1990(GameRules::default());
+        run_months(&mut w, 12 * 35);
+        for (id, gdp_1990) in start {
+            let n = w.nation(id);
+            if !n.alive {
+                continue;
+            }
+            let cagr = (n.gdp / gdp_1990).powf(1.0 / 35.0) - 1.0;
+            assert!(
+                cagr < 0.040,
+                "{:?} compounded {:.1}%/yr over 35 years — the frontier is running away",
+                id, cagr * 100.0
+            );
+            assert!(
+                cagr > 0.005,
+                "{:?} compounded {:.1}%/yr — a developed economy has stalled",
+                id, cagr * 100.0
+            );
+        }
+    }
+
+    #[test]
+    fn golden_hash_of_a_known_run() {
+        // A pinned fingerprint of one exact timeline. The two determinism tests
+        // build both worlds in one process against one libm, so neither can see
+        // a divergence between machines — and the sim leans on exp, powf and ln,
+        // none of which are IEEE-exact across platforms or glibc versions.
+        //
+        // The endgame is developing on Windows while a Linux box runs the suite
+        // nightly. If this assertion fails on a platform where nothing else
+        // does, THAT IS THE FINDING, not a broken test: it means the float
+        // shapes need replacing with exactly-reproducible equivalents. Record
+        // the platform and do not simply re-pin the number.
+        //
+        // Pinned on: Windows, x86_64-pc-windows-gnu, rustc 1.97.1.
+        const GOLDEN: u64 = 0x6581_a75a_cb0b_1006;
+        let mut w = world_1990(GameRules::default());
+        run_months(&mut w, 12 * 20);
+        let h = state_hash(&w);
+        assert_eq!(h, GOLDEN, "timeline fingerprint changed (actual {:#018x})", h);
+    }
+
+    #[test]
     fn different_seeds_diverge() {
         // The other half of determinism, and the one that catches a seed being
         // silently ignored: identical rules but a different seed must produce a

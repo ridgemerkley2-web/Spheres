@@ -57,13 +57,13 @@ Two pillars from SPEC.md, and where each now stands:
    meant to catch. Several here were wide enough to admit a full point of
    annual growth without noticing.
 6. **Do not trust a green test you did not watch build.** `.cargo/config.toml`
-   is tracked, so every worktree under `.claude/worktrees/` builds into the
-   same `target-dir` as the main checkout, and OneDrive resets mtimes often
-   enough that cargo will reuse a test binary compiled from a different
-   branch's source. That reads as a passing suite that never ran your code.
-   Export a separate `CARGO_TARGET_DIR` when testing a worktree, and if a
-   result is surprising in either direction, confirm the binary is yours
-   before believing it.
+   is now untracked precisely because of this: while it was tracked, every
+   worktree under `.claude/worktrees/` built into the same `target-dir` as the
+   main checkout, and cargo would hand back a test binary compiled from another
+   branch's source — a passing suite that never ran your code. It produced two
+   wrong readings before it was caught, in both directions. Still export a
+   separate `CARGO_TARGET_DIR` per worktree, and if a result surprises you
+   either way, confirm the binary is yours before believing it.
 
 ## Layout
 - `spheres-sim/` — the library. world.rs (state/RNG), init.rs (1990 data),

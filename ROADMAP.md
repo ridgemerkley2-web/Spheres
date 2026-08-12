@@ -37,7 +37,7 @@
   a guarantee, cutting a client loose, tearing up a treaty — are charged to
   bankruptcy rather than refused, because a government can always renege
 
-## Known calibration gap: the whole world is about twice too large
+## Closed: the whole world was about twice too large
 
 Measured on the default seed, clean builds, `run 35 1990`:
 
@@ -60,17 +60,24 @@ anybody would see it. That gap between reported and realised growth is the
 tell, and it is worth remembering as a smell — if a nation's GDP series and its
 growth series disagree, something is writing to GDP directly.
 
-Fixed on branch `fix/trade-level-effect`: the gain is paid only as integration
-deepens, so a mature pact is worth a permanently larger economy rather than a
-permanently faster one. That alone takes the USA at 2025 from $30.8tn to
-$16.5tn against a real ~$14tn. The branch is not merged because it re-breaks
-`embargoes_eventually_lift` — Iraq stays under embargo 25 years on, probably
-because AI statecraft keeps renewing the grievance the relief rule reads, which
-may be correct behaviour the test predates. Diagnose that before merging, and
-do not widen the test to fit.
+**Fixed and merged.** The gain is paid only as integration deepens, so a mature
+pact is worth a permanently larger economy rather than a permanently faster one.
+The USA at 2025 goes from $30.8tn to $16.5tn against a real ~$14tn.
 
-Japan remains roughly twice its real size even after the fix, so there is a
-second, smaller cause still outstanding there.
+The embargo test it re-broke was diagnosed rather than widened: the coalition
+erodes correctly — all five majors in 1995, only the United States by 2000 —
+but America's own covert action drives its relation with Iraq from -54 to -81,
+renewing the grievance the relief rule reads. It lifts in 2025, at 35 years.
+That is inside the real range (Iraq 13 years, Cuba past 60); the 25-year
+assertion had encoded an assumption that stopped holding once covert action
+existed. Replaced with a stronger test that locks the erosion pattern too.
+
+**Guarded now.** `the_frontier_does_not_run_away` asserts every mature 1990
+economy compounds under 4%/yr across 35 years. Against the pre-fix behaviour the
+USA compounded 4.79%, so it goes red on exactly the bug that prompted it.
+
+Japan remains roughly twice its real size at ~3.0%/yr, so a second, smaller
+cause is still outstanding there — see the Japan entry below.
 
 Nothing guards this. `china_growth_miracle` asserts a floor (>6x in 30 years)
 and every other calibration test is about a *relative* outcome, so a world that
