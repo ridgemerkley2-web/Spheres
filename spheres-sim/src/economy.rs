@@ -30,13 +30,13 @@ pub fn tick(w: &mut WorldState) {
         // Income convergence: capital deepening and the reallocation of labour
         // out of subsistence, which is most of what makes a poor country grow
         // fast. This is *not* the technological diffusion the tech tree models,
-        // and the two are not the same effect counted twice — that was the
-        // argument for deleting this line, and it was wrong. Diffusion governs
-        // what it costs to acquire a technology; this governs what happens when
-        // a country moves its people from a field to a factory. A nation can
-        // hold most of the frontier's technologies and still be ten times poorer
-        // per head, which is exactly the gap this closes and the tree does not.
-        // Deleting it collapsed emerging growth; it is staying.
+        // and the two are not one effect counted twice — that was the argument
+        // for deleting this line, and it was wrong. Diffusion governs what it
+        // costs to acquire a technology; this governs what happens when a
+        // country moves its people from a field to a factory. A nation can hold
+        // most of the frontier's technologies and still be ten times poorer per
+        // head, which is the gap this closes and the tree does not. Deleting it
+        // collapsed emerging growth, and it is staying.
         let catchup = (1.0 - dev) * 0.020;
         // Growth accounting: output growth is productivity, plus capital's
         // contribution, plus labour's share of the change in the workforce. A
