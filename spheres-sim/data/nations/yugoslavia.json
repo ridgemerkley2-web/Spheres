@@ -1,0 +1,32 @@
+{
+  "id": "Yugoslavia",
+  "name": "Yugoslavia",
+  "system": "Command",
+  "authoritarianism": 0.65,
+  "economy": {
+    "gdp_bn": 88.0,
+    "population_m": 23.5,
+    "tfp_trend": -0.01,
+    "inflation": 0.6,
+    "interest_rate": 0.3,
+    "tax_rate": 0.36,
+    "mil_spend_gdp": 0.048,
+    "state_invest_gdp": 0.12,
+    "priv_invest_gdp": 0.08,
+    "debt_gdp": 0.28,
+    "oil_mbd": 0.05,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 44.0,
+    "separatism": 0.72
+  },
+  "military": {
+    "strength": 20.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP ~$88bn and 23.5m people.",
+    "The game opens three weeks into Markovic's stabilisation programme (18 Dec 1989) — hence the punishing policy rate against still-enormous inflation — and the same month the League of Communists broke up at its 14th Congress, which is why separatism starts higher than the USSR's 0.55."
+  ]
+}

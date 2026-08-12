@@ -1,0 +1,33 @@
+{
+  "id": "Nigeria",
+  "name": "Nigeria",
+  "system": "Market",
+  "authoritarianism": 0.85,
+  "economy": {
+    "gdp_bn": 54.0,
+    "population_m": 97.1,
+    "tfp_trend": 0.0,
+    "inflation": 0.074,
+    "interest_rate": 0.175,
+    "tax_rate": 0.08,
+    "mil_spend_gdp": 0.008,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.09,
+    "debt_gdp": 0.65,
+    "oil_mbd": 1.8,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 35.0,
+    "separatism": 0.3
+  },
+  "military": {
+    "strength": 6.0,
+    "nuclear": false
+  },
+  "sources": [
+    "$54bn and 97.1m, pumping 1.8 mbd — the swing African producer, and the reason the Gulf crisis was good for Lagos.",
+    "Babangida's military government survived the Orkar coup attempt in April 1990; separatism is what Biafra left behind and the Delta is beginning to add to.",
+    "Tax take is the non-oil figure; the sim adds petroleum revenue separately."
+  ]
+}

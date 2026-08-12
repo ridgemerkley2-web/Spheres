@@ -1,0 +1,32 @@
+{
+  "id": "Poland",
+  "name": "Poland",
+  "system": "Market",
+  "authoritarianism": 0.35,
+  "economy": {
+    "gdp_bn": 66.0,
+    "population_m": 38.0,
+    "tfp_trend": 0.01,
+    "inflation": 0.55,
+    "interest_rate": 0.3,
+    "tax_rate": 0.3,
+    "mil_spend_gdp": 0.027,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.1,
+    "debt_gdp": 0.8,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 55.0,
+    "separatism": 0.05
+  },
+  "military": {
+    "strength": 12.0,
+    "nuclear": false
+  },
+  "sources": [
+    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
+    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance."
+  ]
+}
