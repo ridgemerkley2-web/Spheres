@@ -1,0 +1,37 @@
+{
+  "id": "Colombia",
+  "name": "Colombia",
+  "system": "Market",
+  "authoritarianism": 0.25,
+  "economy": {
+    "gdp_bn": 47.5,
+    "population_m": 33.2,
+    "tfp_trend": 0.008,
+    "inflation": 0.291,
+    "interest_rate": 0.36,
+    "tax_rate": 0.14,
+    "mil_spend_gdp": 0.021,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.13,
+    "debt_gdp": 0.42,
+    "oil_mbd": 0.44,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 32.0,
+    "separatism": 0.1
+  },
+  "military": {
+    "strength": 7.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $47.5bn and 33.2m people (World Bank, 1990). Colombia is the one Latin American economy that never defaulted and never had a lost decade: it grew every year of the 1980s, hence a positive TFP trend of 0.8%/yr.",
+    "Inflation 29.1% is the DANE CPI annual average for 1990 (December-on-December 32.4%, the highest print since 1963), driven by the crawling-peg devaluation. interest_rate 36% is the DTF deposit benchmark; Banco de la Republica gains its independence in the 1991 constitution, which is not scripted here.",
+    "Tax take 14% of GDP, low even for the region and the reason the Gaviria government's 1990 reform mattered. Gross fixed capital formation about 19% of GDP.",
+    "Debt 0.42: external debt $17.2bn at end-1990 (World Bank), about 36% of GDP, serviced in full throughout — Colombia stayed out of the Baker and Brady processes on purpose.",
+    "Oil 0.44 mbd: about 445,000 bbl/d in 1990, Cano Limon and Cusiana coming on, Ecopetrol majority. The Cano Limon pipeline was bombed by the ELN roughly forty times that year.",
+    "Defence 2.1% of GDP and strength 7: an army with no external mission and three internal wars. Stability 32 is the lowest in this region and it is transcription, not colour — the Medellin cartel had killed presidential candidate Luis Carlos Galan in August 1989, bombed Avianca Flight 203 in November, and killed two more candidates, Bernardo Jaramillo and Carlos Pizarro, in March and April 1990.",
+    "Separatism 0.10: FARC, ELN and EPL held territory rather than claiming secession, so the strain is real but not a national question on the Yugoslav scale."
+  ]
+}

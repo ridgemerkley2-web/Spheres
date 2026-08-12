@@ -46,6 +46,10 @@ pub const ALL_START_NATIONS: [NationId; 36] = [
     Czechoslovakia, Hungary, Romania, Bulgaria, Albania, EastGermany,
 }
 pub const ALL_START_NATIONS: [NationId; 30] = [
+    Argentina, Mexico, Chile, Colombia, Venezuela, Peru, Cuba, Bolivia,
+    Ecuador, Uruguay,
+}
+pub const ALL_START_NATIONS: [NationId; 34] = [
     NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
     NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
     NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
@@ -58,6 +62,9 @@ pub const ALL_START_NATIONS: [NationId; 30] = [
     NationId::Denmark, NationId::Norway, NationId::Finland, NationId::Ireland,
     NationId::Czechoslovakia, NationId::Hungary, NationId::Romania,
     NationId::Bulgaria, NationId::Albania, NationId::EastGermany,
+    NationId::Argentina, NationId::Mexico, NationId::Chile, NationId::Colombia,
+    NationId::Venezuela, NationId::Peru, NationId::Cuba, NationId::Bolivia,
+    NationId::Ecuador, NationId::Uruguay,
 ];
 /// States that only exist if a federation comes apart.
 pub const SUCCESSOR_NATIONS: [NationId; 16] = [
@@ -129,6 +136,16 @@ impl NationId {
             NationId::Latvia => "Latvia",
             NationId::Estonia => "Estonia",
             NationId::Moldova => "Moldova",
+            NationId::Argentina => "Argentina",
+            NationId::Mexico => "Mexico",
+            NationId::Chile => "Chile",
+            NationId::Colombia => "Colombia",
+            NationId::Venezuela => "Venezuela",
+            NationId::Peru => "Peru",
+            NationId::Cuba => "Cuba",
+            NationId::Bolivia => "Bolivia",
+            NationId::Ecuador => "Ecuador",
+            NationId::Uruguay => "Uruguay",
         }
     }
     pub fn parse(s: &str) -> Option<NationId> {
@@ -192,6 +209,16 @@ impl NationId {
             "latvia" | "latvija" | "lva" => NationId::Latvia,
             "estonia" | "eesti" | "est" => NationId::Estonia,
             "moldova" | "moldavia" | "mda" => NationId::Moldova,
+            "argentina" | "arg" => NationId::Argentina,
+            "mexico" | "mex" => NationId::Mexico,
+            "chile" | "chl" => NationId::Chile,
+            "colombia" | "col" => NationId::Colombia,
+            "venezuela" | "ven" => NationId::Venezuela,
+            "peru" | "per" => NationId::Peru,
+            "cuba" | "cub" => NationId::Cuba,
+            "bolivia" | "bol" => NationId::Bolivia,
+            "ecuador" | "ecu" => NationId::Ecuador,
+            "uruguay" | "ury" | "uru" => NationId::Uruguay,
             _ => return None,
         })
     }
@@ -220,6 +247,10 @@ pub const NATION_COUNT: usize = 36;
     NationId::Belarus, NationId::Kazakhstan, NationId::Uzbekistan,
     NationId::Georgia, NationId::Armenia, NationId::Azerbaijan,
     NationId::Lithuania, NationId::Latvia, NationId::Estonia, NationId::Moldova,
+];
+    NationId::Argentina, NationId::Mexico, NationId::Chile, NationId::Colombia,
+    NationId::Venezuela, NationId::Peru, NationId::Cuba, NationId::Bolivia,
+    NationId::Ecuador, NationId::Uruguay,
 ];
 pub const NATION_COUNT: usize = 40;
 

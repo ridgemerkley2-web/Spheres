@@ -1506,6 +1506,232 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the Assembly",
         pillars: &[],
     },
+    // Argentina — Chamber of Deputies, 14 May 1989, held with the presidential
+    // election Carlos Menem won for the Justicialists with 47.5%: PJ 44.7%, UCR
+    // 28.8%, the Alianza de Centro around the UCeDe 6.9%, Izquierda Unida 3.5%,
+    // and a long tail of provincial parties of which the Neuquen People's
+    // Movement is the durable one. Raul Alfonsin handed power over five months
+    // early, in July 1989, because hyperinflation had made governing impossible.
+    // Half the chamber renews every two years, so the next round is due in
+    // September 1991.
+    Polity {
+        nation: NationId::Argentina,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1991, 9),
+        parties: &[
+            p("ar_pj", "Justicialist Party", "Partido Justicialista", Family::BigTent, 0.447),
+            p("ar_ucr", "Radical Civic Union", "Union Civica Radical", Family::Liberal, 0.288),
+            p("ar_ucede", "Union of the Democratic Centre", "Union del Centro Democratico", Family::Conservative, 0.069),
+            p("ar_iu", "United Left", "Izquierda Unida", Family::Communist, 0.035),
+            p("ar_mpn", "Neuquen People's Movement", "Movimiento Popular Neuquino", Family::Regionalist, 0.015),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Mexico — Chamber of Deputies, 6 July 1988: PRI 51.1%, the Cardenista
+    // Frente Democratico Nacional 29.1%, PAN 18.0%. The count famously stopped
+    // when "se cayo el sistema" and resumed with the PRI ahead; the ballots were
+    // burned in 1992. The FDN becomes the PRD in May 1989 and is entered under
+    // that name with its 1988 share. Deputies serve three years, so the midterm
+    // falls in August 1991. The PRI had not lost a presidential election since
+    // its founding in 1929 and does not lose one until 2000 — which the model
+    // has to reach through legitimacy, not a date.
+    Polity {
+        nation: NationId::Mexico,
+        system: Electoral::Proportional,
+        term_months: 36,
+        next: (1991, 8),
+        parties: &[
+            p("mx_pri", "Institutional Revolutionary Party", "Partido Revolucionario Institucional", Family::BigTent, 0.511),
+            p("mx_prd", "Party of the Democratic Revolution", "Partido de la Revolucion Democratica", Family::SocialDemocratic, 0.291),
+            p("mx_pan", "National Action Party", "Partido Accion Nacional", Family::ChristianDemocratic, 0.180),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Chile — Chamber of Deputies, 14 December 1989, the first since 1973, held
+    // under the constitution the outgoing regime wrote in 1980 and with the
+    // binomial system it designed to give the right half the seats on a third of
+    // the vote. Party lists inside the two blocs: PDC 26.0%, RN 18.3%, PPD
+    // 11.5%, UDI 9.8%, PS 7.0%, PR 3.9%. Patricio Aylwin of the Concertacion
+    // took the presidency with 55.2% and is inaugurated on 11 March 1990.
+    Polity {
+        nation: NationId::Chile,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 12),
+        parties: &[
+            p("cl_pdc", "Christian Democratic Party", "Partido Democrata Cristiano", Family::ChristianDemocratic, 0.260),
+            p("cl_rn", "National Renewal", "Renovacion Nacional", Family::Conservative, 0.183),
+            p("cl_ppd", "Party for Democracy", "Partido por la Democracia", Family::SocialDemocratic, 0.115),
+            p("cl_udi", "Independent Democratic Union", "Union Democrata Independiente", Family::Conservative, 0.098),
+            p("cl_ps", "Socialist Party of Chile", "Partido Socialista de Chile", Family::SocialDemocratic, 0.070),
+            p("cl_pr", "Radical Party", "Partido Radical", Family::Liberal, 0.039),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Colombia — Chamber of Representatives, 9 March 1986: Liberals 48.6%,
+    // Social Conservatives 37.8%, the Patriotic Union 1.3%. The UP was the
+    // civilian party the FARC founded under the 1984 ceasefire, and between
+    // 1986 and 1990 somewhere upward of two thousand of its members were
+    // murdered, including both of its presidential candidates. The M-19
+    // Democratic Alliance is entered at 2.7%, its result in the congressional
+    // election of March 1990, the month it disarmed. That election is the next
+    // one due when the game opens.
+    Polity {
+        nation: NationId::Colombia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 3),
+        parties: &[
+            p("co_pl", "Colombian Liberal Party", "Partido Liberal Colombiano", Family::Liberal, 0.486),
+            p("co_psc", "Social Conservative Party", "Partido Social Conservador", Family::Conservative, 0.378),
+            p("co_adm19", "M-19 Democratic Alliance", "Alianza Democratica M-19", Family::SocialDemocratic, 0.027),
+            p("co_up", "Patriotic Union", "Union Patriotica", Family::Communist, 0.013),
+        ],
+        ruling: "the Chamber of Representatives",
+        pillars: &[],
+    },
+    // Venezuela — Chamber of Deputies, 4 December 1988: AD 43.3%, COPEI 31.1%,
+    // MAS 10.3%, MEP 1.8%, La Causa R 1.6%. The Punto Fijo pact of 1958 gave
+    // Venezuela thirty years of two-party alternation and the most stable
+    // democracy in South America; ten weeks after this table was voted, the
+    // army shot several hundred people in Caracas during the Caracazo, and the
+    // pact never recovered. Five-year terms, next due December 1993.
+    Polity {
+        nation: NationId::Venezuela,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1993, 12),
+        parties: &[
+            p("ve_ad", "Democratic Action", "Accion Democratica", Family::SocialDemocratic, 0.433),
+            p("ve_copei", "Social Christian Party", "Comite de Organizacion Politica Electoral Independiente", Family::ChristianDemocratic, 0.311),
+            p("ve_mas", "Movement Towards Socialism", "Movimiento al Socialismo", Family::Communist, 0.103),
+            p("ve_mep", "People's Electoral Movement", "Movimiento Electoral del Pueblo", Family::SocialDemocratic, 0.018),
+            p("ve_causar", "Radical Cause", "La Causa Radical", Family::Communist, 0.016),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Peru — Chamber of Deputies, 14 April 1985: APRA 50.1%, Izquierda Unida
+    // 23.0%, the Convergencia Democratica around the PPC 12.0%, Accion Popular
+    // 7.3%. Alan Garcia's single term ends in hyperinflation and a war he is
+    // losing, and the next election is due in three months.
+    //
+    // Cambio 90 is deliberately NOT in this table, and the omission is the
+    // honest reading rather than an oversight. Alberto Fujimori built it in
+    // 1989 out of evangelical congregations and informal traders' guilds, and
+    // it took 16.5% of the Chamber on 8 April 1990. The convention this module
+    // uses elsewhere — enter a party founded after the last election at its
+    // first contested share, as Colombia's AD M-19 is entered — cannot be
+    // applied here: 50.1 + 23.0 + 12.0 + 7.3 already accounts for 92.4% of the
+    // 1985 vote, so adding 16.5 gives a chamber where 108.9% of the electorate
+    // voted. A 1985 table with a 1990 party in it is not a transcription of
+    // either election. Fujimori's outsider is left for the model to produce
+    // from a collapsing party system, which is the whole premise.
+    Polity {
+        nation: NationId::Peru,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1990, 4),
+        parties: &[
+            p("pe_apra", "Peruvian Aprista Party", "Partido Aprista Peruano", Family::SocialDemocratic, 0.501),
+            p("pe_iu", "United Left", "Izquierda Unida", Family::Communist, 0.230),
+            p("pe_ppc", "Christian People's Party", "Partido Popular Cristiano", Family::ChristianDemocratic, 0.120),
+            p("pe_ap", "Popular Action", "Accion Popular", Family::Liberal, 0.073),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Cuba — one legal party since 1965, and no national election a voter could
+    // change anything with: the National Assembly was chosen indirectly by the
+    // municipal assemblies until the 1993 reform introduced direct election of
+    // deputies, still uncontested. What holds the state is the FAR under Raul
+    // Castro, the party apparatus, and the Ministry of the Interior — and in
+    // July 1989 the regime shot General Arnaldo Ochoa, the most decorated
+    // officer of the Angolan war, and purged MININT down to the bone. That was
+    // a regime securing exactly these pillars against exactly this risk.
+    Polity {
+        nation: NationId::Cuba,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cu_pcc", "Communist Party of Cuba", "Partido Comunista de Cuba", Family::Communist, 1.00),
+        ],
+        ruling: "the Council of State",
+        pillars: &[
+            pl(Pillar::Army, "the Revolutionary Armed Forces"),
+            pl(Pillar::Party, "the Communist Party of Cuba"),
+            pl(Pillar::Security, "the Ministry of the Interior"),
+        ],
+    },
+    // Bolivia — general election, 7 May 1989: MNR 25.7%, ADN 25.2%, MIR 21.8%,
+    // CONDEPA 12.3%, Izquierda Unida 7.2%. Nobody came near a majority, so
+    // Congress chose the president, and it chose the man who came third: Jaime
+    // Paz Zamora of the MIR took office on 6 August 1989 in the Acuerdo
+    // Patriotico with Hugo Banzer's ADN — the general who had jailed and exiled
+    // him. Bolivia's arithmetic produces coalitions nobody would design.
+    Polity {
+        nation: NationId::Bolivia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 6),
+        parties: &[
+            p("bo_mnr", "Nationalist Revolutionary Movement", "Movimiento Nacionalista Revolucionario", Family::BigTent, 0.257),
+            p("bo_adn", "Nationalist Democratic Action", "Accion Democratica Nacionalista", Family::Conservative, 0.252),
+            p("bo_mir", "Revolutionary Left Movement", "Movimiento de la Izquierda Revolucionaria", Family::SocialDemocratic, 0.218),
+            p("bo_condepa", "Conscience of the Fatherland", "Conciencia de Patria", Family::Regionalist, 0.123),
+            p("bo_iu", "United Left", "Izquierda Unida", Family::Communist, 0.072),
+        ],
+        ruling: "the National Congress",
+        pillars: &[],
+    },
+    // Ecuador — congressional election of 31 January 1988, held with the
+    // presidential first round Rodrigo Borja of the Izquierda Democratica went
+    // on to win: ID 24.6%, PRE 14.7%, PSC 12.5%, DP 11.5%, the Radical Liberals
+    // 8.0%, MPD 5.4%. Provincial deputies serve two years against the national
+    // deputies' four, so the midterm falls on 17 June 1990 and Borja loses his
+    // majority in it. Shares here are the least certain in this region's table
+    // and are noted as such in the data files.
+    Polity {
+        nation: NationId::Ecuador,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 6),
+        parties: &[
+            p("ec_id", "Democratic Left", "Izquierda Democratica", Family::SocialDemocratic, 0.246),
+            p("ec_pre", "Ecuadorian Roldosist Party", "Partido Roldosista Ecuatoriano", Family::BigTent, 0.147),
+            p("ec_psc", "Social Christian Party", "Partido Social Cristiano", Family::Conservative, 0.125),
+            p("ec_dp", "Popular Democracy", "Democracia Popular", Family::ChristianDemocratic, 0.115),
+            p("ec_plre", "Ecuadorian Radical Liberal Party", "Partido Liberal Radical Ecuatoriano", Family::Liberal, 0.080),
+            p("ec_mpd", "Popular Democratic Movement", "Movimiento Popular Democratico", Family::Communist, 0.054),
+        ],
+        ruling: "the National Congress",
+        pillars: &[],
+    },
+    // Uruguay — general election, 26 November 1989: the National Party 38.9%,
+    // the Colorados 30.3%, the Frente Amplio 21.2%, Nuevo Espacio 9.0%. Luis
+    // Alberto Lacalle takes office on 1 March 1990, the second government since
+    // the dictatorship ended, and the first alternation in twenty-eight years.
+    // The Frente Amplio takes Montevideo the same day and never gives it back.
+    // Five-year terms with no re-election, so the next is due November 1994.
+    Polity {
+        nation: NationId::Uruguay,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1994, 11),
+        parties: &[
+            p("uy_pn", "National Party", "Partido Nacional", Family::Conservative, 0.389),
+            p("uy_pc", "Colorado Party", "Partido Colorado", Family::Liberal, 0.303),
+            p("uy_fa", "Broad Front", "Frente Amplio", Family::SocialDemocratic, 0.212),
+            p("uy_ne", "New Space", "Nuevo Espacio", Family::SocialDemocratic, 0.090),
+        ],
+        ruling: "the General Assembly",
+        pillars: &[],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {
