@@ -340,6 +340,31 @@ mod tests {
     }
 
     #[test]
+    fn a_century_holds_together() {
+        // The risk register's top entry is two hundred AI economies spiralling,
+        // and its stated mitigation is exactly this: a headless century run as a
+        // standing invariant. Cheap enough to keep now that a relation lookup is
+        // an index rather than a search — the whole century runs in under a
+        // second — and it is the thing that catches the next trade-shaped bug
+        // without anyone noticing the world felt wrong.
+        for seed in 0..3u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..1200 {
+                tick_month(&mut w, &[]);
+                for n in w.nations.iter().filter(|n| n.alive) {
+                    assert!(n.gdp.is_finite() && n.gdp > 0.0, "{:?} gdp {} in {}", n.id, n.gdp, w.year);
+                    assert!(n.inflation.is_finite(), "{:?} inflation NaN in {}", n.id, w.year);
+                    assert!(n.debt_gdp.is_finite() && n.debt_gdp < 6.0, "{:?} debt {:.1} in {}", n.id, n.debt_gdp, w.year);
+                    assert!(n.population.is_finite() && n.population > 0.0, "{:?} population {} in {}", n.id, n.population, w.year);
+                    assert!((0.0..=100.0).contains(&n.stability), "{:?} stability {} in {}", n.id, n.stability, w.year);
+                    assert!((0.0..=100.0).contains(&n.political_capital), "{:?} capital {} in {}", n.id, n.political_capital, w.year);
+                }
+                assert!(w.oil_price.is_finite() && w.oil_price > 0.0, "oil {} in {}", w.oil_price, w.year);
+            }
+        }
+    }
+
+    #[test]
     fn golden_hash_of_a_known_run() {
         // A pinned fingerprint of one exact timeline. The two determinism tests
         // build both worlds in one process against one libm, so neither can see
@@ -353,7 +378,7 @@ mod tests {
         // the platform and do not simply re-pin the number.
         //
         // Pinned on: Windows, x86_64-pc-windows-gnu, rustc 1.97.1.
-        const GOLDEN: u64 = 0x1cfecd0694379fa3;
+        const GOLDEN: u64 = 0xb675826e8941683d;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

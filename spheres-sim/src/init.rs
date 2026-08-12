@@ -92,7 +92,7 @@ pub fn world_1990(rules: GameRules) -> WorldState {
         year: 1990,
         month: 1,
         nations: rows,
-        relations: vec![],
+        relations: Relations::default(),
         sanctions: vec![],
         wars: vec![],
         statecraft: Statecraft::default(),

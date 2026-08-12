@@ -126,6 +126,110 @@ impl NationId {
     }
 }
 
+/// Every nation id, in declaration order. The index into this array is the
+/// index into the relations matrix, so the two must never drift apart.
+pub const ALL_NATION_IDS: [NationId; NATION_COUNT] = [
+    NationId::USA, NationId::USSR, NationId::Russia, NationId::Ukraine,
+    NationId::China, NationId::Japan, NationId::Germany, NationId::UK,
+    NationId::France, NationId::Italy, NationId::India, NationId::Pakistan,
+    NationId::Iraq, NationId::Kuwait, NationId::SaudiArabia, NationId::Iran,
+    NationId::SouthKorea, NationId::Poland, NationId::Brazil, NationId::Indonesia,
+    NationId::Egypt, NationId::Israel, NationId::Turkey, NationId::Nigeria,
+    NationId::Vietnam, NationId::Yugoslavia, NationId::Serbia, NationId::Croatia,
+    NationId::Slovenia, NationId::Bosnia,
+];
+pub const NATION_COUNT: usize = 30;
+
+/// Symmetric relations, held as a dense lower triangle so a lookup is an index
+/// rather than a search.
+///
+/// It was a `Vec<(NationId, NationId, f64)>` scanned linearly, and the tech
+/// module calls `relation()` inside a per-nation loop — O(n^2 * |relations|),
+/// which is O(n^4). Invisible at thirty nations and roughly 650 million
+/// comparisons a month at the hundred and ninety the design calls for, which
+/// would have made the century-run CI invariant impossible before anyone wrote
+/// a single new nation.
+///
+/// Serialized as (a, b, value) triples rather than as the raw array, so a save
+/// stays self-describing and survives the roster changing shape — the same
+/// reason the technology tree writes ids instead of indices.
+#[derive(Clone, Debug, Default)]
+pub struct Relations {
+    tri: Vec<f64>,
+}
+
+impl Relations {
+    fn slot(a: NationId, b: NationId) -> usize {
+        let (hi, lo) = {
+            let (x, y) = (a as usize, b as usize);
+            if x >= y { (x, y) } else { (y, x) }
+        };
+        hi * (hi + 1) / 2 + lo
+    }
+    fn ensure(&mut self) {
+        if self.tri.len() != NATION_COUNT * (NATION_COUNT + 1) / 2 {
+            self.tri.resize(NATION_COUNT * (NATION_COUNT + 1) / 2, 0.0);
+        }
+    }
+    pub fn get(&self, a: NationId, b: NationId) -> f64 {
+        self.tri.get(Self::slot(a, b)).copied().unwrap_or(0.0)
+    }
+    pub fn set(&mut self, a: NationId, b: NationId, v: f64) {
+        self.ensure();
+        let s = Self::slot(a, b);
+        self.tri[s] = v;
+    }
+    /// Every stored pair, in a fixed order. Deterministic by construction —
+    /// there is no map here whose iteration order could vary.
+    pub fn pairs_mut(&mut self) -> impl Iterator<Item = (NationId, NationId, &mut f64)> {
+        self.ensure();
+        self.tri.iter_mut().enumerate().filter_map(|(i, v)| {
+            // invert the triangular index
+            let mut hi = 0usize;
+            while (hi + 1) * (hi + 2) / 2 <= i {
+                hi += 1;
+            }
+            let lo = i - hi * (hi + 1) / 2;
+            match (ALL_NATION_IDS.get(hi), ALL_NATION_IDS.get(lo)) {
+                (Some(a), Some(b)) => Some((*a, *b, v)),
+                _ => None,
+            }
+        })
+    }
+}
+
+impl Serialize for Relations {
+    fn serialize<S: serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut out: Vec<(NationId, NationId, f64)> = vec![];
+        for (i, v) in self.tri.iter().enumerate() {
+            if *v == 0.0 {
+                continue;
+            }
+            let mut hi = 0usize;
+            while (hi + 1) * (hi + 2) / 2 <= i {
+                hi += 1;
+            }
+            let lo = i - hi * (hi + 1) / 2;
+            if let (Some(a), Some(b)) = (ALL_NATION_IDS.get(hi), ALL_NATION_IDS.get(lo)) {
+                out.push((*b, *a, *v));
+            }
+        }
+        out.serialize(s)
+    }
+}
+
+impl<'de> Deserialize<'de> for Relations {
+    fn deserialize<D: serde::Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
+        let triples = Vec::<(NationId, NationId, f64)>::deserialize(d)?;
+        let mut r = Relations::default();
+        r.ensure();
+        for (a, b, v) in triples {
+            r.set(a, b, v);
+        }
+        Ok(r)
+    }
+}
+
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq)]
 pub enum EconomySystem {
     Market,
@@ -336,7 +440,7 @@ pub struct WorldState {
     pub month: u32, // 1..=12
     pub nations: Vec<Nation>,
     /// relations[(a,b)] symmetric, -100..100 — stored as sorted-pair list
-    pub relations: Vec<(NationId, NationId, f64)>,
+    pub relations: Relations,
     /// sanctions: (imposer, target)
     pub sanctions: Vec<(NationId, NationId)>,
     pub wars: Vec<War>,
@@ -374,25 +478,10 @@ impl WorldState {
         }
     }
     pub fn relation(&self, a: NationId, b: NationId) -> f64 {
-        let (x, y) = if a <= b { (a, b) } else { (b, a) };
-        self.relations
-            .iter()
-            .find(|(p, q, _)| *p == x && *q == y)
-            .map(|(_, _, v)| *v)
-            .unwrap_or(0.0)
+        self.relations.get(a, b)
     }
     pub fn set_relation(&mut self, a: NationId, b: NationId, v: f64) {
-        let (x, y) = if a <= b { (a, b) } else { (b, a) };
-        let v = v.clamp(-100.0, 100.0);
-        if let Some(r) = self
-            .relations
-            .iter_mut()
-            .find(|(p, q, _)| *p == x && *q == y)
-        {
-            r.2 = v;
-        } else {
-            self.relations.push((x, y, v));
-        }
+        self.relations.set(a, b, v.clamp(-100.0, 100.0));
     }
     pub fn shift_relation(&mut self, a: NationId, b: NationId, d: f64) {
         let cur = self.relation(a, b);

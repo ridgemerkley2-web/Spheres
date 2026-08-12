@@ -126,11 +126,11 @@ pub fn tick(w: &mut WorldState) {
     // ---- Grievances fade; alliances are institutional and do not ----
     let belligerents: Vec<(NationId, NationId)> =
         w.wars.iter().map(|war| (war.attacker, war.defender)).collect();
-    for (a, b, v) in w.relations.iter_mut() {
+    for (a, b, v) in w.relations.pairs_mut() {
         if *v >= 0.0 {
             continue;
         }
-        if belligerents.iter().any(|(x, y)| (x == a && y == b) || (x == b && y == a)) {
+        if belligerents.iter().any(|(x, y)| (*x == a && *y == b) || (*x == b && *y == a)) {
             continue; // an active war keeps the wound open
         }
         *v -= *v * 0.008; // ~9%/yr toward indifference
