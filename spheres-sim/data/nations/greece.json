@@ -1,0 +1,30 @@
+{
+  "id": "Greece",
+  "name": "Greece",
+  "system": "Market",
+  "authoritarianism": 0.15,
+  "economy": {
+    "gdp_bn": 90.0,
+    "population_m": 10.16,
+    "tfp_trend": 0.008,
+    "inflation": 0.204,
+    "interest_rate": 0.225,
+    "tax_rate": 0.26,
+    "mil_spend_gdp": 0.047,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.17,
+    "debt_gdp": 0.79,
+    "oil_mbd": 0.01,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 62.0, "separatism": 0.03 },
+  "military": { "strength": 12.0, "nuclear": false },
+  "sources": [
+    "GDP about $90bn and population 10.16m (World Bank / ELSTAT, 1990).",
+    "Inflation 20.4% (ELSTAT consumer price index, 1990) - the highest in the European Community by a wide margin. Bank of Greece rates and treasury bill yields ran above 20%; 22.5% is the policy rate used here.",
+    "Tax revenue 26% of GDP (OECD Revenue Statistics, 1990) and general government debt 79% of GDP, roughly doubled over the decade.",
+    "Defence 4.7% of GDP (NATO defence expenditure series, 1990), the highest share in the alliance after Turkey and the United States, and driven by the Aegean dispute rather than by the Warsaw Pact.",
+    "Stability 62: three general elections in ten months (June 1989, November 1989, April 1990), an ecumenical caretaker cabinet under Xenophon Zolotas from November 1989, and the Koskotas affair prosecutions running against Papandreou.",
+    "Oil 0.01 mbd from the Prinos field off Thasos, the only producing field in Greece."
+  ]
+}

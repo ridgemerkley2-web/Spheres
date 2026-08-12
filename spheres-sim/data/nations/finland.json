@@ -1,0 +1,30 @@
+{
+  "id": "Finland",
+  "name": "Finland",
+  "system": "Market",
+  "authoritarianism": 0.1,
+  "economy": {
+    "gdp_bn": 139.0,
+    "population_m": 4.99,
+    "tfp_trend": 0.012,
+    "inflation": 0.061,
+    "interest_rate": 0.14,
+    "tax_rate": 0.43,
+    "mil_spend_gdp": 0.016,
+    "state_invest_gdp": 0.035,
+    "priv_invest_gdp": 0.22,
+    "debt_gdp": 0.14,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 76.0, "separatism": 0.01 },
+  "military": { "strength": 8.0, "nuclear": false },
+  "sources": [
+    "GDP about $139bn and population 4.99m (World Bank / Tilastokeskus, 1990).",
+    "Inflation 6.1% (Tilastokeskus consumer price index, 1990). Bank of Finland base rate 8.5% but HELIBOR ran near 14% as the markka's peg came under pressure; 14% is the market rate the model needs.",
+    "Tax revenue 43% of GDP (OECD Revenue Statistics, 1990). General government debt only 14% of GDP in 1990 - the lowest on this roster - before the 1991-93 depression took it past 55%.",
+    "Defence 1.6% of GDP. Strength 8 covers a territorial defence system with a wartime strength above 500,000 under universal conscription, constrained by the 1947 Paris peace treaty ceilings.",
+    "Authoritarianism 0.10 rather than the 0.07 of the other Nordics: Finland is a full democracy, but the 1948 Treaty of Friendship, Cooperation and Mutual Assistance with the Soviet Union constrained foreign policy and, through self-censorship, domestic debate. The treaty lapsed with the USSR in 1991.",
+    "Finland's bilateral clearing trade with the Soviet Union was about a fifth of exports and collapsed in 1991; the model reaches the depression through that channel rather than by script."
+  ]
+}

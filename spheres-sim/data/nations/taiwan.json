@@ -1,0 +1,39 @@
+{
+  "id": "Taiwan",
+  "name": "Taiwan",
+  "system": "Market",
+  "authoritarianism": 0.4,
+  "economy": {
+    "gdp_bn": 166.6,
+    "population_m": 20.4,
+    "tfp_trend": 0.03,
+    "inflation": 0.041,
+    "interest_rate": 0.0775,
+    "tax_rate": 0.2,
+    "mil_spend_gdp": 0.049,
+    "state_invest_gdp": 0.09,
+    "priv_invest_gdp": 0.14,
+    "debt_gdp": 0.09,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 62.0,
+    "separatism": 0.05
+  },
+  "military": {
+    "strength": 16.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $166.6bn and population 20.4m for 1990: Directorate-General of Budget, Accounting and Statistics, Taiwan Statistical Data Book. Taiwan is not in the World Bank series because it is not a member, so the national statistics office is the source throughout this file.",
+    "CPI inflation 4.1% in 1990 (DGBAS).",
+    "interest_rate 0.0775 is the Central Bank of China rediscount rate, raised through 1989 to defend against the money-supply surge behind the Taiwan stock bubble and held into 1990. The commercial base lending rate ran around 10%.",
+    "The Taiex fell from 12,495 in February 1990 to 2,560 in October, an 80% crash. bubble is left at 0.0 because the model's bubble term is calibrated on Japan and a second hot start would be an invention, not a transcription; the crash is noted here as a known unmodelled fact.",
+    "Defence 4.9% of GDP: the ROC sustained one of the highest peacetime defence burdens in Asia against a claim on its entire territory.",
+    "Public debt near 9% of GDP: Taiwan ran a fiscal surplus for most of the 1980s and held the world's second-largest foreign exchange reserves in 1990.",
+    "authoritarianism 0.40: martial law was lifted in July 1987 and opposition parties were legalised, but the Legislative Yuan still seated members elected on the mainland in 1947 who never faced a voter, and they were not retired until December 1991. A liberalising one-party state, not yet a democracy.",
+    "separatism 0.05 is the independence question read from the inside — a live cleavage in the electorate rather than a territorial insurgency.",
+    "Military index 16: roughly 370,000 active, a large modern air force by regional standards, and essentially no capacity to operate away from the island."
+  ]
+}

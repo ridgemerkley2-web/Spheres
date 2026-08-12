@@ -1,0 +1,38 @@
+{
+  "id": "NewZealand",
+  "name": "New Zealand",
+  "system": "Market",
+  "authoritarianism": 0.07,
+  "economy": {
+    "gdp_bn": 45.0,
+    "population_m": 3.4,
+    "tfp_trend": 0.008,
+    "inflation": 0.061,
+    "interest_rate": 0.139,
+    "tax_rate": 0.37,
+    "mil_spend_gdp": 0.017,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.175,
+    "debt_gdp": 0.63,
+    "oil_mbd": 0.04,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 62.0,
+    "separatism": 0.05
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $45bn current US$ and population 3.4m (World Bank national accounts, 1990).",
+    "Inflation 6.1%: Statistics New Zealand CPI, year to 1990, still carrying the July 1989 GST rise from 10% to 12.5%. The Reserve Bank of New Zealand Act 1989 had just made price stability the sole statutory objective with a 0-2% target for 1993, the first inflation-targeting mandate anywhere.",
+    "Interest rate 0.139 is the 90-day bank bill rate in early 1990; New Zealand had no published official cash rate until 1999, so the bill rate is the policy rate the Bank actually steered.",
+    "Tax 37% of GDP: total central-government revenue (The Treasury). Debt 63% of GDP is gross public debt, the peak of the borrowing left by the 1984 crisis and the Rogernomics adjustment; net debt was nearer half that.",
+    "Defence 1.7% of GDP (SIPRI). Strength 3 reflects roughly 12,000 regulars, two frigates and no independent power projection; ANZUS obligations had been suspended by the United States in 1986 over the nuclear-ships ban, leaving New Zealand formally allied only to Australia.",
+    "Oil 0.04 mbd: Maui and McKee condensate and crude, about 45,000 barrels a day (Ministry of Energy).",
+    "Separatism 0.05 is Maori sovereignty and Treaty of Waitangi claims - a live constitutional argument with no territorial secession movement behind it. Stability 62: the fourth Labour government had torn itself apart, Lange resigned in August 1989, Palmer was the second prime minister in a year and would be replaced by Moore weeks before the October 1990 election.",
+    "Investment shares: gross fixed capital formation about 20.5% of GDP, roughly 3% public and 17.5% private (Statistics New Zealand)."
+  ]
+}

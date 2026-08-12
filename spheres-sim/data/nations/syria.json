@@ -1,0 +1,41 @@
+{
+  "id": "Syria",
+  "name": "Syria",
+  "system": "Command",
+  "authoritarianism": 0.93,
+  "economy": {
+    "gdp_bn": 12.31,
+    "population_m": 12.58,
+    "tfp_trend": 0.004,
+    "inflation": 0.194,
+    "interest_rate": 0.09,
+    "tax_rate": 0.21,
+    "mil_spend_gdp": 0.069,
+    "state_invest_gdp": 0.11,
+    "priv_invest_gdp": 0.055,
+    "debt_gdp": 1.35,
+    "oil_mbd": 0.379,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 62.0,
+    "separatism": 0.1
+  },
+  "military": {
+    "strength": 18.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $12.31bn and population 12.58m: World Bank WDI, NY.GDP.MKTP.CD and SP.POP.TOTL, Syrian Arab Republic, 1990.",
+    "The dollar GDP is an artefact of Syria's multiple official exchange rates. In 1990 the state ran an official rate near 11.2 pounds to the dollar, a separate 'neighbouring country' rate near 42, and a parallel market beyond that; the WDI conversion uses the official series, so this figure understates output against any purchasing-power measure. It is entered because it is the transcribed World Bank number and because Yemen, Jordan and Lebanon in this roster are converted the same way.",
+    "Inflation 19.4%: World Bank FP.CPI.TOTL.ZG, 1990. The GDP deflator prints 23.8% the same year.",
+    "Interest rate 9.0% is administered, not a market rate. The World Bank publishes no lending-rate series for Syria in any year; the Commercial Bank of Syria set deposit and lending rates by decree in a banking system that was entirely state-owned until 2001. Recorded as an estimate.",
+    "Defence 6.9% of GDP: World Bank MS.MIL.XPND.GD.ZS, 1990. The true burden was higher: Syrian procurement was financed by Soviet credits that never appeared in the budget, which is also why the debt figure below is what it is.",
+    "Debt 135% of GDP is an estimate. Syria stopped reporting to the World Bank Debtor Reporting System, so DT.DOD.DECT has no 1990 value; the standing estimate of Syrian external obligations around 1990 is roughly $16-17bn, the bulk of it military debt to the Soviet Union, against a $12.31bn GDP. That debt was written down by about 73% in the 2005 Russian settlement, which is the clearest evidence of its size.",
+    "Investment: World Bank NE.GDI.FTOT.ZS puts gross fixed capital formation at 16.5% of GDP in 1990, split here 11.0 public and 5.5 private, because the public sector held the commanding heights until the 1991 Investment Law No. 10.",
+    "Oil 0.379 mbd: Energy Institute Statistical Review of World Energy via Our World in Data, 1990 (235.2 TWh), converted at 620.5 TWh per million barrels a day. The same conversion reproduces the Saudi 6.4 and Egyptian 0.87 figures already in this roster.",
+    "System is Command: the Ba'athist public sector still held banking, insurance, foreign trade and heavy industry in January 1990. Authoritarianism 0.93 is Hafez al-Assad's Syria eight years after Hama.",
+    "Separatism 0.10 is the Kurdish northeast, where roughly 300,000 people had been stripped of citizenship by the 1962 Hasakah census and remained stateless.",
+    "Military index 18 sits between Egypt (14) and Iraq (26): roughly 400,000 men and 4,000 Soviet tanks, a force large enough to hold the Golan front and garrison Lebanon but decisively outclassed in the air since the Bekaa Valley in 1982."
+  ]
+}

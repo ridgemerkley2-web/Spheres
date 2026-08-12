@@ -1,0 +1,41 @@
+{
+  "id": "Bahrain",
+  "name": "Bahrain",
+  "system": "Market",
+  "authoritarianism": 0.82,
+  "economy": {
+    "gdp_bn": 4.81,
+    "population_m": 0.51,
+    "tfp_trend": 0.014,
+    "inflation": 0.009,
+    "interest_rate": 0.084,
+    "tax_rate": 0.05,
+    "mil_spend_gdp": 0.053,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.106,
+    "debt_gdp": 0.077,
+    "oil_mbd": 0.05,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 55.0,
+    "separatism": 0.3
+  },
+  "military": {
+    "strength": 1.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $4.81bn and population 0.51m: World Bank WDI, NY.GDP.MKTP.CD and SP.POP.TOTL, Bahrain, 1990.",
+    "Inflation 0.9%: World Bank FP.CPI.TOTL.ZG, Bahrain, 1990. The dinar has been pegged to the dollar since 1980.",
+    "Interest rate 8.4%: World Bank FR.INR.LEND, Bahrain, 1990.",
+    "Tax 5% of GDP: World Bank GC.TAX.TOTL.GD.ZS prints 4.6% for 1990. There is no income tax. Total central government revenue excluding grants was 23.8% (GC.REV.XGRT.GD.ZS) — the difference is oil, most of it Bahrain's share of the Abu Sa'afa field, which Saudi Arabia operates and splits with Manama.",
+    "Defence 5.3% of GDP: World Bank MS.MIL.XPND.GD.ZS, Bahrain, 1990.",
+    "Debt 7.7% of GDP: World Bank GC.DOD.TOTL.GD.ZS, central government debt, Bahrain, 1990 — the lowest in this region, and it doubles the following year paying for the Gulf war.",
+    "Investment: gross fixed capital formation 16.6% of GDP (NE.GDI.FTOT.ZS, 1990), split 6.0 public and 10.6 private.",
+    "Oil 0.05 mbd: Energy Institute Statistical Review of World Energy via Our World in Data, 1990 (31.0 TWh), converted at 620.5 TWh per million barrels a day. Bahrain was the first Gulf state to strike oil, at Jebel Dukhan in 1932, and by 1990 the Awali field was nearly exhausted — which is why Bahrain diversified first and hardest, into aluminium smelting at ALBA, ship repair and offshore banking. That is the reason for the highest TFP trend in this region at 1.4%.",
+    "Authoritarianism 0.82: the Al Khalifa dissolved the elected National Assembly in August 1975 after it refused to pass the State Security Law, and ruled by decree until 2002. The 1974 constitution was suspended with it.",
+    "Separatism 0.30 is the confessional arithmetic: a Shia majority of roughly 60-70% of citizens under a Sunni ruling family, with the 1981 coup plot by the Islamic Front for the Liberation of Bahrain behind it and the intifada of 1994-99 ahead of it. Iran has an old claim to the islands, formally abandoned only in 1970.",
+    "Military index 1.0: about 6,000 men in the Bahrain Defence Force. What Bahrain contributes to the regional balance is not its army but Juffair, where the US Navy's Middle East Force has been based since 1949 and where Fifth Fleet headquarters would later sit."
+  ]
+}

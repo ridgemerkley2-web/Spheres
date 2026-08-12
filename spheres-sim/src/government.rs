@@ -870,6 +870,1840 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the Assembly",
         pillars: &[],
     },
+    // Spain — Congress of Deputies, 29 October 1989: PSOE 39.6%, PP 25.8%,
+    // IU 9.1%, CDS 7.9%, CiU 5.0%, PNV 1.2%. Gonzalez's third term, one seat
+    // short of an absolute majority and governing without a coalition.
+    Polity {
+        nation: NationId::Spain,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 6),
+        parties: &[
+            p("es_psoe", "Spanish Socialist Workers' Party", "PSOE", Family::SocialDemocratic, 0.396),
+            p("es_pp", "People's Party", "PP", Family::Conservative, 0.258),
+            p("es_iu", "United Left", "IU", Family::Communist, 0.091),
+            p("es_cds", "Democratic and Social Centre", "CDS", Family::Liberal, 0.079),
+            p("es_ciu", "Convergence and Union", "CiU", Family::Regionalist, 0.050),
+            p("es_pnv", "Basque Nationalist Party", "PNV", Family::Regionalist, 0.012),
+        ],
+        ruling: "the Cortes Generales",
+        pillars: &[],
+    },
+    // Netherlands — Tweede Kamer, 6 September 1989: CDA 35.3%, PvdA 31.9%,
+    // VVD 14.6%, D66 7.9%, GroenLinks 4.1%, SGP 1.9%, GPV 1.2%, CD 0.9%. Lubbers
+    // III, the CDA switching partner from the VVD to Labour. The electoral
+    // threshold is one seat in a single national district — 0.67% — so the low
+    // bar is the closest shape the model has.
+    Polity {
+        nation: NationId::Netherlands,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1994, 5),
+        parties: &[
+            p("nl_cda", "Christian Democratic Appeal", "Christen-Democratisch Appel", Family::ChristianDemocratic, 0.353),
+            p("nl_pvda", "Labour Party", "Partij van de Arbeid", Family::SocialDemocratic, 0.319),
+            p("nl_vvd", "People's Party for Freedom and Democracy", "Volkspartij voor Vrijheid en Democratie", Family::Liberal, 0.146),
+            p("nl_d66", "Democrats 66", "Democraten 66", Family::Liberal, 0.079),
+            p("nl_gl", "Green Left", "GroenLinks", Family::Green, 0.041),
+            p("nl_sgp", "Reformed Political Party", "Staatkundig Gereformeerde Partij", Family::Religious, 0.019),
+            p("nl_gpv", "Reformed Political League", "Gereformeerd Politiek Verbond", Family::Religious, 0.012),
+            pariah("nl_cd", "Centre Democrats", "Centrumdemocraten", Family::Nationalist, 0.009),
+        ],
+        ruling: "the States General",
+        pillars: &[],
+    },
+    // Belgium — Chamber of Representatives, 13 December 1987: CVP 19.5%,
+    // PS 15.7%, SP 14.9%, PVV 11.5%, PRL 9.4%, VU 8.1%, PSC 8.0%, Agalev 4.5%,
+    // Ecolo 2.6%, Vlaams Blok 1.9%. Every family here is split in two along the
+    // language border, which is why nine parties share three ideologies and why
+    // Martens VIII needed five of them. The cordon sanitaire against the Vlaams
+    // Blok was formalised in 1989 and held for the rest of the party's life.
+    Polity {
+        nation: NationId::Belgium,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 11),
+        parties: &[
+            p("be_cvp", "Christian People's Party", "Christelijke Volkspartij", Family::ChristianDemocratic, 0.195),
+            p("be_ps", "Socialist Party (francophone)", "Parti Socialiste", Family::SocialDemocratic, 0.157),
+            p("be_sp", "Socialist Party (flemish)", "Socialistische Partij", Family::SocialDemocratic, 0.149),
+            p("be_pvv", "Party for Freedom and Progress", "Partij voor Vrijheid en Vooruitgang", Family::Liberal, 0.115),
+            p("be_prl", "Liberal Reformist Party", "Parti Reformateur Liberal", Family::Liberal, 0.094),
+            p("be_vu", "People's Union", "Volksunie", Family::Regionalist, 0.081),
+            p("be_psc", "Christian Social Party", "Parti Social Chretien", Family::ChristianDemocratic, 0.080),
+            p("be_agalev", "Live Differently", "Agalev", Family::Green, 0.045),
+            p("be_ecolo", "Ecologists", "Ecolo", Family::Green, 0.026),
+            pariah("be_vb", "Flemish Bloc", "Vlaams Blok", Family::Nationalist, 0.019),
+        ],
+        ruling: "the Chamber of Representatives",
+        pillars: &[],
+    },
+    // Sweden — Riksdag, 18 September 1988: SAP 43.2%, Moderates 18.3%,
+    // Liberals 12.2%, Centre 11.3%, Left Party Communists 5.8%, Greens 5.5%,
+    // KDS 2.9%. Carlsson's minority government legislating with the VPK. Terms
+    // ran three years until the 1994 reform, and the 4% threshold is the closest
+    // to the model's ordinary continental bar.
+    Polity {
+        nation: NationId::Sweden,
+        system: Electoral::Proportional,
+        term_months: 36,
+        next: (1991, 9),
+        parties: &[
+            p("se_sap", "Swedish Social Democratic Party", "Sveriges socialdemokratiska arbetareparti", Family::SocialDemocratic, 0.432),
+            p("se_m", "Moderate Party", "Moderata samlingspartiet", Family::Conservative, 0.183),
+            p("se_fp", "Liberal People's Party", "Folkpartiet liberalerna", Family::Liberal, 0.122),
+            p("se_c", "Centre Party", "Centerpartiet", Family::Agrarian, 0.113),
+            p("se_vpk", "Left Party Communists", "Vansterpartiet kommunisterna", Family::Communist, 0.058),
+            p("se_mp", "Green Party", "Miljopartiet de grona", Family::Green, 0.055),
+            p("se_kds", "Christian Democratic Community Party", "Kristdemokratiska samhallspartiet", Family::ChristianDemocratic, 0.029),
+        ],
+        ruling: "the Riksdag",
+        pillars: &[],
+    },
+    // Switzerland — National Council, 18 October 1987: FDP 22.9%, CVP 19.6%,
+    // SPS 18.4%, SVP 11.0%, GPS 4.9%, LdU 4.2%, LPS 2.7%, National Action 2.5%,
+    // PdA 0.8%. The four largest have held the Federal Council in a fixed 2:2:2:1
+    // since 1959, so an election here moves seats and not the executive. Seats
+    // are allocated by canton with no national threshold. The SVP of 1987 is
+    // still the farmers' and artisans' party; Blocher's turn came later.
+    Polity {
+        nation: NationId::Switzerland,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 10),
+        parties: &[
+            p("ch_fdp", "Free Democratic Party", "Freisinnig-Demokratische Partei", Family::Liberal, 0.229),
+            p("ch_cvp", "Christian Democratic People's Party", "Christlichdemokratische Volkspartei", Family::ChristianDemocratic, 0.196),
+            p("ch_sps", "Social Democratic Party", "Sozialdemokratische Partei der Schweiz", Family::SocialDemocratic, 0.184),
+            p("ch_svp", "Swiss People's Party", "Schweizerische Volkspartei", Family::Agrarian, 0.110),
+            p("ch_gps", "Green Party", "Grune Partei der Schweiz", Family::Green, 0.049),
+            p("ch_ldu", "Ring of Independents", "Landesring der Unabhangigen", Family::Liberal, 0.042),
+            p("ch_lps", "Liberal Party", "Liberale Partei der Schweiz", Family::Conservative, 0.027),
+            p("ch_na", "National Action", "Nationale Aktion", Family::Nationalist, 0.025),
+            p("ch_pda", "Swiss Party of Labour", "Partei der Arbeit der Schweiz", Family::Communist, 0.008),
+        ],
+        ruling: "the Federal Assembly",
+        pillars: &[],
+    },
+    // Austria — Nationalrat, 23 November 1986: SPO 43.1%, OVP 41.3%, FPO 9.7%,
+    // Greens 4.8%. Vranitzky broke off talks with the FPO the month Haider took
+    // it over and called the election; the grand coalition that followed was
+    // the standing form of Austrian government. That exclusion is the pariah
+    // flag here, and it is what makes SPO-OVP the only arithmetic available.
+    // The party was still the Socialist Party of Austria in 1990; it renamed
+    // itself Social Democratic in 1991.
+    Polity {
+        nation: NationId::Austria,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 10),
+        parties: &[
+            p("at_spo", "Socialist Party of Austria", "Sozialistische Partei Osterreichs", Family::SocialDemocratic, 0.431),
+            p("at_ovp", "Austrian People's Party", "Osterreichische Volkspartei", Family::ChristianDemocratic, 0.413),
+            pariah("at_fpo", "Freedom Party of Austria", "Freiheitliche Partei Osterreichs", Family::Nationalist, 0.097),
+            p("at_gruene", "The Greens", "Die Grune Alternative", Family::Green, 0.048),
+        ],
+        ruling: "the Nationalrat",
+        pillars: &[],
+    },
+    // Portugal — Assembly of the Republic, 19 July 1987: PSD 50.2%, PS 22.2%,
+    // CDU 12.1%, PRD 4.9%, CDS 4.4%. Cavaco Silva's absolute majority, the first
+    // any party had won since the Carnation Revolution. D'Hondt by district with
+    // no legal threshold. The PSD sat with the Liberal International until 1996
+    // despite the name and the office it held.
+    Polity {
+        nation: NationId::Portugal,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 10),
+        parties: &[
+            p("pt_psd", "Social Democratic Party", "Partido Social Democrata", Family::Liberal, 0.502),
+            p("pt_ps", "Socialist Party", "Partido Socialista", Family::SocialDemocratic, 0.222),
+            p("pt_cdu", "Unitary Democratic Coalition", "Coligacao Democratica Unitaria", Family::Communist, 0.121),
+            p("pt_prd", "Democratic Renewal Party", "Partido Renovador Democratico", Family::BigTent, 0.049),
+            p("pt_cds", "Democratic and Social Centre", "Centro Democratico e Social", Family::ChristianDemocratic, 0.044),
+        ],
+        ruling: "the Assembly of the Republic",
+        pillars: &[],
+    },
+    // Greece — Hellenic Parliament, 5 November 1989: New Democracy 46.2%,
+    // PASOK 40.7%, Synaspismos 11.0%, DIANA 0.7%. The second of three elections
+    // in ten months: simple proportional representation had been restored in
+    // 1989 precisely so that no party could win outright, and none did. What
+    // sat in January 1990 was Zolotas's ecumenical cabinet, and the third
+    // election came on 8 April.
+    Polity {
+        nation: NationId::Greece,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 4),
+        parties: &[
+            p("gr_nd", "New Democracy", "Nea Dimokratia", Family::Conservative, 0.462),
+            p("gr_pasok", "Panhellenic Socialist Movement", "Panellinio Sosialistiko Kinima", Family::SocialDemocratic, 0.407),
+            p("gr_syn", "Coalition of the Left and Progress", "Synaspismos tis Aristeras kai tis Proodou", Family::Communist, 0.110),
+            p("gr_diana", "Democratic Renewal", "Dimokratiki Ananeosi", Family::Liberal, 0.007),
+        ],
+        ruling: "the Hellenic Parliament",
+        pillars: &[],
+    },
+    // Denmark — Folketing, 10 May 1988: Social Democrats 29.8%, Conservatives
+    // 19.3%, SF 13.0%, Venstre 11.8%, Progress Party 9.0%, Radikale 5.6%,
+    // Centre Democrats 4.7%, Christian People's Party 2.0%. Schluter's fourth
+    // cabinet, formed after the footnote-policy crisis over nuclear-armed port
+    // visits forced the election. Threshold 2%. SF is left-socialist rather
+    // than communist — it split from the DKP in 1959 — but the leftmost family
+    // the model carries is the closest place to put it.
+    Polity {
+        nation: NationId::Denmark,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1990, 12),
+        parties: &[
+            p("dk_s", "Social Democrats", "Socialdemokratiet", Family::SocialDemocratic, 0.298),
+            p("dk_kf", "Conservative People's Party", "Det Konservative Folkeparti", Family::Conservative, 0.193),
+            p("dk_sf", "Socialist People's Party", "Socialistisk Folkeparti", Family::Communist, 0.130),
+            p("dk_v", "Venstre, Liberal Party of Denmark", "Venstre", Family::Liberal, 0.118),
+            p("dk_frp", "Progress Party", "Fremskridtspartiet", Family::Nationalist, 0.090),
+            p("dk_rv", "Danish Social Liberal Party", "Det Radikale Venstre", Family::Liberal, 0.056),
+            p("dk_cd", "Centre Democrats", "Centrum-Demokraterne", Family::ChristianDemocratic, 0.047),
+            p("dk_krf", "Christian People's Party", "Kristeligt Folkeparti", Family::ChristianDemocratic, 0.020),
+        ],
+        ruling: "the Folketing",
+        pillars: &[],
+    },
+    // Norway — Storting, 11 September 1989: Labour 34.3%, Conservatives 22.2%,
+    // Progress Party 13.0%, Socialist Left 10.1%, Christian Democrats 8.5%,
+    // Centre 6.5%, Liberals 3.2%. Syse's three-party centre-right minority took
+    // office in October and broke up in November 1990 over the EEA. The Storting
+    // cannot be dissolved early: the term is a fixed four years, which is why
+    // the next date is 1993 however the government fares.
+    Polity {
+        nation: NationId::Norway,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 9),
+        parties: &[
+            p("no_ap", "Labour Party", "Arbeiderpartiet", Family::SocialDemocratic, 0.343),
+            p("no_h", "Conservative Party", "Hoyre", Family::Conservative, 0.222),
+            p("no_frp", "Progress Party", "Fremskrittspartiet", Family::Nationalist, 0.130),
+            p("no_sv", "Socialist Left Party", "Sosialistisk Venstreparti", Family::Communist, 0.101),
+            p("no_krf", "Christian Democratic Party", "Kristelig Folkeparti", Family::ChristianDemocratic, 0.085),
+            p("no_sp", "Centre Party", "Senterpartiet", Family::Agrarian, 0.065),
+            p("no_v", "Liberal Party", "Venstre", Family::Liberal, 0.032),
+        ],
+        ruling: "the Storting",
+        pillars: &[],
+    },
+    // Finland — Eduskunta, 15-16 March 1987: SDP 24.1%, National Coalition
+    // 23.1%, Centre 17.6%, SKDL 9.4%, Rural Party 6.3%, Swedish People's Party
+    // 5.3%, Greens 4.0%, Democratic Alternative 4.2%, Christian League 2.6%.
+    // Holkeri's "red-blue" cabinet put the Conservatives back in office after
+    // twenty years out, which Kekkonen's reading of the 1948 treaty had made
+    // impossible. D'Hondt by district, no national threshold.
+    Polity {
+        nation: NationId::Finland,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 3),
+        parties: &[
+            p("fi_sdp", "Social Democratic Party of Finland", "Suomen Sosialidemokraattinen Puolue", Family::SocialDemocratic, 0.241),
+            p("fi_kok", "National Coalition Party", "Kansallinen Kokoomus", Family::Conservative, 0.231),
+            p("fi_kesk", "Centre Party", "Suomen Keskusta", Family::Agrarian, 0.176),
+            p("fi_skdl", "Finnish People's Democratic League", "Suomen Kansan Demokraattinen Liitto", Family::Communist, 0.094),
+            p("fi_smp", "Finnish Rural Party", "Suomen Maaseudun Puolue", Family::Nationalist, 0.063),
+            p("fi_rkp", "Swedish People's Party", "Svenska folkpartiet i Finland", Family::Regionalist, 0.053),
+            p("fi_deva", "Democratic Alternative", "Demokraattinen Vaihtoehto", Family::Communist, 0.042),
+            p("fi_vihr", "Green League", "Vihrea Liitto", Family::Green, 0.040),
+            p("fi_skl", "Christian League", "Suomen Kristillinen Liitto", Family::ChristianDemocratic, 0.026),
+        ],
+        ruling: "the Eduskunta",
+        pillars: &[],
+    },
+    // Ireland — Dail Eireann, 15 June 1989: Fianna Fail 44.1%, Fine Gael 29.3%,
+    // Labour 9.5%, Progressive Democrats 5.5%, Workers' Party 5.0%, Greens 1.5%,
+    // Sinn Fein 1.2%. Haughey called the election to win a majority, lost seats,
+    // and entered the first coalition Fianna Fail had ever accepted. Single
+    // transferable vote in multi-seat constituencies, no threshold. Sinn Fein
+    // was excluded by every other party and off the airwaves entirely under the
+    // Section 31 broadcasting ban, which is what the pariah flag records.
+    Polity {
+        nation: NationId::Ireland,
+        system: Electoral::ProportionalLowBar,
+        term_months: 60,
+        next: (1992, 11),
+        parties: &[
+            p("ie_ff", "Fianna Fail", "Fianna Fail", Family::BigTent, 0.441),
+            p("ie_fg", "Fine Gael", "Fine Gael", Family::ChristianDemocratic, 0.293),
+            p("ie_lab", "Labour Party", "Pairti Lucht Oibre", Family::SocialDemocratic, 0.095),
+            p("ie_pd", "Progressive Democrats", "An Pairti Daonlathach", Family::Liberal, 0.055),
+            p("ie_wp", "Workers' Party", "Pairti na nOibrithe", Family::Communist, 0.050),
+            p("ie_green", "Green Party", "Comhaontas Glas", Family::Green, 0.015),
+            pariah("ie_sf", "Sinn Fein", "Sinn Fein", Family::Nationalist, 0.012),
+        ],
+        ruling: "the Dail Eireann",
+        pillars: &[],
+    },
+    // Czechoslovakia — the last election before the game opens is the National
+    // Front single list of 23-24 May 1986, 99.9% on a 99.4% turnout, which
+    // records nothing. The shares below are the first free election, the
+    // Federal Assembly (House of the People) of 8-9 June 1990, federal totals
+    // across both republics: Civic Forum took 53.2% in the Czech lands and
+    // Public Against Violence 32.5% in Slovakia, which is about 46.6% between
+    // them federally. The remaining ~13% went to lists under the 5% federal
+    // bar. Elected for a deliberately short two-year term to write a new
+    // constitution — it never agreed one, and the state dissolved instead.
+    Polity {
+        nation: NationId::Czechoslovakia,
+        system: Electoral::Proportional,
+        term_months: 24,
+        next: (1990, 6),
+        parties: &[
+            p("cs_of", "Civic Forum", "Obcanske forum", Family::BigTent, 0.354),
+            p("cs_ksc", "Communist Party of Czechoslovakia", "Komunisticka strana Ceskoslovenska", Family::Communist, 0.135),
+            p("cs_vpn", "Public Against Violence", "Verejnost proti nasiliu", Family::BigTent, 0.112),
+            p("cs_kdu", "Christian and Democratic Union", "Krestanska a demokraticka unie", Family::ChristianDemocratic, 0.087),
+            p("cs_kdh", "Christian Democratic Movement", "Krestanskodemokraticke hnutie", Family::ChristianDemocratic, 0.063),
+            p("cs_hsdsms", "Movement for Self-Governing Democracy", "Hnuti za samospravnou demokracii - Spolecnost pro Moravu a Slezsko", Family::Regionalist, 0.054),
+            p("cs_sns", "Slovak National Party", "Slovenska narodna strana", Family::Nationalist, 0.035),
+            p("cs_egyutteles", "Coexistence", "Egyutteles", Family::Regionalist, 0.028),
+        ],
+        ruling: "the Federal Assembly",
+        pillars: &[],
+    },
+    // East Germany — Volkskammer, 18 March 1990, the only free election the GDR
+    // ever held. Alliance for Germany: CDU 40.8%, DSU 6.3%, Democratic Awakening
+    // 0.9%; SPD 21.9%; PDS 16.4%; League of Free Democrats 5.3%; Alliance 90
+    // 2.9%; Democratic Farmers' Party 2.2%; Green Party with the Independent
+    // Women's Association 2.0%. No threshold at all, which is why twelve lists
+    // took seats. The last election before the game opens is the local ballot of
+    // 7 May 1989, whose falsified 98.85% was itself the trigger for the autumn.
+    // Modelled as an ordinary electorate because on that day it was one; the
+    // accession of 3 October 1990 is not scripted here, and eastgermany.json
+    // explains why and what carries the pressure instead.
+    Polity {
+        nation: NationId::EastGermany,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1990, 3),
+        parties: &[
+            p("dd_cdu", "Christian Democratic Union", "Christlich-Demokratische Union", Family::ChristianDemocratic, 0.408),
+            p("dd_spd", "Social Democratic Party", "Sozialdemokratische Partei", Family::SocialDemocratic, 0.219),
+            p("dd_pds", "Party of Democratic Socialism", "Partei des Demokratischen Sozialismus", Family::Communist, 0.164),
+            p("dd_dsu", "German Social Union", "Deutsche Soziale Union", Family::Conservative, 0.063),
+            p("dd_bfd", "League of Free Democrats", "Bund Freier Demokraten", Family::Liberal, 0.053),
+            p("dd_b90", "Alliance 90", "Bundnis 90", Family::Green, 0.029),
+            p("dd_dbd", "Democratic Farmers' Party", "Demokratische Bauernpartei Deutschlands", Family::Agrarian, 0.022),
+            p("dd_gruene", "Green Party", "Grune Partei", Family::Green, 0.020),
+        ],
+        ruling: "the Volkskammer",
+        pillars: &[],
+    },
+    // Hungary — National Assembly, 25 March and 8 April 1990, party lists:
+    // MDF 24.7%, SZDSZ 21.4%, FKgP 11.7%, MSZP 10.9%, Fidesz 9.0%, KDNP 6.5%,
+    // MSZMP 3.7%, Agrarian Alliance 3.1%. The last election before the game
+    // opens, June 1985, was single-list. The real system was mixed: 176
+    // single-member seats decided in two rounds alongside county and national
+    // lists with a 4% bar, and TwoRound is entered because the majoritarian
+    // half is what turned MDF's quarter of the vote into 42.5% of the seats.
+    Polity {
+        nation: NationId::Hungary,
+        system: Electoral::TwoRound,
+        term_months: 48,
+        next: (1990, 3),
+        parties: &[
+            p("hu_mdf", "Hungarian Democratic Forum", "Magyar Demokrata Forum", Family::ChristianDemocratic, 0.247),
+            p("hu_szdsz", "Alliance of Free Democrats", "Szabad Demokratak Szovetsege", Family::Liberal, 0.214),
+            p("hu_fkgp", "Independent Smallholders' Party", "Fuggetlen Kisgazdapart", Family::Agrarian, 0.117),
+            p("hu_mszp", "Hungarian Socialist Party", "Magyar Szocialista Part", Family::SocialDemocratic, 0.109),
+            p("hu_fidesz", "Federation of Young Democrats", "Fiatal Demokratak Szovetsege", Family::Liberal, 0.090),
+            p("hu_kdnp", "Christian Democratic People's Party", "Keresztenydemokrata Neppart", Family::ChristianDemocratic, 0.065),
+            p("hu_mszmp", "Hungarian Socialist Workers' Party", "Magyar Szocialista Munkaspart", Family::Communist, 0.037),
+            p("hu_asz", "Agrarian Alliance", "Agrarszovetseg", Family::Agrarian, 0.031),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+    // Romania — Chamber of Deputies, 20 May 1990: FSN 66.3%, UDMR 7.2%, PNL
+    // 6.4%, Ecological Movement 2.6%, PNTCD 2.6%, AUR 2.1%, PSDR 0.5%. No
+    // threshold, hence a chamber with sixteen parties in it and one of them
+    // holding two-thirds. The National Salvation Front had promised on 23
+    // December 1989 not to contest the election and reversed that on 6
+    // February 1990; the opposition had no organisation outside the cities and
+    // no access to state television. Free enough to model as an electorate,
+    // which is why authoritarianism sits at 0.42 rather than above the ceiling.
+    Polity {
+        nation: NationId::Romania,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1990, 5),
+        parties: &[
+            p("ro_fsn", "National Salvation Front", "Frontul Salvarii Nationale", Family::BigTent, 0.663),
+            p("ro_udmr", "Democratic Union of Hungarians in Romania", "Uniunea Democrata Maghiara din Romania", Family::Regionalist, 0.072),
+            p("ro_pnl", "National Liberal Party", "Partidul National Liberal", Family::Liberal, 0.064),
+            p("ro_mer", "Ecological Movement of Romania", "Miscarea Ecologista din Romania", Family::Green, 0.026),
+            p("ro_pntcd", "Christian Democratic National Peasants' Party", "Partidul National Taranesc Crestin Democrat", Family::ChristianDemocratic, 0.026),
+            p("ro_aur", "Romanian National Unity Party", "Partidul Unitatii Nationale Romane", Family::Nationalist, 0.021),
+            p("ro_psdr", "Romanian Social Democratic Party", "Partidul Social Democrat Roman", Family::SocialDemocratic, 0.005),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[pl(Pillar::Army, "the Romanian Army")],
+    },
+    // Bulgaria — Grand National Assembly, 10 and 17 June 1990, proportional
+    // half: BSP 47.2%, Union of Democratic Forces 36.2%, Agrarian Union 8.0%,
+    // Movement for Rights and Freedoms 6.0%. The renamed communist party won,
+    // the only one in the region that did, and then could not govern: Lukanov
+    // resigned in November 1990 after a general strike. The 4% bar of the 1990
+    // ballot is modelled with the ordinary 5% shape.
+    Polity {
+        nation: NationId::Bulgaria,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 6),
+        parties: &[
+            p("bg_bsp", "Bulgarian Socialist Party", "Balgarska sotsialisticheska partiya", Family::Communist, 0.472),
+            p("bg_sds", "Union of Democratic Forces", "Sayuz na demokratichnite sili", Family::BigTent, 0.362),
+            p("bg_bzns", "Bulgarian Agrarian National Union", "Balgarski zemedelski naroden sayuz", Family::Agrarian, 0.080),
+            p("bg_dps", "Movement for Rights and Freedoms", "Dvizhenie za prava i svobodi", Family::Regionalist, 0.060),
+        ],
+        ruling: "the Grand National Assembly",
+        pillars: &[],
+    },
+    // Albania — the People's Assembly election of 1 February 1987 returned the
+    // Democratic Front's single list with 100% of the vote on a turnout of
+    // 100%, and there is nothing else before January 1990. Opposition parties
+    // became legal only on 11 December 1990, so the regime holds no election
+    // the model should fire from the start state and next is (0, 0). The table
+    // below is the 31 March 1991 result, the first contested one, held live for
+    // if and when the regime opens: PPSh 56.2%, Democratic Party 38.7%, Omonia
+    // 0.7%. The pillars are the three institutions that actually held Ramiz
+    // Alia up, and the Sigurimi is named because "the security services" is not
+    // a thing that removes a government.
+    Polity {
+        nation: NationId::Albania,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("al_ppsh", "Party of Labour of Albania", "Partia e Punes e Shqiperise", Family::Communist, 0.562),
+            p("al_pd", "Democratic Party of Albania", "Partia Demokratike e Shqiperise", Family::Liberal, 0.387),
+            p("al_omonia", "Omonia", "Omonoia", Family::Regionalist, 0.007),
+        ],
+        ruling: "the Party of Labour of Albania",
+        pillars: &[
+            pl(Pillar::Party, "the Party of Labour of Albania"),
+            pl(Pillar::Army, "the Albanian People's Army"),
+            pl(Pillar::Security, "the Sigurimi"),
+        ],
+    },
+    // ---------------------------------------------------------------------
+    // The other ten Soviet successors. Each block is the founding national vote
+    // that put the republic's first sovereign parliament or president in place:
+    // for most of them the republican Supreme Soviet elections of spring 1990,
+    // the first competitive elections held on that soil since the annexations,
+    // and for a few the first post-independence contest, because the 1990
+    // result there was a one-party formality with no published shares.
+    // ---------------------------------------------------------------------
+
+    // Belarus - Supreme Soviet of the Byelorussian SSR, 4 March 1990 with
+    // runoffs into May. Seat shares, not votes: the Communist Party of
+    // Byelorussia took the overwhelming majority of the 310 seats and the
+    // Belarusian Popular Front's opposition caucus settled at around 37 of
+    // them. Belarus is the republic where the old apparatus was least disturbed
+    // by 1991, and that is the fact this table exists to carry.
+    Polity {
+        nation: NationId::Belarus,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("by_kpb", "Communist Party of Byelorussia", "Kamunistychnaya partyya Belarusi", Family::Communist, 0.850),
+            p("by_bnf", "Belarusian Popular Front", "Belaruski Narodny Front", Family::Nationalist, 0.120),
+        ],
+        ruling: "the Supreme Soviet",
+        pillars: &[
+            pl(Pillar::Army, "the Belarusian Military District's inheritance"),
+            pl(Pillar::Party, "the collective-farm and industrial nomenklatura"),
+            pl(Pillar::Security, "the State Security Committee"),
+        ],
+    },
+    // Kazakhstan - 1 December 1991 presidential election: Nursultan Nazarbayev
+    // unopposed with 98.8%. Azat and Zheltoqsan, the two national-democratic
+    // movements that would have contested it, were refused registration, so
+    // there is genuinely no second row to transcribe. A single party here is
+    // the correct description of the republic and not a gap in it: Kazakhstan
+    // has never held a national election an observer mission called free.
+    Polity {
+        nation: NationId::Kazakhstan,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("kz_snek", "Union of People's Unity of Kazakhstan", "Qazaqstan Halyq Birligi Odagy", Family::BigTent, 0.988),
+        ],
+        ruling: "the Presidency of the Republic of Kazakhstan",
+        pillars: &[
+            pl(Pillar::Army, "the Kazakh Armed Forces"),
+            pl(Pillar::Party, "the presidential apparatus"),
+            pl(Pillar::Security, "the Committee for National Security"),
+            pl(Pillar::Business, "the oil and metals groups"),
+        ],
+    },
+    // Uzbekistan - 29 December 1991 presidential election: Islam Karimov 86.0%,
+    // Muhammad Salih of Erk 12.7%. Erk was banned within two years and Salih
+    // left the country; Birlik, the larger opposition movement, was never
+    // allowed onto the ballot at all. The First Secretary became the President
+    // without an interval, which is why the pillars here are the Soviet ones
+    // under new names.
+    Polity {
+        nation: NationId::Uzbekistan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("uz_pdp", "People's Democratic Party of Uzbekistan", "Ozbekiston Xalq Demokratik Partiyasi", Family::BigTent, 0.860),
+            p("uz_erk", "Erk Democratic Party", "Erk Demokratik Partiyasi", Family::Liberal, 0.127),
+        ],
+        ruling: "the Presidency of the Republic of Uzbekistan",
+        pillars: &[
+            pl(Pillar::Army, "the Turkestan Military District's inheritance"),
+            pl(Pillar::Party, "the People's Democratic Party apparatus"),
+            pl(Pillar::Security, "the National Security Service"),
+        ],
+    },
+    // Georgia - Supreme Council, 28 October 1990: Zviad Gamsakhurdia's Round
+    // Table-Free Georgia 64.0%, the Communist Party of Georgia 29.6%. The first
+    // multi-party election in any Soviet republic won outright by the
+    // opposition, and the government it produced was overthrown by its own
+    // National Guard fourteen months later.
+    Polity {
+        nation: NationId::Georgia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ge_mrsm", "Round Table-Free Georgia", "Mrgvali Magida-Tavisupali Sakartvelo", Family::Nationalist, 0.640),
+            p("ge_kpg", "Communist Party of Georgia", "Sakartvelos Komunisturi Partia", Family::Communist, 0.296),
+        ],
+        ruling: "the Supreme Council of Georgia",
+        pillars: &[
+            pl(Pillar::Army, "the National Guard and the Mkhedrioni"),
+            pl(Pillar::Security, "the state security apparatus"),
+        ],
+    },
+    // Armenia - 16 October 1991 presidential election: Levon Ter-Petrosyan of
+    // the Pan-Armenian National Movement 83.0%, Paruyr Hayrikyan 7.2%, Sos
+    // Sargsyan 4.3%. Held five weeks after the independence referendum, with
+    // the Karabakh war already running and the Azerbaijani blockade closing.
+    Polity {
+        nation: NationId::Armenia,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("am_hhsh", "Pan-Armenian National Movement", "Hayots Hamazgayin Sharzhum", Family::BigTent, 0.830),
+            p("am_ansd", "National Self-Determination Union", "Azgayin Inknoroshum Miavorum", Family::Nationalist, 0.072),
+            p("am_hhd", "Armenian Revolutionary Federation", "Hay Heghapokhakan Dashnaktsutyun", Family::SocialDemocratic, 0.043),
+        ],
+        ruling: "the Presidency of the Republic of Armenia",
+        pillars: &[
+            pl(Pillar::Army, "the Armenian Army and the Karabakh volunteers"),
+            pl(Pillar::Security, "the state security apparatus"),
+        ],
+    },
+    // Azerbaijan - 7 June 1992 presidential election: Abulfaz Elchibey of the
+    // Popular Front 59.4%, Nizami Suleymanov 33.0%. The 1990 Supreme Soviet
+    // election was run by the Communist Party under the state of emergency
+    // imposed after Black January and published no comparable shares, so 1992
+    // is the first result that describes the country. Elchibey lasted a year:
+    // Karabakh took his government down, as it had taken down the one before.
+    Polity {
+        nation: NationId::Azerbaijan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("az_axc", "Popular Front of Azerbaijan", "Azarbaycan Xalq Cabhasi", Family::Nationalist, 0.594),
+            p("az_msi", "Independent Azerbaijan bloc", "Musteqil Azarbaycan", Family::BigTent, 0.330),
+        ],
+        ruling: "the Presidency of the Republic of Azerbaijan",
+        pillars: &[
+            pl(Pillar::Army, "the Azerbaijani Army and the OMON detachments"),
+            pl(Pillar::Security, "the Ministry of National Security"),
+            pl(Pillar::Business, "the state oil company"),
+        ],
+    },
+    // Lithuania - Supreme Council, 24 February 1990 with runoffs in March. Seat
+    // shares of 141: Sajudis-endorsed candidates 91, the Communist Party of
+    // Lithuania that had already broken with Moscow about 40, the Polish
+    // electoral caucus around 7. This is the parliament that declared
+    // independence on 11 March 1990, eleven days after it was seated, and it is
+    // the earliest of the three Baltic declarations.
+    Polity {
+        nation: NationId::Lithuania,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("lt_sajudis", "Sajudis", "Lietuvos Persitvarkymo Sajudis", Family::BigTent, 0.645),
+            p("lt_ldpp", "Lithuanian Democratic Labour Party", "Lietuvos demokratine darbo partija", Family::SocialDemocratic, 0.284),
+            p("lt_lls", "Union of Poles in Lithuania", "Lietuvos lenku sajunga", Family::Regionalist, 0.050),
+        ],
+        ruling: "the Seimas",
+        pillars: &[],
+    },
+    // Latvia - Supreme Council, 18 March 1990. Seat shares of 201: the Popular
+    // Front of Latvia 131, the pro-Soviet Equal Rights caucus 55. The Front had
+    // the two-thirds it needed to vote the restoration of independence on 4 May,
+    // and Equal Rights is the parliamentary form of the Russophone third of the
+    // country that the citizenship law of 1994 then left outside the electorate.
+    Polity {
+        nation: NationId::Latvia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("lv_ltf", "Popular Front of Latvia", "Latvijas Tautas fronte", Family::BigTent, 0.652),
+            p("lv_lidz", "Equal Rights", "Lidztiesiba", Family::Communist, 0.274),
+        ],
+        ruling: "the Saeima",
+        pillars: &[],
+    },
+    // Estonia - 20 September 1992 Riigikogu election: Pro Patria 22.0%, Safe
+    // Home 13.6%, the Popular Front 12.3%, the Moderates 9.7%, the National
+    // Independence Party 8.8%, Estonian Citizen 6.9%. The first election
+    // anywhere in the former union held under a restored pre-war constitution,
+    // and the first in which only citizens of the inter-war republic and their
+    // descendants could vote.
+    Polity {
+        nation: NationId::Estonia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ee_isamaa", "Pro Patria", "Isamaa", Family::Conservative, 0.220),
+            p("ee_kk", "Safe Home", "Kindel Kodu", Family::Agrarian, 0.136),
+            p("ee_rahvarinne", "Popular Front of Estonia", "Rahvarinne", Family::BigTent, 0.123),
+            p("ee_mood", "Moderates", "Moodukad", Family::SocialDemocratic, 0.097),
+            p("ee_ersp", "Estonian National Independence Party", "Eesti Rahvusliku Soltumatuse Partei", Family::Nationalist, 0.088),
+            p("ee_ek", "Estonian Citizen", "Eesti Kodanik", Family::Nationalist, 0.069),
+        ],
+        ruling: "the Riigikogu",
+        pillars: &[],
+    },
+    // Moldova - 27 February 1994 parliamentary election: the Agrarian
+    // Democratic Party 43.2%, the Socialist Party and Unity Movement bloc
+    // 22.0%, the Bloc of Peasants and Intellectuals 9.2%, the Christian
+    // Democratic Popular Front 7.5%. The 1990 Supreme Soviet election was
+    // fought by candidates rather than parties, so 1994 is the first party
+    // result, and it is a vote against union with Romania taken after
+    // Transnistria was already gone.
+    Polity {
+        nation: NationId::Moldova,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("md_pdam", "Agrarian Democratic Party", "Partidul Democrat Agrar din Moldova", Family::Agrarian, 0.432),
+            p("md_sb", "Socialist Party and Unity Movement bloc", "Blocul Partidul Socialist si Miscarea Unitate-Edinstvo", Family::Communist, 0.220),
+            p("md_bti", "Bloc of Peasants and Intellectuals", "Blocul Taranilor si Intelectualilor", Family::Liberal, 0.092),
+            p("md_fpcd", "Christian Democratic Popular Front", "Frontul Popular Crestin Democrat", Family::Nationalist, 0.075),
+        ],
+        ruling: "the Parliament of the Republic of Moldova",
+        pillars: &[],
+    },
+    // Argentina — Chamber of Deputies, 14 May 1989, held with the presidential
+    // election Carlos Menem won for the Justicialists with 47.5%: PJ 44.7%, UCR
+    // 28.8%, the Alianza de Centro around the UCeDe 6.9%, Izquierda Unida 3.5%,
+    // and a long tail of provincial parties of which the Neuquen People's
+    // Movement is the durable one. Raul Alfonsin handed power over five months
+    // early, in July 1989, because hyperinflation had made governing impossible.
+    // Half the chamber renews every two years, so the next round is due in
+    // September 1991.
+    Polity {
+        nation: NationId::Argentina,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1991, 9),
+        parties: &[
+            p("ar_pj", "Justicialist Party", "Partido Justicialista", Family::BigTent, 0.447),
+            p("ar_ucr", "Radical Civic Union", "Union Civica Radical", Family::Liberal, 0.288),
+            p("ar_ucede", "Union of the Democratic Centre", "Union del Centro Democratico", Family::Conservative, 0.069),
+            p("ar_iu", "United Left", "Izquierda Unida", Family::Communist, 0.035),
+            p("ar_mpn", "Neuquen People's Movement", "Movimiento Popular Neuquino", Family::Regionalist, 0.015),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Mexico — Chamber of Deputies, 6 July 1988: PRI 51.1%, the Cardenista
+    // Frente Democratico Nacional 29.1%, PAN 18.0%. The count famously stopped
+    // when "se cayo el sistema" and resumed with the PRI ahead; the ballots were
+    // burned in 1992. The FDN becomes the PRD in May 1989 and is entered under
+    // that name with its 1988 share. Deputies serve three years, so the midterm
+    // falls in August 1991. The PRI had not lost a presidential election since
+    // its founding in 1929 and does not lose one until 2000 — which the model
+    // has to reach through legitimacy, not a date.
+    Polity {
+        nation: NationId::Mexico,
+        system: Electoral::Proportional,
+        term_months: 36,
+        next: (1991, 8),
+        parties: &[
+            p("mx_pri", "Institutional Revolutionary Party", "Partido Revolucionario Institucional", Family::BigTent, 0.511),
+            p("mx_prd", "Party of the Democratic Revolution", "Partido de la Revolucion Democratica", Family::SocialDemocratic, 0.291),
+            p("mx_pan", "National Action Party", "Partido Accion Nacional", Family::ChristianDemocratic, 0.180),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Chile — Chamber of Deputies, 14 December 1989, the first since 1973, held
+    // under the constitution the outgoing regime wrote in 1980 and with the
+    // binomial system it designed to give the right half the seats on a third of
+    // the vote. Party lists inside the two blocs: PDC 26.0%, RN 18.3%, PPD
+    // 11.5%, UDI 9.8%, PS 7.0%, PR 3.9%. Patricio Aylwin of the Concertacion
+    // took the presidency with 55.2% and is inaugurated on 11 March 1990.
+    Polity {
+        nation: NationId::Chile,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 12),
+        parties: &[
+            p("cl_pdc", "Christian Democratic Party", "Partido Democrata Cristiano", Family::ChristianDemocratic, 0.260),
+            p("cl_rn", "National Renewal", "Renovacion Nacional", Family::Conservative, 0.183),
+            p("cl_ppd", "Party for Democracy", "Partido por la Democracia", Family::SocialDemocratic, 0.115),
+            p("cl_udi", "Independent Democratic Union", "Union Democrata Independiente", Family::Conservative, 0.098),
+            p("cl_ps", "Socialist Party of Chile", "Partido Socialista de Chile", Family::SocialDemocratic, 0.070),
+            p("cl_pr", "Radical Party", "Partido Radical", Family::Liberal, 0.039),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Colombia — Chamber of Representatives, 9 March 1986: Liberals 48.6%,
+    // Social Conservatives 37.8%, the Patriotic Union 1.3%. The UP was the
+    // civilian party the FARC founded under the 1984 ceasefire, and between
+    // 1986 and 1990 somewhere upward of two thousand of its members were
+    // murdered, including both of its presidential candidates. The M-19
+    // Democratic Alliance is entered at 2.7%, its result in the congressional
+    // election of March 1990, the month it disarmed. That election is the next
+    // one due when the game opens.
+    Polity {
+        nation: NationId::Colombia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 3),
+        parties: &[
+            p("co_pl", "Colombian Liberal Party", "Partido Liberal Colombiano", Family::Liberal, 0.486),
+            p("co_psc", "Social Conservative Party", "Partido Social Conservador", Family::Conservative, 0.378),
+            p("co_adm19", "M-19 Democratic Alliance", "Alianza Democratica M-19", Family::SocialDemocratic, 0.027),
+            p("co_up", "Patriotic Union", "Union Patriotica", Family::Communist, 0.013),
+        ],
+        ruling: "the Chamber of Representatives",
+        pillars: &[],
+    },
+    // Venezuela — Chamber of Deputies, 4 December 1988: AD 43.3%, COPEI 31.1%,
+    // MAS 10.3%, MEP 1.8%, La Causa R 1.6%. The Punto Fijo pact of 1958 gave
+    // Venezuela thirty years of two-party alternation and the most stable
+    // democracy in South America; ten weeks after this table was voted, the
+    // army shot several hundred people in Caracas during the Caracazo, and the
+    // pact never recovered. Five-year terms, next due December 1993.
+    Polity {
+        nation: NationId::Venezuela,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1993, 12),
+        parties: &[
+            p("ve_ad", "Democratic Action", "Accion Democratica", Family::SocialDemocratic, 0.433),
+            p("ve_copei", "Social Christian Party", "Comite de Organizacion Politica Electoral Independiente", Family::ChristianDemocratic, 0.311),
+            p("ve_mas", "Movement Towards Socialism", "Movimiento al Socialismo", Family::Communist, 0.103),
+            p("ve_mep", "People's Electoral Movement", "Movimiento Electoral del Pueblo", Family::SocialDemocratic, 0.018),
+            p("ve_causar", "Radical Cause", "La Causa Radical", Family::Communist, 0.016),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Peru — Chamber of Deputies, 14 April 1985: APRA 50.1%, Izquierda Unida
+    // 23.0%, the Convergencia Democratica around the PPC 12.0%, Accion Popular
+    // 7.3%. Alan Garcia's single term ends in hyperinflation and a war he is
+    // losing, and the next election is due in three months.
+    //
+    // Cambio 90 is deliberately NOT in this table, and the omission is the
+    // honest reading rather than an oversight. Alberto Fujimori built it in
+    // 1989 out of evangelical congregations and informal traders' guilds, and
+    // it took 16.5% of the Chamber on 8 April 1990. The convention this module
+    // uses elsewhere — enter a party founded after the last election at its
+    // first contested share, as Colombia's AD M-19 is entered — cannot be
+    // applied here: 50.1 + 23.0 + 12.0 + 7.3 already accounts for 92.4% of the
+    // 1985 vote, so adding 16.5 gives a chamber where 108.9% of the electorate
+    // voted. A 1985 table with a 1990 party in it is not a transcription of
+    // either election. Fujimori's outsider is left for the model to produce
+    // from a collapsing party system, which is the whole premise.
+    Polity {
+        nation: NationId::Peru,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1990, 4),
+        parties: &[
+            p("pe_apra", "Peruvian Aprista Party", "Partido Aprista Peruano", Family::SocialDemocratic, 0.501),
+            p("pe_iu", "United Left", "Izquierda Unida", Family::Communist, 0.230),
+            p("pe_ppc", "Christian People's Party", "Partido Popular Cristiano", Family::ChristianDemocratic, 0.120),
+            p("pe_ap", "Popular Action", "Accion Popular", Family::Liberal, 0.073),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+    // Cuba — one legal party since 1965, and no national election a voter could
+    // change anything with: the National Assembly was chosen indirectly by the
+    // municipal assemblies until the 1993 reform introduced direct election of
+    // deputies, still uncontested. What holds the state is the FAR under Raul
+    // Castro, the party apparatus, and the Ministry of the Interior — and in
+    // July 1989 the regime shot General Arnaldo Ochoa, the most decorated
+    // officer of the Angolan war, and purged MININT down to the bone. That was
+    // a regime securing exactly these pillars against exactly this risk.
+    Polity {
+        nation: NationId::Cuba,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cu_pcc", "Communist Party of Cuba", "Partido Comunista de Cuba", Family::Communist, 1.00),
+        ],
+        ruling: "the Council of State",
+        pillars: &[
+            pl(Pillar::Army, "the Revolutionary Armed Forces"),
+            pl(Pillar::Party, "the Communist Party of Cuba"),
+            pl(Pillar::Security, "the Ministry of the Interior"),
+        ],
+    },
+    // Bolivia — general election, 7 May 1989: MNR 25.7%, ADN 25.2%, MIR 21.8%,
+    // CONDEPA 12.3%, Izquierda Unida 7.2%. Nobody came near a majority, so
+    // Congress chose the president, and it chose the man who came third: Jaime
+    // Paz Zamora of the MIR took office on 6 August 1989 in the Acuerdo
+    // Patriotico with Hugo Banzer's ADN — the general who had jailed and exiled
+    // him. Bolivia's arithmetic produces coalitions nobody would design.
+    Polity {
+        nation: NationId::Bolivia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 6),
+        parties: &[
+            p("bo_mnr", "Nationalist Revolutionary Movement", "Movimiento Nacionalista Revolucionario", Family::BigTent, 0.257),
+            p("bo_adn", "Nationalist Democratic Action", "Accion Democratica Nacionalista", Family::Conservative, 0.252),
+            p("bo_mir", "Revolutionary Left Movement", "Movimiento de la Izquierda Revolucionaria", Family::SocialDemocratic, 0.218),
+            p("bo_condepa", "Conscience of the Fatherland", "Conciencia de Patria", Family::Regionalist, 0.123),
+            p("bo_iu", "United Left", "Izquierda Unida", Family::Communist, 0.072),
+        ],
+        ruling: "the National Congress",
+        pillars: &[],
+    },
+    // Ecuador — congressional election of 31 January 1988, held with the
+    // presidential first round Rodrigo Borja of the Izquierda Democratica went
+    // on to win: ID 24.6%, PRE 14.7%, PSC 12.5%, DP 11.5%, the Radical Liberals
+    // 8.0%, MPD 5.4%. Provincial deputies serve two years against the national
+    // deputies' four, so the midterm falls on 17 June 1990 and Borja loses his
+    // majority in it. Shares here are the least certain in this region's table
+    // and are noted as such in the data files.
+    Polity {
+        nation: NationId::Ecuador,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 6),
+        parties: &[
+            p("ec_id", "Democratic Left", "Izquierda Democratica", Family::SocialDemocratic, 0.246),
+            p("ec_pre", "Ecuadorian Roldosist Party", "Partido Roldosista Ecuatoriano", Family::BigTent, 0.147),
+            p("ec_psc", "Social Christian Party", "Partido Social Cristiano", Family::Conservative, 0.125),
+            p("ec_dp", "Popular Democracy", "Democracia Popular", Family::ChristianDemocratic, 0.115),
+            p("ec_plre", "Ecuadorian Radical Liberal Party", "Partido Liberal Radical Ecuatoriano", Family::Liberal, 0.080),
+            p("ec_mpd", "Popular Democratic Movement", "Movimiento Popular Democratico", Family::Communist, 0.054),
+        ],
+        ruling: "the National Congress",
+        pillars: &[],
+    },
+    // Uruguay — general election, 26 November 1989: the National Party 38.9%,
+    // the Colorados 30.3%, the Frente Amplio 21.2%, Nuevo Espacio 9.0%. Luis
+    // Alberto Lacalle takes office on 1 March 1990, the second government since
+    // the dictatorship ended, and the first alternation in twenty-eight years.
+    // The Frente Amplio takes Montevideo the same day and never gives it back.
+    // Five-year terms with no re-election, so the next is due November 1994.
+    Polity {
+        nation: NationId::Uruguay,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1994, 11),
+        parties: &[
+            p("uy_pn", "National Party", "Partido Nacional", Family::Conservative, 0.389),
+            p("uy_pc", "Colorado Party", "Partido Colorado", Family::Liberal, 0.303),
+            p("uy_fa", "Broad Front", "Frente Amplio", Family::SocialDemocratic, 0.212),
+            p("uy_ne", "New Space", "Nuevo Espacio", Family::SocialDemocratic, 0.090),
+        ],
+        ruling: "the General Assembly",
+        pillars: &[],
+    },
+    // Syria — People's Council, 10-11 February 1986. The National Progressive
+    // Front, which the Ba'ath created in 1972 and has led ever since, took all
+    // 195 seats; the Ba'ath itself took 129 of them. The Front allocates seats
+    // rather than contesting them, so the sub-shares below are the documented
+    // Ba'athist two-thirds and an even division of the remainder among the four
+    // allied parties. No election is due because none can change anything: the
+    // constitution of 1973 names the Ba'ath as the leading party of state.
+    Polity {
+        nation: NationId::Syria,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("sy_baath", "Arab Socialist Ba'ath Party", "Hizb al-Ba'th al-'Arabi al-Ishtiraki", Family::Nationalist, 0.66),
+            p("sy_ascp", "Syrian Communist Party", "al-Hizb al-Shuyu'i al-Suri", Family::Communist, 0.09),
+            p("sy_asu", "Arab Socialist Union", "al-Ittihad al-Ishtiraki al-'Arabi", Family::Nationalist, 0.09),
+            p("sy_sum", "Socialist Unionist Movement", "al-Haraka al-Ishtirakiyya al-Wahdawiyya", Family::Nationalist, 0.09),
+            p("sy_asp", "Arab Socialist Party", "al-Hizb al-Ishtiraki al-'Arabi", Family::SocialDemocratic, 0.07),
+        ],
+        ruling: "the Regional Command of the Ba'ath Party",
+        pillars: &[
+            pl(Pillar::Army, "the Republican Guard and the Special Forces"),
+            pl(Pillar::Party, "the Ba'ath Party Regional Command"),
+            pl(Pillar::Security, "the Mukhabarat directorates"),
+            pl(Pillar::Business, "the Damascus and Aleppo merchant families"),
+        ],
+    },
+    // Jordan — House of Representatives, 8 November 1989: the first election in
+    // twenty-two years, held because the dinar collapsed and Ma'an rioted. Parties
+    // were still banned, so every candidate ran as an independent and the results
+    // are counted in blocs, which is how they were counted at the time: Muslim
+    // Brotherhood 22 seats of 80, independent Islamists 12, leftists and Arab
+    // nationalists 13, tribal and pro-palace independents the remaining 33. Parties
+    // were legalised in 1992 and the next election came on 8 November 1993.
+    Polity {
+        nation: NationId::Jordan,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (1993, 11),
+        parties: &[
+            p("jo_tribal", "Tribal and Independent Loyalists", "", Family::BigTent, 0.4125),
+            p("jo_ikhwan", "Muslim Brotherhood", "al-Ikhwan al-Muslimun", Family::Religious, 0.2750),
+            p("jo_islamists", "Independent Islamists", "", Family::Religious, 0.1500),
+            p("jo_left", "Leftist and Arab Nationalist Bloc", "", Family::SocialDemocratic, 0.1625),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[
+            pl(Pillar::Army, "the Jordanian Armed Forces"),
+            pl(Pillar::Security, "the General Intelligence Directorate"),
+        ],
+    },
+    // Lebanon — the last parliamentary election was in April 1972. The Chamber
+    // elected then was never renewed: the civil war began in 1975 and members who
+    // died were replaced by appointment. The 1972 chamber was dominated by the
+    // za'im notables rather than by parties, which is the 0.65 below. Amal was
+    // founded in 1974 and Hezbollah in 1985, so both carry their result at the
+    // first election either contested — 8 seats of 128 each, in August-September
+    // 1992 — under the convention this table already uses elsewhere. The Taif
+    // Agreement of 22 October 1989 is what makes that 1992 election possible.
+    Polity {
+        nation: NationId::Lebanon,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1992, 8),
+        parties: &[
+            p("lb_independents", "Independent Notables", "", Family::BigTent, 0.65),
+            p("lb_kataeb", "Kataeb Party", "Hizb al-Kata'ib al-Lubnaniyya", Family::ChristianDemocratic, 0.09),
+            p("lb_nlp", "National Liberal Party", "Hizb al-Wataniyyin al-Ahrar", Family::Conservative, 0.08),
+            p("lb_psp", "Progressive Socialist Party", "al-Hizb al-Taqaddumi al-Ishtiraki", Family::SocialDemocratic, 0.06),
+            p("lb_amal", "Amal Movement", "Harakat Amal", Family::Religious, 0.06),
+            p("lb_hezbollah", "Hezbollah", "Hizb Allah", Family::Religious, 0.06),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[pl(Pillar::Army, "the Lebanese Armed Forces")],
+    },
+    // United Arab Emirates — a federation of seven hereditary monarchies whose
+    // Supreme Council is the seven rulers themselves. No national election has
+    // ever been held; the Federal National Council was wholly appointed until
+    // 2006 and parties are prohibited. Power sits where the oil is: Abu Dhabi
+    // under Zayed bin Sultan Al Nahyan, president since the union in 1971, with
+    // Dubai under Al Maktoum holding the vice-presidency and the trade.
+    Polity {
+        nation: NationId::UAE,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Federal Supreme Council",
+        pillars: &[
+            pl(Pillar::Party, "the Al Nahyan and Al Maktoum ruling families"),
+            pl(Pillar::Army, "the Union Defence Force"),
+            pl(Pillar::Business, "the Dubai merchant houses"),
+        ],
+    },
+    // Qatar — no elections of any kind. The Advisory Council created in 1972 was
+    // appointed and its term was simply extended by decree. Khalifa bin Hamad Al
+    // Thani took power from his cousin in a bloodless coup in February 1972 and
+    // lost it to his own son in another in June 1995, which is the risk this
+    // block is describing: in Qatar the threat to a ruler is the family.
+    Polity {
+        nation: NationId::Qatar,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the House of Thani",
+        pillars: &[
+            pl(Pillar::Party, "the Al Thani family council"),
+            pl(Pillar::Army, "the Qatar Armed Forces"),
+            pl(Pillar::Clergy, "the ulema"),
+            pl(Pillar::Business, "the merchant houses"),
+        ],
+    },
+    // Oman — Sultan Qaboos bin Said ruled by decree, holding the offices of prime
+    // minister, defence, foreign affairs and finance at once. There was no
+    // constitution until the Basic Law of 1996 and no election ever: the State
+    // Consultative Council of 1981 was appointed, and the Majlis al-Shura that
+    // replaced it in November 1991 was indirectly selected from tribal nominees.
+    // The Ibadi imamate of the interior is listed as a pillar because it is the
+    // one rival source of legitimacy Oman has, and it fought for it until 1959.
+    Polity {
+        nation: NationId::Oman,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Sultan",
+        pillars: &[
+            pl(Pillar::Army, "the Sultan's Armed Forces"),
+            pl(Pillar::Security, "the Internal Security Service"),
+            pl(Pillar::Clergy, "the Ibadi ulema of the interior"),
+            pl(Pillar::Business, "the Muscat merchant houses"),
+        ],
+    },
+    // Yemen — the transitional House of Representatives of the unified republic,
+    // seated 22 May 1990 by merging the north's 159-member Consultative Assembly
+    // with the south's 111-member Supreme People's Council and 31 presidential
+    // appointees. The two shares below are those two chambers as fractions of the
+    // 301 seats; the appointees are left out because they were not a party. The
+    // first election of the unified state was held on 27 April 1993, and it was
+    // real. See yemen.json for why this nation ships already unified.
+    Polity {
+        nation: NationId::Yemen,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (1993, 4),
+        parties: &[
+            p("ye_gpc", "General People's Congress", "al-Mu'tamar al-Sha'bi al-'Amm", Family::BigTent, 0.528),
+            p("ye_ysp", "Yemeni Socialist Party", "al-Hizb al-Ishtiraki al-Yamani", Family::Communist, 0.369),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[
+            pl(Pillar::Army, "the northern and southern armies, never merged"),
+            pl(Pillar::Party, "the Hashid tribal confederation"),
+            pl(Pillar::Security, "the Political Security Organisation"),
+        ],
+    },
+    // Bahrain — the last election was on 7 December 1973, for the National
+    // Assembly created by the 1973 constitution: the People's Bloc took 8 of the
+    // 30 elected seats, the Religious Bloc 6, and independents 16. The Emir
+    // dissolved the Assembly on 26 August 1975 when it refused to pass the State
+    // Security Law, suspended the constitutional articles requiring elections,
+    // and ruled by decree. Nothing is due; the Assembly does not return until
+    // 2002.
+    Polity {
+        nation: NationId::Bahrain,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("bh_independents", "Independents", "", Family::BigTent, 0.533),
+            p("bh_peoples", "People's Bloc", "al-Kutla al-Sha'biyya", Family::SocialDemocratic, 0.267),
+            p("bh_religious", "Religious Bloc", "al-Kutla al-Diniyya", Family::Religious, 0.200),
+        ],
+        ruling: "the House of Khalifa",
+        pillars: &[
+            pl(Pillar::Party, "the Al Khalifa family council"),
+            pl(Pillar::Army, "the Bahrain Defence Force"),
+            pl(Pillar::Security, "the State Security Directorate"),
+            pl(Pillar::Business, "the merchant houses"),
+        ],
+    },
+    // Algeria — the last *national* vote before the game opens is the People's
+    // National Assembly of 26 February 1987, a single FLN list, and transcribing
+    // that would say nothing true about January 1990. Parties were legalised in
+    // July 1989, so the shares here are the first contested results: the local
+    // elections of 12 June 1990 (FIS 54.2%, FLN 28.1%, RCD 2.1%) and, for the
+    // FFS, which boycotted them, its 7.4% in the first round of the legislative
+    // election of 26 December 1991. The next legislative election was due in
+    // 1991; what the army did with the result is for the model to reach, not for
+    // this table to decide.
+    Polity {
+        nation: NationId::Algeria,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (1991, 12),
+        parties: &[
+            p("dz_fis", "Islamic Salvation Front", "al-Jabha al-Islamiyya lil-Inqadh", Family::Religious, 0.542),
+            p("dz_fln", "National Liberation Front", "Front de Liberation Nationale", Family::BigTent, 0.281),
+            p("dz_ffs", "Socialist Forces Front", "Front des Forces Socialistes", Family::Regionalist, 0.074),
+            p("dz_rcd", "Rally for Culture and Democracy", "Rassemblement pour la Culture et la Democratie", Family::Liberal, 0.021),
+        ],
+        ruling: "the People's National Assembly",
+        pillars: &[
+            pl(Pillar::Army, "the Armee Nationale Populaire"),
+            pl(Pillar::Security, "the Securite Militaire"),
+        ],
+    },
+    // Morocco — Chamber of Representatives, 14 September 1984: Constitutional
+    // Union 24.8%, RNI 17.2%, Popular Movement 15.6%, Istiqlal 15.3%, USFP
+    // 12.4%, PND 8.9%. The election due in 1990 was postponed by two years by
+    // the referendum of December 1989 and did not happen until June 1993, which
+    // is the point: the chamber was elected, the government was not. Hassan II
+    // appointed it, and the institutions that could have removed him had already
+    // tried twice, in 1971 and 1972.
+    Polity {
+        nation: NationId::Morocco,
+        system: Electoral::FirstPastThePost,
+        term_months: 72,
+        next: (0, 0),
+        parties: &[
+            p("ma_uc", "Constitutional Union", "al-Ittihad al-Dusturi", Family::Conservative, 0.248),
+            p("ma_rni", "National Rally of Independents", "Rassemblement National des Independants", Family::Liberal, 0.172),
+            p("ma_mp", "Popular Movement", "Mouvement Populaire", Family::Agrarian, 0.156),
+            p("ma_istiqlal", "Istiqlal Party", "Hizb al-Istiqlal", Family::Nationalist, 0.153),
+            p("ma_usfp", "Socialist Union of Popular Forces", "al-Ittihad al-Ishtiraki lil-Quwwat al-Sha'biyya", Family::SocialDemocratic, 0.124),
+            p("ma_pnd", "National Democratic Party", "al-Hizb al-Watani al-Dimuqrati", Family::Conservative, 0.089),
+        ],
+        ruling: "the Alaouite monarchy",
+        pillars: &[
+            pl(Pillar::Party, "the Makhzen"),
+            pl(Pillar::Army, "the Forces Armees Royales"),
+            pl(Pillar::Security, "the Direction Generale de la Surveillance du Territoire"),
+            pl(Pillar::Clergy, "the Council of Ulema"),
+            pl(Pillar::Business, "the Omnium Nord Africain"),
+        ],
+    },
+    // Tunisia — Chamber of Deputies, 2 April 1989: the RCD took 80.4% of the
+    // vote and every one of the 141 seats, because the list system awarded the
+    // whole constituency to the winning list. Ennahda was refused registration
+    // and ran its people as independents, who took 13.7% and nothing. That gap
+    // between a sixth of the vote and none of the seats is the Tunisian problem
+    // in one line, and it is why this is a regime with pillars.
+    Polity {
+        nation: NationId::Tunisia,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("tn_rcd", "Democratic Constitutional Rally", "al-Tajammu' al-Dusturi al-Dimuqrati", Family::BigTent, 0.804),
+            p("tn_nahda", "Ennahda", "Harakat al-Nahda", Family::Religious, 0.137),
+            p("tn_mds", "Movement of Socialist Democrats", "Harakat al-Dimuqratiyyin al-Ishtirakiyyin", Family::SocialDemocratic, 0.032),
+        ],
+        ruling: "the Democratic Constitutional Rally",
+        pillars: &[
+            pl(Pillar::Party, "the RCD apparatus"),
+            pl(Pillar::Security, "the Direction de la Surete Nationale"),
+            pl(Pillar::Army, "the Tunisian Armed Forces"),
+        ],
+    },
+    // Libya — no parties and no election of any kind, ever. Law 71 of 1972 made
+    // forming one a capital offence and the Green Book's answer to who should
+    // govern is that representation is fraud. The General People's Congress met
+    // and Gaddafi held no office in it. What could have removed him is the list
+    // below: the army tried in 1975, 1984 and 1993, and the Revolutionary
+    // Committees existed to watch it.
+    Polity {
+        nation: NationId::Libya,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the General People's Congress",
+        pillars: &[
+            pl(Pillar::Army, "the Libyan Arab Armed Forces"),
+            pl(Pillar::Party, "the Revolutionary Committees"),
+            pl(Pillar::Security, "the Jamahiriya Security Organisation"),
+        ],
+    },
+    // Sudan — National Assembly, 1-12 April 1986: the Umma Party 100 seats, the
+    // DUP 63, the National Islamic Front 51, of 260 filled. The popular vote was
+    // never published by constituency, so the shares here are shares of the
+    // seats actually filled; 41 southern seats could not be polled at all
+    // because the SPLA held the ground. Omar al-Bashir dissolved the assembly on
+    // 30 June 1989 and banned every one of these parties, so the table is what
+    // becomes live again if the regime opens, not what governs in 1990.
+    Polity {
+        nation: NationId::Sudan,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("sd_umma", "National Umma Party", "Hizb al-Umma al-Qawmi", Family::Religious, 0.385),
+            p("sd_dup", "Democratic Unionist Party", "al-Hizb al-Ittihadi al-Dimuqrati", Family::BigTent, 0.242),
+            p("sd_nif", "National Islamic Front", "al-Jabha al-Islamiyya al-Qawmiyya", Family::Religious, 0.196),
+        ],
+        ruling: "the Revolutionary Command Council for National Salvation",
+        pillars: &[
+            pl(Pillar::Army, "the Sudanese Armed Forces"),
+            pl(Pillar::Party, "the National Islamic Front"),
+            pl(Pillar::Security, "the National Security Service"),
+        ],
+    },
+    // South Africa — House of Assembly, 6 September 1989, the last election held
+    // on a whites-only roll: the National Party 48.0%, the Conservative Party
+    // 31.2%, the Democratic Party 20.0%. De Klerk lost seats in both directions
+    // and read it as a mandate to negotiate. Shares are of the white vote, which
+    // is 13% of the population, so this is a franchise with a parliament rather
+    // than a democracy — the tricameral coloured and Indian chambers were
+    // boycotted into irrelevance and Africans had no vote at all. The pillars
+    // are listed because the securocrats of the State Security Council were a
+    // real veto on the reform, and the third force killings of 1990-93 were
+    // them exercising it.
+    Polity {
+        nation: NationId::SouthAfrica,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1994, 9),
+        parties: &[
+            p("za_np", "National Party", "Nasionale Party", Family::Conservative, 0.480),
+            p("za_cp", "Conservative Party", "Konserwatiewe Party", Family::Nationalist, 0.312),
+            p("za_dp", "Democratic Party", "Demokratiese Party", Family::Liberal, 0.200),
+        ],
+        ruling: "the House of Assembly",
+        pillars: &[
+            pl(Pillar::Army, "the South African Defence Force"),
+            pl(Pillar::Security, "the Security Branch"),
+            pl(Pillar::Business, "the mining houses"),
+        ],
+    },
+    // Ethiopia — the Workers' Party of Ethiopia, sole legal party under the 1987
+    // constitution, which converted the Derg into the People's Democratic
+    // Republic and Mengistu from chairman into president. The National Shengo
+    // was elected on a single WPE list in June 1987 and had no other function.
+    // No further national election was held: the regime fell in May 1991.
+    Polity {
+        nation: NationId::Ethiopia,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("et_wpe", "Workers' Party of Ethiopia", "Ye'ityop'ya Serategnoch Party", Family::Communist, 1.00),
+        ],
+        ruling: "the Workers' Party of Ethiopia",
+        pillars: &[
+            pl(Pillar::Army, "the Ethiopian People's Revolutionary Army"),
+            pl(Pillar::Party, "the WPE Central Committee"),
+            pl(Pillar::Security, "the Ministry of Public and National Security"),
+        ],
+    },
+    // Kenya — National Assembly, 21 March 1988, the mlolongo election: voters
+    // queued in public behind their candidate's agent rather than marking a
+    // ballot, and KANU was the only party allowed to stand, so the shares below
+    // are of a nomination contest rather than a general election. KANU's 1.00 is
+    // literal. Section 2A made the one-party state constitutional in 1982 and
+    // was repealed in December 1991; the next multiparty election was 1992.
+    Polity {
+        nation: NationId::Kenya,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1993, 3),
+        parties: &[
+            p("ke_kanu", "Kenya African National Union", "", Family::BigTent, 1.00),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[
+            pl(Pillar::Party, "KANU"),
+            pl(Pillar::Security, "the Special Branch"),
+            pl(Pillar::Army, "the Kenya Army"),
+        ],
+    },
+    // Ghana — the Provisional National Defence Council, ruling by decree since
+    // 31 December 1981 with all parties banned and no national election held
+    // since 1979. The shares are the 3 November 1992 presidential result, the
+    // vote that ended the ban: Rawlings' NDC 58.4%, Adu Boahen's New Patriotic
+    // Party 30.3%, Limann's People's National Convention 6.7%.
+    Polity {
+        nation: NationId::Ghana,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("gh_ndc", "National Democratic Congress", "", Family::SocialDemocratic, 0.584),
+            p("gh_npp", "New Patriotic Party", "", Family::Conservative, 0.303),
+            p("gh_pnc", "People's National Convention", "", Family::SocialDemocratic, 0.067),
+        ],
+        ruling: "the Provisional National Defence Council",
+        pillars: &[
+            pl(Pillar::Army, "the Ghana Armed Forces"),
+            pl(Pillar::Security, "the Bureau of National Investigations"),
+        ],
+    },
+    // Zaire — the Popular Movement of the Revolution, to which every citizen
+    // belonged from birth by the 1974 constitution. The single-list legislative
+    // election of 6 September 1987 filled the National Legislative Council with
+    // MPR candidates. Mobutu announced multipartism on 24 April 1990, then
+    // capped it at three parties, then had students killed at Lubumbashi in May.
+    // No national election was ever held under him; he was driven out in 1997.
+    Polity {
+        nation: NationId::Zaire,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cd_mpr", "Popular Movement of the Revolution", "Mouvement Populaire de la Revolution", Family::BigTent, 1.00),
+        ],
+        ruling: "the Popular Movement of the Revolution",
+        pillars: &[
+            pl(Pillar::Army, "the Special Presidential Division"),
+            pl(Pillar::Security, "the Service National d'Intelligence"),
+            pl(Pillar::Party, "the MPR Political Bureau"),
+            pl(Pillar::Business, "Gecamines"),
+        ],
+    },
+    // Angola — the MPLA-Workers' Party, sole legal party and still explicitly
+    // Marxist-Leninist in January 1990; its Third Congress dropped that in
+    // December 1990 and the Bicesse Accords set the first election for 1992.
+    // The shares are the 29-30 September 1992 legislative result, the only
+    // election of the period: MPLA 53.7%, UNITA 34.1%, FNLA 2.4%. Savimbi
+    // rejected the presidential runoff and the war resumed within weeks, which
+    // is why UNITA is entered as a party and also as an armed pillar's absence:
+    // it is the one organisation that could remove the regime and could not be
+    // bought.
+    Polity {
+        nation: NationId::Angola,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ao_mpla", "MPLA-Workers' Party", "MPLA-Partido do Trabalho", Family::Communist, 0.537),
+            p("ao_unita", "UNITA", "Uniao Nacional para a Independencia Total de Angola", Family::Nationalist, 0.341),
+            p("ao_fnla", "National Front for the Liberation of Angola", "Frente Nacional de Libertacao de Angola", Family::Nationalist, 0.024),
+        ],
+        ruling: "the MPLA-Workers' Party",
+        pillars: &[
+            pl(Pillar::Army, "the People's Armed Forces of Liberation of Angola"),
+            pl(Pillar::Party, "the MPLA Political Bureau"),
+            pl(Pillar::Security, "the Ministry of State Security"),
+            pl(Pillar::Business, "Sonangol"),
+        ],
+    },
+    // Zimbabwe — the general election of 28-30 March 1990, the first after the
+    // Unity Accord folded ZAPU into ZANU-PF: ZANU-PF 80.6%, Edgar Tekere's
+    // Zimbabwe Unity Movement 16.9%, ZANU-Ndonga 1.4%. ZANU-PF took 117 of the
+    // 120 elected seats on 81% of the vote, which is what first-past-the-post
+    // does to a divided opposition. Mugabe put a formal one-party state to the
+    // ZANU-PF central committee in August 1990 and lost the vote.
+    Polity {
+        nation: NationId::Zimbabwe,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1995, 4),
+        parties: &[
+            p("zw_zanupf", "Zimbabwe African National Union - Patriotic Front", "ZANU-PF", Family::SocialDemocratic, 0.806),
+            p("zw_zum", "Zimbabwe Unity Movement", "ZUM", Family::BigTent, 0.169),
+            p("zw_ndonga", "ZANU-Ndonga", "ZANU-Ndonga", Family::Conservative, 0.014),
+        ],
+        ruling: "the House of Assembly",
+        pillars: &[
+            pl(Pillar::Army, "the Zimbabwe National Army"),
+            pl(Pillar::Security, "the Central Intelligence Organisation"),
+        ],
+    },
+    // Tanzania — the general election of 27 October 1985, held under Article 3
+    // of the constitution making Chama Cha Mapinduzi the only party: two CCM
+    // candidates per seat, one party on the ballot. Nyerere stood down as
+    // president for Ali Hassan Mwinyi at that election and kept the party
+    // chairmanship until August 1990. The next election fell due in October 1990
+    // and was held on the same single-party basis; multipartism arrived in 1992
+    // after the Nyalali Commission reported.
+    Polity {
+        nation: NationId::Tanzania,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1990, 10),
+        parties: &[
+            p("tz_ccm", "Party of the Revolution", "Chama Cha Mapinduzi", Family::BigTent, 1.00),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[
+            pl(Pillar::Party, "the CCM National Executive Committee"),
+            pl(Pillar::Army, "the Tanzania People's Defence Force"),
+        ],
+    },
+    // Uganda — no national election since December 1980, the disputed vote that
+    // sent Museveni into the bush. The National Resistance Council was an
+    // appointed body whose term was extended by five years in October 1989
+    // without asking anyone. Under the Movement system parties legally existed
+    // but could not hold conferences, field candidates or open branches, so the
+    // three below are organisations without a franchise; the shares are the
+    // 1980 result that started the war: UPC 47.1%, DP 45.3%, UPM 1.7%.
+    Polity {
+        nation: NationId::Uganda,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("ug_upc", "Uganda People's Congress", "", Family::SocialDemocratic, 0.471),
+            p("ug_dp", "Democratic Party", "", Family::ChristianDemocratic, 0.453),
+            p("ug_upm", "Uganda Patriotic Movement", "", Family::BigTent, 0.017),
+        ],
+        ruling: "the National Resistance Council",
+        pillars: &[
+            pl(Pillar::Army, "the National Resistance Army"),
+            pl(Pillar::Party, "the NRM Secretariat"),
+        ],
+    },
+    // Senegal — National Assembly, 28 February 1988: Abdou Diouf's Socialist
+    // Party 71.3%, Abdoulaye Wade's Senegalese Democratic Party 25.4%, the PIT
+    // and the rest sharing the remainder. Wade was arrested after the result,
+    // Dakar rioted and a state of emergency ran for three months. A genuinely
+    // multiparty system since 1981 with a governing party that had never lost
+    // and did not intend to; it finally did, to Wade, in 2000.
+    Polity {
+        nation: NationId::Senegal,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1993, 2),
+        parties: &[
+            p("sn_ps", "Socialist Party", "Parti Socialiste", Family::SocialDemocratic, 0.713),
+            p("sn_pds", "Senegalese Democratic Party", "Parti Democratique Senegalais", Family::Liberal, 0.254),
+            p("sn_pit", "Party of Independence and Labour", "Parti de l'Independance et du Travail", Family::Communist, 0.019),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+    // Cote d'Ivoire — National Assembly, 10 November 1985, a single PDCI list
+    // under the constitution Houphouet-Boigny had run unchanged since 1960; he
+    // took 100% of the concurrent presidential vote. The five-year term put the
+    // next election in November 1990, and by the time it came round the strikes
+    // of February-May 1990 had forced him to legalise opposition on 30 April.
+    // Laurent Gbagbo's Ivorian Popular Front then took 18.3% of the presidential
+    // vote in October 1990 and two seats in November, which is the arithmetic a
+    // thirty-year single party produces on its first contested day.
+    Polity {
+        nation: NationId::CoteDIvoire,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1990, 11),
+        parties: &[
+            p("ci_pdci", "Democratic Party of Cote d'Ivoire", "Parti Democratique de Cote d'Ivoire", Family::BigTent, 1.00),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[
+            pl(Pillar::Party, "the PDCI Political Bureau"),
+            pl(Pillar::Army, "the Ivorian armed forces"),
+            pl(Pillar::Business, "the planter bourgeoisie"),
+        ],
+    },
+    // Cameroon — National Assembly, 24 April 1988, a single CPDM list; Biya had
+    // taken 98.75% of the presidential vote in October 1988 running unopposed.
+    // Parties other than the CPDM were illegal until Law 90/056 of 19 December
+    // 1990, so the Social Democratic Front's launch at Bamenda on 26 May 1990
+    // was a criminal act and six people were shot at it. The next legislative
+    // election fell due in April 1993 and was postponed to March 1992.
+    Polity {
+        nation: NationId::Cameroon,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1993, 4),
+        parties: &[
+            p("cm_rdpc", "Cameroon People's Democratic Movement", "Rassemblement Democratique du Peuple Camerounais", Family::BigTent, 1.00),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[
+            pl(Pillar::Party, "the CPDM Central Committee"),
+            pl(Pillar::Army, "the Presidential Guard"),
+            pl(Pillar::Security, "the Direction Generale de la Recherche Exterieure"),
+        ],
+    },
+    // Bangladesh — the last national election before January 1990 was the
+    // Jatiya Sangsad of 3 March 1988, and it measured nothing: every opposition
+    // party boycotted it and Ershad's Jatiya Party took 251 of 300 seats on a
+    // ballot one Western diplomat called a mockery of an election. The shares
+    // transcribed here are therefore the first free one, 27 February 1991 —
+    // BNP 30.81%, Awami League 30.08%, Jamaat-e-Islami 12.13%, Jatiya Party
+    // 11.92% — which is the vote this table exists to represent, because
+    // Bangladesh opens the game above the electoral ceiling and the party
+    // table only becomes live when the regime opens up. Ershad resigned on
+    // 6 December 1990; the model has to reach that through instability.
+    Polity {
+        nation: NationId::Bangladesh,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("bd_bnp", "Bangladesh Nationalist Party", "", Family::Conservative, 0.308),
+            p("bd_al", "Awami League", "", Family::SocialDemocratic, 0.301),
+            p("bd_ji", "Bangladesh Jamaat-e-Islami", "", Family::Religious, 0.121),
+            p("bd_jp", "Jatiya Party", "", Family::BigTent, 0.119),
+        ],
+        ruling: "the Jatiya Sangsad",
+        pillars: &[
+            pl(Pillar::Army, "the Bangladesh Army"),
+            pl(Pillar::Party, "the Jatiya Party apparatus"),
+            pl(Pillar::Security, "the Directorate General of Forces Intelligence"),
+        ],
+    },
+    // Sri Lanka — Parliament, 15 February 1989: UNP 50.71%, SLFP 31.90%, EROS
+    // 4.11%, the Sri Lanka Muslim Congress 3.61%, TULF 3.37%, the United
+    // Socialist Alliance 2.86%, MEP 1.63%. A six-year term, so the next is due
+    // in February 1995. The 1978 constitution's threshold is 12.5% but it is
+    // applied per district, which is why seven parties sat in a 225-seat
+    // chamber and four of them polled under 5% nationally; a national 1% bar
+    // is the closer model of that outcome than a national 12.5% one.
+    Polity {
+        nation: NationId::SriLanka,
+        system: Electoral::ProportionalLowBar,
+        term_months: 72,
+        next: (1995, 2),
+        parties: &[
+            p("lk_unp", "United National Party", "", Family::Conservative, 0.507),
+            p("lk_slfp", "Sri Lanka Freedom Party", "", Family::SocialDemocratic, 0.319),
+            p("lk_eros", "Eelam Revolutionary Organisation of Students", "", Family::Regionalist, 0.041),
+            p("lk_slmc", "Sri Lanka Muslim Congress", "", Family::Religious, 0.036),
+            p("lk_tulf", "Tamil United Liberation Front", "", Family::Regionalist, 0.034),
+            p("lk_usa", "United Socialist Alliance", "", Family::Communist, 0.029),
+            p("lk_mep", "Mahajana Eksath Peramuna", "", Family::Nationalist, 0.016),
+        ],
+        ruling: "the Parliament of Sri Lanka",
+        pillars: &[],
+    },
+    // Nepal — an absolute monarchy in January 1990. The partyless Panchayat
+    // system imposed by King Mahendra in 1962 was still in force, parties were
+    // banned, and the Rastriya Panchayat elections of 1986 were fought by
+    // individuals rather than organisations. The shares below are the first
+    // multi-party election since 1959, 12 May 1991: Nepali Congress 39.50%,
+    // CPN (UML) 29.27%, the Rastriya Prajatantra Party split into Chand's
+    // 6.87% and Thapa's 5.63%, the United People's Front 5.05% and the Nepal
+    // Sadbhawana Party 4.28%. They become live if and when the palace gives way.
+    Polity {
+        nation: NationId::Nepal,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("np_nc", "Nepali Congress", "", Family::SocialDemocratic, 0.395),
+            p("np_uml", "Communist Party of Nepal (Unified Marxist-Leninist)", "", Family::Communist, 0.293),
+            p("np_rppc", "Rastriya Prajatantra Party (Chand)", "", Family::Conservative, 0.069),
+            p("np_rppt", "Rastriya Prajatantra Party (Thapa)", "", Family::Conservative, 0.056),
+            p("np_upf", "United People's Front of Nepal", "Samyukta Jana Morcha", Family::Communist, 0.051),
+            p("np_nsp", "Nepal Sadbhawana Party", "", Family::Regionalist, 0.043),
+        ],
+        ruling: "the Rastriya Panchayat",
+        pillars: &[
+            pl(Pillar::Army, "the Royal Nepalese Army"),
+            pl(Pillar::Party, "the palace secretariat"),
+        ],
+    },
+    // Afghanistan — the People's Democratic Party of Afghanistan, renamed the
+    // Watan Party in June 1990, holding Kabul and the ring road eleven months
+    // after the last Soviet soldier crossed the Amu Darya. The 1988 assembly
+    // elections reserved most seats for a resistance that never took them, so
+    // there is one party here and it is the only one that ever governed. What
+    // could remove Najibullah is what nearly did on 6 March 1990: his own
+    // defence minister and the army.
+    Polity {
+        nation: NationId::Afghanistan,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("af_pdpa", "Homeland Party", "Hezb-e Watan", Family::Communist, 1.00),
+        ],
+        ruling: "the Revolutionary Council",
+        pillars: &[
+            pl(Pillar::Army, "the Afghan Armed Forces"),
+            pl(Pillar::Party, "the Watan Party apparatus"),
+            pl(Pillar::Security, "the Ministry of State Security"),
+        ],
+    },
+    // Myanmar — the State Law and Order Restoration Council, the junta General
+    // Saw Maung formed on 18 September 1988. It held a general election on
+    // 27 May 1990 and then refused to convene the parliament it produced, so
+    // this is not a government a vote removes and it is modelled as unelected.
+    // The shares are that annulled result: NLD 59.87%, the regime's National
+    // Unity Party 21.17%, and the ethnic-state parties behind them. They are
+    // the table that becomes live if the Tatmadaw ever stands aside.
+    Polity {
+        nation: NationId::Myanmar,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("mm_nld", "National League for Democracy", "", Family::Liberal, 0.599),
+            p("mm_nup", "National Unity Party", "", Family::Nationalist, 0.212),
+            p("mm_snld", "Shan Nationalities League for Democracy", "", Family::Regionalist, 0.017),
+            p("mm_undp", "Union National Democracy Party", "", Family::BigTent, 0.015),
+            p("mm_ald", "Arakan League for Democracy", "", Family::Regionalist, 0.012),
+            p("mm_mndf", "Mon National Democratic Front", "", Family::Regionalist, 0.011),
+            p("mm_ndphr", "National Democratic Party for Human Rights", "", Family::Liberal, 0.010),
+        ],
+        ruling: "the State Law and Order Restoration Council",
+        pillars: &[
+            pl(Pillar::Army, "the Tatmadaw"),
+            pl(Pillar::Security, "the Directorate of Defence Services Intelligence"),
+            pl(Pillar::Business, "the military holding companies"),
+        ],
+    },
+    // North Korea — the Workers' Party of Korea. The Supreme People's Assembly
+    // elected on 2 November 1986 is the sitting one in January 1990; the ninth
+    // was elected on 22 April that year. Both were single-list ballots of the
+    // Democratic Front for the Reunification of the Fatherland, returned at
+    // effectively 100%, so the table carries the WPK alone: the Korean Social
+    // Democratic Party and the Chondoist Chongu Party exist, hold seats, and
+    // have never contested anything. The pillars are the ones Kim Il Sung
+    // actually held, and the succession to Kim Jong Il ran through the second
+    // of them rather than the first.
+    Polity {
+        nation: NationId::NorthKorea,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("kp_wpk", "Workers' Party of Korea", "Choson Rodongdang", Family::Communist, 1.00),
+        ],
+        ruling: "the Workers' Party of Korea",
+        pillars: &[
+            pl(Pillar::Army, "the Korean People's Army"),
+            pl(Pillar::Party, "the Organisation and Guidance Department"),
+            pl(Pillar::Security, "the State Security Department"),
+        ],
+    },
+    // Taiwan — the supplementary Legislative Yuan election of 2 December 1989,
+    // the first contested by a legal opposition: Kuomintang 60.1%, Democratic
+    // Progressive Party 28.3%, independents and minor parties the rest. It was
+    // supplementary because most of the chamber was still held by members
+    // elected on the mainland in 1947 who had never faced a voter and were not
+    // retired until December 1991. The garrison command that enforced martial
+    // law until 1987 is listed as a pillar because the transition was still
+    // reversible in January 1990.
+    Polity {
+        nation: NationId::Taiwan,
+        system: Electoral::SingleNonTransferable,
+        term_months: 36,
+        next: (1992, 12),
+        parties: &[
+            p("tw_kmt", "Kuomintang", "Zhongguo Guomindang", Family::Conservative, 0.601),
+            p("tw_dpp", "Democratic Progressive Party", "Minzhu Jinbudang", Family::Liberal, 0.283),
+            p("tw_ind", "independents and minor parties", "", Family::BigTent, 0.116),
+        ],
+        ruling: "the Legislative Yuan",
+        pillars: &[
+            pl(Pillar::Army, "the Republic of China Armed Forces"),
+            pl(Pillar::Party, "the Kuomintang Central Standing Committee"),
+        ],
+    },
+    // Thailand — House of Representatives, 24 July 1988, the election that made
+    // Chatichai Choonhavan the first elected prime minister since 1976. Shares
+    // are of the 357 seats rather than of the vote, because Thai constituency
+    // results of the period were reported by seat and the multi-member districts
+    // make a national popular vote meaningless: Chart Thai 87, Social Action 54,
+    // Democrat 48, Ruam Thai 35, Prachakorn Thai 31, Rassadorn 21, Muan Chon 17,
+    // Palang Dharma 14, others 50. The army removed this government on 23
+    // February 1991, which is why it keeps a pillar.
+    Polity {
+        nation: NationId::Thailand,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1992, 3),
+        parties: &[
+            p("th_chartthai", "Thai Nation Party", "Chart Thai", Family::Conservative, 0.244),
+            p("th_sap", "Social Action Party", "Kit Sangkhom", Family::Conservative, 0.151),
+            p("th_democrat", "Democrat Party", "Prachathipat", Family::Liberal, 0.134),
+            p("th_ruamthai", "United Thai People's Party", "Ruam Thai", Family::Conservative, 0.098),
+            p("th_pkt", "Thai Citizens' Party", "Prachakorn Thai", Family::Nationalist, 0.087),
+            p("th_rassadorn", "People's Party", "Rassadorn", Family::BigTent, 0.059),
+            p("th_muanchon", "Mass Party", "Muan Chon", Family::BigTent, 0.048),
+            p("th_palangdharma", "Righteous Force Party", "Palang Dharma", Family::Religious, 0.039),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[pl(Pillar::Army, "the Royal Thai Army")],
+    },
+    // Malaysia — general election of 3 August 1986: Barisan Nasional 55.8%,
+    // Democratic Action Party 21.0%, Pan-Malaysian Islamic Party 15.6%. That
+    // Dewan Rakyat is the sitting one in January 1990 and the next election is
+    // nine months away, on 21 October 1990 — the one Tengku Razaleigh contested
+    // at the head of Semangat 46 after losing the UMNO presidency by 43 votes
+    // and having the party declared unlawful for it.
+    Polity {
+        nation: NationId::Malaysia,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1990, 10),
+        parties: &[
+            p("my_bn", "National Front", "Barisan Nasional", Family::BigTent, 0.558),
+            p("my_dap", "Democratic Action Party", "", Family::SocialDemocratic, 0.210),
+            p("my_pas", "Pan-Malaysian Islamic Party", "Parti Islam Se-Malaysia", Family::Religious, 0.156),
+            p("my_pbs", "United Sabah Party", "Parti Bersatu Sabah", Family::Regionalist, 0.045),
+        ],
+        ruling: "the Dewan Rakyat",
+        pillars: &[],
+    },
+    // Singapore — general election of 3 September 1988, the first fought on
+    // group representation constituencies: People's Action Party 63.2%, Workers'
+    // Party 16.7%, Singapore Democratic Party 11.5%. The PAP took 80 of 81
+    // seats on that 63%, which is what a first-past-the-post system does to an
+    // opposition that cannot concentrate. Lee Kuan Yew handed over to Goh Chok
+    // Tong in November 1990 without an election.
+    Polity {
+        nation: NationId::Singapore,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1991, 8),
+        parties: &[
+            p("sg_pap", "People's Action Party", "", Family::Conservative, 0.632),
+            p("sg_wp", "Workers' Party", "", Family::SocialDemocratic, 0.167),
+            p("sg_sdp", "Singapore Democratic Party", "", Family::Liberal, 0.115),
+            p("sg_nsp", "National Solidarity Party", "", Family::SocialDemocratic, 0.086),
+        ],
+        ruling: "the Parliament of Singapore",
+        pillars: &[],
+    },
+    // Philippines — House of Representatives, 11 May 1987, the first under the
+    // constitution ratified three months earlier. Shares are of the 200 elected
+    // seats: the pro-Aquino coalition of Lakas ng Bansa and PDP-Laban took
+    // roughly two thirds, the Grand Alliance for Democracy about a tenth, the
+    // Nacionalistas and Liberals the rest. There is no reliable national popular
+    // vote for that election — it was contested by personal coalitions that
+    // dissolved within the term, and the LDP was assembled out of the winners
+    // afterwards. The transitional House sat five years; later terms run three.
+    Polity {
+        nation: NationId::Philippines,
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (1992, 5),
+        parties: &[
+            p("ph_ldp", "Struggle of Democratic Filipinos", "Laban ng Demokratikong Pilipino", Family::BigTent, 0.660),
+            p("ph_gad", "Grand Alliance for Democracy", "", Family::Conservative, 0.100),
+            p("ph_np", "Nacionalista Party", "Partido Nacionalista", Family::Conservative, 0.075),
+            p("ph_lp", "Liberal Party", "Partido Liberal", Family::Liberal, 0.070),
+            p("ph_ind", "independents", "", Family::BigTent, 0.095),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[pl(Pillar::Army, "the Armed Forces of the Philippines")],
+    },
+    // Cambodia — the State of Cambodia, governed by the Kampuchean People's
+    // Revolutionary Party, which renamed itself the Cambodian People's Party in
+    // October 1991 and dropped Marxism-Leninism with the name. The last National
+    // Assembly election, 1 May 1981, was a single list. Vietnamese troops left
+    // in September 1989; the Paris agreements are twenty-two months away and the
+    // Khmer Rouge still hold ground in the west. A regime whose army is the only
+    // thing between it and three insurgencies.
+    Polity {
+        nation: NationId::Cambodia,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("kh_kprp", "Kampuchean People's Revolutionary Party", "Pak Pracheachon Padevat Kampuchea", Family::Communist, 1.00),
+        ],
+        ruling: "the Kampuchean People's Revolutionary Party",
+        pillars: &[
+            pl(Pillar::Army, "the Cambodian People's Armed Forces"),
+            pl(Pillar::Party, "the Politburo"),
+            pl(Pillar::Security, "the Ministry of the Interior"),
+        ],
+    },
+    // Laos — the Lao People's Revolutionary Party, in power since December 1975
+    // and still governing without a constitution in January 1990; one was
+    // promulgated in August 1991. The Supreme People's Assembly elected on 26
+    // March 1989 was the first since 1975 and every candidate on it was approved
+    // by the party, so the table carries the LPRP alone.
+    Polity {
+        nation: NationId::Laos,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("la_lprp", "Lao People's Revolutionary Party", "Phak Pasason Pativat Lao", Family::Communist, 1.00),
+        ],
+        ruling: "the Lao People's Revolutionary Party",
+        pillars: &[
+            pl(Pillar::Army, "the Lao People's Army"),
+            pl(Pillar::Party, "the Central Committee"),
+            pl(Pillar::Security, "the Ministry of the Interior"),
+        ],
+    },
+    // Mongolia — the Mongolian People's Revolutionary Party, whose monopoly under
+    // Article 82 was intact on 1 January 1990 and gone by 23 March. The
+    // demonstrations in Sukhbaatar Square had been running since 10 December
+    // 1989 and the whole Politburo resigned on 9 March. The party table is the
+    // result of the People's Great Hural election of 29 July 1990, the first
+    // multiparty vote in Asia's second communist state, which the MPRP won:
+    // MPRP 62.3%, Mongolian Democratic Party 24.3%, Social Democrats 5.6%,
+    // National Progress 5.6%. It goes live only if the regime opens, which here
+    // it is not scripted to do.
+    Polity {
+        nation: NationId::Mongolia,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("mn_mprp", "Mongolian People's Revolutionary Party", "Mongol Ardyn Khuvisgalt Nam", Family::Communist, 0.623),
+            p("mn_mdp", "Mongolian Democratic Party", "Mongolyn Ardchilsan Nam", Family::Liberal, 0.243),
+            p("mn_msdp", "Mongolian Social Democratic Party", "Mongolyn Sotsial Demokrat Nam", Family::SocialDemocratic, 0.056),
+            p("mn_mnpp", "Mongolian National Progress Party", "Mongolyn Undesnii Devshliin Nam", Family::Conservative, 0.056),
+        ],
+        ruling: "the Mongolian People's Revolutionary Party",
+        pillars: &[
+            pl(Pillar::Army, "the Mongolian People's Army"),
+            pl(Pillar::Party, "the Central Committee"),
+            pl(Pillar::Security, "the Ministry of Public Security"),
+        ],
+    },
+    // Canada — House of Commons, 21 November 1988, the free-trade election:
+    // Progressive Conservative 43.0%, Liberal 31.9%, New Democratic Party
+    // 20.4%, Reform 2.1%. Mulroney's second majority. Single-member plurality
+    // in 295 ridings, a five-year maximum term, and the next election came on
+    // 25 October 1993 — the one that reduced the governing party to two seats.
+    Polity {
+        nation: NationId::Canada,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1993, 10),
+        parties: &[
+            p("ca_pc", "Progressive Conservative Party", "", Family::Conservative, 0.430),
+            p("ca_lib", "Liberal Party of Canada", "", Family::Liberal, 0.319),
+            p("ca_ndp", "New Democratic Party", "", Family::SocialDemocratic, 0.204),
+            p("ca_reform", "Reform Party of Canada", "", Family::Conservative, 0.021),
+        ],
+        ruling: "the House of Commons",
+        pillars: &[],
+    },
+    // Australia — House of Representatives, 11 July 1987, first-preference vote:
+    // Labor 45.8%, Liberal 34.4%, National 11.5%, Australian Democrats 6.0%.
+    // Hawke's third term, and the next election fell on 24 March 1990, weeks
+    // into the game. Australia votes by full preferential ballot in
+    // single-member seats; the nearest thing this model holds is a runoff, so
+    // it is entered as TwoRound rather than plurality — a seat is not won on a
+    // plurality of first preferences and the Liberal-National coalition
+    // depends on preferences flowing between its two halves.
+    Polity {
+        nation: NationId::Australia,
+        system: Electoral::TwoRound,
+        term_months: 36,
+        next: (1990, 3),
+        parties: &[
+            p("au_alp", "Australian Labor Party", "", Family::SocialDemocratic, 0.458),
+            p("au_lib", "Liberal Party of Australia", "", Family::Conservative, 0.344),
+            p("au_nat", "National Party of Australia", "", Family::Agrarian, 0.115),
+            p("au_dem", "Australian Democrats", "", Family::Liberal, 0.060),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+    // New Zealand — House of Representatives, 15 August 1987: Labour 48.0%,
+    // National 44.0%, Democrats 5.7%. Lange's second term, won on the back of
+    // Rogernomics and the nuclear-free legislation, and it consumed itself:
+    // Douglas was sacked in December 1988, Lange resigned in August 1989, and
+    // Palmer held the office at the 1990 start. First past the post in 97
+    // single-member seats on a three-year term — the two-party system that
+    // 48% against 44% for two seats' difference eventually killed, with the
+    // 1993 referendum voting it out for MMP. Next election 27 October 1990.
+    Polity {
+        nation: NationId::NewZealand,
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (1990, 10),
+        parties: &[
+            p("nz_lab", "New Zealand Labour Party", "", Family::SocialDemocratic, 0.480),
+            p("nz_nat", "New Zealand National Party", "", Family::Conservative, 0.440),
+            p("nz_dem", "Democratic Party", "Social Credit", Family::Liberal, 0.057),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

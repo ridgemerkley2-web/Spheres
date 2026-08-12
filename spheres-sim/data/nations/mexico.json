@@ -1,0 +1,40 @@
+{
+  "id": "Mexico",
+  "name": "Mexico",
+  "system": "Market",
+  "authoritarianism": 0.52,
+  "economy": {
+    "gdp_bn": 262.7,
+    "population_m": 83.9,
+    "tfp_trend": 0.005,
+    "inflation": 0.267,
+    "interest_rate": 0.348,
+    "tax_rate": 0.17,
+    "mil_spend_gdp": 0.005,
+    "state_invest_gdp": 0.045,
+    "priv_invest_gdp": 0.14,
+    "debt_gdp": 0.5,
+    "oil_mbd": 2.55,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 55.0,
+    "separatism": 0.04
+  },
+  "military": {
+    "strength": 8.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $262.7bn (World Bank, 1990). Population 83.9m on the World Bank series; the XI Censo General de Poblacion of March 1990 counted 81.25m, and the gap is the usual undercount adjustment.",
+    "Inflation 26.7% is the Banco de Mexico CPI annual average for 1990 (December-on-December was 29.9%). The Pacto de Solidaridad Economica, the heterodox incomes pact renewed every few months from December 1987, is what had brought it down from 159% in 1987.",
+    "interest_rate 34.8%: the average 28-day Cetes yield for 1990. Positive in real terms, which is how the pact was defended.",
+    "Tax take 17% of GDP: federal tax revenue proper was about 11% of GDP, and oil rents remitted by Pemex carry the rest of the budget. Investment split 4.5% public and 14% private against gross fixed capital formation near 18.5% of GDP.",
+    "Debt 0.50: total external debt about $104bn at end-1990 (World Bank), and net public sector debt around half of GDP after the Brady agreement signed in February 1990 wrote down roughly $7bn of principal. It falls fast from here.",
+    "Oil 2.55 mbd: Pemex crude production averaged 2.548 mbd in 1990.",
+    "Defence 0.5% of GDP, the lowest of any large state in the roster and a deliberate constitutional posture since 1917, not an oversight. Strength 8 is an army sized for internal order.",
+    "THIS FILE BREAKS a_pact_drags_a_great_power_into_a_war_it_did_not_start, and the cause is in politics.rs rather than in these numbers. Bisected against master: adding Mexico alone, with nothing else from this region, takes that test from green to 0 of 12 runs against a 3..12 band. The chain is short. politics.rs::best_client picks a patron's client by strict argmax of client_score over every nation alive, and statecraft.rs caps a patron at MAX_AID_SHARE 0.010 of GDP with MAX_CLIENT_SHARE 0.004 per client — so the United States funds about two and a half clients in total, ever. Mexico scores 2.21 on that function against Kuwait's 0.98, because 2.55 mbd of oil and $263bn of GDP dominate the value term. Mexico therefore takes the budget slot Kuwait used to occupy, Kuwait never gets American money, so it never clears the rel>=45-and-being-paid gate that lets it ask for a protector, so no great power has a pact with Kuwait when Iraq invades, and the herald the test greps for is never emitted.",
+    "No honest figure in this file avoids that. For Mexico to fall below Kuwait in that ranking its relation with the United States would have to be under 17 on the -100..100 scale, and January 1990 is Salinas at his most pro-American: the Brady agreement signed that February, GATT joined in 1986, Bush at Agualeguas, and the free trade proposal four months away. The transcribed value is 45, the same as Brazil's. Tuning it to 16 to make a calibration test pass would be inventing data to fit the model, which is the thing iron rule 4 exists to prevent. The finding is that patronage is not roster-invariant: at 190 nations every patron will fund the same two or three richest oil states on Earth and every calibration test built on the 24-nation ordering will break the same way. Reported rather than papered over.",
+    "authoritarianism 0.52 puts Mexico just under the electoral ceiling, which is the right side of the line: the PRI held real elections on schedule and lost the presidency in 2000, but 1988 had been decided by a computer crash. Stability 55 and separatism 0.04 — Chiapas in 1994 is an insurgency, not a secession, and is not scripted here."
+  ]
+}

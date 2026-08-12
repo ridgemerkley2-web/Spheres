@@ -1,0 +1,36 @@
+{
+  "id": "Uruguay",
+  "name": "Uruguay",
+  "system": "Market",
+  "authoritarianism": 0.12,
+  "economy": {
+    "gdp_bn": 9.3,
+    "population_m": 3.11,
+    "tfp_trend": 0.005,
+    "interest_rate": 1.15,
+    "inflation": 1.125,
+    "tax_rate": 0.27,
+    "mil_spend_gdp": 0.023,
+    "state_invest_gdp": 0.04,
+    "priv_invest_gdp": 0.08,
+    "debt_gdp": 0.55,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 65.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 2.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $9.3bn and 3.11m people (World Bank, 1990).",
+    "Inflation 1.125 means 112.5%: the INE CPI annual average for 1990, the worst Uruguayan print since 1968 and the reason Luis Alberto Lacalle's first act on taking office on 1 March 1990 was a fiscal adjustment. December-on-December was about 129%. interest_rate 1.15 means 115%, the peso lending benchmark; the real rate is roughly neutral, which is what the schema's coupling rule is checking for and what a crawling-peg regime actually produces.",
+    "Tax take 27% of GDP, the highest in this region's roster: Uruguay is the region's welfare state, with pensions alone near 10% of GDP and a 1989 plebiscite having constitutionally indexed them to wages — the single largest constraint on every government that follows.",
+    "Debt 0.55: external debt about $4.4bn at end-1990 (World Bank), some 47% of GDP; total public debt is nearer 55%. Uruguay signed its Brady agreement in February 1991.",
+    "Oil 0.00: no domestic production at all. ANCAP refines imported crude at La Teja.",
+    "Defence 2.3% of GDP and strength 2, an army sized for a country of three million between two large neighbours. Stability 65 and separatism 0.0 — the highest stability and lowest strain in this region. The dictatorship ended in March 1985, and the amnesty for the military was confirmed by referendum on 16 April 1989 with 57% voting to uphold it, which settled the transition rather than deferring it."
+  ]
+}

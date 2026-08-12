@@ -1,0 +1,41 @@
+{
+  "id": "UAE",
+  "name": "United Arab Emirates",
+  "system": "Market",
+  "authoritarianism": 0.8,
+  "economy": {
+    "gdp_bn": 50.7,
+    "population_m": 1.9,
+    "tfp_trend": 0.012,
+    "inflation": 0.02,
+    "interest_rate": 0.09,
+    "tax_rate": 0.04,
+    "mil_spend_gdp": 0.046,
+    "state_invest_gdp": 0.1,
+    "priv_invest_gdp": 0.12,
+    "debt_gdp": 0.05,
+    "oil_mbd": 1.746,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 74.0,
+    "separatism": 0.05
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $50.70bn and population 1.90m: World Bank WDI, NY.GDP.MKTP.CD and SP.POP.TOTL, United Arab Emirates, 1990. The 1990 figure is flattered by the oil price spike that followed Iraq's invasion of Kuwait in August. Roughly three quarters of the population were non-citizens.",
+    "Inflation 2.0% is an estimate: the World Bank publishes no CPI series for the UAE in any year of this period. The GDP deflator prints 3.3% for 1990, and the dirham has been pegged to the dollar since 1978, so consumer inflation tracked its GCC peers — Bahrain printed 0.9% and Qatar 3.0% in 1990 on the same World Bank series. Flagged as unverified.",
+    "Interest rate 9.0% is an estimate, again for want of a published series. With a hard dollar peg, UAE rates tracked American ones; US federal funds averaged 8.1% and prime 10.0% in 1990.",
+    "Tax 4% of GDP: there is no federal income tax, no corporate tax outside banking and oil concessions, and no VAT until 2018. Almost all government revenue is oil, which this model carries separately. The figure follows the roster's existing treatment of Kuwait (0.05) and Saudi Arabia (0.08).",
+    "Defence 4.6% of GDP is an estimate; the World Bank has no MS.MIL.XPND figure for the UAE in 1990. SIPRI's series for the period runs in the 4-6% range on a GDP inflated by the oil spike.",
+    "Debt 5% of GDP: the UAE federal government carried essentially no debt in 1990 and Abu Dhabi was a net external creditor through ADIA. Entered as an estimate; no published series exists.",
+    "Investment: no World Bank capital formation series for 1990. Split 10.0 public and 12.0 private, in line with GCC gross fixed capital formation around 22% of GDP. Estimate.",
+    "Oil 1.746 mbd: Energy Institute Statistical Review of World Energy via Our World in Data, 1990 (1083.4 TWh), converted at 620.5 TWh per million barrels a day. Note that quota-era OPEC figures for the UAE run higher, near 2.1-2.3 mbd — the emirates were producing well above quota, which is one of the two grievances Saddam Hussein named in July 1990. The lower series is used for consistency with the Saudi and Egyptian figures already in this roster.",
+    "Authoritarianism 0.80: a federation of seven hereditary monarchies whose Federal Supreme Council is composed of the seven rulers. There has never been a national election; the Federal National Council was wholly appointed until 2006. Political parties are prohibited.",
+    "Separatism 0.05 is the federal seam rather than a nationality question: Abu Dhabi and Dubai run separate defence, oil and fiscal policies, and Ras al-Khaimah joined the union only in February 1972.",
+    "Military index 3.0: roughly 44,000 men in 1990, well equipped and entirely dependent on foreign personnel, with the emirates' forces only nominally unified under the Union Defence Force."
+  ]
+}

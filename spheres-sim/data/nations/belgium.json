@@ -1,0 +1,30 @@
+{
+  "id": "Belgium",
+  "name": "Belgium",
+  "system": "Market",
+  "authoritarianism": 0.09,
+  "economy": {
+    "gdp_bn": 203.0,
+    "population_m": 9.97,
+    "tfp_trend": 0.013,
+    "inflation": 0.035,
+    "interest_rate": 0.095,
+    "tax_rate": 0.42,
+    "mil_spend_gdp": 0.024,
+    "state_invest_gdp": 0.017,
+    "priv_invest_gdp": 0.19,
+    "debt_gdp": 1.26,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 70.0, "separatism": 0.3 },
+  "military": { "strength": 9.0, "nuclear": false },
+  "sources": [
+    "GDP about $203bn and population 9.97m (World Bank, 1990).",
+    "Inflation 3.5% (Statistics Belgium consumer price index, 1990). The Banque Nationale held the franc in the D-Mark's narrow ERM band; its central rate stood near 9.5% through 1990.",
+    "Tax revenue 42% of GDP (OECD Revenue Statistics, 1990).",
+    "Debt 126% of GDP: Belgium and Italy were the two OECD economies above 100% in 1990, the legacy of the deficits of 1979-1984. Public investment near 1.7% of GDP is correspondingly the lowest in Western Europe.",
+    "Defence 2.4% of GDP (NATO defence expenditure series, 1990).",
+    "Separatism 0.30 is the Flemish-Walloon settlement after the second and third state reforms of 1980 and 1988-89, with the Volksunie at 8% and the Vlaams Blok rising."
+  ]
+}

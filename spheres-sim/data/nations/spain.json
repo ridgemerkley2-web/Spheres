@@ -1,0 +1,29 @@
+{
+  "id": "Spain",
+  "name": "Spain",
+  "system": "Market",
+  "authoritarianism": 0.12,
+  "economy": {
+    "gdp_bn": 520.0,
+    "population_m": 38.9,
+    "tfp_trend": 0.014,
+    "inflation": 0.067,
+    "interest_rate": 0.148,
+    "tax_rate": 0.33,
+    "mil_spend_gdp": 0.018,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.2,
+    "debt_gdp": 0.43,
+    "oil_mbd": 0.02,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 72.0, "separatism": 0.18 },
+  "military": { "strength": 20.0, "nuclear": false },
+  "sources": [
+    "GDP $520bn and 38.9m people (World Bank, 1990).",
+    "Inflation 6.7% (INE CPI 1990); Banco de Espana intervention rate near 14.8% defending the peseta inside the ERM narrow band from June 1989.",
+    "Defence 1.8% of GDP: NATO member from 1982, outside the integrated command until 1999.",
+    "Separatism 0.18 is ETA plus Basque and Catalan autonomy politics under the 1978 constitution.",
+    "Debt 43% of GDP and tax take 33% of GDP (Banco de Espana / OECD Revenue Statistics, 1990). Oil 0.02 mbd is the residual Ayoluengo field and Mediterranean offshore output."
+  ]
+}

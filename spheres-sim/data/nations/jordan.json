@@ -1,0 +1,42 @@
+{
+  "id": "Jordan",
+  "name": "Jordan",
+  "system": "Market",
+  "authoritarianism": 0.55,
+  "economy": {
+    "gdp_bn": 4.16,
+    "population_m": 3.62,
+    "tfp_trend": 0.006,
+    "inflation": 0.162,
+    "interest_rate": 0.085,
+    "tax_rate": 0.18,
+    "mil_spend_gdp": 0.078,
+    "state_invest_gdp": 0.1,
+    "priv_invest_gdp": 0.151,
+    "debt_gdp": 1.288,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 52.0,
+    "separatism": 0.22
+  },
+  "military": {
+    "strength": 5.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $4.16bn and population 3.62m: World Bank WDI, NY.GDP.MKTP.CD and SP.POP.TOTL, Jordan, 1990. The dollar figure is low because the dinar lost roughly half its value between October 1988 and 1989; Jordan defaulted on its external debt in 1989 and entered an IMF programme.",
+    "Inflation 16.2%: World Bank FP.CPI.TOTL.ZG, 1990, down from 25.7% in the crisis year 1989.",
+    "Interest rate 8.5% is the Central Bank of Jordan's rediscount rate, entered as an estimate: the World Bank publishes no lending-rate series for Jordan in this period.",
+    "Tax 18.0% of GDP: World Bank GC.TAX.TOTL.GD.ZS, 1990. Total central government revenue excluding grants was 25.3% (GC.REV.XGRT.GD.ZS); the gap is Gulf and American transfers, which the Gulf crisis was about to cut off.",
+    "Defence 7.8% of GDP: World Bank MS.MIL.XPND.GD.ZS, 1990.",
+    "Debt 128.8% of GDP is central government debt: World Bank GC.DOD.TOTL.GD.ZS, 1990. Total external debt was 211.2% of GNI that year (DT.DOD.DECT.GN.ZS, $8.33bn), the highest ratio of any nation in this roster.",
+    "Investment: gross fixed capital formation 25.1% of GDP (NE.GDI.FTOT.ZS, 1990), split 10.0 public and 15.1 private.",
+    "Oil 0.0: Jordan produces essentially none. The Hamzah field near Azraq yielded a few hundred barrels a day and was shut in the 1990s; Our World in Data records zero for 1990.",
+    "Authoritarianism 0.55 is below the electoral ceiling on purpose. King Hussein held martial law powers and appointed every prime minister, but the 8 November 1989 election was the first in twenty-two years and was genuinely contested; the model should let Jordan vote again in 1993, as it did.",
+    "Stability 52 is the April 1989 Ma'an bread riots, the IMF austerity programme that caused them, and a treasury that had just defaulted.",
+    "Separatism 0.22: Palestinians were a majority or near-majority of the population, and Jordan had renounced its legal claim to the West Bank on 31 July 1988, leaving the question of who Jordan is for unresolved.",
+    "Military index 5: about 85,000 men, well trained and British-patterned, but a single armoured division's worth of combat power against neighbours with ten times the mass."
+  ]
+}

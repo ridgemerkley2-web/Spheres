@@ -1,0 +1,39 @@
+{
+  "id": "CoteDIvoire",
+  "name": "Cote d'Ivoire",
+  "system": "Market",
+  "authoritarianism": 0.72,
+  "economy": {
+    "gdp_bn": 10.8,
+    "population_m": 11.8,
+    "tfp_trend": -0.005,
+    "inflation": -0.008,
+    "interest_rate": 0.11,
+    "tax_rate": 0.19,
+    "mil_spend_gdp": 0.011,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.05,
+    "debt_gdp": 1.45,
+    "oil_mbd": 0.02,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 44.0,
+    "separatism": 0.12
+  },
+  "military": {
+    "strength": 2.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $10.8bn and 11.8m people (World Bank, 1990). The largest economy in francophone West Africa and, at the start date, seven years into an uninterrupted contraction: real output per head fell by roughly a third between 1980 and 1993.",
+    "Inflation -0.8% in 1990 (INS Abidjan CPI) — outright deflation, and it is the direct consequence of the CFA peg. With no devaluation available, an economy whose terms of trade had collapsed could only adjust through falling domestic prices and wages, and did. Negative inflation here is a transcribed figure, not a sign error.",
+    "Interest rate 11%: BCEAO discount rate. With prices falling this is a real rate near 12%, in a country whose government was cutting civil service pay to meet it.",
+    "Cocoa is the mechanism behind every figure in this file: Cote d'Ivoire was the world's largest producer, prices fell by about two-thirds between 1985 and 1990, and Houphouet-Boigny's 1987-88 attempt to withhold the crop from the market to force prices up failed and cost the Caisse de Stabilisation its reserves.",
+    "Debt 1.45 of GDP. Cote d'Ivoire defaulted on commercial debt in 1987 and public external debt was roughly $17bn against a $10.8bn economy, one of the heaviest ratios in the world at the time.",
+    "oil_mbd 0.02: about 20,000 barrels a day from the Belier and Espoir offshore fields, declining, and never enough to matter fiscally.",
+    "Defence 1.1% of GDP. Houphouet-Boigny deliberately kept the army small and relied on the French 43rd Marine Infantry Battalion garrisoned at Port-Bouet under the 1961 defence accord.",
+    "Authoritarianism 0.72 and stability 44: the PDCI had been the only legal party since independence. Public-sector wage cuts brought students, teachers and soldiers into the street in February-May 1990, and Houphouet-Boigny conceded multipartism on 30 April 1990 — four months after the start date.",
+    "Separatism 0.12: the north-south and citizenship question that later produced ivoirite and the 2002 partition was latent in 1990, carried by decades of Burkinabe and Malian immigration into the cocoa belt. Low now, and the model should be able to raise it."
+  ]
+}

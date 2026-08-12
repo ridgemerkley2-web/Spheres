@@ -1,0 +1,30 @@
+{
+  "id": "Netherlands",
+  "name": "Netherlands",
+  "system": "Market",
+  "authoritarianism": 0.08,
+  "economy": {
+    "gdp_bn": 295.0,
+    "population_m": 14.95,
+    "tfp_trend": 0.013,
+    "inflation": 0.025,
+    "interest_rate": 0.085,
+    "tax_rate": 0.42,
+    "mil_spend_gdp": 0.026,
+    "state_invest_gdp": 0.028,
+    "priv_invest_gdp": 0.18,
+    "debt_gdp": 0.77,
+    "oil_mbd": 0.07,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 80.0, "separatism": 0.02 },
+  "military": { "strength": 12.0, "nuclear": false },
+  "sources": [
+    "GDP: Dutch nominal GDP of roughly NLG 540bn in 1990 at the year-average 1.82 NLG/USD gives about $295bn (CBS national accounts; World Bank current-US$ series for 1990).",
+    "Population 14.95m at 1 January 1990 (CBS Statline).",
+    "Inflation 2.5% (CBS consumer price index, 1990). The guilder was hard-pegged to the D-Mark, so De Nederlandsche Bank's special advances rate tracked the Bundesbank's; 8.5% is the late-1990 level.",
+    "Tax revenue 42% of GDP (OECD Revenue Statistics, 1990) and general government gross debt 77% of GDP (Maastricht definition, CBS).",
+    "Defence 2.6% of GDP (NATO defence expenditure series, 1990). Strength 12: two brigades forward in Germany under I (NL) Corps, no independent projection.",
+    "Oil 0.07 mbd: the Netherlands is a gas producer above all, with Schoonebeek and North Sea oil running near 70,000 barrels a day in 1990."
+  ]
+}

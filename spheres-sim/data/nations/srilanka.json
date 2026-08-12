@@ -1,0 +1,42 @@
+{
+  "id": "SriLanka",
+  "name": "Sri Lanka",
+  "system": "Market",
+  "authoritarianism": 0.35,
+  "economy": {
+    "gdp_bn": 8.03,
+    "population_m": 16.35,
+    "tfp_trend": 0.012,
+    "inflation": 0.215,
+    "interest_rate": 0.2,
+    "tax_rate": 0.19,
+    "mil_spend_gdp": 0.023,
+    "state_invest_gdp": 0.07,
+    "priv_invest_gdp": 0.152,
+    "debt_gdp": 0.966,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 28.0,
+    "separatism": 0.45
+  },
+  "military": {
+    "strength": 7.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $8.033bn and population 16.35m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, 1990. The CIA World Factbook 1990 gives $6.1bn at $370 a head for 1988 and a July 1990 population of 17.2m.",
+    "Inflation 21.5%: World Bank FP.CPI.TOTL.ZG, 1990 (21.495%) — the highest print of the post-liberalisation period, driven by the collapse of the rupee and the war budget.",
+    "Interest rate 0.20 is NOT transcribed. The World Bank carries no 1990 lending or deposit rate for Sri Lanka and the Central Bank's Bank Rate for that year is not in any series consulted here. It is entered at a mildly negative real rate, which is what an economy running 21.5% inflation on administered deposit rates had, and it is recorded as unverified.",
+    "Tax 19.0% of GDP: World Bank GC.TAX.TOTL.GD.ZS, 1990 (19.021%). Total revenue including grants was 21.02% (GC.REV.XGRT.GD.ZS).",
+    "Military spending 2.3% of GDP: World Bank MS.MIL.XPND.GD.ZS, 1990 (2.328%, the SIPRI series). The CIA World Factbook 1990 puts it far higher, at 5% of GDP or $300m for 1989. The two disagree by more than a factor of two and the SIPRI figure is taken because the rest of this file is on World Bank definitions; the disagreement is recorded rather than split.",
+    "Investment 22.2% of GDP total: World Bank NE.GDI.TOTL.ZS, 1990 (22.206%), of which fixed capital formation was 21.88%. Split into public 7.0 and private 15.2 using the CIA World Factbook 1990 budget, which gives capital expenditure of $0.7bn against $2.3bn of total 1989 spending.",
+    "Debt 96.6%: World Bank GC.DOD.TOTL.GD.ZS, central government debt, 1990 (96.581%) — a genuine observation, not a proxy, and one that stays between 86% and 99% every year from 1990 to 2000.",
+    "Oil 0.0: Sri Lanka produced no crude in 1990 and imported all of it.",
+    "Authoritarianism 0.35: an elected executive presidency under Ranasinghe Premadasa, sworn in January 1989, with a parliament elected in February 1989 — but one governing under emergency regulation, with the JVP insurrection put down in the second half of 1989 by extrajudicial killing on a scale credibly put in the tens of thousands. Democratic in form, and violent in practice.",
+    "Stability 28: the lowest on this roster and deliberately so. In January 1990 the JVP's leadership had been killed weeks earlier, the Indian Peace Keeping Force was still on the island and would not complete its withdrawal until 24 March, and the ceasefire with the LTTE collapsed into Eelam War II that June.",
+    "Separatism 0.45: Sri Lankan Tamils were about 12.7% of the population at the 1981 census, and the claimed Tamil Eelam covers the Northern and Eastern Provinces, roughly a quarter of the island's land area and coastline. The LTTE held territory and ran an administration in it.",
+    "Military strength 7: an army of roughly 40,000 expanding fast in 1990, equipped for counter-insurgency, with no capacity to fight a state."
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "blocks": [
+    {
+      "note": [
+        "NOT LOADED. This file is not in EMBEDDED_RELATIONS and the sim never reads it. It holds the 62 Middle Eastern dyads written for feat/roster-mideast, parked here rather than merged into relations_1990.json because merging them turns a_pact_drags_a_great_power_into_a_war_it_did_not_start red, and the branch is not allowed to ship more than the two pinned hashes failing.",
+        "The dyads are not the defect. Measured over 60 seeds rather than the test's 12: with these eight nations and no new dyads the great-power pact rate is 13/60 = 21.7%; with the dyads it is 6/60 = 10.0%. The cause is in politics.rs. MAX_AID_SHARE is 0.010 and MAX_CLIENT_SHARE is 0.004, so a patron can hold at most two and a half clients however large the world gets, best_client takes the single top scorer, and the guarantee branch will only propose to a nation the patron is already paying at relation >= 60. Adding warm clients to a fixed budget therefore evicts the clients that would have been guaranteed. At 30 nations eight patrons had roughly enough slots for everyone; at 38 they do not; at the 190 the design calls for, spheres of influence would cover a tenth of the world.",
+        "The test is also under-powered independently of any of this. At the measured 21.7% base rate, Binomial(12, 0.217) puts P(fewer than 3) near 0.49 — it is close to a coin flip on any reshuffle of the world, and it passes on master only because seeds 0..11 happen to yield 4. Raising the seed count would make it mean something; widening the bound would not.",
+        "Paste these three blocks into the blocks array of relations_1990.json once the aid cap scales with the roster.",
+        "The Levant in January 1990. Damascus and Baghdad are both Ba'athist and have hated each other since the party split in 1966; Hafez al-Assad was the only Arab leader to back Iran through the eight-year war, which is why Syria and Iran read as an alliance and not a marriage of convenience. Syria holds Lebanon: 40,000 troops in the Bekaa and the north, and the Hrawi government installed under Taif on 22 October 1989 exists because Syria says it does, so the dyad is warm from Beirut's official side and means domination rather than friendship.",
+        "Jordan sits where the model should make it uncomfortable. Amman's economy runs through Aqaba and Aqaba runs on Iraqi transit; King Hussein was Saddam Hussein's closest Arab friend and would refuse to join the coalition, which cost him Washington and the Gulf. The covert Jordanian-Israeli relationship is decades old and there is still no treaty until 1994.",
+        "Israel's northern problem is one country in two pieces: the Golan, annexed in 1981 and not recognised by anyone, and the self-declared security zone in south Lebanon held through the South Lebanon Army since 1985."
+      ],
+      "pairs": [
+        { "a": "Syria", "b": "Israel", "value": -70.0 },
+        { "a": "Syria", "b": "Iraq", "value": -65.0 },
+        { "a": "Syria", "b": "Iran", "value": 55.0 },
+        { "a": "Syria", "b": "USSR", "value": 55.0 },
+        { "a": "Syria", "b": "USA", "value": -25.0 },
+        { "a": "Syria", "b": "Turkey", "value": -35.0 },
+        { "a": "Syria", "b": "Lebanon", "value": 20.0 },
+        { "a": "Syria", "b": "Jordan", "value": 5.0 },
+        { "a": "Syria", "b": "Egypt", "value": 20.0 },
+        { "a": "Syria", "b": "SaudiArabia", "value": 30.0 },
+        { "a": "Syria", "b": "Kuwait", "value": 20.0 },
+        { "a": "Syria", "b": "France", "value": -10.0 },
+        { "a": "Jordan", "b": "Iraq", "value": 55.0 },
+        { "a": "Jordan", "b": "Israel", "value": 5.0 },
+        { "a": "Jordan", "b": "USA", "value": 35.0 },
+        { "a": "Jordan", "b": "UK", "value": 45.0 },
+        { "a": "Jordan", "b": "Egypt", "value": 40.0 },
+        { "a": "Jordan", "b": "SaudiArabia", "value": 25.0 },
+        { "a": "Jordan", "b": "Lebanon", "value": 15.0 },
+        { "a": "Lebanon", "b": "Israel", "value": -55.0 },
+        { "a": "Lebanon", "b": "Iran", "value": -5.0 },
+        { "a": "Lebanon", "b": "France", "value": 40.0 },
+        { "a": "Lebanon", "b": "USA", "value": 15.0 },
+        { "a": "Lebanon", "b": "SaudiArabia", "value": 25.0 }
+      ]
+    },
+    {
+      "note": [
+        "The Gulf Cooperation Council, founded in Riyadh in May 1981 by six monarchies that had just watched a revolution take Iran and a war start next door. It is a security club whose members do not trust each other evenly: Qatar and Bahrain were in open dispute over the Hawar Islands, which Qatar took to the International Court of Justice in July 1991, and Saudi Arabia's borders with Qatar, Oman and the UAE were all unsettled.",
+        "Oman is the outlier and always has been. It kept relations with Tehran after 1979 alone among the six, because Iranian troops had fought for the Sultan in Dhofar; it gave the United States base access in 1980, the first Gulf state to do so; and its border with the Marxist south of Yemen, whose government had armed the Dhofar rebels, was not settled until October 1992.",
+        "Iran's quarrel with the lower Gulf is territorial: the Tunbs and Abu Musa, taken from Sharjah and Ras al-Khaimah in November 1971 as the British left, and an old claim on Bahrain that Tehran gave up formally in 1970 and that Bahrain has never quite believed. The 1981 coup plot by the Islamic Front for the Liberation of Bahrain is why.",
+        "The UAE dyad with Iraq is negative before a shot is fired. Overproduction against OPEC quota by the UAE and Kuwait was one of the two grievances Saddam Hussein named in his 17 July 1990 speech; the other was the Rumaila field."
+      ],
+      "pairs": [
+        { "a": "UAE", "b": "USA", "value": 40.0 },
+        { "a": "UAE", "b": "UK", "value": 50.0 },
+        { "a": "UAE", "b": "SaudiArabia", "value": 45.0 },
+        { "a": "UAE", "b": "Kuwait", "value": 50.0 },
+        { "a": "UAE", "b": "Qatar", "value": 40.0 },
+        { "a": "UAE", "b": "Oman", "value": 45.0 },
+        { "a": "UAE", "b": "Bahrain", "value": 45.0 },
+        { "a": "UAE", "b": "Iran", "value": -25.0 },
+        { "a": "UAE", "b": "Iraq", "value": -10.0 },
+        { "a": "Qatar", "b": "SaudiArabia", "value": 40.0 },
+        { "a": "Qatar", "b": "Bahrain", "value": -20.0 },
+        { "a": "Qatar", "b": "Kuwait", "value": 45.0 },
+        { "a": "Qatar", "b": "Oman", "value": 35.0 },
+        { "a": "Qatar", "b": "UK", "value": 40.0 },
+        { "a": "Qatar", "b": "USA", "value": 30.0 },
+        { "a": "Qatar", "b": "Iran", "value": 10.0 },
+        { "a": "Oman", "b": "UK", "value": 60.0 },
+        { "a": "Oman", "b": "USA", "value": 45.0 },
+        { "a": "Oman", "b": "Iran", "value": 30.0 },
+        { "a": "Oman", "b": "SaudiArabia", "value": 30.0 },
+        { "a": "Oman", "b": "Kuwait", "value": 40.0 },
+        { "a": "Oman", "b": "Bahrain", "value": 40.0 },
+        { "a": "Oman", "b": "India", "value": 30.0 },
+        { "a": "Bahrain", "b": "USA", "value": 45.0 },
+        { "a": "Bahrain", "b": "UK", "value": 50.0 },
+        { "a": "Bahrain", "b": "SaudiArabia", "value": 55.0 },
+        { "a": "Bahrain", "b": "Kuwait", "value": 45.0 },
+        { "a": "Bahrain", "b": "Iran", "value": -40.0 },
+        { "a": "Bahrain", "b": "Iraq", "value": -5.0 }
+      ]
+    },
+    {
+      "note": [
+        "Yemen, four months before it becomes one country and four years before it stops being one. The north had joined the Arab Cooperation Council with Iraq, Jordan and Egypt in February 1989 and that alignment survived unification, which is why Sanaa abstained rather than voted on the Security Council resolutions of 1990 and paid for it: Riyadh expelled something like 800,000 Yemeni workers and cut its aid.",
+        "The south's patron was Moscow, which had built the Aden base and armed the PDRY since 1969, and whose withdrawal of support is a large part of why unification happened at all. Saudi Arabia's quarrel is older and territorial — Asir, Jizan and Najran, taken in 1934 and confirmed by treaties that had to be renewed every twenty years."
+      ],
+      "pairs": [
+        { "a": "Yemen", "b": "SaudiArabia", "value": -20.0 },
+        { "a": "Yemen", "b": "Iraq", "value": 35.0 },
+        { "a": "Yemen", "b": "USSR", "value": 40.0 },
+        { "a": "Yemen", "b": "USA", "value": 10.0 },
+        { "a": "Yemen", "b": "Oman", "value": 5.0 },
+        { "a": "Yemen", "b": "Egypt", "value": 30.0 },
+        { "a": "Yemen", "b": "Jordan", "value": 30.0 },
+        { "a": "Yemen", "b": "Kuwait", "value": 0.0 },
+        { "a": "Yemen", "b": "UAE", "value": 5.0 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "Austria",
+  "name": "Austria",
+  "system": "Market",
+  "authoritarianism": 0.08,
+  "economy": {
+    "gdp_bn": 165.0,
+    "population_m": 7.68,
+    "tfp_trend": 0.014,
+    "inflation": 0.033,
+    "interest_rate": 0.075,
+    "tax_rate": 0.4,
+    "mil_spend_gdp": 0.01,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.21,
+    "debt_gdp": 0.57,
+    "oil_mbd": 0.02,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 79.0, "separatism": 0.0 },
+  "military": { "strength": 6.0, "nuclear": false },
+  "sources": [
+    "GDP about $165bn and population 7.68m (World Bank / Statistik Austria, 1990).",
+    "Inflation 3.3% (Statistik Austria consumer price index, 1990). The Hartwaehrungspolitik pegged the schilling to the D-Mark, so the OeNB followed the Bundesbank; its discount rate reached 6.5% in 1990 with money-market rates near 7.5%.",
+    "Tax revenue 40% of GDP (OECD Revenue Statistics, 1990) and general government debt 57% of GDP.",
+    "Defence 1.0% of GDP - the lowest in Western Europe. The 1955 State Treaty imposed permanent neutrality; the Bundesheer is a militia of about 55,000 with no projection. Strength 6.",
+    "Oil 0.02 mbd from OMV's Matzen field in the Vienna Basin.",
+    "Austria applied for EC membership on 17 July 1989, which is the strategic fact of this start."
+  ]
+}

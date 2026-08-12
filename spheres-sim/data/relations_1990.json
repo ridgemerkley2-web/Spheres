@@ -5,38 +5,166 @@
         "Cold War-shaped relations."
       ],
       "pairs": [
-        { "a": "USA", "b": "USSR", "value": -45.0 },
-        { "a": "USA", "b": "China", "value": -10.0 },
-        { "a": "USA", "b": "Japan", "value": 60.0 },
-        { "a": "USA", "b": "Germany", "value": 65.0 },
-        { "a": "USA", "b": "UK", "value": 80.0 },
-        { "a": "USA", "b": "France", "value": 60.0 },
-        { "a": "USA", "b": "Italy", "value": 60.0 },
-        { "a": "USA", "b": "SouthKorea", "value": 65.0 },
-        { "a": "USA", "b": "SaudiArabia", "value": 50.0 },
-        { "a": "USA", "b": "Kuwait", "value": 45.0 },
-        { "a": "USA", "b": "Iraq", "value": -20.0 },
-        { "a": "USA", "b": "Iran", "value": -60.0 },
-        { "a": "USA", "b": "India", "value": 5.0 },
-        { "a": "USA", "b": "Pakistan", "value": 30.0 },
-        { "a": "USA", "b": "Poland", "value": 25.0 },
-        { "a": "USSR", "b": "China", "value": -15.0 },
-        { "a": "USSR", "b": "India", "value": 40.0 },
-        { "a": "USSR", "b": "Iraq", "value": 30.0 },
-        { "a": "USSR", "b": "Poland", "value": 10.0 },
-        { "a": "USSR", "b": "Germany", "value": -10.0 },
-        { "a": "Iraq", "b": "Kuwait", "value": -35.0 },
-        { "a": "Iraq", "b": "SaudiArabia", "value": -25.0 },
-        { "a": "Iraq", "b": "Iran", "value": -50.0 },
-        { "a": "India", "b": "Pakistan", "value": -55.0 },
-        { "a": "China", "b": "India", "value": -25.0 },
-        { "a": "UK", "b": "France", "value": 55.0 },
-        { "a": "UK", "b": "Germany", "value": 55.0 },
-        { "a": "France", "b": "Germany", "value": 60.0 },
-        { "a": "Japan", "b": "SouthKorea", "value": 15.0 },
-        { "a": "China", "b": "Japan", "value": -5.0 },
-        { "a": "Kuwait", "b": "SaudiArabia", "value": 45.0 },
-        { "a": "UK", "b": "Kuwait", "value": 50.0 }
+        {
+          "a": "USA",
+          "b": "USSR",
+          "value": -45.0
+        },
+        {
+          "a": "USA",
+          "b": "China",
+          "value": -10.0
+        },
+        {
+          "a": "USA",
+          "b": "Japan",
+          "value": 60.0
+        },
+        {
+          "a": "USA",
+          "b": "Germany",
+          "value": 65.0
+        },
+        {
+          "a": "USA",
+          "b": "UK",
+          "value": 80.0
+        },
+        {
+          "a": "USA",
+          "b": "France",
+          "value": 60.0
+        },
+        {
+          "a": "USA",
+          "b": "Italy",
+          "value": 60.0
+        },
+        {
+          "a": "USA",
+          "b": "SouthKorea",
+          "value": 65.0
+        },
+        {
+          "a": "USA",
+          "b": "SaudiArabia",
+          "value": 50.0
+        },
+        {
+          "a": "USA",
+          "b": "Kuwait",
+          "value": 45.0
+        },
+        {
+          "a": "USA",
+          "b": "Iraq",
+          "value": -20.0
+        },
+        {
+          "a": "USA",
+          "b": "Iran",
+          "value": -60.0
+        },
+        {
+          "a": "USA",
+          "b": "India",
+          "value": 5.0
+        },
+        {
+          "a": "USA",
+          "b": "Pakistan",
+          "value": 30.0
+        },
+        {
+          "a": "USA",
+          "b": "Poland",
+          "value": 25.0
+        },
+        {
+          "a": "USSR",
+          "b": "China",
+          "value": -15.0
+        },
+        {
+          "a": "USSR",
+          "b": "India",
+          "value": 40.0
+        },
+        {
+          "a": "USSR",
+          "b": "Iraq",
+          "value": 30.0
+        },
+        {
+          "a": "USSR",
+          "b": "Poland",
+          "value": 10.0
+        },
+        {
+          "a": "USSR",
+          "b": "Germany",
+          "value": -10.0
+        },
+        {
+          "a": "Iraq",
+          "b": "Kuwait",
+          "value": -35.0
+        },
+        {
+          "a": "Iraq",
+          "b": "SaudiArabia",
+          "value": -25.0
+        },
+        {
+          "a": "Iraq",
+          "b": "Iran",
+          "value": -50.0
+        },
+        {
+          "a": "India",
+          "b": "Pakistan",
+          "value": -55.0
+        },
+        {
+          "a": "China",
+          "b": "India",
+          "value": -25.0
+        },
+        {
+          "a": "UK",
+          "b": "France",
+          "value": 55.0
+        },
+        {
+          "a": "UK",
+          "b": "Germany",
+          "value": 55.0
+        },
+        {
+          "a": "France",
+          "b": "Germany",
+          "value": 60.0
+        },
+        {
+          "a": "Japan",
+          "b": "SouthKorea",
+          "value": 15.0
+        },
+        {
+          "a": "China",
+          "b": "Japan",
+          "value": -5.0
+        },
+        {
+          "a": "Kuwait",
+          "b": "SaudiArabia",
+          "value": 45.0
+        },
+        {
+          "a": "UK",
+          "b": "Kuwait",
+          "value": 50.0
+        }
       ]
     },
     {
@@ -45,14 +173,46 @@
         "Bonn's warmth here is what makes its later push for recognition bite."
       ],
       "pairs": [
-        { "a": "Yugoslavia", "b": "USA", "value": 25.0 },
-        { "a": "Yugoslavia", "b": "Germany", "value": 30.0 },
-        { "a": "Yugoslavia", "b": "Italy", "value": 25.0 },
-        { "a": "Yugoslavia", "b": "UK", "value": 20.0 },
-        { "a": "Yugoslavia", "b": "France", "value": 20.0 },
-        { "a": "Yugoslavia", "b": "USSR", "value": 5.0 },
-        { "a": "Yugoslavia", "b": "Poland", "value": 10.0 },
-        { "a": "Yugoslavia", "b": "India", "value": 30.0 }
+        {
+          "a": "Yugoslavia",
+          "b": "USA",
+          "value": 25.0
+        },
+        {
+          "a": "Yugoslavia",
+          "b": "Germany",
+          "value": 30.0
+        },
+        {
+          "a": "Yugoslavia",
+          "b": "Italy",
+          "value": 25.0
+        },
+        {
+          "a": "Yugoslavia",
+          "b": "UK",
+          "value": 20.0
+        },
+        {
+          "a": "Yugoslavia",
+          "b": "France",
+          "value": 20.0
+        },
+        {
+          "a": "Yugoslavia",
+          "b": "USSR",
+          "value": 5.0
+        },
+        {
+          "a": "Yugoslavia",
+          "b": "Poland",
+          "value": 10.0
+        },
+        {
+          "a": "Yugoslavia",
+          "b": "India",
+          "value": 30.0
+        }
       ]
     },
     {
@@ -60,49 +220,165 @@
         "Brazil: friendly with everyone and committed to nobody. The 1980s debt crisis is what Washington means to Brasilia, so the warmth is real but thin, and the Latin American nuclear rivalry with Argentina ended at Guadalajara in 1991."
       ],
       "pairs": [
-        { "a": "Brazil", "b": "USA", "value": 45.0 },
-        { "a": "Brazil", "b": "Japan", "value": 30.0 },
-        { "a": "Brazil", "b": "Germany", "value": 25.0 },
-        { "a": "Brazil", "b": "UK", "value": 20.0 },
-        { "a": "Brazil", "b": "France", "value": 20.0 },
-        { "a": "Brazil", "b": "Italy", "value": 25.0 },
-        { "a": "Brazil", "b": "USSR", "value": 5.0 },
-        { "a": "Brazil", "b": "China", "value": 10.0 },
-        { "a": "Brazil", "b": "India", "value": 15.0 }
+        {
+          "a": "Brazil",
+          "b": "USA",
+          "value": 45.0
+        },
+        {
+          "a": "Brazil",
+          "b": "Japan",
+          "value": 30.0
+        },
+        {
+          "a": "Brazil",
+          "b": "Germany",
+          "value": 25.0
+        },
+        {
+          "a": "Brazil",
+          "b": "UK",
+          "value": 20.0
+        },
+        {
+          "a": "Brazil",
+          "b": "France",
+          "value": 20.0
+        },
+        {
+          "a": "Brazil",
+          "b": "Italy",
+          "value": 25.0
+        },
+        {
+          "a": "Brazil",
+          "b": "USSR",
+          "value": 5.0
+        },
+        {
+          "a": "Brazil",
+          "b": "China",
+          "value": 10.0
+        },
+        {
+          "a": "Brazil",
+          "b": "India",
+          "value": 15.0
+        }
       ]
     },
     {
       "note": [
-        "Indonesia: an anti-communist client of the West since 1965, and Japan's largest aid recipient. Relations with Beijing were suspended outright in 1967 over the coup and are only restored in August 1990 — which is why they start negative and have to be repaired."
+        "Indonesia: an anti-communist client of the West since 1965, and Japan's largest aid recipient. Relations with Beijing were suspended outright in 1967 over the coup and are only restored in August 1990 \u2014 which is why they start negative and have to be repaired."
       ],
       "pairs": [
-        { "a": "Indonesia", "b": "USA", "value": 40.0 },
-        { "a": "Indonesia", "b": "Japan", "value": 55.0 },
-        { "a": "Indonesia", "b": "China", "value": -20.0 },
-        { "a": "Indonesia", "b": "USSR", "value": 0.0 },
-        { "a": "Indonesia", "b": "India", "value": 20.0 },
-        { "a": "Indonesia", "b": "SaudiArabia", "value": 25.0 },
-        { "a": "Indonesia", "b": "SouthKorea", "value": 25.0 },
-        { "a": "Indonesia", "b": "Vietnam", "value": 5.0 }
+        {
+          "a": "Indonesia",
+          "b": "USA",
+          "value": 40.0
+        },
+        {
+          "a": "Indonesia",
+          "b": "Japan",
+          "value": 55.0
+        },
+        {
+          "a": "Indonesia",
+          "b": "China",
+          "value": -20.0
+        },
+        {
+          "a": "Indonesia",
+          "b": "USSR",
+          "value": 0.0
+        },
+        {
+          "a": "Indonesia",
+          "b": "India",
+          "value": 20.0
+        },
+        {
+          "a": "Indonesia",
+          "b": "SaudiArabia",
+          "value": 25.0
+        },
+        {
+          "a": "Indonesia",
+          "b": "SouthKorea",
+          "value": 25.0
+        },
+        {
+          "a": "Indonesia",
+          "b": "Vietnam",
+          "value": 5.0
+        }
       ]
     },
     {
       "note": [
-        "Egypt post-Camp David: the peace with Israel is cold but eleven years old, and it bought Cairo a permanent American subsidy. The suspension from the Arab League ended in 1989 and Egypt sits with Iraq in the Arab Cooperation Council as the game opens — Cairo's turn against Baghdad in August is a choice the sim has to make, not a fact it starts with."
+        "Egypt post-Camp David: the peace with Israel is cold but eleven years old, and it bought Cairo a permanent American subsidy. The suspension from the Arab League ended in 1989 and Egypt sits with Iraq in the Arab Cooperation Council as the game opens \u2014 Cairo's turn against Baghdad in August is a choice the sim has to make, not a fact it starts with."
       ],
       "pairs": [
-        { "a": "Egypt", "b": "USA", "value": 60.0 },
-        { "a": "Egypt", "b": "Israel", "value": 20.0 },
-        { "a": "Egypt", "b": "Iraq", "value": 20.0 },
-        { "a": "Egypt", "b": "SaudiArabia", "value": 55.0 },
-        { "a": "Egypt", "b": "Kuwait", "value": 45.0 },
-        { "a": "Egypt", "b": "USSR", "value": 15.0 },
-        { "a": "Egypt", "b": "UK", "value": 35.0 },
-        { "a": "Egypt", "b": "France", "value": 35.0 },
-        { "a": "Egypt", "b": "Iran", "value": -20.0 },
-        { "a": "Egypt", "b": "Turkey", "value": 25.0 },
-        { "a": "Egypt", "b": "China", "value": 15.0 },
-        { "a": "Egypt", "b": "India", "value": 25.0 }
+        {
+          "a": "Egypt",
+          "b": "USA",
+          "value": 60.0
+        },
+        {
+          "a": "Egypt",
+          "b": "Israel",
+          "value": 20.0
+        },
+        {
+          "a": "Egypt",
+          "b": "Iraq",
+          "value": 20.0
+        },
+        {
+          "a": "Egypt",
+          "b": "SaudiArabia",
+          "value": 55.0
+        },
+        {
+          "a": "Egypt",
+          "b": "Kuwait",
+          "value": 45.0
+        },
+        {
+          "a": "Egypt",
+          "b": "USSR",
+          "value": 15.0
+        },
+        {
+          "a": "Egypt",
+          "b": "UK",
+          "value": 35.0
+        },
+        {
+          "a": "Egypt",
+          "b": "France",
+          "value": 35.0
+        },
+        {
+          "a": "Egypt",
+          "b": "Iran",
+          "value": -20.0
+        },
+        {
+          "a": "Egypt",
+          "b": "Turkey",
+          "value": 25.0
+        },
+        {
+          "a": "Egypt",
+          "b": "China",
+          "value": 15.0
+        },
+        {
+          "a": "Egypt",
+          "b": "India",
+          "value": 25.0
+        }
       ]
     },
     {
@@ -110,36 +386,128 @@
         "Israel: the American relationship is the deepest in the game. Moscow broke relations in 1967 and does not restore them until October 1991, even as it lets its Jews leave. Ankara is the one Muslim capital with full ties."
       ],
       "pairs": [
-        { "a": "Israel", "b": "USA", "value": 80.0 },
-        { "a": "Israel", "b": "Germany", "value": 45.0 },
-        { "a": "Israel", "b": "UK", "value": 30.0 },
-        { "a": "Israel", "b": "France", "value": 20.0 },
-        { "a": "Israel", "b": "Italy", "value": 20.0 },
-        { "a": "Israel", "b": "Turkey", "value": 35.0 },
-        { "a": "Israel", "b": "USSR", "value": -25.0 },
-        { "a": "Israel", "b": "Iraq", "value": -70.0 },
-        { "a": "Israel", "b": "Iran", "value": -55.0 },
-        { "a": "Israel", "b": "SaudiArabia", "value": -50.0 },
-        { "a": "Israel", "b": "Kuwait", "value": -45.0 },
-        { "a": "Israel", "b": "India", "value": 5.0 }
+        {
+          "a": "Israel",
+          "b": "USA",
+          "value": 80.0
+        },
+        {
+          "a": "Israel",
+          "b": "Germany",
+          "value": 45.0
+        },
+        {
+          "a": "Israel",
+          "b": "UK",
+          "value": 30.0
+        },
+        {
+          "a": "Israel",
+          "b": "France",
+          "value": 20.0
+        },
+        {
+          "a": "Israel",
+          "b": "Italy",
+          "value": 20.0
+        },
+        {
+          "a": "Israel",
+          "b": "Turkey",
+          "value": 35.0
+        },
+        {
+          "a": "Israel",
+          "b": "USSR",
+          "value": -25.0
+        },
+        {
+          "a": "Israel",
+          "b": "Iraq",
+          "value": -70.0
+        },
+        {
+          "a": "Israel",
+          "b": "Iran",
+          "value": -55.0
+        },
+        {
+          "a": "Israel",
+          "b": "SaudiArabia",
+          "value": -50.0
+        },
+        {
+          "a": "Israel",
+          "b": "Kuwait",
+          "value": -45.0
+        },
+        {
+          "a": "Israel",
+          "b": "India",
+          "value": 5.0
+        }
       ]
     },
     {
       "note": [
-        "Turkey in NATO: forty years in the alliance, two million of its people working in Germany, and Incirlik. Baghdad is a customer, not a friend — the Kirkuk-Yumurtalik pipeline is Iraq's main outlet and Ozal shuts it in August 1990."
+        "Turkey in NATO: forty years in the alliance, two million of its people working in Germany, and Incirlik. Baghdad is a customer, not a friend \u2014 the Kirkuk-Yumurtalik pipeline is Iraq's main outlet and Ozal shuts it in August 1990."
       ],
       "pairs": [
-        { "a": "Turkey", "b": "USA", "value": 60.0 },
-        { "a": "Turkey", "b": "Germany", "value": 50.0 },
-        { "a": "Turkey", "b": "UK", "value": 50.0 },
-        { "a": "Turkey", "b": "France", "value": 40.0 },
-        { "a": "Turkey", "b": "Italy", "value": 45.0 },
-        { "a": "Turkey", "b": "USSR", "value": -20.0 },
-        { "a": "Turkey", "b": "Iraq", "value": 10.0 },
-        { "a": "Turkey", "b": "Iran", "value": 5.0 },
-        { "a": "Turkey", "b": "SaudiArabia", "value": 25.0 },
-        { "a": "Turkey", "b": "Pakistan", "value": 30.0 },
-        { "a": "Turkey", "b": "Poland", "value": 10.0 }
+        {
+          "a": "Turkey",
+          "b": "USA",
+          "value": 60.0
+        },
+        {
+          "a": "Turkey",
+          "b": "Germany",
+          "value": 50.0
+        },
+        {
+          "a": "Turkey",
+          "b": "UK",
+          "value": 50.0
+        },
+        {
+          "a": "Turkey",
+          "b": "France",
+          "value": 40.0
+        },
+        {
+          "a": "Turkey",
+          "b": "Italy",
+          "value": 45.0
+        },
+        {
+          "a": "Turkey",
+          "b": "USSR",
+          "value": -20.0
+        },
+        {
+          "a": "Turkey",
+          "b": "Iraq",
+          "value": 10.0
+        },
+        {
+          "a": "Turkey",
+          "b": "Iran",
+          "value": 5.0
+        },
+        {
+          "a": "Turkey",
+          "b": "SaudiArabia",
+          "value": 25.0
+        },
+        {
+          "a": "Turkey",
+          "b": "Pakistan",
+          "value": 30.0
+        },
+        {
+          "a": "Turkey",
+          "b": "Poland",
+          "value": 10.0
+        }
       ]
     },
     {
@@ -147,12 +515,36 @@
         "Nigeria: Commonwealth ties to London, oil ties to Washington, and the non-aligned habits of a country that has led African diplomacy since independence."
       ],
       "pairs": [
-        { "a": "Nigeria", "b": "UK", "value": 45.0 },
-        { "a": "Nigeria", "b": "USA", "value": 35.0 },
-        { "a": "Nigeria", "b": "France", "value": 10.0 },
-        { "a": "Nigeria", "b": "SaudiArabia", "value": 20.0 },
-        { "a": "Nigeria", "b": "India", "value": 20.0 },
-        { "a": "Nigeria", "b": "Brazil", "value": 15.0 }
+        {
+          "a": "Nigeria",
+          "b": "UK",
+          "value": 45.0
+        },
+        {
+          "a": "Nigeria",
+          "b": "USA",
+          "value": 35.0
+        },
+        {
+          "a": "Nigeria",
+          "b": "France",
+          "value": 10.0
+        },
+        {
+          "a": "Nigeria",
+          "b": "SaudiArabia",
+          "value": 20.0
+        },
+        {
+          "a": "Nigeria",
+          "b": "India",
+          "value": 20.0
+        },
+        {
+          "a": "Nigeria",
+          "b": "Brazil",
+          "value": 15.0
+        }
       ]
     },
     {
@@ -160,14 +552,1159 @@
         "Vietnam post-Cambodia: the last troops came home in September 1989 but nothing has been forgiven. Washington's embargo is fifteen years old and has four more to run; Beijing fought a border war in 1979, kept shelling into 1988, and sank three Vietnamese ships off Johnson Reef that March. Moscow is the patron whose money stops arriving this year."
       ],
       "pairs": [
-        { "a": "Vietnam", "b": "USSR", "value": 60.0 },
-        { "a": "Vietnam", "b": "China", "value": -45.0 },
-        { "a": "Vietnam", "b": "USA", "value": -50.0 },
-        { "a": "Vietnam", "b": "India", "value": 35.0 },
-        { "a": "Vietnam", "b": "Japan", "value": 0.0 },
-        { "a": "Vietnam", "b": "France", "value": 10.0 },
-        { "a": "Vietnam", "b": "SouthKorea", "value": -10.0 },
-        { "a": "Vietnam", "b": "Poland", "value": 25.0 }
+        {
+          "a": "Vietnam",
+          "b": "USSR",
+          "value": 60.0
+        },
+        {
+          "a": "Vietnam",
+          "b": "China",
+          "value": -45.0
+        },
+        {
+          "a": "Vietnam",
+          "b": "USA",
+          "value": -50.0
+        },
+        {
+          "a": "Vietnam",
+          "b": "India",
+          "value": 35.0
+        },
+        {
+          "a": "Vietnam",
+          "b": "Japan",
+          "value": 0.0
+        },
+        {
+          "a": "Vietnam",
+          "b": "France",
+          "value": 10.0
+        },
+        {
+          "a": "Vietnam",
+          "b": "SouthKorea",
+          "value": -10.0
+        },
+        {
+          "a": "Vietnam",
+          "b": "Poland",
+          "value": 25.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "Latin America and Washington in 1990. The hemisphere has just finished changing shape: every South American state except Chile is under a civilian government for the first time since the 1950s, Chile's own transition is ten weeks from completion, and the debt crisis that defined the 1980s is being wound up one Brady agreement at a time. The United States is the unchallenged outside power and has just demonstrated it in Panama in December 1989, so the numbers here are warm rather than deferential \u2014 these are governments that want American money and American markets and are not being coerced into wanting them.",
+        "Menem's Argentina is the outlier at 55: he called it a carnal relationship, took Argentina out of the Non-Aligned Movement, wound up the Condor II missile programme, and sent two warships to the Gulf in September 1990 \u2014 the only Latin American state to join the coalition. Colombia at 45 is the drug war and the Cartagena summit of February 1990. Mexico at 45 is Salinas asking for a free trade agreement in June 1990, against a century of keeping Washington at arm's length under the Estrada Doctrine. Venezuela at 45 is the largest oil supplier in the hemisphere and a Punto Fijo democracy in its thirty-second year."
+      ],
+      "pairs": [
+        {
+          "a": "Argentina",
+          "b": "USA",
+          "value": 55.0
+        },
+        {
+          "a": "Colombia",
+          "b": "USA",
+          "value": 45.0
+        },
+        {
+          "a": "Mexico",
+          "b": "USA",
+          "value": 45.0
+        },
+        {
+          "a": "Venezuela",
+          "b": "USA",
+          "value": 45.0
+        },
+        {
+          "a": "Chile",
+          "b": "USA",
+          "value": 40.0
+        },
+        {
+          "a": "Uruguay",
+          "b": "USA",
+          "value": 40.0
+        },
+        {
+          "a": "Ecuador",
+          "b": "USA",
+          "value": 35.0
+        },
+        {
+          "a": "Peru",
+          "b": "USA",
+          "value": 30.0
+        },
+        {
+          "a": "Bolivia",
+          "b": "USA",
+          "value": 30.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "Cuba, and the fact that the patron is dying. Thirty years of Soviet subsidy \u2014 sugar bought far above the world price, oil sold far below it, worth something like a quarter of Cuban national income \u2014 end when the CMEA moves to hard-currency settlement in January 1991. Moscow at 70 is the relationship as it stands in January 1990 and it is the most fragile number in this file. Washington at -75 is the embargo, twenty-eight years old, and the Torricelli and Helms-Burton Acts still to come.",
+        "Mexico at 40 is the one that needs explaining: Mexico was the only member of the Organization of American States that refused to break relations with Havana after 1964, and kept the air link open for the whole period. Venezuela restored relations in 1974 and Carlos Andres Perez was personally close to Castro, which is worth 15 and no more, because Venezuela was also the hemisphere's loudest advocate of representative democracy as a membership condition."
+      ],
+      "pairs": [
+        {
+          "a": "Cuba",
+          "b": "USSR",
+          "value": 70.0
+        },
+        {
+          "a": "Cuba",
+          "b": "USA",
+          "value": -75.0
+        },
+        {
+          "a": "Cuba",
+          "b": "Mexico",
+          "value": 40.0
+        },
+        {
+          "a": "Cuba",
+          "b": "Vietnam",
+          "value": 45.0
+        },
+        {
+          "a": "Cuba",
+          "b": "China",
+          "value": 15.0
+        },
+        {
+          "a": "Cuba",
+          "b": "Venezuela",
+          "value": 15.0
+        },
+        {
+          "a": "Cuba",
+          "b": "Peru",
+          "value": 10.0
+        },
+        {
+          "a": "Cuba",
+          "b": "Chile",
+          "value": -30.0
+        },
+        {
+          "a": "Cuba",
+          "b": "UK",
+          "value": -10.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "The quarrels inside the region, which are old and territorial and mostly unresolved. Bolivia and Chile have had no ambassadors since 1978 over the Litoral, the coastline Bolivia lost in the War of the Pacific in 1879 and has demanded back every year since; the Bolivian navy still exists and still parades on Dia del Mar. Peru and Ecuador dispute the Cordillera del Condor: Ecuador declared the 1942 Rio Protocol void in 1960, they shot at each other at Paquisha in 1981, and they fight the Cenepa war in January 1995 \u2014 which this dyad and the border are meant to make reachable without scripting it.",
+        "Colombia and Venezuela at -15 is the Gulf of Venezuela and the Los Monjes archipelago, a maritime delimitation that brought the corvette Caldas into disputed water in August 1987 and both air forces to readiness. Argentina and the United Kingdom at -20 is the Falklands: relations were restored on 19 February 1990 under the Madrid formula, with both sides agreeing to set sovereignty aside rather than settle it. Argentina and Chile at 35 is warm and recent \u2014 the 1984 Treaty of Peace and Friendship ended the Beagle Channel crisis that had come within hours of war in December 1978, and twenty-two of the twenty-four remaining boundary segments are settled in 1991."
+      ],
+      "pairs": [
+        {
+          "a": "Bolivia",
+          "b": "Chile",
+          "value": -35.0
+        },
+        {
+          "a": "Ecuador",
+          "b": "Peru",
+          "value": -45.0
+        },
+        {
+          "a": "Chile",
+          "b": "Peru",
+          "value": -10.0
+        },
+        {
+          "a": "Colombia",
+          "b": "Venezuela",
+          "value": -15.0
+        },
+        {
+          "a": "Argentina",
+          "b": "UK",
+          "value": -20.0
+        },
+        {
+          "a": "Argentina",
+          "b": "Iraq",
+          "value": -20.0
+        },
+        {
+          "a": "Chile",
+          "b": "UK",
+          "value": 25.0
+        },
+        {
+          "a": "Peru",
+          "b": "USSR",
+          "value": 25.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "The two integration projects the region is building in 1990, which is what most of the warm intra-regional numbers are. Brazil and Argentina at 60 is the largest reversal in South American diplomatic history: two states that had spent the 1970s racing each other toward a bomb signed the Iguacu Declaration on nuclear policy in 1985, opened each other's enrichment plants to inspection, signed the Buenos Aires Act in July 1990 setting a common market for 1995, and brought in Uruguay and Paraguay at Asuncion in March 1991. The Foz do Iguacu declaration of 28 November 1990 renounced nuclear weapons outright.",
+        "The other project is the Andean Pact, relaunched by the Galapagos Declaration of December 1989 after a decade of paralysis: Bolivia, Colombia, Ecuador, Peru and Venezuela, hence the block of thirties between them."
+      ],
+      "pairs": [
+        {
+          "a": "Argentina",
+          "b": "Brazil",
+          "value": 60.0
+        },
+        {
+          "a": "Argentina",
+          "b": "Uruguay",
+          "value": 55.0
+        },
+        {
+          "a": "Brazil",
+          "b": "Uruguay",
+          "value": 50.0
+        },
+        {
+          "a": "Argentina",
+          "b": "Chile",
+          "value": 35.0
+        },
+        {
+          "a": "Argentina",
+          "b": "Bolivia",
+          "value": 35.0
+        },
+        {
+          "a": "Brazil",
+          "b": "Bolivia",
+          "value": 30.0
+        },
+        {
+          "a": "Bolivia",
+          "b": "Peru",
+          "value": 30.0
+        },
+        {
+          "a": "Bolivia",
+          "b": "Ecuador",
+          "value": 25.0
+        },
+        {
+          "a": "Bolivia",
+          "b": "Colombia",
+          "value": 30.0
+        },
+        {
+          "a": "Bolivia",
+          "b": "Venezuela",
+          "value": 30.0
+        },
+        {
+          "a": "Colombia",
+          "b": "Ecuador",
+          "value": 30.0
+        },
+        {
+          "a": "Colombia",
+          "b": "Peru",
+          "value": 30.0
+        },
+        {
+          "a": "Ecuador",
+          "b": "Venezuela",
+          "value": 30.0
+        },
+        {
+          "a": "Peru",
+          "b": "Venezuela",
+          "value": 30.0
+        },
+        {
+          "a": "Colombia",
+          "b": "Mexico",
+          "value": 35.0
+        },
+        {
+          "a": "Mexico",
+          "b": "Venezuela",
+          "value": 35.0
+        },
+        {
+          "a": "Brazil",
+          "b": "Mexico",
+          "value": 25.0
+        },
+        {
+          "a": "Chile",
+          "b": "Uruguay",
+          "value": 35.0
+        },
+        {
+          "a": "Mexico",
+          "b": "Japan",
+          "value": 30.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "The Maghreb, eleven months after the Arab Maghreb Union was signed at Marrakesh on 17 February 1989. The treaty is real and the warmth it records is real, but it sits on top of the Western Sahara, which is why Algeria and Morocco are the one negative dyad inside it: Algeria armed and housed POLISARIO at Tindouf, the land border had been shut from 1976 to 1988, and the union is the truce rather than the settlement. Tunisia is on good terms with everyone because that has been its entire foreign policy since 1956, and its distance from Libya is the residue of the failed Djerba union of 1974 and the mass expulsion of Tunisian workers in 1985."
+      ],
+      "pairs": [
+        {
+          "a": "Algeria",
+          "b": "Morocco",
+          "value": -20.0
+        },
+        {
+          "a": "Algeria",
+          "b": "Tunisia",
+          "value": 45.0
+        },
+        {
+          "a": "Algeria",
+          "b": "Libya",
+          "value": 30.0
+        },
+        {
+          "a": "Morocco",
+          "b": "Tunisia",
+          "value": 40.0
+        },
+        {
+          "a": "Morocco",
+          "b": "Libya",
+          "value": 10.0
+        },
+        {
+          "a": "Tunisia",
+          "b": "Libya",
+          "value": 20.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "North Africa outward. Libya is the outlier of the period: Washington bombed Tripoli and Benghazi in April 1986, London had broken relations after WPC Yvonne Fletcher was shot from the People's Bureau in 1984, Paris had fought it by proxy in Chad until 1987, and Cairo had fought it directly in 1977 \u2014 while Moscow was the supplier of essentially the whole inventory. Algeria kept the Soviet arms relationship and the non-aligned posture it earned mediating the Algiers Accords of 1981. Morocco and Tunisia are the West's clients in the region, but scored below the NATO dyads and below Cairo's 60 with Washington: Morocco was not designated a major non-NATO ally until 2004 and Tunisia not until 2015. Rabat's quiet channel to Israel is why Morocco is the least hostile Arab capital on that row: Shimon Peres was received at Ifrane in July 1986."
+      ],
+      "pairs": [
+        {
+          "a": "Libya",
+          "b": "USA",
+          "value": -75.0
+        },
+        {
+          "a": "Libya",
+          "b": "UK",
+          "value": -65.0
+        },
+        {
+          "a": "Libya",
+          "b": "France",
+          "value": -35.0
+        },
+        {
+          "a": "Libya",
+          "b": "USSR",
+          "value": 40.0
+        },
+        {
+          "a": "Libya",
+          "b": "Egypt",
+          "value": -25.0
+        },
+        {
+          "a": "Libya",
+          "b": "Israel",
+          "value": -85.0
+        },
+        {
+          "a": "Libya",
+          "b": "Iran",
+          "value": 25.0
+        },
+        {
+          "a": "Algeria",
+          "b": "USSR",
+          "value": 35.0
+        },
+        {
+          "a": "Algeria",
+          "b": "France",
+          "value": 20.0
+        },
+        {
+          "a": "Algeria",
+          "b": "USA",
+          "value": 10.0
+        },
+        {
+          "a": "Algeria",
+          "b": "Israel",
+          "value": -65.0
+        },
+        {
+          "a": "Algeria",
+          "b": "Egypt",
+          "value": 25.0
+        },
+        {
+          "a": "Morocco",
+          "b": "France",
+          "value": 50.0
+        },
+        {
+          "a": "Morocco",
+          "b": "USA",
+          "value": 40.0
+        },
+        {
+          "a": "Morocco",
+          "b": "SaudiArabia",
+          "value": 40.0
+        },
+        {
+          "a": "Morocco",
+          "b": "Egypt",
+          "value": 35.0
+        },
+        {
+          "a": "Morocco",
+          "b": "Israel",
+          "value": -15.0
+        },
+        {
+          "a": "Tunisia",
+          "b": "France",
+          "value": 45.0
+        },
+        {
+          "a": "Tunisia",
+          "b": "USA",
+          "value": 30.0
+        },
+        {
+          "a": "Tunisia",
+          "b": "Egypt",
+          "value": 30.0
+        },
+        {
+          "a": "Tunisia",
+          "b": "Israel",
+          "value": -55.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "Sudan seven months after Omar al-Bashir's coup. The National Islamic Front turned Khartoum toward Tehran and Baghdad and away from the Gulf patrons who had funded it under Nimeiry and Sadiq al-Mahdi; backing Iraq over Kuwait in August 1990 finished the Saudi relationship and most of the Western one. Egypt is the near neighbour that shares the river and cannot afford to lose it, and the relationship was correct in January 1990 and openly hostile within three years."
+      ],
+      "pairs": [
+        {
+          "a": "Sudan",
+          "b": "Egypt",
+          "value": 20.0
+        },
+        {
+          "a": "Sudan",
+          "b": "Iran",
+          "value": 30.0
+        },
+        {
+          "a": "Sudan",
+          "b": "Iraq",
+          "value": 30.0
+        },
+        {
+          "a": "Sudan",
+          "b": "SaudiArabia",
+          "value": -10.0
+        },
+        {
+          "a": "Sudan",
+          "b": "USA",
+          "value": -25.0
+        },
+        {
+          "a": "Sudan",
+          "b": "UK",
+          "value": -10.0
+        },
+        {
+          "a": "Sudan",
+          "b": "Libya",
+          "value": 35.0
+        },
+        {
+          "a": "Sudan",
+          "b": "Israel",
+          "value": -60.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "Southern Africa at the moment the Border War ends and apartheid begins to. The Tripartite Accord of December 1988 took the SADF out of Angola and started the Cuban withdrawal; Namibia became independent on 21 March 1990. Pretoria is still the state every Frontline government organised itself against, and the ANC camps were in Tanzania, Angola and Zambia. Two governments do not follow the line: Mobutu ran UNITA's supply route and traded with Pretoria throughout, and Houphouet-Boigny argued publicly for dialogue rather than sanctions and was one of the few African leaders to receive a South African prime minister.",
+        "Britain is warmer to Pretoria than Washington because Thatcher opposed comprehensive sanctions that the US Congress had imposed over Reagan's veto in 1986. Israel is warmer than either: the arms relationship survived the 1987 restrictions, and it is the other half of the nuclear programme."
+      ],
+      "pairs": [
+        {
+          "a": "SouthAfrica",
+          "b": "Angola",
+          "value": -60.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "Zimbabwe",
+          "value": -55.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "Tanzania",
+          "value": -60.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "Nigeria",
+          "value": -65.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "Ethiopia",
+          "value": -45.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "USSR",
+          "value": -55.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "USA",
+          "value": 10.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "UK",
+          "value": 30.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "Israel",
+          "value": 45.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "Zaire",
+          "value": 25.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "CoteDIvoire",
+          "value": 20.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "Kenya",
+          "value": -15.0
+        },
+        {
+          "a": "SouthAfrica",
+          "b": "Japan",
+          "value": 20.0
+        },
+        {
+          "a": "Zimbabwe",
+          "b": "China",
+          "value": 45.0
+        },
+        {
+          "a": "Zimbabwe",
+          "b": "UK",
+          "value": 30.0
+        },
+        {
+          "a": "Zimbabwe",
+          "b": "USSR",
+          "value": 10.0
+        },
+        {
+          "a": "Zimbabwe",
+          "b": "Tanzania",
+          "value": 45.0
+        },
+        {
+          "a": "Zimbabwe",
+          "b": "Angola",
+          "value": 30.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "The Soviet clients on the continent and the American ones, in the last year the money arrives. Moscow armed Mengistu against Somalia and then against his own provinces, and armed the MPLA through fifteen years of civil war; both accounts closed with the Union. Washington's African client was Mobutu, who had been paid since 1965 to be the anti-communist in the middle of the map and was worth less every month the Cold War wound down. Zaire and Angola are hostile because the Kinshasa corridor was how the CIA and later Pretoria supplied Savimbi.",
+        "Zimbabwe's warmth to Beijing and coolness to Moscow is the liberation-war split: China armed ZANU, the Soviet Union backed ZAPU, and the side that won remembers."
+      ],
+      "pairs": [
+        {
+          "a": "Ethiopia",
+          "b": "USSR",
+          "value": 65.0
+        },
+        {
+          "a": "Ethiopia",
+          "b": "USA",
+          "value": -35.0
+        },
+        {
+          "a": "Ethiopia",
+          "b": "Israel",
+          "value": 25.0
+        },
+        {
+          "a": "Ethiopia",
+          "b": "Egypt",
+          "value": -25.0
+        },
+        {
+          "a": "Ethiopia",
+          "b": "Kenya",
+          "value": 30.0
+        },
+        {
+          "a": "Ethiopia",
+          "b": "SaudiArabia",
+          "value": -30.0
+        },
+        {
+          "a": "Angola",
+          "b": "USSR",
+          "value": 70.0
+        },
+        {
+          "a": "Angola",
+          "b": "USA",
+          "value": -45.0
+        },
+        {
+          "a": "Angola",
+          "b": "Zaire",
+          "value": -40.0
+        },
+        {
+          "a": "Angola",
+          "b": "Brazil",
+          "value": 35.0
+        },
+        {
+          "a": "Angola",
+          "b": "CoteDIvoire",
+          "value": -25.0
+        },
+        {
+          "a": "Zaire",
+          "b": "USA",
+          "value": 45.0
+        },
+        {
+          "a": "Zaire",
+          "b": "France",
+          "value": 55.0
+        },
+        {
+          "a": "Zaire",
+          "b": "USSR",
+          "value": -35.0
+        },
+        {
+          "a": "Zaire",
+          "b": "China",
+          "value": 25.0
+        },
+        {
+          "a": "Zaire",
+          "b": "Uganda",
+          "value": -20.0
+        },
+        {
+          "a": "Tanzania",
+          "b": "China",
+          "value": 55.0
+        },
+        {
+          "a": "Tanzania",
+          "b": "USSR",
+          "value": 15.0
+        },
+        {
+          "a": "Tanzania",
+          "b": "Uganda",
+          "value": 35.0
+        },
+        {
+          "a": "Tanzania",
+          "b": "Kenya",
+          "value": 5.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "West and East Africa, where the dominant relationship is with the former metropole rather than with a superpower. France's is not a memory: the CFA franc is issued against a French Treasury guarantee, the 1961 defence accords put French troops at Dakar, Port-Bouet and Douala, and Paris used them. Senegal and Cote d'Ivoire are the two closest, and Houphouet-Boigny in particular treated the relationship as his own foreign policy.",
+        "Nigeria is at odds with all three of its neighbours here for different reasons: Bakassi with Cameroon, the 1983 expulsion of an estimated 700,000 Ghanaians with Accra, and simple weight. Kenya and Uganda have not forgiven each other for the 1987 border clashes or the 1977 collapse of the East African Community, and Tanzania is on Kampala's side because it put the current government there.",
+        "Senegal and Egypt are warm to Riyadh through the Organisation of the Islamic Conference; Senegal sent a battalion to Desert Shield in 1990."
+      ],
+      "pairs": [
+        {
+          "a": "Senegal",
+          "b": "France",
+          "value": 75.0
+        },
+        {
+          "a": "Senegal",
+          "b": "USA",
+          "value": 30.0
+        },
+        {
+          "a": "Senegal",
+          "b": "SaudiArabia",
+          "value": 40.0
+        },
+        {
+          "a": "Senegal",
+          "b": "Egypt",
+          "value": 25.0
+        },
+        {
+          "a": "Senegal",
+          "b": "CoteDIvoire",
+          "value": 40.0
+        },
+        {
+          "a": "Senegal",
+          "b": "Nigeria",
+          "value": 15.0
+        },
+        {
+          "a": "CoteDIvoire",
+          "b": "France",
+          "value": 80.0
+        },
+        {
+          "a": "CoteDIvoire",
+          "b": "USA",
+          "value": 30.0
+        },
+        {
+          "a": "CoteDIvoire",
+          "b": "Ghana",
+          "value": 15.0
+        },
+        {
+          "a": "CoteDIvoire",
+          "b": "Cameroon",
+          "value": 35.0
+        },
+        {
+          "a": "Cameroon",
+          "b": "France",
+          "value": 75.0
+        },
+        {
+          "a": "Cameroon",
+          "b": "Nigeria",
+          "value": -25.0
+        },
+        {
+          "a": "Cameroon",
+          "b": "USA",
+          "value": 20.0
+        },
+        {
+          "a": "Ghana",
+          "b": "UK",
+          "value": 35.0
+        },
+        {
+          "a": "Ghana",
+          "b": "USA",
+          "value": 20.0
+        },
+        {
+          "a": "Ghana",
+          "b": "Nigeria",
+          "value": -10.0
+        },
+        {
+          "a": "Ghana",
+          "b": "USSR",
+          "value": 10.0
+        },
+        {
+          "a": "Kenya",
+          "b": "UK",
+          "value": 55.0
+        },
+        {
+          "a": "Kenya",
+          "b": "USA",
+          "value": 45.0
+        },
+        {
+          "a": "Kenya",
+          "b": "Uganda",
+          "value": -15.0
+        },
+        {
+          "a": "Uganda",
+          "b": "UK",
+          "value": 25.0
+        },
+        {
+          "a": "Uganda",
+          "b": "USA",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "South Asia in January 1990, where the organising fact is that India is the only neighbour every one of these states has and none of them can balance it alone.",
+        "Nepal is in the eleventh month of an Indian squeeze: on 23 March 1989 Delhi let the trade and transit treaties lapse and closed thirteen of the fifteen border entry points, cutting a landlocked country off from its fuel. Kathmandu's answer since the 1988 arms purchase has been Beijing, which is what provoked the squeeze in the first place.",
+        "Sri Lanka is watching the Indian Peace Keeping Force leave under protest. President Premadasa demanded the withdrawal of a force his predecessor had invited in under the 1987 accord; the last of it went on 24 March 1990, and while it was still there Colombo was arming the LTTE it had come to disarm.",
+        "Bangladesh owes its existence to the Indian intervention of 1971 and has spent every year since arguing with Delhi about the Ganges at Farakka. Pakistan recognised it only in 1974. China, which vetoed its UN membership until 1974, is now its principal arms supplier.",
+        "Afghanistan is the Cold War's last live proxy war. Moscow's combat troops left in February 1989 but the money and the weapons did not; Washington, Islamabad and Riyadh are on the other side of the same war, and Pakistan holds three million Afghan refugees and the mujahideen command that runs out of Peshawar. India was the only South Asian state that recognised the Kabul government throughout.",
+        "Myanmar under SLORC is isolated from the West after the 1988 crackdown and has replaced it with China, which signed the border trade agreement in August 1988 and began the arms relationship in 1989. Japan, its largest aid donor, recognised the junta in February 1989 and resumed assistance."
+      ],
+      "pairs": [
+        {
+          "a": "Nepal",
+          "b": "India",
+          "value": -25.0
+        },
+        {
+          "a": "Nepal",
+          "b": "China",
+          "value": 30.0
+        },
+        {
+          "a": "Nepal",
+          "b": "UK",
+          "value": 45.0
+        },
+        {
+          "a": "Nepal",
+          "b": "Bangladesh",
+          "value": 20.0
+        },
+        {
+          "a": "SriLanka",
+          "b": "India",
+          "value": -10.0
+        },
+        {
+          "a": "SriLanka",
+          "b": "UK",
+          "value": 30.0
+        },
+        {
+          "a": "SriLanka",
+          "b": "Pakistan",
+          "value": 25.0
+        },
+        {
+          "a": "SriLanka",
+          "b": "China",
+          "value": 20.0
+        },
+        {
+          "a": "Bangladesh",
+          "b": "India",
+          "value": 15.0
+        },
+        {
+          "a": "Bangladesh",
+          "b": "Pakistan",
+          "value": -10.0
+        },
+        {
+          "a": "Bangladesh",
+          "b": "China",
+          "value": 35.0
+        },
+        {
+          "a": "Bangladesh",
+          "b": "SaudiArabia",
+          "value": 30.0
+        },
+        {
+          "a": "Bangladesh",
+          "b": "USA",
+          "value": 20.0
+        },
+        {
+          "a": "Bangladesh",
+          "b": "Myanmar",
+          "value": -10.0
+        },
+        {
+          "a": "Afghanistan",
+          "b": "USSR",
+          "value": 70.0
+        },
+        {
+          "a": "Afghanistan",
+          "b": "USA",
+          "value": -55.0
+        },
+        {
+          "a": "Afghanistan",
+          "b": "Pakistan",
+          "value": -50.0
+        },
+        {
+          "a": "Afghanistan",
+          "b": "SaudiArabia",
+          "value": -40.0
+        },
+        {
+          "a": "Afghanistan",
+          "b": "Iran",
+          "value": -30.0
+        },
+        {
+          "a": "Afghanistan",
+          "b": "India",
+          "value": 30.0
+        },
+        {
+          "a": "Myanmar",
+          "b": "China",
+          "value": 45.0
+        },
+        {
+          "a": "Myanmar",
+          "b": "USA",
+          "value": -40.0
+        },
+        {
+          "a": "Myanmar",
+          "b": "UK",
+          "value": -30.0
+        },
+        {
+          "a": "Myanmar",
+          "b": "Japan",
+          "value": 25.0
+        },
+        {
+          "a": "Myanmar",
+          "b": "India",
+          "value": -10.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "The two Koreas and the two Chinas: four states whose foreign policy in 1990 is mostly about denying recognition to a fifth. Pyongyang's patrons are Beijing and Moscow, and Moscow is about to defect \u2014 Shevardnadze went to Pyongyang in September 1990 to say the Soviet Union would recognise Seoul, and Kim Yong Nam told him it would push the North toward its own bomb. Taipei's position is the mirror image: Washington switched recognition to Beijing in 1979 and kept selling it arms anyway under the Taiwan Relations Act.",
+        "This region ships only the dyads it would be a misrepresentation to omit. The trade and aid warmth that also existed \u2014 Japanese investment across ASEAN, the Commonwealth ties to Kuala Lumpur and Singapore \u2014 is left out deliberately. Those values have no source behind them the way a treaty or a severed recognition does, and a dense mesh of invented mid-range friendship measurably redirects the great powers' patronage budgets. See the branch notes on a_pact_drags_a_great_power_into_a_war_it_did_not_start."
+      ],
+      "pairs": [
+        {
+          "a": "NorthKorea",
+          "b": "SouthKorea",
+          "value": -70.0
+        },
+        {
+          "a": "NorthKorea",
+          "b": "China",
+          "value": 60.0
+        },
+        {
+          "a": "NorthKorea",
+          "b": "USSR",
+          "value": 45.0
+        },
+        {
+          "a": "NorthKorea",
+          "b": "USA",
+          "value": -75.0
+        },
+        {
+          "a": "NorthKorea",
+          "b": "Japan",
+          "value": -55.0
+        },
+        {
+          "a": "Taiwan",
+          "b": "China",
+          "value": -60.0
+        },
+        {
+          "a": "Taiwan",
+          "b": "USA",
+          "value": 45.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "Indochina and the states around it. Vietnam's two junior partners are still junior: the Lao People's Revolutionary Party came out of the same movement and signed a twenty-five-year treaty of friendship with Hanoi in 1977, and the State of Cambodia was installed by the Vietnamese army in 1979 and had watched it leave four months before the game opens. Thailand is the front line of the other side of that war \u2014 it sheltered the resistance coalition, the Khmer Rouge included, and Chatichai's line about turning Indochina from a battlefield into a marketplace was in 1988 the first crack in that policy. Mongolia's foreign relations in January 1990 consist almost entirely of the Soviet Union, whose 39th Army is still on its territory and whose subsidies are a third of its output. Bangkok and Manila hold American defence treaties; Kuala Lumpur and Manila do not discuss Sabah."
+      ],
+      "pairs": [
+        {
+          "a": "Laos",
+          "b": "Vietnam",
+          "value": 75.0
+        },
+        {
+          "a": "Cambodia",
+          "b": "Vietnam",
+          "value": 70.0
+        },
+        {
+          "a": "Cambodia",
+          "b": "China",
+          "value": -55.0
+        },
+        {
+          "a": "Cambodia",
+          "b": "Thailand",
+          "value": -45.0
+        },
+        {
+          "a": "Thailand",
+          "b": "Vietnam",
+          "value": -30.0
+        },
+        {
+          "a": "Mongolia",
+          "b": "USSR",
+          "value": 70.0
+        },
+        {
+          "a": "Thailand",
+          "b": "USA",
+          "value": 60.0
+        },
+        {
+          "a": "Philippines",
+          "b": "USA",
+          "value": 65.0
+        },
+        {
+          "a": "Malaysia",
+          "b": "Singapore",
+          "value": 40.0
+        },
+        {
+          "a": "Malaysia",
+          "b": "Philippines",
+          "value": 20.0
+        }
+      ]
+    },
+    {
+      "note": [
+        "The Anglosphere in 1990, and the one crack in it. Canada is inside NORAD, NATO and the Free Trade Agreement that took effect on 1 January 1989; Australia hosts Pine Gap and Nurrungar and is a full ANZUS partner. New Zealand is not. Washington suspended its ANZUS obligations to Wellington in 1986 over the Nuclear Free Zone Act's ban on nuclear-armed and nuclear-powered ship visits, and the two are cordial but not allied - which is why the New Zealand-USA figure sits far below the others while New Zealand-Australia, bound by the 1983 Closer Economic Relations agreement and an undisturbed defence relationship, sits at the top of the table.",
+        "Japan is Australia's largest export market by a wide margin, a trade relationship with no security content attached to it in 1990."
+      ],
+      "pairs": [
+        {
+          "a": "Canada",
+          "b": "USA",
+          "value": 85.0
+        },
+        {
+          "a": "Canada",
+          "b": "UK",
+          "value": 75.0
+        },
+        {
+          "a": "Canada",
+          "b": "France",
+          "value": 50.0
+        },
+        {
+          "a": "Canada",
+          "b": "Germany",
+          "value": 55.0
+        },
+        {
+          "a": "Canada",
+          "b": "USSR",
+          "value": 15.0
+        },
+        {
+          "a": "Australia",
+          "b": "USA",
+          "value": 80.0
+        },
+        {
+          "a": "Australia",
+          "b": "UK",
+          "value": 75.0
+        },
+        {
+          "a": "Australia",
+          "b": "Japan",
+          "value": 60.0
+        },
+        {
+          "a": "Australia",
+          "b": "Indonesia",
+          "value": 30.0
+        },
+        {
+          "a": "Australia",
+          "b": "China",
+          "value": 20.0
+        },
+        {
+          "a": "Australia",
+          "b": "USSR",
+          "value": 5.0
+        },
+        {
+          "a": "NewZealand",
+          "b": "Australia",
+          "value": 88.0
+        },
+        {
+          "a": "NewZealand",
+          "b": "UK",
+          "value": 72.0
+        },
+        {
+          "a": "NewZealand",
+          "b": "USA",
+          "value": 35.0
+        },
+        {
+          "a": "NewZealand",
+          "b": "Japan",
+          "value": 45.0
+        },
+        {
+          "a": "NewZealand",
+          "b": "USSR",
+          "value": 15.0
+        },
+        {
+          "a": "Canada",
+          "b": "Australia",
+          "value": 70.0
+        },
+        {
+          "a": "Canada",
+          "b": "NewZealand",
+          "value": 65.0
+        }
       ]
     }
   ]

@@ -1,0 +1,41 @@
+{
+  "id": "Czechoslovakia",
+  "name": "Czechoslovakia",
+  "system": "Command",
+  "authoritarianism": 0.2,
+  "economy": {
+    "gdp_bn": 50.0,
+    "population_m": 15.6,
+    "tfp_trend": 0.004,
+    "inflation": 0.1,
+    "interest_rate": 0.1,
+    "tax_rate": 0.45,
+    "mil_spend_gdp": 0.035,
+    "state_invest_gdp": 0.2,
+    "priv_invest_gdp": 0.05,
+    "debt_gdp": 0.15,
+    "oil_mbd": 0.003,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 62.0,
+    "separatism": 0.45
+  },
+  "military": {
+    "strength": 9.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $50bn: the World Bank carries no Czechoslovak series, so this is the sum of the two successor series it does carry for 1990 — Czechia about $34.9bn and Slovakia about $15.5bn in current USD. Every dollar GDP for a CMEA economy in 1990 is a conversion at a rate that did not clear a market; the koruna was devalued three times during 1990 (8 January, 15 October, 28 December) from 14.3 to 28 to the dollar, so the same real output supports a figure roughly twice this one at the January rate. Treated as an order-of-magnitude transcription, not a precise one.",
+    "Population 15.6m at the 3 March 1991 census: 10.30m in the Czech Republic, 5.27m in Slovakia (Federal Statistical Office).",
+    "Inflation 10.0%: the 1990 CPI print was about 10%, most of it from the July 1990 removal of the negative turnover tax on food. The shock year was 1991 at 57.9%, after the 1 January 1991 price liberalisation, which is outside the start state.",
+    "Interest rate 10%: the State Bank of Czechoslovakia raised its discount rate from 4% to 5% in 1990 and to 10% on 1 January 1991 as the Klaus stabilisation began. 10% is entered because the coupling rule in the schema prices the real rate against inflation, and a 5% nominal against 10% inflation reads as a stimulus the January 1990 monetary stance was not.",
+    "system Command: the game opens on 1 January 1990. The Scenario for Economic Reform was only approved by the Federal Assembly in September 1990 and the big-bang liberalisation took effect 1 January 1991. In January 1990 prices, foreign trade and the banking system are still administered.",
+    "debt_gdp 0.15: Czechoslovakia carried the lowest external debt in the bloc, roughly $8bn gross at end-1990 against Hungary's $21bn on two-thirds the population. Husak's regime borrowed to avoid borrowing.",
+    "mil_spend_gdp 0.035: SIPRI puts Czechoslovak military expenditure near 3.7% of GDP for 1990. The Calfa government cut conscription from 24 to 18 months in 1990 and the arms industry, concentrated in Slovakia, was ordered wound down — the decision that did more than any other to make Slovak separatism economic.",
+    "oil_mbd 0.003: the south Moravian fields near Hodonin produced roughly 80,000 tonnes a year. Czechoslovakia ran on Soviet crude down the Druzhba line and on domestic brown coal.",
+    "authoritarianism 0.20: Article 4 of the constitution, the Communist Party's leading role, was struck out on 29 November 1989; Havel was elected president on 29 December 1989; the Government of National Understanding under Marian Calfa had a non-communist majority from 10 December 1989. Free elections followed on 8-9 June 1990.",
+    "separatism 0.45: the Hyphen War over the state's own name ran from January to April 1990 and was settled by renaming it the Czech and Slovak Federative Republic on 20 April. Slovakia declared sovereignty in July 1992 and the federation dissolved on 1 January 1993. The strain is in the start state because it was.",
+    "military strength 9.0: the Czechoslovak People's Army fielded about 200,000 troops and 3,300 tanks in 1990, the second-largest non-Soviet Warsaw Pact force after Poland's 312,000, and is indexed just below Poland's 12.0 accordingly. Soviet warheads were stored on Czechoslovak territory under Soviet custody and left with the Central Group of Forces by June 1991; they were never Czechoslovak, so nuclear is false."
+  ]
+}
