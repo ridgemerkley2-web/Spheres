@@ -1,4 +1,5 @@
 pub mod economy;
+pub mod exact;
 pub mod init;
 pub mod politics;
 pub mod statecraft;
@@ -325,7 +326,7 @@ mod tests {
             if !n.alive {
                 continue;
             }
-            let cagr = (n.gdp / gdp_1990).powf(1.0 / 35.0) - 1.0;
+            let cagr = exact::powf(n.gdp / gdp_1990, 1.0 / 35.0) - 1.0;
             assert!(
                 cagr < 0.040,
                 "{:?} compounded {:.1}%/yr over 35 years — the frontier is running away",
@@ -368,17 +369,28 @@ mod tests {
     fn golden_hash_of_a_known_run() {
         // A pinned fingerprint of one exact timeline. The two determinism tests
         // build both worlds in one process against one libm, so neither can see
-        // a divergence between machines — and the sim leans on exp, powf and ln,
-        // none of which are IEEE-exact across platforms or glibc versions.
+        // a divergence between machines.
         //
-        // The endgame is developing on Windows while a Linux box runs the suite
-        // nightly. If this assertion fails on a platform where nothing else
-        // does, THAT IS THE FINDING, not a broken test: it means the float
-        // shapes need replacing with exactly-reproducible equivalents. Record
-        // the platform and do not simply re-pin the number.
+        // That used to be an open hole: the sim called `f64::exp`, `f64::powf`
+        // and `f64::ln`, none of which IEEE 754 specifies, so this number was
+        // only ever a Windows number. It is now expected to hold on every
+        // platform, because every transcendental the tick loop touches goes
+        // through `crate::exact`, which is built from IEEE-exact primitives
+        // only. If this assertion fails on one platform and passes on another,
+        // THAT IS THE FINDING: something has slipped back onto the platform
+        // libm, or a target is computing f64 in x87 registers. Record the
+        // platform and do not simply re-pin the number.
+        //
+        // Re-pinned once, deliberately, when `exact` replaced the libm calls
+        // (Phase 1.3). The move is a few ulps, not a change of model: after 240
+        // months every nation's GDP is bit-identical to the old value, the
+        // 35-year headline stream is byte-identical, and the 2025 league table
+        // is identical to the digit. The one difference measurable at all was
+        // France's `tfp_trend` in its sixteenth significant figure. Was
+        // 0xb675826e8941683d.
         //
         // Pinned on: Windows, x86_64-pc-windows-gnu, rustc 1.97.1.
-        const GOLDEN: u64 = 0xb675826e8941683d;
+        const GOLDEN: u64 = 0x9ea63c12f4de0e64;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

@@ -37,6 +37,46 @@
   a guarantee, cutting a client loose, tearing up a treaty — are charged to
   bankruptcy rather than refused, because a government can always renege
 
+## Closed: the golden hash was only ever a Windows number (PLAN 1.3)
+
+Both determinism tests build their two worlds in one process against one libm,
+so neither could ever see the failure that actually threatens the design: the
+same seed producing a different history on a different machine. IEEE 754 pins
+`+ - * /` and `sqrt` to the last bit and says nothing about `exp`, `ln` or
+`pow` — and glibc does not even agree with itself across versions, having
+rewritten `exp` in 2.27 and again in 2.28. The endgame is Ridge on Windows and a
+Proxmox box running the suite nightly, which is exactly the arrangement where
+that surfaces as a red test nobody can reproduce.
+
+`spheres-sim/src/exact.rs` now provides `exp`, `ln` and `powf` built only from
+IEEE-exact primitives — range reduction, a Taylor or atanh series, and scaling
+by a power of two straight out of the exponent field. Every transcendental in
+the tick loop goes through it: the fourteen soft caps in `tech::saturate`, the
+tech-TFP ceiling, the diffusion-reach exponent, the tacit-knowledge exponent,
+the investment-intensity exponent, and the log of the strength ratio that
+decides who capitulates. `sqrt` was left alone; the standard specifies it.
+`powi` was written out as explicit products in `tech/mod.rs`, which is
+bit-identical to what LLVM emits but no longer depends on it staying that way.
+
+**The shapes were not changed, and the model did not move.** PLAN suggested
+replacing the soft-cap shapes with rational equivalents; that was rejected
+because it buys the same exactness at the price of a retune. After 240 months
+every nation's GDP is bit-identical to the old value, the 35-year headline
+stream is byte-identical, and the 2025 league table is identical to the digit
+(USA 16004, China 7050, Japan 6907, Germany 5018). The only difference
+measurable anywhere was France's `tfp_trend` in its sixteenth significant
+figure. The golden hash still had to be re-pinned —
+`0xb675826e8941683d` → `0x9ea63c12f4de0e64` — because the hash sees those bits.
+
+Three tests guard it: the bit patterns of `exp`/`ln`/`powf` are pinned at the
+arguments the sim actually passes, the range-reduction constants are checked
+against the values they claim to be, and a source scan fails the build if
+anything in the sim calls the platform libm again.
+
+**Not done:** nobody has yet run the suite on Linux. The claim is that the hash
+now holds cross-platform; it is argued, not observed. That is the one thing left
+in 1.3, and it is a CI job rather than a code change.
+
 ## Closed: the whole world was about twice too large
 
 Measured on the default seed, clean builds, `run 35 1990`:

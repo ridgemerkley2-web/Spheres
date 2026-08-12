@@ -524,11 +524,16 @@ impl TechBonuses {
 /// Diminishing returns with a hard ceiling, smooth and sign-preserving for the
 /// positive branch. `saturate(x, c)` is roughly `x` while `x` is small against
 /// `c`, and approaches `c` from below however large `x` gets.
+///
+/// The shape is unchanged from the version that called `f64::exp`; what changed
+/// is that `crate::exact::exp` gives the same bits on every platform, and this
+/// is the hottest transcendental in the sim — fourteen channels, read several
+/// times per nation per month. See `exact.rs` for why that matters.
 fn saturate(x: f64, cap: f64) -> f64 {
     if x <= 0.0 {
         return 0.0;
     }
-    cap * (1.0 - (-x / cap).exp())
+    cap * (1.0 - crate::exact::exp(-x / cap))
 }
 
 /// What a nation knows and what it is working on. Indices into `registry()`,
@@ -826,9 +831,20 @@ fn effective_cost(
     // even universal technology: Vietnam finished a thirty-year run knowing
     // nothing at all. The cube keeps it worth almost nothing until a technology
     // is genuinely everywhere, so it never cheapens the frontier.
-    let textbook = 0.35 * share.powi(3);
-    let reach = (share.powf(0.70) * (0.45 + 0.50 * capacity) + textbook).clamp(0.0, 0.98);
-    let copy = (1.0 - reach).clamp(0.0, 1.0).powi(5);
+    //
+    // The integer powers here are written as explicit products rather than as
+    // `powi`. `powi` lowers to an LLVM intrinsic, and while every lowering of it
+    // we know of is a square-and-multiply chain of ordinary IEEE
+    // multiplications, nothing in the language guarantees the association order
+    // stays put across backend versions. Written out, there is nothing left to
+    // guarantee. The fractional powers go through `crate::exact::powf`.
+    let s2 = share * share;
+    let textbook = 0.35 * (s2 * share);
+    let reach =
+        (crate::exact::powf(share, 0.70) * (0.45 + 0.50 * capacity) + textbook).clamp(0.0, 0.98);
+    let c1 = (1.0 - reach).clamp(0.0, 1.0);
+    let c2 = c1 * c1;
+    let copy = (c2 * c2) * c1;
     let own = (1.0 - bonus.cost_reduction_for(def.domain)).clamp(0.35, 1.0);
     // However ordinary a technology becomes, somebody still has to build it,
     // and the bill for building it is the size of the country that is building
@@ -840,7 +856,7 @@ fn effective_cost(
     // already manufactures is bought off a shelf, and holding both to the same
     // floor is what shut the smallest economies out of even commodity
     // technology — the floor bound long before the copying discount could bite.
-    let build = 0.30 * (1.0 - 0.70 * share.powi(2));
+    let build = 0.30 * (1.0 - 0.70 * s2);
     (def.cost * copy * own).max(def.cost * build * scale)
 }
 
@@ -1059,7 +1075,7 @@ fn raw_tech_tfp(n: &Nation) -> f64 {
 /// Saturating productivity value of a known set.
 fn saturated_tech_tfp(n: &Nation) -> f64 {
     let raw = raw_tech_tfp(n).max(0.0);
-    TECH_CEILING * (1.0 - (-raw / TECH_CEILING).exp())
+    TECH_CEILING * (1.0 - crate::exact::exp(-raw / TECH_CEILING))
 }
 
 /// Reapply the running totals to the nation every month. Productivity is a
@@ -1099,7 +1115,8 @@ fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, _absorb: f
     // around something the rest of the world already runs on is worth more to
     // the nation twenty years behind than to the one at the frontier, which has
     // nothing left to copy and must invent instead.
-    let adoption = ADOPTION_PER_TECH * n.tech.absorption_rate * gap.powf(TACIT);
+    let adoption =
+        ADOPTION_PER_TECH * n.tech.absorption_rate * crate::exact::powf(gap, TACIT);
     n.tfp_trend = n.tech.tfp_base + (tech_tfp - reference) + adoption.min(ADOPTION_MAX);
 
     // Recovery works its way into producing fields over years, and the barrels
@@ -1385,7 +1402,9 @@ mod diag {
             let gap = ((front - n.tech.count() as f64) / front).clamp(0.0, 1.0);
             let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
             let absorb = absorptive_capacity(&w, n, dev);
-            let adopt = (ADOPTION_PER_TECH * n.tech.absorption_rate * gap.powf(TACIT)).min(ADOPTION_MAX);
+            let adopt = (ADOPTION_PER_TECH * n.tech.absorption_rate
+                * crate::exact::powf(gap, TACIT))
+            .min(ADOPTION_MAX);
             println!("{:<14}{:>6}{:>7.3}{:>7.2}{:>8.2}{:>9.5}{:>9.5}{:>9.5}{:>8.2}",
                 n.id.name(), n.tech.count(), gap, absorb, n.tech.absorption_rate, adopt,
                 sat - reference, n.tfp_trend, n.growth_last * 100.0);
