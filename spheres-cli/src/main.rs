@@ -55,7 +55,7 @@ fn report(w: &WorldState) {
             n.debt_gdp * 100.0, n.stability, n.political_capital, n.mil_strength
         );
     }
-    println!("Oil: ${:.0}/bbl   Wars: {}   Sanction pairs: {}", w.oil_price, w.wars.len(), w.sanctions.len());
+    println!("Oil: ${:.0}/bbl   Wars: {}   Sanction pairs: {}", w.oil_price, w.conflicts.len(), w.sanctions.len());
 }
 
 fn play(seed: u64) {
@@ -267,11 +267,30 @@ fn briefing(w: &WorldState, me: NationId) {
         println!("Under sanction by {} nations.", sanctioners);
     }
     println!("Oil ${:.0}/bbl", w.oil_price);
-    for war in &w.wars {
-        let mark = if war.involves(me) { " <-- YOU" } else { "" };
+    for c in &w.conflicts {
+        let mark = if c.involves(me) { " <-- YOU" } else { "" };
+        // One line per conflict: where, who, how far each side has climbed, who
+        // holds the ground, and what is left of the will to go on.
+        let mine = c.posture_of(me);
+        let theirs = c
+            .posture
+            .iter()
+            .find(|b| c.side_of(b.nation) != c.side_of(me));
+        let ladder = match (mine, theirs) {
+            (Some(a), Some(b)) => format!(
+                " · you rung {} ({}, {}) vs {} rung {} · resolve {:.2} vs {:.2}",
+                a.rung, a.objective.label(), a.roe.label(),
+                b.nation.name(), b.rung, a.resolve, b.resolve
+            ),
+            _ => format!(
+                " · rung {} vs {}",
+                c.top_rung(true), c.top_rung(false)
+            ),
+        };
         println!(
-            "WAR: {} vs {} (progress {:+.0}){}",
-            war.attacker.name(), war.defender.name(), war.progress, mark
+            "{}: {} vs {} · ground {:+.2}{}{}",
+            c.theatre.name().to_uppercase(),
+            c.attacker().name(), c.defender().name(), c.control, ladder, mark
         );
     }
 }

@@ -603,8 +603,8 @@ pub fn abrogate_trade(w: &mut WorldState, from: NationId, to: NationId) -> Resul
 /// A defensive pact obliges nobody to join a war of aggression, so the
 /// attacker's own guarantors are not called at all — the whole asymmetry is
 /// what makes a guarantee cheap to give and expensive to keep.
-pub fn call_the_guarantors(w: &mut WorldState, war: &mut War) -> Vec<NationId> {
-    let (attacker, defender) = (war.attacker, war.defender);
+pub fn call_the_guarantors(w: &mut WorldState, c: &mut Conflict) -> Vec<NationId> {
+    let (attacker, defender) = (c.origin_attacker, c.defender());
     let mut refused: Vec<NationId> = vec![];
     for g in w.pact_partners(defender) {
         if g == attacker {
@@ -619,7 +619,7 @@ pub fn call_the_guarantors(w: &mut WorldState, war: &mut War) -> Vec<NationId> {
             cheapened_guarantees(w, g, defender);
             continue;
         }
-        if !alive(w, g) || war.involves(g) {
+        if !alive(w, g) || c.involves(g) {
             continue;
         }
         let att_nuclear = w.nation(attacker).nuclear;
@@ -648,7 +648,7 @@ pub fn call_the_guarantors(w: &mut WorldState, war: &mut War) -> Vec<NationId> {
         }
 
         if w.rng.chance(p.clamp(0.0, 0.97)) {
-            war.defender_allies.push(g);
+            crate::war::join_side(c, g, false, 8, Objective::Deny);
             w.shift_reputation(g, 5.0);
             w.shift_relation(g, defender, 10.0);
             w.headline(format!(
@@ -695,8 +695,5 @@ fn alive(w: &WorldState, id: NationId) -> bool {
 /// nations in the same war on the same side are the likeliest pair in the world
 /// to sign something.
 pub fn belligerents(w: &WorldState, a: NationId, b: NationId) -> bool {
-    w.wars.iter().any(|war| match (war.side_of(a), war.side_of(b)) {
-        (Some(x), Some(y)) => x != y,
-        _ => false,
-    })
+    w.conflict_between(a, b).is_some()
 }

@@ -125,7 +125,7 @@ pub fn tick(w: &mut WorldState) {
 
     // ---- Grievances fade; alliances are institutional and do not ----
     let belligerents: Vec<(NationId, NationId)> =
-        w.wars.iter().map(|war| (war.attacker, war.defender)).collect();
+        w.conflicts.iter().map(|c| (c.attacker(), c.defender())).collect();
     for (a, b, v) in w.relations.pairs_mut() {
         if *v >= 0.0 {
             continue;
@@ -209,6 +209,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         stability: 38.0,
         separatism: 0.20,
         mil_strength: strength * 0.65,
+        munitions: 1.0,
         war_exhaustion: 0.0,
         nuclear: true,
         // A successor government starts on what its own condition earns it and
@@ -250,6 +251,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         stability: 34.0,
         separatism: 0.35, // Crimea and the Donbas, from the day the flag went up
         mil_strength: strength * 0.15,
+        munitions: 1.0,
         war_exhaustion: 0.0,
         // Ukraine woke up with the third-largest nuclear arsenal on earth — some
         // 1,900 strategic warheads left on its territory — and gave every one of
@@ -281,6 +283,18 @@ fn dissolve_ussr(w: &mut WorldState) {
     // Black Sea Fleet and Crimea are already in dispute, but the divorce of
     // December 1991 was signed, not fought.
     w.set_relation(NationId::Russia, NationId::Ukraine, 15.0);
+
+    // The successors inherit the ground. A state that is home to no theatre
+    // would be expeditionary in its own capital, and would fight for Moscow with
+    // the fraction of itself it could have sent to Angola.
+    crate::theatre::replace_home(
+        w,
+        crate::theatre::TheatreId::CentralEurope,
+        NationId::USSR,
+        &[NationId::Russia, NationId::Ukraine],
+    );
+    // A consent given to a state that no longer exists is not a consent.
+    w.access.retain(|a| a.host != NationId::USSR && a.seeker != NationId::USSR);
 
     w.headline("THE SOVIET UNION HAS DISSOLVED. Russia and Ukraine emerge as successor states.".into());
     w.headline("Russia inherits the arsenal; Ukraine's warheads go back east under the Budapest assurances.".into());
@@ -339,6 +353,7 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             stability: stab,
             separatism: sep,
             mil_strength: strength * m,
+            munitions: 1.0,
             war_exhaustion: 0.0,
             nuclear: false,
             political_capital: seated_political_capital(stab, infl, auth),
@@ -376,6 +391,18 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
     for (a, b, v) in between {
         w.set_relation(*a, *b, *v);
     }
+
+    // Bosnia's war is fought in the Balkans' own mountains and towns, and its
+    // successors are home to them. Forget this and every republic would be
+    // treated as expeditionary in its own country.
+    crate::theatre::replace_home(
+        w,
+        crate::theatre::TheatreId::Balkans,
+        NationId::Yugoslavia,
+        &[NationId::Serbia, NationId::Croatia, NationId::Slovenia, NationId::Bosnia],
+    );
+    w.access
+        .retain(|a| a.host != NationId::Yugoslavia && a.seeker != NationId::Yugoslavia);
 
     w.headline("YUGOSLAVIA HAS DISSOLVED. Slovenia, Croatia, Bosnia and Serbia stand alone.".into());
     w.headline("The JNA's divisions, and its arsenal, remain in Belgrade's hands.".into());

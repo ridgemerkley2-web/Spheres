@@ -208,6 +208,57 @@ fn is_major(headline: &str, me: Option<NationId>) -> bool {
     structural || me.map_or(false, |m| h.contains(&m.name().to_lowercase()))
 }
 
+/// One conflict, with the ladder on it. The legacy keys (`attacker`,
+/// `defender`, `progress`, the two ally lists) are kept byte-for-byte so the
+/// existing war card keeps rendering while the new ones are added beside them.
+fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
+    let posture: Vec<serde_json::Value> = c
+        .posture
+        .iter()
+        .map(|b| {
+            serde_json::json!({
+                "id": format!("{:?}", b.nation),
+                "name": b.nation.name(),
+                "side_a": c.side_of(b.nation) == Some(true),
+                "rung": b.rung,
+                "rung_name": spheres_sim::world::rung_name(b.rung),
+                "ceiling": b.ceiling,
+                "objective": b.objective.label(),
+                "roe": b.roe.label(),
+                "resolve": b.resolve,
+                "red_line": b.red_line,
+                "stake": b.stake,
+                "months_at_rung": b.months_at_rung,
+                "munitions": w.nation_opt(b.nation).map(|n| n.munitions),
+                "deployable": spheres_sim::war::deployable_fraction(w, b.nation),
+                "access": spheres_sim::theatre::has_access(w, b.nation, c.theatre),
+                "home": spheres_sim::theatre::is_home(w, b.nation, c.theatre),
+                "committed": spheres_sim::war::committed_force(w, c, b.nation),
+            })
+        })
+        .collect();
+    serde_json::json!({
+        "id": c.id,
+        "theatre": format!("{:?}", c.theatre),
+        "theatre_name": c.theatre.name(),
+        "class": format!("{:?}", c.class()),
+        "attacker": c.attacker().name(),
+        "attacker_id": format!("{:?}", c.attacker()),
+        "defender": c.defender().name(),
+        "defender_id": format!("{:?}", c.defender()),
+        // Control is the ground held, -1..+1; the old progress bar was the same
+        // quantity on a scale of a hundred, so the UI needs no arithmetic change.
+        "progress": c.control * 100.0,
+        "control": c.control,
+        "months": c.months,
+        "frozen_since": c.frozen_since.map(|(y, m)| month_name(m, y)),
+        "attacker_allies": c.side_a.iter().skip(1).map(|a| a.name()).collect::<Vec<_>>(),
+        "defender_allies": c.side_b.iter().skip(1).map(|a| a.name()).collect::<Vec<_>>(),
+        "posture": posture,
+        "start": month_name(c.start_month, c.start_year),
+    })
+}
+
 fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
     let me = w.player;
     serde_json::json!({
@@ -364,20 +415,9 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         .map(|n| serde_json::json!({ "id": format!("{:?}", n.id), "name": n.id.name() }))
         .collect();
     let wars: Vec<serde_json::Value> = w
-        .wars
+        .conflicts
         .iter()
-        .map(|war| {
-            serde_json::json!({
-                "attacker": war.attacker.name(),
-                "attacker_id": format!("{:?}", war.attacker),
-                "defender": war.defender.name(),
-                "defender_id": format!("{:?}", war.defender),
-                "progress": war.progress,
-                "attacker_allies": war.attacker_allies.iter().map(|a| a.name()).collect::<Vec<_>>(),
-                "defender_allies": war.defender_allies.iter().map(|a| a.name()).collect::<Vec<_>>(),
-                "start": month_name(war.start_month, war.start_year),
-            })
-        })
+        .map(|c| conflict_json(w, c))
         .collect();
     // Newest first, and the whole archive — the event log is meant to be scrolled
     // back through, not just glanced at.

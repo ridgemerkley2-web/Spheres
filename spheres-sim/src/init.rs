@@ -94,7 +94,10 @@ pub fn world_1990(rules: GameRules) -> WorldState {
         nations: rows,
         relations: Relations::default(),
         sanctions: vec![],
+        conflicts: vec![],
         wars: vec![],
+        theatres: crate::theatre::default_theatres(),
+        access: vec![],
         statecraft: Statecraft::default(),
         oil_price: 20.0,
         headlines: vec![],
@@ -217,6 +220,7 @@ fn n(
         stability: stab,
         separatism: sep,
         mil_strength: strength,
+        munitions: 1.0,
         war_exhaustion: 0.0,
         nuclear,
         // Derived, not transcribed: a government's standing in January 1990 is

@@ -3,6 +3,7 @@ pub mod init;
 pub mod politics;
 pub mod statecraft;
 pub mod tech;
+pub mod theatre;
 pub mod war;
 pub mod world;
 
@@ -240,7 +241,52 @@ pub fn save(w: &WorldState) -> String {
     serde_json::to_string_pretty(w).expect("serialize")
 }
 pub fn load(s: &str) -> Result<WorldState, String> {
-    serde_json::from_str(s).map_err(|e| e.to_string())
+    let mut w: WorldState = serde_json::from_str(s).map_err(|e| e.to_string())?;
+    migrate_legacy_wars(&mut w);
+    if w.theatres.is_empty() {
+        w.theatres = theatre::default_theatres();
+    }
+    Ok(w)
+}
+
+/// A save written before the commitment ladder carries a `wars` array and no
+/// conflicts. Every such war was, by construction, a full conventional campaign
+/// on both sides, so it reopens at rung 8 with its progress bar reinterpreted as
+/// control and its magazines and resolve full.
+fn migrate_legacy_wars(w: &mut WorldState) {
+    if w.wars.is_empty() {
+        return;
+    }
+    let legacy = std::mem::take(&mut w.wars);
+    for old in legacy {
+        let mut side_a = vec![old.attacker];
+        side_a.extend(old.attacker_allies.iter().copied());
+        let mut side_b = vec![old.defender];
+        side_b.extend(old.defender_allies.iter().copied());
+        let mut posture: Vec<Belligerent> = side_a
+            .iter()
+            .map(|id| Belligerent::new(*id, 8, Objective::Seize))
+            .collect();
+        posture.extend(side_b.iter().map(|id| {
+            let mut b = Belligerent::new(*id, 8, Objective::Hold);
+            b.stake = 1.0;
+            b
+        }));
+        let id = w.next_conflict_id();
+        w.conflicts.push(Conflict {
+            id,
+            theatre: war::theatre_between(w, old.attacker, old.defender),
+            side_a,
+            side_b,
+            posture,
+            control: (old.progress / 100.0).clamp(-1.0, 1.0),
+            months: 0,
+            frozen_since: None,
+            start_year: old.start_year,
+            start_month: old.start_month,
+            origin_attacker: old.attacker,
+        });
+    }
 }
 
 #[cfg(test)]
@@ -378,7 +424,19 @@ mod tests {
         // the platform and do not simply re-pin the number.
         //
         // Pinned on: Windows, x86_64-pc-windows-gnu, rustc 1.97.1.
-        const GOLDEN: u64 = 0xb675826e8941683d;
+        //
+        // Re-pinned when `War` became `Conflict`. THAT IS A FINGERPRINT CHANGE,
+        // NOT A DETERMINISM BREAK: `save()` now serialises `conflicts`,
+        // `theatres` and `access` where it used to serialise `wars`, and this
+        // hash is FNV-1a over those exact bytes. The four tests that would
+        // actually catch a broken RNG — `determinism_same_seed_same_world`,
+        // `different_seeds_diverge`, `state_hash_agrees_with_the_serialized_world`
+        // and `save_load_roundtrip_continuity` — were confirmed green before the
+        // number was touched, and every other calibration test in the suite was
+        // green on the old thresholds, which is what says the timeline itself did
+        // not move. Re-pinned a second time when the ladder replaced the progress
+        // bar, where the timeline genuinely does move.
+        const GOLDEN: u64 = 0xe1b147329e8cc942;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
