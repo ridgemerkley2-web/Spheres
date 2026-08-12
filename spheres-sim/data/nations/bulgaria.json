@@ -1,0 +1,40 @@
+{
+  "id": "Bulgaria",
+  "name": "Bulgaria",
+  "system": "Command",
+  "authoritarianism": 0.4,
+  "economy": {
+    "gdp_bn": 20.7,
+    "population_m": 8.72,
+    "tfp_trend": -0.004,
+    "inflation": 0.238,
+    "interest_rate": 0.18,
+    "tax_rate": 0.45,
+    "mil_spend_gdp": 0.045,
+    "state_invest_gdp": 0.18,
+    "priv_invest_gdp": 0.03,
+    "debt_gdp": 0.55,
+    "oil_mbd": 0.004,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 45.0,
+    "separatism": 0.12
+  },
+  "military": {
+    "strength": 6.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $20.7bn and population 8.72m in 1990 (World Bank, current USD; NSI gives 8.669m at end-1990). Population is already falling: emigration and the 1989 Turkish exodus both cut it.",
+    "Inflation 23.8%: the official 1990 CPI (NSI). Prices were partially freed in early 1991 and the print for that year was 338%, which is outside the start state.",
+    "Interest rate 18%: the Bulgarian National Bank's basic rate through 1990, raised repeatedly and then to 45% in February 1991. A negative real rate, which is the correct description of the last year of the old system.",
+    "debt_gdp 0.55: gross external debt was about $10.9bn at end-1990 against roughly $20bn of GDP. On 29 March 1990 Bulgaria declared a moratorium on principal and then on interest payments to its commercial creditors — the first Warsaw Pact state to default outright, and the reason its access to credit is closed in the start state while Hungary's, which never rescheduled, is not.",
+    "mil_spend_gdp 0.045: Bulgaria was the most consistently loyal Warsaw Pact member and one of the most heavily armed relative to its size, with about 107,000 troops and 2,200 tanks for 8.7 million people. SIPRI's series puts military expenditure near 4-5% of GDP at the end of the eighties.",
+    "oil_mbd 0.004: negligible domestic crude from the Dolni Dabnik area. Bulgaria ran on Soviet crude landed at Burgas and on the Kozloduy reactors, which supplied roughly a third of its electricity.",
+    "system Command: price liberalisation began 1 February 1991. In January 1990 the Lukanov government is still operating the plan.",
+    "authoritarianism 0.40: Todor Zhivkov was removed by his own politburo on 10 November 1989 after 35 years; the party's constitutional monopoly was repealed on 15 January 1990; the round table ran January to May 1990. The Bulgarian Communist Party renamed itself the Bulgarian Socialist Party on 3 April 1990 and then won the free election of 10 and 17 June 1990 outright, the only ruling communist party in the region to do so. Competitive, and conducted by an apparatus that never left office.",
+    "separatism 0.12: the Revival Process of 1984-89 forced Bulgarian names on the roughly 800,000-strong Turkish minority and drove about 340,000 of them across the Turkish border in the summer of 1989. The policy was reversed on 29 December 1989, which triggered Bulgarian nationalist counter-demonstrations in January 1990. The Movement for Rights and Freedoms was founded on 4 January 1990, four days into the game.",
+    "military strength 6.0: indexed level with Hungary's, half Poland's, on a comparable tank and manpower count."
+  ]
+}

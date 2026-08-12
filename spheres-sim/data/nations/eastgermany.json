@@ -1,0 +1,42 @@
+{
+  "id": "EastGermany",
+  "name": "East Germany",
+  "system": "Command",
+  "authoritarianism": 0.3,
+  "economy": {
+    "gdp_bn": 135.0,
+    "population_m": 16.1,
+    "tfp_trend": -0.005,
+    "inflation": 0.015,
+    "interest_rate": 0.05,
+    "tax_rate": 0.5,
+    "mil_spend_gdp": 0.055,
+    "state_invest_gdp": 0.2,
+    "priv_invest_gdp": 0.02,
+    "debt_gdp": 0.2,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 30.0,
+    "separatism": 0.05
+  },
+  "military": {
+    "strength": 9.0,
+    "nuclear": false
+  },
+  "sources": [
+    "HOW THE OCTOBER 1990 MERGER IS HANDLED. The German Democratic Republic is a sovereign state on 1 January 1990, so it is a start nation with a data file, not a successor. It ceased to exist on 3 October 1990 by accession under Article 23 of the Basic Law. SPHERES fires no event on a date (BIBLE section 7), and there is no merge mechanic in the sim, so unification is NOT scripted here. What is transcribed instead is the January 1990 state that made unification the overwhelmingly likely outcome: a regime whose party monopoly had already been deleted from its constitution, an economy that could not service its hard-currency debt, and a population leaving at a rate no state survives. Whether the model produces annexation, absorption or a surviving GDR is a question for the merge mechanic when someone builds one; this file's job is to make the start honest.",
+    "DOUBLE-COUNT WARNING FOR THE INTEGRATOR. spheres-sim/data/nations/germany.json ships 79.0m population and $1710bn GDP, which are the figures for UNIFIED Germany in 1990, not the Federal Republic. The Federal Republic alone was about 63.7m people and roughly $1,590bn. Shipping this file alongside that one puts about 16m Germans and $135bn of output on the board twice. Fixing it means resetting germany.json to West German figures, which is outside this roster author's ownership and moves calibration. Recorded here so it is visible rather than inherited.",
+    "GDP $135bn: no honest 1990 dollar figure for the GDR exists and the published ones differ by a factor of two. The CIA World Factbook 1990 carried GNP of $159.5bn and $9,679 per head, an estimate the agency itself later accepted was far too high. The Federal Statistical Office's first national-accounts figure for the eastern Lander is 1991, at roughly DM 207bn, by which point eastern output had already fallen about a third from 1989 and the currency union had converted at 1:1 for wages. $135bn puts GDR output per head at about $8,400, roughly 38% of the Federal Republic's, which is the middle of the range in the productivity literature. Flagged as the least certain figure in this file.",
+    "Population 16.1m: 16.43m at end-1989 (Statistisches Amt der DDR) and falling fast. About 343,000 people left in 1989 and a further 238,000 in 1990 before unification; the emigration is the mechanism, not a side effect.",
+    "Inflation 1.5%: administered. Consumer prices in the GDR were fixed by decree and basic goods, rents and transport were subsidised on a scale the state budget could no longer carry. The 1990 print measures the price list. The real price event of the year is the currency union of 1 July 1990, which converted savings and wages into D-marks and destroyed eastern competitiveness overnight.",
+    "Interest rate 5%: the Staatsbank der DDR's administered rate. From 1 July 1990 the Bundesbank set policy for the territory, at a discount rate of 6% and Lombard 8%.",
+    "debt_gdp 0.20: the Schurer report of 27 October 1989, prepared for the Politburo by the head of the State Planning Commission, put net hard-currency indebtedness at roughly 49 billion valuta-marks and stated that stabilising it would need a 25-30% cut in living standards, which the authors said would make the country ungovernable. Gross convertible-currency debt was on the order of $20-21bn. That document, more than any demonstration, is why the GDR's leadership concluded it had no economic future.",
+    "mil_spend_gdp 0.055: the Nationale Volksarmee fielded about 175,000 troops and 2,800 tanks for 16 million people, the best-equipped non-Soviet Warsaw Pact force, alongside 380,000 Soviet troops of the Western Group of Forces stationed on GDR soil. Published GDR budget figures understate the burden; 5.5% is at the low end of Western estimates of defence as a share of net material product.",
+    "oil_mbd 0.0: no meaningful crude production. The GDR ran on lignite, which it mined at about 300 million tonnes a year, more than any country on earth, and on Soviet crude down the Druzhba line to Schwedt.",
+    "authoritarianism 0.30: the SED's leading role was struck from Article 1 of the constitution on 1 December 1989; the Round Table convened on 7 December 1989; Modrow's government took eight opposition ministers without portfolio on 5 February 1990; the free Volkskammer election of 18 March 1990 was, by common consent, clean. In January 1990 this is a state in supervised transition, not a dictatorship.",
+    "stability 30.0: the lowest opening figure this author entered and deliberately so. The state's police were discredited, the Stasi headquarters in Normannenstrasse was stormed on 15 January 1990, the currency was collapsing on the black market, and the Monday demonstrations had switched their chant from Wir sind das Volk to Wir sind ein Volk in November 1989. There is no field for a population that wants its own state abolished, so the pressure is carried by stability.",
+    "separatism 0.05: near zero on purpose. The GDR faced no region trying to leave it. Its crisis was the opposite shape and stability carries it."
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "Hungary",
+  "name": "Hungary",
+  "system": "Market",
+  "authoritarianism": 0.18,
+  "economy": {
+    "gdp_bn": 33.1,
+    "population_m": 10.37,
+    "tfp_trend": 0.005,
+    "inflation": 0.289,
+    "interest_rate": 0.22,
+    "tax_rate": 0.47,
+    "mil_spend_gdp": 0.026,
+    "state_invest_gdp": 0.11,
+    "priv_invest_gdp": 0.1,
+    "debt_gdp": 0.66,
+    "oil_mbd": 0.035,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 58.0,
+    "separatism": 0.03
+  },
+  "military": {
+    "strength": 6.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $33.1bn and population 10.37m in 1990 (World Bank, current USD; KSH for the 1 January 1990 census population of 10.375m).",
+    "Inflation 28.9%: the KSH consumer price index for 1990. Hungary had no single price shock because it had been liberalising prices in stages since 1968 and faster since 1988; the number is high for a year with no big bang precisely because the big bang had been spread over two decades.",
+    "Interest rate 22%: the National Bank of Hungary's basic rate ran in the high teens to low twenties through 1990 as it defended the forint inside a crawling peg. The real rate is negative, which is what the last year of the soft-budget economy looked like.",
+    "system Market: the only entry in this region for which Command is the wrong label in January 1990. The Company Act of 1988 and the Transformation Act of 1989 allowed private companies before the regime changed; roughly 80% of prices and 90% of imports were already free of administrative control at the start of 1990; the Budapest Stock Exchange reopened in June 1990 after a 42-year gap.",
+    "debt_gdp 0.66: gross external debt was about $21.3bn at end-1990, the highest per head in the bloc, against roughly $33bn of GDP. Antall's government made a point of never rescheduling it, unlike Poland and Bulgaria, and the interest bill is the reason Hungarian fiscal policy has no room in this start state.",
+    "mil_spend_gdp 0.026: the Hungarian People's Army was cut hard through 1989-90; the last Soviet troops left on 19 June 1991 under an agreement signed 10 March 1990. Hungary was the first Warsaw Pact state to formally ask to leave the alliance's military organisation, in June 1990.",
+    "oil_mbd 0.035: Hungarian crude output was about 1.9 million tonnes in 1990, most of it from the Algyo field near Szeged, roughly 0.038 mbd. Hungary was nonetheless a large net importer via the Druzhba and Adria lines.",
+    "authoritarianism 0.18: the MSZMP dissolved itself on 7 October 1989, the Republic was proclaimed on 23 October 1989, and the National Round Table agreements of September 1989 were already law when the game opens. The first free election was held 25 March and 8 April 1990.",
+    "separatism 0.03: Hungary is among the most ethnically homogeneous states in Europe. Its nationality question in 1990 points outward, at the roughly 3 million Hungarians in Romania, Slovakia, Vojvodina and Ukraine, not inward, and separatism is the wrong field to carry it.",
+    "military strength 6.0: about 100,000 troops and 1,300 tanks in 1990, indexed at half Poland's 12.0."
+  ]
+}

@@ -803,6 +803,29 @@ pub const POLITIES: &[Polity] = &[
             p("ch_lps", "Liberal Party", "Liberale Partei der Schweiz", Family::Conservative, 0.027),
             p("ch_na", "National Action", "Nationale Aktion", Family::Nationalist, 0.025),
             p("ch_pda", "Swiss Party of Labour", "Partei der Arbeit der Schweiz", Family::Communist, 0.008),
+    // Czechoslovakia — the last election before the game opens is the National
+    // Front single list of 23-24 May 1986, 99.9% on a 99.4% turnout, which
+    // records nothing. The shares below are the first free election, the
+    // Federal Assembly (House of the People) of 8-9 June 1990, federal totals
+    // across both republics: Civic Forum took 53.2% in the Czech lands and
+    // Public Against Violence 32.5% in Slovakia, which is about 46.6% between
+    // them federally. The remaining ~13% went to lists under the 5% federal
+    // bar. Elected for a deliberately short two-year term to write a new
+    // constitution — it never agreed one, and the state dissolved instead.
+    Polity {
+        nation: NationId::Czechoslovakia,
+        system: Electoral::Proportional,
+        term_months: 24,
+        next: (1990, 6),
+        parties: &[
+            p("cs_of", "Civic Forum", "Obcanske forum", Family::BigTent, 0.354),
+            p("cs_ksc", "Communist Party of Czechoslovakia", "Komunisticka strana Ceskoslovenska", Family::Communist, 0.135),
+            p("cs_vpn", "Public Against Violence", "Verejnost proti nasiliu", Family::BigTent, 0.112),
+            p("cs_kdu", "Christian and Democratic Union", "Krestanska a demokraticka unie", Family::ChristianDemocratic, 0.087),
+            p("cs_kdh", "Christian Democratic Movement", "Krestanskodemokraticke hnutie", Family::ChristianDemocratic, 0.063),
+            p("cs_hsdsms", "Movement for Self-Governing Democracy", "Hnuti za samospravnou demokracii - Spolecnost pro Moravu a Slezsko", Family::Regionalist, 0.054),
+            p("cs_sns", "Slovak National Party", "Slovenska narodna strana", Family::Nationalist, 0.035),
+            p("cs_egyutteles", "Coexistence", "Egyutteles", Family::Regionalist, 0.028),
         ],
         ruling: "the Federal Assembly",
         pillars: &[],
@@ -964,6 +987,130 @@ pub const POLITIES: &[Polity] = &[
         ],
         ruling: "the Dail Eireann",
         pillars: &[],
+    // East Germany — Volkskammer, 18 March 1990, the only free election the GDR
+    // ever held. Alliance for Germany: CDU 40.8%, DSU 6.3%, Democratic Awakening
+    // 0.9%; SPD 21.9%; PDS 16.4%; League of Free Democrats 5.3%; Alliance 90
+    // 2.9%; Democratic Farmers' Party 2.2%; Green Party with the Independent
+    // Women's Association 2.0%. No threshold at all, which is why twelve lists
+    // took seats. The last election before the game opens is the local ballot of
+    // 7 May 1989, whose falsified 98.85% was itself the trigger for the autumn.
+    // Modelled as an ordinary electorate because on that day it was one; the
+    // accession of 3 October 1990 is not scripted here, and eastgermany.json
+    // explains why and what carries the pressure instead.
+    Polity {
+        nation: NationId::EastGermany,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1990, 3),
+        parties: &[
+            p("dd_cdu", "Christian Democratic Union", "Christlich-Demokratische Union", Family::ChristianDemocratic, 0.408),
+            p("dd_spd", "Social Democratic Party", "Sozialdemokratische Partei", Family::SocialDemocratic, 0.219),
+            p("dd_pds", "Party of Democratic Socialism", "Partei des Demokratischen Sozialismus", Family::Communist, 0.164),
+            p("dd_dsu", "German Social Union", "Deutsche Soziale Union", Family::Conservative, 0.063),
+            p("dd_bfd", "League of Free Democrats", "Bund Freier Demokraten", Family::Liberal, 0.053),
+            p("dd_b90", "Alliance 90", "Bundnis 90", Family::Green, 0.029),
+            p("dd_dbd", "Democratic Farmers' Party", "Demokratische Bauernpartei Deutschlands", Family::Agrarian, 0.022),
+            p("dd_gruene", "Green Party", "Grune Partei", Family::Green, 0.020),
+        ],
+        ruling: "the Volkskammer",
+        pillars: &[],
+    },
+    // Hungary — National Assembly, 25 March and 8 April 1990, party lists:
+    // MDF 24.7%, SZDSZ 21.4%, FKgP 11.7%, MSZP 10.9%, Fidesz 9.0%, KDNP 6.5%,
+    // MSZMP 3.7%, Agrarian Alliance 3.1%. The last election before the game
+    // opens, June 1985, was single-list. The real system was mixed: 176
+    // single-member seats decided in two rounds alongside county and national
+    // lists with a 4% bar, and TwoRound is entered because the majoritarian
+    // half is what turned MDF's quarter of the vote into 42.5% of the seats.
+    Polity {
+        nation: NationId::Hungary,
+        system: Electoral::TwoRound,
+        term_months: 48,
+        next: (1990, 3),
+        parties: &[
+            p("hu_mdf", "Hungarian Democratic Forum", "Magyar Demokrata Forum", Family::ChristianDemocratic, 0.247),
+            p("hu_szdsz", "Alliance of Free Democrats", "Szabad Demokratak Szovetsege", Family::Liberal, 0.214),
+            p("hu_fkgp", "Independent Smallholders' Party", "Fuggetlen Kisgazdapart", Family::Agrarian, 0.117),
+            p("hu_mszp", "Hungarian Socialist Party", "Magyar Szocialista Part", Family::SocialDemocratic, 0.109),
+            p("hu_fidesz", "Federation of Young Democrats", "Fiatal Demokratak Szovetsege", Family::Liberal, 0.090),
+            p("hu_kdnp", "Christian Democratic People's Party", "Keresztenydemokrata Neppart", Family::ChristianDemocratic, 0.065),
+            p("hu_mszmp", "Hungarian Socialist Workers' Party", "Magyar Szocialista Munkaspart", Family::Communist, 0.037),
+            p("hu_asz", "Agrarian Alliance", "Agrarszovetseg", Family::Agrarian, 0.031),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+    // Romania — Chamber of Deputies, 20 May 1990: FSN 66.3%, UDMR 7.2%, PNL
+    // 6.4%, Ecological Movement 2.6%, PNTCD 2.6%, AUR 2.1%, PSDR 0.5%. No
+    // threshold, hence a chamber with sixteen parties in it and one of them
+    // holding two-thirds. The National Salvation Front had promised on 23
+    // December 1989 not to contest the election and reversed that on 6
+    // February 1990; the opposition had no organisation outside the cities and
+    // no access to state television. Free enough to model as an electorate,
+    // which is why authoritarianism sits at 0.42 rather than above the ceiling.
+    Polity {
+        nation: NationId::Romania,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1990, 5),
+        parties: &[
+            p("ro_fsn", "National Salvation Front", "Frontul Salvarii Nationale", Family::BigTent, 0.663),
+            p("ro_udmr", "Democratic Union of Hungarians in Romania", "Uniunea Democrata Maghiara din Romania", Family::Regionalist, 0.072),
+            p("ro_pnl", "National Liberal Party", "Partidul National Liberal", Family::Liberal, 0.064),
+            p("ro_mer", "Ecological Movement of Romania", "Miscarea Ecologista din Romania", Family::Green, 0.026),
+            p("ro_pntcd", "Christian Democratic National Peasants' Party", "Partidul National Taranesc Crestin Democrat", Family::ChristianDemocratic, 0.026),
+            p("ro_aur", "Romanian National Unity Party", "Partidul Unitatii Nationale Romane", Family::Nationalist, 0.021),
+            p("ro_psdr", "Romanian Social Democratic Party", "Partidul Social Democrat Roman", Family::SocialDemocratic, 0.005),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[pl(Pillar::Army, "the Romanian Army")],
+    },
+    // Bulgaria — Grand National Assembly, 10 and 17 June 1990, proportional
+    // half: BSP 47.2%, Union of Democratic Forces 36.2%, Agrarian Union 8.0%,
+    // Movement for Rights and Freedoms 6.0%. The renamed communist party won,
+    // the only one in the region that did, and then could not govern: Lukanov
+    // resigned in November 1990 after a general strike. The 4% bar of the 1990
+    // ballot is modelled with the ordinary 5% shape.
+    Polity {
+        nation: NationId::Bulgaria,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 6),
+        parties: &[
+            p("bg_bsp", "Bulgarian Socialist Party", "Balgarska sotsialisticheska partiya", Family::Communist, 0.472),
+            p("bg_sds", "Union of Democratic Forces", "Sayuz na demokratichnite sili", Family::BigTent, 0.362),
+            p("bg_bzns", "Bulgarian Agrarian National Union", "Balgarski zemedelski naroden sayuz", Family::Agrarian, 0.080),
+            p("bg_dps", "Movement for Rights and Freedoms", "Dvizhenie za prava i svobodi", Family::Regionalist, 0.060),
+        ],
+        ruling: "the Grand National Assembly",
+        pillars: &[],
+    },
+    // Albania — the People's Assembly election of 1 February 1987 returned the
+    // Democratic Front's single list with 100% of the vote on a turnout of
+    // 100%, and there is nothing else before January 1990. Opposition parties
+    // became legal only on 11 December 1990, so the regime holds no election
+    // the model should fire from the start state and next is (0, 0). The table
+    // below is the 31 March 1991 result, the first contested one, held live for
+    // if and when the regime opens: PPSh 56.2%, Democratic Party 38.7%, Omonia
+    // 0.7%. The pillars are the three institutions that actually held Ramiz
+    // Alia up, and the Sigurimi is named because "the security services" is not
+    // a thing that removes a government.
+    Polity {
+        nation: NationId::Albania,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("al_ppsh", "Party of Labour of Albania", "Partia e Punes e Shqiperise", Family::Communist, 0.562),
+            p("al_pd", "Democratic Party of Albania", "Partia Demokratike e Shqiperise", Family::Liberal, 0.387),
+            p("al_omonia", "Omonia", "Omonoia", Family::Regionalist, 0.007),
+        ],
+        ruling: "the Party of Labour of Albania",
+        pillars: &[
+            pl(Pillar::Party, "the Party of Labour of Albania"),
+            pl(Pillar::Army, "the Albanian People's Army"),
+            pl(Pillar::Security, "the Sigurimi"),
+        ],
     },
     // Israel — Knesset, 1 November 1988: Likud 31.1%, the Alignment 30.0%, Shas
     // 4.7%, Agudat Yisrael 4.5%, Ratz 4.3%, the National Religious Party 3.9%,
