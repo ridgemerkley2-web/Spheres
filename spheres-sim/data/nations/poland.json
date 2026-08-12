@@ -26,7 +26,9 @@
     "nuclear": false
   },
   "sources": [
-    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
-    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance."
+    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\". The figures were moved into this file unchanged, and their origin remains undocumented. What follows is what the 1990 record actually says, added so the gap is visible rather than inherited.",
+    "The Balcerowicz programme took effect on 1 January 1990 — the game opens on its first day. CPI inflation for the year came to 585.8% (GUS), and output fell 11.6%. The National Bank's refinancing rate was raised to 36% a month in January and cut through the year as prices came off.",
+    "inflation 0.55 is therefore NOT the 1990 print. On this directory's fraction-of-1 convention 585.8% is 5.858; 0.55 is that figure shifted one decimal place, the same shift Brazil and Yugoslavia carry and the same three nations whose percentage needed four digits. See brazil.json for why the true figure cannot simply be entered: inflation is hard-clamped into -0.05..=3.0 in economy.rs, and the real-rate demand channel is linear and unbounded, so 5.858 against any plausible policy rate drives GDP through zero. The loader refuses it since this commit.",
+    "The cost is the same shape as Brazil's and worth naming. interest_rate 0.3 against inflation 0.55 is a real rate of -25 points, the second-loosest opening position in the roster, which the demand channel reads as a large stimulus. Poland accordingly grows about 7% through 1990 on seed 1 — $66bn to $70.7bn — where the transition depression was an 11.6% contraction. The direction of Poland's first two years is wrong, and it is the real rate that makes it wrong, not the inflation figure on its own."
   ]
 }
