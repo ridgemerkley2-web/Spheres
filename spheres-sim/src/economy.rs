@@ -25,7 +25,7 @@ pub fn tick(w: &mut WorldState) {
         // more of its output, and Japan's 29% of GDP earned it two-thirds again
         // what America's 17.5% earned forever. Concave around a 20% reference:
         // the same at that point, worth progressively less above it.
-        let intensity = (invest / 0.20).max(0.0).powf(0.55) * 0.20;
+        let intensity = crate::exact::powf((invest / 0.20).max(0.0), 0.55) * 0.20;
         let invest_effect = intensity * (0.030 + 0.080 * (1.0 - dev));
         // Income convergence: capital deepening and the reallocation of labour
         // out of subsistence, which is most of what makes a poor country grow

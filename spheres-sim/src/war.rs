@@ -25,7 +25,11 @@ pub fn tick(w: &mut WorldState) {
         let att = side_strength(w, &war, true);
         let def = side_strength(w, &war, false);
         let ratio = att / def.max(1.0);
-        let push = (ratio.ln()) * 6.0 + w.rng.range(-2.0, 2.0);
+        // Log of the strength ratio, so a 2:1 advantage pushes as hard from 4:2
+        // as from 40:20 and no ratio ever pushes infinitely hard. `exact::ln`
+        // rather than `f64::ln` because this feeds `war.progress`, which decides
+        // who capitulates — see `exact.rs`.
+        let push = crate::exact::ln(ratio) * 6.0 + w.rng.range(-2.0, 2.0);
         war.progress = (war.progress + push).clamp(-100.0, 100.0);
 
         // Exhaustion accrues, faster for the losing side

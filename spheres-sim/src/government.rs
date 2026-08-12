@@ -1050,7 +1050,10 @@ fn seats_from(support: &[(String, f64)], sys: Electoral) -> Vec<(String, f64)> {
     let mut out: Vec<(String, f64)> = support
         .iter()
         .map(|(id, s)| {
-            let v = if *s < threshold { 0.0 } else { s.powf(exp) };
+            // exact::powf, not f64::powf: the cube law runs on every election
+            // in every nation, so a platform that rounds pow differently would
+            // hand out different seats and fork the timeline. See exact.rs.
+            let v = if *s < threshold { 0.0 } else { crate::exact::powf(*s, exp) };
             (id.clone(), v)
         })
         .collect();
