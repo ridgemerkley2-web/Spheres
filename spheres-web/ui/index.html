@@ -235,6 +235,46 @@
   .progbar { height: 8px; background: #1e2735; border-radius: 4px; position: relative; margin-top: 4px; }
   .progbar .mid { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #4a5a70; }
   .progbar .fill { position: absolute; top: 0; bottom: 0; background: var(--amber); border-radius: 4px; }
+  .progbar .redline { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--red); }
+
+  /* The commitment ladder. Nine cells, and the mismatch between the two fills
+     is the thing the whole war model exists to show, so it is the loudest mark
+     on the card. */
+  .ladder { display: flex; gap: 2px; margin-top: 6px; }
+  .ladder .rung {
+    flex: 1; height: 15px; line-height: 15px; text-align: center; font-size: 9px;
+    background: #1a222e; color: #4a5a70; border-radius: 2px; position: relative;
+  }
+  .ladder .rung.mine { background: var(--amber); color: #101820; font-weight: 700; }
+  .ladder .rung.theirs { background: var(--red); color: #fff; font-weight: 700; }
+  /* Both sides on the same rung: split the cell rather than hide one of them. */
+  .ladder .rung.mine.theirs {
+    background: linear-gradient(90deg, var(--amber) 0 50%, var(--red) 50% 100%); color: #fff;
+  }
+  .ladder .rung.barred {
+    background: repeating-linear-gradient(45deg, #1a222e 0 3px, #232d3c 3px 6px);
+  }
+  .ladder .rung.ceil::after {
+    content: ""; position: absolute; right: -2px; top: -2px; bottom: -2px; width: 2px; background: var(--cyan);
+  }
+
+  /* Nine clickable rows in the sheet. A disabled rung that explains itself in
+     words is the whole tutorial. */
+  .rungrow { display: flex; gap: 10px; align-items: center; padding: 5px 4px; border-radius: 4px; cursor: pointer; }
+  .rungrow:hover { background: #151d29; }
+  .rungrow.off { cursor: not-allowed; opacity: .5; }
+  .rungrow.off:hover { background: none; }
+  .rungrow.here { background: #1a2230; box-shadow: inset 2px 0 0 var(--amber); }
+  .rungrow .rn { width: 18px; text-align: center; color: var(--dim); font-size: 12px; }
+  .rungrow .rb { flex: 1; }
+  .rungrow .rt { font-size: 13px; }
+  .rungrow .rp { color: var(--cyan); font-size: 11px; white-space: nowrap; }
+  .tiny.bad { color: var(--red); }
+  .prow { padding: 3px 0; font-size: 13px; }
+  .arow { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-top: 1px solid #1b2432; }
+  .arow > div:nth-child(2) { flex: 1; color: var(--dim); }
+  .btnrow { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0; }
+  .btnrow button.on { background: var(--amber); color: #101820; }
 
   /* ---------- nation dashboard ---------- */
   #sheetbg { position: fixed; inset: 0; background: #05080d99; z-index: 30; display: none; }
@@ -886,23 +926,256 @@ window.advance = advance;
 
 /* ================= right column: wars + event log ================= */
 
+/* ---- the commitment ladder ---- */
+
+const RUNGS = ["-", "rhetoric", "sanctions", "arms to a proxy", "advisers and intelligence",
+  "deniable forces", "standoff strike", "blockade or limited incursion",
+  "full conventional campaign", "occupation"];
+const RUNG_BLURB = ["",
+  "words, and the option of stopping there",
+  "closes your market to them; costs your own importers too",
+  "money and weapons to whoever is already fighting them",
+  "your people beside theirs — their army fights a quarter better",
+  "things you can deny doing, until the day you cannot",
+  "hits what they expose; burns 9% of your magazines a month",
+  "puts hulls and boots where they were not; starts taking ground",
+  "the whole army in the field, and the whole army exposed to theirs",
+  "holding the ground down rather than the enemy — cheap in ordnance, ruinous in will"];
+/// What arriving at each rung costs before the regime multiplier. The table is
+/// cumulative, so a climb is a difference — mirrors war::ESCALATION_PRICE.
+const RUNG_PRICE = [0, 0, 2, 6, 8, 10, 14, 20, 30, 40];
+const MAX_RUNG_NO_ACCESS = 5;
+
+function theatreById(id) { return (S.theatres || []).find((t) => t.id === id); }
+function myPosture(w) { const m = me(); return m && w.posture.find((b) => b.id === m.id); }
+function hasAccess(id, th) {
+  const t = theatreById(th);
+  if (t && t.home.includes(id)) return true;
+  // A host of a theatre is a host because its own airfields are in range of it,
+  // so it needs nobody's permission to use them. Mirrors theatre::has_access.
+  if (t && t.hosts.includes(id)) return true;
+  return (S.access || []).some((a) => a.theatre === th && a.seeker === id);
+}
+function grantingHost(id, th) {
+  const a = (S.access || []).find((x) => x.theatre === th && x.seeker === id);
+  return a ? a.host_name : null;
+}
+
+/// Nine cells. Yours amber, theirs red, your announced ceiling notched, and
+/// every rung above your access cap hatched. The mismatch is the interesting
+/// state, so it is the most visible thing on the card.
+function ladderStrip(w, mine, theirs) {
+  const capped = mine && !mine.home && !hasAccess(mine.id, w.theatre);
+  let cells = "";
+  for (let r = 1; r <= 9; r++) {
+    const isMine = mine && mine.rung === r;
+    const isTheirs = theirs && theirs.rung === r;
+    const barred = capped && r > MAX_RUNG_NO_ACCESS;
+    const ceil = mine && mine.ceiling === r && mine.ceiling < 9;
+    cells += `<div class="rung${isMine ? " mine" : ""}${isTheirs ? " theirs" : ""}${
+      barred ? " barred" : ""}${ceil ? " ceil" : ""}" title="${r} · ${RUNGS[r]}">${r}</div>`;
+  }
+  return `<div class="ladder">${cells}</div>`;
+}
+
+/// The class as an English sentence, not a label. A player should be able to
+/// read what kind of war they are in without a glossary.
+function conflictLine(w, mine, theirs) {
+  if (w.frozen_since) return `frozen since ${w.frozen_since}`;
+  const hi = Math.max(...w.posture.map((b) => b.rung));
+  const lo = Math.min(...w.posture.map((b) => b.rung));
+  if (hi < 6) return "below the shooting line — nobody has fired";
+  if (lo >= 6) return "conventional · they are standing and fighting";
+  if (mine && theirs && mine.rung >= 6 && theirs.rung < 6)
+    return "irregular · you hold the ground and cannot end it";
+  if (mine && theirs && theirs.rung >= 6 && mine.rung < 6)
+    return "irregular · they will not stand where you can hit them";
+  return "irregular · one side will not stand in the open";
+}
+
+function bar(frac, color, mark) {
+  const p = Math.max(0, Math.min(1, frac)) * 100;
+  return `<div class="progbar"><div class="fill" style="left:0;width:${p}%;background:${color}"></div>${
+    mark != null && mark > 0 ? `<div class="redline" style="left:${Math.min(100, mark * 100)}%"></div>` : ""}</div>`;
+}
+
 function renderWars() {
   if (!S.wars.length) { $("#warsCard").innerHTML = ""; return; }
-  const wars = S.wars.map((w) => {
+  const cards = S.wars.map((w) => {
+    const mine = myPosture(w);
+    const theirs = mine
+      ? w.posture.find((b) => b.side_a !== mine.side_a)
+      : w.posture.find((b) => !b.side_a);
     const p = (w.progress + 100) / 200;
-    const allies = [...w.attacker_allies, ...w.defender_allies];
-    const edge = w.progress > 8 ? `${w.attacker} pressing` : w.progress < -8 ? `${w.defender} holding` : "stalemate";
-    return `<div class="warcard" onclick="openNation('${w.attacker_id}')">
-      <div><b>${w.attacker}</b> vs <b>${w.defender}</b> <span class="tiny">since ${w.start}</span></div>
+    const a = [w.attacker, ...w.attacker_allies].join(" + ");
+    const b = [w.defender, ...w.defender_allies].join(" + ");
+    return `<div class="warcard" onclick="openConflict(${w.id})">
+      <div><b>${a}</b> vs <b>${b}</b></div>
+      <div class="tiny" style="color:var(--dim)">${w.theatre_name} · ${conflictLine(w, mine, theirs)}</div>
+      ${ladderStrip(w, mine, theirs)}
+      <div class="tiny" style="margin-top:5px">ground held</div>
       <div class="progbar"><div class="mid"></div>
         <div class="fill" style="${w.progress >= 0
             ? `left:50%;width:${(p - 0.5) * 100}%`
             : `right:50%;width:${(0.5 - p) * 100}%`}"></div></div>
-      <div class="tiny">${edge}${allies.length ? " · + " + allies.join(", ") : ""}</div>
+      ${mine ? `<div class="tiny" style="margin-top:5px">your resolve ${mine.resolve.toFixed(2)}</div>
+        ${bar(mine.resolve, "var(--amber)", mine.red_line)}
+        ${mine.munitions != null && mine.munitions < 0.5
+          ? `<div class="tiny" style="margin-top:4px">magazines ${(mine.munitions * 100).toFixed(0)}%</div>
+             ${bar(mine.munitions, mine.munitions < 0.15 ? "var(--red)" : "#8a97a8")}` : ""}` : ""}
     </div>`;
   }).join("");
-  $("#warsCard").innerHTML = `<div class="card"><h3>Wars</h3>${wars}</div>`;
+  $("#warsCard").innerHTML = `<div class="card"><h3>Conflicts</h3>${cards}</div>`;
 }
+
+/// The conflict sheet: the ladder as nine clickable rows, each of which either
+/// tells you its price or tells you in words why you cannot have it.
+window.openConflict = function (id) {
+  const w = S.wars.find((x) => x.id === id);
+  if (!w) return;
+  const m = me();
+  const mine = myPosture(w);
+  const theirs = mine ? w.posture.find((b) => b.side_a !== mine.side_a) : null;
+  const t = theatreById(w.theatre) || { hosts: [], host_names: [], rough: 0, urbanisation: 0 };
+  const cap = m ? m.political_capital : 0;
+  const auth = m ? m.authoritarianism : 0.5;
+  const capped = mine && !mine.home && !hasAccess(mine.id, w.theatre);
+
+  let rows = "";
+  if (mine) {
+    for (let r = 1; r <= 9; r++) {
+      // Mirrors commitment::escalation_cost_in, home discount included: a
+      // parliament has to be talked into an expedition and does not have to be
+      // talked into a defence.
+      const cost = r > mine.rung
+        ? (RUNG_PRICE[r] - RUNG_PRICE[mine.rung]) * (1.4 - 0.6 * auth)
+          * (mine.defending_home ? 0.30 : 1) : 0;
+      let why = null;
+      if (r > mine.ceiling) why = `you have publicly bound yourself to rung ${mine.ceiling} or below`;
+      else if (capped && r > MAX_RUNG_NO_ACCESS)
+        why = `no consenting host within range of ${w.theatre_name}: ${
+          t.host_names.join(" or ") || "nobody in reach"} would have to agree to basing`;
+      else if (cost > cap) why = `you hold ${cap.toFixed(0)} political capital; this costs ${cost.toFixed(0)}`;
+      const here = mine.rung === r;
+      rows += `<div class="rungrow${here ? " here" : ""}${why ? " off" : ""}"${
+        why ? "" : ` onclick="conflictCmd(${id},'commit',${r})"`}>
+        <div class="rn">${r}</div>
+        <div class="rb"><div class="rt">${RUNGS[r]}${here ? " — you are here" : ""}</div>
+          <div class="tiny">${RUNG_BLURB[r]}</div>
+          ${why ? `<div class="tiny bad">${why}</div>` : ""}</div>
+        <div class="rp">${here ? "" : r < mine.rung ? "step back" : cost.toFixed(0) + " pc"}</div>
+      </div>`;
+    }
+  }
+
+  const objs = ["deny", "degrade", "seize", "hold", "stabilise", "withdraw"];
+  const roes = ["restrained", "standard", "unrestricted"];
+
+  // The access panel: every host of this theatre as a row. When you are the
+  // host, the same panel is where you answer.
+  const accessRows = t.hosts.map((h, i) => {
+    // You are never a party to your own basing request.
+    if (m && m.id === h && mine && !mine.home) return "";
+    const nm = t.host_names[i];
+    const iAmHost = m && m.id === h;
+    const seekers = (S.access || []).filter((x) => x.theatre === w.theatre && x.host === h);
+    if (iAmHost) {
+      const askers = w.posture.filter((b) => b.id !== h && !b.home);
+      return `<div class="arow"><div><b>${nm}</b> — you</div>
+        <div class="tiny">${askers.length ? askers.map((a) =>
+          `${a.name}: ${hasAccess(a.id, w.theatre) ? "granted" : "not granted"}`).join(" · ") : "nobody is asking"}</div>
+        <div>${askers.map((a) => hasAccess(a.id, w.theatre)
+          ? `<button onclick="conflictCmd(${id},'revoke_access',0,'${a.id}')">Revoke ${a.name}</button>`
+          : `<button onclick="conflictCmd(${id},'grant_access',0,'${a.id}')">Grant ${a.name}</button>`).join(" ")}</div></div>`;
+    }
+    const got = m && seekers.some((x) => x.seeker === m.id);
+    const rel = m && (m.relations || []).find((r) => r.id === h);
+    return `<div class="arow"><div><b>${nm}</b></div>
+      <div class="tiny">${got ? "granted since " + seekers.find((x) => x.seeker === m.id).since
+        : "never asked"}${rel ? ` · relations ${rel.value.toFixed(0)}` : ""}</div>
+      <div>${got || !m ? "" :
+        `<button onclick="conflictCmd(${id},'request_access',0,'${h}')">Request · 6 pc</button>
+         <button onclick="conflictCmd(${id},'press_access',0,'${h}')">Press · 15 pc</button>`}</div></div>`;
+  }).join("");
+
+  const force = mine ? `structure ${(nationById(mine.id) || {}).mil_strength?.toFixed(0) ?? "?"} · deployable ${
+    (mine.deployable * 100).toFixed(0)}% · committed at rung ${mine.rung}: ${mine.committed.toFixed(1)} · ${
+    mine.home ? "your own ground" : grantingHost(mine.id, w.theatre)
+      ? "access via " + grantingHost(mine.id, w.theatre) : "no host — a quarter gets through"} · magazines ${
+    ((mine.munitions ?? 1) * 100).toFixed(0)}%` : "";
+
+  // The way in. Without this the whole war layer is unreachable from the only
+  // seat a player ever sits in: you can watch a quarrel run for years and every
+  // ladder command answers "not a party to that conflict".
+  const sideA = [w.attacker, ...w.attacker_allies].join(" + ");
+  const sideB = [w.defender, ...w.defender_allies].join(" + ");
+  const joinCard = m && !mine ? `
+    <div class="card" style="margin-top:12px"><h3>Take a side <span>· 14 pc</span></h3>
+      <div class="tiny">You enter at rung 1 — rhetoric — and buy the ladder from there, one
+        rung at a time, like everybody else. Above rung 5 you will need somebody in range
+        of ${w.theatre_name} to agree to basing.</div>
+      <div class="btnrow" style="margin-top:8px">
+        <button onclick="conflictCmd(${id},'join',1)">Side with ${sideA}</button>
+        <button onclick="conflictCmd(${id},'join',0)">Side with ${sideB}</button>
+      </div></div>` : "";
+
+  const sheet = $("#sheet");
+  sheet.innerHTML = `
+    <div class="head"><h2>${w.theatre_name}</h2>
+      <span class="tagline">${w.attacker} vs ${w.defender} · ${conflictLine(w, mine, theirs)} · since ${w.start}</span>
+      <span class="spacer"></span><span class="close" onclick="closeSheet()">&times;</span></div>
+    <div class="card" style="margin-top:12px"><h3>Where each side stands</h3>
+      ${w.posture.map((b) => `<div class="prow"><b>${b.name}</b> rung ${b.rung} — ${b.rung_name}
+        <span class="tiny">· ${b.objective} · ${b.roe} · resolve ${b.resolve.toFixed(2)}${
+          b.home ? " · at home" : ""}${b.access ? "" : " · no host"}</span></div>`).join("")}
+      <div class="tiny" style="margin-top:8px">ground held — ${w.control >= 0 ? w.attacker : w.defender} by ${
+        Math.abs(w.control * 100).toFixed(0)}%</div>
+      ${bar(Math.abs(w.control), w.control >= 0 ? "var(--red)" : "var(--amber)")}
+      <div class="tiny" style="margin-top:8px">terrain — ${(t.rough * 100).toFixed(0)}% rough, ${
+        (t.urbanisation * 100).toFixed(0)}% built up${
+        t.rough + t.urbanisation > 0.8 ? " · cover enough that a force which will not stand in the open is very hard to kill" : ""}</div>
+    </div>
+    ${mine ? `<div class="card" style="margin-top:12px"><h3>The ladder</h3>${rows}
+      <div class="tiny" style="margin-top:10px">${force}</div></div>
+    <div class="card" style="margin-top:12px"><h3>Objective</h3>
+      <div class="btnrow">${objs.map((o) => `<button class="${mine.objective === o ? "on" : ""}"
+        onclick="conflictCmd(${id},'objective',0,null,'${o}')">${o}</button>`).join("")}</div>
+      <h3 style="margin-top:12px">Rules of engagement</h3>
+      <div class="btnrow">${roes.map((o) => `<button class="${mine.roe === o ? "on" : ""}"
+        onclick="conflictCmd(${id},'roe',0,null,'${o}')">${o}${o === "unrestricted" ? " · 8 pc" : ""}</button>`).join("")}</div>
+      <div class="tiny">Unrestricted wins faster and multiplies every access consent against you by 0.6. Winning
+        sooner and keeping your host's airbase are the same decision.</div>
+      <h3 style="margin-top:12px">Escalation ceiling <span>· 4 pc</span></h3>
+      <div class="btnrow">${[3,5,6,7,8,9].map((r) => `<button class="${mine.ceiling === r ? "on" : ""}"
+        onclick="conflictCmd(${id},'ceiling',${r})">${r}</button>`).join("")}</div>
+      <h3 style="margin-top:12px">Red line <span>· free · auto-withdraw below this resolve</span></h3>
+      <div class="btnrow">${[0,0.15,0.3,0.45,0.6].map((v) => `<button class="${
+        Math.abs(mine.red_line - v) < 0.01 ? "on" : ""}"
+        onclick="conflictCmd(${id},'red_line',${v})">${v === 0 ? "none" : v.toFixed(2)}</button>`).join("")}</div>
+    </div>` : ""}
+    ${joinCard}
+    <div class="card" style="margin-top:12px"><h3>Basing and overflight</h3>
+      ${accessRows || `<div class="muted">Nobody's consent is needed here.</div>`}</div>`;
+  selected = null;
+  openSheetEl(false);
+};
+
+window.conflictCmd = async function (conflict, kind, value, target, word) {
+  const cmd = { kind, conflict, value, target };
+  if (kind === "objective") cmd.objective = word;
+  if (kind === "roe") cmd.roe = word;
+  // Joining carries which side, and a side rather than a rung: you come in at
+  // the bottom and climb.
+  if (kind === "join") { cmd.side_a = value === 1; cmd.objective = "deny"; }
+  const w = S.wars.find((x) => x.id === conflict);
+  if (w) cmd.theatre = w.theatre;
+  if (kind === "grant_access") cmd.grant = true;
+  const r = await api("/api/command", { commands: [cmd] });
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  await adopt(r, false);
+  const still = S.wars.find((x) => x.id === conflict);
+  if (still) openConflict(conflict);
+};
 
 const CATS = [
   ["all", "All", "#8a97a8"], ["war", "War", "#e05c5c"], ["politics", "Politics", "#a07ce0"],
@@ -1489,6 +1762,8 @@ function openNation(id, keepScroll) {
         ${n.sanctioned_by_me
           ? `<button onclick="act('lift','${n.name}')">Lift sanctions</button>`
           : `<button onclick="act('sanction','${n.name}')">Sanction</button>`}
+        ${S.wars.some((w) => w.posture.some((b) => b.id === id) && myPosture(w))
+          ? "" : `<button onclick="openQuarrel('${n.name}')">Open a quarrel · 4 pc</button>`}
         <button class="danger" onclick="declareWar('${n.name}')">Declare war</button>
       </span>`}
       <span class="close" onclick="closeSheet()">&times;</span>
@@ -1645,6 +1920,18 @@ window.act = async function (kind, target) {
   const r = await api("/api/command", { commands: [{ kind, target }] });
   if (r.errors && r.errors.length) banner(r.errors[0]);
   await adopt(r, false);
+};
+
+/// The bottom of the ladder as a verb. Everything the war layer can do starts
+/// here now — the quarrel exists first, and the campaign is seven decisions
+/// away rather than one button.
+window.openQuarrel = async function (target) {
+  const r = await api("/api/command", { commands: [{ kind: "open_conflict", target }] });
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  await adopt(r, false);
+  const mineNow = S.wars.find((w) => myPosture(w) &&
+    w.posture.some((b) => (nationById(b.id) || {}).name === target));
+  if (mineNow) openConflict(mineNow.id);
 };
 
 window.declareWar = async function (target) {

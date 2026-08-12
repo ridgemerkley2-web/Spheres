@@ -55,7 +55,7 @@ fn report(w: &WorldState) {
             n.debt_gdp * 100.0, n.stability, n.political_capital, n.mil_strength
         );
     }
-    println!("Oil: ${:.0}/bbl   Wars: {}   Sanction pairs: {}", w.oil_price, w.wars.len(), w.sanctions.len());
+    println!("Oil: ${:.0}/bbl   Wars: {}   Sanction pairs: {}", w.oil_price, w.conflicts.len(), w.sanctions.len());
 }
 
 fn play(seed: u64) {
@@ -267,6 +267,47 @@ fn play_loop(mut w: WorldState) {
                 }
                 None => println!("Usage: war Kuwait"),
             },
+            // ---- Getting in. Two verbs, and without them the eight below are
+            // unreachable: every one of them needs you to already be a party to
+            // something. ----
+            "quarrel" => match NationId::parse(&rest) {
+                Some(t) => {
+                    let theatre = spheres_sim::war::theatre_between(&w, me, t);
+                    queued.push(Command::OpenConflict { opener: me, target: t, theatre });
+                    println!(
+                        "Queued: open a public quarrel with {} over {} — rung 1, rhetoric.",
+                        t.name(),
+                        theatre.name()
+                    );
+                }
+                None => println!("Usage: quarrel Iraq"),
+            },
+            "join" => match join_command(&w, me, &rest) {
+                Ok(c) => {
+                    println!("Queued: {}", describe_ladder(&c));
+                    queued.push(c);
+                }
+                Err(e) => println!("{}", e),
+            },
+            // ---- The commitment ladder. One conflict at a time, named by the
+            // theatre it is fought in, because that is how the briefing prints
+            // it and a player should never have to learn an integer id. ----
+            "commit" | "objective" | "roe" | "ceiling" | "redline" => {
+                match ladder_command(&w, me, &verb, &rest) {
+                    Ok(c) => {
+                        println!("Queued: {}", describe_ladder(&c));
+                        queued.push(c);
+                    }
+                    Err(e) => println!("{}", e),
+                }
+            }
+            "access" => match access_command(&w, me, &rest) {
+                Ok(c) => {
+                    println!("Queued: {}", describe_ladder(&c));
+                    queued.push(c);
+                }
+                Err(e) => println!("{}", e),
+            },
             "next" | "n" => {
                 advance(&mut w, &mut queued, 1);
             }
@@ -313,6 +354,152 @@ fn advance(w: &mut WorldState, queued: &mut Vec<Command>, months: usize) {
     briefing(w, me);
 }
 
+/// The conflict a player means when they name one — by theatre, or by the other
+/// side's name, or by nothing at all when there is only one.
+fn find_conflict(w: &WorldState, me: NationId, hint: &str) -> Result<u32, String> {
+    let mine: Vec<&Conflict> = w.conflicts.iter().filter(|c| c.involves(me)).collect();
+    if mine.is_empty() {
+        return Err("You are not party to any conflict.".into());
+    }
+    if hint.is_empty() {
+        if mine.len() == 1 {
+            return Ok(mine[0].id);
+        }
+        return Err(format!(
+            "Which one? {}",
+            mine.iter().map(|c| c.theatre.name()).collect::<Vec<_>>().join(", ")
+        ));
+    }
+    let want_th = spheres_sim::theatre::TheatreId::parse(hint);
+    let want_n = NationId::parse(hint);
+    mine.iter()
+        .find(|c| {
+            Some(c.theatre) == want_th || want_n.map_or(false, |n| c.involves(n))
+        })
+        .map(|c| c.id)
+        .ok_or_else(|| format!("No conflict of yours matches '{}'.", hint))
+}
+
+/// `commit 8`, `commit gulf 8`, `objective hold`, `roe unrestricted`,
+/// `ceiling 5`, `redline 0.3`. The theatre is optional whenever it is obvious.
+fn ladder_command(w: &WorldState, me: NationId, verb: &str, rest: &str) -> Result<Command, String> {
+    let parts: Vec<&str> = rest.split_whitespace().collect();
+    let (hint, arg) = match parts.len() {
+        0 => return Err(format!("Usage: {} <value>   (or: {} <theatre> <value>)", verb, verb)),
+        1 => ("", parts[0]),
+        _ => (parts[0], parts[1]),
+    };
+    let conflict = find_conflict(w, me, hint)?;
+    Ok(match verb {
+        "commit" => Command::SetCommitment {
+            conflict,
+            nation: me,
+            rung: arg.parse::<u8>().map_err(|_| "Rungs are 1 to 9.".to_string())?,
+        },
+        "ceiling" => Command::SetCeiling {
+            conflict,
+            nation: me,
+            rung: arg.parse::<u8>().map_err(|_| "Rungs are 1 to 9.".to_string())?,
+        },
+        "objective" => Command::SetObjective {
+            conflict,
+            nation: me,
+            objective: Objective::parse(arg)
+                .ok_or("deny | degrade | seize | hold | stabilise | withdraw")?,
+        },
+        "roe" => Command::SetRoE {
+            conflict,
+            nation: me,
+            roe: Roe::parse(arg).ok_or("restrained | standard | unrestricted")?,
+        },
+        _ => Command::SetRedLine {
+            conflict,
+            nation: me,
+            resolve_floor: arg.parse::<f64>().map_err(|_| "A resolve floor, 0 to 0.95.".to_string())?,
+        },
+    })
+}
+
+/// `access request Turkey levant`, `access grant USA gulf`, `access press ...`,
+/// `access revoke ...`.
+fn access_command(w: &WorldState, me: NationId, rest: &str) -> Result<Command, String> {
+    let p: Vec<&str> = rest.split_whitespace().collect();
+    if p.len() < 2 {
+        return Err("Usage: access request|press|grant|refuse|revoke <nation> [theatre]".into());
+    }
+    let other = NationId::parse(p[1]).ok_or_else(|| format!("Who is '{}'?", p[1]))?;
+    let theatre = match p.get(2) {
+        Some(t) => spheres_sim::theatre::TheatreId::parse(t)
+            .ok_or_else(|| format!("Where is '{}'?", t))?,
+        None => w
+            .conflicts
+            .iter()
+            .find(|c| c.involves(me))
+            .map(|c| c.theatre)
+            .ok_or("Name a theatre — you are in no conflict to infer one from.")?,
+    };
+    Ok(match p[0] {
+        "request" | "ask" => Command::RequestAccess { seeker: me, host: other, theatre },
+        "press" => Command::PressForAccess { seeker: me, host: other, theatre },
+        "grant" => Command::GrantAccess { host: me, seeker: other, theatre, grant: true },
+        "refuse" | "deny" => Command::GrantAccess { host: me, seeker: other, theatre, grant: false },
+        "revoke" => Command::RevokeAccess { host: me, seeker: other, theatre },
+        _ => return Err("request | press | grant | refuse | revoke".into()),
+    })
+}
+
+/// `join Kuwait` — take the side the named nation is on, in the conflict it is
+/// fighting. Naming a belligerent rather than a side or an id is the only form
+/// a player thinks in: you do not side with "side B", you side with Kuwait.
+fn join_command(w: &WorldState, me: NationId, rest: &str) -> Result<Command, String> {
+    let who = NationId::parse(rest.trim())
+        .ok_or_else(|| "Usage: join Kuwait   (whoever you mean to stand beside)".to_string())?;
+    let c = w
+        .conflicts
+        .iter()
+        .find(|c| c.involves(who))
+        .ok_or_else(|| format!("{} is not in anybody's conflict.", who.name()))?;
+    if c.involves(me) {
+        return Err("You are already a party to that conflict.".into());
+    }
+    Ok(Command::JoinConflict {
+        conflict: c.id,
+        nation: me,
+        side_a: c.side_of(who) == Some(true),
+        objective: Objective::Deny,
+    })
+}
+
+fn describe_ladder(c: &Command) -> String {
+    match c {
+        Command::JoinConflict { side_a, .. } => format!(
+            "take the {} side, at rung 1 — the ladder starts where everybody else's does",
+            if *side_a { "attacking" } else { "defending" }
+        ),
+        Command::SetCommitment { rung, .. } => {
+            format!("rung {} — {}", rung, spheres_sim::world::rung_name(*rung))
+        }
+        Command::SetCeiling { rung, .. } => format!("a public ceiling at rung {}", rung),
+        Command::SetObjective { objective, .. } => format!("objective: {}", objective.label()),
+        Command::SetRoE { roe, .. } => format!("rules of engagement: {}", roe.label()),
+        Command::SetRedLine { resolve_floor, .. } => format!("red line at resolve {:.2}", resolve_floor),
+        Command::RequestAccess { host, theatre, .. } => {
+            format!("ask {} for basing in {}", host.name(), theatre.name())
+        }
+        Command::PressForAccess { host, theatre, .. } => {
+            format!("press {} for basing in {}", host.name(), theatre.name())
+        }
+        Command::GrantAccess { seeker, grant, theatre, .. } => format!(
+            "{} {} the use of our bases in {}",
+            if *grant { "grant" } else { "refuse" }, seeker.name(), theatre.name()
+        ),
+        Command::RevokeAccess { seeker, theatre, .. } => {
+            format!("revoke {}'s basing rights in {}", seeker.name(), theatre.name())
+        }
+        _ => format!("{:?}", c),
+    }
+}
+
 /// Events worth interrupting a multi-month advance for.
 fn is_major(headline: &str, me: NationId) -> bool {
     let h = headline.to_lowercase();
@@ -321,7 +508,10 @@ fn is_major(headline: &str, me: NationId) -> bool {
         || h.contains("has annexed")
         || h.contains("capitulates")
         || h.contains("revolution in")
-        || h.contains("repels");
+        || h.contains("repels")
+        || h.contains("escalates to rung")
+        || h.contains("grants")
+        || h.contains("revokes");
     // Anything naming you is your business, whoever it happened to.
     structural || h.contains(&me.name().to_lowercase())
 }
@@ -383,11 +573,30 @@ fn briefing(w: &WorldState, me: NationId) {
         println!("Under sanction by {} nations.", sanctioners);
     }
     println!("Oil ${:.0}/bbl", w.oil_price);
-    for war in &w.wars {
-        let mark = if war.involves(me) { " <-- YOU" } else { "" };
+    for c in &w.conflicts {
+        let mark = if c.involves(me) { " <-- YOU" } else { "" };
+        // One line per conflict: where, who, how far each side has climbed, who
+        // holds the ground, and what is left of the will to go on.
+        let mine = c.posture_of(me);
+        let theirs = c
+            .posture
+            .iter()
+            .find(|b| c.side_of(b.nation) != c.side_of(me));
+        let ladder = match (mine, theirs) {
+            (Some(a), Some(b)) => format!(
+                " · you rung {} ({}, {}) vs {} rung {} · resolve {:.2} vs {:.2}",
+                a.rung, a.objective.label(), a.roe.label(),
+                b.nation.name(), b.rung, a.resolve, b.resolve
+            ),
+            _ => format!(
+                " · rung {} vs {}",
+                c.top_rung(true), c.top_rung(false)
+            ),
+        };
         println!(
-            "WAR: {} vs {} (progress {:+.0}){}",
-            war.attacker.name(), war.defender.name(), war.progress, mark
+            "{}: {} vs {} · ground {:+.2}{}{}",
+            c.theatre.name().to_uppercase(),
+            c.attacker().name(), c.defender().name(), c.control, ladder, mark
         );
     }
 }
@@ -536,6 +745,18 @@ fn help() {
     println!("  options           what the world is offering you now");
     println!("  enact <id>        take one of those options");
     println!("  war Kuwait        declare war (confirmed)");
+    println!("  war Kuwait        declare war outright — rung 8 in one act (confirmed)");
+    println!("  -- the commitment ladder --");
+    println!("  quarrel Iraq      open a quarrel at rung 1, and climb from there");
+    println!("  join Kuwait       take a side in a conflict already running");
+    println!("  commit 8          stand on rung 8 in your only conflict");
+    println!("  commit gulf 6     ...or name the theatre when you have several");
+    println!("  objective hold    deny|degrade|seize|hold|stabilise|withdraw");
+    println!("  roe restrained    restrained|standard|unrestricted");
+    println!("  ceiling 5         publicly rule out going any further");
+    println!("  redline 0.3       withdraw by itself when resolve falls this far");
+    println!("  access request Turkey levant   ask a third state for basing");
+    println!("  access grant USA gulf          answer somebody who is asking you");
     println!("  save / quit");
 }
 

@@ -230,6 +230,12 @@ impl<'de> Deserialize<'de> for Relations {
     }
 }
 
+/// A nation that has not fired anything yet has full magazines, and so does one
+/// loaded from a save written before magazines existed.
+fn full_magazines() -> f64 {
+    1.0
+}
+
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq)]
 pub enum EconomySystem {
     Market,
@@ -279,8 +285,18 @@ pub struct Nation {
     pub separatism: f64,
 
     // --- Military ---
-    /// Abstract strength index
+    /// **Force structure** — trained people and platforms, the first of BIBLE
+    /// §6's three stocks. Decades to build, impossible to surge. It is *not* a
+    /// measure of what this nation can bring to bear anywhere: three multipliers
+    /// stand between this number and combat power, and each of them is a place a
+    /// decision lives. See `war::committed_force`.
     pub mil_strength: f64,
+    /// **Munitions** — 0..1, months of high-intensity fire left in the
+    /// magazines. Drains in weeks at rung 6 and rebuilds over years, and that
+    /// mismatch is what makes short wars end for logistical rather than
+    /// political reasons.
+    #[serde(default = "full_magazines")]
+    pub munitions: f64,
     /// 0..1, accumulates in war, decays in peace
     pub war_exhaustion: f64,
     pub nuclear: bool,
@@ -406,6 +422,9 @@ pub struct Statecraft {
 /// What a state's word is worth before it has spent any of it.
 pub const BASE_REPUTATION: f64 = 70.0;
 
+/// The legacy war object. Nothing writes one any more — it survives only so
+/// that a save written before the commitment ladder still loads, and `load()`
+/// drains it into `conflicts` through `migrate_legacy_wars`.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct War {
     pub attacker: NationId,
@@ -417,6 +436,250 @@ pub struct War {
     /// Net progress: positive favors attacker side, [-100, 100]
     pub progress: f64,
 }
+
+/// What a belligerent is trying to achieve, which decides what its committed
+/// force is *for*. Not decoration: each of these is a different pair of
+/// multipliers on killing and on taking ground.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum Objective {
+    /// Stop them having it. No seizing at all, and theirs is halved.
+    Deny,
+    /// Break the thing rather than hold the ground.
+    Degrade,
+    /// Take it.
+    Seize,
+    /// Keep what you have and stop paying for what you do not.
+    Hold,
+    /// Hold the ground down rather than the enemy, and stop them rebuilding.
+    Stabilise,
+    /// Leave, one rung a month, and stop the bleeding.
+    Withdraw,
+}
+impl Objective {
+    pub fn label(&self) -> &'static str {
+        match self {
+            Objective::Deny => "deny",
+            Objective::Degrade => "degrade",
+            Objective::Seize => "seize",
+            Objective::Hold => "hold",
+            Objective::Stabilise => "stabilise",
+            Objective::Withdraw => "withdraw",
+        }
+    }
+    pub fn parse(s: &str) -> Option<Objective> {
+        Some(match s.trim().to_lowercase().as_str() {
+            "deny" => Objective::Deny,
+            "degrade" => Objective::Degrade,
+            "seize" | "take" => Objective::Seize,
+            "hold" => Objective::Hold,
+            "stabilise" | "stabilize" => Objective::Stabilise,
+            "withdraw" | "leave" | "out" => Objective::Withdraw,
+            _ => return None,
+        })
+    }
+}
+
+/// How much you are willing to break to win faster. The click where winning
+/// sooner and keeping your host's airbase are the same decision.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum Roe {
+    Restrained,
+    Standard,
+    Unrestricted,
+}
+impl Roe {
+    pub fn label(&self) -> &'static str {
+        match self {
+            Roe::Restrained => "restrained",
+            Roe::Standard => "standard",
+            Roe::Unrestricted => "unrestricted",
+        }
+    }
+    pub fn parse(s: &str) -> Option<Roe> {
+        Some(match s.trim().to_lowercase().as_str() {
+            "restrained" | "restrict" => Roe::Restrained,
+            "standard" | "normal" => Roe::Standard,
+            "unrestricted" | "unrestrained" | "total" => Roe::Unrestricted,
+            _ => return None,
+        })
+    }
+}
+
+/// Recomputed every month from the rungs on the board rather than stored as
+/// truth. A conflict slides between these; it is not born one.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum ConflictClass {
+    Conventional,
+    Irregular,
+    Frozen,
+}
+
+/// The nine rungs of BIBLE §6. Rungs 2 through 5 are the statecraft instruments
+/// that already exist; the ladder binds them into a sequence rather than
+/// duplicating them.
+pub const RUNG_NAMES: [&str; 10] = [
+    "-",
+    "rhetoric",
+    "sanctions",
+    "arms to a proxy",
+    "advisers and intelligence",
+    "deniable forces",
+    "standoff strike",
+    "blockade or limited incursion",
+    "full conventional campaign",
+    "occupation",
+];
+pub fn rung_name(r: u8) -> &'static str {
+    RUNG_NAMES[(r as usize).min(9)]
+}
+
+/// One participant's own war. Each side picks its own rung monthly, and
+/// mismatched rungs are the interesting state.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct Belligerent {
+    pub nation: NationId,
+    /// 1..=9
+    pub rung: u8,
+    /// A publicly announced limit. Binds the automatic and AI responses, and the
+    /// opponent reads it.
+    pub ceiling: u8,
+    pub objective: Objective,
+    pub roe: Roe,
+    /// 0..1 — the political stock that actually loses modern wars.
+    pub resolve: f64,
+    /// When resolve crosses this, the objective switches to Withdraw by itself.
+    pub red_line: f64,
+    pub months_at_rung: u32,
+    /// 0..1 — what losing here would mean at home. Home ground is 1.0.
+    pub stake: f64,
+}
+
+impl Belligerent {
+    /// A fresh belligerent at a chosen rung, with everything else at its
+    /// default: full resolve, standard rules, no announced ceiling, no red line.
+    pub fn new(nation: NationId, rung: u8, objective: Objective) -> Belligerent {
+        Belligerent {
+            nation,
+            rung: rung.clamp(1, 9),
+            ceiling: 9,
+            objective,
+            roe: Roe::Standard,
+            resolve: 1.0,
+            red_line: 0.0,
+            months_at_rung: 0,
+            stake: 0.20,
+        }
+    }
+}
+
+/// BIBLE §6 object 1. Persistent, between coalitions, carrying each
+/// belligerent's own commitment rung. It does not begin with a declaration or
+/// end with a capitulation: it begins when someone climbs and ends when a track
+/// collapses — and frozen conflicts do not end at all, they go quiet.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct Conflict {
+    pub id: u32,
+    pub theatre: crate::theatre::TheatreId,
+    pub side_a: Vec<NationId>,
+    pub side_b: Vec<NationId>,
+    /// One entry per participant, in join order. Deterministic by construction.
+    pub posture: Vec<Belligerent>,
+    /// -1..=+1. +1 means side A holds the ground. Separate from resolve on
+    /// purpose: a single progress bar cannot express "holding the ground and
+    /// losing the war", and two tracks can.
+    pub control: f64,
+    pub months: u32,
+    /// Consecutive months with nobody above rung 5. Eighteen of them and the
+    /// conflict freezes; it does not end, it goes quiet.
+    #[serde(default)]
+    pub quiet_months: u32,
+    pub frozen_since: Option<(i32, u32)>,
+    pub start_year: i32,
+    pub start_month: u32,
+    /// Who opened it. Kept because conquest, reparations and the burned-fingers
+    /// flag all need to know who started it years later.
+    pub origin_attacker: NationId,
+    /// Whether somebody has already crossed a border in force here. The
+    /// coalition forms once, at the moment the quarrel becomes an invasion, and
+    /// never again however many times the aggressor climbs back up afterwards.
+    #[serde(default)]
+    pub invasion_declared: bool,
+}
+
+impl Conflict {
+    pub fn involves(&self, id: NationId) -> bool {
+        self.side_a.contains(&id) || self.side_b.contains(&id)
+    }
+    /// true = side A.
+    pub fn side_of(&self, id: NationId) -> Option<bool> {
+        if self.side_a.contains(&id) {
+            Some(true)
+        } else if self.side_b.contains(&id) {
+            Some(false)
+        } else {
+            None
+        }
+    }
+    pub fn attacker(&self) -> NationId {
+        *self.side_a.first().unwrap_or(&self.origin_attacker)
+    }
+    pub fn defender(&self) -> NationId {
+        *self.side_b.first().unwrap_or(&self.origin_attacker)
+    }
+    pub fn participants(&self) -> Vec<NationId> {
+        let mut v = self.side_a.clone();
+        v.extend(self.side_b.iter().copied());
+        v
+    }
+    pub fn posture_of(&self, id: NationId) -> Option<&Belligerent> {
+        self.posture.iter().find(|b| b.nation == id)
+    }
+    pub fn posture_mut(&mut self, id: NationId) -> Option<&mut Belligerent> {
+        self.posture.iter_mut().find(|b| b.nation == id)
+    }
+    /// The highest rung anyone on a side is standing on.
+    pub fn top_rung(&self, side_a: bool) -> u8 {
+        let side = if side_a { &self.side_a } else { &self.side_b };
+        self.posture
+            .iter()
+            .filter(|b| side.contains(&b.nation))
+            .map(|b| b.rung)
+            .max()
+            .unwrap_or(1)
+    }
+    /// Anyone shooting. Rung 6 — standoff strike — is where a conflict becomes
+    /// a war for everything downstream that reads `at_war`.
+    pub fn shooting(&self) -> bool {
+        self.posture.iter().any(|b| b.rung >= SHOOTING_RUNG)
+    }
+    pub fn class(&self) -> ConflictClass {
+        if self.frozen_since.is_some() {
+            return ConflictClass::Frozen;
+        }
+        let (a, b) = (self.top_rung(true), self.top_rung(false));
+        // Both standing and fighting is conventional. One side standing in the
+        // open while the other does not is the irregular case, and it is the
+        // state the whole model exists to express.
+        if a >= 6 && b >= 6 {
+            ConflictClass::Conventional
+        } else if a.max(b) >= 6 {
+            ConflictClass::Irregular
+        } else {
+            ConflictClass::Frozen
+        }
+    }
+}
+
+/// The rung at which a conflict becomes a shooting war, and therefore the rung
+/// at which `at_war` starts returning true — which is what the economy's war
+/// drag, the oil terminals and the sanctions-relief clock all read.
+pub const SHOOTING_RUNG: u8 = 6;
+
+/// The rung at which crossing a border stops being an incident and becomes an
+/// invasion: a full conventional campaign, the thing a coalition forms against
+/// and the thing a guarantor is called for. Below it a quarrel is a quarrel,
+/// however unpleasant, and the world does not mobilise about it.
+pub const INVASION_RUNG: u8 = 8;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct GameRules {
@@ -443,7 +706,21 @@ pub struct WorldState {
     pub relations: Relations,
     /// sanctions: (imposer, target)
     pub sanctions: Vec<(NationId, NationId)>,
+    /// Every live conflict, in creation order. Iterated in vector order, which
+    /// is why resolution is deterministic without sorting anything.
+    #[serde(default)]
+    pub conflicts: Vec<Conflict>,
+    /// Dead legacy field. Nothing writes it; `load()` drains any that a pre-
+    /// ladder save carries into `conflicts` and leaves this empty forever after.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub wars: Vec<War>,
+    /// The operating areas, and who is home to them. Mutable, because
+    /// federations come apart and their successors have to inherit the ground.
+    #[serde(default = "crate::theatre::default_theatres")]
+    pub theatres: Vec<crate::theatre::Theatre>,
+    /// Standing consents to basing and overflight.
+    #[serde(default)]
+    pub access: Vec<crate::theatre::Access>,
     /// Pacts, patronage, trade and the intelligence services. Defaulted so that
     /// a save written before statecraft existed still loads.
     #[serde(default)]
@@ -642,8 +919,32 @@ impl WorldState {
         let war_share = if self.at_war(id) { 0.25 } else { 1.0 };
         (1.0 - self.oil_blockade(id)) * war_share
     }
+    /// Shooting, not merely quarrelling. Read by the economy's war drag, the oil
+    /// terminals, trade collapse, the sanctions-relief clock and the guarantor
+    /// rolls, all of which mean "a war is on" — so a rung-2 sanctions conflict
+    /// must not shut down a country's oil terminals, and does not.
     pub fn at_war(&self, id: NationId) -> bool {
-        self.wars.iter().any(|w| w.involves(id))
+        self.conflicts.iter().any(|c| c.involves(id) && c.shooting())
+    }
+    /// Anywhere on the ladder, including the rungs where nobody has fired.
+    pub fn in_conflict(&self, id: NationId) -> bool {
+        self.conflicts.iter().any(|c| c.involves(id))
+    }
+    pub fn conflict(&self, id: u32) -> Option<&Conflict> {
+        self.conflicts.iter().find(|c| c.id == id)
+    }
+    pub fn conflict_mut(&mut self, id: u32) -> Option<&mut Conflict> {
+        self.conflicts.iter_mut().find(|c| c.id == id)
+    }
+    /// Where two states are already fighting each other, if they are.
+    pub fn conflict_between(&self, a: NationId, b: NationId) -> Option<&Conflict> {
+        self.conflicts.iter().find(|c| match (c.side_of(a), c.side_of(b)) {
+            (Some(x), Some(y)) => x != y,
+            _ => false,
+        })
+    }
+    pub fn next_conflict_id(&self) -> u32 {
+        self.conflicts.iter().map(|c| c.id).max().map_or(1, |m| m + 1)
     }
     pub fn headline(&mut self, s: String) {
         self.headlines.push(s);

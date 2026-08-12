@@ -3,7 +3,10 @@
 ## Done (v0.5 rebuild)
 - Deterministic core, save/load, monthly ticks, state hashing
 - Economy: growth/catchup/diminishing returns, inflation, budgets/debt, oil market, bubbles+hangover
-- War: coalitions, exhaustion, annexation vs subjugation, burned-hand learning, nuclear taboo
+- War: **the commitment ladder** — conflicts between coalitions, nine rungs each
+  side picks for itself, theatres with an access requirement, force packages with
+  a deployable fraction, munitions and resolve. Annexation vs subjugation,
+  burned-hand learning and the nuclear taboo all survive underneath it
 - Politics: central bank AI, fiscal AI, elections, USSR dissolution, 1998 proliferation
 - Oil embargo: sanctions cut *exports* via `oil_export_share`, hitting the producer's
   revenue and budget, not just a GDP drag; embargoes outlast their war and lift as
@@ -107,6 +110,138 @@ growth indefinitely by raising its investment share.
 Still untested, and worth knowing that. No assertion locks a frontier economy's
 long-run trajectory, so a world that uniformly doubles still passes every
 calibration test we have.
+
+## Landed: the commitment ladder (BIBLE §6)
+
+War was a strength ratio pushing a progress bar. There was no decision in it. It
+is now four objects, landed in two commits so that a red test could be attributed
+to a cause.
+
+**Commit A** — pure refactor. `War` became `Conflict`: coalitions instead of an
+attacker-and-allies pair, a per-belligerent posture vector, control in -1..+1
+where progress was in -100..100, and the resolver arithmetically unchanged. All
+45 tests green on their existing thresholds, hash re-pinned once as a fingerprint
+change.
+
+**Commit B** — the mechanic.
+
+- **Nine rungs**, each side choosing its own monthly, and mismatched rungs are the
+  interesting state. The ladder **binds** the four statecraft systems rather than
+  duplicating them: `commitment::bind_instruments` issues `Command::Sanction` at
+  rung 2, `PledgeAid{Arms}` at 3 and 4, and rung 5 runs a quarterly
+  `CovertAction` — all through `apply_command`, so a government without the
+  standing to sanction somebody literally cannot climb to rung 2.
+- **Force packages replace the `mil_strength` scalar** without deleting it.
+  `mil_strength` is redefined as force structure and every existing read site is
+  untouched; three multipliers now stand between it and combat power. The number
+  doing the work is `capital_intensity` — budget per point of structure,
+  normalised so the 1990 USA is 1.0 — and it is derived, never authored. It feeds
+  the deployable fraction (USA 0.15, Iraq 0.04), quality (USA 1.37, Iraq 0.67),
+  and the rate magazines refill. Nobody typed any of those figures.
+- **The gate is a multiplication, not a branch.** `exposure` is the rung's own
+  exposure, cut by terrain and urbanisation, scaled by the ratio of the two
+  sides' quality. Desert Storm and Afghanistan come out of the same six lines.
+- **Ten new player commands**, all priced: `OpenConflict`, `SetCommitment`,
+  `SetObjective`, `SetRoE`, `SetCeiling`, `SetRedLine`, `RequestAccess`,
+  `PressForAccess`, `GrantAccess`, `RevokeAccess`.
+- **Theatres and access.** Eleven transcribed operating areas; no power commits
+  above rung 5 into one it is not home to without a consenting host. Access is a
+  standing consent granted by a parliament on a roll, revocable mid-campaign.
+- **UI**: the wars card is now a conflicts card with a nine-cell ladder strip
+  (yours amber, theirs red, ceiling notched, unreachable rungs hatched), and a
+  conflict sheet where each rung is a clickable row that either shows its price
+  or says in words why you cannot have it. Plus an access panel that works from
+  both ends. CLI gains `commit`, `objective`, `roe`, `ceiling`, `redline`,
+  `access`.
+
+Verified: the Gulf War now runs nineteen months and ends with Iraq thrown back
+and Kuwait alive, through the new arithmetic. `gulf_war_emerges`,
+`yugoslavia_comes_apart_in_the_nineties` and
+`slovenia_escapes_the_wars_that_consume_bosnia` all still pass.
+
+## Landed: the ladder is climbed, invasions are decided, and there is a way in
+
+Three findings from QA playing the ladder branch, all fixed on
+`feat/ladder-fixes`. Measured with `war_census` (`#[ignore]`d, eight seeds x 35
+years) before and after.
+
+1. **Conflicts were born at rung 8.** All 82 of them, because the coalition,
+   the guarantors and the interveners were welded to the act of *creating* a
+   conflict rather than to the act of crossing a border in force. The whole
+   nine-rung design behaved as a three-state machine: born at 8, collapse to 5,
+   decay to 1. `war::invasion_begins` is now lifted out of `declare_war` and
+   hangs off the rung, firing once per conflict when somebody on the aggressor's
+   side reaches 8; `politics::ai_wars` opens a quarrel at rung 1 instead;
+   `commitment::ai_ladder` has an `ambition` and climbs toward it, paying at
+   every step and paced by political capital rather than by a timer. Nothing in
+   the world is born above rung 1 any more, and Iraq spends nineteen months
+   climbing to Kuwait.
+2. **Nothing resolved.** A resolve collapse always slid a belligerent one rung
+   down and reset its will to a quarter, so a beaten state never stopped being
+   a belligerent and the war just went quiet: one capitulation in 82 conflicts.
+   Now a collapse *while the enemy holds your ground at a campaign rung* is a
+   capitulation, and an invasion that goes quiet gets a verdict within six
+   months — settled if the aggressor holds what it took, repelled if not. 27 of
+   the last census's conflicts became invasions and 28 endings were recorded.
+3. **No way in.** Playing the USA there was no verb that made you a party to
+   anything, so every ladder command answered "not a party to that conflict".
+   `Command::JoinConflict` (14 pc, enters at rung 1) and a browser/CLI surface
+   for it and for opening a quarrel.
+
+Also: `apply_command` no longer charges for a command the world refuses;
+escalating on your own ground is charged at 0.30, because a parliament has to
+be talked into an expedition and not into a defence; and defensive objectives
+mirror only *shooting*, since a state need not run a deniable service because
+somebody is running one at it.
+
+### Open, and deliberately not done in this branch
+- **Rung 5 is still the resting place of the world.** 9,747 belligerent-months
+  of 26,800 in the last census, against rung 1's 11,359. It is the highest rung
+  reachable without a consenting host, so everyone who cannot project parks
+  there, and long multi-party wars keep their quiet fronts there for years. It
+  is no longer the collapse point it was — the ladder is climbed through it
+  rather than falling back to it — but a state standing on deniable forces for
+  a decade with nothing happening should get bored, and nothing makes it.
+- **Capitulation is reachable but rare, and annexation never happens.** One
+  capitulation and no annexations across the last census; wars end at a table
+  (19 settlements) or with the aggressor thrown back (5). Whether that is right
+  for 1990-2025 is a judgement call — it is nearly right for the period — but
+  the conquest path deserves its own look, since `conquer` is now reached almost
+  only through a side emptying.
+- **The AI's judgement is still thin.** `ambition` reads the objective, the
+  force ratio it could field in that theatre, and its own announced ceiling. It
+  does not weigh access before committing, never chooses an objective or rules
+  of engagement, and does not read the opponent's announced ceiling.
+- **Interveners still join for free.** `invasion_begins` pushes majors and
+  guarantors onto a side at rung 8 without charging anybody, which is the
+  standing PLAN 2.1 "no side doors" violation and predates this work. The rung
+  changes are priced; the joining is not — though a player's own joining now is.
+- **Deviation from the design's burn table, stated plainly.** The design
+  specified `BURN_BY_RUNG[8] = 0.140`. Measured, that empties the United States'
+  magazines in eight months of a rung-8 campaign — before the control track can
+  resolve — so every conventional war froze at rung 5 with both sides dry and
+  neither able to finish. Rung 8 is 0.070 and rung 7 is 0.055 here, with rung 6
+  left at 0.090 as the design intends, because standoff strike is all ordnance
+  and no ground. Rung 6 remains the hungriest, which was the point of the table.
+
+## Finding: `china_growth_miracle` was a false green, and the war model is not why
+
+`china_growth_miracle` asserted `6.0 < x < 14.0` on the single default seed.
+Measured across eight seeds, **master's** China runs 9.7x to 17.1x and breaches
+14.0 on four of them. The bound was passing by seed-luck.
+
+The decisive measurement: with `ai_aggression = 0.0`, master and the commitment
+ladder produce **byte-identical** results — 14.76x mean, spread 0.9. That is
+China's actual resting growth in this model, it is above the old ceiling, and the
+war layer cannot touch it.
+
+Reality is about 13x (1990–2020, ~9%/yr), so **the growth model runs China hot by
+roughly a seventh.** That is a real, open gap. It wants a demographic or
+convergence mechanism — China's population also reaches 2,157m by 2020 against a
+real 1,411m, which is very likely the same bug seen from the other end. The test
+now measures the war-free resting state across eight seeds within ±0.8, which is
+a far stricter guard than the one it replaced, and the overshoot is recorded here
+rather than hidden.
 
 ## Next (rough priority)
 

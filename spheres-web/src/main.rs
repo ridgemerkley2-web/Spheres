@@ -6,6 +6,7 @@
 
 use spheres_sim::init::world_1990;
 use spheres_sim::stratagems;
+use spheres_sim::theatre::TheatreId;
 use spheres_sim::world::*;
 use spheres_sim::{apply_command, load, save, tick_month, Command};
 use std::sync::Mutex;
@@ -205,7 +206,10 @@ fn is_major(headline: &str, me: Option<NationId>) -> bool {
         || h.contains("capitulates")
         || h.contains("revolution in")
         || h.contains("sues for peace")
-        || h.contains("repels");
+        || h.contains("repels")
+        || h.contains("escalates to rung")
+        || h.contains("grants")
+        || h.contains("revokes");
     structural || me.map_or(false, |m| h.contains(&m.name().to_lowercase()))
 }
 
@@ -246,6 +250,82 @@ fn nation_param(url: &str) -> Option<NationId> {
         }
     }
     NationId::parse(&out)
+}
+
+/// The operating areas, and whose consent an outsider needs in each. Sent whole
+/// rather than per-conflict, because the access panel is playable on its own:
+/// a host state that is in nobody's war still wants to see who is asking.
+fn theatres_json(w: &WorldState) -> Vec<serde_json::Value> {
+    w.theatres
+        .iter()
+        .map(|t| {
+            serde_json::json!({
+                "id": format!("{:?}", t.id),
+                "name": t.id.name(),
+                "home": t.home.iter().map(|n| format!("{:?}", n)).collect::<Vec<_>>(),
+                "hosts": t.access_hosts.iter().map(|n| format!("{:?}", n)).collect::<Vec<_>>(),
+                "host_names": t.access_hosts.iter().map(|n| n.name()).collect::<Vec<_>>(),
+                "rough": t.rough,
+                "urbanisation": t.urbanisation,
+            })
+        })
+        .collect()
+}
+
+/// One conflict, with the ladder on it. The legacy keys (`attacker`,
+/// `defender`, `progress`, the two ally lists) are kept byte-for-byte so the
+/// existing war card keeps rendering while the new ones are added beside them.
+fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
+    let posture: Vec<serde_json::Value> = c
+        .posture
+        .iter()
+        .map(|b| {
+            serde_json::json!({
+                "id": format!("{:?}", b.nation),
+                "name": b.nation.name(),
+                "side_a": c.side_of(b.nation) == Some(true),
+                "rung": b.rung,
+                "rung_name": spheres_sim::world::rung_name(b.rung),
+                "ceiling": b.ceiling,
+                "objective": b.objective.label(),
+                "roe": b.roe.label(),
+                "resolve": b.resolve,
+                "red_line": b.red_line,
+                "stake": b.stake,
+                "months_at_rung": b.months_at_rung,
+                "munitions": w.nation_opt(b.nation).map(|n| n.munitions),
+                "deployable": spheres_sim::war::deployable_fraction(w, b.nation),
+                "access": spheres_sim::theatre::has_access(w, b.nation, c.theatre),
+                "home": spheres_sim::theatre::is_home(w, b.nation, c.theatre),
+                // Whether this belligerent is answering on its own ground, which
+                // is what the escalation discount hangs off. Computed by the sim
+                // so the price the UI quotes and the price the queue charges
+                // cannot drift apart.
+                "defending_home": spheres_sim::commitment::defending_home(w, c, b.nation),
+                "committed": spheres_sim::war::committed_force(w, c, b.nation),
+            })
+        })
+        .collect();
+    serde_json::json!({
+        "id": c.id,
+        "theatre": format!("{:?}", c.theatre),
+        "theatre_name": c.theatre.name(),
+        "class": format!("{:?}", c.class()),
+        "attacker": c.attacker().name(),
+        "attacker_id": format!("{:?}", c.attacker()),
+        "defender": c.defender().name(),
+        "defender_id": format!("{:?}", c.defender()),
+        // Control is the ground held, -1..+1; the old progress bar was the same
+        // quantity on a scale of a hundred, so the UI needs no arithmetic change.
+        "progress": c.control * 100.0,
+        "control": c.control,
+        "months": c.months,
+        "frozen_since": c.frozen_since.map(|(y, m)| month_name(m, y)),
+        "attacker_allies": c.side_a.iter().skip(1).map(|a| a.name()).collect::<Vec<_>>(),
+        "defender_allies": c.side_b.iter().skip(1).map(|a| a.name()).collect::<Vec<_>>(),
+        "posture": posture,
+        "start": month_name(c.start_month, c.start_year),
+    })
 }
 
 fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
@@ -433,20 +513,9 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         .map(|n| serde_json::json!({ "id": format!("{:?}", n.id), "name": n.id.name() }))
         .collect();
     let wars: Vec<serde_json::Value> = w
-        .wars
+        .conflicts
         .iter()
-        .map(|war| {
-            serde_json::json!({
-                "attacker": war.attacker.name(),
-                "attacker_id": format!("{:?}", war.attacker),
-                "defender": war.defender.name(),
-                "defender_id": format!("{:?}", war.defender),
-                "progress": war.progress,
-                "attacker_allies": war.attacker_allies.iter().map(|a| a.name()).collect::<Vec<_>>(),
-                "defender_allies": war.defender_allies.iter().map(|a| a.name()).collect::<Vec<_>>(),
-                "start": month_name(war.start_month, war.start_year),
-            })
-        })
+        .map(|c| conflict_json(w, c))
         .collect();
     // Newest first, and the whole archive — the event log is meant to be scrolled
     // back through, not just glanced at.
@@ -476,6 +545,15 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "nations": nations,
         "dead": dead,
         "wars": wars,
+        "theatres": theatres_json(w),
+        "access": w.access.iter().map(|a| serde_json::json!({
+            "theatre": format!("{:?}", a.theatre),
+            "host": format!("{:?}", a.host),
+            "host_name": a.host.name(),
+            "seeker": format!("{:?}", a.seeker),
+            "seeker_name": a.seeker.name(),
+            "since": month_name(a.since_month, a.since_year),
+        })).collect::<Vec<_>>(),
         "log": log,
         "flags": w.flags,
         // Carried on every state payload rather than fetched separately, because
@@ -487,13 +565,23 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
 }
 
 /// Translate the UI's flat command objects into sim commands.
-fn parse_command(v: &serde_json::Value, me: NationId) -> Option<Command> {
+fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<Command> {
     let kind = v.get("kind")?.as_str()?;
     let num = || v.get("value").and_then(|x| x.as_f64());
     let target = || {
         v.get("target")
             .and_then(|x| x.as_str())
             .and_then(NationId::parse)
+    };
+    let theatre = || {
+        v.get("theatre")
+            .and_then(|x| x.as_str())
+            .and_then(TheatreId::parse)
+    };
+    let conflict = || {
+        v.get("conflict")
+            .and_then(|x| x.as_u64())
+            .map(|x| x as u32)
     };
     Some(match kind {
         "rate" => Command::SetInterestRate { nation: me, rate: num()? },
@@ -509,6 +597,79 @@ fn parse_command(v: &serde_json::Value, me: NationId) -> Option<Command> {
         "stratagem" => Command::EnactStratagem {
             nation: me,
             id: v.get("id")?.as_str()?.to_string(),
+        },
+
+        // --- The commitment ladder. Flat objects, mapped exactly the way
+        // `rate` and `sanction` are: the UI never constructs a sim type. ---
+        // The theatre is optional here and it is the difference between the
+        // verb being reachable and not: a player picking a quarrel with a
+        // neighbour should not first have to know which operating area the sim
+        // files it under. Left out, it is the one a war between the two would
+        // be fought in — the defender's own ground.
+        "open_conflict" => Command::OpenConflict {
+            opener: me,
+            target: target()?,
+            theatre: theatre()
+                .unwrap_or_else(|| spheres_sim::war::theatre_between(w, me, target().unwrap())),
+        },
+        "join" => Command::JoinConflict {
+            conflict: conflict()?,
+            nation: me,
+            side_a: v.get("side_a").and_then(|x| x.as_bool()).unwrap_or(false),
+            objective: v
+                .get("objective")
+                .and_then(|x| x.as_str())
+                .and_then(Objective::parse)
+                .unwrap_or(Objective::Deny),
+        },
+        "commit" => Command::SetCommitment {
+            conflict: conflict()?,
+            nation: me,
+            rung: num()? as u8,
+        },
+        "objective" => Command::SetObjective {
+            conflict: conflict()?,
+            nation: me,
+            objective: Objective::parse(v.get("objective")?.as_str()?)?,
+        },
+        "roe" => Command::SetRoE {
+            conflict: conflict()?,
+            nation: me,
+            roe: Roe::parse(v.get("roe")?.as_str()?)?,
+        },
+        "ceiling" => Command::SetCeiling {
+            conflict: conflict()?,
+            nation: me,
+            rung: num()? as u8,
+        },
+        "red_line" => Command::SetRedLine {
+            conflict: conflict()?,
+            nation: me,
+            resolve_floor: num()?,
+        },
+
+        // --- Access. `target` is the other party in every case; who is host
+        // and who is seeker depends on which side of the table you sit. ---
+        "request_access" => Command::RequestAccess {
+            seeker: me,
+            host: target()?,
+            theatre: theatre()?,
+        },
+        "press_access" => Command::PressForAccess {
+            seeker: me,
+            host: target()?,
+            theatre: theatre()?,
+        },
+        "grant_access" => Command::GrantAccess {
+            host: me,
+            seeker: target()?,
+            theatre: theatre()?,
+            grant: v.get("grant").and_then(|x| x.as_bool()).unwrap_or(true),
+        },
+        "revoke_access" => Command::RevokeAccess {
+            host: me,
+            seeker: target()?,
+            theatre: theatre()?,
         },
         _ => return None,
     })
@@ -644,7 +805,7 @@ fn main() {
                     Some(me) => payload
                         .get("commands")
                         .and_then(|c| c.as_array())
-                        .map(|a| a.iter().filter_map(|v| parse_command(v, me)).collect())
+                        .map(|a| a.iter().filter_map(|v| parse_command(&g.world, v, me)).collect())
                         .unwrap_or_default(),
                     None => vec![],
                 };
@@ -670,10 +831,19 @@ fn main() {
                 let before = g.world.headlines.len();
                 if let Some(list) = payload.get("commands").and_then(|c| c.as_array()) {
                     for v in list {
-                        if let Some(cmd) = parse_command(v, me) {
-                            if let Err(e) = apply_command(&mut g.world, &cmd) {
-                                errors.push(e);
+                        // A command this build cannot parse used to be dropped in
+                        // silence, which from the player's side is a button that
+                        // does nothing and says nothing. Say it.
+                        match parse_command(&g.world, v, me) {
+                            Some(cmd) => {
+                                if let Err(e) = apply_command(&mut g.world, &cmd) {
+                                    errors.push(e);
+                                }
                             }
+                            None => errors.push(format!(
+                                "That order did not make sense: {}",
+                                serde_json::to_string(v).unwrap_or_default()
+                            )),
                         }
                     }
                 }
@@ -887,7 +1057,8 @@ mod tests {
             n.political_capital = 90.0;
         }
         let posted = serde_json::json!({ "kind": "stratagem", "id": "currency_peg" });
-        let cmd = parse_command(&posted, NationId::Poland).expect("the UI's shape must parse");
+        let cmd = parse_command(&g.world, &posted, NationId::Poland)
+            .expect("the UI's shape must parse");
         match &cmd {
             Command::EnactStratagem { nation, id } => {
                 assert_eq!(*nation, NationId::Poland);
