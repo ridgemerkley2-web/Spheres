@@ -1326,6 +1326,133 @@ pub const POLITIES: &[Polity] = &[
             pl(Pillar::Party, "the Party of Labour of Albania"),
             pl(Pillar::Army, "the Albanian People's Army"),
             pl(Pillar::Security, "the Sigurimi"),
+    // Bangladesh — the last national election before January 1990 was the
+    // Jatiya Sangsad of 3 March 1988, and it measured nothing: every opposition
+    // party boycotted it and Ershad's Jatiya Party took 251 of 300 seats on a
+    // ballot one Western diplomat called a mockery of an election. The shares
+    // transcribed here are therefore the first free one, 27 February 1991 —
+    // BNP 30.81%, Awami League 30.08%, Jamaat-e-Islami 12.13%, Jatiya Party
+    // 11.92% — which is the vote this table exists to represent, because
+    // Bangladesh opens the game above the electoral ceiling and the party
+    // table only becomes live when the regime opens up. Ershad resigned on
+    // 6 December 1990; the model has to reach that through instability.
+    Polity {
+        nation: NationId::Bangladesh,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("bd_bnp", "Bangladesh Nationalist Party", "", Family::Conservative, 0.308),
+            p("bd_al", "Awami League", "", Family::SocialDemocratic, 0.301),
+            p("bd_ji", "Bangladesh Jamaat-e-Islami", "", Family::Religious, 0.121),
+            p("bd_jp", "Jatiya Party", "", Family::BigTent, 0.119),
+        ],
+        ruling: "the Jatiya Sangsad",
+        pillars: &[
+            pl(Pillar::Army, "the Bangladesh Army"),
+            pl(Pillar::Party, "the Jatiya Party apparatus"),
+            pl(Pillar::Security, "the Directorate General of Forces Intelligence"),
+        ],
+    },
+    // Sri Lanka — Parliament, 15 February 1989: UNP 50.71%, SLFP 31.90%, EROS
+    // 4.11%, the Sri Lanka Muslim Congress 3.61%, TULF 3.37%, the United
+    // Socialist Alliance 2.86%, MEP 1.63%. A six-year term, so the next is due
+    // in February 1995. The 1978 constitution's threshold is 12.5% but it is
+    // applied per district, which is why seven parties sat in a 225-seat
+    // chamber and four of them polled under 5% nationally; a national 1% bar
+    // is the closer model of that outcome than a national 12.5% one.
+    Polity {
+        nation: NationId::SriLanka,
+        system: Electoral::ProportionalLowBar,
+        term_months: 72,
+        next: (1995, 2),
+        parties: &[
+            p("lk_unp", "United National Party", "", Family::Conservative, 0.507),
+            p("lk_slfp", "Sri Lanka Freedom Party", "", Family::SocialDemocratic, 0.319),
+            p("lk_eros", "Eelam Revolutionary Organisation of Students", "", Family::Regionalist, 0.041),
+            p("lk_slmc", "Sri Lanka Muslim Congress", "", Family::Religious, 0.036),
+            p("lk_tulf", "Tamil United Liberation Front", "", Family::Regionalist, 0.034),
+            p("lk_usa", "United Socialist Alliance", "", Family::Communist, 0.029),
+            p("lk_mep", "Mahajana Eksath Peramuna", "", Family::Nationalist, 0.016),
+        ],
+        ruling: "the Parliament of Sri Lanka",
+        pillars: &[],
+    },
+    // Nepal — an absolute monarchy in January 1990. The partyless Panchayat
+    // system imposed by King Mahendra in 1962 was still in force, parties were
+    // banned, and the Rastriya Panchayat elections of 1986 were fought by
+    // individuals rather than organisations. The shares below are the first
+    // multi-party election since 1959, 12 May 1991: Nepali Congress 39.50%,
+    // CPN (UML) 29.27%, the Rastriya Prajatantra Party split into Chand's
+    // 6.87% and Thapa's 5.63%, the United People's Front 5.05% and the Nepal
+    // Sadbhawana Party 4.28%. They become live if and when the palace gives way.
+    Polity {
+        nation: NationId::Nepal,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("np_nc", "Nepali Congress", "", Family::SocialDemocratic, 0.395),
+            p("np_uml", "Communist Party of Nepal (Unified Marxist-Leninist)", "", Family::Communist, 0.293),
+            p("np_rppc", "Rastriya Prajatantra Party (Chand)", "", Family::Conservative, 0.069),
+            p("np_rppt", "Rastriya Prajatantra Party (Thapa)", "", Family::Conservative, 0.056),
+            p("np_upf", "United People's Front of Nepal", "Samyukta Jana Morcha", Family::Communist, 0.051),
+            p("np_nsp", "Nepal Sadbhawana Party", "", Family::Regionalist, 0.043),
+        ],
+        ruling: "the Rastriya Panchayat",
+        pillars: &[
+            pl(Pillar::Army, "the Royal Nepalese Army"),
+            pl(Pillar::Party, "the palace secretariat"),
+        ],
+    },
+    // Afghanistan — the People's Democratic Party of Afghanistan, renamed the
+    // Watan Party in June 1990, holding Kabul and the ring road eleven months
+    // after the last Soviet soldier crossed the Amu Darya. The 1988 assembly
+    // elections reserved most seats for a resistance that never took them, so
+    // there is one party here and it is the only one that ever governed. What
+    // could remove Najibullah is what nearly did on 6 March 1990: his own
+    // defence minister and the army.
+    Polity {
+        nation: NationId::Afghanistan,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("af_pdpa", "Homeland Party", "Hezb-e Watan", Family::Communist, 1.00),
+        ],
+        ruling: "the Revolutionary Council",
+        pillars: &[
+            pl(Pillar::Army, "the Afghan Armed Forces"),
+            pl(Pillar::Party, "the Watan Party apparatus"),
+            pl(Pillar::Security, "the Ministry of State Security"),
+        ],
+    },
+    // Myanmar — the State Law and Order Restoration Council, the junta General
+    // Saw Maung formed on 18 September 1988. It held a general election on
+    // 27 May 1990 and then refused to convene the parliament it produced, so
+    // this is not a government a vote removes and it is modelled as unelected.
+    // The shares are that annulled result: NLD 59.87%, the regime's National
+    // Unity Party 21.17%, and the ethnic-state parties behind them. They are
+    // the table that becomes live if the Tatmadaw ever stands aside.
+    Polity {
+        nation: NationId::Myanmar,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("mm_nld", "National League for Democracy", "", Family::Liberal, 0.599),
+            p("mm_nup", "National Unity Party", "", Family::Nationalist, 0.212),
+            p("mm_snld", "Shan Nationalities League for Democracy", "", Family::Regionalist, 0.017),
+            p("mm_undp", "Union National Democracy Party", "", Family::BigTent, 0.015),
+            p("mm_ald", "Arakan League for Democracy", "", Family::Regionalist, 0.012),
+            p("mm_mndf", "Mon National Democratic Front", "", Family::Regionalist, 0.011),
+            p("mm_ndphr", "National Democratic Party for Human Rights", "", Family::Liberal, 0.010),
+        ],
+        ruling: "the State Law and Order Restoration Council",
+        pillars: &[
+            pl(Pillar::Army, "the Tatmadaw"),
+            pl(Pillar::Security, "the Directorate of Defence Services Intelligence"),
+            pl(Pillar::Business, "the military holding companies"),
         ],
     },
     // Israel — Knesset, 1 November 1988: Likud 31.1%, the Alignment 30.0%, Shas

@@ -1,0 +1,42 @@
+{
+  "id": "Bangladesh",
+  "name": "Bangladesh",
+  "system": "Market",
+  "authoritarianism": 0.65,
+  "economy": {
+    "gdp_bn": 31.6,
+    "population_m": 111.6,
+    "tfp_trend": 0.01,
+    "inflation": 0.061,
+    "interest_rate": 0.148,
+    "tax_rate": 0.087,
+    "mil_spend_gdp": 0.012,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.105,
+    "debt_gdp": 0.381,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 38.0,
+    "separatism": 0.06
+  },
+  "military": {
+    "strength": 8.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $31.598bn and population 111.63m: World Bank world development indicators, NY.GDP.MKTP.CD and SP.POP.TOTL, 1990. The CIA World Factbook 1990 gives a much lower $20.6bn at $180 a head (FY89 est.) and a population of 118.4m for July 1990; the World Bank series is preferred because the rest of this file is drawn from it.",
+    "Inflation 6.1%: World Bank FP.CPI.TOTL.ZG, 1990 (6.127%). The CIA World Factbook 1990 gives 8-10% for FY89.",
+    "Interest rate 14.85%: World Bank FR.INR.LEND, the commercial lending rate, 1990 — unchanged at that figure from 1988 through 1990. Bangladesh Bank's administered bank rate is not in the series, so the lending rate stands in for the policy rate.",
+    "Tax 8.7% of GDP: CIA World Factbook 1990, budget revenues $1.8bn against its own GDP of $20.6bn (FY89). The World Bank GC.TAX.TOTL.GD.ZS series has no 1990 observation for Bangladesh, so this is the only sourced ratio available and it is taken from a single consistent pair.",
+    "Military spending 1.2% of GDP: World Bank MS.MIL.XPND.GD.ZS, 1990 (1.223%, the SIPRI series). The CIA World Factbook 1990 gives 1.5% of GDP, or $309m, for FY90.",
+    "Investment 16.5% of GDP total: World Bank NE.GDI.TOTL.ZS, 1990 (16.459%). Split into public 6.0 and private 10.5 using the CIA World Factbook 1990 budget line, which puts capital expenditure at $1.7bn of $3.3bn total spending — Bangladesh's development budget was roughly a third of gross capital formation and almost entirely donor-financed.",
+    "Debt 38.1%: World Bank DT.DOD.DECT.GN.ZS, 1990 — total external debt of $12.29bn as a share of GNI. Bangladesh has no central-government-debt observation for 1990 (GC.DOD.TOTL.GD.ZS is empty), and almost all of the state's borrowing in 1990 was concessional external credit, so the external stock is the honest stand-in.",
+    "Oil 0.0: Bangladesh produced no meaningful crude in 1990. Its hydrocarbon endowment is natural gas, which this model does not carry as a separate stock.",
+    "Authoritarianism 0.65 places Bangladesh above the model's electoral ceiling in January 1990, which is the correct reading: Lieutenant General Hussain Muhammad Ershad, who took power by coup in March 1982, was still president, the March 1988 general election had been boycotted by every opposition party, and martial law had only been lifted in November 1986. He resigned on 6 December 1990 under the mass movement, which this model reaches through instability rather than a date.",
+    "Stability 38 reflects the state of the Ershad government in January 1990: continuous opposition agitation from the Awami League, the BNP and the students, and eleven months from the general strikes that ended it.",
+    "Separatism 0.06 is the Shanti Bahini insurgency in the Chittagong Hill Tracts, running since 1977 over a tract holding roughly one per cent of the population; a real armed movement over a small share of the country.",
+    "Military strength 8: an army of roughly 90,000 in 1990 with light equipment and no power-projection capability, ranked against Pakistan at 16 and Vietnam at 18 on this roster's index."
+  ]
+}

@@ -60,6 +60,9 @@ pub const ALL_START_NATIONS: [NationId; 29] = [
     Uganda, Senegal, CoteDIvoire, Cameroon,
 }
 pub const ALL_START_NATIONS: [NationId; 36] = [
+    Bangladesh, SriLanka, Nepal, Afghanistan, Myanmar,
+}
+pub const ALL_START_NATIONS: [NationId; 29] = [
     NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
     NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
     NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
@@ -82,6 +85,8 @@ pub const ALL_START_NATIONS: [NationId; 36] = [
     NationId::SouthAfrica, NationId::Ethiopia, NationId::Kenya, NationId::Ghana,
     NationId::Zaire, NationId::Angola, NationId::Zimbabwe, NationId::Tanzania,
     NationId::Uganda, NationId::Senegal, NationId::CoteDIvoire, NationId::Cameroon,
+    NationId::Bangladesh, NationId::SriLanka, NationId::Nepal,
+    NationId::Afghanistan, NationId::Myanmar,
 ];
 /// States that only exist if a federation comes apart.
 pub const SUCCESSOR_NATIONS: [NationId; 16] = [
@@ -188,6 +193,11 @@ impl NationId {
             NationId::Senegal => "Senegal",
             NationId::CoteDIvoire => "Cote d'Ivoire",
             NationId::Cameroon => "Cameroon",
+            NationId::Bangladesh => "Bangladesh",
+            NationId::SriLanka => "Sri Lanka",
+            NationId::Nepal => "Nepal",
+            NationId::Afghanistan => "Afghanistan",
+            NationId::Myanmar => "Myanmar",
         }
     }
     pub fn parse(s: &str) -> Option<NationId> {
@@ -288,6 +298,11 @@ impl NationId {
                 NationId::CoteDIvoire
             }
             "cameroon" | "cameroun" | "cmr" => NationId::Cameroon,
+            "bangladesh" | "bgd" | "bd" => NationId::Bangladesh,
+            "sri lanka" | "srilanka" | "ceylon" | "lka" => NationId::SriLanka,
+            "nepal" | "npl" => NationId::Nepal,
+            "afghanistan" | "afg" => NationId::Afghanistan,
+            "myanmar" | "burma" | "mmr" => NationId::Myanmar,
             _ => return None,
         })
     }
@@ -335,6 +350,10 @@ pub const NATION_COUNT: usize = 35;
     NationId::Uganda, NationId::Senegal, NationId::CoteDIvoire, NationId::Cameroon,
 ];
 pub const NATION_COUNT: usize = 42;
+    NationId::Bangladesh, NationId::SriLanka, NationId::Nepal,
+    NationId::Afghanistan, NationId::Myanmar,
+];
+pub const NATION_COUNT: usize = 35;
 
 /// Symmetric relations, held as a dense lower triangle so a lookup is an index
 /// rather than a search.

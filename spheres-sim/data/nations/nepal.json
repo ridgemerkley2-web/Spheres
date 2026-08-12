@@ -1,0 +1,42 @@
+{
+  "id": "Nepal",
+  "name": "Nepal",
+  "system": "Market",
+  "authoritarianism": 0.72,
+  "economy": {
+    "gdp_bn": 3.63,
+    "population_m": 19.5,
+    "tfp_trend": 0.008,
+    "inflation": 0.082,
+    "interest_rate": 0.11,
+    "tax_rate": 0.07,
+    "mil_spend_gdp": 0.009,
+    "state_invest_gdp": 0.11,
+    "priv_invest_gdp": 0.07,
+    "debt_gdp": 0.526,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 34.0,
+    "separatism": 0.08
+  },
+  "military": {
+    "strength": 2.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $3.628bn and population 19.52m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, 1990. The CIA World Factbook 1990 gives $2.9bn at $158 a head for FY89 and 19,145,800 people in July 1990, so the two population estimates agree closely and the GDP figures differ by the fiscal-year convention.",
+    "Inflation 8.2%: World Bank FP.CPI.TOTL.ZG, 1990 (8.240%). The CIA World Factbook 1990 gives 8.1% for FY89.",
+    "Interest rate 0.11 is NOT transcribed from a series. The World Bank carries no 1990 lending or deposit rate for Nepal. Nepal Rastra Bank set an administered bank rate around eleven per cent in this period; the figure is entered at that order of magnitude, which is also the model's neutral real rate against 8.2% inflation, and it is recorded as unverified.",
+    "Tax 7.0% of GDP: World Bank GC.TAX.TOTL.GD.ZS, 1990 (6.997%). Total revenue including grants was 8.45% (GC.REV.XGRT.GD.ZS) — one of the smallest fiscal states on the roster, and the reason Nepal's development budget was foreign-financed.",
+    "Military spending 0.9% of GDP: World Bank MS.MIL.XPND.GD.ZS, 1990 (0.878%), the lowest figure on this roster. The CIA World Factbook 1990 gives 2% of GDP or $58m for 1989.",
+    "Investment 18.1% of GDP total: World Bank NE.GDI.TOTL.ZS, 1990 (18.126%), of which fixed capital formation was 16.12%. The state's share is the larger one: the CIA World Factbook 1990 puts capital expenditure at $394m of $635m total FY89 spending, against revenues of only $296m, which is a development budget larger than the entire tax take and paid for by donors. Split 11.0 public and 7.0 private accordingly.",
+    "Debt 52.6%: World Bank GC.DOD.TOTL.GD.ZS, central government debt, 1990 (52.621%). Total external debt was 44.7% of GNI (DT.DOD.DECT.GN.ZS), almost all of it concessional.",
+    "Oil 0.0: Nepal produces no hydrocarbons and imports every barrel across the Indian border, which is exactly what made the 1989 transit crisis bite.",
+    "Authoritarianism 0.72: in January 1990 Nepal was an absolute monarchy under King Birendra running the partyless Panchayat system imposed in 1962. Political parties were banned. The Jana Andolan opened on 18 February 1990, the ban was lifted on 8 April, and the 1990 constitution followed in November; none of that is scripted here, and the model must reach it through instability.",
+    "Stability 34: the Panchayat regime in its final months, with the Nepali Congress and the United Left Front having agreed in January 1990 to launch a joint movement, and the economy still under the effects of the Indian transit blockade of March 1989.",
+    "Separatism 0.08: Madhesi grievance in the Terai and the Nepal Sadbhawana Party's regional platform, real but unarmed in 1990. Nepal's borders were not in dispute.",
+    "Military strength 2: the Royal Nepalese Army stood at roughly 35,000 lightly armed men whose principal external role was supplying Gurkha battalions to the British and Indian armies. Ranked level with Kuwait, which is the bottom of this roster's index."
+  ]
+}
