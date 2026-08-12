@@ -1,0 +1,30 @@
+{
+  "id": "Portugal",
+  "name": "Portugal",
+  "system": "Market",
+  "authoritarianism": 0.13,
+  "economy": {
+    "gdp_bn": 78.0,
+    "population_m": 9.9,
+    "tfp_trend": 0.019,
+    "inflation": 0.134,
+    "interest_rate": 0.165,
+    "tax_rate": 0.27,
+    "mil_spend_gdp": 0.027,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.21,
+    "debt_gdp": 0.58,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 72.0, "separatism": 0.02 },
+  "military": { "strength": 8.0, "nuclear": false },
+  "sources": [
+    "GDP about $78bn and population 9.9m (World Bank / INE Portugal, 1990).",
+    "Inflation 13.4% (INE consumer price index, 1990), the highest in the European Community that year. Banco de Portugal money-market intervention near 16.5%; the escudo did not enter the ERM until April 1992.",
+    "Tax revenue 27% of GDP (OECD Revenue Statistics, 1990) and general government debt 58% of GDP.",
+    "Defence 2.7% of GDP (NATO defence expenditure series, 1990). Founder member of NATO in 1949; Lajes in the Azores is the strategic asset. Strength 8.",
+    "TFP trend 1.9%: Portugal joined the EC in 1986 and was the fastest-converging economy in it over 1986-1990.",
+    "Separatism 0.02 is the constitutional autonomy of the Azores and Madeira, not a live secession movement."
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "Ireland",
+  "name": "Ireland",
+  "system": "Market",
+  "authoritarianism": 0.09,
+  "economy": {
+    "gdp_bn": 48.0,
+    "population_m": 3.51,
+    "tfp_trend": 0.02,
+    "inflation": 0.033,
+    "interest_rate": 0.115,
+    "tax_rate": 0.33,
+    "mil_spend_gdp": 0.012,
+    "state_invest_gdp": 0.02,
+    "priv_invest_gdp": 0.18,
+    "debt_gdp": 0.93,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 74.0, "separatism": 0.03 },
+  "military": { "strength": 3.0, "nuclear": false },
+  "sources": [
+    "GDP about $48bn and population 3.51m (World Bank / CSO Ireland, 1990).",
+    "Inflation 3.3% (CSO consumer price index, 1990). The punt was in the ERM; Central Bank of Ireland short-term facility rates ran near 11.5%.",
+    "Tax revenue 33% of GDP (OECD Revenue Statistics, 1990). General government debt 93% of GDP, down from about 110% in 1987 after the Tallaght Strategy consolidation - still the second-worst on this roster after Belgium.",
+    "Defence 1.2% of GDP. Strength 3: the Defence Forces numbered about 13,000 and Ireland is militarily neutral and outside NATO. Its visible instrument abroad was UN peacekeeping, with a battalion in UNIFIL.",
+    "TFP trend 2.0%, the highest here: EC structural funds doubled in 1989 and the IDA's foreign-direct-investment regime was already in place, though the boom did not arrive until 1994.",
+    "Separatism 0.03 is not a secession movement inside the state but the Articles 2 and 3 territorial claim on Northern Ireland and the Section 31 broadcasting ban that went with it."
+  ]
+}

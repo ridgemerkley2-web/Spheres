@@ -1,0 +1,30 @@
+{
+  "id": "Switzerland",
+  "name": "Switzerland",
+  "system": "Market",
+  "authoritarianism": 0.06,
+  "economy": {
+    "gdp_bn": 238.0,
+    "population_m": 6.71,
+    "tfp_trend": 0.009,
+    "inflation": 0.054,
+    "interest_rate": 0.06,
+    "tax_rate": 0.25,
+    "mil_spend_gdp": 0.018,
+    "state_invest_gdp": 0.035,
+    "priv_invest_gdp": 0.22,
+    "debt_gdp": 0.31,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 85.0, "separatism": 0.03 },
+  "military": { "strength": 10.0, "nuclear": false },
+  "sources": [
+    "GDP: nominal CHF 331bn in 1990 at the year-average 1.389 CHF/USD gives about $238bn (SNB / BFS national accounts). Population 6.71m (BFS, 1990).",
+    "Inflation 5.4% (BFS consumer price index, 1990) - the highest Swiss print since 1981. SNB discount rate 6.0%, Lombard rate 8.5%.",
+    "Tax revenue 25% of GDP (OECD Revenue Statistics, 1990), the lowest in Western Europe, and general government debt near 31% of GDP.",
+    "Defence 1.8% of GDP. Strength 10 is a militia army with about 625,000 mobilisable under Armee 61 and effectively zero deployable fraction: armed neutrality is a defensive posture by constitutional design.",
+    "Stability 85: the highest on the roster. Switzerland was not a UN member in 1990 and did not join the EC.",
+    "Separatism 0.03 is the residue of the Jura question, settled by the creation of the canton in 1979 but still live in the Laufental and Moutier."
+  ]
+}

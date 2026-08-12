@@ -692,6 +692,279 @@ pub const POLITIES: &[Polity] = &[
             pl(Pillar::Clergy, "al-Azhar"),
         ],
     },
+    // Spain — Congress of Deputies, 29 October 1989: PSOE 39.6%, PP 25.8%,
+    // IU 9.1%, CDS 7.9%, CiU 5.0%, PNV 1.2%. Gonzalez's third term, one seat
+    // short of an absolute majority and governing without a coalition.
+    Polity {
+        nation: NationId::Spain,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 6),
+        parties: &[
+            p("es_psoe", "Spanish Socialist Workers' Party", "PSOE", Family::SocialDemocratic, 0.396),
+            p("es_pp", "People's Party", "PP", Family::Conservative, 0.258),
+            p("es_iu", "United Left", "IU", Family::Communist, 0.091),
+            p("es_cds", "Democratic and Social Centre", "CDS", Family::Liberal, 0.079),
+            p("es_ciu", "Convergence and Union", "CiU", Family::Regionalist, 0.050),
+            p("es_pnv", "Basque Nationalist Party", "PNV", Family::Regionalist, 0.012),
+        ],
+        ruling: "the Cortes Generales",
+        pillars: &[],
+    },
+    // Netherlands — Tweede Kamer, 6 September 1989: CDA 35.3%, PvdA 31.9%,
+    // VVD 14.6%, D66 7.9%, GroenLinks 4.1%, SGP 1.9%, GPV 1.2%, CD 0.9%. Lubbers
+    // III, the CDA switching partner from the VVD to Labour. The electoral
+    // threshold is one seat in a single national district — 0.67% — so the low
+    // bar is the closest shape the model has.
+    Polity {
+        nation: NationId::Netherlands,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1994, 5),
+        parties: &[
+            p("nl_cda", "Christian Democratic Appeal", "Christen-Democratisch Appel", Family::ChristianDemocratic, 0.353),
+            p("nl_pvda", "Labour Party", "Partij van de Arbeid", Family::SocialDemocratic, 0.319),
+            p("nl_vvd", "People's Party for Freedom and Democracy", "Volkspartij voor Vrijheid en Democratie", Family::Liberal, 0.146),
+            p("nl_d66", "Democrats 66", "Democraten 66", Family::Liberal, 0.079),
+            p("nl_gl", "Green Left", "GroenLinks", Family::Green, 0.041),
+            p("nl_sgp", "Reformed Political Party", "Staatkundig Gereformeerde Partij", Family::Religious, 0.019),
+            p("nl_gpv", "Reformed Political League", "Gereformeerd Politiek Verbond", Family::Religious, 0.012),
+            pariah("nl_cd", "Centre Democrats", "Centrumdemocraten", Family::Nationalist, 0.009),
+        ],
+        ruling: "the States General",
+        pillars: &[],
+    },
+    // Belgium — Chamber of Representatives, 13 December 1987: CVP 19.5%,
+    // PS 15.7%, SP 14.9%, PVV 11.5%, PRL 9.4%, VU 8.1%, PSC 8.0%, Agalev 4.5%,
+    // Ecolo 2.6%, Vlaams Blok 1.9%. Every family here is split in two along the
+    // language border, which is why nine parties share three ideologies and why
+    // Martens VIII needed five of them. The cordon sanitaire against the Vlaams
+    // Blok was formalised in 1989 and held for the rest of the party's life.
+    Polity {
+        nation: NationId::Belgium,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 11),
+        parties: &[
+            p("be_cvp", "Christian People's Party", "Christelijke Volkspartij", Family::ChristianDemocratic, 0.195),
+            p("be_ps", "Socialist Party (francophone)", "Parti Socialiste", Family::SocialDemocratic, 0.157),
+            p("be_sp", "Socialist Party (flemish)", "Socialistische Partij", Family::SocialDemocratic, 0.149),
+            p("be_pvv", "Party for Freedom and Progress", "Partij voor Vrijheid en Vooruitgang", Family::Liberal, 0.115),
+            p("be_prl", "Liberal Reformist Party", "Parti Reformateur Liberal", Family::Liberal, 0.094),
+            p("be_vu", "People's Union", "Volksunie", Family::Regionalist, 0.081),
+            p("be_psc", "Christian Social Party", "Parti Social Chretien", Family::ChristianDemocratic, 0.080),
+            p("be_agalev", "Live Differently", "Agalev", Family::Green, 0.045),
+            p("be_ecolo", "Ecologists", "Ecolo", Family::Green, 0.026),
+            pariah("be_vb", "Flemish Bloc", "Vlaams Blok", Family::Nationalist, 0.019),
+        ],
+        ruling: "the Chamber of Representatives",
+        pillars: &[],
+    },
+    // Sweden — Riksdag, 18 September 1988: SAP 43.2%, Moderates 18.3%,
+    // Liberals 12.2%, Centre 11.3%, Left Party Communists 5.8%, Greens 5.5%,
+    // KDS 2.9%. Carlsson's minority government legislating with the VPK. Terms
+    // ran three years until the 1994 reform, and the 4% threshold is the closest
+    // to the model's ordinary continental bar.
+    Polity {
+        nation: NationId::Sweden,
+        system: Electoral::Proportional,
+        term_months: 36,
+        next: (1991, 9),
+        parties: &[
+            p("se_sap", "Swedish Social Democratic Party", "Sveriges socialdemokratiska arbetareparti", Family::SocialDemocratic, 0.432),
+            p("se_m", "Moderate Party", "Moderata samlingspartiet", Family::Conservative, 0.183),
+            p("se_fp", "Liberal People's Party", "Folkpartiet liberalerna", Family::Liberal, 0.122),
+            p("se_c", "Centre Party", "Centerpartiet", Family::Agrarian, 0.113),
+            p("se_vpk", "Left Party Communists", "Vansterpartiet kommunisterna", Family::Communist, 0.058),
+            p("se_mp", "Green Party", "Miljopartiet de grona", Family::Green, 0.055),
+            p("se_kds", "Christian Democratic Community Party", "Kristdemokratiska samhallspartiet", Family::ChristianDemocratic, 0.029),
+        ],
+        ruling: "the Riksdag",
+        pillars: &[],
+    },
+    // Switzerland — National Council, 18 October 1987: FDP 22.9%, CVP 19.6%,
+    // SPS 18.4%, SVP 11.0%, GPS 4.9%, LdU 4.2%, LPS 2.7%, National Action 2.5%,
+    // PdA 0.8%. The four largest have held the Federal Council in a fixed 2:2:2:1
+    // since 1959, so an election here moves seats and not the executive. Seats
+    // are allocated by canton with no national threshold. The SVP of 1987 is
+    // still the farmers' and artisans' party; Blocher's turn came later.
+    Polity {
+        nation: NationId::Switzerland,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 10),
+        parties: &[
+            p("ch_fdp", "Free Democratic Party", "Freisinnig-Demokratische Partei", Family::Liberal, 0.229),
+            p("ch_cvp", "Christian Democratic People's Party", "Christlichdemokratische Volkspartei", Family::ChristianDemocratic, 0.196),
+            p("ch_sps", "Social Democratic Party", "Sozialdemokratische Partei der Schweiz", Family::SocialDemocratic, 0.184),
+            p("ch_svp", "Swiss People's Party", "Schweizerische Volkspartei", Family::Agrarian, 0.110),
+            p("ch_gps", "Green Party", "Grune Partei der Schweiz", Family::Green, 0.049),
+            p("ch_ldu", "Ring of Independents", "Landesring der Unabhangigen", Family::Liberal, 0.042),
+            p("ch_lps", "Liberal Party", "Liberale Partei der Schweiz", Family::Conservative, 0.027),
+            p("ch_na", "National Action", "Nationale Aktion", Family::Nationalist, 0.025),
+            p("ch_pda", "Swiss Party of Labour", "Partei der Arbeit der Schweiz", Family::Communist, 0.008),
+        ],
+        ruling: "the Federal Assembly",
+        pillars: &[],
+    },
+    // Austria — Nationalrat, 23 November 1986: SPO 43.1%, OVP 41.3%, FPO 9.7%,
+    // Greens 4.8%. Vranitzky broke off talks with the FPO the month Haider took
+    // it over and called the election; the grand coalition that followed was
+    // the standing form of Austrian government. That exclusion is the pariah
+    // flag here, and it is what makes SPO-OVP the only arithmetic available.
+    // The party was still the Socialist Party of Austria in 1990; it renamed
+    // itself Social Democratic in 1991.
+    Polity {
+        nation: NationId::Austria,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 10),
+        parties: &[
+            p("at_spo", "Socialist Party of Austria", "Sozialistische Partei Osterreichs", Family::SocialDemocratic, 0.431),
+            p("at_ovp", "Austrian People's Party", "Osterreichische Volkspartei", Family::ChristianDemocratic, 0.413),
+            pariah("at_fpo", "Freedom Party of Austria", "Freiheitliche Partei Osterreichs", Family::Nationalist, 0.097),
+            p("at_gruene", "The Greens", "Die Grune Alternative", Family::Green, 0.048),
+        ],
+        ruling: "the Nationalrat",
+        pillars: &[],
+    },
+    // Portugal — Assembly of the Republic, 19 July 1987: PSD 50.2%, PS 22.2%,
+    // CDU 12.1%, PRD 4.9%, CDS 4.4%. Cavaco Silva's absolute majority, the first
+    // any party had won since the Carnation Revolution. D'Hondt by district with
+    // no legal threshold. The PSD sat with the Liberal International until 1996
+    // despite the name and the office it held.
+    Polity {
+        nation: NationId::Portugal,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 10),
+        parties: &[
+            p("pt_psd", "Social Democratic Party", "Partido Social Democrata", Family::Liberal, 0.502),
+            p("pt_ps", "Socialist Party", "Partido Socialista", Family::SocialDemocratic, 0.222),
+            p("pt_cdu", "Unitary Democratic Coalition", "Coligacao Democratica Unitaria", Family::Communist, 0.121),
+            p("pt_prd", "Democratic Renewal Party", "Partido Renovador Democratico", Family::BigTent, 0.049),
+            p("pt_cds", "Democratic and Social Centre", "Centro Democratico e Social", Family::ChristianDemocratic, 0.044),
+        ],
+        ruling: "the Assembly of the Republic",
+        pillars: &[],
+    },
+    // Greece — Hellenic Parliament, 5 November 1989: New Democracy 46.2%,
+    // PASOK 40.7%, Synaspismos 11.0%, DIANA 0.7%. The second of three elections
+    // in ten months: simple proportional representation had been restored in
+    // 1989 precisely so that no party could win outright, and none did. What
+    // sat in January 1990 was Zolotas's ecumenical cabinet, and the third
+    // election came on 8 April.
+    Polity {
+        nation: NationId::Greece,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 4),
+        parties: &[
+            p("gr_nd", "New Democracy", "Nea Dimokratia", Family::Conservative, 0.462),
+            p("gr_pasok", "Panhellenic Socialist Movement", "Panellinio Sosialistiko Kinima", Family::SocialDemocratic, 0.407),
+            p("gr_syn", "Coalition of the Left and Progress", "Synaspismos tis Aristeras kai tis Proodou", Family::Communist, 0.110),
+            p("gr_diana", "Democratic Renewal", "Dimokratiki Ananeosi", Family::Liberal, 0.007),
+        ],
+        ruling: "the Hellenic Parliament",
+        pillars: &[],
+    },
+    // Denmark — Folketing, 10 May 1988: Social Democrats 29.8%, Conservatives
+    // 19.3%, SF 13.0%, Venstre 11.8%, Progress Party 9.0%, Radikale 5.6%,
+    // Centre Democrats 4.7%, Christian People's Party 2.0%. Schluter's fourth
+    // cabinet, formed after the footnote-policy crisis over nuclear-armed port
+    // visits forced the election. Threshold 2%. SF is left-socialist rather
+    // than communist — it split from the DKP in 1959 — but the leftmost family
+    // the model carries is the closest place to put it.
+    Polity {
+        nation: NationId::Denmark,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1990, 12),
+        parties: &[
+            p("dk_s", "Social Democrats", "Socialdemokratiet", Family::SocialDemocratic, 0.298),
+            p("dk_kf", "Conservative People's Party", "Det Konservative Folkeparti", Family::Conservative, 0.193),
+            p("dk_sf", "Socialist People's Party", "Socialistisk Folkeparti", Family::Communist, 0.130),
+            p("dk_v", "Venstre, Liberal Party of Denmark", "Venstre", Family::Liberal, 0.118),
+            p("dk_frp", "Progress Party", "Fremskridtspartiet", Family::Nationalist, 0.090),
+            p("dk_rv", "Danish Social Liberal Party", "Det Radikale Venstre", Family::Liberal, 0.056),
+            p("dk_cd", "Centre Democrats", "Centrum-Demokraterne", Family::ChristianDemocratic, 0.047),
+            p("dk_krf", "Christian People's Party", "Kristeligt Folkeparti", Family::ChristianDemocratic, 0.020),
+        ],
+        ruling: "the Folketing",
+        pillars: &[],
+    },
+    // Norway — Storting, 11 September 1989: Labour 34.3%, Conservatives 22.2%,
+    // Progress Party 13.0%, Socialist Left 10.1%, Christian Democrats 8.5%,
+    // Centre 6.5%, Liberals 3.2%. Syse's three-party centre-right minority took
+    // office in October and broke up in November 1990 over the EEA. The Storting
+    // cannot be dissolved early: the term is a fixed four years, which is why
+    // the next date is 1993 however the government fares.
+    Polity {
+        nation: NationId::Norway,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 9),
+        parties: &[
+            p("no_ap", "Labour Party", "Arbeiderpartiet", Family::SocialDemocratic, 0.343),
+            p("no_h", "Conservative Party", "Hoyre", Family::Conservative, 0.222),
+            p("no_frp", "Progress Party", "Fremskrittspartiet", Family::Nationalist, 0.130),
+            p("no_sv", "Socialist Left Party", "Sosialistisk Venstreparti", Family::Communist, 0.101),
+            p("no_krf", "Christian Democratic Party", "Kristelig Folkeparti", Family::ChristianDemocratic, 0.085),
+            p("no_sp", "Centre Party", "Senterpartiet", Family::Agrarian, 0.065),
+            p("no_v", "Liberal Party", "Venstre", Family::Liberal, 0.032),
+        ],
+        ruling: "the Storting",
+        pillars: &[],
+    },
+    // Finland — Eduskunta, 15-16 March 1987: SDP 24.1%, National Coalition
+    // 23.1%, Centre 17.6%, SKDL 9.4%, Rural Party 6.3%, Swedish People's Party
+    // 5.3%, Greens 4.0%, Democratic Alternative 4.2%, Christian League 2.6%.
+    // Holkeri's "red-blue" cabinet put the Conservatives back in office after
+    // twenty years out, which Kekkonen's reading of the 1948 treaty had made
+    // impossible. D'Hondt by district, no national threshold.
+    Polity {
+        nation: NationId::Finland,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 3),
+        parties: &[
+            p("fi_sdp", "Social Democratic Party of Finland", "Suomen Sosialidemokraattinen Puolue", Family::SocialDemocratic, 0.241),
+            p("fi_kok", "National Coalition Party", "Kansallinen Kokoomus", Family::Conservative, 0.231),
+            p("fi_kesk", "Centre Party", "Suomen Keskusta", Family::Agrarian, 0.176),
+            p("fi_skdl", "Finnish People's Democratic League", "Suomen Kansan Demokraattinen Liitto", Family::Communist, 0.094),
+            p("fi_smp", "Finnish Rural Party", "Suomen Maaseudun Puolue", Family::Nationalist, 0.063),
+            p("fi_rkp", "Swedish People's Party", "Svenska folkpartiet i Finland", Family::Regionalist, 0.053),
+            p("fi_deva", "Democratic Alternative", "Demokraattinen Vaihtoehto", Family::Communist, 0.042),
+            p("fi_vihr", "Green League", "Vihrea Liitto", Family::Green, 0.040),
+            p("fi_skl", "Christian League", "Suomen Kristillinen Liitto", Family::ChristianDemocratic, 0.026),
+        ],
+        ruling: "the Eduskunta",
+        pillars: &[],
+    },
+    // Ireland — Dail Eireann, 15 June 1989: Fianna Fail 44.1%, Fine Gael 29.3%,
+    // Labour 9.5%, Progressive Democrats 5.5%, Workers' Party 5.0%, Greens 1.5%,
+    // Sinn Fein 1.2%. Haughey called the election to win a majority, lost seats,
+    // and entered the first coalition Fianna Fail had ever accepted. Single
+    // transferable vote in multi-seat constituencies, no threshold. Sinn Fein
+    // was excluded by every other party and off the airwaves entirely under the
+    // Section 31 broadcasting ban, which is what the pariah flag records.
+    Polity {
+        nation: NationId::Ireland,
+        system: Electoral::ProportionalLowBar,
+        term_months: 60,
+        next: (1992, 11),
+        parties: &[
+            p("ie_ff", "Fianna Fail", "Fianna Fail", Family::BigTent, 0.441),
+            p("ie_fg", "Fine Gael", "Fine Gael", Family::ChristianDemocratic, 0.293),
+            p("ie_lab", "Labour Party", "Pairti Lucht Oibre", Family::SocialDemocratic, 0.095),
+            p("ie_pd", "Progressive Democrats", "An Pairti Daonlathach", Family::Liberal, 0.055),
+            p("ie_wp", "Workers' Party", "Pairti na nOibrithe", Family::Communist, 0.050),
+            p("ie_green", "Green Party", "Comhaontas Glas", Family::Green, 0.015),
+            pariah("ie_sf", "Sinn Fein", "Sinn Fein", Family::Nationalist, 0.012),
+        ],
+        ruling: "the Dail Eireann",
+        pillars: &[],
+    },
     // Israel — Knesset, 1 November 1988: Likud 31.1%, the Alignment 30.0%, Shas
     // 4.7%, Agudat Yisrael 4.5%, Ratz 4.3%, the National Religious Party 3.9%,
     // Tehiya 3.1%. A 1% threshold and no party ever near half the seats. The

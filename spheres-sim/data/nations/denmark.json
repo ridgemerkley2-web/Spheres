@@ -1,0 +1,30 @@
+{
+  "id": "Denmark",
+  "name": "Denmark",
+  "system": "Market",
+  "authoritarianism": 0.07,
+  "economy": {
+    "gdp_bn": 135.0,
+    "population_m": 5.14,
+    "tfp_trend": 0.012,
+    "inflation": 0.026,
+    "interest_rate": 0.095,
+    "tax_rate": 0.46,
+    "mil_spend_gdp": 0.02,
+    "state_invest_gdp": 0.017,
+    "priv_invest_gdp": 0.17,
+    "debt_gdp": 0.58,
+    "oil_mbd": 0.12,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 79.0, "separatism": 0.02 },
+  "military": { "strength": 8.0, "nuclear": false },
+  "sources": [
+    "GDP about $135bn and population 5.14m (World Bank / Danmarks Statistik, 1990).",
+    "Inflation 2.6% (Danmarks Statistik consumer price index, 1990). The krone was in the narrow ERM band against the D-Mark; Nationalbanken's discount rate stood near 9.5%.",
+    "Tax revenue 46% of GDP (OECD Revenue Statistics, 1990), second only to Sweden, and general government debt 58% of GDP.",
+    "Defence 2.0% of GDP (NATO defence expenditure series, 1990). Denmark's NATO membership carried the standing 1953 reservations against foreign bases and nuclear weapons on Danish soil in peacetime; the 1988 fodnotepolitik crisis over port visits is what forced that May's election.",
+    "Oil 0.12 mbd from the Danish North Sea (Dan, Gorm, Skjold), operated by the Maersk-led DUC.",
+    "Separatism 0.02 is Faroese and Greenlandic home rule; Greenland had already left the EC in 1985."
+  ]
+}

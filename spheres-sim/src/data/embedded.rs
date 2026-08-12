@@ -36,6 +36,18 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
     Source { file: "data/nations/nigeria.json", json: include_str!("../../data/nations/nigeria.json") },
     Source { file: "data/nations/vietnam.json", json: include_str!("../../data/nations/vietnam.json") },
     Source { file: "data/nations/yugoslavia.json", json: include_str!("../../data/nations/yugoslavia.json") },
+    Source { file: "data/nations/spain.json", json: include_str!("../../data/nations/spain.json") },
+    Source { file: "data/nations/netherlands.json", json: include_str!("../../data/nations/netherlands.json") },
+    Source { file: "data/nations/belgium.json", json: include_str!("../../data/nations/belgium.json") },
+    Source { file: "data/nations/sweden.json", json: include_str!("../../data/nations/sweden.json") },
+    Source { file: "data/nations/switzerland.json", json: include_str!("../../data/nations/switzerland.json") },
+    Source { file: "data/nations/austria.json", json: include_str!("../../data/nations/austria.json") },
+    Source { file: "data/nations/portugal.json", json: include_str!("../../data/nations/portugal.json") },
+    Source { file: "data/nations/greece.json", json: include_str!("../../data/nations/greece.json") },
+    Source { file: "data/nations/denmark.json", json: include_str!("../../data/nations/denmark.json") },
+    Source { file: "data/nations/norway.json", json: include_str!("../../data/nations/norway.json") },
+    Source { file: "data/nations/finland.json", json: include_str!("../../data/nations/finland.json") },
+    Source { file: "data/nations/ireland.json", json: include_str!("../../data/nations/ireland.json") },
 ];
 
 pub const EMBEDDED_RELATIONS: Source<'static> = Source {
