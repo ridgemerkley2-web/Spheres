@@ -353,7 +353,8 @@ pub const ALL_NATION_IDS: [NationId; NATION_COUNT] = [
     NationId::Afghanistan, NationId::Myanmar, NationId::NorthKorea, NationId::Taiwan,
     NationId::Thailand, NationId::Malaysia, NationId::Singapore, NationId::Philippines,
     NationId::Cambodia, NationId::Laos, NationId::Mongolia, NationId::Canada,
-    NationId::Australia, NationId::NewZealand,];
+    NationId::Australia, NationId::NewZealand,
+];
 pub const NATION_COUNT: usize = 110;
 
 /// Symmetric relations, held as a dense lower triangle so a lookup is an index
