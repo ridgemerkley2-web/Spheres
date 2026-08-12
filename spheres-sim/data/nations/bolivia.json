@@ -1,0 +1,37 @@
+{
+  "id": "Bolivia",
+  "name": "Bolivia",
+  "system": "Market",
+  "authoritarianism": 0.22,
+  "economy": {
+    "gdp_bn": 4.87,
+    "population_m": 6.7,
+    "tfp_trend": 0.005,
+    "inflation": 0.171,
+    "interest_rate": 0.22,
+    "tax_rate": 0.12,
+    "mil_spend_gdp": 0.024,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.07,
+    "debt_gdp": 0.85,
+    "oil_mbd": 0.022,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 42.0,
+    "separatism": 0.1
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $4.87bn and 6.7m people (World Bank, 1990) — the smallest economy in this region's roster.",
+    "Inflation 17.1% (INE annual average for 1990). This is the single most impressive number in the file: Bolivian inflation had run at 11,750% in 1985, and Decree 21060 of 29 August 1985 — the New Economic Policy — killed it in weeks. Bolivia enters 1990 as the region's stabilisation success and its poorest state at the same time. interest_rate 22% is the boliviano lending benchmark; roughly 80% of deposits were held in dollars, so the rate that binds is really the US one.",
+    "Tax take 12% of GDP after the 1986 tax reform rebuilt collection from nothing. Gross fixed capital formation about 12.5% of GDP, split 6% public and 7% private.",
+    "Debt 0.85: external debt about $4.3bn at end-1990 (World Bank), near 88% of GDP, despite the 1988 buy-back that retired commercial debt at eleven cents on the dollar. Bolivia is one of the original HIPC cases.",
+    "Oil 0.022 mbd: YPFB produced about 22,000 bbl/d of crude and condensate. The real hydrocarbon story is natural gas piped to Argentina under the 1972 contract, which is most of export earnings and is not a field this schema carries.",
+    "Defence 2.4% of GDP, strength 3. Stability 42: Bolivia had had a constitutional government since 1982 after decades of coups, but the tin price collapse of October 1985 had closed COMIBOL's mines and put 23,000 miners out of work, and coca eradication under US pressure — Operation Blast Furnace in 1986, the Annual Bilateral Agreements from 1987 — was a permanent confrontation with the Chapare growers' unions.",
+    "Separatism 0.10: not secession but the indigenous and regional question that produces the March for Territory and Dignity from Beni to La Paz in August 1990, and the Santa Cruz autonomy movement later."
+  ]
+}
