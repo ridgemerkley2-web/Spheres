@@ -454,6 +454,8 @@ fn resolve_conflicts(w: &mut WorldState) {
             let (kill_in, kill_out) = if side_a { (kill_ba, kill_ab) } else { (kill_ab, kill_ba) };
             let opp_unrestricted = if side_a { b.unrestricted } else { a.unrestricted };
             let mine = if side_a { c.control } else { -c.control };
+            let enemy_top = c.top_rung(!side_a);
+            let at_home = theatre::is_home(w, nation, c.theatre);
 
             let stake = stake_of(w, &c, nation, opp_unrestricted);
             let (rung, objective, red_line) = {
@@ -526,7 +528,21 @@ fn resolve_conflicts(w: &mut WorldState) {
             ));
 
             if new_resolve <= 0.0 {
-                if c.posture[i].rung > 2 {
+                // Whether a government that has run out of will steps back or
+                // gives up depends on whether the other side is in a position to
+                // press it, and that distinction is QA's second finding.
+                //
+                // An expedition that has become unbearable comes home one rung
+                // at a time; there is always a lower rung to stand on and a
+                // border between you and them. A state whose own ground is held
+                // by somebody else's army has nothing to step back TO, and a
+                // government that has stopped being able to defend its own
+                // country has stopped, whatever rung the paperwork says. Without
+                // this every beaten defender slid quietly down the ladder,
+                // reset its resolve to a quarter, and the war simply went quiet
+                // — 82 conflicts across eight seeds and one capitulation.
+                let pressed = mine <= -0.55 && enemy_top >= INVASION_RUNG && at_home;
+                if c.posture[i].rung > 2 && !pressed {
                     c.posture[i].rung -= 1;
                     c.posture[i].months_at_rung = 0;
                     c.posture[i].resolve = 0.25;
@@ -536,6 +552,12 @@ fn resolve_conflicts(w: &mut WorldState) {
                         c.posture[i].rung
                     ));
                 } else {
+                    if pressed {
+                        headlines.push(format!(
+                            "{} can no longer defend its own ground.",
+                            nation.name()
+                        ));
+                    }
                     exits.push(nation);
                 }
             }
@@ -660,6 +682,27 @@ fn resolve_conflicts(w: &mut WorldState) {
             c.quiet_months = 0;
             c.frozen_since = None;
         }
+
+        // ...with one exception, and it is the difference between a world that
+        // is consequential and one that merely churns. A quarrel that never
+        // became a war may fade out; a quarrel in which somebody CROSSED A
+        // BORDER IN FORCE may not. Half a year after the guns stop, an invasion
+        // has a verdict, and which one it is is written on the map: if the
+        // aggressor is holding the ground it took, it keeps it at a table; if it
+        // is not, it has been thrown back, with everything that costs it at
+        // home. Before this rule the aggressor could simply walk back down the
+        // ladder and the whole thing evaporated — 150 conflicts across eight
+        // seeds and two settlements between them.
+        if c.invasion_declared && c.quiet_months >= 6 {
+            let e = if c.control >= 0.35 {
+                Ending::Settled { winner: lead_a, loser: lead_b }
+            } else {
+                Ending::Repelled
+            };
+            ended.push((c, e));
+            continue;
+        }
+
         // ...and a frozen quarrel that nobody has bothered to renew in two more
         // years is finally just history.
         if c.frozen_since.is_some()
@@ -873,55 +916,55 @@ pub fn theatre_between(w: &WorldState, attacker: NationId, defender: NationId) -
         .unwrap_or(TheatreId::Maritime)
 }
 
-/// Declare war, triggering coalition sanctions and possible interventions.
+/// The moment a quarrel becomes an invasion, and the only place the world
+/// mobilises about one.
 ///
-/// Kept as a public entry point and as sugar over the ladder: it opens a
-/// conflict with the attacker already standing on rung 8, a full conventional
-/// campaign, objective Seize. The headline is byte-identical to the one three
-/// emergent-history tests match on, and that is deliberate.
-pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -> Result<(), String> {
-    if attacker == defender {
-        return Err("A nation cannot declare war on itself.".into());
+/// This used to live inside `declare_war` and fire the instant a conflict was
+/// created, which is why every conflict in the world was born at rung 8: the
+/// coalition, the guarantors and the interveners were all welded to the act of
+/// starting a quarrel rather than to the act of crossing a border in force.
+/// They belong here, hanging off the rung, so that a state can climb to an
+/// invasion over years and the world answers at the step that deserves it.
+///
+/// Reached from two directions and identical down both: a player or an AI
+/// climbing to rung 8 on the ladder, and `declare_war`, which is now sugar for
+/// starting at the top.
+pub fn invasion_begins(w: &mut WorldState, conflict: u32, attacker: NationId) {
+    let idx = match w.conflicts.iter().position(|c| c.id == conflict) {
+        Some(i) => i,
+        None => return,
+    };
+    if w.conflicts[idx].invasion_declared {
+        return;
     }
-    if !w.nation(attacker).alive || !w.nation(defender).alive {
-        return Err("Nation no longer exists.".into());
-    }
-    if w.conflicts.iter().any(|c| c.involves(attacker) && c.involves(defender)) {
-        return Err("Already at war.".into());
-    }
-    // Nuclear taboo: no direct wars between nuclear powers
-    if w.nation(attacker).nuclear && w.nation(defender).nuclear {
-        return Err("Deterrence holds — direct war between nuclear powers is unthinkable.".into());
-    }
+    // Taken out of the world for the duration because the guarantors need a
+    // mutable conflict and a mutable world at the same time, and put back at the
+    // same index so conflict order — which the whole sim iterates — cannot move.
+    let mut c = w.conflicts.remove(idx);
+    c.invasion_declared = true;
+    let defender = match crate::commitment::primary_opponent(&c, attacker) {
+        Some(d) => d,
+        None => {
+            w.conflicts.insert(idx, c);
+            return;
+        }
+    };
 
     w.headline(format!("WAR: {} invades {}!", attacker.name(), defender.name()));
     w.shift_relation(attacker, defender, -60.0);
-
-    let th = theatre_between(w, attacker, defender);
-    let mut c = Conflict {
-        id: w.next_conflict_id(),
-        theatre: th,
-        side_a: vec![attacker],
-        side_b: vec![defender],
-        posture: vec![
-            Belligerent::new(attacker, 8, Objective::Seize),
-            Belligerent::new(defender, 8, Objective::Hold),
-        ],
-        control: 0.0,
-        months: 0,
-        quiet_months: 0,
-        frozen_since: None,
-        start_year: w.year,
-        start_month: w.month,
-        origin_attacker: attacker,
-    };
+    // A state whose border has just been crossed fights for it with everything
+    // it has, and it does not have to be talked into it.
+    let at_home = theatre::is_home(w, defender, c.theatre);
     if let Some(b) = c.posture_mut(defender) {
         b.stake = 1.0;
+        if b.rung < INVASION_RUNG && at_home {
+            b.rung = INVASION_RUNG;
+            b.months_at_rung = 0;
+        }
     }
 
     // Coalition response: majors sanction the aggressor...
-    let majors = MAJORS;
-    for m in majors {
+    for m in MAJORS {
         if m == attacker || !w.nation(m).alive {
             continue;
         }
@@ -939,8 +982,8 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
 
     // ...and friends of the victim may intervene (never against a nuclear attacker directly
     // unless they're nuclear too — abstracted: majors intervene if relation with victim high).
-    for m in majors {
-        if c.side_b.contains(&m) || refused.contains(&m) {
+    for m in MAJORS {
+        if c.involves(m) || refused.contains(&m) {
             continue;
         }
         if would_intervene(w, m, defender, attacker) {
@@ -955,7 +998,7 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
         .into_iter()
         .filter(|id| !theatre::is_home(w, *id, th))
         .collect();
-    w.conflicts.push(c);
+    w.conflicts.insert(idx, c);
 
     // Everyone who has just committed to a war on somebody else's continent goes
     // round the neighbours asking for an airfield. This is the whole of BIBLE
@@ -965,6 +1008,52 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
     for id in expeditionary {
         crate::commitment::seek_access(w, id, th);
     }
+}
+
+/// Declare war, triggering coalition sanctions and possible interventions.
+///
+/// Kept as a public entry point and as sugar over the ladder: it opens a
+/// conflict with the attacker already standing on rung 8, a full conventional
+/// campaign, objective Seize. Nothing else in the sim starts here any more —
+/// the AI opens quarrels at the bottom and buys its way up — but a player who
+/// wants to skip the whole climb can still pay for the top rung in one act, and
+/// the tests that stage a war outright use it.
+pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -> Result<(), String> {
+    if attacker == defender {
+        return Err("A nation cannot declare war on itself.".into());
+    }
+    if !w.nation(attacker).alive || !w.nation(defender).alive {
+        return Err("Nation no longer exists.".into());
+    }
+    if w.conflicts.iter().any(|c| c.involves(attacker) && c.involves(defender)) {
+        return Err("Already at war.".into());
+    }
+    // Nuclear taboo: no direct wars between nuclear powers
+    if w.nation(attacker).nuclear && w.nation(defender).nuclear {
+        return Err("Deterrence holds — direct war between nuclear powers is unthinkable.".into());
+    }
+
+    let th = theatre_between(w, attacker, defender);
+    let id = w.next_conflict_id();
+    w.conflicts.push(Conflict {
+        id,
+        theatre: th,
+        side_a: vec![attacker],
+        side_b: vec![defender],
+        posture: vec![
+            Belligerent::new(attacker, INVASION_RUNG, Objective::Seize),
+            Belligerent::new(defender, INVASION_RUNG, Objective::Hold),
+        ],
+        control: 0.0,
+        months: 0,
+        quiet_months: 0,
+        frozen_since: None,
+        start_year: w.year,
+        start_month: w.month,
+        origin_attacker: attacker,
+        invasion_declared: false,
+    });
+    invasion_begins(w, id, attacker);
     Ok(())
 }
 

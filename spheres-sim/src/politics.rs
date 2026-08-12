@@ -787,12 +787,34 @@ fn ai_wars(w: &mut WorldState) {
         v
     };
     for (a, t, p) in candidates {
-        if w.at_war(a) {
+        if w.at_war(a) || w.conflict_between(a, t).is_some() {
             continue;
         }
-        let roll = w.rng.chance(p);
-        if roll {
-            let _ = war::declare_war(w, a, t);
+        if !w.rng.chance(p) {
+            continue;
+        }
+        // What this roll used to do was launch an invasion. It now opens a
+        // QUARREL, at rung 1, and nothing else — the appetite is the same, the
+        // reasoning above it is the same, but the state has bought a public
+        // grievance rather than a war, and every rung between here and an army
+        // crossing the border is a separate decision it has to pay for
+        // (`commitment::ai_ladder`). This is the single change that turns a
+        // nine-rung ladder from a three-state machine into a climb: no conflict
+        // in the world is born above rung 1 any more.
+        let th = war::theatre_between(w, a, t);
+        if crate::apply_command(w, &crate::Command::OpenConflict { opener: a, target: t, theatre: th })
+            .is_ok()
+        {
+            // Saying out loud what the quarrel is for. Cheap, and it is what
+            // separates a state that wants the ground from one that only wants
+            // the neighbour weakened.
+            if let Some(c) = w.conflict_between(a, t) {
+                let id = c.id;
+                let _ = crate::apply_command(
+                    w,
+                    &crate::Command::SetObjective { conflict: id, nation: a, objective: Objective::Seize },
+                );
+            }
         }
     }
 

@@ -599,6 +599,11 @@ pub struct Conflict {
     /// Who opened it. Kept because conquest, reparations and the burned-fingers
     /// flag all need to know who started it years later.
     pub origin_attacker: NationId,
+    /// Whether somebody has already crossed a border in force here. The
+    /// coalition forms once, at the moment the quarrel becomes an invasion, and
+    /// never again however many times the aggressor climbs back up afterwards.
+    #[serde(default)]
+    pub invasion_declared: bool,
 }
 
 impl Conflict {
@@ -669,6 +674,12 @@ impl Conflict {
 /// at which `at_war` starts returning true — which is what the economy's war
 /// drag, the oil terminals and the sanctions-relief clock all read.
 pub const SHOOTING_RUNG: u8 = 6;
+
+/// The rung at which crossing a border stops being an incident and becomes an
+/// invasion: a full conventional campaign, the thing a coalition forms against
+/// and the thing a guarantor is called for. Below it a quarrel is a quarrel,
+/// however unpleasant, and the world does not mobilise about it.
+pub const INVASION_RUNG: u8 = 8;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct GameRules {

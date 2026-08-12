@@ -160,9 +160,12 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // a government can always run away, and it always looks like running.
         Command::SetCommitment { conflict, nation, rung } => (
             *nation,
-            w.conflict(*conflict)
-                .and_then(|c| c.posture_of(*nation))
-                .map_or(0.0, |b| commitment::escalation_cost(w, *nation, b.rung, *rung)),
+            w.conflict(*conflict).map_or(0.0, |c| {
+                let home = commitment::defending_home(w, c, *nation);
+                c.posture_of(*nation).map_or(0.0, |b| {
+                    commitment::escalation_cost_in(w, *nation, b.rung, *rung, home)
+                })
+            }),
             REFUSABLE,
         ),
         Command::SetObjective { nation, .. } => (*nation, 3.0, REFUSABLE),
@@ -205,22 +208,35 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 }
 
 pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
-    // Priced and charged before anything happens, so a command that cannot be
-    // afforded also cannot take effect.
-    if let Some((payer, price, refusable)) = command_price(w, c) {
-        if price > 0.0 {
-            let held = w.nation(payer).political_capital;
-            if refusable && held < price {
-                return Err(format!(
-                    "{} has not the standing: {:.0} political capital held, {:.0} needed.",
-                    payer.name(), held, price
-                ));
-            }
+    // Priced before anything happens, so a command that cannot be afforded also
+    // cannot take effect — and charged only once the act itself has gone
+    // through. A government that asks for something the world refuses it (a
+    // rung with no airfield under it, a pact with a state that will not sign)
+    // has not spent its standing on the asking, and before this it did: every
+    // blocked rung quietly drained the treasury of whoever tried it.
+    let bill = command_price(w, c).filter(|(_, price, _)| *price > 0.0);
+    if let Some((payer, price, refusable)) = bill {
+        let held = w.nation(payer).political_capital;
+        if refusable && held < price {
+            return Err(format!(
+                "{} has not the standing: {:.0} political capital held, {:.0} needed.",
+                payer.name(), held, price
+            ));
+        }
+    }
+    let outcome = dispatch(w, c);
+    if outcome.is_ok() {
+        if let Some((payer, price, _)) = bill {
             // A government that reneges past the end of its credit does not get
             // to owe political capital; it simply has none left.
+            let held = w.nation(payer).political_capital;
             w.nation_mut(payer).political_capital = (held - price).max(0.0);
         }
     }
+    outcome
+}
+
+fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     match c {
         Command::SetInterestRate { nation, rate } => {
             w.nation_mut(*nation).interest_rate = rate.clamp(0.0, 0.60);
@@ -422,6 +438,9 @@ fn migrate_legacy_wars(w: &mut WorldState) {
             start_year: old.start_year,
             start_month: old.start_month,
             origin_attacker: old.attacker,
+            // A save from before the ladder holds only wars that were already
+            // invasions, and the coalition against them has long since formed.
+            invasion_declared: true,
         });
     }
 }
@@ -585,7 +604,18 @@ mod tests {
         // `save_load_roundtrip_continuity` — were confirmed green, and the hash
         // was confirmed identical across three separate runs of a binary watched
         // to build, before this number was touched.
-        const GOLDEN: u64 = 0xcf943c3c5f53a2b0;
+        // THIRD, here, when conflicts stopped being born at rung 8. This one is
+        // the largest of the three and it is not a fingerprint change either:
+        // the AI no longer declares war, it opens a quarrel at rhetoric and buys
+        // its way up nine rungs over years, so every war in the timeline now
+        // starts later, escalates gradually, and — because an invasion that
+        // fizzles is now a defeat rather than a silence — ends with a verdict.
+        // Iraq's invasion of Kuwait moves from month 8 of the run to month 30.
+        // Confirmed by re-running the three determinism tests and by watching
+        // the census in `war_census` move from 82 conflicts all born at rung 8
+        // with one capitulation between them, to a spread across the ladder with
+        // most invasions resolving.
+        const GOLDEN: u64 = 0x575dde89874d0de9;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -1475,6 +1505,73 @@ mod tests {
 
     // ---- The commitment ladder ---------------------------------------------
 
+    /// The measurement QA ran by hand, kept in the tree so the next person does
+    /// not have to. Not an assertion — a census. Prints, for a run of seeds:
+    /// what rung conflicts are BORN on, how many belligerent-months each rung
+    /// holds, and how the conflicts that ended actually ended.
+    ///
+    ///     cargo test -p spheres-sim --release --lib war_census -- --ignored --nocapture
+    #[test]
+    #[ignore]
+    fn war_census() {
+        let years = 35;
+        let mut born = [0u32; 10];
+        let mut peak = [0u32; 10];
+        let mut months_at = [0u64; 10];
+        let mut endings: Vec<(&str, u32)> = vec![
+            ("annexed", 0), ("capitulates", 0), ("repels", 0),
+            ("white peace", 0), ("sues for peace", 0), ("agree peace terms", 0),
+        ];
+        let (mut opened, mut invaded) = (0u32, 0u32);
+        for seed in 0..8u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            let mut seen: std::collections::BTreeMap<u32, (u8, u8)> = Default::default();
+            for _ in 0..12 * years {
+                for h in tick_month(&mut w, &[]) {
+                    for e in endings.iter_mut() {
+                        if h.contains(e.0) {
+                            e.1 += 1;
+                        }
+                    }
+                    if h.starts_with("WAR:") {
+                        invaded += 1;
+                    }
+                }
+                for c in &w.conflicts {
+                    let top = c.posture.iter().map(|b| b.rung).max().unwrap_or(1);
+                    let e = seen.entry(c.id).or_insert_with(|| {
+                        opened += 1;
+                        born[top as usize] += 1;
+                        (top, top)
+                    });
+                    e.1 = e.1.max(top);
+                    for b in &c.posture {
+                        months_at[b.rung as usize] += 1;
+                    }
+                }
+            }
+            for (_, (_, hi)) in seen {
+                peak[hi as usize] += 1;
+            }
+        }
+        println!("\n{} conflicts opened, {} of them became invasions", opened, invaded);
+        println!("rung:      1     2     3     4     5     6     7     8     9");
+        let row = |name: &str, v: &[u64]| {
+            let mut s = format!("{:<9}", name);
+            for r in 1..=9 {
+                s += &format!("{:>6}", v[r]);
+            }
+            println!("{}", s);
+        };
+        row("born at", &born.iter().map(|x| *x as u64).collect::<Vec<_>>());
+        row("peak at", &peak.iter().map(|x| *x as u64).collect::<Vec<_>>());
+        row("bel-mths", &months_at);
+        println!("endings:");
+        for (name, n) in endings {
+            println!("  {:<20} {}", name, n);
+        }
+    }
+
     /// Hand a government enough standing to buy what the test is about, so that
     /// the assertion is about the war model rather than about affordability.
     fn bankroll(w: &mut WorldState, id: NationId) {
@@ -1771,11 +1868,21 @@ mod tests {
         // BIBLE §6's second stock, on its own time constant. A campaign empties
         // the magazines faster than any budget refills them, and what stops is
         // the shooting — not the quarrel.
+        //
+        // The opponent is Iran and it used to be Saudi Arabia. Not a widened
+        // bound — every assertion below is the one that was here — but the
+        // staging had stopped being able to ask the question. Climbing to rung 8
+        // now summons the coalition that a rung-8 climb deserves, and against a
+        // client the majors actually like, the war Iraq gets is eleven months
+        // long and settled at a table before any magazine could empty. Iran is
+        // the case the assertion was always really about: eight years of exactly
+        // this, both sides shooting off more than their industry could replace
+        // and neither able to interest a great power in coming.
         let mut w = seeded(1);
         w.rules.ai_aggression = 0.0;
         w.player = Some(NationId::Iraq);
         let th = theatre::TheatreId::Gulf;
-        let id = staged_conflict(&mut w, NationId::Iraq, NationId::SaudiArabia, th, 8, 8);
+        let id = staged_conflict(&mut w, NationId::Iraq, NationId::Iran, th, 8, 8);
         assert_eq!(w.nation(NationId::Iraq).munitions, 1.0);
 
         let mut dry_at = None;

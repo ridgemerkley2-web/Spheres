@@ -30,14 +30,41 @@ use crate::{apply_command, Command};
 /// A democracy pays more. Escalation has to be explained to a parliament and an
 /// electorate; a police state can simply do it. Descending is free here and
 /// charged in reputation instead — cheap at home, expensive abroad.
+///
+/// `defending_home` is the one discount, and it is the difference between an
+/// expedition and a defence: a government has to be talked into sending an army
+/// abroad and does not have to be talked into meeting one at the frontier.
+/// Without it the model charged Kuwait the same to resist an invasion as it
+/// charged Iraq to mount one, and small states simply could not afford to fight
+/// for themselves.
+pub const HOME_DEFENCE_DISCOUNT: f64 = 0.30;
+
 pub fn escalation_cost(w: &WorldState, id: NationId, from: u8, to: u8) -> f64 {
+    escalation_cost_in(w, id, from, to, false)
+}
+
+pub fn escalation_cost_in(
+    w: &WorldState,
+    id: NationId,
+    from: u8,
+    to: u8,
+    defending_home: bool,
+) -> f64 {
     if to <= from {
         return 0.0;
     }
     let lo = ESCALATION_PRICE[(from as usize).min(9)];
     let hi = ESCALATION_PRICE[(to as usize).min(9)];
     let auth = w.nation_opt(id).map_or(0.5, |n| n.authoritarianism);
-    (hi - lo) * (1.4 - 0.6 * auth)
+    let home = if defending_home { HOME_DEFENCE_DISCOUNT } else { 1.0 };
+    (hi - lo) * (1.4 - 0.6 * auth) * home
+}
+
+/// Whether this belligerent is answering on its own ground rather than
+/// projecting onto somebody else's: the theatre is its home, and it did not
+/// open the quarrel.
+pub fn defending_home(w: &WorldState, c: &Conflict, id: NationId) -> bool {
+    c.side_of(id) != c.side_of(c.origin_attacker) && theatre::is_home(w, id, c.theatre)
 }
 
 /// Why a nation cannot stand where it wants to. Returned as prose because a
@@ -111,6 +138,15 @@ pub fn set_commitment(
     }
     {
         let c = w.conflict_mut(conflict).expect("checked");
+        if rung > old {
+            // A quarrel somebody has just escalated is not a frozen one, however
+            // long it has been since the last shot. Without this the freeze
+            // clock ran while a state was climbing and killed the climb halfway
+            // up: eighteen months is less than it takes a poor government to
+            // save the standing for seven rungs.
+            c.quiet_months = 0;
+            c.frozen_since = None;
+        }
         let b = c.posture_mut(nation).expect("checked");
         b.rung = rung;
         b.months_at_rung = 0;
@@ -122,6 +158,19 @@ pub fn set_commitment(
             rung,
             rung_name(rung)
         ));
+        // The step that is different in kind from the seven below it. Climbing
+        // to a full conventional campaign against somebody who is not in your
+        // country is an invasion, and the world answers invasions: sanctions,
+        // guarantees called in, friends of the victim arriving. It happens once
+        // per quarrel, at the rung, rather than at the moment somebody decided
+        // to be annoyed — which is the whole of QA's first finding.
+        let crossing = rung >= INVASION_RUNG
+            && w.conflict(conflict).map_or(false, |c| {
+                !c.invasion_declared && c.side_of(nation) == c.side_of(c.origin_attacker)
+            });
+        if crossing {
+            crate::war::invasion_begins(w, conflict, nation);
+        }
     } else {
         // De-escalating is free at home and expensive abroad: the reputation
         // goes, and every client you were paying to fight for you notices.
@@ -295,6 +344,7 @@ pub fn open_conflict(
         start_year: w.year,
         start_month: w.month,
         origin_attacker: opener,
+        invasion_declared: false,
     };
     w.conflicts.push(c);
     w.headline(format!(
@@ -481,17 +531,121 @@ pub fn seek_access(w: &mut WorldState, seeker: NationId, th: TheatreId) {
 // The one AI rule this phase ships
 // ---------------------------------------------------------------------------
 
+/// What this belligerent could actually put into this theatre if it stood in the
+/// open: structure, times the share of itself it can get there, times what its
+/// soldiers can do when they arrive. Not committed force — that depends on the
+/// rung, and this is the thing being used to *choose* the rung.
+fn fieldable(w: &WorldState, c: &Conflict, id: NationId) -> f64 {
+    let structure = match w.nation_opt(id) {
+        Some(n) if n.alive => n.mil_strength,
+        _ => return 0.0,
+    };
+    let proj = if theatre::is_home(w, id, c.theatre) {
+        1.0
+    } else {
+        crate::war::deployable_fraction(w, id)
+    };
+    structure * proj * crate::war::quality(w, id)
+}
+
+/// The rung this belligerent is trying to reach — the top of its climb, not its
+/// next step.
+///
+/// Three terms and no country names: what it says it wants, what the other side
+/// could meet it with, and what it has publicly bound itself to. A state that
+/// cannot win in the open does not go into the open; it stops at the rungs where
+/// somebody else's people do the dying, which is why most quarrels in the world
+/// live between 2 and 5 and only a few climb past 6.
+pub fn ambition(w: &WorldState, c: &Conflict, b: &Belligerent) -> u8 {
+    let side = match c.side_of(b.nation) {
+        Some(s) => s,
+        None => return 1,
+    };
+    // A quarrel nobody has prosecuted in eighteen months is not an ambition any
+    // more, it is a standing expense. Without this the wind-down and the climb
+    // fight each other every month and a frozen conflict oscillates on one rung
+    // for the rest of the century.
+    if c.frozen_since.is_some() {
+        return 1;
+    }
+    // What the other side is offering. The defensive objectives are answers
+    // rather than intentions — they mirror it, and no more than mirror it, which
+    // is what keeps a quarrel at rhetoric until somebody decides otherwise and
+    // makes the ladder a dialogue instead of two independent slides.
+    let opp = c
+        .posture
+        .iter()
+        .filter(|x| c.side_of(x.nation) != Some(side))
+        .map(|x| x.rung)
+        .max()
+        .unwrap_or(1);
+    let want = match b.objective {
+        Objective::Seize => INVASION_RUNG,
+        Objective::Stabilise => 9,
+        Objective::Degrade => SHOOTING_RUNG,
+        Objective::Deny | Objective::Hold => opp,
+        Objective::Withdraw => 1,
+    };
+    let mine = fieldable(w, c, b.nation);
+    let theirs: f64 = c
+        .participants()
+        .iter()
+        .filter(|o| c.side_of(**o) != Some(side))
+        .map(|o| fieldable(w, c, *o))
+        .sum();
+    // A state on its own ground answers whatever is offered it, and does not
+    // consult the balance of forces first — that is what home ground means.
+    if defending_home(w, c, b.nation) {
+        return want.max(opp).min(b.ceiling);
+    }
+    let ratio = mine / theirs.max(0.001);
+    // How much of the ladder the balance of forces lets it contemplate. The
+    // bottom of this table is the whole reason the bottom of the ladder gets
+    // used: a state that cannot meet the other army in the field arms somebody
+    // who can, or shouts, and those are rungs 2 to 4.
+    let dare = if ratio >= 1.6 {
+        9
+    } else if ratio >= 1.0 {
+        INVASION_RUNG
+    } else if ratio >= 0.7 {
+        SHOOTING_RUNG
+    } else if ratio >= 0.4 {
+        4
+    } else {
+        2
+    };
+    want.min(dare).min(b.ceiling)
+}
+
 /// Deliberately minimal, and deliberately routed through `apply_command`, so
 /// that the AI buys its escalation with the same currency at the same price the
-/// player does. Climb when you are losing the ground and still have the will;
-/// step back when you have not. Anything richer is a later branch — see
-/// ROADMAP.
+/// player does.
+///
+/// This is where the climb happens, and it is the answer to QA's first finding.
+/// Before, the only reason to escalate was to be losing ground you were already
+/// fighting for — which cannot happen at rung 1, where nobody is fighting — so
+/// no conflict ever went up and the ladder ran in one direction. Now a state
+/// prosecuting a quarrel walks up it a rung at a time, paying at every step,
+/// stopping when it runs out of standing, of will, or of nerve about what is on
+/// the other side.
+/// How fast a government walks up a ladder it has decided to walk up, before
+/// the two things that actually pace it: how far it still has to go, and
+/// whether it can pay for the next step. A state that means to invade does not
+/// spend a year on rhetoric first — it moves quickly through the rungs that are
+/// beneath its intention and slowly through the ones near it.
+pub const CLIMB_CHANCE: f64 = 0.35;
+pub const CLIMB_URGENCY: f64 = 0.12;
+/// A government that changes its mind monthly has none. Two months on a rung
+/// before the next step.
+pub const RUNG_DWELL: u32 = 2;
+
 pub fn ai_ladder(w: &mut WorldState) {
     #[derive(Clone, Copy)]
     struct Move {
         conflict: u32,
         nation: NationId,
         rung: u8,
+        chance: f64,
     }
     let mut moves: Vec<Move> = vec![];
     for c in &w.conflicts {
@@ -502,29 +656,55 @@ pub fn ai_ladder(w: &mut WorldState) {
             if b.objective == Objective::Withdraw {
                 continue; // the withdrawal schedule owns this belligerent
             }
-            if b.months_at_rung < 2 {
-                continue; // a government that changes its mind monthly has none
+            if b.months_at_rung < RUNG_DWELL {
+                continue;
             }
             let side = match c.side_of(b.nation) {
                 Some(s) => s,
                 None => continue,
             };
             let against = if side { -c.control } else { c.control };
+            let (exhaustion, stability) = match w.nation_opt(b.nation) {
+                Some(n) => (n.war_exhaustion, n.stability),
+                None => continue,
+            };
+            let want = ambition(w, c, b);
             if b.resolve < 0.20 && b.rung > 1 {
-                moves.push(Move { conflict: c.id, nation: b.nation, rung: b.rung - 1 });
+                moves.push(Move { conflict: c.id, nation: b.nation, rung: b.rung - 1, chance: 1.0 });
+            } else if b.rung > want && b.rung > 1 {
+                // What it is prepared to hold has fallen below what it is
+                // standing on — because the balance moved, or because it has
+                // said out loud that it is getting out.
+                moves.push(Move { conflict: c.id, nation: b.nation, rung: b.rung - 1, chance: 0.5 });
+            } else if b.rung < want {
+                // The climb. Slower for a government that is exhausted or
+                // unsteady at home, and never instant: the ladder is a sequence
+                // of decisions taken over years, which is the point of it.
+                let steady = (1.0 - exhaustion) * (0.35 + 0.65 * (stability / 100.0).clamp(0.0, 1.0));
+                let urgency = CLIMB_CHANCE + CLIMB_URGENCY * (want - b.rung) as f64;
+                let chance = (urgency * steady * (0.6 + 0.4 * b.resolve)).min(0.9);
+                moves.push(Move { conflict: c.id, nation: b.nation, rung: b.rung + 1, chance });
             } else if against > 0.10 && b.resolve > 0.50 && b.rung < b.ceiling.min(9) {
-                moves.push(Move { conflict: c.id, nation: b.nation, rung: b.rung + 1 });
+                // Losing the ground it is already fighting for: the one reason
+                // to go past what it set out to do.
+                moves.push(Move { conflict: c.id, nation: b.nation, rung: b.rung + 1, chance: 0.5 });
             } else if c.frozen_since.is_some() && b.months_at_rung >= 12 && b.rung > 1 {
                 // A frozen quarrel is one nobody is prosecuting, and nobody keeps
                 // paying for advisers and an embargo forever over a border that
                 // has not moved in a year. This is what lets a conflict wind
                 // down to rhetoric and finally fall off the board — without it
                 // the vector only ever grows.
-                moves.push(Move { conflict: c.id, nation: b.nation, rung: b.rung - 1 });
+                moves.push(Move { conflict: c.id, nation: b.nation, rung: b.rung - 1, chance: 1.0 });
             }
         }
     }
+    // Rolled in a second pass, in the order the conflicts and their postures sit
+    // in the vectors, because the first pass is holding the world immutably and
+    // the RNG is the world's.
     for m in moves {
+        if m.chance < 1.0 && !w.rng.chance(m.chance) {
+            continue;
+        }
         let cmd = Command::SetCommitment { conflict: m.conflict, nation: m.nation, rung: m.rung };
         let _ = apply_command(w, &cmd);
     }
