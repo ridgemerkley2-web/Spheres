@@ -409,6 +409,25 @@ mod tests {
     }
 
     #[test]
+    fn the_relations_matrix_index_is_the_enum_discriminant() {
+        // QA probe. `Relations::slot` addresses the triangle by `a as usize` —
+        // the enum discriminant — while `pairs_mut` and `Serialize` invert that
+        // index back into a NationId through `ALL_NATION_IDS[i]`. Those are two
+        // separately maintained lists in the same file, and nothing in the tree
+        // checks they agree. If they ever disagree, every saved relation is
+        // written out under the wrong pair of names and the grievance decay in
+        // politics.rs cools a dyad nobody is angry about — with no test red.
+        for (i, id) in crate::world::ALL_NATION_IDS.iter().enumerate() {
+            assert_eq!(
+                *id as usize, i,
+                "ALL_NATION_IDS[{}] is {:?}, whose discriminant is {} — the array \
+                 has drifted from the enum declaration order",
+                i, id, *id as usize
+            );
+        }
+    }
+
+    #[test]
     fn a_century_holds_together() {
         // The risk register's top entry is two hundred AI economies spiralling,
         // and its stated mitigation is exactly this: a headless century run as a
