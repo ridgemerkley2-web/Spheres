@@ -37,8 +37,10 @@ pub enum NationId {
     India, Pakistan, Iraq, Kuwait, SaudiArabia, Iran, SouthKorea, Poland,
     Brazil, Indonesia, Egypt, Israel, Turkey, Nigeria, Vietnam,
     Yugoslavia, Serbia, Croatia, Slovenia, Bosnia,
+    SouthAfrica, Ethiopia, Kenya, Ghana, Zaire, Angola, Zimbabwe, Tanzania,
+    Uganda, Senegal, CoteDIvoire, Cameroon,
 }
-pub const ALL_START_NATIONS: [NationId; 24] = [
+pub const ALL_START_NATIONS: [NationId; 36] = [
     NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
     NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
     NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
@@ -46,6 +48,9 @@ pub const ALL_START_NATIONS: [NationId; 24] = [
     NationId::Brazil, NationId::Indonesia, NationId::Egypt, NationId::Israel,
     NationId::Turkey, NationId::Nigeria, NationId::Vietnam,
     NationId::Yugoslavia,
+    NationId::SouthAfrica, NationId::Ethiopia, NationId::Kenya, NationId::Ghana,
+    NationId::Zaire, NationId::Angola, NationId::Zimbabwe, NationId::Tanzania,
+    NationId::Uganda, NationId::Senegal, NationId::CoteDIvoire, NationId::Cameroon,
 ];
 /// States that only exist if a federation comes apart.
 pub const SUCCESSOR_NATIONS: [NationId; 6] = [
@@ -86,6 +91,18 @@ impl NationId {
             NationId::Croatia => "Croatia",
             NationId::Slovenia => "Slovenia",
             NationId::Bosnia => "Bosnia",
+            NationId::SouthAfrica => "South Africa",
+            NationId::Ethiopia => "Ethiopia",
+            NationId::Kenya => "Kenya",
+            NationId::Ghana => "Ghana",
+            NationId::Zaire => "Zaire",
+            NationId::Angola => "Angola",
+            NationId::Zimbabwe => "Zimbabwe",
+            NationId::Tanzania => "Tanzania",
+            NationId::Uganda => "Uganda",
+            NationId::Senegal => "Senegal",
+            NationId::CoteDIvoire => "Cote d'Ivoire",
+            NationId::Cameroon => "Cameroon",
         }
     }
     pub fn parse(s: &str) -> Option<NationId> {
@@ -121,6 +138,20 @@ impl NationId {
             "croatia" => NationId::Croatia,
             "slovenia" => NationId::Slovenia,
             "bosnia" | "bosnia and herzegovina" | "bih" => NationId::Bosnia,
+            "south africa" | "southafrica" | "rsa" | "zaf" => NationId::SouthAfrica,
+            "ethiopia" | "eth" => NationId::Ethiopia,
+            "kenya" | "ken" => NationId::Kenya,
+            "ghana" | "gha" => NationId::Ghana,
+            "zaire" | "zar" | "congo" | "drc" | "dr congo" => NationId::Zaire,
+            "angola" | "ago" => NationId::Angola,
+            "zimbabwe" | "zwe" | "rhodesia" => NationId::Zimbabwe,
+            "tanzania" | "tza" => NationId::Tanzania,
+            "uganda" | "uga" => NationId::Uganda,
+            "senegal" | "sen" => NationId::Senegal,
+            "cote d'ivoire" | "cote divoire" | "cote d ivoire" | "ivory coast" | "civ" => {
+                NationId::CoteDIvoire
+            }
+            "cameroon" | "cameroun" | "cmr" => NationId::Cameroon,
             _ => return None,
         })
     }
@@ -137,8 +168,11 @@ pub const ALL_NATION_IDS: [NationId; NATION_COUNT] = [
     NationId::Egypt, NationId::Israel, NationId::Turkey, NationId::Nigeria,
     NationId::Vietnam, NationId::Yugoslavia, NationId::Serbia, NationId::Croatia,
     NationId::Slovenia, NationId::Bosnia,
+    NationId::SouthAfrica, NationId::Ethiopia, NationId::Kenya, NationId::Ghana,
+    NationId::Zaire, NationId::Angola, NationId::Zimbabwe, NationId::Tanzania,
+    NationId::Uganda, NationId::Senegal, NationId::CoteDIvoire, NationId::Cameroon,
 ];
-pub const NATION_COUNT: usize = 30;
+pub const NATION_COUNT: usize = 42;
 
 /// Symmetric relations, held as a dense lower triangle so a lookup is an index
 /// rather than a search.
