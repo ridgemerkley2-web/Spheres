@@ -28,6 +28,12 @@
   that learns nothing is no longer paid as though it were catching up. The cost
   floor now falls away as a technology approaches universal, which is what lets a
   small poor economy pick up ordinary things it could previously never afford
+- **Nations are data**: all 24 start nations and the seed relations matrix live in
+  `spheres-sim/data/` as JSON, loaded through two-pass validation with
+  `deny_unknown_fields`, so a misspelled key is a refusal rather than a silent
+  zero. Each file carries its own `sources` block, and the browser nation sheet
+  serves it under "Where the 1990 figures come from" — provenance a player can
+  read, not a comment in a file nobody opens
 - **Political capital** exists as a currency (see below)
 - **Statecraft — the namesake system**: mutual defence pacts with an upkeep both
   signatories pay, patronage as a standing share of the patron's output, trade
@@ -111,6 +117,29 @@ calibration test we have.
   FX debt, openness, hot money, risk) and Ukraine needs one created at birth.
   Partial work exists: currency and region arms for all eight, plus `Region::LatinAmerica`
   and `Region::Africa`.
+
+### 1b. The real-rate demand channel is unbounded, and three nations pay for it
+`economy.rs` turns `neutral - (interest_rate - inflation)` into annual growth at a
+coefficient of 0.55, linearly and without limit. Nothing else in the model has
+that shape. Two consequences, both live:
+
+- **The 1990 hyperinflators cannot be transcribed.** Brazil's real prints — 2948%
+  CPI, a 9394% deposit rate — put GDP at +inf inside the first simulated year and
+  fail twelve tests. Brazil, Poland and Yugoslavia therefore carry figures one
+  decimal place low. The files now say so, in full, with the measured cost; the
+  loader refuses anything outside the band the model can hold.
+- **All three of them boom instead of collapsing.** Their entered policy rates sit
+  *below* their entered inflation, so the loosest real rates in the roster belong
+  to the three economies that were contracting hardest. Brazil grows 13.9% through
+  1990 against an actual 4.3% contraction, Poland 7% against 11.6% the other way,
+  Yugoslavia 6% against roughly 7%.
+
+The fix is to bound the channel. It is not a one-liner: clamping the gap at
++/-0.20 was tried and costs `china_growth_miracle` (China runs to 17.1x in 30
+years) and `a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it`, which
+means China's miracle is currently being paid for partly by an unbounded rate
+term. Doing this properly is a recalibration of the demand side, and it should be
+done before any more 1990 monetary data is transcribed.
 
 ### 2. The tree is invisible
 253 technologies and the browser UI does not mention one of them. The owner's
