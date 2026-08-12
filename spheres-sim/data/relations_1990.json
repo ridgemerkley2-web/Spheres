@@ -169,6 +169,48 @@
         { "a": "Vietnam", "b": "SouthKorea", "value": -10.0 },
         { "a": "Vietnam", "b": "Poland", "value": 25.0 }
       ]
+    },
+    {
+      "note": [
+        "Eastern Europe in January 1990: a Warsaw Pact that still legally exists and that none of its members wants. The alliance was not dissolved until 1 July 1991, so these are the relations of an alliance in its last eighteen months, and they are not uniform — loyalty to Moscow ran from Bulgaria at one end to Romania, which refused to join the 1968 invasion of Czechoslovakia, and Albania, which walked out of the Pact over it.",
+        "The intra-regional dyads matter more than the ties to Moscow. Hungary and Romania hold the worst relationship in the bloc, over the 1.6 million Hungarians of Transylvania and the refugees who crossed into Hungary in 1988-89; the Targu Mures clashes of March 1990 are ten weeks away. Bulgaria and Turkey are barely on speaking terms after the Revival Process drove roughly 340,000 ethnic Turks across the border in the summer of 1989. Hungary and Czechoslovakia are in open dispute over the Gabcikovo-Nagymaros dams, which Hungary abandoned in May 1989 and Czechoslovakia then built alone.",
+        "East Germany's dyad with the Federal Republic is warm and about to become moot: Kohl's Ten Point Plan of 28 November 1989 and Modrow's treaty-community proposal of 1 February 1990 are both on the table. Poland's wariness of both German states is the Oder-Neisse question, which Mazowiecki refused to let unification proceed without settling.",
+        "Albania has no diplomatic relations with the United States at all — they were severed in 1946 and restored only in March 1991 — and none with the Soviet Union since 1961."
+      ],
+      "pairs": [
+        { "a": "USSR", "b": "Bulgaria", "value": 65.0 },
+        { "a": "USSR", "b": "EastGermany", "value": 55.0 },
+        { "a": "USSR", "b": "Czechoslovakia", "value": 20.0 },
+        { "a": "USSR", "b": "Hungary", "value": 20.0 },
+        { "a": "USSR", "b": "Romania", "value": 10.0 },
+        { "a": "USSR", "b": "Albania", "value": -40.0 },
+
+        { "a": "Hungary", "b": "Romania", "value": -35.0 },
+        { "a": "Hungary", "b": "Czechoslovakia", "value": -10.0 },
+        { "a": "Hungary", "b": "Poland", "value": 35.0 },
+        { "a": "Hungary", "b": "Yugoslavia", "value": 15.0 },
+        { "a": "Czechoslovakia", "b": "Poland", "value": 25.0 },
+        { "a": "Czechoslovakia", "b": "EastGermany", "value": 20.0 },
+        { "a": "Bulgaria", "b": "Romania", "value": 20.0 },
+        { "a": "Bulgaria", "b": "Turkey", "value": -30.0 },
+        { "a": "Bulgaria", "b": "Yugoslavia", "value": -10.0 },
+        { "a": "Romania", "b": "Yugoslavia", "value": 25.0 },
+        { "a": "Albania", "b": "Yugoslavia", "value": -30.0 },
+        { "a": "Albania", "b": "China", "value": 10.0 },
+        { "a": "Albania", "b": "Italy", "value": 15.0 },
+
+        { "a": "EastGermany", "b": "Germany", "value": 40.0 },
+        { "a": "EastGermany", "b": "Poland", "value": 15.0 },
+        { "a": "Germany", "b": "Hungary", "value": 35.0 },
+        { "a": "Germany", "b": "Czechoslovakia", "value": 20.0 },
+
+        { "a": "USA", "b": "Hungary", "value": 30.0 },
+        { "a": "USA", "b": "Czechoslovakia", "value": 30.0 },
+        { "a": "USA", "b": "Romania", "value": -10.0 },
+        { "a": "USA", "b": "Bulgaria", "value": 5.0 },
+        { "a": "USA", "b": "EastGermany", "value": 5.0 },
+        { "a": "USA", "b": "Albania", "value": -20.0 }
+      ]
     }
   ]
 }
