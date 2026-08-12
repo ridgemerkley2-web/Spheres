@@ -325,7 +325,6 @@ mod tests {
     }
 
     #[test]
-    #[test]
     fn the_frontier_does_not_run_away() {
         // The guard that was missing, and whose absence let the world run at
         // twice its real size undetected for weeks. Every other calibration test
@@ -603,17 +602,81 @@ mod tests {
 
     #[test]
     fn china_growth_miracle() {
-        let mut w = world_1990(GameRules::default());
-        let start = w.nation(NationId::China).gdp;
-        run_months(&mut w, 360); // 30 years
-        let end = w.nation(NationId::China).gdp;
-        let x = end / start;
-        // Bounded on both sides. The floor is the miracle; the ceiling is there
-        // because an unbounded assertion cannot tell a miracle from a runaway,
-        // and a one-sided bound let the tree's arrival move this figure by a
-        // third without anything noticing.
-        assert!(x > 6.0, "China grew only {:.1}x in 30y", x);
-        assert!(x < 14.0, "China ran away: {:.1}x in 30y", x);
+        // A cross-seed band, in the style of `ussr_collapses_in_the_nineties`,
+        // replacing what used to be a single run on the default seed asserting
+        // `6.0 < x < 14.0`. That assertion was a lottery ticket that happened to
+        // be a winner, and the ceiling was in the wrong place besides. Both
+        // claims are measured, not asserted:
+        //
+        // 1. The single sample was not representative. Master's 30-year multiple
+        //    on seeds 0..=9 is
+        //      11.03 13.30 13.77 14.70 14.86 16.50 16.68 16.74 17.13 17.19
+        //    so the old ceiling of 14.0 was breached on SIX of ten seeds. It
+        //    passed on the default seed 1990 (13.03x) for a reason that has
+        //    nothing to do with growth: China invades Vietnam in Oct 1995 on
+        //    that seed and eats coalition sanctions until Apr 2004. Every seed
+        //    that came in under 14.0 is a seed where China got sanctioned; every
+        //    seed where it stayed at peace — 2, 3, 6, 7, 9 — ran 16.5x to 17.2x.
+        //    The test was measuring a dyad with monthly probability 0.0003, not
+        //    the growth model.
+        //
+        // 2. The ceiling was below reality. China's real GDP in constant 2015
+        //    US$ was $1.041tn in 1990 and $14.92tn in 2020 — a multiple of
+        //    14.33x, or 9.28% a year compounded (World Bank NY.GDP.MKTP.KD,
+        //    series CHN). A ceiling of 14.0 therefore excluded the actual
+        //    outcome: the old test could only pass if something knocked China
+        //    OFF its historical trajectory. That is a broken assertion, not a
+        //    tight one.
+        //
+        // So this is not a widened tolerance — it is a statistical assertion
+        // replacing a single-sample one, and it is anchored on a figure the old
+        // one contradicted. The band on the median, 11.0x to 19.0x, is 8.3% to
+        // 10.2% a year against reality's 9.28%; master's median sits at 15.68x
+        // (9.61%/yr), so the model runs about a third of a point hot, which is
+        // inside what §8 of BIBLE.md allows a major economy. The width is set to
+        // catch the regression class the old comment cared about: a change that
+        // moves this figure by a third in either direction leaves the band.
+        //
+        // The floor of 6.0x is kept, and kept per-seed rather than on the
+        // median, because "the miracle happened" should be true in every world,
+        // sanctions or no.
+        //
+        // Checked red in both directions per iron rule 5, by moving the catchup
+        // coefficient in economy.rs (the term that actually drives this; note
+        // that perturbing `tfp_trend` does NOT, because tech/mod.rs:1103
+        // rewrites it every tick):
+        //      catchup 0.000 -> median  9.40x  RED (floor)
+        //      catchup 0.005 -> median 11.27x  green
+        //      catchup 0.012 -> median 13.73x  green
+        //      catchup 0.020 -> median 15.68x  green  (master)
+        //      catchup 0.030 -> median 20.83x  RED (ceiling)
+        // So the band admits catchup in roughly 0.004..0.027 and rejects
+        // outside it — including deleting the term outright, which is the exact
+        // regression the comment on that line records having happened before.
+        let mut xs: Vec<f64> = Vec::new();
+        for seed in 0..10u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            let start = w.nation(NationId::China).gdp;
+            run_months(&mut w, 360); // 30 years
+            let x = w.nation(NationId::China).gdp / start;
+            assert!(
+                x > 6.0,
+                "no miracle on seed {}: China grew only {:.2}x in 30y",
+                seed, x
+            );
+            xs.push(x);
+        }
+        xs.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        let median = (xs[4] + xs[5]) / 2.0;
+        assert!(
+            (11.0..19.0).contains(&median),
+            "China's median 30-year growth across ten seeds is {:.2}x \
+             ({:.2}%/yr), outside the 11.0x-19.0x band anchored on the real \
+             14.33x. Seeds: {:?}",
+            median,
+            (median.powf(1.0 / 30.0) - 1.0) * 100.0,
+            xs.iter().map(|v| (v * 100.0).round() / 100.0).collect::<Vec<_>>()
+        );
     }
 
     #[test]
