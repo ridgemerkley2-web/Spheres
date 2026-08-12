@@ -804,13 +804,34 @@ mod tests {
     fn a_war_costs_a_government_at_home() {
         // The other half of the currency: it is earned and lost by what the
         // government's record is, not only spent by what it does.
+        //
+        // Both worlds put the player in Washington, and that line is
+        // load-bearing. `politics.rs` skips AI statecraft for any nation with
+        // `war_exhaustion > 0.3`, so an exhausted USA quietly stops pledging aid
+        // and therefore stops SPENDING its standing. That saving is comparable
+        // to the `- war_exhaustion * 45.0` penalty and points the other way, so
+        // what this test actually measured was the difference between two
+        // spending regimes rather than the cost of a war.
+        //
+        // It was masked rather than wrong, and the mask is thin: adding a single
+        // new nation to the roster (tried with Spain) moved it to 39 at war
+        // against 43 at peace and took the assertion red, because one more
+        // country is one more client for the peacetime USA to buy. With ~80
+        // nations arriving that fragility is not survivable.
+        //
+        // Making the USA the player suppresses that AI route in BOTH worlds,
+        // symmetrically, through a condition already in the model rather than a
+        // back door. What is left is the thing the test names: 63.6 at peace
+        // against 52.4 at war. The threshold is untouched.
         let mut w = world_1990(GameRules::default());
         w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::USA);
         run_months(&mut w, 24);
         let peacetime = w.nation(NationId::USA).political_capital;
 
         let mut at_war = world_1990(GameRules::default());
         at_war.rules.ai_aggression = 0.0;
+        at_war.player = Some(NationId::USA);
         at_war.nation_mut(NationId::USA).war_exhaustion = 0.5;
         run_months(&mut at_war, 24);
         let strained = at_war.nation(NationId::USA).political_capital;
