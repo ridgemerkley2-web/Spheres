@@ -208,6 +208,45 @@ fn is_major(headline: &str, me: Option<NationId>) -> bool {
     structural || me.map_or(false, |m| h.contains(&m.name().to_lowercase()))
 }
 
+/// Pull `nation=` out of a query string and percent-decode it.
+///
+/// `NationId::parse` accepts display names, and eight of them contain a space
+/// that a browser sends as `%20`. Reading the raw query means "Saudi Arabia"
+/// arrives as `Saudi%20Arabia` and resolves to nothing — silently, since the
+/// param is optional everywhere it is used.
+fn nation_param(url: &str) -> Option<NationId> {
+    let raw = url.split_once("nation=")?.1.split('&').next()?;
+    let bytes = raw.as_bytes();
+    let mut out = String::with_capacity(raw.len());
+    let mut i = 0;
+    while i < bytes.len() {
+        match bytes[i] {
+            b'+' => {
+                out.push(' ');
+                i += 1;
+            }
+            b'%' if i + 2 < bytes.len() => {
+                match u8::from_str_radix(&raw[i + 1..i + 3], 16) {
+                    Ok(b) => {
+                        out.push(b as char);
+                        i += 3;
+                    }
+                    Err(_) => {
+                        out.push('%');
+                        i += 1;
+                    }
+                }
+            }
+            _ => {
+                let c = raw[i..].chars().next()?;
+                out.push(c);
+                i += c.len_utf8();
+            }
+        }
+    }
+    NationId::parse(&out)
+}
+
 fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
     let me = w.player;
     serde_json::json!({
@@ -502,11 +541,24 @@ fn main() {
                 let g = game.lock().unwrap();
                 json_response(state_json(&g, None))
             }
+            // Where a nation's opening figures came from. Static start-of-game
+            // provenance, so it needs neither the lock nor the world — and must
+            // not be served from the live Nation, whose numbers have moved.
+            (Method::Get, "/api/sources") => {
+                let id = nation_param(request.url());
+                match id {
+                    Some(id) => json_response(serde_json::json!({
+                        "id": format!("{:?}", id),
+                        "name": id.name(),
+                        "sources": spheres_sim::data::sources_for(id),
+                    })),
+                    None => json_response(serde_json::json!({
+                        "error": "unknown nation",
+                    })),
+                }
+            }
             (Method::Get, "/api/history") => {
-                let only = request
-                    .url()
-                    .split_once("nation=")
-                    .and_then(|(_, q)| NationId::parse(q.split('&').next().unwrap_or("")));
+                let only = nation_param(request.url());
                 let g = game.lock().unwrap();
                 json_response(history_json(&g, only))
             }
@@ -609,6 +661,38 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn a_nation_with_a_space_in_its_name_survives_the_query_string() {
+        // The failure this catches is silent: an undecoded "Saudi%20Arabia"
+        // parses to None, and every route taking this param treats None as
+        // "no filter" rather than as an error, so the UI would quietly show
+        // the wrong thing instead of nothing.
+        assert_eq!(nation_param("/api/sources?nation=Brazil"), Some(NationId::Brazil));
+        assert_eq!(
+            nation_param("/api/sources?nation=Saudi%20Arabia"),
+            Some(NationId::SaudiArabia)
+        );
+        assert_eq!(
+            nation_param("/api/sources?nation=South+Korea"),
+            Some(NationId::SouthKorea)
+        );
+        assert_eq!(
+            nation_param("/api/history?nation=United%20States&x=1"),
+            Some(NationId::USA)
+        );
+        assert_eq!(nation_param("/api/state"), None);
+        assert_eq!(nation_param("/api/sources?nation=Atlantis"), None);
+    }
+
+    #[test]
+    fn a_nation_can_show_where_its_figures_came_from() {
+        // The branch's whole point is that the provenance survived the move out
+        // of Rust. It only survives as far as somebody can read it.
+        let src = spheres_sim::data::sources_for(NationId::Brazil);
+        assert!(!src.is_empty());
+        assert!(src.join(" ").contains("2948%"));
+    }
 
     #[test]
     fn headlines_land_in_the_right_bucket() {

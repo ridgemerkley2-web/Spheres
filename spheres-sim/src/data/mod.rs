@@ -596,6 +596,29 @@ pub fn load_world(
     Ok(w)
 }
 
+/// The provenance of one nation's 1990 figures, for showing to a player.
+///
+/// The `sources` blocks are the reason this directory exists — iron rule 4 says
+/// starting data is transcribed, and a transcription nobody can read is a claim
+/// rather than a citation. They were being parsed, validated for non-emptiness,
+/// and then dropped on the floor: nothing downstream of the loader could see
+/// them, so the only way to check what a number meant was to open the JSON.
+/// `spheres-web` serves this at `/api/sources`, which is what makes Brazil's
+/// stand-in inflation figure an admission the player encounters rather than a
+/// comment in a file they will never open.
+///
+/// Parsed on demand from the embedded set rather than carried in `WorldState`:
+/// this is immutable start-of-game documentation, it must not enter a save, and
+/// it must not touch the timeline hash.
+pub fn sources_for(id: NationId) -> Vec<String> {
+    EMBEDDED_NATIONS
+        .iter()
+        .filter_map(|s| serde_json::from_str::<NationRecord>(s.json).ok())
+        .find(|r| r.id == id)
+        .map(|r| r.sources)
+        .unwrap_or_default()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -660,6 +683,28 @@ mod tests {
             err.iter().any(|e| e.message.contains("real")
                 && e.message.contains("demand channel")),
             "the real-rate channel was not named: {err:?}"
+        );
+    }
+
+    #[test]
+    fn every_nation_can_show_its_working() {
+        // The surface, not the storage. A player asking where Brazil's opening
+        // inflation came from has to be able to get an answer, and the answer
+        // has to include the admission that the figure is a stand-in rather
+        // than the print — otherwise the honesty added to the file is honesty
+        // nobody in the game can reach.
+        for id in ALL_START_NATIONS {
+            assert!(
+                !sources_for(id).is_empty(),
+                "{:?} has no provenance to show",
+                id
+            );
+        }
+        let brazil = sources_for(NationId::Brazil).join(" ");
+        assert!(brazil.contains("2948%"), "the true print is not reachable");
+        assert!(
+            brazil.contains("NOT THE TRANSCRIBED PRINTS"),
+            "the stand-in is not admitted where a player can see it"
         );
     }
 
