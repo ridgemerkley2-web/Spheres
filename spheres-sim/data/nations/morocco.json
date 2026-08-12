@@ -1,0 +1,42 @@
+{
+  "id": "Morocco",
+  "name": "Morocco",
+  "system": "Market",
+  "authoritarianism": 0.62,
+  "economy": {
+    "gdp_bn": 30.2,
+    "population_m": 24.4,
+    "tfp_trend": 0.01,
+    "inflation": 0.068,
+    "interest_rate": 0.09,
+    "tax_rate": 0.19,
+    "mil_spend_gdp": 0.042,
+    "state_invest_gdp": 0.09,
+    "priv_invest_gdp": 0.17,
+    "debt_gdp": 0.85,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 62.0,
+    "separatism": 0.22
+  },
+  "military": {
+    "strength": 8.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $30.18bn and population 24,375,551 (World Bank, NY.GDP.MKTP.CD and SP.POP.TOTL, 1990).",
+    "Inflation 6.78% (World Bank FP.CPI.TOTL.ZG, 1990), held down by a decade of IMF structural adjustment after the 1983 stabilisation.",
+    "Interest rate 9.0%: the World Bank records a deposit rate of 8.5% for Morocco in 1990 (FR.INR.DPST); Bank Al-Maghrib's administered lending rate sat about half a point above it.",
+    "Military 4.15% of GDP (World Bank MS.MIL.XPND.GD.ZS, 1990) — the highest ratio in the Maghreb, and it buys the berm across Western Sahara rather than a force that could fight a neighbour.",
+    "External debt 85.36% of GNI (World Bank DT.DOD.DECT.GN.ZS, 1990). Morocco rescheduled with the Paris Club five times in the 1980s.",
+    "Tax revenue 18.68% of GDP (World Bank GC.TAX.TOTL.GD.ZS, 1990).",
+    "Gross fixed capital formation 25.79% of GDP (World Bank NE.GDI.FTOT.ZS, 1990), split 0.09 state / 0.17 private — the privatisation law of 1989 had just passed and the private share was already the larger one.",
+    "No oil. Morocco's mineral rent is phosphates, which the model does not carry as a separate resource; OCP held roughly three quarters of world reserves.",
+    "Authoritarianism 0.62: Hassan II appointed the government, the 1989 referendum had just postponed the parliamentary election due that year by two more, and the years of lead were not over. Above the model's electoral ceiling, so Morocco is governed through its pillars.",
+    "Stability 62. The regime was not seriously threatened, but the general strike of 14 December 1990 and the Fez riots that followed it killed dozens.",
+    "Separatism 0.22 is Western Sahara: Morocco held the territory behind the berm, POLISARIO fought on from Tindouf, and the UN ceasefire and MINURSO referendum plan were agreed in 1991.",
+    "Military strength 8: 195,000 men, the largest army in the Maghreb by headcount, French and American equipment, and fifteen years of counter-insurgency experience — but almost entirely committed to the Sahara."
+  ]
+}
