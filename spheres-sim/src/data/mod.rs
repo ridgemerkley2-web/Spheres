@@ -583,6 +583,7 @@ pub fn load_world(
         sanctions: vec![],
         wars: vec![],
         statecraft: Statecraft::default(),
+        governments: Default::default(),
         oil_price: 20.0,
         headlines: vec![],
         flags: vec![],

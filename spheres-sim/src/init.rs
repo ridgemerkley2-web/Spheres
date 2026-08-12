@@ -17,6 +17,11 @@ use crate::world::{GameRules, WorldState};
 
 /// Transcribed-not-invented: approximate 1990 historical starting conditions.
 pub fn world_1990(rules: GameRules) -> WorldState {
-    data::load_world(data::EMBEDDED_NATIONS, &data::EMBEDDED_RELATIONS, rules)
-        .unwrap_or_else(|e| panic!("{}", data::render_errors(&e)))
+    let mut w = data::load_world(data::EMBEDDED_NATIONS, &data::EMBEDDED_RELATIONS, rules)
+        .unwrap_or_else(|e| panic!("{}", data::render_errors(&e)));
+    // Seat every government from the transcribed party tables before the first
+    // tick, so that a player choosing a nation in January 1990 can see their
+    // parliament rather than an empty chamber that fills in in February.
+    crate::government::ensure_all(&mut w);
+    w
 }

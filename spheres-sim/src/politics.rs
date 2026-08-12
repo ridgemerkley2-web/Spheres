@@ -21,6 +21,7 @@ pub fn seated_political_capital(stability: f64, inflation: f64, authoritarianism
 fn political_capital(w: &mut WorldState) {
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     for id in ids {
+        let composition = crate::government::standing_modifier(w, id);
         let n = w.nation_mut(id);
         let mut target = seated_political_capital(n.stability, n.inflation, n.authoritarianism);
         // Delivering growth is the ordinary way a government earns the right to
@@ -28,6 +29,12 @@ fn political_capital(w: &mut WorldState) {
         target += (n.growth_last * 100.0).clamp(-6.0, 6.0) * 2.2;
         // A war costs a government at home long before it costs it at the front.
         target -= n.war_exhaustion * 45.0;
+        // ...and so does the government's own shape. A four-party coalition
+        // stretched across the ideological plane holds a lower ceiling than a
+        // single-party majority, and a regime that has bought its army and its
+        // security service holds a higher one than its record earns. This is
+        // where the two halves of `government.rs` reach the budget.
+        target += composition;
         let target = target.clamp(0.0, 100.0);
         // Standing is slow to build and quicker to lose.
         let rate = if target < n.political_capital { 0.055 } else { 0.028 };
@@ -37,6 +44,10 @@ fn political_capital(w: &mut WorldState) {
 }
 
 pub fn tick(w: &mut WorldState) {
+    // Who holds office is settled before what their standing is worth: an
+    // election held this month, or a coup, has to be reflected in the capital
+    // the government wakes up holding.
+    crate::government::tick(w);
     political_capital(w);
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
 
@@ -78,20 +89,12 @@ pub fn tick(w: &mut WorldState) {
         }
     }
 
-    // ---- Elections in democracies (every 4 years, Nov) ----
-    if w.month == 11 && (w.year % 4) == 2 % 4 {
-        for id in &ids {
-            let n = w.nation_mut(*id);
-            if n.authoritarianism < 0.35 {
-                // Bad times throw the bums out; new government resets some legitimacy
-                if n.growth_last < 0.005 || n.inflation > 0.07 {
-                    n.stability = (n.stability + 8.0).min(85.0);
-                } else {
-                    n.stability = (n.stability + 3.0).min(95.0);
-                }
-            }
-        }
-    }
+    // Elections used to live here: every four years in November, a democracy
+    // gained three stability, or eight if times were bad. That is the party
+    // popularity slider BIBLE section 4 says this game replaces, and it is now
+    // `government.rs` — real parties, support that moves with what the economy
+    // did to people, a result that has to be governed with, and a coalition
+    // that costs political capital to hold.
 
     // ---- Regime collapse & USSR dissolution ----
     for id in ids.clone() {
