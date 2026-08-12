@@ -285,6 +285,68 @@ fn check_record(file: &str, r: &NationRecord) -> Vec<LoadError> {
             format!("economy.oil_mbd is {}, expected a non-negative number", r.economy.oil_mbd),
         ));
     }
+    // Inflation and the policy rate had no bounds at all, which is how three
+    // nations came to carry figures that contradict the sources block sitting
+    // beside them. The bounds below are not taste. Each one is a place where
+    // the model stops being able to represent the number:
+    //
+    //  * `economy.rs` clamps inflation into -0.05..=3.0 on the first tick, so a
+    //    start value outside that band is a claim the sim discards in month one.
+    //    Brazil's real 1990 CPI print of 2948% is 29.48 here, ten times the
+    //    ceiling.
+    //  * the demand channel is linear and unbounded in `neutral - real_rate` at
+    //    a coefficient of 0.55 to annual growth. A real rate of tens therefore
+    //    drives |growth| into the tens, `1.0 + growth/12.0` goes through zero,
+    //    and GDP changes sign. Measured: entering Brazil's true 2948%/9394%
+    //    pair sends its GDP to +inf and takes twelve tests down with it.
+    //
+    // The gap bound of 0.5 is 27.5 points of annual growth from the rate
+    // channel alone, which is already past anything a calibration test here
+    // would accept; the widest figure the 1990 roster actually ships is
+    // Yugoslavia at 0.325.
+    if !r.economy.inflation.is_finite() || !(-0.05..=3.0).contains(&r.economy.inflation) {
+        e.push(LoadError::nation_level(
+            file,
+            &who,
+            format!(
+                "economy.inflation is {}, outside -0.05..=3.0 — the fraction-of-1 band \
+                 the model can hold (economy.rs clamps to it on the first tick, so a \
+                 figure above 3.0 is a start state the sim throws away in month one). \
+                 If the real 1990 print was larger than 300%, say so in sources and \
+                 enter what the model can carry",
+                r.economy.inflation
+            ),
+        ));
+    }
+    if !(r.economy.interest_rate.is_finite() && r.economy.interest_rate >= 0.0) {
+        e.push(LoadError::nation_level(
+            file,
+            &who,
+            format!(
+                "economy.interest_rate is {}, expected a non-negative annual rate",
+                r.economy.interest_rate
+            ),
+        ));
+    }
+    let real_rate_gap = 0.025 - (r.economy.interest_rate - r.economy.inflation);
+    if !real_rate_gap.is_finite() || real_rate_gap.abs() > 0.5 {
+        e.push(LoadError::nation_level(
+            file,
+            &who,
+            format!(
+                "economy.interest_rate {} against economy.inflation {} puts the real \
+                 rate {:.3} from neutral. The demand channel in economy.rs is linear \
+                 and unbounded in that distance at 0.55, so this opens the game at \
+                 {:+.0}% annual growth from monetary policy alone and GDP loses its \
+                 sign shortly after",
+                r.economy.interest_rate,
+                r.economy.inflation,
+                real_rate_gap,
+                real_rate_gap * 0.55 * 100.0
+            ),
+        ));
+    }
+
     if !(0.0..=100.0).contains(&r.politics.stability) {
         e.push(LoadError::nation_level(
             file,
@@ -565,6 +627,53 @@ mod tests {
         assert_eq!(err.len(), 1);
         assert_eq!(err[0].file, "usa.json");
         assert!(err[0].message.contains("debt_gpd"), "{}", err[0].message);
+    }
+
+    fn brazil() -> String {
+        EMBEDDED_NATIONS
+            .iter()
+            .find(|s| s.file.ends_with("brazil.json"))
+            .expect("brazil in the embedded set")
+            .json
+            .to_string()
+    }
+
+    #[test]
+    fn the_true_brazilian_hyperinflation_is_refused_at_the_door() {
+        // Brazil's sources block quotes a 2948% CPI print and a 9394% deposit
+        // rate, and carries 2.95 and 2.9. Somebody will eventually notice the
+        // gap and "fix" it. What used to happen then was that the world built
+        // fine, Brazil's GDP went to +inf a few hundred ticks later, and twelve
+        // tests failed a long way from the cause. It is refused at load now,
+        // with the ceiling named.
+        let corrected = brazil()
+            .replace("\"inflation\": 2.95", "\"inflation\": 29.48")
+            .replace("\"interest_rate\": 2.9", "\"interest_rate\": 93.94");
+        let err = parse_nations(&[Source { file: "brazil.json", json: &corrected }])
+            .expect_err("figures the model cannot hold must be refused");
+        assert!(
+            err.iter().any(|e| e.message.contains("economy.inflation")
+                && e.message.contains("-0.05..=3.0")),
+            "the inflation ceiling was not named: {err:?}"
+        );
+        assert!(
+            err.iter().any(|e| e.message.contains("real")
+                && e.message.contains("demand channel")),
+            "the real-rate channel was not named: {err:?}"
+        );
+    }
+
+    #[test]
+    fn a_plausible_real_rate_is_not_refused() {
+        // The guard above must not be so eager that it rejects the roster it
+        // ships with. Turkey is the honest high-inflation entry — 60.3% against
+        // a 50% policy rate, both transcribed at their true magnitude — and it
+        // has to keep loading.
+        let nations = parse_nations(EMBEDDED_NATIONS).expect("the shipped roster still parses");
+        let turkey = nations.iter().find(|n| n.id == NationId::Turkey).unwrap();
+        assert!((turkey.economy.inflation - 0.603).abs() < 1e-9);
+        let gap = 0.025 - (turkey.economy.interest_rate - turkey.economy.inflation);
+        assert!(gap.abs() <= 0.5, "Turkey's own gap is {gap}");
     }
 
     #[test]
