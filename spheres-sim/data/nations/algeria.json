@@ -1,0 +1,43 @@
+{
+  "id": "Algeria",
+  "name": "Algeria",
+  "system": "Market",
+  "authoritarianism": 0.55,
+  "economy": {
+    "gdp_bn": 62.0,
+    "population_m": 25.4,
+    "tfp_trend": 0.002,
+    "inflation": 0.166,
+    "interest_rate": 0.105,
+    "tax_rate": 0.3,
+    "mil_spend_gdp": 0.015,
+    "state_invest_gdp": 0.19,
+    "priv_invest_gdp": 0.08,
+    "debt_gdp": 0.47,
+    "oil_mbd": 1.18,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 42.0,
+    "separatism": 0.16
+  },
+  "military": {
+    "strength": 9.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $62.05bn and population 25,375,810 (World Bank, NY.GDP.MKTP.CD and SP.POP.TOTL, 1990).",
+    "Inflation 16.65% (World Bank FP.CPI.TOTL.ZG, 1990). The 1986 oil price collapse halved hydrocarbon receipts and the dinar was devalued repeatedly against an IMF standby.",
+    "Interest rate 10.5% is the Banque d'Algerie rediscount rate under administered credit; the Money and Credit Law of 14 April 1990 began liberalising rates only after the game opens. The published series has no Algerian policy rate for 1990, so this is an estimate consistent with the direction of the reform.",
+    "Military 1.46% of GDP (World Bank MS.MIL.XPND.GD.ZS, 1990) — low for the region because the Armee Nationale Populaire's Soviet inventory was bought in the 1970s and not being replaced.",
+    "External debt 47.1% of GNI (World Bank DT.DOD.DECT.GN.ZS, 1990); debt service took over two thirds of export earnings.",
+    "Gross fixed capital formation 26.97% of GDP (World Bank NE.GDI.FTOT.ZS, 1990), split 0.19 state / 0.08 private: Sonatrach and the restructured public enterprises still carried most of it in 1990.",
+    "Tax take: the World Bank publishes no GC.TAX.TOTL.GD.ZS for Algeria in 1990. 0.30 is total government revenue as a share of GDP, most of it hydrocarbon royalties rather than tax proper.",
+    "Oil 1.18 mbd of crude including lease condensate (EIA international series, 1990); Algeria's OPEC crude quota was well below its total liquids output, which with NGL ran nearer 1.35 mbd.",
+    "System is Market rather than Command: the February 1989 constitution struck socialism out, the state monopolies were being broken up under the 1988 autonomy law, and agriculture and retail were already private. State ownership of the commanding heights is carried in state_invest_gdp instead.",
+    "Authoritarianism 0.55: parties were legalised in July 1989 and the June 1990 local elections were genuinely contested. The army stood behind the state throughout and would cancel the December 1991 result, which the model must be able to reach rather than be told.",
+    "Stability 42 after the October 1988 riots, which the army put down with several hundred dead, and with the Islamic Salvation Front outpolling the FLN by two to one within six months.",
+    "Separatism 0.16 is Kabylie: the Berber Spring of 1980 and the Front des Forces Socialistes' regional base, not an armed secession.",
+    "Military strength 9 against Egypt's 14: 125,000 men and roughly a thousand Soviet tanks, with no combat experience since 1963 and no expeditionary capacity."
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "Sudan",
+  "name": "Sudan",
+  "system": "Market",
+  "authoritarianism": 0.9,
+  "economy": {
+    "gdp_bn": 13.0,
+    "population_m": 26.8,
+    "tfp_trend": -0.004,
+    "inflation": 0.652,
+    "interest_rate": 0.3,
+    "tax_rate": 0.06,
+    "mil_spend_gdp": 0.048,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.07,
+    "debt_gdp": 1.15,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 28.0,
+    "separatism": 0.62
+  },
+  "military": {
+    "strength": 4.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $13.0bn is a judgement, not a transcription, and it is the weakest figure in this file. The World Bank's current-dollar series prints $33.64bn for 1990, $44.17bn for 1991 and $7.03bn for 1992 — a fivefold collapse in two years produced entirely by the official exchange rate of a currency that had a parallel rate several times worse. $13.0bn is the order of magnitude the same series reaches once the pound is floated, and it is consistent with $14.37bn for 1988. Listed as unverified.",
+    "Population 26.8m is the World Bank's restated Sudan series (22,021,481) plus its South Sudan series (4,737,633) for 1990, because the state that existed in January 1990 included the south — which is what the war was about.",
+    "Inflation 65.16% (World Bank FP.CPI.TOTL.ZG, 1990), financed by printing money for a war and for the bread subsidy.",
+    "Interest rate: Sudan had no nominal interest rate. Nimeiry's September Laws of 1983 imposed sharia and the banking system was converted to murabaha and musharaka, so there was no policy rate to transcribe. 0.30 is the lowest figure the model's real-rate coupling rule will accept beside 65% inflation; the truth is that real returns to savers were deeply negative and unposted. Listed as unverified.",
+    "Military 4.81% of GDP (World Bank MS.MIL.XPND.GD.ZS, 1990) — measured against the overvalued GDP above, so the real burden was heavier.",
+    "Debt 1.15 of GDP. External debt stocks were about $15bn against the GDP shipped here; Sudan had been in arrears to the IMF since 1984 and was declared non-cooperative in 1990, the first member ever so declared. The World Bank's 47.8% of GNI for 1990 is that same $15bn divided by the overvalued GNI and is not usable.",
+    "Tax revenue 0.06 of GDP. The World Bank publishes no series; Sudan's revenue base had collapsed with the war, the customs system and the parallel economy. Listed as unverified.",
+    "Gross fixed capital formation 10.44% of GDP (World Bank NE.GDI.FTOT.ZS, 1990), the lowest in the region, split 0.03 state / 0.07 private.",
+    "No oil. Chevron found the Muglad basin fields in 1978-80 and suspended work in 1984 after the SPLA killed three of its staff; Sudan exported nothing until 1999.",
+    "Authoritarianism 0.90. Omar al-Bashir's Revolutionary Command Council for National Salvation took power on 30 June 1989, dissolved parliament, banned every party and trade union, and ran ghost houses for detainees. Hassan al-Turabi's National Islamic Front supplied the programme.",
+    "Stability 28, below the model's 1990 Nigeria at 35: a coup eighteen months old, an army coup attempt crushed in April 1990 with 28 officers executed, famine in Darfur and Kordofan, and the SPLA holding most of the rural south.",
+    "Separatism 0.62, between the Soviet Union's 0.55 and Yugoslavia's 0.72. The south is a third of the territory, was in open war under John Garang, and 41 of the 301 assembly seats could not be filled in 1986 because polling was impossible there.",
+    "Military strength 4: about 65,000 men, losing ground to the SPLA every dry season, and dependent on militia levies it could not control."
+  ]
+}

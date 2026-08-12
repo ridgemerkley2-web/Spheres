@@ -1,0 +1,43 @@
+{
+  "id": "Libya",
+  "name": "Libya",
+  "system": "Command",
+  "authoritarianism": 0.93,
+  "economy": {
+    "gdp_bn": 28.9,
+    "population_m": 4.4,
+    "tfp_trend": -0.005,
+    "inflation": 0.08,
+    "interest_rate": 0.07,
+    "tax_rate": 0.38,
+    "mil_spend_gdp": 0.048,
+    "state_invest_gdp": 0.11,
+    "priv_invest_gdp": 0.03,
+    "debt_gdp": 0.1,
+    "oil_mbd": 1.375,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 58.0,
+    "separatism": 0.12
+  },
+  "military": {
+    "strength": 10.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $28.90bn and population 4,445,239 (World Bank, NY.GDP.MKTP.CD and SP.POP.TOTL, 1990).",
+    "Inflation 8% is an estimate. The World Bank publishes no consumer price series for Libya covering 1990 and the Jamahiriya's own statistics were not released; contemporary IMF and EIU commentary put it in high single figures, with shortages rather than posted prices doing the work. Listed as unverified.",
+    "Interest rate 7.0% is the lending rate the World Bank does record for Libya in 1990 (FR.INR.LEND); the deposit rate was 5.5% (FR.INR.DPST). Both were set by decree, not by a market.",
+    "Military 4.8% of GDP. SIPRI carries no Libya series; this is the IISS Military Balance defence budget of roughly $1.4bn against the World Bank's GDP. Listed as unverified.",
+    "Gross fixed capital formation 13.87% of GDP (World Bank NE.GDI.FTOT.ZS, 1990), split 0.11 state / 0.03 private — the Green Book abolished retail trade and wage labour in 1980 and almost nothing was left in private hands to invest.",
+    "Tax take 0.38 is state revenue as a share of GDP, essentially all of it oil rent taken directly by the National Oil Corporation rather than levied. No published tax series exists. Listed as unverified.",
+    "Debt 0.10 of GDP. Libya borrowed almost nothing: oil revenue was the budget, and it is not in the World Bank's debtor reporting system at all.",
+    "Oil 1.375 mbd of crude (EIA international series, 1990), up 19.6% on 1989 as Libya produced over its OPEC quota during the Gulf crisis.",
+    "System is Command: the 1969 revolution nationalised the banks, the 1978 Green Book abolished rent and the 1980 decrees abolished private retail. This is the most thoroughly state-run economy in the region.",
+    "Authoritarianism 0.93, just under Ba'athist Iraq. Gaddafi held no office, parties were a capital offence under Law 71 of 1972, and the Revolutionary Committees hanged students on campus.",
+    "Stability 58: high oil revenue per head and a dense security apparatus against the 1984 Bab al-Azizia raid, repeated army plots, and the humiliation in Chad in 1987.",
+    "Separatism 0.12 is Cyrenaica and the tribal balance — the Senussi east that the monarchy came from and that Gaddafi's Sirte-based coalition kept out.",
+    "Military strength 10 for the largest inventory in Africa: roughly 2,000 Soviet tanks and 500 combat aircraft for an army of 85,000. It is scored barely above Indonesia's 8 and below Egypt's 14 on purpose. At Ouadi Doum and Maaten al-Sarra in 1987 that inventory was routed by Toyota pickups, which is the model's judgement about what Libya could actually do with it."
+  ]
+}
