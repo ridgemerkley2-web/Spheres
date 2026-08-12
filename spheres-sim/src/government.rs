@@ -352,6 +352,222 @@ pub const POLITIES: &[Polity] = &[
             pl(Pillar::Business, "the industrial directors"),
         ],
     },
+    // ---------------------------------------------------------------------
+    // The other ten Soviet successors. Each block is the founding national vote
+    // that put the republic's first sovereign parliament or president in place:
+    // for most of them the republican Supreme Soviet elections of spring 1990,
+    // the first competitive elections held on that soil since the annexations,
+    // and for a few the first post-independence contest, because the 1990
+    // result there was a one-party formality with no published shares.
+    // ---------------------------------------------------------------------
+
+    // Belarus - Supreme Soviet of the Byelorussian SSR, 4 March 1990 with
+    // runoffs into May. Seat shares, not votes: the Communist Party of
+    // Byelorussia took the overwhelming majority of the 310 seats and the
+    // Belarusian Popular Front's opposition caucus settled at around 37 of
+    // them. Belarus is the republic where the old apparatus was least disturbed
+    // by 1991, and that is the fact this table exists to carry.
+    Polity {
+        nation: NationId::Belarus,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("by_kpb", "Communist Party of Byelorussia", "Kamunistychnaya partyya Belarusi", Family::Communist, 0.850),
+            p("by_bnf", "Belarusian Popular Front", "Belaruski Narodny Front", Family::Nationalist, 0.120),
+        ],
+        ruling: "the Supreme Soviet",
+        pillars: &[
+            pl(Pillar::Army, "the Belarusian Military District's inheritance"),
+            pl(Pillar::Party, "the collective-farm and industrial nomenklatura"),
+            pl(Pillar::Security, "the State Security Committee"),
+        ],
+    },
+    // Kazakhstan - 1 December 1991 presidential election: Nursultan Nazarbayev
+    // unopposed with 98.8%. Azat and Zheltoqsan, the two national-democratic
+    // movements that would have contested it, were refused registration, so
+    // there is genuinely no second row to transcribe. A single party here is
+    // the correct description of the republic and not a gap in it: Kazakhstan
+    // has never held a national election an observer mission called free.
+    Polity {
+        nation: NationId::Kazakhstan,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("kz_snek", "Union of People's Unity of Kazakhstan", "Qazaqstan Halyq Birligi Odagy", Family::BigTent, 0.988),
+        ],
+        ruling: "the Presidency of the Republic of Kazakhstan",
+        pillars: &[
+            pl(Pillar::Army, "the Kazakh Armed Forces"),
+            pl(Pillar::Party, "the presidential apparatus"),
+            pl(Pillar::Security, "the Committee for National Security"),
+            pl(Pillar::Business, "the oil and metals groups"),
+        ],
+    },
+    // Uzbekistan - 29 December 1991 presidential election: Islam Karimov 86.0%,
+    // Muhammad Salih of Erk 12.7%. Erk was banned within two years and Salih
+    // left the country; Birlik, the larger opposition movement, was never
+    // allowed onto the ballot at all. The First Secretary became the President
+    // without an interval, which is why the pillars here are the Soviet ones
+    // under new names.
+    Polity {
+        nation: NationId::Uzbekistan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("uz_pdp", "People's Democratic Party of Uzbekistan", "Ozbekiston Xalq Demokratik Partiyasi", Family::BigTent, 0.860),
+            p("uz_erk", "Erk Democratic Party", "Erk Demokratik Partiyasi", Family::Liberal, 0.127),
+        ],
+        ruling: "the Presidency of the Republic of Uzbekistan",
+        pillars: &[
+            pl(Pillar::Army, "the Turkestan Military District's inheritance"),
+            pl(Pillar::Party, "the People's Democratic Party apparatus"),
+            pl(Pillar::Security, "the National Security Service"),
+        ],
+    },
+    // Georgia - Supreme Council, 28 October 1990: Zviad Gamsakhurdia's Round
+    // Table-Free Georgia 64.0%, the Communist Party of Georgia 29.6%. The first
+    // multi-party election in any Soviet republic won outright by the
+    // opposition, and the government it produced was overthrown by its own
+    // National Guard fourteen months later.
+    Polity {
+        nation: NationId::Georgia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ge_mrsm", "Round Table-Free Georgia", "Mrgvali Magida-Tavisupali Sakartvelo", Family::Nationalist, 0.640),
+            p("ge_kpg", "Communist Party of Georgia", "Sakartvelos Komunisturi Partia", Family::Communist, 0.296),
+        ],
+        ruling: "the Supreme Council of Georgia",
+        pillars: &[
+            pl(Pillar::Army, "the National Guard and the Mkhedrioni"),
+            pl(Pillar::Security, "the state security apparatus"),
+        ],
+    },
+    // Armenia - 16 October 1991 presidential election: Levon Ter-Petrosyan of
+    // the Pan-Armenian National Movement 83.0%, Paruyr Hayrikyan 7.2%, Sos
+    // Sargsyan 4.3%. Held five weeks after the independence referendum, with
+    // the Karabakh war already running and the Azerbaijani blockade closing.
+    Polity {
+        nation: NationId::Armenia,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("am_hhsh", "Pan-Armenian National Movement", "Hayots Hamazgayin Sharzhum", Family::BigTent, 0.830),
+            p("am_ansd", "National Self-Determination Union", "Azgayin Inknoroshum Miavorum", Family::Nationalist, 0.072),
+            p("am_hhd", "Armenian Revolutionary Federation", "Hay Heghapokhakan Dashnaktsutyun", Family::SocialDemocratic, 0.043),
+        ],
+        ruling: "the Presidency of the Republic of Armenia",
+        pillars: &[
+            pl(Pillar::Army, "the Armenian Army and the Karabakh volunteers"),
+            pl(Pillar::Security, "the state security apparatus"),
+        ],
+    },
+    // Azerbaijan - 7 June 1992 presidential election: Abulfaz Elchibey of the
+    // Popular Front 59.4%, Nizami Suleymanov 33.0%. The 1990 Supreme Soviet
+    // election was run by the Communist Party under the state of emergency
+    // imposed after Black January and published no comparable shares, so 1992
+    // is the first result that describes the country. Elchibey lasted a year:
+    // Karabakh took his government down, as it had taken down the one before.
+    Polity {
+        nation: NationId::Azerbaijan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("az_axc", "Popular Front of Azerbaijan", "Azarbaycan Xalq Cabhasi", Family::Nationalist, 0.594),
+            p("az_msi", "Independent Azerbaijan bloc", "Musteqil Azarbaycan", Family::BigTent, 0.330),
+        ],
+        ruling: "the Presidency of the Republic of Azerbaijan",
+        pillars: &[
+            pl(Pillar::Army, "the Azerbaijani Army and the OMON detachments"),
+            pl(Pillar::Security, "the Ministry of National Security"),
+            pl(Pillar::Business, "the state oil company"),
+        ],
+    },
+    // Lithuania - Supreme Council, 24 February 1990 with runoffs in March. Seat
+    // shares of 141: Sajudis-endorsed candidates 91, the Communist Party of
+    // Lithuania that had already broken with Moscow about 40, the Polish
+    // electoral caucus around 7. This is the parliament that declared
+    // independence on 11 March 1990, eleven days after it was seated, and it is
+    // the earliest of the three Baltic declarations.
+    Polity {
+        nation: NationId::Lithuania,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("lt_sajudis", "Sajudis", "Lietuvos Persitvarkymo Sajudis", Family::BigTent, 0.645),
+            p("lt_ldpp", "Lithuanian Democratic Labour Party", "Lietuvos demokratine darbo partija", Family::SocialDemocratic, 0.284),
+            p("lt_lls", "Union of Poles in Lithuania", "Lietuvos lenku sajunga", Family::Regionalist, 0.050),
+        ],
+        ruling: "the Seimas",
+        pillars: &[],
+    },
+    // Latvia - Supreme Council, 18 March 1990. Seat shares of 201: the Popular
+    // Front of Latvia 131, the pro-Soviet Equal Rights caucus 55. The Front had
+    // the two-thirds it needed to vote the restoration of independence on 4 May,
+    // and Equal Rights is the parliamentary form of the Russophone third of the
+    // country that the citizenship law of 1994 then left outside the electorate.
+    Polity {
+        nation: NationId::Latvia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("lv_ltf", "Popular Front of Latvia", "Latvijas Tautas fronte", Family::BigTent, 0.652),
+            p("lv_lidz", "Equal Rights", "Lidztiesiba", Family::Communist, 0.274),
+        ],
+        ruling: "the Saeima",
+        pillars: &[],
+    },
+    // Estonia - 20 September 1992 Riigikogu election: Pro Patria 22.0%, Safe
+    // Home 13.6%, the Popular Front 12.3%, the Moderates 9.7%, the National
+    // Independence Party 8.8%, Estonian Citizen 6.9%. The first election
+    // anywhere in the former union held under a restored pre-war constitution,
+    // and the first in which only citizens of the inter-war republic and their
+    // descendants could vote.
+    Polity {
+        nation: NationId::Estonia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ee_isamaa", "Pro Patria", "Isamaa", Family::Conservative, 0.220),
+            p("ee_kk", "Safe Home", "Kindel Kodu", Family::Agrarian, 0.136),
+            p("ee_rahvarinne", "Popular Front of Estonia", "Rahvarinne", Family::BigTent, 0.123),
+            p("ee_mood", "Moderates", "Moodukad", Family::SocialDemocratic, 0.097),
+            p("ee_ersp", "Estonian National Independence Party", "Eesti Rahvusliku Soltumatuse Partei", Family::Nationalist, 0.088),
+            p("ee_ek", "Estonian Citizen", "Eesti Kodanik", Family::Nationalist, 0.069),
+        ],
+        ruling: "the Riigikogu",
+        pillars: &[],
+    },
+    // Moldova - 27 February 1994 parliamentary election: the Agrarian
+    // Democratic Party 43.2%, the Socialist Party and Unity Movement bloc
+    // 22.0%, the Bloc of Peasants and Intellectuals 9.2%, the Christian
+    // Democratic Popular Front 7.5%. The 1990 Supreme Soviet election was
+    // fought by candidates rather than parties, so 1994 is the first party
+    // result, and it is a vote against union with Romania taken after
+    // Transnistria was already gone.
+    Polity {
+        nation: NationId::Moldova,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("md_pdam", "Agrarian Democratic Party", "Partidul Democrat Agrar din Moldova", Family::Agrarian, 0.432),
+            p("md_sb", "Socialist Party and Unity Movement bloc", "Blocul Partidul Socialist si Miscarea Unitate-Edinstvo", Family::Communist, 0.220),
+            p("md_bti", "Bloc of Peasants and Intellectuals", "Blocul Taranilor si Intelectualilor", Family::Liberal, 0.092),
+            p("md_fpcd", "Christian Democratic Popular Front", "Frontul Popular Crestin Democrat", Family::Nationalist, 0.075),
+        ],
+        ruling: "the Parliament of the Republic of Moldova",
+        pillars: &[],
+    },
     // China — the Communist Party of China, eight months after Tiananmen. The
     // pillars are the ones Deng actually had to hold: the army he called on in
     // June 1989, the party apparatus, the security ministry, and the coastal
