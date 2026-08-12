@@ -436,15 +436,33 @@ fn dissolve_ussr(w: &mut WorldState) {
         });
     }
 
-    // Every successor inherits a thawed version of USSR relations
+    // A successor inherits a thawed version of the union's standing abroad -
+    // but only if it agreed to be a successor. The Alma-Ata Protocol of 21
+    // December 1991 was signed by eleven republics; Georgia and the three
+    // Baltic states did not sign it, and their refusal was the whole of their
+    // foreign policy. Lithuania, Latvia and Estonia held that the annexation of
+    // 1940 was void, that they were the inter-war republics restored rather
+    // than new states, and on that ground they refused the Commonwealth,
+    // refused a share of Soviet debt and refused a share of Soviet assets.
+    // Georgia stayed out until Russian pressure put it in, in December 1993.
+    // Those four therefore start neutral to the world and have to build their
+    // own relations from nothing, which is what they did: the Baltics turned
+    // to the Nordics and the Community from a standing start.
     let rels: Vec<(NationId, f64)> = ALL_START_NATIONS
         .iter()
         .filter(|x| **x != NationId::USSR)
         .map(|x| (*x, w.relation(NationId::USSR, *x) * 0.5 + 10.0))
         .collect();
+    let signed_alma_ata = |id: NationId| {
+        !matches!(
+            id,
+            NationId::Georgia | NationId::Lithuania | NationId::Latvia | NationId::Estonia
+        )
+    };
     let successors: Vec<NationId> = [NationId::Russia, NationId::Ukraine]
         .into_iter()
         .chain(republics.iter().map(|r| r.id))
+        .filter(|id| signed_alma_ata(*id))
         .collect();
     for successor in successors.iter().copied() {
         for (other, v) in &rels {
@@ -495,6 +513,27 @@ fn dissolve_ussr(w: &mut WorldState) {
     // Warsaw and Vilnius over the Polish minority around Vilnius, and the
     // treaty of 1994 that settled it.
     w.shift_relation(NationId::Poland, NationId::Lithuania, 20.0);
+    // The three Baltic states do not start neutral to the West, because the
+    // West never accepted that they had left it. The Welles Declaration of 23
+    // July 1940 refused recognition of the annexation and the United States
+    // held that line unbroken for fifty-one years, keeping the pre-war legations
+    // open in Washington the whole time; the Baltic gold reserves sat untouched
+    // in London and Stockholm. Iceland recognised Lithuania on 11 February 1991,
+    // months before anyone else dared, the Community and the Nordics followed in
+    // August, and all three were seated at the United Nations on 17 September
+    // 1991. That is a starting position, not something to be earned.
+    for baltic in [NationId::Lithuania, NationId::Latvia, NationId::Estonia] {
+        w.set_relation(baltic, NationId::USA, 45.0);
+        w.set_relation(baltic, NationId::Germany, 40.0);
+        w.set_relation(baltic, NationId::UK, 35.0);
+        w.set_relation(baltic, NationId::France, 30.0);
+        w.set_relation(baltic, NationId::Poland, 25.0);
+        w.set_relation(baltic, NationId::Japan, 15.0);
+    }
+    // Georgia was recognised on the same terms as the rest and had no such
+    // history to trade on; Washington's interest arrives later, with the
+    // pipeline.
+    w.shift_relation(NationId::Georgia, NationId::USA, 15.0);
     // Kyiv and Moscow start as quarrelling relatives rather than enemies: the
     // Black Sea Fleet and Crimea are already in dispute, but the divorce of
     // December 1991 was signed, not fought.
