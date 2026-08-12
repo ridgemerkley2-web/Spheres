@@ -106,6 +106,34 @@ fn play_loop(mut w: WorldState) {
             }
             "status" => briefing(&w, me),
             "world" => report(&w),
+            "options" | "stratagems" | "opt" => {
+                let opts = spheres_sim::stratagems::available(&w, me);
+                let held = w.nation(me).political_capital;
+                if opts.is_empty() {
+                    println!("  The world is offering you nothing this month.");
+                } else {
+                    println!("\n  Standing: {:.0} political capital\n", held);
+                    for s in opts {
+                        let afford = if held >= s.cost { "" } else { "   [cannot afford]" };
+                        println!("  {:<22} {:>3.0} pc{}", s.id, s.cost, afford);
+                        println!("      {}", s.name);
+                        println!("      {}", s.blurb);
+                        println!("      Open to you because: {}\n", s.because);
+                    }
+                    println!("  enact <id>   to take one");
+                }
+            }
+            "enact" => {
+                if rest.is_empty() {
+                    println!("Usage: enact shock_therapy   (see 'options')");
+                } else {
+                    let cmd = Command::EnactStratagem { nation: me, id: rest.clone() };
+                    match spheres_sim::apply_command(&mut w, &cmd) {
+                        Ok(()) => println!("  Done. It takes effect immediately."),
+                        Err(e) => println!("  {}", e),
+                    }
+                }
+            }
             "relations" => {
                 let mut rels: Vec<(NationId, f64)> = ALL_START_NATIONS
                     .iter()
@@ -291,6 +319,8 @@ fn help() {
     println!("  improve China     diplomatic push (+relations)");
     println!("  sanction Iraq     impose sanctions");
     println!("  lift Iraq         lift sanctions");
+    println!("  options           what the world is offering you now");
+    println!("  enact <id>        take one of those options");
     println!("  war Kuwait        declare war (confirmed)");
     println!("  save / quit");
 }

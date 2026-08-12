@@ -2,6 +2,7 @@ pub mod economy;
 pub mod init;
 pub mod politics;
 pub mod statecraft;
+pub mod stratagems;
 pub mod tech;
 pub mod war;
 pub mod world;
@@ -30,6 +31,9 @@ pub enum Command {
     CovertAction { sponsor: NationId, target: NationId, op: CovertOp },
     ProposeTrade { from: NationId, to: NationId },
     AbrogateTrade { from: NationId, to: NationId },
+    /// Take one of the options the world is currently offering this government.
+    /// Carries the stratagem's stable id, never an index into the deck.
+    EnactStratagem { nation: NationId, id: String },
 }
 
 /// What a command asks of the government that issues it, and who it asks.
@@ -125,6 +129,14 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // Closing one is the unpopular half, and it is your own importers who
         // notice first.
         Command::AbrogateTrade { from, .. } => (*from, 10.0, ALWAYS),
+        // Each stratagem carries its own price, and they are the largest in this
+        // list. Reordering an economy is the most expensive thing a government
+        // ever decides to do, and it should cost most of a term's standing.
+        Command::EnactStratagem { nation, id } => (
+            *nation,
+            stratagems::by_id(id).map_or(0.0, |s| s.cost),
+            REFUSABLE,
+        ),
     })
 }
 
@@ -189,6 +201,20 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
         }
         Command::ProposeTrade { from, to } => statecraft::propose_trade(w, *from, *to)?,
         Command::AbrogateTrade { from, to } => statecraft::abrogate_trade(w, *from, *to)?,
+        Command::EnactStratagem { nation, id } => {
+            let s = stratagems::by_id(id)
+                .ok_or_else(|| format!("No such stratagem: {}", id))?;
+            // Checked again here, not only when the menu was drawn: the world
+            // may have moved between a government deciding and acting.
+            if !(s.available)(w, *nation) {
+                return Err(format!(
+                    "{} is no longer open to {}.",
+                    s.name,
+                    nation.name()
+                ));
+            }
+            (s.enact)(w, *nation);
+        }
     }
     Ok(())
 }
@@ -210,6 +236,8 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
     // still afford one, so the standing arrangements are settled before the
     // fighting is worked out.
     statecraft::tick(w);
+    stratagems::tick(w);
+    stratagems::ai_stratagems(w);
     war::tick(w);
     politics::tick(w);
 
@@ -378,7 +406,7 @@ mod tests {
         // the platform and do not simply re-pin the number.
         //
         // Pinned on: Windows, x86_64-pc-windows-gnu, rustc 1.97.1.
-        const GOLDEN: u64 = 0xb675826e8941683d;
+        const GOLDEN: u64 = 0x0475_a1ec_bc94_bb31;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
