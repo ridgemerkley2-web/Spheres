@@ -183,6 +183,28 @@ fn play_loop(mut w: WorldState) {
                 }
                 None => println!("Usage: war Kuwait"),
             },
+            // ---- Getting in. Two verbs, and without them the eight below are
+            // unreachable: every one of them needs you to already be a party to
+            // something. ----
+            "quarrel" => match NationId::parse(&rest) {
+                Some(t) => {
+                    let theatre = spheres_sim::war::theatre_between(&w, me, t);
+                    queued.push(Command::OpenConflict { opener: me, target: t, theatre });
+                    println!(
+                        "Queued: open a public quarrel with {} over {} — rung 1, rhetoric.",
+                        t.name(),
+                        theatre.name()
+                    );
+                }
+                None => println!("Usage: quarrel Iraq"),
+            },
+            "join" => match join_command(&w, me, &rest) {
+                Ok(c) => {
+                    println!("Queued: {}", describe_ladder(&c));
+                    queued.push(c);
+                }
+                Err(e) => println!("{}", e),
+            },
             // ---- The commitment ladder. One conflict at a time, named by the
             // theatre it is fought in, because that is how the briefing prints
             // it and a player should never have to learn an integer id. ----
@@ -342,8 +364,34 @@ fn access_command(w: &WorldState, me: NationId, rest: &str) -> Result<Command, S
     })
 }
 
+/// `join Kuwait` — take the side the named nation is on, in the conflict it is
+/// fighting. Naming a belligerent rather than a side or an id is the only form
+/// a player thinks in: you do not side with "side B", you side with Kuwait.
+fn join_command(w: &WorldState, me: NationId, rest: &str) -> Result<Command, String> {
+    let who = NationId::parse(rest.trim())
+        .ok_or_else(|| "Usage: join Kuwait   (whoever you mean to stand beside)".to_string())?;
+    let c = w
+        .conflicts
+        .iter()
+        .find(|c| c.involves(who))
+        .ok_or_else(|| format!("{} is not in anybody's conflict.", who.name()))?;
+    if c.involves(me) {
+        return Err("You are already a party to that conflict.".into());
+    }
+    Ok(Command::JoinConflict {
+        conflict: c.id,
+        nation: me,
+        side_a: c.side_of(who) == Some(true),
+        objective: Objective::Deny,
+    })
+}
+
 fn describe_ladder(c: &Command) -> String {
     match c {
+        Command::JoinConflict { side_a, .. } => format!(
+            "take the {} side, at rung 1 — the ladder starts where everybody else's does",
+            if *side_a { "attacking" } else { "defending" }
+        ),
         Command::SetCommitment { rung, .. } => {
             format!("rung {} — {}", rung, spheres_sim::world::rung_name(*rung))
         }
@@ -452,8 +500,10 @@ fn help() {
     println!("  improve China     diplomatic push (+relations)");
     println!("  sanction Iraq     impose sanctions");
     println!("  lift Iraq         lift sanctions");
-    println!("  war Kuwait        declare war (confirmed)");
+    println!("  war Kuwait        declare war outright — rung 8 in one act (confirmed)");
     println!("  -- the commitment ladder --");
+    println!("  quarrel Iraq      open a quarrel at rung 1, and climb from there");
+    println!("  join Kuwait       take a side in a conflict already running");
     println!("  commit 8          stand on rung 8 in your only conflict");
     println!("  commit gulf 6     ...or name the theatre when you have several");
     println!("  objective hold    deny|degrade|seize|hold|stabilise|withdraw");

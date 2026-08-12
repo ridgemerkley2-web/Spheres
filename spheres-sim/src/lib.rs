@@ -37,6 +37,9 @@ pub enum Command {
     /// Start a quarrel at rung 1. Conflicts begin when somebody climbs, not with
     /// a declaration, and this is deliberately the cheapest thing in the enum.
     OpenConflict { opener: NationId, target: NationId, theatre: theatre::TheatreId },
+    /// Take a side in a quarrel that is already running. Entering is entering at
+    /// the bottom: rung 1, and the ladder from there.
+    JoinConflict { conflict: u32, nation: NationId, side_a: bool, objective: Objective },
     /// The primary click of the whole war layer: pick your rung.
     SetCommitment { conflict: u32, nation: NationId, rung: u8 },
     SetObjective { conflict: u32, nation: NationId, objective: Objective },
@@ -155,6 +158,12 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // be a real option rather than a formality, or nobody ever uses the
         // bottom of the ladder and it becomes a war button with extra steps.
         Command::OpenConflict { opener, .. } => (*opener, 4.0, REFUSABLE),
+        // Taking a side in somebody else's war is the most consequential thing a
+        // government can do without firing anything, and it is priced between
+        // opening a quarrel of your own and the guarantee that would have
+        // obliged you to. What it buys is rung 1 — every rung after it is
+        // charged again, which is the whole point of the ladder.
+        Command::JoinConflict { nation, .. } => (*nation, 14.0, REFUSABLE),
         // Climbing is charged by how far, and by what kind of government has to
         // explain it. Descending is free here and paid in reputation instead —
         // a government can always run away, and it always looks like running.
@@ -284,6 +293,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
 
         Command::OpenConflict { opener, target, theatre } => {
             commitment::open_conflict(w, *opener, *target, *theatre)?;
+        }
+        Command::JoinConflict { conflict, nation, side_a, objective } => {
+            commitment::join_conflict(w, *nation, *conflict, *side_a, *objective)?
         }
         Command::SetCommitment { conflict, nation, rung } => {
             commitment::set_commitment(w, *conflict, *nation, *rung)?
@@ -1614,6 +1626,173 @@ mod tests {
             apply_command(w, &Command::SetCommitment { conflict: id, nation: who, rung }).unwrap();
         }
         id
+    }
+
+    #[test]
+    fn a_player_can_get_into_somebody_elses_war() {
+        // QA's third finding, as an assertion: playing the United States there
+        // was no verb that made you a party to a conflict, so every command on
+        // the ladder answered "not a party to that conflict" and the whole war
+        // layer was unreachable from the only seat a player ever sits in.
+        //
+        // The route has to be the ordinary one — commands through the queue,
+        // priced, refusable — and it has to end with the player actually
+        // standing on a rung of somebody else's war.
+        // Iraq and Iran, because it is the case where nobody arrives on their
+        // own: the majors turn up for Kuwait by themselves, through
+        // `invasion_begins`, and a test that used that pair would be asserting
+        // about the AI's route in rather than the player's. Washington backing
+        // Baghdad against Tehran is also simply what happened.
+        let mut w = seeded(2);
+        w.player = Some(NationId::USA);
+        w.rules.ai_aggression = 0.0;
+        war::declare_war(&mut w, NationId::Iraq, NationId::Iran).unwrap();
+        let id = w.conflict_between(NationId::Iraq, NationId::Iran).unwrap().id;
+        assert!(
+            !w.conflict(id).unwrap().involves(NationId::USA),
+            "the test needs a war Washington is not already in"
+        );
+
+        // Before joining, the ladder is closed to you and says so.
+        let shut = apply_command(
+            &mut w,
+            &Command::SetCommitment { conflict: id, nation: NationId::USA, rung: 2 },
+        );
+        assert!(shut.is_err(), "a bystander was allowed to pick a rung");
+        assert!(shut.unwrap_err().contains("Not a party"));
+
+        // Taking a side costs standing, and it costs it once.
+        w.nation_mut(NationId::USA).political_capital = 60.0;
+        let before = w.nation(NationId::USA).political_capital;
+        apply_command(
+            &mut w,
+            &Command::JoinConflict {
+                conflict: id,
+                nation: NationId::USA,
+                side_a: true,
+                objective: Objective::Deny,
+            },
+        )
+        .expect("Washington could not take Baghdad's side");
+        let c = w.conflict(id).unwrap();
+        assert!(c.side_a.contains(&NationId::USA), "the join did not put it on a side");
+        assert_eq!(
+            c.posture_of(NationId::USA).unwrap().rung,
+            1,
+            "joining entered above the bottom of the ladder"
+        );
+        assert!(
+            w.nation(NationId::USA).political_capital < before - 10.0,
+            "taking a side in somebody else's war was free"
+        );
+
+        // ...and from there the ladder is the ordinary ladder.
+        apply_command(
+            &mut w,
+            &Command::SetCommitment { conflict: id, nation: NationId::USA, rung: 2 },
+        )
+        .expect("a party to the conflict cannot buy rung 2");
+        assert!(
+            w.is_sanctioning(NationId::USA, NationId::Iran),
+            "rung 2 did not bind the instrument it is made of"
+        );
+        assert!(
+            apply_command(
+                &mut w,
+                &Command::JoinConflict {
+                    conflict: id,
+                    nation: NationId::USA,
+                    side_a: false,
+                    objective: Objective::Deny,
+                },
+            )
+            .is_err(),
+            "a nation joined the same war twice, on both sides"
+        );
+    }
+
+    #[test]
+    fn a_quarrel_is_not_an_invasion_and_the_world_knows_the_difference() {
+        // The distinction QA's first finding is about, pinned so it cannot
+        // quietly go away again. Opening a quarrel is cheap, public and
+        // consequence-free abroad; it is the CLIMB to a full conventional
+        // campaign that brings the coalition, and it is a separate act, priced
+        // separately, seven rungs further up.
+        let mut w = seeded(6);
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::Iraq); // freeze Baghdad's own AI; the test is the player
+        bankroll(&mut w, NationId::Iraq);
+        let th = theatre::TheatreId::Gulf;
+        apply_command(
+            &mut w,
+            &Command::OpenConflict { opener: NationId::Iraq, target: NationId::Kuwait, theatre: th },
+        )
+        .unwrap();
+        let id = w.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+        assert_eq!(w.conflict(id).unwrap().posture_of(NationId::Iraq).unwrap().rung, 1);
+        assert_eq!(
+            w.sanctioned_by_count(NationId::Iraq),
+            0,
+            "the world sanctioned a state for being annoyed with its neighbour"
+        );
+        assert!(!w.at_war(NationId::Iraq), "rhetoric is not a war");
+
+        // Climb to the campaign. The rung is where the world answers.
+        for r in 2..=8 {
+            bankroll(&mut w, NationId::Iraq);
+            apply_command(
+                &mut w,
+                &Command::SetCommitment { conflict: id, nation: NationId::Iraq, rung: r },
+            )
+            .unwrap_or_else(|e| panic!("rung {} refused: {}", r, e));
+        }
+        assert!(
+            w.sanctioned_by_count(NationId::Iraq) >= 3,
+            "no coalition formed against an invasion: {} sanctioners",
+            w.sanctioned_by_count(NationId::Iraq)
+        );
+        assert!(w.at_war(NationId::Iraq));
+        assert!(
+            w.headlines.iter().any(|h| h.contains("Iraq invades Kuwait")),
+            "the invasion never made the news"
+        );
+        assert_eq!(
+            w.conflict(id).unwrap().posture_of(NationId::Kuwait).unwrap().rung,
+            8,
+            "the defender did not answer an invasion of its own country"
+        );
+        // ...and it happens once, not once per climb.
+        let sanctioners = w.sanctioned_by_count(NationId::Iraq);
+        w.headlines.clear();
+        bankroll(&mut w, NationId::Iraq);
+        apply_command(
+            &mut w,
+            &Command::SetCommitment { conflict: id, nation: NationId::Iraq, rung: 9 },
+        )
+        .unwrap();
+        assert!(!w.headlines.iter().any(|h| h.starts_with("WAR:")));
+        assert_eq!(w.sanctioned_by_count(NationId::Iraq), sanctioners);
+    }
+
+    #[test]
+    fn a_state_defends_itself_more_cheaply_than_it_invades() {
+        // Escalation is explained to a parliament; a defence is not. Without
+        // this a small state simply could not afford to resist, because the
+        // ladder charged Kuwait exactly what it charged Iraq.
+        let mut w = seeded(3);
+        let th = theatre::TheatreId::Gulf;
+        bankroll(&mut w, NationId::Iraq);
+        apply_command(
+            &mut w,
+            &Command::OpenConflict { opener: NationId::Iraq, target: NationId::Kuwait, theatre: th },
+        )
+        .unwrap();
+        let c = w.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap();
+        let attack = commitment::escalation_cost_in(&w, NationId::Kuwait, 1, 6, false);
+        let defend = commitment::escalation_cost_in(&w, NationId::Kuwait, 1, 6, true);
+        assert!(defend < attack * 0.5, "defending cost {:.1} against {:.1}", defend, attack);
+        assert!(commitment::defending_home(&w, c, NationId::Kuwait));
+        assert!(!commitment::defending_home(&w, c, NationId::Iraq));
     }
 
     #[test]

@@ -356,6 +356,73 @@ pub fn open_conflict(
     Ok(id)
 }
 
+/// Take a side in somebody else's quarrel.
+///
+/// The verb that was missing, and its absence was QA's third finding: playing
+/// the United States, watching Iraq climb toward Kuwait, there was no way to
+/// become a party to it, so every ladder command answered "not a party to that
+/// conflict" and the whole war layer was unreachable from the only seat a
+/// player ever sits in. The AI got in through `invasion_begins`; nobody else
+/// could.
+///
+/// Joining is entering at the BOTTOM — rung 1, rhetoric — because that is what
+/// taking a side actually is. Everything after it is the ladder, bought a rung
+/// at a time, which is the mechanic working rather than being bypassed.
+pub fn join_conflict(
+    w: &mut WorldState,
+    joiner: NationId,
+    conflict: u32,
+    side_a: bool,
+    objective: Objective,
+) -> Result<(), String> {
+    if w.nation_opt(joiner).map_or(true, |n| !n.alive) {
+        return Err("Nation no longer exists.".into());
+    }
+    let (already, th, friends, foes) = {
+        let c = w.conflict(conflict).ok_or("No such conflict.")?;
+        let (mine, theirs) = if side_a { (&c.side_a, &c.side_b) } else { (&c.side_b, &c.side_a) };
+        (c.involves(joiner), c.theatre, mine.clone(), theirs.clone())
+    };
+    if already {
+        return Err("You are already a party to that conflict.".into());
+    }
+    let stake = if theatre::is_home(w, joiner, th) { 1.0 } else { 0.45 };
+    {
+        let c = w.conflict_mut(conflict).expect("checked");
+        crate::war::join_side(c, joiner, side_a, 1, objective);
+        if let Some(b) = c.posture_mut(joiner) {
+            b.stake = stake;
+        }
+    }
+    // Taking a side is read as taking a side. Everyone on it warms to you and
+    // everyone across from it does not, before a shot is fired or a rung climbed.
+    for f in friends {
+        w.shift_relation(joiner, f, 8.0);
+    }
+    for e in foes {
+        w.shift_relation(joiner, e, -25.0);
+    }
+    let against = foes_name(w, conflict, joiner);
+    w.headline(format!(
+        "{} takes a side against {} over {}.",
+        joiner.name(),
+        against,
+        th.name()
+    ));
+    // An expeditionary power that has just committed itself goes round the
+    // neighbours the same month, because everything above rung 5 depends on it.
+    if !theatre::is_home(w, joiner, th) {
+        seek_access(w, joiner, th);
+    }
+    Ok(())
+}
+
+fn foes_name(w: &WorldState, conflict: u32, joiner: NationId) -> String {
+    w.conflict(conflict)
+        .and_then(|c| primary_opponent(c, joiner))
+        .map_or_else(|| "them".to_string(), |o| o.name().to_string())
+}
+
 // ---------------------------------------------------------------------------
 // Access: the diplomatic quantity that is a direct military input
 // ---------------------------------------------------------------------------

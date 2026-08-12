@@ -257,6 +257,11 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
                 "deployable": spheres_sim::war::deployable_fraction(w, b.nation),
                 "access": spheres_sim::theatre::has_access(w, b.nation, c.theatre),
                 "home": spheres_sim::theatre::is_home(w, b.nation, c.theatre),
+                // Whether this belligerent is answering on its own ground, which
+                // is what the escalation discount hangs off. Computed by the sim
+                // so the price the UI quotes and the price the queue charges
+                // cannot drift apart.
+                "defending_home": spheres_sim::commitment::defending_home(w, c, b.nation),
                 "committed": spheres_sim::war::committed_force(w, c, b.nation),
             })
         })
@@ -487,7 +492,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
 }
 
 /// Translate the UI's flat command objects into sim commands.
-fn parse_command(v: &serde_json::Value, me: NationId) -> Option<Command> {
+fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<Command> {
     let kind = v.get("kind")?.as_str()?;
     let num = || v.get("value").and_then(|x| x.as_f64());
     let target = || {
@@ -517,10 +522,26 @@ fn parse_command(v: &serde_json::Value, me: NationId) -> Option<Command> {
 
         // --- The commitment ladder. Flat objects, mapped exactly the way
         // `rate` and `sanction` are: the UI never constructs a sim type. ---
+        // The theatre is optional here and it is the difference between the
+        // verb being reachable and not: a player picking a quarrel with a
+        // neighbour should not first have to know which operating area the sim
+        // files it under. Left out, it is the one a war between the two would
+        // be fought in — the defender's own ground.
         "open_conflict" => Command::OpenConflict {
             opener: me,
             target: target()?,
-            theatre: theatre()?,
+            theatre: theatre()
+                .unwrap_or_else(|| spheres_sim::war::theatre_between(w, me, target().unwrap())),
+        },
+        "join" => Command::JoinConflict {
+            conflict: conflict()?,
+            nation: me,
+            side_a: v.get("side_a").and_then(|x| x.as_bool()).unwrap_or(false),
+            objective: v
+                .get("objective")
+                .and_then(|x| x.as_str())
+                .and_then(Objective::parse)
+                .unwrap_or(Objective::Deny),
         },
         "commit" => Command::SetCommitment {
             conflict: conflict()?,
@@ -672,7 +693,7 @@ fn main() {
                     Some(me) => payload
                         .get("commands")
                         .and_then(|c| c.as_array())
-                        .map(|a| a.iter().filter_map(|v| parse_command(v, me)).collect())
+                        .map(|a| a.iter().filter_map(|v| parse_command(&g.world, v, me)).collect())
                         .unwrap_or_default(),
                     None => vec![],
                 };
@@ -698,7 +719,7 @@ fn main() {
                 let before = g.world.headlines.len();
                 if let Some(list) = payload.get("commands").and_then(|c| c.as_array()) {
                     for v in list {
-                        if let Some(cmd) = parse_command(v, me) {
+                        if let Some(cmd) = parse_command(&g.world, v, me) {
                             if let Err(e) = apply_command(&mut g.world, &cmd) {
                                 errors.push(e);
                             }

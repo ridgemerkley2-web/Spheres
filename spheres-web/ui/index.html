@@ -942,8 +942,12 @@ window.openConflict = function (id) {
   let rows = "";
   if (mine) {
     for (let r = 1; r <= 9; r++) {
+      // Mirrors commitment::escalation_cost_in, home discount included: a
+      // parliament has to be talked into an expedition and does not have to be
+      // talked into a defence.
       const cost = r > mine.rung
-        ? (RUNG_PRICE[r] - RUNG_PRICE[mine.rung]) * (1.4 - 0.6 * auth) : 0;
+        ? (RUNG_PRICE[r] - RUNG_PRICE[mine.rung]) * (1.4 - 0.6 * auth)
+          * (mine.defending_home ? 0.30 : 1) : 0;
       let why = null;
       if (r > mine.ceiling) why = `you have publicly bound yourself to rung ${mine.ceiling} or below`;
       else if (capped && r > MAX_RUNG_NO_ACCESS)
@@ -998,6 +1002,21 @@ window.openConflict = function (id) {
       ? "access via " + grantingHost(mine.id, w.theatre) : "no host — a quarter gets through"} · magazines ${
     ((mine.munitions ?? 1) * 100).toFixed(0)}%` : "";
 
+  // The way in. Without this the whole war layer is unreachable from the only
+  // seat a player ever sits in: you can watch a quarrel run for years and every
+  // ladder command answers "not a party to that conflict".
+  const sideA = [w.attacker, ...w.attacker_allies].join(" + ");
+  const sideB = [w.defender, ...w.defender_allies].join(" + ");
+  const joinCard = m && !mine ? `
+    <div class="card" style="margin-top:12px"><h3>Take a side <span>· 14 pc</span></h3>
+      <div class="tiny">You enter at rung 1 — rhetoric — and buy the ladder from there, one
+        rung at a time, like everybody else. Above rung 5 you will need somebody in range
+        of ${w.theatre_name} to agree to basing.</div>
+      <div class="btnrow" style="margin-top:8px">
+        <button onclick="conflictCmd(${id},'join',1)">Side with ${sideA}</button>
+        <button onclick="conflictCmd(${id},'join',0)">Side with ${sideB}</button>
+      </div></div>` : "";
+
   const sheet = $("#sheet");
   sheet.innerHTML = `
     <div class="head"><h2>${w.theatre_name}</h2>
@@ -1032,6 +1051,7 @@ window.openConflict = function (id) {
         Math.abs(mine.red_line - v) < 0.01 ? "on" : ""}"
         onclick="conflictCmd(${id},'red_line',${v})">${v === 0 ? "none" : v.toFixed(2)}</button>`).join("")}</div>
     </div>` : ""}
+    ${joinCard}
     <div class="card" style="margin-top:12px"><h3>Basing and overflight</h3>
       ${accessRows || `<div class="muted">Nobody's consent is needed here.</div>`}</div>`;
   selected = null;
@@ -1042,6 +1062,9 @@ window.conflictCmd = async function (conflict, kind, value, target, word) {
   const cmd = { kind, conflict, value, target };
   if (kind === "objective") cmd.objective = word;
   if (kind === "roe") cmd.roe = word;
+  // Joining carries which side, and a side rather than a rung: you come in at
+  // the bottom and climb.
+  if (kind === "join") { cmd.side_a = value === 1; cmd.objective = "deny"; }
   const w = S.wars.find((x) => x.id === conflict);
   if (w) cmd.theatre = w.theatre;
   if (kind === "grant_access") cmd.grant = true;
@@ -1637,6 +1660,8 @@ function openNation(id, keepScroll) {
         ${n.sanctioned_by_me
           ? `<button onclick="act('lift','${n.name}')">Lift sanctions</button>`
           : `<button onclick="act('sanction','${n.name}')">Sanction</button>`}
+        ${S.wars.some((w) => w.posture.some((b) => b.id === id) && myPosture(w))
+          ? "" : `<button onclick="openQuarrel('${n.name}')">Open a quarrel · 4 pc</button>`}
         <button class="danger" onclick="declareWar('${n.name}')">Declare war</button>
       </span>`}
       <span class="close" onclick="closeSheet()">&times;</span>
@@ -1751,6 +1776,18 @@ window.act = async function (kind, target) {
   const r = await api("/api/command", { commands: [{ kind, target }] });
   if (r.errors && r.errors.length) banner(r.errors[0]);
   await adopt(r, false);
+};
+
+/// The bottom of the ladder as a verb. Everything the war layer can do starts
+/// here now — the quarrel exists first, and the campaign is seven decisions
+/// away rather than one button.
+window.openQuarrel = async function (target) {
+  const r = await api("/api/command", { commands: [{ kind: "open_conflict", target }] });
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  await adopt(r, false);
+  const mineNow = S.wars.find((w) => myPosture(w) &&
+    w.posture.some((b) => (nationById(b.id) || {}).name === target));
+  if (mineNow) openConflict(mineNow.id);
 };
 
 window.declareWar = async function (target) {
