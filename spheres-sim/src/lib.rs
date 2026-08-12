@@ -325,6 +325,212 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
+    fn qa_lens_round2() {
+        // --- Panel of 30-year multiples + tech counts, seed 0
+        let panel = [NationId::China, NationId::India, NationId::Indonesia, NationId::Brazil,
+                     NationId::Poland, NationId::SouthKorea, NationId::USA, NationId::Japan,
+                     NationId::Germany, NationId::Turkey, NationId::Egypt, NationId::Nigeria];
+        let mut w = seeded(0);
+        let before: Vec<f64> = panel.iter().map(|id| w.nation(*id).gdp).collect();
+        let wg0: f64 = w.nations.iter().filter(|n| n.alive).map(|n| n.gdp).sum();
+        run_months(&mut w, 360);
+        let wg1: f64 = w.nations.iter().filter(|n| n.alive).map(|n| n.gdp).sum();
+        for (i, id) in panel.iter().enumerate() {
+            let n = w.nation(*id);
+            println!("QALENS2 panel {:?} mult={:.2} techs={} gdp2020={:.0}",
+                id, n.gdp / before[i], n.tech.count(), n.gdp);
+        }
+        let frontier = w.nations.iter().filter(|n| n.alive).map(|n| n.tech.count()).max().unwrap();
+        let mean: f64 = w.nations.iter().filter(|n| n.alive).map(|n| n.tech.count() as f64).sum::<f64>()
+            / w.nations.iter().filter(|n| n.alive).count() as f64;
+        println!("QALENS2 world_gdp_1990={:.0} world_gdp_2020={:.0} frontier_techs={} mean_techs={:.1} alive={}",
+            wg0, wg1, frontier, mean, w.nations.iter().filter(|n| n.alive).count());
+
+        // --- USSR stability / separatism trace
+        for seed in [0u64, 5, 10, 23] {
+            let mut w = seeded(seed);
+            let mut trace = String::new();
+            for m in 0..48 {
+                tick_month(&mut w, &[]);
+                if m == 12 || m == 24 || m == 36 || m == 41 || m == 42 || m == 43 {
+                    let n = w.nation(NationId::USSR);
+                    trace.push_str(&format!(" m{}:stab={:.1},sep={:.2},alive={}", m, n.stability, n.separatism, n.alive));
+                }
+            }
+            println!("QALENS2 ussr_trace seed={}{}", seed, trace);
+        }
+
+        // --- war census with belligerents
+        use std::collections::BTreeMap;
+        let mut census: BTreeMap<String, usize> = BTreeMap::new();
+        for seed in 0..10u64 {
+            let mut w = seeded(seed);
+            for _ in 0..360 {
+                for h in tick_month(&mut w, &[]) {
+                    if h.starts_with("WAR:") { *census.entry(h.clone()).or_insert(0) += 1; }
+                }
+            }
+        }
+        println!("QALENS2 distinct_war_headlines={} total={}", census.len(), census.values().sum::<usize>());
+        let mut v: Vec<(&String, &usize)> = census.iter().collect();
+        v.sort_by(|a, b| b.1.cmp(a.1));
+        for (h, c) in v.iter() { println!("QALENS2 war {:>3}  {}", c, h); }
+    }
+
+    #[test]
+    #[ignore]
+    fn qa_lens_china_only() {
+        let mut xs: Vec<f64> = Vec::new();
+        for seed in 0..10u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            let start = w.nation(NationId::China).gdp;
+            run_months(&mut w, 360);
+            xs.push(w.nation(NationId::China).gdp / start);
+        }
+        xs.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        println!("QALENS china_only median={:.2} vals={:?}", (xs[4]+xs[5])/2.0,
+            xs.iter().map(|v| (v*100.0).round()/100.0).collect::<Vec<_>>());
+    }
+
+    // ===== QA LENS: emergent-history measurement (scratch, never committed to master)
+    #[test]
+    #[ignore]
+    fn qa_lens_measure() {
+        let nstart = crate::world::ALL_START_NATIONS.len();
+        println!("QALENS start_nations={} nation_count={}", nstart, crate::world::NATION_COUNT);
+
+        // --- Gulf War
+        let mut inv = 0; let mut months: Vec<i32> = Vec::new();
+        for seed in 0..24u64 {
+            let mut w = seeded(seed);
+            let mut saw = -1i32;
+            for m in 0..48 {
+                let hs = tick_month(&mut w, &[]);
+                if saw < 0 && hs.iter().any(|h| h.contains("Iraq invades Kuwait")) { saw = m; }
+            }
+            if saw >= 0 || !w.nation(NationId::Kuwait).alive { inv += 1; }
+            months.push(saw);
+        }
+        let first10: i32 = (0..10).filter(|&i| months[i] >= 0).count() as i32;
+        println!("QALENS gulf seeds0_9={}/10 seeds0_23={}/24 months={:?}", first10, inv, months);
+
+        // --- Gulf War, longer window (does it just happen later?)
+        let mut inv120 = 0; let mut m120: Vec<i32> = Vec::new();
+        for seed in 0..24u64 {
+            let mut w = seeded(seed);
+            let mut saw = -1i32;
+            for m in 0..120 {
+                let hs = tick_month(&mut w, &[]);
+                if saw < 0 && hs.iter().any(|h| h.contains("Iraq invades Kuwait")) { saw = m; }
+            }
+            if saw >= 0 { inv120 += 1; }
+            m120.push(saw);
+        }
+        println!("QALENS gulf120 seeds0_23={}/24 months={:?}", inv120, m120);
+
+        // --- USSR
+        let mut coll = 0; let mut um: Vec<i32> = Vec::new();
+        for seed in 0..24u64 {
+            let mut w = seeded(seed);
+            let mut at = -1i32;
+            for m in 0..132 { tick_month(&mut w, &[]); if at < 0 && w.has_flag("ussr_dissolved") { at = m; } }
+            if w.has_flag("ussr_dissolved") { coll += 1; }
+            um.push(at);
+        }
+        let u10 = (0..10).filter(|&i| um[i] >= 0).count();
+        println!("QALENS ussr seeds0_9={}/10 seeds0_23={}/24 months={:?}", u10, coll, um);
+
+        // --- Yugoslavia
+        let mut yb = 0; let mut ym: Vec<i32> = Vec::new();
+        for seed in 0..24u64 {
+            let mut w = seeded(seed);
+            let mut at = -1i32;
+            for m in 0..120 { tick_month(&mut w, &[]); if at < 0 && w.has_flag("yugoslavia_dissolved") { at = m; } }
+            if w.has_flag("yugoslavia_dissolved") { yb += 1; }
+            ym.push(at);
+        }
+        let y10 = (0..10).filter(|&i| ym[i] >= 0).count();
+        println!("QALENS yugo seeds0_9={}/10 seeds0_23={}/24 months={:?}", y10, yb, ym);
+
+        // --- Slovenia vs Bosnia
+        let (mut sl, mut bo) = (0, 0);
+        for seed in 0..10u64 {
+            let mut w = seeded(seed);
+            for _ in 0..120 {
+                for h in tick_month(&mut w, &[]) {
+                    if h.starts_with("WAR:") {
+                        if h.contains("Slovenia") { sl += 1; }
+                        if h.contains("Bosnia") { bo += 1; }
+                    }
+                }
+            }
+        }
+        println!("QALENS breakup bosnia_wars={} slovenia_wars={}", bo, sl);
+
+        // --- China
+        let mut xs: Vec<f64> = Vec::new();
+        for seed in 0..10u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            let s = w.nation(NationId::China).gdp;
+            run_months(&mut w, 360);
+            xs.push(w.nation(NationId::China).gdp / s);
+        }
+        let mut sorted = xs.clone(); sorted.sort_by(|a,b| a.partial_cmp(b).unwrap());
+        println!("QALENS china median={:.2} vals={:?}", (sorted[4]+sorted[5])/2.0,
+            xs.iter().map(|v| (v*100.0).round()/100.0).collect::<Vec<_>>());
+
+        // --- pact drags
+        let mut dr = 0; let mut which: Vec<u64> = Vec::new();
+        for seed in 0..24u64 {
+            let mut w = seeded(seed);
+            let mut saw = false;
+            for _ in 0..360 {
+                for h in tick_month(&mut w, &[]) {
+                    if h.contains("honours its defence pact")
+                        && politics::PATRONS.iter().any(|p| h.starts_with(p.name())) { saw = true; }
+                }
+            }
+            if saw { dr += 1; which.push(seed); }
+        }
+        let d12 = which.iter().filter(|s| **s < 12).count();
+        println!("QALENS pact seeds0_11={}/12 seeds0_23={}/24 which={:?}", d12, dr, which);
+
+        // --- how many defence pacts exist at all, and how many great-power ones
+        for seed in 0..4u64 {
+            let mut w = seeded(seed);
+            run_months(&mut w, 360);
+            let mut pacts = 0; let mut gp = 0;
+            for a in crate::world::ALL_NATION_IDS { for b in crate::world::ALL_NATION_IDS {
+                if (a as usize) < (b as usize) && w.allied(a,b) {
+                    pacts += 1;
+                    if politics::PATRONS.contains(&a) || politics::PATRONS.contains(&b) { gp += 1; }
+                }
+            }}
+            println!("QALENS pacts seed={} total={} with_great_power={}", seed, pacts, gp);
+        }
+
+        // --- war census
+        let mut wars = 0;
+        for seed in 0..10u64 {
+            let mut w = seeded(seed);
+            for _ in 0..360 { for h in tick_month(&mut w, &[]) { if h.starts_with("WAR:") { wars += 1; } } }
+        }
+        println!("QALENS wars_declared_10seeds_30y={}", wars);
+
+        // --- trade agreement
+        let mut ratios: Vec<f64> = Vec::new();
+        for seed in 0..8u64 {
+            let (mut base, mut open) = (seeded(seed), seeded(seed));
+            for w in [&mut base, &mut open] { w.rules.ai_aggression = 0.0; w.player = Some(NationId::USA); }
+            force_trade(&mut open, NationId::USA, NationId::Poland);
+            run_months(&mut base, 240); run_months(&mut open, 240);
+            ratios.push(open.nation(NationId::Poland).gdp / base.nation(NationId::Poland).gdp);
+        }
+        println!("QALENS trade ratios={:?}", ratios.iter().map(|v| (v*10000.0).round()/10000.0).collect::<Vec<_>>());
+    }
+
+    #[test]
     fn determinism_same_seed_same_world() {
         let mut a = world_1990(GameRules::default());
         let mut b = world_1990(GameRules::default());
