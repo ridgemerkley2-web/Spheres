@@ -153,7 +153,30 @@ double digits after an embargo lifts is the clearest case. Nothing here is wrong
 enough to name a bug; it is simply where the model is thinnest, and it is worth
 knowing that before reading any single small nation's numbers as a result.
 
-### 6. Known modelling gap: Japan
+### 6. Japan — mostly closed, residual documented
+Three changes, each defensible on its own and none of them named after Japan:
+
+- **The advantage of backwardness expires.** A trend rate earned while catching
+  up cannot be held once a nation *is* the frontier, so `tfp_base` converges
+  toward ~1.1%/yr (the US average for the period) at full development. Japan's
+  transcribed 1.8% was a 1980s number it never saw again.
+- **Pushing on a string.** Demand no longer responds fully to cheap money when
+  there is no rate left to cut and balance sheets are impaired. Japan ran zero
+  rates for two decades against a corporate sector deleveraging, and the naive
+  rule was reading that same zero as permanent stimulus.
+- **Balance-sheet recessions heal in ~20 years, not ~9.** The lost decade is
+  properly the lost decades.
+
+Result: Japan 1990-2025 falls from 3.03%/yr to 2.28%/yr, and **China now
+overtakes Japan**, which it should and previously never did.
+
+**Residual:** real Japan grew ~0.9%/yr. We are at 2.28%. Germany and France are
+similarly high (~3%/yr against a real ~1.5%). The remaining excess is European
+and Japanese mature-economy growth generally, not Japan specifically — which
+suggests one more systemic cause rather than three national ones. Do not chase
+it with country-specific constants.
+
+### 7. Superseded: the old Japan entry
 Japan carries the highest transcribed 1990 trend of any nation and nothing ever
 takes it away, so it settles near 2.8% and outgrows the United States for the whole
 run. The lost decade is modelled as a bubble hangover rather than the permanent

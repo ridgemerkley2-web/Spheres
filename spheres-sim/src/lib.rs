@@ -353,7 +353,7 @@ mod tests {
         // the platform and do not simply re-pin the number.
         //
         // Pinned on: Windows, x86_64-pc-windows-gnu, rustc 1.97.1.
-        const GOLDEN: u64 = 0x6581_a75a_cb0b_1006;
+        const GOLDEN: u64 = 0x1cfecd0694379fa3;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

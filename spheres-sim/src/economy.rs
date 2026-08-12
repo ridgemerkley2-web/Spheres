@@ -45,6 +45,17 @@ pub fn tick(w: &mut WorldState) {
         let labour = population_growth(gdp_pc) * 0.60;
         let mut potential = n.tfp_trend + invest_effect + catchup + labour;
 
+        // The advantage of backwardness expires. A trend rate earned while
+        // catching up cannot be held once a nation *is* the frontier: there is
+        // nothing left to copy, and everything after that has to be invented.
+        // Japan's transcribed 1.8% is a 1980s number it never saw again after
+        // the bubble, and nothing in the model was taking it away. US TFP growth
+        // averaged about 1.1% a year over the same period, which is the anchor.
+        const FRONTIER_TFP: f64 = 0.011;
+        if dev >= 1.0 && n.tech.tfp_base > FRONTIER_TFP {
+            n.tech.tfp_base += (FRONTIER_TFP - n.tech.tfp_base) * 0.008;
+        }
+
         // Command economies pay an allocation penalty that worsens as they develop
         if n.system == EconomySystem::Command {
             potential -= 0.004 + 0.010 * (gdp_pc / 24000.0).min(1.0);
@@ -54,7 +65,18 @@ pub fn tick(w: &mut WorldState) {
         // Real rate vs neutral moves demand around potential
         let real_rate = n.interest_rate - n.inflation;
         let neutral = 0.025;
-        let demand_gap = (neutral - real_rate) * 0.55; // easy money -> above potential
+        let mut demand_gap = (neutral - real_rate) * 0.55; // easy money -> above potential
+        // ...but only while there is a rate left to cut and somebody willing to
+        // borrow. Pushing on a string: Japan ran the policy rate at zero for two
+        // decades against a corporate sector repairing its balance sheet, and
+        // got almost no growth for it. The naive rule reads that same zero rate
+        // as a permanent stimulus, which is why Japan kept compounding at 3% in
+        // a model that was otherwise behaving.
+        if demand_gap > 0.0 {
+            let room_to_cut = (n.interest_rate / 0.04).clamp(0.0, 1.0);
+            let willing_to_borrow = 1.0 - (-n.bubble).clamp(0.0, 1.0) * 0.75;
+            demand_gap *= 0.25 + 0.75 * room_to_cut.min(willing_to_borrow);
+        }
 
         // Bubble dynamics: hot bubbles add demand until they pop
         let mut bubble_boost = 0.0;
@@ -71,9 +93,13 @@ pub fn tick(w: &mut WorldState) {
                 n.bubble = (n.bubble + 0.004).min(1.0);
             }
         } else if n.bubble < 0.0 {
-            // Balance-sheet recession: drag fades over ~a decade
+            // Balance-sheet recession. A decade was too kind: Japan's asset
+            // prices peaked in 1989 and the corporate sector was still paying
+            // down debt rather than investing twenty years later, which is why
+            // the lost decade is properly the lost decades. Roughly twenty years
+            // to heal, not nine.
             bubble_boost = n.bubble * 0.022;
-            n.bubble = (n.bubble + 0.009).min(0.0);
+            n.bubble = (n.bubble + 0.0042).min(0.0);
         }
 
         // ---- Drags ----
