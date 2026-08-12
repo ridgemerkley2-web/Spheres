@@ -510,9 +510,6 @@ fn dissolve_ussr(w: &mut WorldState) {
     w.shift_relation(NationId::Turkey, NationId::Armenia, -50.0);
     w.shift_relation(NationId::Iran, NationId::Armenia, 25.0);
     w.shift_relation(NationId::Iran, NationId::Azerbaijan, -15.0);
-    // Warsaw and Vilnius over the Polish minority around Vilnius, and the
-    // treaty of 1994 that settled it.
-    w.shift_relation(NationId::Poland, NationId::Lithuania, 20.0);
     // The three Baltic states do not start neutral to the West, because the
     // West never accepted that they had left it. The Welles Declaration of 23
     // July 1940 refused recognition of the annexation and the United States
@@ -527,6 +524,9 @@ fn dissolve_ussr(w: &mut WorldState) {
         w.set_relation(baltic, NationId::Germany, 40.0);
         w.set_relation(baltic, NationId::UK, 35.0);
         w.set_relation(baltic, NationId::France, 30.0);
+        // Warsaw is warm but not uncomplicated: the Polish minority around
+        // Vilnius kept Poland and Lithuania at arm's length until the treaty
+        // of April 1994 settled it.
         w.set_relation(baltic, NationId::Poland, 25.0);
         w.set_relation(baltic, NationId::Japan, 15.0);
     }
