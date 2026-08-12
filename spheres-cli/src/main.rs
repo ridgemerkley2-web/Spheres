@@ -134,6 +134,62 @@ fn play_loop(mut w: WorldState) {
                     }
                 }
             }
+            "government" | "gov" | "parties" => government_view(&w, me),
+            "invite" => {
+                if rest.is_empty() {
+                    println!("Usage: invite it_psi   (see 'government')");
+                } else {
+                    let cmd = Command::InviteToGovernment { nation: me, party: rest.clone() };
+                    match spheres_sim::apply_command(&mut w, &cmd) {
+                        Ok(()) => government_view(&w, me),
+                        Err(e) => println!("  {}", e),
+                    }
+                }
+            }
+            "expel" => {
+                if rest.is_empty() {
+                    println!("Usage: expel it_pli   (see 'government')");
+                } else {
+                    let cmd = Command::ExpelFromGovernment { nation: me, party: rest.clone() };
+                    match spheres_sim::apply_command(&mut w, &cmd) {
+                        Ok(()) => government_view(&w, me),
+                        Err(e) => println!("  {}", e),
+                    }
+                }
+            }
+            "election" => {
+                println!("Go to the country early? 25 political capital, and the polls are the polls. (yes/no)");
+                print!("> ");
+                io::stdout().flush().unwrap();
+                if read_line().trim().eq_ignore_ascii_case("yes") {
+                    match spheres_sim::apply_command(&mut w, &Command::CallElection { nation: me }) {
+                        Ok(()) => {
+                            for h in w.headlines.clone() {
+                                println!("  [{}] {}", w.date_str(), h);
+                            }
+                            government_view(&w, me);
+                        }
+                        Err(e) => println!("  {}", e),
+                    }
+                } else {
+                    println!("You stay in office.");
+                }
+            }
+            "secure" | "patronage" => match spheres_sim::government::Pillar::parse(&rest) {
+                Some(pillar) => {
+                    let cmd = Command::SecurePillar { nation: me, pillar };
+                    match spheres_sim::apply_command(&mut w, &cmd) {
+                        Ok(()) => {
+                            for h in w.headlines.clone() {
+                                println!("  {}", h);
+                            }
+                            government_view(&w, me);
+                        }
+                        Err(e) => println!("  {}", e),
+                    }
+                }
+                None => println!("Usage: secure army   (army/party/security/business/clergy)"),
+            },
             "relations" => {
                 let mut rels: Vec<(NationId, f64)> = ALL_START_NATIONS
                     .iter()
@@ -287,6 +343,38 @@ fn briefing(w: &WorldState, me: NationId) {
         "Political capital {:.0}/100 — what you can still spend on what they will not thank you for.",
         n.political_capital
     );
+    {
+        use spheres_sim::government as gov;
+        if let Some(g) = gov::state(w, me) {
+            if gov::is_electoral(w, me) {
+                let lead = g.leader().and_then(|l| {
+                    gov::polity(me)
+                        .and_then(|p| p.parties.iter().find(|s| s.id == l))
+                        .map(|s| s.name)
+                });
+                let strain = gov::strain(w, me);
+                println!(
+                    "Government: {} - {} part{}, {:.0}% of the chamber{}   ('government' for detail)",
+                    lead.unwrap_or("none formed"),
+                    g.coalition.len(),
+                    if g.coalition.len() == 1 { "y" } else { "ies" },
+                    g.government_seats() * 100.0,
+                    if strain > 0.0 {
+                        format!(", costing {:.1} pc a month", gov::upkeep(w, me))
+                    } else {
+                        String::new()
+                    }
+                );
+            } else if let Some((pillar, loyalty)) = g.weakest_pillar() {
+                println!(
+                    "Regime: {} loyalty {:.0}%, coup pressure {:.0}%   ('government' for detail)",
+                    pillar.key(),
+                    loyalty * 100.0,
+                    g.coup_pressure * 100.0
+                );
+            }
+        }
+    }
     if n.war_exhaustion > 0.01 {
         println!("War exhaustion: {:.0}%", n.war_exhaustion * 100.0);
     }
@@ -301,6 +389,127 @@ fn briefing(w: &WorldState, me: NationId) {
             "WAR: {} vs {} (progress {:+.0}){}",
             war.attacker.name(), war.defender.name(), war.progress, mark
         );
+    }
+}
+
+fn month_name(m: u32) -> &'static str {
+    const M: [&str; 12] = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    M[((m.max(1) - 1) % 12) as usize]
+}
+
+/// The whole system in one screen: who your parties are, what the country
+/// currently thinks of them, who sits in your cabinet, what that cabinet is
+/// costing you, and what you can do about it. A mechanic the player cannot
+/// reach from their seat is not a mechanic.
+fn government_view(w: &WorldState, me: NationId) {
+    use spheres_sim::government as gov;
+    let g = match gov::state(w, me) {
+        Some(g) => g,
+        None => {
+            println!("  {} has no organised politics in this model.", me.name());
+            return;
+        }
+    };
+    let pol = match gov::polity(me) {
+        Some(p) => p,
+        None => return,
+    };
+    println!("\n--- Government of {} - {} ---", me.name(), w.date_str());
+
+    if gov::is_electoral(w, me) {
+        let (ey, em) = g.next_election;
+        println!(
+            "{}.   Next election: {}",
+            pol.system.label(),
+            if ey > 0 { format!("{} {}", month_name(em), ey) } else { "not yet set".to_string() }
+        );
+        println!();
+        println!("  {:<14} {:<42} {:>8} {:>7}  {}", "ID", "PARTY", "SUPPORT", "SEATS", "");
+        let mut rows: Vec<&gov::PartySpec> = pol.parties.iter().collect();
+        rows.sort_by(|a, b| {
+            g.support_of(b.id)
+                .partial_cmp(&g.support_of(a.id))
+                .unwrap_or(std::cmp::Ordering::Equal)
+        });
+        for s in rows {
+            let mark = if g.leader() == Some(s.id) {
+                "IN GOVERNMENT (leads)"
+            } else if g.in_government(s.id) {
+                "IN GOVERNMENT"
+            } else if s.pariah {
+                "nobody will govern with them"
+            } else {
+                ""
+            };
+            println!(
+                "  {:<14} {:<42} {:>7.1}% {:>6.1}%  {}",
+                s.id, s.name, g.support_of(s.id) * 100.0, g.seat_share(s.id) * 100.0, mark
+            );
+            if !s.native.is_empty() && s.native != s.name {
+                println!("  {:<14} {} - {}", "", s.native, s.family.label());
+            }
+        }
+        println!();
+        let seats = g.government_seats();
+        let strain = gov::strain(w, me);
+        let names: Vec<&str> = g
+            .coalition
+            .iter()
+            .filter_map(|p| pol.parties.iter().find(|s| s.id == *p).map(|s| s.name))
+            .collect();
+        println!(
+            "  Cabinet: {}",
+            if names.is_empty() { "none formed".to_string() } else { names.join(" + ") }
+        );
+        println!(
+            "  It commands {:.0}% of the chamber{}.",
+            seats * 100.0,
+            if seats < 0.5 { ", a minority - and every vote has to be bought separately" } else { "" }
+        );
+        if strain > 0.0 {
+            println!(
+                "  Holding it together costs {:.1} political capital a month, and {:.0} off your ceiling.",
+                gov::upkeep(w, me),
+                strain * 1.8
+            );
+        } else {
+            println!("  It costs you nothing to hold. This is as free as governing gets.");
+        }
+        println!();
+        println!("  invite <id>   bring a party in       expel <id>   throw one out");
+        println!("  election      go back to the country early (25 pc)");
+    } else {
+        println!("Power here is not voted on. It rests on {}.", pol.ruling);
+        println!();
+        println!("  {:<10} {:<46} {:>8}", "ID", "INSTITUTION", "LOYALTY");
+        for (pillar, loyalty) in &g.pillars {
+            let name = pol
+                .pillars
+                .iter()
+                .find(|s| s.pillar == *pillar)
+                .map(|s| s.name)
+                .unwrap_or("");
+            let mood = if *loyalty < 0.35 {
+                "   <-- they are not being paid"
+            } else if *loyalty < 0.5 {
+                "   restive"
+            } else {
+                ""
+            };
+            println!("  {:<10} {:<46} {:>7.0}%{}", pillar.key(), name, loyalty * 100.0, mood);
+        }
+        println!();
+        println!(
+            "  Coup pressure: {:.0}% of the way to somebody acting on it.",
+            (g.coup_pressure * 100.0).min(100.0)
+        );
+        println!(
+            "  What the loyalty you have bought is worth: {:+.1} on your political capital ceiling.",
+            gov::standing_modifier(w, me)
+        );
+        println!();
+        println!("  secure <id>   pay an institution to stay loyal (14 pc, and it goes on the debt)");
+        println!("  The army reads your defence budget too, and the merchants read your prices.");
     }
 }
 
@@ -319,6 +528,11 @@ fn help() {
     println!("  improve China     diplomatic push (+relations)");
     println!("  sanction Iraq     impose sanctions");
     println!("  lift Iraq         lift sanctions");
+    println!("  government / gov  your parties, your coalition, and what it costs");
+    println!("  invite <party>    bring a party into your cabinet");
+    println!("  expel <party>     throw one out");
+    println!("  election          go back to the country early");
+    println!("  secure army       (unelected regimes) pay an institution to stay loyal");
     println!("  options           what the world is offering you now");
     println!("  enact <id>        take one of those options");
     println!("  war Kuwait        declare war (confirmed)");

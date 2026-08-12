@@ -446,7 +446,14 @@ mod tests {
         // the platform and do not simply re-pin the number.
         //
         // Pinned on: Windows, x86_64-pc-windows-gnu, rustc 1.97.1.
-        const GOLDEN: u64 = 0x0475_a1ec_bc94_bb31;
+        //
+        // Re-pinned on the government branch. Elections, coalitions and regime
+        // pillars are a deliberate behaviour change: party support now moves
+        // every month, coalition strain is a standing deduction on political
+        // capital, and unpaid armies remove governments. The timeline is
+        // genuinely different from dabaa08's and this fingerprint must move with
+        // it. Previous value: 0x0475_a1ec_bc94_bb31.
+        const GOLDEN: u64 = 0xeecb_d520_df31_17a2;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

@@ -450,7 +450,13 @@ pub const POLITIES: &[Polity] = &[
     // had forty-eight governments in forty-five years.
     Polity {
         nation: NationId::Italy,
-        system: Electoral::Proportional,
+        // No effective threshold before the 1993 reform: the Imperiali quotient
+        // and the national remainder pool seated a party on two percent of the
+        // vote. That is not a detail — it is the reason a government needed five
+        // parties in it, and modelling Italy with the ordinary continental 5%
+        // bar quietly deleted the PRI, the PSDI and the PLI from the chamber and
+        // with them the whole pentapartito.
+        system: Electoral::ProportionalLowBar,
         term_months: 60,
         next: (1992, 4),
         parties: &[
@@ -1233,8 +1239,14 @@ fn drift_support(w: &mut WorldState, id: NationId) {
         let n = w.nation(id);
         (n.gdp * 1000.0 / n.population.max(0.001) / 20000.0).clamp(0.0, 1.0)
     };
-    // The government's record, from -1 (everything is broken) to +1 (delivery).
-    let record = 1.0 - 2.0 * (0.34 * pn.prices + 0.34 * pn.growth + 0.32 * pn.war);
+    // The government's record. Note where the zero sits: a government with
+    // nothing going wrong gains only a little, and it takes rather less than
+    // half of one pain to put it under water. The first draft put the neutral
+    // point at the *midpoint* of the pain scale, which meant a government
+    // fighting a war it was visibly losing still gained support every month as
+    // long as the economy was fine — and it was why an incumbent's support crept
+    // upward for forty years with nothing ever pushing back.
+    let record = 0.35 - (0.90 * pn.prices + 0.90 * pn.growth + 1.10 * pn.war);
     let incumbents: Vec<String> = match state(w, id) {
         Some(g) => g.coalition.clone(),
         None => return,
@@ -1565,7 +1577,13 @@ fn regime_tick(w: &mut WorldState, id: NationId) {
     for pillar in pillars {
         let t = match pillar {
             // Generals are bought with budgets and lost in wars that go badly.
-            Pillar::Army => 0.35 + (mil / 0.08).min(1.0) * 0.55 - exhaustion * 0.45,
+            // The floor is deliberately low: the first draft started the army at
+            // 0.35 and added the budget on top, which put an entirely unpaid army
+            // at 0.357 — a hair above the 0.35 line at which pressure starts to
+            // build. Twenty years of a defence budget cut to a tenth of a percent
+            // of GDP produced no coup at all, because the model could not express
+            // an army that had been abandoned.
+            Pillar::Army => 0.20 + (mil / 0.08).min(1.0) * 0.65 - exhaustion * 0.45,
             // The apparatus is loyal because it *is* the regime — it has nowhere
             // else to go — so its floor rises with how authoritarian the state
             // is. What moves it is the programme visibly failing and the country
@@ -1795,41 +1813,383 @@ pub fn tick(w: &mut WorldState) {
     ai_government(w);
 }
 
-
 #[cfg(test)]
-mod probe {
+mod tests {
     use super::*;
     use crate::init::world_1990;
-    fn run(open: bool) -> f64 {
-        let mut rules = GameRules::default(); rules.seed = 2;
-        let mut w = world_1990(rules);
-        w.rules.ai_aggression = 0.0;
-        w.player = Some(NationId::USA);
-        if open {
-            for _ in 0..300 {
-                if w.trade_depth(NationId::USA, NationId::Poland) > 0.0 { break; }
-                crate::apply_command(&mut w, &crate::Command::ProposeTrade { from: NationId::USA, to: NationId::Poland }).unwrap();
-            }
-        }
-        let mut elections = 0;
-        for m in 0..240 {
-            for h in crate::tick_month(&mut w, &[]) {
-                if h.contains("Poland") { elections += 1; if elections < 10 { println!("   open={} [{}] {}", open, w.date_str(), h); } }
-            }
-            if m % 60 == 0 || m == 239 {
-                let n = w.nation(NationId::Poland);
-                let g = state(&w, NationId::Poland).unwrap();
-                println!("open={} m={} gdp={:.0} pc={:.1} stab={:.0} coal={:?} seats={:.2} strain={:.1}",
-                  open, m, n.gdp, n.political_capital, n.stability, g.coalition, g.government_seats(), strain(&w, NationId::Poland));
-            }
-        }
-        println!("open={} poland events {}", open, elections);
-        w.nation(NationId::Poland).gdp
+
+    fn w1990() -> WorldState {
+        world_1990(GameRules::default())
     }
+
     #[test]
-    #[ignore]
-    fn probe_poland() {
-        let b = run(false); let o = run(true);
-        println!("base {:.0} open {:.0} ratio {:.3}", b, o, o/b);
+    fn every_government_is_reachable_in_january_1990() {
+        // The lesson that governs this whole branch: a mechanic the player
+        // cannot reach from their seat is not a mechanic. Every nation on the
+        // board must be able to answer "who governs here" on the first turn,
+        // before a single month has ticked.
+        let w = w1990();
+        for n in w.nations.iter().filter(|n| n.alive) {
+            let g = state(&w, n.id)
+                .unwrap_or_else(|| panic!("{:?} has no government in Jan 1990", n.id));
+            if is_electoral(&w, n.id) {
+                assert!(
+                    !g.coalition.is_empty(),
+                    "{:?} is a democracy with nobody in office",
+                    n.id
+                );
+                assert!(
+                    g.government_seats() > 0.0,
+                    "{:?}'s government holds no seats",
+                    n.id
+                );
+                assert!(g.next_election.0 >= 1990, "{:?} has no election scheduled", n.id);
+            } else {
+                assert!(
+                    !g.pillars.is_empty(),
+                    "{:?} is a regime resting on nothing at all",
+                    n.id
+                );
+            }
+            // Saudi Arabia has no parties at all, which is the correct
+            // transcription and not a gap: there was no assembly of any kind
+            // until the Consultative Council of 1992.
+            if !g.support.is_empty() {
+                let total: f64 = g.support.iter().map(|(_, v)| *v).sum();
+                assert!((total - 1.0).abs() < 1e-9, "{:?} support sums to {}", n.id, total);
+            }
+        }
+    }
+
+    #[test]
+    fn the_party_table_is_data_and_not_guesswork() {
+        // A guard on the transcription itself. Ids are what saves and commands
+        // carry, so a duplicate would silently merge two parties.
+        let mut seen: Vec<&str> = vec![];
+        for pol in POLITIES {
+            for s in pol.parties {
+                assert!(!s.id.is_empty() && !s.name.is_empty(), "{:?} has a nameless party", pol.nation);
+                assert!(
+                    s.start > 0.0 && s.start <= 1.0,
+                    "{:?}/{} has an impossible vote share {}",
+                    pol.nation, s.id, s.start
+                );
+                assert!(!seen.contains(&s.id), "duplicate party id {}", s.id);
+                seen.push(s.id);
+            }
+            // A couple of points of slack, because the published results these
+            // are copied from are themselves rounded to a decimal place and a
+            // table that had to sum exactly would be a table somebody had
+            // adjusted.
+            let total: f64 = pol.parties.iter().map(|s| s.start).sum();
+            assert!(
+                pol.parties.is_empty() || total <= 1.02,
+                "{:?}'s parties won {:.1}% of the vote between them",
+                pol.nation, total * 100.0
+            );
+        }
+    }
+
+    #[test]
+    fn the_seat_formula_decides_whether_a_plurality_is_a_government() {
+        // The single most consequential line in the module. Thatcher's 42% and
+        // De Mita's 34% are both pluralities; one of them is a majority
+        // government and the other is four weeks of negotiation, and the only
+        // difference is how votes become seats.
+        let w = w1990();
+        let uk = state(&w, NationId::UK).unwrap();
+        assert_eq!(uk.coalition.len(), 1, "first past the post produced a coalition");
+        assert!(
+            uk.government_seats() > 0.55,
+            "42% of the vote did not manufacture a majority: {:.2}",
+            uk.government_seats()
+        );
+
+        let it = state(&w, NationId::Italy).unwrap();
+        assert!(
+            it.coalition.len() >= 3,
+            "Italy governed with {} parties; the pentapartito needed five",
+            it.coalition.len()
+        );
+        assert!(
+            !it.in_government("it_pci") && !it.in_government("it_msi"),
+            "the conventio ad excludendum did not hold"
+        );
+
+        // Israel's 1% bar and no party near half: a government is arithmetic.
+        let il = state(&w, NationId::Israel).unwrap();
+        assert!(
+            il.coalition.len() >= 4,
+            "the 1988 Knesset produced a {}-party government",
+            il.coalition.len()
+        );
+    }
+
+    #[test]
+    fn party_support_moves_with_prices_rather_than_with_a_slider() {
+        // The claim the module exists to make. Nobody sets a popularity number:
+        // the same government, in the same month, with prices running, loses
+        // support — and it loses it to the family whose whole argument is sound
+        // money rather than to whoever happens to be second.
+        //
+        // France, not Germany: the point only means something where the
+        // opposition contains both a hard-money party and a left one, so that
+        // there is a choice for the discontent to go to. Germany's 1990
+        // opposition was the SPD and the Greens, and testing there would have
+        // asserted nothing.
+        let mut calm = w1990();
+        let mut burning = w1990();
+        for w in [&mut calm, &mut burning] {
+            w.rules.ai_aggression = 0.0;
+        }
+        for _ in 0..48 {
+            burning.nation_mut(NationId::France).inflation = 0.22;
+            crate::tick_month(&mut burning, &[]);
+            crate::tick_month(&mut calm, &[]);
+        }
+        let c = state(&calm, NationId::France).unwrap();
+        let b = state(&burning, NationId::France).unwrap();
+        assert!(
+            b.support_of("fr_ps") < c.support_of("fr_ps") - 0.005,
+            "four years of 22% inflation cost the governing party nothing: {:.3} vs {:.3}",
+            b.support_of("fr_ps"),
+            c.support_of("fr_ps")
+        );
+        let right = b.support_of("fr_rpr") - c.support_of("fr_rpr");
+        let left = b.support_of("fr_pcf") - c.support_of("fr_pcf");
+        assert!(right > 0.0, "an inflation crisis was worth nothing to the RPR");
+        assert!(
+            right > left,
+            "runaway prices went to the communists rather than to the hard-money right: \
+             RPR {:+.4} against PCF {:+.4}",
+            right, left
+        );
+    }
+
+    #[test]
+    fn a_war_going_badly_is_worth_votes_to_the_nationalists() {
+        // The other side of the same mechanism, and the one that makes the
+        // Yugoslav successors legible: what a war does to a government at home
+        // does not go to whoever happens to be second.
+        let mut quiet = w1990();
+        let mut bleeding = w1990();
+        for w in [&mut quiet, &mut bleeding] {
+            w.rules.ai_aggression = 0.0;
+        }
+        for _ in 0..36 {
+            bleeding.nation_mut(NationId::France).war_exhaustion = 0.6;
+            crate::tick_month(&mut bleeding, &[]);
+            crate::tick_month(&mut quiet, &[]);
+        }
+        let q = state(&quiet, NationId::France).unwrap();
+        let b = state(&bleeding, NationId::France).unwrap();
+        assert!(
+            b.support_of("fr_fn") > q.support_of("fr_fn"),
+            "three years of a war going badly moved nothing to the Front National"
+        );
+        assert!(
+            b.support_of("fr_ps") < q.support_of("fr_ps"),
+            "the governing party was not charged for the war"
+        );
+    }
+
+    #[test]
+    fn a_coalition_costs_what_a_majority_does_not() {
+        // The bite, stated as an ordering rather than a magic number: the
+        // stretched multi-party governments cost real political capital every
+        // month and the single-party majorities cost nothing, and it is the same
+        // budget every command in the game is priced against.
+        let w = w1990();
+        for lonely in [NationId::UK, NationId::USA, NationId::Japan] {
+            assert_eq!(strain(&w, lonely), 0.0, "{:?} paid for a majority", lonely);
+            assert_eq!(upkeep(&w, lonely), 0.0);
+            assert_eq!(standing_modifier(&w, lonely), 0.0);
+        }
+        for stretched in [NationId::Italy, NationId::Israel] {
+            assert!(
+                strain(&w, stretched) > 2.0,
+                "{:?}'s coalition is free to hold: strain {:.2}",
+                stretched,
+                strain(&w, stretched)
+            );
+            assert!(upkeep(&w, stretched) > 0.4);
+            assert!(standing_modifier(&w, stretched) < -4.0);
+        }
+        // And it is genuinely felt: Italy's standing after two years of holding
+        // the pentapartito together is below what its own conditions would give
+        // a government that did not have to.
+        let mut a = w1990();
+        a.rules.ai_aggression = 0.0;
+        for _ in 0..24 {
+            crate::tick_month(&mut a, &[]);
+        }
+        let n = a.nation(NationId::Italy);
+        let unencumbered =
+            crate::politics::seated_political_capital(n.stability, n.inflation, n.authoritarianism);
+        assert!(
+            n.political_capital < unencumbered,
+            "the coalition cost Italy nothing: {:.1} held against {:.1} seated",
+            n.political_capital,
+            unencumbered
+        );
+    }
+
+    #[test]
+    fn a_player_can_widen_their_own_coalition_and_pay_for_it() {
+        // The verb, and the price. Bringing another party in is bought out of
+        // the same stock, and it makes the government both broader and dearer.
+        let mut w = w1990();
+        w.player = Some(NationId::Italy);
+        let before_pc = w.nation(NationId::Italy).political_capital;
+        let before_strain = strain(&w, NationId::Italy);
+        let target = {
+            let g = state(&w, NationId::Italy).unwrap();
+            pol_parties(NationId::Italy)
+                .iter()
+                .find(|s| !g.in_government(s.id) && !s.pariah && g.seat_share(s.id) > 0.0)
+                .map(|s| s.id)
+                .expect("somebody is available")
+        };
+        crate::apply_command(
+            &mut w,
+            &crate::Command::InviteToGovernment {
+                nation: NationId::Italy,
+                party: target.to_string(),
+            },
+        )
+        .expect("the invitation is affordable in 1990");
+        assert!(state(&w, NationId::Italy).unwrap().in_government(target));
+        assert!(
+            w.nation(NationId::Italy).political_capital < before_pc,
+            "a coalition partner joined for free"
+        );
+        assert!(strain(&w, NationId::Italy) > before_strain, "a wider cabinet cost no more to hold");
+
+        // And a government cannot expel the party that leads it.
+        let leader = state(&w, NationId::Italy).unwrap().leader().unwrap().to_string();
+        assert!(expel(&mut w, NationId::Italy, &leader).is_err());
+    }
+
+    fn pol_parties(id: NationId) -> &'static [PartySpec] {
+        polity(id).map(|p| p.parties).unwrap_or(&[])
+    }
+
+    #[test]
+    fn a_regime_that_stops_paying_its_army_is_removed_by_it() {
+        // The authoritarian half. Nothing schedules this and nothing names a
+        // country: a regime whose armed institutions are going unpaid
+        // accumulates pressure, and when it tops out somebody acts.
+        let mut w = w1990();
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::Iraq); // freeze Baghdad's own AI so it cannot pay
+        let mut coup = None;
+        for _ in 0..240 {
+            // A defence budget cut to nothing, month after month.
+            w.nation_mut(NationId::Iraq).mil_spend_gdp = 0.001;
+            for h in crate::tick_month(&mut w, &[]) {
+                if h.contains("COUP IN IRAQ") {
+                    coup = Some(w.date_str());
+                }
+            }
+            if coup.is_some() {
+                break;
+            }
+        }
+        assert!(coup.is_some(), "twenty years of an unpaid Republican Guard and nobody moved");
+
+        // ...and a regime that keeps paying is not removed. Same nation, same
+        // seed, the one difference being the budget.
+        let mut safe = w1990();
+        safe.rules.ai_aggression = 0.0;
+        safe.player = Some(NationId::Iraq);
+        for _ in 0..240 {
+            safe.nation_mut(NationId::Iraq).mil_spend_gdp = 0.20;
+            for h in crate::tick_month(&mut safe, &[]) {
+                assert!(!h.contains("COUP IN IRAQ"), "a well-paid Republican Guard staged a coup");
+            }
+        }
+    }
+
+    #[test]
+    fn buying_an_institution_is_a_real_price_and_not_a_button() {
+        let mut w = w1990();
+        let before_pc = w.nation(NationId::Iraq).political_capital;
+        let before_debt = w.nation(NationId::Iraq).debt_gdp;
+        let before = state(&w, NationId::Iraq).unwrap().loyalty(Pillar::Army);
+        crate::apply_command(
+            &mut w,
+            &crate::Command::SecurePillar { nation: NationId::Iraq, pillar: Pillar::Army },
+        )
+        .expect("Baghdad can afford one payment in 1990");
+        assert!(state(&w, NationId::Iraq).unwrap().loyalty(Pillar::Army) > before);
+        assert!(w.nation(NationId::Iraq).political_capital < before_pc, "loyalty was free");
+        assert!(w.nation(NationId::Iraq).debt_gdp > before_debt, "patronage cost no money");
+
+        // A democracy has no such lever, and an unelected regime cannot hold an
+        // election. Neither half can reach into the other.
+        assert!(secure_pillar(&mut w, NationId::UK, Pillar::Army).is_err());
+        assert!(call_election(&mut w, NationId::Iraq).is_err());
+    }
+
+    #[test]
+    fn support_finds_an_equilibrium_rather_than_running_away() {
+        // The bug this test exists for: an incumbent with a good record gained a
+        // little support every month with nothing pulling back, so a party at
+        // 60% went to 75%, then 92%, then the whole chamber, and Poland became a
+        // one-party state by 1999 with no mechanism ever saying so.
+        let mut w = w1990();
+        w.rules.ai_aggression = 0.0;
+        for _ in 0..12 * 40 {
+            crate::tick_month(&mut w, &[]);
+            for n in w.nations.iter().filter(|n| n.alive) {
+                if !is_electoral(&w, n.id) {
+                    continue;
+                }
+                // A one-party state that has opened up still has one party in
+                // its table until somebody founds another; 100% there is the
+                // correct reading, not a runaway.
+                if polity(n.id).map_or(true, |p| p.parties.len() < 2) {
+                    continue;
+                }
+                if let Some(g) = state(&w, n.id) {
+                    for (pid, sup) in &g.support {
+                        assert!(
+                            *sup < 0.92,
+                            "{:?}: {} holds {:.0}% of the electorate in {}",
+                            n.id, pid, sup * 100.0, w.year
+                        );
+                        assert!(sup.is_finite() && *sup >= 0.0);
+                    }
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn opening_up_a_regime_produces_an_election_without_anything_scheduling_one() {
+        // Emergence rather than script: a state that liberalises far enough owes
+        // the country a vote, and the party table that was dormant becomes live.
+        // No date, no country name — only the authoritarianism falling.
+        let mut w = w1990();
+        w.rules.ai_aggression = 0.0;
+        w.nation_mut(NationId::Indonesia).authoritarianism = 0.30;
+        let mut announced = false;
+        let mut voted = false;
+        for _ in 0..48 {
+            for h in crate::tick_month(&mut w, &[]) {
+                if h.contains("Indonesia sets a date") {
+                    announced = true;
+                }
+                if h.starts_with("Indonesia votes") {
+                    voted = true;
+                }
+            }
+        }
+        assert!(announced, "a liberalised regime never called an election");
+        assert!(voted, "the election was announced and never held");
+        let g = state(&w, NationId::Indonesia).unwrap();
+        assert!(g.pillars.is_empty(), "an elected government is still resting on pillars");
+        assert!(!g.coalition.is_empty(), "nobody took office after the vote");
     }
 }
+
