@@ -1,0 +1,36 @@
+{
+  "id": "Singapore",
+  "name": "Singapore",
+  "system": "Market",
+  "authoritarianism": 0.5,
+  "economy": {
+    "gdp_bn": 36.1,
+    "population_m": 3.05,
+    "tfp_trend": 0.028,
+    "inflation": 0.035,
+    "interest_rate": 0.074,
+    "tax_rate": 0.16,
+    "mil_spend_gdp": 0.046,
+    "state_invest_gdp": 0.11,
+    "priv_invest_gdp": 0.24,
+    "debt_gdp": 0.75,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 86.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 5.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $36.14bn and population 3.047m (World Bank, 1990).",
+    "CPI inflation 3.46% and lending interest rate 7.36% (World Bank, 1990). The Monetary Authority of Singapore has never run a policy interest rate — it targets the trade-weighted exchange rate and lets the domestic rate follow — so the commercial lending rate is the only meaningful figure to enter.",
+    "Defence 4.63% of GDP (World Bank/SIPRI, 1990), by a wide margin the highest burden in Southeast Asia.",
+    "Government debt near 75% of GDP, and it is the most misleading number in this file. Singapore has run budget surpluses almost continuously and borrows only to issue securities the Central Provident Fund must hold; the gross debt is matched several times over by reserves. It is entered because it is the transcribed figure, but the model reads it as leverage and Singapore had none.",
+    "Lee Kuan Yew handed the premiership to Goh Chok Tong in November 1990, eleven months into the game, after 31 years. authoritarianism 0.50 keeps Singapore below the model's electoral ceiling: the elections are held, counted honestly and never lost, and the pressure is applied through defamation suits and public housing allocation rather than through the ballot box.",
+    "Military index 5: about 55,000 active and 250,000 reservists on a total-defence model, the best-equipped force in the region per head and one with no depth to trade for time."
+  ]
+}

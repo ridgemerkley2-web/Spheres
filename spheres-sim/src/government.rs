@@ -870,6 +870,212 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the Assembly",
         pillars: &[],
     },
+    // North Korea — the Workers' Party of Korea. The Supreme People's Assembly
+    // elected on 2 November 1986 is the sitting one in January 1990; the ninth
+    // was elected on 22 April that year. Both were single-list ballots of the
+    // Democratic Front for the Reunification of the Fatherland, returned at
+    // effectively 100%, so the table carries the WPK alone: the Korean Social
+    // Democratic Party and the Chondoist Chongu Party exist, hold seats, and
+    // have never contested anything. The pillars are the ones Kim Il Sung
+    // actually held, and the succession to Kim Jong Il ran through the second
+    // of them rather than the first.
+    Polity {
+        nation: NationId::NorthKorea,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("kp_wpk", "Workers' Party of Korea", "Choson Rodongdang", Family::Communist, 1.00),
+        ],
+        ruling: "the Workers' Party of Korea",
+        pillars: &[
+            pl(Pillar::Army, "the Korean People's Army"),
+            pl(Pillar::Party, "the Organisation and Guidance Department"),
+            pl(Pillar::Security, "the State Security Department"),
+        ],
+    },
+    // Taiwan — the supplementary Legislative Yuan election of 2 December 1989,
+    // the first contested by a legal opposition: Kuomintang 60.1%, Democratic
+    // Progressive Party 28.3%, independents and minor parties the rest. It was
+    // supplementary because most of the chamber was still held by members
+    // elected on the mainland in 1947 who had never faced a voter and were not
+    // retired until December 1991. The garrison command that enforced martial
+    // law until 1987 is listed as a pillar because the transition was still
+    // reversible in January 1990.
+    Polity {
+        nation: NationId::Taiwan,
+        system: Electoral::SingleNonTransferable,
+        term_months: 36,
+        next: (1992, 12),
+        parties: &[
+            p("tw_kmt", "Kuomintang", "Zhongguo Guomindang", Family::Conservative, 0.601),
+            p("tw_dpp", "Democratic Progressive Party", "Minzhu Jinbudang", Family::Liberal, 0.283),
+            p("tw_ind", "independents and minor parties", "", Family::BigTent, 0.116),
+        ],
+        ruling: "the Legislative Yuan",
+        pillars: &[
+            pl(Pillar::Army, "the Republic of China Armed Forces"),
+            pl(Pillar::Party, "the Kuomintang Central Standing Committee"),
+        ],
+    },
+    // Thailand — House of Representatives, 24 July 1988, the election that made
+    // Chatichai Choonhavan the first elected prime minister since 1976. Shares
+    // are of the 357 seats rather than of the vote, because Thai constituency
+    // results of the period were reported by seat and the multi-member districts
+    // make a national popular vote meaningless: Chart Thai 87, Social Action 54,
+    // Democrat 48, Ruam Thai 35, Prachakorn Thai 31, Rassadorn 21, Muan Chon 17,
+    // Palang Dharma 14, others 50. The army removed this government on 23
+    // February 1991, which is why it keeps a pillar.
+    Polity {
+        nation: NationId::Thailand,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1992, 3),
+        parties: &[
+            p("th_chartthai", "Thai Nation Party", "Chart Thai", Family::Conservative, 0.244),
+            p("th_sap", "Social Action Party", "Kit Sangkhom", Family::Conservative, 0.151),
+            p("th_democrat", "Democrat Party", "Prachathipat", Family::Liberal, 0.134),
+            p("th_ruamthai", "United Thai People's Party", "Ruam Thai", Family::Conservative, 0.098),
+            p("th_pkt", "Thai Citizens' Party", "Prachakorn Thai", Family::Nationalist, 0.087),
+            p("th_rassadorn", "People's Party", "Rassadorn", Family::BigTent, 0.059),
+            p("th_muanchon", "Mass Party", "Muan Chon", Family::BigTent, 0.048),
+            p("th_palangdharma", "Righteous Force Party", "Palang Dharma", Family::Religious, 0.039),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[pl(Pillar::Army, "the Royal Thai Army")],
+    },
+    // Malaysia — general election of 3 August 1986: Barisan Nasional 55.8%,
+    // Democratic Action Party 21.0%, Pan-Malaysian Islamic Party 15.6%. That
+    // Dewan Rakyat is the sitting one in January 1990 and the next election is
+    // nine months away, on 21 October 1990 — the one Tengku Razaleigh contested
+    // at the head of Semangat 46 after losing the UMNO presidency by 43 votes
+    // and having the party declared unlawful for it.
+    Polity {
+        nation: NationId::Malaysia,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1990, 10),
+        parties: &[
+            p("my_bn", "National Front", "Barisan Nasional", Family::BigTent, 0.558),
+            p("my_dap", "Democratic Action Party", "", Family::SocialDemocratic, 0.210),
+            p("my_pas", "Pan-Malaysian Islamic Party", "Parti Islam Se-Malaysia", Family::Religious, 0.156),
+            p("my_pbs", "United Sabah Party", "Parti Bersatu Sabah", Family::Regionalist, 0.045),
+        ],
+        ruling: "the Dewan Rakyat",
+        pillars: &[],
+    },
+    // Singapore — general election of 3 September 1988, the first fought on
+    // group representation constituencies: People's Action Party 63.2%, Workers'
+    // Party 16.7%, Singapore Democratic Party 11.5%. The PAP took 80 of 81
+    // seats on that 63%, which is what a first-past-the-post system does to an
+    // opposition that cannot concentrate. Lee Kuan Yew handed over to Goh Chok
+    // Tong in November 1990 without an election.
+    Polity {
+        nation: NationId::Singapore,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1991, 8),
+        parties: &[
+            p("sg_pap", "People's Action Party", "", Family::Conservative, 0.632),
+            p("sg_wp", "Workers' Party", "", Family::SocialDemocratic, 0.167),
+            p("sg_sdp", "Singapore Democratic Party", "", Family::Liberal, 0.115),
+            p("sg_nsp", "National Solidarity Party", "", Family::SocialDemocratic, 0.086),
+        ],
+        ruling: "the Parliament of Singapore",
+        pillars: &[],
+    },
+    // Philippines — House of Representatives, 11 May 1987, the first under the
+    // constitution ratified three months earlier. Shares are of the 200 elected
+    // seats: the pro-Aquino coalition of Lakas ng Bansa and PDP-Laban took
+    // roughly two thirds, the Grand Alliance for Democracy about a tenth, the
+    // Nacionalistas and Liberals the rest. There is no reliable national popular
+    // vote for that election — it was contested by personal coalitions that
+    // dissolved within the term, and the LDP was assembled out of the winners
+    // afterwards. The transitional House sat five years; later terms run three.
+    Polity {
+        nation: NationId::Philippines,
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (1992, 5),
+        parties: &[
+            p("ph_ldp", "Struggle of Democratic Filipinos", "Laban ng Demokratikong Pilipino", Family::BigTent, 0.660),
+            p("ph_gad", "Grand Alliance for Democracy", "", Family::Conservative, 0.100),
+            p("ph_np", "Nacionalista Party", "Partido Nacionalista", Family::Conservative, 0.075),
+            p("ph_lp", "Liberal Party", "Partido Liberal", Family::Liberal, 0.070),
+            p("ph_ind", "independents", "", Family::BigTent, 0.095),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[pl(Pillar::Army, "the Armed Forces of the Philippines")],
+    },
+    // Cambodia — the State of Cambodia, governed by the Kampuchean People's
+    // Revolutionary Party, which renamed itself the Cambodian People's Party in
+    // October 1991 and dropped Marxism-Leninism with the name. The last National
+    // Assembly election, 1 May 1981, was a single list. Vietnamese troops left
+    // in September 1989; the Paris agreements are twenty-two months away and the
+    // Khmer Rouge still hold ground in the west. A regime whose army is the only
+    // thing between it and three insurgencies.
+    Polity {
+        nation: NationId::Cambodia,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("kh_kprp", "Kampuchean People's Revolutionary Party", "Pak Pracheachon Padevat Kampuchea", Family::Communist, 1.00),
+        ],
+        ruling: "the Kampuchean People's Revolutionary Party",
+        pillars: &[
+            pl(Pillar::Army, "the Cambodian People's Armed Forces"),
+            pl(Pillar::Party, "the Politburo"),
+            pl(Pillar::Security, "the Ministry of the Interior"),
+        ],
+    },
+    // Laos — the Lao People's Revolutionary Party, in power since December 1975
+    // and still governing without a constitution in January 1990; one was
+    // promulgated in August 1991. The Supreme People's Assembly elected on 26
+    // March 1989 was the first since 1975 and every candidate on it was approved
+    // by the party, so the table carries the LPRP alone.
+    Polity {
+        nation: NationId::Laos,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("la_lprp", "Lao People's Revolutionary Party", "Phak Pasason Pativat Lao", Family::Communist, 1.00),
+        ],
+        ruling: "the Lao People's Revolutionary Party",
+        pillars: &[
+            pl(Pillar::Army, "the Lao People's Army"),
+            pl(Pillar::Party, "the Central Committee"),
+            pl(Pillar::Security, "the Ministry of the Interior"),
+        ],
+    },
+    // Mongolia — the Mongolian People's Revolutionary Party, whose monopoly under
+    // Article 82 was intact on 1 January 1990 and gone by 23 March. The
+    // demonstrations in Sukhbaatar Square had been running since 10 December
+    // 1989 and the whole Politburo resigned on 9 March. The party table is the
+    // result of the People's Great Hural election of 29 July 1990, the first
+    // multiparty vote in Asia's second communist state, which the MPRP won:
+    // MPRP 62.3%, Mongolian Democratic Party 24.3%, Social Democrats 5.6%,
+    // National Progress 5.6%. It goes live only if the regime opens, which here
+    // it is not scripted to do.
+    Polity {
+        nation: NationId::Mongolia,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("mn_mprp", "Mongolian People's Revolutionary Party", "Mongol Ardyn Khuvisgalt Nam", Family::Communist, 0.623),
+            p("mn_mdp", "Mongolian Democratic Party", "Mongolyn Ardchilsan Nam", Family::Liberal, 0.243),
+            p("mn_msdp", "Mongolian Social Democratic Party", "Mongolyn Sotsial Demokrat Nam", Family::SocialDemocratic, 0.056),
+            p("mn_mnpp", "Mongolian National Progress Party", "Mongolyn Undesnii Devshliin Nam", Family::Conservative, 0.056),
+        ],
+        ruling: "the Mongolian People's Revolutionary Party",
+        pillars: &[
+            pl(Pillar::Army, "the Mongolian People's Army"),
+            pl(Pillar::Party, "the Central Committee"),
+            pl(Pillar::Security, "the Ministry of Public Security"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {
