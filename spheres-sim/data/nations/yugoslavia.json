@@ -1,0 +1,35 @@
+{
+  "id": "Yugoslavia",
+  "name": "Yugoslavia",
+  "system": "Command",
+  "authoritarianism": 0.65,
+  "economy": {
+    "gdp_bn": 88.0,
+    "population_m": 23.5,
+    "tfp_trend": -0.01,
+    "inflation": 0.6,
+    "interest_rate": 0.3,
+    "tax_rate": 0.36,
+    "mil_spend_gdp": 0.048,
+    "state_invest_gdp": 0.12,
+    "priv_invest_gdp": 0.08,
+    "debt_gdp": 0.28,
+    "oil_mbd": 0.05,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 44.0,
+    "separatism": 0.72
+  },
+  "military": {
+    "strength": 20.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP ~$88bn and 23.5m people. Retail price inflation ran to roughly 580% over 1990, down from about 1250% in 1989, and output fell around 7%.",
+    "The game opens three weeks into Markovic's stabilisation programme (18 Dec 1989), which pegged the new dinar to the Deutschmark and froze wages, and the same month the League of Communists broke up at its 14th Congress, which is why separatism starts higher than the USSR's 0.55.",
+    "This block used to end \"hence the punishing policy rate against still-enormous inflation\", which the numbers beside it did not support and which has been removed. interest_rate 0.3 against inflation 0.6 is a real rate of -30 points: not punishing but the loosest opening position of any nation in the roster. Markovic's rate was genuinely punishing in real terms once the peg bit; the file was describing history the figures did not encode.",
+    "inflation 0.6 is not the 1990 print either. On this directory's fraction-of-1 convention ~580% is ~5.8; 0.6 is that shifted one decimal place — the same shift Brazil and Poland carry, and the same three nations whose 1990 percentage needed four digits. brazil.json records why the true figures cannot be entered as they stand: economy.rs clamps inflation into -0.05..=3.0 and the real-rate demand channel is linear and unbounded, so the corrected pair sends GDP through zero. The loader refuses figures outside that band since this commit.",
+    "Measured cost, so it is not rediscovered: on seed 1 Yugoslavia grows about 6% through 1990 — $88bn to $93.6bn — against a contraction of roughly 7%. Federal Yugoslavia comes apart on schedule anyway, because dissolution here is driven by the separatism arithmetic rather than by the growth path, but the economy it dies with is the wrong one."
+  ]
+}

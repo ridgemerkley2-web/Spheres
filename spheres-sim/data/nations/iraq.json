@@ -1,0 +1,32 @@
+{
+  "id": "Iraq",
+  "name": "Iraq",
+  "system": "Command",
+  "authoritarianism": 0.95,
+  "economy": {
+    "gdp_bn": 60.0,
+    "population_m": 17.0,
+    "tfp_trend": 0.005,
+    "inflation": 0.18,
+    "interest_rate": 0.06,
+    "tax_rate": 0.3,
+    "mil_spend_gdp": 0.2,
+    "state_invest_gdp": 0.1,
+    "priv_invest_gdp": 0.04,
+    "debt_gdp": 1.1,
+    "oil_mbd": 2.8,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 48.0,
+    "separatism": 0.2
+  },
+  "military": {
+    "strength": 26.0,
+    "nuclear": false
+  },
+  "sources": [
+    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
+    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance."
+  ]
+}

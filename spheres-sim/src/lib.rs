@@ -1,3 +1,4 @@
+pub mod data;
 pub mod economy;
 pub mod init;
 pub mod politics;
@@ -390,6 +391,27 @@ mod tests {
                 assert!(w.oil_price.is_finite() && w.oil_price > 0.0, "oil {} in {}", w.oil_price, w.year);
             }
         }
+    }
+
+    #[test]
+    fn the_1990_start_is_pinned() {
+        // The starting world before a single month is ticked. The golden run
+        // hash below catches a changed digit only after twenty years of
+        // compounding have carried it somewhere visible; this catches it in the
+        // file it was typed in.
+        //
+        // It earns its place now that the roster is JSON. A positional
+        // constructor at least made a wrong number a compile error when the
+        // arity changed; a data file makes it a plausible-looking edit. This
+        // number was measured against master at c454c81, with the nations still
+        // Rust literals, and it did not move when they became data — which is
+        // the proof that the transcription changed nothing.
+        let w = world_1990(GameRules::default());
+        let h = state_hash(&w);
+        assert_eq!(
+            h, 0x2cc32e8ec58365e2u64,
+            "the 1990 start state changed (actual {h:#018x})"
+        );
     }
 
     #[test]

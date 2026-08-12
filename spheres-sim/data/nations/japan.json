@@ -1,0 +1,32 @@
+{
+  "id": "Japan",
+  "name": "Japan",
+  "system": "Market",
+  "authoritarianism": 0.12,
+  "economy": {
+    "gdp_bn": 3140.0,
+    "population_m": 124.0,
+    "tfp_trend": 0.018,
+    "inflation": 0.031,
+    "interest_rate": 0.06,
+    "tax_rate": 0.3,
+    "mil_spend_gdp": 0.01,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.24,
+    "debt_gdp": 0.64,
+    "oil_mbd": 0.0,
+    "bubble": 0.95
+  },
+  "politics": {
+    "stability": 82.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 22.0,
+    "nuclear": false
+  },
+  "sources": [
+    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\". Figures are transcribed unchanged from that table and their origin was not documented at the time.",
+    "The one documented exception is the bubble: \"Japan's bubble is at its peak on day one\" — the Nikkei topped out on 29 December 1989."
+  ]
+}

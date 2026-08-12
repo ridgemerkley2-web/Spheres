@@ -1518,6 +1518,17 @@ function openNation(id, keepScroll) {
       </div>
     </div>
 
+    <div class="card">
+      <h3>Where the 1990 figures come from</h3>
+      <div class="tiny muted" style="margin-bottom:8px">
+        Nothing in this game is authored, so every opening number owes an
+        account of itself. This is the one the data file gives — including
+        where it admits the figure is a stand-in the model can carry rather
+        than the print history recorded.
+      </div>
+      <div id="provenance" class="tiny muted">Reading the file…</div>
+    </div>
+
     ${charts}
 
     <div class="cols2">
@@ -1551,8 +1562,39 @@ function openNation(id, keepScroll) {
   sheet.querySelectorAll(".relrow[data-id]").forEach((r) => {
     r.onclick = () => openNation(r.dataset.id);
   });
+  loadProvenance(n.name);
 }
 window.openNation = openNation;
+
+/// The sources block from the nation's data file, fetched on open rather than
+/// carried in the world state — it is start-of-game documentation, it never
+/// changes, and it has no business in a save. Rendered as text nodes: this is
+/// transcribed prose from a file a modder can edit, so it is never trusted as
+/// markup.
+async function loadProvenance(name) {
+  const box = $("#provenance");
+  if (!box) return;
+  let data;
+  try {
+    data = await api("/api/sources?nation=" + encodeURIComponent(name));
+  } catch (e) {
+    box.textContent = "Could not read the data file.";
+    return;
+  }
+  const lines = (data && data.sources) || [];
+  box.textContent = "";
+  if (!lines.length) {
+    box.textContent = "This nation ships no provenance, which is a bug.";
+    return;
+  }
+  for (const line of lines) {
+    const p = document.createElement("p");
+    p.style.margin = "0 0 8px";
+    p.style.lineHeight = "1.5";
+    p.textContent = line;
+    box.appendChild(p);
+  }
+}
 
 function deadSheet(d) {
   const h = HIST && HIST.nations[d.id];

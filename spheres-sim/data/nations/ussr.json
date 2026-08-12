@@ -1,0 +1,32 @@
+{
+  "id": "USSR",
+  "name": "Soviet Union",
+  "system": "Command",
+  "authoritarianism": 0.85,
+  "economy": {
+    "gdp_bn": 1600.0,
+    "population_m": 289.0,
+    "tfp_trend": -0.008,
+    "inflation": 0.06,
+    "interest_rate": 0.05,
+    "tax_rate": 0.4,
+    "mil_spend_gdp": 0.12,
+    "state_invest_gdp": 0.22,
+    "priv_invest_gdp": 0.02,
+    "debt_gdp": 0.45,
+    "oil_mbd": 11.4,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 42.0,
+    "separatism": 0.55
+  },
+  "military": {
+    "strength": 92.0,
+    "nuclear": true
+  },
+  "sources": [
+    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
+    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance."
+  ]
+}

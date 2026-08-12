@@ -1,0 +1,32 @@
+{
+  "id": "USA",
+  "name": "United States",
+  "system": "Market",
+  "authoritarianism": 0.1,
+  "economy": {
+    "gdp_bn": 5980.0,
+    "population_m": 250.0,
+    "tfp_trend": 0.013,
+    "inflation": 0.054,
+    "interest_rate": 0.08,
+    "tax_rate": 0.27,
+    "mil_spend_gdp": 0.055,
+    "state_invest_gdp": 0.035,
+    "priv_invest_gdp": 0.14,
+    "debt_gdp": 0.62,
+    "oil_mbd": 7.4,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 78.0,
+    "separatism": 0.02
+  },
+  "military": {
+    "strength": 100.0,
+    "nuclear": true
+  },
+  "sources": [
+    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
+    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance."
+  ]
+}
