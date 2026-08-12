@@ -589,6 +589,10 @@ pub struct Conflict {
     /// losing the war", and two tracks can.
     pub control: f64,
     pub months: u32,
+    /// Consecutive months with nobody above rung 5. Eighteen of them and the
+    /// conflict freezes; it does not end, it goes quiet.
+    #[serde(default)]
+    pub quiet_months: u32,
     pub frozen_since: Option<(i32, u32)>,
     pub start_year: i32,
     pub start_month: u32,

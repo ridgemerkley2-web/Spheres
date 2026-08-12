@@ -5,6 +5,7 @@
 //! serves a browser UI that renders it. No game logic lives here.
 
 use spheres_sim::init::world_1990;
+use spheres_sim::theatre::TheatreId;
 use spheres_sim::world::*;
 use spheres_sim::{apply_command, load, save, tick_month, Command};
 use std::sync::Mutex;
@@ -204,8 +205,31 @@ fn is_major(headline: &str, me: Option<NationId>) -> bool {
         || h.contains("capitulates")
         || h.contains("revolution in")
         || h.contains("sues for peace")
-        || h.contains("repels");
+        || h.contains("repels")
+        || h.contains("escalates to rung")
+        || h.contains("grants")
+        || h.contains("revokes");
     structural || me.map_or(false, |m| h.contains(&m.name().to_lowercase()))
+}
+
+/// The operating areas, and whose consent an outsider needs in each. Sent whole
+/// rather than per-conflict, because the access panel is playable on its own:
+/// a host state that is in nobody's war still wants to see who is asking.
+fn theatres_json(w: &WorldState) -> Vec<serde_json::Value> {
+    w.theatres
+        .iter()
+        .map(|t| {
+            serde_json::json!({
+                "id": format!("{:?}", t.id),
+                "name": t.id.name(),
+                "home": t.home.iter().map(|n| format!("{:?}", n)).collect::<Vec<_>>(),
+                "hosts": t.access_hosts.iter().map(|n| format!("{:?}", n)).collect::<Vec<_>>(),
+                "host_names": t.access_hosts.iter().map(|n| n.name()).collect::<Vec<_>>(),
+                "rough": t.rough,
+                "urbanisation": t.urbanisation,
+            })
+        })
+        .collect()
 }
 
 /// One conflict, with the ladder on it. The legacy keys (`attacker`,
@@ -447,6 +471,15 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "nations": nations,
         "dead": dead,
         "wars": wars,
+        "theatres": theatres_json(w),
+        "access": w.access.iter().map(|a| serde_json::json!({
+            "theatre": format!("{:?}", a.theatre),
+            "host": format!("{:?}", a.host),
+            "host_name": a.host.name(),
+            "seeker": format!("{:?}", a.seeker),
+            "seeker_name": a.seeker.name(),
+            "since": month_name(a.since_month, a.since_year),
+        })).collect::<Vec<_>>(),
         "log": log,
         "flags": w.flags,
         "interrupt": interrupt,
@@ -462,6 +495,16 @@ fn parse_command(v: &serde_json::Value, me: NationId) -> Option<Command> {
             .and_then(|x| x.as_str())
             .and_then(NationId::parse)
     };
+    let theatre = || {
+        v.get("theatre")
+            .and_then(|x| x.as_str())
+            .and_then(TheatreId::parse)
+    };
+    let conflict = || {
+        v.get("conflict")
+            .and_then(|x| x.as_u64())
+            .map(|x| x as u32)
+    };
     Some(match kind {
         "rate" => Command::SetInterestRate { nation: me, rate: num()? },
         "tax" => Command::SetTaxRate { nation: me, rate: num()? },
@@ -471,6 +514,63 @@ fn parse_command(v: &serde_json::Value, me: NationId) -> Option<Command> {
         "lift" => Command::LiftSanction { imposer: me, target: target()? },
         "improve" => Command::ImproveRelations { from: me, to: target()? },
         "war" => Command::DeclareWar { attacker: me, defender: target()? },
+
+        // --- The commitment ladder. Flat objects, mapped exactly the way
+        // `rate` and `sanction` are: the UI never constructs a sim type. ---
+        "open_conflict" => Command::OpenConflict {
+            opener: me,
+            target: target()?,
+            theatre: theatre()?,
+        },
+        "commit" => Command::SetCommitment {
+            conflict: conflict()?,
+            nation: me,
+            rung: num()? as u8,
+        },
+        "objective" => Command::SetObjective {
+            conflict: conflict()?,
+            nation: me,
+            objective: Objective::parse(v.get("objective")?.as_str()?)?,
+        },
+        "roe" => Command::SetRoE {
+            conflict: conflict()?,
+            nation: me,
+            roe: Roe::parse(v.get("roe")?.as_str()?)?,
+        },
+        "ceiling" => Command::SetCeiling {
+            conflict: conflict()?,
+            nation: me,
+            rung: num()? as u8,
+        },
+        "red_line" => Command::SetRedLine {
+            conflict: conflict()?,
+            nation: me,
+            resolve_floor: num()?,
+        },
+
+        // --- Access. `target` is the other party in every case; who is host
+        // and who is seeker depends on which side of the table you sit. ---
+        "request_access" => Command::RequestAccess {
+            seeker: me,
+            host: target()?,
+            theatre: theatre()?,
+        },
+        "press_access" => Command::PressForAccess {
+            seeker: me,
+            host: target()?,
+            theatre: theatre()?,
+        },
+        "grant_access" => Command::GrantAccess {
+            host: me,
+            seeker: target()?,
+            theatre: theatre()?,
+            grant: v.get("grant").and_then(|x| x.as_bool()).unwrap_or(true),
+        },
+        "revoke_access" => Command::RevokeAccess {
+            host: me,
+            seeker: target()?,
+            theatre: theatre()?,
+        },
         _ => return None,
     })
 }

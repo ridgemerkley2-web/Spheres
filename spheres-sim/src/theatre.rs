@@ -225,6 +225,12 @@ pub fn has_access(w: &WorldState, seeker: NationId, th: TheatreId) -> bool {
         return true;
     }
     let t = theatre(w, th);
+    // A state that is itself a host of this theatre is a host because its own
+    // airfields are within range of it. Turkey does not have to ask Ankara for
+    // Incirlik — that is the whole reason it is on the list.
+    if t.access_hosts.contains(&seeker) {
+        return true;
+    }
     t.access_hosts
         .iter()
         .any(|h| w.access.iter().any(|a| a.theatre == th && a.host == *h && a.seeker == seeker))
@@ -238,6 +244,90 @@ pub fn granting_host(w: &WorldState, seeker: NationId, th: TheatreId) -> Option<
         .iter()
         .copied()
         .find(|h| w.access.iter().any(|a| a.theatre == th && a.host == *h && a.seeker == seeker))
+}
+
+/// Has this host already answered this seeker, either way?
+pub fn already_granted(w: &WorldState, host: NationId, seeker: NationId, th: TheatreId) -> bool {
+    w.access
+        .iter()
+        .any(|a| a.theatre == th && a.host == host && a.seeker == seeker)
+}
+
+/// The odds a parliament says yes, spelled out so the player can read the
+/// drivers off the access panel rather than guess at them.
+///
+/// Nothing here is a supply formula. A base agreement is granted by a government
+/// that likes you, dislikes the state you mean to use it against, cannot afford
+/// to annoy your exporters, or has already promised to fight beside you — and by
+/// nobody who is currently sanctioning you. Ankara in March 2003 is a roll on
+/// this line, and it came up short.
+pub fn consent_probability(
+    w: &WorldState,
+    host: NationId,
+    seeker: NationId,
+    target: Option<NationId>,
+    unrestricted: bool,
+) -> f64 {
+    if host == seeker {
+        return 1.0;
+    }
+    if w.nation_opt(host).map_or(true, |n| !n.alive) {
+        return 0.0;
+    }
+    // You do not get to fly out of a country that has closed its market to you.
+    if w.is_sanctioning(host, seeker) || w.is_sanctioning(seeker, host) {
+        return 0.0;
+    }
+    let mut p = ((w.relation(host, seeker) + 20.0) / 120.0).clamp(0.0, 0.90);
+    if let Some(t) = target {
+        // The enemy of the state you are about to hit is the friend of your
+        // airbase request.
+        p *= 1.0 + 0.6 * (-w.relation(host, t) / 100.0).clamp(0.0, 1.0);
+        // ...and nobody hosts a strike on themselves or on their own guarantor.
+        if t == host || w.allied(host, t) {
+            return 0.0;
+        }
+    }
+    p *= 1.0 + 0.8 * w.trade_dependency(host, seeker);
+    if w.allied(host, seeker) {
+        p *= 1.5;
+    }
+    // Civilian casualties are what turns a parliament, and they turn it against
+    // the government that let the aircraft take off from its soil.
+    if unrestricted {
+        p *= 0.6;
+    }
+    p.clamp(0.0, 0.95)
+}
+
+/// Record a standing consent. Idempotent: a parliament that has already voted
+/// yes does not vote yes twice.
+pub fn grant(w: &mut WorldState, host: NationId, seeker: NationId, th: TheatreId) {
+    if already_granted(w, host, seeker, th) {
+        return;
+    }
+    let (y, m) = (w.year, w.month);
+    w.access.push(Access { theatre: th, host, seeker, since_year: y, since_month: m });
+}
+
+pub fn revoke(w: &mut WorldState, host: NationId, seeker: NationId, th: TheatreId) -> bool {
+    let before = w.access.len();
+    w.access
+        .retain(|a| !(a.theatre == th && a.host == host && a.seeker == seeker));
+    w.access.len() != before
+}
+
+/// The hosts of a theatre a seeker has not yet asked, in table order — so the
+/// order a request walks them in is fixed and the roll is reproducible.
+pub fn unasked_hosts(w: &WorldState, seeker: NationId, th: TheatreId) -> Vec<NationId> {
+    theatre(w, th)
+        .access_hosts
+        .iter()
+        .copied()
+        .filter(|h| *h != seeker)
+        .filter(|h| !already_granted(w, *h, seeker, th))
+        .filter(|h| w.nation_opt(*h).map_or(false, |n| n.alive))
+        .collect()
 }
 
 /// Swap a departed federation out of its theatre and seat its successors in its
