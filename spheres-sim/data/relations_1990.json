@@ -169,6 +169,62 @@
         { "a": "Vietnam", "b": "SouthKorea", "value": -10.0 },
         { "a": "Vietnam", "b": "Poland", "value": 25.0 }
       ]
+    },
+    {
+      "note": [
+        "The Maghreb, eleven months after the Arab Maghreb Union was signed at Marrakesh on 17 February 1989. The treaty is real and the warmth it records is real, but it sits on top of the Western Sahara, which is why Algeria and Morocco are the one negative dyad inside it: Algeria armed and housed POLISARIO at Tindouf, the land border had been shut from 1976 to 1988, and the union is the truce rather than the settlement. Tunisia is on good terms with everyone because that has been its entire foreign policy since 1956, and its distance from Libya is the residue of the failed Djerba union of 1974 and the mass expulsion of Tunisian workers in 1985."
+      ],
+      "pairs": [
+        { "a": "Algeria", "b": "Morocco", "value": -20.0 },
+        { "a": "Algeria", "b": "Tunisia", "value": 45.0 },
+        { "a": "Algeria", "b": "Libya", "value": 30.0 },
+        { "a": "Morocco", "b": "Tunisia", "value": 40.0 },
+        { "a": "Morocco", "b": "Libya", "value": 10.0 },
+        { "a": "Tunisia", "b": "Libya", "value": 20.0 }
+      ]
+    },
+    {
+      "note": [
+        "North Africa outward. Libya is the outlier of the period: Washington bombed Tripoli and Benghazi in April 1986, London had broken relations after WPC Yvonne Fletcher was shot from the People's Bureau in 1984, Paris had fought it by proxy in Chad until 1987, and Cairo had fought it directly in 1977 — while Moscow was the supplier of essentially the whole inventory. Algeria kept the Soviet arms relationship and the non-aligned posture it earned mediating the Algiers Accords of 1981. Morocco and Tunisia are the West's clients in the region, but scored below the NATO dyads and below Cairo's 60 with Washington: Morocco was not designated a major non-NATO ally until 2004 and Tunisia not until 2015. Rabat's quiet channel to Israel is why Morocco is the least hostile Arab capital on that row: Shimon Peres was received at Ifrane in July 1986."
+      ],
+      "pairs": [
+        { "a": "Libya", "b": "USA", "value": -75.0 },
+        { "a": "Libya", "b": "UK", "value": -65.0 },
+        { "a": "Libya", "b": "France", "value": -35.0 },
+        { "a": "Libya", "b": "USSR", "value": 40.0 },
+        { "a": "Libya", "b": "Egypt", "value": -25.0 },
+        { "a": "Libya", "b": "Israel", "value": -85.0 },
+        { "a": "Libya", "b": "Iran", "value": 25.0 },
+        { "a": "Algeria", "b": "USSR", "value": 35.0 },
+        { "a": "Algeria", "b": "France", "value": 20.0 },
+        { "a": "Algeria", "b": "USA", "value": 10.0 },
+        { "a": "Algeria", "b": "Israel", "value": -65.0 },
+        { "a": "Algeria", "b": "Egypt", "value": 25.0 },
+        { "a": "Morocco", "b": "France", "value": 50.0 },
+        { "a": "Morocco", "b": "USA", "value": 40.0 },
+        { "a": "Morocco", "b": "SaudiArabia", "value": 40.0 },
+        { "a": "Morocco", "b": "Egypt", "value": 35.0 },
+        { "a": "Morocco", "b": "Israel", "value": -15.0 },
+        { "a": "Tunisia", "b": "France", "value": 45.0 },
+        { "a": "Tunisia", "b": "USA", "value": 30.0 },
+        { "a": "Tunisia", "b": "Egypt", "value": 30.0 },
+        { "a": "Tunisia", "b": "Israel", "value": -55.0 }
+      ]
+    },
+    {
+      "note": [
+        "Sudan seven months after Omar al-Bashir's coup. The National Islamic Front turned Khartoum toward Tehran and Baghdad and away from the Gulf patrons who had funded it under Nimeiry and Sadiq al-Mahdi; backing Iraq over Kuwait in August 1990 finished the Saudi relationship and most of the Western one. Egypt is the near neighbour that shares the river and cannot afford to lose it, and the relationship was correct in January 1990 and openly hostile within three years."
+      ],
+      "pairs": [
+        { "a": "Sudan", "b": "Egypt", "value": 20.0 },
+        { "a": "Sudan", "b": "Iran", "value": 30.0 },
+        { "a": "Sudan", "b": "Iraq", "value": 30.0 },
+        { "a": "Sudan", "b": "SaudiArabia", "value": -10.0 },
+        { "a": "Sudan", "b": "USA", "value": -25.0 },
+        { "a": "Sudan", "b": "UK", "value": -10.0 },
+        { "a": "Sudan", "b": "Libya", "value": 35.0 },
+        { "a": "Sudan", "b": "Israel", "value": -60.0 }
+      ]
     }
   ]
 }
