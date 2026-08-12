@@ -1,0 +1,38 @@
+{
+  "id": "Canada",
+  "name": "Canada",
+  "system": "Market",
+  "authoritarianism": 0.08,
+  "economy": {
+    "gdp_bn": 596.0,
+    "population_m": 27.7,
+    "tfp_trend": 0.009,
+    "inflation": 0.048,
+    "interest_rate": 0.13,
+    "tax_rate": 0.42,
+    "mil_spend_gdp": 0.02,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.185,
+    "debt_gdp": 0.73,
+    "oil_mbd": 1.55,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 66.0,
+    "separatism": 0.35
+  },
+  "military": {
+    "strength": 12.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $596bn current US$ and population 27.7m (World Bank national accounts, 1990).",
+    "Inflation 4.8%: Statistics Canada CPI, annual average 1990. Interest rate 0.13 is the Bank of Canada bank rate, which averaged about 13% over 1990 and peaked at 14.05% in May; John Crow's zero-inflation target and the defence of the dollar kept it far above the US rate.",
+    "Tax 42% of GDP is total general-government revenue (federal, provincial, municipal, CPP/QPP) on the OECD basis; the GST was legislated in 1990 and took effect 1 January 1991.",
+    "Defence 2.0% of GDP: NATO and NORAD member with a mechanised brigade group and air division in Germany. Strength 12 reflects 87,000 regulars, no strategic reach and no nuclear weapons - a large NATO contributor, not a power.",
+    "Debt 73% of GDP is general-government gross financial liabilities (OECD, 1990); federal net debt alone was about 55%.",
+    "Oil 1.55 mbd is 1990 crude oil production; Canadian totals including NGLs and synthetic crude run near 2.0 mbd (BP Statistical Review).",
+    "Separatism 0.35: the Meech Lake Accord died on 23 June 1990, the Bloc Quebecois was founded that summer, Quebec sovereignty polling passed 60%, and the Oka standoff ran July-September. Stability 66 records a constitutional crisis inside an otherwise settled democracy.",
+    "Investment shares: gross fixed capital formation was about 21.5% of GDP in 1990, split roughly 3% public and 18.5% private (Statistics Canada)."
+  ]
+}
