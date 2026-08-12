@@ -1,5 +1,9 @@
 use serde::{Deserialize, Serialize};
 
+pub use crate::nations::{
+    adjacent, all_nations, claim_share, majors, nation_count, patrons, registry, start_nations,
+    successor_nations, Claim, NationDef, NationId, NationRow, ROSTER,
+};
 use crate::tech::TechState;
 
 /// SplitMix64 — the single seeded RNG. Determinism is sacred.
@@ -31,115 +35,6 @@ impl Rng {
     }
 }
 
-#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub enum NationId {
-    USA, USSR, Russia, Ukraine, China, Japan, Germany, UK, France, Italy,
-    India, Pakistan, Iraq, Kuwait, SaudiArabia, Iran, SouthKorea, Poland,
-    Brazil, Indonesia, Egypt, Israel, Turkey, Nigeria, Vietnam,
-    Yugoslavia, Serbia, Croatia, Slovenia, Bosnia,
-}
-pub const ALL_START_NATIONS: [NationId; 24] = [
-    NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
-    NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
-    NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
-    NationId::SaudiArabia, NationId::Iran, NationId::SouthKorea, NationId::Poland,
-    NationId::Brazil, NationId::Indonesia, NationId::Egypt, NationId::Israel,
-    NationId::Turkey, NationId::Nigeria, NationId::Vietnam,
-    NationId::Yugoslavia,
-];
-/// States that only exist if a federation comes apart.
-pub const SUCCESSOR_NATIONS: [NationId; 6] = [
-    NationId::Russia, NationId::Ukraine, NationId::Serbia, NationId::Croatia,
-    NationId::Slovenia, NationId::Bosnia,
-];
-
-impl NationId {
-    pub fn name(&self) -> &'static str {
-        match self {
-            NationId::USA => "United States",
-            NationId::USSR => "Soviet Union",
-            NationId::Russia => "Russia",
-            NationId::Ukraine => "Ukraine",
-            NationId::China => "China",
-            NationId::Japan => "Japan",
-            NationId::Germany => "Germany",
-            NationId::UK => "United Kingdom",
-            NationId::France => "France",
-            NationId::Italy => "Italy",
-            NationId::India => "India",
-            NationId::Pakistan => "Pakistan",
-            NationId::Iraq => "Iraq",
-            NationId::Kuwait => "Kuwait",
-            NationId::SaudiArabia => "Saudi Arabia",
-            NationId::Iran => "Iran",
-            NationId::SouthKorea => "South Korea",
-            NationId::Poland => "Poland",
-            NationId::Brazil => "Brazil",
-            NationId::Indonesia => "Indonesia",
-            NationId::Egypt => "Egypt",
-            NationId::Israel => "Israel",
-            NationId::Turkey => "Turkey",
-            NationId::Nigeria => "Nigeria",
-            NationId::Vietnam => "Vietnam",
-            NationId::Yugoslavia => "Yugoslavia",
-            NationId::Serbia => "Serbia",
-            NationId::Croatia => "Croatia",
-            NationId::Slovenia => "Slovenia",
-            NationId::Bosnia => "Bosnia",
-        }
-    }
-    pub fn parse(s: &str) -> Option<NationId> {
-        let t = s.trim().to_lowercase();
-        Some(match t.as_str() {
-            "usa" | "us" | "united states" | "america" => NationId::USA,
-            "ussr" | "soviet union" | "soviets" => NationId::USSR,
-            "russia" => NationId::Russia,
-            "ukraine" | "ukr" => NationId::Ukraine,
-            "china" | "prc" => NationId::China,
-            "japan" => NationId::Japan,
-            "germany" => NationId::Germany,
-            "uk" | "britain" | "united kingdom" => NationId::UK,
-            "france" => NationId::France,
-            "italy" => NationId::Italy,
-            "india" => NationId::India,
-            "pakistan" => NationId::Pakistan,
-            "iraq" => NationId::Iraq,
-            "kuwait" => NationId::Kuwait,
-            "saudi arabia" | "saudi" | "ksa" => NationId::SaudiArabia,
-            "iran" => NationId::Iran,
-            "south korea" | "korea" | "rok" => NationId::SouthKorea,
-            "poland" => NationId::Poland,
-            "brazil" | "bra" => NationId::Brazil,
-            "indonesia" | "idn" => NationId::Indonesia,
-            "egypt" | "egy" | "uar" => NationId::Egypt,
-            "israel" | "isr" => NationId::Israel,
-            "turkey" | "turkiye" | "tur" => NationId::Turkey,
-            "nigeria" | "nga" => NationId::Nigeria,
-            "vietnam" | "viet nam" | "vnm" => NationId::Vietnam,
-            "yugoslavia" | "sfry" | "yugo" => NationId::Yugoslavia,
-            "serbia" | "serbia and montenegro" | "fry" => NationId::Serbia,
-            "croatia" => NationId::Croatia,
-            "slovenia" => NationId::Slovenia,
-            "bosnia" | "bosnia and herzegovina" | "bih" => NationId::Bosnia,
-            _ => return None,
-        })
-    }
-}
-
-/// Every nation id, in declaration order. The index into this array is the
-/// index into the relations matrix, so the two must never drift apart.
-pub const ALL_NATION_IDS: [NationId; NATION_COUNT] = [
-    NationId::USA, NationId::USSR, NationId::Russia, NationId::Ukraine,
-    NationId::China, NationId::Japan, NationId::Germany, NationId::UK,
-    NationId::France, NationId::Italy, NationId::India, NationId::Pakistan,
-    NationId::Iraq, NationId::Kuwait, NationId::SaudiArabia, NationId::Iran,
-    NationId::SouthKorea, NationId::Poland, NationId::Brazil, NationId::Indonesia,
-    NationId::Egypt, NationId::Israel, NationId::Turkey, NationId::Nigeria,
-    NationId::Vietnam, NationId::Yugoslavia, NationId::Serbia, NationId::Croatia,
-    NationId::Slovenia, NationId::Bosnia,
-];
-pub const NATION_COUNT: usize = 30;
-
 /// Symmetric relations, held as a dense lower triangle so a lookup is an index
 /// rather than a search.
 ///
@@ -161,14 +56,15 @@ pub struct Relations {
 impl Relations {
     fn slot(a: NationId, b: NationId) -> usize {
         let (hi, lo) = {
-            let (x, y) = (a as usize, b as usize);
+            let (x, y) = (a.index(), b.index());
             if x >= y { (x, y) } else { (y, x) }
         };
         hi * (hi + 1) / 2 + lo
     }
     fn ensure(&mut self) {
-        if self.tri.len() != NATION_COUNT * (NATION_COUNT + 1) / 2 {
-            self.tri.resize(NATION_COUNT * (NATION_COUNT + 1) / 2, 0.0);
+        let want = nation_count() * (nation_count() + 1) / 2;
+        if self.tri.len() != want {
+            self.tri.resize(want, 0.0);
         }
     }
     pub fn get(&self, a: NationId, b: NationId) -> f64 {
@@ -190,7 +86,7 @@ impl Relations {
                 hi += 1;
             }
             let lo = i - hi * (hi + 1) / 2;
-            match (ALL_NATION_IDS.get(hi), ALL_NATION_IDS.get(lo)) {
+            match (all_nations().get(hi), all_nations().get(lo)) {
                 (Some(a), Some(b)) => Some((*a, *b, v)),
                 _ => None,
             }
@@ -210,7 +106,7 @@ impl Serialize for Relations {
                 hi += 1;
             }
             let lo = i - hi * (hi + 1) / 2;
-            if let (Some(a), Some(b)) = (ALL_NATION_IDS.get(hi), ALL_NATION_IDS.get(lo)) {
+            if let (Some(a), Some(b)) = (all_nations().get(hi), all_nations().get(lo)) {
                 out.push((*b, *a, *v));
             }
         }
@@ -220,11 +116,18 @@ impl Serialize for Relations {
 
 impl<'de> Deserialize<'de> for Relations {
     fn deserialize<D: serde::Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
-        let triples = Vec::<(NationId, NationId, f64)>::deserialize(d)?;
+        // Read the codes as plain strings and drop any this build cannot
+        // resolve, rather than failing the whole load or — far worse — letting
+        // a shifted roster reinterpret a pair as its neighbour. Same rule the
+        // technology tree follows for an id from a later build, and the same
+        // bug it was written to prevent.
+        let triples = Vec::<(String, String, f64)>::deserialize(d)?;
         let mut r = Relations::default();
         r.ensure();
         for (a, b, v) in triples {
-            r.set(a, b, v);
+            if let (Some(a), Some(b)) = (NationId::from_code(&a), NationId::from_code(&b)) {
+                r.set(a, b, v);
+            }
         }
         Ok(r)
     }

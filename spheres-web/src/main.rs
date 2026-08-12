@@ -188,7 +188,7 @@ fn classify(h: &str) -> &'static str {
 fn mentioned(h: &str) -> Vec<NationId> {
     let hay = h.to_lowercase(); // dissolution headlines shout in capitals
     let mut out = vec![];
-    for id in ALL_START_NATIONS.iter().chain(SUCCESSOR_NATIONS.iter()) {
+    for id in all_nations() {
         if hay.contains(&id.name().to_lowercase()) && !out.contains(id) {
             out.push(*id);
         }

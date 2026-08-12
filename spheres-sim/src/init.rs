@@ -3,8 +3,8 @@ use crate::world::*;
 
 /// Transcribed-not-invented: approximate 1990 historical starting conditions.
 pub fn world_1990(rules: GameRules) -> WorldState {
+    use crate::nations::ids::*;
     use EconomySystem::*;
-    use NationId::*;
 
     // (id, system, auth, gdp $bn, pop m, tfp, infl, rate, tax, mil%, state_inv%, priv_inv%, debt%, oil mbd, stability, separatism, mil, nuclear)
     let rows: Vec<Nation> = vec![

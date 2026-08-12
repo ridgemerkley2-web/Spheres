@@ -1,5 +1,7 @@
+pub mod dyads;
 pub mod economy;
 pub mod init;
+pub mod nations;
 pub mod politics;
 pub mod statecraft;
 pub mod tech;
@@ -296,6 +298,50 @@ mod tests {
     }
 
     #[test]
+    fn saves_name_nations_rather_than_numbering_them() {
+        // The same lesson as `saves_name_technologies_rather_than_numbering_them`,
+        // and the reason `NationId` serializes as its code. A nation's id is an
+        // index into the roster and into the relations matrix; inserting one
+        // country in the middle of the roster moves every later index. A save
+        // that stored those indices would come back describing a different
+        // world, with nothing to detect it.
+        let mut w = world_1990(GameRules::default());
+        run_months(&mut w, 120);
+        let text = save(&w);
+
+        assert!(text.contains("\"id\": \"USA\""), "a nation's id is not written by name");
+        // The relations matrix in particular: dense in memory, named on disk.
+        assert!(
+            text.contains("\"USSR\""),
+            "the relations triples are not carrying codes"
+        );
+        // No nation is written as a bare number anywhere.
+        assert!(!text.contains("\"id\": 0"), "save is storing raw roster indices");
+
+        // A code from a build with a country this one does not have must be
+        // dropped from the relations matrix rather than resolved onto its
+        // neighbour, leaving a world that still loads and still runs.
+        const GHOST: &str = "xx_nation_from_a_later_build";
+        let doctored = text.replacen(
+            "\"relations\": [",
+            &format!("\"relations\": [\n    [\n      \"{}\",\n      \"USA\",\n      -40.0\n    ],", GHOST),
+            1,
+        );
+        assert_ne!(doctored, text, "the save has no relations to doctor");
+        let mut reloaded =
+            load(&doctored).expect("a save naming an unknown nation must still load");
+        // The ghost was dropped, not mapped onto whoever holds slot zero.
+        assert_eq!(
+            reloaded.relation(NationId::USA, NationId::USSR),
+            w.relation(NationId::USA, NationId::USSR),
+            "an unresolvable code was reinterpreted as a real nation"
+        );
+        run_months(&mut reloaded, 12);
+        for n in reloaded.nations.iter().filter(|n| n.alive) {
+            assert!(n.gdp.is_finite() && n.gdp > 0.0, "{:?} broke after reload", n.id);
+        }
+    }
+
     #[test]
     fn the_frontier_does_not_run_away() {
         // The guard that was missing, and whose absence let the world run at
@@ -378,7 +424,21 @@ mod tests {
         // the platform and do not simply re-pin the number.
         //
         // Pinned on: Windows, x86_64-pc-windows-gnu, rustc 1.97.1.
-        const GOLDEN: u64 = 0xb675826e8941683d;
+        //
+        // RE-PINNED, deliberately, when war appetite stopped being a table of
+        // named pairs and became a function of borders, claims, relations and
+        // the two governments' own condition (`dyads.rs`). That changes which
+        // dyads are even candidates each month, so it changes the sequence of
+        // die rolls and therefore every subsequent number in the world — a hash
+        // move is the expected consequence, not evidence of a bug.
+        //
+        // The identity half of the same change is separately proven NOT to move
+        // it: with the runtime `NationId` in place and master's literal dyad
+        // table restored on top, this test reproduces the previous fingerprint
+        // 0xb675826e8941683d exactly, and `run 35 1990` reproduces the 2025
+        // league table to the digit (USA 16004, China 7050, Japan 6907,
+        // Germany 5018). The whole of the movement below is the derived model.
+        const GOLDEN: u64 = 0x19c5c5dafb18dbd9;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -911,7 +971,7 @@ mod tests {
             for _ in 0..360 {
                 for h in tick_month(&mut w, &[]) {
                     if h.contains("honours its defence pact")
-                        && politics::PATRONS.iter().any(|p| h.starts_with(p.name()))
+                        && patrons().iter().any(|p| h.starts_with(p.name()))
                     {
                         saw = true;
                     }

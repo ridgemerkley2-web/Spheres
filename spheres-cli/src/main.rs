@@ -61,7 +61,7 @@ fn report(w: &WorldState) {
 fn play(seed: u64) {
     println!("=== SPHERES — January 1990 ===\n");
     println!("Playable nations:");
-    for id in ALL_START_NATIONS {
+    for id in start_nations() {
         println!("  {}", id.name());
     }
     let nation = loop {
@@ -107,9 +107,8 @@ fn play_loop(mut w: WorldState) {
             "status" => briefing(&w, me),
             "world" => report(&w),
             "relations" => {
-                let mut rels: Vec<(NationId, f64)> = ALL_START_NATIONS
+                let mut rels: Vec<(NationId, f64)> = all_nations()
                     .iter()
-                    .chain(std::iter::once(&NationId::Russia))
                     .filter(|x| **x != me && w.nations.iter().any(|n| n.id == **x && n.alive))
                     .map(|x| (*x, w.relation(me, *x)))
                     .collect();
