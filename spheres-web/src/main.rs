@@ -5,6 +5,7 @@
 //! serves a browser UI that renders it. No game logic lives here.
 
 use spheres_sim::init::world_1990;
+use spheres_sim::stratagems;
 use spheres_sim::world::*;
 use spheres_sim::{apply_command, load, save, tick_month, Command};
 use std::sync::Mutex;
@@ -260,6 +261,35 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
     })
 }
 
+/// What the world is offering one government this month, at the price the sim
+/// charges. Availability, the reason, and the cost all come from
+/// `spheres_sim::stratagems` — the server invents none of them, and `affordable`
+/// is only the same comparison `apply_command` makes when it charges, surfaced
+/// early so the button can be honest before it is pressed.
+fn stratagems_json(w: &WorldState, id: NationId) -> serde_json::Value {
+    let held = w.nation_opt(id).map_or(0.0, |n| n.political_capital);
+    let offers: Vec<serde_json::Value> = stratagems::available(w, id)
+        .into_iter()
+        .map(|s| {
+            serde_json::json!({
+                "id": s.id,
+                "name": s.name,
+                "blurb": s.blurb,
+                "because": s.because,
+                "cost": s.cost,
+                "affordable": held >= s.cost,
+                "shortfall": (s.cost - held).max(0.0),
+            })
+        })
+        .collect();
+    serde_json::json!({
+        "nation": format!("{:?}", id),
+        "nation_name": id.name(),
+        "political_capital": held,
+        "offers": offers,
+    })
+}
+
 fn round(v: f64, places: i32) -> f64 {
     if !v.is_finite() {
         return 0.0;
@@ -409,6 +439,10 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "wars": wars,
         "log": log,
         "flags": w.flags,
+        // Carried on every state payload rather than fetched separately, because
+        // the offer list changes with the world: a month that breaks the
+        // inflation closes the peg, and the panel must not be a frame behind.
+        "stratagems": w.player.map(|p| stratagems_json(w, p)),
         "interrupt": interrupt,
     })
 }
@@ -431,6 +465,12 @@ fn parse_command(v: &serde_json::Value, me: NationId) -> Option<Command> {
         "lift" => Command::LiftSanction { imposer: me, target: target()? },
         "improve" => Command::ImproveRelations { from: me, to: target()? },
         "war" => Command::DeclareWar { attacker: me, defender: target()? },
+        // The stratagem carries an id rather than a value or a target; the sim
+        // re-checks availability and charges the political capital itself.
+        "stratagem" => Command::EnactStratagem {
+            nation: me,
+            id: v.get("id")?.as_str()?.to_string(),
+        },
         _ => return None,
     })
 }
@@ -501,6 +541,24 @@ fn main() {
             (Method::Get, "/api/state") => {
                 let g = game.lock().unwrap();
                 json_response(state_json(&g, None))
+            }
+            (Method::Get, "/api/stratagems") => {
+                // Defaults to the player; `?nation=Poland` asks what the world is
+                // offering somebody else, which is the same question the map
+                // already answers for every other quantity.
+                let asked = request
+                    .url()
+                    .split_once("nation=")
+                    .and_then(|(_, q)| NationId::parse(q.split('&').next().unwrap_or("")));
+                let g = game.lock().unwrap();
+                match asked.or(g.world.player) {
+                    Some(id) => json_response(stratagems_json(&g.world, id)),
+                    None => json_response(serde_json::json!({
+                        "error": "no nation chosen",
+                        "political_capital": 0.0,
+                        "offers": [],
+                    })),
+                }
             }
             (Method::Get, "/api/history") => {
                 let only = request
@@ -674,6 +732,131 @@ mod tests {
             }
             assert!(s["t0"].as_u64().unwrap() as usize + len <= months);
         }
+    }
+
+    /// The offer list is the world's, not the server's: put a nation in the state
+    /// that opens a stratagem and it must appear, priced, with the reason
+    /// attached.
+    #[test]
+    fn the_world_offers_the_player_something_and_says_why() {
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        {
+            let n = g.world.nation_mut(NationId::Poland);
+            n.inflation = 0.45;
+            n.political_capital = 90.0;
+        }
+        let j = stratagems_json(&g.world, NationId::Poland);
+        assert_eq!(j["nation_name"], "Poland");
+        assert_eq!(j["political_capital"], 90.0);
+        let offers = j["offers"].as_array().unwrap();
+        let peg = offers
+            .iter()
+            .find(|o| o["id"] == "currency_peg")
+            .expect("inflation above 15% opens the peg");
+        assert_eq!(peg["cost"], 26.0);
+        assert_eq!(peg["affordable"], true);
+        // Every field the panel prints must be non-empty, or the player is asked
+        // to spend a term's standing on a blank card.
+        for k in ["name", "blurb", "because"] {
+            assert!(!peg[k].as_str().unwrap().is_empty(), "{} missing", k);
+        }
+    }
+
+    /// A price the player cannot pay must read as unaffordable *before* they
+    /// press it, and must still be refused if they do.
+    #[test]
+    fn a_price_the_player_cannot_pay_is_marked_and_refused() {
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        {
+            let n = g.world.nation_mut(NationId::Poland);
+            n.inflation = 0.45;
+            n.political_capital = 10.0;
+        }
+        let j = stratagems_json(&g.world, NationId::Poland);
+        let peg = j["offers"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|o| o["id"] == "currency_peg")
+            .unwrap()
+            .clone();
+        assert_eq!(peg["affordable"], false);
+        assert_eq!(peg["shortfall"], 16.0);
+        let cmd = Command::EnactStratagem {
+            nation: NationId::Poland,
+            id: "currency_peg".into(),
+        };
+        assert!(apply_command(&mut g.world, &cmd).is_err(), "it must refuse");
+    }
+
+    /// The verb the panel presses. A mechanic the player cannot reach from their
+    /// seat is not a mechanic: this asserts the whole route, from the flat JSON
+    /// the button posts to the world actually moving and the capital being spent.
+    #[test]
+    fn the_button_reaches_the_sim_through_the_command_route() {
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        {
+            let n = g.world.nation_mut(NationId::Poland);
+            n.inflation = 0.45;
+            n.political_capital = 90.0;
+        }
+        let posted = serde_json::json!({ "kind": "stratagem", "id": "currency_peg" });
+        let cmd = parse_command(&posted, NationId::Poland).expect("the UI's shape must parse");
+        match &cmd {
+            Command::EnactStratagem { nation, id } => {
+                assert_eq!(*nation, NationId::Poland);
+                assert_eq!(id, "currency_peg");
+            }
+            other => panic!("wrong command: {:?}", other),
+        }
+        apply_command(&mut g.world, &cmd).unwrap();
+        let n = g.world.nation(NationId::Poland);
+        assert!(n.inflation <= 0.06, "the peg must break the inflation");
+        assert_eq!(n.political_capital, 64.0, "26 political capital spent");
+        // And having been taken, it is no longer on offer.
+        let after = stratagems_json(&g.world, NationId::Poland);
+        assert!(after["offers"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .all(|o| o["id"] != "currency_peg"));
+    }
+
+    /// Every state payload carries the offers, so the panel cannot lag the world
+    /// by a month after the clock moves.
+    #[test]
+    fn the_state_payload_carries_the_offers() {
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        g.world.nation_mut(NationId::Poland).inflation = 0.45;
+        let s = state_json(&g, None);
+        assert_eq!(s["stratagems"]["nation"], "Poland");
+        assert!(s["stratagems"]["offers"].as_array().unwrap().len() >= 1);
+        // A spectator with no nation gets null rather than a fabricated menu.
+        let spectator = Game::new(1990, None);
+        assert!(state_json(&spectator, None)["stratagems"].is_null());
+    }
+
+    /// The surface itself. These strings are the panel's structure: if the markup
+    /// or the wiring is renamed away, this fails rather than shipping a model
+    /// with no verb attached to it.
+    #[test]
+    fn the_panel_exists_and_is_wired_to_the_route() {
+        // The card, one row per offer, and the four things a row must say.
+        assert!(INDEX.contains("function stratagemsHtml"));
+        assert!(INDEX.contains("class=\"strat"));
+        assert!(INDEX.contains("data-strat="));
+        assert!(INDEX.contains("class=\"why\""));
+        // The balance, prominently: in the header and at the head of the panel.
+        assert!(INDEX.contains("id=\"hdrPc\""));
+        assert!(INDEX.contains("class=\"pcbig\""));
+        // The verb, and the route it goes down.
+        assert!(INDEX.contains("window.enact"));
+        assert!(INDEX.contains("kind: \"stratagem\""));
+        assert!(INDEX.contains("/api/command"));
+        // Read from the payload the server actually sends.
+        assert!(INDEX.contains("S.stratagems"));
+        // No CDN, no build step.
+        assert!(!INDEX.contains("https://"), "the UI must stay self-contained");
     }
 
     #[test]
