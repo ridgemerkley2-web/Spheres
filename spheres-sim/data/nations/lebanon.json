@@ -1,0 +1,41 @@
+{
+  "id": "Lebanon",
+  "name": "Lebanon",
+  "system": "Market",
+  "authoritarianism": 0.5,
+  "economy": {
+    "gdp_bn": 2.84,
+    "population_m": 3.6,
+    "tfp_trend": 0.01,
+    "inflation": 0.68,
+    "interest_rate": 0.399,
+    "tax_rate": 0.06,
+    "mil_spend_gdp": 0.076,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.28,
+    "debt_gdp": 0.63,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 15.0,
+    "separatism": 0.6
+  },
+  "military": {
+    "strength": 1.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $2.84bn and population 3.60m: World Bank WDI, NY.GDP.MKTP.CD and SP.POP.TOTL, Lebanon, 1990. This is the trough of the civil war; the series more than doubles by 1993. Lebanese national accounts effectively ceased during the war and the 1990 figure is a reconstruction, not a survey.",
+    "Inflation 0.68 is an estimate and the least secure figure in this file. The World Bank publishes no CPI print for Lebanon in any year between 1988 and 1996. What is documented is the currency: the lira went from roughly 500 to the dollar at the start of 1990 to over 1,000 by the end, en route to about 2,800 in September 1992, and CPI inflation had peaked near 500% in 1987. 68% is entered as a defensible figure for 1990 and is flagged as unverified.",
+    "Interest rate 39.9%: World Bank FR.INR.LEND, Lebanon, 1990 — a real published lending rate, unusually for this country and this year.",
+    "Tax 6% of GDP: an estimate. The central government collected almost nothing in 1990; the ports of Beirut, Jounieh and Sidon and the customs revenue that went with them were held by militias, and the Fifth Bureau under Michel Aoun and the Hrawi cabinet in West Beirut were running two separate treasuries.",
+    "Defence 7.6% of GDP: World Bank MS.MIL.XPND.GD.ZS, 1990. That is the state's army only. Militia spending — Lebanese Forces, Amal, Hezbollah, the PSP, the South Lebanon Army — was larger and was not state expenditure.",
+    "Debt 63% of GDP: total external debt $1.787bn (World Bank DT.DOD.DECT.CD, 1990) against the $2.84bn GDP above; the same series reads 51.6% of GNI.",
+    "Investment: gross fixed capital formation 31.3% of GDP (NE.GDI.FTOT.ZS, 1990), split 3.0 public and 28.0 private. The high private share is households and firms rebuilding what shelling destroyed, not new capacity, and the state built nothing.",
+    "Oil 0.0. Lebanon has never produced.",
+    "Stability 15 is the lowest in the roster and is not an exaggeration. In January 1990 Lebanon had two rival governments — Elias Hrawi's, recognised and installed under the Taif Agreement of 22 October 1989, and Michel Aoun's military cabinet holding the presidential palace at Baabda — and Aoun opened his war of elimination against the Lebanese Forces on 31 January 1990.",
+    "Separatism 0.60: the country was partitioned in fact. Syria held the Bekaa and the north with roughly 40,000 troops, Israel held a 'security zone' along the southern border through the South Lebanon Army, Hezbollah and Amal held the Shia south and the Beirut southern suburbs, the Lebanese Forces held the Christian enclave, and the PSP held the Chouf.",
+    "Military index 1.0: the Lebanese Armed Forces had split along confessional lines in 1984 and existed in January 1990 as two rival commands of roughly 15,000-20,000 men each, one of which was besieging the other."
+  ]
+}

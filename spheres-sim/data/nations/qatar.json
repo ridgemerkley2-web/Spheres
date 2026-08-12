@@ -1,0 +1,41 @@
+{
+  "id": "Qatar",
+  "name": "Qatar",
+  "system": "Market",
+  "authoritarianism": 0.85,
+  "economy": {
+    "gdp_bn": 7.36,
+    "population_m": 0.44,
+    "tfp_trend": 0.01,
+    "inflation": 0.03,
+    "interest_rate": 0.095,
+    "tax_rate": 0.05,
+    "mil_spend_gdp": 0.107,
+    "state_invest_gdp": 0.11,
+    "priv_invest_gdp": 0.09,
+    "debt_gdp": 0.2,
+    "oil_mbd": 0.396,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 72.0,
+    "separatism": 0.02
+  },
+  "military": {
+    "strength": 1.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $7.36bn and population 0.44m: World Bank WDI, NY.GDP.MKTP.CD and SP.POP.TOTL, Qatar, 1990. Qataris were roughly a quarter of that population.",
+    "Inflation 3.0%: World Bank FP.CPI.TOTL.ZG, Qatar, 1990.",
+    "Interest rate 9.5%: World Bank FR.INR.LEND, Qatar, 1990.",
+    "Tax 5% of GDP: no income tax on individuals, no VAT; revenue is hydrocarbon. Follows the roster's treatment of Kuwait (0.05).",
+    "Defence 10.7% of GDP: World Bank MS.MIL.XPND.GD.ZS, Qatar, 1990 — a very large share for an armed force of about 7,000 men, which is what buying French Mirages and British armour for a country of 440,000 people looks like as a ratio.",
+    "Debt 20% of GDP is an estimate; no published series for 1990. Qatar borrowed through the late-1980s oil slump and was carrying moderate obligations, but nothing resembling a debt problem.",
+    "Investment: no World Bank capital formation series for 1990. Split 11.0 public and 9.0 private. Estimate. Government consumption alone was 32.9% of GDP (NE.CON.GOVT.ZS, 1990), the highest ratio in this region.",
+    "Oil 0.396 mbd: Energy Institute Statistical Review of World Energy via Our World in Data, 1990 (245.7 TWh), converted at 620.5 TWh per million barrels a day. Qatar's transformation is gas, not oil, and it has not happened yet: the North Field was discovered in 1971 but the first LNG cargo does not ship until December 1996.",
+    "Authoritarianism 0.85: Khalifa bin Hamad Al Thani had ruled since deposing his cousin in 1972 and would be deposed by his own son in 1995. The Advisory Council was appointed, parties were prohibited, and Qatar has never held a national legislative election.",
+    "Military index 1.0: about 7,000 men. Qatari armour fought at Khafji in January 1991, which is the entirety of its combat record in the period.",
+    "Stability 72 with separatism 0.02: a small, homogeneous citizenry and the highest per-capita income in the region. The instability here is dynastic, and this model reads dynastic risk through the pillars in government.rs rather than through this field."
+  ]
+}
