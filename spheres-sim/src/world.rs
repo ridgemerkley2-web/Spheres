@@ -41,63 +41,43 @@ pub enum NationId {
     Greece, Denmark, Norway, Finland, Ireland,
     Belarus, Kazakhstan, Uzbekistan, Georgia, Armenia, Azerbaijan,
     Lithuania, Latvia, Estonia, Moldova,
-}
-pub const ALL_START_NATIONS: [NationId; 36] = [
     Czechoslovakia, Hungary, Romania, Bulgaria, Albania, EastGermany,
-}
-pub const ALL_START_NATIONS: [NationId; 30] = [
     Argentina, Mexico, Chile, Colombia, Venezuela, Peru, Cuba, Bolivia,
     Ecuador, Uruguay,
-}
-pub const ALL_START_NATIONS: [NationId; 34] = [
     Syria, Jordan, Lebanon, UAE, Qatar, Oman, Yemen, Bahrain,
-}
-pub const ALL_START_NATIONS: [NationId; 32] = [
     Algeria, Morocco, Tunisia, Libya, Sudan,
-}
-pub const ALL_START_NATIONS: [NationId; 29] = [
     SouthAfrica, Ethiopia, Kenya, Ghana, Zaire, Angola, Zimbabwe, Tanzania,
     Uganda, Senegal, CoteDIvoire, Cameroon,
-}
-pub const ALL_START_NATIONS: [NationId; 36] = [
     Bangladesh, SriLanka, Nepal, Afghanistan, Myanmar,
-}
-pub const ALL_START_NATIONS: [NationId; 29] = [
     NorthKorea, Taiwan, Thailand, Malaysia, Singapore, Philippines,
     Cambodia, Laos, Mongolia,
-}
-pub const ALL_START_NATIONS: [NationId; 33] = [
     Canada, Australia, NewZealand,
 }
-pub const ALL_START_NATIONS: [NationId; 27] = [
+pub const ALL_START_NATIONS: [NationId; 94] = [
     NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
     NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
     NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
     NationId::SaudiArabia, NationId::Iran, NationId::SouthKorea, NationId::Poland,
     NationId::Brazil, NationId::Indonesia, NationId::Egypt, NationId::Israel,
-    NationId::Turkey, NationId::Nigeria, NationId::Vietnam,
-    NationId::Yugoslavia,
+    NationId::Turkey, NationId::Nigeria, NationId::Vietnam, NationId::Yugoslavia,
     NationId::Spain, NationId::Netherlands, NationId::Belgium, NationId::Sweden,
     NationId::Switzerland, NationId::Austria, NationId::Portugal, NationId::Greece,
     NationId::Denmark, NationId::Norway, NationId::Finland, NationId::Ireland,
-    NationId::Czechoslovakia, NationId::Hungary, NationId::Romania,
-    NationId::Bulgaria, NationId::Albania, NationId::EastGermany,
-    NationId::Argentina, NationId::Mexico, NationId::Chile, NationId::Colombia,
-    NationId::Venezuela, NationId::Peru, NationId::Cuba, NationId::Bolivia,
-    NationId::Ecuador, NationId::Uruguay,
+    NationId::Czechoslovakia, NationId::Hungary, NationId::Romania, NationId::Bulgaria,
+    NationId::Albania, NationId::EastGermany, NationId::Argentina, NationId::Mexico,
+    NationId::Chile, NationId::Colombia, NationId::Venezuela, NationId::Peru,
+    NationId::Cuba, NationId::Bolivia, NationId::Ecuador, NationId::Uruguay,
     NationId::Syria, NationId::Jordan, NationId::Lebanon, NationId::UAE,
     NationId::Qatar, NationId::Oman, NationId::Yemen, NationId::Bahrain,
     NationId::Algeria, NationId::Morocco, NationId::Tunisia, NationId::Libya,
-    NationId::Sudan,
-    NationId::SouthAfrica, NationId::Ethiopia, NationId::Kenya, NationId::Ghana,
-    NationId::Zaire, NationId::Angola, NationId::Zimbabwe, NationId::Tanzania,
-    NationId::Uganda, NationId::Senegal, NationId::CoteDIvoire, NationId::Cameroon,
-    NationId::Bangladesh, NationId::SriLanka, NationId::Nepal,
-    NationId::Afghanistan, NationId::Myanmar,
-    NationId::NorthKorea, NationId::Taiwan, NationId::Thailand,
-    NationId::Malaysia, NationId::Singapore, NationId::Philippines,
-    NationId::Cambodia, NationId::Laos, NationId::Mongolia,
-    NationId::Canada, NationId::Australia, NationId::NewZealand,
+    NationId::Sudan, NationId::SouthAfrica, NationId::Ethiopia, NationId::Kenya,
+    NationId::Ghana, NationId::Zaire, NationId::Angola, NationId::Zimbabwe,
+    NationId::Tanzania, NationId::Uganda, NationId::Senegal, NationId::CoteDIvoire,
+    NationId::Cameroon, NationId::Bangladesh, NationId::SriLanka, NationId::Nepal,
+    NationId::Afghanistan, NationId::Myanmar, NationId::NorthKorea, NationId::Taiwan,
+    NationId::Thailand, NationId::Malaysia, NationId::Singapore, NationId::Philippines,
+    NationId::Cambodia, NationId::Laos, NationId::Mongolia, NationId::Canada,
+    NationId::Australia, NationId::NewZealand,
 ];
 /// States that only exist if a federation comes apart.
 pub const SUCCESSOR_NATIONS: [NationId; 16] = [
@@ -353,50 +333,29 @@ pub const ALL_NATION_IDS: [NationId; NATION_COUNT] = [
     NationId::SouthKorea, NationId::Poland, NationId::Brazil, NationId::Indonesia,
     NationId::Egypt, NationId::Israel, NationId::Turkey, NationId::Nigeria,
     NationId::Vietnam, NationId::Yugoslavia, NationId::Serbia, NationId::Croatia,
-    NationId::Slovenia, NationId::Bosnia,
-    NationId::Spain, NationId::Netherlands, NationId::Belgium, NationId::Sweden,
-    NationId::Switzerland, NationId::Austria, NationId::Portugal, NationId::Greece,
-    NationId::Denmark, NationId::Norway, NationId::Finland, NationId::Ireland,
-];
-pub const NATION_COUNT: usize = 42;
-    NationId::Czechoslovakia, NationId::Hungary, NationId::Romania,
-    NationId::Bulgaria, NationId::Albania, NationId::EastGermany,
-];
-pub const NATION_COUNT: usize = 36;
-    NationId::Belarus, NationId::Kazakhstan, NationId::Uzbekistan,
-    NationId::Georgia, NationId::Armenia, NationId::Azerbaijan,
+    NationId::Slovenia, NationId::Bosnia, NationId::Spain, NationId::Netherlands,
+    NationId::Belgium, NationId::Sweden, NationId::Switzerland, NationId::Austria,
+    NationId::Portugal, NationId::Greece, NationId::Denmark, NationId::Norway,
+    NationId::Finland, NationId::Ireland, NationId::Belarus, NationId::Kazakhstan,
+    NationId::Uzbekistan, NationId::Georgia, NationId::Armenia, NationId::Azerbaijan,
     NationId::Lithuania, NationId::Latvia, NationId::Estonia, NationId::Moldova,
-];
-    NationId::Argentina, NationId::Mexico, NationId::Chile, NationId::Colombia,
-    NationId::Venezuela, NationId::Peru, NationId::Cuba, NationId::Bolivia,
-    NationId::Ecuador, NationId::Uruguay,
-];
-pub const NATION_COUNT: usize = 40;
+    NationId::Czechoslovakia, NationId::Hungary, NationId::Romania, NationId::Bulgaria,
+    NationId::Albania, NationId::EastGermany, NationId::Argentina, NationId::Mexico,
+    NationId::Chile, NationId::Colombia, NationId::Venezuela, NationId::Peru,
+    NationId::Cuba, NationId::Bolivia, NationId::Ecuador, NationId::Uruguay,
     NationId::Syria, NationId::Jordan, NationId::Lebanon, NationId::UAE,
     NationId::Qatar, NationId::Oman, NationId::Yemen, NationId::Bahrain,
+    NationId::Algeria, NationId::Morocco, NationId::Tunisia, NationId::Libya,
+    NationId::Sudan, NationId::SouthAfrica, NationId::Ethiopia, NationId::Kenya,
+    NationId::Ghana, NationId::Zaire, NationId::Angola, NationId::Zimbabwe,
+    NationId::Tanzania, NationId::Uganda, NationId::Senegal, NationId::CoteDIvoire,
+    NationId::Cameroon, NationId::Bangladesh, NationId::SriLanka, NationId::Nepal,
+    NationId::Afghanistan, NationId::Myanmar, NationId::NorthKorea, NationId::Taiwan,
+    NationId::Thailand, NationId::Malaysia, NationId::Singapore, NationId::Philippines,
+    NationId::Cambodia, NationId::Laos, NationId::Mongolia, NationId::Canada,
+    NationId::Australia, NationId::NewZealand,
 ];
-pub const NATION_COUNT: usize = 38;
-    NationId::Slovenia, NationId::Bosnia, NationId::Algeria, NationId::Morocco,
-    NationId::Tunisia, NationId::Libya, NationId::Sudan,
-];
-pub const NATION_COUNT: usize = 35;
-    NationId::SouthAfrica, NationId::Ethiopia, NationId::Kenya, NationId::Ghana,
-    NationId::Zaire, NationId::Angola, NationId::Zimbabwe, NationId::Tanzania,
-    NationId::Uganda, NationId::Senegal, NationId::CoteDIvoire, NationId::Cameroon,
-];
-pub const NATION_COUNT: usize = 42;
-    NationId::Bangladesh, NationId::SriLanka, NationId::Nepal,
-    NationId::Afghanistan, NationId::Myanmar,
-];
-pub const NATION_COUNT: usize = 35;
-    NationId::NorthKorea, NationId::Taiwan, NationId::Thailand,
-    NationId::Malaysia, NationId::Singapore, NationId::Philippines,
-    NationId::Cambodia, NationId::Laos, NationId::Mongolia,
-];
-pub const NATION_COUNT: usize = 39;
-    NationId::Canada, NationId::Australia, NationId::NewZealand,
-];
-pub const NATION_COUNT: usize = 33;
+pub const NATION_COUNT: usize = 110;
 
 /// Symmetric relations, held as a dense lower triangle so a lookup is an index
 /// rather than a search.
