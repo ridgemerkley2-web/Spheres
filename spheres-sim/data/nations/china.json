@@ -1,0 +1,32 @@
+{
+  "id": "China",
+  "name": "China",
+  "system": "Command",
+  "authoritarianism": 0.9,
+  "economy": {
+    "gdp_bn": 390.0,
+    "population_m": 1135.0,
+    "tfp_trend": 0.03,
+    "inflation": 0.031,
+    "interest_rate": 0.08,
+    "tax_rate": 0.22,
+    "mil_spend_gdp": 0.025,
+    "state_invest_gdp": 0.24,
+    "priv_invest_gdp": 0.06,
+    "debt_gdp": 0.08,
+    "oil_mbd": 2.8,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 62.0,
+    "separatism": 0.1
+  },
+  "military": {
+    "strength": 32.0,
+    "nuclear": true
+  },
+  "sources": [
+    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
+    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance."
+  ]
+}

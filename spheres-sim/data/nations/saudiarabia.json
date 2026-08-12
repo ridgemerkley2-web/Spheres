@@ -1,0 +1,32 @@
+{
+  "id": "SaudiArabia",
+  "name": "Saudi Arabia",
+  "system": "Market",
+  "authoritarianism": 0.85,
+  "economy": {
+    "gdp_bn": 117.0,
+    "population_m": 16.0,
+    "tfp_trend": 0.008,
+    "inflation": 0.021,
+    "interest_rate": 0.07,
+    "tax_rate": 0.08,
+    "mil_spend_gdp": 0.14,
+    "state_invest_gdp": 0.08,
+    "priv_invest_gdp": 0.09,
+    "debt_gdp": 0.35,
+    "oil_mbd": 6.4,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 66.0,
+    "separatism": 0.04
+  },
+  "military": {
+    "strength": 14.0,
+    "nuclear": false
+  },
+  "sources": [
+    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
+    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance."
+  ]
+}

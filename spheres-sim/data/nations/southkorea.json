@@ -1,0 +1,32 @@
+{
+  "id": "SouthKorea",
+  "name": "South Korea",
+  "system": "Market",
+  "authoritarianism": 0.35,
+  "economy": {
+    "gdp_bn": 280.0,
+    "population_m": 43.0,
+    "tfp_trend": 0.028,
+    "inflation": 0.086,
+    "interest_rate": 0.1,
+    "tax_rate": 0.18,
+    "mil_spend_gdp": 0.037,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.3,
+    "debt_gdp": 0.13,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 66.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 18.0,
+    "nuclear": false
+  },
+  "sources": [
+    "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
+    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance."
+  ]
+}
