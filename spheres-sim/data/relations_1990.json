@@ -216,6 +216,17 @@
         { "a": "Zimbabwe", "b": "USSR", "value": 10.0 },
         { "a": "Zimbabwe", "b": "Tanzania", "value": 45.0 },
         { "a": "Zimbabwe", "b": "Angola", "value": 30.0 }
+        "The two Koreas and the two Chinas: four states whose foreign policy in 1990 is mostly about denying recognition to a fifth. Pyongyang's patrons are Beijing and Moscow, and Moscow is about to defect — Shevardnadze went to Pyongyang in September 1990 to say the Soviet Union would recognise Seoul, and Kim Yong Nam told him it would push the North toward its own bomb. Taipei's position is the mirror image: Washington switched recognition to Beijing in 1979 and kept selling it arms anyway under the Taiwan Relations Act.",
+        "This region ships only the dyads it would be a misrepresentation to omit. The trade and aid warmth that also existed — Japanese investment across ASEAN, the Commonwealth ties to Kuala Lumpur and Singapore — is left out deliberately. Those values have no source behind them the way a treaty or a severed recognition does, and a dense mesh of invented mid-range friendship measurably redirects the great powers' patronage budgets. See the branch notes on a_pact_drags_a_great_power_into_a_war_it_did_not_start."
+      ],
+      "pairs": [
+        { "a": "NorthKorea", "b": "SouthKorea", "value": -70.0 },
+        { "a": "NorthKorea", "b": "China", "value": 60.0 },
+        { "a": "NorthKorea", "b": "USSR", "value": 45.0 },
+        { "a": "NorthKorea", "b": "USA", "value": -75.0 },
+        { "a": "NorthKorea", "b": "Japan", "value": -55.0 },
+        { "a": "Taiwan", "b": "China", "value": -60.0 },
+        { "a": "Taiwan", "b": "USA", "value": 45.0 }
       ]
     },
     {
@@ -395,6 +406,19 @@
         { "a": "Myanmar", "b": "UK", "value": -30.0 },
         { "a": "Myanmar", "b": "Japan", "value": 25.0 },
         { "a": "Myanmar", "b": "India", "value": -10.0 }
+        "Indochina and the states around it. Vietnam's two junior partners are still junior: the Lao People's Revolutionary Party came out of the same movement and signed a twenty-five-year treaty of friendship with Hanoi in 1977, and the State of Cambodia was installed by the Vietnamese army in 1979 and had watched it leave four months before the game opens. Thailand is the front line of the other side of that war — it sheltered the resistance coalition, the Khmer Rouge included, and Chatichai's line about turning Indochina from a battlefield into a marketplace was in 1988 the first crack in that policy. Mongolia's foreign relations in January 1990 consist almost entirely of the Soviet Union, whose 39th Army is still on its territory and whose subsidies are a third of its output. Bangkok and Manila hold American defence treaties; Kuala Lumpur and Manila do not discuss Sabah."
+      ],
+      "pairs": [
+        { "a": "Laos", "b": "Vietnam", "value": 75.0 },
+        { "a": "Cambodia", "b": "Vietnam", "value": 70.0 },
+        { "a": "Cambodia", "b": "China", "value": -55.0 },
+        { "a": "Cambodia", "b": "Thailand", "value": -45.0 },
+        { "a": "Thailand", "b": "Vietnam", "value": -30.0 },
+        { "a": "Mongolia", "b": "USSR", "value": 70.0 },
+        { "a": "Thailand", "b": "USA", "value": 60.0 },
+        { "a": "Philippines", "b": "USA", "value": 65.0 },
+        { "a": "Malaysia", "b": "Singapore", "value": 40.0 },
+        { "a": "Malaysia", "b": "Philippines", "value": 20.0 }
       ]
     }
   ]

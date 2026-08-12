@@ -1,0 +1,41 @@
+{
+  "id": "Cambodia",
+  "name": "Cambodia",
+  "system": "Market",
+  "authoritarianism": 0.88,
+  "economy": {
+    "gdp_bn": 1.4,
+    "population_m": 7.4,
+    "tfp_trend": 0.015,
+    "inflation": 0.9,
+    "interest_rate": 0.9,
+    "tax_rate": 0.05,
+    "mil_spend_gdp": 0.021,
+    "state_invest_gdp": 0.04,
+    "priv_invest_gdp": 0.07,
+    "debt_gdp": 1.6,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 28.0,
+    "separatism": 0.06
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "system Market, and it is a judgement call worth stating. The State of Cambodia's constitutional amendments of April-May 1989 dropped the socialist economy clause, restored private ownership of land, legalised private enterprise and reinstated Buddhism as the state religion. That is a dated, formal abandonment of the command economy rather than a reform programme running alongside one, which is the distinction this roster's Vietnam file draws when it stays Command with doi moi four years old and the plan intact. See the note on the technology model below: this classification is load-bearing in a way it should not be.",
+    "GDP $1.40bn and population 7.37m (World Bank, 1990). Both are weak: the World Bank had no mission in the country, the State of Cambodia held no UN seat, and the first census since 1962 was not taken until 1998. countryeconomy.com's transcription of the same period gives $899m. The World Bank figure is entered because the rest of this roster is on the World Bank series.",
+    "Inflation: no CPI series exists for 1990. Contemporary estimates of the riel's collapse as subsidies and the cooperative system were abandoned run from roughly 90% to over 150% a year. 0.90 is the low end of that range.",
+    "interest_rate is set equal to inflation, giving a zero real rate. The National Bank of Cambodia published no policy rate in 1990 and there was barely a banking system to set one for; the schema's coupling rule rejects a nominal rate far from inflation, and inventing a number would be worse than declaring the real rate neutral and saying so here.",
+    "Defence 2.07% of GDP (World Bank/SIPRI, 1990). This certainly understates a state fighting a three-faction civil war along its western border, but it is the only transcribed figure and it is not this file's job to correct it.",
+    "External debt near 1.6x GDP, almost all of it non-convertible obligations to the Soviet Union and Vietnam that were never settled in dollars and whose valuation was disputed for a decade afterwards.",
+    "Vietnam withdrew the last of its troops in September 1989. The Paris peace agreements are twenty-two months away in January 1990, UNTAC three years, and the Khmer Rouge still hold territory in the west with Chinese and Thai supply lines behind them. Stability 28 is a state that does not control its own borders.",
+    "separatism 0.06 is low on purpose: Cambodia's war was over who governs the whole country, not over who leaves it. The model reads separatism as territorial exit, which is not what the Khmer Rouge wanted.",
+    "Military index 3: roughly 130,000 in the Cambodian People's Armed Forces, holding towns and roads against three insurgencies with equipment left by the Vietnamese.",
+    "Gross capital formation 11.9% of GDP (World Bank, 1993 — the first year of the series). 1990 is entered at 11% split 4 state and 7 private, on the assumption that the ratio did not move much across the UNTAC years.",
+    "A note on what this file exposes rather than on the file itself. Entered as a command economy, Cambodia finishes a thirty-year run holding three technologies while the frontier holds a hundred and thirty, and `a_poor_nation_still_picks_up_what_everyone_has` goes red. The binding term is research_output: intensity scales with GDP per capita, the budget scales with absolute GDP, and a command economy is multiplied by 0.80 on top. At $190 a head and $1.4bn of output that product rounds to nothing. Real Cambodia in 2020 had mobile telephony, container ports, hybrid rice and antiretrovirals — far more than five technologies — so the test is right and the model is wrong at this end of the roster. Classifying Cambodia as a market economy is defensible on the 1989 amendments and it makes the test pass, but it does not repair the model, and the next $200-per-capita market economy anyone adds will trip the same wire."
+  ]
+}

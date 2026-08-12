@@ -1,0 +1,39 @@
+{
+  "id": "Philippines",
+  "name": "Philippines",
+  "system": "Market",
+  "authoritarianism": 0.24,
+  "economy": {
+    "gdp_bn": 50.5,
+    "population_m": 62.9,
+    "tfp_trend": 0.008,
+    "inflation": 0.122,
+    "interest_rate": 0.241,
+    "tax_rate": 0.14,
+    "mil_spend_gdp": 0.022,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.18,
+    "debt_gdp": 0.68,
+    "oil_mbd": 0.005,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 35.0,
+    "separatism": 0.24
+  },
+  "military": {
+    "strength": 4.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $50.51bn and population 62.85m (World Bank, 1990).",
+    "CPI inflation 12.18% and lending interest rate 24.12% (World Bank, 1990). The rate is that high because the Central Bank was defending the peso through a balance-of-payments crisis that ended in a standby arrangement with the IMF in February 1991.",
+    "Defence 2.15% of GDP (World Bank/SIPRI, 1990) — low for a state fighting two insurgencies at once, and it is the transcribed figure.",
+    "National government debt near 68% of GDP: the Marcos-era external debt was never repudiated, and servicing it consumed roughly a third of the budget through the period.",
+    "tfp_trend 0.008 is deliberately the lowest in the region. 1990 is the year the Philippine growth story stalled: a 7.8 earthquake in July killed 1,600 in Luzon, Mount Pinatubo followed in 1991, the Gulf war took the oil price up and remittances from Kuwait down, and the December 1989 coup attempt had already frightened off the investment.",
+    "Stability 35: Corazon Aquino faced seven coup attempts between 1986 and 1990, the largest of them a month before the game opens, put down with American air cover from Clark. The Senate voted the bases out in September 1991.",
+    "separatism 0.24 is the Moro National Liberation Front and the autonomous region in Muslim Mindanao created in 1989. It excludes the CPP-NPA insurgency, which was nationwide and revolutionary rather than territorial.",
+    "Military index 4: roughly 106,000 in the Armed Forces of the Philippines, an infantry force fully committed at home, with an air force and navy of largely 1940s-1950s American origin.",
+    "Gross capital formation 23.3% of GDP (World Bank, 1990), entered as 5 state and 18 private."
+  ]
+}
