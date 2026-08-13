@@ -1,0 +1,36 @@
+{
+  "id": "Austria",
+  "name": "Austria",
+  "system": "Market",
+  "authoritarianism": 0.12,
+  "economy": {
+    "gdp_bn": 165.8,
+    "population_m": 7.68,
+    "tfp_trend": 0.015,
+    "inflation": 0.033,
+    "interest_rate": 0.09,
+    "tax_rate": 0.39,
+    "mil_spend_gdp": 0.012,
+    "state_invest_gdp": 0.032,
+    "priv_invest_gdp": 0.226,
+    "debt_gdp": 0.56,
+    "oil_mbd": 0.02,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 80.0, "separatism": 0.02 },
+  "military": { "strength": 6.0, "nuclear": false },
+  "sources": [
+    "GDP $165.8bn and population 7.68m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, series AUT, 1990 (165,811,372,383 and 7,677,850). Same series as the rest of the roster.",
+    "Inflation 3.3%: World Bank FP.CPI.TOTL.ZG, AUT 1990 = 3.262%. The schilling had been held to the D-mark since 1976 - the Hartwahrungspolitik - and Austrian inflation is essentially German inflation with a small lag.",
+    "Policy rate 9.0%: three-month Vienna interbank rate, monthly mean of 1990 = 8.964% (OECD MEI via FRED, IR3TIB01ATM156N).",
+    "Revenue 39% of GDP: OECD Revenue Statistics, total tax revenue as a share of GDP, Austria 1990 (about 39.4%). Just above Germany's 0.38.",
+    "Gross public debt 56% of GDP: IMF World Economic Outlook GGXWDG_NGDP, AUT 1990 = 56.2%.",
+    "Military 1.2% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), AUT 1990 = 1.196% - the lowest in Western Europe together with Ireland's, which is what permanent neutrality bought when the neutral in question was not a Swiss-style armed camp.",
+    "Strength index 6: about 55,000 in the Bundesheer with roughly 200,000 on militia mobilisation, 170 or so tanks, no combat aircraft worth the name until the Draken deliveries of 1988. Indexed at Denmark's 6, well below Switzerland's 14 - the other permanently neutral Alpine state, spending a third more of a larger economy on defence and mobilising three times as many people.",
+    "Gross fixed capital formation 25.8% of GDP: World Bank NE.GDI.FTOT.ZS, AUT 1990. Split into public 3.2% and private 22.6% using the AMECO general-government series, private as residual. CAVEAT: total transcribed, public share entered from reference knowledge of AMECO.",
+    "Oil 0.02 mbd: Austrian crude production from the Vienna Basin fields ran around 20,000 barrels a day in 1990 - real, small, and entered rather than rounded to zero because OMV was a state oil company of some consequence in central Europe.",
+    "Stability 80 and authoritarianism 0.12: at Germany's 80. The SPO-OVP grand coalition of 1986 was the fourth of its kind and the Proporz system had shared out every public appointment in the country between the two of them since 1945. Authoritarianism above Germany's 0.10 and at France's 0.12, because that same Proporz meant a state broadcaster, nationalised industries and a chamber system all allocated by party card rather than by competition. The Waldheim affair - the president elected in 1986 whose wartime service the World Jewish Congress had documented, and who was barred from entering the United States from April 1987 - was live throughout, and it is the reason this is 80 rather than the 85 the machinery would otherwise earn.",
+    "Separatism 0.02: below France's 0.03. Slovene and Croat minority-language questions in Carinthia and Burgenland are constitutional and quiet.",
+    "TFP trend 0.015: just below Germany's 0.016, and above Spain's 0.009. Austria spent the 1990s converging on German productivity levels from a little below, joined the European Union on 1 January 1995, and got a second, larger dividend nobody had planned for when the border with Hungary and Czechoslovakia opened and Vienna became a regional centre again for the first time since 1918."
+  ]
+}

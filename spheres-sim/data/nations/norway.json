@@ -1,0 +1,36 @@
+{
+  "id": "Norway",
+  "name": "Norway",
+  "system": "Market",
+  "authoritarianism": 0.08,
+  "economy": {
+    "gdp_bn": 119.3,
+    "population_m": 4.24,
+    "tfp_trend": 0.014,
+    "inflation": 0.041,
+    "interest_rate": 0.115,
+    "tax_rate": 0.4,
+    "mil_spend_gdp": 0.028,
+    "state_invest_gdp": 0.035,
+    "priv_invest_gdp": 0.195,
+    "debt_gdp": 0.29,
+    "oil_mbd": 1.72,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 76.0, "separatism": 0.01 },
+  "military": { "strength": 9.0, "nuclear": false },
+  "sources": [
+    "GDP $119.3bn and population 4.24m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, series NOR, 1990 (119,344,377,526 and 4,241,473). Same series as the rest of the roster.",
+    "Oil 1.72 mbd: Norwegian crude production in 1990 was 1,716 thousand barrels a day (BP Statistical Review of World Energy). This is the second-largest producer in this roster's Western Europe after the United Kingdom's 1.9, on a fifteenth of the population, and it is the single most important number in this file - Norwegian output per head, Norwegian public finances and Norwegian politics for the next thirty years all run off it. The Government Petroleum Fund that this production paid for was legislated in 1990 and received its first deposit in 1996; nothing in this record schedules that, but the barrels that funded it are here.",
+    "Inflation 4.1%: World Bank FP.CPI.TOTL.ZG, NOR 1990 = 4.131%.",
+    "Policy rate 11.5%: three-month Norwegian interbank rate, monthly mean of 1990 = 11.539% (OECD MEI via FRED, IR3TIB01NOM156N). High because the krone was pegged - unilaterally to the ECU from October 1990 - and because the Norwegian banking crisis was at its worst: the state took over Fokus Bank and Realkreditt in 1991 and Christiania Bank and Den norske Bank in 1991-92, wiping out the private shareholders of three of the four largest banks in the country.",
+    "Revenue 40% of GDP: OECD Revenue Statistics, total tax revenue as a share of GDP, Norway 1990 (about 40.2%). Understates the fiscal position, because petroleum revenue reaches the Norwegian state partly as direct ownership of production rather than as tax.",
+    "Gross public debt 29% of GDP: IMF World Economic Outlook GGXWDG_NGDP, NOR 1990 = 29.1%. The lowest in this Western European batch and below Germany's 0.41.",
+    "Military 2.8% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), NOR 1990 = 2.834% - the highest of the Nordic four, above Sweden's 2.5 and Denmark's 2.0.",
+    "Strength index 9: about 34,000 active with a mobilisation strength near 285,000 out of four and a quarter million people, 170-odd Leopard 1s, F-16s, and a coastal artillery and submarine force built for the fjords. Indexed above Denmark's 6 and below Finland's 11. The reason is in the geography rather than the budget: Norway held NATO's only land border with the Soviet Union outside Turkey, 196 kilometres of it at Kirkenes, with the Northern Fleet's ballistic-missile submarines based two hours' drive away on the Kola peninsula. It is a small army guarding the most valuable ground in the alliance.",
+    "Gross fixed capital formation 23.0% of GDP: World Bank NE.GDI.FTOT.ZS, NOR 1990. Split into public 3.5% and private 19.5% using the AMECO general-government series, private as residual. CAVEAT: total transcribed, public share entered from reference knowledge of AMECO.",
+    "Stability 76 and authoritarianism 0.08: above France's 75, below Germany's 80. Norway is governed placidly and split down the middle by exactly one question. Jan P. Syse's Conservative-Centre-Christian coalition took office in October 1989 and fell on 29 October 1990 when the Centre Party walked out over the European Economic Area negotiations; the country had already voted no to European Community membership once, in 1972, and would do it again in 1994. A government falling over Europe inside the game's first year is the Norwegian pattern rather than an accident.",
+    "Separatism 0.01: none. The Sami Parliament opened in Karasjok on 9 October 1989 after the Alta dam protests, which is an accommodation reached rather than a movement running. Below France's 0.03.",
+    "TFP trend 0.014: at France's 0.014. Mainland Norwegian productivity growth through the 1990s was solid and unspectacular; the petroleum sector's contribution is a resource rent rather than productivity and does not belong in this number."
+  ]
+}

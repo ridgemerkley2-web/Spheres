@@ -1,0 +1,35 @@
+{
+  "id": "Sweden",
+  "name": "Sweden",
+  "system": "Market",
+  "authoritarianism": 0.08,
+  "economy": {
+    "gdp_bn": 261.5,
+    "population_m": 8.56,
+    "tfp_trend": 0.014,
+    "inflation": 0.104,
+    "interest_rate": 0.137,
+    "tax_rate": 0.5,
+    "mil_spend_gdp": 0.025,
+    "state_invest_gdp": 0.034,
+    "priv_invest_gdp": 0.254,
+    "debt_gdp": 0.4,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 76.0, "separatism": 0.01 },
+  "military": { "strength": 18.0, "nuclear": false },
+  "sources": [
+    "GDP $261.5bn and population 8.56m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, series SWE, 1990 (261,466,577,009 and 8,558,835). Same series as the rest of the roster - which makes Sweden, with a twentieth of the population of the United States, an eighth of Japan's, richer per head in 1990 than either.",
+    "Inflation 10.4%: World Bank FP.CPI.TOTL.ZG, SWE 1990 = 10.367%. The highest in Western Europe outside Greece and Portugal, and the direct product of the credit-market deregulation of November 1985 feeding a property boom that broke in the autumn of 1990.",
+    "Policy rate 13.7%: three-month Swedish interbank rate, monthly mean of 1990 = 13.667% (OECD MEI via FRED, IR3TIB01SEM156N). The krona was unilaterally pegged to the ECU in May 1991 and the peg was defended in September 1992 with an overnight marginal rate of 500 per cent for six days before it broke on 19 November. The 13.7% here is the ordinary level before any of that; the model is not told the peg is coming.",
+    "Revenue 50% of GDP: OECD Revenue Statistics, total tax revenue as a share of GDP, Sweden 1990 = 49.5% - the highest in the OECD that year. This figure was checked against the OECD comparative table rather than recalled.",
+    "Gross public debt 40% of GDP: IMF Historical Public Debt Database, central government debt, SWE 1990 = 40.4%. CAVEAT: this is the CENTRAL government measure, not the general government measure used for most of this batch - the IMF WEO general-government series does not carry Sweden back to 1990. It is therefore a floor rather than a like-for-like figure, and the Swedish general-government number for 1990 is somewhat higher. Recorded here so the basis is visible rather than assumed.",
+    "Military 2.5% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), SWE 1990 = 2.462%. Armed neutrality is expensive; Sweden spent more of its output on defence in 1990 than Denmark, the Netherlands or Belgium, all of whom were in NATO.",
+    "Strength index 18: about 64,000 under arms at any moment but a war organisation of some 700,000 on mobilisation - roughly a tenth of the adult population - together with the only country of this size in the world building its own supersonic fighter (the Viggen in service, the Gripen in flight test), its own submarines and its own armour. Indexed above Spain's 16 and below Turkey's 24 on that basis: far fewer standing troops than either, far more industry behind them.",
+    "Gross fixed capital formation 28.8% of GDP: World Bank NE.GDI.FTOT.ZS, SWE 1990 - a boom-top number, which is what it was. Split into public 3.4% and private 25.4% using the AMECO general-government series, private as residual. CAVEAT: the total is transcribed; the public share is entered from reference knowledge of AMECO and is the softest number here.",
+    "Stability 76 and authoritarianism 0.08: below Germany's 80, above France's 75. Sweden had governed itself with remarkable placidity for fifty years, but on 15 February 1990 the Carlsson cabinet resigned outright when the Riksdag voted down its crisis package - a price and wage freeze with a two-year ban on strikes - and came back a week later having dropped the strike ban. A government falling over an incomes policy in the first six weeks of the game year is exactly the sort of thing this number should be able to see.",
+    "Separatism 0.01: none. Below France's 0.03.",
+    "TFP trend 0.014: at France's 0.014. Swedish output fell in three consecutive years, 1991, 1992 and 1993, the worst peacetime contraction since the 1930s, and then produced one of the strongest productivity recoveries in the OECD on the back of telecommunications equipment. The average across the decade lands near the French rate by two very different routes."
+  ]
+}

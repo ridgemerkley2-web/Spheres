@@ -1,0 +1,36 @@
+{
+  "id": "Denmark",
+  "name": "Denmark",
+  "system": "Market",
+  "authoritarianism": 0.08,
+  "economy": {
+    "gdp_bn": 138.2,
+    "population_m": 5.14,
+    "tfp_trend": 0.013,
+    "inflation": 0.026,
+    "interest_rate": 0.112,
+    "tax_rate": 0.44,
+    "mil_spend_gdp": 0.02,
+    "state_invest_gdp": 0.017,
+    "priv_invest_gdp": 0.187,
+    "debt_gdp": 0.61,
+    "oil_mbd": 0.12,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 78.0, "separatism": 0.05 },
+  "military": { "strength": 6.0, "nuclear": false },
+  "sources": [
+    "GDP $138.2bn and population 5.14m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, series DNK, 1990 (138,217,740,684 and 5,140,939). Same series as the rest of the roster.",
+    "Inflation 2.6%: World Bank FP.CPI.TOTL.ZG, DNK 1990 = 2.642% - the lowest in Western Europe that year, and the pay-off from the krone's fixed link to the D-mark held since 1982 and the wage agreement of 1987.",
+    "Policy rate 11.2%: three-month Copenhagen interbank rate, monthly mean of 1990 = 11.178% (OECD MEI via FRED, IR3TIB01DKM156N). A real rate of eight and a half points, the highest in this batch, and it is not an error - Denmark was running a hard disinflation with a fixed exchange rate and the domestic economy was flat from 1987 to 1993 as a result.",
+    "Revenue 44% of GDP: OECD Revenue Statistics, total tax revenue as a share of GDP, Denmark 1990 = 44.4%. This figure was checked against the OECD comparative table rather than recalled. Second only to Sweden's 49.5% and raised very differently: almost all of it is income tax and VAT, with social security contributions close to nothing, which is why the Danish welfare state is financed out of general taxation and the Dutch and Austrian ones are not.",
+    "Gross public debt 61% of GDP: IMF Historical Public Debt Database, central government debt, DNK 1990 = 61.4%. CAVEAT: this is the CENTRAL government measure - the IMF WEO general-government series does not carry Denmark back to 1990 - so it is not strictly like for like with the general-government figures used elsewhere in this batch. Recorded so the basis is visible.",
+    "Military 2.0% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), DNK 1990 = 1.951%.",
+    "Strength index 6: about 31,000 active personnel, roughly 200 Leopard 1 tanks, and a navy of small fast attack craft built for the Baltic exits rather than the Atlantic. Indexed at Austria's 6 and below Norway's 9 - a smaller mobilisation base than Norway's and a shorter frontier to hold, though the frontier in question was the Danish straits, which is the reason the Baltic Fleet cared about it.",
+    "Gross fixed capital formation 20.4% of GDP: World Bank NE.GDI.FTOT.ZS, DNK 1990 - the second lowest in this batch after Ireland's, and a symptom of the flat domestic decade. Split into public 1.7% and private 18.7% using the AMECO general-government series, private as residual. CAVEAT: total transcribed, public share entered from reference knowledge of AMECO.",
+    "Oil 0.12 mbd: Danish North Sea production ran near 120,000 barrels a day in 1990 from the Dan and Gorm fields. Small against the United Kingdom's 1.9 and Norway's 1.7 in this roster, and enough that Denmark became a net oil exporter in 1993 and stayed one for two decades.",
+    "Stability 78 and authoritarianism 0.08: above France's 75, below Germany's 80. Denmark had not had a majority government since 1971 and did not have one in 1990 - Schluter's four-party and then three-party cabinets governed from a minority throughout the 1980s, losing individual votes on NATO policy so often that the practice acquired a name, the fodnotepolitik or footnote period, in which the Folketing forced the government to enter reservations at NATO meetings against its own line. Minority government that works is not instability, which is the whole reason this is 78 and not 60.",
+    "Separatism 0.05: at Italy's 0.05, and unusually concrete for a country with no ethnic question on its mainland. Greenland is the only territory ever to leave the European Communities, by referendum in 1982 and in fact in 1985, and it had had home rule since 1979; the Faroes had had home rule since 1948 and a standing independence movement. A realm whose two constituent territories can and do take their own foreign-policy decisions is carrying a real number here.",
+    "TFP trend 0.013: below Germany's 0.016 and above Spain's 0.009. Denmark spent 1987-1993 in a slow-growth adjustment and then grew steadily; nothing in the decade resembles a miracle in either direction."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "Netherlands",
+  "name": "Netherlands",
+  "system": "Market",
+  "authoritarianism": 0.08,
+  "economy": {
+    "gdp_bn": 318.8,
+    "population_m": 14.95,
+    "tfp_trend": 0.012,
+    "inflation": 0.025,
+    "interest_rate": 0.087,
+    "tax_rate": 0.41,
+    "mil_spend_gdp": 0.024,
+    "state_invest_gdp": 0.026,
+    "priv_invest_gdp": 0.202,
+    "debt_gdp": 0.75,
+    "oil_mbd": 0.07,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 82.0, "separatism": 0.01 },
+  "military": { "strength": 12.0, "nuclear": false },
+  "sources": [
+    "GDP $318.8bn and population 14.95m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, series NLD, 1990 (318,799,003,994 and 14,951,510). This is the same series the rest of the roster's 1990 GDP figures sit on - USA 5980, Germany 1710, France 1270, Italy 1180, UK 1090, Spain 535 all match it - so the league table stays internally comparable.",
+    "Inflation 2.5%: World Bank FP.CPI.TOTL.ZG, NLD 1990 = 2.454%. The guilder had been held at a fixed 1.1267 to the D-mark since 1983 and the Nederlandsche Bank followed the Bundesbank rate for rate; low German inflation was, quite literally, imported policy.",
+    "Policy rate 8.7%: three-month AIBOR interbank rate, monthly mean of 1990 = 8.682% (OECD Main Economic Indicators via FRED, IR3TIB01NLM156N). Above Germany's 0.07 by the small premium a follower currency pays even when the peg is credible.",
+    "Military 2.4% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), NLD 1990 = 2.369%.",
+    "Strength index 12: about 104,000 active personnel, 913 Leopard tanks in the 1st Netherlands Corps facing the North German Plain, and a blue-water escort navy of standardised frigates. Indexed below Italy's 26 and above Poland's 12-equivalent mass because the equipment is newer, and well below Germany's 38, whose corps this one fought beside and was a quarter the size of. NOT nuclear: the Volkel air base held United States B61 bombs under NATO nuclear sharing and Dutch F-16s were certified to deliver them, but the weapons were American property under American custody, and this field records possession.",
+    "Gross fixed capital formation 22.8% of GDP: World Bank NE.GDI.FTOT.ZS, NLD 1990. The split into public 2.6% and private 20.2% uses the AMECO general-government gross fixed capital formation series; the private figure is the residual. CAVEAT: the total is transcribed from the World Bank series, but the public share is entered from reference knowledge of AMECO rather than re-read off it, and the split should be treated as the softest number in this file.",
+    "Revenue 41% of GDP: OECD Revenue Statistics, total tax revenue including social security contributions, Netherlands 1990. High even by continental standards because the social insurance funds are financed by earmarked contributions that this measure counts.",
+    "Gross public debt 75% of GDP: IMF World Economic Outlook GGXWDG_NGDP, NLD 1990 = 75.0%. Higher than Germany's 0.41 and France's 0.35, and one of the reasons the Lubbers cabinets spent the decade cutting.",
+    "Oil 0.07 mbd: Dutch crude production in 1990 ran under 80,000 barrels a day. This field UNDERSTATES the Dutch energy position badly and the schema is the reason: the Netherlands was the second-largest gas exporter in the world in 1990, producing some 70 billion cubic metres a year from Groningen alone, and there is no gas field in this record. Stated here rather than smuggled into oil_mbd as an energy-equivalent, which would be inventing.",
+    "Stability 82 and authoritarianism 0.08: set above Germany's 80 and France's 75. Consociational politics with no losers, three parties that have governed in every combination since 1945, no territorial question, and a September 1989 election that produced a working majority in nine weeks. There is no 1990 event in the Dutch record that a stability model should be marking down for.",
+    "Separatism 0.01: effectively none. The Frisian language has official status in Friesland and no political movement behind it. Below France's 0.03.",
+    "TFP trend 0.012: below Germany's 0.016. The Dutch record of the 1990s was an employment miracle, not a productivity one - the Wassenaar accord of 1982 traded wage restraint for working-time reduction and the decade's growth came from hours worked and from part-time entry, with labour productivity growth running below the German rate throughout. Entering Germany's number here would model the wrong miracle."
+  ]
+}

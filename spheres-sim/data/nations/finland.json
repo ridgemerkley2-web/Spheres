@@ -1,0 +1,35 @@
+{
+  "id": "Finland",
+  "name": "Finland",
+  "system": "Market",
+  "authoritarianism": 0.12,
+  "economy": {
+    "gdp_bn": 141.4,
+    "population_m": 4.99,
+    "tfp_trend": 0.017,
+    "inflation": 0.061,
+    "interest_rate": 0.14,
+    "tax_rate": 0.43,
+    "mil_spend_gdp": 0.016,
+    "state_invest_gdp": 0.035,
+    "priv_invest_gdp": 0.262,
+    "debt_gdp": 0.14,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 78.0, "separatism": 0.02 },
+  "military": { "strength": 11.0, "nuclear": false },
+  "sources": [
+    "GDP $141.4bn and population 4.99m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, series FIN, 1990 (141,446,120,355 and 4,986,431). Same series as the rest of the roster.",
+    "Inflation 6.1%: World Bank FP.CPI.TOTL.ZG, FIN 1990 = 6.150%.",
+    "Policy rate 14.0%: three-month HELIBOR, monthly mean of 1990 = 13.997% (OECD MEI via FRED, IR3TIB01FIM156N). The highest nominal rate in this batch after Portugal's and Greece's, and the reason is not inflation - it is the defence of the markka. Finnish financial markets had been deregulated between 1986 and 1988 with a fixed exchange rate still in place; the credit boom that followed broke in 1990, the markka was devalued 12% in November 1991 and floated on 8 September 1992 after overnight rates had gone past 15%.",
+    "Gross public debt 14% of GDP: IMF World Economic Outlook GGXWDG_NGDP, FIN 1990 = 13.9%. THE LOWEST IN THE ENTIRE ROSTER, and it is transcribed rather than a data error. What happened next is the point: Finnish output fell 13% between 1990 and 1993, unemployment went from 3% to nearly 17%, the banking system was recapitalised by the state, and gross public debt passed 55% of GDP by 1994. A country can go from the soundest public finances in Europe to a debt crisis in four years, and a model that opens Finland at 0.14 is a model that can show it.",
+    "Revenue 43% of GDP: OECD Revenue Statistics, total tax revenue as a share of GDP, Finland 1990 (about 42.9%).",
+    "Military 1.6% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), FIN 1990 = 1.563%.",
+    "Strength index 11: about 31,000 in uniform at any moment and a wartime strength near 500,000 - the largest mobilisation ratio in Europe outside Switzerland - with an artillery park larger than Germany's and an air force flying both Soviet MiG-21s and Swedish Drakens, which is itself a summary of Finnish foreign policy. Indexed above Denmark's 6 and Norway's 9 and below Switzerland's 14, on the same reasoning: a small standing force against a very large reserve, sized against exactly one contingency and against a neighbour whose army is in this roster.",
+    "Gross fixed capital formation 29.7% of GDP: World Bank NE.GDI.FTOT.ZS, FIN 1990, the second-highest in this batch after Switzerland's and the top of a credit boom about to end. Split into public 3.5% and private 26.2% using the AMECO general-government series, private as residual. CAVEAT: total transcribed, public share entered from reference knowledge of AMECO.",
+    "Stability 78 and authoritarianism 0.12: at Denmark's 78, below Germany's 80. Harri Holkeri's cabinet of 1987 was the first since the war to put the Social Democrats and the National Coalition Party in government together - the 'red-earth' arrangement that broke a taboo about which of the two Finland's eastern neighbour would tolerate. Authoritarianism at France's 0.12 rather than at the Nordic 0.08, and the reason is specific and external: the Treaty of Friendship, Cooperation and Mutual Assistance with the Soviet Union, signed in 1948, was still in force on 1 January 1990 and was terminated only in January 1992; Kekkonen's presidency had been extended once by an emergency law in 1973 rather than by an election; and the practice of self-censorship about the Soviet Union in publishing and broadcasting had a name in every European language. That is a constrained polity, and 0.12 marks it. It is NOT a mark against Finnish domestic institutions, which were fully competitive - the elections in this file are real and so is the alternation.",
+    "Separatism 0.02: below France's 0.03. The Aland Islands are Swedish-speaking, demilitarised and autonomous under a League of Nations settlement of 1921 that nobody has reopened in seventy years.",
+    "TFP trend 0.017: above Germany's 0.016 and the highest in this batch after Ireland's 0.020. Finland had the deepest peacetime depression in the OECD in the early 1990s and then the fastest productivity recovery in it, on electronics and telecommunications equipment - Nokia's mobile phone business, which was a rubber-boot and cable conglomerate's side venture in 1990 and the largest handset maker in the world by 1998."
+  ]
+}
