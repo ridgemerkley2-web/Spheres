@@ -5,7 +5,7 @@
   "authoritarianism": 0.25,
   "economy": {
     "gdp_bn": 26.4,
-    "population_m": 21.8,
+    "population_m": 22.0,
     "tfp_trend": -0.015,
     "inflation": 2.95,
     "interest_rate": 2.9,
@@ -26,7 +26,7 @@
     "nuclear": false
   },
   "sources": [
-    "GDP $26.4bn and 21.8m people (World Bank, 1990). The dollar figure is the least reliable in this file: with the inti collapsing and a split exchange market, any dollar conversion of Peruvian output in 1990 is an artefact of which rate is used, and estimates run from roughly $22bn to $30bn. Real GDP fell 5.1% in 1990 on top of 12.3% in 1989, a cumulative contraction of about a quarter over three years, hence a TFP trend of -1.5%/yr.",
+    "GDP $26.4bn and 22.0m people (World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, 1990; exact prints $26.410bn and 22,014,771). The dollar figure is the least reliable in this file: with the inti collapsing and a split exchange market, any dollar conversion of Peruvian output in 1990 is an artefact of which rate is used, and estimates run from roughly $22bn to $30bn. Real GDP fell 5.1% in 1990 on top of 12.3% in 1989, a cumulative contraction of about a quarter over three years, hence a TFP trend of -1.5%/yr.",
     "INFLATION IS NOT THE TRANSCRIBED PRINT. INEI records 7,650% for 1990 as an annual average, the worst in Peruvian history and the second worst in the hemisphere after Nicaragua. On the fraction-of-1 convention that is 76.5, twenty-five times the 3.0 ceiling economy.rs clamps to on the first tick. The file ships 2.950 and records the truth here, exactly as brazil.json, poland.json and yugoslavia.json do.",
     "interest_rate 2.9 is a stand-in on the same grounds: nominal rates tracked inflation into the thousands of percent, and the schema's coupling rule forbids entering them beside a clamped inflation figure. The Fujishock of 8 August 1990 that ended this is not scripted; the sim's central bank has to find the stabilisation itself.",
     "Tax take 9% of GDP: central government tax revenue had fallen to about 8.1% of GDP by 1989-90, near the point at which a state stops functioning, which is the substantive fact this row carries.",

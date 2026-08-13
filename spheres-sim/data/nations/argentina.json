@@ -5,7 +5,7 @@
   "authoritarianism": 0.15,
   "economy": {
     "gdp_bn": 141.4,
-    "population_m": 32.6,
+    "population_m": 32.8,
     "tfp_trend": -0.008,
     "inflation": 2.95,
     "interest_rate": 2.9,
@@ -26,7 +26,7 @@
     "nuclear": false
   },
   "sources": [
-    "GDP $141.4bn and 32.6m people (World Bank, 1990). Output had fallen about 6% in 1989 and fell again in 1990; the decade to 1990 is the lost decade, hence a negative TFP trend of -0.8%/yr.",
+    "GDP $141.4bn and 32.8m people (World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, 1990; the exact prints are $141.353bn and 32,755,901). Output had fallen about 6% in 1989 and fell again in 1990; the decade to 1990 is the lost decade, hence a negative TFP trend of -0.8%/yr.",
     "INFLATION IS NOT THE TRANSCRIBED PRINT. The real 1990 figure is INDEC CPI of 2314% for the year, following 3080% in 1989 — Argentina had two hyperinflationary bursts, February-July 1989 and December 1989-March 1990, and the game opens inside the second one. On the fraction-of-1 convention that is 23.14, nearly eight times the 3.0 ceiling economy.rs clamps to on the first tick, so the file ships 2.950 and records the truth here. This is the same treatment Brazil, Poland and Yugoslavia already get, and it is a decimal stand-in rather than a designed damping: see brazil.json for the measured cost of that choice.",
     "interest_rate 2.9 is likewise a stand-in. Nominal rates in the Bonex-plan weeks of January 1990 ran with inflation, in the thousands of percent; the coupling rule in the schema (real rate within 0.5 of neutral) forbids entering them beside a clamped inflation figure. The Convertibility Plan of April 1991 that ends this is not scripted — the sim's central bank has to find it.",
     "Tax take 16% of GDP: federal revenue had collapsed with the Olivera-Tanzi effect, the state financing itself by the inflation tax. Public investment 4% and private 10% against gross fixed capital formation of about 14% of GDP, the lowest of the century.",
