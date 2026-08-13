@@ -1,0 +1,42 @@
+{
+  "id": "Albania",
+  "name": "Albania",
+  "system": "Command",
+  "authoritarianism": 0.88,
+  "economy": {
+    "gdp_bn": 2.1,
+    "population_m": 3.28,
+    "tfp_trend": -0.01,
+    "inflation": 0.02,
+    "interest_rate": 0.04,
+    "tax_rate": 0.45,
+    "mil_spend_gdp": 0.07,
+    "state_invest_gdp": 0.25,
+    "priv_invest_gdp": 0.0,
+    "debt_gdp": 0.02,
+    "oil_mbd": 0.015,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 50.0,
+    "separatism": 0.08
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $2.1bn: World Bank NY.GDP.MKTP.CD, series ALB, 1990, which is where the series begins. CAVEAT, and it is a large one: the conversion uses an official lek rate that no transaction used, in an economy that published no national accounts on any international standard and that had refused IMF and World Bank membership until 1991 - Article 28 of the 1976 constitution forbade dealing with them. This is the least reliable dollar figure in this region and possibly in the roster, and it is entered as an order of magnitude on the World Bank series for comparability, not because anyone should believe the third digit.",
+    "Population 3.28m: the census of 1989 (INSTAT) counted 3,182,417, rising to about 3.28m by 1991. Albania had the highest birth rate in Europe and by some distance the youngest population; it is also the smallest nation in this region by output and the second smallest in the roster after Kuwait.",
+    "Inflation 2.0%: nominal only, and it describes the price list rather than the economy. Every retail price in Albania was administered and most had not moved in years. The repressed inflation behind the number surfaced the moment controls went: 35.5% in 1991 and 226% in 1992. Entered near zero because that is what the January 1990 state actually recorded, with the caveat written here rather than folded into the figure.",
+    "Interest rate 4%: the administered savings rate at the State Bank of Albania, which was simultaneously the central bank, the only commercial bank, the savings bank and the treasury. There was no monetary policy and no second bank to conduct one against.",
+    "priv_invest_gdp 0.0: transcribed, not rounded down. Article 11 of the 1976 constitution forbade private property in the means of production, and Albania was the only state in Europe in 1990 with no legal private sector of any kind - no private plots, no artisan cooperatives, no privately owned restaurant, no taxi. Private activity was legalised only during 1991. A zero in this field elsewhere in the roster would be a missing figure; here it is the figure.",
+    "debt_gdp 0.02: also constitutional. Article 28 of the 1976 constitution prohibited the state from accepting foreign credits, foreign investment or joint ventures. Albania entered 1990 with no meaningful external debt and no lawful way to acquire any. The only comparable number in the roster is Romania's 0.03, and the two were arrived at from opposite directions: Ceausescu paid his off, Hoxha was forbidden to borrow.",
+    "mil_spend_gdp 0.07, the highest ratio in the roster: no audited figure exists and this is an estimate flagged as one. Albania maintained roughly 40,000 regulars plus a universal militia under a doctrine of defence against everyone simultaneously, and built on the order of 170,000 concrete bunkers between 1967 and 1986 - a programme repeatedly estimated at several percent of national income a year. 7% sits at the low end of the published range.",
+    "oil_mbd 0.015: Albanian crude output was roughly 0.8-1.0 million tonnes a year in 1990, about 0.016-0.020 mbd, from the Patos-Marinza heavy oil field, the largest onshore oil field in continental Europe. Entered at 0.015 because output was falling fast and the refineries at Ballsh and Fier were in poor repair. Albania was the only net oil exporter in the Warsaw Pact's neighbourhood that was not in the Warsaw Pact.",
+    "authoritarianism 0.88, the highest in this region and among the highest in the roster: in January 1990 Albania is the last orthodox Stalinist state in Europe. Ramiz Alia had succeeded Hoxha in 1985 and changed almost nothing; religion had been constitutionally abolished since 1967, making Albania the world's only officially atheist state; the Sigurimi ran a system of internal exile. Opposition parties were legalised only on 11 December 1990 and the first multi-party election was held on 31 March 1991. Well above the 0.60 electoral ceiling, so the model must not fire an election in this start state - and none was scheduled.",
+    "stability 50.0: the regime still holds when the game opens, and only just. The Shkoder and Kavaje protests came in January 1990, the government conceded limited passport and penal reform in April and May, roughly 5,000 Albanians stormed the foreign embassies in Tirana in July 1990 and were allowed to leave, and the Vlore boat exodus followed in early 1991. Set above Romania's 40, whose government had already been overthrown, and below Hungary's 58.",
+    "separatism 0.08: the Greek minority of the south numbered roughly 60,000 by the official count and several times that by the Greek one; it organised as Omonia from January 1990 and took five seats in 1991. Set below Bulgaria's 0.12 on a much smaller minority. Albania's other national question - the roughly two million Albanians of Kosovo - is irredentism directed outward, not separatism, and is carried by the claim in nations.rs instead.",
+    "military strength 3.0: about 40,000 regulars with equipment of Chinese and 1950s Soviet origin, no functioning integrated air defence, and no ally of any kind since the break with Beijing in 1978 - Albania had left the Warsaw Pact in 1968 and denounced the Soviets in 1961. Indexed at half Bulgaria's 6.0 and just above Kuwait's 2.0. It is the weakest state in Europe on this scale and the most heavily fortified, which is what an army built entirely for defence looks like in one number."
+  ]
+}
