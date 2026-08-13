@@ -190,8 +190,20 @@ pub const ROSTER: &[NationRow] = &[
 
     row("Indonesia", "Indonesia", &["idn"], "SoutheastAsia", &[], &[], true, false, false),
 
+    // Egypt's claim is the Hala'ib triangle, and it is the cleanest example in
+    // this table of a border that two states draw from two different treaties.
+    // The Anglo-Egyptian condominium agreement of 19 January 1899 put the line
+    // on the 22nd parallel, which makes Hala'ib Egyptian; the administrative
+    // boundary of 4 November 1902 handed the tribes north of it to Khartoum,
+    // which is why Sudan administered the triangle in 1990 and Egypt took it by
+    // force in 1995. Cairo asserts 1899, Khartoum asserts 1902, and neither
+    // claims Bir Tawil — the mirror-image scrap each line awards to the other —
+    // which is the reason that patch of desert is the only unclaimed land on
+    // earth. 20,580 km2 and on the order of 20,000 people against a Sudan of
+    // 26.8m: 0.0008, a grievance stated as the number that keeps it a grievance.
+    // https://en.wikipedia.org/wiki/Hala%27ib_Triangle
     row("Egypt", "Egypt", &["egy", "uar"], "NorthAfrica",
-        &["Israel"], &[], true, false, false),
+        &["Israel", "Libya", "Sudan"], &[claim("Sudan", 0.0008)], true, false, false),
 
     row("Israel", "Israel", &["isr"], "MiddleEast",
         &["Egypt"], &[], true, false, false),
@@ -231,9 +243,11 @@ pub const ROSTER: &[NationRow] = &[
         &["Serbia", "Croatia"], &[], false, false, false),
 
     // Spain's only land border with a nation in this roster is the Pyrenean
-    // frontier with France; Portugal, Andorra and Morocco (the Ceuta and
-    // Melilla enclaves) are not simulated, so those borders are correctly
-    // absent rather than wrong. The claim is Gibraltar, ceded at Utrecht in
+    // frontier with France, and — since the North African rows below were added
+    // — the fenced perimeters of Ceuta and Melilla, which are land borders with
+    // Morocco whatever Rabat calls them. Portugal and Andorra are not
+    // simulated, so those borders are correctly absent rather than wrong. The
+    // claim is Gibraltar, ceded at Utrecht in
     // 1713, never accepted, raised at the UN Committee of 24 every year and
     // under the negotiating process the Brussels Declaration of 27 November
     // 1984 opened. It is the textbook rounding-error claim this table's
@@ -243,7 +257,83 @@ pub const ROSTER: &[NationRow] = &[
     // makes it never worth a war.
     // https://en.wikipedia.org/wiki/Brussels_Agreement_(1984)
     row("Spain", "Spain", &["esp", "espana"], "WesternEurope",
-        &["France"], &[claim("UK", 0.0005)], true, false, false),
+        &["France", "Morocco"], &[claim("UK", 0.0005)], true, false, false),
+
+    // ---- North Africa ----------------------------------------------------
+    // Five states along one coast, and the thing to notice is how few claims
+    // there are between them. The Maghreb's quarrels in 1990 were over a
+    // territory that is not in this roster at all — the Western Sahara, which
+    // Morocco holds and the Polisario Front contests from Algerian soil — so
+    // the Algiers-Rabat dyad is a proxy war carried on a border neither side
+    // was seriously trying to move. The Arab Maghreb Union treaty of 17
+    // February 1989 is the other half of that: these five had just signed one.
+    // Modelling the region as a set of irredentist appetites would invent a
+    // decade of wars that did not happen.
+
+    // Algeria borders every other Maghreb state in this roster and claims none
+    // of them. Its 1963 war with Morocco was fought on Moroccan initiative and
+    // over Algerian ground, its 1990 quarrel with Rabat was over the Western
+    // Sahara, and Tindouf — the Polisario's base since 1976 — was the thing
+    // Algeria was defending, not seeking. The other long frontiers, with Mali,
+    // Niger, Mauritania and the Western Sahara, are borders with states this
+    // roster does not carry, so they are absent rather than wrong.
+    row("Algeria", "Algeria", &["dza", "alg", "algerie"], "NorthAfrica",
+        &["Morocco", "Tunisia", "Libya"], &[], true, false, false),
+
+    // Morocco is the one North African state in 1990 with live claims on two
+    // neighbours it can walk to, and both are rounding errors by design.
+    //
+    // On Spain: Ceuta and Melilla, held since 1668 and 1497, claimed by every
+    // Moroccan government since independence in 1956 and raised at the UN
+    // Committee of 24 in the same breath Spain raises Gibraltar. Their 1991
+    // census populations were 67,615 and 56,600 — 124,215 against a Spain of
+    // 38.87m, or 0.0032.
+    //
+    // On Algeria: the Tindouf frontier zone, the object of the Sand War of
+    // October 1963 and of the Amgala clashes of January 1976. Rabat signed the
+    // border convention of 15 June 1972 and then did not ratify it until 22 May
+    // 1992, which is precisely why the claim is live in January 1990 and dead
+    // two years later. Tindouf wilaya held 16,339 people at the 1987 Algerian
+    // census against 23.04m, or 0.0007, entered at 0.001. Stated conservatively:
+    // the maximal Moroccan claim reached Bechar as well, which would put it near
+    // 0.009, but Tindouf is what Rabat was actually still asserting by 1990.
+    //
+    // The Western Sahara, which is the claim that mattered, is not in this
+    // roster, so it is correctly absent. Mauritania likewise.
+    // https://en.wikipedia.org/wiki/Sand_War
+    row("Morocco", "Morocco", &["mar", "maroc", "al-maghrib"], "NorthAfrica",
+        &["Algeria", "Spain"],
+        &[claim("Spain", 0.0032), claim("Algeria", 0.001)], true, false, false),
+
+    // Tunisia claims nothing from anybody, which is not an oversight: its one
+    // territorial dispute of the era, the continental shelf in the Gulf of
+    // Gabes, went to the International Court of Justice and was decided on 24
+    // February 1982 and again on 10 December 1985, and Tunis accepted both.
+    // A state that litigates its borders is a state with no claims to enter.
+    row("Tunisia", "Tunisia", &["tun", "tunisie"], "NorthAfrica",
+        &["Algeria", "Libya"], &[], true, false, false),
+
+    // Libya's irredentism was real and enormous and points entirely off this
+    // map: the Aouzou Strip, annexed from Chad in 1973, fought over until the
+    // rout of March 1987 and surrendered to the ICJ in 1994. Chad is not in
+    // this roster, so Libya opens with no claims — which reads as pacific and
+    // is not. What the borders do carry is reach: Libya touches Egypt, with
+    // whom it fought a four-day war in July 1977, and Sudan, whose government
+    // it had spent a decade trying to choose.
+    // https://en.wikipedia.org/wiki/Aouzou_Strip
+    row("Libya", "Libya", &["lby", "libyan arab jamahiriya", "jamahiriya"], "NorthAfrica",
+        &["Algeria", "Tunisia", "Egypt", "Sudan"], &[], true, false, false),
+
+    // Sudan claims nothing. Under the 1902 administrative line it prefers, the
+    // Hala'ib triangle is already Sudanese and Bir Tawil is already Egyptian,
+    // so there is nothing left for Khartoum to ask for — the asymmetry is in
+    // Egypt's row above, not this one. Sudan's war in 1990 is entirely
+    // internal, which is what the separatism figure in sudan.json carries.
+    // The long southern and western frontiers — Ethiopia, Chad, Uganda, Kenya,
+    // Zaire, the Central African Republic — are with states this roster does
+    // not have.
+    row("Sudan", "Sudan", &["sdn", "as-sudan"], "NorthAfrica",
+        &["Egypt", "Libya"], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -395,6 +485,11 @@ well_known! {
     Slovenia => "Slovenia",
     Bosnia => "Bosnia",
     Spain => "Spain",
+    Algeria => "Algeria",
+    Morocco => "Morocco",
+    Tunisia => "Tunisia",
+    Libya => "Libya",
+    Sudan => "Sudan",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

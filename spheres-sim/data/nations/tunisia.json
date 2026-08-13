@@ -1,0 +1,43 @@
+{
+  "id": "Tunisia",
+  "name": "Tunisia",
+  "system": "Market",
+  "authoritarianism": 0.7,
+  "economy": {
+    "gdp_bn": 12.3,
+    "population_m": 8.3,
+    "tfp_trend": 0.01,
+    "inflation": 0.065,
+    "interest_rate": 0.115,
+    "tax_rate": 0.28,
+    "mil_spend_gdp": 0.018,
+    "state_invest_gdp": 0.09,
+    "priv_invest_gdp": 0.15,
+    "debt_gdp": 0.65,
+    "oil_mbd": 0.09,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 60.0,
+    "separatism": 0.02
+  },
+  "military": {
+    "strength": 2.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $12.3bn: World Bank NY.GDP.MKTP.CD, series TUN, 1990 = 12,290,568,182 current US$, retrieved from the World Bank API 2026-08-12. The smallest economy in this region and the richest per head of the non-oil ones: $1,476 a person against Morocco's $1,229 (World Bank NY.GDP.PCAP.CD, 1990).",
+    "Population 8.3m: World Bank SP.POP.TOTL, TUN 1990 = 8,324,509. Tunisia had the lowest fertility in the Arab world, the legacy of the Code of Personal Status of 13 August 1956, and it is why this is the one North African state whose population is not doubling underneath its economy.",
+    "Inflation 6.5%: World Bank FP.CPI.TOTL.ZG, TUN 1990 = 6.55%.",
+    "Interest rate 11.5%: UNVERIFIED. I could not retrieve a 1990 observation of the Central Bank of Tunisia's money-market rate (TMM) - the BCT's published series does not reach back that far in any form I could open. 11.5% is entered as the money-market rate under the liberalisation that began with the structural adjustment programme of 1986 and continued through Tunisia's GATT accession in 1990, and it implies a real rate of plus 5.0%: the tightest stance in this region, which is the correct sign for a country deliberately holding the dinar while it opened its capital account. The magnitude is a judgement and should be checked.",
+    "Revenue 28% of GDP: World Bank GC.TAX.TOTL.GD.ZS gives tax revenue at 19.95% of GDP for TUN 1990; 28% adds non-tax receipts and social contributions. The addition is an estimate and is DECLARED UNVERIFIED; the 19.95% underneath it is transcribed. Set above Morocco's 24% because Tunisia's state was proportionally larger and its social insurance older.",
+    "Investment 24% of GDP: World Bank NE.GDI.FTOT.ZS, TUN 1990 = 24.36% gross fixed capital formation. The 9/15 split between public and private is NOT a published series and is DECLARED UNVERIFIED. It sits between Algeria's state-dominated 19/8 and Morocco's private-led 6/20, which is where Tunisia's own reform sat: the eighth plan opened tourism and textiles to private capital while the state kept the phosphate industry and the utilities.",
+    "Debt 65% of GDP: World Bank DT.DOD.DECT.GN.ZS, TUN 1990 = 64.7%, total external debt stocks over GNI - EXTERNAL debt, on the same disclosed basis as the other files in this region.",
+    "Oil 0.09 mbd: transcribed from the Energy Institute / BP Statistical Review primary oil production series as republished by Our World in Data (Tunisia 1990 = 55.1 TWh) and converted against the roster entries already on that series (UK 1,065 TWh at 1.9 mbd, Egypt 529 TWh at 0.87 mbd). The conversion is mine, so the figure is DECLARED UNVERIFIED. El Borma and Ashtart, past peak since 1980, and enough to matter to a $12bn economy without making it a petro-state.",
+    "Military 1.8% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), TUN 1990 = 1.84%.",
+    "Strength 2: an abstract index, and the lowest entered in the roster so far. About 35,000 personnel with no armour worth the name. The deliberate policy of Bourguiba and then Ben Ali was an army too small to take the state - which is why the man who took the state in November 1987 was the interior minister and not a general. Set at a quarter of Egypt's 14 and an eighth of Italy's 26.",
+    "Stability 60: Ben Ali two years into a constitutional coup that had removed a senile president without a shot, a National Pact signed by every legal party on 7 November 1988, and an economy growing. Against that: the April 1989 election had just demonstrated that the system could not admit an opposition, and the confrontation with Ennahda that would fill the next three years had already started. Set at Egypt's 58 and below Morocco's 62.",
+    "Separatism 0.02: the lowest in the roster. Tunisia is the one state in this region with no minority nationality of any size, no contested province and no irredenta - a fact of Ottoman and French administrative history, and one of the reasons the model should not expect the Maghreb's troubles to look alike. Set below France's 0.03.",
+    "Authoritarianism 0.70: a hegemonic-party state, modelled the way this table models Egypt's. The Chamber of Deputies election of 2 April 1989 was contested and its result was arithmetically impossible: the Constitutional Democratic Rally took 80.57% of the vote and all 141 seats, and independents backed by Ennahda took 13.68% and none. A system in which a seventh of the electorate returns nobody is not one a vote can remove. Set below Egypt's 0.75 because the 1989 election was at least a real contest, and above Morocco's 0.65 because Morocco's opposition at least sat in the chamber."
+  ]
+}

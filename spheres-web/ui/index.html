@@ -381,6 +381,11 @@ const TERRITORY = {
   SaudiArabia: ["SAU"], Iran: ["IRN"], SouthKorea: ["KOR"], Poland: ["POL"],
   Brazil: ["BRA"], Indonesia: ["IDN"], Egypt: ["EGY"], Israel: ["ISR"],
   Turkey: ["TUR"], Nigeria: ["NGA"], Vietnam: ["VNM"], Spain: ["ESP"],
+  Algeria: ["DZA"], Morocco: ["MAR"], Tunisia: ["TUN"], Libya: ["LBY"],
+  // world.js is Natural Earth 110m and carries no SSD polygon, so SDN is the
+  // whole of pre-2011 Sudan — which is the right shape for a 1990 game and the
+  // reason sudan.json's population is the two World Bank series added together.
+  Sudan: ["SDN"],
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],

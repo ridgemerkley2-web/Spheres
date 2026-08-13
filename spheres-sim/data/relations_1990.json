@@ -185,6 +185,90 @@
         { "a": "Spain", "b": "Brazil", "value": 35.0 },
         { "a": "Spain", "b": "USSR", "value": 5.0 }
       ]
+    },
+    {
+      "note": [
+        "North Africa, and the first thing the numbers have to carry is that the Maghreb in January 1990 was in the middle of a reconciliation, not a quarrel. The Arab Maghreb Union treaty was signed at Marrakesh on 17 February 1989 by all five of these states; Algeria and Morocco had restored diplomatic relations in May 1988 after twelve years and reopened the frontier; Tunisia and Libya had restored theirs in December 1987. A table that opened these dyads cold would be modelling 1984, not 1990.",
+        "What is not warm is Algiers-Rabat, and the reason is a country that is not in this roster. Algeria armed and housed the Polisario Front at Tindouf; Morocco held the Western Sahara behind a 2,700km sand wall. The two were AMU partners and proxy belligerents at the same time, which is what a modestly positive number between two neighbours who will not fight each other directly is meant to express.",
+        "Libya is the outlier in every direction. Moscow was its arms supplier and Washington had bombed it in April 1986; London had broken relations over the killing of Yvonne Fletcher in 1984 and Paris had fought it by proxy in Chad until 1987. Rome is the exception among the Western powers and the exception is commercial: ENI's gas and Italy's position as Libya's largest trading partner outweighed a colonial history worse than anything France left in the Maghreb.",
+        "Khartoum's alignment had just moved. The coup of 30 June 1989 cost it the American aid relationship and much of Saudi Arabia's patience, and it turned instead to the two capitals that would take it: Tripoli, which supplied oil and arms and had helped bring the regime in, and after that Baghdad and Tehran. That is the shape of the Sudanese row below, and it is also why Sudan will not behave like Egypt when the Gulf crisis arrives.",
+        "Cairo-Tripoli deserves its own line. These two fought a four-day war in July 1977 and Libya spent the Sadat years sponsoring attempts on his life; Mubarak and Gaddafi were nonetheless publicly reconciled in October 1989, border restrictions lifted and hundreds of thousands of Egyptians working in Libya. A small positive number is the honest reading of a relationship that is functional and one incident from not being."
+      ],
+      "pairs": [
+        { "a": "Algeria", "b": "Morocco", "value": 15.0 },
+        { "a": "Algeria", "b": "Tunisia", "value": 55.0 },
+        { "a": "Algeria", "b": "Libya", "value": 40.0 },
+        { "a": "Algeria", "b": "Sudan", "value": 20.0 },
+        { "a": "Morocco", "b": "Tunisia", "value": 45.0 },
+        { "a": "Morocco", "b": "Libya", "value": 10.0 },
+        { "a": "Morocco", "b": "Sudan", "value": 25.0 },
+        { "a": "Tunisia", "b": "Libya", "value": 30.0 },
+        { "a": "Tunisia", "b": "Sudan", "value": 20.0 },
+        { "a": "Libya", "b": "Sudan", "value": 55.0 },
+
+        { "a": "Algeria", "b": "Egypt", "value": 45.0 },
+        { "a": "Morocco", "b": "Egypt", "value": 60.0 },
+        { "a": "Tunisia", "b": "Egypt", "value": 45.0 },
+        { "a": "Libya", "b": "Egypt", "value": 15.0 },
+        { "a": "Sudan", "b": "Egypt", "value": 40.0 },
+
+        { "a": "Algeria", "b": "USSR", "value": 55.0 },
+        { "a": "Algeria", "b": "France", "value": 30.0 },
+        { "a": "Algeria", "b": "Italy", "value": 40.0 },
+        { "a": "Algeria", "b": "Germany", "value": 25.0 },
+        { "a": "Algeria", "b": "USA", "value": 20.0 },
+        { "a": "Algeria", "b": "UK", "value": 10.0 },
+        { "a": "Algeria", "b": "China", "value": 25.0 },
+        { "a": "Algeria", "b": "Spain", "value": 30.0 },
+        { "a": "Algeria", "b": "Israel", "value": -60.0 },
+        { "a": "Algeria", "b": "Iraq", "value": 30.0 },
+        { "a": "Algeria", "b": "SaudiArabia", "value": 15.0 },
+
+        { "a": "Morocco", "b": "USA", "value": 65.0 },
+        { "a": "Morocco", "b": "France", "value": 65.0 },
+        { "a": "Morocco", "b": "Spain", "value": 20.0 },
+        { "a": "Morocco", "b": "SaudiArabia", "value": 65.0 },
+        { "a": "Morocco", "b": "Germany", "value": 40.0 },
+        { "a": "Morocco", "b": "UK", "value": 35.0 },
+        { "a": "Morocco", "b": "Italy", "value": 35.0 },
+        { "a": "Morocco", "b": "USSR", "value": 15.0 },
+        { "a": "Morocco", "b": "Israel", "value": 10.0 },
+        { "a": "Morocco", "b": "Kuwait", "value": 50.0 },
+
+        { "a": "Tunisia", "b": "France", "value": 60.0 },
+        { "a": "Tunisia", "b": "Italy", "value": 55.0 },
+        { "a": "Tunisia", "b": "USA", "value": 50.0 },
+        { "a": "Tunisia", "b": "Germany", "value": 45.0 },
+        { "a": "Tunisia", "b": "UK", "value": 35.0 },
+        { "a": "Tunisia", "b": "Spain", "value": 35.0 },
+        { "a": "Tunisia", "b": "SaudiArabia", "value": 40.0 },
+        { "a": "Tunisia", "b": "USSR", "value": 15.0 },
+        { "a": "Tunisia", "b": "Israel", "value": -50.0 },
+
+        { "a": "Libya", "b": "USSR", "value": 65.0 },
+        { "a": "Libya", "b": "USA", "value": -85.0 },
+        { "a": "Libya", "b": "UK", "value": -70.0 },
+        { "a": "Libya", "b": "France", "value": -40.0 },
+        { "a": "Libya", "b": "Germany", "value": -20.0 },
+        { "a": "Libya", "b": "Italy", "value": 30.0 },
+        { "a": "Libya", "b": "Spain", "value": 10.0 },
+        { "a": "Libya", "b": "Israel", "value": -80.0 },
+        { "a": "Libya", "b": "SaudiArabia", "value": -20.0 },
+        { "a": "Libya", "b": "Iran", "value": 30.0 },
+        { "a": "Libya", "b": "Iraq", "value": 20.0 },
+        { "a": "Libya", "b": "Yugoslavia", "value": 25.0 },
+        { "a": "Libya", "b": "China", "value": 20.0 },
+
+        { "a": "Sudan", "b": "USA", "value": -20.0 },
+        { "a": "Sudan", "b": "UK", "value": 5.0 },
+        { "a": "Sudan", "b": "France", "value": 10.0 },
+        { "a": "Sudan", "b": "USSR", "value": 0.0 },
+        { "a": "Sudan", "b": "China", "value": 25.0 },
+        { "a": "Sudan", "b": "Iraq", "value": 45.0 },
+        { "a": "Sudan", "b": "Iran", "value": 45.0 },
+        { "a": "Sudan", "b": "SaudiArabia", "value": 15.0 },
+        { "a": "Sudan", "b": "Israel", "value": -45.0 }
+      ]
     }
   ]
 }
