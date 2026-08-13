@@ -1,0 +1,42 @@
+{
+  "id": "UAE",
+  "name": "United Arab Emirates",
+  "system": "Market",
+  "authoritarianism": 0.8,
+  "economy": {
+    "gdp_bn": 50.7,
+    "population_m": 1.9,
+    "tfp_trend": 0.009,
+    "inflation": 0.006,
+    "interest_rate": 0.09,
+    "tax_rate": 0.35,
+    "mil_spend_gdp": 0.04,
+    "state_invest_gdp": 0.11,
+    "priv_invest_gdp": 0.1,
+    "debt_gdp": 0.02,
+    "oil_mbd": 2.117,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 72.0,
+    "separatism": 0.06
+  },
+  "military": {
+    "strength": 4.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $50.7bn: World Bank NY.GDP.MKTP.CD, series ARE, 1990 - $50,701,374,187.33. This makes the UAE the largest economy in this branch and about 43% the size of Saudi Arabia's shipped $117bn on a ninth of the population. Cross-checked against the Bank's Atlas GNI per capita for the UAE in 1990 of $29,240, which on 1.898m people implies $55.5bn - GNI 9% above GDP, which is the return on the foreign portfolio the Abu Dhabi Investment Authority had been accumulating since 1976. The two series agree.",
+    "Population 1.9m: World Bank SP.POP.TOTL, series ARE, 1990 - 1,898,220. The figure to hold in mind alongside it: roughly four fifths of those people were non-citizen expatriates with no political rights and no route to any, which is what a per-capita income of $29,240 is actually distributed over.",
+    "TFP trend 0.009: set above Saudi Arabia's 0.008 and just below Kuwait's 0.010, because in 1990 the UAE was the only Gulf state doing something other than pumping. Jebel Ali port had opened in 1979 and its free zone in 1985, Emirates airline had been flying since October 1985, and Dubai's re-export trade to Iran and the subcontinent was already a real second economy. Not set higher: the diversification was still a rounding error against $17.9bn of annual oil rent.",
+    "Inflation 0.6%: IMF consumer price series for the United Arab Emirates, 1990, as reproduced by worlddata.info - 0.60%, against 2.8% in 1989 and 3.4% in 1991. The World Bank's FP.CPI.TOTL.ZG is null for the UAE in 1990. The lowest inflation figure in this roster, and it is what a hard peg plus imported everything plus an infinitely elastic supply of imported labour produces.",
+    "Interest rate 9%: FLAGGED AS UNVERIFIED. The World Bank publishes neither FR.INR.LEND nor FR.INR.DPST for the UAE in 1990. The dirham has been pegged at 3.6725 to the dollar since 1980, so Emirati money-market rates are dollar rates plus a small country premium, and the two published neighbours on the same peg give the band: Qatar's lending rate that year was 9.5% and Bahrain's 8.41%. 0.09 sits between them. It is an inference from the peg and the regional band, not an Emirati print.",
+    "Revenue 35% of GDP: DERIVED AND FLAGGED. The World Bank publishes no revenue or tax series for the UAE in 1990 - there was no income tax, no corporate tax outside the oil concessions and the banks, and no sales tax, so there was nothing for a tax indicator to measure. What the government lived on is published: NY.GDP.PETR.RT.ZS puts UAE oil rents at 35.32% of GDP in 1990, and in a state that owns the oil essentially all of that rent accrues to the treasury. 0.35 is that rent share, entered as the revenue share, and the derivation is stated rather than hidden. NOTE FOR THE INTEGRATOR: this is far above the shipped Saudi Arabia (0.08) and Kuwait (0.05), which are legacy figures carrying the 'origin was not documented' provenance note, and it follows the schema's stated definition of tax_rate as general-government revenue over GDP rather than those two. The inconsistency is flagged, not propagated.",
+    "Military 4.0% of GDP: FLAGGED AS UNVERIFIED. MS.MIL.XPND.GD.ZS is null for the UAE in 1990 - SIPRI's Emirati series is thin before the late 1990s because the federal and individual-emirate defence budgets were not consolidated in any public account. 0.04 is placed below Qatar's published 10.74%, Oman's 12.39% and Saudi Arabia's shipped 0.14, and above Bahrain's published 5.28%... which it is not, and the placement is deliberately conservative for that reason: Abu Dhabi's spending was large in dollars and small against a very large GDP denominator. This figure should be checked against IISS Military Balance 1990-91 by anyone who has it.",
+    "Public investment 11% and private investment 10% of GDP: FLAGGED AS UNVERIFIED. Both NE.GDI.FTOT.ZS and NE.GDI.FPRV.ZS are null for the UAE in 1990. The 21% total is placed between Oman's published 10.8% and Jordan's published 25.1%, weighted toward the public side because the capital programme of 1990 was Jebel Ali, the Abu Dhabi corniche and the federal road network. Neither the total nor the split is transcribed.",
+    "Debt 2% of GDP: FLAGGED AS UNVERIFIED. The UAE did not report to the Debtor Reporting System and had no material sovereign debt: the federal budget ran on transfers from Abu Dhabi's oil revenue and the surplus went into ADIA rather than into repaying anything. 0.02 is a statement that the number is approximately zero, entered below Kuwait's shipped 0.10. Not a published figure.",
+    "Oil 2.117 million barrels a day: EIA international crude production, United Arab Emirates, 1990 - 2,117 thousand b/d, against 1,860 in 1989 and 2,386 in 1991. The 1990 jump is the OPEC quota fight that helped cause the Gulf War: Abu Dhabi and Kuwait were both producing well above quota through the first half of 1990, and it was one of Iraq's three stated grievances at the Arab League summit of 30 May. Cross-check: 35.32% of $50.7bn is $17.9bn of rent on 773m barrels of annual output, about $23 a barrel against a $23 world price for a light sweet crude with almost no lifting cost. Consistent.",
+    "Stability 72 and authoritarianism 0.80: the highest stability in this branch. The UAE in 1990 had the money to buy off any grievance, no Shi'a-majority problem of Bahrain's kind, and a ruler in Zayed bin Sultan who had held Abu Dhabi since 1966 and the federation since 1971. Authoritarianism 0.80 is set below Saudi Arabia's 0.85 - there was no religious police and no equivalent of the 1979 settlement with the ulema - and above Kuwait's 0.60, because Kuwait had a National Assembly to dissolve and the UAE had never had an elected body of any kind; the Federal National Council was wholly appointed until 2006.",
+    "Separatism 0.06: a federation of seven absolute monarchies that nearly did not hold. Ras al-Khaimah refused to join until February 1972, Dubai and Abu Dhabi maintained separate armed forces until the unification of 1976, the emirates kept their own oil revenue rather than pooling it, and the federal crisis of 1978-79 over defence and finance went to the edge of dissolution. Set just above Saudi Arabia's 0.04, well below Yemen's 0.50."
+  ]
+}

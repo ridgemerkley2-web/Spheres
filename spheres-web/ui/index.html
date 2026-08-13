@@ -396,6 +396,18 @@ const TERRITORY = {
   Argentina: ["ARG"], Mexico: ["MEX"], Chile: ["CHL"], Colombia: ["COL"],
   Venezuela: ["VEN"], Peru: ["PER"], Cuba: ["CUB"], Bolivia: ["BOL"],
   Ecuador: ["ECU"], Uruguay: ["URY"],
+  Syria: ["SYR"], Jordan: ["JOR"], Lebanon: ["LBN"], UAE: ["ARE"],
+  Qatar: ["QAT"], Oman: ["OMN"], Yemen: ["YEM"],
+  // Bahrain has no polygon and the empty list is deliberate. world.js is
+  // generated from Natural Earth 110m, whose minimum island area drops Bahrain
+  // entirely — `grep -o '"BHR"' ui/world.js` returns nothing, where every other
+  // country in this map returns two hits. Rather than borrow a neighbour's
+  // geometry and draw Bahrain somewhere it is not, the entry is empty and the
+  // nation is placed by the LABEL_AT below, which gives it a label and a click
+  // target in roughly the right patch of the Gulf. It is the one nation on the
+  // board that is a name without a shape, and that is a limitation of the
+  // shipped geometry rather than of the roster.
+  Bahrain: [],
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],
@@ -420,6 +432,13 @@ const LABEL_AT = {
   UK: [495, 75],
   Germany: [525, 84],
   Kuwait: [636, 157], // nudged into the Gulf so it clears Iraq and Saudi
+  // Bahrain has no polygon at all in Natural Earth 110m (see TERRITORY above),
+  // so this is not a nudge — it is the nation's only position on the map.
+  // Interpolated in Robinson pixel space from the two flanking centroids the
+  // dataset does carry: Kuwait at 47.7E/29.4N is [627.1, 151.6] and Qatar at
+  // 51.2E/25.3N is [638.2, 164.2], which puts Bahrain's 50.55E/26.05N at
+  // [636, 162].
+  Bahrain: [636, 162],
 };
 /// Nations whose label sits off their own territory and needs a leader line.
 const LEADER = new Set(["Kuwait"]);

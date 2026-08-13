@@ -1,0 +1,42 @@
+{
+  "id": "Oman",
+  "name": "Oman",
+  "system": "Market",
+  "authoritarianism": 0.8,
+  "economy": {
+    "gdp_bn": 13.31,
+    "population_m": 1.76,
+    "tfp_trend": 0.008,
+    "inflation": 0.1,
+    "interest_rate": 0.0985,
+    "tax_rate": 0.4,
+    "mil_spend_gdp": 0.124,
+    "state_invest_gdp": 0.064,
+    "priv_invest_gdp": 0.044,
+    "debt_gdp": 0.2,
+    "oil_mbd": 0.685,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 70.0,
+    "separatism": 0.08
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $13.31bn: World Bank NY.GDP.MKTP.CD, series OMN, 1990 - $13,310,273,081.92. Cross-check: the Bank's Atlas GNI per capita for Oman in 1990 is $6,110, which on 1.764m people implies $10.78bn of national income - GNI 19% BELOW GDP, which is the outward remittances of a workforce that was substantially Indian, Pakistani and Bangladeshi, plus the profit share of the foreign partners in Petroleum Development Oman. The gap has the right sign and the right magnitude, so the GDP figure is carried.",
+    "Population 1.76m: World Bank SP.POP.TOTL, series OMN, 1990 - 1,763,954.",
+    "TFP trend 0.008: level with Saudi Arabia's shipped 0.008 and below the UAE's 0.009. Oman had the hardest oil in the Gulf - small, scattered, heavy reservoirs in the interior that needed water injection and gas lift where Kuwait needed a pipe - so the same barrel cost more to produce and less of the rent was free. Against that, Qaboos had spent twenty years building the schools, roads and hospitals the country had none of in 1970, and the return on that was still coming.",
+    "Inflation 10.0%: IMF consumer price series for Oman, 1990, as reproduced by worlddata.info - 10.00%, against 1.6% in 1989 and 4.6% in 1991. The World Bank's FP.CPI.TOTL.ZG is null for Oman in 1990. The 1990 spike is the oil price: Brent went from $17 in July to $40 in October on the Kuwait invasion, and Oman imports its food.",
+    "Interest rate 9.85%: World Bank FR.INR.LEND, series OMN, 1990 - 9.85375%. The deposit rate (FR.INR.DPST) was 8.28925%. The rial has been pegged to the dollar since 1973. Against 10.0% inflation the real lending rate was fractionally negative, which is the coupled real-rate constraint at its most comfortable.",
+    "Revenue 40% of GDP: DERIVED AND FLAGGED. No World Bank revenue or tax series exists for Oman in 1990. NY.GDP.PETR.RT.ZS puts Omani oil rents at 49.62% of GDP - the highest share in this branch - and the government took those rents directly as its 60% share of Petroleum Development Oman plus royalties. 0.40 is the rent share less the portion reinvested in the fields, and the derivation is stated. NOTE FOR THE INTEGRATOR: as with the other Gulf files in this branch, this follows the schema's definition of tax_rate as general-government revenue over GDP, which puts it far above the shipped Saudi 0.08 and Kuwait 0.05; those two carry the 'origin was not documented' provenance note and the inconsistency is flagged rather than propagated.",
+    "Military 12.4% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI basis), series OMN, 1990 - 12.3909414645003. The highest military burden in this entire roster, above Iraq's shipped 0.20 only because Iraq's is higher still - and among states not at war, the highest in the world at the time. It is the fiscal shadow of the Dhofar War: the insurgency the Sultan's Armed Forces, the SAS and the Imperial Iranian forces fought from 1965 to 1976 left Oman with a defence establishment built for a war it had already won and never demobilised.",
+    "Public investment 6.4% and private investment 4.4% of GDP: World Bank NE.GDI.FTOT.ZS gives total gross fixed capital formation of 10.8405955684083% and NE.GDI.FPRV.ZS gives the private share as 4.42377584118176%, leaving the state 6.42%. Both transcribed. That 10.8% total is the LOWEST investment rate in this branch and among the lowest in the roster - a rentier state that had finished its first build-out and had not yet started a second.",
+    "Debt 20% of GDP: FLAGGED AS UNVERIFIED. Oman did not report to the Debtor Reporting System and DT.DOD.DECT.CD is null. 0.20 is entered above Qatar's 0.15 and well below the indebted states here, on the reasoning that Oman was the one Gulf monarchy that genuinely needed to borrow - its oil per head was a fraction of its neighbours' and it ran deficits through the mid-1980s price collapse. Not a published figure.",
+    "Oil 685,000 barrels a day: EIA international crude production, Oman, 1990 - 685 thousand b/d, against 641 in 1989 and 700 in 1991. Oman is not and has never been an OPEC member, which is why its production rises smoothly through a period in which the cartel's members were fighting about quotas.",
+    "Stability 70 and authoritarianism 0.80: level with Kuwait's shipped 70 and above Saudi Arabia's 66. Qaboos bin Said had deposed his father in July 1970, won the Dhofar War by 1976, and spent the intervening years turning a country with three schools and ten kilometres of paved road into a functioning state; his standing in 1990 was not comparable to any other Gulf ruler's. Authoritarianism 0.80 is nonetheless high and correctly so: there were no elections of any kind, no parties, and the State Consultative Council of 1981 was appointed. The Majlis al-Shura that replaced it in November 1991 - twenty-two months into this game - had indirectly selected members and no legislative power.",
+    "Separatism 0.08: level with Syria's, above Saudi Arabia's 0.04. Two real strains. Dhofar in the south is culturally and linguistically distinct - Jebbali rather than Arabic - and its rebellion had ended only fourteen years before, with the Popular Front for the Liberation of Oman's remnants still in the People's Democratic Republic of Yemen next door. And Musandam, which commands the Strait of Hormuz, is physically separated from the rest of Oman by the United Arab Emirates."
+  ]
+}

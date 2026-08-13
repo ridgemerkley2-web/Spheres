@@ -169,14 +169,15 @@ pub const ROSTER: &[NationRow] = &[
     // On Iran it is Khuzestan — "Arabistan" — and the Shatt al-Arab, the stated
     // casus belli of September 1980.
     row("Iraq", "Iraq", &["irq"], "MiddleEast",
-        &["Kuwait", "SaudiArabia", "Iran", "Turkey"],
+        &["Kuwait", "SaudiArabia", "Iran", "Turkey", "Syria", "Jordan"],
         &[claim("Kuwait", 0.95), claim("Iran", 0.05)], true, false, false),
 
     row("Kuwait", "Kuwait", &["kwt"], "MiddleEast",
         &["Iraq", "SaudiArabia"], &[], true, false, false),
 
     row("SaudiArabia", "Saudi Arabia", &["saudi arabia", "saudi", "ksa"], "MiddleEast",
-        &["Iraq", "Kuwait"], &[], true, false, false),
+        &["Iraq", "Kuwait", "Jordan", "UAE", "Oman", "Yemen", "Qatar", "Bahrain"],
+        &[], true, false, false),
 
     // Tehran's claim is the Shatt al-Arab thalweg conceded at Algiers in 1975
     // and torn up in 1980, and behind it the shrine cities of Najaf and Karbala.
@@ -205,13 +206,13 @@ pub const ROSTER: &[NationRow] = &[
         &["Israel"], &[], true, false, false),
 
     row("Israel", "Israel", &["isr"], "MiddleEast",
-        &["Egypt"], &[], true, false, false),
+        &["Egypt", "Syria", "Jordan", "Lebanon"], &[], true, false, false),
 
     // Ankara's claim is the Mosul vilayet, awarded to Iraq by the League of
     // Nations in 1926 over Turkey's objection and pressed again by Ozal during
     // the Gulf crisis: roughly 2m of Iraq's 17m people in the north.
     row("Turkey", "Turkey", &["turkiye", "tur"], "MiddleEast",
-        &["Iraq", "Iran", "USSR", "Greece", "Bulgaria", "Georgia", "Armenia", "Azerbaijan"], &[claim("Iraq", 0.12)], true, false, false),
+        &["Iraq", "Iran", "USSR", "Greece", "Bulgaria", "Georgia", "Armenia", "Azerbaijan", "Syria"], &[claim("Iraq", 0.12)], true, false, false),
 
     row("Nigeria", "Nigeria", &["nga"], "WestAfrica", &[], &[], true, false, false),
 
@@ -751,6 +752,140 @@ pub const ROSTER: &[NationRow] = &[
 
     row("Uruguay", "Uruguay", &["ury", "uru"], "LatinAmerica",
         &["Brazil", "Argentina"], &[], true, false, false),
+
+    // ===== Middle East =====
+
+    // Syria borders Iraq, Turkey, Israel, Jordan and Lebanon in this roster.
+    // Two claims, both of them lines drawn by departing empires and never
+    // accepted.
+    //
+    // The Golan Heights: taken in June 1967, and on 14 December 1981 the Knesset
+    // extended Israeli "law, jurisdiction and administration" over them, which
+    // Security Council Resolution 497 declared null and void three days later,
+    // on 17 December. About 1,200 km2 against the roughly 22,000 km2 Israel
+    // administers
+    // inside the Green Line plus the Golan, so 0.05 of the target.
+    // https://en.wikipedia.org/wiki/Golan_Heights_Law
+    //
+    // Hatay: the Sanjak of Alexandretta, which France detached from its Syrian
+    // mandate and handed to Turkey in June 1939 to keep Ankara out of the coming
+    // war. Syria has never recognised the transfer and still prints the province
+    // inside its own borders. Hatay held about 1.1m of Turkey's 56m people in
+    // 1990, so 0.02 - scored on population exactly as the Turkey-on-Iraq Mosul
+    // claim four rows above is, so the two are the same kind of object.
+    // https://en.wikipedia.org/wiki/Hatay_State
+    //
+    // NOT entered, and the omission is the argued half of this row: Syria's
+    // relationship to Lebanon. Damascus refused to exchange ambassadors with
+    // Beirut until 2008 precisely because Greater Syria doctrine never conceded
+    // that Lebanon was a separate country, and after the Taif Accord of 22
+    // October 1989 and the assault on Aoun of 13 October 1990 Syria was the
+    // effective government of the place. But `claim.share` in this table is the
+    // fraction of a target a war would annex, and Syria never sought to annex
+    // Lebanon - it sought to control it, which is occupation and veto, not
+    // irredentism. The border and the relations value carry that; a fabricated
+    // annexation share would not.
+    row("Syria", "Syria", &["syr"], "MiddleEast",
+        &["Iraq", "Turkey", "Israel", "Jordan", "Lebanon"],
+        &[claim("Israel", 0.05), claim("Turkey", 0.02)], true, false, false),
+
+    // Jordan borders Iraq, Saudi Arabia, Israel, Syria - and the claims list is
+    // empty for a reason worth stating, because it is the rarest thing in this
+    // table: a claim that was formally given up. On 31 July 1988 King Hussein
+    // announced the severance of Jordan's legal and administrative ties to the
+    // West Bank, dissolving the Chamber's Palestinian seats and ending the
+    // annexation Jordan had held since 1950. The 1989 election was the first
+    // fought on the East Bank alone. Jordan wants nothing from anybody here.
+    // https://en.wikipedia.org/wiki/Jordanian_disengagement_from_the_West_Bank
+    row("Jordan", "Jordan", &["jor"], "MiddleEast",
+        &["Iraq", "SaudiArabia", "Israel", "Syria"], &[], true, false, false),
+
+    // Lebanon borders Syria and Israel, and in January 1990 both of them had
+    // armies inside it: roughly 40,000 Syrian troops under the Arab Deterrent
+    // Force mandate, and the Israeli "security zone" north of the 1978 line.
+    // No claims, and again the absence is the fact. The Shebaa Farms claim -
+    // the one thing Lebanon does assert against Israel - was not made until
+    // 2000, when Hezbollah needed a reason for the resistance to continue after
+    // the withdrawal; in 1990 those farms were understood to be Syrian.
+    row("Lebanon", "Lebanon", &["lbn"], "MiddleEast",
+        &["Syria", "Israel"], &[], true, false, false),
+
+    // The Emirates border Saudi Arabia and Oman. They do NOT border Qatar: the
+    // Khawr al Udayd corridor of Saudi territory runs between them, which is
+    // why Qatar's only land neighbour below is Riyadh.
+    //
+    // The claim is Abu Musa and the Greater and Lesser Tunbs, which Iranian
+    // troops occupied on 30 November 1971 - the day before the federation was
+    // proclaimed and two days before Britain's treaties lapsed. The UAE has
+    // raised it at every Arab League and UN session since. It is a
+    // rounding-error claim by any measure: about 30 km2 against Iran's
+    // 1,648,000 (0.00002) and roughly 800 inhabitants against 56m (0.00001).
+    // Entered at 0.00002, which is the number that says a grievance is
+    // permanent and is never going to be worth a war.
+    // https://en.wikipedia.org/wiki/Greater_and_Lesser_Tunbs
+    row("UAE", "United Arab Emirates", &["uae", "emirates", "are"], "MiddleEast",
+        &["SaudiArabia", "Oman"], &[claim("Iran", 0.00002)], true, false, false),
+
+    // Qatar's one land border is with Saudi Arabia. Its claim is the Hawar
+    // Islands, and this is not a paper dispute: on 26 April 1986 Qatari special
+    // forces helicoptered onto Fasht al-Dibal, an artificial island Bahrain was
+    // building, and took twenty-nine workers prisoner. Saudi mediation stopped
+    // it. Qatar filed the whole question at the International Court of Justice
+    // on 8 July 1991, eighteen months into this game, and lost Hawar there on
+    // 16 March 2001. Hawar is about 52 km2 against Bahrain's 765 km2 including
+    // it, so 0.07 of the target - a real slice of a very small country, which
+    // is why two allies came close to shooting over it.
+    // https://en.wikipedia.org/wiki/Hawar_Islands
+    row("Qatar", "Qatar", &["qat"], "MiddleEast",
+        &["SaudiArabia"], &[claim("Bahrain", 0.07)], true, false, false),
+
+    // Oman borders Saudi Arabia across the Rub' al Khali, the UAE, and Yemen.
+    // No claims, and 1990 is the year that became true: the Saudi-Omani border
+    // was finally settled by treaty on 21 March 1990, eleven weeks into this
+    // game, and the Omani-Yemeni border on 1 October 1992. Muscat is the state
+    // in this region that finished drawing its lines by agreement.
+    // https://en.wikipedia.org/wiki/Oman%E2%80%93Saudi_Arabia_border
+    row("Oman", "Oman", &["omn", "muscat"], "MiddleEast",
+        &["SaudiArabia", "UAE", "Yemen"], &[], true, false, false),
+
+    // Yemen. See yemen.json for the unification problem in full; the short of it
+    // is that on 1 January 1990 there were two Yemens and on 22 May 1990 there
+    // was one, and this roster carries the unified Republic from the start
+    // because SPHERES creates successor states when a federation comes apart and
+    // has no machinery for the reverse, and BIBLE section 5 refuses the scripted
+    // event that would be the alternative.
+    //
+    // The claim is Asir, Jizan and Najran, which the Imam ceded to Ibn Saud in
+    // the Treaty of Taif of 20 May 1934 after losing the war - on twenty-year
+    // renewable terms that Yemen spent the next sixty-six years declining to
+    // treat as permanent. The frontier east of Najran was never demarcated at
+    // all until the Jeddah Treaty of 12 June 2000, and Saudi and Yemeni forces
+    // shot at each other over it in 1994, 1995 and 1998. Those three provinces
+    // held roughly 2.2m of Saudi Arabia's 16m people, so 0.13 - scored on
+    // population, the same method as Turkey-on-Iraq and Syria-on-Turkey above.
+    // https://en.wikipedia.org/wiki/Treaty_of_Taif
+    row("Yemen", "Yemen", &["yem", "north yemen", "south yemen"], "MiddleEast",
+        &["SaudiArabia", "Oman"], &[claim("SaudiArabia", 0.13)], true, false, false),
+
+    // Bahrain's neighbour list has exactly one entry and it is a bridge. The
+    // King Fahd Causeway opened on 25 November 1986: twenty-five kilometres of
+    // road and embankment from Al Khobar to Bahrain, built by Saudi money and
+    // wide enough to drive an armoured column across, which is precisely what
+    // Saudi Arabia did on 14 March 2011. This table's doc comment admits "the
+    // two straits narrow enough to march across"; a causeway is not a strait,
+    // it is better than one, and leaving it out would make Bahrain an island
+    // nobody can reach in a model whose whole war logic reads adjacency.
+    //
+    // The claim is Zubarah, on the Qatari mainland, from which the Al Khalifa
+    // ruled before they took Bahrain in 1783 and which Bahrain pressed against
+    // Doha until the ICJ awarded it to Qatar on 16 March 2001. Roughly 1% of
+    // Qatar. The reciprocal Qatari claim on Hawar is four rows up: the two
+    // smallest states in this roster hold claims on each other and nearly went
+    // to war over them in 1986, which is the sort of thing a derived appetite
+    // table gets right and an enumerated one would never have bothered to list.
+    // https://en.wikipedia.org/wiki/Zubarah
+    row("Bahrain", "Bahrain", &["bhr"], "MiddleEast",
+        &["SaudiArabia"], &[claim("Qatar", 0.01)], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -938,6 +1073,14 @@ well_known! {
     Bolivia => "Bolivia",
     Ecuador => "Ecuador",
     Uruguay => "Uruguay",
+    Syria => "Syria",
+    Jordan => "Jordan",
+    Lebanon => "Lebanon",
+    UAE => "UAE",
+    Qatar => "Qatar",
+    Oman => "Oman",
+    Yemen => "Yemen",
+    Bahrain => "Bahrain",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

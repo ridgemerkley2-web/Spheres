@@ -1,0 +1,42 @@
+{
+  "id": "Jordan",
+  "name": "Jordan",
+  "system": "Market",
+  "authoritarianism": 0.55,
+  "economy": {
+    "gdp_bn": 4.16,
+    "population_m": 3.62,
+    "tfp_trend": 0.008,
+    "inflation": 0.162,
+    "interest_rate": 0.11,
+    "tax_rate": 0.18,
+    "mil_spend_gdp": 0.078,
+    "state_invest_gdp": 0.1,
+    "priv_invest_gdp": 0.15,
+    "debt_gdp": 2.0,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 54.0,
+    "separatism": 0.15
+  },
+  "military": {
+    "strength": 6.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $4.16bn: World Bank NY.GDP.MKTP.CD, series JOR, 1990 - $4,160,087,507.83. Cross-checked against the Bank's Atlas GNI per capita for Jordan in 1990 of $1,260, which on 3.62m people implies $4.56bn of national income; GNI above GDP is what remittances from the several hundred thousand Jordanians and Palestinians working in the Gulf look like in the accounts, and it is exactly that flow the Kuwait crisis was about to cut off.",
+    "Population 3.62m: World Bank SP.POP.TOTL, series JOR, 1990 - 3,621,908. This figure is about to move violently and the model will not see it: roughly 300,000 Palestinian-Jordanians were expelled from Kuwait and the Gulf in late 1990 and 1991 and arrived in a country of three and a half million.",
+    "TFP trend 0.008: level with Egypt's. Jordan had the best-educated workforce in the Arab world by enrolment and almost no natural resources to deploy it on; the growth of the 1970s and early 1980s was Gulf aid and remittances rather than productivity, and 1989-91 was the deepest recession in the country's history.",
+    "Inflation 16.2%: World Bank FP.CPI.TOTL.ZG, series JOR, 1990 - 16.1921375615233. The dinar had been devalued from about 0.38 to the dollar to about 0.68 across 1988-89, and this is the pass-through of that in a country importing almost everything it eats.",
+    "Interest rate 11%: FLAGGED AS UNVERIFIED. The World Bank publishes neither a lending rate (FR.INR.LEND) nor a deposit rate (FR.INR.DPST) for Jordan in 1990. 0.11 is placed above the Gulf's dollar-pegged 8.4-9.9% band, because the Central Bank of Jordan had raised its rediscount rate through the dinar crisis to defend a currency that had just halved, and below Turkey's 0.50, which is a different order of monetary emergency. An anchored placement, not a print.",
+    "Revenue 18% of GDP: World Bank GC.TAX.TOTL.GD.ZS, series JOR, 1990 - 18.01% tax revenue. Transcribed as published, and it UNDERSTATES total government revenue, because it excludes both non-tax revenue and the foreign grants Jordan lived on - Gulf budget support under the 1978 Baghdad summit formula, and American assistance. Those grants were about to be cancelled by Amman's refusal to join the coalition against Iraq. The published tax number is entered rather than a reconstructed total, because the total would be a construction.",
+    "Military 7.8% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI basis), series JOR, 1990 - 7.75106758278973.",
+    "Public investment 10% and private investment 15% of GDP: World Bank NE.GDI.FTOT.ZS gives total gross fixed capital formation of 25.1385317445945% for Jordan in 1990. NE.GDI.FPRV.ZS is null, so the SPLIT IS APPORTIONED AND NOT PUBLISHED - the total is transcribed, the 10/15 division between them is not, and it is listed among this branch's unverified figures. It is set at roughly 40% public on the basis that Jordan's capital budget in this period was dominated by the Aqaba port, the phosphate and potash companies and the desert highway, all state.",
+    "Debt 200% of GDP: World Bank DT.DOD.DECT.CD, series JOR, 1990 - external debt stocks of $8,332,902,493.50 against the $4.16bn GDP above, giving 2.00; the Bank's own DT.DOD.DECT.GN.ZS puts it at 211.2% of GNI. This is not a rounding error or a modelling choice, it is the highest debt ratio in this roster by a distance - higher than Italy's 0.94 and Israel's 1.32 - and it is real. Jordan suspended debt service in early 1989, took an IMF standby in July, and rescheduled at the Paris Club. The bread-price rises that programme required caused the Ma'an riots of April 1989, which caused the election of November 1989, which is why this nation has a live parliament in the government table.",
+    "Oil 0.0: World Bank NY.GDP.PETR.RT.ZS puts Jordan's oil rents at 0.07% of GDP in 1990. The Hamzah field near Azraq produced a few dozen barrels a day. Jordan is an oil importer and the Iraqi crude it imported at concessionary prices, trucked down the Baghdad highway, is one reason King Hussein could not join the coalition of 1990-91.",
+    "Stability 54 and authoritarianism 0.55: the Ma'an bread riots of April 1989 were the most serious internal challenge the Hashemite monarchy had faced since 1970, and they came from the East Bank tribal south that was supposed to be its bedrock. The regime's answer was the general election of 8 November 1989, the first since 1967 and genuinely competitive - which is why authoritarianism is set at 0.55, deliberately just under the ELECTORAL_CEILING of 0.60, so that the model treats Jordan as the one Arab state on this board whose government could be changed by a vote. It is not set lower: martial law had been in force since 1967 and was not lifted until 1991, political parties remained illegal until 1992, and the King appointed and dismissed prime ministers without reference to the Chamber. Level with Pakistan's 0.55, which is the same kind of object - a real election inside a system that reserved the last word for somebody who had not stood in it. Stability 54 sits below Egypt's 58 and above Iraq's 48.",
+    "Separatism 0.15: between a half and three-fifths of Jordan's population was of Palestinian origin, and the memory of Black September 1970 - when the army fought the PLO for control of the country and won - was twenty years old. But this is a cleavage over who the state belongs to, not a movement to take territory out of it: there was no Palestinian secessionist claim on the East Bank, and King Hussein had renounced the West Bank in July 1988. Set well below Israel's 0.40, above Egypt's 0.05 and Saudi Arabia's 0.04."
+  ]
+}

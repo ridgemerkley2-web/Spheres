@@ -1,0 +1,43 @@
+{
+  "id": "Bahrain",
+  "name": "Bahrain",
+  "system": "Market",
+  "authoritarianism": 0.75,
+  "economy": {
+    "gdp_bn": 4.81,
+    "population_m": 0.51,
+    "tfp_trend": 0.011,
+    "inflation": 0.009,
+    "interest_rate": 0.084,
+    "tax_rate": 0.3,
+    "mil_spend_gdp": 0.053,
+    "state_invest_gdp": 0.066,
+    "priv_invest_gdp": 0.1,
+    "debt_gdp": 0.12,
+    "oil_mbd": 0.042,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 60.0,
+    "separatism": 0.05
+  },
+  "military": {
+    "strength": 0.6,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $4.81bn: World Bank NY.GDP.MKTP.CD, series BHR, 1990 - $4,809,511,005.32. Cross-checked against the Bank's Atlas GNI per capita for Bahrain in 1990 of $9,880, which on 514,797 people implies $5.09bn - within 6% of the GDP figure, and the small excess is the offshore banking sector's foreign earnings. The two series agree.",
+    "Population 514,797: World Bank SP.POP.TOTL, series BHR, 1990. Roughly two thirds were Bahraini citizens, and roughly two thirds of those were Shia under a Sunni ruling family - which is the central fact of Bahraini politics and the reason for the stability and authoritarianism figures below.",
+    "TFP trend 0.011: the highest in this branch, above Kuwait's shipped 0.010 and the UAE's 0.009, and it is the one Gulf state where that is defensible. Bahrain had the peninsula's first oil, at Jebel Dukhan in 1932, and by 1990 it was nearly gone - 42,000 barrels a day from a field that had been producing for fifty-eight years. Having seen the end coming earlier than anybody else, Bahrain deliberately built something else: the Aluminium Bahrain smelter from 1971, the Arab Shipbuilding and Repair Yard drydock from 1977, and above all the offshore banking units licensed from 1975, which took the regional treasury business Beirut lost when the Lebanese civil war began. Bahrain in 1990 was the only Gulf economy whose growth was not a function of its own barrels.",
+    "Inflation 0.9%: World Bank FP.CPI.TOTL.ZG, series BHR, 1990 - 0.929335437489093.",
+    "Interest rate 8.41%: World Bank FR.INR.LEND, series BHR, 1990 - 8.41148197596796%. The deposit rate (FR.INR.DPST) was 7.5%. The dinar has been pegged to the dollar since 1980; the 0.9-point lending spread is the narrowest in this branch and is what a genuine regional banking centre with a hundred-odd licensed institutions looks like.",
+    "Revenue 30% of GDP: DERIVED AND FLAGGED. The World Bank does publish a tax-revenue share for Bahrain in 1990 - GC.TAX.TOTL.GD.ZS gives 4.56% - and that figure alone would be badly misleading, because Bahrain levied no income tax and its government's income was not tax. NY.GDP.PETR.RT.ZS puts oil rents at 37.04% of GDP. 0.30 is entered as the sum of the published tax take and the oil rent accruing to the state, less the share retained by BAPCO for reinvestment, and the derivation is stated rather than hidden. NOTE FOR THE INTEGRATOR: as with the other Gulf files in this branch, this follows the schema's stated definition of tax_rate as general-government revenue over GDP, which puts it far above the shipped Saudi 0.08 and Kuwait 0.05; those two carry the 'origin was not documented' provenance note, and the inconsistency is flagged rather than propagated.",
+    "Military 5.3% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI basis), series BHR, 1990 - 5.28479154433353. The lowest of the six Gulf monarchies, and the reason is the American security guarantee: the US Navy's Middle East Force had been homeported at Juffair since 1949 and Bahrain hosted it through every regional crisis, which is a cheaper defence policy than buying one.",
+    "Public investment 6.6% and private investment 10.0% of GDP: World Bank NE.GDI.FTOT.ZS gives total gross fixed capital formation of 16.644767295641% for Bahrain in 1990, which is transcribed exactly. NE.GDI.FPRV.ZS is null, so THE SPLIT IS APPORTIONED AND NOT PUBLISHED and is in this branch's unverified list. It is set at roughly 40% public because the two largest capital assets on the island - ALBA and ASRY - were state-owned while the banking and construction sector was private.",
+    "Debt 12% of GDP: FLAGGED AS UNVERIFIED. Bahrain did not report to the Debtor Reporting System and DT.DOD.DECT.CD is null. 0.12 is entered above the UAE's near-zero and below Qatar's 0.15, on the reasoning that Bahrain was the poorest of the Gulf monarchies in per-capita terms and had least cushion, but that Saudi Arabia's transfers - including the outright gift of the Abu Sa'fah revenue and the $1.2bn cost of the causeway - kept it from needing to borrow much. Not a published figure.",
+    "Oil 42,000 barrels a day: EIA international crude production, Bahrain, 1990 - 42 thousand b/d, against 43 in 1989 and 38 in 1991. THIS NUMBER NEEDS ITS CAVEAT STATED, because it does not reconcile with the oil-rent share above and the reason is instructive rather than a data error. The Bahrain field's own output was 42,000 b/d, worth about $350m a year at 1990 prices, which is 7% of GDP - not the 37% the World Bank's rent series reports. The difference is Abu Sa'fah, the offshore field in Saudi territorial water whose entire output Riyadh assigns to Bahrain by a 1958 agreement: roughly 140,000 b/d, produced by Saudi Aramco, credited to Bahrain's treasury. It is Bahraini revenue and it is not Bahraini production, and this field is production. 0.042 is entered - the honest volume - and the revenue that does not appear beside it is in the tax_rate entry above instead.",
+    "Stability 60 and authoritarianism 0.75: stability is set below Saudi Arabia's shipped 66 and above Egypt's 58. Bahrain's 1973 constitution and its elected National Assembly lasted twenty months: the Emir dissolved the Assembly in August 1975 and ruled by decree under the State Security Law of 1974, which permitted three years' detention without trial, for the next twenty-six years. In December 1981 the Islamic Front for the Liberation of Bahrain, trained in Iran, was caught preparing a coup. The Shia grievance that produced that plot produced the intifada of 1994-99 and the uprising of 2011. Authoritarianism 0.75 is set ABOVE Kuwait's shipped 0.60 - both had dissolved their assemblies, but Kuwait's went in 1986 and came back in 1992 while Bahrain's went in 1975 and did not return until 2002, and Kuwait had no equivalent of the State Security Law - and below Saudi Arabia's 0.85.",
+    "Separatism 0.05: low, and deliberately so despite everything in the paragraph above. Bahrain's Shia majority wanted the 1973 constitution back and a parliament that represented it; no Bahraini movement has ever sought to take territory out of the state, because there is no territory to take - the island is thirty miles long and the communities live in the same towns. Level with Egypt's 0.05, above Saudi Arabia's 0.04. The territorial question in Bahrain runs the other way, in the reciprocal claims with Qatar recorded in the roster.",
+    "Military strength 0.6: the smallest force on the board, below Qatar's 0.8. The Bahrain Defence Force in 1990 was about 6,000 men. What actually defended Bahrain was twenty-five kilometres of causeway to Saudi Arabia and a United States Navy headquarters at Juffair, and both of those are in the roster and the relations table rather than in this number."
+  ]
+}
