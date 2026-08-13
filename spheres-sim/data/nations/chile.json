@@ -1,0 +1,37 @@
+{
+  "id": "Chile",
+  "name": "Chile",
+  "system": "Market",
+  "authoritarianism": 0.35,
+  "economy": {
+    "gdp_bn": 33.1,
+    "population_m": 13.2,
+    "tfp_trend": 0.02,
+    "inflation": 0.26,
+    "interest_rate": 0.35,
+    "tax_rate": 0.19,
+    "mil_spend_gdp": 0.038,
+    "state_invest_gdp": 0.045,
+    "priv_invest_gdp": 0.19,
+    "debt_gdp": 0.44,
+    "oil_mbd": 0.01,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 58.0,
+    "separatism": 0.03
+  },
+  "military": {
+    "strength": 9.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $33.1bn and 13.2m people (World Bank, 1990). TFP trend 2.0%/yr: the recovery from the 1982 banking collapse ran at 7% a year from 1986 and is the strongest sustained productivity record in the region.",
+    "Inflation 26.0% is the INE CPI annual average for 1990 (December-on-December 27.3%), a deliberate overshoot the outgoing regime left behind. interest_rate 35% is the nominal equivalent of the Banco Central's January 1990 tightening, which raised the indexed PRBC rate to about 9% real — the new bank's independence, granted in the 1989 organic law, tested in its first month.",
+    "Tax take 19% of GDP; gross fixed capital formation near 24%, split about 4.5% public and 19% private after the pension reform of 1981 turned domestic saving into a capital market.",
+    "Debt 0.44: external debt about $19.2bn at end-1990 (World Bank), some 58% of GDP, much of it already retired through the debt-equity swaps of 1985-90; public sector debt proper is nearer 44%.",
+    "Defence 3.8% of GDP, high for the size of the economy because Ley 13.196 reserves 10% of CODELCO's copper export earnings to the armed forces off-budget. Strength 9.",
+    "Oil 0.01 mbd: ENAP's Magallanes fields, about 12,000 bbl/d, against consumption seven times that.",
+    "authoritarianism 0.35 and stability 58: the game opens with Pinochet still president, having lost the plebiscite of 5 October 1988 and the election of 14 December 1989. Patricio Aylwin takes office on 11 March 1990, and Pinochet stays commander-in-chief of the army until 1998 — a transition on the outgoing regime's terms, which is why this is not scored as a settled democracy. Separatism 0.03 is Mapuche land conflict in the Araucania."
+  ]
+}
