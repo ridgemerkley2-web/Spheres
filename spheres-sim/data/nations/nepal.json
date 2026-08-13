@@ -1,0 +1,36 @@
+{
+  "id": "Nepal",
+  "name": "Nepal",
+  "system": "Market",
+  "authoritarianism": 0.7,
+  "economy": {
+    "gdp_bn": 3.6,
+    "population_m": 19.5,
+    "tfp_trend": 0.006,
+    "inflation": 0.082,
+    "interest_rate": 0.11,
+    "tax_rate": 0.07,
+    "mil_spend_gdp": 0.009,
+    "state_invest_gdp": 0.09,
+    "priv_invest_gdp": 0.09,
+    "debt_gdp": 0.45,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 46.0, "separatism": 0.02 },
+  "military": { "strength": 1.0, "nuclear": false },
+  "sources": [
+    "GDP $3.6bn: World Bank NY.GDP.MKTP.CD, series NPL, 1990 = $3,627,560,239. The smallest economy in this roster. The Nepalese rupee was pegged to the Indian rupee and the peg held, so the conversion carries no caveat.",
+    "Population 19.5m: World Bank SP.POP.TOTL, series NPL, 1990 = 19,524,573. Per capita $186 — the poorest entry on this board, below Afghanistan's $250 and Myanmar's $276.",
+    "TFP trend 0.006: Nepal grew about 4.5% a year through the 1980s but from a base with almost no industry, and the immediate context here is worse than the decade average. India closed twenty-one of the twenty-three border transit points on 23 March 1989 when the trade and transit treaties lapsed, and the blockade was not lifted until mid-1990; a landlocked economy that imports its fuel through one neighbour lost roughly a year of growth to it. Set below Bangladesh's 0.008 and far below India's 0.020.",
+    "Inflation 8.2%: World Bank FP.CPI.TOTL.ZG, series NPL, 1990 = 8.24%. Calendar-year basis. The Nepalese fiscal-year print for 1989/90 ran higher, near 11%, because the Indian blockade produced acute shortages of fuel and salt; the calendar figure is entered for consistency with the rest of this roster's inflation series and the discrepancy is noted rather than split.",
+    "Interest rate 11%: NOT A TRANSCRIBED SERIES. World Bank FR.INR.LEND returns null for Nepal for 1990. The Nepal Rastra Bank ran an administered rate structure with its bank rate near 11%, which is what is entered; commercial lending rates sat several points above it. Against 8.2% inflation this gives a real rate close to +2.8%, which is the least distorted monetary position of the five South Asian entries and is right for a small economy pegged to a larger stable one. Flagged as unverified.",
+    "Revenue 7.0% of GDP: World Bank GC.TAX.TOTL.GD.ZS, series NPL, 1990 = 6.997%. A real observation, entered essentially unchanged, and the lowest revenue effort in this roster — lower than Nigeria's 8%. It is also the number that makes the rest of Nepal's fiscal picture legible: a state collecting 7% of GDP while investing 9% of GDP publicly is a state whose development budget is foreign aid, which is exactly what Nepal's was.",
+    "Military 0.9% of GDP and a strength index of 1: World Bank MS.MIL.XPND.GD.ZS, series NPL, 1990 = 0.878%. The Royal Nepal Army numbered roughly 35,000 and existed to guard the palace, not a frontier — Nepal has never fought a war since 1816 and its most famous soldiers served in somebody else's army. 0.9% of $3.6bn is about $32m, roughly one twelfth of Bangladesh's $386m, and Bangladesh is indexed 4 here. Indexed 1, the floor of this roster.",
+    "Public investment 9.0% and private investment 9.0% of GDP: World Bank NE.GDI.TOTL.ZS, series NPL, 1990 = 18.13% gross capital formation, transcribed as the sum. THE SPLIT IS A JUDGEMENT: Nepal's public capital spending was unusually large relative to its economy because it was almost entirely donor-financed, and the even division entered here reflects that rather than a published series.",
+    "Debt 45% of GDP: World Bank DT.DOD.DECT.GN.ZS, series NPL, 1990 = 44.69% external debt stocks as a share of GNI. Same stated substitution as the other South Asian entries — the schema field means gross public debt and external debt is what is available. For Nepal the substitution is unusually safe, since essentially all of it was concessional multilateral credit.",
+    "Oil 0.0 mbd: Nepal produces no hydrocarbons at all and imports every litre of fuel it burns, overland, through India. That dependency is not a footnote here — it is the mechanism by which the 1989-90 blockade worked.",
+    "Stability 46 and authoritarianism 0.70: THIS ENTRY IS THREE WEEKS BEFORE A REVOLUTION AND IS DELIBERATELY NOT WRITTEN AS THOUGH IT ALREADY HAPPENED. In January 1990 Nepal was still the partyless Panchayat system: political parties had been banned since King Mahendra's coup of 15 December 1960, the referendum of 2 May 1980 had confirmed the Panchayat over a party system, and King Birendra ruled. The Jana Andolan launched on 18 February 1990, the ban was lifted on 8 April, and a constitutional monarchy followed in November. Authoritarianism 0.70 therefore sits above Yugoslavia's 0.65 and below Egypt's 0.75 — a genuine absolute monarchy, but one that killed in the dozens rather than the thousands and conceded within seven weeks. Stability 46 is set above Yugoslavia's 44 and Sri Lanka's 42: the Panchayat regime was about to fall, but nobody was contesting the existence or the borders of the Nepalese state, and the institution that mattered most, the monarchy, survived the year.",
+    "Separatism 0.02: essentially none in 1990, and this is the lowest figure in this roster alongside Brazil's and Vietnam's. Nepal is ethnically and linguistically plural, but no organised movement sought to leave it at this date. The Madhesi question and the Maoist insurgency that began in 1996 are both later, and writing either into a January 1990 start would be scripting rather than transcribing. Set below France's 0.03."
+  ]
+}

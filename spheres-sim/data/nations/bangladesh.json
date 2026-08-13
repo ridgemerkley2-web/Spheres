@@ -1,0 +1,36 @@
+{
+  "id": "Bangladesh",
+  "name": "Bangladesh",
+  "system": "Market",
+  "authoritarianism": 0.65,
+  "economy": {
+    "gdp_bn": 31.6,
+    "population_m": 111.6,
+    "tfp_trend": 0.008,
+    "inflation": 0.061,
+    "interest_rate": 0.149,
+    "tax_rate": 0.09,
+    "mil_spend_gdp": 0.012,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.1,
+    "debt_gdp": 0.38,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 44.0, "separatism": 0.06 },
+  "military": { "strength": 4.0, "nuclear": false },
+  "sources": [
+    "GDP $31.6bn: World Bank NY.GDP.MKTP.CD, series BGD, 1990 = $31,598,340,778 — the same series the rest of this roster's 1990 GDP figures sit on (USA 5980, France 1270, Spain 535 all match it). No caveat is needed here: the taka was on a managed float against a basket from 1983 and the official and secondary-market rates were within a few percent of each other in 1990, so unlike Myanmar's entry in this roster the dollar conversion is not doing anything violent to the number.",
+    "Population 111.6m: World Bank SP.POP.TOTL, series BGD, 1990 = 111,633,717. The census of 11-15 March 1991 enumerated 106.3m and was adjusted upward to 111.5m after post-enumeration survey, which is where the World Bank series lands. Per capita this is $283, and the useful cross-check is Myanmar in this same roster at $276 — the two poorest large economies in Asia, entered from two different sources, landing within 3% of each other per head.",
+    "TFP trend 0.008: Bangladesh grew about 3.7% a year through the 1980s against population growth of about 2.4%, so roughly 1.3% per head, and almost all of the level gain was the Green Revolution reaching the delta rather than productivity in industry. Set below India's 0.020 and Pakistan's 0.016 because Bangladesh had neither India's industrial base nor Pakistan's remittance-and-aid inflow at this date; the garment export boom that changed this began from a base of essentially nothing in the mid-1980s and is a 1990s story, which is exactly what this model should be made to discover rather than be told.",
+    "Inflation 6.1%: World Bank FP.CPI.TOTL.ZG, series BGD, 1990 = 6.13%. Low by the standards of this roster's poor economies and genuinely so — the Bangladesh Bank had held the taka steady and food prices were soft after a good aman harvest.",
+    "Interest rate 14.9%: World Bank FR.INR.LEND, series BGD, 1990 = 14.85%. NOTE THE SUBSTITUTION, stated rather than hidden: this is the commercial bank LENDING rate, not a policy rate, because Bangladesh Bank operated an administered rate structure in 1990 rather than a market policy instrument and no policy rate comparable to Spain's repo or Turkey's is published for it. The lending rate is the price of money actually faced in the economy, which is what the demand channel in economy.rs reads. Against 6.1% inflation this gives a real rate of +8.8%, which is high and is correct: credit was rationed and expensive in Bangladesh in 1990.",
+    "Revenue 9% of GDP: THIS IS THE WEAKEST FIGURE IN THIS FILE AND IS NOT TRANSCRIBED FROM A SERIES. World Bank GC.TAX.TOTL.GD.ZS and GC.REV.XGRT.GD.ZS both return null for Bangladesh for 1990 and for every year to 1996; there is no World Bank general-government revenue observation for Bangladesh at this date. Bangladesh's revenue effort was among the lowest in the world — National Board of Revenue collections ran around 7% of GDP with non-tax receipts adding roughly 2%. The 9% entered here is that sum, and it is placed between Nepal's 7.0% (a real World Bank observation in this same roster) and India's 16%. Treat it as an order-of-magnitude statement about a state that could not tax, not a measurement.",
+    "Military 1.2% of GDP and a strength index of 4: World Bank MS.MIL.XPND.GD.ZS, series BGD, 1990 = 1.223%. The lowest military burden of any nation in this roster, and that is the fact rather than an artefact: Bangladesh fought nobody, and its army of roughly 101,000 was an internal-security and coup-making institution rather than an expeditionary one. The strength index is calibrated by ratio of actual defence dollars against a named neighbour — 1.2% of $31.6bn is about $386m against Pakistan's 6.2% of $40bn, about $2.5bn, a ratio near one to six. Pakistan is indexed 16 in this roster, so Bangladesh is indexed 4.",
+    "Public investment 6.0% and private investment 10% of GDP: World Bank NE.GDI.TOTL.ZS, series BGD, 1990 = 16.46% gross capital formation, which is the sum. THE SPLIT IS NOT A PUBLISHED SERIES: it is the Annual Development Programme, the aid-financed public investment budget, running around 6% of GDP at this date with the residual assigned to private. The total is transcribed; the division between the two lines is a judgement about a state whose public capital spending was very nearly all somebody else's money.",
+    "Debt 38% of GDP: World Bank DT.DOD.DECT.GN.ZS, series BGD, 1990 = 38.13% external debt stocks as a share of GNI. STATED SUBSTITUTION: this schema's debt_gdp field means gross public debt, and what is entered here is external debt. For Bangladesh the two are close but not identical — nearly all of the public debt was external and concessional, chiefly IDA and Asian Development Bank credits, so the external stock captures most of it, but domestic borrowing is excluded and this therefore understates gross public debt by a few points.",
+    "Oil 0.0 mbd: Bangladesh produced no meaningful crude in 1990. It is a gas economy — the Titas and Bakhrabad fields fed fertiliser and power — and the small condensate stream that came with the gas is below the resolution of this field.",
+    "Stability 44 and authoritarianism 0.65: this is a regime with eleven months to live, and the numbers say so. Hussain Muhammad Ershad took power by coup in March 1982 and civilianised himself through the Jatiya Party; the parliamentary elections of 1986 and 3 March 1988 were both boycotted by the Awami League and the Bangladesh Nationalist Party and a Western diplomat quoted at the time called the second a mockery of an election. He resigned on 6 December 1990 after the mass movement and the general strike of late November. Authoritarianism is set at Yugoslavia's 0.65 — above Pakistan's 0.55, where an elected prime minister at least sat, and below Egypt's 0.75, where the hegemonic party was not about to lose. Stability 44 sits at Yugoslavia's 44 and below Pakistan's 52.",
+    "Separatism 0.06: the Chittagong Hill Tracts insurgency, in which the Shanti Bahini fought the state from 1977 until the accord of 2 December 1997. It is a real armed secessionist movement and it is the reason this figure is not near zero, but the Hill Tracts held roughly 1% of Bangladesh's population — the country is otherwise one of the most ethnically and linguistically homogeneous states on earth. Set just above Italy's 0.05 and far below India's 0.15."
+  ]
+}

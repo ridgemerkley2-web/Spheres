@@ -110,7 +110,7 @@ pub const ROSTER: &[NationRow] = &[
     // borders only the first two of those, which is a real change the model
     // gets for free from the data rather than from a special case.
     row("USSR", "Soviet Union", &["ussr", "soviets"], "Eurasia",
-        &["China", "Poland", "Turkey", "Iran"], &[], true, true, false),
+        &["China", "Poland", "Turkey", "Iran", "Afghanistan"], &[], true, true, false),
 
     // Russia's claim on Ukraine is the 1989 Soviet census: 22.1% of the
     // Ukrainian SSR's people were ethnic Russians, concentrated in Crimea and
@@ -131,7 +131,7 @@ pub const ROSTER: &[NationRow] = &[
     // Paracels (taken 1974), the Spratlys (Johnson Reef, March 1988) and the
     // land border strips disputed until 1999.
     row("China", "China", &["prc", "cn"], "EastAsia",
-        &["USSR", "Russia", "India", "Pakistan", "Vietnam"],
+        &["USSR", "Russia", "India", "Pakistan", "Vietnam", "Nepal", "Myanmar"],
         &[claim("India", 0.02), claim("Vietnam", 0.01), claim("Russia", 0.004)],
         true, true, false),
 
@@ -154,11 +154,11 @@ pub const ROSTER: &[NationRow] = &[
     // Pakistan's 108m in 1990. Pakistan claims Indian-administered Jammu and
     // Kashmir, about 8m of India's 870m.
     row("India", "India", &["ind", "bharat"], "SouthAsia",
-        &["Pakistan", "China"],
+        &["Pakistan", "China", "Bangladesh", "Nepal", "Myanmar"],
         &[claim("Pakistan", 0.06), claim("China", 0.005)], true, false, false),
 
     row("Pakistan", "Pakistan", &["pak"], "SouthAsia",
-        &["India", "China", "Iran"], &[claim("India", 0.01)], true, false, false),
+        &["India", "China", "Iran", "Afghanistan"], &[claim("India", 0.01)], true, false, false),
 
     // Baghdad never accepted the Anglo-Ottoman line of 1913, claimed Kuwait as
     // part of the Basra vilayet on Kuwaiti independence in 1961, and annexed it
@@ -178,7 +178,7 @@ pub const ROSTER: &[NationRow] = &[
     // Tehran's claim is the Shatt al-Arab thalweg conceded at Algiers in 1975
     // and torn up in 1980, and behind it the shrine cities of Najaf and Karbala.
     row("Iran", "Iran", &["irn", "persia"], "MiddleEast",
-        &["Iraq", "Turkey", "Pakistan", "USSR"], &[claim("Iraq", 0.03)], true, false, false),
+        &["Iraq", "Turkey", "Pakistan", "USSR", "Afghanistan"], &[claim("Iraq", 0.03)], true, false, false),
 
     row("SouthKorea", "South Korea", &["south korea", "korea", "rok"], "EastAsia",
         &[], &[], true, false, false),
@@ -244,6 +244,82 @@ pub const ROSTER: &[NationRow] = &[
     // https://en.wikipedia.org/wiki/Brussels_Agreement_(1984)
     row("Spain", "Spain", &["esp", "espana"], "WesternEurope",
         &["France"], &[claim("UK", 0.0005)], true, false, false),
+
+    // Bangladesh is surrounded by India on three sides — 4,100 km of border,
+    // the fifth longest in the world — and touches Myanmar for 270 km in the
+    // south-east. There is no third neighbour. The claim is the one this
+    // table's doc comment calls a rounding error, and it is worth stating
+    // precisely because it is a real dispute that was never going to be a war:
+    // the 51 Bangladeshi enclaves inside India, and South Talpatti/New Moore,
+    // an uninhabited estuarine sandbar the Indian Navy landed on in 1981. The
+    // enclaves held about 14,000 people when they were finally counted, against
+    // an India of 870m — 0.00002 of the target. The Land Boundary Agreement
+    // that resolved them was signed in 1974, ratified by Dhaka at once and by
+    // Delhi in 2015, which is the shape of the grievance: forty-one years of
+    // paperwork, not a casus belli.
+    // https://en.wikipedia.org/wiki/India%E2%80%93Bangladesh_enclaves
+    row("Bangladesh", "Bangladesh", &["bgd", "bd"], "SouthAsia",
+        &["India", "Myanmar"], &[claim("India", 0.00002)], true, false, false),
+
+    // Sri Lanka has no land border with anything. The Palk Strait is not
+    // treated as one of the two straits this table's doc comment admits as
+    // marchable, and the January 1990 situation is the reason to be careful
+    // rather than the reason to relax it: the Indian Peace Keeping Force was
+    // still on the island and did not finish withdrawing until 24 March 1990.
+    // That was an invited deployment under the Indo-Lanka Accord of 29 July
+    // 1987, moved by ship and aircraft, not an army that walked. Region
+    // membership already gives Colombo a dyad with Delhi; a fictitious land
+    // border would give it one it cannot have.
+    row("SriLanka", "Sri Lanka", &["sri lanka", "lka", "ceylon"], "SouthAsia",
+        &[], &[], true, false, false),
+
+    // Nepal borders exactly two states and is entirely enclosed by them. Both
+    // borders are real and both are crossable: the Indian frontier is open by
+    // treaty, and the Chinese one carries the Araniko Highway over the Kodari
+    // pass, built in 1967 and the reason Kathmandu had any alternative to Delhi
+    // at all. No claims. The Kalapani and Susta disputes with India existed but
+    // Nepal had not pressed them at this date, and writing in a grievance that
+    // became loud in 1997 and 2019 would be scripting the future rather than
+    // transcribing 1990.
+    row("Nepal", "Nepal", &["npl"], "SouthAsia",
+        &["India", "China"], &[], true, false, false),
+
+    // Afghanistan borders Pakistan along the Durand Line, Iran along the Helmand
+    // basin, and the Soviet Union along the Amu Darya — the river the 40th Army
+    // crossed back over on 15 February 1989, eleven months before this game
+    // starts. CHINA IS DELIBERATELY ABSENT and the omission is a judgement, not
+    // an oversight: the 76 km Afghan-Chinese border exists, at the far end of
+    // the Wakhan Corridor, and it sits at nearly 5,000 m over the Wakhjir Pass
+    // with no road on either side in 1990 or since. This column is land borders
+    // an army could use, and that is not one.
+    //
+    // The claim is Pashtunistan, and it is the oldest live irredenta in South
+    // Asia. Afghanistan was the only state to vote against Pakistan's admission
+    // to the United Nations in 1947, has never recognised the Durand Line drawn
+    // in 1893, and claimed the Pashtun districts on the far side of it — the
+    // North-West Frontier Province, the tribal agencies, and in its maximal
+    // form the Pashtun north of Baluchistan. NWFP alone held 11.06m of
+    // Pakistan's 84.25m at the 1981 census, 13.1%; with the Baluchistan
+    // districts the claim covers roughly 0.15 of the target.
+    // https://en.wikipedia.org/wiki/Durand_Line
+    row("Afghanistan", "Afghanistan", &["afg", "afghan"], "SouthAsia",
+        &["Pakistan", "Iran", "USSR"], &[claim("Pakistan", 0.15)], true, false, false),
+
+    // Myanmar is filed in SoutheastAsia rather than SouthAsia despite being
+    // assigned with its western neighbours, because region here means "close
+    // enough that force can be projected without anybody's permission" and
+    // Burma's military neighbourhood ran east as much as west. Its roster
+    // borders are India, Bangladesh and China; Thailand and Laos are real
+    // borders that are simply not simulated yet, and the region assignment is
+    // what keeps the eventual Thai dyad from being a surprise.
+    //
+    // No claims, and that is the correct entry rather than a gap. Burma's wars
+    // were entirely internal — a dozen ethnic insurgencies inside its own 1948
+    // borders — and it sought no territory from anyone. The Rohingya expulsions
+    // of 1978 and 1991-92 drove people INTO Bangladesh, which is a refugee
+    // crisis and a border incident but is the opposite of a territorial claim.
+    row("Myanmar", "Myanmar", &["burma", "mmr", "bur"], "SoutheastAsia",
+        &["India", "Bangladesh", "China"], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -395,6 +471,11 @@ well_known! {
     Slovenia => "Slovenia",
     Bosnia => "Bosnia",
     Spain => "Spain",
+    Bangladesh => "Bangladesh",
+    SriLanka => "SriLanka",
+    Nepal => "Nepal",
+    Afghanistan => "Afghanistan",
+    Myanmar => "Myanmar",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

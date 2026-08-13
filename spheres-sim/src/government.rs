@@ -904,6 +904,174 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the Congress of Deputies",
         pillars: &[],
     },
+    // Bangladesh — Jatiya Sangsad, 3 March 1988: Jatiya Party 68.4% and 251 of
+    // 300 seats, the Combined Opposition Party 12.6%, the Freedom Party 3.3%,
+    // JSD (Siraj) 1.2%, independents 13.5%. THOSE SHARES DESCRIBE A BOYCOTT,
+    // not an electorate, and are entered as such: the Awami League, the BNP, the
+    // Communist Party, Jamaat-e-Islami and four other parties all refused to
+    // contest. Official turnout was 52.5% and was not believed by anyone,
+    // including the Western diplomat who called it a mockery of an election.
+    // This is why Ershad is modelled with pillars as well as a parliament — the
+    // parliament is decorative and the army is not. He resigned on 6 December
+    // 1990, eleven months into the game, and nothing here schedules that.
+    // https://en.wikipedia.org/wiki/1988_Bangladeshi_general_election
+    Polity {
+        nation: NationId::Bangladesh,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("bd_jp", "Jatiya Party", "Jatiya Party", Family::BigTent, 0.684),
+            p("bd_cop", "Combined Opposition Party", "", Family::Liberal, 0.126),
+            p("bd_freedom", "Bangladesh Freedom Party", "", Family::Nationalist, 0.033),
+            p("bd_jsd", "Jatiya Samajtantrik Dal (Siraj)", "", Family::SocialDemocratic, 0.012),
+        ],
+        ruling: "the Jatiya Party",
+        pillars: &[
+            pl(Pillar::Army, "the Bangladesh Army"),
+            pl(Pillar::Party, "the Jatiya Party"),
+        ],
+    },
+    // Sri Lanka — Parliament, 15 February 1989: UNP 50.7% and 125 seats, SLFP
+    // 31.9% and 67, EROS 4.1%, SLMC 3.6%, TULF 3.4%, the United Socialist
+    // Alliance 2.9%, MEP 1.6%. Turnout 63.6%. Premadasa had taken the
+    // presidency on 19 December 1988 and this parliament followed. The term is
+    // six years, so the scheduled date is February 1995; in the event the
+    // parliament was dissolved early and the election came in August 1994,
+    // which the model is free to produce and is not told.
+    //
+    // The reason this is a democracy in the table and not a regime with pillars
+    // is that these elections decided who governed. The reason its
+    // authoritarianism is 0.35 and not Spain's 0.13 is that they were held
+    // under emergency rule, during the JVP insurrection, in the same months as
+    // tens of thousands of disappearances.
+    // https://en.wikipedia.org/wiki/1989_Sri_Lankan_parliamentary_election
+    Polity {
+        nation: NationId::SriLanka,
+        // Sri Lanka's proportional system carries a 12.5% preference threshold
+        // within each district, which is high — but the districts return small
+        // enough panels that the Tamil and Muslim parties, whose vote is
+        // geographically concentrated in the north and east, take seats on
+        // national shares of 3-4%. A high-bar national rule would delete EROS,
+        // the TULF and the SLMC from parliament together and with them every
+        // Tamil voice inside the constitutional system, at the exact moment the
+        // question in Sri Lankan politics was whether such a voice existed.
+        system: Electoral::ProportionalLowBar,
+        term_months: 72,
+        next: (1995, 2),
+        parties: &[
+            p("lk_unp", "United National Party", "Eksath Jathika Pakshaya", Family::Conservative, 0.507),
+            p("lk_slfp", "Sri Lanka Freedom Party", "Sri Lanka Nidahas Pakshaya", Family::SocialDemocratic, 0.319),
+            p("lk_eros", "Eelam Revolutionary Organisation of Students", "", Family::Regionalist, 0.041),
+            p("lk_slmc", "Sri Lanka Muslim Congress", "", Family::Regionalist, 0.036),
+            p("lk_tulf", "Tamil United Liberation Front", "", Family::Regionalist, 0.034),
+            p("lk_usa", "United Socialist Alliance", "", Family::Communist, 0.029),
+            p("lk_mep", "Mahajana Eksath Peramuna", "Mahajana Eksath Peramuna", Family::Nationalist, 0.016),
+        ],
+        ruling: "the Parliament",
+        pillars: &[],
+    },
+    // Nepal — THE EMPTY PARTY LIST IS THE TRANSCRIPTION, not a gap. Nepal in
+    // January 1990 was the partyless Panchayat: parties had been banned since
+    // King Mahendra's coup of 15 December 1960, and the referendum of 2 May
+    // 1980 had confirmed the Panchayat over a party system by 55% to 45%. The
+    // Rastriya Panchayat was elected, and elected on an explicitly non-party
+    // basis, so there are no shares to state. Saudi Arabia sets the precedent
+    // in this table for a state whose assembly has no parties in it.
+    //
+    // The Jana Andolan launched on 18 February 1990, seven weeks after the
+    // start; the ban was lifted on 8 April and a constitutional monarchy
+    // followed in November. The pillars below are what the model must dismantle
+    // to produce that, and it is not told to.
+    // https://en.wikipedia.org/wiki/1990_Nepalese_revolution
+    Polity {
+        nation: NationId::Nepal,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Panchayat",
+        pillars: &[
+            pl(Pillar::Party, "the palace secretariat"),
+            pl(Pillar::Army, "the Royal Nepal Army"),
+            pl(Pillar::Business, "the Rana and Chhetri landholding families"),
+        ],
+    },
+    // Afghanistan — the PDPA, in the third year of National Reconciliation and
+    // the eleventh month after the Soviet withdrawal. The 1987 constitution had
+    // formally ended the one-party state and a National Assembly was elected in
+    // April 1988 with seats reserved for opposition that never took them; the
+    // party renamed itself Watan in June 1990. None of that changed who
+    // decided. Modelled as a single party at 1.00 on the Iraq pattern, because
+    // that is what the institution was, with the four pillars that actually
+    // held Najibullah up.
+    //
+    // The fourth pillar is the one that matters and is the reason this entry is
+    // not simply a copy of Iraq's. Kabul did not hold the country with its own
+    // army; it held it with paid regional militias, above all Abdul Rashid
+    // Dostum's Jowzjani 53rd Division. When the Soviet money that paid them
+    // stopped at the end of 1991, Dostum changed sides in March 1992 and the
+    // government fell in weeks. That dependency is stated here as a pillar so
+    // the model can find the consequence rather than be handed it.
+    Polity {
+        nation: NationId::Afghanistan,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("af_pdpa", "People's Democratic Party of Afghanistan", "Hizb-i Dimukratik-i Khalq-i Afghanistan", Family::Communist, 1.00),
+        ],
+        ruling: "the People's Democratic Party of Afghanistan",
+        pillars: &[
+            pl(Pillar::Army, "the Afghan Armed Forces"),
+            pl(Pillar::Security, "WAD, the state information service"),
+            pl(Pillar::Party, "the PDPA apparatus"),
+            pl(Pillar::Business, "the paid regional militias"),
+        ],
+    },
+    // Myanmar — SLORC, and the most awkward dating decision in this table,
+    // made in the open. The shares below are the general election of 27 MAY
+    // 1990: NLD 59.9% and 392 of 492 seats, NUP 21.2% and 10 seats, SNLD 1.7%
+    // and 23, the Arakan League for Democracy 1.2%, the Mon National Democratic
+    // Front 1.1%, PND 0.6%, CNLD 0.4%, UPNO 0.3%. Turnout 72.6%.
+    //
+    // That is FOUR MONTHS AFTER the start of the game, and every other block in
+    // this table looks backwards. It is used anyway because there is nothing to
+    // look back at: SLORC abolished the Pyithu Hluttaw on 18 September 1988,
+    // the elections before that were single-party BSPP affairs under a
+    // constitution that no longer existed, and the May 1990 vote is the only
+    // measurement of Burmese political opinion in the entire period. The
+    // parties listed were legally registered and campaigning in January 1990
+    // under the Political Parties Registration Law of 1988, so they existed at
+    // the start; only the count is forward-dated.
+    //
+    // next is (0, 0) and the pillars are non-empty because the junta annulled
+    // the result it lost and governed for twenty-one more years. Aung San Suu
+    // Kyi had been under house arrest since 20 July 1989 and led the NLD to
+    // that landslide from inside it.
+    // https://en.wikipedia.org/wiki/1990_Myanmar_general_election
+    Polity {
+        nation: NationId::Myanmar,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("mm_nld", "National League for Democracy", "Amyotha Dimokarasi Aphwehcuhpaii", Family::Liberal, 0.599),
+            p("mm_nup", "National Unity Party", "Taingyintha Silonenyinyutye Party", Family::Nationalist, 0.212),
+            p("mm_snld", "Shan Nationalities League for Democracy", "", Family::Regionalist, 0.017),
+            p("mm_ald", "Arakan League for Democracy", "", Family::Regionalist, 0.012),
+            p("mm_mndf", "Mon National Democratic Front", "", Family::Regionalist, 0.011),
+            p("mm_pnd", "Party for National Democracy", "", Family::Liberal, 0.006),
+            p("mm_cnld", "Chin National League for Democracy", "", Family::Regionalist, 0.004),
+            p("mm_upno", "Union Pa-O National Organisation", "", Family::Regionalist, 0.003),
+        ],
+        ruling: "the State Law and Order Restoration Council",
+        pillars: &[
+            pl(Pillar::Army, "the Tatmadaw"),
+            pl(Pillar::Security, "the Directorate of Defence Services Intelligence"),
+            pl(Pillar::Business, "the Union of Myanmar Economic Holdings"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {
