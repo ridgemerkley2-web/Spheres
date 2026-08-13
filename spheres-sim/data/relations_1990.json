@@ -185,6 +185,108 @@
         { "a": "Spain", "b": "Brazil", "value": 35.0 },
         { "a": "Spain", "b": "USSR", "value": 5.0 }
       ]
+    },
+    {
+      "note": [
+        "Latin America and Washington in 1990. The hemisphere has just finished changing shape: every South American state except Chile is under a civilian government for the first time since the 1950s, Chile's own transition is ten weeks from completion, and the debt crisis that defined the 1980s is being wound up one Brady agreement at a time. The United States is the unchallenged outside power and had just demonstrated it in Panama in December 1989, so the numbers here are warm rather than deferential - these are governments that want American money and American markets and are not being coerced into wanting them.",
+        "Menem's Argentina is the outlier at 55: he called it a carnal relationship, took Argentina out of the Non-Aligned Movement, wound up the Condor II missile programme, and sent the destroyer Almirante Brown and the corvette Spiro to the Gulf in September 1990 - the only Latin American state to join the coalition. Colombia at 45 is the drug war and the Cartagena summit of 15 February 1990. Mexico at 45 is Salinas asking for a free trade agreement in June 1990, against a century of keeping Washington at arm's length under the Estrada Doctrine. Venezuela at 45 is the largest oil supplier in the hemisphere and a Punto Fijo democracy in its thirty-second year.",
+        "Peru and Bolivia at 30 are the lowest of the nine and for the same reason: coca. Both were signatories at Cartagena and both were being paid to eradicate a crop their own peasantry lived on, which is a relationship with a permanent grievance inside it. Chile at 40 rather than higher is the Letelier assassination in Washington in 1976, still unprosecuted in January 1990 and still the reason for the Kennedy Amendment arms embargo."
+      ],
+      "pairs": [
+        { "a": "Argentina", "b": "USA", "value": 55.0 },
+        { "a": "Colombia", "b": "USA", "value": 45.0 },
+        { "a": "Mexico", "b": "USA", "value": 45.0 },
+        { "a": "Venezuela", "b": "USA", "value": 45.0 },
+        { "a": "Chile", "b": "USA", "value": 40.0 },
+        { "a": "Uruguay", "b": "USA", "value": 40.0 },
+        { "a": "Ecuador", "b": "USA", "value": 35.0 },
+        { "a": "Peru", "b": "USA", "value": 30.0 },
+        { "a": "Bolivia", "b": "USA", "value": 30.0 }
+      ]
+    },
+    {
+      "note": [
+        "Cuba, and the fact that the patron is dying. Thirty years of Soviet subsidy - sugar bought far above the world price, oil sold far below it, worth something like a quarter of Cuban national income - end when CMEA settlement moves to hard currency in January 1991. Moscow at 70 is the relationship as it stands in January 1990 and it is the most fragile number in this file; it should not survive the decade, and nothing here schedules its fall. Washington at -75 is the embargo, twenty-eight years old, with the Torricelli and Helms-Burton Acts still to come.",
+        "Mexico at 40 is the one that needs explaining: Mexico was the only member of the Organization of American States that refused to break relations with Havana after the 1964 sanctions, and kept the air link open for the whole period. Venezuela restored relations in 1974 and Carlos Andres Perez was personally close to Castro, which is worth 15 and no more, because Venezuela was also the hemisphere's loudest advocate of representative democracy as a condition of membership. Chile at -30 is Pinochet, who broke relations in September 1973 and had not restored them; Aylwin does so in 1990.",
+        "Beijing at 15 is a real relationship at a real distance. Havana had taken Moscow's side in the Sino-Soviet split and Castro had denounced China by name in 1966; the two had normal but cold relations by 1990, and it is the Soviet collapse rather than any warming that brings them together afterwards."
+      ],
+      "pairs": [
+        { "a": "Cuba", "b": "USSR", "value": 70.0 },
+        { "a": "Cuba", "b": "USA", "value": -75.0 },
+        { "a": "Cuba", "b": "Mexico", "value": 40.0 },
+        { "a": "Cuba", "b": "Vietnam", "value": 45.0 },
+        { "a": "Cuba", "b": "China", "value": 15.0 },
+        { "a": "Cuba", "b": "Venezuela", "value": 15.0 },
+        { "a": "Cuba", "b": "Peru", "value": 10.0 },
+        { "a": "Cuba", "b": "Chile", "value": -30.0 },
+        { "a": "Cuba", "b": "UK", "value": -10.0 }
+      ]
+    },
+    {
+      "note": [
+        "The quarrels inside the region, which are old, territorial, and mostly unresolved. Bolivia and Chile have had no ambassadors since 1978 over the Litoral, the coastline Bolivia lost in the War of the Pacific in 1879 and has demanded back every year since; the Bolivian navy still exists and still parades on the Dia del Mar. Peru and Ecuador dispute the Cordillera del Condor: Ecuador declared the 1942 Rio Protocol void in 1960, they shot at each other at Paquisha in 1981, and they fight the Cenepa war in January 1995 - which this dyad and the border in nations.rs are meant to make reachable without scripting it.",
+        "Colombia and Venezuela at -15 is the Gulf of Venezuela and the Los Monjes archipelago, a maritime delimitation that brought the corvette Caldas into disputed water in August 1987 and both air forces to readiness before anyone climbed down. Argentina and the United Kingdom at -20 is the Falklands: relations were restored on 19 February 1990 under the Madrid formula, with both sides agreeing to set sovereignty aside rather than settle it, so this is a cold dyad and not a hostile one.",
+        "Argentina and Chile at 35 is warm and recent, and it is the counter-example the region needs on the board: the 1984 Treaty of Peace and Friendship ended the Beagle Channel crisis that had come within hours of war in December 1978, and twenty-two of the twenty-four remaining boundary segments are settled by agreement in August 1991. Two states with an old border quarrel can also simply stop."
+      ],
+      "pairs": [
+        { "a": "Bolivia", "b": "Chile", "value": -35.0 },
+        { "a": "Ecuador", "b": "Peru", "value": -45.0 },
+        { "a": "Chile", "b": "Peru", "value": -10.0 },
+        { "a": "Colombia", "b": "Venezuela", "value": -15.0 },
+        { "a": "Argentina", "b": "UK", "value": -20.0 },
+        { "a": "Argentina", "b": "Iraq", "value": -20.0 },
+        { "a": "Chile", "b": "UK", "value": 25.0 },
+        { "a": "Peru", "b": "USSR", "value": 25.0 }
+      ]
+    },
+    {
+      "note": [
+        "The two integration projects the region is building in 1990, which is what most of the warm intra-regional numbers are. Brazil and Argentina at 60 is the largest reversal in South American diplomatic history: two states that had spent the 1970s racing each other toward a bomb signed the Iguacu Declaration on nuclear policy in 1985, opened each other's enrichment plants to mutual inspection, signed the Buenos Aires Act on 6 July 1990 setting a common market for 1995, and brought in Uruguay and Paraguay at Asuncion in March 1991. The Foz do Iguacu declaration of 28 November 1990 renounced nuclear weapons outright.",
+        "The other project is the Andean Pact, relaunched by the Galapagos Declaration of December 1989 after a decade of paralysis: Bolivia, Colombia, Ecuador, Peru and Venezuela, hence the block of thirties between them. Note what these numbers do NOT say - Ecuador and Peru are both in the pact and are at -45 with each other, because a trade bloc is not a friendship and the model should not be told otherwise."
+      ],
+      "pairs": [
+        { "a": "Argentina", "b": "Brazil", "value": 60.0 },
+        { "a": "Argentina", "b": "Uruguay", "value": 55.0 },
+        { "a": "Brazil", "b": "Uruguay", "value": 50.0 },
+        { "a": "Argentina", "b": "Chile", "value": 35.0 },
+        { "a": "Argentina", "b": "Bolivia", "value": 35.0 },
+        { "a": "Brazil", "b": "Bolivia", "value": 30.0 },
+        { "a": "Bolivia", "b": "Peru", "value": 30.0 },
+        { "a": "Bolivia", "b": "Ecuador", "value": 25.0 },
+        { "a": "Bolivia", "b": "Colombia", "value": 30.0 },
+        { "a": "Bolivia", "b": "Venezuela", "value": 30.0 },
+        { "a": "Colombia", "b": "Ecuador", "value": 30.0 },
+        { "a": "Colombia", "b": "Peru", "value": 30.0 },
+        { "a": "Ecuador", "b": "Venezuela", "value": 30.0 },
+        { "a": "Peru", "b": "Venezuela", "value": 30.0 },
+        { "a": "Colombia", "b": "Mexico", "value": 35.0 },
+        { "a": "Mexico", "b": "Venezuela", "value": 35.0 },
+        { "a": "Brazil", "b": "Colombia", "value": 25.0 },
+        { "a": "Brazil", "b": "Peru", "value": 25.0 },
+        { "a": "Brazil", "b": "Venezuela", "value": 25.0 },
+        { "a": "Brazil", "b": "Chile", "value": 30.0 },
+        { "a": "Brazil", "b": "Ecuador", "value": 20.0 },
+        { "a": "Brazil", "b": "Mexico", "value": 25.0 },
+        { "a": "Chile", "b": "Uruguay", "value": 35.0 },
+        { "a": "Mexico", "b": "Japan", "value": 30.0 }
+      ]
+    },
+    {
+      "note": [
+        "Madrid and the Americas, which is the second axis of Spanish foreign policy in this period and the one the Spain block above names without pricing. The first Ibero-American Summit meets at Guadalajara on 18 July 1991 on a joint Spanish and Mexican initiative, and the run-up to the 1992 quincentenary is why Spanish investment banks and telephone companies arrive in the region in this decade rather than another one.",
+        "Spain and Cuba at 20 is the entry that carries information. Spain never joined the American embargo, was Cuba's largest Western trading partner and its largest source of tourists, and had a relationship built on roughly a million Cubans of recent Spanish descent - and it was also a European democracy with an ambassador who kept meeting dissidents, so the two governments spent the decade quarrelling and never breaking. A warm number would be as wrong as a cold one.",
+        "Argentina at 45 is above the rest for the sheer weight of the Spanish community in Buenos Aires and the fact that Madrid brokered the Falklands restoration of relations in February 1990 in its own capital, which is what the Madrid formula is named after."
+      ],
+      "pairs": [
+        { "a": "Spain", "b": "Argentina", "value": 45.0 },
+        { "a": "Spain", "b": "Mexico", "value": 40.0 },
+        { "a": "Spain", "b": "Chile", "value": 35.0 },
+        { "a": "Spain", "b": "Venezuela", "value": 35.0 },
+        { "a": "Spain", "b": "Colombia", "value": 30.0 },
+        { "a": "Spain", "b": "Peru", "value": 30.0 },
+        { "a": "Spain", "b": "Uruguay", "value": 35.0 },
+        { "a": "Spain", "b": "Cuba", "value": 20.0 }
+      ]
     }
   ]
 }
