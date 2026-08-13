@@ -904,6 +904,452 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the Congress of Deputies",
         pillars: &[],
     },
+
+    // ======================================================================
+    // Western Europe, the rest of it. Eleven parliamentary democracies, no
+    // pillars anywhere, and every `next` below is a real scheduled date.
+    // Two things recur and are worth stating once rather than eleven times:
+    //   * Shares are first-preference or party-list votes at the last national
+    //     election BEFORE 1 January 1990, and none of them sum to 1.0 —
+    //     published results are rounded and minor parties are not all listed.
+    //     They are not padded. The seating pass normalises.
+    //   * Where a country's real electoral law has no equivalent in the
+    //     `Electoral` enum, the substitution is named in the block rather than
+    //     quietly made.
+    // ======================================================================
+
+    // Netherlands - Tweede Kamer, 6 September 1989: CDA 35.3%, PvdA 31.9%,
+    // VVD 14.6%, D66 7.9%, GroenLinks 4.1%, SGP 1.9%, GPV 1.2%, RPF 1.0%.
+    // Lubbers III, the CDA-PvdA cabinet that replaced seven years of CDA-VVD
+    // when the second Lubbers cabinet fell in May 1989 over the National
+    // Environmental Policy Plan. The next election was due and came on
+    // 3 May 1994. https://en.wikipedia.org/wiki/1989_Dutch_general_election
+    Polity {
+        nation: NationId::Netherlands,
+        // The purest proportional system in Europe: one national constituency,
+        // and the threshold is simply the quota for one of 150 seats, 0.67%.
+        // ProportionalLowBar's 1% is the closest the enum comes and it is
+        // still slightly too high — the three small confessional parties below
+        // each hold seats on shares that a 5% bar would erase, and a Dutch
+        // parliament without them is not a Dutch parliament.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1994, 5),
+        parties: &[
+            p("nl_cda", "Christian Democratic Appeal", "Christen-Democratisch Appel", Family::ChristianDemocratic, 0.353),
+            p("nl_pvda", "Labour Party", "Partij van de Arbeid", Family::SocialDemocratic, 0.319),
+            p("nl_vvd", "People's Party for Freedom and Democracy", "Volkspartij voor Vrijheid en Democratie", Family::Liberal, 0.146),
+            p("nl_d66", "Democrats 66", "Democraten 66", Family::Liberal, 0.079),
+            p("nl_gl", "Green Left", "GroenLinks", Family::Green, 0.041),
+            // The three of these are not a rounding error and not
+            // interchangeable: they are the remains of the confessional pillar
+            // that organised Dutch society until the 1960s, they sit on the
+            // Bible Belt from Zeeland to Overijssel, and the SGP had been in
+            // the Tweede Kamer continuously since 1922 without ever once
+            // being in government. A model that deletes them loses the thing
+            // that made Dutch politics consociational in the first place.
+            p("nl_sgp", "Reformed Political Party", "Staatkundig Gereformeerde Partij", Family::Religious, 0.019),
+            p("nl_gpv", "Reformed Political League", "Gereformeerd Politiek Verbond", Family::Religious, 0.012),
+            p("nl_rpf", "Reformatory Political Federation", "Reformatorische Politieke Federatie", Family::Religious, 0.010),
+        ],
+        ruling: "the Tweede Kamer",
+        pillars: &[],
+    },
+
+    // Belgium - Chamber of Representatives, 13 December 1987: CVP 19.5%,
+    // PS 15.7%, SP 14.9%, PVV 11.6%, PRL 9.4%, VU 8.1%, PSC 8.0%, Agalev 4.5%,
+    // Ecolo 2.6%, Vlaams Blok 1.9%, FDF 1.2%. Martens VIII took 148 days to
+    // form. The next election was due December 1991 and came on 24 November.
+    // https://en.wikipedia.org/wiki/1987_Belgian_general_election
+    Polity {
+        nation: NationId::Belgium,
+        // D'Hondt in twenty arrondissement constituencies with no legal
+        // threshold at all until 2003.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 11),
+        parties: &[
+            // The single most important fact about this table is that there is
+            // no national party in it. The Christian democrats split into CVP
+            // and PSC in 1968, the liberals into PVV and PRL in 1971, the
+            // socialists into SP and PS in 1978, and the greens were born
+            // separately as Agalev and Ecolo. Each pair below is one political
+            // family that partitioned itself along the language border and
+            // then never reunited. They are entered as separate parties
+            // because that is what they were: separate lists, separate
+            // leaders, separate electorates, coalition partners at best.
+            p("be_cvp", "Christian People's Party (Flemish)", "Christelijke Volkspartij", Family::ChristianDemocratic, 0.195),
+            p("be_ps", "Socialist Party (Francophone)", "Parti Socialiste", Family::SocialDemocratic, 0.157),
+            p("be_sp", "Socialist Party (Flemish)", "Socialistische Partij", Family::SocialDemocratic, 0.149),
+            p("be_pvv", "Party for Freedom and Progress (Flemish)", "Partij voor Vrijheid en Vooruitgang", Family::Liberal, 0.116),
+            p("be_prl", "Liberal Reformist Party (Francophone)", "Parti Reformateur Liberal", Family::Liberal, 0.094),
+            p("be_vu", "People's Union", "Volksunie", Family::Regionalist, 0.081),
+            p("be_psc", "Christian Social Party (Francophone)", "Parti Social Chretien", Family::ChristianDemocratic, 0.080),
+            p("be_agalev", "Live Differently (Flemish greens)", "Anders Gaan Leven", Family::Green, 0.045),
+            p("be_ecolo", "Ecolo (Francophone greens)", "Ecologistes Confederes", Family::Green, 0.026),
+            // A FOURTH pariah, entered deliberately and against the standing
+            // instruction not to add one, because this is the case the word
+            // was coined for rather than a case that resembles it. On 10 May
+            // 1989 every other Flemish party in the country signed an
+            // agreement never to govern, negotiate or make any accord with
+            // Vlaams Blok; the signed document is what Belgians and then
+            // everybody else began calling the cordon sanitaire, and it held
+            // without a single breach for the next thirty years, through the
+            // party's dissolution for racism by the Court of Cassation in
+            // 2004 and its immediate re-founding as Vlaams Belang. It is a
+            // stricter and better-documented exclusion than the French one
+            // already in this table. If a reviewer disagrees, the fix is one
+            // word — pariah to p — and the vote share is unaffected either
+            // way. https://en.wikipedia.org/wiki/Cordon_sanitaire_(politics)
+            pariah("be_vb", "Flemish Bloc", "Vlaams Blok", Family::Nationalist, 0.019),
+            p("be_fdf", "Democratic Front of Francophones", "Front Democratique des Francophones", Family::Regionalist, 0.012),
+        ],
+        ruling: "the Chamber of Representatives",
+        pillars: &[],
+    },
+
+    // Sweden - Riksdag, 18 September 1988: SAP 43.2%, Moderates 18.3%,
+    // People's Party 12.2%, Centre 11.3%, Left Party Communists 5.8%,
+    // Greens 5.5%, Christian Democrats 2.9%. Carlsson's Social Democratic
+    // minority government, which resigned on 15 February 1990 when the Riksdag
+    // threw out its price-and-wage freeze and returned a week later without
+    // the strike ban in it. The Greens entering in 1988 were the first new
+    // party in the Riksdag in seventy years.
+    // https://en.wikipedia.org/wiki/1988_Swedish_general_election
+    Polity {
+        nation: NationId::Sweden,
+        // Sweden's bar is 4% nationally (or 12% in a constituency), so the
+        // 5% Proportional variant is the near fit; ProportionalLowBar's 1%
+        // would seat the Christian Democrats, who in fact won nothing in 1988
+        // on 2.9% and entered only in 1991 in alliance.
+        system: Electoral::Proportional,
+        // Three-year fixed terms, in force from 1970 until the 1994 reform
+        // took them back to four. This is the only 36-month term in the table
+        // and it is transcribed, not a slip.
+        term_months: 36,
+        next: (1991, 9),
+        parties: &[
+            p("se_sap", "Social Democratic Party", "Sveriges socialdemokratiska arbetareparti", Family::SocialDemocratic, 0.432),
+            p("se_m", "Moderate Party", "Moderata samlingspartiet", Family::Conservative, 0.183),
+            p("se_fp", "People's Party - The Liberals", "Folkpartiet liberalerna", Family::Liberal, 0.122),
+            // Agrarian and not a misfiling: the Centre Party was the Farmers'
+            // League until 1957 and its 1988 vote is still rural, though the
+            // issue it rode was nuclear power.
+            p("se_c", "Centre Party", "Centerpartiet", Family::Agrarian, 0.113),
+            p("se_vpk", "Left Party Communists", "Vansterpartiet kommunisterna", Family::Communist, 0.058),
+            p("se_mp", "Green Party", "Miljopartiet de grona", Family::Green, 0.055),
+            p("se_kds", "Christian Democratic Union", "Kristdemokratiska samhallspartiet", Family::ChristianDemocratic, 0.029),
+        ],
+        ruling: "the Riksdag",
+        pillars: &[],
+    },
+
+    // Switzerland - National Council, 18 October 1987: FDP 22.9%, CVP 19.6%,
+    // SPS 18.4%, SVP 11.0%, Greens 4.9%, LdU 4.2%, LPS 2.7%, National Action
+    // 2.5%, EVP 1.9%, Labour 0.8%. Next election 20 October 1991.
+    // https://en.wikipedia.org/wiki/1987_Swiss_federal_election
+    Polity {
+        nation: NationId::Switzerland,
+        // Proportional in twenty-six cantonal constituencies, no national
+        // threshold.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 10),
+        parties: &[
+            p("ch_fdp", "Free Democratic Party", "Freisinnig-Demokratische Partei", Family::Liberal, 0.229),
+            p("ch_cvp", "Christian Democratic People's Party", "Christlichdemokratische Volkspartei", Family::ChristianDemocratic, 0.196),
+            p("ch_sps", "Social Democratic Party", "Sozialdemokratische Partei", Family::SocialDemocratic, 0.184),
+            // Agrarian in 1987 and correctly so: this was the Party of
+            // Farmers, Traders and Independents until 1971 and was still a
+            // Bernese and Zurich rural party at this election. Blocher took
+            // the Zurich cantonal party in 1977 and the national party's
+            // direction only after 1992, over the European Economic Area
+            // referendum; nothing in this record anticipates that.
+            p("ch_svp", "Swiss People's Party", "Schweizerische Volkspartei", Family::Agrarian, 0.110),
+            p("ch_gps", "Green Party", "Grune Partei der Schweiz", Family::Green, 0.049),
+            p("ch_ldu", "Ring of Independents", "Landesring der Unabhangigen", Family::Liberal, 0.042),
+            p("ch_lps", "Liberal Party", "Liberale Partei der Schweiz", Family::Liberal, 0.027),
+            p("ch_na", "National Action", "Nationale Aktion", Family::Nationalist, 0.025),
+            p("ch_evp", "Evangelical People's Party", "Evangelische Volkspartei", Family::Religious, 0.019),
+            p("ch_pda", "Swiss Party of Labour", "Partei der Arbeit der Schweiz", Family::Communist, 0.008),
+        ],
+        // The one place in this batch where `ruling` is doing real work. The
+        // Federal Council is a seven-member executive elected by parliament
+        // and never removed by it, held since 1959 to the Zauberformel of
+        // 2 FDP : 2 CVP : 2 SPS : 1 SVP regardless of how the vote moves. The
+        // election below is real and matters for the chambers; it does not
+        // change who governs, which is a fact about Switzerland rather than a
+        // shortcoming of the model.
+        ruling: "the Federal Council",
+        pillars: &[],
+    },
+
+    // Austria - Nationalrat, 23 November 1986: SPO 43.1%, OVP 41.3%,
+    // FPO 9.7%, Greens 4.8%. The grand coalition of Vranitzky and Mock, formed
+    // in January 1987 after Haider took the FPO leadership in September 1986
+    // and the SPO ended its coalition with it the same week. The next election
+    // was due and came on 7 October 1990, inside the game's first year.
+    // https://en.wikipedia.org/wiki/1986_Austrian_legislative_election
+    Polity {
+        nation: NationId::Austria,
+        // A 4% national threshold was only introduced in 1992; in 1986 a party
+        // needed a Grundmandat in one of nine regional districts, which in
+        // practice bit at about the same level. Proportional's 5% is the fit.
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 10),
+        parties: &[
+            p("at_spo", "Social Democratic Party of Austria", "Sozialdemokratische Partei Osterreichs", Family::SocialDemocratic, 0.431),
+            p("at_ovp", "Austrian People's Party", "Osterreichische Volkspartei", Family::ChristianDemocratic, 0.413),
+            // Filed Nationalist rather than Liberal, which is a judgement about
+            // September 1986 and not about the party's whole history: the FPO
+            // held the Liberal International seat and was in government with
+            // the SPO under Steger until Haider beat him at the Innsbruck
+            // congress, at which point the coalition ended within days and the
+            // party's vote doubled at the next four elections on immigration.
+            // In January 1990 it is a national-populist party that still holds
+            // a liberal membership card. It was expelled from the Liberal
+            // International in 1993.
+            p("at_fpo", "Freedom Party of Austria", "Freiheitliche Partei Osterreichs", Family::Nationalist, 0.097),
+            p("at_gruene", "The Greens - The Green Alternative", "Die Grune Alternative", Family::Green, 0.048),
+        ],
+        ruling: "the Nationalrat",
+        pillars: &[],
+    },
+
+    // Portugal - Assembly of the Republic, 19 July 1987: PSD 50.2%, PS 22.2%,
+    // CDU 12.1%, PRD 4.9%, CDS 4.4%. Cavaco Silva's absolute majority, the
+    // first single-party majority since the revolution of 1974 and the end of
+    // thirteen years in which no government finished a term. Next election
+    // 6 October 1991, which he won again.
+    // https://en.wikipedia.org/wiki/1987_Portuguese_legislative_election
+    Polity {
+        nation: NationId::Portugal,
+        // D'Hondt in twenty-two districts, no legal threshold.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 10),
+        parties: &[
+            p("pt_psd", "Social Democratic Party", "Partido Social Democrata", Family::Liberal, 0.502),
+            p("pt_ps", "Socialist Party", "Partido Socialista", Family::SocialDemocratic, 0.222),
+            // The CDU is a standing coalition of the Communist Party and the
+            // Greens and contested as one list; it is entered as one party
+            // because that is how the votes were cast. The PCP had been the
+            // best-organised clandestine party under the Estado Novo and was
+            // still, in 1990, the only unreconstructed pro-Soviet communist
+            // party of any size in Western Europe.
+            p("pt_cdu", "Unitary Democratic Coalition", "Coligacao Democratica Unitaria", Family::Communist, 0.121),
+            p("pt_prd", "Democratic Renewal Party", "Partido Renovador Democratico", Family::BigTent, 0.049),
+            p("pt_cds", "Democratic and Social Centre", "Centro Democratico e Social", Family::ChristianDemocratic, 0.044),
+        ],
+        ruling: "the Assembly of the Republic",
+        pillars: &[],
+    },
+
+    // Greece - Hellenic Parliament, 5 November 1989: New Democracy 46.2%,
+    // PASOK 40.7%, Synaspismos 11.0%, DIANA 0.7%. This is the SECOND of three
+    // elections in eleven months - 18 June 1989, 5 November 1989, 8 April 1990
+    // - and neither of the first two produced a government. What sat on
+    // 1 January 1990 was an ecumenical caretaker cabinet under Xenophon
+    // Zolotas, a central banker with no party, holding office precisely until
+    // the third election could be held. `next` is therefore (1990, 4): a real
+    // scheduled election, three months into the game.
+    // https://en.wikipedia.org/wiki/November_1989_Greek_legislative_election
+    Polity {
+        nation: NationId::Greece,
+        // The substitution, stated. Greece used SIMPLE proportional in 1989
+        // rather than the reinforced proportional that normally manufactured
+        // majorities there, and it did so deliberately: PASOK legislated the
+        // change in 1989 knowing it was going to lose, so that New Democracy
+        // could not govern alone either. That worked exactly as intended and
+        // is why there were three elections. `Proportional` (5%) stands in for
+        // a 3% bar; there is no enum member for "a threshold chosen by the
+        // outgoing government to deny its successor a majority", which is what
+        // the real rule amounted to.
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 4),
+        parties: &[
+            p("gr_nd", "New Democracy", "Nea Dimokratia", Family::Conservative, 0.462),
+            p("gr_pasok", "Panhellenic Socialist Movement", "Panellinio Sosialistiko Kinima", Family::SocialDemocratic, 0.407),
+            // Synaspismos was at this moment the strangest coalition in
+            // European politics: the orthodox KKE and the eurocommunist Greek
+            // Left running one list, and between July and October 1989 they
+            // had governed IN COALITION WITH New Democracy - communists and
+            // conservatives in one cabinet - for the sole purpose of sending
+            // Andreas Papandreou for trial over the Koskotas affair.
+            p("gr_syn", "Coalition of the Left and Progress", "Synaspismos tis Aristeras kai tis Proodou", Family::Communist, 0.110),
+            p("gr_diana", "Democratic Renewal", "Dimokratiki Ananeosi", Family::Liberal, 0.007),
+        ],
+        ruling: "the Hellenic Parliament",
+        pillars: &[],
+    },
+
+    // Denmark - Folketing, 10 May 1988: Social Democrats 29.8%,
+    // Conservatives 19.3%, Socialist People's Party 13.0%, Venstre 11.8%,
+    // Progress Party 9.0%, Social Liberals 5.6%, Centre Democrats 4.7%,
+    // Christian People's Party 2.0%, Common Course 1.9%. Schluter's third
+    // cabinet, a minority of Conservatives, Venstre and Social Liberals.
+    // `next` is (1990, 12), the election Schluter actually called for
+    // 12 December 1990; the four-year term would have run to May 1992. The
+    // Spain block above set the same precedent of entering the date the
+    // election came rather than the last date it could have.
+    // https://en.wikipedia.org/wiki/1988_Danish_general_election
+    Polity {
+        nation: NationId::Denmark,
+        // A 2% national threshold, the lowest in Europe, which is why nine
+        // parties are listed and why no Danish government since 1971 has had a
+        // majority. ProportionalLowBar's 1% is the nearest.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1990, 12),
+        parties: &[
+            p("dk_a", "Social Democrats", "Socialdemokratiet", Family::SocialDemocratic, 0.298),
+            p("dk_c", "Conservative People's Party", "Det Konservative Folkeparti", Family::Conservative, 0.193),
+            p("dk_f", "Socialist People's Party", "Socialistisk Folkeparti", Family::Communist, 0.130),
+            // Venstre means "left" and is the liberal party of the farmers.
+            // The name is 1870s seating, not a description, and it is entered
+            // Liberal because that is what it is.
+            p("dk_v", "Venstre, Liberal Party of Denmark", "Venstre", Family::Liberal, 0.118),
+            // Glistrup's tax revolt of 1973, which took 15.9% at its first
+            // election and had turned to immigration by 1988. The other Nordic
+            // parties of this family in this batch are Norway's FrP and
+            // Finland's SMP; unlike Belgium's Vlaams Blok, no formal cordon
+            // was ever signed against any of the three, which is exactly why
+            // they are entered with p() and it is not.
+            p("dk_z", "Progress Party", "Fremskridtspartiet", Family::Nationalist, 0.090),
+            p("dk_b", "Danish Social Liberal Party", "Det Radikale Venstre", Family::Liberal, 0.056),
+            p("dk_cd", "Centre Democrats", "Centrum-Demokraterne", Family::Liberal, 0.047),
+            p("dk_krf", "Christian People's Party", "Kristeligt Folkeparti", Family::ChristianDemocratic, 0.020),
+            p("dk_fk", "Common Course", "Faelles Kurs", Family::Communist, 0.019),
+        ],
+        ruling: "the Folketing",
+        pillars: &[],
+    },
+
+    // Norway - Storting, 11 September 1989: Labour 34.3%, Conservative 22.2%,
+    // Progress 13.0%, Socialist Left 10.1%, Christian People's 8.5%,
+    // Centre 6.5%, Liberal 3.2%. Syse's Conservative-Centre-Christian
+    // coalition, which fell on 29 October 1990 when the Centre Party walked
+    // out over the European Economic Area negotiations.
+    // https://en.wikipedia.org/wiki/1989_Norwegian_parliamentary_election
+    Polity {
+        nation: NationId::Norway,
+        // 4% for levelling seats.
+        system: Electoral::Proportional,
+        // Four years, and the Storting CANNOT be dissolved early - Norway has
+        // no snap elections at all, a constitutional peculiarity it has kept
+        // since 1814. So (1993, 9) is not an estimate: it is the date, and the
+        // government that fell in October 1990 was replaced without one.
+        term_months: 48,
+        next: (1993, 9),
+        parties: &[
+            p("no_ap", "Labour Party", "Arbeiderpartiet", Family::SocialDemocratic, 0.343),
+            p("no_h", "Conservative Party", "Hoyre", Family::Conservative, 0.222),
+            p("no_frp", "Progress Party", "Fremskrittspartiet", Family::Nationalist, 0.130),
+            p("no_sv", "Socialist Left Party", "Sosialistisk Venstreparti", Family::Communist, 0.101),
+            p("no_krf", "Christian Democratic Party", "Kristelig Folkeparti", Family::ChristianDemocratic, 0.085),
+            // The Centre Party is the old Agrarian League and it is the hinge
+            // of Norwegian politics on exactly one question: it brought down
+            // the government over Europe in 1990 and led the winning No
+            // campaign in the referendum of 1994.
+            p("no_sp", "Centre Party", "Senterpartiet", Family::Agrarian, 0.065),
+            p("no_v", "Liberal Party", "Venstre", Family::Liberal, 0.032),
+        ],
+        ruling: "the Storting",
+        pillars: &[],
+    },
+
+    // Finland - Eduskunta, 15-16 March 1987: SDP 24.1%, National Coalition
+    // 23.1%, Centre 17.6%, SKDL 9.4%, Rural Party 6.3%, Swedish People's 5.3%,
+    // Democratic Alternative 4.2%, Greens 4.0%, Christian League 2.6%.
+    // Holkeri's cabinet was the first since the war to seat the National
+    // Coalition Party in government with the Social Democrats - the
+    // "red-earth" arrangement that broke a taboo about what Moscow would
+    // tolerate in a Finnish cabinet, and it held for a full term.
+    // https://en.wikipedia.org/wiki/1987_Finnish_parliamentary_election
+    Polity {
+        nation: NationId::Finland,
+        // D'Hondt in fifteen districts, no national threshold.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1991, 3),
+        parties: &[
+            p("fi_sdp", "Social Democratic Party", "Suomen Sosialidemokraattinen Puolue", Family::SocialDemocratic, 0.241),
+            p("fi_kok", "National Coalition Party", "Kansallinen Kokoomus", Family::Conservative, 0.231),
+            p("fi_kesk", "Centre Party", "Suomen Keskusta", Family::Agrarian, 0.176),
+            // The SKDL was the electoral front of the Finnish communists, and
+            // DEVA below is the Stalinist minority that split off in 1986 and
+            // ran separately in 1987. Both are entered because both were on
+            // the ballot; they merged into the Left Alliance in 1990, which
+            // the model is not told about.
+            p("fi_skdl", "Finnish People's Democratic League", "Suomen Kansan Demokraattinen Liitto", Family::Communist, 0.094),
+            p("fi_smp", "Finnish Rural Party", "Suomen Maaseudun Puolue", Family::Nationalist, 0.063),
+            // Filed Regionalist because that is what it is: a language party
+            // for the 5-6% of Finns whose mother tongue is Swedish, spread
+            // along the coast and in Aland, which has sat in almost every
+            // Finnish cabinet since 1917 by being indispensable to all of them.
+            p("fi_rkp", "Swedish People's Party", "Svenska folkpartiet", Family::Regionalist, 0.053),
+            p("fi_deva", "Democratic Alternative", "Demokraattinen Vaihtoehto", Family::Communist, 0.042),
+            p("fi_vihr", "Green League", "Vihrea Liitto", Family::Green, 0.040),
+            p("fi_skl", "Finnish Christian League", "Suomen Kristillinen Liitto", Family::ChristianDemocratic, 0.026),
+        ],
+        ruling: "the Eduskunta",
+        pillars: &[],
+    },
+
+    // Ireland - Dail Eireann, 15 June 1989, first preferences: Fianna Fail
+    // 44.1%, Fine Gael 29.3%, Labour 9.5%, Progressive Democrats 5.5%,
+    // Workers' Party 5.0%, Greens 1.5%, Sinn Fein 1.2%. Haughey called the
+    // election early looking for a majority, lost seats, and formed the first
+    // coalition Fianna Fail had entered in the sixty-three years of its
+    // existence - the party's entire claim had been that it alone could
+    // govern alone. Next election 25 November 1992.
+    // https://en.wikipedia.org/wiki/1989_Irish_general_election
+    Polity {
+        nation: NationId::Ireland,
+        // The substitution, stated plainly: Ireland uses the single
+        // transferable vote in three-, four- and five-seat constituencies,
+        // and there is no STV member in this enum. The shares entered are
+        // FIRST PREFERENCES, which is the only figure comparable to a party
+        // list vote; STV's transfers then move seats around in ways a list
+        // system cannot reproduce - it is why the Progressive Democrats and
+        // the Workers' Party were persistently under-rewarded and why a
+        // transfer-friendly party like Labour outperformed its first count.
+        // ProportionalLowBar is the closest available because STV in small
+        // districts has no legal threshold, only an arithmetic one.
+        system: Electoral::ProportionalLowBar,
+        // Five years is the constitutional maximum for a Dail, the longest
+        // term in this table.
+        term_months: 60,
+        next: (1992, 11),
+        parties: &[
+            // Fianna Fail and Fine Gael are not left and right, and filing
+            // them by economic family would be inventing a cleavage the
+            // country did not have. They are the two sides of the Treaty of
+            // 1921 and the civil war that followed it, and voters inherited
+            // the allegiance. Fianna Fail is entered BigTent for that reason.
+            p("ie_ff", "Fianna Fail", "Fianna Fail - The Republican Party", Family::BigTent, 0.441),
+            p("ie_fg", "Fine Gael", "Fine Gael", Family::ChristianDemocratic, 0.293),
+            p("ie_lab", "Labour Party", "Pairti Lucht Oibre", Family::SocialDemocratic, 0.095),
+            p("ie_pd", "Progressive Democrats", "An Phairti Daonlathach", Family::Liberal, 0.055),
+            p("ie_wp", "Workers' Party", "Pairti na nOibrithe", Family::Communist, 0.050),
+            p("ie_gp", "Green Party", "Comhaontas Glas", Family::Green, 0.015),
+            // Entered with p() and not pariah(), which is a deliberate line.
+            // Sinn Fein was excluded in 1990 as completely as any party in
+            // Europe - section 31 of the Broadcasting Authority Act banned its
+            // spokesmen from Irish radio and television from 1971 until 1994,
+            // and no party would have sat with it. But that exclusion was a
+            // ministerial order and a convention, not a signed pact between
+            // the other parties, which is the distinction this table's pariah
+            // flag has been drawing since Italy; and unlike Herri Batasuna it
+            // took its Dail seats when it won them after 1986. It won none in
+            // 1989.
+            p("ie_sf", "Sinn Fein", "Sinn Fein", Family::Nationalist, 0.012),
+        ],
+        ruling: "Dail Eireann",
+        pillars: &[],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

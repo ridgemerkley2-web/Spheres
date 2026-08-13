@@ -110,7 +110,7 @@ pub const ROSTER: &[NationRow] = &[
     // borders only the first two of those, which is a real change the model
     // gets for free from the data rather than from a special case.
     row("USSR", "Soviet Union", &["ussr", "soviets"], "Eurasia",
-        &["China", "Poland", "Turkey", "Iran"], &[], true, true, false),
+        &["China", "Poland", "Turkey", "Iran", "Norway", "Finland"], &[], true, true, false),
 
     // Russia's claim on Ukraine is the 1989 Soviet census: 22.1% of the
     // Ukrainian SSR's people were ethnic Russians, concentrated in Crimea and
@@ -119,7 +119,7 @@ pub const ROSTER: &[NationRow] = &[
     // Nothing here schedules 2014; it states the inherited arithmetic and lets
     // the model do what it does with it.
     row("Russia", "Russia", &["rus", "russian federation"], "Eurasia",
-        &["China", "Poland", "Ukraine"], &[claim("Ukraine", 0.22)], false, true, false),
+        &["China", "Poland", "Ukraine", "Norway", "Finland"], &[claim("Ukraine", 0.22)], false, true, false),
 
     row("Ukraine", "Ukraine", &["ukr"], "Eurasia",
         &["Russia", "Poland"], &[], false, false, false),
@@ -138,16 +138,16 @@ pub const ROSTER: &[NationRow] = &[
     row("Japan", "Japan", &["jpn"], "EastAsia", &[], &[], true, true, true),
 
     row("Germany", "Germany", &["ger", "frg", "brd"], "WesternEurope",
-        &["Poland", "France"], &[], true, true, true),
+        &["Poland", "France", "Netherlands", "Belgium", "Denmark", "Switzerland", "Austria"], &[], true, true, true),
 
     row("UK", "United Kingdom", &["uk", "britain", "gb"], "WesternEurope",
-        &["France"], &[], true, true, true),
+        &["France", "Ireland"], &[], true, true, true),
 
     row("France", "France", &["fra"], "WesternEurope",
-        &["Germany", "Italy", "UK", "Spain"], &[], true, true, true),
+        &["Germany", "Italy", "UK", "Spain", "Belgium", "Switzerland"], &[], true, true, true),
 
     row("Italy", "Italy", &["ita"], "WesternEurope",
-        &["France", "Yugoslavia", "Slovenia"], &[], true, false, false),
+        &["France", "Yugoslavia", "Slovenia", "Switzerland", "Austria"], &[], true, false, false),
 
     // Kashmir, from both ends. India claims the whole of the former princely
     // state, which means Azad Kashmir and Gilgit-Baltistan — about 5.5m of
@@ -200,7 +200,7 @@ pub const ROSTER: &[NationRow] = &[
     // Nations in 1926 over Turkey's objection and pressed again by Ozal during
     // the Gulf crisis: roughly 2m of Iraq's 17m people in the north.
     row("Turkey", "Turkey", &["turkiye", "tur"], "MiddleEast",
-        &["Iraq", "Iran", "USSR"], &[claim("Iraq", 0.12)], true, false, false),
+        &["Iraq", "Iran", "USSR", "Greece"], &[claim("Iraq", 0.12)], true, false, false),
 
     row("Nigeria", "Nigeria", &["nga"], "WestAfrica", &[], &[], true, false, false),
 
@@ -209,7 +209,7 @@ pub const ROSTER: &[NationRow] = &[
         &["China"], &[claim("China", 0.002)], true, false, false),
 
     row("Yugoslavia", "Yugoslavia", &["sfry", "yugo"], "Balkans",
-        &["Italy"], &[], true, false, false),
+        &["Italy", "Austria", "Greece"], &[], true, false, false),
 
     // The 1991 census is the whole of the Yugoslav tragedy in three numbers.
     // Serbs were 31.2% of Bosnia and 12.2% of Croatia — concentrated in the
@@ -225,7 +225,7 @@ pub const ROSTER: &[NationRow] = &[
         &["Serbia", "Bosnia", "Slovenia"], &[claim("Bosnia", 0.17)], false, false, false),
 
     row("Slovenia", "Slovenia", &["svn"], "Balkans",
-        &["Croatia", "Italy"], &[], false, false, false),
+        &["Croatia", "Italy", "Austria"], &[], false, false, false),
 
     row("Bosnia", "Bosnia", &["bosnia and herzegovina", "bih"], "Balkans",
         &["Serbia", "Croatia"], &[], false, false, false),
@@ -243,7 +243,151 @@ pub const ROSTER: &[NationRow] = &[
     // makes it never worth a war.
     // https://en.wikipedia.org/wiki/Brussels_Agreement_(1984)
     row("Spain", "Spain", &["esp", "espana"], "WesternEurope",
-        &["France"], &[claim("UK", 0.0005)], true, false, false),
+        &["France", "Portugal"], &[claim("UK", 0.0005)], true, false, false),
+
+    // ---- Western Europe, the rest of it. -----------------------------------
+    // A general note that applies to all eleven rows below, because the shape
+    // of the data is the finding: this is the least irredentist neighbourhood
+    // on the board. Eleven countries, thirty-odd land borders, and exactly TWO
+    // claims between them — and both are rounding errors by design. Western
+    // Europe in 1990 is what a region looks like after it has finished
+    // arguing about lines on maps, and the war model should read it that way
+    // rather than be handed conflicts that were not there.
+
+    // Two land borders, Germany and Belgium, both of them among the oldest
+    // uncontested frontiers in Europe. No claims: the Dutch annexation demands
+    // of 1945-49 were abandoned and the Elten and Selfkant territories were
+    // handed back to West Germany in 1963 under the treaty of 1960.
+    row("Netherlands", "Netherlands", &["nld", "holland", "the netherlands"], "WesternEurope",
+        &["Germany", "Belgium"], &[], true, false, false),
+
+    // Three land borders in the roster (Luxembourg is not simulated). No
+    // claims: the Eupen-Malmedy cantons taken from Germany in 1920 are settled
+    // and German-speaking Belgium became one of the three constitutionally
+    // recognised communities in the reforms of 1970-89 — the answer to that
+    // question was federalism, not a border.
+    row("Belgium", "Belgium", &["bel", "belgique", "belgie"], "WesternEurope",
+        &["France", "Germany", "Netherlands"], &[], true, false, false),
+
+    // Sweden borders Norway and Finland by land. It does NOT border Denmark:
+    // the Oresund is four kilometres at its narrowest and the bridge did not
+    // open until July 2000, so the strait is not one an army marches over and
+    // the border is correctly absent. No claims — Sweden has not fought a war
+    // since 1814 and has no outstanding territorial question with anyone.
+    row("Sweden", "Sweden", &["swe", "sverige"], "WesternEurope",
+        &["Norway", "Finland"], &[], true, false, false),
+
+    // Four land borders in the roster; Liechtenstein is not simulated. No
+    // claims, which for a state that has been neutral since 1815 is the whole
+    // point of it.
+    row("Switzerland", "Switzerland", &["che", "swiss", "suisse", "schweiz"], "WesternEurope",
+        &["France", "Germany", "Italy", "Austria"], &[], true, false, false),
+
+    // Five borders in the roster; Czechoslovakia, Hungary and Liechtenstein
+    // are not simulated. Austria borders Yugoslavia through Slovenia, so both
+    // the federation and the successor are listed — the same construction the
+    // Italy row uses, and it is what lets the model keep the border when
+    // Yugoslavia comes apart.
+    //
+    // NO CLAIM, and this is the deliberate call in this batch. South Tyrol is
+    // the obvious candidate: 200,000 German speakers annexed by Italy in 1919,
+    // a bombing campaign by the Befreiungsausschuss Sudtirol into the 1960s,
+    // and a dispute Austria took to the United Nations General Assembly in
+    // 1960 and 1961. But Austria's legal position after the Gruber-De Gasperi
+    // Agreement of 5 September 1946 was that of a PROTECTING POWER for an
+    // autonomy statute, not a claimant to the territory, and Vienna delivered
+    // its formal declaration that the dispute was settled to Rome and the UN
+    // on 11 June 1992. Entering a territorial claim here would turn a
+    // minority-protection guarantee into a war aim, which is exactly the
+    // failure mode this table's doc comment warns about.
+    // https://en.wikipedia.org/wiki/Gruber%E2%80%93De_Gasperi_Agreement
+    row("Austria", "Austria", &["aut", "osterreich"], "WesternEurope",
+        &["Germany", "Italy", "Switzerland", "Yugoslavia", "Slovenia"], &[], true, false, false),
+
+    // One land border, and one of the two claims in this whole region. Olivenca
+    // — Olivenza — is a town of some twelve thousand people that Spain took in
+    // the War of the Oranges in 1801 and that Article 105 of the Final Act of
+    // the Congress of Vienna, 9 June 1815, required be returned. Spain signed
+    // and never returned it. Portugal has never recognised Spanish sovereignty
+    // de jure, keeps the territory off its own official maps as Spanish, and
+    // as recently as the 1980s the Comite Olivenca kept the file open; equally,
+    // no Portuguese government has ever pressed it, and the two states joined
+    // the European Community together on 1 January 1986. Twelve thousand people
+    // against a Spain of 38.9m is 0.0003 of the target: the same species of
+    // never-worth-a-war grievance as Spain's own claim on Gibraltar directly
+    // above, and stated as the number that keeps it that way.
+    // https://en.wikipedia.org/wiki/Olivenza
+    row("Portugal", "Portugal", &["prt", "portucale"], "WesternEurope",
+        &["Spain"], &[claim("Spain", 0.0003)], true, false, false),
+
+    // Greece's land borders inside this roster are Yugoslavia and Turkey;
+    // Albania and Bulgaria are not simulated. Region: WesternEurope rather than
+    // Balkans, and it is a judgement rather than a geography lesson. Greece
+    // joined NATO in 1952 and the European Community on 1 January 1981, and its
+    // diplomatic community in 1990 was Brussels and Washington, which is what
+    // the region field feeds (it auto-populates contacts). The two borders that
+    // actually mattered militarily — the Yugoslav one and the Turkish one — are
+    // stated explicitly above and do not depend on the region at all.
+    //
+    // NO CLAIM on Turkey, which is the call worth defending. The Greek-Turkish
+    // quarrel is real and was very nearly a war in March 1987, but every part
+    // of it — the continental shelf, the ten-mile airspace claim, the status of
+    // the Aegean islands' militarisation — is a MARITIME and airspace dispute,
+    // not a demand for a share of Turkish territory. Cyprus, the other half of
+    // it, is a third state and is not in this roster. A claim entered here
+    // would tell the war model that Athens wanted land in Anatolia, which no
+    // Greek government has said since 1922.
+    row("Greece", "Greece", &["grc", "hellas", "ellada"], "WesternEurope",
+        &["Yugoslavia", "Turkey"], &[], true, false, false),
+
+    // One land border. The Schleswig question, which produced three wars
+    // between 1848 and 1920, was closed by the plebiscites of February and
+    // March 1920 and by the Bonn-Copenhagen Declarations of 29 March 1955, in
+    // which each state guaranteed the other's minority rights and neither
+    // asked for the line to move. No claim.
+    row("Denmark", "Denmark", &["dnk", "danmark"], "WesternEurope",
+        &["Germany"], &[], true, false, false),
+
+    // Norway holds NATO's only land border with the Soviet Union outside
+    // Turkey: 196 km at Kirkenes, settled in 1826, uncontested, and two hours'
+    // drive from the Northern Fleet's bases on Kola. Both the union and the
+    // successor are listed, because Russia inherits this border where it does
+    // not inherit the Turkish or Iranian ones. Svalbard is Norwegian under the
+    // Spitsbergen Treaty of 1920 with a Soviet mining settlement on it at
+    // Barentsburg; that is a treaty regime, not a claim, and is not entered.
+    row("Norway", "Norway", &["nor", "norge"], "WesternEurope",
+        &["Sweden", "Finland", "USSR", "Russia"], &[], true, false, false),
+
+    // 1,340 km with the Soviet Union — the longest such border any Western
+    // European state has, and the reason the Finnish army in this roster is
+    // sized the way it is. No claim, and the absence is the point: Karelia,
+    // ceded at Moscow in March 1940 and again at Paris in 1947, is about
+    // 11% of pre-war Finnish territory and 400,000 people were evacuated from
+    // it, but no Finnish government has ever tabled a demand for its return.
+    // The Treaty of Friendship, Cooperation and Mutual Assistance of 1948 was
+    // still in force on 1 January 1990. Finlandisation is a foreign policy, and
+    // a foreign policy of not asking is correctly a claim table with nothing
+    // in it. https://en.wikipedia.org/wiki/Moscow_Peace_Treaty
+    row("Finland", "Finland", &["fin", "suomi"], "WesternEurope",
+        &["Sweden", "Norway", "USSR", "Russia"], &[], true, false, false),
+
+    // The other of the region's two claims, and much the larger. Articles 2
+    // and 3 of Bunreacht na hEireann, adopted by referendum on 1 July 1937,
+    // declared that "the national territory consists of the whole island of
+    // Ireland, its islands and the territorial seas" — a standing
+    // constitutional claim on six counties of the United Kingdom, live and
+    // unamended on 1 January 1990, and held by the Supreme Court in
+    // McGimpsey v Ireland (1 March 1990, decided inside the game's first
+    // quarter) to be a "claim of legal right". It was removed only by the
+    // referendum of 22 May 1998 that ratified the Good Friday Agreement.
+    // Northern Ireland's population at the 1991 census was 1,577,836 against
+    // a United Kingdom of 57.4m: 0.0275 of the target. Fifty-five times
+    // Spain's Gibraltar claim and still small — which is the honest shape of
+    // it, because for all the deaths this dispute caused between 1969 and
+    // 1998, no Irish government at any point contemplated taking the territory
+    // by force. https://en.wikipedia.org/wiki/Articles_2_and_3_of_the_Constitution_of_Ireland
+    row("Ireland", "Ireland", &["irl", "eire", "republic of ireland"], "WesternEurope",
+        &["UK"], &[claim("UK", 0.0275)], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -395,6 +539,17 @@ well_known! {
     Slovenia => "Slovenia",
     Bosnia => "Bosnia",
     Spain => "Spain",
+    Netherlands => "Netherlands",
+    Belgium => "Belgium",
+    Sweden => "Sweden",
+    Switzerland => "Switzerland",
+    Austria => "Austria",
+    Portugal => "Portugal",
+    Greece => "Greece",
+    Denmark => "Denmark",
+    Norway => "Norway",
+    Finland => "Finland",
+    Ireland => "Ireland",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {
