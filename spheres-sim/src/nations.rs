@@ -110,7 +110,7 @@ pub const ROSTER: &[NationRow] = &[
     // borders only the first two of those, which is a real change the model
     // gets for free from the data rather than from a special case.
     row("USSR", "Soviet Union", &["ussr", "soviets"], "Eurasia",
-        &["China", "Poland", "Turkey", "Iran"], &[], true, true, false),
+        &["China", "Poland", "Turkey", "Iran", "NorthKorea", "Mongolia"], &[], true, true, false),
 
     // Russia's claim on Ukraine is the 1989 Soviet census: 22.1% of the
     // Ukrainian SSR's people were ethnic Russians, concentrated in Crimea and
@@ -119,7 +119,7 @@ pub const ROSTER: &[NationRow] = &[
     // Nothing here schedules 2014; it states the inherited arithmetic and lets
     // the model do what it does with it.
     row("Russia", "Russia", &["rus", "russian federation"], "Eurasia",
-        &["China", "Poland", "Ukraine"], &[claim("Ukraine", 0.22)], false, true, false),
+        &["China", "Poland", "Ukraine", "NorthKorea", "Mongolia"], &[claim("Ukraine", 0.22)], false, true, false),
 
     row("Ukraine", "Ukraine", &["ukr"], "Eurasia",
         &["Russia", "Poland"], &[], false, false, false),
@@ -130,9 +130,14 @@ pub const ROSTER: &[NationRow] = &[
     // area and almost no people, hence a share near zero. On Vietnam it is the
     // Paracels (taken 1974), the Spratlys (Johnson Reef, March 1988) and the
     // land border strips disputed until 1999.
+    // Taiwan is added to Beijing's claims rather than to its neighbours: the
+    // strait is 130km wide and no army marches across it, but the People's
+    // Republic has claimed the island entire since 1949 and the Anti-Secession
+    // formula only wrote down what had been policy for fifty years. It is
+    // stated at 1.0 because the war aim was never a share of it.
     row("China", "China", &["prc", "cn"], "EastAsia",
-        &["USSR", "Russia", "India", "Pakistan", "Vietnam"],
-        &[claim("India", 0.02), claim("Vietnam", 0.01), claim("Russia", 0.004)],
+        &["USSR", "Russia", "India", "Pakistan", "Vietnam", "NorthKorea", "Mongolia", "Laos"],
+        &[claim("India", 0.02), claim("Vietnam", 0.01), claim("Russia", 0.004), claim("Taiwan", 1.0)],
         true, true, false),
 
     row("Japan", "Japan", &["jpn"], "EastAsia", &[], &[], true, true, true),
@@ -180,15 +185,23 @@ pub const ROSTER: &[NationRow] = &[
     row("Iran", "Iran", &["irn", "persia"], "MiddleEast",
         &["Iraq", "Turkey", "Pakistan", "USSR"], &[claim("Iraq", 0.03)], true, false, false),
 
+    // The Republic of Korea's constitution defines its territory as the whole
+    // peninsula, so in strict transcription Seoul holds the mirror image of
+    // Pyongyang's claim. It is deliberately not entered. Article 3 was a
+    // statement about legitimacy that no ROK government of the period attached
+    // an operational intention to, and the model reads a claim as an appetite
+    // for territory; entering it would give the South a war aim it did not
+    // have. The North's claim below is the one that was pressed, in June 1950.
     row("SouthKorea", "South Korea", &["south korea", "korea", "rok"], "EastAsia",
-        &[], &[], true, false, false),
+        &["NorthKorea"], &[], true, false, false),
 
     row("Poland", "Poland", &["pol"], "EasternEurope",
         &["Germany", "USSR", "Russia", "Ukraine"], &[], true, false, false),
 
     row("Brazil", "Brazil", &["bra"], "LatinAmerica", &[], &[], true, false, false),
 
-    row("Indonesia", "Indonesia", &["idn"], "SoutheastAsia", &[], &[], true, false, false),
+    row("Indonesia", "Indonesia", &["idn"], "SoutheastAsia",
+        &["Malaysia"], &[], true, false, false),
 
     row("Egypt", "Egypt", &["egy", "uar"], "NorthAfrica",
         &["Israel"], &[], true, false, false),
@@ -206,7 +219,7 @@ pub const ROSTER: &[NationRow] = &[
 
     // The Paracels and Spratlys from the other end, plus the border strips.
     row("Vietnam", "Vietnam", &["viet nam", "vnm"], "SoutheastAsia",
-        &["China"], &[claim("China", 0.002)], true, false, false),
+        &["China", "Cambodia", "Laos"], &[claim("China", 0.002)], true, false, false),
 
     row("Yugoslavia", "Yugoslavia", &["sfry", "yugo"], "Balkans",
         &["Italy"], &[], true, false, false),
@@ -244,6 +257,116 @@ pub const ROSTER: &[NationRow] = &[
     // https://en.wikipedia.org/wiki/Brussels_Agreement_(1984)
     row("Spain", "Spain", &["esp", "espana"], "WesternEurope",
         &["France"], &[claim("UK", 0.0005)], true, false, false),
+
+    // ---- East and Southeast Asia -------------------------------------------
+
+    // Korea from the northern end. Three land borders: the Yalu and Tumen with
+    // China, seventeen kilometres of the Tumen with the Soviet Union — the only
+    // ground Moscow shares with the peninsula, and the reason Russia inherits
+    // it — and the demilitarised zone, which is a border in every sense the
+    // model cares about.
+    //
+    // The claim is the whole of the South. That is not a reading of the DPRK's
+    // intentions, it is what its founding documents say: the 1972 constitution
+    // makes Seoul the capital, the Democratic Confederal Republic of Koryo
+    // proposal of October 1980 is a formula for governing one Korea, and the
+    // claim was pressed with three field armies in June 1950. Stated at 1.0
+    // because the war aim was never a share of it.
+    // https://en.wikipedia.org/wiki/Democratic_Federal_Republic_of_Koryo
+    row("NorthKorea", "North Korea", &["north korea", "dprk", "prk"], "EastAsia",
+        &["China", "USSR", "Russia", "SouthKorea"],
+        &[claim("SouthKorea", 1.0)], true, false, false),
+
+    // Taipei and Beijing claim each other entire, and in January 1990 both
+    // claims are formally live. The Republic of China was still governing under
+    // the Temporary Provisions Effective During the Period of National
+    // Mobilization for the Suppression of the Communist Rebellion, which Lee
+    // Teng-hui did not terminate until 1 May 1991; until then recovering the
+    // mainland was declared national policy with a constitutional annex behind
+    // it. So the pair is entered as two whole-country claims, which is what the
+    // documents say and not a guess about either capital's mood.
+    //
+    // Neither lists the other as a neighbour. The strait is 130km wide, and
+    // `reach` gives an amphibious operation the region term rather than the
+    // border term, which is the distinction that exists precisely so this dyad
+    // does not read like the Yalu.
+    //
+    // Taipei's claim is inert, and it is worth naming what makes it inert:
+    // `dyads::war_appetite` returns zero outright when the target holds nuclear
+    // weapons and the aggressor does not. The table does not have to
+    // misdescribe the ROC constitution to keep Taiwan from invading China.
+    //
+    // The ROC also claimed Outer Mongolia until 2002 and is not given a claim
+    // on Mongolia here. The difference is not squeamishness: the mainland claim
+    // had a mobilisation statute, a Legislative Yuan seated for mainland
+    // constituencies, and an army trained for it; the Mongolian one had a map.
+    // https://en.wikipedia.org/wiki/Temporary_Provisions_against_the_Communist_Rebellion
+    row("Taiwan", "Taiwan", &["twn", "roc", "republic of china", "formosa"], "EastAsia",
+        &[], &[claim("China", 1.0)], true, false, false),
+
+    // Between the two powers that have taken turns owning it, and claimed by
+    // neither: the People's Republic recognised Mongolian independence in 1949
+    // and settled the boundary by treaty in 1962. The Soviet 39th Army was
+    // still garrisoned here when the game opens; its withdrawal was agreed in
+    // 1989 and finished in 1992.
+    row("Mongolia", "Mongolia", &["mng", "outer mongolia"], "EastAsia",
+        &["China", "USSR", "Russia"], &[], true, false, false),
+
+    // Thailand borders Malaysia, Laos and Cambodia in this roster. The long
+    // frontier with Burma is absent because Burma is not simulated, which is
+    // the correct absence rather than a wrong border.
+    //
+    // The claim is Ban Romklao. Thailand and Laos fought a three-month war over
+    // three villages on the Sainyabuli border from December 1987 to February
+    // 1988 — something over a thousand dead between them — because the two
+    // sides read a French survey of 1907 differently. The disputed ground was
+    // about 77 square kilometres of a country of 236,800, so it is entered at
+    // 0.0003. A real shooting war two years before the game opens whose stake
+    // was three ten-thousandths of the target, which is exactly the object the
+    // `share` field exists to distinguish from a war of conquest.
+    // https://en.wikipedia.org/wiki/Thai%E2%80%93Laotian_border_war
+    row("Thailand", "Thailand", &["tha", "siam"], "SoutheastAsia",
+        &["Malaysia", "Laos", "Cambodia"],
+        &[claim("Laos", 0.0003)], true, false, false),
+
+    // The Johor causeway is a mile of road and rail and it is the reason
+    // Singapore is a neighbour rather than an island: the Japanese Twenty-Fifth
+    // Army crossed it in February 1942. Malaysia's other borders are Thailand
+    // across the Kra isthmus and Indonesia across Borneo.
+    row("Malaysia", "Malaysia", &["mys", "malaya"], "SoutheastAsia",
+        &["Thailand", "Singapore", "Indonesia"], &[], true, false, false),
+
+    row("Singapore", "Singapore", &["sgp"], "SoutheastAsia",
+        &["Malaysia"], &[], true, false, false),
+
+    // No land border with anyone. The claim is Sabah, and in January 1990 it is
+    // live rather than historical: the Philippines took assignment of the
+    // Sultanate of Sulu's title to North Borneo in 1962, wrote the claim into
+    // Republic Act 5446 in 1968, broke off relations with Kuala Lumpur over it
+    // after the Jabidah affair, and has never withdrawn it — the two capitals
+    // agreed to stop discussing it, which is not the same thing. Sabah's
+    // population in 1990 was about 1.7m of Malaysia's 17.8m, hence 0.096.
+    // https://en.wikipedia.org/wiki/North_Borneo_dispute
+    row("Philippines", "Philippines", &["phl", "pinas"], "SoutheastAsia",
+        &[], &[claim("Malaysia", 0.096)], true, false, false),
+
+    // The State of Cambodia claims nothing, and the omission is the transcribed
+    // fact rather than a gap. Khmer Krom irredentism — the Mekong delta — was
+    // the property of the Khmer Rouge and the non-communist resistance, and the
+    // government in Phnom Penh existed because the Vietnamese army had put it
+    // there in 1979 and had left only in September 1989. Preah Vihear was
+    // awarded to Cambodia by the International Court of Justice in 1962 and lay
+    // dormant until 2008.
+    row("Cambodia", "Cambodia", &["khm", "kampuchea"], "SoutheastAsia",
+        &["Thailand", "Laos", "Vietnam"], &[], true, false, false),
+
+    // Landlocked against four of the five states around it — the fifth, Burma,
+    // is not simulated. Laos holds no claim: Ban Romklao was Thailand's
+    // reading of the 1907 map pressed against Lao-administered ground, and
+    // Vientiane's position in the war was that the villages were already its
+    // own.
+    row("Laos", "Laos", &["lao", "lao pdr"], "SoutheastAsia",
+        &["Thailand", "Cambodia", "Vietnam", "China"], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -395,6 +518,15 @@ well_known! {
     Slovenia => "Slovenia",
     Bosnia => "Bosnia",
     Spain => "Spain",
+    NorthKorea => "NorthKorea",
+    Taiwan => "Taiwan",
+    Mongolia => "Mongolia",
+    Thailand => "Thailand",
+    Malaysia => "Malaysia",
+    Singapore => "Singapore",
+    Philippines => "Philippines",
+    Cambodia => "Cambodia",
+    Laos => "Laos",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

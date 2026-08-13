@@ -1,0 +1,39 @@
+{
+  "id": "Mongolia",
+  "name": "Mongolia",
+  "system": "Command",
+  "authoritarianism": 0.8,
+  "economy": {
+    "gdp_bn": 2.56,
+    "population_m": 2.1,
+    "tfp_trend": -0.005,
+    "inflation": 0.2,
+    "interest_rate": 0.18,
+    "tax_rate": 0.42,
+    "mil_spend_gdp": 0.043,
+    "state_invest_gdp": 0.27,
+    "priv_invest_gdp": 0.02,
+    "debt_gdp": 1.0,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 42.0,
+    "separatism": 0.02
+  },
+  "military": {
+    "strength": 2.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $2.56bn and population 2.099m (World Bank, 1990).",
+    "Defence 4.28% of GDP (World Bank/SIPRI, 1990).",
+    "Inflation: the World Bank publishes no CPI series for Mongolia in 1990. Prices were still administered that year and the explosion came later — official inflation passed 320% in 1992-93. 0.20 is entered as the point at which the administered price system was already visibly failing, with interest at 0.18 to keep the real rate near neutral. Both are constructions, not transcriptions.",
+    "tax_rate 0.42 and state investment 0.27 are what a Soviet-model economy looks like in these fields: almost all output passes through the state budget and almost all investment is planned. Neither is a published Mongolian statistic for 1990; both are the shape of a CMEA member's accounts rather than a transcription, and are entered as such.",
+    "Debt at 1.0x GDP stands for the transferable-ruble balance owed to the Soviet Union, which Mongolia carried at over 10 billion rubles. That figure has no honest dollar equivalent — Russia and Mongolia argued about it until a 98% write-off in 2003 — so the ratio here is a placeholder for a very large unpayable obligation rather than a measured number.",
+    "tfp_trend is negative because Mongolia was the most CMEA-dependent economy in the world outside the Soviet Union: Soviet transfers ran near a third of GDP and stopped. Output fell by roughly a fifth over 1990-1993.",
+    "Stability 42 with authoritarianism 0.80: the demonstrations in Sukhbaatar Square began on 10 December 1989 and were running through the month the game opens. The Politburo resigned on 9 March 1990 and Article 82's monopoly clause went with it. In January 1990 the MPRP still had the monopoly, so it is entered as a one-party state that is visibly about to stop being one.",
+    "Military index 2: about 25,000 under arms, plus the Soviet 39th Army, whose withdrawal was agreed in 1989 and completed in 1992.",
+    "Gross capital formation 29.1% of GDP (World Bank, 1990), entered as 27 state and 2 private, which is what the split looks like in an economy where the plan does the investing."
+  ]
+}
