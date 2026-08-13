@@ -1,0 +1,37 @@
+{
+  "id": "Tanzania",
+  "name": "Tanzania",
+  "system": "Command",
+  "authoritarianism": 0.72,
+  "economy": {
+    "gdp_bn": 6.2,
+    "population_m": 26.1,
+    "tfp_trend": 0.005,
+    "inflation": 0.358,
+    "interest_rate": 0.274,
+    "tax_rate": 0.13,
+    "mil_spend_gdp": 0.02,
+    "state_invest_gdp": 0.09,
+    "priv_invest_gdp": 0.09,
+    "debt_gdp": 1.07,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 62.0, "separatism": 0.12 },
+  "military": { "strength": 3.0, "nuclear": false },
+  "sources": [
+    "GDP $6.2bn: World Bank NY.GDP.MKTP.CD, series TZA, 1990 = 6,184,384,225. On 26.1m people that is about $237 a head, the lowest in this region's eleven, and Tanzania was one of the poorest countries in the world by measured income while having one of the highest literacy rates in Africa - which is the Nyerere record in two numbers.",
+    "Population 26.1m: World Bank SP.POP.TOTL, series TZA, 1990 = 26,110,207. The census of 28 August 1988 counted 23,174,336. Both figures include Zanzibar.",
+    "TFP trend 0.005: Tanzania in 1990 was four years into the IMF-agreed Economic Recovery Programme of 1986, which devalued the shilling, dismantled the crop-authority monopolies and let private traders back into the food market after fifteen years of the Ujamaa villagisation that had moved several million people and broken agricultural output. Recovery from a low base, and real - set above Kenya's 0.004 and below Ghana's 0.008, whose adjustment started three years earlier.",
+    "Inflation 35.8%: World Bank FP.CPI.TOTL.ZG, series TZA, 1990 = 35.83%.",
+    "Interest rate 27.4%: World Bank FR.INR.LEND, series TZA. STATED SUBSTITUTION: the series has no 1990 entry; its FIRST available print is 27.36 for 1992 (identical for 1993, then 34.4 in 1994), and that 1992 figure is what has been entered. Rates were administered by the Bank of Tanzania in 1990 and liberalised over 1991-93, so the 1992 print is the earliest market-facing number that exists and is a substitution of year, not of concept. The loader's coupled real-rate check reads 0.025 - (0.274 - 0.358) = 0.109.",
+    "Revenue 13% of GDP: NOT SOURCED - GC.REV.XGRT.GD.ZS has no Tanzanian entry 1990-1998 - and entered as a bracket a little above Ghana's sourced 12.5% and Ethiopia's sourced 12.0%. Flagged as an admitted gap.",
+    "Military 2.0% of GDP: World Bank MS.MIL.XPND.GD.ZS, series TZA, 1990 = 2.05. Low for a country that had won a war eleven years earlier, and it is deliberate: Nyerere demobilised most of what had marched on Kampala rather than keep it.",
+    "Investment: gross capital formation 18.0% of GDP (World Bank NE.GDI.TOTL.ZS, series TZA, 1990 = 17.98). The even 9.0 / 9.0 split is APPORTIONED, not transcribed, and weighted evenly because the parastatal sector still held most of industry in 1990 while the ERP had just returned trade and agriculture to private hands.",
+    "Debt 107% of GDP: World Bank DT.DOD.DECT.GN.ZS, series TZA, 1990 = 107.26, external debt stocks as a share of GNI. Second only to Zaire's 119% in this region. Almost entirely concessional and almost entirely unpayable; Tanzania reached HIPC completion in 2001.",
+    "Oil 0.0: no production.",
+    "Stability 62 and authoritarianism 0.72: the highest stability in this region, level with Indonesia's 62, and it is earned rather than flattering. Tanzania in 1990 had had one governing party since independence, no coup, no civil war, no ethnic bloc large enough to dominate the others - Swahili as a national language did work no other African state managed - and a peaceful handover of the presidency from Nyerere to Ali Hassan Mwinyi in 1985, which almost nobody else in the region had managed either. Nyerere gave up the CCM chairmanship in August 1990 and told the party to consider multi-party politics; the Nyalali Commission reported in 1991 and the constitution was amended in May 1992. Authoritarianism 0.72 is a genuine single-party state with a real security service, set below Kenya's 0.78 because Tanzanian one-party rule was less violent and its succession worked.",
+    "Separatism 0.12: Zanzibar. The islands joined the mainland by the Articles of Union of 22 April 1964, three months after a revolution, and kept their own president, their own house of representatives and their own courts; the union question has been the permanent constitutional argument of Tanzanian politics ever since and CUF built a majority in Zanzibar on it in the 1990s. Set above Zimbabwe's 0.08 and below India's 0.15.",
+    "Military strength 3: the Tanzania People's Defence Force was about 40,000, Chinese-equipped, and is the only army in this region to have invaded a neighbour, taken its capital and removed its government - Kampala, 11 April 1979. It then went home, which is the other half of the fact. Set level with Kenya's 3 and Uganda's 3 and below Zimbabwe's 5."
+  ]
+}

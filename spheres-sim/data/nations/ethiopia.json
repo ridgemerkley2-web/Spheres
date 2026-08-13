@@ -1,0 +1,36 @@
+{
+  "id": "Ethiopia",
+  "name": "Ethiopia",
+  "system": "Command",
+  "authoritarianism": 0.9,
+  "economy": {
+    "gdp_bn": 12.5,
+    "population_m": 47.6,
+    "tfp_trend": -0.005,
+    "inflation": 0.052,
+    "interest_rate": 0.06,
+    "tax_rate": 0.12,
+    "mil_spend_gdp": 0.097,
+    "state_invest_gdp": 0.09,
+    "priv_invest_gdp": 0.03,
+    "debt_gdp": 0.7,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 22.0, "separatism": 0.6 },
+  "military": { "strength": 11.0, "nuclear": false },
+  "sources": [
+    "GDP $12.5bn: World Bank NY.GDP.MKTP.CD, series ETH, 1990 = 12,478,943,895. The second-largest economy in this region's eleven after South Africa, and about a quarter of Nigeria's, on a population half again Nigeria's - which is the whole of the Ethiopian problem in one ratio.",
+    "Population 47.6m: World Bank SP.POP.TOTL, series ETH, 1990 = 47,609,755. CAVEAT, stated rather than hidden: the World Bank's Ethiopia series is drawn on modern borders and EXCLUDES Eritrea, while the Ethiopia this game puts on the board in January 1990 still governs it. Eritrea's population was of the order of 3m, so the polity the sim is modelling had roughly 50-51m people. The World Bank figure is entered anyway, for the same reason spain.json takes the World Bank number over the national accounts: internal comparability across the roster beats being right in one file. The map entry draws Ethiopia as ETH plus ERI, which is the correct 1990 territory.",
+    "TFP trend -0.005: negative, and the roster has the precedent - yugoslavia.json carries -0.01. Ethiopia in 1990 was a command economy losing a war it was spending a tenth of national output on, with agriculture collectivised into producer co-operatives and peasant associations, a grain marketing monopoly (the AMC) buying at below-market prices, and the 1984-85 famine four years behind it. Mengistu announced a shift to a mixed economy on 5 March 1990, which is inside the game's first quarter and which the sim should be free to reach or not; the trend entered is the one it starts from.",
+    "Inflation 5.2%: World Bank FP.CPI.TOTL.ZG, series ETH, 1990 = 5.15%. Low, and low for the reason command economies are: prices were administered. The unofficial economy was another matter, and inflation went past 20% in 1991 when the controls came off with the government.",
+    "Interest rate 6%: World Bank FR.INR.LEND, series ETH, 1990 = 6.0. An administered rate in a banking system consisting of state banks. Real rate is +0.8 points; the loader's coupled check reads 0.025 - (0.06 - 0.052) = 0.017.",
+    "Revenue 12.0% of GDP: World Bank GC.REV.XGRT.GD.ZS, series ETH, 1990 = 11.97, revenue excluding grants. Thin, and the reason a war costing 9.7% of GDP had to be paid for by printing and by Soviet credit.",
+    "Military 9.7% of GDP: World Bank MS.MIL.XPND.GD.ZS, series ETH, 1990 = 9.66. The second-highest share in this region after Angola's 17.5%, and the highest in the entire roster outside a war economy. Ethiopia fielded the largest army in sub-Saharan Africa - of the order of 400,000 men after the mass conscription drives - and it was disintegrating: the EPLF took Massawa on 10 February 1990 in Operation Fenkil, which closed the port Asmara was supplied through, and the EPRDF was moving south out of Tigray. Addis Ababa fell on 28 May 1991.",
+    "Investment 9% public and 3% private: APPORTIONED, not transcribed, and flagged as such. The World Bank's NE.GDI.TOTL.ZS returns zero for Ethiopia in 1990, which is a gap in the series rather than a country that built nothing; Ethiopian gross fixed capital formation in this period is generally put in the low teens as a share of GDP. The 3:1 split to the state is the one thing here that is not a guess - under the Derg essentially all large-scale investment was public, private enterprise being capped by the proclamations of 1975 that nationalised land, banks and industry.",
+    "Debt 70% of GDP: World Bank DT.DOD.DECT.GN.ZS, series ETH, 1990 = 69.65, external debt stocks as a share of GNI. Most of it was Soviet military credit, and most of that was never going to be repaid; Russia wrote off the great bulk of it in 2001-04.",
+    "Oil 0.0: no production. Ethiopia imported all its fuel, through Assab - which is why losing the Eritrean coast in 1991 left it landlocked and dependent on Djibouti, a strategic fact the sim's oil column cannot express but the sources block can.",
+    "Stability 22 and authoritarianism 0.90: the lowest stability in the roster, below Yugoslavia's 44 and Iraq's 48, and it is not an opinion - this is a government that will be gone within seventeen months of the game's start. In January 1990 Mengistu Haile Mariam had survived the senior-officer coup attempt of 16 May 1989 by executing or losing most of his general staff, had just lost Massawa, and was watching his patron dissolve. Authoritarianism 0.90 sits just under Iraq's 0.95: a Marxist-Leninist single party with a Politburo, a security ministry and no legal opposition of any kind, but without the personal cult apparatus of Baathist Iraq.",
+    "Separatism 0.60: set between the USSR's 0.55 and Yugoslavia's 0.72, and it earns the position. Eritrea did secede - the EPLF took Asmara in May 1991, ran a referendum on 23-25 April 1993 in which independence carried with 99.8%, and was a sovereign state by 24 May 1993. Tigray, Oromia and the Ogaden each had an armed front of their own, and the constitution the winners wrote in 1995 put a right of secession in article 39, which no other country in this roster does. Below Yugoslavia because Ethiopia lost one province and survived, where Yugoslavia lost four and did not."
+  ]
+}

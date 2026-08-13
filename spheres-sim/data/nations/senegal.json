@@ -1,0 +1,37 @@
+{
+  "id": "Senegal",
+  "name": "Senegal",
+  "system": "Market",
+  "authoritarianism": 0.42,
+  "economy": {
+    "gdp_bn": 7.4,
+    "population_m": 7.7,
+    "tfp_trend": 0.003,
+    "inflation": 0.003,
+    "interest_rate": 0.11,
+    "tax_rate": 0.165,
+    "mil_spend_gdp": 0.016,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.086,
+    "debt_gdp": 0.52,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 60.0, "separatism": 0.15 },
+  "military": { "strength": 1.5, "nuclear": false },
+  "sources": [
+    "GDP $7.4bn: World Bank NY.GDP.MKTP.CD, series SEN, 1990 = 7,390,967,360. On 7.7m people that is about $957 a head, the highest in this region outside South Africa - a consequence of the CFA franc's overvaluation as much as of Senegalese output, and the reason the 50% devaluation of 12 January 1994 cut measured dollar GDP in half overnight.",
+    "Population 7.7m: World Bank SP.POP.TOTL, series SEN, 1990 = 7,720,523. The census of 27 May 1988 counted 6,896,808.",
+    "TFP trend 0.003: Senegal spent the 1980s under structural adjustment with an exchange rate it could not move, because the CFA franc was fixed at 50 to the French franc and had been since 1948. Groundnut output was falling, the fishery was the main export earner, and competitiveness could only be recovered by cutting nominal wages, which is what the Nouvelle Politique Industrielle tried and largely failed to do. Set above South Africa's 0.002 and below Kenya's 0.004.",
+    "Inflation 0.3%: World Bank FP.CPI.TOTL.ZG, series SEN, 1990 = 0.33%. THE LOWEST INFLATION IN THE ENTIRE ROSTER, and it is not a data error - it is the whole point of the franc zone. The CFA franc was convertible into French francs at a fixed parity guaranteed by the French Treasury, monetary policy was made by the BCEAO under rules that capped government borrowing, and the price level therefore tracked France's. Compare Ghana's 37.3% and Zaire's 81.3% in the same year and in the same region. What Senegal paid for it was an exchange rate 50% too strong, and it paid in January 1994.",
+    "Interest rate 11%: NOT SOURCED IN THIS SESSION and flagged as an admitted gap. The World Bank's FR.INR.LEND has no Senegalese entry for any year 1990-1996 - a franc-zone member's rate is set regionally, not nationally. 0.11 is entered as the BCEAO's taux d'escompte, which stood in this range across the West African Monetary Union in 1990. The real rate that results is about +10.7 points, extraordinarily high, and that is the correct picture of a fixed-parity member importing French monetary policy while its own price level was flat. The loader's coupled check reads 0.025 - (0.11 - 0.003) = -0.082.",
+    "Revenue 16.5% of GDP: NOT SOURCED - GC.REV.XGRT.GD.ZS has no Senegalese entry 1990-1998 - and entered as a bracket a little above Cameroon's sourced 14.3%, the other franc-zone country in this region. Flagged.",
+    "Military 1.6% of GDP: World Bank MS.MIL.XPND.GD.ZS, series SEN, 1990 = 1.63.",
+    "Investment: gross capital formation 14.6% of GDP (World Bank NE.GDI.TOTL.ZS, series SEN, 1990 = 14.60). The 6.0 / 8.6 split is APPORTIONED and sums to the sourced total.",
+    "Debt 52% of GDP: World Bank DT.DOD.DECT.GN.ZS, series SEN, 1990 = 52.13, external debt stocks as a share of GNI - the second-lowest in this region after Zimbabwe's 47%.",
+    "Oil 0.0: no production.",
+    "Stability 60 and authoritarianism 0.42: Senegal is the democracy of this region and the file should say so plainly - it had never had a coup, had legalised opposition parties in 1974 and lifted all restriction on their number in 1981, and Abdou Diouf's Parti Socialiste faced Abdoulaye Wade's PDS at every election. Authoritarianism 0.42 is set well below the model's 0.60 electoral ceiling and above Poland's 0.35: the elections were real but the incumbent's advantages were large, the results of 28 February 1988 were disputed violently enough that a state of emergency was declared in Dakar and Wade was tried and given a suspended sentence, and Wade then joined a government of national unity in April 1991. A working democracy with its thumb on the scale. Stability 60 is set level with India's 60 and below Tanzania's 62.",
+    "Separatism 0.15: Casamance. The southern province is separated from the rest of Senegal by the Gambia, is Diola rather than Wolof and largely Christian and animist rather than Muslim, and the Mouvement des Forces Democratiques de Casamance had been fighting for its independence since the demonstration of 26 December 1982. It was the longest-running civil conflict in Africa by the time it was settled in 2022. Set level with India's 0.15 and above Zimbabwe's 0.08. It is a claim on Senegal by Senegalese, not by a neighbour, so it is separatism here and there is no roster claim anywhere against Senegal.",
+    "Military strength 1.5: about 10,000 men, French-equipped, with a French garrison at Ouakam under the defence agreement of 1974 that the sim expresses through relations rather than through this index. Small, professional, and the only army in this region that has intervened abroad on France's side - Senegalese troops went into the Gambia in 1981 to reverse a coup and were part of the Gulf coalition in 1990-91. Set level with Cameroon's 1.5 and Ghana's 1.5."
+  ]
+}

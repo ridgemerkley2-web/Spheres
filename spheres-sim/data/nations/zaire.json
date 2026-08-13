@@ -1,0 +1,37 @@
+{
+  "id": "Zaire",
+  "name": "Zaire",
+  "system": "Market",
+  "authoritarianism": 0.88,
+  "economy": {
+    "gdp_bn": 9.3,
+    "population_m": 36.7,
+    "tfp_trend": -0.01,
+    "inflation": 0.813,
+    "interest_rate": 0.45,
+    "tax_rate": 0.1,
+    "mil_spend_gdp": 0.02,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.06,
+    "debt_gdp": 1.19,
+    "oil_mbd": 0.029,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 26.0, "separatism": 0.35 },
+  "military": { "strength": 2.5, "nuclear": false },
+  "sources": [
+    "GDP $9.3bn: World Bank NY.GDP.MKTP.CD, series COD (Congo, Dem. Rep.), 1990 = 9,349,764,580. A country the size of Western Europe with the output of a mid-sized city, and falling: Zairean real GDP per head in 1990 was less than half what it had been in 1960.",
+    "Population 36.7m: World Bank SP.POP.TOTL, series COD, 1990 = 36,684,063. The last real census was 1 July 1984 (30,731,000); everything after it is estimate, and the estimates for Zaire are worse than most because the administration that would have collected the data had stopped being paid.",
+    "TFP trend -0.01: negative, level with Yugoslavia's, and it is the least controversial number in this file. Gecamines, the state copper monopoly that had been the fiscal base of the entire country, produced 465,000 tonnes in 1988 and then the Kamoto mine's main gallery collapsed in September 1990; output fell to about 30,000 tonnes by 1994 and the state's revenue went with it. This was an economy in a sustained twenty-year contraction, not a slow-growing one.",
+    "Inflation 81.3%: World Bank FP.CPI.TOTL.ZG, series COD, 1990 = 81.30%. The World Bank's GDP-deflator series for the same year prints 108.96%, which is the more usual pattern for an economy where the parallel exchange rate is doing the real pricing; the consumer-price figure is entered because every other file in this roster uses the consumer-price series. This is the beginning of a hyperinflation rather than the end of one - Zairean inflation reached the low thousands of percent in 1992-94, and the sim's inflation band tops out at 3.0, so a game that walks Zaire there will be clamping.",
+    "Interest rate 45%: NOT SOURCED, AND THE ONE FIGURE IN THIS FILE I COULD NOT TRANSCRIBE. The World Bank's FR.INR.LEND has no Zairean entry for any year from 1990 to 1996 and I found no Banque du Zaire series in this session. It is entered as a bracket, and the bracket is set by the model rather than by history: the loader's coupled real-rate constraint, |0.025 - (interest_rate - inflation)| <= 0.5, forbids anything below 33.8% against an 81.3% inflation print, and 45% is a rate the Banque du Zaire could plausibly have been holding in a stabilisation attempt. The real rate that results is -36 points, which is at least the right sign and the right order for what Zairean savers actually experienced. A reader checking this file should check this line first.",
+    "Revenue 10.0% of GDP: World Bank GC.REV.XGRT.GD.ZS, series COD, 1990 = 9.96, revenue excluding grants. The lowest sourced revenue share in this region, and it is the mechanism of the collapse: an administration that cannot tax pays its soldiers by letting them take what they need, which is what happened when the paratroopers of the 31st Brigade mutinied over pay in September 1991 and looted Kinshasa.",
+    "Military 2.0% of GDP: NOT SOURCED - the World Bank's MS.MIL.XPND.GD.ZS has no Zairean entry for 1990. Entered as a bracket in line with the regional average and flagged as such. The number that matters about the Forces Armees Zairoises is not what they cost the state but what they took from the population instead of pay.",
+    "Investment 3% public and 6% private: APPORTIONED and flagged. The World Bank's NE.GDI.TOTL.ZS has no Zairean entry for 1990; its first available prints are 7.5% in 1994 and 9.4% in 1995, and 1990 sat above those and far below the regional norm of 14-24%. The 9% total entered is bracketed by those later prints; the public/private split inside it is a judgement.",
+    "Debt 119% of GDP: World Bank DT.DOD.DECT.GN.ZS, series COD, 1990 = 119.48, external debt stocks as a share of GNI. The highest in this region and one of the highest in the roster, and the reason is that Zaire was lent to as a Cold War asset rather than as a credit - Inga-Shaba, the 1,700km power line built to serve a copper industry that could not use it, is the monument.",
+    "Oil 0.029 mbd: 29,000 barrels a day, from the small offshore Muanda concession at the mouth of the Congo. Real, minor, and worth entering because it sits directly across the water from Angola's Cabinda, which produced fifteen times as much.",
+    "Stability 26 and authoritarianism 0.88: below Ethiopia's 22 only because Zaire's collapse took six years where Ethiopia's took seventeen months. On 24 April 1990 Mobutu Sese Seko announced the end of the single-party state and a Third Republic; on 11-12 May soldiers killed students at the Lubumbashi university campus, the number disputed and the Belgian government's suspension of aid immediate. Authoritarianism 0.88 sits below Iraq's 0.95 and above Indonesia's 0.80: a single legal party since 1967, a presidency for life, and a security service answerable to one man - but a state too broken to be as totalitarian as the number would suggest.",
+    "Separatism 0.35: level with Indonesia's, and Katanga is the reason. Shaba province holds the copper and cobalt and had already tried to leave twice with foreign help - the Katanga secession of 1960-63, ended by ONUC, and the Shaba invasions of March 1977 and May 1978, both stopped by French and Moroccan troops flown in on American aircraft. On top of that, in 1990-93 the Katangan authorities expelled something like a million Kasaians. Set well above Iraq's 0.2 and below Ethiopia's 0.6, because Katanga did not in fact secede.",
+    "Military strength 2.5: the Forces Armees Zairoises had 50,000 or so on paper and were, by every account of them, incapable of a defensive operation - Mobutu had spent twenty-five years making sure the army could not remove him, and succeeded. The only real formation was the Division Speciale Presidentielle, Israeli-trained and about 5,000 strong, whose job was the president rather than the country. Set below Kenya's 3 and above nothing in this region, which is the correct place for the largest country in it."
+  ]
+}
