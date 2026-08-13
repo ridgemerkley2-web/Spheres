@@ -772,6 +772,212 @@
         { "a": "Sudan", "b": "SaudiArabia", "value": 15.0 },
         { "a": "Sudan", "b": "Israel", "value": -45.0 }
       ]
+    },
+    {
+      "note": [
+        "SUB-SAHARAN AFRICA, block 1 of 11 (branch feat/r-ssafrica): South Africa. Every dyad in this regional set is stated exactly once, and the blocks are ordered so that a nation only names partners that have not already had a block of their own.",
+        "Apartheid South Africa in January 1990 is the most isolated state in this roster and the arithmetic should show it. It had left the Commonwealth in 1961 rather than be expelled, was under a mandatory UN arms embargo since Resolution 418 of 4 November 1977, and had been under American sanctions since the Comprehensive Anti-Apartheid Act passed over Reagan's veto on 2 October 1986. India had severed relations in 1946, the first country in the world to do so, and led the campaign at the UN for forty years; Nigeria funded the ANC and chaired the anti-apartheid caucus; Tanzania hosted the ANC's camps and Nyerere built the Frontline States around opposing Pretoria.",
+        "The positive numbers are the interesting ones and they are all real. London stays warmest of the Western capitals because Thatcher opposed comprehensive sanctions to the end and British investment never left. Israel is the outlier at 55: an arms relationship that survived the 1977 embargo and outlasted everyone else's, and the only country whose cooperation with Pretoria deepened in the 1980s. Zaire is positive because Mobutu and Pretoria were on the same side in Angola for fifteen years, supplying UNITA through Kamina.",
+        "Angola at -60 is the lowest line South Africa has, and it is the only one that was a shooting war: the SADF fought FAPLA and the Cubans at Cuito Cuanavale through 1987-88. The Tripartite Accord of 22 December 1988 ended it and Namibia became independent on 21 March 1990, eleven weeks into the game, so this number is the one most likely to be moving already."
+      ],
+      "pairs": [
+        { "a": "SouthAfrica", "b": "UK", "value": 25.0 },
+        { "a": "SouthAfrica", "b": "USA", "value": 10.0 },
+        { "a": "SouthAfrica", "b": "Germany", "value": 20.0 },
+        { "a": "SouthAfrica", "b": "France", "value": 10.0 },
+        { "a": "SouthAfrica", "b": "Japan", "value": 20.0 },
+        { "a": "SouthAfrica", "b": "Israel", "value": 55.0 },
+        { "a": "SouthAfrica", "b": "USSR", "value": -45.0 },
+        { "a": "SouthAfrica", "b": "India", "value": -55.0 },
+        { "a": "SouthAfrica", "b": "Brazil", "value": 15.0 },
+        { "a": "SouthAfrica", "b": "Nigeria", "value": -60.0 },
+        { "a": "SouthAfrica", "b": "Angola", "value": -60.0 },
+        { "a": "SouthAfrica", "b": "Tanzania", "value": -55.0 },
+        { "a": "SouthAfrica", "b": "Ethiopia", "value": -40.0 },
+        { "a": "SouthAfrica", "b": "Ghana", "value": -40.0 },
+        { "a": "SouthAfrica", "b": "Zimbabwe", "value": -30.0 },
+        { "a": "SouthAfrica", "b": "Senegal", "value": -30.0 },
+        { "a": "SouthAfrica", "b": "Uganda", "value": -20.0 },
+        { "a": "SouthAfrica", "b": "Kenya", "value": -20.0 },
+        { "a": "SouthAfrica", "b": "Cameroon", "value": -15.0 },
+        { "a": "SouthAfrica", "b": "Zaire", "value": 25.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 2 of 11: Ethiopia. A Soviet client, and one of the two most heavily armed ones in the third world — Moscow supplied the Derg from 1977, switching sides from Somalia mid-war in the Ogaden, and had delivered something over $10bn of equipment by 1990. That is the single most important line in this block and it is also the one about to fail: Gorbachev told Mengistu the arms agreement would not be renewed past 1990, and the government fell in May 1991.",
+        "Kenya at 45 is the oldest alignment in East Africa and it is a negative one — the mutual defence understanding of 1964 existed because both states had a Somali irredentist claim against them. Israel at 40 is likewise concrete rather than sentimental: military assistance in exchange for the emigration of Ethiopian Jews, which produced Operation Solomon and 14,325 people flown out of Addis Ababa in 36 hours on 24-25 May 1991, as the EPRDF entered the city.",
+        "Egypt is negative and the Nile is the whole of it. Ethiopia's highlands supply about 85% of the Blue Nile's water and Egypt had spent the century insisting on the colonial-era allocations."
+      ],
+      "pairs": [
+        { "a": "Ethiopia", "b": "USSR", "value": 75.0 },
+        { "a": "Ethiopia", "b": "USA", "value": -25.0 },
+        { "a": "Ethiopia", "b": "UK", "value": 5.0 },
+        { "a": "Ethiopia", "b": "China", "value": 10.0 },
+        { "a": "Ethiopia", "b": "Israel", "value": 40.0 },
+        { "a": "Ethiopia", "b": "Egypt", "value": -20.0 },
+        { "a": "Ethiopia", "b": "Kenya", "value": 45.0 },
+        { "a": "Ethiopia", "b": "Nigeria", "value": 20.0 },
+        { "a": "Ethiopia", "b": "Angola", "value": 45.0 },
+        { "a": "Ethiopia", "b": "Tanzania", "value": 25.0 },
+        { "a": "Ethiopia", "b": "Zimbabwe", "value": 20.0 },
+        { "a": "Ethiopia", "b": "Uganda", "value": 5.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 3 of 11: Kenya. The most Western-aligned state in East Africa and deliberately so — Britain kept training rights, and the United States had had access to Mombasa for the Indian Ocean since the 1980 facilities agreement, which was what made Kenya strategically worth the aid. That access is why Washington's line here is high and why the aid suspension of November 1991 over governance was such a departure.",
+        "Tanzania at only 15 is a real coolness and not an oversight. The East African Community collapsed in 1977 in mutual recrimination over the distribution of its assets, and Nyerere closed the Kenyan border for six years — capitalist Kenya and Ujamaa Tanzania were the two models being compared, and each side knew it. Uganda at 20 carries the border clashes of December 1987, when the two armies exchanged fire at Busia."
+      ],
+      "pairs": [
+        { "a": "Kenya", "b": "UK", "value": 60.0 },
+        { "a": "Kenya", "b": "USA", "value": 55.0 },
+        { "a": "Kenya", "b": "Germany", "value": 45.0 },
+        { "a": "Kenya", "b": "Japan", "value": 40.0 },
+        { "a": "Kenya", "b": "Israel", "value": 35.0 },
+        { "a": "Kenya", "b": "China", "value": 20.0 },
+        { "a": "Kenya", "b": "USSR", "value": 5.0 },
+        { "a": "Kenya", "b": "Nigeria", "value": 25.0 },
+        { "a": "Kenya", "b": "Tanzania", "value": 15.0 },
+        { "a": "Kenya", "b": "Uganda", "value": 20.0 },
+        { "a": "Kenya", "b": "Zimbabwe", "value": 20.0 },
+        { "a": "Kenya", "b": "Senegal", "value": 15.0 },
+        { "a": "Kenya", "b": "Cameroon", "value": 10.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 4 of 11: Ghana. Nkrumah's non-alignment is a generation gone; the PNDC of 1990 is the IMF's favourite African client and its foreign policy follows the money. Nigeria at 20 rather than higher is the one line that needs stating: Lagos expelled up to two million West Africans in January 1983 and again in April 1985, the great majority of them Ghanaians, and it is not a thing a country forgets in five years. They were nonetheless both in ECOWAS and both sent troops to ECOMOG in Liberia that August."
+      ],
+      "pairs": [
+        { "a": "Ghana", "b": "UK", "value": 40.0 },
+        { "a": "Ghana", "b": "USA", "value": 35.0 },
+        { "a": "Ghana", "b": "China", "value": 25.0 },
+        { "a": "Ghana", "b": "USSR", "value": 10.0 },
+        { "a": "Ghana", "b": "Nigeria", "value": 20.0 },
+        { "a": "Ghana", "b": "Senegal", "value": 30.0 },
+        { "a": "Ghana", "b": "Tanzania", "value": 30.0 },
+        { "a": "Ghana", "b": "Zimbabwe", "value": 25.0 },
+        { "a": "Ghana", "b": "Cameroon", "value": 20.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 5 of 11: Zaire. The most valuable Western client in Africa and the least defensible one: Mobutu was flown to power with Belgian and American help, kept there through two Shaba invasions by French and Moroccan troops on American aircraft, and used as the conduit for arms to UNITA through the Kamina base. Washington and Paris both sit at the top of this block for that reason and both cut him loose within eighteen months of the game's start — Belgium suspended aid after the Lubumbashi killings of 11-12 May 1990, and the United States ended military assistance in November 1990.",
+        "Angola at -40 is the mirror of block 6: Kinshasa backed the FNLA and then UNITA for fifteen years, and Luanda backed the Katangese gendarmes who invaded Shaba in 1977 and 1978. Neither ever claimed the other's ground, which is why nations.rs records no claim between them and why the number is a hostility rather than a war."
+      ],
+      "pairs": [
+        { "a": "Zaire", "b": "USA", "value": 60.0 },
+        { "a": "Zaire", "b": "France", "value": 65.0 },
+        { "a": "Zaire", "b": "Germany", "value": 25.0 },
+        { "a": "Zaire", "b": "UK", "value": 20.0 },
+        { "a": "Zaire", "b": "Israel", "value": 45.0 },
+        { "a": "Zaire", "b": "China", "value": 30.0 },
+        { "a": "Zaire", "b": "USSR", "value": -30.0 },
+        { "a": "Zaire", "b": "Angola", "value": -40.0 },
+        { "a": "Zaire", "b": "Uganda", "value": -10.0 },
+        { "a": "Zaire", "b": "Zimbabwe", "value": -10.0 },
+        { "a": "Zaire", "b": "Tanzania", "value": -5.0 },
+        { "a": "Zaire", "b": "Cameroon", "value": 25.0 },
+        { "a": "Zaire", "b": "Nigeria", "value": 10.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 6 of 11: Angola. The deepest Soviet commitment in Africa outside Ethiopia, and the only one with 50,000 Cuban troops attached to it — they arrived in November 1975 and the last left on 25 May 1991 under the New York Accords. Moscow at 80 is the highest single line this regional block contains.",
+        "Washington at -40 is the Reagan Doctrine as it actually ran: the Clark Amendment was repealed in July 1985 and covert aid to Savimbi resumed, delivered through Zaire, while the United States withheld diplomatic recognition from Luanda until 1993 — which is remarkable given that Chevron was pumping Cabinda's oil the whole time and paying the MPLA government for it. China is negative for the reason nobody expects: Beijing armed the FNLA and then UNITA against a Soviet-backed MPLA, which is the Sino-Soviet split fought out in Angola.",
+        "The African lines are warm across the board. Angola was a Frontline State, the OAU recognised the MPLA government from 1976, and Zimbabwe and Tanzania both read Savimbi as Pretoria's instrument, which for most of the 1980s he was."
+      ],
+      "pairs": [
+        { "a": "Angola", "b": "USSR", "value": 80.0 },
+        { "a": "Angola", "b": "USA", "value": -40.0 },
+        { "a": "Angola", "b": "China", "value": -20.0 },
+        { "a": "Angola", "b": "UK", "value": -15.0 },
+        { "a": "Angola", "b": "France", "value": 10.0 },
+        { "a": "Angola", "b": "Brazil", "value": 35.0 },
+        { "a": "Angola", "b": "Nigeria", "value": 35.0 },
+        { "a": "Angola", "b": "Zimbabwe", "value": 40.0 },
+        { "a": "Angola", "b": "Tanzania", "value": 40.0 },
+        { "a": "Angola", "b": "Uganda", "value": 10.0 },
+        { "a": "Angola", "b": "Cameroon", "value": 10.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 7 of 11: Zimbabwe. The most interesting line here is Moscow's, and it is low. The Soviet Union backed ZAPU and Joshua Nkomo through the liberation war; China armed and trained ZANLA, Mugabe's wing, from 1971. ZANU won, and Zimbabwe's relations with the two communist powers in 1990 are the inverse of what a map of the Cold War would predict — Beijing at 55, Moscow at 10. This is exactly the sort of fact a per-pair table invents wrong and a transcribed one gets right.",
+        "Britain at 45 is Lancaster House and the settlement that produced independence on 18 April 1980, plus the land-purchase money that came with it and had not yet become the quarrel it became. Tanzania at 55 is the Frontline States, whose meetings Nyerere chaired and where Zimbabwe was the newest and most important member."
+      ],
+      "pairs": [
+        { "a": "Zimbabwe", "b": "UK", "value": 45.0 },
+        { "a": "Zimbabwe", "b": "USA", "value": 30.0 },
+        { "a": "Zimbabwe", "b": "China", "value": 55.0 },
+        { "a": "Zimbabwe", "b": "USSR", "value": 10.0 },
+        { "a": "Zimbabwe", "b": "India", "value": 40.0 },
+        { "a": "Zimbabwe", "b": "Nigeria", "value": 40.0 },
+        { "a": "Zimbabwe", "b": "Tanzania", "value": 55.0 },
+        { "a": "Zimbabwe", "b": "Uganda", "value": 15.0 },
+        { "a": "Zimbabwe", "b": "Senegal", "value": 15.0 },
+        { "a": "Zimbabwe", "b": "Cameroon", "value": 10.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 8 of 11: Tanzania. China at 70 is the highest non-Soviet line in this regional set and it is earned in concrete: the TAZARA railway, 1,860km from Dar es Salaam to the Zambian copperbelt, built between 1970 and 1975 by some 25,000 Chinese workers and financed by an interest-free loan — the largest single foreign aid project China had undertaken anywhere, and built precisely so that Zambia's copper would not have to leave through Rhodesia or South Africa. Non-alignment with a very clear direction of travel.",
+        "Uganda at 20 rather than higher: Tanzania invaded in 1979, took Kampala and restored Obote, whom the NRM then spent five years fighting. Gratitude and grievance in the same dyad."
+      ],
+      "pairs": [
+        { "a": "Tanzania", "b": "China", "value": 70.0 },
+        { "a": "Tanzania", "b": "USSR", "value": 25.0 },
+        { "a": "Tanzania", "b": "UK", "value": 20.0 },
+        { "a": "Tanzania", "b": "USA", "value": 15.0 },
+        { "a": "Tanzania", "b": "India", "value": 30.0 },
+        { "a": "Tanzania", "b": "Nigeria", "value": 30.0 },
+        { "a": "Tanzania", "b": "Uganda", "value": 20.0 },
+        { "a": "Tanzania", "b": "Senegal", "value": 15.0 },
+        { "a": "Tanzania", "b": "Cameroon", "value": 10.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 9 of 11: Uganda. Four years into the NRM and rebuilding its foreign relations from a very low base — Britain and the United States are the donors underwriting the recovery programme and their lines reflect that rather than any strategic weight. The relationship the sim cannot see because Rwanda is not in this roster is the one that mattered most: the Rwandan Patriotic Front invaded Rwanda on 1 October 1990 out of Uganda, its senior officers serving in the NRA when they left."
+      ],
+      "pairs": [
+        { "a": "Uganda", "b": "UK", "value": 35.0 },
+        { "a": "Uganda", "b": "USA", "value": 35.0 },
+        { "a": "Uganda", "b": "Nigeria", "value": 15.0 },
+        { "a": "Uganda", "b": "Senegal", "value": 10.0 },
+        { "a": "Uganda", "b": "Cameroon", "value": 10.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 10 of 11: Senegal. France at 80 is the closest bilateral relationship any African state in this roster has with a European one, and it is institutional rather than sentimental: a defence agreement dating from 1974, a French garrison at Ouakam outside Dakar, and a currency issued by a central bank whose parity the French Treasury guaranteed. If the sim's patronage machinery is going to produce a French sphere in Africa, this is the dyad it should be built on.",
+        "Iraq at -25 is not a historical curiosity: Senegal sent about 500 troops to the coalition in the Gulf, and 92 of them were killed when their aircraft crashed near Ras al-Mishab returning home on 21 March 1991 — the largest single loss Senegal has ever suffered. Saudi Arabia at 45 is the other half of that alignment and the Islamic-solidarity funding behind it."
+      ],
+      "pairs": [
+        { "a": "Senegal", "b": "France", "value": 80.0 },
+        { "a": "Senegal", "b": "USA", "value": 45.0 },
+        { "a": "Senegal", "b": "Germany", "value": 30.0 },
+        { "a": "Senegal", "b": "UK", "value": 15.0 },
+        { "a": "Senegal", "b": "SaudiArabia", "value": 45.0 },
+        { "a": "Senegal", "b": "Egypt", "value": 30.0 },
+        { "a": "Senegal", "b": "Iraq", "value": -25.0 },
+        { "a": "Senegal", "b": "Nigeria", "value": 25.0 },
+        { "a": "Senegal", "b": "Cameroon", "value": 20.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 11 of 11: Cameroon. The other franc-zone member here, with the same French architecture as Senegal — defence accords, a guaranteed currency, and a president who visited Paris more often than his own northern provinces. Slightly below Senegal's 80 because Cameroon's independence quarrel was bloodier: France fought the UPC insurgency into the mid-1960s and the party's founder Ruben Um Nyobe was killed by French troops in 1958, which is why the UPC sits in the government.rs party table as a legalised opposition rather than as a partner.",
+        "Nigeria at 15 is low and it is the Bakassi claim in nations.rs seen from the diplomatic side: a live territorial dispute with a neighbour ten times your size, with naval incidents in May 1981 that nearly became a war. Cameroon filed at the International Court of Justice on 29 March 1994 rather than fight, which is the correct reading of a 0.003 claim against a strength ratio of four to one."
+      ],
+      "pairs": [
+        { "a": "Cameroon", "b": "France", "value": 75.0 },
+        { "a": "Cameroon", "b": "USA", "value": 30.0 },
+        { "a": "Cameroon", "b": "Germany", "value": 30.0 },
+        { "a": "Cameroon", "b": "UK", "value": 20.0 },
+        { "a": "Cameroon", "b": "Nigeria", "value": 15.0 }
+      ]
     }
   ]
 }

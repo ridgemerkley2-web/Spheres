@@ -90,10 +90,24 @@ const fn row(
 
 // Region codes. Coarse on purpose: a region is "close enough that force can be
 // projected without anybody's permission", not a UN statistical division.
+// Sub-Saharan Africa needed three regions this list did not have, and shoehorning
+// eleven countries into "WestAfrica" would have been a lie the contacts set then
+// acts on: region membership auto-populates `contacts`, so putting Addis Ababa and
+// Dakar in one region tells the dyad model that Ethiopia and Senegal can reach each
+// other with force, which is 6,000km wrong. The three added here are the coarse
+// blocs the doc comment above asks for — "close enough that force can be projected
+// without anybody's permission" — and each is a real one: EastAfrica is the
+// Ethiopia/Kenya/Uganda/Tanzania quadrilateral that fought the Ogaden and the
+// Uganda-Tanzania war and traded insurgent sanctuary in every direction;
+// SouthernAfrica is the Frontline States and the republic they were the front line
+// against; CentralAfrica is the Congo basin, where Kinshasa and Yaounde sit on
+// opposite sides of a forest neither could march an army through. INTEGRATOR: this
+// is the eleventh shared edit the conflict-surface note warned about. An agent
+// doing Australia or the Pacific will need "Oceania" appended here too.
 pub const REGIONS: &[&str] = &[
     "NorthAmerica", "LatinAmerica", "WesternEurope", "EasternEurope", "Balkans",
     "Eurasia", "MiddleEast", "NorthAfrica", "WestAfrica", "SouthAsia",
-    "EastAsia", "SoutheastAsia",
+    "EastAsia", "SoutheastAsia", "EastAfrica", "CentralAfrica", "SouthernAfrica",
 ];
 
 /// The roster. **Order is the relations-matrix order and must not be shuffled.**
@@ -226,7 +240,11 @@ pub const ROSTER: &[NationRow] = &[
     row("Turkey", "Turkey", &["turkiye", "tur"], "MiddleEast",
         &["Iraq", "Iran", "USSR", "Greece", "Bulgaria", "Georgia", "Armenia", "Azerbaijan", "Syria"], &[claim("Iraq", 0.12)], true, false, false),
 
-    row("Nigeria", "Nigeria", &["nga"], "WestAfrica", &[], &[], true, false, false),
+    // NEIGHBOUR EDIT (branch feat/r-ssafrica): "Cameroon" appended. Nigeria and
+    // Cameroon share 1,700km of frontier from Lake Chad to the Bight of Bonny, and
+    // the far end of it is the Bakassi peninsula. Resolve any conflict here by
+    // union — take every branch's addition.
+    row("Nigeria", "Nigeria", &["nga"], "WestAfrica", &["Cameroon"], &[], true, false, false),
 
     // The Paracels and Spratlys from the other end, plus the border strips.
     row("Vietnam", "Vietnam", &["viet nam", "vnm"], "SoutheastAsia",
@@ -976,6 +994,99 @@ pub const ROSTER: &[NationRow] = &[
     // not have.
     row("Sudan", "Sudan", &["sdn", "as-sudan"], "NorthAfrica",
         &["Egypt", "Libya"], &[], true, false, false),
+
+    // ===== Sub-Saharan Africa (branch feat/r-ssafrica) =====
+    //
+    // A general note on what is ABSENT here, because absence is the commonest way
+    // to get this region wrong. Eleven countries are simulated and about forty are
+    // not, so most of these borders run to states this model has no opinion about:
+    // Kenya's longest frontier is with Somalia and it is not in this table, Zaire
+    // touches nine neighbours and only two of them are here, Ghana and Senegal have
+    // no roster neighbour at all. That is correct rather than missing. What would
+    // be wrong is inventing a border to give a country somebody to fight.
+    //
+    // A second note on claims. Africa in 1990 had astonishingly few interstate
+    // territorial claims, and that is the single most important fact this table
+    // records about the continent. The OAU's Cairo resolution of 21 July 1964
+    // bound its members to respect the frontiers they inherited at independence,
+    // and it held: the wars of this decade are civil wars, secessions and
+    // interventions, not conquests. So there is exactly ONE claim in eleven rows —
+    // Cameroon on Bakassi — and the derived war model should read this region as
+    // one full of collapsing states and almost empty of irredentism, because that
+    // is what it was. https://en.wikipedia.org/wiki/Organisation_of_African_Unity
+
+    // The SADF could reach Luanda and did, but South Africa's only land border with
+    // a nation in this roster is the Limpopo. Namibia became independent on 21
+    // March 1990 (and Walvis Bay stayed South African until 1994), Botswana,
+    // Lesotho, Swaziland and Mozambique are not simulated. No claims: apartheid
+    // South Africa wanted a buffer, not territory, which is why the cross-border
+    // raids of the eighties were on ANC and SWAPO camps rather than on ground.
+    row("SouthAfrica", "South Africa", &["south africa", "rsa", "zaf"], "SouthernAfrica",
+        &["Zimbabwe"], &[], true, false, false),
+
+    // Ethiopia's wars in 1990 are all inside its own borders — Eritrea, Tigray,
+    // the Oromo — which is why a state about to lose a third of its coastline
+    // carries no claim on anybody. The Ogaden claim runs the other way, from
+    // Mogadishu, and Somalia is not simulated. Kenya is the only roster neighbour;
+    // Sudan, Somalia and Djibouti are not.
+    row("Ethiopia", "Ethiopia", &["eth", "abyssinia"], "EastAfrica",
+        &["Kenya"], &[], true, false, false),
+
+    row("Kenya", "Kenya", &["ken"], "EastAfrica",
+        &["Ethiopia", "Uganda", "Tanzania"], &[], true, false, false),
+
+    // No roster neighbour: Ghana borders Cote d'Ivoire, Burkina Faso and Togo and
+    // none of the three is simulated. An island in this table, and correctly so.
+    row("Ghana", "Ghana", &["gha"], "WestAfrica", &[], &[], true, false, false),
+
+    // Zaire has nine neighbours and two of them are in this roster. The omission
+    // worth stating is Tanzania: the Zaire-Tanzania boundary is drawn entirely
+    // down the middle of Lake Tanganyika and has no land segment at all, and this
+    // column means "force can cross without a fleet". Fifty kilometres of open
+    // water is not a border in that sense, so it is left out on purpose.
+    row("Zaire", "Zaire", &["zar", "congo", "drc"], "CentralAfrica",
+        &["Angola", "Uganda"], &[], true, false, false),
+
+    // Cabinda is Angola's own exclave, cut off from the rest of the country by the
+    // Zaire river mouth, and the separatism figure in angola.json is where FLEC
+    // lives. It is not a claim: nobody else claims Cabinda, Angola simply cannot
+    // walk to it. Kinshasa backed the FNLA and then UNITA for fifteen years without
+    // ever asking for an acre of Angolan ground.
+    row("Angola", "Angola", &["ago", "ang"], "SouthernAfrica",
+        &["Zaire"], &[], true, false, false),
+
+    row("Zimbabwe", "Zimbabwe", &["zwe", "zim", "rhodesia"], "SouthernAfrica",
+        &["SouthAfrica"], &[], true, false, false),
+
+    // Tanzania marched on Kampala in 1978-79 and removed a government, which is the
+    // one clear case in this region of a state crossing a border in force and the
+    // reason that border is declared. It took nothing: Nyerere restored the Kagera
+    // salient's line and went home, and the annexation on the books was Amin's.
+    row("Tanzania", "Tanzania", &["tza", "tan"], "EastAfrica",
+        &["Kenya", "Uganda"], &[], true, false, false),
+
+    row("Uganda", "Uganda", &["uga"], "EastAfrica",
+        &["Zaire", "Kenya", "Tanzania"], &[], true, false, false),
+
+    // No roster neighbour: Mauritania, Mali, Guinea, Guinea-Bissau and the Gambia
+    // are all unsimulated, and the Gambia is not a border but a hole — Senegal
+    // surrounds it, and the Senegambia confederation had just been dissolved in
+    // September 1989.
+    row("Senegal", "Senegal", &["sen"], "WestAfrica", &[], &[], true, false, false),
+
+    // The one claim in the region, and it is a small one measured properly. Bakassi
+    // is 665 square kilometres of mangrove at the mouth of the Cross river, held and
+    // policed by Nigeria in 1990 and claimed by Cameroon under the Anglo-German
+    // agreements of 11 March and 12 April 1913. Cameroon took it to the
+    // International Court of Justice on 29 March 1994 and won in 2002; Nigeria
+    // handed it over on 14 August 2008. The share is what a claim on Bakassi
+    // actually costs Nigeria: the peninsula's population is usually put at up to
+    // 300,000, overwhelmingly Nigerian fishermen, against a Nigeria of 95.6m in the
+    // 1991 census — 0.003 of the target, and it drops to a rounding error against
+    // the oil under the adjacent water, which is what the case was really about.
+    // https://en.wikipedia.org/wiki/Bakassi
+    row("Cameroon", "Cameroon", &["cmr", "cameroun"], "CentralAfrica",
+        &["Nigeria"], &[claim("Nigeria", 0.003)], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -1176,6 +1287,18 @@ well_known! {
     Tunisia => "Tunisia",
     Libya => "Libya",
     Sudan => "Sudan",
+    // Sub-Saharan Africa (branch feat/r-ssafrica).
+    SouthAfrica => "SouthAfrica",
+    Ethiopia => "Ethiopia",
+    Kenya => "Kenya",
+    Ghana => "Ghana",
+    Zaire => "Zaire",
+    Angola => "Angola",
+    Zimbabwe => "Zimbabwe",
+    Tanzania => "Tanzania",
+    Uganda => "Uganda",
+    Senegal => "Senegal",
+    Cameroon => "Cameroon",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

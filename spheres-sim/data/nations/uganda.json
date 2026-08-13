@@ -1,0 +1,37 @@
+{
+  "id": "Uganda",
+  "name": "Uganda",
+  "system": "Market",
+  "authoritarianism": 0.7,
+  "economy": {
+    "gdp_bn": 4.3,
+    "population_m": 17.6,
+    "tfp_trend": 0.008,
+    "inflation": 0.444,
+    "interest_rate": 0.387,
+    "tax_rate": 0.07,
+    "mil_spend_gdp": 0.03,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.077,
+    "debt_gdp": 0.62,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 45.0, "separatism": 0.2 },
+  "military": { "strength": 3.0, "nuclear": false },
+  "sources": [
+    "GDP $4.3bn: World Bank NY.GDP.MKTP.CD, series UGA, 1990 = 4,304,399,310. The smallest economy in this region's eleven. Uganda had been the richest country in East Africa in 1970 and had lost roughly half its output per head between then and 1986 - Amin's expulsion of the Asian commercial class in 1972, the Tanzanian war, the Obote II bush war in the Luwero triangle.",
+    "Population 17.6m: World Bank SP.POP.TOTL, series UGA, 1990 = 17,569,897. The census of 12 January 1991 counted 16,671,705.",
+    "TFP trend 0.008: level with Ghana's and for the same reason - a recovery from a floor. Museveni's National Resistance Movement took Kampala on 26 January 1986, and after an initial two years of heterodoxy signed with the IMF in May 1987; by 1990 Uganda was growing 6-7% a year rebuilding capacity that already existed rather than creating new. Set above Kenya's 0.004 and Tanzania's 0.005.",
+    "Inflation 44.4%: World Bank NY.GDP.DEFL.KD.ZG, series UGA, 1990 = 44.38, the GDP deflator. STATED SUBSTITUTION: the World Bank's consumer-price series FP.CPI.TOTL.ZG has no Ugandan entry for 1990 (its nearest prints are 10.0% in 1994 and 6.6% in 1995, by which time the stabilisation had worked). The deflator is entered in its place and the substitution disclosed. Ugandan inflation in 1990 was in this range on every account of it - the currency reform of May 1987 had lopped two zeros off the shilling and taxed 30% of the conversion, and monetary financing of the deficit continued after it.",
+    "Interest rate 38.7%: World Bank FR.INR.LEND, series UGA, 1990 = 38.67. One of only four properly sourced 1990 lending rates in this region's eleven, and it is a real one - the Bank of Uganda held nominal rates high while inflation ran higher. Real rate about minus 6 points; the loader's coupled check reads 0.025 - (0.387 - 0.444) = 0.082.",
+    "Revenue 7% of GDP: NOT SOURCED - GC.REV.XGRT.GD.ZS has no Ugandan entry 1990-1998 - and entered as a bracket, deliberately the LOWEST in this roster. Ugandan revenue collection in the early 1990s is consistently described as being of the order of 6-8% of GDP, the worst in East Africa, and the Uganda Revenue Authority was created in September 1991 precisely because of it. Flagged as an admitted gap, but the ordering against Zaire's sourced 10.0% is the substantive claim and I am confident of it.",
+    "Military 3.0% of GDP: World Bank MS.MIL.XPND.GD.ZS, series UGA, 1990 = 2.97.",
+    "Investment: gross capital formation 12.7% of GDP (World Bank NE.GDI.TOTL.ZS, series UGA, 1990 = 12.70), the lowest sourced ratio in the region. The 5.0 / 7.7 split is APPORTIONED and sums to the sourced total.",
+    "Debt 62% of GDP: World Bank DT.DOD.DECT.GN.ZS, series UGA, 1990 = 61.64, external debt stocks as a share of GNI. Uganda was the first country in the world to reach HIPC completion point, in April 1998.",
+    "Oil 0.0: no production in 1990. Uganda's Albertine Graben discoveries date from 2006.",
+    "Stability 45 and authoritarianism 0.70: the NRM had held Kampala for four years and had genuinely restored order in the south and west - which is why stability sits above Nigeria's 35 - but it did not hold the north. Alice Lakwena's Holy Spirit Movement was beaten at Jinja in 1987 and what was left of it became Joseph Kony's Lord's Resistance Army, which was operating in Acholiland from 1988 and would go on operating there for twenty years. Set below Kenya's 46 and well below Tanzania's 62. Authoritarianism 0.70 describes the Movement system precisely: political parties were not banned but were forbidden to campaign or field candidates, elections to the National Resistance Council were on individual merit, and in October 1989 the NRC voted to extend its own life and the interim period to 1995. That is a state that holds elections it cannot lose. Set below Kenya's 0.78, which was a single-party state in law, and above Zimbabwe's 0.58, which faced a real opposition party at a real poll.",
+    "Separatism 0.20: the north. Acholi and Langi had supplied Uganda's army under Obote and Amin, lost it in 1986, and the insurgencies that followed - the UPDA, the Holy Spirit Movement, the LRA - were regional in a way the sim's separatism figure is the right home for. Buganda's demand for the restoration of its monarchy is the second strand; the kabakaship was restored in 1993 as a cultural institution. Set level with Iraq's 0.2 and above India's 0.15.",
+    "Military strength 3: the National Resistance Army was about 70,000 by 1990 and was the most politically successful guerrilla army in the region - it is worth recording that the Rwandan Patriotic Front which invaded Rwanda on 1 October 1990 was formed inside it, and that Fred Rwigyema and Paul Kagame were serving NRA officers when they left. Equipment was poor. Set level with Kenya's 3 and Tanzania's 3."
+  ]
+}

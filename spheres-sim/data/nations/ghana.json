@@ -1,0 +1,37 @@
+{
+  "id": "Ghana",
+  "name": "Ghana",
+  "system": "Market",
+  "authoritarianism": 0.8,
+  "economy": {
+    "gdp_bn": 5.9,
+    "population_m": 15.4,
+    "tfp_trend": 0.008,
+    "inflation": 0.373,
+    "interest_rate": 0.3,
+    "tax_rate": 0.125,
+    "mil_spend_gdp": 0.003,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.084,
+    "debt_gdp": 0.67,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 52.0, "separatism": 0.05 },
+  "military": { "strength": 1.5, "nuclear": false },
+  "sources": [
+    "GDP $5.9bn: World Bank NY.GDP.MKTP.CD, series GHA, 1990 = 5,889,106,573.",
+    "Population 15.4m: World Bank SP.POP.TOTL, series GHA, 1990 = 15,394,648. The census of 11 March 1984 counted 12,296,081, and the intercensal growth includes the roughly one million Ghanaians expelled from Nigeria in 1983 and again in 1985.",
+    "TFP trend 0.008: the highest in this region's eleven, and the reason is the Economic Recovery Programme. Rawlings devalued the cedi from 2.75 to the dollar in 1983 to a market rate by 1988, dismantled the cocoa marketing board's confiscatory pricing, and cut the state payroll; Ghana grew about 5% a year through the late 1980s from a base that had fallen by a third between 1974 and 1983. It was the IMF's showpiece African adjustment case and the number should reflect that it was, for a while, actually working. Set below India's 0.02 and above Kenya's 0.004.",
+    "Inflation 37.3%: World Bank FP.CPI.TOTL.ZG, series GHA, 1990 = 37.26%. High and rising again after the ERP had pulled it down from 123% in 1983; 1990 was a drought year and food prices did most of it.",
+    "Interest rate 30%: NOT SOURCED IN THIS SESSION and flagged as an admitted gap - the World Bank's FR.INR.LEND has no Ghanaian entry for any year from 1990 to 1996. 0.30 is entered as a bracket for Bank of Ghana-era commercial lending rates, which ran below the inflation rate through this period (Ghana had deeply negative real interest rates for most of the ERP). The loader's coupled real-rate check reads 0.025 - (0.30 - 0.373) = 0.098, well inside the band, and the band is wide enough here that the entry does not do much work; it is still a bracket and should be read as one.",
+    "Revenue 12.5% of GDP: World Bank GC.REV.XGRT.GD.ZS, series GHA, 1990 = 12.47, revenue excluding grants. Low even after the ERP had rebuilt the tax base from the 5% of GDP it had collapsed to in 1983.",
+    "Military 0.3% of GDP: World Bank MS.MIL.XPND.GD.ZS, series GHA, 1990 = 0.28. THE LOWEST MILITARY BURDEN IN THE ENTIRE ROSTER, and it is not a typo. Rawlings had come to power through the ranks twice, in June 1979 and December 1981, and starved the officer corps deliberately; the army that mattered to the PNDC was small, personally loyal and cheap. That Ghana then supplied the largest contingent to ECOMOG in Liberia from August 1990 on this budget is the sort of thing a strength index has to carry instead.",
+    "Investment: gross capital formation 14.4% of GDP (World Bank NE.GDI.TOTL.ZS, series GHA, 1990 = 14.44). The 6.0 / 8.4 split is APPORTIONED, not transcribed, and weighted toward the public side because the ERP's capital programme was donor-financed public works - Akosombo, the Tema-Akosombo road, the rehabilitation of the cocoa feeder roads.",
+    "Debt 67% of GDP: World Bank DT.DOD.DECT.GN.ZS, series GHA, 1990 = 67.18, external debt stocks as a share of GNI. Nearly all of it concessional IDA and IMF money, which is what an adjustment showpiece's balance sheet looks like.",
+    "Oil 0.0: no commercial production in 1990. Ghana's oil is the Jubilee field, discovered in June 2007 and onstream in December 2010, which is two decades past the start of this game and something the sim is free to reach on its own.",
+    "Stability 52 and authoritarianism 0.80: the Provisional National Defence Council had been in power for eight years by January 1990, the coup attempts of 1982-83 were behind it, and it was the most stable government Ghana had had since Nkrumah - which is why stability sits above Nigeria's 35 and Kenya's 46 and just below Poland's 55. Authoritarianism 0.80 is level with Indonesia's: all political parties were banned by proclamation in 1981, there was no legislature at all, and the Committees for the Defence of the Revolution ran surveillance at street level. The Movement for Freedom and Justice was launched on 1 August 1990 to demand the ban's repeal; the ban went in May 1992 and Rawlings won the presidential election that November.",
+    "Separatism 0.05: level with Italy's and Poland's. The Ewe question in Volta region and the recurring Konkomba-Nanumba violence in the north are real, and neither was a secession movement; Ghana is one of the few states in this region with no armed separatist front at all.",
+    "Military strength 1.5: about 7,000 in the army, deliberately so, and equipment that had not been renewed in a decade. Set below Senegal's and Cameroon's, a quarter of Nigeria's 6 - and it is worth recording that this force still put the largest single national contingent into ECOMOG, because peacekeeping capability and war-fighting capability are different things and the index measures the second."
+  ]
+}
