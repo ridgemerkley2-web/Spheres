@@ -1,0 +1,40 @@
+{
+  "id": "Thailand",
+  "name": "Thailand",
+  "system": "Market",
+  "authoritarianism": 0.35,
+  "economy": {
+    "gdp_bn": 85.3,
+    "population_m": 54.7,
+    "tfp_trend": 0.03,
+    "inflation": 0.059,
+    "interest_rate": 0.144,
+    "tax_rate": 0.17,
+    "mil_spend_gdp": 0.026,
+    "state_invest_gdp": 0.09,
+    "priv_invest_gdp": 0.32,
+    "debt_gdp": 0.17,
+    "oil_mbd": 0.02,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 50.0,
+    "separatism": 0.1
+  },
+  "military": {
+    "strength": 11.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $85.34bn and population 54.7m (World Bank, 1990).",
+    "CPI inflation 5.86% and lending interest rate 14.42% (World Bank, 1990).",
+    "1990 was the peak of the boom: real GDP grew 11.6%, the fastest in the world that year, and gross fixed capital formation ran above 40% of GDP. The investment split is weighted to the private side because the boom was private and foreign-financed, largely by Japanese manufacturers relocating after the 1985 Plaza accord.",
+    "Defence 2.59% of GDP (World Bank/SIPRI, 1990).",
+    "Public debt near 17% of GDP: Thailand ran down the debt built up in the early-1980s adjustment and was a fiscal surplus country by 1990.",
+    "Stability 50 with authoritarianism 0.35: Chatichai Choonhavan led the first elected government since 1976 and the army removed it in February 1991. An elected government sitting on top of an army that has taken power repeatedly is exactly the state this pair of numbers is describing.",
+    "separatism 0.10 is the Malay-Muslim provinces of the deep south, quiet in 1990 relative to the 1980s but never settled.",
+    "Oil 0.02 mbd: small condensate and crude output, mostly from the Gulf of Thailand gas fields.",
+    "Gross capital formation 41.4% of GDP (World Bank, 1990), entered as 9 state and 32 private.",
+    "Series check, August 2026: every World Bank figure in this file was re-read from the API rather than from a secondary transcription. NY.GDP.MKTP.CD 1990 = 85,343,190,719; SP.POP.TOTL = 54,738,329; FP.CPI.TOTL.ZG = 5.864; FR.INR.LEND = 14.417; MS.MIL.XPND.GD.ZS = 2.594; NE.GDI.TOTL.ZS = 41.354. All match the values entered above. Public debt near 17% of GDP is the one figure here NOT on a World Bank series and is not verified to a primary source; treat it as the weakest number in the file."
+  ]
+}

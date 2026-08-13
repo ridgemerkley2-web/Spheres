@@ -425,6 +425,15 @@ const TERRITORY = {
   Zaire: ["COD"],
   Bangladesh: ["BGD"], SriLanka: ["LKA"], Nepal: ["NPL"],
   Afghanistan: ["AFG"], Myanmar: ["MMR"],
+  NorthKorea: ["PRK"], Taiwan: ["TWN"], Mongolia: ["MNG"], Thailand: ["THA"],
+  Malaysia: ["MYS"], Philippines: ["PHL"], Cambodia: ["KHM"], Laos: ["LAO"],
+  // Natural Earth 110m has no polygon for Singapore — at this scale the island
+  // is under the MIN_AREA_PX floor mapgen drops specks with. The entry is kept
+  // because the renderer filters codes against WORLD.countries and an absent
+  // one simply draws nothing, and because LABEL_AT below gives it a label at
+  // its true position. A city-state that shows as a name and no fill is the
+  // honest rendering of a country a 110m basemap cannot draw.
+  Singapore: ["SGP"],
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],
@@ -456,6 +465,9 @@ const LABEL_AT = {
   // 51.2E/25.3N is [638.2, 164.2], which puts Bahrain's 50.55E/26.05N at
   // [636, 162].
   Bahrain: [636, 162],
+  // 1.35N 103.82E through mapgen's `project`, because Singapore has no polygon
+  // and therefore no centroid to fall back on.
+  Singapore: [788, 240],
 };
 /// Nations whose label sits off their own territory and needs a leader line.
 const LEADER = new Set(["Kuwait"]);
