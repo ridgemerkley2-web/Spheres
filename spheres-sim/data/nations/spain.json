@@ -1,0 +1,39 @@
+{
+  "id": "Spain",
+  "name": "Spain",
+  "system": "Market",
+  "authoritarianism": 0.13,
+  "economy": {
+    "gdp_bn": 535.0,
+    "population_m": 38.9,
+    "tfp_trend": 0.009,
+    "inflation": 0.067,
+    "interest_rate": 0.147,
+    "tax_rate": 0.38,
+    "mil_spend_gdp": 0.018,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.2,
+    "debt_gdp": 0.43,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 70.0,
+    "separatism": 0.1
+  },
+  "military": {
+    "strength": 16.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $535bn: World Bank NY.GDP.MKTP.CD, series ESP, 1990 — the same series the rest of this roster's 1990 GDP figures sit on (USA 5980, France 1270, Italy 1180, UK 1090 all match it). CAVEAT, stated rather than hidden: Spain's GDP at market prices in 1990 was 50.1 trillion pesetas (INE, Contabilidad Nacional de Espana), and converting that at the 1990 average market rate of 101.9 ESP/USD gives $492bn. The gap is the Atlas smoothing in the World Bank series, not a disagreement about Spanish output. Consistency with the rest of the roster is why the World Bank figure is the one entered.",
+    "Population 38.9m: the census of 1 March 1991 counted 38,872,268. Spain was the fifth-largest economy in the European Community it had joined on 1 January 1986.",
+    "TFP trend 0.009: Spain's post-accession boom was capital-deepening rather than productivity growth — real GDP grew about 5% a year from 1987 to 1990 on a gross fixed capital formation ratio near 25% of GDP, while total factor productivity growth over 1980-1990 ran under a point a year. This is the number that stops the model reading the boom as a permanent Spanish miracle, which is exactly what it was not: the peseta broke in September 1992 and unemployment went past 24% in 1994.",
+    "Inflation 6.7% and a policy rate of 14.7%: Spanish CPI rose 6.7% on the year in 1990 (INE), and the Banco de Espana held its ten-day repo rate near 14.5-15% through the year — the highest real rate in the ERM, held there to defend the peseta inside the wide 6% band it had entered on 19 June 1989. The high nominal rate against moderate inflation is the whole of Spanish macro policy in 1990 and is transcribed as such rather than smoothed.",
+    "Revenue 38% of GDP and gross public debt 43% of GDP: general government, AMECO/Eurostat basis. Gonzalez's Spain built a welfare state in a decade and paid for it out of a fast-growing base.",
+    "Public investment 5.0% and private investment 20% of GDP: the highest public capital-formation ratio in the Community, the Barcelona Olympics and the Seville Expo both due in 1992, and the AVE Madrid-Seville under construction.",
+    "Military 1.8% of GDP and a strength index of 16: SIPRI puts Spanish military expenditure at about 1.8% of GDP in 1990. Roughly 263,000 personnel, largely conscript, no nuclear weapons — Spain had joined NATO in 1982, confirmed it by referendum on 12 March 1986, and stayed outside the integrated military command until 1999. Indexed below Italy's 26 accordingly.",
+    "Stability 70 and authoritarianism 0.13: a democracy consolidated after the failed coup of 23 February 1981, with the PSOE returned for a third term on 29 October 1989. Marked below France's 75 because of the near-total general strike of 14 December 1988 and because ETA killed 25 people in 1990.",
+    "Separatism 0.10: Basque and Catalan nationalism, both electorally institutionalised rather than latent. Herri Batasuna, ETA's political wing, took 18.3% of the vote in the Basque autonomous election of 28 October 1990 and its elected deputies refused their seats in Madrid. Set above Italy's 0.05 and well below Yugoslavia's, which is the correct place for a strain that produces bombs but not a partition."
+  ]
+}

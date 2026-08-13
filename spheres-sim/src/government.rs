@@ -870,6 +870,40 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the Assembly",
         pillars: &[],
     },
+    // Spain — Congress of Deputies, 29 October 1989: PSOE 39.6%, PP 25.8%,
+    // IU 9.1%, CDS 7.9%, CiU 5.0%, PNV 1.2%, HB 1.1%. Gonzalez's third term,
+    // and the last of his majorities. The next election was due by October 1993
+    // and came on 6 June.
+    // https://en.wikipedia.org/wiki/1989_Spanish_general_election
+    Polity {
+        nation: NationId::Spain,
+        // The legal bar is 3% within each constituency, but the fifty-two
+        // provincial districts are small enough that what actually decides who
+        // sits is regional concentration, not a national share. The PNV took
+        // 1.2% of the Spanish vote and five seats; a 5% national threshold
+        // would delete the Basque and Catalan nationalists from the Cortes and
+        // with them the entire arithmetic of Spanish minority government, which
+        // is the same mistake the Italy block above records having avoided.
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (1993, 6),
+        parties: &[
+            p("es_psoe", "Spanish Socialist Workers' Party", "Partido Socialista Obrero Espanol", Family::SocialDemocratic, 0.396),
+            p("es_pp", "People's Party", "Partido Popular", Family::Conservative, 0.258),
+            p("es_iu", "United Left", "Izquierda Unida", Family::Communist, 0.091),
+            p("es_cds", "Democratic and Social Centre", "Centro Democratico y Social", Family::Liberal, 0.079),
+            p("es_ciu", "Convergence and Union", "Convergencia i Unio", Family::Regionalist, 0.050),
+            p("es_pnv", "Basque Nationalist Party", "Partido Nacionalista Vasco", Family::Regionalist, 0.012),
+            // The genuine article, and the reason the pariah flag is not a
+            // French and Italian curiosity: Herri Batasuna was ETA's political
+            // wing, and its deputies did not merely go uncourted — they refused
+            // to take the seats they had won. Nobody in Madrid would govern
+            // with them and they would not have sat if asked.
+            pariah("es_hb", "Herri Batasuna", "Herri Batasuna", Family::Regionalist, 0.011),
+        ],
+        ruling: "the Congress of Deputies",
+        pillars: &[],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

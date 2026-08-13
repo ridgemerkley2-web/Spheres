@@ -513,10 +513,27 @@ mod tests {
         // seat formula now goes through exact::powf, so the opening seat shares
         // differ in their last bits. Same two checks done, same result —
         // spheres-sim/data/ is untouched.
+        //
+        // Re-pinned a third time, 0x4295ff602fa2497b -> 0x68d452c8d3a1ca5a, on
+        // adding Spain — the first nation added since the roster became
+        // extensible. This hash is taken over the whole serialized WorldState,
+        // so a thirty-first nation in it moves the number by construction; the
+        // test cannot mean "no nation was ever added". What it still means, and
+        // what was checked before the number was touched, is that no EXISTING
+        // nation's figures moved:
+        //   - `git diff -- spheres-sim/data/` was +16/-0, entirely the new
+        //     Spain block appended to relations_1990.json, plus one untracked
+        //     file, spain.json. Not one transcribed figure of the other thirty
+        //     changed.
+        //   - the roster diff is one appended row plus `"Spain"` added to
+        //     France's neighbour list, which the symmetry assertion in
+        //     `nations.rs` requires and which changes no index.
+        // THIS IS THE CHECK EVERY ROSTER AUTHOR OWES. A hash that moved with a
+        // dirty data/ directory is a wrong number, not a new nation.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0x4295ff602fa2497bu64,
+            h, 0x68d452c8d3a1ca5au64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -553,7 +570,27 @@ mod tests {
         // capital, and unpaid armies remove governments. The timeline is
         // genuinely different from dabaa08's and this fingerprint must move with
         // it. Previous value: 0x0475_a1ec_bc94_bb31.
-        const GOLDEN: u64 = 0x5365360981de0aae;
+        //
+        // Re-pinned again on adding Spain, 0x5365360981de0aae ->
+        // 0x066f5417343f62f9. THIS IS THE ONE TEST IN THE SUITE AN ADDED NATION
+        // LEGITIMATELY MOVES, and it will move once per nation as the roster
+        // grows to the ~190 BIBLE section 1 commits to. A thirty-first economy
+        // in the world draws from the same single RNG in the same tick loop, so
+        // every subsequent draw shifts and the whole timeline is a different —
+        // not a worse — one. Do not treat that as a regression, and do not try
+        // to make it stop moving; the fix for "the golden hash keeps moving" is
+        // to re-pin it deliberately, having first confirmed that
+        //   (a) the ONLY failing tests are this one and `the_1990_start_is_pinned`,
+        //   (b) `git diff -- spheres-sim/data/` contains no change to any
+        //       existing nation's figures, and
+        //   (c) the emergent-history calibration tests are still green, which
+        //       is what actually protects the model.
+        // On Spain all three held: 79 of 81 sim tests passed untouched, the
+        // data diff was pure addition, and the cross-seed counters barely
+        // stirred (USSR 10/10 -> 10/10, Yugoslavia 10/10 -> 10/10,
+        // Gulf War 7/10 -> 6/10, China's median 30-year multiple 15.95x ->
+        // 15.62x).
+        const GOLDEN: u64 = 0x066f5417343f62f9;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

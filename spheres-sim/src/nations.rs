@@ -144,7 +144,7 @@ pub const ROSTER: &[NationRow] = &[
         &["France"], &[], true, true, true),
 
     row("France", "France", &["fra"], "WesternEurope",
-        &["Germany", "Italy", "UK"], &[], true, true, true),
+        &["Germany", "Italy", "UK", "Spain"], &[], true, true, true),
 
     row("Italy", "Italy", &["ita"], "WesternEurope",
         &["France", "Yugoslavia", "Slovenia"], &[], true, false, false),
@@ -229,6 +229,21 @@ pub const ROSTER: &[NationRow] = &[
 
     row("Bosnia", "Bosnia", &["bosnia and herzegovina", "bih"], "Balkans",
         &["Serbia", "Croatia"], &[], false, false, false),
+
+    // Spain's only land border with a nation in this roster is the Pyrenean
+    // frontier with France; Portugal, Andorra and Morocco (the Ceuta and
+    // Melilla enclaves) are not simulated, so those borders are correctly
+    // absent rather than wrong. The claim is Gibraltar, ceded at Utrecht in
+    // 1713, never accepted, raised at the UN Committee of 24 every year and
+    // under the negotiating process the Brussels Declaration of 27 November
+    // 1984 opened. It is the textbook rounding-error claim this table's
+    // doc comment describes: Gibraltar's population at the 1991 census was
+    // 28,074 against a United Kingdom of 57.4m, or 0.0005 of the target.
+    // A grievance that will never be worth a war, stated as the number that
+    // makes it never worth a war.
+    // https://en.wikipedia.org/wiki/Brussels_Agreement_(1984)
+    row("Spain", "Spain", &["esp", "espana"], "WesternEurope",
+        &["France"], &[claim("UK", 0.0005)], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -379,6 +394,7 @@ well_known! {
     Croatia => "Croatia",
     Slovenia => "Slovenia",
     Bosnia => "Bosnia",
+    Spain => "Spain",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {
