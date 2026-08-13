@@ -1,0 +1,43 @@
+{
+  "id": "Sudan",
+  "name": "Sudan",
+  "system": "Market",
+  "authoritarianism": 0.85,
+  "economy": {
+    "gdp_bn": 33.6,
+    "population_m": 26.8,
+    "tfp_trend": 0.002,
+    "inflation": 0.652,
+    "interest_rate": 0.28,
+    "tax_rate": 0.09,
+    "mil_spend_gdp": 0.048,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.07,
+    "debt_gdp": 0.48,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 30.0,
+    "separatism": 0.55
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $33.6bn: World Bank NY.GDP.MKTP.CD, series SDN, 1990 = 33,641,222,222 current US$, retrieved from the World Bank API 2026-08-12. THIS FIGURE IS ENTERED UNDER PROTEST AND SHOULD NOT BE BELIEVED AS OUTPUT. It implies $1,257 a head, which would put Sudan in 1990 marginally ahead of Morocco and comfortably ahead of Egypt - a country in the fourth year of a famine and the seventh of a civil war, ahead of Egypt. What produced it is the exchange rate: the Sudanese pound's official rate was held at roughly 4.5 to the dollar while the parallel rate ran three to six times that, and a national-accounts total converted at the official rate inflates by the same multiple. The World Bank's own Atlas GNI per capita for Sudan in this period is in the $400-540 range, which would put GDP nearer $11-14bn. The World Bank market series is entered anyway, for the reason brazil.json states for its inflation: the roster's league table has to be internally comparable, and the alternative to a disclosed distortion is an invented number. This is the single least trustworthy figure in the North African set and it is flagged as such in the branch's unverified list.",
+    "Population 26.8m: World Bank SP.POP.TOTL, 1990: SDN 22,021,481 plus SSD 4,737,633, because the World Bank restated its Sudan series to present-day borders and this simulation opens in 1990, when the south was Sudan and was the reason there was a war. The sum is 26,759,114. The Sudanese census of 1993 counted 24,940,683 and is generally held to have undercounted the war zones.",
+    "Inflation 65.2%: World Bank FP.CPI.TOTL.ZG, SDN 1990 = 65.16%. The highest in this region by an order of magnitude and second in the roster only to Turkey's 60.3% - except that Sudan's is higher. Deficit monetisation under an economy that had stopped collecting tax.",
+    "Interest rate 28%: UNVERIFIED, and unverifiable in the ordinary sense, because there was no interest rate. Sudan's banking system was Islamised from 1984 and the Bank of Sudan set ceilings on murabaha profit margins rather than a policy rate; what is entered is the effective cost of credit those ceilings implied, which ran in the mid-to-high twenties in the early 1990s. The number is also load-bearing for a mechanical reason worth stating rather than hiding: the loader requires the real-rate gap to stay inside 0.5, and 28% against 65.2% inflation gives minus 37.2%, a gap of 0.397. That is deep financial repression correctly stated and still inside the band the model can carry. A materially lower figure would push it outside.",
+    "Revenue 9% of GDP: the lowest in the roster, and the correct shape for a state that had lost the ability to tax. Customs and a collapsing income tax against a war budget; the IMF declared Sudan non-cooperating on 9 September 1990 over arrears, the first such declaration in its history, and the arrears were there because the revenue was not. DECLARED UNVERIFIED as a transcribed series - I could locate no 1990 general-government revenue figure - but the order of magnitude is not in doubt.",
+    "Investment 10% of GDP: World Bank NE.GDI.FTOT.ZS, SDN 1990 = 10.44% gross fixed capital formation, the lowest of the five. The 3/7 split between public and private is NOT a published series and is DECLARED UNVERIFIED; it states that what little capital formation there was came from private agriculture and traders rather than a bankrupt treasury.",
+    "Debt 48% of GDP: World Bank DT.DOD.DECT.GN.ZS, SDN 1990 = 47.8%, total external debt stocks over GNI - EXTERNAL debt, on the same disclosed basis as the other files in this region. CARRIES THE SAME DISTORTION AS THE GDP FIGURE AND IN THE SAME DIRECTION: it is a real debt stock of roughly $15bn divided by an overstated denominator. On the Atlas-consistent output figure the ratio would exceed 100%, which is what a country in arrears to the IMF actually looks like.",
+    "Oil 0.0 mbd: correct and not an omission. Chevron found oil at Muglad in 1979, suspended operations in February 1984 after the SPLA killed three workers at Rub Kona, and Sudan did not export a barrel until August 1999. The oil is in the south, which is the fact underneath everything else in this file.",
+    "Military 4.8% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), SDN 1990 = 4.81%. The highest burden in this region after Libya's, carried by the poorest economy in it.",
+    "Strength 3: an abstract index. Roughly 65,000 in the Sudanese Armed Forces, wholly committed to a civil war it was losing - in 1989 the SPLA had taken Nasir, Torit and Bor and controlled most of the countryside in three southern provinces. An army fully engaged at home projects nothing abroad. Set above Tunisia's 2 on size, below Libya's 6 and far below Egypt's 14.",
+    "Stability 30: the lowest entered in the roster. Omar al-Bashir's coup of 30 June 1989 had dissolved parliament, banned every party including the ones that won the 1986 election, and jailed the prime minister it removed; the war in the south was in its seventh year; famine in Darfur and Kordofan in 1990-91 killed on the order of a quarter of a million people; and the government's own coup-proofing produced the executions of 28 April 1990. Set below Algeria's 40, which is the next lowest.",
+    "Separatism 0.55: the highest in the roster, and it should be. This is not a minority movement or a language grievance - it is an armed secession that controlled territory. The Sudan People's Liberation Army held most of Equatoria, Bahr el Ghazal and Upper Nile outside the garrison towns; the southern provinces were roughly a quarter of the population; and the war had been running since Nimeiry imposed sharia in September 1983. Set at nearly twice Turkey's 0.30 for the PKK, above Yugoslavia's, because the PKK never held provinces and the SPLA did.",
+    "Authoritarianism 0.85: a military-Islamist junta four months old at the start of the simulation. The Revolutionary Command Council for National Salvation ruled by decree, all parties were dissolved, the trade unions were banned and Hassan al-Turabi's National Islamic Front supplied the programme from outside the formal structure. Set above Egypt's 0.75 and below Libya's 0.90, which had no parties to ban."
+  ]
+}

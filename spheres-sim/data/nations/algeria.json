@@ -1,0 +1,44 @@
+{
+  "id": "Algeria",
+  "name": "Algeria",
+  "system": "Command",
+  "authoritarianism": 0.55,
+  "economy": {
+    "gdp_bn": 62.0,
+    "population_m": 25.4,
+    "tfp_trend": 0.004,
+    "inflation": 0.167,
+    "interest_rate": 0.105,
+    "tax_rate": 0.3,
+    "mil_spend_gdp": 0.015,
+    "state_invest_gdp": 0.19,
+    "priv_invest_gdp": 0.08,
+    "debt_gdp": 0.47,
+    "oil_mbd": 1.17,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 40.0,
+    "separatism": 0.08
+  },
+  "military": {
+    "strength": 8.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $62.0bn: World Bank NY.GDP.MKTP.CD, series DZA, 1990 = 62,048,507,531 current US$, retrieved from the World Bank API 2026-08-12. Same series as the rest of the roster (USA 5980, France 1270, Spain 535).",
+    "Population 25.4m: World Bank SP.POP.TOTL, DZA 1990 = 25,375,810. The Algerian census of 1987 counted 23,038,942, and the growth rate between the two is the 3%-a-year that produced the youth cohort standing in the streets in October 1988.",
+    "System is Command, on the same reading that puts Iraq and Iran there rather than Poland. Sonatrach and the SNEs owned essentially all industry, the plan allocated foreign exchange, and prices were administered. The reform was legislated, not yet done: Law 88-01 gave public enterprises formal autonomy and Law 90-10 of 14 April 1990 on money and credit - eight weeks into this simulation - created a central bank able to set a rate at all.",
+    "Inflation 16.7%: World Bank FP.CPI.TOTL.ZG, DZA 1990 = 16.65%, the year the dinar was devalued toward a market rate and administered prices were let go.",
+    "Interest rate 10.5%: UNVERIFIED, AND SAID SO RATHER THAN HIDDEN. I could locate no published 1990 observation for the Bank of Algeria rediscount rate; the earliest figure found is 11.0% in late 1997 (US State Department, Algeria: Economic Policy and Trade Practices Report 1997). 10.5% is entered as the 1990 rediscount rate. What is not a guess is the sign of the real rate it implies: 10.5% against 16.7% inflation is minus 6.2%, deep financial repression, which is exactly the condition Law 90-10 was written to end and the reason it was written.",
+    "Revenue 30% of GDP: hydrocarbon receipts are the fiscal system; Sonatrach's royalties and the oil tax carried roughly two-thirds of the budget. UNVERIFIED as a transcribed general-government series - it is an order-of-magnitude figure for a petro-state, set above Morocco's 24% and Tunisia's 28% because Algeria taxed its oil rather than its people, and well below Libya's 38%.",
+    "Investment 27% of GDP: World Bank NE.GDI.FTOT.ZS, DZA 1990 = 26.97% gross fixed capital formation. The 19/8 split between public and private is NOT a published series and is DECLARED UNVERIFIED: it states that capital formation in a command economy whose industry was state-owned was overwhelmingly state capital formation, with the residual in agriculture, housing and the small private sector the 1988 reforms had begun to admit.",
+    "Debt 47% of GDP: World Bank DT.DOD.DECT.GN.ZS, DZA 1990 = 47.1%, total external debt stocks over GNI. Stated plainly: this is EXTERNAL debt, not gross general-government debt, because the external series is the one that exists for these economies. Domestic public debt is additional and not captured here. The number that made Algeria's 1990 unmanageable was not the stock but the service: debt service ran near two-thirds of export earnings, and rescheduling was two years away.",
+    "Oil 1.17 mbd: transcribed from the Energy Institute / BP Statistical Review of World Energy primary oil production series as republished by Our World in Data (Algeria 1990 = 678.7 TWh), converted against the two roster entries already on that series - the United Kingdom at 1,065 TWh and 1.9 mbd, Egypt at 529 TWh and 0.87 mbd. The conversion is mine, so the figure is DECLARED UNVERIFIED to the second decimal. It is a total-liquids number: Algeria's OPEC crude quota basis for 1990 was nearer 0.8 mbd, and the difference is the condensate and NGL from Hassi R'Mel that OPEC does not count against quota.",
+    "Military 1.5% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), DZA 1990 = 1.46%. Strikingly low for the regional reputation, and true: the Algerian army's cost was in its Soviet inventory, bought in the 1970s and not being replaced at 1990 oil prices.",
+    "Strength 8: an abstract index, calibrated by ratio. About 125,000 personnel with the best equipment in the Maghreb - MiG-25s, T-72s, SA-6s - and no combat experience since 1963. Set above Morocco's 7 on equipment and below Egypt's 14 on size, experience and the American relationship.",
+    "Stability 40: the lowest in this region and among the lowest in the roster, and it is the whole of what happens next. The riots of October 1988 were put down by the army with hundreds dead; the constitution of 23 February 1989 ended the single party; by January 1990 more than thirty parties were legal and the FLN was about to lose more than half the country's communes to the Islamic Salvation Front in June. Set below Sudan's? No - above Sudan's 30, because the Algerian state still functioned, and far below Morocco's 62, because the Moroccan one was not being contested at the ballot box.",
+    "Separatism 0.08: the Berber Cultural Movement's boycott campaign and the Tamazight language demands in Kabylie, which were cultural and constitutional rather than secessionist - nobody in Tizi Ouzou was asking to leave. Set below Spain's 0.10 for that reason and above Italy's 0.05.",
+    "Authoritarianism 0.55: deliberately below the 0.60 electoral ceiling, which is a substantive claim and not a rounding. In January 1990 Algeria was a state whose government could be removed by a vote, and five months later a vote removed it from half the country. Set well above Turkey's 0.35 - the presidency was not contested, the army was not accountable, and the press operated on sufferance - and well below Egypt's 0.75, where the elections were held and the result was known in advance."
+  ]
+}

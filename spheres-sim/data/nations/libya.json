@@ -1,0 +1,44 @@
+{
+  "id": "Libya",
+  "name": "Libya",
+  "system": "Command",
+  "authoritarianism": 0.9,
+  "economy": {
+    "gdp_bn": 28.9,
+    "population_m": 4.4,
+    "tfp_trend": 0.003,
+    "inflation": 0.085,
+    "interest_rate": 0.055,
+    "tax_rate": 0.38,
+    "mil_spend_gdp": 0.055,
+    "state_invest_gdp": 0.12,
+    "priv_invest_gdp": 0.02,
+    "debt_gdp": 0.12,
+    "oil_mbd": 1.37,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 55.0,
+    "separatism": 0.05
+  },
+  "military": {
+    "strength": 6.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $28.9bn: World Bank NY.GDP.MKTP.CD, series LBY, 1990 = 28,904,183,602 current US$, retrieved from the World Bank API 2026-08-12. $6,502 a head (NY.GDP.PCAP.CD), which is five times Morocco's and the highest in Africa - a fact the model should hold on to, because it is the whole explanation of Libyan foreign policy in this period.",
+    "Population 4.4m: World Bank SP.POP.TOTL, LBY 1990 = 4,445,239. Four and a half million people sitting on the largest oil reserves in Africa is a strategic position and a strategic problem: it is why Libya bought an army it had no soldiers for and why it kept trying to merge with somebody.",
+    "System is Command, and Libya is the clearest case of it in the roster. Retail and wholesale trade were abolished outright in 1981 and replaced by state supermarkets; private commerce, rent and wage labour were all made illegal by the Green Book's second volume; there was no private sector to speak of and no legal way to have one.",
+    "Inflation 8.5%: World Bank FP.CPI.TOTL.ZG, LBY 1990 = 8.45%.",
+    "Interest rate 5.5%: World Bank FR.INR.DPST, LBY 1990 = 5.5%, the deposit rate; the lending rate on the same source (FR.INR.LEND) is 7.0%. Both are administered numbers in a system where the Central Bank of Libya held the discount rate at 5% for decades and credit was allocated rather than priced. A real rate of minus 3.0%, which is what an administered rate under an oil-financed budget looks like.",
+    "Revenue 38% of GDP: the highest in this region, and it is not a tax system - it is the oil. The National Oil Corporation's receipts were the budget, and the budget was the economy. DECLARED UNVERIFIED as a transcribed general-government series: I could locate no IMF or national-accounts figure for Libyan general-government revenue in 1990. Set above Algeria's 30% because Libya's hydrocarbon rent per head was roughly six times Algeria's.",
+    "Investment 14% of GDP: World Bank NE.GDI.FTOT.ZS, LBY 1990 = 13.87% gross fixed capital formation - strikingly low for a state with this much money, and the reason is that the Great Man-Made River project and the 1980s development plans were being paid for out of a revenue stream that had halved with the oil price after 1986. The 12/2 split between public and private is NOT a published series and is DECLARED UNVERIFIED, but the shape is not a guess: private capital formation in a state that had made private enterprise illegal is a residual, and the 2% is housing.",
+    "Debt 12% of GDP: Libya carried almost no external debt. It had run current-account surpluses through the oil decade and was a net creditor to much of Africa; the CIA World Factbook editions of this period put Libyan external debt on the order of $3.5bn against a $28.9bn economy. The figure is DECLARED UNVERIFIED - the World Bank's DT.DOD.DECT.GN.ZS series has no Libya observation at all - but the order of magnitude is well attested and the direction is certain. What constrained Libya in 1990 was not debt; it was the American asset freeze of January 1986 and an oil price of $23.",
+    "Oil 1.37 mbd: transcribed from the Energy Institute / BP Statistical Review primary oil production series as republished by Our World in Data (Libya 1990 = 782.0 TWh) and converted against the roster entries already on that series (UK 1,065 TWh at 1.9 mbd, Egypt 529 TWh at 0.87 mbd). The conversion is mine, so the figure is DECLARED UNVERIFIED to the second decimal. Well below the 3.3 mbd Libya produced in 1970 - the reserves were there, the buyers after 1986 were not.",
+    "Military 5.5% of GDP: DECLARED UNVERIFIED, and this is the weakest figure in the file. SIPRI has no Libya observation before 1997; its earliest published values are 4.08% (1997) and 5.30% (1998), and the US Arms Control and Disarmament Agency's World Military Expenditures and Arms Transfers put the Libyan military burden in the mid-1980s substantially higher on the back of an arms-import programme that has no parallel in this region. 5.5% is entered between those: above the 1997 floor because the 1990 force was larger and newer, and far below the mid-1980s peak because the buying had stopped. It should be replaced the moment a real 1990 observation is found.",
+    "Strength 6: an abstract index, and the number in this file most likely to be mistaken for a typo. Libya had roughly 2,000 tanks - more than Britain - and about 85,000 personnel to crew them, most of them conscripts, with a large fraction of the inventory in desert storage. Then it lost. In the Toyota War of 1987 the Chadian army destroyed or captured on the order of $1.5bn of Libyan equipment and killed several thousand men, using pickup trucks. This index is combat power, not inventory: set below Egypt's 14 and below Algeria's 8, above Sudan's 3 and Tunisia's 2.",
+    "Stability 55: Gaddafi twenty years in and personally unremovable - he had survived the American raid on Bab al-Azizia of 15 April 1986 and a series of army plots. Against that: the Chad defeat had discredited the revolutionary committees, the oil price had halved, and the Warfalla conspiracy that broke in 1993 was already forming. Set at Turkey's 55, above Algeria's 40, below Tunisia's 60.",
+    "Separatism 0.05: low but not zero. Tripolitania and Cyrenaica were separate provinces under Ottoman and Italian rule and separate states under the federal constitution of 1951, and Benghazi's grievance against Tripoli survived the abolition of the federation in 1963 - it is where the 2011 rising started. Set at Italy's 0.05.",
+    "Authoritarianism 0.90: among the highest in the roster. The Jamahiriya had no parties, and not by neglect - Law 71 of 1972 made forming one a capital offence. There was no legislature that could remove an executive because there was formally no executive: Gaddafi held no office after 1979 and ruled through the revolutionary committees. Modelled with pillars and an empty party table, which is the same treatment Saudi Arabia gets and for the same reason."
+  ]
+}
