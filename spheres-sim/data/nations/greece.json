@@ -1,0 +1,35 @@
+{
+  "id": "Greece",
+  "name": "Greece",
+  "system": "Market",
+  "authoritarianism": 0.16,
+  "economy": {
+    "gdp_bn": 96.5,
+    "population_m": 10.2,
+    "tfp_trend": 0.008,
+    "inflation": 0.204,
+    "interest_rate": 0.199,
+    "tax_rate": 0.25,
+    "mil_spend_gdp": 0.038,
+    "state_invest_gdp": 0.032,
+    "priv_invest_gdp": 0.228,
+    "debt_gdp": 0.74,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 58.0, "separatism": 0.03 },
+  "military": { "strength": 20.0, "nuclear": false },
+  "sources": [
+    "GDP $96.5bn and population 10.2m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, series GRC, 1990 (96,529,587,274 and 10,196,792). Same series as the rest of the roster.",
+    "Inflation 20.4%: World Bank FP.CPI.TOTL.ZG, GRC 1990 = 20.433%. The highest in Western Europe by a factor of one and a half over Portugal, and the highest in this roster outside the command economies and Turkey. Greece ran double-digit inflation for the whole of the 1980s; the drachma was not in the ERM and the deficit was being monetised.",
+    "Policy rate 19.9%: Bank of Greece immediate/call money rate, monthly mean of 1990 = 19.86% (OECD MEI via FRED, IRSTCI01GRM156N). The monthly series is violent - 13.8% in August, 28.2% in April, 23.3% in December - because the rate was being used to defend the drachma month by month rather than set to a stance. The annual mean is what is entered and the volatility is what the number hides.",
+    "Revenue 25% of GDP: OECD Revenue Statistics, total tax revenue as a share of GDP, Greece 1990 (about 25.2%) - the second lowest in Western Europe after Switzerland's, and for the opposite reason. A 74%-of-GDP debt raised on a 25%-of-GDP revenue base is the Greek fiscal problem stated in two numbers, and it is the same problem the country still had twenty years later.",
+    "Gross public debt 74% of GDP: IMF World Economic Outlook GGXWDG_NGDP, GRC 1990 = 74.2%. It had been 22% in 1980. The whole of that rise happened in one decade.",
+    "Military 3.8% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), GRC 1990 = 3.798% - the highest defence burden in NATO that year, above the United Kingdom's 0.04 only narrowly and far above France's 0.036 relative to what it buys. Greece spent it against Turkey, not against the Warsaw Pact.",
+    "Strength index 20: about 201,000 active personnel under a two-year conscription and some 1,900 tanks, mostly M48 and Leopard 1, in a country of ten million. Indexed below Turkey's 24 - the force it was built to face, twice the manpower and five times the population - and above Spain's 16 and Sweden's 18. NOT nuclear: Araxos held United States B61 bombs under NATO nuclear sharing until 2001, in American custody; this field records possession.",
+    "Gross fixed capital formation 26.0% of GDP: World Bank NE.GDI.FTOT.ZS, GRC 1990. Split into public 3.2% and private 22.8% using the AMECO general-government series, private as residual. CAVEAT: total transcribed, public share entered from reference knowledge of AMECO.",
+    "Stability 58 and authoritarianism 0.16: the lowest stability in Western Europe on this board by a wide margin - below Italy's 68, below Poland's 55 only by three points - and the January 1990 record earns every point of it. Greece held THREE general elections in eleven months: 18 June 1989, 5 November 1989, 8 April 1990. Two caretaker or ecumenical governments sat in between, the second under Xenophon Zolotas, a central banker with no party. Parliament had voted to send a former prime minister, Andreas Papandreou, for trial before a special court over the Koskotas banking scandal, and that trial was running while the game opens. Authoritarianism 0.16 is the highest in this batch: the colonels' junta had ended only sixteen years earlier, the state monopoly on broadcasting was broken only in 1989, and the civil-war-era certificates of political reliability were within living memory of everyone in the electorate.",
+    "Separatism 0.03: at France's 0.03, below Italy's 0.05. The Muslim minority of Western Thrace, about 100,000 people protected by the Treaty of Lausanne, is the one recognised minority question, and there were riots in Komotini in January 1990. It is a minority-rights dispute conducted through Athens and Ankara, not a secession movement.",
+    "TFP trend 0.008: below Spain's 0.009 and the joint lowest in this batch with Switzerland's. Greek productivity growth was essentially zero across the 1980s, the decade in which the country joined the European Community and then failed to converge on it, and did not recover until the stabilisation programmes of the mid-1990s. Entering a convergence number here because Greece was poor would model a catch-up that had conspicuously not been happening."
+  ]
+}

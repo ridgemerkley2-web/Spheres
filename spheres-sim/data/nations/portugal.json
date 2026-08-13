@@ -1,0 +1,35 @@
+{
+  "id": "Portugal",
+  "name": "Portugal",
+  "system": "Market",
+  "authoritarianism": 0.14,
+  "economy": {
+    "gdp_bn": 78.7,
+    "population_m": 9.98,
+    "tfp_trend": 0.014,
+    "inflation": 0.136,
+    "interest_rate": 0.169,
+    "tax_rate": 0.27,
+    "mil_spend_gdp": 0.018,
+    "state_invest_gdp": 0.039,
+    "priv_invest_gdp": 0.228,
+    "debt_gdp": 0.6,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 74.0, "separatism": 0.03 },
+  "military": { "strength": 8.0, "nuclear": false },
+  "sources": [
+    "GDP $78.7bn and population 9.98m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, series PRT, 1990 (78,713,860,217 and 9,983,218). Same series as the rest of the roster. Portugal and Greece have almost identical populations and Portuguese output is a fifth smaller; both are a seventh of Spain's, which is the arithmetic of the Iberian peninsula in 1990.",
+    "Inflation 13.6%: World Bank FP.CPI.TOTL.ZG, PRT 1990 = 13.631%. The second-highest in Western Europe after Greece. The escudo was on a crawling peg of pre-announced devaluations that was only abandoned in October 1990, and the crawl was itself an inflation machine.",
+    "Policy rate 16.9%: three-month Lisbon money-market rate, monthly mean of 1990 = 16.902% (OECD MEI via FRED, IR3TIB01PTM156N). Above Spain's 14.7 on the same peninsula in the same year, and the gap is the credibility difference between a currency inside the ERM band since June 1989 and one that was not admitted until April 1992.",
+    "Revenue 27% of GDP: OECD Revenue Statistics, total tax revenue as a share of GDP, Portugal 1990 (about 26.5%). Far below Spain's 0.38, and the gap is real - a large informal sector and a tax administration that was rebuilt only over the following decade.",
+    "Gross public debt 60% of GDP: IMF World Economic Outlook GGXWDG_NGDP, PRT 1990 = 60.2%.",
+    "Military 1.8% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), PRT 1990 = 1.841%. Identical to Spain's 0.018 and on a fifth of the output.",
+    "Strength index 8: about 87,000 active personnel, largely conscript, with equipment that was mostly American hand-me-downs - M48 tanks, A-7 Corsairs - and a navy sized for the Atlantic approaches and the Azores rather than for a fleet action. Indexed at half Spain's 16, which is roughly the ratio of the two defence budgets, and above Austria's 6.",
+    "Gross fixed capital formation 26.7% of GDP: World Bank NE.GDI.FTOT.ZS, PRT 1990. Split into public 3.9% and private 22.8% using the AMECO general-government series, private as residual - the high public share is the European Community structural and cohesion transfers arriving, which by the mid-1990s ran at 3-4% of Portuguese GDP a year. CAVEAT: total transcribed, public share entered from reference knowledge of AMECO.",
+    "Stability 74 and authoritarianism 0.14: just below France's 75 and above Spain's 70. Cavaco Silva's absolute majority of July 1987 was the first single-party majority since the revolution of 1974 and it ended thirteen years in which no Portuguese government had finished a term. Authoritarianism at Spain's 0.13 rounded up by a point: the Council of the Revolution, the military body with a constitutional veto, was abolished only in 1982, and the constitution's commitment to a transition to socialism was removed only in 1989.",
+    "Separatism 0.03: at France's 0.03. The Azores and Madeira are autonomous regions with their own governments and their own regionalist parties; Madeira's Alberto Joao Jardim governed it as a personal fief from 1978. Real, formalised, and nowhere near a secession question.",
+    "TFP trend 0.014: at France's 0.014 and well above Spain's 0.009, which needs saying because Portugal was much the poorer of the two. That is the reason: Portuguese output per head was around half the Community average in 1990 and the convergence room ahead of it was correspondingly larger. Portugal grew faster than the Community average through the first half of the 1990s and then stopped, which the model can find on its own."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "Switzerland",
+  "name": "Switzerland",
+  "system": "Market",
+  "authoritarianism": 0.09,
+  "economy": {
+    "gdp_bn": 269.8,
+    "population_m": 6.72,
+    "tfp_trend": 0.008,
+    "inflation": 0.054,
+    "interest_rate": 0.088,
+    "tax_rate": 0.24,
+    "mil_spend_gdp": 0.016,
+    "state_invest_gdp": 0.035,
+    "priv_invest_gdp": 0.292,
+    "debt_gdp": 0.33,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 85.0, "separatism": 0.04 },
+  "military": { "strength": 14.0, "nuclear": false },
+  "sources": [
+    "GDP $269.8bn and population 6.72m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, series CHE, 1990 (269,768,238,555 and 6,715,519). CAVEAT, stated rather than hidden: Swiss nominal GDP in 1990 on the national accounts was about CHF 331bn, and converting that at the 1990 average market rate of 1.389 CHF/USD gives roughly $238bn, some 12% below the figure entered. The gap is the World Bank's Atlas-style conversion, not a disagreement about Swiss output. Consistency with the rest of the roster - which is all NY.GDP.MKTP.CD - is why the World Bank figure is the one in the file. Six and three-quarter million people with more output than Belgium and the Netherlands put together is not an artefact; the conversion method only moves the last digit or two.",
+    "Inflation 5.4%: World Bank FP.CPI.TOTL.ZG, CHE 1990 = 5.404%. Startlingly high for the country whose whole monetary reputation was low inflation, and the reason is domestic: a property and construction boom that the Swiss National Bank had been tightening against since 1988.",
+    "Policy rate 8.8%: three-month euro-Swiss-franc deposit rate, monthly mean of 1990 = 8.84% (OECD MEI via FRED, IR3TED01CHM156N). Higher than the Dutch or German rate in the same year, which for Switzerland is the whole story of 1990 in one number.",
+    "Revenue 24% of GDP: OECD Revenue Statistics, total tax revenue as a share of GDP, Switzerland 1990 (about 23.6%). The lowest in Western Europe by a distance and about half the Swedish figure - the federal government raises little and the cantons raise the rest, and direct democracy on tax rates keeps both down. NOTE: the World Bank's central-government revenue series shows Switzerland at 14.3% for 1990, and that number is not wrong, it is simply the Confederation alone with the cantons and communes left out. This field is general government, so the OECD figure is the correct one to enter.",
+    "Gross public debt 33% of GDP: IMF World Economic Outlook GGXWDG_NGDP, CHE 1990 = 32.8%. Below Germany's 0.41.",
+    "Military 1.6% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), CHE 1990 = 1.572%.",
+    "Strength index 14: about 3,500 professional soldiers and a mobilisation strength near 625,000 reachable inside forty-eight hours, with some 380 Leopard 2 and Pz 68 tanks and a fortified Alpine redoubt built to be held after the plateau is lost. Indexed below Sweden's 18 - the same militia idea with a fraction of the defence industry and no navy - and below Spain's 16, and above Austria's 6, which is the other armed neutral in this region and a quarter the mobilised mass.",
+    "Gross fixed capital formation 32.7% of GDP: World Bank NE.GDI.FTOT.ZS, CHE 1990, the highest ratio in Western Europe that year and itself a symptom of the construction boom. Split into public 3.5% and private 29.2% using the AMECO general-government series, private as residual. CAVEAT: total transcribed, public share entered from reference knowledge of AMECO.",
+    "Stability 85 and authoritarianism 0.09: the highest stability on the board, above Germany's 80. The composition of the Federal Council had not changed since 1959 and no Swiss government has ever been removed by an election. Marked at 85 rather than higher for two things in the immediate record: the Fichenaffare broke in November 1989, when a parliamentary inquiry found the federal police had kept secret index cards on some 900,000 people, and on 27 November 1990 the Federal Supreme Court had to order Appenzell Innerrhoden to let women vote in cantonal affairs - nineteen years after the federal franchise. A state that placid with those two facts in it is an 85, not a 95.",
+    "Separatism 0.04: just below Italy's 0.05, and specific. The Jura question is a live territorial dispute inside the confederation - canton Jura was created out of Bern in 1979 after a referendum, the southern Jura districts voted to stay with Bern, and in 1989 the Laufen district voted to leave Bern for Basel-Landschaft. It is separatism that is settled by ballot on a schedule rather than by anything else, which is why the number is small and not zero.",
+    "TFP trend 0.008: below Spain's 0.009 and the lowest in this Western European batch, which looks perverse for the richest country in it and is not. Swiss real GDP was essentially flat from 1991 to 1997 - the worst growth performance in the OECD over that stretch - as the property boom unwound and a cartelised domestic sector faced no competition. A rich country that grows slowly is exactly what a productivity trend is for; entering a high number because the level is high would be modelling the wrong thing."
+  ]
+}

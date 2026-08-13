@@ -1,0 +1,35 @@
+{
+  "id": "Ireland",
+  "name": "Ireland",
+  "system": "Market",
+  "authoritarianism": 0.11,
+  "economy": {
+    "gdp_bn": 49.3,
+    "population_m": 3.51,
+    "tfp_trend": 0.02,
+    "inflation": 0.033,
+    "interest_rate": 0.113,
+    "tax_rate": 0.33,
+    "mil_spend_gdp": 0.012,
+    "state_invest_gdp": 0.022,
+    "priv_invest_gdp": 0.17,
+    "debt_gdp": 0.86,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 72.0, "separatism": 0.02 },
+  "military": { "strength": 2.0, "nuclear": false },
+  "sources": [
+    "GDP $49.3bn and population 3.51m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, series IRL, 1990 (49,305,632,408 and 3,513,974). Same series as the rest of the roster, and the smallest economy in it after Kuwait's. Ireland in 1990 is a poor country by Western European standards - output per head around two-thirds of the Community average, unemployment near 13%, and net emigration of about 1% of the population a year, the last time that was true anywhere in Western Europe.",
+    "Inflation 3.3%: World Bank FP.CPI.TOTL.ZG, IRL 1990 = 3.317%. The punt had been in the ERM since 1979, when Ireland broke the sterling link it had held since 1826.",
+    "Policy rate 11.3%: three-month Dublin interbank rate, monthly mean of 1990 = 11.307% (OECD MEI via FRED, IR3TIB01IEM156N). Well above German and Dutch rates on the same mechanism, which is the risk premium a small currency with an 86%-of-GDP debt paid; the punt was devalued 10% in January 1993 after a two-month defence at penal rates.",
+    "Gross public debt 86% of GDP: IMF Historical Public Debt Database, central government debt, IRL 1990 = 86.3%. CAVEAT: this is the CENTRAL government measure - the IMF WEO general-government series does not carry Ireland back to 1990 - and the general-government figure for 1990 is higher, in the low nineties on the AMECO basis. A floor rather than a like-for-like figure, recorded so the basis is visible rather than assumed. Either way it is the second-worst debt in this batch after Belgium's 1.30, and the fiscal correction of 1987-89 that brought it down from a peak above 110% is the immediate background to every Irish figure in this file.",
+    "Revenue 33% of GDP: OECD Revenue Statistics, total tax revenue as a share of GDP, Ireland 1990 (about 32.5%).",
+    "Military 1.2% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), IRL 1990 = 1.204%, the joint lowest in Western Europe with Austria's.",
+    "Strength index 2: the smallest armed force on the board. About 13,000 in the Permanent Defence Force, no tanks beyond a handful of armoured cars, no interceptor aircraft, no submarines, and a naval service of seven patrol vessels for fishery protection. Indexed at an eighth of Spain's 16 and a third of Denmark's 6 - Denmark is a comparable-sized NATO state and has a real armoured brigade and a real navy. Ireland is militarily neutral, was never in NATO, and its army's actual employment since 1958 has been United Nations peacekeeping, in Lebanon in 1990. A 2 is not an insult; it is what a state that has genuinely decided not to have a military looks like in an index.",
+    "Gross fixed capital formation 19.2% of GDP: World Bank NE.GDI.FTOT.ZS, IRL 1990 - the lowest in this batch, and the reason is the fiscal correction: public capital spending had been cut hard. Split into public 2.2% and private 17.0% using the AMECO general-government series, private as residual. CAVEAT: total transcribed, public share entered from reference knowledge of AMECO.",
+    "Stability 72 and authoritarianism 0.11: below the United Kingdom's 74 and above Italy's 68. Charles Haughey's Fianna Fail-Progressive Democrats cabinet, formed in July 1989, was the first coalition Fianna Fail had ever entered in sixty-three years - the party's founding claim was that it alone could govern alone, and 1989 ended it. The Northern Ireland conflict was at its height across the border: 1990 saw 76 deaths, the IRA bombing campaign extended to Great Britain and Germany, and the Republic's own security apparatus - the Special Criminal Court, sitting without a jury, and section 31 of the Broadcasting Act, which banned Sinn Fein spokesmen from Irish radio and television until 1994 - is the reason authoritarianism is 0.11 rather than the 0.08 the Nordic democracies carry.",
+    "Separatism 0.02: low, and the direction matters. Ireland's territorial question in 1990 ran outward, not inward - Articles 2 and 3 of the 1937 Constitution claimed the whole island - and that is entered as a CLAIM on the United Kingdom in the roster, not as separatism here. There is no movement to detach any part of the twenty-six counties from Dublin.",
+    "TFP trend 0.020: the top of the roster's range, above Germany's 0.016 and Finland's 0.017, and it is the only number in this batch that needs defending as high rather than as low. Irish GDP grew at an average of about 7% a year from 1994 to 2000 and total factor productivity growth over the decade was the fastest in the OECD. The ingredients were all in place by January 1990 - a 10% manufacturing corporation tax rate in force since 1981, the Programme for National Recovery social partnership agreement of 1987, European structural funds, and a young English-speaking workforce that emigration had until then been exporting. Entering an average European number here would make the model unable to produce the one thing everybody knows about Ireland in this period."
+  ]
+}

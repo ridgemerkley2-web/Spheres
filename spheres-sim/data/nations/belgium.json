@@ -1,0 +1,35 @@
+{
+  "id": "Belgium",
+  "name": "Belgium",
+  "system": "Market",
+  "authoritarianism": 0.1,
+  "economy": {
+    "gdp_bn": 205.3,
+    "population_m": 9.97,
+    "tfp_trend": 0.013,
+    "inflation": 0.034,
+    "interest_rate": 0.096,
+    "tax_rate": 0.41,
+    "mil_spend_gdp": 0.024,
+    "state_invest_gdp": 0.014,
+    "priv_invest_gdp": 0.226,
+    "debt_gdp": 1.3,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 72.0, "separatism": 0.25 },
+  "military": { "strength": 10.0, "nuclear": false },
+  "sources": [
+    "GDP $205.3bn and population 9.97m: World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, series BEL, 1990 (205,331,747,948 and 9,967,379). Same series as the rest of the roster.",
+    "Inflation 3.4%: World Bank FP.CPI.TOTL.ZG, BEL 1990 = 3.448%. The Belgian franc had been formally linked to the D-mark since June 1990, which is the month the Nationale Bank stopped pretending it had an independent monetary policy and said so.",
+    "Policy rate 9.6%: three-month Belgian interbank rate, monthly mean of 1990 = 9.633% (OECD MEI via FRED, IR3TIB01BEM156N). Nearly a full point above the Dutch rate on the same peg to the same currency, which is what a debt of 130% of GDP costs a small open economy.",
+    "Gross public debt 130% of GDP: IMF World Economic Outlook GGXWDG_NGDP, BEL 1990 = 130.3%. THE HIGHEST IN THE ROSTER by a wide margin - Italy ships 0.94 and is the next worst - and it is not a typo. Belgian public debt passed 100% of GDP in 1983 and peaked near 138% in 1993; the whole of Belgian fiscal politics for the next decade was the effort to get it under the Maastricht 60% reference value, which the country never did before joining the euro anyway.",
+    "Public investment 1.4% of GDP: the lowest ratio in Western Europe, and it is the direct consequence of the debt above - capital spending was what got cut when interest payments took a fifth of the budget. Total gross fixed capital formation 24.0% of GDP is World Bank NE.GDI.FTOT.ZS, BEL 1990; the public share is the AMECO general-government series and private 22.6% is the residual. CAVEAT: as with the other files in this batch, the total is transcribed and the public share is entered from reference knowledge of AMECO rather than re-read off it.",
+    "Revenue 41% of GDP: OECD Revenue Statistics, total tax revenue including social security contributions, Belgium 1990.",
+    "Military 2.4% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), BEL 1990 = 2.355%.",
+    "Strength index 10: about 106,000 active personnel and 334 Leopard 1 tanks, most of the field army forward-deployed in West Germany rather than in Belgium. Indexed just below the Netherlands' 12 - similar size, older armour, and a smaller navy. NOT nuclear: Kleine Brogel held United States B61 bombs under NATO nuclear sharing, in American custody; this field records possession.",
+    "Stability 72 and authoritarianism 0.10: below France's 75 and above Italy's 68. Belgium in January 1990 was in the middle of taking its own unitary state apart - the third state reform of 1988-89 had just moved education and public works to the communities and regions, and the fourth, in 1993, would write 'Belgium is a federal state' into Article 1. Three months into the game year, on 3-4 April 1990, King Baudouin was declared temporarily unable to reign for thirty-six hours so that an abortion law he would not sign could be promulgated by his ministers and he could be reinstated the next day. A constitution improvised around a monarch's conscience over a weekend is a real institutional strain and is what this number is marking.",
+    "Separatism 0.25: the highest in Western Europe on this board, set well above Spain's 0.10 and below Yugoslavia's. The measure is not a hypothetical. The Volksunie was in the federal government in 1990 as a Flemish-nationalist coalition partner; Vlaams Blok, which wanted an independent Flanders outright, took 1.9% nationally in 1987 and would take 6.6% in 1991. More to the point, there had been no national party in Belgium since 1978 - the Christian democrats split in 1968, the liberals in 1971, the socialists in 1978 - so every voter in the country voted in a party system that had already partitioned itself along the language border.",
+    "TFP trend 0.013: just below France's 0.014. Belgium entered the 1990s with one of the highest levels of labour productivity in the world and correspondingly little room to catch up to anybody."
+  ]
+}
