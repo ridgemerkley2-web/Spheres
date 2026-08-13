@@ -1,0 +1,42 @@
+{
+  "id": "Czechoslovakia",
+  "name": "Czechoslovakia",
+  "system": "Command",
+  "authoritarianism": 0.2,
+  "economy": {
+    "gdp_bn": 50.0,
+    "population_m": 15.6,
+    "tfp_trend": 0.004,
+    "inflation": 0.1,
+    "interest_rate": 0.1,
+    "tax_rate": 0.45,
+    "mil_spend_gdp": 0.035,
+    "state_invest_gdp": 0.2,
+    "priv_invest_gdp": 0.05,
+    "debt_gdp": 0.15,
+    "oil_mbd": 0.003,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 62.0,
+    "separatism": 0.45
+  },
+  "military": {
+    "strength": 9.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $50bn: CONSTRUCTED, NOT TRANSCRIBED, and the weakest figure in this file. World Bank NY.GDP.MKTP.CD - the series the rest of this roster sits on - carries no Czechoslovak entry, because the state stopped existing before the series was extended backwards. 50.0 is the sum of the two successor series the World Bank does carry for 1990, Czechia at roughly $34.9bn and Slovakia at roughly $15.5bn in current US$. The deeper problem is that no dollar figure for a CMEA economy in 1990 is a market price: the koruna was devalued three times during 1990 - 8 January, 15 October, 28 December - from 14.3 to 28 to the dollar, so the same real output supports a figure close to double this one at the January rate and about this one at the December rate. Entered as an order of magnitude with the construction stated, per the brazil.json precedent for a number the model cannot carry honestly.",
+    "Population 15.6m: the federal census of 3 March 1991 counted 15,567,666 - 10,302,215 in the Czech Republic and 5,274,335 in Slovakia (Federal Statistical Office).",
+    "Inflation 10.0%: the 1990 consumer price print was about 10%, most of it arriving in July 1990 when the negative turnover tax subsidising food was withdrawn. The shock year is 1991 at 57.9%, after the 1 January 1991 price liberalisation, and it falls outside this start state.",
+    "Interest rate 10%: the State Bank of Czechoslovakia carried a discount rate of 4-5% through 1990 and raised it to 10% on 1 January 1991 with the Klaus stabilisation. 10% rather than 5% is entered because the schema's coupled real-rate constraint prices the nominal rate against the inflation figure beside it, and 5% against 10% inflation would open the game as a monetary stimulus that the administered January 1990 stance was not. The substitution is disclosed rather than hidden, which is the discipline brazil.json set.",
+    "system Command: the game opens 1 January 1990. The Scenario for Economic Reform passed the Federal Assembly only in September 1990 and the big bang took effect 1 January 1991. In January 1990 prices, foreign trade and banking are all still administered.",
+    "tax_rate 0.45 and state_invest_gdp 0.20: a state that owned essentially the whole capital stock. Roughly 97% of Czechoslovak output came from the state sector in 1989, the highest share in the bloc outside Albania, and the private sector legalised in April 1990 started from almost nothing.",
+    "debt_gdp 0.15: Czechoslovakia carried the lowest external debt in the bloc, roughly $8bn gross at end-1990, against Hungary's $21bn on two thirds of the population. Husak's regime borrowed little because it consumed little; this is the one balance-sheet advantage the country enters the transition with.",
+    "mil_spend_gdp 0.035: SIPRI puts Czechoslovak military expenditure near 3.5-3.7% of GDP for 1990. The Calfa government cut conscription from 24 to 18 months during the year and ordered the arms industry - concentrated in Slovakia, and by 1988 exporting on the order of $1bn a year - wound down. That single decision did more than any speech to make Slovak separatism economic.",
+    "oil_mbd 0.003: the south Moravian fields around Hodonin produced on the order of 80,000 tonnes a year, about 0.0016 mbd, rounded up here with the small Slovak output near Gbely. Czechoslovakia ran on Soviet crude down the Druzhba line and on domestic brown coal from north Bohemia.",
+    "authoritarianism 0.20: Article 4 of the constitution, the Communist Party's leading role, was struck out on 29 November 1989; the Government of National Understanding under Marian Calfa held a non-communist majority from 10 December 1989; Havel was elected president on 29 December 1989. Free elections followed on 8-9 June 1990. Set marginally above Hungary's 0.18 only because the Federal Assembly sitting on 1 January 1990 was still the one elected unopposed in 1986, co-opted rather than re-elected.",
+    "separatism 0.45: the Hyphen War over the state's own name ran from January to April 1990 and was settled on 20 April by renaming the country the Czech and Slovak Federative Republic - a constitutional crisis about a punctuation mark, three weeks into this start state. Slovakia declared sovereignty in July 1992 and the federation dissolved on 1 January 1993. Set well above Poland's 0.05 and well below Yugoslavia's 0.72: the strain was real and it ended the state, but it never produced a shot fired.",
+    "military strength 9.0: the Czechoslovak People's Army fielded roughly 200,000 troops and 3,300 tanks in 1990, the second-largest non-Soviet Warsaw Pact force after Poland's 312,000, and is indexed just below Poland's 12.0 on that ratio. nuclear is false: Soviet warheads were stored on Czechoslovak territory under exclusively Soviet custody and left with the Central Group of Forces by June 1991. They were never Czechoslovak."
+  ]
+}

@@ -1352,6 +1352,199 @@ pub const POLITIES: &[Polity] = &[
         ruling: "Dail Eireann",
         pillars: &[],
     },
+    // ---- Eastern Europe --------------------------------------------------
+    // Four of these five hold their first free election inside the first six
+    // months of the game and the fifth holds none at all, so this is the one
+    // stretch of the table where `next` is doing real work rather than
+    // scheduling a formality.
+    //
+    // Czechoslovakia — the Federal Assembly, House of the People, 8-9 June
+    // 1990: the first free election since 1946 and the last before the state
+    // dissolved. The assembly sitting on 1 January 1990 is the one elected
+    // unopposed in 1986 and then co-opted wholesale in December, so the shares
+    // below are June's, on the same convention Poland and Spain use.
+    //
+    // ARITHMETIC, STATED SO IT CAN BE CHECKED: the published results are
+    // per-republic — Civic Forum 53.15% in the Czech lands, Public Against
+    // Violence 32.54% in Slovakia — and this table needs one federal number
+    // per party. Each republic's share is weighted by its population at the
+    // 1991 census, 10.30m against 5.27m, i.e. 0.661 and 0.339. Two independent
+    // checks on that weighting land where they should: the Communists come out
+    // at 0.136 against the federal 13.6% actually reported, and Civic Forum
+    // plus Public Against Violence come out at 0.461 against the reported
+    // 46.6%. https://en.wikipedia.org/wiki/1990_Czechoslovak_parliamentary_election
+    Polity {
+        nation: NationId::Czechoslovakia,
+        // 5% in the Czech lands, 3% in Slovakia. Proportional is the closer of
+        // the two available bars and it keeps the Moravians and the Hungarian
+        // coalition out of the federal chamber, which is where they were.
+        system: Electoral::Proportional,
+        // Two years, not four, and deliberately: the June 1990 Federal Assembly
+        // was elected as a constituent body to write a constitution it never
+        // agreed on. The next election came on 5-6 June 1992 and produced Klaus
+        // and Meciar, who divided the country within seven months.
+        term_months: 24,
+        next: (1990, 6),
+        parties: &[
+            p("cs_of", "Civic Forum", "Obcanske forum", Family::BigTent, 0.351),
+            p("cs_ksc", "Communist Party of Czechoslovakia", "Komunisticka strana Ceskoslovenska", Family::Communist, 0.136),
+            // Listed separately from Civic Forum rather than merged into it,
+            // because the difference between them is the entire subject of this
+            // nation's file. They were allied, they were not one party, and the
+            // Hyphen War of January to April 1990 — a constitutional crisis
+            // about where to put a hyphen in the state's own name — was fought
+            // between their two parliamentary clubs.
+            p("cs_vpn", "Public Against Violence", "Verejnost proti nasiliu", Family::BigTent, 0.110),
+            p("cs_kdh", "Christian Democratic Movement", "Krestanskodemokraticke hnutie", Family::ChristianDemocratic, 0.064),
+            p("cs_kdu", "Christian and Democratic Union", "Krestanska a demokraticka unie", Family::ChristianDemocratic, 0.057),
+            p("cs_hsd", "Movement for Self-governing Democracy - Moravia and Silesia", "Hnuti za samospravnou demokracii - Spolecnost pro Moravu a Slezsko", Family::Regionalist, 0.052),
+            p("cs_sns", "Slovak National Party", "Slovenska narodna strana", Family::Nationalist, 0.037),
+            p("cs_egy", "Coexistence", "Egyutteles - Spoluzitie", Family::Regionalist, 0.029),
+            p("cs_ds", "Democratic Party", "Demokraticka strana", Family::Conservative, 0.015),
+        ],
+        ruling: "the Federal Assembly",
+        pillars: &[],
+    },
+    // Hungary — National Assembly, 25 March and 8 April 1990, the first free
+    // election since 1945: MDF 24.7%, SZDSZ 21.4%, FKGP 11.7%, MSZP 10.9%,
+    // Fidesz 8.9%, KDNP 6.5%, MSZMP 3.7%, on the national list vote of the
+    // first round. Antall's MDF-FKGP-KDNP coalition took office on 23 May and
+    // ran the full four years — the only government in this region to manage
+    // it. https://en.wikipedia.org/wiki/1990_Hungarian_parliamentary_election
+    Polity {
+        nation: NationId::Hungary,
+        // Mixed-member: 176 single-member seats, 152 county list seats, 58
+        // national compensation seats, with a 4% bar on the list vote (raised
+        // to 5% in 1994). Proportional's 5% is the nearest available and it
+        // gets the load-bearing case right: the unreconstructed MSZMP polled
+        // 3.7% and won nothing, which is how the Hungarian communist party
+        // left the chamber it had occupied for forty-two years.
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 3),
+        parties: &[
+            p("hu_mdf", "Hungarian Democratic Forum", "Magyar Demokrata Forum", Family::Conservative, 0.247),
+            p("hu_szdsz", "Alliance of Free Democrats", "Szabad Demokratak Szovetsege", Family::Liberal, 0.214),
+            p("hu_fkgp", "Independent Smallholders' Party", "Fuggetlen Kisgazdapart", Family::Agrarian, 0.117),
+            p("hu_mszp", "Hungarian Socialist Party", "Magyar Szocialista Part", Family::SocialDemocratic, 0.109),
+            // Liberal, and in 1990 that is not a projection backwards from what
+            // Fidesz later became: it was founded in 1988 as a youth movement
+            // with an upper age limit of 35, sat in the Liberal International
+            // from 1992, and campaigned in 1990 to Antall's left on everything
+            // except the economy.
+            p("hu_fidesz", "Alliance of Young Democrats", "Fiatal Demokratak Szovetsege", Family::Liberal, 0.089),
+            p("hu_kdnp", "Christian Democratic People's Party", "Kereszatenydemokrata Neppart", Family::ChristianDemocratic, 0.065),
+            p("hu_mszmp", "Hungarian Socialist Workers' Party", "Magyar Szocialista Munkaspart", Family::Communist, 0.037),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+    // Romania — Assembly of Deputies, 20 May 1990: the National Salvation
+    // Front 66.3%, UDMR 7.2%, the National Liberals 6.4%, the Ecological
+    // Movement 2.6%, the Christian-Democratic Peasants 2.6%, AUR 2.1%. Five
+    // months after taking power by revolution, the Front broke its pledge not
+    // to contest the election and won two thirds of a chamber against parties
+    // with no access to state television.
+    // https://en.wikipedia.org/wiki/1990_Romanian_general_election
+    Polity {
+        nation: NationId::Romania,
+        // No legal threshold at all in 1990 — a 3% bar arrived in 1992 — which
+        // is why sixteen parties took seats behind the Front. ProportionalLowBar
+        // is the only entry in this enum that reproduces that.
+        system: Electoral::ProportionalLowBar,
+        // A constituent assembly, like Czechoslovakia's and Bulgaria's: elected
+        // to write the constitution adopted in December 1991, dissolved for the
+        // election of 27 September 1992.
+        term_months: 24,
+        next: (1990, 5),
+        parties: &[
+            p("ro_fsn", "National Salvation Front", "Frontul Salvarii Nationale", Family::BigTent, 0.663),
+            p("ro_udmr", "Democratic Union of Hungarians in Romania", "Uniunea Democrata Maghiara din Romania", Family::Regionalist, 0.072),
+            p("ro_pnl", "National Liberal Party", "Partidul National Liberal", Family::Liberal, 0.064),
+            p("ro_mer", "Ecological Movement of Romania", "Miscarea Ecologista din Romania", Family::Green, 0.026),
+            p("ro_pntcd", "Christian-Democratic National Peasants' Party", "Partidul National Taranesc Crestin Democrat", Family::ChristianDemocratic, 0.026),
+            p("ro_aur", "Romanian National Unity Alliance", "Alianta pentru Unitatea Romanilor", Family::Nationalist, 0.021),
+        ],
+        ruling: "the Assembly of Deputies",
+        // Romania is the one entry in this region carrying both a party table
+        // and a pillar, and the reason is the Mineriad. On 13-15 June 1990 the
+        // government called the Jiu Valley miners to Bucharest to clear
+        // University Square and thanked them for it; the army had already been
+        // the arbiter in December 1989. An elected government whose last resort
+        // is not the courts is described by both fields at once.
+        pillars: &[pl(Pillar::Army, "the Romanian Army")],
+    },
+    // Bulgaria — the Grand National Assembly, 10 and 17 June 1990, on the
+    // proportional half of the ballot: the Bulgarian Socialist Party 47.2%,
+    // the Union of Democratic Forces 36.2%, the Agrarians 8.0%, the Movement
+    // for Rights and Freedoms 6.0%. The only ruling communist party in the
+    // region to win a free election outright, seven months after removing
+    // Zhivkov itself and ten weeks after renaming itself.
+    // https://en.wikipedia.org/wiki/1990_Bulgarian_general_election
+    Polity {
+        nation: NationId::Bulgaria,
+        // Half the 400 seats by party list with a 4% bar, half in single-member
+        // constituencies. Proportional is the closer of the two, and it is the
+        // half that decided the result.
+        system: Electoral::Proportional,
+        // Also a constituent assembly: it wrote the constitution of 12 July
+        // 1991 and dissolved for the election of 13 October 1991.
+        term_months: 24,
+        next: (1990, 6),
+        parties: &[
+            // Communist rather than SocialDemocratic, on the same reading that
+            // labels Poland's SLD Communist: on 1 January 1990 this is the
+            // Bulgarian Communist Party, in office since 1944, and it does not
+            // change its name until 3 April.
+            p("bg_bsp", "Bulgarian Socialist Party", "Balgarska sotsialisticheska partiya", Family::Communist, 0.472),
+            p("bg_sds", "Union of Democratic Forces", "Sayuz na demokratichnite sili", Family::BigTent, 0.362),
+            p("bg_bzns", "Bulgarian Agrarian National Union", "Balgarski zemedelski naroden sayuz", Family::Agrarian, 0.080),
+            // The party of the Turkish minority that the previous government
+            // had spent five years trying to assimilate and then expel.
+            // Founded 4 January 1990, four days into this start state, and the
+            // constitution written by the assembly it entered forbade parties
+            // formed on ethnic lines — which it survived by a court ruling
+            // rather than by anyone's goodwill. Not a pariah: it was nobody's
+            // coalition partner in 1990 and everybody's after 2001.
+            p("bg_dps", "Movement for Rights and Freedoms", "Dvizhenie za prava i svobodi", Family::Regionalist, 0.060),
+        ],
+        ruling: "the Grand National Assembly",
+        pillars: &[],
+    },
+    // Albania — the last orthodox Stalinist state in Europe, and the only
+    // nation in this region for which `next` is (0, 0). The People's Assembly
+    // elected on 1 February 1987 recorded a 100% turnout and 99.99% for the
+    // Democratic Front's single list; that is not an election and the model is
+    // not given one. Opposition parties were legalised on 11 December 1990,
+    // after the game opens, and the shares below are the first real result —
+    // 31 March 1991, in which the Party of Labour won the countryside and lost
+    // every city including the seat of Ramiz Alia himself. They go live only
+    // if the regime opens up, which is the convention the USSR block sets.
+    // https://en.wikipedia.org/wiki/1991_Albanian_parliamentary_election
+    Polity {
+        nation: NationId::Albania,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("al_ppsh", "Party of Labour of Albania", "Partia e Punes e Shqiperise", Family::Communist, 0.562),
+            p("al_pd", "Democratic Party of Albania", "Partia Demokratike e Shqiperise", Family::Liberal, 0.387),
+            p("al_omonia", "Omonia", "Omonoia", Family::Regionalist, 0.007),
+        ],
+        ruling: "the Party of Labour of Albania",
+        // Named institutions, not "the army". The Sigurimi ran the internal
+        // exile system and had roughly one informer for every three adults by
+        // the estimates published after 1992; the Party of Labour's Central
+        // Committee was the only body that could remove a leader and did not;
+        // and the People's Army was the force that manned 170,000 bunkers
+        // against an invasion that never came. All three were gone within
+        // two years of this start state.
+        pillars: &[
+            pl(Pillar::Security, "the Sigurimi"),
+            pl(Pillar::Party, "the Central Committee of the Party of Labour"),
+            pl(Pillar::Army, "the Albanian People's Army"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

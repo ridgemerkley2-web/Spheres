@@ -1,0 +1,42 @@
+{
+  "id": "Romania",
+  "name": "Romania",
+  "system": "Command",
+  "authoritarianism": 0.42,
+  "economy": {
+    "gdp_bn": 38.3,
+    "population_m": 23.2,
+    "tfp_trend": -0.006,
+    "inflation": 0.051,
+    "interest_rate": 0.03,
+    "tax_rate": 0.4,
+    "mil_spend_gdp": 0.035,
+    "state_invest_gdp": 0.2,
+    "priv_invest_gdp": 0.02,
+    "debt_gdp": 0.03,
+    "oil_mbd": 0.16,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 40.0,
+    "separatism": 0.18
+  },
+  "military": {
+    "strength": 8.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $38.3bn: World Bank NY.GDP.MKTP.CD, series ROU, 1990. CAVEAT, stated rather than hidden: the conversion rests on the pre-liberalisation official leu rate, which no transaction outside the state trading monopoly used, and the 1990 print is the last one taken before the November 1990 devaluation. Read it as indicative of scale, not of purchasing power. It is nonetheless the World Bank series the rest of this roster sits on, and consistency with that series is why it is the figure entered.",
+    "Population 23.2m: the National Institute of Statistics gives 23,206,720 at 1 January 1990; the census of 7 January 1992 counted 22.81m, the fall being the emigration of 1990-91. This is the largest population in this region and the third largest in the roster's Europe after the USSR and Germany.",
+    "Inflation 5.1%: the official 1990 consumer price index. Romanian prices were still administered for most of the year - the first liberalisation step came on 1 November 1990 - and the true shock landed in 1991 at about 170%. The 5.1% therefore measures the price controls rather than the monetary overhang sitting behind them, and the overhang was real: bread, sugar, eggs, cooking oil and petrol were rationed into 1990 and the queues are the reason there was a revolution.",
+    "Interest rate 3%: administered, and there was no monetary policy to administer it with. The National Bank of Romania was separated from the commercial banking system only in December 1990, by which point the year in this start state is over.",
+    "debt_gdp 0.03: the most distinctive figure in this file and a hard historical fact rather than an estimate. Ceausescu ordered the entire hard-currency foreign debt repaid; the final instalment cleared in March 1989, extinguishing about $11bn in eight years by exporting food and refusing imports. Romania therefore opens the game with essentially no external debt and no domestic public debt market either - and with the unheated flats, the 40-watt bulbs and the December 1989 that the policy bought.",
+    "oil_mbd 0.16: crude output was about 7.9 million tonnes in 1990, roughly 0.158 mbd, down from a peak near 15 million tonnes in 1976. Romania was the oldest oil province in Europe - Ploiesti refined crude before Baku - and by 1990 a net importer, running refineries at Ploiesti, Pitesti and Midia built for four times the crude the country could still lift. The largest producer in this region by an order of magnitude and the reason oil_mbd is not zero anywhere on this list.",
+    "mil_spend_gdp 0.035: the Ceausescu defence budget ran near 4-4.5% of GDP. The provisional government cut it in the 1990 budget and abolished the Patriotic Guards outright. Romania had been the least integrated Warsaw Pact member since refusing to join the 1968 invasion of Czechoslovakia, and no Soviet troops had been stationed on its territory since 1958 - which is why its relations line with Moscow is the coldest in this region.",
+    "military strength 8.0: roughly 160,000 troops and 2,800 tanks in 1990, most of the armour domestically built TR-85s and licensed T-55s. Indexed just below Czechoslovakia's 9.0 on a larger manpower base and materially worse equipment. The Securitate's separate armed formations are not counted here; they were dissolved in December 1989.",
+    "authoritarianism 0.42, the highest in this region except Albania's and above Bulgaria's 0.40: the National Salvation Front declared itself a provisional authority on 22 December 1989, then broke its pledge not to contest the 20 May 1990 election and won it with about two thirds of the vote against opposition parties with no access to state television and no organisation outside the cities. Elections are held, and they are not fair. Set below the 0.60 electoral ceiling because the vote was contested and the count was not the fiction Albania's would have been.",
+    "stability 40.0, the lowest in this region: the government is five weeks old when the game opens and its first six months contain the 28-29 January and 18-19 February assaults on opposition headquarters, the Targu Mures clashes of 19-21 March, and the Mineriad of 13-15 June 1990, in which miners bussed into Bucharest beat demonstrators out of University Square with the government's thanks. Set below Yugoslavia's 44.",
+    "separatism 0.18: the Hungarian minority of Transylvania numbered about 1.62 million, 7.1% of the population, at the 1992 census. UDMR was founded on 25 December 1989, and the Targu Mures violence of 19-21 March 1990 - six dead, hundreds injured - was the first ethnic bloodshed in post-communist Europe. Set above Bulgaria's 0.12 on a larger and more territorially concentrated minority, and far below Yugoslavia's 0.72 because no Romanian county ever attempted to leave. Also carried here: the roughly 200,000 Germans of the Banat and Transylvania, most of whom emigrated during 1990.",
+    "Romania's claim on the USSR is recorded in nations.rs at 0.018 and its basis is stated there, not here."
+  ]
+}

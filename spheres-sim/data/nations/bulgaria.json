@@ -1,0 +1,42 @@
+{
+  "id": "Bulgaria",
+  "name": "Bulgaria",
+  "system": "Command",
+  "authoritarianism": 0.4,
+  "economy": {
+    "gdp_bn": 20.7,
+    "population_m": 8.72,
+    "tfp_trend": -0.004,
+    "inflation": 0.238,
+    "interest_rate": 0.18,
+    "tax_rate": 0.45,
+    "mil_spend_gdp": 0.045,
+    "state_invest_gdp": 0.18,
+    "priv_invest_gdp": 0.03,
+    "debt_gdp": 0.55,
+    "oil_mbd": 0.004,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 45.0,
+    "separatism": 0.12
+  },
+  "military": {
+    "strength": 6.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $20.7bn: World Bank NY.GDP.MKTP.CD, series BGR, 1990. The same official-rate caveat that applies to Romania applies here - the lev was administered and the 1990 figure precedes the February 1991 float - but this is the World Bank series the roster is calibrated on and the figure is entered unaltered.",
+    "Population 8.72m: the National Statistical Institute gives 8.669m at end-1990 against 8.987m at end-1988. The difference is the largest peacetime population loss in the roster's start state and it has two causes, both of them 1989: the expulsion of the Turks in the summer, and the opening of the frontier in November.",
+    "Inflation 23.8%: the official 1990 consumer price print (NSI). Prices were partially freed on 1 February 1991 and that year's print was about 338%, which is outside this start state. Entered at the 1990 figure with no shift - unlike Poland, Yugoslavia and Brazil, Bulgaria's real number fits inside the schema's band, so nothing is being substituted here.",
+    "Interest rate 18%: the Bulgarian National Bank's basic rate through 1990, raised repeatedly during the year and then to 45% in February 1991 with the liberalisation. A real rate of about minus 6 points, which is the correct description of the final year of the old system.",
+    "system Command: price liberalisation began 1 February 1991. On 1 January 1990 the Lukanov government is still operating the plan, and Bulgaria was the most thoroughly planned economy in the bloc after Albania - roughly 80% of its trade ran through CMEA and about 60% of that through the Soviet Union alone, the highest dependence of any member. That concentration is why the 1991 CMEA collapse hit Bulgaria harder than anyone.",
+    "debt_gdp 0.55: gross external debt was about $10.9bn at end-1990 against roughly $20bn of GDP. On 29 March 1990 Bulgaria declared a moratorium on principal, and shortly after on interest, to its commercial creditors - the first Warsaw Pact state to default outright. That is why its access to credit is closed in this start state while Hungary's, which carried a heavier debt and never rescheduled, is not.",
+    "mil_spend_gdp 0.045: Bulgaria was the most consistently loyal Warsaw Pact member and one of the most heavily armed relative to its size - roughly 107,000 troops and 2,200 tanks for 8.7 million people. SIPRI's series puts military expenditure near 4-5% of GDP at the end of the eighties, the highest ratio in this region apart from Albania's.",
+    "oil_mbd 0.004: negligible domestic crude, on the order of 200,000 tonnes a year from the Dolni Dabnik and Tyulenovo areas. Bulgaria ran on Soviet crude landed at Burgas for the Neftochim refinery and on the Kozloduy reactors, which supplied roughly a third of its electricity - the highest nuclear share in the bloc, and the reason its energy bill is smaller than Romania's despite producing forty times less oil.",
+    "military strength 6.0: indexed level with Hungary's 6.0 on a comparable tank and manpower count, two thirds of Czechoslovakia's 9.0. nuclear false: Soviet warheads were deployed on Bulgarian soil under Soviet custody and left in 1990-91.",
+    "authoritarianism 0.40: Todor Zhivkov was removed by his own politburo on 10 November 1989 after 35 years in office; the party's constitutional monopoly was repealed on 15 January 1990, two weeks into this start state; the round table ran from January to May 1990. The Bulgarian Communist Party renamed itself the Bulgarian Socialist Party on 3 April 1990 and then won the free election of 10 and 17 June 1990 outright - the only ruling communist party in the region to do so. Competitive, and conducted by an apparatus that never actually left office. Set marginally below Romania's 0.42 because the count was cleaner and the opposition had a press.",
+    "stability 45.0: above Romania's 40 and below Hungary's 58. The 1990 the government has ahead of it is the general strike of November 1990 that brought Lukanov down and the food shortages that produced it, but the transfer of power was not violent and the state apparatus held.",
+    "separatism 0.12: the Revival Process of 1984-89 forced Bulgarian names on the roughly 800,000-strong Turkish minority - about 9% of the population - and drove some 340,000 of them across the Turkish border in the summer of 1989, the largest forced movement in Europe since 1945. The policy was reversed on 29 December 1989, which triggered Bulgarian nationalist counter-demonstrations in January 1990 and a national referendum campaign against the reversal. The Movement for Rights and Freedoms was founded on 4 January 1990, four days into this start state. Set above Hungary's 0.03 and below Romania's 0.18: a minority large enough to organise, not concentrated enough to secede."
+  ]
+}
