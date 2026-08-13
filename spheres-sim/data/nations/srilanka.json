@@ -1,0 +1,36 @@
+{
+  "id": "SriLanka",
+  "name": "Sri Lanka",
+  "system": "Market",
+  "authoritarianism": 0.35,
+  "economy": {
+    "gdp_bn": 8.0,
+    "population_m": 16.4,
+    "tfp_trend": 0.012,
+    "inflation": 0.215,
+    "interest_rate": 0.2,
+    "tax_rate": 0.19,
+    "mil_spend_gdp": 0.023,
+    "state_invest_gdp": 0.07,
+    "priv_invest_gdp": 0.15,
+    "debt_gdp": 0.74,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 42.0, "separatism": 0.4 },
+  "military": { "strength": 3.0, "nuclear": false },
+  "sources": [
+    "GDP $8.0bn: World Bank NY.GDP.MKTP.CD, series LKA, 1990 = $8,032,551,173. The rupee had been floating since 1977 and the conversion is clean, so this figure carries no exchange-rate caveat.",
+    "Population 16.4m: World Bank SP.POP.TOTL, series LKA, 1990 = 16,352,458. Per capita $491, the highest in South Asia and roughly 1.7 times Bangladesh's — the standing puzzle of Sri Lankan development, which had Indian income and European social indicators.",
+    "TFP trend 0.012: Sri Lanka liberalised in 1977 under J. R. Jayewardene, the first South Asian economy to do so, and grew about 4% a year through the 1980s despite the war. Set above Bangladesh's 0.008 and Nepal's 0.006 because the 1977 reforms were real and the export base diversified out of tea, and below India's 0.020 because from 1983 the country was spending its growth on a civil war.",
+    "Inflation 21.5%: World Bank FP.CPI.TOTL.ZG, series LKA, 1990 = 21.50%. The highest of the five South Asian entries in this roster by a wide margin, and it is a war number: the budget deficit was being monetised to pay for two simultaneous counter-insurgencies.",
+    "Interest rate 20%: NOT A TRANSCRIBED SERIES. World Bank FR.INR.LEND returns null for Sri Lanka for 1990. Commercial bank lending rates in Sri Lanka ran near 20% in 1990 with Treasury bill yields close behind, which is what is entered. The load-bearing property is the real rate this implies, about minus 1.5%, which is mildly negative and is the right shape for a government financing a war through the banking system; it also keeps the coupled real-rate constraint this schema enforces well inside its band. Flagged as unverified rather than presented as a measurement.",
+    "Revenue 19% of GDP: World Bank GC.TAX.TOTL.GD.ZS, series LKA, 1990 = 19.02%. A real observation and a striking one — Sri Lanka's revenue effort was more than double Bangladesh's and nearly three times Nepal's, which is the fiscal side of the same story its social indicators tell. Entered unchanged.",
+    "Military 2.3% of GDP and a strength index of 3: World Bank MS.MIL.XPND.GD.ZS, series LKA, 1990 = 2.328%. Sri Lankan forces totalled roughly 65,000 in 1990, having tripled since 1983. The index is set by dollars against a named peer: 2.3% of $8.0bn is about $187m against Bangladesh's $386m, which is a ratio near one to two, and Bangladesh is indexed 4 here. Sri Lanka is indexed 3 rather than 2 because the difference between the two armies in 1990 was not equipment or money but that one of them had been in continuous combat for seven years and the other had never fired a shot in anger.",
+    "Public investment 7.0% and private investment 15% of GDP: World Bank NE.GDI.TOTL.ZS, series LKA, 1990 = 22.21% gross capital formation, which is the sum and is transcribed. THE SPLIT IS A JUDGEMENT, not a series: the Mahaweli irrigation and settlement programme was winding down from its peak and public capital formation was running near 7% of GDP, with the residual private. The total is measured; the division is not.",
+    "Debt 74% of GDP: World Bank DT.DOD.DECT.GN.ZS, series LKA, 1990 = 73.59% external debt stocks as a share of GNI. Same stated substitution as the Bangladesh entry in this roster — the schema field means gross public debt and this is external debt, which for Sri Lanka captures most but not all of it. The highest debt ratio of the five South Asian nations here, and the reason is the war.",
+    "Oil 0.0 mbd: Sri Lanka produced no crude. The Sapugaskanda refinery ran entirely on imported crude, which is why the 1990 oil price spike hit the balance of payments as hard as it did.",
+    "Stability 42 and authoritarianism 0.35: January 1990 finds Sri Lanka between two wars. The JVP insurrection in the south had just been broken — Rohana Wijeweera was captured and killed on 13 November 1989 — in a counter-terror campaign that killed somewhere between forty and sixty thousand people, and the Indian Peace Keeping Force was withdrawing from the north, completing its departure on 24 March 1990, after which Eelam War II opened on 11 June 1990. So this is a state that had just survived one rebellion and was four months from resuming another. Stability 42 sits below Yugoslavia's 44 and above Nigeria's 35. Authoritarianism 0.35 is set level with Turkey, South Korea and Poland: Ranasinghe Premadasa had genuinely won the presidency on 19 December 1988 and his party had genuinely won the parliament on 15 February 1989, and elections here decided who governed — but the Prevention of Terrorism Act, emergency rule and the mass disappearances of 1989 are why this is not scored beside Spain's 0.13.",
+    "Separatism 0.40: the highest figure in this roster outside Yugoslavia, and it is the LTTE. Sri Lankan Tamils were 12.7% of the population at the 1981 census with Indian Tamils a further 5.5%, but the number here is not the ethnic share — it is the degree to which a portion of the state had stopped being governed from the capital. Set above Turkey's 0.30 for the PKK because the LTTE did what the PKK never did: it held territory, ran a de facto administration out of Jaffna with its own courts, police and tax collection, and fielded something closer to an army than a guerrilla movement. Set below Yugoslavia's 0.72 because Sri Lanka's crisis was one secession and Yugoslavia's was five."
+  ]
+}
