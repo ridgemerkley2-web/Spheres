@@ -723,6 +723,41 @@ mod tests {
     use super::*;
 
     #[test]
+    fn every_nation_on_the_board_has_somewhere_to_be_drawn() {
+        // Added when Spain became the first nation appended to the extensible
+        // roster, because it exposed the one place where a half-added nation
+        // fails SILENTLY. Everything else is loud: a roster row without a data
+        // file fails `validate`, a data file without a roster row fails to
+        // deserialize its id, a nation without a `Polity` panics
+        // `every_government_is_reachable_in_january_1990`. Forget the entry in
+        // ui/index.html's TERRITORY map and there is no error anywhere — the
+        // nation simply never appears on the map, and its land is drawn as
+        // unaligned scenery. With eighty nations arriving across ten branches
+        // that is a merge resolution nobody would notice for weeks.
+        //
+        // Deliberately a substring check against the served HTML rather than a
+        // JS parse: this file is shipped by `include_str!` and has no build
+        // step, so the thing to assert on is the thing that reaches the
+        // browser.
+        let map = INDEX
+            .split_once("const TERRITORY = {")
+            .expect("ui/index.html still declares a TERRITORY map")
+            .1
+            .split_once("};")
+            .expect("the TERRITORY map is still brace-terminated")
+            .0;
+        for id in spheres_sim::world::all_nations() {
+            let key = format!("{:?}:", id);
+            assert!(
+                map.contains(&key),
+                "{:?} is in the roster but not in TERRITORY in ui/index.html, \
+                 so it would be drawn as unaligned land and nobody would be told",
+                id
+            );
+        }
+    }
+
+    #[test]
     fn a_nation_with_a_space_in_its_name_survives_the_query_string() {
         // The failure this catches is silent: an undecoded "Saudi%20Arabia"
         // parses to None, and every route taking this param treats None as
