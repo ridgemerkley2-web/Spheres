@@ -1,0 +1,42 @@
+{
+  "id": "NewZealand",
+  "name": "New Zealand",
+  "system": "Market",
+  "authoritarianism": 0.1,
+  "economy": {
+    "gdp_bn": 45.5,
+    "population_m": 3.3,
+    "tfp_trend": 0.007,
+    "inflation": 0.061,
+    "interest_rate": 0.139,
+    "tax_rate": 0.38,
+    "mil_spend_gdp": 0.023,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.177,
+    "debt_gdp": 0.63,
+    "oil_mbd": 0.04,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 63.0,
+    "separatism": 0.06
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $45.5bn: World Bank NY.GDP.MKTP.CD, series NZL, 1990 - the print is $45,495,129,385. This is the smallest economy in the roster, roughly a thirteenth of Canada's and a fifth of Australia's, and it belongs on the board anyway: it is where the alliance system in this region actually broke.",
+    "Population 3.3m: World Bank SP.POP.TOTL, series NZL, 1990 = 3,329,800. The census of 5 March 1991 counted 3,434,950 including overseas visitors.",
+    "Inflation 6.1%: World Bank FP.CPI.TOTL.ZG, series NZL, 1990 = 6.10%. The figure still carries the GST rise from 10% to 12.5% of 1 July 1989 in its first half. The Reserve Bank of New Zealand Act 1989, in force from 1 February 1990 - the first month of the game - had just made price stability the sole statutory objective of a central bank anywhere in the world and bound the Governor to a Policy Targets Agreement of 0-2% by December 1992. New Zealand starts the sim as the country that invented inflation targeting, and it starts it three points outside its own target.",
+    "Interest rate 13.9%: the 90-day bank bill rate in early 1990. New Zealand published no Official Cash Rate until March 1999, so there is no policy rate to transcribe; the bill rate is what the Reserve Bank actually steered and what everything in the economy was priced off. Said plainly because it is a substitution: this is not the same kind of number as Canada's bank rate, and pretending otherwise would hide a real difference in monetary institutions. The coupled constraint: 0.025 - (0.139 - 0.061) = -0.053.",
+    "Revenue 38% of GDP: total general-government revenue, New Zealand Treasury basis. New Zealand is unitary, so unlike Canada and Australia there is no federal-versus-general question to get wrong: this is essentially all central government, which is itself the fact worth recording about the place.",
+    "Gross public debt 63% of GDP: gross public debt, 1990, near its peak. Net public debt was closer to half that. This is the bill for the 1984 foreign-exchange crisis and the six years of adjustment after it, and it is why the fourth Labour government could not spend its way out of the recession it was in - which is in turn most of why it lost in October.",
+    "Military 2.3% of GDP: World Bank MS.MIL.XPND.GD.ZS, series NZL, 1990 = 2.31%. This is a higher share than Canada's or Australia's and buys the smallest force in the roster, which is the arithmetic of a very small economy: about 12,000 regulars, two Leander-class frigates, no combat aircraft with any reach and no independent power projection whatever. Strength 3 is indexed against Canada's 12 and Australia's 14 on that basis. New Zealand's ANZUS obligations had been suspended by the United States in August 1986 over the ban on nuclear-armed and nuclear-powered ship visits legislated as the New Zealand Nuclear Free Zone, Disarmament, and Arms Control Act 1987, leaving it formally allied to Australia and to nobody else - a fact carried in relations_1990.json rather than here.",
+    "Investment 20.7% of GDP: World Bank NE.GDI.FTOT.ZS, series NZL, 1990 = 20.67%, the lowest of the three. The split entered here, 3.0 public and 17.7 private, is an apportionment rather than a transcription, on the same footing as Canada's and Australia's: the series does not decompose by sector. Public investment was falling fast as the state-owned enterprises created in 1987 were prepared for sale. The total is sourced; the split is reasoned.",
+    "Oil 0.04 mbd: Maui and McKee crude and condensate, on the order of 40,000 barrels a day. FLAGGED, on the same terms as Australia's: I could not retrieve the 1990 print. New Zealand is a marginal producer and the magnitude is not in doubt - it is tens of thousands of barrels, not hundreds - but the digit is an estimate and is said to be one.",
+    "Stability 63: the lowest of the three and lower than Spain's 70, which for a country with no violence and no serious institutional doubt needs justifying. 1990 was the year the fourth Labour government tore itself apart in public. Roger Douglas was sacked in December 1988 and re-elected to cabinet by caucus a year later, which caused David Lange to resign as prime minister on 8 August 1989; Geoffrey Palmer succeeded him and was himself replaced by Mike Moore on 4 September 1990, seven weeks before the election. Three prime ministers in fourteen months, unemployment heading through 10%, and a governing party that would lose 29 seats on 27 October in the largest defeat in New Zealand history. What holds the number at 63 rather than lower is that every one of those transitions was orderly and nobody questioned that the loser would leave.",
+    "Separatism 0.06: Maori sovereignty and the Treaty of Waitangi claims heard by the Waitangi Tribunal, whose jurisdiction had been extended back to 1840 in 1985. The sesquicentenary at Waitangi on 6 February 1990 was protested in front of the Queen. Entered just above Italy's 0.05 and an order below Canada's 0.38, because this is a constitutional argument about the terms of the state conducted through a tribunal and the courts, with no territorial secession movement behind it - which is a genuinely different object from Quebec, and the number should say so.",
+    "Authoritarianism 0.10: the highest of the three Anglosphere democracies and the entry most likely to be read as a mistake, so here is the argument. In 1990 New Zealand had no written constitution, no upper house (the Legislative Council was abolished in 1951), no federalism, no judicial review of primary legislation, and first-past-the-post elections that routinely manufactured majorities out of pluralities - the governing party had twice, in 1978 and 1981, won power while losing the popular vote. Geoffrey Palmer, prime minister when the game opens, had titled his own book on the subject Unbridled Power. The New Zealand Bill of Rights Act passed in August 1990 and pointedly did not let the courts strike down a statute. A cabinet with a one-seat majority could do anything at all in an afternoon, and between 1984 and 1990 one did. This measures constraint on the executive, not repression, and by that measure New Zealand is the least constrained democracy in this roster."
+  ]
+}

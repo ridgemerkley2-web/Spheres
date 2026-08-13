@@ -1,0 +1,41 @@
+{
+  "id": "Canada",
+  "name": "Canada",
+  "system": "Market",
+  "authoritarianism": 0.08,
+  "economy": {
+    "gdp_bn": 596.0,
+    "population_m": 27.7,
+    "tfp_trend": 0.008,
+    "inflation": 0.048,
+    "interest_rate": 0.13,
+    "tax_rate": 0.43,
+    "mil_spend_gdp": 0.02,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.187,
+    "debt_gdp": 0.73,
+    "oil_mbd": 1.7,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 64.0,
+    "separatism": 0.38
+  },
+  "military": {
+    "strength": 12.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $596bn: World Bank NY.GDP.MKTP.CD, series CAN, 1990 - the print is $596,075,591,361, and it is the same series this roster's USA 5980, France 1270, Italy 1180 and UK 1090 sit on, which is the reason it is the figure entered rather than a national-accounts one. The cross-check, stated rather than hidden: Statistics Canada put GDP at market prices near C$680bn in 1990, and at the year's average market rate of about 1.167 CAD/USD that is roughly $583bn. The 2% gap is Atlas smoothing in the World Bank series, not a disagreement about Canadian output.",
+    "Population 27.7m: World Bank SP.POP.TOTL, series CAN, 1990 = 27,691,138. The 1991 census of 4 June counted 27,296,859 on a de jure basis; the World Bank figure is the mid-year estimate and is the one used, again for comparability with the rest of the roster.",
+    "Inflation 4.8%: World Bank FP.CPI.TOTL.ZG, series CAN, 1990 = 4.78%. The GST was legislated in 1990 and took effect on 1 January 1991, so its one-off price-level effect falls outside this figure and inside the first game year - which is the correct place for it, because the model should discover that tax rise rather than be told about it.",
+    "Interest rate 13.0%: the Bank of Canada bank rate, which ran between about 12.4% and its peak of 14.05% in May 1990 and averaged near 13%. This is the widest real-rate gap of any democracy in the roster and it is not a typo: John Crow had announced a zero-inflation target in January 1988 and was defending a dollar that reached US$0.89, holding Canadian rates four to five points above American ones through a recession that began in the second quarter of 1990. The coupled constraint the schema imposes is comfortable at 0.025 - (0.130 - 0.048) = -0.057.",
+    "Revenue 43% of GDP: total general-government revenue on the OECD basis - federal, ten provinces, municipalities and the Canada and Quebec Pension Plans together. Canada's federal share alone is under 20%, and entering that instead would have made the most heavily provincial state in the roster look like the least taxed, which is the specific way a federation gets transcribed wrong.",
+    "Gross public debt 73% of GDP: general-government gross financial liabilities, OECD basis, 1990. Federal net debt alone was near 55%. Entered above Spain's 0.43 and below Italy's 0.94, which is where Canada sat: the second-worst fiscal position in the G7 and the one Moody's would downgrade in 1994.",
+    "Military 2.0% of GDP: World Bank MS.MIL.XPND.GD.ZS, series CAN, 1990 = 1.96%. Strength 12 is an index, not personnel: roughly 87,000 all-volunteer regulars, 4 Canadian Mechanized Brigade Group and 1 Canadian Air Division forward-based in Germany, three destroyer squadrons and no strategic lift. Indexed below Spain's 16 - Spain fielded three times the personnel - and well below Italy's 26, which is the honest ranking of a serious NATO contributor with no independent reach.",
+    "Investment 21.7% of GDP: World Bank NE.GDI.FTOT.ZS, series CAN, 1990 = 21.70%. The split entered here, 3.0 public and 18.7 private, is an apportionment rather than a transcription: the World Bank series is total gross fixed capital formation and does not decompose by sector. Canadian general-government fixed investment ran near 3% of GDP in this period and the residual is assigned to the private sector so that the two sum to the published total. The total is sourced; the split is reasoned, and is said here to be reasoned.",
+    "Oil 1.7 mbd: Canadian crude oil production in 1990, per the Canada Energy Regulator's thirty-year review of crude exports, which takes 1.7 mbd as the 1990 base against which subsequent growth is measured. Totals including natural gas liquids and synthetic crude from the Athabasca upgraders run nearer 2.0 mbd; the crude figure is entered because that is what the schema's field asks for and what the UK's 1.9 alongside it means.",
+    "Separatism 0.38 and stability 64: this is the highest separatism figure of any democracy in the roster and 1990 is the reason. The Meech Lake Accord died on 23 June when Manitoba and Newfoundland failed to ratify; Lucien Bouchard left the cabinet in May and founded the Bloc Quebecois on 15 June; Quebec sovereignty support passed 60% in polling that summer and the Belanger-Campeau commission was struck in September. The Oka standoff ran from 11 July to 26 September with the army deployed against Mohawk barricades in a Montreal suburb. Set above Turkey's 0.30 - which is a shooting war, but a war over a region holding a fifth of the country - because Quebec is a quarter of Canada's people and voted 49.42% to leave five years later. Set well below Yugoslavia's 0.72, because the whole of the Canadian argument was conducted by referendum. Stability 64 records a constitutional crisis inside institutions nobody doubted, below Spain's 70 and far below Australia's 76.",
+    "Authoritarianism 0.08: a Westminster democracy with an entrenched Charter of Rights since 1982 and courts that strike down statute under it. Entered between Australia's 0.06 and New Zealand's 0.10, and the ordering of the three is argued rather than assumed. Australia is lowest: a written constitution, High Court judicial review, federalism, and an elected Senate that genuinely blocks. Canada has all of that except the blocking upper house, and has section 33 - the notwithstanding clause, used by Quebec in 1988 to override the Supreme Court on commercial signage. A legislature that can vote itself out of a rights guarantee is not the same object as one that cannot. New Zealand is highest for the reasons set out in its own file."
+  ]
+}
