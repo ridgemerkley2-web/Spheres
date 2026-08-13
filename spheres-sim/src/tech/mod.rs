@@ -1411,3 +1411,35 @@ mod diag {
         }
     }
 }
+
+#[cfg(test)]
+mod zzdiag0 {
+    use super::*;
+    use crate::init::world_1990;
+    use crate::world::GameRules;
+
+    #[test]
+    fn zz_t0_channels() {
+        let w = world_1990(GameRules::default());
+        let world_gdp: f64 = w.nations.iter().filter(|n| n.alive).map(|n| n.gdp.max(0.0)).sum();
+        println!("ZZ0 alive={} world_gdp={:.1}", w.nations.iter().filter(|n| n.alive).count(), world_gdp);
+        for id in [crate::NationId::USA, crate::NationId::China, crate::NationId::Japan,
+                   crate::NationId::UK, crate::NationId::France, crate::NationId::Germany,
+                   crate::NationId::India, crate::NationId::Poland, crate::NationId::Brazil] {
+            let n = w.nation(id);
+            let mut sum = 0.0; let mut count = 0.0; let mut nonzero = 0usize;
+            for o in w.nations.iter().filter(|o| o.alive && o.id != id) {
+                let r = w.relation(id, o.id);
+                if r != 0.0 { nonzero += 1; }
+                sum += r; count += 1.0;
+            }
+            let mean = sum / count;
+            let openness = (((sum / count) + 40.0) / 90.0).clamp(0.0, 1.0);
+            let dev = development(n);
+            let absorb = absorptive_capacity(&w, n, dev);
+            let share = (n.gdp.max(0.0) / world_gdp).sqrt().clamp(0.005, 1.0);
+            println!("ZZ0 {:<14} meanrel={:>7.2} nonzero={:>3}/{:>3} openness={:.4} dev={:.4} absorb={:.4} sqrt_share={:.5}",
+                n.id.name(), mean, nonzero, count as usize, openness, dev, absorb, share);
+        }
+    }
+}
