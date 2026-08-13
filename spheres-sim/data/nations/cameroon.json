@@ -1,0 +1,37 @@
+{
+  "id": "Cameroon",
+  "name": "Cameroon",
+  "system": "Market",
+  "authoritarianism": 0.8,
+  "economy": {
+    "gdp_bn": 12.3,
+    "population_m": 11.3,
+    "tfp_trend": -0.008,
+    "inflation": 0.011,
+    "interest_rate": 0.11,
+    "tax_rate": 0.143,
+    "mil_spend_gdp": 0.015,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.118,
+    "debt_gdp": 0.56,
+    "oil_mbd": 0.161,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 52.0, "separatism": 0.2 },
+  "military": { "strength": 1.5, "nuclear": false },
+  "sources": [
+    "GDP $12.3bn: World Bank NY.GDP.MKTP.CD, series CMR, 1990 = 12,314,482,628. Second-largest in this region after South Africa and just ahead of Ethiopia on a quarter of Ethiopia's population - about $1,087 a head, the highest of the eleven outside South Africa, and the CFA franc's overvaluation flatters it in dollars exactly as it flatters Senegal's.",
+    "Population 11.3m: World Bank SP.POP.TOTL, series CMR, 1990 = 11,331,821. The census of 1987 counted 10,493,655.",
+    "TFP trend -0.008: NEGATIVE, and Cameroon is the clearest case in this region of an oil economy going into reverse. Output per head had risen through the late 1970s and early 1980s on Rio del Rey crude and then fell continuously from 1986: the oil price collapse of that year, coffee and cocoa prices falling with it, and a currency that could not devalue because it was pegged to the French franc. Real GDP contracted every year from 1987 to 1993 and cumulatively by something over a quarter. Set between Zaire's -0.01 and Ethiopia's -0.005.",
+    "Inflation 1.1%: World Bank FP.CPI.TOTL.ZG, series CMR, 1990 = 1.10%. The second-lowest in the roster after Senegal's 0.3%, and for the same reason: the CFA franc's fixed parity with the French franc, here through the Banque des Etats de l'Afrique Centrale rather than the BCEAO. Two franc-zone members in one region, at 1.1% and 0.3%, against Zaire next door at 81.3% - which is the most instructive single comparison this whole regional block contains.",
+    "Interest rate 11%: NOT SOURCED IN THIS SESSION and flagged as an admitted gap, on the same footing as Senegal's. The World Bank's FR.INR.LEND has no Cameroonian entry for any year 1990-1996; a franc-zone member's rate is set regionally by the BEAC, not nationally. 0.11 is entered as the BEAC taux d'escompte in this period. The resulting real rate of about +10 points against 1.1% inflation is punishing and is a fair description of what a fixed-parity commodity exporter in a price slump actually faced. The loader's coupled check reads 0.025 - (0.11 - 0.011) = -0.074.",
+    "Revenue 14.3% of GDP: World Bank GC.REV.XGRT.GD.ZS, series CMR, 1990 = 14.26, revenue excluding grants.",
+    "Military 1.5% of GDP: World Bank MS.MIL.XPND.GD.ZS, series CMR, 1990 = 1.47.",
+    "Investment: gross capital formation 17.8% of GDP (World Bank NE.GDI.TOTL.ZS, series CMR, 1990 = 17.81). The 6.0 / 11.8 split is APPORTIONED and sums to the sourced total.",
+    "Debt 56% of GDP: World Bank DT.DOD.DECT.GN.ZS, series CMR, 1990 = 55.68, external debt stocks as a share of GNI. Borrowed against oil at 1980 prices and serviced at 1990 prices, which is the standard shape of the story.",
+    "Oil 0.161 mbd: 161,000 barrels a day in 1990 (US EIA international series), from the Rio del Rey basin offshore in the far west - which is the same water the Bakassi claim in nations.rs is about, and the reason the peninsula was worth a case at the International Court of Justice. Production had peaked at 186,000 b/d in 1985 and was declining. The second-largest producer of the eleven after Angola's 475,000, and about a tenth of Nigeria's 1.8m next door.",
+    "Stability 52 and authoritarianism 0.80: Paul Biya had been president since November 1982 and had survived the Republican Guard coup attempt of 6 April 1984, which was put down after two days of fighting in Yaounde and followed by mass executions. Stability 52 is set level with Ghana's 52 - an entrenched government over a contracting economy - and above Nigeria's 35. Authoritarianism 0.80 is level with Indonesia's and Ghana's: the Cameroon People's Democratic Movement was the sole legal party from 1966 until the law of 19 December 1990, the lawyers Yondo Black and Anicet Ekane were tried before a military tribunal in March-April 1990 for trying to form one, and the Social Democratic Front was launched in Bamenda on 26 May 1990 anyway, with six people shot dead at the rally. The villes mortes campaign followed in 1991.",
+    "Separatism 0.20: the Anglophone question, and it is a genuine constitutional one rather than an ethnic grievance. Southern Cameroons voted in the UN plebiscite of 11 February 1961 to join the French-administered republic as one half of a federation; the federation was abolished by the referendum of 20 May 1972 and the two Anglophone regions became provinces of a unitary state whose law and schooling were French. The SDF's launch in Bamenda in May 1990 was the political expression of it and the armed movement of 2016 the later one. Set level with Iraq's 0.2 and Uganda's 0.2, above India's 0.15.",
+    "Military strength 1.5: about 12,000 in the army plus a Presidential Guard whose loyalty was the government's real defence and had once been its real danger. French-equipped under the defence accords, no combat record. Set level with Senegal's 1.5 and Ghana's 1.5 and a quarter of Nigeria's 6 - which is the ratio that decided that Nigeria held Bakassi in 1990 and that Cameroon went to court rather than to war over it."
+  ]
+}

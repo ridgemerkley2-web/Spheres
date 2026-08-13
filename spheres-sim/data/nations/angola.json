@@ -1,0 +1,37 @@
+{
+  "id": "Angola",
+  "name": "Angola",
+  "system": "Command",
+  "authoritarianism": 0.88,
+  "economy": {
+    "gdp_bn": 11.2,
+    "population_m": 11.6,
+    "tfp_trend": -0.005,
+    "inflation": 0.14,
+    "interest_rate": 0.1,
+    "tax_rate": 0.3,
+    "mil_spend_gdp": 0.175,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.04,
+    "debt_gdp": 0.86,
+    "oil_mbd": 0.475,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 26.0, "separatism": 0.3 },
+  "military": { "strength": 9.0, "nuclear": false },
+  "sources": [
+    "GDP $11.2bn: World Bank NY.GDP.MKTP.CD, series AGO, 1990 = 11,229,515,599. Third-largest in this region after South Africa and Ethiopia, on the smallest population of the three, and almost all of it is oil - which is the shape of the whole Angolan problem.",
+    "Population 11.6m: World Bank SP.POP.TOTL, series AGO, 1990 = 11,626,360. No census had been taken since the Portuguese one of 1970; the first Angolan census was in 2014.",
+    "TFP trend -0.005: an economy in its fifteenth year of civil war, with agriculture destroyed - Angola had been a net coffee and maize exporter under the Portuguese and was importing most of its food by 1990 - and a manufacturing sector that had never recovered from the flight of some 300,000 Portuguese settlers in 1974-75. Set level with Ethiopia's, above Zaire's -0.01, and negative because the non-oil economy was contracting even while the oil sector grew.",
+    "Inflation 14.0%: World Bank NY.GDP.DEFL.KD.ZG, series AGO, 1990 = 14.01, the GDP deflator. STATED SUBSTITUTION: the World Bank's consumer-price series FP.CPI.TOTL.ZG has NO Angolan entry for 1990 - its first print is 83.8% in 1991 - because prices were administered and there was no meaningful published consumer index. The deflator is entered in its place and the substitution is disclosed here rather than hidden, which is the same discipline brazil.json applies to its inflation figure. The context: the first price liberalisation came at the end of 1991, monthly inflation went from 5.2% in October 1991 to 11.6% in November, and the annual rate reached 1,378% in 1993 and 2,666% in 1995. The sim's inflation band tops out at 3.0, so a game that walks Angola into that will be clamping and should be read as clamping.",
+    "Interest rate 10%: NOT SOURCED IN THIS SESSION and flagged as an admitted gap. The World Bank's FR.INR.LEND has no Angolan entry before 1995 (206.25 that year, 217.88 in 1996). In 1990 the Banco Nacional de Angola set administered rates in a closed financial system with no private banks and a kwanza that traded on the parallel market at a large multiple of the official rate, so there was no market rate to transcribe. 0.10 is entered as an administered rate consistent with a command economy; the loader's coupled real-rate check reads 0.025 - (0.10 - 0.14) = 0.065.",
+    "Revenue 30% of GDP: NOT SOURCED and flagged - the World Bank's GC.REV.XGRT.GD.ZS has no Angolan entry for any year 1990-1998. 0.30 is entered as a bracket on the arithmetic that oil was roughly half of GDP and the state took the great majority of the oil rent through Sonangol, which was and is the concessionaire for every block. It is high for this region by design - Angola's problem was never revenue, it was that the revenue went on the war.",
+    "Military 17.5% of GDP: World Bank MS.MIL.XPND.GD.ZS, series AGO, 1990 = 17.46. THE HIGHEST MILITARY BURDEN IN THE ENTIRE ROSTER and the single most important number in this file. Angola was spending about one dollar in six of national output on a war against UNITA that had been running since 1975, with Cuban troops present until the last of about 50,000 left on 25 May 1991 under the New York Accords of 22 December 1988, and South African incursions only just ended. The Bicesse Accords were signed on 31 May 1991, held for the September 1992 election, and broke the moment Savimbi lost it.",
+    "Investment 6% public and 4% private: APPORTIONED and flagged. The World Bank's NE.GDI.TOTL.ZS returns zero for Angola in 1990 - a gap, not a country that built nothing. The 10% total is a bracket for a war economy whose only real capital formation was offshore and foreign-financed; the public weighting reflects that the state, through Sonangol, took an interest in every project.",
+    "Debt 86% of GDP: World Bank DT.DOD.DECT.GN.ZS, series AGO, 1990 = 85.68, external debt stocks as a share of GNI. Much of it Soviet military credit on the same terms as Ethiopia's, and much of the rest oil-collateralised borrowing against future production.",
+    "Oil 0.475 mbd: 475,000 barrels a day in 1990 (US EIA international series). The great majority of it came from Cabinda, the exclave separated from the rest of Angola by the mouth of the Congo river - so the MPLA government's revenue was pumped by Chevron under the protection of Cuban troops, in a province where FLEC was fighting for secession, while the same government fought a Cold War proxy war against a movement backed by the country whose oil company was paying it. That is not a joke, it is the 1990 arrangement, and it is why this file's separatism figure is where it is.",
+    "Stability 26 and authoritarianism 0.88: level with Zaire's on both, and for different reasons - Zaire's state was hollow, Angola's was at war. The MPLA-PT held Luanda, the coast and the oil; UNITA held much of the interior and was supplied through Zaire from Kamina. Authoritarianism 0.88 is a Marxist-Leninist single party with a Politburo, dropping Marxism-Leninism at its Third Congress in December 1990 and legalising opposition in May 1991 - which is inside the game's window and something the sim should be able to reach.",
+    "Separatism 0.30: Cabinda. The exclave produced most of Angola's oil, had never been administratively part of Angola under the Portuguese until 1956, and FLEC had been fighting for its independence since before Angolan independence. Set below Indonesia's 0.35 and Zaire's 0.35 and above Iraq's 0.2. The Ovimbundu base of UNITA is NOT counted here: UNITA wanted the whole country, not a piece of it, which makes it a civil war rather than a secession and belongs in stability instead.",
+    "Military strength 9: the Forcas Armadas Populares de Libertacao de Angola were about 100,000 strong with the densest surface-to-air missile network in Africa, T-55 and T-62 armour, MiG-23s flown partly by Cubans, and fifteen years of continuous combat experience against both UNITA and the SADF. That is a serious force by regional standards - set above Indonesia's 8 and Nigeria's 6, below Poland's 12 - and it still could not finish UNITA, which is the point the sim should be able to discover."
+  ]
+}

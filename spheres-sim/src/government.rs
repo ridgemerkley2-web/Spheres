@@ -904,6 +904,384 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the Congress of Deputies",
         pillars: &[],
     },
+
+    // ======================================================================
+    // Sub-Saharan Africa (branch feat/r-ssafrica)
+    //
+    // A note on method, because this region strains the table's stated rule
+    // more than Europe does. The rule is "vote shares are from the last
+    // national election before January 1990". In nine of these eleven
+    // countries there was no such election in any meaningful sense: the last
+    // poll was a single-list referendum on the one legal party, or a whites-
+    // only franchise, or nothing at all. So the second half of the rule does
+    // most of the work here — "where a party's founding postdates that
+    // election its share is its result at the first one it contested" — and
+    // the Nigeria block above is the precedent, since it carries the 12 June
+    // 1993 result for parties that existed by decree in 1989.
+    //
+    // Where that has been done it is stated on the block, with the real
+    // pre-1990 poll named beside it. The alternative was to give the sim an
+    // Africa in which the ANC, UNITA and the SDF do not exist, which would
+    // be a worse lie than a dated share.
+    // ======================================================================
+
+    // South Africa — and this is the hardest transcription in the block, so
+    // both answers are on the record. The last election before the game opens
+    // was for the House of Assembly on 6 September 1989: National Party 48.2%,
+    // Conservative Party 31.2%, Democratic Party 20.0%. That was a whites-only
+    // roll of about 3.2m voters in a country of some 40m, and its shares
+    // describe who was allowed to vote rather than who held the country. The
+    // shares entered instead are from 27 April 1994, the first election on a
+    // universal franchise and the first that measured South Africa: ANC
+    // 62.65%, NP 20.39%, IFP 10.54%, Freedom Front 2.17%, DP 1.73%, PAC 1.25%,
+    // ACDP 0.45%. Every one of those organisations existed in January 1990 —
+    // the ANC and PAC were unbanned on 2 February, four weeks into the game —
+    // so this is the "first election it contested" rule rather than an
+    // invention. `next` is (0, 0) and the pillars are non-empty because the
+    // authoritarianism figure of 0.62 in southafrica.json sits above the 0.60
+    // electoral ceiling, which is the correct reading of a state whose
+    // government could not be removed by the governed.
+    // https://en.wikipedia.org/wiki/1994_South_African_general_election
+    Polity {
+        nation: NationId::SouthAfrica,
+        // Proportional with a very low effective bar: the 1994 election used
+        // national and provincial party lists with 400 seats and no formal
+        // threshold, which is how the ACDP took two seats on 0.45%. The same
+        // choice as Israel's, and for the same reason — a high bar here would
+        // delete exactly the small parties whose presence is the point.
+        system: Electoral::ProportionalLowBar,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("za_anc", "African National Congress", "", Family::BigTent, 0.6265),
+            p("za_np", "National Party", "Nasionale Party", Family::Conservative, 0.2039),
+            p("za_ifp", "Inkatha Freedom Party", "iNkatha yeNkululeko yeSizwe", Family::Regionalist, 0.1054),
+            // The Volksfront's electoral successor, and the reason
+            // southafrica.json carries a separatism figure at all: the Freedom
+            // Front's entire programme was an Afrikaner volkstaat.
+            p("za_ff", "Freedom Front", "Vryheidsfront", Family::Nationalist, 0.0217),
+            p("za_dp", "Democratic Party", "", Family::Liberal, 0.0173),
+            p("za_pac", "Pan Africanist Congress", "", Family::Nationalist, 0.0125),
+            p("za_acdp", "African Christian Democratic Party", "", Family::Religious, 0.0045),
+        ],
+        ruling: "the tricameral Parliament",
+        pillars: &[
+            pl(Pillar::Army, "the South African Defence Force"),
+            pl(Pillar::Security, "the Security Branch of the South African Police"),
+            pl(Pillar::Business, "the Chamber of Mines"),
+        ],
+    },
+
+    // Ethiopia — the People's Democratic Republic, proclaimed on 12 September
+    // 1987 when the Derg dissolved itself into a civilian constitution and the
+    // National Shengo was elected on a single Workers' Party of Ethiopia list.
+    // No competing organisation was legal, so one party at 1.00, which is the
+    // same shape as the Vietnam block above. Mengistu announced a mixed economy
+    // on 5 March 1990 and the WPE renamed itself in an attempt to broaden; both
+    // were far too late, and Addis Ababa fell on 28 May 1991.
+    Polity {
+        nation: NationId::Ethiopia,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("et_wpe", "Workers' Party of Ethiopia", "Ye'Ityopya Serategnoch Party", Family::Communist, 1.00),
+        ],
+        ruling: "the Workers' Party of Ethiopia",
+        pillars: &[
+            // Named formations rather than "the army", per the rule this table
+            // sets itself. The Second Revolutionary Army was the Eritrean
+            // command and it was destroyed at Afabet in March 1988 and again at
+            // Massawa in February 1990 — a pillar that had already given way
+            // three weeks after the game opens.
+            pl(Pillar::Army, "the Second Revolutionary Army"),
+            pl(Pillar::Party, "the WPE Politburo"),
+            pl(Pillar::Security, "the Ministry of Public and National Security"),
+        ],
+    },
+
+    // Kenya — a one-party state in law. Section 2A of the constitution, added
+    // by amendment in June 1982, made KANU the sole legal party; the general
+    // election of 21 March 1988 was contested inside it by queue-voting in
+    // public, which is how the mlolongo system got its name and its reputation.
+    // Section 2A was repealed in December 1991 and Kenya voted multi-party in
+    // December 1992.
+    Polity {
+        nation: NationId::Kenya,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("ke_kanu", "Kenya African National Union", "", Family::BigTent, 1.00),
+        ],
+        ruling: "the Kenya African National Union",
+        pillars: &[
+            pl(Pillar::Party, "the KANU Governing Council"),
+            pl(Pillar::Security, "the Special Branch"),
+            // The army is a pillar here in the strict sense the doc comment
+            // means: it is what could remove the government, and in Kenya it
+            // is what nearly did. The air force rose on 1 August 1982 and Moi
+            // answered by disbanding it outright and rebuilding it under army
+            // command.
+            pl(Pillar::Army, "the Kenya Army"),
+        ],
+    },
+
+    // Ghana — the Provisional National Defence Council, eight years in and
+    // with no legislature of any kind. Parties had been banned since Rawlings
+    // took power on 31 December 1981, so there was no pre-1990 election to
+    // transcribe; the shares are the presidential poll of 3 November 1992, the
+    // first vote after the ban was lifted in May 1992 — Rawlings 58.4%,
+    // Adu Boahen 30.3%, Limann 6.7%, Darko 2.8%, Erskine 1.8%.
+    // https://en.wikipedia.org/wiki/1992_Ghanaian_presidential_election
+    Polity {
+        nation: NationId::Ghana,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("gh_ndc", "National Democratic Congress", "", Family::SocialDemocratic, 0.584),
+            p("gh_npp", "New Patriotic Party", "", Family::Liberal, 0.303),
+            p("gh_pnc", "People's National Convention", "", Family::SocialDemocratic, 0.067),
+            p("gh_nip", "National Independence Party", "", Family::Liberal, 0.028),
+            p("gh_php", "People's Heritage Party", "", Family::SocialDemocratic, 0.018),
+        ],
+        ruling: "the Provisional National Defence Council",
+        pillars: &[
+            pl(Pillar::Army, "the Ghana Armed Forces"),
+            pl(Pillar::Security, "the Bureau of National Investigations"),
+            // Street-level surveillance and rationing committees, and the
+            // organisation that made the PNDC something other than a junta.
+            pl(Pillar::Party, "the Committees for the Defence of the Revolution"),
+        ],
+    },
+
+    // Zaire — the Popular Movement of the Revolution, sole legal party since
+    // 1967 and written into the constitution as the party every Zairean
+    // belonged to by birth. The last election, in September 1987, was a single
+    // MPR list. On 24 April 1990 Mobutu announced the Third Republic and a
+    // three-party system; the UDPS, founded illegally by thirteen dissident
+    // parliamentarians in 1982, became legal and never got the election it was
+    // promised — the Sovereign National Conference of 1991-92 ended in
+    // deadlock and the first real vote in Congo was in 2006. So the table
+    // carries the MPR alone, and the point of the block is that the party
+    // slot is empty of everything else.
+    Polity {
+        nation: NationId::Zaire,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("zr_mpr", "Popular Movement of the Revolution", "Mouvement Populaire de la Revolution", Family::BigTent, 1.00),
+        ],
+        ruling: "the Popular Movement of the Revolution",
+        pillars: &[
+            // The distinction this table insists on, and Zaire is the textbook
+            // case of it: the Forces Armees Zairoises could not defend the
+            // country and were not meant to. The Division Speciale
+            // Presidentielle was Israeli-trained, paid, and the only formation
+            // that mattered — the FAZ mutinied over pay in September 1991 and
+            // looted Kinshasa, and the DSP put it down.
+            pl(Pillar::Army, "the Division Speciale Presidentielle"),
+            pl(Pillar::Security, "the Service National d'Intelligence et de Protection"),
+            // The copper monopoly was the fiscal state. Its Kamoto gallery
+            // collapsed in September 1990 and the government's revenue went
+            // with it.
+            pl(Pillar::Business, "Gecamines"),
+        ],
+    },
+
+    // Angola — the MPLA-Workers' Party, Marxist-Leninist and sole legal party
+    // since independence in November 1975. No election had ever been held, so
+    // the shares are the legislative poll of 29-30 September 1992, the first
+    // one ever and the one whose result Savimbi rejected: MPLA 53.74%, UNITA
+    // 34.10%, FNLA 2.40%, PLD 2.39%, PRS 2.27%. The war resumed within weeks
+    // and killed more people in the two years after that election than in the
+    // sixteen before it.
+    // https://en.wikipedia.org/wiki/1992_Angolan_general_election
+    Polity {
+        nation: NationId::Angola,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("ao_mpla", "MPLA", "Movimento Popular de Libertacao de Angola", Family::SocialDemocratic, 0.5374),
+            // NOT marked pariah, deliberately. A pariah in this table is a
+            // party inside a parliament that nobody will govern with — the
+            // Italian, French and Spanish cordons. UNITA was an armed rival
+            // that took a third of the vote and then went back to the bush.
+            // That is a civil war, which the model has other machinery for,
+            // and the roster's rule that no fourth cordon sanitaire be
+            // invented is the right rule here.
+            p("ao_unita", "UNITA", "Uniao Nacional para a Independencia Total de Angola", Family::Nationalist, 0.3410),
+            p("ao_fnla", "FNLA", "Frente Nacional de Libertacao de Angola", Family::Nationalist, 0.0240),
+            p("ao_pld", "Liberal Democratic Party", "Partido Liberal Democratico", Family::Liberal, 0.0239),
+            p("ao_prs", "Social Renewal Party", "Partido de Renovacao Social", Family::SocialDemocratic, 0.0227),
+        ],
+        ruling: "the MPLA Political Bureau",
+        pillars: &[
+            pl(Pillar::Army, "the Forcas Armadas Populares de Libertacao de Angola"),
+            pl(Pillar::Party, "the MPLA Political Bureau"),
+            pl(Pillar::Security, "the Ministerio da Seguranca do Estado"),
+        ],
+    },
+
+    // Zimbabwe — the only nation in this block below the electoral ceiling
+    // besides Senegal, and the call is argued in full in zimbabwe.json. The
+    // shares are a real, contested, pre-1990 election: the House of Assembly
+    // common roll of 28-30 March 1990, ZANU-PF 80.6%, ZUM 16.5%,
+    // ZANU-Ndonga 1.9%, UANC 0.6%. Mugabe put a one-party state to the
+    // ZANU-PF politburo that September and lost the argument; the next
+    // parliamentary election was duly held on 8-9 April 1995, which is what
+    // `next` carries.
+    // https://en.wikipedia.org/wiki/1990_Zimbabwean_general_election
+    Polity {
+        nation: NationId::Zimbabwe,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1995, 4),
+        parties: &[
+            // BigTent rather than Communist, though ZANU-PF still called
+            // itself Marxist-Leninist in 1990: what it actually was is the
+            // thing this family describes — a liberation front that had
+            // absorbed its rival wholesale under the Unity Accord of 22
+            // December 1987 and contained everything from war veterans to
+            // the commercial farming lobby's accommodationists.
+            p("zw_zanupf", "Zimbabwe African National Union - Patriotic Front", "", Family::BigTent, 0.806),
+            p("zw_zum", "Zimbabwe Unity Movement", "", Family::Liberal, 0.165),
+            p("zw_zanun", "ZANU-Ndonga", "", Family::Nationalist, 0.019),
+            p("zw_uanc", "United African National Council", "", Family::Conservative, 0.006),
+        ],
+        ruling: "the House of Assembly",
+        pillars: &[
+            // A pillar on an electoral government, which the Turkey block
+            // above establishes is legal and sometimes necessary. The CIO
+            // reported to the prime minister, not to parliament, and it ran
+            // Gukurahundi in Matabeleland between 1983 and 1987. An
+            // accountable legislature and an unaccountable intelligence
+            // service in the same state is the whole of Zimbabwe's 0.58.
+            pl(Pillar::Security, "the Central Intelligence Organisation"),
+        ],
+    },
+
+    // Tanzania — Chama Cha Mapinduzi, sole legal party since the merger of
+    // TANU and the Afro-Shirazi Party in February 1977, and the election of
+    // 28 October 1990 (which returned Ali Hassan Mwinyi for a second term)
+    // was a single-party one. Nyerere gave up the party chairmanship that
+    // August and told the CCM to consider opposition parties; the Nyalali
+    // Commission reported in 1991 and the constitution was amended in May
+    // 1992, which is the liberalisation this block is waiting for.
+    Polity {
+        nation: NationId::Tanzania,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("tz_ccm", "Chama Cha Mapinduzi", "Chama Cha Mapinduzi", Family::BigTent, 1.00),
+        ],
+        ruling: "Chama Cha Mapinduzi",
+        pillars: &[
+            // The party genuinely outranked the state here, which is not true
+            // of most of the single-party regimes in this block: the CCM's
+            // National Executive Committee chose the sole presidential
+            // candidate and the electorate confirmed him.
+            pl(Pillar::Party, "the CCM National Executive Committee"),
+            pl(Pillar::Army, "the Tanzania People's Defence Force"),
+            pl(Pillar::Security, "the National Security Service"),
+        ],
+    },
+
+    // Uganda — the Movement system, which is not quite a one-party state and
+    // is certainly not a multi-party one. Parties were never banned; they
+    // were forbidden to campaign, field candidates or hold rallies, and
+    // elections to the National Resistance Council on 11-28 February 1989
+    // were fought on "individual merit" with no party labels at all. There
+    // is therefore no pre-1990 vote share to transcribe. The shares entered
+    // are the presidential election of 9 May 1996, the first national vote
+    // Uganda held: Museveni 74.2%, Ssemogerere 23.7%, Mayanja 2.2%.
+    Polity {
+        nation: NationId::Uganda,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("ug_nrm", "National Resistance Movement", "", Family::BigTent, 0.742),
+            // Ssemogerere led the Democratic Party and stood in 1996 for a
+            // DP-UPC alliance, which is why his share sits against the DP.
+            p("ug_dp", "Democratic Party", "", Family::ChristianDemocratic, 0.237),
+            p("ug_ku", "Kibirige Mayanja's campaign", "", Family::Liberal, 0.022),
+        ],
+        ruling: "the National Resistance Movement",
+        pillars: &[
+            pl(Pillar::Army, "the National Resistance Army"),
+            pl(Pillar::Party, "the National Resistance Council"),
+            pl(Pillar::Security, "the Internal Security Organisation"),
+        ],
+    },
+
+    // Senegal — a genuine multi-party democracy and the only one in this
+    // block with an ordinary pre-1990 election to transcribe. National
+    // Assembly, 28 February 1988: Parti Socialiste 71.3%, Parti Democratique
+    // Senegalais 24.7%, and the small left lists behind them. The result was
+    // disputed violently, Dakar went under a state of emergency and Wade was
+    // convicted and given a suspended sentence — and then joined a government
+    // of national unity in April 1991, which is the Senegalese pattern. The
+    // Assembly's five-year term ran from February 1988, so the next was due
+    // in early 1993; it was held on 9 May.
+    // https://en.wikipedia.org/wiki/1988_Senegalese_general_election
+    Polity {
+        nation: NationId::Senegal,
+        // Mixed in reality — 70 seats by departmental majority list and 50 by
+        // national proportional list. Proportional is the closer of the two
+        // available choices and it is the national list that decides anything:
+        // the PS swept nearly every department, and without the proportional
+        // half the PDS's quarter of the vote would have produced almost no
+        // seats at all.
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1993, 2),
+        parties: &[
+            p("sn_ps", "Socialist Party", "Parti Socialiste du Senegal", Family::SocialDemocratic, 0.713),
+            p("sn_pds", "Senegalese Democratic Party", "Parti Democratique Senegalais", Family::Liberal, 0.247),
+            p("sn_ldmpt", "Democratic League - Labour Party Movement", "Ligue Democratique - Mouvement pour le Parti du Travail", Family::Communist, 0.014),
+            p("sn_pit", "Party of Independence and Labour", "Parti de l'Independance et du Travail", Family::Communist, 0.013),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+
+    // Cameroon — the Cameroon People's Democratic Movement, sole legal party
+    // (as the Cameroon National Union until 1985) from 1966 until the law of
+    // 19 December 1990. The last poll before the game opens was the single-
+    // list legislative election of 24 April 1988. The shares entered are the
+    // first multi-party legislative election, 1 March 1992: CPDM 45.4%, UNDP
+    // 18.9%, UPC 12.7%, MDR 6.2%. The Social Democratic Front — launched at
+    // Bamenda on 26 May 1990 with six people shot dead at the rally, and the
+    // organisation that broke the single-party state — boycotted that
+    // election, which is why the party with the best claim to have earned a
+    // place in this table does not appear in it. Recorded here rather than
+    // padded in.
+    Polity {
+        nation: NationId::Cameroon,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cm_cpdm", "Cameroon People's Democratic Movement", "Rassemblement Democratique du Peuple Camerounais", Family::BigTent, 0.454),
+            p("cm_undp", "National Union for Democracy and Progress", "Union Nationale pour la Democratie et le Progres", Family::Liberal, 0.189),
+            p("cm_upc", "Cameroon People's Union", "Union des Populations du Cameroun", Family::SocialDemocratic, 0.127),
+            p("cm_mdr", "Movement for the Defence of the Republic", "Mouvement pour la Defense de la Republique", Family::Conservative, 0.062),
+        ],
+        ruling: "the Cameroon People's Democratic Movement",
+        pillars: &[
+            // The formation that tried to remove Biya on 6 April 1984 and
+            // failed after two days of fighting in Yaounde, and was rebuilt
+            // afterwards as the thing that keeps him.
+            pl(Pillar::Army, "the Garde Presidentielle"),
+            pl(Pillar::Party, "the CPDM Central Committee"),
+            pl(Pillar::Security, "the Delegation Generale a la Surete Nationale"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

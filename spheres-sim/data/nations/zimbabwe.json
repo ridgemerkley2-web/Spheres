@@ -1,0 +1,37 @@
+{
+  "id": "Zimbabwe",
+  "name": "Zimbabwe",
+  "system": "Market",
+  "authoritarianism": 0.58,
+  "economy": {
+    "gdp_bn": 8.8,
+    "population_m": 10.1,
+    "tfp_trend": 0.004,
+    "inflation": 0.174,
+    "interest_rate": 0.135,
+    "tax_rate": 0.3,
+    "mil_spend_gdp": 0.041,
+    "state_invest_gdp": 0.07,
+    "priv_invest_gdp": 0.104,
+    "debt_gdp": 0.47,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 58.0, "separatism": 0.08 },
+  "military": { "strength": 5.0, "nuclear": false },
+  "sources": [
+    "GDP $8.8bn: World Bank NY.GDP.MKTP.CD, series ZWE, 1990 = 8,788,301,546. Slightly larger than Kenya's on less than half the population, which is the fact that made Zimbabwe in 1990 the second real economy in the region after South Africa: a manufacturing sector built behind UDI sanctions between 1965 and 1979, commercial agriculture that exported maize and tobacco, and the best road and rail network north of the Limpopo.",
+    "Population 10.1m: World Bank SP.POP.TOTL, series ZWE, 1990 = 10,137,281. The census of 18 August 1992 counted 10,401,767.",
+    "TFP trend 0.004: level with Kenya's. Zimbabwe's first decade had gone well on health and schooling and badly on growth - the controls inherited from UDI were never dismantled, foreign exchange was allocated by committee, and manufacturing could not re-equip. The Economic Structural Adjustment Programme launched in 1991 was the response, and it did not work.",
+    "Inflation 17.4%: FLAGGED AS UNVERIFIED IN THIS SESSION, and the disagreement is stated rather than hidden. The World Bank's consumer-price series FP.CPI.TOTL.ZG has NO Zimbabwean entry for 1990 and none for 1991-95 either, and its consumer price index series FP.CPI.TOTL is null across the same years. What the World Bank does publish for 1990 is a GDP deflator (NY.GDP.DEFL.KD.ZG) of MINUS 0.92%, which would open the game with a deflating Zimbabwe. That is a terms-of-trade artefact - 1990 was a good harvest and a weak year for tobacco and gold prices - rather than a description of what things cost, and entering it would give the sim a false start state. 17.4% is the figure commonly reported from the Central Statistical Office for calendar 1990 and it is what has been entered; I was unable to reach a primary CSO or Reserve Bank series to confirm it in this session, so it is listed as an admitted gap. Inflation went past 20% in 1991 when ESAP removed price controls.",
+    "Interest rate 13.5%: NOT SOURCED IN THIS SESSION and flagged. The World Bank's FR.INR.LEND has no Zimbabwean entry for any year 1990-1996. 0.135 is entered as a bracket for a Reserve Bank of Zimbabwe policy rate held deliberately below inflation under the pre-ESAP control regime - negative real rates were an explicit instrument of the controlled economy. The loader's coupled check reads 0.025 - (0.135 - 0.174) = 0.064.",
+    "Revenue 30% of GDP: NOT SOURCED - GC.REV.XGRT.GD.ZS has no Zimbabwean entry 1990-1998 - and entered as a bracket, high for the region by design. Zimbabwe inherited a working Rhodesian revenue administration and used it: the government wage bill, the education expansion and the drought relief programmes of the 1980s were paid for by one of the largest tax takes in sub-Saharan Africa, and the deficit ESAP was meant to close was about 10% of GDP on top of it.",
+    "Military 4.1% of GDP: World Bank MS.MIL.XPND.GD.ZS, series ZWE, 1990 = 4.10. Above South Africa's 3.9%, and the reason is Mozambique: roughly 10,000 Zimbabwean troops were deployed along the Beira corridor from 1985 to protect the rail and pipeline route to the sea against RENAMO, which was Zimbabwe's only alternative to shipping through South African ports.",
+    "Investment: gross capital formation 17.4% of GDP (World Bank NE.GDI.TOTL.ZS, series ZWE, 1990 = 17.38). The 7.0 / 10.4 split is APPORTIONED, not transcribed, and the two entries sum to the sourced total.",
+    "Debt 47% of GDP: World Bank DT.DOD.DECT.GN.ZS, series ZWE, 1990 = 47.18, external debt stocks as a share of GNI. The lowest external debt burden of the eleven countries in this region and less than half Kenya's or Tanzania's - Zimbabwe entered the 1990s creditworthy, which is what made the borrowing under ESAP possible and the default of the late 1990s so damaging.",
+    "Oil 0.0: no production. The Feruka pipeline from Beira was the supply line and the reason for the troops guarding it.",
+    "Stability 58 and authoritarianism 0.58: authoritarianism is set deliberately just BELOW the model's 0.60 electoral ceiling, and it is the closest call in this region's eleven files. Against: the state of emergency inherited from Rhodesia ran until July 1990, the Central Intelligence Organisation had killed on the order of ten to twenty thousand people in Matabeleland between 1983 and 1987, and Robert Mugabe spent 1990 arguing for a one-party state. In favour: Zimbabwe actually held a contested multi-party general election on 28-30 March 1990 in which an opposition party campaigned and won seats, the one-party proposal was defeated in the ZANU-PF politburo that September, and the next election was duly held in April 1995. A government that faces a real opposition at a real poll is electoral in this model's sense even when the poll is grossly unfair, so Zimbabwe gets a scheduled election in government.rs and 0.58 rather than pillars and no election at all. Stability 58 is set level with Egypt's 58 and above Poland's 55: an established government with an overwhelming majority, a functioning administration, and a decade of peace behind it.",
+    "Separatism 0.08: Matabeleland. ZAPU's constituency, the object of the Gukurahundi campaign, and formally settled by the Unity Accord of 22 December 1987 which merged ZAPU into ZANU-PF and made Joshua Nkomo a vice-president. Set above Poland's 0.05 and below Spain's 0.10, because the grievance survived the settlement and the secession did not.",
+    "Military strength 5: the Zimbabwe National Army was about 50,000, formed by integrating ZANLA, ZIPRA and the Rhodesian Security Forces, and had a decade of guerrilla war and five years of expeditionary operations in Mozambique behind it. Set level with a little below Nigeria's 6 on size and above Kenya's 3 and Tanzania's 3 on experience and equipment; well below South Africa's 16, which is the ratio the Frontline States actually faced."
+  ]
+}

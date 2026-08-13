@@ -37,6 +37,18 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
     Source { file: "data/nations/vietnam.json", json: include_str!("../../data/nations/vietnam.json") },
     Source { file: "data/nations/yugoslavia.json", json: include_str!("../../data/nations/yugoslavia.json") },
     Source { file: "data/nations/spain.json", json: include_str!("../../data/nations/spain.json") },
+    // Sub-Saharan Africa (branch feat/r-ssafrica), in ROSTER order.
+    Source { file: "data/nations/southafrica.json", json: include_str!("../../data/nations/southafrica.json") },
+    Source { file: "data/nations/ethiopia.json", json: include_str!("../../data/nations/ethiopia.json") },
+    Source { file: "data/nations/kenya.json", json: include_str!("../../data/nations/kenya.json") },
+    Source { file: "data/nations/ghana.json", json: include_str!("../../data/nations/ghana.json") },
+    Source { file: "data/nations/zaire.json", json: include_str!("../../data/nations/zaire.json") },
+    Source { file: "data/nations/angola.json", json: include_str!("../../data/nations/angola.json") },
+    Source { file: "data/nations/zimbabwe.json", json: include_str!("../../data/nations/zimbabwe.json") },
+    Source { file: "data/nations/tanzania.json", json: include_str!("../../data/nations/tanzania.json") },
+    Source { file: "data/nations/uganda.json", json: include_str!("../../data/nations/uganda.json") },
+    Source { file: "data/nations/senegal.json", json: include_str!("../../data/nations/senegal.json") },
+    Source { file: "data/nations/cameroon.json", json: include_str!("../../data/nations/cameroon.json") },
 ];
 
 pub const EMBEDDED_RELATIONS: Source<'static> = Source {
