@@ -1,0 +1,41 @@
+{
+  "id": "NorthKorea",
+  "name": "North Korea",
+  "system": "Command",
+  "authoritarianism": 0.98,
+  "economy": {
+    "gdp_bn": 23.1,
+    "population_m": 20.1,
+    "tfp_trend": -0.01,
+    "inflation": 0.05,
+    "interest_rate": 0.04,
+    "tax_rate": 0.6,
+    "mil_spend_gdp": 0.23,
+    "state_invest_gdp": 0.25,
+    "priv_invest_gdp": 0.0,
+    "debt_gdp": 0.4,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 70.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 22.0,
+    "nuclear": false
+  },
+  "sources": [
+    "There is no honest dollar GDP for the DPRK and there never has been. The World Bank publishes no series for Korea, Dem. People's Rep. The figure entered, $23.1bn for 1990, is the Bank of Korea's estimate — the series the BoK began publishing that year, built by pricing DPRK physical output at South Korean prices, which its own critics say overstates the level while getting the direction right. It is entered because it is the only named, published estimate; treat it as an order of magnitude, not a measurement.",
+    "Population 20.1m: DPRK 1993 census back-cast, consistent with UN estimates for 1990.",
+    "tfp_trend is negative because 1990 is the year the arrangement ends: Moscow told Pyongyang trade would move to hard currency at world prices from 1 January 1991, and Soviet oil and coking coal were the whole basis of the industrial plan. The contraction that follows is not modelled as an event, it is the trend seeded here.",
+    "Inflation and interest are administered numbers in a command economy with no published series. 5% and 4% are placeholders that keep the real rate near neutral so the demand channel does nothing spurious; the DPRK price level in 1990 was set by the state, not discovered.",
+    "tax_rate 0.60: the DPRK formally abolished taxation in 1974. State revenue is the appropriation of enterprise turnover and profit, which is why the effective share of output the state takes is set very high rather than at a tax rate that does not exist.",
+    "Defence 23% of GDP: the official budget claimed roughly 12%, and Western and South Korean estimates through the period put the true share at 20-25%. No SIPRI or World Bank figure exists for 1990.",
+    "External debt: the DPRK defaulted on Western bank credits in 1975 and never cured it; total external debt was estimated near $8bn against convertible and non-convertible creditors, hence 0.40 of the estimated GDP.",
+    "Military index 22 sits just above South Korea's 18: 1.1m under arms, the largest force per head of population in the world, and the artillery park within range of Seoul. It is held below Iraq's 26 because almost none of it was modern in 1990 and none of it could be sustained abroad.",
+    "nuclear false: Yongbyon was operating and the IAEA safeguards fight starts in 1992, but there was no weapon in 1990.",
+    "What could not be verified, stated plainly. The World Bank publishes NO series of any kind for Korea, Dem. People's Rep. in 1990 - not GDP, not population, not CPI, not military expenditure - so nothing in this file's economy block sits on the series the rest of this roster uses. The $23.1bn is the Bank of Korea's estimate and the BoK's own method is contested: it prices DPRK physical output at South Korean prices, which is a level its critics say is too high by a wide margin. Every other economic figure here is a construction chosen to keep the model's arithmetic well behaved and is labelled as one above. Treat this file as the least verified in the region and check it first.",
+    "What this file exposes about the model. A thirty-year run finishes the DPRK near $110bn, growing about 4.5% a year, against a real 2020 estimate somewhere between $16bn and $30bn - the country contracted by roughly a third across the 1990s and had a famine that killed hundreds of thousands. The negative tfp_trend entered above does not produce that, because tech/mod.rs rewrites tfp_trend every tick, and there is no mechanism anywhere in the sim for the loss of a patron's subsidised trade to become a collapse. This is the single largest divergence from history in the region and it is a missing mechanism, not a wrong number. Flagged for the calibration sweep."
+  ]
+}

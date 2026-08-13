@@ -1024,6 +1024,48 @@
         { "a": "Myanmar",     "b": "UK",          "value": -40.0 },
         { "a": "Myanmar",     "b": "USA",         "value": -45.0 }
       ]
+    },
+    {
+      "note": [
+        "The two Koreas and the two Chinas: four states whose foreign policy in January 1990 is mostly about denying recognition to a fifth. Pyongyang's patrons are Beijing and Moscow, and Moscow is about to defect - Shevardnadze went to Pyongyang in September 1990 to say the Soviet Union would recognise Seoul, and Kim Yong Nam told him to his face that it would push the North toward building its own bomb. Taipei's position is the mirror image and it is why the number with Washington is warm rather than allied: the United States switched recognition to Beijing on 1 January 1979 and went on selling Taiwan weapons anyway under the Taiwan Relations Act, which is a relationship with no embassy in it.",
+        "Cross-strait is entered at -50 and the anchors either side of it are in this same file. It is below the United States and the Soviet Union at -45, because Beijing has never renounced the use of force and Taipei was still governing under a statute for the suppression of a rebellion. It is above India and Pakistan at -55 and Iraq and Iran at -50, because nothing had been fired across the strait since the Kinmen shelling stopped on 1 January 1979, family visits had been legal since 1987, indirect trade through Hong Kong ran to billions a year, and the machinery for talks was built during 1990 itself - the National Unification Council in October and the Straits Exchange Foundation in November. An armed standoff in its thaw year, not a war in its interval.",
+        "This region ships only the dyads it would be a misrepresentation to omit. The trade and aid warmth that also existed - Japanese investment across ASEAN, the Commonwealth ties to Kuala Lumpur and Singapore, the Five Power Defence Arrangements - is left out on purpose. Those have no figure behind them the way a severed recognition or a signed treaty does, and a dense mesh of invented mid-range friendship is not free: patronage and intervention both read this matrix, so inventing warmth redirects the great powers' budgets and the coalitions they join."
+      ],
+      "pairs": [
+        { "a": "NorthKorea", "b": "SouthKorea", "value": -70.0 },
+        { "a": "NorthKorea", "b": "China", "value": 60.0 },
+        { "a": "NorthKorea", "b": "USSR", "value": 45.0 },
+        { "a": "NorthKorea", "b": "USA", "value": -75.0 },
+        { "a": "NorthKorea", "b": "Japan", "value": -55.0 },
+        { "a": "Taiwan", "b": "China", "value": -50.0 },
+        { "a": "Taiwan", "b": "USA", "value": 45.0 },
+        { "a": "Taiwan", "b": "Japan", "value": 25.0 }
+      ]
+    },
+    {
+      "note": [
+        "Indochina and the states around it. Vietnam's two junior partners are still junior: the Lao People's Revolutionary Party came out of the same movement as the Vietnamese party and signed a twenty-five-year treaty of friendship with Hanoi in 1977, and the State of Cambodia was installed by the Vietnamese army in 1979 and had watched it march home four months before the game opens. Thailand is the other side of that war - it sheltered the resistance coalition, the Khmer Rouge included, along the Aranyaprathet border, and Chatichai's line about turning Indochina from a battlefield into a marketplace was in 1988 the first crack in that policy rather than the end of it.",
+        "Laos sits badly with both of its large neighbours for dated reasons. Vientiane took Hanoi's side when China and Vietnam went to war in 1979 and Chinese aid stopped; relations were only restored in 1989. And Thailand and Laos had fought each other over three villages on the Sainyabuli border from December 1987 to February 1988, which is the claim entered in the roster and the reason this pair is not neutral.",
+        "Mongolia's foreign relations in January 1990 consist almost entirely of the Soviet Union, whose 39th Army is still on its territory and whose transfers ran near a third of its output. The figure with China is low and positive rather than hostile: the rupture of the 1960s was formally closed by the normalisation of 1989, and the border treaty of 1962 was never in dispute.",
+        "Bangkok and Manila hold American defence treaties dating to 1954 and 1951. Kuala Lumpur and Manila are on speaking terms and do not discuss Sabah, which is why that pair is mildly warm and not hostile despite the claim in the roster - the claim is live, the quarrel is shelved, and those are different facts."
+      ],
+      "pairs": [
+        { "a": "Laos", "b": "Vietnam", "value": 75.0 },
+        { "a": "Laos", "b": "Thailand", "value": -25.0 },
+        { "a": "Laos", "b": "China", "value": -20.0 },
+        { "a": "Laos", "b": "USSR", "value": 60.0 },
+        { "a": "Cambodia", "b": "Vietnam", "value": 70.0 },
+        { "a": "Cambodia", "b": "China", "value": -55.0 },
+        { "a": "Cambodia", "b": "Thailand", "value": -45.0 },
+        { "a": "Cambodia", "b": "USSR", "value": 60.0 },
+        { "a": "Thailand", "b": "Vietnam", "value": -30.0 },
+        { "a": "Thailand", "b": "USA", "value": 60.0 },
+        { "a": "Philippines", "b": "USA", "value": 65.0 },
+        { "a": "Malaysia", "b": "Singapore", "value": 40.0 },
+        { "a": "Malaysia", "b": "Philippines", "value": 20.0 },
+        { "a": "Mongolia", "b": "USSR", "value": 70.0 },
+        { "a": "Mongolia", "b": "China", "value": 10.0 }
+      ]
     }
   ]
 }
