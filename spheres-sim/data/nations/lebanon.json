@@ -1,0 +1,43 @@
+{
+  "id": "Lebanon",
+  "name": "Lebanon",
+  "system": "Market",
+  "authoritarianism": 0.65,
+  "economy": {
+    "gdp_bn": 2.84,
+    "population_m": 3.6,
+    "tfp_trend": 0.005,
+    "inflation": 0.689,
+    "interest_rate": 0.399,
+    "tax_rate": 0.05,
+    "mil_spend_gdp": 0.076,
+    "state_invest_gdp": 0.007,
+    "priv_invest_gdp": 0.306,
+    "debt_gdp": 0.52,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 18.0,
+    "separatism": 0.6
+  },
+  "military": {
+    "strength": 1.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $2.84bn: World Bank NY.GDP.MKTP.CD, series LBN, 1990 - $2,838,485,353.96. This is the trough of the civil war and the smallest economy on the board. Cross-check: the Bank's Atlas GNI per capita for Lebanon in 1990 is $1,020, which on 3.6m people is $3.67bn of national income - GNI 29% above GDP, which is emigrant remittances, and in 1990 those remittances were most of what Lebanese households lived on.",
+    "Population 3.6m: World Bank SP.POP.TOTL, series LBN, 1990 - 3,595,175. Lebanon has not held a census since 1932, for the obvious confessional reason, so every population figure for it is an estimate; this one is the Bank's, and it is the same series every other nation in this roster uses.",
+    "TFP trend 0.005: level with Iraq's, which is the lowest in the roster, and for the same reason - this is an economy under bombardment. January to May 1990 was the war between Michel Aoun's army units and Samir Geagea's Lebanese Forces, fought inside the Christian enclave of East Beirut, which destroyed more of the city than the previous fifteen years had.",
+    "Inflation 68.9%: IMF consumer price series for Lebanon, 1990, as reproduced by worlddata.info - 68.90%, against 72.20% in 1989, 155.00% in 1988 and 50.10% in 1991. The World Bank's FP.CPI.TOTL.ZG is null for Lebanon in 1990, which is why a secondary reproduction of the IMF series is cited rather than the primary indicator used elsewhere in this file.",
+    "Interest rate 39.9%: World Bank FR.INR.LEND, series LBN, 1990 - 39.9425%. The deposit rate (FR.INR.DPST) was 16.8575%. That spread of twenty-three points between what a Lebanese bank paid and what it charged is the price of lending in a country with no functioning courts, and it is a published figure, not an estimate. Against 68.9% inflation the real lending rate was still deeply negative.",
+    "Revenue 5% of GDP: FLAGGED AS UNVERIFIED. No World Bank revenue series exists for Lebanon in 1990. 0.05 is entered on the structural fact rather than a print: the ports of Beirut, Jounieh and Sidon and the customs revenue that came through them were held by militias, not the treasury, and the state had lost the ability to collect. It is by a wide margin the lowest revenue share in this roster - a tenth of Spain's 0.38 - and that is the intended reading. The magnitude is an inference from the collapse and should be checked.",
+    "Military 7.6% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI basis), series LBN, 1990 - 7.55195134313229. Note what this does and does not measure: it is the budget of the Lebanese state's army, and the actual armed spending in Lebanon in 1990 - militias, the Syrian deployment, the Israeli security zone, the Iranian subsidy to Hezbollah - was several times it and appears in nobody's national accounts.",
+    "Public investment 0.7% and private investment 30.6% of GDP: World Bank NE.GDI.FTOT.ZS gives total gross fixed capital formation of 31.312690963823% and NE.GDI.FPRV.ZS gives the private share as 30.6547229362514%, leaving the state 0.66%. Both are transcribed exactly. The Lebanese state invested two-thirds of one percent of national output in 1990 and private hands invested thirty-one percent of it - people rebuilt their own houses between shellings and the government built nothing. It is the single most eloquent pair of numbers in this branch and it is entered unrounded rather than smoothed toward something that looks more like a country.",
+    "Debt 52% of GDP: World Bank DT.DOD.DECT.GN.ZS, series LBN, 1990 - external debt stocks of 51.6370849400757% of GNI. UNDERSTATES total public debt, and the understatement is stated: Lebanon's government financed itself domestically through the banking system in treasury bills, and that domestic stock is not in this series. External debt is what is published, so external debt is what is entered.",
+    "Oil 0.0: World Bank NY.GDP.PETR.RT.ZS puts Lebanon's oil rents at 0.00% of GDP in 1990. There was no production. The Tripoli and Zahrani refineries, fed by the Iraqi and Saudi pipelines, had both stopped.",
+    "Stability 18: the lowest figure entered anywhere in this roster, and it is not hyperbole. In January 1990 Lebanon had two rival governments - Michel Aoun's military cabinet in Baabda and Selim Hoss's in West Beirut - and no agreed president: Rene Moawad, elected under the Taif Accord, had been assassinated by a roadside bomb on 22 November 1989, seventeen days into his term, and his successor Elias Hrawi could not enter the presidential palace because Aoun was in it. Iraq's 48 describes a regime that held its whole territory by terror; Lebanon's government did not hold its own capital. Set at 18 rather than 0 because a state did formally exist, kept a seat at the Arab League, and serviced its external debt.",
+    "Separatism 0.60: below Yugoslavia's 0.72 and above the USSR's 0.55, and the ordering is argued. Lebanon by 1990 was more physically partitioned than Yugoslavia was - green lines, separate ports, separate customs, separate currencies of account, militia administrations that collected taxes and issued documents - but its militias were fighting over the share-out of one Lebanon rather than for separate states, and no Lebanese party ever declared independence. Yugoslavia's republics had constitutions, borders and territorial defence forces of their own and became countries. So: more shattered in fact, less separatist in aim.",
+    "Military strength 1.0: below Kuwait's 2.0, and Kuwait is a country of two million that was overrun in six hours. The Lebanese Army in January 1990 had split in two - roughly 20,000 men under Aoun, roughly 15,000 under the Hoss government - and the decisive forces in the country belonged to somebody else: about 40,000 Syrian troops, the Israeli-backed South Lebanon Army in the security zone, and the militias. A state army that cannot secure the state is entered as the small number it is."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "Syria",
+  "name": "Syria",
+  "system": "Command",
+  "authoritarianism": 0.9,
+  "economy": {
+    "gdp_bn": 12.31,
+    "population_m": 12.58,
+    "tfp_trend": 0.006,
+    "inflation": 0.194,
+    "interest_rate": 0.09,
+    "tax_rate": 0.22,
+    "mil_spend_gdp": 0.069,
+    "state_invest_gdp": 0.074,
+    "priv_invest_gdp": 0.091,
+    "debt_gdp": 1.3,
+    "oil_mbd": 0.388,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 56.0,
+    "separatism": 0.08
+  },
+  "military": {
+    "strength": 18.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $12.31bn: World Bank NY.GDP.MKTP.CD, series SYR, 1990 - reported as $12,308,624,417.83. This is the series the rest of the roster's 1990 GDP figures sit on (USA 5980, France 1270, Spain 535 all match it), which is why it is the one entered. CAVEAT, stated rather than hidden: Syria in 1990 ran a multiple exchange-rate regime - an official rate near 11.2 pounds to the dollar, a 'neighbouring countries' rate around 42, and a parallel market above that - so any dollar figure for Syrian output in this period is a choice of rate rather than a measurement. The cross-check that makes this one credible is the World Bank's own Atlas GNI per capita for Syria in 1990, $810, which against a population of 12.58m implies $10.2bn of national income; GDP a fifth above GNI is what a country with large expatriate remittances outbound and heavy external interest looks like. The two series agree, so the figure is carried.",
+    "Population 12.58m: World Bank SP.POP.TOTL, series SYR, 1990 - 12,579,208. Syria's own 1981 census counted 9.05m and the growth rate through the 1980s was above 3.3% a year, among the highest recorded anywhere.",
+    "TFP trend 0.006: entered just above Iraq's 0.005 and just below Iran's 0.006-0.008 band. Syria's public sector produced the majority of industrial output and investment was allocated administratively; the 1986 foreign-exchange crisis had forced import compression that starved the state factories of spares. Investment Law No. 10, which opened the door to private capital, was passed in May 1991 - after the game opens - so 1990 is the last year of the closed model and the trend is set at what a command economy running short of hard currency actually delivers.",
+    "Inflation 19.4%: World Bank FP.CPI.TOTL.ZG, series SYR, 1990 - 19.3968672229543. This was the tail of the 1986-88 crisis, when the pound lost most of its value against the dollar on the parallel market.",
+    "Interest rate 9%: Syria's rates were not a market and not a policy instrument - they were set by decree, and the Commercial Bank of Syria, which was the banking system, lent at a legal ceiling of about 9%. Against 19.4% inflation that is a real rate of roughly minus ten percent, which is the correct description of a system where credit was rationed administratively rather than priced. FLAGGED AS UNVERIFIED: no World Bank lending or deposit series exists for Syria in 1990 (FR.INR.LEND and FR.INR.DPST are both null), so 0.09 is the statutory ceiling rather than a published print.",
+    "Revenue 22% of GDP: FLAGGED AS UNVERIFIED. The World Bank publishes no tax-revenue or general-government-revenue share for Syria in 1990. 0.22 is placed above Iran's 0.18 and below Iraq's 0.30, on the reasoning that Syria's treasury took oil royalties on 388,000 barrels a day plus the surpluses of the public industrial sector, but had nothing resembling Iraq's wartime extraction. It is an anchored placement, not a transcription, and it is listed among this branch's unverified figures.",
+    "Military 6.9% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI basis), series SYR, 1990 - 6.8680868191169.",
+    "Public investment 7.4% and private investment 9.1% of GDP: World Bank NE.GDI.FTOT.ZS gives total gross fixed capital formation of 16.5450493425956% and NE.GDI.FPRV.ZS gives the private share as 9.10192003816225%; the public residual is 7.44%. Both transcribed, neither apportioned.",
+    "Debt 130% of GDP: FLAGGED AS UNVERIFIED. Syria did not report to the World Bank's Debtor Reporting System, so DT.DOD.DECT.CD is null for 1990. The anchor is the settlement Damascus and Moscow reached on 25 January 2005, in which Russia wrote off 73% of a Syrian debt it stated at $13.4bn - overwhelmingly Soviet arms credits drawn down across the 1970s and 1980s, and largely already outstanding by 1990. $13.4bn against a $12.31bn GDP is 1.09 from that one creditor before Western and Gulf debt is added, hence 1.30 here. The 2005 figure is real; the 1990 apportionment of it is an inference.",
+    "Oil 388,000 barrels a day: EIA international crude production, Syria, 1990 - 388, against 340 in 1989 and 492 in 1991. The 1990s were Syria's oil decade: the Deir ez-Zor light-crude fields brought online by Shell and Pecten pushed production to a peak near 600,000 b/d in 1996 before the long decline. Cross-check: the World Bank puts Syrian oil rents at 14.26% of GDP in 1990 (NY.GDP.PETR.RT.ZS), which is $1.76bn against 142m barrels of annual output - about $12 a barrel of rent on a $23 world price for a heavy, sour, discounted crude. Consistent.",
+    "Stability 56 and authoritarianism 0.90: Hafez al-Assad was in his twentieth year. The Islamist insurgency that ended at Hama in February 1982 was over, Rifaat al-Assad's 1984 challenge had been settled by exile, and emergency law had been continuously in force since 1963. Authoritarianism is set below Iraq's 0.95 - Syria had no equivalent of the Anfal campaign and its Ba'ath ran a front of junior parties rather than a single-party state outright - and above Iran's and Saudi Arabia's 0.85. Stability 56 sits above Iraq's 48, because Baghdad in January 1990 did not control its Kurdish north and Damascus controlled all of Syria, and below Egypt's 58, because Assad had had a serious heart attack in November 1983 and the succession had no answer.",
+    "Separatism 0.08: Kurds were roughly 8-9% of Syria's population and the 1962 Hasakah census had stripped some 120,000 of them of citizenship, but there was no Syrian Kurdish territorial movement in 1990 - the PKK was headquartered in Damascus and in the Syrian-held Bekaa, aimed at Turkey, and Assad's own Kurds were quiet. Set well below Turkey's 0.30 and Iraq's 0.20, which are the two states with actual Kurdish insurgencies, and above Egypt's 0.05."
+  ]
+}

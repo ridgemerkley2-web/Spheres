@@ -904,6 +904,247 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the Congress of Deputies",
         pillars: &[],
     },
+
+    // ===================== Middle East =====================
+
+    // Syria — the People's Council elected 10-11 February 1986, which was the
+    // sitting chamber in January 1990: 195 seats, of which the Ba'ath took 129.
+    // Article 8 of the 1973 constitution made the Ba'ath "the leading party in
+    // society and the state" and its share of the chamber was allocated, not
+    // won, so the four junior parties of the National Progressive Front and the
+    // vetted independents who held the other 66 seats are deliberately NOT
+    // entered as parties. Listing them would imply a choice that Article 8 had
+    // removed, and the same judgement is what the Iraq and China blocks above
+    // record. The shares therefore sum to 0.662 rather than to 1.0, which is
+    // legal here and is the honest shape of the thing.
+    // https://en.wikipedia.org/wiki/1986_Syrian_parliamentary_election
+    Polity {
+        nation: NationId::Syria,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("sy_baath", "Arab Socialist Ba'ath Party", "Hizb al-Ba'th al-'Arabi al-Ishtiraki", Family::Nationalist, 0.662),
+        ],
+        ruling: "the Regional Command of the Ba'ath Party",
+        pillars: &[
+            // Named institutions rather than "the army", per the rule the Iraq
+            // block sets. The Republican Guard under Adnan Makhlouf and the
+            // Third Armoured Division were the units stationed to hold Damascus
+            // rather than to face Israel; the Defence Companies that had done
+            // that job were broken up after Rifaat al-Assad's move of 1984.
+            pl(Pillar::Army, "the Republican Guard and the Third Armoured Division"),
+            pl(Pillar::Party, "the Ba'ath Party Regional Command"),
+            pl(Pillar::Security, "the General Intelligence Directorate"),
+        ],
+    },
+
+    // Jordan — Chamber of Deputies, 8 November 1989. The first general election
+    // since 1967 and the answer to the Ma'an bread riots of that April. Parties
+    // were still illegal, so all 647 candidates for 80 seats stood as
+    // independents and the result is recorded as blocs: the Muslim Brotherhood
+    // took 22 seats and independent Islamists a further 12, leftist and
+    // pan-Arab candidates about 13, and tribal and pro-government independents
+    // the remaining 33. Those are SEAT shares of 80, not vote shares, because
+    // Jordan published no national vote totals; they are named as blocs because
+    // that is what they were, and inventing party labels for them would be
+    // worse. The next election was due four years on and was held on 8 November
+    // 1993, under a new one-vote law written specifically to cut the
+    // Brotherhood's bloc down.
+    // https://en.wikipedia.org/wiki/1989_Jordanian_general_election
+    Polity {
+        nation: NationId::Jordan,
+        // Multi-member districts in which an elector had as many votes as the
+        // district had seats — the block vote, which is MORE majoritarian than
+        // the single non-transferable vote this enum offers. The 1993 law
+        // literally made it SNTV. The 1.6 exponent therefore understates the
+        // bias of the 1989 system rather than overstating it, which is stated
+        // here rather than papered over by reaching for FirstPastThePost's 3.0,
+        // a single-member shape Jordan did not use.
+        system: Electoral::SingleNonTransferable,
+        term_months: 48,
+        next: (1993, 11),
+        parties: &[
+            p("jo_ikhwan", "Muslim Brotherhood and allied Islamists", "al-Ikhwan al-Muslimun", Family::Religious, 0.425),
+            p("jo_tribal", "Tribal and pro-government independents", "", Family::Conservative, 0.4125),
+            p("jo_left", "Leftist and pan-Arab independents", "", Family::SocialDemocratic, 0.1625),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[
+            // Jordan is below the electoral ceiling and still carries pillars,
+            // which Pakistan's block above establishes as legal and which is
+            // the truth here: the King appointed and dismissed prime ministers
+            // without reference to the chamber that had just been elected, and
+            // the East Bank Bedouin regiments were the institution that decided
+            // Black September in 1970.
+            pl(Pillar::Army, "the Jordanian Armed Forces and the Bedouin regiments"),
+            pl(Pillar::Party, "the Hashemite court"),
+            pl(Pillar::Security, "the General Intelligence Directorate"),
+        ],
+    },
+
+    // Lebanon — and this is the block that most needs its reasoning written
+    // down, because a confessional parliamentary republic reading as
+    // non-electoral looks like an error.
+    //
+    // In January 1990 Lebanon had no election due and no election possible. The
+    // Chamber of Deputies sitting was the one elected in 1972; it had extended
+    // its own mandate every few years for eighteen years. The presidency had
+    // changed hands twice in fourteen months, once by assassination — Rene
+    // Moawad, blown up on 22 November 1989, seventeen days after taking office
+    // — and once by rival proclamation, and there were two cabinets claiming to
+    // be the government. Power in Lebanon did not change hands by vote, and no
+    // vote could have made it. That is what `authoritarianism` above 0.60 gates
+    // here: not repression — the Lebanese state had no capacity to repress
+    // anybody — but a closed route to office.
+    //
+    // `parties` is empty, which Saudi Arabia's block above establishes as legal.
+    // It is also the correct transcription: the organised political forces in
+    // Lebanon in 1990 were militias, they held no seats worth counting in a
+    // chamber elected before most of them existed, and they are all in the
+    // pillar list instead, which is exactly where an institution that can
+    // remove a government belongs.
+    // https://en.wikipedia.org/wiki/Taif_Agreement
+    Polity {
+        nation: NationId::Lebanon,
+        system: Electoral::ProportionalLowBar,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the rival cabinets of Michel Aoun and Selim Hoss",
+        pillars: &[
+            pl(Pillar::Army, "the Lebanese Forces of Samir Geagea"),
+            pl(Pillar::Security, "the Syrian Army in the Bekaa and West Beirut"),
+            pl(Pillar::Clergy, "Hezbollah and the Revolutionary Guard contingent at Baalbek"),
+            pl(Pillar::Party, "the Amal Movement"),
+            pl(Pillar::Business, "the Progressive Socialist Party's administration in the Chouf"),
+        ],
+    },
+
+    // United Arab Emirates — no parties have ever been legal and the Federal
+    // National Council was wholly appointed until 2006, so `parties` is empty
+    // on the Saudi precedent. The pillars are the two that actually decided
+    // Emirati politics: the Supreme Council of Rulers, in which each of the
+    // seven emirates holds a veto, and the split between the federal Union
+    // Defence Force and the brigades Abu Dhabi and Dubai kept for themselves
+    // until the unification of 1976 — the fault line the federal crisis of
+    // 1978-79 ran along.
+    Polity {
+        nation: NationId::UAE,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Supreme Council of Rulers",
+        pillars: &[
+            pl(Pillar::Party, "the Supreme Council of Rulers"),
+            pl(Pillar::Army, "the Union Defence Force and the Abu Dhabi brigades"),
+            pl(Pillar::Business, "the Dubai merchant houses"),
+        ],
+    },
+
+    // Qatar — no assembly, no parties, an appointed Advisory Council. The
+    // pillar that matters is the second one and it is not decoration: Sheikh
+    // Hamad bin Khalifa had been crown prince and Minister of Defence since
+    // 1977, had taken over the running of the state through the late 1980s, and
+    // deposed his own father with the armed forces on 27 June 1995 while the
+    // Emir was abroad. An army that removes a government is the definition this
+    // table uses, and in Qatar's case it did.
+    Polity {
+        nation: NationId::Qatar,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the House of Al Thani",
+        pillars: &[
+            pl(Pillar::Party, "the Al Thani family council"),
+            pl(Pillar::Army, "the Qatar Armed Forces under the Crown Prince"),
+            pl(Pillar::Business, "the merchant families of Doha"),
+        ],
+    },
+
+    // Oman — Sultan Qaboos ruled without an assembly of any kind. The State
+    // Consultative Council of 1981 was appointed and the Majlis al-Shura that
+    // replaced it in November 1991 had indirectly selected members and no power
+    // to legislate. The Ibadi ulema are a real pillar and not a borrowed one:
+    // Oman's imamate was a genuine rival government in the interior as recently
+    // as the Jebel Akhdar war of 1954-59, and the office of Grand Mufti is the
+    // institution that settled which of the two the country belonged to.
+    Polity {
+        nation: NationId::Oman,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Sultan of Oman",
+        pillars: &[
+            pl(Pillar::Army, "the Sultan's Armed Forces"),
+            pl(Pillar::Party, "the Diwan of the Royal Court"),
+            pl(Pillar::Clergy, "the Ibadi ulema and the office of the Grand Mufti"),
+            pl(Pillar::Business, "the Omani merchant houses"),
+        ],
+    },
+
+    // Yemen — House of Representatives, 27 April 1993: the first free
+    // multiparty election ever held on the Arabian peninsula, and the thing the
+    // unification of 22 May 1990 was supposed to be for. Shares below are SEAT
+    // shares of 301, not vote shares, because Yemen's constituency vote totals
+    // were not reliably published: General People's Congress 123, Islah 62,
+    // Yemeni Socialist Party 56, Ba'ath 7, Nasserists 1, independents 47. They
+    // therefore sum to 0.827 and the missing 0.173 is the independents, who are
+    // not a party. The alignment is the country's fault line drawn exactly: the
+    // GPC was Saleh's northern machine, the YSP was the former ruling party of
+    // the south, and each still had its own army. They went to war in May 1994.
+    // https://en.wikipedia.org/wiki/1993_Yemeni_parliamentary_election
+    Polity {
+        nation: NationId::Yemen,
+        // 301 single-member constituencies, plurality. The one unambiguous
+        // electoral system in this branch.
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (1993, 4),
+        parties: &[
+            p("ye_gpc", "General People's Congress", "al-Mu'tamar al-Sha'bi al-'Amm", Family::BigTent, 0.409),
+            p("ye_islah", "Yemeni Congregation for Reform", "al-Tajammu' al-Yamani lil-Islah", Family::Religious, 0.206),
+            p("ye_ysp", "Yemeni Socialist Party", "al-Hizb al-Ishtiraki al-Yamani", Family::Communist, 0.186),
+            p("ye_baath", "Yemeni Ba'ath Party", "Hizb al-Ba'th al-'Arabi al-Ishtiraki", Family::Nationalist, 0.023),
+            p("ye_nasserist", "Nasserist Unionist People's Organisation", "al-Tanzim al-Wahdawi al-Sha'bi al-Nasiri", Family::Nationalist, 0.003),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[
+            // Below the electoral ceiling and still carrying pillars, on the
+            // Pakistan precedent, because the whole of Yemen's tragedy is that
+            // unification merged two governments and never merged their two
+            // armies. Naming them separately is the transcription.
+            pl(Pillar::Army, "the northern forces under President Saleh's officers"),
+            pl(Pillar::Party, "the Yemeni Socialist Party's southern divisions"),
+            pl(Pillar::Clergy, "the tribal confederations of Hashid and Bakil"),
+        ],
+    },
+
+    // Bahrain — the 1973 constitution and the elected National Assembly lasted
+    // twenty months; the Emir dissolved the Assembly in August 1975 and ruled
+    // by decree under the State Security Law of 1974 until 2001. No parties.
+    // The security pillar is named specifically because it was a specific
+    // thing: the State Security service and its Special Branch were run by Ian
+    // Henderson, a British officer, from 1966 to 1998, and the 1981 coup plot
+    // by the Iranian-trained Islamic Front for the Liberation of Bahrain is
+    // what it existed to stop.
+    Polity {
+        nation: NationId::Bahrain,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the House of Al Khalifa",
+        pillars: &[
+            pl(Pillar::Party, "the Al Khalifa family council"),
+            pl(Pillar::Security, "the State Security service and its Special Branch"),
+            pl(Pillar::Army, "the Bahrain Defence Force"),
+            pl(Pillar::Business, "the Sunni merchant families and the Chamber of Commerce"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

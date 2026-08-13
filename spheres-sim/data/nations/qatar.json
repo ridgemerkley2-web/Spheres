@@ -1,0 +1,43 @@
+{
+  "id": "Qatar",
+  "name": "Qatar",
+  "system": "Market",
+  "authoritarianism": 0.82,
+  "economy": {
+    "gdp_bn": 7.36,
+    "population_m": 0.44,
+    "tfp_trend": 0.01,
+    "inflation": 0.03,
+    "interest_rate": 0.095,
+    "tax_rate": 0.4,
+    "mil_spend_gdp": 0.107,
+    "state_invest_gdp": 0.14,
+    "priv_invest_gdp": 0.06,
+    "debt_gdp": 0.15,
+    "oil_mbd": 0.406,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 64.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 0.8,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $7.36bn: World Bank NY.GDP.MKTP.CD, series QAT, 1990 - $7,360,439,560.44. Cross-checked against the Bank's Atlas GNI per capita for Qatar in 1990 of $17,040, which on 440,175 people implies $7.50bn - within 2% of the GDP figure. The two series agree closely, which is what one expects of a small economy on a hard dollar peg with one export.",
+    "Population 440,175: World Bank SP.POP.TOTL, series QAT, 1990. The smallest population in this roster. Qatari citizens were roughly a quarter of it.",
+    "TFP trend 0.010: the highest of the four Gulf monarchies in this branch, level with Kuwait's shipped 0.010, and the reason is the North Field. Discovered by Shell in 1971 and long treated as a nuisance, it is the largest non-associated gas field on earth, and Qatar took the first phase of development to completion between 1989 and 1991 - the decision that turned a small oil emirate into the LNG exporter it became. Not set higher: in 1990 none of that had produced revenue yet.",
+    "Inflation 3.0%: World Bank FP.CPI.TOTL.ZG, series QAT, 1990 - 3.0009680542111.",
+    "Interest rate 9.5%: World Bank FR.INR.LEND, series QAT, 1990 - 9.5%. The deposit rate (FR.INR.DPST) was 6.0%. The riyal has been pegged to the dollar since 1980, so these are dollar rates plus a country premium, and the 3.5-point spread is the banking margin in a market of eight banks.",
+    "Revenue 40% of GDP: DERIVED AND FLAGGED. Qatar published no revenue statistics to the World Bank and levied no income tax, so GC.TAX.TOTL.GD.ZS is null. What is published is NY.GDP.PETR.RT.ZS, which puts Qatari oil rents at 48.66% of GDP in 1990; in a state that owns the concession that rent is the treasury's income. 0.40 is that rent share less an allowance for the share retained by Qatar General Petroleum for reinvestment in the North Field. The derivation is stated. NOTE FOR THE INTEGRATOR: this sits far above the shipped Saudi Arabia (0.08) and Kuwait (0.05), which are legacy figures with undocumented provenance; this file follows the schema's stated definition of tax_rate rather than those two, and the inconsistency is flagged rather than propagated.",
+    "Military 10.7% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI basis), series QAT, 1990 - 10.743878769782. One of the highest shares in the world, on one of the smallest armies in the world - which is the definition of a state buying protection it cannot man.",
+    "Public investment 14% and private investment 6% of GDP: FLAGGED AS UNVERIFIED. Both NE.GDI.FTOT.ZS and NE.GDI.FPRV.ZS are null for Qatar in 1990. The 20% total is placed between Oman's published 10.8% and Jordan's published 25.1%, and weighted heavily toward the state because the capital programme of 1989-91 was North Field phase one, which was Qatar General Petroleum's. Neither the total nor the split is transcribed.",
+    "Debt 15% of GDP: FLAGGED AS UNVERIFIED. Qatar did not report to the Debtor Reporting System. 0.15 is entered above the UAE's near-zero because Qatar borrowed syndicated project finance for the North Field rather than paying for it out of reserves, and below any of the indebted states here. Not a published figure.",
+    "Oil 406,000 barrels a day: EIA international crude production, Qatar, 1990 - 406 thousand b/d, against 380 in 1989 and 395 in 1991. Cross-check: 48.66% of $7.36bn is $3.58bn of rent on 148m barrels of annual output, about $24 a barrel against a $23 world price for a light crude with negligible lifting cost. Consistent.",
+    "Stability 64 and authoritarianism 0.82: below Saudi Arabia's shipped 66 and Kuwait's 70, which reads oddly for the richest and quietest state on the peninsula until the succession is named. Emir Khalifa bin Hamad had himself taken power by deposing his cousin in February 1972. His son Hamad had been crown prince since 1977 and Minister of Defence since 1977, had taken over the running of the state through the late 1980s, and deposed his father in a bloodless palace coup on 27 June 1995 while the Emir was in Switzerland. In January 1990 that split inside the Al Thani was already the central fact of Qatari politics, and stability is the field that should carry it. Authoritarianism 0.82 sits between the UAE's 0.80 and Saudi Arabia's 0.85: no elections, no parties, an appointed Advisory Council, but nothing resembling the Saudi religious settlement.",
+    "Separatism 0.0: a peninsula the size of Yorkshire with one city. There is nothing to secede. Level with Kuwait's shipped 0.0.",
+    "Military strength 0.8: below Kuwait's shipped 2.0, and Kuwait had roughly 20,000 men and 275 tanks in January 1990. Qatar had about 6,000 and 24 AMX-30s. The 1986 Fasht al-Dibal raid on Bahrain was carried out by a helicopter-borne company, which is the correct scale for this army: it could take an artificial island from a smaller neighbour and could do nothing whatever about Iran or Iraq."
+  ]
+}

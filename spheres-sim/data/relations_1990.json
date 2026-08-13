@@ -185,6 +185,81 @@
         { "a": "Spain", "b": "Brazil", "value": 35.0 },
         { "a": "Spain", "b": "USSR", "value": 5.0 }
       ]
+    },
+    {
+      "note": [
+        "The Middle East on 1 January 1990: eight nations added, and the arithmetic of a region seven months before the Gulf crisis rearranged all of it. Every dyad below is stated once, and the pairs already in this file are not restated - Iraq-Kuwait at -35, Iraq-Saudi at -25, Iraq-Iran at -50, USA-Saudi at 50, USA-Iraq at -20, USA-Iran at -60 and UK-Kuwait at 50 all stand as written above.",
+        "Syria is the outlier of Arab politics in this period and its numbers are meant to look strange. Damascus and Baghdad were the two wings of the same party and hated each other more than either hated anyone else: Syria was the only Arab state to back Iran through all eight years of the Iran-Iraq war, closed the Kirkuk-Banias pipeline against Baghdad in 1982, and joined the coalition against Iraq in 1990. Hence Syria-Iraq at -60, the most hostile pair in this block and worse than either state's line to Israel. Syria-Iran at 55 is that same alliance from the other end, between a secular Ba'athist republic and an Islamic one, and it has outlasted every prediction made about it. Syria-Israel at -70 is the Golan and the Bekaa Valley air battle of June 1982, in which Syria lost eighty-two aircraft and Israel none. Syria-Turkey at -30 is water and the PKK: the Ataturk Dam closed the Euphrates for a month in January 1990 to fill its reservoir, and Damascus was hosting Abdullah Ocalan while it complained about it.",
+        "Lebanon's numbers are the numbers of a country other people were fighting in. Lebanon-Syria at 35 is not friendship; it is the reading of a state whose president had been installed under the Taif Accord of October 1989 with Syrian backing, and whose rival government was destroyed by the Syrian assault of 13 October 1990. Lebanon-Israel at -50 is the security zone north of the 1978 line. Lebanon-France at 30 is the mandate, the language and the paratroopers of the 1982-84 multinational force.",
+        "Jordan is the pivot that broke. King Hussein was the closest Arab ally London and Washington had after Cairo, and then declined to join the coalition against Iraq, because Jordan bought its oil from Baghdad down the desert highway and several hundred thousand of its people worked in the Gulf. The Jordan-Iraq line therefore opens POSITIVE at 40, which is the fact that made 1990-91 so expensive for Amman, and Jordan-Saudi opens at 30 with further to fall than any other pair here.",
+        "The Gulf monarchies are a bloc that does not quite hold together yet. The Co-operation Council was eight years old in 1990; its members are entered warm to one another and warmer to Washington and London, whose treaties with the Trucial States ran to 1971 and whose habits outlasted them - Oman-UK at 70 is the highest number in this block, and it is the Sultan's Armed Forces' British officers, the Dhofar War and the facilities at Masirah. Two exceptions are deliberate. Qatar-Bahrain at 10 is barely positive because of the Hawar Islands and the Fasht al-Dibal raid of 26 April 1986, the only near-war between Council members. And Yemen sits outside the bloc entirely: Yemen-Saudi at -25 is the Treaty of Taif claim on Asir, Jizan and Najran, a frontier nobody had demarcated, and a million Yemeni workers held on sufferance; Yemen-USSR at 55 is the inheritance of Aden, Moscow's only Arabian client and its facility at Socotra.",
+        "Iran and the Arab shore. Iran-UAE at -20 is Abu Musa and the Tunbs, taken on 30 November 1971. Iran-Bahrain at -30 is the coup attempt of December 1981 by the Islamic Front for the Liberation of Bahrain, which Bahrain's courts found had been trained in Iran, and behind it the Shah's claim to the whole island - dropped in 1970 and not forgotten by anybody living on it. Iran-Oman at 25 is the odd one and it is real: Iranian troops fought for the Sultan in Dhofar from 1973, Muscat stayed neutral through the Iran-Iraq war, and the two states share the Strait of Hormuz and have always talked."
+      ],
+      "pairs": [
+        { "a": "Syria",   "b": "Iraq",        "value": -60.0 },
+        { "a": "Syria",   "b": "Israel",      "value": -70.0 },
+        { "a": "Syria",   "b": "Turkey",      "value": -30.0 },
+        { "a": "Syria",   "b": "Iran",        "value": 55.0 },
+        { "a": "Syria",   "b": "USSR",        "value": 60.0 },
+        { "a": "Syria",   "b": "USA",         "value": -25.0 },
+        { "a": "Syria",   "b": "Egypt",       "value": 20.0 },
+        { "a": "Syria",   "b": "SaudiArabia", "value": 30.0 },
+        { "a": "Syria",   "b": "Jordan",      "value": 10.0 },
+        { "a": "Syria",   "b": "Lebanon",     "value": 35.0 },
+
+        { "a": "Jordan",  "b": "Iraq",        "value": 40.0 },
+        { "a": "Jordan",  "b": "Israel",      "value": -30.0 },
+        { "a": "Jordan",  "b": "USA",         "value": 40.0 },
+        { "a": "Jordan",  "b": "UK",          "value": 45.0 },
+        { "a": "Jordan",  "b": "SaudiArabia", "value": 30.0 },
+        { "a": "Jordan",  "b": "Egypt",       "value": 35.0 },
+        { "a": "Jordan",  "b": "USSR",        "value": 5.0 },
+
+        { "a": "Lebanon", "b": "Israel",      "value": -50.0 },
+        { "a": "Lebanon", "b": "Iran",        "value": -5.0 },
+        { "a": "Lebanon", "b": "USA",         "value": 5.0 },
+        { "a": "Lebanon", "b": "France",      "value": 30.0 },
+        { "a": "Lebanon", "b": "SaudiArabia", "value": 25.0 },
+
+        { "a": "UAE",     "b": "SaudiArabia", "value": 55.0 },
+        { "a": "UAE",     "b": "Kuwait",      "value": 50.0 },
+        { "a": "UAE",     "b": "USA",         "value": 40.0 },
+        { "a": "UAE",     "b": "UK",          "value": 50.0 },
+        { "a": "UAE",     "b": "Iran",        "value": -20.0 },
+        { "a": "UAE",     "b": "Iraq",        "value": 5.0 },
+        { "a": "UAE",     "b": "Oman",        "value": 45.0 },
+        { "a": "UAE",     "b": "Qatar",       "value": 45.0 },
+        { "a": "UAE",     "b": "Bahrain",     "value": 45.0 },
+
+        { "a": "Qatar",   "b": "SaudiArabia", "value": 45.0 },
+        { "a": "Qatar",   "b": "Kuwait",      "value": 45.0 },
+        { "a": "Qatar",   "b": "USA",         "value": 30.0 },
+        { "a": "Qatar",   "b": "UK",          "value": 40.0 },
+        { "a": "Qatar",   "b": "Iran",        "value": 10.0 },
+        { "a": "Qatar",   "b": "Bahrain",     "value": 10.0 },
+        { "a": "Qatar",   "b": "Oman",        "value": 40.0 },
+
+        { "a": "Oman",    "b": "SaudiArabia", "value": 40.0 },
+        { "a": "Oman",    "b": "Kuwait",      "value": 40.0 },
+        { "a": "Oman",    "b": "USA",         "value": 45.0 },
+        { "a": "Oman",    "b": "UK",          "value": 70.0 },
+        { "a": "Oman",    "b": "Iran",        "value": 25.0 },
+        { "a": "Oman",    "b": "Bahrain",     "value": 40.0 },
+        { "a": "Oman",    "b": "Yemen",       "value": 5.0 },
+
+        { "a": "Yemen",   "b": "SaudiArabia", "value": -25.0 },
+        { "a": "Yemen",   "b": "USSR",        "value": 55.0 },
+        { "a": "Yemen",   "b": "USA",         "value": -5.0 },
+        { "a": "Yemen",   "b": "Iraq",        "value": 30.0 },
+        { "a": "Yemen",   "b": "Egypt",       "value": 15.0 },
+        { "a": "Yemen",   "b": "Kuwait",      "value": 10.0 },
+
+        { "a": "Bahrain", "b": "SaudiArabia", "value": 65.0 },
+        { "a": "Bahrain", "b": "Kuwait",      "value": 45.0 },
+        { "a": "Bahrain", "b": "USA",         "value": 55.0 },
+        { "a": "Bahrain", "b": "UK",          "value": 50.0 },
+        { "a": "Bahrain", "b": "Iran",        "value": -30.0 }
+      ]
     }
   ]
 }
