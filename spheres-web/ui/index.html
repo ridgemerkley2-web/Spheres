@@ -381,6 +381,11 @@ const TERRITORY = {
   SaudiArabia: ["SAU"], Iran: ["IRN"], SouthKorea: ["KOR"], Poland: ["POL"],
   Brazil: ["BRA"], Indonesia: ["IDN"], Egypt: ["EGY"], Israel: ["ISR"],
   Turkey: ["TUR"], Nigeria: ["NGA"], Vietnam: ["VNM"], Spain: ["ESP"],
+  // Eastern Europe. Czechoslovakia is drawn as both halves because Natural
+  // Earth 110m has no Czechoslovak polygon — the geometry is 1993's and the
+  // nation is 1990's, so the two successor shapes are painted as one state.
+  Hungary: ["HUN"], Romania: ["ROU"], Bulgaria: ["BGR"], Albania: ["ALB"],
+  Czechoslovakia: ["CZE", "SVK"],
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],

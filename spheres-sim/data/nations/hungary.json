@@ -1,0 +1,42 @@
+{
+  "id": "Hungary",
+  "name": "Hungary",
+  "system": "Market",
+  "authoritarianism": 0.18,
+  "economy": {
+    "gdp_bn": 33.1,
+    "population_m": 10.37,
+    "tfp_trend": 0.005,
+    "inflation": 0.289,
+    "interest_rate": 0.22,
+    "tax_rate": 0.47,
+    "mil_spend_gdp": 0.026,
+    "state_invest_gdp": 0.11,
+    "priv_invest_gdp": 0.1,
+    "debt_gdp": 0.66,
+    "oil_mbd": 0.035,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 58.0,
+    "separatism": 0.03
+  },
+  "military": {
+    "strength": 6.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $33.1bn: World Bank NY.GDP.MKTP.CD, series HUN, 1990 - the same series carrying USA 5980, France 1270, Italy 1180, UK 1090 and Spain 535, so the league table stays internally comparable. Hungary is one of the few CMEA members for which that series exists at all in 1990, which is why the figure here needs no reconstruction and Czechoslovakia's does.",
+    "Population 10.37m: the Central Statistical Office (KSH) counted 10,374,823 at 1 January 1990. The 1 January 1990 census gave 10.375m. Hungary's population had been falling since 1981 and this is the first entry in this roster for which that is true.",
+    "Inflation 28.9%: the KSH consumer price index for 1990. There is no single price shock behind it because there was no big bang: Hungary had been liberalising prices in stages since the New Economic Mechanism of 1968 and faster since 1988. A high print in a year with no shock is exactly what two decades of spreading the shock out looks like.",
+    "Interest rate 22%: the National Bank of Hungary's basic rate ran in the high teens to low twenties through 1990 while it defended the forint inside a crawling peg. The implied real rate is about minus 7 points, which is the honest description of the last year of the soft budget constraint, and it sits inside the schema's coupled band with room to spare.",
+    "system Market, and Hungary is the only entry in this region for which Command would be the wrong label on 1 January 1990. The Company Act of 1988 and the Transformation Act of 1989 legalised private companies before the regime changed; roughly 80% of prices and 90% of imports were already free of administrative control at the start of 1990; the Budapest Stock Exchange reopened in June 1990 after a 42-year closure. priv_invest_gdp 0.10 against Czechoslovakia's 0.05 records the same fact in the accounts.",
+    "debt_gdp 0.66: gross external debt was about $21.3bn at end-1990 against roughly $33bn of GDP, the heaviest per head in the bloc. Antall's government made a point of never rescheduling it, unlike Poland and unlike Bulgaria, and that interest bill is why Hungarian fiscal policy has no room at all in this start state. tax_rate 0.47 is the other half of the same fact: the personal income tax introduced in 1988 was the first in the bloc.",
+    "mil_spend_gdp 0.026: the Hungarian People's Army was cut hard through 1989-90 and military spending fell below 3% of GDP. Hungary was the first Warsaw Pact state to ask formally to leave the alliance's military organisation, in June 1990; the withdrawal agreement for the roughly 50,000 Soviet troops in the country was signed on 10 March 1990 and the last of them left on 19 June 1991.",
+    "oil_mbd 0.035: Hungarian crude output was about 1.9 million tonnes in 1990, roughly 0.038 mbd, most of it from the Algyo field near Szeged. Rounded down to 0.035. Hungary was nonetheless a large net importer, via the Druzhba line and the Adria pipeline from Omisalj.",
+    "authoritarianism 0.18, the lowest in this region and below Poland's 0.35: the MSZMP dissolved itself on 7 October 1989, the Republic was proclaimed on 23 October 1989, and the National Round Table agreements of September 1989 were already law when the game opens. The first free election was held on 25 March and 8 April 1990 and produced a government - Antall's MDF-led coalition - with no communist component at all, which is more than Poland's 1989 semi-free election could produce.",
+    "stability 58.0: above Bulgaria's 45 and Romania's 40, marginally above Poland's 55, and well below Spain's 70. The regime change was negotiated and complete, but the government sitting on 1 January 1990 is a caretaker with no mandate, the taxi blockade of October 1990 is nine months away, and the austerity the debt service forces is not popular.",
+    "separatism 0.03: Hungary is among the most ethnically homogeneous states in Europe - roughly 97% Hungarian at the 1990 census, with the Roma the only minority above 1%. Level with France's 0.03. Hungary's nationality question in 1990 points outward, at the roughly 3 million Hungarians in Romania, Slovakia, Vojvodina and Subcarpathian Ukraine, and separatism is the wrong field to carry it: it is a relations figure and it appears there, in the Romanian line.",
+    "military strength 6.0: about 100,000 troops and 1,300 tanks in 1990, indexed at half Czechoslovakia's 9.0 and level with Bulgaria's 6.0, both of which are consistent with the manpower and armour ratios. nuclear false; no Soviet warheads were ever under Hungarian control."
+  ]
+}

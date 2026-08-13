@@ -110,7 +110,7 @@ pub const ROSTER: &[NationRow] = &[
     // borders only the first two of those, which is a real change the model
     // gets for free from the data rather than from a special case.
     row("USSR", "Soviet Union", &["ussr", "soviets"], "Eurasia",
-        &["China", "Poland", "Turkey", "Iran"], &[], true, true, false),
+        &["China", "Poland", "Turkey", "Iran", "Czechoslovakia", "Hungary", "Romania"], &[], true, true, false),
 
     // Russia's claim on Ukraine is the 1989 Soviet census: 22.1% of the
     // Ukrainian SSR's people were ethnic Russians, concentrated in Crimea and
@@ -122,7 +122,7 @@ pub const ROSTER: &[NationRow] = &[
         &["China", "Poland", "Ukraine"], &[claim("Ukraine", 0.22)], false, true, false),
 
     row("Ukraine", "Ukraine", &["ukr"], "Eurasia",
-        &["Russia", "Poland"], &[], false, false, false),
+        &["Russia", "Poland", "Czechoslovakia", "Hungary", "Romania"], &[], false, false, false),
 
     // Beijing's border with Moscow was fought over at Damansky/Zhenbao in 1969
     // and not finally settled until the agreements of 1991 and 2004. The claim
@@ -138,7 +138,7 @@ pub const ROSTER: &[NationRow] = &[
     row("Japan", "Japan", &["jpn"], "EastAsia", &[], &[], true, true, true),
 
     row("Germany", "Germany", &["ger", "frg", "brd"], "WesternEurope",
-        &["Poland", "France"], &[], true, true, true),
+        &["Poland", "France", "Czechoslovakia"], &[], true, true, true),
 
     row("UK", "United Kingdom", &["uk", "britain", "gb"], "WesternEurope",
         &["France"], &[], true, true, true),
@@ -184,7 +184,7 @@ pub const ROSTER: &[NationRow] = &[
         &[], &[], true, false, false),
 
     row("Poland", "Poland", &["pol"], "EasternEurope",
-        &["Germany", "USSR", "Russia", "Ukraine"], &[], true, false, false),
+        &["Germany", "USSR", "Russia", "Ukraine", "Czechoslovakia"], &[], true, false, false),
 
     row("Brazil", "Brazil", &["bra"], "LatinAmerica", &[], &[], true, false, false),
 
@@ -200,7 +200,7 @@ pub const ROSTER: &[NationRow] = &[
     // Nations in 1926 over Turkey's objection and pressed again by Ozal during
     // the Gulf crisis: roughly 2m of Iraq's 17m people in the north.
     row("Turkey", "Turkey", &["turkiye", "tur"], "MiddleEast",
-        &["Iraq", "Iran", "USSR"], &[claim("Iraq", 0.12)], true, false, false),
+        &["Iraq", "Iran", "USSR", "Bulgaria"], &[claim("Iraq", 0.12)], true, false, false),
 
     row("Nigeria", "Nigeria", &["nga"], "WestAfrica", &[], &[], true, false, false),
 
@@ -209,7 +209,7 @@ pub const ROSTER: &[NationRow] = &[
         &["China"], &[claim("China", 0.002)], true, false, false),
 
     row("Yugoslavia", "Yugoslavia", &["sfry", "yugo"], "Balkans",
-        &["Italy"], &[], true, false, false),
+        &["Italy", "Hungary", "Romania", "Bulgaria", "Albania"], &[], true, false, false),
 
     // The 1991 census is the whole of the Yugoslav tragedy in three numbers.
     // Serbs were 31.2% of Bosnia and 12.2% of Croatia — concentrated in the
@@ -218,14 +218,14 @@ pub const ROSTER: &[NationRow] = &[
     // declared Herceg-Bosna in November 1991.
     // https://en.wikipedia.org/wiki/Demographic_history_of_Bosnia_and_Herzegovina
     row("Serbia", "Serbia", &["serbia and montenegro", "fry", "srb"], "Balkans",
-        &["Croatia", "Bosnia"],
+        &["Croatia", "Bosnia", "Hungary", "Romania", "Bulgaria", "Albania"],
         &[claim("Bosnia", 0.31), claim("Croatia", 0.12)], false, false, false),
 
     row("Croatia", "Croatia", &["hrv"], "Balkans",
-        &["Serbia", "Bosnia", "Slovenia"], &[claim("Bosnia", 0.17)], false, false, false),
+        &["Serbia", "Bosnia", "Slovenia", "Hungary"], &[claim("Bosnia", 0.17)], false, false, false),
 
     row("Slovenia", "Slovenia", &["svn"], "Balkans",
-        &["Croatia", "Italy"], &[], false, false, false),
+        &["Croatia", "Italy", "Hungary"], &[], false, false, false),
 
     row("Bosnia", "Bosnia", &["bosnia and herzegovina", "bih"], "Balkans",
         &["Serbia", "Croatia"], &[], false, false, false),
@@ -244,6 +244,103 @@ pub const ROSTER: &[NationRow] = &[
     // https://en.wikipedia.org/wiki/Brussels_Agreement_(1984)
     row("Spain", "Spain", &["esp", "espana"], "WesternEurope",
         &["France"], &[claim("UK", 0.0005)], true, false, false),
+
+    // ---- Eastern Europe, January 1990 ----------------------------------
+    // Five states, and the region field splits them where the map does: the
+    // three north of the Danube watershed sit in EasternEurope with Poland,
+    // and Bulgaria and Albania sit in Balkans with Yugoslavia, because that
+    // is where their contacts actually are. Region membership auto-populates
+    // dyads, so this choice decides who is close enough to have an opinion
+    // about whom, and putting Albania anywhere but Balkans would leave the
+    // one state with a live irredentist claim on Yugoslavia outside its
+    // neighbourhood.
+
+    // Czechoslovakia is ONE state here, which is the transcription for 1 January
+    // 1990 and stays true for the whole three years the federation had left.
+    // Its borders are the four this roster simulates: Germany (the Bohemian
+    // frontier with the FRG, ~356km), Poland, Hungary, and the USSR through
+    // Transcarpathia — which is why Ukraine, not Russia, inherits that border.
+    // Austria and the GDR are not simulated, so those two frontiers are
+    // correctly absent rather than wrong.
+    // No claims. Czechoslovakia held none in 1990: the Sudeten question ran the
+    // other way, and the Benes decrees are a property dispute with Bonn and
+    // Vienna rather than a claim on anyone's territory.
+    row("Czechoslovakia", "Czechoslovakia", &["csfr", "cssr", "czechoslovak", "cs"], "EasternEurope",
+        &["Germany", "Poland", "Hungary", "USSR", "Ukraine"], &[], true, false, false),
+
+    // Hungary borders every state in this region except Albania and Bulgaria,
+    // and it is the only nation in the roster that borders all four Yugoslav
+    // entities the model carries: the federation, then Serbia through
+    // Vojvodina, Croatia along the Drava, and Slovenia's 102km in the Prekmurje.
+    // NO CLAIMS, and that is a transcription rather than an omission. Three
+    // million Hungarians lived outside Hungary in 1990 — 1.6m in Romania,
+    // 0.57m in Slovakia, 0.34m in Vojvodina, 0.16m in Ukraine — and Antall's
+    // remark about being "in spirit the prime minister of fifteen million"
+    // was read across the region as revisionism. But no Hungarian government
+    // after 1947 ever asserted a territorial claim, and Budapest signed basic
+    // treaties with Ukraine (1991), Slovakia (1995) and Romania (1996)
+    // explicitly renouncing one. The grievance is real and it belongs in the
+    // relations matrix, where it is; it is not a border demand and this table
+    // will not turn it into one.
+    row("Hungary", "Hungary", &["hun", "magyarorszag"], "EasternEurope",
+        &["Czechoslovakia", "USSR", "Ukraine", "Romania", "Yugoslavia", "Serbia", "Croatia", "Slovenia"],
+        &[], true, false, false),
+
+    // Romania's claim is Bessarabia and northern Bukovina, taken by the Soviet
+    // ultimatum of 26 June 1940 under the secret protocol of the
+    // Molotov-Ribbentrop pact. The Romanian Parliament's declaration of
+    // 24 June 1991 pronounced the pact null and void ab initio and demanded
+    // that its consequences be removed — the nearest thing to a formal claim
+    // any government in this region made in this period. Stated at what it
+    // covers and no more: the Moldavian SSR's 4.34m plus roughly 0.9m in the
+    // Chernivtsi and Budjak districts of the Ukrainian SSR, about 5.2m of a
+    // Soviet Union of 288.6m, or 0.018. When the union goes, the residue is
+    // the Ukrainian portion alone — northern Bukovina, southern Bessarabia and
+    // Snake Island, ~0.9m of Ukraine's 51.7m — which stayed genuinely disputed
+    // until the 1997 treaty and the ICJ delimitation of 2009.
+    // What is NOT here: Moldova is not in this roster, so union with Moldova
+    // cannot be modelled and is not smuggled in as a claim on someone else.
+    // https://en.wikipedia.org/wiki/Molotov%E2%80%93Ribbentrop_Pact
+    row("Romania", "Romania", &["rou", "rom", "romania"], "EasternEurope",
+        &["Hungary", "USSR", "Ukraine", "Yugoslavia", "Serbia", "Bulgaria"],
+        &[claim("USSR", 0.018), claim("Ukraine", 0.017)], true, false, false),
+
+    // Bulgaria borders Romania along the Danube, Yugoslavia (and after 1992 its
+    // Serbian rump) in the west, and Turkey at the Kapitan Andreevo crossing
+    // over which 340,000 Bulgarian Turks were driven in the summer of 1989.
+    // Greece and Macedonia are not simulated.
+    // No claims, which for the state that entered both world wars to get the
+    // Macedonian and Aegean territories back is worth stating rather than
+    // leaving to inference: Bulgaria renounced them at the Paris peace treaty
+    // of 1947 and never reasserted them. Sofia's quarrel with Skopje after
+    // 1991 was over whether Macedonians are a nation, not over where the
+    // border runs — Bulgaria was the first state to recognise Macedonia's
+    // independence, in January 1992. A dispute about identity is not a claim
+    // on territory and this table does not have a field for it.
+    row("Bulgaria", "Bulgaria", &["bgr", "bul", "balgariya"], "Balkans",
+        &["Romania", "Yugoslavia", "Serbia", "Turkey"], &[], true, false, false),
+
+    // Albania's only simulated land borders are with Yugoslavia and, after the
+    // federation goes, with the Serbian rump through Kosovo and Montenegro.
+    // Greece and Macedonia are not simulated.
+    // The claim is Kosovo, and it is the one entry in this region that requires
+    // a judgement rather than a transcription, so here is exactly what is and
+    // is not being asserted. Kosovo's autonomy was stripped by Belgrade in
+    // March 1989, its assembly dissolved in July 1990, and Yugoslav police
+    // killed protesters there in January and February 1990 — weeks into this
+    // start state. Ramiz Alia's stated position in January 1990 was
+    // self-determination for Kosovars WITHIN Yugoslavia, not annexation; Tirana
+    // asserted no border change. But in October 1991 Albania became the only
+    // state on earth to recognise the self-declared Republic of Kosova, and
+    // Albanian irredentism is a continuous fact of the period rather than an
+    // invention of this table. Entered at what Kosovo was: about 1.9m of a
+    // Yugoslavia of 23.5m, 0.08 of the target. That share against a strength
+    // index of 3.0 is a grievance the appetite model will price as unaffordable
+    // forever, which is the correct answer — Albania never fired a shot for
+    // Kosovo, and somebody else's air force settled it in 1999.
+    // https://en.wikipedia.org/wiki/Republic_of_Kosova
+    row("Albania", "Albania", &["alb", "shqiperia"], "Balkans",
+        &["Yugoslavia", "Serbia"], &[claim("Yugoslavia", 0.08)], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -395,6 +492,11 @@ well_known! {
     Slovenia => "Slovenia",
     Bosnia => "Bosnia",
     Spain => "Spain",
+    Czechoslovakia => "Czechoslovakia",
+    Hungary => "Hungary",
+    Romania => "Romania",
+    Bulgaria => "Bulgaria",
+    Albania => "Albania",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {
