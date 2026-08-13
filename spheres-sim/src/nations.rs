@@ -103,8 +103,11 @@ pub const REGIONS: &[&str] = &[
 /// claim on a coral reef and a claim on a whole emirate are not the same object.
 #[rustfmt::skip]
 pub const ROSTER: &[NationRow] = &[
+    // The southern border is declared from this end too, because the roster's
+    // symmetry check reads the raw rows and not the closure. Canada is not in
+    // the roster, so the northern one is correctly absent.
     row("USA", "United States", &["usa", "us", "america"], "NorthAmerica",
-        &[], &[], true, true, true),
+        &["Mexico"], &[], true, true, true),
 
     // The union borders China, Poland, Turkey and Iran; the successor Russia
     // borders only the first two of those, which is a real change the model
@@ -186,7 +189,15 @@ pub const ROSTER: &[NationRow] = &[
     row("Poland", "Poland", &["pol"], "EasternEurope",
         &["Germany", "USSR", "Russia", "Ukraine", "Czechoslovakia", "Belarus", "Lithuania"], &[], true, false, false),
 
-    row("Brazil", "Brazil", &["bra"], "LatinAmerica", &[], &[], true, false, false),
+    // Brazil touches every South American state except Chile and Ecuador. Six of
+    // those ten neighbours are now in the roster and are declared here; Paraguay,
+    // Guyana, Suriname and French Guiana are not simulated. Brazil holds no claim
+    // on any of them and never has - the Baron of Rio Branco settled all of it by
+    // arbitration and purchase between 1895 and 1909, which is why the largest
+    // state in the region is also the one with nothing outstanding.
+    row("Brazil", "Brazil", &["bra"], "LatinAmerica",
+        &["Argentina", "Uruguay", "Bolivia", "Peru", "Colombia", "Venezuela"],
+        &[], true, false, false),
 
     row("Indonesia", "Indonesia", &["idn"], "SoutheastAsia", &[], &[], true, false, false),
 
@@ -617,6 +628,129 @@ pub const ROSTER: &[NationRow] = &[
     // a claim either, and Romania is not simulated in any case.
     row("Moldova", "Moldova", &["mda", "moldavia"], "EasternEurope",
         &["Ukraine"], &[], false, false, false),
+
+    // ---- Latin America ----------------------------------------------------
+    //
+    // Ten states. The borders below are the ones that exist between nations *in
+    // this roster*: Paraguay, Guyana, Suriname, Panama, Guatemala and Belize are
+    // not simulated, so those frontiers are correctly absent rather than wrong.
+    //
+    // Brazil's land border with France by way of French Guiana is deliberately
+    // not declared. It is a real 730 km frontier, but it is a border with an
+    // overseas department 7,000 km from Paris, and a Franco-Brazilian
+    // war-appetite dyad would be an artefact of how the map is drawn rather than
+    // a fact about either state. The same reasoning that leaves Spain's border
+    // with Morocco out leaves this one out.
+    //
+    // Three claims exist in this region and no more. What is striking about
+    // South America in 1990 is how few there are: the continent had settled
+    // almost all of its frontiers by arbitration between 1900 and 1942, and the
+    // three that were left over are the three that produced shooting.
+
+    // Buenos Aires holds one claim and it is the Falklands - taken by Britain on
+    // 3 January 1833, invaded on 2 April 1982, pressed at the UN Committee of 24
+    // every year since 1965. Relations were restored on 19 February 1990 under
+    // the Madrid formula, in which both sides agreed to set sovereignty aside
+    // rather than settle it, so the game opens with the claim live and the
+    // relation merely cold.
+    //
+    // The share is the arithmetic this table's doc comment demands, and it is
+    // brutal. The 1991 Falklands census counted 2,121 people against a United
+    // Kingdom of 57.4m: 0.00004 of the target, an order of magnitude smaller
+    // than Spain's Gibraltar claim. The appetite model will therefore never find
+    // an invasion worth its cost, and that is the correct reading rather than a
+    // failure. The 1982 war was not a calculation about what the islands were
+    // worth. It was a junta three days after the largest general strike of the
+    // dictatorship looking for something else for the country to think about -
+    // domestic collapse, which this sim models, and not territorial appetite,
+    // which it also models and which was not the mechanism.
+    // https://en.wikipedia.org/wiki/1991_Falkland_Islands_census
+    row("Argentina", "Argentina", &["arg"], "LatinAmerica",
+        &["Chile", "Bolivia", "Brazil", "Uruguay"],
+        &[claim("UK", 0.00004)], true, false, false),
+
+    // The 3,145 km with the United States is Mexico's only border inside this
+    // roster. No claim, and the absence is the transcription: the territorial
+    // question was closed by the Treaty of Guadalupe Hidalgo in 1848 and the
+    // Gadsden Purchase in 1853, the last live fragment of it - the Chamizal -
+    // was settled in 1963, and no Mexican government since has raised any of it.
+    row("Mexico", "Mexico", &["mex"], "LatinAmerica",
+        &["USA"], &[], true, false, false),
+
+    row("Chile", "Chile", &["chl"], "LatinAmerica",
+        &["Argentina", "Bolivia", "Peru"], &[], true, false, false),
+
+    // Bogota's disputes with Caracas and with Managua are maritime - the Gulf of
+    // Venezuela and the Los Monjes cays, San Andres and Providencia - and this
+    // table has no way to state them, because `share` is a fraction of a target
+    // state and a delimitation over water is not a fraction of anybody. They are
+    // in relations_1990.json instead, where a cold dyad with no claim behind it
+    // is exactly the right shape for a quarrel that brings frigates out and
+    // never brings armies.
+    row("Colombia", "Colombia", &["col"], "LatinAmerica",
+        &["Venezuela", "Ecuador", "Peru", "Brazil"], &[], true, false, false),
+
+    // Venezuela's real claim is the Essequibo, two thirds of Guyana, asserted
+    // since the Geneva Agreement of 1966 reopened the 1899 arbitration. Guyana
+    // is not in this roster, so the claim is absent - and it is worth saying
+    // plainly that this is the one place in the region where an unsimulated
+    // neighbour hides a genuinely large territorial appetite. An agent adding
+    // Guyana should add `claim("Guyana", 0.62)` here at the same time.
+    row("Venezuela", "Venezuela", &["ven"], "LatinAmerica",
+        &["Colombia", "Brazil"], &[], true, false, false),
+
+    row("Peru", "Peru", &["per"], "LatinAmerica",
+        &["Ecuador", "Colombia", "Brazil", "Bolivia", "Chile"], &[], true, false, false),
+
+    // An island, and therefore no land borders at all. The one thing Havana
+    // wants back - the Guantanamo Bay naval station, held under a 1903 lease
+    // Cuba has declared void since 1959 and whose rent cheques it has refused to
+    // cash - cannot be written as a claim in this table, because Guantanamo is
+    // Cuban territory under foreign occupation rather than a fraction of the
+    // United States. The grievance is in the relations file, at -75.
+    row("Cuba", "Cuba", &["cub"], "LatinAmerica", &[], &[], true, false, false),
+
+    // The Litoral: 120,000 km2 of Atacama coast and the port of Antofagasta,
+    // lost to Chile in the War of the Pacific and ceded by the treaty of 1904.
+    // Bolivia has demanded sovereign access to the sea every year since, has had
+    // no ambassador in Santiago since 1978, still maintains a navy on Lake
+    // Titicaca, and still parades it on the Dia del Mar. It took the case to the
+    // ICJ in 2013 and lost in 2018.
+    //
+    // The share is 0.03 and the choice of denominator is the argument. By area
+    // the Litoral is 0.16 of Chile; by people it is far less, because the
+    // Antofagasta Region held 410,724 at the 1992 census against a Chile of
+    // 13.35m. This table's doc comment settles it - China's claim on India is
+    // 0.02 for Aksai Chin precisely because it is "a large area and almost no
+    // people" - so the population denominator is the one in use and 0.031 is the
+    // figure. A grievance that is permanent, total in Bolivian politics, and
+    // still not worth a war against an army three times the size of yours.
+    // https://en.wikipedia.org/wiki/Bolivian_littoral_dispute
+    row("Bolivia", "Bolivia", &["bol"], "LatinAmerica",
+        &["Peru", "Chile", "Argentina", "Brazil"],
+        &[claim("Chile", 0.03)], true, false, false),
+
+    // The one claim in this region that did produce a war inside the sim's
+    // window. Ecuador signed the Rio Protocol under Peruvian occupation in
+    // January 1942, losing roughly 200,000 km2 of Amazon headwater, and
+    // President Velasco Ibarra declared the protocol null in 1960 - a position
+    // every Ecuadorian government held until 1998. They shot at each other at
+    // Paquisha in January 1981 and fought the Cenepa war in January-February
+    // 1995, five years after this file opens.
+    //
+    // 0.05 rather than the 0.16 the disputed area is of Peru, for the same
+    // population reason as Bolivia's row above: the Cordillera del Condor is
+    // some of the emptiest land in South America. It is set an order of
+    // magnitude above the Falklands and the Litoral because unlike those two it
+    // is a live, undemarcated, patrolled frontier that both armies were standing
+    // on. The Cenepa war should be reachable from this number and the border,
+    // and it should be reachable without being certain.
+    // https://en.wikipedia.org/wiki/Cenepa_War
+    row("Ecuador", "Ecuador", &["ecu"], "LatinAmerica",
+        &["Colombia", "Peru"], &[claim("Peru", 0.05)], true, false, false),
+
+    row("Uruguay", "Uruguay", &["ury", "uru"], "LatinAmerica",
+        &["Brazil", "Argentina"], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -794,6 +928,16 @@ well_known! {
     Latvia => "Latvia",
     Estonia => "Estonia",
     Moldova => "Moldova",
+    Argentina => "Argentina",
+    Mexico => "Mexico",
+    Chile => "Chile",
+    Colombia => "Colombia",
+    Venezuela => "Venezuela",
+    Peru => "Peru",
+    Cuba => "Cuba",
+    Bolivia => "Bolivia",
+    Ecuador => "Ecuador",
+    Uruguay => "Uruguay",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {
