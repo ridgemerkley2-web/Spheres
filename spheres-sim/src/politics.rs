@@ -269,23 +269,349 @@ fn dissolve_ussr(w: &mut WorldState) {
     };
     w.nations.push(ukraine);
 
-    // Both successors inherit a thawed version of USSR relations
+    // The other ten republics that are large enough, or awkward enough, to
+    // matter on their own. Shares are of the union's 1990 totals: output by
+    // republican share of net material product (Goskomstat SSSR, Narodnoye
+    // khozyaystvo SSSR v 1990 g.), people by the January 1990 estimates rolled
+    // forward from the 1989 census, oil by republican crude output in 1990, and
+    // the army by where the Soviet Armed Forces actually were when the flag came
+    // down. Russia and Ukraine keep the shares they already had; these come out
+    // of the quarter of the union that was previously abstracted away, and
+    // roughly five per cent of it still is — Turkmenistan, Tajikistan and
+    // Kyrgyzstan are not modelled here, and 4.7% of the union's people is very
+    // close to what those three actually held.
+    //
+    // THERE IS NO HONEST DOLLAR GDP FOR ANY OF THESE REPUBLICS IN 1990, and
+    // this block does not pretend otherwise. The official rouble rate was
+    // fiction, the World Bank's early series for the region were built
+    // backwards from 1992 dollar figures taken during a collapse, and the CIA
+    // and Goskomstat disagree by a factor of two on the union itself. A
+    // republican share of a union aggregate is the defensible thing to
+    // transcribe, and that is what every `gdp` below is — a share, applied to
+    // whatever the model's Soviet Union is worth on the month it dies.
+    struct Republic {
+        id: NationId,
+        gdp: f64,
+        pop: f64,
+        army: f64,
+        oil: f64,
+        sep: f64,
+        auth: f64,
+        stab: f64,
+        tfp: f64,
+        infl: f64,
+        rate: f64,
+        debt: f64,
+        milspend: f64,
+    }
+    let republics = [
+        // Belarus — 4.2% of net material product and 10.2m of the union's
+        // people. The most militarised ground in Europe per head: the
+        // Belorussian Military District held three combined-arms armies and
+        // something over 2,000 tanks, and 81 SS-25 mobile ICBMs stood at Lida
+        // and Mozyr. It gave every warhead back under the Lisbon Protocol of
+        // 23 May 1992, so it enters with no deterrent. Separatism is near zero:
+        // the 1989 census counts 77.9% Belarusians with no territorial
+        // minority anywhere, and the Popular Front never took the country.
+        Republic { id: NationId::Belarus, gdp: 0.042, pop: 0.036, army: 0.045, oil: 0.003,
+                   sep: 0.05, auth: 0.40, stab: 45.0, tfp: 0.004, infl: 1.20, rate: 0.22,
+                   debt: 0.08, milspend: 0.030 },
+        // Kazakhstan — 4.3% of output, 16.7m people, and 25.8 million tonnes of
+        // crude in 1990, about 0.53 mbd, which is most of the union's oil
+        // outside Russia. It also inherited 1,410 strategic warheads, 104 SS-18
+        // silos and the Semipalatinsk test site, and returned all of it by
+        // 1995. Separatism is high and it is demographic: the 1989 census gives
+        // 39.7% Kazakhs against 37.8% Russians, and the Russians are the
+        // northern oblasts along the border. That is the same arithmetic the
+        // roster deliberately declined to write as a Russian claim; it belongs
+        // here, as strain inside Kazakhstan, which is where it stayed.
+        Republic { id: NationId::Kazakhstan, gdp: 0.043, pop: 0.058, army: 0.025, oil: 0.046,
+                   sep: 0.30, auth: 0.62, stab: 42.0, tfp: 0.003, infl: 1.30, rate: 0.22,
+                   debt: 0.08, milspend: 0.028 },
+        // Uzbekistan — the most populous of the ten at 20.5m, but only 3.3% of
+        // output: a cotton monoculture the union bought at administered prices,
+        // and the Aral Sea spent to grow it. Karimov's apparatus survived 1991
+        // without a break, which is why it starts the most authoritarian state
+        // in the region and the most stable of the poor ones.
+        Republic { id: NationId::Uzbekistan, gdp: 0.033, pop: 0.071, army: 0.018, oil: 0.005,
+                   sep: 0.15, auth: 0.78, stab: 46.0, tfp: 0.002, infl: 1.00, rate: 0.20,
+                   debt: 0.10, milspend: 0.025 },
+        // Georgia — 1.6% of output and 5.5m people, and the worst opening
+        // position of any Soviet successor. Separatism at 0.75 is not an
+        // opinion: Abkhazia and South Ossetia were autonomous units with their
+        // own institutions and both fought secession wars between 1991 and
+        // 1993, while Tbilisi's own government was shelled out of office by its
+        // National Guard in December 1991. Georgian output fell by roughly
+        // three quarters between 1990 and 1994, the steepest peacetime collapse
+        // recorded anywhere in the period, which is what the negative TFP trend
+        // and the stability of 20 are carrying.
+        Republic { id: NationId::Georgia, gdp: 0.016, pop: 0.019, army: 0.008, oil: 0.000,
+                   sep: 0.75, auth: 0.45, stab: 20.0, tfp: -0.005, infl: 1.60, rate: 0.28,
+                   debt: 0.12, milspend: 0.045 },
+        // Armenia — 0.9% of output and 3.3m people, still rebuilding from the
+        // Spitak earthquake of 7 December 1988 when the union ended. Internally
+        // it is the most homogeneous republic in the union at 93.3% Armenian in
+        // the 1989 census, so separatism is low; the strain is external, and it
+        // is Karabakh. Azerbaijan and Turkey both closed their borders, leaving
+        // one road through Georgia and one through Iran. The military share is
+        // small in absolute terms and enormous relative to the economy under
+        // it, which is what 6% of GDP on defence means here.
+        Republic { id: NationId::Armenia, gdp: 0.009, pop: 0.0114, army: 0.008, oil: 0.000,
+                   sep: 0.12, auth: 0.45, stab: 27.0, tfp: -0.002, infl: 1.50, rate: 0.28,
+                   debt: 0.12, milspend: 0.060 },
+        // Azerbaijan — 1.7% of output, 7.2m people, and 12.5 million tonnes of
+        // crude in 1990, about 0.25 mbd from fields that had been the world's
+        // largest in 1900 and were badly depleted by 1990. Separatism at 0.55 is
+        // Nagorno-Karabakh, 76.9% Armenian in the 1989 census, whose soviet had
+        // voted to leave for Armenia in February 1988. Two governments fell over
+        // it in three years.
+        Republic { id: NationId::Azerbaijan, gdp: 0.017, pop: 0.025, army: 0.010, oil: 0.022,
+                   sep: 0.55, auth: 0.55, stab: 24.0, tfp: 0.000, infl: 1.40, rate: 0.26,
+                   debt: 0.05, milspend: 0.060 },
+        // Lithuania — 1.4% of output and 3.7m people, and the republic that
+        // went first: the Supreme Council declared the restoration of
+        // independence on 11 March 1990, took an economic blockade for it in
+        // April, and buried fourteen people at the Vilnius television tower in
+        // January 1991. Separatism is the lowest of the three Baltics because
+        // the country is the most homogeneous of them, 79.6% Lithuanian, and
+        // it was the only one to grant citizenship to all residents.
+        Republic { id: NationId::Lithuania, gdp: 0.014, pop: 0.0128, army: 0.002, oil: 0.000,
+                   sep: 0.10, auth: 0.20, stab: 50.0, tfp: 0.012, infl: 0.80, rate: 0.30,
+                   debt: 0.05, milspend: 0.020 },
+        // Latvia — 1.1% of output and 2.7m people, and the sharpest
+        // demographic problem in the union outside Kazakhstan: 52.0% Latvian
+        // against 34.0% Russian in the 1989 census, with Riga itself under half
+        // Latvian. The citizenship law of 1994 left roughly a quarter of the
+        // residents stateless. Almost no army: the Soviet garrison left in
+        // August 1994 and took its equipment with it.
+        Republic { id: NationId::Latvia, gdp: 0.011, pop: 0.0093, army: 0.002, oil: 0.000,
+                   sep: 0.18, auth: 0.20, stab: 50.0, tfp: 0.012, infl: 0.80, rate: 0.30,
+                   debt: 0.04, milspend: 0.020 },
+        // Estonia — the smallest of the ten at 1.6m people and 0.7% of output,
+        // and the fastest reformer of any successor: its own currency in June
+        // 1992 on a currency board against the D-Mark, a flat income tax in
+        // 1994, and unilateral free trade. Separatism is the Russophone
+        // north-east, 30.3% of the country in 1989, which held autonomy
+        // referendums in Narva and Sillamae in July 1993.
+        Republic { id: NationId::Estonia, gdp: 0.007, pop: 0.0055, army: 0.001, oil: 0.000,
+                   sep: 0.20, auth: 0.18, stab: 53.0, tfp: 0.015, infl: 0.75, rate: 0.30,
+                   debt: 0.03, milspend: 0.020 },
+        // Moldova — 1.2% of output and 4.4m people, and a border dispute with
+        // itself. Transnistria declared on 2 September 1990 and Gagauzia on 19
+        // August 1990; the war of 1992 was decided by the Soviet 14th Army,
+        // which was already stationed on the left bank and did not leave.
+        // Separatism at 0.45 is a state that lost a tenth of its territory and
+        // most of its power generation in its second year.
+        Republic { id: NationId::Moldova, gdp: 0.012, pop: 0.015, army: 0.003, oil: 0.000,
+                   sep: 0.45, auth: 0.40, stab: 28.0, tfp: 0.000, infl: 1.40, rate: 0.26,
+                   debt: 0.07, milspend: 0.035 },
+    ];
+    for r in &republics {
+        w.nations.push(Nation {
+            id: r.id,
+            alive: true,
+            system: EconomySystem::Market,
+            authoritarianism: r.auth,
+            gdp: gdp * r.gdp,
+            population: pop * r.pop,
+            tfp_trend: r.tfp,
+            inflation: r.infl,
+            interest_rate: r.rate,
+            tax_rate: 0.30,
+            mil_spend_gdp: r.milspend,
+            state_invest_gdp: 0.04,
+            priv_invest_gdp: 0.09,
+            // The "zero option" of 1994 gave Moscow every rouble of Soviet
+            // foreign debt and, with it, every Soviet foreign asset. The other
+            // republics therefore start almost unencumbered, and what debt they
+            // carry here is domestic and inherited from the enterprises.
+            debt_gdp: r.debt,
+            oil_mbd: oil * r.oil,
+            bubble: 0.0,
+            growth_last: -0.08,
+            stability: r.stab,
+            separatism: r.sep,
+            mil_strength: strength * r.army,
+            war_exhaustion: 0.0,
+            // Belarus and Kazakhstan both woke up holding strategic warheads
+            // and both gave them back, Belarus by 1996 and Kazakhstan by 1995,
+            // under the Lisbon Protocol of May 1992 and the Budapest assurances
+            // of December 1994. Nobody in this group enters with a deterrent.
+            nuclear: false,
+            political_capital: seated_political_capital(r.stab, r.infl, r.auth),
+            tech: crate::tech::TechState::inherit(&inherited_tech, r.tfp),
+        });
+    }
+
+    // A successor inherits a thawed version of the union's standing abroad —
+    // but only if it agreed to be a successor. The Alma-Ata Protocol of 21
+    // December 1991 was signed by eleven republics; Georgia and the three
+    // Baltic states did not sign it, and their refusal was the whole of their
+    // foreign policy. Lithuania, Latvia and Estonia held that the annexation of
+    // 1940 was void, that they were the inter-war republics restored rather
+    // than new states, and on that ground they refused the Commonwealth,
+    // refused a share of Soviet debt and refused a share of Soviet assets.
+    // Georgia stayed out until Russian pressure put it in, in December 1993.
+    // Those four therefore start neutral to the world and have to build their
+    // own relations from nothing, which is what they did.
     let rels: Vec<(NationId, f64)> = start_nations()
         .iter()
         .filter(|x| **x != NationId::USSR)
         .map(|x| (*x, w.relation(NationId::USSR, *x) * 0.5 + 10.0))
         .collect();
-    for successor in [NationId::Russia, NationId::Ukraine] {
+    let signed_alma_ata = |id: NationId| {
+        !matches!(
+            id,
+            NationId::Georgia | NationId::Lithuania | NationId::Latvia | NationId::Estonia
+        )
+    };
+    let successors: Vec<NationId> = [NationId::Russia, NationId::Ukraine]
+        .into_iter()
+        .chain(republics.iter().map(|r| r.id))
+        .filter(|id| signed_alma_ata(*id))
+        .collect();
+    for successor in successors.iter().copied() {
         for (other, v) in &rels {
             w.set_relation(successor, *other, *v);
         }
     }
+    // How the twelve regard each other on the morning after. The pattern is not
+    // distance from Moscow but whether the republic needs Moscow: Minsk and
+    // Yerevan do and say so, Almaty hedges, Tbilisi and Chisinau have Russian
+    // soldiers on ground they claim, and the Baltics spent the next three years
+    // negotiating a withdrawal.
+    let among: &[(NationId, NationId, f64)] = &[
+        (NationId::Russia, NationId::Belarus, 45.0),
+        (NationId::Russia, NationId::Kazakhstan, 35.0),
+        (NationId::Russia, NationId::Armenia, 40.0),
+        (NationId::Russia, NationId::Uzbekistan, 15.0),
+        (NationId::Russia, NationId::Azerbaijan, 0.0),
+        (NationId::Russia, NationId::Georgia, -10.0),
+        (NationId::Russia, NationId::Moldova, -15.0),
+        (NationId::Russia, NationId::Lithuania, -20.0),
+        (NationId::Russia, NationId::Latvia, -25.0),
+        (NationId::Russia, NationId::Estonia, -25.0),
+        (NationId::Ukraine, NationId::Belarus, 25.0),
+        (NationId::Ukraine, NationId::Moldova, 20.0),
+        (NationId::Ukraine, NationId::Georgia, 15.0),
+        // The Karabakh war is the one open conflict inside the group, and the
+        // roster states it as a claim rather than as a scripted war.
+        (NationId::Armenia, NationId::Azerbaijan, -70.0),
+        (NationId::Georgia, NationId::Azerbaijan, 15.0),
+        (NationId::Georgia, NationId::Armenia, 10.0),
+        (NationId::Kazakhstan, NationId::Uzbekistan, 15.0),
+        (NationId::Lithuania, NationId::Latvia, 45.0),
+        (NationId::Lithuania, NationId::Estonia, 40.0),
+        (NationId::Latvia, NationId::Estonia, 45.0),
+    ];
+    for (a, b, v) in among {
+        w.set_relation(*a, *b, *v);
+    }
+    // Turkey recognised the Turkic republics within days and closed its border
+    // with Armenia in 1993 over Karabakh; Iran, against every expectation about
+    // Islamic solidarity, backed Christian Armenia, because a strong Azerbaijan
+    // is an irredentist claim on the twenty million Azeris inside Iran.
+    w.shift_relation(NationId::Turkey, NationId::Azerbaijan, 45.0);
+    w.shift_relation(NationId::Turkey, NationId::Uzbekistan, 20.0);
+    w.shift_relation(NationId::Turkey, NationId::Kazakhstan, 20.0);
+    w.shift_relation(NationId::Turkey, NationId::Armenia, -50.0);
+    w.shift_relation(NationId::Iran, NationId::Armenia, 25.0);
+    w.shift_relation(NationId::Iran, NationId::Azerbaijan, -15.0);
+    // Beijing and the Central Asians, which is the dyad this block most has to
+    // get right: Kazakhstan is a 1,765km land border with a great power, and
+    // the model's derived appetite reads a border. What actually happened is
+    // the opposite of appetite. China recognised Kazakhstan on 27 December
+    // 1991 and opened an embassy on 3 January 1992; the two governments signed
+    // the border agreement of 26 April 1994 that split the 34,000 sq km the
+    // Sino-Soviet talks had left in dispute, settled the remainder in 1997 and
+    // 1998, and founded the Shanghai Five together on 26 April 1996 — the only
+    // multilateral body China has ever built. Demarcation was complete by 2002.
+    // Entering these two as strangers at 5 and letting a border do the rest
+    // produces a Chinese invasion of Kazakhstan, which is a war this model
+    // would be inventing out of a frontier both states spent the decade
+    // agreeing on. https://en.wikipedia.org/wiki/Shanghai_Five
+    w.set_relation(NationId::China, NationId::Kazakhstan, 40.0);
+    w.set_relation(NationId::China, NationId::Uzbekistan, 25.0);
+    // Warsaw was the first capital to recognise Ukraine, on 2 December 1991,
+    // and recognised Belarus and Moldova within the month; the Polish-Moldovan
+    // treaty of friendship was signed in 1994. Poland and Moldova share no
+    // border, only the region this model puts them both in, and leaving them
+    // at zero lets that regional contact produce a war between two states that
+    // have never had a quarrel.
+    // Ukraine is left where the inheritance put it: Warsaw recognised it first,
+    // on 2 December 1991, but that dyad is already modelled and this block does
+    // not reach back into a nation that was here before it.
+    w.set_relation(NationId::Poland, NationId::Moldova, 30.0);
+    w.set_relation(NationId::Poland, NationId::Belarus, 25.0);
+    // The three Baltic states do not start neutral to the West, because the
+    // West never accepted that they had left it. The Welles Declaration of 23
+    // July 1940 refused recognition of the annexation and the United States
+    // held that line unbroken for fifty-one years, keeping the pre-war legations
+    // open in Washington the whole time; the Baltic gold reserves sat untouched
+    // in London and Stockholm. Iceland recognised Lithuania on 11 February 1991,
+    // months before anyone else dared, the Community and the Nordics followed in
+    // August, and all three were seated at the United Nations on 17 September
+    // 1991. That is a starting position, not something to be earned.
+    for baltic in [NationId::Lithuania, NationId::Latvia, NationId::Estonia] {
+        w.set_relation(baltic, NationId::USA, 45.0);
+        w.set_relation(baltic, NationId::Germany, 40.0);
+        w.set_relation(baltic, NationId::UK, 35.0);
+        w.set_relation(baltic, NationId::France, 30.0);
+        // Warsaw is warm but not uncomplicated: the Polish minority around
+        // Vilnius kept Poland and Lithuania at arm's length until the treaty
+        // of April 1994 settled it.
+        w.set_relation(baltic, NationId::Poland, 25.0);
+        w.set_relation(baltic, NationId::Japan, 15.0);
+    }
+    // Georgia was recognised on the same terms as the rest and had no such
+    // history to trade on; Washington's interest arrives later, with the
+    // pipeline.
+    w.shift_relation(NationId::Georgia, NationId::USA, 15.0);
+
+    // The Collective Security Treaty, signed at Tashkent on 15 May 1992 by
+    // Russia, Armenia, Kazakhstan, Kyrgyzstan, Tajikistan and Uzbekistan, with
+    // Belarus acceding on 31 December 1993. It is written here as four
+    // guarantees radiating from Moscow rather than as the clique the treaty
+    // text describes, because that is what it was: nobody in Alma-Ata ever
+    // believed Yerevan would come, and Armenia's own guarantee — the 102nd
+    // Military Base at Gyumri, garrisoned continuously from 1992 — was Russian
+    // troops on Armenian soil and nothing else.
+    //
+    // This is transcription with teeth, and it is entered because leaving it
+    // out was measurably wrong rather than merely incomplete. A newly sovereign
+    // Kazakhstan is a 1,765km border, sixteen million people, half a million
+    // barrels a day and almost no army, sitting next to the largest land power
+    // on earth; with no guarantee behind it the derived appetite model in
+    // dyads.rs invades it in roughly two runs in five, which is a war that did
+    // not happen and never came close to happening. The reason it did not
+    // happen is exactly this treaty and the arsenal behind it, so the treaty is
+    // the thing to write down. Deterrence is `dyads.rs`'s own term for it: a
+    // pact partner's strength counts toward what an aggressor expects to face,
+    // and unlike a hoped-for coalition it is barely discounted.
+    // https://en.wikipedia.org/wiki/Collective_Security_Treaty_Organization
+    for client in [
+        NationId::Armenia,
+        NationId::Kazakhstan,
+        NationId::Uzbekistan,
+        NationId::Belarus,
+    ] {
+        let (a, b) = if NationId::Russia <= client {
+            (NationId::Russia, client)
+        } else {
+            (client, NationId::Russia)
+        };
+        w.statecraft.pacts.push(Pact { a, b, since_year: w.year, since_month: w.month });
+    }
+    w.headline(
+        "The Collective Security Treaty is signed at Tashkent; Moscow guarantees four of its neighbours."
+            .into(),
+    );
     // Kyiv and Moscow start as quarrelling relatives rather than enemies: the
     // Black Sea Fleet and Crimea are already in dispute, but the divorce of
     // December 1991 was signed, not fought.
     w.set_relation(NationId::Russia, NationId::Ukraine, 15.0);
 
-    w.headline("THE SOVIET UNION HAS DISSOLVED. Russia and Ukraine emerge as successor states.".into());
+    w.headline("THE SOVIET UNION HAS DISSOLVED. Twelve republics take up their own seats.".into());
     w.headline("Russia inherits the arsenal; Ukraine's warheads go back east under the Budapest assurances.".into());
 }
 

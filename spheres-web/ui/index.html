@@ -396,6 +396,12 @@ const TERRITORY = {
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],
+  // The other ten successors. Turkmenistan, Tajikistan and Kyrgyzstan are not
+  // simulated, so they fall back to unaligned scenery once the union goes —
+  // the same treatment Macedonia gets when Yugoslavia breaks.
+  Belarus: ["BLR"], Kazakhstan: ["KAZ"], Uzbekistan: ["UZB"],
+  Georgia: ["GEO"], Armenia: ["ARM"], Azerbaijan: ["AZE"],
+  Lithuania: ["LTU"], Latvia: ["LVA"], Estonia: ["EST"], Moldova: ["MDA"],
   Yugoslavia: ["SRB", "HRV", "SVN", "BIH", "MKD", "MNE"],
   // Successors. Macedonia is not simulated — it left without a shot — so it
   // falls back to unaligned scenery when the federation breaks.

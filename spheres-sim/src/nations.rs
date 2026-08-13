@@ -119,10 +119,10 @@ pub const ROSTER: &[NationRow] = &[
     // Nothing here schedules 2014; it states the inherited arithmetic and lets
     // the model do what it does with it.
     row("Russia", "Russia", &["rus", "russian federation"], "Eurasia",
-        &["China", "Poland", "Ukraine", "Norway", "Finland"], &[claim("Ukraine", 0.22)], false, true, false),
+        &["China", "Poland", "Ukraine", "Norway", "Finland", "Belarus", "Kazakhstan", "Georgia", "Azerbaijan", "Lithuania", "Latvia", "Estonia"], &[claim("Ukraine", 0.22)], false, true, false),
 
     row("Ukraine", "Ukraine", &["ukr"], "Eurasia",
-        &["Russia", "Poland", "Czechoslovakia", "Hungary", "Romania"], &[], false, false, false),
+        &["Russia", "Poland", "Czechoslovakia", "Hungary", "Romania", "Belarus", "Moldova"], &[], false, false, false),
 
     // Beijing's border with Moscow was fought over at Damansky/Zhenbao in 1969
     // and not finally settled until the agreements of 1991 and 2004. The claim
@@ -131,7 +131,7 @@ pub const ROSTER: &[NationRow] = &[
     // Paracels (taken 1974), the Spratlys (Johnson Reef, March 1988) and the
     // land border strips disputed until 1999.
     row("China", "China", &["prc", "cn"], "EastAsia",
-        &["USSR", "Russia", "India", "Pakistan", "Vietnam"],
+        &["USSR", "Russia", "India", "Pakistan", "Vietnam", "Kazakhstan"],
         &[claim("India", 0.02), claim("Vietnam", 0.01), claim("Russia", 0.004)],
         true, true, false),
 
@@ -178,13 +178,13 @@ pub const ROSTER: &[NationRow] = &[
     // Tehran's claim is the Shatt al-Arab thalweg conceded at Algiers in 1975
     // and torn up in 1980, and behind it the shrine cities of Najaf and Karbala.
     row("Iran", "Iran", &["irn", "persia"], "MiddleEast",
-        &["Iraq", "Turkey", "Pakistan", "USSR"], &[claim("Iraq", 0.03)], true, false, false),
+        &["Iraq", "Turkey", "Pakistan", "USSR", "Armenia", "Azerbaijan"], &[claim("Iraq", 0.03)], true, false, false),
 
     row("SouthKorea", "South Korea", &["south korea", "korea", "rok"], "EastAsia",
         &[], &[], true, false, false),
 
     row("Poland", "Poland", &["pol"], "EasternEurope",
-        &["Germany", "USSR", "Russia", "Ukraine", "Czechoslovakia"], &[], true, false, false),
+        &["Germany", "USSR", "Russia", "Ukraine", "Czechoslovakia", "Belarus", "Lithuania"], &[], true, false, false),
 
     row("Brazil", "Brazil", &["bra"], "LatinAmerica", &[], &[], true, false, false),
 
@@ -200,7 +200,7 @@ pub const ROSTER: &[NationRow] = &[
     // Nations in 1926 over Turkey's objection and pressed again by Ozal during
     // the Gulf crisis: roughly 2m of Iraq's 17m people in the north.
     row("Turkey", "Turkey", &["turkiye", "tur"], "MiddleEast",
-        &["Iraq", "Iran", "USSR", "Greece", "Bulgaria"], &[claim("Iraq", 0.12)], true, false, false),
+        &["Iraq", "Iran", "USSR", "Greece", "Bulgaria", "Georgia", "Armenia", "Azerbaijan"], &[claim("Iraq", 0.12)], true, false, false),
 
     row("Nigeria", "Nigeria", &["nga"], "WestAfrica", &[], &[], true, false, false),
 
@@ -485,6 +485,138 @@ pub const ROSTER: &[NationRow] = &[
     // https://en.wikipedia.org/wiki/Republic_of_Kosova
     row("Albania", "Albania", &["alb", "shqiperia"], "Balkans",
         &["Yugoslavia", "Serbia"], &[claim("Yugoslavia", 0.08)], true, false, false),
+
+    // -----------------------------------------------------------------------
+    // The other ten Soviet successors. None of these is on the board in
+    // January 1990: every one of them is a union republic whose sovereignty is
+    // a consequence of the dissolution `politics::dissolve_ussr` runs, in the
+    // same way Serbia and Croatia are consequences of Yugoslavia's. Their
+    // borders are the union's internal administrative lines, which is exactly
+    // what the borders of 1991 turned out to be — the Alma-Ata Protocol of 21
+    // December 1991 recognised the republican boundaries as the international
+    // ones, and every war fought here since has been about the places where
+    // that principle collided with where the people actually lived.
+    //
+    // Borders below are with roster members only. Turkmenistan, Tajikistan,
+    // Kyrgyzstan, Romania, Afghanistan, Finland, Norway and Mongolia are not
+    // simulated, so those frontiers are correctly absent rather than wrong.
+    // -----------------------------------------------------------------------
+
+    // Belarus - 77.9% Belarusian in the 1989 census with no territorial
+    // minority anywhere and no border anybody disputes: the one republic that
+    // came out of the union with neither a claim on a neighbour nor a claim
+    // against it. That absence is the datum. It is also the most militarised
+    // ground in Europe per head, three combined-arms armies of the Belorussian
+    // Military District and 81 SS-25s at Lida and Mozyr, all of it handed back
+    // under the Lisbon Protocol of 23 May 1992.
+    // https://en.wikipedia.org/wiki/1989_Soviet_census
+    row("Belarus", "Belarus", &["blr", "byelorussia", "belorussia"], "Eurasia",
+        &["Russia", "Ukraine", "Poland", "Lithuania", "Latvia"], &[], false, false, false),
+
+    // Kazakhstan - and the claim this row deliberately does NOT carry. The 1989
+    // census gives 39.7% Kazakhs against 37.8% Russians, the Russians
+    // concentrated in the northern oblasts along the frontier, which is the
+    // same arithmetic that put Russia's 0.22 on Ukraine above. Boris Yeltsin's
+    // press secretary Pavel Voshchanov raised exactly that on 26 August 1991,
+    // warning that the RSFSR reserved the right to revise borders with any
+    // republic that left the union. Nazarbayev protested, a delegation was sent
+    // to Alma-Ata, and the statement was withdrawn inside the week and never
+    // restated by any Russian government. A claim asserted for four days and
+    // repudiated is not a claim; entering 0.378 here would manufacture the
+    // largest war in the model out of a press conference.
+    // https://en.wikipedia.org/wiki/Alma-Ata_Protocol
+    row("Kazakhstan", "Kazakhstan", &["kaz", "kazakstan"], "Eurasia",
+        &["Russia", "China", "Uzbekistan"], &[], false, false, false),
+
+    // Uzbekistan - the most populous republic in the region, 20.5m in 1990, and
+    // the one whose borders were drawn to be awkward: the Fergana valley was
+    // partitioned between three republics in the delimitation of 1924-36 and
+    // left enclaves inside each. All of those disputes are with Kyrgyzstan and
+    // Tajikistan, neither of which is simulated, so this row has no claims.
+    row("Uzbekistan", "Uzbekistan", &["uzb"], "Eurasia",
+        &["Kazakhstan"], &[], false, false, false),
+
+    // Georgia - Abkhazia and South Ossetia were autonomous units inside the
+    // Georgian SSR and both fought secession wars between 1991 and 1993. That
+    // is separatism, not a claim: they are Georgian territory in this model's
+    // terms, and the strain belongs in `separatism`, which `dissolve_ussr` sets
+    // to 0.75, the highest of any successor. Tbilisi claims nothing across a
+    // border and nobody claims it.
+    row("Georgia", "Georgia", &["geo", "sakartvelo"], "Eurasia",
+        &["Russia", "Turkey", "Armenia", "Azerbaijan"], &[], false, false, false),
+
+    // Armenia - the one live irredentist claim in the former union, and the
+    // only one that became a war between two of its successors. The Nagorno-
+    // Karabakh Autonomous Oblast was inside the Azerbaijan SSR and 76.9%
+    // Armenian at the 1989 census; its soviet voted on 20 February 1988 to
+    // transfer to Armenia, and the Armenian Supreme Soviet voted on 1 December
+    // 1989 to unify with it. The share is the oblast against its host: 189,000
+    // people of the Azerbaijan SSR's 7,021,000, or 0.027.
+    //
+    // Not entered: any claim on Turkey. The Armenian declaration of
+    // independence of 23 August 1990 names the genocide and Armenia has never
+    // ratified the Treaty of Kars, but Ter-Petrosyan's government explicitly
+    // declined to make a territorial claim and sought normalisation instead.
+    // The claim belongs to the diaspora and to the Dashnaks, not to the state
+    // this row describes.
+    // https://en.wikipedia.org/wiki/Nagorno-Karabakh_Autonomous_Oblast
+    row("Armenia", "Armenia", &["arm", "hayastan"], "Eurasia",
+        &["Georgia", "Azerbaijan", "Turkey", "Iran"],
+        &[claim("Azerbaijan", 0.027)], false, false, false),
+
+    // Azerbaijan - and the reason the Karabakh claim is one-directional. The
+    // ground both armies fought over is Azerbaijani territory under the border
+    // Alma-Ata recognised, so Baku is defending rather than claiming, and a
+    // reciprocal claim entered here would double-count the same war. The
+    // Azerbaijanis expelled from Armenia in 1988-89 - 84,860 of Armenia's
+    // 3,304,776 people at the 1989 census - are a real grievance, but the
+    // "Western Azerbaijan" doctrine that turns them into a territorial claim is
+    // a thing of the 2020s and was not the policy of any government in this
+    // period. Nakhchivan's short frontier with Turkey is the border in this row
+    // that surprises people; it is 17 kilometres and it is real.
+    row("Azerbaijan", "Azerbaijan", &["aze", "azerbaydzhan"], "Eurasia",
+        &["Georgia", "Armenia", "Russia", "Turkey", "Iran"], &[], false, false, false),
+
+    // Lithuania - the border with Russia is Kaliningrad, and Vilnius never
+    // claimed it: the Lithuanian position from 1990 was that the oblast was a
+    // problem for Moscow and Bonn to solve and that raising it would have cost
+    // the recognition it was fighting for. The absence of a claim on a Russian
+    // exclave wedged between Lithuania and Poland is a decision, not an
+    // oversight. 79.6% Lithuanian in 1989, the most homogeneous Baltic, and the
+    // only one that gave citizenship to every resident.
+    row("Lithuania", "Lithuania", &["ltu", "lietuva"], "EasternEurope",
+        &["Latvia", "Belarus", "Poland", "Russia"], &[], false, false, false),
+
+    // Latvia - the Abrene claim. The peace treaty of 11 August 1920 put the
+    // Abrene district on the Latvian side; the Soviet Union transferred it to
+    // the RSFSR in 1944 and it is Pytalovo today. Latvia held the transfer void
+    // along with the annexation itself, and did not drop the claim until the
+    // border treaty of 27 March 2007. About 12,000 people against a Russian
+    // Federation of 148m: 0.0001, the same order as Spain on Gibraltar, and
+    // stated as the number that keeps it a grievance rather than a war.
+    // https://en.wikipedia.org/wiki/Latvian-Soviet_Peace_Treaty
+    row("Latvia", "Latvia", &["lva", "latvija"], "EasternEurope",
+        &["Lithuania", "Estonia", "Belarus", "Russia"],
+        &[claim("Russia", 0.0001)], false, false, false),
+
+    // Estonia - the same claim in the same shape and from the same year. The
+    // Treaty of Tartu of 2 February 1920 put Petserimaa and the land east of
+    // the Narva river inside Estonia; both went to the RSFSR in 1945. The
+    // Riigikogu resolved in 1994 that Tartu remained in force, and Estonia
+    // conceded the line only with the treaty of 2005. Roughly 27,000 people of
+    // a Russia of 148m: 0.0002.
+    // https://en.wikipedia.org/wiki/Treaty_of_Tartu_(Russian-Estonian)
+    row("Estonia", "Estonia", &["est", "eesti"], "EasternEurope",
+        &["Latvia", "Russia"], &[claim("Russia", 0.0002)], false, false, false),
+
+    // Moldova - Transnistria declared on 2 September 1990 and Gagauzia on 19
+    // August 1990, and the war of 1992 was decided by the Soviet 14th Army,
+    // which was already on the left bank and did not leave. Both are internal,
+    // so both are separatism rather than a claim, and `dissolve_ussr` carries
+    // them at 0.45. The union with Romania that the Popular Front wanted is not
+    // a claim either, and Romania is not simulated in any case.
+    row("Moldova", "Moldova", &["mda", "moldavia"], "EasternEurope",
+        &["Ukraine"], &[], false, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -652,6 +784,16 @@ well_known! {
     Romania => "Romania",
     Bulgaria => "Bulgaria",
     Albania => "Albania",
+    Belarus => "Belarus",
+    Kazakhstan => "Kazakhstan",
+    Uzbekistan => "Uzbekistan",
+    Georgia => "Georgia",
+    Armenia => "Armenia",
+    Azerbaijan => "Azerbaijan",
+    Lithuania => "Lithuania",
+    Latvia => "Latvia",
+    Estonia => "Estonia",
+    Moldova => "Moldova",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {
