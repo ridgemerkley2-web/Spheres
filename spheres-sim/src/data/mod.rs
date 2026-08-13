@@ -420,7 +420,7 @@ pub fn validate(nations: &[NationRecord], relations: &RelationsFile, relations_f
     // a compile-time enum; when 1.1's first half lands and ids become runtime
     // values, the data becomes the sole authority and this collapses into a
     // uniqueness check.
-    for want in ALL_START_NATIONS {
+    for want in start_nations().iter().copied() {
         if !nations.iter().any(|r| r.id == want) {
             errors.push(LoadError::file_level(
                 "<roster>",
@@ -433,7 +433,7 @@ pub fn validate(nations: &[NationRecord], relations: &RelationsFile, relations_f
         }
     }
     for (i, r) in nations.iter().enumerate() {
-        if !ALL_START_NATIONS.contains(&r.id) {
+        if !start_nations().contains(&r.id) {
             errors.push(LoadError::nation_level(
                 &file_of(nations, i),
                 &format!("{:?}", r.id),
@@ -638,7 +638,7 @@ mod tests {
         let nations = parse_nations(EMBEDDED_NATIONS).expect("nation files parse");
         let rel = parse_relations(&EMBEDDED_RELATIONS).expect("relations parse");
         validate(&nations, &rel, EMBEDDED_RELATIONS.file).expect("cross-references resolve");
-        assert_eq!(nations.len(), ALL_START_NATIONS.len());
+        assert_eq!(nations.len(), start_nations().len());
     }
 
     #[test]
@@ -694,7 +694,7 @@ mod tests {
         // has to include the admission that the figure is a stand-in rather
         // than the print — otherwise the honesty added to the file is honesty
         // nobody in the game can reach.
-        for id in ALL_START_NATIONS {
+        for id in start_nations().iter().copied() {
             assert!(
                 !sources_for(id).is_empty(),
                 "{:?} has no provenance to show",

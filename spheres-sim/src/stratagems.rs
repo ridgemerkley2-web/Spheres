@@ -168,7 +168,7 @@ pub const DECK: &[Stratagem] = &[
                 n.debt_gdp *= 0.55;
                 n.stability = (n.stability + 4.0).min(100.0);
             }
-            for m in crate::war::MAJORS {
+            for m in crate::nations::majors().iter().copied() {
                 if m != id {
                     w.shift_relation(m, id, -8.0);
                 }
@@ -306,7 +306,7 @@ pub const DECK: &[Stratagem] = &[
                 let n = w.nation_mut(id);
                 n.state_invest_gdp = (n.state_invest_gdp + 0.01).min(0.40);
             }
-            for m in crate::war::MAJORS {
+            for m in crate::nations::majors().iter().copied() {
                 if m != id {
                     w.shift_relation(m, id, -14.0);
                 }

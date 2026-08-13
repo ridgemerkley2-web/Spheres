@@ -43,45 +43,54 @@
   a guarantee, cutting a client loose, tearing up a treaty — are charged to
   bankruptcy rather than refused, because a government can always renege
 
-## Closed: the golden hash was only ever a Windows number (PLAN 1.3)
+## Closed: nation identity is a runtime value, and dyads are derived
 
-Both determinism tests build their two worlds in one process against one libm,
-so neither could ever see the failure that actually threatens the design: the
-same seed producing a different history on a different machine. IEEE 754 pins
-`+ - * /` and `sqrt` to the last bit and says nothing about `exp`, `ln` or
-`pow` — and glibc does not even agree with itself across versions, having
-rewritten `exp` in 2.27 and again in 2.28. The endgame is Ridge on Windows and a
-Proxmox box running the suite nightly, which is exactly the arrangement where
-that surfaces as a red test nobody can reproduce.
+**Phase 1.1.** `NationId` was a closed 30-variant enum with hand-written
+`name()`/`parse()` arms, fixed-size roster arrays, and — the part that could
+not survive the roster growing — a `match (attacker, target)` in `ai_wars`
+holding fourteen hand-set war appetites. At 190 nations that is ~380 match arms
+and ~36,000 ordered dyads, and the second of those cannot be a match statement
+at any size.
 
-`spheres-sim/src/exact.rs` now provides `exp`, `ln` and `powf` built only from
-IEEE-exact primitives — range reduction, a Taylor or atanh series, and scaling
-by a power of two straight out of the exponent field. Every transcendental in
-the tick loop goes through it: the fourteen soft caps in `tech::saturate`, the
-tech-TFP ceiling, the diffusion-reach exponent, the tacit-knowledge exponent,
-the investment-intensity exponent, and the log of the strength ratio that
-decides who capitulates. `sqrt` was left alone; the standard specifies it.
-`powi` was written out as explicit products in `tech/mod.rs`, which is
-bit-identical to what LLVM emits but no longer depends on it staying that way.
+- **Identity is now an interned index.** `nations.rs` holds the roster as data
+  (code, display name, aliases, region, land borders, claims, and the two
+  flags that used to be the `PATRONS` and `MAJORS` arrays); `NationId` is a
+  `u16` handle into it. Adding a country is adding a row. The static table can
+  become a JSON file without anything above that module noticing, because
+  nothing above it knows how many nations there are.
+- **Saves carry codes, never indices.** `NationId` serializes as its stable
+  code and the relations matrix — dense in memory, keyed by index — writes
+  named triples and *drops* a code this build cannot resolve rather than
+  reinterpreting it as whoever now holds that slot. Exactly the discipline the
+  technology tree already follows, for exactly the reason it had to.
+- **War appetite is derived.** `dyads.rs` computes it from reach (border or
+  region), claim (the *share of the target* a state says is its own), grudge,
+  the aggressor's own authoritarianism and militarisation, digestibility and
+  worth — then the same circumstance terms as before. Iraq still wants Kuwait
+  an order of magnitude more than Saudi Arabia, and Belgrade still wants Bosnia
+  and not Slovenia, but now because the 1991 census put 31% Serbs in Bosnia and
+  2% in Slovenia and because Serbia and Slovenia share no border.
+- **The missing half of `burned_`.** A repelled invasion was remembered; a
+  *successful* one was not, so a state that took what it claimed came back for
+  it every two years. Measured across twelve thirty-year runs on master, 182 of
+  300 wars were somebody invading Bosnia again. A claim pressed to a conclusion
+  is now a claim collected (`pressed_A_B`): the grievance survives, the war aim
+  does not.
 
-**The shapes were not changed, and the model did not move.** PLAN suggested
-replacing the soft-cap shapes with rational equivalents; that was rejected
-because it buys the same exactness at the price of a retune. After 240 months
-every nation's GDP is bit-identical to the old value, the 35-year headline
-stream is byte-identical, and the 2025 league table is identical to the digit
-(USA 16004, China 7050, Japan 6907, Germany 5018). The only difference
-measurable anywhere was France's `tfp_trend` in its sixteenth significant
-figure. The golden hash still had to be re-pinned —
-`0xb675826e8941683d` → `0x9ea63c12f4de0e64` — because the hash sees those bits.
+**The golden hash moved and was re-pinned** (`0xb675826e8941683d` ->
+`0x19c5c5dafb18dbd9`). The identity half is separately proven not to move it:
+with the runtime id in place and master's literal dyad table restored on top,
+the fingerprint and the 2025 league table reproduce master exactly. All of the
+movement is the derived model, which is the point of it.
 
-Three tests guard it: the bit patterns of `exp`/`ln`/`powf` are pinned at the
-arguments the sim actually passes, the range-reduction constants are checked
-against the values they claim to be, and a source scan fails the build if
-anything in the sim calls the platform libm again.
-
-**Not done:** nobody has yet run the suite on Linux. The claim is that the hash
-now holds cross-platform; it is argued, not observed. That is the one thing left
-in 1.3, and it is a CI job rather than a code change.
+**Known thin spots, in order of how much they should worry you.** The world is
+quieter than master — 75 wars across twelve thirty-year runs against 300 — but
+most of what went is the repeat-invasion loop above. `china_growth_miracle`
+asserts a 14x ceiling that master clears only on the default seed (it runs
+14.9x, 16.8x and 15.1x on seeds 0, 42 and 3), so it is a one-seed test standing
+on luck and the next timeline change will likely tip it. And
+`a_pact_drags_a_great_power_into_a_war_it_did_not_start` now lands on 3/12
+against a floor of 3 — passing, but with no margin.
 
 ## Closed: the whole world was about twice too large
 

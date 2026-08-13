@@ -61,6 +61,18 @@ pub fn tick(w: &mut WorldState) {
                 // drop the war
             } else if let Some((winner, loser)) = settlement_ripe(w, &war) {
                 negotiated_peace(w, winner, loser);
+                if winner == war.attacker {
+                    // The attacker got what it came for, so its claim is
+                    // collected and it has no war aim left.
+                    w.set_flag(&crate::dyads::settled_flag(winner, loser));
+                } else {
+                    // The defender won terms. Marking ITS claim collected
+                    // disarmed the wrong side entirely — the state that was
+                    // invaded came away with its own grievance written off —
+                    // and the aggressor learned nothing, which is the repeat
+                    // invasion this flag exists to stop.
+                    w.set_flag(&format!("burned_{:?}_{:?}", war.attacker, war.defender));
+                }
             } else {
                 continuing.push(war);
             }
@@ -72,6 +84,11 @@ pub fn tick(w: &mut WorldState) {
         if attacker_won {
             let (winner, loser) = (war.attacker, war.defender);
             conquer(w, winner, loser);
+            // The claim has been pressed to a conclusion. It survives as a
+            // grievance and stops being a war aim — the counterpart of the
+            // `burned_` lesson below, and the thing whose absence had states
+            // relaunching the same invasion every second year for a century.
+            w.set_flag(&crate::dyads::settled_flag(winner, loser));
         } else {
             // Defender victory: attacker's regime is humiliated, and the lesson sticks
             w.set_flag(&format!("burned_{:?}_{:?}", war.attacker, war.defender));
@@ -222,13 +239,11 @@ pub fn war_participants(war: &War) -> Vec<NationId> {
     v
 }
 
-/// The powers that sanction an aggressor and may intervene for its victim.
-/// The AI's expectations in `politics::ai_wars` read from this same list — if
-/// they diverge, aggressors invade into coalitions they never saw coming and
-/// never learn better.
-pub const MAJORS: [NationId; 5] = [
-    NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan,
-];
+// The powers that sanction an aggressor and may intervene for its victim are a
+// flag on the roster row now — see `nations::majors`. `dyads::war_appetite`
+// reads that same list when it works out what an aggressor expects to face; if
+// the two ever diverge, aggressors invade into coalitions they never saw coming
+// and never learn better.
 
 /// Would `m` come to `victim`'s defence?
 pub fn would_intervene(w: &WorldState, m: NationId, victim: NationId, attacker: NationId) -> bool {
@@ -270,8 +285,8 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
     };
 
     // Coalition response: majors sanction the aggressor...
-    let majors = MAJORS;
-    for m in majors {
+    let majors: Vec<NationId> = majors().to_vec();
+    for m in majors.iter().copied() {
         if m == attacker || !w.nation(m).alive {
             continue;
         }
@@ -289,7 +304,7 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
 
     // ...and friends of the victim may intervene (never against a nuclear attacker directly
     // unless they're nuclear too — abstracted: majors intervene if relation with victim high).
-    for m in majors {
+    for m in majors.iter().copied() {
         if war.defender_allies.contains(&m) || refused.contains(&m) {
             continue;
         }

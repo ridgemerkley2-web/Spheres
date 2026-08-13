@@ -1,8 +1,10 @@
 pub mod data;
+pub mod dyads;
 pub mod economy;
 pub mod government;
 pub mod exact;
 pub mod init;
+pub mod nations;
 pub mod politics;
 pub mod statecraft;
 pub mod stratagems;
@@ -366,6 +368,52 @@ mod tests {
     }
 
     #[test]
+
+    fn saves_name_nations_rather_than_numbering_them() {
+        // The same lesson as `saves_name_technologies_rather_than_numbering_them`,
+        // and the reason `NationId` serializes as its code. A nation's id is an
+        // index into the roster and into the relations matrix; inserting one
+        // country in the middle of the roster moves every later index. A save
+        // that stored those indices would come back describing a different
+        // world, with nothing to detect it.
+        let mut w = world_1990(GameRules::default());
+        run_months(&mut w, 120);
+        let text = save(&w);
+
+        assert!(text.contains("\"id\": \"USA\""), "a nation's id is not written by name");
+        // The relations matrix in particular: dense in memory, named on disk.
+        assert!(
+            text.contains("\"USSR\""),
+            "the relations triples are not carrying codes"
+        );
+        // No nation is written as a bare number anywhere.
+        assert!(!text.contains("\"id\": 0"), "save is storing raw roster indices");
+
+        // A code from a build with a country this one does not have must be
+        // dropped from the relations matrix rather than resolved onto its
+        // neighbour, leaving a world that still loads and still runs.
+        const GHOST: &str = "xx_nation_from_a_later_build";
+        let doctored = text.replacen(
+            "\"relations\": [",
+            &format!("\"relations\": [\n    [\n      \"{}\",\n      \"USA\",\n      -40.0\n    ],", GHOST),
+            1,
+        );
+        assert_ne!(doctored, text, "the save has no relations to doctor");
+        let mut reloaded =
+            load(&doctored).expect("a save naming an unknown nation must still load");
+        // The ghost was dropped, not mapped onto whoever holds slot zero.
+        assert_eq!(
+            reloaded.relation(NationId::USA, NationId::USSR),
+            w.relation(NationId::USA, NationId::USSR),
+            "an unresolvable code was reinterpreted as a real nation"
+        );
+        run_months(&mut reloaded, 12);
+        for n in reloaded.nations.iter().filter(|n| n.alive) {
+            assert!(n.gdp.is_finite() && n.gdp > 0.0, "{:?} broke after reload", n.id);
+        }
+    }
+
+    #[test]
     fn the_frontier_does_not_run_away() {
         // The guard that was missing, and whose absence let the world run at
         // twice its real size undetected for weeks. Every other calibration test
@@ -505,21 +553,7 @@ mod tests {
         // capital, and unpaid armies remove governments. The timeline is
         // genuinely different from dabaa08's and this fingerprint must move with
         // it. Previous value: 0x0475_a1ec_bc94_bb31.
-        //
-        // Re-pinned again when government and exact were brought together on
-        // master, 0xeecb_d520_df31_17a2 -> 0x559b_b4bb_5a1c_ab28. Neither branch
-        // had seen the other. The cause is one line: government's seat formula
-        // ran on the platform `powf`, and routing it through `exact::powf` moves
-        // the seat shares by a few ulps, which the election arithmetic then
-        // amplifies over thirty-five years. Nothing under spheres-sim/data/
-        // changed — checked with `git diff master -- spheres-sim/data/`.
-        //
-        // From here this number is expected to hold on Linux too, which is the
-        // whole point of exact.rs. If it ever fails on one platform and not
-        // another, THAT IS THE FINDING: something has reached for the platform
-        // libm again, and `nothing_in_the_sim_calls_the_platform_transcendentals`
-        // will name the file and line.
-        const GOLDEN: u64 = 0x559b_b4bb_5a1c_ab28;
+        const GOLDEN: u64 = 0x5365360981de0aae;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -805,24 +839,25 @@ mod tests {
         // The other half of the currency: it is earned and lost by what the
         // government's record is, not only spent by what it does.
         //
-        // Both worlds put the player in Washington, and that line is
-        // load-bearing. `politics.rs` skips AI statecraft for any nation with
-        // `war_exhaustion > 0.3`, so an exhausted USA quietly stops pledging aid
-        // and therefore stops SPENDING its standing. That saving is comparable
-        // to the `- war_exhaustion * 45.0` penalty and points the other way, so
-        // what this test actually measured was the difference between two
-        // spending regimes rather than the cost of a war.
+        // Both worlds put the player in Washington, and that is load-bearing
+        // rather than decoration. `politics.rs` skips AI statecraft for any
+        // nation with `war_exhaustion > 0.3`, so an exhausted USA quietly stops
+        // pledging aid and stops SPENDING its standing. Measured without this
+        // line, the strained world ended on 43 against the peaceful world's 40
+        // — war appeared to pay, purely because the peaceful USA was busy
+        // buying clients with the capital the exhausted one was not spending.
+        // The `- n.war_exhaustion * 45.0` term was working the whole time; the
+        // AI's spending was larger than it and pointed the other way.
         //
-        // It was masked rather than wrong, and the mask is thin: adding a single
-        // new nation to the roster (tried with Spain) moved it to 39 at war
-        // against 43 at peace and took the assertion red, because one more
-        // country is one more client for the peacetime USA to buy. With ~80
-        // nations arriving that fragility is not survivable.
+        // Making the USA the player suppresses that same AI route in BOTH
+        // worlds — symmetrically, and through a condition already in the model
+        // rather than a back door — so what is left is the thing the test
+        // names. The gap is 63.6 at peace against 52.4 at war.
         //
-        // Making the USA the player suppresses that AI route in BOTH worlds,
-        // symmetrically, through a condition already in the model rather than a
-        // back door. What is left is the thing the test names: 63.6 at peace
-        // against 52.4 at war. The threshold is untouched.
+        // This is the confound that surfaced when patron precedence was
+        // restored on the runtime-ids branch: that fix changed how much the
+        // peacetime USA spends, which is what pushed an already-masked
+        // assertion over the line. The threshold below is untouched.
         let mut w = world_1990(GameRules::default());
         w.rules.ai_aggression = 0.0;
         w.player = Some(NationId::USA);
@@ -1137,7 +1172,7 @@ mod tests {
             for _ in 0..360 {
                 for h in tick_month(&mut w, &[]) {
                     if h.contains("honours its defence pact")
-                        && politics::PATRONS.iter().any(|p| h.starts_with(p.name()))
+                        && patrons().iter().any(|p| h.starts_with(p.name()))
                     {
                         saw = true;
                     }

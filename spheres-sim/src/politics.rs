@@ -270,7 +270,7 @@ fn dissolve_ussr(w: &mut WorldState) {
     w.nations.push(ukraine);
 
     // Both successors inherit a thawed version of USSR relations
-    let rels: Vec<(NationId, f64)> = ALL_START_NATIONS
+    let rels: Vec<(NationId, f64)> = start_nations()
         .iter()
         .filter(|x| **x != NationId::USSR)
         .map(|x| (*x, w.relation(NationId::USSR, *x) * 0.5 + 10.0))
@@ -352,7 +352,7 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
     }
 
     // Successors inherit the federation's standing abroad, thinned out.
-    let inherited: Vec<(NationId, f64)> = ALL_START_NATIONS
+    let inherited: Vec<(NationId, f64)> = start_nations()
         .iter()
         .filter(|x| **x != NationId::Yugoslavia)
         .map(|x| (*x, w.relation(NationId::Yugoslavia, *x) * 0.6))
@@ -384,15 +384,9 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
     w.headline("The JNA's divisions, and its arsenal, remain in Belgrade's hands.".into());
 }
 
-/// The powers that keep clients. Not simply the strongest — the ones with a bloc
-/// to hold together and something to lose if it goes over to the other side.
-/// Japan belongs here despite its two-decimal army: it passed the United States
-/// in 1989 to become the largest aid donor in the world and stayed there until
-/// 2000. https://ies.princeton.edu/pdf/E196.pdf
-pub const PATRONS: [NationId; 8] = [
-    NationId::USA, NationId::USSR, NationId::Russia, NationId::China,
-    NationId::UK, NationId::France, NationId::Germany, NationId::Japan,
-];
+// The powers that keep clients are a flag on the roster row now rather than an
+// array here, so adding a nation cannot leave the list stale — see
+// `nations::patrons`, which holds the membership and the reasoning for it.
 
 /// What a great power does in the eleven months of the year it is not invading
 /// anyone. Each patron gets a handful of independent low-probability chances per
@@ -400,13 +394,13 @@ pub const PATRONS: [NationId; 8] = [
 /// to make a rival's client ungovernable. Everything goes through the same
 /// `Command` the player uses, so the AI cannot do anything a player could not.
 fn ai_statecraft(w: &mut WorldState) {
-    let patrons: Vec<NationId> = PATRONS
+    let active: Vec<NationId> = patrons()
         .iter()
         .copied()
         .filter(|p| w.nation_opt(*p).map_or(false, |n| n.alive) && Some(*p) != w.player)
         .collect();
 
-    for p in patrons {
+    for p in active {
         // A patron with its own house on fire stops buying friends.
         if w.nation(p).stability < 25.0 {
             continue;
@@ -532,7 +526,7 @@ fn ai_statecraft(w: &mut WorldState) {
         .iter()
         .filter(|n| n.alive)
         .map(|n| n.id)
-        .filter(|id| Some(*id) != w.player && !PATRONS.contains(id))
+        .filter(|id| Some(*id) != w.player && !patrons().contains(id))
         .collect();
     for s in seekers {
         let strength = w.nation(s).mil_strength;
@@ -603,7 +597,7 @@ fn best_client(w: &WorldState, patron: NationId) -> Option<NationId> {
         .iter()
         .filter(|n| n.alive && n.id != patron)
         .map(|n| n.id)
-        .filter(|c| !PATRONS.contains(c) && !war::MAJORS.contains(c))
+        .filter(|c| !patrons().contains(c) && !majors().contains(c))
         .filter(|c| !crate::statecraft::belligerents(w, patron, *c))
         .map(|c| (c, client_score(w, patron, c)))
         .filter(|(_, s)| *s > 0.0)
@@ -636,18 +630,19 @@ fn best_covert_target(w: &WorldState, sponsor: NationId) -> Option<NationId> {
         .map(|(t, _)| t)
 }
 
+/// Every state that might start a war this month, and how likely it is to.
+///
+/// There is no list of aggressors and no table of pairs. Anyone alive may want
+/// something from anyone they can reach; `dyads::war_appetite` decides how much,
+/// out of borders, claims, relations and the two governments' own condition.
+///
+/// Order is registry order for the attacker and registry order within its
+/// contact set for the target, so the sequence of die rolls — and therefore the
+/// whole timeline — is fixed by construction.
 fn ai_wars(w: &mut WorldState) {
-    // Iraq's Kuwait calculus: debt-strained oil state eyeing a rich, weak neighbor.
     let candidates: Vec<(NationId, NationId, f64)> = {
         let mut v = vec![];
-        let aggressors = [
-            NationId::Iraq, NationId::Iran, NationId::Pakistan, NationId::India,
-            NationId::Serbia, NationId::Croatia,
-            NationId::China, NationId::Israel, NationId::Turkey,
-        ];
-        // Successor states are not in ALL_START_NATIONS, so consider everyone alive.
-        let living: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
-        for a in aggressors {
+        for a in all_nations().iter().copied() {
             let an = match w.nation_opt(a) {
                 Some(n) => n,
                 None => continue, // has not been born yet, if it ever is
@@ -655,109 +650,18 @@ fn ai_wars(w: &mut WorldState) {
             if !an.alive || Some(a) == w.player || w.at_war(a) || an.war_exhaustion > 0.3 {
                 continue;
             }
-            for t in living.iter().copied() {
-                if t == a {
+            for t in crate::dyads::contacts(a).iter().copied() {
+                match w.nation_opt(t) {
+                    Some(n) if n.alive => {}
+                    _ => continue,
+                }
+                if w.at_war(t) {
                     continue;
                 }
-                let tn = match w.nation_opt(t) {
-                    Some(n) => n,
-                    None => continue,
-                };
-                if !tn.alive || w.at_war(t) {
-                    continue;
+                let p = crate::dyads::war_appetite(w, a, t);
+                if p > 0.0 {
+                    v.push((a, t, p));
                 }
-                // Only historically-plausible dyads have nonzero base appetite (regional gates)
-                let base: f64 = match (a, t) {
-                    (NationId::Iraq, NationId::Kuwait) => 0.030,
-                    (NationId::Iraq, NationId::SaudiArabia) => 0.004,
-                    (NationId::Iraq, NationId::Iran) => 0.002,
-                    (NationId::Iran, NationId::Iraq) => 0.002,
-                    (NationId::Pakistan, NationId::India) => 0.001,
-                    (NationId::India, NationId::Pakistan) => 0.001,
-                    // The Sino-Vietnamese quarrel is the live one in Asia in
-                    // 1990: a border war in 1979, artillery duels along it until
-                    // 1988, and three Vietnamese ships sunk off Johnson Reef in
-                    // the Spratlys that March. Relations are not normalised until
-                    // November 1991, and Hanoi's Soviet guarantor is dying. Only
-                    // this direction: Beijing has the bomb and Hanoi does not.
-                    // Kept low because the quarrel was cooling, not heating: the
-                    // multipliers below (relations at -45, a strength ratio near
-                    // two) already triple whatever base it is given.
-                    (NationId::China, NationId::Vietnam) => 0.0003,
-                    // Osirak is the precedent and it is only nine years old.
-                    // Israel struck Iraq's reactor from the air in 1981 and was
-                    // arguing internally about doing it again through 1990, up to
-                    // and past the point where Scuds were landing on Tel Aviv.
-                    // What it never became was an invasion, which is what this
-                    // table declares — hence a base an order below Iraq's own
-                    // appetite for Kuwait, further damped because Israel's 132%
-                    // debt would otherwise read to the AI as fiscal desperation.
-                    (NationId::Israel, NationId::Iraq) => 0.0003,
-                    // Turkey put divisions across the Iraqi border repeatedly in
-                    // the nineties — 1992, 1995, 1997 — chasing the PKK into a
-                    // north Iraq Baghdad no longer controlled, and Ozal pressed
-                    // his allies for a share of the outcome, Mosul included. The
-                    // appetite is real but conditional: it needs Baghdad to be
-                    // beaten first, which the coalition's sanctions and the
-                    // relations shift after an invasion supply.
-                    (NationId::Turkey, NationId::Iraq) => 0.002,
-                    // Wars of succession: neighbours of a state that just came
-                    // apart, with kin on the wrong side of the new borders.
-                    (NationId::Serbia, NationId::Croatia) => 0.022,
-                    (NationId::Serbia, NationId::Bosnia) => 0.030,
-                    (NationId::Serbia, NationId::Slovenia) => 0.010,
-                    (NationId::Croatia, NationId::Bosnia) => 0.014,
-                    _ => 0.0,
-                };
-                if base <= 0.0 {
-                    continue;
-                }
-                let rel = w.relation(a, t);
-                // Expected defense includes likely interveners — but a first-time
-                // gambler discounts them (Saddam's 1990 misjudgment). After one
-                // repelled invasion the lesson is learned permanently.
-                let learned = w.has_flag(&format!("burned_{:?}_{:?}", a, t));
-                let mut expected_def = tn.mil_strength;
-                let coalition_discount = if learned { 1.0 } else { 0.10 };
-                // Read the same list the coalition actually forms from, or the
-                // lesson of a repelled invasion is never available to be learned.
-                for m in war::MAJORS {
-                    if war::would_intervene(w, m, t, a) {
-                        expected_def += w.nation(m).mil_strength * coalition_discount;
-                    }
-                }
-                // A signed guarantee is the one commitment an aggressor cannot
-                // pretend not to have seen. It is still discounted — pacts are
-                // broken — but far less than a hoped-for coalition.
-                for g in w.pact_partners(t) {
-                    if g == a || war::MAJORS.contains(&g) && war::would_intervene(w, g, t, a) {
-                        continue;
-                    }
-                    if w.nation_opt(g).map_or(true, |n| !n.alive) {
-                        continue;
-                    }
-                    let honoured = if learned { 0.75 } else { 0.20 };
-                    expected_def += w.nation(g).mil_strength * honoured;
-                }
-                let strength_ratio = an.mil_strength / expected_def.max(1.0);
-                if strength_ratio < 0.8 {
-                    continue; // deterred
-                }
-                // Fiscal desperation raises appetite (Iraq 1990); bad relations too
-                let desperation = (an.debt_gdp - 0.6).max(0.0) * 1.5 + (0.4 - an.growth_last * 10.0).max(0.0) * 0.2;
-                // A neighbour that cannot hold itself together is an invitation:
-                // its own minorities are a lever, and its army is busy at home.
-                let mut p = base
-                    * w.rules.ai_aggression
-                    * (1.0 + desperation)
-                    * (1.0 + tn.separatism * 1.5)
-                    * strength_ratio.min(4.0)
-                    * if rel < -20.0 { 1.5 } else { 0.5 };
-                // Deterrence: never attack a nuclear power without your own arsenal
-                if tn.nuclear && !an.nuclear {
-                    p = 0.0;
-                }
-                v.push((a, t, p.min(0.25)));
             }
         }
         v
