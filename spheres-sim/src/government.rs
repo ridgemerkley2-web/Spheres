@@ -957,7 +957,7 @@ pub const POLITIES: &[Polity] = &[
     },
 
     // Belgium - Chamber of Representatives, 13 December 1987: CVP 19.5%,
-    // PS 15.7%, SP 14.9%, PVV 11.6%, PRL 9.4%, VU 8.1%, PSC 8.0%, Agalev 4.5%,
+    // PS 15.6%, SP 14.9%, PVV 11.6%, PRL 9.4%, VU 8.1%, PSC 8.0%, Agalev 4.5%,
     // Ecolo 2.6%, Vlaams Blok 1.9%, FDF 1.2%. Martens VIII took 148 days to
     // form. The next election was due December 1991 and came on 24 November.
     // https://en.wikipedia.org/wiki/1987_Belgian_general_election
@@ -979,7 +979,7 @@ pub const POLITIES: &[Polity] = &[
             // because that is what they were: separate lists, separate
             // leaders, separate electorates, coalition partners at best.
             p("be_cvp", "Christian People's Party (Flemish)", "Christelijke Volkspartij", Family::ChristianDemocratic, 0.195),
-            p("be_ps", "Socialist Party (Francophone)", "Parti Socialiste", Family::SocialDemocratic, 0.157),
+            p("be_ps", "Socialist Party (Francophone)", "Parti Socialiste", Family::SocialDemocratic, 0.156),
             p("be_sp", "Socialist Party (Flemish)", "Socialistische Partij", Family::SocialDemocratic, 0.149),
             p("be_pvv", "Party for Freedom and Progress (Flemish)", "Partij voor Vrijheid en Vooruitgang", Family::Liberal, 0.116),
             p("be_prl", "Liberal Reformist Party (Francophone)", "Parti Reformateur Liberal", Family::Liberal, 0.094),
@@ -1147,7 +1147,10 @@ pub const POLITIES: &[Polity] = &[
     },
 
     // Greece - Hellenic Parliament, 5 November 1989: New Democracy 46.2%,
-    // PASOK 40.7%, Synaspismos 11.0%, DIANA 0.7%. This is the SECOND of three
+    // PASOK 40.7%, Synaspismos 11.0%. Three parties and no more: the
+    // published result carries a tail of minor lists, and none of them is
+    // separately verifiable against the source cited below, so none is
+    // entered. The shares sum to 0.979 and are not padded. This is the SECOND of three
     // elections in eleven months - 18 June 1989, 5 November 1989, 8 April 1990
     // - and neither of the first two produced a government. What sat on
     // 1 January 1990 was an ecumenical caretaker cabinet under Xenophon
@@ -1179,7 +1182,6 @@ pub const POLITIES: &[Polity] = &[
             // conservatives in one cabinet - for the sole purpose of sending
             // Andreas Papandreou for trial over the Koskotas affair.
             p("gr_syn", "Coalition of the Left and Progress", "Synaspismos tis Aristeras kai tis Proodou", Family::Communist, 0.110),
-            p("gr_diana", "Democratic Renewal", "Dimokratiki Ananeosi", Family::Liberal, 0.007),
         ],
         ruling: "the Hellenic Parliament",
         pillars: &[],
