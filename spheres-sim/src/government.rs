@@ -3299,6 +3299,100 @@ pub const POLITIES: &[Polity] = &[
             pl(Pillar::Security, "the Ministry of the Interior"),
         ],
     },
+    // Canada — general election of 21 November 1988, the free-trade election:
+    // Progressive Conservative 43.0%, Liberal 31.9%, NDP 20.4%, Reform 2.1%.
+    // Mulroney's second majority, won on the Canada-United States Free Trade
+    // Agreement his opponents had between them a clear majority against. The
+    // next election was due by November 1993 and came on 25 October, when the
+    // party in this list at 43.0% was reduced to two seats.
+    // https://en.wikipedia.org/wiki/1988_Canadian_federal_election
+    //
+    // The Bloc Quebecois is deliberately absent. It was founded on 15 June
+    // 1990, five and a half months after the game starts, out of the wreckage
+    // of Meech Lake — so it contested no election before January 1990 and has
+    // no transcribed share to enter. Putting it in the table with an invented
+    // opening number would be scripting the Canadian crisis instead of letting
+    // the separatism figure in canada.json produce it.
+    Polity {
+        nation: NationId::Canada,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1993, 10),
+        parties: &[
+            p("ca_pc", "Progressive Conservative Party", "", Family::Conservative, 0.430),
+            p("ca_lib", "Liberal Party of Canada", "", Family::Liberal, 0.319),
+            p("ca_ndp", "New Democratic Party", "", Family::SocialDemocratic, 0.204),
+            // Reform ran candidates only west of Ontario in 1988 and won no
+            // seats. Filed Regionalist rather than Conservative because that is
+            // what it was in 1988 — Western alienation, an elected Senate, and
+            // "the West wants in" — whatever it became after 1993.
+            p("ca_reform", "Reform Party of Canada", "", Family::Regionalist, 0.021),
+        ],
+        ruling: "the House of Commons",
+        pillars: &[],
+    },
+    // Australia — House of Representatives, 11 July 1987, first-preference
+    // votes: ALP 45.8%, Liberal 34.4%, National 11.5%, Democrats 6.0%. This is
+    // the last election BEFORE January 1990 and therefore the right one, even
+    // though the next was only eleven weeks away: Hawke went to the country
+    // again on 24 March 1990 and won a fourth term with a minority of the
+    // two-party preferred vote.
+    // https://en.wikipedia.org/wiki/1987_Australian_federal_election
+    Polity {
+        nation: NationId::Australia,
+        // A substitution, and a visible one. Australia elects the House by
+        // full preferential voting — an instant runoff — which is not in the
+        // Electoral enum. The two candidates were TwoRound, which is what an
+        // instant runoff literally is, and FirstPastThePost. FirstPastThePost
+        // is entered because of what this enum actually controls: a majority
+        // bonus and a threshold, (3.0, 0.0) against TwoRound's (2.0, 0.05).
+        // Australia's single-member districts manufacture majorities at least
+        // as hard as Britain's — the ALP took 86 of 148 seats on 45.8% of the
+        // primary vote in 1987 — and TwoRound's 5% national threshold would
+        // have seated the Democrats, who polled 6.0% and won exactly zero
+        // House seats that year and every other. Choosing the mechanism that
+        // reproduces the outcome over the one that shares the name.
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (1990, 3),
+        parties: &[
+            p("au_alp", "Australian Labor Party", "", Family::SocialDemocratic, 0.458),
+            p("au_lib", "Liberal Party of Australia", "", Family::Conservative, 0.344),
+            // The Coalition's two halves are entered separately because they
+            // are separate parties with separate leaders and separate rooms,
+            // and because the National Party is agrarian in a way the Liberals
+            // have never been: it exists to represent farmers and country
+            // towns, and it splits from its partner over exactly that.
+            p("au_nat", "National Party of Australia", "", Family::Agrarian, 0.115),
+            p("au_dem", "Australian Democrats", "", Family::Liberal, 0.060),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+    // New Zealand — general election of 15 August 1987: Labour 48.0%,
+    // National 44.0%, Democrats 5.7%. The fourth Labour government's second
+    // term, and it did not survive it: Lange resigned in August 1989, Palmer
+    // holds the office when the game opens, Moore replaced him on 4 September
+    // 1990, and National won 67 of 97 seats on 27 October.
+    // https://en.wikipedia.org/wiki/1987_New_Zealand_general_election
+    Polity {
+        nation: NationId::NewZealand,
+        // Genuinely first past the post, in a unicameral parliament, with no
+        // upper house and no written constitution to slow it down. New Zealand
+        // adopted mixed-member proportional representation at the referendum of
+        // 6 November 1993 and first used it in 1996 — six years past this table
+        // and reachable by the model rather than written into it.
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (1990, 10),
+        parties: &[
+            p("nz_lab", "New Zealand Labour Party", "", Family::SocialDemocratic, 0.480),
+            p("nz_nat", "New Zealand National Party", "", Family::Conservative, 0.440),
+            p("nz_dem", "Democratic Party", "Social Credit", Family::Liberal, 0.057),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

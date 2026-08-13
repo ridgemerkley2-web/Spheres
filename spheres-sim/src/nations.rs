@@ -108,6 +108,17 @@ pub const REGIONS: &[&str] = &[
     "NorthAmerica", "LatinAmerica", "WesternEurope", "EasternEurope", "Balkans",
     "Eurasia", "MiddleEast", "NorthAfrica", "WestAfrica", "SouthAsia",
     "EastAsia", "SoutheastAsia", "EastAfrica", "CentralAfrica", "SouthernAfrica",
+    // Added with Australia and New Zealand. Region membership auto-populates
+    // `contacts`, so the choice is not cosmetic: it decides who the dyad model
+    // thinks these two could plausibly use force against. Filing them under
+    // EastAsia or SoutheastAsia would have handed Australia a standing contact
+    // with China, Japan, Korea, Vietnam and Indonesia on no better ground than
+    // that the map is crowded down there — and "close enough that force can be
+    // projected without anybody's permission", which is what this list means,
+    // is exactly what the sea-air gap the 1987 Australian white paper was
+    // written around is not. Oceania holds the two of them and their contact
+    // set is each other, which is the fact.
+    "Oceania",
 ];
 
 /// The roster. **Order is the relations-matrix order and must not be shuffled.**
@@ -121,7 +132,7 @@ pub const ROSTER: &[NationRow] = &[
     // symmetry check reads the raw rows and not the closure. Canada is not in
     // the roster, so the northern one is correctly absent.
     row("USA", "United States", &["usa", "us", "america"], "NorthAmerica",
-        &["Mexico"], &[], true, true, true),
+        &["Mexico", "Canada"], &[], true, true, true),
 
     // The union borders China, Poland, Turkey and Iran; the successor Russia
     // borders only the first two of those, which is a real change the model
@@ -1333,6 +1344,52 @@ pub const ROSTER: &[NationRow] = &[
     // own.
     row("Laos", "Laos", &["lao", "lao pdr"], "SoutheastAsia",
         &["Thailand", "Cambodia", "Vietnam", "China"], &[], true, false, false),
+
+    // Canada's only land border on this board is the 8,891km line with the
+    // United States, demilitarised by the Rush-Bagot Agreement of 1817 and
+    // still the longest undefended frontier in the world in 1990. Greenland,
+    // the other side of the Nares Strait, is Danish and not simulated.
+    //
+    // `claims` is empty, and that is a finding rather than an omission. The two
+    // live territorial disagreements Ottawa had with Washington in January 1990
+    // were the legal status of the Northwest Passage — Canada says internal
+    // waters, the United States says an international strait, which is an
+    // argument about a right of navigation and not about whose land it is —
+    // and Machias Seal Island, twenty hectares of rock and puffins in the Bay
+    // of Fundy. Neither is a share of a country. Entering either as a claim
+    // would tell the derived appetite model that Canada wants something from
+    // the United States, and Canada does not.
+    // https://en.wikipedia.org/wiki/Canada%E2%80%93United_States_border
+    row("Canada", "Canada", &["can"], "NorthAmerica",
+        &["USA"], &[], true, false, false),
+
+    // Australia borders nobody. The nearest land is Papua New Guinea, four
+    // kilometres from Saibai across the Torres Strait and not in this roster;
+    // Indonesia is across the Arafura Sea. An empty neighbour list is the fact
+    // and it is most of what the 1987 Defence of Australia white paper was
+    // about — a continent whose entire strategic problem is the sea-air gap to
+    // its north, and which therefore buys frigates and F/A-18s rather than
+    // armoured divisions.
+    //
+    // The Australian Antarctic Territory is 5.9m square kilometres, about 42%
+    // of Antarctica, and the largest claim any state makes anywhere. It is not
+    // in `claims` because `claims` is a share of another nation in this roster
+    // and Antarctica is not one; the Antarctic Treaty of 1961 froze the whole
+    // question in any case, which is the rare territorial argument that really
+    // did stop.
+    row("Australia", "Australia", &["aus", "oz"], "Oceania",
+        &[], &[], true, false, false),
+
+    // Two thousand kilometres of Tasman Sea to its nearest neighbour. The Ross
+    // Dependency and Tokelau are New Zealand administrations rather than claims
+    // on anybody, and the live constitutional argument of 1990 — the Treaty of
+    // Waitangi, whose sesquicentenary fell on 6 February that year and was
+    // protested at Waitangi itself — is internal, so it belongs in `separatism`
+    // in the data file and not here. A nation with no border and no claim is
+    // one the war model can only reach through an alliance, which is precisely
+    // how New Zealand has ever gone to war.
+    row("NewZealand", "New Zealand", &["nz", "nzl"], "Oceania",
+        &[], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -1559,6 +1616,9 @@ well_known! {
     Philippines => "Philippines",
     Cambodia => "Cambodia",
     Laos => "Laos",
+    Canada => "Canada",
+    Australia => "Australia",
+    NewZealand => "NewZealand",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

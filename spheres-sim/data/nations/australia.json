@@ -1,0 +1,43 @@
+{
+  "id": "Australia",
+  "name": "Australia",
+  "system": "Market",
+  "authoritarianism": 0.06,
+  "economy": {
+    "gdp_bn": 311.0,
+    "population_m": 17.1,
+    "tfp_trend": 0.011,
+    "inflation": 0.073,
+    "interest_rate": 0.17,
+    "tax_rate": 0.35,
+    "mil_spend_gdp": 0.021,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.226,
+    "debt_gdp": 0.22,
+    "oil_mbd": 0.6,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 76.0,
+    "separatism": 0.04
+  },
+  "military": {
+    "strength": 14.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $311bn: World Bank NY.GDP.MKTP.CD, series AUS, 1990 - the print is $311,840,666,465, on the same series as the rest of the roster. Cross-check: Australian nominal GDP was near A$395bn in 1990 and the year's average rate about US$0.78 to the Australian dollar, which gives roughly $308bn. The two agree within 1%, which is a better result than Spain's or Canada's and is worth stating because it is the case where the convention costs nothing.",
+    "Population 17.1m: World Bank SP.POP.TOTL, series AUS, 1990 = 17,065,128. The census of 6 August 1991 counted 16,850,540 on a night-of basis.",
+    "Inflation 7.3%: World Bank FP.CPI.TOTL.ZG, series AUS, 1990 = 7.33%. This is the highest inflation of any of the four Anglosphere democracies in the roster and the reason the interest rate below is what it is.",
+    "Interest rate 17.0%: the Reserve Bank cash rate as it stood in January 1990, which is the month the game starts. This is a start-of-game figure and deliberately not an annual average: the cash rate had peaked near 18% in 1989, stood about 17-17.5% in January 1990, and was cut through the year to roughly 12% by December as the recession Keating later called the one Australia had to have took hold. Entering the average would have understated the monetary stance the player inherits on turn one by five points. The coupled constraint: 0.025 - (0.170 - 0.073) = -0.072, inside the band and wider than Canada's, which is the right ordering - Australia was running the tightest money in the developed world at the start of 1990.",
+    "TFP trend 0.011: the highest of the three, and the reason is the reform programme that had been running since the dollar was floated in December 1983 - tariff cuts announced in 1988 and again in 1991, financial deregulation, the Accord holding real wages while it happened. Australian multifactor productivity growth did in fact accelerate through the 1990s to roughly 1.5% a year, which is the strongest productivity record in the Anglosphere in this period. Entered above Spain's 0.009 and Canada's 0.008. Same caveat as the other two files: tech/mod.rs rewrites this field every tick, so it seeds the technology state and is not the growth-calibration dial.",
+    "Revenue 35% of GDP: total general-government revenue, Commonwealth plus states plus local, on the OECD basis. Australia is a federation and the Commonwealth share alone is near 24%; the general-government figure is entered for the same reason as Canada's.",
+    "Gross public debt 22% of GDP: general government, 1990. This is the lowest debt ratio in the roster after Kuwait's and it is not an error - the Hawke government ran four consecutive Commonwealth budget surpluses from 1987-88 to 1990-91 and was retiring debt outright. It is the single figure that most distinguishes Australia from Canada and New Zealand, whose adjustments of the same decade were financed rather than paid for.",
+    "Military 2.1% of GDP: World Bank MS.MIL.XPND.GD.ZS, series AUS, 1990 = 2.08%. Strength 14 is an index: about 70,000 permanent ADF personnel, built under the 1987 Defence of Australia white paper for exactly one job - denying the sea-air gap to Australia's north. Six Oberon submarines, four guided-missile frigates, 75 F/A-18s and 22 F-111Cs with genuine regional reach, and no capacity to sustain a land force anywhere. Indexed slightly above Canada's 12 for the strike and maritime patrol capability and below Spain's 16, which had four times the personnel.",
+    "Investment 27.6% of GDP: World Bank NE.GDI.FTOT.ZS, series AUS, 1990 = 27.62%, the highest ratio of any nation in this roster outside East Asia and a genuine feature of the late-1980s Australian boom rather than an artefact. The split entered here, 5.0 public and 22.6 private, is an apportionment and not a transcription: the series does not decompose by sector. Public gross fixed capital formation ran near 5% of GDP because government business enterprises - Telecom, the state electricity commissions, the railways - were still on the public balance sheet in 1990 and had not yet been corporatised or sold. The total is sourced; the split is reasoned.",
+    "Oil 0.6 mbd: crude oil and condensate production, chiefly the Gippsland Basin in Bass Strait and the North West Shelf, which came on stream through the late 1980s. FLAGGED AS THE WEAKEST NUMBER IN THIS FILE: I could not retrieve the 1990 print itself. What anchors it is that Australian production peaked at 802,000 barrels a day in 2000 and that Bass Strait alone averaged 450,000 barrels a day at its own 1985 peak, so a 1990 figure somewhat above that and well below the 2000 peak is the shape of the series. Entered at 0.6 as a stated estimate, not as a transcription, and it should be replaced the moment somebody has the Statistical Review page open.",
+    "Stability 76: the highest in the roster after the states with no opposition to be unstable against, and Australia earns it. Hawke won a fourth term on 24 March 1990 - eleven weeks after the game starts - with the Accord holding wages down by agreement with the unions rather than by law, a settled federation, and compulsory voting producing turnout above 94%. Marked below a hypothetical ceiling because Keating's leadership challenge was already being organised and would come in June 1991.",
+    "Separatism 0.04: below Italy's 0.05 and far below Canada's 0.38. What exists is real but small - Western Australian secessionism, which actually won a referendum 68-32 in 1933 and has never entirely gone away, and unresolved Aboriginal land rights, which in 1990 had produced the Barunga Statement of 1988 and Hawke's undelivered promise of a treaty. Mabo was two years away and Native Title four; neither is a secession movement, and neither is scheduled here.",
+    "Authoritarianism 0.06: the lowest in the roster. A written constitution amendable only by national referendum, High Court judicial review, a federation of six states, and an elected Senate under proportional representation that in living memory had blocked supply and brought a government down. Australia has more veto points than any other democracy on this board, which is what this number measures."
+  ]
+}
