@@ -1,0 +1,43 @@
+{
+  "id": "Morocco",
+  "name": "Morocco",
+  "system": "Market",
+  "authoritarianism": 0.65,
+  "economy": {
+    "gdp_bn": 30.2,
+    "population_m": 24.4,
+    "tfp_trend": 0.007,
+    "inflation": 0.068,
+    "interest_rate": 0.085,
+    "tax_rate": 0.24,
+    "mil_spend_gdp": 0.041,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.2,
+    "debt_gdp": 0.85,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 62.0,
+    "separatism": 0.2
+  },
+  "military": {
+    "strength": 7.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $30.2bn: World Bank NY.GDP.MKTP.CD, series MAR, 1990 = 30,179,954,775 current US$, retrieved from the World Bank API 2026-08-12.",
+    "Population 24.4m: World Bank SP.POP.TOTL, MAR 1990 = 24,375,551. The Moroccan census of 2 September 1994 counted 26,073,717, which brackets it.",
+    "Inflation 6.8%: World Bank FP.CPI.TOTL.ZG, MAR 1990 = 6.78%. Low, and low on purpose - the dirham was managed against a currency basket and the IMF programmes running since 1983 had made price stability the visible proof they were working.",
+    "Interest rate 8.5%: World Bank FR.INR.DPST, MAR 1990 = 8.5%, the deposit rate. A real rate of plus 1.7%, which is the mildest monetary stance in this region and belongs to the only economy in it that was not fighting either inflation or its own currency.",
+    "Revenue 24% of GDP: World Bank GC.TAX.TOTL.GD.ZS gives tax revenue at 18.7% of GDP for MAR 1990; 24% adds non-tax receipts - phosphate royalties through the Office Cherifien des Phosphates, and public-enterprise transfers. The 5-6 point addition is an estimate and is DECLARED UNVERIFIED; the 18.7% underneath it is transcribed.",
+    "Investment 26% of GDP: World Bank NE.GDI.FTOT.ZS, MAR 1990 = 25.79% gross fixed capital formation. The 6/20 split between public and private is NOT a published series and is DECLARED UNVERIFIED. What it states is the direction of the reform actually in progress: privatisation law 39-89 was passed in December 1989 and named 112 state companies for sale, and eight years of structural adjustment had already pushed public capital spending down. Set the lowest public share in this region and the highest private share, which is the opposite of Algeria's.",
+    "Debt 85% of GDP: World Bank DT.DOD.DECT.GN.ZS, MAR 1990 = 85.4%, total external debt stocks over GNI - EXTERNAL debt, on the same disclosed basis as the other files in this region. Morocco was the most indebted economy in the Maghreb and had rescheduled with the Paris Club four times between 1983 and 1990.",
+    "Oil 0.0 mbd: Morocco produced on the order of 600 barrels a day in 1990, which rounds to nothing at this scale. Its mineral wealth is phosphates - roughly three-quarters of the world's reserves - and this model has no phosphate.",
+    "Military 4.1% of GDP: World Bank MS.MIL.XPND.GD.ZS (SIPRI), MAR 1990 = 4.15%. The highest burden in the Maghreb by a factor of nearly three over Algeria's, and it buys one thing: the berm across the Western Sahara, 2,700km of sand wall garrisoned by roughly half the army since 1987.",
+    "Strength 7: an abstract index. About 195,000 personnel, fifteen unbroken years of counter-insurgency against the Polisario, and light equipment - Morocco fought with M-48s and Mirage F1s where Algeria had T-72s and MiG-25s. Set just below Algeria's 8 on that trade and half Egypt's 14.",
+    "Stability 62: Hassan II thirty years on the throne, the makhzen intact, no serious challenge since the Casablanca bread riots of January 1984, and a war in the south that functioned domestically as a unifying cause rather than a drain on legitimacy. Set below Spain's 70 and above Egypt's 58 and Turkey's 55.",
+    "Separatism 0.20: the Western Sahara, and stated from Morocco's side of the argument. Rabat administers the territory and counts it as Moroccan; the Polisario Front contests it in arms from Tindouf and the UN Security Council voted MINURSO into existence on 29 April 1991 to run a referendum on it. That is a live secessionist war inside the territory the state claims, which is what this field measures. Set at double Spain's 0.10 and below Turkey's 0.30, because the Sahrawi population is small and the PKK war was not.",
+    "Authoritarianism 0.65: above the 0.60 electoral ceiling, and the judgement is that Morocco in 1990 was an executive monarchy that held elections rather than a state a vote could remove. The Chamber of Representatives elected on 14 September 1984 seated a real opposition - Istiqlal and the USFP together took 27.7% - but the King appointed the government regardless of it, Driss Basri's interior ministry administered the count, and the election due in 1990 was simply postponed by referendum to 1993. Set below Egypt's 0.75, because the Moroccan opposition was genuinely independent and sometimes refused office, and well above Turkey's 0.35."
+  ]
+}

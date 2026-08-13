@@ -2295,6 +2295,214 @@ pub const POLITIES: &[Polity] = &[
             pl(Pillar::Business, "the Sunni merchant families and the Chamber of Commerce"),
         ],
     },
+    // Algeria — the one government in this table whose party shares come from an
+    // election held AFTER the game opens, and the convention at the top of this
+    // block is what permits it: the last national vote before January 1990 was
+    // the single-list FLN legislative of February 1987, and the Islamic
+    // Salvation Front did not exist until 18 February 1989, so its share is its
+    // result at the first election it contested. That was the municipal poll of
+    // 12 June 1990: FIS 54.2%, FLN 28.1%, RCD 2.1%, PNSD 1.6%, PSD 1.1%, PRA
+    // 0.8%, PAGS 0.3%, independents 11.7%, on a 65.2% turnout.
+    //
+    // Algeria sits BELOW the 0.60 electoral ceiling on purpose. In January 1990
+    // this was a state whose government could be removed by a vote — thirty-odd
+    // parties were legal under the constitution of 23 February 1989 — and five
+    // months later a vote removed it from more than half the country's
+    // communes. The legislative election that followed was called for 1991,
+    // postponed, and held on 26 December 1991; the army cancelled the second
+    // round on 11 January 1992 and the war began. Nothing here schedules any of
+    // that. What is stated is an electorate, a scheduled election, and an army
+    // that is a pillar of the regime rather than a servant of the chamber, and
+    // the model is left to do what it does with the three of them together.
+    // https://en.wikipedia.org/wiki/1990_Algerian_local_elections
+    Polity {
+        nation: NationId::Algeria,
+        // Two-round majority in single-member districts, which is the system the
+        // December 1991 election actually used and the reason it produced 188
+        // seats for the FIS out of 231 decided in the first round on 47.5% of
+        // the vote. A proportional table here would understate by half the thing
+        // that frightened the generals.
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (1991, 12),
+        parties: &[
+            p("dz_fis", "Islamic Salvation Front", "al-Jabhah al-Islamiyah lil-Inqadh", Family::Religious, 0.542),
+            p("dz_fln", "National Liberation Front", "Jabhat al-Tahrir al-Watani", Family::Nationalist, 0.281),
+            p("dz_rcd", "Rally for Culture and Democracy", "Rassemblement pour la Culture et la Democratie", Family::Liberal, 0.021),
+            p("dz_pnsd", "National Party for Solidarity and Development", "Parti National pour la Solidarite et le Developpement", Family::BigTent, 0.016),
+            p("dz_psd", "Social Democratic Party", "Parti Social-Democrate", Family::SocialDemocratic, 0.011),
+            p("dz_pra", "Party of Algerian Renewal", "Parti du Renouveau Algerien", Family::Liberal, 0.008),
+            p("dz_pags", "Socialist Vanguard Party", "Parti de l'Avant-Garde Socialiste", Family::Communist, 0.003),
+        ],
+        ruling: "the National People's Assembly",
+        // Pillars as well as parties, on the Serbia precedent above: an
+        // electorate that can vote and an institution that can overrule it are
+        // both facts about Algeria in 1990, and the second is the one everybody
+        // in Algiers called simply le pouvoir.
+        pillars: &[
+            pl(Pillar::Army, "the Armee Nationale Populaire"),
+            pl(Pillar::Security, "the Securite Militaire"),
+            pl(Pillar::Party, "the FLN apparatus"),
+        ],
+    },
+    // Morocco — Chamber of Representatives, 14 September 1984: Constitutional
+    // Union 24.8%, National Rally of Independents 17.2%, Popular Movement 15.5%,
+    // Istiqlal 15.3%, Socialist Union of Popular Forces 12.4%, National
+    // Democratic Party 8.9%, Party of Progress and Socialism 2.3%. Only 199 of
+    // the 306 seats were directly elected; the other 107 came from electoral
+    // colleges of councillors and professional chambers, which is a mechanism
+    // for guaranteeing the outcome and is why this is a regime with pillars.
+    //
+    // Above the electoral ceiling, and the test is the one that matters: the
+    // King appointed the government whoever won, Driss Basri's interior
+    // ministry administered the count, and the election due in 1990 was simply
+    // postponed by referendum to 1993. A chamber that cannot change a
+    // government is not an electorate. The party table is kept in full anyway,
+    // because Morocco's opposition was real — Istiqlal and the USFP took 27.7%
+    // between them and repeatedly refused office — and because it is what the
+    // model needs the day the monarchy liberalises.
+    // https://en.wikipedia.org/wiki/1984_Moroccan_general_election
+    Polity {
+        nation: NationId::Morocco,
+        system: Electoral::FirstPastThePost,
+        term_months: 72,
+        next: (0, 0),
+        parties: &[
+            p("ma_uc", "Constitutional Union", "al-Ittihad al-Dusturi", Family::Conservative, 0.248),
+            p("ma_rni", "National Rally of Independents", "Rassemblement National des Independants", Family::Liberal, 0.172),
+            p("ma_mp", "Popular Movement", "al-Haraka al-Sha'biyya", Family::Agrarian, 0.155),
+            p("ma_istiqlal", "Istiqlal Party", "Hizb al-Istiqlal", Family::Nationalist, 0.153),
+            p("ma_usfp", "Socialist Union of Popular Forces", "al-Ittihad al-Ishtiraki lil-Quwwat al-Sha'biyya", Family::SocialDemocratic, 0.124),
+            p("ma_pnd", "National Democratic Party", "al-Hizb al-Watani al-Dimuqrati", Family::Conservative, 0.089),
+            p("ma_pps", "Party of Progress and Socialism", "Hizb al-Taqaddum wal-Ishtirakiyya", Family::Communist, 0.023),
+        ],
+        ruling: "the Royal Cabinet",
+        pillars: &[
+            pl(Pillar::Party, "the Makhzen"),
+            pl(Pillar::Security, "the Ministry of the Interior"),
+            pl(Pillar::Army, "the Royal Armed Forces"),
+            // Not decoration and not the same as Iran's seminaries: the King is
+            // Amir al-Mu'minin, Commander of the Faithful, under article 19 of
+            // the constitution. Moroccan religious authority is an attribute of
+            // the throne rather than a rival to it, which is exactly why the
+            // Islamist challenge that broke Algeria did not break Morocco.
+            pl(Pillar::Clergy, "the Commandership of the Faithful"),
+        ],
+    },
+    // Tunisia — Chamber of Deputies, 2 April 1989: the Constitutional Democratic
+    // Rally 80.6% and all 141 seats; independents 13.7% and none; the Movement
+    // of Socialist Democrats 3.8%, the Popular Unity Party 0.7%, the Unionist
+    // Democratic Union 0.4%, all likewise none. A system in which one voter in
+    // seven returns nobody at all is not one a vote can remove, which is the
+    // whole reason Tunisia sits above the ceiling despite having held a
+    // genuinely contested election fifteen months before the game opens.
+    // https://en.wikipedia.org/wiki/1989_Tunisian_general_election
+    Polity {
+        nation: NationId::Tunisia,
+        // Majority list in multi-member constituencies: the list with the most
+        // votes in a governorate took every seat in it. First-past-the-post is
+        // the closest thing in this enum and it is closer than it looks — the
+        // 80.6%-to-141-seats result IS the winner-take-all arithmetic.
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("tn_rcd", "Constitutional Democratic Rally", "al-Tajammu' al-Dusturi al-Dimuqrati", Family::BigTent, 0.806),
+            // Ennahda is entered under its own name at the independents' share
+            // because that is what the independents were. Denied legal
+            // recognition, it ran its candidates as independents and the
+            // article records academics quoting official results between 10%
+            // and 17% for them nationally; 13.68% is the figure in the
+            // published table and is what is transcribed. NOT flagged pariah:
+            // Ennahda was not shunned by other parties, it was refused a
+            // registration, and by 1991 it was being suppressed outright. The
+            // pariah flag is for a cordon sanitaire among parties, not for a
+            // ban by the state.
+            p("tn_nahda", "Ennahda Movement", "Harakat al-Nahda", Family::Religious, 0.137),
+            p("tn_mds", "Movement of Socialist Democrats", "Harakat al-Dimuqratiyin al-Ishtirakiyin", Family::SocialDemocratic, 0.038),
+            p("tn_pup", "Popular Unity Party", "Hizb al-Wahda al-Sha'biyya", Family::SocialDemocratic, 0.007),
+            p("tn_udu", "Unionist Democratic Union", "al-Ittihad al-Dimuqrati al-Wahdawi", Family::Nationalist, 0.004),
+        ],
+        ruling: "the Constitutional Democratic Rally",
+        pillars: &[
+            pl(Pillar::Party, "the Constitutional Democratic Rally"),
+            // The order here is the Tunisian peculiarity and it is deliberate.
+            // Bourguiba and then Ben Ali kept the army small and out of politics
+            // on purpose, and the consequence is that the man who took the
+            // presidency on 7 November 1987 was the interior minister. In
+            // Tunisia the police outrank the generals.
+            pl(Pillar::Security, "the Directorate of State Security"),
+            pl(Pillar::Business, "the UTICA employers' union"),
+            pl(Pillar::Army, "the Tunisian Armed Forces"),
+        ],
+    },
+    // Libya — no parties, and not through neglect: Law 71 of 1972 made forming
+    // one a capital offence, and Gaddafi's formula was that he who forms a party
+    // betrays. An empty party table is therefore the correct transcription,
+    // exactly as it is for Saudi Arabia above and for the same reason — there
+    // was no assembly of any kind that a party could have sat in. Formally
+    // Gaddafi held no office after 1979 and the General People's Congress
+    // governed; actually the revolutionary committees did, and the pillars below
+    // are the institutions that would have had to move to remove him.
+    Polity {
+        nation: NationId::Libya,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the General People's Congress",
+        pillars: &[
+            pl(Pillar::Party, "the Revolutionary Committees Movement"),
+            pl(Pillar::Security, "the Jamahiriya Security Organisation"),
+            // Named specifically because it is not the army. The regular army
+            // was deliberately starved after the coup attempts of the 1970s and
+            // routed in Chad in 1987; what actually guarded Tripoli was a
+            // praetorian force recruited from the leader's own tribe.
+            pl(Pillar::Army, "the Revolutionary Guard Corps"),
+            pl(Pillar::Business, "the National Oil Corporation"),
+        ],
+    },
+    // Sudan — National Assembly, April 1986, the last free election before the
+    // game opens and the one Omar al-Bashir's coup of 30 June 1989 annulled:
+    // the Umma Party 38.4%, the Democratic Unionist Party 29.7%, the National
+    // Islamic Front 18.5%, the Sudanese National Party 2.2%, the Communist Party
+    // 1.7%. Thirty-seven southern constituencies could not be polled at all
+    // because of the war, which is the fact this table cannot express and the
+    // separatism figure in sudan.json has to carry instead.
+    //
+    // Six months old at the start of the simulation, and modelled as a regime
+    // rather than an electorate because that is precisely what it had just
+    // become: parliament dissolved, every party in the list below banned, the
+    // prime minister it elected in prison, and the trade unions gone.
+    // https://en.wikipedia.org/wiki/1986_Sudanese_parliamentary_election
+    Polity {
+        nation: NationId::Sudan,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("sd_umma", "National Umma Party", "Hizb al-Umma al-Qawmi", Family::Religious, 0.384),
+            p("sd_dup", "Democratic Unionist Party", "al-Hizb al-Ittihadi al-Dimuqrati", Family::Religious, 0.297),
+            p("sd_nif", "National Islamic Front", "al-Jabhah al-Islamiyah al-Qawmiyah", Family::Religious, 0.185),
+            p("sd_snp", "Sudanese National Party", "al-Hizb al-Qawmi al-Sudani", Family::Regionalist, 0.022),
+            p("sd_scp", "Sudanese Communist Party", "al-Hizb al-Shuyu'i al-Sudani", Family::Communist, 0.017),
+        ],
+        ruling: "the Revolutionary Command Council for National Salvation",
+        pillars: &[
+            pl(Pillar::Army, "the Sudanese Armed Forces"),
+            // The banned party that supplied the government its programme. The
+            // NIF is in the table above as an electoral force and here as an
+            // institution, and both are true at once: Hassan al-Turabi held no
+            // office in 1990 and wrote the policy anyway.
+            pl(Pillar::Party, "the National Islamic Front"),
+            pl(Pillar::Security, "the National Security Service"),
+            // Raised by decree in 1989 as a parallel army answerable to the
+            // Islamist movement rather than the general staff, which is the
+            // classic coup-proofing move and the reason this regime outlasted
+            // the officers who made it.
+            pl(Pillar::Army, "the Popular Defence Forces"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {
