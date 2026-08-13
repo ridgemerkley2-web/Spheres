@@ -185,6 +185,232 @@
         { "a": "Spain", "b": "Brazil", "value": 35.0 },
         { "a": "Spain", "b": "USSR", "value": 5.0 }
       ]
+    },
+
+    {
+      "note": [
+        "The Netherlands: the most reliably Atlanticist government in continental Europe and one of the least Atlanticist electorates. The cruise-missile decision of 1979 produced the largest demonstrations in Dutch history - 400,000 people in The Hague in October 1983 - and the word Hollanditis was coined in Washington for it; the missiles were accepted anyway in November 1985. The Washington number reflects the government, which is what this model has.",
+        "Benelux is the warmest dyad in this file at 70. The Belgium-Netherlands-Luxembourg customs union of 1948 predates the Coal and Steel Community, and the two states had already abolished their mutual frontier before anyone drafted Schengen.",
+        "Jakarta is the outlier and decolonisation is the reason. The Netherlands fought two wars to keep Indonesia between 1945 and 1949, gave up western New Guinea only in 1962, and by 1990 was tying its aid to human rights in East Timor. Suharto dissolved the Dutch-chaired aid consortium and refused all Dutch assistance in March 1992; a thin positive line here is the year before that."
+      ],
+      "pairs": [
+        { "a": "Netherlands", "b": "Belgium",   "value": 70.0 },
+        { "a": "Netherlands", "b": "USA",       "value": 60.0 },
+        { "a": "Netherlands", "b": "UK",        "value": 60.0 },
+        { "a": "Netherlands", "b": "Germany",   "value": 55.0 },
+        { "a": "Netherlands", "b": "France",    "value": 55.0 },
+        { "a": "Netherlands", "b": "Italy",     "value": 50.0 },
+        { "a": "Netherlands", "b": "Spain",     "value": 45.0 },
+        { "a": "Netherlands", "b": "Japan",     "value": 35.0 },
+        { "a": "Netherlands", "b": "Indonesia", "value": 10.0 },
+        { "a": "Netherlands", "b": "USSR",      "value": -5.0 }
+      ]
+    },
+    {
+      "note": [
+        "Belgium hosts NATO headquarters at Evere and the European Commission at Brussels, which makes it structurally incapable of being anybody's opponent. Paris slightly ahead of Bonn and London because half the country speaks French and the Francophone parties were in government."
+      ],
+      "pairs": [
+        { "a": "Belgium", "b": "France",  "value": 60.0 },
+        { "a": "Belgium", "b": "USA",     "value": 60.0 },
+        { "a": "Belgium", "b": "Germany", "value": 55.0 },
+        { "a": "Belgium", "b": "UK",      "value": 55.0 },
+        { "a": "Belgium", "b": "Italy",   "value": 50.0 },
+        { "a": "Belgium", "b": "Spain",   "value": 45.0 },
+        { "a": "Belgium", "b": "Poland",  "value": 10.0 },
+        { "a": "Belgium", "b": "USSR",    "value": -5.0 }
+      ]
+    },
+    {
+      "note": [
+        "Sweden is non-aligned in peace and neutral in war, and the numbers have to show that it is not simply a quieter NATO member. Washington at 35 rather than the 55-65 the alliance members carry: Olof Palme marched in Stockholm behind the North Vietnamese ambassador in 1968, Sweden recognised the Provisional Revolutionary Government in 1969, and the United States withdrew its ambassador and left the post vacant from 1972 to 1974. Relations were correct by 1990 and had never been warm since.",
+        "Moscow at 10, positive and very thin. Sweden traded with the Soviet Union and voted against it at the United Nations, and spent the 1980s hunting submarines in its own archipelago - the Whiskey-class boat that grounded inside the Karlskrona naval base on 27 October 1981 is the incident everyone remembers, and it was not the only one.",
+        "The Nordic three at 70 are the highest cluster in the file after Benelux. The Nordic Council dates from 1952, the passport union and the common labour market from 1954; the four of them disagreed about NATO and agreed about everything else.",
+        "Hanoi at 40 is not sentiment. Sweden was the first Western country to establish full diplomatic relations with North Vietnam, in January 1969, and paid for the Bai Bang paper mill in Vinh Phu through the whole war and after it - the largest single aid project Sweden ever funded."
+      ],
+      "pairs": [
+        { "a": "Sweden", "b": "Norway",      "value": 70.0 },
+        { "a": "Sweden", "b": "Denmark",     "value": 70.0 },
+        { "a": "Sweden", "b": "Finland",     "value": 70.0 },
+        { "a": "Sweden", "b": "Netherlands", "value": 50.0 },
+        { "a": "Sweden", "b": "Austria",     "value": 45.0 },
+        { "a": "Sweden", "b": "Switzerland", "value": 45.0 },
+        { "a": "Sweden", "b": "Belgium",     "value": 45.0 },
+        { "a": "Sweden", "b": "Germany",     "value": 45.0 },
+        { "a": "Sweden", "b": "UK",          "value": 45.0 },
+        { "a": "Sweden", "b": "France",      "value": 40.0 },
+        { "a": "Sweden", "b": "Vietnam",     "value": 40.0 },
+        { "a": "Sweden", "b": "USA",         "value": 35.0 },
+        { "a": "Sweden", "b": "Poland",      "value": 30.0 },
+        { "a": "Sweden", "b": "USSR",        "value": 10.0 }
+      ]
+    },
+    {
+      "note": [
+        "Switzerland is the one state in this region that is not in the European Community, not in NATO, and - until 10 September 2002 - not in the United Nations either, having voted 75.7% against joining in the referendum of 16 March 1986. Every number here is therefore a trade and banking relationship rather than an alliance, which is why nothing reaches the 55-65 the Community members show each other.",
+        "Vienna at 60 is the exception and is the closest thing Switzerland has to a peer: the other permanently neutral Alpine German-speaking republic, and the only capital in Europe whose foreign-policy position Bern never had to explain."
+      ],
+      "pairs": [
+        { "a": "Switzerland", "b": "Austria",     "value": 60.0 },
+        { "a": "Switzerland", "b": "Germany",     "value": 55.0 },
+        { "a": "Switzerland", "b": "France",      "value": 55.0 },
+        { "a": "Switzerland", "b": "Italy",       "value": 50.0 },
+        { "a": "Switzerland", "b": "UK",          "value": 45.0 },
+        { "a": "Switzerland", "b": "Netherlands", "value": 45.0 },
+        { "a": "Switzerland", "b": "Belgium",     "value": 45.0 },
+        { "a": "Switzerland", "b": "USA",         "value": 40.0 },
+        { "a": "Switzerland", "b": "Spain",       "value": 40.0 },
+        { "a": "Switzerland", "b": "USSR",        "value": 5.0 }
+      ]
+    },
+    {
+      "note": [
+        "Austria's neutrality was the price of the State Treaty of 15 May 1955 and the Soviet withdrawal, and it was written into constitutional law in October of that year on Moscow's insistence. That is why the Moscow number here, 25, is the highest any non-communist state in this file shows the Soviet Union except Finland's: Vienna was where the two blocs met, from the Kennedy-Khrushchev summit of 1961 to the SALT II signature of 1979, and it was a neutrality Moscow had bought and therefore valued.",
+        "Bonn at 65 is the highest single number in this block and needs no elaborate defence - same language, an economy fused with the German one, a currency pegged to the D-mark since 1976, and an Anschluss that both states spent the post-war period declining to discuss.",
+        "Rome at 45 and not higher: South Tyrol. The dispute went to the United Nations General Assembly in 1960 and 1961, produced a bombing campaign, and was formally declared settled by Austria only on 11 June 1992. Two European neighbours with a live minority question at the United Nations do not sit at 55.",
+        "Belgrade at 45 because Austria had been the loudest Western advocate of Slovene and Croat interests since before the federation began to fail, and because Yugoslav guest workers and their families had made Vienna a Yugoslav city as much as a German one."
+      ],
+      "pairs": [
+        { "a": "Austria", "b": "Germany",    "value": 65.0 },
+        { "a": "Austria", "b": "Finland",    "value": 50.0 },
+        { "a": "Austria", "b": "Italy",      "value": 45.0 },
+        { "a": "Austria", "b": "Yugoslavia", "value": 45.0 },
+        { "a": "Austria", "b": "France",     "value": 45.0 },
+        { "a": "Austria", "b": "UK",         "value": 45.0 },
+        { "a": "Austria", "b": "Denmark",    "value": 40.0 },
+        { "a": "Austria", "b": "Norway",     "value": 40.0 },
+        { "a": "Austria", "b": "Poland",     "value": 35.0 },
+        { "a": "Austria", "b": "USA",        "value": 35.0 },
+        { "a": "Austria", "b": "USSR",       "value": 25.0 }
+      ]
+    },
+    {
+      "note": [
+        "Portugal and the United Kingdom at 60 is the oldest live alliance in the world. The Treaty of Windsor was signed on 9 May 1386 and has never been abrogated; Salazar granted the Azores to the Royal Air Force under it in 1943 while remaining neutral, and Lisbon was still granting Lajes to the Americans on the same logic in 1990. Washington at 55 is that base and little else - the agreement was renewed in 1983 for a term running to 1991.",
+        "Brasilia at 65 is the highest number in this block. Portuguese is the language of 150m Brazilians, and the Community of Portuguese Language Countries that was already being talked about was founded in 1996.",
+        "Madrid at 45: warm, and not warmer. The two joined the European Community together on 1 January 1986 and the frontier disappeared with it. Against that sit four hundred years in which Portuguese independence was defined as not being Spanish, an unrenounced Portuguese claim to Olivenza that both governments handle by never raising it, and a proverb about Spanish winds that every Portuguese schoolchild learns."
+      ],
+      "pairs": [
+        { "a": "Portugal", "b": "Brazil",      "value": 65.0 },
+        { "a": "Portugal", "b": "UK",          "value": 60.0 },
+        { "a": "Portugal", "b": "USA",         "value": 55.0 },
+        { "a": "Portugal", "b": "Spain",       "value": 45.0 },
+        { "a": "Portugal", "b": "France",      "value": 45.0 },
+        { "a": "Portugal", "b": "Germany",     "value": 45.0 },
+        { "a": "Portugal", "b": "Netherlands", "value": 45.0 },
+        { "a": "Portugal", "b": "Belgium",     "value": 45.0 },
+        { "a": "Portugal", "b": "Italy",       "value": 40.0 },
+        { "a": "Portugal", "b": "Ireland",     "value": 35.0 },
+        { "a": "Portugal", "b": "Greece",      "value": 35.0 },
+        { "a": "Portugal", "b": "USSR",        "value": 0.0 }
+      ]
+    },
+    {
+      "note": [
+        "Ankara at -35 is the only substantially negative dyad in Western Europe and it is between two members of the same alliance. Turkey invaded Cyprus in July 1974 and 37% of the island was still occupied; the two states dispute the Aegean continental shelf, the width of Greek territorial waters, the extent of the Athens flight information region and the militarisation of the eastern islands; and on 27-28 March 1987 both navies put to sea over a survey ship and were talked down overnight. NATO has never contained a quarrel like it and this number should not pretend otherwise.",
+        "Washington at 25 is far below every other NATO member in this file, and deliberately. Andreas Papandreou won in 1981 on a platform of leaving NATO and closing the bases; he did neither, but the 1983 agreement was explicitly a withdrawal timetable, the Hellenikon and Nea Makri stations closed in 1991, and the American association with the junta of 1967-74 was a live domestic issue rather than history. The 17 November group had assassinated the CIA station chief Richard Welch in Athens in December 1975 and was still killing in 1990.",
+        "Moscow at 15 is higher than any other NATO member shows the Soviet Union, and that too is PASOK: Greece dissented from a long series of alliance positions in the 1980s and kept an open line to the Eastern bloc that Washington complained about repeatedly.",
+        "Israel at 5 is nearly nothing, and the date is the reason. Greece was the last member of the European Community to extend full de jure recognition to Israel, and did so only in May 1990 - four months into the game. Athens had backed the Palestinian position throughout the 1980s, partly on Arab oil and partly against Turkey."
+      ],
+      "pairs": [
+        { "a": "Greece", "b": "France",      "value": 50.0 },
+        { "a": "Greece", "b": "Germany",     "value": 45.0 },
+        { "a": "Greece", "b": "Italy",       "value": 45.0 },
+        { "a": "Greece", "b": "UK",          "value": 40.0 },
+        { "a": "Greece", "b": "Spain",       "value": 40.0 },
+        { "a": "Greece", "b": "Netherlands", "value": 40.0 },
+        { "a": "Greece", "b": "Belgium",     "value": 40.0 },
+        { "a": "Greece", "b": "Denmark",     "value": 35.0 },
+        { "a": "Greece", "b": "Ireland",     "value": 35.0 },
+        { "a": "Greece", "b": "Egypt",       "value": 35.0 },
+        { "a": "Greece", "b": "Yugoslavia",  "value": 30.0 },
+        { "a": "Greece", "b": "USA",         "value": 25.0 },
+        { "a": "Greece", "b": "USSR",        "value": 15.0 },
+        { "a": "Greece", "b": "Israel",      "value": 5.0 },
+        { "a": "Greece", "b": "Turkey",      "value": -35.0 }
+      ]
+    },
+    {
+      "note": [
+        "Denmark is a founder member of NATO that spent the 1980s making the alliance uncomfortable. Between 1982 and 1988 a parliamentary majority of Social Democrats and the left forced the Schluter government to enter written reservations in twenty-three NATO communiques - the fodnotepolitik, the footnote policy - and in April 1988 the Folketing required visiting warships to confirm they carried no nuclear weapons, which is a demand no American or British ship is permitted to answer. The government called an election over it and won; the resolution was softened; and Washington sits at 45 here rather than at the 60 the Netherlands and Belgium show.",
+        "Norway at 70 is the union of 1380-1814 and the Nordic Council. Finland at 60 is slightly lower only because the Danish-Finnish relationship has no equivalent history behind it."
+      ],
+      "pairs": [
+        { "a": "Denmark", "b": "Norway",      "value": 70.0 },
+        { "a": "Denmark", "b": "Finland",     "value": 60.0 },
+        { "a": "Denmark", "b": "Germany",     "value": 55.0 },
+        { "a": "Denmark", "b": "UK",          "value": 55.0 },
+        { "a": "Denmark", "b": "Netherlands", "value": 55.0 },
+        { "a": "Denmark", "b": "Belgium",     "value": 50.0 },
+        { "a": "Denmark", "b": "France",      "value": 45.0 },
+        { "a": "Denmark", "b": "USA",         "value": 45.0 },
+        { "a": "Denmark", "b": "Ireland",     "value": 45.0 },
+        { "a": "Denmark", "b": "Italy",       "value": 40.0 },
+        { "a": "Denmark", "b": "Spain",       "value": 40.0 },
+        { "a": "Denmark", "b": "Poland",      "value": 20.0 },
+        { "a": "Denmark", "b": "USSR",        "value": 0.0 }
+      ]
+    },
+    {
+      "note": [
+        "Norway is the most Atlanticist state in the Nordic region and the only one in this file that shows the Soviet Union a negative number. It holds NATO's northern flank: 196 kilometres of land border at Kirkenes and the sea approaches to the Northern Fleet's bases on Kola. United States Marine Corps equipment for a brigade had been prepositioned in Trondelag since 1981, and the Treholt affair of 1984, in which a senior foreign ministry official was convicted of spying for the KGB, was still fresh. Against that, Norway imposed self-limitations Moscow valued - no foreign bases and no nuclear weapons on Norwegian soil in peacetime - which is why the number is -10 and not -40.",
+        "London at 60 is the North Sea, the wartime alliance, and the fact that the Norwegian government spent 1940-45 in it.",
+        "Helsinki at 65, just below the Swedish and Danish 70s: a shared 736-kilometre border, a shared Arctic, and no history of governing one another."
+      ],
+      "pairs": [
+        { "a": "Norway", "b": "Finland",     "value": 65.0 },
+        { "a": "Norway", "b": "USA",         "value": 65.0 },
+        { "a": "Norway", "b": "UK",          "value": 60.0 },
+        { "a": "Norway", "b": "Netherlands", "value": 55.0 },
+        { "a": "Norway", "b": "Germany",     "value": 45.0 },
+        { "a": "Norway", "b": "Belgium",     "value": 45.0 },
+        { "a": "Norway", "b": "France",      "value": 40.0 },
+        { "a": "Norway", "b": "Ireland",     "value": 40.0 },
+        { "a": "Norway", "b": "Italy",       "value": 35.0 },
+        { "a": "Norway", "b": "Spain",       "value": 35.0 },
+        { "a": "Norway", "b": "Poland",      "value": 15.0 },
+        { "a": "Norway", "b": "USSR",        "value": -10.0 }
+      ]
+    },
+    {
+      "note": [
+        "Finland shows Moscow 45, the highest number any non-communist state in this entire file shows the Soviet Union, and it is the single most important entry in this block. The Treaty of Friendship, Cooperation and Mutual Assistance of 6 April 1948 obliged Finland to resist an attack on the Soviet Union through Finnish territory, with Soviet assistance if needed, and it was still in force on 1 January 1990; it was terminated only in January 1992. A quarter of Finnish trade was with the Soviet Union under bilateral clearing arrangements, which is also why the Finnish depression of 1991-93 was as deep as it was - that trade simply stopped.",
+        "It is a warm number attached to a cold fact, and the model should read it as leverage rather than as friendship. Finland fought two wars against this neighbour between 1939 and 1944, lost 11% of its territory and evacuated 400,000 people from Karelia, and then spent forty-five years being extremely careful. Washington at 25 is the other side of that carefulness: correct, Western, and conspicuously not allied.",
+        "Stockholm, Oslo and Copenhagen were the direction Finland actually faced, and those numbers are in the Nordic blocks above."
+      ],
+      "pairs": [
+        { "a": "Finland", "b": "USSR",        "value": 45.0 },
+        { "a": "Finland", "b": "Germany",     "value": 40.0 },
+        { "a": "Finland", "b": "Netherlands", "value": 40.0 },
+        { "a": "Finland", "b": "UK",          "value": 35.0 },
+        { "a": "Finland", "b": "France",      "value": 35.0 },
+        { "a": "Finland", "b": "Belgium",     "value": 35.0 },
+        { "a": "Finland", "b": "Ireland",     "value": 35.0 },
+        { "a": "Finland", "b": "Poland",      "value": 30.0 },
+        { "a": "Finland", "b": "Italy",       "value": 30.0 },
+        { "a": "Finland", "b": "Spain",       "value": 30.0 },
+        { "a": "Finland", "b": "USA",         "value": 25.0 },
+        { "a": "Finland", "b": "China",       "value": 15.0 }
+      ]
+    },
+    {
+      "note": [
+        "London at 20 is the lowest number Ireland shows anybody and the only one that needs arguing. Read it against Spain-UK at 25 over Gibraltar, because the structure is the same and this quarrel is sharper: a constitutional claim on six counties in Articles 2 and 3, a war running in them that killed 76 people in 1990, an extradition regime the Irish courts kept refusing to operate, and the Birmingham Six still in English prisons - they were released on 14 March 1991. Against all that, the Anglo-Irish Agreement signed at Hillsborough on 15 November 1985 had given Dublin a formal consultative role in Northern Ireland for the first time since 1922, over the furious objection of every unionist party, and by 1990 the two governments were in constant contact. Positive, and thin, and the thinnest dyad in Western Europe outside Greece and Turkey.",
+        "Washington at 60 is the diaspora as an instrument of policy. Forty million Americans claimed Irish descent, the Friends of Ireland caucus was founded in 1981 by Tip O'Neill, Ted Kennedy and Daniel Patrick Moynihan, and the United States had underwritten the International Fund for Ireland since 1986. Ireland had an emigration problem in 1990 rather than an immigration one, and most of it went to New York and Boston.",
+        "Warsaw at 25 is higher than anything else Ireland shows the Eastern bloc, and it is Catholic solidarity: John Paul II had visited Ireland in 1979 and the Irish church raised money for Solidarity through the 1980s."
+      ],
+      "pairs": [
+        { "a": "Ireland", "b": "USA",         "value": 60.0 },
+        { "a": "Ireland", "b": "France",      "value": 50.0 },
+        { "a": "Ireland", "b": "Netherlands", "value": 50.0 },
+        { "a": "Ireland", "b": "Belgium",     "value": 45.0 },
+        { "a": "Ireland", "b": "Germany",     "value": 45.0 },
+        { "a": "Ireland", "b": "Italy",       "value": 40.0 },
+        { "a": "Ireland", "b": "Spain",       "value": 40.0 },
+        { "a": "Ireland", "b": "Poland",      "value": 25.0 },
+        { "a": "Ireland", "b": "UK",          "value": 20.0 },
+        { "a": "Ireland", "b": "USSR",        "value": 0.0 }
+      ]
     }
   ]
 }
