@@ -157,7 +157,72 @@ Still untested, and worth knowing that. No assertion locks a frontier economy's
 long-run trajectory, so a world that uniformly doubles still passes every
 calibration test we have.
 
+## Closed: the roster is 108 nations, and it cost four calibration tests
+
+Ten regional branches landed on master one at a time, each merged and committed
+separately so a bad one could be reverted alone: western Europe (11), eastern
+Europe (5), the post-Soviet ten, Latin America (10), the Middle East (8), north
+Africa (5), sub-Saharan Africa (11), south Asia (5), east and southeast Asia
+(9), and the anglosphere three. 31 nations became 108. Every conflict was an
+append-at-the-end collision in the same four places — the `ROSTER` table, the
+`embedded.rs` manifest, the `POLITIES` table and the web UI's `TERRITORY` map —
+plus neighbour lists that two authors had both extended, which are unioned
+rather than chosen between. `the_roster_is_internally_consistent` is the guard
+that a union was missed, and it is green.
+
+World 1990 GDP is now $23.3tn against $18.8tn at 31 nations, and the real
+figure is about $22.8tn. **That is the single most consequential number in the
+integration**: `tech::tick` sizes what a nation can afford as
+`sqrt(gdp / world_gdp)`, so every coefficient fitted before this was fitted
+against a world roughly 18% too small.
+
+Cost and headroom, measured:
+- `a_century_holds_together` passes at 108 nations. A headless century is 2.9s
+  where 31 nations was 0.40s on the same machine — 7.4x wall clock for 3.5x
+  nations, so the relations matrix survived the scale-up without going
+  quadratic, but the margin is no longer generous.
+- `hungary.json` gdp_bn 33.1 -> 34.5. It cited World Bank NY.GDP.MKTP.CD series
+  HUN 1990, which returns $34.478bn; the figure moved, not the citation, and
+  the reasoning is in the file and its commit.
+- Four calibration tests are red and NONE of them was widened. See below.
+
 ## Next (rough priority)
+
+### 0. Four calibration tests are red at 108 nations
+
+Nothing here was widened, nothing was deleted, and the two hash tests were
+re-pinned once at the end of the ten merges rather than after each. Run
+`cargo test --release -p spheres-sim roster_scale_readout -- --ignored --nocapture`
+for the instrument these judgements were made with.
+
+- **`china_growth_miracle` — the real one.** Median 30-year multiple 10.13x
+  against a band of 11.0-19.0 anchored on the real 14.33x. It is not a seed
+  artefact: the median falls monotonically with roster size, 14.57x at 31
+  nations -> 13.08x at 91 -> 10.13x at 108, tracking world GDP $18.8tn ->
+  $21.9tn -> $23.3tn. The catchup coefficient in `economy.rs` was fitted
+  against the too-small world; the fuller roster is the more truthful
+  denominator, so the coefficient is what is wrong. The test's own sensitivity
+  table (0.020 -> 15.68x, 0.030 -> 20.83x at 31 nations) is the starting point.
+  **A re-fit is its own commit, argued and checked red in both directions.**
+- **`the_frontier_does_not_run_away`** — UK 4.37%/yr on the default seed
+  against a 4.0% ceiling. Over seeds 0..9 the UK reads master [3.11..4.05] and
+  108 nations [2.64..4.69]; mean moves 3.47 -> 3.63. **Master itself breaches
+  the ceiling on seed 0.** The test reads one seed and its margin was always
+  thinner than its seed-to-seed spread. The fix is the test's shape — a
+  cross-seed statistic, as `china_growth_miracle` already is — not the ceiling.
+- **`arms_transfers_build_a_client_army`** — 1.42 against a bar of 1.50, from
+  1.61 on master. One seed, and a ratio between a treated and an untreated
+  Kuwait whose control arm went 6.5 -> 7.7 while the treated arm went
+  10.6 -> 10.9. Same shape problem: any treated/untreated ratio drifts as the
+  world fills up.
+- **`a_poor_nation_still_picks_up_what_everyone_has`** — Afghanistan holds 4
+  technologies on seed 42 against a floor of 5. Over seeds 0..9 nothing is
+  under the floor, but Afghanistan, Cambodia and Laos sit at 5..11 where
+  master's poorest (Vietnam) sat at 18..29. The roster now contains economies
+  an order of magnitude smaller than anything it held before and the anti-
+  shutout headroom is genuinely gone, which is a finding about the cost floor
+  in `tech::effective_cost`, not about those three files.
+
 
 ### 1. Blocked on a decision, not on work
 - **`feat/financial-system`** — currencies, FX regimes, contagion. `WorldState.finance`
