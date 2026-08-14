@@ -127,9 +127,13 @@ That is inside the real range (Iraq 13 years, Cuba past 60); the 25-year
 assertion had encoded an assumption that stopped holding once covert action
 existed. Replaced with a stronger test that locks the erosion pattern too.
 
-**Guarded now.** `the_frontier_does_not_run_away` asserts every mature 1990
-economy compounds under 4%/yr across 35 years. Against the pre-fix behaviour the
-USA compounded 4.79%, so it goes red on exactly the bug that prompted it.
+**Guarded now.** `the_frontier_does_not_run_away` asserts that every mature 1990
+economy compounds under 4%/yr across 35 years, taken as a **median over ten
+seeds** rather than a single draw, plus a pooled median over all sixty
+(nation, seed) readings under 3.5%/yr. Against the pre-fix behaviour the USA
+compounded 4.79%, so it goes red on exactly the bug that prompted it; measured
+against a uniform growth injection it goes red at +0.58 points a year on the
+pooled line and at -2.2 points on the floor.
 
 Japan remains roughly twice its real size at ~3.0%/yr, so a second, smaller
 cause is still outstanding there — see the Japan entry below.
@@ -157,7 +161,7 @@ Still untested, and worth knowing that. No assertion locks a frontier economy's
 long-run trajectory, so a world that uniformly doubles still passes every
 calibration test we have.
 
-## Closed: the roster is 108 nations, and it cost four calibration tests (three since recovered — see §0)
+## Closed: the roster is 108 nations, and it cost four calibration tests (all four since recovered — see §0)
 
 Ten regional branches landed on master one at a time, each merged and committed
 separately so a bad one could be reverted alone: western Europe (11), eastern
@@ -196,7 +200,63 @@ Cost and headroom, measured:
 
 ## Next (rough priority)
 
-### 0. One calibration test is red, down from four
+### 0. The suite is green, and the last two failures were the tests' shape
+
+**Closed.** Four calibration tests went red when the roster went 31 -> 108.
+The sanctions refit below cleared three by fixing the model. The last one, and
+one of the three, were then re-expressed as **cross-seed statistics**, because
+measurement said the defect was in the tests and not in the sim.
+
+Both read one seed and asserted an absolute, and both were knife edges master
+already fell off on other seeds:
+
+- **`the_frontier_does_not_run_away`** read six mature economies on seed 1990
+  once. The UK came in at 4.37%/yr against a 4.0% ceiling — a single draw from
+  a distribution 1.7 points wide (France runs 2.17..3.84 across seeds 0..9).
+  It now takes the **median of ten worlds** per economy against the same 4.0%
+  ceiling and the same 0.5% floor, both numbers unchanged, plus a new pooled
+  median over all sixty readings under 3.5%/yr. The pooled line is the binding
+  one and it is a guard the single-seed form never had: a uniform level shift
+  trips it at +0.58 points a year where the loosest per-nation median needs
+  +0.74. Shipped world reads pooled 2.98%/yr, 15% of margin.
+- **`arms_transfers_build_a_client_army`** read seed 6 once and asserted a
+  treated/untreated ratio over 1.50. It read 1.4186 — the **joint lowest of
+  ten seeds**, in a distribution whose median is 1.688. It now asserts a
+  per-seed floor of 1.20x in every world and a median band of 1.40x-2.50x.
+
+Neither was widened. The arms floor is numerically lower than the old 1.50 bar
+and the reason is that 1.50 sat *inside* the distribution — four of ten seeds
+fall below it — so it bounded nothing; it was a coin flip that had been landing
+heads. Both re-expressions were checked red in both directions against the
+behaviour they exist to catch, with the tables in the test comments:
+
+| test | lever | red below | red above |
+|---|---|---|---|
+| frontier | uniform constant added to `growth_annual` | -0.025 (floor) | +0.010 (both ceilings) |
+| arms, floor | `ARMS_ALPHA` scaling the transfer in `aid_flows` | 0.25 (both floors) | — |
+| arms, ceiling | `ARMS_DAMP`, transfers *added* not converged | — | 0.0 (ceiling) |
+
+**Two things worth carrying forward.** The arms test needed two different
+levers because scaling arms-aid effectiveness globally arms the **control** as
+well — the AI runs about twenty arms flows of its own — so at alpha 8.0 an
+untreated Kuwait goes 6.55 -> 15.95 while the treated goes 11.45 -> 28.07 and
+the ratio barely moves. Any ratio between two clients of the same world is
+blind to a change that world applies to both of them, and that is a general
+caution about treated/untreated tests here, not a quirk of this one. And
+normalising the arms dose to the client's own budget was tried and **rejected
+on measurement**: the pledge is made at t=0 where every seed holds the identical
+transcribed 1990 world, so the dose is already x19.93 on all ten seeds, and
+re-normalising moved the cross-seed spread the wrong way (0.42 -> 0.49/0.51/0.52
+at x8/x10/x12). The spread lives in the eight years that follow the pledge and
+only a cross-seed statistic reaches it.
+
+Two doctest failures inherited from the sanctions refit were also fixed:
+`SANCTION_BITE`'s two indented tables in economy.rs were being parsed as Rust
+doctests. Fenced as ```` ```text ````. Doc comments only, no behaviour, hash
+untouched. `cargo test --release --workspace` is now fully green: 82 sim, 13
+web, 0 doctest failures.
+
+### 0b. How the three were cleared, and why not by widening anything
 
 The refit that entry demanded has landed, and it was **not** the change the
 entry predicted. Nothing was widened, nothing was deleted, one test was added,
@@ -258,14 +318,17 @@ lucky reshuffle:
   Improved, and still the thinnest margin in the suite: two seeds sit at 6
   against a floor of 5.
 
-**Still red, and untouched rather than fixed:**
+**Was still red after the refit, and has since been fixed in §0 above:**
 
 - **`arms_transfers_build_a_client_army`** — 10.9 vs 7.7, the identical two
   figures it failed on before the refit. A single-seed treated/untreated ratio
   sitting at 1.4993 against a bar of 1.50. Not an economic-calibration failure;
   its shape problem is the one this entry always described — any treated/
-  untreated ratio drifts as the world fills up — and the fix is the test's
-  shape, a cross-seed statistic, not the bar.
+  untreated ratio drifts as the world fills up — and the fix was the test's
+  shape, a cross-seed statistic, not the bar. Note also that
+  `the_frontier_does_not_run_away` was cleared here by the model moving, but its
+  shape was the same defect and it was re-expressed alongside the arms test
+  rather than left as one more knife edge waiting for the next roster change.
 
 **A test was added, because the audit found a hole.** Running the whole suite at
 sanction bite 0.000 — sanctions costing a target no growth whatsoever, in a game
