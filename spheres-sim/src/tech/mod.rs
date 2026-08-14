@@ -806,6 +806,20 @@ fn absorptive_capacity(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     a.clamp(0.05, 1.20)
 }
 
+/// The share of the bill for a completely ordinary technology that is bought by
+/// the unit rather than built as a lump — doses, handsets, base stations,
+/// certified seed, drip tape. The remainder is the cold chain, the cadre and the
+/// regulator, which no supplier sells. Calibrated and pinned in both directions
+/// in `effective_cost`, which is the only place it is used.
+const OFF_THE_SHELF: f64 = 0.80;
+
+/// The size at which a state builds its own plant instead of importing the
+/// output, expressed as a value of `scale` — the square root of a share of world
+/// output, so this is one per cent of the world economy. Above it nothing in
+/// `effective_cost` changes; below it the divisible part of the bill is priced
+/// by how far under it you are.
+const OWN_PLANT_SCALE: f64 = 0.10;
+
 /// What one technology costs this nation right now. The leader pays the whole
 /// bill — the dead ends, the prototypes, the decade of not knowing whether it
 /// works. Everyone after pays for a copy, and the copy collapses in price as the
@@ -857,8 +871,112 @@ fn effective_cost(
     // floor is what shut the smallest economies out of even commodity
     // technology — the floor bound long before the copying discount could bite.
     let build = 0.30 * (1.0 - 0.70 * s2);
-    (def.cost * copy * own).max(def.cost * build * scale)
+    // And *how* that bill scales with the builder depends on the same thing.
+    // `scale` is the square root of a nation's share of world output, so a floor
+    // priced by it alone is a bill that falls more slowly than the economy
+    // paying it: halve a country and its research budget halves with its output
+    // while this floor falls only by a third. That is right for one indivisible
+    // lump — a fab, a wind tunnel, a launch complex costs roughly what it costs
+    // whoever builds it, so a small state pays a far larger share of its output
+    // for the same object, and that is exactly why the frontier is out of reach
+    // at the bottom of the table.
+    //
+    // It is wrong for something the whole world already manufactures. Nobody
+    // builds a vaccine plant to run an immunisation programme; they buy doses,
+    // and they buy as many as they have children. Handsets, base stations,
+    // certified seed, drip tape, ORS sachets are all bought by the unit, so the
+    // bill really is the size of the country, which is `scale` squared — its
+    // share of world output itself, not the root of it. Against a research
+    // budget that is also linear in output, that makes the ordinary equally
+    // affordable at any size, which is the whole claim being made here.
+    //
+    // Indivisibility is therefore a property of the technology and not of the
+    // nation, and the cube says when it has gone — the same cube `textbook`
+    // uses above, and for the same reason: nothing is off the shelf until it is
+    // genuinely everywhere. What is left even then is the fifth of the bill no
+    // supplier can sell you: the cold chain, the trained cadre, the regulator,
+    // the seed-certification agency.
+    //
+    // `buying` is what stops this from being a discount for everybody. There is
+    // a size above which a state builds its own plant rather than importing the
+    // output, and above it nothing here changes; below it the bill is priced by
+    // how far under that size you are. Without the crossover the same claim,
+    // applied at every size, cut the floor 1.6x for the United States and 2.9x
+    // for France as well as 3.9x for Afghanistan, and moved the whole calibrated
+    // world with it — France to 0.8% annual growth on seed 42, the sanctions
+    // bite from 1.87 points to 0.09, and four tests red that have nothing to do
+    // with the tail. Measured, not reasoned: the same three lines with the
+    // crossover in leave USA 2.51x -> 2.58x, Japan 2.06x -> 1.99x, France 2.68x
+    // -> 2.73x, Italy 2.42x -> 2.51x and Brazil 5.51x -> 5.48x over thirty
+    // years, all inside seed noise, while Afghanistan goes 2.57x -> 3.81x.
+    //
+    // Both terms are deliberately multiplicative and clamped rather than an
+    // exponent on `scale`. An exponent fixes the same shape but gives a discount
+    // of `scale^k`, which grows without limit as a nation shrinks, so it would
+    // need re-checking every time the roster gained a smaller country — and the
+    // roster is going to 190. Here the floor can never fall below one fifth of
+    // the lumpy figure however small the payer is, and it costs no new
+    // `exact::powf` call.
+    //
+    // CALIBRATION, `OFF_THE_SHELF`. This is the divisible share of what it costs
+    // to put a completely ordinary technology into service, costed against the
+    // three things the world's poorest countries demonstrably had by 2020. For
+    // childhood immunisation the doses, syringes, per-facility cold chain,
+    // per-district vaccinators and transport all scale with the children being
+    // reached; the national regulator, central store and surveillance apparatus
+    // — the part that does not — is on the order of a tenth to a fifth of the
+    // bill. For a cellular network handsets, sites and backhaul scale with
+    // subscribers, against a regulator, a numbering regime and one operations
+    // centre. For improved seed the seed is priced per hectare and the variety
+    // itself came out of CGIAR rather than a national breeding programme. All
+    // three say 0.80-0.90 divisible; 0.80 is the low end, taken deliberately,
+    // because `pick_focus` orders by price alone and already hands the tail
+    // things it has no use for (see the aerospace note in ROADMAP), so the
+    // technology count at the bottom overstates real capability.
+    //
+    // RED IN BOTH DIRECTIONS on `the_ordinary_is_within_reach_and_the_frontier_is_not`,
+    // worst case over the poorest three nations of ten thirty-year runs, holding
+    // `OWN_PLANT_SCALE` at 0.10:
+    //   0.60 -> ordinary 3/6, poorest holds 16 technologies   RED (floor)
+    //   0.70 -> ordinary 4/6, poorest holds 25                RED (floor)
+    //   0.75 -> ordinary 5/6, poorest holds 31                green, no margin
+    //   0.80 -> ordinary 6/6, poorest holds 36, no leak       green (SHIPPED)
+    //   0.85 -> ordinary 6/6, poorest holds 42, no leak       green
+    //   0.90 -> ordinary 6/6, poorest holds 48, no leak       green
+    //   0.95 -> poorest holds 58 and five of the thirty are running a Generation
+    //           III reactor or a lithography stepper          RED (ceiling)
+    // Admitted band roughly 0.78..0.93.
+    //
+    // CALIBRATION, `OWN_PLANT_SCALE`. The crossover, as a value of `scale` —
+    // that is, the square root of a share of world output, so 0.10 is one per
+    // cent of the world economy. The anchor is who actually built rather than
+    // bought: the states that ran their own vaccine manufacture, handset
+    // assembly and cereal breeding programmes in this period bottom out around
+    // Indonesia and Turkey, half a per cent to one and a half per cent of world
+    // output, and every economy this model is calibrated against sits above it
+    // — Brazil 0.14, France 0.13, Italy and the UK 0.21 — which is why nothing
+    // above the crossover moves.
+    //
+    // RED IN BOTH DIRECTIONS, holding `OFF_THE_SHELF` at 0.80:
+    //   0.0001 -> ordinary 2/6, poorest holds 6               RED (floor)
+    //   0.02   -> ordinary 3/6, poorest holds 16              RED (floor)
+    //   0.04   -> ordinary 4/6, poorest holds 22              RED (floor)
+    //   0.06   -> ordinary 4/6, poorest holds 26              RED (floor)
+    //   0.10   -> ordinary 6/6, poorest holds 36              green (SHIPPED)
+    //   0.15   -> ordinary 6/6, poorest holds 37              green
+    //   0.22   -> ordinary 6/6, poorest holds 40              green
+    // The tail test cannot pin this one from above, because past 0.10 the
+    // discount is already capped by `OFF_THE_SHELF` and the tail stops
+    // responding. What pins it from above is `mature_economies_do_not_run_hot`
+    // and the growth tests generally: the crossover must stay under the smallest
+    // economy those are calibrated on, and Brazil's 0.14 is the binding one.
+    // Admitted band roughly 0.08..0.13.
+    let off_the_shelf = OFF_THE_SHELF * (s2 * share);
+    let buying = (scale / OWN_PLANT_SCALE).min(1.0);
+    let size = scale * ((1.0 - off_the_shelf) + off_the_shelf * buying);
+    (def.cost * copy * own).max(def.cost * build * size)
 }
+
 
 /// Pick a project for one domain. Deterministic: cheapest first, ties broken by
 /// registry position. Cheapest-first is not a shortcut — it is what makes
