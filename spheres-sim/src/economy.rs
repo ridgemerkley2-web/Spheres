@@ -1,5 +1,80 @@
 use crate::world::*;
 
+/// Annual growth a sanctions regime costs its target when the *entire* world
+/// economy has shut its doors. Charged in proportion to the sanctioners' share
+/// of world output, so a coalition weighing half the world costs half of it.
+///
+/// This replaced `sanctioned_by_count() as f64 * 0.006`, which counted flags.
+/// The two rules agree only when every sanctioner weighs 30% of the world
+/// economy: the old one charged Luxembourg joining an embargo exactly what it
+/// charged the United States joining it, and the total bill rose without limit
+/// as the roster grew. `oil_blockade` in world.rs has always weighed output
+/// rather than counting signatures; this is the same quantity, and the comment
+/// there — "an embargo bites in proportion to the demand that closes its doors"
+/// — was already the correct statement of what this term means.
+///
+/// WHY THIS AND NOT THE CATCHUP COEFFICIENT. `china_growth_miracle` went red at
+/// 10.13x when the roster grew 31 -> 108, and the suspicion recorded on
+/// `golden_hash_of_a_known_run` was that the catchup coefficient below had been
+/// fitted against a world GDP that was ~18% too small. It had not. Measured
+/// with `ai_aggression = 0.0`, so that China simply grows for thirty years:
+///
+///     China 30-year multiple, at peace, 108 nations, seeds 0..=9:
+///       14.15 14.03 13.68 13.80 14.34 14.40 13.68 13.69 14.47 14.02
+///       median 14.02x, against the real 14.33x (World Bank NY.GDP.MKTP.KD)
+///
+/// The growth model is right to within 2% and the catchup coefficient is not
+/// mistuned. Raising it to lift the median would have pushed a peaceful China
+/// past 19x and every developing economy with it — fitting a constant to a test
+/// while the constant was already correct. The affordability denominator in
+/// `tech::tick` was swept 3.2x and did not respond either; the numbers are in
+/// the comment there.
+///
+/// What the roster actually changed is how often China is *sanctioned*. At 108
+/// nations China has fourteen land neighbours instead of two, so it goes to war
+/// in 6 of 10 seeds rather than 4 — and the old rule then charged the G5
+/// coalition that forms (5 flags, ~52% of world output) a flat 3.0 points of
+/// annual growth for fifteen years and more. That single term is the whole of
+/// the bimodality `nations.rs` documents at its East Asia block: China either
+/// stays at peace and finishes at 13-18x, or fights and finishes at 6-10x, with
+/// almost nothing in between, so the median is decided by which side five or
+/// six of ten seeds fell on. At bite 0.000 the ten seeds span 10.01-15.52; at
+/// 0.030 they span 8.77-17.10. The spread IS this coefficient.
+///
+/// ANCHORED ON REALITY, NOT ON THE TEST. Growth lost per year by a target under
+/// a held regime, measured against an otherwise identical control over 20 years
+/// with `ai_aggression = 0.0` (`sanction_cost_calibration`, ignored):
+///
+///     bite   USA alone -> China   G5 -> China
+///            (share 0.24)         (share 0.52)
+///     0.000        0.20pt              0.46pt   <- the three count-based
+///     0.010        0.48pt              1.09pt      channels still unconverted
+///     0.015        0.47pt              1.37pt
+///     0.020        0.59pt              1.53pt   <- shipped
+///     0.025        0.72pt              1.70pt
+///     0.030        0.87pt              1.92pt
+///     0.040        1.11pt              2.55pt
+///
+/// The real regimes of the period, non-oil channel only:
+///   - China 2018-19, United States alone, ~24% of world output: growth 6.7% ->
+///     6.0%, about 0.6pt. Model at 0.020: 0.59pt.
+///   - South Africa 1985-93, near-universal, ~80%: ~1.0% growth against a ~3.5%
+///     trend, about 2.5pt. Model at 0.020 scaled to 0.80: 2.35pt.
+///   - Russia 2014-21 and Iran 2012-15 are the two other large regimes and are
+///     DELIBERATELY NOT USED. Both targets are petro-states whose measured loss
+///     ran mostly through oil, and this model prices that separately in
+///     `embargo_drag` and `oil_blockade`. Calibrating the non-oil growth drag on
+///     them would count the same barrel twice. Taken at face value they would
+///     argue for 0.010-0.015.
+///
+/// So the two clean anchors bracket 0.020-0.025, and 0.020 is taken rather than
+/// 0.025 because three further sanction channels still count flags rather than
+/// weighing output and add 0.46pt on top at G5 weight (the 0.000 row above):
+/// `research_output` and `absorptive_capacity` in tech/mod.rs, and the stability
+/// term below. Converting those is the follow-up this commit deliberately does
+/// not do, so that the movement here is attributable to one line.
+const SANCTION_BITE: f64 = 0.020;
+
 /// Monthly economic tick for every living nation, plus the global oil market.
 pub fn tick(w: &mut WorldState) {
     oil_market(w);
@@ -9,6 +84,7 @@ pub fn tick(w: &mut WorldState) {
 
     for id in ids {
         let sanction_count = w.sanctioned_by_count(id) as f64;
+        let sanction_share = w.sanction_weight(id);
         let at_war = w.at_war(id);
         let export_share = w.oil_export_share(id);
         let noise = w.rng.range(-0.004, 0.004);
@@ -37,6 +113,26 @@ pub fn tick(w: &mut WorldState) {
         // most of the frontier's technologies and still be ten times poorer per
         // head, which is the gap this closes and the tree does not. Deleting it
         // collapsed emerging growth, and it is staying.
+        //
+        // AND IT IS STAYING AT 0.020. This is the coefficient the roster
+        // expansion was expected to have invalidated — `tech::tick` sizes
+        // affordability against world GDP, world GDP rose 18% when the roster
+        // went 31 -> 108, so every coefficient fitted underneath it was
+        // suspect. Re-measured at 108 nations, it was not. Take the wars away
+        // with `ai_aggression = 0.0` and let China simply grow for thirty years:
+        //
+        //      catchup 0.000 -> peaceful China  8.16x
+        //      catchup 0.010 -> peaceful China 10.90x
+        //      catchup 0.020 -> peaceful China 14.02x   <- real 14.33x
+        //      catchup 0.030 -> peaceful China 18.38x
+        //
+        // 0.020 lands within 2% of the World Bank series at the fuller roster,
+        // which is a better fit than it had any right to be and is not a number
+        // to move. The ten-seed median that `china_growth_miracle` reads is
+        // pinned in both directions at this roster too — 9.59x at 0.010 and
+        // 19.77x at 0.030, both outside the 11.0-19.0 band — so the test does
+        // constrain this line; it simply was not this line that broke.
+        // SANCTION_BITE above is what the roster actually moved.
         let catchup = (1.0 - dev) * 0.020;
         // Growth accounting: output growth is productivity, plus capital's
         // contribution, plus labour's share of the change in the workforce. A
@@ -103,7 +199,7 @@ pub fn tick(w: &mut WorldState) {
         }
 
         // ---- Drags ----
-        let sanction_drag = sanction_count * 0.006;
+        let sanction_drag = sanction_share * SANCTION_BITE;
         let war_drag = if at_war { 0.020 + n.war_exhaustion * 0.03 } else { 0.0 };
         let debt_drag = if n.debt_gdp > 0.9 { (n.debt_gdp - 0.9) * 0.02 } else { 0.0 };
         let instability_drag = if n.stability < 40.0 { (40.0 - n.stability) * 0.0009 } else { 0.0 };
@@ -162,6 +258,11 @@ pub fn tick(w: &mut WorldState) {
         ds += (n.growth_last - 0.015) * 6.0; // growth legitimizes
         ds -= (n.inflation - 0.05).max(0.0) * 4.0; // high inflation corrodes
         ds -= n.war_exhaustion * 1.2;
+        // STILL COUNTS FLAGS, deliberately. One of the three channels named in
+        // the SANCTION_BITE comment that should weigh `sanction_weight` rather
+        // than counting signatures; left alone so that this commit's movement is
+        // attributable to the growth drag alone. The other two are
+        // `research_output` and `absorptive_capacity` in tech/mod.rs.
         ds -= sanction_count * 0.15;
         if n.system == EconomySystem::Command && n.growth_last < 0.0 {
             ds -= 0.5; // command legitimacy is growth-bought

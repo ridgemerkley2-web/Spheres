@@ -960,6 +960,16 @@ pub fn tick(w: &mut WorldState) {
         // anything except development — China then absorbs at Japan's rate and
         // finishes a run level with it, which is not what happened. The tail is
         // dealt with in the cost floor instead.
+        // MEASURED, and it is not the roster-size term it was suspected of
+        // being. Multiplying this denominator by 0.50, 0.65, 0.81, 1.24 and 1.60
+        // — a 3.2x sweep spanning the 31-nation world and beyond the 108-nation
+        // one — moved China's median 30-year multiple to 13.34, 11.23, 11.89,
+        // 11.64 and 10.11 against 10.13 at 1.00. That is not a response; it is
+        // non-monotone noise, and the per-seed figures reshuffle completely
+        // (seed 2 goes 6.64 -> 11.58, seed 5 goes 15.99 -> 8.16) because the
+        // perturbation changes which wars happen rather than how fast anyone
+        // grows. The denominator was left alone. See `sanction_drag` in
+        // economy.rs for what the roster actually moved.
         let scale = if world_gdp > 0.0 {
             (w.nation(id).gdp.max(0.0) / world_gdp).sqrt().clamp(0.005, 1.0)
         } else {

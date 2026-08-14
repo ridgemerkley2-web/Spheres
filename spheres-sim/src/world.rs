@@ -521,10 +521,19 @@ impl WorldState {
     pub fn is_sanctioning(&self, imposer: NationId, target: NationId) -> bool {
         self.sanctions.iter().any(|(i, t)| *i == imposer && *t == target)
     }
-    /// Share of a producer's exports shut out of the market by embargo, 0..1.
-    /// Weighted by the sanctioners' share of world GDP — an embargo bites in
-    /// proportion to the demand that closes its doors. Smuggling keeps a floor.
-    pub fn oil_blockade(&self, target: NationId) -> f64 {
+    /// The sanctioning coalition's share of world output, 0..1 — how much of the
+    /// world economy has shut its doors to this nation.
+    ///
+    /// This is the honest measure of a sanctions regime and `sanctioned_by_count`
+    /// is not. A count treats every signature as worth the same, so Luxembourg
+    /// joining an embargo costs the target as much as the United States joining
+    /// it, and the total price of being sanctioned rises without limit as the
+    /// roster grows. A share cannot do either: it is bounded by one, and adding
+    /// a hundred more nations to the world leaves a G5 regime weighing what a G5
+    /// regime weighs. `oil_blockade` has always read this quantity; the growth
+    /// drag in `economy.rs` now reads it too, and the three remaining count-based
+    /// sanction channels are listed in the comment there.
+    pub fn sanction_weight(&self, target: NationId) -> f64 {
         let world_gdp: f64 = self.nations.iter().filter(|n| n.alive).map(|n| n.gdp).sum();
         if world_gdp <= 0.0 {
             return 0.0;
@@ -536,7 +545,13 @@ impl WorldState {
             .filter_map(|(i, _)| self.nations.iter().find(|n| n.id == *i && n.alive))
             .map(|n| n.gdp)
             .sum();
-        (blocking / world_gdp * 1.15).min(0.85)
+        blocking / world_gdp
+    }
+    /// Share of a producer's exports shut out of the market by embargo, 0..1.
+    /// Weighted by the sanctioners' share of world GDP — an embargo bites in
+    /// proportion to the demand that closes its doors. Smuggling keeps a floor.
+    pub fn oil_blockade(&self, target: NationId) -> f64 {
+        (self.sanction_weight(target) * 1.15).min(0.85)
     }
     /// Share of a producer's barrels that still reach the market. Embargo shuts
     /// buyers out; war shuts the terminals themselves. Both the world price and

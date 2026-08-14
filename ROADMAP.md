@@ -157,7 +157,7 @@ Still untested, and worth knowing that. No assertion locks a frontier economy's
 long-run trajectory, so a world that uniformly doubles still passes every
 calibration test we have.
 
-## Closed: the roster is 108 nations, and it cost four calibration tests
+## Closed: the roster is 108 nations, and it cost four calibration tests (three since recovered — see §0)
 
 Ten regional branches landed on master one at a time, each merged and committed
 separately so a bad one could be reverted alone: western Europe (11), eastern
@@ -171,10 +171,17 @@ rather than chosen between. `the_roster_is_internally_consistent` is the guard
 that a union was missed, and it is green.
 
 World 1990 GDP is now $23.3tn against $18.8tn at 31 nations, and the real
-figure is about $22.8tn. **That is the single most consequential number in the
-integration**: `tech::tick` sizes what a nation can afford as
-`sqrt(gdp / world_gdp)`, so every coefficient fitted before this was fitted
-against a world roughly 18% too small.
+figure is about $22.8tn. It was believed at the time of the integration that
+this was the single most consequential number in it, because `tech::tick` sizes
+what a nation can afford as `sqrt(gdp / world_gdp)` and so every coefficient
+fitted before it was fitted against a world roughly 18% too small.
+
+**That turned out to be wrong, and the measurement is in §0 below.** The
+denominator was swept 3.2x and did not move the calibration; what the roster
+changed was how often a nation gets into a war and is sanctioned for it. The
+$23.3tn figure is still the right one — it is a fuller world, and it is within
+2% of the real 1990 total, which also means it has very nearly converged and
+the remaining ~80 nations will barely move it.
 
 Cost and headroom, measured:
 - `a_century_holds_together` passes at 108 nations. A headless century is 2.9s
@@ -184,44 +191,108 @@ Cost and headroom, measured:
 - `hungary.json` gdp_bn 33.1 -> 34.5. It cited World Bank NY.GDP.MKTP.CD series
   HUN 1990, which returns $34.478bn; the figure moved, not the citation, and
   the reasoning is in the file and its commit.
-- Four calibration tests are red and NONE of them was widened. See below.
+- Four calibration tests were red and NONE of them was widened. Three are now
+  green again after the sanctions refit; see §0.
 
 ## Next (rough priority)
 
-### 0. Four calibration tests are red at 108 nations
+### 0. One calibration test is red, down from four
 
-Nothing here was widened, nothing was deleted, and the two hash tests were
-re-pinned once at the end of the ten merges rather than after each. Run
+The refit that entry demanded has landed, and it was **not** the change the
+entry predicted. Nothing was widened, nothing was deleted, one test was added,
+and the golden hash was re-pinned a fourth time
+(`0xc274968416c655b7` -> `0xef3e968249846a49`). Run
 `cargo test --release -p spheres-sim roster_scale_readout -- --ignored --nocapture`
-for the instrument these judgements were made with.
+for the instrument, and `china_trouble_readout` for the one that settled it.
 
-- **`china_growth_miracle` — the real one.** Median 30-year multiple 10.13x
-  against a band of 11.0-19.0 anchored on the real 14.33x. It is not a seed
-  artefact: the median falls monotonically with roster size, 14.57x at 31
-  nations -> 13.08x at 91 -> 10.13x at 108, tracking world GDP $18.8tn ->
-  $21.9tn -> $23.3tn. The catchup coefficient in `economy.rs` was fitted
-  against the too-small world; the fuller roster is the more truthful
-  denominator, so the coefficient is what is wrong. The test's own sensitivity
-  table (0.020 -> 15.68x, 0.030 -> 20.83x at 31 nations) is the starting point.
-  **A re-fit is its own commit, argued and checked red in both directions.**
-- **`the_frontier_does_not_run_away`** — UK 4.37%/yr on the default seed
-  against a 4.0% ceiling. Over seeds 0..9 the UK reads master [3.11..4.05] and
-  108 nations [2.64..4.69]; mean moves 3.47 -> 3.63. **Master itself breaches
-  the ceiling on seed 0.** The test reads one seed and its margin was always
-  thinner than its seed-to-seed spread. The fix is the test's shape — a
-  cross-seed statistic, as `china_growth_miracle` already is — not the ceiling.
-- **`arms_transfers_build_a_client_army`** — 1.42 against a bar of 1.50, from
-  1.61 on master. One seed, and a ratio between a treated and an untreated
-  Kuwait whose control arm went 6.5 -> 7.7 while the treated arm went
-  10.6 -> 10.9. Same shape problem: any treated/untreated ratio drifts as the
-  world fills up.
-- **`a_poor_nation_still_picks_up_what_everyone_has`** — Afghanistan holds 4
-  technologies on seed 42 against a floor of 5. Over seeds 0..9 nothing is
-  under the floor, but Afghanistan, Cambodia and Laos sit at 5..11 where
-  master's poorest (Vietnam) sat at 18..29. The roster now contains economies
-  an order of magnitude smaller than anything it held before and the anti-
-  shutout headroom is genuinely gone, which is a finding about the cost floor
-  in `tech::effective_cost`, not about those three files.
+**The catchup coefficient was never wrong.** The suspicion was that
+`sqrt(gdp / world_gdp)` in `tech::tick` had invalidated everything fitted under
+it. Two measurements killed that:
+
+- The affordability denominator was swept 3.2x, spanning the 31-nation world
+  and beyond the 108-nation one. China's median went 13.34, 11.23, 11.89,
+  10.13, 11.64, 10.11 — non-monotone noise, not a response. The per-seed
+  figures reshuffle wholesale, because the perturbation changes *which wars
+  happen*, not how fast anyone grows.
+- Set `ai_aggression = 0.0` and let China simply grow for thirty years, and at
+  108 nations it finishes at a median **14.02x against the real 14.33x**. The
+  growth model is right to within 2%. Raising catchup to lift the ten-seed
+  median would have pushed a peaceful China past 19x — fitting a constant to a
+  test while the constant was already correct.
+
+**What the roster actually moved was sanctions.** At 108 nations China has
+fourteen land neighbours instead of two and fights in 6 of 10 seeds instead of
+4. `sanction_drag` then charged the coalition that forms — always the same five,
+USA/UK/France/Germany/Japan, ~52% of world output — a flat **3.0 points of
+annual growth for fifteen years and more**, because it counted flags rather than
+weighing output. That is the bimodality `nations.rs` documents at its East Asia
+block: China either stays at peace and finishes at 13-18x, or fights and
+finishes at 6-10x, and the median is decided by which side five or six of ten
+seeds fell on.
+
+The rule now reads the sanctioners' share of world GDP, which is what
+`oil_blockade` next door has always done. It is **roster-proof by construction**:
+a G5 regime weighs what a G5 regime weighs at 108 nations or at 190, whereas the
+old rule's total bill rose without limit as the roster grew, and priced
+Luxembourg joining an embargo at 30% of the world economy. Anchored on the two
+clean non-oil regimes of the period — the US alone against China in 2018-19
+(~24% of world output, ~0.6pt) and the near-universal embargo of South Africa
+in 1985-93 (~80%, ~2.5pt). Russia 2014 and Iran 2012 were deliberately *not*
+used: both targets are petro-states whose loss ran mostly through oil, which
+this model already prices separately, so calibrating on them counts the barrel
+twice.
+
+Three of the four reds cleared, and the movement is distributional rather than a
+lucky reshuffle:
+
+- **`china_growth_miracle`** 10.13x -> **11.16x**. Ten seeds span 8.68..17.25
+  against 6.64..18.39; at zero sanction drag they span only 10.01..15.52, so the
+  spread really is this one coefficient. Green by 0.16 against an 11.0 floor —
+  **still fragile, and the test says so in its own comment.**
+- **`the_frontier_does_not_run_away`** UK 4.37%/yr -> **2.91%/yr** on the
+  default seed. Across seeds 0..9 the UK now reads [2.80..3.50] with **zero**
+  seeds at or over the 4.0 ceiling, against [2.64..4.69] with two. Every mature
+  economy tightened.
+- **`a_poor_nation_still_picks_up_what_everyone_has`** Afghanistan 4 -> **10** on
+  seed 42. The poorest nation across twelve seeds is now 6..11 against 4..10.
+  Improved, and still the thinnest margin in the suite: two seeds sit at 6
+  against a floor of 5.
+
+**Still red, and untouched rather than fixed:**
+
+- **`arms_transfers_build_a_client_army`** — 10.9 vs 7.7, the identical two
+  figures it failed on before the refit. A single-seed treated/untreated ratio
+  sitting at 1.4993 against a bar of 1.50. Not an economic-calibration failure;
+  its shape problem is the one this entry always described — any treated/
+  untreated ratio drifts as the world fills up — and the fix is the test's
+  shape, a cross-seed statistic, not the bar.
+
+**A test was added, because the audit found a hole.** Running the whole suite at
+sanction bite 0.000 — sanctions costing a target no growth whatsoever, in a game
+whose namesake system is spheres of influence — left everything green except the
+hashes. Nothing constrained the coefficient from below.
+`sanctions_cost_the_target_real_growth` is that missing guard, two-sided, on a
+non-oil target so `oil_blockade` cannot mask it.
+
+### 0b. Follow-ups this refit deliberately did not do
+
+Kept out so the golden hash movement is attributable to one line. All three are
+cheap and all three are the same defect:
+
+- **Three sanction channels still count flags.** `research_output` and
+  `absorptive_capacity` in `tech/mod.rs`, and the stability term in
+  `economy.rs`, all read `sanctioned_by_count`. They should read
+  `sanction_weight`. Together they still cost a G5 target 0.46pt/yr on their
+  own, which is why the growth drag was set at the low end of its anchor
+  bracket.
+- **Sanctions regimes last too long.** China's run 16-21 years — longer than
+  Iraq gets for annexing a country, against a grievance-decay rule calibrated to
+  give Iraq ~10. That is the other half of why China's median is still below
+  reality, and it is a `politics.rs` question.
+- **China's war incidence.** Six of ten seeds is high for a state whose real
+  1990-2020 record is one border skirmish. `nations.rs` already flags the cause:
+  `dyads.rs` has no sealift or power-projection term, so reach is a border or a
+  shared region and nothing else.
 
 
 ### 1. Blocked on a decision, not on work

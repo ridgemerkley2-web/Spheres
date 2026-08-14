@@ -504,14 +504,210 @@ mod tests {
             xs.iter().map(|x| (x * 100.0).round() / 100.0).collect::<Vec<_>>(),
             (sorted[4] + sorted[5]) / 2.0);
 
-        for seed in 0..10u64 {
+        for seed in [0u64, 1, 2, 3, 4, 5, 6, 7, 8, 9, 42, 1990] {
             let mut w = world_1990(GameRules { seed, ..GameRules::default() });
             run_months(&mut w, 360);
             let mut rows: Vec<(&str, usize)> = w.nations.iter().filter(|n| n.alive)
                 .map(|n| (n.id.name(), n.tech.count())).collect();
             rows.sort_by_key(|(_, c)| *c);
-            println!("tech floor seed {:<2} poorest {:?} frontier {}",
+            println!("tech floor seed {:<4} poorest {:?} frontier {}",
                 seed, &rows[..3.min(rows.len())], rows.last().unwrap().1);
+        }
+
+        // The two single-seed assertions that moved with this refit, on the one
+        // seed each of them actually reads.
+        for seed in [1990u64, 42] {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            let g0: Vec<(NationId, f64)> = [
+                NationId::USA, NationId::Japan, NationId::Germany,
+                NationId::France, NationId::UK, NationId::Italy,
+            ].iter().map(|id| (*id, w.nation(*id).gdp)).collect();
+            run_months(&mut w, 12 * 35);
+            let mut line = format!("mature CAGR seed {:<4} ", seed);
+            for (id, g) in g0 {
+                let n = w.nation(id);
+                if !n.alive { continue; }
+                line.push_str(&format!("{}={:.2} ", id.name(),
+                    (exact::powf(n.gdp / g, 1.0 / 35.0) - 1.0) * 100.0));
+            }
+            println!("{}", line);
+        }
+    }
+
+    /// THE PIN THAT DID NOT EXIST. `sanction_drag` in economy.rs was changed
+    /// from counting flags to weighing output, and while auditing that change
+    /// the whole suite was run at bite 0.000, 0.010, 0.015, 0.020, 0.025 and
+    /// 0.030 to find what constrained it. Above 0.020 things go red — see the
+    /// table on `china_growth_miracle`. BELOW it, nothing did: at bite 0.000,
+    /// with sanctions costing a target no growth whatsoever, the entire suite
+    /// passed except the golden hash. `embargo_starves_the_aggressor_and_
+    /// outlasts_the_war` does not catch it because Iraq is a petro-state and its
+    /// pain arrives through `oil_blockade`, which is a different term.
+    ///
+    /// So a coefficient could be driven to zero — sanctions made a diplomatic
+    /// gesture with no economic content, in a game whose namesake system is
+    /// spheres of influence — and every test would have stayed green. This is
+    /// that missing guard, and it is deliberately two-sided.
+    ///
+    /// No war, no oil: Brazil is not a producer, so `embargo_drag` and
+    /// `oil_export_share` are both out of the picture and what is left is the
+    /// growth drag this test is here to pin. The regime is held in place each
+    /// month because `politics.rs` lifts sanctions as grievance decays, and this
+    /// measures the price of a regime rather than its lifespan.
+    ///
+    /// The band is set from reality, not from the model. A coalition weighing
+    /// half of world output is the G5 of 1990; the two clean non-oil regimes of
+    /// the period are the United States alone against China in 2018-19 (~24% of
+    /// world output, growth 6.7% -> 6.0%, about 0.6pt) and the near-universal
+    /// embargo of South Africa in 1985-93 (~80%, about 2.5pt against trend).
+    /// Scaled to half the world economy those bracket roughly 1.2pt to 1.6pt,
+    /// and the ceiling is set at 2.5pt rather than 1.6pt because three further
+    /// sanction channels still count flags and add their own cost on top.
+    ///
+    /// Checked red in BOTH directions by moving SANCTION_BITE and running THIS
+    /// test, not a proxy for it — points of annual growth lost by Brazil:
+    ///      bite 0.000 ->  0.71pt   RED (floor)
+    ///      bite 0.010 ->  0.79pt   RED (floor)
+    ///      bite 0.015 ->  0.83pt   RED (floor)
+    ///      bite 0.020 ->  1.87pt   green  (shipped)
+    ///      bite 0.025 ->  1.74pt   green
+    ///      bite 0.030 ->  1.73pt   green
+    ///      bite 0.035 ->  1.98pt   green
+    ///      bite 0.040 ->  2.83pt   RED (ceiling)
+    /// So the band admits roughly 0.016..0.038 and rejects outside it, deleting
+    /// the term outright included.
+    ///
+    /// Note the jump between 0.015 and 0.020 and the dip at 0.025-0.030: this is
+    /// a whole-world run and the response is not a clean slope, because a
+    /// sanctioned Brazil changes what else happens in the world. The instrument
+    /// discriminates a third of a coefficient reliably and a twentieth of one
+    /// not at all, which is the resolution this suite generally has. The held
+    /// single-nation measurement in `sanction_cost_calibration` is monotone in
+    /// the bite and is the cleaner readout of the same quantity; this is the one
+    /// that runs on every commit.
+    #[test]
+    fn sanctions_cost_the_target_real_growth() {
+        let target = NationId::Brazil;
+        let coalition =
+            [NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan];
+
+        let mut control = world_1990(GameRules::default());
+        control.rules.ai_aggression = 0.0;
+        let c0 = control.nation(target).gdp;
+        run_months(&mut control, 240);
+        let base = exact::powf(control.nation(target).gdp / c0, 1.0 / 20.0) - 1.0;
+
+        let mut treated = world_1990(GameRules::default());
+        treated.rules.ai_aggression = 0.0;
+        let t0 = treated.nation(target).gdp;
+        let mut share_acc = 0.0;
+        for _ in 0..240 {
+            for i in &coalition {
+                if !treated.is_sanctioning(*i, target) {
+                    treated.sanctions.push((*i, target));
+                }
+            }
+            // Sampled before the tick: economy runs first, politics last, and
+            // politics is what lifts the regime.
+            share_acc += treated.sanction_weight(target);
+            tick_month(&mut treated, &[]);
+        }
+        let after = exact::powf(treated.nation(target).gdp / t0, 1.0 / 20.0) - 1.0;
+        let mean_share = share_acc / 240.0;
+        let lost = (base - after) * 100.0;
+
+        assert!(
+            (0.45..0.60).contains(&mean_share),
+            "the G5 stopped weighing half the world ({:.3}); the anchors below are \
+             quoted at that weight and no longer apply",
+            mean_share
+        );
+        assert!(
+            lost > 1.2,
+            "half the world economy shut its doors to {} for twenty years and cost it \
+             {:.2} points of annual growth ({:.2}% against {:.2}%). Sanctions have \
+             stopped being an economic instrument.",
+            target.name(), lost, after * 100.0, base * 100.0
+        );
+        assert!(
+            lost < 2.5,
+            "a sanctions regime cost {} {:.2} points of annual growth ({:.2}% against \
+             {:.2}%) — more than the near-universal embargo of South Africa managed, \
+             from a coalition weighing {:.0}% of world output",
+            target.name(), lost, after * 100.0, base * 100.0, mean_share * 100.0
+        );
+    }
+
+    /// Is `china_growth_miracle` measuring growth, or measuring how often China
+    /// gets into trouble? This is the readout that answered it, and the answer
+    /// is worth keeping the instrument for: at `ai_aggression = 0.0` China
+    /// finishes thirty years at a median 14.02x against the real 14.33x, so the
+    /// growth model is right and the ten-seed median is a war-incidence figure.
+    ///
+    /// `cargo test --release -p spheres-sim china_trouble_readout -- --ignored --nocapture`
+    #[test]
+    #[ignore]
+    fn china_trouble_readout() {
+        for aggr in [1.0f64, 0.0] {
+            let mut xs: Vec<f64> = vec![];
+            println!("--- ai_aggression = {:.1}", aggr);
+            for seed in 0..10u64 {
+                let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+                w.rules.ai_aggression = aggr;
+                let g0 = w.nation(NationId::China).gdp;
+                let mut war_m = 0;
+                let mut sanc_m = 0;
+                for _ in 0..360 {
+                    tick_month(&mut w, &[]);
+                    if w.at_war(NationId::China) {
+                        war_m += 1;
+                    }
+                    sanc_m += w.sanctioned_by_count(NationId::China);
+                }
+                let x = w.nation(NationId::China).gdp / g0;
+                println!(
+                    "  seed {:<2} mult {:>6.2}  war-months {:>3}  sanction-months {:>4}",
+                    seed, x, war_m, sanc_m
+                );
+                xs.push(x);
+            }
+            xs.sort_by(|a, b| a.partial_cmp(b).unwrap());
+            println!("  median {:.2}", (xs[4] + xs[5]) / 2.0);
+        }
+    }
+
+    /// Who actually sanctions, and what do they weigh? Kept because the answer
+    /// was the whole of the refit: the coalition that forms against China is
+    /// always the same five — United States, United Kingdom, France, Germany,
+    /// Japan — weighing about half of world output, and the old count-based rule
+    /// charged it three full points of annual growth for fifteen years and more.
+    ///
+    /// `cargo test --release -p spheres-sim sanction_weight_readout -- --ignored --nocapture`
+    #[test]
+    #[ignore]
+    fn sanction_weight_readout() {
+        for seed in [0u64, 2, 8, 1990] {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            println!("=== seed {}", seed);
+            for m in 0..360 {
+                tick_month(&mut w, &[]);
+                if m % 60 != 0 || !w.sanctions.iter().any(|(_, t)| *t == NationId::China) {
+                    continue;
+                }
+                let who: Vec<&str> = w
+                    .sanctions
+                    .iter()
+                    .filter(|(_, t)| *t == NationId::China)
+                    .map(|(i, _)| i.name())
+                    .collect();
+                println!(
+                    "  m{:<4} count {} weight {:.3} : {:?}",
+                    m,
+                    w.sanctioned_by_count(NationId::China),
+                    w.sanction_weight(NationId::China),
+                    who
+                );
+            }
         }
     }
 
@@ -673,39 +869,62 @@ mod tests {
         // merges and this number was re-pinned ONCE, at the end, which is the
         // whole reason the merges were sequenced rather than batched.
         //
-        // Condition (a) above DID NOT HOLD and is not being quietly skipped.
-        // Four calibration tests are red at 108 nations besides the two hashes,
-        // and each was measured against master on ten seeds before this number
-        // was touched, because the point of the condition is to prove the
-        // timeline is a different one rather than a worse one:
+        // Condition (a) above DID NOT HOLD at the ten-region integration and was
+        // not quietly skipped. Four calibration tests were red at 108 nations
+        // besides the two hashes:
         //   the_frontier_does_not_run_away   UK 4.37%/yr on the default seed.
-        //     Over seeds 0..9 the UK reads master [3.11..4.05] mean 3.47 and
-        //     here [2.64..4.69] mean 3.63. MASTER ITSELF BREACHES THE 4.0
-        //     CEILING ON SEED 0. The test looks at one seed and its margin was
-        //     always thinner than its seed-to-seed spread; the world got 0.16
-        //     points hotter and the one seed it reads crossed over.
-        //   arms_transfers_build_a_client_army  1.42 against a bar of 1.50,
-        //     from 1.61 on master and 1.62 at seven regions. One seed, and a
-        //     ratio between a treated and an untreated Kuwait: the control arm
-        //     went 6.5 -> 7.7 while the treated went 10.6 -> 10.9.
+        //   arms_transfers_build_a_client_army  1.42 against a bar of 1.50.
         //   a_poor_nation_still_picks_up_what_everyone_has  Afghanistan holds 4
-        //     technologies on seed 42 against a floor of 5. Over seeds 0..9 no
-        //     nation is under the floor, but the three poorest new entries —
-        //     Afghanistan, Cambodia, Laos — sit at 5..11 where master's poorest
-        //     (Vietnam) sat at 18..29. The headroom is real and it is gone.
+        //     technologies on seed 42 against a floor of 5.
         //   china_growth_miracle  median 30-year multiple 10.13x against a band
-        //     of 11.0..19.0. THIS IS THE ONE THAT IS NOT A COIN FLIP: the
-        //     median falls monotonically with roster size, 14.57x at 31 nations
-        //     -> 13.08x at 91 -> 10.13x at 108, and world 1990 GDP rises
-        //     $18.8tn -> $21.9tn -> $23.3tn against a real 1990 world of about
-        //     $22.8tn. tech::tick sizes affordability as sqrt(gdp / world_gdp),
-        //     so the catchup coefficient in economy.rs was fitted against a
-        //     world that was ~18% too small and the fuller roster is the more
-        //     truthful denominator. Re-fitting it is a calibration commit that
-        //     must be argued and checked red on its own; it is not this commit
-        //     and it is emphatically not a widened band.
-        // NO TOLERANCE IN THIS SUITE WAS WIDENED AND NO TEST WAS REMOVED.
-        const GOLDEN: u64 = 0xc274968416c655b7;
+        //     of 11.0..19.0, falling monotonically with roster size.
+        //
+        // Re-pinned a FOURTH time, 0xc274968416c655b7 -> 0xef3e968249846a49, by
+        // the refit that was owed on that last entry. The suspicion recorded
+        // here was that the catchup coefficient in economy.rs had been fitted
+        // against a world GDP 18% too small. It had not been, and the refit is a
+        // different change from the one this comment predicted: see SANCTION_BITE
+        // in economy.rs. `sanction_drag` counted the flags in a sanctions
+        // coalition rather than weighing its share of world output, so the G5
+        // regime that forms against China cost a flat 3.0 points of annual
+        // growth however large the world got. It now costs 1.5.
+        //
+        // ALL OF THE MOVEMENT IS THAT ONE LINE, and that is proven rather than
+        // asserted. The commit also lifts `sanction_weight` out of
+        // `oil_blockade` in world.rs so both terms read one definition; with
+        // that extraction in place and the old `sanction_count * 0.006` restored
+        // on top of it, this hash reproduces 0xc274968416c655b7 exactly. The
+        // refactor is behaviour-neutral and the calibration is the whole change.
+        //
+        // THREE OF THE FOUR REDS CLEARED, and the movement is distributional
+        // rather than a lucky reshuffle, which is the distinction that matters
+        // and is why the numbers are here:
+        //   china_growth_miracle  10.13x -> 11.16x. The ten seeds span
+        //     8.68..17.25 against 6.64..18.39, and at zero sanction drag they
+        //     span only 10.01..15.52 — the bimodality really is this one
+        //     coefficient. Green, but by 0.16 against an 11.0 floor; the test's
+        //     own comment says plainly that this is still fragile and why.
+        //   the_frontier_does_not_run_away  UK 4.37%/yr -> 2.91%/yr on the
+        //     default seed. Across seeds 0..9 the UK now reads [2.80..3.50] with
+        //     ZERO seeds at or over the 4.0 ceiling, against [2.64..4.69] with
+        //     two. Every mature economy tightened, so this is the distribution
+        //     moving and not the one seed the test reads.
+        //   a_poor_nation_still_picks_up_what_everyone_has  Afghanistan 4 -> 10
+        //     on seed 42. The poorest nation across twelve seeds is now 6..11
+        //     against 4..10. Improved, and still the thinnest margin in the
+        //     suite: two seeds sit at 6 against a floor of 5.
+        //
+        // ONE STAYS RED, and it is untouched by this commit rather than fixed:
+        //   arms_transfers_build_a_client_army  10.9 vs 7.7, the same two
+        //     figures it failed on before the refit. A single-seed ratio sitting
+        //     at 1.4993 against a bar of 1.50, per the note in nations.rs. It is
+        //     not an economic-calibration failure and it is not this commit's.
+        // NO TOLERANCE IN THIS SUITE WAS WIDENED AND NO TEST WAS REMOVED. One
+        // test was ADDED, `sanctions_cost_the_target_real_growth`, because the
+        // audit found that nothing in the suite constrained the coefficient this
+        // commit changed from below: at bite 0.000, with sanctions costing a
+        // target no growth at all, everything except the hashes stayed green.
+        const GOLDEN: u64 = 0xef3e968249846a49;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -922,15 +1141,50 @@ mod tests {
         // Checked red in both directions per iron rule 5, by moving the catchup
         // coefficient in economy.rs (the term that actually drives this; note
         // that perturbing `tfp_trend` does NOT, because tech/mod.rs:1103
-        // rewrites it every tick):
-        //      catchup 0.000 -> median  9.40x  RED (floor)
-        //      catchup 0.005 -> median 11.27x  green
-        //      catchup 0.012 -> median 13.73x  green
-        //      catchup 0.020 -> median 15.68x  green  (master)
-        //      catchup 0.030 -> median 20.83x  RED (ceiling)
-        // So the band admits catchup in roughly 0.004..0.027 and rejects
-        // outside it — including deleting the term outright, which is the exact
+        // rewrites it every tick). RE-MEASURED AT 108 NATIONS — the table this
+        // replaces was taken at 31 and every figure in it had moved:
+        //      catchup 0.000 -> median  6.72x  RED (floor)
+        //      catchup 0.010 -> median  9.59x  RED (floor)
+        //      catchup 0.020 -> median 11.16x  green  (shipped)
+        //      catchup 0.030 -> median 19.77x  RED (ceiling)
+        // So the band still admits the shipped value and rejects a third either
+        // way, including deleting the term outright, which is the exact
         // regression the comment on that line records having happened before.
+        //
+        // WHAT MOVED THIS TEST WHEN THE ROSTER GREW, AND WHAT DID NOT. The
+        // median fell 14.57x -> 13.08x -> 10.13x at 31, 91 and 108 nations and
+        // the suspicion was that the catchup coefficient had been fitted against
+        // a world GDP 18% too small. It had not been. Two things were measured
+        // before anything was changed:
+        //
+        //   - The affordability denominator in `tech::tick` was swept 3.2x,
+        //     spanning the 31-nation world and beyond the 108-nation one. The
+        //     median went 13.34, 11.23, 11.89, 10.13, 11.64, 10.11 — non-
+        //     monotone noise, not a response. The numbers are in the comment
+        //     there and the denominator was left alone.
+        //   - With `ai_aggression = 0.0`, so China simply grows, the 108-nation
+        //     median is 14.02x against the real 14.33x. The growth model was
+        //     never wrong.
+        //
+        // This figure is a war-incidence measurement wearing a growth test's
+        // clothes. At 108 nations China has fourteen land neighbours instead of
+        // two and fights in 6 of 10 seeds instead of 4; the old count-based
+        // `sanction_drag` then charged the G5 coalition a flat 3.0 points of
+        // annual growth for fifteen years and more, which is what produced the
+        // bimodality `nations.rs` documents at its East Asia block. Pricing that
+        // regime by the sanctioners' share of world output instead — the fix in
+        // economy.rs — is what brought this back inside the band.
+        //
+        // IT IS STILL A FRAGILE TEST AND THIS COMMIT DID NOT MAKE IT ROBUST.
+        // The median sits at 11.16x against a floor of 11.0x. The bimodality is
+        // narrower than it was (the ten seeds span 8.68-17.25 against master's
+        // 6.64-18.39, and at zero sanction drag they span only 10.01-15.52, so
+        // the spread really is this one coefficient) but it has not gone. Two
+        // named causes remain, both out of scope here and both larger than a
+        // constant: China's sanctions regimes run 16-21 years, longer than Iraq
+        // gets for annexing a country, which is a grievance-decay question in
+        // politics.rs; and the war incidence itself is the dyads question
+        // nations.rs already flags as needing a sealift term.
         let mut xs: Vec<f64> = Vec::new();
         for seed in 0..10u64 {
             let mut w = world_1990(GameRules { seed, ..GameRules::default() });
