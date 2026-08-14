@@ -19,9 +19,11 @@ use crate::world::*;
 /// fitted against a world GDP that was ~18% too small. It had not. Measured
 /// with `ai_aggression = 0.0`, so that China simply grows for thirty years:
 ///
+/// ```text
 ///     China 30-year multiple, at peace, 108 nations, seeds 0..=9:
 ///       14.15 14.03 13.68 13.80 14.34 14.40 13.68 13.69 14.47 14.02
 ///       median 14.02x, against the real 14.33x (World Bank NY.GDP.MKTP.KD)
+/// ```
 ///
 /// The growth model is right to within 2% and the catchup coefficient is not
 /// mistuned. Raising it to lift the median would have pushed a peaceful China
@@ -45,6 +47,7 @@ use crate::world::*;
 /// a held regime, measured against an otherwise identical control over 20 years
 /// with `ai_aggression = 0.0` (`sanction_cost_calibration`, ignored):
 ///
+/// ```text
 ///     bite   USA alone -> China   G5 -> China
 ///            (share 0.24)         (share 0.52)
 ///     0.000        0.20pt              0.46pt   <- the three count-based
@@ -54,6 +57,7 @@ use crate::world::*;
 ///     0.025        0.72pt              1.70pt
 ///     0.030        0.87pt              1.92pt
 ///     0.040        1.11pt              2.55pt
+/// ```
 ///
 /// The real regimes of the period, non-oil channel only:
 ///   - China 2018-19, United States alone, ~24% of world output: growth 6.7% ->
