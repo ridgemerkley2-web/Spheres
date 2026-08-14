@@ -26,8 +26,11 @@
   `economy.rs` where it always was. Technological adoption is paid on technology
   a nation actually puts into service, not on how far behind it is, so a country
   that learns nothing is no longer paid as though it were catching up. The cost
-  floor now falls away as a technology approaches universal, which is what lets a
-  small poor economy pick up ordinary things it could previously never afford
+  floor falls away as a technology approaches universal, and — since the tail
+  work — it is also priced by the nation's share of world output rather than the
+  root of it once the thing is bought off a shelf rather than built, which is
+  what lets a very small poor economy pick up ordinary things it could
+  previously never afford
 - **Nations are data**: all 24 start nations and the seed relations matrix live in
   `spheres-sim/data/` as JSON, loaded through two-pass validation with
   `deny_unknown_fields`, so a misspelled key is a refusal rather than a silent
@@ -157,7 +160,7 @@ Still untested, and worth knowing that. No assertion locks a frontier economy's
 long-run trajectory, so a world that uniformly doubles still passes every
 calibration test we have.
 
-## Closed: the roster is 108 nations, and it cost four calibration tests (three since recovered — see §0)
+## Closed: the roster is 108 nations, and it cost four calibration tests (all since recovered — see §0)
 
 Ten regional branches landed on master one at a time, each merged and committed
 separately so a bad one could be reverted alone: western Europe (11), eastern
@@ -191,12 +194,13 @@ Cost and headroom, measured:
 - `hungary.json` gdp_bn 33.1 -> 34.5. It cited World Bank NY.GDP.MKTP.CD series
   HUN 1990, which returns $34.478bn; the figure moved, not the citation, and
   the reasoning is in the file and its commit.
-- Four calibration tests were red and NONE of them was widened. Three are now
-  green again after the sanctions refit; see §0.
+- Four calibration tests were red and NONE of them was widened. All four are
+  green again, three after the sanctions refit and the fourth after the tail
+  work found it was the test's instrument rather than the model; see §0.
 
 ## Next (rough priority)
 
-### 0. One calibration test is red, down from four
+### 0. The suite is green, down from four reds
 
 The refit that entry demanded has landed, and it was **not** the change the
 entry predicted. Nothing was widened, nothing was deleted, one test was added,
@@ -258,14 +262,87 @@ lucky reshuffle:
   Improved, and still the thinnest margin in the suite: two seeds sit at 6
   against a floor of 5.
 
-**Still red, and untouched rather than fixed:**
+**The fourth red is now green too, and it was the test and not the model.**
 
-- **`arms_transfers_build_a_client_army`** — 10.9 vs 7.7, the identical two
-  figures it failed on before the refit. A single-seed treated/untreated ratio
-  sitting at 1.4993 against a bar of 1.50. Not an economic-calibration failure;
-  its shape problem is the one this entry always described — any treated/
-  untreated ratio drifts as the world fills up — and the fix is the test's
-  shape, a cross-seed statistic, not the bar.
+- **`arms_transfers_build_a_client_army`** — was 10.9 vs 7.7 on seed 6. The
+  entry above predicted the shape of the fault and was right: measured across
+  seeds 0..11 the ratio runs 1.68 1.80 1.78 1.60 1.78 1.77 1.41 1.41 1.55 1.63
+  1.36 1.71 against a bar of 1.50, **median 1.66**. Seed 6 is the second worst
+  draw of twelve and the spread, 1.36..1.80, is wider than the distance from the
+  bar to the median. Arming a client does build it an army; the test was reading
+  one world. It now reads the median of twelve against the same 1.50.
+
+**And it was not alone — this is the suite's most common failure mode.** Two
+other tests were single-seed treated-against-control ratios sitting inside their
+own run-to-run spread, and the technology cost-floor commit re-rolled both:
+
+- **`sanctions_cost_the_target_real_growth`** — per-seed loss spans 0.23..3.65
+  points against a band 1.3 wide. Median 1.92 -> 2.15 across the commit, which
+  is no movement; the default draw went 1.87 -> 2.71, which is all of it. Now
+  the median of ten, and the median response to SANCTION_BITE is very nearly
+  monotone where the single-seed response was not monotone at all.
+- **`a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it`** — Poland's
+  lift spans 1.03..1.35 against a bar of 1.20, so four of ten seeds fail a test
+  that passed because seed 2 draws 1.35. Median 1.209 -> 1.230. Now the median
+  of ten, and **thin**: a fortieth of margin. What it wants is a stronger claim
+  about trade than "more than twenty per cent".
+
+No threshold moved in any of the three. A median across seeds is strictly harder
+to satisfy than one lucky world, and it is what BIBLE's emergence contract asks
+for in the first place: a threshold stated once, read across seeds.
+
+**Anywhere else this pattern lives, it is a latent red.** A treated-against-
+control ratio read on one seed is not a measurement in a world this chaotic, and
+the roster going to 190 will re-roll every one of them.
+
+### 0a. Closed: the bottom of the roster could not afford what it already had
+
+`a_poor_nation_still_picks_up_what_everyone_has` was cleared by the sanctions
+refit at the level of its assertion, and was still wrong underneath it. Master's
+poorest nation over thirty years was Vietnam at 18-29 technologies; at 108
+nations Afghanistan, Cambodia and Laos sat at 6-11 against a frontier of 120,
+clearing a floor of 5 and nothing more.
+
+**The measurement, which is what makes this a finding rather than an opinion.**
+At the end of a thirty-year run Afghanistan was missing nineteen of the
+twenty-eight technologies the model itself scored as held by more than ninety
+per cent of the world — among them Universal Childhood Immunisation and Oral
+Rehydration Therapy. Instrumenting `effective_cost` for those two: the copying
+price was 0.0001 and the floor was 0.0264, so the floor was binding at **260x
+the model's own price for a copy**, and against Afghanistan's biotech budget
+that is **twenty years for one sachet technology**.
+
+**The cause was a shape, not a level.** The floor was
+`def.cost * build * scale` with `scale = sqrt(gdp / world_gdp)`, while research
+budget is linear in output. So the bill falls more slowly than the economy
+paying it — halve a country, halve its budget, and the floor drops only a third
+— and an economy an order of magnitude smaller than anything the term was
+calibrated against is priced out. Vietnam was $6.5bn; Laos is $0.87bn.
+
+**The fix says indivisibility is a property of the technology, not of the
+nation.** One lump costs what it costs whoever builds it, which is why the
+frontier is correctly unreachable at the bottom. Something the whole world
+manufactures is bought by the unit — doses, handsets, base stations, certified
+seed, drip tape — so its bill really is the size of the country. `OFF_THE_SHELF`
+(0.80) is the divisible share, costed against what deploying immunisation, a
+cellular network and improved seed actually consists of. `OWN_PLANT_SCALE`
+(0.10, one per cent of world output) is the size above which a state builds its
+own plant instead of importing the output, and it is what keeps the change off
+the calibrated world: every economy the growth model is fitted against sits
+above it. Both are pinned in both directions and the sweeps are in the comment.
+
+Result: poorest nation 6-9 -> 27-41 technologies, with childhood immunisation,
+oral rehydration, improved planting material, drip irrigation, conservation
+tillage and cellular telephony in all thirty poorest-nation runs and no
+lithography stepper, reactor or sequencer in any of them. USA 2.51x -> 2.58x,
+Japan 2.06x -> 1.99x, France 2.68x -> 2.73x, Brazil 5.51x -> 5.48x over thirty
+years — inside seed noise. Afghanistan 2.57x -> 3.81x, Laos 6.95x -> 10.79x.
+China 11.16x -> 12.34x, which incidentally puts some margin under
+`china_growth_miracle` for the first time.
+
+`the_ordinary_is_within_reach_and_the_frontier_is_not` is the guard, and it is
+two-sided on named technologies rather than on a count, because a count is
+exactly the quantity that flattered itself here.
 
 **A test was added, because the audit found a hole.** Running the whole suite at
 sanction bite 0.000 — sanctions costing a target no growth whatsoever, in a game
@@ -274,7 +351,38 @@ hashes. Nothing constrained the coefficient from below.
 `sanctions_cost_the_target_real_growth` is that missing guard, two-sided, on a
 non-oil target so `oil_blockade` cannot mask it.
 
-### 0b. Follow-ups this refit deliberately did not do
+### 0b. What the tail work found and did not fix
+
+Both surfaced under measurement and both are larger than a constant.
+
+- **`pick_focus` orders by price and has no notion of relevance, so the tail
+  buys things it cannot use.** Landlocked Afghanistan finishes a run holding
+  Acoustically Quieted Submarine, Post-Panamax Hull, Low-Observable Airframe
+  Shaping and Airborne Early Warning and Control, while lacking Digital Cellular
+  Rollout. Two causes compound: `domain_weights` gives Aerospace
+  `0.50 + 6.00 * mil_spend_gdp`, so a state spending 15% of GDP on its army
+  pours more research into aerospace than into anything else — arguably right
+  for the DRA — and then cheapest-first inside that domain picks a submarine
+  because a submarine's `def.cost` is 50 and a cellular network's is 70. This is
+  NOT sensitive to the cost floor: the submarine appears at the first setting
+  that gives the tail anything at all and is flat across the whole admitted
+  band, so it cannot be tuned away and was not. It wants a relevance term —
+  coastline, landlocked, air force, alliance — in `pick_focus`, which is the
+  same missing idea `dyads.rs` needs for sealift. It is also why
+  `OFF_THE_SHELF` was taken at the bottom of its bracket: the technology count
+  at the tail overstates real capability.
+- **Nobody reaches the Platform era.** After thirty years the USA holds 101 of
+  107 Information-era technologies, 24 of 57 Networked and **0 of 54 Platform**,
+  so the 2010s exist in the tree and not in any run. The poorest states
+  correspondingly never get 3G or LED lighting, both of which they demonstrably
+  had by 2020. Separate question from the tail: this is about how fast the
+  frontier moves, not about who can afford to follow it.
+- **Kuwait's unarmed military strength scatters 6.5..8.3 across seeds** with
+  `ai_aggression` at zero and nobody invading it — a 28% spread on the
+  denominator of `arms_transfers_build_a_client_army`. Worth someone's attention
+  on its own.
+
+### 0c. Follow-ups the sanctions refit deliberately did not do
 
 Kept out so the golden hash movement is attributable to one line. All three are
 cheap and all three are the same defect:
