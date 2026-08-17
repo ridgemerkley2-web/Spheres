@@ -688,6 +688,23 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
         // produced a 55.5% independence vote. The 0.03 JNA share is the navy
         // in the Boka Kotorska and nothing else; the Podgorica corps answered
         // to Belgrade.
+        //
+        // WHAT 0.03 DOES TO THIS REPUBLIC, measured over 25 years across seeds
+        // 1..20 and written down rather than fixed by inflating the number.
+        // Montenegro is invaded 9 times in those 20 runs — Albania 4, Croatia
+        // 2, Serbia 1, Bosnia 1, plus one repeat — because 0.03 of a strength
+        // index of 20 is 0.6, which makes it the weakest state in the Balkans
+        // sitting inside four borders. None of those wars happened. Three
+        // things say leave it alone anyway. The share is the fact: Montenegro
+        // seized nothing in 1991 because it did not leave in 1991, and the
+        // reason it did not leave is precisely that it could not have defended
+        // itself alone — the model is showing the counterfactual the roster
+        // cannot express, not getting the arithmetic wrong. The rate is not an
+        // outlier: Serbia invades Bosnia 29 times in the same 20 runs, so a
+        // small Balkan successor being eaten repeatedly is this model's
+        // existing behaviour and not something these two rows introduced. And
+        // inflating the JNA share to make the wars stop would be encoding the
+        // outcome, which is the one thing this table is not for.
         (NationId::Montenegro, 0.019, 0.026, 0.03, 0.25, 0.60, 45.0, 0.002),
     ];
     for (id, g, p, m, sep, auth, stab, tfp) in parts {
