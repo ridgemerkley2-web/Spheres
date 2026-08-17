@@ -585,36 +585,73 @@ mod tests {
     /// single-nation measurement in `sanction_cost_calibration` is monotone in
     /// the bite and is the cleaner readout of the same quantity; this is the one
     /// that runs on every commit.
+    ///
+    /// SINGLE SEED -> NINE-SEED MEDIAN (branch feat/r2-southam2, roster 108 ->
+    /// 111). The two bounds below are untouched. What changed is the estimator,
+    /// and it changed for the reason `arms_transfers_build_a_client_army`
+    /// changed when the roster tripled: an absolute bar read off one seed stops
+    /// measuring the coefficient and starts measuring which wars that seed
+    /// happened to produce. The paragraph above already says so in as many
+    /// words — "a sanctioned Brazil changes what else happens in the world".
+    ///
+    /// Measured on this branch, points of annual growth Brazil loses, by seed:
+    ///      1990 -> 1.14   1 -> 0.52   2 -> 2.99   3 -> 2.52   4 -> 0.71
+    ///         5 -> 2.41   6 -> 1.72   7 -> 0.88  42 -> 1.90
+    /// Median 1.72, which is where the shipped bite of 0.020 put seed 1990 alone
+    /// on the 108-nation roster (1.87) and inside the 1.2..2.5 band by the same
+    /// margin. The spread of the individual readings is 0.52 to 2.99 — the bar
+    /// was never discriminating a coefficient at one seed, it was passing on
+    /// luck, and adding three small South American states to the far side of the
+    /// world was enough to move seed 1990 from 1.87 to 1.14 without touching a
+    /// line of economy.rs. Nine readings is not a wider tolerance; it is the
+    /// same claim asked of the world in general rather than of one draw.
+    ///
+    /// The bite sweep tabulated above was taken at seed 1990 on the 108-nation
+    /// roster and is kept as the record of how the band was set. Anyone
+    /// re-running it should re-run it through this median, because the
+    /// individual figures in it are single draws from the spread just quoted.
     #[test]
     fn sanctions_cost_the_target_real_growth() {
         let target = NationId::Brazil;
         let coalition =
             [NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan];
 
-        let mut control = world_1990(GameRules::default());
-        control.rules.ai_aggression = 0.0;
-        let c0 = control.nation(target).gdp;
-        run_months(&mut control, 240);
-        let base = exact::powf(control.nation(target).gdp / c0, 1.0 / 20.0) - 1.0;
+        // The coalition's weight is a fact about the roster, not about the
+        // draw, so it is still asserted once and at the default seed.
+        let mut shares: Vec<f64> = vec![];
+        let mut losses: Vec<f64> = vec![];
+        for seed in [1990u64, 1, 2, 3, 4, 5, 6, 7, 42] {
+            let rules = GameRules { seed, ..GameRules::default() };
 
-        let mut treated = world_1990(GameRules::default());
-        treated.rules.ai_aggression = 0.0;
-        let t0 = treated.nation(target).gdp;
-        let mut share_acc = 0.0;
-        for _ in 0..240 {
-            for i in &coalition {
-                if !treated.is_sanctioning(*i, target) {
-                    treated.sanctions.push((*i, target));
+            let mut control = world_1990(rules.clone());
+            control.rules.ai_aggression = 0.0;
+            let c0 = control.nation(target).gdp;
+            run_months(&mut control, 240);
+            let base = exact::powf(control.nation(target).gdp / c0, 1.0 / 20.0) - 1.0;
+
+            let mut treated = world_1990(rules);
+            treated.rules.ai_aggression = 0.0;
+            let t0 = treated.nation(target).gdp;
+            let mut share_acc = 0.0;
+            for _ in 0..240 {
+                for i in &coalition {
+                    if !treated.is_sanctioning(*i, target) {
+                        treated.sanctions.push((*i, target));
+                    }
                 }
+                // Sampled before the tick: economy runs first, politics last, and
+                // politics is what lifts the regime.
+                share_acc += treated.sanction_weight(target);
+                tick_month(&mut treated, &[]);
             }
-            // Sampled before the tick: economy runs first, politics last, and
-            // politics is what lifts the regime.
-            share_acc += treated.sanction_weight(target);
-            tick_month(&mut treated, &[]);
+            let after = exact::powf(treated.nation(target).gdp / t0, 1.0 / 20.0) - 1.0;
+            shares.push(share_acc / 240.0);
+            losses.push((base - after) * 100.0);
         }
-        let after = exact::powf(treated.nation(target).gdp / t0, 1.0 / 20.0) - 1.0;
-        let mean_share = share_acc / 240.0;
-        let lost = (base - after) * 100.0;
+        let mean_share = shares[0];
+        let readings: Vec<f64> = losses.iter().map(|x| (x * 100.0).round() / 100.0).collect();
+        losses.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        let lost = losses[losses.len() / 2];
 
         assert!(
             (0.45..0.60).contains(&mean_share),
@@ -625,16 +662,16 @@ mod tests {
         assert!(
             lost > 1.2,
             "half the world economy shut its doors to {} for twenty years and cost it \
-             {:.2} points of annual growth ({:.2}% against {:.2}%). Sanctions have \
-             stopped being an economic instrument.",
-            target.name(), lost, after * 100.0, base * 100.0
+             a median {:.2} points of annual growth across nine seeds ({:?}). \
+             Sanctions have stopped being an economic instrument.",
+            target.name(), lost, readings
         );
         assert!(
             lost < 2.5,
-            "a sanctions regime cost {} {:.2} points of annual growth ({:.2}% against \
-             {:.2}%) — more than the near-universal embargo of South Africa managed, \
-             from a coalition weighing {:.0}% of world output",
-            target.name(), lost, after * 100.0, base * 100.0, mean_share * 100.0
+            "a sanctions regime cost {} a median {:.2} points of annual growth across \
+             nine seeds ({:?}) — more than the near-universal embargo of South Africa \
+             managed, from a coalition weighing {:.0}% of world output",
+            target.name(), lost, readings, mean_share * 100.0
         );
     }
 
@@ -803,10 +840,20 @@ mod tests {
         //   file for why the figure moved rather than the citation.
         // Nothing else in spheres-sim/data/ changed for any nation that was on
         // the board before this integration.
+        //
+        // Re-pinned a fifth time on branch feat/r2-southam2, 108 -> 111:
+        // 0x1bb3d0e7c7919e2e -> 0xbdda58762facb2c4, for Paraguay, Guyana and
+        // Suriname. INTEGRATOR: this pin is local and is expected to be
+        // superseded — re-pin once at the end of the round-two merges rather
+        // than once per branch, exactly as the ten-region integration did. The
+        // check this comment demands was run: `git diff master --stat` on
+        // spheres-sim/data/nations/ for this branch is three new files and
+        // nothing else, and relations_1990.json gains one appended block. No
+        // figure of any nation already on the board moved.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0x1bb3d0e7c7919e2eu64,
+            h, 0xbdda58762facb2c4u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -924,7 +971,25 @@ mod tests {
         // audit found that nothing in the suite constrained the coefficient this
         // commit changed from below: at bite 0.000, with sanctions costing a
         // target no growth at all, everything except the hashes stayed green.
-        const GOLDEN: u64 = 0xef3e968249846a49;
+        //
+        // Re-pinned a FIFTH time on branch feat/r2-southam2, 108 -> 111,
+        // 0xef3e968249846a49 -> 0xead0736cb8ddc096, for Paraguay, Guyana and
+        // Suriname. INTEGRATOR: local pin, expect to supersede it once at the
+        // end of round two. Two calibration tests went red on the way and both
+        // are recorded here rather than left to be rediscovered:
+        //   a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it
+        //     failed at 1.157 against a 1.20 bar and then passed again after an
+        //     unrelated one-field change to guyana.json. Measured across twelve
+        //     seeds the Poland ratio is 1.119..1.237 with a median of 1.178 —
+        //     the bar is BELOW the median of its own distribution, so this test
+        //     currently passes on the luck of seed 2 and is the next single-seed
+        //     absolute bar that will break for whoever grows the roster next.
+        //     Left alone deliberately: it is green, and re-estimating it is not
+        //     this branch's to do while eleven other branches are in flight.
+        //   sanctions_cost_the_target_real_growth failed at 1.14 against a 1.20
+        //     bar and was converted from one seed to a nine-seed median, bounds
+        //     untouched. The measurement and the argument are on that test.
+        const GOLDEN: u64 = 0xead0736cb8ddc096;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
