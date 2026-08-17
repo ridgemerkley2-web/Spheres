@@ -199,13 +199,32 @@ fn mentioned(h: &str) -> Vec<NationId> {
 
 fn is_major(headline: &str, me: Option<NationId>) -> bool {
     let h = headline.to_lowercase();
+    // The spheres system writes a lot of quiet news — a mission opening, a
+    // client drifting out of an orbit nobody was paying for — and most of it
+    // names a great power, so without this a player advancing a year would be
+    // stopped every single month. Only a client actually CHANGING HANDS is worth
+    // interrupting for, and that one is caught by the structural list below.
+    let routine = h.contains("drifts out of")
+        || h.contains("moves into")
+        || h.contains("opens a mission")
+        || h.contains("begins courting")
+        || h.contains("redoubles its efforts")
+        || h.contains("gives up its efforts")
+        || h.contains("quietly winds up")
+        || h.contains("closes its mission")
+        || h.contains("is drifting");
+    if routine {
+        return false;
+    }
     let structural = h.starts_with("war:")
         || h.contains("dissolved")
         || h.contains("has annexed")
         || h.contains("capitulates")
         || h.contains("revolution in")
         || h.contains("sues for peace")
-        || h.contains("repels");
+        || h.contains("repels")
+        // A sphere changing hands is the loud one, and it shouts.
+        || h.contains("leaves");
     structural || me.map_or(false, |m| h.contains(&m.name().to_lowercase()))
 }
 
@@ -282,6 +301,10 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "sanctioned_by_me": me.map_or(false, |m| w.is_sanctioning(m, n.id)),
         "sanctioning_me": me.map_or(false, |m| w.is_sanctioning(n.id, m)),
         "sanctioned_by_count": w.sanctioned_by_count(n.id),
+        // The namesake system, per nation. Everything here is read off
+        // spheres_sim::influence — the browser computes none of it, and the
+        // price it shows is the price apply_command will charge.
+        "influence": influence_json(w, n.id),
         "export_share": if n.oil_mbd > 0.0 { w.oil_export_share(n.id) } else { 1.0 },
         // Every standing it holds, not just the one with the player — the detail
         // view is a dossier on that nation, not on your relationship with it.
@@ -297,6 +320,112 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
                 "sanctioned_by": w.is_sanctioning(o.id, n.id),
             }))
             .collect::<Vec<_>>(),
+    })
+}
+
+/// One capital's influence board: who holds a position in it, which way it
+/// leans, whether it is being fought over, and — if the player is somebody —
+/// what taking it would cost them. Every field comes from
+/// `spheres_sim::influence`; nothing here is computed twice.
+fn influence_json(w: &WorldState, id: NationId) -> serde_json::Value {
+    let me = w.player;
+    let board: Vec<serde_json::Value> = w
+        .stakeholders(id)
+        .into_iter()
+        .map(|(p, s)| {
+            serde_json::json!({
+                "id": format!("{:?}", p),
+                "name": p.name(),
+                "stock": s,
+                "effort": w.effort(p, id),
+                "aligned": w.aligned_to(id) == Some(p),
+                "is_me": Some(p) == me,
+            })
+        })
+        .collect();
+    let quote = me
+        .filter(|m| *m != id && spheres_sim::influence::can_be_client(id))
+        .map(|m| {
+            let q = spheres_sim::influence::quote_take(w, m, id);
+            serde_json::json!({
+                "my_stock": q.my_stock,
+                "their_stock": q.their_stock,
+                "target_stock": q.target_stock,
+                "net_per_month": q.net_per_month,
+                "months": q.months,
+                "political_capital": q.political_capital,
+                "needs_an_instrument": q.needs_an_instrument,
+                "holder": q.holder.map(|h| h.name()),
+                "my_effort": w.effort(m, id),
+                "upkeep": w.sphere_upkeep(m, id),
+                "open_price": spheres_sim::influence::open_price(w, m, id, 1.0),
+            })
+        });
+    serde_json::json!({
+        "can_be_client": spheres_sim::influence::can_be_client(id),
+        "aligned_to": w.aligned_to(id).map(|p| p.name()),
+        "aligned_to_id": w.aligned_to(id).map(|p| format!("{:?}", p)),
+        "contested": w.is_contested(id),
+        "board": board,
+        "quote": quote,
+    })
+}
+
+/// The player's whole sphere on one payload: what they hold, what it costs every
+/// month, and where somebody else's client sits. This is the card the briefing
+/// leads with, so it must arrive with the state rather than a fetch behind it.
+fn spheres_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let mine: Vec<serde_json::Value> = w
+        .sphere_of(me)
+        .into_iter()
+        .map(|(c, s)| {
+            let rival = w.contested_by(me, c);
+            serde_json::json!({
+                "id": format!("{:?}", c),
+                "name": c.name(),
+                "stock": s,
+                "effort": w.effort(me, c),
+                "upkeep": w.sphere_upkeep(me, c),
+                "aligned": w.aligned_to(c) == Some(me),
+                "held_by": w.aligned_to(c).filter(|h| *h != me).map(|h| h.name()),
+                "contested": w.is_contested(c),
+                "rival": rival.map(|(q, s)| serde_json::json!({ "name": q.name(), "stock": s })),
+            })
+        })
+        .collect();
+    // What everyone else holds, most valuable first, with the price of taking it.
+    let mut others: Vec<(NationId, NationId, f64)> = w
+        .nations
+        .iter()
+        .filter(|n| n.alive)
+        .filter_map(|n| w.aligned_to(n.id).map(|h| (n.id, h, w.stake(h, n.id))))
+        .filter(|(_, h, _)| *h != me)
+        .collect();
+    others.sort_by(|a, b| b.2.partial_cmp(&a.2).unwrap_or(std::cmp::Ordering::Equal));
+    let targets: Vec<serde_json::Value> = others
+        .into_iter()
+        .take(14)
+        .map(|(c, h, s)| {
+            let q = spheres_sim::influence::quote_take(w, me, c);
+            serde_json::json!({
+                "id": format!("{:?}", c),
+                "name": c.name(),
+                "holder": h.name(),
+                "their_stock": s,
+                "my_stock": q.my_stock,
+                "months": q.months,
+                "political_capital": q.political_capital,
+                "needs_an_instrument": q.needs_an_instrument,
+                "contested": w.is_contested(c),
+            })
+        })
+        .collect();
+    serde_json::json!({
+        "nation": format!("{:?}", me),
+        "political_capital": w.nation(me).political_capital,
+        "bill": w.sphere_bill(me),
+        "clients": mine,
+        "targets": targets,
     })
 }
 
@@ -482,6 +611,9 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // the offer list changes with the world: a month that breaks the
         // inflation closes the peg, and the panel must not be a frame behind.
         "stratagems": w.player.map(|p| stratagems_json(w, p)),
+        // ...and the sphere, for the same reason: it moves every month, so a
+        // panel that fetched it separately would render a world one tick old.
+        "spheres": w.player.map(|p| spheres_json(w, p)),
         "interrupt": interrupt,
     })
 }
@@ -506,6 +638,14 @@ fn parse_command(v: &serde_json::Value, me: NationId) -> Option<Command> {
         "war" => Command::DeclareWar { attacker: me, defender: target()? },
         // The stratagem carries an id rather than a value or a target; the sim
         // re-checks availability and charges the political capital itself.
+        // The namesake commands. `value` is the effort 0..1; the sim prices it,
+        // charges it, and charges it again every month it stands.
+        "project" => Command::ProjectInfluence {
+            patron: me,
+            client: target()?,
+            effort: num()?,
+        },
+        "abandon" => Command::AbandonSphere { patron: me, client: target()? },
         "stratagem" => Command::EnactStratagem {
             nation: me,
             id: v.get("id")?.as_str()?.to_string(),
@@ -979,6 +1119,150 @@ mod tests {
         assert!(INDEX.contains("/api/command"));
         // Read from the payload the server actually sends.
         assert!(INDEX.contains("S.stratagems"));
+        // No CDN, no build step.
+        assert!(!INDEX.contains("https://"), "the UI must stay self-contained");
+    }
+
+    /// The namesake system has to be legible from the first screen of a new
+    /// game, not after ten years of play. January 1990 opens with a real board —
+    /// see `influence::seat_1990` — and this asserts the payload carries it.
+    #[test]
+    fn the_opening_board_reaches_the_browser() {
+        let g = Game::new(1990, Some(NationId::USA));
+        let s = state_json(&g, None);
+        let sph = &s["spheres"];
+        assert_eq!(sph["nation"], "USA");
+        let clients = sph["clients"].as_array().unwrap();
+        assert!(
+            clients.len() >= 10,
+            "Washington opens January 1990 holding {} positions",
+            clients.len()
+        );
+        assert!(
+            sph["bill"].as_f64().unwrap() > 0.0,
+            "a sphere that costs nothing a month is not a spend-to-hold economy"
+        );
+        // Somebody else's clients, priced.
+        let targets = sph["targets"].as_array().unwrap();
+        assert!(!targets.is_empty(), "nobody else holds anything in 1990");
+        for t in targets {
+            assert!(t["their_stock"].as_f64().unwrap() > 0.0);
+            assert!(t["holder"].as_str().unwrap() != "United States");
+        }
+        // Moscow's own sphere is on the board and it is Moscow's.
+        let angola = s["nations"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|n| n["name"] == "Angola")
+            .expect("Angola is on the 1990 roster");
+        assert_eq!(angola["influence"]["aligned_to"], "Soviet Union");
+        // ...and a spectator with no nation gets null rather than a fabricated one.
+        assert!(state_json(&Game::new(1990, None), None)["spheres"].is_null());
+    }
+
+    /// A price the player is shown must be the price the sim charges, and a
+    /// campaign the arithmetic cannot deliver must say so rather than name a
+    /// number it will not honour.
+    #[test]
+    fn the_quote_the_panel_prints_is_the_quote_the_sim_gives() {
+        let g = Game::new(1990, Some(NationId::USA));
+        let angola = g
+            .world
+            .nations
+            .iter()
+            .find(|n| n.id == NationId::Angola)
+            .map(|n| nation_json(&g.world, n))
+            .unwrap();
+        let q = &angola["influence"]["quote"];
+        assert_eq!(q["holder"], "Soviet Union");
+        // Eighty-odd points of Soviet position is out of reach of embassy
+        // receptions, and the panel must be told that in the payload rather than
+        // work it out for itself.
+        assert_eq!(q["needs_an_instrument"], true);
+        assert!(q["months"].is_null());
+        assert!(q["target_stock"].as_f64().unwrap() > q["their_stock"].as_f64().unwrap());
+
+        // A great power is nobody's client, and the payload says so instead of
+        // offering a price.
+        let japan = g
+            .world
+            .nations
+            .iter()
+            .find(|n| n.id == NationId::Japan)
+            .map(|n| nation_json(&g.world, n))
+            .unwrap();
+        assert_eq!(japan["influence"]["can_be_client"], false);
+        assert!(japan["influence"]["quote"].is_null());
+    }
+
+    /// The verb, end to end: the flat JSON the slider posts, through the command
+    /// queue, to the world moving and the political capital being spent. A
+    /// mechanic the player cannot reach from their seat is not a mechanic.
+    #[test]
+    fn the_effort_dial_reaches_the_sim_through_the_command_route() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let before = g.world.nation(NationId::USA).political_capital;
+        let posted = serde_json::json!({ "kind": "project", "target": "Angola", "value": 1.0 });
+        let cmd = parse_command(&posted, NationId::USA).expect("the UI's shape must parse");
+        match &cmd {
+            Command::ProjectInfluence { patron, client, effort } => {
+                assert_eq!(*patron, NationId::USA);
+                assert_eq!(*client, NationId::Angola);
+                assert_eq!(*effort, 1.0);
+            }
+            other => panic!("wrong command: {:?}", other),
+        }
+        apply_command(&mut g.world, &cmd).unwrap();
+        assert_eq!(g.world.effort(NationId::USA, NationId::Angola), 1.0);
+        assert!(
+            g.world.nation(NationId::USA).political_capital < before,
+            "opening a mission cost nothing: {:.1} -> {:.1}",
+            before,
+            g.world.nation(NationId::USA).political_capital
+        );
+
+        // ...and the standing bill, which is the half that makes it spend-to-hold.
+        let bill_before = g.world.sphere_bill(NationId::USA);
+        let held = g.world.nation(NationId::USA).political_capital;
+        tick_month(&mut g.world, &[]);
+        assert!(bill_before > 0.0);
+        assert!(
+            g.world.nation(NationId::USA).political_capital < held + 1.0,
+            "a month passed and the sphere was free"
+        );
+
+        // Giving up is always available and it is charged.
+        let posted = serde_json::json!({ "kind": "abandon", "target": "Angola" });
+        let cmd = parse_command(&posted, NationId::USA).expect("abandon must parse");
+        apply_command(&mut g.world, &cmd).unwrap();
+        assert_eq!(g.world.effort(NationId::USA, NationId::Angola), 0.0);
+    }
+
+    /// The surface itself. These strings are the panel's structure: if the markup
+    /// or the wiring is renamed away this fails, rather than shipping a namesake
+    /// system with no verb attached to it.
+    #[test]
+    fn the_spheres_panel_exists_and_is_wired_to_the_route() {
+        // The card in the left column, and the four things a row must say.
+        assert!(INDEX.contains("function spheresHtml"));
+        assert!(INDEX.contains("id=\"sphereCard\""));
+        assert!(INDEX.contains("class=\"sphbill\""));
+        assert!(INDEX.contains("data-sphere="));
+        assert!(INDEX.contains("pc/mo"));
+        // The dossier's half: the board, the quote, and the refusal.
+        assert!(INDEX.contains("function influenceHtml"));
+        assert!(INDEX.contains("needs_an_instrument"));
+        assert!(INDEX.contains("class=\"quote"));
+        // The verbs, the hands that press them, and the route they go down.
+        assert!(INDEX.contains("window.project = async"));
+        assert!(INDEX.contains("window.abandonSphere = async"));
+        assert!(INDEX.contains("id=\"projectBtn\""));
+        assert!(INDEX.contains("kind: \"project\""));
+        assert!(INDEX.contains("kind: \"abandon\""));
+        // Read from the payload the server actually sends.
+        assert!(INDEX.contains("S.spheres"));
+        assert!(INDEX.contains("n.influence"));
         // No CDN, no build step.
         assert!(!INDEX.contains("https://"), "the UI must stay self-contained");
     }

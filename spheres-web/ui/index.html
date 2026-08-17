@@ -164,6 +164,42 @@
   .strat button { font-size: 11px; padding: 3px 12px; letter-spacing: .1em; }
   .strat .short { color: #b06a5a; font-size: 11px; }
 
+  /* ---------- spheres: the namesake system ---------- */
+  .sphlist { max-height: 34vh; overflow-y: auto; }
+  .sphlist::-webkit-scrollbar { width: 8px; }
+  .sphlist::-webkit-scrollbar-thumb { background: #2a3444; border-radius: 4px; }
+  .sph {
+    display: grid; grid-template-columns: 1fr auto; gap: 2px 8px;
+    padding: 6px 0 7px; border-bottom: 1px solid #1b2330; cursor: pointer;
+  }
+  .sph:last-child { border-bottom: none; }
+  .sph:hover { background: #161d29; }
+  .sph .nm { color: var(--ink); }
+  .sph .nm b { color: var(--cyan); font-weight: 600; }
+  .sph .cost { color: var(--dim); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .sph .meta { grid-column: 1 / -1; color: #7e8da0; font-size: 11px; }
+  .sph.contested { border-left: 2px solid var(--red); padding-left: 8px; }
+  .sph.contested .meta em { font-style: normal; color: var(--red); }
+  .sphbar {
+    grid-column: 1 / -1; height: 4px; background: #1b2330; border-radius: 2px;
+    overflow: hidden; display: flex; margin: 2px 0 1px;
+  }
+  .sphbar i { display: block; height: 100%; }
+  .sphbill {
+    display: flex; align-items: baseline; gap: 8px; margin: -2px 0 8px;
+    font-variant-numeric: tabular-nums;
+  }
+  .sphbill .n { font-size: 22px; color: var(--cyan); font-weight: 600; }
+  .sphbill .lbl { color: #5a6a80; font-size: 11px; line-height: 1.25; }
+  .effort { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .effort input[type=range] { flex: 1; }
+  .quote {
+    border-left: 2px solid var(--cyan); padding: 8px 0 8px 10px; margin-top: 8px;
+    font-size: 12px; color: #b9c6d8;
+  }
+  .quote.blocked { border-left-color: var(--red); }
+  .quote b { color: var(--amber); font-variant-numeric: tabular-nums; }
+
   /* ---------- map ---------- */
   #center { display: flex; flex-direction: column; overflow: hidden; }
   .tabs { display: flex; gap: 4px; padding: 8px 12px 0; align-items: flex-end; }
@@ -771,6 +807,8 @@ function renderLeft(m) {
       <div class="tiny" style="margin-top:6px;cursor:pointer" onclick="openNation('${m.id}')">Open full dashboard →</div>
     </div>
 
+    ${spheresHtml(m)}
+
     ${stratagemsHtml(m)}
 
     <div class="card">
@@ -787,8 +825,179 @@ function renderLeft(m) {
     </div>`;
   wireSliders(m);
   wireStratagems();
+  wireSpheres();
   $("#revertBtn").onclick = revertOrders;
 }
+
+/* ================= spheres =================
+   The system the game is named after, and the one thing a player must be able
+   to read on the first screen: where their influence stands, who contests it,
+   what holding it costs per month, and what taking somebody else's client would
+   cost. Priced in political capital.
+
+   Nothing here is computed in the browser. The stock, the alignment, the
+   contest, the monthly bill and the quote all arrive on S.spheres from
+   spheres-sim/src/influence.rs, and the price shown is the price the sim
+   charges when the button is pressed. */
+
+function sphereBar(mine, theirs) {
+  const total = Math.max(mine + theirs, 100);
+  return `<span class="sphbar">
+      <i style="width:${(mine / total) * 100}%;background:var(--cyan)"></i>
+      <i style="width:${(theirs / total) * 100}%;background:var(--red)"></i>
+    </span>`;
+}
+
+function spheresHtml(m) {
+  const s = S.spheres;
+  if (!s) return "";
+  const clients = s.clients || [];
+  const rows = clients.length
+    ? clients.map((c) => `
+        <div class="sph${c.contested ? " contested" : ""}" data-sphere="${c.id}">
+          <span class="nm">${c.aligned ? `<b>${c.name}</b>` : c.name}</span>
+          <span class="cost">${c.stock.toFixed(0)} · ${c.upkeep.toFixed(2)} pc/mo</span>
+          ${sphereBar(c.stock, c.rival ? c.rival.stock : 0)}
+          <span class="meta">${
+            c.aligned ? "in your orbit" : c.held_by ? `${c.held_by}'s client` : "unaligned"
+          }${c.effort > 0 ? ` · ${(c.effort * 100).toFixed(0)}% effort` : " · no programme"}${
+            c.rival ? ` · <em>${c.rival.name} holds ${c.rival.stock.toFixed(0)}</em>` : ""
+          }</span>
+        </div>`).join("")
+    : `<div class="muted">You hold nothing anywhere. Influence decays from the
+       month you stop paying for it, so a sphere is something you keep rather
+       than something you buy.</div>`;
+
+  const targets = (s.targets || []).filter((t) => t.months !== null).slice(0, 5);
+  const shopping = targets.length
+    ? `<h3 style="margin-top:14px">Somebody else's <span>· and what it would cost</span></h3>
+       ${targets.map((t) => `
+         <div class="sph" data-sphere="${t.id}">
+           <span class="nm">${t.name}</span>
+           <span class="cost">${Math.round(t.political_capital)} pc</span>
+           <span class="meta">${t.holder}'s, holding ${t.their_stock.toFixed(0)} against your
+             ${t.my_stock.toFixed(0)} · ${t.months} months at full effort</span>
+         </div>`).join("")}`
+    : "";
+
+  return `<div class="card" id="sphereCard">
+      <h3>Spheres <span>· what you hold, and what it costs</span></h3>
+      <div class="sphbill">
+        <span class="n">${s.bill.toFixed(2)}</span>
+        <span class="lbl">political capital<br>a month, for ${clients.length}
+          position${clients.length === 1 ? "" : "s"}</span>
+      </div>
+      <div class="sphlist">${rows}${shopping}</div>
+    </div>`;
+}
+
+function wireSpheres() {
+  document.querySelectorAll("[data-sphere]").forEach((el) => {
+    el.onclick = () => openNation(el.dataset.sphere);
+  });
+}
+
+/// The dossier's influence section: the board in one capital, the price of
+/// taking it, and the two verbs. Effort is a POSTURE — it is charged again every
+/// month it stands — so the slider commits immediately rather than queueing with
+/// the budget.
+function influenceHtml(n, isMe) {
+  const inf = n.influence;
+  if (!inf) return "";
+  if (!inf.can_be_client) {
+    return `<div class="card"><h3>Influence</h3>
+      <div class="muted">${n.name} is a great power in its own right. It is
+      courted, not held — nobody projects a sphere over it.</div></div>`;
+  }
+  const board = inf.board.length
+    ? inf.board.map((b) => `
+        <div class="sph">
+          <span class="nm">${b.aligned ? `<b>${b.name}</b>` : b.name}${b.is_me ? " (you)" : ""}</span>
+          <span class="cost">${b.stock.toFixed(0)}</span>
+          ${sphereBar(b.stock, 0)}
+          <span class="meta">${b.aligned ? "aligned" : "present"}${
+            b.effort > 0 ? ` · ${(b.effort * 100).toFixed(0)}% effort` : ""
+          }</span>
+        </div>`).join("")
+    : `<div class="muted">Nobody holds anything here. It is open ground.</div>`;
+
+  const q = inf.quote;
+  let verdict = "";
+  if (q && !isMe) {
+    if (inf.aligned_to && q.holder === null) {
+      verdict = `<div class="quote"><b>Yours.</b> Holding it costs
+        <b>${q.upkeep.toFixed(2)}</b> political capital a month. Stop paying and
+        it decays — an abandoned sphere is below the alignment floor inside a few
+        years.</div>`;
+    } else if (q.needs_an_instrument) {
+      verdict = `<div class="quote blocked">Diplomacy alone will not take this one.
+        At full effort you would settle below the <b>${q.target_stock.toFixed(0)}</b>
+        points needed — <b>${q.net_per_month >= 0 ? "+" : ""}${q.net_per_month.toFixed(2)}</b>
+        a month against ${q.holder ? q.holder + "'s" : "their"}
+        <b>${q.their_stock.toFixed(0)}</b>. Aid, arms, a market and a guarantee all
+        feed the same number. Buy one, then ask again.</div>`;
+    } else {
+      verdict = `<div class="quote">To take it you must reach
+        <b>${q.target_stock.toFixed(0)}</b> points against
+        ${q.holder ? q.holder + "'s" : "an open field's"}
+        <b>${q.their_stock.toFixed(0)}</b>, and hold the lead. At full effort that is
+        <b>${q.months}</b> months and about
+        <b>${Math.round(q.political_capital)}</b> political capital. You hold
+        <b>${q.my_stock.toFixed(0)}</b> now.</div>`;
+    }
+  }
+
+  const dial = isMe || !q ? "" : `
+    <div class="effort">
+      <span class="tiny">EFFORT</span>
+      <input type="range" id="effortRange" min="0" max="100" step="5"
+             value="${Math.round(q.my_effort * 100)}">
+      <span class="tiny" id="effortVal">${Math.round(q.my_effort * 100)}%</span>
+      <button class="primary" id="projectBtn">SET</button>
+      ${q.my_effort > 0 || q.my_stock > 0
+        ? `<button class="danger" id="abandonBtn">ABANDON</button>` : ""}
+    </div>
+    <div class="tiny muted">Opening or widening a programme is charged once, now;
+      holding it is charged again every month. Narrowing costs nothing — giving
+      ground is always the cheap direction.</div>`;
+
+  return `<div class="card"><h3>Influence
+      <span>· ${inf.contested ? "CONTESTED" : inf.aligned_to
+        ? "in " + inf.aligned_to + "'s orbit" : "unaligned"}</span></h3>
+      ${board}
+      ${verdict}
+      ${dial}
+    </div>`;
+}
+
+function wireInfluence(id) {
+  const r = $("#effortRange");
+  if (!r) return;
+  const out = $("#effortVal");
+  r.oninput = () => { out.textContent = r.value + "%"; };
+  $("#projectBtn").onclick = () => project(id, Number(r.value) / 100);
+  const ab = $("#abandonBtn");
+  if (ab) ab.onclick = () => abandonSphere(id);
+}
+
+window.project = async function (name, effort) {
+  const r = await api("/api/command", {
+    commands: [{ kind: "project", target: name, value: effort }],
+  });
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  await adopt(r, false);
+  openNation(selected, true);
+};
+
+window.abandonSphere = async function (name) {
+  if (!confirm(`Give up your position in ${name}?\n\nThe stake collapses at once, and buying it back is a different order of problem from having held it.`)) return;
+  const r = await api("/api/command", {
+    commands: [{ kind: "abandon", target: name }],
+  });
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  await adopt(r, false);
+  openNation(selected, true);
+};
 
 /* ================= stratagems =================
    What the world is offering the government this month, priced in the currency
@@ -1599,6 +1808,8 @@ function openNation(id, keepScroll) {
       <div id="provenance" class="tiny muted">Reading the file…</div>
     </div>
 
+    ${influenceHtml(n, isMe)}
+
     ${charts}
 
     <div class="cols2">
@@ -1632,6 +1843,7 @@ function openNation(id, keepScroll) {
   sheet.querySelectorAll(".relrow[data-id]").forEach((r) => {
     r.onclick = () => openNation(r.dataset.id);
   });
+  wireInfluence(n.name);
   loadProvenance(n.name);
 }
 window.openNation = openNation;

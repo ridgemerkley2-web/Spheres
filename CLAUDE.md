@@ -32,6 +32,13 @@ Two pillars from SPEC.md, and where each now stands:
   accumulates and then becomes leverage, and covert action that is deniable
   until it is not. Relations are no longer the whole of diplomacy.
 
+  Phase 2.2 added the stock underneath it, in `influence.rs`: a patron's
+  position in a client decays every month, the four instruments feed that one
+  number rather than standing alone, alignments resist and then flip hard, and
+  holding a sphere is a standing bill in political capital that a weak government
+  cannot pay. January 1990 opens with the real board, derived from the
+  transcribed relations matrix. Both surfaces reach it.
+
   The two collisions that parked this branch for weeks were not statecraft's
   fault and were never fixed directly. They dissolved when the growth model
   underneath them was repaired: a trade-dependency asymmetry that read 8.5x

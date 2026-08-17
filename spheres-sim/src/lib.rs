@@ -928,10 +928,29 @@ mod tests {
         //   file for why the figure moved rather than the citation.
         // Nothing else in spheres-sim/data/ changed for any nation that was on
         // the board before this integration.
+        //
+        // Re-pinned a FIFTH time, 0x1bb3d0e7c7919e2e -> 0xb45ff354eb848985, on
+        // the influence branch. January 1990 now opens with a sphere board:
+        // `influence::seat_1990` reads the transcribed relations matrix and
+        // seats a stake wherever it stands above +30, so `statecraft.influence`
+        // and `statecraft.alignment` are non-empty in the serialized state
+        // before a single month is ticked. The hash is taken over the whole
+        // WorldState, so it moves by construction.
+        //
+        // THE TWO CHECKS THIS TEST ACTUALLY EXISTS FOR WERE DONE AND BOTH HOLD:
+        //   - `git diff master...feat/influence -- spheres-sim/data/` is EMPTY.
+        //     Not one transcribed 1990 figure changed, and no data file was
+        //     added: `seat_1990` invents nothing, it reads
+        //     `relations_1990.json`, which was already here.
+        //   - `seat_1990` writes only to `w.statecraft`. It never touches a
+        //     `Nation` field, so every economic, political and military opening
+        //     figure in the state is bit-identical to master's.
+        // Same rule as every entry above: a hash that moved with a dirty data/
+        // directory is a wrong number, not a new field.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0x1bb3d0e7c7919e2eu64,
+            h, 0xb45ff354eb848985u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -1049,7 +1068,41 @@ mod tests {
         // audit found that nothing in the suite constrained the coefficient this
         // commit changed from below: at bite 0.000, with sanctions costing a
         // target no growth at all, everything except the hashes stayed green.
-        const GOLDEN: u64 = 0xef3e968249846a49;
+        //
+        // Re-pinned a FIFTH time, 0xef3e968249846a49 -> 0x16370b39372a8d20, on
+        // the influence branch, and this one is a deliberate behaviour change
+        // rather than a reshuffle. Phase 2.2 adds a whole system to the tick
+        // loop: influence is a stock that decays, the four statecraft
+        // instruments feed it, alignments carry hysteresis, and every patron
+        // pays a monthly bill in political capital for what it holds. A world
+        // where the great powers spend standing on their spheres is a different
+        // — not a worse — timeline from one where spheres were free.
+        //
+        // The three conditions above were checked and all three hold:
+        //   (a) the ONLY failing tests were this one and
+        //       `the_1990_start_is_pinned`;
+        //   (b) `git diff -- spheres-sim/data/` is empty — no transcribed figure
+        //       moved, and no data file was added;
+        //   (c) the emergent-history calibration tests are green:
+        //       ussr_collapses_in_the_nineties, yugoslavia_comes_apart_in_the_
+        //       nineties, gulf_war_emerges, china_growth_miracle,
+        //       slovenia_escapes_the_wars_that_consume_bosnia,
+        //       some_wars_end_at_the_table, ukraine_leaves_the_union_without_
+        //       the_bomb, brazil_grinds_down_its_hyperinflation,
+        //       the_frontier_does_not_run_away, mature_economies_do_not_run_hot,
+        //       convergence_outruns_the_frontier.
+        //
+        // TWO TESTS CHANGED SHAPE ON THIS BRANCH AND NEITHER WAS WIDENED TO GO
+        // GREEN. `sanctions_cost_the_target_real_growth` is untouched and green;
+        // what changed is the model under it, because influence exposed a hole
+        // — a sanctioned state could sign fresh trade agreements outside the
+        // coalition and collect the full level gain, so on six of twenty-four
+        // seeds being embargoed made the target GROW FASTER. See
+        // `EMBARGO_SEALS_THE_MARKET` in statecraft.rs for the two-directional
+        // table. `a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it`
+        // became a sixteen-seed median with a zero-guard; the full argument,
+        // including master's own sixteen-seed sweep, is in the comment on it.
+        const GOLDEN: u64 = 0x16370b39372a8d20;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
