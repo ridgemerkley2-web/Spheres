@@ -1,0 +1,37 @@
+{
+  "id": "Swaziland",
+  "name": "Swaziland",
+  "system": "Market",
+  "authoritarianism": 0.88,
+  "economy": {
+    "gdp_bn": 1.1,
+    "population_m": 0.87,
+    "tfp_trend": 0.008,
+    "inflation": 0.131,
+    "interest_rate": 0.145,
+    "tax_rate": 0.28,
+    "mil_spend_gdp": 0.013,
+    "state_invest_gdp": 0.1,
+    "priv_invest_gdp": 0.14,
+    "debt_gdp": 0.22,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 58.0, "separatism": 0.01 },
+  "military": { "strength": 0.6, "nuclear": false },
+  "sources": [
+    "GDP $1.1bn: World Bank NY.GDP.MKTP.CD, series SWZ, 1990 = 1,114,694,041, on REAL GROWTH OF +21.02% for the year — by a wide margin the fastest growth of any nation in this roster in 1990, after +12.91% in 1989. That is not a data error and it is the most interesting number in the file. Swaziland in the late 1980s was where investment fleeing sanctions against South Africa landed: a stable, English-speaking, SACU-member kingdom twenty minutes' drive from the Transvaal that was not South Africa on a customs form. Coca-Cola moved its African concentrate plant to Matsapha in 1987 when it withdrew from South Africa, and it was one of many. On 0.87m people, $1,280 a head — the second-highest income in this region after Botswana.",
+    "Population 0.87m: World Bank SP.POP.TOTL, series SWZ, 1990 = 872,428. The smallest population in this roster.",
+    "TFP trend 0.008: set level with Ghana's and below Botswana's 0.012. The relocation boom was real capital arriving with real technique attached, and it deserves a figure well above the regional average. It gets less than Botswana's because the whole of it was contingent on apartheid lasting — sanctions were the comparative advantage, De Klerk had opened parliament on 2 February 1990, and an investor who came to Matsapha to avoid a boycott had no reason to stay once the boycott ended. That is precisely the kind of thing a trend figure should be sceptical about, and this one is.",
+    "Inflation 13.1%: World Bank FP.CPI.TOTL.ZG, series SWZ, 1990 = 13.09. The lilangeni was pegged one-for-one to the rand inside the Common Monetary Area, so this is South African inflation plus a couple of points of imported margin, not a Swazi monetary choice.",
+    "Interest rate 14.5%: World Bank FR.INR.LEND, series SWZ, 1990 = 14.50, a genuine 1990 print. Against 13.1% inflation the real rate is close to neutral, which is what a currency board arrangement to the rand produces. The loader's coupled check reads 0.025 - (0.145 - 0.1309) = 0.011, the tightest fit to neutral of any nation added in this region.",
+    "Revenue 28% of GDP: NOT SOURCED — GC.REV.XGRT.GD.ZS has no Swazi entry for 1990 — and entered as a bracket, flagged. It is set high for a low-income country and below Lesotho's 37% for the same reason Lesotho's is high: the Southern African Customs Union revenue pool was the largest single item in the budget, and Swaziland's own tax base, unlike Lesotho's, actually included a manufacturing sector.",
+    "Military 1.3% of GDP: World Bank MS.MIL.XPND.GD.ZS, series SWZ, 1990 = 1.276. Low, and correctly so. The Umbutfo Swaziland Defence Force existed from 1973 and had never fought anybody; the security problem the monarchy actually had was ANC cadres transiting to South Africa, which it handled with police and a 1982 security agreement with Pretoria rather than with soldiers.",
+    "Investment 24% of GDP, split 10 state / 14 private: NOT SOURCED. NE.GDI.TOTL.ZS has no Swazi entry for 1990, so both figures are brackets and are flagged. THE SPLIT IS WEIGHTED TOWARD THE PRIVATE SIDE — the only file in this region so weighted — and the 21% growth print is why: what was being built at Matsapha in 1990 was factories, by foreign firms, with their own money.",
+    "Debt 22% of GDP: World Bank DT.DOD.DECT.GN.ZS, series SWZ, 1990 = 21.81, external debt stocks as a share of GNI. Second-lowest in the region after Botswana's 15%.",
+    "Oil 0.0: no production. Swaziland's exportable minerals were asbestos at Havelock and coal at Mpaka, both held through Tibiyo Taka Ngwane, the fund the king holds 'in trust for the nation' and which answers to nobody else.",
+    "Stability 58 and authoritarianism 0.88: authoritarianism 0.88 is THE HIGHEST FIGURE IN THIS ROSTER, above Malawi's 0.85 and Saudi Arabia's, and the transcription is straightforward. King Sobhuza II repealed the independence constitution by decree on 12 April 1973, dissolved parliament, banned political parties and assumed all legislative, executive and judicial power; the decree was still in force in 1990 and is still substantially in force today. The tinkhundla system elected an advisory assembly indirectly through chiefs, with no parties permitted to contest anything. Mswati III, crowned on 25 April 1986 at eighteen, held the powers Sobhuza had taken. Stability 58 is nonetheless level with Zimbabwe's: this is a homogeneous small country with no insurgency and a monarchy that had survived a four-year succession crisis (the Liqoqo period, 1982-86) and come out with the throne stronger. PUDEMO had been founded underground in 1983 and would produce the unrest of 1990-91, but the regime was not in danger in January.",
+    "Separatism 0.01: THE LOWEST FIGURE IN THIS ROSTER. Swaziland is one people, one language, one dynasty and one of the few African borders that encloses roughly the group it names. The territorial argument is entirely outward-facing — the 'lost lands' claim on South Africa, which is entered as a claim in nations.rs and argued there — and there is no Swazi region that wants to leave Swaziland.",
+    "Military strength 0.6: the Umbutfo Swaziland Defence Force was about 2,700 men with no armour, no combat aircraft and no operational history. Set level with Bahrain's 0.6 and a shade above Lesotho's 0.5. Swaziland holds a claim on a state four hundred times its size and about eighty times its military weight, which is the ratio the war model has to be able to price down to nothing."
+  ]
+}
