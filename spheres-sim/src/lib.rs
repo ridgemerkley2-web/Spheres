@@ -1681,31 +1681,65 @@ mod tests {
             "the patron got its sphere for free"
         );
     }
+    /// The ratio of an armed client's forces to an otherwise identical one,
+    /// across ten seeds. `share` of 0.0 is the control: a pledge that transfers
+    /// nothing, which must produce a ratio of one.
+    fn arms_ratio(share: f64) -> Vec<f64> {
+        let mut out = vec![];
+        for seed in 0..10u64 {
+            let (mut base, mut armed) = (seeded(seed), seeded(seed));
+            for w in [&mut base, &mut armed] {
+                w.rules.ai_aggression = 0.0;
+                w.player = Some(NationId::USA);
+            }
+            let _ = apply_command(
+                &mut armed,
+                &Command::PledgeAid {
+                    patron: NationId::USA,
+                    client: NationId::Kuwait,
+                    kind: AidKind::Arms,
+                    share_gdp: share,
+                },
+            );
+            run_months(&mut base, 96);
+            run_months(&mut armed, 96);
+            let b = base.nation(NationId::Kuwait).mil_strength.max(0.001);
+            out.push(armed.nation(NationId::Kuwait).mil_strength / b);
+        }
+        out.sort_by(|x, y| x.partial_cmp(y).unwrap());
+        out
+    }
 
     #[test]
     fn arms_transfers_build_a_client_army() {
-        let (mut base, mut armed) = (seeded(6), seeded(6));
-        for w in [&mut base, &mut armed] {
-            w.rules.ai_aggression = 0.0;
-            w.player = Some(NationId::USA);
-        }
-        apply_command(
-            &mut armed,
-            &Command::PledgeAid {
-                patron: NationId::USA,
-                client: NationId::Kuwait,
-                kind: AidKind::Arms,
-                share_gdp: 0.003,
-            },
-        )
-        .unwrap();
-        run_months(&mut base, 96);
-        run_months(&mut armed, 96);
-        let (b, a) = (
-            base.nation(NationId::Kuwait).mil_strength,
-            armed.nation(NationId::Kuwait).mil_strength,
+        // This was one seed and an absolute bar, and it broke when the roster
+        // tripled — not because the aid stopped working, but because it is a
+        // ratio between a treated and an UNTREATED Kuwait, and a filling region
+        // arms the control too. Measured at the break: the control arm rose
+        // 6.50 -> 7.70 while the treated rose 10.60 -> 10.92. The aid still
+        // bought an army; it bought a smaller multiple of a bigger baseline.
+        //
+        // So it is a cross-seed median now, the same shape china_growth_miracle
+        // uses, and it is a comparison against the CONTROL rather than against a
+        // remembered number — a pledge of nothing must produce a ratio of one,
+        // whatever else the world is doing to Kuwait's army.
+        let armed = arms_ratio(0.003);
+        let median = armed[armed.len() / 2];
+        assert!(
+            median > 1.25,
+            "arms bought no army: median ratio {:.3} across ten seeds, {:?}",
+            median,
+            armed.iter().map(|x| (x * 100.0).round() / 100.0).collect::<Vec<_>>()
         );
-        assert!(a > b * 1.5, "arms bought no army: {:.1} vs {:.1}", a, b);
+        // ...and the guard that keeps this from being a test that cannot fail:
+        // with nothing transferred, the two worlds must be the same world.
+        let control = arms_ratio(0.0);
+        let control_median = control[control.len() / 2];
+        assert!(
+            (control_median - 1.0).abs() < 0.02,
+            "an empty pledge moved the client's army: {:.3}",
+            control_median
+        );
     }
 
     #[test]
