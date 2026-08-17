@@ -803,10 +803,18 @@ mod tests {
         //   file for why the figure moved rather than the citation.
         // Nothing else in spheres-sim/data/ changed for any nation that was on
         // the board before this integration.
+        // RE-PINNED ON feat/r2-seasia2, AND THE INTEGRATOR SHOULD EXPECT TO
+        // RE-PIN IT AGAIN. Five rows were appended to the roster — Brunei,
+        // Papua New Guinea, East Timor, Bhutan and the Maldives — which widens
+        // the relations matrix and adds four nations to the 1990 board, so this
+        // hash moves by construction. Nothing in spheres-sim/data/ changed for
+        // any nation that was on the board before this branch, and no engine
+        // file outside nations.rs, government.rs and data/embedded.rs was
+        // touched. Previous value: 0x1bb3d0e7c7919e2e.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0x1bb3d0e7c7919e2eu64,
+            h, 0xadb3f6bec1ffdef8u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -924,7 +932,11 @@ mod tests {
         // audit found that nothing in the suite constrained the coefficient this
         // commit changed from below: at bite 0.000, with sanctions costing a
         // target no growth at all, everything except the hashes stayed green.
-        const GOLDEN: u64 = 0xef3e968249846a49;
+        // RE-PINNED ON feat/r2-seasia2 for the same reason as the start hash
+        // above: five appended roster rows change the world the run starts from.
+        // Previous value: 0xef3e968249846a49. The integrator re-pins once at the
+        // end of the merge; this value is only here so the branch is readable.
+        const GOLDEN: u64 = 0x184fd656d0cef7b3;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

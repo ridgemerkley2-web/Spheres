@@ -1,0 +1,42 @@
+{
+  "id": "PapuaNewGuinea",
+  "name": "Papua New Guinea",
+  "system": "Market",
+  "authoritarianism": 0.15,
+  "economy": {
+    "gdp_bn": 3.22,
+    "population_m": 4.62,
+    "tfp_trend": 0.005,
+    "inflation": 0.07,
+    "interest_rate": 0.155,
+    "tax_rate": 0.201,
+    "mil_spend_gdp": 0.014,
+    "state_invest_gdp": 0.08,
+    "priv_invest_gdp": 0.164,
+    "debt_gdp": 0.838,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 40.0,
+    "separatism": 0.3
+  },
+  "military": {
+    "strength": 1.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $3.22bn: World Bank NY.GDP.MKTP.CD, series PNG, 1990 = $3,219,730,365. Read via the WDI mirror at indexmundi.com in August 2026 because api.worldbank.org served a WAF block page throughout this session; the figure is the World Bank one, the series the rest of this roster sits on.",
+    "Population 4.62m: World Bank SP.POP.TOTL, series PNG, 1990 = 4,615,843 midyear. Per capita $698, between Nepal's $186 and Indonesia's $578. It is also a population speaking over 800 languages across terrain that has no national road network, and the state's inability to reach most of it is the fact behind every other number in this file.",
+    "PANGUNA IS THE STORY OF 1990 AND IT IS DATED 7 JANUARY 1990, six days after the game opens. The Bougainville Copper mine was shut by BRA sabotage on 15 May 1989 and formally mothballed on 7 January 1990. It had been roughly 45% of Papua New Guinea's export earnings and around a sixth of internal government revenue; losing it took real GDP down about 3% in 1990. That is why tfp_trend is entered at 0.005 rather than at the 2-3% the 1980s mining boom would suggest — the start state is a country that has just lost its largest single asset and does not yet have a replacement. Porgera poured its first gold in 1990 and the Kutubu oilfield came on stream in June 1992, both after the start date, so oil_mbd is 0.0 and it is a true zero for January 1990 rather than a gap.",
+    "Inflation 7.0%: World Bank FP.CPI.TOTL.ZG, series PNG, 1990 = 6.95%, up from 4.48% in 1989. Moderate for the region, and moderate on purpose: the kina was hard-pegged to a trade-weighted basket and the Bank of Papua New Guinea defended the peg until it broke in September 1994.",
+    "Interest rate 15.5%: World Bank FR.INR.LEND, series PNG, 1990 = 15.52%. THIS IS THE COMMERCIAL LENDING RATE, NOT A POLICY RATE, and the substitution is stated rather than hidden — the schema field means the central bank's rate and the Bank of Papua New Guinea's own instrument at this date was the Treasury bill auction, for which no 1990 series is available here. Against 7.0% inflation the entered rate is a real 8.5%, which is high, and it was: defending a fixed kina through a revenue collapse is exactly what produces a high real rate.",
+    "Revenue 20.1% of GDP: World Bank GC.TAX.TOTL.GD.ZS, series PNG, 1990 = 20.07%, which is the first year of the series. A genuinely high revenue effort for a country at this income — higher than Indonesia's 19%, more than double Nepal's 7% — because the mining and petroleum tax regime collected from a handful of large foreign operators is the easiest revenue in the developing world to assess. It is also why the Panguna closure hit the budget as hard as it did.",
+    "Military 1.4% of GDP: World Bank MS.MIL.XPND.GD.ZS, series PNG, 1990 = 1.42%. THE SPIKE IS THE TRANSCRIPTION. The series reads 0.50% in 1989, 1.42% in 1990, 0.92% in 1991 and 0.89% in 1992 — Papua New Guinea nearly tripled its defence share in the year it deployed against Bougainville and let it fall back afterwards. Strength is indexed 1: the PNGDF numbered under 4,000, had no armour and no combat aircraft, and flew four Iroquois that Australia had supplied for search and rescue. That force could not hold one island of 160,000 people, and by March 1990 it had withdrawn from it.",
+    "Investment 24.4% of GDP, split 8.0 state and 16.4 private: World Bank NE.GDI.TOTL.ZS, series PNG, 1990 = 24.44% gross capital formation, transcribed as the sum. THE SPLIT IS A JUDGEMENT and it is weighted to the private side, which is the opposite of what this roster does for most poor countries. The reason is specific: 1990 capital formation in Papua New Guinea was dominated by two foreign-financed resource projects under construction at once — the Porgera gold mine and the Kutubu oil development — and neither passed through the budget.",
+    "Debt 83.8% of GDP: World Bank DT.DOD.DECT.GN.ZS, series PNG, 1990 = 83.77% external debt stocks as a share of GNI. Same stated substitution the South Asian entries make: the schema field means gross public debt and external debt is the series that exists. It rose from 67.87% in 1989, which is the Panguna revenue hole being financed.",
+    "Stability 40 and authoritarianism 0.15: a functioning Westminster democracy — free press, independent courts, a parliament that removes prime ministers regularly and constitutionally — with almost no reach outside the towns. Authoritarianism 0.15 sits just under the Philippines' 0.24 and is the second-lowest figure in Asia on this board. Stability 40 sits between the Philippines' 35 and Sri Lanka's 42, and it is low for a democracy because the state's writ had visibly failed: Port Moresby had lost control of North Solomons province, the PNGDF had withdrawn under the ceasefire of 2 March 1990 and imposed a blockade instead, and no government since independence had survived a full term without a no-confidence motion. Rabbie Namaliu held office in January 1990 because Paias Wingti had lost one in July 1988.",
+    "Separatism 0.30: Bougainville. Francis Ona's Bougainville Revolutionary Army closed the mine in 1989, fought the PNGDF through that year, and declared independence on 17 May 1990. Entered above the Philippines' 0.24 and below Indonesia's 0.35, and the placement is a judgement about two things pulling opposite ways. Bougainville was about 160,000 people out of 4.6m, some 3.5% of the population — narrower than Indonesia's Aceh, Irian Jaya and East Timor together. But it was total: the state did not merely face insurgency there, it left. Note also that the province is separated from the rest of the country by 700 km of sea and is geologically and ethnically part of the Solomon Islands, which is the underlying reason the grievance is a secession rather than a riot.",
+    "SOMETHING THE MODEL IS NOT TOLD AND SHOULD BE ALLOWED TO MISS. The Bougainville war ran to 1998 and killed somewhere between 5,000 and 20,000 people, mostly through the blockade rather than the fighting, and it ended in an autonomy settlement and eventually a 2019 referendum. None of that is encoded. What is encoded is a state at 40 stability with 0.30 separatism, an army indexed 1, and a budget that has just lost a sixth of its revenue. If the sim produces a long unwinnable internal war from that, it found it."
+  ]
+}
