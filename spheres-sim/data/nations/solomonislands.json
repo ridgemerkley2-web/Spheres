@@ -1,0 +1,42 @@
+{
+  "id": "SolomonIslands",
+  "name": "Solomon Islands",
+  "system": "Market",
+  "authoritarianism": 0.12,
+  "economy": {
+    "gdp_bn": 0.215,
+    "population_m": 0.312,
+    "tfp_trend": 0.004,
+    "inflation": 0.087,
+    "interest_rate": 0.105,
+    "tax_rate": 0.2,
+    "mil_spend_gdp": 0.004,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.026,
+    "debt_gdp": 0.575,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 55.0,
+    "separatism": 0.1
+  },
+  "military": {
+    "strength": 0.03,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $214.7m: World Bank NY.GDP.MKTP.CD, series SLB, 1990 = $214,727,800 (1989 $172,681,300; 1991 $227,641,100). Entered as 0.215bn. Timber, copra, palm oil and tuna, and the timber was being cut at several times its replacement rate.",
+    "Population 311,869: World Bank SP.POP.TOTL, SLB, 1990, entered as 0.312m. Growing at about 2.8% a year — among the fastest in the world — across nearly a thousand islands and some seventy languages.",
+    "Inflation 8.7%: World Bank FP.CPI.TOTL.ZG, SLB, 1990 = 8.74%, between 14.93% in 1989 and 15.05% in 1991. 1990 is the quiet year in a noisy series.",
+    "Interest rate 10.5% is a CONSTRUCTION and is flagged as one. What the World Bank does publish for Solomon Islands is the commercial lending rate, FR.INR.LEND = 18.00% in both 1989 and 1990, and that figure is NOT entered here. This field is documented as a central bank policy rate; the Central Bank of Solomon Islands published none in this series, and 18% is a retail lending rate carrying a spread of eight to ten points over deposits that is a fact about a banking system with two banks and no competition, not a fact about monetary policy. Entering it would have put the real rate 9.3 points above the model's neutral of 2.5%, which the linear demand channel in `economy.rs` reads as roughly minus four points of annual growth chosen by a central bank that chose nothing of the kind. 10.5% against 8.7% inflation holds the real rate near neutral instead, and the substitution is stated rather than hidden.",
+    "Tax 20% of GDP is an ESTIMATE. World Bank GC.TAX.TOTL.GD.ZS carries nothing for Solomon Islands before 2011, when it reads 25.49%. Government revenue in 1990 was around a third of GDP but roughly a third of that was budget support and project aid rather than tax; 20% is the tax component and is a construction from that structure, not a transcription.",
+    "Military 0.4% of GDP and strength 0.03. Solomon Islands has no armed forces at all — none in 1990, none since. What existed was the Police Field Force, a paramilitary wing of the Royal Solomon Islands Police numbering roughly 200, trained by Australia and Britain for riot control and disaster work. The 0.4% is an estimate of what that cost and is entered rather than a zero because the force is real and was used; the strength index of 0.03 records that it could not fight anybody. This is the lowest military figure in the roster and it should be.",
+    "Investment 7.6% of GDP: World Bank NE.GDI.TOTL.ZS, SLB, 1990 = 7.55% (11.36% in 1989, 9.55% in 1991). The 5.0/2.6 split is an ESTIMATE weighted heavily to the public side, because the development budget was overwhelmingly aid-financed and passed through the government, and because the largest private capital projects of the period — Solomon Taiyo's tuna operation and Solomon Islands Plantations' oil palm — were joint ventures with the state.",
+    "Debt 57.5% of GDP: World Bank DT.DOD.DECT.GN.ZS, SLB, 1990 = 57.53% of GNI (60.67% in 1989, 59.22% in 1991). External debt, mostly concessional IDA and ADB, standing in for gross public debt as it does for Laos and Fiji.",
+    "TFP trend 0.004. Real growth 1985-1990 was -3.14, -0.21, 8.42, 1.25, 4.26, 2.20 (NY.GDP.MKTP.KD.ZG): a mean of 2.1% a year against population growth of 2.8%, so output per head was falling through the second half of the 1980s. The low trend is the honest reading of an economy whose growth was extraction — log exports rose fivefold across the decade — rather than anything that compounds.",
+    "Stability 55 and authoritarianism 0.12. A functioning Westminster democracy with a free press, an independent judiciary and no political prisoners, which is why the authoritarianism figure is near Uruguay's 0.12 rather than anywhere in the Pacific's crisis range. The stability figure is lower than the authoritarianism figure would suggest because governments here do not last: parties are candidate vehicles rather than organisations, the 38-member parliament turns over by more than half at every election, and Solomon Mamaloni — prime minister again since March 1989 — governed with a bare and shifting coalition and would take his own party out of the government in October 1990 to rule with defectors from the opposition.",
+    "Separatism 0.10 has two components and neither is hypothetical. Western Province and Choiseul attempted to secede at independence in 1978 and the Western Province breakaway movement persisted; and Bougainville, across ten kilometres of strait from the Shortlands, had been in armed revolt since 1988 among people who are Solomon Islanders ethnically and Papua New Guineans legally, with fighters and refugees moving both ways across a border Honiara could not police. The figure is the strain, not the prediction.",
+    "UNVERIFIED: the tax share, the policy rate, the investment split and the military share, all four constructed and all four stated above. Solomon Islands is one of the countries the roster's own instructions warn about — small, poor and badly documented — and four of its twelve economic fields are estimates."
+  ]
+}

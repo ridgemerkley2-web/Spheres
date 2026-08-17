@@ -1,0 +1,42 @@
+{
+  "id": "Vanuatu",
+  "name": "Vanuatu",
+  "system": "Market",
+  "authoritarianism": 0.22,
+  "economy": {
+    "gdp_bn": 0.158,
+    "population_m": 0.147,
+    "tfp_trend": 0.004,
+    "inflation": 0.048,
+    "interest_rate": 0.068,
+    "tax_rate": 0.202,
+    "mil_spend_gdp": 0.006,
+    "state_invest_gdp": 0.19,
+    "priv_invest_gdp": 0.12,
+    "debt_gdp": 0.228,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 52.0,
+    "separatism": 0.14
+  },
+  "military": {
+    "strength": 0.04,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $158.4m: World Bank NY.GDP.MKTP.CD, series VUT, 1990 = $158,397,403.04 current US$. Entered as 0.158bn. Copra, beef, tourism off the cruise ships, and an offshore finance centre established by the British administration in 1971 that by 1990 registered several thousand exempt companies and a merchant flag.",
+    "Population 146,575: World Bank SP.POP.TOTL, VUT, 1990, entered as 0.147m. The smallest population of the five nations in this batch after Tonga.",
+    "Inflation 4.8%: World Bank FP.CPI.TOTL.ZG, VUT, 1990 = 4.76%, against 7.75% in 1989 and 6.47% in 1991. The lowest 1990 inflation of the five, which follows from the vatu's peg to a currency basket and from an import bill priced largely in Australian dollars.",
+    "Interest rate 6.8% is a CONSTRUCTION and is flagged as one, on the same reasoning as the Solomon Islands file. The World Bank does publish a lending rate for Vanuatu — FR.INR.LEND = 17.33% in 1990, 17.00% in 1989, 18.00% in 1991 — and it is NOT entered here, because a 12.6-point real retail lending rate in a two-bank market is a measure of the spread the banks could charge, not of the stance the Reserve Bank of Vanuatu took. 6.8% against 4.8% inflation holds the real rate at 2.0%, just inside the model's neutral of 2.5%. The published rate is recorded here so a later reader can put it back if the model ever learns to hold a spread.",
+    "Tax 20.2% of GDP: World Bank GC.TAX.TOTL.GD.ZS, VUT, 1990 = 20.19%, which is both the first value in the series and its highest in thirty years. A real transcription and a slightly strange one, because Vanuatu levies no income tax at all, personal or corporate — that is the whole design of the offshore centre. The 20% is import duty, a business licence fee and the fees the registry charges.",
+    "Military 0.6% of GDP and strength 0.04. Vanuatu has no army. The Vanuatu Mobile Force is a paramilitary wing of the police of roughly 300, and it was politically live rather than decorative: it had been raised partly out of the men who put down the Espiritu Santo rebellion in 1980, and it mutinied over pay in 1996 and briefly detained the president and prime minister. The 0.6% is an estimate of its cost.",
+    "Investment 31.2% of GDP: World Bank NE.GDI.TOTL.ZS, VUT, 1990 = 31.16% (30.98% in 1989, 24.46% in 1991). The highest investment ratio of the five by a wide margin, and the 19.0/12.0 split is an ESTIMATE weighted to the public side because the great majority of it was donor-financed infrastructure: Australia, France, the EEC and the ADB were all funding roads, wharves and the Port Vila airport terminal in this period. A ratio this high in an economy that grew 1.6% a year on average over the previous five is the definition of aid-financed capital formation that does not compound.",
+    "Debt 22.8% of GDP: World Bank DT.DOD.DECT.GN.ZS, VUT, 1990 = 22.82% of GNI (20.45% in 1989, 19.70% in 1991). External debt standing in for public debt, as elsewhere in this batch. The lowest of the five, because most of the aid was grant rather than loan.",
+    "TFP trend 0.004. Real growth 1985-1990 was 1.00, -0.15, -2.89, -1.69, 1.53, 11.70 (NY.GDP.MKTP.KD.ZG). The 1990 figure is an outlier and is treated as one: three of the six years are negative, the mean is 1.6% against population growth near 2.6%, and 1987 and 1988 carry Cyclone Uma, which flattened Port Vila in February 1987, and the political crisis of December 1988. The trend is set at the low, not at the last observation.",
+    "Stability 52 and authoritarianism 0.22. Vanuatu is a real parliamentary democracy that had just been through a constitutional crisis, and 52 is the crisis rather than the democracy. Barak Sope was expelled from the ruling Vanua'aku Pati in May 1988 and took a bloc of members with him; the government stripped the dissidents of their seats; President Ati George Sokomanu responded in December 1988 by dissolving parliament and appointing Sope head of an interim government, was arrested, and was convicted of incitement to mutiny in January 1989 before the Court of Appeal quashed it. Walter Lini, prime minister since independence and recovering from a stroke, governed through 1990 over a party that was splitting under him and was removed by his own party in September 1991. Authoritarianism 0.22 is above Bolivia's 0.22 by nothing and above Solomon Islands' 0.12 because Lini's government did expel elected members and did control the only broadcaster.",
+    "Separatism 0.14, the highest of the five and the only one in this batch with a shooting precedent. Jimmy Stevens' Nagriamel movement declared Espiritu Santo independent as Vemarana in May 1980, weeks before national independence, with backing from French settlers and the Phoenix Foundation; Papua New Guinean troops flown in by Australia put it down in what is remembered as the Coconut War. Nagriamel still polled 1.36% and stood candidates in 1987. Underneath it is the anglophone/francophone division inherited from the condominium, which maps onto islands as well as onto schools.",
+    "UNVERIFIED: the policy rate, the investment split and the military share, all stated as constructions above. Also that the Vanuatu Mobile Force numbered about 300 in 1990 — contemporary figures range from 200 to 450 depending on whether the general police duties wing is counted."
+  ]
+}

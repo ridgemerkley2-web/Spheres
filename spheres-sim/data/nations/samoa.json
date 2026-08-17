@@ -1,0 +1,43 @@
+{
+  "id": "Samoa",
+  "name": "Western Samoa",
+  "system": "Market",
+  "authoritarianism": 0.35,
+  "economy": {
+    "gdp_bn": 0.126,
+    "population_m": 0.163,
+    "tfp_trend": 0.003,
+    "inflation": 0.152,
+    "interest_rate": 0.172,
+    "tax_rate": 0.22,
+    "mil_spend_gdp": 0.0,
+    "state_invest_gdp": 0.14,
+    "priv_invest_gdp": 0.06,
+    "debt_gdp": 1.033,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 62.0,
+    "separatism": 0.03
+  },
+  "military": {
+    "strength": 0.0,
+    "nuclear": false
+  },
+  "sources": [
+    "The name in this file is Western Samoa, which is what the country was called in January 1990 and remained until 4 July 1997. The roster code is \"Samoa\" so that saves survive the rename, and both strings parse. Same treatment as Zaire and Czechoslovakia: the roster is a photograph of 1990.",
+    "GDP $125.8m: World Bank NY.GDP.MKTP.CD, series WSM, 1990 = $125,766,300 (1989 $122,888,600; 1991 $125,597,200). Entered as 0.126bn. Taro, coconut oil, a Japanese-owned wiring-harness plant, and remittances from New Zealand, Australia and American Samoa that in most estimates exceeded merchandise exports several times over.",
+    "Population 162,797: World Bank SP.POP.TOTL, WSM, 1990, entered as 0.163m. Population growth was near zero across the 1980s not because Samoans stopped having children but because they left: free entry to New Zealand for Western Samoans under the 1962 Treaty of Friendship and the 1982 Citizenship Act settlement, and the diaspora in Auckland was already comparable in size to the resident population.",
+    "Inflation 15.2%: World Bank FP.CPI.TOTL.ZG, WSM, 1990 = 15.24%. CAVEAT, stated rather than hidden, because this is the one figure in the file that a January 1990 start date argues against. The 1989 print was 6.46% and the 1991 print was -1.82%; the spike is Cyclone Ofa, which crossed Savai'i and Upolu on 2-4 February 1990, destroyed most of the taro crop and a large part of the housing stock, and did damage the ADB put at around half of annual GDP. The game opens four weeks before that. The 1990 calendar-year print is entered anyway, because every other nation in this roster carries its 1990 calendar-year CPI — including everyone's share of the Gulf oil shock of August — and consistency of series is what makes the roster comparable at all. A reader who wants the pre-Ofa Samoan price level should read 6.5%.",
+    "Interest rate 17.2% is a CONSTRUCTION and is flagged as one. The World Bank publishes no lending rate for Samoa before 2001 and the Central Bank of Samoa, founded 1984, published no policy rate in this series. 17.2% against 15.2% inflation holds the real rate at 2.0%, just inside the model's neutral of 2.5%. It is a high nominal number entirely because the inflation it is paired with is high, and it moves with that figure rather than standing on its own evidence.",
+    "Tax 22% of GDP is an ESTIMATE. World Bank GC.TAX.TOTL.GD.ZS carries nothing for Samoa before 2012, when it reads 20.89%. Import duties and excise were the bulk of revenue in 1990; the figure is a construction from that structure and from the later series, not a transcription.",
+    "Military 0.0% of GDP and strength 0.0, and this is a transcription rather than a gap. Western Samoa has no armed forces of any kind and never has had. Article 1 of the Treaty of Friendship signed with New Zealand on 1 August 1962 makes New Zealand responsible for Samoa's external defence on request, and the only uniformed service is the police, who until recently did not carry firearms. A genuine zero is the honest entry for the only nation in this roster with no military at all, and if it turns out the model cannot hold a zero here that is a finding about the model.",
+    "Investment 20% of GDP, split 14 public and 6 private, is an ESTIMATE and the least supported figure in this file. The World Bank NE.GDI.TOTL.ZS series returned no accessible value for Samoa in 1990 (the indexmundi mirror this batch was read from errors on that page, and the World Bank API is not reachable from this machine). The level is taken from contemporary ADB reporting, which put gross domestic investment in Western Samoa in the low twenties as a share of GDP through the late 1980s, and the weighting to the public side is the same structural argument as everywhere else in this batch: domestic savings were negative and capital formation was donor-financed. Treat both the level and the split as unverified.",
+    "Debt 103.3% of GDP: World Bank DT.DOD.DECT.GN.ZS, WSM, 1990 = 103.28% of GNI (86.85% in 1989, 129.46% in 1991). The highest debt ratio of the five by a factor of two, and the only one above parity. It is external debt standing in for public debt, and it is almost entirely concessional — IDA and ADB soft loans at long maturities — so the ratio overstates the burden in the same way the Laos file's 1.7 does. That the ratio was still climbing in 1991 is Ofa being rebuilt on borrowed money.",
+    "TFP trend 0.003, the lowest in this batch. Real growth 1985-1990 was 3.92, 5.50, 0.48, -1.44, 3.71, -4.42 (NY.GDP.MKTP.KD.ZG): a mean of 1.3% a year, and the last observation is negative because of the cyclone. A MIRAB economy — migration, remittances, aid, bureaucracy — has very little in it that compounds: the productive sector is a taro crop that the taro leaf blight would destroy outright in 1993.",
+    "Stability 62 and authoritarianism 0.35. Samoa in 1990 is stable and not democratic in the sense the rest of this roster is. The Head of State, Malietoa Tanumafili II, held the office for life. The 47-seat Fono was elected on 26 February 1988 by matai only — holders of a chiefly title, about 16,000 registered against a population of 163,000 — plus two seats on a separate roll for citizens of European descent. There were no political prisoners, a free press, an independent judiciary and genuine turnover of governments, which is why 0.35 is well below the model's ELECTORAL_CEILING of 0.60 and Samoa is treated as a democracy; but a franchise limited to a tenth of the adult population is not the same object as Solomon Islands' universal one, and 0.35 against Solomon Islands' 0.12 is that difference. The referendum that extended the vote to every adult was held on 29 October 1990 and passed; it is not written in, and the model reaches it through this number or does not.",
+    "Separatism 0.03. Savai'i and Upolu have a real rivalry and almost no separatism; the Mau movement that won independence was a national movement, not a regional one. The genuine territorial fact about Samoa — that American Samoa fifty miles east is a United States territory whose people are Samoan — has never produced an irredentist claim from Apia and is therefore not in `claims` either.",
+    "UNVERIFIED: the investment level and split (no accessible World Bank series), the tax share, and the policy rate. Three of twelve economic fields. Also flagged, though it is a transcription: the 15.2% inflation figure includes a cyclone that had not happened when the game starts, for the series-consistency reason argued above."
+  ]
+}

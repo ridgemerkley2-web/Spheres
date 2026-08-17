@@ -1310,6 +1310,61 @@
         { "a": "CapeVerde", "b": "Senegal", "value": 45.0 },
         { "a": "CapeVerde", "b": "SouthAfrica", "value": 30.0 }
       ]
+    },
+    {
+      "note": [
+        "The island Pacific. Five states with no land borders between them and no army worth the name between four of them, whose diplomacy is therefore made almost entirely of who pays for the wharf and who recognises whom. Two facts in this block are the ones a roster of 108 nations could not previously hold.",
+        "The first is Fiji and India at -30, and it is the only negative number in the block. India led the campaign that kept Fiji out of the Commonwealth after the coups of 1987 - New Delhi's grievance being that the government Rabuka deposed rested on the votes of Indo-Fijians descended from indentured labourers India had sent to the cane estates between 1879 and 1916 - and it suspended trade and shipping links. Two states that have never had a border, a war or a common interest, in a real quarrel about the descendants of migrants a century old.",
+        "The second is Tonga and Solomon Islands at 45 and 40 with Taiwan, and zero with Beijing. Tonga recognised the Republic of China in 1972 and did not switch until 2 November 1998; Solomon Islands recognised Taipei on 23 May 1983 on Solomon Mamaloni's decision, against his own cabinet, and did not switch until 2019. In January 1990 the two smallest economies in this roster are among Taiwan's diplomatic partners, which is worth more to Taipei than the sum of both their GDPs. Fiji and Vanuatu went the other way and recognised the People's Republic, in 1975 and 1982.",
+        "Fiji's Western numbers are all lower than a Commonwealth democracy's would be, and the coups are the whole of the reason. Australia at 45 and New Zealand at 35: both condemned the May 1987 coup, both suspended defence cooperation and aid, Canberra moved two warships and an SAS element toward Fiji in the week after it, and Wellington under Lange was the more hostile of the two throughout. Britain at 40 is a Commonwealth membership that lapsed on 10 October 1987 when Fiji declared a republic and the Queen ceased to be its head of state. The United States at 55 is the highest of the four because Washington was conspicuously relaxed about a coup that removed a government committed to a nuclear-free Pacific, and because Fijian battalions were doing work in Sinai and Lebanon that the United States wanted done. France at 40 sits above Australia's number for the plainest of reasons: Paris offered aid when Canberra and Wellington withdrew it.",
+        "Vanuatu is the only non-aligned state in Oceania and the numbers say so. It joined the Non-Aligned Movement in 1983, recognised Cuba the same year and the Soviet Union in June 1986, and signed a one-year fishing agreement with Moscow in January 1987 that gave the USSR its first shore access in the South Pacific; the agreement lapsed unrenewed in 1988 over price, which is why 25 rather than something warmer. France at -20 is New Caledonia: Lini's government was the loudest state supporter of Kanak independence anywhere, France cut aid over it and the two expelled each other's representatives in 1987. Australia at 40 is cooperative and wary - Canberra was Vanuatu's largest donor and had also just talked it out of letting Libya open a people's bureau in Port Vila.",
+        "Samoa and New Zealand at 80 is the warmest pair in the block and close to the warmest in the roster. The Treaty of Friendship of 1 August 1962 makes New Zealand responsible for Samoa's external defence on request, which is the whole of Samoa's defence policy; there were nearly as many Samoans in Auckland as in Apia; and on 13 June 1990 New Zealand's prime minister formally apologised for the colonial administration, including for the influenza ship of 1918 that killed a fifth of the population. Tonga's 60 with New Zealand and 65 with Britain are the same kind of relationship one degree cooler - a protected state until 1970 whose monarchy's ties to Windsor were personal and old.",
+        "Nothing in this block is negative except Fiji-India and Vanuatu-France. That is not softness. Four of these five states have no armed forces capable of leaving their own reefs, and the thing they have to trade in is recognition."
+      ],
+      "pairs": [
+        { "a": "Fiji", "b": "USA", "value": 55.0 },
+        { "a": "Fiji", "b": "Australia", "value": 45.0 },
+        { "a": "Fiji", "b": "UK", "value": 40.0 },
+        { "a": "Fiji", "b": "France", "value": 40.0 },
+        { "a": "Fiji", "b": "NewZealand", "value": 35.0 },
+        { "a": "Fiji", "b": "Japan", "value": 35.0 },
+        { "a": "Fiji", "b": "China", "value": 25.0 },
+        { "a": "Fiji", "b": "India", "value": -30.0 },
+        { "a": "Fiji", "b": "Tonga", "value": 40.0 },
+        { "a": "Fiji", "b": "Vanuatu", "value": 35.0 },
+        { "a": "Fiji", "b": "SolomonIslands", "value": 45.0 },
+        { "a": "Fiji", "b": "Samoa", "value": 45.0 },
+
+        { "a": "SolomonIslands", "b": "Australia", "value": 60.0 },
+        { "a": "SolomonIslands", "b": "UK", "value": 55.0 },
+        { "a": "SolomonIslands", "b": "NewZealand", "value": 50.0 },
+        { "a": "SolomonIslands", "b": "Japan", "value": 45.0 },
+        { "a": "SolomonIslands", "b": "Taiwan", "value": 40.0 },
+
+        { "a": "Vanuatu", "b": "Australia", "value": 40.0 },
+        { "a": "Vanuatu", "b": "UK", "value": 45.0 },
+        { "a": "Vanuatu", "b": "NewZealand", "value": 45.0 },
+        { "a": "Vanuatu", "b": "Cuba", "value": 30.0 },
+        { "a": "Vanuatu", "b": "USSR", "value": 25.0 },
+        { "a": "Vanuatu", "b": "Libya", "value": 20.0 },
+        { "a": "Vanuatu", "b": "China", "value": 25.0 },
+        { "a": "Vanuatu", "b": "USA", "value": 15.0 },
+        { "a": "Vanuatu", "b": "France", "value": -20.0 },
+
+        { "a": "Samoa", "b": "NewZealand", "value": 80.0 },
+        { "a": "Samoa", "b": "Australia", "value": 55.0 },
+        { "a": "Samoa", "b": "USA", "value": 50.0 },
+        { "a": "Samoa", "b": "Japan", "value": 40.0 },
+        { "a": "Samoa", "b": "China", "value": 30.0 },
+        { "a": "Samoa", "b": "Tonga", "value": 55.0 },
+
+        { "a": "Tonga", "b": "UK", "value": 65.0 },
+        { "a": "Tonga", "b": "NewZealand", "value": 60.0 },
+        { "a": "Tonga", "b": "Australia", "value": 55.0 },
+        { "a": "Tonga", "b": "Taiwan", "value": 45.0 },
+        { "a": "Tonga", "b": "Japan", "value": 40.0 },
+        { "a": "Tonga", "b": "USA", "value": 40.0 }
+      ]
     }
   ]
 }

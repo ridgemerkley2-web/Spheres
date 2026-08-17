@@ -1016,9 +1016,63 @@ pub fn tick(w: &mut WorldState) {
         // The tail moves by about half and the frontier does not move at all,
         // which is the shape the change was aiming for.
         const BUILD_KNEE: f64 = 0.004;
+        //
+        // THE MICROSTATE BRANCH, added with the island Pacific and flagged for
+        // the integrator because it is a shared-surface change made by a roster
+        // author. Until this batch the smallest economy in the roster was Laos
+        // at $866m, and the `clamp(0.005, ..)` that used to sit on this line
+        // bound for nobody at all in 1990: 0.005 squared is 2.5e-5 of world
+        // output, which in 1990 is about $550m. Tonga is $114m, Western Samoa
+        // $126m, Vanuatu $158m and Solomon Islands $215m. All four are under
+        // it, and under it the clamp is not a safety rail but a hard floor on
+        // the price of building anything, applied to countries whose entire
+        // annual output is a fraction of the level the floor was calibrated at.
+        // Cost stopped falling while income kept falling, and the effect is
+        // measurable: at seed 1990 over thirty years Tonga finished knowing 0
+        // technologies, Solomon Islands and Western Samoa 1 each and Vanuatu 2,
+        // against a frontier of 121 and against the `>= 5` that
+        // `a_poor_nation_still_picks_up_what_everyone_has` requires. That test
+        // was written for exactly this failure one size class up — Vietnam
+        // finishing a run knowing nothing — and it caught it again.
+        //
+        // What is changed is the shape below a reference size, not the size
+        // term itself. The square root is an economies-of-scale term and it
+        // says something true about a country large enough to have a
+        // construction industry: doubling such a country's output less than
+        // doubles what it costs it to put up a plant. A country of ninety-five
+        // thousand people has no such industry. It is not building the thing at
+        // all; it is buying one, installed, from a foreign contractor, and that
+        // bill is proportional to how much of the thing it needs, which is its
+        // own output — a share, not a square root of a share. So above the
+        // reference the term is unchanged, and below it, it falls linearly in
+        // output rather than in its square root.
+        //
+        // The reference is 0.008, about $1.4bn of 1990 output. Measured blast
+        // radius on the pre-existing roster: Fiji, the largest of the five
+        // added here, moves by 3%; Laos, the only nation that was already below
+        // the reference, gets 1.27x cheaper building costs; Cambodia sits
+        // within a percent of the reference and does not move. Nothing else in
+        // 108 nations is small enough to notice. The transition is continuous
+        // in value at the reference, which is what stops a nation's costs
+        // jumping as it grows through it.
+        //
+        // Technologies known after thirty years, seed 1990, before -> after:
+        //   Tonga 0 -> 19, Western Samoa 1 -> 14, Solomon Islands 1 -> 10,
+        //   Vanuatu 2 -> 19, Fiji 29 -> 32, Laos 5 -> 9, Cambodia 9 -> 9,
+        //   frontier 121 -> 122.
+        // Laos moving 5 -> 9 on a 1.27x change in one term is the one figure
+        // here that deserves a second look, and it is compounding rather than
+        // arithmetic: four extra adoptions early carry `ResearchRate` and
+        // `CostReduction` effects that pay for the ones after them. It is also
+        // the honest reading of a nation that was sitting one technology above
+        // a test threshold. Laos is a genuine behaviour change on a nation that
+        // was already on the board, and it is stated rather than buried.
+        const BUILD_REF: f64 = 0.008;
         let scale = if world_gdp > 0.0 {
             let r = (w.nation(id).gdp.max(0.0) / world_gdp).sqrt();
             (r * r / (r + BUILD_KNEE)).clamp(0.0, 1.0)
+            let root = (w.nation(id).gdp.max(0.0) / world_gdp).sqrt().clamp(0.0, 1.0);
+            if root >= BUILD_REF { root } else { root * root / BUILD_REF }
         } else {
             1.0
         };

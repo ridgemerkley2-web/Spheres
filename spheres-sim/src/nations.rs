@@ -2034,6 +2034,109 @@ pub const ROSTER: &[NationRow] = &[
     // claim on anybody and never has been.
     row("CapeVerde", "Cape Verde", &["cpv", "cabo verde", "cape verde islands"], "WestAfrica",
         &[], &[], true, false, false),
+
+    // ---- The island Pacific. Five archipelagic states, and not one of them
+    // has a land border with anything, here or anywhere. That is the single
+    // most important structural fact about this block and it is entered as an
+    // empty `neighbours` list five times over, which means this batch required
+    // no edit to any existing roster row and therefore cannot collide with
+    // another agent's. It also means the derived war model in `dyads.rs` can
+    // reach these five only through their region and through alliance — which
+    // is exactly right, and is why the coups, secessions and constitutional
+    // crises that are the actual political history of the 1990 Pacific belong
+    // in `stability` and `separatism` in the data files rather than here.
+    //
+    // Claims are empty for the same reason they are empty for Canada. The live
+    // territorial arguments in this ocean in 1990 were maritime: Tonga and
+    // Fiji both claim the Minerva Reefs, two drying coral platforms 260km
+    // south-west of Tongatapu that Tonga annexed by proclamation on 15 June
+    // 1972 after an American libertarian syndicate declared the "Republic of
+    // Minerva" on them. A `Claim` is a share of the *target nation*, and a
+    // reef that no census has ever counted a person on is not a share of Fiji.
+    // Entering it would tell the appetite model that Nuku'alofa wants
+    // something from Suva that it is willing to fight for, and the two have
+    // instead argued about it politely for fifty years.
+    //
+    // Papua New Guinea is deliberately absent from every list below. It is
+    // another agent's nation in this round and is not in the roster at the
+    // commit this branch was cut from; a one-sided reference would fail the
+    // symmetry assertion and break the build for everyone. INTEGRATOR: when
+    // PNG lands, the Solomon Islands row is the one to revisit — see its
+    // comment.
+
+    // Fiji is the hinge of the region: the largest economy, the university,
+    // the airline hub, the regional secretariats. In January 1990 it is also
+    // the region's crisis. Two coups in 1987 — 14 May and 25 September, both
+    // led by Lieutenant Colonel Sitiveni Rabuka — deposed the month-old
+    // Bavadra government, made Fiji a republic on 10 October and cost it its
+    // Commonwealth membership. There has been no parliament since. On 5
+    // December 1987 an interim administration took office under President
+    // Ratu Sir Penaia Ganilau with Ratu Sir Kamisese Mara as prime minister;
+    // its term expired in January 1990, the month the game opens, and the
+    // President appointed a second interim cabinet of seventeen with no
+    // serving officers in it. The 1990 constitution entrenching ethnic Fijian
+    // control was promulgated on 25 July that year and the first election
+    // under it was held in May 1992. None of that is scripted here: it is a
+    // regime with no legislature, resting on the army and the chiefs, which is
+    // what `government.rs` says about it.
+    row("Fiji", "Fiji", &["fji", "fj"], "Oceania",
+        &[], &[], true, false, false),
+
+    // Solomon Islands. Independent from Britain on 7 July 1978, a Westminster
+    // parliament of 38 seats in which independents outpoll every party, and
+    // the poorest of the five by output per head after Vanuatu.
+    //
+    // INTEGRATOR, when Papua New Guinea joins the roster: the Bougainville
+    // Strait between the Shortland Islands and Bougainville is about ten
+    // kilometres wide, and the Bougainville crisis that began in 1988 crossed
+    // it constantly — BRA fighters took sanctuary in Western Province and the
+    // PNGDF raided across after them, which by 1992 had produced dead Solomon
+    // Islanders on Solomon Islands soil. Whether that counts as one of "the
+    // two straits narrow enough to march across" in the neighbour doc comment
+    // above is a real judgement and not a clerical one. It is left out here
+    // because PNG is not in this branch's roster at all, not because the
+    // question has been answered.
+    row("SolomonIslands", "Solomon Islands", &["solomon islands", "solomons", "slb"], "Oceania",
+        &[], &[], true, false, false),
+
+    // Vanuatu — the New Hebrides until independence on 30 July 1980, and
+    // before that the only Anglo-French condominium anywhere: two colonial
+    // administrations, two police forces, three legal systems and no shared
+    // language, which is the origin of the anglophone/francophone split that
+    // is still the axis of its politics. Walter Lini's Vanua'aku Pati has
+    // governed since independence. Alone in Oceania it joined the Non-Aligned
+    // Movement, in 1983, recognised Cuba the same year and the Soviet Union in
+    // June 1986; the one-year fishing agreement it signed with Moscow in
+    // January 1987 gave the USSR its first shore access in the South Pacific
+    // and had lapsed unrenewed by 1990. Foreign policy is relations data, not
+    // roster data, so it is in `relations_1990.json`.
+    row("Vanuatu", "Vanuatu", &["vut", "vu", "new hebrides"], "Oceania",
+        &[], &[], true, false, false),
+
+    // Western Samoa — the name it carried in January 1990 and until 4 July
+    // 1997, entered here the way Zaire and Czechoslovakia are, because the
+    // roster is a photograph of 1990 and not a present-day atlas. The code is
+    // "Samoa" so that a save written now still resolves after a rename, and
+    // both names parse. The first Pacific island territory to become
+    // independent, on 1 January 1962, and the only state in the roster whose
+    // parliament in 1990 was elected on a franchise restricted to matai —
+    // holders of a chiefly title, some 16,000 of them in a country of 163,000.
+    // The referendum that ended that ran in October 1990 and is not written
+    // in; the model reaches it, or does not, through `authoritarianism`.
+    row("Samoa", "Western Samoa", &["samoa", "western samoa", "wsm"], "Oceania",
+        &[], &[], true, false, false),
+
+    // Tonga — never colonised, a British protected state from 1900 to 4 June
+    // 1970 and a kingdom throughout, which makes it the only nation in this
+    // roster whose government in 1990 is a hereditary monarchy that actually
+    // governs. King Taufa'ahau Tupou IV appoints the cabinet and it sits in
+    // the Legislative Assembly alongside nine representatives elected by the
+    // thirty-three hereditary nobles and nine elected by everybody else. The
+    // election of 14-15 February 1990 returned seven pro-democracy members out
+    // of those nine, which is the beginning of a thirty-year argument and is
+    // deliberately not encoded as an outcome.
+    row("Tonga", "Tonga", &["ton", "to"], "Oceania",
+        &[], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -2294,6 +2397,11 @@ well_known! {
     Seychelles => "Seychelles",
     Comoros => "Comoros",
     CapeVerde => "CapeVerde",
+    Fiji => "Fiji",
+    SolomonIslands => "SolomonIslands",
+    Vanuatu => "Vanuatu",
+    Samoa => "Samoa",
+    Tonga => "Tonga",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

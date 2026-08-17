@@ -4359,6 +4359,220 @@ pub const POLITIES: &[Polity] = &[
             pl(Pillar::Party, "the PAICV National Council"),
         ],
     },
+    // Fiji — and this is the entry in the batch that had to choose. Fiji in
+    // January 1990 had had no parliament for thirty-one months. The general
+    // election of 4-11 April 1987 gave the FLP-NFP coalition 28 of 52 seats on
+    // 47.07% of the vote against the Alliance Party's 24 seats on 49.46%, and
+    // Timoci Bavadra's government was deposed by the army on 14 May, one month
+    // in. Since 5 December 1987 the country had been run by an appointed
+    // interim administration; its term expired in January 1990 and President
+    // Ganilau named a second, of seventeen, with no serving officers.
+    //
+    // The 1987 vote shares are transcribed below anyway, because that is what
+    // this table is for: `next: (0, 0)` means the regime does not hold
+    // elections, and the party table is what becomes live if it liberalises.
+    // Fiji did liberalise — the 1990 constitution was promulgated on 25 July
+    // and the first election under it held in May 1992 — and the model is
+    // meant to be able to reach that through `authoritarianism` falling rather
+    // than through a date. What is NOT done is seat the 1987 winners in
+    // office in January 1990, which would be exactly backwards: they were the
+    // government the coups removed.
+    // https://en.wikipedia.org/wiki/1987_Fijian_general_election
+    Polity {
+        nation: NationId::Fiji,
+        // Fiji's 1970 constitution elected the House on communal and national
+        // rolls in single-member seats — majoritarian, and it manufactured a
+        // majority out of 47% in 1987, which is the FirstPastThePost shape.
+        // Worth knowing before anyone "fixes" it: run the cube law over the
+        // shares below and it seats the Alliance ahead of the Coalition,
+        // inverting 1987, because the Alliance's votes were banked in safe
+        // Fijian communal seats and the Coalition's were efficiently spread.
+        // It is left uncorrected because the table is dormant — Fiji is not an
+        // electoral regime here — and because the chamber it would produce on
+        // liberalisation is closer to what the 1990 constitution was written
+        // to produce and what the 1992 election did produce than a replay of
+        // 1987 would be. A model that reached 1992 by accident is not a model
+        // that got 1987 right, and the distinction is recorded rather than
+        // quietly enjoyed.
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("fj_alliance", "Alliance Party", "", Family::Conservative, 0.4946),
+            // Entered as one row because it contested 1987 as one list: the
+            // Fiji Labour Party and the National Federation Party ran a single
+            // coalition ticket and formed one government. Splitting them into
+            // a social-democratic and an Indo-Fijian communal party would be
+            // more informative and less true to the ballot.
+            p("fj_coalition", "FLP-NFP Coalition", "", Family::SocialDemocratic, 0.4707),
+            p("fj_nationalist", "Fijian Nationalist Party", "", Family::Nationalist, 0.0148),
+            // Western Viti Levu's cane districts against the eastern chiefly
+            // confederacies — the oldest fault line in Fijian politics that is
+            // not the communal one, and a Regionalist party in the exact sense
+            // this enum means.
+            p("fj_wuf", "Western United Front", "", Family::Regionalist, 0.0085),
+        ],
+        ruling: "the interim administration",
+        pillars: &[
+            pl(Pillar::Army, "the Republic of Fiji Military Forces"),
+            pl(Pillar::Party, "the Great Council of Chiefs"),
+            pl(Pillar::Clergy, "the Methodist Church in Fiji"),
+        ],
+    },
+    // Solomon Islands — general election of 22 February 1989 for 38 seats.
+    // The striking figure is the last row: independents took 43.56% of the
+    // vote and 13 seats, more seats than any party, and they are entered as a
+    // party because in this parliament they function as the largest bloc in
+    // it. Family::Regionalist is not a compromise here but the definition —
+    // "organised around a place rather than a programme" is precisely what a
+    // Solomon Islands member is, elected by a constituency and a wantok on a
+    // promise of a road and a clinic. The People's Alliance Party won 11 seats
+    // on 22.93% and Solomon Mamaloni formed a government in March 1989; he
+    // took his own party out of it in October 1990 and governed with
+    // defectors, which is the kind of thing this table's instability is for.
+    // https://en.wikipedia.org/wiki/1989_Solomon_Islands_general_election
+    Polity {
+        nation: NationId::SolomonIslands,
+        // A substitution, and the reasoning is Australia's in reverse. Solomon
+        // Islands elects 38 single-member seats by plurality, so the name on
+        // the tin is FirstPastThePost — but this enum controls a majority
+        // bonus, and the cube law's exponent of 3.0 assumes the votes belong
+        // to national parties that pile up uniformly. They do not here. Run
+        // FirstPastThePost over the row below and the independents' 43.56%
+        // becomes about 85% of the chamber; they actually won 13 of 38, which
+        // is 34% — *less* than their vote share, because "independents" is not
+        // one party winning everywhere but a hundred and forty different
+        // people each winning one island. The seat distribution of 1989 is
+        // close to proportional and Electoral::Proportional reproduces it to
+        // within a few points across every row, so that is what is entered.
+        // Choosing the mechanism that reproduces the outcome over the one that
+        // shares the name.
+        system: Electoral::Proportional,
+        term_months: 48,
+        // The next general election was held on 26 May 1993, the actual date
+        // rather than the constitutional due date.
+        next: (1993, 5),
+        parties: &[
+            p("sb_independents", "Independent members", "", Family::Regionalist, 0.4356),
+            p("sb_pap", "People's Alliance Party", "", Family::BigTent, 0.2293),
+            p("sb_lib", "Solomon Islands Liberal Party", "", Family::Liberal, 0.0953),
+            p("sb_nfp", "National Front for Progress", "", Family::Nationalist, 0.0895),
+            p("sb_lab", "Solomon Islands Labour Party", "", Family::SocialDemocratic, 0.0844),
+            p("sb_siup", "Solomon Islands United Party", "", Family::Conservative, 0.0659),
+        ],
+        ruling: "the National Parliament",
+        pillars: &[],
+    },
+    // Vanuatu — general election of 30 November 1987 for an enlarged 46-seat
+    // parliament: Vanua'aku Pati 47.28% and 26 seats, Union of Moderate
+    // Parties 39.87% and 19. The split is the condominium's: the VP is the
+    // anglophone independence party, the UMP the francophone federation that
+    // opposed independence and then made its peace with it, and the language
+    // of a voter's school is still the best predictor of the ballot seven
+    // years on. Walter Lini had been prime minister since 1980 and survived
+    // the constitutional crisis of December 1988 in office.
+    // https://en.wikipedia.org/wiki/1987_Vanuatuan_general_election
+    Polity {
+        nation: NationId::Vanuatu,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        // Held 2 December 1991, three months after Lini's own party removed
+        // him. The date is the one that happened.
+        next: (1991, 12),
+        parties: &[
+            p("vu_vp", "Vanua'aku Pati", "", Family::SocialDemocratic, 0.4728),
+            p("vu_ump", "Union of Moderate Parties", "", Family::Conservative, 0.3987),
+            p("vu_npp", "New People's Party", "", Family::Liberal, 0.0252),
+            p("vu_fren", "Fren Melanesia Party", "", Family::BigTent, 0.0199),
+            p("vu_ndp", "National Democratic Party", "", Family::Liberal, 0.0156),
+            // Jimmy Stevens' movement, which declared Espiritu Santo
+            // independent as Vemarana in May 1980 and was put down by Papua
+            // New Guinean troops. Still standing candidates in 1987, still
+            // winning nothing, and the reason `separatism` in vanuatu.json is
+            // the highest of the five.
+            p("vu_nagriamel", "Nagriamel", "", Family::Regionalist, 0.0136),
+        ],
+        ruling: "the Parliament of Vanuatu",
+        pillars: &[],
+    },
+    // Western Samoa — general election of 26 February 1988 for 47 seats, on a
+    // franchise restricted to matai: 45 members elected by holders of a
+    // chiefly title, about 16,000 of them, and two by citizens of European
+    // descent on a separate roll. The Human Rights Protection Party polled
+    // 35.87% and took 23 seats; the opposition Coalition polled 16.45% and
+    // took 24, and Tofilau Eti Alesana stayed prime minister because one
+    // Coalition member crossed the floor on the day parliament chose him.
+    //
+    // TRANSCRIPTION PROBLEM, stated rather than hidden, and it is why the two
+    // numbers below are SEAT shares and not vote shares — the only row in this
+    // table that departs from the convention stated at the top of it. The
+    // published result also records independents at 47.68% of 13,985 votes and
+    // zero of 47 seats, which cannot be reconciled with the seat distribution
+    // printed beside it; a matai franchise where most candidacies are personal
+    // makes the party-vote column close to meaningless. Enter 35.87 and 16.45
+    // and the two parties normalise to 69/31, which would hand the HRPP a
+    // landslide in a chamber it actually held by one. What is entered instead
+    // is the chamber as it stood in January 1990, twenty-two months after the
+    // ballot and after the floor-crossing that made Tofilau Eti Alesana prime
+    // minister: HRPP 24 of 47, Coalition 23. That reproduces both facts that
+    // matter — who governs, and by how little. The vote shares are recorded in
+    // samoa.json and flagged unverified there.
+    // https://en.wikipedia.org/wiki/1988_Western_Samoan_general_election
+    Polity {
+        nation: NationId::Samoa,
+        // Proportional because the figures above are already seat shares, so
+        // the model must not apply a majority bonus to them a second time.
+        system: Electoral::Proportional,
+        term_months: 36,
+        // Held 5 April 1991 — and on universal suffrage, because the
+        // referendum of 29 October 1990 carried. That referendum is not
+        // scripted anywhere; the model reaches it through Samoa's
+        // authoritarianism figure or it does not.
+        next: (1991, 4),
+        parties: &[
+            p("ws_hrpp", "Human Rights Protection Party", "", Family::BigTent, 0.5106),
+            p("ws_coalition", "Samoan National Development Party", "Coalition", Family::Conservative, 0.4894),
+        ],
+        ruling: "the Fono",
+        pillars: &[],
+    },
+    // Tonga — a kingdom that governs, and the only one in this roster. The
+    // constitution King George Tupou I granted in 1875 was still in force
+    // unbroken. The Legislative Assembly seated the cabinet the King had
+    // appointed, nine representatives elected by the thirty-three hereditary
+    // nobles, and nine elected by everybody else; the last group was nine
+    // votes out of about thirty and could not remove a minister. Elections
+    // were held — on 14-15 February 1990, four weeks after the game opens, on
+    // a 65.4% turnout, returning seven pro-democracy members of the nine —
+    // but no election in Tonga in 1990 could change who governed, which is
+    // why `next` is (0, 0) and Tonga is not an electoral regime here.
+    //
+    // `parties` is empty and that is the transcription, not a gap: there were
+    // no political parties in Tonga in 1990. Candidates stood as individuals.
+    // The Pro-Democracy Movement was a network around 'Akilisi Pohiva and a
+    // newspaper, and the first registered party, the Tonga Democratic Party,
+    // was not founded until 1994. Saudi Arabia is entered the same way and for
+    // the same reason.
+    // https://en.wikipedia.org/wiki/1990_Tongan_general_election
+    Polity {
+        nation: NationId::Tonga,
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the House of Tupou",
+        pillars: &[
+            // Thirty-three men who elect nine of the thirty seats among
+            // themselves and hold most of the land. Pillar::Party is the
+            // model's slot for a court or an apparatus, and this is a court.
+            pl(Pillar::Party, "the thirty-three hereditary nobles"),
+            // The King was its head, most Tongans belonged to it, and its
+            // annual conference was the closest thing the country had to a
+            // second chamber.
+            pl(Pillar::Clergy, "the Free Wesleyan Church of Tonga"),
+            pl(Pillar::Army, "the Tonga Defence Services"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {
