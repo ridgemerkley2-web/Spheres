@@ -1,0 +1,37 @@
+{
+  "id": "Malawi",
+  "name": "Malawi",
+  "system": "Market",
+  "authoritarianism": 0.85,
+  "economy": {
+    "gdp_bn": 2.7,
+    "population_m": 9.5,
+    "tfp_trend": 0.003,
+    "inflation": 0.118,
+    "interest_rate": 0.21,
+    "tax_rate": 0.16,
+    "mil_spend_gdp": 0.006,
+    "state_invest_gdp": 0.1,
+    "priv_invest_gdp": 0.09,
+    "debt_gdp": 0.57,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 60.0, "separatism": 0.02 },
+  "military": { "strength": 1.0, "nuclear": false },
+  "sources": [
+    "GDP $2.7bn: World Bank NY.GDP.MKTP.CD, series MWI, 1990 = 2,737,087,862, on real growth of +5.69% for the year. About $287 a head, which puts Malawi within a few dollars of Tanzania at the bottom of this region.",
+    "Population 9.5m: World Bank SP.POP.TOTL, series MWI, 1990 = 9,545,852. That figure is for Malawians. It does not include the Mozambican refugees, of whom Malawi was hosting somewhere near 900,000 by 1990 — close to a tenth again of its own population, in the poorest country to have taken in refugees at that ratio anywhere in the world, and the single largest fact about the Malawian economy in the year the game starts.",
+    "TFP trend 0.003: the lowest in this region outside Zambia. Malawi's growth model was estate agriculture — tobacco, tea and sugar on land the Banda regime had transferred out of customary tenure to a political class, worked by tenants on regulated prices — with a smallholder sector held down by ADMARC's monopsony on maize. It produced a decade of respectable headline growth and almost no productivity improvement, and the structural adjustment lending of the 1980s did not change it. Set below Kenya's 0.004.",
+    "Inflation 11.8%: World Bank FP.CPI.TOTL.ZG, series MWI, 1990 = 11.82. The GDP deflator agrees closely at 10.66, which is unusual in this region and is a mark of how tightly Banda's government held prices and the kwacha.",
+    "Interest rate 21%: World Bank FR.INR.LEND, series MWI, 1990 = 21.00. A genuine 1990 print, which most of this region does not have. Against 11.8% inflation that is a real rate near +9 points, the tightest in this block by a distance and consistent with a Reserve Bank of Malawi that ran an orthodox, deflationary, donor-approved policy for thirty years. The loader's coupled check reads 0.025 - (0.21 - 0.118) = -0.067.",
+    "Revenue 16% of GDP: NOT SOURCED — GC.REV.XGRT.GD.ZS has no Malawian entry for 1990 — and entered as a bracket, set between Tanzania's 13% and Kenya's, and above Tanzania because Malawi's revenue administration functioned and the estate sector was taxable. Flagged as an admitted gap.",
+    "Military 0.58% of GDP: World Bank MS.MIL.XPND.GD.ZS, series MWI, 1990 = 0.5758. THE LOWEST MILITARY BURDEN IN THIS ROSTER, an eighth of Zimbabwe's and a seventh of Botswana's, and it is transcribed rather than softened because it is the most revealing number in the file. Banda did not need an army: he had no external enemy, having been the only African head of state to hold full diplomatic relations with apartheid South Africa from 1967, and he controlled the country through the Malawi Congress Party, the Special Branch and the Malawi Young Pioneers rather than through the Malawi Rifles.",
+    "Investment 19% of GDP, split 10 state / 9 private: NOT SOURCED. NE.GDI.TOTL.ZS has no Malawian entry for 1990, so both the total and the split are brackets and are flagged. The total is set just above Tanzania's sourced 18% and well below Botswana's 37%; the near-even split reflects an economy where the estates were private but the roads, the lakeshore infrastructure and the new capital at Lilongwe were not.",
+    "Debt 57% of GDP: World Bank DT.DOD.DECT.GN.ZS, series MWI, 1990 = 56.93, external debt stocks as a share of GNI. Modest for the region — a quarter of Zambia's and half of Tanzania's — and almost entirely concessional. It went past 117% by 1994.",
+    "Oil 0.0: no production.",
+    "Stability 60 and authoritarianism 0.85: the pairing is the point and it is an uncomfortable one. Authoritarianism 0.85 is the highest figure in Africa in this roster and among the highest anywhere in it: Hastings Kamuzu Banda was Life President from 1971, the Malawi Congress Party was the only legal party, membership cards were required to buy in shops and to travel, the press was censored to the level of individual words, and the Young Pioneers ran a parallel enforcement apparatus that made people disappear. Detention without trial was routine and the 1975 Preservation of Public Security Regulations made it lawful. Stability 60 is nonetheless above Zimbabwe's 58, because stability in this model measures whether a government is going to be there next year, not whether it deserves to be: Malawi in 1990 had no insurgency, no coup attempt in twenty-six years, no separatist region and no economic crisis, and Banda's regime did not fall to any of those. It fell to a Lenten pastoral letter read from Catholic pulpits on 8 March 1992, a donor aid freeze that May, and a referendum in June 1993.",
+    "Separatism 0.02: essentially none, and the lowest figure in this region. Malawi has a real north-south division — the Tumbuka north supplied the civil service until Banda's Chichewa language policy of 1968 broke it, and AFORD's vote in 1994 was almost perfectly northern — but no part of Malawi has ever sought to leave. Set at Botswana's level and below Tanzania's 0.12.",
+    "Military strength 1: the Malawi Army was about 7,000 men in three infantry battalions with no armour and no combat aircraft, plus a police mobile force. It is the smallest army of any nation of Malawi's size on the board and set level with Lebanon and Nepal. Its one real operation was the deployment of a battalion group into Mozambique from 1987 to guard the Nacala railway, which was Malawi's outlet to the sea."
+  ]
+}

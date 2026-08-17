@@ -4959,6 +4959,278 @@ pub const POLITIES: &[Polity] = &[
             pl(Pillar::Security, "the Republican Security Service"),
         ],
     },
+
+    // -----------------------------------------------------------------------
+    // Southern Africa, the rest of it (branch feat/r2-southafrica2).
+    //
+    // Six of these seven are above the 0.60 electoral ceiling and therefore
+    // rest on pillars rather than on a scheduled poll, which is the single most
+    // important thing this block records: in January 1990 the only nation in
+    // southern Africa that held free multi-party elections on schedule was
+    // Botswana. Not South Africa, not Zimbabwe on any honest reading, and none
+    // of the six added here. Five of the six changed that within five years
+    // without any of them being invaded, and the party shares below are the
+    // first real elections each of them held — the same treatment Angola's
+    // block above gets, and for the same reason: a party table has to contain
+    // parties, and the only honest source for what the parties were worth is
+    // the first time anybody counted.
+
+    // Mozambique — FRELIMO, sole legal party since independence on 25 June
+    // 1975 and Marxist-Leninist until it dropped the label at its fifth
+    // congress in July 1989. No election had ever been held, so the shares are
+    // the Assembly of the Republic poll of 27-29 October 1994, the first one
+    // ever: FRELIMO 44.33%, RENAMO 37.78%, Democratic Union 5.15%. That the
+    // insurgency took better than a third of the vote at the first free count
+    // is the fact the sources block's low separatism figure has to be read
+    // beside — RENAMO was a real constituency in the centre and north, not a
+    // secession and not only a South African instrument.
+    // https://en.wikipedia.org/wiki/1994_Mozambican_general_election
+    Polity {
+        nation: NationId::Mozambique,
+        system: Electoral::ProportionalLowBar,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("mz_frelimo", "FRELIMO", "Frente de Libertacao de Mocambique", Family::SocialDemocratic, 0.4433),
+            // Not marked pariah, on exactly the reasoning the Angola block
+            // sets out for UNITA: a party that fought a civil war is a civil
+            // war, which this model has other machinery for, and not a cordon
+            // sanitaire inside a parliament.
+            p("mz_renamo", "RENAMO", "Resistencia Nacional Mocambicana", Family::Nationalist, 0.3778),
+            p("mz_ud", "Democratic Union", "Uniao Democratica", Family::Liberal, 0.0515),
+            p("mz_pap", "Patriotic Alliance", "Alianca Patriotica", Family::Nationalist, 0.0195),
+            p("mz_pals", "Social Liberal Party", "Partido Aliancal Liberal de Mocambique", Family::Liberal, 0.0167),
+        ],
+        ruling: "the FRELIMO Political Bureau",
+        pillars: &[
+            pl(Pillar::Party, "the FRELIMO Political Bureau"),
+            pl(Pillar::Army, "the Forcas Populares de Libertacao de Mocambique"),
+            // Renamed the Servico de Informacao e Seguranca do Estado in 1991,
+            // which is the reform this pillar is waiting for: SNASP had
+            // detention powers of its own and answered to the party.
+            pl(Pillar::Security, "the Servico Nacional de Seguranca Popular"),
+        ],
+    },
+
+    // Zambia — UNIP, sole legal party under the constitution of 13 December
+    // 1972, with Kaunda returned unopposed in yes/no votes since. The shares
+    // are the National Assembly election of 31 October 1991, the first
+    // multi-party poll in nineteen years: MMD 74.02%, UNIP 24.98%. That is a
+    // governing party of twenty-seven years losing three-quarters of the vote
+    // at the first opportunity, and it is why zambia.json sets
+    // authoritarianism BELOW Tanzania's and Kenya's despite the one-party law:
+    // Kaunda conceded the referendum in September 1990, conceded multi-party
+    // politics in December, held the election, lost it and left State House.
+    // https://en.wikipedia.org/wiki/1991_Zambian_general_election
+    Polity {
+        nation: NationId::Zambia,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("zm_mmd", "Movement for Multi-Party Democracy", "", Family::Liberal, 0.7402),
+            p("zm_unip", "United National Independence Party", "", Family::BigTent, 0.2498),
+        ],
+        ruling: "the UNIP Central Committee",
+        pillars: &[
+            // The party outranked the state here in the Tanzanian manner: the
+            // UNIP Central Committee formally stood above the cabinet under the
+            // 1973 constitution.
+            pl(Pillar::Party, "the UNIP Central Committee"),
+            pl(Pillar::Army, "the Zambian Army"),
+            pl(Pillar::Security, "the Special Branch"),
+            // Not decoration. ZIMCO held most of the formal economy and ZCCM
+            // held the copper inside it, and the mineworkers' union that came
+            // out of ZCCM produced Frederick Chiluba, who was its chairman
+            // before he was president.
+            pl(Pillar::Business, "the Zambia Industrial and Mining Corporation"),
+        ],
+    },
+
+    // Malawi — the Malawi Congress Party, sole legal party since 1966, under a
+    // Life President. The shares are the National Assembly election of 17 May
+    // 1994, the first free one: UDF 46.38%, MCP 33.69%, AFORD 18.97%. The
+    // three-way split is regional almost exactly — UDF in the southern
+    // Region, MCP in the centre, AFORD in the north — which is the shape of
+    // the country Banda's language policy of 1968 produced and which
+    // malawi.json's separatism of 0.02 says never turned into secession.
+    // https://en.wikipedia.org/wiki/1994_Malawian_general_election
+    Polity {
+        nation: NationId::Malawi,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("mw_udf", "United Democratic Front", "", Family::Liberal, 0.4638),
+            p("mw_mcp", "Malawi Congress Party", "", Family::Conservative, 0.3369),
+            p("mw_aford", "Alliance for Democracy", "", Family::Regionalist, 0.1897),
+        ],
+        ruling: "the Malawi Congress Party",
+        pillars: &[
+            pl(Pillar::Party, "the Malawi Congress Party National Executive"),
+            // The Young Pioneers are entered as the security pillar rather than
+            // the Special Branch, and that is the transcription rather than a
+            // flourish. They were a party militia with their own armouries and
+            // their own detention practice, they outgunned the Malawi Rifles,
+            // and the army finally destroyed them in Operation Bwezani in
+            // December 1993 — which is the event that ended the regime rather
+            // than the referendum that preceded it.
+            pl(Pillar::Security, "the Malawi Young Pioneers"),
+            pl(Pillar::Army, "the Malawi Rifles"),
+            // Press Holdings was Banda's personal company and it owned a
+            // reported third of the formal economy. Business and state were the
+            // same person here in a way that is unusual even in this block.
+            pl(Pillar::Business, "Press Corporation"),
+        ],
+    },
+
+    // Botswana — THE ONLY UNQUALIFIED DEMOCRACY IN SOUTHERN AFRICA IN 1990,
+    // and the shares are a real, contested, pre-1990 election rather than a
+    // future one: the National Assembly poll of 7 October 1989, BDP 64.78%
+    // (31 of 34 elected seats), BNF 26.95% (3), BPP 4.35%, BIP 2.48%. Five-year
+    // terms held on time since 1965, so the next is October 1994 — and it duly
+    // fell on 15 October 1994.
+    //
+    // No pillars, which is the same statement the Australian and New Zealand
+    // blocks make and is worth making about an African state in 1990 for once:
+    // no army in politics, no party militia, no security service with a veto.
+    // The Botswana Defence Force has never attempted a coup.
+    // https://en.wikipedia.org/wiki/1989_Botswana_general_election
+    Polity {
+        nation: NationId::Botswana,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1994, 10),
+        parties: &[
+            p("bw_bdp", "Botswana Democratic Party", "", Family::Liberal, 0.6478),
+            // Koma's BNF was avowedly socialist and the only opposition with a
+            // programme rather than a grievance, which is why it is the one
+            // party in this block filed as SocialDemocratic rather than as a
+            // regional or personal vehicle.
+            p("bw_bnf", "Botswana National Front", "", Family::SocialDemocratic, 0.2695),
+            p("bw_bpp", "Botswana People's Party", "", Family::Nationalist, 0.0435),
+            p("bw_bip", "Botswana Independence Party", "", Family::SocialDemocratic, 0.0248),
+            p("bw_bpu", "Botswana Progressive Union", "", Family::Liberal, 0.0087),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+
+    // Namibia — a successor, so this block is what SWAPO inherits on 21 March
+    // 1990 rather than a government sitting on the board in January. The
+    // shares are the Constituent Assembly election of 7-11 November 1989, run
+    // by the United Nations under UNSCR 435 on a single national list with no
+    // threshold, certified free and fair, and turned out at 97%: SWAPO 57.33%
+    // (41 of 72 seats), DTA 28.55% (21), UDF 5.65% (4), ACN 3.54% (3), NPF
+    // 1.59%, FCN 1.56%, NNF 0.80%.
+    //
+    // The number that matters is the one SWAPO did NOT get: two-thirds. The
+    // assembly needed 48 votes to write a constitution and SWAPO had 41, so it
+    // had to negotiate with the party South Africa had funded — which is how
+    // Namibia ended up with a constitution containing an entrenched bill of
+    // rights, a two-term presidential limit and a prohibition on the death
+    // penalty, adopted unanimously on 9 February 1990. Five-year terms; the
+    // first National Assembly election followed in December 1994.
+    // https://en.wikipedia.org/wiki/1989_Namibian_parliamentary_election
+    Polity {
+        nation: NationId::Namibia,
+        system: Electoral::ProportionalLowBar,
+        term_months: 60,
+        next: (1994, 12),
+        parties: &[
+            p("na_swapo", "SWAPO", "South West Africa People's Organisation", Family::SocialDemocratic, 0.5733),
+            p("na_dta", "Democratic Turnhalle Alliance", "", Family::Conservative, 0.2855),
+            p("na_udf", "United Democratic Front", "", Family::Liberal, 0.0565),
+            // The white right, and the only party in this block that is
+            // straightforwardly what Nationalist means: ACN was the National
+            // Party of South West Africa, standing for continued white
+            // minority rule, and it took three seats.
+            p("na_acn", "Action Christian National", "", Family::Nationalist, 0.0354),
+            p("na_npf", "National Patriotic Front", "", Family::Nationalist, 0.0159),
+            p("na_fcn", "Federal Convention of Namibia", "", Family::Regionalist, 0.0156),
+            p("na_nnf", "Namibia National Front", "", Family::Liberal, 0.0080),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+
+    // Lesotho — a Military Council, and the only naked junta in this block.
+    // Major General Justin Metsing Lekhanya took power on 20 January 1986,
+    // twenty days into a South African border blockade that had closed the
+    // country, suspended what was left of constitutional government and ruled
+    // by Order in Council with the King as a signature. No parliament, no legal
+    // parties, no election since 1970 — and 1970 is the whole of Lesotho's
+    // problem, because that was the election the Basotho National Party
+    // annulled on losing it.
+    //
+    // The shares are therefore the poll of 27 March 1993, the first free
+    // election in twenty-three years: BCP 74.78%, BNP 22.66%, MFP 1.44%. The
+    // BCP won all sixty-five seats on three-quarters of the vote, which is
+    // first-past-the-post doing what first-past-the-post does and is the reason
+    // the system field is what it is.
+    // https://en.wikipedia.org/wiki/1993_Lesotho_general_election
+    Polity {
+        nation: NationId::Lesotho,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("ls_bcp", "Basutoland Congress Party", "", Family::SocialDemocratic, 0.7478),
+            p("ls_bnp", "Basotho National Party", "", Family::Conservative, 0.2266),
+            p("ls_mfp", "Marematlou Freedom Party", "", Family::Nationalist, 0.0144),
+        ],
+        ruling: "the Military Council",
+        pillars: &[
+            pl(Pillar::Army, "the Royal Lesotho Defence Force"),
+            pl(Pillar::Party, "the Military Council"),
+            pl(Pillar::Security, "the Lesotho Mounted Police Special Branch"),
+            // A clergy pillar on a military government, and it is transcribed
+            // rather than assumed. Lesotho's party system was built on a
+            // religious division — the BNP was the Catholic party and the BCP
+            // the Protestant one — the Catholic Church ran a large share of
+            // the schools, and Roma was where the political class was educated.
+            pl(Pillar::Clergy, "the Roman Catholic hierarchy"),
+        ],
+    },
+
+    // Swaziland — an absolute monarchy with no parties at all, which puts it
+    // in this table with Saudi Arabia and almost nothing else. King Sobhuza II
+    // repealed the independence constitution by decree on 12 April 1973,
+    // dissolved parliament, banned political parties and assumed all
+    // legislative, executive and judicial power; Mswati III inherited those
+    // powers on 25 April 1986 and held them in 1990. The tinkhundla system
+    // returned an advisory assembly indirectly through chiefs, with candidates
+    // standing as individuals — so there is no vote share to transcribe and
+    // `parties` is empty rather than invented.
+    //
+    // `next` is (0, 0) for the same reason: the tinkhundla polls of 1987 and
+    // 1993 were not elections in the sense the model means, and dating one here
+    // would tell the sim a government could change hands at it. PUDEMO,
+    // founded underground in 1983, is the thing that would test the regime, and
+    // it does not appear here because it was illegal, not because it did not
+    // exist.
+    // https://en.wikipedia.org/wiki/Tinkhundla
+    Polity {
+        nation: NationId::Swaziland,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the King in Council",
+        pillars: &[
+            // The Libandla and the Ligogo are the traditional council and the
+            // inner advisory body; the four-year succession crisis of 1982-86
+            // was fought between them and the throne, which is exactly what a
+            // pillar is for.
+            pl(Pillar::Party, "the Swazi National Council"),
+            pl(Pillar::Army, "the Umbutfo Swaziland Defence Force"),
+            // Tibiyo Taka Ngwane holds Swaziland's mineral royalties and large
+            // industrial stakes "in trust for the nation", answers to the king
+            // alone, is outside the budget and pays no tax. A business pillar
+            // that is also the monarch's private treasury.
+            pl(Pillar::Business, "Tibiyo Taka Ngwane"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

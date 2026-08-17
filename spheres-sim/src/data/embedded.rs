@@ -158,6 +158,16 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
     Source { file: "data/nations/luxembourg.json", json: include_str!("../../data/nations/luxembourg.json") },
     Source { file: "data/nations/malta.json", json: include_str!("../../data/nations/malta.json") },
     Source { file: "data/nations/cyprus.json", json: include_str!("../../data/nations/cyprus.json") },
+    // Southern Africa, the rest of it (branch feat/r2-southafrica2). Six files
+    // for seven roster rows: Namibia is a successor rather than a starter —
+    // independence came on 21 March 1990, eleven weeks after the board is set —
+    // and the loader rejects a data file for a nation that is not on the board.
+    Source { file: "data/nations/mozambique.json", json: include_str!("../../data/nations/mozambique.json") },
+    Source { file: "data/nations/zambia.json", json: include_str!("../../data/nations/zambia.json") },
+    Source { file: "data/nations/malawi.json", json: include_str!("../../data/nations/malawi.json") },
+    Source { file: "data/nations/botswana.json", json: include_str!("../../data/nations/botswana.json") },
+    Source { file: "data/nations/lesotho.json", json: include_str!("../../data/nations/lesotho.json") },
+    Source { file: "data/nations/swaziland.json", json: include_str!("../../data/nations/swaziland.json") },
 ];
 
 pub const EMBEDDED_RELATIONS: Source<'static> = Source {

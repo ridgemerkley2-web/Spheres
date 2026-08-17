@@ -1,0 +1,37 @@
+{
+  "id": "Botswana",
+  "name": "Botswana",
+  "system": "Market",
+  "authoritarianism": 0.2,
+  "economy": {
+    "gdp_bn": 3.8,
+    "population_m": 1.3,
+    "tfp_trend": 0.012,
+    "inflation": 0.114,
+    "interest_rate": 0.079,
+    "tax_rate": 0.508,
+    "mil_spend_gdp": 0.044,
+    "state_invest_gdp": 0.19,
+    "priv_invest_gdp": 0.184,
+    "debt_gdp": 0.15,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 72.0, "separatism": 0.03 },
+  "military": { "strength": 2.0, "nuclear": false },
+  "sources": [
+    "GDP $3.8bn: World Bank NY.GDP.MKTP.CD, series BWA, 1990 = 3,790,636,324, on real growth of +6.77% for the year after +13.06% in 1989 and +19.45% in 1988. On 1.3m people that is about $2,900 a head — SEVEN TIMES Zimbabwe's, ten times Zambia's and the highest income in this region outside South Africa. Botswana between independence in 1966 and 1990 had the fastest sustained growth rate of any economy in the world, from among the poorest countries on earth to middle income in twenty-four years, and the entire mechanism was three diamond pipes at Orapa, Letlhakane and Jwaneng and a 50/50 partnership with De Beers called Debswana.",
+    "Population 1.3m: World Bank SP.POP.TOTL, series BWA, 1990 = 1,305,696. The census of 1991 counted 1,326,796. A country the size of France with the population of Munich, which is most of why the cattle-and-diamonds model worked and would not transfer anywhere else.",
+    "TFP trend 0.012: the highest figure in Africa in this roster and set deliberately above Spain's 0.009. It is not a claim that Botswana was inventing anything. It is the mineral rent being turned into usable capacity — Botswana ran budget surpluses, banked the surplus in foreign reserves that reached over two years of import cover, and spent the rest on roads, schools and a civil service that the Corruption Perceptions rankings would later put above several EU members. The number is set below the East Asian tigers' and above everything else in Africa, and it is the figure most likely to be argued with in this file. The argument against it is that diamond rent is not productivity; the argument for it is that Botswana is the one African state where the rent did not disappear, and a model that cannot distinguish Gaborone from Kinshasa is not modelling anything.",
+    "Inflation 11.4%: World Bank FP.CPI.TOTL.ZG, series BWA, 1990 = 11.40. Close to South Africa's, which is not a coincidence: the pula had been floated out of the rand in 1976 but was pegged to a basket the rand dominated, and most of what Botswana consumed came through South Africa under the Southern African Customs Union.",
+    "Interest rate 7.9%: World Bank FR.INR.LEND, series BWA, 1990 = 7.875. THE LOWEST NOMINAL RATE IN AFRICA in this roster and a genuine 1990 print. Against 11.4% inflation it is a real rate of about -3.5 points, which is loose money in a boom and is exactly what the Bank of Botswana was criticised for at the time. The loader's coupled check reads 0.025 - (0.07875 - 0.114) = 0.060.",
+    "Revenue 50.8% of GDP: World Bank GC.REV.XGRT.GD.ZS, series BWA, 1990 = 50.79. Sourced, and it is the largest government revenue share in this roster outside the oil monarchies — larger than Sweden's tax take, in a country with a small state. It is mineral royalty and dividend rather than taxation of anybody's income, which is the distinction the tax_rate field cannot draw and this note has to.",
+    "Military 4.4% of GDP: World Bank MS.MIL.XPND.GD.ZS, series BWA, 1990 = 4.45. Above South Africa's 3.9% and Zimbabwe's 4.1%, in the only stable democracy in the region, and the reason is on the map: the Botswana Defence Force was raised in 1977 because Rhodesian and then South African forces treated Botswana as transit ground for the ANC and came across when they liked. The SADF raided Gaborone on 14 June 1985, killing twelve, and again in March 1988.",
+    "Investment 37.4% of GDP, split 19.0 state / 18.4 private: the total is World Bank NE.GDI.TOTL.ZS, series BWA, 1990 = 37.37 — the highest capital-formation ratio in this roster's African rows and among the highest anywhere in it. THE SPLIT IS APPORTIONED, not transcribed, and the two entries sum to the sourced total. It is put near even because Botswana's development budget was genuinely enormous relative to the economy and because Jwaneng's expansion was a Debswana capital programme, half government-owned and counted here as private.",
+    "Debt 15% of GDP: World Bank DT.DOD.DECT.GN.ZS, series BWA, 1990 = 15.01, external debt stocks as a share of GNI. The lowest in the region by a factor of three and a fifteenth of Zambia's. Botswana in 1990 was a net external creditor once reserves are set against it, which almost nothing else on this board was.",
+    "Oil 0.0: no production. The mineral that mattered has no field in this model, which is a gap worth stating plainly rather than fudging into the oil column: diamonds were about a third of GDP, half of government revenue and four-fifths of exports, and none of that is representable here. Botswana's economy in this build is therefore a well-capitalised middle-income state with an unexplained income, and the sources block is where the explanation lives.",
+    "Stability 72 and authoritarianism 0.20: the highest stability in Africa in this roster and above Spain's 70. Botswana had held free multi-party elections on schedule every five years since 1965, never suspended parliament, never had a coup or an attempted one, kept an independent judiciary and a High Court that ruled against the government, and had no political prisoners. Authoritarianism 0.20 rather than something lower is the one qualification: the Botswana Democratic Party had won every election since independence and would keep doing so, state media was state media, and a dominant-party democracy that has never changed hands is not Denmark. Set above Spain's 0.13 and far below the 0.60 electoral ceiling.",
+    "Separatism 0.03: near zero. The one strain worth naming is the position of the Basarwa, the San of the Kalahari, who were being resettled off the Central Kalahari Game Reserve in a process that would reach the High Court in 2006 — a dispossession rather than a secession. There is no Botswanan region that wants out. Set level with Malawi's 0.02 and a shade above it only because the northwest, Ngamiland, has a distinct Wayeyi and Herero politics.",
+    "Military strength 2: the Botswana Defence Force was about 6,000 in 1990, better funded per soldier than anything else in the region and buying seriously — but with no combat aircraft worth the name until the Canadian CF-5s arrived in 1996. Set level with Kuwait and Tunisia, above Malawi's 1 and below Zambia's 2.5, which is the ratio 4.4% of a small rich GDP actually buys."
+  ]
+}

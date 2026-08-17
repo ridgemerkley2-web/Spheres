@@ -1138,14 +1138,28 @@ pub const ROSTER: &[NationRow] = &[
     // one full of collapsing states and almost empty of irredentism, because that
     // is what it was. https://en.wikipedia.org/wiki/Organisation_of_African_Unity
 
-    // The SADF could reach Luanda and did, but South Africa's only land border with
-    // a nation in this roster is the Limpopo. Namibia became independent on 21
-    // March 1990 (and Walvis Bay stayed South African until 1994), Botswana,
-    // Lesotho, Swaziland and Mozambique are not simulated. No claims: apartheid
-    // South Africa wanted a buffer, not territory, which is why the cross-border
-    // raids of the eighties were on ANC and SWAPO camps rather than on ground.
+    // AMENDED when Southern Africa was filled in (branch feat/r2-southafrica2).
+    // The comment this replaces said South Africa's only land border in the
+    // roster was the Limpopo, and it said so because Botswana, Lesotho,
+    // Swaziland, Mozambique and Namibia were not simulated. All five now are,
+    // and South Africa turns out to be the most-bordered state on the board
+    // after the Soviet Union: six roster neighbours, two of which it entirely
+    // surrounds. That is the correct shape of the regional problem and it is
+    // what the Frontline States meant — every one of them was reachable from
+    // Pretoria by road, which is why the SADF raided Gaborone (14 June 1985),
+    // Maseru (9 December 1982 and 20 December 1985) and Maputo (30 January
+    // 1981 and 12 October 1983) rather than fighting a war.
+    //
+    // No claims, and that is still the finding. Apartheid South Africa wanted a
+    // buffer, not territory: the cross-border raids were on ANC and SWAPO camps
+    // rather than on ground, and the two pieces of ground Pretoria did hold and
+    // was asked for — Walvis Bay and the Ingwavuma corridor — it held as
+    // leverage over neighbours rather than as irredenta. Both of those claims
+    // run the OTHER way, from Windhoek and Mbabane, and are entered on those
+    // rows.
     row("SouthAfrica", "South Africa", &["south africa", "rsa", "zaf"], "SouthernAfrica",
-        &["Zimbabwe"], &[], true, false, false),
+        &["Zimbabwe", "Mozambique", "Botswana", "Namibia", "Lesotho", "Swaziland"],
+        &[], true, false, false),
 
     // Ethiopia's wars in 1990 are all inside its own borders — Eritrea, Tigray,
     // the Oromo — which is why a state about to lose a third of its coastline
@@ -1184,8 +1198,14 @@ pub const ROSTER: &[NationRow] = &[
     // branch's to delete mid-integration. The new row's own aliases are all
     // unambiguous, so nothing is unreachable — "cog", "brazzaville" and
     // "congo-brazzaville" all land where they should. Resolve by union.
+    // Zambia appended with the Southern Africa fill-in: the Zaire-Zambia border
+    // is 2,332km of land, the Copperbelt runs across it, and the pedicle of
+    // Zaire's Katanga cuts into Zambia far enough that the Zambian road from
+    // Lusaka to Luapula crossed Zairean territory. Three roster neighbours now,
+    // not two.
     row("Zaire", "Zaire", &["zar", "congo", "drc"], "CentralAfrica",
         &["Angola", "Uganda", "CentralAfricanRepublic", "Congo"], &[], true, false, false),
+        &["Angola", "Uganda", "Zambia"], &[], true, false, false),
 
     // Cabinda is Angola's own exclave, cut off from the rest of the country by the
     // Zaire river mouth, and the separatism figure in angola.json is where FLEC
@@ -1199,18 +1219,36 @@ pub const ROSTER: &[NationRow] = &[
     // offices. A border the government in Luanda cannot use and its secessionist
     // problem can is the honest shape of it, and the row above already says the
     // separatism lives in angola.json. Resolve any conflict here by union.
+    // Zambia and Namibia appended with the Southern Africa fill-in. Zambia is
+    // 1,110km of border and the reason UNITA's supply problem was solved by
+    // Zaire rather than by Lusaka: Kaunda hosted the MPLA's rivals early and
+    // then recognised Luanda. Namibia is the Kunene and the Caprivi, and it is
+    // the border the SADF crossed to fight FAPLA at Cuito Cuanavale.
     row("Angola", "Angola", &["ago", "ang"], "SouthernAfrica",
         &["Zaire", "Congo"], &[], true, false, false),
+        &["Zaire", "Zambia", "Namibia"], &[], true, false, false),
 
+    // Mozambique, Zambia and Botswana appended with the Southern Africa
+    // fill-in. Mozambique is the one that matters: 1,231km of border, the Beira
+    // corridor through it, and roughly 10,000 Zimbabwean troops standing on it
+    // in 1990 — the deployment that puts zimbabwe.json's military spending
+    // above South Africa's.
     row("Zimbabwe", "Zimbabwe", &["zwe", "zim", "rhodesia"], "SouthernAfrica",
-        &["SouthAfrica"], &[], true, false, false),
+        &["SouthAfrica", "Mozambique", "Zambia", "Botswana"], &[], true, false, false),
 
     // Tanzania marched on Kampala in 1978-79 and removed a government, which is the
     // one clear case in this region of a state crossing a border in force and the
     // reason that border is declared. It took nothing: Nyerere restored the Kagera
     // salient's line and went home, and the annexation on the books was Amin's.
+    // Mozambique, Zambia and Malawi appended with the Southern Africa fill-in.
+    // All three are land borders Tanzania used as sanctuary lines rather than
+    // fronts: FRELIMO's rear base was at Nachingwea in southern Tanzania until
+    // 1975, and the TAZARA railway from Dar es Salaam to Kapiri Mposhi, opened
+    // in 1976, was built to give Zambia a route to the sea that did not run
+    // through Rhodesia or South Africa. The Malawi border is the one that has
+    // been argued over — see the Malawi row below — but it is a border.
     row("Tanzania", "Tanzania", &["tza", "tan"], "EastAfrica",
-        &["Kenya", "Uganda"], &[], true, false, false),
+        &["Kenya", "Uganda", "Mozambique", "Zambia", "Malawi"], &[], true, false, false),
 
     row("Uganda", "Uganda", &["uga"], "EastAfrica",
         &["Zaire", "Kenya", "Tanzania"], &[], true, false, false),
@@ -2398,6 +2436,170 @@ pub const ROSTER: &[NationRow] = &[
     // https://en.wikipedia.org/wiki/Prevlaka
     row("Montenegro", "Montenegro", &["mne", "crna gora"], "Balkans",
         &["Serbia", "Bosnia", "Croatia", "Albania"], &[], false, false, false),
+
+    // -----------------------------------------------------------------------
+    // Southern Africa, the rest of it (branch feat/r2-southafrica2).
+    //
+    // Seven rows that finish the region the eleven-row Africa block above could
+    // only gesture at, and they change the shape of it. Before this the SADF
+    // sat on the board with one land border; it now has six, and the two states
+    // it entirely encloses are on it. The regional note above says Africa in
+    // 1990 held almost no interstate territorial claims and that exactly one
+    // appeared in eleven rows. That generalisation survives, but it is not
+    // quite as clean as it looked: these seven rows add two more claims and
+    // both of them are on South Africa, which is the correct exception. The
+    // OAU's Cairo resolution of 21 July 1964 bound its members to the frontiers
+    // they inherited at independence, and a frontier drawn by a settler state
+    // that was not decolonising was the one kind the resolution did not settle.
+    // Everything else here is still civil war, insurgency and sanctuary, not
+    // conquest.
+
+    // Mozambique is in the fourteenth year of a civil war it is losing on
+    // territory and holding on cities. Six roster neighbours, which is the most
+    // of anything in this block, and no claim on any of them: RENAMO wanted
+    // Maputo, not a partition, and FRELIMO's quarrel with Pretoria was that
+    // Pretoria was arming RENAMO, which is a grievance and not a border. The
+    // Nkomati Accord of 16 March 1984 was supposed to end that and did not.
+    //
+    // The border to look at is Zimbabwe's, because it is the one with an army
+    // standing on it: the Beira corridor carried Zimbabwe's rail, road and
+    // fuel pipeline to the sea and was the only route that avoided South
+    // African ports, so Harare garrisoned it. That is a foreign deployment
+    // across a declared border in this table, which is what the dyad model
+    // needs to be able to see.
+    row("Mozambique", "Mozambique", &["moz", "mocambique", "mozambique"], "SouthernAfrica",
+        &["SouthAfrica", "Zimbabwe", "Zambia", "Malawi", "Tanzania", "Swaziland"],
+        &[], true, false, false),
+
+    // Zambia has eight land neighbours, seven of them now in this roster, and
+    // that is the whole of Kaunda's foreign policy: a landlocked copper economy
+    // that chose to be the rear area for every liberation movement in the
+    // region and paid for the choice in closed borders and unshipped ore. ZAPU
+    // was in Lusaka, the ANC's headquarters in exile was in Lusaka, SWAPO ran
+    // through Lusaka, and the Rhodesian and South African forces raided all
+    // three there.
+    //
+    // The eighth neighbour is the interesting omission. Zambia and Botswana
+    // meet at Kazungula, where the Zambezi and the Chobe join and four states
+    // come within a few hundred metres of a common point; whether the two share
+    // a boundary at all, and how long it is, has never been settled — the
+    // usual figure is about 150 metres of riverbank. In January 1990 the
+    // crossing was a pontoon ferry and nothing else; the Kazungula bridge did
+    // not open until 10 May 2021. This column means "force can cross without a
+    // fleet", and a ferry is a fleet. It is therefore left out on purpose, on
+    // the same reasoning that leaves Zaire-Tanzania out of the Zaire row above.
+    // https://en.wikipedia.org/wiki/Kazungula
+    row("Zambia", "Zambia", &["zmb", "zam", "northern rhodesia"], "SouthernAfrica",
+        &["Zaire", "Angola", "Tanzania", "Malawi", "Mozambique", "Zimbabwe", "Namibia"],
+        &[], true, false, false),
+
+    // Malawi's three neighbours are all in this roster and it has a live
+    // boundary dispute with one of them, which is entered as no claim at all.
+    // The argument is over Lake Malawi/Lake Nyasa: the Anglo-German Heligoland
+    // agreement of 1 July 1890 drew the boundary along the eastern (Tanganyikan)
+    // shore rather than down the middle, so Malawi holds that the whole lake is
+    // Malawian and Tanzania holds that the median line is the border. Boats
+    // have been shot at over it — there was an exchange in 1967 — and it is
+    // still unsettled in 2026.
+    //
+    // It is not a `claim` because `claim` is a share of another nation, and
+    // what Malawi wants is 5,600 square kilometres of fresh water that is not
+    // part of Tanzania's territory in any sense the model holds. Entering it
+    // would tell the derived war model that Lilongwe wants Tanzanian ground,
+    // and the thing that makes this dispute survivable is precisely that it
+    // never has. Banda's "Greater Malawi" rhetoric of the 1960s did claim
+    // ground — parts of Tanzania, Zambia and Mozambique — and it was dead as
+    // policy long before 1990.
+    // https://en.wikipedia.org/wiki/Lake_Malawi
+    row("Malawi", "Malawi", &["mwi", "nyasaland"], "SouthernAfrica",
+        &["Zambia", "Tanzania", "Mozambique"], &[], true, false, false),
+
+    // Botswana: three roster neighbours, no claim on any of them, and the
+    // fourth border deliberately absent for the reason set out in the Zambia
+    // row. The one thing Botswana would later dispute is Sedudu/Kasikili, an
+    // uninhabited 3.5 square kilometre island in the Chobe that the
+    // International Court of Justice awarded to Botswana on 13 December 1999.
+    // It is not entered, and the date is why: the dispute crystallised when
+    // Botswana Defence Force troops occupied the island in 1992, against a
+    // Namibia that on 1 January 1990 did not yet exist.
+    row("Botswana", "Botswana", &["bwa", "bechuanaland"], "SouthernAfrica",
+        &["SouthAfrica", "Zimbabwe", "Namibia"], &[], true, false, false),
+
+    // NAMIBIA IS A SUCCESSOR, NOT A STARTER, and the date is the whole of it.
+    // Independence came at midnight on 21 March 1990 — eleven weeks into the
+    // game. On 1 January 1990 the territory was South West Africa, administered
+    // by a South African Administrator-General alongside the United Nations
+    // Transition Assistance Group under UNSCR 435, with the Constituent
+    // Assembly elected on 7-11 November 1989 already sitting and the
+    // constitution not adopted until 9 February 1990. A sovereign Namibia did
+    // not exist on the start date, so `start_1990` is false and there is no
+    // data file: the loader rejects a file for a nation that is not a starter.
+    //
+    // The claim is real and is the only irredentist claim in this block that
+    // was ever pressed. Walvis Bay — 1,124 square kilometres, the territory's
+    // only deep-water port, and the Penguin Islands with it — was annexed to
+    // the Cape Colony in 1878, kept by South Africa when the League mandate
+    // began, and formally retained by Pretoria on Namibian independence. It was
+    // transferred on 28 February 1994. The share is the enclave measured
+    // against South Africa: 1,124 sq km against 1,221,037, and roughly 25,000
+    // people against 35 million. 0.001 either way, and it is entered small
+    // because that is what it was — a port held as leverage, handed over by
+    // negotiation four years later without a shot.
+    // https://en.wikipedia.org/wiki/Walvis_Bay
+    row("Namibia", "Namibia", &["nam", "south west africa", "swa"], "SouthernAfrica",
+        &["Angola", "Zambia", "Botswana", "SouthAfrica"],
+        &[claim("SouthAfrica", 0.001)], false, false, false),
+
+    // Lesotho is the extreme case this whole column exists to be able to state:
+    // one neighbour, and that neighbour surrounds it completely. There are
+    // three enclaved states in the world and this is the largest. Every road
+    // out of Maseru ends in South Africa, the loti was pegged one-for-one to
+    // the rand, and about half of Lesotho's adult men worked in South African
+    // gold mines. Pretoria demonstrated what that meant on 1 January 1986: a
+    // border blockade over ANC sanctuary that closed the country in twenty days
+    // and produced the coup of 20 January.
+    //
+    // NO CLAIM, and this is the closest call in the block, so it is argued
+    // rather than left silent. Lesotho has a genuine irredentist grievance —
+    // the "conquered territories" west of the Caledon, taken by the Orange Free
+    // State in the wars of 1858-68 and confirmed against Moshoeshoe I by the
+    // Treaty of Aliwal North of 12 February 1869, which is roughly as much land
+    // again as Lesotho kept. Leabua Jonathan's government raised it at the OAU
+    // and the United Nations through the 1970s and early 1980s and it has never
+    // been renounced. It is not entered because of who was governing in January
+    // 1990: Jonathan had been deposed on 20 January 1986, and Major General
+    // Lekhanya's Military Council came to power in a coup Pretoria's blockade
+    // produced and spent its four years in office signing the Lesotho Highlands
+    // Water Project treaty with South Africa (24 October 1986) and expelling the
+    // ANC. A dormant grievance held by a government that owed its existence to
+    // the state it would be claiming from is not an appetite, and entering it
+    // would manufacture a war that the model would then have to explain.
+    // https://en.wikipedia.org/wiki/Treaty_of_Aliwal_North
+    row("Lesotho", "Lesotho", &["lso", "basutoland"], "SouthernAfrica",
+        &["SouthAfrica"], &[], true, false, false),
+
+    // Swaziland gets the claim Lesotho does not, and the difference is that
+    // Swaziland's was the subject of an actual agreement between two
+    // governments to move a border. Sobhuza II claimed the "lost lands" — the
+    // Swazi-populated ground ceded to the Transvaal and to Natal in the 1880s
+    // and 1890s — and in June 1982 P.W. Botha's government secretly agreed to
+    // transfer the KaNgwane bantustan and the Ingwavuma district of KwaZulu to
+    // Swaziland, which would also have given a landlocked kingdom a coastline.
+    // The Appellate Division in Bloemfontein struck the Ingwavuma proclamation
+    // down in September 1982, Zulu opposition finished it, and South Africa
+    // announced on 19 June 1984 that neither territory would be transferred.
+    // Mbabane has never dropped the claim and was still pressing it in the
+    // 2010s.
+    //
+    // The share is 0.01 and the two ways of measuring it bracket that: KaNgwane
+    // at about 3,800 square kilometres plus the Ingwavuma corridor is roughly
+    // 0.006 of South Africa's land area, while the population of the two —
+    // usually put at around half a million — is about 0.015 of a South Africa
+    // of 35 million. Measured either way it is a corridor and a bantustan, not
+    // a war of conquest, which is what a hundredth of a target means here.
+    // https://en.wikipedia.org/wiki/KaNgwane
+    row("Swaziland", "Swaziland", &["swz", "eswatini", "ngwane"], "SouthernAfrica",
+        &["SouthAfrica", "Mozambique"], &[claim("SouthAfrica", 0.01)], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -2675,6 +2877,17 @@ well_known! {
     Cyprus => "Cyprus",
     Macedonia => "Macedonia",
     Montenegro => "Montenegro",
+    // Southern Africa, the rest of it (branch feat/r2-southafrica2). Namibia is
+    // here despite being a successor rather than a starter, for the same reason
+    // Croatia and Estonia are: a nation that only exists once something comes
+    // apart still needs a handle the data tables can name.
+    Mozambique => "Mozambique",
+    Zambia => "Zambia",
+    Malawi => "Malawi",
+    Botswana => "Botswana",
+    Namibia => "Namibia",
+    Lesotho => "Lesotho",
+    Swaziland => "Swaziland",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

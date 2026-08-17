@@ -473,6 +473,13 @@ const TERRITORY = {
   // WORLD.countries, so an absent one draws nothing, and the LABEL_AT entry
   // below gives the nation a label and a click target where it actually is.
   SaoTome: ["STP"],
+  // Southern Africa, the rest of it (branch feat/r2-southafrica2). Namibia is
+  // drawn even though it is a successor rather than a starter — independence
+  // was 21 March 1990 and the map has to be able to show it the moment it
+  // arrives. Natural Earth still codes Swaziland SWZ despite the 2018 rename to
+  // Eswatini, which is convenient: SWZ is also the game's 1990 name.
+  Mozambique: ["MOZ"], Zambia: ["ZMB"], Malawi: ["MWI"], Botswana: ["BWA"],
+  Namibia: ["NAM"], Lesotho: ["LSO"], Swaziland: ["SWZ"],
   Bangladesh: ["BGD"], SriLanka: ["LKA"], Nepal: ["NPL"],
   Afghanistan: ["AFG"], Myanmar: ["MMR"],
   NorthKorea: ["PRK"], Taiwan: ["TWN"], Mongolia: ["MNG"], Thailand: ["THA"],
