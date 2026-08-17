@@ -1441,6 +1441,48 @@
         { "a": "Maldives", "b": "China", "value": 28.0 },
         { "a": "Maldives", "b": "USSR", "value": 12.0 }
       ]
+    },
+    {
+      "note": [
+        "Small and island Europe. Four states with a combined output smaller than Denmark's and a combined population smaller than Dublin's, and the reason each of them gets a block rather than being left to the region default is that three of the four are aligned in a way their geography does not predict.",
+        "Iceland is the extreme case in this roster of alignment without armament. It has never had armed forces, and it was a FOUNDER member of NATO in 1949 - the only one without an army - because Keflavik sits on the GIUK gap and the United States kept roughly 3,000 personnel there under the defence agreement of 5 May 1951. Iceland and the USA at 78 is therefore higher than the number for several states with real armies, and it is the correct reading: the whole of Icelandic security policy is that relationship. The UK at 45 is the one number here that is held DOWN rather than up, and the reason is the Cod Wars: three confrontations between Icelandic coast guard cutters and Royal Navy frigates over the fisheries limit, in 1958, 1972-73 and 1975-76, the last of which ended with Reykjavik breaking diplomatic relations with London on 19 February 1976 and threatening to leave NATO. Two allies of thirty years and the lower number is the ally. The USSR at 25 is warmer than a NATO member's default because Iceland sold the Soviet Union fish through the whole Cold War and Reykjavik hosted the Reagan-Gorbachev summit in October 1986.",
+        "Luxembourg is the least surprising row in this file and it is entered because its absence would be read as distance. Founder member of the United Nations, NATO, the European Coal and Steel Community, the EEC and Benelux; in monetary union with Belgium at fixed parity since 1921, which is why Belgium at 88 is the highest bilateral number Luxembourg carries and one of the highest in this file.",
+        "Malta is the interesting one, and every number in its row is lower than a Western European reflex would put it. Malta in January 1990 is a member of the Non-Aligned Movement with neutrality written into Article 1 of its constitution by the amendment of 1987. The Royal Navy left Grand Harbour on 31 March 1979 after 179 years, and Dom Mintoff spent the years after that signing a treaty of friendship with Libya, taking neutrality guarantees from Italy and from the Soviet Union, and putting Maltese foreign policy as far from London as it would go. Eddie Fenech Adami turned it back toward Europe from 1987 and applied to join the European Community on 16 July 1990, but he did it without leaving non-alignment. Hence Italy at 70 - the 1980 guarantee, and the nearest neighbour - against the UK at 45, Libya at 40 and the USSR at 25. The Bush-Gorbachev summit was held aboard ship off Marsaxlokk on 2-3 December 1989, five weeks before this start state, and Malta being an acceptable venue to both superpowers is the whole point of the row.",
+        "Cyprus is the row where the numbers are a war. Turkey invaded on 20 July 1974 and 30,000-35,000 Turkish troops were still on the island in January 1990, so -80 is the second most hostile pair in this file and the roster row carries the matching claim. Greece at 85 is enosis without the annexation - the Greek Cypriot state's guarantor, patron and identity - and it is high enough to make the Greece-Turkey-Cyprus triangle behave as the single object it was. The UK at 30 is the one that needs explaining: Britain is a guarantor power under the Treaty of Guarantee of 1960, it holds 254 square kilometres of sovereign base area at Akrotiri and Dhekelia, and it did not intervene in 1974. A guarantor that did not guarantee scores like a neutral. The USSR at 45 is higher than any other Western-facing state in this batch gives Moscow, and it is not sentiment: the Soviet Union backed the Republic's territorial position at the United Nations consistently from 1974, and AKEL - a communist party polling 27% - ran the largest trade union federation on the island and elected the sitting president in 1988. The USA at 5 is the cost of Washington's role in 1974, which Greek Cypriots have never forgiven and which is why the number is barely off zero rather than warm."
+      ],
+      "pairs": [
+        { "a": "Iceland", "b": "USA", "value": 78.0 },
+        { "a": "Iceland", "b": "Denmark", "value": 70.0 },
+        { "a": "Iceland", "b": "Norway", "value": 68.0 },
+        { "a": "Iceland", "b": "Germany", "value": 55.0 },
+        { "a": "Iceland", "b": "UK", "value": 45.0 },
+        { "a": "Iceland", "b": "USSR", "value": 25.0 },
+
+        { "a": "Luxembourg", "b": "Belgium", "value": 88.0 },
+        { "a": "Luxembourg", "b": "Netherlands", "value": 80.0 },
+        { "a": "Luxembourg", "b": "France", "value": 75.0 },
+        { "a": "Luxembourg", "b": "Germany", "value": 72.0 },
+        { "a": "Luxembourg", "b": "USA", "value": 70.0 },
+        { "a": "Luxembourg", "b": "Italy", "value": 65.0 },
+        { "a": "Luxembourg", "b": "USSR", "value": 5.0 },
+
+        { "a": "Malta", "b": "Italy", "value": 70.0 },
+        { "a": "Malta", "b": "UK", "value": 45.0 },
+        { "a": "Malta", "b": "Libya", "value": 40.0 },
+        { "a": "Malta", "b": "France", "value": 35.0 },
+        { "a": "Malta", "b": "USA", "value": 30.0 },
+        { "a": "Malta", "b": "Tunisia", "value": 30.0 },
+        { "a": "Malta", "b": "USSR", "value": 25.0 },
+
+        { "a": "Cyprus", "b": "Greece", "value": 85.0 },
+        { "a": "Cyprus", "b": "USSR", "value": 45.0 },
+        { "a": "Cyprus", "b": "UK", "value": 30.0 },
+        { "a": "Cyprus", "b": "Egypt", "value": 30.0 },
+        { "a": "Cyprus", "b": "Israel", "value": 20.0 },
+        { "a": "Cyprus", "b": "Lebanon", "value": 20.0 },
+        { "a": "Cyprus", "b": "USA", "value": 5.0 },
+        { "a": "Cyprus", "b": "Turkey", "value": -80.0 }
+      ]
     }
   ]
 }

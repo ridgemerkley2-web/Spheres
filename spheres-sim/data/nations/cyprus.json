@@ -1,0 +1,41 @@
+{
+  "id": "Cyprus",
+  "name": "Cyprus",
+  "system": "Market",
+  "authoritarianism": 0.15,
+  "economy": {
+    "gdp_bn": 5.591,
+    "population_m": 0.788,
+    "tfp_trend": 0.016,
+    "inflation": 0.045,
+    "interest_rate": 0.09,
+    "tax_rate": 0.276,
+    "mil_spend_gdp": 0.074,
+    "state_invest_gdp": 0.04,
+    "priv_invest_gdp": 0.206,
+    "debt_gdp": 0.507,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 58.0,
+    "separatism": 0.65
+  },
+  "military": {
+    "strength": 2.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $5.591bn: World Bank NY.GDP.MKTP.CD, series CYP, 1990 = 5,591,130,218 current US$, retrieved from the World Bank data360 API on 2026-08-16. THE STANDING CAVEAT ON EVERY CYPRUS NUMBER, and it is not a rounding problem: the World Bank's Cyprus national accounts cover the GOVERNMENT-CONTROLLED AREA only. Output in the Turkish-occupied north — roughly 36% of the island — is not in this figure and is not published on a comparable basis by anybody. What is entered is therefore the Republic of Cyprus's economy, which is the state this roster is modelling, and it is the right choice; it is stated because the population figure below is NOT on the same footing.",
+    "Population 788,000: World Bank SP.POP.TOTL, CYP, 1990 = 788,351, entered because the roster's iron rule is that population is SP.POP.TOTL. IT IS ALMOST CERTAINLY THE WRONG DENOMINATOR FOR THE GDP FIGURE ABOVE, and this is the least defensible number in the file. The World Bank's Cyprus population series is whole-island; the government-controlled area's own census of 1 October 1992 counted 602,025, with roughly 170,000 more in the north. So GDP is a two-thirds-of-the-island measure and population is a whole-island one, and dividing them understates the Republic's income per head by about a quarter — $7,090 entered against about $9,300 actual. Two further readings for whoever re-sources this: the 1990 CIA World Factbook gives 707,776 for July 1990, 10% below the World Bank's whole-island figure for the same year, which is the size of the disagreement between sources on a country nobody can take a single census of. The series is kept for comparability with the rest of the roster and the distortion is disclosed rather than quietly corrected. Flagged first in this branch's unverified list.",
+    "Inflation 4.5%: World Bank FP.CPI.TOTL.ZG, CYP, 1990 = 4.502%, with 3.765% in 1989 and 5.035% in 1991. The Cyprus pound was managed against a basket and inflation stayed mid-single-digit throughout.",
+    "Interest rate 9.0%: NOT A TRANSCRIBED SERIES, though it is a better-founded placement than most. World Bank FR.INR.LEND returns null for Cyprus for 1990. Cyprus operated a statutory interest-rate CEILING of 9% under the Interest Act, which capped lending rates across the banking system and was not lifted until 2001; the binding constraint on Cypriot credit in 1990 was therefore the ceiling itself rather than any policy rate, and 9% is entered as the rate the ceiling produced. Against 4.5% inflation that is a real rate of about +4.5%. Flagged in this branch's unverified list because it is the ceiling rather than an observed average.",
+    "Revenue 27.6% of GDP and public debt 50.7% of GDP: World Bank GC.REV.XGRT.GD.ZS = 27.63% and GC.DOD.TOTL.GD.ZS = 50.7%, CYP, 1990. Both are CENTRAL GOVERNMENT rather than the general-government basis Spain, Belgium and Denmark in this roster use; the IMF WEO's first general-government observation for Cyprus is 1995. Flagged in this branch's unverified list. Cyprus is the most indebted state in this batch by a wide margin and the reason is in the next entry.",
+    "Military spending 7.4% of GDP and a strength index of 2.0: World Bank MS.MIL.XPND.GD.ZS, CYP, 1990 = 7.374%, which is MS.MIL.XPND.CD = $411.4m against the $5.591bn GDP above; the 1989 pair is $245.0m and 5.37%, so the series records a real jump in 1990 rather than a smooth line. THIS DISAGREES WITH THE 1990 CIA WORLD FACTBOOK, which gives '2% of GDP, or $84 million (1990 est.)' — a factor of five. The two are not reconcilable and the World Bank/SIPRI figure is entered because it is the series the rest of this roster's military ratios sit on, but a reader should know that one of the two standard sources for Cypriot defence spending in 1990 says it was a fifth of what this file records. Flagged in this branch's unverified list. At 7.4% Cyprus carries the heaviest military burden of any European state in this roster, which is the correct shape whatever the exact level: the National Guard was a conscript force of roughly 10,000 active and 60,000 reserve on an island a third of which was under foreign occupation. The strength index of 2.0 is level with Ireland's — a real army, but light infantry with no navy and no air force worth the name, and 90 times smaller than the Turkish army it faces.",
+    "TFP trend 0.016: the fastest-growing economy in this batch. Cyprus lost its two largest towns, its port at Famagusta, its airport at Nicosia and about 70% of its productive capacity in 1974, and rebuilt on tourism, offshore services and light manufacturing at real growth rates near 7% a year; by 1990 income per head in the government-controlled area was back above the pre-invasion level and the EC application of 4 July 1990 was lodged on the strength of it. Set above Portugal's 0.014 and below Singapore's 0.028.",
+    "Public investment 4.0% and private investment 20.6% of GDP: World Bank NE.GDI.FTOT.ZS gives total gross fixed capital formation of 24.61% for Cyprus in 1990, which is transcribed exactly. NE.GDI.FPUB.ZS and NE.GDI.FPRV.ZS are both null, so THE SPLIT IS APPORTIONED AND NOT PUBLISHED and is in this branch's unverified list. It is set at roughly a sixth public — the lowest public share in this batch — because the post-1974 rebuilding was overwhelmingly private hotel and housing construction, with the state's own capital budget concentrated in the Limassol and Larnaca port and airport replacements.",
+    "Separatism 0.65, and it is the highest figure in this batch by a factor of nothing because nothing else in the batch has any. This is not a latent strain, it is a partition on the ground: Turkey invaded on 20 July 1974, roughly 36% of the island has been under Turkish military control since, about 160,000 Greek Cypriots were displaced south and 45,000 Turkish Cypriots north, the Turkish Republic of Northern Cyprus declared itself on 15 November 1983 and was recognised by Turkey alone, and a UN buffer zone patrolled by UNFICYP since 1964 runs through the middle of the capital. The figure is set below Yugoslavia's 0.72 deliberately: Yugoslavia's strain was still contained inside one state in 1990 and could get much worse, whereas Cyprus's had already happened and had reached a frozen equilibrium that has now held for fifty years. See also the claim on Turkey in the roster row, which is the other half of this fact.",
+    "Stability 58 and authoritarianism 0.15: a functioning presidential democracy with a free press, competitive elections and 94.6% turnout at the last legislative election — and a state a third of whose territory it does not govern, with 30,000-35,000 foreign troops on it and a fifth of its people still displaced sixteen years on. The 58 is Greece's figure and is placed there on purpose: both are stable democracies carrying an unresolved national question. The 0.15 is above Ireland's 0.11 for the emergency-era institutions the Republic retained and below Malta's 0.18.",
+    "Government in January 1990: President George Vassiliou, an independent backed by AKEL, elected in the run-off of 21 February 1988 and in office 28 February 1988 to 28 February 1993. Cyprus is a presidential republic, so the House of Representatives does not form the government; the sitting House was the one elected on 8 December 1985 and the next election was held on 19 May 1991. Party shares in government.rs are from that 1985 election."
+  ]
+}

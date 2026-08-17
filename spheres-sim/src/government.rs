@@ -4739,6 +4739,226 @@ pub const POLITIES: &[Polity] = &[
             pl(Pillar::Business, "the resort lessees and the import traders"),
         ],
     },
+
+    // -----------------------------------------------------------------------
+    // Small and island Europe (branch feat/r2-smalleurope). Four starters and
+    // two Yugoslav successors. The successors carry `next: (0, 0)` for the
+    // reason the Soviet block above gives at length: a date pinned here would
+    // already be in the past by the time the federation actually comes apart,
+    // which is somewhere in the nineties and different in every seed.
+    // -----------------------------------------------------------------------
+
+    // Iceland — Althing, 25 April 1987: Independence 27.2%, Progressive 18.9%,
+    // Social Democrats 15.2%, People's Alliance 13.4%, Citizens' 10.9%,
+    // Women's List 10.1%. Two new parties above 10% in one election, which
+    // ended the four-party system Iceland had run since 1930 and produced the
+    // arithmetic that governs the country in January 1990: Thorsteinn
+    // Palsson's government fell in September 1988 and Steingrimur Hermannsson
+    // built a FOUR-party coalition out of the wreckage — Progressives, Social
+    // Democrats, People's Alliance and, from 10 September 1989, the remnant of
+    // the Citizens' Party. The only four-party cabinet in Icelandic history,
+    // and it held to the election of 20 April 1991.
+    // https://en.wikipedia.org/wiki/1987_Icelandic_parliamentary_election
+    Polity {
+        nation: NationId::Iceland,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1991, 4),
+        parties: &[
+            p("is_sjalf", "Independence Party", "Sjalfstaedisflokkurinn", Family::Conservative, 0.272),
+            p("is_fram", "Progressive Party", "Framsoknarflokkurinn", Family::Agrarian, 0.189),
+            p("is_althyduf", "Social Democratic Party", "Althyduflokkurinn", Family::SocialDemocratic, 0.152),
+            // Filed Communist rather than SocialDemocratic, which is the one
+            // judgement in this block. The People's Alliance by 1987 was a
+            // Eurocommunist left-green party and not a Moscow one, but it is
+            // the direct successor of the Socialist Unity Party and it is the
+            // pole to the LEFT of Althyduflokkurinn, which already holds the
+            // social-democratic slot. Filing both as SocialDemocratic would
+            // collapse the two halves of the Icelandic left into one point on
+            // the axis and make a coalition between them free, when the whole
+            // difficulty of Icelandic government in this period is that it was
+            // not.
+            p("is_althydub", "People's Alliance", "Althydubandalagid", Family::Communist, 0.134),
+            p("is_borg", "Citizens' Party", "Borgaraflokkurinn", Family::Conservative, 0.109),
+            // The Women's Alliance ran only women, refused to name a leader,
+            // rotated its members of parliament, and declined to enter any
+            // government offered to it. Green is the closest family on the
+            // axis — left-libertarian, strongly cosmopolitan — and it is a
+            // better fit than any of the alternatives for a party whose
+            // entire programme was the plane the axis measures.
+            p("is_kvenna", "Women's List", "Kvennalistinn", Family::Green, 0.101),
+        ],
+        ruling: "the Althing",
+        pillars: &[],
+    },
+
+    // Luxembourg — Chamber of Deputies, 18 June 1989: CSV 31.7%, LSAP 27.2%,
+    // DP 16.2%, ADR 7.3%, KPL 5.1%, GLEI 4.2%, GAP 4.2%. Jacques Santer's
+    // CSV-LSAP coalition continued unchanged. Five-year terms; the next
+    // election was due by June 1994 and was held on 12 June.
+    // https://en.wikipedia.org/wiki/1989_Luxembourg_general_election
+    Polity {
+        nation: NationId::Luxembourg,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1994, 6),
+        parties: &[
+            p("lu_csv", "Christian Social People's Party", "Chreschtlech Sozial Vollekspartei", Family::ChristianDemocratic, 0.317),
+            p("lu_lsap", "Socialist Workers' Party", "Letzebuerger Sozialistesch Aarbechterpartei", Family::SocialDemocratic, 0.272),
+            p("lu_dp", "Democratic Party", "Demokratesch Partei", Family::Liberal, 0.162),
+            // A single-issue party demanding that private-sector pensions be
+            // raised to the public-sector five-sixths formula, which is what
+            // its name says and all it was in 1989. It became a right-populist
+            // party later; entered as what it was, which is why Conservative
+            // and not Nationalist.
+            p("lu_adr", "Action Committee 5/6 Pensions for Everyone", "Aktiounskomitee 5/6 Pensioun fir Jiddereen", Family::Conservative, 0.073),
+            p("lu_kpl", "Communist Party of Luxembourg", "Kommunistesch Partei Letzebuerg", Family::Communist, 0.051),
+            // Two green parties, split since 1983 over whether to work inside
+            // the institutions, and reunited into Dei Greng in 1994. Entered
+            // separately because in 1989 they were separately on the ballot
+            // and separately seated.
+            p("lu_glei", "Green List Ecological Initiative", "Greng Lescht Ekologesch Initiativ", Family::Green, 0.042),
+            p("lu_gap", "Green Alternative Party", "Greng Alternativ Partei", Family::Green, 0.042),
+        ],
+        ruling: "the Chamber of Deputies",
+        pillars: &[],
+    },
+
+    // Malta — House of Representatives, 9 May 1987: Nationalist Party 50.91%,
+    // Malta Labour Party 48.87%, and 0.21% for everybody else put together.
+    // The two figures are the whole of Maltese politics and they are why this
+    // block lists only two parties: no third party has won a Maltese seat
+    // since 1962.
+    //
+    // Proportional rather than FirstPastThePost, and the reason is the
+    // constitutional amendment of January 1987 rather than the ballot paper.
+    // Malta votes by single transferable vote in multi-member districts, which
+    // is not in this enum — but STV had twice produced a "perverse result",
+    // most notoriously in 1981 when Labour took 34 of 65 seats on 49.1% of
+    // first preferences against the Nationalists' 50.9%. The 1987 amendment
+    // tops the party with a majority of first preferences up to a
+    // parliamentary majority, and in 1987 that produced 35 seats of 69 on
+    // 50.91% of the vote — 50.7% of the seats. A mechanism whose entire
+    // purpose is to make seats track votes is proportional whatever it is
+    // called, and Proportional's exponent of 1.0 reproduces that outcome where
+    // FirstPastThePost's 3.0 would manufacture a landslide that did not exist.
+    // Choosing the mechanism that reproduces the result over the one that
+    // shares the name, which is the Australia row's rule applied the other way.
+    // https://en.wikipedia.org/wiki/1987_Maltese_general_election
+    Polity {
+        nation: NationId::Malta,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1992, 2),
+        parties: &[
+            p("mt_pn", "Nationalist Party", "Partit Nazzjonalista", Family::ChristianDemocratic, 0.509),
+            p("mt_mlp", "Malta Labour Party", "Partit Laburista", Family::SocialDemocratic, 0.489),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+
+    // Cyprus — House of Representatives, 8 December 1985: DISY 33.6%,
+    // DIKO 27.7%, AKEL 27.4%, EDEK 11.1%, on a turnout of 94.6%. Cyprus is a
+    // PRESIDENTIAL republic, so the House does not make the government: George
+    // Vassiliou, an independent businessman backed by AKEL, won the run-off of
+    // 21 February 1988 and held the presidency from 28 February 1988 to 28
+    // February 1993. The seat shares are entered because they are the
+    // measured distribution of Cypriot opinion, and the next House election —
+    // 19 May 1991 — is what `next` points at.
+    //
+    // AKEL at 27.4% is the largest communist vote in this roster outside the
+    // Warsaw Pact, and it is not a curiosity: AKEL ran the trade unions,
+    // backed Makarios, and in 1988 elected a president. A model that expects
+    // communist strength to correlate with Soviet alignment should be made to
+    // look at Cyprus, which was in the Non-Aligned Movement.
+    // https://en.wikipedia.org/wiki/1985_Cypriot_legislative_election
+    Polity {
+        nation: NationId::Cyprus,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1991, 5),
+        parties: &[
+            p("cy_disy", "Democratic Rally", "Dimokratikos Synagermos", Family::Conservative, 0.336),
+            // DIKO is centrist on economics and files here as Nationalist for
+            // the axis that actually orders Cypriot politics: it is the party
+            // of conceding nothing on the national question, founded by
+            // Makarios's circle and led in 1985 by Spyros Kyprianou, who had
+            // just walked out of the UN proximity talks.
+            p("cy_diko", "Democratic Party", "Dimokratiko Komma", Family::Nationalist, 0.277),
+            p("cy_akel", "Progressive Party of Working People", "Anorthotiko Komma Ergazomenou Laou", Family::Communist, 0.274),
+            p("cy_edek", "Movement for Social Democracy", "Kinima Sosialdimokraton", Family::SocialDemocratic, 0.111),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+
+    // Macedonia — 11 and 25 November 1990, the first competitive election ever
+    // held on this ground: SKM-PDP 24.75%, VMRO-DPMNE 21.35%, Union of Reform
+    // Forces 14.74%, Party for Democratic Prosperity 12.16%, Socialist Party
+    // 6.31%. The seat count inverts the vote — VMRO-DPMNE took 38 of the 120
+    // seats on the smaller share and the reformed communists 31 on the larger
+    // — because the 120 members were elected in single-member constituencies
+    // with a run-off, which is why TwoRound and not Proportional. No pillars:
+    // Macedonia is the one Yugoslav successor whose founding election produced
+    // a parliament and not an apparatus, and Kiro Gligorov took the republic
+    // out of the federation in September 1991 without a shot being fired.
+    // https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
+    Polity {
+        nation: NationId::Macedonia,
+        system: Electoral::TwoRound,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("mk_skm", "League of Communists - Party for Democratic Change", "Sojuz na komunistite - Partija za demokratska preobrazba", Family::SocialDemocratic, 0.248),
+            p("mk_vmro", "VMRO-DPMNE", "Vnatresna makedonska revolucionerna organizacija", Family::Nationalist, 0.214),
+            p("mk_srsm", "Union of Reform Forces", "Sojuz na reformskite sili", Family::Liberal, 0.147),
+            // The Albanian minority party, filed the way Bosnia's three
+            // national parties are filed: a party organised on nationality is
+            // Nationalist on this axis whether it speaks for a majority or for
+            // a fifth. Roughly 21% of Macedonia's people were Albanian at the
+            // 1991 census, concentrated in the north-west, and that minority
+            // produced an insurgency in 2001 — a decade past this table and
+            // reachable by the model rather than written into it.
+            p("mk_pdp", "Party for Democratic Prosperity", "Partija za demokratski prosperitet", Family::Nationalist, 0.122),
+            p("mk_spm", "Socialist Party of Macedonia", "Socijalisticka partija na Makedonija", Family::SocialDemocratic, 0.063),
+        ],
+        ruling: "the Assembly",
+        pillars: &[],
+    },
+
+    // Montenegro — 9 December 1990, with the presidential run-off on the 23rd:
+    // the League of Communists of Montenegro 58.3% and 83 of 125 seats, the
+    // Union of Reform Forces 14.1%, the People's Party 13.3%, the Democratic
+    // Coalition of Muslim and Albanian parties 10.5%. Momir Bulatovic took the
+    // presidency with 78.1% in the run-off. This is the one Yugoslav republic
+    // where the League of Communists won a free election outright and did not
+    // need to rename itself first, and the reason is the anti-bureaucratic
+    // revolution of January 1989, which replaced the Montenegrin leadership
+    // with Milosevic's people a year and a half before anybody voted.
+    // Montenegro therefore carries pillars as well as parties — the same
+    // construction as Serbia and for the same reason — but not the Army one:
+    // the JNA's Podgorica corps and the naval base in the Boka Kotorska
+    // answered to Belgrade, which is exactly why Montenegro stayed in the
+    // federal republic until 2006.
+    // https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
+    Polity {
+        nation: NationId::Montenegro,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("me_skcg", "League of Communists of Montenegro", "Savez komunista Crne Gore", Family::Communist, 0.583),
+            p("me_srsj", "Union of Reform Forces", "Savez reformskih snaga Jugoslavije", Family::Liberal, 0.141),
+            p("me_ns", "People's Party", "Narodna stranka", Family::Nationalist, 0.133),
+            p("me_dk", "Democratic Coalition", "Demokratska koalicija", Family::Nationalist, 0.105),
+        ],
+        ruling: "the League of Communists of Montenegro",
+        pillars: &[
+            pl(Pillar::Party, "the League of Communists"),
+            pl(Pillar::Security, "the Republican Security Service"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

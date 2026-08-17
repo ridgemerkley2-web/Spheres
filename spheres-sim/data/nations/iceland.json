@@ -1,0 +1,41 @@
+{
+  "id": "Iceland",
+  "name": "Iceland",
+  "system": "Market",
+  "authoritarianism": 0.07,
+  "economy": {
+    "gdp_bn": 6.695,
+    "population_m": 0.255,
+    "tfp_trend": 0.004,
+    "inflation": 0.155,
+    "interest_rate": 0.162,
+    "tax_rate": 0.394,
+    "mil_spend_gdp": 0.0,
+    "state_invest_gdp": 0.035,
+    "priv_invest_gdp": 0.175,
+    "debt_gdp": 0.355,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 80.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 0.1,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $6.695bn: World Bank NY.GDP.MKTP.CD, series ISL, 1990 = 6,694,851,159 current US$, retrieved from the World Bank data360 API on 2026-08-16 — the same series the rest of this roster's 1990 GDP sits on. Note for whoever cross-checks against the 1990 CIA World Factbook, which gives '$4.0 billion, per capita $16,200': that is a 1989 purchasing-power figure and not the market-rate national accounts total. The two are not in conflict, they are different measures, and the World Bank market series is the one this roster uses everywhere.",
+    "Population 255,000: World Bank SP.POP.TOTL, ISL, 1990 = 254,826. The Factbook's 257,023 is a July 1990 estimate against the World Bank's mid-year series and the two agree to within 0.9%. Iceland is the smallest nation on this board by population — a quarter of Bahrain, a fifteenth of Ireland — and that is the datum the model is meant to be tested against.",
+    "Inflation 15.5%: World Bank FP.CPI.TOTL.ZG, ISL, 1990 = 15.511%, against 20.758% in 1989 and 6.809% in 1991. That collapse is one dated event and it is the most important thing in this file. The thjodarsatt — the National Reconciliation wage accord signed in February 1990 between the Icelandic Federation of Labour, the employers and the government — traded nominal wage restraint for a fixed krona and broke a decade of double-digit inflation in about eighteen months. The 1990 figure is transcribed as the average over the year, which is why it sits between the two regimes rather than in either.",
+    "Interest rate 16.2%: World Bank FR.INR.LEND, ISL, 1990 = 16.183% (1989: 27.967%). Against 15.5% inflation this is a real rate of about +0.7%, which is very close to the model's neutral and is the honest reading of a central bank that had just stopped monetising and had not yet started tightening in real terms.",
+    "Revenue 39.4% of GDP and gross public debt 35.5% of GDP: IMF World Economic Outlook, general government revenue (GGR_NGDP) and general government gross debt (GGXWDG_NGDP), ISL, 1990 = 39.42 and 35.49. Both are the general-government basis, which is the basis Spain, Belgium and Denmark in this roster use, so Iceland is directly comparable to them. The World Bank's central-government series for the same year gives 27.43% and 28.90%; the gap is the municipalities and the social funds, and it is stated here so that a reader who pulls the other series does not think one of us is wrong.",
+    "Military spending 0.0% of GDP and a strength index of 0.1: the 1990 CIA World Factbook lists Iceland's defence branches as 'Police, Coast Guard' and its defence expenditures as 'none', and neither SIPRI nor the World Bank MS.MIL.XPND.GD.ZS series carries an entry for Iceland at all. It is the only nation in this roster with a zero here and the zero is literal: Iceland has had no armed forces since independence in 1944. The 0.1 index is the Landhelgisgaeslan — four patrol vessels and a Fokker F27 — which fought three Cod Wars against the Royal Navy without a single naval gun being fired in anger, and it is deliberately not zero because a state with no capacity at all is not the same claim as a state with a coast guard. Iceland's defence was the 1951 agreement that kept roughly 3,000 US personnel at Naval Air Station Keflavik, and that is a relation rather than a budget line.",
+    "TFP trend 0.004: Iceland in 1990 is at the bottom of a fisheries recession, not in a boom. Real GDP fell 1.8% in 1989 and grew about 1% in 1990 as the cod quota was cut under the individual transferable quota system extended in 1990; the OECD's Iceland surveys of the period describe an economy whose productivity growth was constrained by a single renewable resource. The number is set below Portugal's 0.014 and Ireland's 0.02 for that reason, and it is the figure that stops the model reading Iceland's very high per-capita income as evidence of a fast-growing economy, which in 1990 it was not.",
+    "Public investment 3.5% and private investment 17.5% of GDP: World Bank NE.GDI.FTOT.ZS gives total gross fixed capital formation of 21.03% for Iceland in 1990, which is transcribed exactly. NE.GDI.FPUB.ZS and NE.GDI.FPRV.ZS are both null, so THE SPLIT IS APPORTIONED AND NOT PUBLISHED and is in this branch's unverified list. It is set at roughly one sixth public on the basis that the large state capital projects of the period — the ring road, the harbours, the Landsvirkjun hydro schemes — were real but small against a fishing fleet and a fish-processing sector that were privately owned.",
+    "Stability 80 and authoritarianism 0.07: the Althing has met since 930 and Iceland has had no political violence in the modern period at all. Placed just above Denmark's 78 and below Switzerland's 85. The 0.07 is the lowest authoritarianism figure in this roster, marginally below Denmark's, Norway's and the Netherlands' 0.08, and the ordering is deliberate rather than decorative: Iceland in 1990 had a directly elected president in Vigdis Finnbogadottir, a fully proportional Althing, and no standing security apparatus of any kind to be authoritarian with.",
+    "Separatism 0.0: 96% of the population is Icelandic-born and speaks one language, and there is no regional movement of any kind. The Westfjords and the East depopulated toward Reykjavik through this period, which is a demographic complaint and not a national one.",
+    "Government in January 1990: Steingrimur Hermannsson's second cabinet, formed 28 September 1988 from the Progressive Party, the Social Democrats and the People's Alliance, and joined by the remnant of the Citizens' Party on 10 September 1989 — the only four-party government in Icelandic history. It held until the election of 20 April 1991. The party shares in government.rs are from the general election of 25 April 1987."
+  ]
+}

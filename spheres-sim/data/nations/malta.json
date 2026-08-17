@@ -1,0 +1,42 @@
+{
+  "id": "Malta",
+  "name": "Malta",
+  "system": "Market",
+  "authoritarianism": 0.18,
+  "economy": {
+    "gdp_bn": 2.547,
+    "population_m": 0.354,
+    "tfp_trend": 0.015,
+    "inflation": 0.03,
+    "interest_rate": 0.08,
+    "tax_rate": 0.346,
+    "mil_spend_gdp": 0.009,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.195,
+    "debt_gdp": 0.201,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 62.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 0.3,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $2.547bn: World Bank NY.GDP.MKTP.CD, series MLT, 1990 = 2,547,328,748 current US$, retrieved from the World Bank data360 API on 2026-08-16. That is $7,190 a head, which places Malta in 1990 between Portugal ($7,890) and Greece ($9,460) — the honest position for an economy that had gone from a naval dockyard to light manufacturing and tourism in fifteen years. The 1990 CIA World Factbook's '$1.9 billion, per capita $5,100' is a 1988 purchasing-power estimate on a different basis and is not the market series.",
+    "Population 354,000: World Bank SP.POP.TOTL, MLT, 1990 = 354,170; the Factbook's July 1990 estimate is 353,465. The two agree to 0.2%. Malta is the densest state in this roster at about 1,120 people per square kilometre, which is a fact about its politics as much as its geography.",
+    "Inflation 3.0%: World Bank FP.CPI.TOTL.ZG, MLT, 1990 = 2.983%, against 0.848% in 1989 and 2.542% in 1991. The Maltese lira was pegged to a trade-weighted basket managed by the Central Bank of Malta and inflation through this period ran at or below the European Community average.",
+    "Interest rate 8.0%: NOT A TRANSCRIBED SERIES and flagged in this branch's unverified list. World Bank FR.INR.LEND returns null for Malta for 1990 and no published 1990 policy or lending rate could be reached for this file. Malta operated an administered interest-rate structure under the Central Bank of Malta Act with a managed peg rather than a market policy rate. 8% is entered as a commercial lending rate on the same basis as Iceland's transcribed FR.INR.LEND figure in this batch. The load-bearing property is the real rate it implies, about +5.0%, which is the right shape for a small pegged economy holding an external surplus, and it sits far inside the schema's coupled real-rate band. It is a placed number, not a measurement, and it should be the first thing anyone re-sources in this file.",
+    "Revenue 34.6% of GDP and public debt 20.1% of GDP: World Bank GC.REV.XGRT.GD.ZS = 34.61% and GC.DOD.TOTL.GD.ZS = 20.14%, MLT, 1990. Both are CENTRAL GOVERNMENT rather than the general-government basis Spain, Belgium and Denmark in this roster use; no 1990 general-government observation for Malta exists in the IMF WEO, whose series begins at 1995. Flagged in this branch's unverified list. The direction of the error is that both understate the general-government ratios, though for Malta the gap is small because local government barely exists — the islands have no tier between the state and the parish.",
+    "Military spending 0.9% of GDP and a strength index of 0.3: World Bank MS.MIL.XPND.GD.ZS, MLT, 1990 = 0.915%; the 1990 CIA World Factbook gives '1.3% of GDP, or $25 million (1989 est.)' with branches 'Armed Forces, Police, Paramilitary'. The World Bank/SIPRI figure is entered for series consistency. The Armed Forces of Malta in 1990 were about 1,500 all ranks with patrol boats, a handful of helicopters and no combat aircraft, armour or naval guns — a coastal constabulary with a flag. Set level with Luxembourg's 0.3.",
+    "TFP trend 0.015: real GDP grew about 6-7% a year in the late 1980s on export manufacturing — the free port at Marsaxlokk opened in 1988 — and tourism, which passed 800,000 arrivals in 1990 against a resident population of 354,000. That is genuine catch-up growth and the figure is set accordingly, level with Luxembourg and above Portugal's 0.014, but not at Singapore's 0.028: Malta's growth was assembly under the 1988 Industrial Development Act and hotel beds, not a technological frontier.",
+    "Public investment 6.0% and private investment 19.5% of GDP: World Bank NE.GDI.FTOT.ZS gives total gross fixed capital formation of 25.49% for Malta in 1990, which is transcribed exactly. NE.GDI.FPUB.ZS and NE.GDI.FPRV.ZS are both null, so THE SPLIT IS APPORTIONED AND NOT PUBLISHED and is in this branch's unverified list. It is set at roughly a quarter public — the highest public share in this batch — because the largest capital assets on the islands in 1990 were state-owned: Malta Drydocks, Sea Malta, Air Malta, the freeport and Enemalta.",
+    "Stability 62 and authoritarianism 0.18: the lowest stability and the highest authoritarianism in this batch, and both are about the decade Malta had just come out of rather than the year it was in. The 1981 general election returned Dom Mintoff's Labour Party to power with 34 of 65 seats on 49.1% of the vote against the Nationalists' 50.9% — a perverse result that produced a parliamentary boycott, the Church schools dispute of 1984, the Tal-Barrani violence of November 1986 and the killing of Raymond Caruana at a Nationalist club in December 1986. The constitutional amendment of January 1987 fixed the rule — the party winning a majority of first-preference votes is topped up to a parliamentary majority — and Eddie Fenech Adami's Nationalists took office in May 1987 under it. By January 1990 the country was calm, but it is three years out of that and split 50.9 to 48.9 down the middle, and 62 says so. The 0.18 is the residue of a politicised police force and a state broadcasting monopoly, both of which were being unwound rather than already unwound.",
+    "Separatism 0.0: Gozo has a distinct identity, its own bishop since 1864 and a persistent complaint about the ferry, and none of that has ever produced a separatist movement. There is no linguistic or national minority on the islands.",
+    "Foreign policy, which is the thing a war model needs from this file: Malta in January 1990 is formally neutral and non-aligned. The Royal Navy left Grand Harbour on 31 March 1979 after 179 years; Mintoff signed a treaty of friendship with Libya and took Italian and Soviet guarantees of Maltese neutrality; the amendment of 1987 wrote neutrality and non-alignment into Article 1 of the constitution. Malta was simultaneously a member of the Commonwealth and of the Non-Aligned Movement, hosted the Bush-Gorbachev summit aboard ship off Marsaxlokk on 2-3 December 1989, and lodged its application for European Community membership on 16 July 1990. No bloc, no border and no claim.",
+    "Government in January 1990: Eddie Fenech Adami's Nationalist Party, in office since the general election of 9 May 1987. The next election was due by 1992 and was held on 22 February. Party shares in government.rs are from that 1987 election."
+  ]
+}
