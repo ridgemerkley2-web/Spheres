@@ -945,12 +945,28 @@ mod tests {
         //       tests are red at 113 nations, not two:
         //         a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it
         //         reads warsaw 0.0545 against washington 0.0055 — a ratio of
-        //         9.91 against a bar of 10.0, i.e. 0.9% short. It is a
-        //         single-seed ratio on seed 2 measured after 240 months, and
-        //         it is the same class of failure the entry above records for
-        //         `arms_transfers_build_a_client_army` at 1.4993 against 1.50:
-        //         a knife-edge threshold that roster size walks across. NO
-        //         TOLERANCE WAS WIDENED AND NO TEST WAS REMOVED to clear it.
+        //         9.92 against a bar of 10.0, i.e. 0.8% short. It is the same
+        //         class of failure the entry above records for
+        //         `arms_transfers_build_a_client_army` at 1.4993 against 1.50,
+        //         and here it was measured rather than assumed. Running the
+        //         same abrogation on seeds 0..11:
+        //           at 108 nations (d1c64fa): 10.77 11.23 11.03 11.80 11.04
+        //             11.13 12.11 11.14 10.15 10.74  9.71 11.57
+        //           at 113 nations (this branch): 11.32 10.52 9.92 10.79 10.98
+        //             11.05 11.91 10.87 12.65 11.64 11.64 11.04
+        //         Two distributions of the same shape — eleven of twelve seeds
+        //         over the bar in each — and MASTER ITSELF IS ALREADY BELOW IT
+        //         ON SEED 10 at 9.71. What moved is not the model: Warsaw's
+        //         loss is 0.0544..0.0556 in every run on both sides, and the
+        //         whole of the variance is in Washington's, which is a 0.5%
+        //         number sitting in the denominator of a ratio with a hard
+        //         threshold on it. The test reads one hardcoded seed of a
+        //         quantity whose cross-seed spread straddles its own bar.
+        //         NO TOLERANCE WAS WIDENED AND NO TEST WAS REMOVED to clear
+        //         it. The repair, when someone takes it, is to make this test
+        //         read the distribution the way `china_growth_miracle` does
+        //         rather than to move the number — which is a change to a
+        //         test's contract and not a roster branch's to make.
         //   (b) HOLDS. `git diff -- spheres-sim/data/` on this branch adds five
         //       nation files and one relations block and changes no figure of
         //       any nation that was on the board before it.
