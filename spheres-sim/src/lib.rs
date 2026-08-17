@@ -803,10 +803,35 @@ mod tests {
         //   file for why the figure moved rather than the citation.
         // Nothing else in spheres-sim/data/ changed for any nation that was on
         // the board before this integration.
+        //
+        // RE-PINNED LOCALLY ON BRANCH feat/r2-centafrica,
+        // 0x1bb3d0e7c7919e2e -> 0xbdfa469afa791744, adding six Central African
+        // nations: Chad, the Central African Republic, Congo-Brazzaville,
+        // Gabon, Equatorial Guinea and Sao Tome and Principe. 108 -> 114.
+        // INTEGRATOR: this number is expected to move again and be re-pinned
+        // ONCE at the end of the second round of roster merges, exactly as the
+        // fourth re-pin above was. It is set here only so the branch ships
+        // green, and the two checks this test's comment demands were done
+        // first:
+        //   - `git diff -- spheres-sim/data/` is PURE ADDITION: six new
+        //     nation files, and +44/-0 on relations_1990.json which is one
+        //     appended block. Not one transcribed figure of the 108 nations
+        //     already on the board changed.
+        //   - the roster diff is six appended rows plus neighbour-list
+        //     APPENDS on Libya, Sudan, Nigeria, Cameroon, Zaire and Angola,
+        //     which the symmetry assertion in `nations.rs` requires and which
+        //     move no existing index.
+        // One thing OUTSIDE data/ did change and it is not a nation's figures:
+        // `tech::advance`'s `scale` term lost its lower clamp in favour of a
+        // soft knee. That is argued at length where it is written, and it is
+        // there because Equatorial Guinea and Sao Tome — $112m and $120m of
+        // 1990 output, the two smallest economies this roster has ever held —
+        // finished thirty-year runs knowing zero technologies and took
+        // `a_poor_nation_still_picks_up_what_everyone_has` red.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0x1bb3d0e7c7919e2eu64,
+            h, 0xbdfa469afa791744u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -924,7 +949,25 @@ mod tests {
         // audit found that nothing in the suite constrained the coefficient this
         // commit changed from below: at bite 0.000, with sanctions costing a
         // target no growth at all, everything except the hashes stayed green.
-        const GOLDEN: u64 = 0xef3e968249846a49;
+        // RE-PINNED LOCALLY ON BRANCH feat/r2-centafrica,
+        // 0xef3e968249846a49 -> 0x4ca7c7750b781cb1, for the same six nations
+        // and the same `tech::advance` knee described on
+        // `the_1990_start_is_pinned` above. INTEGRATOR: re-pin this ONCE at the
+        // end of the round rather than per branch.
+        //
+        // WHAT MOVED BESIDES THE HASHES, stated because the branch is not
+        // hash-only and a reader deserves the list. Two behavioural tests went
+        // red on the roster addition alone, BEFORE the tech change, and both
+        // came back green with it rather than with any tolerance being touched:
+        //   sanctions_cost_the_target_real_growth  0.75 points of lost annual
+        //     growth against a floor of 1.2, and
+        //   a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it
+        //     298 vs 256, a ratio of 1.164 against a bar of 1.20.
+        // Both are the single-seed assertions the note in nations.rs warns
+        // every roster branch will move. Neither was widened. Both are green at
+        // the pinned state below, and the integrator should re-measure them
+        // over a seed sweep after the round rather than trust one seed.
+        const GOLDEN: u64 = 0x4ca7c7750b781cb1;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
