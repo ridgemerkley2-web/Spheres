@@ -396,6 +396,37 @@ now measures the war-free resting state across eight seeds within ±0.8, which i
 a far stricter guard than the one it replaced, and the overshoot is recorded here
 rather than hidden.
 
+## Measured: the century run is going super-linear
+
+A hundred years, headless, default seed, warm, release:
+
+| nations | seconds | vs previous |
+|---|---|---|
+| 30 | 0.744 | — |
+| 108 | 2.93 | 3.9x for 3.6x nations |
+| 137 | — | not measured |
+| 160 | 12.4 | **4.2x for 1.5x nations** |
+
+The step from 108 to 160 is the one to look at: 1.5 times the nations for four
+times the cost is worse than quadratic, and the relations matrix — rewritten
+precisely to survive this — is no longer the whole story.
+
+**Not yet urgent, and worth saying why.** 12.4s over 1200 ticks is 10ms a month.
+A player never sees it; monthly ticks are not a frame budget. What it costs is
+CI: `a_century_holds_together` runs three seeds and takes ~37s on its own. At
+190 nations plus the finance and trade layers still to come, that becomes the
+slowest thing in the suite and eventually the reason someone stops running it.
+
+**Where to look first, unprofiled.** `spheres-sim/src/tech/mod.rs` holds six
+per-nation loops, and `absorptive_capacity` is the suspicious one: for every
+nation it walks every *other* nation to average its relations, and then calls
+`sanctioned_by_count`, which scans the sanctions list. That is O(n²) plus
+O(n·s) every tick, and the openness figure it computes could be one pass over
+the relations matrix per tick rather than n scans. **Measure before changing
+it** — this project has twice chased a plausible cause that turned out to be a
+coincidence, most recently blaming the technology tree for a bug that was one
+line of trade code.
+
 ## Next (rough priority)
 
 ### 0. One calibration test is red, down from four
