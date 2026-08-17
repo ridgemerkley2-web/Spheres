@@ -1130,6 +1130,130 @@
         { "a": "NewZealand", "b": "USSR", "value": 15.0 },
         { "a": "NewZealand", "b": "France", "value": -30.0 }
       ]
+    },
+    {
+      "note": [
+        "Block 1 of 6, Southern Africa filled in: Mozambique. The deepest Soviet client in Africa after Ethiopia and Angola and the poorest of the three - the Treaty of Friendship and Cooperation was signed on 31 March 1977, and Moscow at 70 is what that bought: MiG-21s, T-55s, several hundred advisers and almost no money.",
+        "Washington at 25 is the number people get wrong, and it is positive on purpose. The Reagan administration backed the FRELIMO government against RENAMO - Chissano was received at the White House on 6 October 1987, the State Department's Gersony report of April 1988 documented RENAMO's massacres and killed the American right's campaign to fund it, and USAID became one of Maputo's largest donors. An administration doctrinally committed to arming anti-communist insurgencies declined to arm this one, which is the sort of thing a relations table exists to be able to say.",
+        "South Africa at -50 is the Nkomati Accord and what happened to it. Machel signed a non-aggression pact with P.W. Botha on 16 March 1984 and expelled the ANC; the documents captured at RENAMO's Gorongosa headquarters in August 1985 showed South African military intelligence had gone on supplying RENAMO throughout, and Machel died in the Mbuzini air crash on 19 October 1986, on the South African side of the border, in circumstances Maputo has never accepted. Malawi at -20 is the other side of the same war: RENAMO operated out of Malawian territory until Banda was pressed into closing it in late 1986."
+      ],
+      "pairs": [
+        { "a": "Mozambique", "b": "USSR", "value": 70.0 },
+        { "a": "Mozambique", "b": "USA", "value": 25.0 },
+        { "a": "Mozambique", "b": "UK", "value": 35.0 },
+        { "a": "Mozambique", "b": "Portugal", "value": 40.0 },
+        { "a": "Mozambique", "b": "Brazil", "value": 35.0 },
+        { "a": "Mozambique", "b": "China", "value": 30.0 },
+        { "a": "Mozambique", "b": "Cuba", "value": 55.0 },
+        { "a": "Mozambique", "b": "Angola", "value": 60.0 },
+        { "a": "Mozambique", "b": "Zimbabwe", "value": 70.0 },
+        { "a": "Mozambique", "b": "Tanzania", "value": 65.0 },
+        { "a": "Mozambique", "b": "Zambia", "value": 45.0 },
+        { "a": "Mozambique", "b": "Kenya", "value": 15.0 },
+        { "a": "Mozambique", "b": "SouthAfrica", "value": -50.0 },
+        { "a": "Mozambique", "b": "Malawi", "value": -20.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 2 of 6: Zambia. China at 60 is the highest line Beijing holds anywhere in Africa in this table and it is one object: the TAZARA railway, 1,860km from Kapiri Mposhi to Dar es Salaam, built between 1970 and 1975 by up to 50,000 Chinese workers on an interest-free loan after the World Bank and both superpowers refused it. It was the largest foreign aid project China had ever undertaken and it existed to let a landlocked copper economy stop shipping through Rhodesia and South Africa.",
+        "Britain at 40 is warm and abraded. Kaunda was the most persistent Commonwealth advocate of comprehensive sanctions against South Africa and Thatcher was their most persistent opponent; the Nassau meeting of October 1985 and the London review of August 1986 were both fought largely between those two. It stays positive because the relationship survived the argument, which is what the Commonwealth is for.",
+        "South Africa at -55 is not rhetoric. The ANC's headquarters in exile were in Lusaka from 1969, and South African forces struck them there - the raid of 19 May 1986 hit Lusaka, Harare and Gaborone on the same morning, and there was another in 1987. Zambia absorbed the raids, the closed Rhodesian border and the copper price collapse and did not stop hosting anybody, which is most of what the 230% debt figure in zambia.json was spent on.",
+        "Zaire at -5 is deliberately mild rather than hostile. Kaunda and Mobutu disliked each other, backed opposite factions in Angola early on, and argued about the Pedicle; neither ever pressed it, and the Copperbelt on both sides of that border had more in common with itself than with either capital."
+      ],
+      "pairs": [
+        { "a": "Zambia", "b": "China", "value": 60.0 },
+        { "a": "Zambia", "b": "USA", "value": 40.0 },
+        { "a": "Zambia", "b": "UK", "value": 40.0 },
+        { "a": "Zambia", "b": "USSR", "value": 20.0 },
+        { "a": "Zambia", "b": "India", "value": 30.0 },
+        { "a": "Zambia", "b": "Yugoslavia", "value": 35.0 },
+        { "a": "Zambia", "b": "Tanzania", "value": 70.0 },
+        { "a": "Zambia", "b": "Zimbabwe", "value": 45.0 },
+        { "a": "Zambia", "b": "Angola", "value": 40.0 },
+        { "a": "Zambia", "b": "Kenya", "value": 25.0 },
+        { "a": "Zambia", "b": "Zaire", "value": -5.0 },
+        { "a": "Zambia", "b": "Malawi", "value": -10.0 },
+        { "a": "Zambia", "b": "SouthAfrica", "value": -55.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 3 of 6: Malawi, and it is the outlier of the whole region. South Africa at 65 is the highest positive line Pretoria holds with any African state in this table, and it is transcribed rather than inferred: Malawi established full diplomatic relations with South Africa in 1967 and was the only African country to hold them, Banda made a state visit in August 1971, Vorster came to Blantyre in 1970, and South African money built the new capital at Lilongwe. Every other state in this region was sanctioning Pretoria or being raided by it. Banda had an embassy there.",
+        "China at -30 follows from the same anti-communism and is the other transcription people miss: Malawi recognised the Republic of China on Taiwan from 1966 and did not switch to Beijing until 2008. The Soviet Union at -25 is simpler still - Banda would not hold diplomatic relations with it at all.",
+        "Mozambique at -20 and Tanzania at -15 are the regional cost of both of those. FRELIMO's quarrel was that RENAMO operated out of Malawian territory until 1986; Tanzania's is older and quieter, and is the Lake Malawi boundary the Malawi row in nations.rs sets out - Lilongwe holds that the 1890 Heligoland line puts the whole lake in Malawi and Dar es Salaam holds that it runs down the middle. It is entered as a coolness rather than a claim, for the reason argued there."
+      ],
+      "pairs": [
+        { "a": "Malawi", "b": "SouthAfrica", "value": 65.0 },
+        { "a": "Malawi", "b": "UK", "value": 55.0 },
+        { "a": "Malawi", "b": "USA", "value": 45.0 },
+        { "a": "Malawi", "b": "Israel", "value": 35.0 },
+        { "a": "Malawi", "b": "Taiwan", "value": 55.0 },
+        { "a": "Malawi", "b": "Zimbabwe", "value": 15.0 },
+        { "a": "Malawi", "b": "Kenya", "value": 15.0 },
+        { "a": "Malawi", "b": "Tanzania", "value": -15.0 },
+        { "a": "Malawi", "b": "USSR", "value": -25.0 },
+        { "a": "Malawi", "b": "China", "value": -30.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 4 of 6: Botswana. South Africa at -35 is the most carefully placed number in this region and it is deliberately NOT as low as Zambia's -55 or Angola's -60. Gaborone refused to sign a non-aggression pact of the Nkomati kind, took in ANC refugees and was raided for it - the SADF killed twelve in Gaborone on 14 June 1985 and came back in May 1986 and March 1988 - and it also sat inside the Southern African Customs Union, sold its beef and its diamonds through South African infrastructure, and shadowed the rand. A state can be raided by its largest trading partner and remain its largest trading partner, and this number is that state.",
+        "Britain at 65 and the United States at 60 are the highest Western lines any African nation holds in this table, and they are earned by the same thing botswana.json's stability figure records: Botswana was the demonstration case, the one aid recipient in the region Western donors could point at, and it was treated accordingly.",
+        "Zimbabwe at 50 and Zambia at 40 are Frontline State solidarity without Frontline State rhetoric. Botswana joined the Frontline States and the Southern African Development Coordination Conference, founded in Lusaka on 1 April 1980 precisely to reduce dependence on South Africa and largely unable to, and Gaborone was chosen as its headquarters."
+      ],
+      "pairs": [
+        { "a": "Botswana", "b": "UK", "value": 65.0 },
+        { "a": "Botswana", "b": "USA", "value": 60.0 },
+        { "a": "Botswana", "b": "Germany", "value": 45.0 },
+        { "a": "Botswana", "b": "Zimbabwe", "value": 50.0 },
+        { "a": "Botswana", "b": "Zambia", "value": 40.0 },
+        { "a": "Botswana", "b": "Tanzania", "value": 35.0 },
+        { "a": "Botswana", "b": "Angola", "value": 30.0 },
+        { "a": "Botswana", "b": "Mozambique", "value": 35.0 },
+        { "a": "Botswana", "b": "China", "value": 25.0 },
+        { "a": "Botswana", "b": "USSR", "value": 10.0 },
+        { "a": "Botswana", "b": "Malawi", "value": 10.0 },
+        { "a": "Botswana", "b": "SouthAfrica", "value": -35.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 5 of 6: Lesotho, and the number to look at is South Africa at 20 - POSITIVE, in the one country South Africa completely surrounds and had twice raided. It is positive because of who was in office. Leabua Jonathan's government had opened relations with the Soviet Union and China, refused to sign a security pact and sheltered the ANC; Pretoria closed the border on 1 January 1986, the country ran out of fuel and food in three weeks, and the army removed him on 20 January. Lekhanya's Military Council then expelled the ANC, signed the Lesotho Highlands Water Project treaty on 24 October 1986 selling Orange river water to the Witwatersrand, and stayed. 20 rather than 50 because this is a client relationship a blockade produced, and every Mosotho knew it.",
+        "The Soviet Union at -10 is the direct consequence: the 1986 coup reversed Jonathan's opening to Moscow and Beijing, and China at 5 is where that leaves a relationship nobody bothered to break off formally. Britain at 45 is the Commonwealth and a hundred and twenty years of Basutoland, and the United States at 35 is aid and the World Bank-led financing of the Highlands scheme."
+      ],
+      "pairs": [
+        { "a": "Lesotho", "b": "UK", "value": 45.0 },
+        { "a": "Lesotho", "b": "USA", "value": 35.0 },
+        { "a": "Lesotho", "b": "SouthAfrica", "value": 20.0 },
+        { "a": "Lesotho", "b": "Zimbabwe", "value": 20.0 },
+        { "a": "Lesotho", "b": "Botswana", "value": 35.0 },
+        { "a": "Lesotho", "b": "Zambia", "value": 15.0 },
+        { "a": "Lesotho", "b": "Mozambique", "value": 15.0 },
+        { "a": "Lesotho", "b": "Malawi", "value": 10.0 },
+        { "a": "Lesotho", "b": "China", "value": 5.0 },
+        { "a": "Lesotho", "b": "USSR", "value": -10.0 }
+      ]
+    },
+    {
+      "note": [
+        "Block 6 of 6: Swaziland, and it is Lesotho's case taken further. South Africa at 45 is the warmest line any Frontline-adjacent state holds with Pretoria after Malawi's 65: Swaziland signed a SECRET non-aggression and security pact with South Africa on 17 February 1982 - two years before Nkomati and not admitted until 1984 - and honoured it, arresting and deporting ANC cadres and letting South African security operate on Swazi ground. In return Botha's government agreed in June 1982 to transfer KaNgwane and Ingwavuma, which would have made Swaziland a coastal state. The transfer never happened, the claim is entered in nations.rs, and the relationship stayed warm anyway.",
+        "Taiwan at 55 and China at -25 are the pairing Malawi also carries, and Swaziland has held it longer than anybody: recognition of the Republic of China since 1968, never switched, and as of the 2020s the only state in Africa that still has not. Mozambique at 20 is a working border rather than a friendship - Swaziland's outlet to the sea ran through Maputo, and Maputo knew perfectly well what Mbabane was doing with the ANC."
+      ],
+      "pairs": [
+        { "a": "Swaziland", "b": "SouthAfrica", "value": 45.0 },
+        { "a": "Swaziland", "b": "Taiwan", "value": 55.0 },
+        { "a": "Swaziland", "b": "UK", "value": 50.0 },
+        { "a": "Swaziland", "b": "USA", "value": 45.0 },
+        { "a": "Swaziland", "b": "Israel", "value": 30.0 },
+        { "a": "Swaziland", "b": "Botswana", "value": 30.0 },
+        { "a": "Swaziland", "b": "Lesotho", "value": 40.0 },
+        { "a": "Swaziland", "b": "Malawi", "value": 30.0 },
+        { "a": "Swaziland", "b": "Mozambique", "value": 20.0 },
+        { "a": "Swaziland", "b": "Zimbabwe", "value": 15.0 },
+        { "a": "Swaziland", "b": "Zambia", "value": 5.0 },
+        { "a": "Swaziland", "b": "China", "value": -25.0 }
+      ]
     }
   ]
 }

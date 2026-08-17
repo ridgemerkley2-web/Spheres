@@ -803,10 +803,17 @@ mod tests {
         //   file for why the figure moved rather than the citation.
         // Nothing else in spheres-sim/data/ changed for any nation that was on
         // the board before this integration.
+        // RE-PINNED ON BRANCH feat/r2-southafrica2, and INTEGRATOR: expect to
+        // re-pin this once more at the end. Seven roster rows were appended
+        // (Mozambique, Zambia, Malawi, Botswana, Namibia, Lesotho, Swaziland),
+        // six data files were added, and five existing rows gained neighbours —
+        // South Africa, Zimbabwe, Angola, Tanzania and Zaire — because a border
+        // has to be declared from both sides. No figure in any nation file that
+        // was on the board before this branch was touched.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0x1bb3d0e7c7919e2eu64,
+            h, 0x719a9df857532f7au64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -924,7 +931,9 @@ mod tests {
         // audit found that nothing in the suite constrained the coefficient this
         // commit changed from below: at bite 0.000, with sanctions costing a
         // target no growth at all, everything except the hashes stayed green.
-        const GOLDEN: u64 = 0xef3e968249846a49;
+        // RE-PINNED ON BRANCH feat/r2-southafrica2 for the seven Southern
+        // African rows. INTEGRATOR: re-pin once at the end.
+        const GOLDEN: u64 = 0x64ec013d5cf52c62;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
