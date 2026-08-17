@@ -355,7 +355,10 @@ pub fn tick(w: &mut WorldState) {
         let budget = n.gdp * n.mil_spend_gdp; // $bn/yr
         // Strength drifts toward what the budget sustains — and what a budget
         // sustains depends on what the arsenal it buys is made of.
-        let sustained = (budget * 0.30).sqrt() * 8.0 * crate::tech::military_multiplier(n)
+        // Clamped at zero because a negative budget is not a smaller army, it is
+        // a NaN — and a NaN in mil_strength propagates silently through every
+        // strength ratio in the war model before serde writes it out as `null`.
+        let sustained = (budget * 0.30).max(0.0).sqrt() * 8.0 * crate::tech::military_multiplier(n)
             + crate::tech::military_floor(n);
         n.mil_strength += (sustained - n.mil_strength) * REPLACEMENT_RATE;
         n.munitions = (n.munitions + refill).clamp(0.0, 1.0);

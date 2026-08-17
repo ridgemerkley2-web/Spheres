@@ -19,9 +19,9 @@ use crate::world::*;
 /// fitted against a world GDP that was ~18% too small. It had not. Measured
 /// with `ai_aggression = 0.0`, so that China simply grows for thirty years:
 ///
-///     China 30-year multiple, at peace, 108 nations, seeds 0..=9:
-///       14.15 14.03 13.68 13.80 14.34 14.40 13.68 13.69 14.47 14.02
-///       median 14.02x, against the real 14.33x (World Bank NY.GDP.MKTP.KD)
+///    China 30-year multiple, at peace, 108 nations, seeds 0..=9:
+///      14.15 14.03 13.68 13.80 14.34 14.40 13.68 13.69 14.47 14.02
+///      median 14.02x, against the real 14.33x (World Bank NY.GDP.MKTP.KD)
 ///
 /// The growth model is right to within 2% and the catchup coefficient is not
 /// mistuned. Raising it to lift the median would have pushed a peaceful China
@@ -45,27 +45,27 @@ use crate::world::*;
 /// a held regime, measured against an otherwise identical control over 20 years
 /// with `ai_aggression = 0.0` (`sanction_cost_calibration`, ignored):
 ///
-///     bite   USA alone -> China   G5 -> China
-///            (share 0.24)         (share 0.52)
-///     0.000        0.20pt              0.46pt   <- the three count-based
-///     0.010        0.48pt              1.09pt      channels still unconverted
-///     0.015        0.47pt              1.37pt
-///     0.020        0.59pt              1.53pt   <- shipped
-///     0.025        0.72pt              1.70pt
-///     0.030        0.87pt              1.92pt
-///     0.040        1.11pt              2.55pt
+///    bite   USA alone -> China   G5 -> China
+///           (share 0.24)         (share 0.52)
+///    0.000        0.20pt              0.46pt   <- the three count-based
+///    0.010        0.48pt              1.09pt      channels still unconverted
+///    0.015        0.47pt              1.37pt
+///    0.020        0.59pt              1.53pt   <- shipped
+///    0.025        0.72pt              1.70pt
+///    0.030        0.87pt              1.92pt
+///    0.040        1.11pt              2.55pt
 ///
 /// The real regimes of the period, non-oil channel only:
 ///   - China 2018-19, United States alone, ~24% of world output: growth 6.7% ->
-///     6.0%, about 0.6pt. Model at 0.020: 0.59pt.
+///    6.0%, about 0.6pt. Model at 0.020: 0.59pt.
 ///   - South Africa 1985-93, near-universal, ~80%: ~1.0% growth against a ~3.5%
-///     trend, about 2.5pt. Model at 0.020 scaled to 0.80: 2.35pt.
+///    trend, about 2.5pt. Model at 0.020 scaled to 0.80: 2.35pt.
 ///   - Russia 2014-21 and Iran 2012-15 are the two other large regimes and are
-///     DELIBERATELY NOT USED. Both targets are petro-states whose measured loss
-///     ran mostly through oil, and this model prices that separately in
-///     `embargo_drag` and `oil_blockade`. Calibrating the non-oil growth drag on
-///     them would count the same barrel twice. Taken at face value they would
-///     argue for 0.010-0.015.
+///    DELIBERATELY NOT USED. Both targets are petro-states whose measured loss
+///    ran mostly through oil, and this model prices that separately in
+///    `embargo_drag` and `oil_blockade`. Calibrating the non-oil growth drag on
+///    them would count the same barrel twice. Taken at face value they would
+///    argue for 0.010-0.015.
 ///
 /// So the two clean anchors bracket 0.020-0.025, and 0.020 is taken rather than
 /// 0.025 because three further sanction channels still count flags rather than
@@ -230,7 +230,19 @@ pub fn tick(w: &mut WorldState) {
         let growth_annual = potential + demand_gap + bubble_boost + oil_effect
             - sanction_drag - war_drag - debt_drag - instability_drag - embargo_drag + noise;
 
-        n.gdp *= 1.0 + growth_annual / 12.0;
+        // An economy can collapse; it cannot become negative. Nothing in the
+        // growth model bounded this, and it took a *player* to find out: the
+        // central bank in politics.rs deliberately skips the player's own nation
+        // — the rate is theirs to set — so a player who takes the United States
+        // and then does nothing for thirty-five years never cuts, deflates, and
+        // the demand gap drives growth negative for long enough to walk GDP
+        // through zero. Measured on master: -10.98 by June 2016, after which
+        // war.rs square-roots a negative budget, mil_strength becomes NaN, serde
+        // writes NaN as `null`, and the browser UI dies on it.
+        //
+        // Every invariant test we had ran with `player = None`, so the one
+        // configuration a human actually plays in was the one nothing covered.
+        n.gdp = (n.gdp * (1.0 + growth_annual / 12.0)).max(0.001);
         n.growth_last = n.growth_last * 0.9 + growth_annual * 0.1;
 
         // ---- Inflation (annual rate, adjusts monthly) ----

@@ -926,6 +926,63 @@ mod tests {
     }
 
     #[test]
+    #[test]
+    fn an_idle_player_cannot_break_the_world() {
+        // The configuration a human actually plays in, and the one nothing
+        // covered. `a_century_holds_together` and `economic_invariants_50_years`
+        // both run with `player = None`, so they exercise a world where every
+        // central bank is on. Set a player and one bank switches off — by
+        // design, the rate is the player's to set — and a player who does
+        // nothing deflates. On master that walked the United States to a GDP of
+        // -10.98 by June 2016, then to a NaN mil_strength, then to a browser UI
+        // that would not load the save.
+        //
+        // Doing nothing is a thing players do. It must produce a bad game, not
+        // a broken one.
+        for seat in [NationId::USA, NationId::Poland, NationId::Iraq] {
+            let mut w = world_1990(GameRules::default());
+            w.player = Some(seat);
+            for _ in 0..420 {
+                tick_month(&mut w, &[]);
+                for n in w.nations.iter().filter(|n| n.alive) {
+                    assert!(
+                        n.gdp.is_finite() && n.gdp > 0.0,
+                        "idle {:?}: {:?} gdp {} in {}",
+                        seat, n.id, n.gdp, w.year
+                    );
+                    assert!(
+                        n.mil_strength.is_finite() && n.mil_strength >= 0.0,
+                        "idle {:?}: {:?} mil_strength {} in {}",
+                        seat, n.id, n.mil_strength, w.year
+                    );
+                    assert!(n.inflation.is_finite(), "idle {:?}: {:?} inflation NaN", seat, n.id);
+                    assert!(n.debt_gdp.is_finite(), "idle {:?}: {:?} debt NaN", seat, n.id);
+                    assert!(
+                        n.population.is_finite() && n.population > 0.0,
+                        "idle {:?}: {:?} population {}", seat, n.id, n.population
+                    );
+                    assert!(
+                        n.political_capital.is_finite(),
+                        "idle {:?}: {:?} political capital NaN", seat, n.id
+                    );
+                }
+            }
+            // A NaN reaches the browser as a `null` that the UI cannot render,
+            // so the save is the surface the bug actually showed on. Checking
+            // for the literal string would be wrong — every `Option::None` in
+            // the state writes a legitimate `null` — so this asserts the two
+            // things that matter instead: the save parses back, and the world it
+            // parses back into is the same one.
+            let text = save(&w);
+            let reloaded = load(&text).unwrap_or_else(|e| panic!("idle {:?}: save will not load: {}", seat, e));
+            assert_eq!(
+                state_hash(&reloaded), state_hash(&w),
+                "idle {:?}: the save did not round-trip", seat
+            );
+        }
+    }
+
+    #[test]
     fn a_century_holds_together() {
         // The risk register's top entry is two hundred AI economies spiralling,
         // and its stated mitigation is exactly this: a headless century run as a
