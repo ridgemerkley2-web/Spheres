@@ -67,7 +67,11 @@ Two pillars from SPEC.md, and where each now stands:
 
 ## Layout
 - `spheres-sim/` — the library. world.rs (state/RNG), init.rs (1990 data),
-  economy.rs, war.rs, politics.rs (AI/events), lib.rs (commands, tick loop, tests)
+  economy.rs, war.rs, politics.rs (AI/events), lib.rs (commands, tick loop, tests).
+  The tick order is the `SYSTEMS` table in lib.rs, and `century_run_profile`
+  times exactly that table — so when you add a system, add it there and the
+  profiler picks it up. Run it before optimising anything: the last two
+  performance guesses this project made were both wrong.
 - `spheres-sim/src/tech/` — the technology tree. mod.rs is the engine and the
   foundation set; the eight domain files beside it are data only. Productivity
   is scored against what the world on average knows, not added on top of the

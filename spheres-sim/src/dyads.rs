@@ -91,8 +91,14 @@ const NEGLIGIBLE: f64 = 1e-6;
 /// The flag `war.rs` writes when `a` has beaten `t` in a war `a` started, and
 /// the flag this module reads to know the claim has been pressed already.
 pub fn settled_flag(a: NationId, t: NationId) -> String {
-    format!("pressed_{:?}_{:?}", a, t)
+    format!("{}_{:?}_{:?}", SETTLED_FLAG, a, t)
 }
+
+/// The two flags this module asks about, as prefixes, so the question can be
+/// asked without building the answer's key. `war.rs` writes `burned_A_B` when
+/// an invasion is repelled; `settled_flag` writes the other.
+pub const SETTLED_FLAG: &str = "pressed";
+pub const BURNED_FLAG: &str = "burned";
 
 /// Everyone `a` could plausibly use force against: its neighbours, the states
 /// it claims something from, and the rest of its region. Precomputed, so the
@@ -177,7 +183,7 @@ pub fn war_appetite(w: &WorldState, a: NationId, t: NationId) -> f64 {
 
     // --- What it wants. A claim already taken by force is no longer a war
     // aim, however sour the relationship stays. ---
-    let settled = w.has_flag(&settled_flag(a, t));
+    let settled = w.has_pair_flag(SETTLED_FLAG, a, t);
     let want = if settled { WANT_FLOOR } else { WANT_FLOOR + claim_share(a, t) };
 
     // --- How easily it could be taken. A state ten times the size of its
@@ -217,7 +223,7 @@ pub fn war_appetite(w: &WorldState, a: NationId, t: NationId) -> f64 {
     // Expected defence includes likely interveners — but a first-time gambler
     // discounts them, which is Saddam's 1990 misjudgment. After one repelled
     // invasion the lesson is learned permanently.
-    let learned = w.has_flag(&format!("burned_{:?}_{:?}", a, t));
+    let learned = w.has_pair_flag(BURNED_FLAG, a, t);
     let coalition_discount = if learned { 1.0 } else { 0.10 };
     let mut expected_def = tn.mil_strength;
     // Read the same list the coalition actually forms from, or the lesson of a
