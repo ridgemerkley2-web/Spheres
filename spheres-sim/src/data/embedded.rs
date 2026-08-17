@@ -106,6 +106,13 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
     Source { file: "data/nations/canada.json", json: include_str!("../../data/nations/canada.json") },
     Source { file: "data/nations/australia.json", json: include_str!("../../data/nations/australia.json") },
     Source { file: "data/nations/newzealand.json", json: include_str!("../../data/nations/newzealand.json") },
+    // Central Africa (branch feat/r2-centafrica), in ROSTER order.
+    Source { file: "data/nations/chad.json", json: include_str!("../../data/nations/chad.json") },
+    Source { file: "data/nations/centralafricanrepublic.json", json: include_str!("../../data/nations/centralafricanrepublic.json") },
+    Source { file: "data/nations/congo.json", json: include_str!("../../data/nations/congo.json") },
+    Source { file: "data/nations/gabon.json", json: include_str!("../../data/nations/gabon.json") },
+    Source { file: "data/nations/equatorialguinea.json", json: include_str!("../../data/nations/equatorialguinea.json") },
+    Source { file: "data/nations/saotome.json", json: include_str!("../../data/nations/saotome.json") },
 ];
 
 pub const EMBEDDED_RELATIONS: Source<'static> = Source {

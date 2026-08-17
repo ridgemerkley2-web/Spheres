@@ -267,7 +267,15 @@ pub const ROSTER: &[NationRow] = &[
     // Cameroon share 1,700km of frontier from Lake Chad to the Bight of Bonny, and
     // the far end of it is the Bakassi peninsula. Resolve any conflict here by
     // union — take every branch's addition.
-    row("Nigeria", "Nigeria", &["nga"], "WestAfrica", &["Cameroon"], &[], true, false, false),
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "Chad" appended. The
+    // Nigeria-Chad frontier is about 85 km and it is entirely water — the
+    // south-western shore of Lake Chad — but the lake had lost some nine tenths
+    // of its 1963 area by 1990 and what the two armies actually met on was dry
+    // sand. They met on it: Nigerian and Chadian troops fought over the islands
+    // of Kinasara and Katti Kime in April-May 1983 and something like eighty
+    // men died. This is a border an army walked across inside the decade, so it
+    // is declared. Resolve any conflict here by union.
+    row("Nigeria", "Nigeria", &["nga"], "WestAfrica", &["Cameroon", "Chad"], &[], true, false, false),
 
     // The Paracels and Spratlys from the other end, plus the border strips.
     row("Vietnam", "Vietnam", &["viet nam", "vnm"], "SoutheastAsia",
@@ -996,27 +1004,47 @@ pub const ROSTER: &[NationRow] = &[
     row("Tunisia", "Tunisia", &["tun", "tunisie"], "NorthAfrica",
         &["Algeria", "Libya"], &[], true, false, false),
 
-    // Libya's irredentism was real and enormous and points entirely off this
-    // map: the Aouzou Strip, annexed from Chad in 1973, fought over until the
-    // rout of March 1987 and surrendered to the ICJ in 1994. Chad is not in
-    // this roster, so Libya opens with no claims — which reads as pacific and
-    // is not. What the borders do carry is reach: Libya touches Egypt, with
-    // whom it fought a four-day war in July 1977, and Sudan, whose government
-    // it had spent a decade trying to choose.
+    // Libya's irredentism was real and enormous: the Aouzou Strip, annexed from
+    // Chad in 1973, fought over until the rout of March 1987 and surrendered to
+    // the ICJ in 1994. What the borders carry besides is reach: Libya touches
+    // Egypt, with whom it fought a four-day war in July 1977, and Sudan, whose
+    // government it had spent a decade trying to choose.
+    //
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "Chad" appended, and the
+    // paragraph above rewritten because it used to end "Chad is not in this
+    // roster, so Libya opens with no claims". Chad is in the roster now, and
+    // Libya STILL opens with no claims — for a different and better reason,
+    // which is that on 1 January 1990 Libya was IN the Aouzou Strip. Chadian
+    // forces took Aouzou town on 8 August 1987 and Libya retook it on 28
+    // August; the ceasefire of 11 September 1987 froze the line there and
+    // Libya held the strip until it withdrew on 31 May 1994 under the ICJ
+    // judgment of 3 February 1994. This table's convention is Egypt-on-Sudan's:
+    // the claim belongs to the state that does NOT administer the ground, so
+    // the Aouzou claim is on Chad's row below and not on this one. What Libya
+    // wanted from Chad after 1987 was a government rather than an acre — it
+    // was arming Deby out of Darfur within the year — and that is covert
+    // action and patronage, which this model has other machinery for.
+    // Resolve any conflict on this row by union: take every branch's addition.
     // https://en.wikipedia.org/wiki/Aouzou_Strip
     row("Libya", "Libya", &["lby", "libyan arab jamahiriya", "jamahiriya"], "NorthAfrica",
-        &["Algeria", "Tunisia", "Egypt", "Sudan"], &[], true, false, false),
+        &["Algeria", "Tunisia", "Egypt", "Sudan", "Chad"], &[], true, false, false),
 
     // Sudan claims nothing. Under the 1902 administrative line it prefers, the
     // Hala'ib triangle is already Sudanese and Bir Tawil is already Egyptian,
     // so there is nothing left for Khartoum to ask for — the asymmetry is in
     // Egypt's row above, not this one. Sudan's war in 1990 is entirely
     // internal, which is what the separatism figure in sudan.json carries.
-    // The long southern and western frontiers — Ethiopia, Chad, Uganda, Kenya,
-    // Zaire, the Central African Republic — are with states this roster does
-    // not have.
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "Chad" and
+    // "CentralAfricanRepublic" appended, and the sentence that used to say the
+    // long southern and western frontiers were with states this roster does
+    // not have is now true only of Ethiopia, Uganda, Kenya and Zaire. The two
+    // added are real and they were used: Khartoum gave Idriss Deby sanctuary in
+    // Darfur after his failed coup of 1 April 1989 and he crossed back into
+    // Chad from there. That is a border with an insurgent's rear area, which is
+    // exactly the thing this column exists to let the model see. Sudan still
+    // claims nothing from either. Resolve any conflict here by union.
     row("Sudan", "Sudan", &["sdn", "as-sudan"], "NorthAfrica",
-        &["Egypt", "Libya"], &[], true, false, false),
+        &["Egypt", "Libya", "Chad", "CentralAfricanRepublic"], &[], true, false, false),
 
     // ===== Sub-Saharan Africa (branch feat/r-ssafrica) =====
     //
@@ -1067,16 +1095,40 @@ pub const ROSTER: &[NationRow] = &[
     // down the middle of Lake Tanganyika and has no land segment at all, and this
     // column means "force can cross without a fleet". Fifty kilometres of open
     // water is not a border in that sense, so it is left out on purpose.
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "CentralAfricanRepublic" and
+    // "Congo" appended. Two of the nine are now four. The Congolese frontier is
+    // the river itself — Kinshasa and Brazzaville face each other across 4 km of
+    // it and are the closest pair of capitals on earth after Rome and the
+    // Vatican — and a river a ferry crosses in twenty minutes is a border in
+    // every sense this column means. The Central African one is the Ubangi and
+    // then dry ground east of Zongo.
+    //
+    // ALIAS COLLISION, FOR THE INTEGRATOR, NOT FIXED HERE. This row holds
+    // "congo" as an alias and sits earlier in the roster than the new Congo row
+    // below, so `NationId::parse("congo")` resolves to Zaire. For 1990 that is
+    // backwards: the country called Congo in January 1990 is the one with its
+    // capital at Brazzaville, and this one had been Zaire since 1971. Fixing it
+    // means deleting one alias from another branch's row, which is not this
+    // branch's to delete mid-integration. The new row's own aliases are all
+    // unambiguous, so nothing is unreachable — "cog", "brazzaville" and
+    // "congo-brazzaville" all land where they should. Resolve by union.
     row("Zaire", "Zaire", &["zar", "congo", "drc"], "CentralAfrica",
-        &["Angola", "Uganda"], &[], true, false, false),
+        &["Angola", "Uganda", "CentralAfricanRepublic", "Congo"], &[], true, false, false),
 
     // Cabinda is Angola's own exclave, cut off from the rest of the country by the
     // Zaire river mouth, and the separatism figure in angola.json is where FLEC
     // lives. It is not a claim: nobody else claims Cabinda, Angola simply cannot
     // walk to it. Kinshasa backed the FNLA and then UNITA for fifteen years without
     // ever asking for an acre of Angolan ground.
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "Congo" appended, and it is
+    // Cabinda's border rather than Angola proper's. The exclave the comment
+    // above says Angola cannot walk to is bounded by Zaire on two sides and by
+    // Congo-Brazzaville on the third, and Brazzaville is where FLEC kept its
+    // offices. A border the government in Luanda cannot use and its secessionist
+    // problem can is the honest shape of it, and the row above already says the
+    // separatism lives in angola.json. Resolve any conflict here by union.
     row("Angola", "Angola", &["ago", "ang"], "SouthernAfrica",
-        &["Zaire"], &[], true, false, false),
+        &["Zaire", "Congo"], &[], true, false, false),
 
     row("Zimbabwe", "Zimbabwe", &["zwe", "zim", "rhodesia"], "SouthernAfrica",
         &["SouthAfrica"], &[], true, false, false),
@@ -1108,8 +1160,19 @@ pub const ROSTER: &[NationRow] = &[
     // 1991 census — 0.003 of the target, and it drops to a rounding error against
     // the oil under the adjacent water, which is what the case was really about.
     // https://en.wikipedia.org/wiki/Bakassi
+    //
+    // NEIGHBOUR EDIT (branch feat/r2-centafrica): "Chad",
+    // "CentralAfricanRepublic", "Congo", "Gabon" and "EquatorialGuinea"
+    // appended. Cameroon had exactly one roster neighbour and now has six,
+    // which is what happens when the Congo basin arrives: Yaounde touches
+    // every state in this region except Sao Tome, and the last three of those
+    // frontiers meet within a hundred kilometres of each other in the
+    // rainforest behind Ambam. No new claims in either direction — the Bakassi
+    // one above is still the only claim Cameroon holds and still the only one
+    // held against Nigeria. Resolve any conflict here by union.
     row("Cameroon", "Cameroon", &["cmr", "cameroun"], "CentralAfrica",
-        &["Nigeria"], &[claim("Nigeria", 0.003)], true, false, false),
+        &["Nigeria", "Chad", "CentralAfricanRepublic", "Congo", "Gabon", "EquatorialGuinea"],
+        &[claim("Nigeria", 0.003)], true, false, false),
 
     // Bangladesh is surrounded by India on three sides — 4,100 km of border,
     // the fifth longest in the world — and touches Myanmar for 270 km in the
@@ -1390,6 +1453,152 @@ pub const ROSTER: &[NationRow] = &[
     // how New Zealand has ever gone to war.
     row("NewZealand", "New Zealand", &["nz", "nzl"], "Oceania",
         &[], &[], true, false, false),
+
+    // ===== Central Africa (branch feat/r2-centafrica) ======================
+    //
+    // Six states, and the reason they belong on the board is the reason they
+    // are hard: they are the bottom of the table. Equatorial Guinea's whole
+    // 1990 economy is $112m and Sao Tome's is $120m — the two smallest numbers
+    // in this roster by an order of magnitude, smaller than a single Spanish
+    // provincial budget — and Chad had just won a war against a country twenty
+    // times its output. A model that only behaves for the top forty is a model
+    // that has not been tested.
+    //
+    // Region: all six are CentralAfrica, which puts them in one contact set
+    // with Cameroon and Zaire. That is not a UN statistical division, it is the
+    // BEAC — five of the six share one central bank, one currency and one
+    // discount rate, and the sixth (Sao Tome) is 250 km off the coast of the
+    // other five. Chad in particular sits here rather than in NorthAfrica or
+    // WestAfrica despite being Sahelian, because CEMAC and the Banque des Etats
+    // de l'Afrique Centrale are where N'Djamena's institutions actually were;
+    // the two frontiers that mattered militarily, Libya's and Sudan's, are
+    // declared explicitly above and do not depend on the region field at all.
+    //
+    // ONE CLAIM IN SIX ROWS, and it is Chad's on Libya. The Cairo resolution of
+    // 1964 held here as it held everywhere else on this continent, and the two
+    // near-misses this region offers are both deliberately absent — see the
+    // Equatorial Guinea and Chad rows for what they are and why they are not
+    // entered. What the region is full of instead is regimes that were about to
+    // be taken apart from inside: five of the six had a national conference, a
+    // constitutional referendum or a rebellion inside three years of this start
+    // date, and not one of them lost territory to a neighbour.
+
+    // Chad — and the claim is the Aouzou Strip, the only irredenta in this
+    // region and one of the largest by area anywhere in the roster. Libya
+    // annexed the 114,000 km2 north of the 1935 Laval-Mussolini line in 1973 on
+    // the strength of a treaty France never ratified, held it through the war
+    // Habre's Toyota columns won in 1987, and was still holding it on 1 January
+    // 1990. Chad is therefore the claimant, on this table's Egypt-on-Sudan
+    // convention that the claim belongs to whoever does not administer the
+    // ground.
+    //
+    // The share is 0.004 and the arithmetic is the argument. By area the strip
+    // is 114,000 of Libya's 1,760,000 km2, or 0.065. By people it is a few
+    // thousand Toubou against a Libya of 4.36m, or roughly 0.001 — and the
+    // population denominator is the one this table settled on in the Bolivia
+    // row. 0.004 sits between them for the same reason China's 0.02 on India
+    // does: this is a large empty place claimed for what is under it rather
+    // than who lives on it, and the uranium at Aouzou was the standing rumour
+    // in every account of why Tripoli wanted it. What that number does in the
+    // appetite model is refuse Chad a march on Libya forever, which is exactly
+    // what happened — N'Djamena did not attack again after September 1987. It
+    // filed at the International Court of Justice, won on 3 February 1994, and
+    // took the strip back by treaty on 31 May 1994.
+    //
+    // NOT ENTERED: the Lake Chad islands. Nigeria and Chad shot at each other
+    // over Kinasara and Katti Kime in April 1983, and the border is declared on
+    // Nigeria's row above for that reason. But the Lake Chad Basin Commission's
+    // survey of 1983-91 was already demarcating the line when this game opens,
+    // Chad accepted it, and the object in dispute is sandbars in a lake that had
+    // lost nine tenths of its water — no population, no share, and a quarrel
+    // that ended in a survey rather than a war.
+    // https://en.wikipedia.org/wiki/Aouzou_Strip
+    row("Chad", "Chad", &["tcd", "tchad", "td"], "CentralAfrica",
+        &["Libya", "Sudan", "CentralAfricanRepublic", "Cameroon", "Nigeria"],
+        &[claim("Libya", 0.004)], true, false, false),
+
+    // The Central African Republic borders five roster members and claims
+    // nothing from any of them, which for a state at the exact geographic
+    // centre of the continent is worth stating rather than leaving to
+    // inference. Bangui's problem in 1990 was that it had no revenue, no road
+    // to a port, and a garrison of French marines at Bouar keeping the peace it
+    // could not keep itself; it had no problem at all with where its lines ran.
+    // The frontier with Sudan is the one that would matter later — the roads
+    // through Birao are how the region's fighters have moved between Darfur and
+    // the Ubangi ever since — and it is declared for that reason and not
+    // because anyone claimed anything across it.
+    row("CentralAfricanRepublic", "Central African Republic",
+        &["car", "caf", "centrafrique", "central african republic", "rca"], "CentralAfrica",
+        &["Chad", "Sudan", "Cameroon", "Congo", "Zaire"], &[], true, false, false),
+
+    // Congo-Brazzaville. The code is "Congo" and the display name is
+    // "Congo-Brazzaville", because in January 1990 the state whose plain name
+    // was Congo is this one — the other had been Zaire since 27 October 1971 —
+    // and a player who types "congo" deserves to be told which. See the alias
+    // note on the Zaire row above for the collision this leaves standing.
+    //
+    // Four borders, and the striking one is Angola: not Angola proper, which is
+    // 400 km further south past the Zaire river mouth, but Cabinda, whose
+    // northern boundary this is. No claims. The Congo-Zaire line is the
+    // sharpest example on the continent of the OAU rule doing its work — it is
+    // the boundary two colonial powers drew down a river at the Berlin
+    // conference, it puts two capitals four kilometres apart and cuts the same
+    // Kongo people in half, and neither state has ever asked for it to move.
+    row("Congo", "Congo-Brazzaville",
+        &["cog", "congo-brazzaville", "congo brazzaville", "republic of the congo", "brazzaville", "congo republic"],
+        "CentralAfrica",
+        &["Gabon", "Cameroon", "CentralAfricanRepublic", "Zaire", "Angola"],
+        &[], true, false, false),
+
+    // Gabon: three borders, no claims, and the richest country per head in
+    // sub-Saharan Africa outside the islands — $6,269 a head in 1990, six times
+    // Cameroon's and thirty times Chad's, on 950,000 people and 270,000 barrels
+    // a day. It is the state in this region with the most to lose and the least
+    // to want, which is the correct reading of a claims list with nothing in
+    // it: Bongo's foreign policy was French, mediatory and status-quo, and the
+    // only foreign soldiers that ever mattered in Libreville were the 6th
+    // Marine Infantry Battalion of the French army, garrisoned there by treaty
+    // and used in 1964 to put a president back and in 1990 to protect French
+    // nationals in Port-Gentil.
+    row("Gabon", "Gabon", &["gab", "ga"], "CentralAfrica",
+        &["Cameroon", "EquatorialGuinea", "Congo"], &[], true, false, false),
+
+    // Equatorial Guinea — the smallest economy in the roster, $112m of output
+    // for 419,000 people, and the one Spanish-speaking state in Africa. Two
+    // borders, both on the Rio Muni mainland; the capital is on an island 250
+    // km away, which is a fact about the country's politics more than its
+    // geography and is in the separatism figure.
+    //
+    // NOT ENTERED, and this is the argued omission of the six: Mbanie. Gabon
+    // put troops on the 30-hectare island in Corisco Bay in August 1972 and
+    // never left, Equatorial Guinea has never recognised the seizure, and the
+    // two sides eventually went to UN mediation in 2003 and the International
+    // Court of Justice in 2016. So a claim exists in law. It does not exist in
+    // 1990: after the Bata Convention of 1974 no Equatoguinean government
+    // pressed the question for twenty-nine years, and what reopened it was the
+    // oil under Corisco Bay — Zafiro came in in 1996 and the file came out of
+    // the drawer in 2003. Entering it here would be the failure the Nepal row
+    // above names precisely: writing in a grievance that became loud later and
+    // calling it a transcription of 1990. Recorded rather than entered, so
+    // that an integrator who thinks the call is wrong can see what the object
+    // was — 30 hectares and no inhabitants, which even entered would be
+    // 0.00003 of Gabon and the smallest claim on this table.
+    // https://en.wikipedia.org/wiki/Mbanie
+    row("EquatorialGuinea", "Equatorial Guinea",
+        &["gnq", "equatorial guinea", "guinea ecuatorial", "eq guinea", "gq"], "CentralAfrica",
+        &["Cameroon", "Gabon"], &[], true, false, false),
+
+    // Sao Tome and Principe: two volcanic islands 250 km off Gabon, 119,000
+    // people, and no land border with anything. The empty neighbour list is the
+    // whole strategic fact about the place — it has never fought a war, its
+    // army was about six hundred men, and the only foreign force ever stationed
+    // on it was a thousand Angolan troops Luanda sent in 1978 after a coup
+    // scare and withdrew in 1991. It is in this roster because BIBLE 3.3 says
+    // the world is the world, and because a model that can only price states
+    // with armies cannot price the fifty that have not got one.
+    row("SaoTome", "Sao Tome and Principe",
+        &["stp", "sao tome", "sao tome and principe", "são tomé and príncipe", "st"], "CentralAfrica",
+        &[], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -1619,6 +1828,13 @@ well_known! {
     Canada => "Canada",
     Australia => "Australia",
     NewZealand => "NewZealand",
+    // Central Africa (branch feat/r2-centafrica).
+    Chad => "Chad",
+    CentralAfricanRepublic => "CentralAfricanRepublic",
+    Congo => "Congo",
+    Gabon => "Gabon",
+    EquatorialGuinea => "EquatorialGuinea",
+    SaoTome => "SaoTome",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

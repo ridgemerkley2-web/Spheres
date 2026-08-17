@@ -423,6 +423,16 @@ const TERRITORY = {
   Ethiopia: ["ETH", "ERI"],
   // Natural Earth carries the modern code for the country the game calls Zaire.
   Zaire: ["COD"],
+  // Central Africa (branch feat/r2-centafrica).
+  Chad: ["TCD"], CentralAfricanRepublic: ["CAF"], Congo: ["COG"],
+  Gabon: ["GAB"], EquatorialGuinea: ["GNQ"],
+  // Sao Tome and Principe has no polygon in Natural Earth 110m — the two
+  // islands are well under the MIN_AREA_PX floor mapgen drops specks with, and
+  // `grep -o '"STP"' ui/world.js` returns nothing. Kept as a code anyway,
+  // exactly as Singapore is: the renderer filters codes against
+  // WORLD.countries, so an absent one draws nothing, and the LABEL_AT entry
+  // below gives the nation a label and a click target where it actually is.
+  SaoTome: ["STP"],
   Bangladesh: ["BGD"], SriLanka: ["LKA"], Nepal: ["NPL"],
   Afghanistan: ["AFG"], Myanmar: ["MMR"],
   NorthKorea: ["PRK"], Taiwan: ["TWN"], Mongolia: ["MNG"], Thailand: ["THA"],
@@ -469,6 +479,13 @@ const LABEL_AT = {
   // 1.35N 103.82E through mapgen's `project`, because Singapore has no polygon
   // and therefore no centroid to fall back on.
   Singapore: [788, 240],
+  // 0.34N 6.73E through mapgen's `project`, because Sao Tome and Principe has
+  // no polygon in the shipped geometry and therefore no centroid to fall back
+  // on. Computed with the same Robinson constants mapgen.rs uses (W=1000,
+  // LAT_TOP=83, the published RX/RY tables); the same computation reproduces
+  // Singapore's [788, 240] and Bahrain's [636, 162] above exactly, which is
+  // the check that this is the projection and not a guess at it.
+  SaoTome: [519, 243],
 };
 /// Nations whose label sits off their own territory and needs a leader line.
 const LEADER = new Set(["Kuwait"]);

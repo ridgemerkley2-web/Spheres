@@ -1,0 +1,37 @@
+{
+  "id": "Chad",
+  "name": "Chad",
+  "system": "Market",
+  "authoritarianism": 0.92,
+  "economy": {
+    "gdp_bn": 1.74,
+    "population_m": 5.96,
+    "tfp_trend": -0.003,
+    "inflation": -0.0074,
+    "interest_rate": 0.11,
+    "tax_rate": 0.075,
+    "mil_spend_gdp": 0.0198,
+    "state_invest_gdp": 0.045,
+    "priv_invest_gdp": 0.023,
+    "debt_gdp": 0.3,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 24.0, "separatism": 0.3 },
+  "military": { "strength": 1.3, "nuclear": false },
+  "sources": [
+    "GDP $1.74bn: World Bank NY.GDP.MKTP.CD, series TCD, 1990 = 1,738,606,000. About $292 a head, the lowest in this roster. NOTE ON VINTAGE, because this figure has two published values: the IMF's World Economic Outlook (NGDPD) puts Chadian GDP in 1990 at $2.369bn, 36% higher, and so does any source rebased on Chad's revised national accounts. The World Bank series is entered because it is the series the whole roster sits on - the same series that returns 12,314,482,628 for Cameroon 1990, which is the figure cameroon.json cites to the digit.",
+    "Population 5.96m: World Bank SP.POP.TOTL, series TCD, 1990 = 5,963,250. The census of April 1993 counted 6,279,931; before it the last one was 1964, so everything in between is projection.",
+    "TFP trend -0.003: real GDP FELL 4.18% in 1990 (World Bank NY.GDP.MKTP.KD.ZG, series TCD), but that print is a cotton year and not a trend and is deliberately not what is entered. Chad in 1986-89 was recovering fast off the floor the Libyan war had left it on, and the structural picture underneath is a rain-fed cotton and cattle economy with no manufacturing, no port and no paved road to one - so the trend is set just below zero, above Cameroon's -0.008 and Zaire's -0.01 because Chad had already finished collapsing and those two had not started.",
+    "Inflation -0.74%: World Bank FP.CPI.TOTL.ZG, series TCD, 1990 = -0.7383%. Deflation, and it is not an error - it is what a CFA franc peg does in a year when the harvest is good. The IMF's WEO gives +0.5% for the same year; the consumer-price series is entered because every other file in this roster uses it.",
+    "Interest rate 11%: NOT A CHADIAN NUMBER AND FLAGGED AS SUCH. There is no national policy rate to transcribe: Chad is a member of the Banque des Etats de l'Afrique Centrale, which sets one taux d'escompte for all five of its members, and the World Bank's FR.INR.LEND has no Chadian entry for 1990. 0.11 is the BEAC discount rate and is the same figure cameroon.json enters for the same reason - which is the point, because five files in this roster now share one central bank and ought to share one rate. The loader's coupled check reads 0.025 - (0.11 - (-0.0074)) = -0.092.",
+    "Revenue 7.5% of GDP: NOT SOURCED. The World Bank's GC.REV.XGRT.GD.ZS has no Chadian entry for 1990 or any year near it. 7.5% is entered as a bracket and it is the lowest revenue share in this roster, below Zaire's sourced 9.96%, because Chad in 1990 had a customs post at N'Djamena, a cotton parastatal, and essentially no other tax base - the standard IMF description of the period puts non-grant revenue in the 6-9% range and the budget was more than half financed by France and the EEC. A reader checking this file should check this line and the debt line first.",
+    "Military 1.98% of GDP: World Bank MS.MIL.XPND.GD.ZS, series TCD, 1990 = 1.9751. TRANSCRIBED RATHER THAN ADJUSTED, and it is the most surprising figure in the file: this is a state that had just beaten the Libyan army, and it is spending less of its output on defence than Congo or Ethiopia. Two things reconcile it. The Forces Armees Nationales Tchadiennes were a light force of about 17,000 whose equipment was Toyota pickups and Milan launchers rather than divisions, and a great deal of what they used was given to them - the United States and France between them supplied the anti-tank and air-defence missiles that decided 1987, and foreign military aid does not appear in a recipient's own budget line.",
+    "Investment 4.5% public and 2.3% private: gross capital formation was 6.75% of GDP (World Bank NE.GDI.TOTL.ZS, series TCD, 1990 = 6.7535), the lowest in this roster - below even Zaire's bracketed 9%. The 4.5/2.3 split is APPORTIONED and sums to the sourced total; it is weighted to the public side because nearly all capital formation in Chad in 1990 was donor-financed public works.",
+    "Debt 30% of GDP: World Bank DT.DOD.DECT.GN.ZS, series TCD, 1990 = 29.8808, external debt stocks as a share of GNI. Low, and low for the least reassuring reason: Chad was not creditworthy enough to have been lent much. Compare Congo next door at 211%.",
+    "Oil 0.0 mbd: zero, and correctly zero. The Doba basin fields had been drilled by Conoco in 1975 and shut in as uncommercial without a pipeline; Chad did not export a barrel until the Chad-Cameroon pipeline opened in July 2003. The EIA international series prints 0.00 for Chad for every year of the 1980s and 1990s. A landlocked country with oil it cannot move is a country with no oil, and that is what the model is told.",
+    "Stability 24 and authoritarianism 0.92: Hissene Habre had held N'Djamena since June 1982, had won the war against Libya in 1987, and was eleven months from losing the capital - Idriss Deby's Mouvement Patriotique du Salut crossed from Darfur on 10 November 1990 and took the city on 2 December. NOTHING HERE SCHEDULES THAT. Stability 24 is set just below Zaire's 26 and above Ethiopia's 22, on the January 1990 facts alone: a failed coup by Deby, Hassan Djamous and Ibrahim Mahamat Itno on 1 April 1989 after which Djamous and Itno were killed in custody, the Zaghawa purged out of the army that had just won the war, and a treasury that could not pay it. Authoritarianism 0.92 sits between Zaire's 0.88 and Iraq's 0.95: the Union Nationale pour l'Independance et la Revolution was the sole legal party from June 1984, and the Direction de la Documentation et de la Securite reported to Habre personally. The Chadian truth commission of 1992 attributed something over 40,000 deaths to the DDS.",
+    "Separatism 0.30: level with Zaire's 0.35 and above Cameroon's 0.20, and the object is different from both. Chad's fracture is not a province trying to leave - no Chadian faction has ever proposed a border - it is the north-south line between the Muslim Saharan and Sahelian peoples and the Christian and animist Sara south, which had produced FROLINAT in 1966, eleven governments by 1990, and the massacres in the southern prefectures known as Septembre Noir in 1984. Entered at 0.30 rather than higher because what it produces is coups and civil wars rather than secessions, which is what the figure feeds.",
+    "Military strength 1.3: about 17,000 men, and the most combat-proven force of its size on the continent - the Toyota War of 1987 destroyed something like a tenth of the Libyan army's equipment for the loss of a few hundred Chadians, at Fada, Bir Kora, Ouadi Doum and Maaten al-Sarra. Set below Zaire's 2.5 and Kenya's 3 on size and equipment, and just below Cameroon's 1.5 despite the record, because by January 1990 the army had been purged of the Zaghawa officers who commanded it in 1987 and Hassan Djamous, who won those battles, was dead."
+  ]
+}
