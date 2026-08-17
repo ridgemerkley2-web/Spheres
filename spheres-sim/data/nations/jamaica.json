@@ -1,0 +1,37 @@
+{
+  "id": "Jamaica",
+  "name": "Jamaica",
+  "system": "Market",
+  "authoritarianism": 0.15,
+  "economy": {
+    "gdp_bn": 4.59,
+    "population_m": 2.38,
+    "tfp_trend": 0.002,
+    "inflation": 0.22,
+    "interest_rate": 0.305,
+    "tax_rate": 0.292,
+    "mil_spend_gdp": 0.008,
+    "state_invest_gdp": 0.045,
+    "priv_invest_gdp": 0.205,
+    "debt_gdp": 1.15,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 62.0, "separatism": 0.0 },
+  "military": { "strength": 1.0, "nuclear": false },
+  "sources": [
+    "GDP $4.59bn: World Bank NY.GDP.MKTP.CD, series JAM, 1990 = 4,592,208,087. On 2.38m people that is $1,930 a head, the second-highest in this Caribbean block after the Bahamas. Real growth in 1990 was +4.2% (NY.GDP.MKTP.KD.ZG), the fourth year of the recovery that followed the 1985 bauxite shutdown and the third since Hurricane Gilbert flattened the island in September 1988.",
+    "Population 2.38m: World Bank SP.POP.TOTL, series JAM, 1990 = 2,379,877.",
+    "Inflation 22.0%: World Bank FP.CPI.TOTL.ZG, series JAM, 1990 = 21.960175. The CIA World Factbook 1991 estimated 16% for the same year, and the gap is the timing of the devaluation: the Jamaican dollar went from 5.74 to the US dollar in 1989 to 7.18 in 1990 and 8.11 by January 1991, and most of that move landed in the second half of the year. The World Bank print is entered.",
+    "Interest rate 30.5%: World Bank FR.INR.LEND, series JAM, 1990 = 30.500833. The deposit rate was 23.98% (FR.INR.DPST). This is a sourced figure and an extraordinary one: a real lending rate near +8.5 points in a country running a current-account deficit, held there because Jamaica was inside an IMF standby arrangement and the Bank of Jamaica was defending the exchange rate with money it did not have. The loader's coupled check reads 0.025 - (0.305 - 0.220) = -0.060.",
+    "Revenue 29.2% of GDP: World Bank GC.REV.XGRT.GD.ZS, series JAM, 1990 = 29.247513; tax revenue proper 23.49% (GC.TAX.TOTL.GD.ZS). The largest fiscal state in this Caribbean block by a wide margin and larger than Senegal's 16.5% or the Dominican Republic's 12%, which is what carrying the debt ratio below required.",
+    "Military 0.8% of GDP: World Bank MS.MIL.XPND.GD.ZS, series JAM, 1990 = 0.840785. The CIA World Factbook 1991 gives '$20 million, less than 1% of GDP (FY91)', which against this file's GDP is 0.44%; the 1990 edition gave 1.1% for 1987. The World Bank figure sits between them and is the roster's series.",
+    "Investment: FLAGGED. World Bank NE.GDI.TOTL.ZS has NO Jamaican observation for any year - the capital-formation series is simply absent for JAM - so 0.045 / 0.205 is a bracket rather than a transcription and the total of 25% is not sourced to a single number. The public half is anchored: the CIA World Factbook 1991 gives capital expenditures of $197m (FY90 est.), which against this file's GDP is 4.3%. The private half is set to put total investment at 25%, in the range Jamaica's recovery years are usually reported at, and it is the least defensible figure in this file.",
+    "Debt 115% of GDP: World Bank DT.DOD.DECT.GN.ZS, series JAM, 1990 = 114.9554, external debt stocks as a share of GNI. THE HIGHEST DEBT RATIO IN THIS CARIBBEAN BLOCK AND ONE OF THE HIGHEST IN THE ROSTER - just under Zaire's 1.19, just under Vietnam's 1.20, and well above Angola's 0.86. It is the whole of Jamaican politics in the period: Michael Manley returned to office in 1989 as the man who had defied the IMF in 1980, and governed as a man who could not. The CIA World Factbook 1991 gives $4.1bn external debt for 1990, which against this file's GDP is 89%; the World Bank ratio is against GNI rather than GDP and is the roster's convention.",
+    "Oil 0.0: no production. Jamaica refined imported crude at Kingston and shipped bauxite and alumina out; the terms of trade in this file are an energy importer's.",
+    "TFP trend 0.002: set level with South Africa's 0.002 and below Kenya's 0.004. Jamaica's growth in 1987-1990 was recovery of idle capacity - bauxite plants restarted when metal prices rose, hotel rooms refilled after Gilbert - rather than a rise in what the economy knew how to do, and the model should not read the rebound as a permanent Jamaican miracle. It was not: growth stopped in 1992 and inflation went past 50% in 1991.",
+    "Stability 62 and authoritarianism 0.15: a Westminster democracy with an unbroken record of alternation since 1944 and a genuinely violent one. The election of 30 October 1980 killed somewhere near 800 people; the election of 9 February 1989, which is the one in the government table, was by comparison quiet and produced a clean transfer from Edward Seaga to Michael Manley on a turnout of 78.4%. Stability 62 is set level with Tanzania's 62 and above Senegal's 60 - a state that is not seriously contested, carrying garrison-constituency gang politics and a homicide rate that was already among the world's highest. Authoritarianism 0.15 is set at Italy's level and above Spain's 0.13.",
+    "Separatism 0.0: none. There is no Jamaican region that wants out and never has been.",
+    "Military strength 1.0: the Jamaica Defence Force was about 3,000 regulars including the Coast Guard and Air Wing, British-trained, with no combat aircraft and no armour. Its live role in 1990 was drug interdiction and hurricane relief. Set level with Haiti's 1.0 and below Senegal's 1.5, which is the right order: the JDF is smaller than the FAd'H and better at its job."
+  ]
+}

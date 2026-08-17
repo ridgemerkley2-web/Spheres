@@ -1130,6 +1130,48 @@
         { "a": "NewZealand", "b": "USSR", "value": 15.0 },
         { "a": "NewZealand", "b": "France", "value": -30.0 }
       ]
+    },
+    {
+      "note": [
+        "The Caribbean. The first thing this block has to say is that the sea is not a bloc: the five states added here are divided by language, by empire, and by the one question that runs through all of it, which is Cuba.",
+        "Hispaniola at 10 is the only land border in the block and the coldest working relationship on it. The Dominican Republic and Haiti share 376km of frontier fixed in 1929 and revised in 1936, and what crosses it is labour: tens of thousands of Haitian cane-cutters worked Dominican sugar under conditions the International Labour Organization was formally investigating through 1989 and 1990, recruited under a bilateral agreement that had lapsed and was being run anyway. Balaguer expelled some 50,000 Haitians by decree in June 1991, eighteen months past the start date, and it is not encoded. Behind it sits October 1937, when Trujillo's army killed somewhere between 12,000 and 30,000 Haitians along that border in five days. A positive number, because the two states recognised each other, traded, and had an embassy each; a small one, because nothing else about it was warm.",
+        "Haiti and the United States at 20 is a relationship with an occupation, an aid programme and a rock in it. Washington had suspended most assistance to Prosper Avril's government, and Ambassador Alvin Adams spent the winter of 1989-90 telling Haitians in Creole that 'a loaded donkey does not stand still' - a diplomat openly siding with the street against the government he was accredited to. The rock is Navassa: five square kilometres between Haiti and Jamaica, held by the United States under the Guano Islands Act of 1856 and named as Haitian territory by Haiti's 1987 constitution. It is not in `claims` for the same reason Guantanamo is not - a claim in this model is a share of the target and Navassa is 0.00006% of the United States - so it lives here, in the number, exactly as the Cuban grievance does.",
+        "The Dominican Republic at 65 with Washington is a different history entirely: the United States occupied the country from 1916 to 1924, sent 23,000 troops in April 1965, and Joaquin Balaguer was the man they left in charge. Sugar quota, Puerto Rican remittances, and three quarters of Dominican exports going to one market.",
+        "Cuba is the axis, and the three Commonwealth states are on the other side of it from the two Hispanic ones. Trinidad and Tobago at 30 is there because Port-of-Spain, Kingston, Georgetown and Bridgetown jointly recognised Havana on 8 December 1972 and broke the OAS embargo before Washington was ready for it. Jamaica at 35 is Michael Manley, who had made Cuba the central quarrel of Jamaican politics in the 1970s, watched Seaga break relations in October 1981, and restored them within months of returning to office in 1989. Against that, the Dominican Republic at -20 and Haiti at -5 had no diplomatic relations with Cuba at all in January 1990 and would not have any until 1996 and 1998 - two governments that had broken with Havana in 1959 and 1962 and never went back. The Bahamas at 5 is the Flamingo: on 10 May 1980 Cuban MiGs sank a Bahamian patrol vessel that had arrested two Cuban fishing boats inside Bahamian waters, killing four marines, and Cuba paid $10m in compensation the following year. Barely positive is the honest reading of a relationship that starts from there and continues with Cuban rafters landing on Bahamian cays.",
+        "CARICOM in the fifties is a customs union and a cricket team, not an alliance, and the numbers are set below the Australia-New Zealand 85 accordingly. Britain in the sixties is three Commonwealth realms with Elizabeth II as head of state, a shared legal system and a shared civil service tradition, and no defence obligation whatever.",
+        "Trinidad and Venezuela at 45 is a border being settled rather than fought over. The two had argued about the seabed of the Gulf of Paria for decades and signed the delimitation treaty on 18 April 1990, four months into the game - a maritime boundary agreed by two states that face each other across eleven kilometres of water and have never once shot at each other.",
+        "Trinidad and India at 30 is a population, not a policy. Roughly 40% of Trinidadians descend from the indentured labourers shipped from Calcutta and Madras between 1845 and 1917, and the party that governs in January 1990 exists because that half of the electorate finally combined with the other. Warmer than any other pair in this block reaches across an ocean, and it buys Delhi nothing strategic.",
+        "The Bahamas and the United States at 65 is warm and unhappy at the same time. Operation BAT put American helicopters and DEA agents on Great Inagua under Bahamian command from 1982, and the Commission of Inquiry of 1984 had found that trafficking money reached the Bahamian cabinet. An ally you are also investigating."
+      ],
+      "pairs": [
+        { "a": "DominicanRepublic", "b": "Haiti", "value": 10.0 },
+        { "a": "DominicanRepublic", "b": "USA", "value": 65.0 },
+        { "a": "DominicanRepublic", "b": "Cuba", "value": -20.0 },
+        { "a": "DominicanRepublic", "b": "Spain", "value": 45.0 },
+        { "a": "DominicanRepublic", "b": "Venezuela", "value": 35.0 },
+        { "a": "Haiti", "b": "USA", "value": 20.0 },
+        { "a": "Haiti", "b": "Cuba", "value": -5.0 },
+        { "a": "Haiti", "b": "France", "value": 35.0 },
+        { "a": "Haiti", "b": "Canada", "value": 40.0 },
+        { "a": "Jamaica", "b": "USA", "value": 60.0 },
+        { "a": "Jamaica", "b": "UK", "value": 65.0 },
+        { "a": "Jamaica", "b": "Canada", "value": 55.0 },
+        { "a": "Jamaica", "b": "Cuba", "value": 35.0 },
+        { "a": "TrinidadTobago", "b": "USA", "value": 55.0 },
+        { "a": "TrinidadTobago", "b": "UK", "value": 62.0 },
+        { "a": "TrinidadTobago", "b": "Canada", "value": 50.0 },
+        { "a": "TrinidadTobago", "b": "Cuba", "value": 30.0 },
+        { "a": "TrinidadTobago", "b": "Venezuela", "value": 45.0 },
+        { "a": "TrinidadTobago", "b": "India", "value": 30.0 },
+        { "a": "Bahamas", "b": "USA", "value": 65.0 },
+        { "a": "Bahamas", "b": "UK", "value": 60.0 },
+        { "a": "Bahamas", "b": "Canada", "value": 50.0 },
+        { "a": "Bahamas", "b": "Cuba", "value": 5.0 },
+        { "a": "Bahamas", "b": "Haiti", "value": 5.0 },
+        { "a": "Jamaica", "b": "TrinidadTobago", "value": 55.0 },
+        { "a": "Jamaica", "b": "Bahamas", "value": 50.0 },
+        { "a": "TrinidadTobago", "b": "Bahamas", "value": 45.0 }
+      ]
     }
   ]
 }

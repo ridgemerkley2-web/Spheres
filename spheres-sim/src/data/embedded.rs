@@ -106,6 +106,12 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
     Source { file: "data/nations/canada.json", json: include_str!("../../data/nations/canada.json") },
     Source { file: "data/nations/australia.json", json: include_str!("../../data/nations/australia.json") },
     Source { file: "data/nations/newzealand.json", json: include_str!("../../data/nations/newzealand.json") },
+    // The Caribbean (branch feat/r2-caribbean), in ROSTER order.
+    Source { file: "data/nations/dominicanrepublic.json", json: include_str!("../../data/nations/dominicanrepublic.json") },
+    Source { file: "data/nations/haiti.json", json: include_str!("../../data/nations/haiti.json") },
+    Source { file: "data/nations/jamaica.json", json: include_str!("../../data/nations/jamaica.json") },
+    Source { file: "data/nations/trinidadtobago.json", json: include_str!("../../data/nations/trinidadtobago.json") },
+    Source { file: "data/nations/bahamas.json", json: include_str!("../../data/nations/bahamas.json") },
 ];
 
 pub const EMBEDDED_RELATIONS: Source<'static> = Source {

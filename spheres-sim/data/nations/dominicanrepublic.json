@@ -1,0 +1,38 @@
+{
+  "id": "DominicanRepublic",
+  "name": "Dominican Republic",
+  "system": "Market",
+  "authoritarianism": 0.38,
+  "economy": {
+    "gdp_bn": 7.07,
+    "population_m": 7.15,
+    "tfp_trend": 0.001,
+    "inflation": 0.505,
+    "interest_rate": 0.35,
+    "tax_rate": 0.12,
+    "mil_spend_gdp": 0.007,
+    "state_invest_gdp": 0.055,
+    "priv_invest_gdp": 0.178,
+    "debt_gdp": 0.66,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 45.0, "separatism": 0.0 },
+  "military": { "strength": 2.0, "nuclear": false },
+  "sources": [
+    "GDP $7.07bn: World Bank NY.GDP.MKTP.CD, series DOM, 1990 = 7,073,675,545. The same series and the same vintage the rest of this roster sits on - the mirror this was read from returns Spain 536,558,591,250 against spain.json's 535.0, Ecuador 15,239,272,612 against ecuador.json's 15.2 and Uruguay 9,298,807,850 against uruguay.json's 9.3, so it is the right table. Note that the CIA World Factbook 1991 gives $6.68bn for 1989 and countryeconomy.com's later World Bank vintage gives $7,995m for 1990; the spread is revision, not disagreement about Dominican output.",
+    "Population 7.15m: World Bank SP.POP.TOTL, series DOM, 1990 = 7,151,166. About $989 a head.",
+    "GDP growth in 1990 was MINUS 5.45% (World Bank NY.GDP.MKTP.KD.ZG, series DOM) - the worst year the Dominican Republic had between the debt crisis and 2020, and the year the game opens into. It is not entered anywhere directly, because the model derives growth; it is recorded here because every other number in this file is the macro of a country in the middle of that collapse. Blackouts ran twenty hours a day, the doctors and then the public sector struck, and Balaguer's answer was the austerity package of August 1990.",
+    "Inflation 50.5%: World Bank FP.CPI.TOTL.ZG, series DOM, 1990 = 50.462479. The CIA World Factbook 1991 estimated 70% for the same year and the 1990 edition carried 57.6% for 1988; the World Bank print is the one entered because it is the series the roster uses, and the range 50-70% is the honest width of the estimate. The peso went from 6.34 to the dollar in 1989 to 8.29 in 1990 and 11.85 by January 1991.",
+    "Interest rate 35%: FLAGGED AS AN ADMITTED GAP. World Bank FR.INR.LEND has no Dominican entry before 1991; the first observation in the series is 1991 = 35.26%, and 0.35 is that nearest observation entered rather than a number invented for 1990. The series then runs 28.34 (1992), 29.89 (1993), 30.68 (1995), so the level is stable enough that the 1991 print is a fair stand-in. Against 50.5% inflation the implied real rate is about minus 15 points, which is the correct picture of a central bank monetising a fiscal deficit while the peso fell 31% against the dollar in one year. The loader's coupled check reads 0.025 - (0.35 - 0.505) = +0.18.",
+    "Revenue 12.0% of GDP: World Bank GC.REV.XGRT.GD.ZS, series DOM, 1990 = 12.04 (central government revenue excluding grants). Tax revenue proper was 10.30% (GC.TAX.TOTL.GD.ZS). One of the smallest fiscal states in this roster, and the reason a Dominican government that wanted to build had to inflate.",
+    "Military 0.7% of GDP: World Bank MS.MIL.XPND.GD.ZS, series DOM, 1990 = 0.675729, which is the SIPRI series. CONFLICT, STATED RATHER THAN HIDDEN: the CIA World Factbook 1991 gives '$70 million, 1% of GDP (1990)', which against the GDP in this file is 0.99%. The World Bank figure is entered because it is the series every other file in this roster uses; the CIA figure is about 45% higher and both are quoted here so a reader can see the width.",
+    "Investment: gross capital formation 23.35% of GDP (World Bank NE.GDI.TOTL.ZS, series DOM, 1990 = 23.349659; gross FIXED capital formation was 23.06%). The 5.5 / 17.8 split is APPORTIONED, not sourced, and sums to the sourced total. Public investment is put at the high end of what a country with a 12% revenue ratio can carry because Balaguer's third presidency was a construction programme - the Columbus Lighthouse, the Santo Domingo aqueduct, the highways - financed by the central bank, which is a large part of why the inflation figure above is what it is.",
+    "Debt 66% of GDP: World Bank DT.DOD.DECT.GN.ZS, series DOM, 1990 = 66.35, external debt stocks as a share of GNI. The CIA World Factbook 1991 gives $4.2bn external debt for 1990, which against this file's GDP is 59%. The Dominican Republic was in arrears to the Paris Club through 1990 and rescheduled in November 1991.",
+    "Oil 0.0: no production. The Dominican Republic imported all of it, which is why the Gulf crisis that begins seven months into the game lands on this country harder than on almost any other in the region.",
+    "TFP trend 0.001: the 1980s were not a lost decade here in the Latin American sense - output grew, driven by free-trade-zone assembly and by tourism, both of which are labour-absorbing rather than productivity-raising. Set just above Nigeria's 0.000 and below Colombia's 0.008. It is deliberately not negative: the Dominican collapse of 1990 was a macro accident, not a fall in what the economy knew how to do, and by 1992 growth was back.",
+    "Stability 45 and authoritarianism 0.38: Joaquin Balaguer, 83 years old and blind, in the fourth year of his third presidency, elected on 41.8% in May 1986 and facing re-election in May 1990. Authoritarianism 0.38 is set below Senegal's 0.42 and above Poland's 0.35, in the same bracket the roster reserves for a real electorate with the incumbent's thumb on the scale: Balaguer had governed 1966-78 as Trujillo's former puppet turned elected caudillo, controlled the state's whole payroll and broadcast time, and the results of both May 1990 and May 1994 were disputed hard enough that the 1994 dispute was settled by cutting his own term to two years. Stability 45 is set a point above Yugoslavia's 44 and three above Bolivia's 42, and well below Senegal's 60. January 1990 is a working constitutional order in the middle of an economic emergency: the blackouts, the doctors' strike and the general strike of August 1990 are the year, but nobody in the Dominican Republic was shooting at the state and the May election was held on time.",
+    "Separatism 0.0: none. There is no Dominican region that wants out. The Republic's great internal argument is about Haitians, which is a question about who is admitted rather than about who leaves, and it belongs in the relations file rather than here.",
+    "Military strength 2.0: about 21,000 in the army, navy and air force combined, equipped largely with American surplus of 1950s vintage - the air force still flew Vampires. The Dominican armed forces had not fought anyone since 1965 and their function was internal. Set level with Uruguay's 2.0 and below Ecuador's 4.0."
+  ]
+}

@@ -435,6 +435,13 @@ const TERRITORY = {
   // honest rendering of a country a 110m basemap cannot draw.
   Singapore: ["SGP"],
   Canada: ["CAN"], Australia: ["AUS"], NewZealand: ["NZL"],
+  // The Caribbean (branch feat/r2-caribbean). All five have polygons in
+  // Natural Earth 110m — checked, two hits each in ui/world.js — so unlike
+  // Bahrain and Singapore none of them needs a LABEL_AT rescue. BHS is drawn
+  // as the largest few islands only at this scale, which is the basemap's
+  // minimum-area floor rather than a statement about the other 690.
+  DominicanRepublic: ["DOM"], Haiti: ["HTI"], Jamaica: ["JAM"],
+  TrinidadTobago: ["TTO"], Bahamas: ["BHS"],
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],
