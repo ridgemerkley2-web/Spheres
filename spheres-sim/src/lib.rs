@@ -803,10 +803,30 @@ mod tests {
         //   file for why the figure moved rather than the citation.
         // Nothing else in spheres-sim/data/ changed for any nation that was on
         // the board before this integration.
+        //
+        // Re-pinned LOCALLY ON BRANCH feat/r2-indianocean,
+        // 0x1bb3d0e7c7919e2e -> 0xb56648be17443720, adding Madagascar,
+        // Mauritius, Seychelles, the Comoros and Cape Verde: 108 nations ->
+        // 113. THIS IS A BRANCH-LOCAL PIN AND THE INTEGRATOR IS EXPECTED TO
+        // OVERWRITE IT ONCE AT THE END OF THE SECOND ROUND OF MERGES, exactly
+        // as the ten-region integration above did; it is recorded rather than
+        // left red so that a reviewer of this branch alone gets a green suite.
+        // THE CHECK EVERY ROSTER AUTHOR OWES WAS RUN AND IS REPRODUCED HERE:
+        //   - `git diff master --stat -- spheres-sim/data/` is
+        //     "6 files changed, 246 insertions(+)". PURE ADDITION, ZERO
+        //     DELETIONS: five new nation files and one appended relations
+        //     block. Not one transcribed figure of the 108 nations already on
+        //     the board moved, and `git diff master -- spheres-sim/data/`
+        //     filtered to removed lines returns nothing at all.
+        //   - the roster diff likewise removes no line: five appended rows, a
+        //     region appended to REGIONS, and five names appended to
+        //     `well_known!`. NO EXISTING ROW'S NEIGHBOUR LIST WAS TOUCHED,
+        //     because all five nations are archipelagos with no land border
+        //     and the symmetry assertion therefore has nothing to check.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0x1bb3d0e7c7919e2eu64,
+            h, 0xb56648be17443720u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -924,7 +944,17 @@ mod tests {
         // audit found that nothing in the suite constrained the coefficient this
         // commit changed from below: at bite 0.000, with sanctions costing a
         // target no growth at all, everything except the hashes stayed green.
-        const GOLDEN: u64 = 0xef3e968249846a49;
+        // Re-pinned LOCALLY ON BRANCH feat/r2-indianocean,
+        // 0xef3e968249846a49 -> 0x16bfd80021a1e199, for the five Indian Ocean
+        // and Atlantic archipelagos. A twenty-year timeline fingerprint taken
+        // over the whole world moves when the world gains five members, by
+        // construction and before any of them does anything. BRANCH-LOCAL:
+        // the integrator re-pins this once at the end of the round, and until
+        // then this number is only meaningful against this branch. The
+        // provenance check that makes the move safe to accept is written out
+        // in full on `the_1990_start_is_pinned` above - the data diff against
+        // master is 246 insertions and zero deletions.
+        const GOLDEN: u64 = 0x16bfd80021a1e199;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
