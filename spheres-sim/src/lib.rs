@@ -803,10 +803,23 @@ mod tests {
         //   file for why the figure moved rather than the citation.
         // Nothing else in spheres-sim/data/ changed for any nation that was on
         // the board before this integration.
+        //
+        // Re-pinned LOCALLY on branch feat/r2-smalleurope,
+        // 0x1bb3d0e7c7919e2e -> 0x86a4b6314608332a, for four new starters:
+        // Iceland, Luxembourg, Malta and Cyprus. INTEGRATOR: expect to re-pin
+        // this once at the end of the round-two merges rather than take this
+        // number, which will be stale the moment a second branch lands.
+        // The check above was run and it passes: `git diff --stat master --
+        // spheres-sim/data/` on this branch is +207/-0 across five files —
+        // four new nation files and one appended relations block — and NOT ONE
+        // FIGURE of any nation already on the board moved. The two Yugoslav
+        // successors this branch also adds cannot touch this hash at all,
+        // because `the_1990_start_is_pinned` hashes the January 1990 board and
+        // neither of them is on it.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0x1bb3d0e7c7919e2eu64,
+            h, 0x86a4b6314608332au64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -924,7 +937,58 @@ mod tests {
         // audit found that nothing in the suite constrained the coefficient this
         // commit changed from below: at bite 0.000, with sanctions costing a
         // target no growth at all, everything except the hashes stayed green.
-        const GOLDEN: u64 = 0xef3e968249846a49;
+        //
+        // Re-pinned LOCALLY on branch feat/r2-smalleurope,
+        // 0xef3e968249846a49 -> 0x59a0cb1f19a40cfa. INTEGRATOR: same caveat as
+        // the start-state pin above — this is a number to get the branch green,
+        // not a number to keep. Six nations were added (four starters, plus
+        // Macedonia and Montenegro as Yugoslav successors) and the shares in
+        // `dissolve_yugoslavia` were re-cut so that all six columns sum to
+        // 1.000, so this twenty-year fingerprint necessarily moves.
+        //
+        // TWO STAY RED on this branch, and NEITHER tolerance was widened and no
+        // test was removed:
+        //
+        //   a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it
+        //     Poland 291 vs 246, a ratio of 1.183 against a bar of 1.20 on the
+        //     one seed the test reads. MEASURED across seeds 1..10, because a
+        //     single-seed failure deserves a distribution before it is called
+        //     a regression:
+        //       master  [1.153, 1.233, 1.135, 1.216, 1.158,
+        //                1.167, 1.173, 1.277, 1.182, 1.330]  median 1.178
+        //       here    [1.186, 1.198, 1.155, 1.187, 1.257,
+        //                1.256, 1.199, 1.178, 0.998, 1.128]  median 1.187
+        //     SIX OF TEN SEEDS FAIL THIS TEST ON MASTER, and the median of the
+        //     distribution the bar is drawn from is 1.178 against a bar of
+        //     1.20. The suite is green on master only because seed 2 happens
+        //     to land at 1.233. Adding nations reshuffles the RNG stream and
+        //     seed 2 moved to the other side of a line it was always sitting
+        //     on; this branch's median is slightly HIGHER than master's, so
+        //     the mechanism did not degrade. Seed 9 here reads 0.998 — twenty
+        //     years of forced integration worth exactly nothing — which is the
+        //     spread this test is single-sampling.
+        //     The fix is to assert on the median of ten seeds rather than one,
+        //     which is a tightening and not a widening, and it is deliberately
+        //     not done here: it is a shared test and twelve branches are in
+        //     flight. NO TOLERANCE WAS TOUCHED AND NO SEED WAS SHOPPED FOR.
+        //
+        //   golden_hash_of_a_known_run / the_1990_start_is_pinned
+        //     Re-pinned above, as the recipe says to.
+        //
+        // One more thing worth writing down because it took a measurement to
+        // believe. `sanctions_cost_the_target_real_growth` went red partway
+        // through this branch at 2.76 points against a ceiling of 2.5, and is
+        // green now, and NOTHING was done to it: the readings were 2.027 with
+        // the four new starters, 2.762 after the Yugoslav shares were re-cut,
+        // and back under the ceiling after a relations block for Iceland,
+        // Luxembourg, Malta and Cyprus was appended. Brazil's UNSANCTIONED
+        // twenty-year growth moved from 6.04% to 7.46% across those steps, and
+        // `lost` is the difference of two chaotic paths so it inherits all of
+        // it. Nothing about Montenegro touches Brazil. That test measures a
+        // single path of a quantity whose spread under trivial roster
+        // perturbation is wider than its own 1.2..2.5 band, and it will go red
+        // on somebody for no reason during this integration.
+        const GOLDEN: u64 = 0x59a0cb1f19a40cfa;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
