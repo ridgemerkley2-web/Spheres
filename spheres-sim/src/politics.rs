@@ -43,11 +43,14 @@ fn political_capital(w: &mut WorldState) {
     }
 }
 
+/// Note that `government::tick` runs immediately before this, and did until
+/// recently run as its first statement. It is now the entry before this one in
+/// `crate::SYSTEMS`, which is the same call in the same place — moved out only
+/// so a profiler can price the two separately. The ordering guarantee it was
+/// written for still holds: who holds office is settled before what their
+/// standing is worth, because an election held this month, or a coup, has to be
+/// reflected in the capital the government wakes up holding.
 pub fn tick(w: &mut WorldState) {
-    // Who holds office is settled before what their standing is worth: an
-    // election held this month, or a coup, has to be reflected in the capital
-    // the government wakes up holding.
-    crate::government::tick(w);
     political_capital(w);
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
 

@@ -595,12 +595,15 @@ pub fn load_world(
         headlines: vec![],
         flags: vec![],
         player: None,
+        by_id: vec![],
+        by_id_len: 0,
     };
     for block in &relations.blocks {
         for p in &block.pairs {
             w.set_relation(p.a, p.b, p.value);
         }
     }
+    w.reindex();
     Ok(w)
 }
 
