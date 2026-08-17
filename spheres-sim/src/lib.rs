@@ -1031,7 +1031,7 @@ mod tests {
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0xaa93baba96ed09b2u64,
+            h, 0x180bcace7572d8bau64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -1171,7 +1171,7 @@ mod tests {
         // pact test: 152 conflicts are born where master fought 197 wars, and
         // 77 of them climb to an invasion. The rest sit at rungs nobody could
         // reach before, which is §6's whole claim about the period.
-        const GOLDEN: u64 = 0x448f87451f44d25d;
+        const GOLDEN: u64 = 0xaa7960badaee3a49;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

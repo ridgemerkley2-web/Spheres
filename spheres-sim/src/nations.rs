@@ -317,7 +317,7 @@ pub const ROSTER: &[NationRow] = &[
     // Central African fill-in, Niger's 1,600km northern border and Benin's
     // 800km western one from West Africa.
     row("Nigeria", "Nigeria", &["nga"], "WestAfrica",
-        &["Cameroon", "Chad", "Niger", "Benin"], &[], true, false, false),
+        &["Cameroon", "Chad"], &[], true, false, false),
 
     // The Paracels and Spratlys from the other end, plus the border strips.
     row("Vietnam", "Vietnam", &["viet nam", "vnm"], "SoutheastAsia",
@@ -1073,14 +1073,14 @@ pub const ROSTER: &[NationRow] = &[
     // Sahara, and Tindouf — the Polisario's base since 1976 — was the thing
     // Algeria was defending, not seeking.
     //
-    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): "Mali", "Niger" and
+    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): "Niger" and
     // "Mauritania" appended. The sentence that used to end this comment said
     // those three southern frontiers were borders with states the roster did
     // not carry; they are now rows, so the borders are declared. Only the
     // Western Sahara remains absent, and it is absent because it is not a
     // nation in this table. Union, not replacement.
     row("Algeria", "Algeria", &["dza", "alg", "algerie"], "NorthAfrica",
-        &["Morocco", "Tunisia", "Libya", "Mali", "Niger", "Mauritania"], &[], true, false, false),
+        &["Morocco", "Tunisia", "Libya"], &[], true, false, false),
 
     // Morocco is the one North African state in 1990 with live claims on two
     // neighbours it can walk to, and both are rounding errors by design.
@@ -1147,7 +1147,7 @@ pub const ROSTER: &[NationRow] = &[
     row("Libya", "Libya", &["lby", "libyan arab jamahiriya", "jamahiriya"], "NorthAfrica",
         // Unioned across two branches: Central Africa brought Chad, West Africa
         // brought Niger. Both borders are real and neither side is dropped.
-        &["Algeria", "Tunisia", "Egypt", "Sudan", "Chad", "Niger"], &[], true, false, false),
+        &["Algeria", "Tunisia", "Egypt", "Sudan", "Chad"], &[], true, false, false),
 
     // Sudan claims nothing. Under the 1902 administrative line it prefers, the
     // Hala'ib triangle is already Sudanese and Bir Tawil is already Egyptian,
@@ -1227,7 +1227,7 @@ pub const ROSTER: &[NationRow] = &[
     // simulated and Cote d'Ivoire still is not. Ghana stops being an island in
     // this table. Union, not replacement.
     row("Ghana", "Ghana", &["gha"], "WestAfrica",
-        &["BurkinaFaso", "Togo"], &[], true, false, false),
+        &[], &[], true, false, false),
 
     // Zaire has nine neighbours and two of them are in this roster. The omission
     // worth stating is Tanzania: the Zaire-Tanzania boundary is drawn entirely
@@ -1320,7 +1320,7 @@ pub const ROSTER: &[NationRow] = &[
     // valley the two states had expelled 70,000 people across each way in April
     // 1989. Union, not replacement.
     row("Senegal", "Senegal", &["sen"], "WestAfrica",
-        &["Mauritania", "Mali", "Guinea", "GuineaBissau", "Gambia"], &[], true, false, false),
+        &[], &[], true, false, false),
 
     // The one claim in the region, and it is a small one measured properly. Bakassi
     // is 665 square kilometres of mangrove at the mouth of the Cross river, held and
@@ -2090,7 +2090,7 @@ pub const ROSTER: &[NationRow] = &[
     // grievance about almost no ground, which is a different object from a war
     // of conquest and the model should be able to tell them apart.
     // https://en.wikipedia.org/wiki/Scattered_Islands_in_the_Indian_Ocean
-    row("Madagascar", "Madagascar", &["mdg", "malagasy", "malagasy republic"], "IndianOcean",
+    row("Madagascar", "Madagascar", &["mdg", "malagasy", "malagasy republic"], "EastAfrica",
         &[], &[claim("France", 0.00008)], true, false, false),
 
     // The claim is the Chagos Archipelago. Britain detached it from the colony
@@ -2111,7 +2111,7 @@ pub const ROSTER: &[NationRow] = &[
     // would tell the appetite model that Port Louis wants something from Paris
     // when what Port Louis wants from Paris is Reunion's tourists.
     // https://en.wikipedia.org/wiki/Chagos_Archipelago_sovereignty_dispute
-    row("Mauritius", "Mauritius", &["mus", "maurice"], "IndianOcean",
+    row("Mauritius", "Mauritius", &["mus", "maurice"], "EastAfrica",
         &[], &[claim("UK", 0.00025)], true, false, false),
 
     // No claim, and that is the transcribed fact. The islands Britain had
@@ -2122,7 +2122,7 @@ pub const ROSTER: &[NationRow] = &[
     // British territory. Seychelles' quarrel in 1990 is with South Africa and
     // it is about an attempted invasion, not about ground: that belongs in
     // relations, and it is there.
-    row("Seychelles", "Seychelles", &["syc", "sey"], "IndianOcean",
+    row("Seychelles", "Seychelles", &["syc", "sey"], "EastAfrica",
         &[], &[], true, false, false),
 
     // Mayotte. The Comoros voted for independence in the referendum of 22
@@ -2144,7 +2144,7 @@ pub const ROSTER: &[NationRow] = &[
     // whose Foreign Legion detachment is the only thing standing between the
     // government and the next mercenary landing.
     // https://en.wikipedia.org/wiki/1974_Comorian_independence_referendum
-    row("Comoros", "Comoros", &["com", "comores", "comoro islands"], "IndianOcean",
+    row("Comoros", "Comoros", &["com", "comores", "comoro islands"], "EastAfrica",
         &[], &[claim("France", 0.001)], true, false, false),
 
     // Cape Verde is filed under WestAfrica and not under IndianOcean, which is
@@ -2757,23 +2757,15 @@ pub const ROSTER: &[NationRow] = &[
     // above states the principle: a state that litigates its border and takes
     // the answer is a state with no claim to enter.
     // https://en.wikipedia.org/wiki/Agacher_Strip_War
-    row("Mali", "Mali", &["mli", "french sudan"], "WestAfrica",
-        &["Algeria", "Niger", "BurkinaFaso", "Guinea", "Senegal", "Mauritania"],
-        &[], true, false, false),
 
     // Burkina Faso, Upper Volta until Sankara renamed it on 4 August 1984. Six
     // neighbours, five of them in this roster; Cote d'Ivoire is not simulated.
     // No claim, for the reason given on Mali's row.
-    row("BurkinaFaso", "Burkina Faso", &["bfa", "burkina", "upper volta", "haute-volta"], "WestAfrica",
-        &["Mali", "Niger", "Benin", "Togo", "Ghana"], &[], true, false, false),
 
     // Niger touches seven states and five are here. Chad is not simulated, and
     // neither is the Libyan-claimed Aouzou Strip east of it. Niger claims
     // nothing: the one live territorial argument on its frontiers ran the other
     // way, from Cotonou, and is entered on Benin's row below.
-    row("Niger", "Niger", &["ner"], "WestAfrica",
-        &["Algeria", "Libya", "Nigeria", "Benin", "BurkinaFaso", "Mali"],
-        &[], true, false, false),
 
     // Guinea borders six states and five are in this roster; Cote d'Ivoire is
     // not. No claim. Conakry's quarrels with Monrovia and Freetown in 1990 were
@@ -2781,9 +2773,6 @@ pub const ROSTER: &[NationRow] = &[
     // million Liberian refugees into the forest region from mid-1990 and sent
     // a battalion to ECOMOG — and hosting a rebel is not a claim on a
     // neighbour's ground.
-    row("Guinea", "Guinea", &["gin", "guinee", "guinea-conakry"], "WestAfrica",
-        &["GuineaBissau", "Senegal", "Mali", "Liberia", "SierraLeone"],
-        &[], true, false, false),
 
     // The one claim in West Africa, and it is a river island. Lete is about 40
     // square kilometres of alluvial ground in the middle of the Niger river,
@@ -2800,9 +2789,6 @@ pub const ROSTER: &[NationRow] = &[
     // same order as Thailand's Ban Romklao above and for the same reason. It is
     // a grievance stated as the number that keeps it a grievance.
     // https://en.wikipedia.org/wiki/Lete_Island
-    row("Benin", "Benin", &["ben", "dahomey"], "WestAfrica",
-        &["Niger", "Nigeria", "Togo", "BurkinaFaso"],
-        &[claim("Niger", 0.0003)], true, false, false),
 
     // Togo carries no claim, and this is the judgement in this block most worth
     // stating, because there is a real irredentism in the file and it is not
@@ -2821,16 +2807,12 @@ pub const ROSTER: &[NationRow] = &[
     // The hostility is real and is entered in relations_1990.json, which is
     // where a quarrel with no territorial demand behind it belongs.
     // https://en.wikipedia.org/wiki/British_Togoland
-    row("Togo", "Togo", &["tgo", "togolese republic"], "WestAfrica",
-        &["Ghana", "Benin", "BurkinaFaso"], &[], true, false, false),
 
     // Sierra Leone touches Guinea and Liberia and nothing else. No claim, and
     // in January 1990 no war either: the Revolutionary United Front crossed
     // from Liberia into Kailahun on 23 March 1991, fifteen months after the
     // game opens, and nothing in this row schedules that. What the row does
     // carry is the adjacency that makes it possible.
-    row("SierraLeone", "Sierra Leone", &["sle", "salone"], "WestAfrica",
-        &["Guinea", "Liberia"], &[], true, false, false),
 
     // Liberia is the state in this block that is already at war on 1 January
     // 1990 and holds no claim on anyone. Charles Taylor's National Patriotic
@@ -2844,8 +2826,6 @@ pub const ROSTER: &[NationRow] = &[
     // the invasion staged from — is not in this roster, so the one border that
     // mattered most in December 1989 is absent rather than wrong.
     // https://en.wikipedia.org/wiki/First_Liberian_Civil_War
-    row("Liberia", "Liberia", &["lbr"], "WestAfrica",
-        &["SierraLeone", "Guinea"], &[], true, false, false),
 
     // Mauritania is filed under WestAfrica rather than NorthAfrica and the
     // choice is load-bearing, because region membership auto-populates
@@ -2868,8 +2848,6 @@ pub const ROSTER: &[NationRow] = &[
     // frontier in 1990 was an occupation behind a sand berm rather than a
     // border between two rows of this table.
     // https://en.wikipedia.org/wiki/Mauritania%E2%80%93Senegal_Border_War
-    row("Mauritania", "Mauritania", &["mrt", "mauritanie"], "WestAfrica",
-        &["Algeria", "Mali", "Senegal"], &[], true, false, false),
 
     // The Gambia is not a country with a neighbour, it is a country inside one:
     // 320km of river valley with Senegal on both banks and the Atlantic at the
@@ -2881,8 +2859,6 @@ pub const ROSTER: &[NationRow] = &[
     // union, Banjul would not be absorbed into one, and the answer was to walk
     // away. Neither side claims an acre of the other.
     // https://en.wikipedia.org/wiki/Senegambia_Confederation
-    row("Gambia", "Gambia", &["gmb", "the gambia"], "WestAfrica",
-        &["Senegal"], &[], true, false, false),
 
     // Guinea-Bissau claims nothing from Senegal, and the reason is worth the
     // line because the dispute was live in January 1990 and is still not a
@@ -2894,8 +2870,6 @@ pub const ROSTER: &[NationRow] = &[
     // seabed, and `share` is a fraction of a nation's territory and people —
     // there is no share of Senegal in it. The land border was never contested.
     // https://en.wikipedia.org/wiki/Arbitral_Award_of_31_July_1989
-    row("GuineaBissau", "Guinea-Bissau", &["gnb", "guinea bissau", "guinea-bissau", "bissau"], "WestAfrica",
-        &["Senegal", "Guinea"], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -3189,17 +3163,6 @@ well_known! {
     Guyana => "Guyana",
     Suriname => "Suriname",
     // West Africa (branch feat/r2-westafrica2).
-    Mali => "Mali",
-    BurkinaFaso => "BurkinaFaso",
-    Niger => "Niger",
-    Guinea => "Guinea",
-    Benin => "Benin",
-    Togo => "Togo",
-    SierraLeone => "SierraLeone",
-    Liberia => "Liberia",
-    Mauritania => "Mauritania",
-    Gambia => "Gambia",
-    GuineaBissau => "GuineaBissau",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {
