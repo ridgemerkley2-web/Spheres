@@ -806,7 +806,13 @@ mod tests {
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0x1bb3d0e7c7919e2eu64,
+            // RE-PINNED LOCALLY ON feat/r2-centam, AND THE INTEGRATOR SHOULD
+            // EXPECT TO RE-PIN IT AGAIN. Seven Central American nations were
+            // appended to the roster, and roster order is serialization order,
+            // so this hash moves for any branch that adds a row. The previous
+            // value was 0x1bb3d0e7c7919e2e at 108 nations; this is the same
+            // number at 115. Nothing about an existing nation's data changed.
+            h, 0xb87e4333f3b9d129u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -924,7 +930,11 @@ mod tests {
         // audit found that nothing in the suite constrained the coefficient this
         // commit changed from below: at bite 0.000, with sanctions costing a
         // target no growth at all, everything except the hashes stayed green.
-        const GOLDEN: u64 = 0xef3e968249846a49;
+        // RE-PINNED LOCALLY ON feat/r2-centam. Was 0xef3e968249846a49 at 108
+        // nations; this is 115. Both this and the start hash above move for
+        // every roster branch, so the integrator re-pins once at the end and
+        // this value is only here so the rest of the suite can be read.
+        const GOLDEN: u64 = 0x35ff46fb7db1a4c9;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
