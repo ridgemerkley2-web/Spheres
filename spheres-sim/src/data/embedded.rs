@@ -106,6 +106,15 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
     Source { file: "data/nations/canada.json", json: include_str!("../../data/nations/canada.json") },
     Source { file: "data/nations/australia.json", json: include_str!("../../data/nations/australia.json") },
     Source { file: "data/nations/newzealand.json", json: include_str!("../../data/nations/newzealand.json") },
+    // The western Indian Ocean (branch feat/r2-indianocean), in ROSTER order.
+    // Cape Verde is Atlantic and is filed under WestAfrica on its roster row;
+    // it rides with this branch because it is the fifth archipelago, not
+    // because it is in this ocean.
+    Source { file: "data/nations/madagascar.json", json: include_str!("../../data/nations/madagascar.json") },
+    Source { file: "data/nations/mauritius.json", json: include_str!("../../data/nations/mauritius.json") },
+    Source { file: "data/nations/seychelles.json", json: include_str!("../../data/nations/seychelles.json") },
+    Source { file: "data/nations/comoros.json", json: include_str!("../../data/nations/comoros.json") },
+    Source { file: "data/nations/capeverde.json", json: include_str!("../../data/nations/capeverde.json") },
 ];
 
 pub const EMBEDDED_RELATIONS: Source<'static> = Source {

@@ -1,0 +1,39 @@
+{
+  "id": "Seychelles",
+  "name": "Seychelles",
+  "system": "Command",
+  "authoritarianism": 0.74,
+  "economy": {
+    "gdp_bn": 0.369,
+    "population_m": 0.07,
+    "tfp_trend": 0.005,
+    "inflation": 0.039,
+    "interest_rate": 0.157,
+    "tax_rate": 0.559,
+    "mil_spend_gdp": 0.04,
+    "state_invest_gdp": 0.15,
+    "priv_invest_gdp": 0.096,
+    "debt_gdp": 0.4,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 55.0, "separatism": 0.0 },
+  "military": { "strength": 0.4, "nuclear": false },
+  "sources": [
+    "World Bank figures in this file were read off IndexMundi's republication of the WDI series named, because api.worldbank.org and data.worldbank.org returned a WAF block page to this session throughout. The full provenance caveat is written out once, in madagascar.json, and applies here identically.",
+    "GDP $0.369bn: World Bank NY.GDP.MKTP.CD, series SYC, 1990 = 368,584,800. THE SMALLEST ECONOMY IN THE ROSTER. On 69,507 people that is about $5,303 a head, the highest income per head in Africa in 1990 and higher than Portugal's neighbours would guess - which is what a hundred thousand tourists a year does to a denominator of seventy thousand.",
+    "Population 0.07m: World Bank SP.POP.TOTL, series SYC, 1990 = 69,507. Entered as 0.07 rather than 0.0695 because the field's units are millions and the third decimal is the whole population of one island. THE SMALLEST POPULATION IN THE ROSTER by a factor of five - and the reason this file exists, because BIBLE 3.3's ~190 states means the model has to be able to hold a nation of seventy thousand people without dividing by something near zero.",
+    "TFP trend 0.005: tourism-led and capacity-constrained. Seychelles had roughly 100,000 visitors a year against 70,000 residents, the international airport on Mahe (opened 1971) was the entire economic history of the country, and the binding constraint was hotel beds and aircraft seats rather than productivity. Set at the roster's modest middle: a small open economy that grows when Europe flies and stops when it does not, which the Gulf War proved within a year by cutting arrivals sharply.",
+    "Inflation 3.9%: World Bank FP.CPI.TOTL.ZG, series SYC, 1990 = 3.89. Low, and it is a managed price level rather than a market outcome: the Seychelles Marketing Board held the import monopoly on essentials and set their prices, and the rupee was pegged to the SDR.",
+    "Interest rate 15.65%: World Bank FR.INR.LEND, series SYC, 1990 = 15.65, the commercial bank lending rate, the roster's standard substitution for the policy rate. Against 3.9% inflation that is a real rate of +11.8 points, extraordinary, and it is the signature of an administered financial system in a state that was also the economy's largest borrower. The loader's coupled check reads 0.025 - (0.157 - 0.039) = -0.093.",
+    "Revenue 55.9% of GDP: World Bank GC.REV.XGRT.GD.ZS, series SYC. STATED SUBSTITUTION OF YEAR: the series has no 1990 print; 55.92 is the 1989 figure and 51.06 the 1993 one, and the 1989 value is what has been entered as the nearest. THE HIGHEST TAX TAKE IN THE ROSTER, and it is not an error - it is the definition of what Seychelles was. The state owned the import monopoly, the national airline, the fishing agreements, the hotels it had nationalised and the land it had taken, and the revenue line therefore includes trading surpluses that in a market economy would never reach a treasury at all. Reading this as a Scandinavian tax rate would be wrong; it is a state that IS the economy, and the number should be read as that.",
+    "Military 4.0% of GDP: World Bank MS.MIL.XPND.GD.ZS, series SYC, 1990 = 4.03, with 4.28 in 1989 and 4.42 in 1991 either side of it. ELEVEN TIMES MAURITIUS'S BURDEN, on an island a quarter the size and with no enemy that has an army - and that is the correct and the interesting number on this branch. France-Albert Rene took power in the coup of 5 June 1977, was nearly removed by fifty-three South African mercenaries under Mike Hoare who landed at Mahe airport on 25 November 1981 disguised as a beer-drinking club with AK-47s in their luggage, and faced an army mutiny in August 1982 that Tanzanian troops put down. A government that has been invaded once and mutinied against once buys soldiers, and the accounts show it doing so.",
+    "Investment 15% state / 9.6% private, summing to 24.6% of GDP: World Bank NE.GDI.TOTL.ZS, series SYC, 1990 = 24.57, gross capital formation. The split is APPORTIONED and sums to the sourced total, weighted toward the state because in this economy most large capital spending was the state's by construction.",
+    "Debt 40% of GDP: NOT SOURCED IN THIS SESSION and flagged as an admitted gap. DT.DOD.DECT.GN.ZS returned a server error on every attempt for Seychelles specifically while the same indicator answered for Madagascar (98.16), Mauritius (35.44), the Comoros (43.09) and Cape Verde (43.26). 0.40 is entered as a bracket in the middle of those four, and it is a bracket, not a reading. Seychelles' external debt was small in absolute terms - a few hundred million dollars - and mostly concessional; what it was as a share of GNI in 1990 is a number this file does not have. QA should treat this as the least reliable figure in it.",
+    "Oil 0.0: no production. The exploration licences over the Seychelles plateau have never found anything.",
+    "System Command: a one-party socialist state. The Seychelles People's Progressive Front was the sole legal party under the 1979 constitution, the Seychelles Marketing Board monopolised imports and food distribution, the plantations and several hotels had been nationalised, and the country's alignment ran to Moscow, Havana and Dar es Salaam. Entered the same way tanzania.json and angola.json are entered. The counter-argument - that the hotels were foreign-managed and tourism was a market - is real, and it is why the authoritarianism figure is 0.74 rather than the 0.88 Zaire carries.",
+    "Authoritarianism 0.74 and stability 55: Rene had governed since taking power from James Mancham on 5 June 1977 while Mancham was at the Commonwealth conference in London. Elections were held - Rene ran unopposed in 1979, 1984 and 1989 - and the SPPF's monopoly held until Rene announced a return to multiparty politics on 4 December 1991, two years past the game's start and not scheduled anywhere here. Stability 55 is set below Mauritius's 76 and above the Comoros' 30: a regime with a genuine popular base built on free schooling and a welfare state that the tourist rents paid for, which had also survived a mercenary invasion and a mutiny inside twelve months.",
+    "Separatism 0.0: the roster's floor, and it is correct. The population is one Creole people across three inhabited granitic islands within sight of each other; the outer coralline islands are almost uninhabited. There is nothing here to secede.",
+    "Military strength 0.4: the Seychelles People's Defence Forces, about 1,300 regulars including a Tanzanian-trained infantry battalion, plus a People's Militia, with Soviet-supplied light armour and two patrol boats. Set above Mauritius's 0.2, which has no army at all, and below Bahrain's 0.6. Small, but unlike its neighbour's it is an army, and it was the point of the state."
+  ]
+}
