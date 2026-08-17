@@ -498,6 +498,17 @@ const TERRITORY = {
   // 22,966 km2 is the smallest shape drawn on the board.
   Guatemala: ["GTM"], Honduras: ["HND"], ElSalvador: ["SLV"],
   Nicaragua: ["NIC"], CostaRica: ["CRI"], Panama: ["PAN"], Belize: ["BLZ"],
+  // The western Indian Ocean, plus Cape Verde in the Atlantic. Madagascar is
+  // the only one of the five that Natural Earth 110m draws at all — the other
+  // four are archipelagos whose largest island falls under mapgen's
+  // MIN_AREA_PX floor, so they get empty lists and a LABEL_AT position below,
+  // which is the Bahrain treatment. Four nations that are a name and no fill
+  // is the honest rendering of four nations a 110m basemap cannot draw, and
+  // it is a rendering the roster now has to be able to do: a board that means
+  // to reach BIBLE 3.3's ~190 states is a board where a growing share of the
+  // members are smaller than the smallest thing the map can paint.
+  Madagascar: ["MDG"],
+  Mauritius: [], Seychelles: [], Comoros: [], CapeVerde: [],
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],
@@ -541,6 +552,20 @@ const LABEL_AT = {
   // Singapore's [788, 240] and Bahrain's [636, 162] above exactly, which is
   // the check that this is the projection and not a guess at it.
   SaoTome: [519, 243],
+  // The four archipelagos with no polygon. These are not nudges — like
+  // Bahrain's, each is the nation's ONLY position on the map. Every one was
+  // computed by running the island group's coordinates through the same
+  // `project` in mapgen.rs that produced world.js, and the method was checked
+  // first by reproducing the three figures already written down in this file:
+  // Kuwait's centroid at 47.7E/29.4N comes back [627.4, 151.4] against the
+  // [627.1, 151.6] recorded above, Qatar's 51.2E/25.3N comes back
+  // [638.3, 164.3] against [638.2, 164.2], and Bahrain's 50.55E/26.05N comes
+  // back [636.2, 161.9] against the [636, 162] entered. Same projection, same
+  // numbers, so these four are placements rather than guesses.
+  Mauritius: [657, 308],    // 57.55E / 20.28S, Mauritius island
+  Seychelles: [654, 258],   // 55.45E / 4.62S, Mahe
+  Comoros: [619, 281],      // 43.26E / 11.70S, Moroni on Grande Comore
+  CapeVerde: [434, 194],    // 24.0W / 16.0N, the centre of the archipelago
 };
 /// Nations whose label sits off their own territory and needs a leader line.
 const LEADER = new Set(["Kuwait"]);

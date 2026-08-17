@@ -1,0 +1,40 @@
+{
+  "id": "CapeVerde",
+  "name": "Cape Verde",
+  "system": "Market",
+  "authoritarianism": 0.62,
+  "economy": {
+    "gdp_bn": 0.307,
+    "population_m": 0.338,
+    "tfp_trend": 0.004,
+    "inflation": 0.107,
+    "interest_rate": 0.11,
+    "tax_rate": 0.2,
+    "mil_spend_gdp": 0.02,
+    "state_invest_gdp": 0.16,
+    "priv_invest_gdp": 0.08,
+    "debt_gdp": 0.433,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 62.0, "separatism": 0.03 },
+  "military": { "strength": 0.3, "nuclear": false },
+  "sources": [
+    "World Bank figures in this file were read off IndexMundi's republication of the WDI series named, because api.worldbank.org and data.worldbank.org returned a WAF block page to this session throughout. The full provenance caveat is written out once, in madagascar.json, and applies here identically.",
+    "GDP $0.307bn: World Bank NY.GDP.MKTP.CD, series CPV, 1990 = 306,891,100. On 337,953 people that is about $908 a head. THE SECOND-SMALLEST ECONOMY IN THE ROSTER after Seychelles. The islands are volcanic, arid and have effectively no agriculture - drought had killed a substantial share of the population repeatedly before independence - so the economy is remittances from the diaspora in Massachusetts, Portugal and the Netherlands, development aid, and the fuel and services trade at Sal.",
+    "Population 0.338m: World Bank SP.POP.TOTL, series CPV, 1990 = 337,953. There were more Cape Verdeans living abroad than at home in 1990 and there still are, which is the single most important structural fact about the country and the reason the remittance line is larger than the export line.",
+    "TFP trend 0.004: modest and positive. Cape Verde's post-independence record was better than its resource base had any right to be - the PAICV built roads, schools and water systems out of aid at a rate that gave the country one of the best human-development trajectories in Africa, and it graduated from least-developed-country status in 2007. Set above the Comoros' 0.000 and below Mauritius's 0.013: real institutional competence applied to almost nothing to work with.",
+    "Inflation 10.65%: World Bank FP.CPI.TOTL.ZG, series CPV, 1990 = 10.65. The escudo cabo-verdiano was managed against a basket and was NOT a franc-zone currency, which is why this figure sits ten points above the Comoros' bracket and thirty times Senegal's sourced print.",
+    "Interest rate 11%: NOT SOURCED and flagged as an admitted gap. FR.INR.LEND has no Cape Verdean entry before 2006, whose first print is 10.80. 0.11 is entered as a bracket for Banco de Cabo Verde-era administered lending rates, set marginally above the 2006 print on the reasoning that 1990 inflation was three times 2006's. The loader's coupled check reads 0.025 - (0.11 - 0.107) = 0.022 - so the entry puts the economy essentially at the model's neutral real rate, which is the least assertive thing an unsourced figure can do and is deliberate.",
+    "Revenue 20% of GDP: NOT SOURCED - GC.REV.XGRT.GD.ZS has no Cape Verdean entry for this period - and entered as a bracket between Cameroon's sourced 14.3% and Mauritius's sourced 22.5%. Cape Verde's revenue was overwhelmingly trade taxes on an import bill that was most of consumption, which argues for the higher end. Flagged.",
+    "Military 2.0% of GDP: FLAGGED AS A SUBSTITUTION. MS.MIL.XPND.GD.ZS has no 1990 entry for Cape Verde; the last available print before the gap is 2.79 for 1984. 0.02 is entered as that figure bracketed down, and the reason for bracketing it down rather than carrying it forward is a real event: the 1984 number belongs to the era when Cape Verde and Guinea-Bissau were still nominally heading for union under one party, and the Forcas Armadas Revolucionarias do Povo were sized for a liberation-movement posture. The Vieira coup of 14 November 1980 ended the union project, the party renamed itself PAICV, and the force shrank toward the roughly 1,100 men it had by 1990. Bracketed, not read.",
+    "Investment 16% state / 8% private, summing to 24% of GDP: NOT SOURCED and the largest admitted gap in this file. NE.GDI.TOTL.ZS has no Cape Verdean entry before 2007, whose first print is 49.79. Carrying 49.79 back to 1990 would be absurd - that print belongs to the tourism construction boom of the 2000s, which had not started. 24% is entered as a bracket between the Comoros' sourced 18.04 and Seychelles' sourced 24.57, weighted two-to-one toward the state because Cape Verde's capital spending in 1990 was the aid-financed public investment programme almost in its entirety. It is a bracket in both its level and its split and should be read as one.",
+    "Debt 43.3% of GDP: World Bank DT.DOD.DECT.GN.ZS, series CPV, 1990 = 43.26, external debt stocks as a share of GNI. Almost all concessional, which is why a number that would be alarming elsewhere never produced a Cape Verdean debt crisis.",
+    "Oil 0.0: no production. Sal and Mindelo sold bunker fuel and jet fuel they had first imported, which is trade rather than output and belongs in neither this field nor any other.",
+    "System Market: entered as Market despite a one-party state, and the reasoning is the opposite of the Comoros'. The PAICV governed alone and its origins were in an armed liberation movement, but it explicitly declined Marxism-Leninism in its statutes - the one Lusophone African ruling party that did, against Angola's MPLA, Mozambique's Frelimo and Guinea-Bissau's PAIGC - kept private property, courted Western and specifically American aid, and left commerce alone. EMPA's food import monopoly is the one significant state trading body and it existed because famine relief had to be distributed, not because the commanding heights were being seized.",
+    "Authoritarianism 0.62 and stability 62: on 1 January 1990 this is a one-party state under Aristides Pereira, president since independence on 5 July 1975, with the PAICV's monopoly written into Article 4 of the constitution. It did not last the year: the party's central committee accepted multipartyism in February 1990, the National Assembly amended Article 4 in September, and the Movimento para a Democracia won the legislative election of 13 January 1991 and the presidency in February - the first African incumbent party of the wave to lose an election and hand over power without incident. Nothing here schedules that. Authoritarianism 0.62 is set level with Madagascar's 0.65 territory and below Seychelles' 0.70; stability 62 is HIGH for a one-party state and is the point - Cape Verde has never had a coup, never had a political killing, and its transition worked because there was nothing to fight over.",
+    "Separatism 0.03: near the floor. Sao Vicente and Santiago have a rivalry that is mostly about music and football, Mindelo thinks Praia gets the ministries, and no island has ever had a separatist movement. The one real historical fissure - union with Guinea-Bissau - was a claim to join a country rather than to leave one, and it died in 1980.",
+    "Military strength 0.3: about 1,100 in the Forcas Armadas with a coast guard and no combat aircraft, on ten islands spread over 700km of Atlantic. Set above Mauritius's 0.2 and the Comoros' 0.2 because unlike either it is a real if tiny national force with its own command, and below Seychelles' 0.4 because Seychelles had been invaded and bought accordingly.",
+    "The relationship this file cannot express in a number, recorded here: Sal. South African Airways was banned from the airspace of almost every African state, so its Johannesburg-Europe flights refuelled at Amilcar Cabral International Airport on Sal, and the landing fees were a material share of a $307m economy. A government that had come out of an anti-colonial liberation movement and voted against apartheid at every international forum was also the reason apartheid's flag carrier could reach Europe. It is in the relations block."
+  ]
+}

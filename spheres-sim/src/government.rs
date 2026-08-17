@@ -4129,6 +4129,236 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the House of Representatives",
         pillars: &[],
     },
+
+    // -----------------------------------------------------------------------
+    // The western Indian Ocean (branch feat/r2-indianocean).
+    //
+    // Five states, and only two of them are electoral by this file's own test.
+    // That is the point of the group rather than an accident of it: this is
+    // where the roster stops being able to lean on "who won the last election"
+    // and has to say what a government rests on when nobody voted, or when the
+    // vote was a formality, or when the last head of state was shot by his own
+    // guard five weeks before the game opens.
+    // -----------------------------------------------------------------------
+
+    // Madagascar — presidential election of 12 March 1989, and it is a
+    // PRESIDENTIAL result in a table that is mostly parliamentary, which is a
+    // stated substitution rather than an oversight. The Second Republic's
+    // National People's Assembly was elected in May 1989 on a single Front
+    // National pour la Defense de la Revolution list whose internal
+    // distribution this session could not source; the presidential vote is the
+    // one contest of the period that published comparable shares and it is the
+    // vote that decided who governed. Ratsiraka 62.7%, Manandafy Rakotonirina
+    // of the MFM 19.4%, Jerome Razanabahiny of Vonjy 14.7%, Tovonanahary
+    // Rabetsitonta 3.2%. The opposition rejected the count and Antananarivo
+    // rioted.
+    //
+    // All four candidates stood for parties INSIDE the FNDR, which is what
+    // makes this a dominant-party contest rather than a free one and why
+    // madagascar.json carries authoritarianism 0.65 — above this file's 0.60
+    // electoral ceiling, so the pillars below are what the regime actually
+    // rests on and the party table waits for the day the front dissolves. It
+    // dissolved in March 1990, ten weeks after the game opens, when the
+    // constitutional revision dropped the requirement to belong to it. Nothing
+    // here schedules that. `next` is (1996, 3) because the presidential term
+    // was seven years; the model will not reach it, and that is the correct
+    // shape for a regime whose actual removal came in 1993 by a route no
+    // calendar predicted.
+    // https://en.wikipedia.org/wiki/1989_Malagasy_presidential_election
+    Polity {
+        nation: NationId::Madagascar,
+        // Two rounds by the constitution. Ratsiraka cleared 50% in the first,
+        // so the runoff was never held — the mechanism is still the one the
+        // republic used and TwoRound's (2.0, 0.05) is the right shape for it.
+        system: Electoral::TwoRound,
+        term_months: 84,
+        next: (1996, 3),
+        parties: &[
+            p("mg_arema", "Vanguard of the Malagasy Revolution", "Antokin'ny Revolisiona Malagasy", Family::Communist, 0.627),
+            p("mg_mfm", "Militant Party for Malagasy Development", "Mpitolona ho amin'ny Fandrosoan'i Madagasikara", Family::SocialDemocratic, 0.194),
+            p("mg_vonjy", "Vonjy Iray Tsy Mivaky", "National Union Party", Family::Conservative, 0.147),
+            p("mg_vsm", "Socialist Monima Group", "Vondrona Sosialista Monima", Family::Agrarian, 0.032),
+        ],
+        ruling: "the Vanguard of the Malagasy Revolution",
+        pillars: &[
+            // The unit that fired on the marchers at Iavoloha on 10 August
+            // 1991 and the reason Ratsiraka lasted another two years after
+            // the general strike began. Entered as the regime's first pillar
+            // because in Madagascar the presidency's guard and the army are
+            // not the same institution and did not behave the same way.
+            pl(Pillar::Army, "the Regiment de la Securite Presidentielle"),
+            pl(Pillar::Party, "the AREMA Political Bureau"),
+            pl(Pillar::Security, "the Direction Generale de l'Information et de la Documentation"),
+        ],
+    },
+
+    // Mauritius — general election of 30 August 1987, and the shares are SEAT
+    // shares of the 62 directly elected seats rather than votes. That is the
+    // Thailand decision made again and for the same reason: Mauritius elects
+    // three members per constituency on a block vote and then adds up to eight
+    // "best loser" seats appointed by the Electoral Supervisory Commission to
+    // correct the communal balance, so a national popular share compiled out
+    // of it would be an artefact of a system nobody else uses. Alliance 39,
+    // MMM-led opposition 21, Organisation du Peuple Rodriguais 2.
+    //
+    // The Alliance is entered as ONE party and it was three — Jugnauth's MSM,
+    // the Labour Party and the PMSD. This session could not source the seat
+    // split between them to the precision this table demands, so rather than
+    // invent one it is entered as a BigTent, which is also what it functionally
+    // was and what it proved by coming apart: Labour walked out in August 1988
+    // and the PMSD followed, eleven months before the game opens, so by January
+    // 1990 Jugnauth is governing with a reconstructed majority that this row
+    // does not attempt to describe. That is the gap, stated.
+    // https://en.wikipedia.org/wiki/1987_Mauritian_general_election
+    Polity {
+        nation: NationId::Mauritius,
+        // Block vote in three-member constituencies. FirstPastThePost's
+        // (3.0, 0.0) is the closest available and if anything understates it:
+        // the block vote is MORE majoritarian than single-member plurality,
+        // because a party that wins a constituency usually takes all three of
+        // its seats. The 1982 election went 60-0.
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1991, 9),
+        parties: &[
+            p("mu_all", "the Alliance", "MSM - Labour - PMSD", Family::BigTent, 0.629),
+            p("mu_mmm", "Mauritian Militant Movement", "Mouvement Militant Mauricien", Family::SocialDemocratic, 0.339),
+            p("mu_opr", "Rodrigues People's Organisation", "Organisation du Peuple Rodriguais", Family::Regionalist, 0.032),
+        ],
+        ruling: "the National Assembly",
+        // EMPTY, AND IT IS THE STRONGEST STATEMENT IN THIS BLOCK. Mauritius
+        // has no army. There is no institution on the island that could
+        // remove an elected government, which is why it has never had a coup
+        // and why mauritius.json carries the lowest military burden in the
+        // roster. A `pillars` list is what a government rests on when nobody
+        // votes; here, everybody votes.
+        pillars: &[],
+    },
+
+    // Seychelles — presidential election of 17 June 1989, in which France-
+    // Albert Rene stood unopposed and took 96.1%. The Seychelles People's
+    // Progressive Front was the only legal party under the constitution of
+    // 1979 and there is no second entry in this table because there was no
+    // second party in the country.
+    //
+    // THIS DELIBERATELY DOES NOT FOLLOW THE MONGOLIA PRECEDENT and the reason
+    // is worth stating, because the Mongolia block a few hundred lines up does
+    // the opposite. Mongolia's row seeds the party table with the result of
+    // the first multiparty election — held seven months after the game opens,
+    // well documented, and cited — so that the table goes live if the regime
+    // opens. The equivalent for Seychelles is the constitutional commission
+    // election of July 1992, THIRTY months out, and this session could not
+    // source its shares to the precision this file demands. Entering a
+    // remembered figure would be exactly the confident fiction the roster's
+    // rules forbid. So the table holds one party at 96.1% and admits the gap:
+    // if this regime liberalises in the model, it liberalises into a country
+    // whose opposition this file cannot name. A later author with the 1992
+    // numbers should add them here.
+    // https://en.wikipedia.org/wiki/1989_Seychellois_general_election
+    Polity {
+        nation: NationId::Seychelles,
+        // Inert, as Mongolia's is: a threshold and a majority bonus do
+        // nothing to a ballot with one name on it. Proportional is entered
+        // for the same reason the Mongolian row enters it — it is the least
+        // distorting default for the day the second name appears.
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("sc_sppf", "Seychelles People's Progressive Front", "Front Progressiste du Peuple Seychellois", Family::Communist, 0.961),
+        ],
+        ruling: "the Seychelles People's Progressive Front",
+        pillars: &[
+            // The army that Tanzania trained and that put down the mutiny of
+            // August 1982 — after Tanzanian troops had put down the mutineers
+            // the army itself could not.
+            pl(Pillar::Army, "the Seychelles People's Defence Forces"),
+            pl(Pillar::Party, "the SPPF Central Committee"),
+        ],
+    },
+
+    // Comoros — the presidential election of 4 and 11 March 1990, which had
+    // NOT HAPPENED when the game opens and is entered anyway. Said Mohamed
+    // Djohar took the runoff with 55.1% against Mohamed Taki Abdoulkarim's
+    // 44.9%. That is a future result on a January 1990 board, which this table
+    // has a precedent for (Mongolia, Cameroon) and which is more defensible
+    // here than in either, because unlike theirs this election was already
+    // called: Ahmed Abdallah had been shot dead in his office by his own
+    // Presidential Guard on 26 November 1989, Bob Denard had run the islands
+    // for three weeks and been flown out to South Africa on 15 December,
+    // Djohar was interim president as president of the Supreme Court, and the
+    // ballot was ten weeks away with French troops on the ground to see it
+    // held. `next` is (1990, 3) and it is a real date, not a reconstruction.
+    //
+    // comoros.json sets authoritarianism at 0.58, fractionally under this
+    // file's 0.60 ceiling, so this counts as an electoral polity and the date
+    // is live. That call is argued in the data file and a QA reader who
+    // reverses it should set `next` to (0, 0) in the same commit.
+    // https://en.wikipedia.org/wiki/1990_Comorian_presidential_election
+    Polity {
+        nation: NationId::Comoros,
+        system: Electoral::TwoRound,
+        term_months: 72,
+        next: (1990, 3),
+        parties: &[
+            p("km_udzima", "Comorian Union for Progress", "Udzima wa ya Masiwa", Family::BigTent, 0.551),
+            p("km_undc", "National Union for Comorian Democracy", "Union Nationale pour la Democratie aux Comores", Family::Conservative, 0.449),
+        ],
+        ruling: "the President of the Republic",
+        pillars: &[
+            // THE ONLY PILLAR IN THIS ENTIRE TABLE THAT KILLED THE HEAD OF
+            // STATE IT WAS SUPPOSED TO PROTECT, and it did so five weeks
+            // before the game opens. Roughly five to seven hundred men under
+            // a French mercenary, partly paid by South African intelligence,
+            // which had put one president in in 1978 and took him out in
+            // 1989. No party pillar is entered beside it: Abdallah's Union
+            // Comorienne pour le Progres was a vehicle for one man and it
+            // went when he did.
+            pl(Pillar::Army, "the Garde Presidentielle"),
+        ],
+    },
+
+    // Cape Verde — the Mongolia treatment, and here it fits exactly. On 1
+    // January 1990 this is a one-party state: the PAICV's monopoly is Article
+    // 4 of the constitution, Aristides Pereira has been president since
+    // independence on 5 July 1975, and the last vote was the single-list
+    // National People's Assembly election of December 1985 which published
+    // nothing comparable. `next` is therefore (0, 0). The party table is the
+    // result of the legislative election of 13 January 1991 — the Movimento
+    // para a Democracia 68.0%, the PAICV 30.6% — which goes live if and when
+    // the regime opens.
+    //
+    // It opened, twelve months in and without a shot: the central committee
+    // accepted multipartyism in February 1990, the Assembly amended Article 4
+    // in September, the PAICV lost by better than two to one in January 1991
+    // and handed over. It was the first of the African single parties of that
+    // wave to lose an election and go. NOTHING HERE SCHEDULES THAT, which is
+    // the whole point of putting the shares in a table that is not yet live —
+    // a model with a stable one-party state, a 0.62 authoritarianism and a
+    // waiting liberal opposition ought to be able to produce it, or not.
+    // https://en.wikipedia.org/wiki/1991_Cape_Verdean_parliamentary_election
+    Polity {
+        nation: NationId::CapeVerde,
+        // Closed-list proportional representation by island constituency,
+        // which is what Cape Verde actually uses and which needs no
+        // substitution.
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cv_mpd", "Movement for Democracy", "Movimento para a Democracia", Family::Liberal, 0.680),
+            p("cv_paicv", "African Party for the Independence of Cape Verde", "Partido Africano da Independencia de Cabo Verde", Family::SocialDemocratic, 0.306),
+        ],
+        ruling: "the African Party for the Independence of Cape Verde",
+        pillars: &[
+            // One pillar and no army. The Forcas Armadas Revolucionarias do
+            // Povo existed but have never taken a political position and were
+            // not what held the state up; the party was. Cape Verde is the
+            // rare single-party regime whose pillar list is short because
+            // there was genuinely nothing to suppress.
+            pl(Pillar::Party, "the PAICV National Council"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

@@ -119,6 +119,23 @@ pub const REGIONS: &[&str] = &[
     // written around is not. Oceania holds the two of them and their contact
     // set is each other, which is the fact.
     "Oceania",
+    // Added with the western Indian Ocean archipelagos. Madagascar, Mauritius,
+    // Seychelles and the Comoros have no land border with anybody, so region
+    // membership is the ONLY thing that gives any of them a contact at all —
+    // an island state filed under a region it cannot reach is a nation the
+    // dyad model can never see, and an island state filed under a mainland
+    // region is handed contacts across a thousand kilometres of ocean it has
+    // no hull to cross.
+    //
+    // This region is a real one by the list's own test. The 1981 mercenary
+    // landing at Mahe was mounted out of Durban and flew out through Mombasa;
+    // Bob Denard's men took the Comoros in 1978 and again in 1989 off boats;
+    // Tanzanian troops garrisoned Victoria until 1984. Force in this quarter
+    // of the world moves by small boat and chartered aircraft between the
+    // islands, and the islands are the states it moves between. Cape Verde is
+    // NOT here — it is an Atlantic archipelago 570km off Dakar and is filed
+    // under WestAfrica, which is argued on its row.
+    "IndianOcean",
 ];
 
 /// The roster. **Order is the relations-matrix order and must not be shuffled.**
@@ -1908,6 +1925,115 @@ pub const ROSTER: &[NationRow] = &[
     // was disputed with Baku from 1997.
     row("Turkmenistan", "Turkmenistan", &["tkm", "turkmenia"], "Eurasia",
         &["Kazakhstan", "Uzbekistan", "Iran", "Afghanistan"], &[], false, false, false),
+
+    // ---- The western Indian Ocean (branch feat/r2-indianocean) --------------
+    //
+    // Five archipelagos, and NOT ONE OF THEM HAS A LAND BORDER. Every
+    // `neighbours` list below is empty and every one of those empties is a
+    // fact rather than an omission, which also means this branch appends five
+    // rows and edits no existing row's neighbour list at all — the symmetry
+    // assertion has nothing to check because there is nothing to make
+    // symmetric.
+    //
+    // What these five DO have is claims, and all of them are on the two
+    // colonial powers that never left the ocean. Each is a rounding error as a
+    // share of its target and each is entered anyway, because `share` exists
+    // precisely so that a claim on a coral atoll and a claim on a whole
+    // emirate are not the same object — and because the claim is what puts
+    // Paris and London into these nations' contact sets, which is the single
+    // most important fact about their foreign policy in 1990.
+
+    // Ratsiraka's Madagascar: the Second Republic, "socialisme malgache" in
+    // the constitution and an IMF structural adjustment programme in the
+    // ministries since 1982.
+    //
+    // The claim is the Iles Eparses — Europa, Bassas da India, Juan de Nova
+    // and the Glorieuses, four scraps of the Mozambique Channel totalling
+    // about 44 square kilometres, detached from Madagascar by decree on 1
+    // April 1960 three weeks before independence and held by France since.
+    // UN General Assembly resolution 34/91 of 12 December 1979 invited France
+    // to negotiate their return and Antananarivo has re-tabled it ever since,
+    // so this is live in January 1990 rather than historical. 44km2 against
+    // France's 551,695 is 0.00008, and that is the honest number: a real
+    // grievance about almost no ground, which is a different object from a war
+    // of conquest and the model should be able to tell them apart.
+    // https://en.wikipedia.org/wiki/Scattered_Islands_in_the_Indian_Ocean
+    row("Madagascar", "Madagascar", &["mdg", "malagasy", "malagasy republic"], "IndianOcean",
+        &[], &[claim("France", 0.00008)], true, false, false),
+
+    // The claim is the Chagos Archipelago. Britain detached it from the colony
+    // of Mauritius on 8 November 1965 to make the British Indian Ocean
+    // Territory, three years before Mauritian independence and in exchange for
+    // a GBP3m grant, then removed the entire Chagossian population between
+    // 1968 and 1973 so that Diego Garcia could be leased to the United States.
+    // Mauritius has never accepted the detachment as lawful. In 1990 that is
+    // an argument between a Commonwealth realm and its former metropole over
+    // 60km2 of atoll, which against the United Kingdom's 243,610km2 is
+    // 0.00025 — and it is the reason Port Louis has a standing contact with
+    // London that is not simply warmth.
+    //
+    // Tromelin, which Mauritius also claims from France, is NOT entered. It is
+    // one square kilometre with an unmanned weather station on it, its share
+    // of France would be 0.000002, and unlike Chagos there is no population,
+    // no base and no dispute either capital was pressing in 1990. Entering it
+    // would tell the appetite model that Port Louis wants something from Paris
+    // when what Port Louis wants from Paris is Reunion's tourists.
+    // https://en.wikipedia.org/wiki/Chagos_Archipelago_sovereignty_dispute
+    row("Mauritius", "Mauritius", &["mus", "maurice"], "IndianOcean",
+        &[], &[claim("UK", 0.00025)], true, false, false),
+
+    // No claim, and that is the transcribed fact. The islands Britain had
+    // excised into the British Indian Ocean Territory in 1965 — Aldabra,
+    // Desroches and Farquhar — were returned to Seychelles on independence in
+    // 1976, which is exactly the settlement Mauritius never got, and it is why
+    // the two neighbouring archipelagos hold opposite positions on the same
+    // British territory. Seychelles' quarrel in 1990 is with South Africa and
+    // it is about an attempted invasion, not about ground: that belongs in
+    // relations, and it is there.
+    row("Seychelles", "Seychelles", &["syc", "sey"], "IndianOcean",
+        &[], &[], true, false, false),
+
+    // Mayotte. The Comoros voted for independence in the referendum of 22
+    // December 1974 by 94.6% across the four islands, and Mayotte alone voted
+    // 63.8% to stay French; Paris then counted the islands separately, which
+    // no other decolonisation of the period did. UN General Assembly
+    // resolution 3385 of 12 November 1975 admitted the Comoros with Mayotte
+    // inside its borders and the Assembly has voted the same way almost every
+    // year since, France vetoing the corresponding Security Council text in
+    // 1976. So the claim is not merely alive in January 1990, it is the
+    // position of the international organisation.
+    //
+    // The share is a share of FRANCE, because France is the state holding the
+    // ground. Mayotte is 374km2 of France's 551,695 and its 1991 census
+    // counted 94,410 people against 56.6m; area gives 0.00068 and population
+    // 0.0017, and 0.001 is entered as the round figure between them. The
+    // asymmetry this creates is the correct one and it is the whole tragedy of
+    // Comorian foreign policy: Moroni claims territory from the same state
+    // whose Foreign Legion detachment is the only thing standing between the
+    // government and the next mercenary landing.
+    // https://en.wikipedia.org/wiki/1974_Comorian_independence_referendum
+    row("Comoros", "Comoros", &["com", "comores", "comoro islands"], "IndianOcean",
+        &[], &[claim("France", 0.001)], true, false, false),
+
+    // Cape Verde is filed under WestAfrica and not under IndianOcean, which is
+    // the obvious thing but is worth stating because it is the one row on this
+    // branch that is not in the ocean the branch is named for. It is ten
+    // islands in the Atlantic 570km west of Dakar. WestAfrica in this list
+    // already holds Senegal, Ghana, Nigeria and Cameroon, and putting Praia
+    // among them is a stretch against the region test — 570km of open ocean is
+    // not "force can be projected without anybody's permission" — but it is a
+    // far smaller lie than the alternatives, which were to invent a region of
+    // one member (a nation with no contacts at all, invisible to the dyad
+    // model forever) or to file an Atlantic archipelago under IndianOcean.
+    // Cape Verde and Guinea-Bissau were also one party and very nearly one
+    // country until the coup of 14 November 1980, and Dakar is where a
+    // Cape Verdean argument actually goes, so the region is not arbitrary.
+    //
+    // No claim. The PAIGC's unity project died in 1980 and the PAICV that
+    // replaced it dropped the mainland from its name; there is no Cape Verdean
+    // claim on anybody and never has been.
+    row("CapeVerde", "Cape Verde", &["cpv", "cabo verde", "cape verde islands"], "WestAfrica",
+        &[], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -2162,6 +2288,12 @@ well_known! {
     Kyrgyzstan => "Kyrgyzstan",
     Tajikistan => "Tajikistan",
     Turkmenistan => "Turkmenistan",
+    // The western Indian Ocean (branch feat/r2-indianocean).
+    Madagascar => "Madagascar",
+    Mauritius => "Mauritius",
+    Seychelles => "Seychelles",
+    Comoros => "Comoros",
+    CapeVerde => "CapeVerde",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {
