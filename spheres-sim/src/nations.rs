@@ -180,9 +180,10 @@ pub const ROSTER: &[NationRow] = &[
     // measurement and the argument; it is recorded there so both halves of the
     // dyad sit in one place.
     row("China", "China", &["prc", "cn"], "EastAsia",
-        &["USSR", "Russia", "India", "Pakistan", "Vietnam", "Kazakhstan", "Nepal", "Myanmar", "NorthKorea", "Mongolia", "Laos", "Kyrgyzstan", "Tajikistan"],
-        &[claim("India", 0.02), claim("Vietnam", 0.01), claim("Russia", 0.004)],
-        &["USSR", "Russia", "India", "Pakistan", "Vietnam", "Kazakhstan", "Nepal", "Myanmar", "NorthKorea", "Mongolia", "Laos", "Bhutan"],
+        // Unioned across two branches: Central Asia brought Kyrgyzstan and
+        // Tajikistan, maritime Asia brought Bhutan. China borders fourteen
+        // states and the roster now carries thirteen of them.
+        &["USSR", "Russia", "India", "Pakistan", "Vietnam", "Kazakhstan", "Nepal", "Myanmar", "NorthKorea", "Mongolia", "Laos", "Kyrgyzstan", "Tajikistan", "Bhutan"],
         // Bhutan appended with the Bhutan row below. 764 km2 of a Bhutan of
         // 38,394 — 495 in the Pasamlung and Jakarlung valleys, 269 at Doklam
         // and its neighbours in the west — under direct negotiation since 1984
@@ -310,13 +311,13 @@ pub const ROSTER: &[NationRow] = &[
     // of Kinasara and Katti Kime in April-May 1983 and something like eighty
     // men died. This is a border an army walked across inside the decade, so it
     // is declared. Resolve any conflict here by union.
-    row("Nigeria", "Nigeria", &["nga"], "WestAfrica", &["Cameroon", "Chad"], &[], true, false, false),
-    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): "Niger" and "Benin" appended.
-    // Nigeria's other two roster frontiers, 1,600km along the north and 800km of
-    // the west; Chad, across Lake Chad, is still not simulated. Union, not
-    // replacement.
+    // Unioned across two branches, which each rewrote the whole row rather than
+    // appending to it and so produced a duplicate the roster guard caught. All
+    // four frontiers are real: Cameroon and Chad across Lake Chad from the
+    // Central African fill-in, Niger's 1,600km northern border and Benin's
+    // 800km western one from West Africa.
     row("Nigeria", "Nigeria", &["nga"], "WestAfrica",
-        &["Cameroon", "Niger", "Benin"], &[], true, false, false),
+        &["Cameroon", "Chad", "Niger", "Benin"], &[], true, false, false),
 
     // The Paracels and Spratlys from the other end, plus the border strips.
     row("Vietnam", "Vietnam", &["viet nam", "vnm"], "SoutheastAsia",
@@ -1144,8 +1145,9 @@ pub const ROSTER: &[NationRow] = &[
     // decade accusing Tripoli of designs on the Air massif. Union, not
     // replacement.
     row("Libya", "Libya", &["lby", "libyan arab jamahiriya", "jamahiriya"], "NorthAfrica",
-        &["Algeria", "Tunisia", "Egypt", "Sudan", "Chad"], &[], true, false, false),
-        &["Algeria", "Tunisia", "Egypt", "Sudan", "Niger"], &[], true, false, false),
+        // Unioned across two branches: Central Africa brought Chad, West Africa
+        // brought Niger. Both borders are real and neither side is dropped.
+        &["Algeria", "Tunisia", "Egypt", "Sudan", "Chad", "Niger"], &[], true, false, false),
 
     // Sudan claims nothing. Under the 1902 administrative line it prefers, the
     // Hala'ib triangle is already Sudanese and Bir Tawil is already Egyptian,
@@ -1254,9 +1256,11 @@ pub const ROSTER: &[NationRow] = &[
     // Zaire's Katanga cuts into Zambia far enough that the Zambian road from
     // Lusaka to Luapula crossed Zairean territory. Three roster neighbours now,
     // not two.
+    // Two branches extended this row from opposite sides — Central Africa added
+    // the Congo and CAR borders, Southern Africa added Zambia. Unioned, which is
+    // what the integration rule means: never choose a side of a neighbour list.
     row("Zaire", "Zaire", &["zar", "congo", "drc"], "CentralAfrica",
-        &["Angola", "Uganda", "CentralAfricanRepublic", "Congo"], &[], true, false, false),
-        &["Angola", "Uganda", "Zambia"], &[], true, false, false),
+        &["Angola", "Uganda", "CentralAfricanRepublic", "Congo", "Zambia"], &[], true, false, false),
 
     // Cabinda is Angola's own exclave, cut off from the rest of the country by the
     // Zaire river mouth, and the separatism figure in angola.json is where FLEC
@@ -1276,8 +1280,9 @@ pub const ROSTER: &[NationRow] = &[
     // then recognised Luanda. Namibia is the Kunene and the Caprivi, and it is
     // the border the SADF crossed to fight FAPLA at Cuito Cuanavale.
     row("Angola", "Angola", &["ago", "ang"], "SouthernAfrica",
-        &["Zaire", "Congo"], &[], true, false, false),
-        &["Zaire", "Zambia", "Namibia"], &[], true, false, false),
+        // Unioned across two branches, same rule: Central Africa brought the
+        // Congo border, Southern Africa brought Zambia and Namibia.
+        &["Zaire", "Congo", "Zambia", "Namibia"], &[], true, false, false),
 
     // Mozambique, Zambia and Botswana appended with the Southern Africa
     // fill-in. Mozambique is the one that matters: 1,231km of border, the Beira

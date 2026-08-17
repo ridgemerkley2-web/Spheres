@@ -1068,11 +1068,18 @@ pub fn tick(w: &mut WorldState) {
         // a test threshold. Laos is a genuine behaviour change on a nation that
         // was already on the board, and it is stated rather than buried.
         const BUILD_REF: f64 = 0.008;
+        // INTEGRATION NOTE: two roster branches independently softened this
+        // floor for the very small economies the expansion added, and unlike a
+        // neighbour list these could not be unioned — they are two shapes for
+        // one curve. The smooth form is kept: `r^2/(r + knee)` has no kink,
+        // where the piecewise form changes slope at its reference and would put
+        // a discontinuity in what a nation can afford exactly where the new
+        // roster is densest. Both were aimed at the same finding, that the
+        // poorest states in a 137-nation world are an order of magnitude
+        // smaller than the poorest in a 31-nation one.
         let scale = if world_gdp > 0.0 {
             let r = (w.nation(id).gdp.max(0.0) / world_gdp).sqrt();
             (r * r / (r + BUILD_KNEE)).clamp(0.0, 1.0)
-            let root = (w.nation(id).gdp.max(0.0) / world_gdp).sqrt().clamp(0.0, 1.0);
-            if root >= BUILD_REF { root } else { root * root / BUILD_REF }
         } else {
             1.0
         };
