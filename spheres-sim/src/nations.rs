@@ -163,7 +163,7 @@ pub const ROSTER: &[NationRow] = &[
     // measurement and the argument; it is recorded there so both halves of the
     // dyad sit in one place.
     row("China", "China", &["prc", "cn"], "EastAsia",
-        &["USSR", "Russia", "India", "Pakistan", "Vietnam", "Kazakhstan", "Nepal", "Myanmar", "NorthKorea", "Mongolia", "Laos"],
+        &["USSR", "Russia", "India", "Pakistan", "Vietnam", "Kazakhstan", "Nepal", "Myanmar", "NorthKorea", "Mongolia", "Laos", "Kyrgyzstan", "Tajikistan"],
         &[claim("India", 0.02), claim("Vietnam", 0.01), claim("Russia", 0.004)],
         true, true, false),
 
@@ -211,7 +211,7 @@ pub const ROSTER: &[NationRow] = &[
     // Tehran's claim is the Shatt al-Arab thalweg conceded at Algiers in 1975
     // and torn up in 1980, and behind it the shrine cities of Najaf and Karbala.
     row("Iran", "Iran", &["irn", "persia"], "MiddleEast",
-        &["Iraq", "Turkey", "Pakistan", "USSR", "Armenia", "Azerbaijan", "Afghanistan"], &[claim("Iraq", 0.03)], true, false, false),
+        &["Iraq", "Turkey", "Pakistan", "USSR", "Armenia", "Azerbaijan", "Afghanistan", "Turkmenistan"], &[claim("Iraq", 0.03)], true, false, false),
 
     // The Republic of Korea's constitution defines its territory as the whole
     // peninsula, so in strict transcription Seoul holds the mirror image of
@@ -572,9 +572,11 @@ pub const ROSTER: &[NationRow] = &[
     // ones, and every war fought here since has been about the places where
     // that principle collided with where the people actually lived.
     //
-    // Borders below are with roster members only. Turkmenistan, Tajikistan,
-    // Kyrgyzstan, Romania, Afghanistan, Finland, Norway and Mongolia are not
-    // simulated, so those frontiers are correctly absent rather than wrong.
+    // Borders below are with roster members only. Romania, Finland, Norway and
+    // Mongolia are not simulated, so those frontiers are correctly absent
+    // rather than wrong. Turkmenistan, Tajikistan and Kyrgyzstan were on that
+    // list until feat/r2-gulf2 added them at the end of the roster; all fifteen
+    // republics are now here.
     // -----------------------------------------------------------------------
 
     // Belarus - 77.9% Belarusian in the 1989 census with no territorial
@@ -601,15 +603,18 @@ pub const ROSTER: &[NationRow] = &[
     // largest war in the model out of a press conference.
     // https://en.wikipedia.org/wiki/Alma-Ata_Protocol
     row("Kazakhstan", "Kazakhstan", &["kaz", "kazakstan"], "Eurasia",
-        &["Russia", "China", "Uzbekistan"], &[], false, false, false),
+        &["Russia", "China", "Uzbekistan", "Kyrgyzstan", "Turkmenistan"], &[], false, false, false),
 
     // Uzbekistan - the most populous republic in the region, 20.5m in 1990, and
     // the one whose borders were drawn to be awkward: the Fergana valley was
     // partitioned between three republics in the delimitation of 1924-36 and
-    // left enclaves inside each. All of those disputes are with Kyrgyzstan and
-    // Tajikistan, neither of which is simulated, so this row has no claims.
+    // left enclaves inside each. Kyrgyzstan and Tajikistan are simulated as of
+    // feat/r2-gulf2 and this row now borders both, but it still has no claims,
+    // and the argument for that is set out on the Kyrgyzstan row at the end of
+    // the roster: Sokh and Shakhimardan are Uzbek territory already, and an
+    // undelimited segment is not a demand for a share of a neighbour.
     row("Uzbekistan", "Uzbekistan", &["uzb"], "Eurasia",
-        &["Kazakhstan"], &[], false, false, false),
+        &["Kazakhstan", "Kyrgyzstan", "Tajikistan", "Turkmenistan"], &[], false, false, false),
 
     // Georgia - Abkhazia and South Ossetia were autonomous units inside the
     // Georgian SSR and both fought secession wars between 1991 and 1993. That
@@ -1251,7 +1256,7 @@ pub const ROSTER: &[NationRow] = &[
     // districts the claim covers roughly 0.15 of the target.
     // https://en.wikipedia.org/wiki/Durand_Line
     row("Afghanistan", "Afghanistan", &["afg", "afghan"], "SouthAsia",
-        &["Pakistan", "Iran", "USSR"], &[claim("Pakistan", 0.15)], true, false, false),
+        &["Pakistan", "Iran", "USSR", "Tajikistan", "Turkmenistan"], &[claim("Pakistan", 0.15)], true, false, false),
 
     // Myanmar is filed in SoutheastAsia rather than SouthAsia despite being
     // assigned with its western neighbours, because region here means "close
@@ -1825,6 +1830,84 @@ pub const ROSTER: &[NationRow] = &[
     // which is most of why the roster is going to 190 and not stopping at 108.
     row("Belize", "Belize", &["blz", "bze"], "LatinAmerica",
         &["Guatemala", "Mexico"], &[], true, false, false),
+
+    // -----------------------------------------------------------------------
+    // The last three Soviet republics (branch feat/r2-gulf2). Successors, not
+    // starters: on 1 January 1990 these were the Kirghiz, Tajik and Turkmen
+    // SSRs, and the comment on the Belarus block above — "Turkmenistan,
+    // Tajikistan, Kyrgyzstan ... are not simulated, so those frontiers are
+    // correctly absent" — is what these three rows retire. With them the union
+    // comes apart into all fifteen of its republics and nothing is abstracted
+    // away.
+    //
+    // NO CLAIMS ON ANY OF THE THREE ROWS, AND THAT IS THE ARGUED PART. The
+    // Fergana valley is the most tangled border in the former union: the
+    // delimitation of 1924-36 left Sokh and Shakhimardan as Uzbek enclaves
+    // inside Kyrgyzstan, Barak as a Kyrgyz enclave inside Uzbekistan and
+    // Vorukh as a Tajik enclave inside Kyrgyzstan, and something under a
+    // thousand kilometres of the Kyrgyz-Tajik line was still undelimited in
+    // 2020. But an enclave is territory a state already holds, and an
+    // undelimited segment is an argument about where a line runs, not a
+    // demand for a share of a neighbour. No government here ever asserted one.
+    // `claim.share` in this table is the fraction of a target a war would
+    // annex, and entering the enclaves as claims would turn a surveying
+    // dispute into an appetite.
+    //
+    // Also not entered, and the omission worth naming: Tajik irredentism on
+    // Samarkand and Bukhara. Both cities were Persian-speaking and both went
+    // to the Uzbek SSR in the delimitation of 1929, and Rastokhez said so
+    // loudly from 1989. It is a real grievance and it belongs to a movement
+    // rather than to a state — the same test that kept Armenia's claim on
+    // Turkey off the Armenian row above. Nabiyev's government made no such
+    // claim and neither has any government since.
+    // https://en.wikipedia.org/wiki/Fergana_Valley
+
+    // Kyrgyzstan - 4.37m people on 1 January 1990 and 0.8% of the union's net
+    // material product, the second-poorest republic after Tajikistan. The 1989
+    // census gives 52.4% Kyrgyz, 21.5% Russians and 12.9% Uzbeks, the Uzbeks
+    // concentrated in Osh and Jalal-Abad in the south; the Osh riots of June
+    // 1990 killed several hundred there and are the strain the successor block
+    // carries as separatism. Borders Kazakhstan, Uzbekistan, Tajikistan and
+    // 858km of China. https://en.wikipedia.org/wiki/1989_Soviet_census
+    row("Kyrgyzstan", "Kyrgyzstan", &["kgz", "kirghizia", "kyrgyz republic"], "Eurasia",
+        &["Kazakhstan", "Uzbekistan", "Tajikistan", "China"], &[], false, false, false),
+
+    // Tajikistan - 5.25m people and 0.8% of output, the poorest republic in the
+    // union by any measure that survives the rouble. The 1989 census gives
+    // 62.3% Tajiks, 23.5% Uzbeks and 7.6% Russians, but the fracture that
+    // mattered was regional rather than ethnic: Leninabad and Kulob against
+    // Gharm and Badakhshan, with Gorno-Badakhshan an autonomous oblast holding
+    // 45% of the territory and 3% of the people. The Dushanbe riots of February
+    // 1990 killed 25 and put the republic under a state of emergency two years
+    // before the war. Borders Uzbekistan, Kyrgyzstan, 1,344km of Afghanistan
+    // across the Panj, and 414km of China in the Pamirs.
+    //
+    // Nothing on the China row claims this one, and that is a deliberate
+    // repeat rather than an oversight. Beijing carried a legacy Qing-era claim
+    // to roughly 28,000 sq km of Gorno-Badakhshan — about a fifth of the
+    // country — out of the Sino-Soviet border talks, and settled it in 2002
+    // for 1,158 sq km, under 1%. It is the same object as the 34,000 sq km
+    // left in dispute with Kazakhstan, which the Kazakhstan row above also
+    // declined to write as a claim, and for the same reason: a claim in this
+    // table is what a war would annex, and both of these were negotiated down
+    // by the states that held them within a decade of the union ending. What
+    // China did in the Pamirs was survey them; entering 0.196 here would
+    // invent the largest war in Central Asia out of a boundary commission.
+    // https://en.wikipedia.org/wiki/China%E2%80%93Tajikistan_border
+    row("Tajikistan", "Tajikistan", &["tjk", "tadzhikistan"], "Eurasia",
+        &["Uzbekistan", "Kyrgyzstan", "Afghanistan", "China"], &[], false, false, false),
+
+    // Turkmenistan - 3.62m people and 0.8% of output, and the one republic here
+    // with something the world wanted: 87.8 billion cubic metres of gas in
+    // 1990, second in the union after Russia, plus about 5.7 million tonnes of
+    // crude. The most homogeneous of the Central Asians at 72.0% Turkmen in the
+    // 1989 census, and the most closed state to come out of the union. Borders
+    // Kazakhstan, Uzbekistan, 992km of Iran and 744km of Afghanistan; the
+    // Caspian shore opposite Azerbaijan is water, not a land border, and is
+    // therefore correctly absent even though the Kyapaz/Serdar field under it
+    // was disputed with Baku from 1997.
+    row("Turkmenistan", "Turkmenistan", &["tkm", "turkmenia"], "Eurasia",
+        &["Kazakhstan", "Uzbekistan", "Iran", "Afghanistan"], &[], false, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -2075,6 +2158,10 @@ well_known! {
     CostaRica => "CostaRica",
     Panama => "Panama",
     Belize => "Belize",
+    // The last three Soviet republics (branch feat/r2-gulf2).
+    Kyrgyzstan => "Kyrgyzstan",
+    Tajikistan => "Tajikistan",
+    Turkmenistan => "Turkmenistan",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

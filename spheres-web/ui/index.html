@@ -501,12 +501,14 @@ const TERRITORY = {
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],
-  // The other ten successors. Turkmenistan, Tajikistan and Kyrgyzstan are not
-  // simulated, so they fall back to unaligned scenery once the union goes —
-  // the same treatment Macedonia gets when Yugoslavia breaks.
+  // The other thirteen successors. Nothing here falls back to unaligned
+  // scenery any more: Turkmenistan, Tajikistan and Kyrgyzstan were the three
+  // that did, and they are simulated as of feat/r2-gulf2, so every square
+  // kilometre of the union goes to a nation the player can see and pick.
   Belarus: ["BLR"], Kazakhstan: ["KAZ"], Uzbekistan: ["UZB"],
   Georgia: ["GEO"], Armenia: ["ARM"], Azerbaijan: ["AZE"],
   Lithuania: ["LTU"], Latvia: ["LVA"], Estonia: ["EST"], Moldova: ["MDA"],
+  Kyrgyzstan: ["KGZ"], Tajikistan: ["TJK"], Turkmenistan: ["TKM"],
   Yugoslavia: ["SRB", "HRV", "SVN", "BIH", "MKD", "MNE"],
   // Successors. Macedonia is not simulated — it left without a shot — so it
   // falls back to unaligned scenery when the federation breaks.

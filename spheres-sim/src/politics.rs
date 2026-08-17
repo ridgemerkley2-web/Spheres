@@ -278,10 +278,11 @@ fn dissolve_ussr(w: &mut WorldState) {
     // forward from the 1989 census, oil by republican crude output in 1990, and
     // the army by where the Soviet Armed Forces actually were when the flag came
     // down. Russia and Ukraine keep the shares they already had; these come out
-    // of the quarter of the union that was previously abstracted away, and
-    // roughly five per cent of it still is — Turkmenistan, Tajikistan and
-    // Kyrgyzstan are not modelled here, and 4.7% of the union's people is very
-    // close to what those three actually held.
+    // of the quarter of the union that was previously abstracted away. Nothing
+    // is abstracted away now: feat/r2-gulf2 added Kyrgyzstan, Tajikistan and
+    // Turkmenistan at the end of this list, which were the last 2.4% of net
+    // material product and 4.6% of the people still missing, and the union now
+    // comes apart into all fifteen of its republics.
     //
     // THERE IS NO HONEST DOLLAR GDP FOR ANY OF THESE REPUBLICS IN 1990, and
     // this block does not pretend otherwise. The official rouble rate was
@@ -333,8 +334,11 @@ fn dissolve_ussr(w: &mut WorldState) {
         // Uzbekistan — the most populous of the ten at 20.5m, but only 3.3% of
         // output: a cotton monoculture the union bought at administered prices,
         // and the Aral Sea spent to grow it. Karimov's apparatus survived 1991
-        // without a break, which is why it starts the most authoritarian state
-        // in the region and the most stable of the poor ones.
+        // without a break, which is why it starts the most stable of the poor
+        // ones. It was also the most authoritarian state in the region until
+        // Turkmenistan was added below, and it is not any more: Niyazov ran
+        // unopposed on 98.3% where Karimov faced a named opponent and took
+        // 86.0%, and Turkmenistan's `auth` is set above this one accordingly.
         Republic { id: NationId::Uzbekistan, gdp: 0.033, pop: 0.071, army: 0.018, oil: 0.005,
                    sep: 0.15, auth: 0.78, stab: 46.0, tfp: 0.002, infl: 1.00, rate: 0.20,
                    debt: 0.10, milspend: 0.025 },
@@ -407,6 +411,56 @@ fn dissolve_ussr(w: &mut WorldState) {
         Republic { id: NationId::Moldova, gdp: 0.012, pop: 0.015, army: 0.003, oil: 0.000,
                    sep: 0.45, auth: 0.40, stab: 28.0, tfp: 0.000, infl: 1.40, rate: 0.26,
                    debt: 0.07, milspend: 0.035 },
+        // Kyrgyzstan — 0.8% of net material product and 4.37m people, the last
+        // republic in the union to have anything worth taking and the first to
+        // try being a democracy about it. Akayev was a physicist, not a First
+        // Secretary, and the republic left the rouble zone first, in May 1993,
+        // taking the som and the inflation cure with it; that early exit is
+        // what the inflation multiplier here is below Tajikistan's for. There
+        // is essentially no oil and essentially no army — the Turkestan
+        // Military District's Kyrgyz remnant was a training establishment and
+        // two motor-rifle regiments. Separatism at 0.25 is Osh: 12.9% Uzbeks by
+        // the 1989 census, concentrated in two southern oblasts, and several
+        // hundred dead there in June 1990.
+        Republic { id: NationId::Kyrgyzstan, gdp: 0.008, pop: 0.0151, army: 0.003, oil: 0.000,
+                   sep: 0.25, auth: 0.35, stab: 40.0, tfp: -0.002, infl: 1.30, rate: 0.26,
+                   debt: 0.10, milspend: 0.025 },
+        // Tajikistan — 0.8% of output and 5.25m people, and on every measure
+        // that survives the rouble the poorest republic in the union: the
+        // lowest income per head, the highest birth rate, and a cotton and
+        // aluminium economy the union bought at administered prices the way it
+        // bought Uzbekistan's. Separatism at 0.55 is not the ethnic split but
+        // the regional one, which is the fact this row exists to carry:
+        // Leninabad supplied every First Secretary for fifty years, Kulob
+        // supplied the militias, and Gharm and Badakhshan supplied the
+        // opposition, with Gorno-Badakhshan an autonomous oblast over 45% of
+        // the territory. It starts the least stable successor of the fifteen —
+        // below Georgia — on the Dushanbe riots of February 1990, the state of
+        // emergency that followed and a presidential election 43% of the
+        // republic did not accept. `milspend` is low and that is deliberate:
+        // Tajikistan had no national army at all until 1993, because the 201st
+        // Motor Rifle Division on its soil stayed Russian and did the work.
+        // Nothing here schedules the civil war; this is the ground it started
+        // from. https://en.wikipedia.org/wiki/1990_Dushanbe_riots
+        Republic { id: NationId::Tajikistan, gdp: 0.008, pop: 0.0182, army: 0.002, oil: 0.000,
+                   sep: 0.55, auth: 0.55, stab: 18.0, tfp: -0.006, infl: 1.70, rate: 0.30,
+                   debt: 0.12, milspend: 0.025 },
+        // Turkmenistan — 0.8% of output and 3.62m people, and the only one of
+        // the three with an export: 87.8 billion cubic metres of gas in 1990,
+        // second in the union after Russia, plus 5.7 million tonnes of crude.
+        // THE `oil` FIGURE BELOW UNDERSTATES THIS REPUBLIC AND THE MODEL HAS NO
+        // PLACE TO SAY SO. 0.010 is the crude share and it is right; the gas is
+        // roughly ten times the energy and there is no `gas_bcm` field, so
+        // Turkmenistan enters poorer in tradeable resources than it was. The
+        // debt is low for the same reason the gas is missing — Ashgabat was a
+        // net creditor through the nineties, owed for gas by customers who did
+        // not pay, which is a worse position than the number looks and the one
+        // that broke the economy in 1997. Separatism is the lowest of the three
+        // at 72.0% Turkmen with no territorial minority; `auth` at 0.85 is the
+        // highest in the model and is Niyazov's 98.3% against an empty ballot.
+        Republic { id: NationId::Turkmenistan, gdp: 0.008, pop: 0.0125, army: 0.008, oil: 0.010,
+                   sep: 0.08, auth: 0.85, stab: 48.0, tfp: -0.001, infl: 1.50, rate: 0.24,
+                   debt: 0.05, milspend: 0.035 },
     ];
     for r in &republics {
         w.nations.push(Nation {
@@ -483,7 +537,7 @@ fn dissolve_ussr(w: &mut WorldState) {
             w.set_relation(successor, *other, *v);
         }
     }
-    // How the twelve regard each other on the morning after. The pattern is not
+    // How the fifteen regard each other on the morning after. The pattern is not
     // distance from Moscow but whether the republic needs Moscow: Minsk and
     // Yerevan do and say so, Almaty hedges, Tbilisi and Chisinau have Russian
     // soldiers on ground they claim, and the Baltics spent the next three years
@@ -508,6 +562,29 @@ fn dissolve_ussr(w: &mut WorldState) {
         (NationId::Georgia, NationId::Azerbaijan, 15.0),
         (NationId::Georgia, NationId::Armenia, 10.0),
         (NationId::Kazakhstan, NationId::Uzbekistan, 15.0),
+        // The three added with feat/r2-gulf2. Bishkek and Dushanbe both needed
+        // Moscow and both said so — Kyrgyzstan signed the Collective Security
+        // Treaty and Tajikistan's government was kept in the building by the
+        // 201st Motor Rifle Division — so both sit near Belarus rather than
+        // near Tashkent. Ashgabat is the outlier and the interesting one:
+        // Niyazov refused the Collective Security Treaty in 1992, refused full
+        // CIS membership, and had permanent neutrality recognised by the
+        // General Assembly on 12 December 1995. Turkmenistan is warm to nobody
+        // and cold to nobody, which is a policy and not an absence of one.
+        (NationId::Russia, NationId::Kyrgyzstan, 40.0),
+        (NationId::Russia, NationId::Tajikistan, 45.0),
+        (NationId::Russia, NationId::Turkmenistan, 15.0),
+        // Tashkent is the regional power and behaves like one. Karimov backed
+        // Kulob against the Tajik opposition with Uzbek aircraft from 1992,
+        // which bought a friendly government and a permanent quarrel with the
+        // half of Tajikistan that lost; the Fergana enclaves and the gas cutoffs
+        // did the rest. Kyrgyzstan is the milder version of the same relation.
+        (NationId::Uzbekistan, NationId::Kyrgyzstan, 10.0),
+        (NationId::Uzbekistan, NationId::Tajikistan, -5.0),
+        (NationId::Uzbekistan, NationId::Turkmenistan, 0.0),
+        (NationId::Kazakhstan, NationId::Kyrgyzstan, 30.0),
+        (NationId::Kazakhstan, NationId::Turkmenistan, 15.0),
+        (NationId::Kyrgyzstan, NationId::Tajikistan, 10.0),
         (NationId::Lithuania, NationId::Latvia, 45.0),
         (NationId::Lithuania, NationId::Estonia, 40.0),
         (NationId::Latvia, NationId::Estonia, 45.0),
@@ -522,9 +599,21 @@ fn dissolve_ussr(w: &mut WorldState) {
     w.shift_relation(NationId::Turkey, NationId::Azerbaijan, 45.0);
     w.shift_relation(NationId::Turkey, NationId::Uzbekistan, 20.0);
     w.shift_relation(NationId::Turkey, NationId::Kazakhstan, 20.0);
+    w.shift_relation(NationId::Turkey, NationId::Turkmenistan, 20.0);
+    w.shift_relation(NationId::Turkey, NationId::Kyrgyzstan, 20.0);
     w.shift_relation(NationId::Turkey, NationId::Armenia, -50.0);
+    // Tajikistan is Persian-speaking and gets none of that: Ankara's summits
+    // were for the Turkic states and Dushanbe was not invited to them. Tehran
+    // took the opposite half of the map for the same reason — a common language
+    // with Tajikistan, a 992km border and the Korpeje-Kurt Kui gas line with
+    // Turkmenistan, and no interest at all in a strong Azerbaijan next to its
+    // own twenty million Azeris. Iran hosted the Tajik opposition and then
+    // brokered the peace that ended the war in 1997, which is the one case in
+    // this block of an outside power making a settlement rather than a client.
     w.shift_relation(NationId::Iran, NationId::Armenia, 25.0);
     w.shift_relation(NationId::Iran, NationId::Azerbaijan, -15.0);
+    w.shift_relation(NationId::Iran, NationId::Turkmenistan, 30.0);
+    w.shift_relation(NationId::Iran, NationId::Tajikistan, 30.0);
     // Beijing and the Central Asians, which is the dyad this block most has to
     // get right: Kazakhstan is a 1,765km land border with a great power, and
     // the model's derived appetite reads a border. What actually happened is
@@ -540,6 +629,17 @@ fn dissolve_ussr(w: &mut WorldState) {
     // agreeing on. https://en.wikipedia.org/wiki/Shanghai_Five
     w.set_relation(NationId::China, NationId::Kazakhstan, 40.0);
     w.set_relation(NationId::China, NationId::Uzbekistan, 25.0);
+    // Kyrgyzstan and Tajikistan are the same argument and the same evidence.
+    // The Shanghai Five of 26 April 1996 had exactly five members — China,
+    // Russia, Kazakhstan, Kyrgyzstan and Tajikistan — and it was founded on a
+    // border agreement, not against anybody. China settled with Kyrgyzstan in
+    // 1996 and 1999 and with Tajikistan in 2002, taking under 1% of the 28,000
+    // sq km it had claimed in the Pamirs. Two new states with almost no army
+    // sharing 858km and 414km of frontier with a great power is precisely the
+    // shape `dyads.rs` reads as an opportunity, and the thing that stopped it
+    // was this. https://en.wikipedia.org/wiki/Shanghai_Five
+    w.set_relation(NationId::China, NationId::Kyrgyzstan, 35.0);
+    w.set_relation(NationId::China, NationId::Tajikistan, 30.0);
     // Warsaw was the first capital to recognise Ukraine, on 2 December 1991,
     // and recognised Belarus and Moldova within the month; the Polish-Moldovan
     // treaty of friendship was signed in 1994. Poland and Moldova share no
@@ -597,11 +697,21 @@ fn dissolve_ussr(w: &mut WorldState) {
     // pact partner's strength counts toward what an aggressor expects to face,
     // and unlike a hoped-for coalition it is barely discounted.
     // https://en.wikipedia.org/wiki/Collective_Security_Treaty_Organization
+    //
+    // Kyrgyzstan and Tajikistan were named in the Tashkent text itself and are
+    // now on the board, so they are here. Turkmenistan was not a signatory and
+    // is deliberately absent: Niyazov refused the treaty in 1992 and had
+    // permanent neutrality recognised by UN General Assembly resolution 50/80
+    // on 12 December 1995, the only state ever given it. That refusal is the
+    // most consequential fact about Turkmenistan's foreign policy and the one
+    // this list would erase by rounding six signatures up to seven.
     for client in [
         NationId::Armenia,
         NationId::Kazakhstan,
         NationId::Uzbekistan,
         NationId::Belarus,
+        NationId::Kyrgyzstan,
+        NationId::Tajikistan,
     ] {
         let (a, b) = if NationId::Russia <= client {
             (NationId::Russia, client)
@@ -611,7 +721,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         w.statecraft.pacts.push(Pact { a, b, since_year: w.year, since_month: w.month });
     }
     w.headline(
-        "The Collective Security Treaty is signed at Tashkent; Moscow guarantees four of its neighbours."
+        "The Collective Security Treaty is signed at Tashkent; Moscow guarantees six of its neighbours."
             .into(),
     );
     // Kyiv and Moscow start as quarrelling relatives rather than enemies: the
@@ -630,6 +740,7 @@ fn dissolve_ussr(w: &mut WorldState) {
     w.access.retain(|a| a.host != NationId::USSR && a.seeker != NationId::USSR);
 
     w.headline("THE SOVIET UNION HAS DISSOLVED. Twelve republics take up their own seats.".into());
+    w.headline("THE SOVIET UNION HAS DISSOLVED. Fifteen republics take up their own seats.".into());
     w.headline("Russia inherits the arsenal; Ukraine's warheads go back east under the Budapest assurances.".into());
 }
 

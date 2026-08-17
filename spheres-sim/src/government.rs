@@ -1644,6 +1644,86 @@ pub const POLITIES: &[Polity] = &[
         ],
     },
 
+    // Kyrgyzstan - 12 October 1991 presidential election: Askar Akayev, running
+    // unopposed after the Supreme Soviet declined to register a second
+    // candidate, 95.3% on a 90% turnout. The number is a formality; the fact
+    // worth transcribing happened a year earlier, on 27 October 1990, when the
+    // same Supreme Soviet elected Akayev — the president of the Academy of
+    // Sciences, a physicist who had never held party office — over Absamat
+    // Masaliyev, the First Secretary. Kyrgyzstan is the only Soviet republic
+    // where the party boss ran for the new presidency and lost, which is why
+    // this is the one polity in Central Asia that rests on something other than
+    // the apparatus it inherited, and why there is no Party pillar below.
+    // https://en.wikipedia.org/wiki/1991_Kyrgyz_presidential_election
+    Polity {
+        nation: NationId::Kyrgyzstan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("kg_dkk", "Democratic Movement of Kyrgyzstan", "Demokratiyaluu Kyrgyzstan Kyymyly", Family::Liberal, 0.953),
+        ],
+        ruling: "the Presidency of the Kyrgyz Republic",
+        pillars: &[
+            pl(Pillar::Army, "what the Turkestan Military District left behind"),
+            pl(Pillar::Security, "the State Committee for National Security"),
+        ],
+    },
+
+    // Tajikistan - 24 November 1991 presidential election: Rahmon Nabiyev of
+    // the Communist Party 56.9%, Davlat Khudonazarov 30.1%. Khudonazarov was a
+    // filmmaker from Gorno-Badakhshan carrying the whole of the opposition at
+    // once — the Democratic Party, Rastokhez and the Islamic Renaissance Party
+    // on one ticket — and the result is the closest presidential contest held
+    // anywhere in Central Asia. It is also the only one in this group that was
+    // seriously disputed, and the dispute did not end at the count: the
+    // Dushanbe square protests of March 1992 followed from it and the civil war
+    // followed from those. Nothing here schedules that war. What this table
+    // records is a government elected by 57% of a republic whose other 43% did
+    // not accept the result, which is the condition it was in.
+    // https://en.wikipedia.org/wiki/1991_Tajik_presidential_election
+    Polity {
+        nation: NationId::Tajikistan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("tj_kpt", "Communist Party of Tajikistan", "Hizbi Kommunistii Tojikiston", Family::Communist, 0.569),
+            p("tj_hnt", "Democratic Party of Tajikistan", "Hizbi Demokrati Tojikiston", Family::Liberal, 0.301),
+        ],
+        ruling: "the Presidency of the Republic of Tajikistan",
+        pillars: &[
+            pl(Pillar::Party, "the Leninabad and Kulob regional machines"),
+            pl(Pillar::Security, "the interior ministry and the KGB residue"),
+        ],
+    },
+
+    // Turkmenistan - 27 October 1990 presidential election: Saparmurat Niyazov
+    // unopposed, 98.3%. The earliest presidential election in any Soviet
+    // republic and the emptiest: the Communist Party of Turkmenistan renamed
+    // itself the Democratic Party in December 1991 and remained the only legal
+    // party in the country until 2012. Agzybirlik, the one opposition movement,
+    // was banned in January 1990 before the ballot was printed, so a single row
+    // is again the correct description and not a gap. Niyazov took 99.5% at the
+    // re-run of 21 June 1992 and had the Mejlis extend his term indefinitely in
+    // 1999. https://en.wikipedia.org/wiki/1990_Turkmen_presidential_election
+    Polity {
+        nation: NationId::Turkmenistan,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("tm_dpt", "Democratic Party of Turkmenistan", "Turkmenistanyn Demokratik Partiyasy", Family::BigTent, 0.983),
+        ],
+        ruling: "the Presidency of Turkmenistan",
+        pillars: &[
+            pl(Pillar::Army, "the Turkmen share of the Turkestan Military District"),
+            pl(Pillar::Party, "the presidential apparatus and the Niyazov cult"),
+            pl(Pillar::Security, "the Committee for National Security"),
+            pl(Pillar::Business, "the gas ministry"),
+        ],
+    },
+
     // Georgia - Supreme Council, 28 October 1990: Zviad Gamsakhurdia's Round
     // Table-Free Georgia 64.0%, the Communist Party of Georgia 29.6%. The first
     // multi-party election in any Soviet republic won outright by the
