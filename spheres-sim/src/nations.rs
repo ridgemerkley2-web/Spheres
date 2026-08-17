@@ -170,13 +170,13 @@ pub const ROSTER: &[NationRow] = &[
     row("Japan", "Japan", &["jpn"], "EastAsia", &[], &[], true, true, true),
 
     row("Germany", "Germany", &["ger", "frg", "brd"], "WesternEurope",
-        &["Poland", "France", "Netherlands", "Belgium", "Denmark", "Switzerland", "Austria", "Czechoslovakia"], &[], true, true, true),
+        &["Poland", "France", "Netherlands", "Belgium", "Denmark", "Switzerland", "Austria", "Czechoslovakia", "Luxembourg"], &[], true, true, true),
 
     row("UK", "United Kingdom", &["uk", "britain", "gb"], "WesternEurope",
         &["France", "Ireland"], &[], true, true, true),
 
     row("France", "France", &["fra"], "WesternEurope",
-        &["Germany", "Italy", "UK", "Spain", "Belgium", "Switzerland"], &[], true, true, true),
+        &["Germany", "Italy", "UK", "Spain", "Belgium", "Switzerland", "Luxembourg"], &[], true, true, true),
 
     row("Italy", "Italy", &["ita"], "WesternEurope",
         &["France", "Yugoslavia", "Slovenia", "Switzerland", "Austria"], &[], true, false, false),
@@ -283,17 +283,17 @@ pub const ROSTER: &[NationRow] = &[
     // declared Herceg-Bosna in November 1991.
     // https://en.wikipedia.org/wiki/Demographic_history_of_Bosnia_and_Herzegovina
     row("Serbia", "Serbia", &["serbia and montenegro", "fry", "srb"], "Balkans",
-        &["Croatia", "Bosnia", "Hungary", "Romania", "Bulgaria", "Albania"],
+        &["Croatia", "Bosnia", "Hungary", "Romania", "Bulgaria", "Albania", "Macedonia", "Montenegro"],
         &[claim("Bosnia", 0.31), claim("Croatia", 0.12)], false, false, false),
 
     row("Croatia", "Croatia", &["hrv"], "Balkans",
-        &["Serbia", "Bosnia", "Slovenia", "Hungary"], &[claim("Bosnia", 0.17)], false, false, false),
+        &["Serbia", "Bosnia", "Slovenia", "Hungary", "Montenegro"], &[claim("Bosnia", 0.17)], false, false, false),
 
     row("Slovenia", "Slovenia", &["svn"], "Balkans",
         &["Croatia", "Italy", "Austria", "Hungary"], &[], false, false, false),
 
     row("Bosnia", "Bosnia", &["bosnia and herzegovina", "bih"], "Balkans",
-        &["Serbia", "Croatia"], &[], false, false, false),
+        &["Serbia", "Croatia", "Montenegro"], &[], false, false, false),
 
     // Spain's only land border with a nation in this roster is the Pyrenean
     // frontier with France, and — since the North African rows below were added
@@ -328,13 +328,13 @@ pub const ROSTER: &[NationRow] = &[
     row("Netherlands", "Netherlands", &["nld", "holland", "the netherlands"], "WesternEurope",
         &["Germany", "Belgium"], &[], true, false, false),
 
-    // Three land borders in the roster (Luxembourg is not simulated). No
+    // Four land borders in the roster now that Luxembourg is one of them. No
     // claims: the Eupen-Malmedy cantons taken from Germany in 1920 are settled
     // and German-speaking Belgium became one of the three constitutionally
     // recognised communities in the reforms of 1970-89 — the answer to that
     // question was federalism, not a border.
     row("Belgium", "Belgium", &["bel", "belgique", "belgie"], "WesternEurope",
-        &["France", "Germany", "Netherlands"], &[], true, false, false),
+        &["France", "Germany", "Netherlands", "Luxembourg"], &[], true, false, false),
 
     // Sweden borders Norway and Finland by land. It does NOT border Denmark:
     // the Oresund is four kilometres at its narrowest and the bridge did not
@@ -387,8 +387,19 @@ pub const ROSTER: &[NationRow] = &[
     row("Portugal", "Portugal", &["prt", "portucale"], "WesternEurope",
         &["Spain"], &[claim("Spain", 0.0003)], true, false, false),
 
-    // Greece's land borders inside this roster are Yugoslavia and Turkey;
-    // Albania and Bulgaria are not simulated. Region: WesternEurope rather than
+    // Greece's land borders inside this roster are Yugoslavia, Turkey and —
+    // once the federation goes — the Macedonian successor, 246 km of it.
+    // INTEGRATOR, A KNOWN GAP LEFT DELIBERATELY UNFIXED: Bulgaria and Albania
+    // are both in the roster now and Greece borders both of them (494 km and
+    // 212 km), but neither border is declared here and neither is declared
+    // from their end either. The comment this replaces still said they were
+    // "not simulated", which stopped being true when the Eastern European and
+    // Balkan rows landed. Adding them is two tokens and it is deliberately not
+    // done on this branch: Greece sits in WesternEurope and they sit in
+    // Balkans, so `dyads::reach` is currently 0.0 for both pairs and declaring
+    // the borders would open two war dyads on rows this branch does not own.
+    // It wants doing, once, by whoever owns the Balkans — not by six agents at
+    // the same time. Region: WesternEurope rather than
     // Balkans, and it is a judgement rather than a geography lesson. Greece
     // joined NATO in 1952 and the European Community on 1 January 1981, and its
     // diplomatic community in 1990 was Brussels and Washington, which is what
@@ -405,7 +416,7 @@ pub const ROSTER: &[NationRow] = &[
     // would tell the war model that Athens wanted land in Anatolia, which no
     // Greek government has said since 1922.
     row("Greece", "Greece", &["grc", "hellas", "ellada"], "WesternEurope",
-        &["Yugoslavia", "Turkey"], &[], true, false, false),
+        &["Yugoslavia", "Turkey", "Macedonia"], &[], true, false, false),
 
     // One land border. The Schleswig question, which produced three wars
     // between 1848 and 1920, was closed by the plebiscites of February and
@@ -518,8 +529,10 @@ pub const ROSTER: &[NationRow] = &[
 
     // Bulgaria borders Romania along the Danube, Yugoslavia (and after 1992 its
     // Serbian rump) in the west, and Turkey at the Kapitan Andreevo crossing
-    // over which 340,000 Bulgarian Turks were driven in the summer of 1989.
-    // Greece and Macedonia are not simulated.
+    // over which 340,000 Bulgarian Turks were driven in the summer of 1989,
+    // and — once the federation goes — the Macedonian successor, 148 km of it.
+    // Greece is in the roster and Bulgaria borders it; see the note on the
+    // Greece row for why that border is still not declared.
     // No claims, which for the state that entered both world wars to get the
     // Macedonian and Aegean territories back is worth stating rather than
     // leaving to inference: Bulgaria renounced them at the Paris peace treaty
@@ -529,11 +542,13 @@ pub const ROSTER: &[NationRow] = &[
     // independence, in January 1992. A dispute about identity is not a claim
     // on territory and this table does not have a field for it.
     row("Bulgaria", "Bulgaria", &["bgr", "bul", "balgariya"], "Balkans",
-        &["Romania", "Yugoslavia", "Serbia", "Turkey"], &[], true, false, false),
+        &["Romania", "Yugoslavia", "Serbia", "Turkey", "Macedonia"], &[], true, false, false),
 
-    // Albania's only simulated land borders are with Yugoslavia and, after the
-    // federation goes, with the Serbian rump through Kosovo and Montenegro.
-    // Greece and Macedonia are not simulated.
+    // Albania's land borders here are with Yugoslavia and, after the federation
+    // goes, with three of its successors: the Serbian rump through Kosovo
+    // (115 km), Montenegro (172 km) and Macedonia (181 km). Greece is in the
+    // roster and Albania borders it; see the note on the Greece row for why
+    // that border is still not declared.
     // The claim is Kosovo, and it is the one entry in this region that requires
     // a judgement rather than a transcription, so here is exactly what is and
     // is not being asserted. Kosovo's autonomy was stripped by Belgrade in
@@ -551,7 +566,7 @@ pub const ROSTER: &[NationRow] = &[
     // Kosovo, and somebody else's air force settled it in 1999.
     // https://en.wikipedia.org/wiki/Republic_of_Kosova
     row("Albania", "Albania", &["alb", "shqiperia"], "Balkans",
-        &["Yugoslavia", "Serbia"], &[claim("Yugoslavia", 0.08)], true, false, false),
+        &["Yugoslavia", "Serbia", "Macedonia", "Montenegro"], &[claim("Yugoslavia", 0.08)], true, false, false),
 
     // -----------------------------------------------------------------------
     // The other ten Soviet successors. None of these is on the board in
@@ -1390,6 +1405,121 @@ pub const ROSTER: &[NationRow] = &[
     // how New Zealand has ever gone to war.
     row("NewZealand", "New Zealand", &["nz", "nzl"], "Oceania",
         &[], &[], true, false, false),
+
+    // ---- Small and island Europe (branch feat/r2-smalleurope) --------------
+    // Four starters and two Yugoslav successors. Three of the four starters
+    // have no land border with anybody, which is not a gap in the data — it is
+    // the fact that decides how the war model may treat them, and it is why
+    // all three could be as small as they are and stay sovereign.
+
+    // No land border with anything, and no armed forces at all: the 1990 CIA
+    // World Factbook lists Iceland's defence branches as "Police, Coast Guard"
+    // and its defence expenditures as "none". A founder member of NATO in 1949
+    // that has never had an army, because the United States kept 3,000 airmen
+    // at Keflavik under the defence agreement of 5 May 1951 and the GIUK gap
+    // did the rest. No claims: the three Cod Wars with Britain (1958, 1972-73,
+    // 1975-76) were fought by coast guard vessels cutting trawl warps over a
+    // FISHERIES limit, and the 200-mile exclusive economic zone Reykjavik won
+    // in 1976 is a maritime jurisdiction, not a demand for anyone's land. The
+    // Rockall-Hatton continental shelf question with the UK, Ireland and
+    // Denmark is a seabed claim under UNCLOS Article 76 and is the same
+    // species. https://en.wikipedia.org/wiki/Cod_Wars
+    row("Iceland", "Iceland", &["isl", "island", "lydveldid island"], "WesternEurope",
+        &[], &[], true, false, false),
+
+    // Three land borders, all of them declared from the other end as well, and
+    // all three older than the state: the frontiers of 1839 that left the Grand
+    // Duchy with the half of Luxembourg that spoke Luxembourgish. No claims —
+    // this is the country the region's doc comment is about. Luxembourg is a
+    // founder member of the United Nations, NATO, the ECSC, the EEC and
+    // Benelux, and it has spent a century being the place where the states
+    // that used to fight over it sign things instead.
+    row("Luxembourg", "Luxembourg", &["lux", "letzebuerg", "grand duchy of luxembourg"], "WesternEurope",
+        &["Belgium", "France", "Germany"], &[], true, false, false),
+
+    // No land border with anything. No claims either, and the absence is worth
+    // a sentence because Malta in 1990 is the one Western European state that
+    // is formally non-aligned: neutrality was written into Article 1 of the
+    // constitution by the amendment of 1987, the Royal Navy left Grand Harbour
+    // on 31 March 1979 for the first time since 1800, and Malta sat in the
+    // Non-Aligned Movement while applying to join the European Community on
+    // 16 July 1990. A state with no border, no claim and no bloc.
+    row("Malta", "Malta", &["mlt", "repubblika ta malta"], "WesternEurope",
+        &[], &[], true, false, false),
+
+    // The one entry in this batch with a live territorial claim, and it is the
+    // whole of the country's politics. Turkey invaded on 20 July 1974, held
+    // roughly 36% of the island, and 30,000-35,000 Turkish troops were still
+    // there in January 1990 behind a UN buffer zone; the Turkish Republic of
+    // Northern Cyprus declared itself in 1983 and was recognised by Turkey and
+    // by nobody else. The Republic of Cyprus claims the occupied north, and
+    // this table records claims as a share of the TARGET — so the number is
+    // not 0.36 of Cyprus, it is northern Cyprus as a fraction of Turkey:
+    // 3,355 km2 of 783,562 km2, or 0.0043. That is the same shape as Spain on
+    // Gibraltar and Ireland on the North, and it says the right thing about
+    // this dyad: a grievance that will define Cypriot foreign policy for
+    // fifty years and that Cyprus can never press by force, because the target
+    // is 90 times its population and 40 times its output.
+    //
+    // NO LAND NEIGHBOURS, deliberately. Cyprus's only land frontiers are the
+    // Green Line with a state this roster does not contain and the fenced
+    // perimeters of Akrotiri and Dhekelia, which are 254 km2 of sovereign
+    // United Kingdom territory retained under the Treaty of Establishment of
+    // 16 August 1960. Declaring the SBA as a Cyprus-UK land border would hand
+    // the war model a marching route between two states that have never had
+    // one; the reach Turkey actually has comes from the claim above.
+    //
+    // Region: WesternEurope, with Greece, and it is a judgement. Cyprus joined
+    // the Council of Europe in 1961 and lodged its application for European
+    // Community membership on 4 July 1990, six months into this start state.
+    // Filing it in MiddleEast would give it standing contacts with a dozen
+    // Gulf states it has no force relationship with of any kind, to buy the
+    // one contact — Turkey — the claim already provides.
+    // https://en.wikipedia.org/wiki/Cyprus_dispute
+    row("Cyprus", "Cyprus", &["cyp", "kypros", "republic of cyprus"], "WesternEurope",
+        &[], &[claim("Turkey", 0.0043)], true, false, false),
+
+    // ---- The last two Yugoslav successors ---------------------------------
+    // Neither is on the board in January 1990 and both are SUCCESSORS for the
+    // same reason Serbia and Croatia are: they are republics of a federation
+    // that has not come apart yet. Macedonia declared independence on 8
+    // September 1991 and Montenegro not until 3 June 2006, fifteen years
+    // later — but the model has one dissolution event, not two, and a
+    // Montenegro that only exists inside a Serbia that also exists is not
+    // something this roster can express. Both therefore arrive when
+    // `politics::dissolve_yugoslavia` fires, and Montenegro's fifteen years
+    // inside the Federal Republic are carried instead by the relation the
+    // dissolution opens between them (+60, the highest in the set).
+    //
+    // Macedonia's borders: Serbia 221 km through Kosovo, Bulgaria 148 km,
+    // Greece 246 km, Albania 181 km. All four declared from both ends.
+    // NO CLAIM, and this is the deliberate one. The obvious candidate is the
+    // reverse — Greece's, Bulgaria's, Serbia's — and none of the three is a
+    // territorial claim either. Athens blocked recognition and imposed an
+    // embargo in February 1994 over the NAME; Sofia recognised Macedonian
+    // statehood first, in January 1992, while denying that Macedonians are a
+    // nation; Belgrade let the JNA walk out on 26 March 1992 without firing.
+    // Three of the ugliest quarrels in the Balkans, and not one of them was
+    // about where the border runs. This table has no field for an argument
+    // about identity and it should not grow one by pretending it is land.
+    // https://en.wikipedia.org/wiki/Macedonia_naming_dispute
+    row("Macedonia", "Macedonia", &["mkd", "north macedonia", "fyrom", "makedonija"], "Balkans",
+        &["Serbia", "Bulgaria", "Greece", "Albania"], &[], false, false, false),
+
+    // Montenegro's borders: Serbia 124 km, Bosnia 225 km, Croatia 25 km at
+    // Prevlaka, Albania 172 km. No claim. Prevlaka is the near miss and it is
+    // not one: the Yugoslav Navy held the peninsula from 1992 to 2002 and
+    // Croatia protested, but it is 93 hectares of CROATIAN territory under a
+    // demilitarisation dispute settled by the UN observer mission UNMOP and
+    // the protocol of December 2002 — an argument about who may put soldiers
+    // on it, not about whose it is. Note also what is NOT changed above:
+    // Serbia keeps "serbia and montenegro" and "fry" among its aliases,
+    // because the Federal Republic of Yugoslavia was governed from Belgrade
+    // and a player typing "fry" means Belgrade. The two rows are the two
+    // republics; the alias is the federation they shared.
+    // https://en.wikipedia.org/wiki/Prevlaka
+    row("Montenegro", "Montenegro", &["mne", "crna gora"], "Balkans",
+        &["Serbia", "Bosnia", "Croatia", "Albania"], &[], false, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -1619,6 +1749,13 @@ well_known! {
     Canada => "Canada",
     Australia => "Australia",
     NewZealand => "NewZealand",
+    // Small and island Europe (branch feat/r2-smalleurope).
+    Iceland => "Iceland",
+    Luxembourg => "Luxembourg",
+    Malta => "Malta",
+    Cyprus => "Cyprus",
+    Macedonia => "Macedonia",
+    Montenegro => "Montenegro",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {
