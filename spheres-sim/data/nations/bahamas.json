@@ -1,0 +1,37 @@
+{
+  "id": "Bahamas",
+  "name": "Bahamas",
+  "system": "Market",
+  "authoritarianism": 0.16,
+  "economy": {
+    "gdp_bn": 3.17,
+    "population_m": 0.276,
+    "tfp_trend": 0.002,
+    "inflation": 0.047,
+    "interest_rate": 0.09,
+    "tax_rate": 0.157,
+    "mil_spend_gdp": 0.021,
+    "state_invest_gdp": 0.087,
+    "priv_invest_gdp": 0.207,
+    "debt_gdp": 0.38,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 68.0, "separatism": 0.0 },
+  "military": { "strength": 0.3, "nuclear": false },
+  "sources": [
+    "GDP $3.17bn: World Bank NY.GDP.MKTP.CD, series BHS, 1990 = 3,166,000,000. On 275,945 people that is $11,473 a head - below Spain's $13,750 but above Portugal's and Greece's in the same year, and by a distance the highest in this Caribbean block and higher than any Latin American state in this roster. It is also the smallest population in the roster. Real growth in 1990 was MINUS 1.6% (NY.GDP.MKTP.KD.ZG), the first of three bad years: American tourism turned down with the 1990-91 US recession, and the Gulf crisis that begins seven months into the game took it down further.",
+    "Population 0.276m: World Bank SP.POP.TOTL, series BHS, 1990 = 275,945. The smallest nation in this roster. Roughly two-thirds of it lives on New Providence.",
+    "Inflation 4.7%: World Bank FP.CPI.TOTL.ZG, series BHS, 1990 = 4.669319. The CIA World Factbook 1991 estimated 7.1%. The low figure is structural rather than lucky: the Bahamian dollar has been pegged one-for-one to the US dollar since 1973 and still is, so Bahamian inflation is American inflation plus a shipping margin, and 1990 American CPI was 5.4%.",
+    "Interest rate 9.0%: World Bank FR.INR.LEND, series BHS, 1990 = 9.0 exactly. Deposit rate 6.57% (FR.INR.DPST). The loader's coupled check reads 0.025 - (0.09 - 0.047) = -0.018, a real rate about two points above neutral, which is what a fixed peg to the dollar buys and costs.",
+    "Revenue 15.7% of GDP: World Bank GC.REV.XGRT.GD.ZS, series BHS, 1990 = 15.739103; tax revenue proper 13.86% (GC.TAX.TOTL.GD.ZS). Low, and it is the country's constitutional position rather than an accident: there is no income tax, no corporation tax, no capital gains tax and no inheritance tax in the Bahamas, and there was none in 1990. Almost all of that 15.7% is import duty and stamp tax. It is also the entire basis of the offshore banking sector that was the other half of the economy.",
+    "Military 2.1% of GDP: FLAGGED, AND THE FIGURE MOST LIKELY TO BE WRONG IN THIS FILE. World Bank MS.MIL.XPND.GD.ZS has no Bahamian entry for any year; SIPRI does not cover the Bahamas. The CIA World Factbook 1991 gives '$65 million, 2.7% of GDP (1990)', and 0.021 is that $65m against this file's GDP - the Factbook's own 2.7% is computed on its stale $2.4bn estimate. CAVEAT: the Factbook's Defence Forces entry lists 'Royal Bahamas Defence Force (a coast guard element only), Royal Bahamas Police Force', so this is a policing and maritime-interdiction budget rather than a military one. It is entered as spent because it was spent: the Bahamas in 1990 was the principal transshipment route for Colombian cocaine into Florida, Operation BAT put US helicopters at Great Inagua under Bahamian command, and interdiction was the largest single thing the Bahamian state did. A reader who wants an army number should read military.strength below instead.",
+    "Investment: gross capital formation 29.41% of GDP (World Bank NE.GDI.TOTL.ZS, series BHS, 1990 = 29.414719; gross FIXED capital formation was 25.63%). The 8.7 / 20.7 split is anchored at both ends rather than apportioned by taste: the public half is the CIA World Factbook 1991's capital expenditures of $275m (1990) against this file's GDP, which is 8.7%, and the private half is the remainder. The private half is hotels, and by 1990 it was stopping.",
+    "Debt 38% of GDP: FLAGGED. World Bank DT.DOD.DECT.GN.ZS has no Bahamian entry - the Bahamas was not a Debtor Reporting System country - so this is the CIA World Factbook 1991's external debt of $1.2bn at December 1990 against this file's GDP, which is 37.9%. The 1990 edition gave $1.5bn at September 1988. CAVEAT: 'external debt' for a jurisdiction with 400-odd licensed banks and no exchange control on the offshore sector is a slippery quantity, and this figure should not be read as Bahamian government debt, which was very much smaller.",
+    "Oil 0.0: no production. What confuses the ledger is that the Bahamas refined and transshipped other people's crude - the Bahamas Oil Refining Company terminal at Freeport was one of the largest transshipment facilities in the western hemisphere - which is why the Factbook's 1987 import partners read 'Iran 30%, Nigeria 20%, US 10%, EC 10%, Gabon 10%'. None of it was Bahamian and the production figure is zero.",
+    "TFP trend 0.002: set level with South Africa's 0.002 and Jamaica's 0.002. A tourism and offshore-banking economy grows by adding rooms and bank licences rather than by getting better at anything, and the 1980s boom that took per capita GDP past $9,000 was of that kind. The model should not extrapolate it, and it should not: growth was negative in 1990 and again in 1991.",
+    "Stability 68 and authoritarianism 0.16: a Westminster democracy and a Commonwealth realm, independent since 10 July 1973, with Lynden Pindling as Prime Minister continuously since 1967 - the longest tenure of any leader in this block. Stability 68 is set below Spain's 70 and above Tanzania's 62. It is not higher because of what hung over the government: the Commission of Inquiry of 1983-84 found that drug money had reached ministers, two resigned, Pindling himself was found to have received payments many times his salary and was not charged, and the United States spent the rest of the decade treating Nassau as a problem to be managed. Authoritarianism 0.16 records a dominant-party democracy with a real opposition and no repression - and the alternation that proves it came on 19 August 1992, when Hubert Ingraham's Free National Movement ended twenty-five years of Progressive Liberal Party government at the ballot box.",
+    "Separatism 0.0: none. Seven hundred islands, one nation, and no island that wants out. The Abaco loyalist agitation that briefly asked to stay British was in 1972-73 and was dead long before this start date.",
+    "Military strength 0.3: THE SMALLEST IN THE ROSTER, and correctly so. The Royal Bahamas Defence Force in 1990 was about 900 people and it was a coast guard - patrol craft, no aircraft of its own, no army, no air force. The Factbook lists Bahamian military manpower as 'NA' because there is no conscription pool to count. A nation with a defence force that cannot fight anybody is a nation the war model can only reach through an alliance, and that is the fact."
+  ]
+}

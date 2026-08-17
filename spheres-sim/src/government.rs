@@ -3393,6 +3393,168 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the House of Representatives",
         pillars: &[],
     },
+    // ---------------------------------------------------------------------
+    // The Caribbean (branch feat/r2-caribbean). Four Westminster or
+    // presidential democracies and one army.
+    // ---------------------------------------------------------------------
+    // Dominican Republic — presidential election of 16 May 1986: Joaquin
+    // Balaguer (PRSC) 41.8%, Jacobo Majluta (PRD) 39.7%, Juan Bosch (PLD)
+    // 18.5%. The presidential vote rather than the Chamber of Deputies vote
+    // of the same day (PRSC 40.6%, PRD 33.5%, PLD 18.3%, LE 5.3%), because in
+    // a Dominican presidential system the president is the government in a
+    // way the American president is not — which is the opposite of the
+    // reasoning applied to the United States above, and deliberately so.
+    // Balaguer had to be re-elected in May 1990 and was, by 24,470 votes over
+    // Bosch out of 1.9m cast, in a count both the Church and the opposition
+    // disputed for months.
+    // https://en.wikipedia.org/wiki/1986_Dominican_Republic_general_election
+    Polity {
+        nation: NationId::DominicanRepublic,
+        // Plurality, single round, no runoff. Dominican law required no
+        // absolute majority in 1986 or 1990, which is exactly how a man with
+        // 41.8% governed; the two-round requirement arrived with the
+        // constitutional reform of 1994.
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (1990, 5),
+        parties: &[
+            // Balaguer's party was a full member of the Christian Democrat
+            // International, and that is why it is filed here. What it
+            // actually was is a personal machine: Balaguer had been Trujillo's
+            // last puppet president, governed 1966-78 on American support and
+            // a great deal of political killing, and came back in 1986 at 79.
+            p("do_prsc", "Social Christian Reformist Party", "Partido Reformista Social Cristiano", Family::ChristianDemocratic, 0.418),
+            p("do_prd", "Dominican Revolutionary Party", "Partido Revolucionario Dominicano", Family::SocialDemocratic, 0.397),
+            // A SUBSTITUTION, STATED. Juan Bosch's PLD in 1986 was to the left
+            // of the PRD and organised on cadre lines — closed cells, a
+            // vetting period before membership, a discipline borrowed from
+            // Leninist practice by a man who was not a Leninist. The Family
+            // enum has no "left-nationalist cadre party" and Communist would
+            // be a straight libel, so SocialDemocratic is entered for both
+            // and the difference between them is recorded here instead. They
+            // were bitter rivals: the PLD exists because Bosch walked out of
+            // the PRD he had founded, in 1973.
+            p("do_pld", "Dominican Liberation Party", "Partido de la Liberacion Dominicana", Family::SocialDemocratic, 0.185),
+        ],
+        ruling: "the Presidency",
+        pillars: &[],
+    },
+    // Haiti — no election, and that is the transcription. The presidential
+    // and legislative elections of 17 January 1988 produced Leslie Manigat,
+    // whom the army removed on 20 June; the legislature elected that day was
+    // dissolved the same week; Henri Namphy was overthrown by Prosper Avril
+    // on 17 September 1988; and Avril is what governs Haiti in January 1990.
+    // He declared a state of siege on 20 January — inside the game's first
+    // month — arrested and beat opposition figures on television, and
+    // resigned under American pressure on 10 March 1990.
+    //
+    // `parties: &[]` follows the Saudi precedent: an empty table is the
+    // correct transcription rather than a gap, because the last vote was
+    // annulled by the army and the next was ten months away. The parties that
+    // took the December 1990 election — Aristide's Lavalas above all — had
+    // contested nothing before the start date and entering an opening share
+    // for them would be scripting the Haitian revolution rather than letting
+    // a stability of 24 and an authoritarianism of 0.78 produce it.
+    // https://en.wikipedia.org/wiki/Prosper_Avril
+    Polity {
+        nation: NationId::Haiti,
+        system: Electoral::TwoRound,
+        term_months: 72,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Armed Forces of Haiti",
+        pillars: &[
+            pl(Pillar::Army, "the Forces Armees d'Haiti"),
+            // The Service d'Information National, and behind it the chefs de
+            // section: 562 army-appointed headmen who policed rural Haiti,
+            // drew no salary, and lived on the fines they levied. This is the
+            // apparatus the Duvaliers built out of the Tontons Macoute and
+            // the army inherited when they left.
+            pl(Pillar::Security, "the Service d'Information National"),
+            // The import houses of Port-au-Prince. A dozen families held the
+            // licences, and every Haitian government since 1957 has needed
+            // them because the customs house was the treasury.
+            pl(Pillar::Business, "the Port-au-Prince import houses"),
+        ],
+    },
+    // Jamaica — general election of 9 February 1989: PNP 56.6%, JLP 43.3%,
+    // on a turnout of 78.4%. Michael Manley's return after eight and a half
+    // years of Edward Seaga, and a quiet election by Jamaican standards: the
+    // campaign of 1980 had killed something near 800 people and this one was
+    // fought under a code of conduct the two leaders signed. Next due by
+    // February 1994; it came on 30 March 1993, after Manley had already
+    // resigned the office to P. J. Patterson in March 1992.
+    // https://en.wikipedia.org/wiki/1989_Jamaican_general_election
+    Polity {
+        nation: NationId::Jamaica,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1994, 2),
+        parties: &[
+            p("jm_pnp", "People's National Party", "", Family::SocialDemocratic, 0.566),
+            // The name is the trap. The Jamaica Labour Party was founded by a
+            // trade unionist and is the conservative party: Seaga governed
+            // from 1980 on IMF terms and American alignment, broke relations
+            // with Cuba in 1981, and supported the invasion of Grenada.
+            p("jm_jlp", "Jamaica Labour Party", "", Family::Conservative, 0.433),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+    // Trinidad and Tobago — general election of 15 December 1986: NAR 66.3%,
+    // PNM 32.0%, NJAC 1.5%. The largest mandate in the country's history, 33
+    // of 36 seats, ending thirty unbroken years of People's National Movement
+    // government.
+    // https://en.wikipedia.org/wiki/1986_Trinidad_and_Tobago_general_election
+    Polity {
+        nation: NationId::TrinidadTobago,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1991, 12),
+        parties: &[
+            // BigTent is not a hedge here, it is the description. The NAR was
+            // an alliance of four parties — the ULF, the DAC, the ONR and
+            // Tapia House — welded together in 1985 for the sole purpose of
+            // beating the PNM, and it came apart on schedule: Basdeo Panday
+            // and three others were expelled in 1988 and founded the United
+            // National Congress in April 1989.
+            p("tt_nar", "National Alliance for Reconstruction", "", Family::BigTent, 0.663),
+            p("tt_pnm", "People's National Movement", "", Family::Conservative, 0.320),
+            p("tt_njac", "National Joint Action Committee", "", Family::Nationalist, 0.015),
+            // The United National Congress is deliberately absent, on the
+            // same ground the Bloc Quebecois is absent from the Canadian
+            // table above: it was founded in April 1989, contested no
+            // national election before January 1990, and therefore has no
+            // transcribed share. By December 1991 it took 13 seats and became
+            // the opposition. Entering an opening number for it would be
+            // scripting the collapse of the NAR instead of letting a
+            // BigTent's own coalition arithmetic produce it.
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
+    // The Bahamas — general election of 19 June 1987: PLP 53.5%, FNM 43.2%,
+    // independents 3.1%, Labour 0.1%. Pindling's fifth consecutive term and
+    // his last full one. Next due by June 1992; it came on 19 August 1992 and
+    // the Free National Movement won 32 of 49 seats, ending twenty-five years
+    // of Progressive Liberal Party government.
+    // https://en.wikipedia.org/wiki/1987_Bahamian_general_election
+    Polity {
+        nation: NationId::Bahamas,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1992, 6),
+        parties: &[
+            p("bs_plp", "Progressive Liberal Party", "", Family::SocialDemocratic, 0.535),
+            p("bs_fnm", "Free National Movement", "", Family::Conservative, 0.432),
+            // The Labour Party's 0.12% and the two independents' 3.1% are not
+            // entered: independents are not a party the model can move
+            // support toward, and a party with one vote in a thousand would
+            // be noise in an electorate of 100,000.
+        ],
+        ruling: "the House of Assembly",
+        pillars: &[],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

@@ -1390,6 +1390,69 @@ pub const ROSTER: &[NationRow] = &[
     // how New Zealand has ever gone to war.
     row("NewZealand", "New Zealand", &["nz", "nzl"], "Oceania",
         &[], &[], true, false, false),
+
+    // ---------------------------------------------------------------------
+    // The Caribbean (branch feat/r2-caribbean). Cuba is already above.
+    //
+    // REGION, and it is the one real judgement call in this block. All five
+    // are filed under "LatinAmerica" rather than under a new "Caribbean"
+    // region, and the reason is Cuba. Region membership auto-populates
+    // `contacts`, so a Caribbean region that Cuba was not in would tell the
+    // dyad model that Havana cannot reach Kingston or Port-au-Prince — and
+    // Cuba is the only state in the Caribbean with an expeditionary army, the
+    // one that put 50,000 men in Angola and a garrison in Grenada. Cutting it
+    // out of its own sea is a far larger error than the one LatinAmerica
+    // makes, which is a standing contact between Nassau and Buenos Aires that
+    // carries no border and no claim and therefore almost no appetite.
+    // Moving Cuba's existing row into a new region was the alternative and it
+    // was rejected as a change to a row this branch does not own.
+    // INTEGRATOR: if a "Caribbean" region is ever added, Cuba must move into
+    // it in the same commit, or this trade goes the wrong way.
+    //
+    // The Hispaniola border is 376km from Manzanillo Bay to the Pedernales
+    // river, fixed by the treaty of 21 January 1929 and the revision of 9
+    // March 1936, and it is the only land border anywhere in this block. It is
+    // declared from both ends below.
+    //
+    // No claims anywhere in the block, and that is transcribed rather than
+    // missing. Neither side of Hispaniola claims the other: what runs across
+    // that border is labour and migration - the braceros cut Dominican cane
+    // under conditions the ILO was investigating in 1990 - and the memory of
+    // the Parsley Massacre of October 1937, none of which is a share of a
+    // country. Haiti's one genuine territorial claim is Navassa Island, five
+    // square kilometres of guano rock between Haiti and Jamaica that the
+    // United States has held under the Guano Islands Act since 1857 and that
+    // Haiti's 1987 constitution names as Haitian. It is handled exactly as
+    // Cuba's Guantanamo grievance is handled twelve hundred lines above: not
+    // as a claim, because a claim is a share of the target and Navassa is
+    // 0.00006% of the United States, but as a number in the relations file.
+    row("DominicanRepublic", "Dominican Republic",
+        &["dom", "dominican republic", "santo domingo"], "LatinAmerica",
+        &["Haiti"], &[], true, false, false),
+
+    row("Haiti", "Haiti", &["hti", "hai", "ayiti"], "LatinAmerica",
+        &["DominicanRepublic"], &[], true, false, false),
+
+    row("Jamaica", "Jamaica", &["jam"], "LatinAmerica",
+        &[], &[], true, false, false),
+
+    // Eleven kilometres of the Serpent's Mouth separate Icacos Point from the
+    // Paria peninsula, and the neighbour list is still empty. The bar this
+    // table sets for a strait is the Johor causeway - a mile of road and rail
+    // the Japanese Twenty-Fifth Army marched over - and Denmark does not list
+    // Sweden across four kilometres of Oresund, which in 1990 had no bridge
+    // either. Eleven kilometres of open water is a landing, not a border.
+    //
+    // Nothing in `claims` because the argument was settled inside the game's
+    // own opening months: Venezuela and Trinidad had contested the seabed of
+    // the Gulf of Paria for decades and signed the delimitation treaty on 18
+    // April 1990. A seabed boundary is not a share of a country in any case.
+    row("TrinidadTobago", "Trinidad and Tobago",
+        &["tto", "trinidad", "trinidad and tobago", "t&t"], "LatinAmerica",
+        &[], &[], true, false, false),
+
+    row("Bahamas", "Bahamas", &["bhs", "the bahamas", "bahama"], "LatinAmerica",
+        &[], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -1619,6 +1682,12 @@ well_known! {
     Canada => "Canada",
     Australia => "Australia",
     NewZealand => "NewZealand",
+    // The Caribbean (branch feat/r2-caribbean).
+    DominicanRepublic => "DominicanRepublic",
+    Haiti => "Haiti",
+    Jamaica => "Jamaica",
+    TrinidadTobago => "TrinidadTobago",
+    Bahamas => "Bahamas",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

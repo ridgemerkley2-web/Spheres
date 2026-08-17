@@ -1,0 +1,37 @@
+{
+  "id": "Haiti",
+  "name": "Haiti",
+  "system": "Market",
+  "authoritarianism": 0.78,
+  "economy": {
+    "gdp_bn": 3.1,
+    "population_m": 6.85,
+    "tfp_trend": -0.007,
+    "inflation": 0.213,
+    "interest_rate": 0.105,
+    "tax_rate": 0.097,
+    "mil_spend_gdp": 0.011,
+    "state_invest_gdp": 0.047,
+    "priv_invest_gdp": 0.152,
+    "debt_gdp": 0.31,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 24.0, "separatism": 0.0 },
+  "military": { "strength": 1.0, "nuclear": false },
+  "sources": [
+    "GDP $3.10bn: World Bank NY.GDP.MKTP.CD, series HTI, 1990 = 3,096,289,800. On 6.85m people that is $452 a head - the poorest country in this roster outside the very bottom of sub-Saharan Africa, and by a distance the poorest in the western hemisphere. The CIA World Factbook 1991 estimated $2.7bn and $440 per capita for 1990, which is the same country measured with a cruder instrument.",
+    "Population 6.85m: World Bank SP.POP.TOTL, series HTI, 1990 = 6,854,441. Note that this is smaller than the Dominican Republic's 7.15m on a third of the land area.",
+    "Inflation 21.3%: World Bank FP.CPI.TOTL.ZG, series HTI, 1990 = 21.276032. The CIA World Factbook 1991 independently estimated 20% for 1990, so the two agree. What makes the number worth a sentence is the exchange rate beside it: the gourde was pegged at 5 to the dollar and had been since 1919, the peg did not move in 1990, and the inflation is therefore entirely domestic - a government printing money because it could not collect taxes.",
+    "Interest rate 10.5%: FLAGGED AS AN ADMITTED GAP, and a wide one. World Bank FR.INR.LEND has no Haitian observation before 1994; the first is 1994 = 10.5%, and that is what is entered, four years out of period and immediately after the OAS/UN embargo and the return of Aristide. The series then runs 12.99 (1995), 20.08 (1996), 14.26 (1997). Nothing better exists: Haiti's banking system in 1990 was three state banks and a handful of foreign branches, and the Banque de la Republique d'Haiti did not publish a policy rate anyone recorded. The loader's coupled check reads 0.025 - (0.105 - 0.213) = +0.133, a real rate about eleven points below neutral, which is at least the right sign for a country inflating at 21%.",
+    "Revenue 9.7% of GDP: CIA World Factbook 1991, budget line, 'revenues $300 million; expenditures $416 million, including capital expenditures of $145 million (1990 est.)', against the GDP in this file. World Bank GC.REV.XGRT.GD.ZS has no Haitian entry at all for any year around 1990, so the Factbook is the source rather than a cross-check. Under 10% is close to the floor of what a state can be: the customs house at Port-au-Prince was most of the revenue and most of the smuggling.",
+    "Military 1.1% of GDP: A SUBSTITUTION, STATED. World Bank MS.MIL.XPND.GD.ZS, series HTI, gives 0.093006 for 1990 - nine hundredths of one percent, or about $2.9m - and the series is flat at that level from 1988 to 1994. That figure is not usable as a description of Haiti in January 1990 and should not be quietly entered: the country was governed BY its army, the Forces Armees d'Haiti held every lever of the state, and $2.9m across roughly 7,000 men in uniform is $410 a head a year. What is entered instead is the CIA World Factbook 1991's absolute figure - '$34 million, 1.5% of GDP (1988 est.)' - divided by this file's 1990 GDP, which gives 1.1%. Both numbers are quoted so that a reader can pick the other one; the World Bank series is the roster's convention and this is the one place in this block where it is departed from, on the ground that it is measuring a budget line rather than an army.",
+    "Investment: gross capital formation 19.92% of GDP (World Bank NE.GDI.TOTL.ZS, series HTI, 1990 = 19.920067). The 4.7 / 15.2 split is NOT apportioned by taste: the public half is the CIA World Factbook 1991's capital expenditure of $145m (1990 est.) against this file's GDP, which is 4.7%, and the private half is the remainder. Almost all of the public half was foreign aid rather than Haitian money, and most of that aid was suspended during 1990.",
+    "Debt 31% of GDP: World Bank DT.DOD.DECT.GN.ZS, series HTI, 1990 = 30.51, external debt stocks as a share of GNI. The CIA World Factbook 1991 gives $838m external debt at December 1990, which against this file's GDP is 27%. THE LOWEST DEBT RATIO OF ANY POOR COUNTRY IN THIS ROSTER, and it is not a sign of prudence - it is a sign that by 1990 nobody would lend to Haiti at all.",
+    "Oil 0.0: no production.",
+    "TFP trend -0.007: negative, and it has to be. Haitian GDP per head fell for the whole of the 1980s; real GDP shrank 2.91% in 1989 and grew 1.04% in 1990 against population growth near 2%. Deforestation had taken the topsoil off the mountains, the creole pig population had been exterminated in the 1982-83 African swine fever eradication and never replaced, and the assembly plants around Port-au-Prince were leaving. Set between Cameroon's -0.008 and Ethiopia's -0.005, and above Zaire's -0.010.",
+    "Stability 24 and authoritarianism 0.78: January 1990 is the last full month of Lieutenant General Prosper Avril's government. Avril took power in the coup of 17 September 1988, declared a state of siege on 20 January 1990 - inside the month the game starts - arrested and expelled opposition figures, and resigned under American pressure and street protest on 10 March. Stability 24 is set between Zaire's 26 and Ethiopia's 22, which is the right neighbourhood for a regime that in fact fell nine weeks after the start date. Authoritarianism 0.78 is above the model's 0.60 electoral ceiling, which is the transcribed fact: there was no legislature - the one elected on 17 January 1988 was dissolved on 20 June 1988 - and no election was held between then and December 1990. The presidential election of 29 November 1987 had been abandoned on the morning of the vote after the Ruelle Vaillant massacre.",
+    "Separatism 0.0: none. Haiti has never had a separatist region; the state's weakness is that it does not reach the countryside, not that the countryside wants to leave. What governed rural Haiti was the 562 chefs de section - army-appointed, unpaid, and living off the fines they levied - and that is a description of the state's reach rather than of a rival nation.",
+    "Military strength 1.0: the Forces Armees d'Haiti were about 7,000 men including the police, with no air force worth the name and a navy of coastal launches. They had never fought a foreign war. Set below Senegal's 1.5 and Ghana's 1.5, which is close to the floor of the index and is correct: the FAd'H mattered enormously inside Haiti and not at all outside it."
+  ]
+}
