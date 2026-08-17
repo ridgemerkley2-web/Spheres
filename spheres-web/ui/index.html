@@ -492,6 +492,12 @@ const TERRITORY = {
   // minimum-area floor rather than a statement about the other 690.
   DominicanRepublic: ["DOM"], Haiti: ["HTI"], Jamaica: ["JAM"],
   TrinidadTobago: ["TTO"], Bahamas: ["BHS"],
+  // Central America (branch feat/r2-centam). All seven carry a polygon in
+  // Natural Earth 110m — checked, two hits each in world.js — so unlike Bahrain
+  // and Singapore none of them needs a LABEL_AT to exist on the map. Belize at
+  // 22,966 km2 is the smallest shape drawn on the board.
+  Guatemala: ["GTM"], Honduras: ["HND"], ElSalvador: ["SLV"],
+  Nicaragua: ["NIC"], CostaRica: ["CRI"], Panama: ["PAN"], Belize: ["BLZ"],
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],

@@ -1216,6 +1216,52 @@
         { "a": "SaoTome", "b": "USSR", "value": 45.0 },
         { "a": "SaoTome", "b": "SouthAfrica", "value": -50.0 }
       ]
+    },
+    {
+      "note": [
+        "Central America (branch feat/r2-centam). This is the densest patch of hostility per square kilometre anywhere in the 1990 world, and almost none of it is territorial — which is exactly why it has to be in this file rather than derived from the borders and claims in nations.rs. Seven small states, one live claim between them, and a decade in which four of them were the battlefield or the base for somebody else's war.",
+        "Nicaragua and the United States at -78 is the lowest number either country carries toward anybody outside the Soviet bloc, and it is not rhetoric. Washington had imposed a total trade embargo on 1 May 1985 and it was still in force in January 1990; the CIA had mined Nicaraguan harbours in 1984; the International Court of Justice found the United States in breach of international law in Nicaragua v. United States on 27 June 1986 and the United States refused to accept the judgment or pay the reparations; and the Contra army sitting in Honduras was American-funded from 1981 until Congress stopped it, and then funded anyway, which is what Iran-Contra was. Three weeks after this file opens the Nicaraguan electorate removes the government the embargo was aimed at, and the number should move because the sim decides it moves.",
+        "Nicaragua's patrons: the Soviet Union at 62 and Cuba at 80. The Cuban figure is the higher of the two and deliberately so — Havana sent teachers, doctors and military advisers by the thousand and had a relationship with the FSLN going back to the 1960s, where Moscow's was a transactional oil-and-arms arrangement it had already begun winding down in 1989. Both are about to become worthless to Managua, and the model has to price that.",
+        "The proxy triangle: Nicaragua-Honduras at -58 and Nicaragua-El Salvador at -50. Neither pair had a territorial quarrel worth the name. Honduras hosted the Contras in El Paraiso and Olancho and Nicaragua sued it at the Court over exactly that in 1986 and sent troops across the line in March 1988; Nicaragua supplied the FMLN and the SAM-7s that appeared in the November 1989 offensive came through it. Two hostile dyads that adjacency and claims cannot produce, because in both cases the thing each state wanted from the other was that it stop arming the people trying to overthrow it.",
+        "El Salvador and Honduras at 18: cold, and warmer than either is toward Nicaragua. They fought the hundred-hour war of July 1969, signed the General Peace Treaty of Lima in 1980, and by 1986 had jointly asked the International Court of Justice to draw the rest of the border. Two states that took their dispute to a court are further along than two states that did not, and 18 rather than a negative number is the transcription of that.",
+        "Guatemala and Belize at -45, and Guatemala and the United Kingdom at -25. This is the one dyad in the region with a claim behind it — see the Guatemala row in nations.rs — and the British number is its shadow: London and Guatemala City had no diplomatic relations at all from 1963 to 1986 and restored them only at charge d'affaires level, because Britain kept 1,500 troops and a Harrier flight in Belize for the express purpose of making Guatemala's claim unenforceable. Belize and the United Kingdom at 82 is the same fact from the other end, and is the highest number in this block.",
+        "The United States runs the full range here, from -78 to 72, which is the useful thing about adding this region to a Cold War roster. Honduras at 72 was a base. El Salvador at 68 took something near $4bn across the decade. Costa Rica at 58 is warm and independent — Oscar Arias won the Nobel Prize for a peace plan Washington actively opposed because it left the Sandinistas in place. Guatemala at 32 is the low end of the friendly range: military aid had been cut off over the highland massacres from 1977 to 1983 and was never fully restored, and it was suspended again in 1990 over the murder of the American innkeeper Michael DeVine. And Panama at 55 is a government the United States installed in December 1989 in a country the United States had just invaded, which is a number that ought to look uncomfortable, because it was."
+      ],
+      "pairs": [
+        { "a": "Nicaragua", "b": "USA", "value": -78.0 },
+        { "a": "Nicaragua", "b": "Cuba", "value": 80.0 },
+        { "a": "Nicaragua", "b": "USSR", "value": 62.0 },
+        { "a": "Nicaragua", "b": "Honduras", "value": -58.0 },
+        { "a": "Nicaragua", "b": "ElSalvador", "value": -50.0 },
+        { "a": "Nicaragua", "b": "CostaRica", "value": -20.0 },
+        { "a": "Nicaragua", "b": "Mexico", "value": 45.0 },
+        { "a": "Nicaragua", "b": "Guatemala", "value": -15.0 },
+        { "a": "Nicaragua", "b": "Panama", "value": 15.0 },
+
+        { "a": "Honduras", "b": "USA", "value": 72.0 },
+        { "a": "ElSalvador", "b": "USA", "value": 68.0 },
+        { "a": "CostaRica", "b": "USA", "value": 58.0 },
+        { "a": "Panama", "b": "USA", "value": 55.0 },
+        { "a": "Belize", "b": "USA", "value": 52.0 },
+        { "a": "Guatemala", "b": "USA", "value": 32.0 },
+
+        { "a": "Belize", "b": "UK", "value": 82.0 },
+        { "a": "Guatemala", "b": "Belize", "value": -45.0 },
+        { "a": "Guatemala", "b": "UK", "value": -25.0 },
+
+        { "a": "ElSalvador", "b": "Honduras", "value": 18.0 },
+        { "a": "Guatemala", "b": "ElSalvador", "value": 40.0 },
+        { "a": "Guatemala", "b": "Honduras", "value": 42.0 },
+        { "a": "CostaRica", "b": "Panama", "value": 55.0 },
+        { "a": "CostaRica", "b": "Guatemala", "value": 40.0 },
+        { "a": "CostaRica", "b": "Honduras", "value": 42.0 },
+        { "a": "CostaRica", "b": "ElSalvador", "value": 38.0 },
+
+        { "a": "Guatemala", "b": "Mexico", "value": 25.0 },
+        { "a": "Belize", "b": "Mexico", "value": 45.0 },
+        { "a": "Panama", "b": "Colombia", "value": 38.0 },
+        { "a": "Panama", "b": "Cuba", "value": 5.0 }
+      ]
     }
   ]
 }

@@ -1,0 +1,42 @@
+{
+  "id": "CostaRica",
+  "name": "Costa Rica",
+  "system": "Market",
+  "authoritarianism": 0.1,
+  "economy": {
+    "gdp_bn": 5.74,
+    "population_m": 3.05,
+    "tfp_trend": 0.008,
+    "inflation": 0.191,
+    "interest_rate": 0.23,
+    "tax_rate": 0.23,
+    "mil_spend_gdp": 0.0,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.21,
+    "debt_gdp": 0.68,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 76.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 0.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $5.74bn: World Bank NY.GDP.MKTP.CD, series CRI, 1990 — the print is $5,737m, with real growth of 3.6%. Second-largest economy on the isthmus after Guatemala on a population a third the size, which is the whole Costa Rican story in one comparison.",
+    "Population 3.05m: World Bank SP.POP.TOTL, series CRI, 1990 = 3,050,000, giving $1,881 a head — roughly double Guatemala's and nearly triple Nicaragua's on this file's reconstruction. Life expectancy in 1990 was about 76 years, within a year of the United States, on a fifteenth of the income.",
+    "Inflation 19.1%: annual average CPI, 1990, against 16.5% in 1989 and 20.2% in 1991. The December-on-December print was substantially higher — 1990 is the year the crawling peg on the colon accelerated and the fiscal deficit reopened, and the stabilisation that followed belongs to 1991-92. UNVERIFIED at the second digit: retrieved from one vintage of the annual-average series and not cross-checked; other vintages print the December figure in the high twenties, which is a different measurement of the same year rather than a contradiction.",
+    "interest_rate 0.23 against inflation of 0.191, i.e. 1.4 points below neutral on the schema's coupling: the same stand-in convention the rest of this branch uses, because the Banco Central de Costa Rica steered a set of administered deposit and lending rates in 1990 rather than publishing a policy rate of the kind this field is defined as.",
+    "Tax take 23% of GDP: much the highest revenue ratio in Central America, about three times Guatemala's, and it is what buys the social indicators above. Costa Rica had built a national health service and a universal pension system out of the 1949 settlement and was still paying for them. APPROXIMATE at the decimal.",
+    "MILITARY SPENDING 0.0 AND STRENGTH 0.0 ARE NOT PLACEHOLDERS. Article 12 of the constitution of 7 November 1949 abolished the army — 'Se proscribe el Ejercito como institucion permanente' — and Costa Rica has not had one since. SIPRI's Military Expenditure Database carries Costa Rica at exactly $0 for every year from 1949 through 1993 and has no share-of-GDP figure for 1990, which is the same absence for the opposite reason to Nicaragua's two files over. What Costa Rica had was the Fuerza Publica, an armed civil guard of a few thousand under the Ministry of Public Security whose budget is police spending and is not counted here. This is the only row in the roster that cannot attack anyone, and the pair of zeros is the point of putting facts in data: war.rs guards its ratio with def.max(1.0) and strength drifts up from the technology floor, so a zero costs the engine nothing and states something true.",
+    "Investment 26% of GDP, split 5.0 public and 21.0 private: the highest capital-formation ratio in this branch. The export-diversification push away from coffee and bananas — pineapple, ornamental plants, the free-trade zones legislated in 1981 that Intel would eventually arrive into — was underway. Split is a reasoned apportionment.",
+    "Debt 0.68: public external debt of roughly $3.9bn against $5.7bn of GDP. Costa Rica had defaulted in 1981, was the first Latin American country to complete a Brady restructuring — the agreement was signed in May 1990, four months into the game — and retired about a third of its commercial bank debt in the process. That deal is the reason this row is a burden rather than a crisis, and it happens inside the sim's window rather than before it. APPROXIMATE: order of magnitude from World Bank external-debt aggregates.",
+    "Oil 0.0: no production, and a grid that was already about 95% hydroelectric, which is why the oil-price channel in economy.rs will barely touch this row.",
+    "TFP trend 0.008: the highest in this branch. Level with Canada's and below Australia's, which is where a small, stable, well-schooled middle-income economy that is not catching up especially fast belongs.",
+    "Stability 76 and authoritarianism 0.10: the most stable state in this branch by a distance and one of the most stable in the roster, above Spain's 70 and Uruguay's 65. Unbroken civilian constitutional rule since 1949, no army to stage a coup with, a Supreme Electoral Tribunal that holds the rank of a fourth branch of government and takes control of the police in the run-up to a vote, and a president who had been given the Nobel Peace Prize in December 1987 for the Esquipulas II plan that was in the process of ending three of his neighbours' wars. The general election was three weeks away as the game opens and would turn the presidency over to the opposition without incident. Authoritarianism 0.10 is level with New Zealand's rather than below it: the assembly is unicameral with no upper house, deputies are barred from consecutive re-election and presidents from re-election at all, so the legislature is weak against the executive in a way the very high quality of the elections does not offset.",
+    "Separatism 0.0: no regional or ethnic secession claim of any kind. The Caribbean province of Limon is Afro-Caribbean and anglophone and has a real history of exclusion, and no movement has ever asked to leave."
+  ]
+}

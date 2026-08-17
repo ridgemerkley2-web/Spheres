@@ -1,0 +1,42 @@
+{
+  "id": "Honduras",
+  "name": "Honduras",
+  "system": "Market",
+  "authoritarianism": 0.28,
+  "economy": {
+    "gdp_bn": 4.92,
+    "population_m": 4.98,
+    "tfp_trend": 0.003,
+    "inflation": 0.233,
+    "interest_rate": 0.27,
+    "tax_rate": 0.15,
+    "mil_spend_gdp": 0.022,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.16,
+    "debt_gdp": 0.73,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 52.0,
+    "separatism": 0.02
+  },
+  "military": {
+    "strength": 3.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $4.92bn: World Bank NY.GDP.MKTP.CD, series HND, 1990 — the print is $4,923m. THE DISCONTINUITY IN THIS SERIES IS AN EXCHANGE RATE AND NOT AN ECONOMY, and entering the number without saying so would be the kind of confident fiction this file is supposed to avoid. The same series reads $7,877m for 1989 and $4,649m for 1991, a 37% fall and then a further fall, while real GDP grew 2.8% in 1990. The lempira had been fixed at 2.00 to the dollar since 1918. Rafael Callejas devalued and floated it in March 1990, six weeks after taking office, and it settled near 4 to the dollar and then past 5. Everything measured in dollars against Honduras changes shape in 1990 for that reason alone; nothing that happened in Honduras did. The 1990 print is entered because roster consistency requires the same series everywhere, and the caveat is here because the number will otherwise be read as a depression.",
+    "Population 4.98m: World Bank SP.POP.TOTL, series HND, 1990 = 4,983,000, giving $988 per head on the figure above and about $1,580 on the 1989 one. Same caveat.",
+    "Inflation 23.3%: annual average CPI, 1990, against 9.9% in 1989 and 33.9% in 1991 — the highest three-year run in the sixty-five years of the series. This is the devaluation passing through into a country that imports most of what it consumes, plus the removal of price controls and the fuel subsidy under the structural adjustment package Callejas agreed with the IMF and World Bank in order to clear the arrears that had cut Honduras off from both since 1988.",
+    "interest_rate 0.27 against inflation of 0.233 puts the real rate 1.5 points below neutral, which is where this roster's high-inflation rows are set and why: see the Guatemala file for the argument in full. Honduras had no published policy rate in 1990; the Banco Central's rates were administered and were being liberalised across the year.",
+    "Tax take 15% of GDP: central government revenue, roughly double Guatemala's ratio and about the Latin American average of the period. Honduras is the poorest country in this branch by output per head and by some distance the more competently taxed of the two largest. APPROXIMATE at the decimal.",
+    "Military 2.2% of GDP: SIPRI Military Expenditure Database, share-of-GDP sheet, Honduras 1990 = 2.201%, $67.1m current — falling from 2.85% in 1988 and to 1.54% in 1991 as the Contra war wound down. Strength 3: about 18,000 under arms, but with the best air force on the isthmus by a wide margin — F-5E Tiger IIs delivered in 1987, Super Mystere B2s, A-37s — bought and maintained on United States money as the price of hosting the Contras and the Palmerola air base. Indexed at New Zealand's 3 and below Guatemala's 4: fewer soldiers, better aircraft, and no war of its own to fight.",
+    "Investment 21% of GDP, split 5.0 public and 16.0 private: a high ratio for the income level, and the reason is aid. Honduras received US economic support funds on a scale set by its strategic use rather than by its economy through the 1980s, and much of it went into roads, ports and the Palmerola infrastructure. The split is a reasoned apportionment, not a transcription.",
+    "Debt 0.73: public external debt of roughly $3.6bn against $4.9bn of GDP — and note that this ratio is itself a creature of the devaluation above, because the debt was in dollars and the GDP had just been re-expressed in them. On the 1989 GDP the same debt reads 0.46. Honduras was in arrears to the IMF and the World Bank from 1988 and cleared them in mid-1990, which is the transaction the whole Callejas adjustment programme was for. APPROXIMATE: order of magnitude from World Bank external-debt aggregates, not a retrieved print. It is above the 0.9 debt-drag threshold in economy.rs on neither reading, which is the right answer for a country whose problem was arrears rather than solvency.",
+    "Oil 0.0: no production.",
+    "TFP trend 0.003: two decades in which real output per head did not rise. Honduras exported bananas, coffee and, from the mid-1980s, the strategic position; the maquila sector that later became the growth story was legislated for in 1987 and had barely begun.",
+    "Stability 52 and authoritarianism 0.28: the highest stability in this branch after Costa Rica and Belize, and it is earned by an absence rather than a presence — Honduras is the only one of the five Central American republics that did not have a war inside its own territory in the 1980s. It hosted two. Rafael Leonardo Callejas of the National Party was inaugurated on 27 January 1990, four weeks into the game's first month, in the second consecutive constitutional transfer of power between parties since the army returned to barracks in 1982. What holds the number down to 52: the army had run the country from 1963 to 1982 and retained a constitutional autonomy the civilians could not touch, Battalion 3-16 had disappeared some 180 people between 1980 and 1984, roughly 12,000 armed Contras were still encamped on Honduran soil and would not finish demobilising until June 1990, and the adjustment package was about to take the lempira and the price of bread with it.",
+    "Separatism 0.02: the Miskito of Gracias a Dios and the Garifuna of the north coast are distinct peoples with a real grievance and no secession movement. Entered at Brazil's 0.02."
+  ]
+}

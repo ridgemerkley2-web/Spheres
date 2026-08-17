@@ -738,8 +738,18 @@ pub const ROSTER: &[NationRow] = &[
     // question was closed by the Treaty of Guadalupe Hidalgo in 1848 and the
     // Gadsden Purchase in 1853, the last live fragment of it - the Chamizal -
     // was settled in 1963, and no Mexican government since has raised any of it.
+    //
+    // Guatemala and Belize appended with the Central American branch
+    // (feat/r2-centam), and the second of them is the one worth a sentence.
+    // Mexico held a claim to the northern half of Belize until the
+    // Mariscal-St. John treaty of 1893, renounced it there, and recognised
+    // Belize on the day it became independent in September 1981 - which is
+    // exactly what Guatemala did not do. Two neighbours of the same small
+    // country, the same colonial-era grievance, and only one of them still
+    // pressing it in 1990. `claims` stays empty for Mexico and that emptiness
+    // is the fact.
     row("Mexico", "Mexico", &["mex"], "LatinAmerica",
-        &["USA"], &[], true, false, false),
+        &["USA", "Guatemala", "Belize"], &[], true, false, false),
 
     row("Chile", "Chile", &["chl"], "LatinAmerica",
         &["Argentina", "Bolivia", "Peru"], &[], true, false, false),
@@ -751,8 +761,17 @@ pub const ROSTER: &[NationRow] = &[
     // in relations_1990.json instead, where a cold dyad with no claim behind it
     // is exactly the right shape for a quarrel that brings frigates out and
     // never brings armies.
+    //
+    // Panama appended with feat/r2-centam. It is a land border only in the
+    // legal sense: the 225km line runs through the Darien Gap, the one break
+    // in the Pan-American Highway, and no road has ever crossed it. Colombia
+    // holds no claim on it. Panama was a Colombian department until November
+    // 1903, seceded with a United States warship offshore, and Bogota
+    // recognised the separation in the Thomson-Urrutia treaty of 1921 in
+    // exchange for $25m from Washington. The boundary itself was fixed by the
+    // Victoria-Velez treaty of 1924 and has not been argued about since.
     row("Colombia", "Colombia", &["col"], "LatinAmerica",
-        &["Venezuela", "Ecuador", "Peru", "Brazil"], &[], true, false, false),
+        &["Venezuela", "Ecuador", "Peru", "Brazil", "Panama"], &[], true, false, false),
 
     // Venezuela's real claim is the Essequibo, two thirds of Guyana, asserted
     // since the Geneva Agreement of 1966 reopened the 1899 arbitration. Guyana
@@ -1662,6 +1681,150 @@ pub const ROSTER: &[NationRow] = &[
     row("SaoTome", "Sao Tome and Principe",
         &["stp", "sao tome", "sao tome and principe", "são tomé and príncipe", "st"], "CentralAfrica",
         &[], &[], true, false, false),
+
+    // ===== Central America (branch feat/r2-centam) =====
+    //
+    // Seven states filed under LatinAmerica rather than a region of their own,
+    // and the choice is deliberate rather than lazy. Region membership
+    // auto-populates `contacts`, and the isthmus in 1990 is the one part of the
+    // world where that is straightforwardly true: five of these seven had
+    // fought, funded or hosted a war in one of the others inside the previous
+    // decade, and the Contadora Group and the Esquipulas process that ended it
+    // were run out of Mexico City, Bogota, Caracas and Panama City. A separate
+    // "CentralAmerica" region would have told the dyad model that Managua and
+    // Bogota cannot reach each other, and Bogota's cocaine and Managua's
+    // Cubans were both moving through Panama the whole time.
+
+    // Guatemala holds the only claim of consequence in this region, and it is
+    // the whole of a neighbouring country.
+    //
+    // Guatemala has asserted title to Belize since inheriting Spain's claim at
+    // independence in 1821, on the argument that Britain forfeited the 1859
+    // Wyke-Aycinena treaty by never building the Guatemala City-to-the-Atlantic
+    // road that Article 7 promised. It refused to recognise Belizean
+    // independence on 21 September 1981, printed Belize inside its own borders,
+    // and did not recognise the state until 5 September 1991 - twenty months
+    // after this file opens. So in January 1990 the claim is live, it is
+    // constitutional, and it is total: `claim("Belize", 1.0)`.
+    //
+    // That makes it the largest share in this table, above Iraq's 0.95 on
+    // Kuwait, and it must not be read as the largest appetite. The appetite
+    // model is supposed to divide those two, and here is the material it needs
+    // to: Britain kept a garrison of some 1,500 troops, a Harrier flight and a
+    // Rapier battery in Belize for the sole purpose of making this claim
+    // unenforceable, and had flown Harriers in to stop a Guatemalan build-up
+    // once already, in 1977. Guatemala's own army was thirty years into a
+    // counterinsurgency it was fighting in its own highlands. And a claim
+    // pressed at the OAS for a hundred and seventy years without a shot is a
+    // different object from one pressed for seven months and then invaded. If
+    // this row produces a Guatemalan invasion of Belize in most runs, the fault
+    // is in the appetite model and not in the 1.0 - the number is what Guatemala
+    // said, and what Guatemala said is the transcription.
+    // https://en.wikipedia.org/wiki/Belizean%E2%80%93Guatemalan_territorial_dispute
+    row("Guatemala", "Guatemala", &["gtm", "gua"], "LatinAmerica",
+        &["Mexico", "Belize", "Honduras", "ElSalvador"],
+        &[claim("Belize", 1.0)], true, false, false),
+
+    // Honduras borders three of this roster and is the reason two of them could
+    // fight the wars they fought: the Contras operated out of the Nueva
+    // Segovia-facing camps in El Paraiso and Olancho, and Palmerola was a US
+    // air base in all but name. None of that is a claim, and the row says so.
+    //
+    // The one territorial argument Honduras had in January 1990 it was
+    // litigating rather than fighting. Honduras and El Salvador submitted the
+    // land, island and maritime frontier to a chamber of the International
+    // Court of Justice by special agreement on 24 May 1986; judgment came on 11
+    // September 1992. Six "bolsones" of undemarcated highland, roughly 440 km2
+    // in total and holding some thousands of people, were in dispute in both
+    // directions - Nahuaterique and Dolores are the large ones. Scored on
+    // population against a Honduras of 4.98m, as this table scores Aksai Chin
+    // and the Litoral, that is 0.003: a rounding error, which is the correct
+    // magnitude for a border two states have jointly asked a court to draw.
+    // The islands in the Gulf of Fonseca - Meanguera, Meanguerita, El Tigre -
+    // were in the same case and cannot be written here at all, for the reason
+    // Colombia's maritime rows give: a share is a fraction of a state.
+    // https://en.wikipedia.org/wiki/Land,_Island_and_Maritime_Frontier_Dispute
+    row("Honduras", "Honduras", &["hnd", "hon"], "LatinAmerica",
+        &["Guatemala", "ElSalvador", "Nicaragua"],
+        &[claim("ElSalvador", 0.003)], true, false, false),
+
+    // El Salvador: the smallest country on the American mainland, the densest,
+    // and in January 1990 nine weeks past the FMLN offensive that put a guerrilla
+    // army inside San Salvador for the first time. Its side of the bolsones case
+    // above is entered at the same 0.003 and for the same reason.
+    //
+    // What is deliberately NOT here is any claim arising from the war of July
+    // 1969. That war is remembered as the Football War and was in fact about
+    // three hundred thousand Salvadoran squatters farming Honduran land and the
+    // agrarian reform that expelled them; it lasted a hundred hours, El Salvador
+    // won it on the ground, withdrew under OAS pressure, and gained nothing. The
+    // General Peace Treaty of Lima of 30 October 1980 settled two thirds of the
+    // frontier and referred the rest to the Court. A war that produced no
+    // territorial transfer and a treaty is not a standing claim, and entering
+    // one would invent a second Football War out of the first.
+    row("ElSalvador", "El Salvador", &["slv", "salvador"], "LatinAmerica",
+        &["Guatemala", "Honduras"],
+        &[claim("Honduras", 0.003)], true, false, false),
+
+    // Nicaragua has no territorial claim on anybody in January 1990, and after
+    // a decade in which it was invaded from two directions that is worth
+    // stating rather than leaving blank.
+    //
+    // The two quarrels it did have are both outside what `claims` can hold. The
+    // San Juan river is Nicaraguan under the Canas-Jerez treaty of 1858 and
+    // Costa Rica has perpetual navigation rights on it - an argument about a
+    // right of passage, not about whose land it is, in exactly the sense the
+    // Canada row uses about the Northwest Passage. And the Caribbean maritime
+    // boundary with Honduras is water. What actually made Managua's borders
+    // dangerous was neither: it was that Honduras hosted the Contras and Costa
+    // Rica had hosted ARDE, which is a proxy war and belongs in the relations
+    // file, where it is.
+    row("Nicaragua", "Nicaragua", &["nic", "nca"], "LatinAmerica",
+        &["Honduras", "CostaRica"], &[], true, false, false),
+
+    // Costa Rica abolished its army by Article 12 of the constitution of 7
+    // November 1949 and has not had one since. It is the only state in this
+    // roster that cannot attack anybody, and the row carries that as an empty
+    // `claims` and a `military.strength` of zero in the data file rather than
+    // as a special case in the engine - which is the whole argument for facts
+    // being data. Two neighbours, no claim on either, and a president who had
+    // taken the Nobel Peace Prize in December 1987 for writing the plan that
+    // was in the process of ending everyone else's wars.
+    row("CostaRica", "Costa Rica", &["cri", "crc"], "LatinAmerica",
+        &["Nicaragua", "Panama"], &[], true, false, false),
+
+    // Panama in January 1990 is six weeks past a foreign invasion, and `claims`
+    // is empty in both directions, which needs saying because the obvious
+    // candidate looks like a claim and is not.
+    //
+    // The Canal Zone was a strip of sovereign United States territory across
+    // the middle of the country from 1903 until the Torrijos-Carter treaties
+    // returned it on 1 October 1979; the canal itself was to follow on 31
+    // December 1999, and did. So the thing Panama wanted from the United States
+    // it had already been promised, by a ratified treaty, with a date on it -
+    // and what the United States still held in January 1990 was a lease and
+    // fourteen bases, not a piece of Panama anyone disputed the title to. That
+    // is the Guantanamo shape and it gets the Guantanamo treatment: not a share
+    // of another state, so not a claim, and the temperature is in the relations
+    // file instead. Colombia, the state Panama seceded from in 1903, holds
+    // nothing either - see the Colombia row above.
+    row("Panama", "Panama", &["pan"], "LatinAmerica",
+        &["CostaRica", "Colombia"], &[], true, false, false),
+
+    // Belize is in this roster to be claimed. It is the smallest population on
+    // the board - 189,000, a third of Bahrain's - it has two land neighbours,
+    // and one of them did not concede that it existed.
+    //
+    // It holds no claim of its own, which is the ordinary condition of the
+    // claimed. Its security in January 1990 was a British garrison and the
+    // knowledge that the garrison would not leave while Guatemala's position
+    // stood; British Forces Belize did not draw down until 1994, three years
+    // after Guatemala recognised Belize in September 1991. A nation whose entire
+    // strategic situation is one neighbour's claim and one distant patron's
+    // troops is a good test of whether this model can hold a small state at all,
+    // which is most of why the roster is going to 190 and not stopping at 108.
+    row("Belize", "Belize", &["blz", "bze"], "LatinAmerica",
+        &["Guatemala", "Mexico"], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -1904,6 +2067,14 @@ well_known! {
     Gabon => "Gabon",
     EquatorialGuinea => "EquatorialGuinea",
     SaoTome => "SaoTome",
+    // Central America (branch feat/r2-centam).
+    Guatemala => "Guatemala",
+    Honduras => "Honduras",
+    ElSalvador => "ElSalvador",
+    Nicaragua => "Nicaragua",
+    CostaRica => "CostaRica",
+    Panama => "Panama",
+    Belize => "Belize",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

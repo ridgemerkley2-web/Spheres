@@ -1,0 +1,42 @@
+{
+  "id": "ElSalvador",
+  "name": "El Salvador",
+  "system": "Market",
+  "authoritarianism": 0.42,
+  "economy": {
+    "gdp_bn": 4.82,
+    "population_m": 5.44,
+    "tfp_trend": 0.002,
+    "inflation": 0.283,
+    "interest_rate": 0.32,
+    "tax_rate": 0.1,
+    "mil_spend_gdp": 0.034,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.11,
+    "debt_gdp": 0.42,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 25.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 4.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $4.82bn: World Bank NY.GDP.MKTP.CD, series SLV, 1990 — the print is $4,818m, with real growth of 4.8%. A country in the eleventh year of a civil war growing at nearly 5% needs an explanation and it is remittances and American money: family transfers from the Salvadoran population that had fled to the United States were running above $300m a year by 1990, and US economic and military assistance had totalled some $4bn over the decade, which against a $5bn economy is the largest per-capita aid programme the United States ran anywhere outside Israel and Egypt. This is a war economy floated from outside, and the growth figure is real without being the growth of anything Salvadoran.",
+    "Population 5.44m: World Bank SP.POP.TOTL, series SLV, 1990 = 5,435,000, at 258 people per square kilometre the densest country on the American mainland. The count is soft in a way worth flagging: something like a fifth of all Salvadorans were living outside the country by 1990, most of them in the United States without papers, and the census of 1992 enumerated 5.05m against this series' 5.5m for the same period. UNVERIFIED which of the two a 1990 sim should carry; the World Bank series is entered for roster consistency and the census is the lower bound.",
+    "Inflation 28.3%: annual average CPI, 1990, against 17.7% in 1989 and 14.4% in 1991. Alfredo Cristiani's government took office in June 1989 and liberalised prices, unified the exchange rate and removed subsidies across 1990; the spike is that programme and the peak of the series.",
+    "interest_rate 0.32 against inflation of 0.283: 1.2 points below neutral on the schema's coupling, on the same convention as the other high-inflation rows in this region. El Salvador had no policy rate in the sense this field means; the Banco Central de Reserva's rates were administered until the reform of 1991.",
+    "Tax take 10% of GDP: central government revenue had collapsed through the war — coffee was the tax base and the FMLN was burning the harvest and blowing the roads it moved on — and the 1990 reform that introduced the VAT was still ahead. Second-lowest ratio in this branch after Guatemala. APPROXIMATE at the decimal.",
+    "Military 3.4% of GDP: SIPRI Military Expenditure Database, share-of-GDP sheet, El Salvador 1990 = 3.414%, $163.9m current — the highest share in Central America and, on SIPRI's share-of-government-spending sheet, 21.4% of the entire state budget. Down from 4.87% in 1989. Strength 4: the Fuerza Armada had grown from about 12,000 in 1979 to roughly 56,000 by 1990, entirely on American money and training, with UH-1 and A-37 fleets that gave it uncontested air power over its own territory — and it had still not won. That last clause is why strength 4 and not higher: this is an army the size of Guatemala's whose ceiling had been demonstrated eight weeks before the game opens.",
+    "Investment 14% of GDP, split 3.0 public and 11.0 private: capital formation in a country where the guerrillas had made destroying capital a strategy — the FMLN sabotage campaign against the electricity grid, bridges and the coffee crop ran for a decade. Split is a reasoned apportionment.",
+    "Debt 0.42: public external debt of roughly $2.0bn against $4.8bn of GDP. Low for the region and for the reason above: a great deal of what financed El Salvador in the 1980s arrived as grants rather than loans. APPROXIMATE: order of magnitude, not a retrieved print.",
+    "Oil 0.0: no production.",
+    "TFP trend 0.002: the lowest in this branch outside Nicaragua. Real GDP per head in 1990 was roughly a fifth below its 1978 level; the war took twelve years and about 75,000 lives out of a country of five and a half million.",
+    "Stability 25 and authoritarianism 0.42. THE STATE OF THIS COUNTRY IN JANUARY 1990 IS THE REASON THE NUMBER IS THE SECOND-LOWEST IN THE ROSTER, and the two months before the game opens are the whole of the argument. On 11 November 1989 the FMLN launched the ofensiva hasta el tope and put several thousand fighters into San Salvador itself, holding neighbourhoods of the capital for a fortnight against air strikes on the city; the army bombed the poor districts from helicopters. On 16 November officers of the US-trained Atlacatl Battalion entered the Universidad Centroamericana and murdered six Jesuit priests, their housekeeper and her sixteen-year-old daughter. Neither side could win and both had just proved it. Entered at 25, above Peru's 22 and below Colombia's 32. Authoritarianism 0.42 rather than higher because the March 1989 presidential election that Cristiani won was contested and honoured and the March 1991 legislative election was three months out at the start; rather than lower because the state ran death squads, because the constitution reserved a veto to an army the president did not command, and because the largest political force in the country was excluded from the ballot by being at war with it.",
+    "Separatism 0.0: the most ethnically homogeneous state in the region. The indigenous population had been all but erased as a public identity by the matanza of 1932; the civil war was fought over land and class with no territorial dimension at all, and the FMLN never sought to detach a province. Zero is the transcription and not an omission."
+  ]
+}
