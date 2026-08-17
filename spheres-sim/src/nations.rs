@@ -267,7 +267,12 @@ pub const ROSTER: &[NationRow] = &[
     // Cameroon share 1,700km of frontier from Lake Chad to the Bight of Bonny, and
     // the far end of it is the Bakassi peninsula. Resolve any conflict here by
     // union — take every branch's addition.
-    row("Nigeria", "Nigeria", &["nga"], "WestAfrica", &["Cameroon"], &[], true, false, false),
+    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): "Niger" and "Benin" appended.
+    // Nigeria's other two roster frontiers, 1,600km along the north and 800km of
+    // the west; Chad, across Lake Chad, is still not simulated. Union, not
+    // replacement.
+    row("Nigeria", "Nigeria", &["nga"], "WestAfrica",
+        &["Cameroon", "Niger", "Benin"], &[], true, false, false),
 
     // The Paracels and Spratlys from the other end, plus the border strips.
     row("Vietnam", "Vietnam", &["viet nam", "vnm"], "SoutheastAsia",
@@ -957,11 +962,16 @@ pub const ROSTER: &[NationRow] = &[
     // of them. Its 1963 war with Morocco was fought on Moroccan initiative and
     // over Algerian ground, its 1990 quarrel with Rabat was over the Western
     // Sahara, and Tindouf — the Polisario's base since 1976 — was the thing
-    // Algeria was defending, not seeking. The other long frontiers, with Mali,
-    // Niger, Mauritania and the Western Sahara, are borders with states this
-    // roster does not carry, so they are absent rather than wrong.
+    // Algeria was defending, not seeking.
+    //
+    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): "Mali", "Niger" and
+    // "Mauritania" appended. The sentence that used to end this comment said
+    // those three southern frontiers were borders with states the roster did
+    // not carry; they are now rows, so the borders are declared. Only the
+    // Western Sahara remains absent, and it is absent because it is not a
+    // nation in this table. Union, not replacement.
     row("Algeria", "Algeria", &["dza", "alg", "algerie"], "NorthAfrica",
-        &["Morocco", "Tunisia", "Libya"], &[], true, false, false),
+        &["Morocco", "Tunisia", "Libya", "Mali", "Niger", "Mauritania"], &[], true, false, false),
 
     // Morocco is the one North African state in 1990 with live claims on two
     // neighbours it can walk to, and both are rounding errors by design.
@@ -1004,8 +1014,15 @@ pub const ROSTER: &[NationRow] = &[
     // whom it fought a four-day war in July 1977, and Sudan, whose government
     // it had spent a decade trying to choose.
     // https://en.wikipedia.org/wiki/Aouzou_Strip
+    //
+    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): "Niger" appended. 350km of
+    // frontier in the Tummo desert, and it is reach of exactly the kind the
+    // comment above means: Qadhafi's Islamic Legion recruited Tuareg from Niger
+    // and Mali through the 1980s and sent them home again, and Niamey spent the
+    // decade accusing Tripoli of designs on the Air massif. Union, not
+    // replacement.
     row("Libya", "Libya", &["lby", "libyan arab jamahiriya", "jamahiriya"], "NorthAfrica",
-        &["Algeria", "Tunisia", "Egypt", "Sudan"], &[], true, false, false),
+        &["Algeria", "Tunisia", "Egypt", "Sudan", "Niger"], &[], true, false, false),
 
     // Sudan claims nothing. Under the 1902 administrative line it prefers, the
     // Hala'ib triangle is already Sudanese and Bir Tawil is already Egyptian,
@@ -1058,9 +1075,14 @@ pub const ROSTER: &[NationRow] = &[
     row("Kenya", "Kenya", &["ken"], "EastAfrica",
         &["Ethiopia", "Uganda", "Tanzania"], &[], true, false, false),
 
-    // No roster neighbour: Ghana borders Cote d'Ivoire, Burkina Faso and Togo and
-    // none of the three is simulated. An island in this table, and correctly so.
-    row("Ghana", "Ghana", &["gha"], "WestAfrica", &[], &[], true, false, false),
+    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): "BurkinaFaso" and "Togo"
+    // appended, and the comment that used to stand here — "no roster neighbour"
+    // — is now false and has been replaced rather than left to mislead. Ghana
+    // borders Cote d'Ivoire, Burkina Faso and Togo; two of the three are now
+    // simulated and Cote d'Ivoire still is not. Ghana stops being an island in
+    // this table. Union, not replacement.
+    row("Ghana", "Ghana", &["gha"], "WestAfrica",
+        &["BurkinaFaso", "Togo"], &[], true, false, false),
 
     // Zaire has nine neighbours and two of them are in this roster. The omission
     // worth stating is Tanzania: the Zaire-Tanzania boundary is drawn entirely
@@ -1091,11 +1113,18 @@ pub const ROSTER: &[NationRow] = &[
     row("Uganda", "Uganda", &["uga"], "EastAfrica",
         &["Zaire", "Kenya", "Tanzania"], &[], true, false, false),
 
-    // No roster neighbour: Mauritania, Mali, Guinea, Guinea-Bissau and the Gambia
-    // are all unsimulated, and the Gambia is not a border but a hole — Senegal
-    // surrounds it, and the Senegambia confederation had just been dissolved in
-    // September 1989.
-    row("Senegal", "Senegal", &["sen"], "WestAfrica", &[], &[], true, false, false),
+    // NEIGHBOUR EDIT (branch feat/r2-westafrica2): all five of Senegal's
+    // frontiers appended, and the comment that used to stand here — that
+    // Mauritania, Mali, Guinea, Guinea-Bissau and the Gambia were all
+    // unsimulated — has been replaced because every one of them is now a row.
+    // The Gambia is still "not a border but a hole": Senegal surrounds it on
+    // three sides, which is why Casamance is cut off from Dakar by another
+    // country, and the Senegambia Confederation was dissolved on 30 September
+    // 1989. The Mauritanian line is the one that mattered in 1990 — the river
+    // valley the two states had expelled 70,000 people across each way in April
+    // 1989. Union, not replacement.
+    row("Senegal", "Senegal", &["sen"], "WestAfrica",
+        &["Mauritania", "Mali", "Guinea", "GuineaBissau", "Gambia"], &[], true, false, false),
 
     // The one claim in the region, and it is a small one measured properly. Bakassi
     // is 665 square kilometres of mangrove at the mouth of the Cross river, held and
@@ -1390,6 +1419,174 @@ pub const ROSTER: &[NationRow] = &[
     // how New Zealand has ever gone to war.
     row("NewZealand", "New Zealand", &["nz", "nzl"], "Oceania",
         &[], &[], true, false, false),
+
+    // ---- West Africa (branch feat/r2-westafrica2) -------------------------
+    // Eleven states along the Niger bend and the Upper Guinea coast, and the
+    // first thing this block does is turn Ghana and Senegal from islands into
+    // a connected map: before it, the only declared border in West Africa was
+    // Nigeria-Cameroon. What follows is the ECOWAS interior, and the thing to
+    // notice is how few claims there are in it. The Organisation of African
+    // Unity resolution of Cairo, 21 July 1964, bound its members to the
+    // frontiers they inherited at independence, and in this region it largely
+    // held: the two real border wars of the era, Mali-Burkina in 1974 and 1985
+    // and Thailand-Laos's African analogue in the Beninese river islands, both
+    // ended at the International Court of Justice rather than on the ground.
+    // A model that read poverty and coups as appetite for a neighbour's
+    // territory would invent a decade of conquests that did not happen. What
+    // these eleven actually did to each other was sponsor each other's rebels
+    // and each other's coups, which is covert action and relations, not claims.
+
+    // Mali holds no claim on anybody, and the Agacher Strip is why the entry is
+    // worth a comment rather than a blank. Mali and Burkina Faso fought twice
+    // over a 160km band of scrub in the north-east — a week in December 1974
+    // and five days over Christmas 1985, the "Agacher Strip war", with air
+    // strikes on Ouahigouya and something over a hundred dead. They then took
+    // it to the International Court of Justice, which divided the strip almost
+    // exactly in half on 22 December 1986, and BOTH GOVERNMENTS ACCEPTED THE
+    // JUDGMENT and exchanged the territory in 1987. Three years before the game
+    // opens the quarrel was not dormant, it was settled, and the Tunisia row
+    // above states the principle: a state that litigates its border and takes
+    // the answer is a state with no claim to enter.
+    // https://en.wikipedia.org/wiki/Agacher_Strip_War
+    row("Mali", "Mali", &["mli", "french sudan"], "WestAfrica",
+        &["Algeria", "Niger", "BurkinaFaso", "Guinea", "Senegal", "Mauritania"],
+        &[], true, false, false),
+
+    // Burkina Faso, Upper Volta until Sankara renamed it on 4 August 1984. Six
+    // neighbours, five of them in this roster; Cote d'Ivoire is not simulated.
+    // No claim, for the reason given on Mali's row.
+    row("BurkinaFaso", "Burkina Faso", &["bfa", "burkina", "upper volta", "haute-volta"], "WestAfrica",
+        &["Mali", "Niger", "Benin", "Togo", "Ghana"], &[], true, false, false),
+
+    // Niger touches seven states and five are here. Chad is not simulated, and
+    // neither is the Libyan-claimed Aouzou Strip east of it. Niger claims
+    // nothing: the one live territorial argument on its frontiers ran the other
+    // way, from Cotonou, and is entered on Benin's row below.
+    row("Niger", "Niger", &["ner"], "WestAfrica",
+        &["Algeria", "Libya", "Nigeria", "Benin", "BurkinaFaso", "Mali"],
+        &[], true, false, false),
+
+    // Guinea borders six states and five are in this roster; Cote d'Ivoire is
+    // not. No claim. Conakry's quarrels with Monrovia and Freetown in 1990 were
+    // about who was hosting whose dissidents — Guinea took a quarter of a
+    // million Liberian refugees into the forest region from mid-1990 and sent
+    // a battalion to ECOMOG — and hosting a rebel is not a claim on a
+    // neighbour's ground.
+    row("Guinea", "Guinea", &["gin", "guinee", "guinea-conakry"], "WestAfrica",
+        &["GuineaBissau", "Senegal", "Mali", "Liberia", "SierraLeone"],
+        &[], true, false, false),
+
+    // The one claim in West Africa, and it is a river island. Lete is about 40
+    // square kilometres of alluvial ground in the middle of the Niger river,
+    // farmed by Beninese and administered by Niger, and the two states have
+    // disputed it since a French colonial decree of 1900 that neither reads the
+    // same way. There was shooting over it in 1963 and again in the 1990s, and
+    // Benin and Niger finally put it to a chamber of the International Court of
+    // Justice, which awarded Lete and fifteen other islands to Niger on 12 July
+    // 2005 — which is fifteen years after the game opens, so in January 1990 the
+    // claim is live. The share is what the claim would take from the target:
+    // Lete's population is usually put in the low thousands against a Niger of
+    // 8.29m, and 40 km2 against 1,267,000 km2 is 0.00003. Entered at 0.0003,
+    // the higher of the two readings, which is still three ten-thousandths — the
+    // same order as Thailand's Ban Romklao above and for the same reason. It is
+    // a grievance stated as the number that keeps it a grievance.
+    // https://en.wikipedia.org/wiki/Lete_Island
+    row("Benin", "Benin", &["ben", "dahomey"], "WestAfrica",
+        &["Niger", "Nigeria", "Togo", "BurkinaFaso"],
+        &[claim("Niger", 0.0003)], true, false, false),
+
+    // Togo carries no claim, and this is the judgement in this block most worth
+    // stating, because there is a real irredentism in the file and it is not
+    // entered. Sylvanus Olympio's government pressed the reunification of the
+    // Ewe and of the former German Togoland — the western half of which the
+    // 1956 plebiscite gave to the Gold Coast and which is now Ghana's Volta
+    // region — and Lome and Accra spent the early 1960s in open hostility over
+    // it. By January 1990 the claim was twenty-five years dormant: Eyadema had
+    // dropped it as state policy, and what remained between Lome and Accra was
+    // mutual accusation over coups — Togo blamed Ghana and Burkina Faso for the
+    // commando raid on Lome of 23 September 1986, Ghana blamed Togo for the
+    // dissidents it hosted, and the border kept closing. Volta region held
+    // something over 1.2m of Ghana's 15.4m, so entering it as a claim would
+    // hand the appetite model an eight-percent bite at a neighbour on the
+    // strength of a slogan nobody in the Togolese cabinet was still shouting.
+    // The hostility is real and is entered in relations_1990.json, which is
+    // where a quarrel with no territorial demand behind it belongs.
+    // https://en.wikipedia.org/wiki/British_Togoland
+    row("Togo", "Togo", &["tgo", "togolese republic"], "WestAfrica",
+        &["Ghana", "Benin", "BurkinaFaso"], &[], true, false, false),
+
+    // Sierra Leone touches Guinea and Liberia and nothing else. No claim, and
+    // in January 1990 no war either: the Revolutionary United Front crossed
+    // from Liberia into Kailahun on 23 March 1991, fifteen months after the
+    // game opens, and nothing in this row schedules that. What the row does
+    // carry is the adjacency that makes it possible.
+    row("SierraLeone", "Sierra Leone", &["sle", "salone"], "WestAfrica",
+        &["Guinea", "Liberia"], &[], true, false, false),
+
+    // Liberia is the state in this block that is already at war on 1 January
+    // 1990 and holds no claim on anyone. Charles Taylor's National Patriotic
+    // Front crossed from Cote d'Ivoire into Nimba County on 24 December 1989,
+    // eight days before the game opens, and by January the Armed Forces of
+    // Liberia were burning Gio and Mano villages in reprisal. It is a civil war
+    // over who governs Monrovia, not a war about a border, which is why
+    // `claims` is empty and the fact lives in liberia.json's stability and
+    // separatism instead. Cote d'Ivoire — whose president was the adoptive
+    // father-in-law of the man Doe had executed in 1985, and whose territory
+    // the invasion staged from — is not in this roster, so the one border that
+    // mattered most in December 1989 is absent rather than wrong.
+    // https://en.wikipedia.org/wiki/First_Liberian_Civil_War
+    row("Liberia", "Liberia", &["lbr"], "WestAfrica",
+        &["SierraLeone", "Guinea"], &[], true, false, false),
+
+    // Mauritania is filed under WestAfrica rather than NorthAfrica and the
+    // choice is load-bearing, because region membership auto-populates
+    // `contacts`. Nouakchott had signed the Arab Maghreb Union treaty at
+    // Marrakesh on 17 February 1989 and calls itself Arab, but the force it
+    // actually used and had used against it in the eighteen months before the
+    // game opens ran down the Senegal river, not across the Sahara: the events
+    // of April 1989 began with a herders' quarrel at Diawara, produced pogroms
+    // in Nouakchott and Dakar, and ended with something like 70,000 people
+    // expelled in each direction and diplomatic relations broken off. That is
+    // the dyad this nation needs to be able to reach.
+    //
+    // No claim. Mauritania renounced its share of the Western Sahara — the
+    // Tiris al-Gharbiyya, which it had taken under the Madrid Accords of
+    // November 1975 and could not hold — in the Algiers agreement with the
+    // Polisario Front of 5 August 1979, and has claimed nothing since. Morocco
+    // is not listed as a neighbour for the same reason Algeria's row omits the
+    // Western Sahara: what lies between Morocco proper and Mauritania is a
+    // territory this roster does not carry, and Morocco's presence on that
+    // frontier in 1990 was an occupation behind a sand berm rather than a
+    // border between two rows of this table.
+    // https://en.wikipedia.org/wiki/Mauritania%E2%80%93Senegal_Border_War
+    row("Mauritania", "Mauritania", &["mrt", "mauritanie"], "WestAfrica",
+        &["Algeria", "Mali", "Senegal"], &[], true, false, false),
+
+    // The Gambia is not a country with a neighbour, it is a country inside one:
+    // 320km of river valley with Senegal on both banks and the Atlantic at the
+    // end. One border, and it is the whole of the frontier. The Senegambia
+    // Confederation — agreed after Senegalese paratroopers reversed the coup
+    // attempt of 30 July 1981 and in force from 1 February 1982 — was dissolved
+    // by Dakar on 30 September 1989, three months before the game opens, and
+    // that is the state of the dyad rather than any claim: Senegal wanted a
+    // union, Banjul would not be absorbed into one, and the answer was to walk
+    // away. Neither side claims an acre of the other.
+    // https://en.wikipedia.org/wiki/Senegambia_Confederation
+    row("Gambia", "Gambia", &["gmb", "the gambia"], "WestAfrica",
+        &["Senegal"], &[], true, false, false),
+
+    // Guinea-Bissau claims nothing from Senegal, and the reason is worth the
+    // line because the dispute was live in January 1990 and is still not a
+    // claim. Bissau and Dakar disagreed about the maritime boundary drawn by a
+    // Franco-Portuguese exchange of letters of 26 April 1960; an arbitral
+    // tribunal upheld the 1960 line on 31 July 1989 and Guinea-Bissau filed
+    // against the award at the International Court of Justice on 23 August
+    // 1989, five months before the game opens. It is an argument about a
+    // seabed, and `share` is a fraction of a nation's territory and people —
+    // there is no share of Senegal in it. The land border was never contested.
+    // https://en.wikipedia.org/wiki/Arbitral_Award_of_31_July_1989
+    row("GuineaBissau", "Guinea-Bissau", &["gnb", "guinea bissau", "guinea-bissau", "bissau"], "WestAfrica",
+        &["Senegal", "Guinea"], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -1619,6 +1816,18 @@ well_known! {
     Canada => "Canada",
     Australia => "Australia",
     NewZealand => "NewZealand",
+    // West Africa (branch feat/r2-westafrica2).
+    Mali => "Mali",
+    BurkinaFaso => "BurkinaFaso",
+    Niger => "Niger",
+    Guinea => "Guinea",
+    Benin => "Benin",
+    Togo => "Togo",
+    SierraLeone => "SierraLeone",
+    Liberia => "Liberia",
+    Mauritania => "Mauritania",
+    Gambia => "Gambia",
+    GuineaBissau => "GuineaBissau",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {
