@@ -1,0 +1,42 @@
+{
+  "id": "Panama",
+  "name": "Panama",
+  "system": "Market",
+  "authoritarianism": 0.35,
+  "economy": {
+    "gdp_bn": 5.24,
+    "population_m": 2.47,
+    "tfp_trend": 0.006,
+    "inflation": 0.008,
+    "interest_rate": 0.11,
+    "tax_rate": 0.19,
+    "mil_spend_gdp": 0.013,
+    "state_invest_gdp": 0.03,
+    "priv_invest_gdp": 0.13,
+    "debt_gdp": 0.73,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 40.0,
+    "separatism": 0.05
+  },
+  "military": {
+    "strength": 0.5,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $5.24bn: World Bank NY.GDP.MKTP.CD, series PAN, 1990 — the print is $5,242m, with real growth of 8.1%. That growth figure is a rebound and not a boom: Panamanian output fell about 13% in 1988 under the United States sanctions imposed after Manuel Noriega's indictment, when Washington froze Panamanian government dollar deposits in US banks and a country with no currency of its own ran out of cash. 1990 recovers what 1988 lost and no more.",
+    "Population 2.47m: World Bank SP.POP.TOTL, series PAN, 1990 = 2,474,000, giving $2,119 a head — the second-highest in this branch after Belize and roughly two and a half times Guatemala's, on the canal, the Colon Free Zone, the flag-of-convenience shipping registry and an offshore banking sector.",
+    "INFLATION 0.8% IS NOT A TYPO AND NOT A STABILISATION. Panama has used the United States dollar as legal tender since the monetary agreement of 1904; the balboa is a unit of account and a coinage, and there has never been a Panamanian banknote. So Panamanian inflation is imported American inflation minus non-tradables, and the series runs 0.1% in 1989, 0.8% in 1990 and 1.5% in 1991 while every neighbour in this branch is between 19% and 3,000%. This is the one row on the isthmus where the monetary channel in economy.rs has nothing to do.",
+    "interest_rate 0.11: THERE IS NO POLICY RATE TO TRANSCRIBE, BECAUSE THERE IS NO CENTRAL BANK. Panama has never had one — the Banco Nacional de Panama is a state commercial bank with no note issue and no lender-of-last-resort function — and domestic rates are set by arbitrage against the United States money market through the international banking centre. 0.11 is the order of the commercial lending rate in 1990, i.e. US rates plus a country premium that was still wide from the sanctions and the default. Said plainly because it is a substitution of a different kind of number, exactly as newzealand.json says of its bill rate: for Panama the field is not merely unpublished, it is not a thing that exists. The schema's coupling reads 0.025 - (0.11 - 0.008) = -0.077, a genuinely tight real rate, which for a fully dollarised economy in default is the right sign.",
+    "Tax take 19% of GDP: central government revenue. Panama taxed the canal, the registry and the free zone rather than its own production, which is why the ratio is respectable on a state that collected very little income tax. APPROXIMATE at the decimal.",
+    "Military 1.26% of GDP: SIPRI Military Expenditure Database, share-of-GDP sheet, Panama 1990 = 1.256%, $73.1m current, down from 2.08% in 1989. STRENGTH 0.5, AND THIS IS THE MOST UNUSUAL MILITARY ROW IN THE ROSTER. The Panama Defense Forces were destroyed as a fighting organisation between 20 December 1989 and the first days of January 1990 by Operation Just Cause, in which some 27,000 United States troops invaded; Noriega took refuge in the Nunciature on Christmas Eve and surrendered on 3 January. The PDF was formally abolished on 10 February 1990 and replaced by an unarmed-by-design Fuerza Publica; the abolition was written into the constitution in 1994. So what this row describes in January 1990 is a defeated force in the act of being wound up, inside a country under foreign occupation. The 1.26% is real spending on what became a police force. 0.5 is level with Belize's and below every other state on the isthmus, which is the correct ordering and would have been unimaginable six weeks earlier.",
+    "Investment 16% of GDP, split 3.0 public and 13.0 private: recovering from a collapse — gross capital formation had fallen to single digits in 1989 as the banking system froze. Split is a reasoned apportionment.",
+    "Debt 0.73: public external debt of roughly $3.8bn against $5.2bn of GDP, and Panama was in default on most of it. It had suspended payments to commercial banks in 1987 and to the multilaterals in 1988 under the sanctions, and did not clear the arrears until 1992; a Brady deal followed in 1995. APPROXIMATE: order of magnitude from World Bank external-debt aggregates.",
+    "Oil 0.0: no production. The trans-Panama pipeline across Chiriqui had carried Alaskan crude since 1982 and is transit, not output.",
+    "TFP trend 0.006: a services and transit economy with high measured productivity and little productivity growth, plus two years of sanctions and an invasion to recover from.",
+    "Stability 40 and authoritarianism 0.35. Guillermo Endara was sworn in as president on a United States military base on the night of 19-20 December 1989, hours before the invasion began. He had in fact won the election of 7 May 1989 by roughly three to one — Noriega annulled it, and his thugs beat Endara and his running mate Guillermo Ford bloody in the street in front of the cameras — and the Electoral Tribunal revoked the annulment and certified the result on 27 December, after the invasion. So the mandate is genuine and the installation was not domestic, and both halves have to be in the numbers. Stability 40: a government with no army, no police force it trusted, several hundred to several thousand civilian dead depending on whose count, the capital looted in the days after the fighting, tens of thousands homeless from the burning of El Chorrillo, and a foreign army in the country. Authoritarianism 0.35 sits below El Salvador's 0.42, because Panama in 1990 had a real electoral mandate, no death squads and no war of its own, and well above Costa Rica's 0.10, because a state whose executive was installed by another state's soldiers is not one whose executive is constrained in the ordinary way.",
+    "Separatism 0.05: the Comarca de San Blas has been Kuna self-governing territory since the revolt of 1925 and the charter of 1938, and the Guaymi of the western highlands were pressing for a comarca of their own, which they got in 1997. Both are autonomy claims inside Panama rather than secession, so 0.05 — Italy's figure — rather than Nicaragua's 0.15, whose autonomous regions were won by an armed rising against the state."
+  ]
+}

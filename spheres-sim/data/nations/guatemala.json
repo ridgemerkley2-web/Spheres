@@ -1,0 +1,41 @@
+{
+  "id": "Guatemala",
+  "name": "Guatemala",
+  "system": "Market",
+  "authoritarianism": 0.45,
+  "economy": {
+    "gdp_bn": 7.54,
+    "population_m": 9.03,
+    "tfp_trend": 0.004,
+    "inflation": 0.38,
+    "interest_rate": 0.42,
+    "tax_rate": 0.08,
+    "mil_spend_gdp": 0.017,
+    "state_invest_gdp": 0.025,
+    "priv_invest_gdp": 0.105,
+    "debt_gdp": 0.28,
+    "oil_mbd": 0.005,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 35.0,
+    "separatism": 0.1
+  },
+  "military": {
+    "strength": 4.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $7.54bn: World Bank NY.GDP.MKTP.CD, series GTM, 1990 — the print is $7,535m, on the same series the whole roster's 1990 GDP sits on. Real growth that year was 3.1%. The largest economy in Central America and about a fiftieth of Mexico's, which is the correct scale for the region this branch adds.",
+    "Population 9.03m: World Bank SP.POP.TOTL, series GTM, 1990 = 9,025,000, giving $835 per head. The most populous state on the isthmus, and roughly half of it Maya — the 1994 census put the indigenous share at 42.8% and every serious estimate of the period treats that as an undercount.",
+    "Inflation 38%: annual average CPI change, 1990, World Bank FP.CPI.TOTL.ZG basis, against 13.0% in 1989 and 35.1% in 1991. The quetzal had been pegged at parity with the dollar from 1925 until 1986; the peg went in stages between 1986 and 1989 and 1990 is the year the float and the fiscal deficit met. The December-on-December print was materially higher than the annual average — this is a year whose inflation was still accelerating when it ended — and the annual average is entered because that is the series the rest of the roster carries. UNVERIFIED at the second digit: I could retrieve one vintage of the annual figure and not a second to cross it against, and other vintages of the same series print figures in the low forties.",
+    "interest_rate 0.42 is a stand-in and is said to be one. The Banco de Guatemala liberalised interest rates in 1989 and published no policy rate of the kind this field is defined as; the nominal commercial rate through 1990 sat a few points above the inflation rate. The coupled constraint the schema enforces is 0.025 - (0.42 - 0.38) = -0.015, i.e. the row opens essentially at monetary neutral. That is a modelling choice made in the open: Guatemalan real rates in 1990 were in fact negative, but the demand channel in economy.rs is linear at 0.55 in the distance from neutral, so transcribing a genuinely negative real rate here would open the game with Guatemala growing at eight to twelve percent a year, which is not what happened and not what the number means. Same treatment as Ecuador's 0.485/0.52 and Uruguay's 1.125/1.15 two rows over.",
+    "Tax take 8% of GDP: the lowest revenue ratio in the Western Hemisphere and the single most important economic fact about the Guatemalan state. Central government tax revenue ran between 7% and 9% of GDP through the late 1980s against a Latin American average near 15%. It is the reason the 1996 peace accords wrote a 12%-of-GDP tax target into the settlement itself, and the reason a country with the region's largest economy had the region's worst indicators for literacy and infant mortality. FLAGGED as approximate at the decimal: the magnitude is not in doubt and the second digit is not sourced.",
+    "Military 1.73% of GDP: SIPRI Military Expenditure Database, share-of-GDP sheet, Guatemala 1990 = 1.728%, or $132.2m in current dollars — down from 1.87% in 1988 and falling every year through 1993. Strength 4: an army of roughly 43,000, thirty years into a counterinsurgency against the URNG, combat-experienced light infantry with almost no armour, a handful of A-37s and no capacity to project force past its own borders. Indexed against Ecuador's 4 and below Mexico's 8. What it could not do is take Belize past a British garrison, and that is the point of the pair of numbers.",
+    "Investment 13% of GDP, split 2.5 public and 10.5 private: gross fixed capital formation was in the low teens through the late 1980s, which is a low ratio even for the region and follows directly from the tax row above — a state at 8% of GDP builds nothing. The public/private split is a reasoned apportionment and not a transcription, on the same footing as the Canada, Australia and New Zealand rows.",
+    "Debt 0.28: public external debt of roughly $2.1bn against $7.5bn of GDP. Guatemala was the least indebted state on the isthmus by a distance — Honduras and Panama were both near 0.73 — because the same government that would not tax also could not borrow. APPROXIMATE: order of magnitude from World Bank external-debt aggregates, not a retrieved print.",
+    "Oil 0.005 mbd: the Rubelsanto and Chinaja fields in the Peten produced on the order of five thousand barrels a day of heavy sour crude in 1990, exported through the Piedras Negras terminal. Guatemala is the only oil producer in Central America and it is a marginal one; the Xan field that took output past 20,000 bbl/d belongs to the later 1990s. FLAGGED: the magnitude is thousands rather than tens of thousands of barrels and is not in doubt, but the digit is an estimate and is said to be one.",
+    "Stability 35 and authoritarianism 0.45: a civilian president since January 1986 and a state that did not control its own army. Vinicio Cerezo survived coup attempts in May 1988 and May 1989; the war against the URNG had been running since 1960 and had killed something over 100,000 people, the great majority of them Maya civilians killed by the army in the highland campaigns of 1981-83; disappearances continued through 1990. The number sits above El Salvador's 25 because the fighting was at a far lower intensity than the Salvadoran war and the state was not being contested for the capital, just above Colombia's 32, which is the company it belongs in: two states with a permanent internal war, functioning elections, and no prospect of either ending. Authoritarianism 0.45 is below the 0.60 electoral ceiling because the November 1990 election was real and was honoured. It also sits below Mexico's 0.52, which is the harder call of the two and is argued this way. Mexico's elections were run by the party that won them and the 1988 count was destroyed; Guatemala's were run by a tribunal and turned the presidency over to the opposition. Guatemala's unfreedom was the army's autonomy from the elected government, which this field measures as constraint on the executive and therefore reads lower, not the executive's freedom from the voters.",
+    "Separatism 0.10: the largest indigenous population in Central America, and the war was fought in its departments. Set at Bolivia's 0.10 rather than higher because there was no Maya secession movement of any size — the URNG's programme was revolutionary and national, the 1980 Declaration of Iximche demanded rights within Guatemala, and no organisation asked for a separate state. A deep ethnic cleavage that is not a territorial one, which is a different object from Quebec and the number should say so."
+  ]
+}

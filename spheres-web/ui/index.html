@@ -435,6 +435,12 @@ const TERRITORY = {
   // honest rendering of a country a 110m basemap cannot draw.
   Singapore: ["SGP"],
   Canada: ["CAN"], Australia: ["AUS"], NewZealand: ["NZL"],
+  // Central America (branch feat/r2-centam). All seven carry a polygon in
+  // Natural Earth 110m — checked, two hits each in world.js — so unlike Bahrain
+  // and Singapore none of them needs a LABEL_AT to exist on the map. Belize at
+  // 22,966 km2 is the smallest shape drawn on the board.
+  Guatemala: ["GTM"], Honduras: ["HND"], ElSalvador: ["SLV"],
+  Nicaragua: ["NIC"], CostaRica: ["CRI"], Panama: ["PAN"], Belize: ["BLZ"],
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],

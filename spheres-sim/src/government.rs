@@ -3393,6 +3393,248 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the House of Representatives",
         pillars: &[],
     },
+
+    // ===== Central America (branch feat/r2-centam) =====
+    //
+    // Seven electoral polities, and every one of them is under the 0.60
+    // authoritarianism ceiling, which for this region in this decade is a
+    // stronger statement than it looks. In 1980 four of these seven were run by
+    // soldiers or by a single party. By January 1990 all seven had a legislature
+    // somebody had voted for, and inside the following fifteen months four of
+    // them held an election that turned the government over. That is the
+    // Esquipulas decade, and none of it is scripted — what is transcribed here
+    // is the last vote before the game opens and the date of the next one.
+
+    // Guatemala — Congress of the Republic, 3 November 1985, the first election
+    // after twenty-nine years of military rule. National-list vote shares:
+    // Christian Democracy 38.64%, National Centre Union 20.23%, PDCN-PRG
+    // 13.78%, MLN-PID 12.56%, Nationalist Authentic Centre 6.29%, Social
+    // Democrats 3.42%, National Renewal 3.15%. The national-list column is used
+    // rather than the district one because it is a single countrywide
+    // constituency and therefore the closest thing to a national vote share;
+    // the two columns differ by under two points for every party anyway.
+    //
+    // Vinicio Cerezo took the presidency in the runoff with 68.4% and governed
+    // a state whose army he did not command: coup attempts in May 1988 and May
+    // 1989, and a war against the URNG that had been running since 1960. The
+    // next election is nine months away as the game opens — 11 November 1990,
+    // which the UCN's Jorge Carpio led on the first round and Jorge Serrano of
+    // the small MAS won on the second. MAS is deliberately absent from this
+    // table for the reason peru.rs gives about Cambio 90: it did not exist in
+    // 1985, the seven parties here already account for 98% of that vote, and a
+    // 1985 table with a 1990 winner bolted onto it is a transcription of
+    // neither election. An outsider taking a collapsing party system is
+    // something the model should be able to produce.
+    // https://en.wikipedia.org/wiki/1985_Guatemalan_general_election
+    Polity {
+        nation: NationId::Guatemala,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1990, 11),
+        parties: &[
+            p("gt_dcg", "Guatemalan Christian Democracy", "Democracia Cristiana Guatemalteca", Family::ChristianDemocratic, 0.3864),
+            p("gt_ucn", "National Centre Union", "Union del Centro Nacional", Family::Liberal, 0.2023),
+            p("gt_pdcn", "PDCN-PR", "Partido Democratico de Cooperacion Nacional - Partido Revolucionario", Family::Liberal, 0.1378),
+            p("gt_mln", "MLN-PID", "Movimiento de Liberacion Nacional - Partido Institucional Democratico", Family::Nationalist, 0.1256),
+            p("gt_can", "Nationalist Authentic Centre", "Central Autentica Nacionalista", Family::Nationalist, 0.0629),
+            p("gt_psd", "Social Democratic Party", "Partido Socialista Democratico", Family::SocialDemocratic, 0.0342),
+            p("gt_pnr", "National Renewal Party", "Partido Nacional Renovador", Family::Conservative, 0.0315),
+        ],
+        ruling: "the Congress of the Republic",
+        pillars: &[],
+    },
+
+    // Honduras — general election, 26 November 1989. Rafael Leonardo Callejas of
+    // the National Party took 52.30% against the Liberal Carlos Roberto Flores'
+    // 44.31% and was inaugurated on 27 January 1990, four weeks into the game's
+    // first month: the second consecutive transfer of power between parties
+    // since the army returned to barracks in 1982, and the first in which the
+    // opposition won.
+    //
+    // The presidential shares are entered as the congressional ones and that is
+    // a fact about the ballot rather than a shortcut. Honduras used a single
+    // ballot — the papeleta unica — until the reform of 1993, so a vote for a
+    // presidential candidate was simultaneously and inseparably a vote for that
+    // party's departmental deputy list. The seats followed: National 71, Liberal
+    // 56, Christian Democrats 1, PINU 0, of 128. The residual 3.4% is split
+    // between PDCH and PINU on that seat outcome and IS A REASONED
+    // APPORTIONMENT RATHER THAN A TRANSCRIPTION — the two parties' separate
+    // shares are the one figure in this block I could not retrieve.
+    // https://en.wikipedia.org/wiki/1989_Honduran_general_election
+    Polity {
+        nation: NationId::Honduras,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1993, 11),
+        parties: &[
+            p("hn_pn", "National Party of Honduras", "Partido Nacional de Honduras", Family::Conservative, 0.5230),
+            p("hn_pl", "Liberal Party of Honduras", "Partido Liberal de Honduras", Family::Liberal, 0.4431),
+            p("hn_pdch", "Christian Democratic Party", "Partido Democrata Cristiano de Honduras", Family::ChristianDemocratic, 0.019),
+            p("hn_pinu", "Innovation and Unity Party", "Partido Innovacion y Unidad", Family::SocialDemocratic, 0.015),
+        ],
+        ruling: "the National Congress",
+        pillars: &[],
+    },
+
+    // El Salvador — Legislative Assembly, 20 March 1988: ARENA 48.10%, the
+    // Christian Democrats 35.10%, the National Coalition Party 8.46%. ARENA took
+    // 31 of 60 seats and Alfredo Cristiani won the presidency outright a year
+    // later, on 19 March 1989. The next Assembly election is fourteen months
+    // away, on 10 March 1991.
+    //
+    // THE LARGEST POLITICAL FORCE IN EL SALVADOR IS NOT IN THIS TABLE AND MUST
+    // NOT BE. The FMLN was an army in January 1990, not a party: it had put
+    // several thousand fighters into San Salvador in the offensive of 11
+    // November 1989 and it did not contest an election until March 1994, having
+    // become a party under the Chapultepec accords of 16 January 1992. Entering
+    // it here with a later vote share would be scripting the peace settlement
+    // into the starting conditions of the war. What the model has instead is a
+    // legislature in which the party founded by the man who ordered the
+    // archbishop shot holds a majority, a stability figure of 25, and a
+    // civil-war dynamic that has to find its own ending.
+    // https://en.wikipedia.org/wiki/1988_Salvadoran_legislative_election
+    Polity {
+        nation: NationId::ElSalvador,
+        system: Electoral::Proportional,
+        term_months: 36,
+        next: (1991, 3),
+        parties: &[
+            p("sv_arena", "Nationalist Republican Alliance", "Alianza Republicana Nacionalista", Family::Nationalist, 0.4810),
+            p("sv_pdc", "Christian Democratic Party", "Partido Democrata Cristiano", Family::ChristianDemocratic, 0.3510),
+            p("sv_pcn", "National Coalition Party", "Partido de Conciliacion Nacional", Family::Conservative, 0.0846),
+        ],
+        ruling: "the Legislative Assembly",
+        pillars: &[],
+    },
+
+    // Nicaragua — National Assembly, 4 November 1984: FSLN 66.97%, Democratic
+    // Conservatives 14.04%, Independent Liberals 9.60%, Popular Social
+    // Christians 5.56%, and three Marxist parties to the Sandinistas' left
+    // taking under 4% between them. Daniel Ortega took the presidency on the
+    // same share. Much of the right boycotted: the Coordinadora Democratica
+    // stood aside arguing there were no guarantees, while American and British
+    // observers reported the voting itself as broadly free.
+    //
+    // THE NEXT ELECTION IS THREE WEEKS AFTER THE GAME OPENS AND THIS TABLE IS
+    // THE 1984 RESULT, WHICH IS THE POINT. On 25 February 1990 Violeta
+    // Chamorro's UNO took 54.7% to Ortega's 40.8% and the Sandinistas handed
+    // over power on 25 April. Every poll had Ortega ahead; the CIA had him
+    // ahead; the FSLN had him ahead. A model fed the numbers below would have
+    // him ahead too, and it should — the whole discipline of iron rule 3 is that
+    // history is calibration and not script, and the most surprising election in
+    // the hemisphere's modern history has to be reachable from a starting state
+    // that does not know it is coming. `next` is (1990, 2) and the shares are
+    // 1984's; what happens in February is the model's business.
+    // https://en.wikipedia.org/wiki/1984_Nicaraguan_general_election
+    Polity {
+        nation: NationId::Nicaragua,
+        system: Electoral::Proportional,
+        term_months: 72,
+        next: (1990, 2),
+        parties: &[
+            p("ni_fsln", "Sandinista National Liberation Front", "Frente Sandinista de Liberacion Nacional", Family::Communist, 0.6697),
+            p("ni_pcd", "Democratic Conservative Party", "Partido Conservador Democrata", Family::Conservative, 0.1404),
+            p("ni_pli", "Independent Liberal Party", "Partido Liberal Independiente", Family::Liberal, 0.0960),
+            p("ni_ppsc", "Popular Social Christian Party", "Partido Popular Social Cristiano", Family::ChristianDemocratic, 0.0556),
+            p("ni_pcdn", "Communist Party of Nicaragua", "Partido Comunista de Nicaragua", Family::Communist, 0.0145),
+            p("ni_psn", "Nicaraguan Socialist Party", "Partido Socialista Nicaraguense", Family::Communist, 0.0131),
+            p("ni_mapml", "MAP-ML", "Movimiento de Accion Popular - Marxista Leninista", Family::Communist, 0.0103),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+
+    // Costa Rica — Legislative Assembly, 2 February 1986: PLN 47.83% and 29 of
+    // 57 seats, PUSC 41.45% and 25, the communist coalition Pueblo Unido and two
+    // others sharing the remaining 3. Oscar Arias took the presidency with
+    // 52.34% on a peace platform against a more hawkish opponent, and in
+    // December 1987 collected the Nobel Peace Prize for the Esquipulas II plan
+    // that the other six polities in this block were all living inside.
+    //
+    // The next election is three weeks away — 4 February 1990, which Rafael
+    // Angel Calderon Fournier of the PUSC won, turning the presidency over to
+    // the opposition for the third consecutive time. The same shape as the
+    // Colombia row: `next` is a month out rather than three years, because a
+    // roster transcribed as of January 1990 catches several countries mid-cycle
+    // and pretending otherwise would hide the most interesting month in them.
+    // Costa Rica bars presidents from re-election and deputies from consecutive
+    // terms, which is why alternation here is the norm rather than a crisis.
+    // https://en.wikipedia.org/wiki/1986_Costa_Rican_general_election
+    Polity {
+        nation: NationId::CostaRica,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (1990, 2),
+        parties: &[
+            p("cr_pln", "National Liberation Party", "Partido Liberacion Nacional", Family::SocialDemocratic, 0.4783),
+            p("cr_pusc", "Social Christian Unity Party", "Partido Unidad Social Cristiana", Family::ChristianDemocratic, 0.4145),
+            p("cr_pu", "United People", "Pueblo Unido", Family::Communist, 0.0435),
+        ],
+        ruling: "the Legislative Assembly",
+        pillars: &[],
+    },
+
+    // Panama — the election of 7 May 1989, annulled by Manuel Noriega three days
+    // later and reinstated by the Electoral Tribunal on 27 December, a week
+    // after the United States invaded. The recount confirmed 58 of 67
+    // legislators, 51 of them for the ADOC opposition coalition and six for
+    // Noriega's PRD.
+    //
+    // The shares below are the presidential vote decomposed by the coalition
+    // party whose ballot line each vote arrived on, which in the Panamanian
+    // system is the closest available thing to a party vote: ADOC's 71.19% for
+    // Guillermo Endara splits PDC 40.18, MOLIRENA 20.28, Authentic Liberals
+    // 10.72, and COLINA's 28.38% for Carlos Duque splits PRD 18.52, Labour and
+    // Agrarian 5.42, with the rest under 2% each. Endara's own Panamenista party
+    // does not appear because it had been struck off and he stood on his
+    // partners' lines — the winner of the election was legally not a member of
+    // any party that contested it. Five years to the next, on 8 May 1994, which
+    // the PRD won: Panama returned Torrijos' party to power by ballot four years
+    // after the United States removed it by force, and nothing here should stop
+    // the model finding that.
+    // https://en.wikipedia.org/wiki/1989_Panamanian_general_election
+    Polity {
+        nation: NationId::Panama,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1994, 5),
+        parties: &[
+            p("pa_pdc", "Christian Democratic Party", "Partido Democrata Cristiano", Family::ChristianDemocratic, 0.4018),
+            p("pa_molirena", "Nationalist Republican Liberal Movement", "Movimiento Liberal Republicano Nacionalista", Family::Conservative, 0.2028),
+            p("pa_prd", "Democratic Revolutionary Party", "Partido Revolucionario Democratico", Family::SocialDemocratic, 0.1852),
+            p("pa_pla", "Authentic Liberal Party", "Partido Liberal Autentico", Family::Liberal, 0.1072),
+            p("pa_pala", "Labour and Agrarian Party", "Partido Laborista Agrario", Family::Agrarian, 0.0542),
+        ],
+        ruling: "the Legislative Assembly",
+        pillars: &[],
+    },
+
+    // Belize — general election, 4 September 1989: the People's United Party
+    // 50.87% and 15 of 28 seats, the United Democratic Party 49.02% and 13. A
+    // margin of 1,086 votes in a country of 189,000 turned the government over,
+    // returning George Price — the man who had led Belize to independence and
+    // then lost the first election after it in 1984 — to the premiership.
+    //
+    // First past the post in 28 single-member constituencies, which at this
+    // scale means the seat outcome and the vote share can and do diverge: the
+    // cube law this module applies to FPTP is doing real work on a two-point
+    // margin. Five-year term, so `next` is September 1994; Price in fact called
+    // it early, on 30 June 1993, and lost. The Senate is appointed and is not
+    // modelled, which is the right simplification for a chamber that has never
+    // rejected a government bill.
+    // https://en.wikipedia.org/wiki/1989_Belizean_general_election
+    Polity {
+        nation: NationId::Belize,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1994, 9),
+        parties: &[
+            p("bz_pup", "People's United Party", "", Family::SocialDemocratic, 0.5087),
+            p("bz_udp", "United Democratic Party", "", Family::Conservative, 0.4902),
+        ],
+        ruling: "the House of Representatives",
+        pillars: &[],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

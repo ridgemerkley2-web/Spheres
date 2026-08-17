@@ -1,0 +1,42 @@
+{
+  "id": "Belize",
+  "name": "Belize",
+  "system": "Market",
+  "authoritarianism": 0.12,
+  "economy": {
+    "gdp_bn": 0.547,
+    "population_m": 0.189,
+    "tfp_trend": 0.005,
+    "inflation": 0.02,
+    "interest_rate": 0.14,
+    "tax_rate": 0.22,
+    "mil_spend_gdp": 0.009,
+    "state_invest_gdp": 0.06,
+    "priv_invest_gdp": 0.2,
+    "debt_gdp": 0.25,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 68.0,
+    "separatism": 0.03
+  },
+  "military": {
+    "strength": 0.5,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $0.547bn: World Bank NY.GDP.MKTP.CD, series BLZ, 1990 — the print is $547m, with real growth of 11.2%. This is now the smallest economy in the roster by an order of magnitude, an eighty-third of New Zealand's, and it belongs on the board for the reason the branch note in nations.rs gives: a state whose entire strategic position is one neighbour's claim and one distant patron's garrison is the case a model built for great powers is most likely to get wrong. The 11.2% is a genuine boom — citrus and sugar prices, the free-zone and offshore legislation of 1990, and a construction cycle in a country where a single hotel moves the national accounts.",
+    "Population 0.189m: World Bank SP.POP.TOTL, series BLZ, 1990 = 189,000, and the census of 12 May 1991 enumerated 189,392, so this is one of the better-founded numbers in the branch. It gives $2,893 a head, the highest in Central America — Belize is small and poor in absolute terms and not poor per head. At eight people per square kilometre it is also the emptiest country on the isthmus by a factor of thirty, which is most of why Guatemala's claim to it survived as long as it did.",
+    "Inflation 2.0%: annual CPI, 1990, against 0.0% in 1989 and 2.3% in 1991. The Belize dollar has been pegged at BZ$2.00 to US$1.00 since 1976 and the peg has never moved, so Belizean inflation is imported United States inflation with a lag. Along with Panama's 0.8% this is one of two rows in this branch where the monetary channel is inert, and for the same underlying reason: no independent currency to mismanage.",
+    "interest_rate 0.14: the commercial lending rate. The Central Bank of Belize was founded in 1982 and ran a currency-board-like operation in defence of the peg rather than an interest-rate policy; there is no policy rate of the kind this field is defined as, and the substitution is stated rather than hidden, as newzealand.json and panama.json state theirs. The schema coupling reads 0.025 - (0.14 - 0.02) = -0.095, the tightest real rate in the branch, which is what a small open economy holding a hard peg with a thin banking system actually faced. APPROXIMATE at the decimal.",
+    "Tax take 22% of GDP: high for the income level and made almost entirely of import duties and the revenue-replacement duty, which is the ordinary fiscal shape of a very small open economy that imports nearly everything it consumes. APPROXIMATE.",
+    "Military 0.89% of GDP: SIPRI Military Expenditure Database, share-of-GDP sheet, Belize 1990 = 0.895%, $4.77m current — the smallest defence budget in the roster in absolute terms. Strength 0.5: the Belize Defence Force numbered on the order of 600 regulars with a few Britten-Norman Defenders and no armour. BELIZE'S ACTUAL DETERRENT IS NOT IN THIS FILE AND CANNOT BE, and that is the interesting thing about the row. British Forces Belize — roughly 1,500 troops, a Harrier GR3 flight at Belize International, a Rapier battery and a naval guard force — was stationed there for the explicit and only purpose of making Guatemala's claim unenforceable, and it stayed until 1994, three years after Guatemala recognised Belize in September 1991. That is another state's strength on Belizean soil and belongs to alliance and patronage rather than to military.strength, so the number here is what Belize itself could field, which is almost nothing. If the sim ever lets Guatemala walk in, look at whether the model can express a garrison before concluding the roster is wrong.",
+    "Investment 26% of GDP, split 6.0 public and 20.0 private: high, and consistent with an 11% growth year in an economy this small. Split is a reasoned apportionment.",
+    "Debt 0.25: public external debt on the order of $140m against $547m of GDP — the lowest ratio in this branch. Belize borrowed little, was still receiving British budgetary support, and had no default history. APPROXIMATE: order of magnitude, not a retrieved print.",
+    "Oil 0.0: no production in 1990. The Spanish Lookout field, Belize's only commercial discovery, was not found until 2005.",
+    "TFP trend 0.005: a small agricultural and tourism economy with a functioning administration and no productivity engine.",
+    "Stability 68 and authoritarianism 0.12: Westminster on a very small scale and it worked. The general election of 4 September 1989 turned the government over on a margin of 1.85 percentage points — George Price's People's United Party 50.87% against Manuel Esquivel's United Democratic Party 49.02%, 15 seats to 13 — and the loser left. Held below Costa Rica's 76 by two things and not by any internal weakness: a neighbour eight times its size did not concede that it existed, and its independence in 1981 had itself been delayed for two decades by that claim and secured only by foreign troops. A country whose continued existence is somebody else's decision is not as stable as one whose is not, whatever the quality of its own institutions. Authoritarianism 0.12 is Uruguay's figure — a Commonwealth realm with an appointed Senate, first-past-the-post in 28 single-member constituencies, and the patronage politics that a legislature of that size makes unavoidable.",
+    "Separatism 0.03: Belize is Creole, Mestizo, Maya, Garifuna and Mennonite with no majority group and no secession movement in any of them. The Maya land-rights claim in Toledo, which reached the courts in the 2000s, was a title claim rather than a territorial one. Entered just below New Zealand's 0.06: real plurality, no strain on the state. The threat to Belize's territorial integrity in 1990 came entirely from outside it, which is in Guatemala's claim row in nations.rs and not here."
+  ]
+}

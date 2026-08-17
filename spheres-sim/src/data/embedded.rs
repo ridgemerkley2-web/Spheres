@@ -106,6 +106,14 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
     Source { file: "data/nations/canada.json", json: include_str!("../../data/nations/canada.json") },
     Source { file: "data/nations/australia.json", json: include_str!("../../data/nations/australia.json") },
     Source { file: "data/nations/newzealand.json", json: include_str!("../../data/nations/newzealand.json") },
+    // Central America (branch feat/r2-centam).
+    Source { file: "data/nations/guatemala.json", json: include_str!("../../data/nations/guatemala.json") },
+    Source { file: "data/nations/honduras.json", json: include_str!("../../data/nations/honduras.json") },
+    Source { file: "data/nations/elsalvador.json", json: include_str!("../../data/nations/elsalvador.json") },
+    Source { file: "data/nations/nicaragua.json", json: include_str!("../../data/nations/nicaragua.json") },
+    Source { file: "data/nations/costarica.json", json: include_str!("../../data/nations/costarica.json") },
+    Source { file: "data/nations/panama.json", json: include_str!("../../data/nations/panama.json") },
+    Source { file: "data/nations/belize.json", json: include_str!("../../data/nations/belize.json") },
 ];
 
 pub const EMBEDDED_RELATIONS: Source<'static> = Source {
