@@ -119,6 +119,11 @@ const PRUNE_BELOW: f64 = 0.4;
 const CONTEST_STAKE: f64 = 20.0;
 const CONTEST_RIVALRY: f64 = 0.25;
 
+/// ...and what a contest does to the monthly bill, per unit of rival pressure.
+/// A capital a rival is working hard costs roughly half again to twice what an
+/// empty one does.
+const CONTEST_BILL: f64 = 2.5;
+
 // ---------------------------------------------------------------------------
 // Reading the board
 // ---------------------------------------------------------------------------
@@ -241,8 +246,12 @@ impl WorldState {
         if stock <= PRUNE_BELOW && effort <= 0.0 {
             return 0.0;
         }
+        // Contest is the expensive state and the multiplier says so. Everything
+        // costs more in a capital somebody else is working: the visits have to
+        // be answered, the offer has to be matched, and half of what the mission
+        // does is undoing what the other mission did last month.
         (UPKEEP_PC_PER_POINT * stock + UPKEEP_PC_EFFORT * effort)
-            * (1.0 + self.contest_pressure(patron, client))
+            * (1.0 + CONTEST_BILL * self.contest_pressure(patron, client))
     }
     /// ...and what the whole sphere costs. The number the briefing leads with.
     pub fn sphere_bill(&self, patron: NationId) -> f64 {
@@ -513,9 +522,16 @@ pub fn tick(w: &mut WorldState) {
         if w.is_sanctioning(p, c) {
             continue;
         }
-        if w.relation(p, c) < 55.0 {
-            w.shift_relation(p, c, 0.10);
-        }
+        // A client's opinion of its patron is NOT nudged here, and that is a
+        // decision rather than an omission. It was, at +0.10 a month to a
+        // ceiling of 55, and the effect leaked straight into the economy: a
+        // small country that fell into somebody's orbit got warm enough with
+        // everyone to sign trade agreements it would not otherwise have signed,
+        // and `a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it`
+        // watched its control arm gain six per cent of twenty-year output for
+        // reasons that had nothing to do with trade. A diplomacy system should
+        // not be quietly running the growth model. What alignment does instead
+        // is below, and in the decay relief, and in what a flip costs.
         let enemies: Vec<NationId> = w
             .nations
             .iter()
@@ -948,18 +964,29 @@ pub fn quote_take(w: &WorldState, challenger: NationId, client: NationId) -> Tak
         + CONTEST_DECAY * pressure;
     let net = gain_full - decay * target_stock;
 
-    let gap = (target_stock - my_stock).max(0.0);
-    let months: Option<u32> = if gap <= 0.0 {
+    // How long, integrated rather than guessed. `tick` runs
+    // `s' = gain - decay*s`, so a stake climbs on an exponential toward
+    // `gain / decay` and the honest answer is
+    //   t = ln((eq - s0) / (eq - target)) / decay
+    // rather than `gap / net`. The straight-line version was quoting 48 months
+    // for a campaign that landed in 22, because it evaluated the decay at the
+    // stake being aimed at rather than the stake actually held on the way up.
+    // A price on the screen that is twice the price charged is not a price.
+    let equilibrium = if decay > 0.0 { gain_full / decay } else { f64::INFINITY };
+    let months: Option<u32> = if target_stock <= my_stock {
         // Already there on points; only the six months of holding the lead
         // remain, and against an unheld capital not even that.
         Some(if holder.is_some() { FLIP_MONTHS } else { 0 })
-    } else if net <= 0.005 {
+    } else if equilibrium <= target_stock + 0.5 {
+        // Full effort with the instruments now in force settles below what it
+        // would have to reach. No number of months buys this one.
         None
     } else {
-        Some((gap / net).ceil() as u32 + if holder.is_some() { FLIP_MONTHS } else { 0 })
+        let t = crate::exact::ln((equilibrium - my_stock) / (equilibrium - target_stock)) / decay;
+        Some(t.ceil().max(1.0) as u32 + if holder.is_some() { FLIP_MONTHS } else { 0 })
     };
-    let monthly =
-        (UPKEEP_PC_PER_POINT * target_stock + UPKEEP_PC_EFFORT) * (1.0 + pressure);
+    let monthly = (UPKEEP_PC_PER_POINT * target_stock + UPKEEP_PC_EFFORT)
+        * (1.0 + CONTEST_BILL * pressure);
     let political_capital =
         months.map(|m| m as f64 * monthly + open_price(w, challenger, client, 1.0));
 
