@@ -128,7 +128,7 @@ pub fn tick(w: &mut WorldState) {
 
     // ---- Grievances fade; alliances are institutional and do not ----
     let belligerents: Vec<(NationId, NationId)> =
-        w.wars.iter().map(|war| (war.attacker, war.defender)).collect();
+        w.conflicts.iter().map(|c| (c.attacker(), c.defender())).collect();
     for (a, b, v) in w.relations.pairs_mut() {
         if *v >= 0.0 {
             continue;
@@ -212,6 +212,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         stability: 38.0,
         separatism: 0.20,
         mil_strength: strength * 0.65,
+        munitions: 1.0,
         war_exhaustion: 0.0,
         nuclear: true,
         // A successor government starts on what its own condition earns it and
@@ -253,6 +254,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         stability: 34.0,
         separatism: 0.35, // Crimea and the Donbas, from the day the flag went up
         mil_strength: strength * 0.15,
+        munitions: 1.0,
         war_exhaustion: 0.0,
         // Ukraine woke up with the third-largest nuclear arsenal on earth — some
         // 1,900 strategic warheads left on its territory — and gave every one of
@@ -432,6 +434,12 @@ fn dissolve_ussr(w: &mut WorldState) {
             stability: r.stab,
             separatism: r.sep,
             mil_strength: strength * r.army,
+            // Full, and for once that is not a default: what these republics
+            // woke up holding was the Soviet depot system, and the stocks on
+            // their ground were the stocks of a force built to fight NATO. The
+            // army they inherited was a fraction of the union's; the ammunition
+            // was not.
+            munitions: 1.0,
             war_exhaustion: 0.0,
             // Belarus and Kazakhstan both woke up holding strategic warheads
             // and both gave them back, Belarus by 1996 and Kazakhstan by 1995,
@@ -611,6 +619,16 @@ fn dissolve_ussr(w: &mut WorldState) {
     // December 1991 was signed, not fought.
     w.set_relation(NationId::Russia, NationId::Ukraine, 15.0);
 
+    // The successors inherit the ground. A state that is home to no theatre
+    // would be expeditionary in its own capital, and would fight for Moscow with
+    // the fraction of itself it could have sent to Angola. Nothing has to be
+    // moved here any more: a theatre's home list is its region's membership on
+    // the roster, and each of the twelve carries its own region — so the seats
+    // were always there and the dissolution simply fills them. What still has
+    // to go is the paperwork, because a consent given to a state that no longer
+    // exists is not a consent.
+    w.access.retain(|a| a.host != NationId::USSR && a.seeker != NationId::USSR);
+
     w.headline("THE SOVIET UNION HAS DISSOLVED. Twelve republics take up their own seats.".into());
     w.headline("Russia inherits the arsenal; Ukraine's warheads go back east under the Budapest assurances.".into());
 }
@@ -668,6 +686,7 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             stability: stab,
             separatism: sep,
             mil_strength: strength * m,
+            munitions: 1.0,
             war_exhaustion: 0.0,
             nuclear: false,
             political_capital: seated_political_capital(stab, infl, auth),
@@ -705,6 +724,17 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
     for (a, b, v) in between {
         w.set_relation(*a, *b, *v);
     }
+
+    // Bosnia's war is fought in the Balkans' own mountains and towns, and its
+    // successors are home to them — which needs nothing done here, because a
+    // theatre's home list is its region's membership on the roster and all four
+    // republics are filed under Balkans. This used to be a hand-written swap,
+    // and a hand-written swap is exactly the thing that gets forgotten when the
+    // next federation comes apart: every republic would then be treated as
+    // expeditionary in its own country, fighting for Sarajevo with the fraction
+    // of itself it could have sent abroad.
+    w.access
+        .retain(|a| a.host != NationId::Yugoslavia && a.seeker != NationId::Yugoslavia);
 
     w.headline("YUGOSLAVIA HAS DISSOLVED. Slovenia, Croatia, Bosnia and Serbia stand alone.".into());
     w.headline("The JNA's divisions, and its arsenal, remain in Belgrade's hands.".into());
@@ -996,9 +1026,47 @@ fn ai_wars(w: &mut WorldState) {
         if w.at_war(a) {
             continue;
         }
-        let roll = w.rng.chance(p);
-        if roll {
-            let _ = war::declare_war(w, a, t);
+        if !w.rng.chance(p) {
+            continue;
+        }
+        // The appetite does not go away because there is already an argument.
+        // When it comes up again and the quarrel is open, it is a push up the
+        // ladder — which is where the political reasons for a war (debt, a
+        // neighbour coming apart, a border nobody accepts) finally reach the
+        // commitment ladder instead of only deciding whether there is an
+        // argument at all. Priced like any other rung, and refusable.
+        if let Some(c) = w.conflict_between(a, t) {
+            let (id, rung) = (c.id, c.posture_of(a).map_or(1, |b| b.rung));
+            if rung < INVASION_RUNG {
+                let _ = crate::apply_command(
+                    w,
+                    &crate::Command::SetCommitment { conflict: id, nation: a, rung: rung + 1 },
+                );
+            }
+            continue;
+        }
+        // What this roll used to do was launch an invasion. It now opens a
+        // QUARREL, at rung 1, and nothing else — the appetite is the same, the
+        // reasoning above it is the same, but the state has bought a public
+        // grievance rather than a war, and every rung between here and an army
+        // crossing the border is a separate decision it has to pay for
+        // (`commitment::ai_ladder`). This is the single change that turns a
+        // nine-rung ladder from a three-state machine into a climb: no conflict
+        // in the world is born above rung 1 any more.
+        let th = war::theatre_between(w, a, t);
+        if crate::apply_command(w, &crate::Command::OpenConflict { opener: a, target: t, theatre: th })
+            .is_ok()
+        {
+            // Saying out loud what the quarrel is for. Cheap, and it is what
+            // separates a state that wants the ground from one that only wants
+            // the neighbour weakened.
+            if let Some(c) = w.conflict_between(a, t) {
+                let id = c.id;
+                let _ = crate::apply_command(
+                    w,
+                    &crate::Command::SetObjective { conflict: id, nation: a, objective: Objective::Seize },
+                );
+            }
         }
     }
 

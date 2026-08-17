@@ -546,6 +546,10 @@ impl NationRecord {
             stability: self.politics.stability,
             separatism: self.politics.separatism,
             mil_strength: self.military.strength,
+            // Full magazines in January 1990: a peacetime stock nobody
+            // recorded per-nation, so it is derived rather than transcribed,
+            // exactly like political_capital above.
+            munitions: 1.0,
             war_exhaustion: 0.0,
             nuclear: self.military.nuclear,
             political_capital: crate::politics::seated_political_capital(
@@ -584,6 +588,9 @@ pub fn load_world(
         wars: vec![],
         statecraft: Statecraft::default(),
         governments: Default::default(),
+        conflicts: vec![],
+        theatres: crate::theatre::default_theatres(),
+        access: vec![],
         oil_price: 20.0,
         headlines: vec![],
         flags: vec![],

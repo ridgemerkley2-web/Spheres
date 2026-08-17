@@ -25,3 +25,4 @@ pub fn world_1990(rules: GameRules) -> WorldState {
     crate::government::ensure_all(&mut w);
     w
 }
+

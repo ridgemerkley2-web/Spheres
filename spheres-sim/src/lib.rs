@@ -1,3 +1,4 @@
+pub mod commitment;
 pub mod data;
 pub mod dyads;
 pub mod economy;
@@ -9,6 +10,7 @@ pub mod politics;
 pub mod statecraft;
 pub mod stratagems;
 pub mod tech;
+pub mod theatre;
 pub mod war;
 pub mod world;
 
@@ -51,6 +53,31 @@ pub enum Command {
     /// What a regime that does not hold elections does instead: pay one of the
     /// institutions that could remove it.
     SecurePillar { nation: NationId, pillar: government::Pillar },
+
+    // --- The commitment ladder (BIBLE §6) ------------------------------------
+    /// Start a quarrel at rung 1. Conflicts begin when somebody climbs, not with
+    /// a declaration, and this is deliberately the cheapest thing in the enum.
+    OpenConflict { opener: NationId, target: NationId, theatre: theatre::TheatreId },
+    /// Take a side in a quarrel that is already running. Entering is entering at
+    /// the bottom: rung 1, and the ladder from there.
+    JoinConflict { conflict: u32, nation: NationId, side_a: bool, objective: Objective },
+    /// The primary click of the whole war layer: pick your rung.
+    SetCommitment { conflict: u32, nation: NationId, rung: u8 },
+    SetObjective { conflict: u32, nation: NationId, objective: Objective },
+    SetRoE { conflict: u32, nation: NationId, roe: Roe },
+    /// Announce a limit. It publicly binds you, and the other side reads it.
+    SetCeiling { conflict: u32, nation: NationId, rung: u8 },
+    /// The acceptable-casualties threshold that terminates by itself.
+    SetRedLine { conflict: u32, nation: NationId, resolve_floor: f64 },
+
+    // --- Access: statecraft as a direct military input -----------------------
+    RequestAccess { seeker: NationId, host: NationId, theatre: theatre::TheatreId },
+    /// Ask again, with the leverage dependency built. Ankara, March 2003.
+    PressForAccess { seeker: NationId, host: NationId, theatre: theatre::TheatreId },
+    /// The host's own click, and the one that gives a small state agency in a
+    /// great power's war.
+    GrantAccess { host: NationId, seeker: NationId, theatre: theatre::TheatreId, grant: bool },
+    RevokeAccess { host: NationId, seeker: NationId, theatre: theatre::TheatreId },
 }
 
 /// What a command asks of the government that issues it, and who it asks.
@@ -171,26 +198,100 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         Command::CallElection { nation } => (*nation, 25.0, REFUSABLE),
         // Patronage. Cheaper than an election and it has to be paid again.
         Command::SecurePillar { nation, .. } => (*nation, 14.0, REFUSABLE),
+
+        // --- The ladder. Every rung is a purchase. ---------------------------
+        // Opening at rhetoric is nearly free on purpose: the first rung has to
+        // be a real option rather than a formality, or nobody ever uses the
+        // bottom of the ladder and it becomes a war button with extra steps.
+        Command::OpenConflict { opener, .. } => (*opener, 4.0, REFUSABLE),
+        // Taking a side in somebody else's war is the most consequential thing a
+        // government can do without firing anything, and it is priced between
+        // opening a quarrel of your own and the guarantee that would have
+        // obliged you to. What it buys is rung 1 — every rung after it is
+        // charged again, which is the whole point of the ladder.
+        Command::JoinConflict { nation, .. } => (*nation, 14.0, REFUSABLE),
+        // Climbing is charged by how far, and by what kind of government has to
+        // explain it. Descending is free here and paid in reputation instead —
+        // a government can always run away, and it always looks like running.
+        Command::SetCommitment { conflict, nation, rung } => (
+            *nation,
+            w.conflict(*conflict).map_or(0.0, |c| {
+                let home = commitment::defending_home(w, c, *nation);
+                c.posture_of(*nation).map_or(0.0, |b| {
+                    commitment::escalation_cost_in(w, *nation, b.rung, *rung, home)
+                })
+            }),
+            REFUSABLE,
+        ),
+        Command::SetObjective { nation, .. } => (*nation, 3.0, REFUSABLE),
+        // Restraint is free. Taking the gloves off is not, and it is charged
+        // twice: here, and again in every parliament that was going to lend you
+        // an airfield.
+        Command::SetRoE { nation, roe, .. } => (
+            *nation,
+            if *roe == Roe::Unrestricted { 8.0 } else { 0.0 },
+            REFUSABLE,
+        ),
+        // Announcing a limit is itself a political act.
+        Command::SetCeiling { nation, .. } => (*nation, 4.0, REFUSABLE),
+        // Deciding in advance what you will not pay costs nothing and is the
+        // most valuable thing on this list.
+        Command::SetRedLine { nation, .. } => (*nation, 0.0, ALWAYS),
+
+        Command::RequestAccess { seeker, .. } => (*seeker, 6.0, REFUSABLE),
+        Command::PressForAccess { seeker, .. } => (*seeker, 15.0, REFUSABLE),
+        // The host pays at home, which is exactly why a small state's political
+        // capital suddenly matters in somebody else's war. Refusing is free.
+        Command::GrantAccess { host, grant, .. } => {
+            (*host, if *grant { 5.0 } else { 0.0 }, REFUSABLE)
+        }
+        // A parliament can always vote, including on the way out — dearer while
+        // a superpower is actually flying out of your bases.
+        Command::RevokeAccess { host, seeker, theatre } => (
+            *host,
+            if w.conflicts.iter().any(|c| {
+                c.theatre == *theatre
+                    && c.posture_of(*seeker).map_or(false, |b| b.rung >= 7)
+            }) {
+                20.0
+            } else {
+                4.0
+            },
+            ALWAYS,
+        ),
     })
 }
 
 pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
-    // Priced and charged before anything happens, so a command that cannot be
-    // afforded also cannot take effect.
-    if let Some((payer, price, refusable)) = command_price(w, c) {
-        if price > 0.0 {
-            let held = w.nation(payer).political_capital;
-            if refusable && held < price {
-                return Err(format!(
-                    "{} has not the standing: {:.0} political capital held, {:.0} needed.",
-                    payer.name(), held, price
-                ));
-            }
+    // Priced before anything happens, so a command that cannot be afforded also
+    // cannot take effect — and charged only once the act itself has gone
+    // through. A government that asks for something the world refuses it (a
+    // rung with no airfield under it, a pact with a state that will not sign)
+    // has not spent its standing on the asking, and before this it did: every
+    // blocked rung quietly drained the treasury of whoever tried it.
+    let bill = command_price(w, c).filter(|(_, price, _)| *price > 0.0);
+    if let Some((payer, price, refusable)) = bill {
+        let held = w.nation(payer).political_capital;
+        if refusable && held < price {
+            return Err(format!(
+                "{} has not the standing: {:.0} political capital held, {:.0} needed.",
+                payer.name(), held, price
+            ));
+        }
+    }
+    let outcome = dispatch(w, c);
+    if outcome.is_ok() {
+        if let Some((payer, price, _)) = bill {
             // A government that reneges past the end of its credit does not get
             // to owe political capital; it simply has none left.
+            let held = w.nation(payer).political_capital;
             w.nation_mut(payer).political_capital = (held - price).max(0.0);
         }
     }
+    outcome
+}
+
+fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     match c {
         Command::SetInterestRate { nation, rate } => {
             w.nation_mut(*nation).interest_rate = rate.clamp(0.0, 0.60);
@@ -259,6 +360,70 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::SecurePillar { nation, pillar } => {
             government::secure_pillar(w, *nation, *pillar)?
         }
+
+        Command::OpenConflict { opener, target, theatre } => {
+            commitment::open_conflict(w, *opener, *target, *theatre)?;
+        }
+        Command::JoinConflict { conflict, nation, side_a, objective } => {
+            commitment::join_conflict(w, *nation, *conflict, *side_a, *objective)?
+        }
+        Command::SetCommitment { conflict, nation, rung } => {
+            commitment::set_commitment(w, *conflict, *nation, *rung)?
+        }
+        Command::SetObjective { conflict, nation, objective } => {
+            let c = w.conflict_mut(*conflict).ok_or("No such conflict.")?;
+            let b = c.posture_mut(*nation).ok_or("Not a party to that conflict.")?;
+            b.objective = *objective;
+            w.headline(format!(
+                "{}'s objective is now to {}.",
+                nation.name(),
+                objective.label()
+            ));
+        }
+        Command::SetRoE { conflict, nation, roe } => {
+            let c = w.conflict_mut(*conflict).ok_or("No such conflict.")?;
+            let b = c.posture_mut(*nation).ok_or("Not a party to that conflict.")?;
+            b.roe = *roe;
+            if *roe == Roe::Unrestricted {
+                // Winning faster and keeping your host's airbase are the same
+                // decision, and this is the click where they are traded.
+                w.shift_reputation(*nation, -6.0);
+                w.headline(format!("{} takes the gloves off.", nation.name()));
+            }
+        }
+        Command::SetCeiling { conflict, nation, rung } => {
+            let r = (*rung).clamp(1, 9);
+            let c = w.conflict_mut(*conflict).ok_or("No such conflict.")?;
+            let b = c.posture_mut(*nation).ok_or("Not a party to that conflict.")?;
+            b.ceiling = r;
+            if b.rung > r {
+                b.rung = r;
+            }
+            w.headline(format!(
+                "{} publicly rules out going beyond rung {} — {}.",
+                nation.name(),
+                r,
+                rung_name(r)
+            ));
+        }
+        Command::SetRedLine { conflict, nation, resolve_floor } => {
+            let c = w.conflict_mut(*conflict).ok_or("No such conflict.")?;
+            let b = c.posture_mut(*nation).ok_or("Not a party to that conflict.")?;
+            b.red_line = resolve_floor.clamp(0.0, 0.95);
+        }
+
+        Command::RequestAccess { seeker, host, theatre } => {
+            commitment::request_access(w, *seeker, *host, *theatre, false)?
+        }
+        Command::PressForAccess { seeker, host, theatre } => {
+            commitment::request_access(w, *seeker, *host, *theatre, true)?
+        }
+        Command::GrantAccess { host, seeker, theatre, grant } => {
+            commitment::grant_access(w, *host, *seeker, *theatre, *grant)?
+        }
+        Command::RevokeAccess { host, seeker, theatre } => {
+            commitment::revoke_access(w, *host, *seeker, *theatre)?
+        }
     }
     Ok(())
 }
@@ -312,7 +477,56 @@ pub fn save(w: &WorldState) -> String {
     serde_json::to_string_pretty(w).expect("serialize")
 }
 pub fn load(s: &str) -> Result<WorldState, String> {
-    serde_json::from_str(s).map_err(|e| e.to_string())
+    let mut w: WorldState = serde_json::from_str(s).map_err(|e| e.to_string())?;
+    migrate_legacy_wars(&mut w);
+    if w.theatres.is_empty() {
+        w.theatres = theatre::default_theatres();
+    }
+    Ok(w)
+}
+
+/// A save written before the commitment ladder carries a `wars` array and no
+/// conflicts. Every such war was, by construction, a full conventional campaign
+/// on both sides, so it reopens at rung 8 with its progress bar reinterpreted as
+/// control and its magazines and resolve full.
+fn migrate_legacy_wars(w: &mut WorldState) {
+    if w.wars.is_empty() {
+        return;
+    }
+    let legacy = std::mem::take(&mut w.wars);
+    for old in legacy {
+        let mut side_a = vec![old.attacker];
+        side_a.extend(old.attacker_allies.iter().copied());
+        let mut side_b = vec![old.defender];
+        side_b.extend(old.defender_allies.iter().copied());
+        let mut posture: Vec<Belligerent> = side_a
+            .iter()
+            .map(|id| Belligerent::new(*id, 8, Objective::Seize))
+            .collect();
+        posture.extend(side_b.iter().map(|id| {
+            let mut b = Belligerent::new(*id, 8, Objective::Hold);
+            b.stake = 1.0;
+            b
+        }));
+        let id = w.next_conflict_id();
+        w.conflicts.push(Conflict {
+            id,
+            theatre: war::theatre_between(w, old.attacker, old.defender),
+            side_a,
+            side_b,
+            posture,
+            control: (old.progress / 100.0).clamp(-1.0, 1.0),
+            months: 0,
+            quiet_months: 0,
+            frozen_since: None,
+            start_year: old.start_year,
+            start_month: old.start_month,
+            origin_attacker: old.attacker,
+            // A save from before the ladder holds only wars that were already
+            // invasions, and the coalition against them has long since formed.
+            invasion_declared: true,
+        });
+    }
 }
 
 #[cfg(test)]
@@ -1929,6 +2143,704 @@ mod tests {
         assert!(ts > tb, "Turkey shrugged off the oil shock: {:.4} vs {:.4}", ts, tb);
     }
 
+    // ---- The commitment ladder ---------------------------------------------
+
+    /// The measurement QA ran by hand, kept in the tree so the next person does
+    /// not have to. Not an assertion — a census. Prints, for a run of seeds:
+    /// what rung conflicts are BORN on, how many belligerent-months each rung
+    /// holds, and how the conflicts that ended actually ended.
+    ///
+    ///     cargo test -p spheres-sim --release --lib war_census -- --ignored --nocapture
+    #[test]
+    #[ignore]
+    fn war_census() {
+        let years = 35;
+        let mut born = [0u32; 10];
+        let mut peak = [0u32; 10];
+        let mut months_at = [0u64; 10];
+        let mut endings: Vec<(&str, u32)> = vec![
+            ("annexed", 0), ("capitulates", 0), ("repels", 0),
+            ("white peace", 0), ("sues for peace", 0), ("agree peace terms", 0),
+        ];
+        let (mut opened, mut invaded) = (0u32, 0u32);
+        for seed in 0..8u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            let mut seen: std::collections::BTreeMap<u32, (u8, u8)> = Default::default();
+            for _ in 0..12 * years {
+                for h in tick_month(&mut w, &[]) {
+                    for e in endings.iter_mut() {
+                        if h.contains(e.0) {
+                            e.1 += 1;
+                        }
+                    }
+                    if h.starts_with("WAR:") {
+                        invaded += 1;
+                    }
+                }
+                for c in &w.conflicts {
+                    let top = c.posture.iter().map(|b| b.rung).max().unwrap_or(1);
+                    let e = seen.entry(c.id).or_insert_with(|| {
+                        opened += 1;
+                        born[top as usize] += 1;
+                        (top, top)
+                    });
+                    e.1 = e.1.max(top);
+                    for b in &c.posture {
+                        months_at[b.rung as usize] += 1;
+                    }
+                }
+            }
+            for (_, (_, hi)) in seen {
+                peak[hi as usize] += 1;
+            }
+        }
+        println!("\n{} conflicts opened, {} of them became invasions", opened, invaded);
+        println!("rung:      1     2     3     4     5     6     7     8     9");
+        let row = |name: &str, v: &[u64]| {
+            let mut s = format!("{:<9}", name);
+            for r in 1..=9 {
+                s += &format!("{:>6}", v[r]);
+            }
+            println!("{}", s);
+        };
+        row("born at", &born.iter().map(|x| *x as u64).collect::<Vec<_>>());
+        row("peak at", &peak.iter().map(|x| *x as u64).collect::<Vec<_>>());
+        row("bel-mths", &months_at);
+        println!("endings:");
+        for (name, n) in endings {
+            println!("  {:<20} {}", name, n);
+        }
+        let mut who: std::collections::BTreeMap<String, u64> = Default::default();
+        for seed in 0..8u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..12 * years {
+                tick_month(&mut w, &[]);
+                for c in &w.conflicts {
+                    for b in c.posture.iter().filter(|b| b.rung == 5) {
+                        *who.entry(format!(
+                            "{} in {} (frozen {})",
+                            b.nation.name(),
+                            c.theatre.name(),
+                            c.frozen_since.is_some()
+                        ))
+                        .or_default() += 1;
+                    }
+                }
+            }
+        }
+        {
+            let mut w = world_1990(GameRules { seed: 0, ..GameRules::default() });
+            let mut said = 0;
+            for _ in 0..12 * years {
+                tick_month(&mut w, &[]);
+                let probes: Vec<(NationId, u32, u8, u8, String, f64)> = w
+                    .conflicts
+                    .iter()
+                    .flat_map(|c| {
+                        c.posture
+                            .iter()
+                            .filter(|b| b.rung == 5 && b.months_at_rung > 24)
+                            .map(|b| {
+                                (
+                                    b.nation,
+                                    c.id,
+                                    b.rung,
+                                    commitment::ambition(&w, c, b),
+                                    commitment::rung_blocked(&w, c, b.nation, 6)
+                                        .unwrap_or_else(|| "-".into()),
+                                    w.nation(b.nation).political_capital,
+                                )
+                            })
+                            .collect::<Vec<_>>()
+                    })
+                    .collect();
+                for (n, cid, r, want, why, pc) in probes {
+                    if said < 8 {
+                        said += 1;
+                        println!(
+                            "  stuck: {} c{} at {} wants {} pc {:.0} — blocked: {}",
+                            n.name(), cid, r, want, pc, why
+                        );
+                    }
+                }
+            }
+        }
+        let mut v: Vec<_> = who.into_iter().collect();
+        v.sort_by_key(|(_, n)| std::cmp::Reverse(*n));
+        println!("who is standing on rung 5:");
+        for (k, n) in v.iter().take(12) {
+            println!("  {:<50} {}", k, n);
+        }
+    }
+
+    /// Hand a government enough standing to buy what the test is about, so that
+    /// the assertion is about the war model rather than about affordability.
+    fn bankroll(w: &mut WorldState, id: NationId) {
+        w.nation_mut(id).political_capital = 100.0;
+    }
+
+    /// Keep asking until the parliament says yes. Consent is a die roll, and a
+    /// test that wants to interrogate what happens *after* access has to get it.
+    fn force_access(w: &mut WorldState, seeker: NationId, host: NationId, th: theatre::TheatreId) {
+        for _ in 0..400 {
+            if theatre::has_access(w, seeker, th) {
+                return;
+            }
+            bankroll(w, seeker);
+            let _ = apply_command(w, &Command::RequestAccess { seeker, host, theatre: th });
+        }
+        panic!("{:?} never got into {:?}", seeker, th);
+    }
+
+    /// Open a conflict and put both sides where the test wants them, bypassing
+    /// nothing: every step goes through `apply_command` exactly as a player's
+    /// click would.
+    fn staged_conflict(
+        w: &mut WorldState,
+        opener: NationId,
+        target: NationId,
+        th: theatre::TheatreId,
+        opener_rung: u8,
+        target_rung: u8,
+    ) -> u32 {
+        bankroll(w, opener);
+        apply_command(w, &Command::OpenConflict { opener, target, theatre: th }).unwrap();
+        let id = w.conflict_between(opener, target).expect("just opened").id;
+        for (who, rung) in [(opener, opener_rung), (target, target_rung)] {
+            bankroll(w, who);
+            // A ceiling is what stops the AI wandering off the posture the test
+            // is about, and it is a real player command rather than a back door.
+            apply_command(w, &Command::SetCeiling { conflict: id, nation: who, rung }).unwrap();
+            bankroll(w, who);
+            apply_command(w, &Command::SetCommitment { conflict: id, nation: who, rung }).unwrap();
+        }
+        id
+    }
+
+    #[test]
+    fn a_player_can_get_into_somebody_elses_war() {
+        // QA's third finding, as an assertion: playing the United States there
+        // was no verb that made you a party to a conflict, so every command on
+        // the ladder answered "not a party to that conflict" and the whole war
+        // layer was unreachable from the only seat a player ever sits in.
+        //
+        // The route has to be the ordinary one — commands through the queue,
+        // priced, refusable — and it has to end with the player actually
+        // standing on a rung of somebody else's war.
+        // Iraq and Iran, because it is the case where nobody arrives on their
+        // own: the majors turn up for Kuwait by themselves, through
+        // `invasion_begins`, and a test that used that pair would be asserting
+        // about the AI's route in rather than the player's. Washington backing
+        // Baghdad against Tehran is also simply what happened.
+        let mut w = seeded(2);
+        w.player = Some(NationId::USA);
+        w.rules.ai_aggression = 0.0;
+        war::declare_war(&mut w, NationId::Iraq, NationId::Iran).unwrap();
+        let id = w.conflict_between(NationId::Iraq, NationId::Iran).unwrap().id;
+        assert!(
+            !w.conflict(id).unwrap().involves(NationId::USA),
+            "the test needs a war Washington is not already in"
+        );
+
+        // Before joining, the ladder is closed to you and says so.
+        let shut = apply_command(
+            &mut w,
+            &Command::SetCommitment { conflict: id, nation: NationId::USA, rung: 2 },
+        );
+        assert!(shut.is_err(), "a bystander was allowed to pick a rung");
+        assert!(shut.unwrap_err().contains("Not a party"));
+
+        // Taking a side costs standing, and it costs it once.
+        w.nation_mut(NationId::USA).political_capital = 60.0;
+        let before = w.nation(NationId::USA).political_capital;
+        apply_command(
+            &mut w,
+            &Command::JoinConflict {
+                conflict: id,
+                nation: NationId::USA,
+                side_a: true,
+                objective: Objective::Deny,
+            },
+        )
+        .expect("Washington could not take Baghdad's side");
+        let c = w.conflict(id).unwrap();
+        assert!(c.side_a.contains(&NationId::USA), "the join did not put it on a side");
+        assert_eq!(
+            c.posture_of(NationId::USA).unwrap().rung,
+            1,
+            "joining entered above the bottom of the ladder"
+        );
+        assert!(
+            w.nation(NationId::USA).political_capital < before - 10.0,
+            "taking a side in somebody else's war was free"
+        );
+
+        // ...and from there the ladder is the ordinary ladder.
+        apply_command(
+            &mut w,
+            &Command::SetCommitment { conflict: id, nation: NationId::USA, rung: 2 },
+        )
+        .expect("a party to the conflict cannot buy rung 2");
+        assert!(
+            w.is_sanctioning(NationId::USA, NationId::Iran),
+            "rung 2 did not bind the instrument it is made of"
+        );
+        assert!(
+            apply_command(
+                &mut w,
+                &Command::JoinConflict {
+                    conflict: id,
+                    nation: NationId::USA,
+                    side_a: false,
+                    objective: Objective::Deny,
+                },
+            )
+            .is_err(),
+            "a nation joined the same war twice, on both sides"
+        );
+    }
+
+    #[test]
+    fn a_quarrel_is_not_an_invasion_and_the_world_knows_the_difference() {
+        // The distinction QA's first finding is about, pinned so it cannot
+        // quietly go away again. Opening a quarrel is cheap, public and
+        // consequence-free abroad; it is the CLIMB to a full conventional
+        // campaign that brings the coalition, and it is a separate act, priced
+        // separately, seven rungs further up.
+        let mut w = seeded(6);
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::Iraq); // freeze Baghdad's own AI; the test is the player
+        bankroll(&mut w, NationId::Iraq);
+        let th = theatre::TheatreId::Gulf;
+        apply_command(
+            &mut w,
+            &Command::OpenConflict { opener: NationId::Iraq, target: NationId::Kuwait, theatre: th },
+        )
+        .unwrap();
+        let id = w.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+        assert_eq!(w.conflict(id).unwrap().posture_of(NationId::Iraq).unwrap().rung, 1);
+        assert_eq!(
+            w.sanctioned_by_count(NationId::Iraq),
+            0,
+            "the world sanctioned a state for being annoyed with its neighbour"
+        );
+        assert!(!w.at_war(NationId::Iraq), "rhetoric is not a war");
+
+        // Climb to the campaign. The rung is where the world answers.
+        for r in 2..=8 {
+            bankroll(&mut w, NationId::Iraq);
+            apply_command(
+                &mut w,
+                &Command::SetCommitment { conflict: id, nation: NationId::Iraq, rung: r },
+            )
+            .unwrap_or_else(|e| panic!("rung {} refused: {}", r, e));
+        }
+        assert!(
+            w.sanctioned_by_count(NationId::Iraq) >= 3,
+            "no coalition formed against an invasion: {} sanctioners",
+            w.sanctioned_by_count(NationId::Iraq)
+        );
+        assert!(w.at_war(NationId::Iraq));
+        assert!(
+            w.headlines.iter().any(|h| h.contains("Iraq invades Kuwait")),
+            "the invasion never made the news"
+        );
+        assert_eq!(
+            w.conflict(id).unwrap().posture_of(NationId::Kuwait).unwrap().rung,
+            8,
+            "the defender did not answer an invasion of its own country"
+        );
+        // ...and it happens once, not once per climb.
+        let sanctioners = w.sanctioned_by_count(NationId::Iraq);
+        w.headlines.clear();
+        bankroll(&mut w, NationId::Iraq);
+        apply_command(
+            &mut w,
+            &Command::SetCommitment { conflict: id, nation: NationId::Iraq, rung: 9 },
+        )
+        .unwrap();
+        assert!(!w.headlines.iter().any(|h| h.starts_with("WAR:")));
+        assert_eq!(w.sanctioned_by_count(NationId::Iraq), sanctioners);
+    }
+
+    #[test]
+    fn a_state_defends_itself_more_cheaply_than_it_invades() {
+        // Escalation is explained to a parliament; a defence is not. Without
+        // this a small state simply could not afford to resist, because the
+        // ladder charged Kuwait exactly what it charged Iraq.
+        let mut w = seeded(3);
+        let th = theatre::TheatreId::Gulf;
+        bankroll(&mut w, NationId::Iraq);
+        apply_command(
+            &mut w,
+            &Command::OpenConflict { opener: NationId::Iraq, target: NationId::Kuwait, theatre: th },
+        )
+        .unwrap();
+        let c = w.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap();
+        let attack = commitment::escalation_cost_in(&w, NationId::Kuwait, 1, 6, false);
+        let defend = commitment::escalation_cost_in(&w, NationId::Kuwait, 1, 6, true);
+        assert!(defend < attack * 0.5, "defending cost {:.1} against {:.1}", defend, attack);
+        assert!(commitment::defending_home(&w, c, NationId::Kuwait));
+        assert!(!commitment::defending_home(&w, c, NationId::Iraq));
+    }
+
+    #[test]
+    fn no_power_goes_above_rung_five_without_a_host() {
+        // BIBLE §6 object 3, as a single assertion: access is a diplomatic
+        // quantity and it is a hard military gate. The United States cannot
+        // mount a campaign in South Asia until somebody in range agrees to
+        // carry it, however much political capital it is holding.
+        let mut w = world_1990(GameRules::default());
+        let th = theatre::TheatreId::SouthAsia;
+        bankroll(&mut w, NationId::USA);
+        apply_command(
+            &mut w,
+            &Command::OpenConflict { opener: NationId::USA, target: NationId::Pakistan, theatre: th },
+        )
+        .unwrap();
+        let id = w.conflict_between(NationId::USA, NationId::Pakistan).unwrap().id;
+
+        bankroll(&mut w, NationId::USA);
+        let err = apply_command(
+            &mut w,
+            &Command::SetCommitment { conflict: id, nation: NationId::USA, rung: 6 },
+        );
+        assert!(err.is_err(), "a superpower reached rung 6 with nowhere to fly from");
+        assert!(
+            err.unwrap_err().contains("host"),
+            "the refusal did not say why, which is the whole point of it"
+        );
+        assert_eq!(w.conflict(id).unwrap().posture_of(NationId::USA).unwrap().rung, 1);
+
+        // Rung 5 and below need nobody's permission — that is what makes the
+        // bottom of the ladder the thing a power without access actually does.
+        bankroll(&mut w, NationId::USA);
+        apply_command(
+            &mut w,
+            &Command::SetCommitment { conflict: id, nation: NationId::USA, rung: 5 },
+        )
+        .expect("deniable forces need no airfield");
+
+        // ...and with a consenting host the same command goes through.
+        force_access(&mut w, NationId::USA, NationId::India, th);
+        bankroll(&mut w, NationId::USA);
+        apply_command(
+            &mut w,
+            &Command::SetCommitment { conflict: id, nation: NationId::USA, rung: 8 },
+        )
+        .expect("with Delhi's consent the campaign is possible");
+    }
+
+    #[test]
+    fn a_parliament_can_refuse_a_superpower() {
+        // Turkey, March 2003. A host's answer is its own, it is not always yes,
+        // and a refusal is not a formality: it leaves the seeker capped.
+        let (mut granted, mut refused) = (0, 0);
+        for seed in 0..40u64 {
+            let mut w = seeded(seed);
+            bankroll(&mut w, NationId::USA);
+            apply_command(
+                &mut w,
+                &Command::RequestAccess {
+                    seeker: NationId::USA,
+                    host: NationId::Turkey,
+                    theatre: theatre::TheatreId::Levant,
+                },
+            )
+            .unwrap();
+            if theatre::has_access(&w, NationId::USA, theatre::TheatreId::Levant) {
+                granted += 1;
+            } else {
+                refused += 1;
+            }
+        }
+        assert_eq!(granted + refused, 40, "a request went unanswered");
+        assert!(refused >= 4, "Ankara never once said no: {}/40 refusals", refused);
+        assert!(granted >= 4, "Ankara never once said yes: {}/40 grants", granted);
+    }
+
+    #[test]
+    fn revoking_a_base_brings_a_superpower_down_the_ladder() {
+        // The other end of the same table, and the reason a small state's
+        // political capital matters in a great power's war.
+        let mut w = seeded(5);
+        let th = theatre::TheatreId::SouthAsia;
+        force_access(&mut w, NationId::USA, NationId::India, th);
+        let id = staged_conflict(&mut w, NationId::USA, NationId::Pakistan, th, 8, 4);
+        assert_eq!(w.conflict(id).unwrap().posture_of(NationId::USA).unwrap().rung, 8);
+
+        bankroll(&mut w, NationId::India);
+        apply_command(
+            &mut w,
+            &Command::RevokeAccess { host: NationId::India, seeker: NationId::USA, theatre: th },
+        )
+        .unwrap();
+        assert!(!theatre::has_access(&w, NationId::USA, th));
+        assert_eq!(
+            w.conflict(id).unwrap().posture_of(NationId::USA).unwrap().rung,
+            theatre::MAX_RUNG_WITHOUT_ACCESS,
+            "Washington kept its campaign after Delhi closed the airfields"
+        );
+    }
+
+    #[test]
+    fn the_ladder_binds_the_instruments_rather_than_duplicating_them() {
+        // Rungs 2 to 5 are the statecraft systems that already exist. Climbing
+        // has to *issue* them, through the same commands a player uses — if it
+        // reimplements them instead, this is what says so.
+        let mut w = seeded(9);
+        w.rules.ai_aggression = 0.0;
+        let th = theatre::TheatreId::Gulf;
+        // The United States, with Kuwait beside it as the local party it arms.
+        bankroll(&mut w, NationId::USA);
+        apply_command(
+            &mut w,
+            &Command::OpenConflict {
+                opener: NationId::USA,
+                target: NationId::Iraq,
+                theatre: th,
+            },
+        )
+        .unwrap();
+        let id = w.conflict_between(NationId::USA, NationId::Iraq).unwrap().id;
+        war::join_side(w.conflict_mut(id).unwrap(), NationId::Kuwait, true, 1, Objective::Hold);
+
+        assert!(!w.is_sanctioning(NationId::USA, NationId::Iraq));
+        bankroll(&mut w, NationId::USA);
+        apply_command(&mut w, &Command::SetCommitment { conflict: id, nation: NationId::USA, rung: 2 })
+            .unwrap();
+        assert!(
+            w.is_sanctioning(NationId::USA, NationId::Iraq),
+            "rung 2 is sanctions and it did not produce a sanctions row"
+        );
+
+        bankroll(&mut w, NationId::USA);
+        apply_command(&mut w, &Command::SetCommitment { conflict: id, nation: NationId::USA, rung: 3 })
+            .unwrap();
+        assert!(
+            w.aid_flow(NationId::USA, NationId::Kuwait, AidKind::Arms).is_some(),
+            "rung 3 is arms to a proxy and no arms flow appeared"
+        );
+
+        // ...and coming back down lifts what climbing installed.
+        bankroll(&mut w, NationId::USA);
+        apply_command(&mut w, &Command::SetCommitment { conflict: id, nation: NationId::USA, rung: 1 })
+            .unwrap();
+        assert!(w.aid_flow(NationId::USA, NationId::Kuwait, AidKind::Arms).is_none());
+        assert!(!w.is_sanctioning(NationId::USA, NationId::Iraq));
+    }
+
+    #[test]
+    fn desert_storm_is_quick_when_they_stand_and_fight() {
+        // Both sides in the open at rung 8 in flat desert, one of them with
+        // twice the other's quality: the gate is wide open, the kill rates are
+        // lopsided, the loser's structure is destroyed, and the ground changes
+        // hands. This must be decisive and it must be quick.
+        let mut quick = 0;
+        for seed in 0..8u64 {
+            let mut w = seeded(seed);
+            w.rules.ai_aggression = 0.0;
+            war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+            let mut months = 0;
+            for m in 0..120 {
+                tick_month(&mut w, &[]);
+                if w.conflict_between(NationId::Iraq, NationId::Kuwait).is_none() {
+                    months = m + 1;
+                    break;
+                }
+            }
+            assert!(months > 0, "seed {}: the Gulf war never ended in ten years", seed);
+            assert!(
+                w.nation(NationId::Kuwait).alive,
+                "seed {}: the coalition turned up and Kuwait was annexed anyway",
+                seed
+            );
+            if months <= 36 {
+                quick += 1;
+            }
+        }
+        assert!(quick >= 6, "a conventional war against a coalition dragged: {}/8 inside 3 years", quick);
+    }
+
+    #[test]
+    fn afghanistan_does_not_end() {
+        // The case the whole model exists for, and the one a progress bar cannot
+        // express. An expeditionary power at rung 8 against a local party at
+        // rung 4, in rough and built-up country: it takes the ground within a
+        // year and holds it indefinitely, its kill rate against a target that
+        // barely exposes itself is nowhere near decisive, and futility eats its
+        // government's resolve while the defender — at home, taking almost no
+        // casualties — never runs out.
+        //
+        // Nothing here is named after a country. It is the same six lines that
+        // produce Desert Storm, with the rungs mismatched and the terrain rough.
+        let mut w = seeded(3);
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::USA); // Washington's posture is the test's, not the AI's
+        let th = theatre::TheatreId::SouthAsia;
+        force_access(&mut w, NationId::USA, NationId::India, th);
+        // Rung 9, occupation: less combat power in the field than a campaign
+        // and vastly more garrison-months, and — the part that matters — an
+        // ordnance burn a rich state's industry can very nearly sustain forever.
+        // An occupation is affordable in magazines and unaffordable in politics,
+        // which is the entire shape of the thing.
+        let id = staged_conflict(&mut w, NationId::USA, NationId::Pakistan, th, 9, 4);
+
+        for _ in 0..60 {
+            tick_month(&mut w, &[]);
+        }
+        let c = w.conflict(id).expect("an occupation does not resolve itself in five years");
+        let usa = c.posture_of(NationId::USA).expect("still there");
+        let pak = c.posture_of(NationId::Pakistan).expect("still there");
+        assert!(
+            c.control > 0.80,
+            "the occupier does not hold the ground: control {:+.2}",
+            c.control
+        );
+        assert!(
+            usa.resolve < 0.35,
+            "holding ground it cannot convert into an ending cost the occupier nothing: resolve {:.2}",
+            usa.resolve
+        );
+        assert!(
+            pak.resolve > 0.55,
+            "the defender's will collapsed anyway: resolve {:.2}",
+            pak.resolve
+        );
+        assert_eq!(c.class(), ConflictClass::Irregular, "mismatched rungs are not reading as irregular");
+
+        // ...and the same occupier against the same country standing and
+        // fighting in the open is a different war entirely.
+        let mut open = seeded(3);
+        open.rules.ai_aggression = 0.0;
+        open.player = Some(NationId::USA);
+        force_access(&mut open, NationId::USA, NationId::India, th);
+        let oid = staged_conflict(&mut open, NationId::USA, NationId::Pakistan, th, 8, 8);
+        for _ in 0..60 {
+            tick_month(&mut open, &[]);
+        }
+        let their_resolve = open
+            .conflict(oid)
+            .and_then(|c| c.posture_of(NationId::Pakistan))
+            .map_or(0.0, |b| b.resolve);
+        assert!(
+            open.conflict(oid).is_none() || their_resolve < pak.resolve,
+            "standing in the open cost the defender no more than hiding did: {:.2} vs {:.2}",
+            their_resolve,
+            pak.resolve
+        );
+    }
+
+    #[test]
+    fn magazines_run_dry() {
+        // BIBLE §6's second stock, on its own time constant. A campaign empties
+        // the magazines faster than any budget refills them, and what stops is
+        // the shooting — not the quarrel.
+        //
+        // The opponent is Iran and it used to be Saudi Arabia. Not a widened
+        // bound — every assertion below is the one that was here — but the
+        // staging had stopped being able to ask the question. Climbing to rung 8
+        // now summons the coalition that a rung-8 climb deserves, and against a
+        // client the majors actually like, the war Iraq gets is eleven months
+        // long and settled at a table before any magazine could empty. Iran is
+        // the case the assertion was always really about: eight years of exactly
+        // this, both sides shooting off more than their industry could replace
+        // and neither able to interest a great power in coming.
+        let mut w = seeded(1);
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::Iraq);
+        let th = theatre::TheatreId::Gulf;
+        let id = staged_conflict(&mut w, NationId::Iraq, NationId::Iran, th, 8, 8);
+        assert_eq!(w.nation(NationId::Iraq).munitions, 1.0);
+
+        let mut dry_at = None;
+        for m in 0..60 {
+            tick_month(&mut w, &[]);
+            if w.nation(NationId::Iraq).munitions <= 0.0 && dry_at.is_none() {
+                dry_at = Some(m + 1);
+            }
+        }
+        let dry = dry_at.expect("Iraq shot for five years and never ran short");
+        assert!(
+            (6..30).contains(&dry),
+            "a poor state's magazines lasted {} months of full campaign",
+            dry
+        );
+        if let Some(c) = w.conflict(id) {
+            let b = c.posture_of(NationId::Iraq).unwrap();
+            assert!(
+                b.rung <= war::MAX_SUSTAINABLE_DRY,
+                "an army with nothing left to fire is still at rung {}",
+                b.rung
+            );
+        }
+    }
+
+    #[test]
+    fn every_nation_has_a_home() {
+        // A state that is home to no theatre would be expeditionary in its own
+        // capital and would fight for its own cities with the fraction of itself
+        // it could have sent abroad. The dissolutions mutate theatre membership,
+        // which is a new class of bug, and this is the guard against it.
+        for seed in 0..6u64 {
+            let mut w = seeded(seed);
+            for _ in 0..360 {
+                tick_month(&mut w, &[]);
+            }
+            for n in w.nations.iter().filter(|n| n.alive) {
+                let homes = w.theatres.iter().filter(|t| t.home.contains(&n.id)).count();
+                assert_eq!(
+                    homes, 1,
+                    "seed {}: {:?} is home to {} theatres in {}",
+                    seed, n.id, homes, w.year
+                );
+            }
+        }
+    }
+
+    #[test]
+    fn the_war_layer_holds_its_own_invariants() {
+        // The economic sweep's counterpart for the force package. Never widened,
+        // only added to: every bound here is one the model claims outright.
+        for seed in [0u64, 7, 1990] {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..600 {
+                tick_month(&mut w, &[]);
+                for n in w.nations.iter().filter(|n| n.alive) {
+                    assert!(
+                        (0.0..=1.0).contains(&n.munitions),
+                        "seed {} {:?} munitions {}",
+                        seed, n.id, n.munitions
+                    );
+                    let d = war::deployable_fraction(&w, n.id);
+                    assert!(
+                        (0.02..=0.40).contains(&d),
+                        "seed {} {:?} can project {:.2} of itself — the divide-by-strength ran away",
+                        seed, n.id, d
+                    );
+                }
+                for c in &w.conflicts {
+                    for b in &c.posture {
+                        assert!((1..=9).contains(&b.rung), "rung {} is not on the ladder", b.rung);
+                        assert!(
+                            (0.0..=1.0).contains(&b.resolve),
+                            "{:?} resolve {}",
+                            b.nation, b.resolve
+                        );
+                        assert!(b.resolve.is_finite() && b.stake.is_finite());
+                    }
+                    // The zombie-war guard: two dry magazines must not deadlock
+                    // a conflict at a shooting rung forever.
+                    assert!(
+                        c.months < 600 || !c.shooting(),
+                        "a shooting war has run {} months in {}",
+                        c.months, w.year
+                    );
+                }
+            }
+        }
+    }
+
     #[test]
     fn ukraine_leaves_the_union_without_the_bomb() {
         // Ukraine is not on the board in 1990 and has to be produced by the
@@ -1965,5 +2877,6 @@ mod tests {
         assert!(born >= 6, "the union held together too often: {}/10", born);
     }
 }
+
 
 
