@@ -226,14 +226,16 @@ pub const ROSTER: &[NationRow] = &[
     row("Poland", "Poland", &["pol"], "EasternEurope",
         &["Germany", "USSR", "Russia", "Ukraine", "Czechoslovakia", "Belarus", "Lithuania"], &[], true, false, false),
 
-    // Brazil touches every South American state except Chile and Ecuador. Six of
-    // those ten neighbours are now in the roster and are declared here; Paraguay,
-    // Guyana, Suriname and French Guiana are not simulated. Brazil holds no claim
-    // on any of them and never has - the Baron of Rio Branco settled all of it by
+    // Brazil touches every South American state except Chile and Ecuador. Nine of
+    // those ten neighbours are now in the roster and are declared here; only
+    // French Guiana is missing, and that is deliberate rather than pending (see
+    // the Latin America section header below). Brazil holds no claim on any of
+    // them and never has - the Baron of Rio Branco settled all of it by
     // arbitration and purchase between 1895 and 1909, which is why the largest
     // state in the region is also the one with nothing outstanding.
     row("Brazil", "Brazil", &["bra"], "LatinAmerica",
-        &["Argentina", "Uruguay", "Bolivia", "Peru", "Colombia", "Venezuela"],
+        &["Argentina", "Uruguay", "Bolivia", "Peru", "Colombia", "Venezuela",
+          "Paraguay", "Guyana", "Suriname"],
         &[], true, false, false),
 
     row("Indonesia", "Indonesia", &["idn"], "SoutheastAsia",
@@ -687,9 +689,13 @@ pub const ROSTER: &[NationRow] = &[
 
     // ---- Latin America ----------------------------------------------------
     //
-    // Ten states. The borders below are the ones that exist between nations *in
-    // this roster*: Paraguay, Guyana, Suriname, Panama, Guatemala and Belize are
-    // not simulated, so those frontiers are correctly absent rather than wrong.
+    // Thirteen states. The borders below are the ones that exist between nations
+    // *in this roster*: Panama, Guatemala and Belize are not simulated, so those
+    // frontiers are correctly absent rather than wrong. Paraguay, Guyana and
+    // Suriname were in that list until branch feat/r2-southam2 added them at the
+    // end of the roster; the three rows are at the bottom of this file, because
+    // roster order is relations-matrix order and inserting them here would have
+    // moved every index after Uruguay.
     //
     // Brazil's land border with France by way of French Guiana is deliberately
     // not declared. It is a real 730 km frontier, but it is a border with an
@@ -722,7 +728,7 @@ pub const ROSTER: &[NationRow] = &[
     // which it also models and which was not the mechanism.
     // https://en.wikipedia.org/wiki/1991_Falkland_Islands_census
     row("Argentina", "Argentina", &["arg"], "LatinAmerica",
-        &["Chile", "Bolivia", "Brazil", "Uruguay"],
+        &["Chile", "Bolivia", "Brazil", "Uruguay", "Paraguay"],
         &[claim("UK", 0.00004)], true, false, false),
 
     // The 3,145 km with the United States is Mexico's only border inside this
@@ -746,14 +752,35 @@ pub const ROSTER: &[NationRow] = &[
     row("Colombia", "Colombia", &["col"], "LatinAmerica",
         &["Venezuela", "Ecuador", "Peru", "Brazil"], &[], true, false, false),
 
-    // Venezuela's real claim is the Essequibo, two thirds of Guyana, asserted
-    // since the Geneva Agreement of 1966 reopened the 1899 arbitration. Guyana
-    // is not in this roster, so the claim is absent - and it is worth saying
-    // plainly that this is the one place in the region where an unsimulated
-    // neighbour hides a genuinely large territorial appetite. An agent adding
-    // Guyana should add `claim("Guyana", 0.62)` here at the same time.
+    // Venezuela's real claim is the Essequibo, and the note that used to stand
+    // here asked whoever added Guyana to enter it at the same time. Done: the
+    // Guayana Esequiba is 159,500 km2 of Guyana's 214,970, and Caracas has
+    // asserted it since the Geneva Agreement of 17 February 1966 reopened the
+    // Paris arbitral award of 3 October 1899 that Venezuela had accepted for
+    // sixty-seven years. Every Venezuelan map prints it as `zona en reclamacion`.
+    //
+    // 0.62 is the area share and it is the right denominator here, unusually.
+    // Bolivia's Litoral and Ecuador's Cordillera del Condor are scored on
+    // population because they are empty land whose value is symbolic; the
+    // Essequibo is scored on area because it is not a strip of frontier but two
+    // thirds of the target state, including the Cuyuni goldfields, the Mazaruni
+    // diamond workings and the whole Atlantic coast west of the Essequibo river.
+    // Taking it does not adjust a border, it deletes Guyana. That is what a
+    // share above a half is supposed to mean in this table, and it makes this
+    // the largest claim in the Western Hemisphere by some distance.
+    //
+    // What stops it in 1990 is not appetite but capacity and cost: the Protocol
+    // of Port of Spain froze the question from 1970 to 1982, Venezuela declined
+    // to renew it, and by January 1990 the two governments had agreed to put the
+    // matter to the UN Secretary-General's good offices - Perez de Cuellar
+    // accepted the role in 1990 and the process was still running decades later.
+    // Caracas in 1990 is also an OPEC state deep in Perez's Gran Viraje
+    // adjustment, three months from the Caracazo's anniversary. The appetite
+    // model should read all of that out of the economy and the relations, not
+    // out of a smaller number here.
+    // https://en.wikipedia.org/wiki/Guayana_Esequiba
     row("Venezuela", "Venezuela", &["ven"], "LatinAmerica",
-        &["Colombia", "Brazil"], &[], true, false, false),
+        &["Colombia", "Brazil", "Guyana"], &[claim("Guyana", 0.62)], true, false, false),
 
     row("Peru", "Peru", &["per"], "LatinAmerica",
         &["Ecuador", "Colombia", "Brazil", "Bolivia", "Chile"], &[], true, false, false),
@@ -783,7 +810,7 @@ pub const ROSTER: &[NationRow] = &[
     // still not worth a war against an army three times the size of yours.
     // https://en.wikipedia.org/wiki/Bolivian_littoral_dispute
     row("Bolivia", "Bolivia", &["bol"], "LatinAmerica",
-        &["Peru", "Chile", "Argentina", "Brazil"],
+        &["Peru", "Chile", "Argentina", "Brazil", "Paraguay"],
         &[claim("Chile", 0.03)], true, false, false),
 
     // The one claim in this region that did produce a war inside the sim's
@@ -1390,6 +1417,71 @@ pub const ROSTER: &[NationRow] = &[
     // how New Zealand has ever gone to war.
     row("NewZealand", "New Zealand", &["nz", "nzl"], "Oceania",
         &[], &[], true, false, false),
+
+    // ---- The rest of South America (branch feat/r2-southam2) ---------------
+    //
+    // Appended rather than filed with the other ten Latin American rows above,
+    // because roster order is relations-matrix order is serialization order and
+    // inserting at Uruguay would have moved eighty-odd indices for no gain.
+
+    // Paraguay: landlocked between the three largest states of the Southern
+    // Cone and bordering all of them. No claims in either direction, and the
+    // emptiness is the whole point of the row. Paraguay is the one country in
+    // South America that settled its borders by winning and losing wars rather
+    // than by arbitration - it lost the Triple Alliance war of 1864-70 to
+    // Brazil, Argentina and Uruguay together and lost something between a
+    // quarter and two thirds of its population doing it, then won the Chaco war
+    // of 1932-35 against Bolivia and took 20,000 km2 more than it started with.
+    // Both were closed by treaty: Asuncion's frontier with Bolivia by the Buenos
+    // Aires treaty of 21 July 1938, with Brazil by the 1872 treaty and the 1927
+    // Salto del Guaira exchange, with Argentina by the Pilcomayo and Parana
+    // thalwegs. Nothing is outstanding on any of the three.
+    //
+    // What binds Paraguay to Brazil in 1990 is not a border argument but Itaipu:
+    // the 1973 treaty, the dam finished in 1984, and a Paraguayan half of the
+    // output that Paraguay cannot use and must sell to Brazil at a price the
+    // treaty fixed. That is a trade dependency, which `statecraft.rs` models,
+    // and not a claim, which this table would have had to invent to express it.
+    row("Paraguay", "Paraguay", &["pry", "par", "paraguai"], "LatinAmerica",
+        &["Brazil", "Argentina", "Bolivia"], &[], true, false, false),
+
+    // Guyana: a state that claims nothing and is claimed by two of its three
+    // neighbours - Venezuela on 62% of it and Suriname on the New River
+    // Triangle. That asymmetry is the entire strategic position of the country
+    // and it is why the Guyana Defence Force exists at all. Brazil is the quiet
+    // border; the Takutu was settled in 1904 and nobody has raised it since.
+    //
+    // No claim of its own is the transcription and not an omission. Georgetown's
+    // position on both disputes has been unbroken since independence on 26 May
+    // 1966: the 1899 award and the 1936 mixed-commission line are final, there is
+    // nothing to negotiate, and the answer to both neighbours is the same word.
+    row("Guyana", "Guyana", &["guy", "british guiana"], "LatinAmerica",
+        &["Venezuela", "Brazil", "Suriname"], &[], true, false, false),
+
+    // Suriname claims the New River Triangle - the 15,600 km2 between the Coeroeni
+    // and the New River that a 1936 mixed commission awarded to British Guiana
+    // and that Paramaribo has never accepted, holding that the Corentyne's true
+    // upper course is the New River and therefore that the boundary runs east of
+    // it. Guyanese troops cleared a Surinamese survey camp out of Tigri on 19
+    // August 1969 and have held the ground since.
+    //
+    // 0.03 of Guyana, and the denominator is population exactly as it is for
+    // Bolivia's Litoral and Ecuador's Cordillera del Condor two hundred lines
+    // above. By area the Triangle is 0.073 of Guyana; by people it is nearly
+    // nothing, because nobody lives there but Trio and Wayana villages and the
+    // Guyanese garrison. Set at Bolivia's level rather than Ecuador's because
+    // unlike the Cenepa this was not a patrolled confrontation in 1990 - one
+    // side had physically held it for twenty-one years and the other had no army
+    // capable of taking it, being at the time unable to hold its own interior.
+    //
+    // The border with French Guiana - itself disputed, over the Lawa and Litani
+    // headwaters - is not declared, for the reason the Latin America section
+    // header gives about Brazil: it is a frontier with an overseas department
+    // 7,000 km from Paris, and a Franco-Surinamese war dyad would be an artefact
+    // of how the map is drawn.
+    // https://en.wikipedia.org/wiki/Guyana%E2%80%93Suriname_relations
+    row("Suriname", "Suriname", &["sur", "surinam", "dutch guiana"], "LatinAmerica",
+        &["Guyana", "Brazil"], &[claim("Guyana", 0.03)], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -1619,6 +1711,10 @@ well_known! {
     Canada => "Canada",
     Australia => "Australia",
     NewZealand => "NewZealand",
+    // The rest of South America (branch feat/r2-southam2).
+    Paraguay => "Paraguay",
+    Guyana => "Guyana",
+    Suriname => "Suriname",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

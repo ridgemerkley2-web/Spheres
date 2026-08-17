@@ -1130,6 +1130,42 @@
         { "a": "NewZealand", "b": "USSR", "value": 15.0 },
         { "a": "NewZealand", "b": "France", "value": -30.0 }
       ]
+    },
+    {
+      "note": [
+        "The rest of South America. Three small states whose foreign relations are almost entirely about the two large neighbours each of them has, which is why this block is short and lopsided.",
+        "Venezuela and Guyana at -35 is the coldest dyad in the hemisphere that is not Cuba and the United States, and the reason is stated in the roster: Caracas claims 62% of Guyana and prints it on its maps. What keeps the number at -35 rather than lower is that by January 1990 the two governments had agreed to put the Essequibo to the good offices of the UN Secretary-General, and Perez de Cuellar took the role that year. A frozen claim with a process attached is colder than a settled border and warmer than a live front.",
+        "Guyana and Suriname at -20 for the New River Triangle, which Guyana has physically held since it cleared a Surinamese camp out of Tigri on 19 August 1969, and for the Corentyne, whose whole width Paramaribo claims. Both are CARICOM members, Suriname was moving toward joining properly, and neither had an army capable of doing anything about the other - a border quarrel that produces notes rather than casualties.",
+        "Guyana and Cuba at 45 is the fact people forget about Georgetown. The PNC called itself socialist, Guyana was a founder of the Non-Aligned Movement's 1972 Georgetown declaration, it let Cuban troops refuel on the way to Angola, and Forbes Burnham died in 1985 under the care of Cuban doctors. Guyana's Soviet line at 25 is warm for a Commonwealth state and cold for a socialist one, which is what non-alignment as practised actually looked like.",
+        "Guyana and the United Kingdom at 30 rather than a Commonwealth 60: Britain drew the 1899 line Venezuela disputes and Britain rigged the 1964 electoral system that put the PNC in power in the first place, and the relationship never recovered from either. The United States at 25 is thin and rising - Washington had put Guyana on the ERP road with the IMF, and had no other interest in it once Burnham was dead.",
+        "Paraguay's numbers are Brazil and Argentina and then a long way down to anything else. Brazil at 65 is Itaipu: the 1973 treaty, the dam, and a Paraguayan electricity surplus that has one possible customer. Argentina at 55 is Yacyreta and the older relationship - Stroessner's Paraguay had been Peron's refuge and then Peron's rival, and Buenos Aires was where Paraguayan exiles went. The United States at 40 is a relationship that had just been repaired: Washington decertified Stroessner's Paraguay over narcotics and cut it off from military aid in 1987, and restored the connection within weeks of the February 1989 coup. Bolivia at 30 is two states that fought the bloodiest war in twentieth-century South America against each other, settled it by treaty in 1938, and have argued about nothing since.",
+        "Paraguay and Taiwan at 55, against -20 for the People's Republic, is the one line in this block that is not about a neighbour. Asuncion recognised the Republic of China in 1957 and has never stopped - it is the only state in South America that still does - and it had no diplomatic relations with Beijing at all in 1990. An anti-communist dictatorship's foreign policy outliving the dictatorship is a fact about Paraguay worth carrying, and it is a standing lever for whoever is playing China.",
+        "Suriname and the Netherlands at 15 is the whole of Surinamese foreign policy in one number, and it is low on purpose. The Hague suspended the development aid promised at independence in 1975 - the largest per-capita aid commitment in the world at the time - after Bouterse's men shot fifteen critics of the regime in Fort Zeelandia on 8 December 1982, and it was not restored until 1991. A former metropole holding back a treaty obligation, and a former colony that cannot replace it: that is not a friendship and it is not a rupture."
+      ],
+      "pairs": [
+        { "a": "Paraguay", "b": "Brazil", "value": 65.0 },
+        { "a": "Paraguay", "b": "Argentina", "value": 55.0 },
+        { "a": "Paraguay", "b": "USA", "value": 40.0 },
+        { "a": "Paraguay", "b": "Uruguay", "value": 40.0 },
+        { "a": "Paraguay", "b": "Chile", "value": 35.0 },
+        { "a": "Paraguay", "b": "Bolivia", "value": 30.0 },
+        { "a": "Paraguay", "b": "Taiwan", "value": 55.0 },
+        { "a": "Paraguay", "b": "China", "value": -20.0 },
+        { "a": "Paraguay", "b": "USSR", "value": 0.0 },
+        { "a": "Guyana", "b": "Cuba", "value": 45.0 },
+        { "a": "Guyana", "b": "Brazil", "value": 35.0 },
+        { "a": "Guyana", "b": "India", "value": 35.0 },
+        { "a": "Guyana", "b": "UK", "value": 30.0 },
+        { "a": "Guyana", "b": "USA", "value": 25.0 },
+        { "a": "Guyana", "b": "USSR", "value": 25.0 },
+        { "a": "Guyana", "b": "Suriname", "value": -20.0 },
+        { "a": "Guyana", "b": "Venezuela", "value": -35.0 },
+        { "a": "Suriname", "b": "Brazil", "value": 40.0 },
+        { "a": "Suriname", "b": "Cuba", "value": 25.0 },
+        { "a": "Suriname", "b": "USA", "value": 15.0 },
+        { "a": "Suriname", "b": "Netherlands", "value": 15.0 },
+        { "a": "Suriname", "b": "France", "value": 5.0 }
+      ]
     }
   ]
 }

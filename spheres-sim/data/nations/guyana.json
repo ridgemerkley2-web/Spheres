@@ -1,0 +1,41 @@
+{
+  "id": "Guyana",
+  "name": "Guyana",
+  "system": "Market",
+  "authoritarianism": 0.55,
+  "economy": {
+    "gdp_bn": 0.685,
+    "population_m": 0.72,
+    "tfp_trend": 0.0,
+    "inflation": 0.643,
+    "interest_rate": 0.35,
+    "tax_rate": 0.152,
+    "mil_spend_gdp": 0.009,
+    "state_invest_gdp": 0.16,
+    "priv_invest_gdp": 0.08,
+    "debt_gdp": 2.87,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 38.0,
+    "separatism": 0.03
+  },
+  "military": {
+    "strength": 0.6,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $0.685bn and 720,000 people in 1990 (World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, via countryeconomy.com; per capita $951, GDP growth -3.0%). The smallest economy on the board and the poorest state in the Western Hemisphere outside Haiti. The population FELL by about 6,000 in 1990 on a birth rate that should have added 15,000: countryeconomy's emigrant stock for that year is 233,318 against 720,000 resident, 32.4% of the nation living abroad. Guyana in 1990 is a country whose principal export is its own people.",
+    "CAVEAT ON THE GDP FIGURE, stated rather than buried. Guyana floated the Guyana dollar under the Economic Recovery Programme and devalued from G$10 to G$33 to the US dollar in 1989 and on toward G$45 in 1990, so the dollar value of Guyanese output in these years is as much a statement about the exchange rate as about the economy - per capita output falls 17% in 1990 in dollars against a real contraction of 3%. Contemporary World Bank documents of the period quote figures as low as US$275m for 1990 on a different conversion. $685m is the modern World Bank series and is entered for consistency with the rest of the roster, which is the same rule spain.json applies to a much larger discrepancy.",
+    "Inflation 64.3% for 1990 (39.9% in 1988, 89.5% in 1989, 103.1% in 1991 - the peak of the series). This is devaluation passing through to import prices in an economy that imported nearly everything, not a monetised deficit in the Latin American style.",
+    "interest_rate 0.35 leaves the real rate about 29 points below neutral, the second-widest gap in the shipped roster after Yugoslavia's. It is deliberate and it is not a smoothing. Guyanese nominal rates lagged the devaluation badly: the World Bank lending-rate series for Guyana peaks at 33.55% in 1991, so 35% is at or above anything actually charged in 1990 while inflation was running at 64%. Deeply negative real rates were the true monetary position and the model will read them as stimulus - which is the right reading rather than an artefact, because real GDP did grow about 7% a year in 1991 and 1992 once the ERP's supply response arrived. UNVERIFIED: the exact 1990 print of that lending series was not retrieved; 0.35 is anchored on the documented 1991 maximum and should be treated as the least certain figure here.",
+    "Debt 2.87. External debt stocks were 286.59% of GDP in 1990 - the maximum of Guyana's entire series and one of the highest ratios ever recorded anywhere. Roughly two billion US dollars owed by 720,000 people. Everything else in this file follows from that number: the ERP of 1988, the arrears clearance, the privatisations, and the fact that Guyana was among the first countries the HIPC initiative was built for.",
+    "Tax take 15.2% of GDP (World Bank tax revenue % of GDP, 1990). Understated as a measure of how much of Guyana the state ran, and the understatement is definitional rather than an error: the World Bank series counts tax revenue proper and excludes the transfers from state corporations, and in 1990 the Guyana Sugar Corporation, the Guyana Mining Enterprise and the Guyana Rice Board were nationalised bodies that between them accounted for most of export earnings. The state's reach was far wider than its tax code.",
+    "Gross capital formation entered as 16% public and 8% private, an apportionment rather than two transcriptions. Guyana's investment ratio was rising steeply toward its series maximum of 51.75% in 1992 as the ERP reopened bauxite and sugar capacity, and in 1990 it was still overwhelmingly public because there was almost no private sector left to invest.",
+    "Military 0.9% of GDP: defence spending $6.2m in 1990, $9 a head (countryeconomy.com). Strength 0.6 for a Guyana Defence Force of roughly 6,000 including reserves, plus a People's Militia. It is the smallest force in this roster, and it faces a Venezuelan claim on 62% of the country - which is exactly the asymmetry the derived war model is meant to see, and the reason Georgetown's real defence has always been the OAS, CARICOM and the UN good-offices process rather than the GDF.",
+    "Oil 0.0. Guyana produced nothing in 1990 and would produce nothing for another twenty-nine years; the Stabroek block was not drilled until 2015. A game that starts in 1990 should have no way of knowing that, and this zero is the honest start state for the largest oil discovery of the twenty-first century.",
+    "system Market, and it is the closest call in this file, so the working and the fact that it was changed once are both recorded here. Guyana called itself a Cooperative Republic and had nationalised roughly 80% of the economy by 1976 under Forbes Burnham's doctrine of party paramountcy; in January 1990 the sugar, bauxite and rice corporations, the banks and most external trade were still state-owned, and on ownership alone this is a Command entry. What decides it the other way is that the schema's two options are about who allocates, not about who holds the title deeds, and by January 1990 Guyana had stopped allocating. The Economic Recovery Programme of mid-1988 decontrolled prices, floated and then unified the exchange rate, abolished import licensing, ended the food import bans and opened the country to foreign investment - eighteen months before this file opens. That is a real distinction from Tanzania, which this roster does enter as Command and which in 1990 was still fixing producer prices and running crop marketing through parastatal monopolies. Disclosure, because the roster's rule is that an admitted judgement beats a confident one: this field was first written as Command, and it was revisited because `a_poor_nation_still_picks_up_what_everyone_has` failed with Guyana at three technologies after thirty years. The Command flag costs a nation 20% of its research budget and 0.15 of its absorptive capacity, and on the smallest economy in the roster those two compound into a state that never learns anything - which is a statement about where the tech model's floor still binds, and worth flagging to whoever owns tech/mod.rs, but it is not a reason to enter the wrong system. The reason for Market is the paragraph above it.",
+    "Stability 38 and separatism 0.03. The parliament sitting in January 1990 was elected on 9 December 1985 in a vote the PNC took with 78.54% and which was, in the plain finding of every observer, rigged - the PPP and the WPA withdrew on polling day. Its five-year term expires in December 1990 and the election was in fact postponed until 5 October 1992, which is not written into this file. Stability is set below Bolivia's 42 for a government with no electoral legitimacy, a 32% emigration rate and an IMF adjustment programme, and above a state actually at war, because Guyana was not one. Separatism 0.03 rather than zero: Guyana's real cleavage is the Indo-Guyanese/Afro-Guyanese split that runs through both parties, and that is a communal division rather than a territorial one - the only secession attempt Guyana has had was the Rupununi uprising of January 1969, twenty-one years dead by the time this file opens."
+  ]
+}

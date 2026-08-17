@@ -3393,6 +3393,131 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the House of Representatives",
         pillars: &[],
     },
+
+    // ============ The rest of South America (feat/r2-southam2) ============
+
+    // Paraguay — general election of 1 May 1989, three months after Andres
+    // Rodriguez removed Alfredo Stroessner. Chamber of Deputies: the Colorado
+    // Party 74.47% and 48 seats, the Authentic Radical Liberals 20.19% and 21,
+    // the Febreristas 2.10%, the Radical Liberals 1.33%. Rodriguez took the
+    // presidency with 76.6% and the election was fought, not staged: Domingo
+    // Laino, deported eight times under Stroessner, was on the ballot and on
+    // television.
+    //
+    // Entered as Proportional even though it was not quite. The 1967
+    // constitution handed the largest party two thirds of the chamber
+    // automatically, which is why the Colorados hold exactly 48 of 72 seats
+    // rather than the 53 their vote would have earned - but they cleared two
+    // thirds of the vote anyway, so the premium binds on nothing in this start
+    // state, and modelling it would only misstate what happens when their share
+    // falls. Term 60 months: Rodriguez was elected to serve out the remainder of
+    // Stroessner's constitutional period, which ran to 1993, and the next
+    // general election is 9 May 1993.
+    // https://en.wikipedia.org/wiki/1989_Paraguayan_general_election
+    Polity {
+        nation: NationId::Paraguay,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1993, 5),
+        parties: &[
+            p("py_anr", "Colorado Party", "Asociacion Nacional Republicana", Family::BigTent, 0.745),
+            p("py_plra", "Authentic Radical Liberal Party", "Partido Liberal Radical Autentico", Family::Liberal, 0.202),
+            p("py_prf", "Revolutionary Febrerista Party", "Partido Revolucionario Febrerista", Family::SocialDemocratic, 0.021),
+            p("py_plr", "Radical Liberal Party", "Partido Liberal Radical", Family::Liberal, 0.013),
+        ],
+        ruling: "the National Congress",
+        // The tripod: party, army and state as one object, which is what the
+        // Colorados and the armed forces had been since 1947 and what survived
+        // Stroessner intact. Rodriguez was the commander of the First Army Corps
+        // when he took power and the Colorado candidate when he legitimised it,
+        // and army officers were required to hold Colorado membership until the
+        // 1992 constitution ended it. A pillar list beside a real election is the
+        // correct shape for that, and it is why this block does not look like
+        // Uruguay's.
+        pillars: &[
+            pl(Pillar::Army, "the armed forces"),
+            pl(Pillar::Party, "the Colorado Party"),
+        ],
+    },
+
+    // Guyana — the National Assembly sitting in January 1990 was elected on 9
+    // December 1985: the People's National Congress 78.54% and 42 elected seats,
+    // the People's Progressive Party 15.77%, the United Force 3.37%, the Working
+    // People's Alliance 1.43%. The shares are transcribed because they are what
+    // was declared, and they are close to fiction — the PPP and the WPA withdrew
+    // on polling day and every observer group called the count rigged. Entering
+    // the declared numbers rather than a guess at the true ones is the same
+    // discipline the Syria and Iraq blocks follow: the model is told what the
+    // regime says its mandate is, and `authoritarianism` at 0.55 in guyana.json
+    // is what tells it how much that is worth.
+    //
+    // The five-year term expires in December 1990, so an election is due inside
+    // the first game year. Desmond Hoyte in fact postponed it repeatedly and it
+    // was held on 5 October 1992, when Cheddi Jagan's PPP won and ended
+    // twenty-eight years of PNC rule. The constitutional date is entered, not
+    // the historical one — whether Georgetown holds the vote or defers it is a
+    // thing this sim is supposed to decide.
+    // https://en.wikipedia.org/wiki/1985_Guyanese_general_election
+    Polity {
+        nation: NationId::Guyana,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1990, 12),
+        parties: &[
+            p("gy_pnc", "People's National Congress", "", Family::BigTent, 0.785),
+            p("gy_ppp", "People's Progressive Party", "", Family::Communist, 0.158),
+            p("gy_uf", "United Force", "", Family::Conservative, 0.034),
+            p("gy_wpa", "Working People's Alliance", "", Family::SocialDemocratic, 0.014),
+        ],
+        ruling: "the National Assembly",
+        // Party paramountcy was a written doctrine in Guyana, not an inference:
+        // the PNC congress of 1974 declared the party supreme over the state and
+        // the constitution of 1980 built the presidency around it. The GDF and
+        // the police were both party instruments, and the 1980 assassination of
+        // Walter Rodney is why the Security pillar is here.
+        pillars: &[
+            pl(Pillar::Party, "the People's National Congress"),
+            pl(Pillar::Security, "the police and the Guyana Defence Force"),
+        ],
+    },
+
+    // Suriname — general election of 25 November 1987, the vote that ended
+    // seven years of direct military rule. The Front for Democracy and
+    // Development, an alliance of the Creole NPS, the Indian VHP and the
+    // Javanese KTPI, took 85.5% and 40 of 51 seats; Bouterse's National
+    // Democratic Party took 9.3% and 3; Pertjajah Luhur and PALU took 4 seats
+    // each on under 2% apiece, which is what a district-based apportionment
+    // does in a country of 400,000. Ramsewak Shankar was elected president by
+    // the Assembly in January 1988.
+    //
+    // The Front is entered as one BigTent party because it contested as one
+    // list, and because the thing worth modelling about Surinamese politics is
+    // that its three ethnic parties can hold together against the army and
+    // cannot hold together for anything else. The shares are entered as the
+    // seats were won rather than smoothed: 85.5% is a real and fragile number.
+    //
+    // Term 60 months from November 1987, so the next election is due November
+    // 1992. It was actually held on 25 May 1991, because Bouterse removed the
+    // Shankar government by telephone on 24 December 1990 — eleven months into
+    // the game and not written into this table. The army pillar below is how the
+    // model is told that the option exists.
+    // https://en.wikipedia.org/wiki/1987_Surinamese_general_election
+    Polity {
+        nation: NationId::Suriname,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (1992, 11),
+        parties: &[
+            p("sr_fdo", "Front for Democracy and Development", "Front voor Democratie en Ontwikkeling", Family::BigTent, 0.855),
+            p("sr_ndp", "National Democratic Party", "Nationale Democratische Partij", Family::Nationalist, 0.093),
+            p("sr_palu", "Progressive Workers' and Farmers' Union", "Progressieve Arbeiders en Landbouwers Unie", Family::Communist, 0.017),
+            p("sr_pl", "Pendawa Lima", "", Family::Regionalist, 0.016),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[
+            pl(Pillar::Army, "the Nationaal Leger"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

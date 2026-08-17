@@ -106,6 +106,10 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
     Source { file: "data/nations/canada.json", json: include_str!("../../data/nations/canada.json") },
     Source { file: "data/nations/australia.json", json: include_str!("../../data/nations/australia.json") },
     Source { file: "data/nations/newzealand.json", json: include_str!("../../data/nations/newzealand.json") },
+    // The rest of South America (branch feat/r2-southam2), in ROSTER order.
+    Source { file: "data/nations/paraguay.json", json: include_str!("../../data/nations/paraguay.json") },
+    Source { file: "data/nations/guyana.json", json: include_str!("../../data/nations/guyana.json") },
+    Source { file: "data/nations/suriname.json", json: include_str!("../../data/nations/suriname.json") },
 ];
 
 pub const EMBEDDED_RELATIONS: Source<'static> = Source {

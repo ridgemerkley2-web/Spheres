@@ -1,0 +1,39 @@
+{
+  "id": "Paraguay",
+  "name": "Paraguay",
+  "system": "Market",
+  "authoritarianism": 0.38,
+  "economy": {
+    "gdp_bn": 4.9,
+    "population_m": 4.06,
+    "tfp_trend": 0.004,
+    "inflation": 0.382,
+    "interest_rate": 0.36,
+    "tax_rate": 0.085,
+    "mil_spend_gdp": 0.021,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.17,
+    "debt_gdp": 0.67,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 52.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 2.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $4.90bn in 1990 (World Bank NY.GDP.MKTP.CD, series PRY, as republished by countryeconomy.com: exact print $4,904m, with real growth of 4.1% that year). That puts Paraguay within $30m of Bolivia and makes the two of them the smallest economies of the continental roster - which is the fact, and it is worth stating that Paraguay's is the smaller population, so its output per head is roughly double Bolivia's.",
+    "Population 4.06m. This is the single figure in the file most likely to be argued with, so the working is here rather than hidden. The census of 26 August 1992 counted 4,152,588; the World Bank/UN series carries about 4,061,000 for 1990, which is consistent with that census run backwards at the ~2.7% growth of the period. The CIA World Factbook of 1990 published 4,660,270 as of July 1990 and that figure is 15% too high - it is a projection off the 1982 census that the 1992 count did not vindicate, and it is the number most contemporary sources of the period repeat. The census-consistent series is the one entered.",
+    "Inflation 38.2% for 1990 - the highest annual print in Paraguay's recorded history, before or since, and the one number that shows what the end of Stroessner cost. Two sources give 38.2% and one gives 37.3%; the difference is annual-average against December-on-December and neither changes anything. interest_rate 0.36 is the peak guarani lending benchmark for 1990 and is entered as roughly neutral in real terms, which is what the Banco Central was aiming at when Rodriguez freed rates that year. UNVERIFIED: the World Bank's lending-rate series (FR.INR.LEND) for Paraguay does not begin until 1994, so unlike the inflation figure beside it this rate is not a transcription from a series - it is placed against the inflation print, and a reader should treat it as the weaker of the two.",
+    "Tax take 8.5% of GDP (World Bank tax revenue % of GDP, 1990). This is not a rounding error and it is not the lowest figure in this roster by accident: Paraguay collected less tax relative to output than any other state on the board. There was no income tax on individuals at all until 2004. The state was financed by Itaipu royalties, customs on a re-export trade that was mostly contraband into Brazil and Argentina, and the rents of a party that had held the presidency since 1947. A ruling coalition that does not need to tax its people is the mechanism this number is for.",
+    "Debt 0.67: gross public debt of about $3,286m at end-1990 against the $4.9bn of output above (countryeconomy.com, World Bank basis). Borrowed largely in the Itaipu and Yacyreta decade and serviced out of the same dams.",
+    "Gross fixed capital formation of about 22% of GDP, entered as 5% public and 17% private. STATED AS AN APPORTIONMENT, NOT TWO TRANSCRIPTIONS: the total is sourced, the split between the two lines is placed from the shape of the period - Itaipu was finished in 1984 and Yacyreta was Argentine-financed, so the public share had fallen well below its 1970s level and the soya and cotton frontier in the east was carrying the private one.",
+    "Military 2.1% of GDP: defence spending of $104.5m in 1990, 21.7% of the central government budget (countryeconomy.com). A fifth of the budget is a large share and a small sum, which is what a poor country with a politically central army looks like. Strength 2.0 for roughly 16,000 men, almost all conscripts, no combat aircraft worth the name, and a river navy - indexed at Uruguay's level and below Bolivia's 3.0.",
+    "Oil 0.0. Paraguay has never produced a commercial barrel. Its energy is Itaipu, which by 1990 gave it a hydroelectric surplus it had no industry to consume and had to sell to Brazil at the price the 1973 treaty fixed.",
+    "Stability 52 and authoritarianism 0.38. Alfredo Stroessner had governed for 34 years and 8 months when his own son's father-in-law, General Andres Rodriguez, overthrew him on the night of 2-3 February 1989; Rodriguez then won the election of 1 May 1989 with 74.5% of the legislative vote against a real opposition that was allowed to campaign. In January 1990 Paraguay is a Colorado Party state run by a general, with exiles returning, the press uncensored for the first time in a generation, and no new constitution until June 1992. Marked above Bolivia's 42 because nobody was shooting and the economy was growing, and well below Uruguay's 65 because the institutions of the dictatorship - the party, the army and the state as one object - were all still standing. Separatism 0.0: Paraguay is the most ethnically undivided country in South America, with Guarani spoken by nearly everyone and no region asking for anything."
+  ]
+}
