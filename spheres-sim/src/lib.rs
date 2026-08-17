@@ -803,10 +803,15 @@ mod tests {
         //   file for why the figure moved rather than the citation.
         // Nothing else in spheres-sim/data/ changed for any nation that was on
         // the board before this integration.
+        // RE-PINNED ON feat/r2-pacific, and pinned locally only. Five island
+        // states joined the roster (Fiji, Solomon Islands, Vanuatu, Western
+        // Samoa, Tonga) and the start state necessarily moved. The integrator
+        // re-pins this once at the end of the round; do not read this value as
+        // agreeing with any other branch's.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0x1bb3d0e7c7919e2eu64,
+            h, 0x5bc0b3b17f5a4530u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -924,7 +929,11 @@ mod tests {
         // audit found that nothing in the suite constrained the coefficient this
         // commit changed from below: at bite 0.000, with sanctions costing a
         // target no growth at all, everything except the hashes stayed green.
-        const GOLDEN: u64 = 0xef3e968249846a49;
+        // RE-PINNED ON feat/r2-pacific, locally only, for the same reason as
+        // `the_1990_start_is_pinned` above: five nations joined the roster and
+        // the tech cost floor grew a microstate branch. The integrator re-pins
+        // once at the end of the round.
+        const GOLDEN: u64 = 0x241022b3b348fc71;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

@@ -1009,6 +1009,18 @@ pub fn tick(w: &mut WorldState) {
         // 108 nations is small enough to notice. The transition is continuous
         // in value at the reference, which is what stops a nation's costs
         // jumping as it grows through it.
+        //
+        // Technologies known after thirty years, seed 1990, before -> after:
+        //   Tonga 0 -> 19, Western Samoa 1 -> 14, Solomon Islands 1 -> 10,
+        //   Vanuatu 2 -> 19, Fiji 29 -> 32, Laos 5 -> 9, Cambodia 9 -> 9,
+        //   frontier 121 -> 122.
+        // Laos moving 5 -> 9 on a 1.27x change in one term is the one figure
+        // here that deserves a second look, and it is compounding rather than
+        // arithmetic: four extra adoptions early carry `ResearchRate` and
+        // `CostReduction` effects that pay for the ones after them. It is also
+        // the honest reading of a nation that was sitting one technology above
+        // a test threshold. Laos is a genuine behaviour change on a nation that
+        // was already on the board, and it is stated rather than buried.
         const BUILD_REF: f64 = 0.008;
         let scale = if world_gdp > 0.0 {
             let root = (w.nation(id).gdp.max(0.0) / world_gdp).sqrt().clamp(0.0, 1.0);

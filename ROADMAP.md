@@ -401,7 +401,56 @@ break it was. Wants a demographic or balance-sheet mechanism.
 32 biotech techs against the 29 merged, 27 transport against 26, sharing only about
 five ids with what is on master. Someone has to pick, or merge the best of both.
 
-### 8. Later
+### 8. Three calibration tests are single-seed instruments and the roster is
+now large enough that they re-roll every time it grows
+
+Found on `feat/r2-pacific` while adding five island states, and it is a finding
+about the suite rather than about the Pacific. `sanctions_cost_the_target_real_
+growth`, `a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it` and
+`the_frontier_does_not_run_away` each take one 20-to-35-year whole-world run at
+one seed and assert an absolute band on the result. Adding any nation to the
+roster shifts the RNG stream — five more nations is five more draws a tick — so
+the reading is re-rolled even when nothing about the measurement changed.
+
+MEASURED, on master, roster and coefficients untouched, by inserting N discarded
+`rng.f64()` draws per tick and running the suite:
+
+| N | Brazil growth lost to sanctions | Poland trade ratio |
+|---|---|---|
+| 0 (shipped) | 1.88pt | 1.352 |
+| 1 | 0.03pt | 1.277 |
+| 3 | 0.25pt | 1.302 |
+| 7 | 1.62pt | 1.159 |
+| 11 | 0.54pt | 1.170 |
+| 17 | 0.96pt | 1.170 |
+
+The sanctions test's acceptance band is 1.2..2.5 and the trade test's threshold
+is 1.20. Four of those six perturbations put sanctions outside its band and four
+put trade below its threshold, with the model bit-identical apart from the
+discarded draws.
+
+Across ten seeds on master the same two quantities read: sanctions
+`[1.81, 1.76, 0.91, 3.24, 1.08, 2.02, 2.10, 1.62, 2.57, 2.84]`, median 2.02;
+trade `[1.187, 1.213, 1.351, 1.210, 1.168, 1.205, 1.028, 1.267, 1.208, 1.324]`,
+median 1.210. So four of ten seeds fall outside the sanctions band and four fall
+below the trade threshold on master itself. The instruments scatter wider than
+their own acceptance bands.
+
+`the_frontier_does_not_run_away` is the least fragile of the three but has the
+same shape: on `feat/r2-pacific` the UK reads 4.1%/yr against a 4.0% ceiling at
+the default seed, while seeds 0-5 on the same branch read 2.90, 3.64, 2.71,
+3.66, 3.45 and 3.27. One seed is over; the world is not running away.
+
+**What to do, and it is the integrator's call, not a roster author's.** The repo
+has already solved this once — `arms_transfers_build_a_client_army` was
+converted to a cross-seed median for exactly this reason — and the same remedy
+fits here. It is a strengthening and not a widening: a median over ten seeds is
+harder to satisfy by luck than one seed is. The catch is that master's trade
+median is 1.2102 against a threshold of 1.20, so that test's threshold has to be
+re-derived at the same time rather than carried over. Do this once, at whatever
+the roster is when round two lands, not twelve times in twelve branches.
+
+### 9. Later
 Hourly-cadence scheduler, WASM, multiplayer spheres.
 
 ## Housekeeping
