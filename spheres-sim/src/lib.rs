@@ -665,6 +665,51 @@ mod tests {
             (sorted[sorted.len()/2-1]+sorted[sorted.len()/2])/2.0);
     }
 
+    /// The instrument `sanctions_cost_the_target_real_growth` samples one seed
+    /// of, and the one the embargo threshold in statecraft.rs was set against.
+    /// Twenty-four seeds of the same two-arm comparison; the table of what this
+    /// prints at four values of `EMBARGO_SEALS_THE_MARKET` is in the comment on
+    /// that constant.
+    ///
+    /// `cargo test --release -p spheres-sim sanctions_readout -- --ignored --nocapture`
+    #[test]
+    #[ignore]
+    fn sanctions_readout() {
+        let target = NationId::Brazil;
+        let coalition =
+            [NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan];
+        let mut xs: Vec<f64> = vec![];
+        for seed in 0..24u64 {
+            let mut control = world_1990(GameRules { seed, ..GameRules::default() });
+            control.rules.ai_aggression = 0.0;
+            let c0 = control.nation(target).gdp;
+            run_months(&mut control, 240);
+            let base = exact::powf(control.nation(target).gdp / c0, 1.0 / 20.0) - 1.0;
+
+            let mut treated = world_1990(GameRules { seed, ..GameRules::default() });
+            treated.rules.ai_aggression = 0.0;
+            let t0 = treated.nation(target).gdp;
+            for _ in 0..240 {
+                for i in &coalition {
+                    if !treated.is_sanctioning(*i, target) {
+                        treated.sanctions.push((*i, target));
+                    }
+                }
+                tick_month(&mut treated, &[]);
+            }
+            let after = exact::powf(treated.nation(target).gdp / t0, 1.0 / 20.0) - 1.0;
+            xs.push((base - after) * 100.0);
+        }
+        let mut sorted = xs.clone();
+        sorted.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        println!(
+            "points of annual growth lost, 24 seeds: {:?}\n  median {:.2}  negatives {}",
+            xs.iter().map(|v| (v * 100.0).round() / 100.0).collect::<Vec<_>>(),
+            (sorted[11] + sorted[12]) / 2.0,
+            xs.iter().filter(|v| **v < 0.0).count()
+        );
+    }
+
     #[test]
     fn sanctions_cost_the_target_real_growth() {
         let target = NationId::Brazil;

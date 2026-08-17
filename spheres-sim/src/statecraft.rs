@@ -43,6 +43,33 @@ pub const MAX_AID_SHARE: f64 = 0.010;
 /// influence is several countries or it is not a sphere.
 pub const MAX_CLIENT_SHARE: f64 = 0.004;
 
+/// Share of world output that has to shut its doors before a country cannot
+/// open a market anywhere else either. Below this an embargo is a quarrel a
+/// target can route around; above it the shipping is uninsurable and the banks
+/// that would clear the payments are inside the coalition.
+///
+/// Checked red in BOTH directions on the twenty-four-seed sweep in
+/// `sanctions_readout`, which is the instrument
+/// `sanctions_cost_the_target_real_growth` samples one seed of. Median points of
+/// annual growth a G5 regime costs Brazil, how many of the twenty-four seeds
+/// came out NEGATIVE — the target growing FASTER for having been embargoed —
+/// and whether the whole suite is green:
+///      1.01  (rule off)  1.61   6 negative   RED, the single seed reads 1.17
+///      0.60              1.61   6 negative   RED, identical: a G5 coalition
+///                                            weighs about 0.52, so the rule
+///                                            never fires above that
+///      0.55              1.90   3 negative   RED
+///      0.50              2.39   0 negative   RED, the single seed reads 0.11
+///      0.35              2.46   0 negative   green  (shipped)
+///      0.20              2.46   0 negative   green
+///      0.05              2.46   0 negative   green
+/// So the band admits roughly 0.05..0.45 and rejects outside it, deleting the
+/// rule outright included. The plateau is the point: what the constant actually
+/// decides is whether a G5-weight coalition seals a market, and 0.35 sits in the
+/// middle of the range that says yes while still leaving a regional quarrel —
+/// one mid-sized economy's embargo — something a target can route around.
+const EMBARGO_SEALS_THE_MARKET: f64 = 0.35;
+
 /// A patron's transfer is small at home and enormous at the other end: Soviet
 /// subsidies to Cuba averaged $4.3bn a year over 1986-90 and came to 21% of
 /// Cuban GNP. That asymmetry is the whole mechanism, and this is where it stops.
@@ -569,7 +596,7 @@ pub fn propose_trade(w: &mut WorldState, from: NationId, to: NationId) -> Result
     // is a third of world output: a regional quarrel does not do this, and the
     // G5 does.
     for x in [from, to] {
-        if w.sanction_weight(x) > 0.35 {
+        if w.sanction_weight(x) > EMBARGO_SEALS_THE_MARKET {
             return Err(format!(
                 "{} is under an embargo too wide for anyone to trade around.",
                 x.name()
