@@ -4573,6 +4573,172 @@ pub const POLITIES: &[Polity] = &[
             pl(Pillar::Army, "the Tonga Defence Services"),
         ],
     },
+    // Brunei — THE EMPTY PARTY LIST AND THE (0, 0) ARE THE TRANSCRIPTION. The
+    // last election held in Brunei was in 1962; the Parti Rakyat Brunei won it,
+    // was refused the government, revolted on 8 December, and was crushed by
+    // British troops flown up from Singapore. The state of emergency declared
+    // that month has been renewed every two years ever since, the Legislative
+    // Council was dissolved in 1984 and did not sit again until 2004, and in
+    // January 1990 Sultan Hassanal Bolkiah was head of state, Prime Minister,
+    // Minister of Defence and Minister of Finance at once. Saudi Arabia sets
+    // the precedent in this table for a state whose assembly has no parties;
+    // Brunei is the case where there is no assembly either.
+    //
+    // The fourth pillar is the one that makes this entry not a copy of Saudi
+    // Arabia's. Brunei did not hold itself in 1962 and has never been asked to
+    // since: the British Gurkha battalion at Seria was still there in 1990
+    // under the agreement of 1983, stationed on top of the oil, and paid for by
+    // the Sultan. A regime pillar that belongs to a foreign army is a
+    // dependency the model should be able to find the consequence of.
+    // https://en.wikipedia.org/wiki/Brunei_revolt
+    Polity {
+        nation: NationId::Brunei,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Sultan in Council",
+        pillars: &[
+            pl(Pillar::Party, "the royal household and the Melayu Islam Beraja doctrine"),
+            pl(Pillar::Business, "Brunei Shell Petroleum"),
+            pl(Pillar::Army, "the Royal Brunei Armed Forces and the Gurkha Reserve Unit"),
+            pl(Pillar::Clergy, "the state religious establishment"),
+        ],
+    },
+    // Papua New Guinea — general election of June 1987, the third since
+    // independence: Pangu Pati 14.9% and 26 seats, People's Democratic Movement
+    // 10.9% and 17, National Party 5.0% and 12, Melanesian Alliance 5.6% and 7,
+    // People's Progress Party 6.2% and 5.
+    //
+    // INDEPENDENTS TOOK 40.9% OF THE VOTE AND 22 OF 109 SEATS, and that number
+    // is the whole of Papua New Guinean politics rather than a curiosity. Under
+    // first-past-the-post in constituencies organised around clan and language
+    // rather than programme, a candidate wins on 15% of a fragmented field and
+    // then decides in Port Moresby which party he belongs to. Parties are
+    // therefore post-electoral coalitions of individuals, which is why no
+    // government since 1975 had survived a full term: Paias Wingti lost a
+    // no-confidence motion in July 1988 and Rabbie Namaliu of Pangu Pati holds
+    // the office when the game opens. The independent bloc is entered as a
+    // BigTent party — "a coalition in itself, cheap to govern with and
+    // impossible to hold together", which is the doc comment on that family and
+    // is exactly what it was.
+    //
+    // The election due in June 1992 is entered at (1992, 6).
+    // https://en.wikipedia.org/wiki/1987_Papua_New_Guinean_general_election
+    Polity {
+        nation: NationId::PapuaNewGuinea,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (1992, 6),
+        parties: &[
+            p("pg_ind", "Independents", "", Family::BigTent, 0.409),
+            p("pg_pangu", "Pangu Pati", "Papua na Niugini Yunion Pati", Family::SocialDemocratic, 0.149),
+            p("pg_pdm", "People's Democratic Movement", "", Family::Conservative, 0.109),
+            p("pg_ppp", "People's Progress Party", "", Family::Conservative, 0.062),
+            p("pg_ma", "Melanesian Alliance", "", Family::Regionalist, 0.056),
+            p("pg_nat", "National Party", "", Family::Nationalist, 0.050),
+            p("pg_lna", "League for National Advancement", "", Family::BigTent, 0.048),
+            p("pg_pap", "People's Action Party", "", Family::Conservative, 0.032),
+            p("pg_up", "United Party", "", Family::Agrarian, 0.032),
+        ],
+        ruling: "the National Parliament",
+        pillars: &[],
+    },
+    // East Timor — THE ONLY ELECTION THIS NATION HAS EVER HAD AT THE TIME OF
+    // WRITING THAT IS RELEVANT TO ITS FOUNDING IS ELEVEN YEARS PAST THE START
+    // DATE, and the entry uses it anyway on the Croatia precedent above: a
+    // successor's party table is the first free vote it held. That was the
+    // Constituent Assembly election of 30 August 2001 under UNTAET, at 86%
+    // turnout — Fretilin 57.4%, the Democratic Party 8.7%, the Social Democrats
+    // 8.2%, ASDT 7.8%, and eleven more under 2.5% each.
+    //
+    // On 1 January 1990 none of this exists. Indonesia had held East Timor as
+    // its twenty-seventh province since July 1976, Fretilin was a guerrilla
+    // army of a few hundred in the mountains under Xanana Gusmao, and the Santa
+    // Cruz massacre — the event that turned international opinion — was still
+    // twenty-two months away. The table below is what the territory turned out
+    // to contain when it was finally asked, not what anyone could have read off
+    // it in 1990, and it is entered because a successor with no polity at all
+    // would be worse: a nation that cannot form a government if it ever exists.
+    // https://en.wikipedia.org/wiki/2001_East_Timorese_parliamentary_election
+    Polity {
+        nation: NationId::EastTimor,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("tl_fretilin", "Fretilin", "Frente Revolucionaria de Timor-Leste Independente", Family::SocialDemocratic, 0.574),
+            p("tl_pd", "Democratic Party", "Partido Democratico", Family::Liberal, 0.087),
+            p("tl_psd", "Social Democratic Party", "Partido Social Democrata", Family::SocialDemocratic, 0.082),
+            p("tl_asdt", "Timorese Social Democratic Association", "Associacao Social-Democrata Timorense", Family::SocialDemocratic, 0.078),
+            p("tl_udt", "Timorese Democratic Union", "Uniao Democratica Timorense", Family::Conservative, 0.024),
+            p("tl_pnt", "Timorese Nationalist Party", "Partido Nacionalista Timorense", Family::Nationalist, 0.022),
+            p("tl_kota", "Association of Timorese Heroes", "Klibur Oan Timor Asuwain", Family::Nationalist, 0.021),
+            p("tl_ppt", "People's Party of Timor", "Partido do Povo de Timor", Family::Conservative, 0.020),
+            p("tl_pdc", "Christian Democratic Party", "Partido Democrata-Cristao", Family::ChristianDemocratic, 0.020),
+            p("tl_pst", "Socialist Party of Timor", "Partido Socialista de Timor", Family::Communist, 0.018),
+        ],
+        ruling: "the National Parliament",
+        pillars: &[],
+    },
+    // Bhutan — no parties, and unlike Nepal's Panchayat next door this is not
+    // even a non-party electoral system with a real assembly behind it. The
+    // Tshogdu had elected members but also blocs of monastic and government
+    // appointees, parties were prohibited outright, and King Jigme Singye
+    // Wangchuck had ruled since 1972. Saudi Arabia and Nepal both set the
+    // precedent for the empty list.
+    //
+    // The three pillars are the three institutions the country is actually made
+    // of, and the second one is not Bhutanese. India guided Bhutan's external
+    // relations under Article 2 of the treaty of 8 August 1949, trained and
+    // largely equipped the Royal Bhutan Army through the resident Indian
+    // Military Training Team at Haa, and paid for most of the development
+    // budget on top of the Chukha power purchase. The clergy pillar is the Zhung
+    // Dratshang, the state monastic body, whose Je Khenpo ranks with the King
+    // and whose endorsement of the driglam namzha decree of 1989 is what turned
+    // a dress code into a national policy.
+    Polity {
+        nation: NationId::Bhutan,
+        system: Electoral::FirstPastThePost,
+        term_months: 36,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Tshogdu",
+        pillars: &[
+            pl(Pillar::Party, "the Wangchuck monarchy and the Lhengye Zhungtshog"),
+            pl(Pillar::Army, "the Royal Bhutan Army and the Indian training mission"),
+            pl(Pillar::Clergy, "the Zhung Dratshang under the Je Khenpo"),
+        ],
+    },
+    // Maldives — no parties, and the mechanism is worth stating precisely
+    // because it is not quite any of the others in this table. The Majlis was
+    // elected, on a non-party basis, from candidates who ran as individuals;
+    // the Majlis then nominated ONE candidate for President, who was put to the
+    // country in a yes-or-no referendum. Maumoon Abdul Gayoom took 96.4% in
+    // 1988 and had been in office since 1978. Parties were not formally
+    // outlawed so much as never permitted to form, which is why the list is
+    // empty rather than containing a single ruling party at 1.00 on the Iraq
+    // pattern: there was nothing to name.
+    //
+    // The security pillar is listed and the army pillar is not, and that is the
+    // transcription rather than an oversight. There was no army. The National
+    // Security Service was one body doing defence, coast guard, police and fire
+    // — about 1,800 men — and in November 1988 eighty PLOTE fighters took its
+    // headquarters in a morning. The pillar that actually held the government
+    // up that day was Indian, and it is named as such.
+    Polity {
+        nation: NationId::Maldives,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[],
+        ruling: "the Majlis",
+        pillars: &[
+            pl(Pillar::Party, "the President's Office and the Gayoom family network"),
+            pl(Pillar::Security, "the National Security Service"),
+            pl(Pillar::Business, "the resort lessees and the import traders"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

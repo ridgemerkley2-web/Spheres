@@ -182,6 +182,15 @@ pub const ROSTER: &[NationRow] = &[
     row("China", "China", &["prc", "cn"], "EastAsia",
         &["USSR", "Russia", "India", "Pakistan", "Vietnam", "Kazakhstan", "Nepal", "Myanmar", "NorthKorea", "Mongolia", "Laos", "Kyrgyzstan", "Tajikistan"],
         &[claim("India", 0.02), claim("Vietnam", 0.01), claim("Russia", 0.004)],
+        &["USSR", "Russia", "India", "Pakistan", "Vietnam", "Kazakhstan", "Nepal", "Myanmar", "NorthKorea", "Mongolia", "Laos", "Bhutan"],
+        // Bhutan appended with the Bhutan row below. 764 km2 of a Bhutan of
+        // 38,394 — 495 in the Pasamlung and Jakarlung valleys, 269 at Doklam
+        // and its neighbours in the west — under direct negotiation since 1984
+        // and unresolved at the start date. Measured on area because that is
+        // what is disputed: the ground is above 4,000 m and nearly nobody lives
+        // on it, so a population basis would return zero for a claim that has
+        // since produced a 73-day standoff between two nuclear powers.
+        &[claim("India", 0.02), claim("Vietnam", 0.01), claim("Russia", 0.004), claim("Bhutan", 0.020)],
         true, true, false),
 
     row("Japan", "Japan", &["jpn"], "EastAsia", &[], &[], true, true, true),
@@ -203,7 +212,7 @@ pub const ROSTER: &[NationRow] = &[
     // Pakistan's 108m in 1990. Pakistan claims Indian-administered Jammu and
     // Kashmir, about 8m of India's 870m.
     row("India", "India", &["ind", "bharat"], "SouthAsia",
-        &["Pakistan", "China", "Bangladesh", "Nepal", "Myanmar"],
+        &["Pakistan", "China", "Bangladesh", "Nepal", "Myanmar", "Bhutan"],
         &[claim("Pakistan", 0.06), claim("China", 0.005)], true, false, false),
 
     row("Pakistan", "Pakistan", &["pak"], "SouthAsia",
@@ -253,8 +262,15 @@ pub const ROSTER: &[NationRow] = &[
         &["Argentina", "Uruguay", "Bolivia", "Peru", "Colombia", "Venezuela"],
         &[], true, false, false),
 
+    // PapuaNewGuinea and EastTimor appended with their own rows at the end of
+    // this table. Both are Indonesian land borders on Timor and New Guinea and
+    // both are declared from this end because the symmetry check reads the raw
+    // rows. East Timor is a border Jakarta did not have in January 1990 — it
+    // was governing the far side of it as its own twenty-seventh province — and
+    // the entry is nonetheless correct, on the Italy/Slovenia precedent above:
+    // adjacency is geography, and it applies whenever the neighbour exists.
     row("Indonesia", "Indonesia", &["idn"], "SoutheastAsia",
-        &["Malaysia"], &[], true, false, false),
+        &["Malaysia", "PapuaNewGuinea", "EastTimor"], &[], true, false, false),
 
     // Egypt's claim is the Hala'ib triangle, and it is the cleanest example in
     // this table of a border that two states draw from two different treaties.
@@ -1415,7 +1431,7 @@ pub const ROSTER: &[NationRow] = &[
     // Army crossed it in February 1942. Malaysia's other borders are Thailand
     // across the Kra isthmus and Indonesia across Borneo.
     row("Malaysia", "Malaysia", &["mys", "malaya"], "SoutheastAsia",
-        &["Thailand", "Singapore", "Indonesia"], &[], true, false, false),
+        &["Thailand", "Singapore", "Indonesia", "Brunei"], &[], true, false, false),
 
     row("Singapore", "Singapore", &["sgp"], "SoutheastAsia",
         &["Malaysia"], &[], true, false, false),
@@ -2137,6 +2153,121 @@ pub const ROSTER: &[NationRow] = &[
     // deliberately not encoded as an outcome.
     row("Tonga", "Tonga", &["ton", "to"], "Oceania",
         &[], &[], true, false, false),
+
+    // ---- Maritime Southeast Asia, the Himalayan kingdoms, the atolls -------
+
+    // Brunei touches exactly one country and it surrounds it. The only land
+    // border is Sarawak, and the Limbang corridor cuts Brunei into two halves
+    // that cannot reach each other overland without crossing Malaysia — the
+    // only nation on this board whose own territory is not contiguous by land.
+    //
+    // The claim is Limbang, and in January 1990 it is live rather than
+    // historical. Rajah Charles Brooke annexed the district on 17 March 1890
+    // against Sultan Hashim's refusal to cede it, Brunei has never recognised
+    // the annexation, and it restated the claim formally in 1967 — which is why
+    // the two states still had no agreed land boundary at this date, a century
+    // after the fact. Limbang District is 3,978 km2 of a Malaysia of 330,803
+    // km2, and 0.012 is that ratio.
+    //
+    // THE BASIS IS AREA AND THE PHILIPPINE ROW ABOVE USES POPULATION, so the
+    // discrepancy is stated rather than buried: on population Limbang would be
+    // roughly 0.002, some tens of thousands against a Malaysia of 17.8m. The
+    // objects are different. Sabah is a state with a population Manila claims
+    // to represent; Limbang is a strip of forest whose entire significance is
+    // that it severs Brunei, and measuring it by the people in it would say the
+    // claim is a tenth of what Brunei has behaved as though it is. Both numbers
+    // are here so an integrator can overrule the choice knowingly.
+    // https://en.wikipedia.org/wiki/Limbang_District
+    row("Brunei", "Brunei", &["brn", "brunei darussalam"], "SoutheastAsia",
+        &["Malaysia"], &[claim("Malaysia", 0.012)], true, false, false),
+
+    // One land border: the 141st meridian, drawn by the Anglo-Dutch convention
+    // of 1895 and inherited unchanged by Port Moresby and Jakarta. It is a line
+    // of longitude rather than a feature, it runs some 760 km through forest,
+    // and in 1990 the OPM insurgency in Irian Jaya was crossing it in both
+    // directions along with the refugees it produced. AUSTRALIA IS FOUR
+    // KILOMETRES AWAY AT SAIBAI AND IS NOT A NEIGHBOUR: the Torres Strait is
+    // water, and the Torres Strait Treaty of 18 December 1978 settled the
+    // seabed, the fisheries and the traditional-inhabitant crossings rather
+    // than leaving a frontier anyone could march over.
+    //
+    // Filed in Oceania rather than SoutheastAsia. Region here means "close
+    // enough that force can be projected without anybody's permission", and the
+    // state that could do that to Papua New Guinea in 1990 was Australia, which
+    // administered the territory until 16 September 1975, kept a defence
+    // relationship with it afterwards, and supplied the four Iroquois the PNGDF
+    // was flying on Bougainville at the start date. The Indonesian border is
+    // declared explicitly above and does not depend on the region field at all.
+    //
+    // No claims, and that is the correct entry rather than a gap. Bougainville
+    // is a secession, not an irredenta — nobody is claiming it from anybody —
+    // and it belongs in `separatism` in the data file, which is where it is.
+    row("PapuaNewGuinea", "Papua New Guinea", &["png", "papua new guinea", "papua"], "Oceania",
+        &["Indonesia"], &[], true, false, false),
+
+    // START_1990 IS FALSE AND THAT IS THE WHOLE ROW. Indonesia invaded on 7
+    // December 1975 and annexed the territory as its twenty-seventh province in
+    // July 1976; on 1 January 1990 East Timor is not a state, it is a
+    // counter-insurgency. The referendum was 30 August 1999 and independence
+    // was restored on 20 May 2002, so this is a successor in exactly the sense
+    // the field means: a state that exists only if something comes apart.
+    //
+    // A GAP THE INTEGRATOR SHOULD SEE, and it is a mechanism gap rather than a
+    // data one. Nothing in the sim currently spawns this nation. The Yugoslav
+    // and Soviet breakups are coded in `politics.rs`; Indonesia's is not, so
+    // East Timor sits dormant holding a roster row, a polity and a relations
+    // column with no path onto the board. The row is the half that has to exist
+    // before the mechanism can be written, and inventing an Indonesian breakup
+    // trigger to justify it would be scripting the future rather than
+    // transcribing 1990.
+    //
+    // The border is the one Portugal and the Netherlands settled at The Hague
+    // on 1 October 1904 and arbitrated in 1914, and it includes the Oecusse
+    // enclave on the north coast of West Timor. Oecusse is East Timorese
+    // territory rather than a claim on Indonesia, so `claims` is empty and
+    // correct — an enclave you already hold is not an irredenta.
+    row("EastTimor", "East Timor", &["tls", "timor-leste", "east timor", "timor leste"], "SoutheastAsia",
+        &["Indonesia"], &[], false, false, false),
+
+    // Two land borders and both are real ones. India along the whole southern
+    // foot of the country, open by the treaty of 8 August 1949 under which
+    // Delhi guided Bhutan's external relations and trained and equipped its
+    // army; China along the Himalayan crest, over the passes into the Chumbi
+    // valley. The Chinese border is INCLUDED where Afghanistan's Wakhan border
+    // is deliberately EXCLUDED, and the difference is the test that row set:
+    // the Wakhjir pass had no road on either side in 1990 or since, while the
+    // Chumbi passes have carried trade and armies for three centuries and
+    // Younghusband's column walked one of them in 1904.
+    //
+    // Bhutan claims nothing from anybody. The claim in this dyad runs the other
+    // way and is entered on China's row above rather than here: Beijing claims
+    // 764 km2 of Bhutan — 495 in the Pasamlung and Jakarlung valleys in the
+    // north, 269 at Doklam, Sinchulung, Dramana and Shakhatoe in the west — out
+    // of a Bhutan of 38,394 km2, which is the 0.020 entered there. Direct
+    // boundary talks opened in 1984 and had run several rounds by 1990, so this
+    // is a live negotiation at the start date and not a map footnote. It is
+    // also the only border China negotiates with a state it does not recognise
+    // and has no diplomatic relations with, then or now.
+    // https://en.wikipedia.org/wiki/Bhutan%E2%80%93China_border
+    row("Bhutan", "Bhutan", &["btn", "druk yul"], "SouthAsia",
+        &["India", "China"], &[], true, false, false),
+
+    // Twelve hundred islands and no land border, because the nearest other
+    // country is six hundred kilometres of Indian Ocean away. That is not a gap
+    // in the transcription: the Maldives has never had a land frontier in its
+    // history and has never claimed anything from anyone.
+    //
+    // It is also not the same thing as being out of reach, and November 1988 is
+    // the proof. Some eighty PLOTE fighters landed at Male off two freighters
+    // and had the capital in hours; Gayoom was saved by Indian paratroopers who
+    // flew 2,000 km from Agra overnight and landed at Hulhule — Operation
+    // Cactus. Region membership is what gives Male its dyad with Delhi, and
+    // that dyad is the mechanism which actually decided the only fight this
+    // country has had. A fictitious land border would have been the wrong way
+    // to buy the same contact.
+    // https://en.wikipedia.org/wiki/1988_Maldives_coup_attempt
+    row("Maldives", "Maldives", &["mdv", "maldive islands"], "SouthAsia",
+        &[], &[], true, false, false),
 ];
 
 // ---------------------------------------------------------------------------
@@ -2402,6 +2533,11 @@ well_known! {
     Vanuatu => "Vanuatu",
     Samoa => "Samoa",
     Tonga => "Tonga",
+    Brunei => "Brunei",
+    PapuaNewGuinea => "PapuaNewGuinea",
+    EastTimor => "EastTimor",
+    Bhutan => "Bhutan",
+    Maldives => "Maldives",
 }
 
 const fn bytes_eq(a: &str, b: &str) -> bool {

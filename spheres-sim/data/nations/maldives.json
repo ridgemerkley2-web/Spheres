@@ -1,0 +1,43 @@
+{
+  "id": "Maldives",
+  "name": "Maldives",
+  "system": "Market",
+  "authoritarianism": 0.7,
+  "economy": {
+    "gdp_bn": 0.215,
+    "population_m": 0.223,
+    "tfp_trend": 0.018,
+    "inflation": 0.037,
+    "interest_rate": 0.11,
+    "tax_rate": 0.14,
+    "mil_spend_gdp": 0.04,
+    "state_invest_gdp": 0.08,
+    "priv_invest_gdp": 0.14,
+    "debt_gdp": 0.402,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 55.0,
+    "separatism": 0.03
+  },
+  "military": {
+    "strength": 0.5,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $0.215bn: World Bank NY.GDP.MKTP.CD, series MDV, 1990 = $215,044,000, against 189,514,400 in 1989 and 244,396,800 in 1991. Read via the WDI mirror at indexmundi.com in August 2026, api.worldbank.org having served a WAF block page for this whole session. A CONTRADICTORY FIGURE EXISTS AND IS NAMED RATHER THAN SUPPRESSED: the Library of Congress country study cites a World Bank GNP estimate of $101m for 1991 with per capita income of $460, less than half the WDI GDP series for the adjacent year. The two are not reconcilable and the WDI series is entered because it is the series the rest of this roster sits on. Treat Maldivian national accounts before the mid-1990s as weak.",
+    "Population 0.223m: World Bank SP.POP.TOTL, series MDV, 1990 = 223,159 midyear. The 1990 Maldivian census counted 213,215, a 4.7% difference that is the ordinary gap between a de facto midyear estimate and a de jure census night. Second-smallest population on this board after Brunei's 259,000, and it is spread across about 200 inhabited islands out of some 1,190, which is a state-capacity fact rather than a demographic one.",
+    "Inflation 3.7%: World Bank FP.CPI.TOTL.ZG, series MDV, 1990 = 3.65%, down from 7.17% in 1989 and before 14.71% in 1991. The 1990 dip is real and it is the calm year between two devaluations of the rufiyaa.",
+    "Interest rate 11.0%: NOT A 1990 OBSERVATION. World Bank FR.INR.LEND for the Maldives begins in 1995, at 10.99%, and the Maldives Monetary Authority — created in 1981 — published no policy rate before that. 0.11 is the 1995 first observation carried back, which is a substitution and is stated as one rather than dressed as a transcription. It is defensible because the rate structure was administered and the rufiyaa was on a de facto peg throughout, so the number was not moving; it is not defensible as evidence about 1990 specifically. Against 3.7% inflation it gives a real 7.3%.",
+    "Revenue 14.0% of GDP: World Bank GC.TAX.TOTL.GD.ZS, series MDV, 1990 = 13.96%. A real observation. It is also a strange one and the shape is worth stating: the Maldives had no personal income tax, no corporate income tax and no general sales tax in 1990 and would not have any of them for another twenty years. Over 90% of tax revenue was import duties — a country that imports everything taxes the port — plus the tourism bed tax levied per occupied bed-night since 1979 and the lease rents on resort islands, which are non-tax revenue and therefore not in this figure at all. The state's real share of output was larger than 14%.",
+    "Military 4.0% of GDP: NOT A TRANSCRIBED SERIES; the World Bank carries no MS.MIL.XPND.GD.ZS for the Maldives in 1990. THE INSTITUTION DOES NOT SPLIT THE WAY THE FIELD ASSUMES: there was no army, there was the National Security Service, roughly 1,800 strong, which was simultaneously the defence force, the coast guard, the police and the fire brigade. 4.0% of $215m is about $8.6m across all four functions, entered above the 2% a coast guard alone would cost because the NSS was expanded and re-equipped with patrol craft after November 1988. Flagged as an estimate. Strength is indexed 0.5, BELOW ANYTHING ELSE ON THIS BOARD including Nepal's and Qatar's, and that is the correct reading of an armed constabulary that was overrun by eighty men with rifles.",
+    "Investment 22% of GDP, split 8.0 state and 14.0 private: NOT TRANSCRIBED. The World Bank publishes no NE.GDI.TOTL.ZS for the Maldives before 2014. The split is weighted to the private side because Maldivian capital formation in this period was resort construction on leased islands, financed by the operators; the state side is harbour works, the Male sea wall and inter-island transport. Flagged as an estimate in both parts.",
+    "Debt 40.2% of GDP: World Bank DT.DOD.DECT.GN.ZS, series MDV, 1990 = 40.22% external debt stocks as a share of GNI. Same stated substitution the other South Asian entries make.",
+    "TFP trend 0.018: the fastest trend in this roster's bottom decile, and it is real. The Maldives went from a fishing economy to a tourism economy inside twenty years — the first resorts opened in 1972, and by 1990 tourism was the largest sector and the largest earner of foreign exchange. Moving labour off a dhoni and into a $200-a-night resort is a genuine productivity transition rather than capital deepening, which is why this sits at 0.018, above Sri Lanka's 0.012 and below Malaysia's 0.024. It is also a transition with a ceiling: there are only so many islands.",
+    "Stability 55 and authoritarianism 0.70: Maumoon Abdul Gayoom had been President since 1978 and would be until 2008. There were no political parties — not formally banned so much as not permitted to exist — the Majlis was elected on a non-party basis, and the President was nominated by the Majlis and then put to a single-candidate yes-or-no referendum, which in 1988 returned 96.4%. Dissidents were jailed or exiled and the press was licensed. Authoritarianism 0.70 is level with Nepal's Panchayat, which is the closest institutional analogue in this roster: a personal ruler over a non-party assembly. Stability 55 is well below that, and the gap is the point. Gayoom faced coup attempts in 1980, 1983 and 1988, and the third one nearly worked.",
+    "NOVEMBER 1988 IS WHY THE STABILITY FIGURE IS 55 AND NOT 70. On 3 November 1988 roughly eighty PLOTE fighters — Sri Lankan Tamil militants hired by the Maldivian businessman Abdullah Luthufi — landed at Male off two freighters and took the city within hours, including the National Security Service headquarters. Gayoom hid, and the government was restored by 1,600 Indian paratroopers who flew 2,000 km from Agra overnight and landed at Hulhule: Operation Cactus. Fourteen months before this game opens, the state was saved from a private army of eighty men by a foreign one. A regime that survives is not the same as a regime that can defend itself, and 55 is the number that says so.",
+    "Separatism 0.03: low, and it is not zero for a reason with a date on it. The three southernmost atolls seceded as the United Suvadive Republic from 1959 to 1963 with British encouragement from the Gan airfield, and Nasir put it down by gunboat. By 1990 the movement was thirty years dead and its leader in exile in Singapore, so this is a memory rather than a strain — set at Nepal's 0.02 plus a little, and below France's 0.03-level entries. Nothing in 1990 was organised around leaving the Maldives.",
+    "Oil 0.0 mbd: no hydrocarbons, no minerals, no arable land to speak of and no fresh water aquifer that has not gone brackish. Fish and beaches, and that is the entire resource endowment."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "Brunei",
+  "name": "Brunei",
+  "system": "Market",
+  "authoritarianism": 0.84,
+  "economy": {
+    "gdp_bn": 3.52,
+    "population_m": 0.259,
+    "tfp_trend": 0.003,
+    "inflation": 0.021,
+    "interest_rate": 0.07,
+    "tax_rate": 0.4,
+    "mil_spend_gdp": 0.064,
+    "state_invest_gdp": 0.1,
+    "priv_invest_gdp": 0.087,
+    "debt_gdp": 0.0,
+    "oil_mbd": 0.15,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 76.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 1.0,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $3.52bn: World Bank NY.GDP.MKTP.CD, series BRN, 1990 = $3,520,552,000 (read via the WDI mirror at indexmundi.com/facts/brunei/indicator/NY.GDP.MKTP.CD in August 2026; api.worldbank.org was returning a WAF block page for the whole of this session, which is why the mirror is named rather than hidden). The series runs 2,690,717,000 in 1988 and 2,985,468,000 in 1989, so 1990 is a 17.9% nominal jump — the Gulf crisis oil price arriving in a country that is a wellhead with a flag.",
+    "Population 0.259m: World Bank SP.POP.TOTL, series BRN, 1990 = 258,714, de facto midyear. THE SMALLEST POPULATION ON THIS BOARD, a quarter of Qatar's 0.44m. GDP per capita is $13,608, which puts Brunei above Spain, Ireland and New Zealand and behind only the largest Western economies — the roster's clearest case of a state that is rich without being large, and the model should be allowed to find that a $3.5bn economy buys almost nothing strategically however high the per-capita figure is.",
+    "Oil 0.15 mbd: EIA crude oil production, Brunei Darussalam, 1990 = 150 thousand barrels/day (132 in 1989, 161 in 1991). This is the whole country. Crude and LNG together were about 60% of GDP and effectively all of exports and government revenue, and Brunei's peak was 500.7 thousand b/d in 1979 — it has been on the far side of its own production curve since before the game starts, which is the fact the model most needs about it.",
+    "Inflation 2.1%: World Bank FP.CPI.TOTL.ZG, series BRN, 1990 = 2.14%. A real print, and the low figure is structural rather than lucky: the Brunei dollar has been at par with the Singapore dollar under the Currency Interchangeability Agreement of 12 June 1967, so Brunei imports Singapore's price level for traded goods and subsidises the rest.",
+    "Interest rate 7.0%: NOT A TRANSCRIBED SERIES, AND THE REASON IS INSTITUTIONAL. Brunei had no central bank in 1990. The Brunei Currency Board issued notes against 100% foreign reserve backing and conducted no monetary policy of any kind; the Monetary Authority of Brunei Darussalam was not created until 2011. The par link to Singapore means Singapore's rates are Brunei's rates in practice, so Singapore's 7.4% in this roster is the anchor and 7.0% is entered a little under it. Flagged as constructed. Against 2.1% inflation this gives a real rate near +4.9%, which is what a currency board delivers to a country whose own inflation is lower than its anchor's.",
+    "Revenue 40% of GDP: NOT TRANSCRIBED. Brunei published no IMF-standard government finance statistics in 1990 and the World Bank carries no GC.TAX.TOTL.GD.ZS for it. There is also no personal income tax in Brunei and there never has been; revenue is the 30%-plus corporate take and royalty on Brunei Shell Petroleum, and the schema field means the state's share of output rather than income tax narrowly. 0.40 is entered because it is what this roster already gives Oman and Qatar, the two rentiers it most resembles, and because a rentier's revenue ratio tracks the oil share of GDP, which for Brunei was around 60%. STATED AS AN ESTIMATE. Note also that the roster is internally inconsistent on this field for oil states — Saudi Arabia sits at 0.08 and Kuwait at 0.05 against Oman's and Qatar's 0.40 — so any recalibration should move all five together rather than singling this one out.",
+    "Military 6.4% of GDP: World Bank MS.MIL.XPND.GD.ZS, series BRN, 1990 = 6.44%. This is a transcribed figure and it is startling — a higher defence share than Israel's neighbours outside the Gulf, in a country with no enemy. It buys about 4,000 men in the Royal Brunei Armed Forces, a squadron of Exocet-armed fast attack craft and a fleet of helicopters. Strength is indexed 1 anyway, below Qatar's 0.8-equivalent army and level with Nepal's, because 6.4% of $3.5bn is $227m and no amount of money makes four thousand men an instrument. What the spending actually is, is regime insurance: the 1962 revolt was put down by British troops flown in from Singapore, and the British Gurkha battalion at Seria was still there in 1990 under the 1983 agreement, paid for by Brunei, guarding the oil.",
+    "Investment 18.7% of GDP, split 10.0 state and 8.7 private: World Bank NE.GDI.TOTL.ZS, series BRN, 1990 = 18.68% gross capital formation, transcribed as the sum. THE SPLIT IS A JUDGEMENT. The state side is the National Development Plan, which is the only development mechanism the country has; the private side is essentially Brunei Shell's upstream capital programme, which is a joint venture with the government and could defensibly be counted on either side. The even-ish division reflects that ambiguity rather than a published series.",
+    "Debt 0.0: this is a real zero and not a missing figure. Brunei had no external public debt in 1990, ran budget surpluses through the 1980s, and had been accumulating the surpluses in the Brunei Investment Agency since 1983 — foreign assets several times annual GDP. It is the only nation on this board that enters the game as a net creditor of the rest of it, and the schema has no field for that, so the asset side is simply lost. Stated here so the loss is visible.",
+    "TFP trend 0.003: near zero, and deliberately. Brunei's real output tracked the oil price and the depletion curve, not productivity. Every diversification programme of the 1970s and 1980s failed, the non-oil private sector was small and largely retail, and about half of employed Bruneians worked for the state. A high per-capita income sitting on a 0.003 trend is the correct shape for a rentier and is the number that stops the model reading Brunei as a small Singapore, which is the mistake the per-capita figure invites. Singapore is at 0.028 here.",
+    "Stability 76 and authoritarianism 0.84: Brunei has been under a declared state of emergency continuously since the revolt of 8 December 1962, renewed every two years ever since. Parties are not permitted, the Legislative Council was dissolved in 1984 and did not meet again until 2004, and Sultan Hassanal Bolkiah was simultaneously head of state, Prime Minister, Minister of Defence and Minister of Finance. The Internal Security Act allows detention without trial. That is institutionally the same object as Saudi Arabia's 0.85, and it is entered a shade below because enforcement was milder — Brunei's dissidents were exiled or detained in handfuls, not executed. Stability 76 is above the UAE's 72: no succession question, no expatriate majority in the security forces, no border anyone contests except the one Brunei itself contests, and a population small enough and subsidised enough that the state knows every household. The 1962 revolt is the only serious challenge in the country's modern history and it was 28 years past.",
+    "Separatism 0.00: none, and this is one of the few honest zeros in the roster. Brunei is 260,000 people, two thirds Malay, on a territory smaller than most of the provinces around it. Nobody in it wants out of it."
+  ]
+}

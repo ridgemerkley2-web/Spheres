@@ -141,6 +141,13 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
     Source { file: "data/nations/vanuatu.json", json: include_str!("../../data/nations/vanuatu.json") },
     Source { file: "data/nations/samoa.json", json: include_str!("../../data/nations/samoa.json") },
     Source { file: "data/nations/tonga.json", json: include_str!("../../data/nations/tonga.json") },
+    Source { file: "data/nations/brunei.json", json: include_str!("../../data/nations/brunei.json") },
+    Source { file: "data/nations/papuanewguinea.json", json: include_str!("../../data/nations/papuanewguinea.json") },
+    Source { file: "data/nations/bhutan.json", json: include_str!("../../data/nations/bhutan.json") },
+    // East Timor has no file on purpose: it is a successor (start_1990 false),
+    // and `validate` in data/mod.rs requires that every file name a START
+    // nation. Adding one would fail the load, not merely be unused.
+    Source { file: "data/nations/maldives.json", json: include_str!("../../data/nations/maldives.json") },
 ];
 
 pub const EMBEDDED_RELATIONS: Source<'static> = Source {

@@ -515,6 +515,17 @@ const TERRITORY = {
   // draw nothing and LABEL_AT below is their only position on the map.
   Fiji: ["FJI"], SolomonIslands: ["SLB"], Vanuatu: ["VUT"],
   Samoa: ["WSM"], Tonga: ["TON"],
+  // Maritime Southeast Asia, the Himalayan kingdoms and the atolls
+  // (branch feat/r2-seasia2). Brunei, Bhutan and Papua New Guinea all carry
+  // polygons in Natural Earth 110m. East Timor does too, and it draws nothing
+  // until the nation exists, which is the same treatment the Yugoslav
+  // successors get.
+  Brunei: ["BRN"], PapuaNewGuinea: ["PNG"], EastTimor: ["TLS"], Bhutan: ["BTN"],
+  // The Maldives has no polygon: `grep -o '"MDV"' ui/world.js` returns nothing,
+  // because every atoll in the country is below mapgen's MIN_AREA_PX floor at
+  // 110m. Same treatment as Bahrain and Singapore — an empty list, and the
+  // LABEL_AT entry below is the nation's only position on the map.
+  Maldives: [],
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],
@@ -585,6 +596,11 @@ const LABEL_AT = {
   // telling the truth about a dateline it cannot avoid crossing somewhere.
   Samoa: [27, 287],
   Tonga: [23, 310],
+  // Male at 4.1755N 73.5093E through mapgen's `project`, because the Maldives
+  // has no polygon and therefore no centroid to fall back on. Computed the same
+  // way Singapore's entry was, and the method was checked by reproducing
+  // Singapore's [788, 240] from its coordinates before this one was taken.
+  Maldives: [704, 231],
 };
 /// Nations whose label sits off their own territory and needs a leader line.
 const LEADER = new Set(["Kuwait"]);
