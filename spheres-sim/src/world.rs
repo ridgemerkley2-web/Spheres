@@ -291,6 +291,41 @@ impl CovertOp {
     }
 }
 
+/// One patron's standing investment in one client: what it has built up, and
+/// what it is currently spending to build more.
+///
+/// The stock is the point. `statecraft`'s four instruments were each an end in
+/// themselves — a pact was signed or it was not — and nothing accumulated, so a
+/// sphere of influence was bought rather than held. This decays every month
+/// whatever anyone does, which turns the whole thing into a spend-to-hold
+/// economy. See `influence.rs`.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct Stake {
+    pub patron: NationId,
+    pub client: NationId,
+    /// 0..100. What the patron holds in this capital right now.
+    pub stock: f64,
+    /// 0..1. The standing diplomatic programme: embassies, visits, broadcasting,
+    /// the party-to-party channel. Costs political capital every month it runs.
+    pub effort: f64,
+}
+
+/// Which way a client leans, and how hard a rival is currently pulling at it.
+///
+/// The two counters ARE the hysteresis. A challenger has to out-hold the
+/// incumbent by a clear margin and keep doing it for months before the client
+/// changes sides; fall behind for one month and the count starts over. Drifting
+/// out of an orbit is quiet and reversible; being taken is neither.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct Alignment {
+    pub client: NationId,
+    pub patron: NationId,
+    pub since_year: i32,
+    pub since_month: u32,
+    pub challenger: Option<NationId>,
+    pub challenge_months: u32,
+}
+
 /// What a state has done for and to other states short of war, kept together so
 /// that `WorldState` grows by one field rather than five.
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
@@ -298,6 +333,13 @@ pub struct Statecraft {
     pub pacts: Vec<Pact>,
     pub aid: Vec<AidFlow>,
     pub trade: Vec<TradePact>,
+    /// The namesake stock. Defaulted so a save written before influence existed
+    /// still loads, and rebuilds itself from the instruments already in force.
+    #[serde(default)]
+    pub influence: Vec<Stake>,
+    /// Who leans to whom, and who is pulling. Defaulted for the same reason.
+    #[serde(default)]
+    pub alignment: Vec<Alignment>,
     /// (sponsor, target, heat 0..1) — how well-trodden a covert channel has
     /// become. Nothing gets a service caught like using the same one twice.
     pub covert_heat: Vec<(NationId, NationId, f64)>,

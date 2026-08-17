@@ -10,6 +10,13 @@
 //!   day it is caught and the whole thing rebounds.
 //! * **Trade agreements** make two economies grow together and leave the smaller
 //!   one holding a knife by the blade.
+//!
+//! Since Phase 2.2 none of these four is an end in itself. Each of them is a way
+//! of buying into ONE number — the influence stake in `influence.rs` — which
+//! decays every month and therefore has to be paid for forever. While an
+//! arrangement stands, `influence::tick` reads it and pays the stake; the
+//! moments an arrangement *changes* are here, and they call `influence::shift`
+//! directly, because breaking something is a shock rather than a trickle.
 
 use crate::world::*;
 
@@ -289,6 +296,10 @@ pub fn break_pact(w: &mut WorldState, from: NationId, to: NationId) -> Result<()
         return Err("No pact to break.".into());
     }
     dissolve_pact(w, from, to);
+    // A guarantee withdrawn is a position lost, and lost all at once. The
+    // standing contribution stops on its own next month; this is the part the
+    // client's political class does immediately.
+    crate::influence::shift(w, from, to, if w.at_war(to) { -25.0 } else { -10.0 });
     if w.at_war(to) {
         w.shift_reputation(from, -30.0);
         w.shift_relation(from, to, -50.0);
@@ -399,6 +410,9 @@ pub fn end_aid(
         .aid
         .retain(|f| !(f.patron == patron && f.client == client && f.kind == kind));
     w.shift_relation(patron, client, -12.0);
+    // Cutting the money is the fastest way to lose a capital, and everyone in it
+    // knows that before the patron does.
+    crate::influence::shift(w, patron, client, -12.0);
     if alive(w, client) {
         let c = w.nation_mut(client);
         c.stability = (c.stability - 3.0).max(0.0);
@@ -452,6 +466,11 @@ pub fn covert_action(
     w.add_covert_heat(sponsor, target, 0.18);
 
     if worked {
+        // The point of subversion, stated as influence rather than as damage: an
+        // operation that lands inside a rival's client wrecks the RIVAL'S
+        // position far more than it builds the sponsor's. Cheap way to break a
+        // sphere, poor way to build one.
+        crate::influence::subversion_landed(w, sponsor, target);
         match op {
             CovertOp::FundOpposition => {
                 let hit = w.rng.range(5.0, 10.0);
@@ -493,6 +512,7 @@ pub fn covert_action(
         w.shift_relation(sponsor, target, -35.0);
         w.shift_reputation(sponsor, -12.0);
         w.add_covert_heat(sponsor, target, 0.25);
+        crate::influence::subversion_exposed(w, sponsor, target);
         {
             let t = w.nation_mut(target);
             // Caught red-handed, a foreign hand is the best thing that can
@@ -582,6 +602,9 @@ pub fn abrogate_trade(w: &mut WorldState, from: NationId, to: NationId) -> Resul
     w.nation_mut(from).gdp *= 1.0 - dep_from * 0.06;
     w.shift_relation(from, to, -25.0);
     w.shift_reputation(from, -6.0);
+    // Using the leverage spends it: the dependency that fed the stake is gone
+    // and the memory of being squeezed with it.
+    crate::influence::shift(w, from, to, -dep_to * 30.0 - 5.0);
     w.headline(format!(
         "{} tears up its trade agreement with {}; {}'s exporters reel.",
         from.name(),
@@ -661,6 +684,8 @@ pub fn call_the_guarantors(w: &mut WorldState, war: &mut War) -> Vec<NationId> {
             dissolve_pact(w, g, defender);
             w.shift_reputation(g, -25.0);
             w.shift_relation(g, defender, -45.0);
+            // The single fastest way to lose a sphere: be asked, and not come.
+            crate::influence::shift(w, g, defender, -30.0);
             w.headline(format!(
                 "{} abandons its pact with {}. The guarantee proves worthless.",
                 g.name(),

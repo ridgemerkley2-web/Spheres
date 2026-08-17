@@ -3,6 +3,7 @@ pub mod dyads;
 pub mod economy;
 pub mod government;
 pub mod exact;
+pub mod influence;
 pub mod init;
 pub mod nations;
 pub mod politics;
@@ -36,6 +37,13 @@ pub enum Command {
     CovertAction { sponsor: NationId, target: NationId, op: CovertOp },
     ProposeTrade { from: NationId, to: NationId },
     AbrogateTrade { from: NationId, to: NationId },
+    /// Open, widen or narrow a standing programme of influence in another
+    /// capital. `effort` is 0..1 and it is a POSTURE, not a purchase: it is
+    /// charged again every month it stands, and the stock it built decays the
+    /// moment it stops. This is the namesake command.
+    ProjectInfluence { patron: NationId, client: NationId, effort: f64 },
+    /// Give a sphere up. Always available, never free.
+    AbandonSphere { patron: NationId, client: NationId },
     /// Take one of the options the world is currently offering this government.
     /// Carries the stratagem's stable id, never an index into the deck.
     EnactStratagem { nation: NationId, id: String },
@@ -146,6 +154,25 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // Closing one is the unpopular half, and it is your own importers who
         // notice first.
         Command::AbrogateTrade { from, .. } => (*from, 10.0, ALWAYS),
+        // Opening a programme is a fight at home once, and then a smaller fight
+        // every month forever — the monthly half is charged by `influence::tick`
+        // rather than here, because that is what makes a sphere expensive to
+        // HOLD rather than expensive to buy. Narrowing one is charged nothing:
+        // giving ground is the cheap direction, which is exactly why spheres are
+        // lost by governments that ran out of standing at home.
+        Command::ProjectInfluence { patron, client, effort } => (
+            *patron,
+            influence::open_price(w, *patron, *client, *effort),
+            REFUSABLE,
+        ),
+        // Walking out of a capital you have spent years in. Never refused, for
+        // the same reason breaking an alliance is not: a government can always
+        // give up, and the discredited ones are the likeliest to.
+        Command::AbandonSphere { patron, client } => (
+            *patron,
+            if w.aligned_to(*client) == Some(*patron) { 14.0 } else { 5.0 },
+            ALWAYS,
+        ),
         // Each stratagem carries its own price, and they are the largest in this
         // list. Reordering an economy is the most expensive thing a government
         // ever decides to do, and it should cost most of a term's standing.
@@ -235,6 +262,10 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
         }
         Command::ProposeTrade { from, to } => statecraft::propose_trade(w, *from, *to)?,
         Command::AbrogateTrade { from, to } => statecraft::abrogate_trade(w, *from, *to)?,
+        Command::ProjectInfluence { patron, client, effort } => {
+            influence::project(w, *patron, *client, *effort)?
+        }
+        Command::AbandonSphere { patron, client } => influence::abandon(w, *patron, *client)?,
         Command::EnactStratagem { nation, id } => {
             let s = stratagems::by_id(id)
                 .ok_or_else(|| format!("No such stratagem: {}", id))?;
@@ -280,6 +311,11 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
     // still afford one, so the standing arrangements are settled before the
     // fighting is worked out.
     statecraft::tick(w);
+    // ...and then what those arrangements have bought. Influence reads the
+    // standing instruments statecraft has just billed for, so the stock always
+    // reflects the aid that was actually paid this month rather than the aid
+    // that was pledged and then lapsed.
+    influence::tick(w);
     stratagems::tick(w);
     stratagems::ai_stratagems(w);
     war::tick(w);
@@ -1929,6 +1965,506 @@ mod tests {
         assert!(ts > tb, "Turkey shrugged off the oil shock: {:.4} vs {:.4}", ts, tb);
     }
 
+    // ---- Influence: the stock, the decay, the hysteresis, the contest -------
+
+    /// The instrument the calibration below was set with. Prints what the
+    /// spheres system actually does across seeds, rather than what it was
+    /// intended to do.
+    ///
+    /// `cargo test --release -p spheres-sim influence_readout -- --ignored --nocapture`
+    #[test]
+    #[ignore]
+    fn influence_readout() {
+        for seed in [1990u64, 0, 7] {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            println!("=== seed {}", seed);
+            for m in 1..=420 {
+                tick_month(&mut w, &[]);
+                if m % 60 != 0 {
+                    continue;
+                }
+                let aligned = w.statecraft.alignment.len();
+                let stakes = w.statecraft.influence.len();
+                let contested = w
+                    .nations
+                    .iter()
+                    .filter(|n| n.alive)
+                    .filter(|n| {
+                        let b = w.stakeholders(n.id);
+                        b.iter().any(|(x, sx)| {
+                            *sx > 15.0
+                                && b.iter()
+                                    .any(|(y, sy)| *sy > 15.0 && w.relation(*x, *y) < -20.0)
+                        })
+                    })
+                    .count();
+                let mut bills: Vec<(String, usize, f64, f64)> = patrons()
+                    .iter()
+                    .filter(|p| w.nation_opt(**p).map_or(false, |n| n.alive))
+                    .map(|p| {
+                        (
+                            p.name().to_string(),
+                            w.statecraft.alignment.iter().filter(|a| a.patron == *p).count(),
+                            w.sphere_bill(*p),
+                            w.nation(*p).political_capital,
+                        )
+                    })
+                    .filter(|(_, n, _, _)| *n > 0)
+                    .collect();
+                bills.sort_by_key(|(_, n, _, _)| std::cmp::Reverse(*n));
+                println!(
+                    "  {}  stakes {:>3}  aligned {:>3}  contested {:>2}  {:?}",
+                    w.date_str(),
+                    stakes,
+                    aligned,
+                    contested,
+                    bills
+                        .iter()
+                        .take(5)
+                        .map(|(n, c, b, pc)| format!("{} {}cl {:.2}pc/mo (pc {:.0})", n, c, b, pc))
+                        .collect::<Vec<_>>()
+                );
+            }
+            let flips = 0;
+            let _ = flips;
+        }
+        // How often a client actually changes hands, which is the number the
+        // hysteresis constants are set against.
+        for seed in 0..6u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            let (mut flips, mut drifts, mut entries) = (0, 0, 0);
+            for _ in 0..420 {
+                for h in tick_month(&mut w, &[]) {
+                    if h.contains("LEAVES") {
+                        flips += 1;
+                    } else if h.contains("drifts out of") {
+                        drifts += 1;
+                    } else if h.contains("moves into") {
+                        entries += 1;
+                    }
+                }
+            }
+            println!(
+                "seed {:<4} 35y: {} entered an orbit, {} drifted out, {} were TAKEN",
+                seed, entries, drifts, flips
+            );
+        }
+    }
+
+    #[test]
+    fn influence_decays_so_a_sphere_must_be_paid_for_forever() {
+        // The whole mechanic in one assertion. A patron that opens a programme,
+        // builds a position and then stops paying must LOSE it — not keep it,
+        // and not lose it instantly either.
+        let mut w = seeded(5);
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::USA); // freeze Washington's own AI
+        apply_command(
+            &mut w,
+            &Command::ProjectInfluence {
+                patron: NationId::USA,
+                client: NationId::Egypt,
+                effort: 1.0,
+            },
+        )
+        .unwrap();
+        // Political capital is a stock and the bill is monthly, so a long build
+        // has to be funded; this test is about decay, not about bankruptcy.
+        for _ in 0..60 {
+            w.nation_mut(NationId::USA).political_capital = 80.0;
+            tick_month(&mut w, &[]);
+        }
+        let peak = w.stake(NationId::USA, NationId::Egypt);
+        assert!(peak > 30.0, "five years of full effort bought only {:.1}", peak);
+
+        apply_command(
+            &mut w,
+            &Command::AbandonSphere { patron: NationId::USA, client: NationId::Egypt },
+        )
+        .unwrap();
+        // One year later it is diminished but not gone: influence does not
+        // evaporate, it leaks.
+        for _ in 0..12 {
+            w.nation_mut(NationId::USA).political_capital = 80.0;
+            tick_month(&mut w, &[]);
+        }
+        let after_a_year = w.stake(NationId::USA, NationId::Egypt);
+        assert!(
+            after_a_year < peak * 0.75,
+            "an abandoned sphere held its value: {:.1} of {:.1} after a year",
+            after_a_year, peak
+        );
+
+        for _ in 0..48 {
+            w.nation_mut(NationId::USA).political_capital = 80.0;
+            tick_month(&mut w, &[]);
+        }
+        let after_five = w.stake(NationId::USA, NationId::Egypt);
+        assert!(
+            after_five < crate::influence::ALIGN_FLOOR,
+            "five years after the money stopped, {:.1} points still stood",
+            after_five
+        );
+    }
+
+    #[test]
+    fn alignment_resists_and_then_flips_hard() {
+        // The hysteresis, both halves. A challenger that out-holds the incumbent
+        // must NOT take the client the month it goes ahead — the resistance is
+        // the mechanic — and when it finally does, the incumbent must lose most
+        // of what it built rather than a little of it.
+        let mut w = seeded(9);
+        w.rules.ai_aggression = 0.0;
+        let (holder, taker, prize) = (NationId::USSR, NationId::USA, NationId::Egypt);
+        w.player = Some(taker);
+
+        // Seat an incumbent by hand: this test is about what the alignment rules
+        // do to a given board, not about how the board was reached.
+        w.statecraft.influence.push(Stake { patron: holder, client: prize, stock: 55.0, effort: 0.0 });
+        w.statecraft.alignment.push(Alignment {
+            client: prize,
+            patron: holder,
+            since_year: w.year,
+            since_month: w.month,
+            challenger: None,
+            challenge_months: 0,
+        });
+        w.statecraft.influence.push(Stake { patron: taker, client: prize, stock: 80.0, effort: 0.0 });
+        assert!(
+            w.relation(holder, taker) < -15.0,
+            "this test needs the two to be rivals; they are at {:.0}",
+            w.relation(holder, taker)
+        );
+
+        // A clear lead, held. It must take months, not weeks.
+        let mut flipped_on = None;
+        for m in 1..=24u32 {
+            // Hold the board still so the only moving part is the alignment rule.
+            for (p, v) in [(holder, 55.0), (taker, 80.0)] {
+                if let Some(s) = w
+                    .statecraft
+                    .influence
+                    .iter_mut()
+                    .find(|s| s.patron == p && s.client == prize)
+                {
+                    s.stock = v;
+                }
+            }
+            w.nation_mut(taker).political_capital = 80.0;
+            tick_month(&mut w, &[]);
+            if w.aligned_to(prize) == Some(taker) && flipped_on.is_none() {
+                flipped_on = Some(m);
+            }
+        }
+        let when = flipped_on.expect("a lead of 25 points held for two years never flipped");
+        assert!(
+            when >= crate::influence::FLIP_MONTHS,
+            "the client changed sides in {} months — there is no hysteresis",
+            when
+        );
+        assert!(when <= 12, "a held lead took {} months to land", when);
+    }
+
+    #[test]
+    fn a_client_taken_is_expensive_to_take_back() {
+        // The second half of "sudden and expensive": the moment a client flips,
+        // the loser must lose most of its position, so buying it back is a
+        // different order of problem from having held it.
+        let mut w = seeded(9);
+        w.rules.ai_aggression = 0.0;
+        let (holder, taker, prize) = (NationId::USSR, NationId::USA, NationId::Egypt);
+        w.player = Some(taker);
+        w.statecraft.influence.push(Stake { patron: holder, client: prize, stock: 55.0, effort: 0.0 });
+        w.statecraft.alignment.push(Alignment {
+            client: prize, patron: holder, since_year: w.year, since_month: w.month,
+            challenger: None, challenge_months: 0,
+        });
+        w.statecraft.influence.push(Stake { patron: taker, client: prize, stock: 80.0, effort: 0.0 });
+
+        let mut before_flip = 0.0;
+        for _ in 0..24 {
+            for (p, v) in [(holder, 55.0), (taker, 80.0)] {
+                if let Some(s) = w.statecraft.influence.iter_mut()
+                    .find(|s| s.patron == p && s.client == prize) { s.stock = v; }
+            }
+            w.nation_mut(taker).political_capital = 80.0;
+            let pc = w.nation(holder).political_capital;
+            before_flip = w.stake(holder, prize);
+            let hs = tick_month(&mut w, &[]);
+            if hs.iter().any(|h| h.contains("LEAVES")) {
+                assert!(
+                    w.stake(holder, prize) < before_flip * 0.5,
+                    "the loser kept {:.1} of {:.1} — a flip cost it nothing",
+                    w.stake(holder, prize), before_flip
+                );
+                assert!(
+                    w.nation(holder).political_capital < pc,
+                    "losing a client cost the government nothing at home"
+                );
+                return;
+            }
+        }
+        panic!("no flip in two years of a 25-point lead");
+    }
+
+    #[test]
+    fn two_hostile_patrons_make_a_client_expensive_for_both() {
+        // The interesting state, and the claim that it is the costly one. Two
+        // rivals working the same capital pay more per month AND hold less than
+        // either would alone, because contest raises decay on both sides.
+        let build = |contested: bool| -> (f64, f64) {
+            let mut w = seeded(6);
+            w.rules.ai_aggression = 0.0;
+            w.player = Some(NationId::USA);
+            apply_command(&mut w, &Command::ProjectInfluence {
+                patron: NationId::USA, client: NationId::Egypt, effort: 1.0 }).unwrap();
+            if contested {
+                w.statecraft.influence.push(Stake {
+                    patron: NationId::USSR, client: NationId::Egypt, stock: 50.0, effort: 0.0 });
+            }
+            for _ in 0..60 {
+                w.nation_mut(NationId::USA).political_capital = 80.0;
+                if contested {
+                    // Hold the rival's position steady so the only difference
+                    // between the two worlds is that the rival is THERE.
+                    if let Some(s) = w.statecraft.influence.iter_mut()
+                        .find(|s| s.patron == NationId::USSR && s.client == NationId::Egypt) {
+                        s.stock = 50.0;
+                    }
+                }
+                tick_month(&mut w, &[]);
+            }
+            (
+                w.stake(NationId::USA, NationId::Egypt),
+                w.sphere_upkeep(NationId::USA, NationId::Egypt),
+            )
+        };
+        let (alone_stock, alone_bill) = build(false);
+        let (fought_stock, fought_bill) = build(true);
+        assert!(
+            fought_stock < alone_stock * 0.85,
+            "a contested capital was as easy to hold as an empty one: {:.1} vs {:.1}",
+            fought_stock, alone_stock
+        );
+        assert!(
+            fought_bill > alone_bill * 1.3,
+            "contest cost nothing per month: {:.3} vs {:.3} pc",
+            fought_bill, alone_bill
+        );
+    }
+
+    #[test]
+    fn the_instruments_feed_the_stock_rather_than_standing_alone() {
+        // BIBLE section 4's claim, as a measurement: aid, arms, trade and a
+        // guarantee are no longer four separate ends, they are four ways of
+        // buying into one number. Each must move it on its own.
+        let with = |setup: fn(&mut WorldState)| -> f64 {
+            let mut w = seeded(8);
+            w.rules.ai_aggression = 0.0;
+            w.player = Some(NationId::USA);
+            setup(&mut w);
+            for _ in 0..60 {
+                w.nation_mut(NationId::USA).political_capital = 80.0;
+                tick_month(&mut w, &[]);
+            }
+            w.stake(NationId::USA, NationId::Poland)
+        };
+        let bare = with(|_| {});
+        assert!(bare < 1.0, "a stake appeared from nothing: {:.2}", bare);
+
+        let aided = with(|w| {
+            apply_command(w, &Command::PledgeAid {
+                patron: NationId::USA, client: NationId::Poland,
+                kind: AidKind::Economic, share_gdp: 0.004 }).unwrap();
+        });
+        let armed = with(|w| {
+            apply_command(w, &Command::PledgeAid {
+                patron: NationId::USA, client: NationId::Poland,
+                kind: AidKind::Arms, share_gdp: 0.004 }).unwrap();
+        });
+        let traded = with(|w| force_trade(w, NationId::USA, NationId::Poland));
+        let allied = with(|w| force_pact(w, NationId::USA, NationId::Poland));
+
+        for (name, v) in [("aid", aided), ("arms", armed), ("trade", traded), ("a pact", allied)] {
+            assert!(
+                v > 5.0,
+                "{} bought no influence at all: {:.2} points after five years",
+                name, v
+            );
+        }
+        // ...and the ordering is the design: money is the strongest instrument,
+        // a signature the weakest.
+        assert!(aided > armed, "aid {:.1} did not outweigh arms {:.1}", aided, armed);
+        assert!(armed > allied, "arms {:.1} did not outweigh a bare guarantee {:.1}", armed, allied);
+    }
+
+    #[test]
+    fn subversion_breaks_a_rivals_sphere_rather_than_building_your_own() {
+        // Covert action's place in the system: it is the cheap way to break a
+        // sphere and a poor way to build one. Both halves are asserted, because
+        // only the pair of them makes it a distinct instrument.
+        let mut w = seeded(3);
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::USA);
+        w.statecraft.influence.push(Stake {
+            patron: NationId::USSR, client: NationId::Iran, stock: 70.0, effort: 0.0 });
+        assert!(w.relation(NationId::USA, NationId::USSR) < -15.0, "these two must be rivals");
+
+        let (rival0, mine0) = (
+            w.stake(NationId::USSR, NationId::Iran),
+            w.stake(NationId::USA, NationId::Iran),
+        );
+        let mut landed = 0;
+        for _ in 0..24 {
+            let hl = tick_month(&mut w, &[Command::CovertAction {
+                sponsor: NationId::USA, target: NationId::Iran,
+                op: CovertOp::FundOpposition }]);
+            if hl.iter().any(|h| h.contains("Nobody can prove")) {
+                landed += 1;
+            }
+            w.nation_mut(NationId::USA).political_capital = 80.0;
+        }
+        assert!(landed > 0, "no operation landed in two years");
+        let (rival1, mine1) = (
+            w.stake(NationId::USSR, NationId::Iran),
+            w.stake(NationId::USA, NationId::Iran),
+        );
+        assert!(
+            rival1 < rival0 - 20.0,
+            "subversion left the rival's position intact: {:.1} -> {:.1}",
+            rival0, rival1
+        );
+        assert!(
+            (mine1 - mine0) < (rival0 - rival1) * 0.5,
+            "subversion built as much as it broke ({:+.1} for us against {:+.1} against them) \
+             — it is supposed to be a wrecking tool",
+            mine1 - mine0, rival1 - rival0
+        );
+    }
+
+    #[test]
+    fn taking_a_clients_price_is_quoted_before_it_is_paid() {
+        // A mechanic the player cannot reach from their seat is not a mechanic,
+        // and neither is one they cannot price. The quote must be honest: follow
+        // it and the client must actually change hands roughly when it said.
+        let mut w = seeded(9);
+        w.rules.ai_aggression = 0.0;
+        let (holder, taker, prize) = (NationId::USSR, NationId::USA, NationId::Egypt);
+        w.player = Some(taker);
+        w.statecraft.influence.push(Stake { patron: holder, client: prize, stock: 40.0, effort: 0.0 });
+        w.statecraft.alignment.push(Alignment {
+            client: prize, patron: holder, since_year: w.year, since_month: w.month,
+            challenger: None, challenge_months: 0 });
+
+        let q = crate::influence::quote_take(&w, taker, prize);
+        assert_eq!(q.holder, Some(holder));
+        assert!((q.target_stock - (40.0 + crate::influence::FLIP_MARGIN)).abs() < 1e-9);
+        let months = q.months.expect("a superpower must be able to buy Egypt off Moscow");
+        let quoted_pc = q.political_capital.expect("a reachable quote must carry a price");
+        assert!(months >= crate::influence::FLIP_MONTHS);
+        assert!(quoted_pc > 0.0, "taking a client was quoted as free");
+
+        apply_command(&mut w, &Command::ProjectInfluence {
+            patron: taker, client: prize, effort: 1.0 }).unwrap();
+        let mut took = None;
+        for m in 1..=(months * 3) {
+            // Hold the incumbent's position still: the quote is arithmetic about
+            // a board, and this is that board.
+            if let Some(s) = w.statecraft.influence.iter_mut()
+                .find(|s| s.patron == holder && s.client == prize) { s.stock = 40.0; }
+            w.nation_mut(taker).political_capital = 80.0;
+            tick_month(&mut w, &[]);
+            if w.aligned_to(prize) == Some(taker) {
+                took = Some(m);
+                break;
+            }
+        }
+        let actual = took.unwrap_or_else(|| panic!(
+            "the quote said {} months and the client never came over at all", months));
+        assert!(
+            actual >= months / 2 && actual <= months * 2,
+            "the quote said {} months and it took {} — the price on the screen is fiction",
+            months, actual
+        );
+    }
+
+    #[test]
+    fn a_sphere_is_a_standing_bill_a_weak_government_cannot_pay() {
+        // The other end of spend-to-hold: influence is charged in political
+        // capital every month, so a government that has spent its standing at
+        // home loses its position abroad without anyone taking it.
+        let mut w = seeded(4);
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::USA);
+        for c in [NationId::Egypt, NationId::Poland, NationId::India] {
+            apply_command(&mut w, &Command::ProjectInfluence {
+                patron: NationId::USA, client: c, effort: 1.0 }).unwrap();
+        }
+        let bill = w.sphere_bill(NationId::USA);
+        assert!(bill > 0.5, "three full programmes cost {:.2} pc a month", bill);
+
+        // Bankrupt the government at home and let it run. The programmes must be
+        // cut, not silently funded.
+        w.nation_mut(NationId::USA).political_capital = 0.0;
+        let mut cut = false;
+        for _ in 0..36 {
+            w.nation_mut(NationId::USA).political_capital = 0.0;
+            if tick_month(&mut w, &[]).iter().any(|h| h.contains("quietly winds up")) {
+                cut = true;
+            }
+        }
+        assert!(cut, "a government with no standing kept every mission open");
+        assert!(
+            w.sphere_bill(NationId::USA) < bill,
+            "the bill did not fall when the programmes were cut: {:.2} -> {:.2}",
+            bill, w.sphere_bill(NationId::USA)
+        );
+    }
+
+    #[test]
+    fn the_powers_contest_the_same_capitals_without_being_told_to() {
+        // `superpowers_compete_for_the_same_clients` asserted that two hostile
+        // patrons sometimes pay the same government. This is the stronger claim
+        // the stock makes possible: across seeds, capitals where two rivals both
+        // hold a real position must be a standing feature of the world, and
+        // clients must actually change hands.
+        let (mut with_contest, mut with_flips) = (0, 0);
+        for seed in 0..10u64 {
+            let mut w = seeded(seed);
+            let (mut saw_contest, mut saw_flip) = (false, false);
+            for _ in 0..300 {
+                for h in tick_month(&mut w, &[]) {
+                    if h.contains("LEAVES") {
+                        saw_flip = true;
+                    }
+                }
+                saw_contest |= w.nations.iter().filter(|n| n.alive).any(|n| {
+                    let b = w.stakeholders(n.id);
+                    b.iter().any(|(x, sx)| {
+                        *sx > 20.0
+                            && b.iter().any(|(y, sy)| *sy > 20.0 && w.relation(*x, *y) < -20.0)
+                    })
+                });
+            }
+            if saw_contest {
+                with_contest += 1;
+            }
+            if saw_flip {
+                with_flips += 1;
+            }
+        }
+        assert!(
+            with_contest >= 7,
+            "two rivals held real positions in the same capital in only {}/10 runs",
+            with_contest
+        );
+        assert!(
+            with_flips >= 3,
+            "a client changed hands in only {}/10 runs — the contest never resolves",
+            with_flips
+        );
+    }
+
     #[test]
     fn ukraine_leaves_the_union_without_the_bomb() {
         // Ukraine is not on the board in 1990 and has to be produced by the
@@ -1967,3 +2503,34 @@ mod tests {
 }
 
 
+
+#[cfg(test)]
+mod scratch {
+    use super::*;
+    use crate::init::world_1990;
+    #[test]
+    #[ignore]
+    fn diag() {
+        let mut w = world_1990(GameRules::default());
+        for m in 0..=420 {
+            if m % 60 == 0 {
+                let ps: Vec<NationId> = patrons().iter().copied()
+                    .filter(|p| w.nation_opt(*p).map_or(false,|n| n.alive)).collect();
+                let mut hostile = vec![];
+                for i in 0..ps.len() { for j in i+1..ps.len() {
+                    let r = w.relation(ps[i], ps[j]);
+                    if r < 0.0 { hostile.push(format!("{}-{} {:.0}", ps[i].name(), ps[j].name(), r)); }
+                }}
+                println!("{}: patrons {:?}", w.date_str(), ps.iter().map(|p|p.name()).collect::<Vec<_>>());
+                println!("   hostile pairs: {:?}", hostile);
+                // who holds what
+                let mut rows: Vec<String> = w.statecraft.influence.iter()
+                    .filter(|s| s.stock > 5.0)
+                    .map(|s| format!("{}->{} {:.0}/e{:.1}", s.patron.name(), s.client.name(), s.stock, s.effort)).collect();
+                rows.sort();
+                println!("   stakes: {:?}", rows);
+            }
+            tick_month(&mut w, &[]);
+        }
+    }
+}
