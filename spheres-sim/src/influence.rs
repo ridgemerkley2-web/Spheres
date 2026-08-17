@@ -71,7 +71,7 @@ pub const PROJECTION_PER_EFFORT: f64 = 2.4;
 const AID_WEIGHT: f64 = 6.0; // x infusion, capped at MAX_INFUSION 0.25 -> 1.50/mo
 const ARMS_WEIGHT: f64 = 4.0; // -> 1.00/mo
 const TRADE_WEIGHT: f64 = 1.2; // x dependency 0..1
-const PACT_WEIGHT: f64 = 1.0; // flat, while it is in force
+const PACT_WEIGHT: f64 = 0.7; // flat, while it is in force
 
 /// Below this a stake is not a sphere, it is an embassy. Nobody is anybody's
 /// client under it and the alignment simply lapses.
@@ -104,13 +104,20 @@ const FLIP_PC_COST: f64 = 6.0;
 /// month, and that — not a designer's preference — is the whole budget a great
 /// power has for everything it does abroad. Ten clients at rest is 0.7 of it.
 /// Try to hold twenty and you are insolvent, which is the mechanic.
-const UPKEEP_PC_PER_POINT: f64 = 0.0012;
+const UPKEEP_PC_PER_POINT: f64 = 0.0004;
 /// ...and what an active programme costs on top of that, at full effort. Three
 /// programmes at full effort is most of a great power's monthly income.
-const UPKEEP_PC_EFFORT: f64 = 0.22;
+const UPKEEP_PC_EFFORT: f64 = 0.10;
 
 /// A stake this small is not worth the paperwork; the desk quietly closes.
 const PRUNE_BELOW: f64 = 0.4;
+
+/// What counts as a contest, stated once. Both powers have to hold a position
+/// worth the name, and they have to mind about each other — `rivalry` 0.25 is a
+/// relation of zero, which is the point at which two embassies in one capital
+/// start getting in each other's way rather than merely coexisting.
+const CONTEST_STAKE: f64 = 20.0;
+const CONTEST_RIVALRY: f64 = 0.25;
 
 // ---------------------------------------------------------------------------
 // Reading the board
@@ -214,6 +221,19 @@ impl WorldState {
             .map(|(q, s)| self.rivalry(patron, q) * s / (s + mine + 10.0))
             .fold(0.0, f64::max)
     }
+    /// Is this capital being fought over? One definition, used by the sim, the
+    /// tests, the briefing and the map alike, so nobody can disagree about what
+    /// the interesting state is: two powers each holding a real position, and
+    /// enough rivalry between them for it to matter.
+    pub fn is_contested(&self, client: NationId) -> bool {
+        let board = self.stakeholders(client);
+        board.iter().any(|(x, sx)| {
+            *sx >= CONTEST_STAKE
+                && board.iter().any(|(y, sy)| {
+                    y != x && *sy >= CONTEST_STAKE && self.rivalry(*x, *y) >= CONTEST_RIVALRY
+                })
+        })
+    }
     /// What one client costs this patron in political capital every month.
     pub fn sphere_upkeep(&self, patron: NationId, client: NationId) -> f64 {
         let stock = self.stake(patron, client);
@@ -254,7 +274,20 @@ fn receptivity(w: &WorldState, patron: NationId, client: NationId) -> f64 {
     // A country rich enough to fund its own government is not for sale, which is
     // the same rule `politics::client_score` applies and for the same reason.
     let wealth = (c.gdp * 1000.0 / c.population.max(0.1) / 20000.0).clamp(0.0, 1.0);
-    warmth * (1.0 - 0.75 * wealth)
+    // A country the major economies have shut out is a hard country to hold, and
+    // it is hard for EVERYBODY — not merely for the powers doing the shutting.
+    // Its economy is contracting, its politics have turned inward and defensive,
+    // and a patron that takes it on inherits the quarrel.
+    //
+    // Without this the rival bloc simply adopted whoever was under embargo at
+    // full strength and the embargo stopped costing anything: measured on the
+    // ten-seed sweep in `sanctions_cost_the_target_real_growth`, the median cost
+    // of a G5 regime fell to 0.97 points of annual growth with two seeds where
+    // being sanctioned made the target grow FASTER. A rival patron is supposed
+    // to soften an embargo, which is what Moscow did for Havana; it is not
+    // supposed to cancel one.
+    let shut_out = 1.0 - 0.7 * w.sanction_weight(client);
+    warmth * (1.0 - 0.75 * wealth) * shut_out.max(0.15)
 }
 
 /// How well a patron can reach at all: size relative to the client, and whether
@@ -352,9 +385,26 @@ pub fn tick(w: &mut WorldState) {
         }
         let incumbent = w.aligned_to(c) == Some(p);
         let pressure = w.contest_pressure(p, c);
-        let decay = BASE_DECAY * if incumbent { 1.0 - INCUMBENT_RELIEF } else { 1.0 }
+        // You cannot embargo a country and hold it in your sphere. An embargo is
+        // the opposite of a projection: nothing accumulates and what stands
+        // drains at twice the rate, whatever else is in force.
+        //
+        // This is not decoration. Without it a sanctioning power stayed the
+        // patron of the country it was sanctioning, the orbit rule in step 4
+        // kept pushing their relation UP faster than the embargo pushed it down,
+        // and the aid never lapsed — so a coalition weighing half of world
+        // output went on bankrolling its own target and
+        // `sanctions_cost_the_target_real_growth` fell from 1.87 points of
+        // annual growth to 0.39. The embargo was real; the sphere was cancelling
+        // it out.
+        let embargoing = w.is_sanctioning(p, c);
+        let decay = BASE_DECAY
+            * if incumbent { 1.0 - INCUMBENT_RELIEF } else { 1.0 }
+            * if embargoing { 2.0 } else { 1.0 }
             + CONTEST_DECAY * pressure;
-        let gain = {
+        let gain = if embargoing {
+            0.0
+        } else {
             let effort = w.effort(p, c);
             (PROJECTION_PER_EFFORT * effort + instruments(w, p, c))
                 * receptivity(w, p, c)
@@ -457,8 +507,14 @@ pub fn tick(w: &mut WorldState) {
         .map(|a| (a.client, a.patron))
         .collect();
     for (c, p) in orbits {
-        if w.relation(p, c) < 65.0 {
-            w.shift_relation(p, c, 0.20);
+        // ...unless the patron is currently embargoing its own client, in which
+        // case there is nothing warm happening and the model should not invent
+        // any. See the note on `embargoing` above.
+        if w.is_sanctioning(p, c) {
+            continue;
+        }
+        if w.relation(p, c) < 55.0 {
+            w.shift_relation(p, c, 0.10);
         }
         let enemies: Vec<NationId> = w
             .nations
@@ -467,9 +523,17 @@ pub fn tick(w: &mut WorldState) {
             .map(|n| n.id)
             .filter(|q| w.relation(p, *q) < -30.0)
             .collect();
+        // Being in somebody's sphere narrows your other options: a client cools
+        // toward the powers its patron is at odds with. Deliberately a small
+        // number with a shallow floor. At -0.10 a month against a floor of -55
+        // it cost an aligned nation about six per cent of its twenty-year output
+        // by shutting it out of trade agreements it would otherwise have signed
+        // — a diplomacy system quietly running the economy, which is not what
+        // this is for. Measured on the two arms of
+        // `a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it`.
         for q in enemies {
-            if w.relation(c, q) > -55.0 {
-                w.shift_relation(c, q, -0.10);
+            if w.relation(c, q) > -40.0 {
+                w.shift_relation(c, q, -0.05);
             }
         }
     }

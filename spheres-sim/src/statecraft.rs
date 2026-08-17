@@ -554,6 +554,28 @@ pub fn propose_trade(w: &mut WorldState, from: NationId, to: NationId) -> Result
     if w.is_sanctioning(from, to) || w.is_sanctioning(to, from) {
         return Err("Sanctions bar an agreement.".into());
     }
+    // ...and so does somebody else's embargo. A country a large share of the
+    // world economy has shut out cannot simply open a market somewhere else and
+    // carry on: the shipping is uninsurable, the letters of credit are refused,
+    // and the banks that would clear the payments are inside the coalition.
+    //
+    // This was a hole before influence existed and influence is what exposed it.
+    // A sanctioned state could sign fresh agreements with whoever was not in the
+    // coalition and collect the full level gain, which is why
+    // `sanctions_cost_the_target_real_growth` came out NEGATIVE on some seeds —
+    // being embargoed made the target richer than never having been embargoed.
+    // Measured across twenty-four seeds, that happened once on master and six
+    // times once spheres gave the rival bloc a reason to move in. The threshold
+    // is a third of world output: a regional quarrel does not do this, and the
+    // G5 does.
+    for x in [from, to] {
+        if w.sanction_weight(x) > 0.35 {
+            return Err(format!(
+                "{} is under an embargo too wide for anyone to trade around.",
+                x.name()
+            ));
+        }
+    }
     if belligerents(w, from, to) {
         return Err("Cannot open markets to a nation you are fighting.".into());
     }

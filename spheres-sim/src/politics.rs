@@ -924,19 +924,8 @@ fn client_score(w: &WorldState, patron: NationId, client: NationId) -> f64 {
         .iter()
         .any(|q| *q != patron && w.relation(patron, *q) < -20.0);
     let already_mine = backers.contains(&patron);
-    // Aid is now the heaviest of the four ways of buying into an influence
-    // stake, so a capital where we are BEHIND is where the chequebook earns
-    // most: it is the instrument that closes a gap plain diplomacy cannot.
-    // Where we are already the incumbent, the money is holding a position the
-    // incumbent's own decay relief was going to hold anyway.
-    let behind = match w.aligned_to(client) {
-        Some(h) if h != patron && w.relation(patron, h) < -20.0 => 1.6,
-        Some(h) if h == patron => 0.75,
-        _ => 1.0,
-    };
     value
         * affinity
-        * behind
         * if contested { 2.2 } else { 1.0 }
         * if already_mine { 0.60 } else { 1.0 }
 }
@@ -1131,12 +1120,12 @@ fn sphere_score(w: &WorldState, p: NationId, c: NationId) -> f64 {
         // Somebody else's client. Worth roughly twice an open capital if the
         // somebody is an enemy, and worth very little if they are a friend —
         // poaching a friend's client costs you the friend.
-        Some(h) => 0.30 + 1.8 * w.rivalry(p, h),
+        Some(h) => 0.30 + 3.0 * w.rivalry(p, h),
         None => 1.2 + 0.9 * rival.0 * (rival.1 / 60.0).min(1.0),
     };
     let theirs = holder.map(|h| w.stake(h, c)).unwrap_or(0.0);
     let gap = (theirs + crate::influence::FLIP_MARGIN - w.stake(p, c)).max(0.0);
-    value * affinity * prize / (1.0 + gap / 25.0)
+    value * affinity * prize / (1.0 + gap / 45.0)
 }
 
 fn sphere_target(w: &WorldState, p: NationId) -> Option<NationId> {
