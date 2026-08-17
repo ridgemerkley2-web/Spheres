@@ -634,17 +634,61 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
     }
 
     // (id, GDP share, pop share, JNA share, separatism, authoritarianism, stability, tfp)
-    // Macedonia's ~5% of output and ~9% of the people leave with it, unsimulated:
-    // it seceded without a shot and never fought anyone.
-    let parts: [(NationId, f64, f64, f64, f64, f64, f64, f64); 4] = [
+    //
+    // SIX republics now, not four. Macedonia and Montenegro used to leave
+    // unsimulated with a note saying so — Macedonia because it seceded without
+    // a shot and Montenegro because it was folded into Belgrade's row, which
+    // is what the "serbia and montenegro" alias on the Serbia roster row and
+    // the SRB+MNE territory pairing in the browser UI both recorded. Both are
+    // in the roster now, so both take their own share here.
+    //
+    // The shares sum to 1.000 in every column and that is the constraint this
+    // block is built to. Pulling two republics out could not be done by
+    // appending two rows: the four incumbents summed to 0.94 of output and
+    // 0.895 of population, leaving 0.06 and 0.105 for the two that were being
+    // dropped, and the real figures for those two are larger than the gap.
+    // Macedonia's 1990 GDP on World Bank NY.GDP.MKTP.CD (series MKD) is
+    // $4.700bn against the $88bn yugoslavia.json carries for the federation,
+    // which is 0.053, and Montenegro was about 0.019 of Yugoslav social
+    // product. On population the 1991 census gives Macedonia 2,034,000 and
+    // Montenegro 615,000 of 23.53m, or 0.086 and 0.026. Serbia's two figures
+    // are therefore reduced — 0.36 to 0.348 and 0.42 to 0.411 — and Belgrade
+    // carries the rounding for all six so that a dissolution does not
+    // manufacture a percent of Europe's output and population out of nothing.
+    // Serbia's population share at 0.411 is about 1.2% under the census
+    // (9.78m of 23.53m is 0.4156); that difference is the upward rounding of
+    // Croatia, Slovenia and Bosnia, left where the incumbents put it rather
+    // than redistributed across rows this branch does not own.
+    let parts: [(NationId, f64, f64, f64, f64, f64, f64, f64); 6] = [
         // Belgrade keeps the army, and Kosovo and Vojvodina keep Belgrade busy.
-        (NationId::Serbia,   0.36, 0.42, 0.70, 0.45, 0.75, 40.0, 0.002),
+        (NationId::Serbia,   0.348, 0.411, 0.70, 0.45, 0.75, 40.0, 0.002),
         // A twelve percent Serb minority concentrated in the Krajina.
         (NationId::Croatia,  0.25, 0.20, 0.12, 0.35, 0.45, 45.0, 0.012),
         // ~88% Slovene, no minority worth a war, and the richest republic.
         (NationId::Slovenia, 0.20, 0.085, 0.08, 0.05, 0.25, 62.0, 0.020),
         // 44% Bosniak, 31% Serb, 17% Croat — a republic that is all minorities.
         (NationId::Bosnia,   0.13, 0.19, 0.05, 0.85, 0.40, 30.0, 0.006),
+        // The poorest republic, and the only one that got out clean. 21%
+        // Albanian at the 1991 census, concentrated in the north-west, which
+        // is a real strain and an order of magnitude short of Bosnia's — hence
+        // 0.30. The JNA share is 0.02 and that is the fact rather than an
+        // estimate of weakness: the army withdrew from Macedonia on 26 March
+        // 1992 and took every piece of heavy equipment with it, having already
+        // confiscated the Territorial Defence stocks in 1990, so Skopje
+        // started with essentially nothing and had to buy an army.
+        // Authoritarianism 0.30 — Gligorov's was the freest of the six.
+        (NationId::Macedonia, 0.053, 0.086, 0.02, 0.30, 0.30, 55.0, 0.004),
+        // The republic that did not leave. Bulatovic's League of Communists
+        // won 58.3% in December 1990 as Milosevic's ally and Montenegro stayed
+        // inside the Federal Republic until the referendum of 21 May 2006, so
+        // authoritarianism 0.60 tracks Belgrade's 0.75 rather than Skopje's
+        // 0.30 and the two open at +60 below. Separatism 0.25 is not a
+        // minority — Montenegro was 61.9% Montenegrin, 14.6% Muslim, 9.3%
+        // Serb — it is the Montenegrin/Serb identity question that eventually
+        // produced a 55.5% independence vote. The 0.03 JNA share is the navy
+        // in the Boka Kotorska and nothing else; the Podgorica corps answered
+        // to Belgrade.
+        (NationId::Montenegro, 0.019, 0.026, 0.03, 0.25, 0.60, 45.0, 0.002),
     ];
     for (id, g, p, m, sep, auth, stab, tfp) in parts {
         w.nations.push(Nation {
@@ -701,12 +745,39 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
         (NationId::Croatia, NationId::Bosnia, -10.0),
         (NationId::Croatia, NationId::Slovenia, 20.0),
         (NationId::Bosnia, NationId::Slovenia, 5.0),
+        // Montenegro did not leave with the others and the number says so.
+        // +60 is the highest opening figure in this set, and it is the fifteen
+        // years the two republics spent as one federal state after everybody
+        // else had gone — a fact the roster cannot express as a border and
+        // therefore carries here.
+        (NationId::Serbia, NationId::Montenegro, 60.0),
+        // Belgrade let Skopje go. The JNA's withdrawal in March 1992 was
+        // negotiated and unopposed, and Serbia and Macedonia are the one pair
+        // in the Yugoslav wreckage that never fired at each other. Mildly
+        // positive rather than neutral, because the border itself stayed
+        // undemarcated until the treaty of February 2001.
+        (NationId::Serbia, NationId::Macedonia, 10.0),
+        // Zagreb and Ljubljana had no quarrel with Skopje and every reason to
+        // want the federation's exit door to look survivable.
+        (NationId::Croatia, NationId::Macedonia, 15.0),
+        (NationId::Slovenia, NationId::Macedonia, 15.0),
+        // Prevlaka: 93 hectares of Croatian territory the Yugoslav navy held
+        // from 1992, and the shelling of Dubrovnik in the autumn of 1991 was
+        // launched across this border by Montenegrin reservists. Negative, and
+        // well short of Serbia's -45 because Montenegro's part in that war was
+        // Belgrade's decision rather than Podgorica's.
+        (NationId::Croatia, NationId::Montenegro, -25.0),
+        (NationId::Bosnia, NationId::Montenegro, -10.0),
+        (NationId::Macedonia, NationId::Montenegro, 5.0),
     ];
     for (a, b, v) in between {
         w.set_relation(*a, *b, *v);
     }
 
-    w.headline("YUGOSLAVIA HAS DISSOLVED. Slovenia, Croatia, Bosnia and Serbia stand alone.".into());
+    w.headline(
+        "YUGOSLAVIA HAS DISSOLVED. Slovenia, Croatia, Bosnia, Macedonia, Montenegro and Serbia stand alone."
+            .into(),
+    );
     w.headline("The JNA's divisions, and its arsenal, remain in Belgrade's hands.".into());
 }
 

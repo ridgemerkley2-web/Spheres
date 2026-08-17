@@ -445,9 +445,30 @@ const TERRITORY = {
   Georgia: ["GEO"], Armenia: ["ARM"], Azerbaijan: ["AZE"],
   Lithuania: ["LTU"], Latvia: ["LVA"], Estonia: ["EST"], Moldova: ["MDA"],
   Yugoslavia: ["SRB", "HRV", "SVN", "BIH", "MKD", "MNE"],
-  // Successors. Macedonia is not simulated — it left without a shot — so it
-  // falls back to unaligned scenery when the federation breaks.
-  Serbia: ["SRB", "MNE"], Croatia: ["HRV"], Slovenia: ["SVN"], Bosnia: ["BIH"],
+  // All six successors are simulated now, so the federation's six polygons are
+  // handed out one each and nothing falls back to unaligned scenery. Serbia
+  // drops MNE, which it used to carry because Montenegro was folded into
+  // Belgrade's row — the Federal Republic of Yugoslavia, drawn as one state.
+  // The two are separate rows in the roster now and the map follows.
+  Serbia: ["SRB"], Croatia: ["HRV"], Slovenia: ["SVN"], Bosnia: ["BIH"],
+  Macedonia: ["MKD"], Montenegro: ["MNE"],
+  // Small and island Europe.
+  Iceland: ["ISL"], Luxembourg: ["LUX"],
+  // Natural Earth 110m has no polygon for Malta — 316 square kilometres is far
+  // under the MIN_AREA_PX floor mapgen drops specks with. The entry is kept for
+  // the reason the Singapore and Bahrain ones are: the renderer filters codes
+  // against WORLD.countries, so an absent one simply draws nothing, and
+  // LABEL_AT below gives Malta a label at its true position.
+  Malta: ["MLT"],
+  // Cyprus is CYP and NOT CYN, and the omission is the point. Natural Earth
+  // splits the island at the Green Line, and the northern third — occupied
+  // since July 1974, self-declared as the TRNC in 1983, recognised by Turkey
+  // alone — is drawn as unaligned scenery because no nation in this roster
+  // governs it. Turkey is drawn as TUR only and does not annex it either.
+  // Painting the whole island in Nicosia's colour would be the de jure map and
+  // would hide the single most important fact about this country; the roster
+  // row carries the de jure position instead, as a claim on Turkey.
+  Cyprus: ["CYP"],
 };
 // Where to hang a nation's label. Defaults to its largest landmass centroid;
 // overridden where that lands somewhere unhelpful.
@@ -466,6 +487,11 @@ const LABEL_AT = {
   // 51.2E/25.3N is [638.2, 164.2], which puts Bahrain's 50.55E/26.05N at
   // [636, 162].
   Bahrain: [636, 162],
+  // Malta has no polygon either (see TERRITORY above), so this is not a nudge
+  // but the nation's only position on the map. 14.40E/35.90N through mapgen's
+  // `project`: 1000/2 + 0.8487*R*interp(RX, 35.9)*radians(14.40) = 537.6, and
+  // robinson_y(83) - robinson_y(35.9) = 130.9.
+  Malta: [538, 131],
   // 1.35N 103.82E through mapgen's `project`, because Singapore has no polygon
   // and therefore no centroid to fall back on.
   Singapore: [788, 240],
