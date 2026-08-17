@@ -743,9 +743,8 @@ fn help() {
     println!("  secure army       (unelected regimes) pay an institution to stay loyal");
     println!("  options           what the world is offering you now");
     println!("  enact <id>        take one of those options");
-    println!("  war Kuwait        declare war (confirmed)");
-    println!("  war Kuwait        declare war outright — rung 8 in one act (confirmed)");
     println!("  -- the commitment ladder --");
+    println!("  war Kuwait        declare war outright — rung 8 in one act (confirmed)");
     println!("  quarrel Iraq      open a quarrel at rung 1, and climb from there");
     println!("  join Kuwait       take a side in a conflict already running");
     println!("  commit 8          stand on rung 8 in your only conflict");

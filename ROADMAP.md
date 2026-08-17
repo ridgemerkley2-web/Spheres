@@ -310,6 +310,73 @@ somebody is running one at it.
   left at 0.090 as the design intends, because standoff strike is all ordnance
   and no ground. Rung 6 remains the hungriest, which was the point of the table.
 
+## Landed on master: the ladder rebased onto 108 nations
+
+The ladder sat on `wip/ladder-merged` through the runtime-id refactor, the roster
+expansion from 31 to 108 and the sanctions recalibration. Rebasing it turned up
+four conflicts and only one of them was real.
+
+**Theatres now derive from the roster.** `default_theatres` was eleven hand-picked
+operating areas holding thirty-one hand-listed nations. At 108 that left
+seventy-seven states home to no theatre — and a state home to nothing is
+expeditionary in its own capital, defending its own border with its deployable
+fraction instead of its whole force structure, which inverts the most consequential
+number in §6. `region` was already a column on every roster row, so a theatre is
+now a region: eighteen of them, one per region plus the sea lanes, with the Middle
+East the one region that splits, because the Gulf littoral and the eastern
+Mediterranean are 1,500km and a different set of hosts apart. Access hosts and
+terrain stay transcribed — a region cannot state whose airfields you need.
+
+That deleted `replace_home` and both its callers. Yugoslavia's successors are home
+to the Balkans because the roster files them as Balkan, and the twelve post-Soviet
+republics take their own seats the same way. `every_nation_has_a_home` is now a
+guard on a mapping rather than on somebody's diligence.
+
+**Two tests were re-expressed and neither bound moved.**
+
+`magazines_run_dry` was the blocker. §6's three stocks are on deliberately
+mismatched time constants, so whichever empties first ends the conflict and hides
+the other two — and the government module now gives Iran pillars and a coalition
+that strains, so Iran's *resolve* hit bottom first. The conflict ended in month 8,
+"Iran sues for peace, ceding territory to Iraq", seven months short of the
+magazine emptying. Iraq's ordnance was draining at 0.065/month exactly as designed
+and would have been gone near month 15 — inside the 6..30 band. The test now holds
+the political stock still (`hold_open`: resolve above `settlement_ripe`'s 0.45,
+exhaustion below the white-peace 0.75) and leaves the logistical one alone. Its
+second assertion moved for the same reason in a different place: it read the rung
+at month 60 behind an `if let Some(c)`, so a settlement skipped it silently.
+`magazines_are_not_a_bottomless_tap` was added to pin the same band with no war in
+the way at all. Checked red both ways — `BURN_BY_RUNG[8]` at 0.020 gives 65.0
+months and at 0.250 gives 4.1, and both tests fail at each.
+
+`a_pact_drags_a_great_power_into_a_war_it_did_not_start` read 1/12 runs against a
+floor of 3, and the cause was the ladder's own doing: it put standoff strike and
+blockade *underneath* the border crossing that used to be the only trigger, and
+left the guarantee call at rung 8. A patron could watch its client be bombed for
+years and never be asked — and because an aggressor now weighs the opposition
+again at every step of a climb, a guaranteed state was never climbed at at all.
+Every guarantee had become a border. The call now happens at `SHOOTING_RUNG`, on
+the aggressor's side only, and the guarantor arrives at the rung the aggressor is
+standing on rather than always at 8. Measured over twelve thirty-year runs: 16
+guarantees honoured, 8 by a great power, 5/12 runs, against master's 16/9/6.
+
+Both hashes re-pinned once, at the end. 95 sim tests and 13 web tests green.
+
+**Played, at 108 nations, on both surfaces.** As Iraq: `quarrel Kuwait` opens at
+rung 1 in the Gulf, `commit 3` gives arms to a proxy with sanctions following,
+`commit 6` gives standoff strike, `commit 8` brings the invasion — and with it the
+coalition, Saudi Arabia's parliament *refusing* the United States the use of its
+bases while Turkey grants them, which is §6's access requirement doing its job in
+front of the player. Political capital 39 → 35 → 25 → 20 → 6 across the climb. The
+war ran fourteen months, the British expedition wore down one rung a month from 8
+to 4, and in May 1991 Iraq could no longer defend its own ground and quit. As
+Ethiopia — one of the seventy-seven that had no theatre before this rebase — the
+quarrel with Kenya opens over East Africa and is fought at home. In the browser the
+same climb runs off the nine-rung sheet, each rung priced or refused in words, and
+the conflict card reads out the deployable fractions the player is actually
+fighting with: USA 0.158, Iraq 0.041, Kuwait 0.036, UK 0.065. Nobody typed any of
+those four.
+
 ## Finding: `china_growth_miracle` was a false green, and the war model is not why
 
 `china_growth_miracle` asserted `6.0 < x < 14.0` on the single default seed.
