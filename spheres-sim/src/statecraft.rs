@@ -595,15 +595,20 @@ pub fn abrogate_trade(w: &mut WorldState, from: NationId, to: NationId) -> Resul
 // The moment a pact is actually worth something
 // ---------------------------------------------------------------------------
 
-/// Called when war is declared. Every state that guaranteed the defender is
-/// asked, one at a time and in a fixed order, whether it meant it. Returns the
-/// ones that did not, so the looser relation-based intervention rule does not
-/// quietly walk them back in.
+/// Called when somebody starts shooting at a state that was guaranteed. Every
+/// state that guaranteed the defender is asked, one at a time and in a fixed
+/// order, whether it meant it. Returns the ones that did not, so the looser
+/// relation-based intervention rule does not quietly walk them back in.
+///
+/// `at` is the rung the guarantor arrives on, and it is the rung the aggressor
+/// is standing on: a guarantee answers the war it was called to, so a standoff
+/// strike on a client is met with standoff strike and an invasion is met with a
+/// campaign. Before the ladder there was one rung and this was always 8.
 ///
 /// A defensive pact obliges nobody to join a war of aggression, so the
 /// attacker's own guarantors are not called at all — the whole asymmetry is
 /// what makes a guarantee cheap to give and expensive to keep.
-pub fn call_the_guarantors(w: &mut WorldState, c: &mut Conflict) -> Vec<NationId> {
+pub fn call_the_guarantors(w: &mut WorldState, c: &mut Conflict, at: u8) -> Vec<NationId> {
     let (attacker, defender) = (c.origin_attacker, c.defender());
     let mut refused: Vec<NationId> = vec![];
     for g in w.pact_partners(defender) {
@@ -648,7 +653,7 @@ pub fn call_the_guarantors(w: &mut WorldState, c: &mut Conflict) -> Vec<NationId
         }
 
         if w.rng.chance(p.clamp(0.0, 0.97)) {
-            crate::war::join_side(c, g, false, 8, Objective::Deny);
+            crate::war::join_side(c, g, false, at.clamp(1, 9), Objective::Deny);
             w.shift_reputation(g, 5.0);
             w.shift_relation(g, defender, 10.0);
             w.headline(format!(

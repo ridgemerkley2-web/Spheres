@@ -1007,7 +1007,7 @@ pub fn invasion_begins(w: &mut WorldState, conflict: u32, attacker: NationId) {
     // Written guarantees are called in first. A pact is a harder claim than
     // affinity and, unlike affinity, it can be publicly broken — so anyone who
     // walks away here must not be quietly walked back in by the looser rule below.
-    let refused = crate::statecraft::call_the_guarantors(w, &mut c);
+    let refused = crate::statecraft::call_the_guarantors(w, &mut c, INVASION_RUNG);
 
     // ...and friends of the victim may intervene (never against a nuclear attacker directly
     // unless they're nuclear too — abstracted: majors intervene if relation with victim high).

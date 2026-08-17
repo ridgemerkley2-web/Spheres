@@ -2317,6 +2317,41 @@ mod tests {
         id
     }
 
+    /// Hold a staged conflict open, so a test of one of BIBLE §6's three stocks
+    /// cannot be pre-empted by one of the other two.
+    ///
+    /// The three stocks are on *deliberately mismatched time constants* — that
+    /// is the design, not an accident of tuning. Force structure takes decades,
+    /// munitions weeks, resolve months. The consequence for a measurement is
+    /// unavoidable: whichever stock empties first ends the conflict and hides
+    /// what the other two were doing. A test that means to measure one of them
+    /// therefore has to say which, and hold the others still.
+    ///
+    /// This holds the political stock still. Resolve is pinned above 0.45,
+    /// which is `settlement_ripe`'s threshold for a loser having no fight left,
+    /// and exhaustion below 0.75, which is the white-peace threshold. Nothing
+    /// else is touched: the rung, the burn, the refill, the kills, the control
+    /// track and the dry-magazine rule all run exactly as they do in a game.
+    ///
+    /// It cannot make a bound easier to pass. A drain that is too slow still
+    /// reads too slow and one that is too fast still reads too fast; the only
+    /// outcome it removes is "the war stopped before the question was asked".
+    fn hold_open(w: &mut WorldState, id: u32) {
+        let parties = match w.conflict_mut(id) {
+            Some(c) => {
+                for b in c.posture.iter_mut() {
+                    b.resolve = b.resolve.max(0.60);
+                }
+                c.participants()
+            }
+            None => return,
+        };
+        for n in parties {
+            let x = w.nation_mut(n);
+            x.war_exhaustion = x.war_exhaustion.min(0.50);
+        }
+    }
+
     #[test]
     fn a_player_can_get_into_somebody_elses_war() {
         // QA's third finding, as an assertion: playing the United States there
@@ -2746,6 +2781,25 @@ mod tests {
         // the case the assertion was always really about: eight years of exactly
         // this, both sides shooting off more than their industry could replace
         // and neither able to interest a great power in coming.
+        //
+        // Iran stopped being enough on its own, and this is the second and last
+        // time the staging moves. The government module now gives Iran pillars
+        // and a coalition that strains, so its resolve is the first of the three
+        // stocks to reach bottom: the conflict ends in month 8 with "Iran sues
+        // for peace, ceding territory to Iraq", seven months of drain short of
+        // the magazine emptying. Iraq's ordnance was going at 0.065 a month
+        // exactly as designed and would have been gone near month 15 — inside
+        // this test's band, which has NOT moved — but a settlement got there
+        // first, and what the measurement was then reporting was a fact about
+        // resolve wearing the name of a fact about munitions.
+        //
+        // So the political stock is held still and the logistical one is left
+        // entirely alone. `hold_open` above says exactly what that means and why
+        // it cannot buy a pass. The band is still 6..30 and it is still checked
+        // in both directions, because `magazines_are_not_a_bottomless_tap`
+        // below pins the drain rate itself with no war in the way at all: a burn
+        // slow enough to survive thirty months, or fast enough to empty inside
+        // six, turns that test red as well as this one.
         let mut w = seeded(1);
         w.rules.ai_aggression = 0.0;
         w.player = Some(NationId::Iraq);
@@ -2754,10 +2808,32 @@ mod tests {
         assert_eq!(w.nation(NationId::Iraq).munitions, 1.0);
 
         let mut dry_at = None;
+        let mut rung_after_dry = None;
         for m in 0..60 {
             tick_month(&mut w, &[]);
-            if w.nation(NationId::Iraq).munitions <= 0.0 && dry_at.is_none() {
+            hold_open(&mut w, id);
+            let empty = w.nation(NationId::Iraq).munitions <= 0.0;
+            if empty && dry_at.is_none() {
                 dry_at = Some(m + 1);
+            }
+            // When the shooting stops, counted from the month the magazine
+            // empties. Not read at month 60: what happens after the tempo falls
+            // is the rest of the model — the quarrel goes quiet, and a quiet
+            // invasion is eventually given a verdict — and asking at the end
+            // made the assertion conditional on the war still being on the
+            // board, which is the same mistake in a second place. A settlement
+            // could skip it silently, and did.
+            //
+            // A dry army comes off the shooting rungs one rung a month, so from
+            // rung 8 this is three months and never instant. That gradient is
+            // the point: an arsenal running out is a tempo falling away, not a
+            // switch.
+            if empty && rung_after_dry.is_none() {
+                if let Some(b) = w.conflict(id).and_then(|c| c.posture_of(NationId::Iraq)) {
+                    if b.rung <= war::MAX_SUSTAINABLE_DRY {
+                        rung_after_dry = Some(m + 1 - dry_at.unwrap_or(m + 1));
+                    }
+                }
             }
         }
         let dry = dry_at.expect("Iraq shot for five years and never ran short");
@@ -2766,14 +2842,53 @@ mod tests {
             "a poor state's magazines lasted {} months of full campaign",
             dry
         );
-        if let Some(c) = w.conflict(id) {
-            let b = c.posture_of(NationId::Iraq).unwrap();
-            assert!(
-                b.rung <= war::MAX_SUSTAINABLE_DRY,
-                "an army with nothing left to fire is still at rung {}",
-                b.rung
-            );
-        }
+        let stopped = rung_after_dry
+            .expect("an army with nothing left to fire never came off the shooting rungs");
+        assert!(
+            stopped <= 6,
+            "it took {} months off an empty magazine to stop shooting",
+            stopped
+        );
+    }
+
+    #[test]
+    fn magazines_are_not_a_bottomless_tap() {
+        // The drain rate on its own, with nothing in the world able to pre-empt
+        // it: no conflict, no resolve, no settlement, no coalition. This is the
+        // half of `magazines_run_dry` that a war cannot interrupt, and it is
+        // what makes that test's 6..30 band bite in both directions instead of
+        // being a band a stopped clock could sit inside.
+        //
+        // A month of full conventional campaign burns `BURN_BY_RUNG[8]` out of a
+        // magazine that holds 1.0, against a refill that scales with the
+        // industry standing behind the army. For Iraq in 1990 — $0.46bn of
+        // budget per point of force structure against the United States' $3.3bn
+        // — that refill is nearly a rounding error, and the arsenal is a
+        // one-shot weapon rather than a tap.
+        let w = seeded(1);
+        let burn = war::BURN_BY_RUNG[8];
+        let refill = war::MAGAZINE_REBUILD * war::capital_intensity(&w, NationId::Iraq);
+        let months = 1.0 / (burn - refill);
+        assert!(
+            (6.0..30.0).contains(&months),
+            "Iraq's magazine buys {:.1} months of rung-8 fire (burn {:.4}/mo, \
+             refill {:.4}/mo) — the same band `magazines_run_dry` asserts",
+            months,
+            burn,
+            refill
+        );
+        // And the rich state's arsenal IS a tap: the same rung, the same stock,
+        // and an order of magnitude more industry behind it. If this ever stops
+        // being true, the capital-intensity term has collapsed into a constant
+        // and §6's thesis — that the difference between a large army and a power
+        // is derived, not typed — has gone with it.
+        let us_refill = war::MAGAZINE_REBUILD * war::capital_intensity(&w, NationId::USA);
+        assert!(
+            us_refill > refill * 4.0,
+            "a superpower refills at {:.4}/mo against a poor state's {:.4}/mo",
+            us_refill,
+            refill
+        );
     }
 
     #[test]

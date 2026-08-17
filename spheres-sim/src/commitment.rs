@@ -159,6 +159,35 @@ pub fn set_commitment(
             rung,
             rung_name(rung)
         ));
+        let aggressor_side = w
+            .conflict(conflict)
+            .map_or(false, |c| c.side_of(nation) == c.side_of(c.origin_attacker));
+
+        // A guarantee answers the shooting, not only the border crossing.
+        //
+        // Before the ladder there was one rung — war — and the guarantors were
+        // called at it. The ladder put two rungs of real fire underneath it,
+        // standoff strike and blockade, and leaving the call at rung 8 meant a
+        // patron watched its client be bombed for years and was never asked.
+        // Measured across twelve thirty-year runs it was worse than that: an
+        // aggressor now weighs the opposition again at every step of the climb,
+        // so a guaranteed state was never even climbed at. 2 of 77 invasions
+        // fell on a guaranteed defender, against 13 of 197 wars before the
+        // ladder, and `a_pact_drags_a_great_power_into_a_war_it_did_not_start`
+        // read 1/12 runs against a floor of 3. Every guarantee had become a
+        // border, which is exactly what that test's comment says a guarantee
+        // must not be. The call belongs at the rung where force starts.
+        if rung >= SHOOTING_RUNG && old < SHOOTING_RUNG && aggressor_side {
+            if let Some(idx) = w.conflicts.iter().position(|c| c.id == conflict) {
+                // Out of the world and back at the same index, because the
+                // guarantors need a mutable conflict and a mutable world at
+                // once and conflict order is iterated everywhere.
+                let mut c = w.conflicts.remove(idx);
+                crate::statecraft::call_the_guarantors(w, &mut c, rung);
+                w.conflicts.insert(idx, c);
+            }
+        }
+
         // The step that is different in kind from the seven below it. Climbing
         // to a full conventional campaign against somebody who is not in your
         // country is an invasion, and the world answers invasions: sanctions,
@@ -166,9 +195,8 @@ pub fn set_commitment(
         // per quarrel, at the rung, rather than at the moment somebody decided
         // to be annoyed — which is the whole of QA's first finding.
         let crossing = rung >= INVASION_RUNG
-            && w.conflict(conflict).map_or(false, |c| {
-                !c.invasion_declared && c.side_of(nation) == c.side_of(c.origin_attacker)
-            });
+            && w.conflict(conflict).map_or(false, |c| !c.invasion_declared)
+            && aggressor_side;
         if crossing {
             crate::war::invasion_begins(w, conflict, nation);
         }
