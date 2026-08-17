@@ -924,7 +924,52 @@ mod tests {
         // audit found that nothing in the suite constrained the coefficient this
         // commit changed from below: at bite 0.000, with sanctions costing a
         // target no growth at all, everything except the hashes stayed green.
-        const GOLDEN: u64 = 0xef3e968249846a49;
+        // Re-pinned LOCALLY on branch feat/r2-gulf2, 0xef3e968249846a49 ->
+        // 0x8d8bbef8ddd21f44, by the addition of Kyrgyzstan, Tajikistan and
+        // Turkmenistan. INTEGRATOR: this is a per-branch re-pin of exactly the
+        // kind the Spain note above describes and it exists only so this branch
+        // reads green. Expect to re-pin once at the end of the round and throw
+        // this value away.
+        //
+        // CONDITION (a) DID NOT HOLD, and it is reported rather than skipped.
+        // `sanctions_cost_the_target_real_growth` is red at 0.26 points against
+        // a floor of 1.2. It is not a sanctions regression, and the evidence
+        // that it is not is that MASTER FAILS THE SAME TEST ON TWO SEEDS IN
+        // NINE. That test reads one seed of a whole-world 240-month run whose
+        // target is Brazil, which starts the sim hyperinflating and is the most
+        // path-dependent economy in the model.
+        //
+        // Points of annual growth Brazil loses to the G5 regime, same code,
+        // varying only the seed (measured with a throwaway `#[ignore]` probe on
+        // both trees, not inferred):
+        //     seed  1990    0     1     2     3     4     5     6     7   mean
+        //     ----------------------------------------------------------------
+        //     master 1.87 1.81  1.76  0.91* 3.24* 1.08  2.02  2.10  1.62  1.82
+        //     branch 0.26* 0.43* 0.43* 2.99* 0.51* 2.06  1.93  1.54  2.88* 1.45
+        //     (* outside the test's own 1.2..2.5 band)
+        //
+        // The MEANS are 1.82 and 1.45, both inside the band and separated by
+        // less than master's own seed-to-seed spread. Brazil's UNSANCTIONED
+        // control growth moves 4.23%..7.87% across seeds on the branch and
+        // 4.66%..6.61% on master, so the drift is in the baseline arm rather
+        // than the treatment arm — the instrument is reading world composition
+        // at least as loudly as it reads SANCTION_BITE, whose whole admitted
+        // band (0.016..0.038, per the table on the test itself) spans about
+        // 1.0pt of the same quantity.
+        //
+        // Isolated further on this branch by varying only which republics
+        // `dissolve_ussr` spawns, everything else held: none 1.87 (= master),
+        // Kyrgyzstan only 2.22, Turkmenistan only 2.06, Tajikistan only 0.13,
+        // Kyrgyzstan+Tajikistan 2.70, all three 0.26. One four-million-person
+        // republic moves the reading further than halving the coefficient does.
+        //
+        // NOTHING WAS WIDENED, NOTHING WAS DELETED, AND NO REPUBLIC WAS DROPPED
+        // TO MAKE IT GREEN. The three left in are the three that were true. The
+        // fix this points at is to average the test over seeds — which is a
+        // narrower instrument, not a looser one, and would be green on both
+        // trees today — but that is a change to a shared calibration test and
+        // belongs to whoever owns it, made once, rather than to a roster branch.
+        const GOLDEN: u64 = 0x8d8bbef8ddd21f44;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
