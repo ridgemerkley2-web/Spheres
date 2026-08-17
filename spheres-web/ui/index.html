@@ -435,6 +435,12 @@ const TERRITORY = {
   // honest rendering of a country a 110m basemap cannot draw.
   Singapore: ["SGP"],
   Canada: ["CAN"], Australia: ["AUS"], NewZealand: ["NZL"],
+  // The island Pacific. Fiji, Solomon Islands and Vanuatu all have polygons in
+  // Natural Earth 110m and draw normally. Western Samoa and Tonga do not — the
+  // same MIN_AREA_PX problem as Singapore and Bahrain — so their entries here
+  // draw nothing and LABEL_AT below is their only position on the map.
+  Fiji: ["FJI"], SolomonIslands: ["SLB"], Vanuatu: ["VUT"],
+  Samoa: ["WSM"], Tonga: ["TON"],
   USSR: ["RUS", "UKR", "BLR", "KAZ", "UZB", "TKM", "KGZ", "TJK",
          "ARM", "AZE", "GEO", "MDA", "LTU", "LVA", "EST"],
   Ukraine: ["UKR"],
@@ -469,6 +475,19 @@ const LABEL_AT = {
   // 1.35N 103.82E through mapgen's `project`, because Singapore has no polygon
   // and therefore no centroid to fall back on.
   Singapore: [788, 240],
+  // Western Samoa (Apia, 13.83S 171.77W) and Tonga (Nuku'alofa, 21.13S
+  // 175.20W) through the same `project`. Neither has a polygon in Natural
+  // Earth 110m, so as with Bahrain these are not nudges — they are the only
+  // position either nation has on this map.
+  //
+  // They land at the LEFT edge, x=27 and x=23, while Fiji's centroid is at
+  // x=987 on the right, and that is not a bug: this is a Greenwich-centred
+  // projection and these two are the only nations in the roster east of the
+  // antimeridian. Placing them beside Fiji would need longitudes of +188 and
+  // +185, which project past x=1000 and off the canvas entirely. The map is
+  // telling the truth about a dateline it cannot avoid crossing somewhere.
+  Samoa: [27, 287],
+  Tonga: [23, 310],
 };
 /// Nations whose label sits off their own territory and needs a leader line.
 const LEADER = new Set(["Kuwait"]);

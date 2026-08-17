@@ -1,0 +1,43 @@
+{
+  "id": "Fiji",
+  "name": "Fiji",
+  "system": "Market",
+  "authoritarianism": 0.62,
+  "economy": {
+    "gdp_bn": 1.337,
+    "population_m": 0.729,
+    "tfp_trend": 0.007,
+    "inflation": 0.082,
+    "interest_rate": 0.1,
+    "tax_rate": 0.228,
+    "mil_spend_gdp": 0.021,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.093,
+    "debt_gdp": 0.247,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 45.0,
+    "separatism": 0.12
+  },
+  "military": {
+    "strength": 0.35,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $1.337bn: World Bank NY.GDP.MKTP.CD, series FJI, 1990 = 1,337,024,782.23 current US$. The same series the whole roster sits on, and the largest economy in the island Pacific by a factor of six over the next one.",
+    "Population 728,575: World Bank SP.POP.TOTL, FJI, 1990. Entered as 0.729m. The composition is the country's whole politics and is not in this file: the 1986 census counted 46.2% indigenous Fijian and 48.6% Indo-Fijian, descendants of indentured labourers brought for the sugar estates between 1879 and 1916. The 1996 census, after nine years of emigration, put it at 51.1% Fijian and 43.6% Indo-Fijian. The model is given the strain in `separatism`, not the ethnic arithmetic.",
+    "Inflation 8.2%: World Bank FP.CPI.TOTL.ZG, FJI, 1990 = 8.19%. The 1989 print was 6.19% and 1988 was 11.76%; the 1990 figure carries the 33% devaluation of the Fiji dollar in two steps during 1987 working through import prices, and the Gulf oil price after August.",
+    "Interest rate 10.0% is a CONSTRUCTION and is flagged as one. The World Bank publishes no lending rate for Fiji before 1992 (FR.INR.LEND begins at 12.45% in 1992) and the Reserve Bank of Fiji published no policy rate in the series this roster reads. 10.0% against 8.2% inflation puts the real rate 0.7 points below the model's neutral of 2.5% — a mildly accommodative stance, which is what the RBF ran in 1990 as it rebuilt reserves after the coups and the exchange controls. The number is chosen to be neutral rather than transcribed, because a wrong policy rate here is worth several points of annual growth in `economy.rs` and there is no right one to copy.",
+    "Tax 22.8% of GDP: World Bank GC.TAX.TOTL.GD.ZS, FJI, 1990 = 22.76%. This is the first year the series carries a value for Fiji at all — 1989 is blank — which is a piece of luck rather than a research finding, and 1991 at 21.87% brackets it sensibly.",
+    "Military 2.1% of GDP: World Bank MS.MIL.XPND.GD.ZS, FJI, 1990 = 2.11%, against 2.27% in 1989 and 2.17% in 1991. A real transcribed figure, which is unusual for a country this size and is why the other four files in this batch cannot match it.",
+    "Military strength 0.35: the Republic of Fiji Military Forces stood at roughly 5,000-6,000 regulars in 1990, having roughly doubled after the 1987 coups, in a country of 729,000 — the most militarised society in the island Pacific by a wide margin. Two of its infantry battalions were permanently overseas, with UNIFIL in southern Lebanon since 1978 and with the Multinational Force and Observers in Sinai since 1982, which is both the army's largest source of foreign exchange and the reason its officers had operational experience nobody else in the region had. Indexed below Bahrain's 0.60, which is about 11,000 personnel.",
+    "Investment 14.3% of GDP: World Bank NE.GDI.TOTL.ZS, FJI, 1990 = 14.28% (13.43% in 1989, 15.72% in 1991). The 5.0/9.3 split between public and private is an ESTIMATE and the total is the only part of it that is transcribed. It is weighted toward the private side because the 1990 recovery was driven by tourism construction and by the tax-free garment factories set up under the 1987 Tax Free Factory scheme, both private; public capital spending in Fiji ran near 5% of GDP through the late 1980s.",
+    "Debt 24.7% of GDP: World Bank DT.DOD.DECT.GN.ZS, FJI, 1990 = 24.66% of GNI (27.20% in 1989, 20.99% in 1991). This is total external debt, not gross public debt — the field this roster uses for a country whose domestic debt market is not separately published, the same substitution made for Laos. Fiji was the least indebted of the five Pacific states added here.",
+    "TFP trend 0.007. Real GDP growth over 1985-1990 was -4.61, 7.75, -6.62, 0.96, 7.44, 5.80 (World Bank NY.GDP.MKTP.KD.ZG): a mean of 1.8% a year on population growth near 0.9%, with the 1987 collapse and the 1989-90 rebound both visible. The trend is set low, below Spain's 0.009, for a reason that is a fact rather than a judgement: the coups triggered the emigration of skilled and professional Indo-Fijians at roughly 5,000 a year, and the economy that recovered was a lower-productivity one — cane, tourism and cut-make-trim garment work — than the one that had been interrupted.",
+    "Stability 45 and authoritarianism 0.62. In January 1990 Fiji had had no parliament for thirty-one months, was governed by decree, and had just seen the first interim cabinet's term expire and a second appointed by the President with seventeen members and no serving officers. The 1990 constitution, drafted by an unelected body to guarantee indigenous Fijian control of both the presidency and the premiership, was promulgated on 25 July 1990; the Group Against Racial Discrimination formed to oppose it. 0.62 is placed just above the model's ELECTORAL_CEILING of 0.60 on purpose: this is a regime that cannot be removed by a vote because there is no vote, but it is not Albania, and it did in fact hold an election in May 1992. Stability 45 sits between Kenya's 46 and Mongolia's 42 and reflects an unelected government presiding over a real recovery.",
+    "Separatism 0.12, and it is the least comfortable number in this file because the strain it represents is not territorial. Fiji's division runs between two communities living in the same villages and cane districts, not between two regions; there is no province that wants to leave. What there is, and what 0.12 stands for, is a state whose constitutional order was twice overthrown in one year in the name of one community against the other, plus a genuine and old provincial fault line — the western Viti Levu cane districts against the eastern chiefly confederacies, which produced the Western United Front and the 1985 farmers' strike. Set above Italy's 0.05 and below Spain's 0.10 would have been wrong in the other direction, so it is set just above Spain: a strain that produces coups but has never produced a secession attempt.",
+    "UNVERIFIED: the public/private investment split, and the policy rate, both stated above as constructions. Also the RFMF headcount, which contemporary sources put anywhere between 4,500 and 6,500 depending on whether reserves and the overseas battalions are counted."
+  ]
+}

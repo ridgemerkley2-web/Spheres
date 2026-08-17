@@ -1,0 +1,42 @@
+{
+  "id": "Tonga",
+  "name": "Tonga",
+  "system": "Market",
+  "authoritarianism": 0.68,
+  "economy": {
+    "gdp_bn": 0.114,
+    "population_m": 0.095,
+    "tfp_trend": 0.003,
+    "inflation": 0.097,
+    "interest_rate": 0.117,
+    "tax_rate": 0.22,
+    "mil_spend_gdp": 0.008,
+    "state_invest_gdp": 0.115,
+    "priv_invest_gdp": 0.07,
+    "debt_gdp": 0.461,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 68.0,
+    "separatism": 0.02
+  },
+  "military": {
+    "strength": 0.05,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $113.6m: World Bank NY.GDP.MKTP.CD, series TON, 1990 = $113,563,800 (1989 $106,344,900; 1991 $132,201,100). Entered as 0.114bn. The smallest economy in this roster after nothing — smaller than Laos's $866m by a factor of eight, and the smallest of the 113. Squash pumpkins for the Japanese market, vanilla, and remittances from Tongans in Auckland, Sydney and Salt Lake City.",
+    "Population 95,069: World Bank SP.POP.TOTL, TON, 1990, entered as 0.095m. Flat across the decade for the same reason Samoa's is: emigration ran at close to the natural increase.",
+    "Inflation 9.7%: World Bank FP.CPI.TOTL.ZG, TON, 1990 = 9.71%, against 4.07% in 1989 and 10.60% in 1991. The pa'anga was pegged to the Australian dollar and the price level largely imported with the goods.",
+    "Interest rate 11.7% is a CONSTRUCTION and is flagged as one. The World Bank publishes no lending rate for Tonga before 2012 and the National Reserve Bank of Tonga — established on 1 July 1989, six months before the game opens — published no policy rate in this series and had barely begun to conduct one. 11.7% against 9.7% inflation holds the real rate at 2.0%, just inside the model's neutral of 2.5%. There is no transcribable figure here and this is what was put in its place.",
+    "Tax 22% of GDP is an ESTIMATE. The World Bank tax series returns nothing for Tonga in 1990. Revenue was import and port duties, a sales tax and the philatelic bureau; 22% is a construction from that structure and from the later series, not a transcription.",
+    "Military 0.8% of GDP and strength 0.05. The Tonga Defence Services numbered roughly 300 in 1990 — a small regular force with a maritime element of patrol boats — making Tonga the only one of the five microstates in this batch with a standing army at all, which is a fact about a kingdom that has never been colonised and sent men to both world wars. The share of GDP is an estimate; no SIPRI or World Bank series carries Tonga in 1990.",
+    "Investment 18.5% of GDP: World Bank NE.GDI.TOTL.ZS, TON, 1990 = 18.49% (20.45% in 1989, 16.74% in 1991). The 11.5/7.0 split is an ESTIMATE weighted to the public side, on the same aid-financed-capital-formation reasoning as the rest of this batch, though less heavily than Vanuatu's because Tongan remittances funded a genuinely large amount of private house building.",
+    "Debt 46.1% of GDP: World Bank DT.DOD.DECT.GN.ZS, TON, 1990 = 46.08% of GNI, against 35.37% in 1989 and 33.45% in 1991. External debt standing in for public debt as elsewhere in this batch. The 1990 spike relative to both neighbouring years is visible in the source series and is not smoothed here; it is most likely a single large project disbursement, and it is entered as read rather than averaged away.",
+    "TFP trend 0.003. Real growth 1985-1990 was 6.56, 2.12, 2.99, -1.88, 0.39, -2.04 (NY.GDP.MKTP.KD.ZG): a mean of 1.4% a year and a clear deceleration, with the last two years of the run negative. A remittance economy with 700 square kilometres of land and no minerals has very little productive frontier to move toward.",
+    "Stability 68 and authoritarianism 0.68, and the pair is the point. Tonga is the most legitimate government in this batch and the least accountable one. King Taufa'ahau Tupou IV appointed the cabinet, and the cabinet sat in the Legislative Assembly alongside nine representatives elected by the thirty-three hereditary nobles and nine elected by everybody else; the elected commoners were nine of about thirty votes and could not remove a minister. The 1875 constitution granted by King George Tupou I had never been overthrown. What was moving underneath it: 'Akilisi Pohiva, elected in 1987, won a wrongful-dismissal case against the government in 1988 after being sacked from the education ministry for publishing what ministers were paid; in September 1989 all nine people's representatives walked out of the Assembly over ministers' refusal to answer questions, returning only when they would have forfeited their seats. 0.68 sits above the model's ELECTORAL_CEILING of 0.60 because no vote in Tonga in 1990 could change the government, and below Saudi Arabia's 0.75 because the votes were real, contested and honestly counted.",
+    "Separatism 0.02, effectively nil. Tonga is one people, one language and one crown across three groups of islands, and the Niuas and Vava'u have never produced a separatist movement. The number is not zero only because 170 islands and 800 kilometres of ocean between the northern and southern groups is a real administrative strain.",
+    "UNVERIFIED: the policy rate, the tax share, the military share and the investment split, all four constructed and all four stated above. Also the Tonga Defence Services headcount, which contemporary sources put between 250 and 400 depending on whether the reserve and the maritime force are counted."
+  ]
+}
