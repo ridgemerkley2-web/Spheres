@@ -1,0 +1,38 @@
+{
+  "id": "Congo",
+  "name": "Congo-Brazzaville",
+  "system": "Command",
+  "authoritarianism": 0.85,
+  "economy": {
+    "gdp_bn": 2.8,
+    "population_m": 2.36,
+    "tfp_trend": -0.005,
+    "inflation": 0.0289,
+    "interest_rate": 0.11,
+    "tax_rate": 0.24,
+    "mil_spend_gdp": 0.042,
+    "state_invest_gdp": 0.09,
+    "priv_invest_gdp": 0.069,
+    "debt_gdp": 2.12,
+    "oil_mbd": 0.165,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 35.0, "separatism": 0.15 },
+  "military": { "strength": 1.0, "nuclear": false },
+  "sources": [
+    "GDP $2.80bn: World Bank NY.GDP.MKTP.CD, series COG, 1990 = 2,798,746,000. About $1,187 a head - higher than Cameroon's $1,087 and second in this region to Gabon, on an economy that was oil, timber and a state payroll.",
+    "Population 2.36m: World Bank SP.POP.TOTL, series COG, 1990 = 2,356,740. The census of 1984 counted 1,909,248. Over half of it lived in Brazzaville and Pointe-Noire, which made Congo the most urbanised country in mainland sub-Saharan Africa and is most of why the political crisis of 1990-93 was fought in two cities.",
+    "TFP trend -0.005: real GDP grew 1.0% in 1990 (World Bank NY.GDP.MKTP.KD.ZG, series COG) on flat oil volumes and the year's price spike, and the number underneath that is worse than it looks. Congo had had an IMF structural adjustment programme since 1986, had missed its targets under all of them, and the non-oil economy - state farms, a nationalised sugar company, a state textile mill - was shrinking every year. Set level with Ethiopia's -0.005 and above Cameroon's -0.008.",
+    "Inflation 2.89%: World Bank FP.CPI.TOTL.ZG, series COG, 1990 = 2.8891%. The IMF WEO gives 0.3% for the same year. Higher than Cameroon's 1.1% and the Central African Republic's zero, which is what a state deficit financed at the BEAC window does inside a fixed peg.",
+    "Interest rate 11%: NOT A CONGOLESE NUMBER. The Banque des Etats de l'Afrique Centrale rate, entered at the same 0.11 as the other four BEAC members here for the reason set out in chad.json. Congo is the country in this roster where a monetary system and an economic system disagree most loudly - a Marxist-Leninist state whose currency was managed from Paris and convertible at a fixed parity - and that disagreement is exactly why the model gets a Command system and a franc-zone rate in the same file. The loader's coupled check reads 0.025 - (0.11 - 0.0289) = -0.056.",
+    "Revenue 24% of GDP: NOT SOURCED. GC.REV.XGRT.GD.ZS has no Congolese entry for 1990. 0.24 is a bracket and it is set high - well above Cameroon's sourced 14.26% - because Congolese government revenue was overwhelmingly the oil royalty and profit tax from Elf-Congo and Agip, which in the standard IMF accounts of the period ran between a fifth and a third of GDP depending on the price. It is a bracket and should be read as one.",
+    "Military 4.2% of GDP: BRACKETED. MS.MIL.XPND.GD.ZS has no Congolese entry for 1990; its only prints in the decade are 1992 = 4.2876 and 1993 = 4.0779. 0.042 is the 1992 print carried back two years, which is a defensible direction: the 1992-93 figures are for a post-transition civilian government cutting the budget, and the Sassou government of 1990 was spending more on the armed forces and its Soviet and Cuban military relationship rather than less. This is the highest military share in this region by a factor of two and it is real - Congo had roughly 10,000 men under arms for 2.36m people.",
+    "Investment 9.0% public and 6.9% private: gross capital formation was 15.91% of GDP (World Bank NE.GDI.TOTL.ZS, series COG, 1990 = 15.9055). The 9.0/6.9 split is APPORTIONED and sums to the sourced total, weighted public because that is what a state-owned economy is.",
+    "Debt 212% of GDP: World Bank DT.DOD.DECT.GN.ZS, series COG, 1990 = 211.5478, external debt stocks as a share of GNI. THE HIGHEST FIGURE IN THIS ROSTER, higher than Zaire's 119% and nearly five times Chad's, and it is not a typo. Congo borrowed against $30 oil through the early 1980s to build a railway, a sugar complex and a capital city, and was servicing it at $18 oil with 2.4m people to pay for it. Per head this was the most indebted country in the world at the end of the 1980s. The model should read it as one.",
+    "Oil 0.165 mbd: 165,000 barrels a day in 1990 (US EIA international series; 164,000 in 1989 and 156,000 in 1991), from Emeraude, Loango and the Nkossa-area fields offshore Pointe-Noire, operated by Elf Aquitaine and Agip. The fourth-largest producer in this roster's Africa after Nigeria's 1.8m, Angola's 475,000 and Gabon's 270,000, and just ahead of Cameroon's 161,000.",
+    "Stability 35: set between Chad's 24 and the Central African Republic's 40. Denis Sassou-Nguesso had held the presidency since 1979 and the Parti Congolais du Travail had been the sole legal party since 1969. What makes the number lower than Bangui's rather than higher, despite an oil income and no insurgency, is that the fiscal crisis had already become a political one: the state could not meet a payroll that was most of the formal economy, and the strikes that ran through 1990 into the Conference Nationale Souveraine of February-June 1991 - which stripped Sassou of power and left him a figurehead - had begun before this game opens. Nothing here schedules that conference.",
+    "Authoritarianism 0.85: sits between Cameroon's 0.80 and Zaire's 0.88. A single legal Marxist-Leninist party written into the 1979 constitution, a Comite Central that chose the president, and a security service built with East German and Cuban help. Below Zaire's because the PCT was a real party apparatus with a congress that could and did change the line - it abandoned Marxism-Leninism at its extraordinary congress in July 1990 - where the MPR was one man.",
+    "Separatism 0.15: below Zaire's 0.35 and Cameroon's 0.20, above the Central African Republic's 0.08. The fracture is regional and it is the one that produced the militias of 1993 and 1997: the Mbochi north that Sassou came from, the Lari and Kongo of the Pool around Brazzaville that Bernard Kolelas spoke for, and the Vili of Kouilou around the oil. None of the three has ever proposed a border, which is why this is 0.15 and not higher, but every Congolese election since 1992 has broken cleanly along those lines and each of them raised an army.",
+    "Military strength 1.0: about 10,000 in the Forces Armees Congolaises, Soviet-equipped through a friendship treaty of 1981, with Cuban advisers and a presidential guard that was the real formation. No combat record against another state. Set below Cameroon's 1.5 on size and above the Central African Republic's 0.6."
+  ]
+}

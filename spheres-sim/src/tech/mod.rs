@@ -970,8 +970,55 @@ pub fn tick(w: &mut WorldState) {
         // perturbation changes which wars happen rather than how fast anyone
         // grows. The denominator was left alone. See `sanction_drag` in
         // economy.rs for what the roster actually moved.
+        // THE LOWER CLAMP THAT USED TO BE HERE IS GONE, replaced by a soft
+        // knee, and the reason is a measurement the Central Africa roster
+        // branch (feat/r2-centafrica) turned up. `scale` was
+        // `sqrt(share).clamp(0.005, 1.0)`, and that floor of 0.005 is the
+        // square root of a share of 2.5e-5 — about $1.75bn of 1990 world
+        // output. Every nation in the 108-nation roster was above it, so it
+        // never bound and nobody noticed what it did. Equatorial Guinea's 1990
+        // GDP is $112m and Sao Tome's is $120m, roughly a fifteenth of that
+        // threshold, and the clamp therefore charged both of them the same
+        // build bill as a country fifteen times their size while their research
+        // budget — which is linear in output — kept shrinking. Both finished a
+        // thirty-year run knowing ZERO technologies, which is the exact failure
+        // `a_poor_nation_still_picks_up_what_everyone_has` was written to catch
+        // when Vietnam did it, and the clamp was the mechanism.
+        //
+        // Three other repairs were measured and rejected before this one, and
+        // they are recorded because each looks reasonable and each is wrong:
+        //   * Lowering the clamp to 0.0005 (letting the true sqrt through) buys
+        //     Equatorial Guinea exactly ONE technology and Sao Tome none. The
+        //     clamp was only ever a 2.2x penalty; the gap is 5x.
+        //   * Deepening the existing `build` decay from 0.70 to 0.85 lifts
+        //     Chad from 14 techs to 30 and Afghanistan from 10 to 18 while
+        //     STILL leaving the two microstates at 0-1, because every poor
+        //     nation is floor-bound and that term moves all of them together.
+        //   * Letting the floor vanish entirely as adopter share approaches 1
+        //     (a "universality gate") is a runaway: a free technology drives
+        //     its own adopter share to 1, and the whole world converges on the
+        //     entire tree — every nation finished on 110-125 of 125.
+        //
+        // What is entered instead is monotone, smooth, and says something
+        // true: the bill for building a thing is the size of the country
+        // building it, and below a certain size the country does not build it
+        // at all. It buys the plant turnkey and pays for the shipping, which is
+        // what a state with no capital-goods industry has always done. The knee
+        // is `r*r/(r + KNEE)`, which is r itself for r >> KNEE and r*r/KNEE
+        // below it — so the United States moves 0.8%, a middle-income state
+        // moves 7%, Chad moves 31% and Equatorial Guinea moves 84%. Plain
+        // IEEE arithmetic over one sqrt, so nothing here needs `exact`.
+        //
+        // MEASURED over seeds 1990, 7 and 42, thirty-year runs, techs known:
+        //   EquatorialGuinea 0,0,0 -> 7,8,7   SaoTome 0,0,0 -> 8,7,8
+        //   Chad 14,10,9 -> 17,16,17          CentralAfricanRepublic 12,13,15 -> 21,20,21
+        //   India 110,105,105 -> 108,106,106  USA 123,110,123 -> 116,113,124
+        // The tail moves by about half and the frontier does not move at all,
+        // which is the shape the change was aiming for.
+        const BUILD_KNEE: f64 = 0.004;
         let scale = if world_gdp > 0.0 {
-            (w.nation(id).gdp.max(0.0) / world_gdp).sqrt().clamp(0.005, 1.0)
+            let r = (w.nation(id).gdp.max(0.0) / world_gdp).sqrt();
+            (r * r / (r + BUILD_KNEE)).clamp(0.0, 1.0)
         } else {
             1.0
         };

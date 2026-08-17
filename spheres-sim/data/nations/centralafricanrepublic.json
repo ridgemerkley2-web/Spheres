@@ -1,0 +1,37 @@
+{
+  "id": "CentralAfricanRepublic",
+  "name": "Central African Republic",
+  "system": "Market",
+  "authoritarianism": 0.82,
+  "economy": {
+    "gdp_bn": 1.44,
+    "population_m": 2.81,
+    "tfp_trend": -0.006,
+    "inflation": -0.0001,
+    "interest_rate": 0.11,
+    "tax_rate": 0.1,
+    "mil_spend_gdp": 0.016,
+    "state_invest_gdp": 0.055,
+    "priv_invest_gdp": 0.072,
+    "debt_gdp": 0.49,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 40.0, "separatism": 0.08 },
+  "military": { "strength": 0.6, "nuclear": false },
+  "sources": [
+    "GDP $1.44bn: World Bank NY.GDP.MKTP.CD, series CAF, 1990 = 1,440,711,000. About $513 a head. As with Chad, the IMF WEO series prints a different number for the same year ($1.605bn); the World Bank one is entered because it is the series the rest of this roster uses.",
+    "Population 2.81m: World Bank SP.POP.TOTL, series CAF, 1990 = 2,806,740. The census of 8 December 1988 counted 2,463,616. Four people per square kilometre - the emptiest country in this region and one of the emptiest anywhere.",
+    "TFP trend -0.006: real GDP fell 2.15% in 1990 (World Bank NY.GDP.MKTP.KD.ZG, series CAF). The three things the country sold were all falling at once - coffee, cotton and diamonds - and the diamond trade, which was the only one with a margin in it, was leaving the official channel rather than the country. Set between Ethiopia's -0.005 and Cameroon's -0.008: a slow, unbroken contraction in an economy with no industry to lose.",
+    "Inflation -0.01%: World Bank FP.CPI.TOTL.ZG, series CAF, 1990 = -0.0123%, entered rounded to -0.0001. Flat to a hundredth of a point, which is what a currency board in all but name produces. The IMF WEO gives -0.2% for the same year. The comparison worth making is the one cameroon.json makes: two franc-zone members at zero and Zaire, whose border is 1,200 km long, at 81%.",
+    "Interest rate 11%: NOT A CENTRAL AFRICAN NUMBER. Same reason as chad.json - the rate is the Banque des Etats de l'Afrique Centrale taux d'escompte, set for all five BEAC members at once, and the World Bank's FR.INR.LEND has no CAF entry for 1990. Entered at the same 0.11 as the other four BEAC members in this roster, which is the honest way to represent one central bank. The loader's coupled check reads 0.025 - (0.11 - (-0.0001)) = -0.085.",
+    "Revenue 10% of GDP: NOT SOURCED. GC.REV.XGRT.GD.ZS has no CAF entry for 1990. 10% is a bracket, set level with Zaire's sourced 9.96% and below Cameroon's sourced 14.26%: a landlocked state whose imports come 1,800 km up the Ubangi or overland from Douala, with a customs house at each end of that and very little else. By 1990 the government was three to four months in arrears on the civil service payroll, which is the observable consequence of the number.",
+    "Military 1.6% of GDP: BRACKETED, not sourced for 1990. MS.MIL.XPND.GD.ZS has no CAF entry for 1990; its first print is 1991 = 1.5681, then 1992 = 1.6421 and 1993 = 1.4971. 0.016 sits inside that run. The Forces Armees Centrafricaines were about 3,500 strong and the real garrison was somebody else's - roughly 1,200 French troops at Bouar and Bangui under the defence accord of 1960.",
+    "Investment 5.5% public and 7.2% private: gross capital formation was 12.71% of GDP (World Bank NE.GDI.TOTL.ZS, series CAF, 1990 = 12.7081). The 5.5/7.2 split is APPORTIONED and sums to the sourced total.",
+    "Debt 49% of GDP: World Bank DT.DOD.DECT.GN.ZS, series CAF, 1990 = 49.2504, external debt stocks as a share of GNI. The Central African Republic was under a World Bank and IMF structural adjustment programme from 1986 and had had its Paris Club debt rescheduled three times by 1990.",
+    "Oil 0.0 mbd: none, and none since. The country's minerals are diamonds, gold, uranium at Bakouma and iron - not one of them producing at a scale this model has a field for, and the diamonds mostly smuggled.",
+    "Stability 40 and authoritarianism 0.82: Andre Kolingba had taken power in the bloodless coup of 1 September 1981, ruled through a Comite Militaire de Redressement National until 1985, and made the Rassemblement Democratique Centrafricain the sole legal party in 1986 - confirmed by a referendum on 21 November 1986 that gave him 91.2% and a single-list legislative election on 31 July 1987. Stability 40 is well above Chad's 24 and Zaire's 26 and below Ghana's and Cameroon's 52, and that is the correct place for it: nothing was happening in Bangui in January 1990 except the slow accumulation of unpaid salaries. There was no insurgency, no secession and no war on any border. What there was instead was a state that had stopped paying people, and the army mutinies that ended Kolingba's republic came in 1996, six years out, from exactly that. Authoritarianism 0.82 is level with Cameroon's 0.80 and Ghana's 0.80.",
+    "Separatism 0.08: the lowest figure in this region and lower than Spain's 0.10. It is not an oversight. The Central African Republic's violence has always been about who holds Bangui rather than about which pieces belong to it, and no Central African movement has ever proposed a border. Set above zero only because the north-east around Birao is administratively absent from the state in a way that later mattered.",
+    "Military strength 0.6: about 3,500 in the Forces Armees Centrafricaines, mostly Yakoma after Kolingba recruited from his own people, plus a presidential guard. Set below Senegal's, Ghana's and Cameroon's 1.5 and above Sao Tome's 0.1 and Equatorial Guinea's 0.3. The number to read alongside it is that the force which actually deterred anything here was French, and it is in France's row, not this one."
+  ]
+}

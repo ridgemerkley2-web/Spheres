@@ -1172,6 +1172,50 @@
         { "a": "Jamaica", "b": "Bahamas", "value": 50.0 },
         { "a": "TrinidadTobago", "b": "Bahamas", "value": 45.0 }
       ]
+    },
+    {
+      "note": [
+        "Central Africa (branch feat/r2-centafrica). Six new nations, and what this block is mostly recording is that in 1990 Central Africa's foreign relations were with Paris. Gabon at 90 is the highest single number any of these six carries and it is not a courtesy: the 6th Battalion d'Infanterie de Marine was garrisoned at Libreville under the accord of 17 August 1960, it put Leon Mba back in power against his own army in February 1964, Elf Gabon was the fiscal state, and Bongo's relationship with successive Elysees was close enough that the Elf affair was eventually prosecuted in a Paris court. The Central African Republic at 80 has the same shape with less oil - French marines at Bouar and Bangui, and France paying the salaries when Bangui could not. Congo at 55 is the interesting one: a Marxist-Leninist state whose currency was managed from Paris and whose oil was pumped by Elf, which is what a franc-zone Marxism actually looked like.",
+        "Chad and Libya at -85 is the lowest number in this block. Libya annexed the Aouzou Strip in 1973, invaded outright in 1980 and again in 1983, was routed by Habre's Toyota columns at Fada, Ouadi Doum and Maaten al-Sarra in 1987, and was still sitting on the strip when this game opens. The Algiers Accord of 31 August 1989 gave the two of them a year to settle it politically before going to the International Court of Justice, and neither side believed the other. Chad's claim on Libya in nations.rs is the territorial half of the same fact; this is the temperature.",
+        "Chad's 75 with France and 60 with the United States are the other half of that war. Operation Manta in 1983 and Operation Epervier from February 1986 put French aircraft and troops at N'Djamena and Abeche and a line across the sixteenth parallel; Washington ran the largest CIA programme in Africa in support of Habre from 1981 and supplied the Redeye and Stinger missiles that took Libyan aircraft down in 1987. Egypt at 45 is the third leg - Mubarak was Libya's other enemy and Cairo trained Chadian officers.",
+        "Chad and Sudan at -35 is the border this branch added to Sudan's row. Khartoum gave Idriss Deby sanctuary in Darfur after his failed coup of 1 April 1989 and Libya armed him there; he crossed back on 10 November 1990. A neighbour hosting your enemy's rear area is a specific kind of bad relation and it is not the same as a border dispute, which these two have never had.",
+        "The Soviet and Cuban numbers here are Congo's and Sao Tome's, and they are among the last of them in this file. Congo signed a treaty of friendship with Moscow in 1981 and had Cuban advisers with the Forces Armees Congolaises; the PCT dropped Marxism-Leninism at its extraordinary congress in July 1990, six months into the game, and nothing here schedules that. Sao Tome's 70 with Angola is a garrison rather than a sentiment: roughly a thousand FAPLA troops were sent to the islands after the coup scare of 1978 and stayed until 1991, which is the entire defence of a country with six hundred soldiers of its own.",
+        "Equatorial Guinea and Morocco at 70 is the strangest entry in the block and it is literal. Hassan II sent several hundred Moroccan soldiers to Malabo after Obiang took power in 1979 and they were still the presidential guard in 1990 - the reason the coup attempt of August 1988 failed. Spain at 45 is warm and permanently disappointed: the former metropole was the largest donor, took most of the exiles, and by 1993 was calling the elections neither free nor fair in public.",
+        "Sao Tome and South Africa at -50 is the only hostile number the islands carry. Sao Tome was a rear area for the MPLA, allowed Soviet maritime reconnaissance from its airfield, and voted the Frontline States' line at the United Nations for fifteen years while South African aircraft were operating over Angola. Gabon and Equatorial Guinea at 15 is the coolest pair inside the region: Gabon put troops on Mbanie in 1972 and never left, and expelled Equatoguinean and Cameroonian migrant workers whenever its politics required it."
+      ],
+      "pairs": [
+        { "a": "Chad", "b": "Libya", "value": -85.0 },
+        { "a": "Chad", "b": "France", "value": 75.0 },
+        { "a": "Chad", "b": "USA", "value": 60.0 },
+        { "a": "Chad", "b": "Sudan", "value": -35.0 },
+        { "a": "Chad", "b": "Egypt", "value": 45.0 },
+        { "a": "Chad", "b": "Nigeria", "value": 15.0 },
+        { "a": "Chad", "b": "Cameroon", "value": 30.0 },
+        { "a": "Chad", "b": "CentralAfricanRepublic", "value": 20.0 },
+        { "a": "CentralAfricanRepublic", "b": "France", "value": 80.0 },
+        { "a": "CentralAfricanRepublic", "b": "Zaire", "value": 40.0 },
+        { "a": "CentralAfricanRepublic", "b": "Cameroon", "value": 35.0 },
+        { "a": "Congo", "b": "USSR", "value": 65.0 },
+        { "a": "Congo", "b": "Cuba", "value": 60.0 },
+        { "a": "Congo", "b": "France", "value": 55.0 },
+        { "a": "Congo", "b": "Angola", "value": 55.0 },
+        { "a": "Congo", "b": "Zaire", "value": 20.0 },
+        { "a": "Congo", "b": "USA", "value": 10.0 },
+        { "a": "Gabon", "b": "France", "value": 90.0 },
+        { "a": "Gabon", "b": "USA", "value": 55.0 },
+        { "a": "Gabon", "b": "Cameroon", "value": 25.0 },
+        { "a": "Gabon", "b": "EquatorialGuinea", "value": 15.0 },
+        { "a": "Gabon", "b": "SaoTome", "value": 30.0 },
+        { "a": "EquatorialGuinea", "b": "Morocco", "value": 70.0 },
+        { "a": "EquatorialGuinea", "b": "Spain", "value": 45.0 },
+        { "a": "EquatorialGuinea", "b": "France", "value": 50.0 },
+        { "a": "EquatorialGuinea", "b": "Nigeria", "value": 10.0 },
+        { "a": "SaoTome", "b": "Angola", "value": 70.0 },
+        { "a": "SaoTome", "b": "Portugal", "value": 65.0 },
+        { "a": "SaoTome", "b": "Cuba", "value": 55.0 },
+        { "a": "SaoTome", "b": "USSR", "value": 45.0 },
+        { "a": "SaoTome", "b": "SouthAfrica", "value": -50.0 }
+      ]
     }
   ]
 }

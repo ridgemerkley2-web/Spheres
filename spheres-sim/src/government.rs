@@ -3555,6 +3555,258 @@ pub const POLITIES: &[Polity] = &[
         ruling: "the House of Assembly",
         pillars: &[],
     },
+
+    // ===== Central Africa (branch feat/r2-centafrica) ======================
+    //
+    // Six regimes, and every one of them is a single-party state on 1 January
+    // 1990. That is the finding rather than a shortcut: the wave that took all
+    // six apart — Gabon's Rendez-vous de Mars, Congo's Conference Nationale
+    // Souveraine, Sao Tome's referendum, the Central African and Equatoguinean
+    // transitions, and in Chad a rebellion rather than a conference — all of it
+    // is inside three years of this start date and NONE of it is scheduled
+    // here. What the model is handed is six regimes with pillars and no
+    // parliament, and it is left to knock them over or not.
+    //
+    // A note on where the vote shares come from, because it differs by country
+    // and each block says which it used. Three of the six eventually published
+    // percentages at their first competitive election and those are entered
+    // (Sao Tome 1991, Equatorial Guinea 1993, the Central African Republic's
+    // 1993 presidential first round, on the same footing as Ghana's block
+    // above). Two published SEATS ONLY and no percentages — Gabon 1990 and
+    // Congo 1992 — and for those the seat share is entered with the
+    // substitution declared, because a seat share somebody counted beats a
+    // vote share nobody did. Chad had no competitive election until 1996 and
+    // carries its single party alone at 1.00, exactly as Zaire's block does.
+
+    // Chad — the Union Nationale pour l'Independance et la Revolution, Hissene
+    // Habre's sole legal party from its founding congress of June 1984. The
+    // only vote in the country between 1969 and 1996 was the single-UNIR-list
+    // legislative election of 8 July 1990, five months before Habre lost
+    // N'Djamena, and it is not an election this table can transcribe shares
+    // from. The first competitive one was the presidential poll of June-July
+    // 1996, six years out and won by the man who was still in Darfur when this
+    // game opens. So the party slot holds UNIR alone, and the point of the
+    // block — as in Zaire's — is that it holds nothing else.
+    Polity {
+        nation: NationId::Chad,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("td_unir", "National Union for Independence and Revolution", "Union Nationale pour l'Independance et la Revolution", Family::BigTent, 1.00),
+        ],
+        ruling: "the National Union for Independence and Revolution",
+        pillars: &[
+            // The distinction this table insists on. The Forces Armees
+            // Nationales Tchadiennes beat the Libyan army in 1987 and were
+            // then purged of the Zaghawa officers who did it; what held Habre
+            // in power after April 1989 was not them.
+            pl(Pillar::Army, "the Forces Armees Nationales Tchadiennes"),
+            // The Direction de la Documentation et de la Securite reported to
+            // the president in person. Chad's own truth commission of 1992
+            // attributed something over 40,000 deaths to it, and Habre was
+            // convicted in Dakar in 2016 on that record.
+            pl(Pillar::Security, "the Direction de la Documentation et de la Securite"),
+            pl(Pillar::Party, "the UNIR Bureau Politique"),
+        ],
+    },
+
+    // Central African Republic — the Rassemblement Democratique Centrafricain,
+    // Andre Kolingba's party, sole legal one from 1986, confirmed by a
+    // referendum on 21 November 1986 (91.2%) and a single-list legislative
+    // election on 31 July 1987. The shares entered are the FIRST ROUND of the
+    // presidential election of 22 August 1993, the first free vote the country
+    // ever held: Patasse 38.03%, Goumba 22.10%, Dacko 20.49%, Kolingba 12.33%,
+    // Lakoue 2.44%, Malendoma 2.07%. Ruth-Rolland's 1.02% and Bozize's 1.53%
+    // are recorded here rather than entered, to keep the table to six.
+    // Kolingba finished FOURTH in his own country and handed over, which is the
+    // result that makes these shares worth entering: they measure a real
+    // electorate rather than a boycott. Presidential first-round shares are
+    // used because the concurrent legislative election published seats only —
+    // the same substitution Ghana's block above makes and for the same reason.
+    // https://en.wikipedia.org/wiki/1993_Central_African_general_election
+    Polity {
+        nation: NationId::CentralAfricanRepublic,
+        system: Electoral::TwoRound,
+        term_months: 72,
+        next: (0, 0),
+        parties: &[
+            p("cf_mlpc", "Movement for the Liberation of the Central African People", "Mouvement de Liberation du Peuple Centrafricain", Family::SocialDemocratic, 0.3803),
+            p("cf_fpp", "Patriotic Front for Progress", "Front Patriotique pour le Progres", Family::SocialDemocratic, 0.2210),
+            p("cf_mdd", "Movement for Democracy and Development", "Mouvement pour la Democratie et le Developpement", Family::Liberal, 0.2049),
+            p("cf_rdc", "Central African Democratic Rally", "Rassemblement Democratique Centrafricain", Family::BigTent, 0.1233),
+            p("cf_psd", "Social Democratic Party", "Parti Social-Democrate", Family::SocialDemocratic, 0.0244),
+            p("cf_fc", "Civic Forum", "Forum Civique", Family::Conservative, 0.0207),
+        ],
+        ruling: "the Central African Democratic Rally",
+        pillars: &[
+            // Recruited heavily from Kolingba's own Yakoma after 1981, which is
+            // why the army that mutinied in 1996 mutinied along that line.
+            pl(Pillar::Army, "the Forces Armees Centrafricaines"),
+            pl(Pillar::Security, "the Garde Presidentielle"),
+            pl(Pillar::Party, "the RDC Comite Directeur"),
+        ],
+    },
+
+    // Congo-Brazzaville — the Parti Congolais du Travail, Marxist-Leninist and
+    // the sole legal party since 31 December 1969, with the last single-list
+    // election to the Assemblee Nationale Populaire on 24 September 1989. The
+    // shares entered are SEAT SHARES from the first multi-party election, 24
+    // June and 19 July 1992, and the substitution is declared because no vote
+    // percentages were published for it: UPADS 39 of 125, MCDDI 29, PCT 18,
+    // RDPS 9, RDD 5, UFD 3, UPSD 2. They sum to 0.84 rather than 1.00 because
+    // eight further parties took one seat each and eight independents were
+    // elected, and padding that gap with a party nobody counted would be worse
+    // than leaving it. What the numbers say is the thing worth saying: the
+    // party that had governed for twenty-three years came THIRD, and then the
+    // three men at the top of this list each raised a militia and fought a war
+    // in 1993 and again in 1997.
+    // https://en.wikipedia.org/wiki/1992_Republic_of_the_Congo_parliamentary_election
+    Polity {
+        nation: NationId::Congo,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("cg_upads", "Pan-African Union for Social Democracy", "Union Panafricaine pour la Democratie Sociale", Family::SocialDemocratic, 0.312),
+            p("cg_mcddi", "Congolese Movement for Democracy and Integral Development", "Mouvement Congolais pour la Democratie et le Developpement Integral", Family::Conservative, 0.232),
+            p("cg_pct", "Congolese Party of Labour", "Parti Congolais du Travail", Family::Communist, 0.144),
+            p("cg_rdps", "Rally for Democracy and Social Progress", "Rassemblement pour la Democratie et le Progres Social", Family::SocialDemocratic, 0.072),
+            p("cg_rdd", "Rally for Democracy and Development", "Rassemblement pour la Democratie et le Developpement", Family::Liberal, 0.040),
+            p("cg_ufd", "Union of Democratic Forces", "Union des Forces Democratiques", Family::Liberal, 0.024),
+            p("cg_upsd", "Union for Social Progress and Democracy", "Union pour le Progres Social et la Democratie", Family::SocialDemocratic, 0.016),
+        ],
+        ruling: "the Congolese Party of Labour",
+        pillars: &[
+            pl(Pillar::Army, "the Forces Armees Congolaises"),
+            pl(Pillar::Party, "the PCT Comite Central"),
+            pl(Pillar::Security, "the Direction Generale de la Securite d'Etat"),
+        ],
+    },
+
+    // Gabon — the Parti Democratique Gabonais, Omar Bongo's, sole legal party
+    // from March 1968 until the constitutional revision of May 1990. The shares
+    // are SEAT SHARES from the first multi-party election, 16 September with
+    // re-runs on 21 and 28 October 1990 — nine months into the game — because
+    // no vote percentages were published: PDG 63 of 120, MORENA-Bucherons 20,
+    // PGP 18, MORENA-Originel 7, APSG 6, USG 4, CRP 1, UGDD 1. Results in 32 of
+    // 120 constituencies were annulled for fraud and re-run, which is the sort
+    // of thing that makes a percentage meaningless and a seat count merely
+    // disputed.
+    //
+    // Nothing here schedules that election, and the block is deliberately a
+    // pillars-and-no-parliament regime at t=0: on 1 January 1990 Gabon had a
+    // one-party National Assembly, and what turned it into the list above was a
+    // public-sector strike wave that had already started, a national conference
+    // in March and April, the death of Joseph Rendjambe on 23 May, a rising at
+    // Port-Gentil and 500 French paratroopers.
+    // https://en.wikipedia.org/wiki/1990_Gabonese_parliamentary_election
+    Polity {
+        nation: NationId::Gabon,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("ga_pdg", "Gabonese Democratic Party", "Parti Democratique Gabonais", Family::BigTent, 0.525),
+            p("ga_rnb", "National Rally of Woodcutters", "Rassemblement National des Bucherons", Family::Liberal, 0.1667),
+            p("ga_pgp", "Gabonese Progress Party", "Parti Gabonais du Progres", Family::SocialDemocratic, 0.15),
+            p("ga_morena", "MORENA-Originel", "Mouvement de Redressement National", Family::Nationalist, 0.0583),
+            p("ga_apsg", "Association for Socialism in Gabon", "Association pour le Socialisme au Gabon", Family::SocialDemocratic, 0.05),
+            p("ga_usg", "Gabonese Socialist Union", "Union Socialiste Gabonaise", Family::SocialDemocratic, 0.0333),
+            p("ga_crp", "Circle for Renewal and Progress", "Cercle pour le Renouveau et le Progres", Family::Liberal, 0.0083),
+            p("ga_ugdd", "Gabonese Union for Democracy and Development", "Union Gabonaise pour la Democratie et le Developpement", Family::Liberal, 0.0083),
+        ],
+        ruling: "the Gabonese Democratic Party",
+        pillars: &[
+            // The formation, not the institution: the Garde Presidentielle was
+            // better equipped than the Forces Armees Gabonaises and answered to
+            // the president rather than to the ministry.
+            pl(Pillar::Army, "the Garde Presidentielle"),
+            pl(Pillar::Party, "the PDG Bureau Politique"),
+            // The other pillar of this regime was a company. Elf Gabon paid the
+            // rent that paid everyone else, and the Elf-Aquitaine relationship
+            // with the presidency is the thing the Elf affair of the 1990s was
+            // eventually prosecuted over in Paris.
+            pl(Pillar::Business, "Elf Gabon"),
+        ],
+    },
+
+    // Equatorial Guinea — the Partido Democratico de Guinea Ecuatorial,
+    // founded in 1987 as Obiang's sole legal party. The shares are the
+    // legislative election of 21 November 1993, the first multi-party vote
+    // since 1968: PDGE 69.79%, CSDP 10.28%, UDS 7.36%, PL 6.36%, CLD 2.51%.
+    // THOSE SHARES DESCRIBE A BOYCOTT, not an electorate, and are entered as
+    // such on the same footing as Bangladesh's block above: the Plataforma de
+    // Oposicion Conjunta, eight parties between them, refused to contest, the
+    // opposition put turnout near 20% against an official 67%, and Spain's
+    // foreign minister said publicly that the election was neither free nor
+    // fair. The parties that did stand won 12 of 80 seats. This is why the
+    // regime is modelled with pillars as well as a party list.
+    // https://en.wikipedia.org/wiki/1993_Equatorial_Guinean_parliamentary_election
+    Polity {
+        nation: NationId::EquatorialGuinea,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("gq_pdge", "Democratic Party of Equatorial Guinea", "Partido Democratico de Guinea Ecuatorial", Family::BigTent, 0.6979),
+            p("gq_csdp", "Social Democratic and Popular Convergence", "Convergencia Social Democratica y Popular", Family::SocialDemocratic, 0.1028),
+            p("gq_uds", "Social Democratic Union", "Union Democratica Social", Family::SocialDemocratic, 0.0736),
+            p("gq_pl", "Liberal Party", "Partido Liberal", Family::Liberal, 0.0636),
+            p("gq_cld", "Liberal Democratic Convention", "Convencion Liberal Democratica", Family::Liberal, 0.0251),
+        ],
+        ruling: "the Democratic Party of Equatorial Guinea",
+        pillars: &[
+            // Not the national army. The guard that kept Obiang alive through
+            // the coup attempt of August 1988 was several hundred Moroccan
+            // soldiers sent by Hassan II in 1979 and still in the palace at
+            // Malabo in 1990 — a pillar of this regime that was not
+            // Equatoguinean at all, which is a fact worth having in the table.
+            pl(Pillar::Army, "the Moroccan presidential guard"),
+            pl(Pillar::Security, "the Guardia Nacional"),
+            pl(Pillar::Party, "the PDGE"),
+        ],
+    },
+
+    // Sao Tome and Principe — the Movimento de Libertacao de Sao Tome e
+    // Principe, sole legal party since independence on 12 July 1975 and Manuel
+    // Pinto da Costa president throughout. The shares are the legislative
+    // election of 20 January 1991, the first free multi-party election in
+    // lusophone Africa: PCD-GR 59.33% and 33 of 55 seats, MLSTP/PSD 33.31% and
+    // 21, CODO 5.71% and 1, FCD 1.65% and none. Turnout 76.7%.
+    //
+    // Those are real percentages of a real electorate, and this is the one
+    // block in this region where the ruling party lost and left. The MLSTP
+    // central committee resolved on multipartyism in December 1989, the new
+    // constitution passed a referendum on 22 August 1990 with about 72%, and
+    // eleven weeks later the party that had governed for fifteen years was in
+    // opposition. NOTHING HERE SCHEDULES ANY OF THAT — the block opens as a
+    // one-party regime with three pillars, and saotome.json sets
+    // authoritarianism at 0.62, only just above the model's electoral ceiling,
+    // which is where the possibility lives.
+    // https://en.wikipedia.org/wiki/1991_S%C3%A3o_Tom%C3%A9an_legislative_election
+    Polity {
+        nation: NationId::SaoTome,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            p("st_pcd", "Democratic Convergence Party", "Partido de Convergencia Democratica - Grupo de Reflexao", Family::Liberal, 0.5933),
+            p("st_mlstp", "MLSTP/Social Democratic Party", "Movimento de Libertacao de Sao Tome e Principe", Family::SocialDemocratic, 0.3331),
+            p("st_codo", "Opposition Democratic Coalition", "Coligacao Democratica da Oposicao", Family::Liberal, 0.0571),
+            p("st_fcd", "Christian Democratic Front", "Frente Democrata-Crista", Family::ChristianDemocratic, 0.0165),
+        ],
+        ruling: "the Movement for the Liberation of Sao Tome and Principe",
+        pillars: &[
+            // Six hundred men, and for most of the period not even them: the
+            // garrison that actually secured the islands after the coup scare
+            // of 1978 was about a thousand Angolan FAPLA troops, withdrawn in
+            // 1991. The smallest army in this roster propping up the least
+            // authoritarian regime in this region, which is not a coincidence.
+            pl(Pillar::Army, "the Forcas Armadas de Sao Tome e Principe"),
+            pl(Pillar::Party, "the MLSTP Comite Central"),
+        ],
+    },
 ];
 
 pub fn polity(id: NationId) -> Option<&'static Polity> {

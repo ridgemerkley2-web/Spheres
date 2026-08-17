@@ -1,0 +1,37 @@
+{
+  "id": "EquatorialGuinea",
+  "name": "Equatorial Guinea",
+  "system": "Market",
+  "authoritarianism": 0.9,
+  "economy": {
+    "gdp_bn": 0.112,
+    "population_m": 0.419,
+    "tfp_trend": -0.004,
+    "inflation": 0.0086,
+    "interest_rate": 0.11,
+    "tax_rate": 0.12,
+    "mil_spend_gdp": 0.02,
+    "state_invest_gdp": 0.05,
+    "priv_invest_gdp": 0.04,
+    "debt_gdp": 1.6,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": { "stability": 38.0, "separatism": 0.2 },
+  "military": { "strength": 0.3, "nuclear": false },
+  "sources": [
+    "GDP $0.112bn: World Bank NY.GDP.MKTP.CD, series GNQ, 1990 = 112,119,400. THE SMALLEST ECONOMY IN THIS ROSTER - $112m of annual output, less than a fiftieth of Gabon's next door and about $268 a head. It is worth stating what that means rather than leaving it as a number: this is a whole country producing less in a year than a mid-sized European town, and it is included precisely because a simulation that only behaves at the top of the table has not been tested. Six years later Zafiro came in and Equatorial Guinea became for a while the fastest-growing economy on earth; NOTHING here anticipates that, because in 1990 nobody knew the oil was there.",
+    "Population 0.419m: World Bank SP.POP.TOTL, series GNQ, 1990 = 419,188. The census of 4 July 1983 counted 300,000. The population had FALLEN by something like a third under Francisco Macias Nguema between 1968 and 1979 - a third of the country fled to Cameroon, Gabon and Spain, and the Nigerian contract labourers on the Bioko cocoa plantations were repatriated en masse in 1976 after a massacre at Malabo. The 1990 figure is a recovery from that, not a baseline.",
+    "TFP trend -0.004: real GDP fell 1.76% in 1990 (World Bank NY.GDP.MKTP.KD.ZG, series GNQ). Cocoa was the only export that mattered and the plantations had never recovered from the expulsion of the labour that worked them; the 1990 world cocoa price was the lowest in real terms since the 1960s. Set between Ethiopia's -0.005 and the Central African Republic's -0.006.",
+    "Inflation 0.86%: World Bank FP.CPI.TOTL.ZG, series GNQ, 1990 = 0.8579%. Equatorial Guinea joined the franc zone on 1 January 1985, abandoning the ekwele for the CFA franc at 1 ekwele = 4 CFA - the only Spanish-speaking member of a French monetary union - and this figure is what that bought: a country that had had uncountable inflation under Macias printing at under a point a year five years later.",
+    "Interest rate 11%: NOT AN EQUATOGUINEAN NUMBER. The Banque des Etats de l'Afrique Centrale taux d'escompte, as in the other four BEAC files here, entered for the reason set out in chad.json. FR.INR.LEND has no GNQ entry for 1990. The loader's coupled check reads 0.025 - (0.11 - 0.0086) = -0.076.",
+    "Revenue 12% of GDP: NOT SOURCED. GC.REV.XGRT.GD.ZS has no GNQ entry for 1990. 0.12 is a bracket set between the Central African Republic's 10% and Cameroon's sourced 14.26%. What tax base there was consisted of a cocoa export levy, a timber levy and the customs house at Malabo; most of the budget came from Spain, France and the EEC as grants, which this field excludes by definition.",
+    "Military 2.0% of GDP: BRACKETED. MS.MIL.XPND.GD.ZS has no GNQ entry for 1990; its earliest prints are 1994 = 1.9864 and 1995 = 2.0456, and 0.02 is that pair carried back. On an output of $112m that is about $2.2m a year, which is the whole defence budget of a sovereign state and is the right order for a force of about 1,300 men.",
+    "Investment 5% public and 4% private: NOT SOURCED AND FLAGGED. NE.GDI.TOTL.ZS has no GNQ entry before 2005 (39.5%, by which time the economy was oil). The 9% total entered is a bracket, set below the Central African Republic's sourced 12.71% and above Chad's sourced 6.75%: Equatorial Guinea in 1990 was receiving Spanish and French project aid worth several points of a very small GDP, and the port and airport works at Malabo and Bata were most of the capital formation in the country. The public/private split inside it is a judgement. A reader checking this file should check this line, the revenue line and the debt line.",
+    "Debt 160% of GDP: NOT SOURCED AND THE WEAKEST FIGURE IN THIS FILE. DT.DOD.DECT.GN.ZS has no Equatoguinean entry for any year. What is known is that the country's external debt stock in the early 1990s was around $210-230m against an output of $112m, that it was in arrears on most of it, that the Paris Club rescheduled in 1985, 1989 and 1992, and that the IMF suspended its programme in 1990-93 over non-performance. 1.6 is entered as the ratio those two figures imply and is a bracket, not a transcription.",
+    "Oil 0.0 mbd: ZERO, and the zero is the most important number in this file. The US EIA international series prints 0.00 for Equatorial Guinea for every year through 1990 and its first non-zero entry is 100 barrels a day in 1991 - the Alba field condensate. Zafiro, which made the country an oil state, was discovered in 1995 and came on stream in August 1996. In January 1990 Equatorial Guinea was a cocoa and timber economy with nothing under it that anyone had found, and a model that starts it with oil would be scripting the one thing about this country nobody in 1990 could have known.",
+    "Stability 38 and authoritarianism 0.90: Teodoro Obiang Nguema Mbasogo had ruled since the coup of 3 August 1979 in which he overthrew and shot his uncle Macias, and the Partido Democratico de Guinea Ecuatorial, founded in 1987, was the sole legal party. Stability 38 sits between Congo's 35 and the Central African Republic's 40: no insurgency and no war, but a coup attempt in 1981, another alleged in 1983, and a genuine one in August 1988 by Colonel Fructuoso Mba Onana Nchama, after which the government's protection was a Moroccan presidential guard of several hundred men sent by Hassan II in 1979 and still there in 1990. Authoritarianism 0.90 sits between Zaire's 0.88 and Chad's 0.92: a sole legal party, a family state, and a prison at Black Beach that Amnesty International reported on every year of the decade.",
+    "Separatism 0.20: level with Cameroon's and Iraq's, and the object is the archipelago itself. Equatorial Guinea is two countries - Bioko, an island 250 km offshore that holds the capital and the Bubi, and Rio Muni on the mainland that holds four fifths of the people and the Fang - and every government since 1968 has been Fang and mainland. The Movimiento para la Autodeterminacion de la Isla de Bioko was formed in 1993 out of exactly that; the Bubi grievance it grew from is a continuous fact of the whole period, and the sea between the two halves is the reason it is entered at 0.20 rather than lower.",
+    "Military strength 0.3: about 1,300 men across army, navy and gendarmerie, with two patrol boats and no aircraft. The lowest figure in this roster other than Sao Tome's 0.1. The formation that mattered was not Equatoguinean: the Moroccan guard at the presidential palace was better armed than the national army and was the reason the 1988 coup failed."
+  ]
+}
