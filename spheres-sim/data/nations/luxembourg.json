@@ -1,0 +1,41 @@
+{
+  "id": "Luxembourg",
+  "name": "Luxembourg",
+  "system": "Market",
+  "authoritarianism": 0.09,
+  "economy": {
+    "gdp_bn": 12.779,
+    "population_m": 0.382,
+    "tfp_trend": 0.015,
+    "inflation": 0.033,
+    "interest_rate": 0.096,
+    "tax_rate": 0.348,
+    "mil_spend_gdp": 0.008,
+    "state_invest_gdp": 0.045,
+    "priv_invest_gdp": 0.185,
+    "debt_gdp": 0.025,
+    "oil_mbd": 0.0,
+    "bubble": 0.0
+  },
+  "politics": {
+    "stability": 85.0,
+    "separatism": 0.0
+  },
+  "military": {
+    "strength": 0.3,
+    "nuclear": false
+  },
+  "sources": [
+    "GDP $12.779bn: World Bank NY.GDP.MKTP.CD, series LUX, 1990 = 12,778,792,854 current US$, retrieved from the World Bank data360 API on 2026-08-16. Against a population of 382,000 that is $33,450 a head, second in this roster only to Switzerland's $269.8bn over 6.72m, or $40,150. WHAT THIS FIGURE DOES NOT MEAN, and it is the standing caveat on every Luxembourg national-accounts number: roughly a fifth of the people working in the Grand Duchy in 1990 commuted in daily from Belgium, France and Germany and are counted in its output but not in its population. GDP per RESIDENT therefore overstates income per WORKER by about that much. The 1990 CIA World Factbook's '$6.3 billion, per capita $17,200' is a 1989 purchasing-power figure on a different basis again and is not the market series.",
+    "Population 382,000: World Bank SP.POP.TOTL, LUX, 1990 = 381,850. The Factbook's July 1990 estimate of 383,813 agrees to within 0.5%.",
+    "Inflation 3.3%: World Bank FP.CPI.TOTL.ZG, LUX, 1990 = 3.254%, with 3.371% in 1989 and 3.118% in 1991 — three years within a quarter of a point of each other. That flatness is the fact: the Luxembourg franc was at fixed parity with the Belgian franc under the Belgium-Luxembourg Economic Union of 1921, so Luxembourg imported Belgian monetary policy and, through the ERM, German monetary policy behind it.",
+    "Interest rate 9.6%: NOT A TRANSCRIBED LUXEMBOURG SERIES and flagged in this branch's unverified list. World Bank FR.INR.LEND returns null for Luxembourg for 1990 because Luxembourg had no independent monetary policy to publish a rate for — the Institut Monetaire Luxembourgeois was not established until 1983 and never set an autonomous policy rate. The 0.096 entered here is Belgium's figure from belgium.json, which is the correct transcription of a currency at 1:1 fixed parity with the Belgian franc, and it is entered as a stated inheritance rather than as a measurement of its own. Against 3.3% inflation it gives a real rate of about +6.3%, which is right for the ERM's hard core in the year before Maastricht.",
+    "Revenue 34.8% of GDP and public debt 2.5% of GDP: World Bank GC.REV.XGRT.GD.ZS = 34.75% and GC.DOD.TOTL.GD.ZS = 2.52%, LUX, 1990. BOTH ARE CENTRAL GOVERNMENT, not the general-government basis Spain, Belgium and Denmark in this roster use, and that is a real inconsistency rather than a rounding one: the IMF WEO's first general-government observation for Luxembourg is 1995, at 44.7% revenue and 10.3% gross debt. Central-government 1990 figures are entered because they are actual 1990 observations and the alternative was carrying a 1995 number back five years and calling it 1990. The direction of the error is known and stated — both figures understate the general-government ratios, revenue by roughly ten points and debt by roughly two. Flagged in this branch's unverified list. What is not in doubt either way is the shape: Luxembourg in 1990 has the lowest public debt in this roster by a factor of ten, and that is not an artefact of the basis.",
+    "Military spending 0.8% of GDP and a strength index of 0.3: World Bank MS.MIL.XPND.GD.ZS, LUX, 1990 = 0.788%, and the 1990 CIA World Factbook gives '1.2% of GDP, or $76 million (1989 est.)' with a single branch, 'Army'. The World Bank/SIPRI figure is entered for series consistency. The force behind it is one light infantry battalion of about 800 professional soldiers with no air force, no navy and no armour — a founder member of NATO in 1949 whose contribution to it is a battalion and the geography. The 0.3 index is set level with Malta's and above Iceland's 0.1, which is the correct ordering: a small standing army outranks a coast guard.",
+    "TFP trend 0.015: Luxembourg's post-war growth came from two substitutions, not from one miracle — ARBED's steel employment fell from about 25,000 in 1974 to under 9,000 by 1990 while the financial sector grew from nothing to roughly a fifth of output on the back of the 1981 banking secrecy law and the Eurobond market. Real growth averaged around 4% a year through the late 1980s but a large part of that was factor accumulation, principally the cross-border workforce, rather than productivity. Set at 0.015, level with Austria and below Ireland's 0.02, for that reason.",
+    "Public investment 4.5% and private investment 18.5% of GDP: World Bank NE.GDI.FTOT.ZS gives total gross fixed capital formation of 23.0% for Luxembourg in 1990, which is transcribed exactly. NE.GDI.FPUB.ZS and NE.GDI.FPRV.ZS are both null, so THE SPLIT IS APPORTIONED AND NOT PUBLISHED and is in this branch's unverified list. It is set at roughly a fifth public on the basis that Luxembourg ran one of the highest public capital-formation ratios in the European Community in this period — the Kirchberg plateau, the European institutions' buildings and Findel airport were all state projects — while the steel and banking capital stock was private.",
+    "Stability 85 and authoritarianism 0.09: a constitutional monarchy under Grand Duke Jean with no political violence in living memory, and a Christian Social People's Party that has been in government continuously since 1979 and for all but five years since 1919. Placed level with Switzerland's 85 and above the Netherlands' 82. The 0.09 is a point above Denmark and Norway because the Grand Duke's constitutional powers in 1990 were still formally real — the sanction of laws was not reduced to promulgation until the constitutional amendment of 2008 — and not because anything about Luxembourg's practice was less free.",
+    "Separatism 0.0: Luxembourgish, French and German are all official and every citizen uses all three. There is no regional or linguistic movement of any kind, which for a country of 380,000 people speaking a Moselle Franconian dialect between France and Germany is the whole point of its existence.",
+    "Government in January 1990: Jacques Santer's CSV-LSAP coalition, returned at the Chamber of Deputies election of 18 June 1989. The next election was due by June 1994 and was held on 12 June. Party shares in government.rs are from that 1989 election."
+  ]
+}

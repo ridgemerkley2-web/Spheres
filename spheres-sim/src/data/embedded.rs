@@ -106,6 +106,16 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
     Source { file: "data/nations/canada.json", json: include_str!("../../data/nations/canada.json") },
     Source { file: "data/nations/australia.json", json: include_str!("../../data/nations/australia.json") },
     Source { file: "data/nations/newzealand.json", json: include_str!("../../data/nations/newzealand.json") },
+    // Small and island Europe (branch feat/r2-smalleurope), in ROSTER order.
+    // Macedonia and Montenegro are in that batch too and are deliberately NOT
+    // here: they are Yugoslav successors, `start_1990` is false for both, and
+    // pass two only requires a file for a nation that is on the board in
+    // January 1990. Their opening state comes from
+    // `politics::dissolve_yugoslavia`, exactly as Serbia's and Croatia's do.
+    Source { file: "data/nations/iceland.json", json: include_str!("../../data/nations/iceland.json") },
+    Source { file: "data/nations/luxembourg.json", json: include_str!("../../data/nations/luxembourg.json") },
+    Source { file: "data/nations/malta.json", json: include_str!("../../data/nations/malta.json") },
+    Source { file: "data/nations/cyprus.json", json: include_str!("../../data/nations/cyprus.json") },
 ];
 
 pub const EMBEDDED_RELATIONS: Source<'static> = Source {
