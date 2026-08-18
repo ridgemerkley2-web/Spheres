@@ -24,6 +24,14 @@ pub enum Command {
     SetTaxRate { nation: NationId, rate: f64 },
     SetMilSpend { nation: NationId, share: f64 },
     SetStateInvest { nation: NationId, share: f64 },
+    /// Put a domain's laboratories onto a named technology, or hand the choice
+    /// back to them with `None`. Switching away from a project in progress
+    /// forfeits half of what was banked against it.
+    SetResearchFocus { nation: NationId, domain: tech::Domain, tech: Option<String> },
+    /// Declare one domain a national research programme, or stand the last one
+    /// down with `None`. Worth `tech::PRIORITY_MULTIPLIER` of its ordinary share
+    /// of the budget, taken from the other seven.
+    SetResearchPriority { nation: NationId, domain: Option<tech::Domain> },
     Sanction { imposer: NationId, target: NationId },
     LiftSanction { imposer: NationId, target: NationId },
     ImproveRelations { from: NationId, to: NationId },
@@ -131,6 +139,17 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             REFUSABLE,
         ),
         Command::Sanction { imposer, .. } => (*imposer, 6.0, REFUSABLE),
+        // Redirecting a laboratory is an ordinary act of government and priced
+        // like one. The expensive part is not the announcement, it is the half
+        // of the banked progress the switch throws away, which the model charges
+        // in months rather than in standing.
+        Command::SetResearchFocus { nation, .. } => (*nation, 6.0, REFUSABLE),
+        // Declaring a national programme is not an ordinary act. It is a public
+        // commitment that seven other domains are going to go short, and every
+        // interest behind them knows it.
+        Command::SetResearchPriority { nation, domain } => {
+            (*nation, if domain.is_some() { 30.0 } else { 10.0 }, REFUSABLE)
+        }
         Command::LiftSanction { imposer, .. } => (*imposer, 3.0, REFUSABLE),
         Command::ImproveRelations { from, .. } => (*from, 2.0, REFUSABLE),
         // The most expensive thing a government can decide to do.
@@ -310,6 +329,52 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         }
         Command::SetStateInvest { nation, share } => {
             w.nation_mut(*nation).state_invest_gdp = share.clamp(0.0, 0.40);
+        }
+        Command::SetResearchFocus { nation, domain, tech: want } => {
+            let di = domain.index();
+            let target = match want {
+                None => None,
+                Some(id) => {
+                    let idx = tech::index_of(id)
+                        .ok_or_else(|| format!("No technology called {}.", id))?;
+                    let n = w.nation(*nation);
+                    if !tech::eligible_projects(n, *domain).iter().any(|d| d.id == id) {
+                        return Err(format!(
+                            "{} cannot start {} yet: it is either already known or its \
+                             prerequisites are not.",
+                            nation.name(),
+                            id
+                        ));
+                    }
+                    Some(idx)
+                }
+            };
+            let n = w.nation_mut(*nation);
+            if n.tech.focus.get(di).copied().flatten() != target {
+                // A laboratory redirected does not start from nothing, and does
+                // not carry everything across either. Half the bank survives the
+                // change of subject; the rest was specific to the old one.
+                if let Some(pr) = n.tech.progress.get_mut(di) {
+                    *pr *= 0.5;
+                }
+            }
+            if let Some(slot) = n.tech.focus.get_mut(di) {
+                *slot = target;
+            }
+        }
+        Command::SetResearchPriority { nation, domain } => {
+            w.nation_mut(*nation).tech.priority = *domain;
+            match domain {
+                Some(d) => w.headline(format!(
+                    "{} declares a national {} programme.",
+                    nation.name(),
+                    d.name().to_lowercase()
+                )),
+                None => w.headline(format!(
+                    "{} stands down its national research programme.",
+                    nation.name()
+                )),
+            }
         }
         Command::Sanction { imposer, target } => {
             if *imposer == *target {
@@ -1543,11 +1608,11 @@ mod tests {
     #[test]
     #[ignore]
     fn instrument_spread() {
-        fn med(v: &mut Vec<f64>) -> f64 {
+        fn med(v: &mut [f64]) -> f64 {
             v.sort_by(|a, b| a.partial_cmp(b).unwrap());
             v[v.len() / 2]
         }
-        fn show(name: &str, v: &mut Vec<f64>) {
+        fn show(name: &str, v: &mut [f64]) {
             let m = med(v);
             println!(
                 "{:<28} median {:>8.4}  min {:>8.4}  max {:>8.4}\n{:>30} {:?}",
@@ -1672,6 +1737,129 @@ mod tests {
             annex.push(n_annex);
         }
         show("conquest: annexations/seed", &mut annex);
+    }
+
+    #[test]
+    fn a_research_programme_moves_a_technology_forward_faster() {
+        use tech::Domain;
+        // The point of the feature, stated as a measurement: a government that
+        // declares a national programme in a domain must finish more of that
+        // domain's tree over a decade than the same government left alone --
+        // and must pay for it out of the other seven, not out of nothing.
+        let count_in = |w: &WorldState, id: NationId, d: Domain| -> usize {
+            let n = w.nation(id);
+            tech::registry()
+                .iter()
+                .enumerate()
+                .filter(|(i, def)| def.domain == d && n.tech.knows_index(*i as u16))
+                .count()
+        };
+
+        let me = NationId::USA;
+        let (mut idle, mut driven) = (seeded(0), seeded(0));
+        for w in [&mut idle, &mut driven] {
+            w.rules.ai_aggression = 0.0;
+            w.player = Some(me);
+        }
+        driven.nation_mut(me).political_capital = 100.0;
+        apply_command(
+            &mut driven,
+            &Command::SetResearchPriority { nation: me, domain: Some(tech::Domain::Computing) },
+        )
+        .expect("a superpower can afford to announce a programme");
+        assert_eq!(driven.nation(me).tech.priority, Some(tech::Domain::Computing));
+
+        run_months(&mut idle, 120);
+        run_months(&mut driven, 120);
+
+        let (i_comp, d_comp) = (count_in(&idle, me, Domain::Computing), count_in(&driven, me, Domain::Computing));
+        assert!(
+            d_comp > i_comp,
+            "a national computing programme bought nothing: {} technologies against {}",
+            d_comp, i_comp
+        );
+
+        // ...and the seven that funded it went short. Total research is not
+        // created by announcing a priority, only moved.
+        let others = |w: &WorldState| -> usize {
+            tech::DOMAINS
+                .iter()
+                .filter(|d| **d != tech::Domain::Computing)
+                .map(|d| count_in(w, me, *d))
+                .sum()
+        };
+        assert!(
+            others(&driven) < others(&idle),
+            "the priority was free: other domains held {} against {}",
+            others(&driven), others(&idle)
+        );
+    }
+
+    #[test]
+    fn redirecting_a_laboratory_forfeits_half_of_what_it_had_banked() {
+        // The cost that makes the choice a choice. Political capital prices the
+        // announcement; this prices the thrash, and it is the one that stops a
+        // player re-picking every month for free.
+        let me = NationId::USA;
+        let mut w = seeded(0);
+        w.player = Some(me);
+        run_months(&mut w, 24); // let a programme accumulate
+
+        // Whichever domain actually offers a choice — the tree is deep and
+        // uneven, and Computing in particular runs out of reachable projects for
+        // a frontier economy inside two years, which is a real property of it
+        // rather than something to hardcode around.
+        let (domain, di, banked, elsewhere) = tech::DOMAINS
+            .iter()
+            .find_map(|d| {
+                let di = d.index();
+                let n = w.nation(me);
+                let banked = n.tech.progress[di];
+                if banked <= 0.0 {
+                    return None;
+                }
+                let other = tech::eligible_projects(n, *d)
+                    .iter()
+                    .map(|x| x.id.to_string())
+                    .find(|id| tech::index_of(id) != n.tech.focus[di])?;
+                Some((*d, di, banked, other))
+            })
+            .expect("no domain had both banked progress and an alternative project");
+        let _ = domain;
+
+        w.nation_mut(me).political_capital = 100.0;
+        apply_command(
+            &mut w,
+            &Command::SetResearchFocus {
+                nation: me,
+                domain,
+                tech: Some(elsewhere.clone()),
+            },
+        )
+        .expect("a legal redirection");
+
+        assert_eq!(
+            w.nation(me).tech.focus[di],
+            tech::index_of(&elsewhere),
+            "the laboratory did not take the new subject"
+        );
+        assert!(
+            (w.nation(me).tech.progress[di] - banked * 0.5).abs() < 1e-9,
+            "expected half of {} to survive the switch, found {}",
+            banked,
+            w.nation(me).tech.progress[di]
+        );
+
+        // A technology nobody can start yet is refused rather than silently accepted.
+        let bogus = apply_command(
+            &mut w,
+            &Command::SetResearchFocus {
+                nation: me,
+                domain,
+                tech: Some("not_a_real_technology".into()),
+            },
+        );
+        assert!(bogus.is_err(), "an invented technology was accepted as a project");
     }
 
     #[test]
@@ -1893,10 +2081,18 @@ mod tests {
         // dumping gdp, inflation, mil_strength and debt for every nation after
         // 420 months, over three seeds, gives a file byte-identical to the one
         // the previous pin produces. The simulation did not move. The struct did.
+        //
+        // Re-pinned for research projects. `TechState` gains `priority`, the one
+        // domain a government has declared a national programme. Same story as
+        // every entry above and checkable the same way: no data file changed,
+        // and the field defaults to `None` while `domain_weights` multiplies
+        // only when it is `Some`, so a world where nobody has declared anything
+        // computes bit-identical shares to the one before it. The struct moved;
+        // the simulation did not.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0xb9673f3eec091d10u64,
+            h, 0xf28a574a2efdd179u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -2041,7 +2237,11 @@ mod tests {
         // `WorldState` gained `player_set_rate`, so the fingerprint of the state
         // moved while the twenty years of history inside it did not. The
         // trajectory dump described there covers this run too.
-        const GOLDEN: u64 = 0x57724ed8dd8fc5ef;
+        //
+        // Re-pinned for research projects, on the same evidence as
+        // `the_1990_start_is_pinned` above: a new `TechState` field that is
+        // `None` everywhere nobody has declared a programme.
+        const GOLDEN: u64 = 0x2c98d17c7f89cb37;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

@@ -70,6 +70,11 @@ impl Domain {
             Domain::Agriculture => 7,
         }
     }
+    /// Parse the debug spelling the surface sends back, e.g. "Computing".
+    pub fn parse(s: &str) -> Option<Domain> {
+        DOMAINS.iter().copied().find(|d| format!("{:?}", d).eq_ignore_ascii_case(s))
+    }
+
     pub fn name(self) -> &'static str {
         match self {
             Domain::Computing => "Computing & Software",
@@ -557,6 +562,15 @@ pub struct TechState {
     /// How much of the accumulated oil-yield bonus has been worked into the
     /// wells so far. Recovery arrives gradually and cannot be undone.
     pub oil_yield_applied: f64,
+    /// The one domain the government has declared a national programme, if it
+    /// has. Multiplies that domain's share of the research budget by
+    /// `PRIORITY_MULTIPLIER` before the shares are normalised, so a priority is
+    /// paid for out of the other seven rather than out of nothing.
+    ///
+    /// Defaulted so a save written before research projects existed still loads,
+    /// and reads as "no programme declared", which is what those worlds were.
+    #[serde(default)]
+    pub priority: Option<Domain>,
     /// Rebuilt from `known` every tick, so the totals can never drift away from
     /// the technologies that justify them. Still written to disk because
     /// `economy::tick` reads it before `tech::tick` gets a chance to rebuild,
@@ -624,6 +638,7 @@ impl TechState {
             progress: vec![0.0; DOMAIN_COUNT],
             research_total: 0.0,
             tfp_base,
+            priority: None,
             oil_yield_applied: 0.0,
             bonus: TechBonuses::default(),
             absorption_rate: 0.0,
@@ -640,6 +655,7 @@ impl TechState {
             progress: vec![0.0; DOMAIN_COUNT],
             research_total: 0.0,
             tfp_base,
+            priority: None,
             oil_yield_applied: parent.oil_yield_applied,
             bonus: parent.bonus.clone(),
             // The programme stops; the plants that were already being fitted out
@@ -692,6 +708,9 @@ impl TechState {
             self.initialized = true;
         }
         self.rebuild_bonus();
+        if self.priority.is_some_and(|d| d.index() >= DOMAIN_COUNT) {
+            self.priority = None;
+        }
         if self.focus.len() != DOMAIN_COUNT {
             self.focus.resize(DOMAIN_COUNT, None);
         }
@@ -731,7 +750,7 @@ fn development(n: &Nation) -> f64 {
 /// research and China of 1990 spends well under one. The floor is not zero even
 /// for the poorest, because the engineers who install imported plant and work
 /// out why it keeps breaking are doing research whatever the budget calls it.
-fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
+pub fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     let invest = n.state_invest_gdp + n.priv_invest_gdp;
     let intensity = (0.008 + 0.017 * dev) * (0.55 + 1.5 * invest);
     let mut out = n.gdp * intensity / 12.0;
@@ -759,6 +778,18 @@ fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
 /// with an expensive barrel funds energy, a state at war funds weapons, a poor
 /// country funds the harvest, a rich one funds the laboratory. The weights are
 /// read off the nation's own condition every month.
+/// What declaring a national research programme is worth.
+///
+/// Applied before normalisation, so it is genuinely a *reallocation*: at 3.0 the
+/// favoured domain takes roughly a third of the budget against the eighth it
+/// would otherwise get, and the other seven each give up a proportional slice.
+/// A government cannot conjure scientists, only move them.
+/// The knee of the affordability curve, `r^2/(r + knee)`. Hoisted to the module
+/// because `project_of` has to price a project exactly as the spend loop will.
+const BUILD_KNEE: f64 = 0.004;
+
+pub const PRIORITY_MULTIPLIER: f64 = 3.0;
+
 fn domain_weights(w: &WorldState, n: &Nation, dev: f64) -> [f64; DOMAIN_COUNT] {
     let at_war = w.at_war(n.id);
     let oil_stress = ((w.oil_price - 20.0) / 20.0).clamp(0.0, 2.0);
@@ -774,11 +805,73 @@ fn domain_weights(w: &WorldState, n: &Nation, dev: f64) -> [f64; DOMAIN_COUNT] {
     wt[Domain::Biotech.index()] = 0.60 + 1.00 * dev;
     wt[Domain::Transport.index()] = 0.90 + 0.40 * dev;
     wt[Domain::Agriculture.index()] = 0.70 + 1.20 * (1.0 - dev);
+    // ...and then what the government has said out loud it cares about.
+    if let Some(d) = n.tech.priority {
+        wt[d.index()] *= PRIORITY_MULTIPLIER;
+    }
     let total: f64 = wt.iter().sum();
     for x in wt.iter_mut() {
         *x /= total;
     }
     wt
+}
+
+/// The share of the research budget each domain is getting, normalised.
+///
+/// The same function the spend loop uses; exposed so the browser can show where
+/// a nation's effort is actually going, and what declaring a priority did to it.
+pub fn domain_weights_of(w: &WorldState, n: &Nation, dev: f64) -> [f64; DOMAIN_COUNT] {
+    domain_weights(w, n, dev)
+}
+
+/// Every technology in `domain` this nation could start work on today: not
+/// already known, and every prerequisite held.
+///
+/// The same test `pick_focus` applies when the engine chooses for itself, so a
+/// project the player can see is a project the engine would accept. The year
+/// floor is deliberately NOT applied here — a government is allowed to fund
+/// something ahead of its time, it simply will not arrive until the floor does.
+pub fn eligible_projects(n: &Nation, domain: Domain) -> Vec<&'static TechDef> {
+    let reg = registry();
+    let pre = prereq_table();
+    reg.iter()
+        .enumerate()
+        .filter(|(i, def)| {
+            def.domain == domain
+                && !n.tech.knows_index(*i as u16)
+                && pre[*i].iter().all(|q| n.tech.knows_index(*q))
+        })
+        .map(|(_, def)| def)
+        .collect()
+}
+
+/// What a domain is working on, how far in, and what it will cost to finish.
+pub fn project_of(w: &WorldState, id: NationId, domain: Domain) -> Option<(&'static TechDef, f64, f64)> {
+    let n = w.nation(id);
+    let di = domain.index();
+    let t = (*n.tech.focus.get(di)?)?;
+    let def = &registry()[t as usize];
+    let banked = *n.tech.progress.get(di)?;
+    let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
+    let absorb = absorptive_capacity(w, n, dev);
+    let world_gdp: f64 = w.nations.iter().filter(|o| o.alive).map(|o| o.gdp.max(0.0)).sum();
+    let scale = if world_gdp > 0.0 {
+        let r = (n.gdp.max(0.0) / world_gdp).sqrt();
+        (r * r / (r + BUILD_KNEE)).clamp(0.0, 1.0)
+    } else {
+        1.0
+    };
+    let mut world_weight = 0.0;
+    let mut mine = 0.0;
+    for o in w.nations.iter().filter(|o| o.alive) {
+        let ww = o.gdp.max(0.0) * (1.0 + o.tech.bonus.diffusion_emission_eff());
+        world_weight += ww;
+        if o.tech.knows_index(t) {
+            mine += ww;
+        }
+    }
+    let share = if world_weight > 0.0 { (mine / world_weight).clamp(0.0, 1.0) } else { 0.0 };
+    Some((def, banked, effective_cost(def, share, absorb, scale, &n.tech.bonus)))
 }
 
 /// How much of what the world already knows this nation can actually take up.
@@ -1015,7 +1108,6 @@ pub fn tick(w: &mut WorldState) {
         //   India 110,105,105 -> 108,106,106  USA 123,110,123 -> 116,113,124
         // The tail moves by about half and the frontier does not move at all,
         // which is the shape the change was aiming for.
-        const BUILD_KNEE: f64 = 0.004;
         //
         // THE MICROSTATE BRANCH, added with the island Pacific and flagged for
         // the integrator because it is a shared-surface change made by a roster

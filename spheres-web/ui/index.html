@@ -126,6 +126,23 @@
   .ledger .stat .v { font-weight: 600; }
   .ledger .note { color: #6b788a; font-size: 11px; margin-top: 6px; }
 
+  /* ---------- research ---------- */
+  #resCard .dom { border-top:1px solid var(--line); padding:7px 0; }
+  #resCard .dom:first-child { border-top:none; }
+  #resCard .dhead { display:flex; align-items:baseline; gap:6px; font-size:12px; }
+  #resCard .dhead .nm { font-weight:600; letter-spacing:.02em; }
+  #resCard .dhead .cnt { color:var(--dim); font-size:11px; margin-left:auto; }
+  #resCard .proj { font-size:11px; color:var(--cyan); margin:2px 0 4px; }
+  #resCard .proj .eta { color:var(--dim); }
+  #resCard .none { font-size:11px; color:var(--dim); font-style:italic; margin:2px 0 4px; }
+  #resCard select { width:100%; background:var(--panel-2); color:var(--ink);
+    border:1px solid var(--line); border-radius:3px; font-size:11px; padding:3px; }
+  #resCard .pri { border:1px solid var(--amber); color:var(--amber); background:none;
+    border-radius:3px; font-size:10px; padding:2px 6px; cursor:pointer; margin-left:6px; }
+  #resCard .pri.on { background:var(--amber); color:#0a0e14; font-weight:600; }
+  #resCard .sharebar { height:3px; background:var(--panel-2); border-radius:2px; margin-top:3px; }
+  #resCard .sharebar i { display:block; height:100%; background:var(--cyan); border-radius:2px; }
+
   /* ---------- stratagems ----------
      Political capital is the currency every decision is now priced in, so it is
      read as a number before it is read as a bar. */
@@ -940,6 +957,7 @@ function renderLeft(m) {
       <div class="tiny" style="margin-top:6px;cursor:pointer" onclick="openNation('${m.id}')">Open full dashboard →</div>
     </div>
 
+    ${researchHtml(m)}
     ${stratagemsHtml(m)}
 
     <div class="card">
@@ -956,8 +974,86 @@ function renderLeft(m) {
     </div>`;
   wireSliders(m);
   wireStratagems();
+  wireResearch();
   $("#revertBtn").onclick = revertOrders;
 }
+
+/* ================= research =================
+   Eight domains, each working on one technology at a time. The player picks the
+   project; the engine picks it for them if they do not. One domain may be
+   declared a national programme, which multiplies its share of the budget and
+   takes that share out of the other seven.
+
+   Every number here is computed in spheres-sim and served on the payload —
+   the cost of a project, the months remaining at the current rate, which
+   technologies are startable. The browser does no arithmetic. */
+
+function researchHtml(m) {
+  const r = S.research;
+  if (!r) return "";
+  const doms = r.domains || [];
+  const mult = r.priority_multiplier || 3;
+
+  const body = doms.map((d) => {
+    const isPri = r.priority === d.domain;
+    const opts = (d.options || []).map((o) =>
+      `<option value="${o.id}"${d.project && d.project.id === o.id ? " selected" : ""}>${o.name}${
+        o.year > S.year ? ` (from ${o.year})` : ""}</option>`).join("");
+    const line = d.project
+      ? `<div class="proj">${d.project.name}
+           <span class="eta">· ${d.cost > 0 ? Math.round((d.banked / d.cost) * 100) : 0}% ·
+           ${d.months_left == null ? "stalled" : d.months_left + " mo"}</span></div>`
+      : (d.options && d.options.length)
+        ? `<div class="none">no project chosen — pick one below, or let the engine choose on the next advance</div>`
+        : `<div class="none">nothing startable — every reachable technology here is already held</div>`;
+    return `<div class="dom">
+        <div class="dhead">
+          <span class="nm">${d.name}</span>
+          <button class="pri${isPri ? " on" : ""}" data-pri="${isPri ? "" : d.domain}"
+                  title="${isPri ? "Stand the programme down" : `Declare a national programme: ${mult}x this domain's share, taken from the other seven`}">${isPri ? "PRIORITY" : "\u00b7"}</button>
+          <span class="cnt">${d.known}/${d.total}</span>
+        </div>
+        ${line}
+        <select data-focus="${d.domain}">
+          <option value="">— let the engine choose —</option>
+          ${opts}
+        </select>
+        <div class="sharebar"><i style="width:${(d.share * 100).toFixed(1)}%"></i></div>
+      </div>`;
+  }).join("");
+
+  return `<div class="card" id="resCard">
+      <h3>Research <span>· ${r.monthly.toFixed(1)} points a month</span></h3>
+      ${body}
+    </div>`;
+}
+
+function wireResearch() {
+  document.querySelectorAll("select[data-focus]").forEach((el) => {
+    el.onchange = () => setFocus(el.dataset.focus, el.value);
+  });
+  document.querySelectorAll("button[data-pri]").forEach((b) => {
+    b.onclick = () => setPriority(b.dataset.pri);
+  });
+}
+
+/// Both take effect immediately rather than queueing with the sliders: they are
+/// decisions, and the sim charges political capital for them the moment they
+/// land. Redirecting a domain also forfeits half of what it had banked, which is
+/// why the confirmation says so.
+window.setFocus = async function (domain, tech) {
+  const r = await api("/api/command", { commands: [{ kind: "research_focus", domain, tech }] });
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  else banner(tech ? "Research redirected — half the banked progress carried over." : "Project handed back to the engine.");
+  await adopt(r, false);
+};
+
+window.setPriority = async function (domain) {
+  const r = await api("/api/command", { commands: [{ kind: "research_priority", domain }] });
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  else banner(domain ? domain + " is now the national programme." : "National programme stood down.");
+  await adopt(r, false);
+};
 
 /* ================= stratagems =================
    What the world is offering the government this month, priced in the currency

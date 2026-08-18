@@ -559,11 +559,77 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // the offer list changes with the world: a month that breaks the
         // inflation closes the peg, and the panel must not be a frame behind.
         "stratagems": w.player.map(|p| stratagems_json(w, p)),
+        "research": w.player.map(|p| research_json(w, p)),
         "interrupt": interrupt,
     })
 }
 
 /// Translate the UI's flat command objects into sim commands.
+/// The research board: what each of the eight domains is working on, how far in,
+/// and what else it could be doing instead.
+///
+/// Everything here is computed sim-side — the cost of a project, the months left
+/// at the current rate, which technologies are startable. The browser renders it
+/// and does no arithmetic of its own, which is the lesson from the growth model
+/// it used to mirror in JavaScript and got wrong three ways.
+fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let n = w.nation(me);
+    let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
+    let monthly = spheres_sim::tech::research_output(w, n, dev);
+    let weights = spheres_sim::tech::domain_weights_of(w, n, dev);
+
+    let domains: Vec<serde_json::Value> = spheres_sim::tech::DOMAINS
+        .iter()
+        .map(|d| {
+            let di = d.index();
+            let rate = monthly * weights[di];
+            let (project, banked, cost) = match spheres_sim::tech::project_of(w, me, *d) {
+                Some((def, banked, cost)) => (
+                    serde_json::json!({ "id": def.id, "name": def.name, "year": def.earliest_year }),
+                    banked,
+                    cost,
+                ),
+                None => (serde_json::Value::Null, n.tech.progress[di], 0.0),
+            };
+            let months_left = if cost > banked && rate > 1e-9 {
+                Some(((cost - banked) / rate).ceil() as i64)
+            } else {
+                None
+            };
+            let options: Vec<serde_json::Value> = spheres_sim::tech::eligible_projects(n, *d)
+                .iter()
+                .map(|def| serde_json::json!({
+                    "id": def.id, "name": def.name, "year": def.earliest_year,
+                }))
+                .collect();
+            serde_json::json!({
+                "domain": format!("{:?}", d),
+                "name": d.name(),
+                "share": weights[di],
+                "rate": rate,
+                "project": project,
+                "banked": banked,
+                "cost": cost,
+                "months_left": months_left,
+                "known": spheres_sim::tech::registry().iter().enumerate()
+                    .filter(|(i, def)| def.domain == *d && n.tech.knows_index(*i as u16))
+                    .count(),
+                "total": spheres_sim::tech::registry().iter()
+                    .filter(|def| def.domain == *d).count(),
+                "options": options,
+            })
+        })
+        .collect();
+
+    serde_json::json!({
+        "nation": n.id.name(),
+        "monthly": monthly,
+        "priority": n.tech.priority.map(|d| format!("{:?}", d)),
+        "priority_multiplier": spheres_sim::tech::PRIORITY_MULTIPLIER,
+        "domains": domains,
+    })
+}
+
 fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<Command> {
     let kind = v.get("kind")?.as_str()?;
     let num = || v.get("value").and_then(|x| x.as_f64());
@@ -582,7 +648,25 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             .and_then(|x| x.as_u64())
             .map(|x| x as u32)
     };
+    let domain = || {
+        v.get("domain")
+            .and_then(|x| x.as_str())
+            .and_then(spheres_sim::tech::Domain::parse)
+    };
     Some(match kind {
+        // Choosing what a domain's laboratories work on. A missing or empty
+        // "tech" hands the choice back to them.
+        "research_focus" => Command::SetResearchFocus {
+            nation: me,
+            domain: domain()?,
+            tech: v
+                .get("tech")
+                .and_then(|x| x.as_str())
+                .filter(|x| !x.is_empty())
+                .map(|x| x.to_string()),
+        },
+        // Declaring, or standing down, the national programme.
+        "research_priority" => Command::SetResearchPriority { nation: me, domain: domain() },
         "rate" => Command::SetInterestRate { nation: me, rate: num()? },
         "tax" => Command::SetTaxRate { nation: me, rate: num()? },
         "military" => Command::SetMilSpend { nation: me, share: num()? },
