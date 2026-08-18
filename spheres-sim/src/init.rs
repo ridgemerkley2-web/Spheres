@@ -23,6 +23,11 @@ pub fn world_1990(rules: GameRules) -> WorldState {
     // tick, so that a player choosing a nation in January 1990 can see their
     // parliament rather than an empty chamber that fills in in February.
     crate::government::ensure_all(&mut w);
+    // ...and seat the spheres for the same reason: a player choosing a nation in
+    // January 1990 must see where their influence stands, not an empty board
+    // that fills in over the next decade. Read off the transcribed relations
+    // rather than typed a second time — see `influence::seat_1990`.
+    crate::influence::seat_1990(&mut w);
     w
 }
 

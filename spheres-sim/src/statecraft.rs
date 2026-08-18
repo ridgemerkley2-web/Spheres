@@ -10,6 +10,13 @@
 //!   day it is caught and the whole thing rebounds.
 //! * **Trade agreements** make two economies grow together and leave the smaller
 //!   one holding a knife by the blade.
+//!
+//! Since Phase 2.2 none of these four is an end in itself. Each of them is a way
+//! of buying into ONE number — the influence stake in `influence.rs` — which
+//! decays every month and therefore has to be paid for forever. While an
+//! arrangement stands, `influence::tick` reads it and pays the stake; the
+//! moments an arrangement *changes* are here, and they call `influence::shift`
+//! directly, because breaking something is a shock rather than a trickle.
 
 use crate::world::*;
 
@@ -35,6 +42,33 @@ pub const MAX_AID_SHARE: f64 = 0.010;
 /// ...and no single client can absorb more than this share of it. A sphere of
 /// influence is several countries or it is not a sphere.
 pub const MAX_CLIENT_SHARE: f64 = 0.004;
+
+/// Share of world output that has to shut its doors before a country cannot
+/// open a market anywhere else either. Below this an embargo is a quarrel a
+/// target can route around; above it the shipping is uninsurable and the banks
+/// that would clear the payments are inside the coalition.
+///
+/// Checked red in BOTH directions on the twenty-four-seed sweep in
+/// `sanctions_readout`, which is the instrument
+/// `sanctions_cost_the_target_real_growth` samples one seed of. Median points of
+/// annual growth a G5 regime costs Brazil, how many of the twenty-four seeds
+/// came out NEGATIVE — the target growing FASTER for having been embargoed —
+/// and whether the whole suite is green:
+///      1.01  (rule off)  1.61   6 negative   RED, the single seed reads 1.17
+///      0.60              1.61   6 negative   RED, identical: a G5 coalition
+///                                            weighs about 0.52, so the rule
+///                                            never fires above that
+///      0.55              1.90   3 negative   RED
+///      0.50              2.39   0 negative   RED, the single seed reads 0.11
+///      0.35              2.46   0 negative   green  (shipped)
+///      0.20              2.46   0 negative   green
+///      0.05              2.46   0 negative   green
+/// So the band admits roughly 0.05..0.45 and rejects outside it, deleting the
+/// rule outright included. The plateau is the point: what the constant actually
+/// decides is whether a G5-weight coalition seals a market, and 0.35 sits in the
+/// middle of the range that says yes while still leaving a regional quarrel —
+/// one mid-sized economy's embargo — something a target can route around.
+const EMBARGO_SEALS_THE_MARKET: f64 = 0.35;
 
 /// A patron's transfer is small at home and enormous at the other end: Soviet
 /// subsidies to Cuba averaged $4.3bn a year over 1986-90 and came to 21% of
@@ -289,6 +323,10 @@ pub fn break_pact(w: &mut WorldState, from: NationId, to: NationId) -> Result<()
         return Err("No pact to break.".into());
     }
     dissolve_pact(w, from, to);
+    // A guarantee withdrawn is a position lost, and lost all at once. The
+    // standing contribution stops on its own next month; this is the part the
+    // client's political class does immediately.
+    crate::influence::shift(w, from, to, if w.at_war(to) { -25.0 } else { -10.0 });
     if w.at_war(to) {
         w.shift_reputation(from, -30.0);
         w.shift_relation(from, to, -50.0);
@@ -406,6 +444,9 @@ pub fn end_aid(
         .aid
         .retain(|f| !(f.patron == patron && f.client == client && f.kind == kind));
     w.shift_relation(patron, client, -12.0);
+    // Cutting the money is the fastest way to lose a capital, and everyone in it
+    // knows that before the patron does.
+    crate::influence::shift(w, patron, client, -12.0);
     if alive(w, client) {
         let c = w.nation_mut(client);
         c.stability = (c.stability - 3.0).max(0.0);
@@ -459,6 +500,11 @@ pub fn covert_action(
     w.add_covert_heat(sponsor, target, 0.18);
 
     if worked {
+        // The point of subversion, stated as influence rather than as damage: an
+        // operation that lands inside a rival's client wrecks the RIVAL'S
+        // position far more than it builds the sponsor's. Cheap way to break a
+        // sphere, poor way to build one.
+        crate::influence::subversion_landed(w, sponsor, target);
         match op {
             CovertOp::FundOpposition => {
                 let hit = w.rng.range(5.0, 10.0);
@@ -500,6 +546,7 @@ pub fn covert_action(
         w.shift_relation(sponsor, target, -35.0);
         w.shift_reputation(sponsor, -12.0);
         w.add_covert_heat(sponsor, target, 0.25);
+        crate::influence::subversion_exposed(w, sponsor, target);
         {
             let t = w.nation_mut(target);
             // Caught red-handed, a foreign hand is the best thing that can
@@ -545,6 +592,28 @@ pub fn propose_trade(w: &mut WorldState, from: NationId, to: NationId) -> Result
     }
     if w.is_sanctioning(from, to) || w.is_sanctioning(to, from) {
         return Err("Sanctions bar an agreement.".into());
+    }
+    // ...and so does somebody else's embargo. A country a large share of the
+    // world economy has shut out cannot simply open a market somewhere else and
+    // carry on: the shipping is uninsurable, the letters of credit are refused,
+    // and the banks that would clear the payments are inside the coalition.
+    //
+    // This was a hole before influence existed and influence is what exposed it.
+    // A sanctioned state could sign fresh agreements with whoever was not in the
+    // coalition and collect the full level gain, which is why
+    // `sanctions_cost_the_target_real_growth` came out NEGATIVE on some seeds —
+    // being embargoed made the target richer than never having been embargoed.
+    // Measured across twenty-four seeds, that happened once on master and six
+    // times once spheres gave the rival bloc a reason to move in. The threshold
+    // is a third of world output: a regional quarrel does not do this, and the
+    // G5 does.
+    for x in [from, to] {
+        if w.sanction_weight(x) > EMBARGO_SEALS_THE_MARKET {
+            return Err(format!(
+                "{} is under an embargo too wide for anyone to trade around.",
+                x.name()
+            ));
+        }
     }
     if belligerents(w, from, to) {
         return Err("Cannot open markets to a nation you are fighting.".into());
@@ -594,6 +663,9 @@ pub fn abrogate_trade(w: &mut WorldState, from: NationId, to: NationId) -> Resul
     w.nation_mut(from).gdp *= 1.0 - dep_from * 0.06;
     w.shift_relation(from, to, -25.0);
     w.shift_reputation(from, -6.0);
+    // Using the leverage spends it: the dependency that fed the stake is gone
+    // and the memory of being squeezed with it.
+    crate::influence::shift(w, from, to, -dep_to * 30.0 - 5.0);
     w.headline(format!(
         "{} tears up its trade agreement with {}; {}'s exporters reel.",
         from.name(),
@@ -678,6 +750,8 @@ pub fn call_the_guarantors(w: &mut WorldState, c: &mut Conflict, at: u8) -> Vec<
             dissolve_pact(w, g, defender);
             w.shift_reputation(g, -25.0);
             w.shift_relation(g, defender, -45.0);
+            // The single fastest way to lose a sphere: be asked, and not come.
+            crate::influence::shift(w, g, defender, -30.0);
             w.headline(format!(
                 "{} abandons its pact with {}. The guarantee proves worthless.",
                 g.name(),

@@ -45,6 +45,21 @@
   political capital, and the acts that amount to breaking your word — renouncing
   a guarantee, cutting a client loose, tearing up a treaty — are charged to
   bankruptcy rather than refused, because a government can always renege
+- **Influence projection — the stock the four instruments now feed** (Phase 2.2).
+  `spheres-sim/src/influence.rs`. A patron's position in a client is a number
+  0..100 that DECAYS every month, so a sphere is something you hold rather than
+  something you buy. Aid, arms, trade dependency and a defence guarantee all pay
+  into that one number instead of being four separate ends; covert action does
+  the opposite, wrecking a rival's position far more than it builds your own.
+  Alignments carry hysteresis — a challenger must out-hold the incumbent by a
+  clear margin for six months running, and when a client finally flips the loser
+  drops two thirds of everything it built plus standing at home. Contest is the
+  expensive state by construction: two rivals in one capital raise each other's
+  decay and roughly double each other's monthly bill. January 1990 opens with a
+  real board, read off the transcribed relations matrix rather than typed a
+  second time, so a player sees where their influence stands on the first screen.
+  Both surfaces carry it: `spheres` / `sphere X` / `project X 100` / `abandon X`
+  in the CLI, a Spheres card and a priced dossier section in the browser
 
 ## Closed: nation identity is a runtime value, and dyads are derived
 
@@ -733,6 +748,23 @@ done before any more 1990 monetary data is transcribed.
 253 technologies and the browser UI does not mention one of them. The owner's
 stated preference is to see the game; this is the largest gap between what the sim
 knows and what the screen shows.
+
+### 2b. A player nation deflates into negative GDP, and it is not new
+`politics.rs` skips the central bank and the fiscal consolidation for
+`w.player`, by design — those are the player's to set. Nothing stops a player who
+simply advances the clock, and the deflation has no floor. Measured on master
+d1c64fa and on `feat/influence` alike: `player = Some(USA)` and 420 idle months
+puts the United States at **gdp -10.98 in June 2016** (master; May 2017 on the
+branch), rate pinned at 8%, inflation -5%, and `mil_strength` NaN because
+`war.rs` takes the square root of a negative budget. serde writes NaN as `null`
+and the browser UI then crashes on `m.mil_strength.toFixed(0)`.
+
+Nothing in the suite covers it: `a_century_holds_together` and
+`economic_invariants_50_years` both run with `player = None`. It wants a
+regression test that runs an idle player nation for a full campaign against the
+same invariants, and a floor that makes negative real output impossible whoever
+is governing. Do NOT fix it by re-enabling the AI central bank for the player —
+that would silently overwrite a rate the player set.
 
 ### 3. Political capital — half done
 The currency exists. Every nation holds a stock, seated from the order it keeps

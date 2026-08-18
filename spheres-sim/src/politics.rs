@@ -1039,6 +1039,18 @@ fn ai_statecraft(w: &mut WorldState) {
             }
         }
 
+        // ---- Influence. The namesake system, played by the AI on exactly the
+        // terms the player gets: one command, priced in political capital, and a
+        // standing monthly bill after it.
+        //
+        // A great power does three things here, in this order and every month:
+        // it defends what a rival is taking off it, it opens a programme
+        // somewhere it can win, and it writes off a capital it has already lost
+        // rather than paying upkeep on a defeat. The order matters — defending
+        // first is what makes contested clients expensive for BOTH sides and
+        // therefore what gives the period its texture. ----
+        ai_influence(w, p);
+
         // ---- Subversion, aimed at whoever is both hostile and brittle. ----
         if w.rng.chance(0.022) {
             if let Some(t) = best_covert_target(w, p) {
@@ -1206,6 +1218,182 @@ fn best_covert_target(w: &WorldState, sponsor: NationId) -> Option<NationId> {
         .filter(|(_, s)| *s > 0.05)
         .max_by(|x, y| x.1.partial_cmp(&y.1).unwrap_or(std::cmp::Ordering::Equal))
         .map(|(t, _)| t)
+}
+
+/// What a great power does about its sphere in one month, and it does exactly
+/// one thing — the same single priced command a player would issue.
+///
+/// No die is rolled here. The constraint is the budget: opening or widening a
+/// programme is charged at once by `command_price` and then charged again every
+/// month by `influence::tick`, so a power that has taken on too many clients
+/// simply cannot afford the next one and starts losing the ones it has. That is
+/// the whole design — the AI is not restrained by a probability, it is
+/// restrained by the same bill the player pays.
+fn ai_influence(w: &mut WorldState, p: NationId) {
+    use crate::influence as inf;
+
+    // ---- 1. Write off what is already lost. A capital that has gone over to a
+    // rival and where we hold almost nothing is a standing charge against a
+    // defeat, and paying it is how a power ends up with no money for the fights
+    // it could still win. ----
+    let lost: Vec<NationId> = w
+        .statecraft
+        .influence
+        .iter()
+        .filter(|s| s.patron == p && s.effort > 0.0 && s.stock < inf::ALIGN_FLOOR * 0.5)
+        .map(|s| s.client)
+        .filter(|c| w.aligned_to(*c).map_or(false, |h| h != p))
+        .collect();
+    for c in lost {
+        let _ = crate::apply_command(w, &crate::Command::AbandonSphere { patron: p, client: c });
+    }
+
+    // ---- 2. Stand the programmes down where the position holds itself. A
+    // client at eighty points with nobody pulling at it is held by the
+    // institutions, not by the embassy's budget, and the incumbent's decay
+    // relief is what holds it. Narrowing costs nothing, so this is free money
+    // and the AI takes it before it asks for anything. Without this rule a
+    // patron pins every client at full effort forever and can afford two. ----
+    let overpaying: Vec<NationId> = w
+        .statecraft
+        .influence
+        .iter()
+        .filter(|s| s.patron == p && s.effort > 0.0)
+        .filter(|s| s.effort > desired_effort(w, p, s.client) + 0.05)
+        .map(|s| s.client)
+        .collect();
+    for c in overpaying {
+        let e = desired_effort(w, p, c);
+        let _ = crate::apply_command(
+            w,
+            &crate::Command::ProjectInfluence { patron: p, client: c, effort: e },
+        );
+    }
+
+    let held = w.nation(p).political_capital;
+    // A government with nothing left at home does not open missions abroad. It
+    // is still paying for the ones it has, which is how the spiral works.
+    if held < 16.0 {
+        return;
+    }
+
+    // ---- 3. Defend. A rival mid-challenge, or a client sliding toward the
+    // floor, is the emergency — and defending is cheaper than retaking, which is
+    // the incumbent's whole advantage. ----
+    let slipping: Option<NationId> = {
+        let under_challenge: Vec<NationId> = w
+            .statecraft
+            .alignment
+            .iter()
+            .filter(|a| a.patron == p && a.challenger.is_some())
+            .map(|a| a.client)
+            .collect();
+        let thinning: Vec<NationId> = w
+            .statecraft
+            .alignment
+            .iter()
+            .filter(|a| a.patron == p)
+            .map(|a| a.client)
+            .filter(|c| w.stake(p, *c) < inf::ALIGN_FLOOR + 10.0)
+            .collect();
+        under_challenge
+            .into_iter()
+            .chain(thinning)
+            .find(|c| w.effort(p, *c) < 1.0)
+    };
+    if let Some(c) = slipping {
+        let e = (w.effort(p, c) + 0.5).min(1.0);
+        let _ = crate::apply_command(
+            w,
+            &crate::Command::ProjectInfluence { patron: p, client: c, effort: e },
+        );
+        return;
+    }
+
+    // ---- 4. Expand, but only with standing to spare. A power at 20 defends
+    // what it has; a power at 32 goes shopping. ----
+    if held < 32.0 {
+        return;
+    }
+    if let Some(c) = sphere_target(w, p) {
+        let e = (w.effort(p, c) + 0.5).min(1.0);
+        let _ = crate::apply_command(
+            w,
+            &crate::Command::ProjectInfluence { patron: p, client: c, effort: e },
+        );
+    }
+}
+
+/// What effort a position actually needs, as opposed to what it can absorb.
+/// Secure and uncontested wants almost nothing; contested or thin wants
+/// everything. This is the difference between a patron that can hold three
+/// clients and one that can hold ten.
+fn desired_effort(w: &WorldState, p: NationId, c: NationId) -> f64 {
+    let stock = w.stake(p, c);
+    let pressure = w.contest_pressure(p, c);
+    let secure = w.aligned_to(c) == Some(p) && stock > 70.0;
+    if secure && pressure < 0.20 {
+        0.0
+    } else if secure {
+        0.5
+    } else if stock > crate::influence::ALIGN_FLOOR + 20.0 && pressure < 0.20 {
+        0.5
+    } else {
+        1.0
+    }
+}
+
+/// Where a patron would rather be spending. Cheap by construction — no quote is
+/// computed here, because this runs over the whole roster for every patron every
+/// month; the full arithmetic is `influence::quote_take`, which the surfaces
+/// call once for one client.
+///
+/// The decisive term is `prize`, and it is the same inversion `client_score`
+/// makes for aid: a capital a hostile power already holds is worth roughly twice
+/// an unclaimed one, because taking it moves two ledgers. That is what turns a
+/// list of embassies into a Cold War.
+fn sphere_score(w: &WorldState, p: NationId, c: NationId) -> f64 {
+    let n = w.nation(c);
+    // A country rich enough to fund its own government is not for sale, whatever
+    // else it can be talked into. Same rule, same reason, as `client_score`.
+    if n.gdp * 1000.0 / n.population.max(0.1) > 15000.0 {
+        return 0.0;
+    }
+    let value = n.oil_mbd * 1.4 + (n.gdp / 150.0).min(5.0) + n.mil_strength / 12.0;
+    let affinity = ((w.relation(p, c) + 40.0) / 140.0).clamp(0.05, 1.0).powi(2);
+    let holder = w.aligned_to(c);
+    // Read the whole board rather than the flag on the flagpole. A capital a
+    // rival is WORKING is a contest whether or not the alignment has settled
+    // yet, and being drawn to it before it settles is what makes two powers meet
+    // in the same place at all — with the alignment alone they simply picked
+    // different countries and the interesting state never arose.
+    let rival = w.contested_by(p, c).map(|(q, s)| (w.rivalry(p, q), s)).unwrap_or((0.0, 0.0));
+    let prize = match holder {
+        // Somebody else's client. Worth roughly twice an open capital if the
+        // somebody is an enemy, and worth very little if they are a friend —
+        // poaching a friend's client costs you the friend.
+        Some(h) => 0.30 + 3.0 * w.rivalry(p, h),
+        None => 1.2 + 0.9 * rival.0 * (rival.1 / 60.0).min(1.0),
+    };
+    let theirs = holder.map(|h| w.stake(h, c)).unwrap_or(0.0);
+    let gap = (theirs + crate::influence::FLIP_MARGIN - w.stake(p, c)).max(0.0);
+    value * affinity * prize / (1.0 + gap / 45.0)
+}
+
+fn sphere_target(w: &WorldState, p: NationId) -> Option<NationId> {
+    w.nations
+        .iter()
+        .filter(|n| n.alive && n.id != p)
+        .map(|n| n.id)
+        .filter(|c| !patrons().contains(c) && !majors().contains(c))
+        .filter(|c| w.aligned_to(*c) != Some(p))
+        .filter(|c| w.effort(p, *c) < 0.9)
+        .filter(|c| w.relation(p, *c) > -25.0)
+        .filter(|c| !crate::statecraft::belligerents(w, p, *c))
+        .map(|c| (c, sphere_score(w, p, c)))
+        .filter(|(_, s)| *s > 0.02)
+        .max_by(|x, y| x.1.partial_cmp(&y.1).unwrap_or(std::cmp::Ordering::Equal))
+        .map(|(c, _)| c)
 }
 
 /// Every state that might start a war this month, and how likely it is to.

@@ -188,6 +188,64 @@ fn play_loop(mut w: WorldState) {
                 }
                 None => println!("Usage: secure army   (army/party/security/business/clergy)"),
             },
+            "spheres" | "sphere" | "influence" => {
+                if rest.is_empty() {
+                    sphere_view(&w, me);
+                } else {
+                    match NationId::parse(&rest) {
+                        Some(t) => client_view(&w, me, t),
+                        None => println!("Usage: sphere Egypt   (or just 'spheres')"),
+                    }
+                }
+            }
+            "project" => {
+                let mut a = rest.splitn(2, ' ');
+                let who = a.next().unwrap_or("").trim().to_string();
+                let pct = a.next().unwrap_or("").trim().to_string();
+                match (NationId::parse(&who), pct.parse::<f64>()) {
+                    (Some(t), Ok(v)) => {
+                        let cmd = Command::ProjectInfluence {
+                            patron: me,
+                            client: t,
+                            effort: v / 100.0,
+                        };
+                        match spheres_sim::apply_command(&mut w, &cmd) {
+                            Ok(()) => {
+                                for h in w.headlines.clone() {
+                                    println!("  {}", h);
+                                }
+                                client_view(&w, me, t);
+                            }
+                            Err(e) => println!("  {}", e),
+                        }
+                    }
+                    _ => println!("Usage: project Egypt 100   (effort, 0-100%)"),
+                }
+            }
+            "abandon" => match NationId::parse(&rest) {
+                Some(t) => {
+                    println!(
+                        "Give up your position in {}? The stake collapses at once. (yes/no)",
+                        t.name()
+                    );
+                    print!("> ");
+                    io::stdout().flush().unwrap();
+                    if read_line().trim().eq_ignore_ascii_case("yes") {
+                        let cmd = Command::AbandonSphere { patron: me, client: t };
+                        match spheres_sim::apply_command(&mut w, &cmd) {
+                            Ok(()) => {
+                                for h in w.headlines.clone() {
+                                    println!("  {}", h);
+                                }
+                            }
+                            Err(e) => println!("  {}", e),
+                        }
+                    } else {
+                        println!("The mission stays open.");
+                    }
+                }
+                None => println!("Usage: abandon Egypt"),
+            },
             "relations" => {
                 let mut rels: Vec<(NationId, f64)> = all_nations()
                     .iter()
@@ -500,6 +558,23 @@ fn describe_ladder(c: &Command) -> String {
 /// Events worth interrupting a multi-month advance for.
 fn is_major(headline: &str, me: NationId) -> bool {
     let h = headline.to_lowercase();
+    // The spheres system writes a lot of quiet news — a mission opening, a
+    // client drifting out of an orbit nobody was paying for — and most of it
+    // names a great power, so without this a player advancing a year would be
+    // stopped every single month. Only a client actually CHANGING HANDS is worth
+    // interrupting for, and that one is caught by the structural list below.
+    let routine = h.contains("drifts out of")
+        || h.contains("moves into")
+        || h.contains("opens a mission")
+        || h.contains("begins courting")
+        || h.contains("redoubles its efforts")
+        || h.contains("gives up its efforts")
+        || h.contains("quietly winds up")
+        || h.contains("closes its mission")
+        || h.contains("is drifting");
+    if routine {
+        return false;
+    }
     let structural = h.starts_with("war:")
         || h.contains("dissolved")
         || h.contains("has annexed")
@@ -508,7 +583,9 @@ fn is_major(headline: &str, me: NationId) -> bool {
         || h.contains("repels")
         || h.contains("escalates to rung")
         || h.contains("grants")
-        || h.contains("revokes");
+        || h.contains("revokes")
+        // A sphere changing hands is the loud one, and it shouts.
+        || h.contains("leaves");
     // Anything naming you is your business, whoever it happened to.
     structural || h.contains(&me.name().to_lowercase())
 }
@@ -564,6 +641,23 @@ fn briefing(w: &WorldState, me: NationId) {
     }
     if n.war_exhaustion > 0.01 {
         println!("War exhaustion: {:.0}%", n.war_exhaustion * 100.0);
+    }
+    {
+        // The namesake system, on the opening screen, from turn one. A player
+        // who never types `spheres` still has to see that they hold one and
+        // that it is costing them something every month.
+        let mine = w.sphere_of(me);
+        let bill = w.sphere_bill(me);
+        if !mine.is_empty() {
+            let contested = mine.iter().filter(|(c, _)| w.is_contested(*c)).count();
+            println!(
+                "Sphere: {} client{}, {:.2} pc/month{}   ('spheres' for the board)",
+                mine.len(),
+                if mine.len() == 1 { "" } else { "s" },
+                bill,
+                if contested > 0 { format!(", {} contested", contested) } else { String::new() }
+            );
+        }
     }
     let sanctioners = w.sanctions.iter().filter(|(_, t)| *t == me).count();
     if sanctioners > 0 {
@@ -719,6 +813,148 @@ fn government_view(w: &WorldState, me: NationId) {
     }
 }
 
+/// The whole namesake system on one screen: what you hold, who is pulling at
+/// it, what it costs you every month, and where somebody else's client sits.
+///
+/// Every number here comes out of `spheres_sim::influence` — the CLI computes
+/// nothing. A mechanic the player cannot reach from their seat is not a
+/// mechanic, and one they cannot price is not a decision.
+fn sphere_view(w: &WorldState, me: NationId) {
+    use spheres_sim::influence as inf;
+    println!("\n--- {}'s sphere - {} ---", me.name(), w.date_str());
+    let mine = w.sphere_of(me);
+    let bill = w.sphere_bill(me);
+    println!(
+        "Holding {} position{}, costing {:.2} political capital a month out of the {:.0} you hold.",
+        mine.len(),
+        if mine.len() == 1 { "" } else { "s" },
+        bill,
+        w.nation(me).political_capital
+    );
+    if mine.is_empty() {
+        println!("\n  You hold nothing anywhere. Influence decays from the month you stop");
+        println!("  paying for it, so a sphere is something you keep, not something you buy.");
+    } else {
+        println!();
+        println!(
+            "  {:<18} {:>6} {:>8}  {:<24} {:>8}",
+            "CLIENT", "YOURS", "EFFORT", "ALIGNED / CONTESTED BY", "PC/MO"
+        );
+        for (c, stock) in &mine {
+            let holder = w.aligned_to(*c);
+            let mut tag = match holder {
+                Some(h) if h == me => "yours".to_string(),
+                Some(h) => format!("{}'s", h.name()),
+                None => "unaligned".to_string(),
+            };
+            if let Some((q, s)) = w.contested_by(me, *c) {
+                tag.push_str(&format!(", {} {:.0}", q.name(), s));
+            }
+            println!(
+                "  {:<18} {:>6.0} {:>7.0}%  {:<24} {:>8.2}",
+                c.name(),
+                stock,
+                w.effort(me, *c) * 100.0,
+                tag,
+                w.sphere_upkeep(me, *c)
+            );
+        }
+    }
+    // ...and the other half of the board: what everyone else holds that you do
+    // not, ordered by what it would take to have it.
+    let mut theirs: Vec<(NationId, NationId, f64)> = w
+        .nations
+        .iter()
+        .filter(|n| n.alive)
+        .filter_map(|n| w.aligned_to(n.id).map(|h| (n.id, h, w.stake(h, n.id))))
+        .filter(|(_, h, _)| *h != me)
+        .collect();
+    theirs.sort_by(|a, b| b.2.partial_cmp(&a.2).unwrap_or(std::cmp::Ordering::Equal));
+    if !theirs.is_empty() {
+        println!("\n  Somebody else's, and what taking one would cost you:");
+        println!(
+            "  {:<18} {:<16} {:>6} {:>8} {:>10}",
+            "CLIENT", "HELD BY", "THEIRS", "MONTHS", "PC"
+        );
+        for (c, h, s) in theirs.iter().take(12) {
+            let q = inf::quote_take(w, me, *c);
+            let (months, pc) = match (q.months, q.political_capital) {
+                (Some(m), Some(p)) => (format!("{}", m), format!("{:.0}", p)),
+                _ => ("--".into(), "needs aid".into()),
+            };
+            println!(
+                "  {:<18} {:<16} {:>6.0} {:>8} {:>10}",
+                c.name(),
+                h.name(),
+                s,
+                months,
+                pc
+            );
+        }
+        println!("\n  '--' means diplomacy alone will never get there: open a chequebook,");
+        println!("  a market or a guarantee, then ask again.");
+    }
+    println!("\n  sphere <nation>      the full account of one capital");
+    println!("  project <nation> 100 open or widen a programme (0-100% effort)");
+    println!("  abandon <nation>     give one up");
+}
+
+/// One capital, in full: who is in it, what you would have to reach, how long at
+/// full effort, and what the arithmetic behind that is.
+fn client_view(w: &WorldState, me: NationId, c: NationId) {
+    use spheres_sim::influence as inf;
+    if w.nation_opt(c).map_or(true, |n| !n.alive) {
+        println!("  {} is not on the board.", c.name());
+        return;
+    }
+    println!("\n--- {} - {} ---", c.name(), w.date_str());
+    let board = w.stakeholders(c);
+    if board.is_empty() {
+        println!("  Nobody holds anything here. It is open ground.");
+    } else {
+        for (p, s) in &board {
+            let mark = if Some(*p) == w.aligned_to(c) { "  <-- aligned" } else { "" };
+            let you = if *p == me { "  (you)" } else { "" };
+            println!("  {:<18} {:>6.0}{}{}", p.name(), s, you, mark);
+        }
+    }
+    if w.is_contested(c) {
+        println!("\n  CONTESTED. Both sides are paying more and holding less for it.");
+    }
+    let q = inf::quote_take(w, me, c);
+    println!();
+    match (q.months, q.political_capital) {
+        _ if q.holder == Some(me) => {
+            println!(
+                "  Yours. Holding it costs {:.2} political capital a month; stop and it \
+                 decays about {:.0}% a year.",
+                w.sphere_upkeep(me, c),
+                inf::BASE_DECAY * (1.0 - inf::INCUMBENT_RELIEF) * 12.0 * 100.0
+            );
+        }
+        (Some(m), Some(pc)) => {
+            println!(
+                "  To take it you must reach {:.0} points against their {:.0}, and hold the \
+                 lead {} months.",
+                q.target_stock, q.their_stock, inf::FLIP_MONTHS
+            );
+            println!(
+                "  At full effort that is {} months and about {:.0} political capital. \
+                 You hold {:.0} now, gaining {:+.2} a month.",
+                m, pc, q.my_stock, q.net_per_month
+            );
+        }
+        _ => {
+            println!(
+                "  Diplomacy alone will not take this one: at full effort you would settle \
+                 below the {:.0} points needed ({:+.2} a month against their {:.0}).",
+                q.target_stock, q.net_per_month, q.their_stock
+            );
+            println!("  Aid, arms, a market or a guarantee all feed the same number. Buy one.");
+        }
+    }
+}
+
 fn help() {
     println!("Commands:");
     println!("  next / n          advance one month");
@@ -727,6 +963,10 @@ fn help() {
     println!("  status            your nation briefing");
     println!("  world             global league table");
     println!("  relations         your diplomatic standing");
+    println!("  spheres           what you hold, what it costs, who contests it");
+    println!("  sphere Egypt      one capital in full, and the price of taking it");
+    println!("  project Egypt 100 open or widen a programme of influence (0-100%)");
+    println!("  abandon Egypt     give a position up");
     println!("  rate 6.5          set policy interest rate (%)");
     println!("  tax 30            set tax take (% of GDP)");
     println!("  military 4.5      set military spending (% of GDP)");
