@@ -296,9 +296,20 @@ fn check_record(file: &str, r: &NationRecord) -> Vec<LoadError> {
     //    ceiling.
     //  * the demand channel is linear and unbounded in `neutral - real_rate` at
     //    a coefficient of 0.55 to annual growth. A real rate of tens therefore
-    //    drives |growth| into the tens, `1.0 + growth/12.0` goes through zero,
-    //    and GDP changes sign. Measured: entering Brazil's true 2948%/9394%
-    //    pair sends its GDP to +inf and takes twelve tests down with it.
+    //    drives |growth| into the tens.
+    //
+    //    This bound used to be justified by what happened next: `1.0 +
+    //    growth/12.0` went through zero, GDP changed sign, and entering
+    //    Brazil's true 2948%/9394% pair sent it to +inf and took twelve tests
+    //    with it. That route is closed — `economy.rs` floors the annual rate at
+    //    -0.95, so the monthly factor cannot reach zero and no input inverts
+    //    output any more. The bound stands on fidelity instead, which is the
+    //    weaker claim but the one that survives: re-measured with the floor in
+    //    place, the true pair does not break the world (no nation loses its
+    //    sign or its finiteness over ten years) and still cannot be carried —
+    //    Brazil falls to 9.3% of its 1990 output within three years and sits
+    //    pinned at the -5% deflation clamp for four of them, against a real
+    //    1990 contraction of 4.3%. Unrepresentable rather than fatal.
     //
     // The gap bound of 0.5 is 27.5 points of annual growth from the rate
     // channel alone, which is already past anything a calibration test here
@@ -337,8 +348,10 @@ fn check_record(file: &str, r: &NationRecord) -> Vec<LoadError> {
                 "economy.interest_rate {} against economy.inflation {} puts the real \
                  rate {:.3} from neutral. The demand channel in economy.rs is linear \
                  and unbounded in that distance at 0.55, so this opens the game at \
-                 {:+.0}% annual growth from monetary policy alone and GDP loses its \
-                 sign shortly after",
+                 {:+.0}% annual growth from monetary policy alone. The growth floor \
+                 stops that inverting GDP, but it does not make the figure playable: \
+                 Brazil's true pair collapses it to 9% of its 1990 output inside three \
+                 years. Say the real print in sources and enter what the model can carry",
                 r.economy.interest_rate,
                 r.economy.inflation,
                 real_rate_gap,
@@ -678,6 +691,13 @@ mod tests {
         // fine, Brazil's GDP went to +inf a few hundred ticks later, and twelve
         // tests failed a long way from the cause. It is refused at load now,
         // with the ceiling named.
+        //
+        // The +inf is no longer what would happen — the growth floor in
+        // economy.rs closed that route — but the refusal is still right, and
+        // for the reason the message now gives: measured with the floor in
+        // place, the true pair leaves the world intact and Brazil at 9.3% of
+        // its 1990 output. A figure the sim survives and cannot represent is
+        // still a figure to refuse at the door.
         let corrected = brazil()
             .replace("\"inflation\": 2.95", "\"inflation\": 29.48")
             .replace("\"interest_rate\": 2.9", "\"interest_rate\": 93.94");

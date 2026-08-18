@@ -427,9 +427,85 @@ it** — this project has twice chased a plausible cause that turned out to be a
 coincidence, most recently blaming the technology tree for a bug that was one
 line of trade code.
 
+## Closed: an idle player could walk a nation through zero GDP
+
+The most serious bug found so far, because it broke the game in the one
+configuration a human actually uses. Found by `feat/influence` while doing
+something else, and pre-existing on master.
+
+Take the United States and advance the clock without touching anything:
+
+```
+    let mut w = world_1990(GameRules::default());
+    w.player = Some(NationId::USA);
+    for _ in 0..420 { tick_month(&mut w, &[]); }
+```
+
+GDP crosses zero in June 2016 at -10.98, `war.rs` square-roots a negative
+budget, `mil_strength` becomes NaN, serde writes NaN as `null`, and the browser
+refuses the save. **Two causes, and the interesting one is not the obvious one.**
+
+**Nobody was governing.** `politics.rs` skips the player's central bank so the
+AI can never overwrite a rate the player chose. It skipped a player who had
+chosen *nothing* just as thoroughly, so the seat held 1990's 8% into a
+deflation: a 13% real rate, a permanent -5.8pt demand gap, thirty-five years of
+contraction that nobody decided. `WorldState::player_set_rate` latches the first
+time the player sets a rate and the bank stands down for good; until then it
+runs on their behalf. Latched on the *command* rather than on "the rate differs
+from 1990" so that deliberately re-setting 8% still counts as governing. An idle
+USA now runs 5.8tn -> 15.8tn over the campaign with 2.2% inflation and 0.94 debt.
+
+**The arithmetic had no floor.** A deflation alone does not send output through
+zero; a term proportional to `1/gdp` does. `oil_effect` divided by `n.gdp` and
+was uncapped, while `embargo_drag` four lines below carries the same shape and
+has been capped at 0.12 since it was written, with the comment "an uncapped
+version would feed on its own collapse". As output fell the oil ratio climbed to
+**65,700**, drove annual growth past -1200%, and turned the monthly factor
+negative. The tell in the trace is that GDP fell by a near-constant ~57bn every
+month at the end, which is what `gdp * (k/gdp)` looks like.
+
+Two bounds, both on the *rate* rather than the result:
+
+- `oil_revenue_gdp` caps at 2.0. Oil income is a share of output, and the
+  ceiling is set from what governed play reaches: over three seeds and
+  thirty-five years the highest any live producer saw was 1.25 (Kuwait 1994),
+  p99.9 was 0.71, the median 0.038.
+- `growth_annual` floors at -0.95/yr, which makes `gdp > 0` provable rather than
+  patched: `1 + (-0.95)/12 = 0.921` is positive for every input, and `economy.rs`
+  is the only site that scales a living nation's GDP.
+
+**Neither binds on a working economy, and that is measured.** Dumping gdp,
+inflation, mil_strength and debt for every nation after 420 months across three
+seeds gives a file byte-identical to the previous code. The golden hashes moved
+anyway, because `WorldState` gained a field and the hash fingerprints the struct
+as well as the numbers in it; both re-pinned with that dump as the evidence.
+
+**A floor under the result is not a floor under the arithmetic.** The first
+attempt clamped the output — `gdp.max(0.001)` — and the suite went green.
+Running past the clamp shows what that bought: the idle USA sits on the floor
+for a year, then "recovers" to a **$120bn economy holding 100.00 stability**, all
+the way to 2025, because the terms that drove it there go on compounding
+underneath the clamp. Finite, positive, and nonsense. Worth remembering the next
+time an invariant test passes: `an_idle_player_cannot_break_the_world` now holds
+the played world to what `economic_invariants_50_years` holds the headless one
+to — debt under 6.0, stability in range — plus a check that the seat has
+not evaporated, and it was verified red against both the original bug (fails on
+"USA debt spiral 6.008 in 2008", eight years before the crash) and against the
+result clamp (fails on "seat has evaporated — gdp 561.07 against 5980 at
+start, in 2014").
+
+Two smaller things fell out of it. `a_player_who_sets_a_rate_keeps_it` goes red
+on the first tick if the bank is ever re-enabled unconditionally for the player,
+which is the tempting wrong fix. And the currency peg pins the rate at 5.5% and
+says in as many words that it stops floating — but a player who pegs without
+ever having set a rate reads as ungoverned, so the default bank drifted it:
+0.055 pinned, 0.078 six months later, for 26 political capital. Enacting the peg
+latches too. Nothing enacts stratagems for the AI yet, so that is a player-path
+fix only.
+
 ## Next (rough priority)
 
-### 0. One calibration test is red, down from four
+### 0. The calibration tests are green, down from four red
 
 The refit that entry demanded has landed, and it was **not** the change the
 entry predicted. Nothing was widened, nothing was deleted, one test was added,
@@ -491,14 +567,16 @@ lucky reshuffle:
   Improved, and still the thinnest margin in the suite: two seeds sit at 6
   against a floor of 5.
 
-**Still red, and untouched rather than fixed:**
+**The fourth has since been fixed, by the shape change this entry called for:**
 
-- **`arms_transfers_build_a_client_army`** — 10.9 vs 7.7, the identical two
-  figures it failed on before the refit. A single-seed treated/untreated ratio
-  sitting at 1.4993 against a bar of 1.50. Not an economic-calibration failure;
-  its shape problem is the one this entry always described — any treated/
-  untreated ratio drifts as the world fills up — and the fix is the test's
-  shape, a cross-seed statistic, not the bar.
+- **`arms_transfers_build_a_client_army`** — was 10.9 vs 7.7, a single-seed
+  treated/untreated ratio sitting at 1.4993 against a bar of 1.50. Never an
+  economic-calibration failure; the shape problem was the one this entry always
+  described, that any treated/untreated ratio drifts as the world fills up
+  because a filling region arms the control too. It is now a cross-seed median
+  measured against the control arm rather than a remembered number, with a
+  zero-transfer guard so it cannot become a test that passes on nothing. Green
+  at 160 nations.
 
 **A test was added, because the audit found a hole.** Running the whole suite at
 sanction bite 0.000 — sanctions costing a target no growth whatsoever, in a game
@@ -542,10 +620,25 @@ coefficient of 0.55, linearly and without limit. Nothing else in the model has
 that shape. Two consequences, both live:
 
 - **The 1990 hyperinflators cannot be transcribed.** Brazil's real prints — 2948%
-  CPI, a 9394% deposit rate — put GDP at +inf inside the first simulated year and
-  fail twelve tests. Brazil, Poland and Yugoslavia therefore carry figures one
-  decimal place low. The files now say so, in full, with the measured cost; the
-  loader refuses anything outside the band the model can hold.
+  CPI, a 9394% deposit rate — used to put GDP at +inf inside the first simulated
+  year and fail twelve tests. Brazil, Poland and Yugoslavia therefore carry
+  figures one decimal place low. The files now say so, in full, with the measured
+  cost; the loader refuses anything outside the band the model can hold.
+
+  **Re-measured since the growth floor landed, and the conclusion holds for a
+  different reason.** Entering the true 2948%/9394% pair past the loader guard no
+  longer breaks anything: over ten years **no nation loses its sign or its
+  finiteness**, because `1 + growth/12` can no longer reach zero. What it does
+  instead is collapse Brazil to **9.3% of its 1990 output within three years**,
+  pinned at the -5% deflation clamp for four of them, against a real 1990
+  contraction of 4.3%. So the floor converted a fatal figure into a merely wrong
+  one — robustness, not fidelity — and the three nations still carry
+  shifted decimals. The loader guard and its message have been re-justified on
+  those grounds rather than on the sign change, which no longer happens.
+
+  The lesson worth keeping is that the floor is a **backstop under this entry,
+  not a substitute for it.** It guarantees the world survives a bad monetary
+  input; it does nothing to make the input representable.
 - **All three of them boom instead of collapsing.** Their entered policy rates sit
   *below* their entered inflation, so the loosest real rates in the roster belong
   to the three economies that were contracting hardest. Brazil grows 13.9% through
