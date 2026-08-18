@@ -206,6 +206,23 @@ what just happened. Fix that list and nothing else. Freeze. Tag 1.0.
 - **Chronicles, Ollama, Bevy, the gravity trade model, and the ~395
   undocumented public items.** None are 1.0 gates.
 
+## Wanted, recorded 2026-08-18: districts with resources
+
+Ridge wants a map of locations that own resources — bigger than HOI4 provinces,
+anchored on major cities.
+
+**This probably needs no amendment.** BIBLE §5 already says the map carries
+“roughly 1,500 admin-1 districts as **political** geography, never 13,000
+provinces as tactical geography”, and admin-1 districts are exactly
+states/oblasts/prefectures anchored on their principal cities. What §5 refuses is
+*tactical* geography — combat width, encirclement, front lines, counters moved
+square to square. Districts that own oil, ore, industry and population, and that
+change hands at a settlement, are the sanctioned reading rather than a reversal.
+
+Two things to settle before building it: what a district owns that the economy
+does not already model at the national level, and whether  (which
+already names operating areas over districts) is the place it hangs.
+
 ## Open questions — yours, not an agent's
 
 The audit recommended answering these; three are product calls and one overrides

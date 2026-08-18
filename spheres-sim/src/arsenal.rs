@@ -65,8 +65,12 @@ pub struct EquipmentDef {
     /// The designation as it is actually written.
     pub name: &'static str,
     pub class: Class,
-    /// The technology that permits it. Nothing can be ordered before it.
-    pub tech: &'static str,
+    /// The technology that permits it, or `None` for the legacy tier — the
+    /// generic equipment every state already had in 1990 and can always replace.
+    /// Without this nothing in the deck is orderable by anybody at t=0, because
+    /// every nation starts knowing no technologies at all, and procurement is
+    /// inert in both directions.
+    pub tech: Option<&'static str>,
     /// Strength per unit held, before age is taken off it.
     pub quality: f64,
     /// $bn per unit, which is what makes an arsenal a budget question.
@@ -84,7 +88,7 @@ const fn kit(
     id: &'static str,
     name: &'static str,
     class: Class,
-    tech: &'static str,
+    tech: Option<&'static str>,
     quality: f64,
     unit_cost: f64,
     lead_months: u32,
@@ -100,43 +104,64 @@ const fn kit(
 /// most of a decade. Service lives are long on purpose — a B-52 airframe has
 /// outlived the country it was built to bomb.
 pub const DECK: &[EquipmentDef] = &[
+    // ---- The legacy tier: what a state already had in January 1990 ----
+    //
+    // Generic on purpose. These are not designations, they are what the
+    // transcribed strength figure is MADE of, and every nation can always buy
+    // more of its own tier because replacing what you have needs no discovery.
+    // Costs are per notional formation-equivalent rather than per vehicle, which
+    // is the altitude the rest of the sim runs at.
+    kit("inf_light", "Light Infantry Formation", Class::Infantry, None, 0.8, 0.010, 24, 300),
+    kit("inf_mech", "Mechanised Infantry Formation", Class::Infantry, None, 1.6, 0.035, 36, 300),
+    kit("arm_gen2", "Second-Generation Armour", Class::Armour, None, 1.4, 0.030, 36, 360),
+    kit("arm_gen3", "Third-Generation Armour", Class::Armour, None, 2.6, 0.075, 48, 420),
+    kit("air_gen2", "Second-Generation Combat Aircraft", Class::Air, None, 1.0, 0.020, 48, 360),
+    kit("air_gen3", "Third-Generation Combat Aircraft", Class::Air, None, 1.9, 0.045, 60, 420),
+    kit("air_gen4", "Fourth-Generation Combat Aircraft", Class::Air, None, 3.4, 0.085, 72, 480),
+    kit("nav_patrol", "Patrol and Coastal Craft", Class::Naval, None, 0.6, 0.020, 36, 360),
+    kit("nav_escort", "Escort Frigate or Destroyer", Class::Naval, None, 2.2, 0.180, 72, 480),
+    kit("nav_blue", "Blue-Water Task Group", Class::Naval, None, 5.0, 0.850, 108, 600),
+    kit("msl_sam", "Area Air-Defence System", Class::Missile, None, 1.5, 0.040, 48, 420),
+    kit("msl_brm", "Theatre Ballistic Missile", Class::Missile, None, 1.1, 0.025, 48, 360),
+    kit("msl_deterrent", "Strategic Deterrent Force", Class::Missile, None, 6.0, 1.400, 120, 600),
+    kit("spc_recon", "Reconnaissance Satellite Constellation", Class::Space, None, 3.0, 0.400, 84, 300),
     // ---- Air ----
-    kit("f15e", "F-15E Strike Eagle", Class::Air, "aero_pulse_doppler_radar", 2.4, 0.09, 60, 480),
-    kit("f117", "F-117 Nighthawk", Class::Air, "aero_stealth_shaping", 2.8, 0.11, 96, 360),
-    kit("e3", "E-3 Sentry AWACS", Class::Air, "aero_airborne_battle_management", 3.6, 0.28, 84, 540),
-    kit("b2", "B-2 Spirit", Class::Air, "aero_flying_wing_stealth", 6.0, 1.10, 144, 540),
-    kit("predator", "RQ-1 Predator", Class::Air, "aero_unmanned_aircraft", 0.7, 0.006, 36, 240),
-    kit("mq1b", "MQ-1B Predator", Class::Air, "aero_armed_uav", 1.1, 0.009, 36, 240),
-    kit("f22", "F-22 Raptor", Class::Air, "aero_stealth_air_superiority", 5.2, 0.20, 180, 480),
-    kit("ea18g", "EA-18G Growler", Class::Air, "aero_electronic_attack", 3.1, 0.10, 84, 420),
-    kit("rq170", "RQ-170 Sentinel", Class::Air, "aero_stealth_uav", 1.9, 0.03, 72, 240),
-    kit("f35a", "F-35A Lightning II", Class::Air, "aero_stealth_multirole", 4.6, 0.09, 168, 480),
-    kit("cca", "Collaborative Combat Aircraft", Class::Air, "aero_collaborative_combat_aircraft", 2.2, 0.03, 96, 300),
-    kit("sixthgen", "Sixth-Generation Fighter", Class::Air, "aero_sixth_gen_air_dominance", 7.5, 0.30, 216, 540),
-    kit("aesa", "AESA Radar Refit", Class::Air, "aero_aesa_radar", 1.3, 0.02, 48, 300),
+    kit("f15e", "F-15E Strike Eagle", Class::Air, Some("aero_pulse_doppler_radar"), 2.4, 0.09, 60, 480),
+    kit("f117", "F-117 Nighthawk", Class::Air, Some("aero_stealth_shaping"), 2.8, 0.11, 96, 360),
+    kit("e3", "E-3 Sentry AWACS", Class::Air, Some("aero_airborne_battle_management"), 3.6, 0.28, 84, 540),
+    kit("b2", "B-2 Spirit", Class::Air, Some("aero_flying_wing_stealth"), 6.0, 1.10, 144, 540),
+    kit("predator", "RQ-1 Predator", Class::Air, Some("aero_unmanned_aircraft"), 0.7, 0.006, 36, 240),
+    kit("mq1b", "MQ-1B Predator", Class::Air, Some("aero_armed_uav"), 1.1, 0.009, 36, 240),
+    kit("f22", "F-22 Raptor", Class::Air, Some("aero_stealth_air_superiority"), 5.2, 0.20, 180, 480),
+    kit("ea18g", "EA-18G Growler", Class::Air, Some("aero_electronic_attack"), 3.1, 0.10, 84, 420),
+    kit("rq170", "RQ-170 Sentinel", Class::Air, Some("aero_stealth_uav"), 1.9, 0.03, 72, 240),
+    kit("f35a", "F-35A Lightning II", Class::Air, Some("aero_stealth_multirole"), 4.6, 0.09, 168, 480),
+    kit("cca", "Collaborative Combat Aircraft", Class::Air, Some("aero_collaborative_combat_aircraft"), 2.2, 0.03, 96, 300),
+    kit("sixthgen", "Sixth-Generation Fighter", Class::Air, Some("aero_sixth_gen_air_dominance"), 7.5, 0.30, 216, 540),
+    kit("aesa", "AESA Radar Refit", Class::Air, Some("aero_aesa_radar"), 1.3, 0.02, 48, 300),
     // ---- Naval ----
-    kit("la_ssn", "Los Angeles-class SSN", Class::Naval, "aero_quiet_submarine", 5.4, 0.90, 108, 600),
-    kit("aip_ssk", "Air-Independent Propulsion Submarine", Class::Naval, "aero_air_independent_submarine", 3.9, 0.50, 96, 480),
-    kit("laws", "Shipboard Directed-Energy Mount", Class::Naval, "aero_directed_energy_laser", 2.0, 0.06, 72, 300),
+    kit("la_ssn", "Los Angeles-class SSN", Class::Naval, Some("aero_quiet_submarine"), 5.4, 0.90, 108, 600),
+    kit("aip_ssk", "Air-Independent Propulsion Submarine", Class::Naval, Some("aero_air_independent_submarine"), 3.9, 0.50, 96, 480),
+    kit("laws", "Shipboard Directed-Energy Mount", Class::Naval, Some("aero_directed_energy_laser"), 2.0, 0.06, 72, 300),
     // ---- Missile ----
-    kit("paveway", "GBU-24 Paveway III", Class::Missile, "aero_precision_munitions", 0.35, 0.0004, 18, 300),
-    kit("tomahawk", "BGM-109 Tomahawk", Class::Missile, "aero_cruise_missile", 1.2, 0.0016, 36, 360),
-    kit("patriot", "MIM-104 Patriot", Class::Missile, "aero_theater_missile_defense", 2.1, 0.02, 60, 420),
-    kit("jdam", "JDAM Guidance Kit", Class::Missile, "aero_gps_guided_munition", 0.5, 0.00003, 24, 300),
-    kit("gbi", "Ground-Based Interceptor", Class::Missile, "aero_midcourse_defense", 3.4, 0.07, 120, 480),
-    kit("x51", "Scramjet Test Vehicle", Class::Missile, "aero_scramjet_propulsion", 1.6, 0.05, 132, 240),
-    kit("hgv", "Hypersonic Glide Vehicle", Class::Missile, "aero_hypersonic_glide_vehicle", 4.1, 0.09, 144, 300),
-    kit("owa", "One-Way Attack Drone", Class::Missile, "aero_attritable_strike_drone", 0.3, 0.00005, 12, 120),
+    kit("paveway", "GBU-24 Paveway III", Class::Missile, Some("aero_precision_munitions"), 0.35, 0.0004, 18, 300),
+    kit("tomahawk", "BGM-109 Tomahawk", Class::Missile, Some("aero_cruise_missile"), 1.2, 0.0016, 36, 360),
+    kit("patriot", "MIM-104 Patriot", Class::Missile, Some("aero_theater_missile_defense"), 2.1, 0.02, 60, 420),
+    kit("jdam", "JDAM Guidance Kit", Class::Missile, Some("aero_gps_guided_munition"), 0.5, 0.00003, 24, 300),
+    kit("gbi", "Ground-Based Interceptor", Class::Missile, Some("aero_midcourse_defense"), 3.4, 0.07, 120, 480),
+    kit("x51", "Scramjet Test Vehicle", Class::Missile, Some("aero_scramjet_propulsion"), 1.6, 0.05, 132, 240),
+    kit("hgv", "Hypersonic Glide Vehicle", Class::Missile, Some("aero_hypersonic_glide_vehicle"), 4.1, 0.09, 144, 300),
+    kit("owa", "One-Way Attack Drone", Class::Missile, Some("aero_attritable_strike_drone"), 0.3, 0.00005, 12, 120),
     // ---- Armour & Infantry ----
-    kit("trophy", "Trophy Active Protection", Class::Armour, "aero_active_protection_system", 1.4, 0.004, 48, 300),
-    kit("raven", "RQ-11 Raven", Class::Infantry, "aero_small_uas", 0.2, 0.0001, 18, 120),
-    kit("switchblade", "Switchblade Loitering Munition", Class::Infantry, "aero_loitering_munition", 0.4, 0.00008, 24, 144),
-    kit("cuas", "Counter-UAS Battery", Class::Infantry, "aero_counter_uas_layered", 1.0, 0.005, 36, 240),
-    kit("link16", "Tactical Data Link Fit", Class::Infantry, "aero_tactical_datalink", 1.5, 0.008, 48, 360),
-    kit("c4isr", "Networked C4ISR", Class::Infantry, "aero_network_centric_warfare", 2.6, 0.03, 72, 360),
-    kit("atr", "Autonomous Target Recognition", Class::Infantry, "aero_autonomous_targeting", 2.3, 0.02, 84, 300),
+    kit("trophy", "Trophy Active Protection", Class::Armour, Some("aero_active_protection_system"), 1.4, 0.004, 48, 300),
+    kit("raven", "RQ-11 Raven", Class::Infantry, Some("aero_small_uas"), 0.2, 0.0001, 18, 120),
+    kit("switchblade", "Switchblade Loitering Munition", Class::Infantry, Some("aero_loitering_munition"), 0.4, 0.00008, 24, 144),
+    kit("cuas", "Counter-UAS Battery", Class::Infantry, Some("aero_counter_uas_layered"), 1.0, 0.005, 36, 240),
+    kit("link16", "Tactical Data Link Fit", Class::Infantry, Some("aero_tactical_datalink"), 1.5, 0.008, 48, 360),
+    kit("c4isr", "Networked C4ISR", Class::Infantry, Some("aero_network_centric_warfare"), 2.6, 0.03, 72, 360),
+    kit("atr", "Autonomous Target Recognition", Class::Infantry, Some("aero_autonomous_targeting"), 2.3, 0.02, 84, 300),
     // ---- Space ----
-    kit("kh11", "Electro-Optical Reconnaissance Satellite", Class::Space, "aero_recon_satellite", 3.2, 0.35, 96, 300),
+    kit("kh11", "Electro-Optical Reconnaissance Satellite", Class::Space, Some("aero_recon_satellite"), 3.2, 0.35, 96, 300),
 ];
 
 /// Serialize a `DECK` index as the kit's stable id.
@@ -214,6 +239,154 @@ pub const PROCUREMENT_SHARE: f64 = 0.20;
 /// zero — a forty-year-old airframe still flies, it just is not what it was.
 const RESIDUAL: f64 = 0.35;
 
+/// Years of the equipment line a full arsenal is worth.
+///
+/// A force that has been buying steadily holds roughly two decades of its own
+/// procurement, because that is what a twenty-to-forty-year service life against
+/// a steady budget integrates to. It is also the number that makes neglect
+/// legible: fall to half the line for a decade and the books say so.
+pub const EQUIP_HORIZON: f64 = 20.0 * 12.0;
+
+/// States with no coast in 1990, so the seeder does not give Chad a navy.
+///
+/// Geography, not invention — the same kind of transcribed fact
+/// `NationRow::neighbours` already carries. Ethiopia is deliberately absent: it
+/// held Assab and Massawa in 1990 and had a navy until 1991.
+const LANDLOCKED: &[&str] = &[
+    "Afghanistan", "Austria", "Bhutan", "Bolivia", "Botswana",
+    "CentralAfricanRepublic", "Chad", "Czechoslovakia", "Hungary", "Laos",
+    "Lesotho", "Luxembourg", "Malawi", "Mongolia", "Nepal", "Paraguay",
+    "Swaziland", "Switzerland", "Uganda", "Zambia", "Zimbabwe",
+];
+
+/// The arsenal a nation opens 1990 already holding.
+///
+/// Nobody starts from nothing: an army in January 1990 is the accumulated
+/// purchases of the thirty years before it, and the module's whole thesis is
+/// that this inheritance is most of what a government fights with. Without this
+/// every nation opens with an empty order book and the United States would have
+/// fought Desert Storm with no equipment at all.
+///
+/// **Solved from money, which is what makes it exact.** Units are back-computed
+/// so that book value equals the target for every nation by construction —
+/// there is no per-nation tuning and no global deck that has to fit a 630x
+/// spread in strength-per-dollar. Seeding to a strength target cannot be made to
+/// work; seeding to a budget can, because a budget is transcribed fact.
+///
+/// Consumes NO randomness, by construction rather than by discipline: it takes a
+/// record and not a `&mut WorldState`, so there is no generator to draw from.
+/// Drawing here would shift every downstream draw and re-roll fifteen
+/// emergent-history tests.
+pub fn inheritance(r: &crate::data::NationRecord) -> Arsenal {
+    let budget = (r.economy.gdp_bn * r.economy.mil_spend_gdp).max(0.0);
+    let line = budget * PROCUREMENT_SHARE / 12.0;
+    if line <= 0.0 || r.military.strength <= 0.0 {
+        return Arsenal::default();
+    }
+    let want = line * EQUIP_HORIZON;
+
+    // Capital intensity: money per point of strength. A conscript army with
+    // rifles is cheap per point; an air force is not.
+    let k = (budget / r.military.strength.max(1.0) / 3.0).clamp(0.0, 1.2);
+    let sat = |x: f64| 1.0 - crate::exact::exp(-x);
+    let cmd = if r.system == crate::world::EconomySystem::Command { 1.0 } else { 0.0 };
+    let coast = if LANDLOCKED.contains(&r.id.code()) { 0.0 } else { 1.0 };
+    let nuke = if r.military.nuclear { 1.0 } else { 0.0 };
+
+    // One doctrine vector, not a per-nation table. Space keys on ABSOLUTE
+    // budget rather than intensity, because a reconnaissance constellation is an
+    // absolute-scale capability: at the transcribed 1990 figures the threshold
+    // selects the United States and the Soviet Union and nobody else, which is
+    // the truth about military space in 1990 and is emergent rather than typed.
+    let shares = [
+        (Class::Infantry, 1.10),
+        (Class::Armour, 1.30 * sat(k / 0.12) * (1.0 + 0.45 * cmd)),
+        (Class::Air, 1.75 * sat(k / 0.32)),
+        (Class::Naval, 1.30 * sat(k / 0.50) * coast),
+        (Class::Missile, 0.35 * sat(k / 0.40) * (1.0 + nuke)),
+        (Class::Space, 0.35 * ((budget - 100.0) / 250.0).clamp(0.0, 1.0)),
+    ];
+    let total: f64 = shares.iter().map(|(_, w)| w).sum();
+    if total <= 0.0 {
+        return Arsenal::default();
+    }
+
+    // Vintage. A rich force renews; a poor one flies what it was given. This is
+    // the mechanism rather than decoration: age is what `condition` reads.
+    let mean_age = 132.0 + 240.0 * crate::exact::exp(-k / 0.40);
+    let modernity = sat(k / 0.35);
+    const TRANCHES: [(f64, f64); 3] = [(0.30, -84.0), (0.45, 0.0), (0.25, 108.0)];
+
+    let mut held: Vec<Holding> = vec![];
+    for (class, w) in shares {
+        let share = w / total;
+        if share <= 0.0 {
+            continue;
+        }
+        for (i, (weight, offset)) in TRANCHES.iter().enumerate() {
+            let g = modernity - 0.25 * i as f64;
+            let id = tier_for(class, g, r.military.nuclear && i == 0);
+            let Some(kit) = index_of(id) else { continue };
+            let def = &DECK[kit as usize];
+            let age = (mean_age + offset).clamp(0.0, 2.0 * def.service_months as f64);
+            let cond = condition(def, age);
+            if cond <= 0.0 || def.unit_cost <= 0.0 {
+                continue;
+            }
+            let units = want * share * weight / (def.unit_cost * cond);
+            match held.iter_mut().find(|h| h.kit == kit) {
+                Some(h) => {
+                    let t = h.units + units;
+                    h.age = (h.age * h.units + age * units) / t.max(1e-12);
+                    h.units = t;
+                }
+                None => held.push(Holding { kit, units, age }),
+            }
+        }
+    }
+    // Orders are deliberately NOT seeded: what a nation had on order in January
+    // 1990 is not in the data, and the pipeline refills itself within one lead
+    // time anyway.
+    Arsenal { held, orders: vec![], preference: None, banked: 0.0 }
+}
+
+/// Which tier of a class a force at this generation fields.
+///
+/// The deterrent tier is gated on the record's own nuclear flag and given only
+/// to the newest tranche, so France seeds one and Japan does not.
+fn tier_for(class: Class, g: f64, deterrent: bool) -> &'static str {
+    match class {
+        Class::Infantry => if g >= 0.55 { "inf_mech" } else { "inf_light" },
+        Class::Armour => if g >= 0.50 { "arm_gen3" } else { "arm_gen2" },
+        Class::Air => {
+            if g >= 0.60 { "air_gen4" } else if g >= 0.30 { "air_gen3" } else { "air_gen2" }
+        }
+        Class::Naval => {
+            if g >= 0.72 { "nav_blue" } else if g >= 0.30 { "nav_escort" } else { "nav_patrol" }
+        }
+        Class::Missile => {
+            if deterrent { "msl_deterrent" }
+            else if g >= 0.70 { "msl_brm" }
+            else { "msl_sam" }
+        }
+        Class::Space => "spc_recon",
+    }
+}
+
+/// What a nation's holdings are worth at cost, in $bn.
+///
+/// The quantity the war model should read, per PROCUREMENT.md: `unit_cost` is
+/// transcribed money under iron rule 4, while `quality` is authored judgement
+/// that five independent reviews found wrong by up to four orders of magnitude
+/// in both directions. Money is the column that is fact.
+pub fn book_value(n: &Nation) -> f64 {
+    n.arsenal
+        .held
+        .iter()
+        .filter_map(|h| DECK.get(h.kit as usize).map(|d| h.units * d.unit_cost * condition(d, h.age)))
+        .sum()
+}
+
 pub fn registry() -> &'static [EquipmentDef] {
     DECK
 }
@@ -269,8 +442,11 @@ pub fn strength_of(n: &Nation) -> f64 {
 pub fn available(n: &Nation) -> Vec<u16> {
     DECK.iter()
         .enumerate()
-        .filter(|(_, k)| {
-            crate::tech::index_of(k.tech).is_some_and(|t| n.tech.knows_index(t))
+        .filter(|(_, k)| match k.tech {
+            // The legacy tier is always available: replacing what you already
+            // field is a budget decision, not a discovery.
+            None => true,
+            Some(t) => crate::tech::index_of(t).is_some_and(|i| n.tech.knows_index(i)),
         })
         .map(|(i, _)| i as u16)
         .collect()

@@ -565,7 +565,7 @@ impl NationRecord {
             munitions: 1.0,
             war_exhaustion: 0.0,
             nuclear: self.military.nuclear,
-            arsenal: Default::default(),
+            arsenal: crate::arsenal::inheritance(self),
             political_capital: crate::politics::seated_political_capital(
                 self.politics.stability,
                 self.economy.inflation,

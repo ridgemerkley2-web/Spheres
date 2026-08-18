@@ -2100,10 +2100,19 @@ mod tests {
         // places no orders while `available()` is empty, and `war.rs` does not
         // read the arsenal yet. Struct changed, simulation did not, and
         // `spheres-sim/data/` is untouched.
+        //
+        // Re-pinned for the 1990 arsenal inheritance. Every nation now opens
+        // holding what thirty years of its own procurement bought it, seeded
+        // from the transcribed budget and strength already in the record. No
+        // data file changed and no figure was invented: units are solved from
+        // money so that book value equals the target by construction, which is
+        // why this needed no per-nation tuning across 137 nations. The seeder
+        // takes a record rather than a `&mut WorldState`, so it cannot draw from
+        // the RNG even by accident, and every downstream draw is unmoved.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0xf431725289f6c358u64,
+            h, 0xfb00fba943f6326fu64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -2255,7 +2264,9 @@ mod tests {
         //
         // Re-pinned for the procurement layer, on the same evidence as
         // `the_1990_start_is_pinned`: a new `Nation` field, no behaviour change.
-        const GOLDEN: u64 = 0xcf3eb0342fcfb476;
+        //
+        // Re-pinned with the 1990 inheritance, same evidence as above.
+        const GOLDEN: u64 = 0x84038ae76bac4889;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
