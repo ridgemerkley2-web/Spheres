@@ -434,27 +434,54 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     Ok(())
 }
 
+/// Every subsystem a month runs, in the order it runs them.
+///
+/// A table rather than eight statements in `tick_month` so that the profiling
+/// instrument (`century_run_profile`, below) times exactly what the game runs
+/// and cannot drift out of sync with it when a system is added or reordered.
+/// The comments that used to sit between the calls are the ones below.
+///
+/// `government::tick` appears here rather than as the first statement of
+/// `politics::tick`, which is where it used to live. Same call in the same
+/// position; hoisted only so that its cost is reported separately, because it
+/// is the largest single entry in the table.
+#[allow(clippy::type_complexity)]
+pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
+    ("economy", economy::tick),
+    // Research is funded out of the output the economy has just produced, and
+    // what it unlocks is in the nation's hands before the soldiers and the
+    // politicians get their turn with it.
+    ("tech", tech::tick),
+    // Pacts decide who is obliged to join a war and patronage decides who can
+    // still afford one, so the standing arrangements are settled before the
+    // fighting is worked out.
+    ("statecraft", statecraft::tick),
+    ("stratagems", stratagems::tick),
+    ("ai_stratagems", stratagems::ai_stratagems),
+    ("war", war::tick),
+    // Who holds office is settled before what their standing is worth: an
+    // election held this month, or a coup, has to be reflected in the capital
+    // the government wakes up holding.
+    ("government", government::tick),
+    ("politics", politics::tick),
+];
+
 /// Advance the world one month. Commands are applied before systems tick.
 pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
     w.headlines.clear();
+    // The id -> position index, refreshed once a month. A federation coming
+    // apart mid-tick appends to `nations` and leaves it stale for the rest of
+    // that month, which every lookup already handles by falling back to the
+    // scan it used to do unconditionally.
+    w.reindex();
     for c in commands {
         if let Err(e) = apply_command(w, c) {
             w.headline(format!("[rejected] {:?}: {}", c, e));
         }
     }
-    economy::tick(w);
-    // Research is funded out of the output the economy has just produced, and
-    // what it unlocks is in the nation's hands before the soldiers and the
-    // politicians get their turn with it.
-    tech::tick(w);
-    // Pacts decide who is obliged to join a war and patronage decides who can
-    // still afford one, so the standing arrangements are settled before the
-    // fighting is worked out.
-    statecraft::tick(w);
-    stratagems::tick(w);
-    stratagems::ai_stratagems(w);
-    war::tick(w);
-    politics::tick(w);
+    for (_, system) in SYSTEMS {
+        system(w);
+    }
 
     // Calendar
     w.month += 1;
@@ -488,6 +515,10 @@ pub fn load(s: &str) -> Result<WorldState, String> {
     if w.theatres.is_empty() {
         w.theatres = theatre::default_theatres();
     }
+    // The position index is derived, so it is not in the save. Built here so a
+    // loaded world that is only ever read — the web server rendering a turn —
+    // gets the same lookups as one that has ticked.
+    w.reindex();
     Ok(w)
 }
 
@@ -1519,6 +1550,111 @@ mod tests {
                 }
                 assert!(w.oil_price.is_finite() && w.oil_price > 0.0, "oil {} in {}", w.oil_price, w.year);
             }
+        }
+    }
+
+    /// Where the century run actually spends its time, per subsystem, at
+    /// several roster sizes. An instrument, not an assertion — it measures wall
+    /// clock, which is exactly the thing iron rule 1 keeps out of the sim, so it
+    /// is `#[ignore]`d and may never be depended on by anything that ticks.
+    ///
+    ///     cargo test --release -p spheres-sim -- --ignored --nocapture profile
+    ///
+    /// Read the rightmost column first. A subsystem whose share of the tick
+    /// *rises* with the roster is the one that is super-linear; a subsystem
+    /// whose share falls is merely linear and is being outgrown. That is the
+    /// whole diagnostic, and it is the reason this prints a sweep rather than a
+    /// single number: the 160-nation profile on its own cannot tell the two
+    /// apart, and this project has twice mistaken a big linear cost for a
+    /// quadratic one.
+    ///
+    /// Smaller rosters are made by retiring nations from the bottom of registry
+    /// order rather than by loading a smaller data set, so the relations matrix
+    /// stays the full width and only the number of *living* nations moves. That
+    /// is the variable under test, and the distinction turned out to be the
+    /// answer: the largest single cost in the tick did not move with it at all,
+    /// because it was O(matrix width) and not O(nations alive).
+    ///
+    /// Every figure is the BEST of `PASSES` identical runs, not the mean. This
+    /// machine reports the same binary anywhere between 6.8 and 11.4 seconds on
+    /// a century run, so a mean measures the other processes on the box; the
+    /// minimum is the closest thing to the work actually done. Two profiles are
+    /// only comparable if both were taken this way.
+    #[test]
+    #[ignore = "timing instrument; run with --ignored --nocapture"]
+    fn century_run_profile() {
+        use std::time::{Duration, Instant};
+
+        const MONTHS: usize = 1200;
+        const PASSES: usize = 3;
+        let sizes = [30usize, 108, 137];
+
+        println!();
+        for size in sizes {
+            let mut best = vec![Duration::MAX; SYSTEMS.len()];
+            let mut best_total = Duration::MAX;
+            let mut alive = 0usize;
+
+            for _ in 0..PASSES {
+                let mut w = world_1990(GameRules::default());
+                let living: Vec<usize> =
+                    (0..w.nations.len()).filter(|i| w.nations[*i].alive).collect();
+                for i in living.iter().skip(size) {
+                    w.nations[*i].alive = false;
+                }
+                alive = w.nations.iter().filter(|n| n.alive).count();
+
+                // One year of ticks discarded: the first month allocates the
+                // per-nation vectors every system grows on its first pass, and
+                // measuring that as if it were steady state overstates whichever
+                // system happens to run first.
+                for _ in 0..12 {
+                    tick_month(&mut w, &[]);
+                }
+
+                let mut per = vec![Duration::ZERO; SYSTEMS.len()];
+                let whole = Instant::now();
+                for _ in 0..MONTHS {
+                    w.headlines.clear();
+                    w.reindex();
+                    for (i, (_, system)) in SYSTEMS.iter().enumerate() {
+                        let t = Instant::now();
+                        system(&mut w);
+                        per[i] += t.elapsed();
+                    }
+                    w.month += 1;
+                    if w.month > 12 {
+                        w.month = 1;
+                        w.year += 1;
+                    }
+                }
+                best_total = best_total.min(whole.elapsed());
+                for (b, d) in best.iter_mut().zip(per) {
+                    *b = (*b).min(d);
+                }
+            }
+
+            println!(
+                "=== {} living nations, {} months, best of {}: {:.3}s wall, {:.2}ms/month",
+                alive,
+                MONTHS,
+                PASSES,
+                best_total.as_secs_f64(),
+                best_total.as_secs_f64() * 1000.0 / MONTHS as f64
+            );
+            let mut rows: Vec<(usize, Duration)> = best.iter().copied().enumerate().collect();
+            rows.sort_by_key(|r| std::cmp::Reverse(r.1));
+            let accounted: f64 = best.iter().map(|d| d.as_secs_f64()).sum();
+            for (i, d) in rows {
+                println!(
+                    "    {:<14} {:>8.3}s  {:>5.1}%  {:>7.3} ms/month",
+                    SYSTEMS[i].0,
+                    d.as_secs_f64(),
+                    100.0 * d.as_secs_f64() / accounted,
+                    d.as_secs_f64() * 1000.0 / MONTHS as f64
+                );
+            }
+            println!("    {:<14} {:>8.3}s", "[measured]", accounted);
         }
     }
 
@@ -3601,6 +3737,7 @@ mod tests {
         assert!(born >= 6, "the union held together too often: {}/10", born);
     }
 }
+
 
 
 

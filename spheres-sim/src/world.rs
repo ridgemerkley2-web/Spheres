@@ -77,16 +77,33 @@ impl Relations {
     }
     /// Every stored pair, in a fixed order. Deterministic by construction —
     /// there is no map here whose iteration order could vary.
+    ///
+    /// The row and column are carried forward rather than recovered from the
+    /// slot index, and that is the whole of the century run's super-linearity.
+    /// Recovering them counted up from zero for every one of the n(n+1)/2 slots,
+    /// which made a single sweep of the matrix O(n^3): at the 160-wide roster
+    /// that is 1.36 million loop iterations per sweep, once a month, 1.6 billion
+    /// over a century, and it was the largest cost in the tick — larger than the
+    /// technology tree, which is what everyone suspected. It also scaled with
+    /// the *width* of the matrix rather than with how many nations were alive,
+    /// which is why it hid: the 30-nation world it was written in swept 435
+    /// slots and this cost nothing at all.
+    ///
+    /// Same pairs, same order, same values. `pairs_mut_walks_the_triangle_in_order`
+    /// holds it against the arithmetic the inverted form did.
     pub fn pairs_mut(&mut self) -> impl Iterator<Item = (NationId, NationId, &mut f64)> {
         self.ensure();
-        self.tri.iter_mut().enumerate().filter_map(|(i, v)| {
-            // invert the triangular index
-            let mut hi = 0usize;
-            while (hi + 1) * (hi + 2) / 2 <= i {
+        let ids = all_nations();
+        let (mut hi, mut lo) = (0usize, 0usize);
+        self.tri.iter_mut().filter_map(move |v| {
+            let (row, col) = (hi, lo);
+            if lo == hi {
                 hi += 1;
+                lo = 0;
+            } else {
+                lo += 1;
             }
-            let lo = i - hi * (hi + 1) / 2;
-            match (all_nations().get(hi), all_nations().get(lo)) {
+            match (ids.get(row), ids.get(col)) {
                 (Some(a), Some(b)) => Some((*a, *b, v)),
                 _ => None,
             }
@@ -96,17 +113,24 @@ impl Relations {
 
 impl Serialize for Relations {
     fn serialize<S: serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        // Carried forward for the same reason as in `pairs_mut`, and it matters
+        // more here than it looks: `state_hash` serializes the whole world, the
+        // determinism tests hash after every month, and this walk was O(n^3) in
+        // every one of them.
         let mut out: Vec<(NationId, NationId, f64)> = vec![];
-        for (i, v) in self.tri.iter().enumerate() {
+        let (mut hi, mut lo) = (0usize, 0usize);
+        for v in self.tri.iter() {
+            let (row, col) = (hi, lo);
+            if lo == hi {
+                hi += 1;
+                lo = 0;
+            } else {
+                lo += 1;
+            }
             if *v == 0.0 {
                 continue;
             }
-            let mut hi = 0usize;
-            while (hi + 1) * (hi + 2) / 2 <= i {
-                hi += 1;
-            }
-            let lo = i - hi * (hi + 1) / 2;
-            if let (Some(a), Some(b)) = (all_nations().get(hi), all_nations().get(lo)) {
+            if let (Some(a), Some(b)) = (all_nations().get(row), all_nations().get(col)) {
                 out.push((*b, *a, *v));
             }
         }
@@ -663,22 +687,122 @@ pub struct WorldState {
     /// made by a player who never touched the rate.
     #[serde(default)]
     pub player_set_rate: bool,
+
+    /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
+    /// has not been born. Derived and never serialized: a save that carried it
+    /// could disagree with the vector it indexes, and it must not touch the
+    /// timeline hash.
+    ///
+    /// `nations` is only ever appended to — never reordered, never drained —
+    /// so its length is a sufficient stamp: if it has not changed since the
+    /// index was built, the index is current. Every lookup checks that and
+    /// falls back to the linear scan when it does not hold, which means a stale
+    /// index can cost time and can never cost correctness. The index resolves
+    /// the FIRST occurrence of an id, exactly as `find` did.
+    #[serde(skip)]
+    pub(crate) by_id: Vec<u16>,
+    #[serde(skip)]
+    pub(crate) by_id_len: usize,
+}
+
+/// Nowhere in `nations`.
+const ABSENT: u16 = u16::MAX;
+
+/// The key `prefix`_`a`_`b`, assembled in a stack buffer.
+///
+/// The obvious form of this — four `strip_prefix` calls down the flag list —
+/// is the same answer and measurably slower, which is worth recording because
+/// it is not obvious: comparing two `String`s checks the lengths first and
+/// rejects almost every flag in a byte, while walking the pieces has to
+/// memcmp the shared prefix of every `pressed_*` before it can rule one out.
+/// Building the key once and comparing whole restores the length check and
+/// keeps the allocation gone. Measured on the century run at 137 nations: the
+/// piecewise form put 1.3 seconds back that the rest of this branch had taken
+/// out, and it took a like-for-like profile to see it.
+fn pair_flag_key<'a>(buf: &'a mut [u8; 64], prefix: &str, a: &str, b: &str) -> Option<&'a [u8]> {
+    let n = prefix.len() + 1 + a.len() + 1 + b.len();
+    if n > buf.len() {
+        return None;
+    }
+    let mut i = 0;
+    for piece in [prefix.as_bytes(), b"_", a.as_bytes(), b"_", b.as_bytes()] {
+        buf[i..i + piece.len()].copy_from_slice(piece);
+        i += piece.len();
+    }
+    Some(&buf[..n])
 }
 
 impl WorldState {
+    /// Rebuild the id -> position index. One pass, idempotent, and safe to call
+    /// at any time: nothing downstream can tell whether it has been called.
+    pub fn reindex(&mut self) {
+        self.by_id.clear();
+        self.by_id.resize(nation_count(), ABSENT);
+        for (i, n) in self.nations.iter().enumerate() {
+            if let Some(slot) = self.by_id.get_mut(n.id.index()) {
+                if *slot == ABSENT {
+                    *slot = i as u16;
+                }
+            }
+        }
+        self.by_id_len = self.nations.len();
+    }
+    #[inline]
+    fn indexed(&self) -> bool {
+        self.by_id_len == self.nations.len() && self.by_id.len() == nation_count()
+    }
+    /// Where `id` lives, when the index can be trusted.
+    #[inline]
+    fn position(&self, id: NationId) -> Option<Option<usize>> {
+        if !self.indexed() {
+            return None;
+        }
+        match self.by_id.get(id.index()) {
+            Some(&ABSENT) | None => Some(None),
+            Some(&p) => Some(Some(p as usize)),
+        }
+    }
     pub fn nation(&self, id: NationId) -> &Nation {
+        if let Some(p) = self.position(id) {
+            return &self.nations[p.expect("nation")];
+        }
         self.nations.iter().find(|n| n.id == id).expect("nation")
     }
     pub fn nation_mut(&mut self, id: NationId) -> &mut Nation {
+        if let Some(p) = self.position(id) {
+            return &mut self.nations[p.expect("nation")];
+        }
         self.nations.iter_mut().find(|n| n.id == id).expect("nation")
     }
     /// For nations that may not exist in this world at all — successor states
     /// before their federation falls, or an older save with a smaller roster.
     pub fn nation_opt(&self, id: NationId) -> Option<&Nation> {
+        if let Some(p) = self.position(id) {
+            return p.map(|i| &self.nations[i]);
+        }
         self.nations.iter().find(|n| n.id == id)
     }
     pub fn has_flag(&self, f: &str) -> bool {
         self.flags.iter().any(|x| x == f)
+    }
+    /// `has_flag` for the flags that name an ordered pair — `pressed_A_B`,
+    /// `burned_A_B` — which is where nearly all of the asking happens:
+    /// `dyads::war_appetite` asks twice for every candidate dyad every month,
+    /// two and a half million times over a century at the current roster, and
+    /// each question built a `String` to throw away.
+    ///
+    /// Exactly `has_flag(&format!("{}_{:?}_{:?}", prefix, a, b))` — `{:?}` on a
+    /// `NationId` writes its code, so the key is these four pieces joined, and
+    /// matching them piecewise costs no allocation at all.
+    /// `pair_flag_is_the_formatted_flag` holds the two together.
+    pub fn has_pair_flag(&self, prefix: &str, a: NationId, b: NationId) -> bool {
+        let mut buf = [0u8; 64];
+        match pair_flag_key(&mut buf, prefix, a.code(), b.code()) {
+            Some(key) => self.flags.iter().any(|f| f.as_bytes() == key),
+            // Longer than any flag this game writes; fall back rather than
+            // truncate, because a truncated key would answer the wrong question.
+            None => self.has_flag(&format!("{}_{:?}_{:?}", prefix, a, b)),
+        }
     }
     pub fn set_flag(&mut self, f: &str) {
         if !self.has_flag(f) {
@@ -910,6 +1034,128 @@ impl War {
             Some(false)
         } else {
             None
+        }
+    }
+}
+
+#[cfg(test)]
+mod perf_refactor_guards {
+    //! Three lookups in this file were rewritten for speed alone, and the whole
+    //! case for that rewrite is that the answers did not move. Each of these
+    //! holds the fast form against the slow one it replaced, so a future edit
+    //! to either cannot quietly separate them. The two pinned timeline hashes
+    //! prove the same thing end to end; these say *where* if one ever breaks.
+
+    use super::*;
+    use crate::init::world_1990;
+
+    /// The triangular walk, against the index inversion it replaced.
+    #[test]
+    fn pairs_mut_walks_the_triangle_in_order() {
+        let mut r = Relations::default();
+        r.ensure();
+        // What the old code computed, for every slot, from scratch.
+        let expected: Vec<(usize, usize)> = (0..r.tri.len())
+            .map(|i| {
+                let mut hi = 0usize;
+                while (hi + 1) * (hi + 2) / 2 <= i {
+                    hi += 1;
+                }
+                (hi, i - hi * (hi + 1) / 2)
+            })
+            .collect();
+        let got: Vec<(usize, usize)> =
+            r.pairs_mut().map(|(a, b, _)| (a.index(), b.index())).collect();
+        assert_eq!(got.len(), expected.len(), "the sweep changed length");
+        for (i, (g, e)) in got.iter().zip(expected.iter()).enumerate() {
+            assert_eq!(g, e, "slot {} inverted to {:?}, was {:?}", i, g, e);
+        }
+    }
+
+    /// Every value reached, and reached exactly once, by the pair it is filed
+    /// under. This is the property `politics`'s grievance decay depends on: it
+    /// mutates through the iterator and must not touch a slot twice.
+    #[test]
+    fn every_relation_is_reached_by_its_own_pair() {
+        let mut w = world_1990(GameRules::default());
+        let sample: Vec<(NationId, NationId, f64)> = vec![
+            (NationId::USA, NationId::USSR, -37.0),
+            (NationId::Iraq, NationId::Kuwait, -61.5),
+            (NationId::India, NationId::Pakistan, -55.0),
+        ];
+        for (a, b, v) in &sample {
+            w.set_relation(*a, *b, *v);
+        }
+        let mut seen = 0usize;
+        for (a, b, v) in w.relations.pairs_mut() {
+            if let Some((_, _, want)) =
+                sample.iter().find(|(x, y, _)| (*x == a && *y == b) || (*x == b && *y == a))
+            {
+                assert_eq!(*v, *want, "{:?}/{:?} came back as {}", a, b, v);
+                seen += 1;
+            }
+        }
+        assert_eq!(seen, sample.len(), "a pair was skipped or visited twice");
+    }
+
+    /// The position index, against the linear scan it replaced — including for
+    /// the successor states that are on the roster and not yet in the world.
+    #[test]
+    fn the_position_index_answers_what_the_scan_answered() {
+        let mut w = world_1990(GameRules::default());
+        for _ in 0..240 {
+            crate::tick_month(&mut w, &[]);
+        }
+        assert!(w.indexed(), "a month ended with the index stale");
+        for id in all_nations().iter().copied() {
+            let scanned = w.nations.iter().position(|n| n.id == id);
+            let indexed = w.nation_opt(id).map(|n| n.id);
+            assert_eq!(
+                indexed,
+                scanned.map(|i| w.nations[i].id),
+                "{:?}: index and scan disagree",
+                id
+            );
+        }
+        // ...and with the index deliberately stale, the fallback still answers.
+        let saved = std::mem::take(&mut w.by_id);
+        for id in all_nations().iter().copied() {
+            assert!(!w.indexed());
+            let scanned = w.nations.iter().find(|n| n.id == id).map(|n| n.id);
+            assert_eq!(w.nation_opt(id).map(|n| n.id), scanned, "{:?}: stale index lied", id);
+        }
+        w.by_id = saved;
+    }
+
+    /// The allocation-free pair-flag query, against `has_flag(&format!(..))`.
+    #[test]
+    fn pair_flag_is_the_formatted_flag() {
+        let mut w = world_1990(GameRules::default());
+        let pairs = [
+            (NationId::Iraq, NationId::Kuwait),
+            (NationId::Kuwait, NationId::Iraq),
+            (NationId::USA, NationId::Iraq),
+            (NationId::India, NationId::Pakistan),
+        ];
+        for (a, b) in pairs {
+            w.set_flag(&format!("pressed_{:?}_{:?}", a, b));
+        }
+        w.set_flag("burned_IRQ_KWT_and_then_some");
+        w.set_flag("pressed");
+        for prefix in ["pressed", "burned"] {
+            for a in all_nations().iter().copied().take(40) {
+                for b in all_nations().iter().copied().take(40) {
+                    let formatted = w.has_flag(&format!("{}_{:?}_{:?}", prefix, a, b));
+                    assert_eq!(
+                        w.has_pair_flag(prefix, a, b),
+                        formatted,
+                        "{}_{:?}_{:?}",
+                        prefix,
+                        a,
+                        b
+                    );
+                }
+            }
         }
     }
 }

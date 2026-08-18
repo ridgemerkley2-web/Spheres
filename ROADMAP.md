@@ -396,36 +396,95 @@ now measures the war-free resting state across eight seeds within ±0.8, which i
 a far stricter guard than the one it replaced, and the overshoot is recorded here
 rather than hidden.
 
-## Measured: the century run is going super-linear
+## Fixed: the century run was never about the technology tree
 
-A hundred years, headless, default seed, warm, release:
+**The suspect was cleared and the actual cost was somewhere nobody had looked.**
+The unprofiled guess in this section's previous version was `tech/mod.rs`, on
+the strength of `absorptive_capacity` being O(n²). It is O(n²), and it is not
+the problem: the whole technology tree was 0.78ms of a 5.67ms month at 137
+nations, and its cost grows *sub*-linearly with the roster — 30 nations to 137
+is 4.6x the nations for 2.9x the tech time, which is the opposite of what an
+O(n²) term that mattered would do. Third time this
+project has been handed a plausible cause that was a coincidence, and the first
+time the profile ran before the rewrite instead of after.
 
-| nations | seconds | vs previous |
+**Where a month actually went, at 137 living nations, per subsystem, best of
+three 1200-month passes** (`century_run_profile`, below):
+
+| subsystem | before | after |
 |---|---|---|
-| 30 | 0.744 | — |
-| 108 | 2.93 | 3.9x for 3.6x nations |
-| 137 | — | not measured |
-| 160 | 12.4 | **4.2x for 1.5x nations** |
+| politics | 3.938 ms | 1.120 ms |
+| tech | 0.778 ms | 0.701 ms |
+| government | 0.438 ms | 0.357 ms |
+| economy | 0.120 ms | 0.101 ms |
+| ai_stratagems | 0.162 ms | 0.083 ms |
+| statecraft | 0.146 ms | 0.067 ms |
+| war | 0.048 ms | 0.023 ms |
+| stratagems | 0.041 ms | 0.042 ms |
+| **whole month** | **5.67 ms** | **2.48 ms** |
 
-The step from 108 to 160 is the one to look at: 1.5 times the nations for four
-times the cost is worse than quadratic, and the relations matrix — rewritten
-precisely to survive this — is no longer the whole story.
+Politics was seven tenths of the tick, and inside it two things:
 
-**Not yet urgent, and worth saying why.** 12.4s over 1200 ticks is 10ms a month.
-A player never sees it; monthly ticks are not a frame budget. What it costs is
-CI: `a_century_holds_together` runs three seeds and takes ~37s on its own. At
-190 nations plus the finance and trade layers still to come, that becomes the
-slowest thing in the suite and eventually the reason someone stops running it.
+1. **`Relations::pairs_mut` was O(n³) in the width of the roster.** It recovered
+   the row and column of each slot by counting up from zero, for every one of
+   the n(n+1)/2 slots — 1.36 million loop iterations per sweep at 160 wide, once
+   a month. This is the whole of the super-linearity, and it is why it hid: the
+   cost is set by how wide the matrix is, not by how many nations are alive, so
+   the roster growing from 108 rows to 160 more than doubled it while every
+   per-nation loop grew by a quarter. Carrying (row, column) forward makes one
+   sweep O(n²). Measured: 1.569s -> 0.054s over a century. **29x.**
+   `Relations::serialize` had the same walk, which put it in every determinism
+   test and every `state_hash`.
+2. **`dyads::war_appetite` asked its questions expensively.** It is called for
+   all 2,143 contact dyads every month; each call built two `String`s with
+   `format!` to ask `has_flag` about `pressed_A_B` and `burned_A_B`, and did
+   about eight linear scans of `nations` (three of them per major power, through
+   `would_intervene`). The flags list reaches 260 entries by 2090, so the cost
+   also grew with elapsed time. Now: `has_pair_flag` builds the key in a stack
+   buffer, and `WorldState` carries a non-serialized id -> position index that
+   makes `nation`/`nation_mut`/`nation_opt` O(1). ai_wars: 3.27s -> 1.60s.
 
-**Where to look first, unprofiled.** `spheres-sim/src/tech/mod.rs` holds six
-per-nation loops, and `absorptive_capacity` is the suspicious one: for every
-nation it walks every *other* nation to average its relations, and then calls
-`sanctioned_by_count`, which scans the sanctions list. That is O(n²) plus
-O(n·s) every tick, and the openness figure it computes could be one pass over
-the relations matrix per tick rather than n scans. **Measure before changing
-it** — this project has twice chased a plausible cause that turned out to be a
-coincidence, most recently blaming the technology tree for a bug that was one
-line of trade code.
+**The 0.744 / 2.93 / 12.4 curve was not a scaling curve.** Those three numbers
+were taken on three different commits months apart, so the roster was not the
+only thing that changed between them — government, the commitment ladder and
+statecraft all landed in the same window. Measured properly, on one binary, by
+retiring nations from a full-width world:
+
+| living nations | before | after |
+|---|---|---|
+| 30 | 2.758s | 0.648s |
+| 108 | 5.262s | 2.165s |
+| 137 (all) | 6.807s | 2.974s |
+
+0.0216, 0.0200, 0.0217 seconds per nation after: flat. The curve is linear now,
+and the thing that was bending it is gone rather than reduced.
+
+**End to end**, headless CLI, CPU time, best of five: 35 years 3.66s -> 1.92s;
+100 years 8.03s -> 4.64s. The CI cost this section was actually written about:
+`a_century_holds_together` 27.0s -> 12.2s, and the whole sim suite 40.3s ->
+18.5s with four more tests in it.
+
+**Nothing moved.** Both pinned hashes hold, all 95 pre-existing tests stay
+green, and the entire headline stream plus the closing league table is
+byte-identical against master at 279414c for seeds 1990, 1, 7 and 42 over 35
+years and for seed 1990 over 100. That is the only acceptable outcome for a
+refactor, and it is checked by diffing the runs, not by assuming.
+
+**What is left, named and measured rather than guessed.** `ai_wars` is still
+the largest single item at ~1.1ms of the 2.48ms month. What remains in it is
+the appetite pass itself: 2,143 dyads a month, each allocating a `Vec` in
+`pact_partners` and re-deriving reach and disposition that did not change since
+last month. Nobody should touch it without re-running the profile first.
+
+**The instrument stays.** `century_run_profile` in `spheres-sim/src/lib.rs` is
+`#[ignore]`d:
+
+    cargo test --release -p spheres-sim --lib -- --ignored --nocapture profile
+
+It times the `SYSTEMS` table that `tick_month` runs, so it cannot drift out of
+sync with the tick, and it reports the best of three passes because this machine
+returns anywhere from 6.8s to 11.4s for the same binary on the same run — a mean
+here measures the other processes on the box.
 
 ## Closed: an idle player could walk a nation through zero GDP
 
