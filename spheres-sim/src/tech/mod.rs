@@ -845,6 +845,41 @@ pub fn eligible_projects(n: &Nation, domain: Domain) -> Vec<&'static TechDef> {
         .collect()
 }
 
+/// What one technology would cost this nation to acquire right now.
+///
+/// The same `effective_cost` the spend loop applies, which is what makes it
+/// honest: a technology half the world already has is cheap to copy, and the
+/// same technology is dear to whoever invents it. Exposed so a tech-tree screen
+/// can price every node without reimplementing diffusion.
+pub fn cost_of(w: &WorldState, id: NationId, t: u16) -> f64 {
+    let n = w.nation(id);
+    let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
+    let absorb = absorptive_capacity(w, n, dev);
+    let world_gdp: f64 = w.nations.iter().filter(|o| o.alive).map(|o| o.gdp.max(0.0)).sum();
+    let scale = if world_gdp > 0.0 {
+        let r = (n.gdp.max(0.0) / world_gdp).sqrt();
+        (r * r / (r + BUILD_KNEE)).clamp(0.0, 1.0)
+    } else {
+        1.0
+    };
+    let mut world_weight = 0.0;
+    let mut holders = 0.0;
+    for o in w.nations.iter().filter(|o| o.alive) {
+        let ww = o.gdp.max(0.0) * (1.0 + o.tech.bonus.diffusion_emission_eff());
+        world_weight += ww;
+        if o.tech.knows_index(t) {
+            holders += ww;
+        }
+    }
+    let share = if world_weight > 0.0 { (holders / world_weight).clamp(0.0, 1.0) } else { 0.0 };
+    effective_cost(&registry()[t as usize], share, absorb, scale, &n.tech.bonus)
+}
+
+/// The prerequisite ids of a technology, as registry indices.
+pub fn prereqs_of(t: u16) -> &'static [u16] {
+    &prereq_table()[t as usize]
+}
+
 /// What a domain is working on, how far in, and what it will cost to finish.
 pub fn project_of(w: &WorldState, id: NationId, domain: Domain) -> Option<(&'static TechDef, f64, f64)> {
     let n = w.nation(id);

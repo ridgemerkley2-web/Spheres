@@ -126,6 +126,27 @@
   .ledger .stat .v { font-weight: 600; }
   .ledger .note { color: #6b788a; font-size: 11px; margin-top: 6px; }
 
+  /* ---------- tech tree ---------- */
+  #tree .tabs { display:flex; flex-wrap:wrap; gap:4px; margin:10px 0 12px; }
+  #tree .tabs button { background:var(--panel-2); color:var(--dim); border:1px solid var(--line);
+    border-radius:3px; font-size:11px; padding:4px 9px; cursor:pointer; }
+  #tree .tabs button.on { background:var(--cyan); color:#0a0e14; border-color:var(--cyan); font-weight:600; }
+  #tree .tabs button.pri { border-color:var(--amber); color:var(--amber); }
+  #tree .canvas { overflow:auto; border:1px solid var(--line); border-radius:6px;
+    background:#0c1119; padding:10px; }
+  #tree .yr { fill:var(--dim); font-size:11px; font-family:ui-monospace,monospace; }
+  #tree .lane { stroke:#1a2230; stroke-width:1; }
+  #tree .edge { fill:none; stroke:#2b3a4f; }
+  #tree .node rect { rx:4; ry:4; stroke-width:1.5; }
+  #tree .node text { font-size:11px; }
+  #tree .node .nm { fill:var(--ink); }
+  #tree .node .ct { font-size:9.5px; fill:var(--dim); font-family:ui-monospace,monospace; }
+  #tree .node.open { cursor:pointer; }
+  #tree .node.open:hover rect { stroke:var(--cyan); filter:brightness(1.4); }
+  #tree .legend { display:flex; gap:14px; font-size:11px; color:var(--dim); margin-top:10px; flex-wrap:wrap; }
+  #tree .legend i { display:inline-block; width:10px; height:10px; border-radius:2px;
+    border:1.5px solid; margin-right:5px; vertical-align:-1px; }
+
   /* ---------- research ---------- */
   #resCard .dom { border-top:1px solid var(--line); padding:7px 0; }
   #resCard .dom:first-child { border-top:none; }
@@ -978,6 +999,124 @@ function renderLeft(m) {
   $("#revertBtn").onclick = revertOrders;
 }
 
+/* ================= tech tree =================
+   The shape HOI4 gets right: a year gutter down the side, every technology in
+   the domain as a node, prerequisite lines drawn between them, and three states
+   you can tell apart at a glance — held, startable, still locked. The dropdown
+   on the research card tells you what you can start; this tells you what is
+   ahead of you and what it is waiting on.
+
+   Layout is done here rather than in the sim because layout is presentation.
+   Every NUMBER on a node — its cost after diffusion, what it needs first —
+   arrives from spheres-sim on /api/tech. */
+
+const TREE_W = 158, TREE_H = 40, TREE_GAP_X = 14, TREE_GAP_Y = 52, TREE_LEFT = 52;
+let treeDomain = "Computing";
+
+window.openTechTree = async function (domain) {
+  treeDomain = domain || treeDomain;
+  const d = await api("/api/tech?domain=" + encodeURIComponent(treeDomain));
+  const tabs = ((S.research && S.research.domains) || [])
+    .map((x) => `<button data-tab="${x.domain}" class="${x.domain === treeDomain ? "on" : ""}${
+      S.research.priority === x.domain ? " pri" : ""}">${x.name.split(" ")[0]}</button>`).join("");
+  $("#sheet").innerHTML = `<div id="tree">
+      <div class="head"><h2>${d.name}</h2>
+        <span class="muted">${d.nodes.filter((n) => n.state === "known").length} of ${d.nodes.length} held${
+          d.priority === d.domain ? " · national programme" : ""}</span>
+        <button class="x" onclick="closeSheet()">close</button></div>
+      <div class="tabs">${tabs}</div>
+      <div class="canvas">${treeSvg(d)}</div>
+      <div class="legend">
+        <span><i style="border-color:var(--amber);background:var(--amber)"></i>held</span>
+        <span><i style="border-color:var(--cyan)"></i>can start now — click it</span>
+        <span><i style="border-color:#2b3a4f"></i>locked, needs what it points from</span>
+        <span>a year on the left is the earliest anyone may hold it</span>
+      </div>
+    </div>`;
+  openSheetEl(false, 0);
+  $("#sheet").querySelectorAll("button[data-tab]").forEach((b) => {
+    b.onclick = () => openTechTree(b.dataset.tab);
+  });
+  $("#sheet").querySelectorAll("g.node.open").forEach((g) => {
+    g.onclick = async () => {
+      await setFocus(treeDomain, g.dataset.id);
+      openTechTree(treeDomain);
+    };
+  });
+};
+
+/// Year rows, then a barycentre pass so a node sits near whatever it descends
+/// from. One pass is enough to stop the lines crossing into a thicket.
+function treeSvg(d) {
+  const nodes = d.nodes.slice();
+  if (!nodes.length) return `<div class="muted">Nothing in this domain.</div>`;
+  const byId = {};
+  nodes.forEach((n) => (byId[n.id] = n));
+
+  const years = [...new Set(nodes.map((n) => n.year))].sort((a, b) => a - b);
+  const rows = years.map((y) => nodes.filter((n) => n.year === y));
+
+  rows.forEach((row, ri) => {
+    if (ri > 0) {
+      row.forEach((n) => {
+        const xs = n.prereqs.map((p) => byId[p.id]).filter((p) => p && p.x != null).map((p) => p.x);
+        n._bary = xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 1e9;
+      });
+      row.sort((a, b) => (a._bary - b._bary) || a.name.localeCompare(b.name));
+    } else {
+      row.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    row.forEach((n, i) => {
+      n.x = TREE_LEFT + i * (TREE_W + TREE_GAP_X);
+      n.y = 18 + ri * (TREE_H + TREE_GAP_Y);
+    });
+  });
+
+  const width = TREE_LEFT + Math.max(...rows.map((r) => r.length)) * (TREE_W + TREE_GAP_X) + 20;
+  const height = 30 + rows.length * (TREE_H + TREE_GAP_Y);
+
+  const lanes = rows.map((row, ri) => {
+    const y = 18 + ri * (TREE_H + TREE_GAP_Y);
+    return `<line class="lane" x1="0" y1="${y - 12}" x2="${width}" y2="${y - 12}"/>
+            <text class="yr" x="4" y="${y + 24}">${years[ri]}</text>`;
+  }).join("");
+
+  const edges = nodes.flatMap((n) =>
+    n.prereqs.map((p) => {
+      const q = byId[p.id];
+      if (!q) return "";
+      const x1 = q.x + TREE_W / 2, y1 = q.y + TREE_H;
+      const x2 = n.x + TREE_W / 2, y2 = n.y;
+      const mid = y1 + (y2 - y1) / 2;
+      return `<path class="edge" d="M${x1},${y1} L${x1},${mid} L${x2},${mid} L${x2},${y2}"
+                stroke="${p.known ? "#4a6178" : "#243044"}"/>`;
+    })).join("");
+
+  const boxes = nodes.map((n) => {
+    const fill = n.state === "known" ? "var(--amber)" : "none";
+    const stroke = n.state === "known" ? "var(--amber)"
+      : n.state === "open" ? "var(--cyan)" : "#2b3a4f";
+    const ink = n.state === "known" ? "#0a0e14" : n.state === "open" ? "var(--ink)" : "var(--dim)";
+    const missing = n.prereqs.filter((p) => !p.known).map((p) => p.name).join(", ");
+    const tip = n.state === "locked" && missing ? `needs ${missing}`
+      : n.state === "known" ? "held" : `${Math.round(n.cost)} research points`;
+    return `<g class="node ${n.state}" data-id="${n.id}">
+        <title>${n.name} — ${tip}</title>
+        <rect x="${n.x}" y="${n.y}" width="${TREE_W}" height="${TREE_H}"
+              fill="${fill}" stroke="${stroke}"
+              ${n.focus ? 'stroke-width="3"' : ""}/>
+        <text class="nm" x="${n.x + 8}" y="${n.y + 16}" fill="${ink}">${
+          n.name.length > 24 ? n.name.slice(0, 23) + "\u2026" : n.name}</text>
+        <text class="ct" x="${n.x + 8}" y="${n.y + 31}" fill="${
+          n.state === "known" ? "#0a0e14bb" : "var(--dim)"}">${
+          n.state === "known" ? "held" : Math.round(n.cost) + " pts"}${n.focus ? " · RESEARCHING" : ""}</text>
+      </g>`;
+  }).join("");
+
+  return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+      ${lanes}${edges}${boxes}</svg>`;
+}
+
 /* ================= research =================
    Eight domains, each working on one technology at a time. The player picks the
    project; the engine picks it for them if they do not. One domain may be
@@ -1012,6 +1151,7 @@ function researchHtml(m) {
           <button class="pri${isPri ? " on" : ""}" data-pri="${isPri ? "" : d.domain}"
                   title="${isPri ? "Stand the programme down" : `Declare a national programme: ${mult}x this domain's share, taken from the other seven`}">${isPri ? "PRIORITY" : "\u00b7"}</button>
           <span class="cnt">${d.known}/${d.total}</span>
+          <button class="pri" data-tree="${d.domain}" title="Open the ${d.name} tree">TREE</button>
         </div>
         ${line}
         <select data-focus="${d.domain}">
@@ -1031,6 +1171,9 @@ function researchHtml(m) {
 function wireResearch() {
   document.querySelectorAll("select[data-focus]").forEach((el) => {
     el.onchange = () => setFocus(el.dataset.focus, el.value);
+  });
+  document.querySelectorAll("button[data-tree]").forEach((b) => {
+    b.onclick = () => openTechTree(b.dataset.tree);
   });
   document.querySelectorAll("button[data-pri]").forEach((b) => {
     b.onclick = () => setPriority(b.dataset.pri);

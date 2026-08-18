@@ -630,6 +630,59 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
     })
 }
 
+/// One domain's whole tree: every technology in it, what it costs this nation,
+/// what it needs first, and whether that is already held.
+///
+/// Served on its own route rather than on the state payload because it is 30-odd
+/// nodes a domain and the state is polled on every advance. The screen fetches a
+/// domain when it opens one.
+fn tech_tree_json(w: &WorldState, me: NationId, domain: spheres_sim::tech::Domain) -> serde_json::Value {
+    use spheres_sim::tech;
+    let n = w.nation(me);
+    let reg = tech::registry();
+    let focus = n.tech.focus[domain.index()];
+
+    let nodes: Vec<serde_json::Value> = reg
+        .iter()
+        .enumerate()
+        .filter(|(_, def)| def.domain == domain)
+        .map(|(i, def)| {
+            let idx = i as u16;
+            let known = n.tech.knows_index(idx);
+            let pre: Vec<&u16> = tech::prereqs_of(idx).iter().collect();
+            let open = !known && pre.iter().all(|q| n.tech.knows_index(**q));
+            serde_json::json!({
+                "id": def.id,
+                "name": def.name,
+                "year": def.earliest_year,
+                "era": format!("{:?}", def.era),
+                "cost": tech::cost_of(w, me, idx),
+                "state": if known { "known" } else if open { "open" } else { "locked" },
+                "focus": focus == Some(idx),
+                // Prerequisites carry their own domain, because a few cross it
+                // and a node the screen cannot draw still has to be nameable.
+                "prereqs": pre.iter().map(|q| {
+                    let d = &reg[**q as usize];
+                    serde_json::json!({
+                        "id": d.id,
+                        "name": d.name,
+                        "domain": format!("{:?}", d.domain),
+                        "known": n.tech.knows_index(**q),
+                    })
+                }).collect::<Vec<_>>(),
+            })
+        })
+        .collect();
+
+    serde_json::json!({
+        "domain": format!("{:?}", domain),
+        "name": domain.name(),
+        "year": w.year,
+        "priority": n.tech.priority.map(|d| format!("{:?}", d)),
+        "nodes": nodes,
+    })
+}
+
 fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<Command> {
     let kind = v.get("kind")?.as_str()?;
     let num = || v.get("value").and_then(|x| x.as_f64());
@@ -848,6 +901,19 @@ fn main() {
             // Where a nation's opening figures came from. Static start-of-game
             // provenance, so it needs neither the lock nor the world — and must
             // not be served from the live Nation, whose numbers have moved.
+            (Method::Get, "/api/tech") => {
+                let g = game.lock().unwrap();
+                let asked = request
+                    .url()
+                    .split_once("domain=")
+                    .and_then(|(_, q)| {
+                        spheres_sim::tech::Domain::parse(q.split('&').next().unwrap_or(""))
+                    });
+                match (g.world.player, asked) {
+                    (Some(me), Some(d)) => json_response(tech_tree_json(&g.world, me, d)),
+                    _ => json_response(serde_json::json!({ "nodes": [] })),
+                }
+            }
             (Method::Get, "/api/sources") => {
                 let id = nation_param(request.url());
                 match id {
