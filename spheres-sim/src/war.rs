@@ -358,22 +358,25 @@ pub fn tick(w: &mut WorldState) {
         // Clamped at zero because a negative budget is not a smaller army, it is
         // a NaN — and a NaN in mil_strength propagates silently through every
         // strength ratio in the war model before serde writes it out as `null`.
-        // NOT YET SCALED BY THE ARSENAL, and the reason is written down rather
-        // than forgotten. `arsenal::adequacy` exists, is normalised to 1.0 at
-        // the reference procurement share, and returns exactly 1.0 for all 137
-        // nations in January 1990 because the seeder solves units from money. It
-        // was wired in here and reverted: every emergent-history test survived —
-        // gulf_war_emerges, desert_storm_is_quick_when_they_stand_and_fight,
-        // afghanistan_does_not_end, nuclear_taboo_holds — but two single-seed
-        // instruments moved off their bands, and widening a band to land a
-        // feature is what iron rule 5 exists to stop.
+        // ...and scaled by whether the equipment behind that budget exists.
         //
-        // The blocker is PLAN step 1, not this module: those instruments take one
-        // whole-world run at one seed and assert an absolute number, so anything
-        // that touches war outcomes re-rolls them. Convert them to cross-seed
-        // medians first and this becomes a one-line change with a real gate
-        // behind it.
-        let sustained = (budget * 0.30).max(0.0).sqrt() * 8.0 * crate::tech::military_multiplier(n)
+        // A MULTIPLIER and never an addend, for two independent reasons.
+        // `mil_strength` is the denominator of `capital_intensity` above, so
+        // adding to it would collapse quality — and the 1.2 clamp there means a
+        // uniform shrink compresses the quality gap in favour of the poor, which
+        // is backwards. And war.rs sustains from the whole budget while
+        // arsenal.rs spends 20% of the same money, so an additive arsenal would
+        // buy the same strength twice. Normalised to 1.0 at the reference share,
+        // it buys it once, and all 137 nations open 1990 at exactly 1.0 because
+        // the seeder solves units from money.
+        //
+        // This is where lead time bites. Stop buying and adequacy falls as the
+        // fleet ages; you cannot fix it inside a war, because the thing you did
+        // not order takes fifteen years.
+        let sustained = (budget * 0.30).max(0.0).sqrt()
+            * 8.0
+            * crate::tech::military_multiplier(n)
+            * crate::arsenal::adequacy(n)
             + crate::tech::military_floor(n);
         n.mil_strength += (sustained - n.mil_strength) * REPLACEMENT_RATE;
         n.munitions = (n.munitions + refill).clamp(0.0, 1.0);
