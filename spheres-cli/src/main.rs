@@ -31,8 +31,7 @@ fn main() {
 }
 
 fn headless(years: usize, seed: u64) {
-    let mut rules = GameRules::default();
-    rules.seed = seed;
+    let rules = GameRules { seed, ..GameRules::default() };
     let mut w = world_1990(rules);
     for _ in 0..years * 12 {
         let headlines = tick_month(&mut w, &[]);
@@ -73,8 +72,7 @@ fn play(seed: u64) {
         }
         println!("Unrecognized. Try e.g. 'USA', 'China', 'Iraq'.");
     };
-    let mut rules = GameRules::default();
-    rules.seed = seed;
+    let rules = GameRules { seed, ..GameRules::default() };
     let mut w = world_1990(rules);
     w.player = Some(nation);
     println!("\nYou govern {}. The Cold War is ending. History is unwritten.\n", nation.name());
@@ -373,7 +371,7 @@ fn find_conflict(w: &WorldState, me: NationId, hint: &str) -> Result<u32, String
     let want_n = NationId::parse(hint);
     mine.iter()
         .find(|c| {
-            Some(c.theatre) == want_th || want_n.map_or(false, |n| c.involves(n))
+            Some(c.theatre) == want_th || want_n.is_some_and(|n| c.involves(n))
         })
         .map(|c| c.id)
         .ok_or_else(|| format!("No conflict of yours matches '{}'.", hint))
@@ -632,7 +630,7 @@ fn government_view(w: &WorldState, me: NationId) {
             if ey > 0 { format!("{} {}", month_name(em), ey) } else { "not yet set".to_string() }
         );
         println!();
-        println!("  {:<14} {:<42} {:>8} {:>7}  {}", "ID", "PARTY", "SUPPORT", "SEATS", "");
+        println!("  {:<14} {:<42} {:>8} {:>7}  ", "ID", "PARTY", "SUPPORT", "SEATS");
         let mut rows: Vec<&gov::PartySpec> = pol.parties.iter().collect();
         rows.sort_by(|a, b| {
             g.support_of(b.id)

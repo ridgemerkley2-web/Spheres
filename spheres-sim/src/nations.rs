@@ -74,6 +74,9 @@ pub struct NationRow {
     pub major: bool,
 }
 
+// Nine, because a roster row is nine things. Splitting them into a struct is a
+// refactor across 160 literal rows, and this session does not do those.
+#[allow(clippy::too_many_arguments)]
 const fn row(
     code: &'static str,
     name: &'static str,

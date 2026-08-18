@@ -62,6 +62,18 @@
 //! *definition* is the pinned bit patterns, which are what a future change to
 //! these functions has to trip over.
 
+// Clippy wants `f64::consts::LOG2_E` and `SQRT_2` here, and the literals
+// shortened. Both are refused, in this file only. The constants below are not
+// mathematical constants that happen to be written out — they are the
+// implementation of `exp` and `ln`, chosen for their bit patterns: `LN2_HI` is
+// split precisely so its low 20 significand bits are clear, and the test table
+// pairs each literal with the exact `u64` it must produce, down to recording
+// where we sit one ulp from libm. The module header says it in one line: "The
+// *definition* is the pinned bit patterns." Spelling those as named constants
+// or trimming their digits is a style change to the one file where the digits
+// are the specification, and determinism is the first iron rule.
+#![allow(clippy::approx_constant, clippy::excessive_precision)]
+
 /// `ln(2)` split so that `LN2_HI` has its low 20 significand bits clear. That
 /// makes `k * LN2_HI` exact for every `k` we can produce, so the argument
 /// reduction below loses nothing to rounding.
@@ -396,7 +408,7 @@ mod tests {
             for p in paths {
                 if p.is_dir() {
                     rust_files(&p, out);
-                } else if p.extension().map_or(false, |e| e == "rs") {
+                } else if p.extension().is_some_and(|e| e == "rs") {
                     out.push(p);
                 }
             }
@@ -414,7 +426,7 @@ mod tests {
             .iter()
             // exact.rs is where the platform libm is legitimately called, by the
             // tests below, as a sanity check on the maths.
-            .filter(|p| p.file_name().map_or(true, |n| n != "exact.rs"))
+            .filter(|p| p.file_name().is_none_or(|n| n != "exact.rs"))
             .map(|p| {
                 let name = p
                     .strip_prefix(&root)

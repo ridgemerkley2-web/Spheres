@@ -900,10 +900,10 @@ fn pick_focus(
         // Work up to two years ahead of a floor; further ahead than that and a
         // nation is holding a whole branch hostage to one distant project.
         if def.earliest_year <= year + 2 {
-            if best.map_or(true, |(c, _)| cost < c) {
+            if best.is_none_or(|(c, _)| cost < c) {
                 best = Some((cost, idx));
             }
-        } else if fallback.map_or(true, |(c, _)| cost < c) {
+        } else if fallback.is_none_or(|(c, _)| cost < c) {
             fallback = Some((cost, idx));
         }
     }
@@ -1067,12 +1067,11 @@ pub fn tick(w: &mut WorldState) {
         // the honest reading of a nation that was sitting one technology above
         // a test threshold. Laos is a genuine behaviour change on a nation that
         // was already on the board, and it is stated rather than buried.
-        const BUILD_REF: f64 = 0.008;
         // INTEGRATION NOTE: two roster branches independently softened this
         // floor for the very small economies the expansion added, and unlike a
         // neighbour list these could not be unioned — they are two shapes for
         // one curve. The smooth form is kept: `r^2/(r + knee)` has no kink,
-        // where the piecewise form changes slope at its reference and would put
+        // where the piecewise form changes slope at its reference (0.008) and would put
         // a discontinuity in what a nation can afford exactly where the new
         // roster is densest. Both were aimed at the same finding, that the
         // poorest states in a 137-nation world are an order of magnitude

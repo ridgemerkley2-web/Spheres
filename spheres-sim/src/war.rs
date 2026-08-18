@@ -265,7 +265,7 @@ fn side_profile(w: &WorldState, c: &Conflict, side_a: bool) -> Side {
     let mut top = 1u8;
     let mut unrestricted = false;
     for id in members {
-        if w.nation_opt(*id).map_or(true, |n| !n.alive) {
+        if w.nation_opt(*id).is_none_or(|n| !n.alive) {
             continue;
         }
         let b = match c.posture_of(*id) {
@@ -397,8 +397,8 @@ fn resolve_conflicts(w: &mut WorldState) {
 
     for mut c in conflicts {
         // A conflict outlives its parties only as paperwork.
-        c.side_a.retain(|id| w.nation_opt(*id).map_or(false, |n| n.alive));
-        c.side_b.retain(|id| w.nation_opt(*id).map_or(false, |n| n.alive));
+        c.side_a.retain(|id| w.nation_opt(*id).is_some_and(|n| n.alive));
+        c.side_b.retain(|id| w.nation_opt(*id).is_some_and(|n| n.alive));
         c.posture.retain(|b| c.side_a.contains(&b.nation) || c.side_b.contains(&b.nation));
         if c.side_a.is_empty() || c.side_b.is_empty() {
             ended.push((c, Ending::Lapsed));
@@ -739,7 +739,7 @@ fn resolve_conflicts(w: &mut WorldState) {
                 // The lesson sticks, which is what stops the same aggressor
                 // trying the same thing every year for a century.
                 w.set_flag(&format!("burned_{:?}_{:?}", c.origin_attacker, c.defender()));
-                if w.nation_opt(c.origin_attacker).map_or(false, |n| n.alive) {
+                if w.nation_opt(c.origin_attacker).is_some_and(|n| n.alive) {
                     let a = w.nation_mut(c.origin_attacker);
                     a.stability = (a.stability - 12.0).max(0.0);
                 }
@@ -931,7 +931,7 @@ pub fn conflict_participants(c: &Conflict) -> Vec<NationId> {
 
 /// Would `m` come to `victim`'s defence?
 pub fn would_intervene(w: &WorldState, m: NationId, victim: NationId, attacker: NationId) -> bool {
-    if m == attacker || m == victim || w.nation_opt(m).map_or(true, |n| !n.alive) {
+    if m == attacker || m == victim || w.nation_opt(m).is_none_or(|n| !n.alive) {
         return false;
     }
     let att_nuclear = w.nation(attacker).nuclear;

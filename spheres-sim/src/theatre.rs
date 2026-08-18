@@ -386,7 +386,7 @@ pub fn consent_probability(
     if host == seeker {
         return 1.0;
     }
-    if w.nation_opt(host).map_or(true, |n| !n.alive) {
+    if w.nation_opt(host).is_none_or(|n| !n.alive) {
         return 0.0;
     }
     // You do not get to fly out of a country that has closed its market to you.
@@ -441,6 +441,6 @@ pub fn unasked_hosts(w: &WorldState, seeker: NationId, th: TheatreId) -> Vec<Nat
         .copied()
         .filter(|h| *h != seeker)
         .filter(|h| !already_granted(w, *h, seeker, th))
-        .filter(|h| w.nation_opt(*h).map_or(false, |n| n.alive))
+        .filter(|h| w.nation_opt(*h).is_some_and(|n| n.alive))
         .collect()
 }

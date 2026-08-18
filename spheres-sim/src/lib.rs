@@ -251,7 +251,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             *host,
             if w.conflicts.iter().any(|c| {
                 c.theatre == *theatre
-                    && c.posture_of(*seeker).map_or(false, |b| b.rung >= 7)
+                    && c.posture_of(*seeker).is_some_and(|b| b.rung >= 7)
             }) {
                 20.0
             } else {
@@ -1076,6 +1076,193 @@ mod tests {
         }
     }
 
+    /// Forty years across twenty-one seeds, looking for the shapes a calibration
+    /// test does not look for: a value sitting on its clamp for years, the same
+    /// two states at war forever, a dead nation still moving, an economy that
+    /// ran away or evaporated.
+    ///
+    /// A readout, not an assertion — it prints what it finds and BUGS.md records
+    /// what each finding turned out to mean. Ignored because it is a survey and
+    /// wants release mode:
+    ///
+    /// ```text
+    /// cargo test --release -p spheres-sim anomaly_sweep -- --ignored --nocapture
+    /// ```
+    #[test]
+    #[ignore]
+    fn anomaly_sweep() {
+        use std::collections::BTreeMap;
+        const MONTHS: usize = 480; // forty years
+        const PINNED: u32 = 60; // five years on a bound before it is a finding
+        const OIL_PINNED: u32 = 24;
+        const RUNAWAY: f64 = 100.0; // x 1990 output; China's real miracle is ~14x/30y
+        const EVAPORATED: f64 = 0.01; // fraction of 1990 output
+
+        // (seed, category, who, year, detail). Deduped to the first occurrence of
+        // each (seed, category, who) at the end, so one sick nation is one line
+        // rather than four hundred.
+        let mut raw: Vec<(u64, &'static str, String, i32, String)> = Vec::new();
+
+        for seed in 0..=20u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            let start: BTreeMap<NationId, f64> = w.nations.iter().map(|n| (n.id, n.gdp)).collect();
+            let mut prev_dead: BTreeMap<NationId, (f64, f64)> = BTreeMap::new();
+            let mut infl_lo: BTreeMap<NationId, u32> = BTreeMap::new();
+            let mut infl_hi: BTreeMap<NationId, u32> = BTreeMap::new();
+            let mut stab_lo: BTreeMap<NationId, u32> = BTreeMap::new();
+            let mut stab_hi: BTreeMap<NationId, u32> = BTreeMap::new();
+            let mut oil_lo: u32 = 0;
+            let mut oil_hi: u32 = 0;
+            let mut dyad: BTreeMap<(NationId, NationId), Vec<u32>> = BTreeMap::new();
+
+            for _ in 0..MONTHS {
+                tick_month(&mut w, &[]);
+                let yr = w.year;
+
+                if !w.oil_price.is_finite() || w.oil_price <= 0.0 {
+                    raw.push((seed, "oil-nonfinite", "world".to_string(), yr, format!("{}", w.oil_price)));
+                }
+                oil_lo = if w.oil_price <= 8.0 { oil_lo + 1 } else { 0 };
+                oil_hi = if w.oil_price >= 120.0 { oil_hi + 1 } else { 0 };
+                if oil_lo == OIL_PINNED {
+                    raw.push((seed, "oil-pinned-low", "world".to_string(), yr, "at the $8 floor for 24mo".to_string()));
+                }
+                if oil_hi == OIL_PINNED {
+                    raw.push((seed, "oil-pinned-high", "world".to_string(), yr, "at the $120 ceiling for 24mo".to_string()));
+                }
+
+                for c in &w.conflicts {
+                    let d = c.defender();
+                    let key = if c.origin_attacker <= d {
+                        (c.origin_attacker, d)
+                    } else {
+                        (d, c.origin_attacker)
+                    };
+                    let e = dyad.entry(key).or_default();
+                    if !e.contains(&c.id) {
+                        e.push(c.id);
+                    }
+                    if c.months == 300 {
+                        raw.push((seed, "war-endless", format!("{:?} vs {:?}", c.origin_attacker, d), yr,
+                                  "a single conflict running 300 months".to_string()));
+                    }
+                    for side in [&c.side_a, &c.side_b] {
+                        for id in side {
+                            if w.nation_opt(*id).is_some_and(|n| !n.alive) {
+                                raw.push((seed, "dead-at-war", format!("{:?}", id), yr,
+                                          format!("listed in live conflict {}", c.id)));
+                            }
+                        }
+                    }
+                }
+
+                for n in w.nations.iter() {
+                    let who = format!("{:?}", n.id);
+                    if !n.alive {
+                        // A dead nation has to be inert. If its numbers move, some
+                        // loop is still writing to it.
+                        if let Some((g, m)) = prev_dead.get(&n.id) {
+                            if *g != n.gdp || *m != n.mil_strength {
+                                raw.push((seed, "dead-still-moving", who, yr,
+                                          format!("gdp {} -> {}, mil {} -> {}", g, n.gdp, m, n.mil_strength)));
+                            }
+                        }
+                        prev_dead.insert(n.id, (n.gdp, n.mil_strength));
+                        continue;
+                    }
+                    prev_dead.remove(&n.id);
+
+                    if !n.gdp.is_finite() || n.gdp <= 0.0 {
+                        raw.push((seed, "gdp-invalid", who.clone(), yr, format!("{}", n.gdp)));
+                    }
+                    if !n.inflation.is_finite() {
+                        raw.push((seed, "inflation-nan", who.clone(), yr, "NaN".to_string()));
+                    }
+                    if !n.mil_strength.is_finite() || n.mil_strength < 0.0 {
+                        raw.push((seed, "mil-invalid", who.clone(), yr, format!("{}", n.mil_strength)));
+                    }
+                    if !n.population.is_finite() || n.population <= 0.0 {
+                        raw.push((seed, "pop-invalid", who.clone(), yr, format!("{}", n.population)));
+                    }
+                    if !n.political_capital.is_finite() {
+                        raw.push((seed, "pc-nan", who.clone(), yr, "NaN".to_string()));
+                    }
+                    if !n.debt_gdp.is_finite() || n.debt_gdp > 6.0 {
+                        raw.push((seed, "debt-spiral", who.clone(), yr, format!("{:.2}", n.debt_gdp)));
+                    }
+                    if !(0.0..=100.0).contains(&n.stability) {
+                        raw.push((seed, "stability-range", who.clone(), yr, format!("{}", n.stability)));
+                    }
+                    if let Some(s0) = start.get(&n.id) {
+                        if *s0 > 0.0 && n.gdp > *s0 * RUNAWAY {
+                            raw.push((seed, "gdp-runaway", who.clone(), yr,
+                                      format!("{:.0}x 1990 ({:.0} -> {:.0})", n.gdp / *s0, s0, n.gdp)));
+                        }
+                        if *s0 > 0.0 && n.gdp < *s0 * EVAPORATED {
+                            raw.push((seed, "gdp-evaporated", who.clone(), yr,
+                                      format!("{:.3}% of 1990 ({:.1} -> {:.3})", n.gdp / *s0 * 100.0, s0, n.gdp)));
+                        }
+                    }
+
+                    let e = infl_lo.entry(n.id).or_default();
+                    *e = if n.inflation <= -0.05 { *e + 1 } else { 0 };
+                    if *e == PINNED {
+                        raw.push((seed, "inflation-pinned-low", who.clone(), yr, "at the -5% clamp for 5y".to_string()));
+                    }
+                    let e = infl_hi.entry(n.id).or_default();
+                    *e = if n.inflation >= 3.0 { *e + 1 } else { 0 };
+                    if *e == PINNED {
+                        raw.push((seed, "inflation-pinned-high", who.clone(), yr, "at the 300% clamp for 5y".to_string()));
+                    }
+                    let e = stab_lo.entry(n.id).or_default();
+                    *e = if n.stability <= 0.0 { *e + 1 } else { 0 };
+                    if *e == PINNED {
+                        raw.push((seed, "stability-pinned-0", who.clone(), yr, "stability 0.0 for 5y".to_string()));
+                    }
+                    let e = stab_hi.entry(n.id).or_default();
+                    *e = if n.stability >= 100.0 { *e + 1 } else { 0 };
+                    if *e == PINNED {
+                        raw.push((seed, "stability-pinned-100", who, yr, "stability 100.0 for 5y".to_string()));
+                    }
+                }
+            }
+
+            for ((a, b), ids) in &dyad {
+                if ids.len() >= 5 {
+                    raw.push((seed, "dyad-repeat-war", format!("{:?} vs {:?}", a, b), w.year,
+                              format!("{} separate conflicts in 40y", ids.len())));
+                }
+            }
+        }
+
+        // One line per (seed, category, nation), at the year it first appeared.
+        let mut seen: BTreeMap<(u64, &'static str, String), (i32, String)> = BTreeMap::new();
+        for (seed, cat, who, yr, detail) in raw {
+            seen.entry((seed, cat, who)).or_insert((yr, detail));
+        }
+        let mut by_cat: BTreeMap<&'static str, Vec<String>> = BTreeMap::new();
+        for ((seed, cat, who), (yr, detail)) in &seen {
+            by_cat.entry(cat).or_default().push(format!("seed {:>2} {} {} — {}", seed, yr, who, detail));
+        }
+
+        let roster = world_1990(GameRules::default()).nations.len();
+        println!("\n=== ANOMALY SWEEP: seeds 0..=20, 40 years, {} nations ===", roster);
+        if by_cat.is_empty() {
+            println!("no anomalies found");
+        }
+        for (cat, mut lines) in by_cat {
+            println!("\n[{}]  {} occurrence(s)", cat, lines.len());
+            lines.sort();
+            for l in lines.iter().take(12) {
+                println!("   {}", l);
+            }
+            if lines.len() > 12 {
+                println!("   ... and {} more", lines.len() - 12);
+            }
+        }
+        println!();
+    }
+
     #[test]
     fn a_century_holds_together() {
         // The risk register's top entry is two hundred AI economies spiralling,
@@ -1476,8 +1663,7 @@ mod tests {
         // Historical calibration: across seeds, the USSR should usually dissolve by 2000.
         let mut collapses = 0;
         for seed in 0..10u64 {
-            let mut rules = GameRules::default();
-            rules.seed = seed;
+            let rules = GameRules { seed, ..GameRules::default() };
             let mut w = world_1990(rules);
             for _ in 0..132 {
                 tick_month(&mut w, &[]);
@@ -1494,8 +1680,7 @@ mod tests {
         // Iraq should invade Kuwait in a majority of early-90s runs.
         let mut invasions = 0;
         for seed in 0..10u64 {
-            let mut rules = GameRules::default();
-            rules.seed = seed;
+            let rules = GameRules { seed, ..GameRules::default() };
             let mut w = world_1990(rules);
             let mut saw = false;
             for _ in 0..48 {
@@ -1708,8 +1893,7 @@ mod tests {
         // of the whole tree. Vietnam finished a thirty-year run knowing nothing
         // whatsoever, and no test in the suite objected.
         for seed in [1990u64, 7, 42] {
-            let mut rules = GameRules::default();
-            rules.seed = seed;
+            let rules = GameRules { seed, ..GameRules::default() };
             let mut w = world_1990(rules);
             run_months(&mut w, 360);
             let frontier = w.nations.iter().filter(|n| n.alive).map(|n| n.tech.count()).max().unwrap();
@@ -1733,8 +1917,7 @@ mod tests {
         // to nothing, this is what says so. It is a coarse guard and it is
         // meant to be: it holds the sign of the effect, not its size.
         for seed in [1990u64, 7, 42, 2024] {
-            let mut rules = GameRules::default();
-            rules.seed = seed;
+            let rules = GameRules { seed, ..GameRules::default() };
             let mut w = world_1990(rules);
             let before: Vec<f64> = [NationId::China, NationId::India, NationId::Japan, NationId::Italy]
                 .iter()
@@ -1777,8 +1960,7 @@ mod tests {
         // permanent break it was — and it wants a demographic or balance-sheet
         // mechanism, not a wider tolerance here.
         for seed in [1990u64, 7, 42] {
-            let mut rules = GameRules::default();
-            rules.seed = seed;
+            let rules = GameRules { seed, ..GameRules::default() };
             let mut w = world_1990(rules);
             run_months(&mut w, 360);
             for id in [NationId::USA, NationId::Germany, NationId::France, NationId::Italy] {
@@ -1803,8 +1985,7 @@ mod tests {
     fn yugoslavia_comes_apart_in_the_nineties() {
         let mut broke = 0;
         for seed in 0..10u64 {
-            let mut rules = GameRules::default();
-            rules.seed = seed;
+            let rules = GameRules { seed, ..GameRules::default() };
             let mut w = world_1990(rules);
             run_months(&mut w, 120); // to 2000
             if w.has_flag("yugoslavia_dissolved") {
@@ -1821,8 +2002,7 @@ mod tests {
         // and gets out; Bosnia has no majority at all and is fought over.
         let (mut slovenia_wars, mut bosnia_wars) = (0, 0);
         for seed in 0..10u64 {
-            let mut rules = GameRules::default();
-            rules.seed = seed;
+            let rules = GameRules { seed, ..GameRules::default() };
             let mut w = world_1990(rules);
             for _ in 0..120 {
                 let headlines = tick_month(&mut w, &[]);
@@ -1851,8 +2031,7 @@ mod tests {
         // negotiated settlements should be a real way for wars to end.
         let mut settled = 0;
         for seed in 0..12u64 {
-            let mut rules = GameRules::default();
-            rules.seed = seed;
+            let rules = GameRules { seed, ..GameRules::default() };
             let mut w = world_1990(rules);
             let mut saw = false;
             for _ in 0..360 {
@@ -1924,8 +2103,7 @@ mod tests {
     // ---- Statecraft: pacts, patronage, subversion, trade --------------------
 
     fn seeded(seed: u64) -> WorldState {
-        let mut rules = GameRules::default();
-        rules.seed = seed;
+        let rules = GameRules { seed, ..GameRules::default() };
         world_1990(rules)
     }
 
@@ -2253,8 +2431,7 @@ mod tests {
         // to blow up, and two of them (Brazil at 295% inflation, Vietnam at a
         // hundred dollars a head) sit at the far edges of the model's range.
         for seed in [0u64, 7, 1990] {
-            let mut rules = GameRules::default();
-            rules.seed = seed;
+            let rules = GameRules { seed, ..GameRules::default() };
             let mut w = world_1990(rules);
             for id in [
                 NationId::Brazil, NationId::Indonesia, NationId::Egypt, NationId::Israel,
@@ -2289,8 +2466,7 @@ mod tests {
         // fight, not its date: no quick cure, and no permanent hyperinflation.
         let (mut still_burning_at_18m, mut tamed_by_1999) = (0, 0);
         for seed in 0..10u64 {
-            let mut rules = GameRules::default();
-            rules.seed = seed;
+            let rules = GameRules { seed, ..GameRules::default() };
             let mut w = world_1990(rules);
             for m in 0..120 {
                 tick_month(&mut w, &[]);
@@ -2398,8 +2574,8 @@ mod tests {
         println!("rung:      1     2     3     4     5     6     7     8     9");
         let row = |name: &str, v: &[u64]| {
             let mut s = format!("{:<9}", name);
-            for r in 1..=9 {
-                s += &format!("{:>6}", v[r]);
+            for slot in v.iter().take(10).skip(1) {
+                s += &format!("{:>6}", slot);
             }
             println!("{}", s);
         };
@@ -3164,8 +3340,7 @@ mod tests {
         // back under the Budapest assurances of 1994.
         let mut born = 0;
         for seed in 0..10u64 {
-            let mut rules = GameRules::default();
-            rules.seed = seed;
+            let rules = GameRules { seed, ..GameRules::default() };
             let mut w = world_1990(rules);
             run_months(&mut w, 180); // to 2005
             if !w.has_flag("ussr_dissolved") {

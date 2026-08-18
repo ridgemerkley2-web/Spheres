@@ -234,7 +234,7 @@ pub fn war_appetite(w: &WorldState, a: NationId, t: NationId) -> f64 {
         if g == a || majors().contains(&g) && war::would_intervene(w, g, t, a) {
             continue;
         }
-        if w.nation_opt(g).map_or(true, |n| !n.alive) {
+        if w.nation_opt(g).is_none_or(|n| !n.alive) {
             continue;
         }
         let honoured = if learned { 0.75 } else { 0.08 };

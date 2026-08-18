@@ -67,8 +67,8 @@ fn pacts_upkeep(w: &mut WorldState) {
         w.statecraft.pacts.iter().map(|p| (p.a, p.b)).collect();
     let mut lapsed: Vec<(NationId, NationId)> = vec![];
     for (a, b) in pairs {
-        let both_alive = w.nation_opt(a).map_or(false, |n| n.alive)
-            && w.nation_opt(b).map_or(false, |n| n.alive);
+        let both_alive = w.nation_opt(a).is_some_and(|n| n.alive)
+            && w.nation_opt(b).is_some_and(|n| n.alive);
         if !both_alive {
             lapsed.push((a, b));
             continue;
@@ -97,8 +97,8 @@ fn aid_flows(w: &mut WorldState) {
     let flows: Vec<AidFlow> = w.statecraft.aid.clone();
     let mut dead: Vec<(NationId, NationId, AidKind)> = vec![];
     for f in flows {
-        let patron_ok = w.nation_opt(f.patron).map_or(false, |n| n.alive);
-        let client_ok = w.nation_opt(f.client).map_or(false, |n| n.alive);
+        let patron_ok = w.nation_opt(f.patron).is_some_and(|n| n.alive);
+        let client_ok = w.nation_opt(f.client).is_some_and(|n| n.alive);
         if !patron_ok || !client_ok {
             dead.push((f.patron, f.client, f.kind));
             continue;
@@ -148,8 +148,8 @@ fn trade_deepens(w: &mut WorldState) {
     let pairs: Vec<(NationId, NationId)> = w.statecraft.trade.iter().map(|t| (t.a, t.b)).collect();
     let mut dead: Vec<(NationId, NationId)> = vec![];
     for (a, b) in pairs {
-        let both_alive = w.nation_opt(a).map_or(false, |n| n.alive)
-            && w.nation_opt(b).map_or(false, |n| n.alive);
+        let both_alive = w.nation_opt(a).is_some_and(|n| n.alive)
+            && w.nation_opt(b).is_some_and(|n| n.alive);
         if !both_alive {
             dead.push((a, b));
             continue;
@@ -693,7 +693,7 @@ fn dissolve_pact(w: &mut WorldState, a: NationId, b: NationId) {
 }
 
 fn alive(w: &WorldState, id: NationId) -> bool {
-    w.nation_opt(id).map_or(false, |n| n.alive)
+    w.nation_opt(id).is_some_and(|n| n.alive)
 }
 
 /// Fighting *each other*, as opposed to fighting alongside each other. Two

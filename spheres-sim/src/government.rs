@@ -261,7 +261,7 @@ pub struct Polity {
 pub const ELECTORAL_CEILING: f64 = 0.60;
 
 pub fn is_electoral(w: &WorldState, id: NationId) -> bool {
-    w.nation_opt(id).map_or(false, |n| n.alive && n.authoritarianism < ELECTORAL_CEILING)
+    w.nation_opt(id).is_some_and(|n| n.alive && n.authoritarianism < ELECTORAL_CEILING)
 }
 
 // The tables. Vote shares are from the last national election before January
@@ -5983,7 +5983,7 @@ pub fn expel(w: &mut WorldState, id: NationId, party: &str) -> Result<(), String
         }
         normalise(&mut g.support);
     }
-    let lost_majority = state(w, id).map_or(false, |g| g.government_seats() < 0.5);
+    let lost_majority = state(w, id).is_some_and(|g| g.government_seats() < 0.5);
     if lost_majority {
         w.nation_mut(id).stability = (w.nation(id).stability - 4.0).max(0.0);
     }
@@ -6000,7 +6000,7 @@ pub fn call_election(w: &mut WorldState, id: NationId) -> Result<(), String> {
     if !is_electoral(w, id) {
         return Err(format!("{} does not hold elections.", id.name()));
     }
-    if state(w, id).map_or(true, |g| g.months_in_office < 6) {
+    if state(w, id).is_none_or(|g| g.months_in_office < 6) {
         return Err("A government six months old cannot go back to the country yet.".into());
     }
     w.headline(format!("{} goes to the country early.", id.name()));
@@ -6231,7 +6231,7 @@ pub fn tick(w: &mut WorldState) {
             // A regime that has just opened up owes the country a vote. Nothing
             // schedules this: it happens because authoritarianism fell, whether
             // through a stratagem, a revolution or a collapse.
-            let unscheduled = state(w, id).map_or(false, |g| g.next_election.0 == 0);
+            let unscheduled = state(w, id).is_some_and(|g| g.next_election.0 == 0);
             if unscheduled {
                 let when = add_months(w.year, w.month, 18);
                 if let Some(g) = state_mut(w, id) {
@@ -6264,7 +6264,7 @@ pub fn tick(w: &mut WorldState) {
                 continue;
             }
 
-            let is_due = state(w, id).map_or(false, |g| due(w, g));
+            let is_due = state(w, id).is_some_and(|g| due(w, g));
             if is_due {
                 hold_election(w, id);
             }
@@ -6277,7 +6277,7 @@ pub fn tick(w: &mut WorldState) {
                     g.pillars = vec![];
                 }
             }
-            let needs_pillars = state(w, id).map_or(false, |g| g.pillars.is_empty());
+            let needs_pillars = state(w, id).is_some_and(|g| g.pillars.is_empty());
             if needs_pillars {
                 let seeded: Vec<(Pillar, f64)> = polity(id)
                     .map(|p| p.pillars.iter().map(|s| (s.pillar, 0.60)).collect())
@@ -6637,7 +6637,7 @@ mod tests {
                 // A one-party state that has opened up still has one party in
                 // its table until somebody founds another; 100% there is the
                 // correct reading, not a runaway.
-                if polity(n.id).map_or(true, |p| p.parties.len() < 2) {
+                if polity(n.id).is_none_or(|p| p.parties.len() < 2) {
                     continue;
                 }
                 if let Some(g) = state(&w, n.id) {

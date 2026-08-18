@@ -794,6 +794,9 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
     // (9.78m of 23.53m is 0.4156); that difference is the upward rounding of
     // Croatia, Slovenia and Bosnia, left where the incumbents put it rather
     // than redistributed across rows this branch does not own.
+    // A type alias would name the tuple without making the eight columns any
+    // clearer; the comment beside each row already does that.
+    #[allow(clippy::type_complexity)]
     let parts: [(NationId, f64, f64, f64, f64, f64, f64, f64); 6] = [
         // Belgrade keeps the army, and Kosovo and Vojvodina keep Belgrade busy.
         (NationId::Serbia,   0.348, 0.411, 0.70, 0.45, 0.75, 40.0, 0.002),
@@ -959,7 +962,7 @@ fn ai_statecraft(w: &mut WorldState) {
     let active: Vec<NationId> = patrons()
         .iter()
         .copied()
-        .filter(|p| w.nation_opt(*p).map_or(false, |n| n.alive) && Some(*p) != w.player)
+        .filter(|p| w.nation_opt(*p).is_some_and(|n| n.alive) && Some(*p) != w.player)
         .collect();
 
     for p in active {

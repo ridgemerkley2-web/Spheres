@@ -328,7 +328,7 @@ pub const DECK: &[Stratagem] = &[
 
 /// What this nation could decide to do this month, in deck order.
 pub fn available(w: &WorldState, id: NationId) -> Vec<&'static Stratagem> {
-    if w.nation_opt(id).map_or(true, |n| !n.alive) {
+    if w.nation_opt(id).is_none_or(|n| !n.alive) {
         return vec![];
     }
     DECK.iter().filter(|s| (s.available)(w, id)).collect()

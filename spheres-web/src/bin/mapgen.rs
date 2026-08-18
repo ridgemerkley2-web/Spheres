@@ -179,7 +179,7 @@ fn main() {
                             // Label the biggest landmass, not the average of
                             // scattered islands — otherwise the USA is labelled
                             // somewhere in the Pacific.
-                            if best.map_or(true, |(_, _, ba)| a > ba) {
+                            if best.is_none_or(|(_, _, ba)| a > ba) {
                                 best = Some((cx, cy, a));
                             }
                         }
@@ -232,7 +232,7 @@ fn main() {
         lat -= 2.0;
     }
     frame.push('Z');
-    let _ = write!(out, "],frame:\"{}\"}};\n", frame);
+    let _ = writeln!(out, "],frame:\"{}\"}};", frame);
 
     let dest = "spheres-web/ui/world.js";
     std::fs::write(dest, &out).expect("write world.js");

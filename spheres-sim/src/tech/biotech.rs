@@ -41,6 +41,7 @@
 //!     mortality this file removes.
 //!   * Rational drug design → antiretrovirals → targeted oncology, chemistry
 //!     done against a known structure rather than against a screening library.
+//!
 //! The vectors and the pathogen genomics meet at the mRNA platform; the
 //! structure prediction and the editing tools meet past it.
 

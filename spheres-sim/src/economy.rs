@@ -187,7 +187,7 @@ pub fn tick(w: &mut WorldState) {
                 n.bubble -= 0.06 * crisis_mult;
                 if n.bubble < 0.5 {
                     // POP: flip into a debt-overhang hangover (negative bubble)
-                    n.bubble = -1.0 * crisis_mult;
+                    n.bubble = -crisis_mult;
                 }
             } else {
                 n.bubble = (n.bubble + 0.004).min(1.0);

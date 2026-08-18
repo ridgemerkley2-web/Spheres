@@ -80,7 +80,7 @@ pub fn rung_blocked(w: &WorldState, c: &Conflict, id: NationId, rung: u8) -> Opt
             b.ceiling
         ));
     }
-    if rung >= MAX_RUNG_WITHOUT_ACCESS + 1 && !theatre::has_access(w, id, c.theatre) {
+    if rung > MAX_RUNG_WITHOUT_ACCESS && !theatre::has_access(w, id, c.theatre) {
         let hosts: Vec<&str> = theatre::theatre(w, c.theatre)
             .access_hosts
             .iter()
@@ -105,10 +105,10 @@ pub fn rung_blocked(w: &WorldState, c: &Conflict, id: NationId, rung: u8) -> Opt
     // earth unable to resist a great power, which is the opposite of the fact
     // it is meant to encode.
     if rung >= SHOOTING_RUNG && !theatre::is_home(w, id, c.theatre) {
-        let mine = w.nation_opt(id).map_or(false, |n| n.nuclear);
+        let mine = w.nation_opt(id).is_some_and(|n| n.nuclear);
         let side = c.side_of(id);
         let armed_enemy = c.participants().iter().any(|o| {
-            c.side_of(*o) != side && w.nation_opt(*o).map_or(false, |n| n.alive && n.nuclear)
+            c.side_of(*o) != side && w.nation_opt(*o).is_some_and(|n| n.alive && n.nuclear)
         });
         if armed_enemy && !mine {
             return Some("Deterrence holds — they have the bomb and we do not.".into());
@@ -161,7 +161,7 @@ pub fn set_commitment(
         ));
         let aggressor_side = w
             .conflict(conflict)
-            .map_or(false, |c| c.side_of(nation) == c.side_of(c.origin_attacker));
+            .is_some_and(|c| c.side_of(nation) == c.side_of(c.origin_attacker));
 
         // A guarantee answers the shooting, not only the border crossing.
         //
@@ -195,7 +195,7 @@ pub fn set_commitment(
         // per quarrel, at the rung, rather than at the moment somebody decided
         // to be annoyed — which is the whole of QA's first finding.
         let crossing = rung >= INVASION_RUNG
-            && w.conflict(conflict).map_or(false, |c| !c.invasion_declared)
+            && w.conflict(conflict).is_some_and(|c| !c.invasion_declared)
             && aggressor_side;
         if crossing {
             crate::war::invasion_begins(w, conflict, nation);
@@ -325,7 +325,7 @@ fn proxy_of(w: &WorldState, c: &Conflict, id: NationId) -> Option<NationId> {
     mine.iter()
         .copied()
         .filter(|x| *x != id)
-        .filter(|x| w.nation_opt(*x).map_or(false, |n| n.alive))
+        .filter(|x| w.nation_opt(*x).is_some_and(|n| n.alive))
         .filter(|x| theatre::is_home(w, *x, c.theatre))
         .min_by(|a, b| {
             let (x, y) = (w.nation(*a).mil_strength, w.nation(*b).mil_strength);
@@ -349,8 +349,8 @@ pub fn open_conflict(
     if opener == target {
         return Err("A nation cannot open a conflict with itself.".into());
     }
-    if w.nation_opt(opener).map_or(true, |n| !n.alive)
-        || w.nation_opt(target).map_or(true, |n| !n.alive)
+    if w.nation_opt(opener).is_none_or(|n| !n.alive)
+        || w.nation_opt(target).is_none_or(|n| !n.alive)
     {
         return Err("Nation no longer exists.".into());
     }
@@ -404,7 +404,7 @@ pub fn join_conflict(
     side_a: bool,
     objective: Objective,
 ) -> Result<(), String> {
-    if w.nation_opt(joiner).map_or(true, |n| !n.alive) {
+    if w.nation_opt(joiner).is_none_or(|n| !n.alive) {
         return Err("Nation no longer exists.".into());
     }
     let (already, th, friends, foes) = {
@@ -468,7 +468,7 @@ pub fn request_access(
     if seeker == host {
         return Err("You do not need your own permission.".into());
     }
-    if w.nation_opt(host).map_or(true, |n| !n.alive) {
+    if w.nation_opt(host).is_none_or(|n| !n.alive) {
         return Err("Nation no longer exists.".into());
     }
     if !theatre::theatre(w, th).access_hosts.contains(&host) {
@@ -487,7 +487,7 @@ pub fn request_access(
         .iter()
         .find(|c| c.involves(seeker) && c.theatre == th)
         .and_then(|c| c.posture_of(seeker))
-        .map_or(false, |b| b.roe == Roe::Unrestricted);
+        .is_some_and(|b| b.roe == Roe::Unrestricted);
     let mut p = theatre::consent_probability(w, host, seeker, target, unrestricted);
     if pressed {
         // Leverage is the whole point of having built dependency, and this is

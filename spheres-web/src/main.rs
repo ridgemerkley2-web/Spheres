@@ -60,8 +60,7 @@ struct Game {
 
 impl Game {
     fn new(seed: u64, player: Option<NationId>) -> Game {
-        let mut rules = GameRules::default();
-        rules.seed = seed;
+        let rules = GameRules { seed, ..GameRules::default() };
         let mut world = world_1990(rules);
         world.player = player;
         let mut g = Game { world, log: vec![], history: vec![] };
@@ -210,7 +209,7 @@ fn is_major(headline: &str, me: Option<NationId>) -> bool {
         || h.contains("escalates to rung")
         || h.contains("grants")
         || h.contains("revokes");
-    structural || me.map_or(false, |m| h.contains(&m.name().to_lowercase()))
+    structural || me.is_some_and(|m| h.contains(&m.name().to_lowercase()))
 }
 
 /// Pull `nation=` out of a query string and percent-decode it.
@@ -359,8 +358,8 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "authoritarianism": n.authoritarianism,
         "at_war": w.at_war(n.id),
         "relation": me.map(|m| w.relation(m, n.id)),
-        "sanctioned_by_me": me.map_or(false, |m| w.is_sanctioning(m, n.id)),
-        "sanctioning_me": me.map_or(false, |m| w.is_sanctioning(n.id, m)),
+        "sanctioned_by_me": me.is_some_and(|m| w.is_sanctioning(m, n.id)),
+        "sanctioning_me": me.is_some_and(|m| w.is_sanctioning(n.id, m)),
         "sanctioned_by_count": w.sanctioned_by_count(n.id),
         "export_share": if n.oil_mbd > 0.0 { w.oil_export_share(n.id) } else { 1.0 },
         // Every standing it holds, not just the one with the player — the detail
@@ -1122,7 +1121,7 @@ mod tests {
         g.world.nation_mut(NationId::Poland).inflation = 0.45;
         let s = state_json(&g, None);
         assert_eq!(s["stratagems"]["nation"], "Poland");
-        assert!(s["stratagems"]["offers"].as_array().unwrap().len() >= 1);
+        assert!(!s["stratagems"]["offers"].as_array().unwrap().is_empty());
         // A spectator with no nation gets null rather than a fabricated menu.
         let spectator = Game::new(1990, None);
         assert!(state_json(&spectator, None)["stratagems"].is_null());
