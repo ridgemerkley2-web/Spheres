@@ -2101,7 +2101,11 @@ mod tests {
         // read the arsenal yet. Struct changed, simulation did not, and
         // `spheres-sim/data/` is untouched.
         //
-        // Re-pinned for the 1990 arsenal inheritance. Every nation now opens
+        // Re-pinned twice for procurement: once for the inheritance, and again
+        // when EQUIP_HORIZON was derived down from 240 months to 200, which is
+        // the value that makes a fully-equipped 1990 United States worth about
+        // $1.1tn against a BEA gross stock of national-defence equipment near
+        // $1.1tn. Re-pinned for the 1990 arsenal inheritance. Every nation now opens
         // holding what thirty years of its own procurement bought it, seeded
         // from the transcribed budget and strength already in the record. No
         // data file changed and no figure was invented: units are solved from
@@ -2112,7 +2116,7 @@ mod tests {
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0xfb00fba943f6326fu64,
+            h, 0xbffd89cc8498ffaau64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -2266,7 +2270,7 @@ mod tests {
         // `the_1990_start_is_pinned`: a new `Nation` field, no behaviour change.
         //
         // Re-pinned with the 1990 inheritance, same evidence as above.
-        const GOLDEN: u64 = 0x84038ae76bac4889;
+        const GOLDEN: u64 = 0x0202d7ab58673a90;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

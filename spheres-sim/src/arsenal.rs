@@ -239,13 +239,28 @@ pub const PROCUREMENT_SHARE: f64 = 0.20;
 /// zero — a forty-year-old airframe still flies, it just is not what it was.
 const RESIDUAL: f64 = 0.35;
 
-/// Years of the equipment line a full arsenal is worth.
+/// Months of the reference procurement line a fully-equipped force is worth.
 ///
-/// A force that has been buying steadily holds roughly two decades of its own
-/// procurement, because that is what a twenty-to-forty-year service life against
-/// a steady budget integrates to. It is also the number that makes neglect
-/// legible: fall to half the line for a decade and the books say so.
-pub const EQUIP_HORIZON: f64 = 20.0 * 12.0;
+/// Derived, not chosen. A steady stream of L $bn a month into kit with service
+/// life S settles at a book value of L·S·(1+RESIDUAL)/2 = 0.675·L·S, and at the
+/// middling service life in `DECK` that is 200 months of the line.
+///
+/// It is also the one number here that can be checked against the world, and it
+/// checks out: at the transcribed 1990 figures it makes a fully-equipped United
+/// States worth about $1.1tn of equipment, against a BEA gross stock of
+/// national-defence equipment near $1.1tn. Nobody typed that — it falls out of
+/// budget × share × horizon.
+pub const EQUIP_HORIZON: f64 = 200.0;
+
+/// What a force is worth with no procurement behind it at all: conscripts,
+/// rifles, bases, and whatever the last government left. Not zero — an unequipped
+/// army is the Iraqi army of 2003, not an empty field.
+pub const BARE_FORCE: f64 = 0.55;
+
+/// The most a nation can be over-equipped for its current budget. A government
+/// that has just halved defence spending coasts on what it inherited; it does
+/// not thereby become twice as strong.
+pub const ADEQUACY_CAP: f64 = 1.30;
 
 /// States with no coast in 1990, so the seeder does not give Chad a navy.
 ///
@@ -385,6 +400,29 @@ pub fn book_value(n: &Nation) -> f64 {
         .iter()
         .filter_map(|h| DECK.get(h.kit as usize).map(|d| h.units * d.unit_cost * condition(d, h.age)))
         .sum()
+}
+
+/// What share of the force its budget describes a nation has actually equipped.
+///
+/// **The only quantity `war.rs` reads out of this module**, and it is money
+/// against money: what stands in the books, against what a force funded at the
+/// reference share for the reference horizon would hold. Because it never reads
+/// the `quality` column it survives every balance error in the deck — and five
+/// independent reviews found that column wrong by between 5x and 10,000x in
+/// opposite directions, so that is not a hypothetical.
+///
+/// Normalised so that a nation equipped exactly to its budget returns 1.0. The
+/// seeder solves units from money, so every one of the 137 nations returns
+/// exactly 1.0 in January 1990 and the war model opens unchanged to within
+/// floating point. Everything after that is the player's doing.
+pub fn adequacy(n: &Nation) -> f64 {
+    let line = (n.gdp * n.mil_spend_gdp * PROCUREMENT_SHARE / 12.0).max(0.0);
+    let want = line * EQUIP_HORIZON;
+    if want <= 0.0 {
+        return BARE_FORCE;
+    }
+    let f = (book_value(n) / want).clamp(0.0, ADEQUACY_CAP);
+    BARE_FORCE + (1.0 - BARE_FORCE) * f
 }
 
 pub fn registry() -> &'static [EquipmentDef] {
