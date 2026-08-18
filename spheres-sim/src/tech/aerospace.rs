@@ -43,6 +43,9 @@ use super::TechDef;
 #[allow(unused_imports)]
 use super::{tech, Domain, Effect, Era};
 
+/// The Aerospace: airframes, engines, orbit and what it takes to reach it.
+///
+/// Data only — the scoring engine lives in `tech::mod`.
 pub fn techs() -> Vec<TechDef> {
     use Domain::*;
     use Effect::*;

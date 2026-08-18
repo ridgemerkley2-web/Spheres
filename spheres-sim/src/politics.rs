@@ -43,6 +43,14 @@ fn political_capital(w: &mut WorldState) {
     }
 }
 
+/// The politics phase: governments, standing, banks, budgets, and the events
+/// that end regimes.
+///
+/// Runs last in the monthly order (economy, tech, war, politics) so that what a
+/// government is judged on this month is what the world actually did to it.
+/// Seats governments, prices political capital, runs the AI central banks and
+/// fiscal consolidation, then handles proliferation, regime collapse and the
+/// two modelled dissolutions.
 pub fn tick(w: &mut WorldState) {
     // Who holds office is settled before what their standing is worth: an
     // election held this month, or a coup, has to be reflected in the capital

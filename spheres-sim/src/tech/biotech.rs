@@ -49,6 +49,9 @@ use super::TechDef;
 #[allow(unused_imports)]
 use super::{tech, Domain, Effect, Era};
 
+/// The Biotechnology: sequencing, drug design, vaccines and the mRNA platform.
+///
+/// Data only — the scoring engine lives in `tech::mod`.
 pub fn techs() -> Vec<TechDef> {
     use Domain::*;
     use Effect::*;

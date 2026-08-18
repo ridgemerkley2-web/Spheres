@@ -503,6 +503,24 @@ ever having set a rate reads as ungoverned, so the default bank drifted it:
 latches too. Nothing enacts stratagems for the AI yet, so that is a player-path
 fix only.
 
+## Stability audit
+
+`BUGS.md` holds the findings from the standing stability pass, and the survey
+behind it is reproducible:
+
+```bash
+cargo test --release -p spheres-sim anomaly_sweep -- --ignored --nocapture
+```
+
+Twenty-one seeds, forty years, every living nation checked every month. It found
+**no numerical anomaly of any kind** — no NaN, no negative or runaway GDP, no
+debt spiral, nothing pinned to a clamp. One structural finding is open under
+"Needs design" there: a conflict that flares more often than every eighteen
+months can never reach any of the ladder's four exit conditions, so seed 0 still
+carries Iraq/Kuwait as an open quarrel at 478 months in 2030. It is not a war —
+shooting in 22 of 479 months — and applies no drag, which is why the numbers stay
+clean.
+
 ## Next (rough priority)
 
 ### 0. The calibration tests are green, down from four red
@@ -781,13 +799,16 @@ Hourly-cadence scheduler, WASM, multiplayer spheres.
 
 ## Housekeeping
 
-**Every worktree shares one cargo target directory.** `.cargo/config.toml` is
-tracked, so a worktree checked out under `.claude/worktrees/` inherits
-`target-dir = C:/Users/ridge/.cargo-target/spheres` and builds into the same place
-as everything else. Combined with OneDrive resetting mtimes, cargo will happily
-serve a test binary built from another branch's source — green tests that never ran
-your code. When testing a worktree, set `CARGO_TARGET_DIR` to something else, and
-if a result looks impossible, check the binary before you believe it.
+**Every worktree shares one cargo target directory — fixed, but stay careful.**
+`.cargo/config.toml` is untracked now, so a worktree no longer inherits
+`target-dir = C:/Users/ridge/.cargo-target/spheres` from the repo. The hazard it
+created is worth remembering: combined with OneDrive resetting mtimes, cargo
+would happily serve a test binary built from another branch's source — green
+tests that never ran your code, and it produced two wrong readings in opposite
+directions before anyone caught it. Still set `CARGO_TARGET_DIR` per worktree,
+and if a result looks impossible either way, check the binary before you believe
+it. `.gitignore` now carries `target*/` so those directories cannot be committed
+by accident.
 
 OneDrive also holds locks on `.git/worktrees/*` and the worktree directories, so
 `git worktree remove` and `git worktree prune` fail with "Permission denied" and

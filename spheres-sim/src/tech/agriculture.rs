@@ -30,6 +30,9 @@ use super::TechDef;
 #[allow(unused_imports)]
 use super::{tech, Domain, Effect, Era};
 
+/// The Agriculture: yield, inputs, mechanisation and the end of famine as policy.
+///
+/// Data only — the scoring engine lives in `tech::mod`.
 pub fn techs() -> Vec<TechDef> {
     use Domain::*;
     use Effect::*;

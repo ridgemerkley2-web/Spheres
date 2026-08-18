@@ -44,6 +44,9 @@ use super::TechDef;
 #[allow(unused_imports)]
 use super::{tech, Domain, Effect, Era};
 
+/// The Energy: extraction, generation, storage and the grid that moves it.
+///
+/// Data only — the scoring engine lives in `tech::mod`.
 pub fn techs() -> Vec<TechDef> {
     use Domain::*;
     use Effect::*;

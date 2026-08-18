@@ -39,10 +39,21 @@ use crate::{apply_command, Command};
 /// for themselves.
 pub const HOME_DEFENCE_DISCOUNT: f64 = 0.30;
 
+/// What it costs a government in political capital to climb from one rung to
+/// another, at home or abroad.
+///
+/// Thin wrapper over [`escalation_cost_in`] for the common case where the
+/// question is not about defending your own ground.
 pub fn escalation_cost(w: &WorldState, id: NationId, from: u8, to: u8) -> f64 {
     escalation_cost_in(w, id, from, to, false)
 }
 
+/// The political price of climbing the ladder from `from` to `to`.
+///
+/// Zero when `to` is at or below `from`: walking back down costs a government
+/// nothing it has not already spent. Defending your own territory is cheaper
+/// than projecting force into somebody else's, which is what `defending_home`
+/// selects — a parliament that will not fund an expedition will fund a defence.
 pub fn escalation_cost_in(
     w: &WorldState,
     id: NationId,
@@ -737,11 +748,18 @@ pub fn ambition(w: &WorldState, c: &Conflict, b: &Belligerent) -> u8 {
 /// spend a year on rhetoric first — it moves quickly through the rungs that are
 /// beneath its intention and slowly through the ones near it.
 pub const CLIMB_CHANCE: f64 = 0.45;
+/// How hard the AI leans toward the next rung each month once it has decided
+/// it wants to be higher up the ladder than it is.
 pub const CLIMB_URGENCY: f64 = 0.12;
 /// A government that changes its mind monthly has none. Two months on a rung
 /// before the next step.
 pub const RUNG_DWELL: u32 = 2;
 
+/// Move every AI belligerent one considered step along the commitment ladder.
+///
+/// Each government picks its own rung in each conflict it is party to, pays for
+/// the climb, and holds the new rung long enough to mean it — see
+/// [`CLIMB_URGENCY`] and the two-month dwell beside it.
 pub fn ai_ladder(w: &mut WorldState) {
     #[derive(Clone, Copy)]
     struct Move {

@@ -37,6 +37,9 @@ use super::TechDef;
 #[allow(unused_imports)]
 use super::{tech, Domain, Effect, Era};
 
+/// The Materials: alloys, composites, semiconductor substrates and coatings.
+///
+/// Data only — the scoring engine lives in `tech::mod`.
 pub fn techs() -> Vec<TechDef> {
     use Domain::*;
     use Effect::*;

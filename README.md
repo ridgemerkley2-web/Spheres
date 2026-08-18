@@ -1,7 +1,7 @@
 # SPHERES v0.5 — Playable Slice
 
 Grand strategy simulation, January 1990 start. Deterministic core (SplitMix64,
-single command queue, seeded), 24 nations at the start and up to 30 once
+single command queue, seeded), 137 nations at the start and up to 158 once
 federations come apart, a 253-technology tree, monthly ticks.
 
 ## Run it
@@ -10,7 +10,7 @@ federations come apart, a 253-technology tree, monthly ticks.
     cargo run --release -p spheres-cli -- play 42       # different history
     cargo run --release -p spheres-cli -- run 30 1990   # headless 30-year report
     cargo run --release -p spheres-cli -- resume save.json
-    cargo test                                          # 46 calibration/invariant tests
+    cargo test                                          # 103 calibration/invariant tests
 
 `spheres-web` opens http://127.0.0.1:7777 in your browser: a strategic map of the
 world sized by GDP and coloured by your relations, policy sliders, GDP/oil history
@@ -26,7 +26,7 @@ advance -> world reacts.
 - Iraq invades Kuwait in the early 90s; a US/UK coalition repels it; Iraq never tries again
 - The USSR dissolves ~1991-95 from stagnation + separatism; Russia inherits the arsenal
 - Japan's bubble pops into a lost decade
-- China compounds ~7-9%/yr into a 9x miracle
+- China compounds into a roughly 11x miracle over thirty years
 - India & Pakistan test in 1998; nuclear deterrence forbids their wars thereafter
 - The coalition embargo on Iraq outlives the war by about a decade, hollowing its
   economy while the shortfall it caused keeps oil dear for everyone else
@@ -45,7 +45,10 @@ technology tree. Still not back from v0.4: democratic election detail, and
 technological eras as live rotating paradigms — the tree carries `Era` only as a
 calibration bracket, not as a paradigm the world passes through.
 
-Two systems are written but not merged, each blocked on a decision rather than on
-work: `feat/statecraft` (pacts, patronage, covert action, trade) and
-`feat/financial-system` (currencies, FX regimes, contagion). Both are green on
-their own branch and both collide with the expanded roster — see ROADMAP.
+Statecraft is merged: mutual defence pacts with an upkeep both signatories pay,
+patronage as a standing transfer, trade dependency that accumulates and then
+becomes leverage, and covert action that is deniable until it is not.
+
+`feat/financial-system` (currencies, FX regimes, contagion) is still on its own
+branch, blocked on data rather than on work: `WorldState.finance` covers only the
+original 16 nations. See ROADMAP.

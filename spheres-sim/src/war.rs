@@ -919,6 +919,7 @@ fn conquer(w: &mut WorldState, winner: NationId, loser: NationId) {
     }
 }
 
+/// Everyone party to a conflict, both sides together, in join order.
 pub fn conflict_participants(c: &Conflict) -> Vec<NationId> {
     c.participants()
 }

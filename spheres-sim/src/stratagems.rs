@@ -26,6 +26,7 @@ pub struct Stratagem {
     /// Stable identifier. This is what a command carries and what a save would
     /// write, so it must never be renamed once shipped.
     pub id: &'static str,
+    /// Shown to the player. Free to reword; unlike `id`, nothing keys off it.
     pub name: &'static str,
     /// What it does and what it costs you, in the language a briefing would use.
     pub blurb: &'static str,
@@ -36,6 +37,8 @@ pub struct Stratagem {
     pub cost: f64,
     /// Derived from world state. Never a date, never a nation.
     pub available: fn(&WorldState, NationId) -> bool,
+    /// What taking it does to the world. Runs through the command queue's
+    /// pricing like any other act, so a stratagem is never a free lunch.
     pub enact: fn(&mut WorldState, NationId),
 }
 
@@ -49,6 +52,10 @@ fn dev(w: &WorldState, id: NationId) -> f64 {
     (n.gdp * 1000.0 / n.population.max(0.001) / 24000.0).min(1.0)
 }
 
+/// Every stratagem in the game, in a fixed order.
+///
+/// Fixed because the order decides what a player is offered when several are
+/// available at once, and a shuffling menu is a non-deterministic one.
 pub const DECK: &[Stratagem] = &[
     // Poland's Balcerowicz plan, Jan 1990. Russia 1992. The bargain is always
     // the same: break the inflation, and take the slump that comes with it.
@@ -334,6 +341,10 @@ pub fn available(w: &WorldState, id: NationId) -> Vec<&'static Stratagem> {
     DECK.iter().filter(|s| (s.available)(w, id)).collect()
 }
 
+/// Look a stratagem up by its stable `id`, or `None` if nothing carries it.
+///
+/// Saves store the id, so this is also the load path — which is why an id must
+/// never be renamed once it has shipped.
 pub fn by_id(id: &str) -> Option<&'static Stratagem> {
     DECK.iter().find(|s| s.id == id)
 }

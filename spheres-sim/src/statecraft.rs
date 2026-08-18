@@ -309,6 +309,13 @@ pub fn break_pact(w: &mut WorldState, from: NationId, to: NationId) -> Result<()
     Ok(())
 }
 
+/// Open a standing transfer from `patron` to `client`, of `share_gdp` of the
+/// patron's output, in the currency named by `kind`.
+///
+/// A pledge is an ongoing obligation rather than a one-off gift: the patron
+/// keeps paying it every month until somebody withdraws it, which is what makes
+/// a sphere cost something to hold. Errors if the two are the same nation or
+/// the terms are outside what a patron can actually sustain.
 pub fn pledge_aid(
     w: &mut WorldState,
     patron: NationId,
@@ -521,6 +528,11 @@ pub fn covert_action(
     Ok(())
 }
 
+/// Offer `to` a trade agreement, which it may refuse.
+///
+/// Accepted agreements deepen into dependency over years rather than at once,
+/// and dependency is what later becomes leverage. Errors if a nation proposes
+/// to itself or the pair cannot trade.
 pub fn propose_trade(w: &mut WorldState, from: NationId, to: NationId) -> Result<(), String> {
     if from == to {
         return Err("A nation cannot trade with itself.".into());
