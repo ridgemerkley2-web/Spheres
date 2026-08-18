@@ -71,7 +71,8 @@ Lose any of them and we have built a different product, not a better one.
 | Factory counts as economy | The macroeconomy that already exists — TFP, capital, inflation, debt, oil, embargo | MD cannot express a currency crisis or a sanctions regime because HOI4 has no prices |
 | National focus trees | Emergent history from incentives, plus doctrine gates and a stratagem deck | Trees are rails and they run out; incentives do not |
 | Party popularity slider | Political capital as a real budget, coalitions, and legitimacy earned by delivery | Governing becomes a constraint rather than a colour |
-| Division templates and fronts | Theatres, a commitment ladder, and force packages (§6) | Modern war is a capability gate, not symmetric attrition |
+| Fronts and province combat | Theatres, a commitment ladder, and force packages (§6) | Modern war is a capability gate, not symmetric attrition |
+| Factory queues that win a war | Procurement with a decade of lead time, feeding force structure (§5, amended) | You cannot out-build a modern war – you can only have already built |
 | Diplomacy as HOI4 factions | Spheres of influence: patronage, pacts, dependency, covert action, access | The namesake system, and the thing MD's audience most wants deepened |
 
 ## 5. What we refuse
@@ -79,16 +80,36 @@ Lose any of them and we have built a different product, not a better one.
 The most useful section in this document. When a decision is ambiguous, check
 here first.
 
-- **No province-level tactical map.** No divisions, no templates, no combat
-  width, no encirclement, no front-line drawing. This is the single largest cost
-  in any HOI4-parity plan, and it buys a model of industrial attrition that is
-  *wrong for the period*. The map carries roughly 1,500 admin-1 districts as
-  **political** geography, never 13,000 provinces as tactical geography.
-- **No production minigame.** No equipment lines, no factory placement, no build
-  queue. Modern platforms take 10–25 years from requirement to fielding and
-  serve for 40. You cannot out-produce a war, so a production queue models
-  nothing real. Named equipment is *data attached to tech nodes*; nobody places
-  a factory.
+- **No province-level tactical map.** No combat width, no encirclement, no
+  front-line drawing, no counters pushed between districts. This is the single
+  largest cost in any HOI4-parity plan, and it buys a model of industrial
+  attrition that is *wrong for the period*. The map carries roughly 1,500
+  admin-1 districts as **political** geography, never 13,000 provinces as
+  tactical geography. Formations exist (see the amendment below) but they are
+  what a theatre is GIVEN; they are never moved square to square.
+- **~~No production minigame.~~ AMENDED 2026-08-18 – Ridge's call, taken with
+  the argument below in front of him and overruled deliberately.** Equipment
+  lines, stockpiles, shortages and obsolescence are IN. Formations are IN. What
+  this section used to say, kept because a reversed decision should still show
+  its reasoning: *"Modern platforms take 10–25 years from requirement to
+  fielding and serve for 40. You cannot out-produce a war, so a production queue
+  models nothing real."*
+
+  That argument is not wrong about the period and the new system has to answer
+  it rather than ignore it. **The answer is lead time.** A production layer for
+  1990 is not 1936's: you do not out-build a war that starts next year, you
+  spend two decades deciding what you will be able to field when one comes. So
+  the loop is long – orders placed years before delivery, platforms serving for
+  forty, an arsenal that is mostly an inheritance from decisions taken by
+  previous governments. A player who neglects procurement for fifteen years
+  should discover it in the one month it matters and be unable to fix it. That
+  is the thing HOI4's factory queue cannot express and this can.
+
+  **Still refused, and this is not amended:** the province-level tactical map.
+  No 13,000 provinces, no combat width, no encirclement, no front-line drawing.
+  Production feeds the force structure stock in §6; it does not bring a tactical
+  map with it. Formations are what a theatre is given, not counters pushed
+  across districts.
 - **No focus trees, ever.** No scripted event chains beyond physical facts like
   proliferation test dates. This is an accepted **product risk**, not an
   oversight: a large share of MD's audience believes focus trees *are* the game.
