@@ -147,6 +147,21 @@
   #tree .legend i { display:inline-block; width:10px; height:10px; border-radius:2px;
     border:1.5px solid; margin-right:5px; vertical-align:-1px; }
 
+  #tree .detail { border:1px solid var(--line); border-radius:6px; background:var(--panel-2);
+    padding:11px 13px; margin-top:11px; }
+  #tree .detail .dt { display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+  #tree .detail .dt b { font-size:14px; letter-spacing:.01em; }
+  #tree .detail .dt .meta { color:var(--dim); font-size:11px; font-family:ui-monospace,monospace; }
+  #tree .detail h4 { margin:9px 0 4px; font-size:10.5px; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--dim); font-weight:600; }
+  #tree .detail ul { margin:0; padding-left:16px; font-size:12px; line-height:1.55; }
+  #tree .detail li.no { color:var(--dim); }
+  #tree .detail .eff li { color:var(--green); }
+  #tree .detail .go { background:var(--cyan); color:#0a0e14; border:none; border-radius:3px;
+    font-weight:600; font-size:11px; padding:5px 12px; cursor:pointer; margin-top:9px; }
+  #tree .detail .go[disabled] { background:var(--panel); color:var(--dim); cursor:default; }
+  #tree .node.sel rect { stroke-dasharray:4 2; }
+
   /* ---------- research ---------- */
   #resCard .dom { border-top:1px solid var(--line); padding:7px 0; }
   #resCard .dom:first-child { border-top:none; }
@@ -1012,10 +1027,14 @@ function renderLeft(m) {
 
 const TREE_W = 158, TREE_H = 40, TREE_GAP_X = 14, TREE_GAP_Y = 52, TREE_LEFT = 52;
 let treeDomain = "Computing";
+let treeSel = null;
+let treeData = null;
 
 window.openTechTree = async function (domain) {
   treeDomain = domain || treeDomain;
   const d = await api("/api/tech?domain=" + encodeURIComponent(treeDomain));
+  treeData = d;
+  if (treeSel && !d.nodes.some((n) => n.id === treeSel)) treeSel = null;
   const tabs = ((S.research && S.research.domains) || [])
     .map((x) => `<button data-tab="${x.domain}" class="${x.domain === treeDomain ? "on" : ""}${
       S.research.priority === x.domain ? " pri" : ""}">${x.name.split(" ")[0]}</button>`).join("");
@@ -1026,6 +1045,7 @@ window.openTechTree = async function (domain) {
         <button class="x" onclick="closeSheet()">close</button></div>
       <div class="tabs">${tabs}</div>
       <div class="canvas">${treeSvg(d)}</div>
+      <div id="treeDetail">${detailHtml()}</div>
       <div class="legend">
         <span><i style="border-color:var(--amber);background:var(--amber)"></i>held</span>
         <span><i style="border-color:var(--cyan)"></i>can start now — click it</span>
@@ -1037,13 +1057,73 @@ window.openTechTree = async function (domain) {
   $("#sheet").querySelectorAll("button[data-tab]").forEach((b) => {
     b.onclick = () => openTechTree(b.dataset.tab);
   });
-  $("#sheet").querySelectorAll("g.node.open").forEach((g) => {
-    g.onclick = async () => {
-      await setFocus(treeDomain, g.dataset.id);
-      openTechTree(treeDomain);
+  wireTreeNodes();
+};
+
+function wireTreeNodes() {
+  $("#sheet").querySelectorAll("g.node").forEach((g) => {
+    g.onclick = () => {
+      treeSel = g.dataset.id;
+      $("#sheet").querySelectorAll("g.node").forEach((o) => o.classList.toggle("sel", o === g));
+      $("#treeDetail").innerHTML = detailHtml();
+      wireDetail();
     };
   });
-};
+}
+
+function wireDetail() {
+  const b = $("#treeDetail") && $("#treeDetail").querySelector("button.go");
+  if (b && !b.disabled) {
+    b.onclick = async () => {
+      await setFocus(treeDomain, b.dataset.id);
+      openTechTree(treeDomain);
+    };
+  }
+}
+
+/// What the thing actually does. Every line here is written by the sim --
+/// `describe_effect` in tech/mod.rs -- because the magnitudes only mean
+/// something beside the definitions: 0.0004 of Productivity is four hundredths
+/// of a percentage point on an annual trend, and nothing about the number says
+/// so. The browser places the text; it does not compose it.
+function detailHtml() {
+  if (!treeData) return "";
+  const n = treeData.nodes.find((x) => x.id === treeSel);
+  if (!n) return `<div class="detail"><span class="muted">Click any technology to see what it
+      does, what it needs first, and what holding it opens.</span></div>`;
+
+  const effects = (n.effects || []).length
+    ? `<ul class="eff">${n.effects.map((e) => `<li>${e}</li>`).join("")}</ul>`
+    : `<ul><li class="no">No direct effect — it is a step on the way to things that have one.</li></ul>`;
+
+  const needs = (n.prereqs || []).length
+    ? `<ul>${n.prereqs.map((p) => `<li class="${p.known ? "" : "no"}">${p.name}${
+        p.domain !== treeData.domain ? ` <span class="muted">(${p.domain})</span>` : ""}${
+        p.known ? "" : " — not held"}</li>`).join("")}</ul>`
+    : `<ul><li class="no">Nothing. It can be started from a standing start.</li></ul>`;
+
+  const unlocks = (n.unlocks || []).length
+    ? `<ul>${n.unlocks.map((u) => `<li>${u.name}${
+        u.domain !== treeData.domain ? ` <span class="muted">(${u.domain})</span>` : ""}
+        <span class="muted">· ${u.year}</span></li>`).join("")}</ul>`
+    : `<ul><li class="no">Nothing further in the tree waits on it — it is a leaf.</li></ul>`;
+
+  const btn = n.state === "open"
+    ? `<button class="go" data-id="${n.id}">MAKE THIS THE PROJECT</button>`
+    : n.state === "known"
+      ? `<button class="go" disabled>ALREADY HELD</button>`
+      : `<button class="go" disabled>LOCKED — TAKE ITS PREREQUISITES FIRST</button>`;
+
+  return `<div class="detail">
+      <div class="dt"><b>${n.name}</b>
+        <span class="meta">${n.era} · from ${n.year} · ${Math.round(n.cost)} research points${
+          n.focus ? " · CURRENTLY RESEARCHING" : ""}</span></div>
+      <h4>What it does</h4>${effects}
+      <h4>Needs first</h4>${needs}
+      <h4>Unlocks</h4>${unlocks}
+      ${btn}
+    </div>`;
+}
 
 /// Year rows, then a barycentre pass so a node sits near whatever it descends
 /// from. One pass is enough to stop the lines crossing into a thicket.
@@ -1100,7 +1180,7 @@ function treeSvg(d) {
     const missing = n.prereqs.filter((p) => !p.known).map((p) => p.name).join(", ");
     const tip = n.state === "locked" && missing ? `needs ${missing}`
       : n.state === "known" ? "held" : `${Math.round(n.cost)} research points`;
-    return `<g class="node ${n.state}" data-id="${n.id}">
+    return `<g class="node ${n.state}${n.id === treeSel ? " sel" : ""}" data-id="${n.id}">
         <title>${n.name} — ${tip}</title>
         <rect x="${n.x}" y="${n.y}" width="${TREE_W}" height="${TREE_H}"
               fill="${fill}" stroke="${stroke}"

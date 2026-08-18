@@ -845,6 +845,51 @@ pub fn eligible_projects(n: &Nation, domain: Domain) -> Vec<&'static TechDef> {
         .collect()
 }
 
+/// One effect, in the language a briefing would use.
+///
+/// Written here rather than on the surface because the magnitudes only mean
+/// something next to the definitions above: `Productivity(0.0004)` is four
+/// hundredths of a percentage point on an annual trend rate, and nothing about
+/// the number says so. A screen that had to know that would be a second place
+/// the scale is written down.
+pub fn describe_effect(e: &Effect) -> String {
+    let pct = |v: f64| format!("{}{:.0}%", if v >= 0.0 { "+" } else { "" }, v * 100.0);
+    match e {
+        Effect::Productivity(v) => format!(
+            "{}{:.3}pp on annual productivity growth, forever",
+            if *v >= 0.0 { "+" } else { "" }, v * 100.0
+        ),
+        Effect::ResearchRate(v) => format!("{} research output", pct(*v)),
+        Effect::CostReduction { domain, frac } => {
+            format!("{} to the cost of every future {} technology", pct(-frac), domain.name())
+        }
+        Effect::MilitaryStrength(v) => format!(
+            "{}{:.1} military strength, on top of what the budget sustains", if *v >= 0.0 { "+" } else { "" }, v
+        ),
+        Effect::MilitaryEfficiency(v) => format!("{} strength per pound of military spending", pct(*v)),
+        Effect::OilYield(v) => format!("{} oil output from the same fields", pct(*v)),
+        Effect::EnergyEfficiency(v) => format!("{} exposure to the oil price", pct(-v)),
+        Effect::ResourceYield(v) => format!("{} from ore, water, fisheries and arable land", pct(*v)),
+        Effect::Health(v) => format!("{} health — mortality falls, and output mildly rises", pct(*v)),
+        Effect::Fertility(v) => format!("{} births", pct(*v)),
+        Effect::Stability(v) => format!(
+            "{}{:.2} on the stability the regime settles at", if *v >= 0.0 { "+" } else { "" }, v
+        ),
+        Effect::DiffusionSpeed(v) => format!("{} faster to absorb what the world already knows", pct(*v)),
+        Effect::DiffusionEmission(v) => format!("{} of your own knowledge leaks outward", pct(*v)),
+        Effect::Environment(v) => format!("{} environmental load, which feeds health and stability", pct(-v)),
+        Effect::InvestmentEfficiency(v) => format!("{} out of every pound of investment", pct(*v)),
+    }
+}
+
+/// The technologies that name `t` as a prerequisite: what holding it opens.
+pub fn unlocked_by(t: u16) -> Vec<u16> {
+    let table = prereq_table();
+    (0..registry().len() as u16)
+        .filter(|i| table[*i as usize].contains(&t))
+        .collect()
+}
+
 /// What one technology would cost this nation to acquire right now.
 ///
 /// The same `effective_cost` the spend loop applies, which is what makes it

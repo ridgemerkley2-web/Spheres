@@ -659,6 +659,17 @@ fn tech_tree_json(w: &WorldState, me: NationId, domain: spheres_sim::tech::Domai
                 "cost": tech::cost_of(w, me, idx),
                 "state": if known { "known" } else if open { "open" } else { "locked" },
                 "focus": focus == Some(idx),
+                // What holding it actually does, and what it opens. Without
+                // these a tree is a list of names with prices on them.
+                "effects": def.effects.iter().map(tech::describe_effect).collect::<Vec<_>>(),
+                "unlocks": tech::unlocked_by(idx).iter().map(|u| {
+                    let d = &reg[*u as usize];
+                    serde_json::json!({
+                        "name": d.name,
+                        "domain": format!("{:?}", d.domain),
+                        "year": d.earliest_year,
+                    })
+                }).collect::<Vec<_>>(),
                 // Prerequisites carry their own domain, because a few cross it
                 // and a node the screen cannot draw still has to be nameable.
                 "prereqs": pre.iter().map(|q| {
