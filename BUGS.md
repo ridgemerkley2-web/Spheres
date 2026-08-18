@@ -107,6 +107,28 @@ forty years is not an absurdity. The detector's threshold was naive.
 
 ---
 
+## Observed while adding coverage
+
+### O-1 — conquest is very nearly unreachable
+
+Measured across twelve seeds and forty years, the only nations that ever leave
+the board are **Yugoslavia (1991) and the USSR (1993) — the two modelled
+dissolutions, in every single seed — plus exactly one conquest: Finland, seed 9,
+2013, at 5.3m people.** One annexation in roughly 480 nation-centuries.
+
+That is not a bug, and it may well be the intended shape: the coalition response
+exists to save Kuwait, `desert_storm_is_quick_when_they_stand_and_fight` asserts
+Kuwait survives, and `conquer` requires control saturated *and* rung 8 *and* the
+defender's resolve spent, which is a demanding conjunction. But a world where
+borders effectively never change over forty years is worth knowing about
+deliberately rather than discovering later, and it is why
+`a_large_nation_is_subjugated_rather_than_swallowed` is pinned to the one seed
+that exercises the branch: a broad sweep would assert almost nothing while
+costing minutes.
+
+If that test ever fails on its non-vacuity guard, conquest has stopped happening
+altogether, and that is the finding rather than a flaky test.
+
 ## Documentation drift found while auditing
 
 Not bugs in the sim, recorded here because the audit is where they surfaced:

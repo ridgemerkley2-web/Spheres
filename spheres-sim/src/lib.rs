@@ -1264,6 +1264,240 @@ mod tests {
     }
 
     #[test]
+    fn a_large_nation_is_subjugated_rather_than_swallowed() {
+        // SPEC section 6, in one line: "No swallowing India whole." `conquer`
+        // annexes only a nation under 8m people that is also quiet enough to
+        // hold (separatism < 0.6); anything larger or angrier is subjugated
+        // instead and survives to resent it.
+        //
+        // Pinned to seed 9 on purpose, and the reason is a measurement worth
+        // keeping: across twelve seeds and forty years the only nations that
+        // ever leave the board are Yugoslavia and the USSR — the two modelled
+        // dissolutions, in every seed — and exactly ONE conquest, Finland in
+        // 2013 on this seed. Conquest is that rare. A broad sweep would
+        // therefore assert almost nothing while costing minutes, so this runs
+        // the one seed that exercises the branch and checks the rule on it.
+        //
+        // If the guard at the bottom ever fails, conquest has become
+        // unreachable entirely, and that is the finding rather than a flaky
+        // test.
+        let mut w = seeded(9);
+        let mut alive: Vec<(NationId, f64)> =
+            w.nations.iter().filter(|n| n.alive).map(|n| (n.id, n.population)).collect();
+        let mut annexations = 0;
+        for _ in 0..480 {
+            tick_month(&mut w, &[]);
+            let mut still: Vec<(NationId, f64)> = Vec::new();
+            for (id, pop) in alive {
+                if w.nation_opt(id).is_some_and(|n| n.alive) {
+                    // Carry the live figure forward, so a death is judged
+                    // against the population it died at.
+                    still.push((id, w.nation(id).population));
+                    continue;
+                }
+                if id == NationId::USSR || id == NationId::Yugoslavia {
+                    continue; // dissolved, not conquered
+                }
+                assert!(
+                    pop < 8.0,
+                    "{:?} was annexed at {:.1}m people in {} — at or over 8m it is meant to be                      subjugated and survive to resent it",
+                    id, pop, w.year
+                );
+                annexations += 1;
+            }
+            alive = still;
+        }
+        assert!(
+            annexations > 0,
+            "nobody was annexed on the one seed measured to produce a conquest, so the size rule              was never exercised — conquest may have become unreachable"
+        );
+    }
+
+    #[test]
+    fn a_burned_aggressor_does_not_come_back_for_the_same_prize() {
+        // "Saddam doesn't retry Kuwait." Being thrown back sets
+        // `burned_<attacker>_<defender>`, and `dyads.rs` reads it when it prices
+        // appetite — a first-time gambler discounts the coalition, somebody who
+        // has already met it does not.
+        //
+        // What this asserts is the consequence rather than the flag: once the
+        // lesson is on the books, that attacker never crosses that border
+        // again. A conflict may still be opened — states go on quarrelling —
+        // but it must never reach an invasion a second time.
+        let mut burned_seeds = 0;
+        for seed in 0..10u64 {
+            let mut w = seeded(seed);
+            let mut invasions = 0;
+            let mut invaded_ids: Vec<u32> = Vec::new();
+            let mut burned_at: Option<i32> = None;
+            for _ in 0..420 {
+                tick_month(&mut w, &[]);
+                for c in &w.conflicts {
+                    if c.origin_attacker == NationId::Iraq
+                        && c.defender() == NationId::Kuwait
+                        && c.invasion_declared
+                        && !invaded_ids.contains(&c.id)
+                    {
+                        invaded_ids.push(c.id);
+                        invasions += 1;
+                    }
+                }
+                if burned_at.is_none() && w.has_flag("burned_Iraq_Kuwait") {
+                    burned_at = Some(w.year);
+                }
+            }
+            if let Some(yr) = burned_at {
+                burned_seeds += 1;
+                assert_eq!(
+                    invasions, 1,
+                    "seed {}: Iraq was burned over Kuwait in {} and still invaded {} times",
+                    seed, yr, invasions
+                );
+            }
+        }
+        assert!(
+            burned_seeds >= 4,
+            "the lesson was never learned in ten seeds ({} burned), so nothing was tested",
+            burned_seeds
+        );
+    }
+
+    #[test]
+    fn the_fiscal_ai_arrests_a_debt_spiral() {
+        // `politics.rs` consolidates above 0.85 debt: taxes up two basis points
+        // a month, military and state investment shaved half a percent. Put an
+        // AI government deep in the hole with a structural deficit under it and
+        // it has to climb out, rather than ride the debt up until the growth
+        // drag does the governing for it.
+        let mut w = seeded(3);
+        let victim = NationId::Italy;
+        {
+            let n = w.nation_mut(victim);
+            n.debt_gdp = 1.30;
+            n.tax_rate = 0.22; // well under what it spends
+            n.mil_spend_gdp = 0.06;
+            n.state_invest_gdp = 0.10;
+        }
+        let (tax0, mil0, inv0) = {
+            let n = w.nation(victim);
+            (n.tax_rate, n.mil_spend_gdp, n.state_invest_gdp)
+        };
+        let mut peak: f64 = 0.0;
+        for _ in 0..240 {
+            tick_month(&mut w, &[]);
+            let d = w.nation(victim).debt_gdp;
+            if d > peak {
+                peak = d;
+            }
+        }
+        let n = w.nation(victim);
+        assert!(
+            n.tax_rate > tax0,
+            "the fiscal AI never raised taxes: {:.4} -> {:.4} at {:.2} debt",
+            tax0, n.tax_rate, n.debt_gdp
+        );
+        assert!(
+            n.mil_spend_gdp < mil0 && n.state_invest_gdp < inv0,
+            "the fiscal AI never trimmed spending: mil {:.4} -> {:.4}, invest {:.4} -> {:.4}",
+            mil0, n.mil_spend_gdp, inv0, n.state_invest_gdp
+        );
+        assert!(
+            n.debt_gdp < peak,
+            "debt never came off its peak: peak {:.2}, ended {:.2}",
+            peak, n.debt_gdp
+        );
+        assert!(
+            peak < 6.0,
+            "the consolidation rule did not arrest the spiral: peak {:.2}",
+            peak
+        );
+    }
+
+    #[test]
+    fn a_save_taken_mid_war_resumes_the_same_war() {
+        // `save_load_roundtrip_continuity` saves a world at peace. A war carries
+        // state the quiet world never exercises — conflicts, per-belligerent
+        // postures and resolve, munitions, theatre access — and all of it has to
+        // survive the round trip, or a player who saves during the one moment
+        // they care about resumes a different war.
+        let mut a = seeded(0);
+        a.rules.ai_aggression = 0.0;
+        war::declare_war(&mut a, NationId::Iraq, NationId::Kuwait).unwrap();
+        run_months(&mut a, 6);
+        let mid = a
+            .conflict_between(NationId::Iraq, NationId::Kuwait)
+            .expect("the war has to still be running for this test to mean anything");
+        assert!(mid.months >= 6, "the staged war did not survive to the save point");
+        let postures = mid.posture.len();
+
+        let snapshot = save(&a);
+        let mut b = load(&snapshot).expect("a mid-war save must load");
+        assert_eq!(
+            b.conflict_between(NationId::Iraq, NationId::Kuwait)
+                .map(|c| c.posture.len()),
+            Some(postures),
+            "the reloaded war lost its belligerents"
+        );
+        run_months(&mut a, 120);
+        run_months(&mut b, 120);
+        assert_eq!(state_hash(&a), state_hash(&b), "a war diverged across save/load");
+        assert_eq!(save(&a), save(&b), "a war diverged across save/load");
+    }
+
+    #[test]
+    fn player_commands_clamp_to_valid_ranges() {
+        // Every policy lever is clamped where it is applied, so a UI that sends
+        // a slider value from a stale form — or a player typing into the CLI —
+        // cannot put the economy outside the band the model was fitted in. A
+        // negative tax rate or a 500% policy rate is not an interesting game
+        // state, it is a division waiting to happen.
+        let mut w = seeded(0);
+        let me = NationId::USA;
+        w.player = Some(me);
+
+        // (command builder, absurd low, absurd high, expected floor, expected ceiling)
+        let cases: [(&str, f64, f64, f64, f64); 4] = [
+            ("rate", -3.0, 5.0, 0.0, 0.60),
+            ("tax", -1.0, 0.90, 0.02, 0.60),
+            ("mil", -1.0, 2.0, 0.0, 0.35),
+            ("invest", -1.0, 1.0, 0.0, 0.40),
+        ];
+        for (lever, low, high, floor, ceiling) in cases {
+            for (input, expected) in [(low, floor), (high, ceiling)] {
+                // Deliberately absurd inputs are also expensive ones — a
+                // 0.6-point tax swing is priced at 186 standing — and this test
+                // is about the clamp, not about affordability. Same act as
+                // `bankroll`, at a number no swing can outrun.
+                w.nation_mut(me).political_capital = 5_000.0;
+                let cmd = match lever {
+                    "rate" => Command::SetInterestRate { nation: me, rate: input },
+                    "tax" => Command::SetTaxRate { nation: me, rate: input },
+                    "mil" => Command::SetMilSpend { nation: me, share: input },
+                    _ => Command::SetStateInvest { nation: me, share: input },
+                };
+                apply_command(&mut w, &cmd).unwrap_or_else(|e| panic!("{} {} refused: {}", lever, input, e));
+                let got = match lever {
+                    "rate" => w.nation(me).interest_rate,
+                    "tax" => w.nation(me).tax_rate,
+                    "mil" => w.nation(me).mil_spend_gdp,
+                    _ => w.nation(me).state_invest_gdp,
+                };
+                assert_eq!(
+                    got, expected,
+                    "{} given {} settled at {} rather than its {} bound",
+                    lever, input, got, if input < 0.0 { "lower" } else { "upper" }
+                );
+            }
+        }
+
+        // A clamped world is still a world that ticks.
+        run_months(&mut w, 24);
+        let n = w.nation(me);
+        assert!(n.gdp.is_finite() && n.gdp > 0.0, "clamped levers broke the economy: {}", n.gdp);
+        assert!(n.inflation.is_finite(), "clamped levers produced a NaN inflation");
+    }
+
+    #[test]
     fn a_century_holds_together() {
         // The risk register's top entry is two hundred AI economies spiralling,
         // and its stated mitigation is exactly this: a headless century run as a
