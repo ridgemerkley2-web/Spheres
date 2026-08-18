@@ -1528,6 +1528,152 @@ mod tests {
         assert!(n.inflation.is_finite(), "clamped levers produced a NaN inflation");
     }
 
+    /// What the four single-seed instruments actually read, across ten seeds.
+    ///
+    /// ROADMAP section 8 records that each of them takes ONE whole-world run at
+    /// ONE seed and asserts an absolute band, so adding any nation re-rolls the
+    /// reading even when nothing about the measurement changed. This is the
+    /// measurement that has to precede converting them: a threshold carried over
+    /// from the single-seed era is a guess, and the trade test's own median sat
+    /// at 1.2102 against a threshold of 1.20.
+    ///
+    /// ```text
+    /// cargo test --release -p spheres-sim instrument_spread -- --ignored --nocapture
+    /// ```
+    #[test]
+    #[ignore]
+    fn instrument_spread() {
+        fn med(v: &mut Vec<f64>) -> f64 {
+            v.sort_by(|a, b| a.partial_cmp(b).unwrap());
+            v[v.len() / 2]
+        }
+        fn show(name: &str, v: &mut Vec<f64>) {
+            let m = med(v);
+            println!(
+                "{:<28} median {:>8.4}  min {:>8.4}  max {:>8.4}\n{:>30} {:?}",
+                name, m, v[0], v[v.len() - 1], "",
+                v.iter().map(|x| (x * 1000.0).round() / 1000.0).collect::<Vec<_>>()
+            );
+        }
+
+        const SEEDS: u64 = 10;
+
+        // ---- sanctions: growth points lost, and the coalition's weight ----
+        let mut lost = vec![];
+        let mut shares = vec![];
+        {
+            let target = NationId::Brazil;
+            let coalition =
+                [NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan];
+            for seed in 0..SEEDS {
+                let mut control = seeded(seed);
+                control.rules.ai_aggression = 0.0;
+                let c0 = control.nation(target).gdp;
+                run_months(&mut control, 240);
+                let base = exact::powf(control.nation(target).gdp / c0, 1.0 / 20.0) - 1.0;
+
+                let mut treated = seeded(seed);
+                treated.rules.ai_aggression = 0.0;
+                let t0 = treated.nation(target).gdp;
+                let mut acc = 0.0;
+                for _ in 0..240 {
+                    for i in &coalition {
+                        if !treated.is_sanctioning(*i, target) {
+                            treated.sanctions.push((*i, target));
+                        }
+                    }
+                    acc += treated.sanction_weight(target);
+                    tick_month(&mut treated, &[]);
+                }
+                let after = exact::powf(treated.nation(target).gdp / t0, 1.0 / 20.0) - 1.0;
+                lost.push((base - after) * 100.0);
+                shares.push(acc / 240.0);
+            }
+        }
+        show("sanctions: pt/yr lost", &mut lost);
+        show("sanctions: mean G5 share", &mut shares);
+
+        // ---- trade: the lift, and the leash on each side ----
+        let mut lift = vec![];
+        let mut warsaw_v = vec![];
+        let mut washington_v = vec![];
+        for seed in 0..SEEDS {
+            let (mut base, mut open) = (seeded(seed), seeded(seed));
+            for w in [&mut base, &mut open] {
+                w.rules.ai_aggression = 0.0;
+                w.player = Some(NationId::USA);
+            }
+            force_trade(&mut open, NationId::USA, NationId::Poland);
+            run_months(&mut base, 240);
+            run_months(&mut open, 240);
+            let (b, o) = (base.nation(NationId::Poland).gdp, open.nation(NationId::Poland).gdp);
+            lift.push(o / b);
+            let (p0, u0) =
+                (open.nation(NationId::Poland).gdp, open.nation(NationId::USA).gdp);
+            let _ = apply_command(
+                &mut open,
+                &Command::AbrogateTrade { from: NationId::USA, to: NationId::Poland },
+            );
+            warsaw_v.push(1.0 - open.nation(NationId::Poland).gdp / p0);
+            washington_v.push(1.0 - open.nation(NationId::USA).gdp / u0);
+        }
+        show("trade: Poland lift ratio", &mut lift);
+        show("trade: Warsaw loses", &mut warsaw_v);
+        show("trade: Washington loses", &mut washington_v);
+
+        // ---- frontier: the fastest mature economy in each seed ----
+        let mature = [
+            NationId::USA, NationId::Japan, NationId::Germany,
+            NationId::France, NationId::UK, NationId::Italy,
+        ];
+        let mut fastest = vec![];
+        for seed in 0..SEEDS {
+            let start: Vec<(NationId, f64)> = {
+                let w = seeded(seed);
+                mature.iter().map(|id| (*id, w.nation(*id).gdp)).collect()
+            };
+            let mut w = seeded(seed);
+            run_months(&mut w, 12 * 35);
+            let mut worst: f64 = 0.0;
+            for (id, g0) in start {
+                let n = w.nation(id);
+                if !n.alive {
+                    continue;
+                }
+                let cagr = exact::powf(n.gdp / g0, 1.0 / 35.0) - 1.0;
+                if cagr > worst {
+                    worst = cagr;
+                }
+            }
+            fastest.push(worst * 100.0);
+        }
+        show("frontier: fastest mature %/yr", &mut fastest);
+
+        // ---- conquest: how often the annexation branch is reached at all ----
+        let mut annex = vec![];
+        for seed in 0..SEEDS {
+            let mut w = seeded(seed);
+            let mut alive: Vec<(NationId, f64)> =
+                w.nations.iter().filter(|n| n.alive).map(|n| (n.id, n.population)).collect();
+            let mut n_annex = 0.0;
+            for _ in 0..480 {
+                tick_month(&mut w, &[]);
+                let mut still = vec![];
+                for (id, pop) in alive {
+                    if w.nation_opt(id).is_some_and(|n| n.alive) {
+                        still.push((id, w.nation(id).population));
+                    } else if id != NationId::USSR && id != NationId::Yugoslavia {
+                        n_annex += 1.0;
+                        println!("    annexation: seed {} {} {:?} at {:.1}m", seed, w.year, id, pop);
+                    }
+                }
+                alive = still;
+            }
+            annex.push(n_annex);
+        }
+        show("conquest: annexations/seed", &mut annex);
+    }
+
     #[test]
     fn a_century_holds_together() {
         // The risk register's top entry is two hundred AI economies spiralling,
