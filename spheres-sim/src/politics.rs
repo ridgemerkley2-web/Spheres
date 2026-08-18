@@ -62,9 +62,15 @@ pub fn tick(w: &mut WorldState) {
         }
     }
 
-    // ---- Central banks (AI-controlled nations only) ----
+    // ---- Central banks (AI-controlled nations, and an unmanned player seat) ----
     for id in &ids {
-        if Some(*id) == w.player {
+        // The player's bank is theirs the moment they use it, and not before.
+        // Skipping the seat outright meant an idle player kept 1990's rate
+        // forever: 8% held into a deflation is a 13% real rate, a permanent
+        // -5.8pt demand gap, and a United States that shrinks every month for
+        // thirty-five years without one line of it being a decision anyone made.
+        // See `WorldState::player_set_rate`.
+        if Some(*id) == w.player && w.player_set_rate {
             continue;
         }
         let n = w.nation_mut(*id);

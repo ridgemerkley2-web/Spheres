@@ -295,6 +295,12 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     match c {
         Command::SetInterestRate { nation, rate } => {
             w.nation_mut(*nation).interest_rate = rate.clamp(0.0, 0.60);
+            // The player has taken the wheel; the AI bank stands down for good.
+            // Latched here rather than inferred from the rate's value so that
+            // deliberately re-setting the rate one already had still counts.
+            if Some(*nation) == w.player {
+                w.player_set_rate = true;
+            }
         }
         Command::SetTaxRate { nation, rate } => {
             w.nation_mut(*nation).tax_rate = rate.clamp(0.02, 0.60);
@@ -926,37 +932,47 @@ mod tests {
     }
 
     #[test]
-    #[test]
     fn an_idle_player_cannot_break_the_world() {
         // The configuration a human actually plays in, and the one nothing
-        // covered. `a_century_holds_together` and `economic_invariants_50_years`
-        // both run with `player = None`, so they exercise a world where every
-        // central bank is on. Set a player and one bank switches off — by
-        // design, the rate is the player's to set — and a player who does
-        // nothing deflates. On master that walked the United States to a GDP of
-        // -10.98 by June 2016, then to a NaN mil_strength, then to a browser UI
+        // covered: `a_century_holds_together` and `economic_invariants_50_years`
+        // both run with `player = None`, so every central bank in them is on.
+        // Seat a player and one switches off — by design, the rate is theirs to
+        // set — and before `player_set_rate` a player who set nothing was
+        // indistinguishable from one who had chosen. Holding 1990's 8% into a
+        // deflation walked the United States to a GDP of -10.98 by June 2016,
+        // then to a NaN mil_strength out of war.rs's sqrt, then to a browser
         // that would not load the save.
         //
-        // Doing nothing is a thing players do. It must produce a bad game, not
-        // a broken one.
+        // Doing nothing is a thing players do. It has to produce a bad game,
+        // not a broken one.
         for seat in [NationId::USA, NationId::Poland, NationId::Iraq] {
             let mut w = world_1990(GameRules::default());
             w.player = Some(seat);
+            let start_gdp = w.nation(seat).gdp;
             for _ in 0..420 {
                 tick_month(&mut w, &[]);
                 for n in w.nations.iter().filter(|n| n.alive) {
+                    // Everything `economic_invariants_50_years` holds the
+                    // headless world to, held to the played one.
                     assert!(
                         n.gdp.is_finite() && n.gdp > 0.0,
-                        "idle {:?}: {:?} gdp {} in {}",
-                        seat, n.id, n.gdp, w.year
-                    );
-                    assert!(
-                        n.mil_strength.is_finite() && n.mil_strength >= 0.0,
-                        "idle {:?}: {:?} mil_strength {} in {}",
-                        seat, n.id, n.mil_strength, w.year
+                        "idle {:?}: {:?} gdp {} in {}", seat, n.id, n.gdp, w.year
                     );
                     assert!(n.inflation.is_finite(), "idle {:?}: {:?} inflation NaN", seat, n.id);
-                    assert!(n.debt_gdp.is_finite(), "idle {:?}: {:?} debt NaN", seat, n.id);
+                    assert!(
+                        n.debt_gdp.is_finite() && n.debt_gdp < 6.0,
+                        "idle {:?}: {:?} debt spiral {} in {}", seat, n.id, n.debt_gdp, w.year
+                    );
+                    assert!(
+                        (0.0..=100.0).contains(&n.stability),
+                        "idle {:?}: {:?} stability {} in {}", seat, n.id, n.stability, w.year
+                    );
+                    // The surface the bug actually reached the player on: a NaN
+                    // here is what serde writes as `null` and the UI dies on.
+                    assert!(
+                        n.mil_strength.is_finite() && n.mil_strength >= 0.0,
+                        "idle {:?}: {:?} mil_strength {} in {}", seat, n.id, n.mil_strength, w.year
+                    );
                     assert!(
                         n.population.is_finite() && n.population > 0.0,
                         "idle {:?}: {:?} population {}", seat, n.id, n.population
@@ -966,18 +982,96 @@ mod tests {
                         "idle {:?}: {:?} political capital NaN", seat, n.id
                     );
                 }
+                // Finiteness alone is too weak to catch this one, and saying so
+                // is the point. The first attempt at a fix clamped the *result*
+                // — `gdp.max(0.001)` — which held every assertion above while
+                // leaving the United States a $120bn economy sitting at 100.00
+                // stability, because the terms that drove it to the floor went
+                // on compounding underneath the clamp. A seat that has been
+                // governed by nobody should be mediocre, not evaporated. The
+                // margin is deliberately enormous — all three seats actually
+                // trough at ~100% of their 1990 output — so this reads as a
+                // shape check, not a growth target somebody has to retune.
+                let n = w.nation(seat);
+                if n.alive {
+                    assert!(
+                        n.gdp > start_gdp * 0.10,
+                        "idle {:?}: seat has evaporated — gdp {} against {} at start, in {}",
+                        seat, n.gdp, start_gdp, w.year
+                    );
+                }
             }
-            // A NaN reaches the browser as a `null` that the UI cannot render,
-            // so the save is the surface the bug actually showed on. Checking
-            // for the literal string would be wrong — every `Option::None` in
-            // the state writes a legitimate `null` — so this asserts the two
-            // things that matter instead: the save parses back, and the world it
-            // parses back into is the same one.
+            // A NaN reaches the browser as a `null` the UI cannot render, so the
+            // save is where this surfaced. Checking for the literal string would
+            // be wrong — every `Option::None` in the state writes a legitimate
+            // `null` — so this asserts the two things that matter instead: the
+            // save parses back, and the world it parses back into is the same one.
             let text = save(&w);
-            let reloaded = load(&text).unwrap_or_else(|e| panic!("idle {:?}: save will not load: {}", seat, e));
+            let reloaded = load(&text)
+                .unwrap_or_else(|e| panic!("idle {:?}: save will not load: {}", seat, e));
             assert_eq!(
                 state_hash(&reloaded), state_hash(&w),
                 "idle {:?}: the save did not round-trip", seat
+            );
+        }
+    }
+
+    #[test]
+    fn a_player_who_sets_a_rate_keeps_it() {
+        // The other half of `player_set_rate`, and the reason it is a latch on
+        // the command rather than a comparison against the AI's preferred rate:
+        // once the player has governed, the bank must never speak again, even
+        // when what they chose is exactly what it would have hated. 12% held
+        // through a decade is a policy — a wrong one, probably — and it is not
+        // the model's business to quietly walk it back to the Taylor rule.
+        let mut w = world_1990(GameRules::default());
+        w.player = Some(NationId::USA);
+        apply_command(&mut w, &Command::SetInterestRate { nation: NationId::USA, rate: 0.12 })
+            .expect("player sets their own rate");
+        for _ in 0..120 {
+            tick_month(&mut w, &[]);
+            assert_eq!(
+                w.nation(NationId::USA).interest_rate, 0.12,
+                "the AI bank overwrote a rate the player had set, in {}", w.year
+            );
+        }
+        // And a seat the player never touched is still governed for them.
+        let mut idle = world_1990(GameRules::default());
+        idle.player = Some(NationId::USA);
+        for _ in 0..120 {
+            tick_month(&mut idle, &[]);
+        }
+        assert!(
+            idle.nation(NationId::USA).interest_rate != 0.08,
+            "an unmanned seat kept 1990's rate: {}",
+            idle.nation(NationId::USA).interest_rate
+        );
+    }
+
+    #[test]
+    fn a_pegged_rate_is_a_governed_rate() {
+        // Setting a rate is not the only way to decide one. The currency peg
+        // says in as many words that the rate stops floating, and it costs 26
+        // political capital to say it — so a default bank that went on drifting
+        // it would be selling the player something it then took back. It did:
+        // pinned at 0.055, and 0.078 again six months later.
+        let mut w = world_1990(GameRules::default());
+        w.player = Some(NationId::Iraq);
+        for _ in 0..24 {
+            tick_month(&mut w, &[]);
+        }
+        w.nation_mut(NationId::Iraq).inflation = 0.30;
+        w.nation_mut(NationId::Iraq).political_capital = 100.0;
+        apply_command(
+            &mut w,
+            &Command::EnactStratagem { nation: NationId::Iraq, id: "currency_peg".to_string() },
+        )
+        .expect("the peg is available at 30% inflation");
+        for _ in 0..24 {
+            tick_month(&mut w, &[]);
+            assert_eq!(
+                w.nation(NationId::Iraq).interest_rate, 0.055,
+                "the peg drifted in {}", w.year
             );
         }
     }
@@ -1085,10 +1179,21 @@ mod tests {
         //     `wars` is gone; `Conflict` replaces `War`.
         // The 1990 board is the same board. The hash is a fingerprint of the
         // struct as well as the numbers in it, and this is the struct changing.
+        // Re-pinned a sixth time, 0x180bcace7572d8ba -> 0xb9673f3eec091d10, for
+        // `WorldState::player_set_rate`. Same story as the fifth: the struct the
+        // hash reads gained a field, and not one transcribed 1990 figure moved.
+        // `spheres-sim/data/` is byte-for-byte unchanged.
+        //
+        // The bounds that landed with it — the oil-revenue share cap and the
+        // floor under the annual growth rate — are guards that do not bind on a
+        // working economy, and that claim was measured rather than asserted:
+        // dumping gdp, inflation, mil_strength and debt for every nation after
+        // 420 months, over three seeds, gives a file byte-identical to the one
+        // the previous pin produces. The simulation did not move. The struct did.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0x180bcace7572d8bau64,
+            h, 0xb9673f3eec091d10u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -1228,7 +1333,12 @@ mod tests {
         // pact test: 152 conflicts are born where master fought 197 wars, and
         // 77 of them climb to an invasion. The rest sit at rungs nobody could
         // reach before, which is §6's whole claim about the period.
-        const GOLDEN: u64 = 0xaa7960badaee3a49;
+        // Re-pinned, 0xaa7960badaee3a49 -> 0x57724ed8dd8fc5ef, for the same
+        // reason and on the same evidence as `the_1990_start_is_pinned` above:
+        // `WorldState` gained `player_set_rate`, so the fingerprint of the state
+        // moved while the twenty years of history inside it did not. The
+        // trajectory dump described there covers this run too.
+        const GOLDEN: u64 = 0x57724ed8dd8fc5ef;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

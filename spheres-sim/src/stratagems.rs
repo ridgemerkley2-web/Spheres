@@ -98,6 +98,15 @@ pub const DECK: &[Stratagem] = &[
         },
         enact: |w, id| {
             w.set_flag(&format!("peg_{:?}", id));
+            // Pegging is a monetary decision, so it counts as governing the
+            // rate: without this the default bank in politics.rs — which runs
+            // for a player who has not touched monetary policy — would drift
+            // the peg away within months, and the player would have paid 26
+            // political capital for nothing. Measured before the latch was
+            // added here: pinned at 0.055, back to 0.078 six months later.
+            if Some(id) == w.player {
+                w.player_set_rate = true;
+            }
             let n = w.nation_mut(id);
             n.inflation = n.inflation.min(0.06);
             // The rate is no longer yours to set, so it stops floating with you.

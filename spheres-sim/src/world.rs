@@ -641,6 +641,28 @@ pub struct WorldState {
     /// One-shot flags
     pub flags: Vec<String>,
     pub player: Option<NationId>,
+    /// Has the player ever set their own policy rate?
+    ///
+    /// An absent governor is not a governor choosing 8%. The central bank in
+    /// `politics.rs` skips the player's nation so that the AI can never
+    /// overwrite a rate the player chose — but before this latch it skipped a
+    /// player who had chosen nothing just as thoroughly, and the seat simply
+    /// held whatever 1990 handed it while the world moved on. Taking the United
+    /// States and advancing the clock left 8% standing into a deflation.
+    ///
+    /// So the bank runs on the player's behalf until the player takes the
+    /// wheel, and never again after. Latching on the command rather than on
+    /// "the rate differs from its 1990 value" is what keeps the two cases
+    /// apart: a player who deliberately re-sets 8% has still governed, and is
+    /// owed the same silence as one who sets 3%.
+    ///
+    /// Defaulted for the reason `statecraft` and `governments` are: a save
+    /// written before the latch existed still loads. Such a save reads as "has
+    /// not governed", which restores the AI bank to a seat that was drifting
+    /// without one — the right reading for the far more common case of a save
+    /// made by a player who never touched the rate.
+    #[serde(default)]
+    pub player_set_rate: bool,
 }
 
 impl WorldState {

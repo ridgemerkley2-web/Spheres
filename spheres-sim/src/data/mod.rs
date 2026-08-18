@@ -595,6 +595,7 @@ pub fn load_world(
         headlines: vec![],
         flags: vec![],
         player: None,
+        player_set_rate: false,
     };
     for block in &relations.blocks {
         for p in &block.pairs {
