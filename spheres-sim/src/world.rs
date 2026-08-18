@@ -227,6 +227,10 @@ pub struct Nation {
     /// 0..1, accumulates in war, decays in peace
     pub war_exhaustion: f64,
     pub nuclear: bool,
+    /// What this nation has bought, has on order, and is still flying.
+    /// Defaulted so a save written before procurement existed still loads.
+    #[serde(default)]
+    pub arsenal: crate::arsenal::Arsenal,
 
     // --- Political capital ---
     /// 0..100. The second of the two currencies SPEC spines the game on, beside

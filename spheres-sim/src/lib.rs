@@ -1,3 +1,4 @@
+pub mod arsenal;
 pub mod commitment;
 pub mod data;
 pub mod dyads;
@@ -520,6 +521,9 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // Pacts decide who is obliged to join a war and patronage decides who can
     // still afford one, so the standing arrangements are settled before the
     // fighting is worked out.
+    // Money becomes orders years before it becomes strength, so procurement
+    // runs with the other standing bills rather than beside the fighting.
+    ("arsenal", arsenal::tick),
     ("statecraft", statecraft::tick),
     ("stratagems", stratagems::tick),
     ("ai_stratagems", stratagems::ai_stratagems),
@@ -2089,10 +2093,17 @@ mod tests {
         // only when it is `Some`, so a world where nobody has declared anything
         // computes bit-identical shares to the one before it. The struct moved;
         // the simulation did not.
+        //
+        // Re-pinned for the procurement layer. `Nation` gains `arsenal`, which
+        // is empty at 1990 and accrues only banked money until a nation has a
+        // technology to spend it on. No other quantity moves: `arsenal::tick`
+        // places no orders while `available()` is empty, and `war.rs` does not
+        // read the arsenal yet. Struct changed, simulation did not, and
+        // `spheres-sim/data/` is untouched.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0xf28a574a2efdd179u64,
+            h, 0xf431725289f6c358u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -2241,7 +2252,10 @@ mod tests {
         // Re-pinned for research projects, on the same evidence as
         // `the_1990_start_is_pinned` above: a new `TechState` field that is
         // `None` everywhere nobody has declared a programme.
-        const GOLDEN: u64 = 0x2c98d17c7f89cb37;
+        //
+        // Re-pinned for the procurement layer, on the same evidence as
+        // `the_1990_start_is_pinned`: a new `Nation` field, no behaviour change.
+        const GOLDEN: u64 = 0xcf3eb0342fcfb476;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);

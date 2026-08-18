@@ -234,6 +234,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         munitions: 1.0,
         war_exhaustion: 0.0,
         nuclear: true,
+        arsenal: Default::default(),
         // A successor government starts on what its own condition earns it and
         // no record of its own to trade on. In Moscow in 1991 that is very
         // little: the shops are empty and the prices are about to be freed.
@@ -282,6 +283,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         // the only nuclear disarmament of its size ever carried out, and it is
         // why Ukraine enters the sim without the deterrent Russia keeps.
         nuclear: false,
+        arsenal: Default::default(),
         political_capital: seated_political_capital(34.0, 1.10, 0.40),
         // Yuzhmash and Antonov were Soviet design bureaux before they were
         // Ukrainian ones: the knowledge is inherited in full, and it is the
@@ -519,6 +521,7 @@ fn dissolve_ussr(w: &mut WorldState) {
             // under the Lisbon Protocol of May 1992 and the Budapest assurances
             // of December 1994. Nobody in this group enters with a deterrent.
             nuclear: false,
+            arsenal: Default::default(),
             political_capital: seated_political_capital(r.stab, r.infl, r.auth),
             tech: crate::tech::TechState::inherit(&inherited_tech, r.tfp),
         });
@@ -883,6 +886,7 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             munitions: 1.0,
             war_exhaustion: 0.0,
             nuclear: false,
+            arsenal: Default::default(),
             political_capital: seated_political_capital(stab, infl, auth),
             // Each republic keeps the federation's technical base and starts its
             // own research from nothing.
