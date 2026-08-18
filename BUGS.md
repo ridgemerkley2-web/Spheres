@@ -32,7 +32,7 @@ findings below are all structural, and two of them turned out to be healthy.
 
 ---
 
-## Needs design
+## Open bug, with a known site
 
 ### B-1 — a conflict that flares more often than every 18 months can never end
 
@@ -49,24 +49,59 @@ of them (5%), across 14 separate flare-ups**. `at_war` requires `shooting()`, so
 no permanent war drag is being applied and no economy is being damaged — which is
 why the numeric sweep is clean.
 
-The defect is that the *exit ramp cannot be reached*. `war.rs` ends a quarrel one
-of four ways: mutual exhaustion above 0.75, a ripe settlement, an invasion verdict
-six months after the guns stop, or — for everything else — freezing after 18
-consecutive quiet months and lapsing 42 months later at rung ≤ 1. For these dyads
-none of the first three ever apply (`invasion_declared` is false throughout), so
-the freeze path is the only way out. And `quiet_months` resets to zero the moment
-any belligerent touches the shooting rung, so a dyad that flares every ~34 months
-on average never accumulates 18 consecutive quiet ones. `frozen_since` reads
-`false` at every sample from 1995 to 2030.
+The defect is that the *exit ramp cannot be reached*, and the cause is not where
+this entry first put it. `war.rs` ends a quarrel one of four ways: mutual
+exhaustion above 0.75, a ripe settlement, an invasion verdict six months after
+the guns stop, or — for everything else — freezing after 18 consecutive quiet
+months and lapsing 42 months later at rung ≤ 1. For these dyads none of the first
+three ever apply (`invasion_declared` is false throughout), so freezing is the
+only way out, and `frozen_since` reads `false` at every sample from 1995 to 2030.
 
-**Why this is not fixed here.** The four exit conditions are the commitment
-ladder's design, and the question this raises is a design question: should a
-periodically-flaring quarrel freeze anyway (a decaying rather than resetting
-quiet counter), should repeated flare-ups build toward a settlement, or is a
-forty-year simmering border dispute the intended output? India–Pakistan has run
-seventy-eight years on exactly this shape, so "it never ends" is not obviously
-wrong. Changing any of it moves war outcomes across every calibration test.
-Logged rather than guessed at, per the session's own rule.
+**CORRECTED.** This entry originally blamed the reset in `war.rs`, which zeroes
+`quiet_months` on any month at the shooting rung. That cannot be the cause, and
+the arithmetic says so: `quiet` is defined as exactly `!shooting()`, and
+Iraq/Kuwait shoots in only 22 of 479 months, so the war.rs reset fires 22 times
+in forty years and could never hold the counter at the 1-4 the samples show.
+
+The real site is **`commitment.rs:159-160`**, inside `set_commitment`:
+
+```rust
+if rung > old {
+    c.quiet_months = 0;
+    c.frozen_since = None;
+}
+```
+
+Any **upward rung change** resets the freeze clock — a nudge from rung 2 to 3,
+nowhere near the shooting rung of 6. The comment beside it explains the intent,
+and the intent is sound: "the freeze clock must not be allowed to kill a climb
+halfway up: eighteen months is less than it takes a poor government to save the
+standing for seven rungs." But the effect is unbounded. A quarrel where anybody
+so much as shuffles a rung upward every year or so can never accumulate 18
+consecutive quiet months, and the entire freeze/lapse subsystem — twenty-odd
+lines, with its own headline — is dead code for that dyad forever.
+
+**What the correction changes.** The original diagnosis made this a redesign of
+the ladder's exit conditions, which is why it was logged rather than fixed. The
+real cause makes it far smaller: the climb-reset is protecting a climb, and a
+climb takes months, not years. Bounding it — resetting only for the duration a
+climb plausibly needs, or decaying the counter rather than zeroing it — leaves
+the stated intent intact while letting a quarrel nobody is prosecuting fall off
+the board as the design already says it should.
+
+It is still not a one-liner to land safely: it changes how long conflicts stay
+on the board, which moves war calibration across the suite and both golden
+hashes. It wants its own branch, a failing test first, and a multi-seed
+re-measurement. But it is a bug with a known site and a bounded fix, not an open
+design question.
+
+**Not yet addressed:** a related finding from the direction audit is that
+`dyads.rs:172` returns `0.0` war appetite for any pair with a pact between them
+("A guarantee is not a modifier, it is a bar"), and both nuclear status and pacts
+spread monotonically over a run. So the set of dyads that can ever produce a war
+shrinks with time. That is a *starting*-layer constraint and this entry is an
+*ending*-layer one; fixing B-1 changes how the existing quarrels end, not how
+many exist.
 
 ---
 
