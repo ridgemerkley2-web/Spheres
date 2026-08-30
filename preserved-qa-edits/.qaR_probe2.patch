@@ -1,0 +1,137 @@
+diff --git a/spheres-sim/src/economy.rs b/spheres-sim/src/economy.rs
+index b51244f..8647eb7 100644
+--- a/spheres-sim/src/economy.rs
++++ b/spheres-sim/src/economy.rs
+@@ -232,7 +232,8 @@ pub fn tick(w: &mut WorldState) {
+         };
+ 
+         let growth_annual = potential + demand_gap + bubble_boost + oil_effect
+-            - sanction_drag - war_drag - debt_drag - instability_drag - embargo_drag + noise;
++            - sanction_drag - war_drag - debt_drag - instability_drag - embargo_drag + noise
++            + qa_knob("QA_RUNAWAY", 0.0);
+ 
+         n.gdp *= 1.0 + growth_annual / 12.0;
+         n.growth_last = n.growth_last * 0.9 + growth_annual * 0.1;
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index b1dcc3a..9a6b7a2 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -1957,7 +1957,7 @@ mod tests {
+                 seed, b
+             );
+             assert!(
+-                a > b * 1.20,
++                a > b * crate::world::qa_knob("QA_ARMS_SEEDFLOOR", 1.20),
+                 "seed {}: eight years of American arms left Kuwait at {:.2} against \
+                  {:.2} without them — the transfers bought no army in this world",
+                 seed, a, b
+@@ -1967,7 +1967,7 @@ mod tests {
+         ratios.sort_by(|a, b| a.partial_cmp(b).unwrap());
+         let median = median_of_sorted(&ratios);
+         assert!(
+-            (1.40..2.50).contains(&median),
++            (crate::world::qa_knob("QA_ARMS_FLOOR",1.40)..2.50).contains(&median),
+             "American arms left Kuwait a median {:.3}x the army it would have had \
+              alone, across ten worlds, outside the 1.40x-2.50x band. The pipeline \
+              is worth 14.8x Kuwait's own defence budget and war.rs sustains \
+@@ -2200,6 +2200,62 @@ mod tests {
+         }
+         assert!(born >= 6, "the union held together too often: {}/10", born);
+     }
++    #[test]
++    #[ignore]
++    fn qa_frontier_both_instruments() {
++        // OLD instrument: default seed, one reading per nation, ceiling 4.0%.
++        // NEW instrument: median of ten worlds per nation (4.0%), plus a pooled
++        // median of all sixty readings against 3.5%.
++        let mature = [
++            NationId::USA, NationId::Japan, NationId::Germany,
++            NationId::France, NationId::UK, NationId::Italy,
++        ];
++        let mut per_nation: Vec<Vec<f64>> = vec![Vec::new(); mature.len()];
++        // old: default seed
++        let mut old: Vec<f64> = Vec::new();
++        {
++            let mut w = world_1990(GameRules::default());
++            let g0: Vec<f64> = mature.iter().map(|id| w.nation(*id).gdp).collect();
++            run_months(&mut w, 12 * 35);
++            for (k, id) in mature.iter().enumerate() {
++                let n = w.nation(*id);
++                if n.alive { old.push(exact::powf(n.gdp / g0[k], 1.0 / 35.0) - 1.0); }
++            }
++        }
++        for seed in 0..10u64 {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            let g0: Vec<f64> = mature.iter().map(|id| w.nation(*id).gdp).collect();
++            run_months(&mut w, 12 * 35);
++            for (k, id) in mature.iter().enumerate() {
++                let n = w.nation(*id);
++                if n.alive { per_nation[k].push(exact::powf(n.gdp / g0[k], 1.0 / 35.0) - 1.0); }
++            }
++        }
++        let mut pooled: Vec<f64> = Vec::new();
++        let mut meds: Vec<f64> = Vec::new();
++        for k in 0..mature.len() {
++            let mut xs = per_nation[k].clone();
++            pooled.extend(xs.iter().copied());
++            xs.sort_by(|a, b| a.partial_cmp(b).unwrap());
++            meds.push(median_of_sorted(&xs));
++        }
++        pooled.sort_by(|a, b| a.partial_cmp(b).unwrap());
++        let pm = median_of_sorted(&pooled);
++        let oldmax = old.iter().cloned().fold(f64::MIN, f64::max);
++        let oldmin = old.iter().cloned().fold(f64::MAX, f64::min);
++        let medmax = meds.iter().cloned().fold(f64::MIN, f64::max);
++        let medmin = meds.iter().cloned().fold(f64::MAX, f64::min);
++        println!(
++            "QAFRONT runaway={:.4} OLDmax={:.3} OLDmin={:.3} OLDred={} | MEDmax={:.3} MEDmin={:.3} MEDred={} | POOLED={:.3} POOLEDred={}",
++            crate::world::qa_knob("QA_RUNAWAY", 0.0),
++            oldmax * 100.0, oldmin * 100.0, (oldmax >= 0.040 || oldmin <= 0.005),
++            medmax * 100.0, medmin * 100.0, (medmax >= 0.040 || medmin <= 0.005),
++            pm * 100.0, pm >= 0.035
++        );
++        println!("QAFRONT old per-nation: {:?}", old.iter().map(|x| (x*10000.0).round()/100.0).collect::<Vec<_>>());
++        println!("QAFRONT new medians:    {:?}", meds.iter().map(|x| (x*10000.0).round()/100.0).collect::<Vec<_>>());
++    }
++
+ }
+ 
+ 
+diff --git a/spheres-sim/src/statecraft.rs b/spheres-sim/src/statecraft.rs
+index 5354bc0..395be20 100644
+--- a/spheres-sim/src/statecraft.rs
++++ b/spheres-sim/src/statecraft.rs
+@@ -129,9 +129,9 @@ fn aid_flows(w: &mut WorldState) {
+                 // Transferred weapons are budget the client never had to raise.
+                 // Same curve war.rs uses for domestic spending, so a client's
+                 // army converges on what its patron is willing to fund.
+-                let sustained = ((client_gdp * client_mil_share + annual) * 0.30).sqrt() * 8.0;
++                let sustained = ((client_gdp * client_mil_share + annual * crate::world::qa_knob("QA_ARMS_ALPHA", 1.0)) * 0.30).sqrt() * 8.0;
+                 let c = w.nation_mut(f.client);
+-                c.mil_strength += (sustained - client_strength) * 0.02;
++                c.mil_strength += (sustained - client_strength * crate::world::qa_knob("QA_ARMS_DAMP", 1.0)) * 0.02;
+             }
+         }
+         // Dependence reads as friendship right up until the money stops.
+diff --git a/spheres-sim/src/world.rs b/spheres-sim/src/world.rs
+index 42f055d..abe6e76 100644
+--- a/spheres-sim/src/world.rs
++++ b/spheres-sim/src/world.rs
+@@ -590,3 +590,17 @@ impl War {
+         }
+     }
+ }
++
++// ===== QA PROBE ONLY. =====
++pub fn qa_knob(name: &str, default: f64) -> f64 {
++    use std::collections::HashMap;
++    use std::sync::OnceLock;
++    static M: OnceLock<HashMap<String, f64>> = OnceLock::new();
++    let m = M.get_or_init(|| {
++        std::env::vars()
++            .filter(|(k, _)| k.starts_with("QA_"))
++            .filter_map(|(k, v)| v.parse::<f64>().ok().map(|x| (k, x)))
++            .collect()
++    });
++    *m.get(name).unwrap_or(&default)
++}

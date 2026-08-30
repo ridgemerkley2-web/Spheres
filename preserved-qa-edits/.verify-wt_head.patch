@@ -1,0 +1,12 @@
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index 01e62cf..8deddd0 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -1465,6 +1465,7 @@ mod tests {
+         run_months(&mut base, 240);
+         run_months(&mut open, 240);
+         let (b, o) = (base.nation(NationId::Poland).gdp, open.nation(NationId::Poland).gdp);
++        println!("TRADE_RATIO {:.4}", o / b);
+         assert!(o > b * 1.20, "twenty years of integration bought nothing: {:.0} vs {:.0}", o, b);
+ 
+         // ...and the growth is the leash. Tearing the agreement up costs the

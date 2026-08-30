@@ -1,0 +1,303 @@
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index 6e8b7cc..da306d7 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -1564,3 +1564,258 @@ mod tests {
+ }
+ 
+ 
++
++// ===================== QA PROBE (temporary, not for merge) =================
++#[cfg(test)]
++mod zzprobe {
++    use super::*;
++    use crate::init::world_1990;
++
++    fn tick(w: &mut WorldState, months: usize) {
++        for _ in 0..months {
++            tick_month(w, &[]);
++        }
++    }
++    fn seeded_p(seed: u64) -> WorldState {
++        world_1990(GameRules { seed, ..GameRules::default() })
++    }
++
++    #[test]
++    fn zz_size() {
++        let w = world_1990(GameRules::default());
++        println!("PROBE size nations={} alive={}", w.nations.len(), w.nations.iter().filter(|n| n.alive).count());
++        let world_gdp: f64 = w.nations.iter().filter(|n| n.alive).map(|n| n.gdp).sum();
++        println!("PROBE world_gdp_1990={:.1}", world_gdp);
++        for id in [NationId::USA, NationId::UK, NationId::France, NationId::Kuwait, NationId::Poland, NationId::China] {
++            let n = w.nation(id);
++            println!("PROBE start {:?} gdp={:.1} mil={:.2}", id, n.gdp, n.mil_strength);
++        }
++    }
++
++    #[test]
++    fn zz_frontier() {
++        let mature = [NationId::USA, NationId::Japan, NationId::Germany, NationId::France, NationId::UK, NationId::Italy];
++        let start: Vec<(NationId, f64)> = {
++            let w = world_1990(GameRules::default());
++            mature.iter().map(|id| (*id, w.nation(*id).gdp)).collect()
++        };
++        let mut w = world_1990(GameRules::default());
++        tick(&mut w, 12 * 35);
++        for (id, g0) in start {
++            let n = w.nation(id);
++            let cagr = exact::powf(n.gdp / g0, 1.0 / 35.0) - 1.0;
++            println!("PROBE frontier {:?} cagr={:.4}% gdp0={:.1} gdp35={:.1} alive={} exh={:.3}",
++                id, cagr * 100.0, g0, n.gdp, n.alive, n.war_exhaustion);
++        }
++        println!("PROBE frontier wars_now={} sanctions={}", w.wars.len(), w.sanctions.len());
++    }
++
++    #[test]
++    fn zz_mature() {
++        for seed in [1990u64, 7, 42] {
++            let mut w = seeded_p(seed);
++            tick(&mut w, 360);
++            for id in [NationId::USA, NationId::Germany, NationId::France, NationId::Italy] {
++                let n = w.nation(id);
++                let sanc = w.sanctions.iter().filter(|(_, t)| *t == id).count();
++                let at_war = w.wars.iter().filter(|war| format!("{:?}", war).contains(&format!("{:?}", id))).count();
++                println!("PROBE mature seed={} {:?} g={:.4}% gdp={:.1} exh={:.3} sanctioned_by={} wars={}",
++                    seed, id, n.growth_last * 100.0, n.gdp, n.war_exhaustion, sanc, at_war);
++            }
++        }
++    }
++
++    #[test]
++    fn zz_china() {
++        let mut xs = Vec::new();
++        for seed in 0..20u64 {
++            let mut w = seeded_p(seed);
++            let s = w.nation(NationId::China).gdp;
++            tick(&mut w, 360);
++            let x = w.nation(NationId::China).gdp / s;
++            println!("PROBE china seed={} x={:.3} exh={:.3}", seed, x, w.nation(NationId::China).war_exhaustion);
++            xs.push(x);
++        }
++        xs.sort_by(|a, b| a.partial_cmp(b).unwrap());
++        println!("PROBE china min={:.3} med10={:.3} med20={:.3} max={:.3}",
++            xs[0], (xs[4] + xs[5]) / 2.0, (xs[9] + xs[10]) / 2.0, xs[19]);
++    }
++
++    #[test]
++    fn zz_arms() {
++        for seed in [6u64, 1, 2, 3, 4, 5] {
++            let (mut base, mut armed) = (seeded_p(seed), seeded_p(seed));
++            for w in [&mut base, &mut armed] {
++                w.rules.ai_aggression = 0.0;
++                w.player = Some(NationId::USA);
++            }
++            apply_command(&mut armed, &Command::PledgeAid {
++                patron: NationId::USA, client: NationId::Kuwait,
++                kind: AidKind::Arms, share_gdp: 0.003,
++            }).unwrap();
++            tick(&mut base, 96);
++            tick(&mut armed, 96);
++            let (b, a) = (base.nation(NationId::Kuwait).mil_strength, armed.nation(NationId::Kuwait).mil_strength);
++            println!("PROBE arms seed={} base={:.3} armed={:.3} ratio={:.4}", seed, b, a, a / b);
++        }
++    }
++
++    #[test]
++    fn zz_trade() {
++        for seed in 0..8u64 {
++            let (mut base, mut open) = (seeded_p(seed), seeded_p(seed));
++            for w in [&mut base, &mut open] {
++                w.rules.ai_aggression = 0.0;
++                w.player = Some(NationId::USA);
++            }
++            let ok = true;
++            for _ in 0..300 {
++                if open.trade_depth(NationId::USA, NationId::Poland) > 0.0 { break; }
++                apply_command(&mut open, &Command::ProposeTrade { from: NationId::USA, to: NationId::Poland }).unwrap();
++            }
++            tick(&mut base, 240);
++            tick(&mut open, 240);
++            let (b, o) = (base.nation(NationId::Poland).gdp, open.nation(NationId::Poland).gdp);
++            println!("PROBE trade seed={} ok={} base={:.1} open={:.1} ratio={:.5}", seed, ok, b, o, o / b);
++        }
++    }
++
++    #[test]
++    fn zz_century_timing() {
++        use std::time::Instant;
++        let t0 = Instant::now();
++        let mut w = world_1990(GameRules::default());
++        tick(&mut w, 1200);
++        let dt = t0.elapsed();
++        let alive = w.nations.iter().filter(|n| n.alive).count();
++        let bad = w.nations.iter().filter(|n| n.alive && !(n.gdp.is_finite() && n.gdp > 0.0)).count();
++        println!("PROBE century seconds={:.2} alive={} bad_gdp={} year={} wars={}",
++            dt.as_secs_f64(), alive, bad, w.year, w.wars.len());
++    }
++
++    #[test]
++    fn zz_wars() {
++        let mut total = 0usize;
++        for seed in 0..5u64 {
++            let mut w = seeded_p(seed);
++            let mut n = 0usize;
++            for _ in 0..420 {
++                tick_month(&mut w, &[]);
++                n += w.headlines.iter().filter(|h| h.contains("invades") || h.contains("declares war")).count();
++            }
++            println!("PROBE wars seed={} headlines={}", seed, n);
++            total += n;
++        }
++        println!("PROBE wars total5={}", total);
++    }
++}
++
++#[cfg(test)]
++mod zzfrontier {
++    use super::*;
++    use crate::init::world_1990;
++
++    #[test]
++    fn zz_frontier_seeds() {
++        let mature = [NationId::USA, NationId::Japan, NationId::Germany,
++                      NationId::France, NationId::UK, NationId::Italy];
++        for seed in 0..6u64 {
++            let start: Vec<(NationId, f64)> = {
++                let w = world_1990(GameRules { seed, ..GameRules::default() });
++                mature.iter().map(|id| (*id, w.nation(*id).gdp)).collect()
++            };
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            for _ in 0..(12 * 35) { tick_month(&mut w, &[]); }
++            let mut line = format!("ZZF seed={} ", seed);
++            let mut hot = 0; let mut cold = 0;
++            for (id, g0) in start {
++                let n = w.nation(id);
++                let cagr = exact::powf(n.gdp / g0, 1.0 / 35.0) - 1.0;
++                if cagr >= 0.040 { hot += 1; }
++                if cagr <= 0.005 { cold += 1; }
++                line.push_str(&format!("{:?}={:.3}% ", id, cagr * 100.0));
++            }
++            let trades = w.statecraft.trade.len();
++            let usa_trades = w.statecraft.trade.iter().filter(|t| format!("{:?}", t).contains("USA")).count();
++            let uk_trades = w.statecraft.trade.iter().filter(|t| format!("{:?}", t).contains("UK")).count();
++            println!("{} | hot={} cold={} trades={} usa_t={} uk_t={} pacts={} sanc={}",
++                line, hot, cold, trades, usa_trades, uk_trades, w.statecraft.pacts.len(), w.sanctions.len());
++        }
++    }
++}
++
++#[cfg(test)]
++mod zzp2 {
++    use super::*;
++    use crate::init::world_1990;
++
++    #[test]
++    fn zz_frontier_clock() {
++        println!("ZZ2 registry_size={}", crate::tech::registry().len());
++        let mut w = world_1990(GameRules::default());
++        for m in 1..=360 {
++            tick_month(&mut w, &[]);
++            if m % 60 == 0 {
++                let front = w.nations.iter().filter(|n| n.alive).map(|n| n.tech.count()).max().unwrap_or(0);
++                let med: f64 = {
++                    let mut v: Vec<usize> = w.nations.iter().filter(|n| n.alive).map(|n| n.tech.count()).collect();
++                    v.sort();
++                    v[v.len()/2] as f64
++                };
++                let wgdp: f64 = w.nations.iter().filter(|n| n.alive).map(|n| n.gdp).sum();
++                println!("ZZ2 month={} frontier={} median_techs={} china={} usa={} world_gdp={:.0}",
++                    m, front, med, w.nation(NationId::China).tech.count(), w.nation(NationId::USA).tech.count(), wgdp);
++            }
++        }
++    }
++
++    #[test]
++    fn zz_relations_matrix() {
++        let mut w = world_1990(GameRules::default());
++        let n = w.nations.len();
++        println!("ZZ2 rel nations={} expect_tri={}", n, n * (n + 1) / 2);
++        // round-trip the highest-index pair
++        let a = w.nations[n - 1].id;
++        let b = w.nations[n - 2].id;
++        let before = w.relation(a, b);
++        w.relations.set(a, b, -73.5);
++        let got = w.relation(a, b);
++        let sym = w.relation(b, a);
++        println!("ZZ2 rel high_pair {:?}/{:?} before={:.2} set=-73.5 got={:.2} sym={:.2}", a, b, before, got, sym);
++        // count distinct nonzero dyads and check no aliasing: set every pair to its index and read back
++        let ids: Vec<NationId> = w.nations.iter().map(|x| x.id).collect();
++        let mut k = 0.0f64;
++        for i in 0..ids.len() { for j in (i + 1)..ids.len() { k += 1.0; w.relations.set(ids[i], ids[j], k % 97.0 - 48.0); } }
++        let mut k2 = 0.0f64; let mut bad = 0;
++        for i in 0..ids.len() { for j in (i + 1)..ids.len() {
++            k2 += 1.0;
++            if (w.relation(ids[i], ids[j]) - (k2 % 97.0 - 48.0)).abs() > 1e-12 { bad += 1; }
++        } }
++        println!("ZZ2 rel aliasing_failures={} of {}", bad, (ids.len() * (ids.len() - 1)) / 2);
++    }
++}
++
++#[cfg(test)]
++mod zzp3 {
++    use super::*;
++    use crate::init::world_1990;
++
++    #[test]
++    fn zz_china_history() {
++        let mut tw = 0.0; let mut ts = 0.0; let mut tx = 0.0;
++        for seed in 0..10u64 {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            let s = w.nation(NationId::China).gdp;
++            let mut war_months = 0; let mut sanc_months = 0.0;
++            for _ in 0..360 {
++                tick_month(&mut w, &[]);
++                if w.at_war(NationId::China) { war_months += 1; }
++                sanc_months += w.sanctioned_by_count(NationId::China) as f64;
++            }
++            let x = w.nation(NationId::China).gdp / s;
++            println!("ZZ3 china seed={} x={:.3} war_months={} sanction_month_pairs={:.0}", seed, x, war_months, sanc_months);
++            tw += war_months as f64; ts += sanc_months; tx += x;
++        }
++        println!("ZZ3 china TOTALS mean_x={:.3} mean_war_months={:.1} mean_sanction_pairs={:.1}", tx/10.0, tw/10.0, ts/10.0);
++    }
++}
+diff --git a/spheres-sim/src/tech/mod.rs b/spheres-sim/src/tech/mod.rs
+index a5fdc59..43f6c82 100644
+--- a/spheres-sim/src/tech/mod.rs
++++ b/spheres-sim/src/tech/mod.rs
+@@ -1411,3 +1411,35 @@ mod diag {
+         }
+     }
+ }
++
++#[cfg(test)]
++mod zzdiag0 {
++    use super::*;
++    use crate::init::world_1990;
++    use crate::world::GameRules;
++
++    #[test]
++    fn zz_t0_channels() {
++        let w = world_1990(GameRules::default());
++        let world_gdp: f64 = w.nations.iter().filter(|n| n.alive).map(|n| n.gdp.max(0.0)).sum();
++        println!("ZZ0 alive={} world_gdp={:.1}", w.nations.iter().filter(|n| n.alive).count(), world_gdp);
++        for id in [crate::NationId::USA, crate::NationId::China, crate::NationId::Japan,
++                   crate::NationId::UK, crate::NationId::France, crate::NationId::Germany,
++                   crate::NationId::India, crate::NationId::Poland, crate::NationId::Brazil] {
++            let n = w.nation(id);
++            let mut sum = 0.0; let mut count = 0.0; let mut nonzero = 0usize;
++            for o in w.nations.iter().filter(|o| o.alive && o.id != id) {
++                let r = w.relation(id, o.id);
++                if r != 0.0 { nonzero += 1; }
++                sum += r; count += 1.0;
++            }
++            let mean = sum / count;
++            let openness = (((sum / count) + 40.0) / 90.0).clamp(0.0, 1.0);
++            let dev = development(n);
++            let absorb = absorptive_capacity(&w, n, dev);
++            let share = (n.gdp.max(0.0) / world_gdp).sqrt().clamp(0.005, 1.0);
++            println!("ZZ0 {:<14} meanrel={:>7.2} nonzero={:>3}/{:>3} openness={:.4} dev={:.4} absorb={:.4} sqrt_share={:.5}",
++                n.id.name(), mean, nonzero, count as usize, openness, dev, absorb, share);
++        }
++    }
++}

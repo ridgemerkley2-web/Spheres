@@ -1,0 +1,30 @@
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index cd3fc5b..cb20019 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -591,13 +591,15 @@ mod tests {
+         let coalition =
+             [NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan];
+ 
+-        let mut control = world_1990(GameRules::default());
++        let seedenv: u64 = std::env::var("SANCSEED").ok().and_then(|x| x.parse().ok()).unwrap_or(GameRules::default().seed);
++        let mut r0 = GameRules::default(); r0.seed = seedenv;
++        let mut control = world_1990(r0.clone());
+         control.rules.ai_aggression = 0.0;
+         let c0 = control.nation(target).gdp;
+         run_months(&mut control, 240);
+         let base = exact::powf(control.nation(target).gdp / c0, 1.0 / 20.0) - 1.0;
+ 
+-        let mut treated = world_1990(GameRules::default());
++        let mut treated = world_1990(r0.clone());
+         treated.rules.ai_aggression = 0.0;
+         let t0 = treated.nation(target).gdp;
+         let mut share_acc = 0.0;
+@@ -615,6 +617,7 @@ mod tests {
+         let after = exact::powf(treated.nation(target).gdp / t0, 1.0 / 20.0) - 1.0;
+         let mean_share = share_acc / 240.0;
+         let lost = (base - after) * 100.0;
++        println!("DIAGSANC base={:.4} after={:.4} lost={:.4} share={:.4}", base, after, lost, mean_share);
+ 
+         assert!(
+             (0.45..0.60).contains(&mean_share),

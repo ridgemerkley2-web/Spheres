@@ -1,0 +1,435 @@
+diff --git a/spheres-sim/src/tech/biotech.rs b/spheres-sim/src/tech/biotech.rs
+index 1db9a6b..951a7c9 100644
+--- a/spheres-sim/src/tech/biotech.rs
++++ b/spheres-sim/src/tech/biotech.rs
+@@ -21,5 +21,429 @@ use super::TechDef;
+ use super::{tech, Domain, Effect, Era};
+ 
+ pub fn techs() -> Vec<TechDef> {
+-    vec![]
++    use Effect::*;
++    use Era::*;
++    vec![
++        // -------------------------------------------------------------------
++        // Biologics. Medicine stops being chemistry done to a plant extract and
++        // becomes manufacturing: the molecule is specified, an engineered cell
++        // is told to make it, and the same factory can be pointed at the next
++        // one. Everything downstream of this root — vaccines, antibodies, the
++        // peptide drugs of the 2020s — is that trick applied again.
++        // -------------------------------------------------------------------
++
++        // Recombinant human insulin reached the market in 1982 and Amgen's
++        // erythropoietin in 1989, so by 1990 protein drugs grown in engineered
++        // cells were an industry rather than a demonstration. Source: Genentech
++        // and Lilly's Humulin, 1982; Amgen's Epogen, June 1989.
++        tech(
++            "bio_recombinant_protein", "Recombinant Protein Therapeutics",
++            Domain::Biotech, Information,
++            &["core_pcr"], 52.0, 1990,
++            &[Health(0.03), Productivity(0.00008)],
++        ),
++        // A vaccine that carries one engineered antigen instead of a killed
++        // pathogen is safer to make and safer to give, and it can be made in a
++        // country that has no business handling the pathogen at all. Source:
++        // Recombivax HB, the first recombinant human vaccine, licensed 1986;
++        // hepatitis B programmes were running on it by 1990.
++        tech(
++            "bio_recombinant_vaccine", "Recombinant Subunit Vaccine",
++            Domain::Biotech, Information,
++            &["bio_recombinant_protein"], 58.0, 1990,
++            &[Health(0.04)],
++        ),
++        // Linking a bacterial sugar coat to a carrier protein is what finally
++        // made infants respond to it, which is where the deaths were. Source:
++        // the HbOC Haemophilus influenzae type b conjugate was approved for
++        // routine use in infants from two months on 4 October 1990, and invasive
++        // Hib disease collapsed wherever it was given.
++        tech(
++            "bio_conjugate_vaccine", "Conjugate Vaccine",
++            Domain::Biotech, Information,
++            &["bio_recombinant_vaccine"], 64.0, 1990,
++            &[Health(0.04)],
++        ),
++        // The vaccine is the cheap part. What costs money is the refrigerated
++        // chain from the plant to the village and the register that says who has
++        // been reached, and a state that can run one is visibly doing something
++        // for its people. Source: WHO's Expanded Programme on Immunization took
++        // global DTP3 coverage from under 20% in 1980 to about 75% by 1990.
++        tech(
++            "bio_immunization_program", "Universal Immunisation and the Cold Chain",
++            Domain::Biotech, Information,
++            &["bio_conjugate_vaccine"], 78.0, 1991,
++            &[Health(0.05), Fertility(-0.06), Stability(0.08), DiffusionSpeed(0.02)],
++        ),
++        // Contraception runs down the same clinic network as immunisation, which
++        // is why it arrives with it and not before it. Parents who expect their
++        // children to live and can choose when to stop, stop earlier. Source:
++        // the Norplant implant was approved in December 1990 and depot injectable
++        // progestin spread through national programmes over the following years.
++        tech(
++            "bio_family_planning", "Modern Contraception at Scale",
++            Domain::Biotech, Information,
++            &["bio_immunization_program"], 70.0, 1992,
++            &[Fertility(-0.20), Health(0.02)],
++        ),
++
++        // -------------------------------------------------------------------
++        // Drug discovery. The 1990s are when finding a drug stopped being a
++        // matter of screening soil samples and became an engineering discipline
++        // with a throughput figure attached to it.
++        // -------------------------------------------------------------------
++
++        // Robotic plate handling and combinatorial libraries turned the front of
++        // the pipeline into a numbers problem, which is the sort of problem money
++        // and computers can be thrown at. Source: 96-well robotic screening
++        // became the standard industrial front end of discovery in the early
++        // 1990s, on the back of cheap microprocessor-controlled liquid handling.
++        tech(
++            "bio_high_throughput_screening", "High-Throughput Screening",
++            Domain::Biotech, Information,
++            &["core_cmos_submicron"], 48.0, 1991,
++            &[
++                ResearchRate(0.03),
++                CostReduction { domain: Domain::Biotech, frac: 0.04 },
++                Productivity(0.00008),
++            ],
++        ),
++        // Once the target's crystal structure is in hand the molecule can be
++        // drawn to fit it rather than stumbled upon, which is the difference
++        // between searching and designing. Source: dorzolamide, approved in
++        // December 1994 and marketed from 1995, was the first drug carried the
++        // whole way to market from the structure of its target enzyme.
++        tech(
++            "bio_structure_based_design", "Structure-Based Drug Design",
++            Domain::Biotech, Information,
++            &["bio_high_throughput_screening"], 82.0, 1995,
++            &[Health(0.03), Productivity(0.00008)],
++        ),
++        // Three drugs at once, chosen so the virus cannot mutate around all of
++        // them, and a viral load assay to prove it is working. HIV stopped being
++        // a death sentence and became a chronic prescription, which for the
++        // worst-hit states is the difference between losing a generation of
++        // working adults and not. Source: triple therapy was reported at the
++        // Vancouver AIDS conference in July 1996.
++        tech(
++            "bio_antiretroviral_therapy", "Combination Antiretroviral Therapy",
++            Domain::Biotech, Information,
++            &["bio_structure_based_design", "core_pcr"], 100.0, 1996,
++            &[Health(0.05), Stability(0.06)],
++        ),
++        // An antibody is a drug that can be aimed at one protein and nothing
++        // else, and once the mouse sequences were humanised it could be given
++        // more than once. Source: rituximab was approved on 26 November 1997,
++        // the first monoclonal antibody licensed for a cancer indication.
++        tech(
++            "bio_monoclonal_antibody", "Therapeutic Monoclonal Antibodies",
++            Domain::Biotech, Information,
++            &["bio_recombinant_protein"], 92.0, 1997,
++            &[Health(0.04), Productivity(0.00010)],
++        ),
++
++        // -------------------------------------------------------------------
++        // Seeing inside and working inside. Imaging and surgery advance together
++        // because the same solid-state sensors that let a scanner reconstruct a
++        // volume let a surgeon work through a hole the width of a pencil.
++        // -------------------------------------------------------------------
++
++        // Cross-sectional imaging in routine hospital service: MRI had been
++        // clinical since the mid-1980s and spiral CT, which scans a whole volume
++        // in one continuous pass, reached the market as the Siemens Somatom Plus
++        // family in 1990-91. Diagnosis stops depending on the exploratory
++        // incision. Source: Kalender's spiral CT, presented 1989 and shipped by
++        // Siemens from 1990.
++        tech(
++            "bio_digital_imaging", "Digital Cross-Sectional Imaging",
++            Domain::Biotech, Information,
++            &["core_cmos_submicron"], 46.0, 1990,
++            &[Health(0.03), Productivity(0.00008)],
++        ),
++        // The video chip is what made keyhole surgery possible: once the surgeon
++        // could work from a monitor rather than through the wound, recovery went
++        // from weeks in a bed to days, and hospital capacity effectively
++        // multiplied. Source: the first laparoscopic cholecystectomy was done in
++        // 1985 and the technique swept general surgery between 1989 and 1992.
++        tech(
++            "bio_minimal_access_surgery", "Minimal-Access Surgery",
++            Domain::Biotech, Information,
++            &["bio_digital_imaging"], 60.0, 1991,
++            &[Health(0.04), Productivity(0.00010)],
++        ),
++
++        // -------------------------------------------------------------------
++        // The 2000s. Vaccines get harder targets, cancer drugs get an address,
++        // sequencing gets cheap, and the money to deliver any of it in poor
++        // countries finally shows up.
++        // -------------------------------------------------------------------
++
++        // Pneumonia is the largest single killer of children, and conjugation
++        // was what made a pneumococcal vaccine work in the age group that dies
++        // of it. Source: the seven-valent Prevnar was licensed in February 2000.
++        tech(
++            "bio_pneumococcal_conjugate", "Pneumococcal Conjugate Vaccine",
++            Domain::Biotech, Networked,
++            &["bio_conjugate_vaccine"], 106.0, 2000,
++            &[Health(0.05), Fertility(-0.05)],
++        ),
++        // The hormonal intrauterine device and the second-generation implant
++        // removed the daily decision from contraception, which is most of what
++        // separates a method that works in a trial from one that works in a
++        // country. Source: Mirena, the first hormonal IUD licensed in the United
++        // States, approved 6 December 2000 after a decade of Finnish use.
++        tech(
++            "bio_long_acting_contraception", "Long-Acting Reversible Contraception",
++            Domain::Biotech, Networked,
++            &["bio_family_planning"], 96.0, 2000,
++            &[Fertility(-0.16), Health(0.02)],
++        ),
++        // A drug aimed at the specific fusion protein driving one cancer, rather
++        // than at cell division in general. It works because the target was
++        // known first, which is the whole argument for structure-based design.
++        // Source: imatinib was approved on 10 May 2001 for chronic myeloid
++        // leukaemia and turned it into a managed condition.
++        tech(
++            "bio_targeted_cancer_therapy", "Targeted Kinase Therapy",
++            Domain::Biotech, Networked,
++            &["bio_structure_based_design"], 138.0, 2001,
++            &[Health(0.03), Productivity(0.00008)],
++        ),
++        // Bolting a CT scanner to a PET ring puts the metabolic signal on the
++        // anatomy in one sitting, which is what staging a cancer actually
++        // requires. Source: the GE Discovery LS, the first commercial PET/CT,
++        // shipped in early 2001.
++        tech(
++            "bio_pet_molecular_imaging", "PET/CT Molecular Imaging",
++            Domain::Biotech, Networked,
++            &["bio_digital_imaging"], 122.0, 2001,
++            &[Health(0.03)],
++        ),
++        // Financing and logistics rather than laboratory science: pooled funds,
++        // procurement at scale, bed nets, artemisinin combinations and generic
++        // antiretrovirals delivered through clinics that already existed. It is
++        // the largest single intervention in mortality in the period, and a
++        // government that visibly delivers it is a government people put up
++        // with. Source: WHO recommended artemisinin combination therapy as first
++        // line in 2001, the Global Fund began disbursing in 2002 and PEPFAR
++        // launched in 2003.
++        tech(
++            "bio_global_health_delivery", "Global Disease-Control Programmes",
++            Domain::Biotech, Networked,
++            &["bio_antiretroviral_therapy", "bio_immunization_program"], 158.0, 2002,
++            &[
++                Health(0.07),
++                Fertility(-0.10),
++                Stability(0.12),
++                DiffusionSpeed(0.02),
++                Productivity(0.00012),
++            ],
++        ),
++        // A stent that elutes an antiproliferative drug keeps the vessel open
++        // instead of scarring shut, which is what turned angioplasty from a
++        // procedure that often had to be repeated into one that usually did not.
++        // Source: the sirolimus-eluting Cypher was CE-marked in 2002 and approved
++        // in the United States in 2003.
++        tech(
++            "bio_drug_eluting_stent", "Drug-Eluting Stent",
++            Domain::Biotech, Networked,
++            &["bio_minimal_access_surgery"], 114.0, 2003,
++            &[Health(0.03)],
++        ),
++        // Reading millions of short fragments in parallel rather than one lane at
++        // a time. The cost of a genome fell faster than the cost of the computers
++        // needed to assemble it, which is rare enough to be worth noting.
++        // Source: the 454 Genome Sequencer GS20, the first commercial massively
++        // parallel instrument, shipped in October 2005.
++        tech(
++            "bio_next_gen_sequencing", "Massively Parallel Sequencing",
++            Domain::Biotech, Networked,
++            &["core_genome_sequencing"], 176.0, 2005,
++            &[
++                Health(0.02),
++                ResearchRate(0.02),
++                CostReduction { domain: Domain::Biotech, frac: 0.03 },
++                DiffusionEmission(0.03),
++                Productivity(0.00015),
++            ],
++        ),
++        // The first vaccine given to healthy adolescents to prevent a cancer
++        // twenty years later, which is a public health system betting on its own
++        // continuity. Source: the quadrivalent Gardasil was licensed on 8 June
++        // 2006.
++        tech(
++            "bio_hpv_vaccine", "Human Papillomavirus Vaccine",
++            Domain::Biotech, Networked,
++            &["bio_recombinant_vaccine"], 128.0, 2006,
++            &[Health(0.03)],
++        ),
++
++        // -------------------------------------------------------------------
++        // The 2010s. Sequencing arrives at the bedside, the immune system is
++        // put to work on tumours, and the catheter finishes replacing the
++        // sternotomy.
++        // -------------------------------------------------------------------
++
++        // Sequencing as a diagnostic rather than a research project: an
++        // undiagnosed child gets an answer in weeks, and a tumour gets typed by
++        // its mutations rather than by the organ it started in. Source: clinical
++        // whole-exome testing was offered from October 2011.
++        tech(
++            "bio_clinical_genomics", "Clinical Genome Diagnostics",
++            Domain::Biotech, Platform,
++            &["bio_next_gen_sequencing"], 205.0, 2011,
++            &[Health(0.04), DiffusionEmission(0.02), Productivity(0.00015)],
++        ),
++        // Not a drug that kills the tumour but one that takes the brake off the
++        // patient's own T cells. It requires the antibody manufacturing of the
++        // 1990s and the target biology of the 2000s to have both arrived first.
++        // Source: ipilimumab was approved on 25 March 2011 for metastatic
++        // melanoma.
++        tech(
++            "bio_checkpoint_immunotherapy", "Checkpoint Inhibitor Immunotherapy",
++            Domain::Biotech, Platform,
++            &["bio_monoclonal_antibody", "bio_targeted_cancer_therapy"], 240.0, 2011,
++            &[Health(0.04)],
++        ),
++        // A heart valve delivered on a catheter, in patients too frail to be
++        // opened. It is the same argument as the stent, made twenty years later
++        // against a harder problem. Source: the Edwards Sapien valve was
++        // approved in the United States on 2 November 2011 for inoperable aortic
++        // stenosis, having been CE-marked in 2007.
++        tech(
++            "bio_transcatheter_valve", "Transcatheter Heart Valve",
++            Domain::Biotech, Platform,
++            &["bio_drug_eluting_stent"], 186.0, 2011,
++            &[Health(0.03)],
++        ),
++        // A twelve-week oral course that cures hepatitis C outright rather than
++        // suppressing it, which is the first time a chronic viral infection of
++        // that scale could simply be removed from a population. Source:
++        // sofosbuvir was approved on 6 December 2013.
++        tech(
++            "bio_direct_acting_antiviral", "Direct-Acting Antivirals",
++            Domain::Biotech, Platform,
++            &["bio_structure_based_design", "bio_antiretroviral_therapy"], 222.0, 2013,
++            &[Health(0.05)],
++        ),
++        // A working gene delivered by a virus to the tissue that lacks it, once
++        // and permanently. It needed clinical sequencing first, because you
++        // cannot correct a mutation you have not identified. Source: Luxturna,
++        // the first in vivo gene therapy licensed for an inherited disease, was
++        // approved on 19 December 2017.
++        tech(
++            "bio_gene_therapy", "In Vivo Gene Therapy",
++            Domain::Biotech, Platform,
++            &["bio_clinical_genomics"], 296.0, 2017,
++            &[Health(0.04), Productivity(0.00010)],
++        ),
++        // The patient's own T cells are removed, given a receptor for the
++        // tumour's surface marker and put back. A manufactured cell rather than
++        // a manufactured molecule, and the logistics are correspondingly brutal.
++        // Source: tisagenlecleucel was approved on 30 August 2017.
++        tech(
++            "bio_car_t_therapy", "Engineered T-Cell Therapy",
++            Domain::Biotech, Platform,
++            &["bio_checkpoint_immunotherapy"], 330.0, 2017,
++            &[Health(0.03)],
++        ),
++
++        // -------------------------------------------------------------------
++        // The 2020s. A pandemic proves the vaccine platform, editing reaches
++        // patients, and the discovery pipeline acquires a model that can guess
++        // the answer.
++        // -------------------------------------------------------------------
++
++        // The antigen is a sequence file and the factory does not change between
++        // diseases, which is why the interval between publishing a genome and
++        // dosing a human collapsed from years to weeks. Source: BNT162b2 was
++        // authorised in the United Kingdom on 2 December 2020 and in the United
++        // States on 11 December 2020.
++        tech(
++            "bio_mrna_vaccine", "mRNA Vaccine Platform",
++            Domain::Biotech, Intelligent,
++            &["bio_recombinant_vaccine", "bio_clinical_genomics"], 355.0, 2020,
++            &[Health(0.06), Productivity(0.00015)],
++        ),
++        // Sequencing every isolate and sharing the result within days, so a
++        // variant is described before it arrives rather than after. A state that
++        // can see an outbreak coming makes better decisions about it, and one
++        // that publishes what it sees gets the same courtesy back. Source: the
++        // global SARS-CoV-2 sequencing networks of 2020-21, which by 2021 were
++        // depositing millions of genomes.
++        tech(
++            "bio_genomic_surveillance", "Genomic Pathogen Surveillance",
++            Domain::Biotech, Intelligent,
++            &["bio_next_gen_sequencing", "bio_global_health_delivery"], 320.0, 2021,
++            &[Health(0.03), Stability(0.06), DiffusionEmission(0.03)],
++        ),
++        // A designed peptide, stabilised against the enzymes that would clear it
++        // in minutes, that moves body weight by fifteen percent. Obesity and its
++        // downstream diabetes and cardiovascular disease are the largest
++        // morbidity burden in every developed economy, and this is the first
++        // drug to touch them at scale. Source: semaglutide 2.4mg was approved
++        // for chronic weight management on 4 June 2021.
++        tech(
++            "bio_glp1_metabolic", "GLP-1 Metabolic Therapy",
++            Domain::Biotech, Intelligent,
++            &["bio_recombinant_protein", "bio_structure_based_design"], 380.0, 2021,
++            &[Health(0.05), Productivity(0.00012)],
++        ),
++        // Predicting a protein's fold from its sequence removes the slowest step
++        // in structure-based design, which was getting a crystal. The screening
++        // deck and the crystallography had to come first — the model is trained
++        // on what they produced. Source: AlphaFold2 was published and released
++        // in July 2021, with the structure database opening the same month.
++        tech(
++            "bio_ai_drug_discovery", "Learned Structure Prediction and Design",
++            Domain::Biotech, Intelligent,
++            &["core_gpu_deep_learning", "bio_structure_based_design"], 430.0, 2021,
++            &[
++                Health(0.02),
++                ResearchRate(0.03),
++                CostReduction { domain: Domain::Biotech, frac: 0.03 },
++                Productivity(0.00025),
++            ],
++        ),
++        // Editing the patient's own cells to fix the cause rather than manage the
++        // consequence. It is a cure with a manufacturing cost per patient, which
++        // is a new and awkward category for every health system that has one.
++        // Source: Casgevy, the first licensed CRISPR therapy, was approved in the
++        // United Kingdom in November 2023 and in the United States on 8 December
++        // 2023.
++        tech(
++            "bio_crispr_therapeutics", "Therapeutic Genome Editing",
++            Domain::Biotech, Intelligent,
++            &["core_crispr_editing", "bio_gene_therapy"], 480.0, 2023,
++            &[Health(0.04), Productivity(0.00012)],
++        ),
++
++        // -------------------------------------------------------------------
++        // Past the present day. Both of these are extrapolations from work that
++        // exists and has not yet worked, and are marked as such.
++        // -------------------------------------------------------------------
++
++        // Speculative: an organ supply that is manufactured rather than donated.
++        // Gene-edited pig hearts and kidneys were transplanted into human
++        // recipients from January 2022 and none has yet given a patient years of
++        // life; the failure is immunological, which is why editing is the
++        // ancestor. Nothing resembling a routine supply exists today.
++        tech(
++            "bio_xeno_organ_supply", "Engineered Replacement Organs",
++            Domain::Biotech, Frontier,
++            &["bio_crispr_therapeutics"], 720.0, 2035,
++            &[Health(0.05), Productivity(0.00010)],
++        ),
++        // Speculative: drugs that act on ageing itself rather than on the
++        // diseases it causes. The first human senolytic trial reported in 2019
++        // and showed only that senescent cells could be cleared, not that anyone
++        // lived longer or better for it. Treating ageing as a modifiable process
++        // remains unproven in humans.
++        tech(
++            "bio_senescence_therapy", "Therapies for Biological Ageing",
++            Domain::Biotech, Frontier,
++            &["bio_crispr_therapeutics", "bio_glp1_metabolic"], 880.0, 2038,
++            &[Health(0.07), Productivity(0.00015)],
++        ),
++    ]
+ }

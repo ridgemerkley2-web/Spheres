@@ -1,0 +1,147 @@
+diff --git a/spheres-sim/src/economy.rs b/spheres-sim/src/economy.rs
+index b51244f..cf02a2d 100644
+--- a/spheres-sim/src/economy.rs
++++ b/spheres-sim/src/economy.rs
+@@ -137,7 +137,7 @@ pub fn tick(w: &mut WorldState) {
+         // 19.77x at 0.030, both outside the 11.0-19.0 band — so the test does
+         // constrain this line; it simply was not this line that broke.
+         // SANCTION_BITE above is what the roster actually moved.
+-        let catchup = (1.0 - dev) * 0.020;
++        let catchup = (1.0 - dev) * qa_knob("QA_CATCHUP", 0.020);
+         // Growth accounting: output growth is productivity, plus capital's
+         // contribution, plus labour's share of the change in the workforce. A
+         // shrinking workforce is a headwind no amount of investment offsets,
+@@ -203,7 +203,7 @@ pub fn tick(w: &mut WorldState) {
+         }
+ 
+         // ---- Drags ----
+-        let sanction_drag = sanction_share * SANCTION_BITE;
++        let sanction_drag = sanction_share * qa_knob("QA_BITE", SANCTION_BITE);
+         let war_drag = if at_war { 0.020 + n.war_exhaustion * 0.03 } else { 0.0 };
+         let debt_drag = if n.debt_gdp > 0.9 { (n.debt_gdp - 0.9) * 0.02 } else { 0.0 };
+         let instability_drag = if n.stability < 40.0 { (40.0 - n.stability) * 0.0009 } else { 0.0 };
+@@ -232,7 +232,8 @@ pub fn tick(w: &mut WorldState) {
+         };
+ 
+         let growth_annual = potential + demand_gap + bubble_boost + oil_effect
+-            - sanction_drag - war_drag - debt_drag - instability_drag - embargo_drag + noise;
++            - sanction_drag - war_drag - debt_drag - instability_drag - embargo_drag + noise
++            + qa_knob("QA_RUNAWAY", 0.0);
+ 
+         n.gdp *= 1.0 + growth_annual / 12.0;
+         n.growth_last = n.growth_last * 0.9 + growth_annual * 0.1;
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index 8fd5057..ec7c0ee 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -2172,6 +2172,57 @@ mod tests {
+         }
+         assert!(born >= 6, "the union held together too often: {}/10", born);
+     }
++    #[test]
++    #[ignore]
++    fn qa_sanction_cost_calibration() {
++        // Reconstruction of the table economy.rs cites as
++        // `sanction_cost_calibration`, which does not exist in the repo.
++        let target = NationId::China;
++        for (label, coalition) in [
++            ("USA alone", vec![NationId::USA]),
++            ("G5", vec![NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan]),
++        ] {
++            let mut control = world_1990(GameRules::default());
++            control.rules.ai_aggression = 0.0;
++            let c0 = control.nation(target).gdp;
++            run_months(&mut control, 240);
++            let base = exact::powf(control.nation(target).gdp / c0, 1.0 / 20.0) - 1.0;
++
++            let mut t = world_1990(GameRules::default());
++            t.rules.ai_aggression = 0.0;
++            let t0 = t.nation(target).gdp;
++            let mut share = 0.0;
++            for _ in 0..240 {
++                for i in &coalition {
++                    if !t.is_sanctioning(*i, target) { t.sanctions.push((*i, target)); }
++                }
++                share += t.sanction_weight(target);
++                tick_month(&mut t, &[]);
++            }
++            let after = exact::powf(t.nation(target).gdp / t0, 1.0 / 20.0) - 1.0;
++            println!(
++                "QASANC bite={:.3} {:9} share={:.3} base={:.3}% after={:.3}% lost={:.2}pt",
++                crate::world::qa_knob("QA_BITE", 0.020), label, share / 240.0,
++                base * 100.0, after * 100.0, (base - after) * 100.0
++            );
++        }
++    }
++
++    #[test]
++    #[ignore]
++    fn qa_poorest_margin() {
++        let mut worst = usize::MAX;
++        let mut vals: Vec<usize> = vec![];
++        for seed in 0..12u64 {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            run_months(&mut w, 360);
++            let m = w.nations.iter().filter(|n| n.alive).map(|n| n.tech.count()).min().unwrap();
++            vals.push(m);
++            if m < worst { worst = m; }
++        }
++        println!("QAPOOR poorest per seed {:?} worst {} (floor 5)", vals, worst);
++    }
++
+ }
+ 
+ 
+diff --git a/spheres-sim/src/statecraft.rs b/spheres-sim/src/statecraft.rs
+index 5354bc0..395be20 100644
+--- a/spheres-sim/src/statecraft.rs
++++ b/spheres-sim/src/statecraft.rs
+@@ -129,9 +129,9 @@ fn aid_flows(w: &mut WorldState) {
+                 // Transferred weapons are budget the client never had to raise.
+                 // Same curve war.rs uses for domestic spending, so a client's
+                 // army converges on what its patron is willing to fund.
+-                let sustained = ((client_gdp * client_mil_share + annual) * 0.30).sqrt() * 8.0;
++                let sustained = ((client_gdp * client_mil_share + annual * crate::world::qa_knob("QA_ARMS_ALPHA", 1.0)) * 0.30).sqrt() * 8.0;
+                 let c = w.nation_mut(f.client);
+-                c.mil_strength += (sustained - client_strength) * 0.02;
++                c.mil_strength += (sustained - client_strength * crate::world::qa_knob("QA_ARMS_DAMP", 1.0)) * 0.02;
+             }
+         }
+         // Dependence reads as friendship right up until the money stops.
+diff --git a/spheres-sim/src/tech/mod.rs b/spheres-sim/src/tech/mod.rs
+index 687b0bb..8245284 100644
+--- a/spheres-sim/src/tech/mod.rs
++++ b/spheres-sim/src/tech/mod.rs
+@@ -971,8 +971,8 @@ fn effective_cost(
+     // and the growth tests generally: the crossover must stay under the smallest
+     // economy those are calibrated on, and Brazil's 0.14 is the binding one.
+     // Admitted band roughly 0.08..0.13.
+-    let off_the_shelf = OFF_THE_SHELF * (s2 * share);
+-    let buying = (scale / OWN_PLANT_SCALE).min(1.0);
++    let off_the_shelf = crate::world::qa_knob("QA_OTS", OFF_THE_SHELF) * (s2 * share);
++    let buying = (scale / crate::world::qa_knob("QA_OPS", OWN_PLANT_SCALE)).min(1.0);
+     let size = scale * ((1.0 - off_the_shelf) + off_the_shelf * buying);
+     (def.cost * copy * own).max(def.cost * build * size)
+ }
+diff --git a/spheres-sim/src/world.rs b/spheres-sim/src/world.rs
+index 42f055d..6bcd87f 100644
+--- a/spheres-sim/src/world.rs
++++ b/spheres-sim/src/world.rs
+@@ -590,3 +590,17 @@ impl War {
+         }
+     }
+ }
++
++// ===== QA PROBE ONLY — not for merge. Reads env once, caches. =====
++pub fn qa_knob(name: &str, default: f64) -> f64 {
++    use std::collections::HashMap;
++    use std::sync::OnceLock;
++    static M: OnceLock<HashMap<String, f64>> = OnceLock::new();
++    let m = M.get_or_init(|| {
++        std::env::vars()
++            .filter(|(k, _)| k.starts_with("QA_"))
++            .filter_map(|(k, v)| v.parse::<f64>().ok().map(|x| (k, x)))
++            .collect()
++    });
++    *m.get(name).unwrap_or(&default)
++}

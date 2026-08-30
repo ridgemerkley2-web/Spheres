@@ -1,0 +1,43 @@
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index 4d145bf..48db81e 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -255,6 +255,38 @@ mod tests {
+         }
+     }
+ 
++    #[test]
++    #[ignore]
++    fn qa_probe() {
++        let mut w = world_1990(GameRules::default());
++        println!("QA month0 hash {:#018x} bytes {}", state_hash(&w), save(&w).len());
++        run_months(&mut w, 12);
++        println!("QA month12 hash {:#018x}", state_hash(&w));
++        let mut w2 = world_1990(GameRules::default());
++        run_months(&mut w2, 240);
++        println!("QA month240 hash {:#018x}", state_hash(&w2));
++        let mut w3 = world_1990(GameRules::default());
++        run_months(&mut w3, 420);
++        println!("QA month420 hash {:#018x}", state_hash(&w3));
++    }
++
++    #[test]
++    #[ignore]
++    fn qa_hist() {
++        for seed in [1990u64, 0, 42, 7] {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            let mut n = 0usize;
++            let mut h64: u64 = 0xcbf29ce484222325;
++            for _ in 0..600 {
++                for h in tick_month(&mut w, &[]) {
++                    n += 1;
++                    for b in h.as_bytes() { h64 ^= *b as u64; h64 = h64.wrapping_mul(0x100000001b3); }
++                }
++            }
++            println!("QA hist seed {} headlines {} digest {:#018x}", seed, n, h64);
++        }
++    }
++
+     #[test]
+     fn determinism_same_seed_same_world() {
+         let mut a = world_1990(GameRules::default());

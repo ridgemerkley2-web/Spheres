@@ -1,0 +1,652 @@
+diff --git a/spheres-sim/data/relations_1990.json b/spheres-sim/data/relations_1990.json
+index dc79db4..de1b490 100644
+--- a/spheres-sim/data/relations_1990.json
++++ b/spheres-sim/data/relations_1990.json
+@@ -1130,6 +1130,53 @@
+         { "a": "NewZealand", "b": "USSR", "value": 15.0 },
+         { "a": "NewZealand", "b": "France", "value": -30.0 }
+       ]
++    },
++    {
++      "note": [
++        "West Africa (branch feat/r2-westafrica2). Eleven nations were added to the roster with exactly one territorial claim between them, which is the transcribed fact and would leave the region looking placid. It was not placid. What these states did to each other in 1990 was sponsor each other's rebels, close each other's borders and expel each other's populations, and this block is where that goes - it is the half of the region's politics that adjacency and claims cannot carry.",
++        "Senegal and Mauritania at -55 is the lowest number in this block and one of the lowest in the file, and it is fifteen months old when the game opens. A quarrel between Soninke farmers and Mauritanian herders at Diawara on 9 April 1989 killed two men; within a week there were pogroms against Mauritanian shopkeepers in Dakar and against black Africans in Nouakchott, several hundred dead on both sides, and by the end of the summer something like 70,000 people had been airlifted or driven across the river in each direction. Mauritania used the crisis to expel tens of thousands of its own Halpulaar and Soninke citizens as Senegalese. Diplomatic relations were broken off in August 1989 and were not restored until April 1992. Two states with a border, a river, an argument about whose people are whose, and no shooting war - which is exactly the state a relations number has to be able to hold when there is no claim to explain it.",
++        "Liberia's row is the war. On 24 December 1989 Charles Taylor crossed into Nimba County from Cote d'Ivoire with fighters trained at Tajura in Libya and staged through Burkina Faso, and Ouagadougou's involvement was not deniable: Blaise Compaore supplied men and a transit route and had been Taylor's patron since Taylor walked out of a Ghanaian jail. Liberia-Burkina Faso at -45 and Liberia-Libya at -50 are that. Against them, Samuel Doe's friends: the United States, which had put something like half a billion dollars into Liberia in the 1980s for a Voice of America relay, an Omega navigation station and a CIA station, and which by January 1990 was quietly done with him; Israel, whose relations Doe restored in 1983 as the first African state to break the post-1973 boycott; and Nigeria, whose Ibrahim Babangida was personally close to Doe and who eight months later put the largest contingent into ECOMOG to stop Taylor taking Monrovia.",
++        "Ghana and Togo at -30 is the quarrel the roster's Togo row declines to enter as a claim. There is a real irredentism underneath it - Ewe reunification and the western half of former German Togoland, which is now Ghana's Volta region - but by 1990 what the two governments actually did was accuse each other of coups: Lome blamed Accra and Ouagadougou for the commando raid on Lome of 23 September 1986, Accra blamed Lome for hosting its dissidents, and the border shut and reopened for a decade. A hostility with no territorial demand behind it, which is what this table is for.",
++        "France's numbers are the franc zone, and they are not uniform. Togo at 55 and Niger at 55 are the two Paris cared most about keeping - Eyadema was France's man in the region for thirty-eight years, and Arlit's uranium fed French reactors. Guinea at 25 is the lowest, and it is 1958: Sekou Toure was the one African leader to vote non in de Gaulle's referendum, France withdrew everything down to the telephone wiring, and relations were not restored until 1975. Burkina Faso at 30 is the residue of Sankara, who had spent four years insulting Paris in public.",
++        "The Mali-Burkina Faso pair at 15 is a border war that ended. They fought in 1974 and again over five days at Christmas 1985; the International Court of Justice divided the Agacher Strip between them on 22 December 1986 and both accepted, which is why the roster carries no claim either way. What is left is 15 - correct, cool, and not friendly."
++      ],
++      "pairs": [
++        { "a": "Senegal", "b": "Mauritania", "value": -55.0 },
++        { "a": "Senegal", "b": "Gambia", "value": 35.0 },
++        { "a": "Senegal", "b": "GuineaBissau", "value": 20.0 },
++        { "a": "Senegal", "b": "Mali", "value": 35.0 },
++        { "a": "Senegal", "b": "Guinea", "value": 25.0 },
++        { "a": "Liberia", "b": "BurkinaFaso", "value": -45.0 },
++        { "a": "Liberia", "b": "Libya", "value": -50.0 },
++        { "a": "Liberia", "b": "USA", "value": 35.0 },
++        { "a": "Liberia", "b": "Israel", "value": 45.0 },
++        { "a": "Liberia", "b": "Nigeria", "value": 30.0 },
++        { "a": "Liberia", "b": "Guinea", "value": 15.0 },
++        { "a": "Liberia", "b": "SierraLeone", "value": 20.0 },
++        { "a": "Ghana", "b": "Togo", "value": -30.0 },
++        { "a": "Ghana", "b": "BurkinaFaso", "value": 15.0 },
++        { "a": "Mali", "b": "BurkinaFaso", "value": 15.0 },
++        { "a": "Mali", "b": "Algeria", "value": 30.0 },
++        { "a": "Niger", "b": "Libya", "value": -15.0 },
++        { "a": "Niger", "b": "Nigeria", "value": 30.0 },
++        { "a": "Benin", "b": "Nigeria", "value": 25.0 },
++        { "a": "Benin", "b": "Togo", "value": 15.0 },
++        { "a": "BurkinaFaso", "b": "Libya", "value": 45.0 },
++        { "a": "Guinea", "b": "SierraLeone", "value": 30.0 },
++        { "a": "Guinea", "b": "GuineaBissau", "value": 25.0 },
++        { "a": "Mauritania", "b": "Morocco", "value": 30.0 },
++        { "a": "Mauritania", "b": "Algeria", "value": 25.0 },
++        { "a": "Mauritania", "b": "Iraq", "value": 40.0 },
++        { "a": "Gambia", "b": "UK", "value": 55.0 },
++        { "a": "France", "b": "Togo", "value": 55.0 },
++        { "a": "France", "b": "Niger", "value": 55.0 },
++        { "a": "France", "b": "Mali", "value": 45.0 },
++        { "a": "France", "b": "Benin", "value": 35.0 },
++        { "a": "France", "b": "Mauritania", "value": 35.0 },
++        { "a": "France", "b": "BurkinaFaso", "value": 30.0 },
++        { "a": "France", "b": "Guinea", "value": 25.0 },
++        { "a": "Portugal", "b": "GuineaBissau", "value": 35.0 }
++      ]
+     }
+   ]
+ }
+diff --git a/spheres-sim/src/data/embedded.rs b/spheres-sim/src/data/embedded.rs
+index b7507a4..36b0bbe 100644
+--- a/spheres-sim/src/data/embedded.rs
++++ b/spheres-sim/src/data/embedded.rs
+@@ -106,6 +106,18 @@ pub const EMBEDDED_NATIONS: &[Source<'static>] = &[
+     Source { file: "data/nations/canada.json", json: include_str!("../../data/nations/canada.json") },
+     Source { file: "data/nations/australia.json", json: include_str!("../../data/nations/australia.json") },
+     Source { file: "data/nations/newzealand.json", json: include_str!("../../data/nations/newzealand.json") },
++    // West Africa (branch feat/r2-westafrica2), in ROSTER order.
++    Source { file: "data/nations/mali.json", json: include_str!("../../data/nations/mali.json") },
++    Source { file: "data/nations/burkinafaso.json", json: include_str!("../../data/nations/burkinafaso.json") },
++    Source { file: "data/nations/niger.json", json: include_str!("../../data/nations/niger.json") },
++    Source { file: "data/nations/guinea.json", json: include_str!("../../data/nations/guinea.json") },
++    Source { file: "data/nations/benin.json", json: include_str!("../../data/nations/benin.json") },
++    Source { file: "data/nations/togo.json", json: include_str!("../../data/nations/togo.json") },
++    Source { file: "data/nations/sierraleone.json", json: include_str!("../../data/nations/sierraleone.json") },
++    Source { file: "data/nations/liberia.json", json: include_str!("../../data/nations/liberia.json") },
++    Source { file: "data/nations/mauritania.json", json: include_str!("../../data/nations/mauritania.json") },
++    Source { file: "data/nations/gambia.json", json: include_str!("../../data/nations/gambia.json") },
++    Source { file: "data/nations/guineabissau.json", json: include_str!("../../data/nations/guineabissau.json") },
+ ];
+ 
+ pub const EMBEDDED_RELATIONS: Source<'static> = Source {
+diff --git a/spheres-sim/src/government.rs b/spheres-sim/src/government.rs
+index 7458d92..99bbc73 100644
+--- a/spheres-sim/src/government.rs
++++ b/spheres-sim/src/government.rs
+@@ -3393,6 +3393,457 @@ pub const POLITIES: &[Polity] = &[
+         ruling: "the House of Representatives",
+         pillars: &[],
+     },
++
++    // ---- West Africa (branch feat/r2-westafrica2) -------------------------
++    // Eleven blocks, and ten of the eleven are regimes that held no contested
++    // election before January 1990 at all. Where that is so, this table follows
++    // the precedent Ghana and Cameroon set above and enters the FIRST FREE
++    // ELECTION AFTER THE GAME OPENS, saying so each time — a party table has to
++    // hold something, and a real later result is better evidence about who the
++    // political nation was than a single ruling party at 1.00 with nothing
++    // behind it. Two of the eleven need no such device: the Gambia was a working
++    // multi-party democracy and its 1987 result is transcribed straight, and
++    // Liberia had held an election in 1985 which was stolen and is entered as
++    // the stolen count it was.
++    //
++    // The dates in the comments are the dates. Nothing here schedules any of
++    // them: the model is free to arrive at a Malian coup in March 1991 or a
++    // Beninese national conference in February 1990 or neither.
++
++    // Mali — the Union Democratique du Peuple Malien, sole legal party since
++    // its founding congress of March 1979 and the civilian dress of the
++    // military government Moussa Traore had led since 19 November 1968. No
++    // legislature that could refuse him anything and no contested vote in
++    // twenty-one years. The shares are the National Assembly election of 23
++    // February and 8 March 1992, the first free one, held after Traore was
++    // overthrown on 26 March 1991 and after the national conference of July
++    // 1991: ADEMA-PASJ 48.4% and 76 of 129 seats, US-RDA 17.6%, CNID 5.6%,
++    // PDP 5.1%, RDP 4.4%, UDD 4.4%. Turnout was 21.3%, which is its own
++    // comment on what a national conference produces.
++    // https://en.wikipedia.org/wiki/1992_Malian_parliamentary_election
++    Polity {
++        nation: NationId::Mali,
++        system: Electoral::TwoRound,
++        term_months: 60,
++        next: (0, 0),
++        parties: &[
++            p("ml_adema", "Alliance for Democracy in Mali", "Alliance pour la Democratie au Mali - Parti Africain pour la Solidarite et la Justice", Family::SocialDemocratic, 0.484),
++            p("ml_usrda", "Sudanese Union - African Democratic Rally", "Union Soudanaise - Rassemblement Democratique Africain", Family::SocialDemocratic, 0.176),
++            p("ml_cnid", "National Congress for Democratic Initiative", "Congres National d'Initiative Democratique", Family::Liberal, 0.056),
++            p("ml_pdp", "Party for Democracy and Progress", "Parti pour la Democratie et le Progres", Family::SocialDemocratic, 0.051),
++            p("ml_rdp", "Rally for Democracy and Progress", "Rassemblement pour la Democratie et le Progres", Family::Liberal, 0.044),
++            p("ml_udd", "Union for Democracy and Development", "Union pour la Democratie et le Developpement", Family::Liberal, 0.044),
++        ],
++        ruling: "the Union Democratique du Peuple Malien",
++        pillars: &[
++            // Traore was a lieutenant when he took power and the army was the
++            // whole of his authority. It is also what removed him: Amadou
++            // Toumani Toure arrested him on 26 March 1991, four days after the
++            // army had shot something like 300 demonstrators in Bamako.
++            pl(Pillar::Army, "the Armee de Terre officer corps"),
++            pl(Pillar::Party, "the UDPM Central Executive Bureau"),
++            pl(Pillar::Security, "the Service de Securite d'Etat"),
++        ],
++    },
++
++    // Burkina Faso — the Popular Front, which is not a party but the junta
++    // Blaise Compaore formed on 15 October 1987 after Thomas Sankara was shot.
++    // No legislature, no election, and until April 1989 no party either; the
++    // Organisation pour la Democratie Populaire - Mouvement du Travail was
++    // built to be the Front's civilian face and had existed for eight months
++    // when the game opens. The shares are the National Assembly election of 24
++    // May 1992, the first multi-party vote: ODP-MT 48.5% and 78 of 107 seats,
++    // CNPP-PSD 12.0%, RDA 11.3%, ADF 8.7%, PAI 4.1%. Compaore had already taken
++    // the presidency unopposed on 1 December 1991 on a 25% turnout against an
++    // opposition boycott, which is why the presidential figure is not the one
++    // used here.
++    // https://en.wikipedia.org/wiki/1992_Burkinab%C3%A9_parliamentary_election
++    Polity {
++        nation: NationId::BurkinaFaso,
++        system: Electoral::Proportional,
++        term_months: 60,
++        next: (0, 0),
++        parties: &[
++            p("bf_odpmt", "Organisation for Popular Democracy - Labour Movement", "Organisation pour la Democratie Populaire - Mouvement du Travail", Family::BigTent, 0.485),
++            p("bf_cnppsd", "National Convention of Progressive Patriots - Social Democratic Party", "Convention Nationale des Patriotes Progressistes - Parti Social-Democrate", Family::SocialDemocratic, 0.120),
++            p("bf_rda", "African Democratic Rally", "Rassemblement Democratique Africain", Family::Conservative, 0.113),
++            p("bf_adf", "Alliance for Democracy and Federation", "Alliance pour la Democratie et la Federation", Family::Liberal, 0.087),
++            p("bf_pai", "African Independence Party", "Parti Africain de l'Independance", Family::Communist, 0.041),
++        ],
++        ruling: "the Popular Front",
++        pillars: &[
++            // The distinction this table insists on. What kept Compaore was not
++            // the army but the para-commando regiment at Po he had commanded
++            // himself, the nucleus of what became the Regiment de Securite
++            // Presidentielle — the formation that killed Sankara in 1987 and
++            // that mutinied and was disbanded in 2015, twenty-eight years and
++            // one presidency later.
++            pl(Pillar::Army, "the Po para-commando regiment"),
++            pl(Pillar::Party, "the Front Populaire coordinating committee"),
++            pl(Pillar::Security, "the Centre National de Documentation"),
++        ],
++    },
++
++    // Niger — the Mouvement National pour la Societe de Developpement, sole
++    // legal party under the constitution approved by referendum on 24 September
++    // 1989, and the civilianisation of the Conseil Militaire Supreme that had
++    // governed since Seyni Kountche's coup of 15 April 1974. Ali Saibou was
++    // elected president unopposed on 10 December 1989 on a single MNSD list —
++    // THREE WEEKS BEFORE THE GAME OPENS — which is a real election with a real
++    // date and no choice in it, so it is not the one entered. The shares are
++    // the National Assembly election of 14 February 1993, the first multi-party
++    // vote: MNSD-Nassara 30.7% and 29 of 83 seats, CDS-Rahama 27.3%,
++    // ANDP-Zaman Lahiya 15.5%, PNDS-Tarayya 14.6%. The MNSD won the most seats
++    // and lost the government, because the other eight parties formed the
++    // Alliance des Forces du Changement and took 50 seats between them — which
++    // is the outcome this table's seat formula exists to be able to produce.
++    // https://en.wikipedia.org/wiki/1993_Nigerien_parliamentary_election
++    Polity {
++        nation: NationId::Niger,
++        system: Electoral::Proportional,
++        term_months: 60,
++        next: (0, 0),
++        parties: &[
++            p("ne_mnsd", "National Movement for the Society of Development", "Mouvement National pour la Societe de Developpement - Nassara", Family::BigTent, 0.307),
++            p("ne_cds", "Democratic and Social Convention", "Convention Democratique et Sociale - Rahama", Family::Liberal, 0.273),
++            p("ne_andp", "Nigerien Alliance for Democracy and Progress", "Alliance Nigerienne pour la Democratie et le Progres - Zaman Lahiya", Family::SocialDemocratic, 0.155),
++            p("ne_pnds", "Nigerien Party for Democracy and Socialism", "Parti Nigerien pour la Democratie et le Socialisme - Tarayya", Family::SocialDemocratic, 0.146),
++            p("ne_sawaba", "Sawaba", "Union Democratique Nigerienne - Sawaba", Family::Communist, 0.031),
++            p("ne_ppnrda", "Nigerien Progressive Party - African Democratic Rally", "Parti Progressiste Nigerien - Rassemblement Democratique Africain", Family::Conservative, 0.026),
++        ],
++        ruling: "the Mouvement National pour la Societe de Developpement",
++        pillars: &[
++            pl(Pillar::Army, "the Forces Armees Nigeriennes"),
++            pl(Pillar::Party, "the MNSD Bureau Executif National"),
++            // The gendarmerie rather than a secret police, because in Niger it
++            // was the gendarmerie that did the regime's internal work — at the
++            // Kennedy bridge in Niamey on 9 February 1990 and at Tchintabaraden
++            // three months later.
++            pl(Pillar::Security, "the Gendarmerie Nationale"),
++        ],
++    },
++
++    // Guinea — the Comite Militaire de Redressement National, and this is the
++    // barest block in the table because there was nothing else. Lansana Conte's
++    // officers took power on 3 April 1984, a week after Sekou Toure died; the
++    // Parti Democratique de Guinee that had ruled since 1958 was abolished
++    // outright rather than inherited, all parties were banned, there was no
++    // legislature, and Guinea in January 1990 had never held a contested
++    // election of any kind since independence. The shares are the presidential
++    // election of 19 December 1993, the first: Conte for the newly built Parti
++    // de l'Unite et du Progres 51.7% — just over the threshold that avoided a
++    // runoff, on a count the opposition rejected — Alpha Conde 19.6%, Mamadou
++    // Boye Ba 13.4%, Siradiou Diallo 11.9%.
++    // https://en.wikipedia.org/wiki/1993_Guinean_presidential_election
++    Polity {
++        nation: NationId::Guinea,
++        system: Electoral::TwoRound,
++        term_months: 60,
++        next: (0, 0),
++        parties: &[
++            p("gn_pup", "Party of Unity and Progress", "Parti de l'Unite et du Progres", Family::BigTent, 0.517),
++            p("gn_rpg", "Rally of the Guinean People", "Rassemblement du Peuple de Guinee", Family::SocialDemocratic, 0.196),
++            p("gn_unr", "Union for the New Republic", "Union pour la Nouvelle Republique", Family::Liberal, 0.134),
++            p("gn_prp", "Party for Renewal and Progress", "Parti du Renouveau et du Progres", Family::Liberal, 0.119),
++        ],
++        ruling: "the Comite Militaire de Redressement National",
++        pillars: &[
++            // Diarra Traore's counter-coup of 4 July 1985 is what defines the
++            // shape of this regime: it failed, and Conte answered by having the
++            // officers involved killed and by rebuilding the guard around men
++            // from his own Soussou coast.
++            pl(Pillar::Army, "the presidential guard"),
++            pl(Pillar::Security, "the Service de Securite Presidentielle"),
++        ],
++    },
++
++    // Benin — the Parti de la Revolution Populaire du Benin, sole legal party
++    // of a self-declared Marxist-Leninist state since 1975, and on 1 January
++    // 1990 a party that had abandoned Marxism-Leninism twenty-five days
++    // earlier and had no money to pay anybody. The shares are the National
++    // Assembly election of 17 February 1991, the first free one and the one
++    // that followed the national conference of 19-28 February 1990 —
++    // SEVEN WEEKS INTO THE GAME — at which 488 delegates declared themselves
++    // sovereign and took the government away from Mathieu Kerekou without a
++    // shot. What the 1991 result shows is what a state with no parties for
++    // fifteen years produces when it suddenly has them: twelve lists, none
++    // above 19%, and a national assembly that is a negotiation. UTRD 18.9%,
++    // RND 12.1%, PRD-PNDD 11.7%, NCC 10.1%, PSD-UNSP 9.8%, MNDD 8.4%, UDES
++    // 7.1%, RDL-Vivoten 5.6%. Kerekou then lost the presidency to Nicephore
++    // Soglo in March 1991, conceded, and won it back at the ballot in 1996.
++    // https://en.wikipedia.org/wiki/1991_Beninese_parliamentary_election
++    Polity {
++        nation: NationId::Benin,
++        system: Electoral::Proportional,
++        term_months: 48,
++        next: (0, 0),
++        parties: &[
++            p("bj_utrd", "Union for the Triumph of Democratic Renewal", "Union pour le Triomphe du Renouveau Democratique", Family::BigTent, 0.189),
++            p("bj_rnd", "National Rally for Democracy", "Rassemblement National pour la Democratie", Family::Liberal, 0.121),
++            p("bj_prd", "Party of Democratic Renewal", "Parti du Renouveau Democratique", Family::SocialDemocratic, 0.117),
++            p("bj_ncc", "Our Common Cause", "Notre Cause Commune", Family::SocialDemocratic, 0.101),
++            p("bj_psd", "Social Democratic Party", "Parti Social-Democrate", Family::SocialDemocratic, 0.098),
++            p("bj_mndd", "Democratic Renewal Movement", "Mouvement National pour la Democratie et le Developpement", Family::SocialDemocratic, 0.084),
++            p("bj_udes", "Union for Democracy and National Solidarity", "Union pour la Democratie et la Solidarite Nationale", Family::Liberal, 0.071),
++            p("bj_rdl", "Liberal Democratic Rally", "Rassemblement des Democrates Liberaux - Vivoten", Family::Liberal, 0.056),
++        ],
++        ruling: "the Parti de la Revolution Populaire du Benin",
++        pillars: &[
++            // Listed, and the block's point is that all three had stopped
++            // working. The army had not been paid, the party had renounced its
++            // own doctrine, and when the national conference declared itself
++            // sovereign in February 1990 not one of them moved to stop it.
++            pl(Pillar::Army, "the Forces Armees Populaires du Benin"),
++            pl(Pillar::Party, "the PRPB Central Committee"),
++            pl(Pillar::Security, "the Direction de la Surete Nationale"),
++        ],
++    },
++
++    // Togo — the Rassemblement du Peuple Togolais, sole legal party since 1969
++    // and the instrument of Gnassingbe Eyadema, who had shot Sylvanus Olympio
++    // himself in January 1963 and taken the presidency in January 1967. The
++    // shares here are SEAT SHARES AND NOT VOTE SHARES, and that is stated
++    // rather than hidden: the National Assembly election of 6 February and 20
++    // March 1994, the first multi-party vote, returned CAR 36, RPT 35, UTD 7,
++    // UJD 2 and CFN 1 of 81 seats on a 65.1% turnout, and the published
++    // national vote shares for it were not reachable when this file was
++    // written. Seats are entered as a proportion of 81. It is a substitution
++    // and it is the weakest transcription in this block. The finding it carries
++    // is right and is the reason the block is here at all: the party that had
++    // governed Togo unopposed for twenty-five years came SECOND the first time
++    // anybody was allowed to vote against it, and then kept the government
++    // anyway, because Eyadema had the army and the Action Committee for Renewal
++    // did not. He died in office in February 2005.
++    // https://en.wikipedia.org/wiki/1994_Togolese_parliamentary_election
++    Polity {
++        nation: NationId::Togo,
++        system: Electoral::TwoRound,
++        term_months: 60,
++        next: (0, 0),
++        parties: &[
++            p("tg_car", "Action Committee for Renewal", "Comite d'Action pour le Renouveau", Family::Liberal, 0.444),
++            p("tg_rpt", "Rally of the Togolese People", "Rassemblement du Peuple Togolais", Family::BigTent, 0.432),
++            p("tg_utd", "Togolese Union for Democracy", "Union Togolaise pour la Democratie", Family::Liberal, 0.086),
++            p("tg_ujd", "Union for Justice and Democracy", "Union pour la Justice et la Democratie", Family::Conservative, 0.025),
++            p("tg_cfn", "Coordination of New Forces", "Coordination des Forces Nouvelles", Family::Liberal, 0.012),
++        ],
++        ruling: "the Rassemblement du Peuple Togolais",
++        pillars: &[
++            // Recruited from Eyadema's own Kabye in the north and garrisoned on
++            // top of an Ewe capital that did not want him. This is why the
++            // national conference of July-August 1991 stripped him of power and
++            // he still had it three months later.
++            pl(Pillar::Army, "the Regiment Interarmes Togolais"),
++            pl(Pillar::Party, "the RPT Political Bureau"),
++            pl(Pillar::Security, "the Gendarmerie Nationale"),
++        ],
++    },
++
++    // Sierra Leone — the All People's Congress, sole legal party under the
++    // one-party constitution of June 1978, and Joseph Saidu Momoh, who had
++    // succeeded Siaka Stevens in 1985 as the only candidate on the ballot. The
++    // last election before the game opens was the single-party parliamentary
++    // vote of 29 May 1986, in which the APC vetted every candidate. The shares
++    // are the parliamentary election of 26-27 February 1996, held under a
++    // military government that had promised to hand over and then did, in the
++    // middle of a civil war and after the APC had been out of power for four
++    // years: SLPP 36.2% and 27 of 68 elected seats, UNPP 22.1%, PDP 15.3%,
++    // APC 5.7%, NUP 5.3%, DCP 4.8%. THE PARTY THAT RULED SIERRA LEONE FOR
++    // TWENTY-THREE YEARS TOOK 5.7% THE FIRST TIME IT HAD TO ASK, which is as
++    // clear a statement of what the one-party state was worth as this table
++    // contains.
++    // https://en.wikipedia.org/wiki/1996_Sierra_Leonean_general_election
++    Polity {
++        nation: NationId::SierraLeone,
++        system: Electoral::Proportional,
++        term_months: 60,
++        next: (0, 0),
++        parties: &[
++            p("sl_slpp", "Sierra Leone People's Party", "", Family::SocialDemocratic, 0.362),
++            p("sl_unpp", "United National People's Party", "", Family::Liberal, 0.221),
++            p("sl_pdp", "People's Democratic Party", "", Family::Liberal, 0.153),
++            p("sl_apc", "All People's Congress", "", Family::SocialDemocratic, 0.057),
++            p("sl_nup", "National Unity Party", "", Family::Conservative, 0.053),
++            p("sl_dcp", "Democratic Centre Party", "", Family::Liberal, 0.048),
++        ],
++        ruling: "the All People's Congress",
++        pillars: &[
++            // The Republic of Sierra Leone Military Forces are listed as a
++            // pillar because they removed the government on 29 April 1992, and
++            // they are the weakest pillar in this table: about 3,000 unpaid men
++            // who could not stop a hundred RUF fighters crossing the Liberian
++            // border, and whose captains then took Freetown almost by accident.
++            pl(Pillar::Army, "the Republic of Sierra Leone Military Forces"),
++            pl(Pillar::Party, "the APC Central Committee"),
++            // Stevens's paramilitary counterweight to an army he did not trust,
++            // inherited by Momoh and answering to State House rather than to
++            // the police.
++            pl(Pillar::Security, "the Special Security Division"),
++        ],
++    },
++
++    // Liberia — the National Democratic Party of Liberia, and the one block in
++    // this group whose numbers are a pre-1990 election rather than a later one.
++    // They are also the numbers of a theft, and are entered as such. Samuel Doe
++    // had taken power on 12 April 1980 by killing William Tolbert in his bed and
++    // shooting thirteen of his ministers on a beach; in 1985 he changed his
++    // birth year to meet the age requirement, disqualified most of the
++    // opposition, and on 15 OCTOBER 1985 had the ballots removed to a private
++    // building and counted by fifty people he chose himself. The result declared
++    // was Doe 50.95%, Jackson Doe of the Liberian Action Party 26.46%, Gabriel
++    // Kpolleh of the Liberian Unity Party 11.56%, Edward Kesselly of the Unity
++    // Party 11.04% — a first-round win by nine tenths of a percentage point, in
++    // a country that had just watched a president be shot. Almost every
++    // observer at the time believed Jackson Doe had won; the United States
++    // certified it anyway. THOSE SHARES DESCRIBE A COUNT, NOT AN ELECTORATE,
++    // exactly as bangladesh.json's describe a boycott, and the reason Liberia
++    // is modelled with pillars as well as a legislature is that the legislature
++    // was a receipt. Thomas Quiwonkpa tried to reverse the count by force on 12
++    // November 1985, failed, and was killed; the reprisals against the Gio and
++    // Mano of Nimba county are what filled Charles Taylor's ranks four years
++    // later. https://en.wikipedia.org/wiki/1985_Liberian_general_election
++    Polity {
++        nation: NationId::Liberia,
++        system: Electoral::FirstPastThePost,
++        term_months: 72,
++        next: (0, 0),
++        parties: &[
++            p("lr_ndpl", "National Democratic Party of Liberia", "", Family::BigTent, 0.510),
++            p("lr_lap", "Liberian Action Party", "", Family::Liberal, 0.265),
++            p("lr_lup", "Liberian Unity Party", "", Family::Liberal, 0.116),
++            p("lr_up", "Unity Party", "", Family::Liberal, 0.110),
++        ],
++        ruling: "the National Democratic Party of Liberia",
++        pillars: &[
++            // Krahn, which is the whole of it. Doe was Krahn, the guard was
++            // Krahn, and by 1990 the distinction between the army and one
++            // ethnic militia had stopped existing.
++            pl(Pillar::Army, "the Executive Mansion Guard"),
++            pl(Pillar::Security, "the National Security Agency"),
++            pl(Pillar::Party, "the NDPL"),
++        ],
++    },
++
++    // Mauritania — the Comite Militaire de Salut National, and the hardest
++    // regime in this block because it is the only one with no party at all.
++    // Maaouya Ould Sid'Ahmed Taya had taken power on 12 December 1984 in a
++    // bloodless coup against Mohamed Khouna Ould Haidalla, who had taken it the
++    // same way from Mohamed Ould Louly, who had taken it the same way from
++    // Moustapha Ould Salek, who had taken it from Moktar Ould Daddah in July
++    // 1978 when the Western Sahara war broke the state. Five heads of state in
++    // six years and not one of them elected. There were no political parties,
++    // legal or otherwise, no legislature, and no national vote of any kind
++    // between 1976 and 1991. The shares are the presidential election of 24
++    // JANUARY 1992, the first: Taya for the party built around him after the
++    // fact, the Parti Republicain Democratique et Social, 62.9%, Ahmed Ould
++    // Daddah for the Union des Forces Democratiques 32.9%. The opposition
++    // rejected the count and boycotted the legislative elections that followed,
++    // which is why the PRDS took 67 of 79 seats in March 1992 and why the
++    // presidential figures are the ones entered.
++    // https://en.wikipedia.org/wiki/1992_Mauritanian_presidential_election
++    Polity {
++        nation: NationId::Mauritania,
++        system: Electoral::TwoRound,
++        term_months: 72,
++        next: (0, 0),
++        parties: &[
++            p("mr_prds", "Democratic and Social Republican Party", "Parti Republicain Democratique et Social", Family::BigTent, 0.629),
++            p("mr_ufd", "Union of Democratic Forces", "Union des Forces Democratiques", Family::Liberal, 0.329),
++        ],
++        ruling: "the Comite Militaire de Salut National",
++        pillars: &[
++            // An army of about 15,000 in a country of under two million, built
++            // for a desert war it had lost, and the only institution in
++            // Mauritania that had ever chosen a head of state. It is also where
++            // the 1990-91 purge happened: several hundred Halpulaar and Soninke
++            // soldiers arrested on an alleged plot, and the killings at Inal in
++            // November 1990.
++            pl(Pillar::Army, "the Armee Nationale Mauritanienne"),
++            pl(Pillar::Security, "the Directorate of State Security"),
++            // Named because in Mauritania the tribal and religious hierarchy is
++            // not decoration: the Beydane emirates and the zawiya lineages were
++            // what a military committee with no party had to keep on side, and
++            // the CMSN was assembled to represent them.
++            pl(Pillar::Clergy, "the Beydane tribal and zawiya notability"),
++        ],
++    },
++
++    // The Gambia — a genuine multi-party democracy, the second in this block
++    // after Senegal and the only other one in the roster's West Africa. House
++    // of Representatives, 11 MARCH 1987, and these are real transcribed vote
++    // shares from a contested election with a real opposition: People's
++    // Progressive Party 56.4% and 31 of 36 elected seats, National Convention
++    // Party 26.1% and 4, Gambian People's Party 14.9% and none, PDOIS 1.0%.
++    // The presidential vote the same day gave Dawda Jawara 59.2%, Sheriff
++    // Dibba 27.5% and Assan Musa Camara 13.3%. The five-year term ran from
++    // March 1987, so the next was due in the spring of 1992; it was held on 29
++    // April 1992 and Jawara won it with 58.5%. The first-past-the-post entry
++    // is what actually produced 31 seats out of 56% of the vote, and the gap
++    // between those two numbers is most of why the PPP governed for thirty
++    // years without ever needing to rig anything.
++    // https://en.wikipedia.org/wiki/1987_Gambian_general_election
++    Polity {
++        nation: NationId::Gambia,
++        system: Electoral::FirstPastThePost,
++        term_months: 60,
++        next: (1992, 4),
++        parties: &[
++            p("gm_ppp", "People's Progressive Party", "", Family::BigTent, 0.564),
++            p("gm_ncp", "National Convention Party", "", Family::Conservative, 0.261),
++            p("gm_gpp", "Gambian People's Party", "", Family::Liberal, 0.149),
++            p("gm_pdois", "People's Democratic Organisation for Independence and Socialism", "", Family::Communist, 0.010),
++        ],
++        ruling: "the House of Representatives",
++        // No pillars, and that is the transcription rather than an omission —
++        // the same empty list Senegal carries. The Gambia had 800 soldiers, no
++        // security service worth naming and no institution that had ever
++        // removed a government; when 250 men tried in July 1981 the answer came
++        // from Dakar. What ended it in 1994 was not a pillar withdrawing
++        // support but four lieutenants walking into Banjul.
++        pillars: &[],
++    },
++
++    // Guinea-Bissau — the Partido Africano da Independencia da Guine e Cabo
++    // Verde, sole legal party since independence in 1974 and the only ruling
++    // party in this block that had won its country in a war rather than
++    // inherited it. Joao Bernardo Vieira had taken the state from Luis Cabral
++    // in the coup of 14 November 1980 and had had his own vice-president Paulo
++    // Correia shot in July 1986 for trying the same. There was a National
++    // People's Assembly, elected indirectly from PAIGC regional councils, and
++    // it was the party. The shares are the National People's Assembly election
++    // of 3 July 1994, the first multi-party vote: PAIGC 46.4% and 62 of 100
++    // seats, RGB-MB 19.8%, Union for Change 12.7%, PRS 10.3%, FLING 2.6%.
++    // Vieira then held the presidency by 52.0% to Kumba Iala's 48.0% in the
++    // runoff of 7 August 1994, which is a liberation party surviving its first
++    // free election by four points.
++    // https://en.wikipedia.org/wiki/1994_Guinea-Bissau_general_election
++    Polity {
++        nation: NationId::GuineaBissau,
++        system: Electoral::Proportional,
++        term_months: 48,
++        next: (0, 0),
++        parties: &[
++            p("gw_paigc", "African Party for the Independence of Guinea and Cape Verde", "Partido Africano da Independencia da Guine e Cabo Verde", Family::SocialDemocratic, 0.464),
++            p("gw_rgbmb", "Guinea-Bissau Resistance - Bafata Movement", "Resistencia da Guine-Bissau - Movimento Bafata", Family::Liberal, 0.198),
++            p("gw_um", "Union for Change", "Uniao para a Mudanca", Family::SocialDemocratic, 0.127),
++            p("gw_prs", "Party for Social Renewal", "Partido para a Renovacao Social", Family::SocialDemocratic, 0.103),
++            // The party Senegal had once sponsored against the PAIGC, reduced
++            // by 1994 to a single seat. Nationalist rather than Regionalist:
++            // FLING's argument was that Guinea-Bissau should be Guinean and not
++            // Cape Verdean, which is a claim about who the nation is.
++            p("gw_fling", "Front for the Liberation and Independence of Guinea", "Frente de Luta pela Independencia Nacional da Guine", Family::Nationalist, 0.026),
++        ],
++        ruling: "the Partido Africano da Independencia da Guine e Cabo Verde",
++        pillars: &[
++            // Roughly 9,000 men in a country of 974,000, Balanta in the ranks
++            // and Cape Verdean-descended in the officer corps, and the standing
++            // threat to every government Guinea-Bissau has ever had. It removed
++            // Vieira in June 1998 and has removed or tried to remove somebody
++            // about every four years since.
++            pl(Pillar::Army, "the Forcas Armadas Revolucionarias do Povo"),
++            pl(Pillar::Party, "the PAIGC Conselho Superior da Luta"),
++        ],
++    },
+ ];
+ 
+ pub fn polity(id: NationId) -> Option<&'static Polity> {
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index cd3fc5b..de3b4a9 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -1967,3 +1967,31 @@ mod tests {
+ }
+ 
+ 
++
++#[cfg(test)]
++mod tmp_diag {
++    use super::*;
++    use crate::init::world_1990;
++    fn run_months(w: &mut WorldState, months: usize) { for _ in 0..months { tick_month(w, &[]); } }
++    #[test]
++    #[ignore]
++    fn diag_tail() {
++        let mut rules = GameRules::default();
++        rules.seed = 1990;
++        let mut w = world_1990(rules);
++        run_months(&mut w, 360);
++        let mut v: Vec<_> = w.nations.iter().filter(|n| n.alive).collect();
++        v.sort_by(|a, b| a.gdp.partial_cmp(&b.gdp).unwrap());
++        for n in v.iter().take(20) {
++            println!("{:>14} gdp {:>9.3} pop {:>7.2} techs {:>4} growth {:>7.3} infl {:>7.3} rate {:>6.3} debt {:>7.3} stab {:>5.1}",
++                n.id.name(), n.gdp, n.population, n.tech.count(), n.growth_last, n.inflation, n.interest_rate, n.debt_gdp, n.stability);
++        }
++        println!("--- at start ---");
++        let w0 = world_1990(GameRules::default());
++        for code in ["SierraLeone","Gambia","GuineaBissau","Liberia","Benin","Laos"] {
++            let id = crate::nations::NationId::from_code(code).unwrap();
++            let n = w0.nation(id);
++            println!("{:>14} gdp {:>8.3} pop {:>7.2} rate {:>6.3} infl {:>6.3} debt {:>6.3}", code, n.gdp, n.population, n.interest_rate, n.inflation, n.debt_gdp);
++        }
++    }
++}
+diff --git a/spheres-sim/src/tech/mod.rs b/spheres-sim/src/tech/mod.rs
+index cfd1871..a834f0e 100644
+--- a/spheres-sim/src/tech/mod.rs
++++ b/spheres-sim/src/tech/mod.rs
+@@ -856,7 +856,31 @@ fn effective_cost(
+     // already manufactures is bought off a shelf, and holding both to the same
+     // floor is what shut the smallest economies out of even commodity
+     // technology — the floor bound long before the copying discount could bite.
++    //
++    // The 0.005 that used to floor `scale` is gone, and the reason is the same
++    // finding one size smaller. It was set when the smallest economy on the
++    // board was Laos at $0.87bn, where the square root gives 0.0063 and the
++    // clamp never bound. The West African block put four nations below that —
++    // the Gambia at $0.317bn, Liberia at $0.384bn, Guinea-Bissau at $0.634bn
++    // and Sierra Leone at $0.650bn — and for the smallest two the clamp was no
++    // longer a guard against a degenerate root, it was a floor RAISING the
++    // price of a shipping container because the buyer was too small to be
++    // worth pricing properly. A country with a thousandth of another country's
++    // output should pay about a thirty-second as much to put up a
++    // telephone exchange, which is what the square root says; the clamp said it
++    // should pay the same as a country five times its size. 1e-4 keeps the
++    // root away from zero and binds on nothing in this roster.
++    //
++    // The share discount inside the floor was left at 0.70 and the attempt to
++    // move it is recorded because it failed usefully. Raising it to 0.85 — which
++    // halves the floor for a technology the whole world already runs — does fix
++    // the tail, but it is NOT a change confined to the tail: it moved the
++    // control arm of `sanctions_cost_the_target_real_growth` from 4.54% to 7.25%
++    // annual growth for Brazil, and `china_growth_miracle` went red at 0.80 and
++    // at 0.90. This coefficient is load-bearing for the middle of the table and
++    // it is not a knob a roster branch gets to turn.
+     let build = 0.30 * (1.0 - 0.70 * s2);
++    let scale = scale.max(1e-4);
+     (def.cost * copy * own).max(def.cost * build * scale)
+ }
+ 
+@@ -970,8 +994,15 @@ pub fn tick(w: &mut WorldState) {
+         // perturbation changes which wars happen rather than how fast anyone
+         // grows. The denominator was left alone. See `sanction_drag` in
+         // economy.rs for what the roster actually moved.
++        // The square root, and below a knee a straight line. The argument is
++        // written out at the `build` floor in `effective_cost`, which is the
++        // only place this number is used; in short, the root was fitted at the
++        // top of the table to stop China absorbing at Japan's rate, the 0.005
++        // lower bound it used to carry was chosen when the smallest economy on
++        // the board was Laos at $0.87bn, and neither was ever asked what it did
++        // to a $0.317bn one.
+         let scale = if world_gdp > 0.0 {
+-            (w.nation(id).gdp.max(0.0) / world_gdp).sqrt().clamp(0.005, 1.0)
++            small_economy_scale(w.nation(id).gdp.max(0.0) / world_gdp)
+         } else {
+             1.0
+         };
+diff --git a/spheres-web/ui/index.html b/spheres-web/ui/index.html
+index a896d7e..e9c57e3 100644
+--- a/spheres-web/ui/index.html
++++ b/spheres-web/ui/index.html
+@@ -417,6 +417,15 @@ const TERRITORY = {
+   SouthAfrica: ["ZAF"], Kenya: ["KEN"], Ghana: ["GHA"], Angola: ["AGO"],
+   Zimbabwe: ["ZWE"], Tanzania: ["TZA"], Uganda: ["UGA"], Senegal: ["SEN"],
+   Cameroon: ["CMR"],
++  // West Africa (branch feat/r2-westafrica2). All eleven have their own polygon
++  // in Natural Earth 110m — checked, two hits each in ui/world.js — including
++  // the Gambia and Guinea-Bissau, which are the two small enough to have been
++  // dropped the way Bahrain and Singapore were. Nothing here needs a LABEL_AT
++  // fallback. Cote d'Ivoire is deliberately absent: it has a polygon, but it
++  // is not a nation in the roster, so it stays unaligned scenery.
++  Mali: ["MLI"], BurkinaFaso: ["BFA"], Niger: ["NER"], Guinea: ["GIN"],
++  Benin: ["BEN"], Togo: ["TGO"], SierraLeone: ["SLE"], Liberia: ["LBR"],
++  Mauritania: ["MRT"], Gambia: ["GMB"], GuineaBissau: ["GNB"],
+   // Ethiopia in January 1990 still governs Eritrea; the EPLF takes Asmara in
+   // May 1991 and the referendum is April 1993. Drawn as both, which is the
+   // correct 1990 territory rather than the modern outline.

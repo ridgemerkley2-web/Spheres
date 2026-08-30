@@ -1,0 +1,1928 @@
+diff --git a/PLAN.md b/PLAN.md
+index c1ee9d9..18d52dd 100644
+--- a/PLAN.md
++++ b/PLAN.md
+@@ -42,7 +42,13 @@ pre-0.1 behaviour; a golden hash is pinned.
+ *The expensive-to-defer work. Nothing here is visible to a player, and all of it
+ gets dramatically more expensive after the roster grows.*
+ 
+-### 1.1 Nations become data, and ids become runtime — **XL, critical path**
++### 1.1 Nations become data, and ids become runtime — **DONE, see ROADMAP**
++*`NationId` is a `u16` handle into the `nations.rs` roster; the dyad table is
++derived in `dyads.rs`; saves carry codes. What remains of this item is moving
++the roster from a static Rust table to a JSON file with `deny_unknown_fields`
++and two-pass validation, which is now a change to one module.*
++
++### 1.1 (as written)
+ `NationId` is a closed Rust enum with hand-written `name()`/`parse()` arms,
+ fixed-size roster arrays, and per-dyad `match` tables for war appetite. At 190
+ nations that is ~380 match arms and ~36,000 ordered dyads, which cannot be a
+diff --git a/ROADMAP.md b/ROADMAP.md
+index 3b31bad..844d665 100644
+--- a/ROADMAP.md
++++ b/ROADMAP.md
+@@ -37,45 +37,54 @@
+   a guarantee, cutting a client loose, tearing up a treaty — are charged to
+   bankruptcy rather than refused, because a government can always renege
+ 
+-## Closed: the golden hash was only ever a Windows number (PLAN 1.3)
+-
+-Both determinism tests build their two worlds in one process against one libm,
+-so neither could ever see the failure that actually threatens the design: the
+-same seed producing a different history on a different machine. IEEE 754 pins
+-`+ - * /` and `sqrt` to the last bit and says nothing about `exp`, `ln` or
+-`pow` — and glibc does not even agree with itself across versions, having
+-rewritten `exp` in 2.27 and again in 2.28. The endgame is Ridge on Windows and a
+-Proxmox box running the suite nightly, which is exactly the arrangement where
+-that surfaces as a red test nobody can reproduce.
+-
+-`spheres-sim/src/exact.rs` now provides `exp`, `ln` and `powf` built only from
+-IEEE-exact primitives — range reduction, a Taylor or atanh series, and scaling
+-by a power of two straight out of the exponent field. Every transcendental in
+-the tick loop goes through it: the fourteen soft caps in `tech::saturate`, the
+-tech-TFP ceiling, the diffusion-reach exponent, the tacit-knowledge exponent,
+-the investment-intensity exponent, and the log of the strength ratio that
+-decides who capitulates. `sqrt` was left alone; the standard specifies it.
+-`powi` was written out as explicit products in `tech/mod.rs`, which is
+-bit-identical to what LLVM emits but no longer depends on it staying that way.
+-
+-**The shapes were not changed, and the model did not move.** PLAN suggested
+-replacing the soft-cap shapes with rational equivalents; that was rejected
+-because it buys the same exactness at the price of a retune. After 240 months
+-every nation's GDP is bit-identical to the old value, the 35-year headline
+-stream is byte-identical, and the 2025 league table is identical to the digit
+-(USA 16004, China 7050, Japan 6907, Germany 5018). The only difference
+-measurable anywhere was France's `tfp_trend` in its sixteenth significant
+-figure. The golden hash still had to be re-pinned —
+-`0xb675826e8941683d` → `0x9ea63c12f4de0e64` — because the hash sees those bits.
+-
+-Three tests guard it: the bit patterns of `exp`/`ln`/`powf` are pinned at the
+-arguments the sim actually passes, the range-reduction constants are checked
+-against the values they claim to be, and a source scan fails the build if
+-anything in the sim calls the platform libm again.
+-
+-**Not done:** nobody has yet run the suite on Linux. The claim is that the hash
+-now holds cross-platform; it is argued, not observed. That is the one thing left
+-in 1.3, and it is a CI job rather than a code change.
++## Closed: nation identity is a runtime value, and dyads are derived
++
++**Phase 1.1.** `NationId` was a closed 30-variant enum with hand-written
++`name()`/`parse()` arms, fixed-size roster arrays, and — the part that could
++not survive the roster growing — a `match (attacker, target)` in `ai_wars`
++holding fourteen hand-set war appetites. At 190 nations that is ~380 match arms
++and ~36,000 ordered dyads, and the second of those cannot be a match statement
++at any size.
++
++- **Identity is now an interned index.** `nations.rs` holds the roster as data
++  (code, display name, aliases, region, land borders, claims, and the two
++  flags that used to be the `PATRONS` and `MAJORS` arrays); `NationId` is a
++  `u16` handle into it. Adding a country is adding a row. The static table can
++  become a JSON file without anything above that module noticing, because
++  nothing above it knows how many nations there are.
++- **Saves carry codes, never indices.** `NationId` serializes as its stable
++  code and the relations matrix — dense in memory, keyed by index — writes
++  named triples and *drops* a code this build cannot resolve rather than
++  reinterpreting it as whoever now holds that slot. Exactly the discipline the
++  technology tree already follows, for exactly the reason it had to.
++- **War appetite is derived.** `dyads.rs` computes it from reach (border or
++  region), claim (the *share of the target* a state says is its own), grudge,
++  the aggressor's own authoritarianism and militarisation, digestibility and
++  worth — then the same circumstance terms as before. Iraq still wants Kuwait
++  an order of magnitude more than Saudi Arabia, and Belgrade still wants Bosnia
++  and not Slovenia, but now because the 1991 census put 31% Serbs in Bosnia and
++  2% in Slovenia and because Serbia and Slovenia share no border.
++- **The missing half of `burned_`.** A repelled invasion was remembered; a
++  *successful* one was not, so a state that took what it claimed came back for
++  it every two years. Measured across twelve thirty-year runs on master, 182 of
++  300 wars were somebody invading Bosnia again. A claim pressed to a conclusion
++  is now a claim collected (`pressed_A_B`): the grievance survives, the war aim
++  does not.
++
++**The golden hash moved and was re-pinned** (`0xb675826e8941683d` ->
++`0x19c5c5dafb18dbd9`). The identity half is separately proven not to move it:
++with the runtime id in place and master's literal dyad table restored on top,
++the fingerprint and the 2025 league table reproduce master exactly. All of the
++movement is the derived model, which is the point of it.
++
++**Known thin spots, in order of how much they should worry you.** The world is
++quieter than master — 75 wars across twelve thirty-year runs against 300 — but
++most of what went is the repeat-invasion loop above. `china_growth_miracle`
++asserts a 14x ceiling that master clears only on the default seed (it runs
++14.9x, 16.8x and 15.1x on seeds 0, 42 and 3), so it is a one-seed test standing
++on luck and the next timeline change will likely tip it. And
++`a_pact_drags_a_great_power_into_a_war_it_did_not_start` now lands on 3/12
++against a floor of 3 — passing, but with no margin.
+ 
+ ## Closed: the whole world was about twice too large
+ 
+diff --git a/spheres-cli/src/main.rs b/spheres-cli/src/main.rs
+index 19cc878..c6009a0 100644
+--- a/spheres-cli/src/main.rs
++++ b/spheres-cli/src/main.rs
+@@ -61,7 +61,7 @@ fn report(w: &WorldState) {
+ fn play(seed: u64) {
+     println!("=== SPHERES — January 1990 ===\n");
+     println!("Playable nations:");
+-    for id in ALL_START_NATIONS {
++    for id in start_nations() {
+         println!("  {}", id.name());
+     }
+     let nation = loop {
+@@ -107,9 +107,8 @@ fn play_loop(mut w: WorldState) {
+             "status" => briefing(&w, me),
+             "world" => report(&w),
+             "relations" => {
+-                let mut rels: Vec<(NationId, f64)> = ALL_START_NATIONS
++                let mut rels: Vec<(NationId, f64)> = all_nations()
+                     .iter()
+-                    .chain(std::iter::once(&NationId::Russia))
+                     .filter(|x| **x != me && w.nations.iter().any(|n| n.id == **x && n.alive))
+                     .map(|x| (*x, w.relation(me, *x)))
+                     .collect();
+diff --git a/spheres-sim/src/data/mod.rs b/spheres-sim/src/data/mod.rs
+index 095d583..bf139ee 100644
+--- a/spheres-sim/src/data/mod.rs
++++ b/spheres-sim/src/data/mod.rs
+@@ -358,7 +358,7 @@ pub fn validate(nations: &[NationRecord], relations: &RelationsFile, relations_f
+     // a compile-time enum; when 1.1's first half lands and ids become runtime
+     // values, the data becomes the sole authority and this collapses into a
+     // uniqueness check.
+-    for want in ALL_START_NATIONS {
++    for want in start_nations().iter().copied() {
+         if !nations.iter().any(|r| r.id == want) {
+             errors.push(LoadError::file_level(
+                 "<roster>",
+@@ -371,7 +371,7 @@ pub fn validate(nations: &[NationRecord], relations: &RelationsFile, relations_f
+         }
+     }
+     for (i, r) in nations.iter().enumerate() {
+-        if !ALL_START_NATIONS.contains(&r.id) {
++        if !start_nations().contains(&r.id) {
+             errors.push(LoadError::nation_level(
+                 &file_of(nations, i),
+                 &format!("{:?}", r.id),
+@@ -552,7 +552,7 @@ mod tests {
+         let nations = parse_nations(EMBEDDED_NATIONS).expect("nation files parse");
+         let rel = parse_relations(&EMBEDDED_RELATIONS).expect("relations parse");
+         validate(&nations, &rel, EMBEDDED_RELATIONS.file).expect("cross-references resolve");
+-        assert_eq!(nations.len(), ALL_START_NATIONS.len());
++        assert_eq!(nations.len(), start_nations().len());
+     }
+ 
+     #[test]
+diff --git a/spheres-sim/src/dyads.rs b/spheres-sim/src/dyads.rs
+new file mode 100644
+index 0000000..c11601f
+--- /dev/null
++++ b/spheres-sim/src/dyads.rs
+@@ -0,0 +1,452 @@
++//! Who wants to invade whom, derived rather than enumerated.
++//!
++//! This replaces a `match (attacker, target)` in `politics::ai_wars` that gave
++//! fourteen ordered pairs a hand-set base appetite and everyone else zero. At
++//! thirty nations that was already a table nobody could audit; at the ~190
++//! BIBLE.md commits to it is ~36,000 ordered dyads and cannot be a match
++//! statement at all. Worse, it was a special case named after a country, which
++//! §7 of BIBLE.md calls the tell that the model is wrong.
++//!
++//! So appetite is a function of six things a data file or the world state can
++//! state, and of nothing else:
++//!
++//! 1. **Reach** — do they share a border, or at least a region? (`nations.rs`)
++//! 2. **Claim** — what share of the target does the aggressor say is its own?
++//!    This is the term that does the most work, and it is the one that makes
++//!    Kuwait different from Saudi Arabia and Bosnia different from Slovenia.
++//! 3. **Grudge** — how bad relations already are.
++//! 4. **Disposition** — who starts wars: armed, authoritarian governments.
++//!    Both inputs are transcribed 1990 figures, and neither is a dyad.
++//! 5. **Digestibility** — how much smaller the target is.
++//! 6. **Worth** — how much the target would actually add.
++//!
++//! Then the same conditions the old code applied: fiscal desperation, the
++//! target's own separatism, the strength ratio net of the coalition the
++//! aggressor expects, the lesson of an invasion already repelled, and the
++//! nuclear taboo.
++//!
++//! The behaviour the old table encoded is preserved and, where the two differ,
++//! the derivation is closer to what happened: Iraq still wants Kuwait far more
++//! than it wants Saudi Arabia; Belgrade still wants Bosnia more than Croatia
++//! and Slovenia hardly at all — but now because Slovenia has no Serb minority
++//! and no shared border, not because a line in a table says 0.010.
++
++use crate::nations::{adjacent, claim_share};
++use crate::war;
++use crate::world::*;
++
++/// Scales the whole table. Set so that Iraq's appetite for Kuwait in January
++/// 1990 lands where the hand-written table had it (~12.6%/month all-in), which
++/// is the one figure in the old table with a calibration test attached to it.
++const APPETITE: f64 = 0.100;
++
++/// A shared border is the ordinary way one state reaches another. A shared
++/// region is a distant second: it is Israel and Iraq, five hundred miles and
++/// two other countries apart, which is a raid and not an invasion.
++///
++/// This is deliberately small, and the reason is measurable. Raised to 0.30 —
++/// with the two floors below raised in proportion — the model starts
++/// manufacturing wars nobody has a quarrel over: Saudi Arabia invading Kuwait,
++/// Italy invading Slovenia, Ukraine invading Poland, and twenty Chinese
++/// invasions of Vietnam across twelve runs, which on their own lift China's
++/// thirty-year growth out of its calibration band. Distance without a border
++/// has to be a real barrier or every region becomes a brawl.
++const REACH_BORDER: f64 = 1.0;
++const REACH_REGION: f64 = 0.15;
++
++/// What a state wants from a neighbour it claims nothing of. Not zero — border
++/// wars happen over nothing — but a tenth of what a whole-country claim is.
++const WANT_FLOOR: f64 = 0.10;
++
++/// Even a state on cordial terms is not at absolute zero risk. Everything above
++/// this floor is earned by hostility, squared, so relations do most of the
++/// sorting: the difference between -20 and -50 is a factor of five and a half.
++/// The floor is low because a border alone must not be a casus belli — at 0.04
++/// the Soviet Union starts invading Poland, with which its relations are +10.
++const GRUDGE_FLOOR: f64 = 0.02;
++/// Relations at which hostility is complete. Chosen so the deepest enmities in
++/// the 1990 data (India/Pakistan at -55, Israel/Iraq at -70) saturate.
++const GRUDGE_SATURATION: f64 = 55.0;
++
++/// Military strength per unit of economy at which a state counts as fully
++/// militarised. Iraq in 1990 sits at 2.1 of this, Japan at 0.24.
++const MILITARISATION_REF: f64 = 1.6;
++
++/// What is left of an appetite once the war has already been fought and won.
++///
++/// The old model had only half of this: `burned_A_B`, recorded when an invasion
++/// is repelled, permanently raises what the aggressor expects to face. There
++/// was no counterpart for the invasion that *succeeds*, so a state that took
++/// what it claimed simply came back for it every two years — measured across
++/// twelve thirty-year runs on master, 182 of 300 wars were somebody invading
++/// Bosnia again. A claim pressed to a conclusion is a claim collected: the
++/// grievance survives, the war aim does not.
++const SETTLED: f64 = 0.50;
++
++/// Below this a candidate is not worth a die roll. Purely a performance guard —
++/// at 190 nations the appetite pass considers every contact of every state
++/// every month, and a probability of one in a million is not a history.
++const NEGLIGIBLE: f64 = 1e-6;
++
++/// The flag `war.rs` writes when `a` has beaten `t` in a war `a` started, and
++/// the flag this module reads to know the claim has been pressed already.
++pub fn settled_flag(a: NationId, t: NationId) -> String {
++    format!("pressed_{:?}_{:?}", a, t)
++}
++
++/// Everyone `a` could plausibly use force against: its neighbours, the states
++/// it claims something from, and the rest of its region. Precomputed, so the
++/// monthly pass is O(n·k) rather than O(n²).
++pub fn contacts(a: NationId) -> &'static [NationId] {
++    &a.def().contacts
++}
++
++/// How far one state can reach the other at all.
++fn reach(a: NationId, t: NationId) -> f64 {
++    if adjacent(a, t) {
++        REACH_BORDER
++    } else if a.region() == t.region() {
++        REACH_REGION
++    } else if claim_share(a, t) > 0.0 {
++        // A claim implies a way of pressing it, or it would not be a claim.
++        REACH_REGION
++    } else {
++        0.0
++    }
++}
++
++/// Who starts wars. An armed and authoritarian government, and nothing here is
++/// a dyad or a national constant: both terms are read off the nation's own
++/// transcribed state and both move as the sim runs.
++///
++/// Authoritarianism is squared deliberately. The claim being made — that open
++/// governments very rarely invade their neighbours, and that this is a property
++/// of the government rather than of the pair — is the strongest regularity in
++/// the period and it is what lets the aggressor list be thrown away.
++fn disposition(w: &WorldState, a: NationId) -> f64 {
++    let n = w.nation(a);
++    let auth = n.authoritarianism.clamp(0.0, 1.0);
++    // Strength per unit of economy: how much of itself a state has put under
++    // arms, which is a better reading of intent than the budget share alone
++    // because it counts the army a state actually has.
++    let militarisation =
++        (n.mil_strength / (n.gdp.max(1.0).sqrt() * MILITARISATION_REF)).clamp(0.0, 3.0);
++    (0.10 + 0.90 * auth * auth) * (0.35 + 0.65 * militarisation)
++}
++
++/// How bad it already is between them.
++fn grudge(w: &WorldState, a: NationId, t: NationId) -> f64 {
++    let h = ((-w.relation(a, t)) / GRUDGE_SATURATION).clamp(0.0, 1.0);
++    GRUDGE_FLOOR + (1.0 - GRUDGE_FLOOR) * h * h
++}
++
++/// The monthly probability that `a` starts a war on `t`, all in. Zero means it
++/// is not a candidate at all and no die is rolled — which matters, because a
++/// die rolled is a die that moves every other outcome in the world.
++pub fn war_appetite(w: &WorldState, a: NationId, t: NationId) -> f64 {
++    if a == t {
++        return 0.0;
++    }
++    let reach = reach(a, t);
++    if reach <= 0.0 {
++        return 0.0;
++    }
++    let (an, tn) = match (w.nation_opt(a), w.nation_opt(t)) {
++        (Some(x), Some(y)) if x.alive && y.alive => (x, y),
++        _ => return 0.0,
++    };
++
++    // Deterrence, first, because it is absolute: nobody attacks a nuclear power
++    // without an arsenal of their own.
++    if tn.nuclear && !an.nuclear {
++        return 0.0;
++    }
++
++    // --- What it wants. A claim already taken by force is no longer a war
++    // aim, however sour the relationship stays. ---
++    let settled = w.has_flag(&settled_flag(a, t));
++    let want = if settled { WANT_FLOOR } else { WANT_FLOOR + claim_share(a, t) };
++
++    // --- How easily it could be taken. A state ten times the size of its
++    // neighbour is contemplating an occupation it can imagine finishing. ---
++    let mass = an.population / (an.population + tn.population).max(1e-9);
++    let digestible = 0.35 + 1.30 * mass * mass;
++
++    // --- And what it would be worth. Kuwait was a third of Iraq's economy
++    // sitting behind an army of two divisions; Vietnam in 1990 was worth 1.7%
++    // of China's and cost a war to take. ---
++    let worth = 0.25 + 0.75 * (tn.gdp / an.gdp.max(1e-9)).clamp(0.0, 1.0);
++
++    let base = APPETITE
++        * reach
++        * want
++        * digestible
++        * worth
++        * disposition(w, a)
++        * grudge(w, a, t)
++        * if settled { SETTLED } else { 1.0 };
++    if base <= 0.0 {
++        return 0.0;
++    }
++
++    // --- Circumstance: the conditions the old code applied on top of its
++    // table, unchanged in substance. ---
++
++    // Fiscal desperation raises appetite. Iraq entered 1990 owing more than its
++    // annual output to states it had fought Iran on behalf of.
++    let desperation =
++        (an.debt_gdp - 0.6).max(0.0) * 1.5 + (0.4 - an.growth_last * 10.0).max(0.0) * 0.2;
++
++    // A neighbour that cannot hold itself together is an invitation: its own
++    // minorities are a lever, and its army is busy at home.
++    let fragility = 1.0 + tn.separatism * 1.5;
++
++    // Expected defence includes likely interveners — but a first-time gambler
++    // discounts them, which is Saddam's 1990 misjudgment. After one repelled
++    // invasion the lesson is learned permanently.
++    let learned = w.has_flag(&format!("burned_{:?}_{:?}", a, t));
++    let coalition_discount = if learned { 1.0 } else { 0.10 };
++    let mut expected_def = tn.mil_strength;
++    // Read the same list the coalition actually forms from, or the lesson of a
++    // repelled invasion is never available to be learned.
++    for m in majors() {
++        if war::would_intervene(w, *m, t, a) {
++            expected_def += w.nation(*m).mil_strength * coalition_discount;
++        }
++    }
++    // A signed guarantee is the one commitment an aggressor cannot pretend not
++    // to have seen. It is still discounted — pacts are broken — but far less
++    // than a hoped-for coalition.
++    for g in w.pact_partners(t) {
++        if g == a || majors().contains(&g) && war::would_intervene(w, g, t, a) {
++            continue;
++        }
++        if w.nation_opt(g).map_or(true, |n| !n.alive) {
++            continue;
++        }
++        let honoured = if learned { 0.75 } else { 0.20 };
++        expected_def += w.nation(g).mil_strength * honoured;
++    }
++    let strength_ratio = an.mil_strength / expected_def.max(1.0);
++    if strength_ratio < 0.8 {
++        return 0.0; // deterred
++    }
++
++    let p = base
++        * w.rules.ai_aggression
++        * (1.0 + desperation)
++        * fragility
++        * strength_ratio.min(4.0);
++    if p < NEGLIGIBLE {
++        0.0
++    } else {
++        p.min(0.25)
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    use crate::init::world_1990;
++
++    /// The shape the hand-written table encoded, asserted directly rather than
++    /// only through the emergent-history tests downstream of it. These are the
++    /// orderings that must survive any retuning of the constants above; a
++    /// change that inverts one of them has broken the model, not the test.
++    #[test]
++    fn the_derived_table_keeps_the_orderings_the_old_one_encoded() {
++        let w = world_1990(GameRules::default());
++        let kuwait = war_appetite(&w, NationId::Iraq, NationId::Kuwait);
++        let saudi = war_appetite(&w, NationId::Iraq, NationId::SaudiArabia);
++        let iran = war_appetite(&w, NationId::Iraq, NationId::Iran);
++        assert!(
++            kuwait > saudi * 5.0,
++            "Baghdad's claim on Kuwait no longer dominates: {:.5} vs {:.5} on Saudi Arabia",
++            kuwait,
++            saudi
++        );
++        assert!(kuwait > iran * 3.0, "Kuwait {:.5} against Iran {:.5}", kuwait, iran);
++        // ...and it is the claim doing it, not Iraq being generally warlike.
++        assert!(saudi > 0.0, "an armed neighbour is never at absolute zero");
++
++        // A country with no border, no claim and no quarrel is not a candidate.
++        assert_eq!(war_appetite(&w, NationId::USA, NationId::Japan), 0.0);
++        assert_eq!(war_appetite(&w, NationId::Brazil, NationId::Nigeria), 0.0);
++        // Nobody invades a nuclear power without a bomb of their own.
++        assert_eq!(war_appetite(&w, NationId::Iraq, NationId::Israel), 0.0);
++    }
++
++    #[test]
++    fn the_breakup_is_asymmetric_because_the_census_was() {
++        // The whole of `slovenia_escapes_the_wars_that_consume_bosnia`, stated
++        // at the level of the model rather than measured across ten runs.
++        let mut w = world_1990(GameRules::default());
++        for _ in 0..120 {
++            crate::tick_month(&mut w, &[]);
++            if w.has_flag("yugoslavia_dissolved") {
++                break;
++            }
++        }
++        assert!(w.has_flag("yugoslavia_dissolved"), "the federation never came apart");
++        let bosnia = war_appetite(&w, NationId::Serbia, NationId::Bosnia);
++        let slovenia = war_appetite(&w, NationId::Serbia, NationId::Slovenia);
++        assert!(
++            bosnia > slovenia * 10.0,
++            "Belgrade wants Bosnia {:.5} and Slovenia {:.5} — the asymmetry is gone",
++            bosnia,
++            slovenia
++        );
++    }
++
++    #[test]
++    fn a_claim_pressed_by_force_stops_being_a_war_aim() {
++        let mut w = world_1990(GameRules::default());
++        let before = war_appetite(&w, NationId::Iraq, NationId::Kuwait);
++        w.set_flag(&settled_flag(NationId::Iraq, NationId::Kuwait));
++        let after = war_appetite(&w, NationId::Iraq, NationId::Kuwait);
++        assert!(
++            after < before * 0.2,
++            "a war already won left the appetite intact: {:.5} -> {:.5}",
++            before,
++            after
++        );
++        assert!(after > 0.0, "the grievance survives even when the claim does not");
++    }
++}
++
++#[cfg(test)]
++mod diag {
++    use super::*;
++    use crate::init::world_1990;
++
++    /// Not a test — a readout. `cargo test --release -p spheres-sim -- --ignored
++    /// --nocapture appetite_table` prints every dyad the model gives a non-zero
++    /// appetite in January 1990, which is the audit the old match statement
++    /// used to be.
++    #[test]
++    #[ignore]
++    fn appetite_table() {
++        let w = world_1990(GameRules::default());
++        let mut rows: Vec<(f64, String)> = vec![];
++        for a in all_nations().iter().copied() {
++            for t in contacts(a).iter().copied() {
++                let p = war_appetite(&w, a, t);
++                if p > 0.0 {
++                    rows.push((p, format!("{:>12} -> {:<12} {:.5}/mo", a.code(), t.code(), p)));
++                }
++            }
++        }
++        rows.sort_by(|x, y| y.0.partial_cmp(&x.0).unwrap());
++        println!("\n{} live dyads in Jan 1990", rows.len());
++        for (_, r) in &rows {
++            println!("{}", r);
++        }
++    }
++
++    /// Every war-shaped calibration test in the suite, measured at once, so a
++    /// change to the appetite model can be judged against all of them in one
++    /// run rather than one bisected failure at a time.
++    #[test]
++    #[ignore]
++    fn calibration_dashboard() {
++        let mut gulf = 0;
++        for seed in 0..10u64 {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            let mut saw = false;
++            for _ in 0..48 {
++                if crate::tick_month(&mut w, &[])
++                    .iter()
++                    .any(|h| h.contains("Iraq invades Kuwait"))
++                {
++                    saw = true;
++                }
++            }
++            if saw || !w.nation(NationId::Kuwait).alive {
++                gulf += 1;
++            }
++        }
++
++        let (mut slovenia, mut bosnia, mut broke) = (0, 0, 0);
++        for seed in 0..10u64 {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            for _ in 0..120 {
++                for h in crate::tick_month(&mut w, &[]) {
++                    if h.starts_with("WAR:") {
++                        if h.contains("Slovenia") {
++                            slovenia += 1;
++                        }
++                        if h.contains("Bosnia") {
++                            bosnia += 1;
++                        }
++                    }
++                }
++            }
++            if w.has_flag("yugoslavia_dissolved") {
++                broke += 1;
++            }
++        }
++
++        let (mut dragged, mut settled, mut wars) = (0, 0, 0);
++        for seed in 0..12u64 {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            let (mut d, mut s) = (false, false);
++            for _ in 0..360 {
++                for h in crate::tick_month(&mut w, &[]) {
++                    if h.starts_with("WAR:") {
++                        wars += 1;
++                    }
++                    if h.contains("honours its defence pact")
++                        && patrons().iter().any(|p| h.starts_with(p.name()))
++                    {
++                        d = true;
++                    }
++                    if h.contains("sues for peace") || h.contains("agree peace terms") {
++                        s = true;
++                    }
++                }
++            }
++            dragged += d as i32;
++            settled += s as i32;
++        }
++
++        println!(
++            "\ngulf {}/10 (>=5)   yugoslavia {}/10 (>=8)   bosnia {} vs slovenia {} (>3x)",
++            gulf, broke, bosnia, slovenia
++        );
++        println!(
++            "dragged {}/12 (3..12)   settled {}/12 (>=3)   wars in 12x30y: {}",
++            dragged, settled, wars
++        );
++
++        let mut w = world_1990(GameRules::default());
++        let start = w.nation(NationId::China).gdp;
++        for _ in 0..360 {
++            crate::tick_month(&mut w, &[]);
++        }
++        println!("china {:.1}x in 30y (6..14)", w.nation(NationId::China).gdp / start);
++    }
++
++    /// A census of what actually happens, seed by seed.
++    #[test]
++    #[ignore]
++    fn war_census() {
++        let mut total = 0;
++        for seed in 0..12u64 {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            let mut wars = vec![];
++            for _ in 0..360 {
++                for h in crate::tick_month(&mut w, &[]) {
++                    if h.starts_with("WAR:") || h.contains("defence pact") || h.contains("abandons its pact") {
++                        wars.push(format!("{} {}", w.date_str(), h));
++                    }
++                }
++            }
++            total += wars.len();
++            println!("--- seed {} ({} events)", seed, wars.len());
++            for x in &wars {
++                println!("   {}", x);
++            }
++        }
++        println!("total {}", total);
++    }
++}
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index 54d3381..0a10043 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -1,7 +1,9 @@
+ pub mod data;
++pub mod dyads;
+ pub mod economy;
+ pub mod exact;
+ pub mod init;
++pub mod nations;
+ pub mod politics;
+ pub mod statecraft;
+ pub mod tech;
+@@ -256,6 +258,30 @@ mod tests {
+         }
+     }
+ 
++    #[test]
++    #[ignore]
++    fn qa_dash() {
++        let (mut dragged, mut wars) = (0, 0);
++        for seed in 0..12u64 {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            let mut d = false;
++            for _ in 0..360 {
++                for h in tick_month(&mut w, &[]) {
++                    if h.starts_with("WAR:") { wars += 1; }
++                    if h.contains("honours its defence pact") { d = true; }
++                }
++            }
++            dragged += d as i32;
++        }
++        println!("QA dragged {}/12  wars12x30 {}", dragged, wars);
++        for seed in [1990u64, 0, 42, 3, 7] {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            let start = w.nation(NationId::China).gdp;
++            for _ in 0..360 { tick_month(&mut w, &[]); }
++            println!("QA china seed {} = {:.1}x", seed, w.nation(NationId::China).gdp / start);
++        }
++    }
++
+     #[test]
+     fn determinism_same_seed_same_world() {
+         let mut a = world_1990(GameRules::default());
+@@ -298,6 +324,50 @@ mod tests {
+     }
+ 
+     #[test]
++    fn saves_name_nations_rather_than_numbering_them() {
++        // The same lesson as `saves_name_technologies_rather_than_numbering_them`,
++        // and the reason `NationId` serializes as its code. A nation's id is an
++        // index into the roster and into the relations matrix; inserting one
++        // country in the middle of the roster moves every later index. A save
++        // that stored those indices would come back describing a different
++        // world, with nothing to detect it.
++        let mut w = world_1990(GameRules::default());
++        run_months(&mut w, 120);
++        let text = save(&w);
++
++        assert!(text.contains("\"id\": \"USA\""), "a nation's id is not written by name");
++        // The relations matrix in particular: dense in memory, named on disk.
++        assert!(
++            text.contains("\"USSR\""),
++            "the relations triples are not carrying codes"
++        );
++        // No nation is written as a bare number anywhere.
++        assert!(!text.contains("\"id\": 0"), "save is storing raw roster indices");
++
++        // A code from a build with a country this one does not have must be
++        // dropped from the relations matrix rather than resolved onto its
++        // neighbour, leaving a world that still loads and still runs.
++        const GHOST: &str = "xx_nation_from_a_later_build";
++        let doctored = text.replacen(
++            "\"relations\": [",
++            &format!("\"relations\": [\n    [\n      \"{}\",\n      \"USA\",\n      -40.0\n    ],", GHOST),
++            1,
++        );
++        assert_ne!(doctored, text, "the save has no relations to doctor");
++        let mut reloaded =
++            load(&doctored).expect("a save naming an unknown nation must still load");
++        // The ghost was dropped, not mapped onto whoever holds slot zero.
++        assert_eq!(
++            reloaded.relation(NationId::USA, NationId::USSR),
++            w.relation(NationId::USA, NationId::USSR),
++            "an unresolvable code was reinterpreted as a real nation"
++        );
++        run_months(&mut reloaded, 12);
++        for n in reloaded.nations.iter().filter(|n| n.alive) {
++            assert!(n.gdp.is_finite() && n.gdp > 0.0, "{:?} broke after reload", n.id);
++        }
++    }
++
+     #[test]
+     fn the_frontier_does_not_run_away() {
+         // The guard that was missing, and whose absence let the world run at
+@@ -412,7 +482,21 @@ mod tests {
+         // 0xb675826e8941683d.
+         //
+         // Pinned on: Windows, x86_64-pc-windows-gnu, rustc 1.97.1.
+-        const GOLDEN: u64 = 0x9ea63c12f4de0e64;
++        //
++        // RE-PINNED, deliberately, when war appetite stopped being a table of
++        // named pairs and became a function of borders, claims, relations and
++        // the two governments' own condition (`dyads.rs`). That changes which
++        // dyads are even candidates each month, so it changes the sequence of
++        // die rolls and therefore every subsequent number in the world — a hash
++        // move is the expected consequence, not evidence of a bug.
++        //
++        // The identity half of the same change is separately proven NOT to move
++        // it: with the runtime `NationId` in place and master's literal dyad
++        // table restored on top, this test reproduces the previous fingerprint
++        // 0xb675826e8941683d exactly, and `run 35 1990` reproduces the 2025
++        // league table to the digit (USA 16004, China 7050, Japan 6907,
++        // Germany 5018). The whole of the movement below is the derived model.
++        const GOLDEN: u64 = 0xdde08f5fd7705257;
+         let mut w = world_1990(GameRules::default());
+         run_months(&mut w, 12 * 20);
+         let h = state_hash(&w);
+@@ -945,7 +1029,7 @@ mod tests {
+             for _ in 0..360 {
+                 for h in tick_month(&mut w, &[]) {
+                     if h.contains("honours its defence pact")
+-                        && politics::PATRONS.iter().any(|p| h.starts_with(p.name()))
++                        && patrons().iter().any(|p| h.starts_with(p.name()))
+                     {
+                         saw = true;
+                     }
+diff --git a/spheres-sim/src/nations.rs b/spheres-sim/src/nations.rs
+new file mode 100644
+index 0000000..9bcb52a
+--- /dev/null
++++ b/spheres-sim/src/nations.rs
+@@ -0,0 +1,678 @@
++//! Nation identity as a runtime value, and the roster it is interned from.
++//!
++//! `NationId` used to be a closed Rust enum with a hand-written `name()` and
++//! `parse()` arm per country and fixed-size roster arrays beside it. At the
++//! ~190 nations BIBLE.md commits to that is some 380 match arms nobody can
++//! keep in agreement, and — far worse — it forces every *dyadic* fact about
++//! the world to be written as a `match (a, b)`, which is ~36,000 ordered pairs.
++//! A dyad table cannot be a match statement at that size.
++//!
++//! So identity is now an interned index: `NationId` is a `u16` handle into the
++//! roster below, `Copy`, cheap to compare, and usable directly as the index
++//! into the relations matrix. Adding a country is adding a row, not editing
++//! code. The roster is a static table today because that is what is
++//! transcribed; when it becomes a JSON file it replaces `ROSTER` and nothing
++//! above this module changes, because nothing above this module knows how many
++//! nations there are.
++//!
++//! Three things this module has to get right:
++//!
++//! * **Order is the relations matrix.** A nation's index is its row in the
++//!   dense triangle in `world.rs`, so the registry order is load-bearing and
++//!   the order here is deliberately the order the old enum declared.
++//! * **Saves carry codes, never indices.** `NationId` serializes as its stable
++//!   code string — exactly the discipline `tech::known_serde` follows, and for
++//!   exactly the reason: the technology tree was already bitten once by a save
++//!   that stored registry indices and silently reinterpreted them on the next
++//!   build.
++//! * **Dyadic facts are data.** `neighbours` and `claims` are what the derived
++//!   war-appetite model in `dyads.rs` reads instead of a per-pair match arm.
++
++use std::sync::OnceLock;
++
++use serde::{Deserialize, Deserializer, Serialize, Serializer};
++
++/// A territorial or irredentist claim one state holds on another.
++///
++/// `share` is the fraction of the *target* a claim would take if pressed to its
++/// full extent — the whole country for Iraq on Kuwait, a third for Belgrade on
++/// Bosnia, a rounding error for a reef. That single number is what separates a
++/// border dispute from a war of conquest, and it is the reason the appetite
++/// model does not need to know either country's name.
++#[derive(Clone, Copy, Debug)]
++pub struct Claim {
++    pub on: &'static str,
++    pub share: f64,
++}
++const fn claim(on: &'static str, share: f64) -> Claim {
++    Claim { on, share }
++}
++
++/// One transcribed row of the roster.
++#[derive(Clone, Copy, Debug)]
++pub struct NationRow {
++    /// Stable identifier. This is what a save file writes and what a data file
++    /// would key on; it must never be renamed once written.
++    pub code: &'static str,
++    pub name: &'static str,
++    /// Everything a human might type at the CLI for this nation.
++    pub aliases: &'static [&'static str],
++    pub region: &'static str,
++    /// Land borders (and the two straits narrow enough to march across) with
++    /// other nations *in this roster*. Neighbours outside the roster are simply
++    /// absent, which is correct: a border with an unsimulated state is not a
++    /// dyad this model can have an opinion about.
++    pub neighbours: &'static [&'static str],
++    pub claims: &'static [Claim],
++    /// On the board in January 1990. The rest are successor states that exist
++    /// only if a federation comes apart.
++    pub start_1990: bool,
++    /// Keeps clients: has a bloc to hold together and something to lose if it
++    /// goes over to the other side.
++    pub patron: bool,
++    /// Sanctions an aggressor and may intervene for its victim.
++    pub major: bool,
++}
++
++const fn row(
++    code: &'static str,
++    name: &'static str,
++    aliases: &'static [&'static str],
++    region: &'static str,
++    neighbours: &'static [&'static str],
++    claims: &'static [Claim],
++    start_1990: bool,
++    patron: bool,
++    major: bool,
++) -> NationRow {
++    NationRow { code, name, aliases, region, neighbours, claims, start_1990, patron, major }
++}
++
++// Region codes. Coarse on purpose: a region is "close enough that force can be
++// projected without anybody's permission", not a UN statistical division.
++pub const REGIONS: &[&str] = &[
++    "NorthAmerica", "LatinAmerica", "WesternEurope", "EasternEurope", "Balkans",
++    "Eurasia", "MiddleEast", "NorthAfrica", "WestAfrica", "SouthAsia",
++    "EastAsia", "SoutheastAsia",
++];
++
++/// The roster. **Order is the relations-matrix order and must not be shuffled.**
++///
++/// Borders are geographic fact. Claims are historical fact and each carries its
++/// source; the number is the share of the target the claim covers, so that a
++/// claim on a coral reef and a claim on a whole emirate are not the same object.
++#[rustfmt::skip]
++pub const ROSTER: &[NationRow] = &[
++    row("USA", "United States", &["usa", "us", "america"], "NorthAmerica",
++        &[], &[], true, true, true),
++
++    // The union borders China, Poland, Turkey and Iran; the successor Russia
++    // borders only the first two of those, which is a real change the model
++    // gets for free from the data rather than from a special case.
++    row("USSR", "Soviet Union", &["ussr", "soviets"], "Eurasia",
++        &["China", "Poland", "Turkey", "Iran"], &[], true, true, false),
++
++    // Russia's claim on Ukraine is the 1989 Soviet census: 22.1% of the
++    // Ukrainian SSR's people were ethnic Russians, concentrated in Crimea and
++    // the Donbas, and Crimea plus the Black Sea Fleet were in open dispute from
++    // 1992. https://en.wikipedia.org/wiki/1989_Soviet_census
++    // Nothing here schedules 2014; it states the inherited arithmetic and lets
++    // the model do what it does with it.
++    row("Russia", "Russia", &["rus", "russian federation"], "Eurasia",
++        &["China", "Poland", "Ukraine"], &[claim("Ukraine", 0.22)], false, true, false),
++
++    row("Ukraine", "Ukraine", &["ukr"], "Eurasia",
++        &["Russia", "Poland"], &[], false, false, false),
++
++    // Beijing's border with Moscow was fought over at Damansky/Zhenbao in 1969
++    // and not finally settled until the agreements of 1991 and 2004. The claim
++    // on India is Aksai Chin, held since 1962, plus Arunachal Pradesh — a large
++    // area and almost no people, hence a share near zero. On Vietnam it is the
++    // Paracels (taken 1974), the Spratlys (Johnson Reef, March 1988) and the
++    // land border strips disputed until 1999.
++    row("China", "China", &["prc", "cn"], "EastAsia",
++        &["USSR", "Russia", "India", "Pakistan", "Vietnam"],
++        &[claim("India", 0.02), claim("Vietnam", 0.01), claim("Russia", 0.004)],
++        true, true, false),
++
++    row("Japan", "Japan", &["jpn"], "EastAsia", &[], &[], true, true, true),
++
++    row("Germany", "Germany", &["ger", "frg", "brd"], "WesternEurope",
++        &["Poland", "France"], &[], true, true, true),
++
++    row("UK", "United Kingdom", &["uk", "britain", "gb"], "WesternEurope",
++        &["France"], &[], true, true, true),
++
++    row("France", "France", &["fra"], "WesternEurope",
++        &["Germany", "Italy", "UK"], &[], true, true, true),
++
++    row("Italy", "Italy", &["ita"], "WesternEurope",
++        &["France", "Yugoslavia", "Slovenia"], &[], true, false, false),
++
++    // Kashmir, from both ends. India claims the whole of the former princely
++    // state, which means Azad Kashmir and Gilgit-Baltistan — about 5.5m of
++    // Pakistan's 108m in 1990. Pakistan claims Indian-administered Jammu and
++    // Kashmir, about 8m of India's 870m.
++    row("India", "India", &["ind", "bharat"], "SouthAsia",
++        &["Pakistan", "China"],
++        &[claim("Pakistan", 0.06), claim("China", 0.005)], true, false, false),
++
++    row("Pakistan", "Pakistan", &["pak"], "SouthAsia",
++        &["India", "China", "Iran"], &[claim("India", 0.01)], true, false, false),
++
++    // Baghdad never accepted the Anglo-Ottoman line of 1913, claimed Kuwait as
++    // part of the Basra vilayet on Kuwaiti independence in 1961, and annexed it
++    // as the nineteenth province in August 1990: a claim on the entire state.
++    // On Iran it is Khuzestan — "Arabistan" — and the Shatt al-Arab, the stated
++    // casus belli of September 1980.
++    row("Iraq", "Iraq", &["irq"], "MiddleEast",
++        &["Kuwait", "SaudiArabia", "Iran", "Turkey"],
++        &[claim("Kuwait", 0.95), claim("Iran", 0.05)], true, false, false),
++
++    row("Kuwait", "Kuwait", &["kwt"], "MiddleEast",
++        &["Iraq", "SaudiArabia"], &[], true, false, false),
++
++    row("SaudiArabia", "Saudi Arabia", &["saudi arabia", "saudi", "ksa"], "MiddleEast",
++        &["Iraq", "Kuwait"], &[], true, false, false),
++
++    // Tehran's claim is the Shatt al-Arab thalweg conceded at Algiers in 1975
++    // and torn up in 1980, and behind it the shrine cities of Najaf and Karbala.
++    row("Iran", "Iran", &["irn", "persia"], "MiddleEast",
++        &["Iraq", "Turkey", "Pakistan", "USSR"], &[claim("Iraq", 0.03)], true, false, false),
++
++    row("SouthKorea", "South Korea", &["south korea", "korea", "rok"], "EastAsia",
++        &[], &[], true, false, false),
++
++    row("Poland", "Poland", &["pol"], "EasternEurope",
++        &["Germany", "USSR", "Russia", "Ukraine"], &[], true, false, false),
++
++    row("Brazil", "Brazil", &["bra"], "LatinAmerica", &[], &[], true, false, false),
++
++    row("Indonesia", "Indonesia", &["idn"], "SoutheastAsia", &[], &[], true, false, false),
++
++    row("Egypt", "Egypt", &["egy", "uar"], "NorthAfrica",
++        &["Israel"], &[], true, false, false),
++
++    row("Israel", "Israel", &["isr"], "MiddleEast",
++        &["Egypt"], &[], true, false, false),
++
++    // Ankara's claim is the Mosul vilayet, awarded to Iraq by the League of
++    // Nations in 1926 over Turkey's objection and pressed again by Ozal during
++    // the Gulf crisis: roughly 2m of Iraq's 17m people in the north.
++    row("Turkey", "Turkey", &["turkiye", "tur"], "MiddleEast",
++        &["Iraq", "Iran", "USSR"], &[claim("Iraq", 0.12)], true, false, false),
++
++    row("Nigeria", "Nigeria", &["nga"], "WestAfrica", &[], &[], true, false, false),
++
++    // The Paracels and Spratlys from the other end, plus the border strips.
++    row("Vietnam", "Vietnam", &["viet nam", "vnm"], "SoutheastAsia",
++        &["China"], &[claim("China", 0.002)], true, false, false),
++
++    row("Yugoslavia", "Yugoslavia", &["sfry", "yugo"], "Balkans",
++        &["Italy"], &[], true, false, false),
++
++    // The 1991 census is the whole of the Yugoslav tragedy in three numbers.
++    // Serbs were 31.2% of Bosnia and 12.2% of Croatia — concentrated in the
++    // Krajina — and about 2% of Slovenia, which is why Belgrade's claim on
++    // Slovenia is not in this table at all. Croats were 17.4% of Bosnia and
++    // declared Herceg-Bosna in November 1991.
++    // https://en.wikipedia.org/wiki/Demographic_history_of_Bosnia_and_Herzegovina
++    row("Serbia", "Serbia", &["serbia and montenegro", "fry", "srb"], "Balkans",
++        &["Croatia", "Bosnia"],
++        &[claim("Bosnia", 0.31), claim("Croatia", 0.12)], false, false, false),
++
++    row("Croatia", "Croatia", &["hrv"], "Balkans",
++        &["Serbia", "Bosnia", "Slovenia"], &[claim("Bosnia", 0.17)], false, false, false),
++
++    row("Slovenia", "Slovenia", &["svn"], "Balkans",
++        &["Croatia", "Italy"], &[], false, false, false),
++
++    row("Bosnia", "Bosnia", &["bosnia and herzegovina", "bih"], "Balkans",
++        &["Serbia", "Croatia"], &[], false, false, false),
++];
++
++// ---------------------------------------------------------------------------
++// The handle
++// ---------------------------------------------------------------------------
++
++/// A nation, as a handle. The inner index is the roster row and the relations
++/// matrix row; it is deliberately private so nothing outside this module can
++/// invent one out of an integer read off a disk.
++#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
++pub struct NationId(u16);
++
++impl NationId {
++    /// Index into the roster and into the relations matrix.
++    pub fn index(self) -> usize {
++        self.0 as usize
++    }
++    pub fn from_index(i: usize) -> Option<NationId> {
++        if i < ROSTER.len() {
++            Some(NationId(i as u16))
++        } else {
++            None
++        }
++    }
++    pub fn def(self) -> &'static NationDef {
++        &registry()[self.0 as usize]
++    }
++    /// The stable identifier. This is what goes to disk.
++    pub fn code(self) -> &'static str {
++        ROSTER[self.0 as usize].code
++    }
++    pub fn name(self) -> &'static str {
++        ROSTER[self.0 as usize].name
++    }
++    pub fn region(self) -> &'static str {
++        ROSTER[self.0 as usize].region
++    }
++    /// Resolve a code exactly, as a save file does. Case-sensitive on purpose:
++    /// this is an identifier, not user input.
++    pub fn from_code(code: &str) -> Option<NationId> {
++        ROSTER
++            .iter()
++            .position(|r| r.code == code)
++            .map(|i| NationId(i as u16))
++    }
++    /// What a human typed. Codes, display names and aliases, case-insensitive.
++    pub fn parse(s: &str) -> Option<NationId> {
++        let t = s.trim().to_lowercase();
++        if t.is_empty() {
++            return None;
++        }
++        ROSTER
++            .iter()
++            .position(|r| {
++                r.code.to_lowercase() == t
++                    || r.name.to_lowercase() == t
++                    || r.aliases.iter().any(|a| *a == t)
++            })
++            .map(|i| NationId(i as u16))
++    }
++}
++
++/// Debug prints the code, so that anything built out of `{:?}` — the
++/// `burned_*` flags in `war.rs`, the ids the browser UI keys on — stays a
++/// stable string rather than a number that moves when the roster grows.
++impl std::fmt::Debug for NationId {
++    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
++        f.write_str(self.code())
++    }
++}
++impl std::fmt::Display for NationId {
++    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
++        f.write_str(self.name())
++    }
++}
++
++impl Serialize for NationId {
++    fn serialize<S: Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
++        s.serialize_str(self.code())
++    }
++}
++impl<'de> Deserialize<'de> for NationId {
++    fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
++        let s = String::deserialize(d)?;
++        NationId::from_code(&s).ok_or_else(|| {
++            serde::de::Error::custom(format!("save names a nation this build does not have: {}", s))
++        })
++    }
++}
++
++// ---------------------------------------------------------------------------
++// The thin compatibility layer
++// ---------------------------------------------------------------------------
++
++/// A const per well-known nation, so call sites stay readable and the ~500
++/// existing `NationId::Iraq` spellings keep working. These are resolved at
++/// compile time from the roster, so a code that is renamed or removed is a
++/// build error rather than a silently wrong index.
++///
++/// This is a convenience, not the mechanism. Nothing in the sim *needs* a
++/// nation to have a const, and nothing may pattern-match on one.
++macro_rules! well_known {
++    ($($konst:ident => $code:literal),* $(,)?) => {
++        /// The same handles as free constants, so a data table can say `USA`
++        /// rather than `NationId::USA` thirty times a row.
++        pub mod ids {
++            use super::{of, NationId};
++            $(
++                #[allow(non_upper_case_globals)]
++                pub const $konst: NationId = of($code);
++            )*
++        }
++        #[allow(non_upper_case_globals)]
++        impl NationId {
++            $( pub const $konst: NationId = ids::$konst; )*
++        }
++    };
++}
++
++well_known! {
++    USA => "USA",
++    USSR => "USSR",
++    Russia => "Russia",
++    Ukraine => "Ukraine",
++    China => "China",
++    Japan => "Japan",
++    Germany => "Germany",
++    UK => "UK",
++    France => "France",
++    Italy => "Italy",
++    India => "India",
++    Pakistan => "Pakistan",
++    Iraq => "Iraq",
++    Kuwait => "Kuwait",
++    SaudiArabia => "SaudiArabia",
++    Iran => "Iran",
++    SouthKorea => "SouthKorea",
++    Poland => "Poland",
++    Brazil => "Brazil",
++    Indonesia => "Indonesia",
++    Egypt => "Egypt",
++    Israel => "Israel",
++    Turkey => "Turkey",
++    Nigeria => "Nigeria",
++    Vietnam => "Vietnam",
++    Yugoslavia => "Yugoslavia",
++    Serbia => "Serbia",
++    Croatia => "Croatia",
++    Slovenia => "Slovenia",
++    Bosnia => "Bosnia",
++}
++
++const fn bytes_eq(a: &str, b: &str) -> bool {
++    let (a, b) = (a.as_bytes(), b.as_bytes());
++    if a.len() != b.len() {
++        return false;
++    }
++    let mut i = 0;
++    while i < a.len() {
++        if a[i] != b[i] {
++            return false;
++        }
++        i += 1;
++    }
++    true
++}
++
++/// Compile-time roster lookup. Panics at build time on an unknown code.
++pub const fn of(code: &str) -> NationId {
++    let mut i = 0;
++    while i < ROSTER.len() {
++        if bytes_eq(ROSTER[i].code, code) {
++            return NationId(i as u16);
++        }
++        i += 1;
++    }
++    panic!("no nation with that code in the roster")
++}
++
++// ---------------------------------------------------------------------------
++// The resolved registry
++// ---------------------------------------------------------------------------
++
++/// A roster row with its string references resolved to handles, plus the
++/// derived sets the dyad model walks. Built once; never mutated.
++#[derive(Clone, Debug)]
++pub struct NationDef {
++    pub id: NationId,
++    pub code: &'static str,
++    pub name: &'static str,
++    pub region: &'static str,
++    /// Symmetric closure of the declared borders, sorted. Symmetric because a
++    /// border is, and closed here so a one-sided row in the data cannot make
++    /// two nations disagree about whether they touch.
++    pub neighbours: Vec<NationId>,
++    /// Sorted by target.
++    pub claims: Vec<(NationId, f64)>,
++    /// Everyone this nation could plausibly use force against: neighbours, the
++    /// states it claims something from, and the rest of its region. The dyad
++    /// model walks this instead of the whole roster, which is what keeps the
++    /// appetite pass O(n·k) rather than O(n²) at 190 nations.
++    pub contacts: Vec<NationId>,
++    pub start_1990: bool,
++    pub patron: bool,
++    pub major: bool,
++}
++
++static REGISTRY: OnceLock<Vec<NationDef>> = OnceLock::new();
++
++pub fn registry() -> &'static [NationDef] {
++    REGISTRY.get_or_init(build_registry)
++}
++
++fn build_registry() -> Vec<NationDef> {
++    let resolve = |code: &str| -> NationId {
++        NationId::from_code(code)
++            .unwrap_or_else(|| panic!("roster names a nation that is not in it: {}", code))
++    };
++
++    // Borders first, unioned in both directions.
++    let mut adj: Vec<Vec<NationId>> = vec![vec![]; ROSTER.len()];
++    for (i, r) in ROSTER.iter().enumerate() {
++        for nb in r.neighbours {
++            let b = resolve(nb);
++            assert!(b.index() != i, "{} borders itself", r.code);
++            if !adj[i].contains(&b) {
++                adj[i].push(b);
++            }
++            if !adj[b.index()].contains(&NationId(i as u16)) {
++                adj[b.index()].push(NationId(i as u16));
++            }
++        }
++    }
++
++    ROSTER
++        .iter()
++        .enumerate()
++        .map(|(i, r)| {
++            let id = NationId(i as u16);
++            assert!(REGIONS.contains(&r.region), "{} is in no known region", r.code);
++            let mut neighbours = adj[i].clone();
++            neighbours.sort();
++
++            let mut claims: Vec<(NationId, f64)> =
++                r.claims.iter().map(|c| (resolve(c.on), c.share)).collect();
++            claims.sort_by_key(|(t, _)| *t);
++
++            let mut contacts: Vec<NationId> = neighbours.clone();
++            for (t, _) in &claims {
++                if !contacts.contains(t) {
++                    contacts.push(*t);
++                }
++            }
++            for (j, o) in ROSTER.iter().enumerate() {
++                if j != i && o.region == r.region {
++                    let o = NationId(j as u16);
++                    if !contacts.contains(&o) {
++                        contacts.push(o);
++                    }
++                }
++            }
++            contacts.sort();
++
++            NationDef {
++                id,
++                code: r.code,
++                name: r.name,
++                region: r.region,
++                neighbours,
++                claims,
++                contacts,
++                start_1990: r.start_1990,
++                patron: r.patron,
++                major: r.major,
++            }
++        })
++        .collect()
++}
++
++/// How many nations this build knows about, ever — the width of the relations
++/// matrix, not the number currently alive.
++pub fn nation_count() -> usize {
++    ROSTER.len()
++}
++
++/// Every id, in registry order. The index into this is the index into the
++/// relations matrix, so the two can never drift apart: they are the same thing.
++pub fn all_nations() -> &'static [NationId] {
++    static ALL: OnceLock<Vec<NationId>> = OnceLock::new();
++    ALL.get_or_init(|| (0..ROSTER.len()).map(|i| NationId(i as u16)).collect())
++}
++
++/// On the board in January 1990.
++pub fn start_nations() -> &'static [NationId] {
++    static START: OnceLock<Vec<NationId>> = OnceLock::new();
++    START.get_or_init(|| all_nations().iter().copied().filter(|n| n.def().start_1990).collect())
++}
++
++/// States that only exist if a federation comes apart.
++pub fn successor_nations() -> &'static [NationId] {
++    static SUCC: OnceLock<Vec<NationId>> = OnceLock::new();
++    SUCC.get_or_init(|| all_nations().iter().copied().filter(|n| !n.def().start_1990).collect())
++}
++
++/// The powers that keep clients. Not simply the strongest — the ones with a
++/// bloc to hold together and something to lose if it goes over to the other
++/// side. Japan belongs here despite its two-decimal army: it passed the United
++/// States in 1989 to become the largest aid donor in the world and stayed there
++/// until 2000. https://ies.princeton.edu/pdf/E196.pdf
++pub fn patrons() -> &'static [NationId] {
++    static P: OnceLock<Vec<NationId>> = OnceLock::new();
++    P.get_or_init(|| all_nations().iter().copied().filter(|n| n.def().patron).collect())
++}
++
++/// The powers that sanction an aggressor and may intervene for its victim.
++/// The AI's expectations in `politics::ai_wars` read this same list — if they
++/// diverge, aggressors invade into coalitions they never saw coming and never
++/// learn better.
++pub fn majors() -> &'static [NationId] {
++    static M: OnceLock<Vec<NationId>> = OnceLock::new();
++    M.get_or_init(|| all_nations().iter().copied().filter(|n| n.def().major).collect())
++}
++
++/// Do these two share a border?
++pub fn adjacent(a: NationId, b: NationId) -> bool {
++    a.def().neighbours.binary_search(&b).is_ok()
++}
++
++/// What `a` claims of `b`, as a share of `b`. Zero when there is no claim.
++pub fn claim_share(a: NationId, b: NationId) -> f64 {
++    a.def()
++        .claims
++        .binary_search_by_key(&b, |(t, _)| *t)
++        .map(|i| a.def().claims[i].1)
++        .unwrap_or(0.0)
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++
++    #[test]
++    fn the_roster_is_internally_consistent() {
++        let reg = registry();
++        assert_eq!(reg.len(), ROSTER.len());
++        for (i, d) in reg.iter().enumerate() {
++            assert_eq!(d.id.index(), i);
++            assert_eq!(NationId::from_code(d.code), Some(d.id), "{} does not resolve", d.code);
++            // A code is an identifier: unique, and never a display name.
++            assert_eq!(
++                reg.iter().filter(|o| o.code == d.code).count(),
++                1,
++                "duplicate code {}",
++                d.code
++            );
++        }
++        // Borders are symmetric, in the raw data and not only after the union.
++        for r in ROSTER {
++            for nb in r.neighbours {
++                let other = ROSTER.iter().find(|o| o.code == *nb).expect("neighbour exists");
++                assert!(
++                    other.neighbours.contains(&r.code),
++                    "{} lists {} as a neighbour but not the other way round",
++                    r.code,
++                    nb
++                );
++            }
++        }
++        // Every claim names a real target and is a share, not a magnitude.
++        for r in ROSTER {
++            for c in r.claims {
++                assert!(NationId::from_code(c.on).is_some(), "{} claims a ghost", r.code);
++                assert!((0.0..=1.0).contains(&c.share), "{}'s claim is not a share", r.code);
++                assert_ne!(c.on, r.code, "{} claims itself", r.code);
++            }
++        }
++    }
++
++    #[test]
++    fn every_name_the_old_parser_took_still_parses_to_the_same_nation() {
++        // The enum's hand-written parse arms, moved to data. If one of these
++        // ever resolves somewhere else, a saved game or a player's muscle
++        // memory has been quietly broken.
++        let cases: &[(&str, NationId)] = &[
++            ("usa", NationId::USA), ("us", NationId::USA),
++            ("united states", NationId::USA), ("america", NationId::USA),
++            ("ussr", NationId::USSR), ("soviet union", NationId::USSR),
++            ("soviets", NationId::USSR), ("russia", NationId::Russia),
++            ("ukraine", NationId::Ukraine), ("ukr", NationId::Ukraine),
++            ("china", NationId::China), ("prc", NationId::China),
++            ("japan", NationId::Japan), ("germany", NationId::Germany),
++            ("uk", NationId::UK), ("britain", NationId::UK),
++            ("united kingdom", NationId::UK), ("france", NationId::France),
++            ("italy", NationId::Italy), ("india", NationId::India),
++            ("pakistan", NationId::Pakistan), ("iraq", NationId::Iraq),
++            ("kuwait", NationId::Kuwait), ("saudi arabia", NationId::SaudiArabia),
++            ("saudi", NationId::SaudiArabia), ("ksa", NationId::SaudiArabia),
++            ("iran", NationId::Iran), ("south korea", NationId::SouthKorea),
++            ("korea", NationId::SouthKorea), ("rok", NationId::SouthKorea),
++            ("poland", NationId::Poland), ("brazil", NationId::Brazil),
++            ("bra", NationId::Brazil), ("indonesia", NationId::Indonesia),
++            ("idn", NationId::Indonesia), ("egypt", NationId::Egypt),
++            ("egy", NationId::Egypt), ("uar", NationId::Egypt),
++            ("israel", NationId::Israel), ("isr", NationId::Israel),
++            ("turkey", NationId::Turkey), ("turkiye", NationId::Turkey),
++            ("tur", NationId::Turkey), ("nigeria", NationId::Nigeria),
++            ("nga", NationId::Nigeria), ("vietnam", NationId::Vietnam),
++            ("viet nam", NationId::Vietnam), ("vnm", NationId::Vietnam),
++            ("yugoslavia", NationId::Yugoslavia), ("sfry", NationId::Yugoslavia),
++            ("yugo", NationId::Yugoslavia), ("serbia", NationId::Serbia),
++            ("serbia and montenegro", NationId::Serbia), ("fry", NationId::Serbia),
++            ("croatia", NationId::Croatia), ("slovenia", NationId::Slovenia),
++            ("bosnia", NationId::Bosnia),
++            ("bosnia and herzegovina", NationId::Bosnia), ("bih", NationId::Bosnia),
++        ];
++        for (text, id) in cases {
++            assert_eq!(NationId::parse(text), Some(*id), "{} no longer parses", text);
++        }
++        assert_eq!(NationId::parse("atlantis"), None);
++        assert_eq!(NationId::parse(""), None);
++    }
++
++    #[test]
++    fn identity_is_a_code_on_disk_and_an_index_in_memory() {
++        // The lesson the technology tree paid for: an index is a runtime
++        // detail and must never reach a file.
++        let json = serde_json::to_string(&NationId::Iraq).unwrap();
++        assert_eq!(json, "\"Iraq\"");
++        let back: NationId = serde_json::from_str(&json).unwrap();
++        assert_eq!(back, NationId::Iraq);
++        assert!(serde_json::from_str::<NationId>("\"Atlantis\"").is_err());
++        // ...and an index is never a code.
++        assert!(serde_json::from_str::<NationId>("12").is_err());
++    }
++
++    #[test]
++    fn the_roster_knows_who_touches_whom() {
++        assert!(adjacent(NationId::Iraq, NationId::Kuwait));
++        assert!(adjacent(NationId::Kuwait, NationId::Iraq));
++        // The whole of the Slovene escape in one assertion: Belgrade cannot
++        // walk to Ljubljana, and has nothing there it wants.
++        assert!(!adjacent(NationId::Serbia, NationId::Slovenia));
++        assert_eq!(claim_share(NationId::Serbia, NationId::Slovenia), 0.0);
++        assert!(claim_share(NationId::Serbia, NationId::Bosnia) > claim_share(NationId::Serbia, NationId::Croatia));
++        assert_eq!(claim_share(NationId::Iraq, NationId::Kuwait), 0.95);
++    }
++}
+diff --git a/spheres-sim/src/politics.rs b/spheres-sim/src/politics.rs
+index e001d00..bbf48af 100644
+--- a/spheres-sim/src/politics.rs
++++ b/spheres-sim/src/politics.rs
+@@ -267,7 +267,7 @@ fn dissolve_ussr(w: &mut WorldState) {
+     w.nations.push(ukraine);
+ 
+     // Both successors inherit a thawed version of USSR relations
+-    let rels: Vec<(NationId, f64)> = ALL_START_NATIONS
++    let rels: Vec<(NationId, f64)> = start_nations()
+         .iter()
+         .filter(|x| **x != NationId::USSR)
+         .map(|x| (*x, w.relation(NationId::USSR, *x) * 0.5 + 10.0))
+@@ -349,7 +349,7 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
+     }
+ 
+     // Successors inherit the federation's standing abroad, thinned out.
+-    let inherited: Vec<(NationId, f64)> = ALL_START_NATIONS
++    let inherited: Vec<(NationId, f64)> = start_nations()
+         .iter()
+         .filter(|x| **x != NationId::Yugoslavia)
+         .map(|x| (*x, w.relation(NationId::Yugoslavia, *x) * 0.6))
+@@ -381,15 +381,9 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
+     w.headline("The JNA's divisions, and its arsenal, remain in Belgrade's hands.".into());
+ }
+ 
+-/// The powers that keep clients. Not simply the strongest — the ones with a bloc
+-/// to hold together and something to lose if it goes over to the other side.
+-/// Japan belongs here despite its two-decimal army: it passed the United States
+-/// in 1989 to become the largest aid donor in the world and stayed there until
+-/// 2000. https://ies.princeton.edu/pdf/E196.pdf
+-pub const PATRONS: [NationId; 8] = [
+-    NationId::USA, NationId::USSR, NationId::Russia, NationId::China,
+-    NationId::UK, NationId::France, NationId::Germany, NationId::Japan,
+-];
++// The powers that keep clients are a flag on the roster row now rather than an
++// array here, so adding a nation cannot leave the list stale — see
++// `nations::patrons`, which holds the membership and the reasoning for it.
+ 
+ /// What a great power does in the eleven months of the year it is not invading
+ /// anyone. Each patron gets a handful of independent low-probability chances per
+@@ -397,13 +391,13 @@ pub const PATRONS: [NationId; 8] = [
+ /// to make a rival's client ungovernable. Everything goes through the same
+ /// `Command` the player uses, so the AI cannot do anything a player could not.
+ fn ai_statecraft(w: &mut WorldState) {
+-    let patrons: Vec<NationId> = PATRONS
++    let active: Vec<NationId> = patrons()
+         .iter()
+         .copied()
+         .filter(|p| w.nation_opt(*p).map_or(false, |n| n.alive) && Some(*p) != w.player)
+         .collect();
+ 
+-    for p in patrons {
++    for p in active {
+         // A patron with its own house on fire stops buying friends.
+         if w.nation(p).stability < 25.0 {
+             continue;
+@@ -529,7 +523,7 @@ fn ai_statecraft(w: &mut WorldState) {
+         .iter()
+         .filter(|n| n.alive)
+         .map(|n| n.id)
+-        .filter(|id| Some(*id) != w.player && !PATRONS.contains(id))
++        .filter(|id| Some(*id) != w.player && !patrons().contains(id))
+         .collect();
+     for s in seekers {
+         let strength = w.nation(s).mil_strength;
+@@ -600,7 +594,7 @@ fn best_client(w: &WorldState, patron: NationId) -> Option<NationId> {
+         .iter()
+         .filter(|n| n.alive && n.id != patron)
+         .map(|n| n.id)
+-        .filter(|c| !PATRONS.contains(c) && !war::MAJORS.contains(c))
++        .filter(|c| !patrons().contains(c) && !majors().contains(c))
+         .filter(|c| !crate::statecraft::belligerents(w, patron, *c))
+         .map(|c| (c, client_score(w, patron, c)))
+         .filter(|(_, s)| *s > 0.0)
+@@ -633,18 +627,19 @@ fn best_covert_target(w: &WorldState, sponsor: NationId) -> Option<NationId> {
+         .map(|(t, _)| t)
+ }
+ 
++/// Every state that might start a war this month, and how likely it is to.
++///
++/// There is no list of aggressors and no table of pairs. Anyone alive may want
++/// something from anyone they can reach; `dyads::war_appetite` decides how much,
++/// out of borders, claims, relations and the two governments' own condition.
++///
++/// Order is registry order for the attacker and registry order within its
++/// contact set for the target, so the sequence of die rolls — and therefore the
++/// whole timeline — is fixed by construction.
+ fn ai_wars(w: &mut WorldState) {
+-    // Iraq's Kuwait calculus: debt-strained oil state eyeing a rich, weak neighbor.
+     let candidates: Vec<(NationId, NationId, f64)> = {
+         let mut v = vec![];
+-        let aggressors = [
+-            NationId::Iraq, NationId::Iran, NationId::Pakistan, NationId::India,
+-            NationId::Serbia, NationId::Croatia,
+-            NationId::China, NationId::Israel, NationId::Turkey,
+-        ];
+-        // Successor states are not in ALL_START_NATIONS, so consider everyone alive.
+-        let living: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+-        for a in aggressors {
++        for a in all_nations().iter().copied() {
+             let an = match w.nation_opt(a) {
+                 Some(n) => n,
+                 None => continue, // has not been born yet, if it ever is
+@@ -652,109 +647,18 @@ fn ai_wars(w: &mut WorldState) {
+             if !an.alive || Some(a) == w.player || w.at_war(a) || an.war_exhaustion > 0.3 {
+                 continue;
+             }
+-            for t in living.iter().copied() {
+-                if t == a {
+-                    continue;
+-                }
+-                let tn = match w.nation_opt(t) {
+-                    Some(n) => n,
+-                    None => continue,
+-                };
+-                if !tn.alive || w.at_war(t) {
+-                    continue;
++            for t in crate::dyads::contacts(a).iter().copied() {
++                match w.nation_opt(t) {
++                    Some(n) if n.alive => {}
++                    _ => continue,
+                 }
+-                // Only historically-plausible dyads have nonzero base appetite (regional gates)
+-                let base: f64 = match (a, t) {
+-                    (NationId::Iraq, NationId::Kuwait) => 0.030,
+-                    (NationId::Iraq, NationId::SaudiArabia) => 0.004,
+-                    (NationId::Iraq, NationId::Iran) => 0.002,
+-                    (NationId::Iran, NationId::Iraq) => 0.002,
+-                    (NationId::Pakistan, NationId::India) => 0.001,
+-                    (NationId::India, NationId::Pakistan) => 0.001,
+-                    // The Sino-Vietnamese quarrel is the live one in Asia in
+-                    // 1990: a border war in 1979, artillery duels along it until
+-                    // 1988, and three Vietnamese ships sunk off Johnson Reef in
+-                    // the Spratlys that March. Relations are not normalised until
+-                    // November 1991, and Hanoi's Soviet guarantor is dying. Only
+-                    // this direction: Beijing has the bomb and Hanoi does not.
+-                    // Kept low because the quarrel was cooling, not heating: the
+-                    // multipliers below (relations at -45, a strength ratio near
+-                    // two) already triple whatever base it is given.
+-                    (NationId::China, NationId::Vietnam) => 0.0003,
+-                    // Osirak is the precedent and it is only nine years old.
+-                    // Israel struck Iraq's reactor from the air in 1981 and was
+-                    // arguing internally about doing it again through 1990, up to
+-                    // and past the point where Scuds were landing on Tel Aviv.
+-                    // What it never became was an invasion, which is what this
+-                    // table declares — hence a base an order below Iraq's own
+-                    // appetite for Kuwait, further damped because Israel's 132%
+-                    // debt would otherwise read to the AI as fiscal desperation.
+-                    (NationId::Israel, NationId::Iraq) => 0.0003,
+-                    // Turkey put divisions across the Iraqi border repeatedly in
+-                    // the nineties — 1992, 1995, 1997 — chasing the PKK into a
+-                    // north Iraq Baghdad no longer controlled, and Ozal pressed
+-                    // his allies for a share of the outcome, Mosul included. The
+-                    // appetite is real but conditional: it needs Baghdad to be
+-                    // beaten first, which the coalition's sanctions and the
+-                    // relations shift after an invasion supply.
+-                    (NationId::Turkey, NationId::Iraq) => 0.002,
+-                    // Wars of succession: neighbours of a state that just came
+-                    // apart, with kin on the wrong side of the new borders.
+-                    (NationId::Serbia, NationId::Croatia) => 0.022,
+-                    (NationId::Serbia, NationId::Bosnia) => 0.030,
+-                    (NationId::Serbia, NationId::Slovenia) => 0.010,
+-                    (NationId::Croatia, NationId::Bosnia) => 0.014,
+-                    _ => 0.0,
+-                };
+-                if base <= 0.0 {
++                if w.at_war(t) {
+                     continue;
+                 }
+-                let rel = w.relation(a, t);
+-                // Expected defense includes likely interveners — but a first-time
+-                // gambler discounts them (Saddam's 1990 misjudgment). After one
+-                // repelled invasion the lesson is learned permanently.
+-                let learned = w.has_flag(&format!("burned_{:?}_{:?}", a, t));
+-                let mut expected_def = tn.mil_strength;
+-                let coalition_discount = if learned { 1.0 } else { 0.10 };
+-                // Read the same list the coalition actually forms from, or the
+-                // lesson of a repelled invasion is never available to be learned.
+-                for m in war::MAJORS {
+-                    if war::would_intervene(w, m, t, a) {
+-                        expected_def += w.nation(m).mil_strength * coalition_discount;
+-                    }
+-                }
+-                // A signed guarantee is the one commitment an aggressor cannot
+-                // pretend not to have seen. It is still discounted — pacts are
+-                // broken — but far less than a hoped-for coalition.
+-                for g in w.pact_partners(t) {
+-                    if g == a || war::MAJORS.contains(&g) && war::would_intervene(w, g, t, a) {
+-                        continue;
+-                    }
+-                    if w.nation_opt(g).map_or(true, |n| !n.alive) {
+-                        continue;
+-                    }
+-                    let honoured = if learned { 0.75 } else { 0.20 };
+-                    expected_def += w.nation(g).mil_strength * honoured;
+-                }
+-                let strength_ratio = an.mil_strength / expected_def.max(1.0);
+-                if strength_ratio < 0.8 {
+-                    continue; // deterred
+-                }
+-                // Fiscal desperation raises appetite (Iraq 1990); bad relations too
+-                let desperation = (an.debt_gdp - 0.6).max(0.0) * 1.5 + (0.4 - an.growth_last * 10.0).max(0.0) * 0.2;
+-                // A neighbour that cannot hold itself together is an invitation:
+-                // its own minorities are a lever, and its army is busy at home.
+-                let mut p = base
+-                    * w.rules.ai_aggression
+-                    * (1.0 + desperation)
+-                    * (1.0 + tn.separatism * 1.5)
+-                    * strength_ratio.min(4.0)
+-                    * if rel < -20.0 { 1.5 } else { 0.5 };
+-                // Deterrence: never attack a nuclear power without your own arsenal
+-                if tn.nuclear && !an.nuclear {
+-                    p = 0.0;
++                let p = crate::dyads::war_appetite(w, a, t);
++                if p > 0.0 {
++                    v.push((a, t, p));
+                 }
+-                v.push((a, t, p.min(0.25)));
+             }
+         }
+         v
+diff --git a/spheres-sim/src/war.rs b/spheres-sim/src/war.rs
+index 20213f7..0b20b8a 100644
+--- a/spheres-sim/src/war.rs
++++ b/spheres-sim/src/war.rs
+@@ -61,6 +61,7 @@ pub fn tick(w: &mut WorldState) {
+                 // drop the war
+             } else if let Some((winner, loser)) = settlement_ripe(w, &war) {
+                 negotiated_peace(w, winner, loser);
++                w.set_flag(&crate::dyads::settled_flag(winner, loser));
+             } else {
+                 continuing.push(war);
+             }
+@@ -72,6 +73,11 @@ pub fn tick(w: &mut WorldState) {
+         if attacker_won {
+             let (winner, loser) = (war.attacker, war.defender);
+             conquer(w, winner, loser);
++            // The claim has been pressed to a conclusion. It survives as a
++            // grievance and stops being a war aim — the counterpart of the
++            // `burned_` lesson below, and the thing whose absence had states
++            // relaunching the same invasion every second year for a century.
++            w.set_flag(&crate::dyads::settled_flag(winner, loser));
+         } else {
+             // Defender victory: attacker's regime is humiliated, and the lesson sticks
+             w.set_flag(&format!("burned_{:?}_{:?}", war.attacker, war.defender));
+@@ -222,13 +228,11 @@ pub fn war_participants(war: &War) -> Vec<NationId> {
+     v
+ }
+ 
+-/// The powers that sanction an aggressor and may intervene for its victim.
+-/// The AI's expectations in `politics::ai_wars` read from this same list — if
+-/// they diverge, aggressors invade into coalitions they never saw coming and
+-/// never learn better.
+-pub const MAJORS: [NationId; 5] = [
+-    NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan,
+-];
++// The powers that sanction an aggressor and may intervene for its victim are a
++// flag on the roster row now — see `nations::majors`. `dyads::war_appetite`
++// reads that same list when it works out what an aggressor expects to face; if
++// the two ever diverge, aggressors invade into coalitions they never saw coming
++// and never learn better.
+ 
+ /// Would `m` come to `victim`'s defence?
+ pub fn would_intervene(w: &WorldState, m: NationId, victim: NationId, attacker: NationId) -> bool {
+@@ -270,8 +274,8 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
+     };
+ 
+     // Coalition response: majors sanction the aggressor...
+-    let majors = MAJORS;
+-    for m in majors {
++    let majors: Vec<NationId> = majors().to_vec();
++    for m in majors.iter().copied() {
+         if m == attacker || !w.nation(m).alive {
+             continue;
+         }
+@@ -289,7 +293,7 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
+ 
+     // ...and friends of the victim may intervene (never against a nuclear attacker directly
+     // unless they're nuclear too — abstracted: majors intervene if relation with victim high).
+-    for m in majors {
++    for m in majors.iter().copied() {
+         if war.defender_allies.contains(&m) || refused.contains(&m) {
+             continue;
+         }
+diff --git a/spheres-sim/src/world.rs b/spheres-sim/src/world.rs
+index 6538643..334c488 100644
+--- a/spheres-sim/src/world.rs
++++ b/spheres-sim/src/world.rs
+@@ -1,5 +1,9 @@
+ use serde::{Deserialize, Serialize};
+ 
++pub use crate::nations::{
++    adjacent, all_nations, claim_share, majors, nation_count, patrons, registry, start_nations,
++    successor_nations, Claim, NationDef, NationId, NationRow, ROSTER,
++};
+ use crate::tech::TechState;
+ 
+ /// SplitMix64 — the single seeded RNG. Determinism is sacred.
+@@ -31,115 +35,6 @@ impl Rng {
+     }
+ }
+ 
+-#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
+-pub enum NationId {
+-    USA, USSR, Russia, Ukraine, China, Japan, Germany, UK, France, Italy,
+-    India, Pakistan, Iraq, Kuwait, SaudiArabia, Iran, SouthKorea, Poland,
+-    Brazil, Indonesia, Egypt, Israel, Turkey, Nigeria, Vietnam,
+-    Yugoslavia, Serbia, Croatia, Slovenia, Bosnia,
+-}
+-pub const ALL_START_NATIONS: [NationId; 24] = [
+-    NationId::USA, NationId::USSR, NationId::China, NationId::Japan,
+-    NationId::Germany, NationId::UK, NationId::France, NationId::Italy,
+-    NationId::India, NationId::Pakistan, NationId::Iraq, NationId::Kuwait,
+-    NationId::SaudiArabia, NationId::Iran, NationId::SouthKorea, NationId::Poland,
+-    NationId::Brazil, NationId::Indonesia, NationId::Egypt, NationId::Israel,
+-    NationId::Turkey, NationId::Nigeria, NationId::Vietnam,
+-    NationId::Yugoslavia,
+-];
+-/// States that only exist if a federation comes apart.
+-pub const SUCCESSOR_NATIONS: [NationId; 6] = [
+-    NationId::Russia, NationId::Ukraine, NationId::Serbia, NationId::Croatia,
+-    NationId::Slovenia, NationId::Bosnia,
+-];
+-
+-impl NationId {
+-    pub fn name(&self) -> &'static str {
+-        match self {
+-            NationId::USA => "United States",
+-            NationId::USSR => "Soviet Union",
+-            NationId::Russia => "Russia",
+-            NationId::Ukraine => "Ukraine",
+-            NationId::China => "China",
+-            NationId::Japan => "Japan",
+-            NationId::Germany => "Germany",
+-            NationId::UK => "United Kingdom",
+-            NationId::France => "France",
+-            NationId::Italy => "Italy",
+-            NationId::India => "India",
+-            NationId::Pakistan => "Pakistan",
+-            NationId::Iraq => "Iraq",
+-            NationId::Kuwait => "Kuwait",
+-            NationId::SaudiArabia => "Saudi Arabia",
+-            NationId::Iran => "Iran",
+-            NationId::SouthKorea => "South Korea",
+-            NationId::Poland => "Poland",
+-            NationId::Brazil => "Brazil",
+-            NationId::Indonesia => "Indonesia",
+-            NationId::Egypt => "Egypt",
+-            NationId::Israel => "Israel",
+-            NationId::Turkey => "Turkey",
+-            NationId::Nigeria => "Nigeria",
+-            NationId::Vietnam => "Vietnam",
+-            NationId::Yugoslavia => "Yugoslavia",
+-            NationId::Serbia => "Serbia",
+-            NationId::Croatia => "Croatia",
+-            NationId::Slovenia => "Slovenia",
+-            NationId::Bosnia => "Bosnia",
+-        }
+-    }
+-    pub fn parse(s: &str) -> Option<NationId> {
+-        let t = s.trim().to_lowercase();
+-        Some(match t.as_str() {
+-            "usa" | "us" | "united states" | "america" => NationId::USA,
+-            "ussr" | "soviet union" | "soviets" => NationId::USSR,
+-            "russia" => NationId::Russia,
+-            "ukraine" | "ukr" => NationId::Ukraine,
+-            "china" | "prc" => NationId::China,
+-            "japan" => NationId::Japan,
+-            "germany" => NationId::Germany,
+-            "uk" | "britain" | "united kingdom" => NationId::UK,
+-            "france" => NationId::France,
+-            "italy" => NationId::Italy,
+-            "india" => NationId::India,
+-            "pakistan" => NationId::Pakistan,
+-            "iraq" => NationId::Iraq,
+-            "kuwait" => NationId::Kuwait,
+-            "saudi arabia" | "saudi" | "ksa" => NationId::SaudiArabia,
+-            "iran" => NationId::Iran,
+-            "south korea" | "korea" | "rok" => NationId::SouthKorea,
+-            "poland" => NationId::Poland,
+-            "brazil" | "bra" => NationId::Brazil,
+-            "indonesia" | "idn" => NationId::Indonesia,
+-            "egypt" | "egy" | "uar" => NationId::Egypt,
+-            "israel" | "isr" => NationId::Israel,
+-            "turkey" | "turkiye" | "tur" => NationId::Turkey,
+-            "nigeria" | "nga" => NationId::Nigeria,
+-            "vietnam" | "viet nam" | "vnm" => NationId::Vietnam,
+-            "yugoslavia" | "sfry" | "yugo" => NationId::Yugoslavia,
+-            "serbia" | "serbia and montenegro" | "fry" => NationId::Serbia,
+-            "croatia" => NationId::Croatia,
+-            "slovenia" => NationId::Slovenia,
+-            "bosnia" | "bosnia and herzegovina" | "bih" => NationId::Bosnia,
+-            _ => return None,
+-        })
+-    }
+-}
+-
+-/// Every nation id, in declaration order. The index into this array is the
+-/// index into the relations matrix, so the two must never drift apart.
+-pub const ALL_NATION_IDS: [NationId; NATION_COUNT] = [
+-    NationId::USA, NationId::USSR, NationId::Russia, NationId::Ukraine,
+-    NationId::China, NationId::Japan, NationId::Germany, NationId::UK,
+-    NationId::France, NationId::Italy, NationId::India, NationId::Pakistan,
+-    NationId::Iraq, NationId::Kuwait, NationId::SaudiArabia, NationId::Iran,
+-    NationId::SouthKorea, NationId::Poland, NationId::Brazil, NationId::Indonesia,
+-    NationId::Egypt, NationId::Israel, NationId::Turkey, NationId::Nigeria,
+-    NationId::Vietnam, NationId::Yugoslavia, NationId::Serbia, NationId::Croatia,
+-    NationId::Slovenia, NationId::Bosnia,
+-];
+-pub const NATION_COUNT: usize = 30;
+-
+ /// Symmetric relations, held as a dense lower triangle so a lookup is an index
+ /// rather than a search.
+ ///
+@@ -161,14 +56,15 @@ pub struct Relations {
+ impl Relations {
+     fn slot(a: NationId, b: NationId) -> usize {
+         let (hi, lo) = {
+-            let (x, y) = (a as usize, b as usize);
++            let (x, y) = (a.index(), b.index());
+             if x >= y { (x, y) } else { (y, x) }
+         };
+         hi * (hi + 1) / 2 + lo
+     }
+     fn ensure(&mut self) {
+-        if self.tri.len() != NATION_COUNT * (NATION_COUNT + 1) / 2 {
+-            self.tri.resize(NATION_COUNT * (NATION_COUNT + 1) / 2, 0.0);
++        let want = nation_count() * (nation_count() + 1) / 2;
++        if self.tri.len() != want {
++            self.tri.resize(want, 0.0);
+         }
+     }
+     pub fn get(&self, a: NationId, b: NationId) -> f64 {
+@@ -190,7 +86,7 @@ impl Relations {
+                 hi += 1;
+             }
+             let lo = i - hi * (hi + 1) / 2;
+-            match (ALL_NATION_IDS.get(hi), ALL_NATION_IDS.get(lo)) {
++            match (all_nations().get(hi), all_nations().get(lo)) {
+                 (Some(a), Some(b)) => Some((*a, *b, v)),
+                 _ => None,
+             }
+@@ -210,7 +106,7 @@ impl Serialize for Relations {
+                 hi += 1;
+             }
+             let lo = i - hi * (hi + 1) / 2;
+-            if let (Some(a), Some(b)) = (ALL_NATION_IDS.get(hi), ALL_NATION_IDS.get(lo)) {
++            if let (Some(a), Some(b)) = (all_nations().get(hi), all_nations().get(lo)) {
+                 out.push((*b, *a, *v));
+             }
+         }
+@@ -220,11 +116,18 @@ impl Serialize for Relations {
+ 
+ impl<'de> Deserialize<'de> for Relations {
+     fn deserialize<D: serde::Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
+-        let triples = Vec::<(NationId, NationId, f64)>::deserialize(d)?;
++        // Read the codes as plain strings and drop any this build cannot
++        // resolve, rather than failing the whole load or — far worse — letting
++        // a shifted roster reinterpret a pair as its neighbour. Same rule the
++        // technology tree follows for an id from a later build, and the same
++        // bug it was written to prevent.
++        let triples = Vec::<(String, String, f64)>::deserialize(d)?;
+         let mut r = Relations::default();
+         r.ensure();
+         for (a, b, v) in triples {
+-            r.set(a, b, v);
++            if let (Some(a), Some(b)) = (NationId::from_code(&a), NationId::from_code(&b)) {
++                r.set(a, b, v);
++            }
+         }
+         Ok(r)
+     }
+diff --git a/spheres-web/src/main.rs b/spheres-web/src/main.rs
+index be55ce6..e3257d5 100644
+--- a/spheres-web/src/main.rs
++++ b/spheres-web/src/main.rs
+@@ -188,7 +188,7 @@ fn classify(h: &str) -> &'static str {
+ fn mentioned(h: &str) -> Vec<NationId> {
+     let hay = h.to_lowercase(); // dissolution headlines shout in capitals
+     let mut out = vec![];
+-    for id in ALL_START_NATIONS.iter().chain(SUCCESSOR_NATIONS.iter()) {
++    for id in all_nations() {
+         if hay.contains(&id.name().to_lowercase()) && !out.contains(id) {
+             out.push(*id);
+         }

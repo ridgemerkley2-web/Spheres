@@ -1,0 +1,78 @@
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index 6e8b7cc..553e63c 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -456,6 +456,65 @@ mod tests {
+         }
+     }
+ 
++    /// The readout the ten-region integration was judged on, kept so the
++    /// calibration commit that follows it does not have to rebuild the
++    /// instrument. Every quantity here belongs to a test that moved when the
++    /// roster went from 31 nations to 108; printing them across ten seeds is
++    /// what separates "this test reads one seed and the seed moved" from "the
++    /// model is roster-size dependent". Measured values at 31, 91 and 108
++    /// nations are in the comment on `golden_hash_of_a_known_run`.
++    ///
++    /// `cargo test --release -p spheres-sim roster_scale_readout -- --ignored --nocapture`
++    #[test]
++    #[ignore]
++    fn roster_scale_readout() {
++        let world_gdp: f64 =
++            world_1990(GameRules::default()).nations.iter().filter(|n| n.alive).map(|n| n.gdp).sum();
++        println!("world 1990 GDP ${:.0}bn over {} nations", world_gdp, nations::nation_count());
++
++        for id in [NationId::USA, NationId::Japan, NationId::Germany,
++                   NationId::France, NationId::UK, NationId::Italy] {
++            let mut xs: Vec<f64> = vec![];
++            for seed in 0..10u64 {
++                let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++                let g0 = w.nation(id).gdp;
++                run_months(&mut w, 12 * 35);
++                let n = w.nation(id);
++                xs.push(if n.alive {
++                    (exact::powf(n.gdp / g0, 1.0 / 35.0) - 1.0) * 100.0
++                } else {
++                    f64::NAN
++                });
++            }
++            let hot = xs.iter().filter(|x| x.is_finite() && **x >= 4.0).count();
++            println!("35y CAGR {:<8?} {:?}  seeds at or over 4.0%: {}", id,
++                xs.iter().map(|x| (x * 100.0).round() / 100.0).collect::<Vec<_>>(), hot);
++        }
++
++        let mut xs: Vec<f64> = vec![];
++        for seed in 0..10u64 {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            let g0 = w.nation(NationId::China).gdp;
++            run_months(&mut w, 360);
++            xs.push(w.nation(NationId::China).gdp / g0);
++        }
++        let mut sorted = xs.clone();
++        sorted.sort_by(|a, b| a.partial_cmp(b).unwrap());
++        println!("China 30y multiple {:?} median {:.2}",
++            xs.iter().map(|x| (x * 100.0).round() / 100.0).collect::<Vec<_>>(),
++            (sorted[4] + sorted[5]) / 2.0);
++
++        for seed in 0..10u64 {
++            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
++            run_months(&mut w, 360);
++            let mut rows: Vec<(&str, usize)> = w.nations.iter().filter(|n| n.alive)
++                .map(|n| (n.id.name(), n.tech.count())).collect();
++            rows.sort_by_key(|(_, c)| *c);
++            println!("tech floor seed {:<2} poorest {:?} frontier {}",
++                seed, &rows[..3.min(rows.len())], rows.last().unwrap().1);
++        }
++    }
++
+     #[test]
+     fn a_century_holds_together() {
+         // The risk register's top entry is two hundred AI economies spiralling,
+@@ -1350,6 +1409,7 @@ mod tests {
+         run_months(&mut base, 240);
+         run_months(&mut open, 240);
+         let (b, o) = (base.nation(NationId::Poland).gdp, open.nation(NationId::Poland).gdp);
++        println!("TRADE_RATIO {:.4}", o / b);
+         assert!(o > b * 1.20, "twenty years of integration bought nothing: {:.0} vs {:.0}", o, b);
+ 
+         // ...and the growth is the leash. Tearing the agreement up costs the

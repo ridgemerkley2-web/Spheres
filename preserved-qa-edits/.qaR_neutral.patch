@@ -1,0 +1,79 @@
+diff --git a/spheres-sim/src/economy.rs b/spheres-sim/src/economy.rs
+index 00c4537..9d74f6d 100644
+--- a/spheres-sim/src/economy.rs
++++ b/spheres-sim/src/economy.rs
+@@ -199,7 +199,7 @@ pub fn tick(w: &mut WorldState) {
+         }
+ 
+         // ---- Drags ----
+-        let sanction_drag = sanction_share * SANCTION_BITE;
++        let sanction_drag = sanction_share * qa_knob("QA_BITE", SANCTION_BITE);
+         let war_drag = if at_war { 0.020 + n.war_exhaustion * 0.03 } else { 0.0 };
+         let debt_drag = if n.debt_gdp > 0.9 { (n.debt_gdp - 0.9) * 0.02 } else { 0.0 };
+         let instability_drag = if n.stability < 40.0 { (40.0 - n.stability) * 0.0009 } else { 0.0 };
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index ab65374..cc4024d 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -1930,6 +1930,42 @@ mod tests {
+         }
+         assert!(born >= 6, "the union held together too often: {}/10", born);
+     }
++    #[test]
++    #[ignore]
++    fn qa_sanction_cost_calibration() {
++        // Reconstruction of the table economy.rs cites as
++        // `sanction_cost_calibration`, which does not exist in the repo.
++        let target = NationId::China;
++        for (label, coalition) in [
++            ("USA alone", vec![NationId::USA]),
++            ("G5", vec![NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan]),
++        ] {
++            let mut control = world_1990(GameRules::default());
++            control.rules.ai_aggression = 0.0;
++            let c0 = control.nation(target).gdp;
++            run_months(&mut control, 240);
++            let base = exact::powf(control.nation(target).gdp / c0, 1.0 / 20.0) - 1.0;
++
++            let mut t = world_1990(GameRules::default());
++            t.rules.ai_aggression = 0.0;
++            let t0 = t.nation(target).gdp;
++            let mut share = 0.0;
++            for _ in 0..240 {
++                for i in &coalition {
++                    if !t.is_sanctioning(*i, target) { t.sanctions.push((*i, target)); }
++                }
++                share += t.sanction_weight(target);
++                tick_month(&mut t, &[]);
++            }
++            let after = exact::powf(t.nation(target).gdp / t0, 1.0 / 20.0) - 1.0;
++            println!(
++                "QASANC bite={:.3} {:9} share={:.3} base={:.3}% after={:.3}% lost={:.2}pt",
++                crate::world::qa_knob("QA_BITE", 0.020), label, share / 240.0,
++                base * 100.0, after * 100.0, (base - after) * 100.0
++            );
++        }
++    }
++
+ }
+ 
+ 
+diff --git a/spheres-sim/src/world.rs b/spheres-sim/src/world.rs
+index 42f055d..9addee0 100644
+--- a/spheres-sim/src/world.rs
++++ b/spheres-sim/src/world.rs
+@@ -590,3 +590,14 @@ impl War {
+         }
+     }
+ }
++
++pub fn qa_knob(name: &str, default: f64) -> f64 {
++    use std::collections::HashMap;
++    use std::sync::OnceLock;
++    static M: OnceLock<HashMap<String, f64>> = OnceLock::new();
++    let m = M.get_or_init(|| {
++        std::env::vars().filter(|(k, _)| k.starts_with("QA_"))
++            .filter_map(|(k, v)| v.parse::<f64>().ok().map(|x| (k, x))).collect()
++    });
++    *m.get(name).unwrap_or(&default)
++}

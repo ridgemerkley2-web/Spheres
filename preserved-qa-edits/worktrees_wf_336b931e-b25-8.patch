@@ -1,0 +1,405 @@
+diff --git a/spheres-sim/src/tech/transport.rs b/spheres-sim/src/tech/transport.rs
+index b5fabc2..e43ec72 100644
+--- a/spheres-sim/src/tech/transport.rs
++++ b/spheres-sim/src/tech/transport.rs
+@@ -21,5 +21,399 @@ use super::TechDef;
+ use super::{tech, Domain, Effect, Era};
+ 
+ pub fn techs() -> Vec<TechDef> {
+-    vec![]
++    use Effect::*;
++    use Era::*;
++    vec![
++        // -------------------------------------------------------------------
++        // Road powertrains. The cheapest entry in the domain and the one every
++        // nation with a vehicle fleet eventually buys, because the gains are
++        // taken a tankful at a time by people who never decided to adopt
++        // anything. From here the branch runs to the hybrid and then to the
++        // battery vehicle, each step waiting on the one before it.
++        // -------------------------------------------------------------------
++
++        // Closed-loop engine management with a lambda sensor and a three-way
++        // catalyst: Bosch shipped Motronic from 1979, and by 1990 the American
++        // and Japanese fleets were entirely on it while Europe was legislating
++        // for it. What it does is bigger than fuel — it is the reason urban air
++        // in a rich country stopped being visible.
++        // Source: Bosch Motronic, in series production from the 1979 BMW 7 Series.
++        tech(
++            "tran_engine_management_ecu", "Closed-Loop Engine Management",
++            Domain::Transport, Information,
++            &["core_cmos_submicron"], 46.0, 1990,
++            &[EnergyEfficiency(0.03), Environment(0.05), Productivity(0.00004)],
++        ),
++        // The petrol-electric hybrid, where the engine is allowed to run only
++        // where it is efficient and the brakes give their energy back. Toyota
++        // launched the Prius in Japan in December 1997 on a nickel-metal hydride
++        // pack; lithium came to the drivetrain later, but the cell chemistry
++        // race is what made the pack a product rather than an experiment.
++        // Source: Toyota Prius, Japanese market launch December 1997.
++        tech(
++            "tran_hybrid_drivetrain", "Hybrid-Electric Drivetrain",
++            Domain::Transport, Information,
++            &["tran_engine_management_ecu", "core_lithium_ion_cell"], 95.0, 1997,
++            &[EnergyEfficiency(0.03), Productivity(0.00005)],
++        ),
++
++        // -------------------------------------------------------------------
++        // Rail. Electric traction is the poor country's entry and high-speed
++        // rail is the rich one's, and the second is built out of the first: a
++        // three-phase drive that can hold torque at 300km/h is the same drive
++        // that hauls a suburban service, only asked for more.
++        // -------------------------------------------------------------------
++
++        // Three-phase asynchronous traction with GTO inverter control replaced a
++        // century of resistance and tap-changer control, and took the same
++        // wire much further. DB's Class 120, the first mass-produced three-phase
++        // main-line locomotive, went into series service in 1987.
++        // Source: DB Baureihe 120, series delivery from 1987.
++        tech(
++            "tran_ac_traction_drive", "Three-Phase Electric Traction",
++            Domain::Transport, Information,
++            &["core_cmos_submicron"], 50.0, 1990,
++            &[EnergyEfficiency(0.03), Productivity(0.00005)],
++        ),
++        // High-speed rail is expensive because it is mostly civil engineering,
++        // and it pays back in a way the accounts never capture: two cities four
++        // hours apart become one labour market. The Shinkansen was 1964 and the
++        // TGV 1981; the ICE opened commercial service on the Hannover-Würzburg
++        // line on 2 June 1991, which is when the technology stopped being two
++        // national projects and became something a country could buy.
++        // Source: Deutsche Bahn ICE, commercial service from 2 June 1991.
++        tech(
++            "tran_high_speed_rail", "High-Speed Rail",
++            Domain::Transport, Information,
++            &["tran_ac_traction_drive"], 102.0, 1991,
++            &[Productivity(0.00013), Stability(0.06)],
++        ),
++
++        // -------------------------------------------------------------------
++        // Shipping and ports. The container was 1956, but what happened after
++        // 1990 is that the box stopped being handled by people. Automating the
++        // quay is what let the ships get bigger, and the ships getting bigger is
++        // most of why manufactured goods stopped caring where they were made.
++        // -------------------------------------------------------------------
++
++        // Automated guided vehicles between quay and stack, automated stacking
++        // cranes inside it, and a computer deciding where every box goes. ECT's
++        // Delta/Sea-Land terminal on the Maasvlakte was the first in the world
++        // to run that way, opened 25 June 1993.
++        // Source: ECT Delta/Sea-Land terminal, Rotterdam, opened June 1993.
++        tech(
++            "tran_container_terminal_automation", "Automated Container Terminal",
++            Domain::Transport, Information,
++            &["core_cmos_submicron"], 58.0, 1993,
++            &[InvestmentEfficiency(0.04), Productivity(0.00008)],
++        ),
++        // A ship too wide for the Panama Canal is a bet that the terminals will
++        // be rebuilt to take it, which is why it follows the terminal rather
++        // than leading it. Regina Mærsk was delivered in January 1996 as the
++        // first vessel over 6,000 TEU and the first over 300 metres.
++        // Source: Regina Mærsk, delivered from Odense Yard January 1996.
++        tech(
++            "tran_post_panamax_containership", "Post-Panamax Containership",
++            Domain::Transport, Information,
++            &["tran_container_terminal_automation"], 76.0, 1996,
++            &[InvestmentEfficiency(0.04), EnergyEfficiency(0.03), Productivity(0.00008)],
++        ),
++
++        // -------------------------------------------------------------------
++        // Civil aviation. Digital flight control first, because everything
++        // after it — the long twin-engine route, the composite airframe, the
++        // satellite-separated airway — assumes a computer between the pilot and
++        // the control surface.
++        // -------------------------------------------------------------------
++
++        // Digital fly-by-wire with a glass cockpit: the A320 entered service
++        // with Air France in March 1988 as the first airliner with no mechanical
++        // link from the sidestick to the surfaces. The airframe gets lighter
++        // because the computer will not let the aeroplane be flown outside its
++        // envelope, so the envelope does not have to be built for a bad day.
++        // Source: Airbus A320, entered service March 1988.
++        tech(
++            "tran_glass_cockpit_flybywire", "Digital Fly-By-Wire Airliner",
++            Domain::Transport, Information,
++            &["core_cmos_submicron"], 68.0, 1990,
++            &[Productivity(0.00006), MilitaryEfficiency(0.03)],
++        ),
++        // Two engines reliable enough to be trusted three hours from a diversion
++        // airport deleted the four-engine long-haul fleet and halved the cost of
++        // an ocean crossing. The 777 entered service with United in June 1995
++        // holding ETOPS-180 from its first commercial flight, the first airliner
++        // ever certified that way at entry into service.
++        // Source: Boeing 777, ETOPS-180 granted 30 May 1995, in service June 1995.
++        tech(
++            "tran_etops_twinjet", "Long-Range ETOPS Twinjet",
++            Domain::Transport, Information,
++            &["tran_glass_cockpit_flybywire"], 88.0, 1995,
++            &[EnergyEfficiency(0.02), Productivity(0.00009), DiffusionSpeed(0.02)],
++        ),
++
++        // -------------------------------------------------------------------
++        // Freight networks and traffic. Knowing where a vehicle is turns out to
++        // be the whole of logistics: it is what lets a firm hold less stock, a
++        // parcel be promised for tomorrow, and a city charge for the road.
++        // -------------------------------------------------------------------
++
++        // Satellite position reporting reached American trucking with Qualcomm's
++        // OmniTRACS in 1988, and receivers cheap enough to fit to every vehicle
++        // followed GPS reaching initial operational capability in December 1993.
++        // The gain is not the map. It is that inventory can sit in a trailer on
++        // a motorway instead of in a warehouse.
++        // Source: Qualcomm OmniTRACS from 1988; GPS IOC December 1993.
++        tech(
++            "tran_fleet_telematics", "Satellite Fleet Telematics",
++            Domain::Transport, Information,
++            &["core_gnss"], 54.0, 1994,
++            &[InvestmentEfficiency(0.03), Productivity(0.00008)],
++        ),
++        // Charging a vehicle for the congestion it causes needs the vehicle read
++        // electronically at speed, which is why it waited for the transponder.
++        // Singapore switched its 1975 paper licence scheme for gantry-based
++        // Electronic Road Pricing in September 1998; London followed in 2003.
++        // It works, and it is resented, which is the honest pair of effects.
++        // Source: Singapore Electronic Road Pricing, September 1998.
++        tech(
++            "tran_congestion_pricing", "Electronic Road Pricing",
++            Domain::Transport, Information,
++            &["tran_fleet_telematics"], 44.0, 1998,
++            &[Productivity(0.00006), Health(0.02), Stability(-0.06)],
++        ),
++        // Bus rapid transit is a metro built out of asphalt and radio: dedicated
++        // lanes, level boarding, off-board fares and a control room holding the
++        // headway. Curitiba proved it from 1974, and Bogotá's TransMilenio,
++        // opened December 2000, is what made it the thing a growing city buys
++        // when it cannot afford rail.
++        // Source: TransMilenio, Bogotá, opened December 2000.
++        tech(
++            "tran_bus_rapid_transit", "Bus Rapid Transit",
++            Domain::Transport, Networked,
++            &["tran_fleet_telematics"], 96.0, 2000,
++            &[Productivity(0.00008), Environment(0.05), Stability(0.08)],
++        ),
++        // The overnight parcel network: sortation hubs, scanned handoffs at every
++        // touch and a promise a customer can plan around. Amazon Prime, launched
++        // February 2005, is the point the promise stopped being a premium service
++        // and became the default expectation of a retail economy.
++        // Source: Amazon Prime, launched February 2005.
++        tech(
++            "tran_express_parcel_network", "Express Parcel Network",
++            Domain::Transport, Networked,
++            &["tran_fleet_telematics"], 132.0, 2005,
++            &[InvestmentEfficiency(0.04), Productivity(0.00010)],
++        ),
++        // Mobile robots that carry the shelf to the picker rather than walking
++        // the picker to the shelf. Kiva Systems signed Staples in 2005 and had
++        // robots live in Zappos' Kentucky fulfilment centre by June 2008; Amazon
++        // bought the company in 2012 and stopped selling it to anyone else.
++        // Source: Kiva Systems at Zappos, live June 2008.
++        tech(
++            "tran_warehouse_robotics", "Mobile-Robot Fulfilment",
++            Domain::Transport, Networked,
++            &["tran_container_terminal_automation"], 158.0, 2008,
++            &[InvestmentEfficiency(0.04), Productivity(0.00010)],
++        ),
++
++        // -------------------------------------------------------------------
++        // Traffic control, in the air and on the road. Both branches are the
++        // same idea arriving twice: a vehicle that reports what it is doing can
++        // be separated more tightly than one that has to be watched.
++        // -------------------------------------------------------------------
++
++        // Aircraft broadcasting their own satellite-derived position, so
++        // controllers can separate them where no radar reaches. Australia
++        // commissioned the first continent-wide ADS-B network and began using it
++        // for surveillance separation in December 2009. Tighter separation over
++        // an ocean is a shorter track, and a shorter track is fuel not burned.
++        // Source: Airservices Australia, ADS-B separation services from December 2009.
++        tech(
++            "tran_ads_b_surveillance", "Satellite Air Traffic Surveillance",
++            Domain::Transport, Networked,
++            &["tran_glass_cockpit_flybywire", "core_gnss"], 145.0, 2009,
++            &[EnergyEfficiency(0.02), Productivity(0.00008)],
++        ),
++        // Continuous train control by radio, with the signal in the cab and the
++        // block computed rather than painted on the ground. The Rome-Naples
++        // high-speed line opened in December 2005 as the first railway anywhere
++        // running normal service under ETCS Level 2, which is what let one set of
++        // trains work across borders that used to each have their own signalling.
++        // Source: Rome-Naples high-speed line, ETCS Level 2 in service December 2005.
++        tech(
++            "tran_ertms_train_control", "Radio-Based Train Control",
++            Domain::Transport, Networked,
++            &["tran_high_speed_rail"], 122.0, 2005,
++            &[InvestmentEfficiency(0.03), Productivity(0.00006)],
++        ),
++        // The first system that looked ahead and then actually braked. Mitsubishi
++        // put lidar cruise control on the Diamante in 1995 but it could only lift
++        // the throttle; Honda's radar Collision Mitigation Brake System, on the
++        // Inspire from June 2003, was the first production car that would stop
++        // itself. Everything later in this branch is that sensor plus a better
++        // opinion about what it is seeing.
++        // Source: Honda CMBS on the Inspire, announced 20 May 2003.
++        tech(
++            "tran_collision_avoidance_adas", "Radar Collision Avoidance",
++            Domain::Transport, Networked,
++            &["tran_engine_management_ecu"], 108.0, 2003,
++            &[Health(0.04), Productivity(0.00004)],
++        ),
++
++        // -------------------------------------------------------------------
++        // The platform decade: the battery vehicle becomes ordinary, the
++        // airframe becomes plastic, the ship becomes enormous, and a phone with
++        // a satellite fix becomes a way of dispatching labour.
++        // -------------------------------------------------------------------
++
++        // The lithium battery car as a mass-market product rather than a
++        // demonstration. Tesla's Roadster proved the pack in 2008; the Nissan
++        // Leaf, on sale in Japan and the United States from December 2010, was
++        // the first built to be bought by ordinary people in volume.
++        // Source: Nissan Leaf, market launch December 2010.
++        tech(
++            "tran_lithium_ev", "Mass-Market Battery Electric Vehicle",
++            Domain::Transport, Platform,
++            &["tran_hybrid_drivetrain"], 205.0, 2010,
++            &[EnergyEfficiency(0.05), Environment(0.05), Productivity(0.00005)],
++        ),
++        // A composite primary structure lets the cabin be pressurised harder and
++        // the wing be built thinner, and it does not fatigue the way aluminium
++        // does. The 787 entered service with ANA in October 2011, the first
++        // airliner whose fuselage and wing are both carbon fibre.
++        // Source: Boeing 787, first commercial flight with ANA, 26 October 2011.
++        tech(
++            "tran_composite_airframe", "Composite-Primary Airframe",
++            Domain::Transport, Platform,
++            &["tran_etops_twinjet", "core_carbon_composites"], 300.0, 2011,
++            &[
++                EnergyEfficiency(0.04),
++                Productivity(0.00008),
++                CostReduction { domain: Domain::Transport, frac: 0.05 },
++            ],
++        ),
++        // Dispatching a vehicle to a person by satellite fix and mobile network,
++        // and settling the fare without either party handling money. Uber began
++        // in San Francisco in 2010 and UberX opened the platform to ordinary cars
++        // in July 2012. It raises the utilisation of a fleet that already exists,
++        // and it dissolves the licensed trades that used to hold the ground,
++        // which is a real fight in every city it enters.
++        // Source: UberX, launched July 2012.
++        tech(
++            "tran_ride_hailing_platform", "On-Demand Ride Hailing",
++            Domain::Transport, Platform,
++            &["tran_fleet_telematics", "core_digital_cellular"], 180.0, 2012,
++            &[Productivity(0.00008), Stability(-0.08)],
++        ),
++        // Twenty thousand boxes on one hull, with slow-steaming engines and a
++        // waste-heat recovery plant, because at that size the fuel per container
++        // is what the whole design is for. The Mærsk Mc-Kinney Møller, first of
++        // the Triple-E class at 18,270 TEU, entered service in July 2013.
++        // Source: Mærsk Mc-Kinney Møller, delivered 2013, in service July 2013.
++        tech(
++            "tran_ultra_large_containership", "Ultra-Large Container Vessel",
++            Domain::Transport, Platform,
++            &["tran_post_panamax_containership"], 245.0, 2013,
++            &[InvestmentEfficiency(0.04), EnergyEfficiency(0.02), Productivity(0.00007)],
++        ),
++        // Camera and radar handed to a learned model rather than a rule set, so
++        // the car holds a lane and a following distance on a motorway without
++        // being told what a lane looks like. Tesla released Autopilot to customer
++        // vehicles in October 2015; Mercedes took the legal step to a system the
++        // driver need not supervise in 2021.
++        // Source: Tesla Autopilot, released to customers October 2015.
++        tech(
++            "tran_highway_autopilot", "Supervised Highway Autopilot",
++            Domain::Transport, Platform,
++            &["tran_collision_avoidance_adas", "core_gpu_deep_learning"], 275.0, 2015,
++            &[Health(0.05), Productivity(0.00006), ResearchRate(0.02)],
++        ),
++
++        // -------------------------------------------------------------------
++        // Driver out, battery into the heavy fleet, and the first serious attempt
++        // to decarbonise the two modes that electricity cannot reach.
++        // -------------------------------------------------------------------
++
++        // A vehicle carrying paying passengers with nobody aboard responsible for
++        // it. Waymo opened its Phoenix service to the general public without
++        // safety drivers on 8 October 2020. It is safer than the median driver
++        // and it removes a job that a great many people hold, and the simulation
++        // should feel both.
++        // Source: Waymo One fully driverless public service, Phoenix, 8 October 2020.
++        tech(
++            "tran_robotaxi_service", "Driverless Passenger Service",
++            Domain::Transport, Intelligent,
++            &["tran_highway_autopilot"], 430.0, 2020,
++            &[Productivity(0.00010), Health(0.02), Stability(-0.05)],
++        ),
++        // Battery-electric heavy trucks in series production: Volvo began
++        // building the FH Electric in 2022 and Tesla delivered the first Semis to
++        // PepsiCo in December 2022. Road freight is where a national diesel bill
++        // actually is, so this is the entry that moves an importer's exposure
++        // rather than its conscience.
++        // Source: Tesla Semi, first customer deliveries December 2022.
++        tech(
++            "tran_electric_heavy_truck", "Battery-Electric Heavy Truck",
++            Domain::Transport, Intelligent,
++            &["tran_lithium_ev"], 380.0, 2022,
++            &[EnergyEfficiency(0.05), Environment(0.05)],
++        ),
++        // Drop-in kerosene made from waste fats and synthetic aromatics, which
++        // works because it has to work in the engines that already exist. Blends
++        // were certified from 2011; Virgin Atlantic flew a 787 from Heathrow to
++        // JFK on 100% sustainable fuel on 28 November 2023, and the mandates
++        // followed. The constraint is feedstock, not chemistry.
++        // Source: Virgin Atlantic Flight100, 28 November 2023.
++        tech(
++            "tran_sustainable_aviation_fuel", "Sustainable Aviation Fuel",
++            Domain::Transport, Intelligent,
++            &["tran_composite_airframe"], 340.0, 2023,
++            &[Environment(0.05), Health(0.02)],
++        ),
++        // Driverless Class 8 trucks running scheduled freight for paying
++        // customers. Aurora began commercial driverless hauls on Interstate 45
++        // between Dallas and Houston in May 2025, the first heavy-truck service
++        // anywhere operating on public roads with nobody in the cab. A lane that
++        // runs around the clock without a driver is a different cost structure
++        // for everything shipped along it, and a large occupation ending.
++        // Source: Aurora Innovation, commercial driverless trucking from May 2025.
++        tech(
++            "tran_driverless_freight_corridor", "Driverless Freight Corridor",
++            Domain::Transport, Intelligent,
++            &["tran_robotaxi_service"], 470.0, 2025,
++            &[InvestmentEfficiency(0.04), Productivity(0.00014), Stability(-0.08)],
++        ),
++
++        // -------------------------------------------------------------------
++        // Past the present day. Both entries below are extrapolations of things
++        // that exist in pieces and have never been assembled.
++        // -------------------------------------------------------------------
++
++        // Speculative: freight moved from factory to shelf without a human
++        // touching it — driverless line-haul handing to automated terminals
++        // handing to automated warehouses, with one scheduler over the whole
++        // chain. Every piece has been demonstrated separately by the mid-2020s
++        // and none of them have been joined end to end.
++        tech(
++            "tran_autonomous_logistics_network", "Autonomous Logistics Network",
++            Domain::Transport, Frontier,
++            &["tran_driverless_freight_corridor", "tran_ultra_large_containership"], 650.0, 2034,
++            &[
++                InvestmentEfficiency(0.05),
++                Productivity(0.00018),
++                CostReduction { domain: Domain::Transport, frac: 0.05 },
++            ],
++        ),
++        // Speculative: a hydrogen-burning commercial airliner. Airbus announced
++        // ZEROe for 2035 and in 2025 pushed it back by up to a decade, blaming
++        // the absence of cheap green hydrogen rather than the aeroplane. Nothing
++        // here says it arrives; the floor only says it cannot arrive before the
++        // fuel does.
++        tech(
++            "tran_hydrogen_airliner", "Hydrogen-Powered Airliner",
++            Domain::Transport, Frontier,
++            &["tran_sustainable_aviation_fuel"], 780.0, 2043,
++            &[EnergyEfficiency(0.03), Environment(0.05), Productivity(0.00006)],
++        ),
++    ]
+ }
