@@ -610,6 +610,7 @@ pub fn load_world(
         flags: vec![],
         player: None,
         player_set_rate: false,
+        districts: crate::districts::ownership_1990(),
         by_id: vec![],
         by_id_len: 0,
     };

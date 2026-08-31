@@ -260,8 +260,18 @@ pub struct Polity {
 /// Emir dissolved in 1986 and did not recall until 1992.
 pub const ELECTORAL_CEILING: f64 = 0.60;
 
+/// Openness is necessary but not sufficient: a state whose party table is
+/// empty — Saudi Arabia, the smaller Gulf monarchies, Brunei, the Maldives,
+/// all transcription rather than gaps — has nothing a vote could be cast FOR,
+/// however far its authoritarianism falls. Treating one as electoral sent it
+/// down a branch where `hold_election` had nobody to seat and nothing to
+/// reset: the government "fell" and went to polls that could not be held,
+/// every month, for a decade of game time. A no-party state therefore stays a
+/// pillar regime at any level of openness, until a party system is transcribed
+/// for it.
 pub fn is_electoral(w: &WorldState, id: NationId) -> bool {
     w.nation_opt(id).is_some_and(|n| n.alive && n.authoritarianism < ELECTORAL_CEILING)
+        && polity(id).is_some_and(|p| !p.parties.is_empty())
 }
 
 // The tables. Vote shares are from the last national election before January
@@ -6679,6 +6689,69 @@ mod tests {
         let g = state(&w, NationId::Indonesia).unwrap();
         assert!(g.pillars.is_empty(), "an elected government is still resting on pillars");
         assert!(!g.coalition.is_empty(), "nobody took office after the vote");
+    }
+
+    #[test]
+    fn a_state_with_no_parties_never_loops_through_the_polls() {
+        // The loop this test exists for: a revolution dropped Saudi Arabia's
+        // authoritarianism under ELECTORAL_CEILING in 2009, the electoral
+        // branch scheduled "first free elections" for a country whose party
+        // table is empty — the correct transcription, see the POLITIES block —
+        // and `hold_election` returned without seating anyone or resetting
+        // `months_in_office`. "The government of Saudi Arabia falls; the
+        // country goes to the polls." then printed for 125 consecutive months,
+        // and the same for every other no-party state that opened up. A fall
+        // resets the clock when it is real, so the headline repeating in
+        // consecutive months for ANY nation is the signature of the loop.
+        let mut w = w1990();
+        w.rules.ai_aggression = 0.0;
+        let no_party: Vec<NationId> = w
+            .nations
+            .iter()
+            .filter(|n| n.alive)
+            .filter(|n| polity(n.id).is_some_and(|p| p.parties.is_empty()))
+            .map(|n| n.id)
+            .collect();
+        assert!(
+            no_party.contains(&NationId::SaudiArabia),
+            "the transcription changed under this test: Saudi Arabia has parties now"
+        );
+        for id in &no_party {
+            w.nation_mut(*id).authoritarianism = 0.30;
+        }
+        let mut last_fell: Vec<(String, u32)> = vec![];
+        for month in 0..12 * 4u32 {
+            for h in crate::tick_month(&mut w, &[]) {
+                let name = h
+                    .strip_prefix("The government of ")
+                    .and_then(|r| r.strip_suffix(" falls; the country goes to the polls."));
+                if let Some(name) = name {
+                    match last_fell.iter_mut().find(|(n, _)| n == name) {
+                        Some((_, m)) => {
+                            assert!(
+                                month != *m + 1,
+                                "the government of {} fell in consecutive months ({} and {})",
+                                name, *m, month
+                            );
+                            *m = month;
+                        }
+                        None => last_fell.push((name.to_string(), month)),
+                    }
+                }
+            }
+        }
+        // And the regimes came out the other side still resting on something:
+        // nobody scheduled a vote for a country with nobody to elect, and
+        // nobody cleared the pillars on the way.
+        for id in &no_party {
+            let g = state(&w, *id).expect("a no-party state lost its government entirely");
+            assert!(!g.pillars.is_empty(), "{:?} is resting on nothing", id);
+            assert!(
+                g.coalition.is_empty(),
+                "{:?} seated a coalition out of an empty party table",
+                id
+            );
+        }
     }
 }
 

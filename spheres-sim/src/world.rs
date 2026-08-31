@@ -535,6 +535,22 @@ pub struct Conflict {
     /// never again however many times the aggressor climbs back up afterwards.
     #[serde(default)]
     pub invasion_declared: bool,
+    /// Ground held along the front, keyed by district id. +1 = side A holds
+    /// it, -1 = side B. Delta-encoded against ownership: an absent district
+    /// sits at its owner's side (+1 if owned by the side-A principal, -1 if
+    /// side-B), and `front.rs` prunes the map back to deviations — plus the
+    /// base-valued districts adjacent to a deviation, kept so the map's front
+    /// line never vanishes along a fully-captured edge — after every month.
+    /// Empty for pre-front saves; `front::reseed_fronts` reconstructs it on
+    /// load. Skipped when empty so a frontless conflict serializes exactly as
+    /// it did before the operational map existed.
+    #[serde(default, skip_serializing_if = "std::collections::BTreeMap::is_empty")]
+    pub front: std::collections::BTreeMap<String, f32>,
+    /// Encircled held groups as of the last resolved month, ids sorted within
+    /// each group, groups sorted lexicographically. Derived monthly, but
+    /// serialized so a mid-month save hashes identically to its reload.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub pockets: Vec<Vec<String>>,
 }
 
 impl Conflict {
@@ -691,6 +707,23 @@ pub struct WorldState {
     /// made by a player who never touched the rate.
     #[serde(default)]
     pub player_set_rate: bool,
+
+    /// Who holds each admin-1 district. Political geography only — BIBLE
+    /// section 5's sanction and its whole extent: districts own identity and
+    /// change hands at a settlement; they are not fought over individually
+    /// and never will be. Keys are the stable district ids from
+    /// `data/districts.json`; a district appears here only while some nation
+    /// holds it (Namibia's and East Timor's are unowned until a birth site
+    /// exists).
+    ///
+    /// BTreeMap so serialization order is key order — one more field the
+    /// golden hash covers without a sort. Defaulted so a save written before
+    /// districts existed still loads; `load()` reseeds an empty map from the
+    /// 1990 table plus alive successors, which is right for every save except
+    /// one taken after a pre-upgrade annexation or concession, which reads as
+    /// "borders at default" — the honest reconstruction available.
+    #[serde(default)]
+    pub districts: std::collections::BTreeMap<String, NationId>,
 
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it

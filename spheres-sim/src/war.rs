@@ -340,6 +340,41 @@ fn kill_rate(hunter: &Side, prey: &Side, th: &crate::theatre::Theatre) -> f64 {
         .clamp(0.0, 0.50)
 }
 
+/// The legacy control equation's two monthly terms — the push and the hold
+/// multiplier for whichever side `control` says is holding. One body, two
+/// callers: `resolve_conflicts` reads it for the real update, and the
+/// calibration suite reads it through `seize_terms` to run a shadow scalar
+/// beside the projected front, so the two can never quietly drift apart.
+fn control_terms(c: &Conflict, a: &Side, b: &Side, control: f64) -> (f64, f64) {
+    let seize_a = a.mass * a.quality * SEIZE_BY_RUNG[(a.top_rung as usize).min(9)]
+        * a.seize_mult
+        * (1.0 - 0.5 * b.deny_share);
+    let seize_b = b.mass * b.quality * SEIZE_BY_RUNG[(b.top_rung as usize).min(9)]
+        * b.seize_mult
+        * (1.0 - 0.5 * a.deny_share);
+    let hold_mult = {
+        let side = control >= 0.0;
+        let members = if side { &c.side_a } else { &c.side_b };
+        members
+            .iter()
+            .filter_map(|id| c.posture_of(*id))
+            .map(|x| obj_hold(x.objective))
+            .fold(f64::INFINITY, f64::min)
+            .min(4.0)
+    };
+    let push = SEIZE_PUSH * (seize_a - seize_b) / (seize_a + seize_b + SEIZE_FLOOR);
+    (push, hold_mult)
+}
+
+/// `control_terms` from the current world state, for a caller outside the
+/// tick: `(push, hold_mult)` such that the month's legacy movement is
+/// `push * (1 - control²) - CONTROL_DECAY * control * hold_mult`.
+pub fn seize_terms(w: &WorldState, c: &Conflict, control: f64) -> (f64, f64) {
+    let a = side_profile(w, c, true);
+    let b = side_profile(w, c, false);
+    control_terms(c, &a, &b, control)
+}
+
 /// Monthly military & war tick.
 pub fn tick(w: &mut WorldState) {
     // ---- Strength accumulation from spending, and magazines refilling ----
@@ -394,8 +429,12 @@ pub fn tick(w: &mut WorldState) {
 
 /// One outcome per conflict that stopped being one.
 enum Ending {
-    /// Side A took the ground and stayed at a rung that can hold it.
-    Conquest,
+    /// Side A took the ground and stayed at a rung that can hold it. Carries
+    /// its own verdict because it can be reached by the last defender quitting
+    /// the field — after which the emptied side can no longer name its lead:
+    /// `defender()` on an empty side falls back to the ORIGIN ATTACKER, and a
+    /// war's loser must never resolve to its winner.
+    Conquest { winner: NationId, loser: NationId },
     /// The opener was thrown back. The lesson sticks, which is what stops the
     /// same aggressor trying the same thing forever.
     Repelled,
@@ -436,26 +475,28 @@ fn resolve_conflicts(w: &mut WorldState) {
         let kill_ab = kill_rate(&a, &b, &th);
         let kill_ba = kill_rate(&b, &a, &th);
 
-        // ---- STEP 3: control, saturating so it cannot run away ----
-        let seize_a = a.mass * a.quality * SEIZE_BY_RUNG[(a.top_rung as usize).min(9)]
-            * a.seize_mult
-            * (1.0 - 0.5 * b.deny_share);
-        let seize_b = b.mass * b.quality * SEIZE_BY_RUNG[(b.top_rung as usize).min(9)]
-            * b.seize_mult
-            * (1.0 - 0.5 * a.deny_share);
-        let hold_mult = {
-            let side = c.control >= 0.0;
-            let members = if side { &c.side_a } else { &c.side_b };
-            members
-                .iter()
-                .filter_map(|id| c.posture_of(*id))
-                .map(|x| obj_hold(x.objective))
-                .fold(f64::INFINITY, f64::min)
-                .min(4.0)
-        };
-        let push = SEIZE_PUSH * (seize_a - seize_b) / (seize_a + seize_b + SEIZE_FLOOR);
+        // ---- STEP 3: control, saturating so it cannot run away — and, where
+        // the principals have theatre ground, projected onto the district map.
+        // The legacy equation below remains the sole source of monthly
+        // movement; `front::project` spends its `dcontrol` as an area budget
+        // across frontier districts, so the aggregate tracks the scalar it
+        // replaced by construction. With no contested ground (expeditionary
+        // vs expeditionary, a blockade, the district-less micro-nations) the
+        // scalar runs exactly as it always has.
+        let contested = crate::front::contested_set(w, &c);
+        if !contested.k.is_empty() {
+            // Step 0: the aggregate is recomputed from the ground before the
+            // equation reads it — self-healing against ownership another
+            // conflict's settlement moved mid-month.
+            crate::front::sync(&mut c, &contested);
+        }
+        let (push, hold_mult) = control_terms(&c, &a, &b, c.control);
         let dcontrol = push * (1.0 - c.control * c.control) - CONTROL_DECAY * c.control * hold_mult;
-        c.control = (c.control + dcontrol).clamp(-1.0, 1.0);
+        if contested.k.is_empty() {
+            c.control = (c.control + dcontrol).clamp(-1.0, 1.0);
+        } else {
+            crate::front::project(w, &mut c, &contested, dcontrol, &th);
+        }
 
         // ---- STEP 4/5/6: resolve, magazines, and the national residue ----
         let mut exits: Vec<NationId> = vec![];
@@ -623,6 +664,13 @@ fn resolve_conflicts(w: &mut WorldState) {
         for h in headlines {
             w.headline(h);
         }
+        // The leads, read BEFORE the exits can empty a side: when the last
+        // defender quits the fight, the endings below still have to know who
+        // lost. After the retain, `defender()` can only fall back to the
+        // origin ATTACKER — which is how China once capitulated to China, paid
+        // itself reparations and broke its own army for winning, while
+        // Mongolia walked away from the war it had just lost.
+        let (last_lead_a, last_lead_b) = (c.attacker(), c.defender());
         for id in &exits {
             w.headline(format!("{} quits the fight.", id.name()));
             c.side_a.retain(|x| x != id);
@@ -631,10 +679,11 @@ fn resolve_conflicts(w: &mut WorldState) {
         }
 
         // ---- STEP 7: termination, with no capitulation and no declaration ----
-        let (lead_a, lead_b) = (c.attacker(), c.defender());
+        let lead_a = if c.side_a.is_empty() { last_lead_a } else { c.attacker() };
+        let lead_b = if c.side_b.is_empty() { last_lead_b } else { c.defender() };
         if c.side_b.is_empty() {
             let e = if c.control >= 0.35 && c.top_rung(true) >= 8 {
-                Ending::Conquest
+                Ending::Conquest { winner: lead_a, loser: lead_b }
             } else if c.control >= 0.35 {
                 Ending::Settled { winner: lead_a, loser: lead_b }
             } else {
@@ -663,7 +712,7 @@ fn resolve_conflicts(w: &mut WorldState) {
                 <= 0.05
         };
         if c.control >= CONTROL_SATURATED && c.top_rung(true) >= 8 && spent(false) {
-            ended.push((c, Ending::Conquest));
+            ended.push((c, Ending::Conquest { winner: lead_a, loser: lead_b }));
             continue;
         }
         // ...and an aggressor is thrown back when it has lost the ground *and*
@@ -740,8 +789,7 @@ fn resolve_conflicts(w: &mut WorldState) {
 
     for (c, e) in ended {
         match e {
-            Ending::Conquest => {
-                let (winner, loser) = (c.attacker(), c.defender());
+            Ending::Conquest { winner, loser } => {
                 conquer(w, winner, loser);
                 // The claim has been pressed to a conclusion. It survives as a
                 // grievance and stops being a war aim — the counterpart of the
@@ -775,7 +823,11 @@ fn resolve_conflicts(w: &mut WorldState) {
                 ));
             }
             Ending::Settled { winner, loser } => {
-                negotiated_peace(w, winner, loser);
+                // What the winner actually holds at the front, read before
+                // the conflict is dropped: the concession prefers this ground
+                // and falls back to the value ranking for the rest.
+                let held = crate::front::held_by(w, &c, winner, loser);
+                negotiated_peace(w, winner, loser, &held);
                 if winner == c.origin_attacker {
                     // The opener got what it came for, so its claim is
                     // collected and it has no war aim left.
@@ -851,8 +903,15 @@ fn settlement_ripe(w: &mut WorldState, c: &Conflict) -> Option<(NationId, Nation
 }
 
 /// Terms short of conquest: reparations always, territory only from a state that
-/// cannot answer with annihilation.
-fn negotiated_peace(w: &mut WorldState, winner: NationId, loser: NationId) {
+/// cannot answer with annihilation. `held` is the ground the winner's front
+/// actually reached — those districts cede first, and an empty set reproduces
+/// the old value-ranked concession exactly.
+fn negotiated_peace(
+    w: &mut WorldState,
+    winner: NationId,
+    loser: NationId,
+    held: &std::collections::BTreeSet<String>,
+) {
     let (lgdp, lpop, loil, lnuclear) = {
         let l = w.nation(loser);
         (l.gdp, l.population, l.oil_mbd, l.nuclear)
@@ -879,6 +938,11 @@ fn negotiated_peace(w: &mut WorldState, winner: NationId, loser: NationId) {
     }
     w.set_relation(winner, loser, -55.0);
     if cede > 0.0 {
+        // The ceded ground has names: the districts the winner's front holds
+        // move first, then the loser's most valuable, sized by the same
+        // `cede` the gdp/population slices above already use. A nuclear loser
+        // cedes nothing, exactly as before.
+        crate::districts::cede_share_preferring(w, winner, loser, cede, held);
         w.headline(format!(
             "{} sues for peace, ceding territory to {}.",
             loser.name(), winner.name()
@@ -913,6 +977,10 @@ fn conquer(w: &mut WorldState, winner: NationId, loser: NationId) {
         n.oil_mbd += loil * 0.85;
         n.stability = (n.stability + 6.0).min(100.0);
         n.separatism = (n.separatism + 0.15).min(1.0);
+        // The map follows the outcome: an annexed state's every district
+        // changes hands. Subjugation below moves nothing — the loser survives
+        // with its borders intact.
+        crate::districts::annex_all(w, winner, loser);
         w.headline(format!("{} has annexed {}.", winner.name(), loser.name()));
         w.conflicts.retain(|c| !c.involves(loser));
     } else {
@@ -1103,6 +1171,8 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
         start_month: w.month,
         origin_attacker: attacker,
         invasion_declared: false,
+        front: std::collections::BTreeMap::new(),
+        pockets: vec![],
     });
     invasion_begins(w, id, attacker);
     Ok(())

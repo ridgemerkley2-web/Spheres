@@ -385,6 +385,8 @@ pub fn open_conflict(
         start_month: w.month,
         origin_attacker: opener,
         invasion_declared: false,
+        front: std::collections::BTreeMap::new(),
+        pockets: vec![],
     };
     w.conflicts.push(c);
     w.headline(format!(

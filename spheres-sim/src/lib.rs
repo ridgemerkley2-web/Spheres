@@ -1,8 +1,10 @@
 pub mod arsenal;
 pub mod commitment;
 pub mod data;
+pub mod districts;
 pub mod dyads;
 pub mod economy;
+pub mod front;
 pub mod government;
 pub mod exact;
 pub mod init;
@@ -584,6 +586,18 @@ pub fn load(s: &str) -> Result<WorldState, String> {
     if w.theatres.is_empty() {
         w.theatres = theatre::default_theatres();
     }
+    // A save written before districts existed carries none; reconstruct the
+    // best map available — 1990 defaults, then alive successors claim their
+    // own ground. See `districts::reseed` for what is and is not recoverable.
+    if w.districts.is_empty() {
+        districts::reseed(&mut w);
+    }
+    // ...and a save written before the operational map carries wars with a
+    // control scalar and no front. Project the scalar back onto the ground it
+    // summarizes — deterministic, no RNG — so the map and the number agree
+    // from the first rendered frame. A new-code roundtrip never lands here:
+    // its fronts are serialized.
+    front::reseed_fronts(&mut w);
     // The position index is derived, so it is not in the save. Built here so a
     // loaded world that is only ever read — the web server rendering a turn —
     // gets the same lookups as one that has ticked.
@@ -631,6 +645,9 @@ fn migrate_legacy_wars(w: &mut WorldState) {
             // A save from before the ladder holds only wars that were already
             // invasions, and the coalition against them has long since formed.
             invasion_declared: true,
+            // Reconstructed by `front::reseed_fronts` right after this runs.
+            front: std::collections::BTreeMap::new(),
+            pockets: vec![],
         });
     }
 }
@@ -1417,23 +1434,31 @@ mod tests {
         // while costing minutes, so this runs the one seed that exercises the
         // branch and checks the rule on it.
         //
-        // The seed has moved twice now — 9, then 18, now 0 — and each move is a
-        // measurement rather than a nuisance. Conquest is rare enough that any
-        // change to the war model reshuffles which seed reaches it: across
-        // thirty seeds and forty years there are currently exactly two (Malta
-        // 2007 on seed 0, Bhutan 2017 on seed 17), and before procurement was
-        // wired there were two others. Both are under the 8m threshold, so the
-        // rule holds every time; what moves is which run exercises it.
+        // The seed has moved five times now — 9, then 18, then 0, then 17,
+        // back to 9, now 93 — and each move is a measurement rather than a
+        // nuisance. Conquest is rare enough that any change that touches the
+        // shared RNG stream reshuffles which seed reaches it: the no-party
+        // electoral fix put the Gulf monarchies back on the pillar-regime
+        // path (coups, patronage, revolutions where a phantom election loop
+        // had frozen them), and that dissolved seed 9's Mongolia 2027. The
+        // re-scan had to go to a hundred seeds this time — none of 0..=29
+        // reaches the branch any more — and found exactly two: Saudi Arabia
+        // annexes Qatar in April 2018 on seed 93, and India annexes Bhutan
+        // in November 2029 on seed 61. Seed 93 is the pin because its
+        // conquest lands mid-run rather than a month from the window's edge.
+        // All finds to date sit under the 8m threshold, so the rule holds
+        // every time; what moves is which run exercises it.
         //
-        // Re-scan with a thirty-seed sweep when this guard fails. If it ever
-        // finds NONE, conquest has become unreachable and that is the finding.
+        // Re-scan with a seed sweep when this guard fails (thirty seeds
+        // historically; a hundred was needed last time). If it ever finds
+        // NONE, conquest has become unreachable and that is the finding.
         // Recorded as O-1 in BUGS.md: borders that never move is a game problem
         // and not a test problem.
         //
         // If the guard at the bottom ever fails, conquest has become
         // unreachable entirely, and that is the finding rather than a flaky
         // test.
-        let mut w = seeded(0);
+        let mut w = seeded(93);
         let mut alive: Vec<(NationId, f64)> =
             w.nations.iter().filter(|n| n.alive).map(|n| (n.id, n.population)).collect();
         let mut annexations = 0;
@@ -2165,10 +2190,22 @@ mod tests {
         // why this needed no per-nation tuning across 137 nations. The seeder
         // takes a record rather than a `&mut WorldState`, so it cannot draw from
         // the RNG even by accident, and every downstream draw is unmoved.
+        //
+        // Re-pinned for district ownership, same evidence as above: a new
+        // `WorldState` field (`districts`, the 2,610-entry 1990 ownership
+        // map seeded from data/districts.json), no behaviour change. The two
+        // checks were run before the number was touched: `git diff --
+        // spheres-sim/data/` shows one new untracked file, districts.json,
+        // and not one existing nation's figures moved; 117 of 119 tests
+        // passed untouched — the only reds were this pair. And this time the
+        // "struct moved, simulation did not" claim was proven byte for byte
+        // rather than argued: stripping the serialized `districts` block out
+        // of the new save reproduces the previous pin 0xbffd89cc8498ffaa
+        // exactly, so not one pre-existing byte of the start state moved.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0xbffd89cc8498ffaau64,
+            h, 0xd022d50f43c984dau64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -2327,7 +2364,78 @@ mod tests {
         // rather than a struct move: war.rs now scales sustained strength by
         // arsenal::adequacy. Twenty years of timeline cannot hash the same when
         // what a nation can field depends on what it actually bought.
-        const GOLDEN: u64 = 0x26e13d8d29a02476;
+        //
+        // Re-pinned for district ownership, same evidence as
+        // `the_1990_start_is_pinned` above: a new `WorldState` field, no
+        // behaviour change. The district map DOES move inside this run — the
+        // union dissolves and its ground passes to fifteen heirs — but the
+        // transfers write only `w.districts`: no helper draws from the RNG
+        // or touches a `Nation` field. Proven rather than argued: stripping
+        // the serialized `districts` block out of this run's save reproduces
+        // the previous pin 0x26e13d8d29a02476 exactly, so all twenty years
+        // of timeline are byte-identical and the fingerprint moves only
+        // because the save now carries the map.
+        // Re-pinned for the front projection — BIBLE §5 as amended 2026-08-30
+        // — 0x5853f63c87f05b17 -> 0xe383c17ab4499bfa, a deliberate behaviour
+        // change, sanctioned in the change that made it. Wars now carry a
+        // district front and pockets in the save, a settlement cedes the
+        // ground the winner's front actually holds rather than the pure
+        // value ranking, and an encircled garrison degrades — so both the
+        // serialized shape and the late-run map genuinely move. The checks
+        // the protocol above demands all held before this number moved:
+        // every emergent-history calibration test is green untouched, the
+        // data diff under spheres-sim/data/ is empty, and the instrument
+        // batch measured the aggregate's behaviour unchanged to four decimal
+        // places (staged-Gulf trajectory month by month, the desert-storm
+        // months-to-end distribution 37/31/19/22/25/26/24/15, invasion count
+        // 5/10, settlement rate 12/12 — all identical before and after). The
+        // two other movers were the seed-pinned conquest pair, re-scanned to
+        // seed 17 per their own comments.
+        //
+        // Re-pinned for the terrain pass — BIBLE §5's amendment carried to
+        // its second half: the per-district class (transcribed from Natural
+        // Earth by tools/terrain/) supersedes the theatre `rough` scalar
+        // inside the front's capped phase, and ground reachable only across
+        // a major river moves at half tempo. A deliberate distribution
+        // change, sanctioned in the change that made it: every front in the
+        // pinned timeline redistributes, so the serialized `conflict.front`
+        // maps — and everything the RNG consumes after them — genuinely
+        // move. The protocol's checks all held before this number did:
+        // `the_1990_start_is_pinned` DID NOT MOVE (terrain lives in static
+        // tables outside WorldState and the hash), the districts.json
+        // regeneration was verified purely additive (id/name/area_sqkm/adj
+        // byte-for-byte, only t/f/riv added), and every emergent-history
+        // calibration test is green untouched —
+        // `the_aggregate_tracks_the_scalar_it_replaced` inside its 0.10
+        // bound, because the uncapped sweep that preserves the aggregate is
+        // untouched code. The two other movers were, once again, the
+        // seed-pinned conquest pair, re-scanned to seed 9 per their own
+        // comments (Mongolia 2027; the tempo pass dissolved seed 17's
+        // Bhutan). Previous value: 0xe383c17ab4499bfa.
+        //
+        // Re-pinned for the no-party electoral fix, 0x5fc8093ab8c34f53 ->
+        // 0xbd5ec0f43c5f2e3b, a deliberate behaviour change. `is_electoral`
+        // now requires a non-empty party table: the seven states transcribed
+        // with none (Saudi Arabia, the smaller Gulf monarchies, Brunei, the
+        // Maldives) used to fall through to the electoral branch when a
+        // revolution dropped their authoritarianism under the ceiling, where
+        // `hold_election` had nobody to seat and nothing to reset — "the
+        // government falls; the country goes to the polls" printed every
+        // month for a decade, and the state underneath was frozen. They now
+        // stay pillar regimes at any openness, which restores coups,
+        // patronage and upkeep to a fifth of the Gulf: their stability, GDP
+        // and political-capital paths genuinely move, and everything the RNG
+        // consumes after them moves with it. The protocol's checks all held
+        // before this number did: `the_1990_start_is_pinned` DID NOT MOVE
+        // (all seven start authoritarian, so no Jan 1990 government changes),
+        // every emergent-history calibration test is green untouched, no
+        // tolerance widened and no test deleted, and one test was ADDED —
+        // `a_state_with_no_parties_never_loops_through_the_polls`, red
+        // against the loop before the fix. The two other movers were, as
+        // ever, the seed-pinned conquest pair, re-scanned to seed 93 per
+        // their own comments (Saudi Arabia takes Qatar 2018; the fix
+        // dissolved seed 9's Mongolia).
+        const GOLDEN: u64 = 0xbd5ec0f43c5f2e3b;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -2443,6 +2551,300 @@ mod tests {
         run_months(&mut a, 120);
         run_months(&mut b, 120);
         assert_eq!(save(&a), save(&b), "diverged after save/load");
+    }
+
+    // ---- Districts: political geography, owned at 1990, moved at outcomes ----
+
+    #[test]
+    fn every_nation_with_a_polygon_has_districts() {
+        let w = world_1990(GameRules::default());
+        // The six whose TERRITORY polygon list is empty — the map cannot place
+        // them, so the district file ships them an empty list on purpose.
+        let no_polygon = [
+            NationId::Bahrain,
+            NationId::Mauritius,
+            NationId::Seychelles,
+            NationId::Comoros,
+            NationId::CapeVerde,
+            NationId::Maldives,
+        ];
+        for id in nations::start_nations().iter().copied() {
+            if no_polygon.contains(&id) {
+                continue;
+            }
+            assert!(
+                w.districts.values().any(|&o| o == id),
+                "{:?} starts 1990 owning no district at all",
+                id
+            );
+        }
+        // Partition property: every start nation's list is fully owned and no
+        // district is owned twice or dropped.
+        let expected: usize = nations::start_nations()
+            .iter()
+            .map(|id| districts::list_of(*id).len())
+            .sum();
+        assert_eq!(
+            w.districts.len(),
+            expected,
+            "the 1990 ownership map does not partition the start nations' lists"
+        );
+        // Delta encoding starts empty: at 1990 nobody differs from the default.
+        assert!(
+            districts::deltas(&w).is_empty(),
+            "the 1990 start already carries district deltas"
+        );
+    }
+
+    #[test]
+    fn annexation_moves_every_district() {
+        // Kuwait: 6 districts, population well under the 8m annexation bar.
+        // Two identically-built worlds must move identical maps — this goes
+        // red against any HashMap-ordered or partial implementation.
+        let kuwait_ids = ["KW-AH", "KW-FA", "KW-HA", "KW-JA", "KW-KU", "KW-MU"];
+        let mut worlds = [world_1990(GameRules::default()), world_1990(GameRules::default())];
+        for w in &mut worlds {
+            let moved = districts::annex_all(w, NationId::Iraq, NationId::Kuwait);
+            assert_eq!(moved, 6, "Kuwait holds exactly its six governorates");
+            assert!(
+                !w.districts.values().any(|&o| o == NationId::Kuwait),
+                "annexation left Kuwait holding ground"
+            );
+            let iraqi: Vec<&String> = w
+                .districts
+                .iter()
+                .filter(|&(_, &o)| o == NationId::Iraq)
+                .map(|(d, _)| d)
+                .collect();
+            assert_eq!(iraqi.len(), 18 + 6, "Iraq's own 18 plus all of Kuwait's 6");
+            for k in kuwait_ids {
+                assert!(
+                    w.districts.get(k) == Some(&NationId::Iraq),
+                    "{} did not move to Iraq",
+                    k
+                );
+            }
+        }
+        let [a, b] = worlds;
+        assert_eq!(a.districts, b.districts, "the same annexation moved different maps");
+    }
+
+    #[test]
+    fn a_settled_peace_moves_the_biggest_district() {
+        // End-to-end through the real war machinery: the desert-storm setup
+        // with the coalition kept home (no major stands at >= 40 with the
+        // victim, so nobody intervenes). Alone against Iraq, Kuwait's resolve
+        // collapses and it sues for peace — the SETTLED ending, whose
+        // `cede = 0.12` over six districts is ceil(0.72) = one district, and
+        // the value ranking says it is Jahra, the big desert governorate.
+        let mut settled = 0;
+        for seed in 0..3u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            w.rules.ai_aggression = 0.0;
+            for m in nations::majors().iter().copied() {
+                w.set_relation(m, NationId::Kuwait, 0.0);
+            }
+            war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+            let mut sued = false;
+            for _ in 0..60 {
+                let hs = tick_month(&mut w, &[]);
+                if hs.iter().any(|h| h.contains("Kuwait sues for peace, ceding territory to Iraq")) {
+                    sued = true;
+                    break;
+                }
+                if w.conflict_between(NationId::Iraq, NationId::Kuwait).is_none()
+                    || !w.nation(NationId::Kuwait).alive
+                {
+                    break;
+                }
+            }
+            if !sued {
+                continue;
+            }
+            settled += 1;
+            assert_eq!(
+                w.districts.get("KW-JA"),
+                Some(&NationId::Iraq),
+                "seed {}: the ceded territory headline ran and Jahra never moved",
+                seed
+            );
+            for k in ["KW-AH", "KW-FA", "KW-HA", "KW-KU", "KW-MU"] {
+                assert_eq!(
+                    w.districts.get(k),
+                    Some(&NationId::Kuwait),
+                    "seed {}: {} moved in a concession that should take exactly one",
+                    seed,
+                    k
+                );
+            }
+            assert!(
+                districts::deltas(&w)
+                    .iter()
+                    .any(|(d, o)| d == "KW-JA" && *o == NationId::Iraq),
+                "seed {}: the concession is missing from the delta payload",
+                seed
+            );
+        }
+        assert!(
+            settled >= 1,
+            "no seed reached a negotiated concession — the guard never ran"
+        );
+    }
+
+    #[test]
+    fn a_dead_nation_holds_no_districts() {
+        // End-to-end for the ANNEXATION site, riding the same measured seed as
+        // `a_large_nation_is_subjugated_rather_than_swallowed`: seed 93 is
+        // one of the two known to reach the conquest branch (Saudi Arabia
+        // takes Qatar in 2018 — seed 9's Mongolia went away with the
+        // no-party electoral fix, as seed 17's Bhutan went with the terrain
+        // tempo pass and seed 0's Malta with the front projection). Whoever
+        // dies by conquest must leave the map entirely; a dissolution is the
+        // other way off the board and hands its ground to heirs instead.
+        let mut w = seeded(93);
+        let mut alive: Vec<NationId> =
+            w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+        let mut annexations = 0;
+        for _ in 0..480 {
+            tick_month(&mut w, &[]);
+            let mut still: Vec<NationId> = Vec::new();
+            for id in alive {
+                if w.nation_opt(id).is_some_and(|n| n.alive) {
+                    still.push(id);
+                    continue;
+                }
+                assert!(
+                    !w.districts.values().any(|&o| o == id),
+                    "{:?} is off the board in {} and still holds districts",
+                    id,
+                    w.year
+                );
+                if id != NationId::USSR && id != NationId::Yugoslavia {
+                    annexations += 1;
+                }
+            }
+            alive = still;
+        }
+        assert!(
+            annexations > 0,
+            "seed 93 no longer reaches the conquest branch — re-scan seeds per \
+             a_large_nation_is_subjugated_rather_than_swallowed's comment"
+        );
+    }
+
+    #[test]
+    fn concession_cedes_the_value_ranked_subset() {
+        // ceil(0.12 * 18) = 3: Iraq's three largest districts by (area desc,
+        // id asc), pinned literally from the transcribed data so a change to
+        // either the ranking rule or the census goes red here.
+        let expected = ["IQ-AN", "IQ-MU", "IQ-NI"];
+        let mut worlds = [world_1990(GameRules::default()), world_1990(GameRules::default())];
+        let mut returns = vec![];
+        for w in &mut worlds {
+            let ceded = districts::cede_share(w, NationId::Iran, NationId::Iraq, 0.12);
+            assert_eq!(ceded, expected, "the value ranking moved");
+            for d in &ceded {
+                assert_eq!(w.districts.get(d.as_str()), Some(&NationId::Iran));
+            }
+            assert_eq!(
+                w.districts.values().filter(|&&o| o == NationId::Iraq).count(),
+                15,
+                "Iraq keeps the other fifteen"
+            );
+            returns.push(ceded);
+        }
+        assert_eq!(returns[0], returns[1], "same concession, different subsets");
+        let [a, b] = worlds;
+        assert_eq!(a.districts, b.districts, "same concession, different maps");
+
+        // A nuclear loser's peace carries cede = 0.0 and moves nothing.
+        let mut w = world_1990(GameRules::default());
+        assert!(districts::cede_share(&mut w, NationId::Iran, NationId::Iraq, 0.0).is_empty());
+        assert!(districts::deltas(&w).is_empty());
+
+        // A loser holding one district survives the peace with it: hand-craft
+        // Kuwait down to one governorate first.
+        for k in ["KW-FA", "KW-HA", "KW-JA", "KW-KU", "KW-MU"] {
+            w.districts.insert(k.into(), NationId::Iraq);
+        }
+        assert!(
+            districts::cede_share(&mut w, NationId::Iran, NationId::Kuwait, 0.12).is_empty(),
+            "a one-district loser must cede nothing"
+        );
+        assert_eq!(w.districts.get("KW-AH"), Some(&NationId::Kuwait));
+    }
+
+    #[test]
+    fn an_old_save_reseeds_its_districts() {
+        // A save from before districts existed has no "districts" key at all;
+        // serde defaults it empty and load() must rebuild the 1990 map rather
+        // than hand back a world where nobody owns anything.
+        let w = world_1990(GameRules::default());
+        let text = save(&w);
+        let mut v: serde_json::Value = serde_json::from_str(&text).unwrap();
+        v.as_object_mut()
+            .unwrap()
+            .remove("districts")
+            .expect("a fresh save carries its districts");
+        let stripped = serde_json::to_string(&v).unwrap();
+        let old = load(&stripped).expect("a pre-district save must still load");
+        assert!(!old.districts.is_empty(), "the reseed hook never fired");
+        assert_eq!(
+            old.districts, w.districts,
+            "the reseeded map differs from the 1990 default"
+        );
+    }
+
+    #[test]
+    fn ussr_dissolution_hands_ukraine_its_districts() {
+        // Drive the real dissolution the way ussr_collapses_in_the_nineties
+        // does, stop on the month the flag appears, and read the map.
+        let mut dissolved = 0;
+        for seed in 0..10u64 {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..132 {
+                tick_month(&mut w, &[]);
+                if w.has_flag("ussr_dissolved") {
+                    break;
+                }
+            }
+            if !w.has_flag("ussr_dissolved") {
+                continue;
+            }
+            dissolved += 1;
+            assert!(
+                !w.districts.values().any(|&o| o == NationId::USSR),
+                "seed {}: the union is gone and still holds ground",
+                seed
+            );
+            for d in districts::list_of(NationId::Ukraine) {
+                assert_eq!(
+                    w.districts.get(d.as_str()),
+                    Some(&NationId::Ukraine),
+                    "seed {}: {} did not pass to Ukraine",
+                    seed,
+                    d
+                );
+            }
+            for d in districts::list_of(NationId::Russia) {
+                assert_eq!(
+                    w.districts.get(d.as_str()),
+                    Some(&NationId::Russia),
+                    "seed {}: {} did not pass to Russia",
+                    seed,
+                    d
+                );
+            }
+            // And the delta payload now says so, by name.
+            assert!(
+                districts::deltas(&w)
+                    .iter()
+                    .any(|(d, o)| d == "UA-30" && *o == NationId::Ukraine),
+                "seed {}: Kyiv City is missing from the delta",
+                seed
+            );
+        }
+        assert!(dissolved >= 1, "no seed dissolved the union inside eleven years");
     }
 
     #[test]
@@ -4129,6 +4531,36 @@ mod tests {
                         "a shooting war has run {} months in {}",
                         c.months, w.year
                     );
+                    // The front holds its own shape: every hold a finite
+                    // number on the board, every key a district the census
+                    // ships, every pocket a sorted nonempty group of them.
+                    for (d, h) in &c.front {
+                        assert!(
+                            h.is_finite() && (-1.0..=1.0).contains(&(*h as f64)),
+                            "seed {} front {} holds {}",
+                            seed, d, h
+                        );
+                        assert!(
+                            districts::area_of(d) > 0.0,
+                            "seed {} front key {} is not in the census",
+                            seed, d
+                        );
+                    }
+                    for p in &c.pockets {
+                        assert!(!p.is_empty(), "seed {} an empty pocket group", seed);
+                        assert!(
+                            p.windows(2).all(|x| x[0] < x[1]),
+                            "seed {} pocket group not sorted-unique: {:?}",
+                            seed, p
+                        );
+                        for d in p {
+                            assert!(
+                                districts::area_of(d) > 0.0,
+                                "seed {} pocket member {} is not in the census",
+                                seed, d
+                            );
+                        }
+                    }
                 }
             }
         }
@@ -4167,6 +4599,695 @@ mod tests {
             );
         }
         assert!(born >= 6, "the union held together too often: {}/10", born);
+    }
+
+    // ---- The front projection: BIBLE section 5 as amended 2026-08-30 -------
+
+    #[test]
+    fn the_front_is_deterministic() {
+        // Two same-seed worlds through a staged invasion agree byte for byte
+        // every month — the front draws no RNG and iterates no map in
+        // arbitrary order — and a different seed fights a different front.
+        let stage = |seed: u64| {
+            let mut w = seeded(seed);
+            w.rules.ai_aggression = 0.0;
+            war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+            w
+        };
+        let front_of = |w: &WorldState| {
+            format!(
+                "{:?}",
+                w.conflict_between(NationId::Iraq, NationId::Kuwait)
+                    .map(|c| (&c.front, &c.pockets))
+            )
+        };
+        let mut a = stage(0);
+        let mut b = stage(0);
+        let mut fronts_a: Vec<String> = vec![];
+        for month in 0..36 {
+            tick_month(&mut a, &[]);
+            tick_month(&mut b, &[]);
+            assert_eq!(
+                state_hash(&a),
+                state_hash(&b),
+                "month {}: same seed, same war, different world",
+                month
+            );
+            fronts_a.push(front_of(&a));
+        }
+        assert_eq!(save(&a), save(&b), "the timelines agree and the bytes do not");
+        let mut c = stage(4);
+        let mut fronts_c: Vec<String> = vec![];
+        for _ in 0..36 {
+            tick_month(&mut c, &[]);
+            fronts_c.push(front_of(&c));
+        }
+        assert_ne!(fronts_a, fronts_c, "two different seeds fought identical fronts");
+    }
+
+    #[test]
+    fn the_aggregate_tracks_the_scalar_it_replaced() {
+        // The projection's calibration defense, held permanently: the front
+        // spends the legacy equation's movement, so a shadow scalar
+        // integrated from `war::seize_terms` must stay within a dime of the
+        // real control while no pocket has fired — a throttled budget, a
+        // broken gauge or a double-counted top-up all blow the bound. The
+        // shadow reads its terms a tick-phase apart from the real update, so
+        // the bound is a dime and not an epsilon; the saturating equation
+        // contracts the two together, which is the same property that keeps
+        // the projection itself glued to the scalar it replaced.
+        let mut w = seeded(0);
+        w.rules.ai_aggression = 0.0;
+        for m in nations::majors().iter().copied() {
+            w.set_relation(m, NationId::Kuwait, 0.0);
+        }
+        war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+        let mut shadow = 0.0f64;
+        let (mut cross_real, mut cross_shadow) = (None, None);
+        let mut months_checked = 0;
+        for month in 0..36i64 {
+            let terms = w
+                .conflict_between(NationId::Iraq, NationId::Kuwait)
+                .map(|c| war::seize_terms(&w, c, shadow));
+            let (push, hold_mult) = match terms {
+                Some(t) => t,
+                None => break,
+            };
+            shadow += push * (1.0 - shadow * shadow) - war::CONTROL_DECAY * shadow * hold_mult;
+            shadow = shadow.clamp(-1.0, 1.0);
+            tick_month(&mut w, &[]);
+            let c = match w.conflict_between(NationId::Iraq, NationId::Kuwait) {
+                Some(c) => c,
+                None => break,
+            };
+            if !c.pockets.is_empty() {
+                break; // the one sanctioned deviation begins here
+            }
+            months_checked += 1;
+            assert!(
+                (c.control - shadow).abs() <= 0.10,
+                "month {}: control {:+.4} strayed from the shadow scalar {:+.4}",
+                month,
+                c.control,
+                shadow
+            );
+            if cross_real.is_none() && c.control.abs() >= 0.35 {
+                cross_real = Some(month);
+            }
+            if cross_shadow.is_none() && shadow.abs() >= 0.35 {
+                cross_shadow = Some(month);
+            }
+        }
+        assert!(months_checked >= 12, "the war ended before the bound was exercised");
+        let r = cross_real.expect("the invasion never crossed the settlement window");
+        let s = cross_shadow.expect("the shadow never crossed the settlement window");
+        assert!(
+            (r - s).abs() <= 2,
+            "the ±0.35 crossing drifted: real month {}, shadow month {}",
+            r,
+            s
+        );
+    }
+
+    /// Terrain-distribution probe. Stage `att` against `def` at rungs 8/8
+    /// with the AI held still, then run ONE `front::project` with a budget
+    /// computed from the projection's public vocabulary to fully cap every
+    /// pass-1 frontier district — so each measured district's movement
+    /// equals its own terrain cap, and the uncapped sweep gets only a
+    /// rounding remainder, which lands on the FIRST district in priority
+    /// order (returned, so a test can refuse to measure it). The
+    /// frontier/cap replication here is the same shadow idiom
+    /// `the_aggregate_tracks_the_scalar_it_replaced` uses for the control
+    /// equation.
+    ///
+    /// `budget_ignores_river`: when true, the budget is computed as if no
+    /// approach crossed a river. The river test needs this — a budget that
+    /// modelled the shave would hand the (last-ranked) river-only district
+    /// exactly its shaved spend, and the measured ratio would then be the
+    /// budget arithmetic rather than the implementation's cap. With the
+    /// shave un-modelled, the surplus drains to the first-priority district
+    /// and the river district's movement is capped by front.rs alone.
+    /// Returns (moved-off-base per frontier district, priority-first id).
+    fn terrain_probe(
+        att: NationId,
+        def: NationId,
+        th_id: theatre::TheatreId,
+        budget_ignores_river: bool,
+    ) -> (std::collections::BTreeMap<String, f64>, String) {
+        use std::cmp::Reverse;
+        let mut w = seeded(0);
+        w.rules.ai_aggression = 0.0;
+        let id = staged_conflict(&mut w, att, def, th_id, 8, 8);
+        let th = theatre::theatre(&w, th_id).clone();
+        let mut conflicts = std::mem::take(&mut w.conflicts);
+        let c = conflicts.iter_mut().find(|c| c.id == id).expect("staged");
+        let k = front::contested_set(&w, c);
+        assert!(!k.k.is_empty(), "no contested ground staged");
+        let us = 1.0 - 0.25 * th.urbanisation;
+        // Pass-1 frontier of the advancing attacker, from the documented
+        // rule: enemy ground short of the pole with a neighbour the attacker
+        // owns (base ground in the contested set counts as held), or an
+        // island reached at rung 8. River-only: every qualifying land
+        // approach crossed.
+        struct Cand {
+            id: String,
+            capacity: f64, // budgeted cap * price
+            river_only: bool,
+            held_n: usize,
+            area: f64,
+        }
+        let mut cands: Vec<Cand> = vec![];
+        for (d, &(is_a, area)) in &k.k {
+            if is_a {
+                continue; // the attacker's base ground opens at its pole
+            }
+            let adj = districts::adj_of(d);
+            let (mut q, mut crossed, mut held_n) = (0usize, 0usize, 0usize);
+            for n in adj {
+                let base_held = k.k.get(n.as_str()).is_some_and(|&(na, _)| na);
+                if base_held {
+                    held_n += 1;
+                }
+                if base_held || w.districts.get(n.as_str()) == Some(&att) {
+                    q += 1;
+                    if districts::crosses_river(d, n) {
+                        crossed += 1;
+                    }
+                }
+            }
+            let (qualifies, river_only) = if adj.is_empty() {
+                (true, false) // sea reach at rung 8
+            } else {
+                (q > 0, q > 0 && q == crossed)
+            };
+            if !qualifies {
+                continue;
+            }
+            let mut cap = front::SWING_CAP * front::tempo_of(districts::terrain_of(d)) * us;
+            if river_only && !budget_ignores_river {
+                cap *= front::RIVER_CROSS_TEMPO;
+            }
+            cap = cap.max(front::TEMPO_FLOOR);
+            let price = area / (2.0 * k.area_b);
+            cands.push(Cand { id: d.clone(), capacity: cap * price, river_only, held_n, area });
+        }
+        assert!(cands.len() >= 2, "need at least two frontier districts");
+        // The projection's priority order among non-pocket enemy ground:
+        // (river_only, held desc, area desc, id asc). The first-ranked
+        // district absorbs whatever the capped phase could not place.
+        cands.sort_by(|x, y| {
+            x.river_only
+                .cmp(&y.river_only)
+                .then_with(|| Reverse(x.held_n).cmp(&Reverse(y.held_n)))
+                .then_with(|| y.area.total_cmp(&x.area))
+                .then_with(|| x.id.cmp(&y.id))
+        });
+        let first = cands.first().expect("nonempty").id.clone();
+        let budget: f64 = cands.iter().map(|c| c.capacity).sum::<f64>() * (1.0 + 1e-9);
+        front::project(&w, c, &k, budget, &th);
+        assert!(c.pockets.is_empty(), "a pocket fired inside the probe: {:?}", c.pockets);
+        let moved = cands
+            .iter()
+            .map(|cand| {
+                let h = c.front.get(&cand.id).copied().unwrap_or(-1.0) as f64;
+                (cand.id.clone(), h + 1.0)
+            })
+            .collect();
+        (moved, first)
+    }
+
+    /// The largest `def`-owned district of `want` class with a land approach
+    /// from `att`'s national ground that crosses no major river — the clean
+    /// measurement target for the probe above.
+    fn frontier_pick(
+        att: NationId,
+        def: NationId,
+        want: districts::TerrainClass,
+    ) -> Option<String> {
+        districts::list_of(def)
+            .iter()
+            .filter(|d| districts::terrain_of(d) == want)
+            .filter(|d| {
+                districts::adj_of(d).iter().any(|n| {
+                    districts::start_owner_1990(n) == Some(att)
+                        && !districts::crosses_river(d, n)
+                })
+            })
+            .max_by(|a, b| {
+                districts::area_of(a)
+                    .total_cmp(&districts::area_of(b))
+                    .then_with(|| b.cmp(a))
+            })
+            .cloned()
+    }
+
+    #[test]
+    fn mountain_ground_is_taken_more_slowly() {
+        // Two Iranian districts on the Iraqi border, one Zagros mountain and
+        // one lowland, each with a land approach crossing no major river,
+        // both fully capped by the probe's budget: the mountain moves slower
+        // by exactly the tempo ratio. Distribution, never throughput — the
+        // budget itself is spent in full either way.
+        let m = frontier_pick(NationId::Iraq, NationId::Iran, districts::TerrainClass::Mountain)
+            .expect("the Zagros belt borders Iraq");
+        let l = frontier_pick(NationId::Iraq, NationId::Iran, districts::TerrainClass::Lowland)
+            .expect("the Mesopotamian border has lowland");
+        // The 1e-9 rounding surplus is far inside the tolerance below, so
+        // no district needs excluding from measurement here.
+        let (moved, _first) =
+            terrain_probe(NationId::Iraq, NationId::Iran, theatre::TheatreId::Gulf, false);
+        let (mm, ml) = (moved[&m], moved[&l]);
+        let want = front::TEMPO_MOUNTAIN / front::TEMPO_LOWLAND;
+        assert!(
+            (mm / ml - want).abs() < 1e-3,
+            "{} moved {:.4}, {} moved {:.4}: ratio {:.4} != {:.2}",
+            m, mm, l, ml, mm / ml, want
+        );
+        assert!(mm < ml, "mountain ground did not move more slowly");
+    }
+
+    #[test]
+    fn a_river_crossing_slows_the_taking() {
+        // The Shatt al-Arab, both as data (crossed both ways round, and the
+        // Rio Grande beside it) and as behaviour: Basra is reachable from
+        // Iranian ground only across the river, so under a staged Iranian
+        // invasion it moves at half the tempo of a same-class lowland
+        // district with a dry land approach.
+        assert!(districts::crosses_river("IQ-BA", "IR-10"));
+        assert!(districts::crosses_river("IR-10", "IQ-BA"));
+        assert!(districts::crosses_river("MX-TAM", "US-TX"));
+        let ba = "IQ-BA";
+        assert_eq!(districts::terrain_of(ba), districts::TerrainClass::Lowland);
+        let ir_adj: Vec<&String> = districts::adj_of(ba)
+            .iter()
+            .filter(|n| districts::start_owner_1990(n) == Some(NationId::Iran))
+            .collect();
+        assert!(!ir_adj.is_empty(), "Basra lost its Iranian border");
+        assert!(
+            ir_adj.iter().all(|n| districts::crosses_river(ba, n)),
+            "every Iranian approach to Basra is the Shatt al-Arab"
+        );
+        let l = frontier_pick(NationId::Iran, NationId::Iraq, districts::TerrainClass::Lowland)
+            .expect("the border has dry lowland approaches");
+        let (moved, first) =
+            terrain_probe(NationId::Iran, NationId::Iraq, theatre::TheatreId::Gulf, true);
+        assert!(ba != first && l != first, "a target absorbs the unshaved surplus");
+        let (mb, ml) = (moved[ba], moved[&l]);
+        assert!(
+            (mb / ml - front::RIVER_CROSS_TEMPO).abs() < 1e-3,
+            "river-only {} moved {:.4} vs {} {:.4}: ratio {:.4} != {:.2}",
+            ba, mb, l, ml, mb / ml, front::RIVER_CROSS_TEMPO
+        );
+        assert!(mb < ml, "the river did not slow the taking");
+    }
+
+    #[test]
+    fn the_cold_and_the_open_read_from_the_map() {
+        // The behavioural half (the data half sits in districts.rs beside
+        // the loader): desert ground moves FASTER than the reference —
+        // manoeuvre outruns it in the open — and tundra slower, both by
+        // exactly their tempo constants under the probe's full-cap budget.
+        // Desert: Anbar's Syrian Desert against the Euphrates lowland, under
+        // a staged Saudi push north.
+        let an =
+            frontier_pick(NationId::SaudiArabia, NationId::Iraq, districts::TerrainClass::Desert)
+                .expect("the Syrian Desert borders Saudi ground");
+        let mu = frontier_pick(
+            NationId::SaudiArabia,
+            NationId::Iraq,
+            districts::TerrainClass::Lowland,
+        )
+        .expect("the Saudi border reaches Iraqi lowland");
+        let (moved, _first) =
+            terrain_probe(NationId::SaudiArabia, NationId::Iraq, theatre::TheatreId::Gulf, false);
+        let (ms, mi) = (moved[&an], moved[&mu]);
+        assert!(
+            (ms / mi - front::TEMPO_DESERT).abs() < 1e-3,
+            "desert {} moved {:.4} vs lowland {} {:.4}: ratio {:.4} != {:.2}",
+            an, ms, mu, mi, ms / mi, front::TEMPO_DESERT
+        );
+        assert!(ms > mi, "open going did not outrun the reference");
+        // Tundra: Norrbotten against Sweden's lowland border, under a staged
+        // Norwegian push east (both home in Western Europe).
+        let tundra =
+            frontier_pick(NationId::Norway, NationId::Sweden, districts::TerrainClass::Tundra)
+                .expect("Norrbotten borders Norway");
+        let low =
+            frontier_pick(NationId::Norway, NationId::Sweden, districts::TerrainClass::Lowland)
+                .expect("the Scandinavian border has lowland");
+        let (moved, _first) = terrain_probe(
+            NationId::Norway,
+            NationId::Sweden,
+            theatre::TheatreId::WesternEurope,
+            false,
+        );
+        let (mt, ml) = (moved[&tundra], moved[&low]);
+        assert!(
+            (mt / ml - front::TEMPO_TUNDRA).abs() < 1e-3,
+            "tundra {} moved {:.4} vs lowland {} {:.4}: ratio {:.4} != {:.2}",
+            tundra, mt, low, ml, mt / ml, front::TEMPO_TUNDRA
+        );
+        assert!(mt < ml, "the cold did not slow the taking");
+    }
+
+    /// Stage Iraq against Iran with most of Iran's ground hand-held by the
+    /// invader, one interior district `x` left to Iran and sealed inside the
+    /// captured ground, and Iran's largest district `y` left as its main
+    /// mass. Returns (conflict id, x, y).
+    fn staged_pocket(w: &mut WorldState, opener_rung: u8, target_rung: u8) -> (u32, String, String) {
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::Iraq);
+        let id = staged_conflict(w, NationId::Iraq, NationId::Iran, theatre::TheatreId::Gulf, opener_rung, target_rung);
+        let iran: std::collections::BTreeSet<&str> =
+            districts::list_of(NationId::Iran).iter().map(|d| d.as_str()).collect();
+        let y = iran
+            .iter()
+            .copied()
+            .min_by(|a, b| {
+                districts::area_of(b)
+                    .total_cmp(&districts::area_of(a))
+                    .then_with(|| a.cmp(b))
+            })
+            .expect("Iran has districts")
+            .to_string();
+        let x = iran
+            .iter()
+            .copied()
+            .find(|d| {
+                let adj = districts::adj_of(d);
+                **d != *y
+                    && !adj.is_empty()
+                    && adj.iter().all(|n| iran.contains(n.as_str()) && *n != y)
+            })
+            .expect("Iran has an interior district")
+            .to_string();
+        let c = w.conflict_mut(id).expect("just staged");
+        for d in iran {
+            if d != x && d != y {
+                c.front.insert(d.to_string(), 1.0);
+            }
+        }
+        (id, x, y)
+    }
+
+    #[test]
+    fn encirclement_emerges_from_the_map() {
+        // A held district sealed inside enemy-held ground, with no path to
+        // its side's main mass, is found by the BFS and degrades by the
+        // pocket swing in one month — while a district far behind the front
+        // does not move at all.
+        let mut w = seeded(1);
+        let (id, x, _y) = staged_pocket(&mut w, 8, 8);
+        tick_month(&mut w, &[]);
+        let c = w.conflict(id).expect("one month in");
+        assert!(
+            c.pockets.iter().any(|p| p.contains(&x)),
+            "{} is sealed inside enemy ground and no pocket was found: {:?}",
+            x,
+            c.pockets
+        );
+        let hx = c.front.get(&x).copied().expect("the pocket moved") as f64;
+        assert!(
+            hx >= -1.0 + front::POCKET_SWING - 1e-6,
+            "the pocket at {} degraded only to {:+.3}",
+            x,
+            hx
+        );
+        // Anbar sits on the far side of Iraq, connected to the main mass and
+        // nowhere near the fighting: it does not move.
+        let anbar = c.front.get("IQ-AN").map_or(1.0, |h| *h as f64);
+        assert!(
+            anbar > 0.9,
+            "a connected rear district moved with the pocket: IQ-AN {:+.3}",
+            anbar
+        );
+    }
+
+    #[test]
+    fn a_pocket_collapses_without_an_assault() {
+        // Both sides at the blockade rung with identical forces and Hold
+        // orders: the push is exactly zero, no budget is advancing anywhere,
+        // and the sealed district still flips — encirclement is an outcome of
+        // the map, not of an assault the budget paid for.
+        let mut w = seeded(1);
+        {
+            // Identical belligerents, so seize_a == seize_b and push == 0.
+            let (gdp, spend, strength, tech) = {
+                let n = w.nation(NationId::Iraq);
+                (n.gdp, n.mil_spend_gdp, n.mil_strength, n.tech.clone())
+            };
+            let iran = w.nation_mut(NationId::Iran);
+            iran.gdp = gdp;
+            iran.mil_spend_gdp = spend;
+            iran.mil_strength = strength;
+            iran.tech = tech;
+        }
+        let (id, x, _y) = staged_pocket(&mut w, 6, 6);
+        let mut flipped_at = None;
+        for month in 0..6 {
+            {
+                let c = w.conflict_mut(id).expect("staged");
+                for b in c.posture.iter_mut() {
+                    b.rung = 6;
+                    b.objective = Objective::Hold;
+                    b.resolve = b.resolve.max(0.6);
+                }
+            }
+            tick_month(&mut w, &[]);
+            let c = w.conflict(id).expect("a hold-hold quarrel does not end in six months");
+            let hx = c.front.get(&x).map_or(-1.0, |h| *h as f64);
+            if flipped_at.is_none() && hx > 1.0 / 3.0 {
+                flipped_at = Some(month);
+            }
+        }
+        let c = w.conflict(id).expect("still on");
+        assert!(
+            flipped_at.is_some(),
+            "six months surrounded and {} never flipped: {:+.3}",
+            x,
+            c.front.get(&x).map_or(-1.0, |h| *h as f64)
+        );
+        assert!(
+            !c.pockets.iter().any(|p| p.contains(&x)),
+            "{} flipped and the pocket did not collapse",
+            x
+        );
+        // The rear stayed still: no budget was advancing anywhere.
+        let anbar = c.front.get("IQ-AN").map_or(1.0, |h| *h as f64);
+        assert!(anbar > 0.9, "a zero-push month moved the rear: IQ-AN {:+.3}", anbar);
+    }
+
+    #[test]
+    fn an_island_never_pockets() {
+        // Kansas surrounded is a pocket; Hawaii surrounded is a garrison
+        // with the sea at its back — an empty adjacency list is an anchor,
+        // which is the whole of the contract's "islands simply have no land
+        // neighbours".
+        let mut w = seeded(0);
+        w.rules.ai_aggression = 0.0;
+        war::declare_war(&mut w, NationId::Canada, NationId::USA).unwrap();
+        {
+            let c = w
+                .conflict_between(NationId::Canada, NationId::USA)
+                .expect("just declared")
+                .id;
+            let c = w.conflict_mut(c).unwrap();
+            for d in districts::list_of(NationId::USA) {
+                if d != "US-HI" && d != "US-KS" {
+                    c.front.insert(d.clone(), 1.0);
+                }
+            }
+        }
+        tick_month(&mut w, &[]);
+        let c = w
+            .conflict_between(NationId::Canada, NationId::USA)
+            .expect("one month in");
+        assert!(
+            c.pockets.iter().any(|p| p.contains(&"US-KS".to_string())),
+            "landlocked Kansas is surrounded and did not pocket: {:?}",
+            c.pockets
+        );
+        assert!(
+            !c.pockets.iter().any(|p| p.contains(&"US-HI".to_string())),
+            "Hawaii pocketed with the sea at its back"
+        );
+    }
+
+    #[test]
+    fn the_last_defender_to_quit_is_the_loser() {
+        // When the only defender is driven from the field, the ending must
+        // name IT as the loser. Before this test, `defender()` on the emptied
+        // side fell back to ORIGIN_ATTACKER: on seed 1990 China capitulated to
+        // China in Jan 2016 — the winner disarmed itself and paid itself
+        // reparations for winning — while Mongolia, which had just quit the
+        // fight it lost, walked away untouched with the settled-claim flag
+        // written against the wrong dyad.
+        let mut w = seeded(0);
+        w.rules.ai_aggression = 0.0;
+        war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+        let id = w
+            .conflict_between(NationId::Iraq, NationId::Kuwait)
+            .expect("just declared")
+            .id;
+        let iraq_mil = w.nation(NationId::Iraq).mil_strength;
+        let kuwait_gdp = w.nation(NationId::Kuwait).gdp;
+        for _ in 0..6 {
+            match w.conflict_mut(id) {
+                None => break,
+                Some(c) => {
+                    // The China–Mongolia shape exactly: two principals, no
+                    // coalition under arms — strip any joiner the declaration
+                    // rallied.
+                    c.side_a.retain(|x| *x == NationId::Iraq);
+                    c.side_b.retain(|x| *x == NationId::Kuwait);
+                    c.posture
+                        .retain(|b| b.nation == NationId::Iraq || b.nation == NationId::Kuwait);
+                    // Iraq owns the ground outright — the front map is the
+                    // authority control is gauged from, so the map is what the
+                    // test stages. Kuwait's government has nothing left and, at
+                    // home under an army at the invasion rung, nothing to step
+                    // back to.
+                    for d in districts::list_of(NationId::Kuwait) {
+                        c.front.insert(d.clone(), 1.0);
+                    }
+                    c.control = 0.95;
+                    c.invasion_declared = true;
+                    for b in c.posture.iter_mut() {
+                        b.months_at_rung = 0;
+                        if b.nation == NationId::Iraq {
+                            b.rung = 8;
+                            b.resolve = 1.0;
+                        } else {
+                            b.resolve = 0.0;
+                            b.red_line = 0.0;
+                        }
+                    }
+                }
+            }
+            tick_month(&mut w, &[]);
+        }
+        assert!(
+            w.conflict(id).is_none(),
+            "a defender with no resolve and no ground held out six months"
+        );
+        // The verdict lands on Kuwait: annexed outright, or alive and visibly
+        // poorer for the terms.
+        let (k_alive, k_gdp) = {
+            let k = w.nation(NationId::Kuwait);
+            (k.alive, k.gdp)
+        };
+        assert!(
+            !k_alive || k_gdp < kuwait_gdp * 0.97,
+            "the sole defender quit the fight and lost nothing: alive={} gdp {:.1} -> {:.1}",
+            k_alive,
+            kuwait_gdp,
+            k_gdp
+        );
+        // ...and not on the winner: Iraq must not come out of its own conquest
+        // subjugated.
+        let a_mil = w.nation(NationId::Iraq).mil_strength;
+        assert!(
+            a_mil > iraq_mil * 0.55,
+            "the winner came out of its own conquest disarmed: {:.1} -> {:.1}",
+            iraq_mil,
+            a_mil
+        );
+    }
+
+    #[test]
+    fn a_concession_prefers_the_ground_actually_held() {
+        // The preferring comparator, held directly against `cede_share`: an
+        // empty preference reproduces the value ranking list for list, and a
+        // nonempty one moves the held ground first — even a low-value
+        // district the value ranking would never have reached.
+        let mut a = world_1990(GameRules::default());
+        let mut b = world_1990(GameRules::default());
+        let empty = std::collections::BTreeSet::new();
+        let plain = districts::cede_share(&mut a, NationId::Iran, NationId::Iraq, 0.12);
+        let pref0 =
+            districts::cede_share_preferring(&mut b, NationId::Iran, NationId::Iraq, 0.12, &empty);
+        assert_eq!(plain, pref0, "an empty preference must be cede_share exactly");
+        assert_eq!(a.districts, b.districts, "the two paths moved different maps");
+
+        // Iraq's smallest district — dead last in the value ranking.
+        let smallest = districts::list_of(NationId::Iraq)
+            .iter()
+            .min_by(|x, y| {
+                districts::area_of(x)
+                    .total_cmp(&districts::area_of(y))
+                    .then_with(|| x.cmp(y))
+            })
+            .expect("Iraq has districts")
+            .clone();
+        let mut w = world_1990(GameRules::default());
+        let preferred: std::collections::BTreeSet<String> =
+            [smallest.clone()].into_iter().collect();
+        let ceded =
+            districts::cede_share_preferring(&mut w, NationId::Iran, NationId::Iraq, 0.12, &preferred);
+        assert_eq!(ceded.len(), 3, "ceil(0.12 * 18) is three districts");
+        assert_eq!(ceded[0], smallest, "the held ground did not cede first");
+        assert_eq!(
+            &ceded[1..],
+            &["IQ-AN".to_string(), "IQ-MU".to_string()],
+            "the remainder is not the value ranking"
+        );
+        assert_eq!(w.districts.get(smallest.as_str()), Some(&NationId::Iran));
+    }
+
+    #[test]
+    fn an_old_save_reloads_a_front() {
+        // Strip "front" and "pockets" from a mid-war save — the shape a
+        // pre-front build wrote — and load() must project the saved control
+        // back onto the ground it summarizes, then hold it stable through a
+        // year of save/load cycles.
+        let mut w = seeded(0);
+        w.rules.ai_aggression = 0.0;
+        for m in nations::majors().iter().copied() {
+            w.set_relation(m, NationId::Kuwait, 0.0);
+        }
+        war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+        run_months(&mut w, 6);
+        let (id0, control0) = {
+            let c = w
+                .conflict_between(NationId::Iraq, NationId::Kuwait)
+                .expect("the staged war must outlive the save point");
+            assert!(!c.front.is_empty(), "six months of invasion drew no front");
+            assert!(c.control.abs() > 0.001, "no ground changed hands in six months");
+            (c.id, c.control)
+        };
+
+        let mut v: serde_json::Value = serde_json::from_str(&save(&w)).unwrap();
+        let mut stripped_any = false;
+        for c in v["conflicts"].as_array_mut().expect("conflicts serialize as an array") {
+            let o = c.as_object_mut().unwrap();
+            stripped_any |= o.remove("front").is_some();
+            o.remove("pockets");
+        }
+        assert!(stripped_any, "a mid-war save carries its front");
+        let stripped = serde_json::to_string(&v).unwrap();
+        let mut x = load(&stripped).expect("a pre-front save must load");
+        {
+            let c = x.conflict(id0).expect("the war survived the surgery");
+            assert!(!c.front.is_empty(), "the reseed hook never fired");
+            assert!(
+                (c.control - control0).abs() <= 0.01,
+                "the reseeded aggregate {:+.4} strayed from the saved control {:+.4}",
+                c.control,
+                control0
+            );
+        }
+        for month in 0..12 {
+            tick_month(&mut x, &[]);
+            let s = save(&x);
+            let y = load(&s).expect("a front save must reload");
+            assert_eq!(
+                s,
+                save(&y),
+                "month {}: a reloaded front re-serialized differently",
+                month
+            );
+            assert_eq!(state_hash(&x), state_hash(&y), "month {}: hash drift", month);
+        }
     }
 }
 

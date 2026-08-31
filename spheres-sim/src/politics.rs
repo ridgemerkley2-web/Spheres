@@ -761,7 +761,31 @@ fn dissolve_ussr(w: &mut WorldState) {
     // exists is not a consent.
     w.access.retain(|a| a.host != NationId::USSR && a.seeker != NationId::USSR);
 
-    w.headline("THE SOVIET UNION HAS DISSOLVED. Twelve republics take up their own seats.".into());
+    // Each republic takes its own ground; anything the union held beyond its
+    // own list — conquests — stays with the continuation state, Russia, which
+    // is first in this list on purpose.
+    crate::districts::dissolve_to(
+        w,
+        NationId::USSR,
+        &[
+            NationId::Russia,
+            NationId::Ukraine,
+            NationId::Belarus,
+            NationId::Kazakhstan,
+            NationId::Uzbekistan,
+            NationId::Georgia,
+            NationId::Armenia,
+            NationId::Azerbaijan,
+            NationId::Lithuania,
+            NationId::Latvia,
+            NationId::Estonia,
+            NationId::Moldova,
+            NationId::Kyrgyzstan,
+            NationId::Tajikistan,
+            NationId::Turkmenistan,
+        ],
+    );
+
     w.headline("THE SOVIET UNION HAS DISSOLVED. Fifteen republics take up their own seats.".into());
     w.headline("Russia inherits the arsenal; Ukraine's warheads go back east under the Budapest assurances.".into());
 }
@@ -958,7 +982,21 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
     w.access
         .retain(|a| a.host != NationId::Yugoslavia && a.seeker != NationId::Yugoslavia);
 
-    w.headline("YUGOSLAVIA HAS DISSOLVED. Slovenia, Croatia, Bosnia and Serbia stand alone.".into());
+    // Each republic takes its own ground; any conquest of the federation's
+    // stays with Belgrade, the continuation state, first in this list.
+    crate::districts::dissolve_to(
+        w,
+        NationId::Yugoslavia,
+        &[
+            NationId::Serbia,
+            NationId::Croatia,
+            NationId::Slovenia,
+            NationId::Bosnia,
+            NationId::Macedonia,
+            NationId::Montenegro,
+        ],
+    );
+
     w.headline(
         "YUGOSLAVIA HAS DISSOLVED. Slovenia, Croatia, Bosnia, Macedonia, Montenegro and Serbia stand alone."
             .into(),
