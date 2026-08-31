@@ -15,6 +15,22 @@ use tiny_http::{Header, Method, Response, Server};
 const INDEX: &str = include_str!("../ui/index.html");
 /// Baked country outlines — see `src/bin/mapgen.rs`.
 const WORLD_JS: &str = include_str!("../ui/world.js");
+/// Baked admin-1 district outlines, same projection and canvas as world.js.
+const DISTRICTS_JS: &str = include_str!("../ui/districts.js");
+/// Baked hillshade underlay, same Robinson canvas — see tools/terrain/. Kept as the
+/// fallback the map falls back to when WebGL2 is unavailable or a context is lost.
+const TERRAIN_PNG: &[u8] = include_bytes!("../ui/terrain.png");
+/// Baked ETOPO elevation: RGB-packed uint16 + sqrt depth — see tools/terrain/make_relief.py.
+const RELIEF_PNG: &[u8] = include_bytes!("../ui/relief.png");
+/// Baked signed coastline distance field, same Robinson canvas — see tools/terrain/make_coast.py.
+const COAST_PNG: &[u8] = include_bytes!("../ui/coast.png");
+/// Baked NE1 vegetation index, half-resolution — see tools/terrain/make_cover.py.
+const COVER_PNG: &[u8] = include_bytes!("../ui/cover.png");
+/// Baked major rivers + lakes, same projection as world.js.
+const RIVERS_JS: &str = include_str!("../ui/rivers.js");
+/// Baked per-district terrain classes + feature names, same ids as
+/// districts.js — see tools/terrain/classify_districts.py.
+const TERRAIN_JS: &str = include_str!("../ui/terrain.js");
 
 /// The six per-nation numbers the UI plots. Recorded every month so a decade of
 /// stagnation reads as a shape rather than a pair of endpoints.
@@ -318,6 +334,20 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
         // quantity on a scale of a hundred, so the UI needs no arithmetic change.
         "progress": c.control * 100.0,
         "control": c.control,
+        // The front: district -> hold, +1 side A / -1 side B, only the
+        // contested ground (deviations plus the base-valued districts along a
+        // hard edge — the sim's canonical map, small by construction). The
+        // aggregate above IS this map area-weighted, so the two never
+        // disagree. Rounded to 2dp; no adjacency ships to the client.
+        "front": c
+            .front
+            .iter()
+            .map(|(d, h)| {
+                (d.clone(), serde_json::json!(((*h as f64) * 100.0).round() / 100.0))
+            })
+            .collect::<serde_json::Map<String, serde_json::Value>>(),
+        // Encircled groups, each a sorted list of district ids.
+        "pockets": c.pockets,
         "months": c.months,
         "frozen_since": c.frozen_since.map(|(y, m)| month_name(m, y)),
         "attacker_allies": c.side_a.iter().skip(1).map(|a| a.name()).collect::<Vec<_>>(),
@@ -544,6 +574,10 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "nations": nations,
         "dead": dead,
         "wars": wars,
+        // The sim's held/contested threshold for per-district front control,
+        // served so the browser never re-derives it (its literal is only a
+        // fallback for a server that predates this key).
+        "front_held_band": spheres_sim::front::HELD_BAND,
         "theatres": theatres_json(w),
         "access": w.access.iter().map(|a| serde_json::json!({
             "theatre": format!("{:?}", a.theatre),
@@ -555,6 +589,14 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         })).collect::<Vec<_>>(),
         "log": log,
         "flags": w.flags,
+        // Delta-encoded: only districts whose owner differs from the 1990
+        // default, keyed by district id, value the owner's nation code.
+        // Usually empty early game; the browser composes default owners from
+        // districts.js grouping and overlays these. Computed sim-side like
+        // everything else here.
+        "districts": spheres_sim::districts::deltas(w).into_iter()
+            .map(|(d, o)| (d, serde_json::Value::String(format!("{:?}", o))))
+            .collect::<serde_json::Map<String, serde_json::Value>>(),
         // Carried on every state payload rather than fetched separately, because
         // the offer list changes with the world: a month that breaks the
         // inflation closes the peg, and the panel must not be a frame behind.
@@ -657,6 +699,7 @@ fn tech_tree_json(w: &WorldState, me: NationId, domain: spheres_sim::tech::Domai
                 "year": def.earliest_year,
                 "era": format!("{:?}", def.era),
                 "cost": tech::cost_of(w, me, idx),
+                "list_cost": def.cost,   // static list price; cost < list_cost ⇒ diffusion discount
                 "state": if known { "known" } else if open { "open" } else { "locked" },
                 "focus": focus == Some(idx),
                 // What holding it actually does, and what it opens. Without
@@ -865,7 +908,11 @@ fn main() {
         let payload: serde_json::Value =
             serde_json::from_str(&body).unwrap_or(serde_json::Value::Null);
 
-        let response = match (&method, url_path.as_str()) {
+        // HEAD is routed like GET: tiny-http suppresses the response body for
+        // HEAD requests on its own, so `curl -I` sees the same status and
+        // headers as a GET instead of falling through to the 404 arm.
+        let route_method = if method == Method::Head { Method::Get } else { method.clone() };
+        let response = match (&route_method, url_path.as_str()) {
             (Method::Get, "/") | (Method::Get, "/index.html") => {
                 let r = Response::from_string(INDEX).with_header(
                     Header::from_bytes(&b"Content-Type"[..], &b"text/html; charset=utf-8"[..])
@@ -882,6 +929,117 @@ fn main() {
                     )
                     .unwrap(),
                 );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/districts.js") => {
+                let r = Response::from_string(DISTRICTS_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/rivers.js") => {
+                let r = Response::from_string(RIVERS_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/terrain.js") => {
+                let r = Response::from_string(TERRAIN_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/terrain.png") => {
+                // Identity encoding so the PNG ships with a Content-Length
+                // (tiny-http otherwise chunks bodies over 32 KiB).
+                //
+                // Cacheable for a day: the underlay is static transcription
+                // baked into this binary, and the UI's retained <image> node
+                // only guards against re-requests within one page's life — a
+                // reload should not pull 600 KB again either.
+                let r = Response::from_data(TERRAIN_PNG.to_vec())
+                    .with_chunked_threshold(usize::MAX)
+                    .with_header(
+                        Header::from_bytes(&b"Content-Type"[..], &b"image/png"[..]).unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"public, max-age=86400"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            // The three GL terrain textures, on the same terms as /terrain.png above:
+            // identity encoding for the Content-Length, and a day of cache because they are
+            // static transcription baked into this binary. relief.png carries packed uint16
+            // elevation and coast.png a signed distance field, so both are sampled as
+            // NUMBERS rather than looked at — the generators assert that neither ships a
+            // gAMA/sRGB/iCCP chunk, because a decoder that gamma-corrected them would move
+            // the terrain and the coastline.
+            (Method::Get, "/relief.png") => {
+                let r = Response::from_data(RELIEF_PNG.to_vec())
+                    .with_chunked_threshold(usize::MAX)
+                    .with_header(
+                        Header::from_bytes(&b"Content-Type"[..], &b"image/png"[..]).unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"public, max-age=86400"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/coast.png") => {
+                let r = Response::from_data(COAST_PNG.to_vec())
+                    .with_chunked_threshold(usize::MAX)
+                    .with_header(
+                        Header::from_bytes(&b"Content-Type"[..], &b"image/png"[..]).unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"public, max-age=86400"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/cover.png") => {
+                let r = Response::from_data(COVER_PNG.to_vec())
+                    .with_chunked_threshold(usize::MAX)
+                    .with_header(
+                        Header::from_bytes(&b"Content-Type"[..], &b"image/png"[..]).unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"public, max-age=86400"[..],
+                        )
+                        .unwrap(),
+                    );
                 let _ = request.respond(r);
                 continue;
             }
@@ -909,9 +1067,6 @@ fn main() {
                 let _ = request.respond(r);
                 continue;
             }
-            // Where a nation's opening figures came from. Static start-of-game
-            // provenance, so it needs neither the lock nor the world — and must
-            // not be served from the live Nation, whose numbers have moved.
             (Method::Get, "/api/tech") => {
                 let g = game.lock().unwrap();
                 let asked = request
@@ -925,6 +1080,9 @@ fn main() {
                     _ => json_response(serde_json::json!({ "nodes": [] })),
                 }
             }
+            // Where a nation's opening figures came from. Static start-of-game
+            // provenance, so it needs neither the lock nor the world — and must
+            // not be served from the live Nation, whose numbers have moved.
             (Method::Get, "/api/sources") => {
                 let id = nation_param(request.url());
                 match id {
@@ -1314,6 +1472,161 @@ mod tests {
         assert!(!INDEX.contains("https://"), "the UI must stay self-contained");
     }
 
+    /// The terrain layer ships baked, like world.js: a real PNG behind
+    /// /terrain.png, the generated river layer behind /rivers.js, and the
+    /// page actually mounting both — all of it local, because the
+    /// self-contained guard above binds every href to this binary.
+    #[test]
+    fn the_map_ships_terrain_and_rivers() {
+        assert!(
+            TERRAIN_PNG.starts_with(b"\x89PNG\r\n\x1a\n"),
+            "terrain.png is not a PNG"
+        );
+        // The three GL terrain textures, baked by tools/terrain/make_relief.py,
+        // make_coast.py and make_cover.py. Nothing else in this binary would notice a
+        // truncated or absent artifact: the routes serve whatever bytes are included.
+        for (name, bytes) in [
+            ("relief.png", RELIEF_PNG),
+            ("coast.png", COAST_PNG),
+            ("cover.png", COVER_PNG),
+        ] {
+            assert!(bytes.starts_with(b"\x89PNG\r\n\x1a\n"), "{name} is not a PNG");
+            // relief.png and coast.png are sampled as numbers, not looked at. A colour
+            // chunk would license a decoder to gamma-correct them, which destroys the
+            // packed uint16 elevation outright and moves the coastline's zero crossing.
+            for chunk in [&b"gAMA"[..], &b"sRGB"[..], &b"iCCP"[..]] {
+                assert!(
+                    !bytes.windows(4).any(|w| w == chunk),
+                    "{name} carries a colour-management chunk"
+                );
+            }
+        }
+        assert!(RIVERS_JS.starts_with("// Generated by tools/terrain/make_rivers.py"));
+        assert!(RIVERS_JS.contains("window.RIVERS="));
+        assert!(!RIVERS_JS.contains("https://"), "rivers.js must stay self-contained");
+        // The terrain class layer, baked the same way and read via the same
+        // guard: `window.TERRAIN || { byId: {} }` in the page means a missing
+        // route renders silently, so only this test notices a bad artifact.
+        assert!(TERRAIN_JS.starts_with("// Generated by tools/terrain/classify_districts.py"));
+        assert!(TERRAIN_JS.contains("window.TERRAIN={byId:"));
+        assert!(!TERRAIN_JS.contains("https://"), "terrain.js must stay self-contained");
+        // The page mounts the underlay, the river group and the class layer,
+        // via the routes.
+        assert!(INDEX.contains("src=\"/rivers.js\""));
+        assert!(INDEX.contains("src=\"/terrain.js\""));
+        // The PNG underlay is BOTH what the map draws today and the fallback the GL layer
+        // drops back to on a lost context, so this literal must survive the GL work.
+        assert!(INDEX.contains("/terrain.png"));
+        assert!(INDEX.contains("id=\"riverg\""));
+        // The GL underlay samples all three baked textures through these routes. The
+        // page fetches them by literal string, so a renamed route is only caught here.
+        for path in ["/relief.png", "/coast.png", "/cover.png"] {
+            assert!(INDEX.contains(path), "the GL layer does not reference {path}");
+        }
+        // The WebGL2 canvas must never eat pointer events: `pointerdown` gates on
+        // `svg.contains(e.target)` (ui/index.html), so a canvas that took them would
+        // kill pan, nation clicks and district hover in one stroke.
+        assert!(INDEX.contains("#glmap { position: absolute; pointer-events: none;"));
+        // `#version 300 es` must be the first bytes of every shader string -- a leading
+        // newline is a silent compile failure, and the fallback would hide it.
+        assert_eq!(
+            INDEX.matches(" = `#version 300 es").count(),
+            4,
+            "expected four inline GLSL strings, each opening on the version directive"
+        );
+        // One fallback exit, and the class it removes to restore the PNG underlay.
+        assert!(INDEX.contains("function glFail("));
+        assert!(INDEX.contains("gl-on"));
+
+        // ---- the svg-side window the ground shows through. Every rule here
+        // fails SILENTLY if it is edited away: the map still renders, it just
+        // renders the wrong thing, and only this test would notice.
+
+        // `:not(:hover)` is load-bearing, not style. `svg.gl-on .nodeg path` is
+        // (0,2,2) and beats the generic `.nodeg:hover path` at (0,2,1) -- which
+        // would kill hover feedback outright in Fronts and Terrain while leaving
+        // Political (its own :hover rule is (0,3,2)) working, so it would read as
+        // "hover is broken in two modes" long after the change that did it.
+        assert!(
+            INDEX.contains("svg.gl-on .nodeg:not(:hover) path"),
+            "the ground's fill-opacity rule must stay mutually exclusive with :hover"
+        );
+        // The two-variable idiom the rule above consumes: --w is emitted per path
+        // by renderMap and --fop stamped per camera frame by applyCam. Written as
+        // a plain attribute the ramp would lag a whole tick behind the gesture.
+        assert!(INDEX.contains("style=\"--w:${op}\""));
+        assert!(INDEX.contains("svg.style.setProperty(\"--fop\""));
+
+        // The ocean and the unaligned world are each TWO paths: a fill that
+        // yields to the GL ground, and a non-scaling stroke that always draws
+        // because GL cannot rule a line that ignores the camera. Collapse either
+        // pair back into one element and the map loses its projection border, or
+        // every unaligned country's outline, with nothing else complaining.
+        assert!(INDEX.contains("<path class=\"oceanfill\" d=\"${WORLD.frame}\" fill=\"url(#ocean)\"/>"));
+        assert!(INDEX.contains(
+            "<path d=\"${WORLD.frame}\" fill=\"none\" stroke=\"#38404c\" \
+             stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"/>"
+        ));
+        assert!(INDEX.contains("<path class=\"landfill\" d=\"${scenery}\""));
+        assert!(INDEX.contains(
+            "<path d=\"${scenery}\" fill=\"none\" stroke=\"#161c25\" \
+             stroke-width=\".4\" vector-effect=\"non-scaling-stroke\"/>"
+        ));
+
+        // Three modes carry a ground and four deliberately do not: the thematic
+        // reads are preserved by the ABSENCE of this key, which is what stands
+        // the whole layer down rather than merely turning it to zero.
+        assert_eq!(
+            INDEX.matches("\n    ground: {").count(),
+            3,
+            "exactly Political, Fronts and Terrain may carry a MAP_MODES ground block"
+        );
+    }
+
+    /// The front seam is drawn twice, each pass clipped by its own SVG mask,
+    /// and the two masks must carry DISTINCT ids — a merge that collapses the
+    /// `a`/`b` suffixes leaves one mask shadowing the other and the seam
+    /// renders one-sided, silently. The literals are asserted as they appear
+    /// in the template string, because that is what reaches the browser.
+    #[test]
+    fn the_front_edge_masks_keep_distinct_ids() {
+        assert!(
+            INDEX.contains("foem${w.id}a"),
+            "side A's front-edge mask id is gone from ui/index.html"
+        );
+        assert!(
+            INDEX.contains("foem${w.id}b"),
+            "side B's front-edge mask id is gone from ui/index.html"
+        );
+    }
+
+    /// The district layer is delta-encoded: an untouched 1990 world sends an
+    /// empty object, and a district moved by the sim shows up keyed by its
+    /// stable id with the new owner's code — which is all the UI needs to
+    /// overlay ownership on the default grouping baked into districts.js.
+    #[test]
+    fn the_state_payload_carries_district_deltas() {
+        let mut g = Game::new(1990, None);
+        let s = state_json(&g, None);
+        let d = s["districts"].as_object().expect("districts is an object");
+        assert!(d.is_empty(), "a fresh 1990 world must send no district deltas");
+        // The held/contested band rides along so the browser's front readouts
+        // use the sim's threshold, not a client-side copy of it.
+        assert_eq!(
+            s["front_held_band"].as_f64(),
+            Some(spheres_sim::front::HELD_BAND),
+            "the state payload must carry the sim's held band"
+        );
+
+        // Move Kuwait's capital governorate to Iraq the way an annexation
+        // would, and the payload must say exactly that and nothing else.
+        spheres_sim::districts::annex_all(&mut g.world, NationId::Iraq, NationId::Kuwait);
+        let s = state_json(&g, None);
+        let d = s["districts"].as_object().unwrap();
+        assert_eq!(d.len(), 6, "all six Kuwaiti governorates moved");
+        assert_eq!(d["KW-KU"], "Iraq");
+    }
+
     #[test]
     fn one_nation_can_be_asked_for_alone() {
         let mut g = Game::new(1990, None);
@@ -1326,5 +1639,66 @@ mod tests {
         assert_eq!(n.len(), 1);
         assert!(n.contains_key("Japan"));
         assert_eq!(h["oil"].as_array().unwrap().len(), 25);
+    }
+
+    /// Every tree node carries the static list price beside the per-nation
+    /// cost, so the screen can say "Procurement: 84 pts — list 260" without
+    /// mirroring the registry client-side. The pair only means something under
+    /// two invariants: `list_cost` IS the registry's static cost, identical
+    /// for every nation, and the per-nation `cost` never exceeds it —
+    /// diffusion only ever discounts.
+    #[test]
+    fn the_tree_payload_carries_the_list_price() {
+        use spheres_sim::tech::{self, Domain, DOMAINS};
+
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        let reg = tech::registry();
+
+        // A fresh 1990 world: nobody has fielded anything, so no discount can
+        // exist and the two figures must agree exactly — and every registry
+        // node must ride in exactly one domain's response, because the screen
+        // stitches all eight to cover the whole tree.
+        let mut seen = 0;
+        for d in DOMAINS {
+            let j = tech_tree_json(&g.world, NationId::Poland, d);
+            for node in j["nodes"].as_array().unwrap() {
+                let id = node["id"].as_str().unwrap();
+                let idx = tech::index_of(id).expect("payload ids are registry ids");
+                let list = node["list_cost"]
+                    .as_f64()
+                    .expect("every node carries list_cost");
+                assert_eq!(list, reg[idx as usize].cost, "{}: list price is the registry's", id);
+                let cost = node["cost"].as_f64().unwrap();
+                assert!(cost <= list, "{}: a discount can only cut, never add", id);
+                assert_eq!(cost, list, "{}: nobody holds it, so nothing is discounted", id);
+                seen += 1;
+            }
+        }
+        assert_eq!(seen, reg.len(), "the eight domain responses must cover the whole registry");
+
+        // Hand the United States a root technology and the price Poland reads
+        // must fall below list — the diffusion discount this field exists to
+        // make visible.
+        let root = reg
+            .iter()
+            .enumerate()
+            .find(|(i, t)| t.domain == Domain::Computing && tech::prereqs_of(*i as u16).is_empty())
+            .map(|(i, _)| i as u16)
+            .expect("Computing has a root technology");
+        g.world.nation_mut(NationId::USA).tech.known = vec![root];
+        let j = tech_tree_json(&g.world, NationId::Poland, Domain::Computing);
+        let node = j["nodes"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|n| tech::index_of(n["id"].as_str().unwrap()) == Some(root))
+            .unwrap();
+        let (cost, list) = (node["cost"].as_f64().unwrap(), node["list_cost"].as_f64().unwrap());
+        assert!(
+            cost < list,
+            "once the world holds a technology its per-nation cost must fall below list ({} !< {})",
+            cost,
+            list
+        );
     }
 }
