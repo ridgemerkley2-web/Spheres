@@ -3,8 +3,18 @@ name = "spheres-web"
 version = "0.5.0"
 edition = "2021"
 
+[features]
+# The mapgen bin needs polygon boolean ops to merge admin-1 regions; gated so
+# the game server never builds the geometry stack.
+mapgen = ["dep:geo"]
+
 [dependencies]
 spheres-sim = { path = "../spheres-sim" }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tiny_http = "0.12"
+geo = { version = "0.28", optional = true }
+
+[[bin]]
+name = "mapgen"
+required-features = ["mapgen"]
