@@ -30,7 +30,7 @@ A Millennium Dawn-style geopolitical sandbox grand-strategy game starting **Janu
 - **State hashing** — FNV-1a hash of WorldState for determinism tests and replay verification.
 - **Content as data** — nations and events in JSON files, two-pass validation, `deny_unknown_fields`. Moddable by design.
 - **Engine-agnostic headless core** (`spheres-sim`) with no I/O; CLI runner (`spheres-cli`); Bevy reserved as the future view shell.
-- **Starting data is transcribed, not invented** — real 1990 figures for GDP, population, oil output, debt, military.
+- **Starting data is transcribed, not invented** — real 1990 figures for GDP, population, oil output, debt, military, **and the technology each nation had deployed by January 1990** (BIBLE §8, amended 2026-08-30: a sourced deployment date is a fact of the same class as a GDP figure, so the starting tech stock is authored per nation rather than derived from `tfp_trend`).
 
 ---
 

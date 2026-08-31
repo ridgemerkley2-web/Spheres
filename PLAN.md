@@ -186,16 +186,28 @@ what just happened. Fix that list and nothing else. Freeze. Tag 1.0.
 
 ## Not doing
 
-- **PLAN Phase 4 in full** — province map, divisions, supply, operational
+- ~~**PLAN Phase 4 in full** — province map, divisions, supply, operational
   combat, hourly cadence. Not deferred: *deleted*, along with SPEC §1's
   "HOI4-style operational warfare" pillar. BIBLE §6's replacement is built and
-  is the best-surfaced system in the game.
+  is the best-surfaced system in the game.~~ **Partially reinstated
+  2026-08-30** by BIBLE §5's tactical-map amendment (Ridge's call): the
+  operational district map — fronts, district combat, encirclement over the
+  ~1,500 admin-1 districts — is back in scope, projected from §6's commitment
+  ladder rather than replacing it. Still out: hourly cadence, and any grid
+  finer than admin-1.
 - **Any roster growth past 137**, the Horn of Africa branch, the ROSTER-to-JSON
   refactor. Adding Somalia does not help while Somalia cannot collapse.
-- **The tech tree screen (old 5.1) and any research command.** The marginal
+- ~~**The tech tree screen (old 5.1) and any research command.** The marginal
   frontier technology is worth 0.004pp of annual growth. A read-only screen
   would render 253 items in high resolution and make the inertness the story.
-  Precondition to revisit: the Productivity reweight.
+  Precondition to revisit: the Productivity reweight.~~ **Reinstated
+  2026-08-30** (Ridge's call, amended in the Phase-4 districts style above):
+  the precondition is met — ROADMAP records "Productivity rebuilt on the
+  tree" — and the research-command half of the cut was already overtaken
+  (research_focus / research_priority exist and drive the left column). Back
+  in scope: a full-screen technology graph with a symbol language and routed
+  prerequisite pathways, driving only the two commands that already exist.
+  Still out: any new sim command, any per-tech sim state.
 - **Finance and contagion**, and an emergent Asia-1997.
 - **New macroeconomics** beyond step 7.
 - **Routing AI fiscal and monetary policy through the command queue.** A real

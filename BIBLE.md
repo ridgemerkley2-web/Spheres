@@ -71,7 +71,7 @@ Lose any of them and we have built a different product, not a better one.
 | Factory counts as economy | The macroeconomy that already exists — TFP, capital, inflation, debt, oil, embargo | MD cannot express a currency crisis or a sanctions regime because HOI4 has no prices |
 | National focus trees | Emergent history from incentives, plus doctrine gates and a stratagem deck | Trees are rails and they run out; incentives do not |
 | Party popularity slider | Political capital as a real budget, coalitions, and legitimacy earned by delivery | Governing becomes a constraint rather than a colour |
-| Fronts and province combat | Theatres, a commitment ladder, and force packages (§6) | Modern war is a capability gate, not symmetric attrition |
+| Fronts and province combat | Theatres, a commitment ladder, and force packages (§6), now projected onto an operational district map (§5, amended 2026-08-30) | Capability gates stay the causes; districts are where their consequences show |
 | Factory queues that win a war | Procurement with a decade of lead time, feeding force structure (§5, amended) | You cannot out-build a modern war – you can only have already built |
 | Diplomacy as HOI4 factions | Spheres of influence: patronage, pacts, dependency, covert action, access | The namesake system, and the thing MD's audience most wants deepened |
 
@@ -80,13 +80,30 @@ Lose any of them and we have built a different product, not a better one.
 The most useful section in this document. When a decision is ambiguous, check
 here first.
 
-- **No province-level tactical map.** No combat width, no encirclement, no
-  front-line drawing, no counters pushed between districts. This is the single
-  largest cost in any HOI4-parity plan, and it buys a model of industrial
-  attrition that is *wrong for the period*. The map carries roughly 1,500
-  admin-1 districts as **political** geography, never 13,000 provinces as
-  tactical geography. Formations exist (see the amendment below) but they are
-  what a theatre is GIVEN; they are never moved square to square.
+- **~~No province-level tactical map.~~ AMENDED 2026-08-30 – Ridge's call,
+  taken with the argument below in front of him and overruled deliberately.**
+  The operational map is IN: front lines drawn across the admin-1 district map,
+  district combat, encirclement, and formations that hold and take ground. The
+  ~1,500 admin-1 districts are now tactical geography as well as political —
+  aligning the game with HOI4's operational layer is the point. What this
+  section used to say, kept because a reversed decision should still show its
+  reasoning: *"No combat width, no encirclement, no front-line drawing, no
+  counters pushed between districts. This is the single largest cost in any
+  HOI4-parity plan, and it buys a model of industrial attrition that is wrong
+  for the period."*
+
+  That argument is not wrong about the period, and the operational layer has to
+  answer it rather than ignore it. **The answer is that ground is a projection
+  of capability, not a substitute for it.** Fronts advance because one side
+  out-commits, out-equips and out-postures the other in that theatre — the
+  commitment ladder, force packages and procurement of §6 stay the causes, and
+  the district map is where their consequences become visible and contestable.
+  Encirclement and manoeuvre are outcomes the model can produce, not micro the
+  player performs; a front that moves like 1936 symmetric attrition is a bug
+  against this section. Constraints that survive the amendment: monthly
+  closed-form resolution (no hourly tick), determinism, all changes through the
+  command queue, and districts keep their political identity (ownership,
+  settlement transfers) underneath the fighting.
 - **~~No production minigame.~~ AMENDED 2026-08-18 – Ridge's call, taken with
   the argument below in front of him and overruled deliberately.** Equipment
   lines, stockpiles, shortages and obsolescence are IN. Formations are IN. What
@@ -105,11 +122,12 @@ here first.
   should discover it in the one month it matters and be unable to fix it. That
   is the thing HOI4's factory queue cannot express and this can.
 
-  **Still refused, and this is not amended:** the province-level tactical map.
-  No 13,000 provinces, no combat width, no encirclement, no front-line drawing.
-  Production feeds the force structure stock in §6; it does not bring a tactical
-  map with it. Formations are what a theatre is given, not counters pushed
-  across districts.
+  ~~**Still refused, and this is not amended:** the province-level tactical
+  map.~~ **Superseded 2026-08-30** — the tactical-map refusal above was itself
+  amended (Ridge's call; see the first bullet). Production now feeds both the
+  force structure stock in §6 and the operational district layer. One clause
+  stands: no 13,000-province HOI4 grid — the operational map is the ~1,500
+  admin-1 districts, never finer.
 - **No focus trees, ever.** No scripted event chains beyond physical facts like
   proliferation test dates. This is an accepted **product risk**, not an
   oversight: a large share of MD's audience believes focus trees *are* the game.
@@ -197,6 +215,35 @@ What replaces focus trees, stated as a promise we can be held to:
 ## 8. Fidelity contract
 
 - **Transcribed, never invented**: 1990 starting data, real names, real dates.
+- **What a nation KNOWS in 1990 is starting data. AMENDED 2026-08-30 – Ridge's
+  call, taken with the argument below in front of him and overruled
+  deliberately.** Every nation begins holding the technologies it had actually
+  deployed by January 1990, authored per nation and sourced like every other
+  figure in `spheres-sim/data/`. The Soviet Union starts strong in space,
+  nuclear and materials and weak in computing and consumer manufacturing;
+  Japan starts the other way round; a nation that imported all of its capital
+  goods starts near-empty. What the code used to say, kept because a reversed
+  decision should still show its reasoning: *`data/mod.rs` — "`tech` is seeded
+  from the TFP trend by the technology module. Transcribing either would be
+  inventing."*
+
+  That argument was right that a **guess** would be inventing, and wrong that a
+  sourced list is a guess. A deployment date is the same class of fact as a GDP
+  figure or a nuclear test date, and §8 already admits both. What made the old
+  position untenable is what it produced: a January 1990 board on which every
+  nation on earth knows nothing and differs only by one scalar, which is not a
+  stylised model of the world — it is a claim about the world that is false.
+
+  **Two obligations this amendment does not waive.** First, *correctness beats
+  feel*, from this same section: 1990 technology that `tfp_base` already prices
+  into a nation's productivity must not be paid twice — the baseline is
+  re-derived against the granted stock, and a nation's 1990 growth is the
+  acceptance test, not a hope. Second, *transcribed* means transcribed: every
+  granted technology carries its source, an unsourced entry is a refusal rather
+  than a default, and where the record is genuinely thin the honest entry is a
+  shorter list. Where authorship must be tiered by effort, the majors are
+  authored and the tail follows a documented, stated rule — a rule is a model
+  and may be stylised; a fabricated citation may not.
 - **Modelled, may be stylised**: growth rates, war outcomes, political shifts.
   A major economy's 35-year trajectory should land within a stated band of
   reality; a minor one is allowed to be wrong.

@@ -4,3 +4,19 @@ save.json
 .cargo/config.toml
 dist/
 .claude/
+# Natural Earth source data stays untracked, but the three generated terrain
+# artifacts mapgen and the UI build from ARE committed (tools/terrain/README).
+# `dir/*` rather than `dir/` so the negations below can re-include files.
+spheres-web/data/*
+!spheres-web/data/district_terrain.json
+!spheres-web/data/crossing_edges.json
+!spheres-web/data/river_segments.json
+# make_underlay.py's and make_cover.py's scratch extraction cache, and the optional
+# 2x eyeball renders (make_underlay.py --2x, make_relief.py --2x). The 1x bakes ship.
+tools/terrain/raster/
+tools/terrain/terrain_underlay_2x.png
+tools/terrain/relief_2x.png
+# check.py regenerates each texture into a temp sibling to prove byte-identity and
+# removes it again; ignored so an interrupted run cannot stage one.
+spheres-web/ui/*.checktmp.png
+__pycache__/

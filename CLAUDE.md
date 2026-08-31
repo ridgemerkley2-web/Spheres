@@ -49,7 +49,12 @@ Two pillars from SPEC.md, and where each now stands:
 3. **History is calibration, not script.** New mechanics are validated by
    emergent-history tests (see `gulf_war_emerges`, `ussr_collapses_in_the_nineties`,
    `china_growth_miracle`). Events should *usually* happen across seeds, not always.
-4. **Starting data is transcribed, not invented** — real 1990 figures in `init.rs`.
+4. **Starting data is transcribed, not invented** — real 1990 figures in
+   `spheres-sim/data/`, each file carrying its own `sources` block. **This now
+   includes what a nation KNOWS**: starting technology is authored and sourced
+   per nation, not derived from `tfp_trend` (BIBLE §8, amended 2026-08-30).
+   Unsourced is a refusal, not a default; and a granted 1990 stock must be
+   reconciled against `tfp_base` so the same technology is not paid twice.
 5. Run `cargo test` before considering any change done. Never delete a
    regression test to make a change pass, and never widen a tolerance to make
    one pass — a test that cannot fail is worse than no test. When you tighten

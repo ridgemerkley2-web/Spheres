@@ -1,6 +1,27 @@
 # SPHERES Roadmap
 
 ## Done (v0.5 rebuild)
+- **Terrain pass** (2026-08-30, BIBLE §5 as amended): every district carries a
+  transcribed Natural Earth terrain class (`t`), feature name (`f`) and
+  river-crossed neighbour subset (`riv`), merged into districts.json by mapgen
+  from the new one-shot generators in `tools/terrain/` (run only when the data
+  needs regenerating — see its README). In the sim, the per-district class
+  supersedes the theatre `rough` scalar inside the front's capped phase — six
+  tempo constants plus a river shave and a floor, distribution and tempo only;
+  the uncapped sweep that glues the aggregate to the legacy control equation
+  is untouched. The map gains a baked hillshade underlay (`/terrain.png`,
+  multiply-blended under the district layer) and the 263 major rivers + 29
+  lakes (`/rivers.js`), both served from the binary like world.js. The 66°N
+  latitude-band override in the classifier fixes RU-YAN (Yamal-Nenets) to
+  tundra; golden hash re-pinned and the conquest seed pair re-scanned to
+  seed 9 per their own comments
+- **UI restyled toward HOI4** (2026-08-30): setup screen rebuilt as a searchable,
+  sortable, always-startable picker; a political map mode (curated colors for the
+  majors, deterministic muted fallback for the rest) is now the default shading,
+  with dark ocean, thin dark borders and a gold selection ring; chrome moved to
+  steel-and-brass — beveled buttons, resource-strip header with a recessed date
+  plate, brass-etched card headers and legend plaque. Pure look-and-feel: no ids,
+  no API, no game logic touched; TERRITORY/LABEL_AT byte-identical
 - Deterministic core, save/load, monthly ticks, state hashing
 - Economy: growth/catchup/diminishing returns, inflation, budgets/debt, oil market, bubbles+hangover
 - War: **the commitment ladder** — conflicts between coalitions, nine rungs each
