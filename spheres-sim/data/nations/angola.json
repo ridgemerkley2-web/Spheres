@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 11.2,
     "population_m": 11.6,
+    "pop_growth_1990": 0.035804,
     "tfp_trend": -0.005,
     "inflation": 0.14,
     "interest_rate": 0.1,
@@ -32,6 +33,19 @@
     "Oil 0.475 mbd: 475,000 barrels a day in 1990 (US EIA international series). The great majority of it came from Cabinda, the exclave separated from the rest of Angola by the mouth of the Congo river - so the MPLA government's revenue was pumped by Chevron under the protection of Cuban troops, in a province where FLEC was fighting for secession, while the same government fought a Cold War proxy war against a movement backed by the country whose oil company was paying it. That is not a joke, it is the 1990 arrangement, and it is why this file's separatism figure is where it is.",
     "Stability 26 and authoritarianism 0.88: level with Zaire's on both, and for different reasons - Zaire's state was hollow, Angola's was at war. The MPLA-PT held Luanda, the coast and the oil; UNITA held much of the interior and was supplied through Zaire from Kamina. Authoritarianism 0.88 is a Marxist-Leninist single party with a Politburo, dropping Marxism-Leninism at its Third Congress in December 1990 and legalising opposition in May 1991 - which is inside the game's window and something the sim should be able to reach.",
     "Separatism 0.30: Cabinda. The exclave produced most of Angola's oil, had never been administratively part of Angola under the Portuguese until 1956, and FLEC had been fighting for its independence since before Angolan independence. Set below Indonesia's 0.35 and Zaire's 0.35 and above Iraq's 0.2. The Ovimbundu base of UNITA is NOT counted here: UNITA wanted the whole country, not a piece of it, which makes it a civil war rather than a secession and belongs in stability instead.",
-    "Military strength 9: the Forcas Armadas Populares de Libertacao de Angola were about 100,000 strong with the densest surface-to-air missile network in Africa, T-55 and T-62 armour, MiG-23s flown partly by Cubans, and fifteen years of continuous combat experience against both UNITA and the SADF. That is a serious force by regional standards - set above Indonesia's 8 and Nigeria's 6, below Poland's 12 - and it still could not finish UNITA, which is the point the sim should be able to discover."
-  ]
+    "Military strength 9: the Forcas Armadas Populares de Libertacao de Angola were about 100,000 strong with the densest surface-to-air missile network in Africa, T-55 and T-62 armour, MiG-23s flown partly by Cubans, and fifteen years of continuous combat experience against both UNITA and the SADF. That is a serious force by regional standards - set above Indonesia's 8 and Nigeria's 6, below Poland's 12 - and it still could not finish UNITA, which is the point the sim should be able to discover.",
+    "pop_growth_1990 = 3.5804%/yr. Compound annual growth of World Bank SP.POP.TOTL, series AGO (Angola): 9,425,917 in 1984 to 11,238,562 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: AGO.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 24% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

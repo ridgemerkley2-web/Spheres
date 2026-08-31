@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 38.3,
     "population_m": 23.2,
+    "pop_growth_1990": 0.00456,
     "tfp_trend": -0.006,
     "inflation": 0.051,
     "interest_rate": 0.03,
@@ -37,6 +38,20 @@
     "authoritarianism 0.42, the highest in this region except Albania's and above Bulgaria's 0.40: the National Salvation Front declared itself a provisional authority on 22 December 1989, then broke its pledge not to contest the 20 May 1990 election and won it with about two thirds of the vote against opposition parties with no access to state television and no organisation outside the cities. Elections are held, and they are not fair. Set below the 0.60 electoral ceiling because the vote was contested and the count was not the fiction Albania's would have been.",
     "stability 40.0, the lowest in this region: the government is five weeks old when the game opens and its first six months contain the 28-29 January and 18-19 February assaults on opposition headquarters, the Targu Mures clashes of 19-21 March, and the Mineriad of 13-15 June 1990, in which miners bussed into Bucharest beat demonstrators out of University Square with the government's thanks. Set below Yugoslavia's 44.",
     "separatism 0.18: the Hungarian minority of Transylvania numbered about 1.62 million, 7.1% of the population, at the 1992 census. UDMR was founded on 25 December 1989, and the Targu Mures violence of 19-21 March 1990 - six dead, hundreds injured - was the first ethnic bloodshed in post-communist Europe. Set above Bulgaria's 0.12 on a larger and more territorially concentrated minority, and far below Yugoslavia's 0.72 because no Romanian county ever attempted to leave. Also carried here: the roughly 200,000 Germans of the Banat and Transylvania, most of whom emigrated during 1990.",
-    "Romania's claim on the USSR is recorded in nations.rs at 0.018 and its basis is stated there, not here."
-  ]
+    "Romania's claim on the USSR is recorded in nations.rs at 0.018 and its basis is stated there, not here.",
+    "pop_growth_1990 = 0.4560%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ROU (Romania): 22,640,547 in 1984 to 23,161,458 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: ROU.",
+      "WUENIC DTP3 1990 = 96% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: ROU, 1990 = 96%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

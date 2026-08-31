@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 28.9,
     "population_m": 4.4,
+    "pop_growth_1990": 0.0285,
     "tfp_trend": 0.003,
     "inflation": 0.085,
     "interest_rate": 0.055,
@@ -39,6 +40,20 @@
     "Strength 6: an abstract index, and the number in this file most likely to be mistaken for a typo. Libya had roughly 2,000 tanks - more than Britain - and about 85,000 personnel to crew them, most of them conscripts, with a large fraction of the inventory in desert storage. Then it lost. In the Toyota War of 1987 the Chadian army destroyed or captured on the order of $1.5bn of Libyan equipment and killed several thousand men, using pickup trucks. This index is combat power, not inventory: set below Egypt's 14 and below Algeria's 8, above Sudan's 3 and Tunisia's 2.",
     "Stability 55: Gaddafi twenty years in and personally unremovable - he had survived the American raid on Bab al-Azizia of 15 April 1986 and a series of army plots. Against that: the Chad defeat had discredited the revolutionary committees, the oil price had halved, and the Warfalla conspiracy that broke in 1993 was already forming. Set at Turkey's 55, above Algeria's 40, below Tunisia's 60.",
     "Separatism 0.05: low but not zero. Tripolitania and Cyrenaica were separate provinces under Ottoman and Italian rule and separate states under the federal constitution of 1951, and Benghazi's grievance against Tripoli survived the abolition of the federation in 1963 - it is where the 2011 rising started. Set at Italy's 0.05.",
-    "Authoritarianism 0.90: among the highest in the roster. The Jamahiriya had no parties, and not by neglect - Law 71 of 1972 made forming one a capital offence. There was no legislature that could remove an executive because there was formally no executive: Gaddafi held no office after 1979 and ruled through the revolutionary committees. Modelled with pillars and an empty party table, which is the same treatment Saudi Arabia gets and for the same reason."
-  ]
+    "Authoritarianism 0.90: among the highest in the roster. The Jamahiriya had no parties, and not by neglect - Law 71 of 1972 made forming one a capital offence. There was no legislature that could remove an executive because there was formally no executive: Gaddafi held no office after 1979 and ruled through the revolutionary committees. Modelled with pillars and an empty party table, which is the same treatment Saudi Arabia gets and for the same reason.",
+    "pop_growth_1990 = 2.8500%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LBY (Libya): 3,773,633 in 1984 to 4,342,920 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: LBY.",
+      "WUENIC DTP3 1990 = 84% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: LBY, 1990 = 84%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

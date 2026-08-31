@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 0.547,
     "population_m": 0.189,
+    "pop_growth_1990": 0.022762,
     "tfp_trend": 0.005,
     "inflation": 0.02,
     "interest_rate": 0.14,
@@ -37,6 +38,20 @@
     "Oil 0.0: no production in 1990. The Spanish Lookout field, Belize's only commercial discovery, was not found until 2005.",
     "TFP trend 0.005: a small agricultural and tourism economy with a functioning administration and no productivity engine.",
     "Stability 68 and authoritarianism 0.12: Westminster on a very small scale and it worked. The general election of 4 September 1989 turned the government over on a margin of 1.85 percentage points — George Price's People's United Party 50.87% against Manuel Esquivel's United Democratic Party 49.02%, 15 seats to 13 — and the loser left. Held below Costa Rica's 76 by two things and not by any internal weakness: a neighbour eight times its size did not concede that it existed, and its independence in 1981 had itself been delayed for two decades by that claim and secured only by foreign troops. A country whose continued existence is somebody else's decision is not as stable as one whose is not, whatever the quality of its own institutions. Authoritarianism 0.12 is Uruguay's figure — a Commonwealth realm with an appointed Senate, first-past-the-post in 28 single-member constituencies, and the patronage politics that a legislature of that size makes unavoidable.",
-    "Separatism 0.03: Belize is Creole, Mestizo, Maya, Garifuna and Mennonite with no majority group and no secession movement in any of them. The Maya land-rights claim in Toledo, which reached the courts in the 2000s, was a title claim rather than a territorial one. Entered just below New Zealand's 0.06: real plurality, no strain on the state. The threat to Belize's territorial integrity in 1990 came entirely from outside it, which is in Guatemala's claim row in nations.rs and not here."
-  ]
+    "Separatism 0.03: Belize is Creole, Mestizo, Maya, Garifuna and Mennonite with no majority group and no secession movement in any of them. The Maya land-rights claim in Toledo, which reached the courts in the 2000s, was a title claim rather than a territorial one. Entered just below New Zealand's 0.06: real plurality, no strain on the state. The threat to Belize's territorial integrity in 1990 came entirely from outside it, which is in Guatemala's claim row in nations.rs and not here.",
+    "pop_growth_1990 = 2.2762%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BLZ (Belize): 160,044 in 1984 to 179,107 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: BLZ.",
+      "WUENIC DTP3 1990 = 91% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: BLZ, 1990 = 91%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name. The 1989 value of the same series is 79%, on the other side of the 80% line: THRESHOLD-SENSITIVE CELL." }
+    ]
+  }
 }

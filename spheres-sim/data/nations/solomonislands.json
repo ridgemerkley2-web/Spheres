@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 0.215,
     "population_m": 0.312,
+    "pop_growth_1990": 0.032982,
     "tfp_trend": 0.004,
     "inflation": 0.087,
     "interest_rate": 0.105,
@@ -37,6 +38,19 @@
     "TFP trend 0.004. Real growth 1985-1990 was -3.14, -0.21, 8.42, 1.25, 4.26, 2.20 (NY.GDP.MKTP.KD.ZG): a mean of 2.1% a year against population growth of 2.8%, so output per head was falling through the second half of the 1980s. The low trend is the honest reading of an economy whose growth was extraction — log exports rose fivefold across the decade — rather than anything that compounds.",
     "Stability 55 and authoritarianism 0.12. A functioning Westminster democracy with a free press, an independent judiciary and no political prisoners, which is why the authoritarianism figure is near Uruguay's 0.12 rather than anywhere in the Pacific's crisis range. The stability figure is lower than the authoritarianism figure would suggest because governments here do not last: parties are candidate vehicles rather than organisations, the 38-member parliament turns over by more than half at every election, and Solomon Mamaloni — prime minister again since March 1989 — governed with a bare and shifting coalition and would take his own party out of the government in October 1990 to rule with defectors from the opposition.",
     "Separatism 0.10 has two components and neither is hypothetical. Western Province and Choiseul attempted to secede at independence in 1978 and the Western Province breakaway movement persisted; and Bougainville, across ten kilometres of strait from the Shortlands, had been in armed revolt since 1988 among people who are Solomon Islanders ethnically and Papua New Guineans legally, with fighters and refugees moving both ways across a border Honiara could not police. The figure is the strain, not the prediction.",
-    "UNVERIFIED: the tax share, the policy rate, the investment split and the military share, all four constructed and all four stated above. Solomon Islands is one of the countries the roster's own instructions warn about — small, poor and badly documented — and four of its twelve economic fields are estimates."
-  ]
+    "UNVERIFIED: the tax share, the policy rate, the investment split and the military share, all four constructed and all four stated above. Solomon Islands is one of the countries the roster's own instructions warn about — small, poor and badly documented — and four of its twelve economic fields are estimates.",
+    "pop_growth_1990 = 3.2982%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SLB (Solomon Islands): 273,163 in 1984 to 321,282 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: SLB.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 77% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

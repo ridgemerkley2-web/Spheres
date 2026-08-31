@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 0.307,
     "population_m": 0.338,
+    "pop_growth_1990": 0.014354,
     "tfp_trend": 0.004,
     "inflation": 0.107,
     "interest_rate": 0.11,
@@ -35,6 +36,20 @@
     "Authoritarianism 0.62 and stability 62: on 1 January 1990 this is a one-party state under Aristides Pereira, president since independence on 5 July 1975, with the PAICV's monopoly written into Article 4 of the constitution. It did not last the year: the party's central committee accepted multipartyism in February 1990, the National Assembly amended Article 4 in September, and the Movimento para a Democracia won the legislative election of 13 January 1991 and the presidency in February - the first African incumbent party of the wave to lose an election and hand over power without incident. Nothing here schedules that. Authoritarianism 0.62 is set level with Madagascar's 0.65 territory and below Seychelles' 0.70; stability 62 is HIGH for a one-party state and is the point - Cape Verde has never had a coup, never had a political killing, and its transition worked because there was nothing to fight over.",
     "Separatism 0.03: near the floor. Sao Vicente and Santiago have a rivalry that is mostly about music and football, Mindelo thinks Praia gets the ministries, and no island has ever had a separatist movement. The one real historical fissure - union with Guinea-Bissau - was a claim to join a country rather than to leave one, and it died in 1980.",
     "Military strength 0.3: about 1,100 in the Forcas Armadas with a coast guard and no combat aircraft, on ten islands spread over 700km of Atlantic. Set above Mauritius's 0.2 and the Comoros' 0.2 because unlike either it is a real if tiny national force with its own command, and below Seychelles' 0.4 because Seychelles had been invaded and bought accordingly.",
-    "The relationship this file cannot express in a number, recorded here: Sal. South African Airways was banned from the airspace of almost every African state, so its Johannesburg-Europe flights refuelled at Amilcar Cabral International Airport on Sal, and the landing fees were a material share of a $307m economy. A government that had come out of an anti-colonial liberation movement and voted against apartheid at every international forum was also the reason apartheid's flag carrier could reach Europe. It is in the relations block."
-  ]
+    "The relationship this file cannot express in a number, recorded here: Sal. South African Airways was banned from the airspace of almost every African state, so its Johannesburg-Europe flights refuelled at Amilcar Cabral International Airport on Sal, and the landing fees were a material share of a $307m economy. A government that had come out of an anti-colonial liberation movement and voted against apartheid at every international forum was also the reason apartheid's flag carrier could reach Europe. It is in the relations block.",
+    "pop_growth_1990 = 1.4354%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CPV (Cabo Verde): 342,505 in 1984 to 367,803 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: CPV.",
+      "WUENIC DTP3 1990 = 88% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: CPV, 1990 = 88%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

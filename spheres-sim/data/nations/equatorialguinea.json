@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 0.112,
     "population_m": 0.419,
+    "pop_growth_1990": 0.045953,
     "tfp_trend": -0.004,
     "inflation": 0.0086,
     "interest_rate": 0.11,
@@ -32,6 +33,19 @@
     "Oil 0.0 mbd: ZERO, and the zero is the most important number in this file. The US EIA international series prints 0.00 for Equatorial Guinea for every year through 1990 and its first non-zero entry is 100 barrels a day in 1991 - the Alba field condensate. Zafiro, which made the country an oil state, was discovered in 1995 and came on stream in August 1996. In January 1990 Equatorial Guinea was a cocoa and timber economy with nothing under it that anyone had found, and a model that starts it with oil would be scripting the one thing about this country nobody in 1990 could have known.",
     "Stability 38 and authoritarianism 0.90: Teodoro Obiang Nguema Mbasogo had ruled since the coup of 3 August 1979 in which he overthrew and shot his uncle Macias, and the Partido Democratico de Guinea Ecuatorial, founded in 1987, was the sole legal party. Stability 38 sits between Congo's 35 and the Central African Republic's 40: no insurgency and no war, but a coup attempt in 1981, another alleged in 1983, and a genuine one in August 1988 by Colonel Fructuoso Mba Onana Nchama, after which the government's protection was a Moroccan presidential guard of several hundred men sent by Hassan II in 1979 and still there in 1990. Authoritarianism 0.90 sits between Zaire's 0.88 and Chad's 0.92: a sole legal party, a family state, and a prison at Black Beach that Amnesty International reported on every year of the decade.",
     "Separatism 0.20: level with Cameroon's and Iraq's, and the object is the archipelago itself. Equatorial Guinea is two countries - Bioko, an island 250 km offshore that holds the capital and the Bubi, and Rio Muni on the mainland that holds four fifths of the people and the Fang - and every government since 1968 has been Fang and mainland. The Movimiento para la Autodeterminacion de la Isla de Bioko was formed in 1993 out of exactly that; the Bubi grievance it grew from is a continuous fact of the whole period, and the sea between the two halves is the reason it is entered at 0.20 rather than lower.",
-    "Military strength 0.3: about 1,300 men across army, navy and gendarmerie, with two patrol boats and no aircraft. The lowest figure in this roster other than Sao Tome's 0.1. The formation that mattered was not Equatoguinean: the Moroccan guard at the presidential palace was better armed than the national army and was the reason the 1988 coup failed."
-  ]
+    "Military strength 0.3: about 1,300 men across army, navy and gendarmerie, with two patrol boats and no aircraft. The lowest figure in this roster other than Sao Tome's 0.1. The formation that mattered was not Equatoguinean: the Moroccan guard at the presidential palace was better armed than the national army and was the reason the 1988 coup failed.",
+    "pop_growth_1990 = 4.5953%/yr. Compound annual growth of World Bank SP.POP.TOTL, series GNQ (Equatorial Guinea): 364,899 in 1984 to 456,808 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: GNQ.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 77% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

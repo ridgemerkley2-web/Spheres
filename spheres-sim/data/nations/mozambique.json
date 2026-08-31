@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 3.9,
     "population_m": 13.1,
+    "pop_growth_1990": 0.009416,
     "tfp_trend": 0.004,
     "inflation": 0.47,
     "interest_rate": 0.42,
@@ -33,6 +34,19 @@
     "Oil 0.0: no production. The Pande and Temane gas fields were known but undeveloped; the energy asset that mattered was Cahora Bassa, whose transmission lines to South Africa RENAMO had cut and kept cut since 1981.",
     "Stability 24 and authoritarianism 0.75: stability is set between Ethiopia's 22 and Angola's 26, which is the right company and the right order. FRELIMO held the cities, the corridors and the coast and did not hold much else; the war had killed on the order of several hundred thousand people by 1990, mostly civilians and mostly of hunger, and would kill more before the Rome accords of 4 October 1992. Authoritarianism 0.75 is a sole legal party with a state security service (SNASP), set above Tanzania's 0.72 and below Ethiopia's, and it is a number in motion: FRELIMO dropped Marxism-Leninism at its fifth congress in July 1989 and the constitution of 2 November 1990 legalised opposition parties, ten months after the game starts.",
     "Separatism 0.03: LOW ON PURPOSE, and it is the most likely thing in this file to be read as an error. Mozambique in 1990 had a civil war and almost no secessionism. RENAMO wanted Maputo, not a partition — it was built by Rhodesian and then South African intelligence as an instrument against FRELIMO and it ran on rural grievance and coercion rather than on a nation wanting out. There is no Mozambican Eritrea and there is no Mozambican Cabinda, which is exactly why the number is a fifth of Angola's 0.30 while stability is lower than Angola's. The model should read this as a state losing control of its territory, not as a state coming apart into pieces.",
-    "Military strength 3: the Forcas Populares de Libertacao de Mocambique were nominally 60,000-70,000, Soviet-equipped, conscripted and unable to hold ground away from the garrisons — which is why Zimbabwe kept roughly 10,000 troops on the Beira corridor and Tanzania several thousand more in the north. Set level with Kenya, Tanzania and Uganda at 3 on size and below Zimbabwe's 5 on everything else. A large army that cannot secure its own country is exactly what this index is meant to be able to say."
-  ]
+    "Military strength 3: the Forcas Populares de Libertacao de Mocambique were nominally 60,000-70,000, Soviet-equipped, conscripted and unable to hold ground away from the garrisons — which is why Zimbabwe kept roughly 10,000 troops on the Beira corridor and Tanzania several thousand more in the north. Set level with Kenya, Tanzania and Uganda at 3 on size and below Zimbabwe's 5 on everything else. A large army that cannot secure its own country is exactly what this index is meant to be able to say.",
+    "pop_growth_1990 = 0.9416%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MOZ (Mozambique): 12,315,954 in 1984 to 12,906,842 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: MOZ.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 46% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

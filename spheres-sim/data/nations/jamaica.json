@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 4.59,
     "population_m": 2.38,
+    "pop_growth_1990": 0.008454,
     "tfp_trend": 0.002,
     "inflation": 0.22,
     "interest_rate": 0.305,
@@ -32,6 +33,20 @@
     "TFP trend 0.002: set level with South Africa's 0.002 and below Kenya's 0.004. Jamaica's growth in 1987-1990 was recovery of idle capacity - bauxite plants restarted when metal prices rose, hotel rooms refilled after Gilbert - rather than a rise in what the economy knew how to do, and the model should not read the rebound as a permanent Jamaican miracle. It was not: growth stopped in 1992 and inflation went past 50% in 1991.",
     "Stability 62 and authoritarianism 0.15: a Westminster democracy with an unbroken record of alternation since 1944 and a genuinely violent one. The election of 30 October 1980 killed somewhere near 800 people; the election of 9 February 1989, which is the one in the government table, was by comparison quiet and produced a clean transfer from Edward Seaga to Michael Manley on a turnout of 78.4%. Stability 62 is set level with Tanzania's 62 and above Senegal's 60 - a state that is not seriously contested, carrying garrison-constituency gang politics and a homicide rate that was already among the world's highest. Authoritarianism 0.15 is set at Italy's level and above Spain's 0.13.",
     "Separatism 0.0: none. There is no Jamaican region that wants out and never has been.",
-    "Military strength 1.0: the Jamaica Defence Force was about 3,000 regulars including the Coast Guard and Air Wing, British-trained, with no combat aircraft and no armour. Its live role in 1990 was drug interdiction and hurricane relief. Set level with Haiti's 1.0 and below Senegal's 1.5, which is the right order: the JDF is smaller than the FAd'H and better at its job."
-  ]
+    "Military strength 1.0: the Jamaica Defence Force was about 3,000 regulars including the Coast Guard and Air Wing, British-trained, with no combat aircraft and no armour. Its live role in 1990 was drug interdiction and hurricane relief. Set level with Haiti's 1.0 and below Senegal's 1.5, which is the right order: the JDF is smaller than the FAd'H and better at its job.",
+    "pop_growth_1990 = 0.8454%/yr. Compound annual growth of World Bank SP.POP.TOTL, series JAM (Jamaica): 2,264,562 in 1984 to 2,361,916 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: JAM.",
+      "WUENIC DTP3 1990 = 86% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: JAM, 1990 = 86%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

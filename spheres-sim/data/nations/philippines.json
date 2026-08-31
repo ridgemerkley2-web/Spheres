@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 50.5,
     "population_m": 62.9,
+    "pop_growth_1990": 0.02661,
     "tfp_trend": 0.008,
     "inflation": 0.122,
     "interest_rate": 0.241,
@@ -35,6 +36,20 @@
     "separatism 0.24 is the Moro National Liberation Front and the autonomous region in Muslim Mindanao created in 1989. It excludes the CPP-NPA insurgency, which was nationwide and revolutionary rather than territorial.",
     "Military index 4: roughly 106,000 in the Armed Forces of the Philippines, an infantry force fully committed at home, with an air force and navy of largely 1940s-1950s American origin.",
     "Gross capital formation 23.3% of GDP (World Bank, 1990), entered as 5 state and 18 private.",
-    "Series check, August 2026, read from the World Bank API: NY.GDP.MKTP.CD 1990 = 50,508,286,642; SP.POP.TOTL = 62,854,666; FP.CPI.TOTL.ZG = 12.177; FR.INR.LEND = 24.118; MS.MIL.XPND.GD.ZS = 2.147; NE.GDI.TOTL.ZS = 23.332. All match. National government debt near 68% of GDP is not on those series and is not verified here."
-  ]
+    "Series check, August 2026, read from the World Bank API: NY.GDP.MKTP.CD 1990 = 50,508,286,642; SP.POP.TOTL = 62,854,666; FP.CPI.TOTL.ZG = 12.177; FR.INR.LEND = 24.118; MS.MIL.XPND.GD.ZS = 2.147; NE.GDI.TOTL.ZS = 23.332. All match. National government debt near 68% of GDP is not on those series and is not verified here.",
+    "pop_growth_1990 = 2.6610%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PHL (Philippines): 53,726,181 in 1984 to 61,265,260 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: PHL.",
+      "WUENIC DTP3 1990 = 88% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: PHL, 1990 = 88%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

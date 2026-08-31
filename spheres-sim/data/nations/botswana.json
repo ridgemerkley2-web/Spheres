@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 3.8,
     "population_m": 1.3,
+    "pop_growth_1990": 0.032288,
     "tfp_trend": 0.012,
     "inflation": 0.114,
     "interest_rate": 0.079,
@@ -32,6 +33,20 @@
     "Oil 0.0: no production. The mineral that mattered has no field in this model, which is a gap worth stating plainly rather than fudging into the oil column: diamonds were about a third of GDP, half of government revenue and four-fifths of exports, and none of that is representable here. Botswana's economy in this build is therefore a well-capitalised middle-income state with an unexplained income, and the sources block is where the explanation lives.",
     "Stability 72 and authoritarianism 0.20: the highest stability in Africa in this roster and above Spain's 70. Botswana had held free multi-party elections on schedule every five years since 1965, never suspended parliament, never had a coup or an attempted one, kept an independent judiciary and a High Court that ruled against the government, and had no political prisoners. Authoritarianism 0.20 rather than something lower is the one qualification: the Botswana Democratic Party had won every election since independence and would keep doing so, state media was state media, and a dominant-party democracy that has never changed hands is not Denmark. Set above Spain's 0.13 and far below the 0.60 electoral ceiling.",
     "Separatism 0.03: near zero. The one strain worth naming is the position of the Basarwa, the San of the Kalahari, who were being resettled off the Central Kalahari Game Reserve in a process that would reach the High Court in 2006 — a dispossession rather than a secession. There is no Botswanan region that wants out. Set level with Malawi's 0.02 and a shade above it only because the northwest, Ngamiland, has a distinct Wayeyi and Herero politics.",
-    "Military strength 2: the Botswana Defence Force was about 6,000 in 1990, better funded per soldier than anything else in the region and buying seriously — but with no combat aircraft worth the name until the Canadian CF-5s arrived in 1996. Set level with Kuwait and Tunisia, above Malawi's 1 and below Zambia's 2.5, which is the ratio 4.4% of a small rich GDP actually buys."
-  ]
+    "Military strength 2: the Botswana Defence Force was about 6,000 in 1990, better funded per soldier than anything else in the region and buying seriously — but with no combat aircraft worth the name until the Canadian CF-5s arrived in 1996. Set level with Kuwait and Tunisia, above Malawi's 1 and below Zambia's 2.5, which is the ratio 4.4% of a small rich GDP actually buys.",
+    "pop_growth_1990 = 3.2288%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BWA (Botswana): 1,083,660 in 1984 to 1,270,274 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: BWA.",
+      "WUENIC DTP3 1990 = 92% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: BWA, 1990 = 92%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

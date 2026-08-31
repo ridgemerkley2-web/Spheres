@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 2.7,
     "population_m": 9.5,
+    "pop_growth_1990": 0.045872,
     "tfp_trend": 0.003,
     "inflation": 0.118,
     "interest_rate": 0.21,
@@ -32,6 +33,20 @@
     "Oil 0.0: no production.",
     "Stability 60 and authoritarianism 0.85: the pairing is the point and it is an uncomfortable one. Authoritarianism 0.85 is the highest figure in Africa in this roster and among the highest anywhere in it: Hastings Kamuzu Banda was Life President from 1971, the Malawi Congress Party was the only legal party, membership cards were required to buy in shops and to travel, the press was censored to the level of individual words, and the Young Pioneers ran a parallel enforcement apparatus that made people disappear. Detention without trial was routine and the 1975 Preservation of Public Security Regulations made it lawful. Stability 60 is nonetheless above Zimbabwe's 58, because stability in this model measures whether a government is going to be there next year, not whether it deserves to be: Malawi in 1990 had no insurgency, no coup attempt in twenty-six years, no separatist region and no economic crisis, and Banda's regime did not fall to any of those. It fell to a Lenten pastoral letter read from Catholic pulpits on 8 March 1992, a donor aid freeze that May, and a referendum in June 1993.",
     "Separatism 0.02: essentially none, and the lowest figure in this region. Malawi has a real north-south division — the Tumbuka north supplied the civil service until Banda's Chichewa language policy of 1968 broke it, and AFORD's vote in 1994 was almost perfectly northern — but no part of Malawi has ever sought to leave. Set at Botswana's level and below Tanzania's 0.12.",
-    "Military strength 1: the Malawi Army was about 7,000 men in three infantry battalions with no armour and no combat aircraft, plus a police mobile force. It is the smallest army of any nation of Malawi's size on the board and set level with Lebanon and Nepal. Its one real operation was the deployment of a battalion group into Mozambique from 1987 to guard the Nacala railway, which was Malawi's outlet to the sea."
-  ]
+    "Military strength 1: the Malawi Army was about 7,000 men in three infantry battalions with no armour and no combat aircraft, plus a police mobile force. It is the smallest army of any nation of Malawi's size on the board and set level with Lebanon and Nepal. Its one real operation was the deployment of a battalion group into Mozambique from 1987 to guard the Nacala railway, which was Malawi's outlet to the sea.",
+    "pop_growth_1990 = 4.5872%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MWI (Malawi): 7,332,810 in 1984 to 9,176,220 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: MWI.",
+      "WUENIC DTP3 1990 = 87% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: MWI, 1990 = 87%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

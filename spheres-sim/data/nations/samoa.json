@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 0.126,
     "population_m": 0.163,
+    "pop_growth_1990": 0.002353,
     "tfp_trend": 0.003,
     "inflation": 0.152,
     "interest_rate": 0.172,
@@ -38,6 +39,20 @@
     "TFP trend 0.003, the lowest in this batch. Real growth 1985-1990 was 3.92, 5.50, 0.48, -1.44, 3.71, -4.42 (NY.GDP.MKTP.KD.ZG): a mean of 1.3% a year, and the last observation is negative because of the cyclone. A MIRAB economy — migration, remittances, aid, bureaucracy — has very little in it that compounds: the productive sector is a taro crop that the taro leaf blight would destroy outright in 1993.",
     "Stability 62 and authoritarianism 0.35. Samoa in 1990 is stable and not democratic in the sense the rest of this roster is. The Head of State, Malietoa Tanumafili II, held the office for life. The 47-seat Fono was elected on 26 February 1988 by matai only — holders of a chiefly title, about 16,000 registered against a population of 163,000 — plus two seats on a separate roll for citizens of European descent. There were no political prisoners, a free press, an independent judiciary and genuine turnover of governments, which is why 0.35 is well below the model's ELECTORAL_CEILING of 0.60 and Samoa is treated as a democracy; but a franchise limited to a tenth of the adult population is not the same object as Solomon Islands' universal one, and 0.35 against Solomon Islands' 0.12 is that difference. The referendum that extended the vote to every adult was held on 29 October 1990 and passed; it is not written in, and the model reaches it through this number or does not.",
     "Separatism 0.03. Savai'i and Upolu have a real rivalry and almost no separatism; the Mau movement that won independence was a national movement, not a regional one. The genuine territorial fact about Samoa — that American Samoa fifty miles east is a United States territory whose people are Samoan — has never produced an irredentist claim from Apia and is therefore not in `claims` either.",
-    "UNVERIFIED: the investment level and split (no accessible World Bank series), the tax share, and the policy rate. Three of twelve economic fields. Also flagged, though it is a transcription: the 15.2% inflation figure includes a cyclone that had not happened when the game starts, for the series-consistency reason argued above."
-  ]
+    "UNVERIFIED: the investment level and split (no accessible World Bank series), the tax share, and the policy rate. Three of twelve economic fields. Also flagged, though it is a transcription: the 15.2% inflation figure includes a cyclone that had not happened when the game starts, for the series-consistency reason argued above.",
+    "pop_growth_1990 = 0.2353%/yr. Compound annual growth of World Bank SP.POP.TOTL, series WSM (Samoa): 166,796 in 1984 to 168,768 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: WSM.",
+      "WUENIC DTP3 1990 = 90% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: WSM, 1990 = 90%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name. The 1989 value of the same series is 66%, on the other side of the 80% line: THRESHOLD-SENSITIVE CELL." }
+    ]
+  }
 }

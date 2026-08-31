@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 33.4,
     "population_m": 13.4,
+    "pop_growth_1990": 0.015983,
     "tfp_trend": 0.02,
     "inflation": 0.26,
     "interest_rate": 0.35,
@@ -32,6 +33,21 @@
     "Debt 0.44: external debt about $19.2bn at end-1990 (World Bank), some 58% of GDP, much of it already retired through the debt-equity swaps of 1985-90; public sector debt proper is nearer 44%.",
     "Defence 3.8% of GDP, high for the size of the economy because Ley 13.196 reserves 10% of CODELCO's copper export earnings to the armed forces off-budget. Strength 9.",
     "Oil 0.01 mbd: ENAP's Magallanes fields, about 12,000 bbl/d, against consumption seven times that.",
-    "authoritarianism 0.35 and stability 58: the game opens with Pinochet still president, having lost the plebiscite of 5 October 1988 and the election of 14 December 1989. Patricio Aylwin takes office on 11 March 1990, and Pinochet stays commander-in-chief of the army until 1998 — a transition on the outgoing regime's terms, which is why this is not scored as a settled democracy. Separatism 0.03 is Mapuche land conflict in the Araucania."
-  ]
+    "authoritarianism 0.35 and stability 58: the game opens with Pinochet still president, having lost the plebiscite of 5 October 1988 and the election of 14 December 1989. Patricio Aylwin takes office on 11 March 1990, and Pinochet stays commander-in-chief of the army until 1998 — a transition on the outgoing regime's terms, which is why this is not scored as a settled democracy. Separatism 0.03 is Mapuche land conflict in the Araucania.",
+    "pop_growth_1990 = 1.5983%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CHL (Chile): 12,207,733 in 1984 to 13,215,005 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: CHL.",
+      "WUENIC DTP3 1990 = 95% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 4886 against a threshold of any positive count: comm_cellular_analogue GRANTED.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "comm_cellular_analogue", "source": "World Bank WDI IT.CEL.SETS 'Mobile cellular subscriptions', retrieved from the World Bank indicator API (api.worldbank.org/v2), source id 2, lastupdated 2026-07-13. Series values: CHL, 1989 = 4886 subscriptions and 1990 = 13921 subscriptions. The series is a YEAR-END STOCK, so the 1989 figure describes 31 December 1989, i.e. the game's start instant of 1 January 1990: a network was carrying paying subscribers before the start date. All cellular in service at that date was analogue (NMT, AMPS, TACS, C-Netz, RTMS); GSM had no commercial service anywhere until mid-1991." },
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: CHL, 1990 = 95%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

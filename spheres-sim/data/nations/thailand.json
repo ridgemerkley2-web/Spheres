@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 85.3,
     "population_m": 54.7,
+    "pop_growth_1990": 0.017595,
     "tfp_trend": 0.03,
     "inflation": 0.059,
     "interest_rate": 0.144,
@@ -35,6 +36,21 @@
     "separatism 0.10 is the Malay-Muslim provinces of the deep south, quiet in 1990 relative to the 1980s but never settled.",
     "Oil 0.02 mbd: small condensate and crude output, mostly from the Gulf of Thailand gas fields.",
     "Gross capital formation 41.4% of GDP (World Bank, 1990), entered as 9 state and 32 private.",
-    "Series check, August 2026: every World Bank figure in this file was re-read from the API rather than from a secondary transcription. NY.GDP.MKTP.CD 1990 = 85,343,190,719; SP.POP.TOTL = 54,738,329; FP.CPI.TOTL.ZG = 5.864; FR.INR.LEND = 14.417; MS.MIL.XPND.GD.ZS = 2.594; NE.GDI.TOTL.ZS = 41.354. All match the values entered above. Public debt near 17% of GDP is the one figure here NOT on a World Bank series and is not verified to a primary source; treat it as the weakest number in the file."
-  ]
+    "Series check, August 2026: every World Bank figure in this file was re-read from the API rather than from a secondary transcription. NY.GDP.MKTP.CD 1990 = 85,343,190,719; SP.POP.TOTL = 54,738,329; FP.CPI.TOTL.ZG = 5.864; FR.INR.LEND = 14.417; MS.MIL.XPND.GD.ZS = 2.594; NE.GDI.TOTL.ZS = 41.354. All match the values entered above. Public debt near 17% of GDP is the one figure here NOT on a World Bank series and is not verified to a primary source; treat it as the weakest number in the file.",
+    "pop_growth_1990 = 1.7595%/yr. Compound annual growth of World Bank SP.POP.TOTL, series THA (Thailand): 49,351,708 in 1984 to 53,848,956 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: THA.",
+      "WUENIC DTP3 1990 = 92% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 39936 against a threshold of any positive count: comm_cellular_analogue GRANTED.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "comm_cellular_analogue", "source": "World Bank WDI IT.CEL.SETS 'Mobile cellular subscriptions', retrieved from the World Bank indicator API (api.worldbank.org/v2), source id 2, lastupdated 2026-07-13. Series values: THA, 1989 = 39936 subscriptions and 1990 = 63223 subscriptions. The series is a YEAR-END STOCK, so the 1989 figure describes 31 December 1989, i.e. the game's start instant of 1 January 1990: a network was carrying paying subscribers before the start date. All cellular in service at that date was analogue (NMT, AMPS, TACS, C-Netz, RTMS); GSM had no commercial service anywhere until mid-1991." },
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: THA, 1990 = 92%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

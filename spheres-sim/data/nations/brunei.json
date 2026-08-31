@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 3.52,
     "population_m": 0.259,
+    "pop_growth_1990": 0.032249,
     "tfp_trend": 0.003,
     "inflation": 0.021,
     "interest_rate": 0.07,
@@ -37,6 +38,20 @@
     "Debt 0.0: this is a real zero and not a missing figure. Brunei had no external public debt in 1990, ran budget surpluses through the 1980s, and had been accumulating the surpluses in the Brunei Investment Agency since 1983 — foreign assets several times annual GDP. It is the only nation on this board that enters the game as a net creditor of the rest of it, and the schema has no field for that, so the asset side is simply lost. Stated here so the loss is visible.",
     "TFP trend 0.003: near zero, and deliberately. Brunei's real output tracked the oil price and the depletion curve, not productivity. Every diversification programme of the 1970s and 1980s failed, the non-oil private sector was small and largely retail, and about half of employed Bruneians worked for the state. A high per-capita income sitting on a 0.003 trend is the correct shape for a rentier and is the number that stops the model reading Brunei as a small Singapore, which is the mistake the per-capita figure invites. Singapore is at 0.028 here.",
     "Stability 76 and authoritarianism 0.84: Brunei has been under a declared state of emergency continuously since the revolt of 8 December 1962, renewed every two years ever since. Parties are not permitted, the Legislative Council was dissolved in 1984 and did not meet again until 2004, and Sultan Hassanal Bolkiah was simultaneously head of state, Prime Minister, Minister of Defence and Minister of Finance. The Internal Security Act allows detention without trial. That is institutionally the same object as Saudi Arabia's 0.85, and it is entered a shade below because enforcement was milder — Brunei's dissidents were exiled or detained in handfuls, not executed. Stability 76 is above the UAE's 72: no succession question, no expatriate majority in the security forces, no border anyone contests except the one Brunei itself contests, and a population small enough and subsidised enough that the state knows every household. The 1962 revolt is the only serious challenge in the country's modern history and it was 28 years past.",
-    "Separatism 0.00: none, and this is one of the few honest zeros in the roster. Brunei is 260,000 people, two thirds Malay, on a territory smaller than most of the provinces around it. Nobody in it wants out of it."
-  ]
+    "Separatism 0.00: none, and this is one of the few honest zeros in the roster. Brunei is 260,000 people, two thirds Malay, on a territory smaller than most of the provinces around it. Nobody in it wants out of it.",
+    "pop_growth_1990 = 3.2249%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BRN (Brunei Darussalam): 211,661 in 1984 to 248,064 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: BRN.",
+      "WUENIC DTP3 1990 = 93% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = no value published against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: BRN, 1990 = 93%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 15.2,
     "population_m": 10.5,
+    "pop_growth_1990": 0.024492,
     "tfp_trend": 0.0,
     "inflation": 0.485,
     "interest_rate": 0.52,
@@ -32,6 +33,19 @@
     "Debt 0.72: external debt about $12.1bn at end-1990 (World Bank), roughly 79% of GDP, of which the public share is around $10.9bn - 72% of GDP, which is the figure this row carries. This ratio was recomputed after the GDP correction above; at the wrong GDP it read 1.00 and made Ecuador the most indebted state in the region, which it was not. Ecuador had suspended commercial interest payments in 1987 after the March earthquake broke the trans-Andean pipeline and cut oil exports for five months, and stayed in arrears until the 1994 Brady deal.",
     "Oil 0.29 mbd: about 292,000 bbl/d in 1990. Ecuador left OPEC in 1992 rather than pay the dues and accept the quota.",
     "Defence 1.9% of GDP and strength 4. The binding external fact is the undemarcated Cordillera del Condor frontier with Peru: Ecuador rejected the 1942 Rio Protocol as invalid in 1960, there were shooting incidents at Paquisha in 1981, and the Cenepa war follows in January 1995. That war should be reachable from the border and the relations here, not fired by a date.",
-    "Stability 40 and separatism 0.08: Rodrigo Borja's government faced the first national indigenous uprising, the levantamiento of June 1990 organised by CONAIE, which closed the Sierra highways for a week and put land and plurinationality on the agenda permanently. No president elected between 1996 and 2006 finished a term; that instability is the thing this row is trying to seed."
-  ]
+    "Stability 40 and separatism 0.08: Rodrigo Borja's government faced the first national indigenous uprising, the levantamiento of June 1990 organised by CONAIE, which closed the Sierra highways for a week and put land and plurinationality on the agenda permanently. No president elected between 1996 and 2006 finished a term; that instability is the thing this row is trying to seed.",
+    "pop_growth_1990 = 2.4492%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ECU (Ecuador): 9,074,782 in 1984 to 10,241,852 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: ECU.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 68% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

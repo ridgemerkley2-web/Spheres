@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 0.6,
     "population_m": 1.8,
+    "pop_growth_1990": 0.02373,
     "tfp_trend": 0.004,
     "inflation": 0.116,
     "interest_rate": 0.204,
@@ -32,6 +33,20 @@
     "Oil 0.0: no production and no refinery. Every litre came in by road from South Africa, which is what the border blockade of 1 January 1986 demonstrated — Pretoria closed the crossings over ANC sanctuary, Lesotho ran out of fuel and food within three weeks, and the army removed the government on 20 January.",
     "Stability 45 and authoritarianism 0.80: Lesotho in January 1990 was governed by a Military Council under Major General Justin Metsing Lekhanya, with no parliament, no legal political activity and no election since 1970 — the last election Lesotho held, in 1970, was annulled by the Basotho National Party when it lost. Authoritarianism 0.80 is a junta and is set below Malawi's 0.85 because Lekhanya's council was neither ideological nor especially capable of controlling the country. Stability 45 is level with Zambia's and is generous only if the reader stops at January: Lekhanya stripped King Moshoeshoe II of his executive powers in February 1990, the King went into exile in March, was deposed in November and replaced by his son Letsie III, and Lekhanya himself was overthrown by Colonel Elias Ramaema on 30 April 1991. NONE OF THAT IS ENCODED. The number is the position on the start date and the sim can do what it likes with it.",
     "Separatism 0.02: none, and Lesotho is the reason the field can go this low. It is one of the very few states in Africa that is a nation — one people, one language, one historic kingdom assembled by Moshoeshoe I in the 1820s, with borders that enclose all of it. The territorial grievance runs outward rather than inward and is discussed in the roster row in nations.rs, where it is deliberately not entered as a claim.",
-    "Military strength 0.5: THE LOWEST INDEX IN THIS ROSTER, below Bahrain's 0.6. The Royal Lesotho Defence Force was about 2,000 men, effectively a paramilitary gendarmerie with a couple of light aircraft, and its entire operational history is coups against its own government. Against South Africa, the only state it borders, it is a rounding error, and that ratio — an army of two thousand entirely surrounded by an army of a hundred thousand with nuclear weapons — is the fact the dyad model most needs to be able to see."
-  ]
+    "Military strength 0.5: THE LOWEST INDEX IN THIS ROSTER, below Bahrain's 0.6. The Royal Lesotho Defence Force was about 2,000 men, effectively a paramilitary gendarmerie with a couple of light aircraft, and its entire operational history is coups against its own government. Against South Africa, the only state it borders, it is a rounding error, and that ratio — an army of two thousand entirely surrounded by an army of a hundred thousand with nuclear weapons — is the fact the dyad model most needs to be able to see.",
+    "pop_growth_1990 = 2.3730%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LSO (Lesotho): 1,578,986 in 1984 to 1,775,436 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: LSO.",
+      "WUENIC DTP3 1990 = 82% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: LSO, 1990 = 82%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

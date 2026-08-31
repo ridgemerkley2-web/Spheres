@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 6.2,
     "population_m": 26.1,
+    "pop_growth_1990": 0.031552,
     "tfp_trend": 0.005,
     "inflation": 0.358,
     "interest_rate": 0.274,
@@ -32,6 +33,19 @@
     "Oil 0.0: no production.",
     "Stability 62 and authoritarianism 0.72: the highest stability in this region, level with Indonesia's 62, and it is earned rather than flattering. Tanzania in 1990 had had one governing party since independence, no coup, no civil war, no ethnic bloc large enough to dominate the others - Swahili as a national language did work no other African state managed - and a peaceful handover of the presidency from Nyerere to Ali Hassan Mwinyi in 1985, which almost nobody else in the region had managed either. Nyerere gave up the CCM chairmanship in August 1990 and told the party to consider multi-party politics; the Nyalali Commission reported in 1991 and the constitution was amended in May 1992. Authoritarianism 0.72 is a genuine single-party state with a real security service, set below Kenya's 0.78 because Tanzanian one-party rule was less violent and its succession worked.",
     "Separatism 0.12: Zanzibar. The islands joined the mainland by the Articles of Union of 22 April 1964, three months after a revolution, and kept their own president, their own house of representatives and their own courts; the union question has been the permanent constitutional argument of Tanzanian politics ever since and CUF built a majority in Zanzibar on it in the 1990s. Set above Zimbabwe's 0.08 and below India's 0.15.",
-    "Military strength 3: the Tanzania People's Defence Force was about 40,000, Chinese-equipped, and is the only army in this region to have invaded a neighbour, taken its capital and removed its government - Kampala, 11 April 1979. It then went home, which is the other half of the fact. Set level with Kenya's 3 and Uganda's 3 and below Zimbabwe's 5."
-  ]
+    "Military strength 3: the Tanzania People's Defence Force was about 40,000, Chinese-equipped, and is the only army in this region to have invaded a neighbour, taken its capital and removed its government - Kampala, 11 April 1979. It then went home, which is the other half of the fact. Set level with Kenya's 3 and Uganda's 3 and below Zimbabwe's 5.",
+    "pop_growth_1990 = 3.1552%/yr. Compound annual growth of World Bank SP.POP.TOTL, series TZA (Tanzania): 21,779,066 in 1984 to 25,438,759 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: TZA.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 78% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

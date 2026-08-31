@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 4.82,
     "population_m": 5.44,
+    "pop_growth_1990": 0.020061,
     "tfp_trend": 0.002,
     "inflation": 0.283,
     "interest_rate": 0.32,
@@ -37,6 +38,20 @@
     "Oil 0.0: no production.",
     "TFP trend 0.002: the lowest in this branch outside Nicaragua. Real GDP per head in 1990 was roughly a fifth below its 1978 level; the war took twelve years and about 75,000 lives out of a country of five and a half million.",
     "Stability 25 and authoritarianism 0.42. THE STATE OF THIS COUNTRY IN JANUARY 1990 IS THE REASON THE NUMBER IS THE SECOND-LOWEST IN THE ROSTER, and the two months before the game opens are the whole of the argument. On 11 November 1989 the FMLN launched the ofensiva hasta el tope and put several thousand fighters into San Salvador itself, holding neighbourhoods of the capital for a fortnight against air strikes on the city; the army bombed the poor districts from helicopters. On 16 November officers of the US-trained Atlacatl Battalion entered the Universidad Centroamericana and murdered six Jesuit priests, their housekeeper and her sixteen-year-old daughter. Neither side could win and both had just proved it. Entered at 25, above Peru's 22 and below Colombia's 32. Authoritarianism 0.42 rather than higher because the March 1989 presidential election that Cristiani won was contested and honoured and the March 1991 legislative election was three months out at the start; rather than lower because the state ran death squads, because the constitution reserved a veto to an army the president did not command, and because the largest political force in the country was excluded from the ballot by being at war with it.",
-    "Separatism 0.0: the most ethnically homogeneous state in the region. The indigenous population had been all but erased as a public identity by the matanza of 1932; the civil war was fought over land and class with no territorial dimension at all, and the FMLN never sought to detach a province. Zero is the transcription and not an omission."
-  ]
+    "Separatism 0.0: the most ethnically homogeneous state in the region. The indigenous population had been all but erased as a public identity by the matanza of 1932; the civil war was fought over land and class with no territorial dimension at all, and the FMLN never sought to detach a province. Zero is the transcription and not an omission.",
+    "pop_growth_1990 = 2.0061%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SLV (El Salvador): 4,798,003 in 1984 to 5,298,979 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: SLV.",
+      "WUENIC DTP3 1990 = 80% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: SLV, 1990 = 80%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name. The 1989 value of the same series is 64%, on the other side of the 80% line: THRESHOLD-SENSITIVE CELL." }
+    ]
+  }
 }

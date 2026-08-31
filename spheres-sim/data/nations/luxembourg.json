@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 12.779,
     "population_m": 0.382,
+    "pop_growth_1990": 0.005994,
     "tfp_trend": 0.015,
     "inflation": 0.033,
     "interest_rate": 0.096,
@@ -36,6 +37,21 @@
     "Public investment 4.5% and private investment 18.5% of GDP: World Bank NE.GDI.FTOT.ZS gives total gross fixed capital formation of 23.0% for Luxembourg in 1990, which is transcribed exactly. NE.GDI.FPUB.ZS and NE.GDI.FPRV.ZS are both null, so THE SPLIT IS APPORTIONED AND NOT PUBLISHED and is in this branch's unverified list. It is set at roughly a fifth public on the basis that Luxembourg ran one of the highest public capital-formation ratios in the European Community in this period — the Kirchberg plateau, the European institutions' buildings and Findel airport were all state projects — while the steel and banking capital stock was private.",
     "Stability 85 and authoritarianism 0.09: a constitutional monarchy under Grand Duke Jean with no political violence in living memory, and a Christian Social People's Party that has been in government continuously since 1979 and for all but five years since 1919. Placed level with Switzerland's 85 and above the Netherlands' 82. The 0.09 is a point above Denmark and Norway because the Grand Duke's constitutional powers in 1990 were still formally real — the sanction of laws was not reduced to promulgation until the constitutional amendment of 2008 — and not because anything about Luxembourg's practice was less free.",
     "Separatism 0.0: Luxembourgish, French and German are all official and every citizen uses all three. There is no regional or linguistic movement of any kind, which for a country of 380,000 people speaking a Moselle Franconian dialect between France and Germany is the whole point of its existence.",
-    "Government in January 1990: Jacques Santer's CSV-LSAP coalition, returned at the Chamber of Deputies election of 18 June 1989. The next election was due by June 1994 and was held on 12 June. Party shares in government.rs are from that 1989 election."
-  ]
+    "Government in January 1990: Jacques Santer's CSV-LSAP coalition, returned at the Chamber of Deputies election of 18 June 1989. The next election was due by June 1994 and was held on 12 June. Party shares in government.rs are from that 1989 election.",
+    "pop_growth_1990 = 0.5994%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LUX (Luxembourg): 365,998 in 1984 to 377,100 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: LUX.",
+      "WUENIC DTP3 1990 = 90% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 665 against a threshold of any positive count: comm_cellular_analogue GRANTED.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "comm_cellular_analogue", "source": "World Bank WDI IT.CEL.SETS 'Mobile cellular subscriptions', retrieved from the World Bank indicator API (api.worldbank.org/v2), source id 2, lastupdated 2026-07-13. Series values: LUX, 1989 = 665 subscriptions and 1990 = 824 subscriptions. The series is a YEAR-END STOCK, so the 1989 figure describes 31 December 1989, i.e. the game's start instant of 1 January 1990: a network was carrying paying subscribers before the start date. All cellular in service at that date was analogue (NMT, AMPS, TACS, C-Netz, RTMS); GSM had no commercial service anywhere until mid-1991." },
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: LUX, 1990 = 90%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

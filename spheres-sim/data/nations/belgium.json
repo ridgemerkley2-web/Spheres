@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 205.3,
     "population_m": 9.97,
+    "pop_growth_1990": 0.001665,
     "tfp_trend": 0.013,
     "inflation": 0.034,
     "interest_rate": 0.096,
@@ -30,6 +31,21 @@
     "Strength index 10: about 106,000 active personnel and 334 Leopard 1 tanks, most of the field army forward-deployed in West Germany rather than in Belgium. Indexed just below the Netherlands' 12 - similar size, older armour, and a smaller navy. NOT nuclear: Kleine Brogel held United States B61 bombs under NATO nuclear sharing, in American custody; this field records possession.",
     "Stability 72 and authoritarianism 0.10: below France's 75 and above Italy's 68. Belgium in January 1990 was in the middle of taking its own unitary state apart - the third state reform of 1988-89 had just moved education and public works to the communities and regions, and the fourth, in 1993, would write 'Belgium is a federal state' into Article 1. Three months into the game year, on 3-4 April 1990, King Baudouin was declared temporarily unable to reign for thirty-six hours so that an abortion law he would not sign could be promulgated by his ministers and he could be reinstated the next day. A constitution improvised around a monarch's conscience over a weekend is a real institutional strain and is what this number is marking.",
     "Separatism 0.25: the highest in Western Europe on this board, set well above Spain's 0.10 and below Yugoslavia's. The measure is not a hypothetical. The Volksunie was in the federal government in 1990 as a Flemish-nationalist coalition partner; Vlaams Blok, which wanted an independent Flanders outright, took 1.9% nationally in 1987 and would take 6.6% in 1991. More to the point, there had been no national party in Belgium since 1978 - the Christian democrats split in 1968, the liberals in 1971, the socialists in 1978 - so every voter in the country voted in a party system that had already partitioned itself along the language border.",
-    "TFP trend 0.013: just below France's 0.014. Belgium entered the 1990s with one of the highest levels of labour productivity in the world and correspondingly little room to catch up to anybody."
-  ]
+    "TFP trend 0.013: just below France's 0.014. Belgium entered the 1990s with one of the highest levels of labour productivity in the world and correspondingly little room to catch up to anybody.",
+    "pop_growth_1990 = 0.1665%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BEL (Belgium): 9,855,372 in 1984 to 9,937,697 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: BEL.",
+      "WUENIC DTP3 1990 = 93% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 30791 against a threshold of any positive count: comm_cellular_analogue GRANTED.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "comm_cellular_analogue", "source": "World Bank WDI IT.CEL.SETS 'Mobile cellular subscriptions', retrieved from the World Bank indicator API (api.worldbank.org/v2), source id 2, lastupdated 2026-07-13. Series values: BEL, 1989 = 30791 subscriptions and 1990 = 42880 subscriptions. The series is a YEAR-END STOCK, so the 1989 figure describes 31 December 1989, i.e. the game's start instant of 1 January 1990: a network was carrying paying subscribers before the start date. All cellular in service at that date was analogue (NMT, AMPS, TACS, C-Netz, RTMS); GSM had no commercial service anywhere until mid-1991." },
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: BEL, 1990 = 93%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

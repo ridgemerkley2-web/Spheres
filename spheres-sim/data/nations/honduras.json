@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 4.92,
     "population_m": 4.98,
+    "pop_growth_1990": 0.028858,
     "tfp_trend": 0.003,
     "inflation": 0.233,
     "interest_rate": 0.27,
@@ -37,6 +38,20 @@
     "Oil 0.0: no production.",
     "TFP trend 0.003: two decades in which real output per head did not rise. Honduras exported bananas, coffee and, from the mid-1980s, the strategic position; the maquila sector that later became the growth story was legislated for in 1987 and had barely begun.",
     "Stability 52 and authoritarianism 0.28: the highest stability in this branch after Costa Rica and Belize, and it is earned by an absence rather than a presence — Honduras is the only one of the five Central American republics that did not have a war inside its own territory in the 1980s. It hosted two. Rafael Leonardo Callejas of the National Party was inaugurated on 27 January 1990, four weeks into the game's first month, in the second consecutive constitutional transfer of power between parties since the army returned to barracks in 1982. What holds the number down to 52: the army had run the country from 1963 to 1982 and retained a constitutional autonomy the civilians could not touch, Battalion 3-16 had disappeared some 180 people between 1980 and 1984, roughly 12,000 armed Contras were still encamped on Honduran soil and would not finish demobilising until June 1990, and the adjustment package was about to take the lempira and the price of bread with it.",
-    "Separatism 0.02: the Miskito of Gracias a Dios and the Garifuna of the north coast are distinct peoples with a real grievance and no secession movement. Entered at Brazil's 0.02."
-  ]
+    "Separatism 0.02: the Miskito of Gracias a Dios and the Garifuna of the north coast are distinct peoples with a real grievance and no secession movement. Entered at Brazil's 0.02.",
+    "pop_growth_1990 = 2.8858%/yr. Compound annual growth of World Bank SP.POP.TOTL, series HND (Honduras): 4,199,850 in 1984 to 4,841,838 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: HND.",
+      "WUENIC DTP3 1990 = 84% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: HND, 1990 = 84%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

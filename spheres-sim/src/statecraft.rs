@@ -164,38 +164,103 @@ fn trade_deepens(w: &mut WorldState) {
             ));
             continue;
         }
-        let deepened = {
+        // Integration deepens. THE LEVEL GAIN IS NO LONGER PAID HERE: it used to
+        // be paid per pact, per month, on this increment — see `trade_level_gain`
+        // below for why summing that over a roster is a growth rate wearing a
+        // level's clothes, and what replaces it.
+        {
             let t = w
                 .statecraft
                 .trade
                 .iter_mut()
                 .find(|t| t.a == a && t.b == b)
                 .expect("trade pact");
-            let before = t.depth;
             t.depth = (t.depth + 0.012).min(1.0);
-            t.depth - before
-        };
-        let (ga, gb) = (w.nation(a).gdp, w.nation(b).gdp);
-        // Opening a market is a LEVEL effect, not a permanent growth rate. This
-        // paid out on the depth of the pact every month it existed, so each
-        // agreement raised its signatories' growth for good: the United States
-        // held enough of them to compound 4.5% a year while its briefing
-        // reported 1.8%, because none of this passes through the growth
-        // accounting where anyone would see it. The gain is now paid only as
-        // integration actually deepens, so a mature pact is worth a permanently
-        // larger economy rather than a permanently faster one.
-        //
-        // Gains scale with the size of the market you gained access to relative
-        // to your own, which is why the small partner is the one transformed.
-        for (me, mine, theirs) in [(a, ga, gb), (b, gb, ga)] {
-            let reach = theirs / (mine + theirs).max(1.0);
-            w.nation_mut(me).gdp *= 1.0 + TRADE_LEVEL_GAIN * reach * deepened;
         }
         if w.relation(a, b) < 70.0 {
             w.shift_relation(a, b, 0.15);
         }
     }
     w.statecraft.trade.retain(|t| !dead.contains(&(t.a, t.b)));
+    trade_level_gain(w);
+}
+
+/// The market a nation's agreements have opened to it, as ONE number for the
+/// whole portfolio: depth-weighted access over own output plus the full size of
+/// every partner.
+///
+/// The per-pact form this replaces summed `theirs / (mine + theirs)` over every
+/// agreement. That quantity is already a *share* of a nation's trading
+/// universe, so N of them add past one and keep going — the United States held
+/// 41 agreements on the ten-seed average by 2024 for a summed reach well past
+/// two, a permanent uplift still climbing every four years, and measured at
+/// 1.17 points of annual growth for thirty-five years. An unbounded stream of
+/// level shifts is a rate, which is exactly the error BIBLE §8 records finding
+/// in this very function and fixing only per-agreement: `TRADE_LEVEL_GAIN`
+/// bounds *one* agreement, and nothing bounded the roster.
+///
+/// Aggregated, reach is bounded by 1 however many agreements are held, so the
+/// whole portfolio is bounded by TRADE_LEVEL_GAIN — the claim the constant's
+/// own comment already makes and could not keep. WITH A SINGLE PACT THE TWO
+/// FORMS ARE IDENTICAL: `depth * theirs / (mine + theirs)`. The small partner's
+/// transformation is untouched; only the giant collecting sixty fractions of a
+/// percent is.
+fn trade_reach(w: &WorldState, id: NationId) -> f64 {
+    let mine = w.nation(id).gdp;
+    let (mut access, mut potential) = (0.0, 0.0);
+    for t in w.statecraft.trade.iter() {
+        let other = if t.a == id {
+            t.b
+        } else if t.b == id {
+            t.a
+        } else {
+            continue;
+        };
+        if let Some(o) = w.nation_opt(other).filter(|n| n.alive) {
+            access += t.depth * o.gdp;
+            potential += o.gdp;
+        }
+    }
+    if potential <= 0.0 {
+        return 0.0;
+    }
+    access / (mine + potential).max(1.0)
+}
+
+/// Paid on the RISE in entitlement and never clawed back. Two reasons, both
+/// structural rather than convenient. Reach moves when a partner's economy
+/// moves relative to yours, and paying on that would hand a nation growth for
+/// its partners' growth — the same rate-for-a-level bug through the back door.
+/// And a pact that collapses and is re-signed re-enters at depth 0.05, so
+/// without a high-water mark sign/collapse/re-sign is an unbounded GDP pump
+/// under player action. What losing an agreement costs is priced where it
+/// belongs, in `abrogate_trade` and the dependency system; giving the level
+/// back here would charge it twice.
+fn trade_level_gain(w: &mut WorldState) {
+    let mut ids: Vec<NationId> = vec![];
+    for t in w.statecraft.trade.iter() {
+        for id in [t.a, t.b] {
+            if !ids.contains(&id) {
+                ids.push(id);
+            }
+        }
+    }
+    ids.sort_by_key(|i| i.index()); // one fixed order; no map iteration
+    for id in ids {
+        if !w.nation_opt(id).is_some_and(|n| n.alive) {
+            continue;
+        }
+        let owed = TRADE_LEVEL_GAIN * trade_reach(w, id);
+        let n = w.nation_mut(id);
+        match n.trade_level_paid {
+            None => n.trade_level_paid = Some(owed), // a loaded save is already paid
+            Some(paid) if owed > paid => {
+                n.gdp *= 1.0 + (owed - paid);
+                n.trade_level_paid = Some(owed);
+            }
+            _ => {}
+        }
+    }
 }
 
 fn covert_channels_cool(w: &mut WorldState) {

@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 141.4,
     "population_m": 32.8,
+    "pop_growth_1990": 0.01563,
     "tfp_trend": -0.008,
     "inflation": 2.95,
     "interest_rate": 2.9,
@@ -33,6 +34,19 @@
     "Debt 0.45: external debt $62.2bn at end-1990 (World Bank Global Development Finance), about 44% of GDP, overwhelmingly public and in arrears since the 1988 suspension. The Brady deal is still three years away.",
     "Oil 0.48 mbd: YPF and the associated private producers pumped about 483,000 bbl/d in 1990 (Secretaria de Energia), roughly self-sufficiency. Privatisation of YPF begins in 1991.",
     "Defence 1.6% of GDP: the armed forces were cut hard after the Falklands and after the 1987-88 carapintada mutinies. Strength 11 reflects a conscript army with no ability to project, and Menem's pardons of the junta in October 1989 and December 1990.",
-    "Stability 36: the second hyperinflation, the Bonex plan confiscating time deposits in January 1990, and the fourth and last carapintada rising on 3 December 1990. Separatism 0.02 — Argentina has essentially none."
-  ]
+    "Stability 36: the second hyperinflation, the Bonex plan confiscating time deposits in January 1990, and the fourth and last carapintada rising on 3 December 1990. Separatism 0.02 — Argentina has essentially none.",
+    "pop_growth_1990 = 1.5630%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ARG (Argentina): 29,863,093 in 1984 to 32,270,948 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "ALL 48 OF THE 1990-ELIGIBLE TECHNOLOGIES WERE RULED FOR THIS NATION, one at a time, against a standard published per technology rather than per country. 3 were held and are listed below with their citations; 45 were refused. The refused ids are named at the end of this note so that a reader can tell a cell that was examined and refused from a cell nobody looked at - those are different claims and the schema would otherwise flatten them into the same silence.",
+      "RULED AND REFUSED, ids only (the reasoning for each refusal is held with the board that wrote it, one standard per technology): core_cmos_submicron, core_packet_internetworking, core_single_mode_fiber, core_carbon_composites, core_combined_cycle_turbine, core_pcr, comp_microprocessor, comp_risc_superscalar, comp_relational_database, comm_fibre_optic_backbone, comm_geostationary_comsat, ener_seismic_3d_imaging, ener_horizontal_drilling, ener_gas_turbine_combined_cycle, ener_crystalline_silicon_module, matl_semiconductor_lithography, matl_composite_structures, matl_industrial_robotics, matl_lean_production, matl_single_crystal_superalloy, matl_rare_earth_magnet, matl_stereolithography, aero_precision_munitions, aero_pulse_doppler_radar, aero_stealth_shaping, aero_quiet_submarine, aero_recon_satellite, bio_recombinant_pharma, bio_oral_rehydration, bio_cross_sectional_imaging, bio_conjugate_vaccine, bio_monoclonal_antibody, bio_automated_sequencing, tran_container_intermodal, tran_post_panamax_ship, tran_electronic_freight_documents, tran_high_speed_rail, agri_drip_irrigation, agri_composite_membrane, agri_conservation_tillage, agri_integrated_pest_management, agri_protected_cultivation, agri_tissue_culture_propagation, agri_marine_aquaculture, agri_flue_gas_desulphurisation."
+    ],
+    "granted": [
+      { "id": "comm_digital_switching", "source": "R3: Movicom, a Socma/BellSouth joint venture, opened Argentina's first mobile telephone service in the Buenos Aires metropolitan area on 1 November 1989 on the AMPS standard, and had 12,000 subscribers a year later - matching the World Bank WDI IT.CEL.SETS figure of 12,000 for Argentina in 1990 exactly." },
+      { "id": "comm_cellular_analogue", "source": "Movicom, a Socma (Grupo Macri)/BellSouth joint venture, began Argentina's first mobile telephone service in the Buenos Aires metropolitan area on 1 November 1989 on AMPS, and reached 12,000 subscribers within a year - matching the World Bank WDI IT.CEL.SETS 1990 figure of 12,000 exactly. It held a monopoly until Miniphone in 1993." },
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 coverage, Argentina, 1990: 87%. Series: WUENIC DTP3 ('Argentina,ARG,1990,87')." }
+    ]
+  }
 }

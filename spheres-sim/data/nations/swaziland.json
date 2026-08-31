@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 1.1,
     "population_m": 0.87,
+    "pop_growth_1990": 0.042381,
     "tfp_trend": 0.008,
     "inflation": 0.131,
     "interest_rate": 0.145,
@@ -32,6 +33,20 @@
     "Oil 0.0: no production. Swaziland's exportable minerals were asbestos at Havelock and coal at Mpaka, both held through Tibiyo Taka Ngwane, the fund the king holds 'in trust for the nation' and which answers to nobody else.",
     "Stability 58 and authoritarianism 0.88: authoritarianism 0.88 is THE HIGHEST FIGURE IN THIS ROSTER, above Malawi's 0.85 and Saudi Arabia's, and the transcription is straightforward. King Sobhuza II repealed the independence constitution by decree on 12 April 1973, dissolved parliament, banned political parties and assumed all legislative, executive and judicial power; the decree was still in force in 1990 and is still substantially in force today. The tinkhundla system elected an advisory assembly indirectly through chiefs, with no parties permitted to contest anything. Mswati III, crowned on 25 April 1986 at eighteen, held the powers Sobhuza had taken. Stability 58 is nonetheless level with Zimbabwe's: this is a homogeneous small country with no insurgency and a monarchy that had survived a four-year succession crisis (the Liqoqo period, 1982-86) and come out with the throne stronger. PUDEMO had been founded underground in 1983 and would produce the unrest of 1990-91, but the regime was not in danger in January.",
     "Separatism 0.01: THE LOWEST FIGURE IN THIS ROSTER. Swaziland is one people, one language, one dynasty and one of the few African borders that encloses roughly the group it names. The territorial argument is entirely outward-facing — the 'lost lands' claim on South Africa, which is entered as a claim in nations.rs and argued there — and there is no Swazi region that wants to leave Swaziland.",
-    "Military strength 0.6: the Umbutfo Swaziland Defence Force was about 2,700 men with no armour, no combat aircraft and no operational history. Set level with Bahrain's 0.6 and a shade above Lesotho's 0.5. Swaziland holds a claim on a state four hundred times its size and about eighty times its military weight, which is the ratio the war model has to be able to price down to nothing."
-  ]
+    "Military strength 0.6: the Umbutfo Swaziland Defence Force was about 2,700 men with no armour, no combat aircraft and no operational history. Set level with Bahrain's 0.6 and a shade above Lesotho's 0.5. Swaziland holds a claim on a state four hundred times its size and about eighty times its military weight, which is the ratio the war model has to be able to price down to nothing.",
+    "pop_growth_1990 = 4.2381%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SWZ (Eswatini): 680,783 in 1984 to 837,800 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: SWZ.",
+      "WUENIC DTP3 1990 = 89% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: SWZ, 1990 = 89%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

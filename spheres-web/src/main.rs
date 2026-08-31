@@ -31,6 +31,13 @@ const RIVERS_JS: &str = include_str!("../ui/rivers.js");
 /// Baked per-district terrain classes + feature names, same ids as
 /// districts.js — see tools/terrain/classify_districts.py.
 const TERRAIN_JS: &str = include_str!("../ui/terrain.js");
+/// Baked 1990 resource transcription, same district ids as districts.js — see
+/// tools/resources/. Served whole rather than reduced to a render payload: the
+/// provenance, the confidence bands, the admission rules and the unlocated
+/// producers are the point of the file, and a map that cannot show what is
+/// behind a patch is the map this data was cleaned to avoid. The UI fetches it
+/// lazily, only when the Resources shading is first opened.
+const RESOURCES_JSON: &str = include_str!("../data/district_resources.json");
 
 /// The six per-nation numbers the UI plots. Recorded every month so a decade of
 /// stagnation reads as a shape rather than a pair of endpoints.
@@ -965,6 +972,25 @@ fn main() {
                 let _ = request.respond(r);
                 continue;
             }
+            (Method::Get, "/resources.json") => {
+                // Cacheable for a day on the same rationale as the baked
+                // rasters: it is static transcription compiled into this
+                // binary, and the Resources shading should not re-pull it on
+                // every reload.
+                let r = Response::from_string(RESOURCES_JSON)
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Content-Type"[..],
+                            &b"application/json; charset=utf-8"[..],
+                        )
+                        .unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(&b"Cache-Control"[..], &b"max-age=86400"[..]).unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
             (Method::Get, "/terrain.png") => {
                 // Identity encoding so the PNG ships with a Content-Length
                 // (tiny-http otherwise chunks bodies over 32 KiB).
@@ -1654,11 +1680,24 @@ mod tests {
         let mut g = Game::new(1990, Some(NationId::Poland));
         let reg = tech::registry();
 
-        // A fresh 1990 world: nobody has fielded anything, so no discount can
-        // exist and the two figures must agree exactly — and every registry
-        // node must ride in exactly one domain's response, because the screen
-        // stitches all eight to cover the whole tree.
+        // A fresh 1990 world. This used to assert flatly that `cost == list`
+        // for every node, on the premise that "nobody has fielded anything, so
+        // no discount can exist" — a statement about the roster, not about the
+        // payload, and one the 1990 technology endowment falsified: 103 of the
+        // 137 nations now open holding something, so Poland reads a real
+        // diffusion discount on `core_cmos_submicron` and 47 other nodes before
+        // the first tick.
+        //
+        // The claim is therefore asked per node against what the world actually
+        // holds, which is strictly more than the blanket version said: a node
+        // nobody holds must still price at list to the digit, and a node
+        // somebody holds must not price above it. No tolerance and no threshold
+        // is introduced — the condition is read off `w.nations`.
+        //
+        // Every registry node must still ride in exactly one domain's response,
+        // because the screen stitches all eight to cover the whole tree.
         let mut seen = 0;
+        let mut discounted = 0;
         for d in DOMAINS {
             let j = tech_tree_json(&g.world, NationId::Poland, d);
             for node in j["nodes"].as_array().unwrap() {
@@ -1670,11 +1709,21 @@ mod tests {
                 assert_eq!(list, reg[idx as usize].cost, "{}: list price is the registry's", id);
                 let cost = node["cost"].as_f64().unwrap();
                 assert!(cost <= list, "{}: a discount can only cut, never add", id);
-                assert_eq!(cost, list, "{}: nobody holds it, so nothing is discounted", id);
+                let anyone_holds = g.world.nations.iter().any(|n| n.tech.knows_index(idx));
+                if anyone_holds {
+                    discounted += 1;
+                } else {
+                    assert_eq!(cost, list, "{}: nobody holds it, so nothing is discounted", id);
+                }
                 seen += 1;
             }
         }
         assert_eq!(seen, reg.len(), "the eight domain responses must cover the whole registry");
+        assert!(
+            discounted > 0,
+            "no 1990 technology is held by anybody — the endowment has gone, and \
+             the branch above is no longer being exercised"
+        );
 
         // Hand the United States a root technology and the price Poland reads
         // must fall below list — the diffusion discount this field exists to

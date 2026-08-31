@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 62.0,
     "population_m": 25.4,
+    "pop_growth_1990": 0.030788,
     "tfp_trend": 0.004,
     "inflation": 0.167,
     "interest_rate": 0.105,
@@ -39,6 +40,20 @@
     "Strength 8: an abstract index, calibrated by ratio. About 125,000 personnel with the best equipment in the Maghreb - MiG-25s, T-72s, SA-6s - and no combat experience since 1963. Set above Morocco's 7 on equipment and below Egypt's 14 on size, experience and the American relationship.",
     "Stability 40: the lowest in this region and among the lowest in the roster, and it is the whole of what happens next. The riots of October 1988 were put down by the army with hundreds dead; the constitution of 23 February 1989 ended the single party; by January 1990 more than thirty parties were legal and the FLN was about to lose more than half the country's communes to the Islamic Salvation Front in June. Set below Sudan's? No - above Sudan's 30, because the Algerian state still functioned, and far below Morocco's 62, because the Moroccan one was not being contested at the ballot box.",
     "Separatism 0.08: the Berber Cultural Movement's boycott campaign and the Tamazight language demands in Kabylie, which were cultural and constitutional rather than secessionist - nobody in Tizi Ouzou was asking to leave. Set below Spain's 0.10 for that reason and above Italy's 0.05.",
-    "Authoritarianism 0.55: deliberately below the 0.60 electoral ceiling, which is a substantive claim and not a rounding. In January 1990 Algeria was a state whose government could be removed by a vote, and five months later a vote removed it from half the country. Set well above Turkey's 0.35 - the presidency was not contested, the army was not accountable, and the press operated on sufferance - and well below Egypt's 0.75, where the elections were held and the result was known in advance."
-  ]
+    "Authoritarianism 0.55: deliberately below the 0.60 electoral ceiling, which is a substantive claim and not a rounding. In January 1990 Algeria was a state whose government could be removed by a vote, and five months later a vote removed it from half the country. Set well above Turkey's 0.35 - the presidency was not contested, the army was not accountable, and the press operated on sufferance - and well below Egypt's 0.75, where the elections were held and the result was known in advance.",
+    "pop_growth_1990 = 3.0788%/yr. Compound annual growth of World Bank SP.POP.TOTL, series DZA (Algeria): 21,271,969 in 1984 to 24,754,485 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: DZA.",
+      "WUENIC DTP3 1990 = 89% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: DZA, 1990 = 89%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

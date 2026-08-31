@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 7.4,
     "population_m": 7.7,
+    "pop_growth_1990": 0.029114,
     "tfp_trend": 0.003,
     "inflation": 0.003,
     "interest_rate": 0.11,
@@ -32,6 +33,19 @@
     "Oil 0.0: no production.",
     "Stability 60 and authoritarianism 0.42: Senegal is the democracy of this region and the file should say so plainly - it had never had a coup, had legalised opposition parties in 1974 and lifted all restriction on their number in 1981, and Abdou Diouf's Parti Socialiste faced Abdoulaye Wade's PDS at every election. Authoritarianism 0.42 is set well below the model's 0.60 electoral ceiling and above Poland's 0.35: the elections were real but the incumbent's advantages were large, the results of 28 February 1988 were disputed violently enough that a state of emergency was declared in Dakar and Wade was tried and given a suspended sentence, and Wade then joined a government of national unity in April 1991. A working democracy with its thumb on the scale. Stability 60 is set level with India's 60 and below Tanzania's 62.",
     "Separatism 0.15: Casamance. The southern province is separated from the rest of Senegal by the Gambia, is Diola rather than Wolof and largely Christian and animist rather than Muslim, and the Mouvement des Forces Democratiques de Casamance had been fighting for its independence since the demonstration of 26 December 1982. It was the longest-running civil conflict in Africa by the time it was settled in 2022. Set level with India's 0.15 and above Zimbabwe's 0.08. It is a claim on Senegal by Senegalese, not by a neighbour, so it is separatism here and there is no roster claim anywhere against Senegal.",
-    "Military strength 1.5: about 10,000 men, French-equipped, with a French garrison at Ouakam under the defence agreement of 1974 that the sim expresses through relations rather than through this index. Small, professional, and the only army in this region that has intervened abroad on France's side - Senegalese troops went into the Gambia in 1981 to reverse a coup and were part of the Gulf coalition in 1990-91. Set level with Cameroon's 1.5 and Ghana's 1.5."
-  ]
+    "Military strength 1.5: about 10,000 men, French-equipped, with a French garrison at Ouakam under the defence agreement of 1974 that the sim expresses through relations rather than through this index. Small, professional, and the only army in this region that has intervened abroad on France's side - Senegalese troops went into the Gambia in 1981 to reverse a coup and were part of the Gulf coalition in 1990-91. Set level with Cameroon's 1.5 and Ghana's 1.5.",
+    "pop_growth_1990 = 2.9114%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SEN (Senegal): 6,499,364 in 1984 to 7,502,207 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: SEN.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 51% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

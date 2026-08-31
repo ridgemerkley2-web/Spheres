@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 8.6,
     "population_m": 22.9,
+    "pop_growth_1990": 0.036207,
     "tfp_trend": 0.004,
     "inflation": 0.178,
     "interest_rate": 0.188,
@@ -32,6 +33,20 @@
     "Oil 0.0: no production. The refinery at Mombasa ran on imported crude and served the whole of the East African interior, which is a transit-revenue fact the sim's oil column cannot carry.",
     "Stability 46 and authoritarianism 0.78: 1990 was the worst year of Daniel arap Moi's presidency before 1992. Robert Ouko, the foreign minister, was found murdered near Koru on 16 February; the two politicians who called for multi-party politics at a press conference, Kenneth Matiba and Charles Rubia, were detained on 4 July; and the demonstrations of 7 July - Saba Saba - were put down with something between 20 and 100 deaths. Stability 46 is set above Nigeria's 35, because the Kenyan state was never in danger and its institutions went on working, and below Poland's 55 and Indonesia's 62. Authoritarianism 0.78 is set on a hard constitutional fact: section 2A, inserted by amendment in June 1982, made Kenya a one-party state in law, and the election of 21 March 1988 was contested inside KANU by queue-voting in public. It was repealed in December 1991. Set just below Indonesia's 0.80 and well above Turkey's.",
     "Separatism 0.10: the North Eastern Province, ethnic Somali and under a state of emergency from independence until 1991 as a legacy of the shifta war of 1963-67, plus the coastal separatism that later became the MRC. Set level with Spain's 0.10 and below India's 0.15 - a real fracture line, contained, and no part of Kenya seceded.",
-    "Military strength 3: the Kenya Army was about 19,000 men, deliberately kept small and deliberately kept out of politics after the air force's attempted coup of 1 August 1982, which was answered by disbanding the air force and rebuilding it. Set at half Nigeria's 6 and a fifth of South Africa's 16; level with Tanzania and Uganda, whose armies were larger but worse equipped."
-  ]
+    "Military strength 3: the Kenya Army was about 19,000 men, deliberately kept small and deliberately kept out of politics after the air force's attempted coup of 1 August 1982, which was answered by disbanding the air force and rebuilding it. Set at half Nigeria's 6 and a fifth of South Africa's 16; level with Tanzania and Uganda, whose armies were larger but worse equipped.",
+    "pop_growth_1990 = 3.6207%/yr. Compound annual growth of World Bank SP.POP.TOTL, series KEN (Kenya): 18,514,906 in 1984 to 22,118,434 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: KEN.",
+      "WUENIC DTP3 1990 = 84% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: KEN, 1990 = 84%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 2.8,
     "population_m": 2.36,
+    "pop_growth_1990": 0.029605,
     "tfp_trend": -0.005,
     "inflation": 0.0289,
     "interest_rate": 0.11,
@@ -33,6 +34,19 @@
     "Stability 35: set between Chad's 24 and the Central African Republic's 40. Denis Sassou-Nguesso had held the presidency since 1979 and the Parti Congolais du Travail had been the sole legal party since 1969. What makes the number lower than Bangui's rather than higher, despite an oil income and no insurgency, is that the fiscal crisis had already become a political one: the state could not meet a payroll that was most of the formal economy, and the strikes that ran through 1990 into the Conference Nationale Souveraine of February-June 1991 - which stripped Sassou of power and left him a figurehead - had begun before this game opens. Nothing here schedules that conference.",
     "Authoritarianism 0.85: sits between Cameroon's 0.80 and Zaire's 0.88. A single legal Marxist-Leninist party written into the 1979 constitution, a Comite Central that chose the president, and a security service built with East German and Cuban help. Below Zaire's because the PCT was a real party apparatus with a congress that could and did change the line - it abandoned Marxism-Leninism at its extraordinary congress in July 1990 - where the MPR was one man.",
     "Separatism 0.15: below Zaire's 0.35 and Cameroon's 0.20, above the Central African Republic's 0.08. The fracture is regional and it is the one that produced the militias of 1993 and 1997: the Mbochi north that Sassou came from, the Lari and Kongo of the Pool around Brazzaville that Bernard Kolelas spoke for, and the Vili of Kouilou around the oil. None of the three has ever proposed a border, which is why this is 0.15 and not higher, but every Congolese election since 1992 has broken cleanly along those lines and each of them raised an army.",
-    "Military strength 1.0: about 10,000 in the Forces Armees Congolaises, Soviet-equipped through a friendship treaty of 1981, with Cuban advisers and a presidential guard that was the real formation. No combat record against another state. Set below Cameroon's 1.5 on size and above the Central African Republic's 0.6."
-  ]
+    "Military strength 1.0: about 10,000 in the Forces Armees Congolaises, Soviet-equipped through a friendship treaty of 1981, with Cuban advisers and a presidential guard that was the real formation. No combat record against another state. Set below Cameroon's 1.5 on size and above the Central African Republic's 0.6.",
+    "pop_growth_1990 = 2.9605%/yr. Compound annual growth of World Bank SP.POP.TOTL, series COG (Congo, Rep.): 1,999,528 in 1984 to 2,313,558 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: COG.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 79% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

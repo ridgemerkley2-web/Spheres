@@ -87,8 +87,16 @@ pub fn tick(w: &mut WorldState) {
             continue;
         }
         let n = w.nation_mut(*id);
-        // Taylor-lite: respond to inflation above 2-3% band
-        let target = 0.025;
+        // Taylor-lite: respond to inflation above the anchor.
+        //
+        // ONE ANCHOR, READ FROM economy.rs. This was 0.025 while the price
+        // equation there anchored at 0.020 — two constants naming one object,
+        // the inflation an economy settles on when demand is at potential. The
+        // half-point disagreement closed a loop with a fixed point at
+        // g* = +0.00108, and every nation on the board collected it as permanent
+        // free growth. See `economy::INFLATION_ANCHOR` for the algebra and for
+        // why it is this half that moved.
+        let target = crate::economy::INFLATION_ANCHOR;
         let desired = (0.025 + n.inflation + (n.inflation - target) * 0.6).clamp(0.0, 0.45);
         n.interest_rate += (desired - n.interest_rate) * 0.15;
     }
@@ -103,8 +111,29 @@ pub fn tick(w: &mut WorldState) {
             n.tax_rate = (n.tax_rate + 0.002).min(0.55);
             n.mil_spend_gdp = (n.mil_spend_gdp * 0.995).max(0.01);
             n.state_invest_gdp = (n.state_invest_gdp * 0.995).max(0.02);
-        } else if n.debt_gdp < 0.3 && n.tax_rate > 0.30 {
-            n.tax_rate -= 0.001;
+        } else if n.debt_gdp < 0.3 {
+            if n.tax_rate > 0.30 {
+                n.tax_rate -= 0.001;
+            }
+            // CONSOLIDATION IS REVERSIBLE, and it was not. The branch above
+            // cuts public investment 0.5% a month while debt runs hot and
+            // nothing ever gave it back, so a nation that consolidated its way
+            // out of a debt crisis carried the cut for the rest of the run. That
+            // was a small standing drag while the investment share only bought a
+            // growth rate; now that it buys a permanent output LEVEL it is a
+            // permanent unearned loss, and the same symmetry argument the
+            // capital level payment rests on applies here — what a cut costs, a
+            // restoration returns.
+            //
+            // Mirrors the cut: the same 0.5% a month, against the same debt
+            // thresholds already in this rule, and capped at the share the
+            // nation actually entered 1990 with so that recovery can never
+            // manufacture investment it never had. No new threshold and no new
+            // coefficient. `None` — a successor state with no transcribed 1990
+            // share — recovers nothing.
+            if let Some(base) = n.state_invest_1990 {
+                n.state_invest_gdp = (n.state_invest_gdp * 1.005).min(base);
+            }
         }
     }
 
@@ -195,11 +224,89 @@ pub fn tick(w: &mut WorldState) {
     }
 }
 
+/// A NOTE ON WHAT THE SUCCESSORS INHERIT, AND WHAT THEY ARE STILL PAID TWICE
+/// FOR. `TechState::inherit` now carries the parent's 1990 offset forward, so a
+/// republic that takes the union's transcribed 1990 technology does not also
+/// collect its own cited trend on top of it. That closes the endowment half.
+///
+/// It does not close the other half, and the other half is a defect that exists
+/// on today's board with nothing granted to anybody. A successor's authored
+/// trend — Russia's 0.008, Ukraine's 0.002, `r.tfp` for the rest — goes straight
+/// into `tfp_base`, and `apply_bonuses` then adds `(s - reference)` on top of
+/// it for the ENTIRE inherited set, including everything the union researched
+/// between 1990 and the dissolution. A successor of a parent that out-researched
+/// the world therefore opens above its cited figure, and one of a parent that
+/// fell behind opens below it.
+///
+/// Whether that is wrong is a real question rather than an obvious bug: the
+/// model pays `(s - reference)` as a differential to every nation, so a
+/// successor keeping its parent's earned position is arguably right, and
+/// re-anchoring it at birth would throw that position away. It was MEASURED
+/// either way and it is left alone here for a procedural reason: rebasing the
+/// successors against the live world reference moves `golden_hash_of_a_known_run`
+/// on a board where no nation file carries a single grant, which makes it a
+/// change to the shipped timeline rather than machinery for one, and it needs
+/// its own decision and its own re-pin.
+/// WHAT A SUCCESSOR HAS ALREADY BEEN PAID FOR ITS CAPITAL STOCK, and the single
+/// largest reason the post-communist bloc grew through the nineties.
+///
+/// `capital_level_paid: None` is a claim, and it is written out beside
+/// `CAPITAL_ELASTICITY` in economy.rs: *the transcribed 1990 figure already
+/// reflects the investment share beside it, so this must never reprice a
+/// transcribed starting figure.* That claim is true of every nation in
+/// `data/nations/` and false of every nation created here. A successor's GDP is
+/// not transcribed. It is a SHARE of its parent's GDP, and its parent's GDP is
+/// priced at its PARENT's investment share.
+///
+/// So `None` at these two sites said "the union's plant, valued at the union's
+/// 22%-of-output investment programme, is worth exactly the same thing to a
+/// republic that will direct 4%" — and it said it in the one direction that
+/// matters. Every Soviet successor is born directing far less of its output into
+/// investment than the union did: Russia 0.14 of GDP against the union's 0.24,
+/// Ukraine 0.12, the other thirteen 0.13. `None` forgave the whole difference,
+/// fifteen times over, on the month the flag came down.
+///
+/// Carrying the parent's marker instead charges it, through machinery that
+/// already exists and with no new coefficient: `0.49 * ln(0.14/0.20) = -0.175`
+/// against the union's `+0.089`, so Russia owes 0.264 in logs — about 23% of its
+/// output level — paid in at the 0.02 a month the capital block already uses,
+/// which is a 35-month half-life and most of a decade to complete. Ukraine, on
+/// the same arithmetic and a thinner investment share, owes 29%.
+///
+/// THAT IS THE TRANSITION COLLAPSE, AND IT IS NOT A NEW MECHANISM. It is the
+/// same statement economy.rs already makes — a change in the investment share
+/// buys a permanently different LEVEL of output — applied at the one site that
+/// was exempting itself from it. The plant the union built did not become worth
+/// what a market economy's investment share says the morning after; discovering
+/// that it was not is what the transition *was*, and the depth and the shape
+/// both fall out of each republic's own transcribed shares rather than out of
+/// anything named after a country (BIBLE §7).
+///
+/// `None` in, `None` out: a parent that has genuinely never been repriced hands
+/// on the same claim, which is the honest carry rather than a fabricated zero.
+fn inherited_capital_level(parent: &Nation) -> Option<f64> {
+    parent.capital_level_paid
+}
+
 fn dissolve_ussr(w: &mut WorldState) {
     w.set_flag("ussr_dissolved");
-    let (gdp, pop, oil, strength, inherited_tech) = {
+    // `pop_off` is the union's own transcribed 1990 demography, and every
+    // successor inherits it. A republic that did not exist in 1990 has no
+    // transcribed rate of its own and inventing one is a refusal (iron rule 4);
+    // what it demonstrably does have is the demography of the state it was part
+    // of, which is the honest thing to carry across. Leaving it at zero would
+    // silently re-impose the income-driven function this fix removed.
+    let (gdp, pop, oil, strength, pop_off, inherited_capital, inherited_tech) = {
         let u = w.nation(NationId::USSR);
-        (u.gdp, u.population, u.oil_mbd, u.mil_strength, u.tech.clone())
+        (
+            u.gdp,
+            u.population,
+            u.oil_mbd,
+            u.mil_strength,
+            u.pop_growth_offset,
+            inherited_capital_level(u),
+            u.tech.clone(),
+        )
     };
     {
         let u = w.nation_mut(NationId::USSR);
@@ -218,6 +325,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         gdp: gdp * 0.55,
         population: pop * 0.51,
         tfp_trend: 0.008,
+        pop_growth_offset: pop_off,
         inflation: 0.90, // transition price liberalization
         interest_rate: 0.20,
         tax_rate: 0.28,
@@ -228,6 +336,9 @@ fn dissolve_ussr(w: &mut WorldState) {
         oil_mbd: oil * 0.85,
         bubble: 0.0,
         growth_last: -0.05,
+        trade_level_paid: None,
+        capital_level_paid: inherited_capital,
+        state_invest_1990: None,
         stability: 38.0,
         separatism: 0.20,
         mil_strength: strength * 0.65,
@@ -261,6 +372,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         gdp: gdp * 0.19,
         population: pop * 0.18,
         tfp_trend: 0.002,
+        pop_growth_offset: pop_off,
         inflation: 1.10,
         interest_rate: 0.18,
         tax_rate: 0.30,
@@ -271,6 +383,9 @@ fn dissolve_ussr(w: &mut WorldState) {
         oil_mbd: oil * 0.01,
         bubble: 0.0,
         growth_last: -0.06,
+        trade_level_paid: None,
+        capital_level_paid: inherited_capital,
+        state_invest_1990: None,
         stability: 34.0,
         separatism: 0.35, // Crimea and the Donbas, from the day the flag went up
         mil_strength: strength * 0.15,
@@ -492,6 +607,7 @@ fn dissolve_ussr(w: &mut WorldState) {
             gdp: gdp * r.gdp,
             population: pop * r.pop,
             tfp_trend: r.tfp,
+            pop_growth_offset: pop_off,
             inflation: r.infl,
             interest_rate: r.rate,
             tax_rate: 0.30,
@@ -506,6 +622,9 @@ fn dissolve_ussr(w: &mut WorldState) {
             oil_mbd: oil * r.oil,
             bubble: 0.0,
             growth_last: -0.08,
+            trade_level_paid: None,
+            capital_level_paid: inherited_capital,
+            state_invest_1990: None,
             stability: r.stab,
             separatism: r.sep,
             mil_strength: strength * r.army,
@@ -526,6 +645,16 @@ fn dissolve_ussr(w: &mut WorldState) {
             tech: crate::tech::TechState::inherit(&inherited_tech, r.tfp),
         });
     }
+
+    // Reconcile every successor's productivity base against the technology it
+    // just inherited, exactly as the loader does at 1990. `inherit` clones the
+    // parent's whole known set and takes the successor's own transcribed trend
+    // straight into `tfp_base`, so without this the union's entire technology
+    // stock is paid for a second time — fifteen times over, from the month the
+    // flag comes down. It is the one double-count a t=0 acceptance test cannot
+    // see, which is why the test that guards it runs through the dissolution.
+    //
+    // Same two functions the loader uses. One implementation of the identity.
 
     // A successor inherits a thawed version of the union's standing abroad —
     // but only if it agreed to be a successor. The Alma-Ata Protocol of 21
@@ -798,9 +927,12 @@ fn dissolve_ussr(w: &mut WorldState) {
 /// the successors, and the existing war machinery does what it does with it.
 fn dissolve_yugoslavia(w: &mut WorldState) {
     w.set_flag("yugoslavia_dissolved");
-    let (gdp, pop, oil, strength, infl, debt, inherited_tech) = {
+    // See `dissolve_ussr` for why the successors inherit the federation's
+    // demographic offset rather than starting at zero.
+    let (gdp, pop, oil, strength, infl, debt, pop_off, inherited_capital, inherited_tech) = {
         let y = w.nation(NationId::Yugoslavia);
-        (y.gdp, y.population, y.oil_mbd, y.mil_strength, y.inflation, y.debt_gdp, y.tech.clone())
+        (y.gdp, y.population, y.oil_mbd, y.mil_strength, y.inflation, y.debt_gdp,
+         y.pop_growth_offset, inherited_capital_level(y), y.tech.clone())
     };
     {
         let y = w.nation_mut(NationId::Yugoslavia);
@@ -894,6 +1026,7 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             gdp: gdp * g,
             population: pop * p,
             tfp_trend: tfp,
+            pop_growth_offset: pop_off,
             inflation: infl,
             interest_rate: 0.25,
             tax_rate: 0.33,
@@ -904,6 +1037,9 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             oil_mbd: oil * g,
             bubble: 0.0,
             growth_last: -0.06,
+            trade_level_paid: None,
+            capital_level_paid: inherited_capital,
+            state_invest_1990: None,
             stability: stab,
             separatism: sep,
             mil_strength: strength * m,
@@ -917,6 +1053,10 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             tech: crate::tech::TechState::inherit(&inherited_tech, tfp),
         });
     }
+    // Same reconciliation as the Soviet path: the federation's technical base is
+    // inherited in full, and the successors' transcribed trends already price it
+    // in, so it must come back out of `tfp_base` or every republic is paid twice
+    // for Yugoslav industry.
 
     // Successors inherit the federation's standing abroad, thinned out.
     let inherited: Vec<(NationId, f64)> = start_nations()

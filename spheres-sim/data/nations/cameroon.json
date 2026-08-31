@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 12.3,
     "population_m": 11.3,
+    "pop_growth_1990": 0.030347,
     "tfp_trend": -0.008,
     "inflation": 0.011,
     "interest_rate": 0.11,
@@ -32,6 +33,19 @@
     "Oil 0.161 mbd: 161,000 barrels a day in 1990 (US EIA international series), from the Rio del Rey basin offshore in the far west - which is the same water the Bakassi claim in nations.rs is about, and the reason the peninsula was worth a case at the International Court of Justice. Production had peaked at 186,000 b/d in 1985 and was declining. The second-largest producer of the eleven after Angola's 475,000, and about a tenth of Nigeria's 1.8m next door.",
     "Stability 52 and authoritarianism 0.80: Paul Biya had been president since November 1982 and had survived the Republican Guard coup attempt of 6 April 1984, which was put down after two days of fighting in Yaounde and followed by mass executions. Stability 52 is set level with Ghana's 52 - an entrenched government over a contracting economy - and above Nigeria's 35. Authoritarianism 0.80 is level with Indonesia's and Ghana's: the Cameroon People's Democratic Movement was the sole legal party from 1966 until the law of 19 December 1990, the lawyers Yondo Black and Anicet Ekane were tried before a military tribunal in March-April 1990 for trying to form one, and the Social Democratic Front was launched in Bamenda on 26 May 1990 anyway, with six people shot dead at the rally. The villes mortes campaign followed in 1991.",
     "Separatism 0.20: the Anglophone question, and it is a genuine constitutional one rather than an ethnic grievance. Southern Cameroons voted in the UN plebiscite of 11 February 1961 to join the French-administered republic as one half of a federation; the federation was abolished by the referendum of 20 May 1972 and the two Anglophone regions became provinces of a unitary state whose law and schooling were French. The SDF's launch in Bamenda in May 1990 was the political expression of it and the armed movement of 2016 the later one. Set level with Iraq's 0.2 and Uganda's 0.2, above India's 0.15.",
-    "Military strength 1.5: about 12,000 in the army plus a Presidential Guard whose loyalty was the government's real defence and had once been its real danger. French-equipped under the defence accords, no combat record. Set level with Senegal's 1.5 and Ghana's 1.5 and a quarter of Nigeria's 6 - which is the ratio that decided that Nigeria held Bakassi in 1990 and that Cameroon went to court rather than to war over it."
-  ]
+    "Military strength 1.5: about 12,000 in the army plus a Presidential Guard whose loyalty was the government's real defence and had once been its real danger. French-equipped under the defence accords, no combat record. Set level with Senegal's 1.5 and Ghana's 1.5 and a quarter of Nigeria's 6 - which is the ratio that decided that Nigeria held Bakassi in 1990 and that Cameroon went to court rather than to war over it.",
+    "pop_growth_1990 = 3.0347%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CMR (Cameroon): 9,475,078 in 1984 to 11,002,745 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: CMR.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 48% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

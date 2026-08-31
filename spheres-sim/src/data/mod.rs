@@ -122,6 +122,63 @@ pub struct NationRecord {
     /// it, so it is a field rather than a comment.
     #[serde(default)]
     pub sources: Vec<String>,
+    /// What this nation already knew on 1 January 1990.
+    ///
+    /// Appended after `sources` on purpose: the eight fields above keep the
+    /// serialized order they have always had, so a diff of any existing nation
+    /// file shows an addition and nothing else.
+    #[serde(default)]
+    pub tech_1990: Tech1990Record,
+}
+
+/// A nation's 1990 technology, transcribed like every other 1990 figure.
+///
+/// Absent means "not yet authored", which is the state the whole roster is in
+/// while the machinery lands ahead of the data, and it is why this defaults
+/// rather than being required — a schema that refused to load 137 unauthored
+/// files would make the machinery unlandable. An EMPTY `granted` with a `note`
+/// is the different and stronger claim: authored, and the answer is nothing.
+/// That distinction is the point of the nested shape. A bare array of ids could
+/// not tell "nobody has looked at Bhutan yet" from "Bhutan was looked at, the
+/// two global series were checked, and neither reaches it".
+///
+/// Iron rule 4's refusal lives on the individual grant rather than on the block,
+/// because the block cannot bind a citation to a technology and the failure mode
+/// being guarded is a thin cell that merely looks sourced.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Default)]
+#[serde(deny_unknown_fields)]
+pub struct Tech1990Record {
+    /// Free prose about the nation's 1990 technological position: what was
+    /// checked, and — where the answer is nothing — why nothing.
+    ///
+    /// A note alongside a non-empty `granted` is deliberately allowed rather
+    /// than refused. The data-keyed tail will routinely hold one or two
+    /// technologies AND need to say which further candidates were examined and
+    /// rejected, and refusing that combination would push that reasoning out of
+    /// the file into a commit message nobody reads.
+    #[serde(default)]
+    pub note: Vec<String>,
+    #[serde(default)]
+    pub granted: Vec<TechGrant>,
+}
+
+/// One technology this nation held, and the citation that justifies saying so.
+///
+/// Grant-level provenance rather than a line in the file's `sources` array,
+/// because "an unsourced entry is a refusal, not a default" is only structurally
+/// enforceable when the source travels with the cell. A `sources` block can be
+/// long, impressive and attached to nothing in particular; this cannot.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct TechGrant {
+    /// A `TechDef::id` from `crate::tech::registry()`. A stable id, never an
+    /// index — the registry is a concatenation of eight independently authored
+    /// files, so every index moves whenever an earlier domain gains an entry.
+    pub id: String,
+    /// Where the claim that this nation held this technology in January 1990
+    /// comes from. Checked for non-emptiness at load; that check is iron rule 4
+    /// as a refusal rather than a convention.
+    pub source: String,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -131,6 +188,40 @@ pub struct EconomyRecord {
     pub gdp_bn: f64,
     /// Population, millions.
     pub population_m: f64,
+    /// The annual rate this nation's population was growing at on 1 January
+    /// 1990 — a starting condition on all fours with `tfp_trend` beside it: a
+    /// 1990 rate, transcribed with a source, then evolved by the model.
+    ///
+    /// IT REPLACES A FUNCTION OF INCOME, AND THAT IS THE WHOLE POINT. Population
+    /// growth used to be read off GDP per head alone, which made it *decreasing*
+    /// in income precisely where the mature panel lives — the United States'
+    /// labour term ran +0.254 pt/yr in the 1990s and **-0.217 by the 2020s**, a
+    /// population shrinking 0.36%/yr against a real +0.7%. Among rich countries
+    /// population growth is not a function of income; it is set by migration,
+    /// and several of the very richest have the fastest-growing populations.
+    /// The sign was backwards, and it was backwards fastest for the richest.
+    ///
+    /// THE WINDOW ENDS ON 31 DECEMBER 1989, and it is five years wide rather
+    /// than one. Both halves matter. A single-year 1990 rate would carry events
+    /// this simulation is meant to PRODUCE rather than be handed: the World
+    /// Bank's 1990 figures put Kuwait at -27.5%/yr and Jordan at +7.8%/yr, which
+    /// is the Iraqi invasion and the expulsion it caused, and transcribing them
+    /// would write the Gulf War into the starting data. No window ending on the
+    /// eve of the start date can contain any of it. And a five-year compound
+    /// rate is a *trend* rather than one year's noise, which is what this field
+    /// is for.
+    ///
+    /// IT IS NOT A 35-YEAR OUTTURN, deliberately. Transcribing the realised
+    /// 1990-2025 average would fit the answer and is scripting, not calibration
+    /// (iron rule 3). The cost of refusing is real and is stated rather than
+    /// hidden: the 1990 trend puts the United States correctly at the top of the
+    /// panel and Italy correctly at the bottom, but it misplaces the United
+    /// Kingdom, whose population grew slowly into 1990 and quickly after it.
+    ///
+    /// Unsourced is a refusal, not a default (iron rule 4): this field carries
+    /// no `#[serde(default)]`, so a nation file without it fails to load rather
+    /// than silently entering at zero.
+    pub pop_growth_1990: f64,
     /// Total factor productivity growth trend, annual.
     pub tfp_trend: f64,
     /// Annual inflation rate (0.04 = 4%).
@@ -383,6 +474,82 @@ fn check_record(file: &str, r: &NationRecord) -> Vec<LoadError> {
                 .to_string(),
         ));
     }
+
+    // The 1990 grant. This belongs in pass one and not pass two: pass two is for
+    // what cannot be checked while looking at one file, and every check below is
+    // answerable from this record plus `crate::tech::registry()`, which is a
+    // compile-time static. Keeping it here also means a modder with three broken
+    // files sees all three, which is the collecting contract this function has.
+    //
+    // NOTHING HERE MAY GO THROUGH `tech::known_serde`. That deserializer is
+    // `filter_map(index_of)` and silently drops an id this build does not know —
+    // correct for a save written by an older build, which must still load, and
+    // catastrophic for authored data, where a typo would produce a nation
+    // quietly starting with one technology fewer and no error anywhere. Grants
+    // resolve explicitly, and an id that does not resolve is refused.
+    let reg = crate::tech::registry();
+    for (i, g) in r.tech_1990.granted.iter().enumerate() {
+        match crate::tech::index_of(&g.id) {
+            None => e.push(LoadError::nation_level(
+                file,
+                &who,
+                format!(
+                    "tech_1990.granted[{i}] names {:?}, which is not a technology in \
+                     the tree — check it against the ids in spheres-sim/src/tech/",
+                    g.id
+                ),
+            )),
+            Some(idx) => {
+                let def = &reg[idx as usize];
+                // A technology nobody could research yet is a technology nobody
+                // could hold yet. `tech::tick` refuses to complete a project
+                // before its `earliest_year`, so granting one at a 1990 start is
+                // a board state the tick loop forbids anyone to reach — and it
+                // is the only cheap check that catches a typo which happens to
+                // resolve to a real but wrong id.
+                if def.earliest_year > 1990 {
+                    e.push(LoadError::nation_level(
+                        file,
+                        &who,
+                        format!(
+                            "tech_1990.granted[{i}] is {:?}, whose earliest year is {} — \
+                             it cannot be held on 1 January 1990, and the research \
+                             engine would refuse to complete it until then",
+                            g.id, def.earliest_year
+                        ),
+                    ));
+                }
+            }
+        }
+        if g.source.trim().is_empty() {
+            e.push(LoadError::nation_level(
+                file,
+                &who,
+                format!(
+                    "tech_1990.granted[{i}] ({:?}) has no source — iron rule 4 says \
+                     starting data is transcribed, and an unsourced entry is a \
+                     refusal, not a default. Say where the claim that this nation \
+                     held this technology in January 1990 comes from, or drop it",
+                    g.id
+                ),
+            ));
+        }
+        // A repeat is not cosmetic. `TechState::grant_1990` dedups, so the
+        // second entry vanishes without a trace and takes its citation with it —
+        // and two citations for one cell is a transcription error somebody needs
+        // to see rather than a harmless duplicate.
+        if let Some(j) = r.tech_1990.granted.iter().take(i).position(|o| o.id == g.id) {
+            e.push(LoadError::nation_level(
+                file,
+                &who,
+                format!(
+                    "tech_1990.granted[{i}] repeats {:?}, already granted at [{j}] — \
+                     one technology, one citation",
+                    g.id
+                ),
+            ));
+        }
+    }
     e
 }
 
@@ -532,11 +699,24 @@ pub fn id_slug(id: NationId) -> String {
 impl NationRecord {
     /// The record as the engine's `Nation`.
     ///
-    /// Two fields are absent from the data on purpose. `political_capital` is
-    /// derived — nobody recorded a government's standing in January 1990, so it
-    /// is read off the conditions that *were* recorded. `tech` is seeded from
-    /// the TFP trend by the technology module. Transcribing either would be
-    /// inventing.
+    /// Two fields are absent from the data here for different reasons, and the
+    /// comment that used to stand in this place got the second one wrong.
+    ///
+    /// `political_capital` is derived. Nobody recorded a government's standing
+    /// in January 1990, so it is read off the conditions that *were* recorded,
+    /// and transcribing it would be inventing.
+    ///
+    /// `tech` is neither derived nor absent. The old comment claimed it was
+    /// "seeded from the TFP trend by the technology module", and no such
+    /// mechanism ever existed: `TechState::new` returns an empty known set, and
+    /// the `tfp_base` it is handed is a productivity baseline read only by
+    /// `apply_bonuses` — there is no code path from `tfp_trend` to `known`. What
+    /// the comment described as a mechanism was a default of zero, which is a
+    /// claim about the world and a false one. Technology is now transcribed per
+    /// nation in `tech_1990`, each grant carrying its own citation, and applied
+    /// in `load_world` below rather than here — see the pass-three note for why
+    /// neither half of the grant is a fact about one record (BIBLE §8 and iron
+    /// rule 4, both amended 2026-08-30).
     pub fn to_nation(&self) -> Nation {
         Nation {
             id: self.id,
@@ -546,6 +726,14 @@ impl NationRecord {
             gdp: self.economy.gdp_bn,
             population: self.economy.population_m,
             tfp_trend: self.economy.tfp_trend,
+            // The nation's own 1990 demography, carried as the standing
+            // difference from what the income-driven transition says at its own
+            // 1990 income — so on 1 January 1990 `population_growth` returns the
+            // transcribed rate exactly, and moves with the transition after.
+            pop_growth_offset: self.economy.pop_growth_1990
+                - crate::economy::transition(
+                    self.economy.gdp_bn * 1000.0 / self.economy.population_m,
+                ),
             inflation: self.economy.inflation,
             interest_rate: self.economy.interest_rate,
             tax_rate: self.economy.tax_rate,
@@ -556,6 +744,13 @@ impl NationRecord {
             oil_mbd: self.economy.oil_mbd,
             bubble: self.economy.bubble,
             growth_last: 0.0,
+            // The transcribed 1990 figures already reflect the 1990 trade
+            // portfolio and the 1990 investment share. `None` says so.
+            trade_level_paid: None,
+            capital_level_paid: None,
+            // The ceiling on what consolidation may hand back. See
+            // `Nation::state_invest_1990`.
+            state_invest_1990: Some(self.economy.state_invest_gdp),
             stability: self.politics.stability,
             separatism: self.politics.separatism,
             mil_strength: self.military.strength,
@@ -619,6 +814,51 @@ pub fn load_world(
             w.set_relation(p.a, p.b, p.value);
         }
     }
+
+    // ---- The 1990 technology endowment, in three passes ----
+    //
+    // Three passes and not one, and the reason is the trap in this arithmetic: a
+    // single loop that grants a nation its technology and then rebases it is
+    // WRONG. `reference` is the GDP-weighted mean of what the whole world holds,
+    // every nation must be scored against the same number, and that number does
+    // not exist until the last grant has been applied.
+    //
+    // It also cannot live in `to_nation`, because neither half of it is a fact
+    // about one record. The effects need the built `Nation` — `saturated_tech_tfp`
+    // reads investment shares off it — and the reference needs the whole roster.
+    //
+    // Index i of `w.nations` is index i of `nations`; that identity is what
+    // `file_of` already relies on.
+    let known: Vec<Vec<u16>> = nations
+        .iter()
+        .map(|r| {
+            r.tech_1990
+                .granted
+                .iter()
+                // Every id resolved in pass one or we never got here, so this
+                // cannot drop a grant on the floor the way `known_serde` would.
+                .filter_map(|g| crate::tech::index_of(&g.id))
+                .collect()
+        })
+        .collect();
+    // Pass one — grant. Every nation, before any reference is computed.
+    for (n, k) in w.nations.iter_mut().zip(known.iter()) {
+        n.tech.grant_1990(k);
+    }
+    // Pass two — one reference and one frontier for the whole roster. Both are
+    // properties of the finished board and neither exists until the last grant
+    // is in; the frontier is here for exactly the reason the reference is, and
+    // a loop that granted and rebased nation by nation would get both wrong.
+    let reference = crate::tech::world_reference(&w.nations);
+    let frontier_1990 = crate::tech::world_frontier(&w.nations);
+    // Pass three — take the endowment back out of each nation's productivity
+    // base and its distance to the frontier, so the trend the tick reassembles
+    // is the transcribed one and neither the technology nor the standing 1990
+    // gap is paid for twice.
+    for (n, r) in w.nations.iter_mut().zip(nations.iter()) {
+        crate::tech::rebase_to_transcribed(n, r.economy.tfp_trend, reference, frontier_1990);
+    }
+
     w.reindex();
     Ok(w)
 }
@@ -643,6 +883,24 @@ pub fn sources_for(id: NationId) -> Vec<String> {
         .filter_map(|s| serde_json::from_str::<NationRecord>(s.json).ok())
         .find(|r| r.id == id)
         .map(|r| r.sources)
+        .unwrap_or_default()
+}
+
+/// What this nation was granted on 1 January 1990, and why, for showing to a
+/// player.
+///
+/// The same argument as `sources_for` and the same posture. Grant citations that
+/// no surface can reach would make iron rule 4's falsifiability claim a claim
+/// about a file nobody opens, which is the exact complaint the note above makes
+/// about `sources` in the years it was parsed, validated and then dropped on the
+/// floor. Parsed on demand: this is immutable start-of-game documentation, it
+/// must not enter a save, and it must not touch the timeline hash.
+pub fn tech_1990_for(id: NationId) -> Tech1990Record {
+    EMBEDDED_NATIONS
+        .iter()
+        .filter_map(|s| serde_json::from_str::<NationRecord>(s.json).ok())
+        .find(|r| r.id == id)
+        .map(|r| r.tech_1990)
         .unwrap_or_default()
 }
 
@@ -842,6 +1100,314 @@ mod tests {
         };
         let e = check_record("usa.json", &empty);
         assert!(e.iter().any(|x| x.message.contains("transcribed")), "{e:?}");
+    }
+
+    // ---- The 1990 technology endowment ----
+    //
+    // `usa()` NOW CARRIES AN AUTHORED `tech_1990` BLOCK. It did not when these
+    // fixtures were written, and each of them spliced one in; against the
+    // authored roster that produces two `tech_1990` keys and serde refuses the
+    // file for a duplicate field, which is a refusal for the wrong reason and
+    // would let every assertion below pass without ever exercising what it
+    // names. So the authored block is removed first and the fixture's own put in
+    // its place — the fixture changed, no assertion did.
+    //
+    // Removed through `serde_json::Value` rather than by string surgery on
+    // purpose: a textual strip would be pinned to the formatting the merge
+    // happened to write, and would start silently splicing a second block again
+    // the first time a nation file is reformatted.
+    fn usa_without_tech() -> String {
+        let mut v: serde_json::Value = serde_json::from_str(&usa()).expect("usa.json parses");
+        let removed = v
+            .as_object_mut()
+            .expect("a nation file is an object")
+            .remove("tech_1990");
+        assert!(
+            removed.is_some(),
+            "usa.json no longer carries a tech_1990 block — these fixtures assume \
+             one is present and must be checked, not silently repaired"
+        );
+        serde_json::to_string_pretty(&v).expect("re-serializes")
+    }
+
+    // Anchored on the `"sources"` key, which every nation file has and which is
+    // the last of the eight original top-level fields.
+    fn usa_with_tech(block: &str) -> String {
+        usa_without_tech().replace("\"sources\"", &format!("{block},\n  \"sources\""))
+    }
+
+    fn granted(json: &str) -> String {
+        usa_with_tech(&format!("\"tech_1990\": {{ \"granted\": [{json}] }}"))
+    }
+
+    #[test]
+    fn a_granted_technology_the_tree_does_not_have_is_refused() {
+        // The failure this exists for is not a mod author inventing a
+        // technology; it is a typo. `tech::known_serde` would drop this id
+        // silently — correct for a save written by a build that no longer has
+        // it, and fatal for authored data, where the nation would simply start
+        // one technology short with nothing anywhere to say so.
+        let broken = granted(
+            "{ \"id\": \"comp_microprocesor\", \"source\": \"a real citation, a misspelled id\" }",
+        );
+        let err = parse_nations(&[Source { file: "usa.json", json: &broken }])
+            .expect_err("an id the tree does not have must be refused");
+        assert_eq!(err[0].file, "usa.json");
+        assert_eq!(err[0].nation.as_deref(), Some("USA"));
+        assert!(err[0].message.contains("comp_microprocesor"), "{}", err[0].message);
+    }
+
+    #[test]
+    fn a_granted_technology_with_no_source_is_refused() {
+        // Iron rule 4 as a refusal rather than a convention: an unsourced entry
+        // is not a default. Whitespace is not a source either — that is the
+        // form the refusal actually arrives in, because a blank string is
+        // conspicuous and two spaces are not.
+        let broken = granted("{ \"id\": \"comp_microprocessor\", \"source\": \"   \" }");
+        let err = parse_nations(&[Source { file: "usa.json", json: &broken }])
+            .expect_err("an unsourced grant must be refused");
+        assert!(
+            err.iter().any(|e| e.message.contains("no source")
+                && e.message.contains("transcribed")),
+            "the rule was not named: {err:?}"
+        );
+    }
+
+    #[test]
+    fn the_same_technology_granted_twice_is_refused() {
+        // `grant_1990` dedups, so the second entry disappears and takes its
+        // citation with it. Two citations for one cell is a transcription error
+        // and has to be seen rather than silently reconciled.
+        let broken = granted(
+            "{ \"id\": \"comp_microprocessor\", \"source\": \"one\" }, \
+             { \"id\": \"comp_microprocessor\", \"source\": \"two\" }",
+        );
+        let err = parse_nations(&[Source { file: "usa.json", json: &broken }])
+            .expect_err("a repeated grant must be refused");
+        assert!(
+            err.iter().any(|e| e.message.contains("repeats")),
+            "{err:?}"
+        );
+    }
+
+    #[test]
+    fn a_technology_that_did_not_exist_yet_cannot_be_held_in_1990() {
+        // The catch for a typo that resolves to a real but wrong id, and the
+        // rule the research engine already enforces going forward: `tech::tick`
+        // refuses to complete a project before its `earliest_year`, so a 1997
+        // technology held at a 1990 start is a board state no nation could ever
+        // have reached by playing.
+        let late = crate::tech::registry()
+            .iter()
+            .find(|d| d.earliest_year > 1990)
+            .expect("the tree has technologies later than 1990");
+        let broken = granted(&format!(
+            "{{ \"id\": \"{}\", \"source\": \"a citation for something that had not happened\" }}",
+            late.id
+        ));
+        let err = parse_nations(&[Source { file: "usa.json", json: &broken }])
+            .expect_err("a post-1990 technology must be refused at a 1990 start");
+        assert!(
+            err.iter().any(|e| e.message.contains(&late.earliest_year.to_string())
+                && e.message.contains("1 January 1990")),
+            "the year was not named: {err:?}"
+        );
+    }
+
+    #[test]
+    fn a_misspelled_tech_1990_key_is_refused() {
+        // `deny_unknown_fields` is what stops the whole block being optional in
+        // the dangerous direction. `tech_1990` defaults when absent, so without
+        // this a misspelled key would be a nation that quietly starts knowing
+        // nothing while its file plainly says otherwise.
+        let broken = usa_with_tech("\"tech_l990\": { \"granted\": [] }");
+        let err = parse_nations(&[Source { file: "usa.json", json: &broken }])
+            .expect_err("a misspelled block key must be refused");
+        assert!(err[0].message.contains("tech_l990"), "{}", err[0].message);
+    }
+
+    #[test]
+    fn an_unknown_field_inside_the_block_is_refused() {
+        let broken = usa_with_tech(
+            "\"tech_1990\": { \"granted\": [{ \"id\": \"core_pcr\", \"citation\": \"x\" }] }",
+        );
+        let err = parse_nations(&[Source { file: "usa.json", json: &broken }])
+            .expect_err("`citation` is not `source`");
+        assert!(err[0].message.contains("citation"), "{}", err[0].message);
+    }
+
+    #[test]
+    fn a_well_formed_grant_reaches_the_nation_it_was_written_for() {
+        // The positive control for every refusal above. Without it the schema
+        // could be rejecting everything, including the correct thing, and every
+        // other test in this group would still pass.
+        let json = granted(
+            "{ \"id\": \"core_pcr\", \"source\": \"a citation\" }, \
+             { \"id\": \"comm_digital_switching\", \"source\": \"another citation\" }",
+        );
+        let recs = parse_nations(&[Source { file: "usa.json", json: &json }])
+            .expect("a well-formed grant must load");
+        assert_eq!(recs[0].tech_1990.granted.len(), 2);
+
+        // A one-nation roster cannot go through `load_world` — pass two would
+        // report 136 missing start nations — so the grant is applied here the
+        // way the loader's first pass applies it.
+        let mut n = recs[0].to_nation();
+        let ids: Vec<u16> = recs[0]
+            .tech_1990
+            .granted
+            .iter()
+            .map(|g| crate::tech::index_of(&g.id).expect("validated above"))
+            .collect();
+        n.tech.grant_1990(&ids);
+        assert_eq!(n.tech.count(), 2, "the grant did not land");
+        assert!(n.tech.knows("core_pcr"));
+        assert!(n.tech.knows("comm_digital_switching"));
+        assert!(
+            crate::tech::saturated_tech_tfp(&n) > 0.0,
+            "a held technology that is worth nothing is a grant that did nothing"
+        );
+    }
+
+    #[test]
+    fn the_authored_endowment_leaves_every_transcribed_trend_exactly_where_it_was() {
+        // THE RE-POINTED INERT-MACHINERY PROOF.
+        //
+        // This is `with_nothing_authored_every_nation_starts_exactly_where_it_did`
+        // after the 1990 board landed, re-pointed exactly as that test's own
+        // comment instructed ("When Tier A lands this test starts failing for the
+        // nations that carry data, and that is the signal it exists to give ...
+        // Re-point it then; do not delete it"). Nothing it asserted has been
+        // dropped except the two claims the data itself falsified, and both are
+        // named here rather than quietly removed:
+        //
+        //   - `tech.count() == 0` for every nation. Now `count()` must equal the
+        //     number of grants that nation's file actually carries, which is the
+        //     stronger statement: it catches a grant silently dropped on the
+        //     floor as well as one invented, and it is what `known_serde` would
+        //     have done to a typo if pass one had not refused it first.
+        //   - `tfp_1990_offset` is POSITIVE ZERO for every nation. It cannot be
+        //     any more, and not only for the nations that hold something: the
+        //     rebase pays `(s - reference)` to everybody, so a nation holding
+        //     nothing now carries `-reference`. That is the mechanism that moves
+        //     both golden hashes, and moving them is what the endowment is for.
+        //
+        // What survives untouched, and is the load-bearing claim: the transcribed
+        // trend is still bit-for-bit the figure in the JSON, and `tfp_base` plus
+        // the offset still reconstructs it. Technology is not paid for twice.
+        let recs = parse_nations(EMBEDDED_NATIONS).expect("the roster parses");
+        let w = load_world(EMBEDDED_NATIONS, &EMBEDDED_RELATIONS, GameRules::default())
+            .expect("the roster loads");
+        assert_eq!(w.nations.len(), recs.len());
+
+        let mut authored = 0usize;
+        let mut grants = 0usize;
+        let mut worst = 0.0f64;
+        for (n, r) in w.nations.iter().zip(recs.iter()) {
+            let held = r.tech_1990.granted.len();
+            grants += held;
+            if held > 0 {
+                authored += 1;
+            }
+            assert_eq!(
+                n.tech.count(),
+                held,
+                "{:?}: the file grants {} technologies and the nation holds {}",
+                n.id,
+                held,
+                n.tech.count()
+            );
+            // Unchanged from the original, and the reason the whole rebasing
+            // pass exists: whatever the endowment is worth, the trend the tick
+            // loop reassembles is still the one that was transcribed.
+            assert_eq!(
+                n.tfp_trend.to_bits(),
+                r.economy.tfp_trend.to_bits(),
+                "{:?}: the transcribed trend did not survive construction",
+                n.id
+            );
+            // The construction residual, against the same 1e-12 bar
+            // `granting_the_1990_stock_does_not_move_the_transcribed_trend`
+            // already uses. Not a widened tolerance: the original compared bits
+            // because the only arithmetic was `x - 0.0`, and there is real
+            // arithmetic now.
+            let residual = (n.tech.tfp_base + n.tech.tfp_1990_offset - r.economy.tfp_trend).abs();
+            worst = worst.max(residual);
+            assert!(
+                residual <= 1e-12,
+                "{:?}: base {} plus offset {} does not reconstruct the transcribed {}",
+                n.id,
+                n.tech.tfp_base,
+                n.tech.tfp_1990_offset,
+                r.economy.tfp_trend
+            );
+            assert!(n.tech.tfp_1990_offset.is_finite(), "{:?}", n.id);
+            // Both unchanged. The oil identity is the no-double-count rule: a
+            // producer granted 3-D seismic and horizontal drilling must not walk
+            // `oil_mbd` upward on the first tick for barrels its transcribed
+            // figure already contains.
+            assert_eq!(
+                n.tech.oil_yield_applied,
+                n.tech.bonus.oil_yield_eff(),
+                "{:?}: the granted oil yield was not marked as already applied",
+                n.id
+            );
+            assert_eq!(n.tech.absorption_rate, 0.0, "{:?}", n.id);
+            if held == 0 {
+                assert_eq!(n.tech.count(), 0, "{:?}", n.id);
+                assert_eq!(n.tech.oil_yield_applied, 0.0, "{:?}", n.id);
+            }
+        }
+        // A guard against this test going quietly vacuous the way its ancestor
+        // did: if the board is ever emptied, say so here rather than passing.
+        assert!(
+            authored >= 100 && grants >= 300,
+            "the board has shrunk to {authored} nations and {grants} grants — \
+             re-point this test deliberately, do not let it pass on an empty board"
+        );
+        assert!(
+            crate::tech::world_reference(&w.nations) > 0.0,
+            "a world where 137 nations hold {grants} technologies has a zero reference"
+        );
+        println!("worst construction residual across {} nations: {worst:e}", w.nations.len());
+    }
+
+    #[test]
+    fn a_nation_can_show_what_it_was_granted_and_why() {
+        // The same argument as `every_nation_can_show_its_working`: a citation no
+        // surface can reach is a claim rather than a citation.
+        for id in start_nations().iter().copied() {
+            let t = tech_1990_for(id);
+            for g in &t.granted {
+                assert!(
+                    !g.source.trim().is_empty(),
+                    "{:?} shows a grant of {} with nothing behind it",
+                    id,
+                    g.id
+                );
+            }
+            // Every nation is now AUTHORED, and the schema's whole point is that
+            // an empty `granted` with a `note` is the different and stronger
+            // claim — "looked at, and the answer is nothing" — rather than "not
+            // yet looked at". That distinction is only worth anything if the
+            // note is actually there, so it is asserted rather than assumed.
+            assert!(
+                !t.note.is_empty(),
+                "{:?} was left unauthored: no note and {} grants",
+                id,
+                t.granted.len()
+            );
+        }
+        // The accessor reaches the authored block. This replaces an assertion
+        // that `tech_1990_for(USA)` was the default, which was a placeholder
+        // pinned to the state of the roster before any of it was written.
+        let usa = tech_1990_for(NationId::USA);
+        assert!(
+            usa.granted.len() > 20,
+            "the United States shows {} technologies for 1990",
+            usa.granted.len()
+        );
+        assert!(usa.granted.iter().any(|g| g.id == "core_pcr"));
     }
 
     #[test]

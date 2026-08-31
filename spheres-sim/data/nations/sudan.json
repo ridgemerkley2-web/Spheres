@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 33.6,
     "population_m": 26.8,
+    "pop_growth_1990": 0.019972,
     "tfp_trend": 0.002,
     "inflation": 0.652,
     "interest_rate": 0.28,
@@ -38,6 +39,19 @@
     "Strength 3: an abstract index. Roughly 65,000 in the Sudanese Armed Forces, wholly committed to a civil war it was losing - in 1989 the SPLA had taken Nasir, Torit and Bor and controlled most of the countryside in three southern provinces. An army fully engaged at home projects nothing abroad. Set above Tunisia's 2 on size, below Libya's 6 and far below Egypt's 14.",
     "Stability 30: the lowest entered in the roster. Omar al-Bashir's coup of 30 June 1989 had dissolved parliament, banned every party including the ones that won the 1986 election, and jailed the prime minister it removed; the war in the south was in its seventh year; famine in Darfur and Kordofan in 1990-91 killed on the order of a quarter of a million people; and the government's own coup-proofing produced the executions of 28 April 1990. Set below Algeria's 40, which is the next lowest.",
     "Separatism 0.55: the highest in the roster, and it should be. This is not a minority movement or a language grievance - it is an armed secession that controlled territory. The Sudan People's Liberation Army held most of Equatoria, Bahr el Ghazal and Upper Nile outside the garrison towns; the southern provinces were roughly a quarter of the population; and the war had been running since Nimeiry imposed sharia in September 1983. Set at nearly twice Turkey's 0.30 for the PKK, above Yugoslavia's, because the PKK never held provinces and the SPLA did.",
-    "Authoritarianism 0.85: a military-Islamist junta four months old at the start of the simulation. The Revolutionary Command Council for National Salvation ruled by decree, all parties were dissolved, the trade unions were banned and Hassan al-Turabi's National Islamic Front supplied the programme from outside the formal structure. Set above Egypt's 0.75 and below Libya's 0.90, which had no parties to ban."
-  ]
+    "Authoritarianism 0.85: a military-Islamist junta four months old at the start of the simulation. The Revolutionary Command Council for National Salvation ruled by decree, all parties were dissolved, the trade unions were banned and Hassan al-Turabi's National Islamic Front supplied the programme from outside the formal structure. Set above Egypt's 0.75 and below Libya's 0.90, which had no parties to ban.",
+    "pop_growth_1990 = 1.9972%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SDN (Sudan): 19,546,528 in 1984 to 21,578,022 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: SDN.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 62% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

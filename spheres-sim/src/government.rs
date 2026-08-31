@@ -6065,7 +6065,11 @@ fn regime_tick(w: &mut WorldState, id: NationId) {
         (
             n.mil_spend_gdp, n.state_invest_gdp, n.growth_last, n.inflation,
             n.stability, n.authoritarianism, n.war_exhaustion,
-            w.sanctioned_by_count(id) as f64,
+            // CONVERTED FROM COUNTING FLAGS: was `w.sanctioned_by_count(id) as
+            // f64`. The fourth and last of the count-based sanction channels;
+            // see `economy::SANCTION_BITE`. Read at the same point in the tick,
+            // so nothing about the ordering changes.
+            w.sanction_weight(id),
         )
     };
     let pillars: Vec<Pillar> = match state(w, id) {
@@ -6095,9 +6099,23 @@ fn regime_tick(w: &mut WorldState, id: NationId) {
             // The services want a free hand and a quiet street.
             Pillar::Security => 0.30 + auth * 0.45 + (stab / 100.0) * 0.30,
             // Money wants prices under control and the door to the world open.
+            //
+            // `sanctioned` is now the sanctioners' SHARE OF WORLD OUTPUT, not a
+            // count of them, and the coefficient is the old one carried across
+            // on `c / 0.30`: `0.05 / 0.30 = 0.1667`. What businessmen care about
+            // is how much of the world market has closed, which is the quantity
+            // a share measures and the quantity a count does not — five small
+            // neighbours signing a communiqué is not the same event as the
+            // United States and the EU shutting their doors, and the old rule
+            // could not tell them apart.
+            //
+            // The `.min(0.25)` is gone for the same reason the `.max(0.4)` in
+            // `tech::research_output` is gone: a share is bounded by 1, so this
+            // term cannot exceed 0.1667 and the cap is provably unreachable. It
+            // was there to stop an unbounded count.
             Pillar::Business => {
                 0.55 + (growth * 10.0).clamp(-0.25, 0.25) - (infl / 0.25).min(1.0) * 0.40
-                    - (sanctioned * 0.05).min(0.25)
+                    - sanctioned * 0.1667
             }
             // The clergy want order and piety, and notice when neither is being
             // supplied.

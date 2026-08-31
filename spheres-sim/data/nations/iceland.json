@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 6.695,
     "population_m": 0.255,
+    "pop_growth_1990": 0.0109,
     "tfp_trend": 0.004,
     "inflation": 0.155,
     "interest_rate": 0.162,
@@ -36,6 +37,21 @@
     "Public investment 3.5% and private investment 17.5% of GDP: World Bank NE.GDI.FTOT.ZS gives total gross fixed capital formation of 21.03% for Iceland in 1990, which is transcribed exactly. NE.GDI.FPUB.ZS and NE.GDI.FPRV.ZS are both null, so THE SPLIT IS APPORTIONED AND NOT PUBLISHED and is in this branch's unverified list. It is set at roughly one sixth public on the basis that the large state capital projects of the period — the ring road, the harbours, the Landsvirkjun hydro schemes — were real but small against a fishing fleet and a fish-processing sector that were privately owned.",
     "Stability 80 and authoritarianism 0.07: the Althing has met since 930 and Iceland has had no political violence in the modern period at all. Placed just above Denmark's 78 and below Switzerland's 85. The 0.07 is the lowest authoritarianism figure in this roster, marginally below Denmark's, Norway's and the Netherlands' 0.08, and the ordering is deliberate rather than decorative: Iceland in 1990 had a directly elected president in Vigdis Finnbogadottir, a fully proportional Althing, and no standing security apparatus of any kind to be authoritarian with.",
     "Separatism 0.0: 96% of the population is Icelandic-born and speaks one language, and there is no regional movement of any kind. The Westfjords and the East depopulated toward Reykjavik through this period, which is a demographic complaint and not a national one.",
-    "Government in January 1990: Steingrimur Hermannsson's second cabinet, formed 28 September 1988 from the Progressive Party, the Social Democrats and the People's Alliance, and joined by the remnant of the Citizens' Party on 10 September 1989 — the only four-party government in Icelandic history. It held until the election of 20 April 1991. The party shares in government.rs are from the general election of 25 April 1987."
-  ]
+    "Government in January 1990: Steingrimur Hermannsson's second cabinet, formed 28 September 1988 from the Progressive Party, the Social Democrats and the People's Alliance, and joined by the remnant of the Citizens' Party on 10 September 1989 — the only four-party government in Icelandic history. It held until the election of 20 April 1991. The party shares in government.rs are from the general election of 25 April 1987.",
+    "pop_growth_1990 = 1.0900%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ISL (Iceland): 239,511 in 1984 to 252,852 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: ISL.",
+      "WUENIC DTP3 1990 = 99% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 7893 against a threshold of any positive count: comm_cellular_analogue GRANTED.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "comm_cellular_analogue", "source": "World Bank WDI IT.CEL.SETS 'Mobile cellular subscriptions', retrieved from the World Bank indicator API (api.worldbank.org/v2), source id 2, lastupdated 2026-07-13. Series values: ISL, 1989 = 7893 subscriptions and 1990 = 10010 subscriptions. The series is a YEAR-END STOCK, so the 1989 figure describes 31 December 1989, i.e. the game's start instant of 1 January 1990: a network was carrying paying subscribers before the start date. All cellular in service at that date was analogue (NMT, AMPS, TACS, C-Netz, RTMS); GSM had no commercial service anywhere until mid-1991." },
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: ISL, 1990 = 99%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

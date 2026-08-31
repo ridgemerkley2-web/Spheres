@@ -725,6 +725,96 @@
      as authored on flat land. */
   .tfill { fill-opacity: .85; }
   svg.gl-on .tfill { fill-opacity: var(--tfillop, .85); }
+
+  /* resource fills: the map states its own confidence. A district resting on
+     one source record is KEPT and drawn weak — a quarter of the opacity of the
+     Copperbelt, and hatched so the weakness survives a colour-blind read and a
+     dark screen. The grades are authored here rather than in the renderer so
+     the four bands are one line to re-argue, and `.rfill-none` is the fifth
+     mark: a producing nation with nothing located, drawn as an outline with no
+     fill at all. Absence is a mark, not a blank. */
+  .rfill { stroke: #0a0e14; stroke-width: .35px; vector-effect: non-scaling-stroke; }
+  .rfill-strong   { fill-opacity: .92; }
+  .rfill-moderate { fill-opacity: .62; }
+  .rfill-sparse   { fill-opacity: .34; }
+  .rfill-single   { fill-opacity: .17; }
+  .rhatch { fill: url(#confHatch); pointer-events: none; }
+  .rfill-none { fill: none; stroke: #8d99a8; stroke-width: 1px; stroke-dasharray: 3 3;
+                vector-effect: non-scaling-stroke; }
+
+  /* the FILING-CENTROID mark (artifact ruling 4). A district whose evidence
+     includes a coordinate the artifact flagged `centroid_stacked` is carrying a
+     point where records were FILED, not where a mine is — the centre of France,
+     the centroid of Queensland. The band already counts that point once instead
+     of six times; this says WHICH patches it is, because a reader looking at
+     Centre-Val-de-Loire deserves to know its bauxite is at a point 400 km from
+     the Var rather than to infer it from a faint fill.
+     It leans the OTHER WAY from the single-band hatch on purpose: where a patch
+     is both weakest and centroid-located the two cross, and that crossing is
+     the most-caveated mark on the map. The brass hue separates it from the
+     white confidence hatch under a colour-blind read; `-whole` is the severe
+     case — every coordinate under the entry is a filing centroid, so it is
+     located to an administrative unit and to nothing finer. */
+  .rcent { fill: url(#centHatch); pointer-events: none; }
+  .rcent-part  { fill-opacity: .5; }
+  .rcent-whole { fill-opacity: 1; }
+
+  /* resource OVERLAY: the same four bands riding on top of a political read,
+     which is a different problem from the dedicated mode. There the fill IS
+     the map; here a nation's colour is already the subject and the resource
+     layer must not repaint it. So the overlay's wash is a STIPPLE — a fine
+     diagonal rule in the commodity's hue, laid over the political fill, which
+     leaves most of every pixel showing the nation underneath while still
+     reading as a continuous patch at world zoom. The bands survive the change
+     (they are the same four opacities, lifted because a stipple covers less
+     ink than a solid), the `single` hatch survives, and so does the dashed
+     UNLOCATED outline. Nothing about the confidence grammar changes when the
+     layer moves — a reader who learns it once in Resources mode reads the
+     overlay the same way. */
+  .rovl { stroke-width: .5px; vector-effect: non-scaling-stroke; }
+  .rovl-strong   { fill-opacity: 1;   stroke-opacity: .85; }
+  .rovl-moderate { fill-opacity: .78; stroke-opacity: .55; }
+  .rovl-sparse   { fill-opacity: .52; stroke-opacity: .34; }
+  .rovl-single   { fill-opacity: .34; stroke-opacity: .22; }
+
+  /* the commodity marks. One CHIP per district — never one per record, and
+     never one per source site, however many a district holds: the artifact's
+     `n` is a count of citations and stacking marks by it would draw exactly
+     the survey-effort map that meta.do_not forbids. The chip is a dark plate
+     so a glyph stays legible over any political colour under it; its border
+     carries the commodity hue at the band's own opacity, so a single-record
+     district's mark is visibly fainter than the Copperbelt's at a glance. */
+  #resglyphs .rchip rect { fill: #080c12; fill-opacity: .78; }
+  #resglyphs .rchip.b-strong   rect { stroke-opacity: .95; }
+  #resglyphs .rchip.b-moderate rect { stroke-opacity: .66; }
+  #resglyphs .rchip.b-sparse   rect { stroke-opacity: .40; }
+  #resglyphs .rchip.b-single   rect { stroke-opacity: .24; stroke-dasharray: 2 1.6; }
+  #resglyphs .rchip:hover rect { fill-opacity: .95; stroke-opacity: 1; }
+  #resglyphs .rmore { fill: #8fa0b6; }
+  /* Chips take pointer events so a glyph carries its own evidence tooltip and
+     a click on one opens the nation that governs the ground; every other part
+     of the resource layer stays inert. */
+  #resglyphs { pointer-events: none; }
+  #resglyphs .rchip { pointer-events: auto; cursor: pointer; }
+
+  /* The limits, collapsed by default and never removed. Collapsed because the
+     legend already carries the reading rules and a wall of caveats above the
+     map would be scrolled past; present because two of the limits inside it
+     are invisible on the map itself. */
+  .reslimits { border: 1px solid var(--edge-dark); border-top: none;
+               background: linear-gradient(180deg, #171d24, #12161c); }
+  .reslimits > summary { cursor: pointer; padding: 5px 12px; color: var(--faint);
+                         font-size: 11px; letter-spacing: .06em; user-select: none; }
+  .reslimits > summary:hover { color: var(--brass-hi); }
+  .reslimits[open] > summary { color: var(--dim); }
+  .reslimits .body { padding: 2px 12px 10px; max-height: 220px; overflow-y: auto; }
+  .reslimits p { margin: 0 0 7px; color: var(--dim); font-size: 11px; line-height: 1.55;
+                 max-width: 92ch; }
+  #resChips { display: flex; gap: 4px; flex-wrap: wrap; margin: 6px 0 2px; }
+  #resChips .chip { display: inline-flex; align-items: center; gap: 5px; }
+  #resChips .chip svg { width: 12px; height: 12px; flex: none; }
+  #mapModes .chip.ovl { display: inline-flex; align-items: center; gap: 4px; }
+  #mapModes .chip.ovl svg { width: 11px; height: 11px; flex: none; }
   #dfills path { stroke: #10151c; stroke-width: .6px; vector-effect: non-scaling-stroke; }
   #dhit path { fill: transparent; cursor: pointer; }
   #dhit path:hover { fill: rgba(232, 200, 126, .13); }
@@ -876,6 +966,19 @@
   .relrow:hover { background: #171d24; }
   .relrow .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .relrow .num { text-align: right; font-variant-numeric: tabular-nums; font-size: 12px; }
+  /* the dossier's resource rows. Its own grid rather than .relrow's, because
+     the third column here is a sentence (the band split and the national
+     figure) where .relrow's is a 92px bar, and squeezing prose into a bar's
+     column is how a limit stops being read. */
+  .resrow { display: grid; grid-template-columns: 132px 96px 1fr; align-items: baseline;
+            gap: 8px; padding: 3px 0; cursor: pointer; border-bottom: 1px solid #171d2480; }
+  .resrow:hover { background: #171d24; }
+  .resrow .nm { display: inline-flex; align-items: center; gap: 6px; overflow: hidden;
+                text-overflow: ellipsis; white-space: nowrap; }
+  .resrow .nm .gy { display: inline-flex; width: 12px; height: 12px; flex: none; }
+  .resrow .num { text-align: right; font-variant-numeric: tabular-nums; font-size: 12px;
+                 white-space: nowrap; }
+  @media (max-width: 900px) { .resrow { grid-template-columns: 1fr auto; } .resrow .ev { grid-column: 1 / -1; } }
   .relbar { position: relative; height: 6px; background: var(--well); box-shadow: inset 0 1px 2px rgba(0,0,0,.55); border-radius: 3px; }
   .relbar .z { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--faint); }
   .relbar i { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
@@ -1268,6 +1371,8 @@
   <div class="row"><span>Advance six months / a year / five years</span><span><kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd></span></div>
   <div class="row"><span>Map / History / League</span><span><kbd>M</kbd> <kbd>H</kbd> <kbd>L</kbd></span></div>
   <div class="row"><span>Cycle map shading</span><span><kbd>C</kbd></span></div>
+  <div class="row"><span>Resource layer over the current shading</span><span><kbd>O</kbd></span></div>
+  <div class="row"><span>Next / previous commodity (all &rarr; bauxite &rarr; &hellip;)</span><span><kbd>X</kbd> <kbd>Shift</kbd>+<kbd>X</kbd></span></div>
   <div class="row"><span>Zoom the map / reset the view</span><span><kbd>+</kbd> <kbd>&minus;</kbd> <kbd>0</kbd> · wheel · double-click</span></div>
   <div class="row"><span>Filter the event log</span><span><kbd>E</kbd></span></div>
   <div class="row"><span>Technology</span><span><kbd>T</kbd></span></div>
@@ -1302,6 +1407,14 @@ const RIVERS = window.RIVERS || { meta: { w: WORLD.w, h: WORLD.h }, rivers: [], 
 // text only; the sim reads its own copy. Same predates-the-route guard: a
 // server without /terrain.js just renders a Terrain mode with no class fills.
 const TERRAIN = window.TERRAIN || { byId: {} };
+// The 1990 resource transcription — see tools/resources/. Unlike the three
+// above it is FETCHED, not baked into a <script>: it is 2 MB, only the
+// Resources shading reads it, and most sessions never open that shading. Null
+// until loadResources() lands; every reader guards on it, so a server that
+// predates the /resources.json route just renders the mode with no fills and
+// says so.
+let RESOURCES = null;
+let RESOURCES_STATE = "cold";   // cold -> loading -> ready | failed
 // world.js grew from W=1000 to W=2400; everything authored in old pixel
 // space (LABEL_AT, font sizes, radii) scales by this.
 const PX = WORLD.w / 1000;
@@ -1550,6 +1663,9 @@ let pickedNation = null;
 const ui = {
   tab: "map",
   mapMode: "political",
+  resCommodity: "oil",   // which commodity the resource layer is painting ("__all" = every one)
+  resOverlay: false,     // resource layer riding on TOP of whatever shading is selected
+  resLimitsOpen: false,  // the "what this layer cannot say" disclosure, kept across ticks
   cam: { cx: 0, cy: 0, k: 1 },   // map camera; cx,cy in viewBox units, k = zoom (cx/cy lazily centred)
   logCat: "all",
   logQuery: "",
@@ -1750,6 +1866,8 @@ document.addEventListener("keydown", (e) => {
   else if (k === "h" || k === "H") showTab("charts");
   else if (k === "l" || k === "L") showTab("table");
   else if (k === "c" || k === "C") cycleMapMode();
+  else if (k === "o" || k === "O") toggleResOverlay();
+  else if (k === "x" || k === "X") cycleResCommodity(e.shiftKey ? -1 : 1);
   else if (k === "e" || k === "E") { e.preventDefault(); $("#logSearch").focus(); $("#logSearch").select(); }
   else if (k === "s" || k === "S") doSave();
   else if (k === "t" || k === "T") toggleTechMenu();
@@ -4535,6 +4653,25 @@ const MAP_MODES = {
              ["#3d4a3a", "lowland"], ["#38564e", "wetland"], ["#5d6a72", "tundra"],
              ["#4c8ee0", "river / lake"]],
   },
+  resources: {
+    label: "Resources",
+    opaque: true,
+    // The powers recede to the scenery tone exactly as in Terrain: the subject
+    // is where the ore and the oil are, and a political palette underneath
+    // would compete with a layer whose whole information content is one hue at
+    // four opacities. Read-only paint — nothing here is a command.
+    color: () => "#333c48",
+    // Ground held near Political's, not Terrain's. The resource fills carry
+    // their meaning in OPACITY, and a full-strength hillshade under a .17 fill
+    // eats the very band the confidence grading exists to show.
+    ground: {
+      u: [0.30, 0.55, 13], sat: [0.20, 0.45, 16], shade: [0.45, 0.70, 11],
+      sea: [0.60, 0.60, 13], haze: [0.58, 0.58, 13],
+      fill: [0.20, 0.16, 20], tfill: [0.85, 0.85, 13],
+      seaop: 0, landop: 0, gratop: 0.45,
+    },
+    legend: [],   // built per commodity by resLegend()
+  },
   relations: {
     label: "Relations",
     color: (n, m) => (m && n.id === m.id ? "#c9a55a" : relColor(n.relation)),
@@ -4564,6 +4701,31 @@ const MAP_MODES = {
 function cycleMapMode() {
   const ks = Object.keys(MAP_MODES);
   ui.mapMode = ks[(ks.indexOf(ui.mapMode) + 1) % ks.length];
+  showTab("map");
+  renderMap();
+}
+
+/// The overlay is orthogonal to the shading — that is the whole point of it.
+/// A player reading the Iraq–Kuwait war on the political map can switch the
+/// oil on without leaving the war, which is the reading the dedicated mode
+/// cannot give, because it sends the powers to scenery grey.
+function toggleResOverlay() {
+  if (ui.mapMode === "resources") return;    // already the whole map
+  ui.resOverlay = !ui.resOverlay;
+  showTab("map");
+  renderMap();
+}
+
+/// Step the commodity filter, all-view included, so the filter is reachable
+/// without the mouse. Order is the panel's order: all, then the artifact's own
+/// key order over the commodities it actually places.
+function cycleResCommodity(dir) {
+  if (RESOURCES_STATE !== "ready") { loadResources(); return; }
+  const ks = [RES_ALL, ...resCommodities()];
+  const i = ks.indexOf(ui.resCommodity);
+  ui.resCommodity = ks[((i < 0 ? 0 : i) + dir + ks.length) % ks.length];
+  resInvalidate();
+  if (ui.mapMode !== "resources" && !ui.resOverlay) ui.resOverlay = true;
   showTab("map");
   renderMap();
 }
@@ -6080,6 +6242,827 @@ function tnode() {
   return TNODE;
 }
 
+/* ---- Resources: presence and evidence, graded by how much is behind it. ----
+
+   THE ONE THING THIS LAYER MUST NOT DO is imply quantity. district_resources
+   .json carries no tonnage by construction — `where` and `how much` come from
+   different sources and are never multiplied — so this paints PRESENCE, and
+   modulates it by CONFIDENCE, and nothing else. Opacity here is "how many
+   DISTINCT SITES say so", never "how much ore".
+
+   The four bands come from the artifact. A single-site district is kept and
+   drawn at .17 with a hatch over it; the Copperbelt is drawn at .92. A nation
+   that produced the commodity in 1990 and has nothing located — the United
+   States for oil, Norway for oil and gas — is outlined in dashes and listed as
+   UNLOCATED under the map. Never filled with a guess.
+
+   Ruling 4 of the artifact changed what the band counts and this layer follows
+   it: DISTINCT COORDINATES, not records. Six MRDS records at the centre of
+   France are one site's worth of evidence, so Centre-Val-de-Loire's bauxite is
+   drawn `single` where it used to be drawn `strong`. Nothing was deleted to
+   achieve that — the six records are still in the file, still at the point
+   their source published — so the layer gains a fifth mark rather than losing
+   a patch: the brass cross-hatch over any district standing on a filing
+   centroid, and the hover names the administrative unit it is the centre of. */
+
+const RCOLOR = {
+  oil: "#c9a55a", gas: "#7fb2d8", coal: "#6b7480", iron: "#a4694f",
+  copper: "#c47a4a", bauxite: "#b9a06a", gold: "#e8c87e", uranium: "#6fc08a",
+  phosphate: "#9a8fb8", cobalt: "#5f8fd0", rare_earths: "#b06fa8",
+  platinum_group: "#9fb0bd", wheat: "#cbb26a", rice: "#b8c98f",
+};
+
+/// Hand-drawn glyphs, one per commodity, in a 16x16 box. No icon font, no
+/// emoji: the ☢/⊘ convention on the map is Unicode because those two marks are
+/// typographic, and everything else in this UI is drawn.
+const RGLYPH = {
+  oil:  `<path d="M8 2 C5 6 3 8.5 3 11 a5 5 0 0 0 10 0 C13 8.5 11 6 8 2Z"/>`,
+  gas:  `<path d="M8 14 C4 12 3 9 5 6 c1.5-2 2-3 2-4 2 1.5 3 3 3 4.5 0 1 .6 1.5 1.2 1 .5-.4.6-1.2.4-2 2 2 2.4 5 .9 7-.9 1.3-2.4 2.2-4.5 3.5Z"/>`,
+  coal: `<path d="M3 10 L6 4 L11 3 L13 8 L10 13 L4 13Z"/>`,
+  iron: `<path d="M8 2 L14 5.5 v5 L8 14 L2 10.5 v-5Z"/>`,
+  copper:`<circle cx="8" cy="8" r="5"/><path d="M8 1v3M8 12v3M1 8h3M12 8h3" stroke-width="1.4"/>`,
+  bauxite:`<path d="M2 12 L5 5 L9 4 L13 9 L12 12Z"/><path d="M5 5 L7 9 L12 12M9 4 L7 9" fill="none" stroke-width="1"/>`,
+  gold: `<path d="M2 11 h12 l-1.5 3 h-9Z"/><path d="M4 7.5 h8 l-1 3H5Z"/><path d="M6 4 h4.5 l-1 3h-3Z"/>`,
+  uranium:`<circle cx="8" cy="8" r="1.9"/><path d="M8 8 L3.5 3 A6.4 6.4 0 0 1 12.5 3Z"/>
+           <path d="M8 8 L12.5 3 A6.4 6.4 0 0 1 12.5 13Z" opacity=".62"/>
+           <path d="M8 8 L12.5 13 A6.4 6.4 0 0 1 3.5 13Z" opacity=".38"/>`,
+  phosphate:`<path d="M8 2 l5 3.4 v5.2 L8 14 L3 10.6 V5.4Z" fill="none" stroke-width="1.5"/><circle cx="8" cy="8" r="1.6"/>`,
+  cobalt:`<path d="M8 2 L10 6.4 L14.5 7 L11.2 10.2 L12 14.6 L8 12.5 L4 14.6 L4.8 10.2 L1.5 7 L6 6.4Z"/>`,
+  rare_earths:`<circle cx="8" cy="8" r="2"/><ellipse cx="8" cy="8" rx="6.5" ry="2.6" fill="none" stroke-width="1"/>
+               <ellipse cx="8" cy="8" rx="6.5" ry="2.6" fill="none" stroke-width="1" transform="rotate(60 8 8)"/>
+               <ellipse cx="8" cy="8" rx="6.5" ry="2.6" fill="none" stroke-width="1" transform="rotate(120 8 8)"/>`,
+  platinum_group:`<path d="M8 2 L13.5 8 L8 14 L2.5 8Z" fill="none" stroke-width="1.5"/><path d="M8 5 L11 8 L8 11 L5 8Z"/>`,
+  wheat:`<path d="M8 15V5" stroke-width="1.2" fill="none"/>
+         <path d="M8 5 C6 5 5 3.5 5 2 c1.8 0 3 1.3 3 3ZM8 5 C10 5 11 3.5 11 2 c-1.8 0-3 1.3-3 3Z"/>
+         <path d="M8 9 C6 9 5 7.5 5 6 c1.8 0 3 1.3 3 3ZM8 9 C10 9 11 7.5 11 6 c-1.8 0-3 1.3-3 3Z"/>`,
+  rice: `<path d="M8 15 V6" stroke-width="1.2" fill="none"/>
+         <ellipse cx="5.4" cy="5.5" rx="1.5" ry="2.8" transform="rotate(-28 5.4 5.5)"/>
+         <ellipse cx="10.6" cy="5.5" rx="1.5" ry="2.8" transform="rotate(28 10.6 5.5)"/>
+         <ellipse cx="8" cy="3" rx="1.5" ry="2.6"/>`,
+  // The all-view's mark. Not a commodity — three UNLIKE shapes in a cluster,
+  // reading as "several kinds here" rather than as any one of them. It must not
+  // resemble cobalt's star or platinum's rhombus, since those are the two it
+  // would sit next to in the filter.
+  __all: `<path d="M8 1.6 L11 6 H5Z"/><circle cx="4.4" cy="11" r="2.5"/>
+          <rect x="9" y="8.6" width="4.8" height="4.8" rx="1"/>`,
+};
+
+function rglyph(k, col) {
+  return `<svg viewBox="0 0 16 16" fill="${col}" stroke="${col}" stroke-width="0"
+     stroke-linejoin="round" aria-hidden="true">${RGLYPH[k] || ""}</svg>`;
+}
+
+/// Fetch once, on first entry to the Resources shading. A failure is a state,
+/// not an exception: the mode still renders, with the reason written where the
+/// legend would be, because a silently empty resource map is exactly the lie
+/// this dataset was cleaned to stop telling.
+async function loadResources() {
+  if (RESOURCES_STATE !== "cold") return;
+  RESOURCES_STATE = "loading";
+  try {
+    const r = await fetch("/resources.json", { cache: "force-cache" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    RESOURCES = await r.json();
+    RESOURCES_STATE = "ready";
+  } catch (_) {
+    RESOURCES_STATE = "failed";
+  }
+  resInvalidate();
+  // Whoever was waiting on the file gets redrawn: the dedicated mode, the
+  // overlay riding on any other shading, and an open nation dashboard whose
+  // resource card is still showing its placeholder.
+  if (ui.mapMode === "resources" || ui.resOverlay) renderMap();
+  if (selected) fillResourceDash(selected);
+}
+
+/// Drop every cached resource node. Called when the file arrives and whenever
+/// the filter changes — the wash nodes are keyed on the filter, but the mark
+/// layer's key includes the camera, so it needs telling explicitly.
+function resInvalidate() {
+  RESNODE.map = null; RESNODE.ovl = null;
+  RESNODE_KEY.map = ""; RESNODE_KEY.ovl = "";
+  RESGLY_KEY = "";
+  RESLIVE = null;
+  RESLIM = null; RESLIM_KEY = "";
+}
+
+/// Which commodities the artifact actually places, in the artifact's own
+/// order, so a commodity that stops being placed stops appearing here.
+function resCommodities() {
+  if (!RESOURCES) return [];
+  const c = RESOURCES.commodities || {};
+  return Object.keys(c).filter((k) => c[k].districts_with_presence > 0).sort();
+}
+
+/// Commodities the artifact carries a 1990 national figure for but places in
+/// NO district on earth. It used to be coal, wheat and rice; the 2026-08-31
+/// coal pass located coal from four USGS datasets, so the list is now wheat and
+/// rice, and this function reads it off the artifact rather than naming them.
+/// They are not a filter option, because there is nothing to filter to; they
+/// are named in the panel instead, since a player who cannot find a commodity
+/// on the map deserves to be told that the blank is the sources' and not the
+/// world's.
+function resNationalOnly() {
+  if (!RESOURCES) return [];
+  const c = RESOURCES.commodities || {};
+  return Object.keys(c).filter((k) => !c[k].districts_with_presence &&
+    (c[k].nations_with_1990_production || 0) > 0).sort();
+}
+
+/// The all-commodities view. Kept as a sentinel rather than a 12th commodity
+/// so every reader has to decide what it means for its own question — several
+/// below answer it differently, and a silent fallthrough would have invented
+/// an answer.
+const RES_ALL = "__all";
+/// Band strength, for aggregating a district that holds several commodities.
+/// Ordinal only: it ranks EVIDENCE, never endowment.
+const RBAND = { strong: 3, moderate: 2, sparse: 1, single: 0 };
+const RBANDS = ["strong", "moderate", "sparse", "single"];
+
+/// Every commodity this district holds, in the artifact's key order. The unit
+/// of aggregation everywhere in this layer is the DISTRICT: a district with 92
+/// copper records and one with 1 both return ["copper"] here, and the
+/// difference between them is carried by the band, never by a mark count.
+/// The live set, memoised — this is called once per district per mark rebuild
+/// and once per district per limits table, and rebuilding a Set of twelve keys
+/// each time turned a 2,600-district sweep into a measurable cost for nothing.
+/// Dropped by resInvalidate(), so a reloaded artifact re-derives it.
+let RESLIVE = null;
+function resLiveSet() {
+  if (!RESLIVE) RESLIVE = new Set(resCommodities());
+  return RESLIVE;
+}
+
+function resComsAt(did) {
+  const e = ((RESOURCES || {}).districts || {})[did];
+  if (!e) return [];
+  const live = resLiveSet();
+  return Object.keys(e).filter((k) => live.has(k)).sort();
+}
+
+/// The band this district shows for the current filter: its own band for one
+/// commodity, or the STRONGEST band among everything it holds for RES_ALL.
+/// "Strongest" is about how well sourced the best-sourced commodity here is —
+/// it says nothing about which commodity matters, and the all-view is
+/// deliberately painted in one neutral brass rather than the winner's hue,
+/// because a dominant-commodity choropleth off these sources paints Australia
+/// rare-earth violet on survey density. That map was built and falsified; this
+/// is the replacement.
+function resBandAt(did, com) {
+  const e = ((RESOURCES || {}).districts || {})[did];
+  if (!e) return null;
+  if (com !== RES_ALL) return e[com] ? (e[com].confidence || {}).band || null : null;
+  let best = null;
+  for (const k of resComsAt(did)) {
+    const b = (e[k].confidence || {}).band;
+    if (b && (best === null || RBAND[b] > RBAND[best])) best = b;
+  }
+  return best;
+}
+
+/// Is this district's evidence for the current filter standing on a FILING
+/// CENTROID — a published coordinate the artifact identified as the place
+/// records were filed rather than the place a mine is?
+///
+/// Returns "whole" when the entry has no unflagged coordinate left (it is
+/// located to a country or a province and to nothing finer), "part" when it has
+/// one among others, and null otherwise. In the all-view the worst reading over
+/// everything the district holds wins, because the mark answers "is anything
+/// under this patch a filing centroid" and one is enough for that to be yes.
+///
+/// Petroleum entries can never be flagged: they are polygons, not points, and
+/// the concept does not apply. Artifacts older than ruling 4 carry no flag at
+/// all and get null, which draws the map exactly as it drew before.
+function resCentroidAt(did, com) {
+  const e = ((RESOURCES || {}).districts || {})[did];
+  if (!e) return null;
+  let worst = null;
+  for (const k of (com === RES_ALL ? resComsAt(did) : [com])) {
+    const c = (e[k] || {}).confidence;
+    if (!c || !c.centroid_stacked) continue;
+    if (c.unflagged_coordinates === 0) return "whole";
+    worst = "part";
+  }
+  return worst;
+}
+
+/// Patches resting ONLY on a petroleum province the artifact flagged
+/// `offshore_or_outside_roster` — a wholly offshore basin polygon clipping a
+/// coastline by a fraction of a percent.
+///
+/// These are why the map can look self-contradictory and must explain itself:
+/// Norway is dashed UNLOCATED for oil AND has one washed district, Nordland,
+/// because Vestfjord-Helgeland grazes 0.2% of it. The artifact keeps the
+/// measurement (it is real) and excludes it from the located test (a coastal
+/// clip of an offshore basin locates nothing), so the map keeps it too, at the
+/// weakest band, and says out loud that the two marks are not in conflict.
+/// Deleting the patch to tidy the picture would be the same fabrication as
+/// inventing one.
+function resOffshoreOnly(com) {
+  const D = (RESOURCES || {}).districts || {};
+  const coms = com === RES_ALL ? resCommodities() : [com];
+  let n = 0;
+  for (const id in D) {
+    for (const c of coms) {
+      const e = D[id][c];
+      if (!e || !e.provinces || !e.provinces.length) continue;
+      if (e.provinces.every((p) => p.offshore_or_outside_roster)) n++;
+    }
+  }
+  return n;
+}
+
+/// Hue for the current filter. The all-view gets the chrome's own brass, not a
+/// commodity colour, so it cannot be misread as "these are the oil districts".
+/// Pale steel, and deliberately NOT any commodity's colour — oil already owns
+/// the chrome's brass, so borrowing it for the all-view would have made "every
+/// commodity" and "crude oil" the same wash. Nothing in RCOLOR is near it.
+function resHue(com) {
+  return com === RES_ALL ? "#c3cedb" : (RCOLOR[com] || "#9fb0bd");
+}
+function resLabel(com) {
+  return com === RES_ALL ? "every commodity"
+    : ((RESOURCES || {}).commodities || {})[com]
+      ? RESOURCES.commodities[com].label : com.replace(/_/g, " ");
+}
+
+/// Nations that produced the selected commodity in 1990 and have nothing
+/// located — ruling 3's UNLOCATED, drawn as a dashed outline over their whole
+/// territory rather than left blank.
+///
+/// The all-view unions only the commodities the artifact CAN place. Wheat and
+/// rice are unlocated for every producer on earth — 81 and 75 nations — so
+/// folding them in would dash most of the map and say nothing. They are a
+/// global hole, reported as one in the panel, not as 200 outlines. Coal used to
+/// be the third of them at 59 nations; it is now placed in 328 districts and
+/// its remaining 14 unlocated producers dash like anyone else's.
+function resUnlocatedNations(com) {
+  const U = (RESOURCES || {}).unlocated_producers || {};
+  if (com !== RES_ALL) return U[com] || [];
+  const seen = new Map();
+  for (const k of resCommodities()) {
+    for (const row of U[k] || []) {
+      if (!seen.has(row.nation)) seen.set(row.nation, []);
+      seen.get(row.nation).push(k);
+    }
+  }
+  return [...seen.entries()].map(([nation, coms]) => ({ nation, coms }));
+}
+
+/// The retained resource layer, rebuilt only when the filter or the presentation
+/// changes — the same lazy-and-kept pattern as tnode(). One path per confidence
+/// band, so the whole world is FOUR band paths plus the single-band hatch, TWO
+/// filing-centroid hatches and one unlocated outline: eight elements, at every
+/// zoom, for any commodity or all of them at once. That is the entire wash
+/// budget, and it is what makes the layer safe to leave switched on over a
+/// political map.
+///
+/// `overlay` picks the presentation, not the data: solid fill when the resource
+/// layer IS the map, stipple-through-to-the-politics when it rides on top. Both
+/// nodes are cached, because a player toggling the overlay off and on again
+/// should not re-walk 1,393 districts.
+const RESNODE = { map: null, ovl: null };
+const RESNODE_KEY = { map: "", ovl: "" };
+function resnode(overlay) {
+  const slot = overlay ? "ovl" : "map";
+  const com = ui.resCommodity;
+  const key = com + "|" + RESOURCES_STATE;
+  if (RESNODE[slot] && RESNODE_KEY[slot] === key) return RESNODE[slot];
+  const bands = { strong: "", moderate: "", sparse: "", single: "" };
+  const cent = { part: "", whole: "" };
+  const D = (RESOURCES || {}).districts || {};
+  for (const id in D) {
+    const info = DINDEX[id];
+    if (!info) continue;                      // districts.js may lag the roster
+    const b = resBandAt(id, com);
+    if (b && bands[b] !== undefined) bands[b] += info.path;
+    const c = b && resCentroidAt(id, com);
+    if (c) cent[c] += info.path;
+  }
+  // The unlocated outline is drawn from the country layer, not the district
+  // layer: the claim is "this NATION produced it and no district here holds
+  // it", which is a national statement and must not look like a district one.
+  let none = "";
+  for (const row of resUnlocatedNations(com)) {
+    for (const c of TERRITORY[row.nation] || []) {
+      if (WORLD.countries[c]) none += WORLD.countries[c];
+    }
+  }
+  const col = resHue(com);
+  const fill = overlay ? "url(#resStipple)" : col;
+  const cls = overlay ? "rovl" : "rfill";
+  const host = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  host.innerHTML = `<g id="rfills" pointer-events="none">${
+    Object.entries(bands).filter(([, d]) => d)
+      .map(([b, d]) => `<path class="${cls} ${cls}-${b}" fill="${fill}"${
+        overlay ? ` stroke="${col}"` : ""} d="${d}"/>`).join("")
+    }${bands.single ? `<path class="rhatch" d="${bands.single}"/>` : ""
+    }${cent.part ? `<path class="rcent rcent-part" d="${cent.part}"/>` : ""
+    }${cent.whole ? `<path class="rcent rcent-whole" d="${cent.whole}"/>` : ""
+    }${none ? `<path class="rfill-none" d="${none}" fill-rule="evenodd"/>` : ""}</g>`;
+  RESNODE[slot] = host.firstChild;
+  RESNODE_KEY[slot] = key;
+  return RESNODE[slot];
+}
+
+/* ---- the commodity marks -------------------------------------------------
+
+   The wash above says WHERE and HOW WELL SOURCED. It cannot say WHICH, and in
+   the all-view it deliberately refuses to. The glyphs answer that, and they
+   are bounded on purpose:
+
+   * ONE CHIP PER DISTRICT. Not one per record, not one per named site. A
+     district holding 92 copper records draws the same single copper mark as
+     one holding 1; the difference lives in the chip's border opacity. The
+     alternative — a mark per citation — is the survey-effort map that
+     meta.do_not names, drawn in a different medium.
+   * AT MOST RES_GLYPH_PER_CHIP commodities shown per district, then "+n".
+   * NOTHING BELOW ZB1. At world zoom the honest layer is the wash, which is
+     complete: every district that has the commodity is in it. Marks at world
+     zoom would have to be culled to a budget, and a culled sample of 1,393
+     districts is a claim about which places matter. The wash never culls.
+   * A HARD ELEMENT BUDGET above ZB1, spent on the districts in view, and the
+     number of marks it could not draw is REPORTED in the panel rather than
+     silently dropped. The wash underneath is still complete either way.        */
+
+const RES_GLYPH_BUDGET = 1200;  // svg elements the mark layer may spend
+const RES_GLYPH_PER_CHIP = 3;   // commodities drawn per district before "+n"
+
+/// How many SVG elements each glyph is actually made of. A budget that counted
+/// "one per glyph" would be a fiction — uranium is four wedges and a nucleus,
+/// gold is three bars, iron is one polygon — and a fictional budget is worse
+/// than none, because it is the number the panel prints to the player. Counted
+/// from the authored markup once, so editing a glyph re-costs it for free.
+const RGLYPH_N = Object.fromEntries(Object.entries(RGLYPH).map(([k, v]) =>
+  [k, 1 + (v.match(/<(path|circle|ellipse|rect|polygon|line)\b/g) || []).length]));  // wrapper <g> + shapes
+
+/// The true DOM cost of one district's chip: the group, its evidence <title>,
+/// the backing plate, each glyph, and the "+n" overflow label.
+function resChipCost(nGlyphs, coms, extra) {
+  return 3 + coms.slice(0, nGlyphs).reduce((a, c) => a + (RGLYPH_N[c] || 2), 0) + (extra ? 1 : 0);
+}
+
+let RESGLY_KEY = "";
+let RESGLY_SHOWN = 0, RESGLY_HIDDEN = 0, RESGLY_SPENT = 0;
+
+/// Which nation governs a district — the sim's per-district delta if it has
+/// one (a concession or an annexation), else whoever holds the country. Only
+/// called on a click, so the linear scan is free.
+function nationOfDistrict(did) {
+  const delta = (S && S.districts) || {};
+  if (delta[did]) return delta[did];
+  const info = DINDEX[did];
+  if (!info || !S) return null;
+  const n = (S.nations || []).find((x) => (TERRITORY[x.id] || []).includes(info.iso));
+  return n ? n.id : null;
+}
+
+/// Rebuild the mark layer for the current camera. Keyed on the filter, the
+/// zoom band and a coarsened viewport, so the hover path that also calls this
+/// is a no-op unless the camera actually moved.
+function refreshResGlyphs() {
+  const g = $("#resglyphs");
+  if (!g) return;
+  const live = (ui.mapMode === "resources" || ui.resOverlay) && RESOURCES_STATE === "ready";
+  const on = live && ui.cam.k >= ZB1;
+  const svg = $("#pane-map svg");
+  if (!on || !svg) {
+    if (RESGLY_KEY !== "off") { g.innerHTML = ""; RESGLY_KEY = "off"; }
+    RESGLY_SHOWN = 0; RESGLY_HIDDEN = 0; RESGLY_SPENT = 0;
+    return;
+  }
+  const k = ui.cam.k, vw = WORLD.w / k, vh = WORLD.h / k;
+  const x0 = ui.cam.cx - vw / 2, y0 = ui.cam.cy - vh / 2;
+  const q = (v) => Math.round(v / (vw / 40));            // coarsen: ~40 steps per screen
+  const key = [ui.resCommodity, ui.mapMode, ui.resOverlay, k.toFixed(2), q(x0), q(y0)].join("|");
+  if (key === RESGLY_KEY) return;
+  RESGLY_KEY = key;
+
+  // A glyph is authored in a 16-unit box and wants to hold ~11 screen px at
+  // every zoom, exactly as .dlabel does — same derivation, same reason.
+  const r = svg.getBoundingClientRect();
+  const px = (WORLD.w / k) / Math.max(r.width, 1);      // viewBox units per screen px
+  const box = 11 * px, s = box / 16;
+  const pad = box;                                       // keep marks whose chip straddles the edge
+  const com = ui.resCommodity, hue = resHue(com);
+  const D = (RESOURCES || {}).districts || {};
+
+  // Collect what is in view first, so the budget is spent on the visible world
+  // and the overflow can be counted honestly.
+  const want = [];
+  for (const id in D) {
+    const info = DINDEX[id];
+    if (!info) continue;
+    if (info.cx < x0 - pad || info.cx > x0 + vw + pad) continue;
+    if (info.cy < y0 - pad || info.cy > y0 + vh + pad) continue;
+    const band = resBandAt(id, com);
+    if (!band) continue;
+    const coms = com === RES_ALL ? resComsAt(id) : [com];
+    if (!coms.length) continue;
+    want.push({ id, info, band, coms });
+  }
+  // Strongest evidence first, so an overflow drops the weakest claim rather
+  // than an arbitrary one — and the count of what was dropped is published.
+  want.sort((a, b) => RBAND[b.band] - RBAND[a.band] || (a.id < b.id ? -1 : 1));
+
+  let spent = 0, drawn = 0, out = "";
+  for (const w of want) {
+    const show = w.coms.slice(0, RES_GLYPH_PER_CHIP);
+    const extra = w.coms.length - show.length;
+    const cost = resChipCost(RES_GLYPH_PER_CHIP, w.coms, extra);
+    if (spent + cost > RES_GLYPH_BUDGET) break;
+    spent += cost; drawn++;
+    const wide = box * (show.length + (extra ? 0.85 : 0)) + box * 0.5;
+    const left = w.info.cx - wide / 2, top = w.info.cy - box * 0.75;
+    let inner = `<rect x="${left.toFixed(2)}" y="${top.toFixed(2)}" width="${wide.toFixed(2)}"
+        height="${(box * 1.5).toFixed(2)}" rx="${(box * 0.35).toFixed(2)}"
+        stroke="${hue}" stroke-width="${(px * 1.1).toFixed(3)}"/>`;
+    show.forEach((c, i) => {
+      const gx = left + box * 0.25 + i * box, gy = w.info.cy - box / 2;
+      inner += `<g transform="translate(${gx.toFixed(2)} ${gy.toFixed(2)}) scale(${s.toFixed(5)})"
+          fill="${RCOLOR[c] || hue}" stroke="${RCOLOR[c] || hue}" stroke-width="0"
+          stroke-linejoin="round">${RGLYPH[c] || ""}</g>`;
+    });
+    if (extra) {
+      inner += `<text class="rmore" x="${(left + box * 0.25 + show.length * box).toFixed(2)}"
+          y="${(w.info.cy + box * 0.34).toFixed(2)}" font-size="${(box * 0.78).toFixed(2)}"
+          >+${extra}</text>`;
+    }
+    out += `<g class="rchip b-${w.band}" data-did="${w.id}"><title>${
+      escText(w.info.name)} — ${resEvidence(w.id)}</title>${inner}</g>`;
+  }
+  RESGLY_SHOWN = drawn;
+  RESGLY_HIDDEN = want.length - drawn;
+  RESGLY_SPENT = spent;
+  g.innerHTML = out;
+}
+
+/// One district's evidence for the selected commodity, as a hover line. Says
+/// what is behind the patch and nothing more — no tonnage appears here because
+/// none exists in the file, and "nothing sourced" is written out rather than
+/// left as an empty title, because silence on a map reads as zero.
+/// Volumes for a hover line. Three decimals of an apportioned barrel count is
+/// false precision on a number that is an area weighting; one is plenty, and
+/// anything over 100 wants none at all.
+function rnum(v) {
+  return v >= 100 ? Math.round(v).toLocaleString() : (+v).toFixed(1);
+}
+
+function resEvidence(did) {
+  if (RESOURCES_STATE !== "ready") return "resource data not loaded";
+  // The all-view enumerates rather than ranks: every commodity this district
+  // holds, each with its own band, in the artifact's own key order. Deliberately
+  // NOT sorted by strength — an ordering off `n` would smuggle back the
+  // survey-effort ranking the wash refuses to draw.
+  if (ui.resCommodity === RES_ALL) {
+    const coms = resComsAt(did);
+    if (!coms.length) return "nothing sourced here";
+    return `${coms.length} commodit${coms.length === 1 ? "y" : "ies"} — ` +
+      coms.map((c) => `${c.replace(/_/g, " ")} ${resBandAt(did, c)}`).join(" · ") +
+      " · pick one below for its sources";
+  }
+  const e = ((RESOURCES.districts || {})[did] || {})[ui.resCommodity];
+  if (!e) return "nothing sourced here";
+  const b = (e.confidence || {}).band || "unbanded";
+  // An artifact older than the confidence pass, or one whose petroleum entry
+  // carries no province list, still has to render. It says what it can and
+  // names what it cannot, because the alternative is this function throwing
+  // inside the mark builder and taking the whole layer down with it.
+  if (e.province_level && (!e.provinces || !e.provinces.length)) {
+    return `${b} — province-level entry, but this artifact carries no province list for it`;
+  }
+  if (e.province_level) {
+    // Named by the province that SET the band — the one covering most of this
+    // district — because that is what the shading in front of the reader is.
+    const p = e.provinces.slice().sort(
+      (x, y) => y.area_frac_district - x.area_frac_district)[0];
+    // The two figures are shown together and labelled apart, and they are BOTH
+    // that one province's: the transcribed whole-province total, then the part
+    // of it this district's measured area share works out to. Quoting the
+    // district's roll-up next to a single province's total would put two
+    // numbers side by side that are not about the same thing — Campeche's
+    // named province holds 6 MMBO while its district roll-up is 435.
+    const a = e.apportionment || null;
+    const many = e.provinces.length > 1 && a;
+    return `${b} — ${escText(p.name)}, ${(p.area_frac_district * 100).toFixed(0)}% of this district`
+      + (p.offshore_or_outside_roster ? " (offshore province)" : "")
+      + ` · province total ${rnum(p.known)} ${p.units}, SHARED, not this district's`
+      + ` · ${rnum(p.apportioned)} of it apportioned here by measured area (DERIVED)`
+      + (many ? ` · ${rnum(a.total)} ${a.units} from all ${e.provinces.length} provinces here` : "");
+  }
+  // `records` is the confidence pass's field and `n` the older one's; either
+  // may be missing entirely, and a missing count is reported as missing rather
+  // than shown as zero — "0 records" would be a claim, and the wrong one.
+  const c = e.confidence || {};
+  const n = c.records !== undefined ? c.records : e.n;
+  // Ruling 4. The band counts DISTINCT COORDINATES and the record count is the
+  // larger number beside it, so the hover leads with the one the shading is
+  // actually made of. Saying only "17 records" over a patch banded on two
+  // points is how the previous edition misled, and the two numbers are shown
+  // together precisely where they disagree.
+  const k = c.distinct_coordinates;
+  const site = k === undefined ? "" : `${k} distinct site${k === 1 ? "" : "s"}`;
+  const names = (e.sites || []).map((s) => escText(s && s.name))
+    .filter((x) => x && x !== "undefined").slice(0, 3).join(", ");
+  // The flag, in words, on the patch it is drawn over. `centroids` names the
+  // matched administrative unit when clause (A) caught it, and that name is
+  // the sentence that makes the mark mean something: "the centroid of
+  // Queensland" is an argument, "a filing centroid" is a label.
+  let flag = "";
+  if (c.centroid_stacked) {
+    const hit = (c.centroids || [])[0] || {};
+    const who = hit.admin
+      ? ` — the centroid of ${escText(hit.admin.name)}, ${(+hit.admin.km).toFixed(1)} km off`
+      : (hit.distinct_names ? ` — ${hit.distinct_names} differently named mines on one point` : "");
+    flag = c.unflagged_coordinates === 0
+      ? ` · EVERY point here is a FILING CENTROID${who}: located to an administrative unit and no finer`
+      : ` · ${c.centroid_coordinates} of those ${
+          k === undefined ? "points" : "sites"} ${c.centroid_coordinates === 1 ? "is a" : "are"} FILING CENTROID${
+          c.centroid_coordinates === 1 ? "" : "s"} holding ${c.centroid_records} record${
+          c.centroid_records === 1 ? "" : "s"}${who}`;
+  }
+  // COAL, and only coal, can rest on a named coal FIELD as well as on mines —
+  // the Donets Basin, the Appalachian Region. That is an area a survey drew a
+  // line around, so the sentence says AREA and never a tonnage, and it names
+  // the field, because "39% of this district is inside the Donetsky basin" is
+  // an argument where "moderate" is only a label. Where a district has both
+  // kinds of evidence both are shown, in that order, since the band is the
+  // stronger of the two and the reader is owed the one that set it.
+  let fld = "";
+  if (e.fields && e.fields.length) {
+    const f = e.fields.slice().sort(
+      (x, y) => y.area_frac_district - x.area_frac_district)[0];
+    fld = `${escText(f.name)} covers ${(f.area_frac_district * 100).toFixed(0)}%`
+      + ` of this district (coal-bearing GROUND, not output`
+      + (f.polygons > 1 ? `, ${f.polygons} mapped polygons` : "") + ")"
+      + (e.fields.length > 1 ? ` · ${e.fields.length} named fields here` : "");
+  }
+  if (n === undefined && !site) {
+    return fld ? `${b} — ${fld}`
+      : `${b} — source record count not carried by this artifact${names ? ": " + names : ""}`;
+  }
+  return `${b} — ${site || `${n} source record${n === 1 ? "" : "s"}`}`
+    + (site && n !== undefined && n !== k ? ` from ${n} source records` : "")
+    + (names ? `: ${names}` : "") + flag
+    + (fld ? ` · ${fld}` : "");
+}
+
+/// Under-map panel for the Resources shading. Three things, in this order,
+/// because that is the order a reader needs them: WHICH commodity, HOW STRONG
+/// each patch is, and WHO produced it with nothing located. The last is not a
+/// footnote — for oil it holds the world's number two producer.
+function resPanel() {
+  if (RESOURCES_STATE === "loading" || RESOURCES_STATE === "cold") {
+    return `<div class="legend"><span style="color:var(--faint)">loading the 1990 resource transcription…</span></div>`;
+  }
+  if (RESOURCES_STATE === "failed") {
+    return `<div class="legend"><span style="color:var(--faint)">no /resources.json on this server —
+      the shading has no data to draw. Nothing is inferred in its place.</span></div>`;
+  }
+  const com = ui.resCommodity;
+  const all = com === RES_ALL;
+  const meta = (RESOURCES.commodities || {})[com] || {};
+  const col = resHue(com);
+  const live = resCommodities();
+  // The filter. "All" first, then one chip per placed commodity — this is what
+  // lets a player isolate copper across the whole world, or drop the filter and
+  // see every located resource at once.
+  const chips = `<span class="chip${all ? " on amber" : ""}" data-com="${RES_ALL}"
+      title="every commodity the artifact places, in one wash">${
+        rglyph(RES_ALL, all ? "#0a0e14" : resHue(RES_ALL))}all</span>` +
+    live.map((k) => {
+      const c = RCOLOR[k] || "#9fb0bd";
+      const on = k === com;
+      return `<span class="chip${on ? " on amber" : ""}" data-com="${k}" title="${
+        (RESOURCES.commodities[k] || {}).label || k}">${rglyph(k, on ? "#0a0e14" : c)}${k.replace(/_/g, " ")}</span>`;
+    }).join("");
+  const unl = resUnlocatedNations(com);
+  // Units come from the artifact, abbreviated only for width. The number is
+  // the transcribed national figure and is shown so the size of the hole is
+  // legible: "USA 7,355 kb/d" is the point of the line.
+  const U = { "thousand barrels per day": "kb/d", "billion cubic feet": "bcf",
+              "metric tons": "t", "1000 metric tons": "kt" };
+  const top = all
+    ? unl.slice(0, 4).map((r) => `${r.nation} (${r.coms.join(", ")})`).join(" · ")
+    : unl.slice(0, 4).map((r) =>
+        `${r.nation} ${Math.round(r.value).toLocaleString("en-GB")} ${U[r.units] || r.units}`).join(" · ");
+  // The magnitude line is the doctrine, stated where a player will read it: a
+  // district here owns PRESENCE, and the tonnage lives on the nation and is
+  // never divided. Without this the four opacities read as four grades of ore.
+  const magnitude = all
+    ? `${(RESOURCES.meta || {}).districts_with_any_resource || 0} of ${
+        (RESOURCES.meta || {}).districts_total || 0} districts hold anything at all`
+    : meta.magnitude_source
+      // The count that means something is the one above zero. EIA carries a
+      // coal series for 136 nations and 59 of them mined any, so "136 nations"
+      // over a coal map is the wrong number in the reader's eye. The artifact
+      // publishes both; this takes the producing one where it exists.
+      ? `1990 national production: ${meta.nations_producing_above_zero !== undefined
+          ? meta.nations_producing_above_zero : meta.nations_with_1990_production
+        } nations (never divided among districts)`
+      : `no 1990 production figure exists for this commodity — locations only`;
+  // Band captions differ between the two evidence types the artifact carries,
+  // and saying "6+ records" over a petroleum wash would be a lie: oil and gas
+  // are banded on the MEASURED SHARE of the district a province polygon covers,
+  // minerals on how many source records fall inside it. The all-view carries
+  // both at once, so it says so rather than picking one.
+  // Coal is banded on EITHER measurement and often on both at once — mines
+  // where a survey named mines, coal-field area where it drew an outline — so
+  // it says both rather than picking the one that happens to be commoner.
+  const cap = all
+    ? ["strongest band among the commodities here", "", "", "1 site or a &lt;2% province clip, hatched"]
+    : meta.location_source === "wep_prva"
+      ? ["strong — 50%+ of the district", "moderate — 15-50%", "sparse — 2-15%", "single — under 2%, hatched"]
+      : com === "coal"
+        ? ["strong — 6+ distinct mines, or a coal field over 50% of the district",
+           "moderate — 3-5 mines, or 15-50%", "sparse — 2 mines, or 2-15%",
+           "single — 1 mine, or under 2%, hatched"]
+        : ["strong — 6+ distinct sites", "moderate — 3-5", "sparse — 2", "single — 1 site, hatched"];
+  // Ruling 4's mark, counted off the artifact loaded now for the filter on
+  // screen, so the legend line is a description of the picture rather than a
+  // constant that can go stale against a re-run.
+  let centPart = 0, centWhole = 0;
+  for (const did in (RESOURCES.districts || {})) {
+    if (!DINDEX[did] || !resBandAt(did, com)) continue;
+    const cc = resCentroidAt(did, com);
+    if (cc === "whole") centWhole++; else if (cc === "part") centPart++;
+  }
+  const natOnly = resNationalOnly();
+  const offshore = resOffshoreOnly(com);
+  // The filter can point at a commodity this artifact does not place — the
+  // startup default is "oil", and a future artifact could stop placing it, or
+  // a nation card could isolate one that a re-run has since dropped. Silence
+  // there would read as "no oil anywhere", which is a claim; say it instead.
+  if (!all && !live.includes(com)) {
+    return `<div id="resChips">${chips}</div>
+      <div class="legend"><span style="color:var(--faint)">the loaded artifact places no
+        <b>${com.replace(/_/g, " ")}</b> in any district — this is an empty filter, not an empty world.
+        ${live.length ? `It places: ${live.join(", ")}.` : "It places nothing at all."}</span></div>`;
+  }
+  return `<div id="resChips">${chips}</div>
+    <div class="legend">
+      <span><i style="background:${col};opacity:.92"></i>${cap[0]}</span>
+      ${cap[1] ? `<span><i style="background:${col};opacity:.62"></i>${cap[1]}</span>` : ""}
+      ${cap[2] ? `<span><i style="background:${col};opacity:.34"></i>${cap[2]}</span>` : ""}
+      <span><i style="background:${col};opacity:.17;outline:1px dashed #8d99a8"></i>${cap[3]}</span>
+      ${centPart + centWhole ? `<span><i style="background:repeating-linear-gradient(45deg,#e0a94a 0 2px,transparent 2px 6px)"></i>FILING CENTROID${
+        centWhole ? ` — ${centWhole} located to an admin unit and no finer` : ""}${
+        centPart ? `${centWhole ? "," : " —"} ${centPart} partly` : ""}</span>` : ""}
+      ${unl.length ? `<span><i style="background:none;border:1px dashed #8d99a8"></i>UNLOCATED producer</span>` : ""}
+      <span style="color:var(--faint)">${all ? magnitude
+        : `${meta.districts_with_presence || 0} districts · ${magnitude}`}</span>
+      ${unl.length ? `<span style="color:var(--faint)">produced it, nothing located: ${top}${
+        unl.length > 4 ? ` and ${unl.length - 4} more` : ""}</span>` : ""}
+      ${offshore ? `<span style="color:var(--faint)">${offshore} patch${offshore === 1 ? "" : "es"}
+        rest only on a wholly offshore basin clipping a coastline — kept, banded weakest, and NOT
+        counted as located, which is why Norway is washed at Nordland and dashed UNLOCATED at once</span>` : ""}
+      ${natOnly.length ? `<span style="color:var(--faint)">not on this map at any zoom — ${
+        natOnly.join(", ")}: no source places ${natOnly.length === 1 ? "it" : "them"} to a district
+        anywhere on earth, so ${natOnly.length === 1 ? "it is" : "they are"} a national figure and
+        nothing else</span>` : ""}
+      ${com === "coal" ? `<span style="color:var(--faint)">coal is placed from FOUR sources dated
+        2001-2012 and none of them is a 1990 census: the Ruhr shows the nine collieries still open in
+        2006, not the twenty-odd working in 1990, and British coal shows the twenty pits left after the
+        strike closures. Where a patch rests on a named coal FIELD — the Donets Basin, the Appalachian
+        Region — the opacity is the share of the district that field covers, which is coal-bearing
+        GROUND and not a mine</span>` : ""}
+      ${centPart + centWhole ? `<span style="color:var(--faint)">the brass cross-hatch is a FILING
+        CENTROID: a coordinate where records were filed rather than a place a mine is — the centre of
+        France, the centroid of Queensland. Those records are transcribed as published and never moved;
+        the band counts the point ONCE, and hovering names the unit it is the centre of</span>` : ""}
+      <span id="resBudget" style="color:var(--faint)">${resBudgetLine()}</span>
+      <span style="color:var(--faint)">opacity is ${
+        com === "coal" ? "how many DISTINCT MINES say so, or how much of the district a named coal field covers"
+        : meta.location_source === "wep_prva" ? "how much of the district a province polygon covers"
+        : "how many DISTINCT SITES say so"}, NEVER how much is there</span>
+    </div>
+    ${resLimitsBlock(com)}`;
+}
+
+/* ---- what the layer cannot say ------------------------------------------
+
+   The legend above states the reading rules. This states the LIMITS, and it
+   exists because two of them are invisible on the map and would otherwise be
+   learned by being wrong:
+
+     * DISTRICT COUNT IS SURVEY EFFORT. 87.5% of MRDS is the United States, so
+       the copper wash paints Arizona and Nevada solid and Katanga thin, and a
+       player reading district count as wealth would rank Chile's Antofagasta
+       over the Copperbelt. The nation table below is that skew, measured off
+       the artifact currently loaded rather than asserted.
+     * A `strong` BAND CAN REST ON ONE COORDINATE. Six French bauxite mines of
+       the Var are all filed at the centre of France, so a district can band
+       strong on six records that are one point. `n` counts CITATIONS.
+
+   Every paragraph is the artifact's own text, printed verbatim through
+   escText: it is prose from a data file a modder can edit, so it is data here
+   too, never markup — and if the generator changes its mind about a limit,
+   this panel changes with it instead of going quietly stale.                  */
+
+let RESLIM = null, RESLIM_KEY = "";
+function resLimits(com) {
+  const key = com + "|" + ((S && S.nations.length) || 0);
+  if (RESLIM && RESLIM_KEY === key) return RESLIM;          // once per filter, not once per tick
+  const m = (RESOURCES || {}).meta || {};
+  const gaps = m.known_gaps || {};
+  // Ruling 4's four paragraphs, printed verbatim like every other limit here.
+  // An artifact predating the ruling has no block and prints nothing rather
+  // than a stub — par() already drops a missing string.
+  const r4 = m.confidence_ruling_4 || {};
+  const par = (t) => (t ? `<p>${escText(t)}</p>` : "");
+  // The skew, measured: districts per nation for the current filter. Counting
+  // DISTRICTS, exactly as the map draws them, so the table is a description of
+  // the picture on screen rather than a separate statistic about it.
+  //
+  // Attribution runs over the LIVING roster, not over TERRITORY's keys. Those
+  // keys include nations that do not coexist — USSR and Russia both claim the
+  // RUS codes, Yugoslavia and each of its successors both claim theirs — so
+  // summing them counted the same district several times and reported 924
+  // districts for oil against the artifact's 798. The living roster is a
+  // partition; the total is counted over distinct district ids either way, and
+  // whatever falls outside the roster is stated rather than folded in.
+  const has = (did) => (com === RES_ALL ? resComsAt(did).length > 0 : !!resBandAt(did, com));
+  const seen = new Set();
+  const per = {};
+  for (const n of (S && S.nations) || []) {
+    let c = 0;
+    for (const iso of TERRITORY[n.id] || []) {
+      for (const d of DISTRICTS.byCountry[iso] || []) {
+        if (!has(d.id) || seen.has(d.id)) continue;
+        seen.add(d.id); c++;
+      }
+    }
+    if (c) per[n.id] = c;
+  }
+  let total = 0;
+  for (const did in ((RESOURCES || {}).districts || {})) if (DINDEX[did] && has(did)) total++;
+  const rows = Object.entries(per).sort((a, b) => b[1] - a[1]);
+  const inRoster = rows.reduce((a, r) => a + r[1], 0);
+  const top = rows.slice(0, 6).map(([k, v]) =>
+    `${k} ${v} (${Math.round(v / Math.max(total, 1) * 100)}%)`).join(" · ");
+  RESLIM_KEY = key;
+  // Only the BODY is cached. The open/closed state is stamped fresh every
+  // render from ui.resLimitsOpen, because renderMap runs once per game tick and
+  // a <details> rebuilt from a cached string would snap shut under the reader
+  // every time the month advanced.
+  return (RESLIM = `<div class="body">
+      ${par(m.do_not)}
+      <p><b>Measured on the artifact loaded now, for this filter:</b> ${total} districts hold it.
+        ${inRoster} of them are inside the ${rows.length} nations on the 1990 roster${
+          total > inRoster ? `, and ${total - inRoster} sit in territory no nation on the roster claims` : ""}.
+        Most districts: ${escText(top)}. Read that as where the surveying happened, not where
+        the ore is.</p>
+      ${par(m.doctrine)}
+      ${par(m.confidence)}
+      ${par(r4.the_defect)}
+      ${par(r4.the_correction)}
+      ${par(r4.the_flag)}
+      ${par(r4.what_the_flag_cannot_see)}
+      ${par(gaps.mrds_administrative_centroids)}
+      ${com === "oil" || com === "gas" || com === RES_ALL ? par(m.apportionment) : ""}
+      ${com === "oil" || com === "gas" || com === RES_ALL ? par(gaps.offshore_petroleum) : ""}
+      ${par(gaps.wheat_and_rice)}
+      ${com === "coal" || com === RES_ALL ? par(gaps.coal_vintage) : ""}
+      ${com === "coal" || com === RES_ALL ? par(gaps.coal_national_rollups) : ""}
+      ${com === "coal" || com === RES_ALL ? par(gaps.coal_fields_are_not_mines) : ""}
+      ${com === "coal" || com === RES_ALL ? par(gaps.coal_has_no_district_magnitude) : ""}
+      ${par(gaps.no_magnitude_commodities)}
+      ${par((m.placement || {}).rule)}
+    </div>`);
+}
+
+/// The wrapper, rebuilt every render so the disclosure keeps its state.
+function resLimitsBlock(com) {
+  return `<details class="reslimits" id="resLimits"${ui.resLimitsOpen ? " open" : ""}
+    ><summary>what this layer cannot say</summary>${resLimits(com)}</details>`;
+}
+
+/// The mark layer's budget, stated rather than hidden. RESGLY_HIDDEN is what
+/// the viewport held and the budget could not draw. The sentence that makes a
+/// cap safe is the second half of it: the wash underneath omits nothing, so
+/// what the budget drops is only the naming of a commodity, never the fact
+/// that the district has one. Written into the panel by resPanel() and
+/// rewritten by renderMap once the marks for THIS frame have been counted.
+function resBudgetLine() {
+  if (ui.cam.k < ZB1) {
+    return `commodity marks appear from ${ZB1}× in — below that the wash is the layer, and it omits nothing`;
+  }
+  return RESGLY_HIDDEN
+    ? `${RESGLY_SHOWN} district marks drawn (${RESGLY_SPENT}/${RES_GLYPH_BUDGET} elements) · ${
+        RESGLY_HIDDEN} more districts in view are over that budget — zoom in, or read the wash, which omits nothing`
+    : `${RESGLY_SHOWN} district marks drawn (${RESGLY_SPENT}/${RES_GLYPH_BUDGET} elements) — one per district, never one per record`;
+}
+
+/// The overlay's under-map block: the same filter and the same legend, but
+/// introduced as a layer sitting on someone else's map, and preceded by the
+/// host mode's own legend so the two readings stay told apart.
+function resOverlayPanel(modeLegend) {
+  return `<div class="legend">${modeLegend}
+      <span>☢ nuclear</span><span>⊘ sanctioned</span>
+      <span style="color:var(--faint)">resource overlay is ON (O) — the stipple below reads on top of this shading</span>
+    </div>` + resPanel();
+}
+
 /// The ONLY per-tick district work, and usually zero paths. A district is
 /// painted separately only when its sim owner (the /api/state "districts"
 /// delta against the 1990 default) disagrees with the nation whose country
@@ -6223,7 +7206,14 @@ let hoverNation = null, detailTimer = 0;
 
 function onMapHover(e) {
   const g = e.target.closest(".nodeg");
-  const id = g ? g.dataset.id : (e.target.closest("#dhit") ? hoverNation : null);
+  // A commodity mark is above the nation groups and takes pointer events, so
+  // without this the pointer crossing one would read as leaving every nation
+  // and drop the district labels under the cursor. It resolves to the nation
+  // governing its own district instead — the same answer clicking it gives.
+  const ch = !g && e.target.closest(".rchip");
+  const id = g ? g.dataset.id
+    : ch ? (nationOfDistrict(ch.dataset.did) || hoverNation)
+    : (e.target.closest("#dhit") ? hoverNation : null);
   if (id === hoverNation) return;
   hoverNation = id;
   refreshDistrictDetail();
@@ -6231,7 +7221,20 @@ function onMapHover(e) {
 
 function scheduleDistrictDetail() {              // debounce zoom-band churn
   clearTimeout(detailTimer);
-  detailTimer = setTimeout(refreshDistrictDetail, 120);
+  detailTimer = setTimeout(camWork, 120);
+}
+
+/// Everything a camera move owes the DOM but a viewBox rewrite cannot give:
+/// the hovered nation's district labels and hit targets, and the resource mark
+/// layer, which is viewport-culled and so has to be rebuilt when the viewport
+/// changes. Both are debounced together — a dive is one rebuild, not one per
+/// frame — and both are no-ops when nothing that matters to them moved.
+/// refreshDistrictDetail() returns early below ZB2, which is precisely the band
+/// where marks are live, so this cannot be folded into it.
+function camWork() {
+  refreshDistrictDetail();
+  refreshResGlyphs();
+  if ($("#resBudget")) $("#resBudget").textContent = resBudgetLine();
 }
 
 /// Natural Earth names are transcribed data, not markup.
@@ -6264,7 +7267,14 @@ function refreshDistrictDetail() {
       const tt = tr ? (tr.t !== "lowland" ? " · " + tr.t : "") + (tr.f ? " · " + escText(tr.f) : "") : "";
       const g2 = tr && TGLYPH[tr.t] ? " " + TGLYPH[tr.t] : "";
       const f = FRONT_AT[d.id];
-      h += `<path d="${d.path}" data-did="${d.id}"><title>${nm}${tt}${f ? " — " + frontWord(f) : ""}</title></path>`;
+      // In Resources mode the same title carries the EVIDENCE — which records,
+      // or which province and how much of this district it covers. A graded
+      // fill tells you a patch is weak; only this tells you why, and a map that
+      // grades its confidence but hides its sources is asking to be trusted
+      // rather than checked.
+      const rt = (ui.mapMode === "resources" || ui.resOverlay)
+        ? " — " + resEvidence(d.id) : "";
+      h += `<path d="${d.path}" data-did="${d.id}"><title>${nm}${tt}${rt}${f ? " — " + frontWord(f) : ""}</title></path>`;
       t += `<text class="dlabel" x="${d.cx}" y="${d.cy}" text-anchor="middle" font-size="${
         fs.toFixed(2)}" stroke-width="${(fs * 0.2).toFixed(2)}">${nm}${g2}</text>`;
     }
@@ -6315,12 +7325,26 @@ function refreshDistrictDetail() {
     down = { x: e.clientX, y: e.clientY };
     applyCam();
   });
-  pane.addEventListener("pointerup", () => { down = null; });
-  pane.addEventListener("pointercancel", () => { down = null; });
+  // A pan changes the viewport, and the resource marks are viewport-culled, so
+  // the end of a drag owes them a rebuild the way the end of a zoom does. It
+  // rides the same debounce; a drag that moved nothing costs one keyed no-op.
+  pane.addEventListener("pointerup", () => { down = null; if (moved) scheduleDistrictDetail(); });
+  pane.addEventListener("pointercancel", () => { down = null; if (moved) scheduleDistrictDetail(); });
   pane.addEventListener("click", (e) => {
     if (moved || e.detail > 1) return;          // a pan is not a pick; nor half a dblclick
     const g = e.target.closest(".nodeg");
     if (g) { openNation(g.dataset.id); return; }
+    // A commodity mark sits above the nation groups and takes its own pointer
+    // events (it carries an evidence tooltip), so it would otherwise swallow
+    // the click that opens a dossier. It resolves the same way a district does:
+    // to whoever governs the ground under it — the sim's per-district owner if
+    // it has one, else the nation holding the country.
+    const ch = e.target.closest(".rchip");
+    if (ch) {
+      const nid = nationOfDistrict(ch.dataset.did);
+      if (nid) openNation(nid);
+      return;
+    }
     // A district is not a thing you open — the click falls through to the
     // nation that governs the ground under the cursor.
     if (e.target.closest("#dhit") && hoverNation) openNation(hoverNation);
@@ -6364,6 +7388,28 @@ function renderMap() {
       <pattern id="contestHatch" patternUnits="userSpaceOnUse" width="3" height="3"
                patternTransform="rotate(45)">
         <rect width="1.4" height="3" fill="#05070a" opacity=".38"/>
+      </pattern>
+      <pattern id="confHatch" patternUnits="userSpaceOnUse" width="2.4" height="2.4"
+               patternTransform="rotate(-45)">
+        <rect width="0.8" height="2.4" fill="#e8edf4" opacity=".22"/>
+      </pattern>
+      <!-- The filing-centroid rule, drawn. Rotated the opposite way from
+           confHatch and coarser, so the two are told apart at a glance and
+           cross legibly where a patch carries both marks. -->
+      <pattern id="centHatch" patternUnits="userSpaceOnUse" width="3.2" height="3.2"
+               patternTransform="rotate(45)">
+        <rect width="0.9" height="3.2" fill="#e0a94a" opacity=".38"/>
+      </pattern>
+      <!-- The overlay's wash. An SVG pattern cannot inherit the referencing
+           element's fill, so the commodity's hue is stamped into the def here,
+           per render — which is exactly when a filter change lands, since every
+           chip click goes through renderMap. Roughly a third of each cell is
+           inked, so two thirds of every patch still shows the politics under
+           it: that ratio IS the design, and it is why the overlay can be left
+           on while reading a war. -->
+      <pattern id="resStipple" patternUnits="userSpaceOnUse" width="3.4" height="3.4"
+               patternTransform="rotate(45)">
+        <rect width="1.2" height="3.4" fill="${resHue(ui.resCommodity)}"/>
       </pattern>
     </defs>`;
   // The ocean is the projection's own envelope, not a rectangle. Fill and
@@ -6420,6 +7466,16 @@ function renderMap() {
   // mounts here, UNDER the district mesh and the relief so the hillshade
   // above does the modelling and the mesh stays readable over it.
   if (ui.mapMode === "terrain") s += `<g id="tmount"></g>`;
+
+  // 2b¼. resource fills, mounted on the same principle as the terrain classes:
+  // ABOVE the political fills the block before just wrote, and under the
+  // district mesh and the relief, so the political mesh stays readable over a
+  // layer that is deliberately faint at its weakest band. One mount point
+  // serves both readings — the dedicated mode, where the powers have already
+  // receded to scenery and the wash is solid, and the overlay, where the powers
+  // keep their colours and the wash is a stipple laid over them. Same place in
+  // the stack, different presentation; resnode() takes the flag.
+  if (ui.mapMode === "resources" || ui.resOverlay) s += `<g id="resmount"></g>`;
 
   // 2b½. districts: the interior-border mesh mounts here (the retained DNODE
   // is adopted after the innerHTML lands), and any district whose sim owner
@@ -6486,12 +7542,20 @@ function renderMap() {
   // District hover targets and labels, populated for one nation at a time by
   // refreshDistrictDetail — the world never carries per-district DOM.
   s += `<g id="dhit"></g><g id="dlabels" pointer-events="none"></g>`;
+  // The commodity marks go last so nothing paints over them: over relief, over
+  // rivers, over the front seam. They are the layer that answers "which", and a
+  // hillshade multiplying a 11px glyph would take it out. Budgeted and
+  // viewport-culled by refreshResGlyphs(); empty below ZB1 by design.
+  if (ui.mapMode === "resources" || ui.resOverlay) s += `<g id="resglyphs"></g>`;
   s += `</svg>`;
 
-  s += `<div class="legend">
-      ${mode.legend.map(([c, l]) => `<span><i style="background:${c}"></i>${l}</span>`).join("")}
+  const modeLegend = mode.legend.map(([c, l]) =>
+    `<span><i style="background:${c}"></i>${l}</span>`).join("");
+  s += ui.mapMode === "resources" ? resPanel()
+    : ui.resOverlay ? resOverlayPanel(modeLegend) : `<div class="legend">
+      ${modeLegend}
       <span>☢ nuclear</span><span>⊘ sanctioned</span>
-      <span style="color:var(--faint)">click a nation for its dossier · C to change shading · wheel zooms, drag pans, double-click resets</span>
+      <span style="color:var(--faint)">click a nation for its dossier · C to change shading · O for the resource overlay · wheel zooms, drag pans, double-click resets</span>
     </div>`;
 
   $("#pane-map").innerHTML = s;
@@ -6508,7 +7572,32 @@ function renderMap() {
   $("#rfmount").appendChild(RELIEF);
   $("#rmount").appendChild(RNODE);
   if (ui.mapMode === "terrain") $("#tmount").appendChild(tnode());
+  // Both readings of the resource layer take the same path: fetch once, mount
+  // the retained wash, wire the filter. `overlay` is the only thing that
+  // differs, and it only changes how the wash is painted. Every step guards on
+  // the load state, so a server that predates /resources.json renders the mode
+  // and the overlay with no fills and the reason written where the legend is.
+  if (ui.mapMode === "resources" || ui.resOverlay) {
+    if (RESOURCES_STATE === "cold") loadResources();
+    const overlay = ui.mapMode !== "resources";
+    if (RESOURCES_STATE === "ready" && $("#resmount")) {
+      $("#resmount").appendChild(resnode(overlay));
+    }
+    $("#resChips") && $("#resChips").querySelectorAll("[data-com]").forEach((c) => {
+      c.onclick = () => { ui.resCommodity = c.dataset.com; resInvalidate(); renderMap(); };
+    });
+    const lim = $("#resLimits");
+    if (lim) lim.ontoggle = () => { ui.resLimitsOpen = lim.open; };
+  }
   refreshDistrictDetail();
+  // The mark layer's cache key survives renders but its DOM does not, so the
+  // key is dropped here — otherwise a re-render at an unmoved camera would
+  // match the key against a group that was just replaced with an empty one.
+  RESGLY_KEY = "";
+  refreshResGlyphs();
+  // …and now that this frame's marks are counted, the budget line can state
+  // this frame's numbers rather than the previous one's.
+  if ($("#resBudget")) $("#resBudget").textContent = resBudgetLine();
 
   // The GL physical underlay, re-adopted on the same pattern — detaching a
   // canvas does not lose its WebGL context. It is appended AFTER </svg> and the
@@ -6519,11 +7608,25 @@ function renderMap() {
   if (GLRO) { try { GLRO.disconnect(); GLRO.observe($("#pane-map svg")); } catch (_) {} }
   if (GL.grid) $("#pane-map svg").appendChild(glGridNode());   // ?glgrid=1 only
 
+  // The shading chips, plus the overlay toggle. The overlay is NOT a shading —
+  // it rides on whichever one is selected — so it sits after a separator and
+  // carries a glyph rather than a word, and it goes inert inside the dedicated
+  // Resources mode, where the layer is already the whole map.
+  const inRes = ui.mapMode === "resources";
   $("#mapModes").innerHTML = `<span class="chips">` + Object.entries(MAP_MODES).map(([k, v]) =>
-    `<span class="chip${k === ui.mapMode ? " on amber" : ""}" data-mode="${k}">${v.label}</span>`).join("") + `</span>`;
+    `<span class="chip${k === ui.mapMode ? " on amber" : ""}" data-mode="${k}">${v.label}</span>`).join("")
+    + `<span class="chip ovl${!inRes && ui.resOverlay ? " on amber" : ""}"${inRes ? "" : ` data-resovl="1"`}
+        style="${inRes ? "opacity:.45;cursor:default" : ""}"
+        title="${inRes ? "the Resources shading already IS this layer"
+          : "lay the resource layer over this shading (O) — one commodity, or all of them"}"
+        >${rglyph(ui.resCommodity,
+          !inRes && ui.resOverlay ? "#0a0e14" : resHue(ui.resCommodity))}resources</span>`
+    + `</span>`;
   $("#mapModes").querySelectorAll("[data-mode]").forEach((c) => {
     c.onclick = () => { ui.mapMode = c.dataset.mode; renderMap(); };
   });
+  const ovlChip = $("#mapModes [data-resovl]");
+  if (ovlChip) ovlChip.onclick = toggleResOverlay;
 
   // Last, and SYNCHRONOUS for the same reason applyCam() is: a deferred draw
   // here flashes one groundless frame per tick. It is a no-op when the GL layer
@@ -6541,6 +7644,7 @@ function mapSub(n) {
     case "stability": return n.stability.toFixed(0) + "/100";
     case "growth": return fmt.signed(n.growth);
     case "terrain": return "";   // a GDP subline would contradict a geography read
+    case "resources": return ""; // same: the subject is the ground, not the economy
     case "political": return n.authoritarianism > 0.6 ? "authoritarian"
       : n.authoritarianism < 0.35 ? "democratic" : "semi-free";
     default: return fmt.money(n.gdp);
@@ -6958,6 +8062,17 @@ function openNation(id, keepScroll) {
       <div id="provenance" class="tiny muted">Reading the file…</div>
     </div>
 
+    <div class="card">
+      <h3>What is under its ground</h3>
+      <div class="tiny muted" style="margin-bottom:8px">
+        Its districts, as the 1990 transcription places them — presence and how
+        well sourced, never how much. Tonnage in this file is national and is
+        never divided among districts, so nothing here is a per-district
+        quantity. Click a commodity to isolate it on the map.
+      </div>
+      <div id="resDash" class="tiny muted">Reading the transcription…</div>
+    </div>
+
     ${charts}
 
     <div class="cols2">
@@ -6992,10 +8107,183 @@ function openNation(id, keepScroll) {
     r.onclick = () => openNation(r.dataset.id);
   });
   loadProvenance(n.name);
+  fillResourceDash(n.id);
   // The selected nation's districts label up when the map is zoomed in.
   refreshDistrictDetail();
 }
 window.openNation = openNation;
+
+/* ---- the dossier's resource card ----------------------------------------
+
+   Everything the transcription says about ONE nation, in the order a player
+   needs it, and each line is a different kind of claim — kept apart on purpose:
+
+     LOCATED     districts of this nation that hold the commodity, split by
+                 confidence band, and how many of them stand on a FILING
+                 CENTROID. A count of DISTRICTS, never of records: `n` is a
+                 count of citations and meta.do_not forbids ranking on it. The
+                 band behind the split counts DISTINCT COORDINATES (ruling 4),
+                 so France's Centre-Val-de-Loire reads `single` on six records.
+     NATIONAL    the transcribed 1990 output, which belongs to the nation and
+                 is never apportioned. It sits beside the district count and is
+                 explicitly not derived from it.
+     UNLOCATED   produced it, nothing placed. The USA's 7,355 kb/d of oil is
+                 this line, and it is the largest hole in the file.
+     NOWHERE     wheat and rice: a national figure and no district-resolution
+                 source anywhere on earth. Coal was the third of them until
+                 2026-08-31 and Germany's 434m tonnes read here while the Ruhr
+                 was blank; four USGS coal datasets now place it, so the Ruhr
+                 reads LOCATED on nine named collieries and the line is shorter
+                 by one commodity.                                                 */
+
+/// Every district of this nation, as ids, in roster order.
+function districtsOfNation(nid) {
+  const out = [];
+  for (const iso of TERRITORY[nid] || []) {
+    for (const d of DISTRICTS.byCountry[iso] || []) out.push(d);
+  }
+  return out;
+}
+
+const RUNIT = { "thousand barrels per day": "kb/d", "billion cubic feet": "bcf",
+                "metric tons": "t", "1000 metric tons": "kt" };
+function rprod(row) {
+  return `${Math.round(row.value).toLocaleString("en-GB")} ${RUNIT[row.units] || row.units}`;
+}
+
+async function fillResourceDash(nid) {
+  const box = $("#resDash");
+  if (!box) return;
+  if (RESOURCES_STATE === "cold") { await loadResources(); }
+  if (!$("#resDash") || selected !== nid) return;         // dossier moved on while we waited
+  if (RESOURCES_STATE === "loading") return;              // the load will call us back
+  if (RESOURCES_STATE !== "ready") {
+    $("#resDash").textContent =
+      "No /resources.json on this server, so nothing can be said about this nation's ground. " +
+      "Nothing is inferred in its place.";
+    return;
+  }
+  const dists = districtsOfNation(nid);
+  const tally = {};                                        // commodity -> band -> district count
+  const offOnly = {};                                      // commodity -> districts resting only offshore
+  const centAny = {}, centAll = {};                        // commodity -> filing-centroid districts
+  const fieldOnly = {};                                    // commodity -> districts with no mine, only a coal field
+  for (const d of dists) {
+    for (const c of resComsAt(d.id)) {
+      const b = resBandAt(d.id, c);
+      if (!b) continue;
+      (tally[c] = tally[c] || {})[b] = (tally[c][b] || 0) + 1;
+      const e = RESOURCES.districts[d.id][c];
+      if (e.provinces && e.provinces.length &&
+          e.provinces.every((p) => p.offshore_or_outside_roster)) {
+        offOnly[c] = (offOnly[c] || 0) + 1;
+      }
+      // Ruling 4. Counted per district exactly as the map draws it, so the
+      // dossier line and the wash are the same statement in two media.
+      const cc = (e.confidence || {}).centroid_stacked
+        ? (e.confidence.unflagged_coordinates === 0 ? "whole" : "part") : null;
+      if (cc) {
+        centAny[c] = (centAny[c] || 0) + 1;
+        if (cc === "whole") centAll[c] = (centAll[c] || 0) + 1;
+      }
+      // Coal's second kind of evidence, kept apart from the first because they
+      // are different claims. A district on a coal FIELD and no mine has
+      // coal-bearing ground under it and no source saying anyone worked it; a
+      // row that did not distinguish the two would let the Appalachian Region
+      // polygon read as 208 collieries.
+      if (e.fields && e.fields.length && !(e.sites && e.sites.length)) {
+        fieldOnly[c] = (fieldOnly[c] || 0) + 1;
+      }
+    }
+  }
+  const coms = Object.keys(tally).sort();
+  const nat = (RESOURCES.national || {});
+  const U = (RESOURCES.unlocated_producers || {});
+  const unloc = Object.keys(U).filter((c) => (U[c] || []).some((r) => r.nation === nid)).sort();
+  const rowFor = (c) => {
+    const t = tally[c] || {};
+    const total = RBANDS.reduce((a, b) => a + (t[b] || 0), 0);
+    const split = RBANDS.filter((b) => t[b]).map((b) => `${t[b]} ${b}`).join(" · ");
+    const prod = (nat[c] || {})[nid];
+    // Norway's case, made to state itself. Every one of its oil districts rests
+    // on a wholly offshore basin grazing the coast, so the nation is ALSO in
+    // the unlocated list below — which without this line reads as the card
+    // contradicting itself two rows apart. The patch is real, the measurement
+    // is real, and it locates nothing; that is three facts, not a conflict.
+    const off = offOnly[c] || 0;
+    const offNote = off === total
+      ? ` · all of them a wholly offshore basin clipping the coast — kept as measured, NOT counted as located`
+      : off ? ` · ${off} of them an offshore basin clipping the coast` : "";
+    // The same caveat the map's brass cross-hatch carries, in the dossier where
+    // a player reads the number rather than looks at the patch. `whole` is the
+    // one that changes what the row means: those districts are located to an
+    // administrative unit and to nothing finer.
+    const cAny = centAny[c] || 0, cAll = centAll[c] || 0;
+    const centNote = !cAny ? ""
+      : cAll === total
+        ? ` · EVERY one stands only on a FILING CENTROID — located to an administrative unit, no finer`
+        : ` · ${cAny} on a FILING CENTROID${cAll ? `, ${cAll} of them on nothing else` : ""}`;
+    const fo = fieldOnly[c] || 0;
+    const fldNote = !fo ? ""
+      : fo === total
+        ? ` · EVERY one rests on a named coal FIELD and no mine — coal-bearing ground, not a worked pit`
+        : ` · ${fo} of them rest on a named coal FIELD and no mine`;
+    return `<div class="resrow" data-com="${c}" title="isolate ${
+        c.replace(/_/g, " ")} on the map">
+        <span class="nm"><span class="gy">${rglyph(c, RCOLOR[c] || "#9fb0bd")}</span>${
+          c.replace(/_/g, " ")}</span>
+        <span class="num">${total} district${total === 1 ? "" : "s"}</span>
+        <span class="ev" style="color:var(--faint)">${split}${offNote}${centNote}${fldNote}${
+          prod ? ` · 1990 output ${rprod(prod)} — NATIONAL, not divided among these districts` : ""}</span>
+      </div>`;
+  };
+  // Commodities this nation produced in 1990 with nothing placed in any of its
+  // districts. Split in two, because the two absences have different causes and
+  // a player owed an explanation is owed the right one.
+  const placeable = new Set(resCommodities());
+  const unlocPlaceable = unloc.filter((c) => placeable.has(c));
+  const unlocNowhere = unloc.filter((c) => !placeable.has(c));
+  const line = (c, why) => {
+    const row = (U[c] || []).find((r) => r.nation === nid);
+    return `<div style="margin:2px 0"><b>${c.replace(/_/g, " ")}</b> ${
+      row ? rprod(row) : ""} — ${why}</div>`;
+  };
+  let h = "";
+  if (!dists.length) {
+    h += `<div style="margin-bottom:8px">This nation holds no district in the roster, so nothing
+      can be placed inside it however much it produced.</div>`;
+  } else if (!coms.length) {
+    h += `<div style="margin-bottom:8px">None of its ${dists.length} districts carries a located
+      resource in this transcription.</div>`;
+  } else {
+    h += `<div style="margin-bottom:6px">${coms.length} commodit${coms.length === 1 ? "y" : "ies"}
+      located across ${dists.length} districts:</div>` + coms.map(rowFor).join("");
+  }
+  if (unlocPlaceable.length) {
+    h += `<div style="margin-top:10px"><b style="color:var(--dim)">Produced it, nothing located here</b>
+      <div class="tiny" style="color:var(--faint);margin:2px 0 4px">The source places this commodity
+      elsewhere on earth but not in this nation — an absence on the map, not a zero.</div>` +
+      unlocPlaceable.map((c) => line(c, ((U[c] || []).find((r) => r.nation === nid) || {}).reason ||
+        "no admitted record falls in a district of this nation.")).join("") + `</div>`;
+  }
+  if (unlocNowhere.length) {
+    h += `<div style="margin-top:10px"><b style="color:var(--dim)">On no map, for anyone</b>
+      <div class="tiny" style="color:var(--faint);margin:2px 0 4px">No source places these to a
+      district anywhere in the world, so every producer of them is national-only.</div>` +
+      unlocNowhere.map((c) => line(c, "no district-resolution source exists.")).join("") + `</div>`;
+  }
+  const el = $("#resDash");
+  el.innerHTML = h;
+  el.querySelectorAll("[data-com]").forEach((r) => {
+    r.onclick = () => {
+      ui.resCommodity = r.dataset.com;
+      resInvalidate();
+      if (ui.mapMode !== "resources") ui.resOverlay = true;
+      showTab("map");
+      renderMap();
+    };
+  });
+}
 
 /// The sources block from the nation's data file, fetched on open rather than
 /// carried in the world state — it is start-of-game documentation, it never

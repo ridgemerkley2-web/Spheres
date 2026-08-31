@@ -135,18 +135,128 @@ below total collapse, and run the census before and after.
 nation-centuries. Highest-variance work here, which is why it sits behind the
 instruments.
 
-## 7. Fix the two economy errors that produce visibly wrong numbers — **[L]**
+## 7. Fix the economy errors that produce visibly wrong numbers — **MOSTLY DONE 2026-08-31**
 
-Convert `oil_effect` from a permanent growth *rate* to a one-time level shift —
-the same error class BIBLE §8 records finding in trade pacts. Bound `demand_gap`
-symmetrically; add a growth ceiling mirroring `WORST_ANNUAL_COLLAPSE`; swap the
-four remaining flag-counting sanction sites to `sanction_weight`.
+### What this step guessed, and what the measurement actually found
 
-*Why, and this survived a direct challenge:* one proposal cut this on the grounds
-that the 21-seed sweep found zero anomalies. **The sweep cannot see this.** Its
-detectors are NaN, clamps, debt above 6x and output above 100x — none catch a
-petro-state compounding an extra 6pp/yr, which reaches ~10x over 40 years and
-passes clean. An oil shock is currently a net positive for world GDP.
+This step named `oil_effect` and `demand_gap` as "the two economy errors". That
+was a guess, and it was wrong about the big one. The defect that mattered was
+that **mature economies compounded 2 to 2.4 points above reality over 1990-2025**,
+and a decomposition run across six matures, ten seeds and 35 years located it.
+
+The tech tree was innocent, and this is measured rather than argued: by 2025
+every major holds all 167 technologies, the convergence gap is zero, adoption is
+0.00002, and integrated over 35 years the whole convergence channel is worth
+0.03-0.08 adoption-years to a major — one to two orders of magnitude too small
+to explain a two-point over-run.
+
+**The over-run was four terms, and the same error class BIBLE §8 records for
+trade pacts — a term paying a permanent RATE for a one-time LEVEL change:**
+
+| term | before (pp/yr) | after | what was wrong |
+|---|---|---|---|
+| `invest_effect` | 0.554–0.736 | 0.000–0.052 | a constant investment share paid as a permanent growth rate |
+| `labour` | 0.026–0.137 | −0.073–0.465 | demography was absent; now transcribed per nation from SP.POP.TOTL |
+| `demand_gap` | +0.019–+0.074 | −0.096–−0.034 | a +0.00108 fixed point, now algebraically zero |
+| off-equation (statecraft) | 0.80–1.42 | 0.41–0.58 | trade agreements paying a lifetime entitlement — USA 85% of output → 19.7% |
+
+**Result — 35-year CAGR, median of ten seeds, %/yr:**
+
+| nation | before | after | real | err before | err after |
+|---|---|---|---|---|---|
+| USA | 2.88 | 2.01 | 2.50 | +0.38 | −0.49 |
+| Japan | 2.49 | 1.38 | 0.83 | +1.66 | +0.55 |
+| Germany | 3.51 | 1.93 | 1.28 | +2.23 | +0.65 |
+| France | 3.35 | 1.98 | 1.50 | +1.85 | +0.48 |
+| UK | 3.33 | 1.94 | 1.93 | +1.40 | +0.01 |
+| Italy | 3.19 | 1.81 | 0.76 | +2.43 | +1.05 |
+
+Max error 2.43 → 1.05. Spearman rho against reality 0.086 → 0.886. The USA is
+now strictly the fastest mature economy, which it was not before. Convergence is
+preserved: China still runs 17.3x over 35 years against a mature best of ~2.0x,
+and `china_growth_miracle` is green at 11.92x median (band 11.0–19.0, untouched).
+
+**WHERE THE PANEL ACTUALLY STANDS — re-measured 2026-08-31 on freshly built
+binaries, after the adoption rebase, step 7 and the transition collapse.** This
+supersedes every intermediate figure above:
+
+| nation | model | real | error | p10–p90 (40 seeds) |
+|---|---|---|---|---|
+| USA | 2.02 | 2.50 | −0.48 | 1.90–2.07 |
+| Japan | 1.35 | 0.83 | +0.52 | 1.19–1.41 |
+| Germany | 1.82 | 1.28 | +0.54 | 1.68–1.87 |
+| France | 1.91 | 1.50 | +0.41 | 1.65–2.00 |
+| UK | 1.89 | 1.93 | −0.04 | 1.75–2.02 |
+| Italy | 1.62 | 0.76 | +0.86 | 1.28–1.69 |
+
+**Spearman rho 0.886 at ten seeds and 0.886 at forty. All four ordering clauses
+hold: USA strictly fastest, Japan below USA/UK/FR/DE, Italy below USA/UK/FR/DE,
+Germany < UK.** Max |error| 0.86, down from 1.05.
+
+**The 0.943 that appeared in one intermediate report was a ten-seed coin flip,
+and this is now measured rather than asserted.** The full pairwise
+P(a faster than b) matrix at forty seeds is 0.00 or 1.00 for every pair on the
+panel except two: France/UK sits at 0.55/0.45 and France/Germany at 0.88/0.12.
+The model genuinely does not order France against the UK, and rho reads 0.886
+when France lands above and 0.943 when it lands below. Reality has the UK above
+France, so **closing that pair is worth +0.057 of rho and is a real open item**,
+not a measurement artefact to be re-rolled until it reads well.
+
+BIBLE §8's fidelity contract — "a major economy's 35-year trajectory should land
+within a stated band of reality" — is met for five of six at ±0.75pp.
+
+### Still open under this step
+
+- **Italy, +1.05pp.** The single A1 non-conformance. Cause is named, not fudged:
+  the model gives every frontier economy `FRONTIER_TFP` = 1.1% while reality's
+  frontier per-capita growth spans 0.65–1.58%. Not to be closed with a
+  coefficient.
+- **Shape.** No mature economy spends a decade below a previous peak — longest
+  drawdown on the panel is 1.3 years, and Italy's 2000s are its *fastest* decade.
+  Real Italy did not regain its 2007 peak for ~14 years. Same missing mechanism
+  as the Italy gap.
+- **China is 0.8pt short**, 8.48%/yr against ~9.3% real. Previously masked by
+  the two over-paying terms. Real residual, named, not closed with a coefficient.
+- **Three of the four original items are DONE (2026-08-31); one is ruled on and
+  one is refused.** `demand_gap` is now symmetrically bounded by
+  `MAX_DEMAND_GAP = 0.35`, read off the bust side's own pre-existing bound of
+  −0.344 so it cannot bind where anything was binding before (it binds in 0.116%
+  of nation-months). All four flag-counting sanction sites now weigh output
+  instead, on the `c/0.30` carry-across the shipped growth drag already used;
+  two clamps came out as provably dead. **The growth ceiling was RULED AGAINST
+  on the merits** — there is no singularity above (`1 + g/12` is positive for
+  every `g > −12`, so a ceiling proves nothing the floor proves), every positive
+  term is already bounded after the `demand_gap` fix, and a ceiling would hide
+  the +500%/yr producer arm from every instrument while leaving it in the
+  arithmetic. **Producer `oil_effect` is diagnosed, patched, measured and
+  deliberately NOT shipped**: the honest level conversion is arithmetically
+  correct but takes `china_growth_miracle` red at 10.86x and Spearman rho to
+  0.771, because the rate was masking two residuals — China's known ~0.8pt
+  shortfall, and the fact that `oil_market` **has no boom in it** (observed
+  35-year range $18.4–$38.7 against a real $10–$140). A market that cannot boom
+  cannot pay a real windfall LEVEL, so the market is the prior fix. The patch is
+  fully specified in `economy.rs:369-434`.
+- **The transition collapse now exists.** Before it, not one post-communist
+  economy contracted at all — Russia compounded +6.11%/yr through the 1990s
+  against a real −4.3. Two mechanisms landed: `money_works` gates the demand
+  term's OUTPUT arm while leaving its PRICE arm at full strength (one variable
+  was doing two jobs whose signs diverge under monetary financing — that is what
+  stagflation is), and dissolution successors now inherit `capital_level_paid`
+  from their parent instead of being handed `None`, which was forgiving the
+  whole difference between the union's 22%-of-output investment programme and a
+  republic's 4%. Russia now falls 1995→1998, troughs in 1998 and recovers on
+  oil. **The depth is about a fifth of reality's and that is stated, not dressed
+  up** (2025 index 286 against a real 112). What still pays the bloc is measured
+  and recorded as BUGS.md C-1 a/b/c.
+- **THE HASH RE-PIN IS STILL BLOCKED, and 2026-08-31's audit pass adjudicated it
+  formally — see BUGS.md T-5.** Half the precondition is met and was verified by
+  byte-comparing every test body against `git HEAD` rather than by grep: **zero
+  tests deleted, zero bars moved, zero tolerances widened**, with
+  `china_growth_miracle`, `mature_economies_do_not_run_hot` and both goldens
+  byte-identical to HEAD. The other half is not: `gulf_war_emerges` is red at
+  18/40 and the two conquest tests are red on their non-vacuity guards. T-1 and
+  T-2 are now CLEARED. **Nothing was re-pinned.** Both goldens keep the HEAD
+  constants.
 
 ## 8. Give the player something to want and something to pick — **[M]**
 

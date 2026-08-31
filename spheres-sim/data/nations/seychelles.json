@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 0.369,
     "population_m": 0.07,
+    "pop_growth_1990": 0.013389,
     "tfp_trend": 0.005,
     "inflation": 0.039,
     "interest_rate": 0.157,
@@ -34,6 +35,20 @@
     "System Command: a one-party socialist state. The Seychelles People's Progressive Front was the sole legal party under the 1979 constitution, the Seychelles Marketing Board monopolised imports and food distribution, the plantations and several hotels had been nationalised, and the country's alignment ran to Moscow, Havana and Dar es Salaam. Entered the same way tanzania.json and angola.json are entered. The counter-argument - that the hotels were foreign-managed and tourism was a market - is real, and it is why the authoritarianism figure is 0.74 rather than the 0.88 Zaire carries.",
     "Authoritarianism 0.74 and stability 55: Rene had governed since taking power from James Mancham on 5 June 1977 while Mancham was at the Commonwealth conference in London. Elections were held - Rene ran unopposed in 1979, 1984 and 1989 - and the SPPF's monopoly held until Rene announced a return to multiparty politics on 4 December 1991, two years past the game's start and not scheduled anywhere here. Stability 55 is set below Mauritius's 76 and above the Comoros' 30: a regime with a genuine popular base built on free schooling and a welfare state that the tourist rents paid for, which had also survived a mercenary invasion and a mutiny inside twelve months.",
     "Separatism 0.0: the roster's floor, and it is correct. The population is one Creole people across three inhabited granitic islands within sight of each other; the outer coralline islands are almost uninhabited. There is nothing here to secede.",
-    "Military strength 0.4: the Seychelles People's Defence Forces, about 1,300 regulars including a Tanzanian-trained infantry battalion, plus a People's Militia, with Soviet-supplied light armour and two patrol boats. Set above Mauritius's 0.2, which has no army at all, and below Bahrain's 0.6. Small, but unlike its neighbour's it is an army, and it was the point of the state."
-  ]
+    "Military strength 0.4: the Seychelles People's Defence Forces, about 1,300 regulars including a Tanzanian-trained infantry battalion, plus a People's Militia, with Soviet-supplied light armour and two patrol boats. Set above Mauritius's 0.2, which has no army at all, and below Bahrain's 0.6. Small, but unlike its neighbour's it is an army, and it was the point of the state.",
+    "pop_growth_1990 = 1.3389%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SYC (Seychelles): 64,717 in 1984 to 69,167 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: SYC.",
+      "WUENIC DTP3 1990 = 99% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: SYC, 1990 = 99%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

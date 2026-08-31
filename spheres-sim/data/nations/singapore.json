@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 36.1,
     "population_m": 3.05,
+    "pop_growth_1990": 0.014138,
     "tfp_trend": 0.028,
     "inflation": 0.035,
     "interest_rate": 0.074,
@@ -34,6 +35,21 @@
     "Military index 5: about 55,000 active and 250,000 reservists on a total-defence model, the best-equipped force in the region per head and one with no depth to trade for time.",
     "Gross capital formation 35.7% of GDP (World Bank, 1990), entered as 11 state and 25 private.",
     "Series check, August 2026, read from the World Bank API: NY.GDP.MKTP.CD 1990 = 36,144,336,769; SP.POP.TOTL = 3,047,132; FP.CPI.TOTL.ZG = 3.461; FR.INR.LEND = 7.363; MS.MIL.XPND.GD.ZS = 4.632; NE.GDI.TOTL.ZS = 35.653. All match. Government debt near 75% of GDP is not on those series and is not verified here - see the caveat above about what that number does and does not mean.",
-    "What this file exposes about the model, in the style of the note cambodia.json carries. A thirty-year run finishes Singapore at about $130bn against a real 2020 figure near $345bn - a 3.6x nominal multiple where the country did 9.5x. It is the opposite failure to Cambodia's and it has the same cause: growth in this model is convergence toward a frontier, and Singapore's problem is that it started the period already at the frontier in income per head and then went on outgrowing the countries it was supposed to be converging to. Nothing in this file is wrong; the model has no term for a small open economy that grows by taking a larger share of world trade rather than by catching up. Flagged for the calibration sweep rather than fixed here."
-  ]
+    "What this file exposes about the model, in the style of the note cambodia.json carries. A thirty-year run finishes Singapore at about $130bn against a real 2020 figure near $345bn - a 3.6x nominal multiple where the country did 9.5x. It is the opposite failure to Cambodia's and it has the same cause: growth in this model is convergence toward a frontier, and Singapore's problem is that it started the period already at the frontier in income per head and then went on outgrowing the countries it was supposed to be converging to. Nothing in this file is wrong; the model has no term for a small open economy that grows by taking a larger share of world trade rather than by catching up. Flagged for the calibration sweep rather than fixed here.",
+    "pop_growth_1990 = 1.4138%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SGP (Singapore): 2,732,221 in 1984 to 2,930,901 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: SGP.",
+      "WUENIC DTP3 1990 = 85% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 26295 against a threshold of any positive count: comm_cellular_analogue GRANTED.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "comm_cellular_analogue", "source": "World Bank WDI IT.CEL.SETS 'Mobile cellular subscriptions', retrieved from the World Bank indicator API (api.worldbank.org/v2), source id 2, lastupdated 2026-07-13. Series values: SGP, 1989 = 26295 subscriptions and 1990 = 51728 subscriptions. The series is a YEAR-END STOCK, so the 1989 figure describes 31 December 1989, i.e. the game's start instant of 1 January 1990: a network was carrying paying subscribers before the start date. All cellular in service at that date was analogue (NMT, AMPS, TACS, C-Netz, RTMS); GSM had no commercial service anywhere until mid-1991." },
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: SGP, 1990 = 85%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

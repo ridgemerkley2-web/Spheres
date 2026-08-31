@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 3.6,
     "population_m": 19.5,
+    "pop_growth_1990": 0.022093,
     "tfp_trend": 0.006,
     "inflation": 0.082,
     "interest_rate": 0.11,
@@ -31,6 +32,19 @@
     "Debt 45% of GDP: World Bank DT.DOD.DECT.GN.ZS, series NPL, 1990 = 44.69% external debt stocks as a share of GNI. Same stated substitution as the other South Asian entries — the schema field means gross public debt and external debt is what is available. For Nepal the substitution is unusually safe, since essentially all of it was concessional multilateral credit.",
     "Oil 0.0 mbd: Nepal produces no hydrocarbons at all and imports every litre of fuel it burns, overland, through India. That dependency is not a footnote here — it is the mechanism by which the 1989-90 blockade worked.",
     "Stability 46 and authoritarianism 0.70: THIS ENTRY IS THREE WEEKS BEFORE A REVOLUTION AND IS DELIBERATELY NOT WRITTEN AS THOUGH IT ALREADY HAPPENED. In January 1990 Nepal was still the partyless Panchayat system: political parties had been banned since King Mahendra's coup of 15 December 1960, the referendum of 2 May 1980 had confirmed the Panchayat over a party system, and King Birendra ruled. The Jana Andolan launched on 18 February 1990, the ban was lifted on 8 April, and a constitutional monarchy followed in November. Authoritarianism 0.70 therefore sits above Yugoslavia's 0.65 and below Egypt's 0.75 — a genuine absolute monarchy, but one that killed in the dozens rather than the thousands and conceded within seven weeks. Stability 46 is set above Yugoslavia's 44 and Sri Lanka's 42: the Panchayat regime was about to fall, but nobody was contesting the existence or the borders of the Nepalese state, and the institution that mattered most, the monarchy, survived the year.",
-    "Separatism 0.02: essentially none in 1990, and this is the lowest figure in this roster alongside Brazil's and Vietnam's. Nepal is ethnically and linguistically plural, but no organised movement sought to leave it at this date. The Madhesi question and the Maoist insurgency that began in 1996 are both later, and writing either into a January 1990 start would be scripting rather than transcribing. Set below France's 0.03."
-  ]
+    "Separatism 0.02: essentially none in 1990, and this is the lowest figure in this roster alongside Brazil's and Vietnam's. Nepal is ethnically and linguistically plural, but no organised movement sought to leave it at this date. The Madhesi question and the Maoist insurgency that began in 1996 are both later, and writing either into a January 1990 start would be scripting rather than transcribing. Set below France's 0.03.",
+    "pop_growth_1990 = 2.2093%/yr. Compound annual growth of World Bank SP.POP.TOTL, series NPL (Nepal): 17,085,242 in 1984 to 19,057,807 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: NPL.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 43% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

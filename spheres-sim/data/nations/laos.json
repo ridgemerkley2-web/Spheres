@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 0.87,
     "population_m": 4.31,
+    "pop_growth_1990": 0.028713,
     "tfp_trend": 0.02,
     "inflation": 0.356,
     "interest_rate": 0.35,
@@ -37,6 +38,19 @@
     "Military index 2: about 55,000 under arms, no capacity beyond internal security.",
     "Investment 13% of GDP, split 8 state and 5 private. The World Bank publishes no gross capital formation series for Laos in 1990; the split is weighted to the state side because most fixed investment in the country was aid-financed and passed through the budget.",
     "Same caveat as Cambodia's, and for the same reason. Entered as a command economy Laos finishes thirty years holding four technologies against a frontier of a hundred and thirty, and the poor-nation technology test goes red. The 0.80 command multiplier on research output is what decides it at this scale, not anything about Laos. The classification above is independently arguable, but it is doing work in the model that a classification should not have to do.",
-    "Series check, August 2026, read from the World Bank API: NY.GDP.MKTP.CD 1990 = 865,559,879; SP.POP.TOTL = 4,311,955; FP.CPI.TOTL.ZG = 35.643. All match. MS.MIL.XPND.GD.ZS, FR.INR.LEND and NE.GDI.TOTL.ZS all return NO VALUE for Laos in 1990, confirming that the military share, the interest rate and the investment split in this file are estimates and stated as such. Note also that countryeconomy.com carries $1,742m for Lao GDP in 1990, twice the World Bank figure; the World Bank series is entered because it is the series the rest of this roster sits on."
-  ]
+    "Series check, August 2026, read from the World Bank API: NY.GDP.MKTP.CD 1990 = 865,559,879; SP.POP.TOTL = 4,311,955; FP.CPI.TOTL.ZG = 35.643. All match. MS.MIL.XPND.GD.ZS, FR.INR.LEND and NE.GDI.TOTL.ZS all return NO VALUE for Laos in 1990, confirming that the military share, the interest rate and the investment split in this file are estimates and stated as such. Note also that countryeconomy.com carries $1,742m for Lao GDP in 1990, twice the World Bank figure; the World Bank series is entered because it is the series the rest of this roster sits on.",
+    "pop_growth_1990 = 2.8713%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LAO (Lao PDR): 3,637,843 in 1984 to 4,190,974 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: LAO.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 18% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

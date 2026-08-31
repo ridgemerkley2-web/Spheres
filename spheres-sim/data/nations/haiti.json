@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 3.1,
     "population_m": 6.85,
+    "pop_growth_1990": 0.02042,
     "tfp_trend": -0.007,
     "inflation": 0.213,
     "interest_rate": 0.105,
@@ -32,6 +33,19 @@
     "TFP trend -0.007: negative, and it has to be. Haitian GDP per head fell for the whole of the 1980s; real GDP shrank 2.91% in 1989 and grew 1.04% in 1990 against population growth near 2%. Deforestation had taken the topsoil off the mountains, the creole pig population had been exterminated in the 1982-83 African swine fever eradication and never replaced, and the assembly plants around Port-au-Prince were leaving. Set between Cameroon's -0.008 and Ethiopia's -0.005, and above Zaire's -0.010.",
     "Stability 24 and authoritarianism 0.78: January 1990 is the last full month of Lieutenant General Prosper Avril's government. Avril took power in the coup of 17 September 1988, declared a state of siege on 20 January 1990 - inside the month the game starts - arrested and expelled opposition figures, and resigned under American pressure and street protest on 10 March. Stability 24 is set between Zaire's 26 and Ethiopia's 22, which is the right neighbourhood for a regime that in fact fell nine weeks after the start date. Authoritarianism 0.78 is above the model's 0.60 electoral ceiling, which is the transcribed fact: there was no legislature - the one elected on 17 January 1988 was dissolved on 20 June 1988 - and no election was held between then and December 1990. The presidential election of 29 November 1987 had been abandoned on the morning of the vote after the Ruelle Vaillant massacre.",
     "Separatism 0.0: none. Haiti has never had a separatist region; the state's weakness is that it does not reach the countryside, not that the countryside wants to leave. What governed rural Haiti was the 562 chefs de section - army-appointed, unpaid, and living off the fines they levied - and that is a description of the state's reach rather than of a rival nation.",
-    "Military strength 1.0: the Forces Armees d'Haiti were about 7,000 men including the police, with no air force worth the name and a navy of coastal launches. They had never fought a foreign war. Set below Senegal's 1.5 and Ghana's 1.5, which is close to the floor of the index and is correct: the FAd'H mattered enormously inside Haiti and not at all outside it."
-  ]
+    "Military strength 1.0: the Forces Armees d'Haiti were about 7,000 men including the police, with no air force worth the name and a navy of coastal launches. They had never fought a foreign war. Set below Senegal's 1.5 and Ghana's 1.5, which is close to the floor of the index and is correct: the FAd'H mattered enormously inside Haiti and not at all outside it.",
+    "pop_growth_1990 = 2.0420%/yr. Compound annual growth of World Bank SP.POP.TOTL, series HTI (Haiti): 6,069,230 in 1984 to 6,714,730 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: HTI.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 41% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

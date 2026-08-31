@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 117.0,
     "population_m": 16.0,
+    "pop_growth_1990": 0.056429,
     "tfp_trend": 0.008,
     "inflation": 0.021,
     "interest_rate": 0.07,
@@ -27,6 +28,21 @@
   },
   "sources": [
     "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
-    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance."
-  ]
+    "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance.",
+    "pop_growth_1990 = 5.6429%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SAU (Saudi Arabia): 7,697,307 in 1984 to 10,128,394 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "ALL 48 OF THE 1990-ELIGIBLE TECHNOLOGIES WERE RULED FOR THIS NATION, one at a time, against a standard published per technology rather than per country. 5 were held and are listed below with their citations; 43 were refused. The refused ids are named at the end of this note so that a reader can tell a cell that was examined and refused from a cell nobody looked at - those are different claims and the schema would otherwise flatten them into the same silence.",
+      "RULED AND REFUSED, ids only (the reasoning for each refusal is held with the board that wrote it, one standard per technology): core_cmos_submicron, core_packet_internetworking, core_single_mode_fiber, core_carbon_composites, core_combined_cycle_turbine, core_pcr, comp_microprocessor, comp_risc_superscalar, comp_relational_database, comm_fibre_optic_backbone, comm_geostationary_comsat, ener_seismic_3d_imaging, ener_horizontal_drilling, ener_gas_turbine_combined_cycle, ener_crystalline_silicon_module, matl_semiconductor_lithography, matl_composite_structures, matl_industrial_robotics, matl_lean_production, matl_single_crystal_superalloy, matl_rare_earth_magnet, matl_stereolithography, aero_precision_munitions, aero_pulse_doppler_radar, aero_stealth_shaping, aero_quiet_submarine, aero_recon_satellite, bio_recombinant_pharma, bio_oral_rehydration, bio_conjugate_vaccine, bio_monoclonal_antibody, bio_automated_sequencing, tran_container_intermodal, tran_post_panamax_ship, tran_electronic_freight_documents, tran_high_speed_rail, agri_drip_irrigation, agri_conservation_tillage, agri_integrated_pest_management, agri_protected_cultivation, agri_tissue_culture_propagation, agri_marine_aquaculture, agri_flue_gas_desulphurisation."
+    ],
+    "granted": [
+      { "id": "comm_digital_switching", "source": "R3: Ericsson opened the first commercial NMT service in Saudi Arabia on 1 September 1981 - one month before Sweden's own network, and the earliest cellular launch of any nation in this authored set outside Japan. World Bank WDI IT.CEL.SETS records 14,851 Saudi mobile cellular subscriptions in 1990." },
+      { "id": "comm_cellular_analogue", "source": "Ericsson introduced the first commercial NMT service in Saudi Arabia on 1 September 1981, one month ahead of the Swedish network (Nordic Mobile Telephone launch record). World Bank WDI IT.CEL.SETS records 14,851 Saudi mobile cellular subscriptions in 1990." },
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 coverage, Saudi Arabia, 1990: 92%. Series: WUENIC DTP3 ('Saudi Arabia,SAU,1990,92'). Concurs with the periphery review panel, which rated this HIGH on the same series." },
+      { "id": "bio_cross_sectional_imaging", "source": "Grant rests on the MRI-and-conventional-CT half. King Faisal Specialist Hospital and Research Centre in Riyadh, opened 1975, operated computed tomography from the late 1970s and magnetic resonance imaging during the 1980s. Provenance: the periphery review panel's per-nation finding for Saudi Arabia, which rated this HIGH; I am carrying their evidence forward rather than reproducing it, and it should be read with that panel's citation." },
+      { "id": "agri_composite_membrane", "source": "SWCC Jeddah 1 RO plant, Phase I, 15 MGD (56,800 m3/d), successfully operating since APRIL 1989 and at commissioning the largest seawater reverse-osmosis plant in the world (Desalination 73 (1989), 'Jeddah 1 RO plant - phase I 15 MGD reverse osmosis plant'). LIMIT OF THIS CITATION, STATED: it establishes membrane RO desalination in service before the start date; it does NOT identify the element chemistry as thin-film composite." }
+    ]
+  }
 }

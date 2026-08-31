@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 0.158,
     "population_m": 0.147,
+    "pop_growth_1990": 0.025827,
     "tfp_trend": 0.004,
     "inflation": 0.048,
     "interest_rate": 0.068,
@@ -37,6 +38,19 @@
     "TFP trend 0.004. Real growth 1985-1990 was 1.00, -0.15, -2.89, -1.69, 1.53, 11.70 (NY.GDP.MKTP.KD.ZG). The 1990 figure is an outlier and is treated as one: three of the six years are negative, the mean is 1.6% against population growth near 2.6%, and 1987 and 1988 carry Cyclone Uma, which flattened Port Vila in February 1987, and the political crisis of December 1988. The trend is set at the low, not at the last observation.",
     "Stability 52 and authoritarianism 0.22. Vanuatu is a real parliamentary democracy that had just been through a constitutional crisis, and 52 is the crisis rather than the democracy. Barak Sope was expelled from the ruling Vanua'aku Pati in May 1988 and took a bloc of members with him; the government stripped the dissidents of their seats; President Ati George Sokomanu responded in December 1988 by dissolving parliament and appointing Sope head of an interim government, was arrested, and was convicted of incitement to mutiny in January 1989 before the Court of Appeal quashed it. Walter Lini, prime minister since independence and recovering from a stroke, governed through 1990 over a party that was splitting under him and was removed by his own party in September 1991. Authoritarianism 0.22 is above Bolivia's 0.22 by nothing and above Solomon Islands' 0.12 because Lini's government did expel elected members and did control the only broadcaster.",
     "Separatism 0.14, the highest of the five and the only one in this batch with a shooting precedent. Jimmy Stevens' Nagriamel movement declared Espiritu Santo independent as Vemarana in May 1980, weeks before national independence, with backing from French settlers and the Phoenix Foundation; Papua New Guinean troops flown in by Australia put it down in what is remembered as the Coconut War. Nagriamel still polled 1.36% and stood candidates in 1987. Underneath it is the anglophone/francophone division inherited from the condominium, which maps onto islands as well as onto schools.",
-    "UNVERIFIED: the policy rate, the investment split and the military share, all stated as constructions above. Also that the Vanuatu Mobile Force numbered about 300 in 1990 — contemporary figures range from 200 to 450 depending on whether the general police duties wing is counted."
-  ]
+    "UNVERIFIED: the policy rate, the investment split and the military share, all stated as constructions above. Also that the Vanuatu Mobile Force numbered about 300 in 1990 — contemporary figures range from 200 to 450 depending on whether the general police duties wing is counted.",
+    "pop_growth_1990 = 2.5827%/yr. Compound annual growth of World Bank SP.POP.TOTL, series VUT (Vanuatu): 127,109 in 1984 to 144,393 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: VUT.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 76% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

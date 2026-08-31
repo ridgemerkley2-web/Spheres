@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 4.3,
     "population_m": 17.6,
+    "pop_growth_1990": 0.030928,
     "tfp_trend": 0.008,
     "inflation": 0.444,
     "interest_rate": 0.387,
@@ -32,6 +33,19 @@
     "Oil 0.0: no production in 1990. Uganda's Albertine Graben discoveries date from 2006.",
     "Stability 45 and authoritarianism 0.70: the NRM had held Kampala for four years and had genuinely restored order in the south and west - which is why stability sits above Nigeria's 35 - but it did not hold the north. Alice Lakwena's Holy Spirit Movement was beaten at Jinja in 1987 and what was left of it became Joseph Kony's Lord's Resistance Army, which was operating in Acholiland from 1988 and would go on operating there for twenty years. Set below Kenya's 46 and well below Tanzania's 62. Authoritarianism 0.70 describes the Movement system precisely: political parties were not banned but were forbidden to campaign or field candidates, elections to the National Resistance Council were on individual merit, and in October 1989 the NRC voted to extend its own life and the interim period to 1995. That is a state that holds elections it cannot lose. Set below Kenya's 0.78, which was a single-party state in law, and above Zimbabwe's 0.58, which faced a real opposition party at a real poll.",
     "Separatism 0.20: the north. Acholi and Langi had supplied Uganda's army under Obote and Amin, lost it in 1986, and the insurgencies that followed - the UPDA, the Holy Spirit Movement, the LRA - were regional in a way the sim's separatism figure is the right home for. Buganda's demand for the restoration of its monarchy is the second strand; the kabakaship was restored in 1993 as a cultural institution. Set level with Iraq's 0.2 and above India's 0.15.",
-    "Military strength 3: the National Resistance Army was about 70,000 by 1990 and was the most politically successful guerrilla army in the region - it is worth recording that the Rwandan Patriotic Front which invaded Rwanda on 1 October 1990 was formed inside it, and that Fred Rwigyema and Paul Kagame were serving NRA officers when they left. Equipment was poor. Set level with Kenya's 3 and Tanzania's 3."
-  ]
+    "Military strength 3: the National Resistance Army was about 70,000 by 1990 and was the most politically successful guerrilla army in the region - it is worth recording that the Rwandan Patriotic Front which invaded Rwanda on 1 October 1990 was formed inside it, and that Fred Rwigyema and Paul Kagame were serving NRA officers when they left. Equipment was poor. Set level with Kenya's 3 and Tanzania's 3.",
+    "pop_growth_1990 = 3.0928%/yr. Compound annual growth of World Bank SP.POP.TOTL, series UGA (Uganda): 14,607,677 in 1984 to 17,010,698 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: UGA.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 45% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

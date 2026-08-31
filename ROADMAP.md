@@ -603,6 +603,64 @@ clean.
 
 ## Next (rough priority)
 
+### 0-bis. STATE OF THE SUITE, 2026-08-31 — supersedes §0 below
+
+Everything in §0 still stands as history; these are the numbers as of the audit
+pass. Binaries rebuilt from scratch with every test `.exe` post-dating a full
+source touch (iron rule 6).
+
+```
+spheres-sim  --lib ............ 150 passed   5 failed   18 ignored
+growth_decomposition .......... instruments only        20 ignored
+spheres-cli ................... no tests
+spheres-web ................... 16 passed    1 failed  (the swarm's, see below)
+```
+
+`spheres-web the_map_ships_terrain_and_rivers` is red and belongs to the
+concurrent map/tech swarm; it is not counted against this work.
+
+**What landed since §0 was written**, in order: the 1990 technology endowment
+and its data validation; the adoption rebase that made the endowment neutral
+(BUGS.md E-1); the economy fix converting `invest_effect`, `labour` and
+`demand_gap` from a permanent RATE to a one-time LEVEL; PLAN step 7's symmetric
+`MAX_DEMAND_GAP` and the four sanction channels converted from counting flags to
+weighing output; the diffusion-knee repair (`BUILD_KNEE` 0.004 → 0.008); the
+trade-pact test's construction repair; and the transition collapse
+(`money_works`, plus successors inheriting `capital_level_paid`).
+
+**The headline result, and it is the thing to protect:**
+
+```
+  nation   model    real   error        Spearman rho vs reality   0.886  (10 seeds)
+     USA    2.02    2.50   -0.48                                  0.886  (40 seeds)
+   Japan    1.35    0.83   +0.52        USA strictly fastest       true
+ Germany    1.82    1.28   +0.54        Japan below USA/UK/FR/DE   true
+  France    1.91    1.50   +0.41        Italy below USA/UK/FR/DE   true
+      UK    1.89    1.93   -0.04        Germany < UK               true
+   Italy    1.62    0.76   +0.86        max |error|                0.86
+```
+
+Emergent history holds: Yugoslavia dissolves in Dec 1991 and the USSR in Sep
+1993; nine wars open over 35 years and five close by negotiated peace with
+territorial cession; the 2025 league table reads USA, China, India, Japan,
+Germany, Russia, Mexico, France, Indonesia, Italy, UK. Determinism holds: two
+30-year headless runs are byte-identical at 257,583 bytes,
+sha256 `96d75860d2d15bf2f47dc5eb422004caf78c51dc4a3cd7045257594e8d3395dc`.
+
+**Two green tests are on a knife edge and the next pass must know before it
+starts.** `china_growth_miracle` reads a median of **11.32x against a band floor
+of 11.0** — 0.32x of margin, with 4 of 10 seeds individually below the floor.
+`mature_economies_do_not_run_hot` has an Italy floor margin of **+0.0007**
+(growth_last 0.0087 against a floor of 0.008) on seed 42. Either can be turned
+red by a change in any direction.
+
+**Five red, none of them a moved bar, and the golden re-pin is BLOCKED.** The
+two goldens plus `gulf_war_emerges` (18/40 against 20) and the two conquest
+tests (both on their non-vacuity guard, not their bar). The re-pin was
+adjudicated formally and refused — see **BUGS.md T-5**, which carries the
+byte-comparison against `git HEAD` proving zero tests deleted and zero bars
+moved, and names every mechanism a future re-pin must cite.
+
 ### 0. The calibration tests are green, down from four red
 
 The refit that entry demanded has landed, and it was **not** the change the

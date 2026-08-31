@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 31.6,
     "population_m": 111.6,
+    "pop_growth_1990": 0.022702,
     "tfp_trend": 0.008,
     "inflation": 0.061,
     "interest_rate": 0.149,
@@ -31,6 +32,19 @@
     "Debt 38% of GDP: World Bank DT.DOD.DECT.GN.ZS, series BGD, 1990 = 38.13% external debt stocks as a share of GNI. STATED SUBSTITUTION: this schema's debt_gdp field means gross public debt, and what is entered here is external debt. For Bangladesh the two are close but not identical — nearly all of the public debt was external and concessional, chiefly IDA and Asian Development Bank credits, so the external stock captures most of it, but domestic borrowing is excluded and this therefore understates gross public debt by a few points.",
     "Oil 0.0 mbd: Bangladesh produced no meaningful crude in 1990. It is a gas economy — the Titas and Bakhrabad fields fed fertiliser and power — and the small condensate stream that came with the gas is below the resolution of this field.",
     "Stability 44 and authoritarianism 0.65: this is a regime with eleven months to live, and the numbers say so. Hussain Muhammad Ershad took power by coup in March 1982 and civilianised himself through the Jatiya Party; the parliamentary elections of 1986 and 3 March 1988 were both boycotted by the Awami League and the Bangladesh Nationalist Party and a Western diplomat quoted at the time called the second a mockery of an election. He resigned on 6 December 1990 after the mass movement and the general strike of late November. Authoritarianism is set at Yugoslavia's 0.65 — above Pakistan's 0.55, where an elected prime minister at least sat, and below Egypt's 0.75, where the hegemonic party was not about to lose. Stability 44 sits at Yugoslavia's 44 and below Pakistan's 52.",
-    "Separatism 0.06: the Chittagong Hill Tracts insurgency, in which the Shanti Bahini fought the state from 1977 until the accord of 2 December 1997. It is a real armed secessionist movement and it is the reason this figure is not near zero, but the Hill Tracts held roughly 1% of Bangladesh's population — the country is otherwise one of the most ethnically and linguistically homogeneous states on earth. Set just above Italy's 0.05 and far below India's 0.15."
-  ]
+    "Separatism 0.06: the Chittagong Hill Tracts insurgency, in which the Shanti Bahini fought the state from 1977 until the accord of 2 December 1997. It is a real armed secessionist movement and it is the reason this figure is not near zero, but the Hill Tracts held roughly 1% of Bangladesh's population — the country is otherwise one of the most ethnically and linguistically homogeneous states on earth. Set just above Italy's 0.05 and far below India's 0.15.",
+    "pop_growth_1990 = 2.2702%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BGD (Bangladesh): 97,814,966 in 1984 to 109,433,799 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: BGD.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 69% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

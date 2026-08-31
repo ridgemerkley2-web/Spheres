@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 34.5,
     "population_m": 10.37,
+    "pop_growth_1990": -0.003519,
     "tfp_trend": 0.005,
     "inflation": 0.289,
     "interest_rate": 0.22,
@@ -37,6 +38,20 @@
     "authoritarianism 0.18, the lowest in this region and below Poland's 0.35: the MSZMP dissolved itself on 7 October 1989, the Republic was proclaimed on 23 October 1989, and the National Round Table agreements of September 1989 were already law when the game opens. The first free election was held on 25 March and 8 April 1990 and produced a government - Antall's MDF-led coalition - with no communist component at all, which is more than Poland's 1989 semi-free election could produce.",
     "stability 58.0: above Bulgaria's 45 and Romania's 40, marginally above Poland's 55, and well below Spain's 70. The regime change was negotiated and complete, but the government sitting on 1 January 1990 is a caretaker with no mandate, the taxi blockade of October 1990 is nine months away, and the austerity the debt service forces is not popular.",
     "separatism 0.03: Hungary is among the most ethnically homogeneous states in Europe - roughly 97% Hungarian at the 1990 census, with the Roma the only minority above 1%. Level with France's 0.03. Hungary's nationality question in 1990 points outward, at the roughly 3 million Hungarians in Romania, Slovakia, Vojvodina and Subcarpathian Ukraine, and separatism is the wrong field to carry it: it is a relations figure and it appears there, in the Romanian line.",
-    "military strength 6.0: about 100,000 troops and 1,300 tanks in 1990, indexed at half Czechoslovakia's 9.0 and level with Bulgaria's 6.0, both of which are consistent with the manpower and armour ratios. nuclear false; no Soviet warheads were ever under Hungarian control."
-  ]
+    "military strength 6.0: about 100,000 troops and 1,300 tanks in 1990, indexed at half Czechoslovakia's 9.0 and level with Bulgaria's 6.0, both of which are consistent with the manpower and armour ratios. nuclear false; no Soviet warheads were ever under Hungarian control.",
+    "pop_growth_1990 = -0.3519%/yr. Compound annual growth of World Bank SP.POP.TOTL, series HUN (Hungary): 10,668,095 in 1984 to 10,481,719 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: HUN.",
+      "WUENIC DTP3 1990 = 99% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: HUN, 1990 = 99%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

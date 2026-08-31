@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 7.07,
     "population_m": 7.15,
+    "pop_growth_1990": 0.021718,
     "tfp_trend": 0.001,
     "inflation": 0.505,
     "interest_rate": 0.35,
@@ -33,6 +34,19 @@
     "TFP trend 0.001: the 1980s were not a lost decade here in the Latin American sense - output grew, driven by free-trade-zone assembly and by tourism, both of which are labour-absorbing rather than productivity-raising. Set just above Nigeria's 0.000 and below Colombia's 0.008. It is deliberately not negative: the Dominican collapse of 1990 was a macro accident, not a fall in what the economy knew how to do, and by 1992 growth was back.",
     "Stability 45 and authoritarianism 0.38: Joaquin Balaguer, 83 years old and blind, in the fourth year of his third presidency, elected on 41.8% in May 1986 and facing re-election in May 1990. Authoritarianism 0.38 is set below Senegal's 0.42 and above Poland's 0.35, in the same bracket the roster reserves for a real electorate with the incumbent's thumb on the scale: Balaguer had governed 1966-78 as Trujillo's former puppet turned elected caudillo, controlled the state's whole payroll and broadcast time, and the results of both May 1990 and May 1994 were disputed hard enough that the 1994 dispute was settled by cutting his own term to two years. Stability 45 is set a point above Yugoslavia's 44 and three above Bolivia's 42, and well below Senegal's 60. January 1990 is a working constitutional order in the middle of an economic emergency: the blackouts, the doctors' strike and the general strike of August 1990 are the year, but nobody in the Dominican Republic was shooting at the state and the May election was held on time.",
     "Separatism 0.0: none. There is no Dominican region that wants out. The Republic's great internal argument is about Haitians, which is a question about who is admitted rather than about who leaves, and it belongs in the relations file rather than here.",
-    "Military strength 2.0: about 21,000 in the army, navy and air force combined, equipped largely with American surplus of 1950s vintage - the air force still flew Vampires. The Dominican armed forces had not fought anyone since 1965 and their function was internal. Set level with Uruguay's 2.0 and below Ecuador's 4.0."
-  ]
+    "Military strength 2.0: about 21,000 in the army, navy and air force combined, equipped largely with American surplus of 1950s vintage - the air force still flew Vampires. The Dominican armed forces had not fought anyone since 1965 and their function was internal. Set level with Uruguay's 2.0 and below Ecuador's 4.0.",
+    "pop_growth_1990 = 2.1718%/yr. Compound annual growth of World Bank SP.POP.TOTL, series DOM (Dominican Republic): 6,289,040 in 1984 to 7,002,295 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: DOM.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 69% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

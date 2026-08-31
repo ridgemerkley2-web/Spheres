@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 1.4,
     "population_m": 7.4,
+    "pop_growth_1990": 0.038886,
     "tfp_trend": 0.015,
     "inflation": 0.9,
     "interest_rate": 0.9,
@@ -37,6 +38,19 @@
     "Military index 3: roughly 130,000 in the Cambodian People's Armed Forces, holding towns and roads against three insurgencies with equipment left by the Vietnamese.",
     "Gross capital formation 11.9% of GDP (World Bank, 1993 — the first year of the series). 1990 is entered at 11% split 4 state and 7 private, on the assumption that the ratio did not move much across the UNTAC years.",
     "A note on what this file exposes rather than on the file itself. Entered as a command economy, Cambodia finishes a thirty-year run holding three technologies while the frontier holds a hundred and thirty, and `a_poor_nation_still_picks_up_what_everyone_has` goes red. The binding term is research_output: intensity scales with GDP per capita, the budget scales with absolute GDP, and a command economy is multiplied by 0.80 on top. At $190 a head and $1.4bn of output that product rounds to nothing. Real Cambodia in 2020 had mobile telephony, container ports, hybrid rice and antiretrovirals — far more than five technologies — so the test is right and the model is wrong at this end of the roster. Classifying Cambodia as a market economy is defensible on the 1989 amendments and it makes the test pass, but it does not repair the model, and the next $200-per-capita market economy anyone adds will trip the same wire.",
-    "Series check, August 2026, read from the World Bank API: NY.GDP.MKTP.CD 1990 = 1,402,541,177; SP.POP.TOTL = 7,374,752; MS.MIL.XPND.GD.ZS = 2.071. All match. FP.CPI.TOTL.ZG, FR.INR.LEND and NE.GDI.TOTL.ZS all return NO VALUE for Cambodia in 1990, confirming that the inflation, interest and investment figures in this file are estimates and stated as such."
-  ]
+    "Series check, August 2026, read from the World Bank API: NY.GDP.MKTP.CD 1990 = 1,402,541,177; SP.POP.TOTL = 7,374,752; MS.MIL.XPND.GD.ZS = 2.071. All match. FP.CPI.TOTL.ZG, FR.INR.LEND and NE.GDI.TOTL.ZS all return NO VALUE for Cambodia in 1990, confirming that the inflation, interest and investment figures in this file are estimates and stated as such.",
+    "pop_growth_1990 = 3.8886%/yr. Compound annual growth of World Bank SP.POP.TOTL, series KHM (Cambodia): 5,845,117 in 1984 to 7,073,473 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: KHM.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 38% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

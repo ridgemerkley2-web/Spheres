@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 1.44,
     "population_m": 2.81,
+    "pop_growth_1990": 0.016233,
     "tfp_trend": -0.006,
     "inflation": -0.0001,
     "interest_rate": 0.11,
@@ -32,6 +33,20 @@
     "Oil 0.0 mbd: none, and none since. The country's minerals are diamonds, gold, uranium at Bakouma and iron - not one of them producing at a scale this model has a field for, and the diamonds mostly smuggled.",
     "Stability 40 and authoritarianism 0.82: Andre Kolingba had taken power in the bloodless coup of 1 September 1981, ruled through a Comite Militaire de Redressement National until 1985, and made the Rassemblement Democratique Centrafricain the sole legal party in 1986 - confirmed by a referendum on 21 November 1986 that gave him 91.2% and a single-list legislative election on 31 July 1987. Stability 40 is well above Chad's 24 and Zaire's 26 and below Ghana's and Cameroon's 52, and that is the correct place for it: nothing was happening in Bangui in January 1990 except the slow accumulation of unpaid salaries. There was no insurgency, no secession and no war on any border. What there was instead was a state that had stopped paying people, and the army mutinies that ended Kolingba's republic came in 1996, six years out, from exactly that. Authoritarianism 0.82 is level with Cameroon's 0.80 and Ghana's 0.80.",
     "Separatism 0.08: the lowest figure in this region and lower than Spain's 0.10. It is not an oversight. The Central African Republic's violence has always been about who holds Bangui rather than about which pieces belong to it, and no Central African movement has ever proposed a border. Set above zero only because the north-east around Birao is administratively absent from the state in a way that later mattered.",
-    "Military strength 0.6: about 3,500 in the Forces Armees Centrafricaines, mostly Yakoma after Kolingba recruited from his own people, plus a presidential guard. Set below Senegal's, Ghana's and Cameroon's 1.5 and above Sao Tome's 0.1 and Equatorial Guinea's 0.3. The number to read alongside it is that the force which actually deterred anything here was French, and it is in France's row, not this one."
-  ]
+    "Military strength 0.6: about 3,500 in the Forces Armees Centrafricaines, mostly Yakoma after Kolingba recruited from his own people, plus a presidential guard. Set below Senegal's, Ghana's and Cameroon's 1.5 and above Sao Tome's 0.1 and Equatorial Guinea's 0.3. The number to read alongside it is that the force which actually deterred anything here was French, and it is in France's row, not this one.",
+    "pop_growth_1990 = 1.6233%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CAF (Central African Republic): 2,568,610 in 1984 to 2,783,970 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: CAF.",
+      "WUENIC DTP3 1990 = 82% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: CAF, 1990 = 82%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name. The 1989 value of the same series is 64%, on the other side of the 80% line: THRESHOLD-SENSITIVE CELL." }
+    ]
+  }
 }

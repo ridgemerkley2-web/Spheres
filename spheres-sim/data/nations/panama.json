@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 5.24,
     "population_m": 2.47,
+    "pop_growth_1990": 0.022495,
     "tfp_trend": 0.006,
     "inflation": 0.008,
     "interest_rate": 0.11,
@@ -37,6 +38,20 @@
     "Oil 0.0: no production. The trans-Panama pipeline across Chiriqui had carried Alaskan crude since 1982 and is transit, not output.",
     "TFP trend 0.006: a services and transit economy with high measured productivity and little productivity growth, plus two years of sanctions and an invasion to recover from.",
     "Stability 40 and authoritarianism 0.35. Guillermo Endara was sworn in as president on a United States military base on the night of 19-20 December 1989, hours before the invasion began. He had in fact won the election of 7 May 1989 by roughly three to one — Noriega annulled it, and his thugs beat Endara and his running mate Guillermo Ford bloody in the street in front of the cameras — and the Electoral Tribunal revoked the annulment and certified the result on 27 December, after the invasion. So the mandate is genuine and the installation was not domestic, and both halves have to be in the numbers. Stability 40: a government with no army, no police force it trusted, several hundred to several thousand civilian dead depending on whose count, the capital looted in the days after the fighting, tens of thousands homeless from the burning of El Chorrillo, and a foreign army in the country. Authoritarianism 0.35 sits below El Salvador's 0.42, because Panama in 1990 had a real electoral mandate, no death squads and no war of its own, and well above Costa Rica's 0.10, because a state whose executive was installed by another state's soldiers is not one whose executive is constrained in the ordinary way.",
-    "Separatism 0.05: the Comarca de San Blas has been Kuna self-governing territory since the revolt of 1925 and the charter of 1938, and the Guaymi of the western highlands were pressing for a comarca of their own, which they got in 1997. Both are autonomy claims inside Panama rather than secession, so 0.05 — Italy's figure — rather than Nicaragua's 0.15, whose autonomous regions were won by an armed rising against the state."
-  ]
+    "Separatism 0.05: the Comarca de San Blas has been Kuna self-governing territory since the revolt of 1925 and the charter of 1938, and the Guaymi of the western highlands were pressing for a comarca of their own, which they got in 1997. Both are autonomy claims inside Panama rather than secession, so 0.05 — Italy's figure — rather than Nicaragua's 0.15, whose autonomous regions were won by an armed rising against the state.",
+    "pop_growth_1990 = 2.2495%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PAN (Panama): 2,150,782 in 1984 to 2,403,820 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: PAN.",
+      "WUENIC DTP3 1990 = 86% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: PAN, 1990 = 86%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name. The 1989 value of the same series is 70%, on the other side of the 80% line: THRESHOLD-SENSITIVE CELL." }
+    ]
+  }
 }

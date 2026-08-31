@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 0.114,
     "population_m": 0.095,
+    "pop_growth_1990": 0.002867,
     "tfp_trend": 0.003,
     "inflation": 0.097,
     "interest_rate": 0.117,
@@ -37,6 +38,20 @@
     "TFP trend 0.003. Real growth 1985-1990 was 6.56, 2.12, 2.99, -1.88, 0.39, -2.04 (NY.GDP.MKTP.KD.ZG): a mean of 1.4% a year and a clear deceleration, with the last two years of the run negative. A remittance economy with 700 square kilometres of land and no minerals has very little productive frontier to move toward.",
     "Stability 68 and authoritarianism 0.68, and the pair is the point. Tonga is the most legitimate government in this batch and the least accountable one. King Taufa'ahau Tupou IV appointed the cabinet, and the cabinet sat in the Legislative Assembly alongside nine representatives elected by the thirty-three hereditary nobles and nine elected by everybody else; the elected commoners were nine of about thirty votes and could not remove a minister. The 1875 constitution granted by King George Tupou I had never been overthrown. What was moving underneath it: 'Akilisi Pohiva, elected in 1987, won a wrongful-dismissal case against the government in 1988 after being sacked from the education ministry for publishing what ministers were paid; in September 1989 all nine people's representatives walked out of the Assembly over ministers' refusal to answer questions, returning only when they would have forfeited their seats. 0.68 sits above the model's ELECTORAL_CEILING of 0.60 because no vote in Tonga in 1990 could change the government, and below Saudi Arabia's 0.75 because the votes were real, contested and honestly counted.",
     "Separatism 0.02, effectively nil. Tonga is one people, one language and one crown across three groups of islands, and the Niuas and Vava'u have never produced a separatist movement. The number is not zero only because 170 islands and 800 kilometres of ocean between the northern and southern groups is a real administrative strain.",
-    "UNVERIFIED: the policy rate, the tax share, the military share and the investment split, all four constructed and all four stated above. Also the Tonga Defence Services headcount, which contemporary sources put between 250 and 400 depending on whether the reserve and the maritime force are counted."
-  ]
+    "UNVERIFIED: the policy rate, the tax share, the military share and the investment split, all four constructed and all four stated above. Also the Tonga Defence Services headcount, which contemporary sources put between 250 and 400 depending on whether the reserve and the maritime force are counted.",
+    "pop_growth_1990 = 0.2867%/yr. Compound annual growth of World Bank SP.POP.TOTL, series TON (Tonga): 97,990 in 1984 to 99,403 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: TON.",
+      "WUENIC DTP3 1990 = 94% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: TON, 1990 = 94%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

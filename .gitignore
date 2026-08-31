@@ -11,12 +11,17 @@ spheres-web/data/*
 !spheres-web/data/district_terrain.json
 !spheres-web/data/crossing_edges.json
 !spheres-web/data/river_segments.json
+!spheres-web/data/district_population.json
+!spheres-web/data/district_resources.json
 # make_underlay.py's and make_cover.py's scratch extraction cache, and the optional
 # 2x eyeball renders (make_underlay.py --2x, make_relief.py --2x). The 1x bakes ship.
 tools/terrain/raster/
 tools/terrain/terrain_underlay_2x.png
 tools/terrain/relief_2x.png
+# decode_ghspop.py's 3.7 GB float32 memmap of the GHS-POP raster (tools/population).
+tools/population/raster/
 # check.py regenerates each texture into a temp sibling to prove byte-identity and
 # removes it again; ignored so an interrupted run cannot stage one.
 spheres-web/ui/*.checktmp.png
+spheres-web/data/*.checktmp.json
 __pycache__/

@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 96.5,
     "population_m": 10.2,
+    "pop_growth_1990": 0.003884,
     "tfp_trend": 0.008,
     "inflation": 0.204,
     "interest_rate": 0.199,
@@ -30,6 +31,19 @@
     "Gross fixed capital formation 26.0% of GDP: World Bank NE.GDI.FTOT.ZS, GRC 1990. Split into public 3.2% and private 22.8% using the AMECO general-government series, private as residual. CAVEAT: total transcribed, public share entered from reference knowledge of AMECO.",
     "Stability 58 and authoritarianism 0.16: the lowest stability in Western Europe on this board by a wide margin - below Italy's 68, below Poland's 55 only by three points - and the January 1990 record earns every point of it. Greece held THREE general elections in eleven months: 18 June 1989, 5 November 1989, 8 April 1990. Two caretaker or ecumenical governments sat in between, the second under Xenophon Zolotas, a central banker with no party. Parliament had voted to send a former prime minister, Andreas Papandreou, for trial before a special court over the Koskotas banking scandal, and that trial was running while the game opens. Authoritarianism 0.16 is the highest in this batch: the colonels' junta had ended only sixteen years earlier, the state monopoly on broadcasting was broken only in 1989, and the civil-war-era certificates of political reliability were within living memory of everyone in the electorate.",
     "Separatism 0.03: at France's 0.03, below Italy's 0.05. The Muslim minority of Western Thrace, about 100,000 people protected by the Treaty of Lausanne, is the one recognised minority question, and there were riots in Komotini in January 1990. It is a minority-rights dispute conducted through Athens and Ankara, not a secession movement.",
-    "TFP trend 0.008: below Spain's 0.009 and the joint lowest in this batch with Switzerland's. Greek productivity growth was essentially zero across the 1980s, the decade in which the country joined the European Community and then failed to converge on it, and did not recover until the stabilisation programmes of the mid-1990s. Entering a convergence number here because Greece was poor would model a catch-up that had conspicuously not been happening."
-  ]
+    "TFP trend 0.008: below Spain's 0.009 and the joint lowest in this batch with Switzerland's. Greek productivity growth was essentially zero across the 1980s, the decade in which the country joined the European Community and then failed to converge on it, and did not recover until the stabilisation programmes of the mid-1990s. Entering a convergence number here because Greece was poor would model a catch-up that had conspicuously not been happening.",
+    "pop_growth_1990 = 0.3884%/yr. Compound annual growth of World Bank SP.POP.TOTL, series GRC (Greece): 9,895,801 in 1984 to 10,089,498 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: GRC.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 54% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }

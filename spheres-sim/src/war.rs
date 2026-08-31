@@ -15,6 +15,20 @@ pub const RUNG_COMMIT: [f64; 10] = [0.0, 0.00, 0.00, 0.00, 0.02, 0.05, 0.15, 0.3
 /// rung 4 in a city in rough country is not.
 pub const RUNG_EXPOSURE: [f64; 10] = [0.0, 0.02, 0.04, 0.08, 0.10, 0.15, 0.45, 0.70, 1.00, 0.55];
 
+/// What share of a sensor advantage still counts against a target that offers
+/// nothing to look at — the exponent the above-parity find ratio is raised to
+/// when `RUNG_EXPOSURE` is zero, sliding to exactly 1.0 at rung 8.
+///
+/// This is the one number that decides whether technological superiority is a
+/// multiplier or a gate. At 1.0 it is HOI4: sensors are worth the same against a
+/// dispersed proxy as against an army in the open, and eight military
+/// technologies turn an occupation into a solvable problem. At 0.0 technology
+/// would stop mattering entirely against anyone in cover, which is the opposite
+/// error. A half says the edge is real and its return diminishes with the square
+/// root of what there is to find, which is what thirty years of the period this
+/// game covers actually recorded.
+pub const SENSOR_SATURATION: f64 = 0.50;
+
 /// Only a side that has put boots or hulls on the ground can take any.
 pub const SEIZE_BY_RUNG: [f64; 10] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 0.40, 1.00, 0.25];
 
@@ -325,10 +339,34 @@ fn side_profile(w: &WorldState, c: &Conflict, side_a: bool) -> Side {
 /// see better than the target can hide. An army in the open at rung 8 facing a
 /// force with twice its sensors is a target set; a proxy at rung 4 in a city in
 /// the mountains is not, and no amount of mass changes that.
+///
+/// The sensor edge is *earned against something*. A better sensor finds more of
+/// a target that is there to be found, and finds almost none of a target that is
+/// not, which is why the edge above parity is raised to a power set by how much
+/// the prey offers in the first place. At rung 8 the exponent is exactly one and
+/// the edge is spent in full — Desert Storm is untouched, to the bit. At rung 4
+/// it is `SENSOR_SATURATION`, and doubling the sensors buys the square root of
+/// what it would buy against an army in the open. That is the difference between
+/// the two equations §6 refuses to collapse into one: precision munitions and
+/// reconnaissance satellites still decide engagements, and they do not make an
+/// occupation end.
+///
+/// Only the edge *above* parity saturates. A side out-sensed by its enemy is not
+/// protected by the enemy's hiding, so the gate is asymmetric in the direction
+/// the doctrine asks for: the insurgent's own poor find is left exactly as it is.
 fn exposure(hunter: &Side, prey: &Side, th: &crate::theatre::Theatre) -> f64 {
     let terrain = (1.0 - 0.55 * th.urbanisation) * (1.0 - 0.45 * th.rough);
+    let base = RUNG_EXPOSURE[(prey.top_rung as usize).min(9)];
     let find = (hunter.quality / prey.quality.max(0.01)).clamp(0.30, 3.00);
-    RUNG_EXPOSURE[(prey.top_rung as usize).min(9)] * terrain * find
+    // Written as an explicit identity rather than left to `powf(x, 1.0)`, so a
+    // prey in the open can never move a golden hash by an ulp for a reason that
+    // is not the mechanism.
+    let gated = if find > 1.0 && base < 1.0 {
+        crate::exact::powf(find, SENSOR_SATURATION + (1.0 - SENSOR_SATURATION) * base)
+    } else {
+        find
+    };
+    base * terrain * gated
 }
 
 fn kill_rate(hunter: &Side, prey: &Side, th: &crate::theatre::Theatre) -> f64 {
@@ -803,17 +841,46 @@ fn resolve_conflicts(w: &mut WorldState) {
             }
             Ending::Repelled => {
                 // The lesson sticks, which is what stops the same aggressor
-                // trying the same thing every year for a century.
-                w.set_flag(&format!("burned_{:?}_{:?}", c.origin_attacker, c.defender()));
-                if w.nation_opt(c.origin_attacker).is_some_and(|n| n.alive) {
-                    let a = w.nation_mut(c.origin_attacker);
-                    a.stability = (a.stability - 12.0).max(0.0);
+                // trying the same thing every year for a century — BUT ONLY IF
+                // THERE WAS A LESSON. Every consequence in this arm is the
+                // verdict on an invasion thrown back: the flag `dyads.rs` reads
+                // as "this aggressor has already met the coalition once", a
+                // regime-shaking stability hit, and a headline that says the
+                // word invasion out loud.
+                //
+                // A quarrel that never crossed a border reaches this arm too.
+                // `Ending::Repelled` fires when the aggressor's side simply
+                // empties — everyone on it quits — and when it loses the ground
+                // while standing BELOW the shooting rung, neither of which
+                // requires `invasion_declared`. When it did, the world taught a
+                // lesson nobody had learned: measured over seeds 0..20 and
+                // forty years by `burned_flag_provenance`, 2 of the 39
+                // `burned_` flags written were written on quarrels whose top
+                // rungs were 2/2 and 1/2 — against a shooting rung of 6 and an
+                // invasion rung of 8 — and two states were told their regime
+                // totters for repelling an invasion that never happened.
+                //
+                // The cost of that is not cosmetic. `dyads::war_appetite` reads
+                // this flag to decide whether the aggressor still discounts a
+                // coalition: setting it moves `coalition_discount` 0.10 -> 1.00
+                // and pact-honouring 0.08 -> 0.75, permanently, for a state that
+                // never tested either. Both files describe this flag in exactly
+                // one way — "recorded when an invasion is repelled" — so
+                // writing it without one is the contract being broken, not a
+                // border case. Without a crossing this is a lapse and nothing
+                // more.
+                if c.invasion_declared {
+                    w.set_flag(&format!("burned_{:?}_{:?}", c.origin_attacker, c.defender()));
+                    if w.nation_opt(c.origin_attacker).is_some_and(|n| n.alive) {
+                        let a = w.nation_mut(c.origin_attacker);
+                        a.stability = (a.stability - 12.0).max(0.0);
+                    }
+                    w.headline(format!(
+                        "{} repels {}'s invasion — the aggressor's regime totters.",
+                        c.defender().name(),
+                        c.origin_attacker.name()
+                    ));
                 }
-                w.headline(format!(
-                    "{} repels {}'s invasion — the aggressor's regime totters.",
-                    c.defender().name(),
-                    c.origin_attacker.name()
-                ));
             }
             Ending::White => {
                 w.headline(format!(
@@ -832,12 +899,21 @@ fn resolve_conflicts(w: &mut WorldState) {
                     // The opener got what it came for, so its claim is
                     // collected and it has no war aim left.
                     w.set_flag(&crate::dyads::settled_flag(winner, loser));
-                } else {
+                } else if c.invasion_declared {
                     // The defender won terms. Marking ITS claim collected
                     // disarmed the wrong side entirely — the state that was
                     // invaded came away with its own grievance written off —
                     // and the aggressor learned nothing, which is the repeat
                     // invasion this flag exists to stop.
+                    //
+                    // Gated on the crossing for the same reason as the Repelled
+                    // arm above: `settlement_ripe` needs only control and a
+                    // spent loser, never an invasion, so a defender could win
+                    // terms in a quarrel nobody shot in and the aggressor would
+                    // still be marked as having met a coalition. When no border
+                    // was crossed neither flag is written — the aggressor keeps
+                    // the claim it did not press, which is the truth of it, and
+                    // learns nothing about a coalition that never formed.
                     w.set_flag(&format!(
                         "burned_{:?}_{:?}",
                         c.origin_attacker,

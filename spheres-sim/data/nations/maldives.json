@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 0.215,
     "population_m": 0.223,
+    "pop_growth_1990": 0.034022,
     "tfp_trend": 0.018,
     "inflation": 0.037,
     "interest_rate": 0.11,
@@ -38,6 +39,20 @@
     "Stability 55 and authoritarianism 0.70: Maumoon Abdul Gayoom had been President since 1978 and would be until 2008. There were no political parties — not formally banned so much as not permitted to exist — the Majlis was elected on a non-party basis, and the President was nominated by the Majlis and then put to a single-candidate yes-or-no referendum, which in 1988 returned 96.4%. Dissidents were jailed or exiled and the press was licensed. Authoritarianism 0.70 is level with Nepal's Panchayat, which is the closest institutional analogue in this roster: a personal ruler over a non-party assembly. Stability 55 is well below that, and the gap is the point. Gayoom faced coup attempts in 1980, 1983 and 1988, and the third one nearly worked.",
     "NOVEMBER 1988 IS WHY THE STABILITY FIGURE IS 55 AND NOT 70. On 3 November 1988 roughly eighty PLOTE fighters — Sri Lankan Tamil militants hired by the Maldivian businessman Abdullah Luthufi — landed at Male off two freighters and took the city within hours, including the National Security Service headquarters. Gayoom hid, and the government was restored by 1,600 Indian paratroopers who flew 2,000 km from Agra overnight and landed at Hulhule: Operation Cactus. Fourteen months before this game opens, the state was saved from a private army of eighty men by a foreign one. A regime that survives is not the same as a regime that can defend itself, and 55 is the number that says so.",
     "Separatism 0.03: low, and it is not zero for a reason with a date on it. The three southernmost atolls seceded as the United Suvadive Republic from 1959 to 1963 with British encouragement from the Gan airfield, and Nasir put it down by gunboat. By 1990 the movement was thirty years dead and its leader in exile in Singapore, so this is a memory rather than a strain — set at Nepal's 0.02 plus a little, and below France's 0.03-level entries. Nothing in 1990 was organised around leaving the Maldives.",
-    "Oil 0.0 mbd: no hydrocarbons, no minerals, no arable land to speak of and no fresh water aquifer that has not gone brackish. Fish and beaches, and that is the entire resource endowment."
-  ]
+    "Oil 0.0 mbd: no hydrocarbons, no minerals, no arable land to speak of and no fresh water aquifer that has not gone brackish. Fish and beaches, and that is the entire resource endowment.",
+    "pop_growth_1990 = 3.4022%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MDV (Maldives): 184,198 in 1984 to 217,738 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: MDV.",
+      "WUENIC DTP3 1990 = 94% against the 80% UCI-1990 threshold: bio_universal_immunisation GRANTED.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": [
+      { "id": "bio_universal_immunisation", "source": "WHO/UNICEF WUENIC DTP3 immunisation coverage (% of surviving infants), retrieved from the UNICEF public SDMX API, dataflow UNICEF:IMMUNISATION(1.0), indicator IM_DTP3, DATA_SOURCE field 'WHO/UNICEF estimates of national immunization coverage, 2025 revision'. Series value: MDV, 1990 = 94%, at or above the 80% WHO/UNICEF Universal Childhood Immunization (UCI-1990) target that defines this technology's name." }
+    ]
+  }
 }

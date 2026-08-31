@@ -750,47 +750,323 @@ mod tests {
         }
     }
 
+    /// The six mature 1990 economies, and what each compounded over `years`,
+    /// one row per seed. `MATURE_1990` is the panel the frontier band is quoted
+    /// against.
+    const MATURE_1990: [NationId; 6] = [
+        NationId::USA, NationId::Japan, NationId::Germany,
+        NationId::France, NationId::UK, NationId::Italy,
+    ];
+
+    /// Per seed: the fastest and the slowest mature economy's 35-year CAGR, as
+    /// percent. A dead nation is skipped rather than counted as a stall.
+    ///
+    /// `years` of zero is the control arm: a world nobody runs has compounded
+    /// nothing, and every reading must be exactly 0.0%. It is a small guard and
+    /// it is aimed at a specific failure — this instrument reads `gdp` twice out
+    /// of two separately built worlds, and if the 1990 read and the terminal
+    /// read ever stop referring to the same quantity (a rescale at init, a unit
+    /// change, a panel member silently replaced) the band would keep passing
+    /// while measuring nothing. The zero-horizon arm is the only thing here that
+    /// would notice.
+    fn mature_cagr(years: usize) -> (Vec<f64>, Vec<f64>) {
+        let (mut fastest, mut slowest) = (vec![], vec![]);
+        for seed in 0..10u64 {
+            let start: Vec<(NationId, f64)> = {
+                let w = seeded(seed);
+                MATURE_1990.iter().map(|id| (*id, w.nation(*id).gdp)).collect()
+            };
+            let mut w = seeded(seed);
+            run_months(&mut w, 12 * years);
+            let mut rates: Vec<f64> = vec![];
+            for (id, gdp_1990) in start {
+                let n = w.nation(id);
+                if !n.alive {
+                    continue;
+                }
+                let cagr = if years == 0 {
+                    n.gdp / gdp_1990 - 1.0
+                } else {
+                    exact::powf(n.gdp / gdp_1990, 1.0 / years as f64) - 1.0
+                };
+                rates.push(cagr * 100.0);
+            }
+            rates.sort_by(|a, b| a.partial_cmp(b).unwrap());
+            fastest.push(*rates.last().expect("every mature economy died"));
+            slowest.push(rates[0]);
+        }
+        fastest.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        slowest.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        (fastest, slowest)
+    }
+
+    /// The guard that was missing, and whose absence let the world run at twice
+    /// its real size undetected for weeks. Every other calibration test asserts
+    /// a *relative* outcome — China grows faster than Japan, Slovenia escapes
+    /// what Bosnia does not — so a world where everyone doubles together passes
+    /// all of them. This one is absolute.
+    ///
+    /// THE ANCHOR, unchanged and quoted from the version this replaces: "Real
+    /// 35-year growth for these economies runs about 0.9%/yr (Japan) to 2.5%/yr
+    /// (USA). The ceiling here is 4.0% rather than 3.0% because Japan is a known
+    /// outstanding gap at ~3.0% (see ROADMAP), and a test that is red on arrival
+    /// teaches nothing." Both bounds are inherited at exactly 4.0% and 0.5%.
+    /// Neither was re-derived here, and neither may be re-derived to accommodate
+    /// a board that has started compounding — that is what a calibration pass is
+    /// for, and this is the instrument that tells one it is needed.
+    ///
+    /// Converted from one seed to ten 2026-08-31, PLAN step 1, and the reason is
+    /// that it was GREEN BY SEED LUCK. It ran the default seed only, and a
+    /// ten-seed sweep of the same quantity spread 3.07 .. 3.71 on the board this
+    /// conversion was written against — a fifth of a point of headroom under the
+    /// ceiling, decided by which seed somebody had typed.
+    ///
+    /// BOTH THE MEDIAN AND THE WORST SEED ARE ASSERTED, and the second is not
+    /// redundant. PLAN step 1 asks for a median, and a median is the honest
+    /// reading of "is the typical world compounding". But the test this replaces
+    /// was absolute over every mature economy in its one world, so asserting
+    /// only a median would QUIETLY WIDEN it from "no advanced economy runs away"
+    /// to "the average one does not" — and two hot seeds in ten would then hide
+    /// behind eight cold ones. Iron rule 5 forbids buying a conversion with a
+    /// loosening, so the per-seed guarantee is kept alongside the median it was
+    /// converted to.
     #[test]
     fn the_frontier_does_not_run_away() {
-        // The guard that was missing, and whose absence let the world run at
-        // twice its real size undetected for weeks. Every other calibration test
-        // asserts a *relative* outcome — China grows faster than Japan, Slovenia
-        // escapes what Bosnia does not — so a world where everyone doubles
-        // together passes all of them. This one is absolute.
-        //
-        // Real 35-year growth for these economies runs about 0.9%/yr (Japan) to
-        // 2.5%/yr (USA). The ceiling here is 4.0% rather than 3.0% because Japan
-        // is a known outstanding gap at ~3.0% (see ROADMAP), and a test that is
-        // red on arrival teaches nothing. It is still tight enough to have
-        // caught the bug that prompted it: trade agreements paying a permanent
-        // growth rate put the USA at 4.8%/yr.
-        let mature = [
-            NationId::USA, NationId::Japan, NationId::Germany,
-            NationId::France, NationId::UK, NationId::Italy,
-        ];
-        let start: Vec<(NationId, f64)> = {
-            let w = world_1990(GameRules::default());
-            mature.iter().map(|id| (*id, w.nation(*id).gdp)).collect()
-        };
-        let mut w = world_1990(GameRules::default());
-        run_months(&mut w, 12 * 35);
-        for (id, gdp_1990) in start {
-            let n = w.nation(id);
-            if !n.alive {
-                continue;
-            }
-            let cagr = exact::powf(n.gdp / gdp_1990, 1.0 / 35.0) - 1.0;
-            assert!(
-                cagr < 0.040,
-                "{:?} compounded {:.1}%/yr over 35 years — the frontier is running away",
-                id, cagr * 100.0
-            );
-            assert!(
-                cagr > 0.005,
-                "{:?} compounded {:.1}%/yr — a developed economy has stalled",
-                id, cagr * 100.0
-            );
+        let (fastest, slowest) = mature_cagr(35);
+        let (fast_med, slow_med) = (fastest[fastest.len() / 2], slowest[slowest.len() / 2]);
+        let show = |v: &[f64]| v.iter().map(|x| (x * 100.0).round() / 100.0).collect::<Vec<_>>();
+
+        assert!(
+            fast_med < 4.0,
+            "the fastest mature economy compounded a median {:.2}%/yr over 35 years across ten \
+             seeds {:?} — the frontier is running away",
+            fast_med, show(&fastest)
+        );
+        assert!(
+            *fastest.last().unwrap() < 4.0,
+            "the fastest mature economy compounded {:.2}%/yr over 35 years on the worst of ten \
+             seeds {:?} — the frontier runs away in some worlds, and a median of eight quiet \
+             ones is not a licence to stop looking",
+            fastest.last().unwrap(), show(&fastest)
+        );
+        assert!(
+            slow_med > 0.5,
+            "the slowest mature economy compounded a median {:.2}%/yr across ten seeds {:?} — a \
+             developed economy has stalled",
+            slow_med, show(&slowest)
+        );
+        assert!(
+            slowest[0] > 0.5,
+            "the slowest mature economy compounded {:.2}%/yr on the worst of ten seeds {:?} — a \
+             developed economy has stalled",
+            slowest[0], show(&slowest)
+        );
+
+        // The control arm: a world nobody ran compounded nothing.
+        let (c_fast, c_slow) = mature_cagr(0);
+        let worst = c_fast.iter().chain(c_slow.iter()).fold(0.0f64, |a, b| a.max(b.abs()));
+        assert!(
+            worst < 1e-9,
+            "thirty-five years of growth appeared in a world that was never ticked: {:.9}%",
+            worst
+        );
+    }
+
+    /// THE CONVERGENCE CHANNEL, read end to end on one board: what each nation
+    /// was authored to know on 1 January 1990, the opening gap to the frontier
+    /// that implies, and the 35-year CAGR that follows from it, across ten
+    /// seeds rather than one.
+    ///
+    /// This exists because the channel was found reading the TRANSCRIPTION'S
+    /// INCOMPLETENESS as a nation's IGNORANCE: overpayment ordered exactly by
+    /// `gap`, and `gap` ordered by how many technologies a researcher happened
+    /// to author. A readout is the only way to tell the two apart, because
+    /// every calibration test downstream sees the sum.
+    ///
+    /// `cargo test --release -p spheres-sim convergence_channel_readout -- --ignored --nocapture`
+    #[test]
+    #[ignore]
+    fn convergence_channel_readout() {
+        use std::collections::BTreeMap;
+
+        // ---- the authored board, before a single tick ----
+        let w0 = world_1990(GameRules::default());
+        let frontier = w0.nations.iter().map(|n| n.tech.count()).max().unwrap_or(0);
+        let mut hist: BTreeMap<usize, Vec<&'static str>> = BTreeMap::new();
+        for n in w0.nations.iter() {
+            hist.entry(n.tech.count()).or_default().push(n.id.code());
         }
+        println!("\n=== AUTHORED 1990 BOARD ===");
+        println!("nations {}  frontier_known {}  total grants {}",
+            w0.nations.len(), frontier,
+            w0.nations.iter().map(|n| n.tech.count()).sum::<usize>());
+        for (count, codes) in &hist {
+            println!("  {:>2} authored : {:>3} nations : {}", count, codes.len(),
+                if codes.len() > 12 { format!("{} ...", codes[..12].join(" ")) }
+                else { codes.join(" ") });
+        }
+
+        // ---- the panel the finding tabulates ----
+        let panel: Vec<NationId> = ["USA", "Japan", "Germany", "UK", "France", "Italy",
+                                    "Brazil", "Kenya"]
+            .iter().map(|s| NationId::parse(s).expect("panel nation is on the roster")).collect();
+
+        let mut cagr: BTreeMap<&'static str, Vec<f64>> = BTreeMap::new();
+        for seed in 0..10u64 {
+            let mut w = seeded(seed);
+            let g0: Vec<(NationId, f64)> = panel.iter().map(|id| (*id, w.nation(*id).gdp)).collect();
+            run_months(&mut w, 12 * 35);
+            for (id, g) in g0 {
+                let n = w.nation(id);
+                let v = if n.alive {
+                    (exact::powf(n.gdp / g, 1.0 / 35.0) - 1.0) * 100.0
+                } else {
+                    f64::NAN
+                };
+                cagr.entry(id.code()).or_default().push(v);
+            }
+        }
+
+        println!("\n=== CONVERGENCE CHANNEL, TEN SEEDS ===");
+        println!("{:<10} {:>8} {:>6} {:>8} {:>8} {:>8}",
+            "nation", "authored", "gap", "cagr_lo", "cagr_med", "cagr_hi");
+        for id in &panel {
+            let held = w0.nation(*id).tech.count();
+            let gap = if frontier > 0 {
+                ((frontier - held) as f64 / frontier as f64).clamp(0.0, 1.0)
+            } else { 0.0 };
+            let mut xs = cagr[id.code()].clone();
+            xs.sort_by(|a, b| a.partial_cmp(b).unwrap());
+            println!("{:<10} {:>8} {:>6.2} {:>8.2} {:>8.2} {:>8.2}   by seed {:?}",
+                id.code(), held, gap, xs[0], xs[xs.len() / 2], xs[xs.len() - 1],
+                cagr[id.code()].iter().map(|x| (x * 100.0).round() / 100.0)
+                    .collect::<Vec<_>>());
+        }
+
+        // ---- what the convergence channel actually paid out, integrated ----
+        // The gap is a stock that drains as a nation catches up, so reading it
+        // at either end says nothing about what it was worth on the way. This
+        // sums the adoption term month by month over the whole run: it IS the
+        // overpayment, in points of annual trend accumulated, and it is the
+        // number that has to fall if closing the edge in the data worked.
+        println!("\n=== ADOPTION PAID, summed monthly over 35 years, seed 0 ===");
+        let mut w = seeded(0);
+        let mut paid: BTreeMap<&'static str, f64> = BTreeMap::new();
+        let mut gap_years: BTreeMap<&'static str, f64> = BTreeMap::new();
+        for _ in 0..(12 * 35) {
+            tick_month(&mut w, &[]);
+            let reference = crate::tech::world_reference(&w.nations);
+            let front = w.nations.iter().map(|n| n.tech.count()).max().unwrap_or(0);
+            for id in &panel {
+                let n = w.nation(*id);
+                let level = crate::tech::saturated_tech_tfp(n) - reference;
+                let adoption = n.tfp_trend - n.tech.tfp_base - level;
+                *paid.entry(id.code()).or_insert(0.0) += adoption / 12.0;
+                let g = if front > 0 {
+                    ((front - n.tech.count()) as f64 / front as f64).clamp(0.0, 1.0)
+                } else { 0.0 };
+                *gap_years.entry(id.code()).or_insert(0.0) += g / 12.0;
+            }
+        }
+        println!("{:<10} {:>14} {:>12}", "nation", "adoption-years", "gap-years");
+        for id in &panel {
+            println!("{:<10} {:>14.5} {:>12.2}", id.code(), paid[id.code()],
+                gap_years[id.code()]);
+        }
+
+        // ---- where the growth actually comes from, decomposed ----
+        // `apply_bonuses` assembles the trend as
+        //     tfp_trend = tfp_base + (saturated_tech_tfp - reference) + adoption
+        // and the loader's rebase subtracts the 1990 endowment's value out of
+        // `tfp_base`, so at 1990 the level term cancels exactly and ADOPTION IS
+        // THE WHOLE OF WHAT AN AUTHORED BOARD BUYS. Differencing the identity
+        // recovers the adoption term without reaching into private constants,
+        // and printing all three at both ends is the only way to tell "the
+        // overpayment closed" apart from "the overpayment moved".
+        let decomp = |w: &WorldState, id: NationId| -> (usize, f64, f64, f64, f64) {
+            let reference = crate::tech::world_reference(&w.nations);
+            let n = w.nation(id);
+            let level = crate::tech::saturated_tech_tfp(n) - reference;
+            let adoption = n.tfp_trend - n.tech.tfp_base - level;
+            (n.tech.count(), n.tfp_trend, n.tech.tfp_base, level, adoption)
+        };
+        let mut end = seeded(0);
+        run_months(&mut end, 12 * 35);
+        println!("\n=== TREND DECOMPOSITION, seed 0 ===");
+        println!("{:<10} {:>26} {:>34}", "", "-------- 1990 --------",
+            "------------- 2025 -------------");
+        println!("{:<10} {:>5} {:>9} {:>9} {:>5} {:>9} {:>9} {:>9}",
+            "nation", "techs", "adopt", "trend", "techs", "adopt", "level", "trend");
+        for id in &panel {
+            let (c0, t0, _b0, _l0, a0) = decomp(&w0, *id);
+            let (c1, t1, _b1, l1, a1) = decomp(&end, *id);
+            println!("{:<10} {:>5} {:>9.5} {:>9.5} {:>5} {:>9.5} {:>9.5} {:>9.5}",
+                id.code(), c0, a0, t0, c1, a1, l1, t1);
+        }
+
+        // ---- the sanctions counterfactual the red band is made of ----
+        // Exactly `sanction_loss`'s control arm, printed rather than differenced:
+        // the band moved because the UNSANCTIONED Brazil moved, not because the
+        // sanctions coefficient did, and only the base tells the two apart.
+        let target = NationId::Brazil;
+        let mut base: Vec<f64> = vec![];
+        for seed in 0..10u64 {
+            let mut control = seeded(seed);
+            control.rules.ai_aggression = 0.0;
+            let c0 = control.nation(target).gdp;
+            run_months(&mut control, 240);
+            base.push((exact::powf(control.nation(target).gdp / c0, 1.0 / 20.0) - 1.0) * 100.0);
+        }
+        let mut sorted = base.clone();
+        sorted.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        println!("\nBrazil UNSANCTIONED 20y CAGR at ai_aggression=0: median {:.2}%  {:?}",
+            sorted[sorted.len() / 2],
+            base.iter().map(|x| (x * 100.0).round() / 100.0).collect::<Vec<_>>());
+
+        // ...and the instrument built on top of it, so the counterfactual and
+        // the band it feeds are read out together. The coefficient is not in
+        // this number: the loss is `base - treated`, and a base that moves on
+        // its own moves the band without anything about sanctions changing.
+        let coalition =
+            [NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan];
+        let (mut losses, mut shares) = sanction_loss(&coalition, target);
+        losses.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        shares.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        println!("sanctions_cost_the_target_real_growth: median loss {:.3}pt \
+                  (bar 1.2 < x < 2.5), G5 share {:.3}  {:?}",
+            losses[losses.len() / 2], shares[shares.len() / 2],
+            losses.iter().map(|x| (x * 100.0).round() / 100.0).collect::<Vec<_>>());
+        let med_base = sorted[sorted.len() / 2];
+        println!("  fraction of Brazil's own growth removed: {:.1}%",
+            losses[losses.len() / 2] / med_base * 100.0);
+    }
+
+    /// Is `gulf_war_emerges` measuring a rate, or measuring one seed crossing a
+    /// bar? Ten seeds against a bar of five discriminates nothing finer than a
+    /// tenth, so when a data change moves it the only honest follow-up is a
+    /// wider scan of the same quantity.
+    ///
+    /// `cargo test --release -p spheres-sim gulf_war_incidence_scan -- --ignored --nocapture`
+    #[test]
+    #[ignore]
+    fn gulf_war_incidence_scan() {
+        let mut hits = vec![];
+        for seed in 0..40u64 {
+            let mut w = seeded(seed);
+            let mut saw = false;
+            for _ in 0..48 {
+                let headlines = tick_month(&mut w, &[]);
+                if headlines.iter().any(|h| h.contains("Iraq invades Kuwait")) {
+                    saw = true;
+                }
+            }
+            if saw || !w.nation(NationId::Kuwait).alive {
+                hits.push(seed);
+            }
+        }
+        println!("Iraq invades Kuwait in {}/40 seeds: {:?}", hits.len(), hits);
+        println!("  first ten (what `gulf_war_emerges` reads, bar 5): {}/10",
+            hits.iter().filter(|s| **s < 10).count());
     }
 
     /// The readout the ten-region integration was judged on, kept so the
@@ -871,6 +1147,45 @@ mod tests {
         }
     }
 
+    /// Points of annual growth a coalition costs its target over twenty years,
+    /// and the coalition's mean weight in world output, one entry per seed.
+    ///
+    /// An EMPTY coalition is the control arm: the treated world then runs the
+    /// same 240 ticks on the same seed as the untreated one and must come out
+    /// the same world, so the loss must be exactly zero. That is the same guard
+    /// `arms_transfers_build_a_client_army` gets from a pledge of nothing.
+    fn sanction_loss(coalition: &[NationId], target: NationId) -> (Vec<f64>, Vec<f64>) {
+        let mut losses = vec![];
+        let mut shares = vec![];
+        for seed in 0..10u64 {
+            let mut control = seeded(seed);
+            control.rules.ai_aggression = 0.0;
+            let c0 = control.nation(target).gdp;
+            run_months(&mut control, 240);
+            let base = exact::powf(control.nation(target).gdp / c0, 1.0 / 20.0) - 1.0;
+
+            let mut treated = seeded(seed);
+            treated.rules.ai_aggression = 0.0;
+            let t0 = treated.nation(target).gdp;
+            let mut share_acc = 0.0;
+            for _ in 0..240 {
+                for i in coalition {
+                    if !treated.is_sanctioning(*i, target) {
+                        treated.sanctions.push((*i, target));
+                    }
+                }
+                // Sampled before the tick: economy runs first, politics last, and
+                // politics is what lifts the regime.
+                share_acc += treated.sanction_weight(target);
+                tick_month(&mut treated, &[]);
+            }
+            let after = exact::powf(treated.nation(target).gdp / t0, 1.0 / 20.0) - 1.0;
+            losses.push((base - after) * 100.0);
+            shares.push(share_acc / 240.0);
+        }
+        (losses, shares)
+    }
+
     /// THE PIN THAT DID NOT EXIST. `sanction_drag` in economy.rs was changed
     /// from counting flags to weighing output, and while auditing that change
     /// the whole suite was run at bite 0.000, 0.010, 0.015, 0.020, 0.025 and
@@ -901,6 +1216,13 @@ mod tests {
     /// and the ceiling is set at 2.5pt rather than 1.6pt because three further
     /// sanction channels still count flags and add their own cost on top.
     ///
+    /// THE CONTROL ARM, added 2026-08-31 with the PLAN step 1 conversion. The
+    /// median was already here; what was missing was the other half of the
+    /// template — a treatment of nothing that must produce an effect of nothing.
+    /// The band above cannot be cleared by an instrument that is quietly
+    /// measuring its own perturbation, and until the empty coalition was run
+    /// nothing in this test would have noticed.
+    ///
     /// Checked red in BOTH directions by moving SANCTION_BITE and running THIS
     /// test, not a proxy for it — points of annual growth lost by Brazil:
     ///      bite 0.000 ->  0.71pt   RED (floor)
@@ -913,6 +1235,21 @@ mod tests {
     ///      bite 0.040 ->  2.83pt   RED (ceiling)
     /// So the band admits roughly 0.016..0.038 and rejects outside it, deleting
     /// the term outright included.
+    ///
+    /// RE-MEASURED 2026-08-31 on the pre-endowment board at 137 nations, with
+    /// the control arm added. The table above no longer holds — the tree and the
+    /// roster have moved under it and the instrument has got COARSER, which is
+    /// worth knowing before anybody quotes the old rows:
+    ///      bite 0.000 ->  0.59pt   RED (floor)
+    ///      bite 0.010 ->           green
+    ///      bite 0.015 ->           green   (was RED in the table above)
+    ///      bite 0.020 ->  1.94pt   green  (shipped)
+    ///      bite 0.040 ->  2.61pt   RED (ceiling)
+    /// It still rejects the change it exists to reject — a coefficient driven to
+    /// zero is caught, with 0.59pt against a 1.2pt floor — but it now admits
+    /// roughly 0.005..0.035 rather than 0.016..0.038, so it discriminates half a
+    /// coefficient and no longer a third of one. That is a loss of resolution in
+    /// the world, not in the test, and it is recorded rather than repaired here.
     ///
     /// Note the jump between 0.015 and 0.020 and the dip at 0.025-0.030: this is
     /// a whole-world run and the response is not a clean slope, because a
@@ -957,34 +1294,7 @@ mod tests {
         let coalition =
             [NationId::USA, NationId::UK, NationId::France, NationId::Germany, NationId::Japan];
 
-        let mut losses = vec![];
-        let mut shares = vec![];
-        for seed in 0..10u64 {
-            let mut control = seeded(seed);
-            control.rules.ai_aggression = 0.0;
-            let c0 = control.nation(target).gdp;
-            run_months(&mut control, 240);
-            let base = exact::powf(control.nation(target).gdp / c0, 1.0 / 20.0) - 1.0;
-
-            let mut treated = seeded(seed);
-            treated.rules.ai_aggression = 0.0;
-            let t0 = treated.nation(target).gdp;
-            let mut share_acc = 0.0;
-            for _ in 0..240 {
-                for i in &coalition {
-                    if !treated.is_sanctioning(*i, target) {
-                        treated.sanctions.push((*i, target));
-                    }
-                }
-                // Sampled before the tick: economy runs first, politics last, and
-                // politics is what lifts the regime.
-                share_acc += treated.sanction_weight(target);
-                tick_month(&mut treated, &[]);
-            }
-            let after = exact::powf(treated.nation(target).gdp / t0, 1.0 / 20.0) - 1.0;
-            losses.push((base - after) * 100.0);
-            shares.push(share_acc / 240.0);
-        }
+        let (mut losses, mut shares) = sanction_loss(&coalition, target);
         losses.sort_by(|a, b| a.partial_cmp(b).unwrap());
         shares.sort_by(|a, b| a.partial_cmp(b).unwrap());
         let lost = losses[losses.len() / 2];
@@ -1012,6 +1322,27 @@ mod tests {
             target.name(), lost,
             losses.iter().map(|x| (x * 100.0).round() / 100.0).collect::<Vec<_>>(),
             mean_share * 100.0
+        );
+
+        // ...and the control arm, which is what keeps this from being a test that
+        // cannot fail. `arms_transfers_build_a_client_army` pledges nothing and
+        // requires a ratio of one; the same move here is a coalition of nobody.
+        // With an empty coalition the treated world runs the identical tick
+        // sequence on the identical seed, so the two worlds are the same world
+        // and the loss is exactly zero — not approximately. Anything else means
+        // the measurement itself is writing to the world it is measuring.
+        let (control_losses, control_shares) = sanction_loss(&[], target);
+        let worst = control_losses.iter().fold(0.0f64, |a, b| a.max(b.abs()));
+        assert!(
+            worst < 1e-9,
+            "sanctioning nobody moved {}'s growth by {:.6} points — the instrument is \
+             perturbing the world it measures: {:?}",
+            target.name(), worst, control_losses
+        );
+        assert!(
+            control_shares.iter().all(|s| *s == 0.0),
+            "a coalition of nobody weighed something: {:?}",
+            control_shares
         );
     }
 
@@ -1420,74 +1751,295 @@ mod tests {
         println!();
     }
 
+    /// Every annexation a seed range produces, as `(seed, victim, population at
+    /// the month it died, year)`. Dissolutions are not conquests and are
+    /// excluded by name: the USSR and Yugoslavia leave the board in every seed
+    /// by a different door.
+    ///
+    /// `aggression` is the arm. At 1.0 the AI fights; at 0.0 it does not, and a
+    /// world where nobody attacks anybody must annex nobody — that is the
+    /// control, and it is the same code path rather than a second one.
+    fn conquests(seeds: std::ops::Range<u64>, aggression: f64) -> Vec<(u64, NationId, f64, i32)> {
+        let mut found = vec![];
+        for seed in seeds {
+            let mut w = seeded(seed);
+            w.rules.ai_aggression = aggression;
+            let mut alive: Vec<(NationId, f64)> =
+                w.nations.iter().filter(|n| n.alive).map(|n| (n.id, n.population)).collect();
+            for _ in 0..480 {
+                tick_month(&mut w, &[]);
+                let mut still: Vec<(NationId, f64)> = Vec::new();
+                for (id, pop) in alive {
+                    if w.nation_opt(id).is_some_and(|n| n.alive) {
+                        // Carry the live figure forward, so a death is judged
+                        // against the population it died at.
+                        still.push((id, w.nation(id).population));
+                    } else if id != NationId::USSR && id != NationId::Yugoslavia {
+                        found.push((seed, id, pop, w.year));
+                    }
+                }
+                alive = still;
+            }
+        }
+        found
+    }
+
+    /// Which seeds reach the annexation branch at all, and on whom.
+    ///
+    /// ```text
+    /// cargo test --release -p spheres-sim conquest_seed_scan -- --ignored --nocapture
+    /// ```
+    #[test]
+    #[ignore]
+    fn conquest_seed_scan() {
+        for (label, aggr) in [("war", 1.0), ("control (ai_aggression 0)", 0.0)] {
+            let found = conquests(0..120, aggr);
+            println!("--- {} : {} annexation(s) in seeds 0..120", label, found.len());
+            for (seed, id, pop, year) in &found {
+                println!("    seed {:>3}  {:?} at {:.2}m in {}", seed, id, pop, year);
+            }
+        }
+    }
+
+    /// The conquest funnel, gate by gate, so "conquest got rarer" can be told
+    /// apart from "wars got rarer" and from "the size rule started refusing".
+    ///
+    /// `war.rs` reaches `Ending::Conquest` through one conjunction —
+    /// `control >= CONTROL_SATURATED && top_rung(true) >= 8 && spent(false)` —
+    /// and `conquer` then splits it: a loser under 8m people and under 0.6
+    /// separatism is annexed and leaves the board, anything larger or angrier
+    /// capitulates and survives. Only the first of those shows up in
+    /// `conquests()`, so a collapse in annexations and a collapse in conquest
+    /// endings are different findings with different causes.
+    ///
+    /// ```text
+    /// cargo test --release -p spheres-sim conquest_funnel -- --ignored --nocapture
+    /// ```
+    #[test]
+    #[ignore]
+    fn conquest_funnel() {
+        let (mut opened, mut invaded) = (0usize, 0usize);
+        let (mut saturated, mut sat_and_rung, mut all_three) = (0usize, 0usize, 0usize);
+        let (mut annexed, mut capitulated) = (0usize, 0usize);
+        let mut seen: std::collections::BTreeSet<(u64, u32)> = Default::default();
+        let mut inv_seen: std::collections::BTreeSet<(u64, u32)> = Default::default();
+        let mut sat_seen: std::collections::BTreeSet<(u64, u32)> = Default::default();
+        let mut rung_seen: std::collections::BTreeSet<(u64, u32)> = Default::default();
+        let mut three_seen: std::collections::BTreeSet<(u64, u32)> = Default::default();
+        for seed in 0..40u64 {
+            let mut w = seeded(seed);
+            for _ in 0..480 {
+                for c in &w.conflicts {
+                    if seen.insert((seed, c.id)) {
+                        opened += 1;
+                    }
+                    if c.invasion_declared && inv_seen.insert((seed, c.id)) {
+                        invaded += 1;
+                    }
+                    let sat = c.control >= war::CONTROL_SATURATED;
+                    if sat && sat_seen.insert((seed, c.id)) {
+                        saturated += 1;
+                    }
+                    if sat && c.top_rung(true) >= 8 && rung_seen.insert((seed, c.id)) {
+                        sat_and_rung += 1;
+                    }
+                    // `spent(false)` from war.rs, verbatim: the defender side's
+                    // highest remaining resolve, at or under 0.05. READ THE
+                    // CAVEAT ON THE PRINTOUT — this is sampled before the tick,
+                    // and the month the conjunction first holds is the month
+                    // war.rs ends the conflict, so a terminal state is never
+                    // observable here. The honest count of `Ending::Conquest`
+                    // is the two headline counters below, which sum to it.
+                    let defender_resolve = c
+                        .side_b
+                        .iter()
+                        .filter_map(|id| c.posture_of(*id))
+                        .map(|x| x.resolve)
+                        .fold(0.0f64, f64::max);
+                    if sat
+                        && c.top_rung(true) >= 8
+                        && defender_resolve <= 0.05
+                        && three_seen.insert((seed, c.id))
+                    {
+                        all_three += 1;
+                    }
+                }
+                for h in tick_month(&mut w, &[]) {
+                    if h.contains("has annexed") {
+                        annexed += 1;
+                        println!("    ANNEXED  seed {:>2} {}-{:02}  {}", seed, w.year, w.month, h);
+                    } else if h.contains("capitulates to") {
+                        capitulated += 1;
+                    }
+                }
+            }
+        }
+        println!("\n=== conquest funnel: seeds 0..40, 40 years ===");
+        println!("  conflicts opened                          : {}", opened);
+        println!("  ...that ever declared an invasion         : {}", invaded);
+        println!("  ...that ever saturated control (>= 0.97)  : {}", saturated);
+        println!("  ...saturated AND standing at rung 8       : {}", sat_and_rung);
+        println!(
+            "  ...AND the defender's resolve spent       : {}  (sampled pre-tick, so a \
+             terminal month is invisible here — use the two lines below)",
+            all_three
+        );
+        println!("  Ending::Conquest reached                  : {}", annexed + capitulated);
+        println!("  ...that ANNEXED   (loser < 8m and calm)   : {}", annexed);
+        println!("  ...that SUBJUGATED (loser too big or angry): {}", capitulated);
+        println!();
+    }
+
+    /// SPEC section 6, in one line: "No swallowing India whole." `conquer`
+    /// annexes only a nation under 8m people that is also quiet enough to hold
+    /// (separatism < 0.6); anything larger or angrier is subjugated instead and
+    /// survives to resent it.
+    ///
+    /// THE ANCHOR IS THE RULE ITSELF, not a fitted number: SPEC section 6 says
+    /// "small nations (pop < ~8M) can be annexed ... large nations are
+    /// *subjugated* instead". The 8m bound is transcribed from that sentence and
+    /// is not re-derived here in either direction.
+    ///
+    /// Converted from one pinned seed to a twenty-seed sweep 2026-08-31, PLAN
+    /// step 1, and this is the instrument that most needed it. THE SEED PIN HAD
+    /// MOVED SIX TIMES — 9, 18, 0, 17, 9, 93 — because conquest is rare enough
+    /// that any change touching the shared RNG stream reshuffles which run
+    /// reaches the branch. It had moved a seventh time before this conversion
+    /// was written: seed 93 reaches no conquest on the current tree, so the
+    /// instrument was ALREADY RED, and red for the one reason its own comment
+    /// said was not a finding — the pin had gone stale again. A pin that has to
+    /// be re-pinned every time the world changes is not measuring the world.
+    ///
+    /// So the sweep is the instrument now. Seeds 0..20 reach the branch twice on
+    /// the board this was written against (Mongolia at 3.74m in 2017 on seed 10,
+    /// Bhutan at 0.97m in 2018 on seed 17), and a hundred-and-twenty-seed scan
+    /// found one more at seed 111. The width is a sampling choice and not a
+    /// band: widen it if the branch stops being reached, and if a scan ever
+    /// finds NONE, conquest has become unreachable and THAT is the finding
+    /// rather than a flaky test — it is recorded as O-1 in BUGS.md, and borders
+    /// that never move is a game problem and not a test problem.
+    /// `conquest_seed_scan` is the tool for that re-scan.
     #[test]
     fn a_large_nation_is_subjugated_rather_than_swallowed() {
-        // SPEC section 6, in one line: "No swallowing India whole." `conquer`
-        // annexes only a nation under 8m people that is also quiet enough to
-        // hold (separatism < 0.6); anything larger or angrier is subjugated
-        // instead and survives to resent it.
-        //
-        // Pinned to a seed on purpose, and the reason is a measurement worth
-        // keeping: the only nations that ever leave the board are Yugoslavia and
-        // the USSR — the two modelled dissolutions, in every seed — plus a
-        // vanishingly rare conquest. A broad sweep would assert almost nothing
-        // while costing minutes, so this runs the one seed that exercises the
-        // branch and checks the rule on it.
-        //
-        // The seed has moved five times now — 9, then 18, then 0, then 17,
-        // back to 9, now 93 — and each move is a measurement rather than a
-        // nuisance. Conquest is rare enough that any change that touches the
-        // shared RNG stream reshuffles which seed reaches it: the no-party
-        // electoral fix put the Gulf monarchies back on the pillar-regime
-        // path (coups, patronage, revolutions where a phantom election loop
-        // had frozen them), and that dissolved seed 9's Mongolia 2027. The
-        // re-scan had to go to a hundred seeds this time — none of 0..=29
-        // reaches the branch any more — and found exactly two: Saudi Arabia
-        // annexes Qatar in April 2018 on seed 93, and India annexes Bhutan
-        // in November 2029 on seed 61. Seed 93 is the pin because its
-        // conquest lands mid-run rather than a month from the window's edge.
-        // All finds to date sit under the 8m threshold, so the rule holds
-        // every time; what moves is which run exercises it.
-        //
-        // Re-scan with a seed sweep when this guard fails (thirty seeds
-        // historically; a hundred was needed last time). If it ever finds
-        // NONE, conquest has become unreachable and that is the finding.
-        // Recorded as O-1 in BUGS.md: borders that never move is a game problem
-        // and not a test problem.
-        //
-        // If the guard at the bottom ever fails, conquest has become
-        // unreachable entirely, and that is the finding rather than a flaky
-        // test.
-        let mut w = seeded(93);
-        let mut alive: Vec<(NationId, f64)> =
-            w.nations.iter().filter(|n| n.alive).map(|n| (n.id, n.population)).collect();
-        let mut annexations = 0;
-        for _ in 0..480 {
-            tick_month(&mut w, &[]);
-            let mut still: Vec<(NationId, f64)> = Vec::new();
-            for (id, pop) in alive {
-                if w.nation_opt(id).is_some_and(|n| n.alive) {
-                    // Carry the live figure forward, so a death is judged
-                    // against the population it died at.
-                    still.push((id, w.nation(id).population));
-                    continue;
-                }
-                if id == NationId::USSR || id == NationId::Yugoslavia {
-                    continue; // dissolved, not conquered
-                }
-                assert!(
-                    pop < 8.0,
-                    "{:?} was annexed at {:.1}m people in {} — at or over 8m it is meant to be                      subjugated and survive to resent it",
-                    id, pop, w.year
-                );
-                annexations += 1;
-            }
-            alive = still;
+        let found = conquests(0..20, 1.0);
+        for (seed, id, pop, year) in &found {
+            assert!(
+                *pop < 8.0,
+                "{:?} was annexed at {:.1}m people in {} on seed {} — at or over 8m it is meant \
+                 to be subjugated and survive to resent it",
+                id, pop, year, seed
+            );
         }
         assert!(
-            annexations > 0,
-            "nobody was annexed on the one seed measured to produce a conquest, so the size rule              was never exercised — conquest may have become unreachable"
+            !found.is_empty(),
+            "no conquest anywhere in twenty seeds of forty years, so the size rule was never \
+             exercised — conquest may have become unreachable (BUGS.md O-1). Re-scan with \
+             `conquest_seed_scan` before touching this test"
         );
+
+        // The control arm: a world where nobody attacks anybody annexes nobody.
+        // This is what stops the assertion above from passing on an empty list
+        // for the wrong reason — it establishes that the sweep reaches conquests
+        // BECAUSE wars are fought in it, and that the two dissolutions the sweep
+        // excludes by name are the only other way off the board.
+        let control = conquests(0..20, 0.0);
+        assert!(
+            control.is_empty(),
+            "nations were annexed in a world with the AI's appetite for war set to zero: {:?}",
+            control
+        );
+    }
+
+    /// Where the `burned_` flags actually come from, and whether a border was
+    /// ever crossed to earn one. Both `war.rs` and `dyads.rs` describe this
+    /// flag in exactly one way — "recorded when an invasion is repelled",
+    /// "after one repelled invasion the lesson is learned permanently" — so a
+    /// flag written on a quarrel where `invasion_declared` is false is the
+    /// documented contract being broken, not a test being fussy.
+    ///
+    /// ```text
+    /// cargo test --release -p spheres-sim burned_flag_provenance -- --ignored --nocapture
+    /// ```
+    #[test]
+    #[ignore]
+    fn burned_flag_provenance() {
+        let mut with_invasion = 0usize;
+        let mut without_invasion = 0usize;
+        let mut total_written = 0usize;
+        let mut repel_headlines = 0usize;
+        let mut repel_headlines_no_invasion = 0usize;
+        let mut samples: Vec<String> = Vec::new();
+        for seed in 0..20u64 {
+            let mut w = seeded(seed);
+            for _ in 0..480 {
+                // Pre-tick: every live conflict, the key its ending would
+                // write, and whether that key is already on the books.
+                let before: Vec<(u32, String, bool, NationId, NationId, bool, u8, u8, f64)> = w
+                    .conflicts
+                    .iter()
+                    .map(|c| {
+                        let key = format!("burned_{:?}_{:?}", c.origin_attacker, c.defender());
+                        let had = w.has_flag(&key);
+                        (
+                            c.id,
+                            key,
+                            had,
+                            c.origin_attacker,
+                            c.defender(),
+                            c.invasion_declared,
+                            c.top_rung(true),
+                            c.top_rung(false),
+                            c.control,
+                        )
+                    })
+                    .collect();
+                let burned_before =
+                    w.flags.iter().filter(|f| f.starts_with("burned_")).count();
+                let headlines = tick_month(&mut w, &[]);
+                total_written +=
+                    w.flags.iter().filter(|f| f.starts_with("burned_")).count() - burned_before;
+                // The Repelled arm's own headline, matched against whether a
+                // border was ever crossed in the quarrel it closed.
+                for h in headlines.iter().filter(|h| h.contains("the aggressor's regime totters")) {
+                    repel_headlines += 1;
+                    let invaded = before
+                        .iter()
+                        .any(|(_, _, _, a, _, inv, _, _, _)| *inv && h.contains(a.name()));
+                    if !invaded {
+                        repel_headlines_no_invasion += 1;
+                    }
+                }
+                for (id, key, had, a, d, inv, ra, rb, ctl) in before {
+                    if w.conflicts.iter().any(|c| c.id == id) || had || !w.has_flag(&key) {
+                        continue;
+                    }
+                    if inv {
+                        with_invasion += 1;
+                    } else {
+                        without_invasion += 1;
+                        if samples.len() < 15 {
+                            samples.push(format!(
+                                "seed {:>2}  {}-{:02}  {:?} -> {:?}  invasion_declared=FALSE  \
+                                 rungs {}/{}  control {:+.2}",
+                                seed, w.year, w.month, a, d, ra, rb, ctl
+                            ));
+                        }
+                    }
+                }
+            }
+        }
+        println!("\n=== burned_ flags written, seeds 0..20, 40 years ===");
+        println!("  total written               : {}", total_written);
+        println!("  attributed, AFTER an invasion: {}", with_invasion);
+        println!("  attributed, NO invasion      : {}", without_invasion);
+        println!(
+            "  \"repels ...'s invasion\" headlines: {} ({} where no invasion was ever declared)",
+            repel_headlines, repel_headlines_no_invasion
+        );
+        for s in &samples {
+            println!("    {}", s);
+        }
+        println!();
     }
 
     #[test]
@@ -1501,14 +2053,53 @@ mod tests {
         // lesson is on the books, that attacker never crosses that border
         // again. A conflict may still be opened — states go on quarrelling —
         // but it must never reach an invasion a second time.
+        //
+        // THE SECOND ASSERTION IS THE FLAG'S PROVENANCE, added after this test
+        // was misdiagnosed as a test defect. It failed reading "Iraq was burned
+        // over Kuwait in 1997 and still invaded 0 times", and the reading was
+        // right: `war.rs` was writing `burned_` on endings that never involved
+        // an invasion, so the consequence above was being asserted against a
+        // lesson nobody had been taught. Both `war.rs` and `dyads.rs` describe
+        // this flag in exactly one way — "recorded when an invasion is
+        // repelled" — and `dyads::war_appetite` spends it to move the coalition
+        // discount 0.10 -> 1.00 permanently. So the contract is checked at the
+        // moment of writing, in the same loop, at no extra runtime: every
+        // `burned_` flag written anywhere in the world must be written on a
+        // quarrel where somebody crossed a border in force.
         let mut burned_seeds = 0;
+        let mut writes_seen = 0;
         for seed in 0..10u64 {
             let mut w = seeded(seed);
             let mut invasions = 0;
             let mut invaded_ids: Vec<u32> = Vec::new();
             let mut burned_at: Option<i32> = None;
             for _ in 0..420 {
+                // Pre-tick: the key each live quarrel's ending would write, and
+                // whether a border has been crossed in it.
+                let pending: Vec<(u32, String, bool, bool)> = w
+                    .conflicts
+                    .iter()
+                    .map(|c| {
+                        let key =
+                            format!("burned_{:?}_{:?}", c.origin_attacker, c.defender());
+                        let had = w.has_flag(&key);
+                        (c.id, key, had, c.invasion_declared)
+                    })
+                    .collect();
                 tick_month(&mut w, &[]);
+                for (id, key, had, invaded) in pending {
+                    if w.conflicts.iter().any(|c| c.id == id) || had || !w.has_flag(&key) {
+                        continue;
+                    }
+                    assert!(
+                        invaded,
+                        "seed {}: {} was written in {} closing a quarrel in which no border \
+                         was ever crossed — `burned_` is the lesson of an invasion repelled, \
+                         and there was no invasion to repel",
+                        seed, key, w.year
+                    );
+                    writes_seen += 1;
+                }
                 for c in &w.conflicts {
                     if c.origin_attacker == NationId::Iraq
                         && c.defender() == NationId::Kuwait
@@ -1536,6 +2127,12 @@ mod tests {
             burned_seeds >= 4,
             "the lesson was never learned in ten seeds ({} burned), so nothing was tested",
             burned_seeds
+        );
+        assert!(
+            writes_seen >= 5,
+            "no `burned_` flag was written anywhere in ten seeds of thirty-five years ({} \
+             writes), so the provenance assertion above never ran on anything",
+            writes_seen
         );
     }
 
@@ -2693,42 +3290,49 @@ mod tests {
 
     #[test]
     fn a_dead_nation_holds_no_districts() {
-        // End-to-end for the ANNEXATION site, riding the same measured seed as
-        // `a_large_nation_is_subjugated_rather_than_swallowed`: seed 93 is
-        // one of the two known to reach the conquest branch (Saudi Arabia
-        // takes Qatar in 2018 — seed 9's Mongolia went away with the
-        // no-party electoral fix, as seed 17's Bhutan went with the terrain
-        // tempo pass and seed 0's Malta with the front projection). Whoever
-        // dies by conquest must leave the map entirely; a dissolution is the
-        // other way off the board and hands its ground to heirs instead.
-        let mut w = seeded(93);
-        let mut alive: Vec<NationId> =
-            w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+        // End-to-end for the ANNEXATION site. Whoever dies by conquest must
+        // leave the map entirely; a dissolution is the other way off the board
+        // and hands its ground to heirs instead.
+        //
+        // SWEPT, NOT PINNED, since 2026-08-31. This rode seed 93 alongside
+        // `a_large_nation_is_subjugated_rather_than_swallowed` and went stale
+        // with it — the pin had been Saudi Arabia/Qatar in 2018, and before that
+        // seed 9's Mongolia (lost to the no-party electoral fix), seed 17's
+        // Bhutan (the terrain tempo pass) and seed 0's Malta (the front
+        // projection). Four pins, four unrelated changes, four re-pins. The
+        // invariant below is unchanged; only the way a conquest is reached is,
+        // and it now uses the same seed range as the instrument it rides.
         let mut annexations = 0;
-        for _ in 0..480 {
-            tick_month(&mut w, &[]);
-            let mut still: Vec<NationId> = Vec::new();
-            for id in alive {
-                if w.nation_opt(id).is_some_and(|n| n.alive) {
-                    still.push(id);
-                    continue;
+        for seed in 0..20u64 {
+            let mut w = seeded(seed);
+            let mut alive: Vec<NationId> =
+                w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+            for _ in 0..480 {
+                tick_month(&mut w, &[]);
+                let mut still: Vec<NationId> = Vec::new();
+                for id in alive {
+                    if w.nation_opt(id).is_some_and(|n| n.alive) {
+                        still.push(id);
+                        continue;
+                    }
+                    assert!(
+                        !w.districts.values().any(|&o| o == id),
+                        "{:?} is off the board in {} on seed {} and still holds districts",
+                        id,
+                        w.year,
+                        seed
+                    );
+                    if id != NationId::USSR && id != NationId::Yugoslavia {
+                        annexations += 1;
+                    }
                 }
-                assert!(
-                    !w.districts.values().any(|&o| o == id),
-                    "{:?} is off the board in {} and still holds districts",
-                    id,
-                    w.year
-                );
-                if id != NationId::USSR && id != NationId::Yugoslavia {
-                    annexations += 1;
-                }
+                alive = still;
             }
-            alive = still;
         }
         assert!(
             annexations > 0,
-            "seed 93 no longer reaches the conquest branch — re-scan seeds per \
-             a_large_nation_is_subjugated_rather_than_swallowed's comment"
+            "no seed in 0..20 reaches the conquest branch, so the annexation site was never \
+             exercised — re-scan with `conquest_seed_scan`"
         );
     }
 
@@ -2879,13 +3483,15 @@ mod tests {
         assert!(collapses >= 6, "USSR survived too often: {}/10 collapses", collapses);
     }
 
-    #[test]
-    fn gulf_war_emerges() {
-        // Iraq should invade Kuwait in a majority of early-90s runs.
-        let mut invasions = 0;
-        for seed in 0..10u64 {
-            let rules = GameRules { seed, ..GameRules::default() };
-            let mut w = world_1990(rules);
+    /// The seeds in `0..40` whose first four years produce an Iraqi invasion of
+    /// Kuwait. `aggression` is the arm, the same shape `conquests` uses: at 1.0
+    /// the AI fights, at 0.0 `dyads.rs:273` multiplies every appetite in the
+    /// world by zero and nobody attacks anybody.
+    fn gulf_wars(aggression: f64) -> Vec<u64> {
+        let mut hits = vec![];
+        for seed in 0..40u64 {
+            let mut w = seeded(seed);
+            w.rules.ai_aggression = aggression;
             let mut saw = false;
             for _ in 0..48 {
                 let headlines = tick_month(&mut w, &[]);
@@ -2894,10 +3500,59 @@ mod tests {
                 }
             }
             if saw || !w.nation(NationId::Kuwait).alive {
-                invasions += 1;
+                hits.push(seed);
             }
         }
-        assert!(invasions >= 5, "Gulf War too rare: {}/10", invasions);
+        hits
+    }
+
+    #[test]
+    fn gulf_war_emerges() {
+        // Iraq should invade Kuwait in a majority of early-90s runs.
+        //
+        // WIDENED FROM TEN SEEDS TO FORTY, AND THE BAR IS UNMOVED. It read
+        // `invasions >= 5` out of ten; it reads twenty out of forty, which is
+        // the identical claim — a majority of worlds — asked of four times the
+        // evidence. The bar's meaning is the whole point of the conversion and
+        // it is not what was wrong here.
+        //
+        // WHAT WAS WRONG WAS THE SAMPLE. Ten seeds against a bar of five cannot
+        // distinguish a rate of 42% from a rate of 50%: both put the expected
+        // count within one seed of the bar, so the test flipped colour on any
+        // change that touched the shared RNG stream, and it flipped in both
+        // directions without the model's war incidence moving at all. It has
+        // been red at 4/10 and green at 6/10 on trees whose forty-seed rate was
+        // the same number. A bar that a reshuffle can cross is not measuring
+        // the mechanism it names.
+        //
+        // At forty seeds the standard error on a rate near a half is about 8
+        // points rather than 16, which is what it takes to tell those two rates
+        // apart. `gulf_war_incidence_scan` is the wider readout, and it prints
+        // the first ten alongside so the old reading stays legible.
+        //
+        // The bar is NOT a fitted number and was not re-derived here: SPEC and
+        // this test's own first line say a majority, and a majority of forty is
+        // twenty. If the true rate ever sits below it, that is a finding about
+        // the model's appetite pass and belongs in a bug entry, not in this
+        // literal.
+        let hits = gulf_wars(1.0);
+        assert!(
+            hits.len() >= 20,
+            "Gulf War too rare: {}/40 seeds — {:?}",
+            hits.len(),
+            hits
+        );
+
+        // The control arm, added with the widening: the count above has to come
+        // from the appetite pass rather than from anything else that can put
+        // Kuwait off the board in four years. With the AI's appetite for war at
+        // zero there is no invasion in any of the forty.
+        let control = gulf_wars(0.0);
+        assert!(
+            control.is_empty(),
+            "Iraq invaded Kuwait in a world where the AI's appetite for war is zero: {:?}",
+            control
+        );
     }
 
     #[test]
@@ -3088,6 +3743,65 @@ mod tests {
     }
 
     #[test]
+    fn an_endowment_cannot_pay_the_diffusion_floor() {
+        // NEGATIVE CONTROL for `a_poor_nation_still_picks_up_what_everyone_has`,
+        // which was re-pointed from an absolute count to post-1990 ACQUISITIONS.
+        // Iron rule 5 says a re-pointed test must be checked red against the
+        // behaviour it now guards, and the subtraction that rewrite added is a
+        // NO-OP TODAY — `tech_1990_for` returns an empty grant for every nation
+        // because no file carries a `tech_1990` block yet. Without this control
+        // the rewrite would be untested code sitting in a green suite, which is
+        // the exact failure mode it was written to prevent.
+        //
+        // The failure mode, exactly: a nation handed a stock in 1990 satisfies a
+        // bare floor of five on the grant alone, having acquired nothing at all.
+        // The old predicate cannot see that. The new one must.
+        //
+        // The grant here is injected through the same `grant_1990` door the
+        // loader uses, but WITHOUT the loader's rebasing pass, which is fine for
+        // this test and would not be for a growth one — nothing below reads TFP.
+        for seed in [1990u64, 7, 42] {
+            let rules = GameRules { seed, ..GameRules::default() };
+            let mut w = world_1990(rules);
+            let stock: Vec<u16> = (0..8u16).collect();
+            w.nation_mut(NationId::EquatorialGuinea).tech.grant_1990(&stock);
+            let granted = stock.len();
+            // Two years, not thirty. The horizon is the control: it is long
+            // enough to be a real run of the real systems and short enough that
+            // the poorest economy on the board has not yet finished anything.
+            run_months(&mut w, 24);
+            let held = w.nation(NationId::EquatorialGuinea).tech.count();
+            let acquired = held.saturating_sub(granted);
+
+            // The OLD predicate — a bare `count() >= 5` — is satisfied here, and
+            // satisfied entirely by the endowment.
+            assert!(
+                held >= 5,
+                "seed {}: the control is mis-set, the grant did not land ({} held)",
+                seed, held
+            );
+            // And nothing whatever has been acquired, so the NEW predicate fails
+            // as it is supposed to. If this assertion ever goes red, the model
+            // has changed such that a granted nation researches inside two years
+            // and this control needs a shorter horizon — not a wider tolerance.
+            assert_eq!(
+                acquired, 0,
+                "seed {}: control expected no acquisitions in 24 months, got {}                  (held {}, granted {})",
+                seed, acquired, held, granted
+            );
+        }
+        // MEASURED IN PASSING, and worth knowing before the transcription lands:
+        // over the full 360 months this endowment does not SUBSTITUTE for
+        // acquisition, it ACCELERATES it. Equatorial Guinea finishes seed 42 on
+        // exactly 5 technologies ungranted — the floor, to the unit — and on 17
+        // when handed these same 8, i.e. 9 acquired rather than 5. So the
+        // re-pointed test is precautionary rather than currently load-bearing at
+        // thirty years, and the floor it asserts gets easier under a grant, not
+        // harder. That is an argument for keeping the acquisition form, not
+        // against it: the absolute count would have stopped measuring anything.
+    }
+
+    #[test]
     fn a_poor_nation_still_picks_up_what_everyone_has() {
         // The frontier is supposed to be out of a poor nation's reach. The
         // ordinary is not. For a long time both were: the cost floor stood for
@@ -3103,10 +3817,34 @@ mod tests {
             let frontier = w.nations.iter().filter(|n| n.alive).map(|n| n.tech.count()).max().unwrap();
             assert!(frontier > 60, "seed {}: nobody got anywhere: frontier {}", seed, frontier);
             for n in w.nations.iter().filter(|n| n.alive) {
+                // RE-POINTED for the 1990 endowment, and the reason is iron rule
+                // 5 rather than arithmetic. This test measures ACQUISITION — what
+                // a poor nation manages to pick up over thirty years — and a
+                // nation handed technology at the start satisfies a bare floor of
+                // five without acquiring anything at all. That is the failure
+                // mode where a test stops working while staying green, which is
+                // worse than one that goes red. So the endowment comes off the
+                // count first.
+                //
+                // Zero for every nation today, because no file carries a
+                // `tech_1990` block yet; the subtraction is a no-op and this test
+                // is unchanged in what it currently asserts.
+                //
+                // KNOWN GAP, stated rather than hidden: successors have no data
+                // file of their own, so `tech_1990_for` returns nothing for them
+                // while `TechState::inherit` hands them the parent's whole
+                // granted set. When Tier A authors the Soviet Union, the fifteen
+                // republics will each satisfy this floor on inherited technology
+                // and this test will quietly stop measuring them. Closing that
+                // needs the inherited grant recorded on the successor, which is
+                // work for the change that authors the data.
+                let granted = crate::data::tech_1990_for(n.id).granted.len();
+                let acquired = n.tech.count().saturating_sub(granted);
                 assert!(
-                    n.tech.count() >= 5,
-                    "seed {}: {:?} knows {} technologies after thirty years while the frontier holds {}",
-                    seed, n.id, n.tech.count(), frontier
+                    acquired >= 5,
+                    "seed {}: {:?} acquired {} technologies in thirty years (holds {}, \
+                     granted {}) while the frontier holds {}",
+                    seed, n.id, acquired, n.tech.count(), granted, frontier
                 );
             }
         }
@@ -3183,6 +3921,91 @@ mod tests {
         let mut w = world_1990(GameRules::default());
         let r = war::declare_war(&mut w, NationId::USA, NationId::USSR);
         assert!(r.is_err(), "nuclear powers went to direct war");
+    }
+
+    #[test]
+    fn the_nuclear_flag_tracks_a_deterrent_other_capitals_could_see() {
+        // THE ROSTER'S NUCLEAR CONVENTION, PINNED SO IT CANNOT DRIFT INTO TASTE.
+        // `nuclear` is not a possession flag and it is not a declaration flag.
+        // It is an OBSERVABILITY flag: it marks a deterrent other governments
+        // could see and plan around, because deterring is the only thing it does
+        // in the model — `dyads::war_appetite` returns zero outright against a
+        // nuclear power and `war.rs` cedes it no ground when it loses.
+        //
+        // The two files that fix the reading sit at opposite ends of it, and
+        // both are entered on this one rule rather than on separate judgements:
+        //
+        //   Israel  TRUE  on an arsenal it "has never confirmed and never will",
+        //                 because every capital in the region planned around
+        //                 Dimona in 1990. So declaration cannot be the test.
+        //   S.Africa FALSE on six assembled gun-type devices and a seventh
+        //                 part-built, because the programme was covert until
+        //                 24 March 1993 and dismantlement was ordered on
+        //                 26 February 1990. So possession cannot be the test.
+        //
+        // A review called South Africa's entry a hard citable error. It is not:
+        // it is this rule applied to the hardest case on the board, the facts
+        // and dates are transcribed in southafrica.json, and flipping it was
+        // measured — it moves both goldens and knocks two seed-pinned scenario
+        // tests off their seeds. If you are here because you want to change the
+        // convention to possession, it has to change for all four of South
+        // Africa, Israel, Pakistan and India together, and the model needs a
+        // disarmament path first (see the test below).
+        let w = world_1990(GameRules::default());
+        let mut armed: Vec<&str> = w
+            .nations
+            .iter()
+            .filter(|n| n.alive && n.nuclear)
+            .map(|n| n.id.name())
+            .collect();
+        armed.sort_unstable();
+        assert_eq!(
+            armed,
+            vec!["China", "France", "Israel", "Soviet Union", "United Kingdom", "United States"],
+            "the 1990 deterrent set changed; if this is deliberate, the convention \
+             in southafrica.json and pakistan.json has to move with it"
+        );
+    }
+
+    #[test]
+    fn nothing_in_the_model_ever_gives_a_deterrent_up() {
+        // A DOCTRINE TRIPWIRE, not a wish. The nuclear flag is monotone: once
+        // set, nothing anywhere in the sim sets it back. That limit is what
+        // decides South Africa's entry — a possession reading would want the
+        // flag true for eighteen months of a thirty-year game and false for the
+        // remaining twenty-eight and a half, and the model has no way to say so.
+        //
+        // So this test exists to fail LOUDLY on the day someone implements
+        // disarmament, because that is the day southafrica.json's call is worth
+        // reopening. It is not asserting that disarmament would be wrong.
+        //
+        // Successors are excluded deliberately: Ukraine, Belarus and Kazakhstan
+        // are BORN non-nuclear in `dissolve_ussr` rather than disarmed by it,
+        // which is the model declining to represent the Lisbon Protocol, not a
+        // transition. The test tracks nations that were already alive and armed.
+        let mut w = world_1990(GameRules::default());
+        let mut armed: Vec<NationId> = w
+            .nations
+            .iter()
+            .filter(|n| n.alive && n.nuclear)
+            .map(|n| n.id)
+            .collect();
+        armed.sort_unstable_by_key(|id| id.name());
+        for _ in 0..360 {
+            run_months(&mut w, 1);
+            for id in &armed {
+                if let Some(n) = w.nation_opt(*id) {
+                    assert!(
+                        !n.alive || n.nuclear,
+                        "{:?} is alive and has given up its deterrent in {}/{}. If you have \
+                         added a disarmament path, that is a real improvement — now go and \
+                         reopen the nuclear convention in southafrica.json, which is entered \
+                         false precisely because this could not happen.",
+                        id, w.year, w.month
+                    );
+                }
+            }
+        }
     }
 
     #[test]
@@ -3538,38 +4361,176 @@ mod tests {
         );
     }
 
+    /// Twenty years of a USA-Poland agreement, one entry per seed: what Poland's
+    /// output came to as a multiple of the same Poland without the agreement,
+    /// and what tearing it up then costs each side.
+    ///
+    /// `sign` of false is the control arm: no agreement is ever signed, so the
+    /// "open" world IS the base world and the lift must be exactly one — and
+    /// abrogating an agreement that does not exist must cost Warsaw nothing.
+    /// That second half is a real guard and not a formality: `AbrogateTrade`
+    /// reaches into both economies, and a version of it that charged the
+    /// reputational or dependency penalty without checking that a pact was
+    /// there would pass every assertion in the treated arm.
+    /// Advance the world with WARSAW OTHERWISE UNOPEN: every trade agreement
+    /// Poland holds with anyone but Washington is struck out the month it is
+    /// signed. `keep_usa` decides whether the one agreement under test survives.
+    ///
+    /// This is the construction that makes the reading match the test's name,
+    /// and it is not a formality. `statecraft` ticks BEFORE `politics` in
+    /// `SYSTEMS`, so an agreement the AI signs in month M is not seen by
+    /// `trade_level_gain` until month M+1 — striking it at the end of month M
+    /// means it is never paid at all, and Poland's `trade_level_paid` stays
+    /// `None` in the arm that holds nothing. The strike is applied to BOTH arms
+    /// and to Washington-Warsaw too when `keep_usa` is false, so the control arm
+    /// cannot quietly acquire the very agreement it is supposed to lack.
+    fn run_warsaw_unopen(w: &mut WorldState, months: usize, keep_usa: bool) {
+        for _ in 0..months {
+            tick_month(w, &[]);
+            w.statecraft.trade.retain(|t| {
+                if t.a != NationId::Poland && t.b != NationId::Poland {
+                    return true;
+                }
+                keep_usa && (t.a == NationId::USA || t.b == NationId::USA)
+            });
+        }
+    }
+
+    fn trade_lift(sign: bool) -> (Vec<f64>, Vec<f64>, Vec<f64>, usize) {
+        let (mut lift, mut warsaw_v, mut washington_v) = (vec![], vec![], vec![]);
+        let mut tore_up = 0usize;
+        for seed in 0..10u64 {
+            let (mut base, mut open) = (seeded(seed), seeded(seed));
+            for w in [&mut base, &mut open] {
+                w.rules.ai_aggression = 0.0;
+                w.player = Some(NationId::USA);
+            }
+            if sign {
+                force_trade(&mut open, NationId::USA, NationId::Poland);
+            }
+            run_warsaw_unopen(&mut base, 240, false);
+            run_warsaw_unopen(&mut open, 240, sign);
+            lift.push(open.nation(NationId::Poland).gdp / base.nation(NationId::Poland).gdp);
+
+            let (p0, u0) =
+                (open.nation(NationId::Poland).gdp, open.nation(NationId::USA).gdp);
+            // Not unwrapped: in the control arm there is nothing to tear up and
+            // the refusal is the point. Counting the successes is how the test
+            // tells "the agreement cost nothing to lose" apart from "there was
+            // no agreement", which are very different findings.
+            if apply_command(
+                &mut open,
+                &Command::AbrogateTrade { from: NationId::USA, to: NationId::Poland },
+            )
+            .is_ok()
+            {
+                tore_up += 1;
+            }
+            warsaw_v.push(1.0 - open.nation(NationId::Poland).gdp / p0);
+            washington_v.push(1.0 - open.nation(NationId::USA).gdp / u0);
+        }
+        for v in [&mut lift, &mut warsaw_v, &mut washington_v] {
+            v.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        }
+        (lift, warsaw_v, washington_v, tore_up)
+    }
+
+    /// Converted from one seed to a ten-seed median 2026-08-31, PLAN step 1.
+    ///
+    /// IT WAS A COIN FLIP WEARING A THRESHOLD, and the measurement that says so
+    /// is `instrument_spread`: the lift asserted above 1.20 while the ten-seed
+    /// spread ran 1.018 .. 1.436. Four seeds in ten sat under the bar. It passed
+    /// because somebody had picked seed 2, and any change anywhere that
+    /// reshuffled the RNG stream could have flipped it either way without
+    /// anything about trade having moved.
+    ///
+    /// THE BAR IS UNCHANGED AT 1.20 AND THAT IS DELIBERATE. Converting a
+    /// one-seed reading to a median of ten is a strengthening only if the
+    /// threshold stays put; re-deriving it against what the model now prints
+    /// would be the laundering iron rule 5 forbids. So 1.20 is inherited, not
+    /// re-fitted, and the median of ten must clear what one lucky seed used to.
+    ///
+    /// RE-CONSTRUCTED 2026-08-31, AND THE BAR IS STILL UNCHANGED AT 1.20. The
+    /// median had fallen to 1.107 and the reason was not trade. Poland holds
+    /// agreements of its own: on the ten-seed control arm it finished with
+    /// Czechoslovakia and Hungary and a `trade_level_paid` of 0.079 .. 0.137
+    /// against the treated arm's 0.246. So the ratio was reading the MARGINAL
+    /// worth of one more agreement to a country already open, while the name on
+    /// the test claims the STANDALONE worth of the first one. Reach is a share
+    /// of a trading universe and is bounded by one, so a portfolio that already
+    /// covers most of it leaves little for the next entrant to add — 1.246/1.11
+    /// is 1.12, which is the number that was printing.
+    ///
+    /// `run_warsaw_unopen` fixes the construction rather than the threshold:
+    /// Warsaw is kept otherwise unopen in BOTH arms, so the ratio is one
+    /// agreement against none, which is what the name says. Confirmed by the
+    /// instrument itself — the control arm's `trade_level_paid` is now `None`,
+    /// i.e. Poland was never paid a penny of level gain in the arm that holds
+    /// nothing, so no part of the lift is leakage.
+    ///
+    /// MEASURED AFTER: median 1.222, ten-seed spread 1.186 .. 1.231, eight of
+    /// ten seeds over the bar. That is a real margin rather than a comfortable
+    /// one, and it is stated so the next reader does not mistake it for slack.
+    /// It is also a far tighter distribution than the 1.018 .. 1.436 recorded
+    /// below, which is the finding underneath all of this: the spread that made
+    /// the old reading a coin flip came from Poland's OTHER agreements moving
+    /// around under it, not from what an agreement is worth.
+    ///
+    /// AND THE 1.20 IS UNSOURCED — recorded here rather than quietly repaired.
+    /// The asymmetry below has a real anchor stated in the test ("an order of
+    /// magnitude", the 10x this repo's CLAUDE.md records reading 8.5x before the
+    /// growth model was fixed). The *magnitude* of the lift has none: no note in
+    /// this repo says what twenty years of integration was worth to a small
+    /// open economy in the period, and `TRADE_LEVEL_GAIN`'s own comment argues
+    /// its quarter from market size rather than from a measured episode. A band
+    /// invented here to look rigorous would be a fabricated citation, so the
+    /// inherited threshold stands and the debt is written down instead. This is
+    /// the one instrument of the four still resting on an unsourced number.
     #[test]
     fn a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it() {
-        let (mut base, mut open) = (seeded(2), seeded(2));
-        for w in [&mut base, &mut open] {
-            w.rules.ai_aggression = 0.0;
-            w.player = Some(NationId::USA);
-        }
-        force_trade(&mut open, NationId::USA, NationId::Poland);
-        run_months(&mut base, 240);
-        run_months(&mut open, 240);
-        let (b, o) = (base.nation(NationId::Poland).gdp, open.nation(NationId::Poland).gdp);
-        assert!(o > b * 1.20, "twenty years of integration bought nothing: {:.0} vs {:.0}", o, b);
+        let (lift, warsaw_v, washington_v, tore_up) = trade_lift(true);
+        assert_eq!(tore_up, 10, "the treated arm failed to tear up an agreement it had signed");
+        let median = lift[lift.len() / 2];
+        assert!(
+            median > 1.20,
+            "twenty years of integration bought nothing: median lift {:.3} across ten seeds {:?}",
+            median,
+            lift.iter().map(|x| (x * 1000.0).round() / 1000.0).collect::<Vec<_>>()
+        );
 
         // ...and the growth is the leash. Tearing the agreement up costs the
         // small partner an order of magnitude more than the large one.
-        let (p0, u0) = (
-            open.nation(NationId::Poland).gdp,
-            open.nation(NationId::USA).gdp,
-        );
-        apply_command(
-            &mut open,
-            &Command::AbrogateTrade { from: NationId::USA, to: NationId::Poland },
-        )
-        .unwrap();
-        let warsaw = 1.0 - open.nation(NationId::Poland).gdp / p0;
-        let washington = 1.0 - open.nation(NationId::USA).gdp / u0;
-        assert!(warsaw > 0.02, "the dependent partner shrugged it off: {:.4}", warsaw);
+        let warsaw = warsaw_v[warsaw_v.len() / 2];
+        let washington = washington_v[washington_v.len() / 2];
+        assert!(warsaw > 0.02, "the dependent partner shrugged it off: {:.4} {:?}", warsaw, warsaw_v);
         assert!(
             warsaw > washington * 10.0,
             "dependency was symmetric: {:.4} vs {:.4}",
             warsaw,
             washington
+        );
+
+        // The control arm: never sign, and the two worlds are one world.
+        let (c_lift, c_warsaw, _, c_tore_up) = trade_lift(false);
+        let c_median = c_lift[c_lift.len() / 2];
+        assert!(
+            (c_median - 1.0).abs() < 1e-9,
+            "an agreement nobody signed lifted Poland: {:.6} {:?}",
+            c_median, c_lift
+        );
+        // Nothing was signed, so nothing can be torn up — which also establishes
+        // that the treated arm measured the agreement THIS TEST made, and was
+        // not riding on one the AI had signed on its own.
+        assert_eq!(
+            c_tore_up, 0,
+            "Washington tore up a Warsaw agreement it never signed in {} of ten seeds",
+            c_tore_up
+        );
+        let c_worst = c_warsaw.iter().fold(0.0f64, |a, b| a.max(b.abs()));
+        assert!(
+            c_worst < 1e-9,
+            "tearing up an agreement that was never signed cost Warsaw {:.6}",
+            c_worst
         );
     }
 
@@ -4601,6 +5562,88 @@ mod tests {
         assert!(born >= 6, "the union held together too often: {}/10", born);
     }
 
+    #[test]
+    fn a_dissolution_makes_no_choice_between_its_successors() {
+        // WHY THIS EXISTS, stated plainly because the finding that prompted it
+        // did not survive contact with the code. A review flagged the "largest
+        // population share" tie-break on `TechState::inherit` as a determinism
+        // hazard under iron rule 1. THERE IS NO SUCH TIE-BREAK, and there is no
+        // such selection: `dissolve_ussr` and `dissolve_yugoslavia` both walk a
+        // hard-coded table in a fixed order and hand EVERY successor the parent's
+        // entire known set through `inherit`. Nothing chooses, so nothing can tie,
+        // and there is nothing for iteration order to decide. (The sim holds no
+        // HashMap or HashSet anywhere, and the population shares in the Soviet
+        // table are all distinct with Russia largest at 0.51, so even the rule
+        // the review had in mind would not tie on this data.)
+        //
+        // The hazard is real but it is in the FUTURE tense. The succession rule
+        // under consideration — largest-population successor is the continuator
+        // and keeps everything, the others keep less — would introduce exactly
+        // the selection that does not exist today, and "largest share" is not by
+        // itself a total order. So this test pins the absence: while every
+        // successor inherits identically there is no choice to make, and the day
+        // that stops being true is the day an explicit tie-break is owed.
+        for seed in 0..8u64 {
+            let rules = GameRules { seed, ..GameRules::default() };
+            let mut w = world_1990(rules);
+            let parent_at_start = w.nation(NationId::USSR).tech.count();
+            // Snapshot on the tick the union comes apart, not years later. What
+            // the successors do with the inheritance afterwards is research, and
+            // research is supposed to move them apart; what this test is about is
+            // the single instant where the dissolution decides who gets what.
+            let mut dissolved = false;
+            for _ in 0..180 {
+                run_months(&mut w, 1);
+                if w.has_flag("ussr_dissolved") {
+                    dissolved = true;
+                    break;
+                }
+            }
+            if !dissolved {
+                continue;
+            }
+            // The fifteen the union broke into, named here rather than derived,
+            // so that adding a republic to the table makes this test say so.
+            let born = [
+                NationId::Russia, NationId::Ukraine, NationId::Belarus,
+                NationId::Kazakhstan, NationId::Uzbekistan, NationId::Azerbaijan,
+                NationId::Georgia, NationId::Lithuania, NationId::Moldova,
+                NationId::Latvia, NationId::Armenia, NationId::Tajikistan,
+                NationId::Kyrgyzstan, NationId::Turkmenistan, NationId::Estonia,
+            ];
+            let successors: Vec<NationId> = born
+                .iter()
+                .copied()
+                .filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
+                .collect();
+            assert!(
+                successors.len() >= 10,
+                "seed {}: only {} successors survived the collapse",
+                seed, successors.len()
+            );
+            // Every one of them holds the same thing, and it is at least what the
+            // union held on the day the game opened. They diverge afterwards by
+            // researching, which is the model working; what must not differ is
+            // what the dissolution ITSELF handed each of them.
+            let first = w.nation(successors[0]).tech.known.clone();
+            for id in &successors {
+                assert_eq!(
+                    w.nation(*id).tech.known, first,
+                    "seed {}: {:?} came out of the dissolution holding a different set from \
+                     {:?}. If that is deliberate, a continuator rule has been introduced and \
+                     it now needs an EXPLICIT total order — largest population share alone is \
+                     not one, and falling back on table order is iron rule 1.",
+                    seed, id, successors[0]
+                );
+            }
+            assert!(
+                first.len() >= parent_at_start,
+                "seed {}: successors hold {} where the union opened with {}",
+                seed, first.len(), parent_at_start
+            );
+        }
+    }
+
     // ---- The front projection: BIBLE section 5 as amended 2026-08-30 -------
 
     #[test]
@@ -5290,7 +6333,3 @@ mod tests {
         }
     }
 }
-
-
-
-

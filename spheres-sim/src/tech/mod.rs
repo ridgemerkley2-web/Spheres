@@ -541,6 +541,14 @@ fn saturate(x: f64, cap: f64) -> f64 {
     cap * (1.0 - crate::exact::exp(-x / cap))
 }
 
+/// Bit-exact, not `== 0.0`. `-0.0 == 0.0` is true in IEEE, so the loose test
+/// would drop a negative zero and hand back a positive one on the next load —
+/// a round-trip that changes a bit is the one thing a determinism oracle taken
+/// over the serialized state cannot tolerate.
+fn is_positive_zero(x: &f64) -> bool {
+    x.to_bits() == 0
+}
+
 /// What a nation knows and what it is working on. Indices into `registry()`,
 /// kept sorted, which keeps saves compact and comparisons total.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Default)]
@@ -559,6 +567,64 @@ pub struct TechState {
     pub research_total: f64,
     /// The nation's productivity trend before any technology touched it.
     pub tfp_base: f64,
+    /// What the 1990 endowment is worth to this nation relative to the world:
+    /// `saturated_tech_tfp(1990 stock) - world_reference(1990)`. Subtracted out
+    /// of `tfp_base` once, at construction, so that the trend `apply_bonuses`
+    /// reassembles reproduces the transcribed figure instead of paying for the
+    /// same technology twice (iron rule 4, amended 2026-08-30).
+    ///
+    /// Kept as a field rather than recomputed because after the rebase
+    /// `tfp_base` is no longer the transcribed trend, and two callers still need
+    /// the transcribed trend back: `economy::tick`'s frontier reversion, which
+    /// was calibrated against it, and the succession path, which must carry the
+    /// same reconciliation into a successor state.
+    ///
+    /// `skip_serializing_if` is load-bearing rather than tidiness. On a board
+    /// where no nation was granted anything the offset is exactly `+0.0`, the
+    /// field is omitted, and the serialized `WorldState` is byte-identical to
+    /// the one this machinery replaced — which is what makes the golden hashes
+    /// a proof that the machinery is inert rather than an assertion that it is.
+    #[serde(default, skip_serializing_if = "is_positive_zero")]
+    pub tfp_1990_offset: f64,
+    /// How far behind the January 1990 frontier this nation's transcription
+    /// left it, counted in technologies: `world_frontier(1990) - count(1990)`.
+    ///
+    /// The second half of the same reconciliation `tfp_1990_offset` is the first
+    /// half of. `apply_bonuses` assembles three terms and the offset neutralises
+    /// two; this neutralises the third. `adoption` is paid on the distance to
+    /// the frontier, and in January 1990 that distance is a LEVEL the nation's
+    /// transcribed trend has already priced — BIBLE §8's error class, a term
+    /// paying a permanent RATE for a one-time LEVEL, and the fifth instance of
+    /// it this codebase has found. Carrying the deficit lets the gap be measured
+    /// from where the transcription left the nation rather than from zero, so
+    /// the convergence premium is paid for ground lost or won against the
+    /// frontier SINCE the transcription and for nothing else.
+    ///
+    /// It is a claim about 1990-vintage technology and it cannot outlive that
+    /// stock: `apply_bonuses` caps it at the number of 1990-vintage technologies
+    /// the nation still does not hold. A nation that demonstrably holds all of
+    /// them has nothing left for the transcription to have under-listed, and its
+    /// whole remaining distance to the frontier is distance that opened after
+    /// 1990 — which nothing has paid for.
+    ///
+    /// `skip_serializing_if` for the same reason as the offset above: on a board
+    /// where nobody was granted anything the frontier is zero, every deficit is
+    /// exactly `+0.0`, the field is omitted, and the serialized state is
+    /// byte-identical to the one this machinery replaced.
+    #[serde(default, skip_serializing_if = "is_positive_zero")]
+    pub tech_1990_deficit: f64,
+    /// How much of that deficit the nation has since turned up: 1990-vintage
+    /// technology it has acquired in play while the credit was still open.
+    ///
+    /// THE CREDIT IS CONSUMED, and without this it is not. A deficit that is
+    /// merely *held* would excuse the same number of acquisitions again every
+    /// month for thirty years, which is not "the transcription under-listed you
+    /// by sixteen technologies" but "sixteen of everything you ever learn are
+    /// free". MEASURED, before this was tracked: China's thirty-year multiple
+    /// read 10.48x on a credit of 1.6 technologies it should barely have
+    /// noticed, because 1.6 of every month's unlocks were being written off.
+    #[serde(default, skip_serializing_if = "is_positive_zero")]
+    pub tech_1990_revealed: f64,
     /// How much of the accumulated oil-yield bonus has been worked into the
     /// wells so far. Recovery arrives gradually and cannot be undone.
     pub oil_yield_applied: f64,
@@ -638,6 +704,9 @@ impl TechState {
             progress: vec![0.0; DOMAIN_COUNT],
             research_total: 0.0,
             tfp_base,
+            tfp_1990_offset: 0.0,
+            tech_1990_deficit: 0.0,
+            tech_1990_revealed: 0.0,
             priority: None,
             oil_yield_applied: 0.0,
             bonus: TechBonuses::default(),
@@ -648,13 +717,41 @@ impl TechState {
 
     /// A successor state keeps the laboratories, the factories and the people
     /// who staffed them. It does not keep the research programme.
-    pub fn inherit(parent: &TechState, tfp_base: f64) -> Self {
+    ///
+    /// `transcribed` is the successor's own authored trend, and it arrives here
+    /// with the same problem every 1990 figure has: it already prices in the
+    /// technology the successor is about to inherit. Fifteen Soviet republics
+    /// each taking the union's whole 1990 stock on top of their own cited trend
+    /// is the endowment paid for sixteen times, and it is the one double-count a
+    /// t=0 acceptance test cannot see — it does not exist until December 1991.
+    ///
+    /// So the parent's 1990 offset travels with the known set it explains, and
+    /// the successor's base is its transcription net of that offset, exactly as
+    /// the loader computes it. The offset is carried rather than recomputed
+    /// against the live world reference, and the distinction is load-bearing:
+    /// recomputing would also net out everything the parent RESEARCHED since
+    /// 1990, which no nation's base has ever had netted out and which the model
+    /// pays as a differential to everybody. That is a real and separate defect
+    /// in the succession path — see the note above `dissolve_ussr` — and it is
+    /// not this change's to fix, because fixing it moves the golden run hash on
+    /// a board where nothing has been granted at all.
+    ///
+    /// On a board with no endowment the parent's offset is exactly `+0.0` and
+    /// this is `tfp_base = transcribed`, bit for bit, as it was before.
+    pub fn inherit(parent: &TechState, transcribed: f64) -> Self {
         TechState {
             known: parent.known.clone(),
             focus: vec![None; DOMAIN_COUNT],
             progress: vec![0.0; DOMAIN_COUNT],
             research_total: 0.0,
-            tfp_base,
+            tfp_base: transcribed - parent.tfp_1990_offset,
+            tfp_1990_offset: parent.tfp_1990_offset,
+            // The 1990 deficit travels with the known set it explains, for the
+            // same reason the offset does: a successor taking the union's whole
+            // 1990 stock must not also be handed a fresh convergence gap against
+            // a frontier that stock already reaches.
+            tech_1990_deficit: parent.tech_1990_deficit,
+            tech_1990_revealed: parent.tech_1990_revealed,
             priority: None,
             oil_yield_applied: parent.oil_yield_applied,
             bonus: parent.bonus.clone(),
@@ -730,6 +827,192 @@ impl TechState {
             }
         }
     }
+
+    /// Install what this nation already knew on 1 January 1990.
+    ///
+    /// `learn` is the wrong door for this and the difference matters. `learn` is
+    /// a nation finishing a project; this is the board being set up, and it must
+    /// therefore be idempotent, order-free and free of the side effects that
+    /// finishing a project has.
+    ///
+    /// Two of those side effects are handled here and nowhere else:
+    ///
+    ///  * `oil_yield_applied` is set to the full accumulated bonus rather than
+    ///    left at zero. `apply_bonuses` walks `oil_mbd` upward by 2% of the
+    ///    remaining gap every month, so a producer granted 3-D seismic and
+    ///    horizontal drilling with `applied = 0` would manufacture ~6.5% of
+    ///    extra crude on top of a transcribed 1990 `oil_mbd` that already
+    ///    reflects the recovery technology in its fields. That is the same
+    ///    paid-twice error iron rule 4 forbids for TFP, in a different channel.
+    ///    `inherit` already carries the figure forward for exactly this reason.
+    ///  * `absorption_rate` stays at zero. A grant is not absorption achieved
+    ///    and was never paid for; the adoption term must not be collected on it.
+    ///
+    /// **A granted set may leave holes in its own prerequisite chain, and that
+    /// is legal.** The tree's own citations make some 1990 grants chronologically
+    /// impossible to justify through their prereqs — `aero_pulse_doppler_radar`
+    /// cites the APG-63 of 1976 while its prerequisite `core_cmos_submicron`
+    /// cites the 80486 of 1989, an edge no nation on earth could close in 1990,
+    /// the United States included. Nothing here closes the chain and nothing
+    /// downstream requires it: `rebuild_bonus` sums whatever is held,
+    /// `eligible_projects` gates only what may be *started*, and the missing
+    /// parent stays available to be researched later. See
+    /// `a_held_technology_needs_no_prerequisite`.
+    pub fn grant_1990(&mut self, known: &[u16]) {
+        self.known.clear();
+        self.known.extend_from_slice(known);
+        self.known.sort_unstable();
+        self.known.dedup();
+        self.rebuild_bonus();
+        self.oil_yield_applied = self.bonus.oil_yield_eff();
+    }
+}
+
+/// The technology the world economy on average operates with, GDP-weighted.
+///
+/// THE one definition. `tick` and the loader's rebasing pass both read it here,
+/// so they cannot drift apart about what a nation is being scored against —
+/// which is the only thing that makes `tfp_base + (s - reference)` reproduce a
+/// transcribed figure at all.
+pub fn world_reference(nations: &[Nation]) -> f64 {
+    let mut acc = 0.0;
+    let mut world_gdp = 0.0;
+    for n in nations.iter().filter(|n| n.alive) {
+        let g = n.gdp.max(0.0);
+        world_gdp += g;
+        acc += saturated_tech_tfp(n) * g;
+    }
+    if world_gdp > 0.0 {
+        acc / world_gdp
+    } else {
+        0.0
+    }
+}
+
+/// The most technologies anybody alive holds — the frontier, counted in
+/// technologies rather than in what they are worth.
+///
+/// THE one definition, for the same reason `world_reference` is: `tick` and the
+/// loader's rebasing pass both read it here, so they cannot drift apart about
+/// what a nation's convergence gap is measured against — which is the only thing
+/// that makes a 1990 deficit subtract to exactly zero on the board it was taken
+/// from.
+pub fn world_frontier(nations: &[Nation]) -> f64 {
+    let mut frontier = 0.0f64;
+    for n in nations.iter().filter(|n| n.alive) {
+        frontier = frontier.max(n.tech.count() as f64);
+    }
+    frontier
+}
+
+/// How many technologies in the registry had been deployed somewhere by January
+/// 1990 — the vintage the 1990 transcription was drawn from, and the stock a
+/// nation's `tech_1990_deficit` is a claim about.
+fn pool_1990_size() -> f64 {
+    static SIZE: OnceLock<f64> = OnceLock::new();
+    *SIZE.get_or_init(|| {
+        registry().iter().filter(|d| d.earliest_year <= 1990).count() as f64
+    })
+}
+
+/// What is left of this nation's 1990 under-listing: the technologies its
+/// transcription is deemed to have missed and which it has not since acquired.
+///
+/// Capped at the 1990-vintage stock it still does not hold, because the deficit
+/// is a claim about that stock and cannot exceed it. A nation holding every
+/// 1990-vintage technology has nothing left for the transcription to have
+/// missed, and the whole of its remaining distance to the frontier is distance
+/// that opened after 1990.
+fn credit_1990(n: &Nation) -> f64 {
+    let open = n.tech.tech_1990_deficit - n.tech.tech_1990_revealed;
+    if open <= 0.0 {
+        // Spent, or never granted. Returning here also keeps the known-set scan
+        // below off the hot path for every nation that has used its credit up.
+        return 0.0;
+    }
+    open.min((pool_1990_size() - pool_1990_held(n)).max(0.0))
+}
+
+/// How many 1990-vintage technologies this nation actually holds.
+fn pool_1990_held(n: &Nation) -> f64 {
+    let reg = registry();
+    n.tech
+        .known
+        .iter()
+        .filter(|t| reg.get(**t as usize).is_some_and(|d| d.earliest_year <= 1990))
+        .count() as f64
+}
+
+/// Reconcile a nation's productivity base against the technology it has just
+/// been handed, so the trend `apply_bonuses` reassembles is the transcribed one.
+///
+/// `apply_bonuses` computes `tfp_trend = tfp_base + (s - reference) + adoption`.
+/// A nation handed a 1990 stock therefore arrives with `s` already non-zero, and
+/// leaving `tfp_base` at the transcribed trend would add the value of that stock
+/// on top of a 1990 growth figure that already prices it in. Subtracting the
+/// same term back out once, here, is the whole of the correction: at t=0
+/// `absorption_rate` is zero so `adoption` is zero, and the assembled trend
+/// lands exactly on the transcription.
+///
+/// **AMENDED 2026-08-31, Ridge's ruling: the third term is rebased too.** The
+/// two lines above were the whole of the correction only while `adoption` was
+/// read as a flow that starts at zero, and it is not one. `adoption` is paid on
+/// `gap^TACIT`, the distance to the frontier, and in January 1990 that distance
+/// is a standing LEVEL which the transcribed trend has already priced. Leaving
+/// it out meant the model paid a nation a permanent convergence RATE for a
+/// position its 1990 growth figure already contained — BIBLE §8's error class,
+/// the fifth instance after invest, labour, demand and the trade pacts.
+///
+/// MEASURED, on the shipped board, twelve months in: the United Kingdom
+/// assembled a trend of 0.0334 against a transcribed 0.0140, Belgium 0.0499
+/// against 0.0130, Italy 0.0296 against 0.0120 — one and a half to three and a
+/// half points a year of growth paid for re-acquiring 1990-vintage technology
+/// those nations held in 1990 and whose transcription simply did not list it.
+///
+/// So the frontier distance is rebased the same way the productivity value is:
+/// the deficit the transcription left the nation with is recorded here and
+/// subtracted in `apply_bonuses`, and a nation is paid convergence for ground it
+/// loses or wins against the frontier AFTER 1990 and for nothing else. On the
+/// board it was taken from, every nation's gap is then exactly zero — granted
+/// twenty technologies, granted forty, or granted nothing at all — which is what
+/// makes the endowment neutral for the nations outside its edge as well as
+/// inside it. See `the_1990_endowment_does_not_move_year_one_growth`.
+///
+/// `frontier_1990` must be the frontier of the SAME board this reference was
+/// taken over and after every grant has been applied, for the same reason the
+/// reference must be: both are properties of the whole roster and neither exists
+/// until the last nation has been handed its stock. `data::load_world` does this
+/// in three passes and says why.
+///
+/// WHY THE DEFICIT IS SCALED BY DEVELOPMENT, and it is the difference between a
+/// correction and a fiction. The raw count `frontier_1990 - count` is what the
+/// transcription left the nation short of the best-authored file on the board;
+/// read as a credit it asserts the nation HELD that technology and the file
+/// merely failed to list it. For Japan, Germany and Belgium that is true and is
+/// the whole complaint — a rich economy is not thirty-eight technologies behind
+/// the United States because nobody got round to authoring its file. For China
+/// it is false: China in 1990 held five and was genuinely behind, and handing it
+/// a credit for thirty-five would delete the convergence its whole history is.
+/// So the credit is the shortfall a nation's own transcribed income says it
+/// cannot really have had, through the same `development` proxy the research and
+/// growth models already read — no new constant, and the tail rule BIBLE §8 asks
+/// for. MEASURED: uncapped, China's thirty-year multiple falls 11.92x -> 9.05x
+/// and `china_growth_miracle` goes red; scaled, it holds and the mature panel
+/// keeps the whole of the improvement.
+///
+/// Note what this does NOT reconcile, because the difference is not a rounding
+/// error: health, fertility, environment, stability, oil yield, energy
+/// efficiency, research rate, diffusion and the military channels are flows with
+/// no reference term to net against. A granted board cannot be bit-identical to
+/// an ungranted one and is not meant to be. Only the productivity channel is
+/// double-counted, and only the productivity channel is corrected.
+pub fn rebase_to_transcribed(n: &mut Nation, transcribed: f64, reference: f64, frontier_1990: f64) {
+    let offset = saturated_tech_tfp(n) - reference;
+    n.tech.tfp_1990_offset = offset;
+    n.tech.tfp_base = transcribed - offset;
+    n.tech.tech_1990_deficit =
+        (frontier_1990 - n.tech.count() as f64).max(0.0) * development(n);
+    n.tfp_trend = transcribed;
 }
 
 // ---------------------------------------------------------------------------
@@ -770,7 +1053,23 @@ pub fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     if w.at_war(n.id) {
         out *= 0.85;
     }
-    out *= (1.0 - 0.03 * w.sanctioned_by_count(n.id) as f64).max(0.4);
+    // CONVERTED FROM COUNTING FLAGS. This was
+    // `out *= (1.0 - 0.03 * w.sanctioned_by_count(n.id) as f64).max(0.4);`, the
+    // second of the four count-based sanction channels `economy::SANCTION_BITE`
+    // names. A count charges Luxembourg what it charges the United States and
+    // rises without limit as the roster grows; a share of world output does
+    // neither. `0.03 / 0.30 = 0.10` is the same carry-across the shipped growth
+    // drag used — one sanctioner weighing 30% of the world costs what one flag
+    // used to cost.
+    //
+    // The `.max(0.4)` floor is GONE because it is now provably dead, not because
+    // it was in the way: `sanction_weight` is bounded by 1, so the multiplier
+    // cannot fall below 0.90 and a floor at 0.40 can never be reached. That
+    // floor existed only to stop an unbounded count; a bounded share needs no
+    // such patch, which is the argument `WorldState::sanction_weight` makes.
+    // Leaving it in would be a clamp that hides nothing and implies a bound the
+    // arithmetic no longer has.
+    out *= 1.0 - 0.10 * w.sanction_weight(n.id);
     out.max(0.0)
 }
 
@@ -786,7 +1085,55 @@ pub fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
 /// A government cannot conjure scientists, only move them.
 /// The knee of the affordability curve, `r^2/(r + knee)`. Hoisted to the module
 /// because `project_of` has to price a project exactly as the spend loop will.
-const BUILD_KNEE: f64 = 0.004;
+///
+/// WHAT THE KNEE NAMES is the size at which an economy stops BUILDING plant and
+/// starts BUYING it installed. Above it the term is `r` — the square root of a
+/// share of world output, an economies-of-scale claim about a country with a
+/// construction industry. Below it the term is linear in output, which is the
+/// claim that a country with no capital-goods sector is not building the thing
+/// at all: it is buying one, sized to its own market, and paying the freight.
+///
+/// RAISED 0.004 -> 0.008 ON 2026-08-31, and the number is RECONCILED rather than
+/// invented. Two roster branches independently softened this floor and the
+/// integration note below records reconciling their two SHAPES and keeping the
+/// smooth one. It did not reconcile their two REFERENCES. The microstate branch
+/// measured the builds-or-buys line at 0.008 and stated it in absolute terms —
+/// "about $1.4bn of 1990 output" — against the actual microstates; the smooth
+/// branch carried 0.004, and integration silently took the smaller of the two
+/// while keeping the other's curve. Taking the larger is finishing that merge.
+///
+/// It is also the one of the two that survives being read out loud. 0.004 is a
+/// share of 1.6e-5, about $375m of 1990 world output: it puts the line below
+/// every nation on the board except the five smallest islands, which is the
+/// claim that Cambodia ($1.4bn), Laos ($866m) and Chad ($1.74bn) build their own
+/// turbines and telephone switches. They do not, and never did. 0.008 puts the
+/// line where the roster actually stops having a capital-goods industry at all.
+///
+/// WHAT IT COSTS THE POOREST, which is the quantity this is really about. At
+/// thirty years `bio_universal_immunisation` has an adopter share of 1.000 —
+/// every dollar of world output already runs on it — and the copying discount
+/// has taken the copy price to nothing, so the floor is the price. At 0.004 that
+/// floor was 19 months of Equatorial Guinea's ENTIRE research budget, about
+/// twenty-one years of the one domain that would fund it. At 0.008 it is 10-11
+/// months, about twelve years. That is still slow and deliberately so; it is a
+/// floor, not a subsidy, and the change is the conservative end of what the
+/// argument above would support.
+///
+/// THE WIDER READING WAS MEASURED AND REJECTED. Carrying the same argument to
+/// where capital-goods industries genuinely begin — roughly $10bn of 1990
+/// output, `knee = 0.020` — takes the median nation from 64 technologies to 87
+/// and turns `mature_economies_do_not_run_hot` (Italy to 0.8%) and
+/// `the_1990_endowment_does_not_move_year_one_growth` red. So 0.020 is not
+/// available to this model as it stands, and that is recorded rather than
+/// quietly discovered again.
+///
+/// BLAST RADIUS, thirty-year runs, seeds 1990/7/42, technologies held in 2020,
+/// before -> after: min 3 -> 9, p10 16 -> 24, p25 31 -> 39, p50 64 -> 71,
+/// p75 101 -> 109, frontier 130 -> 129. Equatorial Guinea 3 -> 10 and Sao Tome
+/// 3 -> 11. The tail roughly triples, the median moves a tenth, the frontier
+/// does not move — which is the shape the argument asks for, since the knee is
+/// a statement about small economies and nothing else.
+const BUILD_KNEE: f64 = 0.008;
 
 pub const PRIORITY_MULTIPLIER: f64 = 3.0;
 
@@ -975,7 +1322,13 @@ fn absorptive_capacity(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     if n.system == EconomySystem::Command {
         a -= 0.15;
     }
-    a -= 0.04 * w.sanctioned_by_count(n.id) as f64;
+    // CONVERTED FROM COUNTING FLAGS, third of the four. This was
+    // `a -= 0.04 * w.sanctioned_by_count(n.id) as f64;`, and at eight
+    // signatures it took the whole of `a` to the 0.05 clamp regardless of who
+    // had signed. `0.04 / 0.30 = 0.1333`, the same carry-across as the other
+    // three. The `clamp` below stays: it bounds a sum of several terms, not this
+    // one, and was never a patch on the count.
+    a -= 0.1333 * w.sanction_weight(n.id);
     a.clamp(0.05, 1.20)
 }
 
@@ -1024,11 +1377,57 @@ fn effective_cost(
     // it. That floor is what lets a small poor state pick up the ordinary
     // things without ever putting the frontier within reach.
     //
+    // MEASURED IN PASSING 2026-08-31, and it qualifies the paragraph above this
+    // function: "Capacity still gates the whole thing" is NOT true wherever this
+    // floor binds, because the floor is the one term here that never reads
+    // `absorb`. A decomposition of the cheapest AVAILABLE project — prerequisites
+    // held, year floor open — found the floor binding for every nation examined
+    // from Equatorial Guinea to India from month 120 onward. So `capacity` is
+    // live only on frontier work and on the early years, and for the whole
+    // ordinary tier a state with no engineers is charged exactly what a state
+    // full of them is charged. That is a real gap and it is NOT closed here:
+    // closing it means making the floor dearer for a low-capacity state, which
+    // is a change in the opposite direction to the one this pass was sent to
+    // make, and it belongs to whoever prices absorption next.
+    //
     // What it costs to build, though, depends on what is being built. Frontier
     // plant is bespoke and the floor should say so; something the whole world
     // already manufactures is bought off a shelf, and holding both to the same
     // floor is what shut the smallest economies out of even commodity
     // technology — the floor bound long before the copying discount could bite.
+    //
+    // THE DEPTH OF THAT DECAY WAS THE PART THE COMMENT ABOVE COULD NOT KEEP, and
+    // the measurement that says so is a decomposition of the price the poorest
+    // economies actually face. At thirty years `bio_universal_immunisation` has
+    // an adopter share of 1.000 — every dollar of world output already runs on
+    // it — and the copying discount has taken the copy price to nothing. It is
+    // the floor that is charged, to India as much as to Chad, and at a decay of
+    // 0.70 the floor at full universality is 0.30 * 0.30 = 0.090: THIRTY PERCENT
+    // of the first-of-a-kind build bill, for a thing the comment above says is
+    // bought off a shelf. Priced against income that is 19 months of Equatorial
+    // Guinea's ENTIRE research budget, or about twenty-one years of the one
+    // domain that would fund it. Universal childhood immunisation did not take
+    // Equatorial Guinea twenty-one years of its whole technical capacity; the
+    // WHO programme that carried it reached essentially every state on earth
+    // inside a decade of becoming ordinary.
+    //
+    // So the decay is deepened to 0.90, which makes the floor at full
+    // universality a TENTH of the frontier build bill rather than a third, and
+    // that tenth is the anchor rather than the outcome. It is the ordinary
+    // nth-of-a-kind against first-of-a-kind ratio: conventional FOAK/NOAK
+    // factors run 5-10x, and a learning curve at an 80-90% progress ratio over
+    // the fifteen-odd doublings between one unit and global ubiquity lands
+    // between 0.06 and 0.17. A tenth sits in the middle of that range and is
+    // the rule of thumb the range is usually summarised by.
+    //
+    // The shape is UNCHANGED and deliberately so. `s2` is convex, so this buys
+    // nothing at the frontier — at an adopter share of 0.5 the floor moves 6%,
+    // at 0.2 it moves 1% — and everything at the top end, which is the only
+    // place the claim is being made. It also cannot run away the way the
+    // "universality gate" measured below did: that failed because the floor
+    // VANISHED at share 1 and a free technology drove its own share there. This
+    // floor is strictly positive, and at full universality still costs
+    // Equatorial Guinea six months of its whole budget.
     let build = 0.30 * (1.0 - 0.70 * s2);
     (def.cost * copy * own).max(def.cost * build * scale)
 }
@@ -1107,13 +1506,17 @@ pub fn tick(w: &mut WorldState) {
     // The technology the world economy on average operates with, and the best
     // anyone has. Both are read off the state at the top of the tick, so what
     // one nation is scored against never depends on who was ticked first.
-    let mut ref_weighted = 0.0;
-    let mut frontier_known = 0.0f64;
-    for n in w.nations.iter().filter(|n| n.alive) {
-        ref_weighted += saturated_tech_tfp(n) * n.gdp.max(0.0);
-        frontier_known = frontier_known.max(n.tech.count() as f64);
-    }
-    let reference = if world_gdp > 0.0 { ref_weighted / world_gdp } else { 0.0 };
+    //
+    // The reference goes through `world_reference` rather than being summed
+    // here, because the loader subtracts this exact quantity out of `tfp_base`
+    // and the two must agree to the bit or a transcribed trend stops reproducing
+    // itself. Same accumulation, same order, same divisor as the loop it
+    // replaced.
+    let reference = world_reference(&w.nations);
+    // Same argument as the reference, and the same remedy: `world_frontier` is
+    // the one definition, because the loader subtracts a deficit taken against
+    // this exact quantity and the two must agree or a 1990 gap stops cancelling.
+    let frontier_known = world_frontier(&w.nations);
 
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     let year = w.year;
@@ -1263,6 +1666,17 @@ pub fn tick(w: &mut WorldState) {
             n.tech.ensure_shape(n.tfp_trend);
             n.tech.research_total += output;
             let known_before = n.tech.count();
+            // Taken before the learn loop and with investment shares fixed for
+            // the month, so the difference across the loop is what technology
+            // did and nothing else. Only worth taking while the nation still
+            // has a 1990 credit open; once it is spent this is dead weight on
+            // every nation for the rest of the run.
+            let credit_before = credit_1990(n);
+            let (pool_before, s_before) = if credit_before > 0.0 {
+                (pool_1990_held(n), saturated_tech_tfp(n))
+            } else {
+                (0.0, 0.0)
+            };
 
             for d in DOMAINS {
                 let di = d.index();
@@ -1300,11 +1714,36 @@ pub fn tick(w: &mut WorldState) {
                 }
             }
 
+            // A REVELATION IS NOT AN ACQUISITION. While a nation's 1990
+            // under-listing is outstanding, the 1990-vintage technology it picks
+            // up is stock its transcribed trend already prices — the same claim
+            // `tech_1990_deficit` makes to the convergence gap, made here to the
+            // productivity base, because the two must be neutralised together or
+            // the endowment moves growth through whichever one was left out.
+            //
+            // Attributed by count across the month's unlocks: the saturation
+            // curve is not separable per technology and a month can land a
+            // revealed one beside a genuinely new one. Stylised, and stated.
+            let learned = (n.tech.count() - known_before) as f64;
+            let revealed = if credit_before > 0.0 && learned > 0.0 {
+                (pool_1990_held(n) - pool_before).min(credit_before).max(0.0)
+            } else {
+                0.0
+            };
+            if revealed > 0.0 && learned > 0.0 {
+                let credited = (saturated_tech_tfp(n) - s_before) * (revealed / learned);
+                n.tech.tfp_base -= credited;
+                n.tech.tfp_1990_offset += credited;
+                n.tech.tech_1990_revealed += revealed;
+            }
+
             // Technologies fielded this month, annualised, folded into the
             // running rate. Done here rather than in `learn` so that a month
             // with no unlock pulls the rate down as surely as a month with one
-            // pushes it up.
-            let fielded = (n.tech.count() - known_before) as f64 * 12.0;
+            // pushes it up. A revelation is not a fielding, for the same reason
+            // `grant_1990` leaves the rate at zero: a stock the nation already
+            // had was never absorbed and must not be paid for as if it were.
+            let fielded = (learned - revealed).max(0.0) * 12.0;
             n.tech.absorption_rate +=
                 (fielded - n.tech.absorption_rate) * ABSORPTION_MEMORY;
 
@@ -1362,7 +1801,14 @@ fn raw_tech_tfp(n: &Nation) -> f64 {
 }
 
 /// Saturating productivity value of a known set.
-fn saturated_tech_tfp(n: &Nation) -> f64 {
+///
+/// Public because the rebasing identity is stated in terms of this exact
+/// function and nothing else. A caller that reimplements it — or linearises it
+/// against `Productivity` alone — is wrong by two fifths: on the whole
+/// 1990-eligible pool, resource yield, investment efficiency and health carry
+/// 41% of the value between them, and both saturations bite before the sum ever
+/// reaches the trend.
+pub fn saturated_tech_tfp(n: &Nation) -> f64 {
     let raw = raw_tech_tfp(n).max(0.0);
     TECH_CEILING * (1.0 - crate::exact::exp(-raw / TECH_CEILING))
 }
@@ -1387,8 +1833,28 @@ fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, _absorb: f
     // in the productivity they are worth: saturation compresses the value of a
     // large known set into a narrow band, so measured that way a nation holding
     // a quarter of the frontier's technologies looked a third of the way behind.
+    //
+    // MEASURED FROM 1990, NOT FROM ZERO, and that is the whole of the endowment
+    // reconciliation's third term. `tech_1990_deficit` is how far behind the
+    // January 1990 frontier this nation's transcription left it, and its 1990
+    // growth figure already prices that standing distance. Paying `adoption` on
+    // it as well is a permanent rate for a one-time level — BIBLE §8's error
+    // class — and it is what had the United Kingdom assembling a 3.3% trend
+    // against a transcribed 1.4% inside a year, on the strength of re-acquiring
+    // technology it held in 1990 and whose transcription did not list it.
+    //
+    // THE CREDIT CANNOT OUTLIVE THE STOCK IT IS A CLAIM ABOUT. The deficit says
+    // the transcription under-listed the nation's 1990-VINTAGE holdings, so it
+    // is capped at the 1990-vintage technologies the nation still does not hold.
+    // A nation that has demonstrably acquired every one of them has nothing left
+    // for the transcription to have missed, its credit falls to zero, and the
+    // whole of its remaining distance to the frontier is distance that opened
+    // after 1990 — which no transcribed figure has paid for. Without this cap a
+    // nation would carry a fixed credit against a frontier that has trebled, and
+    // the convergence engine would be switched off for good after 1995.
+    let credit = credit_1990(n);
     let gap = if frontier_known > 0.0 {
-        ((frontier_known - n.tech.count() as f64) / frontier_known).clamp(0.0, 1.0)
+        ((frontier_known - n.tech.count() as f64 - credit) / frontier_known).clamp(0.0, 1.0)
     } else {
         0.0
     };
@@ -1454,6 +1920,491 @@ mod tests {
     use super::*;
     use crate::init::world_1990;
     use crate::world::GameRules;
+
+    // -----------------------------------------------------------------------
+    // The 1990 endowment: rebasing, succession, prerequisite holes, oil
+    // -----------------------------------------------------------------------
+    //
+    // WHY THESE TESTS BUILD THEIR OWN ENDOWMENT INSTEAD OF READING THE ROSTER.
+    // The machinery landed ahead of the data, so no nation file carries a
+    // `tech_1990` block yet and a test that only bit once one did would be a
+    // test that cannot fail today — which iron rule 5 says is worse than no
+    // test. Each of these therefore constructs a granted board through exactly
+    // the calls `data::load_world` makes, and each states the negative control
+    // that was MEASURED against it. When Tier A lands, these keep working
+    // unchanged and start covering the real data as well.
+
+    /// Every technology a nation could hold on 1 January 1990 — the 48 entries
+    /// whose `earliest_year` the loader will accept, computed from the registry
+    /// rather than listed, so the set cannot go stale.
+    fn pool_1990() -> Vec<u16> {
+        registry()
+            .iter()
+            .enumerate()
+            .filter(|(_, d)| d.earliest_year <= 1990)
+            .map(|(i, _)| i as u16)
+            .collect()
+    }
+
+    /// The transcribed 1990 trends, read from the JSON rather than from any
+    /// field the rebase itself wrote. Reading them back off `tfp_base` would
+    /// make every assertion below "x == x".
+    fn transcribed_trends() -> Vec<f64> {
+        crate::data::parse_nations(crate::data::EMBEDDED_NATIONS)
+            .expect("the roster parses")
+            .iter()
+            .map(|r| r.economy.tfp_trend)
+            .collect()
+    }
+
+    /// The `top` largest economies, by GDP, ties broken on roster index so the
+    /// set never depends on sort stability.
+    fn largest(w: &WorldState, top: usize) -> Vec<usize> {
+        let mut order: Vec<usize> = (0..w.nations.len()).collect();
+        order.sort_by(|a, b| {
+            w.nations[*b]
+                .gdp
+                .partial_cmp(&w.nations[*a].gdp)
+                .expect("finite 1990 GDP")
+                .then(a.cmp(b))
+        });
+        order.into_iter().take(top).collect()
+    }
+
+    /// Hand the `top` largest economies the whole 1990-eligible pool and rebase
+    /// the world, in the same three passes and the same order as
+    /// `data::load_world`: grant everybody first, take ONE reference over the
+    /// finished board, then rebase. Granting and rebasing nation by nation in a
+    /// single loop is the trap this ordering exists to avoid — the reference is
+    /// a property of the whole roster and does not exist until the last grant is
+    /// in.
+    fn endow_top(w: &mut WorldState, transcribed: &[f64], top: usize) {
+        let pool = pool_1990();
+        let take = largest(w, top);
+        for (k, n) in w.nations.iter_mut().enumerate() {
+            if take.contains(&k) {
+                n.tech.grant_1990(&pool);
+            }
+        }
+        let reference = world_reference(&w.nations);
+        let frontier_1990 = world_frontier(&w.nations);
+        for (k, n) in w.nations.iter_mut().enumerate() {
+            rebase_to_transcribed(n, transcribed[k], reference, frontier_1990);
+        }
+        // The endowment must actually be worth something or every assertion
+        // downstream is measuring zero against zero.
+        assert!(
+            reference > 1.0e-3,
+            "the endowment is worth nothing: reference {reference:.3e}"
+        );
+    }
+
+    #[test]
+    fn granting_the_1990_stock_does_not_move_the_transcribed_trend() {
+        // Iron rule 4's second obligation as arithmetic. `apply_bonuses`
+        // assembles `tfp_base + (s - reference) + adoption`; a nation handed a
+        // 1990 stock arrives with `s` already non-zero, and its transcribed 1990
+        // trend already prices that stock in. The rebase subtracts the same term
+        // back out once, so the assembly must land exactly on the transcription.
+        //
+        // MEASURED: worst residual over 137 nations is 3.47e-18, which is f64
+        // noise on values of order 0.02 across three additions. The bar is 1e-12.
+        // NEGATIVE CONTROL, RUN: delete the rebase pass and the USA alone is
+        // 5.322e-4 out — eight orders of magnitude past the bar — while every
+        // nation granted nothing opens 44.5bp/yr below its own cited trend.
+        let transcribed = transcribed_trends();
+        let mut w = world_1990(GameRules::default());
+        endow_top(&mut w, &transcribed, 20);
+
+        let ref0 = world_reference(&w.nations);
+        let frontier_0 = world_frontier(&w.nations);
+        assert!(frontier_0 > 0.0, "an empty board proves nothing about a credit");
+        for (k, n) in w.nations.iter().enumerate() {
+            let residual = n.tech.tfp_base + (saturated_tech_tfp(n) - ref0) - transcribed[k];
+            assert!(
+                residual.abs() <= 1.0e-12,
+                "{:?}: the assembled trend is {:.3e} away from the transcribed {}",
+                n.id,
+                residual,
+                transcribed[k]
+            );
+            assert_eq!(
+                n.tfp_trend, transcribed[k],
+                "{:?}: construction did not leave the transcribed trend in place",
+                n.id
+            );
+            // A grant is not absorption achieved and was never paid for, so the
+            // adoption term must not be collected on it. If a future change
+            // grants lazily inside `ensure_shape` or the first tick, the whole
+            // endowment runs through the absorption EWMA and this goes red.
+            assert_eq!(n.tech.absorption_rate, 0.0, "{:?} was paid for absorbing a gift", n.id);
+            // ADDED 2026-08-31 with the third term's rebase. The lines above pin
+            // `tfp_base + (s - reference)`; these pin `adoption`.
+            //
+            // First: a nation handed the whole 1990 pool opens with NO
+            // convergence gap, so the third term is zero for it however fast it
+            // absorbs. That is the property `the_1990_endowment_does_not_move_
+            // year_one_growth` is the twelve-month version of, asserted here at
+            // t=0 where it is arithmetic rather than a simulation result.
+            //
+            // Second, and the guard against the credit running away: a nation's
+            // 1990 credit can never exceed what it is actually short of. A
+            // credit larger than the shortfall would be the model inventing
+            // technology rather than declining to charge twice for it, and it
+            // would show up as a nation past the frontier.
+            let credit = credit_1990(n);
+            let shortfall = (frontier_0 - n.tech.count() as f64).max(0.0);
+            assert!(
+                credit <= shortfall + 1.0e-12,
+                "{:?}: carries a 1990 credit of {credit} against a shortfall of {shortfall}",
+                n.id
+            );
+            if n.tech.count() as f64 >= frontier_0 {
+                assert_eq!(
+                    credit, 0.0,
+                    "{:?} holds the frontier and is still credited a 1990 shortfall",
+                    n.id
+                );
+            }
+        }
+    }
+
+    /// WHAT THE MODEL PAYS A NATION FOR NOT BEING AUTHORED TO COMPLETION,
+    /// nation by nation, in points of first-year growth.
+    ///
+    /// This is `the_1990_endowment_does_not_move_year_one_growth`'s own A/B read
+    /// as a magnitude rather than as a bar: the control is the shipped authored
+    /// board, the treatment is the same world with the twenty largest economies
+    /// handed the WHOLE 1990-eligible pool and rebased, and the difference is
+    /// the `adoption` term collected on an authoring gap that the treatment does
+    /// not have. It is the overpayment, isolated from every other channel, with
+    /// the war and politics branch switched off so the two worlds share a
+    /// history.
+    ///
+    /// `cargo test --release -p spheres-sim authoring_gap_overpayment -- --ignored --nocapture`
+    #[test]
+    #[ignore]
+    fn authoring_gap_overpayment() {
+        let transcribed = transcribed_trends();
+        let mut control = world_1990(GameRules::default());
+        control.rules.ai_aggression = 0.0;
+        let mut granted = world_1990(GameRules::default());
+        granted.rules.ai_aggression = 0.0;
+        let endowed = largest(&granted, 20);
+        endow_top(&mut granted, &transcribed, 20);
+        let authored: Vec<usize> =
+            endowed.iter().map(|k| control.nations[*k].tech.count()).collect();
+        for _ in 0..12 {
+            crate::tick_month(&mut control, &[]);
+            crate::tick_month(&mut granted, &[]);
+        }
+        println!("\n=== PAID FOR AN INCOMPLETE TRANSCRIPTION, year one, 20 largest ===");
+        println!("{:<14} {:>8} {:>12} {:>12} {:>12}",
+            "nation", "authored", "shipped", "complete", "overpay");
+        let mut rows: Vec<(f64, String)> = vec![];
+        for (i, k) in endowed.iter().enumerate() {
+            let (a, b) = (&control.nations[*k], &granted.nations[*k]);
+            if !a.alive || !b.alive {
+                continue;
+            }
+            let over = a.growth_last - b.growth_last;
+            rows.push((over, format!("{:<14} {:>8} {:>12.6} {:>12.6} {:>12.6}",
+                a.id.code(), authored[i], a.growth_last, b.growth_last, over)));
+        }
+        rows.sort_by(|x, y| y.0.partial_cmp(&x.0).unwrap());
+        for (_, line) in &rows {
+            println!("{}", line);
+        }
+        let worst = rows.iter().map(|r| r.0.abs()).fold(0.0f64, f64::max);
+        println!("worst |overpay| {:.6}  (the test's bar is 1.0e-4)", worst);
+
+        // The nations OUTSIDE the endowment's edge, which the assertion above
+        // does not reach and which the ragged-edge complaint was about. A nation
+        // granted nothing in either world still sees the world around it change,
+        // and this is where that shows up if it is going to.
+        // The four the endowment test's own comment named as the cliff —
+        // "Finland 1.03e-2, Austria 7.4e-3, Denmark 6.5e-3, Norway 2.9e-3" —
+        // then three granted nothing at all. Rich neighbours just outside a
+        // GDP-ordered boundary were the worst-moved nations on the whole board,
+        // and closing that is what the credit reaching every nation is for.
+        println!("\n=== OUTSIDE THE EDGE — the ragged edge, and nations granted nothing ===");
+        println!("{:<14} {:>8} {:>12} {:>12} {:>12}",
+            "nation", "authored", "shipped", "complete", "overpay");
+        for id in [
+            NationId::Finland, NationId::Austria, NationId::Denmark, NationId::Norway,
+            NationId::EquatorialGuinea, NationId::Nigeria, NationId::Pakistan,
+        ] {
+            let k = match control.nations.iter().position(|n| n.id == id) {
+                Some(k) => k,
+                None => continue,
+            };
+            let (a, b) = (&control.nations[k], &granted.nations[k]);
+            if !a.alive || !b.alive {
+                continue;
+            }
+            println!("{:<14} {:>8} {:>12.6} {:>12.6} {:>12.6}",
+                a.id.code(), a.tech.count(), a.growth_last, b.growth_last,
+                a.growth_last - b.growth_last);
+        }
+    }
+
+    #[test]
+    fn the_1990_endowment_does_not_move_year_one_growth() {
+        // The A/B. Control is the shipped board, which today is the board with
+        // no endowment at all; treatment is that board with the top twenty
+        // economies handed the whole 1990-eligible pool and rebased.
+        //
+        // TWELVE MONTHS, NOT ONE, and that is structural rather than cautious:
+        // `SYSTEMS` runs economy before tech, `economy::tick` READS `tfp_trend`
+        // and only `apply_bonuses` writes it, so month one's growth is computed
+        // from the value `to_nation` set and is immune to the endowment either
+        // way. A one-month version of this test would pass against any bug.
+        //
+        // `ai_aggression = 0.0` is the house convention for a calibration A/B:
+        // it takes the war and politics stochastic branch out so the comparison
+        // is about growth and not about a different history.
+        //
+        // MEASURED, worst over the twenty granted nations after twelve months:
+        // dgrowth 1.83e-5 (Canada), dgdp 2.14e-5. Bar 1.0e-4.
+        // NEGATIVE CONTROL, RUN: grant the same twenty without rebasing and this
+        // test goes red at the RNG precondition below, because a double-counted
+        // trend changes which events happen; the worst granted nation had moved
+        // 1.1613e-3 (Mexico), 11.6x the growth bar.
+        //
+        // WHAT THIS TEST DELIBERATELY DOES NOT CLAIM, and the measurement whoever
+        // draws the Tier A line has to read first. The bar is asserted on the
+        // nations that were GRANTED. The nations just OUTSIDE a GDP-ordered
+        // boundary move far more — Finland 1.03e-2, Austria 7.4e-3, Denmark
+        // 6.5e-3, Norway 2.9e-3 — and that is not a rebasing error, which
+        // corrects `(s - reference)` and touches nothing else. It is the
+        // `adoption` term: a rich, open economy denied the endowment sits at
+        // `gap ~ 1` against a 48-technology pool at high adopter share, fields
+        // the lot within months, and is paid up to ADOPTION_MAX = 4.5pp/yr for
+        // re-learning what it was refused. The cliff is a property of where the
+        // endowment's edge is drawn, not of this arithmetic, and the answer to
+        // it is an endowment with no ragged edge — which is what the two
+        // data-keyed global series going to all 137 nations are for.
+        let transcribed = transcribed_trends();
+        let mut control = world_1990(GameRules::default());
+        control.rules.ai_aggression = 0.0;
+        let mut granted = world_1990(GameRules::default());
+        granted.rules.ai_aggression = 0.0;
+
+        let endowed = largest(&granted, 20);
+        endow_top(&mut granted, &transcribed, 20);
+
+        for _ in 0..12 {
+            crate::tick_month(&mut control, &[]);
+            crate::tick_month(&mut granted, &[]);
+        }
+
+        // A PRECONDITION, not decoration. If the streams diverged the two worlds
+        // saw different events and every comparison below is noise about a
+        // different history — a different failure needing a different diagnosis.
+        assert_eq!(
+            control.rng, granted.rng,
+            "the endowment changed which events happened; the growth comparison \
+             below is meaningless until that is understood"
+        );
+
+        for k in endowed {
+            let a = &control.nations[k];
+            let b = &granted.nations[k];
+            if !a.alive || !b.alive {
+                continue;
+            }
+            assert!(
+                (b.growth_last - a.growth_last).abs() <= 1.0e-4,
+                "{:?} was paid twice for its 1990 technology: growth {:.6} granted \
+                 against {:.6} ungranted",
+                a.id,
+                b.growth_last,
+                a.growth_last
+            );
+            assert!(
+                (b.gdp / a.gdp - 1.0).abs() <= 2.0e-4,
+                "{:?}: twelve months of output diverged by {:.3e}",
+                a.id,
+                b.gdp / a.gdp - 1.0
+            );
+        }
+    }
+
+    #[test]
+    fn a_successor_is_not_paid_twice_for_what_it_inherited() {
+        // The defect that is green at t=0 and silently false from December 1991.
+        // `TechState::inherit` clones the parent's whole known set; if it also
+        // took the successor's own cited trend straight into `tfp_base`, then
+        // fifteen Soviet republics would each be paid again for the union's 1990
+        // endowment, on top of a trend figure that already reflects it.
+        //
+        // So the parent's 1990 offset travels with the known set it explains.
+        //
+        // NEGATIVE CONTROL: with `inherit` taking the transcribed trend straight
+        // into `tfp_base`, the residual below is the parent's whole offset —
+        // measured at 7.5e-5 when every nation holds the same pool and larger
+        // the further the parent leads the world. Against a 1e-12 bar that is
+        // eight orders of magnitude.
+        //
+        // NOT CHECKED HERE, and stated so nobody reads more into a green than it
+        // carries: a successor is still paid `(s - reference)` for everything the
+        // parent RESEARCHED between 1990 and the dissolution. That is a separate
+        // question about the succession path, it exists on a board with no
+        // endowment at all, and closing it moves `golden_hash_of_a_known_run`.
+        // See the note above `dissolve_ussr`.
+        let transcribed = transcribed_trends();
+        let mut w = world_1990(GameRules::default());
+        endow_top(&mut w, &transcribed, 20);
+
+        let parent_offset = w.nation(NationId::USSR).tech.tfp_1990_offset;
+        assert!(
+            parent_offset.abs() > 1.0e-5,
+            "the union's endowment is worth {parent_offset:.3e}, so this test is \
+             asserting nothing"
+        );
+
+        let mut months = 0;
+        while !w.has_flag("ussr_dissolved") && months < 300 {
+            crate::tick_month(&mut w, &[]);
+            months += 1;
+        }
+        assert!(
+            w.has_flag("ussr_dissolved"),
+            "the union never came apart, so no successor was ever tested"
+        );
+
+        // Russia and Ukraine carry their trends as literals in `dissolve_ussr`;
+        // the rest come off the republic table. Checking the two named ones is
+        // enough to pin the identity, and naming them here keeps the test
+        // independent of that table's shape.
+        for (id, cited) in [(NationId::Russia, 0.008), (NationId::Ukraine, 0.002)] {
+            let n = w.nations.iter().find(|n| n.id == id).expect("successor exists");
+            assert_eq!(
+                n.tech.tfp_1990_offset, parent_offset,
+                "{id:?} did not carry the union's 1990 offset forward"
+            );
+            let residual = n.tech.tfp_base - (cited - parent_offset);
+            assert!(
+                residual.abs() <= 1.0e-12,
+                "{id:?} was paid twice for the union's 1990 stock: base {:.9} against \
+                 the cited {cited} net of an offset of {parent_offset:.9}",
+                n.tech.tfp_base
+            );
+        }
+    }
+
+    #[test]
+    fn a_held_technology_needs_no_prerequisite() {
+        // A GRANT MAY LEAVE A HOLE IN ITS OWN PREREQUISITE CHAIN, AND THAT IS
+        // LEGAL. This pins the tolerance rather than adding it, because someone
+        // will otherwise "fix" the edges.
+        //
+        // The chronology is the reason. `aero_pulse_doppler_radar` cites the
+        // APG-63 of 1976 and Aegis of 1983; its prerequisite
+        // `core_cmos_submicron` cites the 80486 of 1989. The edge is impossible
+        // for the United States too, so a grant that respected it would strip
+        // the Zaslon from the Soviet Union and the F-15's radar from the USA
+        // alike. Fixing the tree's edges is separate work with its own hash
+        // consequences.
+        //
+        // Nothing today enforces closure of a HELD set: `eligible_projects` and
+        // `pick_focus` gate only what may be STARTED, `rebuild_bonus` sums
+        // whatever is in `known`, and `tree_is_well_formed` inspects the static
+        // tree and no nation. This test says that is deliberate.
+        let radar = index_of("aero_pulse_doppler_radar").expect("in the tree");
+        let cmos = index_of("core_cmos_submicron").expect("in the tree");
+        assert!(
+            prereqs_of(radar).contains(&cmos),
+            "the edge this test is about is gone; re-point the test at a real hole"
+        );
+
+        let mut w = world_1990(GameRules::default());
+        w.rules.ai_aggression = 0.0;
+        w.nation_mut(NationId::USA).tech.grant_1990(&[radar]);
+        {
+            let n = w.nation(NationId::USA);
+            assert!(n.tech.knows_index(radar));
+            assert!(!n.tech.knows_index(cmos), "the hole was closed by the grant");
+
+            // 1. The effects of a technology held over a hole are counted in
+            //    full — the bonuses are the sum over the held set and nothing
+            //    else conditions them.
+            let def = &registry()[radar as usize];
+            let mut expected = TechBonuses::default();
+            for e in &def.effects {
+                expected.absorb(e);
+            }
+            assert_eq!(n.tech.bonus, expected, "a hole changed what the held set is worth");
+
+            // 2. A hole does not block what sits above it. Theatre missile
+            //    defence hangs off the radar, which IS held, so it stays
+            //    startable even though the radar's own parent is not.
+            let tmd = eligible_projects(n, Domain::Aerospace)
+                .iter()
+                .any(|d| d.id == "aero_theater_missile_defense");
+            assert!(tmd, "a prerequisite hole blocked the branch above it");
+
+            // 3. And the hole is backfillable: the missing parent has no
+            //    prerequisites of its own and stays available to research.
+            let backfill = eligible_projects(n, Domain::Computing)
+                .iter()
+                .any(|d| d.id == "core_cmos_submicron");
+            assert!(backfill, "the missing prerequisite cannot be picked up later");
+        }
+
+        // 4. And a decade of play over the hole neither panics nor corrupts.
+        for _ in 0..120 {
+            crate::tick_month(&mut w, &[]);
+        }
+        let n = w.nation(NationId::USA);
+        assert!(n.tech.count() >= 1);
+        assert!(n.tfp_trend.is_finite() && n.gdp.is_finite());
+    }
+
+    #[test]
+    fn a_granted_oil_producer_does_not_find_new_barrels_on_the_first_tick() {
+        // The second paid-twice channel, and the one no part of the brief
+        // caught. `apply_bonuses` walks `oil_mbd` upward by 2% of the gap
+        // between the accumulated oil-yield bonus and what has been worked into
+        // the wells so far. Two of the 48 grantable technologies carry OilYield
+        // — 3-D seismic and horizontal drilling — and a transcribed 1990
+        // `oil_mbd` already reflects whatever recovery technology was in that
+        // nation's fields. So `grant_1990` opens with the bonus fully applied,
+        // and a granted oil technology is worth nothing at t=0 and its full
+        // value only to whoever acquires it later. `TechState::inherit` already
+        // carried the figure forward for exactly this reason.
+        //
+        // MEASURED: with the whole roster endowed, the worst relative move in
+        // `oil_mbd` after one month is exactly 0.0.
+        // NEGATIVE CONTROL, measured: force `oil_yield_applied = 0.0` after the
+        // grant and the United States gains 1.3064e-3 of its crude in a single
+        // month, compounding toward +6.5% — on a figure that was transcribed.
+        let transcribed = transcribed_trends();
+        let mut w = world_1990(GameRules::default());
+        w.rules.ai_aggression = 0.0;
+        let before: Vec<f64> = w.nations.iter().map(|n| n.oil_mbd).collect();
+        let all = w.nations.len();
+        endow_top(&mut w, &transcribed, all);
+
+        let producers = before.iter().filter(|o| **o > 0.0).count();
+        assert!(producers > 10, "only {producers} producers, this is not a test");
+        assert!(
+            w.nation(NationId::USA).tech.bonus.oil_yield_eff() > 0.0,
+            "the endowment carries no oil technology, so this asserts nothing"
+        );
+
+        crate::tick_month(&mut w, &[]);
+        for (k, n) in w.nations.iter().enumerate() {
+            if before[k] <= 0.0 {
+                continue;
+            }
+            assert_eq!(
+                n.oil_mbd, before[k],
+                "{:?} manufactured crude out of a transcribed figure: {} against {}",
+                n.id, n.oil_mbd, before[k]
+            );
+        }
+    }
 
     /// A canary for a build that is not the build you think it is.
     ///
@@ -1682,21 +2633,27 @@ mod diag {
         // `cap` is absorptive capacity — what gates how fast anything is picked
         // up at all. `new/y` is technologies actually fielded per year, which is
         // what adoption is paid on.
-        println!("{:<14}{:>6}{:>7}{:>7}{:>8}{:>9}{:>9}{:>9}{:>8}",
-            "nation", "techs", "gap", "cap", "new/y", "adopt", "diff", "tfp", "grow%");
+        // `credit` is what is left of the nation's 1990 under-listing, and `gap`
+        // is net of it — the same arithmetic `apply_bonuses` does, so a reader
+        // can see whether a thin convergence gap is a nation that has caught up
+        // or a nation whose transcription was never finished.
+        println!("{:<14}{:>6}{:>8}{:>7}{:>7}{:>8}{:>9}{:>9}{:>9}{:>8}",
+            "nation", "techs", "credit", "gap", "cap", "new/y", "adopt", "diff", "tfp", "grow%");
         let mut rows: Vec<_> = w.nations.iter().filter(|n| n.alive).collect();
         rows.sort_by(|a, b| b.gdp.partial_cmp(&a.gdp).unwrap());
         for n in rows {
             let sat = saturated_tech_tfp(n);
-            let gap = ((front - n.tech.count() as f64) / front).clamp(0.0, 1.0);
+            let credit = credit_1990(n);
+            let gap = ((front - n.tech.count() as f64 - credit) / front).clamp(0.0, 1.0);
             let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
             let absorb = absorptive_capacity(&w, n, dev);
             let adopt = (ADOPTION_PER_TECH * n.tech.absorption_rate
                 * crate::exact::powf(gap, TACIT))
             .min(ADOPTION_MAX);
-            println!("{:<14}{:>6}{:>7.3}{:>7.2}{:>8.2}{:>9.5}{:>9.5}{:>9.5}{:>8.2}",
-                n.id.name(), n.tech.count(), gap, absorb, n.tech.absorption_rate, adopt,
+            println!("{:<14}{:>6}{:>8.2}{:>7.3}{:>7.2}{:>8.2}{:>9.5}{:>9.5}{:>9.5}{:>8.2}",
+                n.id.name(), n.tech.count(), credit, gap, absorb, n.tech.absorption_rate, adopt,
                 sat - reference, n.tfp_trend, n.growth_last * 100.0);
         }
     }
+
 }

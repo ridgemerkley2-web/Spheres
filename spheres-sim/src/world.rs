@@ -184,6 +184,21 @@ pub struct Nation {
     pub population: f64,
     /// Total factor productivity growth trend, annual (e.g. 0.012)
     pub tfp_trend: f64,
+    /// This nation's demography, as the standing difference between its own
+    /// transcribed 1990 population growth and what the income-driven
+    /// demographic transition would have said at its 1990 income. The assembled
+    /// rate is `economy::transition(gdp_pc) + pop_growth_offset`, so on 1
+    /// January 1990 it is exactly the transcribed figure and it then moves with
+    /// the transition — the same `base + 1990 offset` construction the
+    /// technology branch uses for `tfp_base + tfp_1990_offset`, and for the same
+    /// reason: a 1990 fact must survive the model's own dynamics rather than be
+    /// overwritten by them.
+    ///
+    /// Defaulted to 0.0 so an older save loads: zero is precisely "behave as the
+    /// pure income function did", which is what a save written before this
+    /// field existed was doing.
+    #[serde(default)]
+    pub pop_growth_offset: f64,
     /// Annual inflation rate (0.04 = 4%)
     pub inflation: f64,
     /// Central bank policy rate, annual
@@ -204,6 +219,46 @@ pub struct Nation {
     pub bubble: f64,
     /// Last 12m real growth, annualized — for briefings
     pub growth_last: f64,
+    /// How much of the trade level gain this nation has already been paid, as a
+    /// fraction of output. Defaulted so an older save loads: a save written
+    /// before this existed carries a GDP that already reflects what it was
+    /// paid, and seeding at zero would pay it a second time — so `None` means
+    /// "seed from the current portfolio and pay nothing for it".
+    #[serde(default)]
+    pub trade_level_paid: Option<f64>,
+    /// How much of the capital-deepening LEVEL a nation has already been paid,
+    /// in logs. `None` is load-bearing for exactly the same reason as above, and
+    /// for one more: the 1990 transcription already reflects the 1990
+    /// investment share, so a transcribed starting figure must never be
+    /// repriced. See the `CAPITAL_ELASTICITY` block in economy.rs.
+    #[serde(default)]
+    pub capital_level_paid: Option<f64>,
+    // A THIRD MEMBER OF THIS FAMILY IS OWED AND IS NOT HERE: `oil_level_paid`,
+    // for the oil terms-of-trade windfall, which `economy::tick` still pays as a
+    // permanent growth RATE reaching +500%/yr. The field was written, the fix
+    // was measured, and it is blocked on an owner ruling rather than on a
+    // design question — the block above the producer arm in economy.rs has the
+    // numbers. Adding it is a save-format change and should land with the fix,
+    // not before it.
+    /// The public investment share this nation entered 1990 with, and the
+    /// ceiling on what fiscal consolidation may hand back.
+    ///
+    /// `politics.rs`'s debt rule cuts `state_invest_gdp` by 0.5% a month while
+    /// debt runs above 85% of output and NEVER restored it — a one-way ratchet.
+    /// That was cheap while the investment share only bought a small growth
+    /// rate; once it buys a permanent LEVEL of output (see `capital_level_paid`)
+    /// an irreversible cut is an irreversible loss, and a government that
+    /// consolidates its way back to fiscal space would never recover the output
+    /// it gave up. Measured on China, which crosses 85% around 1995 and is back
+    /// under 30% by 2010: the share fell 0.240 -> 0.167 and stayed there, worth
+    /// -0.294 pt/yr of output level for the remaining twenty-five years.
+    ///
+    /// `None` — a mid-run successor state, or a save written before this field
+    /// — means no recovery, which is exactly the behaviour those worlds already
+    /// had. A successor state has no transcribed 1990 share and inventing one
+    /// would be a refusal (iron rule 4).
+    #[serde(default)]
+    pub state_invest_1990: Option<f64>,
 
     // --- Politics ---
     /// 0..100 — regime stability/legitimacy

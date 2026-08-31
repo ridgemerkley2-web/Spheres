@@ -6,6 +6,7 @@
   "economy": {
     "gdp_bn": 2.547,
     "population_m": 0.354,
+    "pop_growth_1990": 0.011891,
     "tfp_trend": 0.015,
     "inflation": 0.03,
     "interest_rate": 0.08,
@@ -37,6 +38,19 @@
     "Stability 62 and authoritarianism 0.18: the lowest stability and the highest authoritarianism in this batch, and both are about the decade Malta had just come out of rather than the year it was in. The 1981 general election returned Dom Mintoff's Labour Party to power with 34 of 65 seats on 49.1% of the vote against the Nationalists' 50.9% — a perverse result that produced a parliamentary boycott, the Church schools dispute of 1984, the Tal-Barrani violence of November 1986 and the killing of Raymond Caruana at a Nationalist club in December 1986. The constitutional amendment of January 1987 fixed the rule — the party winning a majority of first-preference votes is topped up to a parliamentary majority — and Eddie Fenech Adami's Nationalists took office in May 1987 under it. By January 1990 the country was calm, but it is three years out of that and split 50.9 to 48.9 down the middle, and 62 says so. The 0.18 is the residue of a politicised police force and a state broadcasting monopoly, both of which were being unwound rather than already unwound.",
     "Separatism 0.0: Gozo has a distinct identity, its own bishop since 1864 and a persistent complaint about the ferry, and none of that has ever produced a separatist movement. There is no linguistic or national minority on the islands.",
     "Foreign policy, which is the thing a war model needs from this file: Malta in January 1990 is formally neutral and non-aligned. The Royal Navy left Grand Harbour on 31 March 1979 after 179 years; Mintoff signed a treaty of friendship with Libya and took Italian and Soviet guarantees of Maltese neutrality; the amendment of 1987 wrote neutrality and non-alignment into Article 1 of the constitution. Malta was simultaneously a member of the Commonwealth and of the Non-Aligned Movement, hosted the Bush-Gorbachev summit aboard ship off Marsaxlokk on 2-3 December 1989, and lodged its application for European Community membership on 16 July 1990. No bloc, no border and no claim.",
-    "Government in January 1990: Eddie Fenech Adami's Nationalist Party, in office since the general election of 9 May 1987. The next election was due by 1992 and was held on 22 February. Party shares in government.rs are from that 1987 election."
-  ]
+    "Government in January 1990: Eddie Fenech Adami's Nationalist Party, in office since the general election of 9 May 1987. The next election was due by 1992 and was held on 22 February. Party shares in government.rs are from that 1987 election.",
+    "pop_growth_1990 = 1.1891%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MLT (Malta): 330,593 in 1984 to 350,722 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+  ],
+  "tech_1990": {
+    "note": [
+      "1990 TECHNOLOGY: AUTHORED, NOT DERIVED. What this nation knew on 1 January 1990 is transcribed and sourced grant by grant, exactly like every other 1990 figure in this file, and is not read off tfp_trend - there was never a code path from the trend to the known set, and the zero that stood there was a claim about the world rather than an absence of one (BIBLE section 8 and iron rule 4, both amended 2026-08-30). THE PREDICATE IS SPLIT, and split by the technology's OWN EFFECT TYPE so that it is mechanically computable and never a per-nation judgement call. A node whose effects include MilitaryEfficiency, MilitaryStrength, DiffusionEmission or CostReduction is SOVEREIGNTY-SIDE: holding it means this nation could PRODUCE it, so operating an imported article does not qualify. Every other node is USE-SIDE: deployed and in operational use here is enough, whoever built it, because the effect such a node pays is a productivity, health or output effect and that effect is real in the country where the machine runs. Of the 48 technologies the tree lets anyone hold in 1990, 17 are sovereignty-side and 31 are use-side.",
+      "DATA-KEYED TAIL NATION. This nation is outside the 29 authored majors, so nothing here was authored technology by technology: a grant is made only where one of two named published global series supports it, and nothing is modelled, estimated or interpolated. A short list, or an empty one, is the correct outcome of that rule and not a gap in the work.",
+      "Data-keyed tail nation: not one of the 29 authored majors. Only the two series named in ruling 3 were consulted - WHO/UNICEF WUENIC DTP3 1990 and World Bank IT.CEL.SETS. Nothing was modelled, estimated or interpolated, and no other evidence was admitted. ISO3 key used for both series: MLT.",
+      "AUTHORED, AND THE ANSWER IS NOTHING. Both named series were checked and both refused this nation; the empty grant list is a finding, not an absence of work.",
+      "WUENIC DTP3 1990 = 63% against the 80% UCI-1990 threshold: refused.",
+      "IT.CEL.SETS at 31 December 1989 = 0 against a threshold of any positive count: refused.",
+      "The other 46 grantable 1990 technologies are BLANK for this nation by design, not by oversight: the 17 sovereignty-side entries are unreachable by any use-in-operation series, and no published global series was named that keys the remaining 29 use-side entries."
+    ],
+    "granted": []
+  }
 }
