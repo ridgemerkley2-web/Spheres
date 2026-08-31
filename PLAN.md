@@ -235,6 +235,59 @@ Two things to settle before building it: what a district owns that the economy
 does not already model at the national level, and whether  (which
 already names operating areas over districts) is the place it hangs.
 
+### Answered 2026-08-31 — Ridge's rulings, and the measurements behind them
+
+**The first question is answered: LOCATION AND GRANULARITY.** A district owns no
+quantity the nation does not already have. Oil is a complete national system in
+`economy.rs` — production, revenue, a growth term, embargo drag, inflation, 55%
+to the budget, and a world price responding to disruption — so a district that
+*creates* oil pays every barrel twice. What districts add is *where* the value
+sits, and therefore what a settlement actually moves: with resources placed,
+taking Khuzestan takes a visible share of Iran's oil, and the front engine
+already decides who holds it. This is the same hazard the technology endowment
+hit (`tfp_base` already priced 1990 technology) and it is now the standing test
+for any new layer: name the national quantity it would double-count, or it is
+the wrong design.
+
+**Stability becomes per-district, and the national figure becomes its
+aggregate.** Rulings:
+
+1. **Population-weighted**, not a plain mean — Chukotka must not weigh as much as
+   Luxembourg's single district. District population shares come from a gridded
+   raster against each nation's already-transcribed 1990 total, which is
+   derivation from source rather than invention; the modern-boundaries caveat
+   ships with it.
+2. **Deviation storage, never write-back.** Districts hold a *deviation* from
+   the nation's transcribed baseline, and `Nation.stability` stays the
+   authoritative figure this feature never writes. Two measurements decided it.
+   A re-derived mean fails bit-exactness for 84 of 131 nations at t=0 (Mexico
+   55.0 → 55.000000000000036); the deviation mean fails 0 of 131, because an
+   empty map returns the baseline through a `None` arm and executes no
+   arithmetic at all. Exactness is control flow, not a numerical hope. And the
+   trap nobody saw until it was measured: under write-back, the national mean
+   reversion at `economy.rs:333` cannot tell an unstable nation from one with a
+   mine, so it *eats* the penalty — 40.7% retained at year 30, decaying to zero,
+   and failing invisibly. You would tune the constant up, watch it not bite, and
+   tune again.
+3. **The periphery gets to be cheap, for now.** For deposits in near-empty
+   districts the whole thirty-year national consequence is under 0.06 political
+   capital. That is defensible — it is *why* states mine peripheries rather than
+   heartlands — so it ships as written, and whether district unhappiness should
+   also feed `n.separatism` is decided on play data rather than in advance.
+4. **Environmental damage is permanent until remediated** — Ridge's call,
+   overruling a 277-month half-life. It does not quietly fade; cleaning it up is
+   a second decision with its own political-capital price. The jobs boost still
+   ramps over 8 months and fades on a 46-month half-life, so the shape of the
+   choice is unchanged and sharper: the government that opens the mine collects
+   inside one term and the bill never leaves.
+
+**Gated, not deferred:** the develop command waits on the resource placement
+data being clean. Two independent passes found the same contamination — Norway's
+"bauxite" districts are aluminium *smelters*, and Steep Rock Iron Mine is filed
+under both bauxite and iron — and presence-without-production is simultaneously
+the honest signal for an undeveloped deposit and the place the contamination
+hides. Shipping unblocked means Norway mining bauxite it does not have.
+
 ## Open questions — yours, not an agent's
 
 The audit recommended answering these; three are product calls and one overrides
