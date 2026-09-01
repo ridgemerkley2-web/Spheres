@@ -142,6 +142,20 @@ impl Game {
     /// Advance up to `months`, stopping early on an event worth reacting to.
     /// Returns whether it stopped early and why.
     fn advance(&mut self, months: usize, commands: Vec<Command>) -> (bool, Option<String>) {
+        // Was the player's nation ALREADY gone when this call arrived? The
+        // interrupt below is a piece of news, and news is told once. Without
+        // this latch it fired on the first month of every later run too, so a
+        // player whose nation had dissolved got one month per request for the
+        // rest of the game however many they asked for — measured at 337 calls
+        // to reach 337 months, and there is no gesture in the UI that skips it.
+        // The `i + 1 < months` line below is the same idea for the ordinary
+        // interrupt: do not stop on a condition the caller cannot act on.
+        //
+        // `nation_opt`, not `nation`: a dissolution may take the row out of the
+        // world entirely, and the accessor with the `expect` in it has already
+        // cost this server one process today.
+        let gone = |g: &Game, me: NationId| !g.world.nation_opt(me).is_some_and(|n| n.alive);
+        let already_gone = self.world.player.is_some_and(|me| gone(self, me));
         let mut queued = commands;
         for i in 0..months {
             let cmds = std::mem::take(&mut queued);
@@ -150,9 +164,11 @@ impl Game {
                 self.record(h.clone());
             }
             self.snapshot();
-            if let Some(me) = self.world.player {
-                if !self.world.nation(me).alive {
-                    return (true, Some(format!("{} no longer exists.", me.name())));
+            if !already_gone {
+                if let Some(me) = self.world.player {
+                    if gone(self, me) {
+                        return (true, Some(format!("{} no longer exists.", me.name())));
+                    }
                 }
             }
             if i + 1 < months {
@@ -1441,6 +1457,87 @@ mod tests {
             vec![NationId::USSR, NationId::Russia]
         );
         assert!(mentioned("Oil steadies.").is_empty());
+    }
+
+    /// Outliving your own state is a legitimate ending — you watch the rest of
+    /// the century from the stands. It was not survivable: the interrupt that
+    /// announces it fired again on the first month of EVERY later advance, so
+    /// the clock moved one month per request forever however many were asked
+    /// for. Measured against the live server as the Soviet Union on seed 1990:
+    /// dissolution in Sep 1993, and then advance after advance asking for 120
+    /// months delivered Sep->Oct, Oct->Nov, Nov->Dec ... each repeating
+    /// "Soviet Union no longer exists." Reaching 2020 from there is 315 clicks.
+    ///
+    /// One seed and one nation is enough here, and iron rule 7 says why: this
+    /// is an INVARIANT, not a statistic. The latch either exists or it does
+    /// not, and a single world where the player dies exercises it completely —
+    /// more seeds would buy power against a regression that cannot be
+    /// intermittent. The Soviet Union on seed 1990 is chosen only because it is
+    /// the shortest path to a dead player.
+    #[test]
+    fn the_clock_still_moves_after_your_nation_is_gone() {
+        let mut g = Game::new(1990, Some(NationId::USSR));
+
+        // Run until the Soviet Union goes, and check the news is delivered once
+        // — on the advance it happens.
+        let mut told = 0;
+        let mut guard = 0;
+        loop {
+            let (_, why) = g.advance(12, vec![]);
+            if why.as_deref().is_some_and(|w| w.contains("no longer exists")) {
+                told += 1;
+                break;
+            }
+            guard += 1;
+            assert!(guard < 60, "the Soviet Union outlived sixty years on seed 1990");
+        }
+        assert_eq!(told, 1, "the dissolution must be announced");
+        assert!(
+            !g.world.nation_opt(NationId::USSR).is_some_and(|n| n.alive),
+            "precondition: the player's nation is gone"
+        );
+
+        // From here the player is a spectator, and a spectator can still watch.
+        // Twelve asked for is twelve delivered — unless some OTHER major event
+        // interrupts, which is the ordinary behaviour and not this defect, so
+        // the bar is that the clock moves by more than the single month the
+        // repeated interrupt used to allow.
+        let before = month_index(g.world.year, g.world.month);
+        let (_, why) = g.advance(12, vec![]);
+        let moved = month_index(g.world.year, g.world.month) - before;
+        assert!(
+            why.as_deref().is_none_or(|w| !w.contains("no longer exists")),
+            "the death must not be re-announced on every later advance: {:?}",
+            why
+        );
+        assert!(
+            moved > 1,
+            "asked for 12 months after the player died and got {}",
+            moved
+        );
+
+        // Ten more advances, and the death is never the reason any of them
+        // stops. What DOES stop them is the ordinary major-event interrupt —
+        // measured here as revolutions in Tajikistan and Georgia and half a
+        // dozen escalations across 1994 — which is that interrupt working, not
+        // this defect. The bar is therefore the shape of the defect and not the
+        // pace of the world: before the fix ten advances delivered exactly ten
+        // months, one per call, and no world event could change that number.
+        let before = month_index(g.world.year, g.world.month);
+        for _ in 0..10 {
+            let (_, why) = g.advance(120, vec![]);
+            assert!(
+                why.as_deref().is_none_or(|w| !w.contains("no longer exists")),
+                "a spectator was told again that their nation is gone: {:?}",
+                why
+            );
+        }
+        let moved = month_index(g.world.year, g.world.month) - before;
+        assert!(
+            moved > 10,
+            "ten advances after the player died moved {} months — one per call              is the signature of the interrupt firing every time",
+            moved
+        );
     }
 
     #[test]
