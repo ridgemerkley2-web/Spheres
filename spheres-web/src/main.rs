@@ -988,6 +988,44 @@ fn parse_body(body: &str) -> Result<serde_json::Value, String> {
     serde_json::from_str(body).map_err(|e| format!("That request body is not JSON: {}", e))
 }
 
+/// The seed the server boots into and the one `/api/new` uses when the request
+/// does not ask for another. Matches `GameRules::default()`.
+const DEFAULT_SEED: u64 = 1990;
+
+/// The seed the request asked for.
+///
+/// "same seed, same history" is printed on the setup screen beside the box, and
+/// it is the whole contract of a deterministic sim — so a seed the server
+/// cannot use has to be said out loud rather than quietly replaced. It was
+/// replaced: `as_u64().unwrap_or(1990)` turned a string, a negative number and
+/// a fraction alike into the default, and the player was handed 1990's history
+/// with no indication it was not theirs.
+///
+/// Measured on the live server by fingerprinting the state six months in:
+///
+///   {"seed":1990,...}    -> 6B60D853FEC58666
+///   {"seed":"12345",...} -> 6B60D853FEC58666   <- asked for 12345
+///   {"seed":-1,...}      -> 6B60D853FEC58666
+///   {"seed":3.5,...}     -> 6B60D853FEC58666
+///   {"seed":12345,...}   -> 3267FEB6F4A4A872   <- what 12345 actually is
+///
+/// Three requests asking for three different worlds, all silently given a
+/// fourth. An ABSENT seed is still the default, because that is a request that
+/// did not ask.
+fn asked_seed(payload: &serde_json::Value) -> Result<u64, String> {
+    match payload.get("seed") {
+        None | Some(serde_json::Value::Null) => Ok(DEFAULT_SEED),
+        Some(v) => v.as_u64().ok_or_else(|| {
+            format!(
+                "{} is not a seed. A seed is a whole number from 0 to {}, \
+                 and the same one always gives the same history.",
+                v,
+                u64::MAX
+            )
+        }),
+    }
+}
+
 /// Who the request asked to govern.
 ///
 /// `Ok(None)` is an OBSERVER, and it is a real answer: the server boots into
@@ -1336,9 +1374,9 @@ fn main() {
                 json_response(history_json(&g, only))
             }
             (Method::Post, "/api/new") => {
-                let seed = payload.get("seed").and_then(|s| s.as_u64()).unwrap_or(1990);
-                let player = match asked_player(&payload) {
-                    Ok(p) => p,
+                let asked = asked_seed(&payload).and_then(|s| Ok((s, asked_player(&payload)?)));
+                let (seed, player) = match asked {
+                    Ok(pair) => pair,
                     Err(e) => {
                         let _ =
                             request.respond(json_error(400, serde_json::json!({ "error": e })));
@@ -2081,6 +2119,57 @@ mod tests {
         let d = s["districts"].as_object().unwrap();
         assert_eq!(d.len(), 6, "all six Kuwaiti governorates moved");
         assert_eq!(d["KW-KU"], "Iraq");
+    }
+
+    /// "same seed, same history" is printed on the setup screen beside the box,
+    /// and a seed the server could not use was quietly replaced with 1990
+    /// instead of being refused. Measured on the live server by fingerprinting
+    /// the state six months into each run: {"seed":"12345"}, {"seed":-1} and
+    /// {"seed":3.5} all produced 6B60D853FEC58666, byte-identical to
+    /// {"seed":1990}, while {"seed":12345} produced 3267FEB6F4A4A872. Three
+    /// requests asking for three different worlds, all given a fourth.
+    #[test]
+    fn a_seed_the_server_cannot_use_is_refused_not_replaced() {
+        // Not asking is still the default — this is how the server boots.
+        assert_eq!(asked_seed(&serde_json::json!({})), Ok(DEFAULT_SEED));
+        assert_eq!(asked_seed(&serde_json::json!({ "seed": null })), Ok(DEFAULT_SEED));
+        assert_eq!(
+            DEFAULT_SEED,
+            spheres_sim::world::GameRules::default().seed,
+            "the route's default must be the sim's default"
+        );
+
+        // Every seed a player can actually ask for still arrives intact —
+        // including 0, which the browser's own `|| 1990` used to swallow.
+        for s in [0u64, 1, 1990, 12345, u64::MAX] {
+            assert_eq!(asked_seed(&serde_json::json!({ "seed": s })), Ok(s));
+        }
+
+        // And the three measured substitutions.
+        for bad in [
+            serde_json::json!({ "seed": "12345" }),
+            serde_json::json!({ "seed": -1 }),
+            serde_json::json!({ "seed": 3.5 }),
+            serde_json::json!({ "seed": [1990] }),
+        ] {
+            let e = asked_seed(&bad).expect_err("must be refused");
+            assert!(e.contains("is not a seed"), "unhelpful refusal: {e}");
+        }
+
+        // The browser half. Its box used to be `parseInt(v, 10) || 1990`, which
+        // read "12abc" as 12, replaced everything else with 1990, and made 0
+        // unreachable because 0 is falsy.
+        assert!(
+            !INDEX.contains("parseInt($(\"#seed\").value, 10) || 1990"),
+            "the seed box still substitutes a seed the player did not ask for"
+        );
+        assert!(INDEX.contains("function seedFromBox()"));
+        assert!(INDEX.contains("if (!/^\\d+$/.test(raw)) return null;"));
+        assert!(INDEX.contains("Number.isSafeInteger(n) ? n : null"));
+        assert!(
+            INDEX.contains("is not a seed — a seed is a whole number"),
+            "a box that refuses must say why"
+        );
     }
 
     /// Asking to govern a nation the roster does not know used to start a game

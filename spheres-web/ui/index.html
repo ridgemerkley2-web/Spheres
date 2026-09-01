@@ -1852,10 +1852,30 @@ function renderPick() {
 /// as it was — same button, same caption, no message — and the player was left
 /// clicking a control that had already run. Whatever goes wrong now says so on
 /// the setup screen and hands the button back.
+/// The seed box, read strictly. `parseInt(v, 10) || 1990` accepted anything
+/// beginning with a digit ("12abc" -> 12), silently replaced everything else
+/// with 1990, and — because 0 is falsy — made seed 0 the one whole number a
+/// player could not ask for. "same seed, same history" is printed beside the
+/// box; a box that quietly substitutes a different seed breaks that sentence.
+/// Returns null when what is typed is not a seed, and the caller says so.
+function seedFromBox() {
+  const raw = $("#seed").value.trim();
+  if (raw === "") return 1990;                       // an empty box is "default"
+  if (!/^\d+$/.test(raw)) return null;               // not a whole number
+  const n = Number(raw);
+  return Number.isSafeInteger(n) ? n : null;         // and one we can send
+}
+
 $("#startBtn").onclick = async () => {
   const b = $("#startBtn");
   if (!pickedNation || b.disabled) return;
-  const seed = parseInt($("#seed").value, 10) || 1990;
+  const seed = seedFromBox();
+  if (seed === null) {
+    banner(`"${$("#seed").value.trim()}" is not a seed — a seed is a whole number, and the same one always gives the same history.`);
+    $("#seed").focus();
+    $("#seed").select();
+    return;
+  }
   const label = b.textContent;
   b.disabled = true;
   b.textContent = "STARTING…";
