@@ -1715,13 +1715,33 @@ const fmt = {
 };
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
+/// Every call to the server goes through here, so this is the one place that
+/// can promise a caller "you got a payload or you got an exception". It used to
+/// promise neither: `r.json()` on an unread status meant a refusal arrived as a
+/// perfectly ordinary object with an `error` key that nothing looked at, and a
+/// server that was not there arrived as a bare "Failed to fetch" nobody caught.
+/// Callers get a thrown Error carrying a sentence fit to show a player.
 async function api(path, body) {
-  const r = await fetch(path, {
-    method: body === undefined ? "GET" : "POST",
-    headers: { "Content-Type": "application/json" },
-    body: body === undefined ? undefined : JSON.stringify(body),
-  });
-  return r.json();
+  let r;
+  try {
+    r = await fetch(path, {
+      method: body === undefined ? "GET" : "POST",
+      headers: { "Content-Type": "application/json" },
+      body: body === undefined ? undefined : JSON.stringify(body),
+    });
+  } catch (e) {
+    throw new Error("The SPHERES server is not answering — is it still running?");
+  }
+  const text = await r.text();
+  let data = null;
+  try { data = text ? JSON.parse(text) : null; } catch (e) { data = null; }
+  if (!r.ok) {
+    // The routes answer a refusal as {"error": "..."}; anything else (a 404
+    // from a route this build does not have) still gets a sentence.
+    throw new Error((data && data.error) || `${path} was refused (${r.status})`);
+  }
+  if (data === null) throw new Error(`${path} did not answer with JSON`);
+  return data;
 }
 
 /* ================= setup ================= */
@@ -1796,10 +1816,28 @@ function renderPick() {
   });
 }
 
+/// Starting a game is the one action with nothing behind it to fall back on, so
+/// it is the one that must never fail in silence. It did: an /api/new that did
+/// not answer left this handler's promise rejected and the setup screen exactly
+/// as it was — same button, same caption, no message — and the player was left
+/// clicking a control that had already run. Whatever goes wrong now says so on
+/// the setup screen and hands the button back.
 $("#startBtn").onclick = async () => {
-  if (!pickedNation) return;
+  const b = $("#startBtn");
+  if (!pickedNation || b.disabled) return;
   const seed = parseInt($("#seed").value, 10) || 1990;
-  const st = await api("/api/new", { seed, nation: pickedNation });
+  const label = b.textContent;
+  b.disabled = true;
+  b.textContent = "STARTING…";
+  let st;
+  try {
+    st = await api("/api/new", { seed, nation: pickedNation });
+  } catch (e) {
+    banner(e.message || "Could not start a game.");
+    b.disabled = false;
+    b.textContent = label;
+    return;
+  }
   // A new world invalidates the built tech graph. (There is no /api/load
   // handler in this UI; if one arrives it owes the same lines.)
   tech.data = null; tech.sel = null;
@@ -1808,7 +1846,20 @@ $("#startBtn").onclick = async () => {
   closeTech();
   $("#setup").style.display = "none";
   $("#app").style.display = "grid";
-  await adopt(st, true);
+  try {
+    await adopt(st, true);
+  } catch (e) {
+    // The world was made — the failure is downstream of it — but a half-drawn
+    // board is worse than the screen the player came from. Put them back.
+    $("#app").style.display = "none";
+    $("#setup").style.display = "flex";
+    b.disabled = false;
+    b.textContent = label;
+    banner(e.message || "The world started but could not be drawn.");
+    return;
+  }
+  b.disabled = false;
+  b.textContent = label;
   banner("Click any nation on the map to open its dashboard — press ? for all keys");
 };
 

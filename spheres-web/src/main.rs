@@ -1616,6 +1616,64 @@ mod tests {
         assert!(!INDEX.contains("https://"), "the UI must stay self-contained");
     }
 
+    /// Starting a game is the one action with no screen behind it to fall back
+    /// on, so it is the one that must never fail in silence — and it did. `api`
+    /// called `r.json()` without reading the status, so a refusal arrived as an
+    /// ordinary object nothing looked at, and `#startBtn.onclick` had no
+    /// try/catch, so a server that was not there left the handler's promise
+    /// rejected and the setup screen byte-for-byte as it was: same button, same
+    /// caption, no message. Measured before the fix, with the server stopped
+    /// between picking Poland and pressing GOVERN: nothing on screen changed and
+    /// the console carried `Uncaught (in promise) TypeError: Failed to fetch at
+    /// api ... at $.onclick`.
+    ///
+    /// A substring check against the served HTML, for the reason
+    /// `every_nation_on_the_board_has_somewhere_to_be_drawn` gives: this file
+    /// ships by `include_str!` and has no build step, so the thing to assert on
+    /// is the thing that reaches the browser.
+    #[test]
+    fn a_refused_start_says_so_instead_of_freezing_the_setup_screen() {
+        // `api` must read the status before it reads the body, and must carry
+        // the server's own sentence out when there is one.
+        assert!(INDEX.contains("if (!r.ok)"), "api() must check the response status");
+        assert!(
+            INDEX.contains("throw new Error((data && data.error)"),
+            "a refusal must surface the server's own message"
+        );
+        // A dead server is a caught failure, not an unhandled rejection.
+        assert!(
+            INDEX.contains("The SPHERES server is not answering"),
+            "an unreachable server must have a sentence of its own"
+        );
+        // The hand that presses START must catch, say, and give the button back.
+        let start = INDEX
+            .split_once("$(\"#startBtn\").onclick")
+            .expect("the setup screen still has a start button")
+            .1
+            .split_once("\n};")
+            .expect("the start handler is still brace-terminated")
+            .0;
+        assert!(start.contains("catch"), "the start handler must catch");
+        assert!(start.contains("banner("), "and must say what went wrong");
+        assert!(
+            start.contains("b.disabled = false"),
+            "and must hand the button back so the player can try again"
+        );
+        // And the route it calls answers a refusal with a status worth reading —
+        // the half of this that lives in Rust. Poland is on the board; the
+        // successor states are not.
+        let mut g = Game::new(1990, None);
+        let (_, ok) = new_game(&mut g, 1990, Some(NationId::Poland));
+        assert!(ok);
+        let refused = spheres_sim::world::successor_nations()[0];
+        let (v, ok) = new_game(&mut g, 1990, Some(refused));
+        assert!(!ok);
+        assert!(
+            v["error"].is_string(),
+            "the browser reads `error` off the refusal; it must be there"
+        );
+    }
+
     /// The terrain layer ships baked, like world.js: a real PNG behind
     /// /terrain.png, the generated river layer behind /rivers.js, and the
     /// page actually mounting both — all of it local, because the
