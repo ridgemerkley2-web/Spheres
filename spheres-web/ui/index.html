@@ -404,8 +404,15 @@
     color:var(--brass-hi); margin:0 0 6px; font-size:16px; }
   #techDock .gauge { display:flex; height:6px; margin:6px 0 3px; background:var(--panel); }
   #techDock .gauge i { background:var(--amber); }
+  /* The legend floats over the survey with nothing behind it, and the survey
+     is 253 cards on a camera the player drives — so any pan that brings the
+     bottom-left corner of the graph under it mixes the seven marks with a
+     technology card's own plate, border and text, and neither reads. It gets
+     the same translucent plate #techPriPill and #techFindHint already use.
+     Still pointer-events:none: it is a key, not a control. */
   #techLegend { position:absolute; left:12px; bottom:10px; display:flex; gap:14px; font-size:11px;
-    color:var(--dim); pointer-events:none; }
+    color:var(--dim); pointer-events:none;
+    background:rgba(8,11,15,.9); border:1px solid var(--line); border-radius:6px; padding:5px 12px; }
   /* -- svg node/edge states, shared by BOTH layers: the map (#techSvg) and the
         domain stage (#techStage) carry class tsvg; map-only rules (era bands,
         NOW line, far-zoom text cull) stay pinned to #techSvg -- */

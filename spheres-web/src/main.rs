@@ -5750,4 +5750,47 @@ mod tests {
             "the ruler overlays the tech viewport and must not eat its clicks"
         );
     }
+
+    /// The tech survey's legend was painted on nothing.
+    ///
+    /// `#techLegend` is `position:absolute` over `#techViewport` and declared
+    /// no background, so whatever the camera happened to be showing behind it
+    /// showed through the seven marks. Reproduced in Chrome at 1280x720, Full
+    /// map view, panned to the bottom-left of the survey (cam 0.055/0.86 of the
+    /// world, k = 7·fit): the "Micropropagated Plant Stock" card landed under
+    /// the legend and the words "locked", "focus" and "core" were drawn through
+    /// the card's plate, its border and its own "1990 · 15p" line. Neither the
+    /// legend nor the card could be read.
+    ///
+    /// This is not a corner the player has to look for — the survey is 253
+    /// cards under a camera they drive, and the legend is pinned to a fixed
+    /// screen corner, so every pan sweeps cards under it.
+    ///
+    /// Fix: the same translucent plate the other two floating chips on this
+    /// screen already carry.
+    #[test]
+    fn the_tech_legend_is_painted_on_something() {
+        let rule = INDEX
+            .lines()
+            .skip_while(|l| !l.trim_start().starts_with("#techLegend {"))
+            .take(3)
+            .collect::<Vec<_>>()
+            .join(" ");
+        assert!(!rule.is_empty(), "the tech legend's rule is gone");
+        assert!(
+            rule.contains("background:"),
+            "the legend floats over a camera-driven graph and must carry its own \
+             plate; without one the marks mix with whatever card is behind them: {rule}"
+        );
+        assert!(
+            rule.contains("pointer-events:none"),
+            "the legend is a key, not a control — it must not take clicks meant \
+             for the technology under it"
+        );
+        // The screen's other two floating chips, so a future edit can see what
+        // this one was made to match rather than guessing.
+        for other in ["#techPriPill {", "#techFindHint {"] {
+            assert!(INDEX.contains(other), "{other} is gone; re-derive the legend's plate");
+        }
+    }
 }
