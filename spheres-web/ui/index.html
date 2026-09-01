@@ -9262,7 +9262,27 @@ async function loadProvenance(name) {
   const lines = (data && data.sources) || [];
   box.textContent = "";
   if (!lines.length) {
-    box.textContent = "This nation ships no provenance, which is a bug.";
+    // AN EMPTY SOURCES BLOCK MEANS TWO DIFFERENT THINGS and this line used to
+    // call both of them a bug. Twenty-three of the roster's hundred and sixty
+    // nations are successors — the eleven Soviet republics that signed at Alma
+    // Ata plus Russia and Ukraine, the five Yugoslav successors, Namibia and
+    // East Timor — and none of them is seated on 1 January 1990, so none ships
+    // a 1990 data file. That is the design, not a defect: their opening
+    // figures are transcribed and sourced where the sim seats them, as
+    // republican shares of the federation's own 1990 totals. Every one of
+    // those dossiers was telling the player the repo had a bug in it.
+    //
+    // `start_1990` is the roster's own flag, served rather than guessed. The
+    // other branch stays, because a SEATED nation with no provenance really is
+    // a bug — `data::every_nation_can_show_its_working` goes red if one ever
+    // appears, and this is what it would look like on screen.
+    box.textContent = data && data.start_1990 === false
+      ? `${name} is not seated on 1 January 1990, so it ships no 1990 data file ` +
+        "and there is nothing here to cite. A nation that enters the world during " +
+        "play is transcribed and sourced where the sim seats it instead — the " +
+        "Soviet and Yugoslav successors as shares of the federation's own 1990 " +
+        "totals, each share carried with its source."
+      : "This nation ships no provenance, which is a bug.";
     return;
   }
   for (const line of lines) {

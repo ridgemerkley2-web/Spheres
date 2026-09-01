@@ -437,6 +437,27 @@ fn nation_param(url: &str) -> Option<NationId> {
 /// The operating areas, and whose consent an outsider needs in each. Sent whole
 /// rather than per-conflict, because the access panel is playable on its own:
 /// a host state that is in nobody's war still wants to see who is asking.
+/// Where one nation's opening figures came from, for the dossier.
+///
+/// `start_1990` is served beside the citations because AN EMPTY `sources` MEANS
+/// TWO COMPLETELY DIFFERENT THINGS and the dossier could not tell them apart,
+/// so it called both a bug. A nation SEATED on 1 January 1990 with no
+/// provenance really is one — `data::every_nation_can_show_its_working` goes red
+/// if one ever appears. A successor has no 1990 data file by design: twenty-
+/// three of the roster's hundred and sixty are successors, they are not on the
+/// board in January, and their opening figures are transcribed and sourced
+/// where the sim seats them — the Soviet and Yugoslav republics as shares of
+/// the federation's own 1990 totals, in `politics.rs`. Every one of those
+/// twenty-three dossiers was telling the player the repo had a bug in it.
+fn sources_json(id: NationId) -> serde_json::Value {
+    serde_json::json!({
+        "id": format!("{:?}", id),
+        "name": id.name(),
+        "sources": spheres_sim::data::sources_for(id),
+        "start_1990": id.def().start_1990,
+    })
+}
+
 fn theatres_json(w: &WorldState) -> Vec<serde_json::Value> {
     w.theatres
         .iter()
@@ -1749,11 +1770,7 @@ fn main() {
             (Method::Get, "/api/sources") => {
                 let id = nation_param(request.url());
                 match id {
-                    Some(id) => json_response(serde_json::json!({
-                        "id": format!("{:?}", id),
-                        "name": id.name(),
-                        "sources": spheres_sim::data::sources_for(id),
-                    })),
+                    Some(id) => json_response(sources_json(id)),
                     None => json_response(serde_json::json!({
                         "error": "unknown nation",
                     })),
@@ -4669,6 +4686,72 @@ mod tests {
         assert!(
             !INDEX.contains("function hasAccess("),
             "theatre::has_access is mirrored in the browser again"
+        );
+    }
+
+    /// TRIAGE F-31 — twenty-three dossiers accused the repo of a bug that was
+    /// not there.
+    ///
+    /// SYMPTOM. Play the United States on seed 1 to the Soviet dissolution
+    /// (September 1993), open Russia's dossier: the provenance block reads
+    /// "This nation ships no provenance, which is a bug." GET
+    /// /api/sources?nation=Russia answers `{"sources":[]}`, and so does every
+    /// other successor — the eleven Soviet republics that signed at Alma Ata
+    /// plus Russia and Ukraine, the five Yugoslav successors, Namibia and East
+    /// Timor. Twenty-three of a hundred and sixty.
+    ///
+    /// CAUSE. An empty `sources` list means two different things and the
+    /// payload could not tell them apart. A nation SEATED in 1990 with no
+    /// provenance is a real defect; a successor has no 1990 data file by
+    /// design, because it is not on the board in January and its figures are
+    /// transcribed where the sim seats it instead.
+    ///
+    /// FIX. `/api/sources` serves the roster's own `start_1990` flag, and the
+    /// dossier says which of the two it is looking at. The accusation is kept
+    /// for the case that really would be one.
+    #[test]
+    fn a_successor_is_not_told_it_is_a_bug() {
+        let mut seated = 0usize;
+        let mut successors = 0usize;
+        for id in spheres_sim::nations::all_nations().iter().copied() {
+            let v = sources_json(id);
+            let has_sources = !v["sources"].as_array().unwrap().is_empty();
+            match v["start_1990"].as_bool().expect("the seating flag is served") {
+                true => {
+                    seated += 1;
+                    // The branch the dossier keeps its accusation for must be
+                    // unreachable on the shipped roster, or the accusation is
+                    // being made about something else.
+                    assert!(
+                        has_sources,
+                        "{:?} is seated in 1990 and ships no provenance — the \
+                         dossier's remaining 'which is a bug' branch is now live",
+                        id
+                    );
+                }
+                false => {
+                    successors += 1;
+                    assert!(
+                        !has_sources,
+                        "{:?} is a successor and now ships a 1990 sources block; \
+                         the dossier's two branches need re-reading",
+                        id
+                    );
+                }
+            }
+        }
+        assert_eq!(seated, 137, "the seated roster changed size");
+        assert_eq!(successors, 23, "the successor roster changed size");
+
+        // Spot-checks by name, so a flag flipped the wrong way is legible.
+        assert_eq!(sources_json(NationId::Russia)["start_1990"], serde_json::json!(false));
+        assert_eq!(sources_json(NationId::Poland)["start_1990"], serde_json::json!(true));
+
+        // And the dossier must branch on it rather than accusing everybody.
+        assert!(
+            INDEX.contains("data.start_1990 === false"),
+            "the dossier must ask whether the nation was seated before calling \
+             an empty sources block a bug"
         );
     }
 
