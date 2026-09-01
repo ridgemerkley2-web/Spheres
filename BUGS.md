@@ -1249,3 +1249,62 @@ and any future change that moves the GDP path of a large economy will move this
 residual again, whether or not it touches anything gated on `dev`.
 
 **Nothing was changed. The instrument was added and is `#[ignore]`d.**
+
+---
+
+### W-3 — "+5 YR" delivers about one month, and the fix is a design ruling
+
+**Measured 2026-09-01 by the sim-and-web fixer. TRIAGE F-10. NOT FIXED: every
+repair is a decision about what should interrupt a player, and that is pacing.**
+
+**Symptom.** The advance buttons are captioned +1 MO, +6 MO, +1 YR and +5 YR, and
+the ? card documents keys 2/3/4 for the last three. Measured on the live server,
+asking for 60 months every call until 240 months of history had passed:
+
+| governing | calls to move 240 months | months per "+5 YR" click |
+|---|---|---|
+| United States | 202 | **1.19** |
+| Oman | 190 | **1.26** |
+| Bhutan | 134 | **1.80** |
+
+**A 33x to 50x shortfall.** Two hundred and two clicks to play twenty years as
+the United States.
+
+**Cause, and it is working as written.** `Game::advance` stops early on any
+headline `is_major` finds, and the browser banners the reason, so nothing is
+silent or broken — a player is told why it stopped. The complaint is the
+FREQUENCY. `is_major`'s structural list contains `escalates to rung`, which the
+commitment ladder writes about 0.4 times a month across 137 nations, plus
+`grants` and `revokes` for basing rights. The reasons a small nation actually
+gets, quoted from the run above:
+
+```
+Oman:   "Thailand escalates to rung 2 — sanctions."
+        "Revolution in Peru — the old regime falls."
+Bhutan: "Iraq escalates to rung 2 — sanctions."
+        "India escalates to rung 2 — sanctions."
+USA:    "Zaire and United States sign a trade agreement."
+```
+
+Not one of those is something an Omani or Bhutanese government can act on, and
+the function's own doc comment says the interrupt is for "an event worth
+reacting to".
+
+**Why it is not fixed here.** Every available repair decides what deserves to
+stop a player's clock — drop the ladder from the structural list, gate the
+structural list on the player's own theatres or relations, make the frequent
+clauses interrupt only above some rung, or let the caller say how much news it
+wants to be stopped for. Each is a pacing decision, each changes how the game
+plays, and none of them is a wrong number or a false label. **Ridge's call, not
+an agent's.**
+
+**One part of it WAS a defect and IS fixed**, separately and on its own merits:
+`is_major`'s second arm read a headline as being about the player whenever it
+contained their name's LETTERS, so an Omani player's clock was stopped for
+Romanian election results. See the commit "web: an Omani player's news was mostly
+Romania's". That removes false interrupts; it does not touch the pacing.
+
+**A twin is left standing on purpose.** `spheres-cli/src/main.rs:513` carries the
+identical bare-substring `is_major`, so the CLI has the Oman/Romania defect too.
+Untouched here only to stay out of another session's file — it is one line and it
+is the same fix.
