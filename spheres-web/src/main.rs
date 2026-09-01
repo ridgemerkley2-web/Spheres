@@ -15,6 +15,10 @@ use tiny_http::{Header, Method, Response, Server};
 const INDEX: &str = include_str!("../ui/index.html");
 /// Baked country outlines — see `src/bin/mapgen.rs`.
 const WORLD_JS: &str = include_str!("../ui/world.js");
+/// Public-domain Natural Earth populated places, reduced to label fields.
+const CITIES_JS: &str = include_str!("../ui/cities.js");
+/// Native WebGL globe; kept separate so the command UI stays readable.
+const GLOBE3D_JS: &str = include_str!("../ui/globe3d.js");
 
 /// The six per-nation numbers the UI plots. Recorded every month so a decade of
 /// stagnation reads as a shape rather than a pair of endpoints.
@@ -885,6 +889,28 @@ fn main() {
                 let _ = request.respond(r);
                 continue;
             }
+            (Method::Get, "/cities.js") => {
+                let r = Response::from_string(CITIES_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/globe3d.js") => {
+                let r = Response::from_string(GLOBE3D_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
             (Method::Get, "/api/state") => {
                 let g = game.lock().unwrap();
                 json_response(state_json(&g, None))
@@ -1331,9 +1357,19 @@ mod tests {
         assert!(INDEX.contains("function closeDrawer"));
         assert!(INDEX.contains("role=\"tablist\""));
         assert!(INDEX.contains("<button class=\"tab on\""));
-        assert!(INDEX.contains("aria-label=\"Interactive globe"));
-        assert!(INDEX.contains("aria-label=\"Rotate globe west\""));
-        assert!(INDEX.contains("aria-label=\"Rotate globe east\""));
+        assert!(INDEX.contains("Interactive three dimensional world globe"));
+        assert!(INDEX.contains("aria-label=\"Rotate globe west"));
+        assert!(INDEX.contains("aria-label=\"Rotate globe east"));
+        assert!(INDEX.contains("<canvas class=\"globe-map\""));
+        assert!(INDEX.contains("new Globe3D"));
+        assert!(INDEX.contains("wheel or pinch to zoom"));
+        assert!(INDEX.contains("/cities.js"));
+        assert!(INDEX.contains("/globe3d.js"));
+        assert!(GLOBE3D_JS.contains("getContext(\"webgl\""));
+        assert!(GLOBE3D_JS.contains("function sphereMesh"));
+        assert!(GLOBE3D_JS.contains("addEventListener(\"pointermove\""));
+        assert!(GLOBE3D_JS.contains("addEventListener(\"wheel\""));
+        assert!(CITIES_JS.contains("window.CITIES="));
     }
 
     #[test]
