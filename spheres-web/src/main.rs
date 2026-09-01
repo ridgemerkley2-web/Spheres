@@ -876,12 +876,27 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         // neighbour should not first have to know which operating area the sim
         // files it under. Left out, it is the one a war between the two would
         // be fought in — the defender's own ground.
-        "open_conflict" => Command::OpenConflict {
-            opener: me,
-            target: target()?,
-            theatre: theatre()
-                .unwrap_or_else(|| spheres_sim::war::theatre_between(w, me, target().unwrap())),
-        },
+        "open_conflict" => {
+            let target = target()?;
+            Command::OpenConflict {
+                opener: me,
+                target,
+                // Absent is the documented default the paragraph above
+                // describes. PRESENT BUT UNUSABLE is not the same thing, and it
+                // used to fall into the same branch: `theatre().unwrap_or_else`
+                // could not tell a field that was not carried from one the
+                // server could not read, so a typo took the default silently.
+                // Measured on the live server, all with 200 and `errors: []` —
+                // "Balkans" opened in the Balkans, and "Gluf", "", and 42 all
+                // opened in the Gulf, indistinguishable from asking for it.
+                theatre: match v.get("theatre") {
+                    None | Some(serde_json::Value::Null) => {
+                        spheres_sim::war::theatre_between(w, me, target)
+                    }
+                    Some(x) => TheatreId::parse(x.as_str()?)?,
+                },
+            }
+        }
         "join" => Command::JoinConflict {
             conflict: conflict()?,
             nation: me,
@@ -2595,5 +2610,87 @@ mod tests {
             cost,
             list
         );
+    }
+
+    /// Opening a quarrel in a theatre the server could not read used to open it
+    /// somewhere else and say nothing. Measured on the live server as Iraq on
+    /// seed 7, POST /api/command {"kind":"open_conflict","target":"Kuwait",
+    /// "theatre":X}, reading back the theatre the conflict actually landed in:
+    ///
+    ///   X = "Balkans"  -> 200, errors [] -> the Balkans
+    ///   X = "Gluf"     -> 200, errors [] -> the Gulf
+    ///   X = "Nonsense" -> 200, errors [] -> the Gulf
+    ///   X = ""         -> 200, errors [] -> the Gulf
+    ///   X = 42         -> 200, errors [] -> the Gulf
+    ///
+    /// A player who asked for one operating area was given another, with the
+    /// same answer they would have got had they been obeyed. The theatre is not
+    /// cosmetic: it decides whose consent the escalation ladder needs above rung
+    /// 5, who is defending home ground and at what discount, and which districts
+    /// the front is fought over.
+    ///
+    /// The cause was that `unwrap_or_else` cannot tell a field that was not
+    /// carried from one that could not be read, and only the first of those is
+    /// a default.
+    #[test]
+    fn a_theatre_the_server_cannot_use_is_refused_not_replaced() {
+        let g = Game::new(7, Some(NationId::Iraq));
+        let me = NationId::Iraq;
+        let theatre_of = |v: &serde_json::Value| match parse_command(&g.world, v, me) {
+            Some(Command::OpenConflict { theatre, .. }) => Ok(theatre),
+            Some(other) => panic!("wrong command: {:?}", other),
+            None => Err(()),
+        };
+
+        // Not carrying the field is still the documented default, and it is the
+        // path the browser itself takes — index.html posts `open_conflict` with
+        // no theatre at all, so this arm must keep working exactly as it did.
+        let asked = serde_json::json!({ "kind": "open_conflict", "target": "Kuwait" });
+        let default = spheres_sim::war::theatre_between(&g.world, me, NationId::Kuwait);
+        assert_eq!(theatre_of(&asked), Ok(default));
+        assert_eq!(
+            theatre_of(&serde_json::json!({
+                "kind": "open_conflict", "target": "Kuwait", "theatre": null
+            })),
+            Ok(default)
+        );
+        assert!(
+            INDEX.contains(r#"{ kind: "open_conflict", target }"#),
+            "the browser must still be posting open_conflict without a theatre, \
+             or the default arm above is no longer the one it uses"
+        );
+
+        // Every theatre a client can name still arrives intact, asked of the
+        // whole table rather than a sample. `conflictCmd` posts `w.theatre`,
+        // which is the Debug spelling the state payload carries, so a strict
+        // parse that rejected any of these would break the war sheet.
+        for t in spheres_sim::theatre::ALL_THEATRES {
+            let debug = format!("{:?}", t);
+            assert_eq!(
+                theatre_of(&serde_json::json!({
+                    "kind": "open_conflict", "target": "Kuwait", "theatre": debug
+                })),
+                Ok(t),
+                "the payload's own spelling of {:?} must parse back",
+                t
+            );
+        }
+
+        // And the four measured substitutions are refused rather than replaced.
+        for bad in [
+            serde_json::json!("Gluf"),
+            serde_json::json!("Nonsense"),
+            serde_json::json!(""),
+            serde_json::json!(42),
+        ] {
+            assert_eq!(
+                theatre_of(&serde_json::json!({
+                    "kind": "open_conflict", "target": "Kuwait", "theatre": bad
+                })),
+                Err(()),
+                "{} was read as a theatre",
+                bad
+            );
+        }
     }
 }
