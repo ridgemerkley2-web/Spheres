@@ -3074,6 +3074,61 @@ mod tests {
         );
     }
 
+    /// The shortcut card is a modal and must swallow the keys, the way the tech
+    /// screen already does.
+    ///
+    /// `#keys` dims the page, takes the click that dismisses it, and is the
+    /// first thing Escape closes — every other signal says modal. But the
+    /// keydown handler had no opinion about it at all, so the game ran on
+    /// behind it. Measured in the browser: with the card up, pressing `2`
+    /// advanced the world from Jan 1990 to Mar 1990, invisibly, with the card
+    /// still covering the header that would have shown the date move.
+    ///
+    /// The gate must sit ABOVE the `!S` check and above the tech-screen
+    /// dispatch, so the card wins over both — including when it is opened from
+    /// inside the tech screen, where techKeys also offers `?`.
+    #[test]
+    fn the_shortcut_card_swallows_the_keys_behind_it() {
+        // Asserted line by line: ui/index.html is CRLF in the working copy, so
+        // a literal spanning two of its lines would never match.
+        assert!(
+            INDEX.contains("if (isKeysCardToggle(e)) { e.preventDefault(); toggleKeysCard(); }"),
+            "the shortcut card no longer swallows keys — the game will advance \
+             behind it again"
+        );
+        assert!(
+            INDEX.contains("else if (e.key === \" \") e.preventDefault();"),
+            "Space must still be swallowed while the card is up, or the page \
+             scrolls under it"
+        );
+        // Ordering is the whole of it. The card's gate must come before the
+        // `!S` bail and before the tech dispatch, or a card opened over either
+        // stops taking keys.
+        let at_gate = INDEX
+            .find("if (isKeysCardToggle(e)) { e.preventDefault(); toggleKeysCard(); }")
+            .expect("the card's keydown gate is gone");
+        let at_bail = INDEX
+            .find("if (!S || $(\"#app\").style.display === \"none\") return;")
+            .expect("the keydown handler's spectator bail is gone");
+        let at_tech = INDEX
+            .find("if (tech.open) { techKeys(e); return; }")
+            .expect("the keydown handler's tech dispatch is gone");
+        assert!(
+            at_gate < at_bail && at_gate < at_tech,
+            "the card's gate must be reached before the !S bail and the tech \
+             dispatch, or a card opened over either stops swallowing keys"
+        );
+        // One reader for the open state, so the next edit cannot leave a fifth
+        // copy of the literal behind and out of step. The style attribute in
+        // the markup is not one of these.
+        assert_eq!(
+            INDEX.matches("$(\"#keys\").style.display").count(),
+            2,
+            "the card's display should be read and written only through \
+             keysCardIsOpen()/setKeysCard()"
+        );
+    }
+
     /// The shortcut gate must ask whether the key is being CONSUMED as text,
     /// not merely whether the target is an `<input>`.
     ///
