@@ -882,6 +882,56 @@ fn json_response(v: serde_json::Value) -> Response<std::io::Cursor<Vec<u8>>> {
     )
 }
 
+/// A refusal. Same JSON shape as every other answer, but carrying the status
+/// code that says the request was the problem — a 200 with an `error` key is a
+/// thing only the browser that wrote it knows how to read.
+fn json_error(code: u16, v: serde_json::Value) -> Response<std::io::Cursor<Vec<u8>>> {
+    json_response(v).with_status_code(code)
+}
+
+/// Start a fresh world for `player`, or refuse and leave `g` alone.
+///
+/// THE REFUSAL IS THE POINT, and it is not hypothetical. `NationId::parse`
+/// resolves every id on the roster, and the roster includes the successor
+/// states that do not exist on the start date — Namibia, and the republics that
+/// only appear if a federation comes apart. `world_1990` does not seat them,
+/// because `data::load_world` rejects a data file for a nation that is not a
+/// starter. Handing one to `Game::new` therefore built a world whose `player`
+/// pointed at nobody, and `state_json` on the very next line asked
+/// `WorldState::nation` for it and hit `expect("nation")` — on the main thread,
+/// which is where tiny-http's request loop lives, so the panic did not fail the
+/// request, it killed the process. Every player on that server lost their game
+/// because one of them clicked the wrong card.
+///
+/// `nation_opt` is the accessor for an id the world may not be holding, and its
+/// own doc comment names this exact case. Ask it before committing, not after:
+/// the guard belongs here, in the route that accepts player input, and NOT in
+/// `WorldState::nation`, whose `expect` is a real invariant everywhere else.
+///
+/// Returns the payload and whether a game was actually started.
+fn new_game(g: &mut Game, seed: u64, player: Option<NationId>) -> (serde_json::Value, bool) {
+    let fresh = Game::new(seed, player);
+    if let Some(id) = player {
+        // Asked of the world that was just built rather than of `start_1990`,
+        // so this stays true if the roster ever seats a nation it does not
+        // today. A world is cheap enough to build and throw away once.
+        if !fresh.world.nation_opt(id).is_some_and(|n| n.alive) {
+            return (
+                serde_json::json!({
+                    "error": format!(
+                        "{} is not on the board in January 1990 — it exists only \
+                         if the state it succeeds comes apart. Choose another nation.",
+                        id.name()
+                    ),
+                }),
+                false,
+            );
+        }
+    }
+    *g = fresh;
+    (state_json(g, None), true)
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().collect();
     let port: u16 = args
@@ -1153,8 +1203,10 @@ fn main() {
                     .and_then(|s| s.as_str())
                     .and_then(NationId::parse);
                 let mut g = game.lock().unwrap();
-                *g = Game::new(seed, player);
-                json_response(state_json(&g, None))
+                match new_game(&mut g, seed, player) {
+                    (v, true) => json_response(v),
+                    (v, false) => json_error(400, v),
+                }
             }
             (Method::Post, "/api/advance") => {
                 let months = payload
@@ -1320,6 +1372,53 @@ mod tests {
         let src = spheres_sim::data::sources_for(NationId::Brazil);
         assert!(!src.is_empty());
         assert!(src.join(" ").contains("2948%"));
+    }
+
+    /// The picker can offer a nation the world is not holding — every successor
+    /// state is on the roster from the first tick but seated only when its
+    /// federation comes apart, and the setup grid is built from a live world
+    /// that may already have dissolved one. Handing such an id to `Game::new`
+    /// used to build a world whose `player` pointed at nobody, and the first
+    /// `state_json` after it walked into `WorldState::nation`'s `expect` and
+    /// took the whole server process down with it (exit 101) — the browser saw
+    /// a dropped connection, and every other player on that server lost their
+    /// game too. `/api/new` now refuses the choice and says so, which is why
+    /// this asserts on `new_game` rather than on `Game::new`.
+    #[test]
+    fn a_nation_the_world_is_not_holding_is_refused_not_fatal() {
+        let succ = spheres_sim::world::successor_nations();
+        assert!(
+            !succ.is_empty(),
+            "the roster must still carry successor states for this to mean anything"
+        );
+
+        let mut g = Game::new(1990, None);
+        for id in succ {
+            // The precondition: this is exactly the id the picker can offer and
+            // the world does not hold.
+            assert!(
+                g.world.nation_opt(*id).is_none_or(|n| !n.alive),
+                "{:?} is seated and alive in January 1990",
+                id
+            );
+            let (v, ok) = new_game(&mut g, 1990, Some(*id));
+            assert!(!ok, "{:?} is not on the board and must not be granted", id);
+            assert!(
+                v["error"].as_str().unwrap_or_default().contains(id.name()),
+                "the refusal must name the nation it refused: {}",
+                v
+            );
+            // Refused means refused: the world the player already had is
+            // untouched, and in particular nobody has been made an observer.
+            assert_eq!(g.world.player, None, "a refused choice must not be seated");
+        }
+
+        // The same call with a nation that IS on the board still works, so the
+        // guard is a filter and not a wall.
+        let (v, ok) = new_game(&mut g, 1990, Some(NationId::Poland));
+        assert!(ok, "Poland is seated in 1990 and must be playable: {}", v);
+        assert_eq!(g.world.player, Some(NationId::Poland));
+        assert!(v["research"].is_object(), "a seated player gets a full payload");
     }
 
     #[test]
