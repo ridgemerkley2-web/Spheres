@@ -1314,6 +1314,28 @@ mod tests {
         assert!(!INDEX.contains("https://"), "the UI must stay self-contained");
     }
 
+    /// The default command surface is the board, not three simultaneous data
+    /// columns. Dense government and world information remains reachable from
+    /// real buttons whose expanded state can be read by assistive technology.
+    #[test]
+    fn the_map_first_shell_keeps_detail_behind_workspaces() {
+        assert!(INDEX.contains("id=\"commandDock\""));
+        assert!(INDEX.contains("id=\"governmentBtn\""));
+        assert!(INDEX.contains("aria-controls=\"governmentDrawer\""));
+        assert!(INDEX.contains("id=\"conflictsBtn\""));
+        assert!(INDEX.contains("id=\"dispatchesBtn\""));
+        assert!(INDEX.contains("aria-controls=\"rightDrawer\""));
+        assert!(INDEX.contains("id=\"governmentDrawer\""));
+        assert!(INDEX.contains("id=\"rightDrawer\""));
+        assert!(INDEX.contains("function openDrawer"));
+        assert!(INDEX.contains("function closeDrawer"));
+        assert!(INDEX.contains("role=\"tablist\""));
+        assert!(INDEX.contains("<button class=\"tab on\""));
+        assert!(INDEX.contains("aria-label=\"Interactive globe"));
+        assert!(INDEX.contains("aria-label=\"Rotate globe west\""));
+        assert!(INDEX.contains("aria-label=\"Rotate globe east\""));
+    }
+
     #[test]
     fn one_nation_can_be_asked_for_alone() {
         let mut g = Game::new(1990, None);

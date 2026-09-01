@@ -38,6 +38,9 @@
   button.primary:hover { background: #35598a; }
   button.danger { border-color: #6b3030; color: #f0a0a0; }
   button.danger:hover { background: #4a2020; }
+  button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--cyan); outline-offset: 2px;
+  }
   input, select { font: inherit; }
   kbd {
     font: 11px/1.4 var(--mono); background: #1d2635; border: 1px solid #33415a;
@@ -47,7 +50,8 @@
   /* ---------- setup ---------- */
   #setup {
     position: fixed; inset: 0; background: var(--bg); z-index: 50;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    overflow-y: auto; padding: 56px 24px 40px;
   }
   #setup .title {
     font-size: 60px; letter-spacing: .5em; margin-bottom: 4px;
@@ -55,7 +59,9 @@
   }
   #setup .sub { color: var(--dim); margin-bottom: 40px; letter-spacing: .2em; font-size: 12px; }
   #nationPick {
-    display: grid; grid-template-columns: repeat(4, 158px); gap: 8px; margin-bottom: 28px;
+    display: grid; grid-template-columns: repeat(4, minmax(142px, 1fr)); gap: 8px;
+    width: min(720px, 100%); max-height: min(52vh, 560px); overflow-y: auto;
+    margin-bottom: 28px; padding: 4px;
   }
   #nationPick .opt {
     padding: 10px; border: 1px solid var(--line); border-radius: 5px;
@@ -72,15 +78,18 @@
   }
 
   /* ---------- layout ---------- */
-  #app { display: none; height: 100vh; grid-template-rows: auto 1fr; }
+  #app { display: none; height: 100vh; height: 100dvh; grid-template-rows: auto 1fr; }
   header {
-    display: flex; align-items: center; gap: 18px; padding: 8px 16px;
+    display: flex; align-items: center; gap: 14px; padding: 8px 16px;
     background: var(--panel); border-bottom: 1px solid var(--line);
+    position: relative; z-index: 25; min-width: 0;
   }
   header .brand { color: var(--amber); letter-spacing: .35em; font-weight: 600; }
   header .date { font-size: 19px; font-variant-numeric: tabular-nums; min-width: 108px; }
   header .metric { color: var(--dim); font-size: 11px; letter-spacing: .1em; }
   header .metric b { color: var(--ink); font-size: 13px; font-weight: 600; letter-spacing: 0; }
+  header .metric.player { max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  header .detail-metric { display: none; }
   header .spacer { flex: 1; }
   .timebtns { display: flex; gap: 6px; }
   .timebtns button { position: relative; }
@@ -88,13 +97,55 @@
     font-style: normal; color: var(--dim); font-size: 10px; margin-left: 5px;
   }
 
-  main { display: grid; grid-template-columns: 312px 1fr 348px; overflow: hidden; }
+  main { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
   .col { overflow-y: auto; padding: 12px; }
   .col::-webkit-scrollbar, .pane::-webkit-scrollbar, #sheet::-webkit-scrollbar { width: 8px; }
   .col::-webkit-scrollbar-thumb, .pane::-webkit-scrollbar-thumb,
   #sheet::-webkit-scrollbar-thumb { background: #2a3444; border-radius: 4px; }
-  #left { border-right: 1px solid var(--line); background: #0d121a; }
-  #right { border-left: 1px solid var(--line); background: #0d121a; display: flex; flex-direction: column; }
+  #left { flex: 1; min-height: 0; background: #0d121a; }
+  #right { flex: 1; min-height: 0; background: #0d121a; display: flex; flex-direction: column; overflow: hidden; }
+
+  /* The map is the game board. Everything dense lives in a workspace that is
+     summoned from the command dock instead of permanently shrinking the board. */
+  .drawer {
+    position: absolute; top: 0; bottom: 0; z-index: 20; display: flex; flex-direction: column;
+    background: #0d121af5; border-color: var(--line); box-shadow: 0 18px 70px #000c;
+    visibility: hidden; pointer-events: none; transition: transform .2s ease, visibility .2s;
+  }
+  .drawer.left { left: 0; width: min(380px, calc(100vw - 24px)); border-right: 1px solid var(--line); transform: translateX(-104%); }
+  .drawer.right { right: 0; width: min(420px, calc(100vw - 24px)); border-left: 1px solid var(--line); transform: translateX(104%); }
+  .drawer.open { visibility: visible; pointer-events: auto; transform: translateX(0); }
+  .drawer-head {
+    display: flex; align-items: center; gap: 10px; min-height: 58px; padding: 10px 12px;
+    border-bottom: 1px solid var(--line); background: #121822f5;
+  }
+  .drawer-head .eyebrow { color: var(--dim); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; }
+  .drawer-head h2 { font-size: 15px; letter-spacing: .08em; }
+  .drawer-head .spacer { flex: 1; }
+  .drawer-close { width: 40px; height: 40px; padding: 0; font-size: 20px; line-height: 1; }
+  .drawer-panel { min-height: 0; flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+  .drawer-panel[hidden] { display: none; }
+  #drawerScrim {
+    position: absolute; inset: 0; z-index: 19; background: #05080d7a;
+    opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .2s ease, visibility .2s;
+  }
+  #drawerScrim.open { opacity: 1; visibility: visible; pointer-events: auto; }
+
+  #commandDock {
+    position: absolute; z-index: 18; left: 14px; bottom: 16px; display: flex; gap: 8px;
+    padding: 6px; border: 1px solid #33415a; border-radius: 8px;
+    background: #0d121ae8; box-shadow: 0 10px 34px #0009; backdrop-filter: blur(8px);
+  }
+  .dockbtn {
+    min-height: 46px; display: grid; grid-template-columns: auto auto; align-items: center; gap: 9px;
+    padding: 7px 12px; background: #121822e8;
+  }
+  .dockbtn .label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #b9c6d8; }
+  .dockbtn b {
+    min-width: 22px; padding: 2px 6px; border-radius: 999px; background: #202b3b;
+    color: var(--amber); font-size: 10px; font-weight: 600; text-align: center;
+  }
+  .dockbtn[aria-expanded="true"] { border-color: var(--amber); background: #2a2114; }
 
   .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px; margin-bottom: 12px; }
   .card h3 { font-size: 10px; letter-spacing: .18em; color: var(--dim); text-transform: uppercase; margin-bottom: 10px; }
@@ -218,17 +269,43 @@
   .strat .short { color: #b06a5a; font-size: 11px; }
 
   /* ---------- map ---------- */
-  #center { display: flex; flex-direction: column; overflow: hidden; }
-  .tabs { display: flex; gap: 4px; padding: 8px 12px 0; align-items: flex-end; }
-  .tabs .tab {
-    padding: 5px 14px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--dim); border: 1px solid transparent; border-radius: 4px 4px 0 0; cursor: pointer;
+  #center { position: absolute; inset: 0; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+  .tabs {
+    display: flex; gap: 5px; min-height: 52px; padding: 8px 12px; align-items: center;
+    border-bottom: 1px solid var(--line); background: #0d121acc; z-index: 2;
   }
-  .tabs .tab.on { color: var(--amber); border-color: var(--line); border-bottom-color: transparent; background: var(--panel); }
+  #viewTabs { display: flex; gap: 5px; flex: 0 0 auto; }
+  .tabs .tab {
+    min-height: 36px; padding: 7px 14px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--dim); border: 1px solid transparent; border-radius: 4px; cursor: pointer; background: transparent;
+  }
+  .tabs .tab.on { color: var(--amber); border-color: #5b4930; background: #2a2114; }
   .tabs .tab b { color: #55637a; font-weight: 400; margin-left: 6px; }
   .tabs .grow { flex: 1; }
-  .pane { flex: 1; overflow: auto; padding: 10px 12px; display: none; }
+  .pane { flex: 1; min-height: 0; overflow: auto; padding: 10px 12px; display: none; }
   .pane.on { display: block; }
+  #pane-map { position: relative; overflow: hidden; padding: 0; }
+  #pane-map.on { display: flex; align-items: center; justify-content: center; }
+  .globe-stage { position: relative; width: 100%; height: 100%; min-height: 0; }
+  .globe-map { display: block; width: 100%; height: 100%; min-height: 0; }
+  .globe-turn {
+    position: absolute; z-index: 4; top: 50%; width: 48px; height: 48px; padding: 0;
+    border-radius: 50%; background: #121822e8; border-color: #40516a;
+    color: var(--cyan); font-size: 26px; line-height: 1; box-shadow: 0 8px 24px #000a;
+  }
+  .globe-turn.prev { left: max(12px, calc(50% - 340px)); }
+  .globe-turn.next { right: max(12px, calc(50% - 340px)); }
+  .globe-readout {
+    position: absolute; z-index: 3; top: 14px; left: 50%; transform: translateX(-50%);
+    color: #8fa0b6; font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+    padding: 4px 9px; border-radius: 999px; background: #0d121acb; border: 1px solid #26364a;
+  }
+  .globe-map .atmosphere { filter: drop-shadow(0 0 13px #4cc7e055) drop-shadow(0 18px 30px #000c); }
+  #pane-map > .legend {
+    position: absolute; left: 50%; bottom: 82px; transform: translateX(-50%); z-index: 2;
+    justify-content: center; width: max-content; max-width: calc(100% - 32px); padding: 7px 11px;
+    border: 1px solid #33415a; border-radius: 6px; background: #0d121adf; box-shadow: 0 8px 26px #0008;
+  }
   svg { display: block; width: 100%; }
   .nodeg { cursor: pointer; }
   .nodeg:hover path { fill-opacity: .62; stroke: var(--amber); stroke-width: 1.6; }
@@ -342,6 +419,7 @@
   #sheet .head .tagline { color: var(--dim); font-size: 12px; }
   #sheet .head .spacer { flex: 1; }
   #sheet .close { cursor: pointer; color: var(--dim); font-size: 20px; line-height: 1; padding: 0 4px; }
+  #sheet button.close { min-width: 36px; min-height: 36px; background: transparent; border-color: transparent; }
   #sheet .close:hover { color: var(--ink); }
   .statgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 2px 18px; }
   .cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -378,6 +456,42 @@
   .queued { color: var(--cyan); font-size: 11px; min-height: 15px; }
   .muted { color: var(--dim); font-size: 12px; }
   .tiny { color: #6b788a; font-size: 11px; }
+
+  @media (max-width: 920px) {
+    header { gap: 10px; padding-inline: 10px; }
+    header .brand { letter-spacing: .2em; }
+    header .metric.player { display: none; }
+    .timebtns button[data-adv="6"], .timebtns button[data-adv="60"] { display: none; }
+    .tabs { overflow-x: auto; scrollbar-width: none; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tabs #mapModes { min-width: max-content; }
+    #pane-map > .legend { bottom: 84px; }
+  }
+  @media (max-width: 640px) {
+    #setup { padding: 28px 14px; }
+    #setup .title { font-size: 38px; }
+    #setup .sub { margin-bottom: 24px; }
+    #nationPick { grid-template-columns: repeat(2, minmax(130px, 1fr)); max-height: 56vh; }
+    header .brand { display: none; }
+    header .date { font-size: 16px; min-width: auto; }
+    header .metric { display: none; }
+    header #queuedNote { display: none; }
+    .timebtns { margin-left: auto; }
+    .timebtns button[data-adv="12"] { display: none; }
+    .tabs { min-height: 48px; padding: 6px 8px; }
+    .tabs .tab { min-height: 38px; padding-inline: 10px; }
+    #mapModes { overflow-x: auto; }
+    #commandDock { left: 8px; right: 8px; bottom: max(8px, env(safe-area-inset-bottom)); }
+    .dockbtn { flex: 1; display: flex; justify-content: center; padding-inline: 7px; }
+    .dockbtn .label { font-size: 9px; }
+    .drawer.left, .drawer.right { width: 100%; max-width: none; }
+    .globe-turn.prev { left: 8px; }
+    .globe-turn.next { right: 8px; }
+    #pane-map > .legend { bottom: 76px; font-size: 9px; gap: 9px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  }
 </style>
 </head>
 <body>
@@ -397,13 +511,13 @@
   <header>
     <span class="brand">SPHERES</span>
     <span class="date" id="hdrDate">—</span>
-    <span class="metric">OIL <b id="hdrOil">—</b></span>
-    <span class="metric">YOU <b id="hdrYou">—</b></span>
-    <span class="metric">GDP <b id="hdrGdp">—</b></span>
-    <span class="metric">GROWTH <b id="hdrGrowth">—</b></span>
+    <span class="metric player">YOU <b id="hdrYou">—</b></span>
     <span class="metric">CAPITAL <b id="hdrPc" style="color:var(--amber)">—</b></span>
+    <span class="metric detail-metric" aria-hidden="true">OIL <b id="hdrOil">—</b></span>
+    <span class="metric detail-metric" aria-hidden="true">GDP <b id="hdrGdp">—</b></span>
+    <span class="metric detail-metric" aria-hidden="true">GROWTH <b id="hdrGrowth">—</b></span>
     <span class="spacer"></span>
-    <span class="queued" id="queuedNote"></span>
+    <span class="queued" id="queuedNote" aria-live="polite"></span>
     <div class="timebtns">
       <button data-adv="1">+1 MO<i>SPC</i></button>
       <button data-adv="6">+6 MO<i>2</i></button>
@@ -414,42 +528,78 @@
     </div>
   </header>
 
-  <main>
-    <div class="col" id="left"></div>
+  <main id="workspace">
     <div id="center">
-      <div class="tabs">
-        <div class="tab on" data-pane="map">Map<b>M</b></div>
-        <div class="tab" data-pane="charts">History<b>H</b></div>
-        <div class="tab" data-pane="table">League<b>L</b></div>
+      <div class="tabs" id="mainToolbar">
+        <div id="viewTabs" role="tablist" aria-label="World views">
+          <button class="tab on" id="tab-map" data-pane="map" role="tab" aria-selected="true" aria-controls="pane-map">Map<b>M</b></button>
+          <button class="tab" id="tab-charts" data-pane="charts" role="tab" aria-selected="false" aria-controls="pane-charts">History<b>H</b></button>
+          <button class="tab" id="tab-table" data-pane="table" role="tab" aria-selected="false" aria-controls="pane-table">League<b>L</b></button>
+        </div>
         <span class="grow"></span>
         <span class="tiny" id="mapModes"></span>
       </div>
-      <div class="pane on" id="pane-map"></div>
-      <div class="pane" id="pane-charts"></div>
-      <div class="pane" id="pane-table"></div>
+      <div class="pane on" id="pane-map" role="tabpanel" aria-labelledby="tab-map"></div>
+      <div class="pane" id="pane-charts" role="tabpanel" aria-labelledby="tab-charts" aria-hidden="true"></div>
+      <div class="pane" id="pane-table" role="tabpanel" aria-labelledby="tab-table" aria-hidden="true"></div>
     </div>
-    <div class="col" id="right">
-      <div id="warsCard"></div>
-      <div class="card feed">
-        <h3>Event log <span id="logCount"></span></h3>
-        <div class="chips" id="logCats"></div>
-        <input id="logSearch" placeholder="filter dispatches…  (E)">
-        <div id="logList"></div>
+
+    <nav id="commandDock" aria-label="Command workspaces">
+      <button class="dockbtn" id="governmentBtn" aria-controls="governmentDrawer" aria-expanded="false">
+        <span class="label">Government</span><b id="governmentBadge">—</b>
+      </button>
+      <button class="dockbtn" id="conflictsBtn" aria-controls="rightDrawer" aria-expanded="false">
+        <span class="label">Conflicts</span><b id="conflictsBadge">0</b>
+      </button>
+      <button class="dockbtn" id="dispatchesBtn" aria-controls="rightDrawer" aria-expanded="false">
+        <span class="label">Dispatches</span><b id="dispatchesBadge">0</b>
+      </button>
+    </nav>
+
+    <div id="drawerScrim"></div>
+    <aside class="drawer left" id="governmentDrawer" role="dialog" aria-modal="true" aria-labelledby="governmentTitle" aria-hidden="true" inert>
+      <div class="drawer-head">
+        <div><div class="eyebrow">Command workspace</div><h2 id="governmentTitle">Government</h2></div>
+        <span class="spacer"></span>
+        <button class="drawer-close" data-close-drawer aria-label="Close government workspace">&times;</button>
       </div>
-    </div>
+      <div class="col" id="left"></div>
+    </aside>
+
+    <aside class="drawer right" id="rightDrawer" role="dialog" aria-modal="true" aria-labelledby="rightDrawerTitle" aria-hidden="true" inert>
+      <div class="drawer-head">
+        <div><div class="eyebrow">World desk</div><h2 id="rightDrawerTitle">Conflicts</h2></div>
+        <span class="spacer"></span>
+        <button class="drawer-close" data-close-drawer aria-label="Close world desk">&times;</button>
+      </div>
+      <div class="col" id="right">
+        <section class="drawer-panel" id="rightWarsPanel" aria-label="Conflicts">
+          <div id="warsCard"></div>
+        </section>
+        <section class="drawer-panel" id="rightLogPanel" aria-label="Dispatches" hidden>
+          <div class="card feed">
+            <h3>Event log <span id="logCount"></span></h3>
+            <div class="chips" id="logCats"></div>
+            <input id="logSearch" aria-label="Filter dispatches" placeholder="filter dispatches…  (E)">
+            <div id="logList"></div>
+          </div>
+        </section>
+      </div>
+    </aside>
   </main>
 </div>
 
 <div id="sheetbg"></div>
-<div id="sheet"></div>
-<div id="banner"></div>
-<div id="keys"><div class="box">
+<div id="sheet" role="dialog" aria-modal="true" aria-label="Details" tabindex="-1"></div>
+<div id="banner" role="status" aria-live="polite"></div>
+<div id="keys" role="dialog" aria-label="Keyboard shortcuts"><div class="box">
   <h3>KEYBOARD</h3>
   <div class="row"><span>Advance one month</span><span><kbd>Space</kbd> / <kbd>1</kbd></span></div>
   <div class="row"><span>Advance six months / a year / five years</span><span><kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd></span></div>
   <div class="row"><span>Map / History / League</span><span><kbd>M</kbd> <kbd>H</kbd> <kbd>L</kbd></span></div>
+  <div class="row"><span>Rotate the globe</span><span><kbd>&larr;</kbd> <kbd>&rarr;</kbd></span></div>
   <div class="row"><span>Cycle map shading</span><span><kbd>C</kbd></span></div>
-  <div class="row"><span>Filter the event log</span><span><kbd>E</kbd></span></div>
+  <div class="row"><span>Government / Conflicts / Dispatches</span><span><kbd>G</kbd> <kbd>W</kbd> <kbd>E</kbd></span></div>
   <div class="row"><span>Open the nation dashboard</span><span>click a country</span></div>
   <div class="row"><span>Previous / next nation in the dashboard</span><span><kbd>[</kbd> <kbd>]</kbd></span></div>
   <div class="row"><span>Save</span><span><kbd>S</kbd></span></div>
@@ -706,6 +856,8 @@ let pickedNation = null;
 // Everything the UI remembers between renders that is not game state.
 const ui = {
   tab: "map",
+  drawer: null,          // government, conflicts, dispatches, or null
+  globeFace: 1,          // Americas, Atlantic, or Eurasia
   mapMode: "relations",
   logCat: "all",
   logQuery: "",
@@ -746,13 +898,16 @@ async function buildSetup() {
   const grid = $("#nationPick");
   grid.innerHTML = "";
   st.nations.forEach((n) => {
-    const d = document.createElement("div");
+    const d = document.createElement("button");
+    d.type = "button";
     d.className = "opt";
+    d.setAttribute("aria-pressed", "false");
     d.innerHTML = `<div class="nm">${n.name}</div><div class="gd">${fmt.money(n.gdp)}</div>`;
     d.onclick = () => {
       pickedNation = n.name;
-      [...grid.children].forEach((c) => c.classList.remove("sel"));
+      [...grid.children].forEach((c) => { c.classList.remove("sel"); c.setAttribute("aria-pressed", "false"); });
       d.classList.add("sel");
+      d.setAttribute("aria-pressed", "true");
       const b = $("#startBtn");
       b.disabled = false;
       b.textContent = "GOVERN " + n.name.toUpperCase();
@@ -775,6 +930,10 @@ $("#startBtn").onclick = async () => {
 /// chart on the page reads from that and not from the state blob.
 async function adopt(state, withHistory) {
   S = state;
+  if (withHistory === true && state.player) {
+    const home = anchorOf(state.player);
+    if (home) ui.globeFace = home[0] < 90 || home[0] > 920 ? 3 : home[0] < 375 ? 0 : home[0] > 625 ? 2 : 1;
+  }
   if (withHistory !== false) HIST = await api("/api/history");
   if (!ui.picked.length) ui.picked = defaultPicks();
   render();
@@ -818,19 +977,27 @@ function banner(text) {
 
 function typing(e) {
   const t = e.target;
-  return t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+  return t && (t.matches("input, textarea, select, button, a, [contenteditable], [role='button']") || t.isContentEditable);
+}
+
+function editing(e) {
+  const t = e.target;
+  return t && (t.matches("input, textarea, select, [contenteditable]") || t.isContentEditable);
 }
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
-    if (typing(e)) { e.target.blur(); return; }
+    if (editing(e)) { e.target.blur(); return; }
     if ($("#keys").style.display === "flex") { $("#keys").style.display = "none"; return; }
+    if ($("#sheet").style.display === "block") { closeSheet(); return; }
+    if (ui.drawer) { closeDrawer(); return; }
     closeSheet();
     return;
   }
-  if (typing(e) || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (editing(e) || e.ctrlKey || e.metaKey || e.altKey) return;
   if (!S || $("#app").style.display === "none") return;
   const k = e.key;
+  if (typing(e) && (k === " " || k === "Enter" || k === "ArrowLeft" || k === "ArrowRight")) return;
   if (k === " " || k === "1") { e.preventDefault(); advance(1); }
   else if (k === "2") advance(6);
   else if (k === "3") advance(12);
@@ -838,8 +1005,16 @@ document.addEventListener("keydown", (e) => {
   else if (k === "m" || k === "M") showTab("map");
   else if (k === "h" || k === "H") showTab("charts");
   else if (k === "l" || k === "L") showTab("table");
+  else if (k === "ArrowLeft") { e.preventDefault(); turnGlobe(-1); }
+  else if (k === "ArrowRight") { e.preventDefault(); turnGlobe(1); }
   else if (k === "c" || k === "C") cycleMapMode();
-  else if (k === "e" || k === "E") { e.preventDefault(); $("#logSearch").focus(); $("#logSearch").select(); }
+  else if (k === "g" || k === "G") openDrawer("government", $("#governmentBtn"));
+  else if (k === "w" || k === "W") openDrawer("conflicts", $("#conflictsBtn"));
+  else if (k === "e" || k === "E") {
+    e.preventDefault();
+    openDrawer("dispatches", $("#dispatchesBtn"), false);
+    requestAnimationFrame(() => { $("#logSearch").focus(); $("#logSearch").select(); });
+  }
   else if (k === "s" || k === "S") doSave();
   else if (k === "r" || k === "R") revertOrders();
   else if (k === "[" || k === "]") stepSelection(k === "]" ? 1 : -1);
@@ -863,10 +1038,75 @@ function stepSelection(dir) {
 
 function showTab(pane) {
   ui.tab = pane;
-  document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("on", x.dataset.pane === pane));
-  document.querySelectorAll(".pane").forEach((x) => x.classList.toggle("on", x.id === "pane-" + pane));
+  document.querySelectorAll("#viewTabs .tab").forEach((x) => {
+    const on = x.dataset.pane === pane;
+    x.classList.toggle("on", on);
+    x.setAttribute("aria-selected", on ? "true" : "false");
+  });
+  document.querySelectorAll("#center > .pane").forEach((x) => {
+    const on = x.id === "pane-" + pane;
+    x.classList.toggle("on", on);
+    x.setAttribute("aria-hidden", on ? "false" : "true");
+  });
 }
-document.querySelectorAll(".tab").forEach((t) => { t.onclick = () => showTab(t.dataset.pane); });
+document.querySelectorAll("#viewTabs .tab").forEach((t) => { t.onclick = () => showTab(t.dataset.pane); });
+
+let drawerOpener = null;
+
+function syncDrawer() {
+  const leftOpen = ui.drawer === "government";
+  const rightOpen = ui.drawer === "conflicts" || ui.drawer === "dispatches";
+  const blocked = leftOpen || rightOpen;
+  const government = $("#governmentDrawer");
+  const right = $("#rightDrawer");
+  government.classList.toggle("open", leftOpen);
+  right.classList.toggle("open", rightOpen);
+  government.setAttribute("aria-hidden", leftOpen ? "false" : "true");
+  right.setAttribute("aria-hidden", rightOpen ? "false" : "true");
+  government.inert = !leftOpen;
+  right.inert = !rightOpen;
+  $("#drawerScrim").classList.toggle("open", blocked);
+  $("header").inert = blocked;
+  $("#center").inert = blocked;
+  $("#commandDock").inert = blocked;
+  $("#governmentBtn").setAttribute("aria-expanded", leftOpen ? "true" : "false");
+  $("#conflictsBtn").setAttribute("aria-expanded", ui.drawer === "conflicts" ? "true" : "false");
+  $("#dispatchesBtn").setAttribute("aria-expanded", ui.drawer === "dispatches" ? "true" : "false");
+  $("#rightWarsPanel").hidden = ui.drawer !== "conflicts";
+  $("#rightLogPanel").hidden = ui.drawer !== "dispatches";
+  $("#rightDrawerTitle").textContent = ui.drawer === "dispatches" ? "Dispatches" : "Conflicts";
+}
+
+function openDrawer(kind, opener, focusClose = true) {
+  if (ui.drawer === kind) {
+    if (focusClose) closeDrawer();
+    return;
+  }
+  ui.drawer = kind;
+  drawerOpener = opener || document.activeElement;
+  syncDrawer();
+  if (focusClose) {
+    const target = kind === "government" ? $("#governmentDrawer") : $("#rightDrawer");
+    requestAnimationFrame(() => target.querySelector(".drawer-close").focus());
+  }
+}
+
+function closeDrawer(restoreFocus = true) {
+  if (!ui.drawer) return;
+  ui.drawer = null;
+  syncDrawer();
+  if (restoreFocus && drawerOpener && document.contains(drawerOpener)) drawerOpener.focus();
+  drawerOpener = null;
+}
+window.openDrawer = openDrawer;
+window.closeDrawer = closeDrawer;
+
+$("#governmentBtn").onclick = (e) => openDrawer("government", e.currentTarget);
+$("#conflictsBtn").onclick = (e) => openDrawer("conflicts", e.currentTarget);
+$("#dispatchesBtn").onclick = (e) => openDrawer("dispatches", e.currentTarget);
+$("#drawerScrim").onclick = () => closeDrawer();
+document.querySelectorAll("[data-close-drawer]").forEach((b) => { b.onclick = () => closeDrawer(); });
+syncDrawer();
 
 /* ================= render ================= */
 
@@ -885,6 +1125,7 @@ function render() {
   $("#hdrGrowth").textContent = m ? fmt.signed(m.growth) : "—";
   $("#hdrPc").textContent = m ? m.political_capital.toFixed(0) + " PC" : "—";
   noteQueued();
+  renderDock(m);
   renderLeft(m);
   renderWars();
   renderLog();
@@ -892,6 +1133,13 @@ function render() {
   renderCharts();
   renderTable();
   if (selected) openNation(selected, true);
+}
+
+function renderDock(m) {
+  $("#governmentBadge").textContent = m ? m.political_capital.toFixed(0) + " PC" : "—";
+  $("#conflictsBadge").textContent = S.wars.length.toString();
+  $("#dispatchesBadge").textContent = S.log.length.toString();
+  $("#governmentTitle").textContent = m ? m.name + " government" : "Government";
 }
 
 function noteQueued() {
@@ -1518,7 +1766,11 @@ function bar(frac, color, mark) {
 }
 
 function renderWars() {
-  if (!S.wars.length) { $("#warsCard").innerHTML = ""; return; }
+  if (!S.wars.length) {
+    $("#warsCard").innerHTML = `<div class="card"><h3>Conflicts</h3>
+      <div class="muted">No active conflicts. The map will mark belligerents here when a crisis opens.</div></div>`;
+    return;
+  }
   const cards = S.wars.map((w) => {
     const mine = myPosture(w);
     const theirs = mine
@@ -1641,7 +1893,7 @@ window.openConflict = function (id) {
   sheet.innerHTML = `
     <div class="head"><h2>${w.theatre_name}</h2>
       <span class="tagline">${w.attacker} vs ${w.defender} · ${conflictLine(w, mine, theirs)} · since ${w.start}</span>
-      <span class="spacer"></span><span class="close" onclick="closeSheet()">&times;</span></div>
+      <span class="spacer"></span><button class="close" onclick="closeSheet()" aria-label="Close details">&times;</button></div>
     <div class="card" style="margin-top:12px"><h3>Where each side stands</h3>
       ${w.posture.map((b) => `<div class="prow"><b>${b.name}</b> rung ${b.rung} — ${b.rung_name}
         <span class="tiny">· ${b.objective} · ${b.roe} · resolve ${b.resolve.toFixed(2)}${
@@ -1719,8 +1971,9 @@ function renderLog() {
   const present = new Set(S.log.map((e) => e.cat));
   cats.innerHTML = CATS.filter(([k]) => k === "all" || (k === "mine" ? !!S.player : present.has(k)))
     .map(([k, label, col]) =>
-      `<span class="chip${k === ui.logCat ? " on" : ""}" data-cat="${k}">
-         <i class="sw" style="background:${col}"></i>${label}</span>`).join("");
+      `<button type="button" class="chip${k === ui.logCat ? " on" : ""}" data-cat="${k}"
+         aria-pressed="${k === ui.logCat ? "true" : "false"}">
+         <i class="sw" style="background:${col}"></i>${label}</button>`).join("");
   cats.querySelectorAll(".chip").forEach((c) => {
     c.onclick = () => { ui.logCat = c.dataset.cat; renderLog(); };
   });
@@ -1797,45 +2050,93 @@ function cycleMapMode() {
   renderMap();
 }
 
+const GLOBE_FACES = [
+  { label: "Americas", center: 250 },
+  { label: "Atlantic", center: 500 },
+  { label: "Eurasia", center: 750 },
+  { label: "Pacific", center: 1000, wrap: true },
+];
+const GLOBE = { w: 680, h: 600, cx: 340, cy: 292, r: 252 };
+
+function globePoint(p) {
+  if (!p) return null;
+  const face = GLOBE_FACES[ui.globeFace];
+  const sx = GLOBE.r * 4 / WORLD.w;
+  const sy = GLOBE.r * 2 / WORLD.h;
+  let px = p[0];
+  if (face.wrap && px < face.center - WORLD.w / 2) px += WORLD.w;
+  const x = GLOBE.cx + (px - face.center) * sx;
+  const y = GLOBE.cy - GLOBE.r + p[1] * sy;
+  const visible = (x - GLOBE.cx) ** 2 + (y - GLOBE.cy) ** 2 < (GLOBE.r - 7) ** 2;
+  return { x, y, visible };
+}
+
+function turnGlobe(dir) {
+  ui.globeFace = (ui.globeFace + dir + GLOBE_FACES.length) % GLOBE_FACES.length;
+  showTab("map");
+  renderMap();
+}
+
 function renderMap() {
-  const W = WORLD.w, H = WORLD.h;
   const m = me();
   const mode = MAP_MODES[ui.mapMode];
+  const face = GLOBE_FACES[ui.globeFace];
+  const sx = GLOBE.r * 4 / WORLD.w;
+  const sy = GLOBE.r * 2 / WORLD.h;
+  const tx = GLOBE.cx - face.center * sx;
+  const ty = GLOBE.cy - GLOBE.r;
+  const worldTransform = `translate(${tx} ${ty}) scale(${sx} ${sy})`;
+
   // Every code held by a living sim nation, so the rest can be drawn as scenery.
   const claimed = {};
   S.nations.forEach((n) => (TERRITORY[n.id] || []).forEach((c) => (claimed[c] = n)));
+  const noPolygonIds = new Set(S.nations.filter((n) =>
+    !(TERRITORY[n.id] || []).some((c) => WORLD.countries[c])).map((n) => n.id));
+  const labelIds = new Set([...S.nations].sort((a, b) => b.gdp - a.gdp).slice(0, 12).map((n) => n.id));
+  noPolygonIds.forEach((id) => labelIds.add(id));
+  if (m) labelIds.add(m.id);
+  if (selected) labelIds.add(selected);
+  S.wars.forEach((w) => w.posture.forEach((b) => labelIds.add(b.id)));
 
-  let s = `<svg viewBox="0 0 ${W} ${H}" style="max-height:calc(100vh - 150px)">`;
-  s += `<defs>
-      <radialGradient id="glow"><stop offset="0%" stop-color="#e05c5c" stop-opacity=".5"/>
-        <stop offset="100%" stop-color="#e05c5c" stop-opacity="0"/></radialGradient>
-      <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0d1826"/>
-        <stop offset="45%" stop-color="#0a1420"/>
-        <stop offset="100%" stop-color="#0c1a2a"/>
+  let s = `<div class="globe-stage">
+    <div class="globe-readout">${face.label} hemisphere</div>
+    <svg class="globe-map" viewBox="0 0 ${GLOBE.w} ${GLOBE.h}" aria-label="Interactive globe, ${face.label} hemisphere">
+    <defs>
+      <clipPath id="globeClip"><circle cx="${GLOBE.cx}" cy="${GLOBE.cy}" r="${GLOBE.r}"/></clipPath>
+      <radialGradient id="globeOcean" cx="34%" cy="26%" r="76%">
+        <stop offset="0%" stop-color="#17324d"/><stop offset="52%" stop-color="#0b1d30"/>
+        <stop offset="86%" stop-color="#07111e"/><stop offset="100%" stop-color="#030811"/>
+      </radialGradient>
+      <linearGradient id="globeShade" x1="0" y1="0" x2="1" y2=".2">
+        <stop offset="0%" stop-color="#7bdcf0" stop-opacity=".12"/>
+        <stop offset="58%" stop-color="#05080d" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#02050a" stop-opacity=".72"/>
       </linearGradient>
+      <radialGradient id="glow"><stop offset="0%" stop-color="#e05c5c" stop-opacity=".55"/>
+        <stop offset="100%" stop-color="#e05c5c" stop-opacity="0"/></radialGradient>
       <filter id="halo" x="-40%" y="-60%" width="180%" height="220%">
         <feDropShadow dx="0" dy="0" stdDeviation="2.2" flood-color="#05080d" flood-opacity="1"/>
       </filter>
       <filter id="landshade" x="-10%" y="-10%" width="120%" height="120%">
         <feDropShadow dx="0" dy="1" stdDeviation="1.6" flood-color="#000" flood-opacity=".55"/>
       </filter>
-    </defs>`;
-  // The ocean is the projection's own envelope, not a rectangle.
-  s += `<path d="${WORLD.frame}" fill="url(#ocean)" stroke="#2a3a4e" stroke-width="1"/>`;
+    </defs>
+    <circle class="atmosphere" cx="${GLOBE.cx}" cy="${GLOBE.cy}" r="${GLOBE.r}"
+      fill="url(#globeOcean)" stroke="#4cc7e0" stroke-opacity=".6" stroke-width="2"/>
+    <g clip-path="url(#globeClip)">
+      <g transform="${worldTransform}">`;
+
   s += WORLD.graticule
-    .map((g) => `<path d="${g}" fill="none" stroke="#16202e" stroke-width=".6"/>`)
+    .map((g) => `<path d="${g}" fill="none" stroke="#31506a" stroke-opacity=".38" stroke-width=".65"/>`)
     .join("");
 
-  // 1. the unaligned world
   let scenery = "";
   for (const code in WORLD.countries) {
     if (!claimed[code]) scenery += WORLD.countries[code];
   }
   s += `<g filter="url(#landshade)">
-      <path d="${scenery}" fill="#243141" stroke="#33445a" stroke-width=".4" fill-rule="evenodd"/></g>`;
+      <path d="${scenery}" fill="#24394b" stroke="#496178" stroke-width=".45" fill-rule="evenodd"/></g>`;
 
-  // 2. the powers, shaded by whichever reading of the world is selected
   S.nations.forEach((n) => {
     const codes = (TERRITORY[n.id] || []).filter((c) => WORLD.countries[c]);
     if (!codes.length) return;
@@ -1843,62 +2144,102 @@ function renderMap() {
     const col = mode.color(n, m);
     const on = n.id === selected;
     const d = codes.map((c) => WORLD.countries[c]).join("");
-    s += `<g class="nodeg" data-id="${n.id}">
-        <path d="${d}" fill="${col}" fill-opacity="${isMe ? .5 : on ? .55 : .32}"
-              stroke="${on ? "#ffffff" : col}" stroke-width="${on ? 1.8 : isMe ? 1.4 : .8}" fill-rule="evenodd"/>
+    const gp = globePoint(anchorOf(n.id));
+    const target = gp && gp.visible
+      ? ` map-target" tabindex="0" role="button" aria-label="${n.name}: ${mapSub(n)}. Open dossier`
+      : "";
+    s += `<g class="nodeg${target}" data-id="${n.id}">
+        <title>${n.name} · ${mapSub(n)}</title>
+        <path d="${d}" fill="${col}" fill-opacity="${isMe ? .7 : on ? .72 : .5}"
+          stroke="${on ? "#ffffff" : col}" stroke-width="${on ? 1.8 : isMe ? 1.4 : .8}" fill-rule="evenodd"/>
       </g>`;
   });
+  s += `</g>`;
 
-  // 3. war: a glow on each belligerent and a line between them
+  // War marks and labels are projected into screen space so text does not
+  // stretch with the curved texture underneath it.
   S.wars.forEach((w) => {
-    const a = anchorOf(w.attacker_id), b = anchorOf(w.defender_id);
+    const a = globePoint(anchorOf(w.attacker_id)), b = globePoint(anchorOf(w.defender_id));
     if (!a || !b) return;
-    [a, b].forEach((p) => {
-      s += `<circle cx="${p[0]}" cy="${p[1]}" r="34" fill="url(#glow)"/>`;
+    [a, b].filter((p) => p.visible).forEach((p) => {
+      s += `<circle cx="${p.x}" cy="${p.y}" r="34" fill="url(#glow)"/>`;
     });
-    s += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"
-            stroke="#ff6b6b" stroke-width="1.8" stroke-dasharray="5 4" opacity=".9"/>`;
+    if (a.visible && b.visible) {
+      s += `<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"
+        stroke="#ff6b6b" stroke-width="1.8" stroke-dasharray="5 4" opacity=".9"/>`;
+    }
   });
 
-  // 4. labels last, with a click target that works even for Kuwait
-  S.nations.forEach((n) => {
-    const p = anchorOf(n.id);
-    if (!p) return;
-    // Nations too small to hold their own name get the label set offshore,
-    // tied back to the territory so the offset reads as deliberate.
+  s += `<circle cx="${GLOBE.cx}" cy="${GLOBE.cy}" r="${GLOBE.r}" fill="url(#globeShade)" pointer-events="none"/>
+      <ellipse cx="${GLOBE.cx - 88}" cy="${GLOBE.cy - 116}" rx="72" ry="28" fill="#d7f6ff" opacity=".08"
+        transform="rotate(-22 ${GLOBE.cx - 88} ${GLOBE.cy - 116})" pointer-events="none"/>`;
+
+  const priorityLabels = new Set();
+  if (m) priorityLabels.add(m.id);
+  if (selected) priorityLabels.add(selected);
+  S.wars.forEach((w) => w.posture.forEach((b) => priorityLabels.add(b.id)));
+  noPolygonIds.forEach((id) => priorityLabels.add(id));
+  const placedLabels = [];
+  [...S.nations].sort((a, b) =>
+    (priorityLabels.has(b.id) - priorityLabels.has(a.id)) || b.gdp - a.gdp).forEach((n) => {
+    const p = globePoint(anchorOf(n.id));
+    if (!p || !p.visible || !labelIds.has(n.id)) return;
+    const crowded = placedLabels.some((q) => Math.abs(q.x - p.x) < 76 && Math.abs(q.y - p.y) < 22);
+    if (crowded && !priorityLabels.has(n.id)) return;
+    placedLabels.push(p);
     if (LEADER.has(n.id)) {
-      const home = (TERRITORY[n.id] || []).map((c) => WORLD.centroids[c]).find(Boolean);
-      if (home) {
-        s += `<line x1="${p[0] - 12}" y1="${p[1] - 3}" x2="${home[0]}" y2="${home[1]}"
-                stroke="#8fa0b6" stroke-width=".6" opacity=".8"/>
-              <circle cx="${home[0]}" cy="${home[1]}" r="1.6" fill="#cfd9e6"/>`;
+      const home = globePoint((TERRITORY[n.id] || []).map((c) => WORLD.centroids[c]).find(Boolean));
+      if (home && home.visible) {
+        s += `<line x1="${p.x - 12}" y1="${p.y - 3}" x2="${home.x}" y2="${home.y}"
+          stroke="#8fa0b6" stroke-width=".6" opacity=".8"/>
+          <circle cx="${home.x}" cy="${home.y}" r="1.6" fill="#cfd9e6"/>`;
       }
     }
     const isMe = m && n.id === m.id;
     const marks = (n.nuclear ? "☢" : "") + (n.sanctioned_by_count > 0 ? "⊘" : "");
-    s += `<g class="nodeg" data-id="${n.id}">
-        <circle cx="${p[0]}" cy="${p[1]}" r="13" fill="transparent"/>
-        <text x="${p[0]}" y="${p[1]}" text-anchor="middle" font-size="11" filter="url(#halo)"
+    const pointOnly = noPolygonIds.has(n.id);
+    const pointTarget = pointOnly
+      ? ` map-target" tabindex="0" role="button" aria-label="${n.name}: ${mapSub(n)}. Open dossier`
+      : "";
+    s += `<g class="nodeg${pointTarget}" data-id="${n.id}">
+        <circle cx="${p.x}" cy="${p.y}" r="${pointOnly ? 4 : 13}"
+          fill="${pointOnly ? "var(--cyan)" : "transparent"}" stroke="${pointOnly ? "#d7f6ff" : "none"}" stroke-width="1"/>
+        <text x="${p.x}" y="${p.y}" text-anchor="middle" font-size="11" filter="url(#halo)"
           fill="${isMe ? "#ffd89a" : "#dbe3ee"}" font-weight="${isMe ? 700 : 400}">${n.name}${marks ? " " + marks : ""}</text>
-        <text x="${p[0]}" y="${p[1] + 12}" text-anchor="middle" font-size="10" filter="url(#halo)"
+        <text x="${p.x}" y="${p.y + 12}" text-anchor="middle" font-size="10" filter="url(#halo)"
           fill="#9fb0c4">${mapSub(n)}</text>
       </g>`;
   });
-  s += `</svg>`;
+
+  s += `</g>
+    <circle cx="${GLOBE.cx}" cy="${GLOBE.cy}" r="${GLOBE.r}" fill="none" stroke="#8be4f5"
+      stroke-opacity=".36" stroke-width="2" pointer-events="none"/>
+    </svg>
+    <button class="globe-turn prev" type="button" aria-label="Rotate globe west">&#8249;</button>
+    <button class="globe-turn next" type="button" aria-label="Rotate globe east">&#8250;</button>
+    </div>`;
 
   s += `<div class="legend">
       ${mode.legend.map(([c, l]) => `<span><i style="background:${c}"></i>${l}</span>`).join("")}
       <span>☢ nuclear</span><span>⊘ sanctioned</span>
-      <span style="color:#55637a">click a nation for its dossier · C to change shading</span>
+      <span style="color:#55637a">rotate the globe · click a nation for its dossier · C changes shading</span>
     </div>`;
 
   $("#pane-map").innerHTML = s;
   document.querySelectorAll("#pane-map .nodeg").forEach((g) => {
     g.onclick = () => openNation(g.dataset.id);
   });
+  document.querySelectorAll("#pane-map .map-target").forEach((g) => {
+    g.onkeydown = (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openNation(g.dataset.id); }
+    };
+  });
+  $("#pane-map .globe-turn.prev").onclick = () => turnGlobe(-1);
+  $("#pane-map .globe-turn.next").onclick = () => turnGlobe(1);
 
   $("#mapModes").innerHTML = `<span class="chips">` + Object.entries(MAP_MODES).map(([k, v]) =>
-    `<span class="chip${k === ui.mapMode ? " on amber" : ""}" data-mode="${k}">${v.label}</span>`).join("") + `</span>`;
+    `<button type="button" class="chip${k === ui.mapMode ? " on amber" : ""}" data-mode="${k}"
+       aria-pressed="${k === ui.mapMode ? "true" : "false"}">${v.label}</button>`).join("") + `</span>`;
   $("#mapModes").querySelectorAll("[data-mode]").forEach((c) => {
     c.onclick = () => { ui.mapMode = c.dataset.mode; renderMap(); };
   });
@@ -2284,7 +2625,7 @@ function openNation(id, keepScroll) {
           ? "" : `<button onclick="openQuarrel('${n.name}')">Open a quarrel · 4 pc</button>`}
         <button class="danger" onclick="declareWar('${n.name}')">Declare war</button>
       </span>`}
-      <span class="close" onclick="closeSheet()">&times;</span>
+      <button class="close" onclick="closeSheet()" aria-label="Close details">&times;</button>
     </div>
 
     <div class="card" style="margin-top:12px">
@@ -2394,7 +2735,7 @@ function deadSheet(d) {
   const news = S.log.filter((e) => e.tags.includes(d.id));
   return `<div class="head"><h2>${d.name}</h2>
       <span class="tagline">no longer exists</span><span class="spacer"></span>
-      <span class="close" onclick="closeSheet()">&times;</span></div>
+      <button class="close" onclick="closeSheet()" aria-label="Close details">&times;</button></div>
     ${h ? `<div class="card" style="margin-top:12px"><h3>GDP, to the end</h3>${chart({
         series: [{ name: d.name, color: "#8a97a8", t0: h.t0, vals: h.gdp }],
         h: 200, base0: true, padr: 24, fmtY: METRICS.gdp.fmtY, fmtHover: METRICS.gdp.fmtH,
@@ -2403,20 +2744,32 @@ function deadSheet(d) {
       <div class="loglines">${news.map((e) => logItem(e)).join("") || `<div class="muted">Nothing.</div>`}</div></div>`;
 }
 
+let sheetOpener = null;
+
 function openSheetEl(keepScroll, scroll) {
   const sheet = $("#sheet");
+  const opening = sheet.style.display !== "block";
+  if (opening) sheetOpener = document.activeElement;
   sheet.style.display = "block";
   $("#sheetbg").style.display = "block";
+  $("#app").inert = true;
   if (keepScroll && scroll) sheet.scrollTop = scroll;
   else if (!keepScroll) sheet.scrollTop = 0;
   wireCharts(sheet);
+  if (opening) requestAnimationFrame(() => (sheet.querySelector(".close, .x") || sheet).focus());
 }
 
 function closeSheet() {
+  const restore = sheetOpener;
+  sheetOpener = null;
   selected = null;
   $("#sheet").style.display = "none";
   $("#sheetbg").style.display = "none";
+  $("#app").inert = false;
+  syncDrawer();
   if (S) renderMap();
+  if (restore && document.contains(restore) && !restore.closest("[inert]")) restore.focus();
+  else if (S) $("#viewTabs .tab.on").focus();
 }
 window.closeSheet = closeSheet;
 $("#sheetbg").onclick = closeSheet;
