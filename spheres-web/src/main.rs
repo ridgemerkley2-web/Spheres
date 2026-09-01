@@ -5617,4 +5617,75 @@ mod tests {
             "the log list must stay a flexible scroll container inside the card"
         );
     }
+
+    /// Two of the tech screen's domain tabs used to wear the same label.
+    ///
+    /// Measured in Chrome at 1280x720 on the tech screen: nine tabs divide the
+    /// bar, each 135px wide, and the `.nm` span inside each measured **47px**
+    /// against names needing 46 to 111. Seven of the eight domain names were
+    /// ellipsised, and "Computing" (72px) and "Communications" (111px) both
+    /// rendered as **"Com…"** — two adjacent tabs with an identical face, and
+    /// nothing on either to say which was which without hovering for the title.
+    ///
+    /// Cause: everything sat in one flex row. Of the tab's 111px of content the
+    /// sigil took 22, the two gaps 16 and the count ~26, and `.nm` — the only
+    /// shrinkable item — was left the remainder.
+    ///
+    /// Fix: the name gets a row of its own spanning the whole tab, with the
+    /// sigil, the count and the key hint on the row above. Nothing was removed
+    /// to make room. After, at 1280x720, all nine labels render complete
+    /// (Communications needs 111px and has 119), and the icons-only fallback
+    /// below 1180px is unchanged.
+    #[test]
+    fn no_two_domain_tabs_wear_the_same_label() {
+        // Why the name cannot share a 47px slot, derived rather than asserted:
+        // the tab shows the first word of the domain's name, and two of those
+        // words are identical over the three characters a 47px slot had room
+        // for — which is exactly the "Com…" that was measured on both.
+        let heads: Vec<&str> = spheres_sim::tech::DOMAINS
+            .iter()
+            .map(|d| d.name().split(' ').next().unwrap())
+            .collect();
+        assert!(
+            heads.iter().any(|a| heads.iter().filter(|b| b.get(..3) == a.get(..3)).count() > 1),
+            "no two domain names share a leading stub any more; re-derive what \
+             this test is protecting before relaxing it"
+        );
+        assert!(
+            INDEX.contains(r#"<span class="nm">${escText(d.name.split(" ")[0])}</span>"#),
+            "the tab no longer labels itself with the domain's first word"
+        );
+
+        // The repair: the name owns a row, full width, and is not competing
+        // with the sigil and the count for one line.
+        assert!(
+            INDEX.contains(".dtab .nm { grid-column:1 / -1; grid-row:2; width:100%;"),
+            "the domain name must span the tab on a row of its own — sharing the \
+             sigil's row is what truncated seven of eight names to a stub"
+        );
+        let tab = INDEX
+            .lines()
+            .find(|l| l.trim_start().starts_with(".dtab {"))
+            .expect("the domain tab's layout rule is gone");
+        assert!(
+            !tab.contains("display:flex"),
+            "the tab is a two-row grid; a single flex row is the defect: {tab}"
+        );
+        assert!(
+            INDEX.contains("grid-template-rows:auto auto;"),
+            "the tab needs both rows — the sigil's and the name's"
+        );
+        // And the count keeps clear of the absolutely-positioned key hint that
+        // shares the corner with it.
+        assert!(
+            INDEX.contains(".dtab .cnt { grid-column:3; grid-row:1; margin-left:auto; margin-right:12px;"),
+            "the count must stay clear of the key hint in the same corner"
+        );
+        // The narrow fallback the design already had, still there.
+        assert!(
+            INDEX.contains("@media (max-width:1180px) { .dtab .nm { display:none; }"),
+            "the icons-only bar below 1180px is the tab's own answer to no room \
+             and must survive this repair"
+        );
+    }
 }

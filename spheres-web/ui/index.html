@@ -302,14 +302,28 @@
   /* -- the domain tab bar: replaces the band rail and the tbar chips in BOTH modes -- */
   #techTabs { position:absolute; top:44px; left:0; right:0; height:62px; z-index:2; display:flex; gap:8px; padding:8px 12px 0;
     background:linear-gradient(180deg, rgba(8,11,15,.94) 55%, rgba(8,11,15,0)); }
-  .dtab { flex:1 1 0; min-width:56px; height:46px; position:relative; overflow:hidden; display:flex; align-items:center; gap:8px; padding:0 12px 3px;
+  /* THE NAME HAS A ROW OF ITS OWN, and it used to share one. Nine tabs divide
+     the bar, so at 1280 each is 135px wide; the sigil, the count and the gaps
+     took 88 of the 111px of content and left the name 47px. Seven of the eight
+     domain names are wider than that, and the worst of it was that "Computing"
+     (72px) and "Communications" (111px) BOTH ellipsised to "Com…" — two tabs
+     wearing the same label, with nothing on the face of either to tell them
+     apart. The name now spans the full width of the tab on its own line and
+     the sigil, count and key hint share the line above it; nothing was dropped
+     to make the room, and all eight read in full from 1220px up. Below 1180
+     the bar reverts to the icons-only row it always had. */
+  .dtab { flex:1 1 0; min-width:56px; height:50px; position:relative; overflow:hidden;
+    display:grid; grid-template-columns:auto 1fr auto; grid-template-rows:auto auto;
+    align-items:center; justify-items:start; column-gap:6px; row-gap:2px; padding:3px 9px 9px;
     border:1px solid var(--line); border-radius:9px; background:linear-gradient(180deg,#222a34,#151b23); color:var(--dim); cursor:pointer;
     transition:border-color .15s, box-shadow .15s, transform .15s; }
-  .dtab svg { width:22px; height:22px; color:var(--dt); opacity:.7; flex:none; }
-  .dtab .nm { font-family:var(--serif); font-variant:small-caps; letter-spacing:.08em; font-size:12.5px; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .dtab .cnt { margin-left:auto; font:10px var(--mono); color:var(--dim); }
-  .dtab .star { color:var(--amber); font-size:10px; }
-  .dtab .idle { width:5px; height:5px; border-radius:50%; background:var(--amber); flex:none; }
+  .dtab svg { grid-column:1; grid-row:1; width:22px; height:22px; color:var(--dt); opacity:.7; flex:none; }
+  .dtab .nm { grid-column:1 / -1; grid-row:2; width:100%; line-height:14px;
+    font-family:var(--serif); font-variant:small-caps; letter-spacing:.08em; font-size:12.5px; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  /* margin-right clears the absolutely-positioned key hint in the same corner */
+  .dtab .cnt { grid-column:3; grid-row:1; margin-left:auto; margin-right:12px; font:10px var(--mono); color:var(--dim); }
+  .dtab .star { grid-column:2; grid-row:1; color:var(--amber); font-size:10px; }
+  .dtab .idle { grid-column:2; grid-row:1; width:5px; height:5px; border-radius:50%; background:var(--amber); flex:none; }
   .dtab .k { position:absolute; top:3px; right:7px; font:8.5px var(--mono); color:var(--faint); }
   .dtab .bar { position:absolute; left:9px; right:9px; bottom:4px; height:3px; border-radius:2px; background:rgba(255,255,255,.05); }
   .dtab .bar i { display:block; height:100%; border-radius:2px; background:var(--dt); opacity:.75; transition:width .5s ease; }
@@ -321,7 +335,9 @@
   .dtab[aria-selected="true"] .nm { color:var(--bright); }
   .dtab.full { flex:0 0 auto; }
   .dtab.full[aria-selected="true"] { border-color:var(--brass-dim); box-shadow:inset 0 0 0 1px var(--brass-dim), 0 0 14px rgba(232,200,126,.22); }
-  @media (max-width:1180px) { .dtab .nm { display:none; } .dtab { justify-content:center; padding:0 6px 3px; } }
+  @media (max-width:1180px) { .dtab .nm { display:none; }
+    .dtab { display:flex; height:46px; align-items:center; justify-content:center; padding:0 6px 3px; }
+    .dtab .cnt { margin-right:0; } }
   /* -- backdrop: one static motif per domain, cross-faded by the data-view cascade -- */
   #techBackdrop { position:absolute; inset:44px 0 0 0; z-index:0; pointer-events:none;
     background: radial-gradient(120% 90% at 72% 6%, var(--dtF), transparent 58%), #04060a; }
