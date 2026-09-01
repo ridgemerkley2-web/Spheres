@@ -4499,14 +4499,11 @@ function rungWhyNot(b, r) { const o = rungOffer(b, r); return (o && o.blocked) |
 
 function theatreById(id) { return (S.theatres || []).find((t) => t.id === id); }
 function myPosture(w) { const m = me(); return m && w.posture.find((b) => b.id === m.id); }
-function hasAccess(id, th) {
-  const t = theatreById(th);
-  if (t && t.home.includes(id)) return true;
-  // A host of a theatre is a host because its own airfields are in range of it,
-  // so it needs nobody's permission to use them. Mirrors theatre::has_access.
-  if (t && t.hosts.includes(id)) return true;
-  return (S.access || []).some((a) => a.theatre === th && a.seeker === id);
-}
+// `hasAccess` used to live here, and its own comment said "Mirrors
+// theatre::has_access". It is gone: every belligerent row already carries
+// `access`, computed by the sim, and the theatre carries `me_needs_no_host`
+// for the player. A page that answers a sim question itself is a page that
+// will one day answer it differently.
 function grantingHost(id, th) {
   const a = (S.access || []).find((x) => x.theatre === th && x.seeker === id);
   return a ? a.host_name : null;
@@ -4642,6 +4639,16 @@ window.openConflict = function (id, keepScroll) {
 
   // The access panel: every host of this theatre as a row. When you are the
   // host, the same panel is where you answer.
+  //
+  // `me_needs_no_host` is `theatre::needs_no_host`, SERVED: you live here, or
+  // you are yourself one of this theatre's hosts, and either way your ability
+  // to sustain force here is not in any parliament's gift. This panel used to
+  // ask only whether THAT host had granted you anything, which is a different
+  // question — so Iraq, home to the Gulf, was sold basing by all seven Gulf
+  // hosts at 6 pc a time. Measured: Iraq opens on Kuwait on seed 7, buys from
+  // Oman, political capital 35.28 -> 29.28, access True before and True after,
+  // and the news reads "Oman's parliament refuses Iraq the use of its bases."
+  const noHostNeeded = !!t.me_needs_no_host;
   const accessRows = t.hosts.map((h, i) => {
     // You are never a party to your own basing request.
     if (m && m.id === h && mine && !mine.home) return "";
@@ -4652,8 +4659,8 @@ window.openConflict = function (id, keepScroll) {
       const askers = w.posture.filter((b) => b.id !== h && !b.home);
       return `<div class="arow"><div><b>${nm}</b> — you</div>
         <div class="tiny">${askers.length ? askers.map((a) =>
-          `${a.name}: ${hasAccess(a.id, w.theatre) ? "granted" : "not granted"}`).join(" · ") : "nobody is asking"}</div>
-        <div>${askers.map((a) => hasAccess(a.id, w.theatre)
+          `${a.name}: ${a.access ? "granted" : "not granted"}`).join(" · ") : "nobody is asking"}</div>
+        <div>${askers.map((a) => a.access
           ? `<button onclick="conflictCmd(${id},'revoke_access',0,'${a.id}')">Revoke ${a.name}</button>`
           : `<button onclick="conflictCmd(${id},'grant_access',0,'${a.id}')">Grant ${a.name}</button>`).join(" ")}</div></div>`;
     }
@@ -4661,8 +4668,9 @@ window.openConflict = function (id, keepScroll) {
     const rel = m && (m.relations || []).find((r) => r.id === h);
     return `<div class="arow"><div><b>${nm}</b></div>
       <div class="tiny">${got ? "granted since " + seekers.find((x) => x.seeker === m.id).since
+        : noHostNeeded ? "nothing to ask for — you need no host here"
         : "never asked"}${rel ? ` · relations ${rel.value.toFixed(0)}` : ""}</div>
-      <div>${got || !m ? "" :
+      <div>${got || !m || noHostNeeded ? "" :
         `<button onclick="conflictCmd(${id},'request_access',0,'${h}')">Request · 6 pc</button>
          <button onclick="conflictCmd(${id},'press_access',0,'${h}')">Press · 15 pc</button>`}</div></div>`;
   }).join("");

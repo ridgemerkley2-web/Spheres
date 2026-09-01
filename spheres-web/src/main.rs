@@ -449,6 +449,14 @@ fn theatres_json(w: &WorldState) -> Vec<serde_json::Value> {
                 "host_names": t.access_hosts.iter().map(|n| n.name()).collect::<Vec<_>>(),
                 "rough": t.rough,
                 "urbanisation": t.urbanisation,
+                // Whether the PLAYER can already sustain force here without
+                // anybody's consent — `theatre::needs_no_host`, the two
+                // short-circuits at the top of `has_access`. Served because the
+                // basing panel was selling what those short-circuits already
+                // give: Iraq, home to the Gulf, was offered basing from all
+                // seven Gulf hosts at 6 pc each and Press at 15, and buying one
+                // moved nothing but the treasury and its reputation.
+                "me_needs_no_host": w.player.map(|p| spheres_sim::theatre::needs_no_host(w, p, t.id)),
             })
         })
         .collect()
@@ -4564,6 +4572,103 @@ mod tests {
         assert!(
             !INDEX.contains("MAX_RUNG_NO_ACCESS"),
             "theatre::MAX_RUNG_WITHOUT_ACCESS is mirrored in the browser again"
+        );
+    }
+
+    /// TRIAGE F-30 — the war sheet sold basing to a nation that already had it
+    /// and could not lose it.
+    ///
+    /// SYMPTOM. Iraq on seed 7 opens a quarrel with Kuwait in the Gulf, its own
+    /// home theatre, and the sheet's access panel offers all seven Gulf hosts:
+    /// "Request · 6 pc" and "Press · 15 pc" on every row. Buying one is a real
+    /// purchase of nothing — political capital 35.28 -> 29.28, `access` True
+    /// before and True after, and the news reads "Oman's parliament refuses
+    /// Iraq the use of its bases", which also costs reputation.
+    ///
+    /// CAUSE. The panel asked only whether THAT host had already granted
+    /// something (`got`), which is a narrower question than whether the player
+    /// can sustain force in the theatre at all. `theatre::has_access`
+    /// short-circuits twice before it ever looks at a grant: a nation home to
+    /// the theatre, and a nation that is itself one of its hosts, need nobody's
+    /// consent. The browser had a copy of that function, `hasAccess`, whose own
+    /// comment said "Mirrors theatre::has_access" — and the panel did not call
+    /// it.
+    ///
+    /// FIX. The two short-circuits are extracted as `theatre::needs_no_host`
+    /// (called by `has_access`, so there is still one definition), served on
+    /// each theatre as `me_needs_no_host`, and the panel gates its buttons on
+    /// it. The browser's copy is deleted; belligerent rows already carry
+    /// `access` from the sim for the host's own half of the panel.
+    #[test]
+    fn the_basing_panel_does_not_sell_what_the_theatre_already_gives() {
+        use spheres_sim::theatre;
+
+        // The invariant the suppression rests on, checked on a world that has
+        // actually issued grants: needing no host IMPLIES having access, so a
+        // row this panel hides is always a row that would have bought nothing.
+        let mut g = Game::new(7, Some(NationId::Iraq));
+        let mut structural = 0usize;
+        let mut granted = 0usize;
+        for _ in 0..(20 * 12) {
+            tick_month(&mut g.world, &[]);
+            for t in g.world.theatres.iter().map(|t| t.id).collect::<Vec<_>>() {
+                for n in g.world.nations.iter().filter(|n| n.alive).map(|n| n.id).collect::<Vec<_>>()
+                {
+                    if theatre::needs_no_host(&g.world, n, t) {
+                        structural += 1;
+                        assert!(
+                            theatre::has_access(&g.world, n, t),
+                            "{:?} needs no host in {:?} and still cannot sustain force there",
+                            n,
+                            t
+                        );
+                    } else if theatre::has_access(&g.world, n, t) {
+                        granted += 1;
+                    }
+                }
+            }
+        }
+        assert!(structural > 0, "no nation was ever structurally in a theatre");
+        assert!(
+            granted > 0,
+            "twenty years produced no granted access, so the OTHER half of \
+             has_access was never exercised and the implication above is vacuous"
+        );
+
+        // And the payload carries it, for the player's own seat, both ways.
+        let s = state_json(&g, None);
+        let th = |id: &str| -> serde_json::Value {
+            s["theatres"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .find(|t| t["id"] == id)
+                .unwrap_or_else(|| panic!("{} is served", id))
+                .clone()
+        };
+        assert_eq!(
+            th("Gulf")["me_needs_no_host"],
+            serde_json::json!(true),
+            "Iraq is home to the Gulf and has nothing to ask anyone for there"
+        );
+        assert_eq!(
+            th("EastAsia")["me_needs_no_host"],
+            serde_json::json!(false),
+            "Iraq is neither home to East Asia nor a host of it"
+        );
+
+        // The panel must gate on the served fact, and the copy must stay gone.
+        assert!(
+            INDEX.contains("me_needs_no_host"),
+            "the basing panel must take the answer from the payload"
+        );
+        assert!(
+            INDEX.contains("noHostNeeded ? \"\" :"),
+            "the Request/Press buttons must be gated on it"
+        );
+        assert!(
+            !INDEX.contains("function hasAccess("),
+            "theatre::has_access is mirrored in the browser again"
         );
     }
 

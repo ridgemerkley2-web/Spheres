@@ -333,20 +333,30 @@ pub fn is_home(w: &WorldState, id: NationId, th: TheatreId) -> bool {
     theatre(w, th).home.contains(&id)
 }
 
-/// True if `seeker` can sustain force in `th`: either it lives there, or some
-/// host of that theatre has said yes and not since changed its mind.
-pub fn has_access(w: &WorldState, seeker: NationId, th: TheatreId) -> bool {
-    if is_home(w, seeker, th) {
-        return true;
-    }
-    let t = theatre(w, th);
+/// True if `seeker` can sustain force in `th` and NOBODY'S ANSWER CAN CHANGE
+/// THAT: it lives there, or it is itself one of the theatre's hosts.
+///
+/// [`has_access`]'s two short-circuits, extracted so the one other place that
+/// has to know them can be told instead of guessing — the browser's basing
+/// panel, which was offering to sell a nation home to a theatre the basing it
+/// already had and could not lose. Behaviour is unchanged: `has_access` calls
+/// this, so there is still one definition of the rule.
+pub fn needs_no_host(w: &WorldState, seeker: NationId, th: TheatreId) -> bool {
     // A state that is itself a host of this theatre is a host because its own
     // airfields are within range of it. Turkey does not have to ask Ankara for
     // Incirlik — that is the whole reason it is on the list.
-    if t.access_hosts.contains(&seeker) {
+    is_home(w, seeker, th) || theatre(w, th).access_hosts.contains(&seeker)
+}
+
+/// True if `seeker` can sustain force in `th`: either it needs nobody's
+/// permission, or some host of that theatre has said yes and not since changed
+/// its mind.
+pub fn has_access(w: &WorldState, seeker: NationId, th: TheatreId) -> bool {
+    if needs_no_host(w, seeker, th) {
         return true;
     }
-    t.access_hosts
+    theatre(w, th)
+        .access_hosts
         .iter()
         .any(|h| w.access.iter().any(|a| a.theatre == th && a.host == *h && a.seeker == seeker))
 }
