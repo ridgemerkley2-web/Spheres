@@ -3074,6 +3074,62 @@ mod tests {
         );
     }
 
+    /// The map's hover must ignore pointer events the pan's capture retargeted,
+    /// or it destroys the node the press is standing on.
+    ///
+    /// Third and worst consequence of the same setPointerCapture. While the pan
+    /// holds the capture, EVERY pointer event is retargeted at #pane-map — the
+    /// pointerover included. onMapHover read that literally: not `.nodeg`, not
+    /// `.rchip`, not `#dhit`, therefore the cursor has left every nation. It set
+    /// hoverNation = null and refreshDistrictDetail() emptied `#dhit`
+    /// — in the middle of a press, on the very press standing on one of those
+    /// paths. A pointerdown target torn out of the document has no connected
+    /// ancestor left to bear the click, so Chrome fired NO CLICK AT ALL.
+    ///
+    /// The effect: at any zoom past ZB2, clicking the ground of the nation you
+    /// were hovering did nothing, and the click handler was never reached, so
+    /// the press-target repair could not help. Traced in the browser at k=6
+    /// over the USA (`#dhit` holding 51 states):
+    ///
+    ///   t+0.0ms  pointerdown  target <path>, inside #dhit
+    ///   t+0.9ms  pointerover  target DIV        <- retargeted by the capture
+    ///   t+1.0ms  rebuild      from onMapHover   <- #dhit emptied under the press
+    ///   t+1.2ms  pointerup    target DIV
+    ///   t+1.8ms  pointerover  target <path>
+    ///   t+1.9ms  rebuild      from onMapHover
+    ///   (no click event, ever)
+    ///
+    /// Verified present on the pre-fix build at 698c148 as well: same trace,
+    /// same two rebuilds, same missing click. It predates the press-target work.
+    ///
+    /// The tech viewport has always guarded its own hover against exactly this,
+    /// and says so in its comment. The map never got the same guard.
+    /// hasPointerCapture is the exact question, so a genuine hover leaving the
+    /// map for the legend below it still clears the nation.
+    #[test]
+    fn the_map_hover_ignores_events_the_capture_retargeted() {
+        assert!(
+            INDEX.contains(
+                "if (pane && pane.hasPointerCapture && pane.hasPointerCapture(e.pointerId)) return;"
+            ),
+            "onMapHover no longer ignores capture-retargeted events — it will \
+             empty #dhit under a press again and Chrome will fire no click"
+        );
+        // The guard has to come FIRST. Below the `.nodeg` read it is decoration.
+        let at_guard = INDEX
+            .find("pane.hasPointerCapture(e.pointerId)) return;")
+            .expect("the hover's capture guard is gone");
+        let at_hover = INDEX.find("function onMapHover(e) {").expect("onMapHover is gone");
+        let at_read = INDEX[at_hover..]
+            .find("const g = e.target.closest(\".nodeg\");")
+            .expect("onMapHover no longer reads the hovered nation")
+            + at_hover;
+        assert!(
+            at_hover < at_guard && at_guard < at_read,
+            "the capture guard must be the first thing onMapHover does"
+        );
+    }
+
     /// `?` must reach the card from the setup screen.
     ///
     /// The card's own last row is "This card — ?". On the picker — the first

@@ -8059,6 +8059,24 @@ function frontWord(f) {
 let hoverNation = null, detailTimer = 0;
 
 function onMapHover(e) {
+  // WHILE THE PAN HOLDS THE POINTER CAPTURE, every pointer event is retargeted
+  // at #pane-map itself. Read literally that says the cursor has left every
+  // nation, so this used to set hoverNation = null and have
+  // refreshDistrictDetail() empty #dhit — in the middle of a press, on the very
+  // press that was standing on one of those paths. A pointerdown target torn
+  // out of the document has no connected ancestor left to bear the click, so
+  // Chrome fired NO click at all: at any zoom past ZB2, clicking the ground of
+  // the nation you were hovering did nothing, and the click handler was never
+  // even reached.
+  //
+  // The tech viewport already guards its own hover against precisely this — its
+  // comment says pointer capture retargets mid-drag events at the viewport
+  // anyway — and the map never got the same guard. hasPointerCapture is the
+  // exact question: a genuine hover over the pane's own box (leaving the map
+  // for the legend below it) still clears the nation, because nothing is
+  // captured then.
+  const pane = $("#pane-map");
+  if (pane && pane.hasPointerCapture && pane.hasPointerCapture(e.pointerId)) return;
   const g = e.target.closest(".nodeg");
   // A commodity mark is above the nation groups and takes pointer events, so
   // without this the pointer crossing one would read as leaving every nation
