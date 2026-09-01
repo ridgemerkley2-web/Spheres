@@ -468,6 +468,41 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
         // conflict is still served while the row for the dead one is not.
         .filter(|b| w.nation_opt(b.nation).is_some_and(|n| n.alive))
         .map(|b| {
+            let defending = spheres_sim::commitment::defending_home(w, c, b.nation);
+            // THE LADDER, PRICED AND ADJUDICATED BY THE SIM, one entry per rung.
+            //
+            // The browser used to build this itself out of a copy of
+            // `war::ESCALATION_PRICE`, a copy of `theatre::MAX_RUNG_WITHOUT_
+            // ACCESS` and a hand-written pair of refusals — and the copy was
+            // missing `commitment::rung_blocked`'s THIRD branch, the nuclear
+            // taboo, which has no cheap client-side test because it depends on
+            // who else is standing on the other side of the war. So the sheet
+            // sold rungs the world will never sell. Measured live: Iraq on seed
+            // 1990, joined to the Levant conflict against a nuclear Israel and
+            // not home to that theatre, was offered rung 6 at "12 pc" and rung
+            // 7 at "17 pc" as clickable rows, while every one of rungs 6-9
+            // answered "Deterrence holds — they have the bomb and we do not."
+            // Rungs 8 and 9 were marked unavailable, but for the wrong reason:
+            // "you hold 20 political capital; this costs 25", which is
+            // `world_refusal`'s ordering defect (lib.rs) reproduced on screen.
+            //
+            // `blocked` is `rung_blocked`'s own prose, so the sheet cannot
+            // disagree with the queue, and `cost` is `escalation_cost_in` — the
+            // same function `set_commitment` is charged by. Served for every
+            // belligerent rather than only the player: it is the same
+            // information as `rung`, `ceiling` and `objective` beside it, and a
+            // uniform row is what lets the suite check all of them.
+            let rungs: Vec<serde_json::Value> = (1u8..=9)
+                .map(|r| {
+                    serde_json::json!({
+                        "rung": r,
+                        "cost": spheres_sim::commitment::escalation_cost_in(
+                            w, b.nation, b.rung, r, defending,
+                        ),
+                        "blocked": spheres_sim::commitment::rung_blocked(w, c, b.nation, r),
+                    })
+                })
+                .collect();
             serde_json::json!({
                 "id": format!("{:?}", b.nation),
                 "name": b.nation.name(),
@@ -489,8 +524,9 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
                 // is what the escalation discount hangs off. Computed by the sim
                 // so the price the UI quotes and the price the queue charges
                 // cannot drift apart.
-                "defending_home": spheres_sim::commitment::defending_home(w, c, b.nation),
+                "defending_home": defending,
                 "committed": spheres_sim::war::committed_force(w, c, b.nation),
+                "rungs": rungs,
             })
         })
         .collect();
@@ -4362,6 +4398,172 @@ mod tests {
             sim_held_a_dead_belligerent > 0,
             "the sim never held a dead belligerent in this world, so the filter \
              above was never exercised and the assertions in it mean nothing"
+        );
+    }
+
+    /// TRIAGE F-19 — the conflict sheet priced four rungs the world will never
+    /// sell, and refused two more for the wrong reason.
+    ///
+    /// SYMPTOM, measured in the browser. Iraq on seed 1990, joined to the
+    /// Levant conflict on Lebanon's side against a nuclear Israel, with the
+    /// sheet open on conflict 3:
+    ///
+    ///   rung 6  "12 pc"  clickable
+    ///   rung 7  "17 pc"  clickable
+    ///   rung 8  "25 pc"  off — "you hold 20 political capital; this costs 25"
+    ///   rung 9  "33 pc"  off — "you hold 20 political capital; this costs 33"
+    ///
+    /// while POST /api/command {"kind":"commit","conflict":3,"value":r} answered
+    /// `Deterrence holds — they have the bomb and we do not.` for every one of
+    /// r = 6, 7, 8, 9, and charged nothing.
+    ///
+    /// CAUSE. index.html decided availability itself, from a copy of
+    /// `war::ESCALATION_PRICE`, a copy of `theatre::MAX_RUNG_WITHOUT_ACCESS` and
+    /// two hand-written refusals — the ceiling and the access cap.
+    /// `commitment::rung_blocked` has THREE branches; the third is the nuclear
+    /// taboo, which depends on who is standing on the far side of the war and so
+    /// has no cheap client-side test. The two that were copied are also the two
+    /// the browser can see, which is exactly why the missing one stayed missing.
+    ///
+    /// FIX. `conflict_json` serves `rungs[]`, one entry per rung, carrying
+    /// `escalation_cost_in` and `rung_blocked` — the same two functions
+    /// `set_commitment` and `world_refusal` use — and the sheet prints them.
+    ///
+    /// This test re-writes the OLD client rule so it can measure what that rule
+    /// missed on a real world, rather than asserting the payload against the
+    /// function that fills it.
+    #[test]
+    fn the_ladder_offers_only_what_the_world_will_sell() {
+        // What index.html decided before this fix: the ceiling, and the access
+        // cap, both read off the same payload row it still reads.
+        fn old_browser_rule(b: &serde_json::Value, rung: u64) -> bool {
+            let ceiling = b["ceiling"].as_u64().unwrap();
+            let capped = !b["home"].as_bool().unwrap() && !b["access"].as_bool().unwrap();
+            rung > ceiling || (capped && rung > 5)
+        }
+
+        // ---- The measured case, rebuilt without leaning on emergent history.
+        // Iraq is not home to the Levant, Israel has the bomb and Iraq does not,
+        // which is the third branch and the whole of it. Every step is a real
+        // command; only the treasury is topped up, so that "you cannot afford
+        // it" is provably not the answer being tested.
+        let mut g = Game::new(1990, Some(NationId::Iraq));
+        g.world.nation_mut(NationId::Iraq).political_capital = 500.0;
+        apply_command(
+            &mut g.world,
+            &Command::OpenConflict {
+                opener: NationId::Iraq,
+                target: NationId::Israel,
+                theatre: TheatreId::Levant,
+            },
+        )
+        .expect("Iraq can open a quarrel with Israel in the Levant");
+        // Jordan says yes, so that the SECOND branch — no consenting host — is
+        // satisfied and out of the way. Without this the access cap answers
+        // first and the taboo is never reached, which is itself the reason the
+        // old browser rule looked adequate for so long.
+        g.world.nation_mut(NationId::Jordan).political_capital = 500.0;
+        apply_command(
+            &mut g.world,
+            &Command::GrantAccess {
+                host: NationId::Jordan,
+                seeker: NationId::Iraq,
+                theatre: TheatreId::Levant,
+                grant: true,
+            },
+        )
+        .expect("Jordan can grant Iraq basing in its own theatre");
+        g.world.nation_mut(NationId::Iraq).political_capital = 500.0;
+        let s = state_json(&g, None);
+        let war = s["wars"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|w| w["theatre"] == "Levant")
+            .expect("the quarrel just opened is served");
+        let iraq = war["posture"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|b| b["id"] == "Iraq")
+            .expect("Iraq is standing in its own quarrel");
+        assert_eq!(iraq["home"], false, "Iraq is not home to the Levant");
+        assert_eq!(iraq["ceiling"], 9, "no ceiling is in the way of this measurement");
+        for r in 1..=9u64 {
+            let o = &iraq["rungs"][(r - 1) as usize];
+            let blocked = o["blocked"].as_str();
+            if r >= 6 {
+                assert_eq!(
+                    blocked,
+                    Some("Deterrence holds — they have the bomb and we do not."),
+                    "rung {} is sold to a non-nuclear expedition against a nuclear power",
+                    r
+                );
+                assert!(
+                    !old_browser_rule(iraq, r),
+                    "rung {} must be one the OLD browser rule thought was for sale, \
+                     or this case is not the one that was measured",
+                    r
+                );
+            } else {
+                assert_eq!(blocked, None, "rung {} is below the shooting line", r);
+            }
+        }
+
+        // ---- And the shape, on real worlds: EVERY belligerent the payload
+        // serves carries a full nine-rung ladder with a price on each rung.
+        // This is an invariant and not a statistic — it is the thing a future
+        // refactor would silently drop, taking the sheet back to guessing.
+        let mut refusals_served = 0usize;
+        let mut rows_checked = 0usize;
+
+        for seed in [0u64, 1, 7, 1990] {
+            let mut g = Game::new(seed, None);
+            for _ in 0..(30 * 12) {
+                tick_month(&mut g.world, &[]);
+                g.snapshot();
+                let s = state_json(&g, None);
+                for war in s["wars"].as_array().unwrap() {
+                    for b in war["posture"].as_array().unwrap() {
+                        let offers = b["rungs"]
+                            .as_array()
+                            .expect("every belligerent is served its own ladder");
+                        assert_eq!(offers.len(), 9, "nine rungs, one entry each");
+                        for (i, o) in offers.iter().enumerate() {
+                            let r = (i + 1) as u64;
+                            assert_eq!(o["rung"].as_u64(), Some(r), "the ladder is an index");
+                            assert!(o["cost"].is_number(), "every rung carries its own price");
+                            rows_checked += 1;
+                            if o["blocked"].as_str().is_some() {
+                                refusals_served += 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        assert!(rows_checked > 0, "four thirty-year worlds produced no belligerents to check");
+        assert!(
+            refusals_served > 0,
+            "no rung was refused anywhere across four thirty-year worlds, so the \
+             `blocked` field was never exercised on a live payload"
+        );
+
+        // And the sheet must actually READ the payload rather than deciding
+        // again. These three are the copies that were deleted; a future session
+        // reintroducing any of them reintroduces the defect.
+        assert!(
+            INDEX.contains("rungWhyNot(") && INDEX.contains("rungCost("),
+            "the conflict sheet must take its refusals and prices from the payload"
+        );
+        assert!(
+            !INDEX.contains("RUNG_PRICE"),
+            "war::ESCALATION_PRICE is mirrored in the browser again"
+        );
+        assert!(
+            !INDEX.contains("MAX_RUNG_NO_ACCESS"),
+            "theatre::MAX_RUNG_WITHOUT_ACCESS is mirrored in the browser again"
         );
     }
 

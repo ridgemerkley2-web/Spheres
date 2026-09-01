@@ -4482,10 +4482,20 @@ const RUNG_BLURB = ["",
   "puts hulls and boots where they were not; starts taking ground",
   "the whole army in the field, and the whole army exposed to theirs",
   "holding the ground down rather than the enemy — cheap in ordnance, ruinous in will"];
-/// What arriving at each rung costs before the regime multiplier. The table is
-/// cumulative, so a climb is a difference — mirrors war::ESCALATION_PRICE.
-const RUNG_PRICE = [0, 0, 2, 6, 8, 10, 14, 20, 30, 40];
-const MAX_RUNG_NO_ACCESS = 5;
+/// What a belligerent may buy, and at what price — SERVED, NOT COMPUTED.
+///
+/// This replaces a copy of `war::ESCALATION_PRICE`, a copy of
+/// `theatre::MAX_RUNG_WITHOUT_ACCESS` and a hand-written pair of refusals. The
+/// copy was missing `commitment::rung_blocked`'s third branch — the nuclear
+/// taboo, which cannot be tested cheaply on this side because it depends on who
+/// else is standing on the far side of the war — so the sheet priced rungs the
+/// world will never sell. `blocked` is the sim's own sentence and `cost` is
+/// `escalation_cost_in`, the function the queue is charged by.
+///
+/// One entry per rung 1-9, so `rungOffer(b, r)` is an index and never a search.
+function rungOffer(b, r) { return (b && b.rungs && b.rungs[r - 1]) || null; }
+function rungCost(b, r) { const o = rungOffer(b, r); return o ? o.cost : 0; }
+function rungWhyNot(b, r) { const o = rungOffer(b, r); return (o && o.blocked) || null; }
 
 function theatreById(id) { return (S.theatres || []).find((t) => t.id === id); }
 function myPosture(w) { const m = me(); return m && w.posture.find((b) => b.id === m.id); }
@@ -4503,15 +4513,19 @@ function grantingHost(id, th) {
 }
 
 /// Nine cells. Yours amber, theirs red, your announced ceiling notched, and
-/// every rung above your access cap hatched. The mismatch is the interesting
-/// state, so it is the most visible thing on the card.
+/// every rung the world will not let you stand on hatched. The mismatch is the
+/// interesting state, so it is the most visible thing on the card.
+///
+/// Hatching now asks the sim (`rungWhyNot`) rather than recomputing the access
+/// cap here, so the strip and the sheet below it cannot disagree about which
+/// rungs are reachable — and the taboo, which the old test could not see, is
+/// hatched like any other refusal.
 function ladderStrip(w, mine, theirs) {
-  const capped = mine && !mine.home && !hasAccess(mine.id, w.theatre);
   let cells = "";
   for (let r = 1; r <= 9; r++) {
     const isMine = mine && mine.rung === r;
     const isTheirs = theirs && theirs.rung === r;
-    const barred = capped && r > MAX_RUNG_NO_ACCESS;
+    const barred = !!(mine && rungWhyNot(mine, r));
     const ceil = mine && mine.ceiling === r && mine.ceiling < 9;
     cells += `<div class="rung${isMine ? " mine" : ""}${isTheirs ? " theirs" : ""}${
       barred ? " barred" : ""}${ceil ? " ceil" : ""}" title="${r} · ${RUNGS[r]}">${r}</div>`;
@@ -4596,24 +4610,21 @@ window.openConflict = function (id, keepScroll) {
   const theirs = mine ? w.posture.find((b) => b.side_a !== mine.side_a) : null;
   const t = theatreById(w.theatre) || { hosts: [], host_names: [], rough: 0, urbanisation: 0 };
   const cap = m ? m.political_capital : 0;
-  const auth = m ? m.authoritarianism : 0.5;
-  const capped = mine && !mine.home && !hasAccess(mine.id, w.theatre);
 
   let rows = "";
   if (mine) {
     for (let r = 1; r <= 9; r++) {
-      // Mirrors commitment::escalation_cost_in, home discount included: a
-      // parliament has to be talked into an expedition and does not have to be
-      // talked into a defence.
-      const cost = r > mine.rung
-        ? (RUNG_PRICE[r] - RUNG_PRICE[mine.rung]) * (1.4 - 0.6 * auth)
-          * (mine.defending_home ? 0.30 : 1) : 0;
-      let why = null;
-      if (r > mine.ceiling) why = `you have publicly bound yourself to rung ${mine.ceiling} or below`;
-      else if (capped && r > MAX_RUNG_NO_ACCESS)
-        why = `no consenting host within range of ${w.theatre_name}: ${
-          t.host_names.join(" or ") || "nobody in reach"} would have to agree to basing`;
-      else if (cost > cap) why = `you hold ${cap.toFixed(0)} political capital; this costs ${cost.toFixed(0)}`;
+      // Price and refusal both come from the sim (see `rungOffer`). The ORDER
+      // is the sim's too: `apply_command` asks `world_refusal` before it asks
+      // the treasury, so a rung the world forbids must not be reported as one
+      // you cannot afford. Iraq on seed 1990, in the Levant against a nuclear
+      // Israel, read "you hold 20 political capital; this costs 25" on rungs 8
+      // and 9 when the answer was "Deterrence holds".
+      const cost = rungCost(mine, r);
+      let why = rungWhyNot(mine, r);
+      if (!why && cost > cap)
+        why = `you hold ${cap.toFixed(0)} political capital; this costs ${cost.toFixed(0)}`;
+      else if (why) why = escText(why);
       const here = mine.rung === r;
       rows += `<div class="rungrow${here ? " here" : ""}${why ? " off" : ""}"${
         why ? "" : ` onclick="conflictCmd(${id},'commit',${r})"`}>
