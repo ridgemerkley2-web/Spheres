@@ -382,12 +382,20 @@
   /* the tab bar clears the viewport in BOTH modes (was 44px) */
   #techViewport { position:absolute; inset:106px 0 0 0; overflow:hidden; cursor:grab; touch-action:none; }
   #techViewport.dragging { cursor:grabbing; }
-  #techRuler { position:absolute; top:106px; left:0; right:0; height:26px; pointer-events:none;
+  /* TWO LANES. The era names and the NOW marker are both absolutely positioned
+     against the same timeline, and they used to share `top: 0` — so whenever
+     the world year fell near an era boundary the two texts were painted on top
+     of one another. That is not an edge case: at 1280x720 the survey opens
+     framed by techFitAll, and 1990 lands 24px right of the Information
+     boundary, so "Information" (x 19-113) and "1990 · now" (x 43-107) were a
+     total overlap in the DEFAULT view, before any pan or zoom. The marker now
+     has a lane of its own beneath the names, which no camera can undo. */
+  #techRuler { position:absolute; top:106px; left:0; right:0; height:44px; pointer-events:none;
     font-family:var(--serif); font-variant:small-caps; overflow:hidden; }
   #techRuler .era { position:absolute; top:0; border-left:1px solid var(--brass-dim);
     padding:3px 0 0 8px; color:var(--brass-dim); font-size:12px; letter-spacing:.12em; white-space:nowrap; }
   #techRuler .era.spec { font-style:italic; }
-  #techRuler .now { position:absolute; top:0; color:var(--amber); font:600 10px var(--mono);
+  #techRuler .now { position:absolute; top:22px; color:var(--amber); font:600 10px var(--mono);
     border-left:1px dashed var(--amber); padding:3px 0 0 5px; }
   #techDock { position:absolute; top:44px; right:0; bottom:0; width:360px; display:none; z-index:3;
     background:var(--panel-2); border-left:1px solid var(--brass-dim); overflow-y:auto;

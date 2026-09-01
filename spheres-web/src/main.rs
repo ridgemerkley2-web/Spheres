@@ -5688,4 +5688,66 @@ mod tests {
              and must survive this repair"
         );
     }
+
+    /// The tech survey's ruler used to paint the year on top of an era name.
+    ///
+    /// Measured in Chrome at 1280x720, tech screen, Full map view, on the world
+    /// the FIT camera opens with — no pan, no zoom, no input of any kind:
+    ///
+    ///   .era "Information"   x 19-113, y 106-127
+    ///   .now "1990 · now"    x 43-107, y 106-127
+    ///
+    /// The same 21px band and an x range wholly inside the other's: the amber
+    /// year was drawn straight through the era name and neither could be read.
+    ///
+    /// Cause: `#techRuler .era` and `#techRuler .now` are both positioned
+    /// against the same timeline and both carried `top: 0`, so the two marks
+    /// collide whenever the world year falls near an era boundary — which the
+    /// 1990 start does by construction, 24px from the Information boundary at
+    /// the survey's fit zoom.
+    ///
+    /// Fix: the marker gets a lane of its own beneath the names. After, on the
+    /// same view: era band y 106-127, `.now` y 128-142, zero overlapping era
+    /// labels. It is structural — no camera position can put them back on the
+    /// same line.
+    #[test]
+    fn the_now_marker_does_not_paint_over_an_era_name() {
+        fn rule<'a>(sel: &str) -> &'a str {
+            INDEX
+                .lines()
+                .find(|l| l.trim_start().starts_with(sel))
+                .unwrap_or_else(|| panic!("{sel} is gone from the ruler"))
+        }
+        /// `top:0` and `top:22px` both parse; anything else is a change this
+        /// test wants a human to look at.
+        fn top_px(r: &str) -> f64 {
+            let v = r.split_once("top:").expect("no top in rule").1;
+            let v = v.split(';').next().unwrap().trim();
+            v.strip_suffix("px").unwrap_or(v).parse().expect("top is not a length")
+        }
+        let era_top = top_px(rule("#techRuler .era {"));
+        let now_top = top_px(rule("#techRuler .now {"));
+        assert!(
+            now_top - era_top >= 20.0,
+            "the NOW marker sits {}px below the era names; the era lane measures \
+             21px, so anything under that paints the year through the name",
+            now_top - era_top
+        );
+        // And the ruler is tall enough to show the lane it just made.
+        let h = rule("#techRuler {")
+            .split_once("height:")
+            .and_then(|(_, r)| r.split_once("px"))
+            .map(|(n, _)| n.trim().parse::<f64>().expect("ruler height is not px"))
+            .expect("the ruler no longer states a height");
+        assert!(
+            h >= now_top + 14.0,
+            "the ruler is {h}px tall and clips its own NOW lane at {now_top}px"
+        );
+        // The strip is decoration over the graph and must stay untouchable —
+        // it now covers more of the viewport than it used to.
+        assert!(
+            rule("#techRuler {").contains("pointer-events:none"),
+            "the ruler overlays the tech viewport and must not eat its clicks"
+        );
+    }
 }
