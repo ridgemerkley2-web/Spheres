@@ -3074,6 +3074,55 @@ mod tests {
         );
     }
 
+    /// Every key `techKeys` wires must be on the card, and the card must not
+    /// claim a key does something it does not.
+    ///
+    /// techKeys binds twelve things. Six were on the card (1-8, 9, /, T, ?, and
+    /// the click). Five were not documented anywhere: `F` and `0` frame the
+    /// full tech map, `+`/`-` zoom it, and the arrows pan it (or scroll the
+    /// stage in a domain view). And one was documented as something ELSE: the
+    /// card said "Previous / next nation in the dashboard - [ ]", but with the
+    /// tech screen open `[` and `]` cycle the DOMAIN TABS and never touch the
+    /// dashboard. Measured in the browser with the screen open: `]` went
+    /// all -> Communications -> Energy, `[` went back to Communications, and
+    /// `selected` stayed null throughout.
+    ///
+    /// This is a documentation repair; no binding changed. The test pins the
+    /// two halves against each other so a future key added to techKeys has to
+    /// bring its row with it.
+    #[test]
+    fn the_tech_screens_keys_are_all_on_the_card() {
+        // The rows added for the five undocumented bindings.
+        for row in [
+            "Frame / zoom the full tech map",
+            "<kbd>F</kbd> <kbd>0</kbd> · <kbd>+</kbd> <kbd>&minus;</kbd>",
+            "Pan the tech map, or scroll a domain view",
+            "arrow keys",
+            "· step <kbd>[</kbd> <kbd>]</kbd>",
+        ] {
+            assert!(INDEX.contains(row), "the keyboard card no longer documents {row:?}");
+        }
+        // The contradiction, corrected. The bare old label must be gone: with
+        // the tech screen open these keys do not touch the dashboard.
+        assert!(
+            !INDEX.contains("Previous / next nation in the dashboard"),
+            "the card is claiming [ ] steps the dashboard again, which is false \
+             while the tech screen is open"
+        );
+        assert!(
+            INDEX.contains("Previous / next nation &mdash; outside the tech screen"),
+            "the [ ] row must say where it applies"
+        );
+        // And the bindings the rows describe are still the ones techKeys has.
+        // These live in techKeys' map-mode branch; if they move or go away the
+        // rows above become the lie this test exists to stop.
+        assert!(INDEX.contains("if (k === \"f\" || k === \"F\" || k === \"0\") techFitAll();"));
+        assert!(INDEX.contains("else if (k === \"+\" || k === \"=\") techZoomBy(1.3);"));
+        assert!(INDEX.contains("else if (k === \"ArrowLeft\") techPanBy(-90, 0);"));
+        assert!(INDEX.contains("if (k === \"ArrowLeft\") w.scrollBy(-90, 0);"));
+        assert!(INDEX.contains("else if (k === \"[\" || k === \"]\") {"));
+    }
+
     /// The commodity key must not spend the player's first press on the fetch.
     ///
     /// The keyboard card offers "Next / previous commodity … X, Shift+X". The
