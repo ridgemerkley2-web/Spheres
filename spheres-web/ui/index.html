@@ -1030,7 +1030,16 @@
   #sheet .head .spacer { flex: 1; }
   #sheet .close { cursor: pointer; color: var(--dim); font-size: 20px; line-height: 1; padding: 0 4px; }
   #sheet .close:hover { color: var(--ink); }
-  .statgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 2px 18px; }
+  /* 180px, and it used to be 150. A cell is a `.stat`: a wrapping key pushed
+     left and a `white-space: nowrap` value pushed right, so a cell narrower
+     than key-min-content + 8 + value cannot hold its pair and the value runs
+     out of the track — past the 18px column gap and into the NEXT cell's key.
+     Measured on Iraq at 1280x720: "State investment" (76px at min-content) and
+     "10.0% of GDP" (91px) need 175px in a 153px track, and the 23px of
+     overflow put "10.0% of GDP" hard against the "Debt" label beside it, which
+     read as one word. 180px is that 175 plus slack, and it is the widest pair
+     the dossier states. */
+  .statgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 2px 18px; }
   .cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   @media (max-width: 1100px) { .cols2 { grid-template-columns: 1fr; } }
   .relrow { display: grid; grid-template-columns: 1fr 46px 92px; align-items: center; gap: 8px; padding: 2px 0; cursor: pointer; }

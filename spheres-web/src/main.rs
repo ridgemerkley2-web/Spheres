@@ -5793,4 +5793,57 @@ mod tests {
             assert!(INDEX.contains(other), "{other} is gone; re-derive the legend's plate");
         }
     }
+
+    /// A dossier figure used to run into the label of the statistic beside it.
+    ///
+    /// Measured in Chrome on Iraq's dashboard, every common width — 1024x768,
+    /// 1280x720, 1366x768, 1920x1080 — the same two cells overflow their track:
+    ///
+    ///   Military spend    "20.0% of GDP"    8px past the cell
+    ///   State investment  "10.0% of GDP"   23px past the cell
+    ///
+    /// The column gap is 18px, so the 23px overrun crossed it and put the value
+    /// hard against the next cell's key. On screen the row read
+    /// "State investment 10.0% of GDPDebt 110% of GDP" — one word where there
+    /// are two statistics.
+    ///
+    /// Cause: `.statgrid` sized its tracks `minmax(150px, 1fr)`. A cell is a
+    /// `.stat`: a key that wraps, pushed left, and a `white-space: nowrap`
+    /// value pushed right. "State investment" cannot get narrower than 76px
+    /// (its longest word) and "10.0% of GDP" cannot get narrower than 91px, so
+    /// with the 8px gap the pair needs 175px and the track gave 153.
+    ///
+    /// Fix: the track minimum becomes 180px — the widest pair the dossier
+    /// states, plus slack. After, on all four widths, no cell overflows its
+    /// track: at 1280 the grid drops from six 153px columns to five 187px ones.
+    #[test]
+    fn a_dossier_figure_stays_inside_its_own_column() {
+        let rule = INDEX
+            .lines()
+            .find(|l| l.trim_start().starts_with(".statgrid {"))
+            .expect("the dossier's stat grid rule is gone");
+        let min = rule
+            .split_once("minmax(")
+            .and_then(|(_, r)| r.split_once("px"))
+            .map(|(n, _)| n.trim().parse::<f64>().expect("the track minimum is not a length"))
+            .expect("the stat grid no longer states a track minimum");
+        assert!(
+            min >= 180.0,
+            "a {min}px track cannot hold the widest pair the dossier states \
+             (\"State investment\" 76px + 8px gap + \"10.0% of GDP\" 91px = 175px); \
+             the value runs across the 18px column gap into the next key"
+        );
+        // The two halves of the measurement, so a wider label or a wider value
+        // shows up here rather than silently overflowing again.
+        assert!(
+            INDEX.contains(r#"statRow("State investment", fmt.pct(n.state_invest, 1) + " of GDP")"#),
+            "the widest pair this track was sized for is gone; re-derive the minimum"
+        );
+        // And why the value cannot simply shrink instead.
+        assert!(
+            INDEX.contains(".stat .v { font-weight: 600; white-space: nowrap; }"),
+            "a dossier figure is nowrap on purpose; if that changed, the track \
+             minimum was derived against a rule that no longer holds"
+        );
+    }
 }
