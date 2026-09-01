@@ -3074,6 +3074,52 @@ mod tests {
         );
     }
 
+    /// The war decoration must never take a pointer event.
+    ///
+    /// Each belligerent gets a `<circle r="34 * PX">` filled with `url(#glow)` —
+    /// 81.6 world units of gradient — plus, for a war with no front to draw, a
+    /// dashed line between the two. Both are scenery: nothing reads them and
+    /// there is nothing to click. But a gradient fill is still a fill, so under
+    /// SVG's default `pointer-events: visiblePainted` the whole disc is a hit
+    /// target regardless of its alpha, and it is painted above the district mesh
+    /// and the ocean.
+    ///
+    /// Measured over the Gulf in Oct 1990: of 441 points sampled inside one
+    /// disc, 134 (30.4%) hit the disc itself rather than anything the map can
+    /// open, and fourteen nation anchors — Iraq, Kuwait, Saudi Arabia, Iran,
+    /// Israel, Turkey, Syria, Jordan, Lebanon, UAE, Qatar, Oman, Bahrain,
+    /// Cyprus — sat under the two discs. A click at CSS (678, 273), squarely on
+    /// Egypt's painted territory, opened nothing.
+    ///
+    /// Asserted as the wrapper because the wrapper is the fix: adding a mark to
+    /// this layer must inherit the rule rather than have to remember it.
+    #[test]
+    fn the_war_decoration_takes_no_pointer_events() {
+        assert!(
+            INDEX.contains("s += `<g id=\"warg\" pointer-events=\"none\">`;"),
+            "the war glow and its dashed abstraction must stay inside a \
+             pointer-events:none wrapper — they are scenery painted over the \
+             district mesh, and a gradient fill is a hit target whatever its alpha"
+        );
+        // The layer it wraps, so a wrapper left behind around nothing cannot
+        // pass this test while the marks have been moved back out of it.
+        let at = INDEX
+            .find("s += `<g id=\"warg\" pointer-events=\"none\">`;")
+            .expect("the war layer's wrapper is gone");
+        let close = INDEX[at..]
+            .find("s += `</g>`;")
+            .expect("the war layer's wrapper is never closed");
+        let inside = &INDEX[at..at + close];
+        assert!(
+            inside.contains("fill=\"url(#glow)\""),
+            "the war glow has left the pointer-events:none wrapper"
+        );
+        assert!(
+            inside.contains("stroke-dasharray="),
+            "the dashed war abstraction has left the pointer-events:none wrapper"
+        );
+    }
+
     /// The technology graph has the same capture as the map and needs the same
     /// repair: `#techViewport` sets pointer capture to keep a pan alive, and the
     /// click that follows is retargeted at the viewport, so
