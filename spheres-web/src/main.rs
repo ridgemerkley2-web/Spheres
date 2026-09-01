@@ -2010,6 +2010,80 @@ mod tests {
         assert_eq!(d["KW-KU"], "Iraq");
     }
 
+    /// Ten nations on the picker read "$0bn · 0m", and a player who chose one
+    /// governed a country whose every headline figure was zero: measured in the
+    /// browser as Sao Tome and Principe, the header read "GDP $0bn" and the
+    /// dashboard "GDP $0bn / Population 0m" for a transcribed $120m economy of
+    /// 119,000 people. Eighteen more nations read "0m" beside a correct GDP —
+    /// Luxembourg was "$13bn · 0m".
+    ///
+    /// The roster is the reason this cannot be one unit: it spans six orders of
+    /// magnitude, and a formatter with a fixed unit is wrong at one end of it
+    /// whichever end you pick. This test therefore asserts on the DATA, not on
+    /// a list of nations: for every nation seated in 1990, the figures the
+    /// picker card is built from must be ones the formatters can state without
+    /// rounding to nothing — and the served page must carry formatters that
+    /// change unit rather than lose the figure.
+    #[test]
+    fn no_nation_on_the_board_is_shown_as_nothing() {
+        // The formatters the page ships. A substring check, for the reason
+        // every_nation_on_the_board_has_somewhere_to_be_drawn gives.
+        for needle in [
+            // money and its flow twin drop to millions below a billion
+            "return \"$\" + (v * 1000).toFixed(a >= 0.01 ? 0 : 1) + \"m\";",
+            // population drops to thousands below a million
+            "return Math.round(m * 1000) + \"k\";",
+            // and the picker and the dashboards go through them
+            "fmt.pop(n.population)",
+            "statRow(\"Population\", fmt.pop(m.population))",
+            "statRow(\"Population\", fmt.pop(n.population))",
+            // the GDP chart's axis is the same ladder, which is why both of a
+            // microstate's axis labels used to read "0bn"
+            "fmtY: (v) => fmt.money(v).slice(1)",
+        ] {
+            assert!(INDEX.contains(needle), "the page no longer carries: {needle}");
+        }
+        assert!(
+            !INDEX.contains("population.toFixed(0) + \"m\""),
+            "a population is still being printed straight to the nearest million"
+        );
+
+        // And the world the picker is built from. `renderPick` reads /api/state,
+        // so these are exactly the numbers it formats.
+        let g = Game::new(1990, None);
+        let s = state_json(&g, None);
+        let mut zero_money = vec![];
+        let mut zero_pop = vec![];
+        for n in s["nations"].as_array().expect("a roster") {
+            let name = n["name"].as_str().unwrap_or("?").to_string();
+            let gdp = n["gdp"].as_f64().expect("gdp");
+            let pop = n["population"].as_f64().expect("population");
+            assert!(gdp > 0.0 && pop > 0.0, "{name} is seated with nothing");
+            // What the OLD formatters did, kept here as the thing being
+            // guarded against rather than as a description of the fix.
+            if gdp.round() == 0.0 {
+                zero_money.push(name.clone());
+            }
+            if pop.round() == 0.0 {
+                zero_pop.push(name);
+            }
+        }
+        assert!(
+            !zero_money.is_empty() && !zero_pop.is_empty(),
+            "this test is only meaningful while the roster still holds nations \
+             a whole-billion formatter would erase; it holds {} and {}",
+            zero_money.len(),
+            zero_pop.len()
+        );
+        // The count is the measurement this was found by, recorded rather than
+        // asserted on: pinning it would make adding a small nation a red test.
+        println!(
+            "{} nations would read $0bn and {} would read 0m under a fixed unit",
+            zero_money.len(),
+            zero_pop.len()
+        );
+    }
+
     /// The research board's "N mo" is a projection that holds this month's rate
     /// constant for the whole wait. That is fair over a few years; over a
     /// century it is a fiction, and the board printed the fiction to the month.
