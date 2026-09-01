@@ -472,6 +472,39 @@ fn round(v: f64, places: i32) -> f64 {
     (v * m).round() / m
 }
 
+/// Round to `digits` SIGNIFICANT figures rather than to a fixed decimal place.
+///
+/// For the magnitudes in the history payload there is no decimal place that is
+/// right for the whole roster: the United States opens at $5,800bn and Sao Tome
+/// and Principe at $0.12bn, six orders of magnitude apart in the same array of
+/// the same response. Two places was right for the superpowers and destroyed
+/// everything small — measured on the live server, Sao Tome's ninety-five-month
+/// GDP series came back holding exactly TWO distinct values for an economy that
+/// had moved continuously through a 7% decline.
+///
+/// How many figures is set by what a chart has to resolve, which is the series'
+/// RANGE and not its level. Sao Tome moves 1.3% of its own output across a
+/// decade; six significant figures put roughly sixteen hundred levels inside
+/// that movement, which is more than a chart has pixels, and four would put
+/// only sixteen. Six also leaves the large nations exactly where they were —
+/// `round(5800.123456, 2)` and `round_sig(5800.123456, 6)` are both 5800.12 —
+/// so this is a strict improvement rather than a trade, at a cost of at most
+/// two characters a number.
+///
+/// Not for rates. `growth`, `inflation`, `debt` and `stability` are bounded
+/// quantities where a fixed place IS the right precision and where significant
+/// figures would spend digits on a number near zero; they keep `round`.
+fn round_sig(v: f64, digits: i32) -> f64 {
+    if !v.is_finite() || v == 0.0 {
+        return 0.0;
+    }
+    let magnitude = v.abs().log10().floor() as i32;
+    // Clamped so a denormal cannot ask for 10^300 and come back as an infinity.
+    let places = (digits - 1 - magnitude).clamp(-30, 30);
+    let m = 10f64.powi(places);
+    (v * m).round() / m
+}
+
 /// The recorded time series, column-major. One nation's arrays start at `t0`
 /// (successor states appear late) and simply stop when it dies, so a dead power's
 /// line ends rather than running flat to the end of the game.
@@ -495,13 +528,18 @@ fn history_json(g: &Game, only: Option<NationId>) -> serde_json::Value {
         let mut last: Option<Row> = None;
         let (mut gdp, mut growth, mut infl, mut debt, mut stab, mut mil) =
             (vec![], vec![], vec![], vec![], vec![], vec![]);
+        // The two columns that are MAGNITUDES go out at four significant
+        // figures; the four that are RATES or bounded scores keep a fixed
+        // decimal place, which is the right precision for a number that lives
+        // near zero. See `round_sig` for why the distinction matters here and
+        // nowhere else in this file.
         let mut push = |r: Row| {
-            gdp.push(round(r.gdp, 2));
+            gdp.push(round_sig(r.gdp, 6));
             growth.push(round(r.growth, 5));
             infl.push(round(r.inflation, 5));
             debt.push(round(r.debt, 4));
             stab.push(round(r.stability, 2));
-            mil.push(round(r.mil, 2));
+            mil.push(round_sig(r.mil, 6));
         };
         for (i, s) in g.history.iter().enumerate() {
             match s.rows.iter().find(|(x, _)| x == id).map(|(_, r)| *r) {
@@ -1954,6 +1992,81 @@ mod tests {
         let d = s["districts"].as_object().unwrap();
         assert_eq!(d.len(), 6, "all six Kuwaiti governorates moved");
         assert_eq!(d["KW-KU"], "Iraq");
+    }
+
+    /// A microstate's chart must be a chart, not a staircase. The history
+    /// payload rounded GDP to two decimal places of a billion — $10m — which is
+    /// a sixty-thousandth of the United States and a sixth of Sao Tome and
+    /// Principe. Measured on the live server before the fix: Sao Tome's
+    /// ninety-five-month GDP series came back holding exactly TWO distinct
+    /// values, 0.11 and 0.12, and its military series four, for a nation whose
+    /// output moved continuously the whole time. Indexed to 100 at the start —
+    /// which is how the comparison chart draws it — that is a two-step
+    /// staircase standing in for a decade of history.
+    ///
+    /// The bar is stated as a share of the series rather than as a count of
+    /// values, so it means the same thing whatever the run length: a series
+    /// that resolves its own movement has many more levels than it has steps.
+    #[test]
+    fn a_microstates_history_is_not_flattened_into_steps() {
+        let small = NationId::parse("Sao Tome and Principe").expect("on the roster");
+        let mut g = Game::new(1990, Some(small));
+        for _ in 0..95 {
+            tick_month(&mut g.world, &[]);
+            g.snapshot();
+        }
+        let h = history_json(&g, Some(small));
+        let series = &h["nations"][format!("{:?}", small)];
+
+        // Precondition: the nation is alive and its output actually moved, so a
+        // flat series would be the payload's fault and not the world's.
+        let live = g.world.nation(small);
+        assert!(live.alive);
+        // 0.12 is its transcribed 1990 GDP. The movement is small in level —
+        // about a sixth of ONE step of the old $10m grid — which is exactly why
+        // the old payload could not show it at all.
+        let moved = (live.gdp - 0.12).abs() / 0.12;
+        assert!(moved > 0.01, "the world must have moved it: {}", live.gdp);
+
+        for metric in ["gdp", "mil"] {
+            let vals: Vec<f64> = series[metric]
+                .as_array()
+                .unwrap_or_else(|| panic!("{} series missing", metric))
+                .iter()
+                .filter_map(|v| v.as_f64())
+                .collect();
+            assert!(vals.len() > 90, "{}: {} points", metric, vals.len());
+            let mut sorted = vals.clone();
+            sorted.sort_by(|a, b| a.partial_cmp(b).unwrap());
+            sorted.dedup();
+            assert!(
+                sorted.len() * 4 > vals.len(),
+                "{} came back as {} distinct values across {} months — the \
+                 series has been rounded away, not compressed",
+                metric,
+                sorted.len(),
+                vals.len()
+            );
+        }
+
+        // And the same precision is still there for a superpower, whose
+        // figures are six orders of magnitude larger in the same response.
+        let usa_id = NationId::parse("United States").expect("on the roster");
+        let h = history_json(&g, Some(usa_id));
+        let usa: Vec<f64> = h["nations"][format!("{:?}", usa_id)]["gdp"]
+            .as_array()
+            .expect("the United States is in the history")
+            .iter()
+            .filter_map(|v| v.as_f64())
+            .collect();
+        let big = g.world.nation(usa_id).gdp;
+        let last = *usa.last().unwrap();
+        assert!(
+            (last - big).abs() / big < 1e-3,
+            "a superpower's last point {} is not its GDP {}",
+            last,
+            big
+        );
     }
 
     #[test]
