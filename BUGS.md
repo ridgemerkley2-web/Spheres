@@ -1473,3 +1473,40 @@ click at their centre in both orders.
 **The ruling needed.** In Resources mode, when a district's name and its
 commodity chip want the same pixels, which one wins? The reversal is one line;
 what it decides is what the resource map is FOR. Not a fixer's call at 3am.
+
+### L-2 — district names pile up on each other at the zoom where they turn on
+
+**Reported as TRIAGE F-44.** Same session, political shading (so no chips are
+involved), camera on Iraq, hovering Iraq. Counting pairs of `.dlabel` boxes
+that intersect, out of the 153 possible among Iraq's 18 districts:
+
+```
+k = 4  (ZB2, the zoom labels appear at)   64 overlapping pairs
+k = 5                                      46
+k = 6                                      41
+k = 9                                      24
+k = 14                                      9
+k = 20                                      3
+```
+
+China at ZB2: 32 labels, 20 overlapping pairs. **The pileup is worst at exactly
+the zoom the labels switch on**, and the player has to dive five more steps
+before the names separate. At k = 4 the middle of Iraq is a single unreadable
+block of overprinted names.
+
+**Cause.** There is no declutter of any kind. `refreshDistrictDetail` emits one
+`<text>` per district at its centroid and lets them land where they land. The
+halo (`paint-order: stroke`) makes the topmost name legible against the ground,
+not against another name.
+
+**The ruling needed.** The standard repair is a greedy declutter — draw in a
+stable order, skip any label whose box hits one already placed — and it is
+cheap and deterministic here (18-330 labels for one nation, and a
+character-count width estimate avoids per-frame `getBBox`). But it HIDES NAMES,
+and the names are transcribed Natural Earth data. How many names may the map
+drop, and in what order of preference, is a decision about the surface and not
+a defect with one right answer. Note the information is not lost either way:
+`#dhit` carries every district's name in its hover title.
+
+**Not attempted**, per the standing instruction that a fix which cannot be
+justified to a sceptical reader at breakfast is a fix not to make.
