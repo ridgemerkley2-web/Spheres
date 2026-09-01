@@ -1136,3 +1136,116 @@ which case the sim is overcharging. That is a design question, not a fixer's.
 entry — its "exactly 6.00 every time" is a single-host measurement of a
 per-host rule, so a fix that hard-codes 6 would be right in the Gulf and wrong
 in Western Europe by 36 PC.
+
+---
+
+### E-3 — E-2's mechanism is wrong: the residual is the world reference, not the capital arm
+
+**Measured 2026-09-01 by the sim-and-web fixer, with a new instrument
+(`spheres-sim/tests/endowment_channel_probe.rs`) added for the purpose. This
+entry CORRECTS E-2's mechanism paragraph and does not dispute its attribution:
+the capital repair did move Belgium 9.8823e-5 -> 1.0218e-4, exactly as E-2
+measured. What is wrong is the account of HOW.**
+
+```
+cargo test --release -p spheres-sim --test endowment_channel_probe -- --ignored --nocapture
+```
+
+`endowment_margin_probe` says WHICH nation is worst and by how much. This one
+says WHICH TERM the difference is in — it runs the identical A/B and prints
+`tfp_base`, `saturated_tech_tfp`, `reference` and `adoption` separately for both
+worlds, so the residual is attributed rather than reasoned about.
+
+**E-2 says:** "the capital rate arm is gated by `(1 - dev)`, so whatever residual
+non-neutrality survives E-1 is *amplified in proportion to the size of that
+arm*." **Measured, that is not merely imprecise — it is inverted.**
+
+| nation | `1 - dev` | capital rate arm | dgrowth |
+|---|---|---|---|
+| Switzerland | 0.0000 | **identically zero** | 7.462e-5 |
+| Sweden | 0.0000 | **identically zero** | 7.355e-5 |
+| Japan | 0.0000 | **identically zero** | 6.714e-5 |
+| China | 0.9847 | largest on the board | 6.413e-5 |
+| India | 0.9843 | largest on the board | 6.390e-5 |
+
+`invest_effect = net_intensity * 0.080 * (1 - dev)` is **exactly zero** for
+Switzerland, Sweden and Japan, and they sit ABOVE the two nations whose arm is
+the largest there is. A term that is identically zero cannot be amplifying
+anything. And `capital_level_paid` is **bit-identical between the two worlds for
+every nation checked** — 0.09020584 against 0.09020584 for Belgium — because
+`ai_aggression = 0.0` leaves the investment share flat for twelve months, so
+`entitled` never differs and the whole level block is a no-op across the A/B.
+
+**WHAT THE RESIDUAL ACTUALLY IS, and the accounting closes at 100.0%.** `d.trend`
+starts at 1.784e-7 — the rebase works — so the entire residual is the MOVEMENT in
+`d.trend` over the twelve months. `d.tfp_base + d.sat` is a t=0 constant that the
+revelation machinery preserves to four figures, so what is left is two terms:
+
+```
+                d.trend m1   d.trend m12    -D(d.ref)   D(d.adopt)   explained
+   Belgium        1.784e-7      3.040e-4     3.220e-4    -1.814e-5      100.0%
+   Switzerland    1.784e-7      2.849e-4     3.220e-4    -3.719e-5      100.0%
+   China          1.784e-7      2.849e-4     3.220e-4    -3.719e-5      100.0%
+   India          1.784e-7      2.849e-4     3.220e-4    -3.719e-5      100.0%
+```
+
+`-D(d.reference)` is **+3.220e-4 and IDENTICAL for every nation**, because
+`world_reference` is one GDP-weighted scalar the whole board reads. In the
+control world the top twenty are learning fast and the reference climbs; in the
+granted world they are already saturated and it does not. The two worlds'
+references converge from 1.923e-3 apart to 1.601e-3 apart, and that 3.22e-4 IS
+the residual. **This is a uniform board-wide shift, not a per-nation double
+payment** — which is exactly what E-1's own closing note said was left, and this
+is the measurement of it.
+
+**WHY BELGIUM AND NOT SOMEBODY ELSE.** Every nation gets the same +3.220e-4 from
+the reference. What separates them is the second column: Belgium's `D(d.adopt)`
+is **-1.814e-5** where every other nation gets **-3.719e-5**. Belgium's control
+world still has adoption running at month twelve when everyone else's has
+decayed. The reason is in the data, not the arithmetic — Belgium's authored 1990
+technology file holds **2 grants**, the thinnest among the twenty largest
+economies:
+
+```
+United States 40   Japan 27   Germany 22   France 21   United Kingdom 20
+Netherlands 17   Italy 16   Canada 15   Sweden 12   Switzerland 11
+South Korea 7   Taiwan 6   China 5   India 5   Brazil 4   Mexico 3   Belgium 2
+```
+
+So Belgium has the most left to reveal, reveals it slowest, and carries adoption
+furthest into the year. **The nation this test goes red on is decided by which
+file is least authored.**
+
+**NO FIX IS AVAILABLE INSIDE THE STANDING LINES, and the reason is now sharper
+than E-2's.** The residual is not a bug in the rebase — the rebase is exact to
+1.784e-7 at month one and the revelation machinery holds `d.tfp_base + d.sat`
+constant to four figures. The residual is the definition of `world_reference`
+meeting an A/B that changes what the world knows. Repairing it means one of:
+
+1. **Change how `reference` enters `tfp_trend`** — freeze it, or rebase it
+   per-nation the way the 1990 deficit is. That is the core productivity model,
+   it moves every growth figure and both goldens, and it is the owner's.
+2. **Author Belgium's 1990 technology** so its file is not the thinnest on the
+   board. This is the fix that addresses the 1.9e-5 that makes Belgium
+   specifically the worst nation — but authored 1990 data is corrected only
+   against a source, never to make a test behave (iron rule 4), so it is the
+   owner's and it needs a source, not an agent.
+3. **Widen the bar** — forbidden by iron rule 5, restated here only so it is not
+   rediscovered as available.
+
+E-2's option 3, "trim the capital rate arm until Belgium clears", should be
+struck: this measurement shows it would not clear Belgium, because the capital
+arm is not carrying the residual. Trimming it would move the answer only through
+the GDP weights inside `world_reference`, which is the same coincidence that
+moved it 3.4e-6 in the first place.
+
+**WHAT THE CAPITAL REPAIR ACTUALLY DID, then.** It changed every nation's GDP
+path by a hair; `world_reference` is GDP-WEIGHTED; so the weights inside the one
+scalar carrying the whole residual moved, and the residual moved 3.4e-6 with
+them. The transmission is the reference's weighting, not the `(1 - dev)` gate.
+That also means E-2's closing warning should be re-pointed: the sensitivity
+amplifier for every A/B in this suite is **`world_reference`'s GDP weighting**,
+and any future change that moves the GDP path of a large economy will move this
+residual again, whether or not it touches anything gated on `dev`.
+
+**Nothing was changed. The instrument was added and is `#[ignore]`d.**
