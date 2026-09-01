@@ -4239,8 +4239,16 @@ function paintPolicy(m) {
   });
 
   const expected = pot + d.gap + drag.oil - drag.sanctions - drag.war - drag.debt - drag.unrest - drag.embargo;
-  // Debt as a share of GDP falls when nominal growth outruns the deficit.
-  const drift = led.deficit - m.debt * (expected + m.inflation);
+  // Debt as a share of GDP falls when nominal growth outruns the deficit — but
+  // it CANNOT fall past zero, because economy.rs floors it there
+  // (`n.debt_gdp = n.debt_gdp.max(0.0)`, in the same block that computes the
+  // drift this line mirrors). Without the floor the panel printed a debt still
+  // falling out of a country that has none: measured as Poland on seed 5 in
+  // January 2015, "Debt 0% of GDP" in the card and "Debt drift -2.0pp/yr" in
+  // the ledger directly beside it, and 41 of the world's nations sat at exactly
+  // zero debt in that same world. A year cannot take more debt away than there
+  // is, so the furthest the ratio can move down in a year is -debt.
+  const drift = Math.max(led.deficit - m.debt * (expected + m.inflation), -m.debt);
   const dragList = [
     drag.war > 0 ? `war ${fmt.pp(-drag.war)}` : "",
     drag.sanctions > 0 ? `sanctions ${fmt.pp(-drag.sanctions)}` : "",

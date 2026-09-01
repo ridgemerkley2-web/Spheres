@@ -2121,6 +2121,46 @@ mod tests {
         assert_eq!(d["KW-KU"], "Iraq");
     }
 
+    /// The policy ledger printed a debt still falling out of a country that has
+    /// none. Measured in the browser as Poland on seed 5 in January 2015: the
+    /// nation card read "Debt 0% of GDP" and the ledger directly beside it read
+    /// "Debt drift -2.0pp/yr". Not a corner case — 41 of that world's nations
+    /// sat at exactly zero debt, because the sim floors the ratio there.
+    #[test]
+    fn a_nation_with_no_debt_is_not_shown_paying_it_down() {
+        // The page applies the floor.
+        assert!(
+            INDEX.contains("Math.max(led.deficit - m.debt * (expected + m.inflation), -m.debt)"),
+            "the drift line no longer carries the sim's floor"
+        );
+
+        // And the sim really does floor it, which is the only thing that makes
+        // the line above true rather than merely tidy. Run a world and assert
+        // the invariant the panel is now allowed to rely on — for every nation,
+        // every month, not for a sampled few (iron rule 7: this is an invariant,
+        // so one world exercises it completely).
+        let mut g = Game::new(5, Some(NationId::Poland));
+        let mut ever_zero = 0usize;
+        for _ in 0..300 {
+            tick_month(&mut g.world, &[]);
+            for n in g.world.nations.iter().filter(|n| n.alive) {
+                assert!(
+                    n.debt_gdp >= 0.0,
+                    "{:?} holds negative debt {}",
+                    n.id,
+                    n.debt_gdp
+                );
+                if n.debt_gdp == 0.0 {
+                    ever_zero += 1;
+                }
+            }
+        }
+        assert!(
+            ever_zero > 0,
+            "no nation reached the floor in 300 months, so this says nothing"
+        );
+    }
+
     /// "same seed, same history" is printed on the setup screen beside the box,
     /// and a seed the server could not use was quietly replaced with 1990
     /// instead of being refused. Measured on the live server by fingerprinting
