@@ -212,6 +212,9 @@
   }
   .slider .fx { font-size: 11px; color: var(--dim); min-height: 15px; }
   .slider .fx b { color: var(--bright); font-weight: 600; }
+  /* Who is holding this instrument — see `sliderHtml`'s `who` argument. */
+  .slider .who { font-size: 10.5px; color: var(--faint); margin-top: 1px; }
+  .slider .who.amber { color: var(--amber); }
   .ledger { border-top: 1px solid var(--line); margin-top: 4px; padding-top: 8px; }
   .ledger .stat .v { font-weight: 600; }
   .ledger .note { color: var(--faint); font-size: 11px; margin-top: 6px; }
@@ -2182,7 +2185,7 @@ function renderLeft(m) {
 
     <div class="card">
       <h3>Policy</h3>
-      ${sliderHtml("rate", "Interest rate", m.rate, 0, 0.40)}
+      ${sliderHtml("rate", "Interest rate", m.rate, 0, 0.40, rateSeat())}
       ${sliderHtml("tax", "Tax take", m.tax, 0.02, 0.60)}
       ${sliderHtml("military", "Military spending", m.mil_spend, 0, 0.35)}
       ${sliderHtml("invest", "State investment", m.state_invest, 0, 0.40)}
@@ -4203,7 +4206,10 @@ window.enact = async function (id, name, cost) {
   await adopt(r, false);
 };
 
-function sliderHtml(kind, label, val, lo, hi) {
+/// `who` is an optional line saying who is actually holding this instrument.
+/// Only the interest rate needs one today, and it needs one badly — see
+/// `rateSeat` below.
+function sliderHtml(kind, label, val, lo, hi, who) {
   const q = queued.find((c) => c.kind === kind);
   const shown = q ? q.value : val;
   const ghost = ((val - lo) / (hi - lo)) * 100;
@@ -4218,8 +4224,30 @@ function sliderHtml(kind, label, val, lo, hi) {
         <input type="range" min="${Math.round(lo * 1000)}" max="${Math.round(hi * 1000)}"
                value="${Math.round(shown * 1000)}" step="1">
       </div>
+      ${who ? `<div class="who${who.amber ? " amber" : ""}">${who.text}</div>` : ""}
       <div class="fx"></div>
     </div>`;
+}
+
+/// Who is running monetary policy, which is a real and PERMANENT piece of state
+/// the player could not see.
+///
+/// `WorldState::player_set_rate` latches the first time the player issues a rate
+/// command, and from then on `politics::tick` skips their central bank for the
+/// rest of the game. Before the latch the bank runs the seat on their behalf —
+/// it has to, because an idle player used to hold 1990's 8% into a deflation and
+/// shrink for thirty-five years without anyone deciding to.
+///
+/// So the slider is a one-way door, and it looked like every other slider. A
+/// player could not tell whether the rate on screen was their policy or the
+/// bank's, nor that touching it dismisses the bank for good. The latch itself is
+/// pinned by tests in the sim and is not touched here; this only says out loud
+/// what it is already doing.
+function rateSeat() {
+  return S.player_set_rate
+    ? { text: "your rate — the central bank stood down when you first set it" }
+    : { text: "the central bank is setting this for you · moving it takes the wheel for good",
+        amber: true };
 }
 
 function wireSliders(m) {

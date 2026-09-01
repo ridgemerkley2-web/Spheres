@@ -768,6 +768,14 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "t": month_index(w.year, w.month),
         "player": w.player.map(|p| format!("{:?}", p)),
         "player_name": w.player.map(|p| p.name()),
+        // WHO IS RUNNING MONETARY POLICY, which is real, permanent, and was
+        // invisible. `politics::tick` runs the player's central bank on their
+        // behalf until they first issue a rate command, and skips their seat
+        // for the rest of the game afterwards. The interest-rate slider is
+        // therefore a one-way door and looked like every other slider: a player
+        // could not tell whether the rate on screen was their policy or the
+        // bank's, nor that moving it dismisses the bank for good.
+        "player_set_rate": w.player_set_rate,
         "oil_price": w.oil_price,
         "nations": nations,
         "dead": dead,
@@ -2261,6 +2269,64 @@ mod tests {
             !INDEX.contains(r#"months_left == null ? "stalled""#),
             "the research board still calls every missing number a stall"
         );
+    }
+
+    /// The interest-rate slider is a ONE-WAY DOOR and looked like every other
+    /// slider. `politics::tick` runs the player's central bank on their behalf
+    /// until they first issue a rate command; `WorldState::player_set_rate`
+    /// latches on that command and the bank is skipped for the rest of the game.
+    /// Nothing on the page said so, so a player could not tell whether the rate
+    /// in front of them was their policy or the bank's, and could not know that
+    /// touching it dismissed the bank permanently.
+    ///
+    /// The latch is pinned by tests in the sim and is NOT touched here. This
+    /// covers only the half that was missing: saying out loud what it does.
+    #[test]
+    fn the_page_can_see_who_is_running_the_central_bank() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        // Before: unlatched, and it stays unlatched across an advance — the
+        // player is idle, not governing.
+        assert_eq!(state_json(&g, None)["player_set_rate"], serde_json::json!(false));
+        for _ in 0..6 {
+            tick_month(&mut g.world, &[]);
+        }
+        assert_eq!(
+            state_json(&g, None)["player_set_rate"],
+            serde_json::json!(false),
+            "advancing time is not governing"
+        );
+        // The bank was actually running the seat, or there is nothing to say.
+        let drifted = g.world.nation(NationId::USA).interest_rate;
+        assert!(
+            (drifted - 0.08).abs() > 1e-9,
+            "the AI bank never moved the rate, so this test is not exercising the \
+             state it describes (still {drifted})"
+        );
+
+        // After one rate command it latches, and the payload says so.
+        let rate = g.world.nation(NationId::USA).interest_rate;
+        apply_command(&mut g.world, &Command::SetInterestRate { nation: NationId::USA, rate })
+            .expect("the player may always set their own rate");
+        assert_eq!(
+            state_json(&g, None)["player_set_rate"],
+            serde_json::json!(true),
+            "re-setting the rate one already had is still governing"
+        );
+        // And it never goes back.
+        for _ in 0..12 {
+            tick_month(&mut g.world, &[]);
+        }
+        assert_eq!(state_json(&g, None)["player_set_rate"], serde_json::json!(true));
+
+        // The page must read it and say both halves out loud.
+        assert!(INDEX.contains("function rateSeat()"), "the page lost its rate-seat line");
+        assert!(INDEX.contains("S.player_set_rate"), "the page does not read the latch");
+        assert!(
+            INDEX.contains(r#"sliderHtml("rate", "Interest rate", m.rate, 0, 0.40, rateSeat())"#),
+            "the rate slider no longer says who is holding it"
+        );
+        assert!(INDEX.contains("the central bank is setting this for you"));
+        assert!(INDEX.contains("takes the wheel for good"), "the door is one-way; say so");
     }
 
     #[test]
