@@ -295,9 +295,23 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
     if let Some((payer, price, refusable)) = bill {
         let held = w.nation(payer).political_capital;
         if refusable && held < price {
+            // Rounded APART, not to nearest: what is held rounds DOWN and what
+            // is needed rounds UP, both to the tenth actually shown. At `{:.0}`
+            // the two could land on the same integer and the refusal read as a
+            // contradiction — measured, 57.596 held against a price of 57.600
+            // printed as "58 political capital held, 58 needed", which tells a
+            // player they have exactly what they were just told they lack.
+            //
+            // Rounding apart makes that impossible rather than unlikely:
+            // `floor(held) <= held < price <= ceil(price)`, so the two printed
+            // numbers are equal only if `price <= held`, which is the branch
+            // this is not in. Prices are not whole numbers — they scale — so
+            // one decimal is the least that can carry the difference.
+            let held_shown = (held * 10.0).floor() / 10.0;
+            let need_shown = (price * 10.0).ceil() / 10.0;
             return Err(format!(
-                "{} has not the standing: {:.0} political capital held, {:.0} needed.",
-                payer.name(), held, price
+                "{} has not the standing: {:.1} political capital held, {:.1} needed.",
+                payer.name(), held_shown, need_shown
             ));
         }
     }
