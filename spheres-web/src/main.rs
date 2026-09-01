@@ -607,6 +607,17 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
         "theatre": format!("{:?}", c.theatre),
         "theatre_name": c.theatre.name(),
         "class": format!("{:?}", c.class()),
+        // The two rungs `Conflict::class()` is decided by — the HIGHEST standing
+        // on each side, which is not the highest and lowest in the posture list.
+        // The browser used to read the list and got a different answer whenever
+        // anybody stood below the shooting line on a side whose top was above
+        // it, which is every war a player has just joined: joining enters you at
+        // rung 1. Measured — Egypt joins the Korean war on seed 7 in April 1992,
+        // both Koreas standing at rung 6, and the card read "irregular · they
+        // will not stand where you can hit them" over a conflict the sim was
+        // calling Conventional.
+        "top_rung_a": c.top_rung(true),
+        "top_rung_b": c.top_rung(false),
         "attacker": c.attacker().name(),
         "attacker_id": format!("{:?}", c.attacker()),
         "defender": c.defender().name(),
@@ -4956,6 +4967,109 @@ mod tests {
             INDEX.contains("data.start_1990 === false"),
             "the dossier must ask whether the nation was seated before calling \
              an empty sources block a bug"
+        );
+    }
+
+    /// The war card called a conventional war irregular the moment the player
+    /// joined it.
+    ///
+    /// SYMPTOM. Egypt on seed 7 joins the Korean war in April 1992. Both Koreas
+    /// are standing and fighting at rung 6; joining enters you at rung 1, which
+    /// is what the sheet's own caption says it does. The card then read
+    ///
+    ///   North Korea + Egypt vs South Korea · irregular · they will not stand
+    ///   where you can hit them
+    ///
+    /// over two armies in the open, while the same payload carried
+    /// `"class":"Conventional"`. The flavour clause is worse than the label: it
+    /// is a sentence about an enemy who will not come out of cover, chosen
+    /// because the PLAYER'S OWN rhetoric was the lowest number in the list.
+    ///
+    /// CAUSE. `conflictLine` decided the class again, from the highest and
+    /// lowest rung in the posture array. `Conflict::class()` decides on the
+    /// highest standing on EACH SIDE. The two agree only while nobody stands
+    /// below the shooting line on a side whose top is above it — that is, until
+    /// anybody joins, which is the one war action a player can take from the
+    /// only seat they ever sit in.
+    ///
+    /// FIX. The card reads the served `class`, and `top_rung_a`/`top_rung_b` are
+    /// served so the flavour clause picks its side from the sim's own two
+    /// numbers instead of one opponent's row and a copy of `SHOOTING_RUNG`.
+    #[test]
+    fn the_war_card_takes_its_class_from_the_sim() {
+        // Built with commands rather than found in a world, so the case cannot
+        // wander off with the AI: Iraq and Kuwait both standing at the shooting
+        // rung, and Egypt joining at rung 1 the way a player does.
+        let mut g = Game::new(7, Some(NationId::Egypt));
+        for id in [NationId::Iraq, NationId::Kuwait, NationId::Egypt] {
+            g.world.nation_mut(id).political_capital = 500.0;
+        }
+        apply_command(
+            &mut g.world,
+            &Command::OpenConflict {
+                opener: NationId::Iraq,
+                target: NationId::Kuwait,
+                theatre: TheatreId::Gulf,
+            },
+        )
+        .expect("Iraq opens on Kuwait at home");
+        let id = g.world.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+        for who in [NationId::Iraq, NationId::Kuwait] {
+            g.world.nation_mut(who).political_capital = 500.0;
+            apply_command(
+                &mut g.world,
+                &Command::SetCommitment { conflict: id, nation: who, rung: 6 },
+            )
+            .expect("both stand at the shooting rung on their own ground");
+        }
+        g.world.nation_mut(NationId::Egypt).political_capital = 500.0;
+        apply_command(
+            &mut g.world,
+            &Command::JoinConflict {
+                conflict: id,
+                nation: NationId::Egypt,
+                side_a: true,
+                objective: spheres_sim::world::Objective::Deny,
+            },
+        )
+        .expect("a third state can take a side");
+
+        let s = state_json(&g, None);
+        let war = s["wars"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|w| w["id"] == id)
+            .expect("the conflict is served");
+        let rungs: Vec<u64> =
+            war["posture"].as_array().unwrap().iter().map(|b| b["rung"].as_u64().unwrap()).collect();
+        assert!(rungs.contains(&1), "nobody joined at rung 1, so the case is not set up");
+
+        // The sim's answer...
+        assert_eq!(war["class"], "Conventional");
+        assert_eq!(war["top_rung_a"], 6);
+        assert_eq!(war["top_rung_b"], 6);
+        // ...and the answer the browser used to reach from the same payload.
+        let lo = *rungs.iter().min().unwrap();
+        let hi = *rungs.iter().max().unwrap();
+        let old_said_conventional = hi >= 6 && lo >= 6;
+        assert!(
+            !old_said_conventional,
+            "the old rule agreed here, so this is not the case that was measured"
+        );
+
+        // And the browser must be reading the served class rather than the list.
+        assert!(
+            INDEX.contains(r#"w.class === "Conventional""#),
+            "the war card must take its class from the sim"
+        );
+        assert!(
+            !INDEX.contains("Math.min(...w.posture.map"),
+            "the war card is deciding the class from the posture list again"
+        );
+        assert!(
+            INDEX.contains("w.top_rung_a"),
+            "the flavour clause must pick its side from the served tops"
         );
     }
 

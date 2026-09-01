@@ -4616,16 +4616,35 @@ function ladderStrip(w, mine, theirs) {
 
 /// The class as an English sentence, not a label. A player should be able to
 /// read what kind of war they are in without a glossary.
+///
+/// THE CLASS IS THE SIM'S, and it always was — `Conflict::class()` is served on
+/// every conflict as `class`. This function used to decide again, out of the
+/// highest and lowest rung in the posture list, and those are not the two rungs
+/// the sim decides on: it reads the highest standing on EACH SIDE. The two
+/// answers differ whenever anybody stands below the shooting line on a side
+/// whose top is above it, and that is every war a player has just joined,
+/// because joining enters you at rung 1.
+///
+/// Measured: Egypt joins the Korean war on seed 7 in April 1992, both Koreas
+/// standing and fighting at rung 6, Egypt at rung 1. The sim: Conventional. The
+/// card: "irregular · they will not stand where you can hit them" — a sentence
+/// about an enemy who would not come out of cover, printed over two armies in
+/// the open, because the player's own rhetoric was the lowest number in the
+/// list. `top_rung_a`/`top_rung_b` are served for the same reason, so the
+/// flavour clause below picks a side from the sim's numbers rather than from
+/// one opponent's row and a copy of SHOOTING_RUNG.
 function conflictLine(w, mine, theirs) {
   if (w.frozen_since) return `frozen since ${w.frozen_since}`;
-  const hi = Math.max(...w.posture.map((b) => b.rung));
-  const lo = Math.min(...w.posture.map((b) => b.rung));
-  if (hi < 6) return "below the shooting line — nobody has fired";
-  if (lo >= 6) return "conventional · they are standing and fighting";
-  if (mine && theirs && mine.rung >= 6 && theirs.rung < 6)
-    return "irregular · you hold the ground and cannot end it";
-  if (mine && theirs && theirs.rung >= 6 && mine.rung < 6)
-    return "irregular · they will not stand where you can hit them";
+  if (w.class === "Conventional") return "conventional · they are standing and fighting";
+  if (w.class !== "Irregular") return "below the shooting line — nobody has fired";
+  // Irregular means exactly one side is standing in the open. Which one is the
+  // difference between the two served tops, so no rung threshold is needed.
+  if (mine && w.top_rung_a != null) {
+    const ours = mine.side_a ? w.top_rung_a : w.top_rung_b;
+    const them = mine.side_a ? w.top_rung_b : w.top_rung_a;
+    if (ours > them) return "irregular · you hold the ground and cannot end it";
+    if (them > ours) return "irregular · they will not stand where you can hit them";
+  }
   return "irregular · one side will not stand in the open";
 }
 
