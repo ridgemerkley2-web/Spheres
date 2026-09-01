@@ -425,6 +425,7 @@ WORLD_JS = os.path.join(ROOT, "spheres-web/ui/world.js")
 RELIEF_PNG = os.path.join(ROOT, "spheres-web/ui/relief.png")
 COAST_PNG = os.path.join(ROOT, "spheres-web/ui/coast.png")
 COVER_PNG = os.path.join(ROOT, "spheres-web/ui/cover.png")
+LAKE_PNG = os.path.join(ROOT, "spheres-web/ui/lake.png")
 ETOPO_NC = os.path.join(ROOT, "spheres-web/data/etopo_60s.nc")
 NE1_ZIP = os.path.join(ROOT, "spheres-web/data/NE1_50M_SR_W.zip")
 NE1_TIF = os.path.join(ROOT, "tools/terrain/raster/NE1_50M_SR_W/NE1_50M_SR_W.tif")
@@ -432,6 +433,11 @@ NE1_TIF = os.path.join(ROOT, "tools/terrain/raster/NE1_50M_SR_W/NE1_50M_SR_W.tif
 # relief.png's encoding constants — these MUST match make_relief.py's printed values and the
 # renderer's decode, or the terrain silently changes height.
 ELEV_LO, ELEV_HI, DEPTH_MAX, SDF_CLIP = -1500.0, 6400.0, 11000.0, 8.0
+# relief.png's B plane carries ocean depth on water and BAKED SKY OCCLUSION on land, the two
+# told apart by the sign of coast.png. SDF_CLIP is ONE constant for both signed fields:
+# lake.png uses the identical encode and the identical polarity.
+OCC_CLIP, OCC_CODES = 0.55, 64
+OCC_STEP = OCC_CLIP / OCC_CODES          # 0.00859375 — GLBAKE.OCC_STEP in index.html
 
 H_EXT = height()          # 1018.1941195106424 — the exact projection extent
 check("gltex", abs(H_EXT - 1018.1941195106424) < 1e-9,
@@ -445,35 +451,58 @@ def sha256_of(path):
     with open(path, "rb") as fh:
         return hashlib.sha256(fh.read()).hexdigest()
 
-def regenerates_identically(module_name, out_attr, committed, deps):
-    """Re-run a generator into a temp path and compare hashes. Never touches `committed`."""
-    absent = [d for d in deps if not os.path.exists(d)]
-    if absent:
-        warn("gltex", f"{module_name}: byte-identity SKIPPED, source absent "
-                      f"({os.path.relpath(absent[0], ROOT).replace(os.sep, '/')})")
-        return
+def load_generator(module_name):
     spec = importlib.util.spec_from_file_location(
         module_name, os.path.join(ROOT, "tools/terrain", module_name + ".py"))
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
+    return mod
+
+def regenerates_identically(stages, committed, deps, label=None):
+    """Re-run a generator PIPELINE into a temp path and compare hashes against the committed
+    artifact. Never touches `committed`.
+
+    `stages` is [(module_name, {attr: tmp_or_path})...] run in order. It is a list rather
+    than a single module because relief.png is written by TWO stages: make_relief.py bakes
+    the heightmap, then make_occlusion.py repacks its B plane on land. Hashing make_relief's
+    output alone against the committed file would fail by construction and would tempt
+    someone to delete the check rather than chain it."""
+    absent = [d for d in deps if not os.path.exists(d)]
+    if absent:
+        warn("gltex", f"{label or stages[0][0]}: byte-identity SKIPPED, source absent "
+                      f"({os.path.relpath(absent[0], ROOT).replace(os.sep, '/')})")
+        return
     tmp = committed + ".checktmp.png"       # Pillow picks its writer off the extension
-    setattr(mod, out_attr, tmp)
-    if hasattr(mod, "EMIT_2X"):
-        mod.EMIT_2X = False
     try:
-        with contextlib.redirect_stdout(io.StringIO()):
-            mod.main()
+        for module_name, attrs in stages:
+            mod = load_generator(module_name)
+            for attr, val in attrs.items():
+                setattr(mod, attr, val)
+            if hasattr(mod, "EMIT_2X"):
+                mod.EMIT_2X = False
+            with contextlib.redirect_stdout(io.StringIO()):
+                mod.main()
         same = sha256_of(tmp) == sha256_of(committed)
     finally:
         if os.path.exists(tmp):
             os.remove(tmp)
     check("gltex", same,
-          f"{module_name} regenerates byte-identically (sha256 {sha256_of(committed)[:16]}…)")
+          f"{label or stages[0][0]} regenerates byte-identically "
+          f"(sha256 {sha256_of(committed)[:16]}…)")
 
-regenerates_identically("make_relief", "OUT_1X", RELIEF_PNG, [ETOPO_NC])
-regenerates_identically("make_coast", "OUT", COAST_PNG, [WORLD_JS])
-regenerates_identically("make_cover", "OUT", COVER_PNG,
+# relief.png is the two-stage one: bake, then repack the B plane with sky occlusion. The
+# occlusion stage reads the heightmap it is given and coast.png, so pointing its RELIEF at
+# the temp file runs the real pipeline end to end without touching the committed artifact.
+regenerates_identically(
+    [("make_relief", {"OUT_1X": RELIEF_PNG + ".checktmp.png"}),
+     ("make_occlusion", {"RELIEF": RELIEF_PNG + ".checktmp.png"})],
+    RELIEF_PNG, [ETOPO_NC, COAST_PNG], label="make_relief + make_occlusion")
+regenerates_identically([("make_coast", {"OUT": COAST_PNG + ".checktmp.png"})],
+                        COAST_PNG, [WORLD_JS])
+regenerates_identically([("make_cover", {"OUT": COVER_PNG + ".checktmp.png"})], COVER_PNG,
                         [COAST_PNG, NE1_TIF if os.path.exists(NE1_TIF) else NE1_ZIP])
+regenerates_identically([("make_lakes", {"OUT": LAKE_PNG + ".checktmp.png"})],
+                        LAKE_PNG, [RIVERS_JS])
 
 # --- shape, mode and colour-chunk hygiene --------------------------------------
 # A gAMA/sRGB/iCCP chunk licenses a decoder to gamma-correct the image. On relief.png that
@@ -483,6 +512,7 @@ for label, path, want_size, want_mode in [
     ("relief.png", RELIEF_PNG, (2400, 1018), "RGB"),
     ("coast.png", COAST_PNG, (2400, 1018), "L"),
     ("cover.png", COVER_PNG, (1200, 509), "L"),
+    ("lake.png", LAKE_PNG, (2400, 1018), "L"),
 ]:
     im = Image.open(path)
     nbytes = os.path.getsize(path)
@@ -494,8 +524,14 @@ for label, path, want_size, want_mode in [
     found = [c.decode() for c in (b"gAMA", b"sRGB", b"iCCP") if c in blob]
     check("gltex", not found, f"{label} carries no gAMA/sRGB/iCCP chunk (found {found})")
 print(f"  added baked payload: {total_bytes} bytes = {total_bytes / 1048576:.3f} MiB")
-check("gltex", total_bytes <= 3_400_000,
-      f"three GL textures total <= 3,400,000 bytes (got {total_bytes})")
+# The cap is a SUM OF STATED CEILINGS, not a round number moved to fit. It was 3,400,000 for
+# the three original textures; the sky-occlusion repack of relief.png's B plane is budgeted
+# at the 140,000 B its own generator FAILS above (it measures +103,036 today, and the delta
+# depends on the entropy of the field actually shipped, so no report can promise it in
+# advance), and lake.png at the 21,000 B its generator FAILS above (20,173 today). Raise
+# this only by adding another ceiling you can name.
+check("gltex", total_bytes <= 3_400_000 + 140_000 + 21_000,
+      f"four GL textures total <= 3,561,000 bytes (got {total_bytes})")
 
 # --- relief.png: the elevation decode, against ground truth ---------------------
 rel = np.asarray(Image.open(RELIEF_PNG), dtype=np.float64)
@@ -595,6 +631,88 @@ print(f"  coastline registration: {_s.size} shoreline vertices, mean d = {_s.mea
 check("gltex", abs(float(_s.mean())) < 0.25 and float(np.abs(_s).max()) < 2.0,
       "world.js coastline vertices sit on coast.png's zero level set (mean |d| < 0.25, "
       "max |d| < 2.0 canvas units)")
+
+# --- relief.png's B plane on land: baked sky occlusion --------------------------
+# The B byte carries TWO quantities disambiguated by the SIGN of coast.png, never by a
+# threshold on the byte itself: ocean depth on water, sky occlusion on land. So the land half
+# has to be checked against the land test the shader actually uses, and the two halves must
+# not be allowed to trade places silently — hence the land-count assertion beside the values.
+occ = rel[..., 2] * OCC_STEP
+land_mask = sdf > 0.0
+n_land = int(land_mask.sum())
+print(f"  occlusion: land texels {n_land}, occ p50 {np.percentile(occ[land_mask], 50):.4f} "
+      f"p90 {np.percentile(occ[land_mask], 90):.4f} p99 "
+      f"{np.percentile(occ[land_mask], 99):.4f} max {occ[land_mask].max():.4f}")
+check("gltex", n_land == 654_935,
+      f"coast.png reports 654,935 land texels (got {n_land}) — the occlusion plane is "
+      f"written on exactly this set")
+check("gltex", occ[land_mask].max() <= OCC_CLIP + 1e-9,
+      f"no land texel exceeds the {OCC_CLIP} occlusion clip (max "
+      f"{occ[land_mask].max():.4f}) — a value above it means the byte is being read as depth")
+check("gltex", float(np.percentile(occ[land_mask], 50)) < 0.02,
+      f"the median land texel is essentially unoccluded "
+      f"({np.percentile(occ[land_mask], 50):.4f}) — flat land must still render the "
+      f"authored hex")
+# Deep ground dark, open ground clear. The 5x5 window is the reading, not the centre texel:
+# 60-arc-second data warped to a 2400-wide canvas is 13-16 km per texel at these latitudes,
+# and the Grand Canyon is 16 km rim to rim, so a gorge is at most a texel or two wide.
+def occ_win(lon, lat, r=2):
+    tx, ty = texel(lon, lat)
+    return float(occ[ty - r:ty + r + 1, tx - r:tx + r + 1].max())
+
+OCC_POINTS = [
+    ("Grand Canyon",      -112.10,  36.10, 0.10, None),
+    ("Colca Canyon",       -71.90, -15.62, 0.10, None),
+    ("Kali Gandaki gorge",  83.60,  28.75, 0.10, None),
+    ("Alps (Mont Blanc)",    6.87,  45.83, 0.10, None),
+    ("Tibetan plateau",     88.00,  32.00, None, 0.10),
+    ("N European Plain",    18.00,  52.50, None, 0.01),
+    ("W Siberian Plain",    75.00,  60.00, None, 0.01),
+    ("Amazon floodplain",  -62.00,  -3.00, None, 0.01),
+]
+for label, lon, lat, lo, hi in OCC_POINTS:
+    v = occ_win(lon, lat)
+    want = ("> " + str(lo) if lo is not None else "") + \
+           (" and " if lo is not None and hi is not None else "") + \
+           ("< " + str(hi) if hi is not None else "")
+    check("gltex", (lo is None or v > lo) and (hi is None or v < hi),
+          f"occlusion {label}: 5x5 max {v:.4f} (want {want})")
+
+# --- lake.png: the lake shoreline field, coverage and registration ---------------
+# Same encode, same clip and same polarity as coast.png — positive means "not this water
+# body", so the open ocean saturates at +8 here exactly as the middle of a continent does.
+lkt = np.asarray(Image.open(LAKE_PNG), dtype=np.float64) / 255.0 * 2.0 - 1.0
+lake = np.sign(lkt) * SDF_CLIP * lkt * lkt
+n_lake = int((lake < 0.0).sum())
+print(f"  lake field: {n_lake} lake texels, {len(np.unique(np.asarray(Image.open(LAKE_PNG))))}"
+      f" distinct codes")
+check("gltex", 2000 < n_lake < 5000,
+      f"the 29 scalerank<=1 lakes cover a plausible {n_lake} texels")
+LAKE_POINTS = [
+    ("Lake Superior",  -87.50,  47.60, "lake"),
+    ("Lake Baikal",    108.00,  53.50, "lake"),
+    ("Lake Victoria",   33.00,  -1.20, "lake"),
+    ("Lake Michigan",  -87.00,  43.50, "lake"),
+    # NOT a lake here, and that is the source's own classification rather than a miss:
+    # Natural Earth calls the Caspian a sea and excludes it from ne_10m_lakes, so it is in
+    # neither rivers.js nor lake.png. It is already water via coast.png, checked above.
+    ("Caspian Sea",     51.00,  42.00, "not-lake"),
+    ("mid-Pacific",   -140.00,   0.00, "not-lake"),
+    ("North Atlantic", -30.00,  45.00, "not-lake"),
+    ("Mediterranean",   17.00,  35.00, "not-lake"),
+    ("Sahara interior", 12.00,  24.00, "not-lake"),
+]
+for label, lon, lat, want in LAKE_POINTS:
+    tx, ty = texel(lon, lat)
+    got = "lake" if lake[ty, tx] < 0.0 else "not-lake"
+    check("gltex", got == want,
+          f"lake {label} at texel ({tx},{ty}): d = {lake[ty, tx]:+.3f} -> {got} "
+          f"(want {want})")
+# No lake texel may be ocean-side of coast.png: a lake that leaked into the sea would put
+# the GL water edge in disagreement with the district fills drawn over it.
+_leak = int(np.count_nonzero((lake < 0.0) & (sdf < 0.0)))
+check("gltex", _leak == 0,
+      f"no lake texel is ocean-side of the coastline (got {_leak})")
 
 # --- cover.png: the vegetation index separates the biome tiers -------------------
 cov = np.asarray(Image.open(COVER_PNG), dtype=np.float64) / 255.0

@@ -142,29 +142,104 @@ pub fn tick(w: &mut WorldState) {
         let invest = n.state_invest_gdp + n.priv_invest_gdp;
         let gdp_pc = n.gdp * 1000.0 / n.population; // $ per capita
         let dev = (gdp_pc / 24000.0).min(1.0);
-        // Capital deepening has diminishing returns as economies mature — and
-        // diminishing returns to itself. The return was linear in the investment
-        // share, so a nation could buy growth indefinitely by simply investing
-        // more of its output, and Japan's 29% of GDP earned it two-thirds again
-        // what America's 17.5% earned forever. Concave around a 20% reference:
-        // the same at that point, worth progressively less above it.
-        let intensity = crate::exact::powf((invest / 0.20).max(0.0), 0.55) * 0.20;
-        // ONLY THE TRANSITIONAL ARM SURVIVES. `0.030` was a floor that never
-        // expired: `dev` is pinned at 1.0 for every mature economy from month
-        // one and `invest` never moves, so it was a per-nation CONSTANT paid as
-        // a growth rate for 420 months — 0.5576 pt/yr to the United States and
-        // 0.7360 to Japan, flat to four decimals across all four decades. A
-        // constant investment share buys a permanently larger economy and no
-        // permanent growth at all: capital contributes α·ĝ_K and ĝ_K -> ĝ_Y on
-        // any balanced path. It was ordered against reality besides, handing
-        // Italy (0.587) more than the United States (0.554). This is BIBLE §8's
-        // error class, and it is fixed the way §8 fixes it: the share now buys a
-        // LEVEL, paid as the share actually changes, below.
+        // ===================================================================
+        // THE CAPITAL CHANNEL. Repaired 2026-08-31 on Ridge's ruling 1 of that
+        // date, taken with the measurement below in front of him. Recorded here
+        // the way §8 records the trade-pact correction it cites, because this is
+        // the same error class caught twice in a row and the second catch is the
+        // one that is easy to get wrong.
         //
-        // The surviving arm is a different animal and is correct in form —
-        // transitional capital deepening that expires as a nation develops. It
-        // is what pays China 2.7 points in 1990 and 1.4 by 2025.
-        let invest_effect = intensity * 0.080 * (1.0 - dev);
+        // WHAT CAPITAL ACCUMULATION ACTUALLY DOES TO OUTPUT, WRITTEN AS THE ONE
+        // IDENTITY IT IS. With Y = K^α (A·L)^(1-α), rearranging to put the
+        // capital-output ratio on the right gives
+        //
+        //      ln Y = α/(1-α) · ln(K/Y) + ln(A·L)
+        //
+        // so the whole of what capital does to output is α/(1-α)·ln(K/Y), and
+        // the only question this file has to answer is what moves K/Y. K/Y is a
+        // STOCK ratio and it has its own law of motion,
+        //
+        //      d(K/Y)/dt = s - (δ + g)·(K/Y)
+        //
+        // in which the investment share s is the FLOW INTO the stock and not the
+        // stock. Both defects fixed in this pass — this arm, and the level block
+        // beside `CAPITAL_ELASTICITY` below — are the same mistake: the code
+        // priced the flow s as though it were the stock K.
+        //
+        // WHAT THIS ARM IS, AND WHAT IT IS NOT. It is deliberately NOT α·ĝ_K.
+        // Paying α·ĝ_K here would double-count, because `tfp_trend` and
+        // `catchup` below are reduced-form TREND terms for a developing economy
+        // rather than a pure Solow residual — measured on the shipped board
+        // China draws 3.9 points of `tfp` and 1.9 of `catchup`, which is already
+        // most of a growth rate, and α·ĝ_K on top of that would be the same
+        // growth counted twice. What this arm is is the rate at which a nation
+        // converts capital formation into closing its development gap: the gap
+        // is `(1 - dev)`, and how fast it closes depends on how much NEW capital
+        // the nation actually lays down. That reading is why the `(1 - dev)`
+        // gate belongs here and why the arm is not BIBLE §8's error class — it
+        // expires on its own as a nation develops, so it is transitional, and a
+        // transitional rate paid on a gap that closes is a level in disguise
+        // rather than a permanent rate.
+        //
+        // ONLY THE TRANSITIONAL ARM SURVIVES, AND THAT PART OF THE PREVIOUS PASS
+        // STANDS. `0.030` was a floor that never expired: `dev` is pinned at 1.0
+        // for every mature economy from month one and `invest` never moves, so
+        // it was a per-nation CONSTANT paid as a growth rate for 420 months —
+        // 0.5576 pt/yr to the United States and 0.7360 to Japan, flat to four
+        // decimals across all four decades. A constant investment share buys a
+        // permanently larger economy and no permanent growth at all. It was
+        // ordered against reality besides, handing Italy (0.587) more than the
+        // United States (0.554). Removing it was right and it is not coming
+        // back; what follows repairs the arm that was left, not that one.
+        //
+        // THE DEFECT IN THE ARM THAT WAS LEFT IS ITS SHAPE, NOT ITS SIZE.
+        // `intensity = (s/0.20)^0.55 · 0.20` HAS NO ZERO. It is strictly
+        // positive for every s > 0, so a nation putting 4% of its output into
+        // capital was paid capital deepening it was not doing — its capital
+        // stock was shrinking. And because the concavity is applied to the whole
+        // share rather than to the part of it that is new capital, a 30% economy
+        // was paid only 25% more than a 20% one, as though the first twelve
+        // points of investment — the ones that merely replace what wore out —
+        // were buying growth. They are not. Capital only deepens above the
+        // replacement line, and the whole of the difference between a 30%
+        // economy and a 20% one is the NET investment above that line: 17.5
+        // points against 7.5, a factor of 2.3 rather than 1.25.
+        //
+        // That is also the answer to the thing the ruling names. A share that
+        // drifts 0.300 -> 0.261 is still laying down capital at five times the
+        // rate the stock wears out; the channel must not read a mild decline in
+        // a high share as a nation destroying capital, and with the zero in the
+        // right place it does not — the decline is priced against the 0.175 of
+        // net investment that is actually there, not against the 0.300 of gross.
+        //
+        // WHERE THE LINE IS, DERIVED FROM CONSTANTS THIS FILE ALREADY HOLDS
+        // RATHER THAN CHOSEN. `CAPITAL_ELASTICITY` below fixes α/(1-α) = 0.49,
+        // and the level block's reference investment share is 0.20. Read that
+        // reference back through the same balanced path the level block is built
+        // on: a nation at s = 0.20, depreciating at the standard aggregate 5% a
+        // year against a 3% trend, holds K/Y = s/(δ+g) = 0.20/0.08 = 2.5 years
+        // of output. Replacing 5% of that costs δ·(K/Y) = 0.125 of output every
+        // year before one unit of new capital exists. So the replacement share
+        // is 0.125, and it is 0.20 and δ restated rather than a new number.
+        //
+        // AND THIS IS A RESHAPE, NOT A RESCALE — the precedent is `intensity`
+        // itself, which was introduced "the same at that point, worth
+        // progressively less above it". `net_intensity` is normalised to equal
+        // the old `intensity` EXACTLY at s = 0.20, and the 0.080 coefficient
+        // beside it does not move by a bit. What changed is the slope through
+        // that point, and the slope is what the physics fixes. Nothing here was
+        // swept until China read 9.2%: the reference value is the shipped value
+        // to the last bit, and the shipped board's China lands where it lands.
+        //
+        // BOUNDED, at the place where it is computed, in the sense the
+        // no-mirroring-ceiling ruling below asks for: s >= 0 makes
+        // `net_intensity` >= -0.3333 and the arm >= -2.67 pt/yr, reached only by
+        // a nation investing literally nothing, and it is gated to zero at the
+        // frontier besides.
+        const REPLACEMENT_SHARE: f64 = 0.125; // δ·(K/Y) = 0.05 × 2.5 at the 0.20 reference
+        let net_intensity =
+            (invest.max(0.0) - REPLACEMENT_SHARE) * (0.20 / (0.20 - REPLACEMENT_SHARE));
+        let invest_effect = net_intensity * 0.080 * (1.0 - dev);
         // Income convergence: capital deepening and the reallocation of labour
         // out of subsistence, which is most of what makes a poor country grow
         // fast. This is *not* the technological diffusion the tech tree models,
@@ -612,20 +687,66 @@ pub fn tick(w: &mut WorldState) {
         // A change in the investment share buys a permanently different level of
         // output per worker, not a permanently different growth rate. With
         // Y/L ∝ (K/Y)^(α/(1-α)) and K/Y ∝ s along a balanced path, moving the
-        // share from s0 to s1 moves the level by (s1/s0)^(α/(1-α)). Paid in over
-        // roughly four years rather than instantly, because re-equipping an
-        // economy takes time; paid back symmetrically when a share is cut,
-        // because that is what the same arithmetic says.
+        // share from s0 to s1 moves the level by (s1/s0)^(α/(1-α)).
         //
         // `None` means the 1990 transcription already reflects the 1990 share —
         // this must never reprice a transcribed starting figure, and it is also
         // what makes an older save load without being paid twice.
+        //
+        // THE FORM OF THIS BLOCK IS RIGHT AND IS KEPT: it pays on the CHANGE in
+        // the entitlement rather than on the entitlement itself, so a constant
+        // share pays a bounded one-time level and then exactly nothing forever.
+        // That is BIBLE §8 satisfied by construction. Two things in it were not
+        // derived, and both are the flow-priced-as-a-stock mistake the arm above
+        // records.
+        //
+        // 1. THE SPEED WAS A FREE CONSTANT. `0.02` a month, glossed as "roughly
+        //    four years", is a 2.9-year half-life. A capital-output ratio does
+        //    not converge at 24% a year; it converges at δ + g, which is the
+        //    coefficient on K/Y in its own law of motion — about 8% a year, a
+        //    nine-year half-life. The shipped speed chased every transient dip
+        //    in a policy variable three times faster than a capital stock can
+        //    physically respond, so a share that fell for a decade and came back
+        //    was charged most of a permanent level loss on the way down.
+        //
+        // 2. THE STEP WAS THE LINEARISATION, AND THE LINEARISATION IS SYMMETRIC
+        //    WHEN THE PHYSICS IS NOT. `(entitled - paid)/CAPITAL_ELASTICITY` is
+        //    exactly ln(K*/K) — the log gap between the capital-output ratio the
+        //    current share supports and the one the nation has — so the true law
+        //    of motion in logs is
+        //
+        //        d ln(K/Y)/dt = s/(K/Y) - (δ + g) = (δ + g)·(K*/K - 1)
+        //
+        //    and `exp(gap) - 1` is that, where `gap` alone is its first-order
+        //    approximation. The difference is the whole asymmetry: a stock that
+        //    is being added to can rise as fast as the investment allows, but it
+        //    can only FALL at the rate it wears out, because gross investment
+        //    cannot go below zero. exp(x)-1 > x for x < 0 says precisely that,
+        //    and it is why a mild decline in a high share can no longer produce
+        //    a large sustained negative. The linearisation had no such floor.
+        //
+        // Measured, 30 seeds, off the shipped board's own share series before
+        // anything was changed: the two corrections together are worth about
+        // +0.01 pt/yr to China over thirty years and EXACTLY 0.000 to Japan,
+        // Germany, France, the UK and Italy, whose shares are flat for 420
+        // months. This block was never where the damage was — that is the arm
+        // above — and it is repaired here because it was wrong, not because it
+        // was load-bearing.
         const CAPITAL_ELASTICITY: f64 = 0.49; // α/(1-α) at a capital share of 1/3
+        const DEPRECIATION: f64 = 0.05; // aggregate capital, the standard rate
+        const TREND_GROWTH: f64 = 0.03; // the reference balanced path's g
+        const CONVERGENCE: f64 = (DEPRECIATION + TREND_GROWTH) / 12.0;
         let entitled = CAPITAL_ELASTICITY * crate::exact::ln(invest.max(1e-6) / 0.20);
         match n.capital_level_paid {
             None => n.capital_level_paid = Some(entitled),
             Some(paid) => {
-                let step = (entitled - paid) * 0.02;
+                // A guard and not a policy, in the sense the WORST_ANNUAL_COLLAPSE
+                // paragraph above uses: |gap| = 2 is a capital-output ratio 7.4x
+                // away from what the share supports, which nothing this model
+                // produces reaches. It is here so the exponential is provably
+                // bounded rather than bounded by inspection.
+                let gap = ((entitled - paid) / CAPITAL_ELASTICITY).clamp(-2.0, 2.0);
+                let step = CAPITAL_ELASTICITY * CONVERGENCE * (crate::exact::exp(gap) - 1.0);
                 n.gdp *= crate::exact::exp(step);
                 n.capital_level_paid = Some(paid + step);
             }

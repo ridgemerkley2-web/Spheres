@@ -215,8 +215,29 @@ within a stated band of reality" — is met for five of six at ±0.75pp.
   drawdown on the panel is 1.3 years, and Italy's 2000s are its *fastest* decade.
   Real Italy did not regain its 2007 peak for ~14 years. Same missing mechanism
   as the Italy gap.
-- **China is 0.8pt short**, 8.48%/yr against ~9.3% real. Previously masked by
-  the two over-paying terms. Real residual, named, not closed with a coefficient.
+- ~~**China is 0.8pt short**, 8.48%/yr against ~9.3% real.~~ **CLOSED 2026-08-31
+  by ruling 1, the capital-channel repair.** The shortfall was not a residual to
+  be lived with: `economy::tick`'s capital RATE arm `(s/0.20)^0.55 · 0.20` had no
+  zero, so it paid capital deepening to a nation whose stock was shrinking, and
+  applied its concavity to GROSS investment as though the twelve points that
+  merely replace worn capital bought growth. Replaced by a net-of-replacement
+  form that equals the old term **exactly** at the reference `s = 0.20`, with the
+  replacement line `δ·(K/Y) = 0.125` read off constants already in the file
+  rather than swept. **China's 30-year multiple over 300 fair seeds: median
+  11.07x → 14.69x against a real 14.33x; 9.372%/yr against 9.28%/yr; seeds below
+  the old 11.0 floor 46.7% → 3.3%; seeds reaching reality 0% → 57.7%.** The 0.09pt
+  overshoot is reported rather than trimmed — trimming would be fitting to a bar.
+  What is NOT closed is the *input*: the model still drives China's investment
+  share **down** 0.300 → 0.261 where reality drove it up from ~35% to ~42%. That
+  is a `politics.rs` debt-path defect; the repair made the channel robust to the
+  wrong series rather than curing it.
+- **The capital repair cost three developing economies and one calibration test,
+  and both are recorded rather than absorbed.** Indonesia is +1.50 pt/yr further
+  from reality and now sits 6th in the 2020 league table (BUGS.md **C-2**);
+  Vietnam and South Korea are worse by 0.49 and 0.15. And
+  `the_1990_endowment_does_not_move_year_one_growth` went RED — Belgium at 102.2%
+  of a bar it cleared at 98.8% on HEAD (BUGS.md **E-2**). That red is now the
+  single blocker on the golden re-pin.
 - **Three of the four original items are DONE (2026-08-31); one is ruled on and
   one is refused.** `demand_gap` is now symmetrically bounded by
   `MAX_DEMAND_GAP = 0.35`, read off the bust side's own pre-existing bound of
@@ -257,6 +278,17 @@ within a stated band of reality" — is met for five of six at ±0.75pp.
   18/40 and the two conquest tests are red on their non-vacuity guards. T-1 and
   T-2 are now CLEARED. **Nothing was re-pinned.** Both goldens keep the HEAD
   constants.
+- **AND ADJUDICATED A SECOND TIME, 2026-08-31, after all three of Ridge's rulings
+  landed — STILL NOTHING RE-PINNED.** The three blocking reds are gone;
+  `the_1990_endowment_does_not_move_year_one_growth` replaced them. Half one was
+  re-verified independently (brace-matched body extraction, comment bytes
+  blanked, duplicate-aware): **0 bodies deleted, 0 tolerances widened, 1 ceiling
+  added, 7 lib.rs bodies changed and every assertion literal compared one by
+  one**. The full second adjudication, the five-versus-two authorisation scope
+  question, and the eight mechanisms a future re-pin must name are in BUGS.md
+  **T-5**. Suite stands at **152 passed / 3 failed / 19 ignored** in `spheres-sim
+  --lib`, plus 17/17 in `spheres-web`, 0 tests in `spheres-cli`, and 29 further
+  `#[ignore]`d instruments across the four integration-test binaries.
 
 ## 8. Give the player something to want and something to pick — **[M]**
 
@@ -414,3 +446,30 @@ a stated BIBLE non-negotiable, so they are asked rather than assumed:
 4. Delete the ~67 stale branches and move the worktree root off OneDrive?
 5. Is a forty-year simmering border quarrel a bug or the intended output?
    (India–Pakistan has run seventy-eight years on that shape.)
+
+**Added 2026-08-31, after the three rulings landed and the verification pass ran.
+Each of these is a bar or a scope decision, so iron rule 5 reserves all four:**
+
+6. **How is `the_1990_endowment_does_not_move_year_one_growth` cleared?**
+   (BUGS.md E-2.) It is red at Belgium 1.0218e-4 against a 1.0e-4 bar, green at
+   HEAD by 1.2%, and the capital repair is proven to be the sole cause. The three
+   available moves are: rebase `adoption` the rest of the way (the honest fix,
+   and it moves both goldens); widen the bar (forbidden by iron rule 5, listed
+   only so it is not rediscovered); or trim the capital rate arm (fitting a
+   production coefficient to a test). **This is the one blocker on the re-pin.**
+7. **Was the authorised re-pointing set two tests or five?** Five tracked test
+   bodies differ from HEAD, each carrying a dated authorisation block quoting
+   you — three cite ruling 2, one cites ruling 3's named "China n>=100", and
+   `a_burned_aggressor_does_not_come_back_for_the_same_prize` cites iron rule 7's
+   general doctrine with no named target. Nothing is a widening, but the re-pin
+   is the act that blesses the set, so the set should be named before it happens.
+8. **Should the mature panel's acceptance criterion become a test?** (BUGS.md
+   T-7.) Spearman rho and the four ordering clauses — the standing bar of the
+   last four sessions — are printed by an `#[ignore]`d instrument and asserted
+   nowhere. Nothing in `cargo test` can catch a regression in them.
+9. **Indonesia.** (BUGS.md C-2.) It has no calibration bar, it was the worst-
+   calibrated nation before the repair and is +1.50 pt/yr worse after, and it is
+   now visibly wrong in the 2020 league table at 6th. The proper fix is a
+   per-nation capital-output ratio, which is not transcribed anywhere in this
+   repo — so it is either a transcription task or an accepted cost, and both are
+   yours.

@@ -60,7 +60,8 @@ Two pillars from SPEC.md, and where each now stands:
    one pass — a test that cannot fail is worse than no test. When you tighten
    or add a calibration test, check it goes red against the behaviour it is
    meant to catch. Several here were wide enough to admit a full point of
-   annual growth without noticing.
+   annual growth without noticing. A bar also has to be asked of enough seeds to
+   mean anything — see rule 7, which is the sampling half of this rule.
 6. **Do not trust a green test you did not watch build.** `.cargo/config.toml`
    is now untracked precisely because of this: while it was tracked, every
    worktree under `.claude/worktrees/` built into the same `target-dir` as the
@@ -69,6 +70,67 @@ Two pillars from SPEC.md, and where each now stands:
    wrong readings before it was caught, in both directions. Still export a
    separate `CARGO_TARGET_DIR` per worktree, and if a result surprises you
    either way, confirm the binary is yours before believing it.
+7. **A calibration bar must sample enough seeds to be worth believing.**
+   Added 2026-08-31 on Ridge's ruling — the third of three settled that day,
+   alongside the capital-channel repair and the re-pointing of the two
+   mis-sampled conquest tests. Every bar that reads a STATISTIC across seeds —
+   a count, a rate, a median — must sample enough of them that its probability
+   of going red while the model is healthy is **under 1%**, and that number must
+   be derived from **that test's own MEASURED per-seed variance**, not guessed
+   and not inherited from a neighbouring test. **Record the required n in the
+   test's comment beside the bar**, with the variance it came from, so the next
+   session can re-derive it instead of taking it on trust; the honest way to
+   carry that measurement is a wider `#[ignore]`d scan of the same quantity
+   sitting beside the bar, the way `gulf_war_incidence_scan` and
+   `conquest_size_rule_scan` sit beside theirs. For the bars that predate this
+   rule, `spheres-sim/tests/sample_size_audit.rs` is the record: it measures
+   every seed-sampling bar in the suite and its header carries the table as of
+   2026-08-31. That is the stopgap, not the destination — **when you touch a bar
+   for any reason, that is the moment to move its line out of the audit and into
+   the comment beside it**, and a new bar carries its derivation from birth.
+
+   The arithmetic, so nobody has to invent it. Most bars here read a per-seed
+   Bernoulli event, whose variance IS p(1-p) once p is measured. For a bar that
+   scales with the sample ("a majority of worlds"), n = (2.326·sd / margin)²,
+   margin being the distance from the true rate to the bar. For a bar of "at
+   least once", n = ln(0.01) / ln(1 - p). For a median or a band, bootstrap the
+   measured per-seed sample; do not assume it is normal.
+
+   **This does not apply to an INVARIANT** — "no dead nation holds districts",
+   "a stable democracy never hyperinflates", "GDP stays finite". A universal
+   claim cannot produce a false red from a small sample; it can only lose power,
+   so seeds there are a budget question and not a correctness one. And note the
+   trap in a test that asserts a universal claim per seed AND a statistic across
+   them: raising n makes the per-seed arm STRICTER. Size that arm to what is
+   true, not to what is large.
+
+   **The other half of the same question is POWER**, and it is the half that
+   cost this project the most. A sample can be quiet enough never to red falsely
+   and still be blind: state the size of the regression the bar exists to catch,
+   and check that the sample can actually see a move that big. A bar whose
+   false-red probability is zero because the true rate is nowhere near it is not
+   safe, it is decorative, and it should be recorded as such rather than
+   believed.
+
+   Iron rule 5 still binds on top of this: the repair for an under-sampled bar
+   is **more seeds, never a wider bar**. Widening a bar because a wider sample
+   crossed it is the thing this rule exists to stop. And a bar whose literal is
+   tied to the sample size — "fewer than all twelve" — cannot be widened without
+   re-expressing the bar, which is a decision for Ridge and not for the session
+   that noticed it.
+
+   WHY, measured 2026-08-31 rather than argued. Three of this suite's bars were
+   read against their own variance and their false-red probabilities were **67%**
+   (annexation asked of twenty seeds, when annexation is a ~2-4% per-seed event),
+   **4.6%** (the Gulf War's majority bar asked of forty — `gulf_war_incidence_
+   scan` re-derives 5.0% from its own p = 0.615, which is the same finding), and
+   **37.6%** (China's thirty-year median asked of ten, on the pre-repair tree).
+   A suite in that state does not fail loudly —
+   it INVERTS. The same pass found China's thirty-year multiple had fallen
+   14.29x to 11.07x, **22.5% of level and most of a point of annual growth**, and
+   `china_growth_miracle` was GREEN throughout, because seeds 0..9 happened to be
+   a +1.3% lucky draw. Two red tests that were reading noise, and one green test
+   sitting on a real regression, all from the same defect.
 
 ## Layout
 - `spheres-sim/` — the library. world.rs (state/RNG), init.rs (1990 data),

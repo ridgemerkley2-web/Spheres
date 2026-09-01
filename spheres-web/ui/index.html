@@ -628,9 +628,34 @@
   .river { fill: none; stroke: #4c8ee0; stroke-width: .7px; opacity: .25;
            stroke-linecap: round; stroke-linejoin: round; transition: opacity .25s; }
   svg.zb1 #riverg .river { opacity: .55; }
-  .lake { fill: #4c8ee0; opacity: .3; transition: opacity .25s; }
+  /* BOTH .lake rules use fill-opacity, not opacity, and they had to move
+     TOGETHER: with no stroke the two are identical, so THE FALLBACK MAP IS
+     UNCHANGED TO THE PIXEL — but moving only one would compose .55 group
+     opacity with .3 fill-opacity to 0.165 in Terrain and stop the mode switch
+     animating. The transition moves with them for the same reason. */
+  .lake { fill: #4c8ee0; fill-opacity: .3; transition: fill-opacity .25s; }
   svg.map-terrain #riverg .river { opacity: .9; }
-  svg.map-terrain #riverg .lake { opacity: .55; }
+  svg.map-terrain #riverg .lake { fill-opacity: .55; }
+  /* Under the ground only: the tint yields by the same per-camera window
+     everything else does, and gains the outline GL cannot draw.
+
+     THE #riverg IS LOAD-BEARING, not decoration. `svg.map-terrain #riverg .lake`
+     carries ID specificity (1,1,1); a bare `svg.gl-on .lake` is (0,2,1) and
+     would LOSE to it, so --lakeop would never apply in Terrain — the single
+     mode it exists for. Written with the id the two rules tie at (1,2,1) and
+     source order decides, which is why this one must come last.
+
+     The 0.5px non-scaling stroke is this file's own idiom, already asserted
+     twice for the ocean frame and the unaligned land: a fill that yields to the
+     GL ground plus a stroke that always draws, because GL cannot rule a line
+     that ignores the camera. It is the guarantee that at k=1, where the lake
+     field dissolves into the mip and the water treatment is faded out, every
+     lake is still a marked, legible shape. The Terrain legend's
+     ["#4c8ee0", "river / lake"] swatch stays literally true: it labels the
+     MARK, and the mark is still that colour. */
+  svg.gl-on #riverg .lake { fill-opacity: var(--lakeop, .3);
+                            stroke: #4c8ee0; stroke-opacity: .55; stroke-width: .5px;
+                            vector-effect: non-scaling-stroke; }
 
   /* relief: the baked hillshade, multiply-blended over the fills. Subtle
      under the political reads, the modelling light of the Terrain mode, and
@@ -644,7 +669,7 @@
   svg.map-growth #relief, svg.map-economy #relief { opacity: 0; }
 
   /* GL physical underlay: a WebGL2 canvas UNDER the svg, drawing the physical
-     ground from the baked /relief.png /coast.png /cover.png textures. See the
+     ground from the baked /relief.png /coast.png /cover.png /lake.png textures. See the
      "GL physical underlay (RENDER)" block in the script for the whole design.
 
      `pointer-events: none` is MANDATORY, not hygiene: pointerdown gates on
@@ -4585,9 +4610,13 @@ const MAP_MODES = {
     // Modelling only: the ground is a light source, not information. The legend
     // promises nothing physical, so the terrain must read as texture under the
     // colour rather than as a second variable competing with it.
+    // A lake is a HOLE in the political fill: the shore band and the contact
+    // shadow show through the remaining 16-25% as a modelled dark crescent. The
+    // glint is a whisper and only past k~8 — a political map must not mirror.
     ground: {
-      u: [0.35, 0.80, 13], sat: [0.30, 0.90, 16], shade: [0.60, 1.00, 11],
+      u: [0.35, 0.80, 13], sat: [0.30, 0.90, 16], shade: [0.50, 0.50, 11],
       sea: [0.65, 0.65, 13], haze: [0.55, 0.55, 13],
+      ao: [0.35, 0.70, 13], glint: [0.00, 0.22, 16], lake: [0.30, 0.30, 13],
       fill: [0.84, 0.75, 20], tfill: [0.85, 0.85, 13],
       seaop: 0, landop: 0, gratop: 0.45,
     },
@@ -4601,9 +4630,14 @@ const MAP_MODES = {
     // stay the loudest mark on the screen, and the belligerent-vs-desaturated
     // separation (mix(polColor, "#2a323c", .62)) has to survive a ground being
     // added under both halves of it. Same ramp shape, scaled by 0.30/0.35.
+    // Strictly quieter than Political at every zoom, on the mode's own existing
+    // policy: the #ff6b6b seam is the loudest mark and a glint beside a front
+    // would compete with it. Measured, delivered land swing 6.01 / 6.33 against
+    // Political's 6.99 / 7.37 — quieter at BOTH ends, not just at one.
     ground: {
-      u: [0.30, 0.69, 13], sat: [0.20, 0.80, 16], shade: [0.60, 1.00, 11],
+      u: [0.30, 0.69, 13], sat: [0.20, 0.80, 16], shade: [0.43, 0.43, 11],
       sea: [0.55, 0.55, 13], haze: [0.62, 0.62, 13],
+      ao: [0.30, 0.65, 13], glint: [0.00, 0.16, 16], lake: [0.30, 0.30, 13],
       fill: [0.86, 0.77, 20], tfill: [0.85, 0.85, 13],
       seaop: 0, landop: 0, gratop: 0.45,
     },
@@ -4643,9 +4677,15 @@ const MAP_MODES = {
     //   still hands the read from the class layer to the GL as the camera
     //   dives; it is only the far end that needed the class tint to survive the
     //   blur, and .30 there left the six colours barely separable.
+    // The full read, and where the owner's ask lands: uAo reaches its 1.0 cap
+    // and no further (above that the 64-code encode bands), full shore band,
+    // full contact shadow, and a real glint on the great lakes by k=10. The
+    // lake tint hands over to GL here — .55 -> .14 — because Terrain's nation
+    // fill is 0.10 and is the only mode where GL actually owns the water.
     ground: {
       u: [1.00, 1.00, 13], sat: [2.25, 2.25, 16], shade: [1.00, 1.00, 11],
       sea: [1.00, 1.00, 13], haze: [0.38, 0.38, 13],
+      ao: [0.70, 1.00, 11], glint: [0.00, 0.85, 10], lake: [0.55, 0.14, 8],
       fill: [0.10, 0.10, 20], tfill: [0.50, 0.12, 13],
       seaop: 0, landop: 0, gratop: 0.55,
     },
@@ -4664,9 +4704,15 @@ const MAP_MODES = {
     // Ground held near Political's, not Terrain's. The resource fills carry
     // their meaning in OPACITY, and a full-strength hillshade under a .17 fill
     // eats the very band the confidence grading exists to show.
+    // HELD LOW, and this is a ruling rather than a dial. AO darkens valleys and
+    // a glinting lake flares — either one eats the very band the confidence
+    // grading exists to show. Delivered land swing is measured at 3.50 / 3.66
+    // against a hard ceiling of 4. If the depth pass ever costs this mode
+    // legibility, the depth loses.
     ground: {
-      u: [0.30, 0.55, 13], sat: [0.20, 0.45, 16], shade: [0.45, 0.70, 11],
+      u: [0.30, 0.55, 13], sat: [0.20, 0.45, 16], shade: [0.25, 0.25, 11],
       sea: [0.60, 0.60, 13], haze: [0.58, 0.58, 13],
+      ao: [0.20, 0.40, 13], glint: [0.00, 0.10, 16], lake: [0.30, 0.30, 13],
       fill: [0.20, 0.16, 20], tfill: [0.85, 0.85, 13],
       seaop: 0, landop: 0, gratop: 0.45,
     },
@@ -4760,20 +4806,29 @@ function groundUniforms(modeKey, k) {
   return {
     // shader dials
     ground: R(g.u), sat: R(g.sat), shade: R(g.shade), sea: R(g.sea), haze: R(g.haze),
+    ao: R(g.ao), glint: R(g.glint),
     // svg-side window. `fop` is a SCALE on the per-path `--w`, which carries
     // today's own fill-opacity, so `fill` above is the normal nation's target
     // and you/selected keep their 1/.92 lead over it at every zoom.
     fop: R(g.fill) / OPQ,
     tfillop: R(g.tfill),
+    // The lake TINT, which does not simply drop to zero, and that is the
+    // non-obvious part: the GL canvas is UNDER the svg, and in Political the
+    // nation fill over a lake is 75-84% opaque — world.js country polygons
+    // include the Great Lakes, Baikal, Victoria, Great Bear and the Aral — so GL
+    // contributes only 16-25% of the composite there no matter how good it is.
+    // The tint is what keeps a lake legible through the political layer. Only
+    // Terrain, whose fill is 0.10, can hand the water over to GL.
+    lakeop: R(g.lake),
     seaop: g.seaop, landop: g.landop, gratop: g.gratop,
   };
 }
 window.glGround = (k) => groundUniforms(ui.mapMode, k === undefined ? ui.cam.k : k);
 
-/// The five custom properties the `.gl-on` rules read, written on the <svg>
+/// The SIX custom properties the `.gl-on` rules read, written on the <svg>
 /// element. Removed rather than zeroed in the thematic modes, so a mode switch
 /// cannot leave a ground variable applied with no ground behind it.
-const GROUND_VARS = ["--fop", "--tfillop", "--seaop", "--landop", "--gratop"];
+const GROUND_VARS = ["--fop", "--tfillop", "--seaop", "--landop", "--gratop", "--lakeop"];
 function stampGroundVars(svg) {
   if (!svg) return;
   const g = groundUniforms(ui.mapMode, ui.cam.k);
@@ -4783,6 +4838,7 @@ function stampGroundVars(svg) {
   svg.style.setProperty("--seaop", g.seaop);
   svg.style.setProperty("--landop", g.landop);
   svg.style.setProperty("--gratop", g.gratop);
+  svg.style.setProperty("--lakeop", g.lakeop);
 }
 
 /* ---------------- camera + districts ----------------
@@ -4937,10 +4993,10 @@ const RELIEF = (() => {
 
 /* ================= the GL physical underlay (RENDER) =================
    A WebGL2 canvas under the svg that draws the physical ground — elevation,
-   bathymetry, hillshade, hypsometric colour, snow, coastline — from three
-   baked textures (/relief.png /coast.png /cover.png) served by the same binary
+   bathymetry, hillshade, hypsometric colour, snow, coastline — from four
+   baked textures (/relief.png /coast.png /cover.png /lake.png) served by the same binary
    that serves this page. The political layer stays SVG on top; this replaces
-   only the physical underlay, and only in the three modes that carry a
+   only the physical underlay, and only in the four modes that carry a
    `ground` block in MAP_MODES — the window it shows through is the handful of
    `svg.gl-on` rules in the stylesheet, driven by groundUniforms() below.
 
@@ -4982,13 +5038,32 @@ const GLCV = (() => {
 })();
 
 /// The baked-texture decode contract: the numbers tools/terrain/make_relief.py,
-/// make_coast.py and make_cover.py print on every run. This is the interface
-/// between the bake and this file, so it lives in one place.
+/// make_coast.py, make_cover.py, make_occlusion.py and make_lakes.py print on
+/// every run. This is the interface between the bake and this file, so it lives
+/// in one place.
+///
+/// SDF_MAX is ONE constant for BOTH signed fields. coast.png and lake.png carry
+/// the same encode, the same clip and the same polarity — positive is "not this
+/// water body", so mid-ocean saturates at +8 in the lake field exactly as the
+/// middle of a continent does. Two signed fields with opposite conventions is a
+/// trap that costs one silent inverted mask someday. 8.0 rather than something
+/// tighter because the gate that suppresses a bed-lake halo has to reach as far
+/// as the blur that causes it: hMacro is a textureLod(uPhys, uv, L+3) tap with
+/// an 8-texel radius, and the ocean's own gate below is smoothstep(0.0, 8.0,
+/// sdf) for exactly that reason.
 const GLBAKE = {
-  W: 2400, H: 1018,                      // relief.png and coast.png
+  W: 2400, H: 1018,                      // relief.png, coast.png and lake.png
   COVER_W: 1200, COVER_H: 509,           // cover.png, half resolution on the same grid
   ELEV_LO: -1500.0, ELEV_HI: 6400.0,     // h = (R*256+G) * (HI-LO)/65535 + LO
-  DEPTH_MAX: 11000.0,                    // depth = DEPTH_MAX * (B/255)^2, 0 on land
+  DEPTH_MAX: 11000.0,                    // depth = DEPTH_MAX * (B/255)^2, WATER ONLY
+  // relief.png's B carries TWO quantities disambiguated by the sign of the
+  // coast field, never by a threshold on the byte: depth on water, and baked
+  // sky occlusion on land. occ = B * OCC_STEP, written by make_occlusion.py
+  // over the whole land plane — overwriting the 4,472 land texels that carried
+  // sub-sea-level depth codes, which the land path never reads. The step is
+  // 0.55/64; times the 0.4291 sky share that is a 0.369% luminance quantum,
+  // under the 1/255 = 0.392% display quantum, which HARD-CAPS uAo at 1.0.
+  OCC_STEP: 0.00859375,
   SDF_MAX: 8.0,                          // s = t*2-1 ; d = sign(s)*SDF_MAX*s*s
 };
 
@@ -5105,7 +5180,7 @@ uniform sampler2D uEnc;      // relief.png  R,G = uint16 BE elev ; B = sqrt dept
 uniform sampler2D uCoast;    // coast.png   L8 signed coast SDF, land positive
 uniform sampler2D uVeg;      // cover.png   L8 vegetation index, half resolution
 uniform vec2  uDest;         // destination size in texels
-uniform float uElevLo, uElevSpan, uDepthMax, uSdfMax;
+uniform float uElevLo, uElevSpan, uDepthMax, uSdfMax, uOccStep;
 out vec4 outPhys;
 void main() {
   ivec2 t = ivec2(gl_FragCoord.xy);
@@ -5118,9 +5193,22 @@ void main() {
   // glProbeDecode() tests the upload path and not float32 round-off.
   float hi = floor(e.r * 255.0 + 0.5), lo = floor(e.g * 255.0 + 0.5);
   float h  = (hi * 256.0 + lo) * (uElevSpan / 65535.0) + uElevLo;
-  float d  = uDepthMax * e.b * e.b;                  // sqrt-companded, 0 on land
   float s  = c * 2.0 - 1.0;
   float sd = sign(s) * uSdfMax * s * s;              // odd-symmetric encode
+  // relief.png's B carries TWO quantities, and they are disambiguated HERE by
+  // the sign of the coast field -- never by a threshold on the byte, which the
+  // mip chain would destroy. Water: sqrt-companded ocean depth, positive down.
+  // Land: baked sky occlusion (tools/terrain/make_occlusion.py), written into
+  // the SAME channel NEGATED. One channel, two meanings, opposite signs, so a
+  // bilinear tap or a mip level that straddles the shore degrades gracefully in
+  // both directions: every sea-path use of .g below either clamps or smoothsteps
+  // up from 0, so a leaked occlusion floors at exactly 0 -- which is the flat 0
+  // a land texel contributed before this channel existed -- and it can shift the
+  // depth by at most 0.55 m and only downward, so no false shallow->deep
+  // transition can be manufactured. The land path reads max(-g, 0) and a leaked
+  // depth floors at exactly 0 the same way.
+  float b  = floor(e.b * 255.0 + 0.5);
+  float d  = sd > 0.0 ? -(b * uOccStep) : uDepthMax * e.b * e.b;
   outPhys  = vec4(h, d, sd, v);
 }
 `;
@@ -5148,10 +5236,26 @@ uniform float uSea;          // bathymetry vs legacy gradient  0 .. 1
 uniform float uHazeMax;      // aerial-perspective ceiling     0 .. 1
 uniform float uShimmer;      // 0 or 1
 uniform float uTime;         // seconds; advances only while shimmer is live
+// Baked sky occlusion strength. CAPPED AT 1.0 BY THE ENCODE'S OWN ARITHMETIC,
+// not by taste: the bake spends 64 codes over a 0.55 clip, so one code is
+// 0.0086 of occlusion, which through the 42.91% sky share is a 0.369%
+// luminance step against the 0.392% display quantum (measured: the cap is
+// 1.063). Above 1.0 the encode bands visibly. Raising this dial means
+// re-baking more codes and paying the bytes -- it is not free.
+// Spelled uAo, not uAO: U() derives every uniform's name as "u" + key[0]
+// uppercased + the rest, so the key "ao" can only ever look up "uAo". The
+// capitalised spelling compiled fine and silently resolved to null, leaving
+// the whole occlusion term multiplied by a default 0.0.
+uniform float uAo;           // baked occlusion strength      0 .. 1
+uniform float uGlint;        // water-surface specular        0 .. 1
 
-uniform sampler2D uPhys;     // RGBA16F r=h(m) g=depth(m,+down) b=sdf(canvas) a=V
+uniform sampler2D uPhys;     // RGBA16F r=h(m) g=SIGNED depth/occ b=sdf(canvas) a=V
 uniform sampler2D uRamp;     // 256x2 RGB8  land ramp: row0 arid, row1 humid
 uniform sampler2D uSeaRamp;  // 256x1 RGB8  bathymetric ramp
+uniform sampler2D uLake;     // R8 lake signed distance, LAND POSITIVE, canvas units
+uniform float uLakeMax;      // GLBAKE.SDF_MAX = 8.0, the SAME clip as coast.png.
+                             // A uniform and not a const so the bake contract and
+                             // the shader cannot drift apart.
 
 // ---- mapgen.rs projection constants (mapgen.rs:19-81; asserted from JS) ----
 const float RAD   = 450.06700061334845;   // W / (2 * 0.8487 * PI)
@@ -5190,6 +5294,23 @@ const vec3 HAZE      = vec3(0.17255, 0.20784, 0.25098);  // #2c3540  ~ --line
 const vec3 SUN    = vec3(-0.541675, -0.541675, 0.642788);
 const vec3 FILL   = vec3( 0.640856,  0.640856, 0.422618);
 const float LFLAT = 1.0719713;   // lum() of a flat facet -> normalises to 1.0
+
+// ---- water -------------------------------------------------------------
+// Lake colour is a TWO-STOP ramp indexed by DISTANCE TO SHORE, the way the land
+// ramp is indexed by elevation and the sea ramp by depth. It is NOT the sea ramp
+// and shares no stop with it, because the sea ramp is keyed to METRES and this
+// is not. Both stops are lighter than GL_SEA_COLS[0] (#162b42, the ocean ramp at
+// 0 m), so the map's one depth convention -- darker is deeper -- is never
+// borrowed to make a claim about a lake depth this bake does not have.
+const vec3 LAKE_DEEP  = vec3(0.18039, 0.32941, 0.45490);  // #2e5474
+const vec3 LAKE_SHORE = vec3(0.33725, 0.51373, 0.63922);  // #5683a3
+// normalize(SUN + V) with V = (0,0,1): the projection is ORTHOGRAPHIC, so the
+// view vector is (0,0,1) at every fragment. The half-angle is exactly half of
+// (90 - 40), so HALF sits 25 deg off vertical and SPEC_F is cos(25 deg) -- both
+// fall straight out of the sun the rest of this file already uses.
+const vec3  HALF   = vec3(-0.298836, -0.298836, 0.906308);
+const float SPEC_F = 0.906308;   // dot((0,0,1), HALF): the FLAT-PLANE value
+const float SUNXY  = 0.766044;   // |SUN.xy| = cos(40 deg), the sun's page bearing
 
 // ================================================================ projection
 // Exact inverse of mapgen's robinson_y(): canvas y -> latitude in degrees.
@@ -5249,10 +5370,46 @@ float vnoise(vec2 p) {
              mix(hash12(i + vec2(0, 1)), hash12(i + vec2(1, 1)), u.x), u.y);
 }
 
-float lum(vec3 n) {
-  return (0.30 + 0.86 * max(dot(n, SUN), 0.0)
-               + 0.14 * max(dot(n, FILL), 0.0)
-               + 0.16 * (0.5 + 0.5 * n.z)) / LFLAT;
+// Soft saturator: monotone, smooth, -> +/-1 but never reaching it. This replaces
+// a hard clamp whose fixed 320 m normaliser was 1.29 sd of the field it
+// normalised, which is why ~17% of land at radius 8 (and half the land at world
+// zoom) sat AT the clip and the term degenerated from graded shading into a
+// two-tone ridge/valley mask.
+float sat(float d, float K) { return d / (K + abs(d)); }
+
+// The lake field, decoded with coast.png's own odd-symmetric sqrt companding.
+// LAND POSITIVE -- the SAME polarity as the coast field, deliberately: two
+// signed distance fields in one shader with opposite conventions is a trap that
+// costs one silent inverted mask someday. For this field "land" means "not this
+// lake", so mid-ocean saturates at +8 exactly as the middle of a continent does.
+// textureLod, NOT texture(...,bias): the third argument of texture() in a
+// fragment shader is a LOD BIAS, and using it here would sample a level that
+// drifts with the driver's own derivative estimate instead of the L the ground
+// is read at. The water must sample the same camera as the ground under it.
+float lakeAt(vec2 uvw, float lod) {
+  float t = textureLod(uLake, uvw, lod).r * 2.0 - 1.0;
+  return sign(t) * uLakeMax * t * t;
+}
+
+// One elevation tap, clamped to the water surface it straddles: sea level for
+// the ocean, and this fragment's own height for a lake (see the long note at
+// the gradient). hRef is that height; lTap is the lake field AT THE TAP.
+float hTap(float T, float lTap, float hRef, float aaL) {
+  return mix(max(T, 0.0), hRef, smoothstep(aaL, -aaL, lTap));
+}
+
+// AO modulates ONLY the sky terms -- the isotropic ambient and the sky dome.
+// The 0.86 direct-sun and 0.14 fill terms are DIRECTIONAL: a valley floor the
+// sun still reaches is still fully sunlit, and dimming the direct term would
+// flatten the very modelling this exists to add. Measured term shares on a flat
+// facet: ambient 27.99%, direct sun 51.57%, SE fill 5.52%, sky dome 14.93% --
+// so AO belongs on 42.91% of the light, and li *= (1 - occ) would be wrong.
+// ao = 1.0 makes this bit-identical to the previous lum(), which is what keeps
+// the flat-facet = 1.0 identity (and therefore LFLAT) exact.
+float lum(vec3 n, float ao) {
+  float sky = 0.30 + 0.16 * (0.5 + 0.5 * n.z);
+  float dir = 0.86 * max(dot(n, SUN), 0.0) + 0.14 * max(dot(n, FILL), 0.0);
+  return (sky * ao + dir) / LFLAT;
 }
 
 void main() {
@@ -5294,9 +5451,47 @@ void main() {
   vec4 N  = textureLod(uPhys, (world + vec2(0.0, -st)) / uWorld, L);
 
   float h   = C.r;
-  float dep = C.g;
+  // .g is SIGNED: +ocean depth in metres on water, -baked sky occlusion on land
+  // (GLSL_DECODE above states the contract). Every use of dep below clamps or
+  // smoothsteps up from 0, so on land it reads exactly as the flat 0 it carried
+  // before the occlusion channel existed; the land path takes max(-C.g, 0.0).
+  float dep = max(C.g, 0.0);
+  float occ = max(-C.g, 0.0);   // baked sky occlusion, land only. Free: same fetch.
   float sdf = C.b;
   float V   = clamp(C.a, 0.0, 1.0);
+
+  // Hoisted out of COMPOSITE, where these three used to live, because the land
+  // half of this shader is worth skipping outright over the ocean and the test
+  // for that is isLand. They depend only on uniforms and on sdf, so nothing is
+  // reordered across a dependency. See the micro-relief gate below.
+  float bias = mix(1.20, 0.15, tDetail);
+  float aa   = 0.75 / max(uPxPerWorld, 1e-6);
+  float isLand = smoothstep(-aa, aa, sdf + bias);
+
+  // The lake field, at the SAME offsets and the SAME L as the uPhys taps, so
+  // the water can never sample a different camera than the ground under it.
+  //
+  // ONLY lC IS UNCONDITIONAL -- isLake and the openness gate need it on every
+  // fragment. The four neighbour taps serve only the shore band: the water body
+  // itself and the strip of land within one differencing step of it, together a
+  // fraction of a percent of the canvas. Taking them everywhere would be five R8
+  // taps across the whole map to serve that strip.
+  //
+  // The gate is lC < st + aa and it is CONSERVATIVE, not approximate: a signed
+  // distance field is 1-Lipschitz, so a tap st away satisfies lTap >= lC - st,
+  // and a tap can therefore only reach water (lTap < aa) when lC < st + aa.
+  // Outside the gate the taps keep their +uLakeMax default, which makes hTap()
+  // below collapse to exactly max(T, 0.0) -- today's behaviour, unchanged.
+  float lC = lakeAt(uv, L);
+  float lE = uLakeMax, lW = uLakeMax, lS = uLakeMax, lN = uLakeMax;
+  vec2  gL = vec2(0.0);
+  if (lC < st + aa) {
+    lE = lakeAt((world + vec2( st, 0.0)) / uWorld, L);
+    lW = lakeAt((world + vec2(-st, 0.0)) / uWorld, L);
+    lS = lakeAt((world + vec2(0.0,  st)) / uWorld, L);
+    lN = lakeAt((world + vec2(0.0, -st)) / uWorld, L);
+    gL = vec2(lE - lW, lS - lN);          // rises toward LAND
+  }
 
   // LAND SHADING CLAMPS EVERY TAP TO SEA LEVEL. Without this a coastal tap
   // straddling the shore differences +200 m of land against -3000 m of
@@ -5304,8 +5499,32 @@ void main() {
   // bright/dark lip along EVERY coastline at every zoom. Shading land against
   // the z=0 plane is also physically right -- the shoreline IS at zero -- and
   // it makes premultiply-by-coverage storage unnecessary.
-  float gx = (max(E.r, 0.0) - max(Wt.r, 0.0)) / (2.0 * st * mx);
-  float gy = (max(S.r, 0.0) - max(N.r, 0.0)) / (2.0 * st * my);
+  //
+  // ...AND THE RULE GENERALISES, which is the whole of this hunk. The clamp's
+  // real rule is not "clamp to zero", it is CLAMP EVERY TAP TO THE WATER
+  // SURFACE IT STRADDLES. For the ocean that surface is z = 0. For a lake it is
+  // the lake's surface, which is 3808 m at Titicaca and -388 m median inside
+  // Baikal. And a lake's water surface IS the elevation of the land at its
+  // shoreline, while a shore fragment IS at the shoreline -- so substituting
+  // THIS FRAGMENT'S OWN HEIGHT for any tap landing in water states the identical
+  // rule with no baked constant, no per-lake table and no assertion that can
+  // fail. Four defects on the shipped map go with it:
+  //   - the escarpment lip: a shore texel now differences dry land against its
+  //     own value across the water, so that direction's gradient is zero rather
+  //     than a cliff. One bake texel is 9,000-16,700 m east, so at Baikal the
+  //     lip is currently painted ~13 km INSIDE the water (300-600 device px at
+  //     k=32).
+  //   - Baikal's 0 m seam: max(E.r, 0.0) makes the gradient identically zero
+  //     below 0 m and real above it, ruling a seam through the middle of a lake
+  //     whose interior median is -388 m. A fragment deep inside a lake now has
+  //     every tap replaced by h, gradient exactly zero, li exactly 1.0.
+  //   - the desert/wetland misclassification inside lakes never reaches the
+  //     screen, because the interior is painted water below.
+  // On the 23 flat-plane lakes this is a measured no-op: their taps already
+  // equal h. aaL is the SAME antialias half-width the coastline threshold uses.
+  float aaL = aa;
+  float gx = (hTap(E.r, lE, h, aaL) - hTap(Wt.r, lW, h, aaL)) / (2.0 * st * mx);
+  float gy = (hTap(S.r, lS, h, aaL) - hTap(N.r, lN, h, aaL)) / (2.0 * st * my);
   float slope = length(vec2(gx, gy));
 
   // Micro-relief amplitude is DERIVED, not baked. Measured over 655,694 land
@@ -5317,7 +5536,16 @@ void main() {
   // what keeps the Amazon glass-flat and the Alps textured. One multiply, zero
   // taps, and it replaces a 432,136-byte baked channel.
   float sigma = 0.72 * slope * sqrt(mx * my);
-  if (tMicro > 0.0) {
+  // ...AND ONLY ON LAND. Everything downstream of slope -- rock, sigma, wet,
+  // snow, n, li -- is land-only and is discarded by mix(sea, land, isLand)
+  // below, so adding isLand here is VISUALLY NEUTRAL BY CONSTRUCTION rather
+  // than by taste: it is verifiable with a screenshot diff, which is why it
+  // shipped as its own step. 72-73% of texels are ocean and every one of them
+  // was paying this 9-vnoise / 36-hash12 loop and throwing the result away.
+  // This is a per-fragment branch that is COHERENT AT REGION SCALE -- ocean and
+  // land regions are vastly larger than a wavefront -- which is why it is cheap.
+  // It is not a uniform branch and must not be described as one.
+  if (tMicro > 0.0 && isLand > 0.0) {
     float amp = sigma * tMicro;
     vec2 g2 = vec2(0.0);
     float f = 1.0, w = 0.30;
@@ -5384,13 +5612,74 @@ void main() {
 
   // ---- shading as a modulation about EXACTLY 1.0, so flat land renders the
   // authored hex and the Terrain legend stays literally true.
-  float li = lum(n);
-  float hMacro = textureLod(uPhys, uv, min(L + 3.0, uMaxLod)).r;
-  float open = clamp((h - hMacro) / 320.0, -1.0, 1.0);
-  // 8, not 4: the L+3 blur radius is 8 texels, and a 4-unit gate leaves a
-  // bright halo ringing every coast.
-  li *= 1.0 + 0.17 * open * smoothstep(0.0, 8.0, sdf);
-  li  = 1.0 + (li - 1.0) * uShade * mix(0.55, 1.0, tRelief);
+  // BAKED SKY OCCLUSION. The Z = 4.2 the field was baked at is an AMPLITUDE
+  // CHOICE, not a geometric claim -- the same honesty label the procedural
+  // micro-relief carries. Measured at uAo = 1.0 over all 654,935 land texels,
+  // the relative luminance drop is p50 -0.37%, p90 -1.84%, p99 -4.79%, max
+  // -16.23%, and 63.23% of land falls below the 1/255 display quantum and is
+  // LITERALLY UNCHANGED -- which is what preserves "flat land renders the
+  // authored hex" and keeps the Terrain legend true.
+  //
+  // The zoom ramp runs OPPOSITE TO Z and that is deliberate: tAO rises
+  // 0.35 -> 1.0 as you dive while Z falls 4.20 -> 1.35. It is an ART CALL, not
+  // a geometric consequence, and it is defensible only because the bake's Z is
+  // an amplitude choice too. This is the term that carries modelling at close
+  // zoom after the Lambertian's exaggeration has ramped down -- and because the
+  // bake does not fall off as the camera dives, it is also exactly the hole
+  // Z's ramp-down leaves. Raising Z instead would double-count.
+  float tAO = smoothstep(0.0, 1.60, uLk);
+  float ao  = 1.0 - occ * uAo * mix(0.35, 1.0, tAO) * smoothstep(0.0, 8.0, sdf);
+  float li  = lum(n, ao);
+
+  // OPENNESS, two octaves, soft-saturated. The shipped single octave normalised
+  // by a fixed 320 m and hard-clamped to +/-1; measured, sd(h - blur_r(h)) over
+  // land is 247.66 m at r=8, 453.38 m at r=32 and 721.32 m at r=128, so 320 m
+  // was 1.29 sd and 17% of land at r=8 -- half of it at world zoom -- sat AT the
+  // clip, where the term stops being graded shading and becomes a two-tone
+  // ridge/valley mask. The normalisers below are those measured sd values and
+  // the clamp is now sat(), which approaches +/-1 without ever arriving.
+  //
+  // Each octave is gated by ITS OWN blur radius on BOTH signed fields. The 8.0
+  // is the shipped gate's own argument -- "the L+3 blur radius is 8 texels, and
+  // a 4-unit gate leaves a bright halo ringing every coast" -- and a 32-texel
+  // blur needs a 32-unit gate by the identical reasoning. The lC factor is the
+  // bed-lake fix: hMacro is a single blurred tap and cannot be clamped per
+  // contributor, so around Baikal it averages ~700 m of shore land with ~-400 m
+  // of lake bed, h - hMacro reaches ~450, and the shipped term clamps to +1.0
+  // and rings the lake with a 17% bright halo. LAKE_SDF_MAX is 8.0, so this
+  // gate reaches exactly as far as the blur that causes it.
+  //
+  // TWO OCTAVES, NOT THREE, and the coarse one standing down at world zoom is a
+  // FEATURE rather than a bug to fix later. uMaxLod is 7: at k=1 on a 976 px
+  // pane L = 3.60, so L+3 = 6.60 and L+5 already clamps to 7.00 -- 0.4 apart. A
+  // third octave at L+7 would buy nothing above k~4. At k=32, L = 0 and the two
+  // are live at 3 and 5. So the coarse octave asserts itself exactly where the
+  // owner wants the modelling (zoomed in) and yields at world view, where the
+  // political layer must stay the subject.
+  float hM1 = textureLod(uPhys, uv, min(L + 3.0, uMaxLod)).r;   //  8-texel radius
+  float hM2 = textureLod(uPhys, uv, min(L + 5.0, uMaxLod)).r;   // 32-texel radius
+  float op1 = sat(h - hM1, 248.0);
+  float op2 = sat(h - hM2, 453.0);
+  float gate8  = smoothstep(0.0, 8.0, sdf)  * smoothstep(0.0, 8.0, lC);
+  float gate32 = smoothstep(0.0, 32.0, sdf) * smoothstep(0.0, 32.0, lC);
+  li *= 1.0 + 0.34 * op1 * gate8 + 0.22 * op2 * gate32;
+  // At uMaxLod == 0 both octaves read the same texel as h and openness
+  // degenerates to exactly 0. That is today's behaviour and it is acceptable
+  // ONLY because occlusion above reads mip 0 at full strength and covers the
+  // hole -- which is why AO is not gated on a mip offset.
+
+  // The renormaliser, and the identity the whole pass hangs off: at uShade = 0
+  // this collapses to EXACTLY 1.0, which is what makes uGround = 0 reproduce
+  // #333c48 and the Terrain legend literally true.
+  //
+  // The k=1 floor is 0.75, raised from 0.55. Measured (p1..p99 of the delivered
+  // land colour, in absolute 0..1 units -- the same probe that reads the shipped
+  // shader as political 3.64 / terrain 6.07): the openness rework alone LOWERS
+  // the swing, because removing the clipped plateau removes the very amplitude
+  // that made it a mask. The floor and the per-mode shade dials buy it back to
+  // the authored band. "Far out = subdued" survives at 0.75; it was never the
+  // point of the floor that world zoom be flat, only that it be quieter.
+  li  = 1.0 + (li - 1.0) * uShade * mix(0.75, 1.0, tRelief);
 
   vec3 land = base * li;
   land = mix(land, mix(SNOW_SHAD, SNOW_LIT, clamp(li * 0.72, 0.0, 1.0)), snow);
@@ -5400,9 +5689,15 @@ void main() {
   // and mid-ocean ridges and trenches appear as very dark texture.
   float dN = pow(clamp(dep / 6500.0, 0.0, 1.0), 0.32);
   vec3 sea = texture(uSeaRamp, vec2(dN, 0.5)).rgb;
-  float sgx = (E.g - Wt.g) / (2.0 * st * mx);
-  float sgy = (S.g - N.g) / (2.0 * st * my);
-  sea *= 1.0 + (lum(normalize(vec3(sgx * 1.6, sgy * 1.6, 1.0))) - 1.0) * 0.30 * uShade;
+  // Each tap is clamped up from 0 for the SAME reason the land taps are clamped
+  // down: .g is signed now, so an unclamped seafloor difference against a
+  // land-side occlusion code would rule a lip along the coast in the sea path
+  // exactly as the unclamped land gradient once did. max() here makes a land
+  // neighbour contribute the flat 0 it contributed before the channel was
+  // shared. NO AO on water -- lum's ao argument stays 1.0.
+  float sgx = (max(E.g, 0.0) - max(Wt.g, 0.0)) / (2.0 * st * mx);
+  float sgy = (max(S.g, 0.0) - max(N.g, 0.0)) / (2.0 * st * my);
+  sea *= 1.0 + (lum(normalize(vec3(sgx * 1.6, sgy * 1.6, 1.0)), 1.0) - 1.0) * 0.30 * uShade;
 
   // the shelf break as a fine contour, not a blur: a crisp continental slope is
   // what makes the sea read as bathymetry rather than as a gradient.
@@ -5416,7 +5711,141 @@ void main() {
     sea *= 1.0 + 0.035 * sin(p + uTime * 0.19) * sin(q - uTime * 0.13)
                 * (1.0 - smoothstep(50.0, 400.0, dep));
   }
+  // ---- the contact shadow, on the OCEAN. Water lies BELOW the land it
+  // touches -- always, everywhere, with no data at all -- so land on the sun
+  // side casts onto the water, and a crescent of darker water hugging the NW
+  // shore is what makes water read as sitting IN a basin rather than lying ON
+  // one. It is DIRECTIONAL, which is why it reads as a cast shadow and not as
+  // an outline; an outline is what a flat blue polygon with a stroke already
+  // looks like, and it is what this map does today. Zero extra taps: E.b, Wt.b,
+  // S.b and N.b are already in the four fetches above. Measured, the rim is
+  // genuinely narrow -- 3.07% of ocean texels lie within 1.60 canvas units of
+  // the coast, 1.73% within 0.80 -- so it will not wash the sea.
+  vec2  gS  = vec2(E.b - Wt.b, S.b - N.b);          // the coast field rises toward land
+  float gSl = length(gS);
+  float upsunS = gSl > 1e-6 ? clamp(dot(gS / gSl, SUN.xy) / SUNXY, 0.0, 1.0) : 0.0;
+  sea *= 1.0 - 0.30 * uShade * upsunS
+              * (1.0 - smoothstep(0.0, 0.75, max(-sdf, 0.0)));
+
   sea = mix(mix(OCEAN_0, OCEAN_45, smoothstep(0.0, 0.45, uv.y)), sea, uSea);
+
+  // ================================================================ WATER
+  // ONE mechanism, two water bodies. A lake shore and an ocean shore are the
+  // same geometry -- water meeting land that is higher than it -- so each gets
+  // the same treatment from whichever signed field owns the fragment: uPhys.b
+  // for the sea above, uLake here. Everything below is a SHADING DEVICE derived
+  // from planimetric distance to a real shoreline and from the fact that land is
+  // above water. NOTHING here is a depth: there is no depth in metres anywhere
+  // on the lake path, no metric ramp, and no new legend swatch.
+  //
+  // WHAT THIS ASSERTS: that the polygon is water (ne_10m_lakes via rivers.js);
+  // the fragment's planimetric distance to that shoreline (measured, from the
+  // same curve the svg strokes); that the land at the shoreline is higher than
+  // the water (definitionally true); and that the sun is at a fixed NW bearing
+  // (the map's own convention, already asserted by every other pixel).
+  // WHAT IT DOES NOT: that any lake is deeper than any other, or that a lake bed
+  // has the shape the gradient implies.
+
+  // ---- the shore band, LAKES ONLY. A lighter band hugging the shoreline is the
+  // oldest device in hydrographic cartography and the strongest single cue that
+  // water SITS IN land. The width is a fixed GEOGRAPHIC 1.60 canvas units
+  // (~24 km), on the same principle as the shelf break's 140-420 m and the
+  // micro-relief's fixed world frequencies: it never swims under a pan and it
+  // grows on screen as you dive. 10 of the 29 shipped rings never get 1.60 units
+  // from shore and are ENTIRELY band -- a small lake reads lighter than a great
+  // lake, which is both the convention and the truth.
+  //
+  // THE OCEAN IS EXCLUDED, on the honesty rule. GL_SEA_STOPS already starts at
+  // 0 m with #162b42, its lightest colour, plus a shelf-break contour -- a real,
+  // METRIC shallow-lightening. A second, non-metric lightening keyed to
+  // planimetric distance would put an invented signal beside a measured one in
+  // the same channel, the same colour space and the same reading.
+  float dShore = max(-lC, 0.0);                     // canvas units into the water
+  float band   = 1.0 - smoothstep(0.0, 1.60, dShore);
+
+  // ---- the contact shadow, on the LAKE. Same term as the ocean's, same reason.
+  float gLen    = length(gL);
+  float upsun   = gLen > 1e-6 ? clamp(dot(gL / gLen, SUN.xy) / SUNXY, 0.0, 1.0) : 0.0;
+  float contact = upsun * (1.0 - smoothstep(0.0, 0.75, dShore));
+
+  // ---- the surface. Under an ORTHOGRAPHIC camera V = (0,0,1), so a flat water
+  // plane has n = (0,0,1) at every texel, lum(n) = 1.0 exactly and
+  // dot(n, HALF) = 0.906308 exactly. A specular or Fresnel term on a flat plane
+  // is therefore ONE SCALAR FOR THE ENTIRE MAP -- which is why a lake reads as a
+  // flat blue shape today and why nothing but a VARYING NORMAL can change it.
+  // The ripple is not one option among several, it is the gate.
+  //
+  // FRESNEL IS CUT, on arithmetic rather than taste: Schlick with F0 = 0.02 over
+  // the tilt range this ripple produces (max 2.51 deg) gives (1-cos)^5 <= 8.2e-16.
+  // It varies in the sixteenth decimal place.
+  float rip = uGlint * mix(0.35, 1.0, tDetail);
+  vec2  gw  = vec2(0.0);
+  // BOTH halves of this test matter. A bare rip > 0.0 is UNIFORM-VALUED and so
+  // is true over the whole screen -- in Terrain at k >= 8 that would run the
+  // 560-ALU loop on 100% of fragments to serve the 0.12% that is lake. The
+  // lC < aa half is what makes it the 0.12%.
+  if (rip > 0.0 && lC < aa) {
+    // FIXED world frequencies, like the micro-relief and for the same reason:
+    // water that swims under a pan is worse than flat water. lambda = 3.33 /
+    // 1.62 / 0.79 canvas units ~ 55 / 27 / 13 km, which at k=32 is 43 / 21 / 10
+    // device px -- swell, not foam. The ratio is 2.06 and not 2.0 so the octaves
+    // do not stack into a visible lattice. The third octave is gated on tMicro
+    // because 0.79 units is 2.5 px at k=8 and would sparkle; it exists so a lake
+    // three units across gets internal variation instead of one uniform tilt.
+    //
+    // uTime is EXACTLY ZERO unless the opt-in shimmer ticker is live, so with the
+    // shimmer off this is a fixed world-space field and the water is rock steady.
+    float ph = uShimmer > 0.5 ? uTime * 0.045 : 0.0;
+    float amp = 0.055, f = 0.30, w = 1.0;
+    for (int o = 0; o < 3; ++o) {
+      float ep = 0.5 / f;
+      vec2  q  = world + vec2(ph, -0.7 * ph) / f;
+      float c0 = vnoise(q * f);
+      gw.x += w * amp * (vnoise((q + vec2(ep, 0.0)) * f) - c0) / ep;
+      gw.y += w * amp * (vnoise((q + vec2(0.0, ep)) * f) - c0) / ep;
+      f *= 2.06; w *= 0.55;
+      if (o == 1) w *= tMicro;
+    }
+    gw *= rip;
+  }
+  vec3 nw = normalize(vec3(-gw.x, -gw.y, 1.0));
+
+  // Blinn-Phong against the fixed sun, NORMALISED TO 1.0 ON A FLAT PLANE the way
+  // lum() is normalised by LFLAT -- so uGlint = 0 collapses the term to the
+  // identity and flat water renders its authored colour. Dividing INSIDE the pow
+  // also sidesteps the 2.7e-3 underflow that pow(dot, 60) alone would carry.
+  float sp = pow(max(dot(nw, HALF), 0.0) / SPEC_F, 60.0);
+  // Measured on a Superior-sized patch at k=32 with this exact ripple: median
+  // 0.98, p90 1.43, p99 2.07, max 2.96, 7.6% of the surface above 1.5. That
+  // distribution IS a glint -- a few percent flaring while the rest stays flat --
+  // and it is why the map does not turn to chrome: no term here lifts the whole
+  // surface. The clamp caps the flare, not the median.
+  float glint = clamp(0.42 * (sp - 1.0), -0.20, 0.85);
+
+  // Resolve the lake body. Same renormaliser as the land, so uShade = 0 gives
+  // exactly 1.0 and the water renders its authored ramp colour.
+  vec3  lakeCol = mix(LAKE_DEEP, LAKE_SHORE, band);
+  float wli = 1.0 + ((1.0 - 0.34 * contact + glint) - 1.0) * uShade;
+  lakeCol *= wli;
+  //
+  // THE CASPIAN stays on the OCEAN path, with real bathymetry and a real shelf
+  // break: Natural Earth classifies it as a sea and excludes it from
+  // ne_10m_lakes, so coast.png reads -7.75 in its south basin, isLake is 0 there
+  // and nothing here touches it. That is not an inconsistency to fix -- it is a
+  // sea by area and the one water body in the file with genuinely measured
+  // depth. It is also the existence proof that this treatment is right: it
+  // already looks correct, while Baikal, deeper, renders as hillshaded dry land
+  // until this pass.
+  //
+  // AND ALL 29 LAKES ARE ONE OPAQUE SURFACE. Six carry real ETOPO bed bathymetry
+  // (Baikal recovers 100% of its published 1,642 m) and 23 are flat surface
+  // planes (Tanganyika 0% of 1,470 m). A sub-surface hillshade on the six would
+  // produce a two-class map -- Baikal internally textured, deeper Tanganyika not
+  // -- driven by an artifact of ETOPO's coverage that is invisible to the viewer
+  // as a data-quality signal. The flat 23 are not a loss: slope = 0 inside them
+  // means sigma = 0 and no micro-relief, so a lake already reads as an
+  // unnaturally smooth patch before any blue goes on. That smoothness is
+  // truthful; it is kept.
 
   // ================================================================ COMPOSITE
   // Aerial perspective weighted by ELEVATION, not uniformly: lowlands recede at
@@ -5429,11 +5858,22 @@ void main() {
   // edge is sub-pixel crisp at k=32 from a 2400-wide bake. Biased seaward far
   // out to hide the 1-2 canvas-unit overhang of the generalised district
   // polygons; the bias relaxes as you dive, because truth beats hiding.
-  float bias = mix(1.20, 0.15, tDetail);
-  float aa   = 0.75 / max(uPxPerWorld, 1e-6);
-  float isLand = smoothstep(-aa, aa, sdf + bias);
-
+  // (bias, aa and isLand are computed above, next to the taps.)
   vec3 phys = mix(sea, land, isLand);
+
+  // The lake resolves LAST, so a lake straddling the coast field (the Aral,
+  // coastal lagoons) is water either way.
+  //
+  // NOTE THE ABSENCE OF A BIAS, and it is deliberate. The coastline's
+  // mix(1.20, 0.15, tDetail) above exists to hide the 1-2 canvas-unit overhang
+  // of the GENERALISED district polygons, and no district polygon overhangs a
+  // lake. The .lake svg path IS this curve -- lake.png was baked from
+  // rivers.js's own 29 rings, not from a second source -- so a bias here would
+  // separate the GL water from the stroke drawn on top of it by 1.2 canvas
+  // units at k=1. This difference from the coast is correct and must not be
+  // "made consistent" later.
+  float isLake = smoothstep(aa, -aa, lC);
+  phys = mix(phys, lakeCol, isLake);
 
   // Legacy ground: what the map is today. uGround = 0 reproduces it exactly, by
   // construction -- which is the shader-level cross-check on the thematic modes.
@@ -5578,6 +6018,7 @@ function glDecodeTo(gl, prog, src, w, h, levels) {
   gl.uniform1f(gl.getUniformLocation(prog, "uElevSpan"), GLBAKE.ELEV_HI - GLBAKE.ELEV_LO);
   gl.uniform1f(gl.getUniformLocation(prog, "uDepthMax"), GLBAKE.DEPTH_MAX);
   gl.uniform1f(gl.getUniformLocation(prog, "uSdfMax"), GLBAKE.SDF_MAX);
+  gl.uniform1f(gl.getUniformLocation(prog, "uOccStep"), GLBAKE.OCC_STEP);
   gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, src.enc);
   gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, src.coast);
   gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, src.veg);
@@ -5659,17 +6100,27 @@ async function glProbeDecode(gl, prog) {
   for (let i = 0; i < 16; i++) {
     const rgb = GLPROBE_RGB[i], b = rgb[2] / 255;
     const t = GLPROBE_COAST[i] / 255 * 2 - 1;
+    const sd = Math.sign(t) * GLBAKE.SDF_MAX * t * t;
+    // Channel 1 is the SIGNED depth/occlusion channel, so the probe asserts the
+    // BRANCH as well as the arithmetic: eight of the sixteen texels are land
+    // (coast >= 128) and must come back as -B*OCC_STEP, the other eight as
+    // +DEPTH_MAX*(B/255)^2. A decode that lost the sign test would still pass
+    // on the water half, which is exactly why both halves are here. The land
+    // texels deliberately carry B values above the 0..64 the bake writes: this
+    // asserts the decode, not the data.
     const want = [
       (rgb[0] * 256 + rgb[1]) * (span / 65535) + GLBAKE.ELEV_LO,
-      GLBAKE.DEPTH_MAX * b * b,
-      Math.sign(t) * GLBAKE.SDF_MAX * t * t,
+      sd > 0 ? -(rgb[2] * GLBAKE.OCC_STEP) : GLBAKE.DEPTH_MAX * b * b,
+      sd,
       GLPROBE_VEG[i] / 255,
     ];
     // Tolerance is the half-float ULP, not a fudge: every corruption mode this
     // exists to catch (gamma, premultiply, a channel swizzle, a flip) moves
-    // these numbers by hundreds of metres, not by one code.
+    // these numbers by hundreds of metres, not by one code. The occlusion branch
+    // gets its own absolute floor because its whole range is 0..2.2, and 1.0 m
+    // of slack there would admit half the signal.
     const tol = [Math.abs(want[0]) * 1.2e-3 + 0.06,
-                 Math.abs(want[1]) * 1.2e-3 + 1.0, 0.01, 0.004];
+                 Math.abs(want[1]) * 1.2e-3 + (sd > 0 ? 0.002 : 1.0), 0.01, 0.004];
     for (let c = 0; c < 4; c++) {
       const e = Math.abs(px[i * 4 + c] - want[c]) / tol[c];
       if (e > worst) {
@@ -5682,6 +6133,52 @@ async function glProbeDecode(gl, prog) {
   GL.probe = worst <= 1 ? "pass (worst " + worst.toFixed(3) + " of tolerance)"
                         : "FAIL " + worstAt;
   if (worst > 1) throw new Error("decode readback assertion failed: " + worstAt);
+}
+
+/* --- the lake upload assertion --------------------------------------------
+   lake.png is the ONE baked texture that never enters the decode pass, so
+   glProbeDecode() above cannot cover it. Without this, a colour-managed,
+   premultiplied or flipped decode of that file would move every shoreline in
+   the map with nothing complaining — the exact failure the decode probe exists
+   to prevent for the other three.
+
+   Fifteen lines: push a 4x1 L8 data: URI through the IDENTICAL glBitmap ->
+   glUpload path, attach it to a framebuffer (R8 is colour-renderable in core
+   WebGL2), read it back and assert the four bytes exactly. The fixture
+   straddles both saturations and both sides of the encode's zero crossing.
+   Failure throws, and glBoot().catch routes it to glFail(). */
+const GLPROBE_LAKE_PNG =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAAAAADcV1ARAAAADUlEQVR42mNgqG/4DwADgQH/OnGcygAAAABJRU5ErkJggg==";
+const GLPROBE_LAKE = [0, 127, 128, 255];
+
+async function glProbeLake(gl) {
+  // ?glfail=lake corrupts the expectation, so the new failure mode this pass
+  // introduces is reachable from the address bar like every other one.
+  if (GL.forceFail === "lake") GLPROBE_LAKE[0] = 42;
+  const bmp = await glBitmap(GLPROBE_LAKE_PNG);
+  if (bmp.width !== 4 || bmp.height !== 1)
+    throw new Error("lake probe fixture decoded to " + bmp.width + "x" + bmp.height);
+  const tex = glUpload(gl, bmp, gl.R8, gl.RED, gl.LINEAR);
+  if (bmp.close) bmp.close();
+  const fb = gl.createFramebuffer();
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+  const out = new Uint8Array(16);
+  try {
+    if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) !== gl.FRAMEBUFFER_COMPLETE)
+      throw new Error("R8 framebuffer incomplete");
+    gl.readPixels(0, 0, 4, 1, gl.RGBA, gl.UNSIGNED_BYTE, out);
+  } finally {
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.deleteFramebuffer(fb); gl.deleteTexture(tex);
+  }
+  for (let i = 0; i < 4; i++) {
+    // EXACTLY, not within a tolerance: this is a byte round trip, and every
+    // corruption mode it catches moves a byte by far more than one code.
+    if (out[i * 4] !== GLPROBE_LAKE[i])
+      throw new Error("lake upload readback: texel " + i + " got " + out[i * 4] +
+                      " want " + GLPROBE_LAKE[i]);
+  }
 }
 
 /* ------------------------------------------------------------- the ramps
@@ -5779,9 +6276,10 @@ async function glInit() {
   if (GL.forceFail === "tex") throw new Error("forced failure (?glfail=tex)");
 
   const bmps = await Promise.all(
-    ["/relief.png", "/coast.png", "/cover.png"].map(glBitmap));
-  const dims = [[GLBAKE.W, GLBAKE.H], [GLBAKE.W, GLBAKE.H], [GLBAKE.COVER_W, GLBAKE.COVER_H]];
-  ["relief.png", "coast.png", "cover.png"].forEach((nm, i) => {
+    ["/relief.png", "/coast.png", "/cover.png", "/lake.png"].map(glBitmap));
+  const dims = [[GLBAKE.W, GLBAKE.H], [GLBAKE.W, GLBAKE.H], [GLBAKE.COVER_W, GLBAKE.COVER_H],
+    [GLBAKE.W, GLBAKE.H]];
+  ["relief.png", "coast.png", "cover.png", "lake.png"].forEach((nm, i) => {
     if (bmps[i].width !== dims[i][0] || bmps[i].height !== dims[i][1])
       throw new Error(nm + " is " + bmps[i].width + "x" + bmps[i].height +
                       ", expected " + dims[i][0] + "x" + dims[i][1]);
@@ -5791,7 +6289,18 @@ async function glInit() {
     coast: glUpload(gl, bmps[1], gl.R8, gl.RED, gl.NEAREST),
     veg: glUpload(gl, bmps[2], gl.R8, gl.RED, gl.LINEAR),
   };
+  // lake.png is the one baked texture that does NOT fold into the decode pass:
+  // the RGBA16F target's four channels are spoken for, and a fifth would cost
+  // +18.6 MiB of VRAM (+24.9 with mips) to carry one scalar that an R8 carries
+  // in 2.44 MB. It therefore survives the decode as its own texture, on the
+  // same 2400 x 1018 grid and the same signed encode as coast.png, and is kept
+  // on GLR for the water path to sample. LINEAR, because the whole point of an
+  // odd-symmetric signed distance is that filtering it preserves the shoreline.
+  const lake = glUpload(gl, bmps[3], gl.R8, gl.RED, gl.LINEAR);
   for (const b of bmps) { if (b.close) b.close(); }
+  // The upload-path assertion for the one texture the decode readback cannot
+  // reach. Runs on a 4x1 data: URI, so it touches no network and costs nothing.
+  await glProbeLake(gl);
 
   const levels = 1 + Math.floor(Math.log2(Math.max(GLBAKE.W, GLBAKE.H)));
   const dec = glDecodeTo(gl, progDecode, src, GLBAKE.W, GLBAKE.H, levels);
@@ -5803,15 +6312,28 @@ async function glInit() {
   // Some drivers are flaky on half-float mips. On failure the shader runs at
   // L = 0 with a fixed one-texel differencing step: correct, just sparklier far
   // out, and still a single tested path.
+  //
+  // ONE PATH FOR BOTH TEXTURES, deliberately. The shader samples uPhys and uLake
+  // at the SAME L, so if uPhys ended up with 12 levels and uLake with 1 the
+  // water would be reading above its own max level — exactly the
+  // driver-dependent behaviour this file's fallback discipline exists to avoid.
+  // Either both get a mip chain or GL.maxLod is 0 and both run LINEAR.
   gl.bindTexture(gl.TEXTURE_2D, dec.tex);
   GL.maxLod = 7;
   try {
     while (gl.getError() !== gl.NO_ERROR) { /* drain */ }
     gl.generateMipmap(gl.TEXTURE_2D);
-    if (gl.getError() !== gl.NO_ERROR) throw new Error("generateMipmap");
+    if (gl.getError() !== gl.NO_ERROR) throw new Error("generateMipmap(uPhys)");
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+    gl.bindTexture(gl.TEXTURE_2D, lake);
+    gl.generateMipmap(gl.TEXTURE_2D);
+    if (gl.getError() !== gl.NO_ERROR) throw new Error("generateMipmap(uLake)");
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
   } catch (_) {
     GL.maxLod = 0;
+    gl.bindTexture(gl.TEXTURE_2D, dec.tex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.bindTexture(gl.TEXTURE_2D, lake);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     console.warn("[glmap] half-float mips unavailable; running at LOD 0");
   }
@@ -5828,10 +6350,10 @@ async function glInit() {
     return o;
   };
   GLR = {
-    gl, progMap, progGrid, vao, phys: dec.tex, ramp, seaRamp,
+    gl, progMap, progGrid, vao, phys: dec.tex, lake, ramp, seaRamp,
     u: U(progMap, ["frag2World", "world", "texPerWorld", "pxPerWorld", "lk", "maxLod",
-      "ground", "sat", "shade", "sea", "hazeMax", "shimmer", "time",
-      "phys", "ramp", "seaRamp"]),
+      "ground", "sat", "shade", "sea", "hazeMax", "shimmer", "time", "ao", "glint",
+      "phys", "ramp", "seaRamp", "lake", "lakeMax"]),
     uGrid: progGrid ? U(progGrid, ["frag2World", "world", "pxPerWorld"]) : null,
   };
 
@@ -5945,12 +6467,19 @@ function glDraw() {
   gl.uniform1f(u.hazeMax, dial.haze);
   gl.uniform1f(u.shimmer, GL.shimmer ? 1 : 0);
   gl.uniform1f(u.time, GL.time);
+  gl.uniform1f(u.ao, dial.ao);
+  gl.uniform1f(u.glint, dial.glint);
+  // A uniform rather than a shader const, so the bake contract and the shader
+  // cannot drift: lake.png and coast.png share this one clip.
+  gl.uniform1f(u.lakeMax, GLBAKE.SDF_MAX);
   gl.uniform1i(u.phys, 0);
   gl.uniform1i(u.ramp, 1);
   gl.uniform1i(u.seaRamp, 2);
+  gl.uniform1i(u.lake, 3);
   gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, GLR.phys);
   gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, GLR.ramp);
   gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, GLR.seaRamp);
+  gl.activeTexture(gl.TEXTURE3); gl.bindTexture(gl.TEXTURE_2D, GLR.lake);
   gl.drawArrays(gl.TRIANGLES, 0, 3);
 
   if (GLR.progGrid) {
@@ -6205,8 +6734,9 @@ function glGridNode() {
   return GLGRIDNODE;
 }
 
-// Start the fetch/decode now, in parallel with /api/state — the three textures
-// are 3.15 MiB and the map is drawable long before they land. Nothing here
+// Start the fetch/decode now, in parallel with /api/state — the FOUR textures
+// are 3.27 MiB (relief 2,856,812 + coast 292,852 + cover 260,856 + lake 20,173
+// = 3,430,693 B) and the map is drawable long before they land. Nothing here
 // blocks the page: on any failure glFail() logs once and the map renders on the
 // /terrain.png underlay exactly as it does today.
 glBoot();
@@ -7282,6 +7812,31 @@ function refreshDistrictDetail() {
   hit.innerHTML = h; lab.innerHTML = t;
 }
 
+/// The map's painted world->screen mapping, read from the svg itself rather
+/// than recomputed. getBoundingClientRect() is the ELEMENT box: the svg is
+/// `width:100%` under a max-height with the default `xMidYMid meet`, so
+/// whenever the pane's aspect differs from WORLD.w/WORLD.h the viewBox content
+/// rect is letterboxed inside that box and the two disagree -- by an offset AND
+/// a scale. A gesture measured against the element box slides the map under the
+/// cursor instead of holding it. getScreenCTM() is the matrix the browser
+/// ACTUALLY painted with, so it cannot disagree with what is on screen; the GL
+/// ground reads the same matrix (see glDraw), which is why the two layers
+/// answer a gesture the same way rather than merely staying registered with
+/// each other. `1 / M.a` is world units per CSS pixel and `(clientX - M.e)/M.a`
+/// is the world x under the cursor.
+///
+/// Null when the svg is unrendered or the scale is degenerate; a caller must
+/// then decline the gesture rather than fall back to the element box, which is
+/// the wrong answer this exists to avoid. The axis-aligned uniform-scale
+/// assumption is the one glDraw asserts outright.
+function mapCTM(svg) {
+  const M = svg.getScreenCTM();
+  if (!M) return null;
+  if (!isFinite(M.a) || !isFinite(M.d) || !isFinite(M.e) || !isFinite(M.f) ||
+      Math.abs(M.a) < 1e-9 || Math.abs(M.d) < 1e-9) return null;
+  return M;
+}
+
 // Map input: bound ONCE to #pane-map, which is never replaced, so a render
 // mid-gesture cannot orphan a listener. Pan and zoom mutate ui.cam and
 // rewrite the viewBox; they never call renderMap.
@@ -7293,14 +7848,21 @@ function refreshDistrictDetail() {
     const svg = pane.querySelector("svg");
     if (!svg) return;
     e.preventDefault();
-    const r = svg.getBoundingClientRect(), k0 = ui.cam.k;
+    // Read the matrix BEFORE ui.cam.k moves: it describes the camera still on
+    // screen, which is the one the cursor is pointing at.
+    const M = mapCTM(svg);
+    if (!M) return;
+    const k0 = ui.cam.k;
     ui.cam.k = clamp(k0 * Math.exp(-e.deltaY * 0.0015), 1, 32);
-    // keep the point under the cursor fixed
-    const fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
-    const vw0 = WORLD.w / k0, vw1 = WORLD.w / ui.cam.k;
-    const vh0 = WORLD.h / k0, vh1 = WORLD.h / ui.cam.k;
-    ui.cam.cx += (fx - 0.5) * (vw0 - vw1);
-    ui.cam.cy += (fy - 0.5) * (vh0 - vh1);
+    // Keep the world point under the cursor fixed. The viewBox aspect is
+    // WORLD.w/WORLD.h at every zoom, so the `meet` fit -- and with it the
+    // content rect -- is the same before and after; only the scale changes.
+    // Holding wx is then exactly shrinking the centre's offset from it by the
+    // zoom factor.
+    const wx = (e.clientX - M.e) / M.a, wy = (e.clientY - M.f) / M.d;
+    const z = k0 / ui.cam.k;
+    ui.cam.cx = wx + (ui.cam.cx - wx) * z;
+    ui.cam.cy = wy + (ui.cam.cy - wy) * z;
     applyCam(); scheduleDistrictDetail();
   }, { passive: false });
   pane.addEventListener("pointerdown", (e) => {
@@ -7317,11 +7879,16 @@ function refreshDistrictDetail() {
     if (!down) return;
     const svg = pane.querySelector("svg");
     if (!svg) { down = null; return; }
-    const r = svg.getBoundingClientRect();
+    // 1/M.a is world units per CSS pixel along the rect the browser painted,
+    // so the ground stays under the finger whatever the letterbox is doing.
+    // Dropping `down` on a null matrix rather than returning: a stale anchor
+    // would cash in as a jump on the next move.
+    const M = mapCTM(svg);
+    if (!M) { down = null; return; }
     const dx = e.clientX - down.x, dy = e.clientY - down.y;
     if (Math.abs(dx) + Math.abs(dy) > 4) moved = true;
-    ui.cam.cx -= dx * (WORLD.w / ui.cam.k) / r.width;
-    ui.cam.cy -= dy * (WORLD.h / ui.cam.k) / r.height;
+    ui.cam.cx -= dx / M.a;
+    ui.cam.cy -= dy / M.d;
     down = { x: e.clientX, y: e.clientY };
     applyCam();
   });

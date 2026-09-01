@@ -603,6 +603,123 @@ clean.
 
 ## Next (rough priority)
 
+### 0-ter. STATE OF THE SUITE after Ridge's three rulings, 2026-08-31 — supersedes 0-bis below
+
+0-bis stands as history. These are the numbers after the capital-channel repair
+(ruling 1), the conquest and Gulf-War re-pointings (ruling 2) and the sampling
+doctrine now in CLAUDE.md as iron rule 7 (ruling 3). Every source file was
+touched at 19:26:17 and every test binary rebuilt and watched afterwards
+(19:26:31–19:26:34, the CLI at 19:26:54) — iron rule 6, and stated as a range
+because a touched-source rebuild makes "post-dates" checkable rather than
+assumed.
+
+```
+spheres-sim  --lib ............ 152 passed   3 failed   19 ignored   (218.2s)
+capital_damage_audit .......... instruments only         5 ignored
+endowment_margin_probe ........ instrument only          1 ignored
+growth_decomposition .......... instruments only        20 ignored
+sample_size_audit ............. instruments only         3 ignored
+spheres-cli ................... no tests
+spheres-web ................... 17 passed    0 failed
+```
+
+**The three reds, quoted:**
+
+```
+tech::tests::the_1990_endowment_does_not_move_year_one_growth
+  Belgium was paid twice for its 1990 technology:
+  growth 0.001851 granted against 0.001749 ungranted            tech/mod.rs:2216
+
+tests::the_1990_start_is_pinned
+  the 1990 start state changed (actual 0xa5c9c5b2306313d8)      lib.rs:3186
+
+tests::golden_hash_of_a_known_run
+  timeline fingerprint changed (actual 0x20c24ab0f1581807)      lib.rs:3421
+```
+
+`spheres-web the_map_ships_terrain_and_rivers` is **green (17/17)**, but that
+reading belongs to the concurrent map/tech swarm, which has `spheres-web/src/main.rs`,
+`spheres-web/ui/index.html`, `ui/relief.png` and `tools/terrain/` modified in this
+same checkout. It is reported here as theirs, not claimed as a fix.
+
+**THE THREE REDS 0-bis LISTED ARE GONE**, and the honest reading of that is
+mixed: `gulf_war_emerges` and the two conquest tests are green partly because the
+board grows faster under the capital repair and partly because ruling 2 gave them
+samples that can see their own events. A bar that is green today for an unrelated
+reason is exactly the inverted-signal problem, which is why they were re-pointed
+rather than left alone.
+
+**THE HEADLINE RESULT — NOT REGRESSED, and the max error improved:**
+
+```
+  nation   model    real   error        Spearman rho vs reality   0.886  (10 seeds)
+     USA    2.01    2.50   -0.49                                  0.886  (40 seeds)
+   Japan    1.32    0.83   +0.49        USA strictly fastest       true
+ Germany    1.78    1.28   +0.50        Japan below USA/UK/FR/DE   true
+  France    1.86    1.50   +0.36        Italy below USA/UK/FR/DE   true
+      UK    1.82    1.93   -0.11        Germany < UK               true
+   Italy    1.60    0.76   +0.84        max |error|         0.86 -> 0.84
+```
+
+Germany < UK is the clause this change costs the most and it holds with room:
+margin +0.04 at ten seeds, +0.030 at a hundred, and P(UK faster than Germany) =
+0.93 over the 40-seed pairwise matrix. The whole capital channel pays the six
+between −0.02 and +0.04 pt/yr — the rate arm is gated to zero at the frontier and
+the level write is exactly zero on five flat 420-month investment shares.
+
+**THE DEVELOPING PANEL, 100 seeds, 30-year multiple and CAGR:**
+
+```
+     nation   30y mult   30y CAGR   35y CAGR   real 35y      verdict
+      China    14.4549     9.3118     9.0784    8.70(e)      FIXED
+      India     9.7191     7.8750     7.7649    6.39(e)      better
+ SouthKorea     5.4483     5.8137     5.2322    4.53(e)      worse  0.15
+     Poland     4.2353     4.9292     4.7700    2.94         better
+     Brazil     3.6505     4.4107     4.2995    2.24(e)      ~flat
+    Nigeria     6.2352     6.2906     6.0820    4.37(e)      better
+  Indonesia    24.3907    11.2348    10.6466    4.88(e)      WORSE  1.50   BUGS.md C-2
+    Vietnam     5.0182     5.5241     5.9062    6.88(e)      WORSE  0.49   input defect
+```
+
+China across **300 fair seeds**: median 30-year multiple **14.6940x** against a
+real 14.33x, mean 14.3077x, p05 11.380, p95 16.074, min 8.653. **10 of 300 below
+the old 11.0 floor (was 140 of 300); 173 of 300 reach reality (was 0); 0 of 30
+disjoint ten-seed blocks would red (was 11 of 30).** `china_growth_miracle` now
+passes with margin instead of on a lucky draw.
+
+**Emergent history holds**, seed 7, thirty years: Yugoslavia dissolves Dec 1991
+and the USSR Sep 1993; seven wars open and five close by negotiated peace with
+territorial cession (Bosnia 1995, Laos 2000, Guatemala 2001, Yemen 2001 and
+2011); the Gulf War emerges in **246 of 400 seeds (61.5%)** against a doctrinal
+50% bar and 125 of the 200 the test now reads; conquest fires **107 times in 240
+seeds** across 78 seeds, of which 10 are annexations (Mongolia ×6, Bhutan,
+Luxembourg, Ireland — largest 5.351m against the 8m bound) and 97 are refusals.
+The 2020 league table reads USA, **China**, Japan, India, Germany, Indonesia, UK,
+France, Russia, Italy — **China overtakes Japan, which HEAD did not manage**, and
+Indonesia climbing to 6th is the repair's cost made visible (BUGS.md C-2).
+
+**Determinism holds:** two 30-year headless runs byte-identical at 256,881 bytes,
+md5 `f8ba3471388bfcf2a7456d0229ec4ed4`, confirmed with `cmp` as well as the hash.
+
+**THE GOLDEN RE-PIN IS STILL BLOCKED, and the blocker changed.** It is now
+`the_1990_endowment_does_not_move_year_one_growth` — BUGS.md **E-2**, red at
+102.2% of a bar it cleared at 98.8% on HEAD, with the capital repair proved to be
+the sole cause by isolating `economy.rs` onto a pristine HEAD worktree. Half the
+precondition is met and was re-verified independently by brace-matched body
+extraction against `git HEAD`: **zero bodies deleted, zero tolerances widened,
+one ceiling added**. Both pins keep the HEAD constants; `the_1990_start_is_pinned`
+reads bit-for-bit the same actual on both trees, so HEAD ships a 1990 board that
+does not match its own 1990 pin, independent of this work. Full second
+adjudication in **BUGS.md T-5**.
+
+**Three things the next pass must know before it starts.** `mature_economies_do_not_run_hot`
+still has Italy at **+0.0008** above its 0.008 floor (it moved the right way, from
++0.0007). `growth_decomposition.rs`'s `terms()` still computes the OLD capital
+formula and every decomposition column built on it is wrong by the size of the
+repair (**BUGS.md T-6**). And the Spearman/ordering result above is printed by an
+`#[ignore]`d instrument and **asserted nowhere** — nothing in `cargo test` can
+catch a regression in it (**BUGS.md T-7**).
+
 ### 0-bis. STATE OF THE SUITE, 2026-08-31 — supersedes §0 below
 
 Everything in §0 still stands as history; these are the numbers as of the audit

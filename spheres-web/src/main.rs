@@ -26,6 +26,9 @@ const RELIEF_PNG: &[u8] = include_bytes!("../ui/relief.png");
 const COAST_PNG: &[u8] = include_bytes!("../ui/coast.png");
 /// Baked NE1 vegetation index, half-resolution — see tools/terrain/make_cover.py.
 const COVER_PNG: &[u8] = include_bytes!("../ui/cover.png");
+/// Baked signed lake-shoreline distance field, same Robinson canvas, same encode and same
+/// clip as coast.png — see tools/terrain/make_lakes.py.
+const LAKE_PNG: &[u8] = include_bytes!("../ui/lake.png");
 /// Baked major rivers + lakes, same projection as world.js.
 const RIVERS_JS: &str = include_str!("../ui/rivers.js");
 /// Baked per-district terrain classes + feature names, same ids as
@@ -1014,13 +1017,13 @@ fn main() {
                 let _ = request.respond(r);
                 continue;
             }
-            // The three GL terrain textures, on the same terms as /terrain.png above:
+            // The four GL terrain textures, on the same terms as /terrain.png above:
             // identity encoding for the Content-Length, and a day of cache because they are
             // static transcription baked into this binary. relief.png carries packed uint16
-            // elevation and coast.png a signed distance field, so both are sampled as
-            // NUMBERS rather than looked at — the generators assert that neither ships a
-            // gAMA/sRGB/iCCP chunk, because a decoder that gamma-corrected them would move
-            // the terrain and the coastline.
+            // elevation plus baked sky occlusion, and coast.png and lake.png signed distance
+            // fields, so all three are sampled as NUMBERS rather than looked at — the
+            // generators assert that none ships a gAMA/sRGB/iCCP chunk, because a decoder
+            // that gamma-corrected them would move the terrain and both shorelines.
             (Method::Get, "/relief.png") => {
                 let r = Response::from_data(RELIEF_PNG.to_vec())
                     .with_chunked_threshold(usize::MAX)
@@ -1055,6 +1058,22 @@ fn main() {
             }
             (Method::Get, "/cover.png") => {
                 let r = Response::from_data(COVER_PNG.to_vec())
+                    .with_chunked_threshold(usize::MAX)
+                    .with_header(
+                        Header::from_bytes(&b"Content-Type"[..], &b"image/png"[..]).unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"public, max-age=86400"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/lake.png") => {
+                let r = Response::from_data(LAKE_PNG.to_vec())
                     .with_chunked_threshold(usize::MAX)
                     .with_header(
                         Header::from_bytes(&b"Content-Type"[..], &b"image/png"[..]).unwrap(),
@@ -1508,18 +1527,21 @@ mod tests {
             TERRAIN_PNG.starts_with(b"\x89PNG\r\n\x1a\n"),
             "terrain.png is not a PNG"
         );
-        // The three GL terrain textures, baked by tools/terrain/make_relief.py,
-        // make_coast.py and make_cover.py. Nothing else in this binary would notice a
+        // The four GL terrain textures, baked by tools/terrain/make_relief.py,
+        // make_coast.py, make_cover.py, make_occlusion.py (which repacks relief.png's
+        // B plane on land) and make_lakes.py. Nothing else in this binary would notice a
         // truncated or absent artifact: the routes serve whatever bytes are included.
         for (name, bytes) in [
             ("relief.png", RELIEF_PNG),
             ("coast.png", COAST_PNG),
             ("cover.png", COVER_PNG),
+            ("lake.png", LAKE_PNG),
         ] {
             assert!(bytes.starts_with(b"\x89PNG\r\n\x1a\n"), "{name} is not a PNG");
-            // relief.png and coast.png are sampled as numbers, not looked at. A colour
-            // chunk would license a decoder to gamma-correct them, which destroys the
-            // packed uint16 elevation outright and moves the coastline's zero crossing.
+            // relief.png, coast.png and lake.png are sampled as numbers, not looked at. A
+            // colour chunk would license a decoder to gamma-correct them, which destroys
+            // the packed uint16 elevation outright and moves both shorelines' zero
+            // crossings.
             for chunk in [&b"gAMA"[..], &b"sRGB"[..], &b"iCCP"[..]] {
                 assert!(
                     !bytes.windows(4).any(|w| w == chunk),
@@ -1544,9 +1566,9 @@ mod tests {
         // drops back to on a lost context, so this literal must survive the GL work.
         assert!(INDEX.contains("/terrain.png"));
         assert!(INDEX.contains("id=\"riverg\""));
-        // The GL underlay samples all three baked textures through these routes. The
+        // The GL underlay samples all four baked textures through these routes. The
         // page fetches them by literal string, so a renamed route is only caught here.
-        for path in ["/relief.png", "/coast.png", "/cover.png"] {
+        for path in ["/relief.png", "/coast.png", "/cover.png", "/lake.png"] {
             assert!(INDEX.contains(path), "the GL layer does not reference {path}");
         }
         // The WebGL2 canvas must never eat pointer events: `pointerdown` gates on
@@ -1599,14 +1621,41 @@ mod tests {
              stroke-width=\".4\" vector-effect=\"non-scaling-stroke\"/>"
         ));
 
-        // Three modes carry a ground and four deliberately do not: the thematic
+        // Four modes carry a ground and four deliberately do not: the thematic
         // reads are preserved by the ABSENCE of this key, which is what stands
         // the whole layer down rather than merely turning it to zero.
+        //
+        // This count was 3 until Resources became its own map mode. Resources is
+        // a reading of the PHYSICAL ground -- where the ore is -- so it earns a
+        // ground block on exactly the same argument Terrain does, and it was
+        // authored with one (a quiet u: [0.30, 0.55] under a wash that must stay
+        // the subject). The number moved because a mode was ADDED, not because a
+        // mode silently lost its ground, which is the failure this assertion
+        // exists to catch: raise it only alongside a new `ground:` block you can
+        // name, and never lower it to make a red test green.
         assert_eq!(
             INDEX.matches("\n    ground: {").count(),
-            3,
-            "exactly Political, Fronts and Terrain may carry a MAP_MODES ground block"
+            4,
+            "exactly Political, Fronts, Terrain and Resources may carry a MAP_MODES ground block"
         );
+        // ...and the four thematic modes must still have none. Asserted as a
+        // total so the count above cannot be satisfied by a thematic mode
+        // gaining a ground while a physical one loses it -- the exact swap a
+        // bare count is blind to.
+        for mode in ["relations", "stability", "growth", "economy"] {
+            let at = INDEX
+                .find(&format!("\n  {mode}: {{"))
+                .unwrap_or_else(|| panic!("MAP_MODES lost its {mode} mode"));
+            // Each MAP_MODES entry closes on a `},` at two-space indent, so that
+            // is the delimiter -- NOT the next "\n  ", which every four-space
+            // line inside the block also matches.
+            let rest = &INDEX[at + 1..];
+            let end = rest.find("\n  },").map(|e| e + 1).unwrap_or(rest.len());
+            assert!(
+                !rest[..end].contains("\n    ground: {"),
+                "{mode} is a thematic mode: colour IS the data, so it must carry no ground"
+            );
+        }
     }
 
     /// The front seam is drawn twice, each pass clipped by its own SVG mask,

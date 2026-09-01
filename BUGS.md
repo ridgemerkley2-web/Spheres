@@ -213,6 +213,71 @@ not restored, and the real non-neutrality was closed instead.*
 
 ---
 
+### E-2 — the capital repair spent E-1's remaining headroom, and `the_1990_endowment_does_not_move_year_one_growth` is RED
+
+**RED on the working tree, GREEN at `git HEAD`. Found 2026-08-31 in the final
+verification pass, and it is the blocker on the golden re-pin.**
+
+```
+Belgium was paid twice for its 1990 technology:
+  growth 0.001851 granted against 0.001749 ungranted     (tech/mod.rs:2216)
+```
+
+**The margin, measured on both trees with the same instrument**
+(`spheres-sim/tests/endowment_margin_probe.rs`, which replicates the tracked A/B
+exactly and prints what the test only asserts):
+
+| tree | worst dgrowth (Belgium) | against the 1.0e-4 bar |
+|---|---|---|
+| `git HEAD` (eb7de26) | 9.8823e-5 | **98.8%** — green by 1.2% |
+| working tree, capital repair applied | 1.0218e-4 | **102.2%** — red by 2.2% |
+
+The `dgdp` arm is not close and is not the complaint: 1.0461e-4 against its own
+2.0e-4 bar, 52.3% of it.
+
+**ATTRIBUTION, measured rather than reasoned.** `spheres-sim/src/economy.rs` from
+the working tree was copied onto an otherwise pristine `git HEAD` worktree
+(separate `CARGO_TARGET_DIR`, iron rule 6) and the test rebuilt and re-run. It
+reproduces the red **to the digit** — `0.001851` granted against `0.001749`
+ungranted. So the cause is the capital channel repair alone; `lib.rs`'s
+re-pointed tests are not involved, and independently could not be, since two
+30-year headless runs on the repaired tree are byte-identical to the run taken
+before those edits (md5 `f8ba3471388bfcf2a7456d0229ec4ed4`).
+
+**MECHANISM, and why this is a sensitivity rather than a new double-payment.**
+The endowment perturbs a nation's `development` by a hair through its GDP path,
+and the capital rate arm is gated by `(1 - dev)`, so whatever residual
+non-neutrality survives E-1 is *amplified in proportion to the size of that arm*.
+For Belgium the arm roughly doubles under the repair — at `s = 0.2460` the old
+`(s/0.20)^0.55 · 0.20 · 0.080 · (1-dev)` pays 0.256 pt/yr and the new
+`(s - 0.125)·(0.20/0.075) · 0.080 · (1-dev)` pays 0.368 pt/yr, +44% — and
+Belgium's residual moves +3.4% of the bar with it. Nothing is being paid twice
+that was not being paid twice before; E-1 closed the channel to within 1.2% of
+its bar and left no room for any downstream term to grow.
+
+**NOT FIXED HERE, and the reason is doctrine, not difficulty.** Three repairs are
+available and every one of them is the owner's call:
+
+1. **Rebase `adoption` the rest of the way** — E-1's own "not fixed here" note
+   says the ragged-edge cliff is `adoption` sitting outside the rebase, and the
+   residual measured here is what is left of exactly that. This is the honest
+   fix and it moves both goldens.
+2. **Widen the 1.0e-4 bar.** Forbidden by iron rule 5 and named here only so the
+   next session does not have to rediscover that it is forbidden. The bar is a
+   neutrality claim, not a calibration tolerance: it says the endowment is
+   invisible to year-one growth, and 1.0e-4 is already generous against a
+   quantity that is meant to be zero.
+3. **Trim the capital rate arm** until Belgium clears. This is fitting a
+   production coefficient to a test, which is the act PLAN's point (C) forbids,
+   and it would give back the China repair it was written for.
+
+**Related, and the reason this entry sits under E-1 rather than under T-:** the
+same amplification is why the arm should be read as a *sensitivity amplifier* for
+every A/B in the suite. Any future term gated on `dev` or on the investment share
+will move this residual again.
+
+---
+
 ## Awaiting an owner ruling
 
 ### T-3 — two conquest tests lost their sample, not their bar
@@ -618,6 +683,216 @@ conversion (fully written up in `economy.rs:369-434`, blocked because it takes
 `china_growth_miracle` red at 10.86x and the honest fix is to `oil_market`
 first), and the growth ceiling (ruled against on the merits — it would hide the
 very bug it was sent to find).
+
+#### SECOND ADJUDICATION, 2026-08-31 — the three original blockers cleared, a new one took their place. **STILL NOTHING RE-PINNED.**
+
+Run after the capital-channel repair (ruling 1), the conquest/Gulf re-pointings
+(ruling 2) and the sampling doctrine (ruling 3), on binaries rebuilt from touched
+sources and watched (iron rule 6: every source stamped 19:26:17, every test
+binary 19:26:31–19:26:34, the CLI 19:26:54).
+
+**HALF ONE — "no tolerance widened, no test deleted": SATISFIED, and re-verified
+independently rather than inherited.** Every `fn` body in `lib.rs` and
+`economy.rs` was extracted from `git show eb7de26:<file>` and from the working
+tree by brace-matching, comment bytes blanked so prose changes cannot mask an
+assertion change, hashed and compared duplicate-aware:
+
+```
+test/function bodies DELETED ............................ 0
+bodies whose CODE changed, lib.rs ....................... 7
+bodies ADDED, lib.rs .................................... 2   (conquest_endings,
+                                                               conquest_size_rule_scan)
+bodies whose CODE changed, economy.rs ................... 1   (economy::tick)
+bodies where only COMMENTS changed ...................... 0
+```
+
+The seven, with every assertion extracted and compared literal by literal:
+
+| body | what changed | bar |
+|---|---|---|
+| `a_large_nation_is_subjugated_rather_than_swallowed` | board deaths → every `Ending::Conquest`, both verdicts asserted; 20 → 100 seeds | `8.0` and `0.6` unchanged; `!found.is_empty()` → `refused >= 15` |
+| `a_dead_nation_holds_no_districts` | counted from `war::conquer`'s own headline, not "died and is not USSR/Yugoslavia"; 20 → 240 seeds | `annexations > 0` → `>= 1` (same claim) **plus a new ceiling `<= 40`** |
+| `gulf_war_emerges` | 40 → 200 seeds | `>= 20` of 40 → `>= N/2` of 200. Same 50%, third literal |
+| `china_growth_miracle` | 10 → 100 seeds; median written generically | `(11.0..19.0)` and `x > 6.0` byte-identical |
+| `a_burned_aggressor_does_not_come_back_for_the_same_prize` | 10 → 20 seeds | **all four assertions byte-identical** |
+| `gulf_wars` (helper) | seed range became a parameter | hit criterion unchanged |
+| `gulf_war_incidence_scan` | 40 → 400 seeds, prints its own derivation | `#[ignore]`d, asserts nothing |
+
+Not one loosened threshold; one *added* ceiling. `determinism_same_seed_same_world`,
+`save_load_roundtrip_continuity`, `mature_economies_do_not_run_hot`,
+`the_frontier_does_not_run_away`, `the_1990_start_is_pinned` and
+`golden_hash_of_a_known_run` are all byte-identical to HEAD.
+
+**A SCOPE QUESTION FOR RIDGE, raised rather than resolved.** The re-pin protocol
+was handed down naming **two** authorised re-pointings. **Five** tracked test
+bodies differ from HEAD. Each carries a dated authorisation block quoting him —
+three cite ruling 2 (`a_large_nation_is_subjugated…`, `a_dead_nation_holds_no_districts`,
+`gulf_war_emerges`), one cites ruling 3's named target "Gulf War n>=200, China
+n>=100" (`china_growth_miracle`), and one cites iron rule 7's general doctrine
+with no named target (`a_burned_aggressor…`, raised 10 → 20 because its measured
+false-red rate was 8.06%). Nothing here is a widening and the count does not
+change the ruling below, but **"exactly two" and "five, all documented" should be
+reconciled by the owner before any re-pin**, because the re-pin is the act that
+blesses the set.
+
+**HALF TWO — "every emergent-history calibration test is green untouched": STILL
+NOT SATISFIED.** The three reds this entry first recorded are now green — and
+green *for the wrong reason*, which is worth saying plainly: `gulf_war_emerges`,
+`a_dead_nation_holds_no_districts` and `a_large_nation_is_subjugated_rather_than_swallowed`
+pass partly because the board grows faster and partly because ruling 2 gave them
+samples that can see their own events. A fourth red replaced them:
+
+```
+tech::tests::the_1990_endowment_does_not_move_year_one_growth ... RED   E-2, above
+tests::the_1990_start_is_pinned ................................ RED   pre-existing at HEAD
+tests::golden_hash_of_a_known_run .............................. RED   pre-existing at HEAD
+                                                          152 passed, 3 failed, 19 ignored
+```
+
+**RULING: re-pin NOTHING. The blocker is E-2** — `the_1990_endowment_does_not_move_year_one_growth`,
+red at 102.2% of a bar it cleared at 98.8% on HEAD, caused by the capital repair
+and proved so by isolating `economy.rs` onto a pristine HEAD worktree. It is a
+neutrality claim about the 1990 board, so it is precisely a statement that *this*
+timeline is the intended one — the same thing a golden hash asserts. Pinning a
+fingerprint of a board whose own neutrality test is red would pin the defect.
+
+**The two pins are stale at HEAD independently of all of this**, which is a
+separate finding and must not be folded into the same fix:
+
+```
+                             pinned                 HEAD actual            repaired actual
+the_1990_start_is_pinned     0xd022d50f43c984da     0xa5c9c5b2306313d8     0xa5c9c5b2306313d8
+golden_hash_of_a_known_run   0xbd5ec0f43c5f2e3b     0x47581e52332a3e0b     0x20c24ab0f1581807
+```
+
+`the_1990_start_is_pinned` reads the pre-tick board, so the capital repair cannot
+move it and did not — **bit for bit the same value on both trees**. HEAD ships a
+1990 board that does not match its own 1990 pin. The timeline hash does move, as
+it must: the capital channel changed.
+
+**THE MECHANISM LIST THE EVENTUAL RE-PIN MUST NAME** is the seven above plus one:
+
+8. **The capital-channel repair (ruling 1, 2026-08-31)** — `economy::tick`. The
+   RATE arm `(s/0.20)^0.55 · 0.20` had no zero, so a nation investing 4% of
+   output was paid capital deepening while its stock shrank, and concavity was
+   applied to GROSS investment as though the replacement twelve points bought
+   growth. Replaced by `(s − 0.125)·(0.20/(0.20 − 0.125))`, which equals the old
+   term exactly at the reference `s = 0.20` and whose replacement line is `δ·(K/Y)`
+   read off the constants already in the file. The LEVEL block's free `0.02`/month
+   became `(δ+g)/12`, and its linearisation became `exp(gap) − 1`. China's
+   30-year multiple 11.07x → 14.69x against a real 14.33x; below-floor rate
+   45.8% → 3.3%; mature panel unmoved (rho 0.886, four clauses, max error 0.86 →
+   0.84). **Cost: Indonesia +1.50 pt/yr further from reality, Vietnam and South
+   Korea worse, and E-2.**
+
+---
+
+### T-6 — the tracked decomposition instrument still computes the OLD capital term
+
+**`spheres-sim/tests/growth_decomposition.rs:56-57`**, in `terms()`:
+
+```rust
+let intensity = spheres_sim::exact::powf((invest / 0.20).max(0.0), 0.55) * 0.20;
+let invest_effect = intensity * 0.080 * (1.0 - dev);
+```
+
+That is the formulation `economy::tick` replaced. Six readouts read `terms()` —
+`growth_decomposition`, `developing_decomposition`, `mature_sanction_exposure`,
+`transition_decomposition` and their neighbours at lines 149, 432, 772, 778, 1128
+and 1136 — so their `invest` column and every `SUM` built from it is now wrong by
+the size of the repair, which for China is 0.9 pt/yr. **The instrument is
+`#[ignore]`d and asserts nothing, so nothing is red, which is exactly why it will
+rot unnoticed.**
+
+**Not affected, and checked rather than assumed:** `mature_panel`,
+`mature_panel_wide` and `developing_panel` do not call `terms()` — they compound
+`n.gdp` directly — so every panel number reported for this pass stands. The
+untracked `spheres-sim/tests/capital_damage_audit.rs` carries a `terms()` that
+*was* updated, which is why its TABLE C is the one to trust today.
+
+**Left alone deliberately.** It is a tracked test file and doctrine says an agent
+that thinks a test is wrong stops and reports. Fixing it is three lines and no
+bar moves; it wants a nod, not a branch.
+
+### T-7 — the mature panel's acceptance criterion is asserted NOWHERE
+
+The standing bar on this project — *Spearman rho at or above 0.886, USA fastest,
+Japan and Italy below the others, Germany below the UK, max error under a point*
+— is computed by `growth_decomposition::mature_panel`, which is `#[ignore]`d and
+contains **zero assertions**. `grep -c assert` over its body returns 0, and
+`spearman()` appears nowhere in `lib.rs`.
+
+So the headline criterion the last four sessions have been judged against cannot
+fail a test run. A future change could take rho from 0.886 to 0.4 and invert
+Germany and the UK, and `cargo test --workspace` would be green. The nearest
+tracked cousins police different quantities: `mature_economies_do_not_run_hot`
+guards a band per nation, `the_frontier_does_not_run_away` guards the fastest and
+slowest, and neither reads the *ordering*.
+
+This is iron rule 7's power clause pointed at the thing the rule was written to
+protect. Making it a bar is a calibration decision and therefore Ridge's:
+the honest construction is a tracked test asserting the four ordering clauses
+and a rho floor, sized by the same variance arithmetic rule 7 asks for
+(`mature_panel_wide`'s 40-seed pairwise matrix already gives it — P(UK faster
+than Germany) = 0.93, which is the tight one).
+
+### C-2 — Indonesia is what the capital repair cost, and it is now visible in the league table
+
+**No calibration bar covers Indonesia, which is why this needs writing down.**
+The capital rate arm's reshape pays a nation in proportion to how far its
+investment share sits above the replacement line, gated by how far it is from the
+frontier. Indonesia holds a 33% share **and** a development gate that never
+closes (`dev` reaches only 0.474 in 35 years), so it draws the arm at full width
+for the whole run:
+
+```
+                 35y CAGR %/yr                    capital rate arm, pt/yr
+              HEAD    repaired    real            HEAD      repaired
+Indonesia     9.152    10.647    4.88(e)          1.870  ->  3.652     WORSE by 1.50
+Vietnam       7.355     5.906    6.88(e)          1.262  ->  0.103     WORSE by 0.49
+SouthKorea    5.083     5.232    4.53(e)          0.628  ->  1.191     WORSE by 0.15
+China         8.275     9.078    8.70(e)          1.742  ->  2.642     FIXED
+India         8.272     7.765    6.39(e)          1.436  ->  1.092     better
+Poland        5.139     4.770    2.94             1.156  ->  0.721     better
+Brazil        4.348     4.300    2.24(e)          1.325  ->  1.321     ~flat
+Nigeria       6.926     6.082    4.37(e)          1.269  ->  0.386     better
+```
+
+**It has reached the headline artefact.** Seed 7, thirty years, same run on both
+trees — the 2020 league table moves Indonesia from **11th to 6th**, above the
+United Kingdom, France, Russia, Italy and Mexico:
+
+```
+HEAD      ... 6 Russia 2407, 7 France 2395, 8 Italy 1993, 9 UK 1990,
+              10 Mexico 1866, 11 Indonesia 1749, ... 16 Thailand 1077
+REPAIRED  ... 6 INDONESIA 2626, 7 UK 2048, 8 France 2047, 9 Russia 2024,
+              10 Italy 1935, 11 Mexico 1902, ... 13 Thailand 1501
+```
+
+The same table is where the repair's win shows: **China moves from 3rd (4337,
+below Japan) to 2nd (5926, above Japan)**, which is the single most important
+structural fact about the 1990–2020 world and which HEAD did not produce.
+
+**TWO DIAGNOSES, and only one of them is the channel's fault.**
+ * **Indonesia and South Korea** are the reshape doing what it says on a very
+   high share. The formulation holds the replacement line at the world 1990
+   reference and does not let it rise as a nation accumulates capital; the
+   `(1 - dev)` gate does the expiring instead, and Indonesia is where that
+   simplification is most exposed. The proper fix is a per-nation
+   capital-output ratio, which is **not transcribed anywhere in this repo** —
+   inventing one is iron rule 4's refusal.
+ * **Vietnam is an input defect, not a formulation defect.** The model drives
+   Vietnam's investment share to 0.1022 by 2000, below the 0.125 replacement
+   line, so the arm correctly pays a negative. Real Vietnamese gross capital
+   formation in the 1990s ran roughly 25–30% of output. Same shape as China's
+   share falling 0.300 → 0.261 where reality rose from ~35% to ~42%: a debt-path
+   defect in `politics.rs`'s ratchet, which the capital repair made the channel
+   *robust to* rather than curing.
+
+**The one lever that would trade Indonesia against China is `REPLACEMENT_SHARE`,
+and it was deliberately not swept.** It is derived from the reference share 0.20
+and δ; tuning it until Indonesia behaved would be closing a residual with a
+coefficient.
 
 ---
 

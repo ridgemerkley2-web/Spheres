@@ -1046,27 +1046,36 @@ mod tests {
     /// tenth, so when a data change moves it the only honest follow-up is a
     /// wider scan of the same quantity.
     ///
+    /// Widened to four hundred seeds on 2026-08-31, alongside the bar's move to
+    /// two hundred, and it now prints the per-seed variance the sample size is
+    /// derived from as well as the narrower windows the bar used to read, so a
+    /// future session can re-derive that size rather than inherit it on trust.
+    ///
     /// `cargo test --release -p spheres-sim gulf_war_incidence_scan -- --ignored --nocapture`
     #[test]
     #[ignore]
     fn gulf_war_incidence_scan() {
-        let mut hits = vec![];
-        for seed in 0..40u64 {
-            let mut w = seeded(seed);
-            let mut saw = false;
-            for _ in 0..48 {
-                let headlines = tick_month(&mut w, &[]);
-                if headlines.iter().any(|h| h.contains("Iraq invades Kuwait")) {
-                    saw = true;
-                }
-            }
-            if saw || !w.nation(NationId::Kuwait).alive {
-                hits.push(seed);
-            }
+        const N: u64 = 400;
+        let hits = gulf_wars(0..N, 1.0);
+        let p = hits.len() as f64 / N as f64;
+        println!("Iraq invades Kuwait in {}/{} seeds: p = {:.4}", hits.len(), N, p);
+        // Bernoulli, so the per-seed variance IS p(1-p) — measured, not assumed.
+        let var = p * (1.0 - p);
+        println!("  per-seed variance p(1-p) = {:.4}, sd = {:.4}", var, var.sqrt());
+        // What sample the 50% doctrinal bar needs for a false red under 1%:
+        // the bar sits (p - 0.5) above the truth, so P(count < N/2) = Phi(
+        // -(p - 0.5) * sqrt(N) / sd ), and 2.326 sd is the 1% tail.
+        let need = (2.326 * var.sqrt() / (p - 0.5)).powi(2);
+        println!("  seeds needed for P(false red) < 1% against the 50% bar: {:.0}", need.ceil());
+        for w in [10u64, 40, 100, 200] {
+            println!(
+                "  first {:>3} (bar {:>3}): {}/{}",
+                w,
+                w / 2,
+                hits.iter().filter(|s| **s < w).count(),
+                w
+            );
         }
-        println!("Iraq invades Kuwait in {}/40 seeds: {:?}", hits.len(), hits);
-        println!("  first ten (what `gulf_war_emerges` reads, bar 5): {}/10",
-            hits.iter().filter(|s| **s < 10).count());
     }
 
     /// The readout the ten-region integration was judged on, kept so the
@@ -1784,6 +1793,289 @@ mod tests {
         found
     }
 
+    /// One `Ending::Conquest`, with the two figures the size rule weighed.
+    struct ConquestEnding {
+        seed: u64,
+        year: i32,
+        loser: NationId,
+        /// The loser's population and separatism as `war::conquer` saw them.
+        pop: f64,
+        sep: f64,
+        /// The same two a month earlier. Only the scan reads these: they are
+        /// the control on the reading above, not a second opinion about the
+        /// world. See the note on `conquest_endings`.
+        pop_pre: f64,
+        sep_pre: f64,
+        /// True when the rule admitted the annexation, false when it refused
+        /// and subjugated instead.
+        annexed: bool,
+    }
+
+    /// Every `Ending::Conquest` a seed range produces. This is the size rule's
+    /// whole caseload, not the tail of it that leaves the board.
+    ///
+    /// WHY HEADLINES ARE THE PROBE. `war::conquer` is reached from exactly one
+    /// place — the `Ending::Conquest` arm of `war::tick` — and it writes
+    /// exactly one of two headlines on every call: "X has annexed Y." when the
+    /// rule admits the annexation, "Y capitulates to X" when it refuses. Their
+    /// sum is therefore the count of conquest endings, and their split is the
+    /// rule's verdict. `conquest_funnel` already counts them this way and its
+    /// own printout labels them as such.
+    ///
+    /// WHY THE READING IS TAKEN AFTER THE TICK, WHICH MATTERS MORE HERE THAN IT
+    /// LOOKS. The separatism boundary is genuinely tight — measured over seeds
+    /// 0..240, the angriest nation ever annexed sits at 0.587 and the calmest
+    /// ever refused for anger at 0.614, thirteen and fourteen thousandths either
+    /// side of the 0.600 clause — so a reading off by a month is a false
+    /// verdict, not a rounding error. (The population clause has room to spare
+    /// by comparison: largest annexed 5.351m, smallest refused for size 8.735m.) It is exact because of the tick order: `population`
+    /// is written by `economy` and `tech`, `separatism` by `economy`,
+    /// `statecraft` and `stratagems`, and every one of those runs AHEAD of `war`
+    /// in the `SYSTEMS` table while nothing behind it (`government`, `politics`)
+    /// writes either. `conquer` itself leaves both untouched on the loser in
+    /// both arms — the annex arm sets only `alive` and `gdp`, the subjugation
+    /// arm only `gdp`, `mil_strength`, `stability` and `war_exhaustion`. So the
+    /// post-tick value IS the decision-time value.
+    ///
+    /// The pre-tick pair is carried alongside so that claim is checked rather
+    /// than asserted: `conquest_size_rule_scan` prints every row where the two
+    /// readings disagree about the verdict. Over seeds 0..240 there are none.
+    /// The one way they could is a loser that is also the WINNER of a
+    /// negotiated peace concluded earlier in the same month's ending list,
+    /// which is the only path by which `war.rs` moves a nation's separatism
+    /// (+0.05) or population before `conquer` reads it.
+    fn conquest_endings(
+        seeds: std::ops::Range<u64>,
+        aggression: f64,
+    ) -> Vec<ConquestEnding> {
+        let mut rows = vec![];
+        for seed in seeds {
+            let mut w = seeded(seed);
+            w.rules.ai_aggression = aggression;
+            let mut pre: std::collections::BTreeMap<NationId, (f64, f64)> = Default::default();
+            for _ in 0..480 {
+                pre.clear();
+                pre.extend(w.nations.iter().map(|n| (n.id, (n.population, n.separatism))));
+                let headlines = tick_month(&mut w, &[]);
+                for h in &headlines {
+                    let (loser_name, annexed) = if let Some(rest) = h.split(" has annexed ").nth(1)
+                    {
+                        (rest.trim_end_matches('.').to_string(), true)
+                    } else if h.contains(" capitulates to ") {
+                        (h.split(" capitulates to ").next().unwrap().to_string(), false)
+                    } else {
+                        continue;
+                    };
+                    let loser = w
+                        .nations
+                        .iter()
+                        .map(|n| n.id)
+                        .find(|id| id.name() == loser_name)
+                        .unwrap_or_else(|| panic!("no nation named {:?}", loser_name));
+                    let n = w.nation(loser);
+                    let (pop_pre, sep_pre) =
+                        pre.get(&loser).copied().unwrap_or((n.population, n.separatism));
+                    rows.push(ConquestEnding {
+                        seed,
+                        year: w.year,
+                        loser,
+                        pop: n.population,
+                        sep: n.separatism,
+                        pop_pre,
+                        sep_pre,
+                        annexed,
+                    });
+                }
+            }
+        }
+        rows
+    }
+
+    /// The size rule's caseload, its margins, and the sample sizes ruling 3
+    /// makes the two bars carry. Prints every annexation, the refusals closest
+    /// to each bound, and the per-seed variance both floors are derived from,
+    /// so "the rule stopped refusing" and "conquest stopped happening" can be
+    /// told apart and neither sample size has to be inherited on trust.
+    ///
+    /// ```text
+    /// cargo test --release -p spheres-sim conquest_size_rule_scan -- --ignored --nocapture
+    /// ```
+    #[test]
+    #[ignore]
+    fn conquest_size_rule_scan() {
+        const N: u64 = 240;
+        let rows = conquest_endings(0..N, 1.0);
+        let annexed: Vec<_> = rows.iter().filter(|r| r.annexed).collect();
+        let refused: Vec<_> = rows.iter().filter(|r| !r.annexed).collect();
+        println!("\n=== conquest endings, seeds 0..{}, 40 years ===", N);
+        println!("  Ending::Conquest total : {}", rows.len());
+        println!("  ...ANNEXED             : {}", annexed.len());
+        println!("  ...REFUSED (subjugated): {}", refused.len());
+        let seeds_with: std::collections::BTreeSet<u64> = rows.iter().map(|r| r.seed).collect();
+        println!("  seeds reaching any     : {}/{}", seeds_with.len(), N);
+
+        // THE CONTROL ON THE READING ITSELF. `conquest_endings` claims the
+        // post-tick figures are the ones `conquer` compared against 8.0 and
+        // 0.6. Here is that claim tested: the verdict the rule would reach off
+        // last month's figures, against the verdict it actually reached.
+        let mut drift = 0usize;
+        for r in &rows {
+            let would = |p: f64, s: f64| p < 8.0 && s < 0.6;
+            if would(r.pop, r.sep) != would(r.pop_pre, r.sep_pre) {
+                drift += 1;
+                println!(
+                    "  READING DRIFT seed {} {} {}: post {:.4}m/{:.4} vs pre {:.4}m/{:.4}",
+                    r.seed,
+                    r.loser.name(),
+                    r.year,
+                    r.pop,
+                    r.sep,
+                    r.pop_pre,
+                    r.sep_pre
+                );
+            }
+        }
+        println!(
+            "  rows whose verdict differs pre-tick vs post-tick: {} of {}",
+            drift,
+            rows.len()
+        );
+        // Per-seed counts, for the variance ruling 3 wants derived rather than
+        // guessed. `need` is the seeds a floor of one needs for a false red
+        // under 1%: the event is per-seed Bernoulli at the observed hit rate,
+        // so P(none in n) = (1 - rate)^n and n = ln(0.01) / ln(1 - rate).
+        let mut per_seed = vec![0usize; N as usize];
+        let mut per_seed_annex = vec![0usize; N as usize];
+        let mut per_seed_refused = vec![0usize; N as usize];
+        for r in &rows {
+            per_seed[r.seed as usize] += 1;
+            if r.annexed {
+                per_seed_annex[r.seed as usize] += 1;
+            } else {
+                per_seed_refused[r.seed as usize] += 1;
+            }
+        }
+        for (label, v) in [
+            ("conquests", &per_seed),
+            ("annexations", &per_seed_annex),
+            ("refusals", &per_seed_refused),
+        ] {
+            let n = v.len() as f64;
+            let mean = v.iter().sum::<usize>() as f64 / n;
+            let var = v.iter().map(|&x| (x as f64 - mean).powi(2)).sum::<f64>() / n;
+            let rate = v.iter().filter(|&&x| x > 0).count() as f64 / n;
+            // `crate::exact`, not the platform libm: `exact.rs` bans the
+            // natural-log method across the crate, and its guard test walks the
+            // whole source tree with test modules included.
+            let need = if rate > 0.0 && rate < 1.0 {
+                (crate::exact::ln(0.01) / crate::exact::ln(1.0 - rate)).ceil()
+            } else {
+                f64::NAN
+            };
+            println!(
+                "  per-seed {:<12} mean {:.4}  var {:.4}  sd {:.4}  seeds-with {:.4}  \
+                 n for P(zero)<1%: {:.0}",
+                label,
+                mean,
+                var,
+                var.sqrt(),
+                rate,
+                need
+            );
+        }
+        // The floors the two bars will carry, and the z-score each stands at,
+        // read off the variance above rather than chosen.
+        for (label, v, floor) in [
+            ("refusals >= 15 over 100 seeds", &per_seed_refused, 15.0f64),
+            ("annexations >= 1 over 240 seeds", &per_seed_annex, 1.0),
+        ] {
+            let window = if floor == 15.0 { 100.0 } else { N as f64 };
+            let n = v.len() as f64;
+            let mean = v.iter().sum::<usize>() as f64 / n;
+            let var = v.iter().map(|&x| (x as f64 - mean).powi(2)).sum::<f64>() / n;
+            let (m, sd) = (mean * window, (var * window).sqrt());
+            println!("  {:<34} expect {:.1} +/- {:.1}, z to floor {:.2}", label, m, sd, (m - floor) / sd);
+        }
+        // Sub-windows, so a future session can see what a narrower sample buys.
+        for w in [20u64, 100, 200] {
+            let sub: Vec<_> = rows.iter().filter(|r| r.seed < w).collect();
+            println!(
+                "  first {:>3} seeds: {:>3} endings, {:>2} annexed, {:>3} refused",
+                w,
+                sub.len(),
+                sub.iter().filter(|r| r.annexed).count(),
+                sub.iter().filter(|r| !r.annexed).count()
+            );
+        }
+        println!("\n  --- every annexation ---");
+        for r in &annexed {
+            println!(
+                "    seed {:>3}  {:<16} {:>7.3}m  sep {:.3}  in {}",
+                r.seed,
+                r.loser.name(),
+                r.pop,
+                r.sep,
+                r.year
+            );
+        }
+        // The two margins that decide whether this instrument is measuring
+        // anything: how close the rule ever came to admitting what it should
+        // refuse, on each of its two clauses separately.
+        let widest_annexed_pop = annexed.iter().map(|r| r.pop).fold(0.0f64, f64::max);
+        let angriest_annexed = annexed.iter().map(|r| r.sep).fold(0.0f64, f64::max);
+        let calmest_refused =
+            refused.iter().filter(|r| r.pop < 8.0).map(|r| r.sep).fold(f64::MAX, f64::min);
+        let smallest_refused =
+            refused.iter().filter(|r| r.sep < 0.6).map(|r| r.pop).fold(f64::MAX, f64::min);
+        println!(
+            "\n  largest annexed {:.3}m  (bound 8.000, margin {:.3}m)",
+            widest_annexed_pop,
+            8.0 - widest_annexed_pop
+        );
+        println!(
+            "  smallest refused-on-size {:.3}m  (bound 8.000, margin {:+.3}m)",
+            smallest_refused,
+            smallest_refused - 8.0
+        );
+        println!(
+            "  angriest annexed sep {:.3}  (bound 0.600, margin {:.3})",
+            angriest_annexed,
+            0.6 - angriest_annexed
+        );
+        println!(
+            "  calmest refused-on-anger sep {:.3}  (bound 0.600, margin {:+.3})",
+            calmest_refused,
+            calmest_refused - 0.6
+        );
+        let mut near = refused.clone();
+        near.sort_by(|a, b| a.pop.partial_cmp(&b.pop).unwrap());
+        println!("\n  --- the ten refusals closest to the 8m bound ---");
+        for r in near.iter().take(10) {
+            println!(
+                "    seed {:>3}  {:<16} {:>7.3}m  sep {:.3}  in {}  (refused because {})",
+                r.seed,
+                r.loser.name(),
+                r.pop,
+                r.sep,
+                r.year,
+                if r.pop >= 8.0 && r.sep >= 0.6 {
+                    "both"
+                } else if r.pop >= 8.0 {
+                    "too big"
+                } else {
+                    "too angry"
+                }
+            );
+        }
+        let by_sep = refused.iter().filter(|r| r.pop < 8.0).count();
+        println!(
+            "\n  refusals on size alone: {}   on separatism alone: {}",
+            refused.len() - by_sep,
+            by_sep
+        );
+        println!();
+    }
+
     /// Which seeds reach the annexation branch at all, and on whom.
     ///
     /// ```text
@@ -1910,43 +2202,116 @@ mod tests {
     /// said was not a finding — the pin had gone stale again. A pin that has to
     /// be re-pinned every time the world changes is not measuring the world.
     ///
-    /// So the sweep is the instrument now. Seeds 0..20 reach the branch twice on
-    /// the board this was written against (Mongolia at 3.74m in 2017 on seed 10,
-    /// Bhutan at 0.97m in 2018 on seed 17), and a hundred-and-twenty-seed scan
-    /// found one more at seed 111. The width is a sampling choice and not a
-    /// band: widen it if the branch stops being reached, and if a scan ever
-    /// finds NONE, conquest has become unreachable and THAT is the finding
-    /// rather than a flaky test — it is recorded as O-1 in BUGS.md, and borders
-    /// that never move is a game problem and not a test problem.
-    /// `conquest_seed_scan` is the tool for that re-scan.
+    /// ── RE-POINTED 2026-08-31, ON RIDGE'S EXPLICIT AUTHORISATION ────────────
+    ///
+    /// Recorded here the way a BIBLE amendment is recorded, because doctrine
+    /// (iron rule 5) otherwise forbids an agent editing a calibration test in
+    /// answer to a red, and a later reader has to be able to tell an authorised
+    /// strengthening from a quiet widening. Ridge, 2026-08-31, ruling 2 of
+    /// three settled that day — the other two being the capital-channel repair
+    /// and the sample-size doctrine now in CLAUDE.md. His words: count
+    /// `Ending::Conquest` rather than board deaths, "which puts the size rule
+    /// under test where it actually fires".
+    ///
+    /// NO BAR MOVED AND NO TOLERANCE WIDENED. The 8m and 0.6 bounds below are
+    /// the same two literals, still transcribed rather than fitted, and they are
+    /// now checked in both directions instead of one. What changed is the
+    /// population sampled.
+    ///
+    /// WHAT WAS MIS-SAMPLED. The sweep read `conquests()`, which counts BOARD
+    /// DEATHS — that is, only the cases where the rule said YES. Saying yes is
+    /// the rarer arm by an order of magnitude: over seeds 0..240 the rule was
+    /// put 107 times and admitted the annexation 10 of them, so at 0.042 per
+    /// seed a twenty-seed window expects 0.8 observations and gets its whole
+    /// verdict from one or two. Worse, it never looked at a refusal at all —
+    /// and a refusal is what SPEC section 6 is a claim ABOUT. "No swallowing
+    /// India whole" is a sentence about the nations that are not swallowed.
+    /// The old test could not have caught the rule refusing to refuse.
+    ///
+    /// WHY THE NEW CONSTRUCTION MEASURES THE SAME CLAIM BETTER. It counts every
+    /// `Ending::Conquest` — every case put to the rule, whichever way it went —
+    /// and checks each verdict against the rule's own two clauses in both
+    /// directions: nothing at or over 8m or at or over 0.6 separatism may be
+    /// annexed, and nothing under both may be refused. Over seeds 0..100 that
+    /// is 62 verdicts rather than 8, of which 54 are refusals: the arm the old
+    /// sweep could not see is now the bulk of the evidence.
+    ///
+    /// THE SAMPLE IS DERIVED, per the same day's ruling 3, from this test's own
+    /// measured variance rather than guessed. `conquest_size_rule_scan` reports
+    /// refusals at 0.404 per seed with variance 0.508 and at least one in 30.0%
+    /// of seeds, so a hundred seeds expect 40.4 +/- 7.1 and the floor of 15
+    /// below stands 3.57 sd clear of the mean — a false red under 0.02%,
+    /// against ruling 3's 1% ceiling. The floor is deliberately loose: it exists
+    /// to stop a vacuous pass, not to police the conquest RATE, which is
+    /// `conquest_funnel`'s job and is not a fitted number anybody has signed.
+    /// ANNEXATION'S OWN BAR IS NOT HERE — it needs a wider sample than the size
+    /// rule does and it lives in `a_dead_nation_holds_no_districts`, which is
+    /// the test whose subject annexation actually is.
+    ///
+    /// IF THE FLOOR EVER GOES RED, conquest has become unreachable and THAT is
+    /// the finding rather than a flaky test — recorded as O-1 in BUGS.md, and
+    /// borders that never move is a game problem, not a test problem.
+    /// `conquest_seed_scan` and `conquest_size_rule_scan` are the tools for the
+    /// re-scan.
     #[test]
     fn a_large_nation_is_subjugated_rather_than_swallowed() {
-        let found = conquests(0..20, 1.0);
-        for (seed, id, pop, year) in &found {
-            assert!(
-                *pop < 8.0,
-                "{:?} was annexed at {:.1}m people in {} on seed {} — at or over 8m it is meant \
-                 to be subjugated and survive to resent it",
-                id, pop, year, seed
-            );
+        let endings = conquest_endings(0..100, 1.0);
+        let (mut annexed, mut refused) = (0usize, 0usize);
+        for r in &endings {
+            let small_and_quiet = r.pop < 8.0 && r.sep < 0.6;
+            if r.annexed {
+                annexed += 1;
+                // The arm the old sweep read, unchanged in substance: the 8m
+                // bound is SPEC section 6 transcribed, and the separatism bound
+                // is `conquer`'s second clause — a territory that is all
+                // minorities is an occupation, not an acquisition.
+                assert!(
+                    small_and_quiet,
+                    "{} was ANNEXED at {:.2}m people and {:.3} separatism in {} on seed {} — at \
+                     or over 8m, or at or over 0.6 separatism, it is meant to be subjugated and \
+                     survive to resent it",
+                    r.loser.name(), r.pop, r.sep, r.year, r.seed
+                );
+            } else {
+                refused += 1;
+                // The arm the old sweep could not see, and the one SPEC section
+                // 6 is really about. A conquest that ended in capitulation must
+                // have had a reason to: too big, or too angry to hold.
+                assert!(
+                    !small_and_quiet,
+                    "{} was SUBJUGATED at {:.2}m people and {:.3} separatism in {} on seed {} — \
+                     under 8m and under 0.6 separatism it is small enough and quiet enough to \
+                     annex, so the size rule refused a case it is meant to admit",
+                    r.loser.name(), r.pop, r.sep, r.year, r.seed
+                );
+            }
         }
         assert!(
-            !found.is_empty(),
-            "no conquest anywhere in twenty seeds of forty years, so the size rule was never \
-             exercised — conquest may have become unreachable (BUGS.md O-1). Re-scan with \
-             `conquest_seed_scan` before touching this test"
+            refused >= 15,
+            "only {} conquest(s) in a hundred seeds of forty years ended in subjugation ({} \
+             annexation(s) alongside), so the size rule was barely exercised — conquest may have \
+             become unreachable (BUGS.md O-1). Re-scan with `conquest_size_rule_scan` before \
+             touching this test",
+            refused,
+            annexed
         );
 
-        // The control arm: a world where nobody attacks anybody annexes nobody.
-        // This is what stops the assertion above from passing on an empty list
-        // for the wrong reason — it establishes that the sweep reaches conquests
-        // BECAUSE wars are fought in it, and that the two dissolutions the sweep
-        // excludes by name are the only other way off the board.
-        let control = conquests(0..20, 0.0);
+        // The control arm: a world where nobody attacks anybody conquers
+        // nobody. This is what stops the sweep above from passing for the wrong
+        // reason — it establishes that the verdicts counted are reached BECAUSE
+        // wars are fought, on the same code path rather than a second one. It
+        // reads conquest endings now rather than board deaths, so it also
+        // covers the subjugation arm the assertions above are mostly made of.
+        let control = conquest_endings(0..100, 0.0);
         assert!(
             control.is_empty(),
-            "nations were annexed in a world with the AI's appetite for war set to zero: {:?}",
+            "{} conquest(s) were reached in a world with the AI's appetite for war set to zero: \
+             {:?}",
+            control.len(),
             control
+                .iter()
+                .map(|r| (r.seed, r.loser.name(), r.year, r.annexed))
+                .collect::<Vec<_>>()
         );
     }
 
@@ -2066,9 +2431,26 @@ mod tests {
         // moment of writing, in the same loop, at no extra runtime: every
         // `burned_` flag written anywhere in the world must be written on a
         // quarrel where somebody crossed a border in force.
+        // ── SAMPLE WIDENED TEN SEEDS -> TWENTY, 2026-08-31, UNDER IRON RULE 7 ──
+        //
+        // NO BAR MOVED. `burned_seeds >= 4` and `writes_seen >= 5` are the same
+        // two literals; both are FIXED floors rather than fractions of the
+        // sample, so widening cannot loosen either. What widening does is give
+        // the per-seed assertions above — the ones that are the actual subject
+        // of this test — twice the evidence.
+        //
+        // WHY IT NEEDED WIDENING. `sample_size_audit::panel_variance` measures
+        // `burned_Iraq_Kuwait` at 0.57 per seed over a hundred seeds, so the
+        // per-seed variance is p(1-p) = 0.2451. Against a floor of four, ten
+        // seeds carry a FALSE-RED PROBABILITY OF 8.06% — eight times rule 7's
+        // ceiling — for a floor whose entire job is to stop this test passing
+        // vacuously. The derivation gives n >= 14 for 1%. Twenty is taken
+        // because it holds the ceiling if the rate drifts: 0.0001 at the
+        // measured 0.57, 0.0013 at 0.50 and 0.0049 at 0.45, and this rate is
+        // evidently something a war-incidence change can move.
         let mut burned_seeds = 0;
         let mut writes_seen = 0;
-        for seed in 0..10u64 {
+        for seed in 0..20u64 {
             let mut w = seeded(seed);
             let mut invasions = 0;
             let mut invaded_ids: Vec<u32> = Vec::new();
@@ -2125,12 +2507,12 @@ mod tests {
         }
         assert!(
             burned_seeds >= 4,
-            "the lesson was never learned in ten seeds ({} burned), so nothing was tested",
+            "the lesson was never learned in twenty seeds ({} burned), so nothing was tested",
             burned_seeds
         );
         assert!(
             writes_seen >= 5,
-            "no `burned_` flag was written anywhere in ten seeds of thirty-five years ({} \
+            "no `burned_` flag was written anywhere in twenty seeds of thirty-five years ({} \
              writes), so the provenance assertion above never ran on anything",
             writes_seen
         );
@@ -3288,33 +3670,87 @@ mod tests {
         );
     }
 
+    /// End-to-end for the ANNEXATION site. Whoever dies by conquest must leave
+    /// the map entirely; a dissolution is the other way off the board and hands
+    /// its ground to heirs instead.
+    ///
+    /// SWEPT, NOT PINNED, since 2026-08-31. This rode seed 93 alongside
+    /// `a_large_nation_is_subjugated_rather_than_swallowed` and went stale with
+    /// it — the pin had been Saudi Arabia/Qatar in 2018, and before that seed
+    /// 9's Mongolia (lost to the no-party electoral fix), seed 17's Bhutan (the
+    /// terrain tempo pass) and seed 0's Malta (the front projection). Four pins,
+    /// four unrelated changes, four re-pins.
+    ///
+    /// ── RE-SAMPLED 2026-08-31, ON RIDGE'S EXPLICIT AUTHORISATION ────────────
+    ///
+    /// Recorded the way a BIBLE amendment is, and for the same reason as its
+    /// sibling: iron rule 5 forbids an agent editing a calibration test in
+    /// answer to a red, so an authorised strengthening has to be legible as one.
+    /// Ridge, 2026-08-31, ruling 2, in his own terms: annexation "MUST KEEP ITS
+    /// OWN BAR, honestly stated at its real rate of about 4-in-200, rather than
+    /// being retired as a policed quantity". That is what the lower bar below
+    /// is, and it is why this test did not simply hand its annexation counting
+    /// over to the sibling test that now counts every conquest ending.
+    ///
+    /// WHAT WAS MIS-SAMPLED. `annexations > 0` over twenty seeds. Annexation is
+    /// a per-seed event of about 4 in 100 — `conquest_size_rule_scan` measures
+    /// 0.0417 over seeds 0..240, and the parent measurement pass read about half
+    /// that on the pre-repair tree — so the FALSE-RED PROBABILITY of that bar
+    /// was 0.9583^20 = 43% at the measured rate and 0.98^20 = 67% at the
+    /// pessimistic one. A bar that reds between two and three times in five when
+    /// nothing whatever is wrong is not measuring the model. And the invariant
+    /// it guards was going along for the ride: with no annexation in the window
+    /// `districts::annex_all` is never reached, so the whole test passed on
+    /// dissolutions alone — which is exactly what it does under a perturbation
+    /// that switches annexation off, 480 deaths and not one of them a conquest.
+    ///
+    /// THE SAMPLE IS DERIVED, per the same day's ruling 3, not guessed. The
+    /// event is per-seed Bernoulli, so n = ln(0.01) / ln(1 - rate): 109 seeds at
+    /// the measured 0.0417, and 228 at the pessimistic 0.02 the parent pass read
+    /// before the capital repair. 240 is taken because it clears BOTH — a false
+    /// red of 0.0000 at today's rate and 0.0079 at the worse one, inside ruling
+    /// 3's 1% ceiling either way — and because the rate is evidently something
+    /// a growth change can halve. If it ever halves again, widen the sample by
+    /// that formula; do not lower the bar.
+    ///
+    /// THE BAR IS TWO-SIDED, which it was not before, because "annexation is
+    /// rare" is half the claim and "annexation still happens" is the other half.
+    /// The ceiling of 40 is sized against what the size rule being deleted
+    /// actually looks like, measured rather than projected: with both clauses
+    /// widened to admit everything, this sweep read 84 annexations on
+    /// 2026-08-31. (The arithmetic null of "every conquest ending annexes" is
+    /// 107 — 0.446 per seed over 240 — but deleting the rule changes the world
+    /// it is deleted from, since a nation annexed in 1998 fights no wars after,
+    /// so 84 is the honest figure and 107 is not.) The ceiling therefore sits
+    /// about 4 sd below the deleted-rule reading and 9.7 sd above the honest
+    /// mean of 10. It is deliberately not tighter: a partial widening of the
+    /// bound to 80m stayed under it, and catching THAT is the sibling test's
+    /// job, which it does by naming the annexed nation.
+    ///
+    /// THE COUNT IS TAKEN FROM `war::conquer`'s OWN HEADLINE rather than from
+    /// "died and is not the USSR or Yugoslavia". The old exclusion list was a
+    /// standing hazard: any third state that ever leaves the board by
+    /// dissolution would have been silently counted as an annexation, and the
+    /// list had no way to say so. The headline is written on exactly the annex
+    /// branch and nowhere else.
     #[test]
     fn a_dead_nation_holds_no_districts() {
-        // End-to-end for the ANNEXATION site. Whoever dies by conquest must
-        // leave the map entirely; a dissolution is the other way off the board
-        // and hands its ground to heirs instead.
-        //
-        // SWEPT, NOT PINNED, since 2026-08-31. This rode seed 93 alongside
-        // `a_large_nation_is_subjugated_rather_than_swallowed` and went stale
-        // with it — the pin had been Saudi Arabia/Qatar in 2018, and before that
-        // seed 9's Mongolia (lost to the no-party electoral fix), seed 17's
-        // Bhutan (the terrain tempo pass) and seed 0's Malta (the front
-        // projection). Four pins, four unrelated changes, four re-pins. The
-        // invariant below is unchanged; only the way a conquest is reached is,
-        // and it now uses the same seed range as the instrument it rides.
-        let mut annexations = 0;
-        for seed in 0..20u64 {
+        let mut annexations = 0usize;
+        let mut deaths = 0usize;
+        for seed in 0..240u64 {
             let mut w = seeded(seed);
             let mut alive: Vec<NationId> =
                 w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
             for _ in 0..480 {
-                tick_month(&mut w, &[]);
+                let headlines = tick_month(&mut w, &[]);
+                annexations += headlines.iter().filter(|h| h.contains(" has annexed ")).count();
                 let mut still: Vec<NationId> = Vec::new();
                 for id in alive {
                     if w.nation_opt(id).is_some_and(|n| n.alive) {
                         still.push(id);
                         continue;
                     }
+                    deaths += 1;
                     assert!(
                         !w.districts.values().any(|&o| o == id),
                         "{:?} is off the board in {} on seed {} and still holds districts",
@@ -3322,17 +3758,25 @@ mod tests {
                         w.year,
                         seed
                     );
-                    if id != NationId::USSR && id != NationId::Yugoslavia {
-                        annexations += 1;
-                    }
                 }
                 alive = still;
             }
         }
         assert!(
-            annexations > 0,
-            "no seed in 0..20 reaches the conquest branch, so the annexation site was never \
-             exercised — re-scan with `conquest_seed_scan`"
+            annexations >= 1,
+            "no annexation anywhere in 240 seeds of forty years ({} death(s) on the board, all \
+             of them dissolutions), so `districts::annex_all` was never reached and the invariant \
+             above passed vacuously — conquest may have become unreachable (BUGS.md O-1). \
+             Re-scan with `conquest_size_rule_scan` before touching this test",
+            deaths
+        );
+        assert!(
+            annexations <= 40,
+            "{} annexations in 240 seeds — annexation is meant to be the rare arm of the size \
+             rule at roughly four seeds in a hundred, and at this rate it has stopped refusing \
+             anybody. Check `war::conquer`'s 8m and 0.6 clauses, and \
+             `a_large_nation_is_subjugated_rather_than_swallowed` alongside",
+            annexations
         );
     }
 
@@ -3483,13 +3927,16 @@ mod tests {
         assert!(collapses >= 6, "USSR survived too often: {}/10 collapses", collapses);
     }
 
-    /// The seeds in `0..40` whose first four years produce an Iraqi invasion of
+    /// The seeds in `seeds` whose first four years produce an Iraqi invasion of
     /// Kuwait. `aggression` is the arm, the same shape `conquests` uses: at 1.0
     /// the AI fights, at 0.0 `dyads.rs:273` multiplies every appetite in the
     /// world by zero and nobody attacks anybody.
-    fn gulf_wars(aggression: f64) -> Vec<u64> {
+    ///
+    /// The range became a parameter on 2026-08-31 so the bar and the instrument
+    /// read the same code over different widths. Nothing inside changed.
+    fn gulf_wars(seeds: std::ops::Range<u64>, aggression: f64) -> Vec<u64> {
         let mut hits = vec![];
-        for seed in 0..40u64 {
+        for seed in seeds {
             let mut w = seeded(seed);
             w.rules.ai_aggression = aggression;
             let mut saw = false;
@@ -3535,19 +3982,61 @@ mod tests {
         // twenty. If the true rate ever sits below it, that is a finding about
         // the model's appetite pass and belongs in a bug entry, not in this
         // literal.
-        let hits = gulf_wars(1.0);
+        //
+        // ── WIDENED AGAIN 2026-08-31, TO TWO HUNDRED, ON RIDGE'S EXPLICIT
+        //    AUTHORISATION ────────────────────────────────────────────────────
+        //
+        // Recorded here the way a BIBLE amendment is, because iron rule 5
+        // otherwise forbids an agent editing a calibration test in answer to a
+        // red, and a reader must be able to tell an authorised strengthening
+        // from a quiet widening. Ridge, 2026-08-31, ruling 2: "widen the Gulf
+        // War sample past 40 seeds", and explicitly — ruling 2 again — "the 50%
+        // bar is doctrinal, was never fitted, and the true rate is 61.85% — so
+        // the bar does NOT move, only the sample."
+        //
+        // THE BAR DID NOT MOVE. It was five out of ten, then twenty out of
+        // forty, and it is now a hundred out of two hundred. Three literals,
+        // one claim, unchanged since the root commit: a majority of worlds.
+        //
+        // WHAT WAS STILL MIS-SAMPLED AT FORTY. The parent measurement pass put
+        // the true rate at 61.85% [59.70, 63.95] over 2000 seeds; this tree
+        // reads 246/400 = 61.5%, which is the same number. The model therefore
+        // clears a 50% bar by twelve points and always has. But forty seeds
+        // against a bar of twenty leaves a standard deviation of 3.1 seeds and
+        // a margin of 4.6, so the false-red probability is about 7% — seven
+        // times ruling 3's ceiling. It was not theoretical: seeds 0..40 read
+        // 21/40 on this tree, ONE SEED above the bar, and the parent pass found
+        // 0..40 to be the worst of fifty consecutive blocks. The test was one
+        // unlucky reshuffle from a red that said nothing about Iraq.
+        //
+        // THE SAMPLE IS DERIVED, per the same day's ruling 3, from this test's
+        // own measured variance. The event is per-seed Bernoulli, so the
+        // variance IS p(1-p) = 0.2368 at the measured p = 0.615, and the bar
+        // sits (p - 0.5) below the truth: n = (2.326 * sd / (p - 0.5))^2 = 97
+        // seeds for a false red under 1%. `gulf_war_incidence_scan` prints that
+        // arithmetic from its own sample so it can be re-derived rather than
+        // inherited. Two hundred is taken — ruling 3's own named target for this
+        // test — which puts the bar 3.34 sd from the truth, a false red of about
+        // 0.04%, and leaves headroom for a rate that drifts several points
+        // without this test crying wolf. The measured reading at two hundred is
+        // 125/200 against a bar of 100 — twenty-five seeds of margin, where
+        // forty seeds gave one.
+        const N: u64 = 200;
+        let hits = gulf_wars(0..N, 1.0);
         assert!(
-            hits.len() >= 20,
-            "Gulf War too rare: {}/40 seeds — {:?}",
+            hits.len() >= (N / 2) as usize,
+            "Gulf War too rare: {}/{} seeds — {:?}",
             hits.len(),
+            N,
             hits
         );
 
-        // The control arm, added with the widening: the count above has to come
-        // from the appetite pass rather than from anything else that can put
-        // Kuwait off the board in four years. With the AI's appetite for war at
-        // zero there is no invasion in any of the forty.
-        let control = gulf_wars(0.0);
+        // The control arm, added with the forty-seed widening and carried
+        // across: the count above has to come from the appetite pass rather
+        // than from anything else that can put Kuwait off the board in four
+        // years. With the AI's appetite for war at zero there is no invasion in
+        // any of the two hundred.
+        let control = gulf_wars(0..N, 0.0);
         assert!(
             control.is_empty(),
             "Iraq invaded Kuwait in a world where the AI's appetite for war is zero: {:?}",
@@ -3643,8 +4132,50 @@ mod tests {
         // gets for annexing a country, which is a grievance-decay question in
         // politics.rs; and the war incidence itself is the dyads question
         // nations.rs already flags as needing a sealift term.
+        // ── WIDENED TEN SEEDS -> A HUNDRED, 2026-08-31, ON RIDGE'S EXPLICIT
+        //    AUTHORISATION ────────────────────────────────────────────────────
+        //
+        // Recorded the way a BIBLE amendment is, because iron rule 5 otherwise
+        // forbids an agent editing a calibration test in answer to a red and a
+        // reader must be able to tell an authorised strengthening from a quiet
+        // widening. Ridge, 2026-08-31, ruling 3, which became iron rule 7:
+        // "Known targets: Gulf War n>=200, China n>=100".
+        //
+        // NO BAR MOVED. The band is the same `(11.0..19.0)`, the per-seed floor
+        // is the same 6.0, the statistic is the same mean-of-the-two-middle
+        // median — written generically only so that it stays that statistic at
+        // any n. Every literal in this test is the one that was here before.
+        //
+        // AND THIS IS NOT A FALSE-RED REPAIR, WHICH IS THE INTERESTING PART.
+        // Measured on THIS tree by `sample_size_audit::panel_variance` over a
+        // hundred seeds, the 30-year multiple is mean 14.22x, variance 1.935,
+        // sd 1.391, min 8.65x, median 14.45x (9.31%/yr against the real
+        // 9.28%/yr), max 16.56x, with 57 of 100 seeds at or above reality's
+        // 14.33x. The band therefore sits about six sampling-sd from the median
+        // even at ten seeds, and the bootstrapped false-red probability at n=10
+        // is already 0.0000 — inside rule 7's 1% ceiling without touching
+        // anything. The per-seed floor of 6.0 is likewise breached by no seed
+        // in a hundred, which matters because that arm gets STRICTER as the
+        // sample grows.
+        //
+        // WHAT TEN SEEDS FAILED AT WAS POWER, WHICH IS THE OTHER HALF OF RULE 7
+        // AND THE HALF THIS TEST IS THE EVIDENCE FOR. Before the capital-channel
+        // repair of the same day, China's 30-year multiple had fallen 14.290x ->
+        // 11.072x — 22.5% of level, 0.93 pt/yr — with 45.8% of a 400-seed sample
+        // under the 11.0 floor; and this test was GREEN throughout, because
+        // seeds 0..9 were a +1.3% draw. A bootstrap on a fair sample put the
+        // chance of it catching that regression at 37.6%: a coin flip, dressed
+        // as a green light. At a hundred seeds the sampling sd of the median
+        // falls by a factor of ~3.2, and a median sitting on 11.07 against a
+        // floor of 11.0 is caught essentially every time. THE SAMPLE IS SIZED
+        // FOR THE REGRESSION IT MUST SEE, not for the red it must not produce.
+        //
+        // COST, stated because rule 7 makes tests slower and that is a real
+        // price: ninety more thirty-year runs, about 70 seconds of release-mode
+        // wall clock, on a spheres-sim suite that was 220s.
+        const N: u64 = 100;
         let mut xs: Vec<f64> = Vec::new();
-        for seed in 0..10u64 {
+        for seed in 0..N {
             let mut w = world_1990(GameRules { seed, ..GameRules::default() });
             let start = w.nation(NationId::China).gdp;
             run_months(&mut w, 360); // 30 years
@@ -3657,12 +4188,16 @@ mod tests {
             xs.push(x);
         }
         xs.sort_by(|a, b| a.partial_cmp(b).unwrap());
-        let median = (xs[4] + xs[5]) / 2.0;
+        // The mean of the two middle order statistics — the same convention the
+        // ten-seed version used as `(xs[4] + xs[5]) / 2.0`, written so that it
+        // survives a change of sample size.
+        let median = (xs[xs.len() / 2 - 1] + xs[xs.len() / 2]) / 2.0;
         assert!(
             (11.0..19.0).contains(&median),
-            "China's median 30-year growth across ten seeds is {:.2}x \
+            "China's median 30-year growth across {} seeds is {:.2}x \
              ({:.2}%/yr), outside the 11.0x-19.0x band anchored on the real \
              14.33x. Seeds: {:?}",
+            N,
             median,
             (crate::exact::powf(median, 1.0 / 30.0) - 1.0) * 100.0,
             xs.iter().map(|v| (v * 100.0).round() / 100.0).collect::<Vec<_>>()

@@ -58,8 +58,15 @@
 # curve this whole file exists to keep crisp, and the 62 codes are the tell -- it is
 # reproducing sqrt(integer) distances, not a coastline. Box-averaging a locally linear signed
 # distance is exact, so the extra accuracy costs only the entropy it adds. 128 KB for the
-# stated purpose of the channel is the right side of that trade; the total still lands under
-# the 3,400,000-byte cap on the three baked textures.
+# stated purpose of the channel is the right side of that trade.
+#
+# THE CAP MOVED, 2026-08-31, and this line used to name the old one. It read
+# "3,400,000-byte cap on the three baked textures" back when there were three. The depth
+# pass added a fourth (lake.png) and repacked relief.png's B plane for sky occlusion, so
+# the budget is now the SUM OF EACH GENERATOR'S OWN STATED FAIL THRESHOLD rather than a
+# round number moved to fit an overrun: 3,400,000 + 140,000 (occlusion repack) + 21,000
+# (lake) = 3,561,000. check.py:527-533 is where that sum is enforced. The shipped set is
+# 3,430,693 B, leaving 130,307 B of headroom, all of it budgeted against a named ceiling.
 #
 # ROW EXTENT: texel (i, j) centre is canvas ((i+0.5)*2400/WT, (j+0.5)*H_EXT/HT) with
 #   H_EXT = Y_TOP - robinson_y(LAT_BOT) = 1018.1941195106424
