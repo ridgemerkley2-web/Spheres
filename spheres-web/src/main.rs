@@ -697,8 +697,24 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 ),
                 None => (serde_json::Value::Null, n.tech.progress[di], 0.0),
             };
+            // A projection, and a projection is only worth serving while its
+            // one assumption holds: that this month's research rate is the rate
+            // for the whole wait. That is fair over a few years and a fiction
+            // over a century — the rate moves with output, development and the
+            // domain weights every single month. Past the horizon the division
+            // does not become imprecise, it becomes meaningless, and the screen
+            // printed the meaninglessness to the month: a microstate's Aerospace
+            // board came back at 626,193 (fifty-two thousand years) and
+            // microstate-04 saw ten digits of it.
+            //
+            // 1200 months is the span this server will already talk about at
+            // once — the cap /api/advance puts on a single request — so it is
+            // the longest wait a player can put a number against. Beyond it the
+            // payload says nothing rather than something false.
+            const PROJECTION_HORIZON: f64 = 1200.0;
             let months_left = if cost > banked && rate > 1e-9 {
-                Some(((cost - banked) / rate).ceil() as i64)
+                let m = ((cost - banked) / rate).ceil();
+                (m.is_finite() && m <= PROJECTION_HORIZON).then_some(m as i64)
             } else {
                 None
             };
@@ -1992,6 +2008,67 @@ mod tests {
         let d = s["districts"].as_object().unwrap();
         assert_eq!(d.len(), 6, "all six Kuwaiti governorates moved");
         assert_eq!(d["KW-KU"], "Iraq");
+    }
+
+    /// The research board's "N mo" is a projection that holds this month's rate
+    /// constant for the whole wait. That is fair over a few years; over a
+    /// century it is a fiction, and the board printed the fiction to the month.
+    /// Measured on the live server: Equatorial Guinea in January 1991 was shown
+    /// "626193 mo" against its Aerospace project — fifty-two thousand years,
+    /// stated to the month — and Sao Tome "248598 mo" against its own.
+    /// microstate-04 reported ten digits of the same thing.
+    ///
+    /// The bar is the whole roster, because this is an invariant: no nation, in
+    /// any state the sim can put it in, may be handed a schedule longer than the
+    /// span this server will talk about at once.
+    #[test]
+    fn the_research_board_never_quotes_a_schedule_in_millennia() {
+        // Two of the smallest economies on the board, which is where the rate
+        // is small enough for the division to run away.
+        for name in ["Sao Tome and Principe", "Equatorial Guinea"] {
+            let id = NationId::parse(name).expect("on the roster");
+            let mut g = Game::new(1990, Some(id));
+            let mut ever_quoted = false;
+            for _ in 0..36 {
+                tick_month(&mut g.world, &[]);
+                let r = research_json(&g.world, id);
+                for d in r["domains"].as_array().expect("eight domains") {
+                    match d["months_left"].as_i64() {
+                        None => {}
+                        Some(m) => {
+                            ever_quoted = true;
+                            assert!(
+                                (1..=1200).contains(&m),
+                                "{} was quoted {} months ({} years) for {}",
+                                name,
+                                m,
+                                m / 12,
+                                d["name"]
+                            );
+                        }
+                    }
+                }
+            }
+            // And the guard has not simply blanked the board: somewhere in three
+            // years at least one domain still carries a number a player can use.
+            assert!(ever_quoted, "{} was never quoted any schedule at all", name);
+        }
+
+        // The same guard must not touch a nation that can actually finish
+        // things: a superpower's board keeps its numbers.
+        let usa = NationId::parse("United States").expect("on the roster");
+        let mut g = Game::new(1990, Some(usa));
+        for _ in 0..12 {
+            tick_month(&mut g.world, &[]);
+        }
+        let r = research_json(&g.world, usa);
+        let quoted = r["domains"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter(|d| d["months_left"].as_i64().is_some())
+            .count();
+        assert!(quoted >= 4, "the United States was quoted only {} schedules", quoted);
     }
 
     /// A microstate's chart must be a chart, not a staircase. The history
