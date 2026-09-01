@@ -26,7 +26,7 @@ A Millennium Dawn-style geopolitical sandbox grand-strategy game starting **Janu
 - **One RNG** — SplitMix64, stored inside WorldState. Never a second RNG, never HashMap iteration order affecting state, never wall-clock time.
 - **One command queue** — every mutation by player or AI flows through the same `Command` enum. No side doors.
 - **Fixed system order** each tick: apply commands → economy → military/war → politics/AI → events.
-- **Hourly base tick + cadence scheduler** (full design): combat/movement hourly, markets daily, macro monthly, elections/tech yearly. *v0.5 rebuild runs monthly ticks only; reintroduce hourly cadence only with a scheduler design, never by brute force.*
+- **Hourly base tick + cadence scheduler** (full design): combat/movement hourly, markets daily, macro monthly, elections/tech yearly. *v0.5 rebuild runs monthly ticks only; reintroduce hourly cadence only with a scheduler design, never by brute force. A daily CALENDAR over the monthly model is admitted as of 2026-09-01 (BIBLE §5): the player steps days, the systems settle at month-end, and a day-stepped month must equal a month-stepped one byte for byte.*
 - **State hashing** — FNV-1a hash of WorldState for determinism tests and replay verification.
 - **Content as data** — nations and events in JSON files, two-pass validation, `deny_unknown_fields`. Moddable by design.
 - **Engine-agnostic headless core** (`spheres-sim`) with no I/O; CLI runner (`spheres-cli`); Bevy reserved as the future view shell.

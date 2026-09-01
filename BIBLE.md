@@ -134,11 +134,34 @@ here first.
   Doctrine gates and the stratagem deck are the deliberate replacement. If they
   do not land, the answer is to make them better — never to start authoring
   trees.
-- **No hourly tick.** Combat resolves in closed form monthly, with attrition
-  integrated analytically so its expectation matches a continuous process. A
-  variable-resolution clock would mean auditing every `/12.0` in the codebase,
-  recalibrating every emergent-history test, and risking the determinism
-  invariant — for fidelity nobody at this altitude can perceive.
+- **~~No hourly tick.~~ AMENDED 2026-09-01 – Ridge's call, and this one is a
+  refinement rather than a reversal.** The refusal was written about the
+  MODEL's resolution, and about the model it still holds, every word: *"Combat
+  resolves in closed form monthly, with attrition integrated analytically so
+  its expectation matches a continuous process. A variable-resolution clock
+  would mean auditing every `/12.0` in the codebase, recalibrating every
+  emergent-history test, and risking the determinism invariant — for fidelity
+  nobody at this altitude can perceive."* Not one system runs faster than
+  monthly, not one `/12.0` moves, and not one calibration bar is re-derived.
+
+  What is admitted is a **daily CALENDAR over that monthly model**. The clock
+  the player sees and steps advances by days; the systems settle once, on the
+  last day of each month, exactly as they always have. The distinction is the
+  whole amendment: a calendar is what the player experiences, a tick is what
+  the model does, and only the first has changed. It buys pacing — a month is
+  a long time to hand a player in one click when a war is on — without buying
+  a single unit of the fidelity the old paragraph rightly called imperceptible.
+
+  **The invariant that keeps it honest, and it is asserted rather than
+  promised:** a month stepped day by day is BIT-IDENTICAL to the same month
+  stepped at once — same save, same hash — and that must hold WITH commands as
+  well as without: an order issued on any day of a month settles exactly as if
+  it had been issued at the start of that month, in the same order. The moment
+  a day-stepped world and a month-stepped world disagree by one byte, a system
+  has started running sub-monthly, and that is the thing this section still
+  refuses. Built on `codex/claude-map-economy` as `tick_day`, with the
+  no-commands half of the invariant already a test; the with-commands half is
+  owed before it merges.
 - **No naval task forces or ship-level detail.** Sea power enters as lift
   capacity, access and standoff strike.
 

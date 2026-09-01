@@ -157,7 +157,11 @@ Two pillars from SPEC.md, and where each now stands:
   headless runs and quick calibration checks.
 - Eventual goal: nightly autonomous dev sessions via cron on his Proxmox box,
   driven by this file + ROADMAP.md. Keep both current as work completes.
-- Monthly ticks for now (v0.4 had hourly cadence; reintroduce only with a
-  scheduler design, not by brute-forcing 720x more ticks).
+- The MODEL ticks monthly, and stays that way (v0.4 had hourly cadence;
+  reintroduce only with a scheduler design, not by brute-forcing 720x more
+  ticks). The CALENDAR may advance daily — BIBLE §5, amended 2026-09-01 — on
+  the strict condition that a day-stepped month is bit-identical to a
+  month-stepped one, commands included. A daily calendar is pacing; a daily
+  system is the thing that is still refused.
 
 See ROADMAP.md for what to build next.
