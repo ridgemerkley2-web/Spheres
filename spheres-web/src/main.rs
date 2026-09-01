@@ -732,7 +732,12 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
             // once — the cap /api/advance puts on a single request — so it is
             // the longest wait a player can put a number against. Beyond it the
             // payload says nothing rather than something false.
-            const PROJECTION_HORIZON: f64 = 1200.0;
+            //
+            // Taken FROM that cap rather than restated beside it. The sentence
+            // above says the two are the same number for the same reason, and a
+            // number two places have to agree on is one that will eventually
+            // stop agreeing.
+            const PROJECTION_HORIZON: f64 = MAX_ADVANCE as f64;
             let months_left = if cost > banked && rate > 1e-9 {
                 let m = ((cost - banked) / rate).ceil();
                 (m.is_finite() && m <= PROJECTION_HORIZON).then_some(m as i64)
@@ -1068,6 +1073,51 @@ fn asked_seed(payload: &serde_json::Value) -> Result<u64, String> {
                 u64::MAX
             )
         }),
+    }
+}
+
+/// The longest run of months this server will advance in one request, and the
+/// same span the research board will project a wait across.
+const MAX_ADVANCE: u64 = 1200;
+
+/// How far the request asked the clock to move.
+///
+/// Time is the one thing in this game that cannot be given back — there is no
+/// un-advance — so a request the server cannot read must not be answered by
+/// moving the world some other distance. It was: `as_u64().unwrap_or(1)` turned
+/// every unusable value into one month, and one month is also what a request
+/// that asked for nothing gets, so the two were indistinguishable in the answer.
+///
+/// Measured on the live server, Poland on seed 7, from a fresh 1990 each time:
+///
+///   {"months":12}                     -> Jun 1990   (5, stopped by an event)
+///   {"months":-5}                     -> Feb 1990   (1)
+///   {"months":"12"}                   -> Feb 1990   (1)
+///   {"months":3.5}                    -> Feb 1990   (1)
+///   {"months":999999999999999999999}  -> Feb 1990   (1)
+///   {"months":[12]}                   -> Feb 1990   (1)
+///   {}                                -> Feb 1990   (1)   <- the real default
+///
+/// A client asking for five years and given one month is out by sixty, and the
+/// 200 it gets back looks exactly like success. An ABSENT or null `months` is
+/// still one month, because that is a request that did not ask.
+///
+/// The CLAMP is a different thing and is left alone: a request for more than
+/// [`MAX_ADVANCE`] is answered with [`MAX_ADVANCE`] months of history, which is
+/// a limit on the work rather than a substitution of the question.
+fn asked_months(payload: &serde_json::Value) -> Result<u64, String> {
+    match payload.get("months") {
+        None | Some(serde_json::Value::Null) => Ok(1),
+        Some(v) => v
+            .as_u64()
+            .map(|m| m.min(MAX_ADVANCE))
+            .ok_or_else(|| {
+                format!(
+                    "{} is not a number of months. Months are a whole number \
+                     from 0 to {}, and the clock only moves forwards.",
+                    v, MAX_ADVANCE
+                )
+            }),
     }
 }
 
@@ -1435,11 +1485,14 @@ fn main() {
                 }
             }
             (Method::Post, "/api/advance") => {
-                let months = payload
-                    .get("months")
-                    .and_then(|m| m.as_u64())
-                    .unwrap_or(1)
-                    .min(1200) as usize;
+                let months = match asked_months(&payload) {
+                    Ok(m) => m as usize,
+                    Err(e) => {
+                        let _ = request
+                            .respond(json_error(400, serde_json::json!({ "error": e })));
+                        continue;
+                    }
+                };
                 let mut g = game.lock().unwrap();
                 let me = g.world.player;
                 let cmds: Vec<Command> = match me {
@@ -2907,5 +2960,73 @@ mod tests {
             "the sim never held a dead belligerent in this world, so the filter \
              above was never exercised and the assertions in it mean nothing"
         );
+    }
+
+    /// Time is the one thing this game cannot give back, and the route that
+    /// spends it was reading its own argument with `unwrap_or(1)`. Every
+    /// `months` the server could not use silently advanced the world by one
+    /// month and answered 200 — the same answer, and the same distance, as a
+    /// request that asked for nothing at all.
+    ///
+    /// Measured on the live server, Poland on seed 7, from a fresh 1990 each
+    /// time. Before:
+    ///
+    ///   {"months":12}                    -> Jun 1990  (5, stopped by an event)
+    ///   {"months":-5}                    -> Feb 1990  (1)
+    ///   {"months":"12"}                  -> Feb 1990  (1)
+    ///   {"months":3.5}                   -> Feb 1990  (1)
+    ///   {"months":999999999999999999999} -> Feb 1990  (1)
+    ///   {"months":[12]}                  -> Feb 1990  (1)
+    ///   {}                               -> Feb 1990  (1)  <- the real default
+    ///
+    /// A client asking for five years and given one month is out by sixty, and
+    /// nothing in the answer says so. This is the last field of the four the
+    /// route family used to substitute — the seed (F-22), the nation (F-23), the
+    /// theatre and the join (F-20, F-21) — and the one the body-parse fix
+    /// (F-17) named in its own test as "the one that moved the clock the wrong
+    /// distance".
+    #[test]
+    fn a_span_the_server_cannot_use_does_not_move_the_clock_some_other_distance() {
+        // Not asking is still one month. This is how the browser's Enact
+        // button and the space bar both behave, so it has to stay.
+        assert_eq!(asked_months(&serde_json::json!({})), Ok(1));
+        assert_eq!(asked_months(&serde_json::json!({ "months": null })), Ok(1));
+
+        // Every span a client can actually ask for arrives intact.
+        for m in [0u64, 1, 6, 12, 60, MAX_ADVANCE] {
+            assert_eq!(asked_months(&serde_json::json!({ "months": m })), Ok(m));
+        }
+        // The browser's four buttons, read off the page rather than retyped, so
+        // this cannot pass while the page asks for something else.
+        for span in ["1", "6", "12", "60"] {
+            assert!(
+                INDEX.contains(&format!("data-adv=\"{}\"", span)),
+                "the page no longer offers a {}-month advance; re-derive this list",
+                span
+            );
+            let m: u64 = span.parse().unwrap();
+            assert_eq!(asked_months(&serde_json::json!({ "months": m })), Ok(m));
+        }
+
+        // The clamp is a limit on the work, not a substitution of the question,
+        // and it stays a clamp rather than becoming a refusal.
+        assert_eq!(
+            asked_months(&serde_json::json!({ "months": MAX_ADVANCE + 1 })),
+            Ok(MAX_ADVANCE)
+        );
+        assert_eq!(asked_months(&serde_json::json!({ "months": u64::MAX })), Ok(MAX_ADVANCE));
+
+        // And the five measured substitutions.
+        for bad in [
+            serde_json::json!(-5),
+            serde_json::json!("12"),
+            serde_json::json!(3.5),
+            serde_json::json!(999999999999999999999u128 as f64),
+            serde_json::json!([12]),
+        ] {
+            let e = asked_months(&serde_json::json!({ "months": bad }))
+                .expect_err("must be refused");
+            assert!(e.contains("is not a number of months"), "unhelpful refusal: {e}");
+        }
     }
 }
