@@ -5945,4 +5945,51 @@ mod tests {
             "the endpoint must come from the series' own t0 and length"
         );
     }
+
+    /// The war card's front line printed "held" twice and named nobody.
+    ///
+    /// Measured in Chrome on seed 1, May 1995, the Conflicts column:
+    ///
+    ///   header  "South Korea vs North Korea + China"
+    ///   front   "front · 0 held / 1 contested / 17 held · 1 pocket cut off"
+    ///
+    /// Two counts wearing the same word. Nothing on the card says which side
+    /// each belongs to: the header lists two coalitions in `attacker + allies`
+    /// order but the front line never claims to follow it, and the ladder above
+    /// is coloured by mine/theirs rather than by attacker/defender. A reader had
+    /// to already know that the first number counts the attacker's districts.
+    ///
+    /// The conflict sheet counts the same band, from the same `w.front`, with
+    /// the same `FRONT_HELD_BAND`, and has always said it properly:
+    /// "front: South Korea holds 0 districts, North Korea holds 17, 1
+    /// contested". So the card was not missing information — it was declining
+    /// to print the two names it already had in hand.
+    ///
+    /// Fix: the card says "front · {attacker} holds {ha} · {cn} contested ·
+    /// {defender} holds {hb}". Measured in the 288px card, that wraps to two
+    /// lines for a long pair of names, which the card's own header already
+    /// does. No count changes.
+    #[test]
+    fn the_war_card_says_which_side_holds_what() {
+        assert!(
+            INDEX.contains("front · ${w.attacker} holds ${ha} · ${cn} contested · ${w.defender} holds ${hb}"),
+            "the war card's front summary must name the side each count belongs to"
+        );
+        assert!(
+            !INDEX.contains("front · ${ha} held / ${cn} contested / ${hb} held"),
+            "two counts labelled `held` with no side named is the defect"
+        );
+        // The sheet's wording, which the card was made to agree with — and the
+        // one band both of them count against, so the two can never disagree
+        // about the numbers while disagreeing about the words.
+        assert!(
+            INDEX.contains(r#"front: ${w.attacker} holds ${"#),
+            "the conflict sheet's front line is the wording this was matched to"
+        );
+        assert_eq!(
+            INDEX.matches("if (c > FRONT_HELD_BAND) ").count(),
+            2,
+            "the card and the sheet must keep counting against the same band"
+        );
+    }
 }

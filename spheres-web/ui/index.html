@@ -4747,6 +4747,16 @@ function renderWars() {
     const b = [w.defender, ...w.defender_allies].join(" + ");
     // Front summary: counts by the sim's own held band, so the card agrees
     // with what a settlement will actually transfer.
+    //
+    // AND IT NAMES THE SIDES. It used to read "front · 0 held / 1 contested /
+    // 17 held" — two numbers wearing the same word, in a card whose header says
+    // "South Korea vs North Korea + China" and whose ladder is coloured by
+    // mine/theirs rather than by attacker/defender. Nothing on the card said
+    // which 'held' was whose, and a reader had to know that `ha` counts the
+    // attacker's districts to read it at all. The conflict sheet, which counts
+    // the same band from the same payload, has always said it properly:
+    // "front: South Korea holds 0 districts, North Korea holds 17, 1
+    // contested". The card now says the same thing in the width it has.
     const f = w.front || {};
     let ha = 0, hb = 0, cn = 0;
     for (const did in f) {
@@ -4765,7 +4775,7 @@ function renderWars() {
         <div class="fill" style="${w.progress >= 0
             ? `left:50%;width:${(p - 0.5) * 100}%`
             : `right:50%;width:${(0.5 - p) * 100}%`}"></div></div>
-      ${ha + hb + cn ? `<div class="tiny" style="color:var(--dim)">front · ${ha} held / ${cn} contested / ${hb} held${
+      ${ha + hb + cn ? `<div class="tiny" style="color:var(--dim)">front · ${w.attacker} holds ${ha} · ${cn} contested · ${w.defender} holds ${hb}${
         npk ? ` · <span style="color:var(--brass-hi)">${npk} pocket${npk > 1 ? "s" : ""} cut off</span>` : ""}</div>` : ""}
       ${mine ? `<div class="tiny" style="margin-top:5px">your resolve ${mine.resolve.toFixed(2)}</div>
         ${bar(mine.resolve, "var(--amber)", mine.red_line)}
