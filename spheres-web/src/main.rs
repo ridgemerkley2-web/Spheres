@@ -328,13 +328,49 @@ fn classify(h: &str) -> &'static str {
     }
 }
 
+/// Does `hay` NAME this nation, rather than merely contain its letters?
+///
+/// The bare `contains` this replaces reads "Romania" as a mention of **Oman**,
+/// and across the 137-nation roster that is the one collision — checked, not
+/// assumed: no other nation's name is a substring of another's. One is enough.
+/// Measured on the live server, governing Oman on seed 1990 for 300 months, the
+/// player's own "You" filter held **sixteen dispatches, of which fifteen were
+/// about Romania** — its elections, its street protests — and one was about
+/// Oman. The same tags drive the chart's per-nation marks, and the same match
+/// in `is_major` stopped an Omani player's advance for Romanian election
+/// results.
+///
+/// A boundary is "not flanked by a letter", which keeps every real mention:
+/// possessives ("Iraq's magazines"), punctuation ("invades Kuwait!"), and the
+/// hyphenated names on the roster all end at a non-letter.
+fn names_nation(hay_lower: &str, name_lower: &str) -> bool {
+    if name_lower.is_empty() {
+        return false;
+    }
+    let mut from = 0;
+    while let Some(i) = hay_lower[from..].find(name_lower) {
+        let start = from + i;
+        let end = start + name_lower.len();
+        let letter_before =
+            hay_lower[..start].chars().next_back().is_some_and(|c| c.is_alphabetic());
+        let letter_after = hay_lower[end..].chars().next().is_some_and(|c| c.is_alphabetic());
+        if !letter_before && !letter_after {
+            return true;
+        }
+        from = end;
+    }
+    false
+}
+
 /// Which nations a headline is about. The sim writes headlines with `id.name()`,
-/// so a substring match on the full names is exact rather than a guess.
+/// so matching on the full names is exact rather than a guess — provided the
+/// match respects word boundaries. See [`names_nation`] for the one roster pair
+/// that proves it must.
 fn mentioned(h: &str) -> Vec<NationId> {
     let hay = h.to_lowercase(); // dissolution headlines shout in capitals
     let mut out = vec![];
     for id in all_nations() {
-        if hay.contains(&id.name().to_lowercase()) && !out.contains(id) {
+        if names_nation(&hay, &id.name().to_lowercase()) && !out.contains(id) {
             out.push(*id);
         }
     }
@@ -353,7 +389,10 @@ fn is_major(headline: &str, me: Option<NationId>) -> bool {
         || h.contains("escalates to rung")
         || h.contains("grants")
         || h.contains("revokes");
-    structural || me.is_some_and(|m| h.contains(&m.name().to_lowercase()))
+    // `names_nation`, not `contains`, for the reason recorded there: the bare
+    // test read every Romanian headline as news about Oman, and stopped an
+    // Omani player's advance for Romanian election results.
+    structural || me.is_some_and(|m| names_nation(&h, &m.name().to_lowercase()))
 }
 
 /// Pull `nation=` out of a query string and percent-decode it.
@@ -2327,6 +2366,76 @@ mod tests {
         );
         assert!(INDEX.contains("the central bank is setting this for you"));
         assert!(INDEX.contains("takes the wheel for good"), "the door is one-way; say so");
+    }
+
+    /// A headline was read as being about every nation whose NAME'S LETTERS it
+    /// contained. Across the roster that is one pair — "Romania" contains
+    /// "Oman" — and one pair was enough to make an Omani player's personal news
+    /// feed somebody else's.
+    ///
+    /// Measured on the live server, governing Oman on seed 1990 for 300 months:
+    /// the "You" filter held SIXTEEN dispatches, of which FIFTEEN were about
+    /// Romania — its elections, its street protests — and one was about Oman.
+    /// The same tags drive the chart's per-nation event marks, and the same
+    /// match in `is_major` stopped an Omani player's advance to tell them about
+    /// a Romanian election.
+    #[test]
+    fn a_headline_is_only_about_the_nations_it_names() {
+        // The pair this exists for, in both directions.
+        assert_eq!(
+            mentioned("Romania votes: National Salvation Front takes office."),
+            vec![NationId::Romania],
+            "Romania is not news about Oman"
+        );
+        assert_eq!(mentioned("Romania moves against its own streets."), vec![NationId::Romania]);
+        assert!(mentioned("Oman opens up.").contains(&NationId::Oman));
+        assert!(!mentioned("Oman opens up.").contains(&NationId::Romania));
+        assert!(!is_major("Romania moves against its own streets.", Some(NationId::Oman)));
+        assert!(is_major("Oman moves against its own streets.", Some(NationId::Oman)));
+
+        // Every real mention still lands: possessives, punctuation, capitals,
+        // multi-word names, and the hyphenated names on the roster.
+        for (h, want) in [
+            ("Iraq's magazines are empty. The tempo falls to rung 4.", NationId::Iraq),
+            ("WAR: Iraq invades Kuwait!", NationId::Kuwait),
+            ("United States is first to field integrated circuits.", NationId::USA),
+            ("THE SOVIET UNION HAS DISSOLVED.", NationId::USSR),
+            // The roster's one hyphenated name, and the boundary rule has to
+            // let a hyphen close a name the way a space or a full stop does.
+            ("Congo-Brazzaville opens up.", NationId::Congo),
+            ("Equatorial Guinea opens up.", NationId::EquatorialGuinea),
+            ("Oman pegs its currency and imports somebody else's credibility.", NationId::Oman),
+        ] {
+            assert!(mentioned(h).contains(&want), "{want:?} is not read out of {h:?}");
+            assert!(is_major(h, Some(want)), "{want:?} is not told about {h:?}");
+        }
+
+        // THE GENERAL CLAIM, not just the one pair: no nation is ever read out
+        // of a headline that names only some other nation. This is what stops a
+        // future roster addition reopening the defect silently — add "Congo"
+        // beside "Congo-Brazzaville" and this goes red.
+        for a in all_nations() {
+            let h = format!("{} opens up.", a.name());
+            let read = mentioned(&h);
+            assert_eq!(
+                read,
+                vec![*a],
+                "{:?} is read as being about {:?} as well",
+                a,
+                read.iter().filter(|x| *x != a).collect::<Vec<_>>()
+            );
+        }
+
+        // And the boundary rule itself, so its edges are pinned rather than
+        // inferred from the cases above.
+        assert!(names_nation("romania votes", "romania"));
+        assert!(!names_nation("romania votes", "oman"));
+        assert!(names_nation("oman votes", "oman"));
+        assert!(names_nation("it was oman", "oman"));
+        assert!(names_nation("oman's fleet", "oman"));
+        assert!(!names_nation("omani forces", "oman"), "an adjective is not the nation");
+        assert!(!names_nation("", "oman"));
+        assert!(!names_nation("oman", ""), "an empty name matches nothing and must not hang");
     }
 
     #[test]
