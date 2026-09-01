@@ -3074,6 +3074,61 @@ mod tests {
         );
     }
 
+    /// The shortcut gate must ask whether the key is being CONSUMED as text,
+    /// not merely whether the target is an `<input>`.
+    ///
+    /// The policy sliders are `<input type="range">`. A range consumes the
+    /// arrows, Home/End and PageUp/PageDown and nothing else — no letter and no
+    /// digit, and the page binds none of what it does consume. But the old
+    /// `typing()` returned true for every `<input>`, so the global keydown
+    /// handler returned early and EVERY shortcut died while a slider had focus.
+    ///
+    /// The moment that matters: `noteQueued()` writes "… · R to revert" into
+    /// the header only once an order is queued, and the only way to queue one
+    /// with the keyboard-free hand is to move a slider — which leaves that
+    /// slider holding focus. Measured in the browser: after clicking the tax
+    /// slider, `document.activeElement` was `INPUT[range]`, the header read
+    /// "1 order takes effect next month · R to revert", and pressing R changed
+    /// nothing. Escape (which blurs) then R worked.
+    ///
+    /// Escape deliberately keeps the WIDE test — `focused()` — so that
+    /// behaviour is unchanged; only the shortcut gate narrowed.
+    #[test]
+    fn a_focused_slider_does_not_kill_every_shortcut() {
+        assert!(
+            INDEX.contains("const TYPELESS_INPUT = new Set(["),
+            "the shortcut gate no longer distinguishes inputs that consume text \
+             from inputs that do not"
+        );
+        assert!(
+            INDEX.contains("\"range\", \"checkbox\", \"radio\","),
+            "type=range must stay in the set of inputs that are NOT typing — the \
+             policy sliders are ranges and the shortcuts must survive them"
+        );
+        assert!(
+            INDEX.contains("return t.tagName !== \"INPUT\" || !TYPELESS_INPUT.has((t.type || \"text\").toLowerCase());"),
+            "typing() must consult the input's type"
+        );
+        // Escape keeps the wide test. If this flips to typing(), a focused
+        // slider stops being blurrable by keyboard and that is a regression of
+        // its own.
+        assert!(
+            INDEX.contains("if (focused(e)) { e.target.blur(); return; }"),
+            "Escape must still blur any focused control, range included"
+        );
+        // ...and the shortcut gate must be the narrow one.
+        assert!(
+            INDEX.contains("if (typing(e) || e.ctrlKey || e.metaKey || e.altKey) return;"),
+            "the shortcut gate must ask typing(), not focused()"
+        );
+        // The advertisement this defect was breaking.
+        assert!(
+            INDEX.contains("R to revert"),
+            "the header no longer offers R; re-read whether this test still \
+             describes a real promise"
+        );
+    }
+
     /// The war decoration must never take a pointer event.
     ///
     /// Each belligerent gets a `<circle r="34 * PX">` filled with `url(#glow)` —

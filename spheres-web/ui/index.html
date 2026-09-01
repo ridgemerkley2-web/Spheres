@@ -1967,14 +1967,40 @@ function banner(text) {
 
 /* ================= keyboard ================= */
 
-function typing(e) {
+/// TWO questions, deliberately not one. They used to be the same question and
+/// that was the bug.
+///
+/// `focused` — is the key going to a form control at all? That is what Escape
+/// asks, because Escape's job there is to hand focus back to the page, and it
+/// is the answer this file has always given.
+///
+/// `typing` — is the key being CONSUMED as text? That is the strictly narrower
+/// question the shortcut gate must ask. `<input type="range">` is an `<input>`,
+/// so the wide test called it typing, but a range consumes nothing except the
+/// arrows, Home/End and PageUp/PageDown — and this page binds none of those.
+/// The cost was that EVERY shortcut died while a policy slider had focus, at
+/// exactly the moment the header reads "R to revert": that note only appears
+/// once you have moved a slider, so the slider you just moved was holding focus
+/// and R was being advertised at the one moment it could not work. Same for
+/// Space, 1-4, M, C, S and the rest.
+const TYPELESS_INPUT = new Set([
+  "range", "checkbox", "radio", "button", "submit", "reset", "image", "file", "color",
+]);
+function focused(e) {
   const t = e.target;
-  return t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+  return !!t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+}
+function typing(e) {
+  if (!focused(e)) return false;
+  const t = e.target;
+  return t.tagName !== "INPUT" || !TYPELESS_INPUT.has((t.type || "text").toLowerCase());
 }
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
-    if (typing(e)) { e.target.blur(); return; }
+    // Escape keeps the WIDE test: a focused slider is still something Escape
+    // should hand back, and that behaviour is unchanged by the split above.
+    if (focused(e)) { e.target.blur(); return; }
     if ($("#keys").style.display === "flex") { $("#keys").style.display = "none"; return; }
     if (techMenuIsOpen()) { closeTechMenu(); return; }
     if (tech.open) { techEsc(); return; }
@@ -3590,7 +3616,7 @@ function techWire() {
 /* ---------------- keyboard ---------------- */
 
 /// Esc order inside the screen: unpin first, close second (find-blur is
-/// handled upstream by the typing() branch of the global handler).
+/// handled upstream by the focused() branch of the global handler).
 function techEsc() {
   if (window.techTipHide) window.techTipHide();   // Esc bypasses techKeys' hide
   if (tech.sel != null) {
