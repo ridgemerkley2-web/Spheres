@@ -321,10 +321,34 @@ fn play_loop(mut w: WorldState) {
             }
         }
         if !w.nation(me).alive {
-            println!("\n*** {} has been destroyed. Your game is over. ***", me.name());
+            println!("\n*** {} ***", game_over_line(me));
             break;
         }
     }
+}
+
+/// How the game ends, in words that are true whichever way it ended.
+///
+/// This used to read "{} has been destroyed", and the commonest way a player's
+/// nation leaves the board is the one it is least true of. Playing the Soviet
+/// Union on seed 1, two lines apart in the same transcript:
+///
+///   [Sep 1993] THE SOVIET UNION HAS DISSOLVED. Fifteen republics take up their
+///              own seats.
+///   *** Soviet Union has been destroyed. Your game is over. ***
+///
+/// Nothing destroyed the Soviet Union. Fifteen of its republics are on the board
+/// the following month with its output, its people and its arsenal divided
+/// between them, and the sim's own headline says so.
+///
+/// A nation stops being alive in exactly two ways — `politics::dissolve_*`,
+/// which is this case, and `war.rs`'s annexation, which really is a destruction
+/// — so this line says the thing that covers both and leaves the headlines
+/// directly above it to name which. It is also the wording the browser already
+/// uses for the same event, in `state_json`'s interrupt and in the dead-nation
+/// sheet.
+fn game_over_line(me: NationId) -> String {
+    format!("{} no longer exists. Your game is over.", me.name())
 }
 
 fn advance(w: &mut WorldState, queued: &mut Vec<Command>, months: usize) {
@@ -760,4 +784,66 @@ fn read_line() -> String {
     let mut s = String::new();
     io::stdin().lock().read_line(&mut s).unwrap_or(0);
     s.trim().to_string()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// TRIAGE F-36 — the CLI called a dissolution a destruction.
+    ///
+    /// SYMPTOM, from a real transcript. `spheres-cli play 1`, choose USSR,
+    /// "year" until the union comes apart:
+    ///
+    ///   [Sep 1993] THE SOVIET UNION HAS DISSOLVED. Fifteen republics take up
+    ///              their own seats.
+    ///   *** Soviet Union has been destroyed. Your game is over. ***
+    ///
+    /// Two lines apart, in the same output, disagreeing about the one event the
+    /// whole first act of this game is built around.
+    ///
+    /// This test drives the ACTUAL end condition rather than the string: it
+    /// dissolves the union through the sim, checks the player's row really has
+    /// gone quiet, and asserts the line the loop would then print.
+    #[test]
+    fn a_dissolution_is_not_a_destruction() {
+        let mut w = world_1990(GameRules { seed: 1, ..GameRules::default() });
+        w.player = Some(NationId::USSR);
+        let mut dissolved = None;
+        for _ in 0..(40 * 12) {
+            let headlines = tick_month(&mut w, &[]);
+            if let Some(h) = headlines.iter().find(|h| h.contains("SOVIET UNION HAS DISSOLVED")) {
+                dissolved = Some(h.clone());
+                break;
+            }
+        }
+        let headline = dissolved.expect("seed 1 dissolves the union inside forty years");
+        assert!(
+            !w.nation(NationId::USSR).alive,
+            "the loop's end condition did not fire, so this is not the moment \
+             the game-over line is printed"
+        );
+
+        let line = game_over_line(NationId::USSR);
+        assert!(
+            !line.to_lowercase().contains("destroy"),
+            "the sim says {:?} and the CLI says {:?}",
+            headline,
+            line
+        );
+        assert_eq!(line, "Soviet Union no longer exists. Your game is over.");
+
+        // Fifteen republics are on the board with the union's output between
+        // them, which is what makes "destroyed" the wrong word rather than a
+        // harsh one.
+        let successors = spheres_sim::nations::successor_nations()
+            .iter()
+            .filter(|id| w.nation_opt(**id).is_some_and(|n| n.alive))
+            .count();
+        assert!(
+            successors >= 10,
+            "only {} successors stood up; the claim above rests on them",
+            successors
+        );
+    }
 }
