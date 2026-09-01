@@ -1422,3 +1422,54 @@ served bounds rather than at the page text:
   number the page happens to be carrying.
 
 Both are Ridge's edits to make, not a fixer's.
+
+---
+
+## Awaiting an owner ruling (added 2026-09-01 by the layout-and-rendering fixer)
+
+Two map-label findings. Both are real and both are measured; neither is fixed,
+because the only repairs available are a ruling about **which layer wins on the
+map** or **which names get dropped**, and that is a decision about what the
+primary surface says rather than a rendering bug with one right answer.
+
+### L-1 — every district name in Resources mode is painted over by its own district's chip
+
+**Reported as TRIAGE F-42.** Measured in Chrome at 1280x720, Iraq on seed 1,
+Resources shading with `oil` selected, camera on Iraq at k = 9 (well inside
+ZB2 = 4, where district labels turn on):
+
+```
+district labels drawn      18
+resource chips in view    107
+labels overlapped by the chip of THEIR OWN district    18 of 18
+```
+
+**It is 18 of 18 by construction, not by crowding.** `refreshDistrictDetail`
+draws the name at `(d.cx, d.cy)` with `text-anchor="middle"`, and
+`refreshResGlyphs` centres the chip on the same `info.cx/cy` — the district
+centroid. Any district that carries the selected commodity therefore has its
+name underneath its own chip, at every zoom, on every commodity, for every
+nation. The chip's plate is `#080c12` at `fill-opacity: .78`, so it is not a
+tint over the text: it removes it. Measured coverage of a label's box by chip
+plates: **57% average, 92% worst** (Babil, Dihok).
+
+**Why the obvious repair does not work, measured rather than assumed.** Moving
+the label clear of its own chip — `y += fs * 1.9`, which does clear it — takes
+average coverage from 0.57 only to **0.51**, because with 107 chips in the
+viewport the label lands on a neighbour's. A label offset is not a fix here.
+
+**What would work is a paint-order decision.** `renderMap` emits `#resglyphs`
+AFTER `#dlabels`, with a comment stating the intent: "The commodity marks go
+last so nothing paints over them: over relief, over rivers, over the front
+seam." Every layer that comment names is GROUND. `#dlabels` is text, and it was
+inserted immediately above with no note. Drawing `#dlabels` after `#resglyphs`
+instead would make the names 0% obscured; the cost, measured on the same view,
+is that **25 of 107 chips** get a haloed 11px name crossing them (17.7% average
+of a chip's box, one chip fully crossed), while keeping their coloured plate,
+their border and their hover title. Chip hit-testing is unaffected either way —
+`#dlabels` is `pointer-events="none"`, and 90 of 105 chips in the pane answer a
+click at their centre in both orders.
+
+**The ruling needed.** In Resources mode, when a district's name and its
+commodity chip want the same pixels, which one wins? The reversal is one line;
+what it decides is what the resource map is FOR. Not a fixer's call at 3am.
