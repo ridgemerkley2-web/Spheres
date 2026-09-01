@@ -413,6 +413,43 @@ pub fn seize_terms(w: &WorldState, c: &Conflict, control: f64) -> (f64, f64) {
     control_terms(c, &a, &b, control)
 }
 
+/// The standing force a military budget sustains, and the only place that
+/// arithmetic exists.
+///
+/// Takes the share explicitly so the sim can answer "what would this budget
+/// sustain?" for a share the nation is not currently spending. spheres-web's
+/// policy panel asks exactly that under the military slider, and before this
+/// existed it answered the question itself with `sqrt(gdp · share · 0.30) · 8`
+/// — three of the four factors below dropped, wrong by -38% to +42% on the
+/// FIRST screen with no player input at all.
+///
+/// Clamped at zero because a negative budget is not a smaller army, it is a NaN
+/// — and a NaN in `mil_strength` propagates silently through every strength
+/// ratio in the war model before serde writes it out as `null`.
+///
+/// A MULTIPLIER and never an addend, for two independent reasons.
+/// `mil_strength` is the denominator of `capital_intensity`, so adding to it
+/// would collapse quality — and the 1.2 clamp there means a uniform shrink
+/// compresses the quality gap in favour of the poor, which is backwards. And
+/// war.rs sustains from the whole budget while arsenal.rs spends 20% of the same
+/// money, so an additive arsenal would buy the same strength twice. Normalised
+/// to 1.0 at the reference share, it buys it once, and all 137 nations open 1990
+/// at exactly 1.0 because the seeder solves units from money.
+///
+/// This is where lead time bites. Stop buying and adequacy falls as the fleet
+/// ages; you cannot fix it inside a war, because the thing you did not order
+/// takes fifteen years. It is also why this curve is NOT `k · sqrt(share)`:
+/// `adequacy_at` falls as the share rises, so a caller that assumed the closed
+/// form would flatter every increase and punish every cut.
+pub fn sustained_force(n: &Nation, mil_spend_gdp: f64) -> f64 {
+    let budget = n.gdp * mil_spend_gdp; // $bn/yr
+    (budget * 0.30).max(0.0).sqrt()
+        * 8.0
+        * crate::tech::military_multiplier(n)
+        * crate::arsenal::adequacy_at(n, mil_spend_gdp)
+        + crate::tech::military_floor(n)
+}
+
 /// Monthly military & war tick.
 pub fn tick(w: &mut WorldState) {
     // ---- Strength accumulation from spending, and magazines refilling ----
@@ -425,32 +462,10 @@ pub fn tick(w: &mut WorldState) {
         // mismatch is the whole of BIBLE §6's second stock.
         let refill = MAGAZINE_REBUILD * capital_intensity(w, *id);
         let n = w.nation_mut(*id);
-        let budget = n.gdp * n.mil_spend_gdp; // $bn/yr
-        // Strength drifts toward what the budget sustains — and what a budget
-        // sustains depends on what the arsenal it buys is made of.
-        // Clamped at zero because a negative budget is not a smaller army, it is
-        // a NaN — and a NaN in mil_strength propagates silently through every
-        // strength ratio in the war model before serde writes it out as `null`.
-        // ...and scaled by whether the equipment behind that budget exists.
-        //
-        // A MULTIPLIER and never an addend, for two independent reasons.
-        // `mil_strength` is the denominator of `capital_intensity` above, so
-        // adding to it would collapse quality — and the 1.2 clamp there means a
-        // uniform shrink compresses the quality gap in favour of the poor, which
-        // is backwards. And war.rs sustains from the whole budget while
-        // arsenal.rs spends 20% of the same money, so an additive arsenal would
-        // buy the same strength twice. Normalised to 1.0 at the reference share,
-        // it buys it once, and all 137 nations open 1990 at exactly 1.0 because
-        // the seeder solves units from money.
-        //
-        // This is where lead time bites. Stop buying and adequacy falls as the
-        // fleet ages; you cannot fix it inside a war, because the thing you did
-        // not order takes fifteen years.
-        let sustained = (budget * 0.30).max(0.0).sqrt()
-            * 8.0
-            * crate::tech::military_multiplier(n)
-            * crate::arsenal::adequacy(n)
-            + crate::tech::military_floor(n);
+        // Strength drifts toward what the budget sustains. The arithmetic is in
+        // `sustained_force` below, which is the only place it exists.
+        let share = n.mil_spend_gdp;
+        let sustained = sustained_force(n, share);
         n.mil_strength += (sustained - n.mil_strength) * REPLACEMENT_RATE;
         n.munitions = (n.munitions + refill).clamp(0.0, 1.0);
         // Exhaustion decays in peace

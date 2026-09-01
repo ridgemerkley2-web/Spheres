@@ -800,9 +800,62 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // inflation closes the peg, and the panel must not be a frame behind.
         "stratagems": w.player.map(|p| stratagems_json(w, p)),
         "research": w.player.map(|p| research_json(w, p)),
+        "policy": w.player.map(|p| policy_json(w, p)),
         "interrupt": interrupt,
     })
 }
+
+/// What the policy sliders will actually buy, answered by the sim.
+///
+/// THE ONE THING HERE IS THE FORCE CURVE, and it is a curve rather than a
+/// coefficient because the quantity has no closed form. `war::sustained_force`
+/// is
+///
+///     sqrt(gdp · share · 0.30) · 8 · military_multiplier · adequacy_at(share)
+///       + military_floor
+///
+/// and `adequacy_at` FALLS as the share rises, so the whole thing is not
+/// `k·sqrt(share)` however much it looks like it. The browser was computing
+/// `sqrt(gdp · share · 0.30) · 8` — the first factor only — and printing the
+/// answer as "sustains a force of N" under the military slider. Three of the
+/// four factors were missing: the technology multiplier (0.5x to 4.0x), the
+/// equipment adequacy (0.55x to 1.0x), and the flat floor a modern arsenal
+/// carries whatever the budget. Wrong by -38% to +42% on the first screen a
+/// player sees, with no input from them at all.
+///
+/// SAMPLED, NOT SOLVED. The slider takes values in thousandths, so the sim
+/// evaluates its own function at every thousandth from 0 to [`FORCE_CURVE_MAX`]
+/// and serves the lot. The browser indexes; it does not interpolate and it does
+/// not re-derive. 401 floats for the player's nation alone, on a payload that
+/// already carries a 137x136 relation matrix.
+///
+/// The RANGE is the server's own and is deliberately wider than the slider's
+/// 0..0.35, so this is not a second copy of a UI bound. A page whose slider ever
+/// goes past the last sample clamps to it, and
+/// `the_force_line_is_the_force_the_sim_sustains` asserts the curve covers what
+/// the shipped page can actually ask for.
+fn policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let n = w.nation(me);
+    let curve: Vec<f64> = (0..=FORCE_CURVE_STEPS)
+        .map(|i| {
+            let share = i as f64 / FORCE_CURVE_STEPS as f64 * FORCE_CURVE_MAX;
+            round(spheres_sim::war::sustained_force(n, share), 3)
+        })
+        .collect();
+    serde_json::json!({
+        "force_curve": curve,
+        "force_curve_max": FORCE_CURVE_MAX,
+        // What the nation is actually spending buys, so the standing line needs
+        // no lookup at all and cannot be a sample out.
+        "sustained": spheres_sim::war::sustained_force(n, n.mil_spend_gdp),
+    })
+}
+
+/// The widest military share the force curve is served for, and how many samples
+/// it is cut into — a thousandth apiece, which is the resolution a range input
+/// stepping in thousandths can actually select.
+const FORCE_CURVE_MAX: f64 = 0.40;
+const FORCE_CURVE_STEPS: usize = 400;
 
 /// Translate the UI's flat command objects into sim commands.
 /// The research board: what each of the eight domains is working on, how far in,
@@ -1977,6 +2030,109 @@ mod tests {
         // the dossier line are honest uses of a count — so this must not be
         // "fixed" by deleting the field.
         assert!(INDEX.contains("sanctioned_by_count > 0"), "the ⊘ map mark reads the count");
+    }
+
+    /// "sustains a force of N" under the military slider was the browser's own
+    /// arithmetic, and it kept one of `war::sustained_force`'s four factors.
+    /// Missing: the technology multiplier (0.5x-4.0x), the equipment adequacy
+    /// (0.55x-1.0x), and the flat floor a modern arsenal carries whatever the
+    /// budget. Wrong on the FIRST screen with no player input.
+    #[test]
+    fn the_force_line_is_the_force_the_sim_sustains() {
+        // What the page used to compute, kept so the error is measured here and
+        // not remembered from a bug report.
+        let old_browser_rule = |n: &Nation, share: f64| (n.gdp * share * 0.30).sqrt() * 8.0;
+
+        let mut worst = 0.0f64;
+        let mut worst_line = String::new();
+        let mut checked = 0usize;
+        let mut w = world_1990(GameRules::default());
+        for _ in 0..120 {
+            tick_month(&mut w, &[]);
+            for n in w.nations.iter().filter(|n| n.alive) {
+                let truth = spheres_sim::war::sustained_force(n, n.mil_spend_gdp);
+                let guess = old_browser_rule(n, n.mil_spend_gdp);
+                // Only forces big enough for the error to be about the formula
+                // rather than about the last digit of a microstate's militia.
+                // The seeder normalises every nation to 1.0 in January 1990, so
+                // 1.0 is "an army at all" on this scale, not "a small one".
+                if truth < 1.0 {
+                    continue;
+                }
+                checked += 1;
+                let err = (guess / truth - 1.0).abs();
+                if err > worst {
+                    worst = err;
+                    worst_line =
+                        format!("{:?}: page {:.1} against the sim's {:.1}", n.id, guess, truth);
+                }
+            }
+        }
+        assert!(checked > 1_000, "only {checked} nation-months");
+        assert!(
+            worst > 0.20,
+            "the page's old formula came within 20% of the sim everywhere, so \
+             this test no longer measures the defect it was written for ({worst_line})"
+        );
+        println!("worst error of the formula this replaced: {:.1}% — {}", worst * 100.0, worst_line);
+
+        // THE CURVE IS THE SIM'S, sample for sample, at every position the
+        // slider can select. This is the assertion that would have caught the
+        // original defect, and it is exact rather than approximate because the
+        // sampling step and the slider step are the same thousandth.
+        let mut g = Game::new(1990, Some(NationId::USA));
+        for _ in 0..24 {
+            tick_month(&mut g.world, &[]);
+        }
+        let me = g.world.player.expect("seated");
+        let pol = state_json(&g, None)["policy"].clone();
+        let curve = pol["force_curve"].as_array().expect("a curve is served");
+        assert_eq!(curve.len(), FORCE_CURVE_STEPS + 1);
+        let n = g.world.nation(me);
+        for (i, sample) in curve.iter().enumerate() {
+            let share = i as f64 / FORCE_CURVE_STEPS as f64 * FORCE_CURVE_MAX;
+            let want = round(spheres_sim::war::sustained_force(n, share), 3);
+            assert_eq!(
+                sample.as_f64().expect("finite"),
+                want,
+                "the curve disagrees with the sim at share {share:.3}"
+            );
+        }
+        // Every sample is a real force, including at share zero where only the
+        // arsenal's floor remains.
+        assert!(curve.iter().all(|v| v.as_f64().is_some_and(|x| x.is_finite() && x >= 0.0)));
+        assert_eq!(
+            pol["sustained"].as_f64().expect("finite"),
+            spheres_sim::war::sustained_force(n, n.mil_spend_gdp),
+        );
+
+        // The curve has to cover what the shipped slider can actually ask for,
+        // or the page silently clamps. Read off the page rather than retyped, so
+        // widening the slider without widening the curve goes red here.
+        let hi: f64 = INDEX
+            .split_once("sliderHtml(\"military\", \"Military spending\", m.mil_spend, 0, ")
+            .expect("the page still offers a military slider")
+            .1
+            .split(')')
+            .next()
+            .expect("a closing paren")
+            .trim()
+            .parse()
+            .expect("a numeric upper bound");
+        assert!(
+            hi <= FORCE_CURVE_MAX,
+            "the military slider reaches {hi} but the force curve stops at {FORCE_CURVE_MAX}"
+        );
+
+        // And the page must READ the curve rather than recompute it.
+        assert!(
+            INDEX.contains("function sustainedForce(m, share)"),
+            "the page no longer reads the served force curve"
+        );
+        assert!(
+            !INDEX.contains("const force = Math.sqrt(m.gdp * p.military * 0.30) * 8"),
+            "the page is still computing the sustained force itself"
+        );
     }
 
     #[test]

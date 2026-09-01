@@ -4219,6 +4219,28 @@ function wireSliders(m) {
   paintPolicy(m);
 }
 
+/// The standing force a military share buys, READ OFF THE SIM'S OWN CURVE.
+///
+/// This used to be `Math.sqrt(m.gdp * share * 0.30) * 8`, which is the first of
+/// the four factors in `war::sustained_force` and none of the other three: the
+/// technology multiplier (0.5x-4.0x), the equipment adequacy (0.55x-1.0x, and
+/// it FALLS as the share rises) and the flat floor a modern arsenal carries
+/// whatever the budget. The line was wrong by -38% to +42% on the first screen,
+/// before the player had touched anything.
+///
+/// The curve cannot be closed-form on this side — adequacy depends on the share
+/// — so the server evaluates the sim's function at every thousandth and ships
+/// the samples. The slider steps in thousandths too, so this is an index and
+/// never an interpolation. Past the last sample it clamps, and it falls back to
+/// the standing figure if an older server sent no curve.
+function sustainedForce(m, share) {
+  const pol = S && S.policy;
+  if (!pol || !pol.force_curve) return m.mil_strength;
+  const c = pol.force_curve;
+  const i = clamp(Math.round((share / pol.force_curve_max) * (c.length - 1)), 0, c.length - 1);
+  return c[i];
+}
+
 /// The consequence line under each slider, and the budget beneath them all.
 function paintPolicy(m) {
   const p = proposed(m);
@@ -4229,7 +4251,7 @@ function paintPolicy(m) {
   const drag = dragsOf(m);
   const led = ledgerOf(m, p.tax, p.military, p.invest);
   const ledBase = ledgerOf(m, m.tax, m.mil_spend, m.state_invest);
-  const force = Math.sqrt(m.gdp * p.military * 0.30) * 8;
+  const force = sustainedForce(m, p.military);
 
   const fx = {
     rate: `real <b>${fmt.pct(p.rate - m.inflation)}</b> · demand <b>${fmt.signed(d.gap)}</b>/yr` +

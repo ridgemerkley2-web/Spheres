@@ -416,7 +416,21 @@ pub fn book_value(n: &Nation) -> f64 {
 /// exactly 1.0 in January 1990 and the war model opens unchanged to within
 /// floating point. Everything after that is the player's doing.
 pub fn adequacy(n: &Nation) -> f64 {
-    let line = (n.gdp * n.mil_spend_gdp * PROCUREMENT_SHARE / 12.0).max(0.0);
+    adequacy_at(n, n.mil_spend_gdp)
+}
+
+/// [`adequacy`] at a military share the nation is not currently spending.
+///
+/// Split out so that "what would this budget sustain?" can be answered by the
+/// sim rather than guessed at by a caller. It is not a question with a closed
+/// form: adequacy FALLS as the share rises, because `want` is the equipment a
+/// budget of that size implies and the books do not grow to meet it in the same
+/// month. A caller that assumed the force curve was `k·sqrt(share)` — which is
+/// what the shape of `war::sustained_force` looks like until you notice this
+/// term is inside it — would be wrong in a direction that flatters raising
+/// spending and punishes cutting it.
+pub fn adequacy_at(n: &Nation, mil_spend_gdp: f64) -> f64 {
+    let line = (n.gdp * mil_spend_gdp * PROCUREMENT_SHARE / 12.0).max(0.0);
     let want = line * EQUIP_HORIZON;
     if want <= 0.0 {
         return BARE_FORCE;
