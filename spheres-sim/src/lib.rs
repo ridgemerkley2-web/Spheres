@@ -108,6 +108,18 @@ pub enum Command {
 /// so they are charged to the point of bankruptcy rather than refused. A model
 /// that stopped a discredited government from abandoning its allies would have
 /// it exactly backwards; that is the government most likely to.
+/// What [`apply_command`] will charge for this command, from the same function
+/// that charges it, so a surface can quote a price it cannot get wrong.
+///
+/// `None` for a command this build does not price. Added because the browser's
+/// war sheet was quoting six prices out of six literals of its own and omitting
+/// the two it had no literal for: setting an objective takes 3 political
+/// capital and the card said nothing, on a card that prices every other control
+/// and labels the free one "free".
+pub fn price_of(w: &WorldState, c: &Command) -> Option<f64> {
+    command_price(w, c).map(|(_, cost, _)| cost)
+}
+
 fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
     let swing = |before: f64, after: f64, per_point: f64| (after - before).abs() * per_point;
     /// Needs the standing to act.

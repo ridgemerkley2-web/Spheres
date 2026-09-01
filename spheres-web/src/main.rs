@@ -529,6 +529,62 @@ fn theatres_json(w: &WorldState) -> Vec<serde_json::Value> {
 /// One conflict, with the ladder on it. The legacy keys (`attacker`,
 /// `defender`, `progress`, the two ally lists) are kept byte-for-byte so the
 /// existing war card keeps rendering while the new ones are added beside them.
+/// Every price the conflict sheet quotes, answered by `apply_command`'s own
+/// pricing function rather than by a literal in the page.
+///
+/// Priced FOR THE PLAYER, because that is who the sheet's buttons charge and
+/// because several of these depend on who is asking: `revoke_access` costs 4
+/// ordinarily and 20 while the state you are throwing out is standing at rung 7
+/// or above in your theatre, which the page could not have known.
+fn sheet_prices(w: &WorldState, c: &Conflict) -> serde_json::Value {
+    use spheres_sim::price_of;
+    let Some(me) = w.player else {
+        return serde_json::Value::Null;
+    };
+    let p = |cmd: Command| price_of(w, &cmd);
+    let revoke: serde_json::Map<String, serde_json::Value> = c
+        .posture
+        .iter()
+        .filter(|b| b.nation != me)
+        .filter_map(|b| {
+            p(Command::RevokeAccess { host: me, seeker: b.nation, theatre: c.theatre })
+                .map(|v| (format!("{:?}", b.nation), serde_json::json!(v)))
+        })
+        .collect();
+    serde_json::json!({
+        "objective": p(Command::SetObjective {
+            conflict: c.id, nation: me, objective: spheres_sim::world::Objective::Deny,
+        }),
+        // The one rules-of-engagement setting that is not free, and the two that
+        // are — served as the pair, so the card states both rather than
+        // assuming which is which.
+        "roe_unrestricted": p(Command::SetRoE {
+            conflict: c.id, nation: me, roe: spheres_sim::world::Roe::Unrestricted,
+        }),
+        "roe_other": p(Command::SetRoE {
+            conflict: c.id, nation: me, roe: spheres_sim::world::Roe::Standard,
+        }),
+        "ceiling": p(Command::SetCeiling { conflict: c.id, nation: me, rung: 5 }),
+        "red_line": p(Command::SetRedLine {
+            conflict: c.id, nation: me, resolve_floor: 0.3,
+        }),
+        "join": p(Command::JoinConflict {
+            conflict: c.id, nation: me, side_a: true,
+            objective: spheres_sim::world::Objective::Deny,
+        }),
+        "request_access": p(Command::RequestAccess {
+            seeker: me, host: c.attacker(), theatre: c.theatre,
+        }),
+        "press_access": p(Command::PressForAccess {
+            seeker: me, host: c.attacker(), theatre: c.theatre,
+        }),
+        "grant_access": p(Command::GrantAccess {
+            host: me, seeker: c.attacker(), theatre: c.theatre, grant: true,
+        }),
+        "revoke_access": revoke,
+    })
+}
+
 fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
     let posture: Vec<serde_json::Value> = c
         .posture
@@ -618,6 +674,15 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
         // calling Conventional.
         "top_rung_a": c.top_rung(true),
         "top_rung_b": c.top_rung(false),
+        // WHAT EVERY CONTROL ON THE SHEET COSTS, from `apply_command`'s own
+        // pricing function. The sheet used to carry six literals of its own and
+        // no literal at all for the two it had never been given one for:
+        // setting an objective takes 3 political capital and the card said
+        // nothing about it, on a card that prices every other control and
+        // labels the free one "free". Measured — Iraq on seed 7, political
+        // capital 35.28 -> 32.28 for one click of "hold", and 32.28 -> 32.28
+        // for the red line the card calls free.
+        "prices": sheet_prices(w, c),
         "attacker": c.attacker().name(),
         "attacker_id": format!("{:?}", c.attacker()),
         "defender": c.defender().name(),
@@ -4968,6 +5033,123 @@ mod tests {
             "the dossier must ask whether the nation was seated before calling \
              an empty sources block a bug"
         );
+    }
+
+    /// The conflict sheet charged 3 political capital for an objective and did
+    /// not say so.
+    ///
+    /// SYMPTOM. The sheet prices five of its seven controls — "unrestricted · 8
+    /// pc", "Escalation ceiling · 4 pc", "Take a side · 14 pc", "Request · 6
+    /// pc", "Press · 15 pc" — and labels a sixth "Red line · free". The
+    /// Objective row carried nothing at all, and `Command::SetObjective` costs
+    /// 3. Measured on the live server, Iraq on seed 7, one click of "hold":
+    ///
+    ///   political capital  35.28 -> 32.28   (objective, quoted nothing)
+    ///   political capital  32.28 -> 32.28   (red line, quoted "free")
+    ///
+    /// The Grant and Revoke buttons carried nothing either, and revoking is the
+    /// one price on this card no literal could have expressed: 4 ordinarily and
+    /// 20 while the state being thrown out is standing at rung 7 or above.
+    ///
+    /// CAUSE. Every price on the sheet was a literal in the page, so a control
+    /// the page had never been given a literal for read as free on a card whose
+    /// own convention is that a control says what it costs.
+    ///
+    /// FIX. `lib::price_of` exposes `apply_command`'s own pricing function,
+    /// `conflict_json` serves the sheet's whole price list through it, and the
+    /// page prints what it is given. No literal is left.
+    #[test]
+    fn the_conflict_sheet_quotes_the_price_the_queue_charges() {
+        let mut g = Game::new(7, Some(NationId::Iraq));
+        g.world.nation_mut(NationId::Iraq).political_capital = 500.0;
+        apply_command(
+            &mut g.world,
+            &Command::OpenConflict {
+                opener: NationId::Iraq,
+                target: NationId::Kuwait,
+                theatre: TheatreId::Gulf,
+            },
+        )
+        .unwrap();
+        let id = g.world.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+
+        let s = state_json(&g, None);
+        let prices = s["wars"].as_array().unwrap().iter().find(|w| w["id"] == id).unwrap()
+            ["prices"]
+            .clone();
+
+        // Every quoted price must be the price the queue takes. Charged for
+        // real, one at a time, against a fresh treasury each time — this is the
+        // assertion, and it is what a literal in the page could never make.
+        let cases: Vec<(&str, Command)> = vec![
+            (
+                "objective",
+                Command::SetObjective {
+                    conflict: id,
+                    nation: NationId::Iraq,
+                    objective: spheres_sim::world::Objective::Hold,
+                },
+            ),
+            (
+                "roe_unrestricted",
+                Command::SetRoE {
+                    conflict: id,
+                    nation: NationId::Iraq,
+                    roe: spheres_sim::world::Roe::Unrestricted,
+                },
+            ),
+            (
+                "roe_other",
+                Command::SetRoE {
+                    conflict: id,
+                    nation: NationId::Iraq,
+                    roe: spheres_sim::world::Roe::Restrained,
+                },
+            ),
+            ("ceiling", Command::SetCeiling { conflict: id, nation: NationId::Iraq, rung: 5 }),
+            (
+                "red_line",
+                Command::SetRedLine {
+                    conflict: id,
+                    nation: NationId::Iraq,
+                    resolve_floor: 0.3,
+                },
+            ),
+        ];
+        for (key, cmd) in cases {
+            let quoted = prices[key].as_f64().unwrap_or_else(|| panic!("{} is quoted", key));
+            g.world.nation_mut(NationId::Iraq).political_capital = 500.0;
+            apply_command(&mut g.world, &cmd).unwrap_or_else(|e| panic!("{}: {}", key, e));
+            let charged = 500.0 - g.world.nation(NationId::Iraq).political_capital;
+            assert!(
+                (charged - quoted).abs() < 1e-9,
+                "{} is quoted at {} and charged {}",
+                key,
+                quoted,
+                charged
+            );
+        }
+
+        // The objective really is the one that used to say nothing, and the red
+        // line really is the free one the card's convention was built on.
+        assert_eq!(prices["objective"], serde_json::json!(3.0));
+        assert_eq!(prices["red_line"], serde_json::json!(0.0));
+        // And revoking is per-asker, because its price is not a constant.
+        assert!(
+            prices["revoke_access"]["Kuwait"].is_number(),
+            "the revoke price must be served per nation: it is 4 ordinarily and \
+             20 while the state being thrown out is standing at rung 7 or above"
+        );
+
+        // The page must print what it is given, and keep no literal.
+        assert!(INDEX.contains("function priceTag("), "the sheet must quote served prices");
+        for stale in ["· 6 pc", "· 15 pc", "· 14 pc", "· 8 pc", "· 4 pc</span>"] {
+            assert!(
+                !INDEX.contains(stale),
+                "the conflict sheet is quoting {:?} out of its own pocket again",
+                stale
+            );
+        }
     }
 
     /// The war card called a conventional war irregular the moment the player

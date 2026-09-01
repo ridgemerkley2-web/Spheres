@@ -4581,6 +4581,27 @@ function rungOffer(b, r) { return (b && b.rungs && b.rungs[r - 1]) || null; }
 function rungCost(b, r) { const o = rungOffer(b, r); return o ? o.cost : 0; }
 function rungWhyNot(b, r) { const o = rungOffer(b, r); return (o && o.blocked) || null; }
 
+/// What a control on the conflict sheet costs, SERVED — `apply_command`'s own
+/// pricing function, through `conflict_json`'s `prices`.
+///
+/// The sheet used to carry six of these as literals and had none at all for the
+/// two it had never been given one for. Setting an objective takes 3 political
+/// capital and the card said nothing about it, on a card that prices every
+/// other control and calls the free one "free"; revoking a basing grant takes 4
+/// ordinarily and 20 while the state you are throwing out is standing at rung 7
+/// or above, which no literal could have expressed. Measured: Iraq on seed 7,
+/// 35.28 -> 32.28 for one click of "hold", and 32.28 -> 32.28 for the red line.
+///
+/// `who` selects a per-nation price where there is one (revoke). A price of zero
+/// reads "free", which is the word the card already used for the one control
+/// that has always been free.
+function priceTag(w, key, who) {
+  let v = (w && w.prices) ? w.prices[key] : null;
+  if (v != null && who != null && typeof v === "object") v = v[who];
+  if (v == null) return "";
+  return v === 0 ? "free" : `${(+v).toFixed(0)} pc`;
+}
+
 function theatreById(id) { return (S.theatres || []).find((t) => t.id === id); }
 function myPosture(w) { const m = me(); return m && w.posture.find((b) => b.id === m.id); }
 // `hasAccess` used to live here, and its own comment said "Mirrors
@@ -4764,8 +4785,10 @@ window.openConflict = function (id, keepScroll) {
         <div class="tiny">${askers.length ? askers.map((a) =>
           `${a.name}: ${a.access ? "granted" : "not granted"}`).join(" · ") : "nobody is asking"}</div>
         <div>${askers.map((a) => a.access
-          ? `<button onclick="conflictCmd(${id},'revoke_access',0,'${a.id}')">Revoke ${a.name}</button>`
-          : `<button onclick="conflictCmd(${id},'grant_access',0,'${a.id}')">Grant ${a.name}</button>`).join(" ")}</div></div>`;
+          ? `<button onclick="conflictCmd(${id},'revoke_access',0,'${a.id}')">Revoke ${a.name} · ${
+              priceTag(w, "revoke_access", a.id)}</button>`
+          : `<button onclick="conflictCmd(${id},'grant_access',0,'${a.id}')">Grant ${a.name} · ${
+              priceTag(w, "grant_access")}</button>`).join(" ")}</div></div>`;
     }
     const got = m && seekers.some((x) => x.seeker === m.id);
     const rel = m && (m.relations || []).find((r) => r.id === h);
@@ -4774,8 +4797,10 @@ window.openConflict = function (id, keepScroll) {
         : noHostNeeded ? "nothing to ask for — you need no host here"
         : "never asked"}${rel ? ` · relations ${rel.value.toFixed(0)}` : ""}</div>
       <div>${got || !m || noHostNeeded ? "" :
-        `<button onclick="conflictCmd(${id},'request_access',0,'${h}')">Request · 6 pc</button>
-         <button onclick="conflictCmd(${id},'press_access',0,'${h}')">Press · 15 pc</button>`}</div></div>`;
+        `<button onclick="conflictCmd(${id},'request_access',0,'${h}')">Request · ${
+           priceTag(w, "request_access")}</button>
+         <button onclick="conflictCmd(${id},'press_access',0,'${h}')">Press · ${
+           priceTag(w, "press_access")}</button>`}</div></div>`;
   }).join("");
 
   const force = mine ? `structure ${(nationById(mine.id) || {}).mil_strength?.toFixed(0) ?? "?"} · deployable ${
@@ -4790,7 +4815,7 @@ window.openConflict = function (id, keepScroll) {
   const sideA = [w.attacker, ...w.attacker_allies].join(" + ");
   const sideB = [w.defender, ...w.defender_allies].join(" + ");
   const joinCard = m && !mine ? `
-    <div class="card" style="margin-top:12px"><h3>Take a side <span>· 14 pc</span></h3>
+    <div class="card" style="margin-top:12px"><h3>Take a side <span>· ${priceTag(w, "join")}</span></h3>
       <div class="tiny">You enter at rung 1 — rhetoric — and buy the ladder from there, one
         rung at a time, like everybody else. Above rung 5 you will need somebody in range
         of ${w.theatre_name} to agree to basing.</div>
@@ -4840,18 +4865,19 @@ window.openConflict = function (id, keepScroll) {
     </div>
     ${mine ? `<div class="card" style="margin-top:12px"><h3>The ladder</h3>${rows}
       <div class="tiny" style="margin-top:10px">${force}</div></div>
-    <div class="card" style="margin-top:12px"><h3>Objective</h3>
+    <div class="card" style="margin-top:12px"><h3>Objective <span>· ${priceTag(w, "objective")}</span></h3>
       <div class="btnrow">${objs.map((o) => `<button class="${mine.objective === o ? "on" : ""}"
         onclick="conflictCmd(${id},'objective',0,null,'${o}')">${o}</button>`).join("")}</div>
-      <h3 style="margin-top:12px">Rules of engagement</h3>
+      <h3 style="margin-top:12px">Rules of engagement <span>· ${priceTag(w, "roe_other")}</span></h3>
       <div class="btnrow">${roes.map((o) => `<button class="${mine.roe === o ? "on" : ""}"
-        onclick="conflictCmd(${id},'roe',0,null,'${o}')">${o}${o === "unrestricted" ? " · 8 pc" : ""}</button>`).join("")}</div>
+        onclick="conflictCmd(${id},'roe',0,null,'${o}')">${o}${
+          o === "unrestricted" ? " · " + priceTag(w, "roe_unrestricted") : ""}</button>`).join("")}</div>
       <div class="tiny">Unrestricted wins faster and multiplies every access consent against you by 0.6. Winning
         sooner and keeping your host's airbase are the same decision.</div>
-      <h3 style="margin-top:12px">Escalation ceiling <span>· 4 pc</span></h3>
+      <h3 style="margin-top:12px">Escalation ceiling <span>· ${priceTag(w, "ceiling")}</span></h3>
       <div class="btnrow">${[3,5,6,7,8,9].map((r) => `<button class="${mine.ceiling === r ? "on" : ""}"
         onclick="conflictCmd(${id},'ceiling',${r})">${r}</button>`).join("")}</div>
-      <h3 style="margin-top:12px">Red line <span>· free · auto-withdraw below this resolve</span></h3>
+      <h3 style="margin-top:12px">Red line <span>· ${priceTag(w, "red_line")} · auto-withdraw below this resolve</span></h3>
       <div class="btnrow">${[0,0.15,0.3,0.45,0.6].map((v) => `<button class="${
         Math.abs(mine.red_line - v) < 0.01 ? "on" : ""}"
         onclick="conflictCmd(${id},'red_line',${v})">${v === 0 ? "none" : v.toFixed(2)}</button>`).join("")}</div>
