@@ -1002,3 +1002,66 @@ Not bugs in the sim, recorded here because the audit is where they surfaced:
 - README.md describes `feat/statecraft` as written but unmerged. `statecraft.rs`
   is in the tree and its commands are priced.
 - SPEC.md section 9 still describes the v0.5 roster as 16 nations.
+
+## Awaiting an owner ruling (added 2026-08-31 by the crash-and-numbers fixer)
+
+### W-1 — the browser's policy ledger mirrors economy.rs WITHOUT its three bounds, and the runaway it was reported for is no longer reachable
+
+**Reported as TRIAGE F-07** by china-thirty-05: the policy ledger printed
+`Expected growth -105356.7%` and `Debt drift +5556746164.7pp/yr`.
+
+**The structural claim is true.** `index.html` mirrors four of economy.rs's
+functions (`potentialGrowth`, `demandOf`, `dragsOf`, `ledgerOf`, index.html
+~2090-2130) and reproduces none of the three bounds the sim applies to the same
+arithmetic:
+
+| sim bound | site | mirrored in the browser? |
+|---|---|---|
+| `MAX_DEMAND_GAP = 0.35` | economy.rs:390-391 | no |
+| `MAX_OIL_SHARE = 2.0` | economy.rs:520-522 | no |
+| `WORST_ANNUAL_COLLAPSE = -0.95` | economy.rs:676-682 | no |
+
+**The reported SYMPTOM could not be reproduced, and the measurement says why.**
+Scanned every nation seated in 1990, every month, 12 seeds x 60 years (8,640
+world-months, ~1.3M nation-months), computing the browser's own expressions from
+the same payload fields the browser reads:
+
+```
+worst demand gap       +0.1888  (+18.9pp)   sim clamp +-0.35   Sudan, seed 0, Feb 1990
+worst expected growth  -0.1510  (-15.1%)    sim floor  -0.95   Nicaragua, seed 11, Jun 1992
+worst oil share         1.2198              sim cap     2.0    Kuwait, seed 11, Mar 1993
+worst debt_gdp          3.1407  (any nation, seated or not)    Nicaragua, seed 1, Feb 1990
+```
+
+Not one of the three bounds is reached. `-105356.7%` requires `drag.debt` near
+1053, i.e. `debt_gdp` near 52,650 — **four orders of magnitude above anything
+the current model produces** — and the huge drift is the same event seen through
+`drift = deficit - debt * (expected + inflation)`.
+
+**The likeliest explanation is that the sim was repaired and the mirror was
+not needed after all.** `MAX_OIL_SHARE`'s own comment records that "the runaway
+it stops had reached 65,700"; once the sim stopped producing runaway inputs, the
+browser stopped printing runaway outputs, because it is fed by the payload.
+
+**Why nothing was changed.** There is no before-and-after to show: on every state
+the model can currently reach, applying the bounds changes no digit on screen.
+Shipping them would also mean either three more mirrored literals in index.html —
+the exact class of defect PLAN step 2 and the surface audit say to hunt — or
+promoting three function-local constants in economy.rs to `pub` and transporting
+them on the state payload the way `front::HELD_BAND` already is. The second is
+the right shape, and it edits the sim for a defect that cannot currently occur.
+That is the owner's call.
+
+**Recommendation, not done:** transport the three as a `bounds` object on
+`state_json`, exactly as `front_held_band` is transported, and clamp in
+`demandOf`/`dragsOf`/`paintPolicy` against the transported values. Cost: three
+`const` -> `pub const` moves in economy.rs (values untouched), one payload field,
+three clamps in index.html. Benefit today: none measurable. Benefit if the sim
+ever produces a wilder state again: the screen stays inside the sim's own range
+instead of printing ten digits.
+
+**Already fixed separately, and it was the reachable half of the same report:**
+the drift line had no debt floor either, and that one DID fire in ordinary play —
+41 of one world's 156 living nations sat at exactly zero debt while the ledger
+told them their debt was falling. Committed as "web: a nation with no debt is no
+longer shown paying it down" (TRIAGE F-12).
