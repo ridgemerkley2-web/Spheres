@@ -16,8 +16,11 @@
 //! `tree_is_well_formed` panics on a prerequisite it cannot resolve.
 //!
 //! Every entry is a real technology with a real history, and carries a comment
-//! naming the first deployment its year floor is read off. Anything past the
-//! present day is speculative and must say so in the comment.
+//! naming the first deployment its year floor is read off. Past the present day
+//! the comment opens with its bucket: `ROADMAP` where the date is somebody
+//! else's published, dated, funded commitment, and `SPECULATIVE` where it is
+//! not. `SPECULATIVE` is permitted only in the Frontier era, whose own
+//! definition already requires it.
 //!
 //! Two things in here are read straight through by `economy.rs` and are the
 //! reason this domain is weighted the way it is. `OilYield` is recovery, not
@@ -422,9 +425,239 @@ pub fn techs() -> Vec<TechDef> {
         ),
 
         // -------------------------------------------------------------------
+        // The 2020s, transcribed 2026-09
+        //
+        // Everything down to the roadmap block has a floor at or below 2026 and
+        // is therefore history rather than expectation. One note for whoever
+        // audits this later: none of it can move the 1990-2025 record. The
+        // cheapest entry in this block costs 330 research points against a
+        // measured worst-case Energy tie-price of 165 at January 2025 — the raw
+        // cost at which a new entry would exactly tie the project a nation is
+        // already focused on — so no nation can be diverted onto one of these
+        // before the golden checkpoint, whatever it already knows.
+        // -------------------------------------------------------------------
+
+        // HISTORY. Deployed 2020-Q4; transcribed 2026-09. Not one deployment
+        // but a displacement, like the seismic entry at the top of this file:
+        // pumping two or three wells at once off a single spread instead of
+        // alternating between them. Rystad Energy counted it at under 1% of US
+        // onshore completions in 2019, 4% across 2020 — some 250 wells of about
+        // six thousand — and 8% in the fourth quarter alone, with the stages
+        // going down 60% faster than zipper fracturing and Ovintiv reporting
+        // $400,000 off the average well. Halliburton did roughly a third of the
+        // 2020 jobs, and on 19 October 2021 put the power supply under it on a
+        // multi-year footing: an all-electric spread of 5,000-horsepower pumps
+        // for Chesapeake in the Marcellus, running on 25 MW generated from the
+        // pad's own gas. The floor is 2021 because that is when the technique
+        // and the power plant to run it were both under contract rather than on
+        // trial. Triple-well completions are the norm now. The displaced diesel
+        // is real and is not scored: a fleet burning field gas to frack faster
+        // is a cheaper barrel, not a cleaner grid.
+        tech(
+            "ener_simultaneous_fracturing", "Simultaneous Multi-Well Fracturing", Energy, Intelligent,
+            &["ener_pad_drilling"], 340.0, 2021,
+            &[
+                OilYield(0.02),
+                Productivity(0.00003),
+                CostReduction { domain: Energy, frac: 0.04 },
+            ],
+        ),
+        // HISTORY. Deployed 2023-12-06; transcribed 2026-09. Shidao Bay-1, the
+        // HTR-PM: two 250 MWt helium-cooled pebble-bed modules driving one
+        // 210 MWe turbine, owned by China Huaneng, engineered by CNNC and
+        // designed at Tsinghua, entered commercial operation on 6 December 2023.
+        // What distinguishes it from the passive-safety entry above is that the
+        // safety is not a system at all. In August and September 2023 the
+        // operators cut power to both modules at full load with no emergency
+        // cooling of any kind and let them sit; each settled at a stable
+        // temperature within about 35 hours. Tsinghua published the results in
+        // Joule in July 2024, the first loss-of-cooling test on a
+        // commercial-scale high-temperature reactor. A reactor that cannot melt
+        // is licensable in places a reactor that must not melt is not, and its
+        // 500 C steam goes somewhere a light-water plant's cannot.
+        tech(
+            "ener_high_temperature_reactor", "High-Temperature Gas-Cooled Reactor", Energy, Intelligent,
+            &["ener_nuclear_gen_iii_plus"], 470.0, 2023,
+            &[
+                EnergyEfficiency(0.02),
+                Productivity(0.00004),
+                Environment(0.03),
+                Stability(0.02),
+            ],
+        ),
+        // HISTORY. Deployed 2023-11-07; transcribed 2026-09. Fuel enriched
+        // between five and twenty percent, which nearly every advanced reactor
+        // design needs and which no Western plant made. Centrus began enriching
+        // at the American Centrifuge Plant in Piketon, Ohio on 11 October 2023
+        // and delivered the first 20 kilograms of HALEU hexafluoride to the
+        // Department of Energy on 7 November 2023; the contract's second phase,
+        // a full year at a 900 kg/yr rate, closed out in June 2025. Twenty
+        // kilograms is a rounding error against a reactor core and the number is
+        // not the point — the point is that the bottleneck under every entry in
+        // this block was a fuel nobody outside Russia was licensed to produce.
+        // The prerequisite is the reactor and not the centrifuge, because the
+        // centrifuge is not in this file and because nobody enriches to twenty
+        // percent for a market that does not exist yet.
+        tech(
+            "ener_haleu_enrichment", "High-Assay Low-Enriched Fuel", Energy, Intelligent,
+            &["ener_small_modular_reactor"], 330.0, 2023,
+            &[
+                EnergyEfficiency(0.01),
+                Productivity(0.00002),
+                CostReduction { domain: Energy, frac: 0.03 },
+            ],
+        ),
+        // HISTORY. Deployed 2024-06-30; transcribed 2026-09. Datang's Qianjiang
+        // station in Hubei entered operation with 50 MW and 100 MWh of
+        // sodium-ion cells — HiNa 185 Ah, forty-two bays — as the first phase
+        // of 200 MWh. The chemistry is worse than lithium on every axis except
+        // the one a grid cares about: it is made of sodium and aluminium, so a
+        // country with no lithium and no cobalt can still build storage. INERT
+        // BEFORE 2025 BY PREREQUISITE AND NOT BY THE 2024 FLOOR: measured
+        // monthly across twelve seeds to January 2025, no nation ever holds the
+        // grid battery entry this hangs off, so it never enters a candidate set
+        // at all in the years the golden hashes cover.
+        tech(
+            "ener_sodium_ion_storage", "Sodium-Ion Grid Storage", Energy, Intelligent,
+            &["ener_grid_battery_storage"], 360.0, 2024,
+            &[
+                EnergyEfficiency(0.02),
+                ResourceYield(0.01),
+                Environment(0.02),
+                Productivity(0.00003),
+            ],
+        ),
+        // HISTORY. Deployed 2024-08-12; transcribed 2026-09. Chevron started
+        // production from Anchor in Green Canyon, about 140 miles off Louisiana,
+        // on 12 August 2024: seven subsea wells in 5,000 ft of water reaching
+        // reservoirs 34,000 ft below sea level, on equipment rated to 20,000 psi
+        // where every deepwater development before it stopped at 15,000. A third
+        // more pressure than anyone had drilled sounds incremental and is not —
+        // wellheads, risers, blowout preventers and trees all had to be
+        // requalified, which took from the 2019 sanction to first oil. It opens
+        // the lower tertiary reservoirs that were mapped decades ago and left
+        // where they were. It moves recovery and it moves nothing else, which is
+        // why there are two terms here and not four.
+        tech(
+            "ener_ultra_high_pressure_completion", "Ultra-High-Pressure Completion", Energy, Intelligent,
+            &["ener_deepwater_subsea"], 430.0, 2024,
+            &[OilYield(0.03), Productivity(0.00003)],
+        ),
+        // HISTORY. Deployed 2025-08-25; transcribed 2026-09. Northern Lights,
+        // owned equally by Equinor, Shell and TotalEnergies, injected its first
+        // CO2 on 25 August 2025 — captured at Heidelberg Materials' cement works
+        // at Brevik, shipped as a liquid to Oygarden, piped 100 km and put
+        // 2,600 m under the seabed into the Aurora reservoir. It is the first
+        // open-access CO2 transport and storage network anyone can buy into, and
+        // that is the whole of its significance: capture has been demonstrated
+        // for decades and had nowhere to send the product. Phase 1 is 1.5 Mt a
+        // year and is fully booked; phase 2 takes it past 5 Mt from 2028.
+        // Against annual emissions counted in the tens of billions of tonnes
+        // that is nothing, and the effect is sized as what it is — a disposal
+        // route for the industries that cannot electrify, priced at a level
+        // only a carbon market sustains. It hangs off the offshore and the LNG
+        // chains because it is made of both: a subsea injection well and a
+        // refrigerated cargo ship.
+        tech(
+            "ener_co2_transport_storage", "Offshore CO2 Storage Network", Energy, Intelligent,
+            &["ener_deepwater_subsea", "ener_lng_mega_train"], 450.0, 2025,
+            &[Environment(0.05), Productivity(0.00002)],
+        ),
+        // ROADMAP. Not ours: Fervo's Cape Station in Utah, financed by a $462m
+        // Series E closed in December 2025 on about $1.5bn raised since 2017,
+        // with 100 MW stated for October 2026 and a further 400 MW for 2028.
+        // The wells are the evidence and not the press release — Sawtooth 7,
+        // spudded to 19,448 ft with a 7,500 ft lateral in 460 F rock in 21 days
+        // in July 2026, against a first Cape well that took nearly four times
+        // as long. That learning curve is the entry: the pilot two lines up
+        // proved the reservoir works, and this proves it can be drilled at the
+        // price of a gas plant. The floor is 2029, a year past Fervo's own date
+        // for the larger tranche, because the 2028 wells are not drilled yet
+        // and because a schedule with a month in it has never yet been the
+        // month. Note that if October 2026 lands, the first half of this comment
+        // is history and the label above it is stale — read it again.
+        tech(
+            "ener_utility_scale_geothermal", "Utility-Scale Enhanced Geothermal", Energy, Intelligent,
+            &["ener_enhanced_geothermal", "ener_pad_drilling"], 540.0, 2029,
+            &[
+                EnergyEfficiency(0.03),
+                Productivity(0.00005),
+                Environment(0.03),
+                CostReduction { domain: Energy, frac: 0.03 },
+            ],
+        ),
+        // ROADMAP. Not ours, and the two parties disagree, which is the useful
+        // part. Toyota holds a METI certification issued in September 2024 to
+        // manufacture all-solid-state cells in Japan, contracted Sumitomo Metal
+        // Mining for cathode material on 8 October 2025 and Idemitsu Kosan for
+        // the sulphide electrolyte, and says a first vehicle in 2027 or 2028.
+        // THE ELECTROLYTE IS THE HARDER HALF AND IT IS THE BETTER ANCHOR:
+        // Idemitsu took a final investment decision on a lithium sulphide plant
+        // at Chiba, broke ground in January 2026 with Chiyoda building it, and
+        // expects completion in 2027 at about a thousand tonnes a year. A plant
+        // under construction with a named builder and a completion year is
+        // firmer evidence than a certification, which is a permission to build
+        // and not a line running.
+        // CATL, which makes more cells than anyone, says otherwise: its chairman
+        // Robin Zeng told the World Economic Forum meeting in Dalian on 24 June
+        // 2026 that the technology sits at level four of a nine-step readiness
+        // scale, that the inflection is not before 2030, and that commercial
+        // viability is unproven. The floor is 2029 — a year past the later of
+        // Toyota's two dates, two years past the electrolyte plant's own
+        // completion year, and a year before CATL's earliest — because when the
+        // largest manufacturer in a field publicly discounts its rival's
+        // schedule that discount is data. This is the cell and not the car:
+        // solid electrolyte on the plant the lithium-ion entry already built.
+        tech(
+            "ener_solid_state_battery", "Solid-State Battery Cell", Energy, Intelligent,
+            &["ener_lithium_ion_cell"], 560.0, 2029,
+            &[EnergyEfficiency(0.03), Productivity(0.00005), Environment(0.02)],
+        ),
+
+        // -------------------------------------------------------------------
         // Past the present day
         // -------------------------------------------------------------------
 
+        // ROADMAP. Not ours, and distinct from the pilot plant below: a device
+        // that returns more energy than the plasma was given, which is a physics
+        // result and not a power station. Commonwealth Fusion's SPARC has its
+        // cryostat base in place and the first of eighteen toroidal-field
+        // magnets installed, with first plasma advertised for 2026 and Q>1 for
+        // 2027; ITER re-baselined in July 2024 to Start of Research Operation in
+        // 2034 and deuterium-tritium in 2039. Both are funded, dated and under
+        // construction, and both have slipped before. The floor is 2030: the
+        // earlier of the two claims, plus the margin every fusion schedule in
+        // this file's lifetime has needed. The effects are small on purpose —
+        // this entry is the option and the pilot plant is the exercise of it.
+        tech(
+            "ener_net_energy_fusion", "Net-Energy Fusion Device", Energy, Frontier,
+            &["ener_small_modular_reactor"], 690.0, 2030,
+            &[ResearchRate(0.05), Productivity(0.00002), Environment(0.01)],
+        ),
+        // ROADMAP. Not ours: the NRC issued a construction permit to TerraPower
+        // for Kemmerer Unit 1 in Wyoming on 4 March 2026 — the first ever issued
+        // for a commercial-scale advanced reactor — and TerraPower began nuclear
+        // construction on 23 April 2026, having poured the non-nuclear side
+        // since June 2024 under a Department of Energy cost share. It is a
+        // 345 MWe sodium-cooled fast reactor whose heat goes into molten salt
+        // before it goes into a turbine, so the plant can hold output and sell
+        // 500 MW into a peak. TerraPower says complete in 2030. The floor is
+        // 2032 and not 2030 because a first-of-a-kind nuclear schedule is the
+        // least reliable number in this file — the Generation III+ entry above
+        // was eight years late in the West — and because sodium is a coolant
+        // that has closed more reactors than it has opened. There is no resource
+        // term here on purpose: this is a fast reactor that does not breed, and
+        // burns the fuel of the entry above rather than making its own.
+        tech(
+            "ener_sodium_fast_reactor", "Sodium-Cooled Fast Reactor", Energy, Frontier,
+            &["ener_small_modular_reactor", "ener_haleu_enrichment"], 660.0, 2032,
+            &[
+                EnergyEfficiency(0.03),
+                Productivity(0.00008),
+                Environment(0.04),
+                Stability(0.02),
+            ],
+        ),
         // SPECULATIVE. No fusion device has produced net electricity for a
         // grid. What exists is a facility-level scientific milestone — NIF's
         // December 2022 shot released more energy than the laser delivered to

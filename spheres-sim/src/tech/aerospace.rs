@@ -14,8 +14,11 @@
 //! Nothing else — you cannot see the other domains and they cannot see you.
 //!
 //! Every entry is a real technology with a real history, and carries a comment
-//! naming the first deployment its year floor is read off. Anything past the
-//! present day is speculative and must say so in the comment.
+//! naming the first deployment its year floor is read off. Past the present day
+//! the comment opens with its bucket: `ROADMAP` where the date is somebody
+//! else's published, dated, funded commitment, and `SPECULATIVE` where it is
+//! not. `SPECULATIVE` is permitted only in the Frontier era, whose own
+//! definition already requires it.
 //!
 //! ---
 //!
@@ -375,6 +378,185 @@ pub fn techs() -> Vec<TechDef> {
             &[MilitaryEfficiency(0.04), MilitaryStrength(1.5), Stability(0.10), Productivity(0.00005)],
         ),
 
+        // HISTORY. Deployed 2024-01-31; transcribed 2026-09. Six Magura V5
+        // boats sank the Russian missile corvette Ivanovets off Crimea
+        // overnight on 31 January 2024. Tsezar Kunikov, a four-thousand-tonne
+        // landing ship, followed on 14 February and the patrol ship Sergey
+        // Kotov on 5 March: three warships in five weeks, sunk by a
+        // belligerent with no navy of its own, and the Black Sea Fleet moved
+        // out of Sevastopol.
+        // The escalation is the part worth transcribing, because it is what
+        // makes this a capability rather than a raid. On 31 December 2024 a
+        // Magura carrying R-73 air-to-air missiles shot down an Mi-8 near Cape
+        // Tarkhankut, and on 2 May 2025 the V7 variant, on Sidewinder rails,
+        // shot down two Su-30s sent to hunt it — the first combat aircraft in
+        // history downed by a boat with nobody in it. The floor is 2024 and
+        // not 2025 because the thing that mattered was demonstrated in
+        // January: a hull costing a fraction of its target sinks the target.
+        // What 2025 added is that the hull now defends itself, which is
+        // remarkable but is not what the floor is read off. It descends from
+        // the one-way attack drone rather than from anything in the submarine
+        // chain above, because the argument is identical and only the medium
+        // changed: cheap hull, satellite fix, one direction, and a defender
+        // whose cheapest available answer costs more than the attack.
+        tech(
+            "aero_uncrewed_surface_attack_craft", "Uncrewed Surface Attack Craft", Aerospace, Intelligent,
+            &["aero_attritable_strike_drone", "aero_gps_guided_munition"], 395.0, 2024,
+            &[MilitaryEfficiency(0.06), MilitaryStrength(1.5)],
+        ),
+        // HISTORY. Deployed 2024-04-29; transcribed 2026-09. Finnair suspended
+        // its Helsinki-Tartu service from 29 April to 31 May 2024 after two
+        // aircraft turned back for satellite-navigation interference — the
+        // first time a scheduled international air service was stopped by
+        // peacetime jamming. Estonian air navigation services logged more than
+        // six hundred pilot reports that month and said the jammers ran
+        // essentially around the clock; Vilnius logged over eight hundred in
+        // the last quarter of 2024 against a hundred and twenty-four in the
+        // same quarter a year before, and a Ryanair flight diverted to Warsaw
+        // in January 2025. EASA and IATA published a joint mitigation plan on
+        // 18 June 2025 and EASA and EUROCONTROL an action plan after it, and
+        // by July 2026 EASA's thirty-day ranking of affected airspace named
+        // Warsaw, Tallinn, Riga, Helsinki, Vilnius, Ankara and Istanbul
+        // alongside Tehran, Baghdad, Beirut, Cairo and the Gulf.
+        // The floor is 2025 and not 2024 because one route for one month is an
+        // incident; a year of continuous denial across two theatres, answered
+        // by regulators rather than by air forces, is the deployment.
+        // This is the file's own argument turned back on itself. The tree runs
+        // through precision, and precision after 1999 means a satellite fix; a
+        // state that can deny the fix over a theatre has disarmed a great deal
+        // of somebody else's inventory without destroying any of it, at a cost
+        // per hour that is not comparable to anything it degrades. Note what
+        // is NOT in this file: the answer. Quantum and magnetic-anomaly
+        // navigation are in DARPA-funded flight trials and on an X-37B, and
+        // none of it is fielded, so none of it is here. MilitaryStrength,
+        // small, because a jamming network is masts, transmitters and a
+        // spectrum staff — fixed plant that goes on working whether or not
+        // this year's budget renews, which is this file's test for that
+        // channel.
+        tech(
+            "aero_gnss_denial", "Theatre-Scale Satellite Navigation Denial", Aerospace, Intelligent,
+            &["aero_electronic_attack", "core_gnss"], 415.0, 2025,
+            &[MilitaryEfficiency(0.05), MilitaryStrength(1.0)],
+        ),
+        // HISTORY. First kills April 2025, fielded at scale from 2026;
+        // transcribed 2026-09. Wild Hornets showed the Sting interceptor in
+        // October 2024; the first widely circulated footage of one killing a
+        // Shahed was April 2025 and thermal footage followed in May. Ukraine
+        // announced serial production of the Octopus interceptor on 14
+        // November 2025, the design handed to three manufacturers with eleven
+        // more standing up lines, and on 30 November a Sting brought down a
+        // jet-powered Geran-3. Ukraine's National Security and Defence Council
+        // reports a hundred thousand interceptors built in the year to 2026,
+        // more than twenty firms building them, a mission success rate above
+        // sixty per cent, and a cost per Shahed downed more than twenty-five
+        // times below a Western interceptor missile.
+        // The floor is 2026 because 2025 was demonstrations and 2026 is the
+        // year this became the principal means of defending a city rather than
+        // a supplement to it.
+        // This is the 2024 entry above finishing its own sentence. That entry
+        // says the interceptors cannot be afforded; this is the interceptor
+        // becoming affordable, and it is the first time anywhere in this file
+        // since 1990 that defence got cheaper than attack. Whether it stays
+        // cheaper is the open question, and the Geran-3 — jet-powered, faster,
+        // higher — is the reason to doubt it.
+        // No MilitaryStrength: an interceptor is spent the moment it works,
+        // and buys no arsenal that survives the night. What it buys is a
+        // capital that is still there in the morning, and that is Stability.
+        tech(
+            "aero_interceptor_drone", "Attritable Interceptor Drone", Aerospace, Intelligent,
+            &["aero_counter_uas_layered", "aero_attritable_strike_drone"], 405.0, 2026,
+            &[MilitaryEfficiency(0.05), Stability(0.08)],
+        ),
+        // HISTORY. Deployed 2025-12-28; transcribed 2026-09. Israel's Ministry
+        // of Defence declared Iron Beam operational in September 2025 and
+        // Rafael handed the first system to the air force on 28 December 2025:
+        // a hundred-kilowatt class ground laser in a container with its own
+        // generator, with the laser source built by Elbit, effective to
+        // something like seven to ten kilometres against rockets, mortars and
+        // drones. It is the first high-energy laser any state has fielded as
+        // part of a standing national air defence rather than as a ship's
+        // self-defence trial, and the ministry's own line was that the
+        // delivery marked the transition from development to serial
+        // production. The system was first unveiled in 2014 and took eleven
+        // years to get here. Two things stop this being a triumphalist entry,
+        // and both belong in it. The reported first combat use on 2 March
+        // 2026, against projectiles from Lebanon, is reported and not
+        // confirmed. And in August 2026, eight months after delivery, a senior
+        // Israeli defence official told Ynet the system was still not in full
+        // operational use. The floor is 2026 because the delivery on 28
+        // December 2025 is a fact and full operational use is not yet one; the
+        // entry sits on the fact and not on the claim.
+        // This is not a replacement for the 2014 shipboard laser above but its
+        // power class, which is the whole difference between a point-defence
+        // curiosity and an air-defence layer. Productivity is small and real:
+        // the emitter is a high-power fibre laser, and industrial cutting and
+        // welding is the same component with a different aiming problem.
+        tech(
+            "aero_laser_air_defense", "High-Energy Laser Air Defence", Aerospace, Intelligent,
+            &["aero_directed_energy_laser", "aero_counter_uas_layered"], 515.0, 2026,
+            &[MilitaryEfficiency(0.05), MilitaryStrength(1.5), Productivity(0.00003)],
+        ),
+        // HISTORY. Deployed 2025-09-10; transcribed 2026-09. A Falcon 9 put
+        // the first twenty-one operational Tranche 1 Transport Layer
+        // satellites, built by York Space Systems, into low orbit from
+        // Vandenberg on 10 September 2025 — the first operational spacecraft
+        // of the US Space Development Agency's Proliferated Warfighter Space
+        // Architecture. Tranche 1 is a hundred and fifty-four vehicles: a
+        // hundred and twenty-six transport, twenty-eight tracking, four
+        // missile-defence demonstrators, carrying Link 16 down from orbit and
+        // tracking manoeuvring threats that the handful of geostationary
+        // warning satellites were never built to see. The argument is not
+        // capability per satellite, which is modest; it is that a
+        // constellation of a hundred and fifty cheap satellites has no single
+        // node worth shooting at.
+        // The deflation is from the same agency. SDA paused Tranche 1 launches
+        // after on-orbit checkout of that first plane found things needing
+        // software correction, and SDA's Sandhoo said in April 2026 that
+        // launches would resume in May or June; SDA's own date for initial
+        // warfighting capability through the architecture is 2027, not 2025.
+        // The floor is 2026 and not 2025 because twenty-one satellites out of
+        // a hundred and fifty-four is one orbital plane, not a constellation,
+        // and the entry should not be cheaper than the thing. It hangs off the
+        // reusable booster rather than the reconnaissance satellite, because
+        // what changed is not that anyone learned to build small satellites.
+        // It is that putting a hundred and fifty of them up stopped being the
+        // expensive part, and that is the 2016 entry's doing.
+        tech(
+            "aero_proliferated_military_constellation", "Proliferated Military Satellite Constellation", Aerospace, Intelligent,
+            &["aero_network_centric_warfare", "core_reusable_booster"], 545.0, 2026,
+            &[MilitaryEfficiency(0.05), MilitaryStrength(1.5), Productivity(0.00005)],
+        ),
+        // ROADMAP. Not ours, and the anchor is a vehicle under contract rather
+        // than anybody's remark. The B-21 first flew on 10 November 2023. Two
+        // aircraft are flying at Edwards, built on production tooling so they
+        // can be converted to combat configuration, and one of those two is the
+        // aircraft that goes to Ellsworth Air Force Base; the Air Force has
+        // agreed a twenty-five per cent increase in production capacity with
+        // Northrop Grumman and wants at least a hundred at an eventual seven a
+        // year. The service's date for the first operational aircraft on the
+        // ramp at Ellsworth is 2027, first given in February 2026 and held
+        // since. Gen. Dale White restated it at Life Cycle Industry Days in
+        // Dayton on 30 July 2026, which corroborates the service's date and is
+        // not what this entry is anchored on — an officer's remark is no more
+        // admissible here than a chief executive's, and the tooling and the
+        // contract are.
+        // The floor is 2029 and not 2027, and the discount is arithmetic rather
+        // than mood. The service's own date is three years and two months from
+        // that first flight; this file's own B-2 entry puts that aircraft's
+        // initial operational capability at 1 April 1997, seven years and eight
+        // months after its first flight in July 1989. A floor of 2029 is five
+        // years and two months, still a third faster than the only comparable
+        // aeroplane anyone has built, and it may still be optimistic. A
+        // programme date is not a fact even when the programme is early.
+        // MilitaryStrength rather than efficiency, because a bomber force is
+        // exactly what this file reserves that channel for: it exists whether or
+        // not next year's budget renews.
+        tech(
+            "aero_penetrating_bomber", "Penetrating Strike Bomber", Aerospace, Intelligent,
+            &["aero_flying_wing_stealth", "aero_stealth_multirole"], 585.0, 2029,
+            &[MilitaryStrength(2.0), MilitaryEfficiency(0.04)],
+        ),
+
         // ------------------------------------------------------------------
         // Frontier (2030+) — SPECULATIVE. Everything below this line is
         // extrapolation from programmes that exist and dates that have been
@@ -400,6 +582,72 @@ pub fn techs() -> Vec<TechDef> {
             "aero_sixth_gen_air_dominance", "Sixth-Generation Air Dominance", Aerospace, Frontier,
             &["aero_stealth_multirole", "aero_collaborative_combat_aircraft"], 900.0, 2037,
             &[MilitaryEfficiency(0.09), MilitaryStrength(2.5), Productivity(0.00008)],
+        ),
+        // ROADMAP. Not ours: the Missile Defense Agency's Glide Phase
+        // Interceptor is under contract to Northrop Grumman as prime, took a
+        // $475 million acceleration out of the 2025 reconciliation act, and as
+        // of April 2026 is working to a preliminary design review in 2028 and
+        // a delivery in 2031. It fires from the Aegis vertical launch cells
+        // that are already at sea, which is the single best reason to believe
+        // any part of it.
+        // The floor is 2035 and not 2031, for two reasons both on the record.
+        // A delivery date is a hardware date and not a fielding date — the
+        // entry above on midcourse defence took from the first silo
+        // emplacement on 22 July 2004 to a system whose effectiveness is still
+        // argued about twenty years later. And this programme's schedule moves
+        // with an appropriation rather than with engineering: Defense News
+        // reported reduced funding slowing it in May 2025 and a reconciliation
+        // bill restoring it eleven months afterwards, which is a date that can
+        // be un-set by the next Congress as easily as this one set it. Four
+        // years is the discount, and it is not generous.
+        // A glide vehicle manoeuvres in the upper atmosphere precisely in
+        // order to be somewhere the midcourse interceptor is not. This is the
+        // answer to that, and it is the first entry in this file that exists
+        // to cancel another entry in this file rather than to extend one.
+        // Stability, positive, on exactly the argument the 2004 entry makes:
+        // what a defence changes first is not what survives an attack but how
+        // a small nuclear state reasons about its own deterrent.
+        tech(
+            "aero_hypersonic_interceptor", "Hypersonic Glide-Phase Interceptor", Aerospace, Frontier,
+            &["aero_hypersonic_glide_vehicle", "aero_midcourse_defense"], 725.0, 2035,
+            &[MilitaryStrength(2.0), MilitaryEfficiency(0.03), Stability(0.12)],
+        ),
+        // SPECULATIVE — no state has ever fielded one, and one state has
+        // already cancelled the same idea once.
+        // KNOWN: the Space Force awarded other-transaction agreements worth up
+        // to $3.2 billion across twenty contracts to twelve companies —
+        // Lockheed Martin, Northrop Grumman, Raytheon and General Dynamics
+        // alongside SpaceX, Anduril, True Anomaly, Turion and others — to
+        // build and demonstrate space-based interceptor prototypes for Golden
+        // Dome. In August 2026 Gen. Michael Guetlein said all twelve had
+        // passed the first of four milestones, with interceptor flight tests
+        // from 2027, an initial capability demonstration in 2028 and actual
+        // intercept demonstrations in June 2029.
+        // ASSUMED: everything after the demonstration. In the same remarks
+        // Guetlein said the department has placed no operational production
+        // request and may not pursue large interceptor constellations at all
+        // if they cannot be made affordable. That sentence is why this entry
+        // says SPECULATIVE and not ROADMAP: there is a funded demonstration
+        // and there is no funded deployment, and the difference between those
+        // two is the whole of this convention. The floor of 2040 is eleven
+        // years past the intercept demonstration, on the argument that a
+        // constellation dense enough to hold a boost-phase shot over a
+        // continent — hundreds of vehicles, replaced on a schedule — is a
+        // different programme from a prototype that hits one target on a
+        // range.
+        // FALSIFIABLE: if the June 2029 demonstration fails, or succeeds at a
+        // price per interceptor that makes the constellation arithmetic
+        // impossible, the entry simply stays unbuilt. That has already
+        // happened to precisely this idea inside this game's own span:
+        // Brilliant Pebbles was proposed in 1987, had development contracts
+        // let to Martin Marietta and TRW in June 1991 — the first funded
+        // ballistic missile defence production since Safeguard — and was
+        // stopped by a stop-work order on 1 December 1993. Nothing about the
+        // current attempt makes it immune to the same three sentences.
+        tech(
+            "aero_space_based_interceptor", "Space-Based Missile Interceptor", Aerospace, Frontier,
+            &["aero_hypersonic_interceptor", "aero_proliferated_military_constellation"], 905.0, 2040,
+            &[MilitaryStrength(2.5), MilitaryEfficiency(0.03), Stability(0.12)],
         ),
     ]
 }

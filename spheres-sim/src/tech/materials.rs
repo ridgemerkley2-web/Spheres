@@ -13,8 +13,11 @@
 //! Nothing else — you cannot see the other domains and they cannot see you.
 //!
 //! Every entry is a real technology with a real history, and carries a comment
-//! naming the first deployment its year floor is read off. Anything past the
-//! present day is speculative and must say so in the comment.
+//! naming the first deployment its year floor is read off. Past the present day
+//! the comment opens with its bucket: `ROADMAP` where the date is somebody
+//! else's published, dated, funded commitment, and `SPECULATIVE` where it is
+//! not. `SPECULATIVE` is permitted only in the Frontier era, whose own
+//! definition already requires it.
 //!
 //! WHAT THIS DOMAIN IS. Manufacturing is the domain where knowing a thing and
 //! being able to make it are different problems, and the second one is the
@@ -419,6 +422,171 @@ pub fn techs() -> Vec<TechDef> {
             ],
         ),
 
+        // HISTORY. Deployed 2025-H2; transcribed 2026-09. Power delivered from
+        // the back of the wafer instead of through the same stack as the
+        // signals. Intel's PowerVia on the 18A process went into high-volume
+        // manufacturing with Panther Lake at Fab 52 in Arizona in the second
+        // half of 2025, the first backside power delivery in volume production
+        // anywhere. It is a separate move from the gate two entries above: that
+        // one is electrostatics, this is wiring, and past a point the wiring is
+        // what is in the way.
+        tech(
+            "matl_backside_power_delivery", "Backside Power Delivery", Materials, Intelligent,
+            &["matl_gate_all_around"], 540.0, 2025,
+            &[Productivity(0.00005), EnergyEfficiency(0.02), ResearchRate(0.02)],
+        ),
+        // HISTORY. Deployed 2025; transcribed 2026-09. A humanoid robot doing
+        // paid production work outside a fixture. BMW Group ran Figure 02 in the
+        // body shop at Plant Spartanburg for ten months, loading sheet metal
+        // across more than thirty thousand X3s, and has said Leipzig follows in
+        // 2026. Cite BMW and nobody else: every fleet number circulating for the
+        // other makers traces back to a marketing post. What the general-purpose
+        // form buys over the arm above it is that the cell no longer has to be
+        // built around the robot.
+        tech(
+            "matl_humanoid_work_cell", "Humanoid Robot in Industrial Service", Materials, Intelligent,
+            &["matl_collaborative_robot", "matl_machine_vision_inspection"], 560.0, 2025,
+            &[Productivity(0.00006), InvestmentEfficiency(0.02)],
+        ),
+        // ROADMAP. Not ours: TSMC's April 2026 roadmap update puts A16 into
+        // volume production in 2027 — a year later than the 2025 version of the
+        // same roadmap said — with A14 in 2028 and A13 in 2029, and Intel has
+        // pulled 14A high-volume manufacturing forward to 2028 with risk
+        // production in 2027 on an EXE:5200B that is installed and accepted. The
+        // floor is 2028 because that is the first year both of the two companies
+        // that can do this claim to be selling it. Note what the same roadmaps
+        // say about the entry above: A13 and A12 are planned WITHOUT High-NA, so
+        // it is not the critical path it looks like.
+        tech(
+            "matl_angstrom_class_node", "Angstrom-Class Logic Node", Materials, Intelligent,
+            &["matl_high_na_euv"], 595.0, 2028,
+            &[
+                Productivity(0.00006),
+                ResearchRate(0.03),
+                CostReduction { domain: Materials, frac: 0.03 },
+            ],
+        ),
+        // HISTORY. Deployed 2021-08-18; transcribed 2026-09. Iron reduced by
+        // hydrogen in a shaft furnace instead of by carbon monoxide in a blast
+        // furnace, and melted in an electric arc furnace afterwards. SSAB
+        // rolled the first steel from the HYBRIT pilot at Luleå in July 2021
+        // and delivered it to the Volvo Group on 18 August 2021; Volvo put it
+        // into a load carrier that October. The floor is 2021 because that is
+        // when the metal existed and changed hands — not when anybody made it
+        // in quantity, and the quantity is the honest part of this entry. The
+        // pilot made tonnes. Stegra's Boden works, financed to €1.4bn in a
+        // rescue round led by the Wallenbergs and still advertising the second
+        // half of 2026 while its own timeline is under review, is designed for
+        // 2.5 million tonnes a year against a world that makes about 1.8
+        // billion. NOTE THERE IS NO ResourceYield HERE: direct reduction wants
+        // BETTER ore than a blast furnace does, not worse, and claiming a
+        // yield gain would be the easy lie. And note the prerequisites, which
+        // are none. Nothing in this file gates this. What gates fossil-free
+        // iron is cheap electricity and the electrolyser that turns it into
+        // hydrogen, and both of those live in a domain this file may not name.
+        tech(
+            "matl_hydrogen_direct_reduction", "Hydrogen Direct-Reduced Iron", Materials, Intelligent,
+            &[], 420.0, 2021,
+            &[Environment(0.04), Productivity(0.00002)],
+        ),
+        // HISTORY. Deployed 2022-03; transcribed 2026-09. Copper pads on two
+        // dies pressed into direct contact and annealed — no solder, no bump,
+        // no gap. AMD's Milan-X, an EPYC 7003 with a 64MB cache die bonded
+        // face-to-face onto each compute die on TSMC's SoIC, was generally
+        // available in March 2022, and the Ryzen 7 5800X3D put the same stack
+        // in a desktop socket on 20 April 2022. The pitch is the whole point:
+        // a microbump array is tens of microns apart, a hybrid bond is single
+        // digits, and the energy it takes to move a bit across the joint falls
+        // with it — which is why by 6 December 2023 AMD's MI300X was stacking
+        // eight compute dies onto four I/O dies and quoting seventeen
+        // terabytes a second of vertical bandwidth. The interposer entry above
+        // put dies beside each other; this puts them on top of each other, and
+        // after the die stopped growing it is how an accelerator gets built at
+        // all.
+        tech(
+            "matl_hybrid_bonding", "Copper Hybrid Bonding", Materials, Intelligent,
+            &["matl_advanced_packaging"], 450.0, 2022,
+            &[Productivity(0.00004), ResearchRate(0.03), EnergyEfficiency(0.01)],
+        ),
+        // HISTORY. Deployed 2023-03; transcribed 2026-09. Silicon holds about
+        // ten times the lithium per gram that graphite does and swells by
+        // something like three hundred per cent doing it, which is why it took
+        // thirty years to ship: the answer is silicon grown inside a porous
+        // carbon scaffold that absorbs the expansion. Honor's Magic5 Ultimate
+        // went on sale in China in March 2023 with a silicon-carbon cell —
+        // 5,450mAh in the case that had held 5,100mAh of graphite, which Honor
+        // put at 12.8% more energy by volume — and the other Chinese flagships
+        // followed within two years. Automotive scale came later and is still
+        // small: Sila opened Moses Lake on 23 September 2025 at an initial two
+        // to five gigawatt-hours, Group14 opened BAM-3 in Korea in March 2026
+        // at about ten. The floor is 2023 and the first customer was a
+        // telephone, which is the usual order — the cell that goes in a car is
+        // the cell that was proved in a pocket. The ResourceYield is graphite:
+        // a silicon-dominant anode needs much less of a mineral one country
+        // refines almost all of.
+        tech(
+            "matl_silicon_carbon_anode", "Silicon-Carbon Anode", Materials, Intelligent,
+            &["core_lithium_ion_cell"], 360.0, 2023,
+            &[Productivity(0.00003), EnergyEfficiency(0.02), ResourceYield(0.01)],
+        ),
+        // HISTORY. Deployed 2024-10-21; transcribed 2026-09. Shred the pack,
+        // sort what falls out of it, then leach the black mass and take the
+        // cobalt, nickel and lithium back out of solution as salts a cell maker
+        // can buy. Mercedes-Benz opened the Kuppenheim plant on 21 October 2024
+        // — the first carmaker anywhere running mechanical and
+        // hydrometallurgical recovery end to end in its own works, on Primobius
+        // process technology, claiming better than 96% recovery. It handles
+        // 2,500 tonnes a year, which is a rounding error against what the world
+        // builds, and that is exactly why this belongs here and not in the
+        // Frontier block: the chemistry is proved and the capacity is not. It
+        // hangs off the inspection entry because the front end is a sorting
+        // problem — a shredded pack is a mixture, and what a hydrometallurgical
+        // plant is paid for is separating it.
+        //
+        // NOTE WHAT THIS DOES TO THE FRONTIER ENTRY BELOW. matl_closed_loop_
+        // recovery was authored as an extrapolation of precisely this —
+        // sortation, per-part material identification, hydrometallurgy that
+        // recovers elements rather than mixtures — and half of that is now
+        // transcribable fact. Its 2033 floor is still a guess, but it is now a
+        // guess about scale rather than about whether the chemistry works.
+        tech(
+            "matl_battery_hydrometallurgy", "Hydrometallurgical Battery Recovery", Materials, Intelligent,
+            &["core_lithium_ion_cell", "matl_machine_vision_inspection"], 340.0, 2024,
+            &[ResourceYield(0.02), Environment(0.02), Productivity(0.00002)],
+        ),
+        // ROADMAP. Not ours: Absolics, SKC's American subsidiary, took a $75
+        // million CHIPS award announced in December 2024 against $343 million
+        // of its own capital for a 120,000 square-foot glass substrate plant in
+        // Covington, Georgia, and NIST's project page for that award says first
+        // customer deliveries in 2025 with production capacity in 2027. The
+        // company shipped mass-production samples and went into qualification
+        // with AMD and AWS through 2025 and 2026, and now says volume by the
+        // end of 2026.
+        //
+        // THE DISCOUNT IS TWO YEARS, AND HERE IS WHY. The same company's
+        // original plan was mass production in the first half of 2024. It has
+        // missed that by more than two years while doing everything else it
+        // said it would, which is the ordinary shape of a substrate
+        // qualification rather than a sign of failure. The floor is 2028 — one
+        // year past NIST's 2027 and two past the company's own end-2026 —
+        // because a substrate is qualified by its customer and not by its
+        // maker, and AMD has not yet said yes in public. What the glass buys is
+        // flatness and stiffness across a package far larger than an organic
+        // laminate will hold still, which is the limit every accelerator
+        // package is now up against. It sits on the polish entry as well as the
+        // packaging one because a through-glass via is drilled, copper-filled
+        // and planarised back — the damascene loop, run on a different
+        // substrate.
+        tech(
+            "matl_glass_core_substrate", "Glass-Core Package Substrate", Materials, Intelligent,
+            &["matl_advanced_packaging", "matl_chemical_mechanical_planarization"], 500.0, 2028,
+            &[
+                Productivity(0.00003),
+                ResearchRate(0.02),
+                CostReduction { domain: Materials, frac: 0.02 },
+            ],
+        ),
+
         // -------------------------------------------------------------------
         // Frontier. SPECULATIVE — past the present day, extrapolated from
         // trends that were visible by the mid-2020s and not from any
@@ -451,6 +619,33 @@ pub fn techs() -> Vec<TechDef> {
                 Productivity(0.00010),
                 InvestmentEfficiency(0.05),
                 CostReduction { domain: Materials, frac: 0.05 },
+            ],
+        ),
+        // SPECULATIVE — no such node is in production and no company has said
+        // it will sell one. KNOWN: imec demonstrated electrically functional
+        // monolithic CFET devices on 18 June 2024 at the VLSI Symposium — an
+        // n-device stacked directly over a p-device, 18nm gate length, 60nm
+        // gate pitch, 50nm between the two tiers, with the bottom source/drain
+        // contact formed from the wafer backside, a change that took top-device
+        // survival from 11% to 79%. ASSUMED: that a device at 79% survival on a
+        // research line becomes a node somebody sells. imec's 2026 roadmap puts
+        // CFET at A7 and dates the nodes either side of it — A10 around 2030,
+        // A5 in 2035 or 2036, A3 in 2038 — with A7 itself reported at 2034.
+        // FALSIFIABLE, AND NOTE THE SLIP FIRST: a version of that same roadmap
+        // presented as recently as 2024 ran to 2036 and got two generations
+        // further, as far as A2. A roadmap that loses two generations in two
+        // years is a forecast and not a schedule, which is why the floor here
+        // is 2035 and not 2034. And if stacking nanosheets and moving the power
+        // to the back keep delivering without it — the two entries above this
+        // block are the evidence that they might — CFET stays a conference
+        // paper and this entry simply stays unbuilt.
+        tech(
+            "matl_stacked_cfet", "Complementary FET", Materials, Frontier,
+            &["matl_gate_all_around", "matl_high_na_euv"], 780.0, 2035,
+            &[
+                Productivity(0.00004),
+                ResearchRate(0.03),
+                CostReduction { domain: Materials, frac: 0.04 },
             ],
         ),
     ]

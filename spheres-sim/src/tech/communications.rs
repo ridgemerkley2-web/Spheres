@@ -13,8 +13,11 @@
 //! Nothing else — you cannot see the other domains and they cannot see you.
 //!
 //! Every entry is a real technology with a real history, and carries a comment
-//! naming the first deployment its year floor is read off. Anything past the
-//! present day is speculative and must say so in the comment.
+//! naming the first deployment its year floor is read off. Past the present day
+//! the comment opens with its bucket: `ROADMAP` where the date is somebody
+//! else's published, dated, funded commitment, and `SPECULATIVE` where it is
+//! not. `SPECULATIVE` is permitted only in the Frontier era, whose own
+//! definition already requires it.
 //!
 //! SHAPE. Four chains run the length of this file and they are what the domain
 //! is: glass, radio, orbit, and position. The glass chain starts with a national
@@ -405,6 +408,158 @@ pub fn techs() -> Vec<TechDef> {
             &[Productivity(0.00004), DiffusionSpeed(0.03), Stability(-0.05)],
         ),
 
+        // HISTORY. Deployed 2020-02-25; transcribed 2026-09. Northrop
+        // Grumman's Mission Extension Vehicle-1 docked with Intelsat 901 at
+        // 07:15 UTC on 25 February 2020: the first docking of two commercial
+        // spacecraft, and the first docking with a satellite nobody had
+        // designed to be docked with. MEV-1 then flew the pair as a bolted-on
+        // engine for five years, MEV-2 did the same for Intelsat 10-02 from
+        // April 2021, and the Mission Robotic Vehicle — two seven-degree-of-
+        // freedom arms rather than a docking probe — launched on 21 July
+        // 2026. A geostationary satellite is a fifteen-year asset whose life
+        // ends when the tank does, and that, rather than any failure of the
+        // electronics, is why the fleet turns over as fast as it does.
+        // Refuelling, moving or repairing one turns a consumable into plant,
+        // which is what the investment term is for; the military term is
+        // there because an arm that can service an object it did not build
+        // can also inspect, grapple and move somebody else's. The
+        // prerequisite is the satellite being serviced rather than anything
+        // about the servicer, because the honest gate is autonomous
+        // rendezvous with an uncooperative target and this file has no entry
+        // for that — the smallsat bus is named for the avionics, not the
+        // size. INERT BEFORE 2025 BY PRICE, NOT BY YEAR FLOOR: 380 points
+        // against a measured Jan-2025 Communications tie price of 180.
+        tech(
+            "comm_orbital_servicing", "On-Orbit Servicing and Life Extension",
+            Communications, Intelligent,
+            &["comm_geostationary_comsat", "comm_smallsat_bus"], 380.0, 2020,
+            &[
+                CostReduction { domain: Communications, frac: 0.03 },
+                InvestmentEfficiency(0.02),
+                MilitaryEfficiency(0.02),
+            ],
+        ),
+        // HISTORY. Deployed by 2025-09; transcribed 2026-09. Light in air
+        // instead of in glass: a double-nested antiresonant nodeless fibre
+        // guides the signal down a hollow centre, so it arrives about a third
+        // sooner and stops obeying the loss floor of silica that has bounded
+        // every entry above this one. Microsoft bought Lumenisity to get it,
+        // committed at Ignite in November 2024 to fifteen thousand kilometres
+        // across the Azure network, and in September 2025 published 0.091 dB
+        // per kilometre measured across 1,200 km — the lowest attenuation
+        // ever recorded in an optical fibre, and measured on cable in the
+        // ground carrying live traffic rather than on a spool in Southampton.
+        // It contracted Corning and Heraeus to manufacture the fibre on 23
+        // September 2025 and reported more than 1,280 km live with no field
+        // failures by early 2026. The month it first carried revenue traffic
+        // is not published, which is the only sense in which this is
+        // UNVERIFIED, and it is why the floor is 2025 rather than 2024. Note
+        // what this is and is not: one buyer's interconnect between its own
+        // data centres, not a public network, so it is priced as a transport
+        // cost improvement in the line of the amplifier and the wavelength —
+        // and its diffusion term, like the private cable above, is emission
+        // rather than speed, because it does nothing whatever for anyone
+        // else's transit bill.
+        tech(
+            "comm_hollow_core_fibre", "Hollow-Core Fibre Transport",
+            Communications, Intelligent,
+            &["comm_coherent_optical", "comm_hyperscale_private_cable"], 470.0, 2025,
+            &[
+                Productivity(0.00004),
+                CostReduction { domain: Communications, frac: 0.04 },
+                DiffusionEmission(0.03),
+            ],
+        ),
+        // HISTORY. Deployed 2017; floor dated 2025-03-19; transcribed 2026-09.
+        // READ THE FLOOR AGAINST THIS FILE'S OWN STANDARD FIRST, because it
+        // deliberately fails it, and fails it in the safe direction. The
+        // operational deployment is eight years older than the year in the
+        // argument list. China has run a quantum-key backbone in fibre between
+        // Beijing and Shanghai since 2017 — two thousand kilometres through
+        // thirty-two trusted nodes, carrying government, bank and insurance
+        // traffic — and joined it to the Micius satellite in 2020 to reach
+        // 4,600 km, the first space-and-ground quantum network. Micius weighs
+        // 640 kg and there is one of it. What is dated here is the cheap
+        // version. Jinan-1, a 96 kg microsatellite launched on 27 July 2022 with
+        // a 23 kg payload, was shown in Nature on 19 March 2025 running
+        // real-time key distribution to portable ground stations of about a
+        // hundred kilograms, and relaying a key between Beijing and Stellenbosch
+        // — 12,900 km, and the first quantum link into the southern hemisphere.
+        // Ten times lighter and forty-five times cheaper than Micius is the
+        // whole of the news: it is the same step the shoebox satellite was,
+        // applied to the one traffic a state most minds being read. So the 2025
+        // floor is read off the demonstration that the cheap version works and
+        // not off a first deployment, and it is therefore LATE by up to eight
+        // years rather than early — the error withholds this from hands that
+        // historically held it, and never grants it to hands that did not. The
+        // productivity term is nearly zero on purpose — nobody's output rises
+        // because a ministry's cables cannot be recorded today and broken in
+        // 2040 — and almost all the value is military and political. INERT
+        // BEFORE 2025 BY PRICE AND PREREQUISITE: 520 points against a measured
+        // Jan-2025 Communications tie price of 180, behind a 2016 laser-relay
+        // entry that almost nobody holds.
+        tech(
+            "comm_satellite_quantum_key", "Satellite Quantum Key Distribution",
+            Communications, Intelligent,
+            &["comm_smallsat_bus", "comm_laser_intersatellite_link"], 520.0, 2025,
+            &[MilitaryEfficiency(0.04), Stability(0.05), Productivity(0.00002)],
+        ),
+        // HISTORY. Deployed 2025-03-02; transcribed 2026-09. Intuitive
+        // Machines' Odysseus touched down near Malapert A at 23:23:53 UTC on
+        // 22 February 2024, the first American soft landing since Apollo 17
+        // and the first by a company — and it arrived fast onto a twelve-
+        // degree slope with its laser altimeters inhibited, broke a leg and
+        // tipped to thirty degrees, which is why the floor is read off the
+        // next one and not off that. Firefly's Blue Ghost landed upright in
+        // Mare Crisium at 08:34 UTC on 2 March 2025, worked a full lunar day
+        // and five hours into the night, and returned ten NASA payloads: the
+        // first fully successful commercial landing on another body. Both
+        // flew on Falcon 9 under fixed-price task orders rather than as
+        // national programmes, and that is the entry. A landing stops being
+        // something a state mounts and becomes something it buys, which is
+        // why the effects are on research and on the cost of everything else
+        // in this domain rather than on output. The prestige term is small
+        // because nobody has ever held a parade for a robot. INERT BEFORE
+        // 2025 BY PRICE AND PREREQUISITE: 500 points against a measured
+        // Jan-2025 Communications tie price of 180, behind the 2017 reflight
+        // entry that gates the ride.
+        tech(
+            "comm_commercial_lunar_lander", "Commercial Robotic Lunar Landing",
+            Communications, Intelligent,
+            &["comm_reusable_launch_economics", "comm_smallsat_bus"], 500.0, 2025,
+            &[
+                ResearchRate(0.03),
+                CostReduction { domain: Communications, frac: 0.03 },
+                Stability(0.05),
+            ],
+        ),
+        // ROADMAP. Not ours: three parties have hardware and money against a
+        // date, and the interesting thing is that they disagree about who
+        // should own it. The US Space Force awarded four Resilient GPS design
+        // agreements — Astranis, Axient, L3Harris, Sierra Space — in September
+        // 2024 under the Quick Start authority of section 229 of the FY2024
+        // defence act, for up to eight small satellites broadcasting the core
+        // GPS signals by 2028. ESA's Celeste pair went up on a Rocket Lab
+        // Electron in March 2026 and ESTEC had the first navigation signal on
+        // 8 April 2026, dual-band L and S from 510 km. Xona ordered eight more
+        // Pulsar satellites from Aerospacelab in January 2026 for launch from
+        // late 2026 and service in 2027. The floor is 2029 and not 2028
+        // because the only one of the three with a government behind it is
+        // also the only one that has not flown anything, and R-GPS's 2028 is
+        // a design-phase target rather than a delivery date. What this buys
+        // is not accuracy — the medium-orbit constellations already deliver
+        // that, and the augmentation entry above sharpened it twenty years
+        // ago — but a signal roughly a hundred times stronger arriving from a
+        // direction the jammer is not pointed at. That is the entire reason
+        // the money appeared, and it is why the terms are military and
+        // capital rather than resource.
+        tech(
+            "comm_leo_navigation_layer", "Low-Orbit Navigation Layer",
+            Communications, Intelligent,
+            &["comm_gnss_sovereign", "comm_leo_broadband_constellation"], 560.0, 2029,
+            &[MilitaryEfficiency(0.05), InvestmentEfficiency(0.02), Stability(0.05)],
+        ),
+
         // -------------------------------------------------------------------
         // Frontier era: SPECULATIVE. Nothing below has been deployed.
         // -------------------------------------------------------------------
@@ -438,6 +593,121 @@ pub fn techs() -> Vec<TechDef> {
                 CostReduction { domain: Communications, frac: 0.06 },
                 InvestmentEfficiency(0.03),
             ],
+        ),
+        // ROADMAP. Not ours: a crewed landing on the Moon before 2030 is a
+        // standing commitment of the Chinese state, and the milestones under it
+        // are observed rather than announced — the Lanyue lander flew a landing
+        // and lift-off verification on 6 August 2025, the Long March 10 flew a
+        // low-altitude demonstration on 11 February 2026, and the Mengzhou pad
+        // abort is complete. The transport half is proven elsewhere: Artemis II
+        // carried four people round the Moon between 1 and 11 April 2026, the
+        // first crew beyond low orbit since 1972. The floor is 2030 and not
+        // 2029 because a programme date is not a fact — see HS2, whose funded
+        // and legislated 2033 opening is now, on the Department for Transport's
+        // own May 2026 report to Parliament, somewhere between May 2036 and
+        // October 2039.
+        tech(
+            "comm_crewed_lunar_return", "Crewed Lunar Return",
+            Communications, Frontier,
+            &["comm_reusable_launch_economics"], 780.0, 2030,
+            &[
+                Productivity(0.00003),
+                ResearchRate(0.03),
+                InvestmentEfficiency(0.02),
+                Stability(0.15),
+            ],
+        ),
+        // ROADMAP. Not ours: the European Commission signed a twelve-year
+        // concession for IRIS² with SpaceRISE — SES, Eutelsat and Hispasat —
+        // on 16 December 2024, and closed the governance and financing
+        // negotiations with an implementation agreement on 6 August 2026. The
+        // constellation is 348 satellites, 330 in low orbit and 18 in medium,
+        // paid for out of the EU's 2028-2034 budget and out of member states
+        // that have put their own money on the table: Poland 656 million
+        // euros, Hungary 500 million, Spain between one and a half and two
+        // billion. First launches are targeted for 2029 with services
+        // "progressively from 2029 onwards". The floor is 2032, and note
+        // carefully why. This is the only programme in this file whose
+        // published date has moved EARLIER rather than later — the 2024
+        // contract said services from the beginning of 2030, and the 2026
+        // reinforcement says 2029 while adding sixty-six satellites — and a
+        // schedule that accelerates as its scope grows is a schedule to
+        // discount harder, not softer. Twenty months passed between signing
+        // the concession and agreeing how it would be paid for. What the
+        // thing is FOR is the stability term: the commercial constellation
+        // above carries a negative one because it is the first consumer
+        // network a ministry of communications cannot switch off, licence or
+        // route through its own building, and this is a state buying that
+        // capability back rather than regulating it back.
+        tech(
+            "comm_sovereign_broadband_constellation", "Sovereign Broadband Constellation",
+            Communications, Frontier,
+            &["comm_leo_broadband_constellation", "comm_gnss_sovereign"], 720.0, 2032,
+            &[DiffusionSpeed(0.03), Stability(0.10), MilitaryEfficiency(0.03)],
+        ),
+        // ROADMAP. Not ours, and the date has already slipped twice in
+        // writing. Moving hundreds of tonnes of cryogenic methane and oxygen
+        // between two docked vehicles is the single unproven step between a
+        // cheap ride to low orbit and a cheap ride anywhere else: the lunar
+        // lander architecture NASA has bought needs roughly ten tanker
+        // flights to fill one depot, and nothing downstream of that works
+        // without it. Conventional propellants have been transferred in orbit
+        // since 1978; at this scale and at these temperatures they have not.
+        // The dates are NASA's own and they are moving. The inspector general
+        // records a vehicle-to-vehicle test planned for March 2025 slipping
+        // to March 2026; the budget documents put an uncrewed landing demo in
+        // Q3 2026 and the crewed flight in June 2027; the GAO's July 2026
+        // assessment still lists both propellant tests as 2026 milestones;
+        // and through the thirteenth Starship flight in July 2026 the
+        // transfer had not been attempted. The floor is 2033, six years past
+        // the crewed date NASA is currently publishing, for two reasons. The
+        // GAO's own confidence analysis put a thirty per cent chance on the
+        // lander alone running past February 2028, and — the larger reason —
+        // this entry is not the demonstration. It is the depot flown often
+        // enough that the tenth tanker costs what the first did, and one
+        // successful transfer would not settle it. It depends on the
+        // servicing entry as much as on the vehicle, because autonomous
+        // docking in orbit is the part that has already been done once.
+        tech(
+            "comm_orbital_propellant_transfer", "Orbital Propellant Transfer",
+            Communications, Frontier,
+            &["comm_full_reuse_heavy_lift", "comm_orbital_servicing"], 850.0, 2033,
+            &[
+                CostReduction { domain: Communications, frac: 0.06 },
+                InvestmentEfficiency(0.03),
+                ResearchRate(0.02),
+            ],
+        ),
+        // SPECULATIVE — nothing at this scale exists, and this entry is here
+        // because the anchor underneath it is real and dated rather than
+        // because the trend line is pretty. KNOWN: Starcloud flew an Nvidia
+        // H100 to a 325 km orbit on 2 November 2025 in a 60 kg satellite, ran
+        // inference on it against a Gemma model, and trained a small model in
+        // orbit that December — a data-centre part working outside the
+        // atmosphere, which had not been done. Google contracted Planet to
+        // fly two Suncatcher prototypes carrying its own accelerators in
+        // early 2027, linked by free-space optics, and published its own
+        // estimate that space-based clusters become economically sensible
+        // around 2035. ASSUMED: everything between one refrigerator and a
+        // cluster — that the optical mesh in this file's laser-relay entry
+        // scales to hundreds of terabits between platforms flying in tight
+        // formation, that radiators can reject megawatts, and above all that
+        // launch falls to where the full-reuse entry above assumes it falls.
+        // The case for orbit is power and cooling and not computing:
+        // continuous sun in a dawn-dusk orbit and a sky to radiate into,
+        // against a terrestrial grid that has become the binding constraint
+        // on building anything. FALSIFIABLE, and cheaply: if fully reusable
+        // heavy lift does not arrive the arithmetic never closes and this
+        // entry simply stays unbuilt. It is the same bet as the entry it
+        // depends on, taken a second time and at longer odds. The floor is
+        // 2036, one year past Google's own number, and Google's number came
+        // from a research blog and not from a schedule. The environment term
+        // is deliberately small and is net of putting the mass up there.
+        tech(
+            "comm_orbital_compute_constellation", "Orbital Compute Constellation",
+            Communications, Frontier,
+            &["comm_laser_intersatellite_link", "comm_full_reuse_heavy_lift"], 900.0, 2036,
+            &[Productivity(0.00006), ResearchRate(0.05), Environment(0.03)],
         ),
     ]
 }

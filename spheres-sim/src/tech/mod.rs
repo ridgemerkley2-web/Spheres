@@ -2422,8 +2422,8 @@ mod tests {
     fn the_registry_is_the_size_this_source_says_it_is() {
         assert_eq!(
             registry().len(),
-            253,
-            "registry has {} entries, not 253 — added a technology, or running a stale binary?",
+            328,
+            "registry has {} entries, not 328 — added a technology, or running a stale binary?",
             registry().len()
         );
     }

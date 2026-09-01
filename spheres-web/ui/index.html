@@ -416,7 +416,7 @@
   #techDock .gauge { display:flex; height:6px; margin:6px 0 3px; background:var(--panel); }
   #techDock .gauge i { background:var(--amber); }
   /* The legend floats over the survey with nothing behind it, and the survey
-     is 253 cards on a camera the player drives — so any pan that brings the
+     is 328 cards on a camera the player drives — so any pan that brings the
      bottom-left corner of the graph under it mixes the seven marks with a
      technology card's own plate, border and text, and neither reads. It gets
      the same translucent plate #techPriPill and #techFindHint carry. (When
@@ -507,7 +507,7 @@
   .tsvg .node.origin .pl { stroke:var(--brass-hi); stroke-width:2.5; }
   .tsvg .node, .tsvg .edge { transition:opacity .12s linear; }
   #techSvg.zf .node text { display:none; }   /* far zoom: sigils + structure only */
-  /* full-map de-juice: the 253-node survey stays exactly as cheap as today */
+  /* full-map de-juice: the 328-node survey stays exactly as cheap as today */
   #techScreen[data-view="all"] #techSvg .node .pl { filter:none !important; }
   #techScreen[data-view="all"] #techSvg .halo { animation:none !important; opacity:0 !important; }
   #techScreen[data-view="all"] #techSvg .node .k { transition:none; }
@@ -1309,7 +1309,7 @@
 <div id="techScreen">
   <div class="tbar">
     <span class="ttitle">Technology</span>
-    <span class="tsub" id="techCount">— of 253 fielded</span>
+    <span class="tsub" id="techCount">— of 328 fielded</span>
     <input id="techFind" placeholder="find… /">
     <span class="spacer"></span>
     <button id="techFit">FIT</button>
@@ -2712,7 +2712,7 @@ window.setPriority = async function (domain) {
 };
 
 /* ================= tech screen =================
-   One unified 253-node graph: eight domain bands over a shared calendar-year
+   One unified 328-node graph: eight domain bands over a shared calendar-year
    axis, one SVG built once per data build, a viewBox camera ported from the
    map, and a zero-fetch glance dropdown in front of it. Layout is presentation
    and lives here; every NUMBER on a plate arrives from spheres-sim on
@@ -2822,7 +2822,7 @@ document.addEventListener("pointerdown", (e) => {
 /* ---------------- open / close ---------------- */
 
 /// The entry framing IS the progressive disclosure: a dropdown row or TREE
-/// button lands the player on that domain's VIEW, never on 253 nodes;
+/// button lands the player on that domain's VIEW, never on 328 nodes;
 /// T-again/dfoot lands the remembered view, else the priority domain, else
 /// the first. The graph is built once and then only class-patched.
 async function openTech(domain) {
@@ -2892,7 +2892,7 @@ window.closeTech = closeTech;
 /* ---------------- data: fetch, stitch, index ---------------- */
 
 /// Foundation core_ techs ride in their home domain's response, so eight
-/// parallel fetches cover all 253 nodes.
+/// parallel fetches cover all 328 nodes.
 async function fetchTechAll() {
   const rs = await Promise.all(S.research.domains.map(d =>
     api("/api/tech?domain=" + encodeURIComponent(d.domain))));
@@ -3444,7 +3444,7 @@ function buildTechTabs() {
        <span class="k">${i + 1}</span>
        <span class="bar"><i style="width:0%"></i></span>
      </button>`).join("") +
-    `<button class="dtab full" role="tab" aria-selected="false" data-dom="all" title="Full map — all ${tech.data ? tech.data.length : 253}">
+    `<button class="dtab full" role="tab" aria-selected="false" data-dom="all" title="Full map — all ${tech.data ? tech.data.length : 328}">
        <svg><use href="#sig-map"/></svg>
        <span class="nm">Full map</span>
        <span class="k">9</span>
@@ -3873,8 +3873,8 @@ function techPanBy(dx, dy) {
 }
 
 /* ---------------- pathway lighting (WP8) ----------------
-   On-demand BFS over the int adjacency — at 253 nodes / 342 edges this is
-   microseconds, which is why the 253×253 bitsets were declined. One svg-level
+   On-demand BFS over the int adjacency — at 328 nodes / 469 edges this is
+   microseconds, which is why the 328×328 bitsets were declined. One svg-level
    class (pl-live) dims the world; a scratch array records exactly what was
    lit so clearing never sweeps the DOM. Brass = ancestry (where this came
    from), cyan = descendants (what this opens) — the palette's existing

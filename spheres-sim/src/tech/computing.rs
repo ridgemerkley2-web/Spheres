@@ -13,8 +13,11 @@
 //! Nothing else — you cannot see the other domains and they cannot see you.
 //!
 //! Every entry is a real technology with a real history, and carries a comment
-//! naming the first deployment its year floor is read off. Anything past the
-//! present day is speculative and must say so in the comment.
+//! naming the first deployment its year floor is read off. Past the present day
+//! the comment opens with its bucket: `ROADMAP` where the date is somebody
+//! else's published, dated, funded commitment, and `SPECULATIVE` where it is
+//! not. `SPECULATIVE` is permitted only in the Frontier era, whose own
+//! definition already requires it.
 //!
 //! SHAPE. The domain is four chains that cross rather than thirty siblings.
 //! Silicon runs microprocessor → superscalar → multi-core → FinFET → tensor
@@ -421,10 +424,216 @@ pub fn techs() -> Vec<TechDef> {
             &[Productivity(0.00007), ResearchRate(0.08), InvestmentEfficiency(0.04)],
         ),
 
+        // HISTORY. Deployed 2022-12-11; transcribed 2026-09. Making the
+        // commonest class of security defect unrepresentable instead of
+        // catching it afterwards. Rust support landed in the mainline Linux
+        // kernel with 6.1 on 11 December 2022; Google reported the same month
+        // that Android 13 was the first release in which a majority of new code
+        // was written in a memory-safe language, with 21% of new native code in
+        // Rust, and by September 2024 reported memory-safety defects down from
+        // 76% of Android's vulnerabilities in 2019 to 24% in 2024 — 223 reports
+        // a year to under fifty. The first Rust drivers were accepted in
+        // December 2023 and the kernel maintainers made Rust permanent for new
+        // code at the 2025 summit. What it does not do is fix the installed
+        // base: the C that is already deployed is still deployed, and will be
+        // for decades, which is why this is a slow pull on stability rather
+        // than a step change. It hangs off open-source development because both
+        // artefacts that carry the claim are open projects and because the
+        // compiler that enforces it is one, which is also why the effect
+        // arrives everywhere at once instead of being anybody's advantage.
+        tech(
+            "comp_memory_safe_systems", "Memory-Safe Systems Programming", Computing, Intelligent,
+            &["comp_protected_memory_os", "comp_open_source_development"], 420.0, 2022,
+            &[Productivity(0.00003), Stability(0.06), MilitaryEfficiency(0.02)],
+        ),
+        // HISTORY. Deployed 2024-03; transcribed 2026-09. Replacing the key
+        // exchange this whole file rests on, before the machine that breaks it
+        // exists. NIST published FIPS 203, 204 and 205 on 13 August 2024,
+        // ending an eight-year competition; Chrome had already turned hybrid
+        // post-quantum key agreement on by default on the desktop in March 2024
+        // and moved to the standardised ML-KEM in Chrome 131 that November,
+        // Firefox and Chrome for Android followed in November 2024, and Apple's
+        // platforms in October 2025. Cloudflare measured the majority of
+        // human-initiated HTTPS traffic on its network as post-quantum in the
+        // last week of October 2025. Note how much of it is not done: the same
+        // measurement put support at the origin at 3.7% and found no public
+        // post-quantum certificates in use at all, so the key exchange has
+        // moved and the signatures have not. OMB's July 2024 report to Congress
+        // priced the migration of federal civilian systems alone at $7.1bn
+        // across 2025-2035 and warned in the same document that its own figure
+        // was a rough order of magnitude. The floor is 2024 because that is the
+        // year a browser most of the world uses started doing this without
+        // being asked. It hangs off the quantum processor and not off the
+        // encryption entry alone because the threat is the machine and not the
+        // mathematics — and that prerequisite is also what keeps this out of
+        // any candidate set in the years the golden hashes cover.
+        tech(
+            "comp_post_quantum_cryptography", "Post-Quantum Cryptography", Computing, Intelligent,
+            &["comp_transport_encryption", "comp_quantum_processor"], 465.0, 2024,
+            &[Productivity(0.00002), Stability(0.08), MilitaryEfficiency(0.03)],
+        ),
+        // HISTORY. Deployed 2024-09; transcribed 2026-09. Memory sold by the
+        // stack rather than by the module. SK hynix began volume production of
+        // the first twelve-layer HBM3E in September 2024; JEDEC published the
+        // HBM4 standard as JESD270-4 in April 2025, SK hynix had its HBM4
+        // production line in place that September, and HBM4 went to mass
+        // production in February 2026 against a part it was already late for.
+        // The stacking itself is a packaging problem and belongs to the
+        // materials file, which already claims it; what belongs here is what
+        // the bandwidth is for. A trained model is a matrix that must be read
+        // once per token, so the accelerator four entries above has been
+        // starved rather than slow since roughly 2016, and this is the entry
+        // that feeds it. The cost reduction is on a unit of computation and not
+        // on a part — HBM is the most expensive memory anyone has ever sold,
+        // and it is also the reason a run that would have needed ten machines
+        // needs one.
+        tech(
+            "comp_high_bandwidth_memory", "High-Bandwidth Memory Systems", Computing, Intelligent,
+            &["comp_synchronous_dram", "comp_tensor_accelerator"], 480.0, 2024,
+            &[
+                Productivity(0.00004),
+                ResearchRate(0.05),
+                CostReduction { domain: Computing, frac: 0.03 },
+            ],
+        ),
+        // HISTORY. Deployed 2024-06-18; transcribed 2026-09. Inference that
+        // happens in the hand rather than in somebody else's datacentre.
+        // Microsoft set a floor of 40 TOPS of neural processing unit for the
+        // Copilot+ class of machine and the first of them, on Qualcomm's
+        // Snapdragon X, shipped on 18 June 2024; Apple put an on-device
+        // foundation model in front of iPhone owners with iOS 18.1 on 28
+        // October 2024. Almost all of the weight here is diffusion and not
+        // output: a nation with no datacentre and an intermittent link now runs
+        // the same class of model as one with both, and that is the mechanism
+        // by which this capability reaches places that could never have paid
+        // for the training of it. The energy term is the smallest in this file
+        // and it is real — a query answered in the handset is a query that did
+        // not cross a network and did not spin a rack — and it is a rounding
+        // error beside what the model cost somebody else to make.
+        tech(
+            "comp_on_device_inference", "On-Device Neural Inference", Computing, Intelligent,
+            &["comp_mobile_computing", "comp_large_language_model"], 395.0, 2024,
+            &[Productivity(0.00004), EnergyEfficiency(0.01), DiffusionSpeed(0.04)],
+        ),
+        // HISTORY. Deployed 2024-09-12; transcribed 2026-09. Spending compute
+        // at answer time rather than only at training time. OpenAI put
+        // o1-preview in front of users on 12 September 2024 and o1 on 5
+        // December; DeepSeek released R1 under an open licence on 20 January
+        // 2025, 671B parameters with 37B active, reasoning at the level of the
+        // closed models it was compared against. Mechanically this is not the
+        // scale entry above it — the model is no larger and the gain is bought
+        // with post-training and with seconds of thought — and the emission
+        // term is R1 rather than o1: the near-frontier became a download, which
+        // is the largest single leak of capability in this file. INERT BEFORE
+        // 2025 BY PREREQUISITE AND NOT BY THE 2024 FLOOR: measured monthly
+        // across twelve seeds to January 2025, no nation ever holds the large
+        // language model entry this hangs off, so it never enters a candidate
+        // set at all in the years the golden hashes cover.
+        tech(
+            "comp_reasoning_model", "Inference-Time Reasoning Model", Computing, Intelligent,
+            &["comp_large_language_model", "comp_tensor_accelerator"], 545.0, 2024,
+            &[Productivity(0.00008), ResearchRate(0.10), DiffusionEmission(0.08)],
+        ),
+        // HISTORY. Deployed 2025-02; transcribed 2026-09. The rack becomes the
+        // unit of computation. NVIDIA's GB200 NVL72 puts seventy-two
+        // accelerators and thirty-six processors into one liquid-cooled 120 kW
+        // coherent domain; the first systems reached hyperscalers in December
+        // 2024 and CoreWeave and HPE had them running at scale in February
+        // 2025. What changes is not the part but the reach of a memory
+        // reference: a model that no longer fits a machine still fits a rack.
+        tech(
+            "comp_rack_scale_accelerator", "Rack-Scale Accelerated Computing", Computing, Intelligent,
+            &["comp_tensor_accelerator", "comp_cloud_computing"], 500.0, 2025,
+            &[
+                Productivity(0.00005),
+                ResearchRate(0.08),
+                CostReduction { domain: Computing, frac: 0.04 },
+            ],
+        ),
+        // HISTORY. Deployed 2024-11; transcribed 2026-09. Finding the flaw is
+        // the expensive half of an intrusion, and it stopped being done by
+        // hand. Google's Big Sleep agent found its first real vulnerability, a
+        // stack buffer underflow in SQLite, in November 2024 and before
+        // release; in July 2025 it caught CVE-2025-6965 in the same library
+        // while an actor was preparing to use it. DARPA closed its two-year AI
+        // Cyber Challenge at DEF CON on 8-9 August 2025: seven autonomous
+        // systems, 143 hours with nobody at a keyboard, 54 of 63 planted
+        // vulnerabilities found and 43 patched, plus 18 real ones nobody had
+        // planted and 11 patches for those. Then the same capability pointed
+        // the other way, dated and catalogued rather than merely claimed —
+        // Anthropic reported on 14 November 2025 that an actor it tracks as
+        // GTG-1002 had run a largely autonomous espionage campaign that
+        // September against roughly thirty organisations and breached a
+        // handful; MITRE ATT&CK carries it as campaign C0062. The strength
+        // number is deliberately half what the Stuxnet entry above carries:
+        // this multiplies a capability a state already has rather than
+        // conferring a new one. The emission term is DARPA's doing and not an
+        // accident — every finalist system had to be released under an
+        // OSI-approved licence, so the state of the art in this became a
+        // download in the same month it was demonstrated.
+        tech(
+            "comp_machine_vulnerability_research", "Machine Vulnerability Research", Computing, Intelligent,
+            &["comp_offensive_cyber_operations", "comp_ai_agent_tooling"], 555.0, 2025,
+            &[
+                Productivity(0.00001),
+                MilitaryStrength(2.0),
+                MilitaryEfficiency(0.04),
+                DiffusionEmission(0.04),
+            ],
+        ),
+        // ROADMAP. Not ours: OpenAI, Oracle, Crusoe and SoftBank publish site
+        // capacities and dates for the Stargate campuses, and Epoch AI's
+        // site-by-site survey checks each of them against what is actually
+        // built. Abilene, Texas is furthest along — about 0.3 GW energised
+        // against a stated 1.2 GW by Q4 2026, four of eight buildings running
+        // Blackwell parts, powered by a mix of on-site gas and the Texas grid.
+        // Five further sites — Shackelford, Doña Ana, Milam, Port Washington,
+        // Saline Township — carry stated Q4 2028 dates, are between them at
+        // zero today, and three of them are to run on natural-gas microgrids of
+        // their own. The floor is 2028 and not 2026 because this programme has
+        // already reversed one of its own published numbers: the Abilene
+        // expansion from 1.2 GW to 2.1 GW was announced and then cancelled,
+        // and the capacity redirected. What a campus of this size buys is the
+        // ability to train something nobody else can, which is research rate.
+        // It does not buy investment efficiency — this is the least efficient
+        // capital in the file, and the entry says so by omitting the term. The
+        // environment number is negative, which only one other entry in this
+        // tree is, and it is earned: this is the first technology here whose
+        // artefact is a power station with computers attached to it.
+        tech(
+            "comp_gigawatt_compute_campus", "Gigawatt-Scale Compute Campus", Computing, Intelligent,
+            &["comp_cloud_computing", "comp_tensor_accelerator"], 590.0, 2028,
+            &[Productivity(0.00005), ResearchRate(0.06), Environment(-0.02)],
+        ),
+
         // ---------------------------------------------------------------
         // Frontier.
         // ---------------------------------------------------------------
 
+        // ROADMAP. Not ours: IBM published a dated path to a fault-tolerant
+        // machine on 10 June 2025 — Starling, 200 logical qubits running 100
+        // million operations, to be built in the IBM Quantum Data Center at
+        // Poughkeepsie and delivered to clients in 2029 — and the milestones
+        // under it are being met rather than merely restated. Loon, the chip
+        // carrying the longer-range couplers the qLDPC code needs, was unveiled
+        // in November 2025 on schedule. The floor is 2031 and not 2029 for two
+        // reasons written on the same roadmap. IBM's earlier plan put a
+        // 4,158-qubit Kookaburra in 2025; the June 2025 revision put a
+        // 1,386-qubit Kookaburra in 2026. And Condor, the 1,121-qubit part that
+        // closed the 2020 roadmap on time in December 2023, was never made
+        // available to anybody — a programme that builds its hardware and then
+        // does not ship it has delivered a milestone and not a machine. Note
+        // what this does NOT buy: two hundred logical qubits will not factor
+        // anything, so there is no military term here and the one on the entry
+        // below stands where it is. The classical prerequisite is not
+        // decoration — the syndrome decoder is an ordinary computer that has to
+        // keep up in real time, and nobody owns one of these outright; they are
+        // reached over somebody else's network, like everything else in this era.
+        tech(
+            "comp_error_corrected_qubit", "Error-Corrected Logical Qubit", Computing, Frontier,
+            &["comp_quantum_processor", "comp_cloud_computing"], 660.0, 2031,
+            &[Productivity(0.00002), ResearchRate(0.06)],
+        ),
         // SPECULATIVE — no such machine exists. The anchor is real: Google's
         // Willow chip demonstrated surface-code error correction below threshold
         // in December 2024, so logical error falls as the code grows rather than
@@ -438,6 +647,36 @@ pub fn techs() -> Vec<TechDef> {
             "comp_fault_tolerant_quantum", "Fault-Tolerant Quantum Computing", Computing, Frontier,
             &["comp_quantum_processor", "comp_ai_scientific_discovery"], 850.0, 2035,
             &[Productivity(0.00003), ResearchRate(0.10), MilitaryEfficiency(0.03)],
+        ),
+        // SPECULATIVE — this is a claim about 2042 and there is no artefact.
+        // KNOWN: machines already write and land repairs unattended, and the
+        // strongest measurement of it is a refereed public one rather than a
+        // vendor's. At DARPA's AI Cyber Challenge final on 8-9 August 2025,
+        // seven systems ran 143 hours with nobody at a keyboard and produced 43
+        // accepted patches for planted defects and 11 for real ones. On the
+        // SWE-bench Verified leaderboard, the share of real repository issues
+        // closed with no person in the loop went from a couple of per cent in
+        // late 2023 to above ninety by 2026. ASSUMED: that this extends from a
+        // patch to a codebase — that a system of record can be specified,
+        // built, changed and run for years with nobody who has read it. Nothing
+        // demonstrated so far survives that sentence. FALSIFIABLE, and cheaply:
+        // half the evidence is a leaderboard, leaderboards leak, and
+        // contamination in this one was being argued in early 2026. If the
+        // maintenance bill lands back on people, this stays unbuilt and the
+        // agent-tooling entry above is the whole of the story. The stability
+        // term is negative and it is the honest price: a state whose critical
+        // software nobody has read is a state that cannot audit itself, which
+        // is the same shape of cost the large language model entry already
+        // carries and for the same reason.
+        tech(
+            "comp_machine_authored_software", "Machine-Authored Software", Computing, Frontier,
+            &["comp_ai_agent_tooling", "comp_machine_vulnerability_research"], 780.0, 2042,
+            &[
+                Productivity(0.00008),
+                ResearchRate(0.04),
+                CostReduction { domain: Computing, frac: 0.05 },
+                Stability(-0.05),
+            ],
         ),
     ]
 }

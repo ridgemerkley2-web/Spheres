@@ -13,8 +13,11 @@
 //! Nothing else — you cannot see the other domains and they cannot see you.
 //!
 //! Every entry is a real technology with a real history, and carries a comment
-//! naming the first deployment its year floor is read off. Anything past the
-//! present day is speculative and must say so in the comment.
+//! naming the first deployment its year floor is read off. Past the present day
+//! the comment opens with its bucket: `ROADMAP` where the date is somebody
+//! else's published, dated, funded commitment, and `SPECULATIVE` where it is
+//! not. `SPECULATIVE` is permitted only in the Frontier era, whose own
+//! definition already requires it.
 //!
 //! The shape of the domain, since a reader will otherwise see thirty siblings.
 //! Transport in 1990 is not waiting on an invention; the box was standardised in
@@ -319,6 +322,132 @@ pub fn techs() -> Vec<TechDef> {
             &[Productivity(0.00002), EnergyEfficiency(0.01), Environment(0.06)],
         ),
 
+        // HISTORY. Deployed 2023-09-20; transcribed 2026-09. The bill of lading
+        // is not a message, it is a document of TITLE: whoever holds the paper
+        // owns the cargo, which is why cargo has for two centuries waited in a
+        // port for a courier. The UK Electronic Trade Documents Act 2023 took
+        // Royal Assent on 20 July 2023 and came into force on 20 September 2023,
+        // making an electronic document capable of being POSSESSED under English
+        // law — the law a large share of the world's carriage contracts choose.
+        // Seven months earlier, on 15 February 2023, the
+        // nine largest container lines (MSC, Maersk, CMA CGM, Hapag-Lloyd, ONE,
+        // Evergreen, Yang Ming, HMM, ZIM) had signed a public commitment to
+        // 50% electronic bills within five years and 100% by 2030. The floor is
+        // the statute and not the commitment, because a carrier's promise is not
+        // a deployment and the statute is what made the promise possible.
+        // The only honest prerequisite is the message format this replaces: the
+        // gate here was legal, not technical, and this tree cannot model a
+        // statute. That is why it hangs off EDIFACT alone rather than off the
+        // planning systems that consume the document.
+        tech(
+            "tran_electronic_bill_of_lading", "Electronic Bill of Lading", T, Intelligent,
+            &["tran_electronic_freight_documents"], 355.0, 2023,
+            &[Productivity(0.00005), InvestmentEfficiency(0.02), DiffusionSpeed(0.01)],
+        ),
+        // HISTORY. Deployed 2025-01-01; transcribed 2026-09. There is no
+        // technology in the aeroplane: a drop-in fuel is by definition one that
+        // needs no engine, airframe or infrastructure change, which Virgin
+        // Atlantic's Flight100 demonstrated on 28 November 2023 by flying a 787
+        // on Trent 1000s from Heathrow to JFK on 100% SAF — 88% hydroprocessed
+        // fats, 12% synthetic aromatic kerosene. The technology is a refinery
+        // and a law. Regulation (EU) 2023/2405 of 18 October 2023 obliges fuel
+        // suppliers at EU airports to blend 2% from 1 January 2025, 6% in 2030,
+        // 20% in 2035 and 70% in 2050, with penalties of at least twice the
+        // price gap. The floor is 2025 and not 2023 because one aircraft
+        // crossing an ocean is a demonstration and a blending obligation that
+        // binds every supplier in a bloc is a deployment. Sized small on
+        // purpose: 2% of one continent's jet fuel, at a premium the regulation
+        // itself prices by setting the penalty at twice the gap, and the
+        // prerequisite is the turbofan rather than the composite airframe
+        // because nothing about the airframe had to change at all.
+        tech(
+            "tran_sustainable_aviation_fuel", "Sustainable Aviation Fuel", T, Intelligent,
+            &["tran_high_bypass_turbofan"], 430.0, 2025,
+            &[EnergyEfficiency(0.01), Environment(0.04)],
+        ),
+        // HISTORY. Deployed 2025-09-29; transcribed 2026-09. The first public
+        // megawatt charging point for heavy trucks went into service at the
+        // Lipperland Süd services on the German A2 on 29 September 2025 — an ABB
+        // charger operated by EnBW mobility+ under the state-funded HoLa
+        // project, delivering up to 1.2MW, which puts several hundred kilometres
+        // into a battery in thirty to forty-five minutes — inside the rest break
+        // a driver is required to take anyway. That is the whole argument: the
+        // truck does not need a
+        // faster charge, it needs a charge that fits inside a break the law
+        // already mandates. The connector was still pre-standard when it opened;
+        // IEC published TS 63379 on 9 February 2026, specifying the megawatt
+        // coupler to 1,250V, 3,000A and 3.75MW. The floor is 2025, the year the
+        // hardware carried a paying vehicle, not 2026 when the paper caught up.
+        // This depends on the electric truck rather than only on the car
+        // charging network, because the physics that matters is the tractor's
+        // pack accepting a megawatt, not the forecourt offering one.
+        tech(
+            "tran_megawatt_truck_charging", "Megawatt Truck Charging", T, Intelligent,
+            &["tran_battery_electric_truck", "tran_fast_charging_network"], 455.0, 2025,
+            &[Productivity(0.00004), EnergyEfficiency(0.03), Environment(0.02)],
+        ),
+        // HISTORY. Deployed 2025-04-27; transcribed 2026-09. Aurora ran the
+        // first driverless commercial heavy-truck service on public roads
+        // anywhere, on I-45 between Dallas and Houston, carrying customer
+        // freight with nobody in the cab from 27 April 2025; Fort Worth to El
+        // Paso and ten routes followed. NOTE WHAT THIS DOES TO THE FRONTIER
+        // ENTRY BELOW, which was authored as an extrapolation of exactly this
+        // shape: the instrumented corridor with human drayage at each end is no
+        // longer a forecast. What is still a forecast is the same thing at the
+        // scale of a freight network rather than of one lane and one operator.
+        tech(
+            "tran_driverless_line_haul", "Driverless Line-Haul Trucking", T, Intelligent,
+            &["tran_robotaxi_service", "tran_supply_chain_management"], 545.0, 2025,
+            &[
+                Productivity(0.00008),
+                Health(0.02),
+                CostReduction { domain: T, frac: 0.03 },
+            ],
+        ),
+        // HISTORY. Deployed 2026-06-01; transcribed 2026-09. Claims no first:
+        // the rotor is a 1920s idea, its date UNVERIFIED here, and Enercon's
+        // E-Ship 1 has been carrying turbine blades under four of them since its
+        // first cargo voyage in August 2010, saving up to 22.9% on the Emden
+        // run. What changed is measurement and
+        // then count. Cargill's chartered kamsarmax Pyxis Ocean sailed from
+        // China in August 2023 under two 37.5m rigid wings by BAR Technologies,
+        // and the six-month result published on 13 March 2024 was three tonnes
+        // of fuel a day averaged across the Indian, Pacific and both Atlantic
+        // oceans — about 14% — and eleven tonnes a day in good wind. Then on
+        // 1 June 2026 the International Windship Association counted past 100
+        // trading vessels over 400GT carrying 230-odd systems. The floor is 2026
+        // and not 2010 or 2023 because one ship is a curiosity and a hundred is
+        // an option a shipowner is offered at newbuild. Keep the scale honest:
+        // those hundred ships are about five million deadweight tonnes against a
+        // world fleet of 2.44 billion at the start of 2025, one part in five
+        // hundred, and no Productivity effect is claimed at all — this is a
+        // fuel-bill entry and nothing else.
+        tech(
+            "tran_wind_assisted_propulsion", "Wind-Assisted Ship Propulsion", T, Intelligent,
+            &["tran_post_panamax_ship"], 340.0, 2026,
+            &[EnergyEfficiency(0.02), Environment(0.02)],
+        ),
+        // HISTORY. Deployed 2026-06-10; transcribed 2026-09. The Antwerpen was
+        // delivered by HD Hyundai and entered service on 10 June 2026: the first
+        // purpose-built ammonia dual-fuel ship, a 46,000cbm midsize gas carrier
+        // for Exmar on a WinGD two-stroke with high-pressure ammonia injection
+        // and a pilot dose of oil. The hard part was not the engine. Ammonia is
+        // acutely toxic and no international rule permitted burning it, so Exmar
+        // spent four years from 2022 building the permission with the Belgian
+        // administration and Lloyd's Register before the ship could sail — which
+        // is why the entry is dated to a delivery and not to an engine bench.
+        // It sits on the methanol ship because both are the same manoeuvre: a
+        // dual-fuel engine lets an owner order a hull before the fuel to run it
+        // exists. Methanol's problem is that it is expensive; ammonia's problem
+        // is that a bunkering accident in a crowded port is a mass-casualty
+        // event, and that is a reason to be sparing with this entry rather than
+        // generous with it.
+        tech(
+            "tran_ammonia_dual_fuel_ship", "Ammonia Dual-Fuel Ship", T, Intelligent,
+            &["tran_methanol_dual_fuel_ship"], 510.0, 2026,
+            &[EnergyEfficiency(0.01), Environment(0.05)],
+        ),
+
         // -------------------------------------------------------------------
         // Frontier — speculative, past the present day
         // -------------------------------------------------------------------
@@ -352,6 +481,94 @@ pub fn techs() -> Vec<TechDef> {
             "tran_electric_regional_aircraft", "Electric Regional Airliner", T, Frontier,
             &["tran_composite_airliner", "tran_electric_drivetrain"], 900.0, 2035,
             &[Productivity(0.00004), EnergyEfficiency(0.02), Environment(0.04)],
+        ),
+        // ROADMAP. Not ours, and discounted five years against a legal deadline.
+        // Commission Implementing Regulation (EU) 2023/1695 and the TEN-T
+        // Regulation require ETCS on the core network by 2030, the extended core
+        // by 2040 and the comprehensive network by 2050. In-cab signalling with
+        // continuous supervision does two things a lineside signal cannot: it
+        // lets trains run closer together on track that already exists, and it
+        // lets a train cross a border without changing systems. The discount is
+        // not a hunch — the European Union Agency for Railways measured the
+        // position at the end of 2024 as roughly 12,400km fitted, about 10% of
+        // the TEN-T network, and about 8,730 vehicles, 19% of the fleet. A
+        // programme five years from a deadline with a tenth of the work done
+        // does not finish on time, so the floor is 2035, and if the 2030 target
+        // is met after all the entry simply becomes available earlier than the
+        // world can afford it. It hangs off the high-speed chain because that is
+        // where in-cab signalling came from: above about 200km/h a driver cannot
+        // read a lineside signal, so the TGV and the Shinkansen had to solve this
+        // first, and the conventional network is now inheriting their answer.
+        // InvestmentEfficiency carries the weight because the whole point is more
+        // trains on the same rails.
+        tech(
+            "tran_digital_train_control", "Continuous Digital Train Control", T, Frontier,
+            &["tran_high_speed_rail", "tran_dedicated_hsr_network"], 690.0, 2035,
+            &[Productivity(0.00005), EnergyEfficiency(0.01), InvestmentEfficiency(0.03)],
+        ),
+        // SPECULATIVE — no uncrewed merchant ship trades deep sea today, and the
+        // bucket is SPECULATIVE rather than ROADMAP on purpose: what is on a
+        // schedule here is the RULEBOOK, not the ship, and this file's own
+        // standard is that sources are the first real deployment.
+        // KNOWN: the IMO adopted the non-mandatory MASS Code at MSC 111, held in
+        // London from 13 to 22 May 2026, and it took effect on 1 July 2026 — the
+        // first international framework for maritime autonomous surface ships;
+        // the
+        // published path is an experience-building phase from December 2026,
+        // drafting of a mandatory Code from 2028, adoption expected by 1 July
+        // 2030 and entry into force on 1 January 2032.
+        // ASSUMED: that owners then build to it, that a remote operations centre
+        // ashore can be insured, and that a ship which cannot be repaired at sea
+        // by the people aboard is still a ship a charterer will load. None of
+        // those is demonstrated. The floor is 2036, four years past the IMO's own
+        // entry-into-force date, because a convention entering force is the year
+        // building may START and not the year anything trades.
+        // FALSIFIABLE: if the experience-building phase produces a casualty, or
+        // if the mandatory Code lands and the orderbook does not move, this stays
+        // unbuilt and nothing else in the file changes. Note the reference class:
+        // the same organisation adjourned its own Net-Zero Framework for twelve
+        // months on a 57-49 vote in October 2025, having already agreed it.
+        // It sits on the driverless ride service and the large hull rather than
+        // on either alone, because the two hard parts are a perception and
+        // supervision stack that has survived commercial service, and a hull
+        // worth removing the crew from. If the drafted driverless line-haul entry
+        // lands, that is the better first prerequisite and this should be
+        // re-pointed at it before either is shipped.
+        tech(
+            "tran_autonomous_ship_operation", "Uncrewed Merchant Shipping", T, Frontier,
+            &["tran_robotaxi_service", "tran_ultra_large_containership"], 760.0, 2036,
+            &[
+                Productivity(0.00006),
+                InvestmentEfficiency(0.02),
+                CostReduction { domain: T, frac: 0.04 },
+            ],
+        ),
+        // ROADMAP, and the discount is the entry. JR Central is building the
+        // Chuo Shinkansen: a cost that has gone from ¥5.1tn at the 2007 estimate
+        // to over ¥9tn, 42.8km of superconducting test track at Yamanashi where
+        // an L0 set ran 603km/h on 21 April 2015, tunnels advanced in Yamanashi,
+        // Gifu and Nagoya, and — after a nine-year impasse — Shizuoka's governor
+        // Yasutomo Suzuki approved boring the 5.9km central section of the
+        // Southern Alps tunnel on 7 July 2026, with the prefectural agreement
+        // signed on 18 July. Everything a ROADMAP needs: named party, dated
+        // document, funded, under construction.
+        // Now the borrowing. This party's published date was 2027. In March 2024
+        // it abandoned 2027 and said at least 2034; by October 2025 that was no
+        // earlier than 2035; it is now Tokyo-Nagoya by 2036 AT THE EARLIEST, and
+        // "at the earliest" is a refusal to commit rather than a commitment. Four
+        // numbers in twelve years, each later than the last, from the company
+        // digging the hole. The floor is 2040, four years past the current
+        // number, and it guarantees nothing to anyone.
+        // Two deflations the entry has to carry. A single prerequisite, unusually
+        // for Frontier, because the second one honestly ought to be a
+        // superconducting magnet and this file may not reach into Materials to
+        // name it. And no EnergyEfficiency effect: levitation costs more energy
+        // per seat-kilometre than steel on steel, so what this buys is time and
+        // the Tokyo-Osaka air shuttle, not fuel.
+        tech(
+            "tran_superconducting_maglev", "Superconducting Maglev Line", T, Frontier,
+            &["tran_dedicated_hsr_network"], 880.0, 2040,
+            &[Productivity(0.00004), Environment(0.02), Stability(0.02)],
         ),
     ]
 }
