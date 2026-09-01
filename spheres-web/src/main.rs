@@ -5992,4 +5992,63 @@ mod tests {
             "the card and the sheet must keep counting against the same band"
         );
     }
+
+    /// Three Pacific states had their names sliced by the edge of the world.
+    ///
+    /// A nation label is `text-anchor: middle` on its anchor point and the svg
+    /// clips at the viewBox, so an anchor within half a name of x = 0 or
+    /// x = WORLD.w loses the other half — and no gesture recovers it, because
+    /// the frame is where the world ends, not where the camera is.
+    ///
+    /// Measured in Chrome at 1280x720, political shading, the view the map
+    /// opens with (k = 1), five text lines across three nations clipped:
+    ///
+    ///   Fiji            name + "authoritarian"   4.2 world units past the right frame
+    ///   Western Samoa   name + "semi-free"      46.3 units past the left frame
+    ///   Tonga           "authoritarian"          the same way
+    ///
+    /// The same three at 1024x768 and at 1920x1080 — the overhang is in world
+    /// units and does not depend on the window.
+    ///
+    /// Fix: a label whose box crosses the frame anchors inward — `start` at the
+    /// left edge, `end` at the right — so it grows into the world instead of
+    /// out of it. Both lines of a pair take the same anchor and the wider of
+    /// the two decides. After: zero clipped labels, and exactly those three
+    /// groups moved out of 137.
+    ///
+    /// The widths are measured (getBBox), not estimated: a character-count
+    /// estimate runs 14-24% light against the real advance and misses Fiji,
+    /// whose overhang is 4.2 units. getBBox reads the label's own untransformed
+    /// box, so the test is a property of the name and its anchor rather than of
+    /// the camera — a render taken while zoomed in still holds when the player
+    /// zooms out. 274 calls measured at 0.2ms, once per renderMap.
+    #[test]
+    fn a_name_at_the_edge_of_the_world_is_not_cut_by_it() {
+        assert!(
+            INDEX.contains("function anchorEdgeLabels()"),
+            "the map lost the pass that keeps a name inside the world frame"
+        );
+        assert!(
+            INDEX.contains("anchorEdgeLabels();"),
+            "anchorEdgeLabels must be called after the map's markup is in the DOM"
+        );
+        // The two ends it turns at, and the direction each turns.
+        assert!(
+            INDEX.contains(r#"const a = p[0] - w / 2 < 0 ? "start" : p[0] + w / 2 > WORLD.w ? "end" : null;"#),
+            "a label that overhangs the left frame anchors `start` and one that \
+             overhangs the right anchors `end`; anything else grows the wrong way"
+        );
+        // Measured, not estimated — the reason is in the doc comment above.
+        assert!(
+            INDEX.contains("txt.forEach((t) => { w = Math.max(w, t.getBBox().width); });"),
+            "the overhang must be measured from the real advance width and taken \
+             across both lines of the label pair"
+        );
+        // And the placement it is correcting, so the two cannot drift apart.
+        assert!(
+            INDEX.contains(r#"<text text-anchor="middle" font-size="${11 * PX}" filter="url(#halo)""#),
+            "the nation label is centred on its anchor; that is what this pass exists to \
+             correct at the frame, so re-derive it if the label placement changes"
+        );
+    }
 }
