@@ -897,15 +897,24 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
                 },
             }
         }
+        // Both fields split the same way the theatre above does, and for the
+        // same reason: not carrying one is a default, carrying one the server
+        // cannot read is a refusal. Measured before that split, with 200 and
+        // `errors: []` on every line — `side_a: 1` and `side_a: "true"` both
+        // enrolled the player on the side they were asking to fight, and
+        // `objective: "siez"` bought Deny, which is the one objective that
+        // seizes nothing. Fourteen political capital charged either way.
         "join" => Command::JoinConflict {
             conflict: conflict()?,
             nation: me,
-            side_a: v.get("side_a").and_then(|x| x.as_bool()).unwrap_or(false),
-            objective: v
-                .get("objective")
-                .and_then(|x| x.as_str())
-                .and_then(Objective::parse)
-                .unwrap_or(Objective::Deny),
+            side_a: match v.get("side_a") {
+                None | Some(serde_json::Value::Null) => false,
+                Some(x) => x.as_bool()?,
+            },
+            objective: match v.get("objective") {
+                None | Some(serde_json::Value::Null) => Objective::Deny,
+                Some(x) => Objective::parse(x.as_str()?)?,
+            },
         },
         "commit" => Command::SetCommitment {
             conflict: conflict()?,
@@ -2689,6 +2698,99 @@ mod tests {
                 })),
                 Err(()),
                 "{} was read as a theatre",
+                bad
+            );
+        }
+    }
+
+    /// Taking a side in somebody else's war used to rewrite what you asked for
+    /// rather than refuse it, in both of the two fields that say what joining
+    /// means. Measured on the live server as the United States on seed 7,
+    /// advanced until Iraq/Kuwait was on the board, then POST /api/command
+    /// {"kind":"join","conflict":N,...} — every line 200 with `errors: []`:
+    ///
+    ///   objective "seize" -> seize      side_a true  -> side A
+    ///   objective "siez"  -> DENY       side_a 1     -> side B
+    ///   objective ""      -> DENY       side_a "true"-> side B
+    ///   objective 3       -> DENY
+    ///
+    /// Neither substitution is cosmetic and neither is refundable. Deny is the
+    /// one objective that seizes nothing — a player who asked to take ground
+    /// bought a war fought to stop somebody else having it. `side_a` is worse:
+    /// a client that said `1` instead of `true` was enrolled AGAINST the side it
+    /// asked to fight for. Both cost the same fourteen political capital that
+    /// asking correctly does, and the join is not undoable.
+    #[test]
+    fn a_join_the_server_cannot_read_is_refused_not_rewritten() {
+        let g = Game::new(7, Some(NationId::USA));
+        let me = NationId::USA;
+        let join = |v: &serde_json::Value| match parse_command(&g.world, v, me) {
+            Some(Command::JoinConflict { side_a, objective, .. }) => Ok((side_a, objective)),
+            Some(other) => panic!("wrong command: {:?}", other),
+            None => Err(()),
+        };
+        let asked = |o: serde_json::Value, s: serde_json::Value| {
+            serde_json::json!({ "kind": "join", "conflict": 1, "objective": o, "side_a": s })
+        };
+
+        // What the browser posts must still go through untouched: conflictCmd
+        // sends a literal "deny" and a real boolean.
+        assert!(
+            INDEX.contains(r#"cmd.side_a = value === 1; cmd.objective = "deny";"#),
+            "the browser's join shape has moved; re-measure what it now sends"
+        );
+        assert_eq!(join(&asked("deny".into(), true.into())), Ok((true, Objective::Deny)));
+
+        // Every objective a client can name still arrives intact, asked of the
+        // whole set rather than a sample, in the spelling the state payload
+        // itself uses for them.
+        for o in [
+            Objective::Deny,
+            Objective::Degrade,
+            Objective::Seize,
+            Objective::Hold,
+            Objective::Stabilise,
+            Objective::Withdraw,
+        ] {
+            assert_eq!(
+                join(&asked(o.label().into(), false.into())),
+                Ok((false, o)),
+                "the payload's own spelling of {:?} must parse back",
+                o
+            );
+        }
+
+        // Not carrying a field is left exactly as it was — this commit is about
+        // a value the client DID supply being replaced by another one.
+        assert_eq!(
+            join(&serde_json::json!({ "kind": "join", "conflict": 1 })),
+            Ok((false, Objective::Deny))
+        );
+
+        // And the measured substitutions, in both fields.
+        for bad in [
+            serde_json::json!("siez"),
+            serde_json::json!(""),
+            serde_json::json!("attack"),
+            serde_json::json!(3),
+        ] {
+            assert_eq!(
+                join(&asked(bad.clone(), false.into())),
+                Err(()),
+                "{} was read as an objective",
+                bad
+            );
+        }
+        for bad in [
+            serde_json::json!(1),
+            serde_json::json!(0),
+            serde_json::json!("true"),
+            serde_json::json!("A"),
+        ] {
+            assert_eq!(
+                join(&asked("deny".into(), bad.clone())),
+                Err(()),
+                "{} was read as a side",
                 bad
             );
         }
