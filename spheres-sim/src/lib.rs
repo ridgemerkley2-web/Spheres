@@ -284,6 +284,29 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
     })
 }
 
+/// Why the world refuses a command outright, before any question of what it
+/// costs — a rung that does not exist, one above a ceiling the government has
+/// publicly bound itself to, one with no consenting host under it, one the
+/// taboo forbids.
+///
+/// Asked only of commands whose precondition is a PURE query, which today is
+/// the commitment ladder and nothing else. Everything else is left to
+/// `dispatch`, where the money is still reported first; the honest fix for
+/// those is to give them pure precondition queries too, not to guess here.
+///
+/// This is not a second copy of the rule. It calls the same
+/// [`commitment::rung_blocked`] that [`commitment::set_commitment`] calls, so
+/// the two cannot answer differently — which is the whole reason this returns
+/// the sim's own prose rather than composing its own.
+fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
+    match c {
+        Command::SetCommitment { conflict, nation, rung } => {
+            commitment::rung_blocked(w, w.conflict(*conflict)?, *nation, *rung)
+        }
+        _ => None,
+    }
+}
+
 pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
     // Priced before anything happens, so a command that cannot be afforded also
     // cannot take effect — and charged only once the act itself has gone
@@ -291,6 +314,23 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
     // rung with no airfield under it, a pact with a state that will not sign)
     // has not spent its standing on the asking, and before this it did: every
     // blocked rung quietly drained the treasury of whoever tried it.
+    //
+    // A refusal the world has already made OUTRANKS the treasury's, and asking
+    // them in the other order made the sim quote a price for something no
+    // amount of political capital could buy. Measured on seed 7 with Iraq at
+    // 1.0 political capital: asking for rung 12 answered "1.0 held, 33.2
+    // needed", while the same ask from a solvent Iraq answered "There are nine
+    // rungs." Two explanations for one refusal, and the one a poor government
+    // got was false — 33.2 is the price of rung NINE, arrived at because
+    // `escalation_cost_in` clamps its index with `.min(9)`, so rung 12, 200 and
+    // 255 all quote the same fabricated figure. It told the player to go and
+    // save up for a rung that does not exist. The ceiling and the basing rules
+    // did the same: "16.6 needed" where a solvent nation was told "You have
+    // publicly bound yourself to rung 2 or below" and "No consenting host
+    // within range of North America".
+    if let Some(why) = world_refusal(w, c) {
+        return Err(why);
+    }
     let bill = command_price(w, c).filter(|(_, price, _)| *price > 0.0);
     if let Some((payer, price, refusable)) = bill {
         let held = w.nation(payer).political_capital;
@@ -5654,6 +5694,120 @@ mod tests {
             &Command::SetCommitment { conflict: id, nation: NationId::USA, rung: 8 },
         )
         .expect("with Delhi's consent the campaign is possible");
+    }
+
+    /// A refusal must not depend on the asker's bank balance for its REASON.
+    ///
+    /// Before this, the price was checked before the world was, so a government
+    /// too poor to afford a rung was told about the money even when the rung was
+    /// one no amount of money could buy. Measured on seed 7, Iraq holding 1.0
+    /// political capital, against the same asks from an Iraq holding 500:
+    ///
+    ///   rung 12               poor: "1.0 held, 33.2 needed"  rich: "There are
+    ///                                                          nine rungs."
+    ///   rung 7 under a
+    ///     ceiling of 2        poor: "1.0 held, 16.6 needed"  rich: "You have
+    ///                              publicly bound yourself to rung 2 or below."
+    ///   rung 7 in North
+    ///     America             poor: "1.0 held, 16.6 needed"  rich: "No
+    ///                              consenting host within range..."
+    ///
+    /// The poor branch was not merely less helpful, it was FALSE, and the rung-12
+    /// case shows why: `escalation_cost_in` clamps its index with `.min(9)`, so
+    /// rungs 12, 200 and 255 all price at 33.2 — the price of rung nine. The sim
+    /// quoted a figure for a rung that does not exist and told the player to go
+    /// and save up for it.
+    ///
+    /// This asserts the invariant rather than the three strings: for a blocked
+    /// ask, what a pauper is told is what a plutocrat is told. It is written
+    /// across the whole rung range so it covers every branch of `rung_blocked`,
+    /// including any branch added later.
+    #[test]
+    fn a_refusal_the_world_made_is_not_reported_as_poverty() {
+        let mut w = seeded(7);
+        let th = theatre::TheatreId::Gulf;
+        bankroll(&mut w, NationId::Iraq);
+        apply_command(
+            &mut w,
+            &Command::OpenConflict { opener: NationId::Iraq, target: NationId::Kuwait, theatre: th },
+        )
+        .unwrap();
+        let id = w.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+        // A ceiling, so the blocked set is not only the out-of-range rungs.
+        bankroll(&mut w, NationId::Iraq);
+        apply_command(&mut w, &Command::SetCeiling { conflict: id, nation: NationId::Iraq, rung: 2 })
+            .unwrap();
+
+        let ask = |w: &mut WorldState, held: f64, rung: u8| {
+            w.nation_mut(NationId::Iraq).political_capital = held;
+            let out = apply_command(
+                w,
+                &Command::SetCommitment { conflict: id, nation: NationId::Iraq, rung },
+            );
+            // Nothing is ever charged for an ask that was refused. (An ask that
+            // went through is charged, correctly, and is not this claim.)
+            if out.is_err() {
+                assert_eq!(
+                    w.nation(NationId::Iraq).political_capital,
+                    held,
+                    "rung {} at {} held: a refusal took money",
+                    rung,
+                    held
+                );
+            }
+            out
+        };
+
+        let mut blocked = 0;
+        let mut afforded = 0;
+        let mut too_poor = 0;
+        for rung in 0..=12u8 {
+            let pauper = ask(&mut w, 1.0, rung);
+            let plutocrat = ask(&mut w, 5_000.0, rung);
+            match &plutocrat {
+                // The world let it through, so the pauper's refusal is about the
+                // money and is allowed to say so — but it must still be a
+                // refusal, and it must be the money it names.
+                Ok(()) => {
+                    afforded += 1;
+                    if let Err(e) = &pauper {
+                        too_poor += 1;
+                        assert!(
+                            e.contains("has not the standing"),
+                            "rung {}: a pauper was refused for something other than \
+                             the price the world was willing to sell at: {}",
+                            rung,
+                            e
+                        );
+                    }
+                    // Put the ladder back where the rich ask found it, so the
+                    // next rung is asked from the same rung as this one was.
+                    w.conflict_mut(id).unwrap().posture_mut(NationId::Iraq).unwrap().rung = 1;
+                }
+                // The world refused it. Then the money cannot be the reason, and
+                // the two answers must be the same answer.
+                Err(why) => {
+                    blocked += 1;
+                    assert!(
+                        !why.contains("has not the standing"),
+                        "rung {}: even solvent, the refusal was about money: {}",
+                        rung,
+                        why
+                    );
+                    assert_eq!(
+                        pauper.as_ref().unwrap_err(),
+                        why,
+                        "rung {}: a poor government was given a different reason \
+                         for the same refusal than a rich one",
+                        rung
+                    );
+                }
+            }
+        }
+        // The loop has to have exercised all three arms or it proves nothing.
+        assert!(blocked >= 2, "no blocked rungs were reached: {} of 13", blocked);
+        assert!(afforded >= 1, "no rung was sellable, so the money arm never ran");
+        assert!(too_poor >= 1, "no rung was unaffordable, so the price arm never ran");
     }
 
     #[test]
