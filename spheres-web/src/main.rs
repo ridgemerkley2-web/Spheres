@@ -320,6 +320,12 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
     let posture: Vec<serde_json::Value> = c
         .posture
         .iter()
+        // A nation that no longer exists is not standing on a rung. The sim
+        // keeps a dissolved state's posture for the month it takes the war
+        // systems to notice; see the filter in `state_json` for what was
+        // measured. A three-cornered war can outlive one of its parties, so the
+        // conflict is still served while the row for the dead one is not.
+        .filter(|b| w.nation_opt(b.nation).is_some_and(|n| n.alive))
         .map(|b| {
             serde_json::json!({
                 "id": format!("{:?}", b.nation),
@@ -605,9 +611,24 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         .filter(|n| !n.alive)
         .map(|n| serde_json::json!({ "id": format!("{:?}", n.id), "name": n.id.name() }))
         .collect();
+    // A conflict is a thing BETWEEN parties, so one that no longer has a living
+    // party on each side is not one, and a belligerent that no longer exists is
+    // not standing on a rung. The sim keeps a dissolved state's posture for the
+    // month it takes the war systems to notice, and this payload was serving
+    // that month as fact — the same response listed the Soviet Union under
+    // `dead` and under `wars[].posture` at rung 6, "standoff strike", stake
+    // 0.45. Measured over twelve seeds and thirty years: three occurrences,
+    // each lasting exactly one month, all at the dissolution.
+    //
+    // Filtered HERE and nowhere else. The sim's own conflict list is untouched
+    // and prunes itself on the following tick exactly as it did; this decides
+    // only what the browser is told, which is the half that can be got wrong
+    // without changing what the model asserts about history.
+    let alive = |id: &NationId| w.nation_opt(*id).is_some_and(|n| n.alive);
     let wars: Vec<serde_json::Value> = w
         .conflicts
         .iter()
+        .filter(|c| c.side_a.iter().any(alive) && c.side_b.iter().any(alive))
         .map(|c| conflict_json(w, c))
         .collect();
     // Newest first, and the whole archive — the event log is meant to be scrolled
@@ -2794,5 +2815,97 @@ mod tests {
                 bad
             );
         }
+    }
+
+    /// The payload used to contradict itself for a month after a federation
+    /// dissolved: the same response listed the Soviet Union under `dead` AND
+    /// under `wars[].posture`, standing at rung 6 — "standoff strike" — with a
+    /// stake of 0.45 against a state that no longer existed. Reported by
+    /// yugoslavia-04 as F-18.
+    ///
+    /// Measured before the fix by walking twelve seeds for thirty years and
+    /// cross-checking the two lists in every monthly payload: three
+    /// occurrences, each lasting exactly one month, all at the Soviet
+    /// dissolution in September 1993 —
+    ///
+    ///   seed 1: conflict 4, USSR(dead)@5 vs Poland@1          [Frozen]
+    ///   seed 8: conflict 1, USSR(dead)@1 vs China@1           [Frozen]
+    ///   seed 2: conflict 6, South Africa@6, Mozambique@2,
+    ///           USSR(dead)@6, Angola@6                        [Conventional]
+    ///
+    /// The third is why this is two rules and not one. A three-cornered war
+    /// outlives one of its parties, so the conflict is still real and must
+    /// still be served — it is only the dead row inside it that must go. The
+    /// first two have nobody left on one side, and a conflict with nobody on
+    /// one side of it is not a conflict.
+    ///
+    /// The sim is NOT pruned. It keeps its own conflict list exactly as it did
+    /// and clears these itself on the following tick; this test therefore
+    /// asserts on the payload while asserting that the world behind it is
+    /// unchanged, which is the line between a view fix and a model change.
+    #[test]
+    fn a_dissolved_state_is_not_served_as_a_live_belligerent() {
+        let mut g = Game::new(1, None);
+        let mut checked = 0;
+        let mut wars_seen = 0;
+        let mut sim_held_a_dead_belligerent = 0;
+        for _ in 0..(30 * 12) {
+            tick_month(&mut g.world, &[]);
+            g.snapshot();
+            let s = state_json(&g, None);
+            let dead: std::collections::HashSet<&str> = s["dead"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|d| d["id"].as_str().unwrap())
+                .collect();
+            for war in s["wars"].as_array().unwrap() {
+                wars_seen += 1;
+                let rows = war["posture"].as_array().unwrap();
+                for b in rows {
+                    assert!(
+                        !dead.contains(b["id"].as_str().unwrap()),
+                        "{}: conflict {} is standing {} on rung {} in the same \
+                         payload that lists it as dead",
+                        s["date"].as_str().unwrap(),
+                        war["id"],
+                        b["id"],
+                        b["rung"]
+                    );
+                }
+                // ...and what is left is still a conflict, with somebody on
+                // each side of it. This is the half the row filter alone
+                // cannot give: dropping the dead must not leave a war being
+                // fought by one party.
+                assert!(
+                    rows.iter().any(|b| b["side_a"] == true)
+                        && rows.iter().any(|b| b["side_a"] == false),
+                    "{}: conflict {} is served with nobody on one side of it",
+                    s["date"].as_str().unwrap(),
+                    war["id"]
+                );
+            }
+            // What the sim is holding underneath, this same month. Seed 1 is
+            // one of the three measured worlds, so this counter must not be
+            // zero — if it were, the loop above would be proving nothing and
+            // the test would pass on a world where the defect cannot occur.
+            if g
+                .world
+                .conflicts
+                .iter()
+                .flat_map(|c| c.posture.iter())
+                .any(|b| !g.world.nation_opt(b.nation).is_some_and(|n| n.alive))
+            {
+                sim_held_a_dead_belligerent += 1;
+            }
+            checked += 1;
+        }
+        assert_eq!(checked, 360);
+        assert!(wars_seen > 0, "thirty years produced no conflicts to check");
+        assert!(
+            sim_held_a_dead_belligerent > 0,
+            "the sim never held a dead belligerent in this world, so the filter \
+             above was never exercised and the assertions in it mean nothing"
+        );
     }
 }
