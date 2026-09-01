@@ -1807,6 +1807,17 @@ async function buildSetup() {
   // Enter in the search box: a lone match starts the game, otherwise it
   // confirms whatever is already selected.
   $("#nationSearch").addEventListener("keydown", (e) => {
+    // ...and `?` opens the card. This field takes focus the moment the picker
+    // builds (below), so on the setup screen EVERY key is "typing" and the
+    // global handler bails before it can offer the card — and the picker has no
+    // ? button either, #keysBtn being in the app header. The card's own last
+    // row is "This card — ?", so on the first screen a player sees, that row
+    // was false. This handler already steals Enter for a non-text purpose; a
+    // question mark appears in no nation's name, so nothing searchable is lost
+    // (asserted against the roster in the suite). Blur first, so the card is
+    // the modal it looks like and Escape closes it rather than just dropping
+    // this field's focus.
+    if (isKeysCardToggle(e)) { e.preventDefault(); e.target.blur(); toggleKeysCard(); return; }
     if (e.key !== "Enter" && e.key !== "Return") return;
     const pool = visiblePicks();
     if (pool.length === 1) pickNation(pool[0].name);
@@ -2043,6 +2054,16 @@ document.addEventListener("keydown", (e) => {
     else if (e.key === " ") e.preventDefault();   // otherwise the page scrolls under the card
     return;
   }
+  // OPENING the card is not a game control, so it does not wait for a game.
+  // Below this line the handler bails on `!S`, which is true on the setup
+  // screen — and the setup screen carries no ? button either (#keysBtn lives in
+  // the app header), so the one key the card advertises about itself was the
+  // one key with nowhere to press it on the first screen a player ever sees.
+  // #keys is a sibling of #app, not a child, so it paints over the picker fine.
+  //
+  // This also serves the tech screen, which is below the dispatch two lines on;
+  // techKeys therefore no longer needs a `?` branch of its own.
+  if (isKeysCardToggle(e)) { toggleKeysCard(); return; }
   if (!S || $("#app").style.display === "none") return;
   // The tech screen swallows everything while it is up — time keys included
   // (advancing blind from inside the screen is a misfire).
@@ -2066,7 +2087,8 @@ document.addEventListener("keydown", (e) => {
   else if (k === "-" || k === "_") mapZoom(1 / 1.3);
   else if (k === "0") resetCam();
   else if (k === "[" || k === "]") stepSelection(k === "]" ? 1 : -1);
-  else if (isKeysCardToggle(e)) toggleKeysCard();
+  // `?` is handled above the spectator bail, so that it works on the setup
+  // screen and inside the tech screen too. There is no branch for it here.
 });
 $("#keysBtn").onclick = toggleKeysCard;
 $("#keys").onclick = (e) => { if (e.target.id === "keys") setKeysCard(false); };
@@ -3694,7 +3716,8 @@ function techKeys(e) {
   }
   else if (k === "/") { const f = $("#techFind"); f.focus(); f.select(); }
   else if (k === "t" || k === "T") closeTech();
-  else if (k === "?") toggleKeysCard();
+  // No `?` branch: the global handler now takes it before this dispatch is
+  // reached, so one line opens the card from the picker, the game and here.
   else if (tech.mode === "map") {
     if (k === "f" || k === "F" || k === "0") techFitAll();
     else if (k === "+" || k === "=") techZoomBy(1.3);

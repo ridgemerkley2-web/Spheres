@@ -3074,6 +3074,75 @@ mod tests {
         );
     }
 
+    /// `?` must reach the card from the setup screen.
+    ///
+    /// The card's own last row is "This card — ?". On the picker — the first
+    /// screen a player sees — that was false. The keydown handler bails on
+    /// `!S || #app is hidden` before it ever reaches the `?` branch, and the
+    /// picker carries no ? button either, because #keysBtn lives in the app
+    /// header. So the one key the card advertises about itself was the one key
+    /// with nowhere to press it.
+    ///
+    /// The repair is placement, not new behaviour: opening the card is not a
+    /// game control, so it is handled above the bail. That also serves the tech
+    /// screen (the dispatch to techKeys is below the same bail), which is why
+    /// techKeys must no longer carry a `?` branch — a second copy of a toggle
+    /// that can never run is exactly what drifts.
+    #[test]
+    fn the_shortcut_card_opens_before_a_game_exists() {
+        let at_toggle = INDEX
+            .find("if (isKeysCardToggle(e)) { toggleKeysCard(); return; }")
+            .expect("the card's open branch is gone from the global handler");
+        let at_bail = INDEX
+            .find("if (!S || $(\"#app\").style.display === \"none\") return;")
+            .expect("the keydown handler's spectator bail is gone");
+        assert!(
+            at_toggle < at_bail,
+            "opening the card must be handled ABOVE the spectator bail, or ? is \
+             dead on the setup screen again"
+        );
+        // ...but that alone is not enough, because #nationSearch takes focus
+        // when the picker builds and `typing()` then bails one gate EARLIER
+        // still. The search field carries the card's second door.
+        assert!(
+            INDEX.contains(
+                "if (isKeysCardToggle(e)) { e.preventDefault(); e.target.blur(); toggleKeysCard(); return; }"
+            ),
+            "the setup screen's search box must offer the card — it holds focus \
+             from the moment the picker builds, so no other key path is reachable \
+             there"
+        );
+        // The claim that door rests on: `?` costs the search box nothing,
+        // because no nation can be found by typing one. Checked against the
+        // real roster rather than assumed.
+        for id in spheres_sim::world::all_nations() {
+            assert!(
+                !id.name().contains('?'),
+                "{id:?} has a question mark in its name, so the search box can \
+                 no longer afford to spend ? on the keyboard card"
+            );
+        }
+        // Three keyboard toggles and no more: the modal gate, the global open
+        // branch, and the search box. techKeys must not have grown its copy
+        // back — a toggle that can never run is what drifts.
+        assert_eq!(
+            INDEX.matches("toggleKeysCard();").count(),
+            3,
+            "the card's keyboard toggle should exist exactly three times — the \
+             modal gate, the global open branch and the search box"
+        );
+        // The card is a SIBLING of #app, so it can paint over the picker. If it
+        // is ever moved inside, the branch above will open an invisible card.
+        let at_app_open = INDEX.find("<div id=\"app\">").expect("#app is gone");
+        let at_keys = INDEX.find("<div id=\"keys\">").expect("#keys is gone");
+        let at_app_close = INDEX.find("<div id=\"sheetbg\">").expect("#sheetbg is gone");
+        assert!(
+            at_keys > at_app_close && at_app_close > at_app_open,
+            "#keys must stay outside #app — inside it, the card is hidden \
+             exactly when the setup screen is showing"
+        );
+    }
+
     /// O must not be a silently dead key in the one shading where it does
     /// nothing.
     ///
