@@ -1065,3 +1065,74 @@ the drift line had no debt floor either, and that one DID fire in ordinary play 
 41 of one world's 156 living nations sat at exactly zero debt while the ledger
 told them their debt was falling. Committed as "web: a nation with no debt is no
 longer shown paying it down" (TRIAGE F-12).
+
+### W-2 — a join is quoted at 14 PC and charges up to 56, and the difference is `seek_access` spending on the player's behalf
+
+**Found while verifying the F-20/F-21 fixes in the browser, not reported. It is
+the ROOT CAUSE of TRIAGE F-13**, which recorded the same shape on the ladder
+("quotes 25 pc and the queue charges 30.9, exactly 6.00 every time, every
+seed") without naming the mechanism. F-13's fixed 6.00 is the one-host case of
+what is really a per-host charge.
+
+**Symptom.** The war sheet's TAKE A SIDE button is captioned `14 PC`, which is
+the sim's own price for `Command::JoinConflict` (lib.rs:234). Pressing it as
+Iraq on seed 1990 against the Korean conflict took the political capital from
+41.22 to 9.22 — **32 charged against 14 quoted**. Measured in the browser and
+reproduced headless.
+
+**Mechanism, and it is exact.** `commitment::join_conflict` ends with
+
+```rust
+// An expeditionary power that has just committed itself goes round the
+// neighbours the same month, because everything above rung 5 depends on it.
+if !theatre::is_home(w, joiner, th) {
+    seek_access(w, joiner, th);
+}
+```
+
+Each of those approaches is a real `Command::RequestAccess`, priced at 6.0
+(lib.rs:263), and `apply_command` re-reads the payer's balance AFTER dispatch
+before taking the join's own 14 — so the two charges compound. Joining Iraq to a
+conflict in each theatre it is not home to, holding 500 PC, quoted 14.0 every
+time:
+
+| theatre | hosts in range | charged |
+|---|---|---|
+| Gulf (Iraq is home — `seek_access` skipped) | 7 | **14.0** |
+| South Asia / North America / Central Africa / Oceania | 2 | 26.0 |
+| East Asia / West Africa / Southern Africa | 3 | 32.0 |
+| Southeast Asia / Central Europe / North Africa / East Africa | 4 | 38.0 |
+| Balkans / Latin America | 5 | 44.0 |
+| Western Europe | 7 | **56.0** |
+| Levant | 5 | 38.0 (one host not approached) |
+
+`charged = 14 + 6 x (hosts approached)`. The home case is exactly the quote,
+which confirms the extra is entirely `seek_access`. **Quoted 14, charged up to
+56 — four times the price on the button.** The player is billed for requests
+they did not make and which are not itemised anywhere on the sheet.
+
+**Why this was not fixed, and it is the whole reason it is here.** Every repair
+crosses one of the standing lines:
+
+1. *Quote the real number.* The UI cannot compute it — the count depends on
+   `seek_access`'s host selection, which is sim logic. Re-deriving it in
+   index.html is the mirror class PLAN step 2 exists to hunt, and it would need
+   the literal 6.0 copied in as well.
+2. *Ship the real number.* The honest version: give the sim a pure
+   "what will this cost" query that `join_conflict` and the quote both use. That
+   is a real refactor of the access path — `seek_access` currently decides and
+   spends in one pass — and it is a sim change made for a UI caption.
+3. *Make the automatic requests free, or charge them once.* Moves a price.
+   Forbidden.
+4. *Stop joining from seeking access.* Changes gameplay. Forbidden.
+
+**It is also not obvious which way the owner wants it.** The 6-per-host charge
+may be exactly the intended cost of committing to somebody else's war abroad, in
+which case the defect is only that the button lies about it; or the compounding
+may be an accident of `apply_command` re-reading the balance after dispatch, in
+which case the sim is overcharging. That is a design question, not a fixer's.
+
+**Recommendation, not done:** option 2, and F-13 should be re-pointed at this
+entry — its "exactly 6.00 every time" is a single-host measurement of a
+per-host rule, so a fix that hard-codes 6 would be right in the Gulf and wrong
+in Western Europe by 36 PC.
