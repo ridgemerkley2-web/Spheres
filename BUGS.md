@@ -1338,3 +1338,87 @@ as a changed digit for those three bounds specifically**: on everything the mode
 can currently reach, only `MAX_DEMAND_GAP` binds, and it binds where the browser
 was previously furthest wrong — Zaire opens 1990 with a raw gap of +40.6% by the
 browser's old arithmetic against the sim's clamped +35.0%.
+
+---
+
+### W-4 — the interest-rate slider cannot reach the rate it is displaying, and the fix is blocked by two tests that pin the bound as page text
+
+**Measured 2026-09-01 by the surface-lies fixer. Written, verified, and
+REVERTED**, because it turns two spheres-web tests red and both of them are
+assertions.
+
+**Symptom.** Zaire opens January 1990 with a policy rate of **45%**. The rate
+slider renders:
+
+```
+label            "45.0%"
+input value      400        (the browser clamping 450 to the end of the track)
+input max        400
+ghost marker     left: 112.5%   — painted OUTSIDE its own control
+```
+
+The ghost is the mark whose entire job is to show where the standing value sits,
+and it is off the right-hand end of the widget. A range input takes a value from
+a click anywhere on its track, so **the first touch queues a five-point rate cut
+nobody asked for** — and because the first rate command latches the central bank
+away for the rest of the game (see "web: the interest-rate slider is a one-way
+door and never said so"), that touch is irreversible.
+
+**Cause.** `renderLeft` spells all four slider ranges into the page, and one of
+them disagrees with the sim: `0..0.40` against `Command::SetInterestRate`'s
+`0..0.60`. The other three (tax 0.02..0.60, military 0..0.35, investment
+0..0.40) match. The sim itself writes each bound twice — once in
+`command_price` and once in `apply_command` — which is what let one of them
+drift in the first place.
+
+**Reachable, not theoretical.** Every nation whose policy rate exceeds 40% has
+this. The AI's Taylor rule runs to 0.45, and the transcribed 1990 board seats
+several nations above 0.40 on day one.
+
+**The fix, written and measured before it was reverted.** Four named ranges in
+lib.rs (`RATE_RANGE`, `TAX_RANGE`, `MIL_SPEND_RANGE`, `STATE_INVEST_RANGE`),
+used by both sites there so the sim stops writing each bound twice — VALUES
+UNTOUCHED — served on the policy payload as `bounds`, and `sliderHtml` built
+from what it is given. After, on the same world:
+
+```
+label            "45.0%"
+input value      450
+input max        600
+ghost marker     left: 75%      — inside the track, measured against the track's
+                                  own client rect
+```
+
+The other three sliders render identically to before. No sim value moves; both
+golden hashes report their usual actuals.
+
+**Why it is reverted.** Two spheres-web tests pin the slider bounds as literal
+text in `ui/index.html`, and any fix that moves the bounds off the call site
+turns both red:
+
+1. `the_page_can_see_who_is_running_the_central_bank` asserts
+   `INDEX.contains(r#"sliderHtml("rate", "Interest rate", m.rate, 0, 0.40, rateSeat())"#)`
+   — the whole call, including the wrong bound. Its INTENT is "the rate slider
+   still says who is holding it", which the fix preserves; what it actually pins
+   is the argument list.
+2. `the_force_line_is_the_force_the_sim_sustains` **parses the military slider's
+   upper bound out of the page source** —
+   `INDEX.split_once("sliderHtml(\"military\", \"Military spending\", m.mil_spend, 0, ")`
+   — to check the served force curve covers what the slider can ask for. With
+   the bound served rather than spelt, the string it parses no longer exists and
+   the test panics on its own `expect`.
+
+The standing instruction is absolute: no test assertion is to be widened,
+narrowed or corrected, and a fourth red is to be reverted. Both apply.
+
+**Recommendation, not done, and it is small.** Re-point both assertions at the
+served bounds rather than at the page text:
+
+- (1) becomes `INDEX.contains(r#"sliderHtml("rate", "Interest rate", m.rate, rateSeat())"#)`,
+  which pins exactly what that assertion is for.
+- (2) reads `state_json(...)["policy"]["bounds"]["military"][1]` instead of
+  parsing the source, which is STRICTER than what it does today: it would then
+  be checking the curve against the bound the sim enforces rather than against a
+  number the page happens to be carrying.
+
+Both are Ridge's edits to make, not a fixer's.
