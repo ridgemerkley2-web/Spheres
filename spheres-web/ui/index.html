@@ -5034,7 +5034,15 @@ function cycleMapMode() {
 /// oil on without leaving the war, which is the reading the dedicated mode
 /// cannot give, because it sends the powers to scenery grey.
 function toggleResOverlay() {
-  if (ui.mapMode === "resources") return;    // already the whole map
+  if (ui.mapMode === "resources") {
+    // Nothing to lay it over — Resources IS the shading here. Say so out loud:
+    // the card offers O with no conditions, and in this one mode the key used
+    // to do nothing and report nothing, while resPanel() (which replaces the
+    // legend in this mode) never mentions O either. A dead key that explains
+    // itself is a control; a dead key that is silent is a bug report.
+    banner("Resources is already the whole map. O lays the same reading over another shading — press C first.");
+    return;
+  }
   ui.resOverlay = !ui.resOverlay;
   showTab("map");
   renderMap();

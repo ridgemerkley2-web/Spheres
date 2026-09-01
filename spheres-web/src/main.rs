@@ -3074,6 +3074,33 @@ mod tests {
         );
     }
 
+    /// O must not be a silently dead key in the one shading where it does
+    /// nothing.
+    ///
+    /// The keyboard card offers "Resource layer over the current shading — O"
+    /// with no conditions. In Resources shading there is nothing to lay it
+    /// over, and toggleResOverlay returned immediately — no state change, no
+    /// message. The mode's own panel does not mention O either, because
+    /// resPanel() replaces the legend line that names it. Measured in the
+    /// browser: ui.mapMode "resources", press O, mapMode "resources",
+    /// resOverlay false, banner display "none".
+    #[test]
+    fn o_says_why_it_does_nothing_in_resources_shading() {
+        assert!(
+            INDEX.contains(
+                "banner(\"Resources is already the whole map. O lays the same \
+                 reading over another shading — press C first.\");"
+            ),
+            "O is a silently dead key again in Resources shading"
+        );
+        // The condition it explains. If Resources ever gains an overlay of its
+        // own this guard goes, and so should the message.
+        assert!(
+            INDEX.contains("  if (ui.mapMode === \"resources\") {"),
+            "toggleResOverlay's Resources guard is gone"
+        );
+    }
+
     /// Every key `techKeys` wires must be on the card, and the card must not
     /// claim a key does something it does not.
     ///
