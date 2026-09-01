@@ -1510,3 +1510,49 @@ a defect with one right answer. Note the information is not lost either way:
 
 **Not attempted**, per the standing instruction that a fix which cannot be
 justified to a sceptical reader at breakfast is a fix not to make.
+
+## Filed under iron rule 7's grandfather clause (added 2026-09-01 by the tech-shelf author)
+
+### T-8 — `mature_economies_do_not_run_hot` reds 27.3% of the time on a healthy model, and it is NOT being re-pointed
+
+**Ridge's ruling 4, 2026-09-01: leave the bar where it is and file the
+measurement.** Iron rule 7 applies from birth. This bar predates it, so it is
+grandfathered, and nothing about it was touched by the shelf commit that
+surfaced this.
+
+`spheres-sim/src/lib.rs:4489`. The bar asserts `(0.008..0.026).contains(&g)` on
+`growth_last` for the USA, Germany, France and Italy over seeds {1990, 7, 42} at
+360 months. Italy is the one that decides it:
+
+```
+Italy, growth_last at 360 months: mean 0.00868, sd 0.00053
+the floor of 0.008 therefore sits at z = -1.28
+P(one seed red) = 10.1%
+P(the bar reds)  = 1 - (1 - 0.101)^3 = 27.3%   <- today, at its live horizon
+```
+
+**At 540 months it is worse and the sign flips.** Italy's mean falls to 0.00778,
+which is *below* the floor, and P(the bar reds) = **94.7%**. So the bar is not
+merely under-sampled; it is measuring a quantity that leaves its own band as the
+run lengthens. Any future work that extends a horizon must not simply re-point
+this bar at the longer one.
+
+**Why nothing was done, spelled out, because the obvious repair has a price.**
+Raising n from 3 to 12 without moving the threshold is legal under iron rule 5 —
+more seeds is a stricter test, not a wider one — but at 10.1% per seed it gives
+P(red) = **72%**. It would turn red immediately, become red number four, and
+deepen the re-pin block that BUGS T-5 records. Doing the rigorous thing here
+directly costs the ability to re-pin the goldens, which is why it is a decision
+for Ridge and not for the session that measured it.
+
+**What this is NOT.** It is not evidence the growth model is wrong. It is
+evidence that a three-seed bar reading a quantity sitting 1.28 standard
+deviations off its own floor is a coin the suite flips every time it runs. Iron
+rule 7's own record of the same disease is `spheres-sim/tests/sample_size_audit.rs`,
+whose header carries the 2026-08-31 table; when this bar is next touched for any
+reason, that is the moment to move its line out of the audit and into the comment
+beside it, with this derivation.
+
+Measured with `scratchpad/to2035/probe_validation` (`mature 40`), 40 seeds,
+recorded in `scratchpad/to2035/out_mature_40.txt` and adjudicated in
+`DECISION-2035.md` call 4.

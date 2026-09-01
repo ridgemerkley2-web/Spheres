@@ -28,11 +28,15 @@
 //! learning era needed the silicon, the fleet and the corpus at once, and got
 //! none of them before roughly 2012.
 //!
-//! PROPORTION. The Productivity values here sum to 0.0020 — two tenths of a
-//! percentage point of annual trend growth for the whole of computing, spread
-//! over thirty-five years. That is deliberately less than the popular story of
-//! the period claims and about what the productivity statistics of the period
-//! actually show.
+//! PROPORTION. The Productivity values here were authored to sum to 0.0020 —
+//! two tenths of a percentage point of annual trend growth for the whole of
+//! computing, spread over thirty-five years. That is deliberately less than the
+//! popular story of the period claims and about what the productivity
+//! statistics of the period actually show. The MEASURED sum is now 0.00242:
+//! the 2026-09 Intelligent and Frontier shelf added ten entries and took
+//! nothing back, because every incumbent in this file has a floor inside the
+//! window the golden hashes cover, so reducing any one of them would move a
+//! golden. The budget is held by writing less, not by trading.
 
 use super::TechDef;
 #[allow(unused_imports)]

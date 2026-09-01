@@ -2,7 +2,7 @@
 
 Grand strategy simulation, January 1990 start. Deterministic core (SplitMix64,
 single command queue, seeded), 137 nations at the start and up to 158 once
-federations come apart, a 253-technology tree, monthly ticks.
+federations come apart, a 328-technology tree, monthly ticks.
 
 ## Run it
     cargo run --release -p spheres-web                  # browser UI — map, charts, diplomacy

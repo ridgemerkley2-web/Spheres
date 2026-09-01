@@ -38,7 +38,7 @@
   Ukraine as a USSR successor alongside Russia. 24 at the start, up to 30 after
   federations come apart
 - Browser UI: map, charts, league table, dispatch feed, readable history
-- **Technology tree**: 253 technologies across eight domains plus a foundation set.
+- **Technology tree**: 328 technologies across eight domains plus a foundation set.
   Research funded out of output, spent across domains, diffusion weighted by GDP
   and openness, unlocks gated by prerequisites and year floors
 - **Productivity rebuilt on the tree**: the tree is scored against the technology
@@ -926,7 +926,7 @@ term. Doing this properly is a recalibration of the demand side, and it should b
 done before any more 1990 monetary data is transcribed.
 
 ### 2. The tree is invisible
-253 technologies and the browser UI does not mention one of them. The owner's
+328 technologies and the browser UI does not mention one of them. The owner's
 stated preference is to see the game; this is the largest gap between what the sim
 knows and what the screen shows.
 

@@ -29,11 +29,13 @@
 //! step of it was gated on the step before, and a nation that dropped out at
 //! any point did not get back in.
 //!
-//! WHAT THE NUMBERS MEAN. Productivity here sums to about 0.0020 — two tenths
-//! of a percentage point on trend growth for the whole of manufacturing, which
-//! sounds small until you remember it compounds for fifty years. The domain
-//! also carries most of the tree's `InvestmentEfficiency`, because that is
-//! literally what a machine tool is: a thing that makes a dollar of plant go
+//! WHAT THE NUMBERS MEAN. Productivity here was authored to sum to about
+//! 0.0020 — two tenths of a percentage point on trend growth for the whole of
+//! manufacturing, which sounds small until you remember it compounds for fifty
+//! years. The measured sum after the 2026-09 shelf is 0.00237, added rather
+//! than traded, because reducing an incumbent would move a golden hash. The
+//! domain also carries most of the tree's `InvestmentEfficiency`, because that
+//! is literally what a machine tool is: a thing that makes a dollar of plant go
 //! further.
 
 use super::TechDef;

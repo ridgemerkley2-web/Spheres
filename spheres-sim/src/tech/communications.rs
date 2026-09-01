@@ -30,8 +30,11 @@
 //! never built the trunk does not get the wavelength.
 //!
 //! PROPORTION. Communications is a diffusion domain before it is a productivity
-//! one. Its whole Productivity budget is 0.0020 — two tenths of a point of trend
-//! growth — but it carries most of the tree's `DiffusionSpeed`, because what a
+//! one. Its Productivity budget was authored at 0.0020 — two tenths of a point
+//! of trend growth — and the 2026-09 shelf took the measured sum to 0.00215
+//! without taking anything back, for the reason every domain file now carries:
+//! an incumbent's Productivity cannot be reduced while the goldens are frozen.
+//! It still carries most of the tree's `DiffusionSpeed`, because what a
 //! telephone network does to an economy is mostly to let it find out what
 //! everyone else already knows.
 
