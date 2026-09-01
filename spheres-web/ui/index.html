@@ -1685,6 +1685,12 @@ let S = null;            // latest state from the server
 let HIST = null;         // recorded time series from /api/history
 let queued = [];         // policy orders not yet sent
 let selected = null;     // nation id shown in the dashboard
+// Conflict id shown in the sheet, and the theatre name to say when it ends.
+// The sheet is one element and holds EITHER a nation or a conflict, so exactly
+// one of `selected` and `selectedWar` is ever set — see openNation, openConflict
+// and closeSheet, which is the whole of that invariant.
+let selectedWar = null;
+let selectedWarName = "";
 let pickedNation = null;
 
 // Everything the UI remembers between renders that is not game state.
@@ -2113,7 +2119,23 @@ function render() {
   renderTable();
   // The sheet re-open must not clobber the tech screen; the screen and the
   // glance dropdown must not sit stale across a tick.
-  if (selected && !tech.open) openNation(selected, true);
+  //
+  // The conflict sheet gets the same treatment as the dossier, which it never
+  // used to: it was built once and left, so it went on showing the postures,
+  // resolves, ladder prices and front counts of the month it was opened in. A
+  // war that had ENDED kept a full set of live buttons, every one of which the
+  // sim answers "No such conflict."
+  if (selectedWar != null && !tech.open) {
+    if (S.wars.some((w) => w.id === selectedWar)) {
+      openConflict(selectedWar, true);
+    } else {
+      // Nothing left to describe and nothing left to command. Say why, so the
+      // sheet does not simply vanish out from under the reader.
+      const was = selectedWarName;
+      closeSheet();
+      banner(was ? `The fighting in ${was} is over.` : "That conflict is over.");
+    }
+  } else if (selected && !tech.open) openNation(selected, true);
   if (tech.open) refreshTech();
   if (techMenuIsOpen()) renderTechMenu();
 }
@@ -4536,7 +4558,11 @@ function renderWars() {
 
 /// The conflict sheet: the ladder as nine clickable rows, each of which either
 /// tells you its price or tells you in words why you cannot have it.
-window.openConflict = function (id) {
+///
+/// `keepScroll` is for the per-tick refresh in render(): the sheet is rebuilt
+/// from the new state in place, so the reader must not be thrown back to the
+/// top every month.
+window.openConflict = function (id, keepScroll) {
   const w = S.wars.find((x) => x.id === id);
   if (!w) return;
   const m = me();
@@ -4646,6 +4672,7 @@ window.openConflict = function (id) {
   }
 
   const sheet = $("#sheet");
+  const scroll = sheet.scrollTop;
   sheet.innerHTML = `
     <div class="head"><h2>${w.theatre_name}</h2>
       <span class="tagline">${w.attacker} vs ${w.defender} · ${conflictLine(w, mine, theirs)} · since ${w.start}</span>
@@ -4684,8 +4711,13 @@ window.openConflict = function (id) {
     ${joinCard}
     <div class="card" style="margin-top:12px"><h3>Basing and overflight</h3>
       ${accessRows || `<div class="muted">Nobody's consent is needed here.</div>`}</div>`;
+  // The sheet holds a conflict now, not a nation. render() reads these two to
+  // rebuild it every tick; without them the sheet froze at the state it was
+  // opened in and went on offering commands for a war that had ended.
   selected = null;
-  openSheetEl(false);
+  selectedWar = id;
+  selectedWarName = w.theatre_name;
+  openSheetEl(keepScroll, scroll);
 };
 
 window.conflictCmd = async function (conflict, kind, value, target, word) {
@@ -8805,6 +8837,9 @@ function renderTable() {
 function openNation(id, keepScroll) {
   const n = nationById(id);
   const sheet = $("#sheet");
+  // One sheet, one subject: opening a nation retires whatever conflict was in
+  // it, so render() cannot go on refreshing a war behind a dossier.
+  selectedWar = null;
   if (!n) {
     // A dead nation still has a history worth reading.
     const d = S.dead.find((x) => x.id === id);
@@ -9178,6 +9213,7 @@ function openSheetEl(keepScroll, scroll) {
 
 function closeSheet() {
   selected = null;
+  selectedWar = null;
   $("#sheet").style.display = "none";
   $("#sheetbg").style.display = "none";
   if (S) renderMap();

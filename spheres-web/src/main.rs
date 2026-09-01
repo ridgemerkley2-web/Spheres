@@ -3074,6 +3074,61 @@ mod tests {
         );
     }
 
+    /// The conflict sheet must be rebuilt every tick, exactly as the nation
+    /// dossier is.
+    ///
+    /// `render()` re-opened the dossier from `selected` on every state change,
+    /// but `openConflict` set `selected = null` and recorded nothing in its
+    /// place, so an open war sheet was built once and then left. Measured in
+    /// the browser, playing USA on seed 1990:
+    ///
+    ///   Oct 1990   open the Gulf sheet. It reads
+    ///              "Iraq rung 1 — rhetoric", "Kuwait rung 1 — rhetoric".
+    ///   Oct 1991   the sim holds Iraq at rung 6 and Kuwait at rung 2.
+    ///              The sheet still reads rung 1 and rung 1.
+    ///   Nov 1992   the war is OVER and gone from S.wars. The sheet is still
+    ///              open, still headed "the Gulf", still says "below the
+    ///              shooting line — nobody has fired", and still offers 16 live
+    ///              buttons. Posting one of them - conflictCmd(1,'join',1) -
+    ///              returns errors: ["No such conflict."].
+    ///
+    /// So the fix has three halves: remember which conflict is in the sheet,
+    /// rebuild it from the new state each tick (keeping the scroll position, or
+    /// the reader is thrown to the top every month), and when the war has ended
+    /// close the sheet and say so rather than leave dead controls up.
+    #[test]
+    fn the_conflict_sheet_is_rebuilt_every_tick() {
+        assert!(
+            INDEX.contains("selectedWar = id;"),
+            "openConflict must record which conflict the sheet is holding, or \
+             render() cannot refresh it"
+        );
+        assert!(
+            INDEX.contains("openConflict(selectedWar, true);"),
+            "render() must rebuild the open conflict sheet from the new state, \
+             keeping the scroll position"
+        );
+        assert!(
+            INDEX.contains("if (S.wars.some((w) => w.id === selectedWar)) {"),
+            "render() must check the conflict still exists before rebuilding it"
+        );
+        assert!(
+            INDEX.contains("window.openConflict = function (id, keepScroll) {"),
+            "openConflict must accept keepScroll — a per-tick rebuild that resets \
+             scrollTop throws the reader to the top every month"
+        );
+        // The sheet holds EITHER a nation or a conflict. Three writes of null:
+        // the declaration, openNation (which takes the sheet over) and
+        // closeSheet. Lose any one and a stale war goes on being refreshed
+        // behind a dossier, or after the sheet is shut.
+        assert_eq!(
+            INDEX.matches("selectedWar = null;").count(),
+            3,
+            "selectedWar must be cleared by openNation and closeSheet as well as \
+             declared — the sheet holds one subject at a time"
+        );
+    }
+
     /// The shortcut card is a modal and must swallow the keys, the way the tech
     /// screen already does.
     ///
