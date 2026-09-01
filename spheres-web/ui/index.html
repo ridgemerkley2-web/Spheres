@@ -739,7 +739,48 @@
      three panes, and re-anchoring the containing block for all three to enable
      one is a needless blast radius. */
   #pane-map { position: relative; }
-  #glmap { position: absolute; pointer-events: none; z-index: 0; display: none; }
+  /* THE GLOBE'S TWO CANVASES, and the split between them is the design:
+     #glmap is the WebGL2 sphere -- ground, political texture, selection, the
+     atmosphere -- and it is the only thing that takes pointer events on this
+     screen, because the globe's camera lives on it. .globe-overlay is a 2D
+     canvas of exactly the same size stacked on top for the marks that have to
+     face the viewer (nation names, city names, war glows, district names), and
+     it MUST NOT take pointer events: it covers the sphere completely, so a
+     single stray pointer-events on it would kill drag, zoom, hover and every
+     click on the map at once. */
+  .globe-stage { position: relative; width: 100%; height: calc(100vh - 190px);
+                 min-height: 320px; }
+  #glmap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0;
+           cursor: grab; touch-action: none; }
+  .globe-overlay { position: absolute; inset: 0; width: 100%; height: 100%;
+                   pointer-events: none; z-index: 1; }
+  #glmap:active, html.globe-dragging #glmap { cursor: grabbing; }
+  html.globe-dragging, html.globe-dragging * { cursor: grabbing !important;
+                                               user-select: none !important; }
+  /* The three things floating over the sphere. All of them sit above the
+     overlay and none of them take the pointer except the two turn buttons. */
+  .globe-readout, .globe-zoom {
+    position: absolute; z-index: 2; pointer-events: none;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .06em;
+    color: var(--dim); background: #070b12aa; border: 1px solid var(--line);
+    padding: 3px 7px; border-radius: 3px;
+  }
+  .globe-readout { top: 8px; left: 10px; }
+  .globe-zoom { bottom: 8px; left: 10px; }
+  .globe-turn {
+    position: absolute; z-index: 2; top: 50%; transform: translateY(-50%);
+    width: 26px; height: 34px; line-height: 30px; text-align: center;
+    background: #070b12cc; color: var(--dim); border: 1px solid var(--line);
+    border-radius: 3px; cursor: pointer; font-size: 15px;
+  }
+  .globe-turn:hover { color: var(--brass-hi); border-color: var(--edge-lite); }
+  .globe-turn.prev { left: 10px; }
+  .globe-turn.next { right: 10px; }
+  .globe-fallback {
+    position: absolute; z-index: 3; inset: 20% 12% auto 12%; text-align: center;
+    color: var(--dim); font-size: 12px; line-height: 1.6;
+    background: #070b12dd; border: 1px solid var(--line); padding: 14px;
+  }
   #pane-map .legend { position: relative; z-index: 2; }
   /* Scoped to .gl-on ON PURPOSE. position:relative + z-index makes the svg a
      stacking context, which confines #relief's mix-blend-mode:multiply to the
@@ -1497,6 +1538,10 @@
 <script src="/districts.js"></script>
 <script src="/rivers.js"></script>
 <script src="/terrain.js"></script>
+<!-- Natural Earth 1:50m populated places, and the globe's camera. Both are
+     served by the same binary that serves this page: no CDN, no build step. -->
+<script src="/cities.js"></script>
+<script src="/globe3d.js"></script>
 <script>
 "use strict";
 const WORLD = window.WORLD;
@@ -2185,6 +2230,12 @@ document.addEventListener("keydown", (e) => {
   else if (k === "+" || k === "=") mapZoom(1.3);
   else if (k === "-" || k === "_") mapZoom(1 / 1.3);
   else if (k === "0") resetCam();
+  // The arrows turn the globe, and only while the map is the screen being
+  // looked at -- every other tab wants them for its own scrolling.
+  else if (ui.tab === "map" && k === "ArrowLeft") globeNudge(-1, 0);
+  else if (ui.tab === "map" && k === "ArrowRight") globeNudge(1, 0);
+  else if (ui.tab === "map" && k === "ArrowUp") globeNudge(0, -1);
+  else if (ui.tab === "map" && k === "ArrowDown") globeNudge(0, 1);
   else if (k === "[" || k === "]") stepSelection(k === "]" ? 1 : -1);
   // `?` is handled above the spectator bail, so that it works on the setup
   // screen and inside the tech screen too. There is no branch for it here.
@@ -5384,55 +5435,121 @@ window.glGround = (k) => groundUniforms(ui.mapMode, k === undefined ? ui.cam.k :
 /// The SIX custom properties the `.gl-on` rules read, written on the <svg>
 /// element. Removed rather than zeroed in the thematic modes, so a mode switch
 /// cannot leave a ground variable applied with no ground behind it.
-const GROUND_VARS = ["--fop", "--tfillop", "--seaop", "--landop", "--gratop", "--lakeop"];
-function stampGroundVars(svg) {
-  if (!svg) return;
+/// The per-mode camera ramp, resolved for the camera as it stands. On the flat
+/// map these six numbers were written onto the <svg> as custom properties and
+/// read by CSS; the globe has no svg to write them on, so they are read
+/// directly — by the political painter, which bakes `gratop` and `tfillop`
+/// into the texture, and by the draw call, which hands `fop` to the shader as
+/// uPolOp. Same policy, same numbers, one indirection fewer.
+function camDials() {
   const g = groundUniforms(ui.mapMode, ui.cam.k);
-  if (!g) { for (const v of GROUND_VARS) svg.style.removeProperty(v); return; }
-  svg.style.setProperty("--fop", g.fop);
-  svg.style.setProperty("--tfillop", g.tfillop);
-  svg.style.setProperty("--seaop", g.seaop);
-  svg.style.setProperty("--landop", g.landop);
-  svg.style.setProperty("--gratop", g.gratop);
-  svg.style.setProperty("--lakeop", g.lakeop);
+  if (g) return g;
+  // A thematic mode (Relations, Stability, Growth, Economy) carries no `ground`
+  // block. On the flat map it simply had no GL layer under it and the svg drew
+  // the whole map; here the shader's own `legacy` term IS that map — the flat
+  // #333c48 land and the #ocean gradient, reproduced exactly at uGround = 0 —
+  // so the mode is expressed by standing the physical ground down and letting
+  // the political texture paint over it at full strength.
+  return { ground: 0, sat: 0, shade: 0, sea: 0, haze: 0, ao: 0, glint: 0,
+           fop: 1, tfillop: 0, lakeop: 0, seaop: 0, landop: 0, gratop: 0.45 };
 }
 
 /* ---------------- camera + districts ----------------
    Districts are POLITICAL geography: admin-1 identity and painted ownership,
    nothing else. No fronts, no per-district combat, no counters — a district
    changes colour when a settlement changes its owner, and that is all.
-   The camera is the svg viewBox: pan and zoom rewrite one attribute on the
-   existing element and never rebuild the map. */
+
+   THE CAMERA KEPT ITS SHAPE WHEN THE MAP BECAME A SPHERE, deliberately.
+   `ui.cam` is still {cx, cy, k} and cx/cy are still a point on mapgen's
+   Robinson canvas — they simply name the point the globe is looking AT rather
+   than the centre of a viewBox, and k is the globe's zoom rather than the
+   viewBox's. Everything that reads the camera and does not care how the world
+   is drawn — the zoom bands, the ground ramps, groundUniforms, camTween,
+   zoomTheatre, the resource glyph budget, the district-detail band — reads it
+   unchanged. Only the two functions that turn it into pixels know about yaw
+   and pitch, and they are right here.
+
+   THE TWO DIRECTIONS ARE SEPARATE FUNCTIONS AND MUST STAY SEPARATE. applyCam()
+   pushes ui.cam into the globe (the keyboard, resetCam, camTween, zoomTheatre);
+   camFromGlobe() pulls the globe's own view back into ui.cam (a drag, a wheel).
+   Wiring either one to call the other closes a loop that a rounding error is
+   enough to make oscillate. */
 
 const ZB1 = 2.2, ZB2 = 4;   // district borders visible; district labels live
 
-function camBox() {
-  const k = ui.cam.k, vw = WORLD.w / k, vh = WORLD.h / k;
-  ui.cam.cx = clamp(ui.cam.cx, vw / 2, WORLD.w - vw / 2);
-  ui.cam.cy = clamp(ui.cam.cy, vh / 2, WORLD.h - vh / 2);
-  return `${ui.cam.cx - vw / 2} ${ui.cam.cy - vh / 2} ${vw} ${vh}`;
+/// canvas point -> the globe's yaw/pitch. lon = -yaw and lat = pitch is not a
+/// convention chosen here: it falls out of globe3d.js's rotation, and the
+/// derivation is written down beside it.
+/// THE FREE PAIR, NOT THE CLAMPED ONE, and that distinction is load-bearing.
+/// Globe3D.project/unproject clamp latitude to the BAKE's 83N/58S, which is
+/// what every hit test and every label wants: past those parallels there is no
+/// texel. The CAMERA is not a hit test. The shader paints ice beyond both clips
+/// precisely so the player can look at the poles, and storing the camera
+/// through the clamped pair silently discards the excess -- so a drag down to
+/// the Antarctic snapped ~12 degrees north on the next tick, mode change or
+/// keypress, because every one of those ends in applyCam().
+function camAngles() {
+  const geo = Globe3D.unprojectFree(ui.cam.cx, ui.cam.cy);
+  return { yaw: -geo[0] * Math.PI / 180, pitch: geo[1] * Math.PI / 180 };
 }
 
+/// The canvas y of the camera's own latitude limit. Beyond this the globe
+/// cannot be turned anyway -- setView clamps the pitch -- so this is the range
+/// applyCam is allowed to hold cy inside without ever being the thing that
+/// stops a legal view.
+const CAM_Y = window.Globe3D
+  ? [Globe3D.projectFree(0, Globe3D.CAM_LAT)[1], Globe3D.projectFree(0, -Globe3D.CAM_LAT)[1]]
+  : [0, WORLD.h];
+
+/// ui.cam -> the globe. The push direction: the keyboard, resetCam, camTween
+/// and zoomTheatre all move the camera by writing ui.cam and calling this.
+/// `silent` on setView is what keeps it from bouncing straight back through
+/// camFromGlobe.
 function applyCam() {
-  const svg = $("#pane-map svg");
-  if (!svg) return;
-  svg.setAttribute("viewBox", camBox());
-  svg.classList.toggle("zb1", ui.cam.k >= ZB1);
-  svg.classList.toggle("zb2", ui.cam.k >= ZB2);
-  // Nation labels counter-scale against the camera so they hold a constant
-  // screen size; CSS reads this custom property (see .nodeg .lblk).
-  svg.style.setProperty("--zk", ui.cam.k);
-  // The svg-side window ramps with the camera, on the same --zk idiom and in
-  // the same task. It has to happen HERE rather than in renderMap: the fills
-  // are written once per tick and the camera moves once per frame, so an
-  // attribute would lag a whole tick behind the gesture and then pop.
-  stampGroundVars(svg);
-  // The GL ground redraws in the SAME TASK as the viewBox write, deliberately.
-  // Deferred to a rAF there is an event-loop ordering — a pointermove dispatched
-  // after that frame's callbacks have run — in which the frame paints the svg at
-  // the new camera and the ground at the old one. Drawing here makes that
-  // structurally impossible; it is a no-op when the GL layer is not live.
-  glDraw();
+  ui.cam.k = clamp(ui.cam.k, Globe3D.ZOOM_MIN, Globe3D.ZOOM_MAX);
+  // cy is CLAMPED and cx WRAPS, because that is the shape of the thing being
+  // looked at: the bake stops at 83N/58S and there is nothing above or below
+  // to point the camera at, but there is no east or west edge to a globe.
+  ui.cam.cx = ((ui.cam.cx % WORLD.w) + WORLD.w) % WORLD.w;
+  ui.cam.cy = clamp(ui.cam.cy, CAM_Y[0], CAM_Y[1]);
+  if (!GLOBE) return;
+  const a = camAngles();
+  GLOBE.setView(a.yaw, a.pitch, ui.cam.k, true);
+  camBandCheck();
+  globeReadoutSync();
+  GLOBE.render();            // SYNCHRONOUS, for the reason below
+}
+
+/// The globe -> ui.cam. The pull direction: a drag or a wheel moves the globe
+/// first and the rest of the page follows.
+///
+/// SYNCHRONOUS, exactly as the flat map's applyCam was, and for the same
+/// reason: a draw deferred to a rAF admits an event-loop ordering — a
+/// pointermove dispatched after that frame's callbacks have run — in which the
+/// overlay's labels are placed at the new camera and the ground is drawn at the
+/// old one. The two are one task or they are eventually inconsistent.
+function camFromGlobe(yaw, pitch, zoom) {
+  const p = Globe3D.projectFree(-yaw * 180 / Math.PI, pitch * 180 / Math.PI);
+  ui.cam.cx = p[0]; ui.cam.cy = p[1]; ui.cam.k = zoom;
+  camBandCheck();
+  globeReadoutSync();
+  scheduleDistrictDetail();
+}
+
+/// The political texture bakes two things that depend on the ZOOM rather than
+/// on the world: the district mesh (ZB1) and the district labels' band (ZB2).
+/// Crossing a band is therefore the one camera move that dirties it — which is
+/// why this is a band check and not a repaint on every frame.
+let CAMBAND = -1;
+function camBandCheck() {
+  const band = (ui.cam.k >= ZB1 ? 1 : 0) + (ui.cam.k >= ZB2 ? 1 : 0);
+  if (band !== CAMBAND) { CAMBAND = band; POL.dirty = true; }
+  // ...and the ramp, which is now baked into the fills rather than applied to
+  // the texture as a whole. 0.015 is the threshold at which a repaint is worth
+  // its millisecond: the ramp's full travel is ~0.10 in Political, so this is
+  // about seven repaints across the whole zoom range rather than one per frame.
+  const fop = camDials().fop;
+  if (Math.abs(fop - POL.fop) > 0.015) POL.dirty = true;
 }
 
 function resetCam() {
@@ -5441,8 +5558,18 @@ function resetCam() {
 }
 
 function mapZoom(f) {
-  ui.cam.k = clamp(ui.cam.k * f, 1, 32);
+  ui.cam.k = clamp(ui.cam.k * f, Globe3D.ZOOM_MIN, Globe3D.ZOOM_MAX);
   applyCam(); scheduleDistrictDetail();
+}
+
+/// Turn the globe to put a place under the camera without changing the zoom.
+/// The keyboard's arrows go through the globe's own nudge instead, because a
+/// turn measured in radians of the SPHERE is the honest unit for them; this is
+/// for the page's "show me there" affordances.
+function camLookAt(x, y, k) {
+  ui.cam.cx = x; ui.cam.cy = y;
+  if (k !== undefined) ui.cam.k = k;
+  applyCam();
 }
 
 /// Fly the camera to a conflict's theatre. A read-only affordance — it moves
@@ -5470,7 +5597,15 @@ window.zoomTheatre = function (id) {
   const bw = (x1 - x0) + 2 * pad, bh = (y1 - y0) + 2 * pad;
   // Floored at ZB1 (borders on), not forced to ZB2 — a Russia-sized theatre
   // at k=4 would overflow the screen; a small one lands past ZB2 naturally.
-  const k = clamp(Math.min(WORLD.w / bw, WORLD.h / bh), ZB1, 12);
+  //
+  // GLOBE_FIT is the correction the sphere owes this arithmetic. WORLD.w / bw
+  // asked "how many times does the theatre fit across the viewBox", and the
+  // viewBox was WORLD.h/k tall. The globe's visible height at the sub-camera
+  // point is 2*tan(21deg)*(d-1)*0.8487*RAD*rx = 718.6/k at the equator, not
+  // 1018.2/k — so every k derived the old way frames 1.42x less world than it
+  // measured, and zoom-to-theatre cropped the theatre it had just fitted.
+  const GLOBE_FIT = 718.6 / WORLD.h;
+  const k = clamp(Math.min(WORLD.w / bw, WORLD.h / bh) * GLOBE_FIT, ZB1, 12);
   showTab("map");
   camTween((x0 + x1) / 2, (y0 + y1) / 2, k);
 };
@@ -5481,12 +5616,19 @@ window.zoomTheatre = function (id) {
 function camTween(cx, cy, k) {
   cancelAnimationFrame(camAnim);
   const from = { ...ui.cam }, t0 = performance.now(), D = 350;
+  // A globe has no left or right edge, so cx is an angle and the two ways round
+  // are not equally long. Interpolating it as a plain number sent a flight from
+  // the western Pacific to Latin America three quarters of the way round the
+  // world backwards; taking the short arc is one subtraction.
+  let dx = cx - from.cx;
+  if (dx > WORLD.w / 2) dx -= WORLD.w;
+  if (dx < -WORLD.w / 2) dx += WORLD.w;
   const ease = (t) => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
   const step = (now) => {
     const t = ease(clamp((now - t0) / D, 0, 1));
     // interpolate in 1/k so the zoom feels linear on screen
     ui.cam.k = 1 / (1 / from.k + (1 / k - 1 / from.k) * t);
-    ui.cam.cx = from.cx + (cx - from.cx) * t;
+    ui.cam.cx = from.cx + dx * t;
     ui.cam.cy = from.cy + (cy - from.cy) * t;
     applyCam();
     if (t < 1) camAnim = requestAnimationFrame(step);
@@ -5495,56 +5637,28 @@ function camTween(cx, cy, k) {
   camAnim = requestAnimationFrame(step);
 }
 
-/// One <g> holding every district outline, one <path> per country. Created
-/// ONCE at load; renderMap re-adopts the same node into each fresh svg —
-/// appendChild re-parents, it does not re-parse six megabytes of path data.
-const DNODE = (() => {
-  const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  g.setAttribute("id", "dborders");
-  g.setAttribute("pointer-events", "none");
-  let s = "";
-  for (const iso in DISTRICTS.byCountry) {
-    const d = DISTRICTS.byCountry[iso].map((x) => x.path).join("");
-    s += `<path class="dline" data-iso="${iso}" d="${d}"/>`;
-  }
-  g.innerHTML = s;
-  return g;
-})();
-
 /// district id -> {iso, id, name, path, cx, cy}
+///
+/// THE THREE RETAINED SVG NODES THAT USED TO SIT HERE ARE GONE, and their
+/// absence is worth a line. DNODE held every district outline, RNODE the
+/// rivers and lakes, and RELIEF an <image> of /terrain.png; each was built once
+/// at load and re-parented into every fresh svg, because re-parsing six
+/// megabytes of path data per tick was not affordable. The globe has no svg to
+/// re-parent them into: the same geometry is painted into the political texture
+/// by paintPolitical(), which pays the parse once into the PATHS cache for
+/// exactly the same reason and by exactly the same argument.
+///
+/// RELIEF did not simply move -- it was DELETED. It was the fallback: on a lost
+/// context glFail dropped one class and the svg carried the map at
+/// /terrain.png quality. A sphere is the WebGL pass, so there is nothing under
+/// it to reveal, and keeping the node would have meant fetching and decoding
+/// 613 KB on every load to hold a fallback that can no longer be taken. The
+/// route still serves the file; nothing in this page asks for it.
 const DINDEX = (() => {
   const m = {};
   for (const iso in DISTRICTS.byCountry)
     for (const d of DISTRICTS.byCountry[iso]) m[d.id] = { iso, ...d };
   return m;
-})();
-
-/// Rivers and lakes concatenated into TWO retained paths, built once at load
-/// on the DNODE pattern — renderMap re-adopts the same node into each fresh
-/// svg, so ~100KB of path data is parsed once, never per tick. (rivers.js
-/// ships no scalerank, so there is a single river tier; the zb1 CSS band
-/// handles world-zoom quiet vs zoomed-in bright.)
-const RNODE = (() => {
-  const host = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  const lakes = RIVERS.lakes.join("");
-  const rivers = RIVERS.rivers.map((r) => r.d).join("");
-  host.innerHTML = `<g id="riverg" pointer-events="none">${
-    lakes ? `<path class="lake" d="${lakes}"/>` : ""}${
-    rivers ? `<path class="river" fill="none" d="${rivers}" vector-effect="non-scaling-stroke"/>` : ""}</g>`;
-  return host.firstChild;
-})();
-
-/// The hillshade <image>, created ONCE so the browser fetches and decodes
-/// /terrain.png exactly once for the life of the page (renderMap re-adopts
-/// it; an <image> rebuilt by innerHTML every tick can re-request 600KB per
-/// render on a server without cache headers). Per-mode strength is CSS on
-/// #relief. Against a binary that predates the route, the 404 simply renders
-/// nothing — the guard is free.
-const RELIEF = (() => {
-  const host = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  host.innerHTML = `<image id="relief" href="/terrain.png" x="0" y="0" width="${WORLD.w}" height="${
-    WORLD.h}" preserveAspectRatio="none"/>`;
-  return host.firstChild;
 })();
 
 /* ================= the GL physical underlay (RENDER) =================
@@ -5565,12 +5679,14 @@ const RELIEF = (() => {
    ui.cam as a side effect of clamping, so the CTM must be read after
    applyCam(), never in place of it.
 
-   FALLBACK. Two tiers, not three: full GL, or today's /terrain.png <image>.
-   Every trigger routes through the single glFail() below, which hides the
-   canvas and drops one class off the svg — landing on precisely today's
-   rendering, hillshade included. RELIEF and its eager 613 KB fetch stay
-   constructed unconditionally above, which is what makes that fallback
-   instantaneous at the moment of a lost context.
+   FALLBACK. There is ONE tier now, and saying so plainly is better than
+   implying a safety net that was removed. While the map was flat this layer
+   was an enhancement: a lost context dropped one class off the svg and the
+   page landed on the /terrain.png hillshade, a real if quieter map. The map is
+   a sphere, and the sphere IS this pass — there is no svg underneath to
+   reveal. Every trigger still routes through the single glFail() below, but
+   what it can do is tell the player what happened, where the map would have
+   been, and stop asking for frames.
 
    PERFORMANCE. Render on demand — never a standing rAF. glDraw() is
    SYNCHRONOUS from applyCam() and from the end of renderMap(): with the
@@ -5774,13 +5890,43 @@ precision highp float;
 precision highp sampler2D;
 out vec4 fragColor;
 
-// ---- camera: derived from the svg's OWN getScreenCTM, never recomputed ----
-uniform vec4  uFrag2World;   // world.xy = gl_FragCoord.xy * .xy + .zw
+// ---- camera: a ray through a sphere, and nothing else ---------------------
+// The map is a globe. "Which point of the world is under this pixel" is
+// therefore a ray-sphere intersection followed by a FORWARD Robinson
+// projection, where the flat map had an affine inverse of the svg's own CTM.
+//
+// THAT IS THE ONLY THING THAT CHANGED IN THIS SHADER. Everything past the
+// preamble of main() reads "world" -- the same Robinson canvas coordinate the
+// flat map handed it -- so the entire ground (elevation, bathymetry, land
+// cover, hillshade, lakes, haze, water) is the same code sampling the same
+// bake, and a bug in it is a bug that predates the globe. The sphere is a
+// lens, not a second projection to keep in step with the first.
+uniform mat3  uInvRot;       // VIEW space -> MODEL space; globe3d.js's inverseRotate
+uniform float uCamDist;      // camera distance from the sphere centre, in radii
+uniform vec2  uHalf;         // (tan(fovY/2) * aspect, tan(fovY/2))
+uniform vec2  uRes;          // backing-store size, device px
 uniform vec2  uWorld;        // (2400.0, 1018.1941195106424)
 uniform float uTexPerWorld;  // texels per canvas unit (1.0 at a 2400 bake)
-uniform float uPxPerWorld;   // device px per canvas unit
+uniform float uPxPerWorld;   // device px per canvas unit AT THE SUB-CAMERA POINT
 uniform float uLk;           // log2(ui.cam.k), 0 .. 5
 uniform float uMaxLod;       // 7, or 0 if the driver refused half-float mips
+
+// ---- the political layer, in the SAME canvas space ------------------------
+// Ownership, borders, districts and fronts, painted once per tick into a
+// texture on the Robinson canvas (see paintPolitical). It is sampled here
+// rather than drawn over the globe as geometry because it is ~4000 polygons
+// that move at the TICK, and projecting them per FRAME would pay sixty times
+// over for an answer that did not change. Premultiplied.
+uniform sampler2D uPol;
+uniform float uPolOp;        // the layer's own per-camera ramp (the svg's --fop)
+
+// ---- and the selection, which is a SECOND texture on purpose ---------------
+// Hover changes on every pointermove that crosses a border. The political
+// texture is ~4000 polygons and cannot be repainted at that rate; one nation's
+// fill and outline can be, and at half the resolution, because a highlight is
+// a wash and an outline rather than a hairline mesh. Splitting them is what
+// makes hovering the globe cost nothing.
+uniform sampler2D uSel;
 
 // ---- per-mode art dials (BLEND owns their values) ----
 uniform float uGround;       // physical ground strength       0 .. 1
@@ -5824,6 +5970,21 @@ const float RY_T[19] = float[19](0.0000, 0.0620, 0.1240, 0.1860, 0.2480, 0.3100,
 const float RX_T[19] = float[19](1.0000, 0.9986, 0.9954, 0.9900, 0.9822, 0.9730,
   0.9600, 0.9427, 0.9216, 0.8962, 0.8679, 0.8350, 0.7986, 0.7597, 0.7186,
   0.6732, 0.6213, 0.5722, 0.5322);
+
+// ---- the globe ------------------------------------------------------------
+// LAT_TOP/LAT_BOT are mapgen's clip, restated: the last parallels the bake
+// carries. On a flat map they were the edge of the paper and needed no name.
+// On a globe they are two holes in the texture that the player can see, so
+// they are named and filled rather than smeared.
+const float LAT_TOP = 83.0;
+const float LAT_BOT = -58.0;
+const vec3  ICE_N = vec3(0.58, 0.66, 0.74);   // Arctic sea ice, above the clip
+const vec3  ICE_S = vec3(0.80, 0.85, 0.89);   // the ice sheet the bake stops short of
+const vec3  ATMO  = vec3(0.30, 0.62, 0.82);   // the rim, and the halo outside the limb
+// The ball's key light, normalised by hand: a const initialiser may legally
+// call normalize(), but not every driver agrees, and this one is not worth a
+// compile failure on somebody's machine.
+const vec3  GLOBE_SUN = vec3(-0.39125, 0.48440, 0.78249);
 
 // ---- palette (sRGB, matching the CSS tokens and TCOLOR) ----
 const vec3 LAND_FLAT = vec3(0.20000, 0.23529, 0.28235);  // #333c48 scenery tone
@@ -5968,8 +6129,57 @@ float lum(vec3 n, float ao) {
   return (sky * ao + dir) / LFLAT;
 }
 
+/// lon/lat -> Robinson canvas. The exact FORWARD of latFromY/lonAt above, off
+/// the same two tables, so the round trip the body performs a few lines later
+/// returns the latitude this started from.
+vec2 robinsonFwd(float lon, float lat) {
+  float a = abs(lat);
+  return vec2(0.5 * uWorld.x + 0.8487 * RAD * rxAt(a) * lon * DEG,
+              Y_TOP - sign(lat) * 1.3523 * RAD * ryAt(a));
+}
+
+// The surface normal in VIEW space, set by the raycast and read by the sphere
+// lighting at the very bottom. A global because the 400 lines between the two
+// are the untouched flat-map body, and threading a parameter through them
+// would have meant editing every one of them.
+vec3 gNormal;
+
 void main() {
-  vec2 world = gl_FragCoord.xy * uFrag2World.xy + uFrag2World.zw;
+  // ---- the ray ------------------------------------------------------------
+  // Solved in VIEW space, where the camera sits on +z looking down -z and the
+  // sphere is the unit sphere at the origin, so the quadratic is two dot
+  // products. Only the hit point is turned back into model space.
+  vec2  ndc = (gl_FragCoord.xy / uRes) * 2.0 - 1.0;
+  vec3  dir = normalize(vec3(ndc * uHalf, -1.0));
+  vec3  cam = vec3(0.0, 0.0, uCamDist);
+  float b   = dot(cam, dir);
+  float cc  = dot(cam, cam) - 1.0;
+  float disc = b * b - cc;
+  if (disc < 0.0) {
+    // A miss. The globe still owes the page an atmosphere: closest approach is
+    // sqrt(1 - disc) radii, so the limb is exactly 1 and the halo falls off
+    // from there. Without it the world is a disc cut out of the background with
+    // scissors. PREMULTIPLIED, like every other exit from this shader.
+    float d = sqrt(max(1.0 - disc, 0.0));
+    float halo = exp(-(d - 1.0) * 24.0) * 0.55;
+    fragColor = vec4(ATMO * halo, halo);
+    return;
+  }
+  float t = -b - sqrt(disc);
+  if (t < 0.0) { fragColor = vec4(0.0); return; }   // the sphere is behind us
+  vec3 hit = cam + dir * t;         // on the UNIT sphere, so the point IS the normal
+  gNormal  = hit;
+  vec3 mp  = uInvRot * hit;         // ... the same point, in model space
+
+  float glat = degrees(asin(clamp(mp.y, -1.0, 1.0)));
+  float glon = degrees(atan(mp.x, mp.z));
+  // The caps the bake does not carry. mapgen clips at 83N/58S, so above and
+  // below that there is no texel to read and the honest thing is to say so in
+  // ice rather than to smear the last drawn parallel over the pole.
+  float capN = smoothstep(LAT_TOP - 0.6, LAT_TOP + 1.2, glat);
+  float capS = smoothstep(LAT_BOT + 0.6, LAT_BOT - 1.2, glat);
+
+  vec2 world = robinsonFwd(glon, clamp(glat, LAT_BOT, LAT_TOP));
   vec2 uv    = world / uWorld;
 
   // ---- zoom bands, pinned to the svg's OWN ZB1 = 2.2 (Lk 1.1375) and
@@ -6439,7 +6649,45 @@ void main() {
   vec3 legacy = mix(legacyOcean, LAND_FLAT, isLand);
 
   vec3 col = mix(legacy, phys, uGround);
-  fragColor = vec4(col * onGlobe, onGlobe);           // PREMULTIPLIED
+
+  // ---- the political layer ------------------------------------------------
+  // Premultiplied, so this is a straight "over" scaled by the camera ramp the
+  // svg used to spend on fill-opacity. uPolOp = 0 leaves the physical ground
+  // alone, which is what a mode with no political reading wants.
+  vec4 pol = texture(uPol, uv);
+  col = col * (1.0 - pol.a * uPolOp) + pol.rgb * uPolOp;
+  // The selection rides ABOVE the ramp, at full strength: the point of a
+  // highlight is to be seen, and dimming it with the same camera ramp that
+  // quiets the political layer far out would hide it exactly when the player
+  // is furthest away and needs it most.
+  vec4 sel = texture(uSel, uv);
+  col = col * (1.0 - sel.a) + sel.rgb;
+
+  // ---- the caps -----------------------------------------------------------
+  // The southern one is TWO tones, and that is not decoration. mapgen clips at
+  // 58S; the Antarctic coast is at 66-70S. Filling the whole gap with ice would
+  // draw an ice sheet over roughly 1200 km of open Southern Ocean and tell the
+  // player the continent is far bigger than it is. So the band immediately
+  // below the clip stays ocean and the ice starts where the ice starts.
+  vec3 capCol = mix(OCEAN_1, ICE_S, 1.0 - smoothstep(-69.0, -63.0, glat));
+  col = mix(col, ICE_N, capN);
+  col = mix(col, capCol, capS);
+
+  // ---- and now it is a ball ----------------------------------------------
+  // The ground above is lit as a MAP: a hillshade from a fixed north-west sun,
+  // which is what makes elevation legible. This is a second and different
+  // light, the one that makes the map read as a sphere. It is deliberately
+  // shallow -- 0.55 ambient against 0.52 of diffuse -- because a physically
+  // honest terminator would take the limb to black and the limb is still map
+  // somebody has to read.
+  float diffuse = max(dot(gNormal, GLOBE_SUN), 0.0);
+  float rim     = pow(1.0 - max(gNormal.z, 0.0), 2.6);
+  col = col * (0.55 + 0.52 * diffuse) + ATMO * rim * 0.26;
+  // The limb, antialiased against the page: the ray grazes as disc -> 0, so the
+  // coverage falls out of the SAME quadratic the hit did rather than out of a
+  // second silhouette that could disagree with it.
+  float edge = smoothstep(0.0, 1.5 / max(uRes.y, 1.0), disc);
+  fragColor = vec4(col * edge, edge);                 // PREMULTIPLIED
 }
 `;
 
@@ -6479,11 +6727,24 @@ function glFail(reason) {
   GL.ready = false;
   if (GL.raf) { cancelAnimationFrame(GL.raf); GL.raf = 0; }
   if (GL.shimRaf) { cancelAnimationFrame(GL.shimRaf); GL.shimRaf = 0; }
-  console.warn("[glmap] falling back to /terrain.png:", reason);
+  console.warn("[glmap] the globe cannot draw:", reason);
+  // THE FALLBACK CHANGED SHAPE WITH THE MAP, and it had to. On the flat map
+  // this hid the canvas and let the svg underneath carry the world at
+  // /terrain.png quality — a real, if quieter, map. A globe has no svg under
+  // it: the sphere IS the WebGL pass, so there is nothing to reveal, and the
+  // honest failure is to say what happened where the map would have been
+  // rather than to leave a blank pane and a console line nobody reads.
   try {
     GLCV.style.display = "none";
-    const svg = $("#pane-map svg");
-    if (svg) svg.classList.remove("gl-on");
+    const stage = $("#pane-map .globe-stage");
+    if (stage && !$("#globeFail")) {
+      const d = document.createElement("div");
+      d.id = "globeFail";
+      d.className = "globe-fallback";
+      d.textContent = "The globe needs WebGL2, and this browser did not give it: "
+        + GL.reason + ". Every other screen still works.";
+      stage.appendChild(d);
+    }
   } catch (_) {}
 }
 
@@ -6907,9 +7168,10 @@ async function glInit() {
   };
   GLR = {
     gl, progMap, progGrid, vao, phys: dec.tex, lake, ramp, seaRamp,
-    u: U(progMap, ["frag2World", "world", "texPerWorld", "pxPerWorld", "lk", "maxLod",
+    u: U(progMap, ["invRot", "camDist", "half", "res",
+      "world", "texPerWorld", "pxPerWorld", "lk", "maxLod",
       "ground", "sat", "shade", "sea", "hazeMax", "shimmer", "time", "ao", "glint",
-      "phys", "ramp", "seaRamp", "lake", "lakeMax"]),
+      "phys", "ramp", "seaRamp", "lake", "lakeMax", "pol", "polOp", "sel"]),
     uGrid: progGrid ? U(progGrid, ["frag2World", "world", "pxPerWorld"]) : null,
   };
 
@@ -6918,140 +7180,441 @@ async function glInit() {
   gl.disable(gl.SCISSOR_TEST);
   gl.clearColor(0, 0, 0, 0);
 
+  // The two painted layers are the only textures NOT created in here, so they
+  // are the only ones that can outlive the context they belong to. A restored
+  // context inherits their stale handles, binds them, gets INVALID_OPERATION,
+  // and the incomplete samplers read (0,0,0,1) -- which the tail's two
+  // composites drive straight to black. Dropping the handles makes the next
+  // paint allocate against the live context.
+  POL.tex = null; POL.dirty = true;
+  SEL.tex = null; SEL.dirty = true;
+
   GL.ok = true;
   GL.ready = true;
   GL.reason = "";
   GL.t0 = performance.now();
 }
 
-/// Size and position the canvas over the svg's ELEMENT box, not its viewBox
-/// content rect. The preserveAspectRatio fit is never recomputed in JS:
-/// covering the element box guarantees the canvas covers the content rect under
-/// `meet`, and the letterbox offset is absorbed by the CTM read in glDraw().
-/// Do NOT use svg.offsetLeft — offsetLeft/offsetTop are HTMLElement properties,
-/// and <svg> is an SVGElement that returns undefined.
-function glSync(svg) {
-  const pane = $("#pane-map");
-  if (!pane) return false;
-  const sr = svg.getBoundingClientRect(), pr = pane.getBoundingClientRect();
-  if (!sr.width || !sr.height) return false;       // pane hidden — never allocate 0x0
-  GLCV.style.left = (sr.left - pr.left + pane.scrollLeft) + "px";
-  GLCV.style.top = (sr.top - pr.top + pane.scrollTop) + "px";
-  GLCV.style.width = sr.width + "px";
-  GLCV.style.height = sr.height + "px";
-  // Recomputed per draw: pure arithmetic, so a window dragged to a
-  // different-DPI monitor is caught even before the matchMedia below fires.
-  const dpr = Math.min(window.devicePixelRatio || 1, GL.dprCap);
-  const bw = Math.max(1, Math.round(sr.width * dpr));
-  const bh = Math.max(1, Math.round(sr.height * dpr));
-  if (GLCV.width !== bw || GLCV.height !== bh) { GLCV.width = bw; GLCV.height = bh; }
-  return true;
+/* ================================================================ the globe
+   The map is a sphere. This block is everything that makes it one which is not
+   already in the shader above or in globe3d.js, and the division of labour
+   between the three is worth stating once:
+
+     globe3d.js   the camera, the input, the projection, the cities, and the
+                  screen-space overlay canvas they are drawn on
+     GLSL_MAP     the ground: one ray per pixel, and then the flat map's own
+                  untouched shading body reading the coordinate that ray landed on
+     here         the political texture, the draw call, and the marks that have
+                  to be laid OVER the globe in screen space rather than baked
+                  into it
+
+   THERE IS ONE COORDINATE SPACE AND EVERYTHING IS IN IT: mapgen's Robinson
+   canvas, WORLD.w x WORLD.h. Country outlines, district outlines, rivers, the
+   graticule, relief.png/coast.png/cover.png/lake.png and the political texture
+   painted here all live in it, and the globe is a LENS onto it rather than a
+   second projection to be kept in step with the first. That is why nothing
+   here has to be aligned with anything: registration is not maintained, it is
+   structural, and the only way to break it would be to introduce a second
+   opinion about where a place is.
+
+   WHAT IS BAKED AND WHAT IS DRAWN, and why the line falls where it does. The
+   political geometry is ~4200 polygons that change at the TICK. Projecting it
+   per FRAME would pay sixty times over for an answer that did not move, so it
+   is painted into a texture on the canvas and sampled by the shader. Labels,
+   cities, war marks and district names are a few hundred POINTS that have to
+   face the viewer, cannot be foreshortened, and must be culled at the horizon
+   — so they are projected per frame onto a 2D canvas over the top. Anything
+   that is a polygon goes in the texture; anything that is a point goes on the
+   overlay. */
+
+let GLOBE = null;                 // the Globe3D instance, once the pane exists
+
+/// The political texture: ownership, borders, districts, fronts, rivers and the
+/// graticule, painted on the Robinson canvas.
+///
+/// 4096 wide against a 2400-wide bake — 1.71 texels per canvas unit — because
+/// the globe magnifies the centre of its own disc well past 1:1 and a district
+/// border is a hairline in canvas units. It is a deliberate 27 MB: the
+/// alternative is projecting the geometry every frame.
+const POL = (() => {
+  const c = document.createElement("canvas");
+  c.width = 4096;
+  c.height = Math.round(4096 * WORLD.h / WORLD.w);
+  return { canvas: c, ctx: c.getContext("2d"), s: 4096 / WORLD.w, tex: null,
+           dirty: true, ms: 0, fop: -1 };
+})();
+
+/// The selection layer, and it is a SEPARATE texture at half the resolution on
+/// purpose. Hover changes on every pointermove that crosses a border; POL is
+/// ~4200 polygons and cannot be repainted at that rate, while one nation's fill
+/// and outline can be repainted at it without anybody noticing. Half resolution
+/// because a highlight is a wash and an outline, not a hairline mesh.
+const SEL = (() => {
+  const c = document.createElement("canvas");
+  c.width = 2048;
+  c.height = Math.round(2048 * WORLD.h / WORLD.w);
+  return { canvas: c, ctx: c.getContext("2d"), s: 2048 / WORLD.w, tex: null, dirty: true, key: "" };
+})();
+
+/// Path2D objects, cached by the string they were parsed from. This is the
+/// difference between a paint and a stall: districts.js is 700 KB of path data
+/// and re-parsing it per tick would cost more than everything else here put
+/// together. Keyed by the string itself, so a path shared between two layers is
+/// parsed once.
+const PATHS = new Map();
+function p2d(d) {
+  let p = PATHS.get(d);
+  if (!p) { p = new Path2D(d); PATHS.set(d, p); }
+  return p;
 }
 
-/// SYNCHRONOUS from applyCam() and the end of renderMap(). See the header:
-/// deferring this to a rAF makes a stale-camera frame structurally possible.
-function glDraw() {
-  if (GL.inProof || !GL.ok || !GL.ready || !GLR) return;
-  const svg = $("#pane-map svg");
-  if (!svg || !GLCV.isConnected) return;
+/// The contested hatch, as a canvas pattern. The svg carried this as a <pattern>
+/// def; Canvas2D wants a repeating image, so it is drawn once into a 6x6 tile
+/// and rotated by the pattern's own transform — the same 45 degrees, the same
+/// duty cycle, the same #05070a at .38.
+const HATCH = (() => {
+  const c = document.createElement("canvas");
+  c.width = 6; c.height = 6;
+  const x = c.getContext("2d");
+  x.fillStyle = "#05070a";
+  x.globalAlpha = .38;
+  x.fillRect(0, 0, 2.8, 6);
+  return c;
+})();
 
-  // The four thematic modes have no `ground` block, so this is null and the
-  // whole layer stands down: canvas hidden, class off, GPU idle, svg exactly as
-  // it is today. Preserved by construction rather than by tuning.
-  const dial = groundDials(ui.mapMode);
-  if (!dial) {
-    GLCV.style.display = "none";
-    svg.classList.remove("gl-on");
-    return;
-  }
+/// Paint the political texture. Bottom to top, in exactly the order the svg
+/// stacked its groups, because that order was argued over once already and the
+/// arguments did not stop being true when the paper became a ball.
+function paintPolitical() {
   const t0 = performance.now();
-  // Size first, off a rect that .gl-on cannot have moved (position:relative with
-  // no offsets changes no layout). Bail BEFORE parking #relief if the pane is
-  // laid out at zero — half-applying the class would hide the hillshade behind a
-  // canvas that is not drawing.
-  if (!glSync(svg)) return;
-  // Then the class and display: display:block is what makes the canvas's own
-  // rect readable at all, and the rect is the frame gl_FragCoord lives in.
-  GLCV.style.display = "block";
-  svg.classList.add("gl-on");
+  const ctx = POL.ctx, s = POL.s, g = camDials(), m = me();
+  const mode = MAP_MODES[ui.mapMode];
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, POL.canvas.width, POL.canvas.height);
+  ctx.setTransform(s, 0, 0, s, 0, 0);          // draw in CANVAS UNITS from here down
+  ctx.lineJoin = "round";
+  ctx.lineCap = "round";
 
-  // getScreenCTM() is the matrix the browser ACTUALLY painted with: post-clamp
-  // (camBox mutates ui.cam), post-layout, letterbox and pane scroll included.
-  // It cannot drift, because it is not a parallel computation.
-  const M = svg.getScreenCTM();
-  if (!M) return;
-  // Hard invariants. Anything else means the svg is transformed in a way this
-  // inversion does not model, and a silently sheared ground is worse than the
-  // PNG underlay. The round-trip check cannot catch this — it inverts the same
-  // matrix it just read — so it is asserted directly.
-  if (!isFinite(M.a) || Math.abs(M.a) < 1e-9 ||
-      Math.abs(M.b) > 1e-9 || Math.abs(M.c) > 1e-9 ||
-      Math.abs(M.a - M.d) > 1e-6 * Math.max(1, Math.abs(M.a))) {
-    glFail("svg CTM is not an axis-aligned uniform scale (a=" + M.a + " b=" + M.b +
-           " c=" + M.c + " d=" + M.d + ")");
-    return;
+  // Who is painting which country code, so the rest can be drawn as scenery.
+  const claimed = {};
+  S.nations.forEach((n) => (TERRITORY[n.id] || []).forEach((c) => (claimed[c] = n)));
+
+  // 0. the graticule. Under everything, at the mode's own ramp.
+  if (g.gratop > 0) {
+    ctx.globalAlpha = g.gratop;
+    ctx.strokeStyle = "#0f1826";
+    ctx.lineWidth = 1.1;
+    for (const d of WORLD.graticule) ctx.stroke(p2d(d));
+    ctx.globalAlpha = 1;
   }
 
+  // 1. the unaligned world: OUTLINE ONLY. The flat map filled it #333c48 and
+  // then had the GL ground replace that fill through a CSS window; here the
+  // shader's own `legacy` term is already that exact tone, so a fill would be
+  // painting #333c48 over #333c48. The .4-unit outline is the mark GL cannot
+  // make, and it still draws.
+  ctx.strokeStyle = "#161c25";
+  ctx.lineWidth = .45;
+  for (const code in WORLD.countries) {
+    if (!claimed[code]) ctx.stroke(p2d(WORLD.countries[code]));
+  }
+
+  // 2. the powers, shaded by whichever reading of the world is selected. `op`
+  // is the per-path weight the svg carried as --w; the camera ramp that scaled
+  // it is uPolOp in the shader, so the product is unchanged.
+  for (const n of S.nations) {
+    const codes = (TERRITORY[n.id] || []).filter((c) => WORLD.countries[c]);
+    if (!codes.length) continue;
+    const isMe = m && n.id === m.id;
+    const on = n.id === selected;
+    const col = mode.color(n, m);
+    // THE CAMERA RAMP IS BAKED IN HERE, not applied to the texture as a whole,
+    // and that is a correction rather than a preference. On the flat map --fop
+    // scaled ONE rule -- `.nodeg path`'s fill-opacity -- so it quieted the
+    // NATION FILLS far out and left the graticule, the country outlines, the
+    // district mesh, the rivers and the front seam at their authored strength.
+    // Handing it to the shader as one multiplier over the whole texture put
+    // Terrain's rivers at .098 instead of .9 and dimmed every outline on the
+    // map by 10-18%. Painting it into the fill's own alpha restores the flat
+    // map's semantics exactly; the cost is that a zoom which moves the ramp
+    // dirties the texture, and repainting it measures ~1 ms.
+    const op = mode.opaque ? (on || isMe ? 1 : OPQ) : (isMe ? .5 : on ? .55 : .32);
+    ctx.globalAlpha = op * g.fop;
+    ctx.fillStyle = col;
+    for (const c of codes) ctx.fill(p2d(WORLD.countries[c]), "evenodd");
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = isMe ? "#c9a55a" : mode.opaque ? "#10151c" : col;
+    ctx.lineWidth = isMe ? .95 : mode.opaque ? .5 : .55;
+    for (const c of codes) ctx.stroke(p2d(WORLD.countries[c]));
+  }
+
+  // 3. districts whose sim owner disagrees with the country layer — the visible
+  // mark of a concession or an annexation.
+  const delta = (S && S.districts) || {};
+  ctx.globalAlpha = .92;
+  for (const id in delta) {
+    const info = DINDEX[id];
+    if (!info) continue;
+    const cur = claimed[info.iso];
+    if (cur && cur.id === delta[id]) continue;      // dissolution: the country layer agrees
+    const owner = S.nations.find((n) => n.id === delta[id]);
+    ctx.fillStyle = owner ? mode.color(owner, m) : polColor(delta[id]);
+    ctx.fill(p2d(info.path));
+  }
+  ctx.globalAlpha = 1;
+
+  // 4. the fronts.
+  paintFronts(ctx);
+
+  // 5. the district mesh, one band in, exactly as `svg.zb1 .dline` had it.
+  if (ui.cam.k >= ZB1) {
+    ctx.globalAlpha = .5;
+    ctx.strokeStyle = "#10151c";
+    ctx.lineWidth = .5;
+    for (const iso in DISTRICTS.byCountry) {
+      for (const d of DISTRICTS.byCountry[iso]) ctx.stroke(p2d(d.path));
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // 6. rivers and lakes, above the mesh so the mesh never rules through a
+  // river, and quiet at world zoom for the same reason the mesh is absent.
+  const wet = ui.mapMode === "terrain" ? .9 : ui.cam.k >= ZB1 ? .55 : .25;
+  if (RIVERS.lakes.length) {
+    ctx.globalAlpha = ui.mapMode === "terrain" ? .55 : .3;
+    ctx.fillStyle = "#4c8ee0";
+    for (const d of RIVERS.lakes) ctx.fill(p2d(d));
+  }
+  ctx.globalAlpha = wet;
+  ctx.strokeStyle = "#4c8ee0";
+  ctx.lineWidth = .7;
+  for (const r of RIVERS.rivers) ctx.stroke(p2d(r.d));
+  ctx.globalAlpha = 1;
+
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  POL.dirty = false;
+  POL.fop = g.fop;                 // what this paint baked, for camRampCheck
+  POL.ms = performance.now() - t0;
+  polUpload(POL, 3);
+}
+
+/// The sim's monthly front projection, painted. Also rebuilds FRONT_AT, the
+/// O(1) hover index — which is why this runs even in the modes that draw no
+/// front, and returns before it inks anything.
+///
+/// The svg did the occupation rings with a <mask> and the seam with a
+/// <clipPath>. Canvas2D says both more directly: `destination-out` after a
+/// stroke erases the half of it that fell inside the region, leaving the outer
+/// ring; clip() before a stroke keeps only the half inside the other side's
+/// ground, which is the shared border. Same two marks, fewer moving parts.
+function paintFronts(ctx) {
+  FRONT_AT = {};
+  if (ui.mapMode !== "political" && ui.mapMode !== "fronts") return;
+  for (const w of S.wars) {
+    if (!w.front) continue;
+    const ids = Object.keys(w.front).sort();
+    if (!ids.length) continue;
+    const [colA, colB] = frontColors(w);
+    const inPocket = new Set((w.pockets || []).flat());
+    const big = ids.length > 600;                  // marks only past the budget line
+    const dA = [], dB = [];
+    for (const id of ids) {
+      const info = DINDEX[id];
+      if (!info) continue;      // districts.js and the sim's districts.json may disagree
+      const c = w.front[id];
+      FRONT_AT[id] = { w, c, pocket: inPocket.has(id) };
+      ctx.globalAlpha = 0.55 + 0.35 * Math.abs(c);
+      ctx.fillStyle = mix(colB, colA, (c + 1) / 2);
+      ctx.fill(p2d(info.path));
+      if (!big && Math.abs(c) <= FRONT_HELD_BAND) {
+        ctx.globalAlpha = 1;
+        const pat = ctx.createPattern(HATCH, "repeat");
+        pat.setTransform(new DOMMatrix().rotate(45).scale(1 / POL.s * 3));
+        ctx.fillStyle = pat;
+        ctx.fill(p2d(info.path));
+      }
+      (c >= 0 ? dA : dB).push(info.path);          // sign-bin: 0 goes to A, seam only
+    }
+    ctx.globalAlpha = 1;
+    // NOT THROUGH p2d. The cache is keyed on the path string, and these joined
+    // aggregates are a fresh multi-hundred-KB string every tick as the front
+    // moves -- caching them would leak one Path2D and one such string per side
+    // per war per month, for the length of the war.
+    const ring = (paths, stroke, width) => {
+      if (!paths.length) return;
+      const p = new Path2D(paths.join(""));
+      ctx.save();
+      ctx.strokeStyle = stroke;
+      ctx.lineWidth = width;
+      ctx.stroke(p);
+      // The mask, said as a composite: erase the region itself and only the
+      // outer half of the stroke survives, so internal district seams vanish
+      // and one clean perimeter is left.
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.fill(p);
+      ctx.restore();
+    };
+    ring(dA, "#e8c87e", 1.1);
+    ring(dB, "#9fb0c4", 1.1);
+    if (dA.length && dB.length && !big) {
+      // The seam proper, where the two sides actually meet: stroke B's ground
+      // clipped to A's, so only the shared A|B border survives. Raster clipping
+      // forgives the small vertex mismatches between neighbouring polygons that
+      // exact edge-matching would not.
+      ctx.save();
+      const pB = new Path2D(dB.join(""));      // uncached, for the reason above
+      ctx.clip(new Path2D(dA.join("")));
+      ctx.strokeStyle = "#2a0d10"; ctx.lineWidth = 3.2; ctx.stroke(pB);
+      ctx.strokeStyle = "#ff6b6b"; ctx.lineWidth = 1.8; ctx.stroke(pB);
+      ctx.restore();
+    }
+    for (const pk of w.pockets || []) {
+      const d = pk.map((pid) => (DINDEX[pid] ? DINDEX[pid].path : "")).join("");
+      if (d) ring([d], "#e8c87e", 1.6);
+    }
+  }
+}
+
+/// The selection layer: the hovered or selected nation, and nothing else.
+/// Keyed, so a pointermove that stays inside one country repaints nothing.
+function paintSelection() {
+  const key = (hoverNation || "") + "|" + (selected || "") + "|" + ui.mapMode;
+  if (key === SEL.key && !SEL.dirty) return;
+  SEL.key = key; SEL.dirty = false;
+  const ctx = SEL.ctx, s = SEL.s;
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, SEL.canvas.width, SEL.canvas.height);
+  ctx.setTransform(s, 0, 0, s, 0, 0);
+  ctx.lineJoin = "round";
+  for (const [id, hot] of [[selected, false], [hoverNation, true]]) {
+    if (!id) continue;
+    const codes = (TERRITORY[id] || []).filter((c) => WORLD.countries[c]);
+    if (!codes.length) continue;
+    // The hover is a wash and a ring; the selection is a heavier ring alone, so
+    // that hovering the nation you already have open still reads as a change.
+    if (hot) {
+      ctx.globalAlpha = .30;
+      ctx.fillStyle = "#e8c87e";
+      for (const c of codes) ctx.fill(p2d(WORLD.countries[c]), "evenodd");
+    }
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = "#e8c87e";
+    ctx.lineWidth = hot ? 1.6 : 2.2;
+    for (const c of codes) ctx.stroke(p2d(WORLD.countries[c]));
+  }
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  polUpload(SEL, 4);
+}
+
+/// Upload one of the two painted canvases. PREMULTIPLY on, because the shader
+/// composites premultiplied and a straight-alpha texture would fringe every
+/// border with the colour of whatever the browser left in the transparent
+/// texels. No flip: v = 0 is canvas y = 0, the same convention the baked
+/// textures are uploaded under.
+function polUpload(layer, unit) {
+  if (!GLR) return;
   const gl = GLR.gl;
-  const R = GLCV.getBoundingClientRect();
-  if (!R.width || !R.height) return;
-  const t1 = performance.now();      // every forced layout is behind us now
+  if (!layer.tex) {
+    layer.tex = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0 + unit);
+    gl.bindTexture(gl.TEXTURE_2D, layer.tex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  } else {
+    gl.activeTexture(gl.TEXTURE0 + unit);
+    gl.bindTexture(gl.TEXTURE_2D, layer.tex);
+  }
+  gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, layer.canvas);
+  gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+}
+
+/// SYNCHRONOUS from the globe's own render(). See applyCam: deferring this to a
+/// rAF makes a frame that draws the ground at one camera and the labels at
+/// another structurally possible, and this is the file that decided once that
+/// such a frame must not exist.
+function glDrawGlobe(view) {
+  if (GL.inProof || !GL.ok || !GL.ready || !GLR) return;
+  if (!GLCV.isConnected) return;
+  // glFail hides the canvas; nothing else shows it again, so a context that is
+  // lost and then restored would draw every frame into display:none forever.
+  // Set on the draw, like the flat map did, so recovery needs no second path.
+  if (GLCV.style.display === "none") GLCV.style.display = "";
+  const fail = $("#globeFail");
+  if (fail) fail.remove();
+  // The canvas was sized by the globe's own resize(), which is the single owner
+  // of the backing store; a second sizing pass here is exactly the pair of
+  // computations that can disagree, and the flat map's long note about never
+  // recomputing the fit applies word for word.
+  const t0 = performance.now();
+  // The political layers, resolved before the pass that samples them. Both are
+  // keyed and both are no-ops unless something they draw actually moved.
+  if (POL.dirty) paintPolitical();
+  paintSelection();
+  const t1 = performance.now();
+
+  const gl = GLR.gl, u = GLR.u;
+  const dial = camDials();
   const cw = GLCV.width, ch = GLCV.height;
-  const s = M.a, E = M.e - R.left, F = M.f - R.top;
-  // rx/ry are the ACTUAL backing-store ratio, so DPR rounding is absorbed
-  // rather than assumed away.
-  const rx = cw / R.width, ry = ch / R.height;
-  const f0 = 1 / (rx * s), f1 = -1 / (ry * s), f2 = -E / s, f3 = ch / (ry * s) - F / s;
-  const pxPerWorld = s * rx;
 
   gl.bindVertexArray(GLR.vao);
   gl.viewport(0, 0, cw, ch);
   gl.clear(gl.COLOR_BUFFER_BIT);
-
   gl.useProgram(GLR.progMap);
-  const u = GLR.u;
-  gl.uniform4f(u.frag2World, f0, f1, f2, f3);
+
+  // ---- the camera, and it is the ONLY thing the globe changed ----
+  gl.uniformMatrix3fv(u.invRot, false, view.invBasis);
+  gl.uniform1f(u.camDist, view.distance);
+  gl.uniform2f(u.half, view.halfTan * (cw / ch), view.halfTan);
+  gl.uniform2f(u.res, cw, ch);
+
   gl.uniform2f(u.world, GLBAKE.W, GLPROJ.H_EXT);
   gl.uniform1f(u.texPerWorld, GLBAKE.W / WORLD.w);
-  gl.uniform1f(u.pxPerWorld, pxPerWorld);
-  gl.uniform1f(u.lk, Math.log2(Math.max(ui.cam.k, 1e-6)));
+  // Device px per canvas unit at the sub-camera point, scaled from CSS px to
+  // the backing store the shader is actually rasterising into.
+  gl.uniform1f(u.pxPerWorld, view.pxPerWorld);
+  gl.uniform1f(u.lk, view.lk);
   gl.uniform1f(u.maxLod, GL.maxLod);
   gl.uniform1f(u.ground, dial.ground);
   gl.uniform1f(u.sat, dial.sat);
   gl.uniform1f(u.shade, dial.shade);
   gl.uniform1f(u.sea, dial.sea);
   gl.uniform1f(u.hazeMax, dial.haze);
-  gl.uniform1f(u.shimmer, GL.shimmer ? 1 : 0);
-  gl.uniform1f(u.time, GL.time);
   gl.uniform1f(u.ao, dial.ao);
   gl.uniform1f(u.glint, dial.glint);
-  // A uniform rather than a shader const, so the bake contract and the shader
-  // cannot drift: lake.png and coast.png share this one clip.
+  gl.uniform1f(u.shimmer, GL.shimmer ? 1 : 0);
+  gl.uniform1f(u.time, GL.time);
   gl.uniform1f(u.lakeMax, GLBAKE.SDF_MAX);
+  // 1.0, because the ramp is already in the texture's own alpha. This uniform
+  // survives as the switch that stands the political layer down entirely.
+  gl.uniform1f(u.polOp, 1);
   gl.uniform1i(u.phys, 0);
   gl.uniform1i(u.ramp, 1);
   gl.uniform1i(u.seaRamp, 2);
-  gl.uniform1i(u.lake, 3);
+  gl.uniform1i(u.lake, 5);
+  gl.uniform1i(u.pol, 3);
+  gl.uniform1i(u.sel, 4);
   gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, GLR.phys);
   gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, GLR.ramp);
   gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, GLR.seaRamp);
-  gl.activeTexture(gl.TEXTURE3); gl.bindTexture(gl.TEXTURE_2D, GLR.lake);
+  gl.activeTexture(gl.TEXTURE3); gl.bindTexture(gl.TEXTURE_2D, POL.tex);
+  gl.activeTexture(gl.TEXTURE4); gl.bindTexture(gl.TEXTURE_2D, SEL.tex);
+  gl.activeTexture(gl.TEXTURE5); gl.bindTexture(gl.TEXTURE_2D, GLR.lake);
   gl.drawArrays(gl.TRIANGLES, 0, 3);
 
-  if (GLR.progGrid) {
-    gl.enable(gl.BLEND);
-    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);       // premultiplied over
-    gl.useProgram(GLR.progGrid);
-    gl.uniform4f(GLR.uGrid.frag2World, f0, f1, f2, f3);
-    gl.uniform2f(GLR.uGrid.world, GLBAKE.W, GLPROJ.H_EXT);
-    gl.uniform1f(GLR.uGrid.pxPerWorld, pxPerWorld);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
-    gl.disable(gl.BLEND);
-  }
-  const t2 = performance.now();
-  glPerf(t1 - t0, t2 - t1);
+  glPerf(t1 - t0, performance.now() - t1);
 }
 
+/// Kept as the name the rest of the page calls. The flat map's glDraw() took no
+/// camera because it read one off the svg; the globe's takes one because the
+/// globe owns it, so anything that just wants "redraw with what you have" goes
+/// through here.
+function glDraw() {
+  if (GLOBE) GLOBE.render();
+}
 /// The performance guard, and it needs no loop to run in: glDraw() is the only
 /// place this layer can cost anything, so a rolling mean of it IS the budget.
 /// Above ~8 ms the backing store halves — the one lever that helps a fill-rate-
@@ -7138,9 +7701,9 @@ document.addEventListener("visibilitychange", glShimmerKick);
 
 /* -------------------------------------------------------------- lifecycle */
 
-// preventDefault() on loss is MANDATORY or the context is never restorable.
-// The fallback is instantaneous because RELIEF and its /terrain.png fetch were
-// never conditional on GL being up.
+// preventDefault() on loss is MANDATORY or the context is never restorable —
+// and on a globe that matters more than it did, because a lost context is no
+// longer a downgrade to the PNG underlay. It is the map.
 GLCV.addEventListener("webglcontextlost", (e) => {
   e.preventDefault();
   GLR = null;
@@ -7166,8 +7729,10 @@ function glBoot() {
 
 // The svg is re-created by every renderMap, so the observer is re-attached
 // there. A resize is one of the paths where a frame of latency is invisible.
-let GLRO = null;
-try { GLRO = new ResizeObserver(() => glSchedule()); } catch (_) { GLRO = null; }
+// The pane's own resize is watched by the globe, on its own canvas, from its
+// own constructor -- so the observer that used to live here (watching the svg,
+// re-attached by every renderMap) has nowhere left to attach and nothing left
+// to say. Deleted rather than left constructed and unobserving.
 window.addEventListener("resize", glSchedule, { passive: true });
 // devicePixelRatio can change with NO element resize (a window dragged to a
 // different-DPI monitor). matchMedia is the only event for it, and the query has
@@ -7200,68 +7765,77 @@ window.addEventListener("resize", glSchedule, { passive: true });
         through uFrag2World; the svg draws the same grid in cyan dashes on top.
         Registered reads as one line; any drift reads as two.                */
 function glAlignmentProof() {
-  const svg = $("#pane-map svg"), pane = $("#pane-map");
-  if (!svg || !pane) { console.warn("[glmap] proof: no map mounted"); return null; }
-  const cam0 = { ...ui.cam }, mh0 = svg.style.maxHeight, w0 = pane.style.width;
-  const disp0 = GLCV.style.display;
-  GL.inProof = true;                          // applyCam() must not draw 72 times
-  GLCV.style.display = "block";
-  const pts = [[0, 0], [WORLD.w, 0], [0, WORLD.h], [WORLD.w, WORLD.h],
-    [WORLD.w / 2, WORLD.h / 2], [1166.549, 312.426], [2077.257, 317.240]];
+  if (!GLOBE) { console.warn("[glmap] proof: no globe mounted"); return null; }
+  const cam0 = { ...ui.cam };
+  GL.inProof = true;                          // applyCam() must not draw 30 times
   const cams = [{ cx: WORLD.w / 2, cy: WORLD.h / 2, k: 1 }, { cx: 1200, cy: 500, k: 2.2 },
     { cx: 400, cy: 300, k: 4 }, { cx: 1800, cy: 700, k: 8 },
-    { cx: 900, cy: 200, k: 16 }, { cx: 1500, cy: 850, k: 32 }];
-  const geoms = [["natural", "", ""], ["letterboxed", "180px", ""],
-    ["pillarboxed", "260px", "1400px"], ["narrow", "", "520px"]];
-  let worst = 0, worstAt = "", n = 0, boxed = 0;
-  for (const g of geoms) {
-    svg.style.maxHeight = g[1]; pane.style.width = g[2];
+    { cx: 900, cy: 200, k: 16 }, { cx: 1500, cy: 850, k: 40 }];
+  const rect = GLCV.getBoundingClientRect();
+  let worst = 0, worstAt = "", n = 0, off = 0, limb = 0;
+  if (rect.width > 4 && rect.height > 4) {
     for (const c of cams) {
       ui.cam = { cx: c.cx, cy: c.cy, k: c.k };
-      applyCam();                               // post-clamp: camBox mutates ui.cam
-      if (!glSync(svg)) continue;
-      const M = svg.getScreenCTM();
-      const R = GLCV.getBoundingClientRect();
-      if (!M || !R.width) continue;
-      // A real letterbox/pillarbox is one where the content rect does not fill
-      // the element box; counted so the proof can say it actually exercised one.
-      if (Math.abs(M.a * WORLD.w - R.width) > 0.5 ||
-          Math.abs(M.a * WORLD.h - R.height) > 0.5) boxed++;
-      for (const dprSim of [1, 1.5, 2]) {
-        const bw = Math.max(1, Math.round(R.width * dprSim));
-        const bh = Math.max(1, Math.round(R.height * dprSim));
-        const s = M.a, E = M.e - R.left, F = M.f - R.top;
-        const rx = bw / R.width, ry = bh / R.height;
-        const f = [1 / (rx * s), -1 / (ry * s), -E / s, bh / (ry * s) - F / s];
-        for (const p of pts) {
-          // forward, through the svg's OWN matrix, to a gl_FragCoord
-          const sx = s * p[0] + M.e, sy = s * p[1] + M.f;
-          const fx = (sx - R.left) * rx, fy = bh - (sy - R.top) * ry;
-          // back, through the uniform the shader will actually be handed
-          const e = Math.max(Math.abs(fx * f[0] + f[2] - p[0]),
-                             Math.abs(fy * f[1] + f[3] - p[1]));
-          n++;
-          if (e > worst) { worst = e; worstAt = g[0] + " k=" + c.k + " dpr=" + dprSim; }
-        }
+      applyCam();
+      const view = GLOBE.view(GLOBE.resize());
+      // A grid of screen points across the pane. The ones that miss the sphere
+      // or fall outside the bake's latitude clip are counted, not scored --
+      // "no world here" is a correct answer and the proof says how often it
+      // was given rather than hiding it.
+      for (let iy = 1; iy < 8; iy++) for (let ix = 1; ix < 8; ix++) {
+        const px = rect.left + rect.width * ix / 8;
+        const py = rect.top + rect.height * iy / 8;
+        const w = GLOBE.worldAt(px, py);
+        if (!w) { off++; continue; }
+        const back = GLOBE.projectWorld(w[0], w[1], view, 1.0);
+        if (!back) { off++; continue; }
+        // NOT SCORED AT THE LIMB, and the reason is arithmetic rather than
+        // convenience. Screen position as a function of latitude has an
+        // unbounded derivative there -- the surface turns edge-on, so an
+        // infinitesimal error in the inverse becomes an arbitrarily large error
+        // in pixels. ANY inverse has that property, so scoring the limb would
+        // be measuring the projection's geometry rather than this code's
+        // accuracy. The cut is the same 0.17 facing the labels use, and the
+        // count of what it excluded is printed rather than hidden.
+        if (GLOBE.facingWorld(w[0], w[1]) < 0.17) { limb++; continue; }
+        // projectWorld works in backing-store pixels; the probe was in client
+        // pixels, so the comparison is made in client pixels.
+        const bx = rect.left + back[0] / view.ratio, by = rect.top + back[1] / view.ratio;
+        const e = Math.max(Math.abs(bx - px), Math.abs(by - py));
+        n++;
+        if (e > worst) { worst = e; worstAt = "k=" + c.k + " at " + ix + "," + iy; }
       }
     }
   }
-  svg.style.maxHeight = mh0; pane.style.width = w0;
-  ui.cam = cam0; applyCam();
+  ui.cam = cam0;
   GL.inProof = false;
-  GLCV.style.display = disp0;
-  glDraw();
-  const ok = worst < 1e-6;
-  console.log("[glmap] alignment proof\n" +
-    "  " + n + " round trips = " + geoms.length + " geometries x " + cams.length +
-    " cameras x 3 dpr x " + pts.length + " points (" + boxed + " letterboxed/pillarboxed)\n" +
-    "  worst  = " + worst.toExponential(3) + " canvas units" +
+  applyCam();
+  // A tenth of a pixel, which is the honest bound for a bisected inverse away
+  // from the limb: 24 halvings put the latitude inside 1e-5 degrees, and the
+  // projection's own derivative turns that into well under a pixel anywhere the
+  // surface is facing the camera. A pick cannot be wrong by less than a pixel
+  // in any way a player could see, so this is two orders tighter than it needs
+  // to be and still passes.
+  const ok = worst < 0.1;
+  console.log("[glmap] globe round-trip proof\n" +
+    "  " + n + " round trips over " + cams.length + " cameras (" + off +
+    " off the disc, " + limb + " at the limb, unscored)\n" +
+    "  worst  = " + worst.toExponential(3) + " CSS px" +
     (worstAt ? "   (" + worstAt + ")" : "") + "\n" +
+    "  NOTE: this inverts the same projection it just applied, so it proves the\n" +
+    "        algebra and NOT that globe3d.js and the shader agree. The thing\n" +
+    "        that keeps those two honest is that they read the same two Robinson\n" +
+    "        tables and the same RAD/Y_TOP, asserted against mapgen in glInit.\n" +
     "  readback assertion : " + GL.probe + "\n" +
     "  maxLod " + GL.maxLod + "   H_EXT " + GLPROJ.H_EXT + "   ok " + GL.ok +
     (GL.reason ? "   reason " + GL.reason : ""));
-  if (!ok) glFail("alignment proof worst " + worst + " exceeds 1e-6");
-  return { n, worst, worstAt, boxed, ok, probe: GL.probe };
+  // WARN, DO NOT FAIL. On the flat map a failed alignment proof meant the GL
+  // ground was misregistered against the svg drawn over it -- a visible defect,
+  // and standing the layer down landed on a correct PNG map. On a globe there
+  // is nothing to land on: glFail() blanks the map. A sub-pixel round-trip
+  // discrepancy is not worth that, and this is a dev tool behind ?glproof=1.
+  if (!ok && n) console.warn("[glmap] globe round trip worst " + worst + " exceeds 0.1 px");
+  return { n, off, limb, worst, worstAt, ok, probe: GL.probe };
 }
 window.glProof = glAlignmentProof;
 window.glStatus = () => ({
@@ -7274,27 +7848,21 @@ window.glStatus = () => ({
   ground: groundUniforms(ui.mapMode, ui.cam.k),
 });
 
-/// The cyan half of the registration grid (?glgrid=1 only). Built once, on the
-/// DNODE pattern, and DASHED on purpose: registered reads as one line with cyan
-/// dashes over magenta gaps, and any drift reads as two parallel lines.
-let GLGRIDNODE = null;
-function glGridNode() {
-  if (GLGRIDNODE) return GLGRIDNODE;
-  let d = "";
-  for (let x = 0; x <= WORLD.w; x += 100) d += `M${x} 0V${WORLD.h}`;
-  for (let y = 0; y <= WORLD.h; y += 100) d += `M0 ${y}H${WORLD.w}`;
-  const host = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  host.innerHTML = `<g id="glgrid" pointer-events="none"><path d="${d}" fill="none" ` +
-    `stroke="#00ffff" stroke-width="1" stroke-dasharray="6 6" vector-effect="non-scaling-stroke"/></g>`;
-  GLGRIDNODE = host.firstChild;
-  return GLGRIDNODE;
-}
+// THE ?glgrid=1 REGISTRATION GRID IS GONE, and its absence is the honest
+// record of what the globe changed. It drew a 100-unit cyan grid in the svg
+// over the same grid in magenta from the shader, so that any drift between the
+// two cameras read as two parallel lines instead of one. There is no second
+// camera left to drift: the shader raycasts the sphere and globe3d.js inverts
+// the same ray off the same two Robinson tables, and what keeps THOSE honest is
+// asserted in Rust -- see the_globe_and_the_shader_project_the_same_world --
+// rather than looked at by eye. GLSL_GRID above still compiles under the flag;
+// nothing draws it.
 
 // Start the fetch/decode now, in parallel with /api/state — the FOUR textures
 // are 3.27 MiB (relief 2,856,812 + coast 292,852 + cover 260,856 + lake 20,173
-// = 3,430,693 B) and the map is drawable long before they land. Nothing here
-// blocks the page: on any failure glFail() logs once and the map renders on the
-// /terrain.png underlay exactly as it does today.
+// = 3,430,693 B). Nothing here blocks the page: every other screen — the
+// dossiers, the tech tree, the log, the ladder — is up and usable while they
+// land, and on failure glFail() says so on the stage.
 glBoot();
 
 /// Terrain class palette — muted earth tones on the page's steel-brass dark
@@ -8149,28 +8717,6 @@ function resOverlayPanel(modeLegend) {
     </div>` + resPanel();
 }
 
-/// The ONLY per-tick district work, and usually zero paths. A district is
-/// painted separately only when its sim owner (the /api/state "districts"
-/// delta against the 1990 default) disagrees with the nation whose country
-/// path already covers it — a concession or an annexation. Everything else is
-/// already the right colour for free, so a world where nothing has changed
-/// hands renders exactly as it did before districts existed.
-function districtFills(claimed) {
-  const delta = (S && S.districts) || {};
-  const m = me();
-  const mode = MAP_MODES[ui.mapMode];
-  let s = "";
-  for (const id in delta) {
-    const info = DINDEX[id];
-    if (!info) continue;
-    const cur = claimed[info.iso];               // nation painting that country, if any
-    if (cur && cur.id === delta[id]) continue;   // dissolution case: country layer already agrees
-    const owner = S.nations.find((n) => n.id === delta[id]);
-    const col = owner ? mode.color(owner, m) : polColor(delta[id]);
-    s += `<path d="${info.path}" fill="${col}" fill-opacity=".92"/>`;
-  }
-  return s;
-}
 
 /* ---- fronts: the sim's monthly front projection, painted. ----
    Read-only consequence — #frontg takes no pointer events and adds no
@@ -8205,79 +8751,12 @@ function frontColors(w) {
   return [a, b];
 }
 
-/// One SVG string per render, mounted between the ownership fills and the war
-/// glows. Also rebuilds FRONT_AT, the O(1) hover index. Never called during
-/// pan/zoom — those stay pure applyCam viewBox rewrites.
-function frontLayer() {
-  FRONT_AT = {};
-  if (ui.mapMode !== "political" && ui.mapMode !== "fronts") return "";
-  let out = "";
-  for (const w of S.wars) {
-    if (!w.front) continue;
-    const ids = Object.keys(w.front).sort();   // serde BTreeMap is already sorted; sort anyway
-    if (!ids.length) continue;
-    const [colA, colB] = frontColors(w);
-    const inPocket = new Set((w.pockets || []).flat());
-    const big = ids.length > 600;              // fills only past the budget line
-    let fills = "", hatch = "", dA = "", dB = "";
-    for (const id of ids) {
-      const info = DINDEX[id];
-      if (!info) continue;   // districts.js and the sim's districts.json may disagree
-      const c = w.front[id];
-      FRONT_AT[id] = { w, c, pocket: inPocket.has(id) };
-      fills += `<path class="ffill" d="${info.path}" fill="${mix(colB, colA, (c + 1) / 2)}" fill-opacity="${(0.55 + 0.35 * Math.abs(c)).toFixed(2)}"/>`;
-      if (!big && Math.abs(c) <= FRONT_HELD_BAND) hatch += `<path d="${info.path}" fill="url(#contestHatch)"/>`;
-      if (c >= 0) dA += info.path; else dB += info.path;   // sign-bin: 0 goes to A, seam only
-    }
-    let seam = "";
-    // Occupation edges first: the outer ring of EACH side's binned ground,
-    // stroked through a mask that blacks out the region itself, so internal
-    // district seams vanish and only the perimeter survives. SYMMETRIC rings
-    // guarantee a line on every boundary of every held set against anything —
-    // opposing held ground, opposing untouched ground where the sim's
-    // delta-pruned front carries no entry for the neighbour, an all-B front,
-    // and a front past the `big` budget line: the rings are two masks + two
-    // paths regardless of front size, so `big` gates only the expensive marks
-    // (the hatch above and the clip seam below). Where the two sides actually
-    // meet, both rings overlay and the loud seam overrides them.
-    if (dA) {
-      seam += `<mask id="foem${w.id}a" maskUnits="userSpaceOnUse" x="0" y="0" width="${WORLD.w}" height="${WORLD.h}">
-          <rect x="0" y="0" width="${WORLD.w}" height="${WORLD.h}" fill="#fff"/>
-          <path d="${dA}" fill="#000"/></mask>
-        <path class="fedge" d="${dA}" mask="url(#foem${w.id}a)"/>`;
-    }
-    if (dB) {
-      seam += `<mask id="foem${w.id}b" maskUnits="userSpaceOnUse" x="0" y="0" width="${WORLD.w}" height="${WORLD.h}">
-          <rect x="0" y="0" width="${WORLD.w}" height="${WORLD.h}" fill="#fff"/>
-          <path d="${dB}" fill="#000"/></mask>
-        <path class="fedge" d="${dB}" mask="url(#foem${w.id}b)"/>`;
-    }
-    if (dA && dB && !big) {
-      // The seam proper overrides the rings where the two sides actually
-      // meet: stroke B's ground, clipped by A's ground. Only the half of the
-      // stroke that lies inside A survives — exactly the shared A|B border,
-      // and raster clipping forgives small vertex mismatches between
-      // neighbouring polygons that exact edge-matching would not.
-      seam += `<clipPath id="fclip${w.id}"><path d="${dA}"/></clipPath>
-        <g clip-path="url(#fclip${w.id})">
-          <path class="fseam-under" d="${dB}"/><path class="fseam" d="${dB}"/></g>`;
-    }
-    // Pocket rings: stroke the pocket's concatenated outlines, masked to the
-    // OUTSIDE of the pocket region — internal district seams (which lie
-    // inside) vanish, leaving one clean outer ring per pocket.
-    let rings = "";
-    (w.pockets || []).forEach((pk, i) => {
-      const d = pk.map((pid) => (DINDEX[pid] ? DINDEX[pid].path : "")).join("");
-      if (!d) return;
-      rings += `<mask id="fpm${w.id}_${i}" maskUnits="userSpaceOnUse" x="0" y="0" width="${WORLD.w}" height="${WORLD.h}">
-          <rect x="0" y="0" width="${WORLD.w}" height="${WORLD.h}" fill="#fff"/>
-          <path d="${d}" fill="#000"/></mask>
-        <path class="fpocket" d="${d}" mask="url(#fpm${w.id}_${i})"/>`;
-    });
-    out += `<g class="frontw" data-war="${w.id}">${fills}${hatch}${seam}${rings}</g>`;
-  }
-  return out ? `<g id="frontg" pointer-events="none">${out}</g>` : "";
-}
+/// THE FRONT LAYER MOVED INTO paintFronts(), and this is where it used to be.
+/// It built one SVG string per render, with a <mask> for each occupation ring
+/// and a <clipPath> for the seam. Canvas2D says both more directly -- a
+/// destination-out fill after a stroke IS that mask, and clip() before a stroke
+/// IS that clip path -- so the layer survived the move with fewer moving parts,
+/// and FRONT_AT, the O(1) hover index it also rebuilds, is unchanged.
 
 /// The hover phrase for a front district. Thresholds match the sim's band.
 function frontWord(f) {
@@ -8288,39 +8767,95 @@ function frontWord(f) {
   return s + (f.pocket ? " · CUT OFF" : "");
 }
 
-let hoverNation = null, detailTimer = 0;
+/// What the pointer is over, resolved through the ONE bridge every hit test on
+/// this map crosses: screen pixel -> ray -> lon/lat -> Robinson canvas, and
+/// then the same isPointInPath the flat map's browser was doing for it.
+///
+/// THE HIT TEST MOVED INTO JS AND THAT IS THE POINT. On the flat map the
+/// geometry was DOM, so a hover was `e.target.closest(".nodeg")` and the
+/// browser did the work — at the cost of ~4000 nodes of per-district DOM at
+/// high zoom, and of the pointer-capture retargeting bug documented at length
+/// in the version of this function that this one replaces. On the globe the
+/// geometry is a texture and there is nothing to hit, so the question is asked
+/// of the polygons directly. It costs one Path2D test per candidate country,
+/// against a list already cut to the ones whose bounding box contains the
+/// point, and it cannot be confused by pointer capture, by a mark painted over
+/// the ground, or by a node that was replaced mid-gesture.
+const HITCTX = document.createElement("canvas").getContext("2d");
 
+/// Country bounding boxes on the canvas, measured once from the centroids and
+/// the paths. A full isPointInPath over 257 countries per pointermove is
+/// affordable but wasteful; the box test cuts it to two or three.
+const CBOX = (() => {
+  const box = {};
+  for (const code in WORLD.countries) {
+    const d = WORLD.countries[code];
+    let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+    // The path grammar mapgen emits is M/L only, so the numbers in it ARE the
+    // vertices and no curve flattening is needed to bound them.
+    const nums = d.match(/-?\d+(?:\.\d+)?/g);
+    if (!nums) continue;
+    for (let i = 0; i + 1 < nums.length; i += 2) {
+      const x = +nums[i], y = +nums[i + 1];
+      if (x < x0) x0 = x; if (x > x1) x1 = x;
+      if (y < y0) y0 = y; if (y > y1) y1 = y;
+    }
+    box[code] = [x0, y0, x1, y1];
+  }
+  return box;
+})();
+
+/// canvas point -> the country code under it, or null.
+function countryAt(x, y) {
+  for (const code in WORLD.countries) {
+    const b = CBOX[code];
+    if (!b || x < b[0] || x > b[2] || y < b[1] || y > b[3]) continue;
+    if (HITCTX.isPointInPath(p2d(WORLD.countries[code]), x, y, "evenodd")) return code;
+  }
+  return null;
+}
+
+/// canvas point -> the district under it, searched only inside one country.
+/// Districts are 4000 polygons and testing all of them per move would not be
+/// affordable; testing one country's is.
+function districtAt(iso, x, y) {
+  for (const d of DISTRICTS.byCountry[iso] || []) {
+    if (HITCTX.isPointInPath(p2d(d.path), x, y)) return d;
+  }
+  return null;
+}
+
+let hoverNation = null, hoverDistrict = null, detailTimer = 0;
+
+/// The globe's hover. `e` is null when the pointer left the canvas.
 function onMapHover(e) {
-  // WHILE THE PAN HOLDS THE POINTER CAPTURE, every pointer event is retargeted
-  // at #pane-map itself. Read literally that says the cursor has left every
-  // nation, so this used to set hoverNation = null and have
-  // refreshDistrictDetail() empty #dhit — in the middle of a press, on the very
-  // press that was standing on one of those paths. A pointerdown target torn
-  // out of the document has no connected ancestor left to bear the click, so
-  // Chrome fired NO click at all: at any zoom past ZB2, clicking the ground of
-  // the nation you were hovering did nothing, and the click handler was never
-  // even reached.
-  //
-  // The tech viewport already guards its own hover against precisely this — its
-  // comment says pointer capture retargets mid-drag events at the viewport
-  // anyway — and the map never got the same guard. hasPointerCapture is the
-  // exact question: a genuine hover over the pane's own box (leaving the map
-  // for the legend below it) still clears the nation, because nothing is
-  // captured then.
-  const pane = $("#pane-map");
-  if (pane && pane.hasPointerCapture && pane.hasPointerCapture(e.pointerId)) return;
-  const g = e.target.closest(".nodeg");
-  // A commodity mark is above the nation groups and takes pointer events, so
-  // without this the pointer crossing one would read as leaving every nation
-  // and drop the district labels under the cursor. It resolves to the nation
-  // governing its own district instead — the same answer clicking it gives.
-  const ch = !g && e.target.closest(".rchip");
-  const id = g ? g.dataset.id
-    : ch ? (nationOfDistrict(ch.dataset.did) || hoverNation)
-    : (e.target.closest("#dhit") ? hoverNation : null);
-  if (id === hoverNation) return;
-  hoverNation = id;
-  refreshDistrictDetail();
+  let nation = null, district = null;
+  if (e) {
+    const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);
+    if (w) {
+      const code = countryAt(w[0], w[1]);
+      if (code) {
+        // The nation painting that ground, which is not always the nation whose
+        // country code it is: a district the sim has handed over is painted by
+        // its own owner, and hovering it must name that owner or the map and
+        // the dossier it opens would disagree.
+        district = ui.cam.k >= ZB1 ? districtAt(code, w[0], w[1]) : null;
+        const byDistrict = district && nationOfDistrict(district.id);
+        nation = byDistrict || nationOfCode(code);
+      }
+    }
+  }
+  if (nation === hoverNation && (district && district.id) === (hoverDistrict && hoverDistrict.id)) return;
+  hoverNation = nation;
+  hoverDistrict = district;
+  SEL.dirty = true;
+  if (GLOBE) GLOBE.render();
+}
+
+/// Which living nation, if any, is painting a country code.
+function nationOfCode(code) {
+  for (const n of S.nations) if ((TERRITORY[n.id] || []).includes(code)) return n.id;
+  return null;
 }
 
 function scheduleDistrictDetail() {              // debounce zoom-band churn
@@ -8328,15 +8863,15 @@ function scheduleDistrictDetail() {              // debounce zoom-band churn
   detailTimer = setTimeout(camWork, 120);
 }
 
-/// Everything a camera move owes the DOM but a viewBox rewrite cannot give:
-/// the hovered nation's district labels and hit targets, and the resource mark
-/// layer, which is viewport-culled and so has to be rebuilt when the viewport
-/// changes. Both are debounced together — a dive is one rebuild, not one per
-/// frame — and both are no-ops when nothing that matters to them moved.
-/// refreshDistrictDetail() returns early below ZB2, which is precisely the band
-/// where marks are live, so this cannot be folded into it.
+/// Everything a camera move owes the page but a redraw cannot give: the
+/// resource mark layer, which is viewport-culled and so has to be rebuilt when
+/// the viewport changes. Debounced — a dive is one rebuild, not one per frame.
+///
+/// District labels used to be here too, as DOM. They are drawn on the overlay
+/// now (see drawMapOverlay), which is strictly better: they cost nothing when
+/// the camera is still, they are culled at the horizon, and there is no
+/// per-district DOM to go stale mid-gesture.
 function camWork() {
-  refreshDistrictDetail();
   refreshResGlyphs();
   if ($("#resBudget")) $("#resBudget").textContent = resBudgetLine();
 }
@@ -8344,437 +8879,289 @@ function camWork() {
 /// Natural Earth names are transcribed data, not markup.
 const escText = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 
-/// District names + hover targets for ONE nation at a time — the hovered or
-/// selected one — injected only at zoom >= ZB2 and cleared otherwise, so the
-/// world never carries per-district DOM (worst case is one federation's ~330
-/// districts, transient).
-function refreshDistrictDetail() {
-  const hit = $("#dhit"), lab = $("#dlabels");
-  if (!hit || !lab) return;
-  const id = ui.cam.k >= ZB2 ? (hoverNation || selected) : null;
-  if (!id || !TERRITORY[id]) { hit.innerHTML = ""; lab.innerHTML = ""; return; }
-  const svg = $("#pane-map svg");
-  if (!svg) return;
-  const r = svg.getBoundingClientRect();
-  const fs = 11 * (WORLD.w / ui.cam.k) / Math.max(r.width, 1);  // ~11 screen px, in viewBox units
-  let h = "", t = "";
-  for (const iso of TERRITORY[id]) {
-    for (const d of DISTRICTS.byCountry[iso] || []) {
-      const nm = escText(d.name);
-      // Front status rides the existing hover title — no new hover machinery,
-      // one O(1) lookup on an index rebuilt once per renderMap. Terrain rides
-      // the same title: the class (lowland, the common case, stays silent)
-      // and the named feature — transcription, never mechanics. The label
-      // gets the class mark only; feature names stay in the title so labels
-      // hold one short line.
-      const tr = TERRAIN.byId[d.id];
-      const tt = tr ? (tr.t !== "lowland" ? " · " + tr.t : "") + (tr.f ? " · " + escText(tr.f) : "") : "";
-      const g2 = tr && TGLYPH[tr.t] ? " " + TGLYPH[tr.t] : "";
-      const f = FRONT_AT[d.id];
-      // In Resources mode the same title carries the EVIDENCE — which records,
-      // or which province and how much of this district it covers. A graded
-      // fill tells you a patch is weak; only this tells you why, and a map that
-      // grades its confidence but hides its sources is asking to be trusted
-      // rather than checked.
-      const rt = (ui.mapMode === "resources" || ui.resOverlay)
-        ? " — " + resEvidence(d.id) : "";
-      h += `<path d="${d.path}" data-did="${d.id}"><title>${nm}${tt}${rt}${f ? " — " + frontWord(f) : ""}</title></path>`;
-      t += `<text class="dlabel" x="${d.cx}" y="${d.cy}" text-anchor="middle" font-size="${
-        fs.toFixed(2)}" stroke-width="${(fs * 0.2).toFixed(2)}">${nm}${g2}</text>`;
+/* ---------------------------------------------------- the overlay ---------
+   Everything that is a POINT rather than a polygon: nation labels, city
+   labels, the war marks, and one nation's district names. They are drawn per
+   frame in screen space because each of them has to face the viewer, hold a
+   constant size while the ground under it foreshortens, and disappear over the
+   horizon — none of which a texture baked on the canvas can do.
+
+   The horizon cull is not cosmetic. Without it every label on the far side of
+   the world projects onto the near side, and the Atlantic fills with the names
+   of Pacific nations. globe3d.js's projectGeo returns null past the horizon,
+   which is the whole of the rule.                                            */
+
+function drawMapOverlay(ctx, view, globe) {
+  const m = me();
+  const r = view.ratio;
+  ctx.textBaseline = "middle";
+  ctx.textAlign = "center";
+
+  // ---- war: a glow on each belligerent, and the abstraction line only for a
+  // war with no front to show. The flat map drew the glow as an 81.6-unit disc
+  // of gradient on the ground; here it is a screen-space halo, which is the
+  // same mark and cannot swallow a click because the overlay takes no pointer
+  // events at all.
+  for (const w of S.wars) {
+    const a = anchorOf(w.attacker_id), b = anchorOf(w.defender_id);
+    if (!a || !b) continue;
+    const pa = globe.projectWorld(a[0], a[1], view, 1.002);
+    const pb = globe.projectWorld(b[0], b[1], view, 1.002);
+    for (const p of [pa, pb]) {
+      if (!p) continue;
+      const rad = 30 * r;
+      const grad = ctx.createRadialGradient(p[0], p[1], 0, p[0], p[1], rad);
+      grad.addColorStop(0, "#d05f5f80");
+      grad.addColorStop(1, "#d05f5f00");
+      ctx.fillStyle = grad;
+      ctx.beginPath(); ctx.arc(p[0], p[1], rad, 0, Math.PI * 2); ctx.fill();
+    }
+    if (w.front && Object.keys(w.front).length) continue;   // the front IS the line
+    if (!pa || !pb) continue;
+    ctx.strokeStyle = "#ff6b6be6";
+    ctx.lineWidth = 1.8 * r;
+    ctx.setLineDash([5 * r, 4 * r]);
+    ctx.beginPath(); ctx.moveTo(pa[0], pa[1]); ctx.lineTo(pb[0], pb[1]); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // ---- district names, for ONE nation at a time and only past ZB2, exactly
+  // the band the flat map used. Drawn before the nation labels so a nation's
+  // own name stays on top of its districts' names.
+  const detail = ui.cam.k >= ZB2 ? (hoverNation || selected) : null;
+  if (detail && TERRITORY[detail]) {
+    ctx.font = `${11 * r}px Inter, system-ui, sans-serif`;
+    ctx.lineWidth = 2.6 * r;
+    ctx.strokeStyle = "#0a0e14cc";
+    ctx.fillStyle = "#b9c6d6";
+    const placed = [];
+    for (const iso of TERRITORY[detail]) {
+      for (const d of DISTRICTS.byCountry[iso] || []) {
+        const p = globe.projectWorld(d.cx, d.cy, view);
+        if (!p) continue;
+        const width = d.name.length * 5.6 * r;
+        if (placed.some((q) => Math.abs(q[0] - p[0]) < (q[2] + width) * .5 + 4 * r
+                            && Math.abs(q[1] - p[1]) < 13 * r)) continue;
+        placed.push([p[0], p[1], width]);
+        ctx.strokeText(d.name, p[0], p[1]);
+        ctx.fillText(d.name, p[0], p[1]);
+      }
     }
   }
-  hit.innerHTML = h; lab.innerHTML = t;
-}
 
-/// The map's painted world->screen mapping, read from the svg itself rather
-/// than recomputed. getBoundingClientRect() is the ELEMENT box: the svg is
-/// `width:100%` under a max-height with the default `xMidYMid meet`, so
-/// whenever the pane's aspect differs from WORLD.w/WORLD.h the viewBox content
-/// rect is letterboxed inside that box and the two disagree -- by an offset AND
-/// a scale. A gesture measured against the element box slides the map under the
-/// cursor instead of holding it. getScreenCTM() is the matrix the browser
-/// ACTUALLY painted with, so it cannot disagree with what is on screen; the GL
-/// ground reads the same matrix (see glDraw), which is why the two layers
-/// answer a gesture the same way rather than merely staying registered with
-/// each other. `1 / M.a` is world units per CSS pixel and `(clientX - M.e)/M.a`
-/// is the world x under the cursor.
-///
-/// Null when the svg is unrendered or the scale is degenerate; a caller must
-/// then decline the gesture rather than fall back to the element box, which is
-/// the wrong answer this exists to avoid. The axis-aligned uniform-scale
-/// assumption is the one glDraw asserts outright.
-function mapCTM(svg) {
-  const M = svg.getScreenCTM();
-  if (!M) return null;
-  if (!isFinite(M.a) || !isFinite(M.d) || !isFinite(M.e) || !isFinite(M.f) ||
-      Math.abs(M.a) < 1e-9 || Math.abs(M.d) < 1e-9) return null;
-  return M;
-}
-
-// Map input: bound ONCE to #pane-map, which is never replaced, so a render
-// mid-gesture cannot orphan a listener. Pan and zoom mutate ui.cam and
-// rewrite the viewBox; they never call renderMap.
-(() => {
-  const pane = $("#pane-map");
-  let down = null, moved = false;
-  // THE PICK TARGET, taken at pointerdown. It cannot be read off the click:
-  // setPointerCapture below RETARGETS the click at the capture element, so
-  // `e.target` in the click handler is #pane-map itself and never the mark that
-  // was hit. Null whenever the press was not a left-button press on the svg, so
-  // a stale mark can never be cashed in by a later click somewhere else.
-  let downTarget = null;
-  pane.addEventListener("wheel", (e) => {
-    cancelAnimationFrame(camAnim); camAnim = 0;   // user input wins over the theatre tween
-    const svg = pane.querySelector("svg");
-    if (!svg) return;
-    e.preventDefault();
-    // Read the matrix BEFORE ui.cam.k moves: it describes the camera still on
-    // screen, which is the one the cursor is pointing at.
-    const M = mapCTM(svg);
-    if (!M) return;
-    const k0 = ui.cam.k;
-    ui.cam.k = clamp(k0 * Math.exp(-e.deltaY * 0.0015), 1, 32);
-    // Keep the world point under the cursor fixed. The viewBox aspect is
-    // WORLD.w/WORLD.h at every zoom, so the `meet` fit -- and with it the
-    // content rect -- is the same before and after; only the scale changes.
-    // Holding wx is then exactly shrinking the centre's offset from it by the
-    // zoom factor.
-    const wx = (e.clientX - M.e) / M.a, wy = (e.clientY - M.f) / M.d;
-    const z = k0 / ui.cam.k;
-    ui.cam.cx = wx + (ui.cam.cx - wx) * z;
-    ui.cam.cy = wy + (ui.cam.cy - wy) * z;
-    applyCam(); scheduleDistrictDetail();
-  }, { passive: false });
-  pane.addEventListener("pointerdown", (e) => {
-    cancelAnimationFrame(camAnim); camAnim = 0;   // user input wins over the theatre tween
-    const svg = pane.querySelector("svg");
-    downTarget = null;
-    if (e.button !== 0 || !svg || !svg.contains(e.target)) return;
-    down = { x: e.clientX, y: e.clientY }; moved = false;
-    // The press knows what it landed on; the click that follows will not.
-    downTarget = e.target;
-    // Capture so a fast drag that leaves the pane keeps panning. A pointer
-    // that is already gone by the time this runs throws; the pan then simply
-    // falls back to bubbling moves, so the failure is not worth surfacing.
-    try { pane.setPointerCapture(e.pointerId); } catch (_) {}
-  });
-  pane.addEventListener("pointermove", (e) => {
-    if (!down) return;
-    const svg = pane.querySelector("svg");
-    if (!svg) { down = null; return; }
-    // 1/M.a is world units per CSS pixel along the rect the browser painted,
-    // so the ground stays under the finger whatever the letterbox is doing.
-    // Dropping `down` on a null matrix rather than returning: a stale anchor
-    // would cash in as a jump on the next move.
-    const M = mapCTM(svg);
-    if (!M) { down = null; return; }
-    const dx = e.clientX - down.x, dy = e.clientY - down.y;
-    if (Math.abs(dx) + Math.abs(dy) > 4) moved = true;
-    ui.cam.cx -= dx / M.a;
-    ui.cam.cy -= dy / M.d;
-    down = { x: e.clientX, y: e.clientY };
-    applyCam();
-  });
-  // A pan changes the viewport, and the resource marks are viewport-culled, so
-  // the end of a drag owes them a rebuild the way the end of a zoom does. It
-  // rides the same debounce; a drag that moved nothing costs one keyed no-op.
-  pane.addEventListener("pointerup", () => { down = null; if (moved) scheduleDistrictDetail(); });
-  pane.addEventListener("pointercancel", () => { down = null; if (moved) scheduleDistrictDetail(); });
-  pane.addEventListener("click", (e) => {
-    if (moved || e.detail > 1) return;          // a pan is not a pick; nor half a dblclick
-    // Read the mark off the PRESS, not off the click — see `downTarget`. A node
-    // torn out by a render landing between press and click is no longer a pick,
-    // and `e.target` (the pane) then resolves to nothing, which is correct.
-    const t = downTarget && downTarget.isConnected ? downTarget : e.target;
-    const g = t.closest(".nodeg");
-    if (g) { openNation(g.dataset.id); return; }
-    // A commodity mark sits above the nation groups and takes its own pointer
-    // events (it carries an evidence tooltip), so it would otherwise swallow
-    // the click that opens a dossier. It resolves the same way a district does:
-    // to whoever governs the ground under it — the sim's per-district owner if
-    // it has one, else the nation holding the country.
-    const ch = t.closest(".rchip");
-    if (ch) {
-      const nid = nationOfDistrict(ch.dataset.did);
-      if (nid) openNation(nid);
-      return;
+  // ---- nation labels ------------------------------------------------------
+  // THE FLAT MAP COULD DRAW ALL OF THEM AND THIS CANNOT, and the reason is
+  // geometric rather than aesthetic. A rectangle gives every nation the same
+  // share of the page; a sphere compresses two thirds of the visible world
+  // into the outer third of the disc, so the labels that were merely dense at
+  // the edge of the paper are stacked on top of each other at the limb.
+  //
+  // Three rules, in this order. FACING: a label on ground turned more than
+  // ~80 degrees away is describing two pixels of foreshortened coastline and
+  // is dropped, with a fade over the last stretch so nothing pops. PRIORITY:
+  // you first, then whatever is hovered or open, then the largest economies —
+  // so when two labels collide the one that survives is the one the player is
+  // more likely to be looking for. COLLISION: measured, not guessed, against
+  // everything already placed this frame.
+  const rank = (n) => (m && n.id === m.id ? 1e15 : 0)
+    + (n.id === hoverNation || n.id === selected ? 1e14 : 0) + (n.gdp || 0);
+  const order = S.nations.slice().sort((a, b) => rank(b) - rank(a));
+  const placed = [];
+  for (const n of order) {
+    const a = anchorOf(n.id);
+    if (!a) continue;
+    const face = globe.facingWorld(a[0], a[1]);
+    if (face < 0.17) continue;                       // over the shoulder of the world
+    const p = globe.projectWorld(a[0], a[1], view, 1.003);
+    if (!p) continue;
+    const isMe = m && n.id === m.id;
+    const hot = n.id === hoverNation || n.id === selected;
+    const marks = (n.nuclear ? " ☢" : "") + (n.sanctioned_by_count > 0 ? " ⊘" : "");
+    const text = n.name + marks;
+    const size = (isMe || hot ? 12 : 11) * r;
+    ctx.font = `${isMe || hot ? 700 : 400} ${size}px Inter, system-ui, sans-serif`;
+    const width = ctx.measureText(text).width;
+    // The subline yields to the district names, the same trade `svg.zb2 .sub`
+    // made: at that zoom the map is answering a finer question.
+    const sub = ui.cam.k < ZB2 ? mapSub(n) : "";
+    const height = sub ? size + 12 * r : size;
+    const box = [p[0], p[1] + (sub ? 6 * r : 0), width, height];
+    if (!isMe && !hot && placed.some((q) =>
+        Math.abs(q[0] - box[0]) < (q[2] + box[2]) * .5 + 3 * r &&
+        Math.abs(q[1] - box[1]) < (q[3] + box[3]) * .5 + 2 * r)) continue;
+    placed.push(box);
+    ctx.globalAlpha = smoothFade(face, 0.17, 0.30);
+    ctx.lineWidth = 4.2 * r;
+    ctx.strokeStyle = "#0a0e14";
+    ctx.strokeText(text, p[0], p[1]);
+    ctx.fillStyle = isMe ? "#e8c87e" : hot ? "#fff6e0" : "#e8edf4";
+    ctx.fillText(text, p[0], p[1]);
+    if (sub) {
+      ctx.font = `${10 * r}px Inter, system-ui, sans-serif`;
+      ctx.lineWidth = 3.6 * r;
+      ctx.strokeText(sub, p[0], p[1] + 12 * r);
+      ctx.fillStyle = "#b6c2d2";
+      ctx.fillText(sub, p[0], p[1] + 12 * r);
     }
-    // A district is not a thing you open — the click falls through to the
-    // nation that governs the ground under the cursor.
-    if (t.closest("#dhit") && hoverNation) openNation(hoverNation);
-  });
-  pane.addEventListener("dblclick", (e) => {
-    if (!pane.querySelector("svg")) return;
-    e.preventDefault();
-    resetCam();
-  });
-  pane.addEventListener("pointerover", onMapHover);
+    ctx.globalAlpha = 1;
+  }
+  ctx.textAlign = "left";
+}
+
+/// smoothstep, and the only reason it is spelled out here is that the two
+/// places that fade against the limb should fade identically.
+function smoothFade(v, a, b) {
+  const t = clamp((v - a) / (b - a), 0, 1);
+  return t * t * (3 - 2 * t);
+}
+
+/* ---------------------------------------------------- the stage -----------
+   #pane-map holds two canvases and nothing else: the WebGL globe and the 2D
+   overlay over it. Both are RETAINED nodes re-adopted per render, on the same
+   pattern the flat map used for its own canvas and its district mesh —
+   `innerHTML = s` detaches every child, and rebuilding the WebGL canvas would
+   throw away the context, the shaders and 30 MB of uploaded texture.           */
+
+const GLOVL = (() => {
+  const c = document.createElement("canvas");
+  c.className = "globe-overlay";
+  c.setAttribute("aria-hidden", "true");
+  return c;
 })();
 
+/// Build the globe once the stage exists, and only once. The listeners live on
+/// GLCV, which is retained, so they survive every render.
+function globeBoot() {
+  if (GLOBE) return;
+  const a = camAngles();
+  GLOBE = new Globe3D({
+    canvas: GLCV,
+    overlay: GLOVL,
+    yaw: a.yaw, pitch: a.pitch, zoom: ui.cam.k,
+    dprCap: () => GL.dprCap,
+    onDraw: glDrawGlobe,
+    onOverlay: drawMapOverlay,
+    onUserInput: camUserInput,
+    onViewChange: camFromGlobe,
+    onHover: onMapHover,
+    onPick: onMapPick,
+    onCitiesChange: (n) => {
+      const el = $("#globeCities");
+      if (el) el.textContent = n ? n + (n === 1 ? " city" : " cities") : "cities appear as you zoom";
+    },
+  });
+}
+
+/// A click that was not a drag. Resolves to whoever governs the ground under
+/// the pointer — the sim's per-district owner if it has one, else the nation
+/// holding the country — which is the same rule the flat map's click had, said
+/// once instead of spread over three delegated handlers.
+function onMapPick(e) {
+  const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);
+  if (!w) return;
+  const code = countryAt(w[0], w[1]);
+  if (!code) return;
+  const d = districtAt(code, w[0], w[1]);
+  const id = (d && nationOfDistrict(d.id)) || nationOfCode(code);
+  if (id) openNation(id);
+}
+
+/// The keyboard, and the buttons that stand for it. Arrows turn the globe by a
+/// step that shrinks as it fills the screen, so one press moves the view by
+/// about the same fraction of what is on screen at every zoom.
+window.globeNudge = function (h, v) {
+  camUserInput();
+  if (GLOBE) GLOBE.nudge(h, v);
+};
+
+/// The player has taken hold of the globe, so the theatre tween lets go. The
+/// flat map cancelled the tween inside its own wheel and pointerdown handlers;
+/// those handlers live in globe3d.js now, which knows nothing about tweens, so
+/// it calls this instead. Without it, the 350 ms after zoomTheatre overwrites
+/// every drag frame the player produces.
+function camUserInput() {
+  cancelAnimationFrame(camAnim);
+  camAnim = 0;
+}
+
+/// One tick's worth of map. Note what is NOT here any more: 300 lines that
+/// built an <svg> string with every country, every district fill, every front
+/// mark and every label in it, per tick. The geometry moved into a texture
+/// painted on demand (paintPolitical) and the labels moved onto the overlay
+/// drawn per frame (drawMapOverlay), so this function's whole job is now the
+/// FURNITURE — the stage, the legend, the shading chips — plus telling the
+/// globe that the world it is drawing has changed.
 function renderMap() {
-  const m = me();
+  // The map is the only screen that needs globe3d.js, and it is fetched from
+  // this same binary -- so this cannot fire against a matched deploy. It exists
+  // because renderMap runs BEFORE the dossiers, the charts and the log in
+  // render(), and a ReferenceError here would take a page down that is
+  // otherwise entirely usable.
+  if (!window.Globe3D) {
+    $("#pane-map").innerHTML = `<div class="globe-stage"><div class="globe-fallback">
+      The map could not load /globe3d.js. Every other screen still works.</div></div>`;
+    return;
+  }
   const mode = MAP_MODES[ui.mapMode];
   // Who is at war, for the fronts shading and the front layer's palette.
   WARRING = new Set(S.wars.flatMap((w) => w.posture.map((b) => b.id)));
-  if (!ui.cam.cx) { ui.cam.cx = WORLD.w / 2; ui.cam.cy = WORLD.h / 2; }
-  // Every code held by a living sim nation, so the rest can be drawn as scenery.
-  const claimed = {};
-  S.nations.forEach((n) => (TERRITORY[n.id] || []).forEach((c) => (claimed[c] = n)));
+  // `=== undefined`, not falsy: cx wraps into [0, WORLD.w) now, so 0 is a legal
+  // camera x -- the antimeridian on the equator -- and a falsy test would slam
+  // the camera to the middle of the canvas when the player looked at it.
+  if (ui.cam.cx === undefined) { ui.cam.cx = WORLD.w / 2; ui.cam.cy = WORLD.h / 2; }
 
-  // The camera is baked in, so a tick render mid-gesture lands on the same
-  // view, zoom bands pre-set.
-  let s = `<svg viewBox="${camBox()}" class="map-${ui.mapMode}${ui.cam.k >= ZB1 ? " zb1" : ""}${
-    ui.cam.k >= ZB2 ? " zb2" : ""}" style="max-height:calc(100vh - 150px);--zk:${ui.cam.k}">`;
-  s += `<defs>
-      <radialGradient id="glow"><stop offset="0%" stop-color="#d05f5f" stop-opacity=".5"/>
-        <stop offset="100%" stop-color="#d05f5f" stop-opacity="0"/></radialGradient>
-      <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#081221"/>
-        <stop offset="45%" stop-color="#050c17"/>
-        <stop offset="100%" stop-color="#081524"/>
-      </linearGradient>
-      <filter id="halo" x="-40%" y="-60%" width="180%" height="220%">
-        <feDropShadow dx="0" dy="0" stdDeviation="${2.4 * PX}" flood-color="#05080d" flood-opacity="1"/>
-      </filter>
-      <filter id="landshade" x="-10%" y="-10%" width="120%" height="120%">
-        <feDropShadow dx="0" dy="${1 * PX}" stdDeviation="${1.6 * PX}" flood-color="#000" flood-opacity=".55"/>
-      </filter>
-      <pattern id="contestHatch" patternUnits="userSpaceOnUse" width="3" height="3"
-               patternTransform="rotate(45)">
-        <rect width="1.4" height="3" fill="#05070a" opacity=".38"/>
-      </pattern>
-      <pattern id="confHatch" patternUnits="userSpaceOnUse" width="2.4" height="2.4"
-               patternTransform="rotate(-45)">
-        <rect width="0.8" height="2.4" fill="#e8edf4" opacity=".22"/>
-      </pattern>
-      <!-- The filing-centroid rule, drawn. Rotated the opposite way from
-           confHatch and coarser, so the two are told apart at a glance and
-           cross legibly where a patch carries both marks. -->
-      <pattern id="centHatch" patternUnits="userSpaceOnUse" width="3.2" height="3.2"
-               patternTransform="rotate(45)">
-        <rect width="0.9" height="3.2" fill="#e0a94a" opacity=".38"/>
-      </pattern>
-      <!-- The overlay's wash. An SVG pattern cannot inherit the referencing
-           element's fill, so the commodity's hue is stamped into the def here,
-           per render — which is exactly when a filter change lands, since every
-           chip click goes through renderMap. Roughly a third of each cell is
-           inked, so two thirds of every patch still shows the politics under
-           it: that ratio IS the design, and it is why the overlay can be left
-           on while reading a war. -->
-      <pattern id="resStipple" patternUnits="userSpaceOnUse" width="3.4" height="3.4"
-               patternTransform="rotate(45)">
-        <rect width="1.2" height="3.4" fill="${resHue(ui.resCommodity)}"/>
-      </pattern>
-    </defs>`;
-  // The ocean is the projection's own envelope, not a rectangle. Fill and
-  // border are two paths, not one, because they answer to different things: the
-  // FILL yields to the GL sea under it (--seaop), and the 1px non-scaling
-  // border ALWAYS draws, since a canvas cannot rule a line that ignores the
-  // camera. Painting them as two elements in this order is identical to one
-  // element's fill-then-stroke, so the fallback is unchanged.
-  s += `<path class="oceanfill" d="${WORLD.frame}" fill="url(#ocean)"/>`;
-  s += `<path d="${WORLD.frame}" fill="none" stroke="#38404c" stroke-width="1" vector-effect="non-scaling-stroke"/>`;
-  s += WORLD.graticule
-    .map((g) => `<path class="grat" d="${g}" fill="none" stroke="#0f1826" stroke-width=".55" vector-effect="non-scaling-stroke"/>`)
-    .join("");
-
-  // 1. the unaligned world
-  let scenery = "";
-  for (const code in WORLD.countries) {
-    if (!claimed[code]) scenery += WORLD.countries[code];
-  }
-  // Split on the same principle as the ocean above: the flat #333c48 FILL is
-  // what the GL ground replaces (the shader reproduces that exact tone as its
-  // legacy term, so opening this window loses no colour — and it closes the
-  // tnode() gap, where land outside admin-1 coverage renders flat today), while
-  // the .4 non-scaling outline of every unaligned country is a mark GL cannot
-  // make and always draws. Both stay inside the #landshade group, so the drop
-  // shadow that lifts land off the sea is intact wherever the fill is.
-  s += `<g filter="url(#landshade)">
-      <path class="landfill" d="${scenery}" fill="#333c48" fill-rule="evenodd"/>
-      <path d="${scenery}" fill="none" stroke="#161c25" stroke-width=".4" vector-effect="non-scaling-stroke"/></g>`;
-
-  // 2. the powers, shaded by whichever reading of the world is selected
-  S.nations.forEach((n) => {
-    const codes = (TERRITORY[n.id] || []).filter((c) => WORLD.countries[c]);
-    if (!codes.length) return;
-    const isMe = m && n.id === m.id;
-    const col = mode.color(n, m);
-    const on = n.id === selected;
-    const d = codes.map((c) => WORLD.countries[c]).join("");
-    const op = mode.opaque ? (on || isMe ? 1 : .92) : (isMe ? .5 : on ? .55 : .32);
-    const stroke = on ? "#e8c87e" : isMe ? "#c9a55a" : mode.opaque ? "#10151c" : col;
-    const sw = on ? 2 : isMe ? 1.4 : mode.opaque ? .7 : .8;
-    // `--w` carries this path's own weight (1 for you/selected, .92 otherwise)
-    // so the camera-driven `--fop` scale can ramp the whole layer without
-    // flattening that distinction. The fill-opacity ATTRIBUTE stays exactly as
-    // it is today and is what paints when `.gl-on` is absent — i.e. in the four
-    // thematic modes and on the entire fallback path.
-    s += `<g class="nodeg" data-id="${n.id}">
-        <path d="${d}" fill="${col}" fill-opacity="${op}" style="--w:${op}"
-              stroke="${stroke}" stroke-width="${sw}" fill-rule="evenodd" vector-effect="non-scaling-stroke"/>
-      </g>`;
-  });
-
-  // 2b. terrain class fills (Terrain mode only): the retained six-path node
-  // mounts here, UNDER the district mesh and the relief so the hillshade
-  // above does the modelling and the mesh stays readable over it.
-  if (ui.mapMode === "terrain") s += `<g id="tmount"></g>`;
-
-  // 2b¼. resource fills, mounted on the same principle as the terrain classes:
-  // ABOVE the political fills the block before just wrote, and under the
-  // district mesh and the relief, so the political mesh stays readable over a
-  // layer that is deliberately faint at its weakest band. One mount point
-  // serves both readings — the dedicated mode, where the powers have already
-  // receded to scenery and the wash is solid, and the overlay, where the powers
-  // keep their colours and the wash is a stipple laid over them. Same place in
-  // the stack, different presentation; resnode() takes the flag.
-  if (ui.mapMode === "resources" || ui.resOverlay) s += `<g id="resmount"></g>`;
-
-  // 2b½. districts: the interior-border mesh mounts here (the retained DNODE
-  // is adopted after the innerHTML lands), and any district whose sim owner
-  // disagrees with the country layer is painted in its owner's colour above
-  // it — the visible mark of a concession or an annexation.
-  s += `<g id="dmount"></g><g id="dfills">${districtFills(claimed)}</g>`;
-
-  // 2c. relief: the baked hillshade, multiply-blended ABOVE the fills so the
-  // ground modulates their colour (underneath, the opaque fills would hide
-  // it) and BELOW frontg so the front seam stays the loud mark. The retained
-  // RELIEF <image> mounts here — fetched and decoded once, moved for free by
-  // applyCam()'s viewBox rewrite; per-mode strength is CSS on #relief.
-  s += `<g id="rfmount"></g>`;
-
-  // 2d. rivers and lakes: baked scenery from rivers.js, retained like the
-  // mesh (RNODE mounts here), brightened one band in (the same zb1 the
-  // district mesh uses) and near-full in Terrain mode. Nothing reads them,
-  // and they sit above the relief so the multiply never muddies their blue.
-  s += `<g id="rmount"></g>`;
-
-  // 3. war: fronts on the ground where the sim projects them; the old glow
-  // stays as the world-zoom cue, the dashed abstraction only for wars that
-  // have no front to show.
-  //
-  // `pointer-events="none"` on the wrapper is MANDATORY, not hygiene, and it is
-  // the same rule every other decorative layer here already keeps (#relief,
-  // #frontg, #riverg, #tfills, #rfills, .rhatch, .rcent, #dlabels, #glmap).
-  // The glow is an 81.6-world-unit disc of gradient centred on each belligerent
-  // — a fill, and therefore a hit target under the default `visiblePainted`
-  // whatever its alpha — and it is painted ABOVE the district mesh and the
-  // ocean. Without this it swallowed 30.4% of the clicks inside its own radius
-  // (measured over the Gulf, Oct 1990, 441 sampled points), including clicks
-  // landing squarely on the painted territory of nations that are not even in
-  // the war. Fourteen nation anchors sat under the two Gulf discs.
-  s += frontLayer();
-  s += `<g id="warg" pointer-events="none">`;
-  S.wars.forEach((w) => {
-    const a = anchorOf(w.attacker_id), b = anchorOf(w.defender_id);
-    if (!a || !b) return;
-    [a, b].forEach((p) => {
-      s += `<circle cx="${p[0]}" cy="${p[1]}" r="${34 * PX}" fill="url(#glow)"/>`;
-    });
-    if (w.front && Object.keys(w.front).length) return;   // the front IS the line now
-    s += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"
-            stroke="#ff6b6b" stroke-width="1.8" stroke-dasharray="${5 * PX} ${4 * PX}" opacity=".9" vector-effect="non-scaling-stroke"/>`;
-  });
-  s += `</g>`;
-
-  // 4. labels last, with a click target that works even for Kuwait
-  S.nations.forEach((n) => {
-    const p = anchorOf(n.id);
-    if (!p) return;
-    // Nations too small to hold their own name get the label set offshore,
-    // tied back to the territory so the offset reads as deliberate.
-    if (LEADER.has(n.id)) {
-      const home = (TERRITORY[n.id] || []).map((c) => WORLD.centroids[c]).find(Boolean);
-      if (home) {
-        s += `<line x1="${p[0] - 12 * PX}" y1="${p[1] - 3 * PX}" x2="${home[0]}" y2="${home[1]}"
-                stroke="#8fa0b6" stroke-width=".6" opacity=".8" vector-effect="non-scaling-stroke"/>
-              <circle cx="${home[0]}" cy="${home[1]}" r="${1.6 * PX}" fill="#cfd9e6"/>`;
-      }
-    }
-    const isMe = m && n.id === m.id;
-    const marks = (n.nuclear ? "☢" : "") + (n.sanctioned_by_count > 0 ? "⊘" : "");
-    // The label pair sits in a translated group and counter-scales via --zk,
-    // so it keeps a constant screen size while the camera dives.
-    s += `<g class="nodeg" data-id="${n.id}">
-        <circle cx="${p[0]}" cy="${p[1]}" r="${13 * PX}" fill="transparent"/>
-        <g transform="translate(${p[0]} ${p[1]})"><g class="lblk">
-        <text text-anchor="middle" font-size="${11 * PX}" filter="url(#halo)"
-          fill="${isMe ? "#e8c87e" : "#e8edf4"}" font-weight="${isMe ? 700 : 400}">${n.name}${marks ? " " + marks : ""}</text>
-        <text class="sub" y="${12 * PX}" text-anchor="middle" font-size="${10 * PX}" filter="url(#halo)"
-          fill="#b6c2d2">${mapSub(n)}</text>
-        </g></g>
-      </g>`;
-  });
-  // District hover targets and labels, populated for one nation at a time by
-  // refreshDistrictDetail — the world never carries per-district DOM.
-  s += `<g id="dhit"></g><g id="dlabels" pointer-events="none"></g>`;
-  // The commodity marks go last so nothing paints over them: over relief, over
-  // rivers, over the front seam. They are the layer that answers "which", and a
-  // hillshade multiplying a 11px glyph would take it out. Budgeted and
-  // viewport-culled by refreshResGlyphs(); empty below ZB1 by design.
-  if (ui.mapMode === "resources" || ui.resOverlay) s += `<g id="resglyphs"></g>`;
-  s += `</svg>`;
+  const pos = globeReadout();
+  let s = `<div class="globe-stage">
+      <div class="globe-readout" id="globeReadout">${pos} · WebGL 3D</div>
+      <button class="globe-turn prev" type="button" aria-label="Rotate globe west"
+        onclick="globeNudge(-1,0)">&#8249;</button>
+      <button class="globe-turn next" type="button" aria-label="Rotate globe east"
+        onclick="globeNudge(1,0)">&#8250;</button>
+      <div class="globe-zoom"><span id="globeZoom">${ui.cam.k.toFixed(1)}×</span>
+        · <span id="globeCities">cities appear as you zoom</span></div>
+      <noscript class="globe-fallback">The globe needs WebGL.</noscript>
+    </div>`;
 
   const modeLegend = mode.legend.map(([c, l]) =>
     `<span><i style="background:${c}"></i>${l}</span>`).join("");
+  // NOT YET ON THE GLOBE, and said out loud rather than left to look broken.
+  // The resource wash and the commodity marks were svg layers (resnode, the
+  // #resglyphs group) mounted into the map's own markup; the globe paints its
+  // vector layers into a texture instead, and porting them is a separate piece
+  // of work. Resources mode paints its nations scenery-grey PRECISELY BECAUSE a
+  // wash was going over them, so without this line it reads as a bug rather
+  // than as a gap -- and the same is true of Terrain's six class swatches.
+  const gap = ui.mapMode === "resources" || ui.resOverlay
+    ? `<span style="color:var(--amber)">the resource layer is not drawn on the globe yet — the panel below still reads the data</span>`
+    : ui.mapMode === "terrain"
+      ? `<span style="color:var(--faint)">class fills are not drawn on the globe yet; the ground itself is the terrain read</span>`
+      : "";
   s += ui.mapMode === "resources" ? resPanel()
     : ui.resOverlay ? resOverlayPanel(modeLegend) : `<div class="legend">
-      ${modeLegend}
+      ${modeLegend}${gap}
       <span>☢ nuclear</span><span>⊘ sanctioned</span>
-      <span style="color:var(--faint)">click a nation for its dossier · C to change shading · O for the resource overlay · wheel zooms, drag pans, double-click resets</span>
+      <span style="color:var(--faint)">click a nation for its dossier · C to change shading · O for the resource overlay · drag to turn, wheel or pinch to zoom, double-click to dive</span>
     </div>`;
 
+  if (gap && (ui.mapMode === "resources" || ui.resOverlay)) {
+    s += `<div class="legend">${gap}</div>`;
+  }
   $("#pane-map").innerHTML = s;
-  // The svg-side window, on the fresh element and in the same task, so the
-  // first paint of a new tick already carries the camera's ramp rather than
-  // showing one frame at the attribute values and then correcting.
-  stampGroundVars($("#pane-map svg"));
-  anchorEdgeLabels();
-  // Re-adopt the retained nodes (re-parent, never re-parse): the district
-  // mesh, the hillshade image, the river layer, and — in Terrain mode — the
-  // lazily built class fills. Then repopulate the hovered/selected nation's
-  // district detail if any. Clicks are delegated on #pane-map — no per-group
-  // listeners to rebuild.
-  $("#dmount").appendChild(DNODE);
-  $("#rfmount").appendChild(RELIEF);
-  $("#rmount").appendChild(RNODE);
-  if (ui.mapMode === "terrain") $("#tmount").appendChild(tnode());
-  // Both readings of the resource layer take the same path: fetch once, mount
-  // the retained wash, wire the filter. `overlay` is the only thing that
-  // differs, and it only changes how the wash is painted. Every step guards on
-  // the load state, so a server that predates /resources.json renders the mode
-  // and the overlay with no fills and the reason written where the legend is.
+  // Re-adopt the two retained canvases (re-parent, never rebuild): the WebGL
+  // context, its compiled shaders and ~30 MB of uploaded texture live on GLCV,
+  // and the input listeners the globe bound live there too.
+  const stage = $("#pane-map .globe-stage");
+  stage.appendChild(GLCV);
+  stage.appendChild(GLOVL);
+
   if (ui.mapMode === "resources" || ui.resOverlay) {
     if (RESOURCES_STATE === "cold") loadResources();
-    const overlay = ui.mapMode !== "resources";
-    if (RESOURCES_STATE === "ready" && $("#resmount")) {
-      $("#resmount").appendChild(resnode(overlay));
-    }
     $("#resChips") && $("#resChips").querySelectorAll("[data-com]").forEach((c) => {
       c.onclick = () => { ui.resCommodity = c.dataset.com; resInvalidate(); renderMap(); };
     });
     const lim = $("#resLimits");
     if (lim) lim.ontoggle = () => { ui.resLimitsOpen = lim.open; };
   }
-  refreshDistrictDetail();
-  // The mark layer's cache key survives renders but its DOM does not, so the
-  // key is dropped here — otherwise a re-render at an unmoved camera would
-  // match the key against a group that was just replaced with an empty one.
-  RESGLY_KEY = "";
-  refreshResGlyphs();
-  // …and now that this frame's marks are counted, the budget line can state
-  // this frame's numbers rather than the previous one's.
-  if ($("#resBudget")) $("#resBudget").textContent = resBudgetLine();
-
-  // The GL physical underlay, re-adopted on the same pattern — detaching a
-  // canvas does not lose its WebGL context. It is appended AFTER </svg> and the
-  // legend, so paint order is z-index (see #glmap in the CSS), not source order.
-  // RELIEF above stays mounted unconditionally: it is the fallback, and keeping
-  // it constructed is what makes a lost context recover instantly.
-  $("#pane-map").appendChild(GLCV);
-  if (GLRO) { try { GLRO.disconnect(); GLRO.observe($("#pane-map svg")); } catch (_) {} }
-  if (GL.grid) $("#pane-map svg").appendChild(glGridNode());   // ?glgrid=1 only
 
   // The shading chips, plus the overlay toggle. The overlay is NOT a shading —
   // it rides on whichever one is selected — so it sits after a separator and
@@ -8791,18 +9178,39 @@ function renderMap() {
           !inRes && ui.resOverlay ? "#0a0e14" : resHue(ui.resCommodity))}resources</span>`
     + `</span>`;
   $("#mapModes").querySelectorAll("[data-mode]").forEach((c) => {
-    c.onclick = () => { ui.mapMode = c.dataset.mode; renderMap(); };
+    c.onclick = () => { ui.mapMode = c.dataset.mode; POL.dirty = true; SEL.dirty = true; renderMap(); };
   });
   const ovlChip = $("#mapModes [data-resovl]");
   if (ovlChip) ovlChip.onclick = toggleResOverlay;
 
-  // Last, and SYNCHRONOUS for the same reason applyCam() is: a deferred draw
-  // here flashes one groundless frame per tick. It is a no-op when the GL layer
-  // is not live, and it re-reads the camera the markup above already baked in.
-  // This one call also covers cycleMapMode(), the mode chips above and
-  // closeSheet(): a mode change goes through renderMap, so it needs no hook.
-  glDraw();
+  // The world moved, so the texture that describes it is stale. Marked rather
+  // than repainted: the paint happens inside the draw, once, whatever else
+  // dirtied it in the same task.
+  POL.dirty = true;
+  SEL.dirty = true;
+  globeBoot();
+  applyCam();           // pushes the camera and draws, SYNCHRONOUSLY
   glShimmerKick();      // a mode switch back into political re-arms the water
+  camWork();
+}
+
+/// The camera's position, in words, for the readout over the globe. Latitude
+/// and longitude of the point under the camera — which is exactly what ui.cam
+/// already holds, said in degrees instead of canvas units.
+function globeReadout() {
+  const g = Globe3D.unproject(ui.cam.cx, ui.cam.cy);
+  const ns = g[1] >= 0 ? "N" : "S", ew = g[0] >= 0 ? "E" : "W";
+  return `${Math.abs(g[1]).toFixed(1)}°${ns} ${Math.abs(g[0]).toFixed(1)}°${ew}`;
+}
+
+/// The readout and the zoom pill, refreshed from the camera without touching
+/// the stage around them. Called from the camera's own pull path, so it tracks
+/// a drag rather than a tick.
+function globeReadoutSync() {
+  const r = $("#globeReadout");
+  if (r) r.textContent = globeReadout() + " · WebGL 3D";
+  const z = $("#globeZoom");
+  if (z) z.textContent = ui.cam.k.toFixed(1) + "×";
 }
 
 /// The second line under a map label follows the shading, so the map answers the
@@ -8819,41 +9227,18 @@ function mapSub(n) {
   }
 }
 
-/// NAMES AT THE EDGE OF THE WORLD WERE CUT IN HALF BY IT.
+/// A LABEL AT THE EDGE OF THE WORLD USED TO BE CUT IN HALF BY IT, and the
+/// pass that fixed it lived here. A nation label was `text-anchor: middle` on
+/// its anchor and the svg clipped at the viewBox, so an anchor within half a
+/// name of x = 0 or x = WORLD.w lost the other half -- and no gesture showed it,
+/// because the frame was where the WORLD ended and not where the camera was.
+/// Measured at 1280x720: five text lines across Fiji, Western Samoa and Tonga.
 ///
-/// A nation label is `text-anchor: middle` on its anchor point, and the svg
-/// clips at the viewBox — so an anchor within half a name of x = 0 or
-/// x = WORLD.w loses the other half, and no gesture shows it, because the frame
-/// is where the WORLD ends and not where the camera is. Measured at 1280x720,
-/// k = 1, political shading, on the view the map opens with: five text lines
-/// across three Pacific states were cut — "Fiji" and its "authoritarian"
-/// sub-line ran 4.2 world units past the right frame, "Western Samoa" and
-/// "semi-free" started 46.3 units left of the left one, and Tonga's sub-line
-/// went the same way. The same three at 1024x768 and 1920x1080.
-///
-/// Measured rather than estimated: a character-count estimate of the width runs
-/// 14-24% light against the real advance and misses Fiji entirely. The widths
-/// come from getBBox, which is the label's own untransformed box, so this is a
-/// property of the NAME and its ANCHOR and not of the camera — a render taken
-/// while zoomed in still holds when the player zooms back out. 274 calls
-/// measured at 0.2ms, once per renderMap.
-///
-/// Both lines of a pair take the same anchor, and the widest of the two decides,
-/// so the sub never overhangs the name it belongs to.
-function anchorEdgeLabels() {
-  const svg = $("#pane-map svg");
-  if (!svg) return;
-  svg.querySelectorAll("g.nodeg").forEach((g) => {
-    const p = anchorOf(g.dataset.id);
-    if (!p) return;
-    const txt = g.querySelectorAll(".lblk > text");
-    if (!txt.length) return;
-    let w = 0;
-    txt.forEach((t) => { w = Math.max(w, t.getBBox().width); });
-    const a = p[0] - w / 2 < 0 ? "start" : p[0] + w / 2 > WORLD.w ? "end" : null;
-    if (a) txt.forEach((t) => t.setAttribute("text-anchor", a));
-  });
-}
+/// A globe has no frame to be cut by. What it has instead is a HORIZON, and the
+/// same label placed on ground turned away from the camera is drawn on two
+/// pixels of foreshortened coastline pointing at nothing -- so the replacement
+/// is the facing cull and the measured collision pass in drawMapOverlay, which
+/// the same test now polices.
 
 function anchorOf(id) {
   // LABEL_AT is authored (and test-parsed) in the old 1000-wide pixel space;
@@ -9203,7 +9588,7 @@ function openNation(id, keepScroll) {
     selected = id;
     sheet.innerHTML = deadSheet(d);
     openSheetEl(keepScroll);
-    refreshDistrictDetail();
+    selectionChanged();
     return;
   }
   selected = id;
@@ -9337,8 +9722,17 @@ function openNation(id, keepScroll) {
   });
   loadProvenance(n.name);
   fillResourceDash(n.id);
-  // The selected nation's districts label up when the map is zoomed in.
-  refreshDistrictDetail();
+  // The selected nation's ring is drawn on the selection layer and its
+  // districts label up on the overlay, so both owe the globe a redraw.
+  selectionChanged();
+}
+
+/// The map's answer to "the selection moved". Two layers care: the selection
+/// texture, which draws the ring, and the overlay, which labels the selected
+/// nation's districts past ZB2. Neither is a repaint of the world.
+function selectionChanged() {
+  SEL.dirty = true;
+  if (GLOBE) GLOBE.render();
 }
 window.openNation = openNation;
 
