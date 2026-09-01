@@ -437,6 +437,49 @@ fn nation_param(url: &str) -> Option<NationId> {
 /// The operating areas, and whose consent an outsider needs in each. Sent whole
 /// rather than per-conflict, because the access panel is playable on its own:
 /// a host state that is in nobody's war still wants to see who is asking.
+/// THE BOARD `/api/new` WILL ACTUALLY DEAL, which is not the board `/api/state`
+/// is holding.
+///
+/// The setup screen built its nation cards out of `/api/state` under a caption
+/// that read "JANUARY 1990" as a literal. On a freshly started server those two
+/// agree and the screen is honest; on a server with a game running they do not,
+/// and reloading the page mid-game offered the LIVE world as the opening one.
+/// Measured: a United States world on seed 1, advanced to September 1993, page
+/// reloaded — 156 cards under "JANUARY 1990 · THE WORLD IS UNWRITTEN", the
+/// United States reading $6.4tn / 259m against its transcribed $5.98tn / 250m,
+/// and Russia on the board, a state that did not exist in January 1990 at all.
+/// Picking Russia posts `/api/new`, which seats a fresh 1990 world where Russia
+/// is not seated: since that route learned to refuse, the card was an offer the
+/// server could only answer 400 to.
+///
+/// Built once and cached. It is the same construction `/api/new` runs, so the
+/// screen and the button cannot describe different boards; the rules carry the
+/// default seed because nothing read here — a name, an output, a population —
+/// is drawn from the RNG, which `the_picker_shows_the_board_it_will_deal`
+/// checks across seeds rather than assuming.
+fn roster_1990_json() -> &'static serde_json::Value {
+    static ROSTER: std::sync::OnceLock<serde_json::Value> = std::sync::OnceLock::new();
+    ROSTER.get_or_init(|| {
+        let w = world_1990(GameRules::default());
+        serde_json::json!({
+            "month": w.month,
+            "year": w.year,
+            "date": w.date_str(),
+            "nations": w
+                .nations
+                .iter()
+                .filter(|n| n.alive)
+                .map(|n| serde_json::json!({
+                    "id": format!("{:?}", n.id),
+                    "name": n.id.name(),
+                    "gdp": n.gdp,
+                    "population": n.population,
+                }))
+                .collect::<Vec<_>>(),
+        })
+    })
+}
+
 /// Where one nation's opening figures came from, for the dossier.
 ///
 /// `start_1990` is served beside the citations because AN EMPTY `sources` MEANS
@@ -1764,6 +1807,11 @@ fn main() {
                     _ => json_response(serde_json::json!({ "nodes": [] })),
                 }
             }
+            // The nations a new game can be started as, and the month it starts
+            // in. Deliberately NOT /api/state: the setup screen is choosing from
+            // the board /api/new will deal, not from whatever world this server
+            // happens to be holding.
+            (Method::Get, "/api/roster") => json_response(roster_1990_json().clone()),
             // Where a nation's opening figures came from. Static start-of-game
             // provenance, so it needs neither the lock nor the world — and must
             // not be served from the live Nation, whose numbers have moved.
@@ -4752,6 +4800,98 @@ mod tests {
             INDEX.contains("data.start_1990 === false"),
             "the dossier must ask whether the nation was seated before calling \
              an empty sources block a bug"
+        );
+    }
+
+    /// TRIAGE F-05 — the setup screen offered the live world as the opening one,
+    /// under a caption that was a literal.
+    ///
+    /// SYMPTOM. Play the United States on seed 1 to September 1993 and reload
+    /// the page. The picker draws 156 cards under "JANUARY 1990 · THE WORLD IS
+    /// UNWRITTEN"; the United States card reads "$6.4tn · 259m" against its
+    /// transcribed $5.98tn and 250m; and there is a card for Russia, a state
+    /// that did not exist in January 1990. Picking Russia posts /api/new, which
+    /// seats a fresh 1990 world that is not holding it — the route now answers
+    /// 400, so the card was an offer the server could only refuse.
+    ///
+    /// CAUSE. `buildSetup` read /api/state, which is the LIVE world, while the
+    /// caption spelt the start date into the markup. On a freshly started
+    /// server the two agree, which is why this stood.
+    ///
+    /// FIX. /api/roster serves the board /api/new will actually deal — the same
+    /// `world_1990` construction — with the month and year on it, and the
+    /// caption is written from that.
+    #[test]
+    fn the_picker_shows_the_board_it_will_deal() {
+        let r = roster_1990_json();
+        assert_eq!(r["month"], serde_json::json!(1));
+        assert_eq!(r["year"], serde_json::json!(1990));
+
+        let names: std::collections::HashSet<&str> = r["nations"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|n| n["id"].as_str().unwrap())
+            .collect();
+        assert_eq!(
+            names.len(),
+            spheres_sim::nations::start_nations().len(),
+            "the picker must offer exactly the nations seated in 1990"
+        );
+        for id in spheres_sim::nations::successor_nations() {
+            assert!(
+                !names.contains(format!("{:?}", id).as_str()),
+                "{:?} is not seated in 1990 and /api/new refuses it, so it must \
+                 not be on the picker",
+                id
+            );
+        }
+
+        // The figures are the transcribed opening ones, not a world that has
+        // moved. These two are the pair measured on screen.
+        let usa = r["nations"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|n| n["id"] == "USA")
+            .unwrap();
+        assert_eq!(usa["gdp"], serde_json::json!(5980.0), "the 1990 transcription");
+        assert_eq!(usa["population"], serde_json::json!(250.0), "the 1990 transcription");
+
+        // Nothing on this card is drawn from the RNG, so one cached board is
+        // right whatever seed the player types. Checked rather than assumed.
+        for seed in [0u64, 7, 42, 1990] {
+            let w = world_1990(GameRules { seed, ..GameRules::default() });
+            let live: Vec<(String, f64, f64)> = w
+                .nations
+                .iter()
+                .filter(|n| n.alive)
+                .map(|n| (format!("{:?}", n.id), n.gdp, n.population))
+                .collect();
+            let served: Vec<(String, f64, f64)> = r["nations"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|n| {
+                    (
+                        n["id"].as_str().unwrap().to_string(),
+                        n["gdp"].as_f64().unwrap(),
+                        n["population"].as_f64().unwrap(),
+                    )
+                })
+                .collect();
+            assert_eq!(live, served, "seed {} deals a different opening board", seed);
+        }
+
+        // And the screen must read it rather than /api/state, with the date
+        // served rather than spelt into the markup.
+        assert!(
+            INDEX.contains(r#"await api("/api/roster")"#),
+            "the picker must build from the board /api/new will deal"
+        );
+        assert!(
+            INDEX.contains("#setupSub"),
+            "the setup caption must be filled from the served date"
         );
     }
 

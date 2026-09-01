@@ -1042,7 +1042,9 @@
 
 <div id="setup">
   <div class="title">SPHERES</div>
-  <div class="sub">JANUARY 1990 &middot; THE WORLD IS UNWRITTEN</div>
+  <!-- Filled by buildSetup from /api/roster. The literal here is only what is
+       on screen for the few hundred milliseconds before that answers. -->
+  <div class="sub" id="setupSub">JANUARY 1990 &middot; THE WORLD IS UNWRITTEN</div>
   <div id="setupBar">
     <input id="nationSearch" placeholder="Search nations&hellip;" autocomplete="off">
     <select id="nationSort">
@@ -1683,6 +1685,9 @@ const LABEL_AT = {
 const LEADER = new Set(["Kuwait"]);
 
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+/// Spelt out, for the one caption that is a sentence rather than a stamp.
+const MONTHS_FULL = ["January","February","March","April","May","June","July",
+  "August","September","October","November","December"];
 
 let S = null;            // latest state from the server
 let HIST = null;         // recorded time series from /api/history
@@ -1791,9 +1796,29 @@ async function api(path, body) {
 
 let setupNations = [];
 
+/// THE PICKER SHOWS THE BOARD THE START BUTTON WILL DEAL, and it used to show
+/// whatever world this server happened to be holding.
+///
+/// It read /api/state. On a freshly started server that IS January 1990 and the
+/// screen was honest, which is why this survived; reload the page with a game
+/// running and it was not. Measured on a United States world on seed 1 advanced
+/// to September 1993: 156 cards under a hardcoded "JANUARY 1990 · THE WORLD IS
+/// UNWRITTEN", the United States reading "$6.4tn · 259m" against its transcribed
+/// $5.98tn and 250m, and a card for Russia — a state that did not exist in
+/// January 1990, and which /api/new answers 400 for, because the world it seats
+/// is not holding it.
+///
+/// /api/roster is the same construction /api/new runs, so the caption, the
+/// cards and the button now all describe one board. The date comes with it
+/// rather than being spelt into the markup.
 async function buildSetup() {
-  const st = await api("/api/state");
-  setupNations = st.nations;
+  const board = await api("/api/roster");
+  setupNations = board.nations;
+  const sub = $("#setupSub");
+  if (sub && board.month >= 1 && board.month <= 12) {
+    sub.textContent =
+      `${MONTHS_FULL[board.month - 1]} ${board.year} · THE WORLD IS UNWRITTEN`.toUpperCase();
+  }
   renderPick();
   $("#nationSearch").oninput = renderPick;
   $("#nationSort").onchange = renderPick;
