@@ -959,6 +959,35 @@ fn json_error(code: u16, v: serde_json::Value) -> Response<std::io::Cursor<Vec<u
     json_response(v).with_status_code(code)
 }
 
+/// The body of a POST, or the reason it cannot be used.
+///
+/// A body that is THERE but does not parse is a FAILED request, not an empty
+/// one, and the difference is the whole of this function. It used to be
+/// `from_str(&body).unwrap_or(Value::Null)`, so a truncated or corrupt body
+/// became the same thing as no body at all and every route then read its own
+/// default out of nothing and reported success. Measured on the live server
+/// against a body cut off mid-object:
+///
+///   POST /api/command  -> 200, "errors": []          (having read no commands)
+///   POST /api/advance  -> 200, moved ONE month       (the body asked for sixty)
+///   POST /api/new      -> 200, a fresh 1990 world    (the game in progress gone)
+///
+/// The first of those contradicts this file's own stated intent, written into
+/// the /api/command arm: a command this build cannot parse is reported rather
+/// than dropped, "because from the player's side [that] is a button that does
+/// nothing and says nothing". A body this build cannot parse is the same thing
+/// one level up. The last is the dangerous one — a malformed request silently
+/// destroying the world the player was in.
+///
+/// An ABSENT body still means "no arguments": /api/save is posted empty and is
+/// entitled to be.
+fn parse_body(body: &str) -> Result<serde_json::Value, String> {
+    if body.trim().is_empty() {
+        return Ok(serde_json::Value::Null);
+    }
+    serde_json::from_str(body).map_err(|e| format!("That request body is not JSON: {}", e))
+}
+
 /// Start a fresh world for `player`, or refuse and leave `g` alone.
 ///
 /// THE REFUSAL IS THE POINT, and it is not hypothetical. `NationId::parse`
@@ -1035,8 +1064,13 @@ fn main() {
         if method == Method::Post {
             let _ = request.as_reader().read_to_string(&mut body);
         }
-        let payload: serde_json::Value =
-            serde_json::from_str(&body).unwrap_or(serde_json::Value::Null);
+        let payload: serde_json::Value = match parse_body(&body) {
+            Ok(v) => v,
+            Err(e) => {
+                let _ = request.respond(json_error(400, serde_json::json!({ "error": e })));
+                continue;
+            }
+        };
 
         // HEAD is routed like GET: tiny-http suppresses the response body for
         // HEAD requests on its own, so `curl -I` sees the same status and
@@ -2008,6 +2042,44 @@ mod tests {
         let d = s["districts"].as_object().unwrap();
         assert_eq!(d.len(), 6, "all six Kuwaiti governorates moved");
         assert_eq!(d["KW-KU"], "Iraq");
+    }
+
+    /// A request body that does not parse used to be indistinguishable from no
+    /// body at all, so every route read its own default out of nothing and
+    /// answered 200. Measured on the live server with a body cut off
+    /// mid-object: /api/command answered `errors: []` having read no commands,
+    /// /api/advance moved one month against a body asking for sixty, and
+    /// /api/new threw away the game in progress and started a fresh 1990 world.
+    #[test]
+    fn a_body_that_is_not_json_is_a_failed_request_not_an_empty_one() {
+        // No body is still no arguments — /api/save posts empty on purpose.
+        assert_eq!(parse_body(""), Ok(serde_json::Value::Null));
+        assert_eq!(parse_body("   \n"), Ok(serde_json::Value::Null));
+
+        // Real bodies still arrive intact.
+        assert_eq!(parse_body("{}"), Ok(serde_json::json!({})));
+        assert_eq!(
+            parse_body(r#"{"months":60}"#),
+            Ok(serde_json::json!({ "months": 60 }))
+        );
+
+        // And the three shapes that used to be silently read as `{}`.
+        for bad in [
+            r#"{"commands": [{"kind":"war","target":"Iraq"}"#, // truncated
+            "this is not json",
+            "{",
+        ] {
+            let e = parse_body(bad).expect_err("must be refused");
+            assert!(e.contains("not JSON"), "unhelpful refusal: {e}");
+        }
+
+        // The point of the refusal: a route must never see a default it can
+        // act on. `months` is the one that moved the clock the wrong distance.
+        let refused = parse_body(r#"{"months": 60"#);
+        assert!(refused.is_err());
+        // What the old code handed the route instead, and what it did with it.
+        let old = serde_json::Value::Null;
+        assert_eq!(old.get("months").and_then(|m| m.as_u64()).unwrap_or(1), 1);
     }
 
     /// Ten nations on the picker read "$0bn · 0m", and a player who chose one
