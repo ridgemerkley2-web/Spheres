@@ -3074,6 +3074,52 @@ mod tests {
         );
     }
 
+    /// The commodity key must not spend the player's first press on the fetch.
+    ///
+    /// The keyboard card offers "Next / previous commodity … X, Shift+X". The
+    /// 1990 resource transcription is 2 MB and fetched lazily, and
+    /// cycleResCommodity used to read
+    /// `if (RESOURCES_STATE !== "ready") { loadResources(); return; }` — so the
+    /// first X of every session started the fetch and returned without doing
+    /// anything the player could see. Measured in the browser from a cold page:
+    ///
+    ///   before      state "cold",  commodity "oil", overlay false
+    ///   press X     state "ready", commodity "oil", overlay FALSE  <- nothing
+    ///   press X     state "ready", commodity "phosphate", overlay true
+    ///
+    /// `fillResourceDash` awaits the same load and always has; this is that.
+    #[test]
+    fn the_commodity_key_does_not_spend_the_first_press_on_the_fetch() {
+        assert!(
+            INDEX.contains("async function cycleResCommodity(dir) {"),
+            "cycleResCommodity must be able to await the resource load"
+        );
+        assert!(
+            INDEX.contains("  if (RESOURCES_STATE === \"cold\") await loadResources();"),
+            "the first press must AWAIT the load and then step, not start it and \
+             return"
+        );
+        // Scoped to the function BODY, because the doc comment above it quotes
+        // the removed line verbatim and a whole-file search would always match.
+        let at = INDEX
+            .find("async function cycleResCommodity(dir) {")
+            .expect("cycleResCommodity is gone");
+        let body = &INDEX[at..];
+        let end = body.find("\r\n}").or_else(|| body.find("\n}")).unwrap_or(body.len());
+        assert!(
+            !body[..end].contains("loadResources(); return;"),
+            "the early return that swallowed the first press is back inside \
+             cycleResCommodity"
+        );
+        // The layer still comes on even when there is no list to step through —
+        // a failed fetch, or a second press during the first one's — so the
+        // panel can say why instead of the key vanishing a second time.
+        assert!(
+            INDEX.contains("  if (ui.mapMode !== \"resources\" && !ui.resOverlay) ui.resOverlay = true;"),
+            "X must still switch the resource layer on"
+        );
+    }
+
     /// The conflict sheet must be rebuilt every tick, exactly as the nation
     /// dossier is.
     ///

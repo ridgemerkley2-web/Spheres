@@ -5040,12 +5040,27 @@ function toggleResOverlay() {
 /// Step the commodity filter, all-view included, so the filter is reachable
 /// without the mouse. Order is the panel's order: all, then the artifact's own
 /// key order over the commodities it actually places.
-function cycleResCommodity(dir) {
-  if (RESOURCES_STATE !== "ready") { loadResources(); return; }
+///
+/// The load is AWAITED rather than kicked off and abandoned. This used to read
+/// `if (RESOURCES_STATE !== "ready") { loadResources(); return; }`, which spent
+/// the player's first press on starting a 2 MB fetch and then dropped it — X
+/// did nothing at all the first time, every session, with no indication that it
+/// had been heard. The precedent for awaiting it is `fillResourceDash`, which
+/// has always done exactly this.
+///
+/// There is still no list to step through in two cases — the fetch failed, or a
+/// second press landed while the first one's fetch was in flight. Neither
+/// silently resets the player's chosen commodity; the layer comes on either
+/// way, so the panel can say which of the two it is rather than the key
+/// vanishing all over again.
+async function cycleResCommodity(dir) {
+  if (RESOURCES_STATE === "cold") await loadResources();
   const ks = [RES_ALL, ...resCommodities()];
-  const i = ks.indexOf(ui.resCommodity);
-  ui.resCommodity = ks[((i < 0 ? 0 : i) + dir + ks.length) % ks.length];
-  resInvalidate();
+  if (ks.length > 1) {
+    const i = ks.indexOf(ui.resCommodity);
+    ui.resCommodity = ks[((i < 0 ? 0 : i) + dir + ks.length) % ks.length];
+    resInvalidate();
+  }
   if (ui.mapMode !== "resources" && !ui.resOverlay) ui.resOverlay = true;
   showTab("map");
   renderMap();
