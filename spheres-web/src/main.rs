@@ -5846,4 +5846,49 @@ mod tests {
              minimum was derived against a rule that no longer holds"
         );
     }
+
+    /// Every map shading chip was cut mid-word on a 1024-wide window.
+    ///
+    /// Measured in Chrome at 1024x768: `main` is `312px 1fr 348px`, so the
+    /// centre column gets 364px and ends at x 676. The `#mapModes` block was
+    /// laid out from x 606 to x 707 — 31px past the column — and `#center`'s
+    /// `overflow: hidden` sliced all nine chips: POLITICA, FRONTS, TERRAIN,
+    /// RESOURCE, RELATION, STABILIT, GROWTH, ECONOMY, RESOUR. Two of the nine
+    /// lost the letter that distinguishes them from the other resource chip.
+    ///
+    /// Cause: `.tabs` is a single non-wrapping flex row. `#mapModes` cannot
+    /// shrink below one whole chip (101px, the widest), so when the row runs
+    /// out of width the block does not wrap or shrink — it overflows, and the
+    /// centre column's clip is what the player sees.
+    ///
+    /// Fix: the row wraps. The chip block drops to its own line with the
+    /// column's full width. After, at 1024x768, no chip crosses the column
+    /// edge and all nine read in full; at 1280 the row is 5px taller and the
+    /// chips move from above the tabs to below them, which is the reading
+    /// order the markup already had.
+    #[test]
+    fn the_map_shading_chips_are_not_sliced_by_a_narrow_column() {
+        let rule = INDEX
+            .lines()
+            .find(|l| l.trim_start().starts_with(".tabs {"))
+            .expect("the map tab bar's rule is gone");
+        assert!(
+            rule.contains("flex-wrap: wrap"),
+            "the tab row must wrap: #mapModes cannot shrink below one whole chip, \
+             so a row that will not wrap overflows the centre column and #center \
+             clips it mid-word: {rule}"
+        );
+        // The clip that turns the overflow into sliced text, so this test says
+        // what the wrap is protecting against rather than just pinning a rule.
+        assert!(
+            INDEX.contains("#center { display: flex; flex-direction: column; overflow: hidden; }"),
+            "#center's clip is half of this defect; if it moved, re-derive"
+        );
+        // The narrowest layout the fixed columns allow, read off the page.
+        assert!(
+            INDEX.contains("main { display: grid; grid-template-columns: 312px 1fr 348px;"),
+            "the side columns' widths are what leave the map 364px at 1024; \
+             re-derive this test's measurement if they change"
+        );
+    }
 }

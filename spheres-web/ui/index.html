@@ -620,7 +620,15 @@
 
   /* ---------- map ---------- */
   #center { display: flex; flex-direction: column; overflow: hidden; }
-  .tabs { display: flex; gap: 4px; padding: 8px 12px 0; align-items: flex-end; }
+  /* THE BAR WRAPS. #mapModes is a flex item on this row and its narrowest
+     possible width is one whole shading chip — nothing inside it can be cut
+     down further — so on a narrow centre column the row could not fit it and
+     #center's `overflow: hidden` sliced it instead. Measured at 1024x768,
+     where the 312/1fr/348 grid leaves the map 364px: the chip block was laid
+     out from x 606 to x 707 inside a column ending at 676, and all nine chips
+     were cut mid-word — POLITICA, RESOURCE, RELATION, STABILIT. Wrapping puts
+     the block on its own line with the column's full width instead. */
+  .tabs { display: flex; flex-wrap: wrap; gap: 4px; row-gap: 6px; padding: 8px 12px 0; align-items: flex-end; }
   .tabs .tab {
     padding: 5px 14px; font-family: var(--serif); font-size: 11px; letter-spacing: .1em;
     text-transform: uppercase; color: var(--dim); border: 1px solid transparent;
