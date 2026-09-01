@@ -525,6 +525,15 @@ pub struct Conflict {
     #[serde(default)]
     pub quiet_months: u32,
     pub frozen_since: Option<(i32, u32)>,
+    /// Highest rung reached during this conflict's lifetime. A climb beyond it
+    /// is genuine progress and may restart the quiet clock; revisiting a rung
+    /// after stepping down may not do so without spending the finite allowance.
+    #[serde(default)]
+    pub escalation_peak: u8,
+    /// One conflict-wide allowance for retracing already-reached ground. Taking
+    /// that decision spends it, whether or not quiet time has accrued yet.
+    #[serde(default = "default_retrace_allowances")]
+    pub retrace_allowances_left: u8,
     pub start_year: i32,
     pub start_month: u32,
     /// Who opened it. Kept because conquest, reparations and the burned-fingers
@@ -535,6 +544,10 @@ pub struct Conflict {
     /// never again however many times the aggressor climbs back up afterwards.
     #[serde(default)]
     pub invasion_declared: bool,
+}
+
+fn default_retrace_allowances() -> u8 {
+    RETRACE_ALLOWANCE_BUDGET
 }
 
 impl Conflict {
@@ -605,6 +618,11 @@ impl Conflict {
 /// at which `at_war` starts returning true — which is what the economy's war
 /// drag, the oil terminals and the sanctions-relief clock all read.
 pub const SHOOTING_RUNG: u8 = 6;
+
+/// How many climbs over already-reached ground receive lifecycle protection.
+/// This is deliberately conflict-wide and finite: one reconsideration is
+/// plausible, an unlimited rung shuffle is not.
+pub const RETRACE_ALLOWANCE_BUDGET: u8 = 1;
 
 /// The rung at which crossing a border stops being an incident and becomes an
 /// invasion: a full conventional campaign, the thing a coalition forms against

@@ -581,6 +581,14 @@ pub fn save(w: &WorldState) -> String {
 pub fn load(s: &str) -> Result<WorldState, String> {
     let mut w: WorldState = serde_json::from_str(s).map_err(|e| e.to_string())?;
     migrate_legacy_wars(&mut w);
+    // Saves from before escalation episodes existed deserialize the peak as
+    // zero. Seat it from the live postures so the first routine rung shuffle
+    // after loading is not mistaken for ground the conflict never reached.
+    for c in &mut w.conflicts {
+        let current = c.posture.iter().map(|b| b.rung).max().unwrap_or(1);
+        c.escalation_peak = c.escalation_peak.max(current);
+        c.retrace_allowances_left = c.retrace_allowances_left.min(RETRACE_ALLOWANCE_BUDGET);
+    }
     if w.theatres.is_empty() {
         w.theatres = theatre::default_theatres();
     }
@@ -625,6 +633,8 @@ fn migrate_legacy_wars(w: &mut WorldState) {
             months: 0,
             quiet_months: 0,
             frozen_since: None,
+            escalation_peak: 8,
+            retrace_allowances_left: RETRACE_ALLOWANCE_BUDGET,
             start_year: old.start_year,
             start_month: old.start_month,
             origin_attacker: old.attacker,
@@ -1417,13 +1427,15 @@ mod tests {
         // while costing minutes, so this runs the one seed that exercises the
         // branch and checks the rule on it.
         //
-        // The seed has moved twice now — 9, then 18, now 0 — and each move is a
-        // measurement rather than a nuisance. Conquest is rare enough that any
+        // The seed has moved again — 9, then 18, then 0, now 14 — and each move
+        // is a measurement rather than a nuisance. Conquest is rare enough that any
         // change to the war model reshuffles which seed reaches it: across
-        // thirty seeds and forty years there are currently exactly two (Malta
-        // 2007 on seed 0, Bhutan 2017 on seed 17), and before procurement was
-        // wired there were two others. Both are under the 8m threshold, so the
-        // rule holds every time; what moves is which run exercises it.
+        // thirty seeds and forty years there is currently exactly one (Mongolia
+        // in November 2028 on seed 14). It is under the 8m threshold, so the
+        // rule still holds; what moved is which run exercises it. This scan was
+        // repeated when B-1 bounded the quiet-clock reset: zero retrace
+        // allowances produced no conquests, while one restored this path
+        // without making repeated low-rung retraces unbounded.
         //
         // Re-scan with a thirty-seed sweep when this guard fails. If it ever
         // finds NONE, conquest has become unreachable and that is the finding.
@@ -1433,7 +1445,7 @@ mod tests {
         // If the guard at the bottom ever fails, conquest has become
         // unreachable entirely, and that is the finding rather than a flaky
         // test.
-        let mut w = seeded(0);
+        let mut w = seeded(14);
         let mut alive: Vec<(NationId, f64)> =
             w.nations.iter().filter(|n| n.alive).map(|n| (n.id, n.population)).collect();
         let mut annexations = 0;
@@ -1594,6 +1606,94 @@ mod tests {
         run_months(&mut b, 120);
         assert_eq!(state_hash(&a), state_hash(&b), "a war diverged across save/load");
         assert_eq!(save(&a), save(&b), "a war diverged across save/load");
+    }
+
+    #[test]
+    fn a_pre_lifecycle_save_seats_peak_and_retrace_allowance() {
+        let mut w = seeded(0);
+        w.rules.ai_aggression = 0.0;
+        war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+        let mut old: serde_json::Value = serde_json::from_str(&save(&w)).unwrap();
+        old["conflicts"][0]
+            .as_object_mut()
+            .unwrap()
+            .remove("escalation_peak");
+        old["conflicts"][0]
+            .as_object_mut()
+            .unwrap()
+            .remove("retrace_allowances_left");
+
+        let mut loaded = load(&serde_json::to_string(&old).unwrap()).unwrap();
+        let c = loaded.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap();
+        assert_eq!(
+            c.escalation_peak,
+            c.posture.iter().map(|b| b.rung).max().unwrap(),
+            "an older save treated an already-reached rung as fresh escalation"
+        );
+        assert_eq!(c.retrace_allowances_left, RETRACE_ALLOWANCE_BUDGET);
+        let id = c.id;
+        let frozen_at = (loaded.year, loaded.month);
+        for spent in 1..=RETRACE_ALLOWANCE_BUDGET {
+            apply_command(
+                &mut loaded,
+                &Command::SetCommitment {
+                    conflict: id,
+                    nation: NationId::Iraq,
+                    rung: 7,
+                },
+            )
+            .unwrap();
+            {
+                let c = loaded.conflict_mut(id).unwrap();
+                c.quiet_months = 10;
+                c.frozen_since = Some(frozen_at);
+            }
+            bankroll(&mut loaded, NationId::Iraq);
+            apply_command(
+                &mut loaded,
+                &Command::SetCommitment {
+                    conflict: id,
+                    nation: NationId::Iraq,
+                    rung: 8,
+                },
+            )
+            .unwrap();
+            let c = loaded.conflict(id).unwrap();
+            assert_eq!(c.quiet_months, 0, "an older save lost its retrace allowance");
+            assert!(c.frozen_since.is_none());
+            assert_eq!(
+                c.retrace_allowances_left,
+                RETRACE_ALLOWANCE_BUDGET - spent
+            );
+        }
+
+        apply_command(
+            &mut loaded,
+            &Command::SetCommitment {
+                conflict: id,
+                nation: NationId::Iraq,
+                rung: 7,
+            },
+        )
+        .unwrap();
+        {
+            let c = loaded.conflict_mut(id).unwrap();
+            c.quiet_months = 10;
+            c.frozen_since = Some(frozen_at);
+        }
+        bankroll(&mut loaded, NationId::Iraq);
+        apply_command(
+            &mut loaded,
+            &Command::SetCommitment {
+                conflict: id,
+                nation: NationId::Iraq,
+                rung: 8,
+            },
+        )
+        .unwrap();
+        let c = loaded.conflict(id).unwrap();
+        assert_eq!(c.quiet_months, 10, "a spent old-save budget reset its clock");
+        assert_eq!(c.frozen_since, Some(frozen_at), "a spent old-save budget thawed it");
     }
 
     #[test]
@@ -2327,7 +2427,15 @@ mod tests {
         // rather than a struct move: war.rs now scales sustained strength by
         // arsenal::adequacy. Twenty years of timeline cannot hash the same when
         // what a nation can field depends on what it actually bought.
-        const GOLDEN: u64 = 0x26e13d8d29a02476;
+        //
+        // Re-pinned for B-1's conflict-lifecycle repair. Climbing to a new
+        // conflict-wide high-water mark still restarts the quiet clock, but a
+        // conflict gets one lifetime allowance to retrace old ground. This
+        // changes conflict duration and therefore the timeline deliberately. The
+        // thirty-seed conquest scan, anomaly sweep, save/replay tests and full
+        // war calibration suite were green before accepting the new pin.
+        // Previous value: 0x26e13d8d29a02476.
+        const GOLDEN: u64 = 0x19d718b3c2a53add;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -3528,6 +3636,212 @@ mod tests {
             let x = w.nation_mut(n);
             x.war_exhaustion = x.war_exhaustion.min(0.50);
         }
+    }
+
+    #[test]
+    fn low_level_escalation_cannot_reset_the_freeze_clock_forever() {
+        // B-1: an occasional nudge from rung 1 to rung 2 used to erase every
+        // quiet month accumulated so far. Repeating that nudge more often than
+        // once every eighteen months made the freeze and lapse paths
+        // unreachable even though nobody ever fired a shot.
+        let mut w = seeded(0);
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::Iraq);
+        bankroll(&mut w, NationId::Iraq);
+        apply_command(
+            &mut w,
+            &Command::OpenConflict {
+                opener: NationId::Iraq,
+                target: NationId::Kuwait,
+                theatre: theatre::TheatreId::Gulf,
+            },
+        )
+        .unwrap();
+        let id = w.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+
+        let mut froze_after = None;
+        let freeze_bound = 18 + 10 * (u32::from(RETRACE_ALLOWANCE_BUDGET) + 1);
+        for elapsed in 0..=freeze_bound {
+            if w.conflict(id).is_some_and(|c| c.frozen_since.is_some()) {
+                froze_after = Some(elapsed);
+                break;
+            }
+
+            // Shuffle upward every ten months, then step back down halfway
+            // through the interval. Both rungs remain below SHOOTING_RUNG.
+            let rung = if elapsed % 10 == 9 {
+                Some(2)
+            } else if elapsed % 10 == 4 {
+                Some(1)
+            } else {
+                None
+            };
+            if let Some(rung) = rung {
+                bankroll(&mut w, NationId::Iraq);
+                apply_command(
+                    &mut w,
+                    &Command::SetCommitment {
+                        conflict: id,
+                        nation: NationId::Iraq,
+                        rung,
+                    },
+                )
+                .unwrap();
+            }
+
+            tick_month(&mut w, &[]);
+        }
+
+        assert!(
+            froze_after.is_some(),
+            "a non-shooting quarrel stayed live past the finite reset bound because low-rung climbs erased its quiet history"
+        );
+        assert!(
+            !w.conflict(id).unwrap().shooting(),
+            "the regression staged a shooting war rather than a quiet quarrel"
+        );
+        bankroll(&mut w, NationId::Iraq);
+        apply_command(
+            &mut w,
+            &Command::SetCommitment {
+                conflict: id,
+                nation: NationId::Iraq,
+                rung: 1,
+            },
+        )
+        .unwrap();
+        for _ in 0..30 {
+            tick_month(&mut w, &[]);
+        }
+        assert!(
+            w.conflict(id).is_none(),
+            "the quarrel froze but still could not reach the existing lapse exit"
+        );
+    }
+
+    #[test]
+    fn a_slow_climb_to_new_ground_is_not_frozen_midway() {
+        // The counterpart to B-1: bounding the reset must not erase its stated
+        // purpose. A government may need nearly the whole quiet window to save
+        // enough standing for each rung. Reaching a new high-water mark is real
+        // prosecution, so that progress keeps the climb alive until shooting.
+        let mut w = seeded(0);
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(NationId::Iraq);
+        bankroll(&mut w, NationId::Iraq);
+        apply_command(
+            &mut w,
+            &Command::OpenConflict {
+                opener: NationId::Iraq,
+                target: NationId::Kuwait,
+                theatre: theatre::TheatreId::Gulf,
+            },
+        )
+        .unwrap();
+        let id = w.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+
+        for rung in 2..=SHOOTING_RUNG {
+            for _ in 0..17 {
+                tick_month(&mut w, &[]);
+            }
+            assert!(
+                w.conflict(id).is_some_and(|c| c.frozen_since.is_none()),
+                "the conflict froze before Iraq could reach new ground at rung {}",
+                rung
+            );
+            bankroll(&mut w, NationId::Iraq);
+            apply_command(
+                &mut w,
+                &Command::SetCommitment {
+                    conflict: id,
+                    nation: NationId::Iraq,
+                    rung,
+                },
+            )
+            .unwrap();
+        }
+
+        let c = w.conflict(id).unwrap();
+        assert!(c.shooting(), "the protected climb never reached a shooting rung");
+        assert_eq!(c.escalation_peak, SHOOTING_RUNG);
+    }
+
+    #[test]
+    fn conflict_participants_share_one_retrace_allowance() {
+        let mut w = seeded(0);
+        w.rules.ai_aggression = 0.0;
+        bankroll(&mut w, NationId::Iraq);
+        apply_command(
+            &mut w,
+            &Command::OpenConflict {
+                opener: NationId::Iraq,
+                target: NationId::Kuwait,
+                theatre: theatre::TheatreId::Gulf,
+            },
+        )
+        .unwrap();
+        let id = w.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+        war::join_side(
+            w.conflict_mut(id).unwrap(),
+            NationId::USA,
+            true,
+            5,
+            Objective::Deny,
+        );
+        assert_eq!(w.conflict(id).unwrap().escalation_peak, 5);
+
+        // The allowance belongs to the retrace decision, not to the amount of
+        // clock state it happens to clear. Same-tick cycling therefore spends it.
+        bankroll(&mut w, NationId::Iraq);
+        apply_command(
+            &mut w,
+            &Command::SetCommitment {
+                conflict: id,
+                nation: NationId::Iraq,
+                rung: 2,
+            },
+        )
+        .unwrap();
+        assert_eq!(
+            w.conflict(id).unwrap().retrace_allowances_left,
+            0
+        );
+        apply_command(
+            &mut w,
+            &Command::SetCommitment {
+                conflict: id,
+                nation: NationId::Iraq,
+                rung: 1,
+            },
+        )
+        .unwrap();
+
+        let frozen_at = (w.year, w.month);
+        {
+            let c = w.conflict_mut(id).unwrap();
+            c.quiet_months = 10;
+            c.frozen_since = Some(frozen_at);
+        }
+        bankroll(&mut w, NationId::Kuwait);
+        apply_command(
+            &mut w,
+            &Command::SetCommitment {
+                conflict: id,
+                nation: NationId::Kuwait,
+                rung: 2,
+            },
+        )
+        .unwrap();
+        assert_eq!(
+            w.conflict(id).unwrap().quiet_months,
+            10,
+            "another participant received an independent retrace allowance"
+        );
+        assert_eq!(
+            w.conflict(id).unwrap().frozen_since,
+            Some(frozen_at),
+            "another participant thawed the conflict after its shared reset was spent"
+        );
     }
 
     #[test]

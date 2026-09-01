@@ -1099,6 +1099,8 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
         months: 0,
         quiet_months: 0,
         frozen_since: None,
+        escalation_peak: INVASION_RUNG,
+        retrace_allowances_left: RETRACE_ALLOWANCE_BUDGET,
         start_year: w.year,
         start_month: w.month,
         origin_attacker: attacker,
@@ -1115,10 +1117,12 @@ pub fn join_side(c: &mut Conflict, id: NationId, side_a: bool, rung: u8, objecti
     if c.involves(id) {
         return;
     }
+    let rung = rung.clamp(1, 9);
     if side_a {
         c.side_a.push(id);
     } else {
         c.side_b.push(id);
     }
     c.posture.push(Belligerent::new(id, rung, objective));
+    c.escalation_peak = c.escalation_peak.max(rung);
 }

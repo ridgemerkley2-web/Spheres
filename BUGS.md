@@ -32,9 +32,9 @@ findings below are all structural, and two of them turned out to be healthy.
 
 ---
 
-## Open bug, with a known site
+## Fixed bug
 
-### B-1 — a conflict that flares more often than every 18 months can never end
+### B-1 — FIXED: a conflict that flares more often than every 18 months can never end
 
 **Seeds:** 0, 1, 2, 3, 4, 5 and 22 more occurrences across 0..=20.
 **Years:** first trips 2015; the conflicts themselves open in the early 1990s.
@@ -89,11 +89,27 @@ climb plausibly needs, or decaying the counter rather than zeroing it — leaves
 the stated intent intact while letting a quarrel nobody is prosecuting fall off
 the board as the design already says it should.
 
-It is still not a one-liner to land safely: it changes how long conflicts stay
-on the board, which moves war calibration across the suite and both golden
-hashes. It wants its own branch, a failing test first, and a multi-seed
-re-measurement. But it is a bug with a known site and a bounded fix, not an open
+This was not a one-liner to land safely: it changes how long conflicts stay on
+the board, which moves war calibration across the suite and both golden hashes.
+It therefore needed its own branch, a failing test first, and a multi-seed
+re-measurement. It was a bug with a known site and a bounded fix, not an open
 design question.
+
+**Resolution (2026-08-31).** Each conflict now records its highest reached rung.
+Reaching genuinely new ground still restarts the quiet clock, while the first
+retrace over old ground spends one conflict-wide reconsideration allowance.
+Later retraces cannot reset or thaw the conflict. That preserves one changed
+course, plus deliberately slow climbs to genuinely new ground, without letting
+repeated 1→2 shuffles make the exit ramp unreachable. Saves from before the fix
+infer the high-water mark from their live postures and receive the same finite
+allowance.
+
+The bound was calibrated rather than guessed. Across seeds 0..29 for forty
+years, zero retrace allowances made conquest unreachable; one restored a
+conquest (Mongolia, seed 14, November 2028) while the focused regression still
+froze and lapsed an annually shuffled non-shooting quarrel. The seeds 0..20
+anomaly sweep no longer reports any `war-endless` conflicts, and the full
+release suite is green.
 
 **Not yet addressed:** a related finding from the direction audit is that
 `dyads.rs:172` returns `0.0` war appetite for any pair with a pact between them

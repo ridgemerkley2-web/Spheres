@@ -150,14 +150,20 @@ pub fn set_commitment(
     {
         let c = w.conflict_mut(conflict).expect("checked");
         if rung > old {
-            // A quarrel somebody is actively climbing is not a frozen one, and
-            // the freeze clock must not be allowed to kill a climb halfway up:
-            // eighteen months is less than it takes a poor government to save
-            // the standing for seven rungs. Only a climb does this — walking
-            // back down leaves the clock running, which is what lets a quarrel
-            // nobody is prosecuting finally fall off the board.
-            c.quiet_months = 0;
-            c.frozen_since = None;
+            // New ground always restarts the quiet clock. Retracing old ground
+            // gets one allowance over the conflict's whole life;
+            // otherwise a dyad could shuffle from rung 1 to 2 once a year and
+            // avoid freezing forever. The allowance keeps one reconsidered
+            // climb viable and is spent by taking that retrace decision.
+            if rung > c.escalation_peak {
+                c.quiet_months = 0;
+                c.frozen_since = None;
+                c.escalation_peak = rung;
+            } else if c.retrace_allowances_left > 0 {
+                c.retrace_allowances_left -= 1;
+                c.quiet_months = 0;
+                c.frozen_since = None;
+            }
         }
         let b = c.posture_mut(nation).expect("checked");
         b.rung = rung;
@@ -381,6 +387,8 @@ pub fn open_conflict(
         months: 0,
         quiet_months: 0,
         frozen_since: None,
+        escalation_peak: 1,
+        retrace_allowances_left: RETRACE_ALLOWANCE_BUDGET,
         start_year: w.year,
         start_month: w.month,
         origin_attacker: opener,
