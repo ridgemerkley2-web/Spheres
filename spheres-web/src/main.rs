@@ -6051,4 +6051,54 @@ mod tests {
              correct at the frame, so re-derive it if the label placement changes"
         );
     }
+
+    /// The tech screen's find hint was amber text painted onto the tab bar.
+    ///
+    /// `#techFindHint` is `position: absolute; top: 44px` — directly on top of
+    /// `#techTabs`, which occupies y 44 to 106 — and declared no background, so
+    /// the hint and the tabs under it shared the same pixels.
+    ///
+    /// Measured in Chrome at 1280x720, tech screen, the Computing domain view,
+    /// with "laser" typed into the find box: the hint reads "0 here — Enter
+    /// opens Communications & Space" and its text box runs x 508-772, y 47-59,
+    /// across the top strip of the Materials, Aerospace and Biotech tabs. The
+    /// key hints sit there at y 55-65 and the sigils at y 56-78, so the amber
+    /// line and the tabs' own marks were drawn through each other.
+    ///
+    /// Honest note on provenance: the collision with the key hints predates
+    /// this session; the sigils joined it when the domain tab became a two-row
+    /// grid (`no_two_domain_tabs_wear_the_same_label`), which moved them up 7px.
+    /// One plate cures both.
+    ///
+    /// Fix: the plate `#techPriPill` already carries, and the hint shrink-wraps
+    /// and centres so it covers as little of the bar as it can. It stays
+    /// `pointer-events: none`, so the tab underneath is still clickable, and it
+    /// is still hidden the moment the query is cleared or the box is blurred.
+    #[test]
+    fn the_find_hint_is_painted_on_something() {
+        let rule = INDEX
+            .lines()
+            .skip_while(|l| !l.trim_start().starts_with("#techFindHint {"))
+            .take(4)
+            .collect::<Vec<_>>()
+            .join(" ");
+        assert!(
+            rule.contains("background:"),
+            "the find hint is drawn on top of the domain tab bar and must carry \
+             its own plate; without one it and the tabs share pixels: {rule}"
+        );
+        assert!(
+            rule.contains("width:max-content"),
+            "the hint must shrink-wrap so it hides as little of the tab bar as it can"
+        );
+        assert!(
+            rule.contains("pointer-events:none"),
+            "the hint is feedback, not a control — the tab under it stays clickable"
+        );
+        // It is drawn over the tab bar by construction: same top, higher z.
+        assert!(
+            INDEX.contains("#techTabs { position:absolute; top:44px;"),
+            "the tab bar's position is why the hint needs a plate; re-derive if it moves"
+        );
+    }
 }

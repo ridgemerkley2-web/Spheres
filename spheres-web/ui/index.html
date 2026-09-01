@@ -371,8 +371,19 @@
   #techEras .era.now .tag { color:var(--amber); font:600 9px var(--mono); margin-left:6px; }
   #techEras .era.ghost { color:var(--faint); }
   #techStage { display:block; }
+  /* The hint is painted ON TOP OF the domain tab bar and used to carry no
+     background at all, so the amber text and the tabs underneath it shared the
+     same pixels and neither read. Measured at 1280x720 in a domain view with
+     "laser" in the find box: the hint's text ran x 508-772, y 47-59, straight
+     across the top strip of the Materials, Aerospace and Biotech tabs, where
+     the key hints sit at y 55-65 and the sigils at y 56-78. It now carries the
+     plate #techPriPill has, and shrink-wraps and centres so it covers as little
+     of the bar as it can. Still pointer-events:none — it is feedback, not a
+     control, and the tab under it stays clickable. */
   #techFindHint { position:absolute; top:44px; left:0; right:0; text-align:center; z-index:3; display:none;
-    font:10.5px var(--mono); color:var(--amber); padding:3px 0; pointer-events:none; }
+    width:max-content; max-width:calc(100% - 24px); margin:0 auto;
+    background:rgba(8,11,15,.92); border:1px solid var(--line); border-top:none; border-radius:0 0 6px 6px;
+    font:10.5px var(--mono); color:var(--amber); padding:3px 12px 4px; pointer-events:none; }
   /* -- priority pill: the ONE priority control in a domain view -- */
   #techPriPill { position:absolute; top:114px; right:14px; z-index:2; display:flex; align-items:center; gap:6px;
     border:1px solid var(--amber); color:var(--amber); background:rgba(13,17,22,.88); border-radius:999px; padding:5px 14px;
@@ -408,7 +419,10 @@
      is 253 cards on a camera the player drives — so any pan that brings the
      bottom-left corner of the graph under it mixes the seven marks with a
      technology card's own plate, border and text, and neither reads. It gets
-     the same translucent plate #techPriPill and #techFindHint already use.
+     the same translucent plate #techPriPill and #techFindHint carry. (When
+     this comment was first written it said "already use" of both; that was
+     true of the pill and false of the hint, which had no background at all
+     until it was given one for the same reason.)
      Still pointer-events:none: it is a key, not a control. */
   #techLegend { position:absolute; left:12px; bottom:10px; display:flex; gap:14px; font-size:11px;
     color:var(--dim); pointer-events:none;
