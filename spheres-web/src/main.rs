@@ -524,7 +524,18 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "relation": me.map(|m| w.relation(m, n.id)),
         "sanctioned_by_me": me.is_some_and(|m| w.is_sanctioning(m, n.id)),
         "sanctioning_me": me.is_some_and(|m| w.is_sanctioning(n.id, m)),
+        // The COUNT is still served, because two readouts legitimately want a
+        // count: the map's ⊘ mark and the dossier's "Sanctioned by N nations".
         "sanctioned_by_count": w.sanctioned_by_count(n.id),
+        // The DRAG is served because the policy panel wants growth, and a count
+        // has not been how this model prices sanctions since the four channels
+        // were converted to weigh output. The browser was still multiplying the
+        // count by the pre-conversion coefficient; `economy::growth_drag_of_
+        // sanctions` is the sim's own expression and `tick` computes the number
+        // it charges from the same function.
+        "sanction_drag": spheres_sim::economy::growth_drag_of_sanctions(
+            w.sanction_weight(n.id),
+        ),
         "export_share": if n.oil_mbd > 0.0 { w.oil_export_share(n.id) } else { 1.0 },
         // Every standing it holds, not just the one with the player — the detail
         // view is a dossier on that nation, not on your relationship with it.
@@ -1882,6 +1893,90 @@ mod tests {
         // The Economy chip is only drawn when the world has produced an economy
         // headline, so a zero here is a filter the player can never even see.
         assert!(economy > 0, "the Economy filter still matches nothing in {total} dispatches");
+    }
+
+    /// The policy panel's ledger printed a sanctions drag the sim does not
+    /// charge, and had done since the four sanction channels were converted from
+    /// counting flags to weighing the coalition's share of world output.
+    /// `dragsOf` in ui/index.html still read `sanctioned_by_count * 0.006`,
+    /// which is the pre-conversion rule and the pre-conversion coefficient.
+    ///
+    /// These are not two estimates of one number. A COUNT is unbounded and
+    /// blind to size — one signature from Luxembourg weighs what one from the
+    /// United States weighs — while a SHARE is bounded by 1 and weighs output.
+    /// So the browser could be an order of magnitude low against a coalition
+    /// that mattered and an order of magnitude high against a crowd of small
+    /// signatories, and its worst readings were outside the range the sim can
+    /// produce at all.
+    #[test]
+    fn the_panel_prices_sanctions_the_way_the_sim_charges_them() {
+        // The old browser rule and the sim's, on the same worlds, so the size of
+        // the divergence is measured here rather than asserted from memory.
+        const OLD_BROWSER_RULE: f64 = 0.006;
+        let mut worst_ratio: f64 = 1.0;
+        let mut worst: String = String::new();
+        let mut compared = 0usize;
+
+        for seed in [0u64, 7, 42] {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..240 {
+                tick_month(&mut w, &[]);
+                for n in w.nations.iter().filter(|n| n.alive) {
+                    let count = w.sanctioned_by_count(n.id);
+                    if count == 0 {
+                        continue;
+                    }
+                    compared += 1;
+                    let served = spheres_sim::economy::growth_drag_of_sanctions(
+                        w.sanction_weight(n.id),
+                    );
+                    // The payload must carry exactly what the sim charges.
+                    let paid = nation_json(&w, n)["sanction_drag"].as_f64().expect("served");
+                    assert_eq!(paid, served, "{:?}: the payload is not the sim's number", n.id);
+
+                    let browser = count as f64 * OLD_BROWSER_RULE;
+                    let ratio = if served > 0.0 { browser / served } else { f64::INFINITY };
+                    if ratio.is_finite() && ratio > worst_ratio {
+                        worst_ratio = ratio;
+                        worst = format!(
+                            "{:?} in {}: {} sanctioners, browser {:.4} vs sim {:.6} ({:.0}x)",
+                            n.id,
+                            w.date_str(),
+                            count,
+                            browser,
+                            served,
+                            ratio
+                        );
+                    }
+                }
+            }
+        }
+        assert!(compared > 500, "only {compared} sanctioned nation-months — nothing was tested");
+        println!("{compared} sanctioned nation-months; worst divergence — {worst}");
+        // The measurement, kept as the evidence: the two rules are not close.
+        assert!(
+            worst_ratio > 10.0,
+            "the count rule and the share rule came within 10x over {compared} \
+             nation-months, so this test is no longer measuring the defect it \
+             was written for (worst seen: {worst})"
+        );
+
+        // And the page must READ the served number rather than recompute it.
+        assert!(
+            INDEX.contains("sanctions: n.sanction_drag"),
+            "the policy panel no longer reads the served sanctions drag"
+        );
+        // Matched on the ASSIGNMENT, not on the bare expression: the comment
+        // that replaced the old line quotes it verbatim, and a check that a
+        // fix's own explanation trips is a check that invites its removal.
+        assert!(
+            !INDEX.contains("sanctions: n.sanctioned_by_count"),
+            "the policy panel is still pricing sanctions by counting flags"
+        );
+        // The count itself is still served and still used — the map's mark and
+        // the dossier line are honest uses of a count — so this must not be
+        // "fixed" by deleting the field.
+        assert!(INDEX.contains("sanctioned_by_count > 0"), "the ⊘ map mark reads the count");
     }
 
     #[test]

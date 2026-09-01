@@ -2115,7 +2115,16 @@ function dragsOf(n) {
     : 0;
   return {
     oil, embargo, oilRev,
-    sanctions: n.sanctioned_by_count * 0.006,
+    // SERVED, NOT COMPUTED. This was `n.sanctioned_by_count * 0.006`, which is
+    // the rule the sim stopped using when all four sanction channels were
+    // converted from counting flags to weighing the sanctioners' share of world
+    // output. A count charges Luxembourg what it charges the United States and
+    // rises without limit as the roster grows; a share does neither, and is
+    // bounded by one. The two answers ran from 0.09x to 313x apart, and the
+    // browser's worst reading was outside anything the sim can produce.
+    // `economy::growth_drag_of_sanctions` is now the only place the number
+    // exists, and `economy::tick` charges what this line prints.
+    sanctions: n.sanction_drag,
     war: n.at_war ? 0.020 + n.war_exhaustion * 0.03 : 0,
     debt: n.debt > 0.9 ? (n.debt - 0.9) * 0.02 : 0,
     unrest: n.stability < 40 ? (40 - n.stability) * 0.0009 : 0,

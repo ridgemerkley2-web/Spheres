@@ -95,6 +95,26 @@ use crate::world::*;
 /// and the USA-alone and G5 columns should be read again from scratch.
 const SANCTION_BITE: f64 = 0.020;
 
+/// Points of annual growth a sanctions regime of this weight takes off its
+/// target, which is `SANCTION_BITE` applied to a share of world output.
+///
+/// A FUNCTION RATHER THAN A BARE MULTIPLICATION IN `tick`, so that the one other
+/// place that has to know this number can be given it instead of guessing.
+/// spheres-web's policy panel prints the drag under the ledger, and it was
+/// computing `sanctioned_by_count * 0.006` — the rule this channel was converted
+/// AWAY from when it stopped counting flags and started weighing output. A count
+/// and a share are not the same shape, so the two answers do not merely differ by
+/// a factor: measured over four seeds and thirty years the browser's figure ran
+/// from 0.09x to 313x the sim's, and its worst reading was outside anything the
+/// sim can produce, because a count is unbounded and a share is not.
+///
+/// Takes the weight rather than the world, deliberately: `sanction_weight` is an
+/// O(roster) scan and `tick` already has the value in hand, so this must not be
+/// the thing that makes it run twice a month per nation.
+pub fn growth_drag_of_sanctions(sanction_weight: f64) -> f64 {
+    sanction_weight * SANCTION_BITE
+}
+
 /// The inflation an economy settles on when demand is at potential — and
 /// therefore, necessarily, the number its central bank is aiming at. It was
 /// written twice: 0.02 in the price equation here and 0.025 in the Taylor rule
@@ -499,7 +519,7 @@ pub fn tick(w: &mut WorldState) {
         }
 
         // ---- Drags ----
-        let sanction_drag = sanction_share * SANCTION_BITE;
+        let sanction_drag = growth_drag_of_sanctions(sanction_share);
         let war_drag = if at_war { 0.020 + n.war_exhaustion * 0.03 } else { 0.0 };
         let debt_drag = if n.debt_gdp > 0.9 { (n.debt_gdp - 0.9) * 0.02 } else { 0.0 };
         let instability_drag = if n.stability < 40.0 { (40.0 - n.stability) * 0.0009 } else { 0.0 };
