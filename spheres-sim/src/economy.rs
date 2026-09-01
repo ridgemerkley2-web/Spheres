@@ -143,6 +143,28 @@ pub fn growth_drag_of_sanctions(sanction_weight: f64) -> f64 {
 /// moved and this did not.
 pub const INFLATION_ANCHOR: f64 = 0.020;
 
+/// A readable labor-market result derived from the same conditions that drive
+/// output. It is deliberately a rate, not a second labor simulation: the
+/// arcade layer needs jobs to tell the player what growth means for people,
+/// while the calibrated production model still owns the underlying economy.
+pub fn unemployment_rate(n: &Nation, at_war: bool) -> f64 {
+    let gdp_pc = n.gdp * 1000.0 / n.population.max(0.1);
+    let dev = (gdp_pc / 24000.0).min(1.0);
+    let natural = 0.045
+        + (1.0 - dev) * 0.035
+        + if n.system == EconomySystem::Command { 0.012 } else { 0.0 };
+    let cyclical = (0.020 - n.growth_last) * 0.90;
+    let disorder = (50.0 - n.stability).max(0.0) * 0.001;
+    let war = if at_war { 0.020 } else { 0.0 };
+    let balance_sheet = (-n.bubble).max(0.0) * 0.035;
+    let ministry_jobs = n.budget_gap(BUDGET_HEALTH) * 0.12
+        + n.budget_gap(BUDGET_EDUCATION) * 0.16
+        + n.budget_gap(BUDGET_INFRASTRUCTURE) * 0.28
+        + n.budget_gap(BUDGET_INDUSTRY) * 0.24
+        + n.budget_gap(BUDGET_SCIENCE) * 0.08;
+    (natural + cyclical + disorder + war + balance_sheet - ministry_jobs).clamp(0.02, 0.35)
+}
+
 /// Monthly economic tick for every living nation, plus the global oil market.
 /// The floor under a monthly output collapse. Module-level rather than
 /// function-local since `growth_terms` and `tick` both apply it — the first
@@ -249,6 +271,8 @@ pub fn growth_terms(
     let sanction_share = c.sanction_share;
     let at_war = c.at_war;
     let export_share = c.export_share;
+    let budget_gap: [f64; BUDGET_MINISTRIES] =
+        std::array::from_fn(|i| n.budget_gap(i));
     {
     // ---- Investment & potential growth (annual rates) ----
     let invest = state_invest + n.priv_invest_gdp;
@@ -389,6 +413,14 @@ pub fn growth_terms(
     // which is the fact about Japan the model was missing entirely.
     let labour = population_growth(n) * 0.60;
     let mut potential = n.tfp_trend + invest_effect + catchup + labour;
+    // Ministry departures from the inherited mix shape the capacity created by
+    // the aggregate investment envelope. A nation that never changes its
+    // budget keeps the calibrated path exactly.
+    potential += budget_gap[BUDGET_HEALTH] * 0.015
+        + budget_gap[BUDGET_EDUCATION] * 0.050
+        + budget_gap[BUDGET_INFRASTRUCTURE] * 0.025
+        + budget_gap[BUDGET_INDUSTRY] * 0.035
+        + budget_gap[BUDGET_SCIENCE] * 0.025;
 
     // Command economies pay an allocation penalty that worsens as they develop
     if n.system == EconomySystem::Command {
@@ -400,6 +432,10 @@ pub fn growth_terms(
     let real_rate = interest_rate - n.inflation;
     let neutral = 0.025;
     let mut demand_gap = (neutral - real_rate) * 0.55; // easy money -> above potential
+    demand_gap += (n.social_spend() - n.baseline_social_spend()) * 0.15;
+    demand_gap += budget_gap[BUDGET_HEALTH] * 0.06
+        + budget_gap[BUDGET_FAMILIES] * 0.28
+        + budget_gap[BUDGET_PENSIONS] * 0.18;
     // ...but only while there is a rate left to cut and somebody willing to
     // borrow. Pushing on a string: Japan ran the policy rate at zero for two
     // decades against a corporate sector repairing its balance sheet, and
@@ -550,7 +586,8 @@ pub fn growth_terms(
     };
 
     // ---- Drags ----
-    let sanction_drag = growth_drag_of_sanctions(sanction_share);
+    let diplomatic_shield = (budget_gap[BUDGET_DIPLOMACY] * 8.0).clamp(-0.20, 0.40);
+    let sanction_drag = growth_drag_of_sanctions(sanction_share) * (1.0 - diplomatic_shield);
     let war_drag = if at_war { 0.020 + n.war_exhaustion * 0.03 } else { 0.0 };
     let debt_drag = if n.debt_gdp > 0.9 { (n.debt_gdp - 0.9) * 0.02 } else { 0.0 };
     let instability_drag = if n.stability < 40.0 { (40.0 - n.stability) * 0.0009 } else { 0.0 };
@@ -760,7 +797,7 @@ pub fn growth_terms(
         unrest: instability_drag,
         oil_inflation: oil_infl,
         target_inflation: target_infl,
-        social_spend: 0.17 + (1.0 - n.authoritarianism) * 0.05,
+        social_spend: n.social_spend(),
         budget_oil_revenue: if n.oil_mbd > 0.5 { oil_revenue_gdp * 0.55 } else { 0.0 },
         floor: WORST_ANNUAL_COLLAPSE,
         before_noise,
@@ -774,6 +811,7 @@ pub fn tick(w: &mut WorldState) {
     oil_market(w);
 
     let oil_price = w.oil_price;
+    let player = w.player;
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
 
     for id in ids {
@@ -782,6 +820,9 @@ pub fn tick(w: &mut WorldState) {
         let export_share = w.oil_export_share(id);
         let noise = w.rng.range(-0.004, 0.004);
         let crisis_mult = w.rules.crisis_intensity;
+        let budget_gap: [f64; BUDGET_MINISTRIES] = std::array::from_fn(|i| {
+            if Some(id) == player { w.nation(id).budget_gap(i) } else { 0.0 }
+        });
         let n = w.nation_mut(id);
 
         // The whole of this nation's year, priced by `growth_terms` — the one
@@ -797,6 +838,7 @@ pub fn tick(w: &mut WorldState) {
 
         let gdp_pc = n.gdp * 1000.0 / n.population; // $ per capita
         let dev = (gdp_pc / 24000.0).min(1.0);
+        let social_gap = n.social_spend() - n.baseline_social_spend();
         // The advantage of backwardness expires. A trend rate earned while
         // catching up cannot be held once a nation *is* the frontier: there is
         // nothing left to copy, and everything after that has to be invented.
@@ -957,6 +999,31 @@ pub fn tick(w: &mut WorldState) {
         // block above the producer arm for the measurement and the ruling it
         // needs.
 
+        // In the governed economy, private investment is an outcome rather than
+        // a frozen roster number. AI economies keep their calibrated structural
+        // shares until they receive the same player policy surface.
+        let unemployment = unemployment_rate(n, at_war);
+        if Some(id) == player {
+            let neutral = 0.025;
+            let mut business_pressure = (n.growth_last - 0.020) * 0.20
+                + (neutral - real_rate) * 0.10
+                + (n.stability - 60.0) * 0.00010
+                + (0.28 - n.tax_rate) * 0.06
+                + (0.07 - unemployment) * 0.05
+                + n.bubble * 0.012
+                - sanction_share * 0.025
+                - if at_war { 0.020 } else { 0.0 };
+            business_pressure += budget_gap[BUDGET_INFRASTRUCTURE] * 0.02
+                + budget_gap[BUDGET_INDUSTRY] * 0.04
+                + budget_gap[BUDGET_SCIENCE] * 0.02
+                + budget_gap[BUDGET_DIPLOMACY] * 0.01;
+            if n.system == EconomySystem::Command {
+                business_pressure -= 0.003 + dev * 0.002;
+            }
+            let private_target = (n.priv_invest_gdp + business_pressure).clamp(0.01, 0.35);
+            n.priv_invest_gdp += (private_target - n.priv_invest_gdp) * 0.06;
+        }
+
         // ---- Inflation (annual rate, adjusts monthly) ----
         // Demand pressure plus oil pass-through for importers; tight money disinflates.
         n.inflation += (terms.target_inflation - n.inflation) * 0.10;
@@ -972,12 +1039,24 @@ pub fn tick(w: &mut WorldState) {
         n.debt_gdp = n.debt_gdp.max(0.0);
 
         // ---- Population ----
-        n.population *= 1.0 + population_growth(n) / 12.0;
+        let demographic_support = budget_gap[BUDGET_HEALTH] * 0.030
+            + budget_gap[BUDGET_FAMILIES] * 0.015;
+        n.population *= 1.0 + (population_growth(n) + demographic_support) / 12.0;
 
         // ---- Stability ----
         let mut ds = 0.0;
         ds += (n.growth_last - 0.015) * 6.0; // growth legitimizes
         ds -= (n.inflation - 0.05).max(0.0) * 4.0; // high inflation corrodes
+        if Some(id) == player {
+            ds -= (unemployment - 0.06).max(0.0) * 1.5;
+        }
+        ds += social_gap * 12.0;
+        ds += budget_gap[BUDGET_HEALTH] * 8.0
+            + budget_gap[BUDGET_EDUCATION] * 5.0
+            + budget_gap[BUDGET_FAMILIES] * 14.0
+            + budget_gap[BUDGET_PENSIONS] * 12.0
+            + budget_gap[BUDGET_SECURITY] * 16.0
+            + budget_gap[BUDGET_DIPLOMACY] * 3.0;
         ds -= n.war_exhaustion * 1.2;
         // CONVERTED. This was `sanction_count * 0.15` — the first of the four
         // surviving flag-counting sanction channels, and the one the
@@ -1008,6 +1087,10 @@ pub fn tick(w: &mut WorldState) {
             } else {
                 n.separatism = (n.separatism - 0.002).max(0.0);
             }
+            let cohesion = (budget_gap[BUDGET_FAMILIES].max(0.0)
+                + budget_gap[BUDGET_SECURITY].max(0.0))
+                * 0.04;
+            n.separatism = (n.separatism - cohesion).max(0.0);
         }
     }
 }

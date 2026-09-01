@@ -169,6 +169,92 @@ pub enum EconomySystem {
     Command,
 }
 
+pub const BUDGET_MINISTRIES: usize = 10;
+pub const BUDGET_HEALTH: usize = 0;
+pub const BUDGET_EDUCATION: usize = 1;
+pub const BUDGET_FAMILIES: usize = 2;
+pub const BUDGET_PENSIONS: usize = 3;
+pub const BUDGET_INFRASTRUCTURE: usize = 4;
+pub const BUDGET_INDUSTRY: usize = 5;
+pub const BUDGET_SCIENCE: usize = 6;
+pub const BUDGET_DEFENSE: usize = 7;
+pub const BUDGET_SECURITY: usize = 8;
+pub const BUDGET_DIPLOMACY: usize = 9;
+pub const BUDGET_CAPS: [f64; BUDGET_MINISTRIES] = [
+    0.15, // health
+    0.12, // education
+    0.15, // families
+    0.20, // pensions
+    0.15, // infrastructure
+    0.12, // industry and energy
+    0.08, // science
+    0.35, // defense
+    0.12, // security
+    0.08, // diplomacy
+];
+
+/// A cabinet's enacted fiscal-year plan. Every allocation is a share of GDP,
+/// which keeps the same controls readable for a small state and a superpower.
+/// `reference` is the settlement inherited when the detailed books were first
+/// opened, so merely adopting this surface does not rewrite the 1990 world.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct AnnualBudget {
+    pub fiscal_year: i32,
+    pub allocations: [f64; BUDGET_MINISTRIES],
+    pub reference: [f64; BUDGET_MINISTRIES],
+}
+
+impl AnnualBudget {
+    pub fn inherited(fiscal_year: i32, social: f64, investment: f64, defense: f64) -> Self {
+        // Both decompositions preserve their old aggregate exactly.
+        let allocations = [
+            social * 0.25,
+            social * 0.18,
+            social * 0.20,
+            social * 0.28,
+            investment * 0.55,
+            investment * 0.30,
+            investment * 0.15,
+            defense,
+            social * 0.07,
+            social * 0.02,
+        ];
+        Self { fiscal_year, allocations, reference: allocations }
+    }
+
+    pub fn total(&self) -> f64 {
+        self.allocations.iter().sum()
+    }
+
+    pub fn social_total(&self) -> f64 {
+        [
+            BUDGET_HEALTH,
+            BUDGET_EDUCATION,
+            BUDGET_FAMILIES,
+            BUDGET_PENSIONS,
+            BUDGET_SECURITY,
+            BUDGET_DIPLOMACY,
+        ]
+        .iter()
+        .map(|i| self.allocations[*i])
+        .sum()
+    }
+
+    pub fn investment_total(&self) -> f64 {
+        self.allocations[BUDGET_INFRASTRUCTURE]
+            + self.allocations[BUDGET_INDUSTRY]
+            + self.allocations[BUDGET_SCIENCE]
+    }
+
+    pub fn defense(&self) -> f64 {
+        self.allocations[BUDGET_DEFENSE]
+    }
+
+    pub fn gap(&self, ministry: usize) -> f64 {
+        self.allocations[ministry] - self.reference[ministry]
+    }
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Nation {
     pub id: NationId,
@@ -211,6 +297,15 @@ pub struct Nation {
     pub state_invest_gdp: f64,
     /// Private investment share of GDP (endogenous-ish)
     pub priv_invest_gdp: f64,
+    /// Player-directed welfare and public services. `None` preserves the
+    /// political system's automatic 17--22% baseline for old saves and for AI
+    /// governments that have not chosen a different settlement.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub social_spend_gdp: Option<f64>,
+    /// The player's detailed fiscal plan. AI and old saves keep `None` and use
+    /// the calibrated legacy envelopes until somebody opens the books.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub annual_budget: Option<AnnualBudget>,
     /// Public debt as share of GDP
     pub debt_gdp: f64,
     /// Oil production, million barrels/day (0 for non-producers)
@@ -309,6 +404,33 @@ pub struct Nation {
     /// knowledge has done to it. Defaulted so older saves still load.
     #[serde(default)]
     pub tech: TechState,
+}
+
+impl Nation {
+    /// The inherited welfare state before a player deliberately reprioritises
+    /// the budget. More open systems carry a larger automatic social compact.
+    pub fn baseline_social_spend(&self) -> f64 {
+        0.17 + (1.0 - self.authoritarianism) * 0.05
+    }
+
+    pub fn social_spend(&self) -> f64 {
+        self.social_spend_gdp.unwrap_or_else(|| self.baseline_social_spend())
+    }
+
+    pub fn budget_for(&self, fiscal_year: i32) -> AnnualBudget {
+        self.annual_budget.clone().unwrap_or_else(|| {
+            AnnualBudget::inherited(
+                fiscal_year,
+                self.social_spend(),
+                self.state_invest_gdp,
+                self.mil_spend_gdp,
+            )
+        })
+    }
+
+    pub fn budget_gap(&self, ministry: usize) -> f64 {
+        self.annual_budget.as_ref().map(|b| b.gap(ministry)).unwrap_or(0.0)
+    }
 }
 
 /// What a patron sends a client. Money keeps a government standing; guns let it
@@ -703,6 +825,11 @@ pub struct WorldState {
     pub rng: Rng,
     pub year: i32,
     pub month: u32, // 1..=12
+    /// Day of month. Older monthly saves omitted this field and therefore load
+    /// on the first day of their saved month. The first is also omitted when
+    /// saving so a world that still advances monthly keeps its historical hash.
+    #[serde(default = "first_day", skip_serializing_if = "is_first_day")]
+    pub day: u32, // 1..=days_in_month(year, month)
     pub nations: Vec<Nation>,
     /// relations[(a,b)] symmetric, -100..100 — stored as sorted-pair list
     pub relations: Relations,
@@ -795,6 +922,24 @@ pub struct WorldState {
     pub(crate) by_id: Vec<u16>,
     #[serde(skip)]
     pub(crate) by_id_len: usize,
+}
+
+fn first_day() -> u32 {
+    1
+}
+
+fn is_first_day(day: &u32) -> bool {
+    *day == 1
+}
+
+/// Gregorian month length for the playable calendar.
+pub fn days_in_month(year: i32, month: u32) -> u32 {
+    match month {
+        4 | 6 | 9 | 11 => 30,
+        2 if year % 400 == 0 || (year % 4 == 0 && year % 100 != 0) => 29,
+        2 => 28,
+        _ => 31,
+    }
 }
 
 /// Nowhere in `nations`.
@@ -1107,7 +1252,7 @@ impl WorldState {
     }
     pub fn date_str(&self) -> String {
         const M: [&str; 12] = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-        format!("{} {}", M[(self.month - 1) as usize], self.year)
+        format!("{} {} {}", self.day, M[(self.month - 1) as usize], self.year)
     }
 }
 
