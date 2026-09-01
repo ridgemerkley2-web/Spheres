@@ -990,6 +990,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
 /// `the_force_line_is_the_force_the_sim_sustains` asserts the curve covers what
 /// the shipped page can actually ask for.
 fn policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    use spheres_sim::economy::{growth_terms, Conditions};
     let n = w.nation(me);
     let curve: Vec<f64> = (0..=FORCE_CURVE_STEPS)
         .map(|i| {
@@ -997,14 +998,95 @@ fn policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
             round(spheres_sim::war::sustained_force(n, share), 3)
         })
         .collect();
+
+    // THE GROWTH FORECAST, ANSWERED BY THE SIM. Sampled exactly the way the
+    // force curve above is, and for the same reason: the panel has to answer
+    // "what would this slider do" before the month is paid for, and neither
+    // quantity has a closed form on the browser's side.
+    //
+    // Two sliders reach growth and they reach different terms — state
+    // investment moves `potential` and nothing else, the interest rate moves
+    // the demand arm and nothing else — so two one-dimensional curves are the
+    // whole surface and no cross term is missing. Everything else is fixed for
+    // the month and is served as a number.
+    let c = Conditions::of(w, me);
+    let now = growth_terms(n, n.state_invest_gdp, n.interest_rate, &c);
+    let potential_curve: Vec<f64> = (0..=POLICY_CURVE_STEPS)
+        .map(|i| {
+            let share = i as f64 / POLICY_CURVE_STEPS as f64 * POLICY_CURVE_MAX;
+            round(growth_terms(n, share, n.interest_rate, &c).potential, 6)
+        })
+        .collect();
+    let rate_terms: Vec<spheres_sim::economy::GrowthTerms> = (0..=POLICY_CURVE_STEPS)
+        .map(|i| {
+            let rate = i as f64 / POLICY_CURVE_STEPS as f64 * POLICY_CURVE_MAX;
+            growth_terms(n, n.state_invest_gdp, rate, &c)
+        })
+        .collect();
+
     serde_json::json!({
         "force_curve": curve,
         "force_curve_max": FORCE_CURVE_MAX,
         // What the nation is actually spending buys, so the standing line needs
         // no lookup at all and cannot be a sample out.
         "sustained": spheres_sim::war::sustained_force(n, n.mil_spend_gdp),
+
+        "curve_max": POLICY_CURVE_MAX,
+        "potential_curve": potential_curve,
+        // The ungated gap, which is what sets prices, and the gated one, which
+        // is what sets output. They are the same number in a normal cycle and
+        // come apart entirely in a hyperinflation; the browser used to have
+        // only the first and spend it as both.
+        "demand_gap_curve": rate_terms.iter().map(|t| round(t.demand_gap, 6)).collect::<Vec<_>>(),
+        "demand_output_curve": rate_terms.iter().map(|t| round(t.demand_output, 6)).collect::<Vec<_>>(),
+        "inflation_target_curve":
+            rate_terms.iter().map(|t| round(t.target_inflation, 6)).collect::<Vec<_>>(),
+
+        // Fixed for the month: no slider on this panel reaches any of them.
+        "bubble": round(now.bubble, 6),
+        "oil": round(now.oil, 6),
+        "embargo": round(now.embargo, 6),
+        "sanctions": round(now.sanctions, 6),
+        "war": round(now.war, 6),
+        "debt_drag": round(now.debt, 6),
+        "unrest": round(now.unrest, 6),
+        // Oil income as a share of output, CAPPED the way `tick` caps it. The
+        // browser's own copy had no cap, so a wrecked producer's ledger could
+        // print revenue the sim never collects.
+        "oil_revenue_gdp": round(now.oil_revenue_gdp, 6),
+        // `0.17 + (1 - authoritarianism) * 0.05`, which is the one term of the
+        // budget the player does not set with a slider...
+        "social_spend": round(now.social_spend, 6),
+        // ...and what oil puts into it, so the ledger adds the player's own
+        // three sliders to two served numbers and keeps no copy of the rule
+        // about who counts as a producer.
+        "budget_oil_revenue": round(now.budget_oil_revenue, 6),
+        // The floor `tick` puts under a year, transported rather than mirrored —
+        // the same posture `front_held_band` is served under.
+        "growth_floor": now.floor,
+        // What the nation is running right now, so every STANDING figure on the
+        // panel needs no lookup at all and cannot be a sample out — the same
+        // reason `sustained` sits beside the force curve.
+        "growth": round(now.growth, 6),
+        "potential_now": round(now.potential, 6),
+        "demand_gap_now": round(now.demand_gap, 6),
+        "demand_output_now": round(now.demand_output, 6),
+        "inflation_target_now": round(now.target_inflation, 6),
     })
 }
+
+/// The widest share the policy curves are served for, and how many samples they
+/// are cut into. The same thousandth-apiece resolution as the force curve, for
+/// the same reason: it is what a range input stepping in thousandths can select.
+///
+/// The RANGE is the server's own and is deliberately wider than either slider's
+/// 0..0.40 — `Command::SetInterestRate` clamps at 0.60 and the AI's Taylor rule
+/// runs to 0.45, so a curve that stopped where the slider stops would read a
+/// hyperinflating nation's STANDING figure off its own end. Zaire opens 1990 at
+/// a 45% policy rate. `the_policy_panel_reads_the_sim` asserts the curve covers
+/// what the sim can hold.
+const POLICY_CURVE_MAX: f64 = 0.60;
+const POLICY_CURVE_STEPS: usize = 600;
 
 /// The widest military share the force curve is served for, and how many samples
 /// it is cut into — a thousandth apiece, which is the resolution a range input
@@ -1946,6 +2028,80 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// MEASUREMENT INSTRUMENT for TRIAGE F-35 / PLAN step 2, `#[ignore]`d and
+    /// asserting nothing. Prints, for every nation seated in 1990, what the
+    /// browser's own copy of the growth model used to say against what
+    /// `economy::growth_terms` says — the copy transcribed from index.html
+    /// exactly as it stood, so the gap is measured and not argued.
+    ///
+    /// `cargo test --release -p spheres-web browser_growth_model_gap -- --ignored --nocapture`
+    #[test]
+    #[ignore]
+    fn browser_growth_model_gap() {
+        use spheres_sim::economy::{growth_terms, Conditions};
+        let w = world_1990(GameRules::default());
+
+        // index.html's `potentialGrowth`, `demandOf` and `dragsOf`, transcribed.
+        let js_potential = |n: &Nation| {
+            let dev = ((n.gdp * 1000.0 / n.population) / 24000.0).min(1.0);
+            let mut p = n.tfp_trend
+                + (n.state_invest_gdp + n.priv_invest_gdp) * (0.030 + 0.080 * (1.0 - dev))
+                + (1.0 - dev) * 0.020;
+            if n.system == EconomySystem::Command {
+                p -= 0.004 + 0.010 * dev;
+            }
+            p
+        };
+        let js_gap = |n: &Nation| (0.025 - (n.interest_rate - n.inflation)) * 0.55;
+        let js_oil = |w: &WorldState, n: &Nation| {
+            let share = w.oil_export_share(n.id);
+            let rev = n.oil_mbd * share * w.oil_price * 0.365 / n.gdp;
+            if n.oil_mbd > 0.5 {
+                (w.oil_price - 20.0) / 20.0 * rev * 0.5
+            } else {
+                -(w.oil_price - 20.0) / 20.0 * 0.006
+            }
+        };
+
+        let mut rows: Vec<(f64, String)> = vec![];
+        for n in w.nations.iter().filter(|n| n.alive) {
+            let c = Conditions::of(&w, n.id);
+            let t = growth_terms(n, n.state_invest_gdp, n.interest_rate, &c);
+            let js = js_potential(n) + js_gap(n) + js_oil(&w, n);
+            let sim = t.potential + t.demand_output + t.oil;
+            rows.push((
+                (js - sim).abs(),
+                format!(
+                    "{:<20} potential {:+7.4} -> {:+7.4} ({:+6.2}pt)   demand {:+7.4} -> {:+7.4}   \
+                     oil {:+7.4} -> {:+7.4}   THREE-TERM SUM {:+7.4} -> {:+7.4} ({:+6.2}pt)",
+                    n.id.name(),
+                    js_potential(n), t.potential, (t.potential - js_potential(n)) * 100.0,
+                    js_gap(n), t.demand_output,
+                    js_oil(&w, n), t.oil,
+                    js, sim, (sim - js) * 100.0
+                ),
+            ));
+        }
+        rows.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap());
+        println!("\nWORST 20 OF {} SEATED NATIONS, January 1990\n", rows.len());
+        for (_, r) in rows.iter().take(20) {
+            println!("{}", r);
+        }
+        println!("\nTHE SIX MATURE ECONOMIES\n");
+        for name in ["United States", "Japan", "Germany", "France", "United Kingdom", "Italy"] {
+            if let Some((_, r)) = rows.iter().find(|(_, r)| r.starts_with(name)) {
+                println!("{}", r);
+            }
+        }
+        let mean: f64 = rows.iter().map(|(d, _)| *d).sum::<f64>() / rows.len() as f64;
+        println!(
+            "\nmean |gap| on the three terms {:.4} ({:.2} pt/yr) over {} nations",
+            mean,
+            mean * 100.0,
+            rows.len()
+        );
+    }
 
     /// MEASUREMENT INSTRUMENT for the event log's filters, `#[ignore]`d and
     /// asserting nothing. Runs a real thirty-year world and prints what fraction
@@ -4800,6 +4956,150 @@ mod tests {
             INDEX.contains("data.start_1990 === false"),
             "the dossier must ask whether the nation was seated before calling \
              an empty sources block a bug"
+        );
+    }
+
+    /// TRIAGE F-35 / PLAN step 2 — the browser kept its own growth model, under
+    /// a comment saying it did not.
+    ///
+    /// SYMPTOM, on the first screen a player sees, with no input at all.
+    /// Governing France on seed 1990, January 1990: "Expected growth +0.2%".
+    /// The sim was running France at **-0.01%** — a sign flip. Governing Zaire
+    /// the same month: "Expected growth +23.3%" against the sim's **+10.7%**.
+    /// `browser_growth_model_gap` beside this measures the whole board: a mean
+    /// gap of 1.19 pt/yr across the 137 seated nations, worst -10.78 pt on
+    /// Zaire, and the mature panel out by -0.57 (Japan), -0.56 (Italy), -0.46
+    /// (Germany), -0.45 (the United Kingdom), -0.25 (France).
+    ///
+    /// CAUSE. Four JavaScript functions mirrored economy.rs under the sentence
+    /// "They compute nothing the sim does not". By the time anybody checked,
+    /// the copy was missing the net-of-replacement shape of the capital arm and
+    /// still paying the flat `0.030` that had been DELETED from the sim; the
+    /// labour term entirely; all three gates on the demand arm and
+    /// `MAX_DEMAND_GAP`; `MAX_OIL_SHARE` and `tech::energy_exposure`, the two
+    /// PLAN step 2 names; the bubble; and `WORST_ANNUAL_COLLAPSE`.
+    ///
+    /// FIX. `economy::growth_terms` is the one definition — `tick` charges by
+    /// it — and `policy_json` serves it: two sampled curves for the two sliders
+    /// that reach growth, and a number for every term that is fixed for the
+    /// month.
+    #[test]
+    fn the_policy_panel_reads_the_sim() {
+        // The curves must cover what the SIM can hold, not what the slider can
+        // select. `Command::SetInterestRate` clamps at 0.60 and Zaire opens 1990
+        // at 0.45, past the 0.40 the slider stops at — a curve cut to the
+        // slider would read that nation's standing figure off its own end.
+        assert!(
+            POLICY_CURVE_MAX >= 0.60,
+            "the rate the sim will accept runs past the last sample"
+        );
+        assert_eq!(POLICY_CURVE_STEPS, (POLICY_CURVE_MAX * 1000.0).round() as usize,
+                   "the samples must land on the thousandths a range input steps in");
+
+        let mut g = Game::new(1990, Some(NationId::Zaire));
+        let mut checked = 0usize;
+        let mut gated = 0usize;
+        for month in 0..(20 * 12) {
+            tick_month(&mut g.world, &[]);
+            let s = state_json(&g, None);
+            let pol = &s["policy"];
+            if pol.is_null() {
+                break; // the player's nation is gone
+            }
+            let f = |k: &str| pol[k].as_f64().unwrap_or_else(|| panic!("{} is served", k));
+
+            // THE PANEL'S OWN ASSEMBLY, written out here exactly as index.html
+            // writes it, and required to reproduce the sim's answer. A term
+            // added to `economy::growth_terms` and not to the panel breaks this.
+            let assembled = (f("potential_now") + f("demand_output_now") + f("bubble") + f("oil")
+                - f("sanctions")
+                - f("war")
+                - f("debt_drag")
+                - f("unrest")
+                - f("embargo"))
+            .max(f("growth_floor"));
+            assert!(
+                (assembled - f("growth")).abs() < 1e-5,
+                "month {}: the panel assembles {:.6} where the sim charges {:.6}",
+                month,
+                assembled,
+                f("growth")
+            );
+
+            // The ungated gap and the output arm are DIFFERENT numbers, and the
+            // browser used to have only the first. Count the months where they
+            // come apart, so this test is standing on the case it was written
+            // for rather than on a world where the gates never bite.
+            if (f("demand_gap_now") - f("demand_output_now")).abs() > 0.002 {
+                gated += 1;
+            }
+
+            // A curve read at the nation's own policy must land beside the
+            // standing figure served with it. NOT EQUAL: the AI's Taylor rule
+            // puts a nation's rate anywhere, while the curve is cut at
+            // thousandths, so the nearest sample is up to half a step away —
+            // |d demand / d rate| <= 0.55 and |d potential / d share| <= 0.22, so
+            // half a thousandth is at most 2.8e-4. That is exactly why the panel
+            // reads `*_now` for a standing figure and the curve only for a
+            // slider the player has moved, which does land on thousandths.
+            //
+            // The index being IN RANGE is the load-bearing half: it is the check
+            // that catches a curve cut to the slider's 0.40 rather than to what
+            // the sim will accept, and Zaire is the nation that proves it.
+            const SAMPLING_SLACK: f64 = 1e-3;
+            let n = g.world.nation(NationId::Zaire);
+            let curve = pol["potential_curve"].as_array().unwrap();
+            assert_eq!(curve.len(), POLICY_CURVE_STEPS + 1);
+            let idx = ((n.state_invest_gdp / POLICY_CURVE_MAX) * POLICY_CURVE_STEPS as f64).round()
+                as usize;
+            assert!(idx < curve.len(), "month {}: state investment is past the last sample", month);
+            assert!(
+                (curve[idx].as_f64().unwrap() - f("potential_now")).abs() < SAMPLING_SLACK,
+                "month {}: the potential curve and the standing potential disagree",
+                month
+            );
+            let dcurve = pol["demand_output_curve"].as_array().unwrap();
+            let jdx =
+                ((n.interest_rate / POLICY_CURVE_MAX) * POLICY_CURVE_STEPS as f64).round() as usize;
+            assert!(
+                jdx < dcurve.len(),
+                "month {}: rate {:.3} is past the last sample",
+                month,
+                n.interest_rate
+            );
+            assert!(
+                (dcurve[jdx].as_f64().unwrap() - f("demand_output_now")).abs() < SAMPLING_SLACK,
+                "month {}: the demand curve says {:.6} where the sim says {:.6}",
+                month,
+                dcurve[jdx].as_f64().unwrap(),
+                f("demand_output_now")
+            );
+            checked += 1;
+        }
+        assert!(checked > 100, "only {} months were checked", checked);
+        assert!(
+            gated > 0,
+            "the demand gates never bit in twenty years of Zaire, so the split \
+             this test exists for was never exercised"
+        );
+
+        // And the browser must not be doing any of it itself.
+        assert!(INDEX.contains("policyAt("), "the panel must index the served curves");
+        assert!(
+            !INDEX.contains("function potentialGrowth(") && !INDEX.contains("function demandOf("),
+            "the browser is keeping its own growth model again"
+        );
+        assert!(
+            !INDEX.contains("0.030 + 0.080"),
+            "the capital arm the sim deleted is back in the browser"
+        );
+        assert!(
+            !INDEX.contains("0.025 - (rate"),
+            "the demand gap is being computed in the browser again"
+        );
+        assert!(
+            !INDEX.contains("0.17 + (1 - n.authoritarianism)"),
+            "the social floor is being computed in the browser again"
         );
     }
 

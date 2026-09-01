@@ -2206,36 +2206,56 @@ function barRow(k, v, frac, color) {
 function stabColor(s) { return s < 30 ? "var(--red)" : s < 55 ? "var(--amber)" : "var(--green)"; }
 
 /* ================= the economic forecast =================
-   These four functions mirror the arithmetic in spheres-sim/economy.rs so the
-   player can read what a policy change will do before paying a month for it.
-   They compute nothing the sim does not; if economy.rs changes, change these.  */
+   SERVED, NOT COMPUTED — every number below comes out of
+   `economy::growth_terms`, the same function `economy::tick` charges by.
 
-function devOf(n) { return Math.min((n.gdp * 1000 / n.population) / 24000, 1); }
+   This block used to be four JavaScript functions mirroring economy.rs, under a
+   comment that read "They compute nothing the sim does not". That sentence was
+   false, and `browser_growth_model_gap` in spheres-web measures how false on the
+   shipped January 1990 board: a mean gap of 1.19 pt/yr of annual growth across
+   the 137 seated nations, worst -10.78 pt on Zaire, and FRANCE READ +0.24%/yr
+   IN A PANEL WHERE THE SIM WAS RUNNING -0.01%/yr — a sign flip on the opening
+   screen with no player input at all. The mature panel: Japan -0.57 pt, Italy
+   -0.56, Germany -0.46, the United Kingdom -0.45, France -0.25.
 
-function potentialGrowth(n, invest) {
-  const dev = devOf(n);
-  let p = n.tfp + (invest + n.priv_invest) * (0.030 + 0.080 * (1 - dev)) + (1 - dev) * 0.020;
-  if (n.command_economy) p -= 0.004 + 0.010 * dev;
-  return p;
-}
+   What the copy had lost, term by term:
+     · the whole net-of-replacement shape of the capital arm, and the flat
+       `0.030` that was DELETED from the sim because it paid a permanent growth
+       rate for a constant investment share;
+     · the labour term entirely — `population_growth(n) * 0.60`, which is the
+       fact about Japan the model was repaired to hold;
+     · all three gates on the demand arm (`room_to_cut`, `willing_to_borrow`,
+       `money_works`) and `MAX_DEMAND_GAP`, which is most of the -10.78;
+     · `MAX_OIL_SHARE` and `tech::energy_exposure`, the two PLAN step 2 names;
+     · the bubble, and `WORST_ANNUAL_COLLAPSE`.
 
-/// The gap demand opens above potential, and the inflation the model steers to.
-function demandOf(n, rate) {
-  const gap = (0.025 - (rate - n.inflation)) * 0.55;
-  const oilInfl = n.oil_mbd < 0.5 ? Math.max((S.oil_price - 20) / 20, -0.5) * 0.012 : 0;
-  return { gap, target: 0.02 + gap * 1.6 + oilInfl + (n.at_war ? 0.015 : 0) };
+   The two sliders that reach growth reach different terms — investment moves
+   potential, the rate moves demand — so the server samples one curve for each at
+   every thousandth, the resolution the range inputs step in. This is an index,
+   never an interpolation.  */
+
+/// Read a served policy curve at a slider value. Clamps past the last sample,
+/// and answers null if an older server sent no curve.
+function policyAt(curve, x) {
+  const pol = S && S.policy;
+  if (!pol || !curve || !curve.length) return null;
+  const i = clamp(Math.round((x / pol.curve_max) * (curve.length - 1)), 0, curve.length - 1);
+  return curve[i];
 }
 
 function dragsOf(n) {
-  const oilRev = n.oil_mbd * n.export_share * S.oil_price * 0.365 / n.gdp;
-  const oil = n.oil_mbd > 0.5
-    ? (S.oil_price - 20) / 20 * oilRev * 0.5
-    : -(S.oil_price - 20) / 20 * 0.006;
-  const embargo = n.oil_mbd > 0.5
-    ? Math.min((1 - n.export_share) * n.oil_mbd * S.oil_price * 0.365 / n.gdp * 0.30, 0.12)
-    : 0;
+  const pol = (S && S.policy) || {};
   return {
-    oil, embargo, oilRev,
+    // SERVED, NOT COMPUTED. The oil arm carried neither `MAX_OIL_SHARE` nor
+    // `tech::energy_exposure` — the two omissions PLAN step 2 names by name —
+    // so it was wrong for every importer, and for any producer whose output had
+    // been wrecked badly enough for its oil income to run away with its own
+    // denominator.
+    oil: pol.oil || 0,
+    embargo: pol.embargo || 0,
+    oilRev: pol.oil_revenue_gdp || 0,
+    budgetOil: pol.budget_oil_revenue || 0,
+    bubble: pol.bubble || 0,
     // SERVED, NOT COMPUTED. This was `n.sanctioned_by_count * 0.006`, which is
     // the rule the sim stopped using when all four sanction channels were
     // converted from counting flags to weighing the sanctioners' share of world
@@ -2246,17 +2266,23 @@ function dragsOf(n) {
     // `economy::growth_drag_of_sanctions` is now the only place the number
     // exists, and `economy::tick` charges what this line prints.
     sanctions: n.sanction_drag,
-    war: n.at_war ? 0.020 + n.war_exhaustion * 0.03 : 0,
-    debt: n.debt > 0.9 ? (n.debt - 0.9) * 0.02 : 0,
-    unrest: n.stability < 40 ? (40 - n.stability) * 0.0009 : 0,
+    war: pol.war || 0,
+    debt: pol.debt_drag || 0,
+    unrest: pol.unrest || 0,
   };
 }
 
 /// Revenue and spending as shares of GDP, exactly as the budget is struck.
+///
+/// The three sliders are the player's own numbers and are added here; the two
+/// that are not — the social floor and what oil puts in — are served, so this
+/// keeps no copy of `0.17 + (1 - authoritarianism) * 0.05` and no copy of the
+/// rule about who counts as a producer. Oil revenue is also `MAX_OIL_SHARE`-
+/// capped now, which the browser's own version was not.
 function ledgerOf(n, tax, mil, invest) {
   const d = dragsOf(n);
-  const revenue = tax + (n.oil_mbd > 0.5 ? d.oilRev * 0.55 : 0);
-  const social = 0.17 + (1 - n.authoritarianism) * 0.05;
+  const revenue = tax + d.budgetOil;
+  const social = ((S && S.policy) || {}).social_spend || 0;
   const spend = social + mil + invest;
   return { revenue, social, spend, deficit: spend - revenue };
 }
@@ -4420,19 +4446,43 @@ function sustainedForce(m, share) {
 /// The consequence line under each slider, and the budget beneath them all.
 function paintPolicy(m) {
   const p = proposed(m);
-  const d = demandOf(m, p.rate);
-  const base = demandOf(m, m.rate);
-  const pot = potentialGrowth(m, p.invest);
-  const potBase = potentialGrowth(m, m.state_invest);
+  const pol = (S && S.policy) || {};
+  // Every one of these is a sample of a curve the SIM evaluated. `gap` is the
+  // ungated cyclical gap, which is the arm that sets prices; `demandOut` is the
+  // same gap as output, after the three gates. The browser had only the first
+  // and spent it as both, which is why a hyperinflation read as a boom.
+  //
+  // The four STANDING figures come from `*_now` rather than from a lookup, so a
+  // nation sitting between two samples — or past the last one — reads exactly
+  // what the sim is charging it. Only a MOVED slider indexes a curve.
+  const moved = (k, orig) => p[k] !== orig;
+  const gap = moved("rate", m.rate) ? policyAt(pol.demand_gap_curve, p.rate) : pol.demand_gap_now;
+  const demandBase = pol.demand_output_now;
+  const demandOut = moved("rate", m.rate)
+    ? policyAt(pol.demand_output_curve, p.rate) : pol.demand_output_now;
+  const target = moved("rate", m.rate)
+    ? policyAt(pol.inflation_target_curve, p.rate) : pol.inflation_target_now;
+  const pot = moved("invest", m.state_invest)
+    ? policyAt(pol.potential_curve, p.invest) : pol.potential_now;
+  const potBase = pol.potential_now;
   const drag = dragsOf(m);
   const led = ledgerOf(m, p.tax, p.military, p.invest);
   const ledBase = ledgerOf(m, m.tax, m.mil_spend, m.state_invest);
   const force = sustainedForce(m, p.military);
 
   const fx = {
-    rate: `real <b>${fmt.pct(p.rate - m.inflation)}</b> · demand <b>${fmt.signed(d.gap)}</b>/yr` +
-          ` · inflation heads to <b>${fmt.pct(d.target)}</b>` +
-          (p.rate !== m.rate ? ` <span style="color:var(--amber)">(${fmt.pp(d.gap - base.gap)} demand)</span>` : ""),
+    // The OUTPUT arm on this line, because it is the number that goes into
+    // Expected growth below and the panel must add up. The ungated gap is still
+    // what drives "inflation heads to", which is the sim's own split: a
+    // currency that has stopped working passes a boom into prices and not into
+    // output. Zaire opens 1990 with a gap of +21.3% and an output arm of
+    // +10.3%, and the browser used to print the first as both.
+    rate: `real <b>${fmt.pct(p.rate - m.inflation)}</b> · demand <b>${fmt.signed(demandOut)}</b>/yr` +
+          (Math.abs(gap - demandOut) > 0.002
+            ? ` <span style="color:var(--dim)">(of a ${fmt.signed(gap)} gap — the rest is going into prices)</span>` : "") +
+          ` · inflation heads to <b>${fmt.pct(target)}</b>` +
+          (p.rate !== m.rate
+            ? ` <span style="color:var(--amber)">(${fmt.pp(demandOut - demandBase)} demand)</span>` : ""),
     tax: `<b>${fmt.bn(p.tax * m.gdp)}</b>/yr revenue · ` +
          (led.deficit >= 0 ? `deficit <b>${fmt.pct(led.deficit)}</b>` : `surplus <b>${fmt.pct(-led.deficit)}</b>`) +
          ` of GDP`,
@@ -4445,7 +4495,16 @@ function paintPolicy(m) {
     el.querySelector(".fx").innerHTML = fx[el.dataset.kind] || "";
   });
 
-  const expected = pot + d.gap + drag.oil - drag.sanctions - drag.war - drag.debt - drag.unrest - drag.embargo;
+  // The sim's own assembly, term for term, in the sim's own order: the gated
+  // demand arm rather than the raw gap, the bubble the browser did not know
+  // about, and `WORST_ANNUAL_COLLAPSE` — served as `growth_floor` rather than
+  // spelt here, the same posture `front_held_band` is carried under. The only
+  // thing missing is `tick`'s ±0.4pp RNG draw, which a forecast cannot know and
+  // must not invent.
+  const expected = Math.max(
+    pot + demandOut + drag.bubble + drag.oil
+      - drag.sanctions - drag.war - drag.debt - drag.unrest - drag.embargo,
+    pol.growth_floor != null ? pol.growth_floor : -Infinity);
   // Debt as a share of GDP falls when nominal growth outruns the deficit — but
   // it CANNOT fall past zero, because economy.rs floors it there
   // (`n.debt_gdp = n.debt_gdp.max(0.0)`, in the same block that computes the

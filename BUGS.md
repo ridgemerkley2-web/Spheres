@@ -1308,3 +1308,33 @@ Romania's". That removes false interrupts; it does not touch the pacing.
 identical bare-substring `is_major`, so the CLI has the Oman/Romania defect too.
 Untouched here only to stay out of another session's file — it is one line and it
 is the same fix.
+
+---
+
+### W-1 UPDATE — the three bounds no longer need a ruling, because the browser no longer assembles the sum
+
+**Added 2026-09-01 by the surface-lies fixer, while fixing TRIAGE F-35 / PLAN
+step 2.** Not a new bug; it retires a question W-1 left open.
+
+W-1 asked Ridge to choose between mirroring `MAX_DEMAND_GAP`, `MAX_OIL_SHARE`
+and `WORST_ANNUAL_COLLAPSE` as literals in index.html or promoting three
+function-local constants in economy.rs to `pub` and transporting them.
+
+**Neither is needed now.** `economy::growth_terms` is the single definition of a
+nation's year and `economy::tick` charges by it; `policy_json` serves its output.
+The first two bounds are applied INSIDE that function, before anything crosses
+the wire, so the browser cannot fail to apply them and never learns their values.
+The third is carried as `GrowthTerms::floor` — a field on a value the sim
+returns, not a constant made public — so the panel is handed the bound it needs
+to floor a sum it assembles from served terms.
+
+**No constant moved and no value changed.** `golden_hash_of_a_known_run` and
+`the_1990_start_is_pinned` report the same actuals across the extraction
+(`0x20c24ab0f1581807`, `0xa5c9c5b2306313d8`), which is the evidence that the
+refactor was byte-for-byte behaviour-preserving.
+
+**What W-1 measured is still true and is still the reason none of this shows up
+as a changed digit for those three bounds specifically**: on everything the model
+can currently reach, only `MAX_DEMAND_GAP` binds, and it binds where the browser
+was previously furthest wrong — Zaire opens 1990 with a raw gap of +40.6% by the
+browser's old arithmetic against the sim's clamped +35.0%.
