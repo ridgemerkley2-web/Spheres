@@ -876,13 +876,15 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
         .map(|d| {
             let di = d.index();
             let rate = monthly * weights[di];
-            let (project, banked, cost) = match spheres_sim::tech::project_of(w, me, *d) {
+            let (project, banked, cost, fields_in) = match spheres_sim::tech::project_of(w, me, *d)
+            {
                 Some((def, banked, cost)) => (
                     serde_json::json!({ "id": def.id, "name": def.name, "year": def.earliest_year }),
                     banked,
                     cost,
+                    Some(def.earliest_year),
                 ),
-                None => (serde_json::Value::Null, n.tech.progress[di], 0.0),
+                None => (serde_json::Value::Null, n.tech.progress[di], 0.0, None),
             };
             // A projection, and a projection is only worth serving while its
             // one assumption holds: that this month's research rate is the rate
@@ -910,6 +912,41 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
             } else {
                 None
             };
+            // WHY THERE IS NO NUMBER, when there is no number. `months_left` was
+            // the whole of what the payload said about a wait, and the browser
+            // rendered every one of its four `null`s as the single word
+            // "stalled". Only one of the four is a stall.
+            //
+            // The one that is simply FALSE is `banked >= cost`: the project is
+            // paid for. It is waiting on the calendar, because the spend loop in
+            // tech::tick will not field a technology before its `earliest_year`
+            // however much is banked against it — and until then the board told
+            // the player the programme they had fully funded had stopped. A
+            // government reading "stalled" moves money to it, and there is
+            // nothing the money can do.
+            //
+            // Served as a REASON rather than as a phrase, so the page keeps the
+            // wording and the server keeps the fact.
+            let wait = if months_left.is_some() {
+                "months"
+            } else if project.is_null() {
+                // No project, so no wait to describe. The board prints "no
+                // project chosen" here and never reaches the eta.
+                "none"
+            } else if banked >= cost {
+                match fields_in {
+                    // Paid for, and the year it can be fielded has not arrived.
+                    Some(y) if y > w.year => "year",
+                    // Paid for, and it lands on the next advance.
+                    _ => "funded",
+                }
+            } else if rate > 1e-9 {
+                // Funded, moving, and further off than this server will project.
+                "beyond"
+            } else {
+                // The only real stall: nothing is reaching this domain at all.
+                "stalled"
+            };
             let options: Vec<serde_json::Value> = spheres_sim::tech::eligible_projects(n, *d)
                 .iter()
                 .map(|def| serde_json::json!({
@@ -925,6 +962,8 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "banked": banked,
                 "cost": cost,
                 "months_left": months_left,
+                "wait": wait,
+                "fields_in": fields_in,
                 "known": spheres_sim::tech::registry().iter().enumerate()
                     .filter(|(i, def)| def.domain == *d && n.tech.knows_index(*i as u16))
                     .count(),
@@ -2132,6 +2171,95 @@ mod tests {
         assert!(
             !INDEX.contains("const force = Math.sqrt(m.gdp * p.military * 0.30) * 8"),
             "the page is still computing the sustained force itself"
+        );
+    }
+
+    /// The research board called a fully funded project "stalled". `months_left`
+    /// was the whole of what the payload said about a wait, and the browser
+    /// rendered every one of its four `null`s as that one word — but a project
+    /// whose banked points already cover its cost is not stopped, it is waiting
+    /// on the calendar, because `tech::tick` will not field a technology before
+    /// its `earliest_year` however much is banked against it.
+    ///
+    /// That is the reading that costs the player something. A government told
+    /// its programme has stalled moves money to it, and there is nothing the
+    /// money can do.
+    #[test]
+    fn a_funded_project_is_not_reported_as_stalled() {
+        let mut funded = 0usize;
+        let mut stalled = 0usize;
+        let mut example = String::new();
+
+        for name in ["United States", "Japan", "Sao Tome and Principe", "India"] {
+            let id = NationId::parse(name).expect("on the roster");
+            let mut g = Game::new(1990, Some(id));
+            for _ in 0..180 {
+                tick_month(&mut g.world, &[]);
+                let r = research_json(&g.world, id);
+                for d in r["domains"].as_array().expect("eight domains") {
+                    let wait = d["wait"].as_str().expect("every domain says why");
+                    // The payload's own consistency: a reason and a number are
+                    // exclusive, and every reason is one the page can render.
+                    assert_eq!(
+                        d["months_left"].is_null(),
+                        wait != "months",
+                        "{name}: months_left and wait disagree — {d}"
+                    );
+                    assert!(
+                        ["months", "none", "funded", "year", "beyond", "stalled"].contains(&wait),
+                        "{name}: unrenderable wait reason {wait:?}"
+                    );
+                    match wait {
+                        "funded" | "year" => {
+                            funded += 1;
+                            let banked = d["banked"].as_f64().expect("finite");
+                            let cost = d["cost"].as_f64().expect("finite");
+                            assert!(
+                                banked >= cost,
+                                "{name}: {d} claims to be funded on {banked} of {cost}"
+                            );
+                            if wait == "year" {
+                                let y = d["fields_in"].as_i64().expect("a fielding year");
+                                assert!(
+                                    y > g.world.year as i64,
+                                    "{name}: waiting for {y} in {}",
+                                    g.world.year
+                                );
+                                if example.is_empty() {
+                                    example = format!(
+                                        "{name} {} — {} is {:.0}% funded and fields in {}",
+                                        g.world.date_str(),
+                                        d["project"]["name"],
+                                        banked / cost * 100.0,
+                                        y
+                                    );
+                                }
+                            }
+                        }
+                        "stalled" => stalled += 1,
+                        _ => {}
+                    }
+                }
+            }
+        }
+        // The defect has to be reachable or this test is decoration. Every one
+        // of these used to print the word "stalled".
+        assert!(
+            funded > 0,
+            "no funded-but-unquoted project in 60 years of four very different \
+             economies, so this test is not exercising the case it was written for"
+        );
+        println!("{funded} funded-but-unquoted domain-months (all said \"stalled\" before), \
+                  {stalled} genuinely stalled; e.g. {example}");
+
+        // And the page must say the four apart rather than collapsing them.
+        assert!(INDEX.contains("function etaText(d, tilde)"), "the page lost its eta helper");
+        for phrase in ["lands next month", "fields in", "beyond a century", "nothing is funding"] {
+            assert!(INDEX.contains(phrase), "the board cannot say {phrase:?}");
+        }
+        assert!(
+            !INDEX.contains(r#"months_left == null ? "stalled""#),
+            "the research board still calls every missing number a stall"
         );
     }
 

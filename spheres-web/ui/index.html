@@ -2396,6 +2396,29 @@ function treeSvg(d) {
    the cost of a project, the months remaining at the current rate, which
    technologies are startable. The browser does no arithmetic. */
 
+/// What the research board says about a project's remaining wait.
+///
+/// FIVE PLACES USED TO SAY THIS AND ALL FIVE SAID "stalled" whenever the payload
+/// carried no month count — and the payload carries no month count for four
+/// different reasons, only one of which is a stall. The wrong one was the
+/// programme that is FULLY FUNDED: `tech::tick` will not field a technology
+/// before its `earliest_year` however much is banked against it, so a project
+/// paid for and waiting on the calendar was reported as stopped. A government
+/// reading "stalled" moves money to it, and there is nothing the money can do.
+///
+/// The server now serves the REASON (`wait`) and this keeps the wording, which
+/// is the split the rest of this file uses everywhere else.
+function etaText(d, tilde) {
+  if (!d) return "stalled";
+  if (d.months_left != null) return (tilde ? "~" : "") + d.months_left + " mo";
+  switch (d.wait) {
+    case "funded": return "funded — lands next month";
+    case "year":   return "funded — fields in " + d.fields_in;
+    case "beyond": return "beyond a century at this rate";
+    default:       return "stalled — nothing is funding this";
+  }
+}
+
 function researchHtml(m) {
   const r = S.research;
   if (!r) return "";
@@ -2410,7 +2433,7 @@ function researchHtml(m) {
     const line = d.project
       ? `<div class="proj">${d.project.name}
            <span class="eta">· ${d.cost > 0 ? Math.round((d.banked / d.cost) * 100) : 0}% ·
-           ${d.months_left == null ? "stalled" : d.months_left + " mo"}</span></div>`
+           ${etaText(d)}</span></div>`
       : (d.options && d.options.length)
         ? `<div class="none">no project chosen — pick one below, or let the engine choose on the next advance</div>`
         : `<div class="none">nothing startable — every reachable technology here is already held</div>`;
@@ -2545,7 +2568,7 @@ function renderTechMenu() {
     if (d.project) {
       const pct = d.cost > 0 ? clamp(d.banked / d.cost, 0, 1) * 100 : 0;
       proj = `<span class="proj">${d.project.name}<span class="bar"><i style="width:${pct.toFixed(0)}%"></i></span>${
-        d.months_left == null ? "stalled" : d.months_left + " mo"}</span>`;
+        etaText(d)}</span>`;
     } else if ((d.options || []).length) {
       proj = `<span class="proj idle">no project chosen</span>`;
     } else {
@@ -3901,7 +3924,7 @@ function techTipShow(i, clientX, clientY) {
   } else if (mine) {
     cls = "f";
     html = "Researching — " + rd.banked.toFixed(0) + "/" + rd.cost.toFixed(0) + " pts · " +
-      (rd.months_left == null ? "stalled" : "~" + rd.months_left + " mo");
+      etaText(rd, true);
   } else if (n.state === "open") {
     cls = "o";
     html = "Ready to research — " + Math.round(n.cost) + " pts";
@@ -4013,7 +4036,7 @@ function techDockHtml(i) {
     if (n.focus && mine) {
       const pct = rd.cost > 0 ? Math.round((rd.banked / rd.cost) * 100) : 0;
       h += `<div class="cap">${rd.banked.toFixed(1)} of ${rd.cost.toFixed(0)} banked · ${pct}% · ${
-        rd.months_left == null ? "stalled" : rd.months_left + " mo"}</div>`;
+        etaText(rd)}</div>`;
     } else if (n.state === "open" && rd && rd.rate > 1e-9) {
       h += `<div class="cap">≈ ${Math.ceil(n.cost / rd.rate)} mo if it were the project at today's funding</div>`;
     }
@@ -4058,7 +4081,7 @@ function techDockHtml(i) {
   if (n.state === "open" && (n.focus || mine)) {
     const pct = rd && rd.cost > 0 ? Math.round((rd.banked / rd.cost) * 100) : 0;
     h += `<div class="cap" style="margin-top:10px">IN PROGRESS — ${pct}% · ${
-      rd && rd.months_left != null ? rd.months_left + " mo" : "stalled"}</div>`;
+      etaText(rd)}</div>`;
     h += `<button class="go" data-act="stand" data-i="${i}">STAND DOWN</button>`;
     h += `<div class="cap">hands the project back to the engine</div>`;
   } else if (n.state === "open") {
