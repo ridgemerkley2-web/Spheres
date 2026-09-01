@@ -8034,6 +8034,12 @@ function mapCTM(svg) {
 (() => {
   const pane = $("#pane-map");
   let down = null, moved = false;
+  // THE PICK TARGET, taken at pointerdown. It cannot be read off the click:
+  // setPointerCapture below RETARGETS the click at the capture element, so
+  // `e.target` in the click handler is #pane-map itself and never the mark that
+  // was hit. Null whenever the press was not a left-button press on the svg, so
+  // a stale mark can never be cashed in by a later click somewhere else.
+  let downTarget = null;
   pane.addEventListener("wheel", (e) => {
     cancelAnimationFrame(camAnim); camAnim = 0;   // user input wins over the theatre tween
     const svg = pane.querySelector("svg");
@@ -8059,8 +8065,11 @@ function mapCTM(svg) {
   pane.addEventListener("pointerdown", (e) => {
     cancelAnimationFrame(camAnim); camAnim = 0;   // user input wins over the theatre tween
     const svg = pane.querySelector("svg");
+    downTarget = null;
     if (e.button !== 0 || !svg || !svg.contains(e.target)) return;
     down = { x: e.clientX, y: e.clientY }; moved = false;
+    // The press knows what it landed on; the click that follows will not.
+    downTarget = e.target;
     // Capture so a fast drag that leaves the pane keeps panning. A pointer
     // that is already gone by the time this runs throws; the pan then simply
     // falls back to bubbling moves, so the failure is not worth surfacing.
@@ -8090,14 +8099,18 @@ function mapCTM(svg) {
   pane.addEventListener("pointercancel", () => { down = null; if (moved) scheduleDistrictDetail(); });
   pane.addEventListener("click", (e) => {
     if (moved || e.detail > 1) return;          // a pan is not a pick; nor half a dblclick
-    const g = e.target.closest(".nodeg");
+    // Read the mark off the PRESS, not off the click — see `downTarget`. A node
+    // torn out by a render landing between press and click is no longer a pick,
+    // and `e.target` (the pane) then resolves to nothing, which is correct.
+    const t = downTarget && downTarget.isConnected ? downTarget : e.target;
+    const g = t.closest(".nodeg");
     if (g) { openNation(g.dataset.id); return; }
     // A commodity mark sits above the nation groups and takes its own pointer
     // events (it carries an evidence tooltip), so it would otherwise swallow
     // the click that opens a dossier. It resolves the same way a district does:
     // to whoever governs the ground under it — the sim's per-district owner if
     // it has one, else the nation holding the country.
-    const ch = e.target.closest(".rchip");
+    const ch = t.closest(".rchip");
     if (ch) {
       const nid = nationOfDistrict(ch.dataset.did);
       if (nid) openNation(nid);
@@ -8105,7 +8118,7 @@ function mapCTM(svg) {
     }
     // A district is not a thing you open — the click falls through to the
     // nation that governs the ground under the cursor.
-    if (e.target.closest("#dhit") && hoverNation) openNation(hoverNation);
+    if (t.closest("#dhit") && hoverNation) openNation(hoverNation);
   });
   pane.addEventListener("dblclick", (e) => {
     if (!pane.querySelector("svg")) return;

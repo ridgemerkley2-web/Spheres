@@ -3027,6 +3027,53 @@ mod tests {
         }
     }
 
+    /// The map's click handler must resolve its pick from the POINTERDOWN
+    /// target, never from the click's own.
+    ///
+    /// `#pane-map` calls `setPointerCapture` on pointerdown so a fast drag that
+    /// leaves the pane keeps panning. Pointer capture also retargets the
+    /// subsequent `click` at the capture element, so `e.target` in the click
+    /// handler is the pane `<div>` and `e.target.closest(".nodeg")` is always
+    /// null. Measured in the browser: pointerdown landed on a `<circle>` inside
+    /// `.nodeg[data-id=Brazil]`, and the click that followed it targeted
+    /// `DIV#pane-map`. The result was that clicking a nation on the map opened
+    /// nothing — the control the page advertises in three separate places (the
+    /// opening banner, the map legend, and the keyboard card's "click a
+    /// country").
+    ///
+    /// The repair records the press's target and reads the pick off that, so
+    /// this test pins the three `closest` calls to the recorded target rather
+    /// than to `e.target`. Reverting any one of them silently kills that pick
+    /// path again and nothing else in the suite would notice.
+    #[test]
+    fn the_map_resolves_a_click_from_the_press_not_the_click() {
+        assert!(
+            INDEX.contains("downTarget = e.target;"),
+            "the map's pointerdown must record what the press landed on — pointer \
+             capture retargets the click and the pick cannot be read off it"
+        );
+        assert!(
+            INDEX.contains("const t = downTarget && downTarget.isConnected ? downTarget : e.target;"),
+            "the map's click handler must prefer the recorded press target"
+        );
+        for pick in ["t.closest(\".nodeg\")", "t.closest(\".rchip\")", "t.closest(\"#dhit\")"] {
+            assert!(
+                INDEX.contains(pick),
+                "the map's click handler no longer resolves {pick} from the press \
+                 target; with pointer capture set, e.target is #pane-map and this \
+                 pick can never match"
+            );
+        }
+        // And the capture that makes all of the above necessary is still there:
+        // if it ever goes away this test is measuring nothing, and the comment
+        // above becomes a lie about why the indirection exists.
+        assert!(
+            INDEX.contains("pane.setPointerCapture(e.pointerId)"),
+            "the pan's pointer capture is gone — re-read whether the press-target \
+             indirection is still the right shape before deleting this test"
+        );
+    }
+
     /// The front seam is drawn twice, each pass clipped by its own SVG mask,
     /// and the two masks must carry DISTINCT ids — a merge that collapses the
     /// `a`/`b` suffixes leaves one mask shadowing the other and the seam
