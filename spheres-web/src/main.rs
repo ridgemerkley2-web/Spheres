@@ -5558,4 +5558,63 @@ mod tests {
             assert!(e.contains("is not a number of months"), "unhelpful refusal: {e}");
         }
     }
+
+    /// The event log used to disappear once the world got busy, and no gesture
+    /// brought it back.
+    ///
+    /// Measured in Chrome at 1280x720 on an Iraq world, seed 1, advanced to May
+    /// 1992 (four live conflicts): `#logList` had a bounding height of **0.0px**
+    /// with a `scrollHeight` of 12042 and 216 `.item` children — every dispatch
+    /// in the game rendered and none of it on screen. `#right` measured 671.5px
+    /// against a `scrollHeight` of 737, so scrolling the column revealed the
+    /// card's heading, chips and filter box and nothing else: a zero-height box
+    /// contributes nothing to scroll through. Reproduced identically at
+    /// 1366x768 and 1024x768.
+    ///
+    /// Cause: `#right .card.feed` carried `flex: 1` — which is `flex-basis: 0%`
+    /// with a shrink factor of 1 — together with `min-height: 0`, which removes
+    /// the automatic minimum that would otherwise stop a flex item shrinking
+    /// past its content. `#warsCard` above it grows one block per live conflict
+    /// (590px at four), so the feed was squeezed to 45.5px, less than its own
+    /// chrome, and `#logList` — the only flexible child — absorbed the whole
+    /// shortfall and resolved to nothing.
+    ///
+    /// The floor is that chrome (heading 34.5 + chips 54 + filter 35 + padding
+    /// 24 + the list's 8px top margin ≈ 158px) plus four typical rows. After,
+    /// same world and viewport: `#logList` 164.5px, three dispatches visible,
+    /// the list's own `overflow-y: auto` reaching all 216, and `#right`
+    /// scrolling 946 against 672 so the rest of the card is reachable too. At
+    /// 1920x1080 the floor does not bind at all and the card still grows to
+    /// fill, exactly as before.
+    #[test]
+    fn the_event_log_cannot_be_squeezed_out_of_existence() {
+        let rule = INDEX
+            .lines()
+            .find(|l| l.trim_start().starts_with("#right .card.feed {"))
+            .expect("the feed card's layout rule is gone");
+        assert!(
+            !rule.contains("min-height: 0"),
+            "the feed card must not be allowed to shrink past its own chrome — \
+             `min-height: 0` under an unbounded #warsCard is what rendered the \
+             event log zero pixels tall: {rule}"
+        );
+        let floor = rule
+            .split_once("min-height:")
+            .and_then(|(_, rest)| rest.split_once("px"))
+            .map(|(n, _)| n.trim().parse::<f64>().expect("the floor is not a length in px"))
+            .expect("the feed card no longer states a min-height floor");
+        // 158px of measured chrome, so anything at or under it leaves the list
+        // at zero again and this test would be passing on a still-broken page.
+        assert!(
+            floor >= 240.0,
+            "a {floor}px floor does not clear the feed card's own chrome (~158px) \
+             with room for dispatches under it"
+        );
+        // The list stays a scroll container: the floor bounds the card, and the
+        // list reaches the rest of the log by scrolling inside it.
+        assert!(
+            INDEX.contains("#logList { overflow-y: auto; flex: 1;"),
+            "the log list must stay a flexible scroll container inside the card"
+        );
+    }
 }

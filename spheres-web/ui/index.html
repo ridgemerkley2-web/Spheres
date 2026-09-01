@@ -906,8 +906,20 @@
   .chartgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   @media (max-width: 1400px) { .chartgrid { grid-template-columns: 1fr; } }
 
-  /* ---------- event log ---------- */
-  #right .card.feed { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+  /* ---------- event log ----------
+     THE FEED CARD HAS A FLOOR, and it used to have `min-height: 0`. The wars
+     card above it grows without bound — one block per live conflict — and
+     `flex: 1` on this card is `flex-basis: 0%` plus a shrink factor, so with
+     `min-height: 0` the card was allowed to collapse under the wars card until
+     its own chrome (heading + category chips + the filter box, ~158px) was
+     taller than the card. #logList, the only flexible thing inside it, absorbed
+     all of that and measured ZERO PIXELS TALL from three conflicts onward:
+     every dispatch in the game unreachable, and #right's own overflow could not
+     reveal them because a zero-height box adds nothing to scroll through.
+     320px is that chrome plus four typical rows. It only binds when the column
+     is actually short of room; where there is space the card still grows to
+     fill it, and where there is not, #right scrolls, which is what it is for. */
+  #right .card.feed { display: flex; flex-direction: column; min-height: 320px; flex: 1; }
   #logList { overflow-y: auto; flex: 1; margin-top: 8px; }
   #logSearch {
     width: 100%; margin-top: 7px; padding: 4px 8px; font-size: 12px;
