@@ -988,6 +988,41 @@ fn parse_body(body: &str) -> Result<serde_json::Value, String> {
     serde_json::from_str(body).map_err(|e| format!("That request body is not JSON: {}", e))
 }
 
+/// Who the request asked to govern.
+///
+/// `Ok(None)` is an OBSERVER, and it is a real answer: the server boots into
+/// exactly that state and the map is worth watching without a seat. But an
+/// observer is what you get when you ASK for nothing — no `nation` key, or an
+/// explicit null. It is not what you should get when you ask for something the
+/// roster does not know.
+///
+/// It was. `payload.get("nation").and_then(as_str).and_then(NationId::parse)`
+/// folds "unknown nation" into "no nation", so POST /api/new
+/// {"nation":"Polnad"} answered 200 and started a game with no player in it:
+/// no dashboard, no research board, no orders, nothing to spend political
+/// capital on, and no word anywhere about why. Measured on the live server —
+/// both "Atlantis" and the far likelier typo "Polnad" left `player` empty.
+///
+/// A refusal here is also the only place a misspelling can be CAUGHT, because
+/// `NationId::parse` already accepts codes, display names and aliases
+/// case-insensitively; anything it rejects is a name no spelling of which is
+/// on the board.
+fn asked_player(payload: &serde_json::Value) -> Result<Option<NationId>, String> {
+    match payload.get("nation") {
+        None | Some(serde_json::Value::Null) => Ok(None),
+        Some(v) => {
+            let asked = v.as_str().unwrap_or_default().trim();
+            NationId::parse(asked).map(Some).ok_or_else(|| {
+                format!(
+                    "There is no nation called {} on the board. \
+                     Names, codes and common aliases all work — try \"Poland\" or \"POL\".",
+                    if asked.is_empty() { v.to_string() } else { format!("\"{asked}\"") }
+                )
+            })
+        }
+    }
+}
+
 /// Start a fresh world for `player`, or refuse and leave `g` alone.
 ///
 /// THE REFUSAL IS THE POINT, and it is not hypothetical. `NationId::parse`
@@ -1302,10 +1337,14 @@ fn main() {
             }
             (Method::Post, "/api/new") => {
                 let seed = payload.get("seed").and_then(|s| s.as_u64()).unwrap_or(1990);
-                let player = payload
-                    .get("nation")
-                    .and_then(|s| s.as_str())
-                    .and_then(NationId::parse);
+                let player = match asked_player(&payload) {
+                    Ok(p) => p,
+                    Err(e) => {
+                        let _ =
+                            request.respond(json_error(400, serde_json::json!({ "error": e })));
+                        continue;
+                    }
+                };
                 let mut g = game.lock().unwrap();
                 match new_game(&mut g, seed, player) {
                     (v, true) => json_response(v),
@@ -2042,6 +2081,45 @@ mod tests {
         let d = s["districts"].as_object().unwrap();
         assert_eq!(d.len(), 6, "all six Kuwaiti governorates moved");
         assert_eq!(d["KW-KU"], "Iraq");
+    }
+
+    /// Asking to govern a nation the roster does not know used to start a game
+    /// with nobody in it. Measured on the live server: POST /api/new
+    /// {"seed":7,"nation":"Polnad"} answered 200, and GET /api/state came back
+    /// with `player` empty — a board with no dashboard, no research, no orders
+    /// and no explanation. "Atlantis" did the same. A typed nation name is the
+    /// one field on the setup screen a player can get wrong, and it was the one
+    /// field that failed silently.
+    #[test]
+    fn a_nation_the_roster_does_not_know_is_refused_not_ignored() {
+        // Not asking is still a legitimate answer — the server boots this way.
+        assert_eq!(asked_player(&serde_json::json!({})), Ok(None));
+        assert_eq!(asked_player(&serde_json::json!({ "nation": null })), Ok(None));
+        assert_eq!(
+            asked_player(&serde_json::json!({ "seed": 7 })),
+            Ok(None),
+            "a body with no nation key is an observer"
+        );
+
+        // Everything NationId::parse accepts still gets through: name, code,
+        // alias, any case, surrounding space.
+        for asked in ["Poland", "POL", "pol", "  Poland  ", "united states", "usa"] {
+            assert!(
+                matches!(asked_player(&serde_json::json!({ "nation": asked })), Ok(Some(_))),
+                "{asked} must still be playable"
+            );
+        }
+
+        // And what used to be silence.
+        for asked in ["Polnad", "Atlantis", "", "   "] {
+            let e = asked_player(&serde_json::json!({ "nation": asked }))
+                .expect_err("must be refused");
+            assert!(e.contains("no nation called"), "unhelpful refusal: {e}");
+        }
+        // A `nation` that is not even a string is a refusal too, not an
+        // observer — as_str() used to swallow it.
+        assert!(asked_player(&serde_json::json!({ "nation": 42 })).is_err());
+        assert!(asked_player(&serde_json::json!({ "nation": ["Poland"] })).is_err());
     }
 
     /// A request body that does not parse used to be indistinguishable from no
