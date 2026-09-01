@@ -8879,16 +8879,36 @@ function chart(cfg) {
     s += `<path d="${d}" fill="none" stroke="${se.color}" stroke-width="${se.width || 1.8}"
             stroke-linejoin="round" ${se.dash ? `stroke-dasharray="${se.dash}"` : ""}/>`;
   });
-  // right-hand labels, pushed apart so they never overprint
+  // Series labels, pushed apart so they never overprint.
+  //
+  // A SERIES THAT ENDS EARLY IS LABELLED WHERE IT ENDS. Every label used to go
+  // to the right margin whether or not its line reached it, so a nation that
+  // died mid-run had its name parked among the survivors' endpoints with
+  // nothing underneath it. Measured on seed 1 in May 1996, GDP, 77 samples:
+  // the Soviet Union's line stopped at x 509.8 and Yugoslavia's at x 292.1,
+  // and both names were drawn at x 860 — 350 and 568 units adrift, 36% and 59%
+  // of the chart's width. A reader could not tell which line was whose, and
+  // the margin implied both states were still running.
   if (PADR > 20) {
-    const tips = ser.map((se, k) => ({
-      k, y: Y(se.vals[se.vals.length - 1]), name: se.name, color: se.color,
-    })).sort((a, b) => a.y - b.y);
-    for (let k = 1; k < tips.length; k++) {
-      if (tips[k].y - tips[k - 1].y < 12) tips[k].y = tips[k - 1].y + 12;
-    }
-    tips.forEach((t) => {
-      s += `<text x="${W - PADR + 8}" y="${(t.y + 3.5).toFixed(1)}" font-size="11" fill="${t.color}">${t.name}</text>`;
+    const live = [], gone = [];
+    ser.forEach((se, k) => {
+      const end = se.t0 + se.vals.length - 1;
+      const tip = { k, y: Y(se.vals[se.vals.length - 1]), name: se.name, color: se.color };
+      // The right margin is for the series that earn it: only one still
+      // running at the last sample is labelled there.
+      if (end >= N - 1) live.push(tip); else { tip.x = X(end) + 6; gone.push(tip); }
+    });
+    const spread = (tips) => {
+      tips.sort((a, b) => a.y - b.y);
+      for (let k = 1; k < tips.length; k++) {
+        if (tips[k].y - tips[k - 1].y < 12) tips[k].y = tips[k - 1].y + 12;
+      }
+      return tips;
+    };
+    spread(live).forEach((t) => { t.x = W - PADR + 8; });
+    spread(gone);
+    live.concat(gone).forEach((t) => {
+      s += `<text x="${t.x.toFixed(1)}" y="${(t.y + 3.5).toFixed(1)}" font-size="11" fill="${t.color}">${t.name}</text>`;
     });
   }
   // hover furniture

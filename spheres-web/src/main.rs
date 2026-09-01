@@ -5891,4 +5891,58 @@ mod tests {
              re-derive this test's measurement if they change"
         );
     }
+
+    /// A dead nation's chart label used to be parked in the live margin.
+    ///
+    /// Measured in Chrome on seed 1 in May 1996, the History workbench's GDP
+    /// chart, 77 monthly samples, with the Soviet Union and Yugoslavia plotted.
+    /// The chart is 960 units wide with a 108-unit right pad:
+    ///
+    ///   Soviet Union  line ends at x 509.8   label drawn at x 860   350 adrift
+    ///   Yugoslavia    line ends at x 292.1   label drawn at x 860   568 adrift
+    ///
+    /// 36% and 59% of the chart's width between a line and its own name. Both
+    /// names sat in the right margin, which is where a series still running at
+    /// the last sample is labelled — so the chart said two states that had been
+    /// gone for years were still going, and gave no way to tell which stub
+    /// belonged to which name.
+    ///
+    /// Cause: `chart()` built one tip per series at `x = W - PADR + 8`,
+    /// unconditionally, from `vals[vals.length - 1]`. It read the last VALUE
+    /// and ignored where that value sat on the axis.
+    ///
+    /// Fix: a series whose last sample is not the chart's last sample is
+    /// labelled at its own endpoint instead. The right-margin group keeps the
+    /// 12-unit vertical spread it always had, and the endpoint group gets the
+    /// same treatment among themselves.
+    ///
+    /// The server side of the same fact is already right and is not touched
+    /// here: `/api/history` ends a nation's series when the nation ends
+    /// (`the_series_ends_when_a_nation_does`). This is the chart drawing that
+    /// truthfully.
+    #[test]
+    fn a_series_that_ends_early_is_labelled_where_it_ends() {
+        assert!(
+            INDEX.contains("if (end >= N - 1) live.push(tip); else { tip.x = X(end) + 6; gone.push(tip); }"),
+            "the chart must split its labels: the right margin is for series \
+             still running at the last sample, and one that stopped earlier is \
+             labelled at its own endpoint"
+        );
+        assert!(
+            !INDEX.contains(r#"s += `<text x="${W - PADR + 8}" y="${(t.y + 3.5).toFixed(1)}""#),
+            "a label is no longer pinned to the right margin unconditionally; \
+             that is the defect this test exists for"
+        );
+        // The de-overlap the old code had, kept rather than lost in the split.
+        assert!(
+            INDEX.contains("if (tips[k].y - tips[k - 1].y < 12) tips[k].y = tips[k - 1].y + 12;"),
+            "the 12-unit vertical spread that stops two labels overprinting is gone"
+        );
+        // And the payload fact the fix reads: a series carries where it starts,
+        // so where it ends is t0 + len - 1 and the chart can see it.
+        assert!(
+            INDEX.contains("const end = se.t0 + se.vals.length - 1;"),
+            "the endpoint must come from the series' own t0 and length"
+        );
+    }
 }
