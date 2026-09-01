@@ -195,24 +195,126 @@ fn month_name(month: u32, year: i32) -> String {
 
 /// Bucket a headline for the event log's filters. Order matters: a nuclear test
 /// that "the world condemns" is politics, not diplomacy.
+///
+/// EXTENDED 2026-09-01, against the corpus rather than against a guess. The four
+/// named buckets between them reached one dispatch in ten: measured over four
+/// seeds and thirty years, **11,285 of 12,552 headlines — 89.9% — landed in
+/// "other"**, and the Economy filter matched **exactly nothing**, so its chip
+/// never appeared on the filter row at all. `classify_corpus` beside this is the
+/// measurement, and re-runs it on demand.
+///
+/// The keywords below are the sim's own vocabulary, read off the `headline`
+/// format strings in spheres-sim rather than invented. The commitment ladder
+/// ("escalates to rung", "steps back to rung") is the single largest unreachable
+/// group at 1,197 of the corpus; then patronage, then the pact and trade
+/// headlines, then election results.
+///
+/// EVERY ADDITION IS STRICTLY A MOVE OUT OF "other". Nothing that already
+/// matched has been moved, reordered or removed, and no added keyword occurs in
+/// any headline a lower-priority bucket was already reaching —
+/// `the_log_filters_reach_the_world_the_sim_writes` pins the whole table so a
+/// later edit cannot quietly steal one bucket's headlines for another.
+///
+/// STILL DELIBERATELY IN "other": `{} is first to field {}`, 339 of the corpus.
+/// A technology milestone is not war, politics, diplomacy or economy, and the
+/// bucket it wants does not exist. Adding one is a change to the filter row in
+/// ui/index.html, which is a UI decision and not this function's to make.
 fn classify(h: &str) -> &'static str {
     let t = h.to_lowercase();
     let war = t.starts_with("war:")
-        || t.contains("invades")
+        // Widened from `invades`, which missed "tears up its own guarantee to
+        // {} to invade it" — the one headline where a war opens in the middle
+        // of a sentence about a broken pact.
+        || t.contains("invade")
         || t.contains("joins the war")
+        || t.contains("enters the war")
         || t.contains("capitulates")
         || t.contains("annexed")
         || t.contains("sues for peace")
         || t.contains("peace terms")
         || t.contains("white peace")
-        || t.contains("repels");
+        || t.contains("repels")
+        // The commitment ladder. Every rung headline the sim writes carries the
+        // word: "escalates to rung", "steps back to rung", "publicly rules out
+        // going beyond rung", "falls back to rung".
+        || t.contains("rung")
+        || t.contains("magazines are empty")
+        || t.contains("quits the fight")
+        || t.contains("takes a side against")
+        || t.contains("freezes over")
+        || t.contains("objective is now")
+        || t.contains("defend its own ground");
     let politics = t.contains("dissolved")
         || t.contains("revolution")
         || t.contains("nuclear test")
+        // "{} tests a nuclear device" is the OTHER proliferation headline and
+        // the substring "nuclear test" does not occur in it.
+        || t.contains("nuclear device")
+        || t.contains("weapons programme")
         || t.contains("republics")
-        || t.contains("regime");
-    let diplomacy = t.contains("sanction") || t.contains("diplomatic hand");
-    let economy = t.contains("oil") || t.contains("inflation") || t.contains("recession");
+        || t.contains("regime")
+        || t.contains("coup in")
+        // Election results are written as "{} votes: {Party} ...".
+        || t.contains("votes:")
+        || t.contains("elections")
+        || t.contains("goes to the polls")
+        || t.contains("goes to the country")
+        || t.contains("the government")
+        || t.contains("loses its majority")
+        || t.contains("parliament refuses")
+        || t.contains("its own streets")
+        || t.contains("street protest")
+        || t.contains("gloves off")
+        || t.contains("ends conscription")
+        || t.contains("scandal")
+        // The two dissolution-aftermath lines, which are the only headlines the
+        // sim writes with no `{}` in them at all and were the last strays.
+        || t.contains("inherits the arsenal")
+        || t.contains("remain in belgrade's hands");
+    let diplomacy = t.contains("sanction")
+        || t.contains("diplomatic hand")
+        || t.contains("defence pact")
+        || t.contains("abandons its pact")
+        || t.contains("guarantee")
+        || t.contains("trade agreement")
+        || t.contains("trade pact")
+        || t.contains("trade talks")
+        || t.contains("trade between")
+        || t.contains("buys the loyalty")
+        || t.contains("basing")
+        || t.contains("overflight")
+        || t.contains("opens its bases")
+        || t.contains("use of its territory")
+        || t.contains("use of its bases")
+        || t.contains("public quarrel")
+        // Covert action, both outcomes: "A covert operation against {} comes to
+        // nothing" and the one that did not, "Separatist fighters in {} turn up
+        // with weapons nobody will account for".
+        || t.contains("covert operation")
+        || t.contains("turn up with weapons")
+        // Patronage, which the sim writes four ways and all of them end in a
+        // sum per year: arms sales, economic aid, raised aid, expanded transfers.
+        || t.contains("arms sales")
+        || t.contains("arms transfers")
+        || t.contains("economic aid")
+        || t.contains("aid to")
+        // "{} cuts off {} to {}" takes AidKind::label(), so the economic arm
+        // already matched on "economic aid" and only the arms arm was adrift.
+        // Deliberately NOT the bare "cuts off", which would take
+        // "{} cuts off oil to {}" out of the economy bucket it already reaches.
+        || t.contains("cuts off arms");
+    let economy = t.contains("oil")
+        || t.contains("inflation")
+        || t.contains("recession")
+        || t.contains("economy outward")
+        || t.contains("opens up.")
+        || t.contains("state's industry")
+        || t.contains("frees prices")
+        || t.contains("austerity")
+        || t.contains("external debt")
+        || t.contains("creditors")
+        || t.contains("pegs its currency")
+        || t.contains("industrial plant");
     if war {
         "war"
     } else if politics {
@@ -1585,6 +1687,202 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// MEASUREMENT INSTRUMENT for the event log's filters, `#[ignore]`d and
+    /// asserting nothing. Runs a real thirty-year world and prints what fraction
+    /// of its headlines each filter can actually reach, with the commonest
+    /// unreachable ones named so the next session can extend `classify` against
+    /// the corpus rather than against a guess.
+    ///
+    /// `cargo test --release -p spheres-web classify_corpus -- --ignored --nocapture`
+    #[test]
+    #[ignore]
+    fn classify_corpus() {
+        let mut counts: std::collections::BTreeMap<&'static str, usize> = Default::default();
+        let mut other: std::collections::BTreeMap<String, usize> = Default::default();
+        let mut total = 0usize;
+        for seed in [0u64, 7, 42, 1990] {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..360 {
+                for h in tick_month(&mut w, &[]) {
+                    total += 1;
+                    let cat = classify(&h);
+                    *counts.entry(cat).or_default() += 1;
+                    if cat == "other" {
+                        // Key on the shape, not the nation: the sim writes names
+                        // into every headline and the raw strings never repeat.
+                        let shape: String =
+                            h.split_whitespace().skip(1).take(4).collect::<Vec<_>>().join(" ");
+                        *other.entry(shape).or_default() += 1;
+                    }
+                }
+            }
+        }
+        println!("\n=== {} headlines over four seeds x thirty years ===", total);
+        for (k, v) in &counts {
+            println!("{:>10}  {:>6}  {:>5.1}%", k, v, *v as f64 / total as f64 * 100.0);
+        }
+        println!("\n=== the twenty commonest shapes landing in \"other\" ===");
+        let mut rows: Vec<(usize, String)> = other.into_iter().map(|(k, v)| (v, k)).collect();
+        rows.sort_by(|a, b| b.0.cmp(&a.0));
+        for (n, shape) in rows.iter().take(20) {
+            println!("{:>6}  {}", n, shape);
+        }
+    }
+
+    /// The event log's filter row could reach one dispatch in ten. Measured
+    /// over four seeds and thirty years of real play, 11,285 of 12,552 headlines
+    /// — 89.9% — fell through `classify` into "other", and the Economy filter
+    /// matched EXACTLY NOTHING, so `renderLog`'s "only offer a filter the world
+    /// has actually produced" rule meant its chip never appeared at all. A
+    /// player filtering for Economy could not; a player filtering for War saw
+    /// 85 of the 2,721 war dispatches that world contained.
+    ///
+    /// After: 2.7% in "other", and every one of those is the technology
+    /// milestone this function's comment says is deliberately left there.
+    ///
+    /// TWO ARMS, and they check different things.
+    ///
+    /// The TABLE is the exact one, and it carries every headline that already
+    /// matched before this was extended. That is what makes the additions
+    /// provably additive: `classify` is an ordered if-chain, so a later keyword
+    /// added to `war` can silently steal a headline `diplomacy` was reaching,
+    /// and three rows below exist only to pin that — a defence pact honoured by
+    /// entering a war, a guarantee torn up to invade, and an invasion repelled
+    /// by a regime that totters are war, war and war, though each also carries a
+    /// lower bucket's keyword.
+    ///
+    /// The CORPUS arm is the one that would have caught the original defect. A
+    /// table can only test the headlines whoever wrote it thought of, and the
+    /// reason `classify` rotted is that the sim grew a vocabulary nobody
+    /// re-read it against.
+    #[test]
+    fn the_log_filters_reach_the_world_the_sim_writes() {
+        // Real headline text, with the format arguments filled in as the sim
+        // fills them. Left column is what the filter row must put it under.
+        for (want, headline) in [
+            // --- war, including the three that carry another bucket's keyword
+            ("war", "WAR: Iraq invades Kuwait!"),
+            ("war", "United States joins the war in defense of Kuwait."),
+            ("war", "Iraq has annexed Kuwait."),
+            ("war", "Iran capitulates to Iraq — reparations, disarmament, humiliation."),
+            ("war", "Exhausted, Iran and Iraq sign a white peace."),
+            ("war", "Iran and Iraq agree peace terms — reparations, no territory."),
+            ("war", "Iraq sues for peace, ceding territory to Iran."),
+            ("war", "Iraq escalates to rung 6 — standoff strike."),
+            ("war", "United States steps back to rung 3 — arms to a proxy."),
+            ("war", "Iraq publicly rules out going beyond rung 5 — deniable forces."),
+            ("war", "Iraq cannot sustain a campaign it has no base for and falls back to rung 2."),
+            ("war", "Iraq's magazines are empty. The tempo falls to rung 4."),
+            ("war", "Kuwait quits the fight."),
+            ("war", "United States takes a side against Iraq over Kuwait."),
+            ("war", "The quarrel between India and Pakistan freezes over Kashmir."),
+            ("war", "Iraq's objective is now to deny."),
+            ("war", "Serbia can no longer defend its own ground."),
+            // ...and the three that must not be stolen by a lower bucket.
+            ("war", "Kuwait repels Iraq's invasion — the aggressor's regime totters."),
+            ("war", "France honours its defence pact with Poland and enters the war."),
+            ("war", "Iraq tears up its own guarantee to Kuwait to invade it."),
+            // --- politics
+            ("politics", "THE SOVIET UNION HAS DISSOLVED. Fifteen republics take up their own seats."),
+            ("politics", "Revolution in Romania — the old regime falls."),
+            ("politics", "COUP IN Chile: the junta removes the government."),
+            ("politics", "India conducts nuclear tests. The world condemns; deterrence descends on the subcontinent."),
+            ("politics", "Pakistan tests a nuclear device."),
+            ("politics", "Israel is believed to have begun a weapons programme."),
+            ("politics", "Poland votes: Solidarity takes office with 51% of the seats and no partners."),
+            ("politics", "Poland sets a date for its first free elections."),
+            ("politics", "Cuba does not hold elections."),
+            ("politics", "The government of Moldova falls; the country goes to the polls."),
+            ("politics", "Hungary goes to the country early."),
+            ("politics", "Poland brings the Peasant Party into the government."),
+            ("politics", "Chile moves against its own streets."),
+            ("politics", "Brazil takes the gloves off."),
+            ("politics", "France ends conscription."),
+            ("politics", "Russia inherits the arsenal; Ukraine's warheads go back east under the Budapest assurances."),
+            ("politics", "The JNA's divisions, and its arsenal, remain in Belgrade's hands."),
+            // --- diplomacy
+            ("diplomacy", "United States imposes sanctions on Iraq."),
+            ("diplomacy", "Coalition sanctions slam Iraq."),
+            ("diplomacy", "Sanctions on Iraq are lifted."),
+            ("diplomacy", "France extends a diplomatic hand to Germany."),
+            ("diplomacy", "France and Germany sign a mutual defence pact."),
+            ("diplomacy", "France and Germany sign a trade agreement."),
+            ("diplomacy", "France withdraws from its defence pact with Poland."),
+            ("diplomacy", "Soviet Union buys the loyalty of Cuba."),
+            ("diplomacy", "Turkey grants United States basing and overflight for the Gulf."),
+            ("diplomacy", "Soviet Union commits $3bn a year in economic aid to Cuba."),
+            ("diplomacy", "United States approves $2bn a year in arms sales to Israel."),
+            ("diplomacy", "Soviet Union expands arms transfers to Syria to $4bn a year."),
+            ("diplomacy", "Soviet Union raises its aid to Cuba to $5bn a year."),
+            ("diplomacy", "Soviet Union cuts off arms to Somalia."),
+            ("diplomacy", "A covert operation against Chile comes to nothing."),
+            ("diplomacy", "Separatist fighters in Bosnia turn up with weapons nobody will account for."),
+            // --- economy, the bucket that reached nothing at all
+            ("economy", "Poland frees prices and takes the slump."),
+            ("economy", "Argentina announces an austerity budget."),
+            ("economy", "Brazil restructures its external debt; its creditors take the loss."),
+            ("economy", "United Kingdom sells the state's industry."),
+            ("economy", "China turns its economy outward."),
+            ("economy", "Hungary opens up."),
+            ("economy", "Argentina pegs its currency and imports somebody else's credibility."),
+            ("economy", "A run of accidents wrecks Iraq's industrial plant. The inquiry finds nothing."),
+            // --- and what is deliberately still uncategorised
+            ("other", "United States is first to field integrated circuits."),
+        ] {
+            assert_eq!(
+                classify(headline),
+                want,
+                "the event log would file this under {:?}: {}",
+                classify(headline),
+                headline
+            );
+        }
+
+        // The corpus arm. A table only covers what its author thought of, and
+        // `classify` fell behind precisely because nobody re-read it against the
+        // sim's growing vocabulary. Four seeds and thirty years, ~12.5k
+        // dispatches; measured 2.7% in "other", all of them "is first to field".
+        let mut other = 0usize;
+        let mut economy = 0usize;
+        let mut total = 0usize;
+        let mut stray: Vec<String> = vec![];
+        for seed in [0u64, 7, 42, 1990] {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..360 {
+                for h in tick_month(&mut w, &[]) {
+                    total += 1;
+                    match classify(&h) {
+                        "other" => {
+                            other += 1;
+                            if !h.contains("is first to field") && stray.len() < 10 {
+                                stray.push(h.clone());
+                            }
+                        }
+                        "economy" => economy += 1,
+                        _ => {}
+                    }
+                }
+            }
+        }
+        assert!(total > 5_000, "only {total} headlines — the corpus arm is not exercising anything");
+        // The bar is 10% against a measured 2.7%, so it is a rot detector and
+        // not a fit: it goes red if a WHOLE CLASS of headline stops being
+        // reachable again, which is the defect this test exists for, and it
+        // does not go red because the sim added one more phrasing.
+        assert!(
+            other * 10 < total,
+            "{} of {} dispatches ({:.1}%) are unreachable from the filter row; \
+             the first few that are not technology milestones: {:?}",
+            other,
+            total,
+            other as f64 / total as f64 * 100.0,
+            stray
+        );
+        // The Economy chip is only drawn when the world has produced an economy
+        // headline, so a zero here is a filter the player can never even see.
+        assert!(economy > 0, "the Economy filter still matches nothing in {total} dispatches");
+    }
 
     #[test]
     fn every_nation_on_the_board_has_somewhere_to_be_drawn() {
