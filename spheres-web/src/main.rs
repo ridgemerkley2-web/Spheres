@@ -3074,6 +3074,52 @@ mod tests {
         );
     }
 
+    /// The technology graph has the same capture as the map and needs the same
+    /// repair: `#techViewport` sets pointer capture to keep a pan alive, and the
+    /// click that follows is retargeted at the viewport, so
+    /// `e.target.closest("g.node")` is always null and clicking a technology
+    /// does nothing.
+    ///
+    /// This one is louder than the map's, because the graph advertises the
+    /// control on the node itself: the hover tooltip's last line reads
+    /// "click — routes & research". Measured in the browser: pointerdown landed
+    /// on a `<rect>` inside `g.node[data-i="2"]` (GPU Deep Learning), the click
+    /// targeted `DIV#techViewport`, and `#techDock` stayed `display:none` while
+    /// the tooltip was still promising the click would do something.
+    #[test]
+    fn the_tech_graph_resolves_a_click_from_the_press_not_the_click() {
+        assert!(
+            INDEX.contains("st.target = e.target;"),
+            "the tech viewport's pointerdown must record what the press landed on"
+        );
+        assert!(
+            INDEX.contains("const t = st.target && st.target.isConnected ? st.target : e.target;"),
+            "the tech viewport's click handler must prefer the recorded press target"
+        );
+        for pick in ["t.closest(\"g.stub\")", "t.closest(\"g.node\")"] {
+            assert!(
+                INDEX.contains(pick),
+                "the tech viewport's click handler no longer resolves {pick} from \
+                 the press target; with pointer capture set, e.target is \
+                 #techViewport and this pick can never match"
+            );
+        }
+        assert!(
+            INDEX.contains("vp.setPointerCapture(e.pointerId)"),
+            "the tech pan's pointer capture is gone — re-read whether the \
+             press-target indirection is still the right shape before deleting \
+             this test"
+        );
+        // The promise the defect was breaking. If this line ever goes away the
+        // control is no longer advertised, and the argument above needs redoing
+        // rather than quietly weakening.
+        assert!(
+            INDEX.contains("click &mdash; routes &amp; research")
+                || INDEX.contains("click — routes &amp; research"),
+            "the node tooltip no longer offers the click this test protects"
+        );
+    }
+
     /// The front seam is drawn twice, each pass clipped by its own SVG mask,
     /// and the two masks must carry DISTINCT ids — a merge that collapses the
     /// `a`/`b` suffixes leaves one mask shadowing the other and the seam

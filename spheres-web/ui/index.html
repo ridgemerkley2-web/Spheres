@@ -3378,8 +3378,13 @@ function techWire() {
   vp.addEventListener("pointerdown", (e) => {
     cancelAnimationFrame(techCamAnim); techCamAnim = 0;
     if (window.techTipHide) window.techTipHide();
+    st.target = null;
     if (e.button !== 0) return;
     st.down = { x: e.clientX, y: e.clientY }; st.moved = false;
+    // What the press landed on. The capture below retargets the click at the
+    // viewport, exactly as it does on the map, so the click cannot be asked
+    // which node it hit — only the press can.
+    st.target = e.target;
     vp.classList.add("dragging");
     // A pointer already gone by the time this runs throws; the pan then simply
     // falls back to bubbling moves — not worth surfacing.
@@ -3401,9 +3406,13 @@ function techWire() {
   vp.addEventListener("dblclick", (e) => { e.preventDefault(); techFitAll(); });
   vp.addEventListener("click", (e) => {
     if (st.moved || e.detail > 1) return;   // a pan is not a pick; nor half a dblclick
-    const stub = e.target.closest("g.stub");
+    // The press's target, not the click's — see the pointerdown handler. A node
+    // torn out by a rebuild between press and click is no longer a pick, and
+    // the viewport falls through to techCanvasClick, which is the right answer.
+    const t = st.target && st.target.isConnected ? st.target : e.target;
+    const stub = t.closest("g.stub");
     if (stub) { techFlyTo(+stub.dataset.core); return; }
-    const g = e.target.closest("g.node");
+    const g = t.closest("g.node");
     if (g) { techNodeClick(+g.dataset.i); return; }
     techCanvasClick();
   });
