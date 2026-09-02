@@ -806,8 +806,11 @@ pub fn load_world(
         player: None,
         player_set_rate: false,
         districts: crate::districts::ownership_1990(),
+        resources: Default::default(),
         by_id: vec![],
         by_id_len: 0,
+        resource_have: Default::default(),
+        districts_epoch: 0,
     };
     for block in &relations.blocks {
         for p in &block.pairs {

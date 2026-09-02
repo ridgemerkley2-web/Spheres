@@ -583,6 +583,10 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
 #[allow(clippy::type_complexity)]
 pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     ("economy", economy::tick),
+    // The resource ledger is derived from the ownership map and read by the
+    // arsenal's gate in this same month, so it is built before tech and
+    // procurement get their turn. Nothing else reads it.
+    ("resources", resources::tick),
     // Research is funded out of the output the economy has just produced, and
     // what it unlocks is in the nation's hands before the soldiers and the
     // politicians get their turn with it.
@@ -715,6 +719,7 @@ fn migrate_legacy_wars(w: &mut WorldState) {
             // Reconstructed by `front::reseed_fronts` right after this runs.
             front: std::collections::BTreeMap::new(),
             pockets: vec![],
+            aim: None,
         });
     }
 }
@@ -3486,6 +3491,207 @@ mod tests {
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
         assert_eq!(h, GOLDEN, "timeline fingerprint changed (actual {:#018x})", h);
+    }
+
+    // ------------------------------------------------------------------
+    // The resource system's inert invariant (SPEC-RESOURCE-SYSTEM section 0,
+    // acceptance items 1, 2, 4 and 11).
+    //
+    // Both pins above are RED at HEAD for reasons that predate the resource
+    // system — the endowment guard (BUGS E-3) blocks the re-pin — and the
+    // protocol is that they go red WITH THE SAME ACTUALS after every stage of
+    // it: `the_1990_start_is_pinned` actual 0xa5c9c5b2306313d8,
+    // `golden_hash_of_a_known_run` actual 0x20c24ab0f1581807. The four tests
+    // below pin those ACTUALS, not the literals: they are the proof that the
+    // layer reproduces the timeline byte for byte, and they re-pin nothing.
+    // ------------------------------------------------------------------
+
+    /// At January 1990 the layer runs no arithmetic that leaves a trace: the
+    /// save carries no `resources`, `aim` or `resource_gates` key and hashes
+    /// to the pinned actual; and when the gate is run by hand for every
+    /// living nation's chosen kit — three of them (the USA, the USSR and
+    /// France) already know laser-guided munitions and so draw copper — every
+    /// one is fed by its own flow or the open market, returns its kit, and
+    /// writes nothing, so the hash is the same actual afterwards.
+    #[test]
+    fn the_resource_layer_is_inert_at_1990() {
+        const START_ACTUAL: u64 = 0xa5c9c5b2306313d8;
+        let mut w = world_1990(GameRules::default());
+        let text = save(&w);
+        for key in ["\"resources\"", "\"aim\"", "\"resource_gates\"", "\"cover\""] {
+            assert!(!text.contains(key), "{key} appears in the 1990 save");
+        }
+        let h = state_hash(&w);
+        assert_eq!(h, START_ACTUAL, "the layer moved the 1990 start (actual {h:#018x})");
+
+        w.reindex();
+        resources::tick(&mut w);
+        assert!(w.resource_have.built);
+        let living: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+        assert_eq!(living.len(), 137);
+        let mut drew = 0;
+        for id in living {
+            let (kit, line) = {
+                let n = w.nation(id);
+                (arsenal::pick(n), arsenal::line_of(n))
+            };
+            let Some(kit) = kit else { continue };
+            if resources::kit_need(kit, line).iter().any(|q| *q > 0.0) {
+                drew += 1;
+            }
+            let (choice, stall) = resources::gate(&mut w, id, kit, line);
+            assert_eq!(choice, Some(kit), "{}", id.code());
+            assert!(stall.is_none(), "{}: {:?}", id.code(), stall);
+        }
+        assert_eq!(drew, 3, "the USA, the USSR and France order Paveway in January 1990 and are fed");
+        assert!(w.resources.is_empty(), "{:?}", w.resources);
+        let h = state_hash(&w);
+        assert_eq!(h, START_ACTUAL, "the gate left a trace (actual {h:#018x})");
+    }
+
+    /// Twenty years with the gates on reproduce the run golden's actual;
+    /// twenty years with them off reproduce it too. The switch is the one
+    /// thing that serializes differently when off (it is skipped only when
+    /// true), and nothing but `resources::tick` and the arsenal read it, so it
+    /// is set back before hashing: what is compared is the world the two runs
+    /// produced. Then seeds 0-5 over forty years, on against off, hash equal.
+    /// Re-pins nothing.
+    #[test]
+    fn the_resource_layer_is_inert_over_time() {
+        const RUN_ACTUAL: u64 = 0x20c24ab0f1581807;
+        let mut w = world_1990(GameRules::default());
+        run_months(&mut w, 12 * 20);
+        let h = state_hash(&w);
+        assert_eq!(h, RUN_ACTUAL, "gates on moved the run golden (actual {h:#018x})");
+        assert!(w.resources.is_empty(), "{:?}", w.resources);
+
+        let mut w = world_1990(GameRules { resource_gates: false, ..GameRules::default() });
+        run_months(&mut w, 12 * 20);
+        w.rules.resource_gates = true;
+        let h = state_hash(&w);
+        assert_eq!(h, RUN_ACTUAL, "gates off moved the run golden (actual {h:#018x})");
+
+        for seed in 0..6u64 {
+            let mut on = world_1990(GameRules { seed, ..GameRules::default() });
+            let mut off = world_1990(GameRules { seed, resource_gates: false, ..GameRules::default() });
+            run_months(&mut on, 12 * 40);
+            run_months(&mut off, 12 * 40);
+            off.rules.resource_gates = true;
+            assert_eq!(state_hash(&on), state_hash(&off), "seed {seed} diverged with the gates on");
+            assert!(on.resources.is_empty(), "seed {seed}: {:?}", on.resources);
+        }
+    }
+
+    /// Ruling 2 — "it should only hurt if you are trying to do something
+    /// with the resource and don't have enough of it" — measured on every
+    /// quantity the growth model, the oil market, the war model and the
+    /// stability rule read: gdp, growth_last, oil_mbd, mil_strength,
+    /// munitions, stability and the arsenal's book value are bit-identical
+    /// with the gates on and off, for every nation, every month, forty years,
+    /// seeds 0-5. An open world has no shortfall, so nothing but the pile
+    /// could move, and the pile is read by none of those.
+    #[test]
+    fn gates_write_nothing_the_growth_model_reads() {
+        for seed in 0..6u64 {
+            let mut on = world_1990(GameRules { seed, ..GameRules::default() });
+            let mut off = world_1990(GameRules { seed, resource_gates: false, ..GameRules::default() });
+            for month in 0..(12 * 40) {
+                tick_month(&mut on, &[]);
+                tick_month(&mut off, &[]);
+                assert_eq!(on.nations.len(), off.nations.len(), "seed {seed} month {month}");
+                for (a, b) in on.nations.iter().zip(&off.nations) {
+                    assert_eq!(a.id, b.id);
+                    let pairs = [
+                        ("gdp", a.gdp, b.gdp),
+                        ("growth_last", a.growth_last, b.growth_last),
+                        ("oil_mbd", a.oil_mbd, b.oil_mbd),
+                        ("mil_strength", a.mil_strength, b.mil_strength),
+                        ("munitions", a.munitions, b.munitions),
+                        ("stability", a.stability, b.stability),
+                        ("book_value", arsenal::book_value(a), arsenal::book_value(b)),
+                    ];
+                    for (name, x, y) in pairs {
+                        assert_eq!(
+                            x.to_bits(),
+                            y.to_bits(),
+                            "seed {seed} month {month} {}: {name} {x} vs {y}",
+                            a.id.code()
+                        );
+                    }
+                }
+            }
+            off.rules.resource_gates = true;
+            assert_eq!(save(&on), save(&off), "seed {seed}: the two worlds differ somewhere");
+        }
+    }
+
+    /// Acceptance item 11: the `resources` row of the SYSTEMS profile is
+    /// free — at or under 0.02 ms/month at 137 nations, best of three passes
+    /// of 1,200 months, timed exactly as `century_run_profile` times a row.
+    /// The steady-state tick is one pass over the living nations refreshing
+    /// the oil column; the 0.10 ms rebuild is paid only when ground changes
+    /// hands or a state is born or dies.
+    ///
+    /// Iron rule 7 — the bar and its variance. Measured on this build,
+    /// 2026-09-01, release, 137 nations: 0.003 ms/month in four readings —
+    /// one on a quiet machine and three taken while the whole workspace suite
+    /// ran in parallel — so the spread across load is below the 0.001 ms this
+    /// row prints at; the probe read 0.005-0.006 (SPEC section 0.3) before
+    /// the located rows were pruned. The bar is ~7x the measurement, and
+    /// "best of three" is the profile's own answer to a loaded machine — the
+    /// minimum is the closest thing to the work actually done. It is not a
+    /// seed-sampled statistic (one seed, one timeline), so there is no n to
+    /// derive; a regression it exists to catch is a monthly rebuild of the
+    /// ledger (0.10 ms, measured) or a monthly pass over the 2,610 districts,
+    /// either of which is five times the bar.
+    #[test]
+    fn the_resources_row_is_free() {
+        use std::time::{Duration, Instant};
+        const MONTHS: usize = 1200;
+        const PASSES: usize = 3;
+        const BUDGET_MS_PER_MONTH: f64 = 0.02;
+        let slot = SYSTEMS
+            .iter()
+            .position(|(name, _)| *name == "resources")
+            .expect("resources is a SYSTEMS entry");
+        let mut best = Duration::MAX;
+        for _ in 0..PASSES {
+            let mut w = world_1990(GameRules::default());
+            for _ in 0..12 {
+                tick_month(&mut w, &[]);
+            }
+            let mut spent = Duration::ZERO;
+            for _ in 0..MONTHS {
+                w.headlines.clear();
+                w.reindex();
+                for (i, (_, system)) in SYSTEMS.iter().enumerate() {
+                    if i == slot {
+                        let t = Instant::now();
+                        system(&mut w);
+                        spent += t.elapsed();
+                    } else {
+                        system(&mut w);
+                    }
+                }
+                w.month += 1;
+                if w.month > 12 {
+                    w.month = 1;
+                    w.year += 1;
+                }
+            }
+            best = best.min(spent);
+        }
+        let ms = best.as_secs_f64() * 1000.0 / MONTHS as f64;
+        println!(
+            "    {:<14} {:>8.3}s  {:>7.3} ms/month  (best of {PASSES}, {MONTHS} months, 137 living at start)",
+            "resources",
+            best.as_secs_f64(),
+            ms
+        );
+        assert!(
+            ms <= BUDGET_MS_PER_MONTH,
+            "the resources row costs {ms:.4} ms/month, over the {BUDGET_MS_PER_MONTH} ms budget"
+        );
     }
 
     #[test]

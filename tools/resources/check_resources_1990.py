@@ -13,16 +13,22 @@ Five groups —
 
   1. THE JOIN. Every `national_1990` key is a 1990 start nation of the roster;
      the only keys not seated are the listed `dropped_keys` (Namibia, a roster
-     seat that comes alive later); no start nation's figure was dropped.
+     seat that comes alive later); no start nation's figure was dropped. Six
+     lines are the artifact's figures verbatim; six are the transcription
+     file's (package D2), verbatim, and every transcribed table's rows -
+     seated + dropped + unmapped + zero - reconcile to the printed 1990 total.
   2. SHARES. Every located list sums to one within 1e-9, every share is at
      least 1e-3, every located district belongs to that nation in 1990, and no
      Soviet coal district under 1e-3 survived (the pruned count is printed).
   3. THE TRANSCRIPTION GUARDS. The USSR's iron reads 236,000,000 exactly; the
-     USA has no located oil and no bauxite row; every price row carries a
-     positive figure and a source, and every mined line without one is named
-     in `prices_omitted`; presence has 1,471 keys and quality is 0 exactly
-     where the bit is 0.
-  4. PROVENANCE. `source_sha256` matches the three inputs on disk, and
+     USA has no located oil and no bauxite row; the USSR holds its 14,000 tU of
+     uranium as an UNLOCATED producer (no Soviet district carries a uranium
+     site - a survey hole, and the unlocated-producer rule is what keeps the
+     figure with the USSR; SPEC section 7.3's named assertion); every price
+     row carries a positive figure and a source, and every mined line without
+     one is named in `prices_omitted`; presence has 1,471 keys and quality is
+     0 exactly where the bit is 0.
+  4. PROVENANCE. `source_sha256` matches the four inputs on disk, and
      `upstream` matches the artifact's own meta.
   5. DETERMINISM. Regenerates twice to temporary files and requires all three
      byte-identical. Skipped with --fast.
@@ -61,6 +67,7 @@ def main():
     with open(G.OUT, encoding="utf-8") as f:
         T = json.load(f)
     art = G.load_json(G.ART)
+    tr = G.load_json(G.TRANSCRIBED)["commodities"]
     dj = G.load_json(G.DISTRICTS_JSON)
     codes = G.roster_codes()
     start = G.start_nations(codes)
@@ -72,7 +79,10 @@ def main():
     # --- 1. the join ------------------------------------------------------
     print("CHECK 1: the join")
     ok(T["commodities"] == G.COMMODITIES, "twelve commodities, alphabetical")
-    ok(T["tracked"] == G.TRACKED, "six tracked lines")
+    ok(T["tracked"] == G.TRACKED and G.TRACKED == G.COMMODITIES, "twelve tracked lines")
+    ok(sorted(G.ARTIFACT_LINES + G.TRANSCRIBED_LINES) == G.TRACKED
+       and M["transcription"]["lines"] == G.TRANSCRIBED_LINES,
+       "six lines from the artifact, six from the transcription file")
     ok(sorted(N) == G.TRACKED and sorted(L) == G.TRACKED,
        "national_1990 and located are keyed by the tracked lines")
     stray = sorted({n for c in N for n in N[c] if n not in start})
@@ -81,21 +91,52 @@ def main():
        f"{M['dropped_keys']}")
     ok(all(k in codes and k not in start for k in M["dropped_keys"]),
        "every dropped key is a roster seat that is not a 1990 start nation")
-    upstream_non_start = sorted({n for c in G.TRACKED for n in art["national"][c]
-                                 if n not in start})
+    upstream_non_start = sorted({n for c in G.ARTIFACT_LINES for n in art["national"][c]
+                                 if n not in start}
+                                | {n for c in G.TRANSCRIBED_LINES for n in tr[c]["national_1990"]
+                                   if n not in start})
     ok(upstream_non_start == M["dropped_keys"],
-       "the dropped keys are exactly the artifact's non-start keys",
+       "the dropped keys are exactly the inputs' non-start keys",
        f"{upstream_non_start}")
-    lost = [(c, n) for c in G.TRACKED for n, r in art["national"][c].items()
+    lost = [(c, n) for c in G.ARTIFACT_LINES for n, r in art["national"][c].items()
             if n in start and float(r["value"]) > 0 and n not in N[c]]
+    lost += [(c, n) for c in G.TRANSCRIBED_LINES for n, r in tr[c]["national_1990"].items()
+             if n in start and r["value"] > 0 and n not in N[c]]
     ok(not lost, "no start nation's positive figure was dropped", f"{lost[:6]}")
     zero_kept = [(c, n) for c in N for n, r in N[c].items() if r["value"] <= 0]
     ok(not zero_kept, "no zero row is carried", f"{zero_kept[:6]}")
-    verbatim = [(c, n) for c in N for n, r in N[c].items()
+    verbatim = [(c, n) for c in G.ARTIFACT_LINES for n, r in N[c].items()
                 if float(art["national"][c][n]["value"]) != r["value"]
                 or art["national"][c][n]["source"] != r["source"]]
-    ok(not verbatim, "every national figure and source is the artifact's, verbatim",
+    ok(not verbatim, "every artifact-line figure and source is the artifact's, verbatim",
        f"{verbatim[:6]}")
+    verbatim = [(c, n) for c in G.TRANSCRIBED_LINES for n, r in N[c].items()
+                if float(tr[c]["national_1990"][n]["value"]) != r["value"]
+                or tr[c]["national_1990"][n]["source"] != r["source"]
+                or list(tr[c]["national_1990"][n].get("flags", [])) != r.get("flags", [])]
+    ok(not verbatim, "every transcribed-line figure, source and flag list is the transcription's, verbatim",
+       f"{verbatim[:6]}")
+    unsourced = [(c, n) for c in G.TRANSCRIBED_LINES for n, r in N[c].items()
+                 if not r["source"].strip() or "1990" not in r["source"]]
+    ok(not unsourced, "every transcribed row cites a 1990 table", f"{unsourced[:6]}")
+    recon = []
+    for c in G.TRANSCRIBED_LINES:
+        t = M["transcription"]["tables"][c]
+        seated = sum(int(r["value"]) for r in N[c].values())
+        dropped = sum(int(v) for n, d in M["counts"]["dropped_rows"].items() for cc, v in d.items() if cc == c)
+        unmapped = sum(u["value"] for u in M["transcription"]["unmapped_1990"][c])
+        zero = sum(z["value"] for z in tr[c]["zero_1990"])
+        if (seated, dropped, unmapped, zero) != (t["seated"], t["dropped"], t["unmapped"], t["zero"]) \
+                or seated + dropped + unmapped + zero != t["printed_total_1990"] \
+                or t["printed_total_1990"] != tr[c]["printed_total_1990"]:
+            recon.append((c, seated, dropped, unmapped, zero, t["printed_total_1990"]))
+    ok(not recon, "every transcribed table reconciles: seated + dropped + unmapped + zero == printed total",
+       f"{recon}")
+    named = [(c, x["roster_key"]) for c in G.TRANSCRIBED_LINES
+             for x in M["transcription"]["no_figure_1990"][c]
+             if x["roster_key"] in N[c] or x["roster_key"] not in start or not x["reason"].strip()]
+    ok(not named, "a producer named without a figure is a start nation with no row and a stated reason",
+       f"{named[:6]}")
     ok(len(start) == 137, "137 start nations on the roster", f"{len(start)}")
 
     # --- 2. shares --------------------------------------------------------
@@ -151,8 +192,27 @@ def main():
     ok("USA" in N["oil"], "USA keeps its national oil figure (unlocated)")
     ok("USA" not in N["bauxite"], "USA has no national_1990.bauxite entry")
     ok("USA" in M["counts"]["unlocated_producers"]["oil"], "USA is listed as an unlocated oil producer")
+    ok(N["uranium"].get("USSR", {}).get("value") == 14000.0
+       and "USSR" not in L["uranium"]
+       and "USSR" in M["counts"]["unlocated_producers"]["uranium"],
+       "the USSR holds its 14,000 tU of uranium as an unlocated producer (SPEC 7.3's named assertion)",
+       f"{N['uranium'].get('USSR')} located={L['uranium'].get('USSR')}")
+    ussr_u_districts = [d for d, m in T["presence"].items()
+                        if owner.get(d) == "USSR" and (m >> G.COMMODITIES.index("uranium")) & 1]
+    ok(not ussr_u_districts, "no Soviet district carries a uranium presence bit (the survey hole is real)",
+       f"{ussr_u_districts[:6]}")
+    ok(N["cobalt"].get("France", {}).get("value") == 800.0 and "France" not in L["cobalt"],
+       "France's cobalt (New Caledonia, territory->sovereign) is seated unlocated")
+    ok(N["gold"].get("France", {}).get("value") == 4150.0
+       and "components" not in N["gold"]["France"]
+       and "French Guiana 550 kg" in N["gold"]["France"].get("note", ""),
+       "France's gold is the merged row (3,600 + French Guiana 550) and says so")
     P = T["price_1990"]
     mined = [c for c in G.TRACKED if c != "oil"]
+    ok(all(T["price_1990"][c]["usd_per_unit"] == float(tr[c]["price_1990"]["usd_per_unit"])
+           and T["price_1990"][c]["source"] == tr[c]["price_1990"]["source"]
+           and tr[c]["price_1990"]["unit"] == G.UNITS[c] for c in G.TRANSCRIBED_LINES),
+       "every transcribed price is the transcription's figure and source, in the sim's unit")
     ok("oil" not in P, "oil has no price row (the sim prices it at w.oil_price)")
     ok(sorted(set(P) | set(M["prices_omitted"])) == mined and not (set(P) & set(M["prices_omitted"])),
        "every mined line is either priced or named in prices_omitted, never both",
@@ -191,18 +251,22 @@ def main():
     print("\nCHECK 4: provenance")
     for name, path in (("district_resources.json", G.ART),
                        ("district_population.json", G.POP),
-                       ("districts.json", G.DISTRICTS_JSON)):
+                       ("districts.json", G.DISTRICTS_JSON),
+                       ("transcribed_1990_six_lines.json", G.TRANSCRIBED)):
         with open(path, "rb") as f:
             h = hashlib.sha256(f.read()).hexdigest()
         ok(M["source_sha256"].get(name) == h, f"source_sha256[{name}] matches the file on disk")
     ok(M["upstream"]["generator"] == art["meta"]["generator"]
        and M["upstream"]["vintage"] == art["meta"]["vintage"],
        "upstream generator and vintage are the artifact's own")
-    used = sorted({r["source"] for c in N for r in N[c].values()})
+    used = sorted({r["source"] for c in G.ARTIFACT_LINES for r in N[c].values()})
     ok(sorted(M["upstream"]["sources"]) == used
        and all(M["upstream"]["sources"][k]["url"] == art["sources"][k]["url"] for k in used),
        "every cited national source is described in upstream.sources with the artifact's URL")
     ok(M["generator"] == "tools/resources/make_resources_1990.py", "meta.generator names this tool")
+    ok(M["transcription"]["file"] == G.TRANSCRIBED_REL
+       and sorted(M["transcription"]["sources"]) == ["redbook_1997", "usgs_myb_1990_v1"],
+       "meta.transcription names the transcription file and its two sources")
 
     # --- 5. determinism ---------------------------------------------------
     print("\nCHECK 5: determinism")

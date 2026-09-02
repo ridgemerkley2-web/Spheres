@@ -1264,6 +1264,7 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
         invasion_declared: false,
         front: std::collections::BTreeMap::new(),
         pockets: vec![],
+        aim: None,
     });
     invasion_begins(w, id, attacker);
     Ok(())

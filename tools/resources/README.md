@@ -20,9 +20,27 @@ python tools/resources/check_resources_1990.py
 the 1990 national figures keyed by roster code, a location weight per district
 for each producer (the share of the 1990 owner's figure that sits there, by one
 written rule, pruned below 1e-3 and renormalised), presence bits, a presence
-rank, the 1990 population shares, and the one new transcription — a 1990 unit
-value per mined line with its source. `check_resources_1990.py` holds that file
-against the inputs on disk, the roster, and byte-identical regeneration.
+rank, the 1990 population shares, and the transcriptions — a 1990 unit value
+per mined line with its source, and the six lines the web artifact carries
+presence-only. `check_resources_1990.py` holds that file against the inputs on
+disk, the roster, and byte-identical regeneration.
+
+`transcribed_1990_six_lines.json` is the fourth input: the 1990 national
+production and price of cobalt, gold, phosphate rock, platinum-group metals and
+rare-earth oxide read by eye from the page scans of the USGS Minerals Yearbook
+1990, Vol. I (public domain), and of uranium from the OECD/NEA-IAEA Red Book
+(the 1997 edition, the earliest reachable online that tabulates 1990 by country;
+the front matter is (c) OECD and only numeric facts are transcribed). Every row
+carries its table citation and the source's own estimate flags; every table's
+rows are summed to the printed total, and the generator refuses to write if
+they do not reconcile. Figures with no roster seat (Burkina Faso's gold, Niger's
+uranium) are kept under `meta.transcription.unmapped_1990` and seated nowhere;
+producers the source names without a figure get no row and are listed under
+`meta.transcription.no_figure_1990`. A territory's output is folded to its
+sovereign and the row says so (French Guiana's gold, New Caledonia's cobalt —
+the latter unlocated, France having no district for it). Nothing here is
+estimated; the 1991 edition's Soviet rare-earth estimate is recorded in the
+notes and NOT entered.
 
 `check_resources.py` verifies the committed artifact against its own declared
 rules: roster membership, provenance completeness, the confidence grading, the

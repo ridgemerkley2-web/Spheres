@@ -560,6 +560,7 @@ pub fn reseed(w: &mut WorldState) {
 /// Annexation: the loser's every district, in BTreeMap (= sorted) order.
 /// Returns how many moved.
 pub fn annex_all(w: &mut WorldState, winner: NationId, loser: NationId) -> usize {
+    w.districts_epoch = w.districts_epoch.wrapping_add(1);
     let taken: Vec<String> = w
         .districts
         .iter()
@@ -590,6 +591,7 @@ pub fn cede_share(
     loser: NationId,
     share: f64,
 ) -> Vec<String> {
+    w.districts_epoch = w.districts_epoch.wrapping_add(1);
     if share <= 0.0 {
         return vec![];
     }
@@ -624,6 +626,7 @@ pub fn cede_share_preferring(
     share: f64,
     preferred: &BTreeSet<String>,
 ) -> Vec<String> {
+    w.districts_epoch = w.districts_epoch.wrapping_add(1);
     if share <= 0.0 {
         return vec![];
     }
@@ -656,6 +659,7 @@ pub fn cede_share_preferring(
 /// residue the parent won by conquest goes to the first heir — the
 /// continuation state (Russia; Serbia), which is also the historical answer.
 pub fn dissolve_to(w: &mut WorldState, parent: NationId, heirs: &[NationId]) {
+    w.districts_epoch = w.districts_epoch.wrapping_add(1);
     for &h in heirs {
         for d in list_of(h) {
             if w.districts.get(d) == Some(&parent) {

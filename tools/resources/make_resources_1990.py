@@ -37,11 +37,21 @@ OIL SHARES LOCATE `oil_mbd` AND NEVER CREATE OUTPUT: the sim's oil ledger is the
 nation's `oil_mbd`; `national_1990.oil` is carried for the record and the shares
 say where that ledger sits on the map.
 
-THE ONE NEW TRANSCRIPTION in this file is `price_1990`: a 1990 unit value per
+THE TRANSCRIPTIONS in this file (T): `price_1990`, a 1990 unit value per
 tracked mined line, each with its source string verbatim and the arithmetic
-that turns the printed figure into dollars per the sim's unit. Oil has no row -
-the sim prices it at `w.oil_price`. A price that cannot be sourced is OMITTED
-and `meta.prices_omitted` says so; nothing is estimated.
+that turns the printed figure into dollars per the sim's unit (oil has no row -
+the sim prices it at `w.oil_price`); and, since package D2, the 1990 national
+figures for the six lines the web artifact carries presence-only - cobalt,
+gold, phosphate rock, platinum-group metals, rare-earth oxide (USGS Minerals
+Yearbook 1990, Vol. I) and uranium (OECD/NEA-IAEA Red Book, 1997 edition, the
+earliest reachable that tabulates 1990) - read into
+`tools/resources/transcribed_1990_six_lines.json` beside this script, every row
+with its citation verbatim and the source's own estimate flags. Those six join
+`national_1990`, `price_1990`, `units` and `located` by exactly the rule the
+first six use; every table's rows are reconciled to the printed total, so a
+mis-read digit is a refusal here and not a number in somebody's ledger. A
+figure that cannot be sourced is OMITTED and the row says so
+(`meta.transcription.no_figure_1990`); nothing is estimated.
 
 WHAT IS DROPPED, AND SAID
 `national` keys that are not 1990 start nations are not seated: Namibia is a
@@ -73,6 +83,8 @@ ART = os.path.join(DATA, "district_resources.json")
 POP = os.path.join(DATA, "district_population.json")
 NATIONS_RS = os.path.join(ROOT, "spheres-sim", "src", "nations.rs")
 NATIONS_DIR = os.path.join(ROOT, "spheres-sim", "data", "nations")
+TRANSCRIBED = os.path.join(HERE, "transcribed_1990_six_lines.json")
+TRANSCRIBED_REL = "tools/resources/transcribed_1990_six_lines.json"
 OUT = os.path.join(ROOT, "spheres-sim", "data", "resources_1990.json")
 
 # Twelve lines, alphabetical, and that order IS the bit index in `presence`
@@ -81,12 +93,26 @@ COMMODITIES = [
     "bauxite", "coal", "cobalt", "copper", "gas", "gold", "iron", "oil",
     "phosphate", "platinum_group", "rare_earths", "uranium",
 ]
-# The six with a transcribed 1990 national figure in the artifact.
-TRACKED = ["bauxite", "coal", "copper", "gas", "iron", "oil"]
+# Six lines carry their 1990 national figure in the web artifact (`national`);
+# the other six were transcribed for this table (package D2) into
+# TRANSCRIBED. All twelve are TRACKED: a figure, a unit, a price (oil excepted),
+# and located shares by one rule. The split only says which file a figure is
+# read from.
+ARTIFACT_LINES = ["bauxite", "coal", "copper", "gas", "iron", "oil"]
+TRANSCRIBED_LINES = ["cobalt", "gold", "phosphate", "platinum_group",
+                     "rare_earths", "uranium"]
+TRACKED = sorted(ARTIFACT_LINES + TRANSCRIBED_LINES)
+assert TRACKED == COMMODITIES
 # The sim's unit per tracked line, and the artifact unit string it is a
 # relabelling of. A row whose artifact unit differs is a refusal, not a guess.
 UNITS = {"bauxite": "t", "coal": "kt", "copper": "t", "gas": "bcf",
-         "iron": "t", "oil": "kb/d"}
+         "iron": "t", "oil": "kb/d",
+         # The transcribed six, in the unit their table prints: contained
+         # cobalt, kilograms of gold and of platinum-group metals, thousand
+         # tons of phosphate rock gross weight, tons of rare-earth oxide
+         # equivalent, tons of uranium metal.
+         "cobalt": "t", "gold": "kg", "phosphate": "kt", "platinum_group": "kg",
+         "rare_earths": "t", "uranium": "t"}
 ART_UNITS = {"bauxite": "metric tons", "coal": "1000 metric tons",
              "copper": "metric tons", "gas": "billion cubic feet",
              "iron": "metric tons", "oil": "thousand barrels per day"}
@@ -223,6 +249,142 @@ def weight(c, entry):
 
 
 # ---------------------------------------------------------------------------
+# The transcribed six (package D2)
+# ---------------------------------------------------------------------------
+
+def row_note(key, rec):
+    """The transcriber's attribution note for one row, assembled from the
+    transcription file's own fields so a reader of the table sees what the
+    reader of the scan saw: a source row printed under another name (New
+    Caledonia under France), a territory folded to its sovereign, and the
+    components of a merged row."""
+    parts = []
+    label = rec.get("source_label")
+    if label and label != key:
+        parts.append(f"source row '{label}'")
+    if rec.get("mapping"):
+        parts.append(f"{rec['mapping']}: {rec.get('mapping_note', '')}".rstrip(": "))
+    if rec.get("note"):
+        parts.append(rec["note"])
+    comps = rec.get("components")
+    if comps:
+        bits = []
+        for comp in comps:
+            b = f"{comp['source_label']} {comp['value']} {comp['unit']}"
+            if comp.get("mapping"):
+                b += f" ({comp['mapping']}: {comp.get('mapping_note', '')})"
+            bits.append(b)
+        parts.append("components: " + "; ".join(bits))
+    return " | ".join(parts)
+
+
+def fold_transcription(tr, start_set, codes, national, dropped_rows, zero_omitted):
+    """Seat the six transcribed lines into `national`, exactly as the artifact
+    lines are seated: roster code, 1990 start nations only, positive figures
+    only, the figure verbatim. Returns the `meta.transcription` block."""
+    tc = tr["commodities"]
+    if sorted(tc) != TRANSCRIBED_LINES:
+        raise SystemExit(f"transcription carries {sorted(tc)}, expected {TRANSCRIBED_LINES}")
+    tables, unmapped_all, no_figure_all, notes = {}, {}, {}, {}
+    for c in TRANSCRIBED_LINES:
+        blk = tc[c]
+        if blk["unit"] != UNITS[c]:
+            raise SystemExit(f"{c}: transcription unit {blk['unit']!r}, expected {UNITS[c]!r}")
+        zero_omitted[c] = 0
+        seated = dropped = 0
+        for n in sorted(blk["national_1990"]):
+            rec = blk["national_1990"][n]
+            if n not in codes:
+                raise SystemExit(f"{c}/{n}: not a roster code")
+            if rec["unit"] != UNITS[c]:
+                raise SystemExit(f"{c}/{n}: unit {rec['unit']!r}, expected {UNITS[c]!r}")
+            if not rec["source"].strip():
+                raise SystemExit(f"{c}/{n}: no source")
+            v = rec["value"]
+            if n not in start_set:
+                dropped_rows[n][c] = float(v)
+                dropped += v
+                continue
+            if v <= 0:
+                zero_omitted[c] += 1
+                continue
+            fig = {"value": float(v), "source": rec["source"]}
+            flags = list(rec.get("flags", []))
+            if flags:
+                fig["flags"] = flags
+            note = row_note(n, rec)
+            if note:
+                fig["note"] = note
+            national[c][n] = fig
+            seated += v
+        unmapped = [{"label": u["source_label"], "value": u["value"], "unit": u["unit"]}
+                    for u in blk["unmapped_1990"]]
+        zero_rows = blk["zero_1990"]
+        zero_omitted[c] += len(zero_rows)
+        total = blk["printed_total_1990"]
+        got = seated + dropped + sum(u["value"] for u in unmapped) + sum(z["value"] for z in zero_rows)
+        if got != total:
+            raise SystemExit(f"{c}: rows sum to {got}, the table prints {total}")
+        tables[c] = {
+            "table": blk["table"],
+            "unit_basis": blk["unit_basis"],
+            "printed_total_1990": total,
+            "seated": seated,
+            "dropped": dropped,
+            "unmapped": sum(u["value"] for u in unmapped),
+            "zero": sum(z["value"] for z in zero_rows),
+        }
+        unmapped_all[c] = unmapped
+        no_figure_all[c] = [
+            {"roster_key": p["roster_key"], "label": p["source_label"], "reason": p["reason"]}
+            for p in blk["producers_named_without_figure"]
+            if p["roster_key"] in start_set and p["roster_key"] not in blk["national_1990"]
+        ]
+        note_bits = []
+        for k in ("edition_note", "excluded_blocks", "not_used", "not_in_existence_1990_xxxx",
+                  "printed_split_1990", "printed_oecd_total_1990"):
+            if k in blk:
+                note_bits.append(f"{k}: {blk[k]}")
+        if "opt_in_from_1991_edition" in blk:
+            for n, r in sorted(blk["opt_in_from_1991_edition"].items()):
+                note_bits.append(f"NOT entered ({n} {r['value']} {r['unit']}, {', '.join(r['flags'])}): {r['source']}")
+        p = blk["price_1990"]
+        if "caveat" in p:
+            note_bits.append(f"price caveat: {p['caveat']}")
+        if "alternate_transcribed" in p:
+            a = p["alternate_transcribed"]
+            note_bits.append(f"price alternate (not used): {a['value']} {a['unit']}, {a['basis']}")
+        if note_bits:
+            notes[c] = " | ".join(str(b) for b in note_bits)
+    return {
+        "file": TRANSCRIBED_REL,
+        "lines": TRANSCRIBED_LINES,
+        "sources": {k: {"title": v["title"], "licence": v["licence"], "url": v["url"]}
+                    for k, v in sorted(tr["meta"]["sources"].items())},
+        "tables": tables,
+        "unmapped_1990": unmapped_all,
+        "no_figure_1990": no_figure_all,
+        "notes": notes,
+    }
+
+
+def transcribed_price(c, p):
+    """One transcribed price row in the D1 shape: the printed figure, the
+    conversion to dollars per the sim's unit, the source verbatim."""
+    if p["unit"] != UNITS[c]:
+        raise SystemExit(f"price_1990.{c}: unit {p['unit']!r}, expected {UNITS[c]!r}")
+    t = p["transcribed"]
+    if not (float(p["usd_per_unit"]) > 0.0 and p["source"].strip()):
+        raise SystemExit(f"price_1990.{c}: a positive figure and a source are required")
+    return {
+        "usd_per_unit": float(p["usd_per_unit"]),
+        "as_printed": f"{t['value']} {t['unit']}, 1990 ({t['basis']})",
+        "conversion": p["conversion"],
+        "source": p["source"],
+    }
+
+
+# ---------------------------------------------------------------------------
 # The build
 # ---------------------------------------------------------------------------
 
@@ -240,7 +402,7 @@ def build():
     national = {c: {} for c in TRACKED}
     dropped_rows = collections.defaultdict(dict)
     zero_omitted = {}
-    for c in TRACKED:
+    for c in ARTIFACT_LINES:
         zero_omitted[c] = 0
         for n in sorted(art["national"][c]):
             rec = art["national"][c][n]
@@ -254,6 +416,12 @@ def build():
                 zero_omitted[c] += 1
                 continue
             national[c][n] = {"value": v, "source": rec["source"]}
+
+    # ...and the transcribed six, from TRANSCRIBED, reconciled to each table's
+    # printed total: seated + dropped + unmapped + zero rows == the total the
+    # source prints, or this refuses to write.
+    tr = load_json(TRANSCRIBED)
+    transcription = fold_transcription(tr, start_set, codes, national, dropped_rows, zero_omitted)
 
     # located -- shares per 1990 producer, pruned and renormalised.
     located = {c: {} for c in TRACKED}
@@ -325,6 +493,9 @@ def build():
     for c in TRACKED:
         if c == "oil":
             continue
+        if c in TRANSCRIBED_LINES:
+            price[c] = transcribed_price(c, tr["commodities"][c]["price_1990"])
+            continue
         row = PRICE_1990.get(c)
         if row is None:
             omitted[c] = PRICE_UNSOURCED.get(c, "no sourced 1990 unit value transcribed")
@@ -333,7 +504,7 @@ def build():
             raise SystemExit(f"price_1990.{c}: a positive figure and a source are required")
         price[c] = {k: row[k] for k in ("usd_per_unit", "as_printed", "conversion", "source")}
 
-    used_sources = sorted({r["source"] for c in TRACKED for r in national[c].values()})
+    used_sources = sorted({r["source"] for c in ARTIFACT_LINES for r in national[c].values()})
     meta = {
         "generator": "tools/resources/make_resources_1990.py",
         "upstream": {
@@ -347,6 +518,7 @@ def build():
             "district_resources.json": sha256_of(ART),
             "district_population.json": sha256_of(POP),
             "districts.json": sha256_of(DISTRICTS_JSON),
+            "transcribed_1990_six_lines.json": sha256_of(TRANSCRIBED),
         },
         "dropped_keys": sorted(dropped_rows),
         "rules": {
@@ -359,8 +531,18 @@ def build():
             "located": "located[c][n] lists only 1990 producers with >= 1 located district; "
                        "each list sums to 1, every share >= 1e-3, sorted share desc then id; "
                        "a producer absent here is unlocated (national-only)",
-            "national": "national_1990[c][n] is the artifact's 1990 figure verbatim, keyed by "
-                        "roster code, 1990 start nations only, zero rows omitted",
+            "national": "national_1990[c][n] is the 1990 figure verbatim - the artifact's for "
+                        "bauxite, coal, copper, gas, iron, oil; the transcription file's for "
+                        "cobalt, gold, phosphate, platinum_group, rare_earths, uranium - keyed "
+                        "by roster code, 1990 start nations only, zero rows omitted; a row's "
+                        "`flags` are the source's own estimate and footnote flags, its `note` "
+                        "the transcriber's attribution note",
+            "transcribed": "the six transcribed lines are read from " + TRANSCRIBED_REL + " and "
+                           "each table's rows (seated + dropped + unmapped + zero) reconcile "
+                           "to the printed 1990 total; a producer the source names without a "
+                           "figure is listed in meta.transcription.no_figure_1990 and gets no "
+                           "row; a figure with no roster seat is kept in "
+                           "meta.transcription.unmapped_1990 and seated nowhere",
             "dropped": "national keys that are not 1990 start nations are not seated: Namibia "
                        "is a roster seat that comes alive later and holds no 1990 district",
             "presence": "presence[d] is a 12-bit mask over `commodities` in order: bit i set "
@@ -389,6 +571,7 @@ def build():
             "pop_districts": len(pop_share),
         },
         "prices_omitted": omitted,
+        "transcription": transcription,
     }
     return {
         "meta": meta,

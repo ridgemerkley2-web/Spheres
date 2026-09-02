@@ -606,6 +606,11 @@ pub struct Conflict {
     /// serialized so a mid-month save hashes identically to its reload.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub pockets: Vec<Vec<String>>,
+    /// What a resource war is for: the district and the line (resources.rs;
+    /// cut two writes it, nothing before). Skipped when absent so a conflict
+    /// serializes exactly as it did before the aim existed.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub aim: Option<crate::resources::Aim>,
 }
 
 impl Conflict {
@@ -690,10 +695,23 @@ pub struct GameRules {
     pub ai_aggression: f64,
     /// Crisis intensity multiplier (bubbles, collapses)
     pub crisis_intensity: f64,
+    /// The resource gates (resources.rs): whether a procurement line that
+    /// asks for a commodity it cannot get is delayed. The census control
+    /// arm. True by default and skipped when true, so a save written before
+    /// the switch existed reads as gated and a default world serializes
+    /// exactly as it did before the switch was declared.
+    #[serde(default = "rules_true", skip_serializing_if = "is_true")]
+    pub resource_gates: bool,
+}
+fn rules_true() -> bool {
+    true
+}
+fn is_true(v: &bool) -> bool {
+    *v
 }
 impl Default for GameRules {
     fn default() -> Self {
-        GameRules { seed: 1990, ai_aggression: 1.0, crisis_intensity: 1.0 }
+        GameRules { seed: 1990, ai_aggression: 1.0, crisis_intensity: 1.0, resource_gates: true }
     }
 }
 
@@ -780,6 +798,13 @@ pub struct WorldState {
     #[serde(default)]
     pub districts: std::collections::BTreeMap<String, NationId>,
 
+    /// The resource system's persisted state: the stockpile, and (cut two)
+    /// contracts, offers, refusals, grievances. Skipped while empty, which an
+    /// untouched world always is: the pile is written only when a gated line
+    /// asks for what it cannot get, and folds away when it is full again.
+    #[serde(default, skip_serializing_if = "crate::resources::Resources::is_empty")]
+    pub resources: crate::resources::Resources,
+
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it
     /// could disagree with the vector it indexes, and it must not touch the
@@ -795,6 +820,16 @@ pub struct WorldState {
     pub(crate) by_id: Vec<u16>,
     #[serde(skip)]
     pub(crate) by_id_len: usize,
+    /// The derived HAVE ledger — who produces what this month, read through
+    /// the current ownership map. Never serialized, never hashed; rebuilt by
+    /// `resources::tick` when `districts_epoch` or the living roster moves.
+    #[serde(skip)]
+    pub(crate) resource_have: crate::resources::Have,
+    /// Bumped by every function in `districts.rs` that moves ground. Derived,
+    /// never serialized: `load()` leaves it at 0 with the ledger unbuilt and
+    /// the first tick rebuilds.
+    #[serde(skip)]
+    pub(crate) districts_epoch: u64,
 }
 
 /// Nowhere in `nations`.
