@@ -189,8 +189,10 @@ pub const MEAN_REVERSION: f64 = 0.01;
 /// THE DESIGN'S RULING, and it is arithmetic rather than taste. `economy::tick`
 /// integrates stability as
 ///
-///     ds += ... + (60.0 - stability) * 0.01
-///     stability += ds * 0.25
+/// ```text
+/// ds += ... + (60.0 - stability) * 0.01
+/// stability += ds * 0.25
+/// ```
 ///
 /// so the fixed point of a standing contribution `x` is `60 + 100x`: the mean
 /// reversion is what the contribution has to beat, and it is beaten at a
