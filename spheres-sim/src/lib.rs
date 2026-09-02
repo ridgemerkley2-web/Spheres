@@ -4493,8 +4493,15 @@ mod tests {
     /// the oil column; the 0.10 ms rebuild is paid only when ground changes
     /// hands or a state is born or dies.
     ///
-    /// Iron rule 7 — the bar and its variance. Measured on this build,
-    /// 2026-09-01, release, 137 nations: 0.003 ms/month in four readings —
+    /// AMENDED 2026-09-02: the test now runs BOTH arms of the switch. It
+    /// built `world_1990(GameRules::default())`, which is market OFF, so it
+    /// was structurally blind to the market path — and stayed green while the
+    /// market-on row regressed from 0.0041 to 0.0577 ms/month over the
+    /// conserved-market merge. The market-on arm is below.
+    ///
+    /// Iron rule 7 — the market-OFF bar and its variance. Measured on this
+    /// build, 2026-09-01, release, 137 nations: 0.003 ms/month in four
+    /// readings —
     /// one on a quiet machine and three taken while the whole workspace suite
     /// ran in parallel — so the spread across load is below the 0.001 ms this
     /// row prints at; the probe read 0.005-0.006 (SPEC section 0.3) before
@@ -4505,19 +4512,52 @@ mod tests {
     /// derive; a regression it exists to catch is a monthly rebuild of the
     /// ledger (0.10 ms, measured) or a monthly pass over the 2,610 districts,
     /// either of which is five times the bar.
+    ///
+    /// Iron rule 7 — the MARKET-ON bar and ITS OWN measured variance, taken
+    /// on this tree 2026-09-02, release, 137 nations, after the
+    /// `change_market_stock` and `arsenal::pick` repairs this commit makes.
+    /// Its own n and its own numbers, not the off arm's, which reads an order
+    /// of magnitude lower and would size nothing here.
+    ///
+    /// n. Five quiet readings of THIS arm: 0.0370, 0.0375, 0.0416, 0.0422,
+    /// 0.0434 ms/month. Mean 0.0403, sample sd 0.0029, range 0.0064. Five is
+    /// where this stops paying: a false red needs the reading to reach the
+    /// bar, and at sd 0.0029 the bar below is twenty sd away, so the false-red
+    /// probability is not merely under 1%, it is not a number this sample can
+    /// distinguish from zero — and no n makes it smaller. What five buys is
+    /// the mean itself, to +/- 0.006 at 99% (t(4) = 4.604); n = 44 would be
+    /// needed for +/- 0.002, and nothing here turns on that third digit.
+    ///
+    /// The bar. Quiet is not the state this runs in, so this arm was also
+    /// read INSIDE `cargo test --workspace --release` on the same machine
+    /// the same day: 0.0435 ms/month, against 0.0403 quiet — the row is
+    /// nearly load-insensitive, while the sibling budget test's total moved
+    /// 0.0766 quiet to 0.1083 loaded, a factor of 1.41, on the same run. The
+    /// BAR is 0.10: 2.5x the mean quiet reading and 2.3x the loaded one.
+    ///
+    /// POWER, the half rule 7 says costs the most. At 0.10 this arm can only
+    /// see a regression of about 2.5x, so it would NOT have caught, say, a
+    /// 50% slowdown. What it does catch is the class of thing that actually
+    /// happened here and went unseen for a whole merge, because the test was
+    /// market-OFF and structurally blind: the market's posting pass regressed
+    /// this row 0.0041 -> 0.0577, 14x, and `change_market_stock` alone was
+    /// 0.058 -> 0.0348 of it. Anything of that shape is well over the bar.
+    /// One seed and one timeline, so there is no seed n to derive.
     #[test]
     fn the_resources_row_is_free() {
         use std::time::{Duration, Instant};
         const MONTHS: usize = 1200;
         const PASSES: usize = 3;
         const BUDGET_MS_PER_MONTH: f64 = 0.02;
+        const MARKET_ON_BAR_MS_PER_MONTH: f64 = 0.10;
+        for market in [false, true] {
         let slot = SYSTEMS
             .iter()
             .position(|(name, _)| *name == "resources")
             .expect("resources is a SYSTEMS entry");
         let mut best = Duration::MAX;
         for _ in 0..PASSES {
-            let mut w = world_1990(GameRules::default());
+            let mut w = world_1990(GameRules { resource_market: market, ..GameRules::default() });
             for _ in 0..12 {
                 tick_month(&mut w, &[]);
             }
@@ -4543,16 +4583,19 @@ mod tests {
             best = best.min(spent);
         }
         let ms = best.as_secs_f64() * 1000.0 / MONTHS as f64;
+        let bar = if market { MARKET_ON_BAR_MS_PER_MONTH } else { BUDGET_MS_PER_MONTH };
         println!(
-            "    {:<14} {:>8.3}s  {:>7.3} ms/month  (best of {PASSES}, {MONTHS} months, 137 living at start)",
+            "    {:<14} {:>8.3}s  {:>7.4} ms/month  (market {market}, bar {bar}, best of {PASSES}, {MONTHS} months, 137 living at start)",
             "resources",
             best.as_secs_f64(),
             ms
         );
         assert!(
-            ms <= BUDGET_MS_PER_MONTH,
-            "the resources row costs {ms:.4} ms/month, over the {BUDGET_MS_PER_MONTH} ms budget"
+            ms <= bar,
+            "the resources row costs {ms:.4} ms/month with the market {}, over the {bar} ms bar",
+            if market { "on" } else { "off" }
         );
+        }
     }
 
     /// Fork F1(b), the switch. OFF is the default: the 1990 save carries no
@@ -4674,6 +4717,34 @@ mod tests {
     /// measured by `the_buy_pass_ask_census` before the clock row and the
     /// allocation-free `pick`) — is six times the bar. One seed, one
     /// timeline — not a seed-sampled statistic, so there is no n to derive.
+    ///
+    /// 2026-09-02: it caught one, and this is the repair. The
+    /// conserved-market commit pointed `dyads::last_resort` at
+    /// `resources::action_stalled`, which pays a `draw` -- hence an
+    /// `arsenal::pick` scan of the whole `DECK` -- and a binary search into
+    /// the 552-row ledger, ONCE PER TRACKED COMMODITY PER DYAD PER MONTH.
+    /// Measured on this machine, release, quiet, best of three whole
+    /// invocations each itself this test's own best of three:
+    ///
+    ///     before   resources 0.0602  buy 0.0339  appetite 1.2657  total 1.3598
+    ///     after    resources 0.0342  buy 0.0197  appetite 0.0226  total 0.0766
+    ///
+    /// 30.5x on the total, and the appetite term is back inside the 0.0112
+    /// it read before the merge. Three repairs, each measured on its own:
+    /// `resources::action_stalled_mask` computed ONCE PER (nation, month)
+    /// above the commodity loop (appetite 1.2657 -> 0.0469; hoisted only as
+    /// far as the commodity loop it reached 0.1265, which is why the callers
+    /// hoist it all the way to the nation); `resources::change_market_stock`
+    /// collapsed from three binary searches to one (the resources row
+    /// 0.0580 -> 0.0348); and `arsenal::pick` reading a precomputed ranking
+    /// instead of refolding 46 divisions and 46 `OnceLock` reads (appetite
+    /// 0.0439 -> 0.0226, buy pass 0.0289 -> 0.0197). The bar was not touched.
+    /// Loaded, inside `cargo test --workspace --release` on this machine and
+    /// watched build, the same reading is resources 0.0451, buy 0.0307,
+    /// appetite 0.0326, total 0.1083 — green against the untouched 0.15 bar
+    /// with 28% to spare. It took all three: the same loaded run was still
+    /// RED at 0.1679 with only the mask hoisted, and still red at 0.1603
+    /// with the mask and `change_market_stock` but not the ranking.
     #[test]
     fn the_resource_pass_stays_under_budget() {
         use std::time::{Duration, Instant};
@@ -4710,8 +4781,11 @@ mod tests {
                     if !w.nation_opt(*a).is_some_and(|n| n.alive) {
                         continue;
                     }
+                    // One mask per attacker per month, then the four
+                    // per-target tests per dyad — `ai_wars`' own shape.
+                    let stalled = resources::action_stalled_mask(&w, *a);
                     for tgt in dyads::contacts(*a) {
-                        if dyads::last_resort(&w, *a, *tgt).is_some() {
+                        if dyads::last_resort_with(&w, *a, *tgt, &stalled).is_some() {
                             opened += 1;
                         }
                     }

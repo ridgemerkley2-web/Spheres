@@ -1055,10 +1055,31 @@ fn set_market_stock(
     }
 }
 
+/// `set_market_stock(market, nation, c, market_stock(..) + delta,
+/// market_reserve_target(..))`, written as ONE `stock_slot` lookup instead of
+/// three. The arithmetic is the line it replaced: an absent row reads zero
+/// quantity and zero reserve, exactly as `market_stock` and
+/// `market_reserve_target` answer for one, and both fields go through
+/// `round_market(_.max(0.0))` as before. Called ~1,500 times a month by
+/// `post_market_flows` alone, where two of every three binary searches over
+/// the 552-row ledger were redundant.
 fn change_market_stock(market: &mut MarketState, nation: NationId, c: Commodity, delta: f64) {
-    let next = market_stock(market, nation, c) + delta;
-    let reserve_target = market_reserve_target(market, nation, c);
-    set_market_stock(market, nation, c, next, reserve_target);
+    match stock_slot(&market.stocks, nation, c) {
+        Ok(i) => {
+            let s = &mut market.stocks[i];
+            s.quantity = round_market((s.quantity + delta).max(0.0));
+            s.reserve_target = round_market(s.reserve_target.max(0.0));
+        }
+        Err(i) => market.stocks.insert(
+            i,
+            Stock {
+                nation,
+                commodity: c,
+                quantity: round_market(delta.max(0.0)),
+                reserve_target: round_market(0.0f64.max(0.0)),
+            },
+        ),
+    }
 }
 
 fn new_market_state(w: &WorldState) -> MarketState {
@@ -1104,7 +1125,7 @@ fn post_market_flows(w: &mut WorldState) {
     if w.resources.market.as_ref().is_some_and(|m| m.last_produced == now) {
         return;
     }
-    let mut market = w.resources.market.clone().unwrap_or_else(|| new_market_state(w));
+    let mut market = w.resources.market.take().unwrap_or_else(|| new_market_state(w));
     // A dead federation's warehouse stays inert until a later succession or
     // loot policy explicitly transfers it. Silently deleting physical goods
     // at a normal dissolution would break the ledger's conservation proof.
@@ -2542,6 +2563,54 @@ pub fn action_stalled(w: &WorldState, id: NationId, c: Commodity) -> bool {
         }
     }
     cover(w, id, c) <= 0.0
+}
+
+/// All twelve `action_stalled` answers for one nation in a single pass.
+///
+/// Exactly `[action_stalled(w, id, c) for c in ALL]`, and asserted to be so
+/// by `the_stall_mask_equals_twelve_calls`. Per-commodity, `action_stalled`
+/// pays a `draw` — which runs `arsenal::pick`, a full `DECK` scan — and a
+/// binary search into the 552-row `MarketState.stocks`; twelve of those a
+/// dyad a month is what took the appetite term from 0.0113 to 1.2657
+/// ms/month. Here the draw is taken once and the nation's stock rows, which
+/// are contiguous because `stocks` is sorted by `(nation, commodity)`, are
+/// walked once. Nothing about the answer changes.
+pub fn action_stalled_mask(w: &WorldState, id: NationId) -> [bool; 12] {
+    let need = draw(w, id);
+    let mut out = [false; 12];
+    if need.iter().all(|n| *n <= 0.0) {
+        return out;
+    }
+    // The market arm, when the switch is on and the ledger exists: this
+    // nation's contiguous run of stock rows, read once. A commodity with no
+    // row reads zero, which is what `market_stock` returns for it.
+    let mut quantity = [0.0f64; 12];
+    let market = if w.rules.resource_market { w.resources.market.as_ref() } else { None };
+    if let Some(m) = market {
+        let start = m.stocks.partition_point(|s| s.nation < id);
+        for s in m.stocks[start..].iter().take_while(|s| s.nation == id) {
+            quantity[s.commodity.idx()] = s.quantity;
+        }
+    }
+    // The legacy arm: the cover row, read once. `cover` answers
+    // `BUFFER_MONTHS` when the nation has no row, so an absent row is never
+    // a stall.
+    let months = match w.resources.cover.binary_search_by_key(&id, |r| r.nation) {
+        Ok(i) => w.resources.cover[i].months,
+        Err(_) => [BUFFER_MONTHS; 12],
+    };
+    for (i, c) in ALL.iter().copied().enumerate() {
+        debug_assert_eq!(i, c.idx());
+        if need[i] <= 0.0 {
+            continue;
+        }
+        out[i] = if market.is_some() && c != Commodity::Oil {
+            quantity[i] + 1e-9 < need[i]
+        } else {
+            months[i] <= 0.0
+        };
+    }
+    out
 }
 
 /// Latest settled month, $bn. Callers that show an annual expectation may
@@ -5931,6 +6000,62 @@ mod tests {
         assert!(embargoes.iter().all(|s| refusal_counted(&w, france, *s, k)));
         assert!(!refusal_counted(&w, france, chile, k));
         assert_eq!(refused_all(&w, france, k), None, "an open seller, priced out, is not a refusal");
+    }
+
+    /// `action_stalled_mask` IS twelve `action_stalled` calls — proved over a
+    /// real board and a real month range, not asserted in a comment. Both
+    /// arms of the predicate are exercised: market OFF reads the legacy cover
+    /// row, market ON reads the ledger, and 137 nations x 12 lines are
+    /// compared element by element every month for 25 years. The market arm
+    /// is required to produce stalls, so the test cannot pass by comparing
+    /// two constant `false` arrays.
+    ///
+    /// Iron rule 7: an INVARIANT, not a statistic — "the mask equals the
+    /// twelve calls" is universal, so a small sample can only lose power, not
+    /// produce a false red. There is no n to derive. The power it does have
+    /// is recorded instead: measured on this tree 2026-09-02, each arm
+    /// compares 553,056 elements, and the market arm finds 25 of them
+    /// stalled (the count is asserted positive, so a mask that answered
+    /// `false` everywhere could not pass).
+    ///
+    /// RED-CHECK, run 2026-09-02 on this tree, twice. Negating element 3
+    /// (Copper) of the mask fails on the market-OFF arm at
+    /// "market false, 1990-2 USA Copper: mask true, call false"; negating
+    /// only the market arm's comparison fails at
+    /// "market true, 1990-2 USA Copper: mask true, call false", so BOTH arms
+    /// are live and neither is carried by the other. Restored after each.
+    #[test]
+    fn the_stall_mask_equals_twelve_calls() {
+        for market in [false, true] {
+            let mut w = world_1990(GameRules { resource_market: market, ..GameRules::default() });
+            let (mut elements, mut stalls) = (0usize, 0usize);
+            for _ in 0..(12 * 25) {
+                crate::tick_month(&mut w, &[]);
+                let living: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+                for id in living {
+                    let mask = action_stalled_mask(&w, id);
+                    for (i, c) in ALL.iter().copied().enumerate() {
+                        let call = action_stalled(&w, id, c);
+                        assert_eq!(
+                            mask[i],
+                            call,
+                            "market {market}, {}-{} {} {c:?}: mask {}, call {call}",
+                            w.year,
+                            w.month,
+                            id.code(),
+                            mask[i]
+                        );
+                        elements += 1;
+                        stalls += call as usize;
+                    }
+                }
+            }
+            println!("    market {market}: {elements} elements compared, {stalls} of them stalled");
+            assert!(elements > 400_000, "market {market}: {elements} is not a real board");
+            if market {
+                assert!(stalls > 0, "the market arm compared no stall at all; the test has no power");
+            }
+        }
     }
 
     /// Rulings 3 and 4 in a running world, France's copper market closed by

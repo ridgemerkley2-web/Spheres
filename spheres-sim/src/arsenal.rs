@@ -522,11 +522,49 @@ fn deck_tech() -> &'static [Option<u16>] {
 /// Whether `n` may order kit `i` today. The legacy tier is always available:
 /// replacing what you already field is a budget decision, not a discovery.
 fn orderable(n: &Nation, i: usize) -> bool {
-    match (DECK[i].tech, deck_tech()[i]) {
+    orderable_with(n, i, deck_tech())
+}
+
+/// `orderable` with the deck's technology column already in hand, so a scan
+/// of the whole deck pays one `OnceLock` read rather than `DECK.len()` of
+/// them. Same three cases, same answers.
+fn orderable_with(n: &Nation, i: usize, tech: &[Option<u16>]) -> bool {
+    match (DECK[i].tech, tech[i]) {
         (None, _) => true,
         (Some(_), None) => false,
         (Some(_), Some(t)) => n.tech.knows_index(t),
     }
+}
+
+/// The deck ranked exactly as `pick`'s fold ranks it — quality per pound
+/// descending, the lower `DECK` index first on a tie — computed once.
+///
+/// `pick`'s fold takes the maximum of a STRICT TOTAL order (the value
+/// comparison is broken by the index, so no two entries compare equal), and
+/// the maximum of a strict total order over a subset is the first element of
+/// the whole set's sorted sequence that the subset contains. So "the first
+/// orderable entry in this order" IS the fold's answer, and
+/// `the_ranked_pick_is_the_folded_pick` holds it to that over a real board.
+/// It saves the fold's per-entry division and, for a nation that holds the
+/// modern technology, stops within a few entries instead of scanning 46.
+fn value_order() -> &'static [u16] {
+    static ORDER: std::sync::OnceLock<Vec<u16>> = std::sync::OnceLock::new();
+    ORDER.get_or_init(|| {
+        let mut v: Vec<u16> = (0..DECK.len() as u16).collect();
+        v.sort_by(|a, b| {
+            deck_value(*b as usize)
+                .partial_cmp(&deck_value(*a as usize))
+                .unwrap_or(std::cmp::Ordering::Equal)
+                .then(a.cmp(b))
+        });
+        v
+    })
+}
+
+/// Quality per pound — the fold's `value`, named so the ranking and the test
+/// that checks it read the same expression.
+fn deck_value(i: usize) -> f64 {
+    DECK[i].quality / DECK[i].unit_cost.max(1e-9)
 }
 
 /// What this nation may order today: everything whose technology it holds.
@@ -658,28 +696,102 @@ pub(crate) fn pick(n: &Nation) -> Option<u16> {
             return Some(p);
         }
     }
-    // One pass, no allocation: the same maximum `available(n)` sorted to —
-    // quality per pound, the lower `DECK` index on a tie.
-    let value = |i: usize| DECK[i].quality / DECK[i].unit_cost.max(1e-9);
-    let mut best: Option<usize> = None;
-    for i in 0..DECK.len() {
-        if !orderable(n, i) {
-            continue;
+    // The same maximum `available(n)` sorted to — quality per pound, the
+    // lower `DECK` index on a tie — read off the precomputed ranking instead
+    // of refolded, and with one `deck_tech()` read for the whole scan.
+    // `pick` is called for every nation every month by `resources::draw`;
+    // the fold's 46 divisions and 46 `OnceLock` reads were 0.0284 of the
+    // 0.0440 ms/month the appetite term cost (measured 2026-09-02).
+    let tech = deck_tech();
+    value_order().iter().copied().find(|i| orderable_with(n, *i as usize, tech))
+}
+
+#[cfg(test)]
+mod ranking_tests {
+    use super::*;
+
+    /// `pick`'s original fold, kept verbatim as the thing the ranking is
+    /// checked against. If this and `pick` ever disagree, `pick` is wrong.
+    fn folded_pick(n: &Nation) -> Option<u16> {
+        if let Some(p) = n.arsenal.preference.as_deref().and_then(index_of) {
+            if orderable(n, p as usize) {
+                return Some(p);
+            }
         }
-        best = Some(match best {
-            None => i,
-            Some(b) => {
-                let ahead = value(i)
-                    .partial_cmp(&value(b))
-                    .unwrap_or(std::cmp::Ordering::Equal)
-                    .then(b.cmp(&i));
-                if ahead == std::cmp::Ordering::Greater {
-                    i
-                } else {
-                    b
+        let value = |i: usize| DECK[i].quality / DECK[i].unit_cost.max(1e-9);
+        let mut best: Option<usize> = None;
+        for i in 0..DECK.len() {
+            if !orderable(n, i) {
+                continue;
+            }
+            best = Some(match best {
+                None => i,
+                Some(b) => {
+                    let ahead = value(i)
+                        .partial_cmp(&value(b))
+                        .unwrap_or(std::cmp::Ordering::Equal)
+                        .then(b.cmp(&i));
+                    if ahead == std::cmp::Ordering::Greater {
+                        i
+                    } else {
+                        b
+                    }
+                }
+            });
+        }
+        best.map(|i| i as u16)
+    }
+
+    /// The precomputed ranking answers what the fold answered, over a real
+    /// board and a real month range: 137 nations every month for 25 years,
+    /// with the market off and on, as the deck opens up under research.
+    ///
+    /// Iron rule 7: an INVARIANT — "the ranked pick is the folded pick" is a
+    /// universal claim, so a small sample can only lose power, never produce
+    /// a false red, and there is no n to derive. The power it has is recorded
+    /// instead: measured on this tree 2026-09-02, each arm compares 46,088
+    /// picks and sees 2 distinct kits chosen across them, so the answer is
+    /// not one constant compared to itself (the distinct count is asserted
+    /// above one). What this range does NOT exercise is a tie: reversing the
+    /// ranking's tie break (`b.cmp(a)` for `a.cmp(b)` in `value_order`) was
+    /// run 2026-09-02 and left the test GREEN, because no two `DECK` entries
+    /// tie on quality per pound. That arm of the order is therefore carried
+    /// by the argument in `value_order`'s comment and by `DECK` having no
+    /// duplicate value, not by this test — recorded as decorative rather
+    /// than believed.
+    ///
+    /// RED-CHECK, run 2026-09-02 on this tree against a perturbation the
+    /// board does see: sorting `value_order` ASCENDING by value fails at the
+    /// first nation compared — "market false, 1990-2 USA: ranked Some(12),
+    /// folded Some(30)". Restored.
+    #[test]
+    fn the_ranked_pick_is_the_folded_pick() {
+        use crate::init::world_1990;
+        use crate::world::GameRules;
+        use std::collections::BTreeSet;
+        for market in [false, true] {
+            let mut w = world_1990(GameRules { resource_market: market, ..GameRules::default() });
+            let (mut compared, mut seen) = (0usize, BTreeSet::new());
+            for _ in 0..(12 * 25) {
+                crate::tick_month(&mut w, &[]);
+                for n in w.nations.iter().filter(|n| n.alive) {
+                    let ranked = pick(n);
+                    assert_eq!(
+                        ranked,
+                        folded_pick(n),
+                        "market {market}, {}-{} {}: ranked {ranked:?}, folded {:?}",
+                        w.year,
+                        w.month,
+                        n.id.code(),
+                        folded_pick(n)
+                    );
+                    compared += 1;
+                    seen.insert(ranked);
                 }
             }
-        });
+            println!("    market {market}: {compared} picks compared, {} distinct kits chosen", seen.len());
+            assert!(compared > 40_000, "market {market}: {compared} is not a real board");
+            assert!(seen.len() > 1, "market {market}: one constant answer proves nothing");
+        }
     }
-    best.map(|i| i as u16)
 }
