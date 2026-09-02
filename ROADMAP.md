@@ -58,19 +58,31 @@
   **Suite at ship** (2026-09-02, `cargo test --release --workspace
   --no-fail-fast` after `cargo clean -p spheres-sim -p spheres-web -p
   spheres-cli --release`, isolated target, all three Compiling lines watched and
-  the test binaries confirmed to post-date every source): spheres-sim **228
-  passed / 3 failed / 22 ignored**, spheres-web **93 / 0 / 2**, spheres-cli
+  the test binaries confirmed to post-date every source): spheres-sim **238
+  passed / 3 failed / 22 ignored**, spheres-web **94 / 0 / 2**, spheres-cli
   **1 / 0 / 0**, the five integration targets all-ignored as before. The three
   reds are the expected ones and are untouched —
   `tech::tests::the_1990_endowment_does_not_move_year_one_growth` (BUGS E-3,
   Belgium 0.001851 against 0.001749), `tests::the_1990_start_is_pinned` and
   `tests::golden_hash_of_a_known_run`, whose pins stay at `0xd022d50f43c984da`
-  and `0xbd5ec0f43c5f2e3b` and whose actuals are unmoved. Headless determinism,
-  `spheres-cli run 35 <seed> | sha256sum | cut -c1-16`, each run twice:
-  market OFF `d1a2cfbf7c6958d7` (seed 1990, 3501 lines) and `39dea3341a7f6e8c`
-  (seed 7, 3983); market ON `30cf39058ba9ae1f` (4110) and `6daccc96382f7659`
-  (3967). `tools/resources/check_resources_1990.py --fast`: **60 checks, 0
-  failed**.
+  (`lib.rs` 4141) and `0xbd5ec0f43c5f2e3b` (`lib.rs` 4382) and whose actuals are
+  unmoved at `0xe26e4bf8d6c60066` and `0xbe94d6125631829c`. Headless
+  determinism, `spheres-cli run 35 <seed> | sha256sum | cut -c1-16`, each run
+  twice and each pair byte-identical: market OFF `d1a2cfbf7c6958d7` (seed 1990,
+  3501 lines) and `39dea3341a7f6e8c` (seed 7, 3983);
+  market ON `1574abf65b382173` (3873) and `f97da62d5daee785` (4234).
+  **THE TWO MARKET-ON DIGESTS MOVED, AND NOT HERE.** They were
+  `30cf39058ba9ae1f` (4110 lines) and `6daccc96382f7659` (3967) through
+  `a9a373d`, and this branch reproduced both on that rebase. `867b3d6`
+  "feat: add province manufacturing lines" moved them: a pristine `git archive`
+  of `867b3d6` built into its own target directory produces
+  `1574abf65b382173` and `f97da62d5daee785` — byte-for-byte what this branch
+  produces — while both market-OFF digests are unchanged on both sides. So the
+  market-on timeline moved with province manufacturing, which consumes from the
+  market, and nothing on this branch moved anything; the branch's own diff is
+  a test module, a one-off assertion in `arsenal::value_order` that cannot
+  reorder anything, and these two documents.
+  `tools/resources/check_resources_1990.py --fast`: **60 checks, 0 failed**.
 
 - **Codex's province trade and mines** (2026-09-02, Ridge's own merge `e4e3c03`
   "merge: integrate Codex province trade and mines" of `9274baa` (ours) with
