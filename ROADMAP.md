@@ -62,21 +62,43 @@
   **Suite at ship** (2026-09-02, `cargo test --release --workspace
   --no-fail-fast` after `cargo clean -p spheres-sim -p spheres-web -p
   spheres-cli --release`, isolated target, all three Compiling lines watched and
-  the test binaries post-dating every source): spheres-sim **200 passed / 3
-  failed / 22 ignored**, spheres-web **88 / 0 / 2**, spheres-cli **1 / 0 / 0**;
-  the five spheres-sim integration targets contribute 0 passed / 0 failed / 30
-  ignored between them. The failures are **exactly the three deliberate reds** —
+  the test binaries post-dating every source). This branch was **rebased onto
+  2f9791e `feat: establish conserved resource market`**, which landed on
+  `origin/feat/hoi4-map-and-tech` while the ship pass was running; all six
+  commits replayed with no conflict, and the figures below are from the rebased
+  tree. spheres-sim **209 passed / 4 failed / 22 ignored**, spheres-web
+  **89 / 0 / 2**, spheres-cli **1 / 0 / 0**; the five spheres-sim integration
+  targets contribute 0 passed / 0 failed / 30 ignored between them.
+
+  Three of the four failures are the deliberate reds, at unchanged actuals:
   `tech::tests::the_1990_endowment_does_not_move_year_one_growth` (BUGS E-3,
-  Belgium 0.001851 granted against 0.001749 ungranted) and the two goldens,
+  Belgium 0.001851 granted against 0.001749 ungranted), and the two goldens,
   which panic at `lib.rs` 4068 with actual 0xe26e4bf8d6c60066 against the
   untouched pin 0xd022d50f43c984da and at `lib.rs` 4314 with actual
-  0xbe94d6125631829c against the untouched pin 0xbd5ec0f43c5f2e3b. Headless
-  `run 35` (sha256, first 16 hex, the convention used above): market OFF seed
-  1990 **d1a2cfbf7c6958d7** (3,501 lines) / seed 7 **39dea3341a7f6e8c** (3,983),
-  market ON **6cb6c97ab33fb80d** (4,007) / **8d29fecfd4ff9bf4** (4,258); each of
-  the four run twice and byte-identical across the pair, and the two market-OFF
-  digests still equal 9274baa's. Provenance: `check_resources_1990.py` 60 checks
-  0 failed `--fast`, 63 checks 0 failed full.
+  0xbe94d6125631829c against the untouched pin 0xbd5ec0f43c5f2e3b. **The
+  simulation did not move under 2f9791e**: both actuals read exactly what they
+  read before the rebase.
+
+  **The fourth red is upstream's, not this branch's.**
+  `tests::the_resource_pass_stays_under_budget` fails at `lib.rs` 4742: the
+  resource pass costs **1.7819 ms/month against a 0.15 ms bar**, and the cost is
+  almost entirely the new appetite term (resources 0.0680, buy pass 0.0424,
+  appetite term **1.6714**). It was proved upstream by checking 2f9791e out on
+  its own detached worktree, with none of this branch's commits present, where
+  the same test fails at 1.5173 ms/month. No commit on this branch touches
+  `resources.rs` or that test. **It is a throughput bar, not a correctness one,
+  and it needs an owner ruling: profile the appetite term down under 0.15, or
+  re-argue the bar for a market that now conserves.**
+
+  Headless `run 35` (sha256, first 16 hex, the convention used above), each run
+  twice and byte-identical across the pair: market OFF seed 1990
+  **d1a2cfbf7c6958d7** (3,501 lines) / seed 7 **39dea3341a7f6e8c** (3,983) —
+  **still equal to 9274baa's**, so the default-off world is untouched by the new
+  market. Market ON now reads **30cf39058ba9ae1f** (4,110) /
+  **6daccc96382f7659** (3,967), moved from the pre-rebase 6cb6c97ab33fb80d /
+  8d29fecfd4ff9bf4 by 2f9791e itself, which is what a conserved-market feature
+  is expected to do. Provenance: `check_resources_1990.py` 60 checks 0 failed
+  `--fast`, 63 checks 0 failed full.
 - **The daily calendar and the ten-ministry annual budget** (2026-09-02, Ridge's
   call — "I like the 10 ministry budget and the 1 day ticker so if the bible needs to be ammended we can do that.";
   `origin/codex/trading-system` 4875ea5 merged as 253ff2d onto
