@@ -4585,72 +4585,95 @@ mod tests {
     /// ledger (0.10 ms, measured) or a monthly pass over the 2,610 districts,
     /// either of which is five times the bar.
     ///
-    /// Iron rule 7 — the MARKET-ON bar, ITS OWN measured variance, and the
-    /// n derived from it. Re-measured from scratch 2026-09-02 on the repaired
-    /// tree (release, 137 nations, this 16-core machine). The numbers this arm
-    /// landed with the day before are superseded: they were never red-checked,
-    /// and the 0.10 bar they carried could not have gone red for the very
-    /// regression the comment claimed it caught.
+    /// Iron rule 7 — the MARKET-ON bar. RE-DERIVED 2026-09-02, the third
+    /// derivation this arm has had, because the first two were both wrong and
+    /// the second was wrong in exactly the way rule 7 exists to catch.
     ///
-    /// THE MEASUREMENT, three load regimes. Each reading is one whole-test
-    /// invocation, and is itself the minimum over `MARKET_ON_PASSES` passes.
+    /// The history is the argument for the shape the bar now has. The arm
+    /// landed at 0.10 ms/month — a bar that could not have gone red for the
+    /// 0.0577 regression its own comment named. It was tightened to 0.055 and
+    /// red-checked, and an independent re-measurement then found 0.055 going
+    /// RED ON HEALTHY CODE whenever the box is busy: fourteen readings under
+    /// saturation spanning 0.0472-0.0611 with four of them over the bar,
+    /// against a comment claiming sd 0.00101 and a false red of 6e-9. Checked
+    /// here on this tree rather than taken on trust: across four saturated
+    /// invocations the absolute best-of-five read 0.0562, 0.0574, 0.0582 and
+    /// 0.0661 ms/month — every one of them over 0.055 — and one individual
+    /// pass read 0.1186, 2.2x the bar, with nothing whatever wrong. An
+    /// ABSOLUTE millisecond bar cannot do this job on a box that builds
+    /// several worktrees at once: healthy-under-load and the regression
+    /// overlap, so no constant sits between them, and more passes do not fix
+    /// it because the passes are not independent of the load either.
     ///
-    ///     unloaded    n=10  mean 0.0417  sd 0.00110  max 0.0431
-    ///     suite       n=2   0.0415, 0.0410   (`cargo test --workspace`)
-    ///     saturated   n=5   mean 0.0487  sd 0.00101  max 0.0502
+    /// THE BAR IS THEREFORE A RATIO, not a duration: this row over the REST
+    /// of the same month tick, both accumulated across the same 1,200 months
+    /// of the same world. Machine speed, clock drift and every other process
+    /// on the box multiply BOTH terms and cancel out of the quotient. What is
+    /// left is what the row costs relative to the rest of the game, which is
+    /// what a budget was ever about. The market-OFF arm above keeps its
+    /// absolute bar: at 0.003 ms/month it has 6x of headroom and has never
+    /// been the fragile one.
+    ///
+    /// THE MEASUREMENT, this build, release, 137 nations, 2026-09-02 on the
+    /// rebase onto a9a373d. Each reading is the share from ONE pass of 1,200
+    /// months; eleven whole invocations.
+    ///
+    ///     quiet        n=45  mean 0.02119  sd 0.00025  0.0207-0.0217
+    ///     saturated    n=10  mean 0.02062  sd 0.00077  0.0191-0.0217
+    ///     all healthy  n=55  mean 0.02108  sd 0.00044  0.0191-0.0217
     ///
     /// "Saturated" is sixteen CPU-bound processes on sixteen cores for the
-    /// whole test. It is worth measuring because this box runs several
-    /// worktrees at once, and it — not the suite — is the regime that sets the
-    /// bar: the suite reads BELOW unloaded, because the row test's own passes
-    /// are what the suite mostly contends with.
+    /// whole test. Note WHICH WAY it moves: load pushes the share DOWN,
+    /// because the rest of the tick soaks up more of the contention than this
+    /// row does. The worst case for a false red is therefore an IDLE box, and
+    /// it is the quiet sample that sizes the bar — the opposite of the regime
+    /// the millisecond bar had to be sized against.
     ///
-    /// n = 5, and it is 5 because 3 was measured to be too few. The reported
-    /// statistic is the minimum over the passes, so the passes ARE the sample.
-    /// At the inherited PASSES = 3 three saturated readings were 0.0487, 0.0484
-    /// and 0.0594 — the third is above the bar below, so 3 false-reds on a busy
-    /// machine. At 5, five saturated readings top out at 0.0502. (9 was also
-    /// measured, max 0.0491 over four; it is not used, because it doubles this
-    /// test's runtime inside a PARALLEL suite and the load it adds pushed the
-    /// sibling `the_resource_pass_stays_under_budget` over its own bar. 5 costs
-    /// 15s -> 21s and left that sibling at 0.0999 and 0.1027 against its 0.15.)
-    /// Per rule 7 the repair for the 0.0594 was more samples, not a wider bar.
-    /// The sampling n for the derivation itself is 10: pinning the mean to
-    /// +/-0.001 at 99% needs n = (2.576 * 0.00110 / 0.001)^2 = 9.
+    /// n = 5 passes, and the reported statistic is the minimum over them, so
+    /// the passes ARE the sample: the eleven invocations produced min-of-five
+    /// values of 0.0191 to 0.0212. The sampling n behind the derivation is 55
+    /// — pinning the mean to +/-0.00016 at 99% needs
+    /// n = (2.576 * 0.00044 / 0.00016)^2 = 51, and 55 readings were taken.
     ///
-    /// THE BAR is 0.055, derived rather than chosen to pass. Pair the worst
-    /// regime's mean with the worst regime's sd — 0.0487 from saturation,
-    /// 0.00110 from unloaded, deliberately pessimistic since saturation's own
-    /// sd is 0.00101 — and rule 7 wants the bar at or above
-    /// mean + 2.326*sd = 0.0487 + 0.0026 = 0.0513 for a false red under 1%.
-    /// 0.055 gives z = 5.7. It is also 9.6% above the highest of all seventeen
-    /// healthy readings taken across the three regimes (0.0502).
+    /// THE BAR is 0.025. Rule 7's floor is mean + 2.326*sd = 0.02108 +
+    /// 0.00102 = 0.0221 for a false red under 1%; 0.025 is z = 8.8. It is
+    /// 15.2% above the highest of all fifty-five healthy readings and 17.9%
+    /// above the highest min-of-five any invocation produced. It is also the
+    /// geometric midpoint of the gap it has to sit in — 0.0217 healthy max
+    /// against 0.0293 regressed min — which is the choice that maximises the
+    /// SMALLER of the two margins instead of either one alone.
     ///
-    /// POWER, measured by red-check rather than asserted. The regression this
-    /// arm exists to catch is the one that got past the market-OFF arm for a
-    /// whole merge: `change_market_stock` doing three binary searches into the
-    /// 552-row ledger where one does, on the ~1,500 calls a month
-    /// `post_market_flows` makes. Reintroduced verbatim from 4fbc806 and
-    /// measured here: 0.0637, 0.0605, 0.0658, 0.0668, 0.0671 — mean 0.0648,
-    /// sd 0.00274 — RED five times out of five, the closest by 10%. Against
-    /// that distribution the bar's miss rate is z = -3.58, p = 0.02%, so this
-    /// arm is about as unlikely to miss the regression as to red without one.
-    /// Through all five the market-OFF arm read 0.0028-0.0030 against its own
-    /// 0.02 and never twitched — the blindness this arm was added to end,
+    /// POWER, measured by red-check rather than asserted, against the same
+    /// regression as before: `change_market_stock` doing three binary
+    /// searches into the 552-row ledger where one does, on the ~1,500 calls a
+    /// month `post_market_flows` makes, reintroduced verbatim from 4fbc806.
+    ///
+    ///     perturbed quiet      n=15  mean 0.03105  sd 0.00039  0.0306-0.0317
+    ///     perturbed saturated  n=10  mean 0.02999  sd 0.00053  0.0293-0.0307
+    ///
+    /// RED five invocations out of five — three quiet and TWO UNDER FULL
+    /// SATURATION, which is the thing the millisecond bar could not do at
+    /// all: on a busy box it was red either way and so carried no information
+    /// there. The closest perturbed min-of-five is 0.0293, 11.3% above the
+    /// bar, and against the perturbed distribution the miss rate is z = -8.1.
+    /// Through all five the market-OFF arm read 0.0029-0.0032 against its own
+    /// 0.02 and never twitched — the blindness this arm exists to end,
     /// demonstrated rather than argued.
     ///
     /// WHAT IT STILL CANNOT SEE, since rule 7 says the power half is the half
-    /// that costs. Healthy-under-saturation (max 0.0502) and that regression
-    /// (min 0.0605) are only 1.21x apart and the bar must sit between them: it
-    /// has 9.6% of room below and 9.1% above, and that is the entire budget.
-    /// So this is a tripwire for the 1.3x-and-up class, not a ratchet — a 20%
-    /// slowdown in the posting pass is invisible to it, and the honest way to
-    /// catch one of those is a tighter bar bought with more passes, not a
-    /// claim that this one would notice. The bar is also absolute milliseconds
-    /// calibrated to THIS machine: on a box where the whole profile is
-    /// proportionally slower it reds without a regression, and the repair
-    /// there is to re-derive it by the recipe above — ten unloaded readings
-    /// and five saturated — not to widen it because it went red once.
+    /// that costs. On the mean the bar is 1.19x the healthy share; allowing
+    /// for the regressed spread, the smallest slowdown it catches RELIABLY is
+    /// about 1.25x, so a 10% regression in the posting pass is still
+    /// invisible and the honest repair for that is a tighter bar bought with
+    /// a bigger sample, not a claim that this one would notice. The
+    /// denominator is the rest of the tick, so this arm is blind to anything
+    /// that slows this row and the rest of the game by the SAME factor, and
+    /// it will red for a large speed-up elsewhere in the tick with nothing
+    /// wrong here — the repair in that case is to re-derive by the recipe
+    /// above, forty-five quiet readings and ten saturated, not to widen it.
+    /// What it no longer depends on is this machine: a ratio of two workloads
+    /// inside one process carries to a slower box, which the millisecond bar
+    /// it replaced did not.
     #[test]
     fn the_resources_row_is_free() {
         use std::time::{Duration, Instant};
@@ -4658,7 +4681,7 @@ mod tests {
         const PASSES: usize = 3;
         const MARKET_ON_PASSES: usize = 5;
         const BUDGET_MS_PER_MONTH: f64 = 0.02;
-        const MARKET_ON_BAR_MS_PER_MONTH: f64 = 0.055;
+        const MARKET_ON_SHARE_OF_TICK: f64 = 0.025;
         for market in [false, true] {
         let passes = if market { MARKET_ON_PASSES } else { PASSES };
         let slot = SYSTEMS
@@ -4666,22 +4689,24 @@ mod tests {
             .position(|(name, _)| *name == "resources")
             .expect("resources is a SYSTEMS entry");
         let mut best = Duration::MAX;
+        let mut best_share = f64::MAX;
         for _ in 0..passes {
             let mut w = world_1990(GameRules { resource_market: market, ..GameRules::default() });
             for _ in 0..12 {
                 tick_month(&mut w, &[]);
             }
-            let mut spent = Duration::ZERO;
+            let (mut spent, mut rest) = (Duration::ZERO, Duration::ZERO);
             for _ in 0..MONTHS {
                 w.headlines.clear();
                 w.reindex();
                 for (i, (_, system)) in SYSTEMS.iter().enumerate() {
+                    let t = Instant::now();
+                    system(&mut w);
+                    let d = t.elapsed();
                     if i == slot {
-                        let t = Instant::now();
-                        system(&mut w);
-                        spent += t.elapsed();
+                        spent += d;
                     } else {
-                        system(&mut w);
+                        rest += d;
                     }
                 }
                 w.month += 1;
@@ -4691,20 +4716,33 @@ mod tests {
                 }
             }
             best = best.min(spent);
+            best_share = best_share.min(spent.as_secs_f64() / rest.as_secs_f64());
+            println!(
+                "      pass: {:>7.4} ms/month, rest of the tick {:>7.4}, share {:.4}",
+                spent.as_secs_f64() * 1000.0 / MONTHS as f64,
+                rest.as_secs_f64() * 1000.0 / MONTHS as f64,
+                spent.as_secs_f64() / rest.as_secs_f64()
+            );
         }
         let ms = best.as_secs_f64() * 1000.0 / MONTHS as f64;
-        let bar = if market { MARKET_ON_BAR_MS_PER_MONTH } else { BUDGET_MS_PER_MONTH };
         println!(
-            "    {:<14} {:>8.3}s  {:>7.4} ms/month  (market {market}, bar {bar}, best of {passes}, {MONTHS} months, 137 living at start)",
+            "    {:<14} {:>8.3}s  {:>7.4} ms/month  share {best_share:.4}  (market {market}, best of {passes}, {MONTHS} months, 137 living at start)",
             "resources",
             best.as_secs_f64(),
             ms
         );
-        assert!(
-            ms <= bar,
-            "the resources row costs {ms:.4} ms/month with the market {}, over the {bar} ms bar",
-            if market { "on" } else { "off" }
-        );
+        if market {
+            assert!(
+                best_share <= MARKET_ON_SHARE_OF_TICK,
+                "the market-on resources row costs {best_share:.4} of the rest of the month tick \
+                 ({ms:.4} ms/month), over the {MARKET_ON_SHARE_OF_TICK} bar"
+            );
+        } else {
+            assert!(
+                ms <= BUDGET_MS_PER_MONTH,
+                "the resources row costs {ms:.4} ms/month with the market off, over the {BUDGET_MS_PER_MONTH} ms bar"
+            );
+        }
         }
     }
 
@@ -4839,8 +4877,20 @@ mod tests {
     ///     before   resources 0.0602  buy 0.0339  appetite 1.2657  total 1.3598
     ///     after    resources 0.0342  buy 0.0197  appetite 0.0226  total 0.0766
     ///
-    /// 30.5x on the total, and the appetite term is back inside the 0.0112
-    /// it read before the merge. Three repairs, each measured on its own:
+    /// 17.8x on the total (1.3598 / 0.0766). CORRECTED 2026-09-02: this line
+    /// read "30.5x on the total, and the appetite term is back inside the
+    /// 0.0112 it read before the merge", and both halves were wrong. 30.5x
+    /// was the ratio of an older brief's baseline to the pre-merge cost, not
+    /// of the two rows printed above it. And the appetite term is 0.0226 —
+    /// TWICE the 0.0112 it read before the merge, not back inside it. It is
+    /// comfortably under the bar, which is the claim that matters, but the
+    /// appetite path was not restored to what it cost and a later session
+    /// should not read this comment as saying it was. The BEFORE row is not a
+    /// reproducible constant either: an independent build of 4fbc806 from a
+    /// pristine archive read totals of 1.6672, 1.8520 and 2.9316 over three
+    /// quiet invocations, a 1.76x spread against 0.7% on the repaired tree.
+    /// The direction and the order of magnitude hold; the single number does
+    /// not. Three repairs, each measured on its own:
     /// `resources::action_stalled_mask` computed ONCE PER (nation, month)
     /// above the commodity loop (appetite 1.2657 -> 0.0469; hoisted only as
     /// far as the commodity loop it reached 0.1265, which is why the callers
@@ -4855,6 +4905,25 @@ mod tests {
     /// with 28% to spare. It took all three: the same loaded run was still
     /// RED at 0.1679 with only the mask hoisted, and still red at 0.1603
     /// with the mask and `change_market_stock` but not the ranking.
+    ///
+    /// RE-TAKEN 2026-09-02 on the rebase onto a9a373d, which landed arcade
+    /// logistics and province production underneath this row: resources
+    /// 0.0391  buy 0.0199  appetite 0.0231  total 0.0821, over three quiet
+    /// invocations reading 0.0821, 0.0825 and 0.0845. Green against the
+    /// untouched 0.15 bar with 45% to spare, but less than the 0.0766 the
+    /// line above records, so the margin is a shrinking one and the next
+    /// system added under this row should be measured here rather than
+    /// assumed free. KNOWN LIMIT, recorded rather than papered over: this is
+    /// an absolute wall-clock bar and it is load-sensitive in a way its
+    /// sibling `the_resources_row_is_free` no longer is. Measured here under
+    /// sixteen CPU-bound processes on sixteen cores it reads 0.1338 and
+    /// 0.1358 — green, but with a tenth of the bar left rather than a half —
+    /// and an earlier session recorded 0.1954, RED with nothing wrong, on a
+    /// full-suite run with nine foreign `rustc` processes live. The repair if
+    /// that becomes routine is the sibling's: a share of the tick rather than
+    /// a duration, re-derived from its own sample. It is left alone today
+    /// because the bar is met in every regime this session could produce and
+    /// rule 5 does not ask for a rewrite of a bar that is holding.
     #[test]
     fn the_resource_pass_stays_under_budget() {
         use std::time::{Duration, Instant};

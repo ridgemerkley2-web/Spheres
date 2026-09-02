@@ -2256,3 +2256,106 @@ test at `lib.rs` 1080. Filed rather than done because adding an arm to that test
 changes a BIBLE-section-5 bar, and iron rule 5 wants the session that adds it to
 watch it go red against the behaviour it guards — the honest red-check here is
 making `advance_mines` decrement per day instead of per month.
+
+---
+
+## Filed and FIXED (added 2026-09-02 by the resource-pass performance shipper)
+
+Two entries, both closed. Every figure is milliseconds per simulated month of
+the named `SYSTEMS` row at 137 living nations, release, best of the test's own
+passes over 1,200 months, measured in this session's own worktree with its own
+`CARGO_TARGET_DIR` (iron rule 6). Where a number is another session's, the line
+says so.
+
+### P-1 — CLOSED: the conserved-market commit made the appetite pass 113x its own budget, and the cause was a per-commodity `draw`
+
+**Symptom.** `tests::the_resource_pass_stays_under_budget` was green at
+`e4e3c03` (total 0.0400 ms/month, appetite term 0.0112) and red from `2f9791e`
+"feat: establish conserved resource market" onward.
+
+**Before and after**, quiet machine, best of three whole invocations each
+itself the test's own best of three:
+
+|                 | resources | buy pass | appetite | total  |
+|-----------------|-----------|----------|----------|--------|
+| `4fbc806`       | 0.0602    | 0.0339   | 1.2657   | 1.3598 |
+| after the fix   | 0.0342    | 0.0197   | 0.0226   | 0.0766 |
+| rebased onto `a9a373d` | 0.0391 | 0.0199 | 0.0231 | 0.0821 |
+
+17.8x on the total and 56x on the appetite term, against an untouched 0.15
+ms/month bar. The before row is not a reproducible constant: a review session
+rebuilt `4fbc806` from a pristine archive and read totals of 1.6672, 1.8520 and
+2.9316 over three quiet invocations — a 1.76x spread, against 0.7% on the
+repaired tree — so the direction and the order of magnitude hold and the single
+number does not.
+
+**Cause, read at the code and confirmed by profile.** `dyads::last_resort`
+(`dyads.rs` 141-146) swapped an O(1) cover-array read for
+`resources::action_stalled`, which pays a `draw` — and therefore an
+`arsenal::pick` fold over the whole 46-entry `DECK` — plus a binary search into
+the 552-row `MarketState.stocks`, ONCE PER TRACKED COMMODITY PER DYAD PER
+MONTH.
+
+**Fix, three parts, because the obvious one was not enough and that was
+measured rather than assumed.** (1) `resources::action_stalled_mask(w, id)`
+returns the whole twelve-element mask from ONE `draw` and ONE walk of that
+nation's contiguous stock rows, built once per (nation, month) by
+`politics::ai_wars`; hoisted only as far as the commodity loop it still read
+0.2103 total, which is why the callers hoist it to the nation. (2)
+`resources::change_market_stock` collapsed from three binary searches into the
+ledger to one, on the ~1,500 calls a month `post_market_flows` makes — the
+resources row 0.0580 → 0.0348. (3) `arsenal::pick` reads a precomputed value
+ranking instead of refolding 46 divisions and 46 `OnceLock` reads — appetite
+0.0439 → 0.0226. Held by two new equivalence tests
+(`resources::tests::the_stall_mask_equals_twelve_calls`,
+`arsenal::ranking_tests::the_ranked_pick_is_the_folded_pick`) and, end to end,
+by both golden ACTUALS and all four headless digests being byte-identical.
+
+**Not restored, and worth saying plainly:** the appetite term is 0.0226, twice
+the 0.0112 it cost before the merge, not back inside it. It is comfortably
+under the bar; it is not what it was.
+
+### P-2 — CLOSED: the guard added for P-1 could not fail, then failed on healthy code, and is now a ratio
+
+**Symptom, in three stages.** `tests::the_resources_row_is_free` built
+`world_1990(GameRules::default())` — market OFF — so it was structurally blind
+to the market path and stayed green while the market-on row went 0.0041 →
+0.0577. A market-ON arm was added at a 0.10 ms/month bar, which could not have
+gone red for the 0.0577 regression its own comment named. The bar was then
+tightened to 0.055 and red-checked — and an independent review measured that
+0.055 goes RED ON HEALTHY CODE on a busy box: fourteen saturated readings
+spanning 0.0472-0.0611 with four over the bar, against a comment claiming
+sd 0.00101 and a false red of 6e-9.
+
+**Confirmed here rather than taken on trust.** Across four saturated
+invocations on this tree the absolute best-of-five read 0.0562, 0.0574, 0.0582
+and 0.0661 ms/month — every one over 0.055 — and one individual pass read
+0.1186, 2.2x the bar, with nothing wrong. Healthy-under-load and the regression
+overlap, so no millisecond constant sits between them and more passes do not
+help, the passes being no more independent of the load than the reading is.
+
+**Fix.** The market-ON arm now asserts a RATIO — this row over the REST of the
+same month tick, both accumulated over the same 1,200 months of the same world
+— so machine speed, clock drift and every other process on the box multiply
+both terms and cancel. Healthy: 0.02119 mean over 45 quiet readings and 0.02062
+over 10 saturated, whole range 0.0191-0.0217. Bar **0.025**, which is
+mean + 2.326·sd = 0.0221 by rule 7 with room to spare (z = 8.8) and the
+geometric midpoint of the gap it must sit in. Red-checked by reintroducing
+`4fbc806`'s three-binary-search `change_market_stock`: 0.0306-0.0317 quiet and
+0.0293-0.0307 saturated, **RED five invocations out of five, two of them under
+full sixteen-core saturation** — which the millisecond bar could not do at all,
+being red on a busy box either way. The market-OFF arm and its 0.02 bar were
+not touched and read 0.0029-0.0032 throughout, blind to the regression, which
+is the blindness this arm exists to end.
+
+**What it still cannot see**, since rule 7's power half is the half that costs:
+about 1.25x is the smallest slowdown it catches reliably, so a 10% regression
+in the posting pass is invisible; and because the denominator is the rest of
+the tick, it is blind to anything that slows this row and the whole game
+equally, and will red for a large speed-up elsewhere in the tick with nothing
+wrong here. The sibling `the_resource_pass_stays_under_budget` is still an
+absolute wall-clock bar and is still load-sensitive — 0.1338 and 0.1358 under
+sixteen-way saturation against its 0.15, and an earlier session recorded 0.1954
+and a red on a suite run with nine foreign `rustc` processes live. It is left
+alone because it is met in every regime this session could produce; the repair
+if that changes is P-2's, a share of the tick re-derived from its own sample.

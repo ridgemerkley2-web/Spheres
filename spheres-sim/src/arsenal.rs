@@ -550,6 +550,17 @@ fn orderable_with(n: &Nation, i: usize, tech: &[Option<u16>]) -> bool {
 fn value_order() -> &'static [u16] {
     static ORDER: std::sync::OnceLock<Vec<u16>> = std::sync::OnceLock::new();
     ORDER.get_or_init(|| {
+        // The comparator below folds a `None` from `partial_cmp` to `Equal`,
+        // which a non-finite value would make NON-TRANSITIVE (3, NaN, 5 gives
+        // 0 < 1 and 1 < 2 and 2 < 0), at which point `sort_by`'s order is
+        // unspecified while `pick`'s fold would still answer deterministically.
+        // `DECK` has no such entry — every `quality` is finite and `unit_cost`
+        // is floored at 1e-9 — so this is a one-off check that a future entry
+        // fails loudly here instead of diverging silently from the fold.
+        assert!(
+            (0..DECK.len()).all(|i| deck_value(i).is_finite()),
+            "a DECK entry has a non-finite quality per pound; the ranking would not be a total order"
+        );
         let mut v: Vec<u16> = (0..DECK.len() as u16).collect();
         v.sort_by(|a, b| {
             deck_value(*b as usize)
