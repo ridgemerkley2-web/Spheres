@@ -5151,7 +5151,7 @@ mod tests {
                                 let lr = t.is_some_and(|t| dyads::last_resort(&w, a, t) == Some(ai.clone()));
                                 let nuc = t.is_some_and(|t| nuclear_bar(&w, a, t));
                                 let pact = t.is_some_and(|t| pact_between(&w, a, t));
-                                let ok = ra.is_some() && cv <= 0.0 && counted && reach;
+                                let ok = ra.is_some() && resources::action_stalled(&w, a, k) && counted && reach;
                                 if ok {
                                     o.legible_at_aim += 1;
                                 }

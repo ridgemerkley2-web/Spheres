@@ -931,9 +931,434 @@ pub fn tick(w: &mut WorldState) {
     if !w.rules.resource_gates {
         return;
     }
+    // The physical ledger is opt-in with the market switch. It posts current
+    // production and contract goods before contracts age, so a contract's
+    // final paid month is also its final delivered month. Spot orders clear
+    // after technology in `arsenal::tick`, against the exact recipe that will
+    // be consumed there.
+    if w.rules.resource_market {
+        post_market_flows(w);
+    }
     deliver_contracts(w);
     expire_offers(w);
     cool_grievances(w);
+}
+
+const MARKET_PRICE_FLOOR: f64 = 0.4;
+const MARKET_PRICE_CEILING: f64 = 3.5;
+const MARKET_PRICE_MEMORY: f64 = 0.8;
+
+fn round_market(v: f64) -> f64 {
+    (v * 1e9).round() / 1e9
+}
+
+fn reference_price_usd(w: &WorldState, c: Commodity) -> f64 {
+    if c == Commodity::Oil {
+        w.oil_price.max(0.0)
+    } else {
+        unit_price_bn(c).unwrap_or(0.0) * 1e9
+    }
+}
+
+fn stock_slot(stocks: &[Stock], nation: NationId, c: Commodity) -> Result<usize, usize> {
+    stocks.binary_search_by(|s| (s.nation, s.commodity).cmp(&(nation, c)))
+}
+
+fn market_stock(market: &MarketState, nation: NationId, c: Commodity) -> f64 {
+    stock_slot(&market.stocks, nation, c)
+        .ok()
+        .map_or(0.0, |i| market.stocks[i].quantity)
+}
+
+fn market_reserve_target(market: &MarketState, nation: NationId, c: Commodity) -> f64 {
+    stock_slot(&market.stocks, nation, c)
+        .ok()
+        .map_or(0.0, |i| market.stocks[i].reserve_target)
+}
+
+fn market_contract_spend(market: &MarketState, nation: NationId) -> f64 {
+    market
+        .contract_spend_bn
+        .binary_search_by_key(&nation, |(id, _)| *id)
+        .ok()
+        .map_or(0.0, |i| market.contract_spend_bn[i].1)
+}
+
+fn cash_slot(cash: &[MarketCash], nation: NationId) -> Result<usize, usize> {
+    cash.binary_search_by_key(&nation, |r| r.nation)
+}
+
+pub fn market_cash_bn(w: &WorldState, nation: NationId) -> f64 {
+    w.resources
+        .market
+        .as_ref()
+        .and_then(|m| cash_slot(&m.cash, nation).ok().map(|i| m.cash[i].balance_bn))
+        .unwrap_or(0.0)
+}
+
+fn set_market_cash(market: &mut MarketState, nation: NationId, balance_bn: f64) {
+    let balance_bn = round_market(balance_bn.max(0.0));
+    match cash_slot(&market.cash, nation) {
+        Ok(i) if balance_bn > 0.0 => market.cash[i].balance_bn = balance_bn,
+        Ok(i) => {
+            market.cash.remove(i);
+        }
+        Err(i) if balance_bn > 0.0 => market.cash.insert(i, MarketCash { nation, balance_bn }),
+        Err(_) => {}
+    }
+}
+
+/// Apply one nation's net market payment in $bn. Positive is an outflow:
+/// retained trade cash is spent before debt rises. Negative is a receipt:
+/// debt is retired first and any remainder stays in the market cash ledger.
+/// Both negotiated contracts and spot fills use this one accounting channel.
+fn apply_market_net(w: &mut WorldState, market: &mut MarketState, id: NationId, net_cost: f64) {
+    let gdp = w.nation(id).gdp.max(0.1);
+    if net_cost > 0.0 {
+        let credit = cash_slot(&market.cash, id)
+            .ok()
+            .map_or(0.0, |i| market.cash[i].balance_bn);
+        let used = credit.min(net_cost);
+        set_market_cash(market, id, credit - used);
+        w.nation_mut(id).debt_gdp += (net_cost - used) / gdp;
+    } else if net_cost < 0.0 {
+        let receipt = -net_cost;
+        let debt_ratio = w.nation(id).debt_gdp;
+        let debt_bn = debt_ratio.max(0.0) * gdp;
+        let retired = receipt.min(debt_bn);
+        w.nation_mut(id).debt_gdp = (debt_ratio - retired / gdp).max(0.0);
+        let excess = receipt - retired;
+        if excess > 0.0 {
+            let credit = cash_slot(&market.cash, id)
+                .ok()
+                .map_or(0.0, |i| market.cash[i].balance_bn);
+            set_market_cash(market, id, credit + excess);
+        }
+    }
+}
+
+fn set_market_stock(
+    market: &mut MarketState,
+    nation: NationId,
+    c: Commodity,
+    quantity: f64,
+    reserve_target: f64,
+) {
+    let quantity = round_market(quantity.max(0.0));
+    let reserve_target = round_market(reserve_target.max(0.0));
+    match stock_slot(&market.stocks, nation, c) {
+        Ok(i) => {
+            market.stocks[i].quantity = quantity;
+            market.stocks[i].reserve_target = reserve_target;
+        }
+        Err(i) => market.stocks.insert(i, Stock { nation, commodity: c, quantity, reserve_target }),
+    }
+}
+
+fn change_market_stock(market: &mut MarketState, nation: NationId, c: Commodity, delta: f64) {
+    let next = market_stock(market, nation, c) + delta;
+    let reserve_target = market_reserve_target(market, nation, c);
+    set_market_stock(market, nation, c, next, reserve_target);
+}
+
+fn new_market_state(w: &WorldState) -> MarketState {
+    let mut prices = [0.0; 12];
+    for c in ALL {
+        prices[c.idx()] = reference_price_usd(w, c);
+    }
+    let mut state = MarketState {
+        prices,
+        previous_prices: prices,
+        cleared_volume: [0.0; 12],
+        unmet_orders: [0.0; 12],
+        fills: vec![],
+        contract_fills: vec![],
+        contract_spend_bn: vec![],
+        stocks: vec![],
+        cash: vec![],
+        last_produced: i32::MIN,
+        last_cleared: i32::MIN,
+    };
+    // Materialise the exact legacy buffer this world already carries. A sparse
+    // missing row means twelve months in old saves; an earned partial or empty
+    // row must survive migration rather than being silently refilled.
+    for id in all_nations().iter().copied() {
+        if !w.nation_opt(id).is_some_and(|n| n.alive) {
+            continue;
+        }
+        let need = draw(w, id);
+        for c in ALL.into_iter().filter(|c| *c != Commodity::Oil && need[c.idx()] > 0.0) {
+            let capacity = need[c.idx()] * BUFFER_MONTHS;
+            set_market_stock(&mut state, id, c, need[c.idx()] * cover(w, id, c), capacity);
+        }
+    }
+    state
+}
+
+/// Post this month's domestic production and non-oil contract deliveries to
+/// the physical ledger. Transfers are computed from one opening snapshot, so
+/// an import cannot be re-exported in the same settlement and contracts from
+/// one seller are curtailed pro rata rather than by vector order.
+fn post_market_flows(w: &mut WorldState) {
+    let now = month_abs(w);
+    if w.resources.market.as_ref().is_some_and(|m| m.last_produced == now) {
+        return;
+    }
+    let mut market = w.resources.market.clone().unwrap_or_else(|| new_market_state(w));
+    // A dead federation's warehouse stays inert until a later succession or
+    // loot policy explicitly transfers it. Silently deleting physical goods
+    // at a normal dissolution would break the ledger's conservation proof.
+
+    for id in all_nations().iter().copied().filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive)) {
+        for c in ALL.into_iter().filter(|c| *c != Commodity::Oil && c.tracked()) {
+            let produced = flow_of(&w.resource_have, id, c) / 12.0;
+            if produced > 0.0 {
+                change_market_stock(&mut market, id, c, produced);
+            }
+        }
+    }
+
+    market.contract_spend_bn = all_nations()
+        .iter()
+        .copied()
+        .filter_map(|id| {
+            let spend = contract_spend_due(w, id) / 12.0;
+            (spend > 0.0).then_some((id, spend))
+        })
+        .collect();
+
+    let mut obligations: Vec<(u32, NationId, NationId, Commodity, f64)> = vec![];
+    let mut promised: BTreeMap<(NationId, Commodity), f64> = BTreeMap::new();
+    for contract in &w.resources.contracts {
+        if !w.nation_opt(contract.from).is_some_and(|n| n.alive)
+            || !w.nation_opt(contract.to).is_some_and(|n| n.alive)
+        {
+            continue;
+        }
+        for (giver, receiver, legs) in [
+            (contract.from, contract.to, &contract.give),
+            (contract.to, contract.from, &contract.take),
+        ] {
+            for (c, quantity) in commodity_legs(legs) {
+                if quantity <= 0.0 {
+                    continue;
+                }
+                obligations.push((contract.id, giver, receiver, c, quantity));
+                *promised.entry((giver, c)).or_default() += quantity;
+            }
+        }
+    }
+    let ratios: BTreeMap<(NationId, Commodity), f64> = promised
+        .iter()
+        .map(|(key, quantity)| {
+            let available = market_stock(&market, key.0, key.1);
+            (*key, if *quantity > 0.0 { (available / quantity).clamp(0.0, 1.0) } else { 1.0 })
+        })
+        .collect();
+    let mut deltas: BTreeMap<(NationId, Commodity), f64> = BTreeMap::new();
+    let mut contract_fills = vec![];
+    for (contract, giver, receiver, c, promised) in obligations {
+        let quantity = promised * ratios.get(&(giver, c)).copied().unwrap_or(0.0);
+        if quantity <= 0.0 {
+            continue;
+        }
+        *deltas.entry((giver, c)).or_default() -= quantity;
+        *deltas.entry((receiver, c)).or_default() += quantity;
+        contract_fills.push(ContractFill { contract, giver, receiver, commodity: c, quantity });
+    }
+    for ((id, c), delta) in deltas {
+        change_market_stock(&mut market, id, c, delta);
+    }
+    contract_fills.sort_by_key(|f| (f.giver, f.receiver, f.commodity, f.contract));
+    market.contract_fills = contract_fills;
+    market.last_produced = now;
+    w.resources.market = Some(market);
+}
+
+fn contract_flow_in(market: &MarketState, id: NationId, c: Commodity) -> f64 {
+    market.contract_fills.iter().filter(|f| f.receiver == id && f.commodity == c).map(|f| f.quantity).sum()
+}
+
+fn contract_spend_due(w: &WorldState, id: NationId) -> f64 {
+    w.resources
+        .contracts
+        .iter()
+        .filter(|k| {
+            w.nation_opt(k.from).is_some_and(|n| n.alive)
+                && w.nation_opt(k.to).is_some_and(|n| n.alive)
+        })
+        .map(|k| {
+            if k.from == id {
+                money_of(w, &k.give)
+            } else if k.to == id {
+                money_of(w, &k.take)
+            } else {
+                0.0
+            }
+        })
+        .sum()
+}
+
+fn contract_flow_out(market: &MarketState, id: NationId, c: Commodity) -> f64 {
+    market.contract_fills.iter().filter(|f| f.giver == id && f.commodity == c).map(|f| f.quantity).sum()
+}
+
+fn spot_flow_in(market: &MarketState, id: NationId, c: Commodity) -> f64 {
+    market.fills.iter().filter(|f| f.buyer == id && f.commodity == c).map(|f| f.quantity).sum()
+}
+
+fn spot_flow_out(market: &MarketState, id: NationId, c: Commodity) -> f64 {
+    market.fills.iter().filter(|f| f.seller == id && f.commodity == c).map(|f| f.quantity).sum()
+}
+
+/// Clear the eleven non-oil spot markets after technology and immediately
+/// before procurement consumes stock. Fills use the opening quote; scarcity
+/// sets next month's quote. Matching is fixed by commodity, lowest cover,
+/// buyer id, then seller id, with no RNG or unordered iteration.
+pub(crate) fn clear_spot_market(w: &mut WorldState) {
+    if !(w.rules.resource_gates && w.rules.resource_market) {
+        return;
+    }
+    let now = month_abs(w);
+    if w.resources.market.as_ref().is_none_or(|m| m.last_produced != now) {
+        post_market_flows(w);
+    }
+    if w.resources.market.as_ref().is_some_and(|m| m.last_cleared == now) {
+        return;
+    }
+    let mut market = w.resources.market.clone().unwrap_or_else(|| new_market_state(w));
+    market.fills.clear();
+    market.cleared_volume = [0.0; 12];
+    market.unmet_orders = [0.0; 12];
+    let mut finance: BTreeMap<NationId, f64> = BTreeMap::new();
+    // One foreign-purchase ceiling per buyer for the whole month, not one
+    // fresh ceiling per commodity.
+    let mut cash_remaining: BTreeMap<NationId, f64> = all_nations()
+        .iter()
+        .copied()
+        .filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
+        .map(|id| {
+            let monthly = (MAX_CONTRACT_SPEND * w.nation(id).gdp / 12.0
+                - market_contract_spend(&market, id))
+                .max(0.0);
+            (id, monthly)
+        })
+        .collect();
+
+    for c in ALL.into_iter().filter(|c| *c != Commodity::Oil && c.tracked()) {
+        let ci = c.idx();
+        let mut orders: Vec<(NationId, f64, f64)> = vec![];
+        let mut offers: Vec<(NationId, f64)> = vec![];
+        for id in all_nations().iter().copied().filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive)) {
+            let need = draw(w, id)[ci];
+            if need > 0.0 || stock_slot(&market.stocks, id, c).is_ok() {
+                let quantity = market_stock(&market, id, c);
+                // The target is today's procurement policy, not a high-water
+                // mark. Lowering it makes obsolete stock sellable; it never
+                // deletes the physical quantity already in the warehouse.
+                set_market_stock(&mut market, id, c, quantity, need * BUFFER_MONTHS);
+            }
+            let quantity = market_stock(&market, id, c);
+            // Production and contracts are already in the physical pile. The
+            // same target defines both sides, so a nation cannot buy and sell
+            // one line in the same clearing, and a blocked multi-input recipe
+            // stops buying the input it already accumulated.
+            let target = market_reserve_target(&market, id, c) + need;
+            if quantity < target {
+                let wanted = target - quantity;
+                let cover = if need > 0.0 { quantity / need } else { BUFFER_MONTHS };
+                orders.push((id, wanted, cover));
+            } else if quantity > target {
+                offers.push((id, quantity - target));
+            }
+        }
+        orders.sort_by(|a, b| a.2.total_cmp(&b.2).then_with(|| a.0.cmp(&b.0)));
+
+        let executable_demand: f64 = orders
+            .iter()
+            .filter(|(buyer, _, _)| offers.iter().any(|(seller, q)| *q > 0.0 && *seller != *buyer && open_to(w, *buyer, *seller)))
+            .map(|(_, q, _)| *q)
+            .sum();
+        let executable_supply: f64 = offers
+            .iter()
+            .filter(|(seller, q)| *q > 0.0 && orders.iter().any(|(buyer, _, _)| *buyer != *seller && open_to(w, *buyer, *seller)))
+            .map(|(_, q)| *q)
+            .sum();
+        let old_price = if market.prices[ci].is_finite() && market.prices[ci] > 0.0 {
+            market.prices[ci]
+        } else {
+            reference_price_usd(w, c)
+        };
+        let reference = reference_price_usd(w, c);
+        market.previous_prices[ci] = old_price;
+
+        let mut remaining: BTreeMap<NationId, f64> = offers.iter().copied().collect();
+        for (buyer, wanted, _) in orders.iter().copied() {
+            let ration = if ration_on() { 1.0 - w.oil_blockade(buyer) } else { 1.0 };
+            let mut order_left = wanted * ration.clamp(0.0, 1.0);
+            let mut cash_left = cash_remaining.get(&buyer).copied().unwrap_or(0.0);
+            for (seller, _) in offers.iter().copied() {
+                if order_left <= 0.0 || cash_left <= 0.0 {
+                    break;
+                }
+                if seller == buyer || !open_to(w, buyer, seller) {
+                    continue;
+                }
+                let seller_left = remaining.get(&seller).copied().unwrap_or(0.0);
+                if seller_left <= 0.0 {
+                    continue;
+                }
+                let by_cash = if old_price > 0.0 { cash_left * 1e9 / old_price } else { 0.0 };
+                let quantity = round_market(order_left.min(seller_left).min(by_cash));
+                if quantity <= 0.0 {
+                    continue;
+                }
+                let cost_bn = round_market(quantity * old_price / 1e9);
+                order_left = (order_left - quantity).max(0.0);
+                cash_left = (cash_left - cost_bn).max(0.0);
+                remaining.insert(seller, (seller_left - quantity).max(0.0));
+                change_market_stock(&mut market, seller, c, -quantity);
+                change_market_stock(&mut market, buyer, c, quantity);
+                *finance.entry(buyer).or_default() += cost_bn;
+                *finance.entry(seller).or_default() -= cost_bn;
+                market.fills.push(SpotFill { buyer, seller, commodity: c, quantity, unit_price: old_price, cost_bn });
+                market.cleared_volume[ci] += quantity;
+            }
+            cash_remaining.insert(buyer, cash_left);
+        }
+        let total_wanted: f64 = orders.iter().map(|(_, q, _)| *q).sum();
+        market.cleared_volume[ci] = round_market(market.cleared_volume[ci]);
+        market.unmet_orders[ci] = round_market((total_wanted - market.cleared_volume[ci]).max(0.0));
+        if executable_demand > 0.0 && reference > 0.0 {
+            let target_index = if executable_supply <= 0.0 {
+                MARKET_PRICE_CEILING
+            } else {
+                (0.5 + 0.5 * executable_demand / executable_supply)
+                    .clamp(MARKET_PRICE_FLOOR, MARKET_PRICE_CEILING)
+            };
+            let next = MARKET_PRICE_MEMORY * old_price
+                + (1.0 - MARKET_PRICE_MEMORY) * reference * target_index;
+            market.prices[ci] = round_market(next.clamp(reference * MARKET_PRICE_FLOOR, reference * MARKET_PRICE_CEILING));
+        } else {
+            // Lines without a consumer remain at their last quote until a
+            // future system submits a real order.
+            market.prices[ci] = old_price;
+        }
+    }
+    let oi = Commodity::Oil.idx();
+    market.previous_prices[oi] = market.prices[oi];
+    market.prices[oi] = w.oil_price;
+    market.fills.sort_by_key(|f| (f.buyer, f.seller, f.commodity));
+    market.last_cleared = now;
+
+    // Apply every nation's net cash once. Export receipts first retire debt;
+    // value beyond that becomes a persistent trade balance that can fund later
+    // imports. A debt-free exporter therefore never gives real goods away for
+    // a fiscal floor that discards the payment.
+    for (id, net_cost) in finance {
+        apply_market_net(w, &mut market, id, net_cost);
+    }
+    w.resources.market = Some(market);
 }
 
 fn completed_mine_outputs(
@@ -1013,9 +1438,10 @@ fn advance_mines(w: &mut WorldState) {
 
 /// One month of every live contract (spec section 4.6), in vector order.
 /// A contract dies with either party (successors do not inherit; headlined).
-/// Money legs move `debt_gdp` both ways — the fiscal channel `PACT_UPKEEP`
-/// and `aid_flows` already use — and an oil leg is money at today's world
-/// price, the giver's `oil_mbd` untouched. Commodity legs move nothing: they
+/// With the market off, money legs move `debt_gdp` both ways — the fiscal
+/// channel `PACT_UPKEEP` and `aid_flows` already use. With it on, contracts
+/// share spot's retained-cash/debt ledger. An oil leg is money at today's
+/// world price, the giver's `oil_mbd` untouched. Commodity legs move nothing: they
 /// are READ by `supply()` as the receiver's inflow and by `surplus()` as the
 /// giver's commitment, and when a giver's flow has fallen below what it
 /// promised every leg of that line is delivered pro rata this month (force
@@ -1030,6 +1456,7 @@ fn deliver_contracts(w: &mut WorldState) {
     let price = w.oil_price;
     let mut heads: Vec<String> = vec![];
     let mut keep = Vec::with_capacity(w.resources.contracts.len());
+    let mut market_finance: BTreeMap<NationId, f64> = BTreeMap::new();
     for mut k in std::mem::take(&mut w.resources.contracts) {
         let alive = |id: NationId| w.nation_opt(id).is_some_and(|n| n.alive);
         if !alive(k.from) || !alive(k.to) {
@@ -1051,7 +1478,13 @@ fn deliver_contracts(w: &mut WorldState) {
                     _ => continue,
                 };
                 if bn > 0.0 {
-                    settle(w, payer, payee, bn);
+                    if w.rules.resource_market && w.resources.market.is_some() {
+                        let monthly = bn / 12.0;
+                        *market_finance.entry(payer).or_default() += monthly;
+                        *market_finance.entry(payee).or_default() -= monthly;
+                    } else {
+                        settle(w, payer, payee, bn);
+                    }
                 }
             }
         }
@@ -1069,6 +1502,13 @@ fn deliver_contracts(w: &mut WorldState) {
         keep.push(k);
     }
     w.resources.contracts = keep;
+    if !market_finance.is_empty() {
+        let mut market = w.resources.market.take().expect("market-on contracts have a cash ledger");
+        for (id, net_cost) in market_finance {
+            apply_market_net(w, &mut market, id, net_cost);
+        }
+        w.resources.market = Some(market);
+    }
     // Force majeure, once per (giver, line, month).
     let mut promised: BTreeSet<(NationId, Commodity)> = BTreeSet::new();
     for k in &w.resources.contracts {
@@ -1174,6 +1614,10 @@ pub struct Resources {
     pub refusals: Vec<Refusal>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub grievances: Vec<Grievance>,
+    /// The settled spot ledger and physical piles (market foundation). None
+    /// while the market switch is off, preserving pre-market save bytes.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub market: Option<MarketState>,
     #[serde(default, skip_serializing_if = "is_zero")]
     pub next_id: u32,
 }
@@ -1187,8 +1631,71 @@ impl Resources {
             && self.offers.is_empty()
             && self.refusals.is_empty()
             && self.grievances.is_empty()
+            && self.market.is_none()
             && self.next_id == 0
     }
+}
+
+/// One deterministic monthly clearing. Quantities use each commodity's table
+/// unit; prices are nominal dollars per table unit and costs are $bn. Oil is
+/// mirrored from the existing oil market and never cleared here.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct MarketState {
+    pub prices: [f64; 12],
+    pub previous_prices: [f64; 12],
+    pub cleared_volume: [f64; 12],
+    pub unmet_orders: [f64; 12],
+    /// Sorted by (buyer, seller, commodity).
+    pub fills: Vec<SpotFill>,
+    /// Contract deliveries captured before their monthly aging/expiry.
+    pub contract_fills: Vec<ContractFill>,
+    /// Actual contract cash posted this month, $bn, sorted by nation. Kept
+    /// through clearing even when a final-month contract has just expired.
+    pub contract_spend_bn: Vec<(NationId, f64)>,
+    /// Sorted by (nation, commodity).
+    pub stocks: Vec<Stock>,
+    /// Export value left after debt repayment, sorted by nation.
+    pub cash: Vec<MarketCash>,
+    /// `month_abs` when production and contract goods were last posted.
+    pub last_produced: i32,
+    /// `month_abs` of the latest clearing. Prevents a second settlement when
+    /// a caller retries the same monthly tick.
+    pub last_cleared: i32,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct SpotFill {
+    pub buyer: NationId,
+    pub seller: NationId,
+    pub commodity: Commodity,
+    pub quantity: f64,
+    pub unit_price: f64,
+    pub cost_bn: f64,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct ContractFill {
+    pub contract: u32,
+    pub giver: NationId,
+    pub receiver: NationId,
+    pub commodity: Commodity,
+    pub quantity: f64,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct MarketCash {
+    pub nation: NationId,
+    pub balance_bn: f64,
+}
+
+/// An actual physical pile. The reserve target is a policy level, not a hard
+/// storage cap; changing a procurement line cannot silently erase stock.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct Stock {
+    pub nation: NationId,
+    pub commodity: Commodity,
+    pub quantity: f64,
+    pub reserve_target: f64,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -1431,6 +1938,24 @@ fn delivery_ratio_with(w: &WorldState, h: &Have, giver: NationId, c: Commodity) 
     if promised <= 0.0 {
         return 1.0;
     }
+    if w.rules.resource_market {
+        if let Some(market) = &w.resources.market {
+            if market.last_produced == month_abs(w) {
+                // Only contracts still live after the aging pass belong in the
+                // denominator and numerator. A final-month fill remains in the
+                // audit ledger after its contract expires, but must not make an
+                // unrelated live promise appear over-delivered.
+                let live: BTreeSet<u32> = w.resources.contracts.iter().map(|k| k.id).collect();
+                let delivered: f64 = market
+                    .contract_fills
+                    .iter()
+                    .filter(|f| f.giver == giver && f.commodity == c && live.contains(&f.contract))
+                    .map(|f| f.quantity)
+                    .sum();
+                return (delivered / promised).clamp(0.0, 1.0);
+            }
+        }
+    }
     (flow_of(h, giver, c) / 12.0 / promised).clamp(0.0, 1.0)
 }
 
@@ -1537,6 +2062,37 @@ fn supply_with(w: &WorldState, h: &Have, buyer: NationId, c: Commodity, need: f6
     if !c.tracked() || !h.built {
         return Supply { own: 0.0, contracts: 0.0, market: 0.0, available: 0.0, holder: None, any_producer: false };
     }
+    // Once the optional physical ledger exists it is authoritative for the
+    // month's conserved flows. The legacy branch below remains byte-for-byte
+    // compatible for market-off worlds and old direct tests that have not run
+    // a settlement yet.
+    if w.rules.resource_market && c != Commodity::Oil {
+        if let Some(market_state) = &w.resources.market {
+            let own = (flow_of(h, buyer, c) / 12.0
+                - contract_flow_out(market_state, buyer, c)
+                - spot_flow_out(market_state, buyer, c))
+                .max(0.0);
+            let contracts = contract_flow_in(market_state, buyer, c);
+            let market = spot_flow_in(market_state, buyer, c);
+            let any_producer = all_nations().iter().copied().any(|id| {
+                id != buyer && holds(h, id, c) && w.nation_opt(id).is_some_and(|n| n.alive)
+            });
+            let holder = market_state
+                .fills
+                .iter()
+                .find(|f| f.buyer == buyer && f.commodity == c)
+                .map(|f| f.seller)
+                .or_else(|| open_holder(w, buyer, c));
+            return Supply {
+                own,
+                contracts,
+                market,
+                available: own + contracts + market,
+                holder,
+                any_producer,
+            };
+        }
+    }
     let own = flow_of(h, buyer, c) / 12.0;
     let contracts = contracted_in_with(w, h, buyer, c);
     let mut any_producer = false;
@@ -1612,7 +2168,8 @@ pub struct Stall {
     pub nation: NationId,
     pub kit: u16,
     pub commodity: Commodity,
-    /// "every producer refuses" | "nobody produces it"
+    /// "the market could not fill it" | "every producer refuses" |
+    /// "nobody produces it"
     pub why: &'static str,
 }
 
@@ -1643,6 +2200,12 @@ pub(crate) fn write_cover(w: &mut WorldState, id: NationId, c: Commodity, availa
         cur + ((available - need) / need).min(1.0)
     }
     .clamp(0.0, BUFFER_MONTHS);
+    set_cover(w, id, c, next);
+    next
+}
+
+fn set_cover(w: &mut WorldState, id: NationId, c: Commodity, next: f64) {
+    let next = next.clamp(0.0, BUFFER_MONTHS);
     let ci = c.idx();
     match w.resources.cover.binary_search_by_key(&id, |r| r.nation) {
         Ok(i) => {
@@ -1659,7 +2222,43 @@ pub(crate) fn write_cover(w: &mut WorldState, id: NationId, c: Commodity, availa
             }
         }
     }
-    next
+}
+
+fn market_bundle_held(w: &WorldState, id: NationId, kit: u16, line: f64) -> bool {
+    let Some(market) = &w.resources.market else { return false };
+    let need = kit_need(kit, line);
+    ALL.iter()
+        .filter(|c| **c != Commodity::Oil && c.tracked() && need[c.idx()] > 0.0)
+        .all(|c| market_stock(market, id, *c) + 1e-9 >= need[c.idx()])
+}
+
+fn sync_market_cover(w: &mut WorldState, id: NationId, c: Commodity, need: f64) {
+    if need <= 0.0 {
+        return;
+    }
+    let months = w
+        .resources
+        .market
+        .as_ref()
+        .map_or(0.0, |m| market_stock(m, id, c) / need);
+    set_cover(w, id, c, months);
+}
+
+fn consume_market_bundle(w: &mut WorldState, id: NationId, kit: u16, line: f64) -> bool {
+    if !market_bundle_held(w, id, kit, line) {
+        return false;
+    }
+    let need = kit_need(kit, line);
+    if let Some(market) = w.resources.market.as_mut() {
+        for c in ALL.into_iter().filter(|c| *c != Commodity::Oil && c.tracked() && need[c.idx()] > 0.0) {
+            let quantity = market_stock(market, id, c);
+            set_market_stock(market, id, c, quantity - need[c.idx()], need[c.idx()] * BUFFER_MONTHS);
+        }
+    }
+    for c in ALL.into_iter().filter(|c| *c != Commodity::Oil && c.tracked() && need[c.idx()] > 0.0) {
+        sync_market_cover(w, id, c, need[c.idx()]);
+    }
+    true
 }
 
 /// Read-only: could `id` feed `kit` at `line` this month?
@@ -1681,6 +2280,54 @@ pub fn gate(w: &mut WorldState, id: NationId, kit: u16, line: f64) -> (Option<u1
     let need = kit_need(kit, line);
     if need.iter().all(|q| *q <= 0.0) {
         return (Some(kit), None);
+    }
+    if w.rules.resource_market && w.resources.market.is_some() {
+        if consume_market_bundle(w, id, kit, line) {
+            return (Some(kit), None);
+        }
+        for c in ALL.into_iter().filter(|c| *c != Commodity::Oil && c.tracked() && need[c.idx()] > 0.0) {
+            sync_market_cover(w, id, c, need[c.idx()]);
+        }
+        let missing = ALL
+            .iter()
+            .copied()
+            .filter(|c| *c != Commodity::Oil && c.tracked() && need[c.idx()] > 0.0)
+            .find(|c| {
+                w.resources
+                    .market
+                    .as_ref()
+                    .map_or(true, |m| market_stock(m, id, *c) + 1e-9 < need[c.idx()])
+            })
+            .unwrap_or(Commodity::Iron);
+        let any_producer = producers(w, missing).into_iter().any(|p| p != id);
+        let stall = Stall {
+            nation: id,
+            kit,
+            commodity: missing,
+            why: if refused_all(w, id, missing).is_some() {
+                "every producer refuses"
+            } else if any_producer {
+                "the market could not fill it"
+            } else {
+                "nobody produces it"
+            },
+        };
+        let preferred = w
+            .nation(id)
+            .arsenal
+            .preference
+            .as_deref()
+            .and_then(crate::arsenal::index_of)
+            == Some(kit);
+        if preferred {
+            return (None, Some(stall));
+        }
+        for alt in crate::arsenal::ranked(w.nation(id)).into_iter().filter(|k| *k != kit) {
+            if consume_market_bundle(w, id, alt, line) {
+                return (Some(alt), Some(stall));
+            }
+        }
+        return (None, Some(stall));
     }
     let mut short: Option<(Commodity, &'static str)> = None;
     for c in ALL.iter().filter(|c| c.tracked() && need[c.idx()] > 0.0) {
@@ -1814,8 +2461,110 @@ pub fn unit_price_bn(c: Commodity) -> Option<f64> {
     tables().price[c.idx()].map(|usd| usd / 1e9)
 }
 
+/// Sourced 1990 quote in dollars per table unit. Oil is intentionally the
+/// existing calibrated world quote rather than part of the generic market.
+pub fn market_reference_price(w: &WorldState, c: Commodity) -> f64 {
+    reference_price_usd(w, c)
+}
+
+/// The quote produced by the latest clearing, for the next settlement.
+pub fn market_current_price(w: &WorldState, c: Commodity) -> f64 {
+    if c == Commodity::Oil {
+        return w.oil_price;
+    }
+    w.resources
+        .market
+        .as_ref()
+        .map_or_else(|| reference_price_usd(w, c), |m| m.prices[c.idx()])
+}
+
+/// The quote at which the latest spot fills settled.
+pub fn market_previous_price(w: &WorldState, c: Commodity) -> f64 {
+    if c == Commodity::Oil {
+        return w.oil_price;
+    }
+    w.resources
+        .market
+        .as_ref()
+        .map_or_else(|| reference_price_usd(w, c), |m| m.previous_prices[c.idx()])
+}
+
+pub fn market_cleared_volume(w: &WorldState, c: Commodity) -> f64 {
+    w.resources.market.as_ref().map_or(0.0, |m| m.cleared_volume[c.idx()])
+}
+
+pub fn market_unmet_orders(w: &WorldState, c: Commodity) -> f64 {
+    w.resources.market.as_ref().map_or(0.0, |m| m.unmet_orders[c.idx()])
+}
+
+/// Actual national warehouse quantity in the commodity's table unit. Before
+/// the opt-in ledger has ever settled, this projects the legacy cover ratio.
+pub fn stock_quantity(w: &WorldState, id: NationId, c: Commodity) -> f64 {
+    if c == Commodity::Oil {
+        return 0.0;
+    }
+    if let Some(market) = &w.resources.market {
+        return market_stock(market, id, c);
+    }
+    draw(w, id)[c.idx()] * cover(w, id, c)
+}
+
+pub fn stock_months(w: &WorldState, id: NationId, c: Commodity) -> f64 {
+    if c == Commodity::Oil {
+        return 0.0;
+    }
+    let need = draw(w, id)[c.idx()];
+    if need > 0.0 {
+        return stock_quantity(w, id, c) / need;
+    }
+    w.resources
+        .market
+        .as_ref()
+        .and_then(|m| stock_slot(&m.stocks, id, c).ok().map(|i| &m.stocks[i]))
+        .map_or(0.0, |s| {
+            let basis = s.reserve_target / BUFFER_MONTHS;
+            if basis > 0.0 { s.quantity / basis } else { 0.0 }
+        })
+}
+
+/// Whether this month's explicitly selected recipe cannot be covered. A
+/// physical warehouse may contain a positive but unusable remainder, so the
+/// authoritative market-on test is units against the full monthly recipe;
+/// legacy worlds retain their exact zero-cover predicate.
+pub fn action_stalled(w: &WorldState, id: NationId, c: Commodity) -> bool {
+    let need = draw(w, id)[c.idx()];
+    if need <= 0.0 {
+        return false;
+    }
+    if w.rules.resource_market && c != Commodity::Oil {
+        if let Some(market) = &w.resources.market {
+            return market_stock(market, id, c) + 1e-9 < need;
+        }
+    }
+    cover(w, id, c) <= 0.0
+}
+
+/// Latest settled month, $bn. Callers that show an annual expectation may
+/// multiply by twelve; the ledger itself never disguises a monthly cash flow.
+pub fn spot_imports_bn(w: &WorldState, id: NationId) -> f64 {
+    w.resources
+        .market
+        .as_ref()
+        .map_or(0.0, |m| m.fills.iter().filter(|f| f.buyer == id).map(|f| f.cost_bn).sum())
+}
+
+pub fn spot_exports_bn(w: &WorldState, id: NationId) -> f64 {
+    w.resources
+        .market
+        .as_ref()
+        .map_or(0.0, |m| m.fills.iter().filter(|f| f.seller == id).map(|f| f.cost_bn).sum())
+}
+
 /// What `per_month` units of `c` a month are worth over a year, $bn: the
-/// table's price, or the world price for oil.
+/// table's price, or the world price for oil. Negotiated contracts deliberately
+/// stay reference-priced in this groundwork pass; the live quote is exposed by
+/// `market_current_price`, but repricing diplomacy, counters and old saves is a
+/// later balance decision rather than a silent side effect of spot clearing.
 pub fn leg_bn_per_year(w: &WorldState, c: Commodity, per_month: f64) -> f64 {
     if c == Commodity::Oil {
         oil_leg_bn_per_year(per_month, w.oil_price)
@@ -2025,6 +2774,34 @@ pub fn contracted_spend(w: &WorldState, id: NationId) -> f64 {
                 0.0
             }
         })
+        .sum()
+}
+
+/// Money and oil-leg receipts under live contracts, $bn a year.
+pub fn contracted_receipts(w: &WorldState, id: NationId) -> f64 {
+    w.resources
+        .contracts
+        .iter()
+        .map(|k| {
+            if k.from == id {
+                money_of(w, &k.take)
+            } else if k.to == id {
+                money_of(w, &k.give)
+            } else {
+                0.0
+            }
+        })
+        .sum()
+}
+
+/// Capital already committed to active mine projects. This is a one-time,
+/// sunk project amount—not a recurring annual budget outflow.
+pub fn mine_investment_bn(w: &WorldState, id: NationId) -> f64 {
+    w.resources
+        .mine_projects
+        .iter()
+        .filter(|p| p.started_by == id)
+        .map(|p| p.investment_bn)
         .sum()
 }
 
@@ -4588,8 +5365,8 @@ mod tests {
         assert!(body.contains("SIGN_RELATION") && body.contains("CANCEL_RELATION") && body.contains("CANCEL_REPUTATION"));
         assert_eq!(
             body.matches("debt_gdp").count(),
-            4,
-            "one mine investment plus one settle: payer up, payee down, floored"
+            7,
+            "mine, contract settlement, and aggregate spot cash/debt settlement use only the fiscal ledger"
         );
         let districts = include_str!("districts.rs");
         assert_eq!(districts.matches("pub fn transfer_district").count(), 1);
@@ -4643,6 +5420,317 @@ mod tests {
         }
     }
 
+    #[test]
+    fn the_physical_market_is_conserved_paid_bounded_and_deterministic() {
+        let rules = GameRules { resource_market: true, ..GameRules::default() };
+        let mut a = built(world_1990(rules.clone()));
+        let mut b = a.clone();
+        let before: BTreeMap<(NationId, Commodity), f64> = a
+            .resources
+            .market
+            .as_ref()
+            .unwrap()
+            .stocks
+            .iter()
+            .map(|s| ((s.nation, s.commodity), s.quantity))
+            .collect();
+        clear_spot_market(&mut a);
+        clear_spot_market(&mut b);
+        assert_eq!(crate::save(&a), crate::save(&b), "same state must clear byte-identically");
+
+        let market = a.resources.market.as_ref().unwrap();
+        let bought: f64 = market.fills.iter().map(|f| f.quantity).sum();
+        let sold: f64 = market.cleared_volume.iter().sum();
+        assert!((bought - sold).abs() < 1e-6, "every bought unit has one sold unit");
+        let paid: f64 = market.fills.iter().map(|f| f.cost_bn).sum();
+        let imports: f64 = all_nations().iter().map(|id| spot_imports_bn(&a, *id)).sum();
+        let exports: f64 = all_nations().iter().map(|id| spot_exports_bn(&a, *id)).sum();
+        assert!((paid - imports).abs() < 1e-9 && (paid - exports).abs() < 1e-9);
+        for id in all_nations().iter().copied().filter(|id| a.nation_opt(*id).is_some_and(|n| n.alive)) {
+            let monthly_cap = (MAX_CONTRACT_SPEND * a.nation(id).gdp / 12.0
+                - market_contract_spend(market, id))
+                .max(0.0);
+            assert!(spot_imports_bn(&a, id) <= monthly_cap + 2e-9, "{} exceeded its whole-market cash cap", id.name());
+        }
+        for fill in &market.fills {
+            assert!(fill.quantity > 0.0 && fill.buyer != fill.seller);
+            assert!((fill.cost_bn - fill.quantity * fill.unit_price / 1e9).abs() < 2e-9);
+            assert!(open_to(&a, fill.buyer, fill.seller));
+        }
+        for c in ALL.into_iter().filter(|c| *c != Commodity::Oil) {
+            let reference = market_reference_price(&a, c);
+            let quote = market_current_price(&a, c);
+            assert!(quote.is_finite() && quote >= reference * MARKET_PRICE_FLOOR - 1e-9);
+            assert!(quote <= reference * MARKET_PRICE_CEILING + 1e-9);
+        }
+        assert_eq!(market_current_price(&a, Commodity::Cobalt), market_previous_price(&a, Commodity::Cobalt));
+        assert!(market.fills.iter().all(|f| f.commodity != Commodity::Oil));
+
+        // Spot is a transfer: for every row, its delta is exactly imports less
+        // exports. Production/contracts were posted before this snapshot.
+        for stock in &market.stocks {
+            let opening = before.get(&(stock.nation, stock.commodity)).copied().unwrap_or(0.0);
+            let incoming: f64 = market
+                .fills
+                .iter()
+                .filter(|f| f.buyer == stock.nation && f.commodity == stock.commodity)
+                .map(|f| f.quantity)
+                .sum();
+            let outgoing: f64 = market
+                .fills
+                .iter()
+                .filter(|f| f.seller == stock.nation && f.commodity == stock.commodity)
+                .map(|f| f.quantity)
+                .sum();
+            assert!((stock.quantity - (opening + incoming - outgoing)).abs() < 2e-6);
+            assert!(stock.quantity >= 0.0 && stock.quantity.is_finite());
+        }
+    }
+
+    #[test]
+    fn a_lower_procurement_target_releases_stock_without_erasing_it() {
+        let mut w = built(world_1990(GameRules { resource_market: true, ..GameRules::default() }));
+        let id = code("USA");
+        let c = Commodity::Copper;
+        let opening = stock_quantity(&w, id, c);
+        assert!(market_reserve_target(w.resources.market.as_ref().unwrap(), id, c) > 0.0);
+
+        // Turning the current procurement line off makes yesterday's reserve
+        // obsolete. It may now be sold, but it may not silently disappear.
+        w.nation_mut(id).mil_spend_gdp = 0.0;
+        w.nation_mut(id).arsenal.banked = 0.0;
+        assert_eq!(draw(&w, id)[c.idx()], 0.0);
+        clear_spot_market(&mut w);
+        let market = w.resources.market.as_ref().unwrap();
+        assert_eq!(market_reserve_target(market, id, c), 0.0);
+        let expected = opening + spot_flow_in(market, id, c) - spot_flow_out(market, id, c);
+        assert!((market_stock(market, id, c) - expected).abs() < 2e-6);
+    }
+
+    #[test]
+    fn sanctions_remove_a_route_without_creating_or_destroying_supply() {
+        let mut w = built(world_1990(GameRules { resource_market: true, ..GameRules::default() }));
+        let (buyer, c, need) = all_nations()
+            .iter()
+            .copied()
+            .filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
+            .find_map(|id| {
+                let d = draw(&w, id);
+                ALL.into_iter()
+                    .find(|c| *c != Commodity::Oil && d[c.idx()] > flow(&w, id, *c) / 12.0)
+                    .map(|c| (id, c, d[c.idx()]))
+            })
+            .expect("the 1990 procurement board has an importing recipe");
+        let buyers: Vec<NationId> = all_nations()
+            .iter()
+            .copied()
+            .filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive) && draw(&w, *id)[c.idx()] > 0.0)
+            .collect();
+        for id in buyers {
+            close_market(&mut w, id, c, &[]);
+        }
+        let opening_quote = market_current_price(&w, c);
+        clear_spot_market(&mut w);
+        let market = w.resources.market.as_ref().unwrap();
+        assert!(!market.fills.iter().any(|f| f.buyer == buyer && f.commodity == c));
+        assert!(market.unmet_orders[c.idx()] >= need - flow(&w, buyer, c) / 12.0 - 1e-6);
+        assert!(!producers(&w, c).is_empty(), "the route, not world production, was removed");
+        assert_eq!(market_current_price(&w, c), opening_quote, "closed access is not a world price print");
+    }
+
+    #[test]
+    fn the_market_gate_consumes_one_atomic_recipe_and_a_stall_consumes_none() {
+        let mut w = built(world_1990(GameRules { resource_market: true, ..GameRules::default() }));
+        clear_spot_market(&mut w);
+        let (id, kit, line) = all_nations()
+            .iter()
+            .copied()
+            .filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
+            .find_map(|id| {
+                let n = w.nation(id);
+                let kit = crate::arsenal::pick(n)?;
+                let line = crate::arsenal::line_of(n);
+                let need = kit_need(kit, line);
+                (need.iter().any(|q| *q > 0.0) && market_bundle_held(&w, id, kit, line)).then_some((id, kit, line))
+            })
+            .expect("one 1990 recipe is physically held");
+        let need = kit_need(kit, line);
+        let before: [f64; 12] = ALL.map(|c| stock_quantity(&w, id, c));
+        assert_eq!(gate(&mut w, id, kit, line).0, Some(kit));
+        for c in ALL.into_iter().filter(|c| *c != Commodity::Oil) {
+            assert!((stock_quantity(&w, id, c) - (before[c.idx()] - need[c.idx()])).abs() < 2e-6);
+        }
+
+        let mut stalled = w.clone();
+        stalled.nation_mut(id).arsenal.preference = Some(DECK[kit as usize].id.to_string());
+        if let Some(market) = stalled.resources.market.as_mut() {
+            for c in ALL.into_iter().filter(|c| need[c.idx()] > 0.0) {
+                set_market_stock(market, id, c, 0.0, need[c.idx()] * BUFFER_MONTHS);
+            }
+        }
+        let before = stalled.resources.market.as_ref().unwrap().stocks.clone();
+        let (choice, why) = gate(&mut stalled, id, kit, line);
+        assert!(choice.is_none() && why.is_some());
+        assert_eq!(stalled.resources.market.as_ref().unwrap().stocks, before, "a rejected bundle is atomic");
+    }
+
+    #[test]
+    fn market_off_never_materialises_the_new_ledger() {
+        let mut w = world_1990(GameRules::default());
+        crate::tick_month(&mut w, &[]);
+        assert!(w.resources.market.is_none());
+        assert!(!crate::save(&w).contains("\"market\""));
+    }
+
+    #[test]
+    fn a_legacy_partial_stockpile_migrates_without_a_refill() {
+        let mut w = built(world_1990(GameRules::default()));
+        let id = code("France");
+        let c = Commodity::Copper;
+        let need = draw(&w, id)[c.idx()];
+        assert!(need > 0.0);
+        let mut months = [BUFFER_MONTHS; 12];
+        months[c.idx()] = 0.25;
+        w.resources.cover.push(Cover { nation: id, months });
+        w.resources.cover.sort_by_key(|r| r.nation);
+        w.rules.resource_market = true;
+        w.resources.market = Some(new_market_state(&w));
+        assert!((stock_quantity(&w, id, c) - need * 0.25).abs() < 1e-6);
+        assert!(action_stalled(&w, id, c));
+        let loaded = crate::load(&crate::save(&w)).unwrap();
+        assert!((stock_quantity(&loaded, id, c) - need * 0.25).abs() < 1e-6);
+        assert!(action_stalled(&loaded, id, c));
+    }
+
+    #[test]
+    fn physical_contracts_clear_before_spot_and_force_majeure_is_pro_rata() {
+        let mut w = built(world_1990(GameRules { resource_market: true, ..GameRules::default() }));
+        let seller = code("Chile");
+        let buyers = [code("Peru"), code("Argentina")];
+        let c = Commodity::Copper;
+        set_market_stock(w.resources.market.as_mut().unwrap(), seller, c, 100.0, 0.0);
+        let available = 100.0 + flow(&w, seller, c) / 12.0;
+        for (i, buyer) in buyers.into_iter().enumerate() {
+            w.resources.contracts.push(Contract {
+                id: i as u32 + 1,
+                from: seller,
+                to: buyer,
+                give: vec![Leg::Commodity { c, per_month: available }],
+                take: vec![],
+                months_left: 12,
+                months_total: 12,
+                since: month_abs(&w),
+                depth: 0.0,
+            });
+        }
+        advance_calendar(&mut w, 1);
+        post_market_flows(&mut w);
+        let market = w.resources.market.as_ref().unwrap();
+        let fills: Vec<&ContractFill> = market.contract_fills.iter().filter(|f| f.giver == seller && f.commodity == c).collect();
+        assert_eq!(fills.len(), 2);
+        assert!((fills[0].quantity - fills[1].quantity).abs() < 1e-6);
+        assert!((fills.iter().map(|f| f.quantity).sum::<f64>() - available).abs() < 1e-6);
+        for buyer in buyers {
+            let physical: f64 = fills.iter().filter(|f| f.receiver == buyer).map(|f| f.quantity).sum();
+            assert!((contracted_in(&w, buyer, c) - physical).abs() < 1e-6, "public supply must report the physical fill");
+        }
+        assert!(market_stock(market, seller, c) < 1e-6);
+        clear_spot_market(&mut w);
+        assert!(!w.resources.market.as_ref().unwrap().fills.iter().any(|f| f.seller == seller && f.commodity == c));
+    }
+
+    #[test]
+    fn final_month_contract_cash_still_reduces_the_whole_market_cap() {
+        let mut w = built(world_1990(GameRules { resource_market: true, ..GameRules::default() }));
+        let buyer = code("France");
+        let seller = code("Chile");
+        let annual = MAX_CONTRACT_SPEND * w.nation(buyer).gdp * 0.5;
+        w.resources.contracts.push(Contract {
+            id: 1,
+            from: buyer,
+            to: seller,
+            give: vec![Leg::Money { bn_per_year: annual }],
+            take: vec![],
+            months_left: 1,
+            months_total: 1,
+            since: month_abs(&w),
+            depth: 0.0,
+        });
+        advance_calendar(&mut w, 1);
+        tick(&mut w);
+        assert!(w.resources.contracts.is_empty(), "the final month aged out");
+        clear_spot_market(&mut w);
+        let market = w.resources.market.as_ref().unwrap();
+        assert!((market_contract_spend(market, buyer) - annual / 12.0).abs() < 1e-9);
+        let headroom = MAX_CONTRACT_SPEND * w.nation(buyer).gdp / 12.0 - annual / 12.0;
+        assert!(spot_imports_bn(&w, buyer) <= headroom.max(0.0) + 2e-9);
+
+        let mut dead = built(world_1990(GameRules { resource_market: true, ..GameRules::default() }));
+        dead.resources.contracts.push(Contract {
+            id: 2,
+            from: buyer,
+            to: NationId::Russia,
+            give: vec![Leg::Money { bn_per_year: annual }],
+            take: vec![],
+            months_left: 12,
+            months_total: 12,
+            since: month_abs(&dead),
+            depth: 0.0,
+        });
+        advance_calendar(&mut dead, 1);
+        post_market_flows(&mut dead);
+        assert_eq!(market_contract_spend(dead.resources.market.as_ref().unwrap(), buyer), 0.0);
+    }
+
+    #[test]
+    fn a_debt_free_exporter_keeps_the_value_as_trade_cash() {
+        let mut w = built(world_1990(GameRules { resource_market: true, ..GameRules::default() }));
+        for n in &mut w.nations {
+            n.debt_gdp = 0.0;
+        }
+        clear_spot_market(&mut w);
+        let market = w.resources.market.as_ref().unwrap();
+        let exporter = all_nations()
+            .iter()
+            .copied()
+            .find_map(|id| {
+                let net = spot_exports_bn(&w, id) - spot_imports_bn(&w, id);
+                (net > 1e-9).then_some((id, net))
+            })
+            .expect("the opening spot market has a net exporter");
+        assert!((market_cash_bn(&w, exporter.0) - exporter.1).abs() < 2e-9);
+        assert_eq!(w.nation(exporter.0).debt_gdp, 0.0);
+        assert!(market.cash.windows(2).all(|r| r[0].nation < r[1].nation));
+    }
+
+    #[test]
+    fn negotiated_trade_uses_the_same_retained_cash_ledger_as_spot() {
+        let mut w = built(world_1990(GameRules { resource_market: true, ..GameRules::default() }));
+        let buyer = code("France");
+        let seller = code("Chile");
+        w.nation_mut(buyer).debt_gdp = 0.0;
+        w.nation_mut(seller).debt_gdp = 0.0;
+        set_market_cash(w.resources.market.as_mut().unwrap(), buyer, 0.4);
+        w.resources.contracts.push(Contract {
+            id: 91,
+            from: buyer,
+            to: seller,
+            give: vec![Leg::Money { bn_per_year: 12.0 }],
+            take: vec![],
+            months_left: 2,
+            months_total: 2,
+            since: month_abs(&w),
+            depth: 0.0,
+        });
+
+        let buyer_gdp = w.nation(buyer).gdp;
+        deliver_contracts(&mut w);
+        assert_eq!(market_cash_bn(&w, buyer), 0.0, "retained cash pays before borrowing");
+        assert!((w.nation(buyer).debt_gdp - 0.6 / buyer_gdp).abs() < 2e-9);
+        assert!((market_cash_bn(&w, seller) - 1.0).abs() < 2e-9, "a debt-free seller retains the receipt");
+        assert_eq!(w.nation(seller).debt_gdp, 0.0);
+    }
+
     /// Acceptance item 9: ruling 4's predicate, clause by clause, on a
     /// hand-built memory. It never opens on a single ask, an un-asked
     /// seller, a seller the buyer itself embargoes, a row cooled below
@@ -4663,6 +5751,12 @@ mod tests {
         let k = Commodity::Copper;
         let mut w = built(world_1990(GameRules::default()));
         w.rules.resource_market = true;
+        let copper_kit = crate::arsenal::index_of("paveway").unwrap();
+        let tech = crate::tech::index_of(DECK[copper_kit as usize].tech.unwrap()).unwrap();
+        if let Err(i) = w.nation(iraq).tech.known.binary_search(&tech) {
+            w.nation_mut(iraq).tech.known.insert(i, tech);
+        }
+        w.nation_mut(iraq).arsenal.preference = Some(DECK[copper_kit as usize].id.to_string());
         let sellers: Vec<NationId> = producers(&w, k).into_iter().filter(|s| *s != iraq).collect();
         assert!(sellers.len() >= 10 && sellers.contains(&iran) && sellers.contains(&chile), "{}", sellers.len());
         assert!(!sellers.contains(&kuwait), "Kuwait mines no copper");
@@ -4861,6 +5955,23 @@ mod tests {
         let k = Commodity::Copper;
         let mut w = built(world_1990(GameRules::default()));
         w.rules.resource_market = true;
+        // This is a resource-chain test, not a federation timing test. Paid
+        // spot imports can legitimately move the broader market-on timeline,
+        // so keep the two scripted federations seated for this 30-month probe.
+        for id in [NationId::USSR, NationId::Yugoslavia] {
+            let n = w.nation_mut(id);
+            n.stability = 100.0;
+            n.separatism = 0.0;
+        }
+        let copper_kit = crate::arsenal::pick(w.nation(france)).expect("France has a procurement pick");
+        assert!(kit_need(copper_kit, crate::arsenal::line_of(w.nation(france)))[k.idx()] > 0.0);
+        // Make copper the stated programme. The physical gate correctly uses
+        // an available fallback without burning copper, so a test of the
+        // last-resort chain must describe a programme France will not replace.
+        w.nation_mut(france).arsenal.preference = Some(DECK[copper_kit as usize].id.to_string());
+        // Isolate the stockpile clock from France's small domestic copper
+        // flow: twelve opening months, no replenishment, an exact exhaustion.
+        w.resource_have.flow[france.index()][k.idx()] = 0.0;
         let roster = alive_stamp(&w);
         let sellers: Vec<NationId> = producers(&w, k).into_iter().filter(|s| *s != france).collect();
         let patience = PATIENCE as usize;
@@ -4883,7 +5994,7 @@ mod tests {
             nobody.extend(heads.iter().filter(|h| h.starts_with("Nobody will sell copper to France")).map(|h| (m, h.clone())));
             assert_eq!(refused_all(&w, france, k).is_some(), m > patience, "month {m}");
             let cv = cover(&w, france, k);
-            if cv <= 0.0 && stall_month.is_none() {
+            if action_stalled(&w, france, k) && stall_month.is_none() {
                 stall_month = Some(m);
             }
             let open = contacts(france).iter().any(|t| last_resort(&w, france, *t).is_some());

@@ -119,9 +119,9 @@ pub fn gdp_worth(a_gdp: f64, t_gdp: f64) -> f64 {
 /// it has no choice" — as a predicate. `Some` iff ALL of, in this order,
 /// cheap ones first (spec sections 1.14 and 6.5):
 ///
-/// 1. `a` has a STALL this month: a cover row with some tracked line at zero
-///    (an open world has no row, and returns here at the cost of one binary
-///    search);
+/// 1. `a` has a STALL this month: a cover row with some tracked line whose
+///    warehouse cannot cover the selected recipe (legacy worlds use zero
+///    cover; an open world has no row and returns after one binary search);
 /// 2. UNIVERSALLY REFUSED: every living producer of that line carries a
 ///    refusal by `a` with heat at least `GATE_HEAT` and at least two asks,
 ///    and none is shut out by `a`'s own sanction (`resources::refused_all`);
@@ -138,10 +138,9 @@ pub fn gdp_worth(a_gdp: f64, t_gdp: f64) -> f64 {
 /// and `None` adds exactly nothing to the appetite.
 pub fn last_resort(w: &WorldState, a: NationId, t: NationId) -> Option<crate::resources::Aim> {
     use crate::resources as res;
-    let row = w.resources.cover.binary_search_by_key(&a, |r| r.nation).ok()?;
-    let months = w.resources.cover[row].months;
+    w.resources.cover.binary_search_by_key(&a, |r| r.nation).ok()?;
     for k in res::ALL.iter().copied().filter(|k| k.tracked()) {
-        if months[k.idx()] > 0.0 {
+        if !res::action_stalled(w, a, k) {
             continue;
         }
         if res::refused_all(w, a, k).is_none() {

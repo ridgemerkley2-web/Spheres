@@ -256,6 +256,20 @@
   .fiscal-summary { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 9px; }
   .fiscal-summary span { padding: 7px; border: 1px solid var(--line); border-radius: 5px; background: #0b0f14; color: var(--faint); font-size: 8px; text-transform: uppercase; }
   .fiscal-summary b { display: block; margin-top: 2px; color: var(--ink); font-size: 11px; text-transform: none; }
+  .foreign-strip { margin:0 0 9px; padding:8px; border:1px solid #31404b; border-radius:6px;
+    background:linear-gradient(105deg,#0b1319,#111820); }
+  .foreign-strip .fh { display:flex; align-items:center; gap:7px; margin-bottom:6px; color:var(--cyan);
+    font:700 8px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; }
+  .foreign-strip .fh::before { content:"↔"; display:grid; place-items:center; width:19px; height:19px;
+    border:1px solid #315467; border-radius:50%; color:#9fe6f2; background:#112733; font-size:11px; }
+  .foreign-cells { display:grid; grid-template-columns:repeat(5,1fr); gap:5px; }
+  .foreign-cells span { min-width:0; padding:5px 6px; border-left:2px solid #30434e; color:var(--faint);
+    font-size:7.5px; line-height:1.2; text-transform:uppercase; }
+  .foreign-cells b { display:block; overflow:hidden; margin-top:2px; color:var(--ink); font:600 10px/1.2 var(--mono);
+    text-overflow:ellipsis; white-space:nowrap; text-transform:none; }
+  .foreign-cells .net.in { border-left-color:#4b9b68; } .foreign-cells .net.in b { color:var(--green); }
+  .foreign-cells .net.out { border-left-color:#aa694f; } .foreign-cells .net.out b { color:#dc9c7b; }
+  .foreign-strip .pending { margin-top:5px; color:var(--faint); font-size:7.5px; }
   .ministry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
   .ministry-dial { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 7px; padding: 8px; border: 1px solid #303946; border-radius: 6px; background: #121821; }
   .ministry-dial.changed { border-color: var(--brass-dim); background: #211d14; }
@@ -669,6 +683,34 @@
   .contractrow svg, .offerrow svg { width:14px; height:14px; flex:none; }
   .contractrow .ln, .offerrow .ln { flex:1; }
   .contractrow button, .offerrow button { font-size:11px; padding:3px 10px; }
+  .marketstrip { display:grid; grid-template-columns:repeat(6,minmax(90px,1fr)); gap:5px; margin:0 0 10px; }
+  .marketchip { display:grid; grid-template-columns:15px 1fr auto; align-items:center; gap:5px; min-width:0;
+    width:100%; padding:6px 7px; border:1px solid #26323b; border-radius:5px; background:#0a1016;
+    color:inherit; font:inherit; text-align:left; appearance:none; cursor:pointer; }
+  .marketchip:hover, .marketchip.sel { border-color:var(--brass-dim); background:#161a1d; }
+  .marketchip svg { width:13px; height:13px; display:block; }
+  .marketchip .mq { min-width:0; }
+  .marketchip .mq b { display:block; overflow:hidden; color:var(--ink); font:600 8px/1.1 var(--mono);
+    letter-spacing:.05em; text-overflow:ellipsis; text-transform:uppercase; white-space:nowrap; }
+  .marketchip .mq small { display:block; margin-top:2px; color:var(--faint); font:8px/1 var(--mono); }
+  .marketchip .mt { color:var(--dim); font:700 10px/1 var(--mono); }
+  .marketchip.band-cheap .mt, .marketchip.trend-down .mt { color:var(--green); }
+  .marketchip.band-tight .mt, .marketchip.trend-up .mt { color:var(--amber); }
+  .marketchip.band-critical { border-color:#643d36; } .marketchip.band-critical .mt { color:#e08b73; }
+  .marketcard { margin:0 0 10px; padding:9px; border:1px solid #33434f; border-radius:6px;
+    background:radial-gradient(circle at 90% 0,rgba(62,133,154,.16),transparent 45%),#0b1117; }
+  .marketcard .mh { display:flex; align-items:center; gap:7px; margin-bottom:7px; color:var(--cyan);
+    font:700 8px/1 var(--mono); letter-spacing:.13em; text-transform:uppercase; }
+  .marketcard .band { margin-left:auto; padding:2px 6px; border:1px solid #40515d; border-radius:999px; color:var(--ink); }
+  .marketcard .band.tight { border-color:#715e2d; color:var(--amber); }
+  .marketcard .band.critical { border-color:#743d35; color:#e59880; }
+  .marketcard .band.cheap { border-color:#37664b; color:var(--green); }
+  .marketcells { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; }
+  .marketcells span { min-width:0; padding:5px; border-left:2px solid #2d414d; color:var(--faint);
+    font-size:7.5px; text-transform:uppercase; }
+  .marketcells b { display:block; overflow:hidden; margin-top:2px; color:var(--bright); font:600 10px/1.2 var(--mono);
+    text-overflow:ellipsis; white-space:nowrap; text-transform:none; }
+  .marketcard .marketnote { margin-top:6px; color:var(--faint); font-size:8px; }
   #stockDock { position:absolute; top:44px; right:0; bottom:0; width:360px; z-index:3;
     background:var(--panel-2); border-left:1px solid var(--brass-dim); overflow-y:auto;
     padding:14px 16px 20px; box-shadow:-4px 0 14px rgba(0,0,0,.45); }
@@ -683,6 +725,8 @@
   @media (max-width: 1100px) {
     #stockRows { right:300px; } #stockDock { width:300px; }
     .stockcols, .stockrow { grid-template-columns:22px 1fr 96px 84px 80px 90px 80px; }
+    .marketstrip { grid-template-columns:repeat(4,minmax(80px,1fr)); }
+    .foreign-cells { grid-template-columns:repeat(3,1fr); }
   }
   /* -- the board's hover: #techTip's block, its own singleton -- */
   #stockTip { position:fixed; z-index:60; max-width:300px; min-width:190px; pointer-events:none;
@@ -2735,6 +2779,26 @@ function annualTotal(b) { return MINISTRIES.reduce((sum, spec) => sum + b[spec.i
 function annualSocial(b) { return b.health + b.education + b.families + b.pensions + b.security + b.diplomacy; }
 function annualInvest(b) { return b.infrastructure + b.industry + b.science; }
 
+/// Every number here is an annual $bn read served by the resource ledger. The
+/// budget page only chooses labels and units; it does not value contracts,
+/// project spot purchases or annualise mine projects itself.
+function foreignCommitmentsHtml(m) {
+  const f = m && m.foreign_commitments;
+  if (!f) return ""; // older server / spectator
+  const net = +f.net_bn || 0;
+  const netReceipt = net < 0;
+  return `<div class="foreign-strip">
+    <div class="fh">Foreign trade <span style="color:var(--faint);font-weight:400">annual run-rate</span></div>
+    <div class="foreign-cells">
+      <span>Contract imports<b>${fmt.bn(+f.contract_imports_bn || 0)}</b></span>
+      <span>Expected spot<b>${f.spot_settled ? fmt.bn(+f.expected_spot_imports_bn || 0) : "awaiting clear"}</b></span>
+      <span>Export receipts<b>${fmt.bn(+f.receipts_bn || 0)}</b></span>
+      <span>Sunk mine capital<b>${fmt.bn(+f.mine_investment_bn || 0)}</b></span>
+      <span class="net ${netReceipt ? "in" : "out"}">${netReceipt ? "Net receipt" : "Net outflow"}<b>${fmt.bn(Math.abs(net))}</b></span>
+    </div>${f.spot_settled ? "" : `<div class="pending">Spot cash flow will appear after the first monthly market clearing. Mine capital is shown separately and is not counted in the annual net.</div>`}
+  </div>`;
+}
+
 function annualPoliticalCost(m, b) {
   const weights = [110,125,105,115,100,105,135,150,145,90];
   let cost = 0, moved = 0;
@@ -2830,6 +2894,7 @@ function renderLeft(m) {
         <span>${fiscalBalance >= 0 ? "Surplus" : "Deficit"}<b class="${fiscalBalance >= 0 ? "up" : "down"}">${fmt.money(Math.abs(fiscalBalance) * m.gdp)}</b></span>
         <span>Political cost<b class="${fiscalCost > m.political_capital ? "down" : ""}">${fiscalCost.toFixed(1)} PC</b></span>
       </div>
+      ${foreignCommitmentsHtml(m)}
       <div class="ministry-grid">${MINISTRIES.map((spec) => ministryDial(m, fiscal, spec)).join("")}</div>
       <div class="budget-note">Each press moves 0.5% of GDP. All ten ministries roll into one atomic yearly budget; raising spending without revenue adds debt.</div>
     </div>
@@ -10620,6 +10685,54 @@ function fmtQ(v) {
 }
 function fmtSigned(v) { return v == null ? "" : (v > 0 ? "+" : v < 0 ? "−" : "") + fmtQ(Math.abs(v)); }
 
+/// Presentation only: the server supplies the quote, unit, band and trend.
+/// No scarcity ratio or clearing rule is duplicated on this page.
+function fmtMarketPrice(m) {
+  const v = m && m.current_price;
+  if (v == null || !isFinite(v)) return "—";
+  const a = Math.abs(v);
+  const digits = a >= 100 ? 0 : a >= 1 ? 2 : a >= .01 ? 3 : 5;
+  return "$" + v.toLocaleString("en-GB", { maximumFractionDigits: digits });
+}
+function marketTrendMark(trend) {
+  return trend === "up" ? "↗" : trend === "down" ? "↘" : trend === "flat" ? "→" : "•";
+}
+function marketBand(m) { return (m && m.band) || "unpriced"; }
+
+function marketStripHtml(rows) {
+  return `<div class="marketstrip" aria-label="Commodity market strip">${rows.map((r) => {
+    const m = r.market || {};
+    const band = marketBand(m);
+    return `<button type="button" class="marketchip band-${escText(band)} trend-${escText(m.trend || "none")}${r.id === stock.sel ? " sel" : ""}" data-market-com="${r.id}" aria-pressed="${r.id === stock.sel}" title="${
+      escText(`${r.name}: ${fmtMarketPrice(m)} ${m.price_unit || ""} · ${band}${m.source === "world_oil_price" ? " · live oil market" : m.settled ? " · cleared" : " · awaiting first clearing"}`)}">
+      ${rglyph(r.id, stockHue(r.id))}<span class="mq"><b>${escText(r.name)}</b><small>${fmtMarketPrice(m)}</small></span><span class="mt">${marketTrendMark(m.trend)}</span>
+    </button>`;
+  }).join("")}</div>`;
+}
+
+function marketCardHtml(r) {
+  const m = r.market || {};
+  const pile = r.stock || { quantity:null, unit:r.unit, months_cover:r.cover_months, physical:false };
+  const band = marketBand(m);
+  const quantity = pile.quantity == null ? "—" : `${fmtQ(pile.quantity)} ${pile.unit || r.unit}`;
+  const cover = pile.months_cover == null ? "—" : `${fmtQ(pile.months_cover)} months`;
+  const cleared = m.cleared_volume == null ? "—" : `${fmtQ(m.cleared_volume)} ${m.volume_unit || r.unit}`;
+  const unmet = m.unmet_orders == null ? "—" : `${fmtQ(m.unmet_orders)} ${m.volume_unit || r.unit}`;
+  const note = m.source === "world_oil_price"
+    ? "Oil keeps its existing calibrated market and is not stored or cleared by the generic commodity auction."
+    : m.settled ? "Latest monthly clearing. Contracts settle before spot orders."
+    : "No spot auction has cleared yet; the quote shown is the sourced 1990 reference.";
+  const stockNote = pile.projected ? " Stock is a legacy-cover projection until the first physical settlement." : "";
+  return `<div class="marketcard"><div class="mh">WORLD MARKET <span class="band ${escText(band)}">${escText(band)}</span></div>
+    <div class="marketcells">
+      <span>Price<b>${fmtMarketPrice(m)} ${escText(m.price_unit || "")}</b></span>
+      <span>Reference<b>${m.reference_price == null ? "—" : fmtMarketPrice({ current_price:m.reference_price })}</b></span>
+      <span>Trend<b>${marketTrendMark(m.trend)} ${escText(m.trend || "waiting")}</b></span>
+      <span>Cleared<b>${cleared}</b></span><span>Unmet orders<b>${unmet}</b></span>
+      <span>National stock<b>${quantity} · ${cover}</b></span>
+    </div><div class="marketnote">${note}${stockNote}</div></div>`;
+}
+
 function stockRows() { return (S && S.resources && S.resources.rows) || []; }
 function stockVisibleRows() {
   const rows = stockRows();
@@ -10707,9 +10820,11 @@ function renderStock() {
   const R = S.resources;
   const rows = stockRows(), vis = stockVisibleRows();
   const contracts = R.contracts || [], offers = R.offers || [];
+  const market = R.market_summary || {};
   const fed = rows.filter((r) => r.status === "ok" || r.status === "supplied").length;
   $("#stockSub").textContent =
-    `${fed} of ${rows.length} lines fed · ${R.starved} starved · ${contracts.length} contract${contracts.length === 1 ? "" : "s"}`;
+    `${fed} of ${rows.length} lines fed · ${R.starved} starved · ${contracts.length} contract${contracts.length === 1 ? "" : "s"}`
+    + (market.quoted == null ? "" : ` · ${market.quoted} quoted${market.critical ? ` · ${market.critical} critical` : ""}`);
   // Offers (S3 writes them; absence renders nothing) above the rows.
   const offerLines = offers.map((o) => `<div class="offerrow">${rglyph(RES_ALL, "var(--brass-dim)")}
       <span class="ln">${escText(o.legs)} · expires in ${o.expires_in} months</span>
@@ -10728,7 +10843,8 @@ function renderStock() {
       <button data-cancel="${k.id}" data-with="${escText(k.with)}" data-pc="${k.cancel_pc}" data-note="${escText(k.cancel_note)}">Cancel — ${k.cancel_pc.toFixed(0)} political capital</button>
       <span class="tiny">${escText(k.cancel_note)}</span>
     </div>`).join("");
-  $("#stockRows").innerHTML = (offers.length ? `<div class="stockhead">Offers</div>${offerLines}` : "")
+  $("#stockRows").innerHTML = marketStripHtml(rows)
+    + (offers.length ? `<div class="stockhead">Offers</div>${offerLines}` : "")
     + head + vis.map(stockRowHtml).join("") + fold
     + (contracts.length ? `<div class="stockhead">Contracts</div>${contractLines}` : "");
   const byId = {};
@@ -10738,6 +10854,9 @@ function renderStock() {
     el.onclick = () => stockSelect(el.dataset.com);
     el.onpointerenter = (e) => stockTipShow(r, e.clientX, e.clientY);
     el.onpointerleave = stockTipHide;
+  });
+  $("#stockRows").querySelectorAll("[data-market-com]").forEach((el) => {
+    el.onclick = () => stockSelect(el.dataset.marketCom);
   });
   $("#stockRows").querySelectorAll("[data-cancel]").forEach((b) => {
     b.onclick = () => cancelDeal(+b.dataset.cancel, b.dataset.with, b.dataset.pc, b.dataset.note);
@@ -10757,7 +10876,7 @@ function renderStockDock() {
   if (!c || c.com !== stock.sel) { dock.innerHTML = `<div class="tiny">reading the ledger…</div>`; return; }
   const m = c.mine, tr = c.trade, t = c.take;
   const com = c.com;
-  let s = `<h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2><div class="sub">${escText(c.row.sentence)}</div>`;
+  let s = `<h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2><div class="sub">${escText(c.row.sentence)}</div>${marketCardHtml(c.row)}`;
   // MINE / DRILL — the player chooses one mapped province. Every number and
   // refusal is served; the sim validates it again when the button is pressed.
   const mineOptions = m.options || [];

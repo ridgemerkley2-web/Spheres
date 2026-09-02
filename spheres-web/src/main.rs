@@ -788,6 +788,40 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
     })
 }
 
+/// Foreign trade cash flow beside the cabinet budget, in $bn at an annual
+/// run-rate. Every value comes from resources.rs. Active mine capital is
+/// carried separately as a sunk one-time amount and is intentionally excluded
+/// from annual outflow/net figures.
+fn foreign_commitments_json(w: &WorldState, id: NationId) -> serde_json::Value {
+    let contract_imports = resources::contracted_spend(w, id);
+    let export_receipts = resources::contracted_receipts(w, id);
+    // Accessors expose the latest settled MONTH. Annualising that latest month
+    // here is a budget forecast, explicitly labelled as an expected run-rate.
+    let expected_spot_imports = resources::spot_imports_bn(w, id) * 12.0;
+    let spot_export_receipts = resources::spot_exports_bn(w, id) * 12.0;
+    let mine_investment = resources::mine_investment_bn(w, id);
+    let outflows = contract_imports + expected_spot_imports;
+    let receipts = export_receipts + spot_export_receipts;
+    let spot_settled = w
+        .resources
+        .market
+        .as_ref()
+        .is_some_and(|market| market.last_cleared != i32::MIN);
+    serde_json::json!({
+        "contract_imports_bn": round(contract_imports, 6),
+        "expected_spot_imports_bn": round(expected_spot_imports, 6),
+        "export_receipts_bn": round(export_receipts, 6),
+        "spot_export_receipts_bn": round(spot_export_receipts, 6),
+        "mine_investment_bn": round(mine_investment, 6),
+        "outflows_bn": round(outflows, 6),
+        "receipts_bn": round(receipts, 6),
+        "net_bn": round(outflows - receipts, 6),
+        "spot_settled": spot_settled,
+        "period": "annual_run_rate",
+        "mine_investment_kind": "sunk_one_time",
+    })
+}
+
 fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
     let me = w.player;
     let annual_budget = if me == Some(n.id) {
@@ -825,6 +859,10 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "state_invest": n.state_invest_gdp,
         "social_spend": n.social_spend(),
         "annual_budget": annual_budget,
+        // Foreign resource commitments sit beside, but never masquerade as,
+        // the ten ministry dials. Only the seated player receives the private
+        // budget ledger.
+        "foreign_commitments": (me == Some(n.id)).then(|| foreign_commitments_json(w, n.id)),
         "baseline_social_spend": n.baseline_social_spend(),
         "unemployment": spheres_sim::economy::unemployment_rate(n, w.at_war(n.id)),
         // The UI's policy readout reproduces the growth arithmetic, and cannot do
@@ -926,6 +964,19 @@ fn board_unit(c: Commodity) -> (&'static str, f64) {
         "kb/d" => ("kb/d", 1.0),
         "kg" => ("kg/mo", 1.0 / 12.0),
         _ => ("a month", 1.0 / 12.0),
+    }
+}
+
+/// A physical pile is a level, not a monthly flow. Keep its label and
+/// conversion separate so an iron warehouse never claims to hold "kt/mo".
+fn stock_unit(c: Commodity) -> (&'static str, f64) {
+    match c.unit() {
+        "t" => ("kt", 1.0 / 1_000.0),
+        "kt" => ("kt", 1.0),
+        "bcf" => ("bcf", 1.0),
+        "kg" => ("kg", 1.0),
+        "kb/d" => ("kb/d", 1.0),
+        unit => (unit, 1.0),
     }
 }
 
@@ -1040,9 +1091,15 @@ fn read_line(w: &WorldState, id: NationId, c: Commodity, need: f64) -> LineRead 
         ("idle", None, None)
     } else {
         let s = resources::supply(w, id, c, need);
-        let reason = if s.any_producer { "every producer refuses" } else { "nobody produces it" };
+        let reason = if resources::refused_all(w, id, c).is_some() {
+            "every producer refuses"
+        } else if s.any_producer {
+            "the market could not fill it"
+        } else {
+            "nobody produces it"
+        };
         if s.available < need {
-            if cover <= 0.0 {
+            if resources::action_stalled(w, id, c) {
                 ("stalled", Some(s), Some(reason))
             } else {
                 ("short", Some(s), Some(reason))
@@ -1072,6 +1129,78 @@ fn supplier_of(w: &WorldState, id: NationId, c: Commodity, s: &resources::Supply
         }
     }
     s.holder.map(|h| (h, "open"))
+}
+
+/// Stable browser shape for the commodity market. The fixed-price resource
+/// model already has a factual quote for every priced line, and oil has its
+/// live world quote. Clearing volume, unmet orders and price movement stay
+/// null until a conservation market has actually settled them; null is an
+/// important distinction from a cleared zero.
+fn market_quote_json(w: &WorldState, c: Commodity) -> serde_json::Value {
+    let reference = resources::market_reference_price(w, c);
+    let current = resources::market_current_price(w, c);
+    let previous = resources::market_previous_price(w, c);
+    let settled = c != Commodity::Oil
+        && w.resources
+            .market
+            .as_ref()
+            .is_some_and(|market| market.last_cleared != i32::MIN);
+    // These are presentation bands only; no simulation decision reads them.
+    // The game formula and price limits remain exclusively in resources.rs.
+    let band = if !(reference.is_finite() && reference > 0.0 && current.is_finite()) {
+        None
+    } else {
+        let ratio = current / reference;
+        Some(if ratio < 0.8 {
+            "cheap"
+        } else if ratio < 1.25 {
+            "normal"
+        } else if ratio < 2.0 {
+            "tight"
+        } else {
+            "critical"
+        })
+    };
+    let trend = if !settled {
+        None
+    } else if current > previous {
+        Some("up")
+    } else if current < previous {
+        Some("down")
+    } else {
+        Some("flat")
+    };
+    let cleared = settled.then(|| round(on_board(c, resources::market_cleared_volume(w, c)), 6));
+    let unmet = settled.then(|| round(on_board(c, resources::market_unmet_orders(w, c)), 6));
+    serde_json::json!({
+        "reference_price": (reference.is_finite() && reference > 0.0).then(|| round(reference, 6)),
+        "current_price": (current.is_finite() && current > 0.0).then(|| round(current, 6)),
+        "previous_price": (previous.is_finite() && previous > 0.0).then(|| round(previous, 6)),
+        "price_unit": if c == Commodity::Oil { "USD/bbl".to_string() } else { "USD/".to_string() + c.unit() },
+        "trend": trend,
+        "band": band,
+        "cleared_volume": cleared,
+        "unmet_orders": unmet,
+        "volume_unit": board_unit(c).0,
+        "settled": settled,
+        "source": if c == Commodity::Oil { "world_oil_price" } else if settled { "spot_market" } else { "1990_reference" },
+    })
+}
+
+/// Stable browser shape for national stock. resources.rs supplies both the
+/// actual physical pile and its derived months; before the opt-in ledger's
+/// first settlement it explicitly identifies the quantity as a legacy-cover
+/// projection. Oil remains financial and therefore has no warehouse pile.
+fn stock_quantity_json(w: &WorldState, id: NationId, c: Commodity) -> serde_json::Value {
+    let physical = c != Commodity::Oil && w.resources.market.is_some();
+    let (unit, factor) = stock_unit(c);
+    serde_json::json!({
+        "quantity": if c == Commodity::Oil { None } else { Some(round(resources::stock_quantity(w, id, c) * factor, 6)) },
+        "unit": unit,
+        "months_cover": if c == Commodity::Oil { None } else { Some(round(resources::stock_months(w, id, c), 2)) },
+        "physical": physical,
+        "projected": !physical && c != Commodity::Oil,
+    })
 }
 
 /// One row of the board. `kit` is what procurement would order this month
@@ -1214,6 +1343,11 @@ fn row_json(
         "unlocated_per_month": round(annual_on_board(c, h.unlocated), 3),
         "present": present,
         "price": if c == Commodity::Oil { Some(w.oil_price) } else { None },
+        // Additive market/stock envelopes. Old clients ignore them; the new
+        // arcade strip treats every member as optional so old saves and a
+        // pre-market server remain readable.
+        "market": market_quote_json(w, c),
+        "stock": stock_quantity_json(w, id, c),
         "sentence": sentence,
         "second": second,
         "hover": hover,
@@ -1302,6 +1436,32 @@ fn offer_json(w: &WorldState, me: NationId, o: &resources::Offer, now: i32) -> s
     })
 }
 
+/// Unit-safe roll-up for the strip: counts only. Commodity quantities never
+/// get added across unlike units.
+fn market_summary_json(rows: &[serde_json::Value]) -> serde_json::Value {
+    let quoted = rows
+        .iter()
+        .filter(|row| row["market"]["current_price"].is_number())
+        .count();
+    let settled = rows.iter().filter(|row| row["market"]["settled"] == true).count();
+    let tight = rows
+        .iter()
+        .filter(|row| matches!(row["market"]["band"].as_str(), Some("tight" | "critical")))
+        .count();
+    let critical = rows.iter().filter(|row| row["market"]["band"] == "critical").count();
+    let unmet = rows
+        .iter()
+        .filter(|row| row["market"]["unmet_orders"].as_f64().is_some_and(|v| v > 0.0))
+        .count();
+    serde_json::json!({
+        "quoted": quoted,
+        "settled": settled,
+        "tight": tight,
+        "critical": critical,
+        "unmet_lines": unmet,
+    })
+}
+
 /// The player's board on every state payload.
 fn resources_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let draw = resources::draw(w, me);
@@ -1351,8 +1511,10 @@ fn resources_json(w: &WorldState, me: NationId) -> serde_json::Value {
             }))
         })
         .collect();
+    let market_summary = market_summary_json(&rows);
     serde_json::json!({
         "rows": rows,
+        "market_summary": market_summary,
         "folded": folded,
         "contracts": contracts,
         "offers": offers,
@@ -8331,6 +8493,130 @@ mod tests {
         let spectator = Game::new(1990, None);
         assert!(state_json(&spectator, None)["resources"].is_null());
         assert!(INDEX.contains("sb.disabled = !S.resources;"));
+    }
+
+    /// The market foundation is additive: old row fields remain, while every
+    /// new market/stock value has a stable optional slot. Unknown clearing is
+    /// null rather than a fictional zero, and the page reads served bands and
+    /// totals instead of carrying scarcity or budget formulas.
+    #[test]
+    fn the_arcade_market_strip_and_foreign_ledger_are_served() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let res = resources_json(&g.world, NationId::USA);
+        let rows = res["rows"].as_array().expect("market rows");
+        assert_eq!(rows.len(), ALL.len());
+        assert_eq!(res["market_summary"]["quoted"], ALL.len());
+        for row in rows {
+            let market = &row["market"];
+            for key in [
+                "reference_price",
+                "current_price",
+                "price_unit",
+                "trend",
+                "band",
+                "cleared_volume",
+                "unmet_orders",
+                "settled",
+            ] {
+                assert!(market.get(key).is_some(), "{key} missing from {market}");
+            }
+            assert!(market["cleared_volume"].is_null(), "an uncleared market invented volume: {market}");
+            assert!(market["unmet_orders"].is_null(), "an uncleared market invented unmet demand: {market}");
+            let stock = &row["stock"];
+            assert!(stock.get("quantity").is_some());
+            if row["id"] == "oil" {
+                assert!(stock["quantity"].is_null());
+                assert!(stock["months_cover"].is_null());
+            } else {
+                assert!(stock["quantity"].is_number());
+                assert!(stock["months_cover"].is_number());
+            }
+            assert_eq!(stock["physical"], false);
+        }
+        let iron = rows.iter().find(|r| r["id"] == "iron").unwrap();
+        assert_eq!(iron["market"]["current_price"], iron["market"]["reference_price"]);
+        assert_eq!(iron["market"]["band"], "normal");
+        assert_eq!(iron["stock"]["unit"], "kt", "a physical pile is not a monthly flow");
+        let oil = rows.iter().find(|r| r["id"] == "oil").unwrap();
+        assert_eq!(oil["market"]["current_price"], g.world.oil_price);
+        assert_eq!(oil["market"]["reference_price"], g.world.oil_price);
+
+        // Once the opt-in market clears, nulls become actual settled zeros or
+        // volumes, and the national pile identifies itself as physical.
+        let mut live = Game::new(1990, Some(NationId::USA));
+        live.world.rules.resource_market = true;
+        tick_month(&mut live.world, &[]);
+        let live_res = resources_json(&live.world, NationId::USA);
+        let live_iron = live_res["rows"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|r| r["id"] == "iron")
+            .unwrap();
+        assert_eq!(live_iron["market"]["settled"], true);
+        assert!(live_iron["market"]["cleared_volume"].is_number());
+        assert!(live_iron["market"]["unmet_orders"].is_number());
+        assert_eq!(live_iron["stock"]["physical"], true);
+        assert!(live_iron["stock"]["quantity"].is_number());
+
+        // Two plain contracts prove that receipts and payments are read in
+        // the correct direction for the seated nation.
+        g.world.resources.contracts.push(resources::Contract {
+            id: 900,
+            from: NationId::Australia,
+            to: NationId::USA,
+            give: vec![Leg::Commodity { c: Commodity::Bauxite, per_month: 1.0 }],
+            take: vec![Leg::Money { bn_per_year: 1.25 }],
+            months_left: 12,
+            months_total: 12,
+            since: 0,
+            depth: 0.0,
+        });
+        g.world.resources.contracts.push(resources::Contract {
+            id: 901,
+            from: NationId::USA,
+            to: NationId::Japan,
+            give: vec![Leg::Commodity { c: Commodity::Iron, per_month: 1.0 }],
+            take: vec![Leg::Money { bn_per_year: 2.0 }],
+            months_left: 12,
+            months_total: 12,
+            since: 0,
+            depth: 0.0,
+        });
+        g.world.resources.mine_projects.push(resources::MineProject {
+            district: "US-CA".into(),
+            commodity: Commodity::Copper,
+            started_by: NationId::USA,
+            months_left: 6,
+            months_total: 12,
+            investment_bn: 9.0,
+            output: 1.0,
+        });
+        let foreign = foreign_commitments_json(&g.world, NationId::USA);
+        assert_eq!(foreign["contract_imports_bn"], 1.25);
+        assert_eq!(foreign["export_receipts_bn"], 2.0);
+        assert_eq!(foreign["net_bn"], -0.75);
+        assert_eq!(foreign["mine_investment_bn"], 9.0);
+        assert_eq!(foreign["mine_investment_kind"], "sunk_one_time");
+        assert_eq!(foreign["outflows_bn"], 1.25, "sunk mine capital is not an annual outflow");
+        assert_eq!(foreign["spot_settled"], false);
+        assert_eq!(nation_json(&g.world, g.world.nation(NationId::USA))["foreign_commitments"], foreign);
+        assert!(nation_json(&g.world, g.world.nation(NationId::Japan))["foreign_commitments"].is_null());
+
+        for needle in [
+            "function marketStripHtml(rows)",
+            "<button type=\"button\" class=\"marketchip",
+            "aria-pressed=\"${r.id === stock.sel}\"",
+            "function marketCardHtml(r)",
+            "function foreignCommitmentsHtml(m)",
+            "m.current_price",
+            "m.cleared_volume",
+            "pile.quantity",
+            "f.net_bn",
+        ] {
+            assert!(INDEX.contains(needle), "the page no longer reads {needle:?}");
+        }
+        assert!(!INDEX.contains("current_price / reference_price"));
     }
 
     /// The talks answer is `evaluate`'s, printed before the offer is sent:

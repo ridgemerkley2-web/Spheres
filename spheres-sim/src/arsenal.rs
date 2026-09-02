@@ -540,6 +540,9 @@ pub fn available(n: &Nation) -> Vec<u16> {
 /// and everything already held gets a month older. Nothing here rolls dice: a
 /// procurement programme is a budget line, not a gamble.
 pub fn tick(w: &mut WorldState) {
+    // Technology has already advanced this month, so the spot market now
+    // sees the exact procurement recipes this tick will attempt to consume.
+    crate::resources::clear_spot_market(w);
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     for id in ids {
         let budget = budget_of(w.nation(id));
