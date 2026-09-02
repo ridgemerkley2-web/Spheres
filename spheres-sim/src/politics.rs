@@ -18,23 +18,40 @@ pub fn seated_political_capital(stability: f64, inflation: f64, authoritarianism
 /// is a stock and not a flow: a government that has spent everything cannot act
 /// again until it has delivered something, which is the whole point of having
 /// the currency at all.
+/// WHERE A GOVERNMENT'S STANDING CEILING SITS BEFORE PENSIONS TOUCHES IT, and
+/// before the 0..100 clamp.
+///
+/// Factored out of `political_capital` so the pensions CARD can be told what
+/// the arm actually delivers rather than what its slope would deliver on an
+/// unbounded scale. The clamp is the whole reason: `pensions_standing` is
+/// `gap * 1000.0`, the largest reachable pensions gap is about 0.145, and the
+/// ceiling saturates long before that -- so a card quoting the raw slope
+/// promises ten points per point of GDP at dial positions that deliver none.
+/// `ministries::arms_at` differences `clamp(this + arm)` against `clamp(this)`,
+/// which is exactly what the sim charges.
+pub fn standing_target(w: &WorldState, id: NationId) -> f64 {
+    let composition = crate::government::standing_modifier(w, id);
+    let n = w.nation(id);
+    let mut target = seated_political_capital(n.stability, n.inflation, n.authoritarianism);
+    // Delivering growth is the ordinary way a government earns the right to
+    // ask for anything, and a recession is the ordinary way it loses it.
+    target += (n.growth_last * 100.0).clamp(-6.0, 6.0) * 2.2;
+    // A war costs a government at home long before it costs it at the front.
+    target -= n.war_exhaustion * 45.0;
+    // ...and so does the government's own shape. A four-party coalition
+    // stretched across the ideological plane holds a lower ceiling than a
+    // single-party majority, and a regime that has bought its army and its
+    // security service holds a higher one than its record earns. This is
+    // where the two halves of `government.rs` reach the budget.
+    target += composition;
+    target
+}
+
 fn political_capital(w: &mut WorldState) {
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     for id in ids {
-        let composition = crate::government::standing_modifier(w, id);
+        let mut target = standing_target(w, id);
         let n = w.nation_mut(id);
-        let mut target = seated_political_capital(n.stability, n.inflation, n.authoritarianism);
-        // Delivering growth is the ordinary way a government earns the right to
-        // ask for anything, and a recession is the ordinary way it loses it.
-        target += (n.growth_last * 100.0).clamp(-6.0, 6.0) * 2.2;
-        // A war costs a government at home long before it costs it at the front.
-        target -= n.war_exhaustion * 45.0;
-        // ...and so does the government's own shape. A four-party coalition
-        // stretched across the ideological plane holds a lower ceiling than a
-        // single-party majority, and a regime that has bought its army and its
-        // security service holds a higher one than its record earns. This is
-        // where the two halves of `government.rs` reach the budget.
-        target += composition;
         // PENSIONS' first named arm: a standing cut BLEEDS THE CEILING for as
         // long as it stands.
         //

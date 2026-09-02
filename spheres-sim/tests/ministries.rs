@@ -370,11 +370,22 @@ fn health_returns_the_wounded_only_in_war() {
         "an unfunded medical corps is not neutral in war"
     );
     let got = war::health_retention(&b, ME);
-    let want = 1.0 + DELTA * 20.0;
+    // THE SLOPE IS 6.0, DERIVED, and it was the design's first-draft x20 until
+    // the dial was measured. Health's reachable raise runs min 0.09575 / mean
+    // 0.10112 / max 0.10725 across the 137 living 1990 nations, and at x20 the
+    // 1.60 clamp was met at a gap of 0.030 — so 68.7% to 72.0% of every nation's
+    // raise range (mean 70.3%) bought nothing on this arm. At 6.0 the ceiling is
+    // met at 0.10000, the measured mean reach to within 1.1%, which is the
+    // derivation education's own 15.0 carries.
+    //
+    // SECOND RED CHECK, run 2026-09-02 and reverted: the slope left at its old
+    // 20.0. RED: "a funded medical corps rebuilt at 1.1000x replacement, not the
+    // 1.0300x its x6 slope buys".
+    let want = 1.0 + DELTA * 6.0;
     assert!(
         (got - want).abs() < 1e-12,
         "a funded medical corps rebuilt at {got:.4}x replacement, not the {want:.4}x \
-         its x20 slope buys"
+         its x6 slope buys"
     );
     // And the arm reaches the state: with the fighting resolved on both sides
     // from the same starting force, the two worlds no longer hold the same army.
@@ -579,18 +590,30 @@ fn the_infrastructure_stock_is_built_and_lost_over_years() {
 /// potential 0.035, unemployment 0.24 and business-pressure 0.04 addends are
 /// gone, and there is no energy system: the design says so in as many words.
 ///
-/// RED CHECK, run 2026-09-02 and reverted: the x20 slope set to 0.0 — the arm
+/// RED CHECK, run 2026-09-02 and reverted: the slope set to 0.0 — the arm
 /// present but dead. RED: "ministry 5 moved the wrong set of arms", `[]`
 /// against `["munitions"]`.
+///
+/// SECOND RED CHECK, run 2026-09-02 and reverted: the slope left at its old
+/// 20.0. RED: "industry refilled 1.1000x, not the 1.0210x its x4.2 slope buys".
 #[test]
 fn industry_refills_the_magazines() {
     let (base, with) = moves_exactly(BUDGET_INDUSTRY, DELTA, &["munitions"]);
     // Both start at 0.5, so the step is the refill.
     let ratio = (with.munitions - 0.5) / (base.munitions - 0.5);
-    let want = 1.0 + DELTA * 20.0;
+    // THE SLOPE IS 4.2, DERIVED, and this is the ministry where the design's
+    // first-draft x20 cost the most, because INDUSTRY HAS EXACTLY ONE ARM: when
+    // it saturates the whole card is dead and the page prints "another point of
+    // GDP buys nothing here" for every remaining press. Industry's reachable
+    // raise runs min 0.03900 / mean 0.09505 / max 0.11790 across the 137 living
+    // 1990 nations, and at x20 the 1.40 clamp was met at a gap of 0.020, so
+    // between 48.7% and 83.0% of the raise range (mean 78.0%) bought nothing at
+    // all. At 4.2 the ceiling is met at 0.09524, the measured mean reach to
+    // within 0.2%.
+    let want = 1.0 + DELTA * 4.2;
     assert!(
         (ratio - want).abs() < 1e-9,
-        "industry refilled {ratio:.4}x, not the {want:.4}x its x20 slope buys"
+        "industry refilled {ratio:.4}x, not the {want:.4}x its x4.2 slope buys"
     );
 }
 
@@ -1004,4 +1027,324 @@ fn the_enacted_ministry_map_is_exactly_this() {
             "{name} reaches demand through a level route: {moved:?}"
         );
     }
+}
+
+// ---------------------------------------------------------------------------
+// NO CARD PROMISES WHAT THE SIM CLAMPS AWAY
+// ---------------------------------------------------------------------------
+
+/// The stability integrator run to its fixed point with everything else frozen.
+///
+/// DELIBERATELY NOT `ministries::stability_settles_at`. That function is the
+/// closed form and is the thing under test; this is the loop the closed form
+/// claims to solve, written out from `economy::tick`'s own two lines, so the bar
+/// below compares two independent computations rather than comparing a function
+/// to itself. spheres-web's `a_stability_arm_is_quoted_as_where_order_settles`
+/// is the tautology this replaces: it pinned the card against `arms_at` and was
+/// green while the card promised +168 points on a 0..100 scale.
+///
+/// THE LIMIT OF THIS BAR, recorded rather than assumed (iron rule 7's power
+/// half): the loop is a TRANSCRIPTION of the integrator, so a change to the
+/// integrator's shape makes it stale rather than red. What it can see, and what
+/// it exists for, is the card and the fixed point disagreeing -- which is what
+/// they did.
+fn settle(pressure: f64, start: f64) -> f64 {
+    let mut s = start;
+    for _ in 0..6000 {
+        let ds = pressure + (60.0 - s) * 0.01;
+        s = (s + ds / 12.0 * 12.0 * 0.25).clamp(0.0, 100.0);
+    }
+    s
+}
+
+/// A STABILITY ARM IS WHERE THE NATION ACTUALLY SETTLES, bound included.
+///
+/// `stability_destination` used to be `ds / MEAN_REVERSION` and stopped there,
+/// but `economy::tick` clamps the integrator to 0..100 and the integrator does
+/// not merely approach that bound, it stops at it. MEASURED on this tree before
+/// the repair, by running `settle` to its fixed point: the USA settles at 48.933
+/// with no gap; a security gap of +0.030 was quoted +48.0 and delivered +48.000,
+/// but +0.050 was quoted +80.0 and delivered +51.067, and at the top of the dial
+/// (+0.10495) it was quoted +167.9 and delivered +51.067 -- a displacement that
+/// is not merely wrong but impossible on a 0..100 scale for a player sitting at
+/// 78. India, base 29.380, was quoted +169.0 at the top of security and
+/// delivered +70.620.
+///
+/// MEASURED AFTER, this run, over four nations x three ministries x six dial
+/// positions each including the cap: every card value agrees with `settle`'s
+/// fixed point to within 1.4e-5, which is the residual of a 6000-step approach
+/// and not a disagreement about the answer.
+///
+/// AN INVARIANT (iron rule 7's carve-out): a universal claim about deterministic
+/// arithmetic, so the four nations are a budget question and not a sampling one.
+/// They cover the three regimes -- the USA and Belgium settle mid-scale, India
+/// low, and BRAZIL AT 1990 SETTLES AT EXACTLY 0.000 because hyperinflation
+/// swamps everything else, so for Brazil the whole stability dial honestly buys
+/// nothing and the card now says so instead of promising +168.
+///
+/// RED CHECK, run 2026-09-02 and reverted: `stability_destination` restored to
+/// `ds_contribution / MEAN_REVERSION`, the shipped body. RED at the first
+/// clamped sample -- "USA ministry 2 at gap 0.05000 is quoted 70.0000000 where
+/// the integrator settles at 51.0674913".
+#[test]
+fn a_stability_arm_is_the_integrators_own_fixed_point() {
+    // The loop's own sanity, so a broken loop cannot silently agree with a
+    // broken card: with no pressure at all the integrator's attractor is 60.
+    // 1e-4 is the loop's own residual and not a slackened bar: the approach is
+    // geometric at 0.0025 a step, so 6000 steps from 12.0 leave
+    // 48 * exp(-15) = 1.5e-5 on the table. Measured, not guessed.
+    assert!((settle(0.0, 12.0) - 60.0).abs() < 1e-4, "the integrator's attractor is not 60");
+
+    let mut checked = 0usize;
+    let mut clamped_samples = 0usize;
+    for me in [NationId::USA, NationId::India, NationId::Brazil, NationId::Belgium] {
+        let mut w = staged(1990);
+        w.player = Some(me);
+        w.nation_mut(me).political_capital = 100.0;
+        let year = w.year;
+        let allocations = w.nation(me).budget_for(year).allocations;
+        apply_command(
+            &mut w,
+            &Command::SetAnnualBudget { nation: me, fiscal_year: year, allocations },
+        )
+        .expect("the books open");
+        let n = w.nation(me);
+        let pressure = economy::stability_pressure_of(&w, n);
+        let base = settle(pressure, n.stability);
+
+        for m in [BUDGET_HOUSING, BUDGET_PENSIONS, BUDGET_SECURITY] {
+            let reference = n.budget_for(year).reference[m];
+            let top = BUDGET_CAPS[m] - reference;
+            for gap in [0.005, 0.010, 0.020, 0.030, 0.050, top] {
+                let arm = spheres_sim::ministries::stability_arm(m, gap)
+                    .expect("these three own a stability arm");
+                let want = settle(pressure + arm, n.stability) - base;
+                let card = spheres_sim::ministries::arms_at(&w, n, m, reference + gap)
+                    .into_iter()
+                    .find(|a| a.id == "stability")
+                    .expect("the card carries a stability arm")
+                    .value;
+                assert!(
+                    (card - want).abs() < 1e-4,
+                    "{me:?} ministry {m} at gap {gap:.5} is quoted {card:.7} where the \
+                     integrator settles at {want:.7}"
+                );
+                if (want - arm / spheres_sim::ministries::MEAN_REVERSION).abs() > 1e-4 {
+                    clamped_samples += 1;
+                }
+                checked += 1;
+            }
+        }
+    }
+    // POWER: the sweep has to CONTAIN samples where the clamp binds, or it would
+    // be green against a card that ignored the bound entirely.
+    assert!(
+        clamped_samples > 0,
+        "{clamped_samples} of {checked} samples were clamped -- this bar saw nothing"
+    );
+    println!("{checked} stability samples agree, {clamped_samples} of them past the bound");
+}
+
+/// PENSIONS' STANDING ARM DIES WHERE THE 100-POINT CEILING BINDS, and the card
+/// dies with it.
+///
+/// `politics.rs` adds `pensions_standing(gap)` to the standing target and clamps
+/// the target to 0..100 on the next line; the arm's slope is 1000.0 and the
+/// largest reachable pensions gap is about 0.145, so the ceiling saturates long
+/// before the dial runs out. The source comment beside the slope already SAID
+/// so, and the card denied it.
+///
+/// MEASURED on the tree as it stood, Brazil with the books open, one
+/// `politics::tick`, seed 1990: no gap -> political_capital 20.7002; +0.005 ->
+/// 20.9285; +0.020 -> 21.3485; +0.040 -> 21.9085; +0.060 -> 22.4685; +0.100 ->
+/// 23.0954; +0.14120, the top of the dial -> 23.0954, identical. Bisected, the
+/// ceiling binds at gap 0.08239, so the top 41.7% of the dial bought ZERO
+/// standing while the served `per_point` stayed at +10.000000 for Brazil,
+/// Belgium and the USA alike.
+///
+/// AN INVARIANT. RED CHECK, run 2026-09-02 and reverted: the pensions `standing`
+/// arm in `arms_at` restored to the bare `pensions_standing(gap)`. RED -- "the
+/// card still charges for a press past the ceiling: 141.2 then 151.2", two
+/// displacements of a 100-point ceiling that a player sitting anywhere on the
+/// scale can never be paid.
+#[test]
+fn the_pensions_standing_arm_dies_with_the_ceiling() {
+    let mut w = staged(1990);
+    w.nation_mut(ME).political_capital = 100.0;
+    let year = w.year;
+    let allocations = w.nation(ME).budget_for(year).allocations;
+    apply_command(&mut w, &Command::SetAnnualBudget { nation: ME, fiscal_year: year, allocations })
+        .expect("the books open");
+    let reference = w.nation(ME).budget_for(year).reference[BUDGET_PENSIONS];
+    let top = BUDGET_CAPS[BUDGET_PENSIONS] - reference;
+
+    // What one month of `politics::tick` actually does to the stock, per gap.
+    let after = |gap: f64| {
+        let mut w2 = w.clone();
+        w2.nation_mut(ME).annual_budget.as_mut().unwrap().allocations[BUDGET_PENSIONS] =
+            reference + gap;
+        w2.nation_mut(ME).political_capital = 20.0;
+        politics::tick(&mut w2);
+        w2.nation(ME).political_capital
+    };
+    // The ceiling is genuinely saturated at the top of the dial: two very
+    // different gaps produce the SAME stock, bit for bit.
+    assert_eq!(
+        after(0.100).to_bits(),
+        after(top).to_bits(),
+        "the pensions ceiling is not saturated at the top of the dial, so this bar is pointed \
+         at nothing"
+    );
+    // ...and the card agrees, rather than promising ten points a percent there.
+    let arm_at = |alloc: f64| {
+        spheres_sim::ministries::arms_at(&w, w.nation(ME), BUDGET_PENSIONS, alloc)
+            .into_iter()
+            .find(|a| a.id == "standing")
+            .expect("pensions carries a standing arm")
+            .value
+    };
+    let at_top = arm_at(reference + top);
+    let a_point_further = arm_at(reference + top + 0.01);
+    assert_eq!(
+        at_top.to_bits(),
+        a_point_further.to_bits(),
+        "the card still charges for a press past the ceiling: {at_top} then {a_point_further}"
+    );
+    // The realised displacement is bounded by the scale it lives on.
+    assert!(
+        at_top <= 100.0 && at_top > 0.0,
+        "the card promises {at_top} points of a 100-point ceiling"
+    );
+    // And the arm is still LIVE at the bottom of the dial, so the repair did not
+    // simply zero it: half a point of GDP is the design's own sizing, "+0.5% of
+    // GDP is about +5 points".
+    let small = arm_at(reference + DELTA);
+    assert!(
+        (small - 5.0).abs() < 1e-9,
+        "half a point of GDP buys {small} points of ceiling, not the design's 5.0"
+    );
+    println!("pensions standing: {small:.3} at +0.5% of GDP, {at_top:.3} at the top of the dial");
+}
+
+/// SCIENCE'S ARM IS THE REALISED CHANGE IN ABSORPTIVE CAPACITY, ceiling
+/// included.
+///
+/// `tech::absorptive_capacity` clamps its sum to 0.05..1.20, and science's arm
+/// is largest exactly where a nation has no headroom left -- the 6.0 slope was
+/// sized so a maximal programme is worth "roughly the whole of the 0.40
+/// development term", and a nation that HAS the development term has already
+/// spent that room. MEASURED this run, seed 1990, books open, bisecting to the
+/// first gap whose capacity equals the value at the cap: USA base 0.9746 and the
+/// ceiling binds at gap 0.03757 of a 0.07475 reachable range, so the top 49.7%
+/// of the dial buys nothing; Japan 0.9119 and 33.8%; Germany 0.8435 and 20.0%;
+/// Brazil 0.4715 and never. The served `per_point` was +0.060000 at the cap for
+/// all three of Brazil, Belgium and the USA.
+///
+/// This bar reads the card against `tech::absorptive_capacity` itself -- the
+/// function the price side calls -- rather than against the arm's own slope.
+///
+/// RED CHECK, run 2026-09-02 and reverted: science's arm in `arms_at` restored
+/// to the bare `science_absorption(gap)`. RED -- "USA science at gap 0.04000 is
+/// quoted 0.2400000 where capacity moves 0.2257086".
+#[test]
+fn the_science_arm_is_the_capacity_the_sim_reaches() {
+    let mut checked = 0usize;
+    let mut clamped = 0usize;
+    for me in [NationId::USA, NationId::Japan, NationId::Germany, NationId::Brazil] {
+        let mut w = staged(1990);
+        w.player = Some(me);
+        w.nation_mut(me).political_capital = 100.0;
+        let year = w.year;
+        let allocations = w.nation(me).budget_for(year).allocations;
+        apply_command(
+            &mut w,
+            &Command::SetAnnualBudget { nation: me, fiscal_year: year, allocations },
+        )
+        .expect("the books open");
+        let reference = w.nation(me).budget_for(year).reference[BUDGET_SCIENCE];
+        let top = BUDGET_CAPS[BUDGET_SCIENCE] - reference;
+        let dev = tech::dev_of(w.nation(me));
+        let base = tech::absorptive_capacity(&w, w.nation(me), dev);
+
+        for gap in [0.005, 0.010, 0.020, 0.040, top] {
+            // What the SIM's capacity actually becomes at that allocation.
+            let mut w2 = w.clone();
+            w2.nation_mut(me).annual_budget.as_mut().unwrap().allocations[BUDGET_SCIENCE] =
+                reference + gap;
+            let want = tech::absorptive_capacity(&w2, w2.nation(me), dev) - base;
+            let card =
+                spheres_sim::ministries::arms_at(&w, w.nation(me), BUDGET_SCIENCE, reference + gap)
+                    .into_iter()
+                    .find(|a| a.id == "reach")
+                    .expect("science carries a reach arm")
+                    .value;
+            assert!(
+                (card - want).abs() < 1e-12,
+                "{me:?} science at gap {gap:.5} is quoted {card:.7} where capacity moves {want:.7}"
+            );
+            if (want - gap * 6.0).abs() > 1e-9 {
+                clamped += 1;
+            }
+            checked += 1;
+        }
+    }
+    assert!(clamped > 0, "no sample met the 1.20 ceiling -- this bar saw nothing");
+    println!("{checked} science samples agree, {clamped} of them past the 1.20 ceiling");
+}
+
+/// DIPLOMACY'S COUNTER-INTELLIGENCE ARM CARRIES THE 0.85 CEILING.
+///
+/// `statecraft::exposure_probability` clamps to 0.05..0.85; the arm's slope is
+/// 10.0 and the largest reachable diplomacy gap is about 0.076, so the card
+/// offered up to +75.8pp of exposure into a probability with at most 75 points
+/// of room from a COLD channel against a pure democracy, and far less in
+/// practice. MEASURED: the largest reachable gap is 0.07580 for Brazil, 0.07570
+/// for Belgium and the USA and 0.07590 for India, and the served `per_point` at
+/// the cap was +0.100000 for all of them.
+///
+/// The card is quoted at zero heat, which is the FIRST operation mounted against
+/// the nation and the case where the arm buys the most; heat accrues 0.18 an
+/// operation and only ever eats headroom, which the arm's note now says.
+///
+/// RED CHECK, run 2026-09-02 and reverted: the counterintel arm restored to the
+/// bare `diplomacy_counterintel(gap)`. RED -- "the card offers 0.7580000 of
+/// exposure where the probability moves 0.7200000".
+#[test]
+fn the_counterintel_arm_carries_the_exposure_ceiling() {
+    let w = staged(1990);
+    let n = w.nation(ME);
+    let year = w.year;
+    let reference = n.budget_for(year).reference[BUDGET_DIPLOMACY];
+    let top = BUDGET_CAPS[BUDGET_DIPLOMACY] - reference;
+    let cold = spheres_sim::statecraft::exposure_probability(0.0, n.authoritarianism, 0.0);
+
+    let mut clamped = 0usize;
+    for gap in [0.005, 0.020, 0.050, top] {
+        let want = spheres_sim::statecraft::exposure_probability(
+            0.0,
+            n.authoritarianism,
+            spheres_sim::ministries::diplomacy_counterintel(gap),
+        ) - cold;
+        let card = spheres_sim::ministries::arms_at(&w, n, BUDGET_DIPLOMACY, reference + gap)
+            .into_iter()
+            .find(|a| a.id == "counterintel")
+            .expect("diplomacy carries a counterintel arm")
+            .value;
+        assert!(
+            (card - want).abs() < 1e-12,
+            "the card offers {card:.7} of exposure where the probability moves {want:.7}"
+        );
+        // The claim that matters: no card value can exceed the room the clamp
+        // leaves, whatever the slope.
+        assert!(
+            card <= 0.85 - cold + 1e-12,
+            "the card offers {card:.7} into a probability with {:.7} of room",
+            0.85 - cold
+        );
+        if (want - gap * 10.0).abs() > 1e-9 {
+            clamped += 1;
+        }
+    }
+    assert!(clamped > 0, "no sample met the 0.85 ceiling -- this bar saw nothing");
+    println!("counterintel bounded: cold base {cold:.4}, {clamped} samples past the ceiling");
 }

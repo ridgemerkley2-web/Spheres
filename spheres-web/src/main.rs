@@ -4918,29 +4918,68 @@ mod tests {
     /// security budget does nothing. This pins the ratio at exactly 100 for all
     /// three ministries that own a stability arm, and pins that the card is not
     /// quoting the raw `ds` contribution instead.
+    ///
+    /// RE-EXPRESSED 2026-09-02, intent preserved, nothing widened. `60 + 100x`
+    /// is only half the fixed point: the integrator CLAMPS to 0..100 and stops
+    /// there, so `stability_destination` now differences two bounded
+    /// destinations and the ratio of 100 holds exactly where there is room on
+    /// the scale and honestly falls to zero where there is not. Two changes
+    /// follow, and both are the bar getting stricter rather than looser.
+    ///
+    /// First, the sample. It read `per_point[0]`, which is 0.20 of GDP BELOW the
+    /// reference -- a cut so deep the destination is pinned at the bottom of the
+    /// scale, so it now reads 0 for every ministry. It reads
+    /// `MINISTRY_CURVE_ZERO` instead, which is the enacted settlement itself and
+    /// the only sample a player is actually sitting on.
+    ///
+    /// Second, the nation. Brazil in 1990 settles at EXACTLY 0.000 -- measured
+    /// by running the integrator to its fixed point, its stability pressure is
+    /// -11.756 against hyperinflation -- so no press anywhere on Brazil's dial
+    /// moves the destination at all, and Brazil can no longer witness the ratio.
+    /// The USA settles at 48.933 and has room for all three arms, so it is the
+    /// nation that can. Brazil stays in the test as the other half of the claim.
+    ///
+    /// THE THIRD ARM OF THE BAR IS NEW: past the top of the scale the served
+    /// `per_point` must be exactly zero, which is the condition the page's
+    /// "another point of GDP buys nothing here" branch reads. Before the repair
+    /// it was +16.000000 for security, +14.000000 for housing and +12.000000 for
+    /// pensions AT THE CAP, for Brazil, Belgium and the USA alike, so that branch
+    /// could never fire.
+    ///
+    /// RED CHECK, run 2026-09-02 and reverted: `stability_destination` restored
+    /// to `ds_contribution / MEAN_REVERSION`, the shipped body. RED -- "ministry
+    /// 2 still quotes 14 a point at the top of the dial, where the integrator is
+    /// already pinned at 100", left 14.0 against right 0.0.
     #[test]
     fn a_stability_arm_is_quoted_as_where_order_settles() {
         use spheres_sim::ministries;
         use spheres_sim::world::{BUDGET_HOUSING, BUDGET_PENSIONS, BUDGET_SECURITY};
-        let g = Game::new(1990, Some(NationId::Brazil));
-        let v = ministries_json(&g.world, NationId::Brazil);
-        let list = v["ministries"].as_array().unwrap();
-
-        for (m, ds_of, slope) in [
+        let arms = [
             (BUDGET_HOUSING, ministries::housing_stability as fn(f64) -> f64, 14.0),
             (BUDGET_PENSIONS, ministries::pensions_stability as fn(f64) -> f64, 12.0),
             (BUDGET_SECURITY, ministries::security_stability as fn(f64) -> f64, 16.0),
-        ] {
-            let arm = list[m]["arms"]
+        ];
+        let arm_of = |v: &serde_json::Value, m: usize| {
+            v["ministries"].as_array().unwrap()[m]["arms"]
                 .as_array()
                 .unwrap()
                 .iter()
                 .find(|a| a["id"] == "stability")
-                .unwrap_or_else(|| panic!("ministry {m} still owns a stability arm"));
+                .unwrap_or_else(|| panic!("ministry {m} still owns a stability arm"))
+                .clone()
+        };
+
+        // A nation with room on the scale: the ratio is exactly 100, which is
+        // the original claim.
+        let g = Game::new(1990, Some(NationId::USA));
+        let v = ministries_json(&g.world, NationId::USA);
+        for (m, ds_of, slope) in arms {
+            let arm = arm_of(&v, m);
             // The per-point step IS the slope, in points of destination. That is
             // the whole claim: SECURITY's 16.0 is +16 points of where the nation
             // settles per point of GDP, not +0.16 of anything.
-            let per = arm["per_point"].as_array().unwrap()[0].as_f64().unwrap();
+            let per =
+                arm["per_point"].as_array().unwrap()[MINISTRY_CURVE_ZERO].as_f64().unwrap();
             assert!(
                 (per - slope).abs() < 1e-9,
                 "ministry {m} quotes {per} per point of GDP, not the {slope} it settles at"
@@ -4953,6 +4992,30 @@ mod tests {
                 (per / ds - 1.0 / ministries::MEAN_REVERSION).abs() < 1e-6,
                 "ministry {m} is quoting the monthly push, not the destination"
             );
+            // Past the top of the scale the card charges nothing, because the
+            // integrator pays nothing.
+            let last = arm["per_point"].as_array().unwrap().last().unwrap().as_f64().unwrap();
+            assert_eq!(
+                last, 0.0,
+                "ministry {m} still quotes {last} a point at the top of the dial, where the \
+                 integrator is already pinned at 100"
+            );
+        }
+
+        // And a nation with NO room: Brazil's 1990 hyperinflation puts its
+        // destination on the floor, so every sample of every stability arm is an
+        // honest zero rather than a promise of +168.
+        let g = Game::new(1990, Some(NationId::Brazil));
+        let v = ministries_json(&g.world, NationId::Brazil);
+        for (m, _, _) in arms {
+            for (i, per) in arm_of(&v, m)["per_point"].as_array().unwrap().iter().enumerate() {
+                assert_eq!(
+                    per.as_f64().unwrap(),
+                    0.0,
+                    "Brazil settles at the floor, but ministry {m} sample {i} still charges for \
+                     a press"
+                );
+            }
         }
     }
 

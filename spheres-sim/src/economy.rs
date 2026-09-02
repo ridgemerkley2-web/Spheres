@@ -1120,6 +1120,94 @@ pub fn growth_terms(
 }
 
 
+/// THE STANDING PRESSURE ON A NATION'S ORDER: everything the stability
+/// integrator adds in a month EXCEPT the mean reversion.
+///
+/// Factored out of `tick` so the browser can be told where a budget takes a
+/// nation without a second copy of this sum. It is not a system and it writes
+/// nothing: `tick` calls it, adds `(60 - stability) * MEAN_REVERSION`, and
+/// integrates. The fixed point is therefore `60 + pressure / MEAN_REVERSION`
+/// BOUNDED TO 0..100 by the integrator's own clamp, which is what
+/// `ministries::stability_settles_at` computes and what every stability CARD is
+/// now quoted through.
+///
+/// `budget_gap` is passed in rather than read off the nation because `tick`
+/// gates the ministry channels on the nation being the PLAYER (the design's
+/// point 5); a function reading `n.budget_gap` directly would quietly hand the
+/// three arms to every AI government that ever seats a plan.
+pub fn stability_pressure(
+    n: &Nation,
+    budget_gap: &[f64; BUDGET_MINISTRIES],
+    unemployment: f64,
+    is_player: bool,
+    sanction_share: f64,
+) -> f64 {
+    let mut ds = 0.0;
+    ds += (n.growth_last - 0.015) * 6.0; // growth legitimizes
+    ds -= (n.inflation - 0.05).max(0.0) * 4.0; // high inflation corrodes
+    if is_player {
+        ds -= (unemployment - 0.06).max(0.0) * 1.5;
+    }
+    // `ds += social_gap * 12.0` STOOD HERE AND IS GONE. It was the
+    // pre-ministry route from the social aggregate to stability, and the
+    // three surviving addends below are the same claim made per ministry:
+    // a nation that raises housing raises `social_total`, so both fired,
+    // and the aggregate one could not be attributed to anything a player
+    // had done. Inert on every default path — `social_spend_gdp` is `None`
+    // for all 137 nations at 1990 and `social_spend()` then returns
+    // `baseline_social_spend()` by definition, so `social_gap` was exactly
+    // 0.0 — and a live channel for a player who had moved the old slider.
+    //
+    // HEALTH 8.0 and EDUCATION 5.0 are removed with it: neither ministry
+    // keeps a stability arm, because neither one's real claim is about
+    // order. DIPLOMACY 3.0 is removed for the same reason. What is left is
+    // the three ministries whose whole subject is whether the public is
+    // content: HOUSING, PENSIONS and SECURITY.
+    ds += crate::ministries::housing_stability(budget_gap[BUDGET_HOUSING])
+        + crate::ministries::pensions_stability(budget_gap[BUDGET_PENSIONS])
+        + crate::ministries::security_stability(budget_gap[BUDGET_SECURITY]);
+    ds -= n.war_exhaustion * 1.2;
+    // CONVERTED. This was `sanction_count * 0.15` — the first of the four
+    // surviving flag-counting sanction channels, and the one the
+    // SANCTION_BITE comment above named as "the stability term below". It is
+    // now weighed the way that comment says the honest measure is weighed.
+    //
+    // The coefficient is not re-derived and is not free: it is the old one
+    // carried across the SAME conversion the shipped growth drag used.
+    // `0.006 * count -> 0.020 * weight` is exactly `c / 0.30`, i.e. the two
+    // rules agree when a sanctioner weighs 30% of world output — that
+    // sentence is written out in the SANCTION_BITE comment. Applying it here,
+    // `0.15 / 0.30 = 0.50`. So a single sanctioner of the size the shipped
+    // conversion was checked against costs precisely what one flag cost, and
+    // the only thing that changes is what a coalition costs: at G5 weight
+    // (~0.52) the bill falls from 0.75 to 0.26 a month, and it can no longer
+    // rise without limit as the roster grows.
+    ds -= sanction_share * 0.50;
+    if n.system == EconomySystem::Command && n.growth_last < 0.0 {
+        ds -= 0.5; // command legitimacy is growth-bought
+    }
+    ds
+}
+
+/// The same pressure, read off the world for a nation that is not mid-tick.
+///
+/// What the ministry CARDS use. It reproduces `tick`'s player gate exactly,
+/// including that a nation which is not the player carries no ministry arms at
+/// all -- so its card shows a flat zero rather than a promise the sim will not
+/// keep.
+pub fn stability_pressure_of(w: &WorldState, n: &Nation) -> f64 {
+    let is_player = w.player == Some(n.id);
+    let budget_gap: [f64; BUDGET_MINISTRIES] =
+        std::array::from_fn(|i| if is_player { n.budget_gap(i) } else { 0.0 });
+    stability_pressure(
+        n,
+        &budget_gap,
+        unemployment_rate(n, w.at_war(n.id)),
+        is_player,
+        w.sanction_weight(n.id),
+    )
+}
+
 pub fn tick(w: &mut WorldState) {
     oil_market(w);
 
@@ -1401,53 +1489,16 @@ pub fn tick(w: &mut WorldState) {
         n.population *= 1.0 + (population_growth(n) + demographic_support) / 12.0;
 
         // ---- Stability ----
-        let mut ds = 0.0;
-        ds += (n.growth_last - 0.015) * 6.0; // growth legitimizes
-        ds -= (n.inflation - 0.05).max(0.0) * 4.0; // high inflation corrodes
-        if Some(id) == player {
-            ds -= (unemployment - 0.06).max(0.0) * 1.5;
-        }
-        // `ds += social_gap * 12.0` STOOD HERE AND IS GONE. It was the
-        // pre-ministry route from the social aggregate to stability, and the
-        // three surviving addends below are the same claim made per ministry:
-        // a nation that raises housing raises `social_total`, so both fired,
-        // and the aggregate one could not be attributed to anything a player
-        // had done. Inert on every default path — `social_spend_gdp` is `None`
-        // for all 137 nations at 1990 and `social_spend()` then returns
-        // `baseline_social_spend()` by definition, so `social_gap` was exactly
-        // 0.0 — and a live channel for a player who had moved the old slider.
-    //
-        // HEALTH 8.0 and EDUCATION 5.0 are removed with it: neither ministry
-        // keeps a stability arm, because neither one's real claim is about
-        // order. DIPLOMACY 3.0 is removed for the same reason. What is left is
-        // the three ministries whose whole subject is whether the public is
-        // content: HOUSING, PENSIONS and SECURITY.
-        ds += crate::ministries::housing_stability(budget_gap[BUDGET_HOUSING])
-            + crate::ministries::pensions_stability(budget_gap[BUDGET_PENSIONS])
-            + crate::ministries::security_stability(budget_gap[BUDGET_SECURITY]);
-        ds -= n.war_exhaustion * 1.2;
-        // CONVERTED. This was `sanction_count * 0.15` — the first of the four
-        // surviving flag-counting sanction channels, and the one the
-        // SANCTION_BITE comment above named as "the stability term below". It is
-        // now weighed the way that comment says the honest measure is weighed.
-        //
-        // The coefficient is not re-derived and is not free: it is the old one
-        // carried across the SAME conversion the shipped growth drag used.
-        // `0.006 * count -> 0.020 * weight` is exactly `c / 0.30`, i.e. the two
-        // rules agree when a sanctioner weighs 30% of world output — that
-        // sentence is written out in the SANCTION_BITE comment. Applying it here,
-        // `0.15 / 0.30 = 0.50`. So a single sanctioner of the size the shipped
-        // conversion was checked against costs precisely what one flag cost, and
-        // the only thing that changes is what a coalition costs: at G5 weight
-        // (~0.52) the bill falls from 0.75 to 0.26 a month, and it can no longer
-        // rise without limit as the roster grows.
-        ds -= sanction_share * 0.50;
-        if n.system == EconomySystem::Command && n.growth_last < 0.0 {
-            ds -= 0.5; // command legitimacy is growth-bought
-        }
+        // The whole of the month's push, less the mean reversion, is
+        // `stability_pressure` -- factored out so `ministries` can tell a card
+        // where the nation SETTLES without keeping a second copy of this sum.
+        // See that function for every term and why the gaps are passed in.
+        let mut ds =
+            stability_pressure(n, &budget_gap, unemployment, Some(id) == player, sanction_share);
         // The 0.01 is `ministries::MEAN_REVERSION`, named there because it is
         // the reciprocal every stability CARD is quoted through: a standing
-        // contribution of x settles the nation at 60 + x/0.01.
+        // pressure of x settles the nation at `(60 + x/0.01).clamp(0.0, 100.0)`,
+        // and the clamp is as load-bearing as the reciprocal.
         ds += (60.0 - n.stability) * crate::ministries::MEAN_REVERSION; // slow mean reversion
         n.stability = (n.stability + ds / 12.0 * 12.0 * 0.25).clamp(0.0, 100.0);
 

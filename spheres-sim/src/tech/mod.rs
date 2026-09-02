@@ -1423,7 +1423,7 @@ pub fn floor_binds(w: &WorldState, id: NationId, t: u16) -> bool {
 /// The two competing prices, priced exactly as the spend loop prices them.
 fn price_parts(w: &WorldState, id: NationId, t: u16) -> (f64, f64) {
     let n = w.nation(id);
-    let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
+    let dev = dev_of(n);
     let absorb = absorptive_capacity(w, n, dev);
     let world_gdp: f64 = w.nations.iter().filter(|o| o.alive).map(|o| o.gdp.max(0.0)).sum();
     let scale = if world_gdp > 0.0 {
@@ -1457,7 +1457,7 @@ pub fn project_of(w: &WorldState, id: NationId, domain: Domain) -> Option<(&'sta
     let t = (*n.tech.focus.get(di)?)?;
     let def = &registry()[t as usize];
     let banked = *n.tech.progress.get(di)?;
-    let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
+    let dev = dev_of(n);
     let absorb = absorptive_capacity(w, n, dev);
     let world_gdp: f64 = w.nations.iter().filter(|o| o.alive).map(|o| o.gdp.max(0.0)).sum();
     let scale = if world_gdp > 0.0 {
@@ -1491,6 +1491,30 @@ pub fn project_of(w: &WorldState, id: NationId, domain: Domain) -> Option<(&'sta
 /// examined from month 120 onward" — so a test pointed only at the price would
 /// be reading the floor and not the ministry.
 pub fn absorptive_capacity(w: &WorldState, n: &Nation, dev: f64) -> f64 {
+    (absorptive_capacity_before_science(w, n, dev)
+        + crate::ministries::science_absorption(n.budget_gap(crate::world::BUDGET_SCIENCE)))
+    .clamp(0.05, 1.20)
+}
+
+/// The development level `absorptive_capacity` is asked for, in ONE place.
+pub fn dev_of(n: &Nation) -> f64 {
+    (n.gdp * 1000.0 / n.population / 24000.0).min(1.0)
+}
+
+/// Everything `absorptive_capacity` sums BEFORE science's arm and before the
+/// 0.05..1.20 clamp.
+///
+/// Split out so the science CARD can quote the REALISED change in capacity --
+/// `clamp(this + arm) - clamp(this)` -- rather than the raw `gap * 6.0`. The
+/// clamp is the whole reason: a developed nation already sits near 1.20, so the
+/// arm is largest exactly where there is no headroom left to spend it in, and a
+/// card quoting the slope promises a rich player something the ceiling eats.
+/// MEASURED on this tree, seed 1990, by bisecting to the first gap whose
+/// capacity equals the value at the cap: USA base 0.9746, ceiling met at gap
+/// 0.03757 of a 0.07475 reachable range, so the top 49.7% of the dial bought
+/// nothing; Japan 0.9119 and 33.8%; Germany 0.8435 and 20.0%; Brazil 0.4715 and
+/// 0.0%, never binding.
+pub fn absorptive_capacity_before_science(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     let mut sum = 0.0;
     let mut count = 0.0;
     for other in w.nations.iter().filter(|o| o.alive && o.id != n.id) {
@@ -1528,8 +1552,7 @@ pub fn absorptive_capacity(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     // roughly the whole of the 0.40 development term, i.e. a maximal science
     // programme is worth about as much reach as being rich. The `clamp` below
     // still bounds the sum, as it bounded it before.
-    a += crate::ministries::science_absorption(n.budget_gap(crate::world::BUDGET_SCIENCE));
-    a.clamp(0.05, 1.20)
+    a
 }
 
 /// What one technology costs this nation right now. The leader pays the whole
@@ -2867,7 +2890,7 @@ mod diag {
             let sat = saturated_tech_tfp(n);
             let credit = credit_1990(n);
             let gap = ((front - n.tech.count() as f64 - credit) / front).clamp(0.0, 1.0);
-            let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
+            let dev = dev_of(n);
             let absorb = absorptive_capacity(&w, n, dev);
             let adopt = (ADOPTION_PER_TECH * n.tech.absorption_rate
                 * crate::exact::powf(gap, TACIT))

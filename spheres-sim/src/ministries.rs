@@ -38,10 +38,24 @@ pub fn health_population(gap: f64) -> f64 {
 }
 
 /// HEALTH's second arm: the wartime replacement multiplier, on the approach to
-/// sustained force and never on `REPLACEMENT_RATE` itself. INVENTED: the x20.
-/// The caller gates it on being a belligerent; this is the shape only.
+/// sustained force and never on `REPLACEMENT_RATE` itself. The caller gates it
+/// on being a belligerent; this is the shape only.
+///
+/// THE SLOPE IS DERIVED, the way education's 15.0 is, and it is no longer the
+/// design's first-draft x20. The rule the design states in education's own row
+/// is that a slope is chosen so the top of the ministry's own dial meets the
+/// clamp ceiling, "so no step of the dial buys nothing". MEASURED on this tree,
+/// across all 137 living 1990 nations, health's reachable raise
+/// (`BUDGET_CAPS[0] - reference`) runs min 0.09575, mean 0.10112, median
+/// 0.10125, max 0.10725. At x20 the 1.60 ceiling was met at a gap of 0.030, so
+/// between 68.7% and 72.0% of every nation's raise range (mean 70.3%) bought
+/// nothing on this arm. At 6.0 the ceiling is met at 0.10000, which is the
+/// measured mean reach to within 1.1%.
+///
+/// Inert where it matters: at gap 0.0 the multiplier is 1.0 whatever the slope,
+/// so no closed-books nation and no unenacted board sees a different number.
 pub fn health_replacement(gap: f64) -> f64 {
-    (1.0 + gap * 20.0).clamp(0.60, 1.60)
+    (1.0 + gap * 6.0).clamp(0.60, 1.60)
 }
 
 // ---------------------------------------------------------------------------
@@ -114,10 +128,21 @@ pub fn infrastructure_extraction(gap: f64) -> f64 {
 // ---------------------------------------------------------------------------
 
 /// INDUSTRY & ENERGY's only arm: how fast the magazines come back. INVENTED:
-/// the x20 and the 0.70/1.40 clamp. Not gated on war -- an arsenal is built in
-/// peace.
+/// the 0.70/1.40 clamp. Not gated on war -- an arsenal is built in peace.
+///
+/// THE SLOPE IS DERIVED, and this is the ministry where getting it wrong cost
+/// the most, because INDUSTRY HAS EXACTLY ONE ARM: when it saturates, the whole
+/// card is dead and the page prints "another point of GDP buys nothing here"
+/// for every remaining press. MEASURED on this tree across all 137 living 1990
+/// nations, industry's reachable raise runs min 0.03900, mean 0.09505, median
+/// 0.10200, max 0.11790. At x20 the 1.40 ceiling was met at a gap of 0.020, so
+/// between 48.7% and 83.0% of the raise range (mean 78.0%) bought nothing at
+/// all. At 4.2 the ceiling is met at 0.09524, the measured mean reach to within
+/// 0.2%, which is the same derivation education's 15.0 carries.
+///
+/// Inert where it matters: at gap 0.0 the multiplier is 1.0 whatever the slope.
 pub fn industry_refill(gap: f64) -> f64 {
-    (1.0 + gap * 20.0).clamp(0.70, 1.40)
+    (1.0 + gap * 4.2).clamp(0.70, 1.40)
 }
 
 // ---------------------------------------------------------------------------
@@ -163,6 +188,19 @@ pub fn security_cohesion(gap: f64) -> f64 {
 
 /// DIPLOMACY's first arm, INCUMBENT: the share of the sanction drag a funded
 /// foreign service argues away.
+///
+/// THE x8 IS NOT RE-DERIVED and that is deliberate. It is an INCUMBENT
+/// calibration of the sanction shield, carried across from before the
+/// ministries existed and kept by the design ("the sanction shield, kept,
+/// ceiling 0.40"); health's and industry's slopes were the design's own
+/// first-draft inventions and could be sized, this one is somebody's
+/// measurement of how much a foreign service can argue away. MEASURED on this
+/// tree: the 0.40 ceiling is met at a gap of 0.05000 against a reachable raise
+/// of min 0.07566 / mean 0.07609 / max 0.07658 across 137 nations, so the top
+/// 33.9% to 34.7% of the dial buys nothing ON THIS ARM. What the rest of the
+/// dial buys is stated on the card, which is the design's other option: the
+/// COUNTER-INTELLIGENCE arm below keeps paying past this one's ceiling, so the
+/// ministry is never dead even where the shield is.
 pub fn diplomacy_shield(gap: f64) -> f64 {
     (gap * 8.0).clamp(-0.20, 0.40)
 }
@@ -183,27 +221,79 @@ pub fn diplomacy_counterintel(gap: f64) -> f64 {
 /// reciprocal instead of a magic 100.
 pub const MEAN_REVERSION: f64 = 0.01;
 
-/// Turn a contribution to `ds` into the displacement of the stability a nation
-/// SETTLES AT.
+/// The stability a nation SETTLES AT under a standing pressure, bounded exactly
+/// the way `economy::tick` bounds it.
 ///
-/// THE DESIGN'S RULING, and it is arithmetic rather than taste. `economy::tick`
-/// integrates stability as
+/// `economy::tick` integrates stability as
 ///
 /// ```text
-/// ds += ... + (60.0 - stability) * 0.01
-/// stability += ds * 0.25
+/// ds = stability_pressure(..) + (60.0 - stability) * 0.01
+/// stability = (stability + ds * 0.25).clamp(0.0, 100.0)
 /// ```
 ///
-/// so the fixed point of a standing contribution `x` is `60 + 100x`: the mean
-/// reversion is what the contribution has to beat, and it is beaten at a
-/// hundred times the contribution. A card quoting `x` -- or quoting the first
-/// month's `0.25x`, or the first year's -- understates where the nation is
-/// actually going by two orders of magnitude, and a player reading it would
-/// conclude the security budget does nothing. So every stability arm on every
-/// card is quoted through this function: SECURITY's 16.0 is +16 points of
-/// destination per point of GDP, HOUSING's 14.0 is +14, PENSIONS' 12.0 is +12.
-pub fn stability_destination(ds_contribution: f64) -> f64 {
-    ds_contribution / MEAN_REVERSION
+/// so the fixed point of a standing pressure `p` is `60 + p/0.01`: the mean
+/// reversion is what the pressure has to beat, and it is beaten at a hundred
+/// times the pressure. THE CLAMP IS PART OF THE ANSWER. A nation cannot settle
+/// above 100 or below 0, and the integrator does not merely approach those
+/// bounds, it stops at them.
+pub fn stability_settles_at(pressure: f64) -> f64 {
+    (60.0 + pressure / MEAN_REVERSION).clamp(0.0, 100.0)
+}
+
+/// Turn a contribution to `ds` into the displacement of where a nation settles,
+/// FROM WHERE IT ALREADY SETTLES, inside the 0..100 bound.
+///
+/// THE DESIGN'S RULING, and it is arithmetic rather than taste: a card quoting
+/// the raw `ds` contribution `x` -- or the first month's `0.25x`, or the first
+/// year's -- understates where the nation is going by two orders of magnitude,
+/// and a player reading it would conclude the security budget does nothing.
+/// SECURITY's 16.0 is +16 points of destination per point of GDP, HOUSING's
+/// 14.0 is +14, PENSIONS' 12.0 is +12 -- but only while there is room on the
+/// scale, which is the repair this function's second argument exists for.
+///
+/// WHY IT TAKES THE BASE. Quoting `x / MEAN_REVERSION` alone is right about the
+/// reciprocal and wrong about the bound, and the error is not small. MEASURED
+/// on this tree by running the integrator to its fixed point (6000 months,
+/// everything else frozen): the USA settles at 48.933 with no gap, so a security
+/// gap of +0.030 moves it +48.000 as quoted, but +0.050 delivers +51.067 against
+/// a quoted +80.0, and at the top of the dial (+0.10495) it delivers the same
+/// +51.067 against a quoted +167.9 -- a displacement that is not merely wrong
+/// but impossible on a 0..100 scale. India, base 29.380, quoted +169.0 at the
+/// top of security and delivering +70.620. Roster-wide, computed from each
+/// nation's own fixed point, the DEAD top of the dial ran security min 40.4% /
+/// mean 56.6% / max 71.7%, housing 33.2 / 52.4 / 69.8, pensions 40.4 / 57.6 /
+/// 73.2, n=137 -- and the served `per_point` never fell to zero, so the page's
+/// "another point of GDP buys nothing here" branch could not fire.
+///
+/// Differencing two bounded destinations fixes both halves at once: the number
+/// is reachable, and `per_point` goes to zero exactly where the sim stops
+/// paying.
+pub fn stability_destination(base_pressure: f64, ds_contribution: f64) -> f64 {
+    stability_settles_at(base_pressure + ds_contribution) - stability_settles_at(base_pressure)
+}
+
+/// The `ds` contribution ONE ministry makes, by index. `None` for the seven
+/// that own no stability arm.
+///
+/// One place, so that `stability_pressure`'s three addends and the card's base
+/// cannot fall out of step: `arms_at` subtracts a ministry's own current
+/// contribution from the nation's pressure to get the base the card's curve is
+/// measured from, and it must subtract exactly what `economy` added.
+pub fn stability_arm(ministry: usize, gap: f64) -> Option<f64> {
+    use crate::world::{BUDGET_HOUSING, BUDGET_PENSIONS, BUDGET_SECURITY};
+    match ministry {
+        BUDGET_HOUSING => Some(housing_stability(gap)),
+        BUDGET_PENSIONS => Some(pensions_stability(gap)),
+        BUDGET_SECURITY => Some(security_stability(gap)),
+        _ => None,
+    }
+}
+
+/// The pressure a nation carries with ONE ministry's stability arm taken back
+/// out -- the base every stability card's curve is differenced against.
+fn stability_base(w: &WorldState, n: &Nation, ministry: usize) -> f64 {
+    let carried = stability_arm(ministry, n.budget_gap(ministry)).unwrap_or(0.0);
+    crate::economy::stability_pressure_of(w, n) - carried
 }
 
 // ---------------------------------------------------------------------------
@@ -312,7 +402,7 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
                 name: "Stability settles at",
                 note: SETTLES,
                 kind: ArmKind::Points,
-                value: stability_destination(housing_stability(gap)),
+                value: stability_destination(stability_base(w, n, ministry), housing_stability(gap)),
             },
         ],
         BUDGET_PENSIONS => vec![
@@ -321,7 +411,22 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
                 name: "Standing ceiling",
                 note: "a cut bleeds every month it stands, on top of the vote it cost",
                 kind: ArmKind::Points,
-                value: pensions_standing(gap),
+                // THE REALISED MOVE IN THE CEILING, not the slope. `politics`
+                // clamps the target to 0..100 immediately after adding this arm,
+                // and the arm saturates that clamp long before the dial runs
+                // out. MEASURED on this tree, Brazil with the books open, one
+                // `politics::tick`, seed 1990: no gap -> political_capital
+                // 20.7002; +0.005 -> 20.9285; +0.020 -> 21.3485; +0.040 ->
+                // 21.9085; +0.060 -> 22.4685; +0.100 -> 23.0954; +0.14120, the
+                // top of the dial -> 23.0954, identical, the ceiling already
+                // saturated. Bisected, the 100-point ceiling bound at gap
+                // 0.08239, so the top 41.7% of the pensions dial bought ZERO
+                // standing while the card kept printing +10.0 a point.
+                // `politics.rs` already said so in a comment; now the card
+                // agrees with it.
+                value: (crate::politics::standing_target(w, n.id) + pensions_standing(gap))
+                    .clamp(0.0, 100.0)
+                    - crate::politics::standing_target(w, n.id).clamp(0.0, 100.0),
             },
             Arm {
                 id: "jobs",
@@ -339,7 +444,7 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
                 name: "Stability settles at",
                 note: SETTLES,
                 kind: ArmKind::Points,
-                value: stability_destination(pensions_stability(gap)),
+                value: stability_destination(stability_base(w, n, ministry), pensions_stability(gap)),
             },
         ],
         BUDGET_INFRASTRUCTURE => vec![Arm {
@@ -356,12 +461,27 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
             kind: ArmKind::Mult,
             value: industry_refill(gap),
         }],
-        BUDGET_SCIENCE => vec![Arm {
-            id: "reach",
-            name: "Absorptive capacity",
-            note: "a laboratory system buys a cheaper technology, not a bigger budget",
-            kind: ArmKind::Level,
-            value: science_absorption(gap),
+        BUDGET_SCIENCE => vec![{
+            // THE REALISED CHANGE IN CAPACITY, not the raw `gap * 6.0`.
+            // `tech::absorptive_capacity` clamps the sum to 0.05..1.20, and the
+            // arm is largest exactly where a nation has no headroom left: the
+            // 6.0 slope was sized so a maximal programme is "worth about as much
+            // reach as being rich", and a nation that IS rich has already spent
+            // that room. MEASURED on this tree, seed 1990, books open, bisected
+            // to the first gap whose capacity equals the value at the cap: USA
+            // base 0.9746, ceiling met at 0.03757 of a 0.07475 reachable range,
+            // top 49.7% of the dial dead; Japan 0.9119 and 33.8%; Germany 0.8435
+            // and 20.0%; Brazil 0.4715, never binding. Differencing the clamped
+            // level makes the card saturate where the sim does.
+            let base = crate::tech::absorptive_capacity_before_science(w, n, crate::tech::dev_of(n));
+            Arm {
+                id: "reach",
+                name: "Absorptive capacity",
+                note: "a laboratory system buys a cheaper technology, not a bigger budget",
+                kind: ArmKind::Level,
+                value: (base + science_absorption(gap)).clamp(0.05, 1.20)
+                    - base.clamp(0.05, 1.20),
+            }
         }],
         BUDGET_DEFENSE => vec![Arm {
             id: "force",
@@ -376,7 +496,7 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
                 name: "Stability settles at",
                 note: SETTLES,
                 kind: ArmKind::Points,
-                value: stability_destination(security_stability(gap)),
+                value: stability_destination(stability_base(w, n, ministry), security_stability(gap)),
             },
             Arm {
                 id: "cohesion",
@@ -397,9 +517,29 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
             Arm {
                 id: "counterintel",
                 name: "Counter-intelligence",
-                note: "how much likelier a foreign operation here is to be exposed",
+                note: "how much likelier a COLD foreign operation here is to be exposed;                        every operation after the first starts hotter and has less room",
                 kind: ArmKind::Share,
-                value: diplomacy_counterintel(gap),
+                // THE REALISED CHANGE IN THE PROBABILITY, not the raw
+                // `gap * 10.0`. `statecraft::exposure_probability` clamps to
+                // 0.05..0.85, and the arm's slope can offer more than the
+                // probability has room for: MEASURED on this tree, the largest
+                // reachable diplomacy gap is 0.07580 (Brazil), 0.07570 (Belgium
+                // and the USA) and 0.07590 (India), so the card printed
+                // +75.8pp, +75.7pp and +75.9pp of exposure into a probability
+                // whose ceiling leaves at most 75 points of room even from a
+                // cold channel against a pure democracy, and the served
+                // `per_point` never fell below +0.100000.
+                //
+                // QUOTED AT ZERO HEAT, which is the FIRST operation mounted
+                // against this nation and the case where the arm buys the most.
+                // Heat accrues 0.18 per operation and only ever eats headroom,
+                // so the number on the card is an upper bound the note names
+                // rather than a promise the sim will exceed.
+                value: crate::statecraft::exposure_probability(
+                    0.0,
+                    n.authoritarianism,
+                    diplomacy_counterintel(gap),
+                ) - crate::statecraft::exposure_probability(0.0, n.authoritarianism, 0.0),
             },
         ],
         _ => Vec::new(),

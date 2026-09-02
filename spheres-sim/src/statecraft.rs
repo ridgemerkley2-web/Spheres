@@ -13,6 +13,23 @@
 
 use crate::world::*;
 
+/// HOW LIKELY A COVERT OPERATION IS TO BE EXPOSED, in one place.
+///
+/// Factored out so the diplomacy CARD can quote the REALISED change in this
+/// probability instead of the raw `gap * 10.0` the arm adds to it. The 0.85
+/// ceiling is the whole reason: the arm's slope is 10.0 and the largest
+/// reachable diplomacy gap is about 0.076, so an unclamped card offers up to
+/// +76 percentage points of exposure into a probability that has at most 75
+/// points of room from a cold channel against a pure democracy, and far less in
+/// practice -- covert heat accrues 0.18 per operation, so a second operation
+/// against the same target starts from about 0.24 and the ceiling binds sooner
+/// with every one after that, and sooner again the more authoritarian the
+/// target already is.
+pub fn exposure_probability(heat: f64, authoritarianism: f64, counterintel: f64) -> f64 {
+    (0.10 + heat * 0.55 + authoritarianism * 0.15 + counterintel).clamp(0.05, 0.85)
+}
+
+
 /// What full integration with a market of overwhelming size is worth as a
 /// permanent uplift to output. Paid once, as integration deepens, rather than
 /// every month forever. A quarter is a large number and it is meant to be: it
@@ -549,9 +566,8 @@ pub fn covert_action(
     // budget, and adding an exact zero to a positive sum is exact, so the RNG
     // draw below is unchanged on every default path.
     let t_dip = w.nation(target).budget_gap(BUDGET_DIPLOMACY);
-    let expose_p = (0.10 + heat * 0.55 + t_auth * 0.15
-        + crate::ministries::diplomacy_counterintel(t_dip))
-    .clamp(0.05, 0.85);
+    let expose_p =
+        exposure_probability(heat, t_auth, crate::ministries::diplomacy_counterintel(t_dip));
 
     let worked = w.rng.chance(success_p);
     let exposed = w.rng.chance(expose_p);

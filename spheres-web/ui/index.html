@@ -2786,9 +2786,13 @@ function armValueText(kind, v, delta) {
 /// curve whose shape it had assumed would print a slope the sim never charges.
 ///
 /// STABILITY IS A DESTINATION and says so, because the sim serves it as one:
-/// `ministries::stability_destination` divides the `ds` contribution by the
-/// integrator's own mean reversion, so what is printed is where order comes to
-/// rest and not what it does in the first month.
+/// `ministries::stability_destination` differences two fixed points of the
+/// integrator, so what is printed is where order comes to rest and not what it
+/// does in the first month. It carries the integrator's 0..100 BOUND as well as
+/// its mean reversion, which is why the "buys nothing here" branch above now
+/// fires on a stability arm at all: before that repair the served step stayed at
+/// +16.0 a point for security even at the top of the dial, where a nation
+/// already pinned at 100 is paid nothing.
 function ministryArmLines(i, share) {
   const served = ministryServed(i);
   if (!served || !served.arms) return "";
