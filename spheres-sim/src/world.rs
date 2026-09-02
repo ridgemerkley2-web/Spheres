@@ -832,6 +832,11 @@ pub struct GameRules {
     /// world serializes exactly as it did before the switch was declared.
     #[serde(default, skip_serializing_if = "is_false")]
     pub resource_market: bool,
+    /// The abstract shipment ledger and hard route closures (resources.rs).
+    /// Operational only while `resource_market` is also on. OFF by default and
+    /// skipped when false, preserving old saves and the calibrated baseline.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub logistics_routes: bool,
 }
 fn rules_true() -> bool {
     true
@@ -850,6 +855,7 @@ impl Default for GameRules {
             crisis_intensity: 1.0,
             resource_gates: true,
             resource_market: false,
+            logistics_routes: false,
         }
     }
 }

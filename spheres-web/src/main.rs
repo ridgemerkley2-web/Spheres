@@ -1876,7 +1876,254 @@ fn stock_nation_json(w: &WorldState, me: Option<NationId>, other: NationId) -> s
     })
 }
 
-/// `GET /api/stock/world?com=`: the globe's tint, the arcs, the aims.
+/// A shipment audit is the simulation's answer to one promise or one actual
+/// spot fill. This adapter does not infer demand between a buyer and seller:
+/// spot `requested` is the quantity that really cleared, while a contract's
+/// requested quantity is the leg the contract really promised.
+fn shipment_lane_json(
+    settled_abs: i32,
+    a: &resources::ShipmentAudit,
+    allow_open_contract: bool,
+) -> serde_json::Value {
+    let (source, source_rank) = match &a.source {
+        resources::ShipmentSource::Contract => ("contract", 0u8),
+        resources::ShipmentSource::Spot => ("spot", 1u8),
+    };
+    let (state, reason_code, reason) = match &a.status {
+        resources::ShipmentStatus::Delivered => (
+            "moving",
+            "delivered",
+            "Delivered in full.".to_string(),
+        ),
+        resources::ShipmentStatus::SupplyShort => (
+            "constrained",
+            "supply_short",
+            format!(
+                "{} could not load the full {} shipment.",
+                a.seller.name(),
+                a.commodity.name()
+            ),
+        ),
+        resources::ShipmentStatus::Sanctioned => (
+            "blocked",
+            "sanctioned",
+            a.cause.map_or_else(
+                || "Sanctions closed this lane.".to_string(),
+                |id| format!("{} closed this lane with sanctions.", id.name()),
+            ),
+        ),
+        resources::ShipmentStatus::WarClosed => (
+            "blocked",
+            "war_closed",
+            format!(
+                "War between {} and {} closed this lane.",
+                a.seller.name(),
+                a.buyer.name()
+            ),
+        ),
+    };
+    let (year, month) = absolute_month(settled_abs).unwrap_or((1990, 1));
+    let lane_id = match a.contract {
+        Some(id) => format!(
+            "contract:{id}:{}:{:?}:{:?}",
+            a.commodity.key(),
+            a.seller,
+            a.buyer
+        ),
+        None => format!(
+            "spot:{settled_abs}:{}:{:?}:{:?}",
+            a.commodity.key(),
+            a.seller,
+            a.buyer
+        ),
+    };
+    let requested = on_board(a.commodity, a.requested.max(0.0));
+    let delivered = on_board(a.commodity, a.delivered.max(0.0));
+    let unshipped = (requested - delivered).max(0.0);
+    let service_ratio = if requested > 0.0 {
+        (delivered / requested).clamp(0.0, 1.0)
+    } else {
+        1.0
+    };
+    let mut actions = vec![serde_json::json!({
+        "id": "focus",
+        "label": "FOCUS ROUTE",
+    })];
+    if allow_open_contract {
+        let id = a.contract.expect("only contract audits can open a contract");
+        actions.push(serde_json::json!({
+            "id": "open_contract",
+            "label": "OPEN CONTRACT",
+            "contract_id": id,
+        }));
+    }
+    serde_json::json!({
+        "id": lane_id,
+        "month": month_name(month, year),
+        "mode": "abstract",
+        "source": source,
+        // Retained as a private sort hint only long enough to build the value;
+        // remove it below so no UI can accidentally turn it into a rule.
+        "_source_rank": source_rank,
+        "contract_id": a.contract,
+        "commodity": a.commodity.key(),
+        "commodity_name": line_name(a.commodity),
+        "from": format!("{:?}", a.seller),
+        "from_name": a.seller.name(),
+        "to": format!("{:?}", a.buyer),
+        "to_name": a.buyer.name(),
+        // Friendly aliases keep the manifest readable without teaching the
+        // page that `from` always means seller in some future aid movement.
+        "seller": format!("{:?}", a.seller),
+        "seller_name": a.seller.name(),
+        "buyer": format!("{:?}", a.buyer),
+        "buyer_name": a.buyer.name(),
+        "requested": round(requested, 3),
+        "delivered": round(delivered, 3),
+        "unshipped": round(unshipped, 3),
+        "service_ratio": round(service_ratio, 4),
+        "unit": board_unit(a.commodity).0,
+        "unit_price": a.unit_price.map(|v| round(v, 6)),
+        "cost_bn": a.cost_bn.map(|v| round(v, 6)),
+        "state": state,
+        "reason_code": reason_code,
+        "reason": reason,
+        "months_left": a.months_left,
+        "actions": actions,
+    })
+}
+
+/// Convert the simulation's January-1990-relative month index back to a
+/// calendar label without consulting today's world date. The audit ledger is
+/// the latest completed settlement and may legitimately trail the daily clock.
+fn absolute_month(abs: i32) -> Option<(i32, u32)> {
+    if abs == i32::MIN {
+        None
+    } else {
+        Some((1990 + abs.div_euclid(12), abs.rem_euclid(12) as u32 + 1))
+    }
+}
+
+fn settled_month_json(abs: i32) -> serde_json::Value {
+    match absolute_month(abs) {
+        Some((year, month)) => serde_json::json!({
+            "year": year,
+            "month": month,
+            "label": month_name(month, year),
+        }),
+        None => serde_json::Value::Null,
+    }
+}
+
+/// The latest shipment records, sorted independently of insertion order so a
+/// save/reload or a refactor of the market loops cannot reorder the board.
+/// Hard closures lead, then constrained lanes, then completed movement.
+fn shipment_lanes_json(
+    w: &WorldState,
+    participant: Option<NationId>,
+    commodity: Option<Commodity>,
+) -> Vec<serde_json::Value> {
+    let Some(market) = w.resources.market.as_ref() else {
+        return vec![];
+    };
+    let mut lanes = market
+        .shipment_audits
+        .iter()
+        .filter(|a| participant.is_none_or(|id| a.seller == id || a.buyer == id))
+        .filter(|a| commodity.is_none_or(|c| a.commodity == c))
+        .map(|a| {
+            let allow_open_contract = participant.is_some_and(|player| {
+                a.contract.is_some_and(|contract| {
+                    w.resources.contracts.iter().any(|k| {
+                        k.id == contract && (k.from == player || k.to == player)
+                    })
+                })
+            });
+            shipment_lane_json(market.last_cleared, a, allow_open_contract)
+        })
+        .collect::<Vec<_>>();
+    lanes.sort_by(|a, b| {
+        let state_rank = |v: &serde_json::Value| match v["state"].as_str() {
+            Some("blocked") => 0,
+            Some("constrained") => 1,
+            _ => 2,
+        };
+        state_rank(a)
+            .cmp(&state_rank(b))
+            .then_with(|| a["commodity"].as_str().cmp(&b["commodity"].as_str()))
+            .then_with(|| a["from"].as_str().cmp(&b["from"].as_str()))
+            .then_with(|| a["to"].as_str().cmp(&b["to"].as_str()))
+            .then_with(|| a["_source_rank"].as_u64().cmp(&b["_source_rank"].as_u64()))
+            .then_with(|| a["contract_id"].as_u64().cmp(&b["contract_id"].as_u64()))
+    });
+    for lane in &mut lanes {
+        lane.as_object_mut().expect("shipment lanes are objects").remove("_source_rank");
+    }
+    lanes
+}
+
+/// Compact counts for `/api/state`, with the first three stable lane ids the
+/// Dispatch Board can fetch from `/api/logistics` when attention is non-zero.
+fn logistics_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let lanes = shipment_lanes_json(w, Some(me), None);
+    let count = |word: &str| lanes.iter().filter(|lane| lane["state"] == word).count();
+    let constrained = count("constrained");
+    let blocked = count("blocked");
+    let settled = w
+        .resources
+        .market
+        .as_ref()
+        .map_or(serde_json::Value::Null, |m| settled_month_json(m.last_cleared));
+    let attention_ids = lanes
+        .iter()
+        .filter(|lane| lane["state"] != "moving")
+        .take(3)
+        .filter_map(|lane| lane["id"].as_str())
+        .collect::<Vec<_>>();
+    serde_json::json!({
+        "settled_month": settled,
+        "moving": count("moving"),
+        "constrained": constrained,
+        "blocked": blocked,
+        "attention": constrained + blocked,
+        "attention_ids": attention_ids,
+    })
+}
+
+/// `GET /api/logistics`: player-related shipment audits for the latest
+/// completed monthly settlement. An optional commodity narrows both counts
+/// and lanes; it never manufactures a requested spot quantity.
+fn logistics_json(w: &WorldState, me: NationId, commodity: Option<Commodity>) -> serde_json::Value {
+    let lanes = shipment_lanes_json(w, Some(me), commodity);
+    let count = |word: &str| lanes.iter().filter(|lane| lane["state"] == word).count();
+    let constrained = count("constrained");
+    let blocked = count("blocked");
+    let settled = w
+        .resources
+        .market
+        .as_ref()
+        .map_or(serde_json::Value::Null, |m| settled_month_json(m.last_cleared));
+    let attention_ids = lanes
+        .iter()
+        .filter(|lane| lane["state"] != "moving")
+        .take(3)
+        .filter_map(|lane| lane["id"].as_str())
+        .collect::<Vec<_>>();
+    serde_json::json!({
+        "settled_month": settled,
+        "commodity": commodity.map(|c| c.key()),
+        "moving": count("moving"),
+        "constrained": constrained,
+        "blocked": blocked,
+        "attention": constrained + blocked,
+        "attention_ids": attention_ids,
+        "lanes": lanes,
+    })
+}
+
+/// `GET /api/stock/world?com=`: the globe's tint, the legacy contract arcs,
+/// the latest audited lanes, and the aims. `arcs` remains byte-for-shape
+/// compatible with the resource-board API that shipped before logistics.
 fn stock_world_json(w: &WorldState, c: Commodity) -> serde_json::Value {
     let mut nations = serde_json::Map::new();
     for n in w.nations.iter().filter(|n| n.alive) {
@@ -1932,7 +2179,8 @@ fn stock_world_json(w: &WorldState, c: Commodity) -> serde_json::Value {
             }))
         })
         .collect();
-    serde_json::json!({ "com": c.key(), "nations": nations, "arcs": arcs, "aims": aims })
+    let lanes = shipment_lanes_json(w, None, Some(c));
+    serde_json::json!({ "com": c.key(), "nations": nations, "arcs": arcs, "lanes": lanes, "aims": aims })
 }
 
 // --- Talks: rungs in, the sim's answer out ---------------------------------
@@ -2516,6 +2764,9 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // The resource board (package W1): twelve lines, the player's
         // contracts, offers and refusals, every number and sentence served.
         "resources": w.player.map(|p| resources_json(w, p)),
+        // Counts only. The daily state stays compact; the complete latest
+        // manifests are fetched when the player opens Logistics.
+        "logistics_summary": w.player.map(|p| logistics_summary_json(w, p)),
         "policy": w.player.map(|p| policy_json(w, p)),
         "interrupt": interrupt,
     })
@@ -3341,13 +3592,25 @@ fn asked_player(payload: &serde_json::Value) -> Result<Option<NationId>, String>
 /// `WorldState::nation`, whose `expect` is a real invariant everywhere else.
 ///
 /// Returns the payload and whether a game was actually started.
-/// Fork F1(b): the browser plays the world with the resource market on —
-/// the sanction ration, the AI buy pass, the refusal memory and the
-/// last-resort war (resources.rs) — while every test and the headless CLI
-/// play it off, so the suite and both goldens stay bit-identical. Set here,
-/// on the game the server boots and on every `/api/new`, and nowhere else.
+/// Fork F1(b): the browser plays the world with the resource market and its
+/// truthful shipment audit lanes on, while every test and the headless CLI
+/// play them off so the suite and both goldens stay bit-identical. Set here
+/// on every world adopted by the browser: boot, `/api/new`, and `/api/load`.
 fn play_rules(g: &mut Game) {
     g.world.rules.resource_market = true;
+    g.world.rules.logistics_routes = true;
+}
+
+/// Adopt a save under the current browser rules before warming or snapshotting
+/// it. Older browser saves predate `logistics_routes`; serde correctly reads
+/// that missing field as false, but continuing play in the browser must migrate
+/// it to the same rule set as a new game.
+fn loaded_play_game(w: WorldState) -> Game {
+    let mut g = Game { world: w, log: vec![], history: vec![] };
+    play_rules(&mut g);
+    resources::warm(&mut g.world);
+    g.snapshot();
+    g
 }
 
 /// The optional aim on an `open_conflict` order: absent (or null) is no aim,
@@ -3790,6 +4053,26 @@ fn main() {
                     None => json_error(400, serde_json::json!({ "error": "ask ?com=<line>" })),
                 }
             }
+            // Latest completed settlement only: the compact daily state says
+            // whether anything needs attention, and this route supplies the
+            // stable manifests when Logistics is actually opened.
+            (Method::Get, "/api/logistics") => {
+                let g = game.lock().unwrap();
+                let url = request.url();
+                let asked_for_commodity = url.split_once("com=").is_some();
+                let commodity = com_param(url);
+                match (g.world.player, asked_for_commodity, commodity) {
+                    (None, _, _) => {
+                        json_error(400, serde_json::json!({ "error": "no nation chosen" }))
+                    }
+                    (Some(_), true, None) => {
+                        json_error(400, serde_json::json!({ "error": "unknown commodity" }))
+                    }
+                    (Some(me), _, commodity) => {
+                        json_response(logistics_json(&g.world, me, commodity))
+                    }
+                }
+            }
             // Evaluate only: the sim's answer to a draft, printed BEFORE the
             // offer is sent. Nothing is charged and nothing is written.
             (Method::Post, "/api/talks") => {
@@ -3901,10 +4184,8 @@ fn main() {
             (Method::Post, "/api/load") => {
                 let mut g = game.lock().unwrap();
                 match std::fs::read_to_string("save.json").map_err(|e| e.to_string()).and_then(|s| load(&s)) {
-                    Ok(mut w) => {
-                        resources::warm(&mut w);
-                        *g = Game { world: w, log: vec![], history: vec![] };
-                        g.snapshot();
+                    Ok(w) => {
+                        *g = loaded_play_game(w);
                         json_response(state_json(&g, None))
                     }
                     Err(e) => json_response(serde_json::json!({ "error": e })),
@@ -8822,21 +9103,35 @@ mod tests {
         assert!(!open(serde_json::json!({ "district": 10, "commodity": "copper" })));
     }
 
-    /// Fork F1(b): the market is on for the world the browser deals and off
-    /// for the one the suite runs. `Game::new` is the suite's constructor and
-    /// carries the default; `play_rules` is called on the booted game and on
-    /// every `/api/new`, and the source says so exactly there and here.
+    /// Fork F1(b): the market and its audit lanes are on for the world the
+    /// browser deals and off for the one the suite runs. `Game::new` is the
+    /// suite's constructor and carries the defaults; every world adopted by
+    /// the browser receives `play_rules`, including a legacy save on load.
     #[test]
     fn the_market_is_on_for_the_browser_and_off_for_the_suite() {
         let mut g = Game::new(1990, Some(NationId::Iraq));
         assert!(!g.world.rules.resource_market, "the suite's world must play the market off");
+        assert!(!g.world.rules.logistics_routes, "the suite's world must play logistics off");
         assert!(!spheres_sim::save(&g.world).contains("resource_market"));
+        assert!(!spheres_sim::save(&g.world).contains("logistics_routes"));
         play_rules(&mut g);
         assert!(g.world.rules.resource_market);
+        assert!(g.world.rules.logistics_routes);
         assert!(spheres_sim::save(&g.world).contains("\"resource_market\": true"));
+        assert!(spheres_sim::save(&g.world).contains("\"logistics_routes\": true"));
+
+        let mut legacy = Game::new(1990, Some(NationId::Iraq));
+        legacy.world.rules.resource_market = true;
+        legacy.world.rules.logistics_routes = false;
+        let legacy_save = spheres_sim::save(&legacy.world);
+        assert!(!legacy_save.contains("logistics_routes"));
+        let migrated = loaded_play_game(spheres_sim::load(&legacy_save).unwrap());
+        assert!(migrated.world.rules.resource_market);
+        assert!(migrated.world.rules.logistics_routes);
+
         let src = include_str!("main.rs");
         let needle = concat!("play_rules", "(&mut ");
-        assert_eq!(src.matches(needle).count(), 3, "boot, /api/new, and this test");
+        assert_eq!(src.matches(needle).count(), 4, "boot, /api/new, loaded saves, and this test");
     }
 
     /// A quarrel opened from the TAKE card carries its aim: `apply_orders`
@@ -9077,6 +9372,7 @@ mod tests {
         assert_eq!(world["nations"]["Australia"], "seller");
         assert!(world["nations"].as_object().unwrap().values().all(|v| v != "stalled"), "nothing stalls in January 1990");
         assert_eq!(world["arcs"].as_array().unwrap().len(), 0);
+        assert_eq!(world["lanes"].as_array().unwrap().len(), 0);
         assert_eq!(world["aims"].as_array().unwrap().len(), 0);
         let d = stock_nation_json(&g.world, Some(NationId::Japan), NationId::Australia);
         let rows = d["rows"].as_array().unwrap();
@@ -9094,5 +9390,167 @@ mod tests {
         assert!(INDEX.contains("r.because"));
         // And the legend says where the tint comes from.
         assert!(INDEX.contains("served by the sim"));
+    }
+
+    /// Logistics stays an opt-in globe reading: one dock button opens a
+    /// non-modal dispatch board, fetches the server's audit, and draws only
+    /// honestly-labelled national-anchor lanes. This is a source guard for the
+    /// complete hand-off from Resources to the overlay; removing any door
+    /// leaves the mechanic present but unreachable.
+    #[test]
+    fn the_logistics_dispatch_board_is_wired_end_to_end() {
+        for needle in [
+            "id=\"logisticsDockBtn\"",
+            "id=\"logisticsPanel\"",
+            "SHOW ROUTES ON GLOBE",
+            "function openLogistics(",
+            "function logisticsFetch(",
+            "api(\"/api/logistics\")",
+            "function drawLogisticsOverlay(",
+            "function logisticsHitAt(",
+            "abstract lanes",
+            "aria-live=\"polite\"",
+        ] {
+            assert!(INDEX.contains(needle), "missing logistics UI wire: {needle}");
+        }
+        assert!(
+            INDEX.contains("if (!LOGI.open || !LOGI.data) return"),
+            "routes must remain absent from the resting globe"
+        );
+        assert!(
+            !INDEX.contains("data-logi-scope=\"world\""),
+            "the current endpoint is player-scoped; do not offer a duplicate World filter"
+        );
+        assert!(INDEX.contains("k === \"g\" || k === \"G\""));
+    }
+
+    /// The web layer exposes the simulation's latest shipment audit as a
+    /// stable, arcade-readable manifest without deleting the old contract arc
+    /// surface. Counts are player-relative, the world endpoint is filtered by
+    /// commodity, and a spot fill never grows a fictional requested quantity.
+    #[test]
+    fn logistics_api_is_a_stable_view_of_the_latest_audit() {
+        let mut g = Game::new(1990, Some(NationId::Japan));
+        g.world.rules.resource_market = true;
+        g.world.rules.logistics_routes = true;
+        tick_month(&mut g.world, &[]);
+
+        g.world.resources.contracts.push(resources::Contract {
+            id: 7,
+            from: NationId::Australia,
+            to: NationId::Japan,
+            give: vec![Leg::Commodity { c: Commodity::Bauxite, per_month: 10_000.0 }],
+            take: vec![Leg::Money { bn_per_year: 0.6 }],
+            months_left: 24,
+            months_total: 36,
+            since: 0,
+            depth: 0.0,
+        });
+        let market = g.world.resources.market.as_mut().expect("the market settled");
+        market.shipment_audits = vec![
+            resources::ShipmentAudit {
+                source: resources::ShipmentSource::Contract,
+                contract: Some(7),
+                seller: NationId::Australia,
+                buyer: NationId::Japan,
+                commodity: Commodity::Bauxite,
+                requested: 10_000.0,
+                delivered: 2_500.0,
+                unit_price: None,
+                cost_bn: None,
+                months_left: Some(24),
+                status: resources::ShipmentStatus::SupplyShort,
+                cause: None,
+            },
+            resources::ShipmentAudit {
+                source: resources::ShipmentSource::Spot,
+                contract: None,
+                seller: NationId::USA,
+                buyer: NationId::Japan,
+                commodity: Commodity::Iron,
+                requested: 1_000.0,
+                delivered: 1_000.0,
+                unit_price: Some(42.5),
+                cost_bn: Some(0.0000425),
+                months_left: None,
+                status: resources::ShipmentStatus::Delivered,
+                cause: None,
+            },
+            resources::ShipmentAudit {
+                source: resources::ShipmentSource::Contract,
+                contract: Some(8),
+                seller: NationId::Japan,
+                buyer: NationId::USA,
+                commodity: Commodity::Copper,
+                requested: 500.0,
+                delivered: 0.0,
+                unit_price: None,
+                cost_bn: None,
+                months_left: Some(12),
+                status: resources::ShipmentStatus::Sanctioned,
+                cause: Some(NationId::USA),
+            },
+            resources::ShipmentAudit {
+                source: resources::ShipmentSource::Contract,
+                contract: Some(9),
+                seller: NationId::China,
+                buyer: NationId::Japan,
+                commodity: Commodity::Coal,
+                requested: 12.0,
+                delivered: 0.0,
+                unit_price: None,
+                cost_bn: None,
+                months_left: Some(8),
+                status: resources::ShipmentStatus::WarClosed,
+                cause: Some(NationId::Japan),
+            },
+        ];
+
+        let all = logistics_json(&g.world, NationId::Japan, None);
+        assert_eq!(all["moving"], 1);
+        assert_eq!(all["constrained"], 1);
+        assert_eq!(all["blocked"], 2);
+        assert_eq!(all["attention"], 3);
+        assert_eq!(all["attention_ids"].as_array().unwrap().len(), 3);
+        let lanes = all["lanes"].as_array().expect("stable lanes");
+        assert_eq!(lanes.len(), 4);
+        assert_eq!(lanes[0]["state"], "blocked", "attention sorts first");
+        assert_eq!(lanes.last().unwrap()["state"], "moving");
+        assert!(lanes.iter().all(|lane| lane["mode"] == "abstract"));
+        assert!(lanes.iter().all(|lane| lane["id"].as_str().is_some_and(|id| !id.is_empty())));
+        let spot = lanes.iter().find(|lane| lane["source"] == "spot").unwrap();
+        assert_eq!(spot["requested"], spot["delivered"], "a fill is not pair demand");
+        assert_eq!(spot["actions"].as_array().unwrap().len(), 1, "spot has focus, not a fictional contract action");
+        let contract = lanes.iter().find(|lane| lane["contract_id"] == 7).unwrap();
+        assert_eq!(contract["requested"], 10.0, "table tonnes are served as board kt/mo");
+        assert_eq!(contract["delivered"], 2.5);
+        assert_eq!(contract["unshipped"], 7.5);
+        assert_eq!(contract["unit"], "kt/mo");
+        assert!(contract["actions"].as_array().unwrap().iter().any(|a| a["id"] == "open_contract"));
+        let expired = lanes.iter().find(|lane| lane["contract_id"] == 8).unwrap();
+        assert_eq!(
+            expired["actions"].as_array().unwrap().len(),
+            1,
+            "an audit outliving its contract can still focus but cannot open a missing ledger row"
+        );
+
+        let bauxite = logistics_json(&g.world, NationId::Japan, Some(Commodity::Bauxite));
+        assert_eq!(bauxite["lanes"].as_array().unwrap().len(), 1);
+        assert_eq!(bauxite["constrained"], 1);
+        let world = stock_world_json(&g.world, Commodity::Bauxite);
+        assert_eq!(world["arcs"].as_array().unwrap().len(), 1, "legacy contract arcs remain");
+        assert_eq!(world["arcs"][0]["contract"], 7);
+        assert_eq!(world["lanes"].as_array().unwrap().len(), 1);
+        assert_eq!(
+            world["lanes"][0]["actions"].as_array().unwrap().len(),
+            1,
+            "an unscoped world manifest cannot authorize opening another nation's contract"
+        );
+
+        let summary = &state_json(&g, None)["logistics_summary"];
+        assert_eq!(summary["moving"], 1);
+        assert_eq!(summary["attention"], 3);
+        assert!(summary.get("lanes").is_none(), "daily state carries counts, not manifests");
+        assert!(include_str!("main.rs").contains("(Method::Get, \"/api/logistics\")"));
     }
 }

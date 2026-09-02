@@ -213,6 +213,108 @@
   .dockbtn small { display: block; color: var(--faint); font-size: 8px; }
   .dockbtn[aria-expanded="true"] { border-color: var(--amber); background: #332916; }
 
+  /* Logistics is an opt-in reading laid over the globe, not a third drawer.
+     It has no scrim and occupies only its own plate, so the globe remains the
+     board: drag, zoom and province clicks still belong to #glmap everywhere
+     outside this 340px dispatch surface. */
+  #logisticsDockBtn { position: relative; }
+  .dockbadge {
+    display: none; position: absolute; top: 3px; right: 4px; min-width: 16px;
+    height: 16px; padding: 0 4px; align-items: center; justify-content: center;
+    border: 1px solid #9b4f49; border-radius: 999px; background: #401b1b;
+    color: #ffd5d1; font: 700 8px/1 var(--mono); box-shadow: 0 2px 8px #0009;
+  }
+  .dockbadge.on { display: inline-flex; }
+  .dockbadge.warn { border-color: #8b7136; background: #3a2d12; color: var(--brass-hi); }
+  .logistics-panel {
+    display: none; position: absolute; z-index: 29; left: 14px; bottom: 86px;
+    width: min(340px, calc(100vw - 28px)); max-height: calc(100% - 112px);
+    flex-direction: column; overflow: hidden; pointer-events: auto;
+    color: var(--ink); background: linear-gradient(150deg, rgba(18,25,34,.98), rgba(6,10,15,.97));
+    border: 1px solid #75613a; border-radius: 8px;
+    box-shadow: 0 18px 58px #000c, inset 0 1px #e8c87e20;
+  }
+  .logistics-panel.open { display: flex; animation: dispatch-in .16s ease-out; }
+  .logistics-head {
+    display: flex; align-items: center; gap: 9px; flex: none; padding: 11px 11px 9px;
+    border-bottom: 1px solid #2d3744; background: linear-gradient(90deg, #c9a55a12, transparent);
+  }
+  .logistics-head .eyebrow { color: var(--faint); font: 700 8px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+  .logistics-head h2 { margin: 4px 0 0; color: var(--brass-hi); font: 700 16px/1 var(--serif); letter-spacing: .07em; }
+  .logistics-head .grow { flex: 1; }
+  .logistics-close { width: 34px; height: 34px; padding: 0; font-size: 19px; }
+  .logistics-body { min-height: 0; overflow-y: auto; padding: 10px; }
+  .logistics-stamp { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+  .logistics-stamp b { color: var(--bright); font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .logistics-stamp span { color: var(--faint); font-size: 8px; text-align: right; }
+  .logistics-filters { display: flex; gap: 5px; overflow-x: auto; scrollbar-width: thin; }
+  .logistics-filters { padding-bottom: 8px; }
+  .logistics-filters button {
+    flex: none; min-height: 28px; padding: 5px 8px; border-color: #344250;
+    border-radius: 999px; color: var(--dim); background: #0b1118;
+    font: 700 8px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase;
+  }
+  .logistics-filters button { display: inline-flex; align-items: center; gap: 5px; }
+  .logistics-filters svg { width: 11px; height: 11px; }
+  .logistics-filters button[aria-pressed="true"] {
+    border-color: var(--brass-dim); background: #302815; color: var(--brass-hi);
+  }
+  .logistics-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 8px; }
+  .logistics-summary span { padding: 7px 6px; border: 1px solid #293642; border-radius: 5px; background: #090f15; color: var(--faint); font: 700 7px/1.1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+  .logistics-summary b { display: block; margin-top: 4px; color: var(--cyan); font-size: 15px; }
+  .logistics-summary .constrained b { color: var(--amber); }
+  .logistics-summary .blocked b { color: #e58078; }
+  .logistics-list { display: grid; gap: 6px; }
+  .lane-card {
+    position: relative; overflow: hidden; padding: 9px 9px 8px 11px;
+    border: 1px solid #2b3946; border-left: 3px solid var(--cyan); border-radius: 6px;
+    background: #0a1017e8; cursor: pointer; outline: none;
+  }
+  .lane-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: var(--cyan); opacity: .8; }
+  .lane-card.constrained { border-left-color: var(--amber); }
+  .lane-card.constrained::before { background: repeating-linear-gradient(90deg, var(--amber) 0 7px, transparent 7px 11px); }
+  .lane-card.blocked { border-left-color: #d96560; }
+  .lane-card.blocked::before { background: repeating-linear-gradient(90deg, #d96560 0 3px, transparent 3px 8px); }
+  .lane-card.selected { border-color: var(--brass-hi); background: #171b1f; box-shadow: inset 0 0 0 1px #c9a55a35; }
+  .lane-card:hover { background: #111923; }
+  .lane-top { display: flex; align-items: start; gap: 7px; }
+  .lane-route { min-width: 0; flex: 1; color: var(--bright); font: 700 11px/1.25 var(--serif); }
+  .lane-route .arrow { color: var(--brass-dim); padding: 0 3px; }
+  .lane-state { flex: none; max-width: 46%; color: var(--cyan); font: 700 8px/1.2 var(--mono); letter-spacing: .07em; text-align: right; text-transform: uppercase; }
+  .lane-state i { margin-right: 3px; font-style: normal; }
+  .lane-card.constrained .lane-state { color: var(--amber); }
+  .lane-card.blocked .lane-state { color: #ef948d; }
+  .lane-meta { margin-top: 3px; color: var(--faint); font: 8px/1.25 var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+  .lane-meta svg { width: 11px; height: 11px; margin-right: 4px; vertical-align: -2px; }
+  .lane-quantities { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 7px; }
+  .lane-quantities span { min-width: 0; padding-left: 5px; border-left: 1px solid #2c3a47; color: var(--faint); font: 700 7px/1.15 var(--mono); text-transform: uppercase; }
+  .lane-quantities b { display: block; overflow: hidden; margin-top: 3px; color: var(--ink); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; text-transform: none; }
+  .lane-reason { margin-top: 7px; color: var(--dim); font-size: 9px; line-height: 1.35; }
+  .lane-card.blocked .lane-reason { color: #e7aaa5; }
+  .lane-actions { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 7px; }
+  .lane-actions button, .logistics-more { min-height: 29px; padding: 5px 9px; font: 700 8px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .lane-actions button:first-child { border-color: #406776; color: #a9e5ef; }
+  .logistics-more { width: 100%; margin-top: 8px; color: var(--brass-hi); border-color: #5d4d2c; }
+  .logistics-empty { padding: 18px 9px; border: 1px dashed #34414d; border-radius: 6px; color: var(--dim); font-size: 10px; line-height: 1.45; text-align: center; }
+  .logistics-panel button:focus-visible, .lane-card:focus-visible, .dockbtn:focus-visible {
+    outline: 2px solid var(--cyan); outline-offset: 2px;
+  }
+  .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  @keyframes dispatch-in { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: none; } }
+  @media (max-width: 720px) {
+    .globe-stage { height: calc(100vh - 178px); height: calc(100dvh - 178px); }
+    #commandDock { left: 8px; right: 8px; bottom: 8px; gap: 4px; padding: 4px; }
+    .dockbtn { flex: 1; min-width: 0; min-height: 44px; grid-template-columns: auto 1fr; gap: 5px; padding: 5px 7px; }
+    .dockbtn .icon { font-size: 15px; }
+    .dockbtn .label { font-size: 8px; }
+    .dockbtn small { max-width: 92px; overflow: hidden; font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
+    .logistics-panel { left: 8px; right: 8px; bottom: 68px; width: auto; max-height: min(55vh, calc(100vh - 118px)); max-height: min(55dvh, calc(100dvh - 118px)); border-radius: 10px 10px 7px 7px; }
+    body.logistics-open .province-dossier.open { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logistics-panel.open { animation: none; }
+  }
+
   .card { background: var(--panel); border: 1px solid var(--edge-dark); border-radius: 3px; padding: 12px; margin-bottom: 12px; box-shadow: inset 0 1px 0 var(--edge-lite); }
   .card h3 { font-family: var(--serif); font-size: 11px; font-weight: 600; letter-spacing: .18em; color: var(--amber); text-transform: uppercase; margin: -2px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--brass-etch); }
   .card h3 span { color: var(--faint); letter-spacing: .08em; font-family: var(--mono); font-weight: 400; }
@@ -722,6 +824,8 @@
   #stockDock .strat .minus { color:#b06a5a; font-size:11.5px; }
   #stockDock .strat .why.off { opacity:.55; }
   #stockDock .advisor { margin-top:12px; color:var(--ink); }
+  #stockDock .stock-route-link { width:100%; min-height:34px; margin:0 0 10px; border-color:#3c6472;
+    color:#a9e5ef; background:#0b171d; font:700 9px var(--mono); letter-spacing:.08em; }
   @media (max-width: 1100px) {
     #stockRows { right:300px; } #stockDock { width:300px; }
     .stockcols, .stockrow { grid-template-columns:22px 1fr 96px 84px 80px 90px 80px; }
@@ -1481,9 +1585,19 @@
         </div>
       </div>
     </aside>
+    <aside class="logistics-panel" id="logisticsPanel" aria-hidden="true" aria-labelledby="logisticsTitle">
+      <div class="logistics-head">
+        <div><div class="eyebrow">Latest monthly settlement</div><h2 id="logisticsTitle">Dispatch Board</h2></div>
+        <span class="grow"></span>
+        <button class="logistics-close" id="logisticsClose" type="button" aria-label="Close logistics">&times;</button>
+      </div>
+      <div class="logistics-body" id="logisticsBody"></div>
+      <div class="sr-only" id="logisticsLive" role="status" aria-live="polite"></div>
+    </aside>
     <nav id="commandDock" aria-label="Game systems">
       <button class="dockbtn" data-drawer="cabinetDrawer" aria-expanded="false"><span class="icon">◈</span><span class="copy"><span class="label">Economy</span><small id="dockEconomy">budget &amp; policy</small></span></button>
       <button class="dockbtn" data-drawer="intelDrawer" aria-expanded="false"><span class="icon">⚔</span><span class="copy"><span class="label">World</span><small id="dockWorld">conflicts &amp; news</small></span></button>
+      <button class="dockbtn" id="logisticsDockBtn" type="button" aria-controls="logisticsPanel" aria-expanded="false"><span class="icon">⇢</span><span class="copy"><span class="label">Logistics</span><small id="dockLogistics">monthly routes</small></span><span class="dockbadge" id="logisticsBadge" aria-hidden="true"></span></button>
     </nav>
   </main>
 </div>
@@ -1801,6 +1915,7 @@
   <div class="row"><span>Filter the event log</span><span><kbd>E</kbd></span></div>
   <div class="row"><span>Technology</span><span><kbd>T</kbd></span></div>
   <div class="row"><span>Resources board</span><span><kbd>B</kbd></span></div>
+  <div class="row"><span>Logistics routes</span><span><kbd>G</kbd></span></div>
   <div class="row"><span>Board: select a line / open talks</span><span>arrows · <kbd>Enter</kbd></span></div>
   <div class="row"><span>Domain tabs (tech screen)</span><span><kbd>1</kbd>–<kbd>8</kbd> · full map <kbd>9</kbd> · step <kbd>[</kbd> <kbd>]</kbd></span></div>
   <div class="row"><span>Find a technology (graph open)</span><span><kbd>/</kbd></span></div>
@@ -2371,7 +2486,7 @@ function closeGameDrawers() {
     d.classList.remove("open");
     d.setAttribute("aria-hidden", "true");
   });
-  document.querySelectorAll(".dockbtn").forEach((b) => b.setAttribute("aria-expanded", "false"));
+  document.querySelectorAll("[data-drawer]").forEach((b) => b.setAttribute("aria-expanded", "false"));
   $("#drawerScrim").classList.remove("open");
 }
 
@@ -2379,6 +2494,7 @@ function toggleGameDrawer(id) {
   const drawer = document.getElementById(id);
   if (!drawer) return;
   const opening = !drawer.classList.contains("open");
+  if (opening && LOGI.open) closeLogistics();
   closeGameDrawers();
   if (opening) {
     drawer.classList.add("open");
@@ -2404,9 +2520,11 @@ async function adopt(state, withHistory) {
   // fallback for a server payload that predates the field.
   if (typeof S.front_held_band === "number") FRONT_HELD_BAND = S.front_held_band;
   STOCKW.stale = true;      // the world moved; the resource tint is re-asked on the next map
+  LOGI.stale = true;        // monthly settlement may have changed; re-ask only while its plate is open
   if (withHistory !== false) HIST = await api("/api/history");
   if (!ui.picked.length) ui.picked = defaultPicks();
   render();
+  if (LOGI.open) logisticsFetch();
   if (selectedDistrict) loadProvincePopulation(selectedDistrict, true);
 }
 
@@ -2499,6 +2617,8 @@ document.addEventListener("keydown", (e) => {
     // so it is the outer thing and goes first; the drawers next; the sheet last.
     if (stock.open) { closeStock(); return; }
     if (document.querySelector(".game-drawer.open")) { closeGameDrawers(); return; }
+    if (LOGI.open && LOGI.selected) { logisticsSelect(null); return; }
+    if (LOGI.open) { closeLogistics(); return; }
     if (selectedDistrict) { closeProvince(); return; }
     closeSheet();
     return;
@@ -2550,6 +2670,7 @@ document.addEventListener("keydown", (e) => {
   else if (k === "s" || k === "S") doSave();
   else if (k === "t" || k === "T") toggleTechMenu();
   else if (k === "b" || k === "B") toggleStockScreen();
+  else if (k === "g" || k === "G") toggleLogistics();
   else if (k === "r" || k === "R") revertOrders();
   else if (k === "+" || k === "=") mapZoom(1.3);
   else if (k === "-" || k === "_") mapZoom(1 / 1.3);
@@ -2605,6 +2726,7 @@ function render() {
     ? `FY ${S.year} · ${m.annual_budget.due ? "budget due" : "budget set"}`
     : "budget & policy";
   $("#dockWorld").textContent = `${S.wars.length} active conflict${S.wars.length === 1 ? "" : "s"} · ${S.log.length} dispatches`;
+  renderLogisticsDock();
   // TECH is dead in spectator mode (research_json is null and /api/tech cannot
   // answer); the amber note dot means a domain has startable work and no project
   // chosen — the same actionable state resCard reports.
@@ -9533,6 +9655,10 @@ function drawMapOverlay(ctx, view, globe) {
   // ---- the resource layer: the commodity marks, the contract arcs and the
   // aim rings, under the names so a label still reads over a chip.
   drawStockOverlay(ctx, view, globe);
+  // ---- logistics is a separate, opt-in monthly audit. It deliberately uses
+  // the same country anchors as contract arcs: there is no port/rail/sea graph
+  // in this build, so a more detailed path would be invented geography.
+  drawLogisticsOverlay(ctx, view, globe);
 
   // ---- district names, for ONE nation at a time and only past ZB2, exactly
   // the band the flat map used. Drawn before the nation labels so a nation's
@@ -9666,6 +9792,11 @@ function globeBoot() {
 /// holding the country — which is the same rule the flat map's click had, said
 /// once instead of spread over three delegated handlers.
 function onMapPick(e) {
+  // Route marks live on the pointer-transparent overlay, so their hit test is
+  // screen-space and comes first only while the Dispatch Board is visibly up.
+  // Everywhere else the exact province/nation picking path below is untouched.
+  const route = logisticsHitAt(e.clientX, e.clientY);
+  if (route) { logisticsSelect(logisticsLaneId(route)); return; }
   const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);
   if (!w) return;
   const code = countryAt(w[0], w[1]);
@@ -10744,6 +10875,7 @@ function stockVisibleRows() {
 function toggleStockScreen() { if (stock.open) closeStock(); else openStock(); }
 function openStock(com) {
   if (!S || !S.resources) return;      // spectator: no board to read
+  if (LOGI.open) closeLogistics();
   closeTechMenu();
   if (tech.open) closeTech();
   closeSheet();
@@ -10876,7 +11008,8 @@ function renderStockDock() {
   if (!c || c.com !== stock.sel) { dock.innerHTML = `<div class="tiny">reading the ledger…</div>`; return; }
   const m = c.mine, tr = c.trade, t = c.take;
   const com = c.com;
-  let s = `<h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2><div class="sub">${escText(c.row.sentence)}</div>${marketCardHtml(c.row)}`;
+  let s = `<h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2><div class="sub">${escText(c.row.sentence)}</div>${marketCardHtml(c.row)}
+    <button type="button" class="stock-route-link" data-act="routes">SHOW ROUTES ON GLOBE · G</button>`;
   // MINE / DRILL — the player chooses one mapped province. Every number and
   // refusal is served; the sim validates it again when the button is pressed.
   const mineOptions = m.options || [];
@@ -10923,6 +11056,8 @@ function renderStockDock() {
         : live && !t.affordable ? `<span class="short">${Math.ceil(t.pc - (me() || {}).political_capital)} more needed</span>` : ""}</div></div>`;
   s += `<div class="tiny advisor">${escText(c.advisor)}</div>`;
   dock.innerHTML = s;
+  const routesBtn = dock.querySelector("[data-act=routes]");
+  if (routesBtn) routesBtn.onclick = () => { closeStock(); openLogistics(com); };
   const talksBtn = dock.querySelector("[data-act=talks]");
   if (talksBtn) talksBtn.onclick = () => openTalks(com, tr.best_seller_id);
   const takeBtn = dock.querySelector("[data-act=take]");
@@ -10994,6 +11129,7 @@ function stockTipShow(r, clientX, clientY) {
 function stockKeys(e) {
   const k = e.key;
   if (k === "Escape" || k === "b" || k === "B") { e.preventDefault(); closeStock(); return; }
+  if (k === "g" || k === "G") { e.preventDefault(); const com = stock.sel; closeStock(); openLogistics(com); return; }
   if (k === "ArrowUp" || k === "ArrowDown") {
     e.preventDefault();
     const vis = stockVisibleRows();
@@ -11233,6 +11369,370 @@ async function fillStockDash(nid) {
   });
 }
 
+/* ================= logistics: the monthly dispatch board =================
+   This is a READ of the last settlement, never a daily cargo simulation. The
+   sim serves every quantity, state, reason and allowed action on /api/logistics;
+   the page only filters and draws it. Lanes terminate at national anchors and
+   are named `abstract` because this build has no sourced ports, roads, rails or
+   sea graph from which a physical itinerary could honestly be constructed. */
+
+const LOGI = {
+  open: false, data: null, stale: true, loading: false, error: null, seq: 0,
+  com: RES_ALL, expanded: false, selected: null, hits: [],
+};
+const LOGI_CONSTRAINED = new Set([
+  "constrained", "capacity_limited", "partially_served", "supply_short", "supply_limited",
+]);
+const LOGI_BLOCKED = new Set([
+  "blocked", "closed", "sanctioned", "belligerent", "blockaded", "legacy_unrouted",
+  "no_route", "no_path", "access_denied",
+]);
+
+function logisticsLaneId(lane) {
+  if (!lane) return "";
+  if (lane.id != null) return String(lane.id);
+  return [logisticsEndpoint(lane, true), logisticsEndpoint(lane, false),
+    lane.commodity || lane.com || "cargo", lane.source || lane.priority || "spot",
+    lane.contract_id == null ? "" : lane.contract_id].join(":");
+}
+function logisticsEndpoint(lane, from) {
+  return from
+    ? (lane.from != null ? lane.from : lane.from_id != null ? lane.from_id : lane.seller != null ? lane.seller : lane.seller_id)
+    : (lane.to != null ? lane.to : lane.to_id != null ? lane.to_id : lane.buyer != null ? lane.buyer : lane.buyer_id);
+}
+function logisticsEndpointName(lane, from) {
+  const id = logisticsEndpoint(lane, from);
+  const served = from ? (lane.from_name || lane.seller_name) : (lane.to_name || lane.buyer_name);
+  const n = id != null && nationById(String(id));
+  return served || (n && n.name) || id || "Unknown";
+}
+function logisticsCommodity(lane) { return lane.commodity || lane.com || "cargo"; }
+function logisticsCommodityName(laneOrKey) {
+  const key = typeof laneOrKey === "string" ? laneOrKey : logisticsCommodity(laneOrKey);
+  const served = typeof laneOrKey === "object" && (laneOrKey.commodity_name || laneOrKey.name);
+  const meta = ((RESOURCES || {}).commodities || {})[key];
+  const row = stockRows().find((r) => r.id === key);
+  return served || (meta && meta.label) || (row && row.name) || String(key).replace(/_/g, " ");
+}
+function logisticsState(lane) { return String(lane.state || lane.status || "delivered").toLowerCase(); }
+function logisticsTone(lane) {
+  const state = logisticsState(lane);
+  return LOGI_BLOCKED.has(state) ? "blocked" : LOGI_CONSTRAINED.has(state) ? "constrained" : "moving";
+}
+function logisticsStateWord(lane) { return logisticsState(lane).replace(/_/g, " ").toUpperCase(); }
+function logisticsMonthLabel(value) {
+  if (value == null) return "";
+  if (typeof value === "string" || typeof value === "number") return String(value);
+  if (value.label) return String(value.label);
+  if (value.year != null && value.month != null) {
+    const m = MONTHS[clamp(+value.month - 1, 0, 11)] || value.month;
+    return `${m} ${value.year}`;
+  }
+  return "";
+}
+function logisticsNumber(lane, ...keys) {
+  for (const key of keys) if (lane[key] != null && isFinite(+lane[key])) return +lane[key];
+  return null;
+}
+function logisticsQuantity(value, unit) { return value == null ? "—" : `${fmtQ(value)}${unit ? ` ${unit}` : ""}`; }
+function logisticsActions(lane) {
+  return (lane.actions || []).map((a) => typeof a === "string" ? a : (a && (a.kind || a.action || a.id))).filter(Boolean);
+}
+function logisticsAllows(lane, action) { return logisticsActions(lane).includes(action); }
+function logisticsEscAttr(value) {
+  return escText(value == null ? "" : value).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function logisticsIsMine(lane) {
+  if (!S) return false;
+  const own = new Set([S.player, S.player_name, me() && me().id, me() && me().name]
+    .filter((x) => x != null).map(String));
+  return own.has(String(logisticsEndpoint(lane, true))) || own.has(String(logisticsEndpoint(lane, false)))
+    || own.has(String(lane.from_name || lane.seller_name || "")) || own.has(String(lane.to_name || lane.buyer_name || ""));
+}
+function logisticsFilteredLanes() {
+  let lanes = ((LOGI.data && LOGI.data.lanes) || []).filter(logisticsIsMine);
+  if (LOGI.com !== RES_ALL) lanes = lanes.filter((l) => logisticsCommodity(l) === LOGI.com);
+  const attention = new Set(((LOGI.data && LOGI.data.attention_ids) || []).map(String));
+  const rank = { blocked: 0, constrained: 1, moving: 2 };
+  return lanes.map((lane, i) => ({ lane, i })).sort((a, b) => {
+    const ah = attention.has(logisticsLaneId(a.lane)) ? 0 : 1;
+    const bh = attention.has(logisticsLaneId(b.lane)) ? 0 : 1;
+    return ah - bh || rank[logisticsTone(a.lane)] - rank[logisticsTone(b.lane)] || a.i - b.i;
+  }).map((x) => x.lane);
+}
+function logisticsSummary(lanes) {
+  const out = { moving: 0, constrained: 0, blocked: 0 };
+  for (const lane of lanes) out[logisticsTone(lane)]++;
+  return out;
+}
+function logisticsFindLane(id) {
+  return ((LOGI.data && LOGI.data.lanes) || []).find((l) => logisticsLaneId(l) === String(id));
+}
+
+function renderLogisticsDock() {
+  const button = $("#logisticsDockBtn"), copy = $("#dockLogistics"), badge = $("#logisticsBadge");
+  if (!button || !S) return;
+  const sum = S.logistics_summary || {};
+  const moving = +sum.moving || 0, constrained = +sum.constrained || 0, blocked = +sum.blocked || 0;
+  copy.textContent = `${moving} moving${blocked ? ` · ${blocked} blocked` : constrained ? ` · ${constrained} short` : ""}`;
+  const attention = +sum.attention || blocked + constrained;
+  badge.textContent = attention > 99 ? "99+" : String(attention);
+  badge.classList.toggle("on", attention > 0);
+  badge.classList.toggle("warn", !blocked && attention > 0);
+  button.disabled = !S.player;
+  button.setAttribute("aria-label", `Logistics: ${moving} moving, ${constrained} constrained, ${blocked} blocked`);
+  button.setAttribute("aria-expanded", LOGI.open ? "true" : "false");
+}
+
+function openLogistics(com) {
+  if (!S || !S.player) return;
+  if (stock.open) closeStock();
+  closeGameDrawers();
+  closeTechMenu();
+  showTab("map");
+  if (com) LOGI.com = com;
+  LOGI.open = true;
+  LOGI.expanded = false;
+  LOGI.error = null;
+  const panel = $("#logisticsPanel");
+  panel.classList.add("open");
+  panel.setAttribute("aria-hidden", "false");
+  document.body.classList.add("logistics-open");
+  renderLogisticsDock();
+  renderLogisticsPanel();
+  logisticsFetch();
+  if (GLOBE) GLOBE.render();
+}
+function closeLogistics() {
+  LOGI.open = false;
+  LOGI.selected = null;
+  LOGI.expanded = false;
+  LOGI.hits = [];
+  const panel = $("#logisticsPanel");
+  if (panel) { panel.classList.remove("open"); panel.setAttribute("aria-hidden", "true"); }
+  document.body.classList.remove("logistics-open");
+  renderLogisticsDock();
+  if (GLOBE) GLOBE.render();
+}
+function toggleLogistics() { if (LOGI.open) closeLogistics(); else openLogistics(); }
+window.openLogistics = openLogistics;
+window.closeLogistics = closeLogistics;
+
+async function logisticsFetch() {
+  if (!LOGI.open || LOGI.loading || (!LOGI.stale && LOGI.data)) return;
+  LOGI.loading = true;
+  LOGI.error = null;
+  renderLogisticsPanel();
+  const seq = ++LOGI.seq;
+  try {
+    const data = await api("/api/logistics");
+    if (seq !== LOGI.seq) return;
+    data.lanes = Array.isArray(data.lanes) ? data.lanes : [];
+    LOGI.data = data;
+    LOGI.stale = false;
+    if (LOGI.selected && !logisticsFindLane(LOGI.selected)) LOGI.selected = null;
+    const sum = logisticsSummary(logisticsFilteredLanes());
+    $("#logisticsLive").textContent = `Logistics updated. ${sum.moving} moving, ${sum.constrained} constrained, ${sum.blocked} blocked.`;
+  } catch (e) {
+    if (seq === LOGI.seq) LOGI.error = e.message;
+  } finally {
+    if (seq === LOGI.seq) {
+      LOGI.loading = false;
+      renderLogisticsPanel();
+      if (GLOBE) GLOBE.render();
+    }
+  }
+}
+
+function logisticsCardHtml(lane) {
+  const id = logisticsLaneId(lane), tone = logisticsTone(lane);
+  const from = logisticsEndpointName(lane, true), to = logisticsEndpointName(lane, false);
+  const com = logisticsCommodity(lane), unit = lane.unit || lane.quantity_unit || "";
+  const requested = logisticsNumber(lane, "requested", "requested_qty", "matched_qty");
+  const delivered = logisticsNumber(lane, "delivered", "delivered_qty");
+  const unshipped = logisticsNumber(lane, "unshipped", "unshipped_qty", "supply_limited_qty", "lost_or_unshipped_qty");
+  const source = lane.source || lane.priority || "shipment";
+  const month = logisticsMonthLabel(lane.month || (LOGI.data && LOGI.data.settled_month));
+  const reason = lane.reason || (lane.reason_code && String(lane.reason_code).replace(/_/g, " ")) || "";
+  const focus = logisticsAllows(lane, "focus");
+  const contract = lane.contract_id != null && logisticsAllows(lane, "open_contract");
+  const mark = tone === "moving" ? "●" : tone === "constrained" ? "△" : "⊘";
+  return `<article class="lane-card ${tone}${LOGI.selected === id ? " selected" : ""}" tabindex="0"
+      data-logi-lane="${logisticsEscAttr(id)}" aria-label="${logisticsEscAttr(`${from} to ${to}, ${logisticsStateWord(lane)}`)}">
+    <div class="lane-top"><div class="lane-route">${escText(from)}<span class="arrow">→</span>${escText(to)}</div>
+      <div class="lane-state"><i aria-hidden="true">${mark}</i>${escText(logisticsStateWord(lane))}</div></div>
+    <div class="lane-meta">${rglyph(com, stockHue(com))}${escText(logisticsCommodityName(lane))} · ${escText(String(source))}${month ? ` · ${escText(month)}` : ""}</div>
+    <div class="lane-quantities"><span>Promised<b>${logisticsQuantity(requested, unit)}</b></span>
+      <span>Delivered<b>${logisticsQuantity(delivered, unit)}</b></span>
+      <span>Unshipped<b>${logisticsQuantity(unshipped, unit)}</b></span></div>
+    ${reason ? `<div class="lane-reason">${escText(reason)}</div>` : ""}
+    ${focus || contract ? `<div class="lane-actions">${focus ? `<button type="button" data-logi-action="focus" data-logi-key="${logisticsEscAttr(id)}">Focus</button>` : ""}
+      ${contract ? `<button type="button" data-logi-action="open_contract" data-logi-key="${logisticsEscAttr(id)}">Open contract</button>` : ""}</div>` : ""}
+  </article>`;
+}
+
+function renderLogisticsPanel() {
+  const body = $("#logisticsBody");
+  if (!body || !LOGI.open) return;
+  const all = logisticsFilteredLanes();
+  const summary = logisticsSummary(all);
+  const picked = LOGI.selected && all.find((lane) => logisticsLaneId(lane) === LOGI.selected);
+  const visible = LOGI.expanded ? all : picked
+    ? [picked, ...all.filter((lane) => lane !== picked)].slice(0, 3) : all.slice(0, 3);
+  const month = logisticsMonthLabel(LOGI.data && LOGI.data.settled_month) || "Awaiting first settlement";
+  const commodities = [...new Set(((LOGI.data && LOGI.data.lanes) || []).map(logisticsCommodity))].sort();
+  const chips = [RES_ALL, ...commodities].map((com) => {
+    const on = LOGI.com === com;
+    return `<button type="button" data-logi-com="${logisticsEscAttr(com)}" aria-pressed="${on}">${
+      rglyph(com, on ? "var(--brass-hi)" : stockHue(com))}${com === RES_ALL ? "All cargo" : escText(logisticsCommodityName(com))}</button>`;
+  }).join("");
+  let list;
+  if (LOGI.error) list = `<div class="logistics-empty">${escText(LOGI.error)}<br><button type="button" data-logi-retry>Retry</button></div>`;
+  else if (!LOGI.data && LOGI.loading) list = `<div class="logistics-empty">Reading the latest monthly settlement…</div>`;
+  else if (!all.length) list = `<div class="logistics-empty">No ${LOGI.com === RES_ALL ? "" : escText(logisticsCommodityName(LOGI.com)) + " "}routes touch your network.<br>Abstract lanes appear only after a monthly market fill.</div>`;
+  else list = `<div class="logistics-list">${visible.map(logisticsCardHtml).join("")}</div>${all.length > 3
+    ? `<button type="button" class="logistics-more" data-logi-more>${LOGI.expanded ? "Show top 3" : `Show ${all.length - 3} more`}</button>` : ""}`;
+  body.innerHTML = `<div class="logistics-stamp"><b>My network · abstract lanes</b><span>${escText(month)}<br>latest monthly settlement</span></div>
+    <div class="logistics-filters" aria-label="Commodity filter">${chips}</div>
+    <div class="logistics-summary"><span>Moving<b>${summary.moving}</b></span><span class="constrained">Supply short<b>${summary.constrained}</b></span><span class="blocked">Closed<b>${summary.blocked}</b></span></div>${list}`;
+  body.querySelectorAll("[data-logi-com]").forEach((button) => { button.onclick = () => {
+    LOGI.com = button.dataset.logiCom; LOGI.expanded = false; LOGI.selected = null; renderLogisticsPanel(); if (GLOBE) GLOBE.render();
+  }; });
+  body.querySelectorAll("[data-logi-lane]").forEach((card) => {
+    card.onclick = (e) => { if (!e.target.closest("button")) logisticsSelect(card.dataset.logiLane); };
+    card.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); logisticsSelect(card.dataset.logiLane); } };
+  });
+  body.querySelectorAll("[data-logi-action]").forEach((button) => { button.onclick = (e) => {
+    e.stopPropagation(); const lane = logisticsFindLane(button.dataset.logiKey); if (!lane) return;
+    if (button.dataset.logiAction === "focus") logisticsFocus(lane);
+    else if (button.dataset.logiAction === "open_contract") logisticsOpenContract(lane);
+  }; });
+  const more = body.querySelector("[data-logi-more]");
+  if (more) more.onclick = () => { LOGI.expanded = !LOGI.expanded; renderLogisticsPanel(); };
+  const retry = body.querySelector("[data-logi-retry]");
+  if (retry) retry.onclick = () => { LOGI.stale = true; LOGI.error = null; logisticsFetch(); };
+}
+
+function logisticsSelect(id) {
+  LOGI.selected = id == null ? null : String(id);
+  renderLogisticsPanel();
+  if (GLOBE) GLOBE.render();
+}
+function logisticsFocus(lane) {
+  if (!logisticsAllows(lane, "focus")) return;
+  logisticsSelect(logisticsLaneId(lane));
+  const a = anchorOf(String(logisticsEndpoint(lane, true))), b = anchorOf(String(logisticsEndpoint(lane, false)));
+  if (!a || !b) { banner("That abstract lane has no mapped national anchor."); return; }
+  const ga = Globe3D.unproject(a[0], a[1]), gb = Globe3D.unproject(b[0], b[1]);
+  const middle = slerpGeo(ga, gb, .5), p = Globe3D.project(middle[0], middle[1]);
+  const D = Math.PI / 180;
+  const dot = clamp(Math.sin(ga[1] * D) * Math.sin(gb[1] * D) + Math.cos(ga[1] * D) * Math.cos(gb[1] * D) * Math.cos((ga[0] - gb[0]) * D), -1, 1);
+  const angle = Math.acos(dot);
+  showTab("map");
+  camTween(p[0], p[1], clamp(2.4 - angle / Math.PI * 1.45, 1.05, 2.4));
+}
+function logisticsOpenContract(lane) {
+  if (!logisticsAllows(lane, "open_contract") || lane.contract_id == null) return;
+  const id = String(lane.contract_id), com = logisticsCommodity(lane);
+  closeLogistics();
+  openStock(com);
+  requestAnimationFrame(() => {
+    const button = [...document.querySelectorAll("#stockRows [data-cancel]")].find((b) => b.dataset.cancel === id);
+    const row = button && button.closest(".contractrow");
+    if (!row) { banner(`Contract ${id} is not in your Resources ledger.`); return; }
+    row.tabIndex = -1;
+    row.setAttribute("aria-label", `Contract ${id}`);
+    row.scrollIntoView({ block: "center" });
+    row.focus({ preventScroll: true });
+    row.style.boxShadow = "inset 3px 0 var(--cyan)";
+    setTimeout(() => { if (row.isConnected) row.style.boxShadow = ""; }, 2600);
+  });
+}
+
+$("#logisticsDockBtn").onclick = toggleLogistics;
+$("#logisticsClose").onclick = closeLogistics;
+
+/* Screen-space abstract arcs. State is both colour and pattern: cyan solid is
+   delivered/moving, amber long-dash is supply-short, red broken is closed. A
+   selected route alone gets its served state word; no cargo bead animates. */
+function drawLogisticsOverlay(ctx, view, globe) {
+  LOGI.hits = [];
+  if (!LOGI.open || !LOGI.data) return;
+  const r = view.ratio;
+  const selected = LOGI.selected;
+  const filtered = logisticsFilteredLanes();
+  const selectedLane = selected && filtered.find((lane) => logisticsLaneId(lane) === selected);
+  const lanes = (selectedLane
+    ? [selectedLane, ...filtered.filter((lane) => logisticsLaneId(lane) !== selected)]
+    : filtered).slice(0, 12).sort((a, b) =>
+    (logisticsLaneId(a) === selected ? 1 : 0) - (logisticsLaneId(b) === selected ? 1 : 0));
+  for (const lane of lanes) {
+    const id = logisticsLaneId(lane), tone = logisticsTone(lane);
+    const a = anchorOf(String(logisticsEndpoint(lane, true))), b = anchorOf(String(logisticsEndpoint(lane, false)));
+    if (!a || !b) continue;
+    const ga = Globe3D.unproject(a[0], a[1]), gb = Globe3D.unproject(b[0], b[1]);
+    const colour = tone === "blocked" ? "#df6c65" : tone === "constrained" ? "#d2a645" : "#55c9df";
+    const alpha = selected && id !== selected ? .15 : .92;
+    const segments = [];
+    let pen = false, previous = null, last = null, beforeLast = null, midpoint = null, endVisible = false;
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    for (let i = 0; i <= 40; i++) {
+      const g = slerpGeo(ga, gb, i / 40);
+      const p = globe.projectGeo(g[0], g[1], view, 1.012);
+      if (!p) { pen = false; previous = null; continue; }
+      if (pen) { ctx.lineTo(p[0], p[1]); segments.push([previous, p]); }
+      else ctx.moveTo(p[0], p[1]);
+      pen = true; previous = p; beforeLast = last; last = p;
+      if (!midpoint || Math.abs(i - 20) < midpoint.delta) midpoint = { p, delta: Math.abs(i - 20) };
+      endVisible = i === 40;
+    }
+    ctx.strokeStyle = "#05080c"; ctx.lineWidth = (lane.source === "spot" ? 3.8 : 4.6) * r; ctx.setLineDash([]); ctx.stroke();
+    ctx.strokeStyle = colour; ctx.lineWidth = (lane.source === "spot" ? 1.15 : 1.75) * r;
+    ctx.setLineDash(tone === "blocked" ? [3 * r, 6 * r] : tone === "constrained" ? [9 * r, 4 * r] : []);
+    ctx.stroke(); ctx.setLineDash([]);
+    for (const seg of segments) LOGI.hits.push({ lane, a: seg[0], b: seg[1], r });
+    if (endVisible && last && beforeLast && tone !== "blocked") {
+      const angle = Math.atan2(last[1] - beforeLast[1], last[0] - beforeLast[0]), size = 6 * r;
+      ctx.fillStyle = colour; ctx.beginPath(); ctx.moveTo(last[0], last[1]);
+      ctx.lineTo(last[0] - size * Math.cos(angle - .5), last[1] - size * Math.sin(angle - .5));
+      ctx.lineTo(last[0] - size * Math.cos(angle + .5), last[1] - size * Math.sin(angle + .5)); ctx.closePath(); ctx.fill();
+    }
+    if (tone === "blocked" && midpoint) {
+      const p = midpoint.p, size = 4.5 * r; ctx.strokeStyle = colour; ctx.lineWidth = 1.7 * r;
+      ctx.beginPath(); ctx.moveTo(p[0] - size, p[1] - size); ctx.lineTo(p[0] + size, p[1] + size);
+      ctx.moveTo(p[0] + size, p[1] - size); ctx.lineTo(p[0] - size, p[1] + size); ctx.stroke();
+    }
+    if (id === selected && midpoint) {
+      const text = logisticsStateWord(lane), p = midpoint.p;
+      ctx.font = `700 ${9 * r}px Inter, system-ui, sans-serif`;
+      const width = ctx.measureText(text).width + 12 * r, height = 17 * r;
+      ctx.globalAlpha = .96; ctx.fillStyle = "#070b10"; roundedRect(ctx, p[0] - width / 2, p[1] - 25 * r, width, height, 4 * r); ctx.fill();
+      ctx.strokeStyle = colour; ctx.lineWidth = r; ctx.stroke(); ctx.fillStyle = "#eef4f8"; ctx.textAlign = "center";
+      ctx.fillText(text, p[0], p[1] - 16.5 * r); ctx.textAlign = "center";
+    }
+    ctx.globalAlpha = 1;
+  }
+  ctx.setLineDash([]); ctx.globalAlpha = 1; ctx.textAlign = "center";
+}
+
+function logisticsHitAt(clientX, clientY) {
+  if (!LOGI.open || !LOGI.hits.length || !GLOBE || !GLOBE.lastSize) return null;
+  const rect = GLCV.getBoundingClientRect(), size = GLOBE.lastSize;
+  if (!rect.width || !rect.height) return null;
+  const x = (clientX - rect.left) * size.width / (size.cw || rect.width);
+  const y = (clientY - rect.top) * size.height / (size.ch || rect.height);
+  let best = null, bestD = Infinity;
+  for (const hit of LOGI.hits) {
+    const ax = hit.a[0], ay = hit.a[1], bx = hit.b[0], by = hit.b[1];
+    const dx = bx - ax, dy = by - ay, den = dx * dx + dy * dy;
+    const t = den ? clamp(((x - ax) * dx + (y - ay) * dy) / den, 0, 1) : 0;
+    const px = ax + t * dx, py = ay + t * dy, d = (x - px) ** 2 + (y - py) ** 2;
+    if (d < bestD && d <= (7 * hit.r) ** 2) { bestD = d; best = hit.lane; }
+  }
+  return best;
+}
+
 /* ================= on the globe =================
    The commodity marks (ported from the flat map's #resglyphs layer), the
    deficit/surplus tint, the contract arcs and the aim ring — drawn on the
@@ -11439,7 +11939,9 @@ function drawStockOverlay(ctx, view, globe) {
   // ---- the arcs and the aims, from the sim.
   const d = stockWorldLive();
   if (!d) return;
-  for (const arc of d.arcs || []) {
+  // The Dispatch Board draws the same abstract relationship with settlement
+  // state. Do not double-ink the older contract arc while that reading is up.
+  for (const arc of LOGI.open ? [] : (d.arcs || [])) {
     const a = anchorOf(arc.from), b = anchorOf(arc.to);
     if (!a || !b) continue;
     const ga = Globe3D.unproject(a[0], a[1]), gb = Globe3D.unproject(b[0], b[1]);
