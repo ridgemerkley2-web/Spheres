@@ -1228,6 +1228,58 @@
   .btnrow { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0; }
   .btnrow button.on { background: var(--amber); color: #101820; }
 
+  /* Province facts stay off the base map until the player clicks a province.
+     The result is a compact arcade card, not another permanent dashboard. */
+  .province-dossier {
+    display: none; position: absolute; z-index: 6; top: 14px; right: 14px;
+    width: min(350px, calc(100% - 28px)); max-height: calc(100% - 28px);
+    overflow: auto; pointer-events: auto; color: var(--ink);
+    background: linear-gradient(145deg, rgba(14,20,29,.97), rgba(5,9,15,.96));
+    border: 1px solid #826b3a; border-radius: 7px;
+    box-shadow: 0 16px 50px #000b, inset 0 1px #e8c87e24;
+  }
+  .province-dossier.open { display: block; animation: province-in .16s ease-out; }
+  .province-head { padding: 14px 14px 10px; border-bottom: 1px solid var(--line);
+                   background: linear-gradient(90deg, #c9a55a12, transparent); }
+  .province-lock { color: var(--brass-hi); font: 700 9px var(--mono);
+                   letter-spacing: .18em; text-transform: uppercase; }
+  .province-title { display: flex; gap: 8px; align-items: start; margin-top: 5px; }
+  .province-title h2 { flex: 1; margin: 0; font: 800 22px/1.05 var(--serif); }
+  .province-close { width: 27px; height: 27px; border: 1px solid var(--line);
+                    border-radius: 4px; background: #0b111a; color: var(--dim);
+                    cursor: pointer; font-size: 18px; line-height: 20px; }
+  .province-close:hover { color: var(--brass-hi); border-color: var(--edge-lite); }
+  .province-owner { margin-top: 5px; color: var(--dim); font-size: 11px; }
+  .province-body { padding: 10px 12px 13px; }
+  .province-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .province-stat { min-height: 48px; padding: 7px 8px; border: 1px solid #263241;
+                   border-radius: 4px; background: #0b1119cc; }
+  .province-stat .k { color: var(--faint); font: 700 8px var(--mono);
+                      letter-spacing: .12em; text-transform: uppercase; }
+  .province-stat .v { margin-top: 4px; color: #edf2f8; font: 700 13px var(--mono); }
+  .province-stat.population { grid-column: 1 / -1; min-height: 64px;
+                              background: linear-gradient(100deg, #302711dd, #0b1119cc);
+                              border-color: #806937; }
+  .province-stat.population .v { color: var(--brass-hi); font-size: 22px; }
+  .province-note { margin-top: 4px; color: var(--faint); font-size: 9px; line-height: 1.4; }
+  .province-section { margin-top: 10px; }
+  .province-section-title { margin-bottom: 5px; color: var(--faint);
+                            font: 700 8px var(--mono); letter-spacing: .14em;
+                            text-transform: uppercase; }
+  .province-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .province-tag, button.province-tag { padding: 5px 7px; border: 1px solid #2c3948;
+    border-radius: 4px; background: #101722; color: #cbd5e2; font: 600 9px var(--mono); }
+  button.province-tag { cursor: pointer; }
+  button.province-tag:hover { border-color: var(--brass); color: var(--brass-hi); }
+  .province-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 11px; }
+  .province-actions button { min-height: 31px; border: 1px solid #735f35; border-radius: 4px;
+    background: #1d1a13; color: var(--brass-hi); cursor: pointer; font: 700 9px var(--mono); }
+  @keyframes province-in { from { opacity: 0; transform: translateX(8px) scale(.985); }
+                                 to { opacity: 1; transform: none; } }
+  @media (max-width: 720px) {
+    .province-dossier { top: auto; bottom: 9px; left: 9px; right: 9px; width: auto; max-height: 58%; }
+  }
+
   /* ---------- nation dashboard ---------- */
   #sheetbg { position: fixed; inset: 0; background: #04060acc; z-index: 30; display: none; }
   #sheet {
@@ -1997,6 +2049,9 @@ let S = null;            // latest state from the server
 let HIST = null;         // recorded time series from /api/history
 let queued = [];         // policy orders not yet sent
 let selected = null;     // nation id shown in the dashboard
+let selectedDistrict = null;       // exact province/state locked on the globe
+let PROVINCE_POPULATION = null;     // live reading for the open province
+let PROVINCE_POPULATION_REQUEST = 0;
 // Conflict id shown in the sheet, and the theatre name to say when it ends.
 // The sheet is one element and holds EITHER a nation or a conflict, so exactly
 // one of `selected` and `selectedWar` is ever set — see openNation, openConflict
@@ -2308,6 +2363,7 @@ async function adopt(state, withHistory) {
   if (withHistory !== false) HIST = await api("/api/history");
   if (!ui.picked.length) ui.picked = defaultPicks();
   render();
+  if (selectedDistrict) loadProvincePopulation(selectedDistrict, true);
 }
 
 let advancing = false;
@@ -2399,6 +2455,7 @@ document.addEventListener("keydown", (e) => {
     // so it is the outer thing and goes first; the drawers next; the sheet last.
     if (stock.open) { closeStock(); return; }
     if (document.querySelector(".game-drawer.open")) { closeGameDrawers(); return; }
+    if (selectedDistrict) { closeProvince(); return; }
     closeSheet();
     return;
   }
@@ -5993,6 +6050,138 @@ const DINDEX = (() => {
   return m;
 })();
 
+/* ---- province/state dossier -------------------------------------------
+   Geometry answers what was clicked. The sim answers who owns it and how its
+   population is changing; the immutable district census supplies terrain,
+   area and borders. None of those facts are guessed from pixels. */
+let DISTRICT_SPECS = {};
+let DISTRICT_SPECS_STATE = "cold";
+
+async function loadDistrictSpecs() {
+  if (DISTRICT_SPECS_STATE !== "cold") return;
+  DISTRICT_SPECS_STATE = "loading";
+  try {
+    const r = await fetch("/district-info.json", { cache: "force-cache" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const raw = await r.json(), index = {};
+    for (const list of Object.values(raw.nations || {}))
+      for (const d of list || []) if (!index[d.id]) index[d.id] = d;
+    DISTRICT_SPECS = index;
+    DISTRICT_SPECS_STATE = "ready";
+  } catch (_) {
+    DISTRICT_SPECS_STATE = "failed";
+  }
+  renderProvinceDossier();
+}
+
+async function loadProvincePopulation(did, keepOld) {
+  const request = ++PROVINCE_POPULATION_REQUEST;
+  if (!keepOld || !PROVINCE_POPULATION || PROVINCE_POPULATION.id !== did) {
+    PROVINCE_POPULATION = { id: did, loading: true };
+    renderProvinceDossier();
+  }
+  try {
+    const reading = await api("/api/district-population/" + encodeURIComponent(did));
+    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did) return;
+    PROVINCE_POPULATION = reading;
+  } catch (e) {
+    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did) return;
+    PROVINCE_POPULATION = { id: did, error: e.message || "population unavailable" };
+  }
+  renderProvinceDossier();
+}
+
+function provinceDepositHtml(did) {
+  if (RESOURCES_STATE === "cold") loadResources().then(renderProvinceDossier);
+  if (RESOURCES_STATE !== "ready") return `<span class="province-tag">scanning ground…</span>`;
+  const coms = resComsAt(did);
+  if (!coms.length) return `<span class="province-tag">no mapped deposit</span>`;
+  return coms.map((c) => `<span class="province-tag" style="border-color:${resHue(c)}">${
+    escText(resLabel(c))}</span>`).join("");
+}
+
+function provinceDossierHtml() {
+  const did = selectedDistrict, info = did && DINDEX[did];
+  if (!info) return "";
+  const ownerId = nationOfDistrict(did), owner = nationById(ownerId);
+  const spec = DISTRICT_SPECS[did];
+  const terrainRow = (TERRAIN.byId || {})[did] || {};
+  const terrain = (spec && spec.t) || terrainRow.t || "unclassified";
+  const feature = (spec && spec.f) || terrainRow.f || "No named physical region";
+  const pop = PROVINCE_POPULATION && PROVINCE_POPULATION.id === did ? PROVINCE_POPULATION : null;
+  const residents = pop && typeof pop.population === "number" ? fmt.pop(pop.population)
+    : pop && pop.error ? "unavailable" : "loading…";
+  const growth = pop && typeof pop.annual_growth === "number" ? fmt.signed(pop.annual_growth) + " / yr" : "updating";
+  const density = pop && typeof pop.density_per_sqkm === "number"
+    ? Math.round(pop.density_per_sqkm).toLocaleString("en-US") + " / km²" : "loading…";
+  const share = pop && typeof pop.national_share === "number" ? fmt.pct(pop.national_share, 1) : "loading…";
+  const rank = pop && typeof pop.world_rank === "number" ? `#${pop.world_rank} world` : "loading…";
+  const area = spec && spec.area_sqkm ? Math.round(spec.area_sqkm).toLocaleString("en-US") + " km²" : "loading…";
+  const neighbours = spec ? (spec.adj || []) : [];
+  const links = neighbours.length ? neighbours.map((id) => `<button type="button" class="province-tag"
+    onclick="selectProvince('${id}',true)">${escText(DINDEX[id] ? DINDEX[id].name : id)}</button>`).join("")
+    : `<span class="province-tag">${spec ? "island / no land border" : "loading borders…"}</span>`;
+  return `<div class="province-head"><div class="province-lock">◆ province / state locked</div>
+    <div class="province-title"><h2>${escText(info.name)}</h2><button class="province-close"
+      onclick="closeProvince()" aria-label="Close">&times;</button></div>
+    <div class="province-owner">${escText(owner ? owner.name : ownerId || "Unaligned")} · ${escText(did)}</div></div>
+    <div class="province-body"><div class="province-stats">
+      <div class="province-stat population"><div class="k">Population</div><div class="v">${residents}</div>
+        <div class="province-note">${escText(growth)} · residents remain with the province when borders move</div></div>
+      <div class="province-stat"><div class="k">Density</div><div class="v">${density}</div></div>
+      <div class="province-stat"><div class="k">National share</div><div class="v">${share}</div></div>
+      <div class="province-stat"><div class="k">Population rank</div><div class="v">${rank}</div></div>
+      <div class="province-stat"><div class="k">Area</div><div class="v">${area}</div></div>
+      <div class="province-stat"><div class="k">Terrain</div><div class="v">${escText(terrain)}</div></div>
+      <div class="province-stat"><div class="k">Borders</div><div class="v">${spec ? neighbours.length : "…"}</div></div>
+    </div>
+    <div class="province-section"><div class="province-section-title">Physical region</div>
+      <div class="province-tags"><span class="province-tag">${escText(feature)}</span></div></div>
+    <div class="province-section"><div class="province-section-title">Strategic deposits</div>
+      <div class="province-tags">${provinceDepositHtml(did)}</div></div>
+    <div class="province-section"><div class="province-section-title">Bordering provinces / states</div>
+      <div class="province-tags">${links}</div></div>
+    <div class="province-actions"><button onclick="centerProvince('${did}')">◎ center &amp; zoom</button>
+      <button onclick="openNation('${ownerId}')">open nation dossier</button></div></div>`;
+}
+
+function renderProvinceDossier() {
+  const box = $("#provinceDossier");
+  if (!box) return;
+  const open = !!selectedDistrict && !!DINDEX[selectedDistrict];
+  box.classList.toggle("open", open);
+  box.setAttribute("aria-hidden", open ? "false" : "true");
+  box.innerHTML = open ? provinceDossierHtml() : "";
+}
+
+window.selectProvince = function (did, move) {
+  const info = DINDEX[did];
+  if (!info) return;
+  selectedDistrict = did;
+  SEL.dirty = true;
+  renderProvinceDossier();
+  if (GLOBE) GLOBE.render();
+  if (move) camTween(info.cx, info.cy, Math.max(ui.cam.k, ZB2 + 1));
+  loadDistrictSpecs();
+  loadProvincePopulation(did, false);
+};
+
+window.centerProvince = function (did) {
+  const info = DINDEX[did];
+  if (!info) return;
+  showTab("map");
+  camTween(info.cx, info.cy, Math.max(ui.cam.k, ZB2 + 1));
+};
+
+window.closeProvince = function () {
+  PROVINCE_POPULATION_REQUEST++;
+  PROVINCE_POPULATION = null;
+  selectedDistrict = null;
+  SEL.dirty = true;
+  renderProvinceDossier();
+  if (GLOBE) GLOBE.render();
+};
+
 /* ================= the GL physical underlay (RENDER) =================
    A WebGL2 canvas under the svg that draws the physical ground — elevation,
    bathymetry, hillshade, hypsometric colour, snow, coastline — from four
@@ -7815,7 +8004,8 @@ function paintFronts(ctx) {
 /// The selection layer: the hovered or selected nation, and nothing else.
 /// Keyed, so a pointermove that stays inside one country repaints nothing.
 function paintSelection() {
-  const key = (hoverNation || "") + "|" + (selected || "") + "|" + ui.mapMode;
+  const key = (hoverNation || "") + "|" + (selected || "") + "|" +
+    (selectedDistrict || "") + "|" + ui.mapMode;
   if (key === SEL.key && !SEL.dirty) return;
   SEL.key = key; SEL.dirty = false;
   const ctx = SEL.ctx, s = SEL.s;
@@ -7838,6 +8028,18 @@ function paintSelection() {
     ctx.strokeStyle = "#e8c87e";
     ctx.lineWidth = hot ? 1.6 : 2.2;
     for (const c of codes) ctx.stroke(p2d(WORLD.countries[c]));
+  }
+  // A province click locks the exact polygon, independent of the nation
+  // dossier selection. The bright ring is visible at every globe zoom.
+  if (selectedDistrict && DINDEX[selectedDistrict]) {
+    const d = DINDEX[selectedDistrict];
+    ctx.globalAlpha = .18;
+    ctx.fillStyle = "#ffd77a";
+    ctx.fill(p2d(d.path));
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = "#ffd77a";
+    ctx.lineWidth = 2.2;
+    ctx.stroke(p2d(d.path));
   }
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   polUpload(SEL, 4);
@@ -9404,6 +9606,7 @@ function onMapPick(e) {
   const code = countryAt(w[0], w[1]);
   if (!code) return;
   const d = districtAt(code, w[0], w[1]);
+  if (d) { selectProvince(d.id, false); return; }
   const id = (d && nationOfDistrict(d.id)) || nationOfCode(code);
   if (id) openNation(id);
 }
@@ -9461,6 +9664,7 @@ function renderMap() {
         onclick="globeNudge(1,0)">&#8250;</button>
       <div class="globe-zoom"><span id="globeZoom">${ui.cam.k.toFixed(1)}×</span>
         · <span id="globeCities">cities appear as you zoom</span></div>
+      <aside class="province-dossier" id="provinceDossier" aria-hidden="true"></aside>
       <noscript class="globe-fallback">The globe needs WebGL.</noscript>
     </div>`;
 
@@ -9493,6 +9697,7 @@ function renderMap() {
   const stage = $("#pane-map .globe-stage");
   stage.appendChild(GLCV);
   stage.appendChild(GLOVL);
+  renderProvinceDossier();
 
   if (ui.mapMode === "resources" || ui.resOverlay) {
     if (RESOURCES_STATE === "cold") loadResources();
@@ -10395,7 +10600,7 @@ window.declareWar = async function (target) {
    Namespace stock* / talks*; nothing under res* (the map layer) and nothing
    near #resCard (the research card).                                        */
 
-const stock = { open: false, sel: null, cards: null, cardsFor: null, seq: 0, unfolded: false };
+const stock = { open: false, sel: null, cards: null, cardsFor: null, seq: 0, unfolded: false, mineTarget: {} };
 const STATE_WORD = {
   ok: "OK", supplied: "SUPPLIED", short: "SHORT", stalled: "STALLED",
   idle: "IDLE", market: "MARKET", presence: "PRESENCE", seller: "SELLER",
@@ -10553,13 +10758,29 @@ function renderStockDock() {
   const m = c.mine, tr = c.trade, t = c.take;
   const com = c.com;
   let s = `<h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2><div class="sub">${escText(c.row.sentence)}</div>`;
-  // MINE — greyed in this build with the served block sentence: a missing
-  // card reads as a missing feature, a greyed one reads as a plan.
-  s += `<div class="strat poor"><div class="top"><span class="nm">MINE</span><span class="cost">— PC</span></div>
-      <div class="blurb">${escText(m.blurb)}</div>
+  // MINE / DRILL — the player chooses one mapped province. Every number and
+  // refusal is served; the sim validates it again when the button is pressed.
+  const mineOptions = m.options || [];
+  if (!stock.mineTarget[com] || !mineOptions.some((o) => o.district === stock.mineTarget[com])) {
+    stock.mineTarget[com] = ((mineOptions.find((o) => o.eligible) || mineOptions[0]) || {}).district || null;
+  }
+  const mt = mineOptions.find((o) => o.district === stock.mineTarget[com]);
+  const mineLive = !!(mt && mt.eligible && m.affordable);
+  const mineStatus = !mt ? m.blocked
+    : mt.active ? `${mt.district_name} · building · ${mt.months_remaining}/${mt.months_total} months left`
+    : mt.online ? `${mt.district_name} · online · +${fmtQ(mt.output)} ${c.unit}`
+    : mt.eligible ? `${mt.district_name} · ${mt.quality} · ${fmtQ(mt.output)} ${c.unit} · $${(+mt.cost_bn).toFixed(1)}bn`
+    : mt.reason;
+  const mineSelect = mineOptions.length ? `<select data-mine-target>${mineOptions.map((o) =>
+    `<option value="${escText(o.district)}"${o.district === stock.mineTarget[com] ? " selected" : ""}>${
+      escText(o.district_name)} · ${escText(o.quality)}${o.active ? " · BUILDING" : o.online ? " · ONLINE" : ""}</option>`
+    ).join("")}</select>` : "";
+  s += `<div class="strat${mineLive || (mt && (mt.active || mt.online)) ? "" : " poor"}"><div class="top"><span class="nm">${escText(m.verb)}</span><span class="cost">DEVELOP · ${m.pc.toFixed(0)} PC</span></div>
+      <div class="blurb">${escText(m.blurb)}</div>${mineSelect}
       <div class="plus">${escText(m.plus)}</div><div class="minus">${escText(m.minus)}</div>
-      <div class="foot"><button disabled>DEVELOP</button></div>
-      <div class="why">${escText(m.blocked)}</div></div>`;
+      <div class="foot"><button data-act="mine" ${mineLive ? "" : "disabled"}>${escText(m.verb)} THIS PROVINCE</button>${
+        !m.affordable ? `<span class="short">${Math.ceil(m.shortfall)} more needed</span>` : ""}</div>
+      <div class="why">${escText(mineStatus || "No eligible deposit.")}</div></div>`;
   // TRADE — opens talks with the best seller the sim found.
   if (tr) {
     s += `<div class="strat${tr.affordable ? "" : " poor"}"><div class="top"><span class="nm">TRADE</span><span class="cost">OPEN TALKS · ${tr.pc.toFixed(0)} PC</span></div>
@@ -10592,6 +10813,18 @@ function renderStockDock() {
     await adopt(r, false);
     const mineNow = S.wars.find((w) => myPosture(w) && w.posture.some((b) => b.id === t.nation_id));
     if (mineNow) { closeStock(); openConflict(mineNow.id); }
+  };
+  const minePick = dock.querySelector("[data-mine-target]");
+  if (minePick) minePick.onchange = () => { stock.mineTarget[com] = minePick.value; renderStockDock(); };
+  const mineBtn = dock.querySelector("[data-act=mine]");
+  if (mineBtn) mineBtn.onclick = async () => {
+    const target = (m.options || []).find((o) => o.district === stock.mineTarget[com]);
+    if (!target || !target.eligible) return;
+    const r = await api("/api/command", { commands: [{ kind: "develop_resource", commodity: com, district: target.district }] });
+    if (r.errors && r.errors.length) banner(r.errors[0]);
+    else banner(`${m.verb === "DRILL" ? "Field" : "Mine"} project started in ${target.district_name}.`);
+    await adopt(r, false);
+    stockFetchCards();
   };
 }
 
@@ -10653,9 +10886,10 @@ function stockKeys(e) {
   }
   if (k === "Enter" || k === "2") { e.preventDefault(); const b = $("#stockDock [data-act=talks]"); if (b && !b.disabled) b.click(); return; }
   if (k === "3") { e.preventDefault(); const b = $("#stockDock [data-act=take]"); if (b && !b.disabled) b.click(); return; }
-  // 1 is MINE, greyed in this build; the time keys are swallowed too —
-  // advancing blind from behind the board is the tech screen's misfire.
-  if (k === "1" || k === " " || (k >= "0" && k <= "9")) e.preventDefault();
+  if (k === "1") { e.preventDefault(); const b = $("#stockDock [data-act=mine]"); if (b && !b.disabled) b.click(); return; }
+  // Time keys are swallowed — advancing blind from behind the board is the
+  // tech screen's misfire.
+  if (k === " " || (k >= "0" && k <= "9")) e.preventDefault();
 }
 
 /* ---------------- contracts and offers ---------------- */

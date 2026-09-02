@@ -63,7 +63,16 @@ use crate::data::{render_errors, LoadError};
 use crate::world::{NationId, WorldState};
 
 pub const EMBEDDED_DISTRICTS: &str = include_str!("../data/districts.json");
+const POPULATION_FALLBACK: &str = include_str!(concat!(
+    env!("CARGO_MANIFEST_DIR"),
+    "/../spheres-web/data/district_population.json"
+));
 const FILE: &str = "data/districts.json";
+
+#[derive(Deserialize)]
+struct PopulationFallback {
+    counts: BTreeMap<String, f64>,
+}
 
 /// One admin-1 district: a stable id, the Natural Earth name, the area mapgen
 /// computed from the geometry (the shipped NE property is zero everywhere, so
@@ -481,6 +490,133 @@ fn tables() -> &'static Tables {
     })
 }
 
+/// Sourced 1990 residents from the resource artifact, with the underlying GHS
+/// surface filling only the map districts the resource artifact does not seat.
+struct PopulationTables {
+    counts: BTreeMap<String, f64>,
+    opening: BTreeMap<String, f64>,
+}
+
+fn population_tables() -> &'static PopulationTables {
+    static P: OnceLock<PopulationTables> = OnceLock::new();
+    P.get_or_init(|| {
+        let census = tables();
+        let population = &crate::resources::tables().file.pop_1990;
+        let fallback: PopulationFallback = serde_json::from_str(POPULATION_FALLBACK)
+            .unwrap_or_else(|e| panic!("district_population.json: {e}"));
+        assert_eq!(fallback.counts.len(), census.info.len());
+        for id in fallback.counts.keys() {
+            assert!(census.info.contains_key(id), "population has unknown district {id}");
+        }
+        let mut counts = fallback.counts;
+        for (district, people) in population {
+            counts.insert(district.clone(), *people as f64);
+        }
+        let opening = counts
+            .iter()
+            .map(|(district, people)| (district.clone(), *people / 1e6))
+            .collect();
+        PopulationTables { counts, opening }
+    })
+}
+
+pub fn population_1990() -> BTreeMap<String, f64> {
+    population_tables().opening.clone()
+}
+
+pub fn population_1990_of(district: &str) -> Option<f64> {
+    population_tables().opening.get(district).copied()
+}
+
+/// Reconstruct the best honest province split for a save written before the
+/// province population layer existed.
+pub fn reseed_population(w: &mut WorldState) {
+    w.district_population_scale = vec![1.0; crate::nations::nation_count()];
+    let source = population_tables();
+    w.district_population = source
+        .counts
+        .iter()
+        .map(|(d, p)| (d.clone(), p / 1e6))
+        .collect();
+    let owners: Vec<(NationId, f64)> = w
+        .nations
+        .iter()
+        .filter(|n| n.alive)
+        .map(|n| (n.id, n.population))
+        .collect();
+    for (owner, total_population) in owners {
+        let held: Vec<String> = w
+            .districts
+            .iter()
+            .filter(|&(_, &o)| o == owner)
+            .map(|(d, _)| d.clone())
+            .collect();
+        if held.is_empty() {
+            continue;
+        }
+        let weight: f64 = held
+            .iter()
+            .map(|d| source.counts.get(d).copied().unwrap_or(0.0))
+            .sum();
+        if weight > 0.0 {
+            for d in held {
+                let share = source.counts.get(&d).copied().unwrap_or(0.0) / weight;
+                w.district_population.insert(d, total_population * share);
+            }
+        } else {
+            let each = total_population / held.len() as f64;
+            for d in held {
+                w.district_population.insert(d, each);
+            }
+        }
+    }
+}
+
+pub fn grow_populations_compounded(
+    w: &mut WorldState,
+    first: &[(NationId, f64)],
+    second: &[(NationId, f64)],
+) {
+    let count = crate::nations::nation_count();
+    if w.district_population_scale.len() != count {
+        w.district_population_scale = vec![1.0; count];
+    }
+    let mut first_by_owner = vec![1.0_f64; count];
+    let mut second_by_owner = vec![1.0_f64; count];
+    for &(owner, multiplier) in first {
+        first_by_owner[owner.index()] = multiplier;
+    }
+    for &(owner, multiplier) in second {
+        second_by_owner[owner.index()] = multiplier;
+    }
+    for owner in 0..count {
+        w.district_population_scale[owner] *= first_by_owner[owner];
+        w.district_population_scale[owner] *= second_by_owner[owner];
+    }
+}
+
+pub fn population_of(w: &WorldState, district: &str) -> Option<f64> {
+    let basis = w.district_population.get(district).copied()?;
+    let scale = w
+        .districts
+        .get(district)
+        .and_then(|owner| w.district_population_scale.get(owner.index()))
+        .copied()
+        .unwrap_or(1.0);
+    Some(basis * scale)
+}
+
+fn rebase_population_for_owner(w: &mut WorldState, district: &str, to: NationId) {
+    let Some(actual) = population_of(w, district) else { return };
+    let scale = w
+        .district_population_scale
+        .get(to.index())
+        .copied()
+        .unwrap_or(1.0);
+    let basis = if scale > 0.0 { actual / scale } else { actual };
+    w.district_population.insert(district.to_string(), basis);
+}
+
 /// A district's land neighbours, sorted by id. Empty for islands, and for an
 /// id nobody shipped — never assume a district has neighbours, or that a
 /// nation's district graph is connected (Kaliningrad, Alaska, Cabinda).
@@ -569,6 +705,7 @@ pub fn annex_all(w: &mut WorldState, winner: NationId, loser: NationId) -> usize
         .collect();
     let n = taken.len();
     for d in taken {
+        rebase_population_for_owner(w, &d, winner);
         w.districts.insert(d, winner);
     }
     n
@@ -608,6 +745,7 @@ pub fn cede_share(
     let k = ((share * held.len() as f64).ceil() as usize).clamp(1, held.len() - 1);
     held.truncate(k);
     for d in &held {
+        rebase_population_for_owner(w, d, winner);
         w.districts.insert(d.clone(), winner);
     }
     held
@@ -649,6 +787,7 @@ pub fn cede_share_preferring(
     let k = ((share * held.len() as f64).ceil() as usize).clamp(1, held.len() - 1);
     held.truncate(k);
     for d in &held {
+        rebase_population_for_owner(w, d, winner);
         w.districts.insert(d.clone(), winner);
     }
     held
@@ -663,6 +802,7 @@ pub fn dissolve_to(w: &mut WorldState, parent: NationId, heirs: &[NationId]) {
     for &h in heirs {
         for d in list_of(h) {
             if w.districts.get(d) == Some(&parent) {
+                rebase_population_for_owner(w, d, h);
                 w.districts.insert(d.clone(), h);
             }
         }
@@ -675,6 +815,7 @@ pub fn dissolve_to(w: &mut WorldState, parent: NationId, heirs: &[NationId]) {
             .map(|(d, _)| d.clone())
             .collect();
         for d in residue {
+            rebase_population_for_owner(w, &d, first);
             w.districts.insert(d, first);
         }
     }
@@ -725,6 +866,7 @@ pub fn transfer_district(
         t.oil_mbd += moved_oil;
         t.separatism = (t.separatism + pop).min(1.0);
     }
+    rebase_population_for_owner(w, id, to);
     w.districts.insert(id.to_string(), to);
     Ok(())
 }

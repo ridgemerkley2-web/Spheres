@@ -813,6 +813,7 @@ pub fn tick(w: &mut WorldState) {
     let oil_price = w.oil_price;
     let player = w.player;
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+    let mut district_growth: Vec<(NationId, f64)> = Vec::with_capacity(ids.len());
 
     for id in ids {
         let sanction_share = w.sanction_weight(id);
@@ -1041,7 +1042,9 @@ pub fn tick(w: &mut WorldState) {
         // ---- Population ----
         let demographic_support = budget_gap[BUDGET_HEALTH] * 0.030
             + budget_gap[BUDGET_FAMILIES] * 0.015;
+        let population_before = n.population;
         n.population *= 1.0 + (population_growth(n) + demographic_support) / 12.0;
+        district_growth.push((id, n.population / population_before));
 
         // ---- Stability ----
         let mut ds = 0.0;
@@ -1093,6 +1096,11 @@ pub fn tick(w: &mut WorldState) {
             n.separatism = (n.separatism - cohesion).max(0.0);
         }
     }
+
+    // Technology applies its own population channel later in this same month.
+    // Hold this exact first multiplier transiently so both can be paid in one
+    // province-map pass, in the same arithmetic order.
+    w.district_population_growth = district_growth;
 }
 
 /// How much a nation's population growth MOVES as it gets rich, and nothing
@@ -1132,6 +1140,23 @@ pub fn transition(gdp_pc: f64) -> f64 {
 /// allowed to disagree.
 pub fn population_growth(n: &Nation) -> f64 {
     transition(n.gdp * 1000.0 / n.population) + n.pop_growth_offset
+}
+
+/// The annual demographic pace the next monthly tick will apply to one nation,
+/// including the player's health and family-budget choices. Exposed so the
+/// province dossier can state the same rate the simulation uses.
+pub fn effective_population_growth(w: &WorldState, id: NationId) -> Option<f64> {
+    let n = w.nation_opt(id)?;
+    let policy = if w.player == Some(id) {
+        n.budget_gap(BUDGET_HEALTH) * 0.030 + n.budget_gap(BUDGET_FAMILIES) * 0.015
+    } else {
+        0.0
+    };
+    let economy = population_growth(n) + policy;
+    let technology = crate::tech::demographic_growth(n);
+    // Both channels are applied as monthly multipliers. Return the equivalent
+    // annual pace of their product, not a browser-side approximation.
+    Some(((1.0 + economy / 12.0) * (1.0 + technology / 12.0) - 1.0) * 12.0)
 }
 
 fn oil_market(w: &mut WorldState) {

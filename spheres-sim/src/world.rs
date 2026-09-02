@@ -942,6 +942,15 @@ pub struct WorldState {
     #[serde(default)]
     pub districts: std::collections::BTreeMap<String, NationId>,
 
+    /// Residents of each admin-1 district, in millions. Population remains
+    /// attached to the province when ownership changes.
+    #[serde(default)]
+    pub district_population: std::collections::BTreeMap<String, f64>,
+    /// Cumulative demographic growth by current owner. Province values use a
+    /// rebased basis so monthly updates scale with the roster, not the map.
+    #[serde(default)]
+    pub(crate) district_population_scale: Vec<f64>,
+
     /// The resource system's persisted state: the stockpile, and (cut two)
     /// contracts, offers, refusals, grievances. Skipped while empty, which an
     /// untouched world always is: the pile is written only when a gated line
@@ -974,6 +983,10 @@ pub struct WorldState {
     /// the first tick rebuilds.
     #[serde(skip)]
     pub(crate) districts_epoch: u64,
+    /// Exact population multipliers written by economy and consumed by tech
+    /// later in the same monthly tick.
+    #[serde(skip)]
+    pub(crate) district_population_growth: Vec<(NationId, f64)>,
 }
 
 fn first_day() -> u32 {

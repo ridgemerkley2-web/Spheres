@@ -79,6 +79,12 @@ pub enum Command {
     /// Tear one up. Never refused; charged to standing, reputation, relation
     /// and the other side's memory — the way a trade treaty already is.
     CancelDeal { nation: NationId, contract: u32 },
+    /// Develop a mapped district deposit; oil and gas are presented as fields.
+    DevelopResource {
+        nation: NationId,
+        district: String,
+        commodity: resources::Commodity,
+    },
     /// Take one of the options the world is currently offering this government.
     /// Carries the stratagem's stable id, never an index into the deck.
     EnactStratagem { nation: NationId, id: String },
@@ -311,6 +317,9 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // the point of bankruptcy, and remembered by the other side for three
         // years (resources.rs charges the reputation and the relation).
         Command::CancelDeal { nation, .. } => (*nation, 10.0, ALWAYS),
+        Command::DevelopResource { nation, .. } => {
+            (*nation, resources::MINE_PC_COST, REFUSABLE)
+        }
         // Each stratagem carries its own price, and they are the largest in this
         // list. Reordering an economy is the most expensive thing a government
         // ever decides to do, and it should cost most of a term's standing.
@@ -432,6 +441,9 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         }
         Command::SetAim { conflict, nation, district, commodity } => {
             resources::aim_refusal(w, *conflict, *nation, district, *commodity)
+        }
+        Command::DevelopResource { nation, district, commodity } => {
+            resources::mine_refusal(w, *nation, district, *commodity)
         }
         _ => None,
     }
@@ -684,6 +696,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::CancelDeal { nation, contract } => {
             resources::cancel_contract(w, *nation, *contract)?
         }
+        Command::DevelopResource { nation, district, commodity } => {
+            resources::start_mine(w, *nation, district, *commodity)?
+        }
         Command::EnactStratagem { nation, id } => {
             let s = stratagems::by_id(id)
                 .ok_or_else(|| format!("No such stratagem: {}", id))?;
@@ -926,6 +941,12 @@ pub fn load(s: &str) -> Result<WorldState, String> {
     // own ground. See `districts::reseed` for what is and is not recoverable.
     if w.districts.is_empty() {
         districts::reseed(&mut w);
+    }
+    if w.district_population.is_empty() {
+        districts::reseed_population(&mut w);
+    }
+    if w.district_population_scale.len() != nations::nation_count() {
+        w.district_population_scale = vec![1.0; nations::nation_count()];
     }
     // ...and a save written before the operational map carries wars with a
     // control scalar and no front. Project the scalar back onto the ground it

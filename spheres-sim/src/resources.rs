@@ -789,6 +789,12 @@ pub const RESERVE_MONTHS: f64 = BUFFER_MONTHS;
 /// two values that change nothing in an open world.
 pub const RELATION_FLOOR: f64 = -20.0;
 
+pub const MINE_BUILD_MONTHS: u32 = 12;
+pub const MINE_PC_COST: f64 = 6.0;
+pub const MINE_COST_YEARS: f64 = 2.0;
+pub const MINE_COST_FLOOR_BN: f64 = 0.25;
+pub const MINE_COST_CAP_BN: f64 = 25.0;
+
 // NEED coefficients, kt per $bn ordered, per equipment class (M; order of
 // magnitude, one platform per number). Each is a chain of two transcribed
 // facts — a platform's mass and price, and the ore-and-coke burden of a tonne
@@ -895,6 +901,10 @@ pub fn have_table(w: &WorldState) -> Have {
             }
         }
     }
+    for (owner, c, output) in completed_mine_outputs(w, None) {
+        flow[owner.index()][c.idx()] += output;
+        presence[owner.index()] |= c.bit();
+    }
     Have { flow, presence, built: true, epoch: w.districts_epoch, alive_stamp: alive_stamp(w) }
 }
 
@@ -902,6 +912,7 @@ pub fn have_table(w: &WorldState) -> Have {
 /// before tech and arsenal read it. Rebuilds on an ownership or roster change;
 /// otherwise refreshes the oil column, which moves monthly.
 pub fn tick(w: &mut WorldState) {
+    advance_mines(w);
     let stamp = alive_stamp(w);
     let stale = !w.resource_have.built
         || w.resource_have.epoch != w.districts_epoch
@@ -912,6 +923,10 @@ pub fn tick(w: &mut WorldState) {
         for n in w.nations.iter().filter(|n| n.alive) {
             w.resource_have.flow[n.id.index()][OIL] = n.oil_mbd * 1000.0;
         }
+        for (owner, c, output) in completed_mine_outputs(w, Some(Commodity::Oil)) {
+            w.resource_have.flow[owner.index()][c.idx()] += output;
+            w.resource_have.presence[owner.index()] |= c.bit();
+        }
     }
     if !w.rules.resource_gates {
         return;
@@ -919,6 +934,81 @@ pub fn tick(w: &mut WorldState) {
     deliver_contracts(w);
     expire_offers(w);
     cool_grievances(w);
+}
+
+fn completed_mine_outputs(
+    w: &WorldState,
+    only: Option<Commodity>,
+) -> Vec<(NationId, Commodity, f64)> {
+    w.resources
+        .mines
+        .iter()
+        .filter(|m| only.map_or(true, |c| m.commodity == c))
+        .filter_map(|m| {
+            let owner = *w.districts.get(&m.district)?;
+            w.nation_opt(owner)
+                .filter(|n| n.alive)
+                .map(|_| (owner, m.commodity, m.output))
+        })
+        .collect()
+}
+
+fn advance_mines(w: &mut WorldState) {
+    if w.resources.mine_projects.is_empty() {
+        return;
+    }
+    let now = month_abs(w);
+    let mut keep = Vec::with_capacity(w.resources.mine_projects.len());
+    let mut completed = vec![];
+    for mut project in std::mem::take(&mut w.resources.mine_projects) {
+        let active = w
+            .districts
+            .get(&project.district)
+            .copied()
+            .and_then(|owner| w.nation_opt(owner))
+            .is_some_and(|n| n.alive)
+            && !district_contested(w, &project.district);
+        if active {
+            project.months_left = project.months_left.saturating_sub(1);
+        }
+        if project.months_left > 0 {
+            keep.push(project);
+        } else {
+            completed.push(Mine {
+                district: project.district,
+                commodity: project.commodity,
+                output: project.output,
+                completed: now,
+            });
+        }
+    }
+    w.resources.mine_projects = keep;
+    for mine in completed {
+        let owner = w.districts.get(&mine.district).copied();
+        let label = if matches!(mine.commodity, Commodity::Oil | Commodity::Gas) {
+            "field"
+        } else {
+            "mine"
+        };
+        let district_name = crate::districts::name_of(&mine.district)
+            .unwrap_or(mine.district.as_str());
+        if let Some(owner) = owner {
+            w.headline(format!(
+                "{} opens the {} {} in {}.",
+                owner.name(), mine.commodity.name(), label, district_name
+            ));
+        }
+        let key = (mine.district.as_str(), mine.commodity);
+        match w
+            .resources
+            .mines
+            .binary_search_by(|m| (m.district.as_str(), m.commodity).cmp(&key))
+        {
+            Ok(i) => w.resources.mines[i] = mine,
+            Err(i) => w.resources.mines.insert(i, mine),
+        }
+        w.resource_have.built = false;
+    }
 }
 
 /// One month of every live contract (spec section 4.6), in vector order.
@@ -1066,6 +1156,10 @@ fn is_zero(v: &u32) -> bool {
 /// sorted by construction.
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 pub struct Resources {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub mine_projects: Vec<MineProject>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub mines: Vec<Mine>,
     /// Sorted by nation. A row exists only while some line is below twelve.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub cover: Vec<Cover>,
@@ -1086,13 +1180,34 @@ pub struct Resources {
 
 impl Resources {
     pub fn is_empty(&self) -> bool {
-        self.cover.is_empty()
+        self.mine_projects.is_empty()
+            && self.mines.is_empty()
+            && self.cover.is_empty()
             && self.contracts.is_empty()
             && self.offers.is_empty()
             && self.refusals.is_empty()
             && self.grievances.is_empty()
             && self.next_id == 0
     }
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct MineProject {
+    pub district: String,
+    pub commodity: Commodity,
+    pub started_by: NationId,
+    pub months_left: u32,
+    pub months_total: u32,
+    pub investment_bn: f64,
+    pub output: f64,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct Mine {
+    pub district: String,
+    pub commodity: Commodity,
+    pub output: f64,
+    pub completed: i32,
 }
 
 /// Months of need in hand per line, 0..=12. Materialised on the first write
@@ -2600,6 +2715,132 @@ pub fn reference_mine(c: Commodity) -> Option<f64> {
     })[c.idx()]
 }
 
+pub fn mine_output(district: &str, c: Commodity) -> Option<f64> {
+    let scale = match quality_of(district, c) {
+        3 => 1.5,
+        2 => 1.0,
+        1 => 0.5,
+        _ => return None,
+    };
+    reference_mine(c).map(|reference| reference * scale)
+}
+
+pub fn mine_output_bn_per_year(w: &WorldState, district: &str, c: Commodity) -> Option<f64> {
+    let output = mine_output(district, c)?;
+    Some(if c == Commodity::Oil {
+        oil_leg_bn_per_year(output, w.oil_price)
+    } else {
+        output * unit_price_bn(c)?
+    })
+}
+
+pub fn mine_cost_bn(w: &WorldState, district: &str, c: Commodity) -> Option<f64> {
+    mine_output_bn_per_year(w, district, c)
+        .map(|value| (value * MINE_COST_YEARS).clamp(MINE_COST_FLOOR_BN, MINE_COST_CAP_BN))
+}
+
+pub fn mine_project_at<'a>(w: &'a WorldState, district: &str, c: Commodity) -> Option<&'a MineProject> {
+    w.resources
+        .mine_projects
+        .binary_search_by(|m| (m.district.as_str(), m.commodity).cmp(&(district, c)))
+        .ok()
+        .map(|i| &w.resources.mine_projects[i])
+}
+
+pub fn mine_at<'a>(w: &'a WorldState, district: &str, c: Commodity) -> Option<&'a Mine> {
+    w.resources
+        .mines
+        .binary_search_by(|m| (m.district.as_str(), m.commodity).cmp(&(district, c)))
+        .ok()
+        .map(|i| &w.resources.mines[i])
+}
+
+pub fn mine_refusal(
+    w: &WorldState,
+    nation: NationId,
+    district: &str,
+    c: Commodity,
+) -> Option<String> {
+    if !w.rules.resource_gates {
+        return Some("The resource system is not enabled for this world.".into());
+    }
+    if !w.nation_opt(nation).is_some_and(|n| n.alive) {
+        return Some(format!("{} is not an active state.", nation.name()));
+    }
+    let Some(&owner) = w.districts.get(district) else {
+        return Some(format!("There is no district called {}.", district));
+    };
+    if owner != nation {
+        return Some(format!(
+            "{} does not control {}.",
+            nation.name(),
+            crate::districts::name_of(district).unwrap_or(district)
+        ));
+    }
+    if quality_of(district, c) == 0 {
+        return Some(format!(
+            "No mapped {} deposit is present in {}.",
+            c.name(),
+            crate::districts::name_of(district).unwrap_or(district)
+        ));
+    }
+    if district_contested(w, district) {
+        return Some("Construction cannot begin while that district is contested.".into());
+    }
+    if mine_at(w, district, c).is_some() {
+        return Some(format!("The {} development there is already online.", c.name()));
+    }
+    if mine_project_at(w, district, c).is_some() {
+        return Some(format!("The {} development there is already under construction.", c.name()));
+    }
+    if mine_cost_bn(w, district, c).is_none() {
+        return Some(format!("There is no defensible production benchmark for {}.", c.name()));
+    }
+    None
+}
+
+pub fn start_mine(
+    w: &mut WorldState,
+    nation: NationId,
+    district: &str,
+    c: Commodity,
+) -> Result<(), String> {
+    if let Some(why) = mine_refusal(w, nation, district, c) {
+        return Err(why);
+    }
+    let investment_bn = mine_cost_bn(w, district, c).expect("precondition checked");
+    let output = mine_output(district, c).expect("precondition checked");
+    let gdp = w.nation(nation).gdp.max(0.1);
+    w.nation_mut(nation).debt_gdp += investment_bn / gdp;
+    let project = MineProject {
+        district: district.to_string(),
+        commodity: c,
+        started_by: nation,
+        months_left: MINE_BUILD_MONTHS,
+        months_total: MINE_BUILD_MONTHS,
+        investment_bn,
+        output,
+    };
+    let key = (project.district.as_str(), project.commodity);
+    let i = w
+        .resources
+        .mine_projects
+        .binary_search_by(|m| (m.district.as_str(), m.commodity).cmp(&key))
+        .unwrap_err();
+    w.resources.mine_projects.insert(i, project);
+    let verb = if matches!(c, Commodity::Oil | Commodity::Gas) {
+        "field development"
+    } else {
+        "mine"
+    };
+    let district_name = crate::districts::name_of(district).unwrap_or(district);
+    w.headline(format!(
+        "{} commits ${:.1} bn to a {} {} in {}; first output in {} months.",
+        nation.name(), investment_bn, c.name(), verb, district_name, MINE_BUILD_MONTHS
+    ));
+    Ok(())
+}
+
 // ---------------------------------------------------------------------------
 // The market (package S3): the buy pass, the refusal memory, the aim. Behind
 // `GameRules::resource_market` (fork F1(b)): the pass returns before it reads
@@ -3159,6 +3400,47 @@ mod tests {
 
     fn code(s: &str) -> NationId {
         NationId::from_code(s).unwrap()
+    }
+
+    #[test]
+    fn a_mine_builds_for_a_year_and_follows_the_district() {
+        let mut w = built(world_1990(GameRules {
+            resource_gates: true,
+            ..GameRules::default()
+        }));
+        let (chile, peru) = (code("Chile"), code("Peru"));
+        let c = Commodity::Copper;
+        let district = w
+            .districts
+            .iter()
+            .find(|(d, owner)| **owner == chile && quality_of(d, c) > 0)
+            .map(|(d, _)| d.clone())
+            .expect("Chile has a mapped copper deposit");
+        let expected = mine_output(&district, c).unwrap();
+        w.nation_mut(chile).political_capital = 100.0;
+        crate::apply_command(
+            &mut w,
+            &crate::Command::DevelopResource {
+                nation: chile,
+                district: district.clone(),
+                commodity: c,
+            },
+        )
+        .unwrap();
+        assert_eq!(w.nation(chile).political_capital, 100.0 - MINE_PC_COST);
+        assert_eq!(mine_project_at(&w, &district, c).unwrap().months_left, MINE_BUILD_MONTHS);
+
+        // Construction and completed output stay with the ground, not the
+        // government that paid for it.
+        w.districts.insert(district.clone(), peru);
+        w.districts_epoch = w.districts_epoch.wrapping_add(1);
+        for _ in 0..MINE_BUILD_MONTHS - 1 {
+            tick(&mut w);
+        }
+        let before = flow(&w, peru, c);
+        tick(&mut w);
+        assert!((flow(&w, peru, c) - before - expected).abs() < expected * 1e-12 + 1e-6);
+        assert!(mine_at(&w, &district, c).is_some());
     }
 
     /// HAVE is the transcribed figure, located and summed back: the USSR's
@@ -4304,7 +4586,11 @@ mod tests {
         assert_eq!(body.matches("shift_relation(").count(), 2, "signing and cancelling");
         assert_eq!(body.matches("shift_reputation(").count(), 1, "cancelling");
         assert!(body.contains("SIGN_RELATION") && body.contains("CANCEL_RELATION") && body.contains("CANCEL_REPUTATION"));
-        assert_eq!(body.matches("debt_gdp").count(), 3, "one settle: the payer up, the payee down, floored");
+        assert_eq!(
+            body.matches("debt_gdp").count(),
+            4,
+            "one mine investment plus one settle: payer up, payee down, floored"
+        );
         let districts = include_str!("districts.rs");
         assert_eq!(districts.matches("pub fn transfer_district").count(), 1);
         let transfer = districts.split("pub fn transfer_district").nth(1).unwrap().split("\n}\n").next().unwrap();

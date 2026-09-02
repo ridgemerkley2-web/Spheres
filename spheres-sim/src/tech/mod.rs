@@ -1529,6 +1529,7 @@ pub fn tick(w: &mut WorldState) {
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     let year = w.year;
     let mut news: Vec<String> = vec![];
+    let mut district_growth: Vec<(NationId, f64)> = Vec::with_capacity(ids.len());
 
     for id in ids {
         let dev = development(w.nation(id));
@@ -1669,6 +1670,7 @@ pub fn tick(w: &mut WorldState) {
         let weights = domain_weights(w, w.nation(id), dev);
 
         let mut firsts: Vec<u16> = vec![];
+        let population_multiplier;
         {
             let n = w.nation_mut(id);
             n.tech.ensure_shape(n.tfp_trend);
@@ -1755,8 +1757,10 @@ pub fn tick(w: &mut WorldState) {
             n.tech.absorption_rate +=
                 (fielded - n.tech.absorption_rate) * ABSORPTION_MEMORY;
 
-            apply_bonuses(n, reference, frontier_known, absorb);
+            population_multiplier = apply_bonuses(n, reference, frontier_known, absorb);
         }
+
+        district_growth.push((id, population_multiplier));
 
         for t in firsts {
             let ti = t as usize;
@@ -1766,6 +1770,9 @@ pub fn tick(w: &mut WorldState) {
             }
         }
     }
+
+    let economy_growth = std::mem::take(&mut w.district_population_growth);
+    crate::districts::grow_populations_compounded(w, &economy_growth, &district_growth);
 
     for h in news {
         w.headline(h);
@@ -1834,7 +1841,7 @@ pub fn saturated_tech_tfp(n: &Nation) -> f64 {
 /// world pulls ahead, one that falls behind loses ground — and in January 1990,
 /// when nobody knows anything and the reference is zero, every nation sits
 /// exactly on the trend `init.rs` transcribed for it.
-fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, _absorb: f64) {
+fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, _absorb: f64) -> f64 {
     let b = &n.tech.bonus;
     let tech_tfp = saturated_tech_tfp(n);
     // How far behind there is still to be, counted in technologies rather than
@@ -1895,6 +1902,7 @@ fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, _absorb: f
 
     // Medicine keeps people alive; the pill and the city persuade them to have
     // fewer children. Both are annual rates spread over the month.
+    let population_before = n.population;
     let demographic =
         b.health_eff() * 0.002 + b.fertility_eff() * 0.002 + b.environment_eff() * 0.0006;
     n.population *= 1.0 + demographic / 12.0;
@@ -1903,6 +1911,15 @@ fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, _absorb: f
     // served population settles a few points higher rather than running away.
     n.stability =
         (n.stability + (b.stability_eff() + b.environment_eff() * 0.30) * 0.005).clamp(0.0, 100.0);
+    n.population / population_before
+}
+
+/// Annual population change supplied by the technologies a nation operates.
+/// Kept beside `apply_bonuses`, and exposed only so province population and its
+/// dossier can follow the exact same demographic channel.
+pub fn demographic_growth(n: &Nation) -> f64 {
+    let b = &n.tech.bonus;
+    b.health_eff() * 0.002 + b.fertility_eff() * 0.002 + b.environment_eff() * 0.0006
 }
 
 /// How exposed a nation still is to the price of a barrel. Read by the growth
