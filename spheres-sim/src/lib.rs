@@ -4134,6 +4134,646 @@ mod tests {
         }
     }
 
+    /// The census, count one, as a machine-readable record. Fork F4 wants
+    /// the count measured twice independently before the owner sets a bar;
+    /// this is the instrument that writes down what it measured. The same
+    /// seven arms as `resource_war_census` — control (market off) and floor
+    /// {-20, 0, +10} x ration {on, off} — each on its own thread (fork F2's
+    /// knobs are thread-local, so the arms cannot see each other), the same
+    /// "WAR:" fingerprint so a run agrees with that instrument line for
+    /// line, and beyond it, per resource war and per aim set: the opener,
+    /// the target, the line, the district, the "refused by r of s" counts,
+    /// and whether, as the month ended, every producer had refused twice
+    /// (`refused_all`), the line stood at cover zero, the target was a
+    /// counted refuser, the district was in reach, `last_resort` returned
+    /// exactly that aim, and neither absolute bar stood — a nuclear target
+    /// facing a non-nuclear opener, or a pact between the two:
+    /// `war_appetite` returns before either can be priced, so a crossing is
+    /// a defect, never a calibration. The month end is the exact reading:
+    /// statecraft (cooling) and war run before politics (the buy pass, then
+    /// the appetite roll) in `SYSTEMS`, so nothing between the roll and the
+    /// reading touches the memory, the cover or the map. Also the funnel
+    /// below the predicate: market events by kind, the lowest cover any
+    /// line reached, stall-months and how many of those were universally
+    /// refused. Writes JSON to `SPHERES_CENSUS_JSON` when set. Not an
+    /// assertion; a measurement.
+    ///
+    ///     SPHERES_CENSUS_SEEDS=200 SPHERES_CENSUS_JSON=census1.json cargo test -p spheres-sim --release --lib resource_war_census_one -- --ignored --nocapture
+    #[test]
+    #[ignore = "census, count one; 200 seeds x 480 months x 7 arms, one thread per arm"]
+    fn resource_war_census_one() {
+        use serde_json::{json, Value};
+        use std::collections::{BTreeMap, BTreeSet};
+        let seeds: u64 = std::env::var("SPHERES_CENSUS_SEEDS").ok().and_then(|s| s.parse().ok()).unwrap_or(200);
+        const MONTHS: usize = 480;
+        const BAND: (f64, f64) = (0.05, 0.69);
+        fn fnv(lines: &[String]) -> u64 {
+            let mut h: u64 = 0xcbf2_9ce4_8422_2325;
+            for l in lines {
+                for b in l.as_bytes().iter().chain(b"\n") {
+                    h ^= *b as u64;
+                    h = h.wrapping_mul(0x0000_0100_0000_01b3);
+                }
+            }
+            h
+        }
+        fn bump(map: &mut BTreeMap<String, u64>, key: String) {
+            *map.entry(key).or_default() += 1;
+        }
+        fn top(map: &BTreeMap<String, u64>, k: usize) -> Vec<Value> {
+            let mut v: Vec<(&String, &u64)> = map.iter().collect();
+            v.sort_by(|a, b| b.1.cmp(a.1).then(a.0.cmp(b.0)));
+            v.into_iter().take(k).map(|(s, n)| json!({ "key": s, "count": n })).collect()
+        }
+        fn pact_between(w: &WorldState, a: NationId, t: NationId) -> bool {
+            w.statecraft.pacts.iter().any(|p| (p.a == a && p.b == t) || (p.a == t && p.b == a))
+        }
+        fn nuclear_bar(w: &WorldState, a: NationId, t: NationId) -> bool {
+            match (w.nation_opt(a), w.nation_opt(t)) {
+                (Some(x), Some(y)) => y.nuclear && !x.nuclear,
+                _ => false,
+            }
+        }
+        /// The seat facing the opener: the first of the other side.
+        fn opponent(c: &crate::world::Conflict) -> Option<NationId> {
+            let a = c.origin_attacker;
+            if c.side_a.contains(&a) {
+                c.side_b.first().copied()
+            } else {
+                c.side_a.first().copied()
+            }
+        }
+        struct Arm {
+            name: &'static str,
+            market: bool,
+            floor: f64,
+            ration: bool,
+        }
+        let arms = [
+            Arm { name: "control: market off", market: false, floor: resources::RELATION_FLOOR, ration: true },
+            Arm { name: "floor -20, ration on (the design)", market: true, floor: -20.0, ration: true },
+            Arm { name: "floor -20, ration off", market: true, floor: -20.0, ration: false },
+            Arm { name: "floor 0, ration on", market: true, floor: 0.0, ration: true },
+            Arm { name: "floor 0, ration off", market: true, floor: 0.0, ration: false },
+            Arm { name: "floor +10, ration on", market: true, floor: 10.0, ration: true },
+            Arm { name: "floor +10, ration off", market: true, floor: 10.0, ration: false },
+        ];
+        struct Out {
+            secs: f64,
+            war_lines: Vec<String>,
+            per_seed_wars: Vec<Vec<String>>,
+            per_seed_res: Vec<u32>,
+            per_seed_aims: Vec<u32>,
+            res_wars: Vec<Value>,
+            aims: Vec<Value>,
+            events: BTreeMap<String, u64>,
+            first_market: Vec<Option<usize>>,
+            min_cover: f64,
+            min_cover_at: Option<String>,
+            stall_nation_months: u64,
+            stall_line_months: u64,
+            stall_line_months_refused_all: u64,
+            seeds_with_stall: u32,
+            stall_by_nation_line: BTreeMap<String, u64>,
+            stall_refused_frac_hist: BTreeMap<String, u64>,
+            stall_closest: Option<(f64, String)>,
+            stall_line_months_blocked_by_own_sanction: u64,
+            chain: BTreeMap<String, u64>,
+            lr_pair_months: u64,
+            lr_pairs: BTreeMap<String, u64>,
+            lr_p_sum: f64,
+            lr_p_max: Option<(f64, String)>,
+            ur_no_producer_contact: u64,
+            refusal_dyads: BTreeMap<String, u64>,
+            nobody: BTreeMap<String, u64>,
+            res_dyads: BTreeMap<String, u64>,
+            res_lines: BTreeMap<String, u64>,
+            aim_dyads: BTreeMap<String, u64>,
+            aim_lines: BTreeMap<String, u64>,
+            bars_resource: u32,
+            bars_all_conflicts: u32,
+            bars_all_examples: Vec<String>,
+            conflicts_opened: u64,
+            legible_at_invasion: u32,
+            legible_at_aim: u32,
+        }
+        fn run_arm(arm: &Arm, seeds: u64) -> Out {
+            resources::census::FLOOR.with(|f| f.set(arm.floor));
+            resources::census::RATION.with(|r| r.set(arm.ration));
+            let n = seeds as usize;
+            let mut o = Out {
+                secs: 0.0,
+                war_lines: vec![],
+                per_seed_wars: vec![vec![]; n],
+                per_seed_res: vec![0; n],
+                per_seed_aims: vec![0; n],
+                res_wars: vec![],
+                aims: vec![],
+                events: BTreeMap::new(),
+                first_market: vec![None; n],
+                min_cover: resources::BUFFER_MONTHS,
+                min_cover_at: None,
+                stall_nation_months: 0,
+                stall_line_months: 0,
+                stall_line_months_refused_all: 0,
+                seeds_with_stall: 0,
+                stall_by_nation_line: BTreeMap::new(),
+                stall_refused_frac_hist: BTreeMap::new(),
+                stall_closest: None,
+                stall_line_months_blocked_by_own_sanction: 0,
+                chain: BTreeMap::new(),
+                lr_pair_months: 0,
+                lr_pairs: BTreeMap::new(),
+                lr_p_sum: 0.0,
+                lr_p_max: None,
+                ur_no_producer_contact: 0,
+                refusal_dyads: BTreeMap::new(),
+                nobody: BTreeMap::new(),
+                res_dyads: BTreeMap::new(),
+                res_lines: BTreeMap::new(),
+                aim_dyads: BTreeMap::new(),
+                aim_lines: BTreeMap::new(),
+                bars_resource: 0,
+                bars_all_conflicts: 0,
+                bars_all_examples: vec![],
+                conflicts_opened: 0,
+                legible_at_invasion: 0,
+                legible_at_aim: 0,
+            };
+            let started = std::time::Instant::now();
+            for seed in 0..seeds {
+                let s = seed as usize;
+                let mut w = world_1990(GameRules { seed, resource_market: arm.market, ..GameRules::default() });
+                let mut seen: BTreeSet<u32> = BTreeSet::new();
+                let mut seen_aim: BTreeSet<u32> = BTreeSet::new();
+                let mut stalled_seed = false;
+                for m in 0..MONTHS {
+                    let heads = tick_month(&mut w, &[]);
+                    for h in &heads {
+                        let kind = if h.contains(" refuses: ") {
+                            Some("refusal")
+                        } else if h.contains(" sign a supply contract") {
+                            Some("signing")
+                        } else if h.contains("Nobody will sell ") {
+                            Some("nobody_will_sell")
+                        } else if h.contains(" line delayed - needs ") {
+                            Some("line_delayed")
+                        } else if h.contains(" tears up its supply contract") {
+                            Some("cancel")
+                        } else if h.contains(" cannot deliver all of its ") {
+                            Some("force_majeure")
+                        } else if h.contains(" has run its term") {
+                            Some("expired")
+                        } else if h.contains(" contract between ") && h.contains(" dies with ") {
+                            Some("died_with_a_party")
+                        } else {
+                            None
+                        };
+                        if let Some(k) = kind {
+                            bump(&mut o.events, k.to_string());
+                            if o.first_market[s].is_none() {
+                                o.first_market[s] = Some(m);
+                            }
+                            if k == "refusal" {
+                                // "{b} seeks {c} from {s}; {s} refuses: {sentence}"
+                                if let Some((b, rest)) = h.split_once(" seeks ") {
+                                    if let Some((c, rest2)) = rest.split_once(" from ") {
+                                        if let Some((sl, _)) = rest2.split_once("; ") {
+                                            bump(&mut o.refusal_dyads, format!("{b} <- {sl} : {c}"));
+                                        }
+                                    }
+                                }
+                            } else if k == "nobody_will_sell" {
+                                // "Nobody will sell {c} to {b} — {n} asked."
+                                if let Some(rest) = h.strip_prefix("Nobody will sell ") {
+                                    if let Some((c, rest2)) = rest.split_once(" to ") {
+                                        if let Some((b, _)) = rest2.split_once(" — ") {
+                                            bump(&mut o.nobody, format!("{b} : {c}"));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if !h.starts_with("WAR:") {
+                            continue;
+                        }
+                        o.war_lines.push(format!("{seed}\t{m}\t{h}"));
+                        o.per_seed_wars[s].push(h.clone());
+                        if h.contains(" for the ") && h.contains(" — refused by ") {
+                            o.per_seed_res[s] += 1;
+                            // "WAR: {a} invades {t} for the {k} of {d} — refused by {r} of {s} sellers."
+                            let body = h.strip_prefix("WAR: ").unwrap_or(h);
+                            let (a, rest) = body.split_once(" invades ").unwrap_or(("?", body));
+                            let (t, rest) = rest.split_once(" for the ").unwrap_or(("?", rest));
+                            let (k, rest) = rest.split_once(" of ").unwrap_or(("?", rest));
+                            let (d, tail) = rest.rsplit_once(" — refused by ").unwrap_or((rest, ""));
+                            let mut nums = tail.split(|ch: char| !ch.is_ascii_digit()).filter(|x| !x.is_empty());
+                            let r: u32 = nums.next().and_then(|x| x.parse().ok()).unwrap_or(0);
+                            let sc: u32 = nums.next().and_then(|x| x.parse().ok()).unwrap_or(0);
+                            bump(&mut o.res_dyads, format!("{a} -> {t}"));
+                            bump(&mut o.res_lines, k.to_string());
+                            let by = w.nations.iter().find(|x| x.id.name() == a).map(|x| x.id);
+                            let tg = w.nations.iter().find(|x| x.id.name() == t).map(|x| x.id);
+                            let conf = w.conflicts.iter().find(|c| {
+                                c.invasion_declared
+                                    && Some(c.origin_attacker) == by
+                                    && c.aim.as_ref().is_some_and(|ai| ai.commodity.name() == k)
+                            });
+                            let (refused_all_now, reach_now, lr_now, cover_now) = match (by, tg, conf) {
+                                (Some(by), Some(tg), Some(c)) => {
+                                    let ai = c.aim.as_ref().expect("found by its aim");
+                                    (
+                                        resources::refused_all(&w, by, ai.commodity).is_some(),
+                                        resources::reachable(&w, by, &ai.district),
+                                        dyads::last_resort(&w, by, tg) == Some(ai.clone()),
+                                        resources::cover(&w, by, ai.commodity),
+                                    )
+                                }
+                                _ => (false, false, false, f64::NAN),
+                            };
+                            let (nuc, pact) = match (by, tg) {
+                                (Some(by), Some(tg)) => (nuclear_bar(&w, by, tg), pact_between(&w, by, tg)),
+                                _ => (false, false),
+                            };
+                            let legible = conf.is_some() && refused_all_now && reach_now;
+                            if legible {
+                                o.legible_at_invasion += 1;
+                            }
+                            if nuc || pact {
+                                o.bars_resource += 1;
+                            }
+                            o.res_wars.push(json!({
+                                "seed": seed, "month": m, "opener": a, "target": t, "line": k, "district": d,
+                                "refused": r, "sellers": sc, "conflict": conf.map(|c| c.id),
+                                "refused_all_now": refused_all_now, "reachable_now": reach_now,
+                                "last_resort_now": lr_now, "cover_now": cover_now,
+                                "nuclear_bar": nuc, "pact_bar": pact, "headline": h,
+                            }));
+                        }
+                    }
+                    for c in &w.conflicts {
+                        if seen.insert(c.id) {
+                            o.conflicts_opened += 1;
+                            let a = c.origin_attacker;
+                            if let Some(t) = opponent(c) {
+                                let nuc = nuclear_bar(&w, a, t);
+                                let pact = pact_between(&w, a, t);
+                                if nuc || pact {
+                                    o.bars_all_conflicts += 1;
+                                    if o.bars_all_examples.len() < 20 {
+                                        o.bars_all_examples.push(format!(
+                                            "seed {seed} month {m} conflict {} {} vs {} nuclear_bar={nuc} pact_bar={pact} aim={}",
+                                            c.id,
+                                            a.name(),
+                                            t.name(),
+                                            c.aim.is_some()
+                                        ));
+                                    }
+                                }
+                            }
+                        }
+                        if let Some(ai) = &c.aim {
+                            if seen_aim.insert(c.id) {
+                                o.per_seed_aims[s] += 1;
+                                let a = c.origin_attacker;
+                                let t = w.districts.get(&ai.district).copied();
+                                let k = ai.commodity;
+                                let ra = resources::refused_all(&w, a, k);
+                                let cv = resources::cover(&w, a, k);
+                                let counted = t.is_some_and(|t| resources::refusal_counted(&w, a, t, k));
+                                let reach = resources::reachable(&w, a, &ai.district);
+                                let lr = t.is_some_and(|t| dyads::last_resort(&w, a, t) == Some(ai.clone()));
+                                let nuc = t.is_some_and(|t| nuclear_bar(&w, a, t));
+                                let pact = t.is_some_and(|t| pact_between(&w, a, t));
+                                let ok = ra.is_some() && cv <= 0.0 && counted && reach;
+                                if ok {
+                                    o.legible_at_aim += 1;
+                                }
+                                if nuc || pact {
+                                    o.bars_resource += 1;
+                                }
+                                bump(&mut o.aim_dyads, format!("{} -> {}", a.name(), t.map(|t| t.name()).unwrap_or("?")));
+                                bump(&mut o.aim_lines, k.name().to_string());
+                                o.aims.push(json!({
+                                    "seed": seed, "month": m, "conflict": c.id, "opener": a.name(),
+                                    "target": t.map(|t| t.name()), "line": k.name(), "district": ai.district,
+                                    "refused_all": ra.map(|(r, s)| [r, s]), "cover": cv,
+                                    "target_counted_refuser": counted, "reachable": reach,
+                                    "last_resort_agrees": lr, "condition_held": ok,
+                                    "nuclear_bar": nuc, "pact_bar": pact,
+                                    "settled_flag": t.is_some_and(|t| w.has_pair_flag(dyads::SETTLED_FLAG, a, t)),
+                                }));
+                            }
+                        }
+                    }
+                    for row in &w.resources.cover {
+                        let mut stalled = false;
+                        for k in resources::ALL.iter().copied().filter(|k| k.tracked()) {
+                            let v = row.months[k.idx()];
+                            if v < o.min_cover {
+                                o.min_cover = v;
+                                o.min_cover_at = Some(format!("seed {seed} month {m} {} {}", row.nation.name(), k.name()));
+                            }
+                            if v <= 0.0 {
+                                stalled = true;
+                                o.stall_line_months += 1;
+                                if resources::refused_all(&w, row.nation, k).is_some() {
+                                    o.stall_line_months_refused_all += 1;
+                                    // Clauses 1 and 2 hold. Walk 3-5 and the two bars over
+                                    // every contact the appetite pass asks about, in the
+                                    // predicate's own order, and count where the chain stops.
+                                    let a = row.nation;
+                                    let mut any_producer_contact = false;
+                                    for &t in dyads::contacts(a) {
+                                        if !w.nation_opt(t).is_some_and(|n| n.alive) {
+                                            continue;
+                                        }
+                                        let producer = resources::flow(&w, t, k) > 0.0;
+                                        any_producer_contact |= producer;
+                                        let reason = if !producer {
+                                            "3: contact is not a producer"
+                                        } else if !resources::refusal_counted(&w, a, t, k) {
+                                            "3: contact produces but is not a counted refuser"
+                                        } else if w.has_pair_flag(dyads::SETTLED_FLAG, a, t) {
+                                            "4: claim already pressed"
+                                        } else if resources::reachable_best_district(&w, a, t, k).is_none() {
+                                            "5: no located district in reach"
+                                        } else if nuclear_bar(&w, a, t) {
+                                            "aim in reach; the nuclear bar"
+                                        } else if pact_between(&w, a, t) {
+                                            "aim in reach; the pact bar"
+                                        } else {
+                                            "last_resort Some; the appetite rolled"
+                                        };
+                                        bump(&mut o.chain, reason.to_string());
+                                        let lr = dyads::last_resort(&w, a, t);
+                                        if lr.is_some() {
+                                            o.lr_pair_months += 1;
+                                            bump(&mut o.lr_pairs, format!("{} -> {} : {}", a.name(), t.name(), k.name()));
+                                            let p = dyads::war_appetite(&w, a, t);
+                                            o.lr_p_sum += p;
+                                            if o.lr_p_max.as_ref().is_none_or(|(q, _)| p > *q) {
+                                                o.lr_p_max = Some((
+                                                    p,
+                                                    format!(
+                                                        "seed {seed} month {m} {} -> {} for {}: p = {p:.3e}, aim {:?}, nuclear bar {}, pact bar {}",
+                                                        a.name(),
+                                                        t.name(),
+                                                        k.name(),
+                                                        lr.map(|x| x.district),
+                                                        nuclear_bar(&w, a, t),
+                                                        pact_between(&w, a, t)
+                                                    ),
+                                                ));
+                                            }
+                                        }
+                                    }
+                                    if !any_producer_contact {
+                                        o.ur_no_producer_contact += 1;
+                                    }
+                                }
+                                // How far clause 2 got: of the producers this buyer
+                                // would have to be refused by, how many refused twice
+                                // (counted), how many at all, how many it shuts out itself.
+                                let sellers: Vec<NationId> =
+                                    resources::producers(&w, k).into_iter().filter(|s| *s != row.nation).collect();
+                                let s_n = sellers.len();
+                                let counted = sellers.iter().filter(|s| resources::refusal_counted(&w, row.nation, **s, k)).count();
+                                let any = resources::refusals_of(&w, row.nation, k);
+                                let blocked = sellers.iter().filter(|s| w.is_sanctioning(row.nation, **s)).count();
+                                if blocked > 0 {
+                                    o.stall_line_months_blocked_by_own_sanction += 1;
+                                }
+                                let frac = if s_n > 0 { counted as f64 / s_n as f64 } else { 0.0 };
+                                bump(&mut o.stall_refused_frac_hist, format!("{:.1}", (frac * 10.0).floor() / 10.0));
+                                bump(&mut o.stall_by_nation_line, format!("{} : {}", row.nation.name(), k.name()));
+                                if o.stall_closest.as_ref().is_none_or(|(f, _)| frac > *f) {
+                                    o.stall_closest = Some((
+                                        frac,
+                                        format!(
+                                            "seed {seed} month {m} {} {}: {counted} of {s_n} producers refused twice, {any} refused at all, {blocked} shut out by the buyer's own sanction",
+                                            row.nation.name(),
+                                            k.name()
+                                        ),
+                                    ));
+                                }
+                            }
+                        }
+                        if stalled {
+                            o.stall_nation_months += 1;
+                            stalled_seed = true;
+                        }
+                    }
+                }
+                if stalled_seed {
+                    o.seeds_with_stall += 1;
+                }
+            }
+            o.war_lines.sort();
+            o.secs = started.elapsed().as_secs_f64();
+            o
+        }
+        fn readout() -> Vec<u32> {
+            (0..12u64)
+                .map(|seed| {
+                    let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+                    let mut n = 0;
+                    for _ in 0..360 {
+                        n += tick_month(&mut w, &[]).iter().filter(|h| h.starts_with("WAR:")).count() as u32;
+                    }
+                    n
+                })
+                .collect()
+        }
+        fn gulf(market: bool) -> Vec<u64> {
+            (0..200u64)
+                .filter(|&seed| {
+                    let mut w = world_1990(GameRules { seed, resource_market: market, ..GameRules::default() });
+                    let saw = (0..48).any(|_| tick_month(&mut w, &[]).iter().any(|h| h.contains("Iraq invades Kuwait")));
+                    saw || !w.nation(NationId::Kuwait).alive
+                })
+                .collect()
+        }
+        fn drag(market: bool) -> Vec<u64> {
+            (0..12u64)
+                .filter(|&seed| {
+                    let mut w = world_1990(GameRules { seed, resource_market: market, ..GameRules::default() });
+                    (0..360).any(|_| {
+                        tick_month(&mut w, &[]).iter().any(|h| {
+                            h.contains("honours its defence pact") && patrons().iter().any(|p| h.starts_with(p.name()))
+                        })
+                    })
+                })
+                .collect()
+        }
+
+        let wall = std::time::Instant::now();
+        let (outs, readout, gulf_ctl, drag_ctl, gulf_dsn, drag_dsn) = std::thread::scope(|sc| {
+            let hs: Vec<_> = arms.iter().map(|arm| sc.spawn(move || run_arm(arm, seeds))).collect();
+            let hr = sc.spawn(readout);
+            let hg0 = sc.spawn(|| gulf(false));
+            let hd0 = sc.spawn(|| drag(false));
+            let hg1 = sc.spawn(|| gulf(true));
+            let hd1 = sc.spawn(|| drag(true));
+            let outs: Vec<Out> = hs.into_iter().map(|h| h.join().expect("an arm panicked")).collect();
+            (
+                outs,
+                hr.join().expect("readout"),
+                hg0.join().expect("gulf control"),
+                hd0.join().expect("drag control"),
+                hg1.join().expect("gulf design"),
+                hd1.join().expect("drag design"),
+            )
+        });
+        let wall_secs = wall.elapsed().as_secs_f64();
+
+        let n = seeds as f64;
+        let control_wars: &Vec<Vec<String>> = &outs[0].per_seed_wars;
+        let mut arm_docs: Vec<Value> = vec![];
+        println!();
+        for (arm, o) in arms.iter().zip(outs.iter()) {
+            let total = o.war_lines.len();
+            let res: u32 = o.per_seed_res.iter().sum();
+            let lambda = res as f64 / n;
+            let var = o.per_seed_res.iter().map(|&x| (x as f64 - lambda).powi(2)).sum::<f64>() / (n - 1.0).max(1.0);
+            let p = o.per_seed_res.iter().filter(|&&x| x > 0).count() as f64 / n;
+            let mut sorted = o.per_seed_res.clone();
+            sorted.sort();
+            let median = if sorted.is_empty() {
+                0.0
+            } else if sorted.len() % 2 == 1 {
+                sorted[sorted.len() / 2] as f64
+            } else {
+                (sorted[sorted.len() / 2 - 1] as f64 + sorted[sorted.len() / 2] as f64) / 2.0
+            };
+            let max = sorted.last().copied().unwrap_or(0);
+            let mut hist: BTreeMap<String, usize> = BTreeMap::new();
+            for k in 0..=max {
+                let c = o.per_seed_res.iter().filter(|&&x| x == k).count();
+                if c > 0 || k < 4 {
+                    hist.insert(k.to_string(), c);
+                }
+            }
+            let zero_fraction = o.per_seed_res.iter().filter(|&&x| x == 0).count() as f64 / n;
+            let aims: u32 = o.per_seed_aims.iter().sum();
+            let fp = fnv(&o.war_lines);
+            let differing = (0..seeds as usize).filter(|&s| o.per_seed_wars[s] != control_wars[s]).count();
+            let mut firsts: Vec<usize> = o.first_market.iter().flatten().copied().collect();
+            firsts.sort();
+            println!("=== {} — {seeds} seeds x {MONTHS} months, {:.0}s on its thread", arm.name, o.secs);
+            println!(
+                "    WAR: headlines {total} ({:.2}/seed); resource wars {res}: mean {lambda:.3}/seed, median {median}, variance {var:.3}, p(>=1) = {p:.3}, seeds at zero {:.1}%, share of all wars {:.1}%; aims set {aims}",
+                total as f64 / n,
+                100.0 * zero_fraction,
+                100.0 * res as f64 / total.max(1) as f64
+            );
+            println!(
+                "    per-seed histogram {hist:?}   band λ ∈ [{}, {}]: {}",
+                BAND.0,
+                BAND.1,
+                if (BAND.0..=BAND.1).contains(&lambda) { "inside" } else { "OUTSIDE" }
+            );
+            println!(
+                "    refusal condition held at the aim {}/{aims}; legible at the invasion {}/{res}; absolute bars crossed (resource) {}; bars behind any opened conflict {} of {}",
+                o.legible_at_aim, o.legible_at_invasion, o.bars_resource, o.bars_all_conflicts, o.conflicts_opened
+            );
+            println!("    WAR: fingerprint {fp:#018x}; seeds whose war history differs from control {differing}/{seeds}; seeds with a market event {}; first market month min {:?} median {:?}", firsts.len(), firsts.first(), firsts.get(firsts.len() / 2));
+            println!(
+                "    events {:?}; lowest cover {:.3} at {:?}; stall nation-months {}, stall line-months {} (universally refused {}), seeds with a stall {}",
+                o.events, o.min_cover, o.min_cover_at, o.stall_nation_months, o.stall_line_months, o.stall_line_months_refused_all, o.seeds_with_stall
+            );
+            println!(
+                "    clause 2 at the stalls: refused-twice fraction histogram {:?}; closest to universal {:?}; stall line-months shut by the buyer's own sanction {}; top stalls {:?}",
+                o.stall_refused_frac_hist,
+                o.stall_closest,
+                o.stall_line_months_blocked_by_own_sanction,
+                top(&o.stall_by_nation_line, 5)
+            );
+            println!(
+                "    clauses 3-5 over contacts at universally refused stalls: {:?}; universally refused stall line-months with no producer among contacts {}; last_resort Some pair-months {} (Σ appetite {:.4e}, max {:?}); pairs {:?}",
+                o.chain,
+                o.ur_no_producer_contact,
+                o.lr_pair_months,
+                o.lr_p_sum,
+                o.lr_p_max,
+                top(&o.lr_pairs, 5)
+            );
+            for e in &o.bars_all_examples {
+                println!("    bar: {e}");
+            }
+            for r in o.res_wars.iter().take(12) {
+                println!("    {}", r["headline"].as_str().unwrap_or("?"));
+            }
+            let mut d = serde_json::Map::new();
+            macro_rules! put {
+                ($($k:expr => $v:expr),* $(,)?) => { $( d.insert($k.to_string(), json!($v)); )* };
+            }
+            put!(
+                "name" => arm.name, "market" => arm.market, "relation_floor" => arm.floor, "sanction_ration" => arm.ration,
+                "seconds_on_thread" => o.secs,
+                "war_headlines" => total, "war_headlines_per_seed" => total as f64 / n, "war_fingerprint" => format!("{fp:#018x}"),
+                "resource_wars" => res, "resource_wars_per_seed" => &o.per_seed_res,
+                "mean" => lambda, "median" => median, "variance" => var, "p_at_least_one" => p, "zero_fraction" => zero_fraction,
+                "histogram" => &hist, "max_per_seed" => max,
+                "band" => json!({ "lo": BAND.0, "hi": BAND.1, "inside": (BAND.0..=BAND.1).contains(&lambda) }),
+                "share_of_all_wars" => res as f64 / total.max(1) as f64,
+                "aims_set" => aims, "aims_per_seed" => &o.per_seed_aims,
+                "refusal_condition_held_at_aim" => o.legible_at_aim, "refusal_condition_not_held_at_aim" => aims - o.legible_at_aim,
+                "legible_at_invasion" => o.legible_at_invasion, "not_legible_at_invasion" => res - o.legible_at_invasion,
+                "absolute_bars_crossed_resource" => o.bars_resource,
+                "bars_behind_any_opened_conflict" => o.bars_all_conflicts, "bars_examples" => &o.bars_all_examples,
+                "conflicts_opened" => o.conflicts_opened,
+                "resource_wars_detail" => &o.res_wars, "aims_detail" => &o.aims,
+                "top_resource_war_dyads" => top(&o.res_dyads, 5), "top_resource_war_lines" => top(&o.res_lines, 5),
+                "top_aim_dyads" => top(&o.aim_dyads, 5), "top_aim_lines" => top(&o.aim_lines, 5),
+                "top_refusal_dyads" => top(&o.refusal_dyads, 10), "top_nobody_will_sell" => top(&o.nobody, 10),
+                "events" => &o.events,
+                "seeds_differing_from_control" => differing, "seeds_with_market_event" => firsts.len(),
+                "first_market_month_min" => firsts.first(), "first_market_month_median" => firsts.get(firsts.len() / 2),
+                "lowest_cover" => o.min_cover, "lowest_cover_at" => &o.min_cover_at,
+                "stall_nation_months" => o.stall_nation_months, "stall_line_months" => o.stall_line_months,
+                "stall_line_months_refused_all" => o.stall_line_months_refused_all, "seeds_with_stall" => o.seeds_with_stall,
+                "stall_refused_twice_fraction_histogram" => &o.stall_refused_frac_hist,
+                "stall_closest_to_universal" => o.stall_closest.as_ref().map(|(f, s)| json!({ "fraction": f, "where": s })),
+                "stall_line_months_blocked_by_own_sanction" => o.stall_line_months_blocked_by_own_sanction,
+                "top_stalls_nation_line" => top(&o.stall_by_nation_line, 10),
+                "chain_stop_over_contacts_at_universally_refused_stalls" => &o.chain,
+                "universally_refused_stall_line_months_without_a_producer_contact" => o.ur_no_producer_contact,
+                "last_resort_some_pair_months" => o.lr_pair_months,
+                "last_resort_pairs_top" => top(&o.lr_pairs, 10),
+                "last_resort_appetite_sum_expected_wars_upper_bound" => o.lr_p_sum,
+                "last_resort_appetite_max" => o.lr_p_max.as_ref().map(|(p, s)| json!({ "p": p, "where": s })),
+            );
+            arm_docs.push(Value::Object(d));
+        }
+        println!(
+            "12 x 30-year WAR: readout, control: {:?} total {} (the appetite audit recorded 6,6,11,10,10,6,7,7,8,11,9,7 / 98)",
+            readout,
+            readout.iter().sum::<u32>()
+        );
+        for (name, g, d) in [("control", &gulf_ctl, &drag_ctl), ("design ", &gulf_dsn, &drag_dsn)] {
+            println!("{name}: Gulf (Iraq invades Kuwait within 48 months) {}/200; pact-drag (a patron honours a pact within 360 months) {}/12 {:?}", g.len(), d.len(), d);
+        }
+        println!("wall {wall_secs:.0}s");
+        let doc = json!({
+            "instrument": "resource_war_census_one",
+            "count": 1,
+            "seeds": seeds, "months": MONTHS,
+            "head": std::env::var("SPHERES_CENSUS_HEAD").ok(),
+            "unix_time": std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs()).unwrap_or(0),
+            "wall_seconds": wall_secs,
+            "band": { "lo": BAND.0, "hi": BAND.1, "status": "provisional until measured twice independently (spec 9.8)" },
+            "arms": arm_docs,
+            "readout_12x30_control": { "counts": readout, "total": readout.iter().sum::<u32>(), "expected": [6, 6, 11, 10, 10, 6, 7, 7, 8, 11, 9, 7], "expected_total": 98 },
+            "gulf_within_48_months": { "control": gulf_ctl, "design": gulf_dsn },
+            "pact_drag_within_360_months": { "control": drag_ctl, "design": drag_dsn },
+        });
+        if let Ok(path) = std::env::var("SPHERES_CENSUS_JSON") {
+            std::fs::write(&path, serde_json::to_string_pretty(&doc).expect("json")).expect("write the census record");
+            println!("wrote {path}");
+        }
+    }
+
     #[test]
     fn different_seeds_diverge() {
         // The other half of determinism, and the one that catches a seed being
