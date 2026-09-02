@@ -1222,4 +1222,102 @@ mod tests {
             "{err:?}"
         );
     }
+    // ------------------------------------------------------------------
+    // Codex's two province-population guards, restored 2026-09-02 (iron rule
+    // 5). They were written on 3f7eaf2 beside the 142 lines of population
+    // code this file kept; the merge that landed as e4e3c03 took Codex's code
+    // and our nine-test module, so the code arrived here unguarded. Ported
+    // verbatim from `git show 3f7eaf2:spheres-sim/src/districts.rs` — the
+    // merge's shape required no adaptation, because every symbol they read
+    // (`tables`, `population_of`, `annex_all`, `district_population_scale`)
+    // survived the merge unchanged.
+    // ------------------------------------------------------------------
+
+    /// The opening split covers EVERY mapped province, including ground
+    /// nobody owns in 1990, and each living owner's provinces sum back to the
+    /// national total it was transcribed with. Note the split is NOT
+    /// renormalised at birth — `data/mod.rs` seeds straight from
+    /// `population_1990()` — so what this guards is the committed artifact
+    /// itself, and `reseed_population`'s renormalising path is only for a
+    /// save written before the layer existed.
+    ///
+    /// RED-CHECKED both arms when restored, 2026-09-02. Removing "US-WY" from
+    /// `population_1990()` reds the coverage arm (2609 against 2610); adding
+    /// 1.0m to "KW-KU" reds the closure arm ("Kuwait province population sums
+    /// to 3.1m, national total is 2.1m"). Both reverted.
+    #[test]
+    fn opening_population_covers_every_province_and_closes_to_national_totals() {
+        let w = crate::init::world_1990(crate::world::GameRules::default());
+        assert_eq!(
+            w.district_population.len(),
+            tables().info.len(),
+            "every mapped province, including currently unowned ground, needs residents"
+        );
+        assert!(
+            (population_of(&w, "US-CA").unwrap() - 30.155_130).abs() < 1e-9,
+            "California no longer matches the committed 1990 artifact"
+        );
+        for n in w.nations.iter().filter(|n| n.alive) {
+            let held: Vec<&str> = w
+                .districts
+                .iter()
+                .filter(|&(_, &owner)| owner == n.id)
+                .map(|(d, _)| d.as_str())
+                .collect();
+            if held.is_empty() {
+                continue;
+            }
+            let total: f64 = held
+                .iter()
+                .map(|d| population_of(&w, d).unwrap_or(0.0))
+                .sum();
+            assert!(
+                (total - n.population).abs() < 0.000_001,
+                "{} province population sums to {}m, national total is {}m",
+                n.id.code(),
+                total,
+                n.population
+            );
+        }
+    }
+
+    /// A province grows at exactly its CURRENT owner's demographic pace, and
+    /// changing hands moves neither a person nor the pace it will grow at
+    /// next month.
+    ///
+    /// RED-CHECKED both arms when restored, 2026-09-02. Dropping the
+    /// `second_by_owner` multiplier in `grow_populations_compounded` reds the
+    /// pace arm ("province multiplier 1.0007629166666667 diverged from owner
+    /// multiplier 1.0008353290144145"); making `rebase_population_for_owner`
+    /// an early `return` reds the transfer arm (Kuwait's province reads
+    /// 0.30094144033395603 against the 0.30130745880149995 it held a line
+    /// earlier). Both reverted.
+    #[test]
+    fn province_population_follows_its_current_owners_demography() {
+        let mut w = crate::init::world_1990(crate::world::GameRules::default());
+        let ca0 = population_of(&w, "US-CA").unwrap();
+        let usa0 = w.nation(NationId::USA).population;
+        crate::tick_month(&mut w, &[]);
+        let ca_ratio = population_of(&w, "US-CA").unwrap() / ca0;
+        let usa_ratio = w.nation(NationId::USA).population / usa0;
+        assert!(
+            (ca_ratio - usa_ratio).abs() < 1e-12,
+            "province multiplier {ca_ratio} diverged from owner multiplier {usa_ratio}"
+        );
+
+        // People stay with a transferred province and follow its new owner on
+        // the next tick; annexation does not recreate or erase the population.
+        let kuwait0 = population_of(&w, "KW-KU").unwrap();
+        annex_all(&mut w, NationId::Iraq, NationId::Kuwait);
+        assert_eq!(population_of(&w, "KW-KU"), Some(kuwait0));
+        let iraq0 = w.nation(NationId::Iraq).population;
+        crate::tick_month(&mut w, &[]);
+        assert!(
+            (population_of(&w, "KW-KU").unwrap() / kuwait0
+                - w.nation(NationId::Iraq).population / iraq0)
+                .abs()
+                < 1e-12,
+            "transferred province did not adopt its new owner's demographic pace"
+        );
+    }
 }
