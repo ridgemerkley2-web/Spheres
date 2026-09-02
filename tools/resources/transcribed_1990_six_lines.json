@@ -1,0 +1,1977 @@
+{
+ "meta": {
+  "package": "D2 - transcription of 1990 national production and price for the six presence-only lines",
+  "written_by": "transcription subagent, 2026-09-01; figures read by eye from page scans / raw PDF text, checked by summing every table to its printed total",
+  "sources": {
+   "usgs_myb_1990_v1": {
+    "title": "U.S. Bureau of Mines, Minerals Yearbook 1990, Volume I: Metals and Minerals (public domain, work of the U.S. Government); scan: Internet Archive item pub_usgov-minerals-yearbook_1990_1 (Google Books digitisation of the printed volume)",
+    "licence": "public domain (work of the U.S. Government); the USGS 'Bureau of Mines Minerals Yearbook (1932-1993)' page points to the University of Wisconsin scans, which refuse non-browser clients; the Internet Archive item is a Google Books digitisation of the same printed volume (source id books.google.com/?id=2ENdH1Hrh2YC)",
+    "url": "https://archive.org/details/pub_usgov-minerals-yearbook_1990_1",
+    "page_image_rule": "https://archive.org/download/pub_usgov-minerals-yearbook_1990_1/page/n{printed_page + 7}_w1800.jpg",
+    "full_text": "https://archive.org/download/pub_usgov-minerals-yearbook_1990_1/Minerals_Yearbook_US_1990_v1_djvu.txt (OCR; used only to find pages)"
+   },
+   "redbook_1997": {
+    "title": "OECD Nuclear Energy Agency and International Atomic Energy Agency, Uranium 1997: Resources, Production and Demand (the 'Red Book'), OECD, Paris, 1998; PDF: https://www.oecd-nea.org/upload/docs/application/pdf/2019-12/726-uranium-1997.pdf",
+    "licence": "NOT an open licence: front matter reads '(c) OECD 1998. Permission to reproduce a portion of this work for non-commercial purposes or classroom use should be obtained through the Centre francais d'exploitation du droit de copie ... In the United States permission should be obtained through the Copyright Clearance Center'. The PDF is freely downloadable from the NEA site. Only numeric facts (tonnages, prices) are transcribed here. The OECD terms-of-use page returned 403 to every fetch, so the owner should confirm the terms before shipping the uranium row.",
+    "url": "https://www.oecd-nea.org/upload/docs/application/pdf/2019-12/726-uranium-1997.pdf"
+   }
+  },
+  "roster_join": "roster_key is the NationId debug name from spheres-sim/src/nations.rs (the row(\"Code\") list); Namibia IS in that list at HEAD although SPEC 2.4 names it the known non-roster producer - D1 decides",
+  "conventions": {
+   "flags.column_estimated_1990e": "the source prints the 1990 column header as 1990e; every row without a 'reported figure' footnote is the source's estimate",
+   "value_zero": "rows printed '-' (nil) or 0 are carried under zero_1990, not national_1990",
+   "unmapped_1990": "entities with no roster seat, carried with their figures so nothing is silently dropped",
+   "merged": "France gold = France 3,600 + French Guiana 550; France cobalt = New Caledonia 800 (unlocated); each component keeps its own source row and the fold is reversible",
+   "no_estimates_added": "no figure here was estimated by the transcriber; every value is printed in the cited table"
+  },
+  "units": {
+   "cobalt": "t",
+   "gold": "kg",
+   "phosphate": "kt",
+   "platinum_group": "kg",
+   "rare_earths": "t",
+   "uranium": "t"
+  }
+ },
+ "commodities": {
+  "cobalt": {
+   "unit": "t",
+   "unit_basis": "metric tons of contained (recoverable) cobalt",
+   "table": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+   "printed_total_1990": 37136,
+   "sum_of_transcribed_rows": 37136,
+   "national_1990": {
+    "Albania": {
+     "source_label": "Albania",
+     "value": 600,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn3 calculated from reported and estimated weight of nickeliferous ore"
+     ]
+    },
+    "Australia": {
+     "source_label": "Australia",
+     "value": 1000,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn4 cobalt in intermediate metallurgical products (oxide, Ni-Co sulfide); cobalt content of ore mined 2,375 t (est.) in 1990 per fn4"
+     ]
+    },
+    "Botswana": {
+     "source_label": "Botswana",
+     "value": 205,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "fn6 reported figure",
+      "fn5 reported cobalt content of pelletized nickel-copper matte"
+     ]
+    },
+    "Brazil": {
+     "source_label": "Brazil",
+     "value": 200,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Canada": {
+     "source_label": "Canada",
+     "value": 2291,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "fn6 reported figure",
+      "fn7 total cobalt content of all products from ores of Canadian origin, incl. oxides shipped to UK and mattes shipped to Norway"
+     ]
+    },
+    "Cuba": {
+     "source_label": "Cuba",
+     "value": 1600,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn8 determined from reported nickel-cobalt content of oxide, oxide sinter and sulfide"
+     ]
+    },
+    "France": {
+     "source_label": "New Caledonia",
+     "value": 800,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn10 estimated recoverable content of ores and intermediates EXPORTED to France and Japan; cobalt content of total ore mined 6,000 t in 1990"
+     ],
+     "mapping": "territory->sovereign",
+     "mapping_note": "French overseas territory (sui generis collectivity); France's district set has NO New Caledonia district, so under France this row is UNLOCATED production. Folded to France by the territory->sovereign rule; reverse by setting roster_key null."
+    },
+    "Morocco": {
+     "source_label": "Morocco",
+     "value": 120,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn9 cobalt content of concentrates",
+      "only country mining cobalt as a primary product (fn1)"
+     ]
+    },
+    "SouthAfrica": {
+     "source_label": "South Africa, Republic of",
+     "value": 730,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "USSR": {
+     "source_label": "U.S.S.R.",
+     "value": 2400,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Zaire": {
+     "source_label": "Zaire",
+     "value": 20000,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn9 cobalt content of concentrates"
+     ]
+    },
+    "Zambia": {
+     "source_label": "Zambia",
+     "value": 7100,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn9 cobalt content of concentrates",
+      "fn11 FISCAL YEAR beginning Apr. 1, 1990; cobalt content of ore milled 10,700 t (est.)"
+     ],
+     "note": "year basis is fiscal (Apr 1990 - Mar 1991)"
+    },
+    "Zimbabwe": {
+     "source_label": "Zimbabwe",
+     "value": 90,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn12 estimated cobalt content of ore"
+     ]
+    }
+   },
+   "unmapped_1990": [],
+   "zero_1990": [
+    {
+     "source_label": "Finland",
+     "value": 0,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "fn9 cobalt content of concentrates",
+      "printed_as_dash_nil"
+     ],
+     "note": "printed '-' for 1988-1990 (nil)",
+     "roster_key": "Finland"
+    },
+    {
+     "source_label": "Philippines",
+     "value": 0,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Cobalt' (Kim B. Shedd), Table 14 'Cobalt: World mine production, by country', p. 335; unit: metric tons, cobalt content (recoverable content of ores, concentrates or intermediate products; fn 1); 1990 column headed 'e' = estimated unless the row carries fn 6 'reported figure'; data through May 31, 1991",
+     "flags": [
+      "printed_as_dash_nil"
+     ],
+     "note": "printed '-' for 1987-1990 (nil)",
+     "roster_key": "Philippines"
+    }
+   ],
+   "producers_named_without_figure": [
+    {
+     "source_label": "Bulgaria",
+     "roster_key": "Bulgaria",
+     "reason": "Table 14 fn 2: known to produce cobalt-bearing ores but 'information is inadequate for reliable estimates of output levels'"
+    },
+    {
+     "source_label": "China",
+     "roster_key": "China",
+     "reason": "Table 14 fn 2: known to produce cobalt-bearing ores but 'information is inadequate for reliable estimates of output levels'"
+    },
+    {
+     "source_label": "Eastern states of the Federal Republic of Germany",
+     "roster_key": "Germany",
+     "reason": "Table 14 fn 2: known to produce cobalt-bearing ores but 'information is inadequate for reliable estimates of output levels'"
+    },
+    {
+     "source_label": "Indonesia",
+     "roster_key": "Indonesia",
+     "reason": "Table 14 fn 2: known to produce cobalt-bearing ores but 'information is inadequate for reliable estimates of output levels'"
+    },
+    {
+     "source_label": "Poland",
+     "roster_key": "Poland",
+     "reason": "Table 14 fn 2: known to produce cobalt-bearing ores but 'information is inadequate for reliable estimates of output levels'"
+    }
+   ],
+   "price_1990": {
+    "usd_per_unit": 22244.64,
+    "unit": "t",
+    "transcribed": {
+     "value": 10.09,
+     "unit": "USD per pound",
+     "basis": "market price, weighted average of Metals Week prices (Table 3 fn 2)"
+    },
+    "conversion": "10.09 USD/lb x 2204.62262 lb/t",
+    "source": "USGS Minerals Yearbook 1990, Vol. I, Cobalt, Table 3 'Salient cobalt statistics', p. 327, row 'Price: Metal, per pound', 1990 column: $10.09"
+   }
+  },
+  "gold": {
+   "unit": "kg",
+   "unit_basis": "kilograms of gold, mine production",
+   "table": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+   "printed_total_1990": 2049946,
+   "sum_of_transcribed_rows": 2049946,
+   "national_1990": {
+    "Argentina": {
+     "source_label": "Argentina",
+     "value": 1200,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Australia": {
+     "source_label": "Australia",
+     "value": 242299,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Bolivia": {
+     "source_label": "Bolivia",
+     "value": 6000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Botswana": {
+     "source_label": "Botswana",
+     "value": 45,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn4 gold estimated as 98% of the reported combined gold+silver figure"
+     ]
+    },
+    "Brazil": {
+     "source_label": "Brazil",
+     "value": 80000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn5 officially reported: major mines 29,900 (est.) + garimpos 57,400 (est.) = 87,300; the table prints 80,000"
+     ],
+     "note": "source's own estimate differs from its footnoted official components"
+    },
+    "Cameroon": {
+     "source_label": "Cameroon",
+     "value": 8,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Canada": {
+     "source_label": "Canada",
+     "value": 164991,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "CentralAfricanRepublic": {
+     "source_label": "Central African Republic",
+     "value": 300,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Chile": {
+     "source_label": "Chile",
+     "value": 27591,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "China": {
+     "source_label": "China",
+     "value": 100000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Colombia": {
+     "source_label": "Colombia",
+     "value": 28000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Congo": {
+     "source_label": "Congo",
+     "value": 16,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "CostaRica": {
+     "source_label": "Costa Rica",
+     "value": 400,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn6 gold purchased by Banco Central; actual production estimated at least twice this"
+     ]
+    },
+    "DominicanRepublic": {
+     "source_label": "Dominican Republic",
+     "value": 4312,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Ecuador": {
+     "source_label": "Ecuador",
+     "value": 10000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Ethiopia": {
+     "source_label": "Ethiopia",
+     "value": 800,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn7 year ending June 30"
+     ],
+     "note": "fiscal year"
+    },
+    "Fiji": {
+     "source_label": "Fiji",
+     "value": 4150,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Finland": {
+     "source_label": "Finland",
+     "value": 2800,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "France": {
+     "value": 4150,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "merged": true,
+     "components": [
+      {
+       "source_label": "France",
+       "value": 3600,
+       "unit": "kg",
+       "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+       "flags": [
+        "column_estimated_1990e"
+       ]
+      },
+      {
+       "source_label": "French Guiana",
+       "value": 550,
+       "unit": "kg",
+       "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+       "flags": [
+        "column_estimated_1990e"
+       ],
+       "mapping": "territory->sovereign",
+       "mapping_note": "French overseas departement; France's district set includes FRA_guyane-fran-aise, so this output is locatable under France. Folded to France by the territory->sovereign rule; reverse by setting roster_key null."
+      }
+     ],
+     "flags": [
+      "column_estimated_1990e"
+     ],
+     "note": "sum of the listed source rows (a sovereign and its territory); each component keeps its own source row"
+    },
+    "Gabon": {
+     "source_label": "Gabon",
+     "value": 80,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn8 excludes undocumented artisanal production"
+     ]
+    },
+    "Germany": {
+     "source_label": "Germany, Federal Republic of: Western states",
+     "value": 18,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "western states only; eastern states listed in fn 2 as producing without reliable data"
+     ]
+    },
+    "Ghana": {
+     "source_label": "Ghana",
+     "value": 16840,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Guyana": {
+     "source_label": "Guyana",
+     "value": 3500,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Honduras": {
+     "source_label": "Honduras",
+     "value": 1300,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Hungary": {
+     "source_label": "Hungary",
+     "value": 500,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "India": {
+     "source_label": "India",
+     "value": 1850,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn11 refinery output"
+     ]
+    },
+    "Indonesia": {
+     "source_label": "Indonesia",
+     "value": 11158,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure",
+      "fn12 excludes 'people's mines' estimated at 15,000 kg/yr; includes by-product of copper mining"
+     ]
+    },
+    "Japan": {
+     "source_label": "Japan",
+     "value": 7302,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Kenya": {
+     "source_label": "Kenya",
+     "value": 25,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Madagascar": {
+     "source_label": "Madagascar",
+     "value": 40,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Malaysia": {
+     "source_label": "Malaysia",
+     "value": 2594,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Mexico": {
+     "source_label": "Mexico",
+     "value": 8338,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Mozambique": {
+     "source_label": "Mozambique",
+     "value": 63,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Namibia": {
+     "source_label": "Namibia",
+     "value": 1700,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "NewZealand": {
+     "source_label": "New Zealand",
+     "value": 5000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Nicaragua": {
+     "source_label": "Nicaragua",
+     "value": 1200,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "NorthKorea": {
+     "source_label": "Korea, North",
+     "value": 5000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "PapuaNewGuinea": {
+     "source_label": "Papua New Guinea",
+     "value": 31035,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Peru": {
+     "source_label": "Peru",
+     "value": 8500,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Philippines": {
+     "source_label": "Philippines",
+     "value": 35000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Portugal": {
+     "source_label": "Portugal",
+     "value": 350,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Romania": {
+     "source_label": "Romania",
+     "value": 1500,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "SaudiArabia": {
+     "source_label": "Saudi Arabia",
+     "value": 3000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "SolomonIslands": {
+     "source_label": "Solomon Islands",
+     "value": 35,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "SouthAfrica": {
+     "source_label": "South Africa, Republic of",
+     "value": 602789,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "SouthKorea": {
+     "source_label": "Korea, Republic of",
+     "value": 20760,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure",
+      "fn11 refinery output"
+     ]
+    },
+    "Spain": {
+     "source_label": "Spain",
+     "value": 8400,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Sudan": {
+     "source_label": "Sudan",
+     "value": 75,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Suriname": {
+     "source_label": "Suriname",
+     "value": 30,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Sweden": {
+     "source_label": "Sweden",
+     "value": 5000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Taiwan": {
+     "source_label": "Taiwan",
+     "value": 250,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn11 refinery output"
+     ]
+    },
+    "Tanzania": {
+     "source_label": "Tanzania",
+     "value": 100,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "USA": {
+     "source_label": "United States",
+     "value": 290202,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "USSR": {
+     "source_label": "U.S.S.R.",
+     "value": 250000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Venezuela": {
+     "source_label": "Venezuela",
+     "value": 7700,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Yugoslavia": {
+     "source_label": "Yugoslavia",
+     "value": 4500,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Zaire": {
+     "source_label": "Zaire",
+     "value": 2580,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Zambia": {
+     "source_label": "Zambia",
+     "value": 225,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn16 year beginning Apr. 1"
+     ],
+     "note": "fiscal year"
+    },
+    "Zimbabwe": {
+     "source_label": "Zimbabwe",
+     "value": 16900,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    }
+   },
+   "unmapped_1990": [
+    {
+     "source_label": "Burkina Faso",
+     "value": 7800,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    },
+    {
+     "source_label": "Burundi",
+     "value": 25,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    },
+    {
+     "source_label": "Cote d'Ivoire (formerly Ivory Coast)",
+     "value": 20,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    },
+    {
+     "source_label": "Guinea",
+     "value": 2600,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "fn10 includes 1,600 kg reported mine production (SAG mine) plus approximate reported sales to Government of artisanal production; excludes smuggled gold"
+     ],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    },
+    {
+     "source_label": "Liberia",
+     "value": 700,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn13 based on gold taxed for export; includes gold entering undocumented from Guinea and Sierra Leone"
+     ],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    },
+    {
+     "source_label": "Mali",
+     "value": 5200,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn14 Kalana mine + artisanal; 1990 includes Syama"
+     ],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    },
+    {
+     "source_label": "Rwanda",
+     "value": 700,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e"
+     ],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    },
+    {
+     "source_label": "Sierra Leone",
+     "value": 400,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Gold' (John M. Lucas), Table 15 'Gold: World mine production, by country', pp. 521-522; unit: kilograms; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through June 21, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn15 official exports; excludes undocumented channels"
+     ],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    }
+   ],
+   "zero_1990": [],
+   "producers_named_without_figure": [
+    {
+     "source_label": "Burma",
+     "roster_key": "Myanmar",
+     "reason": "Table 15 fn 2: 'Gold is also produced in ... However, available data are insufficient to make reliable output estimates.'"
+    },
+    {
+     "source_label": "Cuba",
+     "roster_key": "Cuba",
+     "reason": "Table 15 fn 2: 'Gold is also produced in ... However, available data are insufficient to make reliable output estimates.'"
+    },
+    {
+     "source_label": "Czechoslovakia",
+     "roster_key": "Czechoslovakia",
+     "reason": "Table 15 fn 2: 'Gold is also produced in ... However, available data are insufficient to make reliable output estimates.'"
+    },
+    {
+     "source_label": "Eastern states of the Federal Republic of Germany",
+     "roster_key": "Germany",
+     "reason": "Table 15 fn 2: 'Gold is also produced in ... However, available data are insufficient to make reliable output estimates.'"
+    },
+    {
+     "source_label": "Norway",
+     "roster_key": "Norway",
+     "reason": "Table 15 fn 2: 'Gold is also produced in ... However, available data are insufficient to make reliable output estimates.'"
+    },
+    {
+     "source_label": "Senegal",
+     "roster_key": "Senegal",
+     "reason": "Table 15 fn 2: 'Gold is also produced in ... However, available data are insufficient to make reliable output estimates.'"
+    },
+    {
+     "source_label": "Thailand",
+     "roster_key": "Thailand",
+     "reason": "Table 15 fn 2: 'Gold is also produced in ... However, available data are insufficient to make reliable output estimates.'"
+    },
+    {
+     "source_label": "Poland",
+     "roster_key": "Poland",
+     "reason": "Table 15 fn 2: copper ore mined annually is estimated to contain about 31,000 kg of gold; 'disposition of the gold byproduct is unknown' - NOT a production figure and not entered"
+    }
+   ],
+   "price_1990": {
+    "usd_per_unit": 12375.77,
+    "unit": "kg",
+    "transcribed": {
+     "value": 384.93,
+     "unit": "USD per troy ounce",
+     "basis": "1990 annual average, Engelhard Industries daily quotation (Table 11 fn 1), source Metals Week"
+    },
+    "conversion": "384.93 USD/troy oz x 32.1507 troy oz/kg (factor stated in the chapter, p. 522 fn 1)",
+    "source": "USGS Minerals Yearbook 1990, Vol. I, Gold, Table 11 'U.S. gold prices', p. 515, row 'Year' (1990), column 'Average': 384.93"
+   }
+  },
+  "phosphate": {
+   "unit": "kt",
+   "unit_basis": "thousand metric tons of phosphate rock, GROSS WEIGHT (the table also prints P2O5 content; not transcribed here - see ambiguities)",
+   "table": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+   "printed_total_1990": 154106,
+   "sum_of_transcribed_rows": 154106,
+   "national_1990": {
+    "Algeria": {
+     "source_label": "Algeria",
+     "value": 1102,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Australia": {
+     "source_label": "Australia",
+     "value": 14,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Brazil": {
+     "source_label": "Brazil",
+     "value": 2968,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Chile": {
+     "source_label": "Chile",
+     "value": 12,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "China": {
+     "source_label": "China",
+     "value": 17300,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Colombia": {
+     "source_label": "Colombia",
+     "value": 37,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Egypt": {
+     "source_label": "Egypt",
+     "value": 1300,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Finland": {
+     "source_label": "Finland",
+     "value": 546,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "India": {
+     "source_label": "India",
+     "value": 659,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Indonesia": {
+     "source_label": "Indonesia",
+     "value": 2,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Iraq": {
+     "source_label": "Iraq",
+     "value": 1100,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Israel": {
+     "source_label": "Israel",
+     "value": 3516,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Jordan": {
+     "source_label": "Jordan",
+     "value": 5925,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Mexico": {
+     "source_label": "Mexico",
+     "value": 604,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure",
+      "fn5 includes only output used to manufacture fertilizers"
+     ]
+    },
+    "Morocco": {
+     "source_label": "Morocco",
+     "value": 21396,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure",
+      "fn6 production from the Western Sahara area included with Morocco"
+     ]
+    },
+    "NorthKorea": {
+     "source_label": "Korea, North",
+     "value": 500,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Pakistan": {
+     "source_label": "Pakistan",
+     "value": 30,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Peru": {
+     "source_label": "Peru",
+     "value": 5,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Philippines": {
+     "source_label": "Philippines",
+     "value": 4,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Senegal": {
+     "source_label": "Senegal",
+     "value": 2147,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure",
+      "fn7 does not include aluminum phosphate production, 111 kt (est.) in 1990"
+     ]
+    },
+    "SouthAfrica": {
+     "source_label": "South Africa, Republic of",
+     "value": 3165,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "SriLanka": {
+     "source_label": "Sri Lanka",
+     "value": 33,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Sweden": {
+     "source_label": "Sweden",
+     "value": 7,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Syria": {
+     "source_label": "Syria",
+     "value": 1670,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Tanzania": {
+     "source_label": "Tanzania",
+     "value": 20,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Thailand": {
+     "source_label": "Thailand",
+     "value": 10,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Tunisia": {
+     "source_label": "Tunisia",
+     "value": 6259,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Turkey": {
+     "source_label": "Turkey",
+     "value": 87,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "USA": {
+     "source_label": "United States",
+     "value": 46343,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "USSR": {
+     "source_label": "U.S.S.R.",
+     "value": 33500,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Venezuela": {
+     "source_label": "Venezuela",
+     "value": 165,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ]
+    },
+    "Vietnam": {
+     "source_label": "Vietnam",
+     "value": 274,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Zimbabwe": {
+     "source_label": "Zimbabwe, concentrate",
+     "value": 156,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure",
+      "row is 'Zimbabwe, concentrate'"
+     ]
+    }
+   },
+   "unmapped_1990": [
+    {
+     "source_label": "Mali",
+     "value": 10,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "column_estimated_1990e"
+     ],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    },
+    {
+     "source_label": "Nauru",
+     "value": 926,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    },
+    {
+     "source_label": "Togo",
+     "value": 2314,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "fn3 reported figure"
+     ],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    }
+   ],
+   "zero_1990": [
+    {
+     "source_label": "Christmas Island (Indian Ocean)",
+     "value": 0,
+     "unit": "kt",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Phosphate rock' (William F. Stowasser), Table 30 'Phosphate rock, basic slag, and guano: World production, by country', p. 866, block 'Phosphate rock', columns 'Gross weight' 1990; unit: thousand metric tons; 1990 column headed 'e' = estimated unless the row carries fn 3 'reported figure'; data through May 31, 1991 (major producers partly from the International Fertilizer Industry Association, fn 1)",
+     "flags": [
+      "printed_as_dash_nil"
+     ],
+     "note": "printed '-' for 1988-1990 (nil); Australian external territory, no roster seat",
+     "roster_key": null
+    }
+   ],
+   "producers_named_without_figure": [
+    {
+     "source_label": "Belgium",
+     "roster_key": "Belgium",
+     "reason": "Table 30 fn 2: may have produced small quantities of phosphate rock; not officially reported"
+    },
+    {
+     "source_label": "Uganda",
+     "roster_key": "Uganda",
+     "reason": "Table 30 fn 2: may have produced small quantities of phosphate rock; not officially reported"
+    }
+   ],
+   "excluded_blocks": "Table 30 'Basic (Thomas converter) slag' (Argentina, Belgium, Egypt, France, Germany western states, Luxembourg) and 'Guano' (Chile, Philippines, Seychelles) are different commodities and are not entered",
+   "price_1990": {
+    "usd_per_unit": 23200.0,
+    "unit": "kt",
+    "transcribed": {
+     "value": 23.2,
+     "unit": "USD per metric ton",
+     "basis": "U.S. marketable production, average value per metric ton, f.o.b. mine (computer-calculated weighted average of sold-or-used values, Table 1 fn 2)"
+    },
+    "conversion": "23.20 USD/t x 1000 t/kt",
+    "source": "USGS Minerals Yearbook 1990, Vol. I, Phosphate rock, Table 1 'Salient phosphate rock statistics', p. 849, row 'Marketable production - Average per metric ton', 1990 column: $23.20 (the 'Sold or used by producers' row prints the same $23.20; exports averaged $30.66/t)"
+   }
+  },
+  "platinum_group": {
+   "unit": "kg",
+   "unit_basis": "kilograms of platinum-group metals (Pt + Pd + other PGM), by country",
+   "table": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+   "printed_total_1990": 286704,
+   "sum_of_transcribed_rows": 286704,
+   "printed_split_1990": {
+    "platinum": 128158,
+    "palladium": 135610,
+    "other": 22936
+   },
+   "national_1990": {
+    "Australia": {
+     "source_label": "Australia",
+     "value": 500,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn3 partial figure: metal content from domestic nickel ore only (Pt 100, Pd 400)"
+     ]
+    },
+    "Canada": {
+     "source_label": "Canada",
+     "value": 11209,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+     "flags": [
+      "PGM from nickel ore: Pt 4,829 + Pd 5,044 + other 1,336"
+     ]
+    },
+    "Colombia": {
+     "source_label": "Colombia",
+     "value": 950,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+     "flags": [
+      "placer platinum"
+     ]
+    },
+    "Ethiopia": {
+     "source_label": "Ethiopia",
+     "value": 2,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+     "flags": [
+      "placer platinum",
+      "fn5 years ending June 30"
+     ],
+     "note": "fiscal year"
+    },
+    "Finland": {
+     "source_label": "Finland",
+     "value": 160,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+     "flags": [
+      "Pt 60 + Pd 100"
+     ]
+    },
+    "Japan": {
+     "source_label": "Japan",
+     "value": 2419,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+     "flags": [
+      "fn6 NOT mine production: Japanese smelter-refinery recovery from ores originating in Australia, Canada, Indonesia, Papua New Guinea, the Philippines etc.; Canadian-origin part may duplicate Canada's row",
+      "Pt 1,358 + Pd 1,061"
+     ],
+     "note": "attribution ambiguity - see report; recommended NOT to be read as Japanese HAVE"
+    },
+    "SouthAfrica": {
+     "source_label": "South Africa, Republic of",
+     "value": 138500,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn7 includes osmiridium from gold mines",
+      "Pt 88,000 + Pd 38,900 + other 11,600"
+     ]
+    },
+    "USA": {
+     "source_label": "United States",
+     "value": 7740,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "fn8 estimates for the Stillwater Mine from published sources; tiny by-product Pt/Pd from gold-copper ores excluded",
+      "Pt 1,810 + Pd 5,930"
+     ]
+    },
+    "USSR": {
+     "source_label": "U.S.S.R.",
+     "value": 125000,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+     "flags": [
+      "column_estimated_1990e",
+      "placer platinum and PGM from nickel-copper ores",
+      "Pt 31,000 + Pd 84,000 + other 10,000"
+     ]
+    },
+    "Yugoslavia": {
+     "source_label": "Yugoslavia",
+     "value": 164,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+     "flags": [
+      "Pt 29 + Pd 135"
+     ]
+    },
+    "Zimbabwe": {
+     "source_label": "Zimbabwe",
+     "value": 60,
+     "unit": "kg",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Platinum-group metals' (J. Roger Loebenstein), Table 15 'Platinum-group metals: World production, by country', p. 878; unit: kilograms (all platinum-group metals: the country's platinum + palladium + 'other' rows summed); 1990 column headed 'e' = estimated; data through Apr. 26, 1991",
+     "flags": [
+      "Pt 20 + Pd 40"
+     ]
+    }
+   },
+   "unmapped_1990": [],
+   "zero_1990": [],
+   "producers_named_without_figure": [
+    {
+     "source_label": "China",
+     "roster_key": "China",
+     "reason": "Table 15 fn 2: believed to produce PGM but output not reported quantitatively and no reliable basis for estimates (part presumably included in Japan's row)"
+    },
+    {
+     "source_label": "Indonesia",
+     "roster_key": "Indonesia",
+     "reason": "Table 15 fn 2: believed to produce PGM but output not reported quantitatively and no reliable basis for estimates (part presumably included in Japan's row)"
+    },
+    {
+     "source_label": "Papua New Guinea",
+     "roster_key": "PapuaNewGuinea",
+     "reason": "Table 15 fn 2: believed to produce PGM but output not reported quantitatively and no reliable basis for estimates (part presumably included in Japan's row)"
+    },
+    {
+     "source_label": "Philippines",
+     "roster_key": "Philippines",
+     "reason": "Table 15 fn 2: believed to produce PGM but output not reported quantitatively and no reliable basis for estimates (part presumably included in Japan's row)"
+    },
+    {
+     "source_label": "Federal Republic of Germany",
+     "roster_key": "Germany",
+     "reason": "Table 15 fn 1: excluded because production is derived wholly from imported metallurgical products (would double count)"
+    },
+    {
+     "source_label": "Norway",
+     "roster_key": "Norway",
+     "reason": "Table 15 fn 1: excluded because production is derived wholly from imported metallurgical products (would double count)"
+    },
+    {
+     "source_label": "United Kingdom",
+     "roster_key": "UK",
+     "reason": "Table 15 fn 1: excluded because production is derived wholly from imported metallurgical products (would double count)"
+    }
+   ],
+   "price_1990": {
+    "usd_per_unit": 14628.57,
+    "unit": "kg",
+    "transcribed": {
+     "value": 455,
+     "unit": "USD per troy ounce",
+     "basis": "platinum, DEALER price, 1990 average (source Metals Week; averages at the low end of the range, rounded to the nearest dollar, Table 11 fn 1)"
+    },
+    "conversion": "455 USD/troy oz x 32.1507 troy oz/kg",
+    "source": "USGS Minerals Yearbook 1990, Vol. I, Platinum-group metals, Table 11 'Average producer and dealer prices of platinum-group metals', p. 875, row '1990: Average', column 'Platinum - Dealer': 455",
+    "why_platinum": "the chapter (p. 874, 'Capacity') states PGM production capacity 'is generally cited in terms of platinum capacity'; a production-weighted group price would be a derived number, so the transcribed platinum dealer average is the anchor",
+    "alternates_transcribed_same_table_1990_average": {
+     "platinum_producer": 600,
+     "palladium_producer": 150,
+     "palladium_dealer": 114,
+     "rhodium_producer": 1275,
+     "rhodium_dealer": 3565,
+     "iridium_dealer": 307,
+     "ruthenium_dealer": 61,
+     "osmium_dealer": 416,
+     "unit": "USD per troy ounce"
+    }
+   }
+  },
+  "rare_earths": {
+   "unit": "t",
+   "unit_basis": "metric tons of rare-earth oxide (REO) equivalent, mine production",
+   "table": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Rare earths: the lanthanides, yttrium, and scandium' (James B. Hedrick), Table 12 'Rare earths: World mine production, by country', p. 919; unit: metric tons of REO (rare-earth oxide) equivalent; 1990 column headed 'e' = estimated unless the row carries fn 2 'reported figure'",
+   "printed_total_1990": 53230,
+   "sum_of_transcribed_rows": 53230,
+   "national_1990": {
+    "Australia": {
+     "source_label": "Australia",
+     "value": 7975,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Rare earths: the lanthanides, yttrium, and scandium' (James B. Hedrick), Table 12 'Rare earths: World mine production, by country', p. 919; unit: metric tons of REO (rare-earth oxide) equivalent; 1990 column headed 'e' = estimated unless the row carries fn 2 'reported figure'",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Brazil": {
+     "source_label": "Brazil",
+     "value": 1100,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Rare earths: the lanthanides, yttrium, and scandium' (James B. Hedrick), Table 12 'Rare earths: World mine production, by country', p. 919; unit: metric tons of REO (rare-earth oxide) equivalent; 1990 column headed 'e' = estimated unless the row carries fn 2 'reported figure'",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "China": {
+     "source_label": "China",
+     "value": 16480,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Rare earths: the lanthanides, yttrium, and scandium' (James B. Hedrick), Table 12 'Rare earths: World mine production, by country', p. 919; unit: metric tons of REO (rare-earth oxide) equivalent; 1990 column headed 'e' = estimated unless the row carries fn 2 'reported figure'",
+     "flags": [
+      "fn2 reported figure"
+     ],
+     "note": "reported; down from 25,220 in 1989"
+    },
+    "India": {
+     "source_label": "India",
+     "value": 2475,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Rare earths: the lanthanides, yttrium, and scandium' (James B. Hedrick), Table 12 'Rare earths: World mine production, by country', p. 919; unit: metric tons of REO (rare-earth oxide) equivalent; 1990 column headed 'e' = estimated unless the row carries fn 2 'reported figure'",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Malaysia": {
+     "source_label": "Malaysia",
+     "value": 1925,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Rare earths: the lanthanides, yttrium, and scandium' (James B. Hedrick), Table 12 'Rare earths: World mine production, by country', p. 919; unit: metric tons of REO (rare-earth oxide) equivalent; 1990 column headed 'e' = estimated unless the row carries fn 2 'reported figure'",
+     "flags": [
+      "fn2 reported figure"
+     ]
+    },
+    "SriLanka": {
+     "source_label": "Sri Lanka",
+     "value": 110,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Rare earths: the lanthanides, yttrium, and scandium' (James B. Hedrick), Table 12 'Rare earths: World mine production, by country', p. 919; unit: metric tons of REO (rare-earth oxide) equivalent; 1990 column headed 'e' = estimated unless the row carries fn 2 'reported figure'",
+     "flags": [
+      "column_estimated_1990e"
+     ]
+    },
+    "Thailand": {
+     "source_label": "Thailand",
+     "value": 358,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Rare earths: the lanthanides, yttrium, and scandium' (James B. Hedrick), Table 12 'Rare earths: World mine production, by country', p. 919; unit: metric tons of REO (rare-earth oxide) equivalent; 1990 column headed 'e' = estimated unless the row carries fn 2 'reported figure'",
+     "flags": [
+      "fn2 reported figure"
+     ]
+    },
+    "USA": {
+     "source_label": "United States",
+     "value": 22713,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Rare earths: the lanthanides, yttrium, and scandium' (James B. Hedrick), Table 12 'Rare earths: World mine production, by country', p. 919; unit: metric tons of REO (rare-earth oxide) equivalent; 1990 column headed 'e' = estimated unless the row carries fn 2 'reported figure'",
+     "flags": [
+      "fn2 reported figure",
+      "fn3 comprises only the rare earths derived from bastnasite as reported in Unocal Corp. annual report, 1990"
+     ]
+    },
+    "Zaire": {
+     "source_label": "Zaire",
+     "value": 94,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Rare earths: the lanthanides, yttrium, and scandium' (James B. Hedrick), Table 12 'Rare earths: World mine production, by country', p. 919; unit: metric tons of REO (rare-earth oxide) equivalent; 1990 column headed 'e' = estimated unless the row carries fn 2 'reported figure'",
+     "flags": [
+      "fn2 reported figure"
+     ]
+    }
+   },
+   "unmapped_1990": [],
+   "zero_1990": [
+    {
+     "source_label": "Canada",
+     "value": 0,
+     "unit": "t",
+     "source": "USGS Minerals Yearbook 1990, Vol. I, chapter 'Rare earths: the lanthanides, yttrium, and scandium' (James B. Hedrick), Table 12 'Rare earths: World mine production, by country', p. 919; unit: metric tons of REO (rare-earth oxide) equivalent; 1990 column headed 'e' = estimated unless the row carries fn 2 'reported figure'",
+     "flags": [
+      "column_estimated_1990e",
+      "printed_as_dash_nil"
+     ],
+     "note": "printed '-' for 1990 (nil); 100 t in 1988 and 1989",
+     "roster_key": "Canada"
+    }
+   ],
+   "producers_named_without_figure": [
+    {
+     "source_label": "Indonesia",
+     "roster_key": "Indonesia",
+     "reason": "Table 12 fn 1: rare-earth minerals 'are believed to be produced in ... but general information is inadequate to formulate reliable estimates'"
+    },
+    {
+     "source_label": "North Korea",
+     "roster_key": "NorthKorea",
+     "reason": "Table 12 fn 1: rare-earth minerals 'are believed to be produced in ... but general information is inadequate to formulate reliable estimates'"
+    },
+    {
+     "source_label": "Mozambique",
+     "roster_key": "Mozambique",
+     "reason": "Table 12 fn 1: rare-earth minerals 'are believed to be produced in ... but general information is inadequate to formulate reliable estimates'"
+    },
+    {
+     "source_label": "Republic of South Africa",
+     "roster_key": "SouthAfrica",
+     "reason": "Table 12 fn 1: rare-earth minerals 'are believed to be produced in ... but general information is inadequate to formulate reliable estimates'"
+    },
+    {
+     "source_label": "U.S.S.R.",
+     "roster_key": "USSR",
+     "reason": "Table 12 fn 1: rare-earth minerals 'are believed to be produced in ... but general information is inadequate to formulate reliable estimates'"
+    }
+   ],
+   "not_used": "Table 11 'Monazite concentrate: World production, by country' (p. 919, metric tons gross weight of monazite; Australia 14,500, Brazil 2,000, India 4,500, Malaysia 3,500, South Africa 1,200, Sri Lanka 200, Thailand 650, USA W, Zaire 170; total 26,720) is a mineral-concentrate tonnage, not REO, and is not the rare-earths line",
+   "opt_in_from_1991_edition": {
+    "USSR": {
+     "value": 8500,
+     "unit": "t",
+     "flags": [
+      "estimated",
+      "NOT in the 1990 edition"
+     ],
+     "source": "USGS Minerals Yearbook 1991, Vol. I, Rare earths, Table 12 'Rare earths: World mine production, by country' (metric tons REO equivalent): the 1991 edition adds a U.S.S.R. row estimated at 8,500 for 1988, 1989 and 1990 (read from the Internet Archive OCR of item pub_usgov-minerals-yearbook_1991_1; digits 8,500 appear three times in the OCR row and are consistent with the revised 1990 total 68,899 vs the 1990 edition's 59,824 for 1989 + the added row)",
+     "note": "offered only because the 1990 edition names the U.S.S.R. as a producer without a figure; folding it mixes editions - owner's call, default OFF"
+    }
+   },
+   "price_1990": {
+    "usd_per_unit": 2870.0,
+    "unit": "t",
+    "transcribed": {
+     "value": 2.87,
+     "unit": "USD per kilogram REO",
+     "basis": "bastnasite concentrate, REO basis, YEAREND 1990 price (not an annual average)"
+    },
+    "conversion": "2.87 USD/kg x 1000 kg/t",
+    "source": "USGS Minerals Yearbook 1990, Vol. I, Rare earths, Table 1 'Salient U.S. rare-earth statistics', p. 903, row 'Prices, yearend, dollars per kilogram: Bastnasite concentrate, REO basis', 1990 column: 2.87 (same table: monazite concentrate REO basis 1.19; mischmetal metal basis 11.02)"
+   }
+  },
+  "uranium": {
+   "unit": "t",
+   "unit_basis": "metric tons of uranium (tU) produced",
+   "table": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+   "printed_total_1990": 49571,
+   "sum_of_transcribed_rows": 49571,
+   "printed_oecd_total_1990": 22379,
+   "national_1990": {
+    "Argentina": {
+     "source_label": "Argentina",
+     "value": 9,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "Australia": {
+     "source_label": "Australia",
+     "value": 3530,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "Belgium": {
+     "source_label": "Belgium",
+     "value": 39,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "(a) produced locally as a by-product from IMPORTED phosphates - not domestic ore"
+     ]
+    },
+    "Brazil": {
+     "source_label": "Brazil",
+     "value": 5,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "Bulgaria": {
+     "source_label": "Bulgaria",
+     "value": 405,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "Canada": {
+     "source_label": "Canada",
+     "value": 8729,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "(b) primary output; an additional 50 tU was recovered at Elliot Lake from refinery/conversion by-products in 1990 (not included)"
+     ]
+    },
+    "China": {
+     "source_label": "China",
+     "value": 800,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "(c) Secretariat estimate"
+     ]
+    },
+    "Czechoslovakia": {
+     "source_label": "CSFR",
+     "value": 2142,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "Czech and Slovak Federal Republic; the 'Czech Republic' row prints xxxx for 1990"
+     ]
+    },
+    "France": {
+     "source_label": "France",
+     "value": 2841,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "Gabon": {
+     "source_label": "Gabon",
+     "value": 709,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "Germany": {
+     "source_label": "Germany",
+     "value": 2972,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [],
+     "note": "AMBIGUOUS: 'Germany' pre-1990 cumulative is 699 tU (FRG only) while 'German Democratic Rep.' carries 213,380 pre-1990 and xxxx for 1990; 2,972 tU in 1990 can only be the Wismut (former GDR) output booked under united Germany - the table does not say whether for the whole year or from 3 Oct 1990"
+    },
+    "Hungary": {
+     "source_label": "Hungary",
+     "value": 524,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "India": {
+     "source_label": "India",
+     "value": 230,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "(c) Secretariat estimate"
+     ]
+    },
+    "Mongolia": {
+     "source_label": "Mongolia",
+     "value": 89,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "Namibia": {
+     "source_label": "Namibia",
+     "value": 3211,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "Pakistan": {
+     "source_label": "Pakistan",
+     "value": 30,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "(c) Secretariat estimate"
+     ]
+    },
+    "Portugal": {
+     "source_label": "Portugal",
+     "value": 111,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "Romania": {
+     "source_label": "Romania",
+     "value": 210,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "SouthAfrica": {
+     "source_label": "South Africa",
+     "value": 2460,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "Spain": {
+     "source_label": "Spain",
+     "value": 213,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "USA": {
+     "source_label": "United States",
+     "value": 3420,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": []
+    },
+    "USSR": {
+     "source_label": "USSR",
+     "value": 14000,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "(c) Secretariat estimate"
+     ],
+     "note": "Secretariat estimate; the successor rows (Kazakhstan, Russian Federation, Ukraine, Uzbekistan) print xxxx for 1990, so the USSR figure is the only 1990 Soviet figure and cannot be split from this source"
+    },
+    "Yugoslavia": {
+     "source_label": "Yugoslavia",
+     "value": 53,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [],
+     "note": "the 'Slovenia' row prints xxxx for 1990 (Zirovski vrh output is under Yugoslavia)"
+    }
+   },
+   "unmapped_1990": [
+    {
+     "source_label": "Niger",
+     "value": 2839,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [],
+     "reason": "no roster seat for this entity; carried here so no figure is silently lost"
+    }
+   ],
+   "zero_1990": [
+    {
+     "source_label": "Estonia",
+     "value": 0,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "printed 0",
+      "printed_zero"
+     ],
+     "note": "in 1990 a Soviet republic; the Red Book lists it separately with 65 tU pre-1990",
+     "roster_key": "Estonia"
+    },
+    {
+     "source_label": "Finland",
+     "value": 0,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "printed 0",
+      "printed_zero"
+     ],
+     "roster_key": "Finland"
+    },
+    {
+     "source_label": "Japan",
+     "value": 0,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "printed 0",
+      "printed_zero"
+     ],
+     "roster_key": "Japan"
+    },
+    {
+     "source_label": "Mexico",
+     "value": 0,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "printed 0",
+      "printed_zero"
+     ],
+     "roster_key": "Mexico"
+    },
+    {
+     "source_label": "Sweden",
+     "value": 0,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "printed 0",
+      "printed_zero"
+     ],
+     "roster_key": "Sweden"
+    },
+    {
+     "source_label": "Zaire",
+     "value": 0,
+     "unit": "t",
+     "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand (OECD, Paris, 1998), Table 6 'Historical Uranium Production (in metric tons U)', printed p. 41 (PDF page 40), column '1990'; '(c)' = Secretariat estimate; 'xxxx' = national entity not in existence or politically redefined",
+     "flags": [
+      "printed 0",
+      "printed_zero"
+     ],
+     "roster_key": "Zaire"
+    }
+   ],
+   "not_in_existence_1990_xxxx": [
+    "Czech Republic",
+    "German Democratic Rep.",
+    "Kazakhstan",
+    "Russian Federation",
+    "Slovenia",
+    "Ukraine",
+    "Uzbekistan"
+   ],
+   "producers_named_without_figure": [],
+   "edition_note": "The brief and spec name the 1991 Red Book; it is not online (Laka library lists it as paper only) and the NEA site does not host it. The 1997 edition is the earliest Red Book reachable online that tabulates 1990 by country, and its figures may embody revisions made after 1992. The 2006 'Red Book Retrospective' (NEA No. 6096) was reachable but exceeds WebFetch's 10 MB cap and was not read.",
+   "price_1990": {
+    "usd_per_unit": 40820.0,
+    "unit": "t",
+    "transcribed": {
+     "value": 40.82,
+     "unit": "USD per kilogram U equivalent",
+     "basis": "quantity-weighted average of prices reported for primary transactions, domestic utilities buying from domestic suppliers, 1990 (nominal US dollars)"
+    },
+    "conversion": "40.82 USD/kgU x 1000 kg/t",
+    "source": "OECD/NEA-IAEA, Uranium 1997: Resources, Production and Demand, United States country report, table 'Average US Uranium Prices, 1990-1996 (US Dollars per Kilogram U Equivalent)', printed p. 352 (PDF page 351), row 1990: domestic utilities from domestic suppliers 40.82; domestic utilities/suppliers from foreign suppliers 32.63",
+    "alternate_transcribed": {
+     "value": 32.63,
+     "unit": "USD per kilogram U equivalent",
+     "basis": "domestic utilities/suppliers from foreign suppliers, 1990"
+    },
+    "caveat": "these are contract-weighted delivered prices, not spot; the Red Book gives no 1990 spot price (its Table 13 spot series starts in 1992)"
+   }
+  }
+ }
+}

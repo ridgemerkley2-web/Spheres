@@ -728,6 +728,11 @@ pub struct Conflict {
     /// serialized so a mid-month save hashes identically to its reload.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub pockets: Vec<Vec<String>>,
+    /// What a resource war is for: the district and the line. The last-resort
+    /// resource-war stage writes it; earlier conflicts and saves leave it
+    /// absent.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub aim: Option<crate::resources::Aim>,
 }
 
 impl Conflict {
@@ -812,10 +817,35 @@ pub struct GameRules {
     pub ai_aggression: f64,
     /// Crisis intensity multiplier (bubbles, collapses)
     pub crisis_intensity: f64,
+    /// Whether procurement lines can be delayed by missing resource inputs.
+    /// Old saves default to the live system; the default value is omitted so
+    /// the switch is inert in historical hashes until a player changes it.
+    #[serde(default = "rules_true", skip_serializing_if = "is_true")]
+    pub resource_gates: bool,
+    /// Enables the negotiated market, refusal memory, sanction rationing, and
+    /// last-resort resource aims. Off by default so older saves and headless
+    /// simulations remain bit-identical; the browser enables it for play.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub resource_market: bool,
+}
+fn rules_true() -> bool {
+    true
+}
+fn is_true(v: &bool) -> bool {
+    *v
+}
+fn is_false(v: &bool) -> bool {
+    !*v
 }
 impl Default for GameRules {
     fn default() -> Self {
-        GameRules { seed: 1990, ai_aggression: 1.0, crisis_intensity: 1.0 }
+        GameRules {
+            seed: 1990,
+            ai_aggression: 1.0,
+            crisis_intensity: 1.0,
+            resource_gates: true,
+            resource_market: false,
+        }
     }
 }
 
@@ -854,6 +884,11 @@ pub struct WorldState {
     /// a save written before statecraft existed still loads.
     #[serde(default)]
     pub statecraft: Statecraft,
+    /// Stockpile cover, negotiated supply contracts, offers, refusals and
+    /// grievances. The derived production ledger lives separately below and
+    /// is rebuilt from current province ownership.
+    #[serde(default, skip_serializing_if = "crate::resources::Resources::is_empty")]
+    pub resources: crate::resources::Resources,
     /// Parties, elections, coalitions, and the pillars an unelected regime has
     /// to keep paying. Defaulted for the same reason `statecraft` is: a save
     /// written before governments existed still loads, and `government::ensure`
@@ -907,6 +942,21 @@ pub struct WorldState {
     #[serde(default)]
     pub districts: std::collections::BTreeMap<String, NationId>,
 
+    /// Residents of each admin-1 district, in millions. The opening split is
+    /// measured from the 1990 GHS-POP raster and normalized to each nation's
+    /// transcribed population; thereafter every held district follows its
+    /// current owner's demographic change. Kept in the save so people remain
+    /// attached to their province when borders move.
+    #[serde(default)]
+    pub district_population: std::collections::BTreeMap<String, f64>,
+    /// Cumulative demographic growth by current owner. Province values are
+    /// kept in a rebased form and multiplied by this factor when read, so a
+    /// century or seed census updates the roster rather than all 2,610 map
+    /// records every month. Ownership transfers rebase the moved province and
+    /// therefore leave its people on the ground.
+    #[serde(default)]
+    pub(crate) district_population_scale: Vec<f64>,
+
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it
     /// could disagree with the vector it indexes, and it must not touch the
@@ -922,6 +972,19 @@ pub struct WorldState {
     pub(crate) by_id: Vec<u16>,
     #[serde(skip)]
     pub(crate) by_id_len: usize,
+    /// Derived HAVE ledger: current production and strategic presence after
+    /// province transfers. Rebuilt when ownership or the living roster moves.
+    #[serde(skip)]
+    pub(crate) resource_have: crate::resources::Have,
+    /// Ownership-change stamp for the derived resource ledger.
+    #[serde(skip)]
+    pub(crate) districts_epoch: u64,
+    /// Exact nation-level demographic multipliers produced by the economy
+    /// system and consumed by technology later in the same monthly tick.
+    /// Keeping this transient lets the two owner scales apply in their original
+    /// multiplication order without touching every province.
+    #[serde(skip)]
+    pub(crate) district_population_growth: Vec<(NationId, f64)>,
 }
 
 fn first_day() -> u32 {
@@ -1129,15 +1192,18 @@ impl WorldState {
     /// How much of `id`'s trade runs through `partner`, 0..1. This is leverage:
     /// the side with the smaller number can afford to walk away.
     pub fn trade_dependency(&self, id: NationId, partner: NationId) -> f64 {
-        let depth = self.trade_depth(id, partner);
-        if depth <= 0.0 {
-            return 0.0;
-        }
-        let (mine, theirs) = match (self.nation_opt(id), self.nation_opt(partner)) {
-            (Some(m), Some(t)) => (m.gdp, t.gdp),
-            _ => return 0.0,
+        let pact = {
+            let depth = self.trade_depth(id, partner);
+            if depth <= 0.0 {
+                0.0
+            } else {
+                match (self.nation_opt(id), self.nation_opt(partner)) {
+                    (Some(m), Some(t)) => depth * (t.gdp / (m.gdp + t.gdp).max(1.0)),
+                    _ => 0.0,
+                }
+            }
         };
-        depth * (theirs / (mine + theirs).max(1.0))
+        pact.max(crate::resources::contract_dependency(self, id, partner))
     }
     pub fn reputation(&self, id: NationId) -> f64 {
         self.statecraft

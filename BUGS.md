@@ -1556,3 +1556,103 @@ beside it, with this derivation.
 Measured with `scratchpad/to2035/probe_validation` (`mature 40`), 40 seeds,
 recorded in `scratchpad/to2035/out_mature_40.txt` and adjudicated in
 `DECISION-2035.md` call 4.
+
+## Awaiting an owner ruling (added 2026-09-01 by the resource-system shipper)
+
+The resource system (`scratchpad/resourcesys/SPEC-RESOURCE-SYSTEM.md`) landed
+in seven commits with both golden actuals unchanged throughout —
+`the_1990_start_is_pinned` 0xa5c9c5b2306313d8 and `golden_hash_of_a_known_run`
+0x20c24ab0f1581807, the actuals T-5's second table records — and re-pinned
+nothing. These are the things it measured and could not decide.
+
+### R-1 — the last-resort chain never completes: zero resource wars in every F2 cell over two counts
+
+Ruling 4 asks that an AI invade for a resource ONLY when every seller has
+refused it twice and its line is stalled, "rare and legible — not never, not
+constant". Measured twice (count one 200 seeds, count two 400 seeds, 480
+months, six cells: floor {−20, 0, +10} × ration {on, off}): **0 resource wars
+in every cell**, λ̂ = 0.000, 95% upper bound 0.0075/seed, below the
+pre-registered band [0.05, 0.69] by a factor of six or more. The predicate is
+sound — `the_last_resort_predicate` pins all ten clauses and the census
+exercised the nuclear bar 473–981 pair-months and the pact bar 56 without one
+crossing — but it never holds in play: in the design cell the universal
+refusal reaches at most 17 of 59 copper producers; at +10 it completes for
+Indochina and Taiwan and the appetite roll never lands (p ≤ 0.0014/month).
+"Not never" is unmet. The knobs that would move it, each a ruling and none
+taken: `RESOURCE_WORTH` (0.75, the GDP arm's own coefficient — a larger term
+prices a mine above a target's whole economy); `GATE_HEAT` / the two-asks rule
+(a weaker clause 2 admits partial refusals); `RELATION_FLOOR` past +10 (already
+"hot in every seed" at +10 with no war); a ration that also closes the open
+market to a nation's rivals (the only route by which sellers vanish). Full
+funnel in ROADMAP §1c and `scratchpad/resourcesys/{census1_summary,c2_census}.txt`.
+
+### R-2 — the counter-price step prices small economies out of everything
+
+`evaluate()` rounds a counter UP to $0.1bn a year (`ceil10`). A $0.65M/yr
+slice of copper is therefore quoted at $100M/yr, and a buyer with a 1%-of-GDP
+contract cap under $10bn of output spends its whole cap on rounding. Measured
+in S3: 60,000 of 65,000 AI asks over 35 years were priced-out re-asks before
+the priced-out clock row was added. Filed under S2's rule (the price step is a
+spec constant); the fix is a finer step or a step scaled to the smaller
+economy's output, and it moves every market-on timeline.
+
+### R-3 — Ukraine's iron is under-located
+
+The site-count share rule gives Ukraine 11.5% of Soviet iron (`dissolve_to`
+hands Russia 0.808, Ukraine 0.115, Kazakhstan 0.058); the real 1990 split is
+about 45% Ukraine (Kryvyi Rih). Fix: weight located shares by USGS MYB 1990
+tonnage where the source prints a per-district or per-basin figure, as a
+documented D rule. Moves HAVE only; nothing the growth model reads.
+
+### R-4 — the settlement's 12% oil slice ignores where the oil is
+
+`negotiated_peace` (war.rs) moves 12% of the loser's `oil_mbd` with a ceded
+share, while the located shares say the ground carries up to 97% of it
+(Kuwait). `transfer_district` (a consented sale) uses the located fraction;
+a conquest uses the flat slice — two rules for one quantity at two sites. The
+card prints "located in ceded ground: X%" so the player can see the gap. A
+war.rs repair moves the run golden.
+
+### R-5 — `SANCTION_BITE` was calibrated on histories that include import denial
+
+The sanction ration (`supply()`'s market leg × (1 − `oil_blockade(buyer)`))
+now delivers import denial through the gate; `sanction_weight`'s drag on
+growth, stability and research was calibrated against histories in which that
+denial was already part of the damage. A future recalibration should subtract
+what the gate now delivers. Nothing double-counts today only because the gate
+binds so rarely (R-1).
+
+### R-6 — Namibia produces and has no seat
+
+The 1990 tables carry Namibia at copper 27,800 t, gold 1,700 kg, uranium
+3,211 t (and the district survey carries its ground). It is not on the 1990
+roster, so the rows are dropped (`meta.counts.dropped_rows`) and its uranium
+— among the largest 1990 producers — is held by nobody. Seating it is a
+roster ruling (BIBLE), not a data fix.
+
+### R-7 — the pact-drag test moves from 4/12 to 5/12 under the market
+
+With the market on, every seed's history reshuffles from the first
+sanction-rationed shortfall (month 25 at the earliest, median 69.5) and
+`a_pact_drags_a_great_power_into_a_war_it_did_not_start` reads 5/12 [1,2,5,8,10]
+against control's 4/12 [1,2,9,10] — inside its band, and its false-red rate
+(2.67%) is unchanged. The Gulf hit list is identical to control's (252/400
+within 48 months) because the market's first event is after month 25. Recorded
+so nobody re-diagnoses it; nothing to fix.
+
+### R-8 — fork F1(b)'s blind spot: the suite calibrates a world the player does not play
+
+`GameRules::resource_market` is off in every test and headless path and on for
+every browser game. That is what keeps both goldens on their actuals while T-5
+/ E-3 block the re-pin, and it means no calibration test reads the market-on
+timeline. The census instruments (`resource_war_census`, `_one`, both
+`#[ignore]`) and `the_market_switch_is_off_for_the_suite_and_deterministic_when_on`
+(35-year state_hash 0xdc1b71684b08b071 on seed 1990) are the only readings of
+that world. When T-5 closes, the ruling is whether to flip the default and
+re-pin under the protocol, which is F1(a) as the spec recommends.
+
+### R-9 — filed and FIXED in passing: `arsenal::available`'s string scan
+
+`tech::index_of` string-scanned 254 entries for each of 33 tech-gated kits per
+nation-month (0.25 of arsenal's 0.26 ms/month). S3 precomputed the kit → tech
+index table: 2.24 → 0.14 µs a pick, bit-identical, both goldens unchanged.

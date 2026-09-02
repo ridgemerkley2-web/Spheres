@@ -490,18 +490,48 @@ pub fn strength_of(n: &Nation) -> f64 {
         .sum()
 }
 
+/// This month's procurement money before anything banked: the budget's
+/// equipment share, one month of it.
+///
+/// Clamped rather than floored: `.max(0.0)` handles a negative GDP (which
+/// this tree has produced — see ff77690) and a NaN, because f64::max returns
+/// the non-NaN operand. It does not handle +inf, which would place an
+/// infinite order and field an infinite arsenal.
+pub(crate) fn budget_of(n: &Nation) -> f64 {
+    (n.gdp * n.mil_spend_gdp * PROCUREMENT_SHARE / 12.0).clamp(0.0, 1e6)
+}
+
+/// What the line can spend this month: the budget plus whatever earlier
+/// months banked with nothing to buy. The one expression `tick` orders
+/// against and `resources::kit_need` sizes a draw against.
+pub(crate) fn line_of(n: &Nation) -> f64 {
+    budget_of(n) + n.arsenal.banked
+}
+
+/// Each kit's technology resolved to its index once. `available` and `pick`
+/// run every nation-month, and resolving thirty-three names by search each
+/// time was most of the arsenal's cost (SPEC section 8's "free win";
+/// measured 2.2 µs a pick, six picks inside every resource evaluation). A
+/// name the tree does not know resolves to `None` and stays unorderable,
+/// exactly as before.
+fn deck_tech() -> &'static [Option<u16>] {
+    static T: std::sync::OnceLock<Vec<Option<u16>>> = std::sync::OnceLock::new();
+    T.get_or_init(|| DECK.iter().map(|k| k.tech.and_then(crate::tech::index_of)).collect())
+}
+
+/// Whether `n` may order kit `i` today. The legacy tier is always available:
+/// replacing what you already field is a budget decision, not a discovery.
+fn orderable(n: &Nation, i: usize) -> bool {
+    match (DECK[i].tech, deck_tech()[i]) {
+        (None, _) => true,
+        (Some(_), None) => false,
+        (Some(_), Some(t)) => n.tech.knows_index(t),
+    }
+}
+
 /// What this nation may order today: everything whose technology it holds.
 pub fn available(n: &Nation) -> Vec<u16> {
-    DECK.iter()
-        .enumerate()
-        .filter(|(_, k)| match k.tech {
-            // The legacy tier is always available: replacing what you already
-            // field is a budget decision, not a discovery.
-            None => true,
-            Some(t) => crate::tech::index_of(t).is_some_and(|i| n.tech.knows_index(i)),
-        })
-        .map(|(i, _)| i as u16)
-        .collect()
+    (0..DECK.len()).filter(|i| orderable(n, *i)).map(|i| i as u16).collect()
 }
 
 /// Procurement, once a month.
@@ -512,15 +542,21 @@ pub fn available(n: &Nation) -> Vec<u16> {
 pub fn tick(w: &mut WorldState) {
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     for id in ids {
-        let budget = {
-            let n = w.nation(id);
-            // Clamped rather than floored: `.max(0.0)` handles a negative GDP
-            // (which this tree has produced — see ff77690) and a NaN, because
-            // f64::max returns the non-NaN operand. It does not handle +inf,
-            // which would place an infinite order and field an infinite arsenal.
-            (n.gdp * n.mil_spend_gdp * PROCUREMENT_SHARE / 12.0).clamp(0.0, 1e6)
+        let budget = budget_of(w.nation(id));
+        let line = line_of(w.nation(id));
+        // The one gate the resource system has in cut one. It checks the kit
+        // procurement would pick against what the nation can get this month
+        // — its own flow, or any open holder — and delays the line only when
+        // the pile it kept for exactly this is spent. A player's stated
+        // preference stalls and says so; the staff buy the best kit whose
+        // inputs are held. In an open world this returns the pick untouched.
+        let (choice, stall) = match pick(w.nation(id)) {
+            Some(kit) if w.rules.resource_gates => crate::resources::gate(w, id, kit, line),
+            other => (other, None),
         };
-        let choice = pick(w.nation(id));
+        if let Some(s) = stall {
+            w.headline(s.headline());
+        }
         let n = w.nation_mut(id);
 
         // Age what is already in service.
@@ -558,7 +594,7 @@ pub fn tick(w: &mut WorldState) {
         // economy has already been charged for it in economy.rs, so losing it
         // here was years of funding that produced nothing, with no record.
         // Capped at two years of the line so it cannot be hoarded for a century.
-        let line = budget + n.arsenal.banked;
+        // `line` is `line_of(n)` as read before the gate: budget plus banked.
         n.arsenal.banked = 0.0;
         if choice.is_none() {
             n.arsenal.banked = line.min(budget * 24.0);
@@ -588,24 +624,59 @@ pub fn tick(w: &mut WorldState) {
     }
 }
 
+/// Every orderable kit, best-first — quality per pound descending, `DECK`
+/// order breaking ties — with the player's preference first. `pick` is the
+/// head of this list; the resource gate walks the rest only in the month a
+/// line is delayed, which is why this sorts and `pick` does not.
+pub(crate) fn ranked(n: &Nation) -> Vec<u16> {
+    let mut open = available(n);
+    open.sort_by(|a, b| {
+        let va = DECK[*a as usize].quality / DECK[*a as usize].unit_cost.max(1e-9);
+        let vb = DECK[*b as usize].quality / DECK[*b as usize].unit_cost.max(1e-9);
+        vb.partial_cmp(&va).unwrap_or(std::cmp::Ordering::Equal).then(a.cmp(b))
+    });
+    if let Some(p) = n.arsenal.preference.as_deref().and_then(index_of) {
+        if let Some(pos) = open.iter().position(|k| *k == p) {
+            open.remove(pos);
+            open.insert(0, p);
+        }
+    }
+    open
+}
+
 /// What procurement buys this month.
 ///
 /// The player's standing preference if they have set one and can still build it;
 /// otherwise the best quality per pound available, which is what a staff with no
 /// political direction does. Deterministic — `DECK` order breaks every tie.
-fn pick(n: &Nation) -> Option<u16> {
-    let open = available(n);
-    if open.is_empty() {
-        return None;
-    }
+pub(crate) fn pick(n: &Nation) -> Option<u16> {
     if let Some(p) = n.arsenal.preference.as_deref().and_then(index_of) {
-        if open.contains(&p) {
+        if orderable(n, p as usize) {
             return Some(p);
         }
     }
-    open.into_iter().max_by(|a, b| {
-        let va = DECK[*a as usize].quality / DECK[*a as usize].unit_cost.max(1e-9);
-        let vb = DECK[*b as usize].quality / DECK[*b as usize].unit_cost.max(1e-9);
-        va.partial_cmp(&vb).unwrap_or(std::cmp::Ordering::Equal).then(b.cmp(a))
-    })
+    // One pass, no allocation: the same maximum `available(n)` sorted to —
+    // quality per pound, the lower `DECK` index on a tie.
+    let value = |i: usize| DECK[i].quality / DECK[i].unit_cost.max(1e-9);
+    let mut best: Option<usize> = None;
+    for i in 0..DECK.len() {
+        if !orderable(n, i) {
+            continue;
+        }
+        best = Some(match best {
+            None => i,
+            Some(b) => {
+                let ahead = value(i)
+                    .partial_cmp(&value(b))
+                    .unwrap_or(std::cmp::Ordering::Equal)
+                    .then(b.cmp(&i));
+                if ahead == std::cmp::Ordering::Greater {
+                    i
+                } else {
+                    b
+                }
+            }
+        });
+    }
+    best.map(|i| i as u16)
 }

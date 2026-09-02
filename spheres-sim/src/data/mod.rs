@@ -799,6 +799,7 @@ pub fn load_world(
         sanctions: vec![],
         wars: vec![],
         statecraft: Statecraft::default(),
+        resources: Default::default(),
         governments: Default::default(),
         conflicts: vec![],
         theatres: crate::theatre::default_theatres(),
@@ -809,8 +810,13 @@ pub fn load_world(
         player: None,
         player_set_rate: false,
         districts: crate::districts::ownership_1990(),
+        district_population: crate::districts::population_1990(),
+        district_population_scale: vec![1.0; crate::nations::nation_count()],
         by_id: vec![],
         by_id_len: 0,
+        resource_have: Default::default(),
+        districts_epoch: 0,
+        district_population_growth: vec![],
     };
     for block in &relations.blocks {
         for p in &block.pairs {

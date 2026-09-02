@@ -908,7 +908,7 @@ fn resolve_conflicts(w: &mut WorldState) {
                 // What the winner actually holds at the front, read before
                 // the conflict is dropped: the concession prefers this ground
                 // and falls back to the value ranking for the rest.
-                let held = crate::front::held_by(w, &c, winner, loser);
+                let held = settlement_held(w, &c, winner, loser);
                 negotiated_peace(w, winner, loser, &held);
                 if winner == c.origin_attacker {
                     // The opener got what it came for, so its claim is
@@ -991,6 +991,28 @@ fn settlement_ripe(w: &mut WorldState, c: &Conflict) -> Option<(NationId, Nation
     } else {
         None
     }
+}
+
+/// The ground a settlement moves first: what the winner's front holds of the
+/// loser's, plus — when the winner opened the quarrel for a district
+/// (resources.rs, `Conflict::aim`) and the loser still holds it — that
+/// district, so the mine the war was for cedes first under the settlement's
+/// own count. No aim, and this is `front::held_by` and nothing more.
+pub(crate) fn settlement_held(
+    w: &WorldState,
+    c: &Conflict,
+    winner: NationId,
+    loser: NationId,
+) -> std::collections::BTreeSet<String> {
+    let mut held = crate::front::held_by(w, c, winner, loser);
+    if winner == c.origin_attacker {
+        if let Some(aim) = &c.aim {
+            if w.districts.get(aim.district.as_str()) == Some(&loser) {
+                held.insert(aim.district.clone());
+            }
+        }
+    }
+    held
 }
 
 /// Terms short of conquest: reparations always, territory only from a state that
@@ -1159,7 +1181,12 @@ pub fn invasion_begins(w: &mut WorldState, conflict: u32, attacker: NationId) {
         }
     };
 
-    w.headline(format!("WAR: {} invades {}!", attacker.name(), defender.name()));
+    // A war opened for a line every seller refused says so, with the count
+    // (resources.rs); every other invasion reads as it always did. Both
+    // begin "WAR:", so every census and the classifier count both.
+    let head = crate::resources::resource_war_headline(w, &c, attacker, defender)
+        .unwrap_or_else(|| format!("WAR: {} invades {}!", attacker.name(), defender.name()));
+    w.headline(head);
     w.shift_relation(attacker, defender, -60.0);
     // A state whose border has just been crossed fights for it with everything
     // it has, and it does not have to be talked into it.
@@ -1264,6 +1291,7 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
         invasion_declared: false,
         front: std::collections::BTreeMap::new(),
         pockets: vec![],
+        aim: None,
     });
     invasion_begins(w, id, attacker);
     Ok(())

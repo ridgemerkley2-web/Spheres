@@ -1,6 +1,55 @@
 # SPHERES Roadmap
 
 ## Done (v0.5 rebuild)
+- **The resource system** (2026-09-01, `scratchpad/resourcesys/SPEC-RESOURCE-SYSTEM.md`,
+  seven commits 1744e0c..HEAD): twelve commodity lines that stay separate; a
+  1990 ledger derived from transcribed national production apportioned to
+  located districts (`spheres-sim/data/resources_1990.json`, generator and
+  63-check gate under `tools/resources/`); a stockpile gate at the arsenal
+  that binds ONLY when a gated line asks for what the pile cannot feed (no
+  ambient drag: growth, oil, stability and munitions never read it, and
+  `gates_write_nothing_the_growth_model_reads` proves it over 40 y x 6 seeds);
+  negotiated trade — `ProposeDeal / AcceptDeal / DeclineDeal / CancelDeal`,
+  one pure `evaluate()` that accepts, counters with a price, or refuses with
+  one of twelve fixed sentences, contracts that settle money on `debt_gdp` and
+  land through `transfer_district`; the arcade surface (key B, the folded
+  board, three cards a line, three-click talks with the sim's answer printed
+  before the click, the globe's tint / contract arcs / aim ring, the dossier's
+  "What it holds") with no coefficient in the page; and, behind
+  `GameRules::resource_market`, the AI buy pass, the refusal memory, the
+  sanction ration and the five-clause last-resort war (`dyads::last_resort`,
+  a {0,1} term worth exactly `RESOURCE_WORTH` 0.75).
+  **Fork F1 was called (b)**: the market ships OFF in every test and every
+  headless path and ON for every browser game (`play_rules`, at boot and on
+  `/api/new`). Why: the protocol re-pin is blocked by BUGS E-3, not by this
+  system, and (b) is the only way to land S3 while both goldens keep their
+  actuals — `the_1990_start_is_pinned` 0xa5c9c5b2306313d8 and
+  `golden_hash_of_a_known_run` 0x20c24ab0f1581807, red for the known reasons,
+  reproduced byte-for-byte by every one of the seven landings; nothing
+  re-pinned. The cost is filed (BUGS R-8): until T-5 / E-3 close, the
+  calibration suite is blind to the world the player actually plays.
+  **D2 landed as data (fork F3, now)**: the six presence-only lines carry 1990
+  national figures with their citations — cobalt 13 rows (USGS MYB 1990 Table
+  14), gold 58 (Table 15), phosphate rock 33 (Table 30), platinum-group 11
+  (Table 15), rare earths 9 (Table 12), uranium 22 (OECD/NEA-IAEA Red Book,
+  Table 6) — located by the same site-count rule (9 / 49 / 30 / 9 / 4 / 11
+  nations located), priced from the same sources, contractable on the board.
+  The USSR holds its 14,000 tU through the unlocated-producer rule (a survey
+  hole, asserted). NOT landed: spec §7.2's consumers — the reactor / magnet /
+  battery / hydrogen research gates and the Bomb's uranium gate — so those six
+  lines have HAVE and contracts but no NEED and read IDLE ("nothing in this
+  build draws on it"). Figures with no roster seat (Namibia's copper 27,800 t,
+  gold 1,700 kg, uranium 3,211 t; Burkina Faso, Mali, Guinea gold; Togo, Nauru
+  phosphate; Niger uranium) are kept in `meta.transcription` and seated nowhere.
+  **Suite at ship** (forced rebuild, isolated target, binaries post-date every
+  source): spheres-sim 188 passed / 3 failed / 22 ignored (the endowment guard
+  and the two goldens, same actuals), spheres-web 83 / 0 / 2, spheres-cli
+  1 / 0; headless `run 35` on seeds 1990 and 7 byte-identical to the
+  pre-system tree with the market off (sha256 2409583ac6951b46 /
+  03fb32b79aaf948b) and byte-identical run-to-run with it on
+  (3f97191a92733a42 / 550fd1473d00c898). Profile: the whole layer with the
+  market on 0.039 ms/month at 137 nations against a 0.05 bar. Forks F2 and F4
+  are NOT decided — see §1c under Next.
 - **Terrain pass** (2026-08-30, BIBLE §5 as amended): every district carries a
   transcribed Natural Earth terrain class (`t`), feature name (`f`) and
   river-crossed neighbour subset (`riv`), merged into districts.json by mapgen
@@ -924,6 +973,82 @@ years) and `a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it`, whic
 means China's miracle is currently being paid for partly by an unbounded rate
 term. Doing this properly is a recalibration of the demand side, and it should be
 done before any more 1990 monetary data is transcribed.
+
+### 1c. The resource system's two owner forks, F2 and F4 — measured twice, decided by nobody
+
+The spec pre-registered a band for resource-motivated wars, λ ∈ [0.05, 0.69]
+per seed over 480 months, PROVISIONAL until measured twice independently, and
+left two forks to the owner: **F2**, the temperature (relation floor
+{−20, 0, +10} × sanction ration {on, off}; the design cell is −20 with the
+ration on), and **F4**, the census bar and its seed count, to be set from the
+measured rate by iron rule 7's arithmetic. Both counts are in; here is what
+they say, so the pick is from data.
+
+**Count one** (`resource_war_census_one`, in-process, 200 seeds 0..199 × 480
+months × 7 arms, one thread per arm; `scratchpad/resourcesys/census1*`) and
+**count two** (out-of-process CLI runs of a `git archive` of 242d178 with a
+measurement patch that reads the two knobs from the environment; 400 seeds in
+two blocks, A = 0..199 and B = 1000..1199; `scratchpad/resourcesys/c2_census.txt`)
+agree on every shared number: block A reproduces count one's per-arm "WAR:"
+totals line for line (control 1,686; −20/on 1,552; 0/on 1,557; +10/on 1,547;
++10/off 1,676), block B is the independent draw, and the control arm is
+byte-identical to the pre-S3 f03668e binary on 400/400 seeds with the 12 × 30-year
+readout 6,6,11,10,10,6,7,7,8,11,9,7 / 98.
+
+```
+resource wars per seed, {count: seeds}         count one (n=200)     count two (n=400)
+  floor -20 · ration on  (the design)          {0: 200}  λ 0.000     {0: 400}  λ 0.000
+  floor -20 · ration off                       {0: 200}  = control   {0: 400}  = control
+  floor   0 · ration on                        {0: 200}  λ 0.000     {0: 400}  λ 0.000
+  floor   0 · ration off                       {0: 200}  = control   {0: 400}  = control
+  floor +10 · ration on                        {0: 200}  λ 0.000     {0: 400}  λ 0.000
+  floor +10 · ration off                       {0: 200}  λ 0.000     {0: 400}  λ 0.000
+  control (market off)                         {0: 200}              {0: 400}
+95% upper bound on λ (0 of n):                 0.015 / seed          0.0075 / seed
+```
+
+The two rates agree within their own sampling error trivially — both are zero
+with zero variance, the intervals nest, and a two-sample comparison has no
+events to compare. Over the 400 distinct seeds the rate is λ̂ = 0.000 with a
+one-sided 95% upper bound of 0.0075 resource wars per seed per 480 months —
+BELOW the band's floor of 0.05 in every cell, by at least a factor of six.
+
+**Where the chain stops** (the clause funnel, count two): in the design cell
+233/400 seeds stall a line (copper, every time: Iraq 83 seeds, Vietnam 64,
+Nicaragua 37, Syria 32, Ethiopia 18, Libya 12, Pakistan 11, Croatia 9; 71,677
+stall line-months), every seed carries refusal rows, and the UNIVERSAL refusal
+never completes — the deepest set is 17 of 59 copper producers (Malawi) — so
+`last_resort` is never `Some` and the expected count is 0 by construction.
+At floor 0 the deepest set is 32/59 (Pakistan). Only at +10 does clause 2
+complete (26 seeds with the ration, 19 without; Laos, Cambodia, Thailand,
+Taiwan — 59/59 and 60/60) and `last_resort` return `Some` (970 / 1,142
+nation-months); the appetite roll then never lands, with p ≤ 0.0014 a month
+at 95% and a summed expectation of about 0.024 wars over 200 seeds in count
+one. Over 59 copper producers the world always sells or prices out.
+
+**F2, the pick.** Every cell reads zero; the difference between them is how
+far the chain gets, not how many wars come out. −20/on (the design) is the
+honest choice as shipped — the market is live, 233/400 seeds stall and buy,
+and the AI never invades for a mine. +10 is "hot in every seed" (238,466
+refusals over 400 seeds) and still zero. Ration off at −20 and 0 is
+bit-identical to control: without the ration an open world never has a
+shortfall. If the owner wants ruling 4's "not never", no cell delivers it;
+the knobs that would are named in BUGS R-1 and each is its own ruling.
+
+**F4, the proposal (not set).** Rule 7's "at least once" arithmetic is
+n = ln(0.01) / ln(1 − p) with p the measured per-seed probability of ≥ 1
+resource war. Checked against the spec's own table (p 0.2 → 21 / 39 / 55 for
+floors ≥ 1 / 3 / 5; 0.3 → 13 / 25 / 35; 0.4 → 10 / 18 / 25). At the measured
+p = 0.000 there is no finite n for any floor ≥ 1; at the 95% upper bound
+0.0075 it is 612 seeds, and at +10's chain expectation (about 1.2e-4) it is
+38,375. So the only bar the measurement supports is the one §9.8 calls
+decorative: **0 resource wars in 200 seeds × 480 months in the shipped cell**,
+variance 0, false-red 0 under the measured p — a guard that the chain has not
+been silently opened, not a calibration bar. Proposed wording for the comment
+beside it: "measured 0/200 (count one) and 0/400 (count two); p-hat = 0, upper
+bound 0.0075; n is the census's own 200; this bar cannot see a rate below
+0.023 (the 1%-power floor at n = 200) and is not meant to". A real F4 bar
+waits on an F2 cell with a non-zero rate.
 
 ### 2. The tree is invisible
 328 technologies and the browser UI does not mention one of them. The owner's

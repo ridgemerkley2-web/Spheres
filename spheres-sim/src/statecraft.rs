@@ -50,6 +50,10 @@ pub fn tick(w: &mut WorldState) {
     aid_flows(w);
     trade_deepens(w);
     covert_channels_cool(w);
+    // A seller's refusal is remembered, then gradually not (resources.rs,
+    // spec section 6.3). Free while the memory is empty, which is every
+    // world the market switch is off in.
+    crate::resources::cool_refusals(w);
 }
 
 /// A broken promise is remembered, then gradually not. Nobody climbs back above

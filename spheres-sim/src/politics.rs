@@ -1162,6 +1162,10 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
 /// to make a rival's client ungovernable. Everything goes through the same
 /// `Command` the player uses, so the AI cannot do anything a player could not.
 fn ai_statecraft(w: &mut WorldState) {
+    // A state short of a line must try the market before resource appetite can
+    // ever become a war. This is inert while the market switch is off.
+    crate::resources::ai_purchases(w);
+
     let active: Vec<NationId> = patrons()
         .iter()
         .copied()
@@ -1478,6 +1482,19 @@ fn ai_wars(w: &mut WorldState) {
                     w,
                     &crate::Command::SetObjective { conflict: id, nation: a, objective: Objective::Seize },
                 );
+                if w.rules.resource_market {
+                    if let Some(aim) = crate::dyads::last_resort(w, a, t) {
+                        let _ = crate::apply_command(
+                            w,
+                            &crate::Command::SetAim {
+                                conflict: id,
+                                nation: a,
+                                district: aim.district,
+                                commodity: aim.commodity,
+                            },
+                        );
+                    }
+                }
             }
         }
     }

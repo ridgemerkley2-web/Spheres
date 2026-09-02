@@ -19,6 +19,12 @@ const INDEX: &str = include_str!("../ui/index.html");
 const WORLD_JS: &str = include_str!("../ui/world.js");
 /// Baked admin-1 district outlines, same projection and canvas as world.js.
 const DISTRICTS_JS: &str = include_str!("../ui/districts.js");
+/// The simulation's immutable admin-1 census. The globe's geometry file keeps
+/// only what it needs to draw and pick (id, name, path and centroid); this file
+/// carries the dossier facts that must not be guessed in the browser: area,
+/// adjacency, river crossings, terrain and named physical feature. It is
+/// fetched lazily on the first province/state selection.
+const DISTRICT_INFO_JSON: &str = include_str!("../../spheres-sim/data/districts.json");
 /// Baked hillshade underlay, same Robinson canvas — see tools/terrain/. Kept as the
 /// fallback the map falls back to when WebGL2 is unavailable or a context is lost.
 const TERRAIN_PNG: &[u8] = include_bytes!("../ui/terrain.png");
@@ -1106,8 +1112,431 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // inflation closes the peg, and the panel must not be a frame behind.
         "stratagems": w.player.map(|p| stratagems_json(w, p)),
         "research": w.player.map(|p| research_json(w, p)),
+        "trade": w.player.map(|p| trade_json(w, p)),
         "policy": w.player.map(|p| policy_json(w, p)),
         "interrupt": interrupt,
+    })
+}
+
+/// One live province reading. Population is intentionally not carried for all
+/// 2,610 districts in every daily state payload: the map asks only for the
+/// province the player has opened, then refreshes that one reading after time
+/// advances. Ownership and the demographic pace both come from the same live
+/// world as the population value.
+fn district_population_json(w: &WorldState, district: &str) -> Option<serde_json::Value> {
+    let population = spheres_sim::districts::population_of(w, district)?;
+    let owner = w.districts.get(district).copied();
+    let growth = owner.and_then(|id| spheres_sim::economy::effective_population_growth(w, id));
+    let opening = spheres_sim::districts::population_1990_of(district);
+    let area = spheres_sim::districts::area_of(district);
+    let density = (area > 0.0).then_some(population * 1_000_000.0 / area);
+    let national_share = owner
+        .and_then(|id| w.nation_opt(id))
+        .and_then(|n| (n.population > 0.0).then_some(population / n.population));
+
+    // Ranks are derived from the same live values the map paints. Counting
+    // values ahead of this province avoids allocating and sorting 2,610 rows
+    // every time the player advances with a dossier open; id is the stable
+    // tie-breaker, so equal populations cannot make the rank flicker.
+    let ahead = |other_id: &str, other_population: f64| {
+        other_population > population
+            || (other_population == population && other_id < district)
+    };
+    let mut world_rank = 1usize;
+    let mut owner_rank = 1usize;
+    let mut owner_count = 0usize;
+    for other_id in w.district_population.keys() {
+        let Some(other_population) = spheres_sim::districts::population_of(w, other_id) else {
+            continue;
+        };
+        if ahead(other_id, other_population) {
+            world_rank += 1;
+        }
+        if owner.is_some() && w.districts.get(other_id).copied() == owner {
+            owner_count += 1;
+            if ahead(other_id, other_population) {
+                owner_rank += 1;
+            }
+        }
+    }
+    Some(serde_json::json!({
+        "id": district,
+        "name": spheres_sim::districts::name_of(district),
+        "population": round_sig(population, 8),
+        "opening_population": opening.map(|v| round_sig(v, 8)),
+        "change_since_1990": opening
+            .filter(|v| *v > 0.0)
+            .map(|v| round(population / v - 1.0, 6)),
+        "density_per_sqkm": density.map(|v| round(v, 4)),
+        "national_share": national_share.map(|v| round(v, 6)),
+        "owner_rank": owner.map(|_| owner_rank),
+        "owner_count": owner.map(|_| owner_count),
+        "world_rank": world_rank,
+        "world_count": w.district_population.len(),
+        "owner": owner.map(|id| format!("{:?}", id)),
+        "owner_name": owner.map(|id| id.name()),
+        "annual_growth": growth.map(|g| round(g, 6)),
+        "year": w.year,
+        "month": w.month,
+        "day": w.day,
+    }))
+}
+
+/// The live province population surface for the opt-in Population map mode.
+/// Kept out of `/api/state`, which advances daily, and fetched only when the
+/// player asks for this layer. Each compact row is [population_m, people/km²].
+fn district_populations_json(w: &WorldState) -> serde_json::Value {
+    let districts = w
+        .district_population
+        .keys()
+        .filter_map(|district| {
+            let population = spheres_sim::districts::population_of(w, district)?;
+            let area = spheres_sim::districts::area_of(district);
+            let density = if area > 0.0 {
+                population * 1_000_000.0 / area
+            } else {
+                0.0
+            };
+            Some((
+                district.clone(),
+                serde_json::json!([round_sig(population, 8), round(density, 4)]),
+            ))
+        })
+        .collect::<serde_json::Map<String, serde_json::Value>>();
+    serde_json::json!({
+        "year": w.year,
+        "month": w.month,
+        "day": w.day,
+        "districts": districts,
+    })
+}
+
+/// The resource board and concrete contracts. All twelve catalogue rows are
+/// served even when the national ledger has no row for one: a mapped deposit
+/// with no admitted magnitude is `quantified:false`, never a silent zero that
+/// pretends to be measured production.
+fn trade_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    use spheres_sim::resources::{self, Commodity, Leg, ALL};
+    use std::collections::BTreeSet;
+
+    let have = resources::have(w);
+    let flow = |nation: NationId, commodity: Commodity| {
+        have.flow
+            .get(nation.index())
+            .map_or(0.0, |row| row[commodity.idx()])
+    };
+    let terms_json = |payer: NationId, terms: &[Leg]| {
+        terms
+            .iter()
+            .map(|term| match term {
+                Leg::Commodity { c, per_month } => serde_json::json!({
+                    "kind": "resource",
+                    "commodity": c.key(),
+                    "name": c.name(),
+                    "amount": per_month,
+                    "unit": c.unit(),
+                }),
+                Leg::Money { bn_per_year } => {
+                    let gdp = w.nation_opt(payer).map_or(1.0, |n| n.gdp.max(0.1));
+                    serde_json::json!({
+                        "kind": "treasury",
+                        "share_gdp": bn_per_year / gdp,
+                        "bn_per_year": bn_per_year,
+                    })
+                }
+                Leg::District { id } => serde_json::json!({
+                    "kind": "district",
+                    "district": id,
+                    "name": spheres_sim::districts::name_of(id).unwrap_or(id),
+                }),
+            })
+            .collect::<Vec<_>>()
+    };
+
+    let own_draw = resources::draw(w, me);
+    let commodities = ALL
+        .iter()
+        .map(|&commodity| {
+            let annual = flow(me, commodity);
+            let monthly = annual / 12.0;
+            let demand = own_draw[commodity.idx()];
+            let cover = resources::cover(w, me, commodity);
+            let blocked = if demand > 0.0 && cover <= 1e-9 { demand } else { 0.0 };
+            let producers = resources::producers(w, commodity)
+                .into_iter()
+                .filter(|id| *id != me)
+                .collect::<Vec<_>>();
+            let counted_refusals = producers
+                .iter()
+                .filter(|id| resources::refusal_counted(w, me, **id, commodity))
+                .count();
+            let refused_all = resources::refused_all(w, me, commodity);
+            let take_target = resources::take_target(w, me, commodity);
+            let sources: BTreeSet<String> = resources::tables()
+                .file
+                .national_1990
+                .get(commodity.key())
+                .into_iter()
+                .flat_map(|rows| rows.values())
+                .map(|figure| figure.source.clone())
+                .collect();
+
+            let mut mine_options = w
+                .districts
+                .iter()
+                .filter(|&(_, &owner)| owner == me)
+                .filter(|(district, _)| resources::quality_of(district, commodity) > 0)
+                .map(|(district, _)| {
+                    let project = resources::mine_project_at(w, district, commodity);
+                    let developed = resources::mine_at(w, district, commodity);
+                    let refusal = resources::mine_refusal(w, me, district, commodity);
+                    let quality = resources::quality_of(district, commodity);
+                    let output = resources::mine_output(district, commodity).unwrap_or(0.0);
+                    let eligible = refusal.is_none();
+                    let status_rank = if eligible {
+                        0
+                    } else if project.is_some() {
+                        1
+                    } else if developed.is_some() {
+                        2
+                    } else {
+                        3
+                    };
+                    (
+                        status_rank,
+                        quality,
+                        district.clone(),
+                        serde_json::json!({
+                            "district": district,
+                            "district_name": spheres_sim::districts::name_of(district).unwrap_or(district),
+                            "quality": resources::quality_word(quality),
+                            "quality_rank": quality,
+                            "eligible": eligible,
+                            "reason": refusal,
+                            "cost_bn": resources::mine_cost_bn(w, district, commodity),
+                            "output": output / 12.0,
+                            "unit": commodity.unit(),
+                            "active": project.is_some(),
+                            "online": developed.is_some(),
+                            "months_remaining": project.map(|p| p.months_left),
+                            "months_total": project.map_or(resources::MINE_BUILD_MONTHS, |p| p.months_total),
+                            "investment_bn": project.map(|p| p.investment_bn),
+                            "capturable": true,
+                        }),
+                    )
+                })
+                .collect::<Vec<_>>();
+            mine_options.sort_by(|a, b| {
+                a.0.cmp(&b.0)
+                    .then_with(|| b.1.cmp(&a.1))
+                    .then_with(|| a.2.cmp(&b.2))
+            });
+
+            let mut sellers = w
+                .nations
+                .iter()
+                .filter(|n| n.alive && n.id != me)
+                .filter_map(|n| {
+                    if w.relation(me, n.id) < resources::RELATION_FLOOR
+                        || w.is_sanctioning(me, n.id)
+                        || w.is_sanctioning(n.id, me)
+                        || spheres_sim::statecraft::belligerents(w, me, n.id)
+                    {
+                        return None;
+                    }
+                    let seller_monthly = flow(n.id, commodity) / 12.0;
+                    if seller_monthly <= 0.0 {
+                        return None;
+                    }
+                    let seller_draw = resources::draw(w, n.id)[commodity.idx()];
+                    let available = seller_monthly
+                        - seller_draw
+                        - resources::committed_out(w, n.id, commodity)
+                        - seller_draw * resources::RESERVE_MONTHS / 12.0;
+                    if available <= 0.0 {
+                        return None;
+                    }
+                    Some((n.id, seller_monthly, available))
+                })
+                .collect::<Vec<_>>();
+            sellers.sort_by(|a, b| {
+                b.2.total_cmp(&a.2).then_with(|| a.0.cmp(&b.0))
+            });
+            sellers.truncate(6);
+
+            serde_json::json!({
+                "id": commodity.key(),
+                "name": commodity.name(),
+                "unit": commodity.unit(),
+                "quantified": resources::contractable(commodity),
+                "sources": sources.into_iter().collect::<Vec<_>>(),
+                "production": monthly,
+                // Claude's stockpile is deliberately expressed as months of
+                // action cover, not fabricated physical tonnage.
+                "stock": cover,
+                "capacity": resources::BUFFER_MONTHS,
+                "demand": demand,
+                "blocked": blocked,
+                "blocked_action": if blocked > 0.0 {
+                    Some("Procurement line")
+                } else {
+                    None
+                },
+                "presence": have
+                    .presence
+                    .get(me.index())
+                    .is_some_and(|mask| mask & commodity.bit() != 0),
+                "mine": {
+                    "verb": if matches!(commodity, Commodity::Oil | Commodity::Gas) { "DRILL" } else { "MINE" },
+                    "build_months": resources::MINE_BUILD_MONTHS,
+                    "price_pc": resources::MINE_PC_COST,
+                    "options": mine_options.into_iter().map(|(_, _, _, value)| value).collect::<Vec<_>>(),
+                },
+                "take": match take_target {
+                    Some((target, district, quality)) => {
+                        let district_name = spheres_sim::districts::name_of(&district)
+                            .unwrap_or(district.as_str());
+                        let eligible = w.rules.resource_market && refused_all.is_some();
+                        serde_json::json!({
+                            "eligible": eligible,
+                            "reason": if eligible {
+                                format!(
+                                    "Nobody will sell {} — {} of {} producers refused twice. {} holds it in {}.",
+                                    commodity.name(), counted_refusals, producers.len(), target.name(), district_name
+                                )
+                            } else if !w.rules.resource_market {
+                                "The resource market is not enabled for this world.".to_string()
+                            } else {
+                                format!(
+                                    "Trade first: {} of {} producers have refused twice. TAKE unlocks only when every seller closes the door.",
+                                    counted_refusals, producers.len()
+                                )
+                            },
+                            "target": target.code(),
+                            "target_name": target.name(),
+                            "district": district,
+                            "district_name": district_name,
+                            "quality": resources::quality_word(quality),
+                            "asked": resources::refusals_of(w, me, commodity),
+                            "refused": counted_refusals,
+                            "seller_count": producers.len(),
+                        })
+                    }
+                    None => serde_json::json!({
+                        "eligible": false,
+                        "reason": format!("No reachable district holding {} can be targeted.", commodity.name()),
+                        "asked": resources::refusals_of(w, me, commodity),
+                        "refused": counted_refusals,
+                        "seller_count": producers.len(),
+                    }),
+                },
+                "sellers": sellers.into_iter().map(|(id, production, available)| {
+                    serde_json::json!({
+                        "id": id.code(),
+                        "name": id.name(),
+                        "production": production,
+                        "available": available,
+                        "stock": resources::cover(w, id, commodity),
+                        "relation": w.relation(me, id),
+                    })
+                }).collect::<Vec<_>>(),
+            })
+        })
+        .collect::<Vec<_>>();
+
+    let offers = w
+        .resources
+        .offers
+        .iter()
+        .filter(|o| o.from == me || o.to == me)
+        .map(|o| serde_json::json!({
+            "id": o.id,
+            "from": o.from.code(),
+            "from_name": o.from.name(),
+            "to": o.to.code(),
+            "to_name": o.to.name(),
+            "give": terms_json(o.from, &o.give),
+            "receive": terms_json(o.to, &o.take),
+            "duration_months": o.months,
+            "waiting_on": o.to.code(),
+            "waiting_on_name": o.to.name(),
+            "can_answer": o.to == me,
+            "revision": 0,
+            "counter_reason": serde_json::Value::Null,
+        }))
+        .collect::<Vec<_>>();
+
+    let contracts = w
+        .resources
+        .contracts
+        .iter()
+        .filter(|c| c.from == me || c.to == me)
+        .map(|c| {
+            let mut fulfilment = 1.0_f64;
+            for (giver, legs) in [(c.from, c.give.as_slice()), (c.to, c.take.as_slice())] {
+                for leg in legs {
+                    if let Leg::Commodity { c: commodity, .. } = leg {
+                        fulfilment = fulfilment.min(
+                            resources::delivery_ratio(w, giver, *commodity)
+                        );
+                    }
+                }
+            }
+            let land_exchanged = c
+                .give
+                .iter()
+                .chain(c.take.iter())
+                .any(|leg| matches!(leg, Leg::District { .. }));
+            let other = if c.from == me { c.to } else { c.from };
+            serde_json::json!({
+                "id": c.id,
+                "from": c.from.code(),
+                "from_name": c.from.name(),
+                "to": c.to.code(),
+                "to_name": c.to.name(),
+                "give": terms_json(c.from, &c.give),
+                "receive": terms_json(c.to, &c.take),
+                "duration_months": c.months_total,
+                "months_remaining": c.months_left,
+                "last_fulfilment": fulfilment,
+                "short_deliveries": if fulfilment < 1.0 { 1 } else { 0 },
+                "land_exchanged": land_exchanged,
+                "dependency": w.trade_dependency(me, other),
+            })
+        })
+        .collect::<Vec<_>>();
+
+    let districts = w
+        .districts
+        .iter()
+        .filter(|&(_, &owner)| owner == me)
+        .map(|(id, _)| serde_json::json!({
+            "id": id,
+            "name": spheres_sim::districts::name_of(id).unwrap_or(id),
+        }))
+        .collect::<Vec<_>>();
+
+    let sample = Command::ProposeDeal {
+        from: me,
+        to: me,
+        give: vec![],
+        take: vec![],
+        months: 36,
+    };
+    let accept = Command::AcceptDeal { nation: me, offer: 0 };
+    let cancel = Command::CancelDeal { nation: me, contract: 0 };
+    serde_json::json!({
+        "commodities": commodities,
+        "offers": offers,
+        "contracts": contracts,
+        "districts": districts,
+        "prices": {
+            "offer": spheres_sim::price_of(w, &sample),
+            "accept": spheres_sim::price_of(w, &accept),
+            "counter": spheres_sim::price_of(w, &sample),
+            "break": spheres_sim::price_of(w, &cancel),
+            "mine": resources::MINE_PC_COST,
+        },
     })
 }
 
@@ -1436,6 +1865,27 @@ fn tech_tree_json(w: &WorldState, me: NationId, domain: spheres_sim::tech::Domai
     })
 }
 
+/// Read the optional resource aim carried by the TAKE card. An absent aim is
+/// an ordinary quarrel; a malformed district or commodity refuses the order.
+fn aim_of(
+    v: &serde_json::Value,
+) -> Result<Option<(String, spheres_sim::resources::Commodity)>, ()> {
+    use spheres_sim::resources::Commodity;
+    match v.get("aim") {
+        None | Some(serde_json::Value::Null) => Ok(None),
+        Some(aim) => {
+            let district = aim.get("district").and_then(|x| x.as_str()).ok_or(())?;
+            spheres_sim::districts::name_of(district).ok_or(())?;
+            let commodity = aim
+                .get("commodity")
+                .and_then(|x| x.as_str())
+                .and_then(Commodity::parse)
+                .ok_or(())?;
+            Ok(Some((district.to_string(), commodity)))
+        }
+    }
+}
+
 fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<Command> {
     let kind = v.get("kind")?.as_str()?;
     let num = || v.get("value").and_then(|x| x.as_f64());
@@ -1458,6 +1908,26 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         v.get("domain")
             .and_then(|x| x.as_str())
             .and_then(spheres_sim::tech::Domain::parse)
+    };
+    let trade_terms = |key: &str, payer: NationId| {
+        use spheres_sim::resources::{Commodity, Leg};
+        let rows = v.get(key)?.as_array()?;
+        rows.iter()
+            .map(|term| match term.get("kind")?.as_str()? {
+                "resource" => Some(Leg::Commodity {
+                    c: Commodity::parse(term.get("commodity")?.as_str()?)?,
+                    per_month: term.get("amount")?.as_f64()?,
+                }),
+                "treasury" => Some(Leg::Money {
+                    bn_per_year: term.get("share_gdp")?.as_f64()?
+                        * w.nation_opt(payer)?.gdp,
+                }),
+                "district" => Some(Leg::District {
+                    id: term.get("district")?.as_str()?.to_string(),
+                }),
+                _ => None,
+            })
+            .collect::<Option<Vec<_>>>()
     };
     Some(match kind {
         // Choosing what a domain's laboratories work on. A missing or empty
@@ -1503,6 +1973,35 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         "lift" => Command::LiftSanction { imposer: me, target: target()? },
         "improve" => Command::ImproveRelations { from: me, to: target()? },
         "war" => Command::DeclareWar { attacker: me, defender: target()? },
+        "resource_offer" => {
+            let to = target()?;
+            Command::ProposeDeal {
+                from: me,
+                to,
+                give: trade_terms("give", me)?,
+                take: trade_terms("receive", to)?,
+                months: v.get("duration_months")?.as_u64()? as u32,
+            }
+        }
+        "resource_answer" => {
+            let offer = v.get("offer")?.as_u64()? as u32;
+            if v.get("accept")?.as_bool()? {
+                Command::AcceptDeal { nation: me, offer }
+            } else {
+                Command::DeclineDeal { nation: me, offer }
+            }
+        }
+        "resource_break" => Command::CancelDeal {
+            nation: me,
+            contract: v.get("contract")?.as_u64()? as u32,
+        },
+        "resource_develop" => Command::DevelopResource {
+            nation: me,
+            district: v.get("district")?.as_str()?.to_string(),
+            commodity: spheres_sim::resources::Commodity::parse(
+                v.get("commodity")?.as_str()?,
+            )?,
+        },
         // The stratagem carries an id rather than a value or a target; the sim
         // re-checks availability and charges the political capital itself.
         "stratagem" => Command::EnactStratagem {
@@ -1519,6 +2018,7 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         // be fought in — the defender's own ground.
         "open_conflict" => {
             let target = target()?;
+            aim_of(v).ok()?;
             Command::OpenConflict {
                 opener: me,
                 target,
@@ -1608,6 +2108,46 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         },
         _ => return None,
     })
+}
+
+/// Apply immediate browser orders and attach a validated resource aim to a
+/// successfully opened quarrel. This is the server half of the TAKE card.
+fn apply_orders(
+    w: &mut WorldState,
+    me: NationId,
+    list: &[serde_json::Value],
+) -> Vec<String> {
+    let mut errors = vec![];
+    for value in list {
+        match parse_command(w, value, me) {
+            Some(command) => {
+                if let Err(error) = apply_command(w, &command) {
+                    errors.push(error);
+                    continue;
+                }
+                if let Command::OpenConflict { target, .. } = command {
+                    if let Ok(Some((district, commodity))) = aim_of(value) {
+                        if let Some(conflict) = w.conflict_between(me, target).map(|c| c.id) {
+                            let aim = Command::SetAim {
+                                conflict,
+                                nation: me,
+                                district,
+                                commodity,
+                            };
+                            if let Err(error) = apply_command(w, &aim) {
+                                errors.push(error);
+                            }
+                        }
+                    }
+                }
+            }
+            None => errors.push(format!(
+                "That order did not make sense: {}",
+                serde_json::to_string(value).unwrap_or_default()
+            )),
+        }
+    }
+    errors
 }
 
 fn json_response(v: serde_json::Value) -> Response<std::io::Cursor<Vec<u8>>> {
@@ -1790,6 +2330,14 @@ fn asked_player(payload: &serde_json::Value) -> Result<Option<NationId>, String>
     }
 }
 
+/// Browser games use Claude's live resource market; headless/default worlds
+/// keep the switch off for historical determinism. Warming only builds the
+/// derived production cache and does not alter the save or RNG stream.
+fn play_rules(g: &mut Game) {
+    g.world.rules.resource_market = true;
+    spheres_sim::resources::warm(&mut g.world);
+}
+
 /// Start a fresh world for `player`, or refuse and leave `g` alone.
 ///
 /// THE REFUSAL IS THE POINT, and it is not hypothetical. `NationId::parse`
@@ -1811,7 +2359,7 @@ fn asked_player(payload: &serde_json::Value) -> Result<Option<NationId>, String>
 ///
 /// Returns the payload and whether a game was actually started.
 fn new_game(g: &mut Game, seed: u64, player: Option<NationId>) -> (serde_json::Value, bool) {
-    let fresh = Game::new(seed, player);
+    let mut fresh = Game::new(seed, player);
     if let Some(id) = player {
         // Asked of the world that was just built rather than of `start_1990`,
         // so this stays true if the roster ever seats a nation it does not
@@ -1829,6 +2377,7 @@ fn new_game(g: &mut Game, seed: u64, player: Option<NationId>) -> (serde_json::V
             );
         }
     }
+    play_rules(&mut fresh);
     *g = fresh;
     (state_json(g, None), true)
 }
@@ -1842,7 +2391,9 @@ fn main() {
         .and_then(|s| s.parse().ok())
         .unwrap_or(7777);
 
-    let game: Mutex<Game> = Mutex::new(Game::new(1990, None));
+    let mut boot = Game::new(1990, None);
+    play_rules(&mut boot);
+    let game: Mutex<Game> = Mutex::new(boot);
 
     let addr = format!("127.0.0.1:{}", port);
     let server = match Server::http(&addr) {
@@ -1908,6 +2459,22 @@ fn main() {
                     )
                     .unwrap(),
                 );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/district-info.json") => {
+                let r = Response::from_string(DISTRICT_INFO_JSON)
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Content-Type"[..],
+                            &b"application/json; charset=utf-8"[..],
+                        )
+                        .unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(&b"Cache-Control"[..], &b"max-age=86400"[..])
+                            .unwrap(),
+                    );
                 let _ = request.respond(r);
                 continue;
             }
@@ -2072,6 +2639,21 @@ fn main() {
                 let g = game.lock().unwrap();
                 json_response(state_json(&g, None))
             }
+            (Method::Get, "/api/district-populations") => {
+                let g = game.lock().unwrap();
+                json_response(district_populations_json(&g.world))
+            }
+            (Method::Get, path) if path.starts_with("/api/district-population/") => {
+                let district = path.trim_start_matches("/api/district-population/");
+                let g = game.lock().unwrap();
+                match district_population_json(&g.world, district) {
+                    Some(v) => json_response(v),
+                    None => json_error(
+                        404,
+                        serde_json::json!({ "error": "unknown province or state" }),
+                    ),
+                }
+            }
             (Method::Get, "/api/stratagems") => {
                 // Defaults to the player; `?nation=Poland` asks what the world is
                 // offering somebody else, which is the same question the map
@@ -2195,32 +2777,20 @@ fn main() {
                         continue;
                     }
                 };
-                let mut errors: Vec<String> = vec![];
                 // The tick's own headlines are still sitting in the world and are
                 // already in the log; only what these commands add is news.
                 let before = g.world.headlines.len();
-                if let Some(list) = payload.get("commands").and_then(|c| c.as_array()) {
-                    for v in list {
-                        // A command this build cannot parse used to be dropped in
-                        // silence, which from the player's side is a button that
-                        // does nothing and says nothing. Say it.
-                        match parse_command(&g.world, v, me) {
-                            Some(cmd) => {
-                                if let Err(e) = apply_command(&mut g.world, &cmd) {
-                                    errors.push(e);
-                                }
-                            }
-                            None => errors.push(format!(
-                                "That order did not make sense: {}",
-                                serde_json::to_string(v).unwrap_or_default()
-                            )),
-                        }
-                    }
-                }
+                let errors = payload
+                    .get("commands")
+                    .and_then(|commands| commands.as_array())
+                    .map_or_else(Vec::new, |list| apply_orders(&mut g.world, me, list));
                 let fresh: Vec<String> = g.world.headlines[before..].to_vec();
                 for h in fresh {
                     g.record(h);
                 }
+                // Land can move immediately through a signed bundle. Keep the
+                // resource board on the ownership map produced by this click.
+                spheres_sim::resources::warm(&mut g.world);
                 let mut out = state_json(&g, None);
                 out["errors"] = serde_json::json!(errors);
                 json_response(out)
@@ -2237,6 +2807,7 @@ fn main() {
                 match std::fs::read_to_string("save.json").map_err(|e| e.to_string()).and_then(|s| load(&s)) {
                     Ok(w) => {
                         *g = Game { world: w, log: vec![], history: vec![] };
+                        play_rules(&mut g);
                         g.snapshot();
                         json_response(state_json(&g, None))
                     }
@@ -3193,6 +3764,226 @@ mod tests {
     }
 
     #[test]
+    fn trade_payload_keeps_all_twelve_rows_and_claudes_transcribed_lines() {
+        let g = Game::new(1990, Some(NationId::USA));
+        let trade = trade_json(&g.world, NationId::USA);
+        let rows = trade["commodities"].as_array().expect("commodity board");
+        assert_eq!(rows.len(), 12, "the board must not silently drop a resource");
+
+        let oil = rows.iter().find(|r| r["id"] == "oil").expect("oil row");
+        assert_eq!(oil["quantified"], true);
+        assert!(oil["production"].as_f64().unwrap_or_default() > 0.0);
+        assert!(oil["sources"].as_array().is_some_and(|sources| !sources.is_empty()));
+        let seller_names = oil["sellers"]
+            .as_array()
+            .expect("oil routes")
+            .iter()
+            .filter_map(|seller| seller["name"].as_str())
+            .collect::<Vec<_>>();
+        assert!(seller_names.contains(&"Saudi Arabia"));
+        assert!(
+            !seller_names.contains(&"Soviet Union"),
+            "a relationship below Claude's market floor must not appear as an open route"
+        );
+
+        let cobalt = rows
+            .iter()
+            .find(|r| r["id"] == "cobalt")
+            .expect("cobalt row");
+        assert_eq!(cobalt["quantified"], true);
+        assert_eq!(cobalt["production"], 0.0);
+        assert!(
+            cobalt["sources"]
+                .as_array()
+                .is_some_and(|sources| !sources.is_empty()),
+            "the D2 transcription source must reach the arcade card"
+        );
+
+        for hook in [
+            "tradeDrawer",
+            "resource-deck",
+            "resource-hero",
+            "quickResourceDeal",
+            "tradeBuilderOpen",
+            "sendResourceOffer",
+            "MINE",
+            "TRADE",
+            "TAKE",
+        ] {
+            assert!(INDEX.contains(hook), "the browser lost its {hook} trade hook");
+        }
+        assert!(
+            !INDEX.contains("class=\"resource-line"),
+            "the arcade surface regressed to the twelve-row ledger"
+        );
+    }
+
+    #[test]
+    fn bundled_trade_offer_reaches_the_sim_through_the_command_route() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        g.world.nation_mut(NationId::USA).political_capital = 100.0;
+        let posted = serde_json::json!({
+            "kind": "resource_offer",
+            "target": "Saudi Arabia",
+            "give": [{"kind": "treasury", "share_gdp": 0.001}],
+            "receive": [{"kind": "resource", "commodity": "oil", "amount": 10.0}],
+            "duration_months": 36
+        });
+        let cmd = parse_command(&g.world, &posted, NationId::USA).expect("offer parses");
+        match &cmd {
+            Command::ProposeDeal { from, to, give, take, months } => {
+                assert_eq!((*from, *to), (NationId::USA, NationId::SaudiArabia));
+                assert_eq!((*months, give.len(), take.len()), (36, 1, 1));
+            }
+            other => panic!("wrong command: {:?}", other),
+        }
+        apply_command(&mut g.world, &cmd).expect("valid offer is delivered");
+        assert_eq!(g.world.nation(NationId::USA).political_capital, 97.0);
+        assert!(
+            !g.world.resources.contracts.is_empty(),
+            "an accepted bundle must land on Claude's contract ledger"
+        );
+    }
+
+    #[test]
+    fn mine_card_posts_a_district_project_and_serves_its_progress() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let commodity = spheres_sim::resources::Commodity::Iron;
+        let district = g
+            .world
+            .districts
+            .iter()
+            .find(|(district, owner)| {
+                **owner == NationId::USA
+                    && spheres_sim::resources::quality_of(district, commodity) > 0
+            })
+            .map(|(district, _)| district.clone())
+            .expect("the USA has a mapped iron deposit");
+        g.world.nation_mut(NationId::USA).political_capital = 100.0;
+        let posted = serde_json::json!({
+            "kind": "resource_develop",
+            "commodity": "iron",
+            "district": district,
+        });
+        let cmd = parse_command(&g.world, &posted, NationId::USA).expect("mine command parses");
+        assert_eq!(
+            cmd,
+            Command::DevelopResource {
+                nation: NationId::USA,
+                district: district.clone(),
+                commodity,
+            }
+        );
+        apply_command(&mut g.world, &cmd).expect("owned deposit starts");
+        assert_eq!(g.world.nation(NationId::USA).political_capital, 94.0);
+
+        let trade = trade_json(&g.world, NationId::USA);
+        let iron = trade["commodities"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|row| row["id"] == "iron")
+            .unwrap();
+        let option = iron["mine"]["options"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|row| row["district"] == district)
+            .expect("started project is served on its province");
+        assert_eq!(option["active"], true);
+        assert_eq!(option["eligible"], false);
+        assert_eq!(option["months_remaining"], spheres_sim::resources::MINE_BUILD_MONTHS);
+        assert!(option["output"].as_f64().unwrap_or_default() > 0.0);
+        assert!(INDEX.contains("developResource"));
+        assert!(INDEX.contains("kind:\"resource_develop\""));
+        assert!(!INDEX.contains("development comes later"));
+    }
+
+    #[test]
+    fn a_rejected_player_offer_enters_claudes_refusal_memory() {
+        use spheres_sim::resources::{self, Commodity, Leg};
+
+        let mut g = Game::new(1990, Some(NationId::USA));
+        play_rules(&mut g);
+        g.world.nation_mut(NationId::USA).political_capital = 100.0;
+        let ask = Command::ProposeDeal {
+            from: NationId::USA,
+            to: NationId::USSR,
+            give: vec![Leg::Money { bn_per_year: 1.0 }],
+            take: vec![Leg::Commodity {
+                c: Commodity::Iron,
+                per_month: 1.0,
+            }],
+            months: 36,
+        };
+
+        for expected_asks in 1..=2 {
+            let error = apply_command(&mut g.world, &ask).expect_err("the closed seller must refuse");
+            assert!(!error.is_empty());
+            let row = resources::refusal_of(
+                &g.world,
+                NationId::USA,
+                NationId::USSR,
+                Commodity::Iron,
+            )
+            .expect("the human ask must reach the shared refusal ledger");
+            assert_eq!(row.asks, expected_asks);
+        }
+        assert!(resources::refusal_counted(
+            &g.world,
+            NationId::USA,
+            NationId::USSR,
+            Commodity::Iron
+        ));
+    }
+
+    #[test]
+    fn the_arcade_take_card_opens_a_quarrel_with_the_served_resource_aim() {
+        use spheres_sim::resources::{self, Commodity, Reason, Refusal};
+
+        let me = NationId::Iraq;
+        let mut g = Game::new(7, Some(me));
+        play_rules(&mut g);
+        g.world.nation_mut(me).political_capital = 100.0;
+        for seller in resources::producers(&g.world, Commodity::Copper)
+            .into_iter()
+            .filter(|seller| *seller != me)
+        {
+            g.world.resources.refusals.push(Refusal {
+                buyer: me,
+                seller,
+                c: Commodity::Copper,
+                reason: Reason::Embargoed,
+                heat: 1.0,
+                asks: 2,
+            });
+        }
+
+        let trade = trade_json(&g.world, me);
+        let copper = trade["commodities"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|row| row["id"] == "copper")
+            .expect("copper card");
+        assert_eq!(copper["take"]["eligible"], true, "{copper}");
+        let target = copper["take"]["target"].as_str().unwrap();
+        let district = copper["take"]["district"].as_str().unwrap();
+        let order = serde_json::json!({
+            "kind": "open_conflict",
+            "target": target,
+            "aim": { "district": district, "commodity": "copper" }
+        });
+        let errors = apply_orders(&mut g.world, me, &[order]);
+        assert!(errors.is_empty(), "{errors:?}");
+        let target = NationId::parse(target).unwrap();
+        let conflict = g.world.conflict_between(me, target).expect("the quarrel opened");
+        let aim = conflict.aim.as_ref().expect("the quarrel carries its resource aim");
+        assert_eq!(aim.district, district);
+        assert_eq!(aim.commodity, Commodity::Copper);
+    }
+
+    #[test]
     fn ten_ministry_budget_reaches_the_atomic_fiscal_command() {
         let mut g = Game::new(1990, Some(NationId::USA));
         g.world.nation_mut(NationId::USA).political_capital = 100.0;
@@ -3616,7 +4407,7 @@ mod tests {
             "the selection layer must composite at full strength"
         );
 
-        // Four modes carry a ground and four deliberately do not: the thematic
+        // Five modes carry a ground and four deliberately do not: the thematic
         // reads are preserved by the ABSENCE of this key, which is what stands
         // the whole layer down rather than merely turning it to zero.
         //
@@ -3627,11 +4418,13 @@ mod tests {
         // the subject). The number moved because a mode was ADDED, not because a
         // mode silently lost its ground, which is the failure this assertion
         // exists to catch: raise it only alongside a new `ground:` block you can
-        // name, and never lower it to make a red test green.
+        // name, and never lower it to make a red test green. Population is the
+        // fifth: its province-density paint needs the same quiet physical ground
+        // as Resources so elevation cannot overpower its logarithmic ramp.
         assert_eq!(
             INDEX.matches("\n    ground: {").count(),
-            4,
-            "exactly Political, Fronts, Terrain and Resources may carry a MAP_MODES ground block"
+            5,
+            "exactly Political, Fronts, Terrain, Resources and Population may carry a MAP_MODES ground block"
         );
         // ...and the four thematic modes must still have none. Asserted as a
         // total so the count above cannot be satisfied by a thematic mode
@@ -3915,13 +4708,113 @@ mod tests {
             GLOBE3D_JS.contains("if (Math.hypot(dx, dy) > 4) this.drag.moved = true;"),
             "the drag threshold that separates a turn from a click is gone"
         );
-        // And the ownership rule the pick answers with: whoever governs the
-        // ground, which is the sim's per-district owner where there is one.
+        // An admin-1 hit is now the subject in its own right. Only a country
+        // with no district geometry falls back to the nation dossier.
         assert!(
-            INDEX.contains("const id = (d && nationOfDistrict(d.id)) || nationOfCode(code);"),
-            "a click must open the nation that GOVERNS the ground under it, not \
-             the nation whose country code it is"
+            INDEX.contains("if (d) { selectProvince(d.id); return; }"),
+            "a district hit must lock that exact province/state instead of \
+             collapsing it back to its enclosing nation"
         );
+        assert!(
+            INDEX.contains("const id = nationOfCode(code);"),
+            "country geometry without an admin-1 polygon must still have a \
+             nation-dossier fallback"
+        );
+    }
+
+    /// The globe's selected province is a real game-data dossier, not a name
+    /// tooltip inferred from the drawing artifact. California is the compact
+    /// canary because it has all the structural fields this card reads.
+    #[test]
+    fn province_selection_ships_specs_and_an_exact_map_lock() {
+        let raw: serde_json::Value =
+            serde_json::from_str(DISTRICT_INFO_JSON).expect("district-info is valid JSON");
+        let ca = raw["nations"]["USA"]
+            .as_array()
+            .expect("USA has a district list")
+            .iter()
+            .find(|d| d["id"] == "US-CA")
+            .expect("California remains in the census");
+        assert_eq!(ca["name"], "California");
+        assert!(ca["area_sqkm"].as_f64().unwrap() > 400_000.0);
+        assert_eq!(ca["t"], "mountain");
+        assert!(ca["adj"].as_array().unwrap().iter().any(|n| n == "US-OR"));
+        assert!(ca["riv"].as_array().unwrap().iter().any(|n| n == "US-AZ"));
+
+        for hook in [
+            "fetch(\"/district-info.json\"",
+            "api(\"/api/district-population/\"",
+            "api(\"/api/district-populations\")",
+            "let selectedDistrict = null",
+            "let PROVINCE_POPULATION = null",
+            "let DISTRICT_POPULATIONS = null",
+            "function provinceDossierHtml()",
+            "function provinceFrontAt(did)",
+            "function provinceResourceHtml(did)",
+            "window.selectProvince = function (did, move)",
+            "class=\"province-dossier",
+            "Population opens from the 1990 GHS-POP province split",
+            "Residents stay with this province when borders move",
+            "label: \"Population\"",
+            "function populationColor(density)",
+            "Share of ${escText(owner ? owner.name : \"nation\")}",
+            "Population rank",
+            "cam: { cx: WORLD.w / 2, cy: WORLD.h / 2, k: 1 }",
+        ] {
+            assert!(INDEX.contains(hook), "province dossier lost its {hook:?} hook");
+        }
+        assert!(
+            INDEX.contains("(selectedDistrict || \"\") + \"|\" + ui.mapMode"),
+            "the selected province is not part of the selection-texture key"
+        );
+        assert!(
+            INDEX.contains("ctx.strokeStyle = \"#ffd77a\";"),
+            "the exact selected polygon has no visible lock ring"
+        );
+    }
+
+    #[test]
+    fn province_population_api_reads_live_sim_state() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let before = district_population_json(&g.world, "US-CA")
+            .expect("California is a mapped province");
+        assert_eq!(before["owner"], "USA");
+        assert_eq!(before["name"], "California");
+        let p0 = before["population"].as_f64().unwrap();
+        assert!((30.0..31.0).contains(&p0));
+        assert!(before["annual_growth"].as_f64().is_some());
+        assert!(before["density_per_sqkm"].as_f64().unwrap() > 70.0);
+        assert!((0.1..0.2).contains(&before["national_share"].as_f64().unwrap()));
+        assert!(before["owner_rank"].as_u64().is_some());
+        assert!(before["world_rank"].as_u64().is_some());
+        assert_eq!(before["world_count"], serde_json::json!(2610));
+        assert_eq!(before["change_since_1990"], serde_json::json!(0.0));
+
+        tick_month(&mut g.world, &[]);
+        let after = district_population_json(&g.world, "US-CA").unwrap();
+        assert_ne!(
+            after["population"].as_f64().unwrap(),
+            p0,
+            "a province reading stayed frozen after its owner gained population"
+        );
+        assert!(district_population_json(&g.world, "NO-SUCH-PROVINCE").is_none());
+    }
+
+    #[test]
+    fn population_map_payload_covers_every_live_province_and_moves_with_time() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let before = district_populations_json(&g.world);
+        let rows = before["districts"].as_object().expect("population surface");
+        assert_eq!(rows.len(), 2610);
+        let ca0 = rows["US-CA"][0].as_f64().unwrap();
+        let density = rows["US-CA"][1].as_f64().unwrap();
+        assert!((30.0..31.0).contains(&ca0));
+        assert!(density > 70.0);
+
+        tick_month(&mut g.world, &[]);
+        let after = district_populations_json(&g.world);
+        assert_eq!(after["month"], serde_json::json!(2));
+        assert_ne!(after["districts"]["US-CA"][0], serde_json::json!(ca0));
     }
 
     /// The map's hover must ignore pointer events the pan's capture retargeted,

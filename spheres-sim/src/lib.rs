@@ -10,6 +10,7 @@ pub mod exact;
 pub mod init;
 pub mod nations;
 pub mod politics;
+pub mod resources;
 pub mod statecraft;
 pub mod stratagems;
 pub mod tech;
@@ -60,6 +61,25 @@ pub enum Command {
     CovertAction { sponsor: NationId, target: NationId, op: CovertOp },
     ProposeTrade { from: NationId, to: NationId },
     AbrogateTrade { from: NationId, to: NationId },
+    /// Offer money, commodities, districts, or a combination for a fixed
+    /// 12/36/60/120-month supply contract.
+    ProposeDeal {
+        from: NationId,
+        to: NationId,
+        give: Vec<resources::Leg>,
+        take: Vec<resources::Leg>,
+        months: u32,
+    },
+    AcceptDeal { nation: NationId, offer: u32 },
+    DeclineDeal { nation: NationId, offer: u32 },
+    CancelDeal { nation: NationId, contract: u32 },
+    /// Develop a mapped district deposit. Oil and gas use the same command
+    /// path but are presented as drilling on the browser surface.
+    DevelopResource {
+        nation: NationId,
+        district: String,
+        commodity: resources::Commodity,
+    },
     /// Take one of the options the world is currently offering this government.
     /// Carries the stratagem's stable id, never an index into the deck.
     EnactStratagem { nation: NationId, id: String },
@@ -86,6 +106,9 @@ pub enum Command {
     /// The primary click of the whole war layer: pick your rung.
     SetCommitment { conflict: u32, nation: NationId, rung: u8 },
     SetObjective { conflict: u32, nation: NationId, objective: Objective },
+    /// Attach a resource and target district to a quarrel after every seller
+    /// has refused the opener. The simulation validates the aim.
+    SetAim { conflict: u32, nation: NationId, district: String, commodity: resources::Commodity },
     SetRoE { conflict: u32, nation: NationId, roe: Roe },
     /// Announce a limit. It publicly binds you, and the other side reads it.
     SetCeiling { conflict: u32, nation: NationId, rung: u8 },
@@ -129,6 +152,17 @@ pub enum Command {
 /// and labels the free one "free".
 pub fn price_of(w: &WorldState, c: &Command) -> Option<f64> {
     command_price(w, c).map(|(_, cost, _)| cost)
+}
+
+/// Whether the command's payer can afford the same price `apply_command`
+/// would charge. Free, unpriced, and non-refusable commands are affordable.
+pub fn affordable(w: &WorldState, c: &Command) -> bool {
+    match command_price(w, c) {
+        Some((payer, price, refusable)) if refusable && price > 0.0 => {
+            w.nation(payer).political_capital >= price
+        }
+        _ => true,
+    }
 }
 
 fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
@@ -255,6 +289,15 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // Closing one is the unpopular half, and it is your own importers who
         // notice first.
         Command::AbrogateTrade { from, .. } => (*from, 10.0, ALWAYS),
+        Command::ProposeDeal { from, give, .. } => {
+            (*from, 3.0 + resources::land_premium(w, *from, give), REFUSABLE)
+        }
+        Command::AcceptDeal { nation, .. } => (*nation, 3.0, REFUSABLE),
+        Command::DeclineDeal { nation, .. } => (*nation, 0.0, ALWAYS),
+        Command::CancelDeal { nation, .. } => (*nation, 10.0, ALWAYS),
+        Command::DevelopResource { nation, .. } => {
+            (*nation, resources::MINE_PC_COST, REFUSABLE)
+        }
         // Each stratagem carries its own price, and they are the largest in this
         // list. Reordering an economy is the most expensive thing a government
         // ever decides to do, and it should cost most of a term's standing.
@@ -306,6 +349,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             REFUSABLE,
         ),
         Command::SetObjective { nation, .. } => (*nation, 3.0, REFUSABLE),
+        Command::SetAim { nation, .. } => (*nation, 0.0, REFUSABLE),
         // Restraint is free. Taking the gloves off is not, and it is charged
         // twice: here, and again in every parliament that was going to lend you
         // an airfield.
@@ -363,6 +407,15 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         Command::SetCommitment { conflict, nation, rung } => {
             commitment::rung_blocked(w, w.conflict(*conflict)?, *nation, *rung)
         }
+        Command::ProposeDeal { from, to, give, take, months } => {
+            resources::deal_refusal(w, *from, *to, give, take, *months)
+        }
+        Command::SetAim { conflict, nation, district, commodity } => {
+            resources::aim_refusal(w, *conflict, *nation, district, *commodity)
+        }
+        Command::DevelopResource { nation, district, commodity } => {
+            resources::mine_refusal(w, *nation, district, *commodity)
+        }
         _ => None,
     }
 }
@@ -389,6 +442,9 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
     // publicly bound yourself to rung 2 or below" and "No consenting host
     // within range of North America".
     if let Some(why) = world_refusal(w, c) {
+        if let Command::ProposeDeal { from, to, give, take, months } = c {
+            resources::remember_player_refusal(w, *from, *to, give, take, *months, &why);
+        }
         return Err(why);
     }
     let bill = command_price(w, c).filter(|(_, price, _)| *price > 0.0);
@@ -573,6 +629,32 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         }
         Command::ProposeTrade { from, to } => statecraft::propose_trade(w, *from, *to)?,
         Command::AbrogateTrade { from, to } => statecraft::abrogate_trade(w, *from, *to)?,
+        Command::ProposeDeal { from, to, give, take, months } => {
+            match resources::evaluate(w, *from, *to, give, take, *months) {
+                resources::Verdict::Accept => {
+                    resources::sign(w, *from, *to, give, take, *months)?;
+                }
+                resources::Verdict::Counter { money_bn_per_year, .. } => {
+                    return Err(format!(
+                        "We would want ${:.1} bn a year.",
+                        money_bn_per_year
+                    ));
+                }
+                resources::Verdict::Refuse(r) => return Err(r.sentence()),
+            }
+        }
+        Command::AcceptDeal { nation, offer } => {
+            resources::accept_offer(w, *nation, *offer)?
+        }
+        Command::DeclineDeal { nation, offer } => {
+            resources::decline_offer(w, *nation, *offer)?
+        }
+        Command::CancelDeal { nation, contract } => {
+            resources::cancel_contract(w, *nation, *contract)?
+        }
+        Command::DevelopResource { nation, district, commodity } => {
+            resources::start_mine(w, *nation, district, *commodity)?
+        }
         Command::EnactStratagem { nation, id } => {
             let s = stratagems::by_id(id)
                 .ok_or_else(|| format!("No such stratagem: {}", id))?;
@@ -616,6 +698,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
                 nation.name(),
                 objective.label()
             ));
+        }
+        Command::SetAim { conflict, district, commodity, .. } => {
+            resources::set_aim(w, *conflict, district, *commodity)?
         }
         Command::SetRoE { conflict, nation, roe } => {
             let c = w.conflict_mut(*conflict).ok_or("No such conflict.")?;
@@ -679,6 +764,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
 #[allow(clippy::type_complexity)]
 pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     ("economy", economy::tick),
+    // The derived resource ledger reads the current province map and is ready
+    // before technology and procurement spend their inputs.
+    ("resources", resources::tick),
     // Research is funded out of the output the economy has just produced, and
     // what it unlocks is in the nation's hands before the soldiers and the
     // politicians get their turn with it.
@@ -791,6 +879,19 @@ pub fn load(s: &str) -> Result<WorldState, String> {
     if w.districts.is_empty() {
         districts::reseed(&mut w);
     }
+    // Saves from before province demography existed have ownership but no
+    // residents. Rebuild the best honest snapshot available by distributing
+    // each live national total over the districts it currently holds with the
+    // sourced 1990 raster weights. New saves carry the evolved values and do
+    // not enter this migration path.
+    if w.district_population.is_empty() {
+        districts::reseed_population(&mut w);
+    }
+    // A pre-scale save already stores actual province populations. Treat those
+    // values as the new basis and begin lazy owner growth at one.
+    if w.district_population_scale.len() != nations::nation_count() {
+        w.district_population_scale = vec![1.0; nations::nation_count()];
+    }
     // ...and a save written before the operational map carries wars with a
     // control scalar and no front. Project the scalar back onto the ground it
     // summarizes — deterministic, no RNG — so the map and the number agree
@@ -847,6 +948,7 @@ fn migrate_legacy_wars(w: &mut WorldState) {
             // Reconstructed by `front::reseed_fronts` right after this runs.
             front: std::collections::BTreeMap::new(),
             pockets: vec![],
+            aim: None,
         });
     }
 }
@@ -3570,10 +3672,22 @@ mod tests {
         // Re-pinned for the optional annual-budget and daily-calendar fields.
         // Both open in their inherited/default state; this is a serialized
         // schema expansion, while the scalar 1990 economy remains unchanged.
+        // Re-pinned for the sourced resource ledger and empty contract market.
+        // January 1990 now carries monthly production and storage capacity for
+        // the six commodities whose artifact has magnitudes; stock opens at
+        // zero, the other six stay unquantified, and no trade exists yet. The
+        // resource tick has its own test proving accrual changes only this
+        // ledger, and neither new system draws from the RNG while demand is
+        // empty.
+        // Re-pinned for province population. January 1990 now serializes the
+        // resource artifact's 1990 split for all held districts, plus the
+        // existing count-based fallback for the 26 unowned map districts; the
+        // closure test in districts.rs proves every held set still sums to its
+        // unchanged transcribed national total.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
-            h, 0xa5c9c5b2306313d8u64,
+            h, 0xe26e4bf8d6c60066u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -3805,7 +3919,16 @@ mod tests {
         // dissolved seed 9's Mongolia).
         // The same schema expansion changes the serialized 20-year fingerprint.
         // With no player, every budget gap is zero and no new policy arm fires.
-        const GOLDEN: u64 = 0x20c24ab0f1581807;
+        // Resource stocks now accrue to their fixed storage caps, so the new
+        // ledger legitimately changes this whole-world hash. No action is
+        // blocked in the control timeline, therefore the trade AI makes no
+        // offer and the macro simulation remains on its prior path.
+        // Re-pinned for province population. The serialized owner scales evolve
+        // each month from the exact multipliers national population already
+        // receives; they draw no RNG and write no Nation field. The dedicated
+        // owner-ratio test proves the district series follows rather than
+        // perturbing the existing demographic timeline.
+        const GOLDEN: u64 = 0xbe94d6125631829c;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -4221,10 +4344,11 @@ mod tests {
         let w = world_1990(GameRules::default());
         let text = save(&w);
         let mut v: serde_json::Value = serde_json::from_str(&text).unwrap();
-        v.as_object_mut()
-            .unwrap()
-            .remove("districts")
-            .expect("a fresh save carries its districts");
+        let object = v.as_object_mut().unwrap();
+        object.remove("districts").expect("a fresh save carries its districts");
+        object
+            .remove("district_population")
+            .expect("a fresh save carries province population");
         let stripped = serde_json::to_string(&v).unwrap();
         let old = load(&stripped).expect("a pre-district save must still load");
         assert!(!old.districts.is_empty(), "the reseed hook never fired");
@@ -4232,6 +4356,33 @@ mod tests {
             old.districts, w.districts,
             "the reseeded map differs from the 1990 default"
         );
+        assert_eq!(old.district_population.len(), w.district_population.len());
+        let max_drift = old
+            .district_population
+            .iter()
+            .map(|(district, population)| {
+                (population - w.district_population.get(district).copied().unwrap_or(0.0)).abs()
+            })
+            .fold(0.0_f64, f64::max);
+        assert!(
+            max_drift <= 1.1e-6,
+            "largest-remainder migration drifted by more than one resident: {max_drift}m"
+        );
+        for nation in old.nations.iter().filter(|n| n.alive) {
+            let held_total: f64 = old
+                .districts
+                .iter()
+                .filter(|&(_, &owner)| owner == nation.id)
+                .map(|(district, _)| old.district_population.get(district).copied().unwrap_or(0.0))
+                .sum();
+            if old.districts.values().any(|&owner| owner == nation.id) {
+                assert!(
+                    (held_total - nation.population).abs() < 1e-9,
+                    "{} migration no longer closes to its live total",
+                    nation.id.code()
+                );
+            }
+        }
     }
 
     #[test]

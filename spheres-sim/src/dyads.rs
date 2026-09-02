@@ -100,6 +100,66 @@ pub fn settled_flag(a: NationId, t: NationId) -> String {
 pub const SETTLED_FLAG: &str = "pressed";
 pub const BURNED_FLAG: &str = "burned";
 
+/// Ruling 4's one number (M, Appendix A): a district you cannot buy is worth
+/// exactly what a target of your own economic size is worth — the GDP arm's
+/// own coefficient in `gdp_worth`, so the reader meets one number twice.
+/// Added as {0,1}, never graded: `NEGLIGIBLE` makes any graded term a die
+/// roll, and a die rolled reshuffles the seed with no visible war.
+pub const RESOURCE_WORTH: f64 = 0.75;
+
+/// What a target is worth for its economy alone: a quarter for anyone, up to
+/// a whole for a neighbour as large as yourself. The GDP arm of
+/// `war_appetite`, factored out so the resource term's test can name the
+/// value it adds to. The arithmetic is the line it replaced, unchanged.
+pub fn gdp_worth(a_gdp: f64, t_gdp: f64) -> f64 {
+    0.25 + 0.75 * (t_gdp / a_gdp.max(1e-9)).clamp(0.0, 1.0)
+}
+
+/// Ruling 4 — "the only reason an AI would ever invade for a resource is if
+/// it has no choice" — as a predicate. `Some` iff ALL of, in this order,
+/// cheap ones first (spec sections 1.14 and 6.5):
+///
+/// 1. `a` has a STALL this month: a cover row with some tracked line at zero
+///    (an open world has no row, and returns here at the cost of one binary
+///    search);
+/// 2. UNIVERSALLY REFUSED: every living producer of that line carries a
+///    refusal by `a` with heat at least `GATE_HEAT` and at least two asks,
+///    and none is shut out by `a`'s own sanction (`resources::refused_all`);
+/// 3. `t` is one of those refusers and still produces the line — you invade
+///    the neighbour that refused you, for the mine that refused you;
+/// 4. `a` has not already pressed a claim on `t` by force;
+/// 5. `t` holds a located district of the line — best presence rank, ties by
+///    id — that `a` can reach: adjacent to `a`'s ground, or `a` has reach and
+///    the district is peripheral by front.rs's entry rule.
+///
+/// Pure over `&WorldState`; no RNG. A deficit alone, a priced-out ask, a
+/// single refusal, an unasked seller, a seller `a` itself embargoes, a
+/// target that never refused, a mine no army could reach: each is `None`,
+/// and `None` adds exactly nothing to the appetite.
+pub fn last_resort(w: &WorldState, a: NationId, t: NationId) -> Option<crate::resources::Aim> {
+    use crate::resources as res;
+    let row = w.resources.cover.binary_search_by_key(&a, |r| r.nation).ok()?;
+    let months = w.resources.cover[row].months;
+    for k in res::ALL.iter().copied().filter(|k| k.tracked()) {
+        if months[k.idx()] > 0.0 {
+            continue;
+        }
+        if res::refused_all(w, a, k).is_none() {
+            continue;
+        }
+        if !res::refusal_counted(w, a, t, k) || res::flow(w, t, k) <= 0.0 {
+            continue;
+        }
+        if w.has_pair_flag(SETTLED_FLAG, a, t) {
+            return None;
+        }
+        if let Some((district, _)) = res::reachable_best_district(w, a, t, k) {
+            return Some(res::Aim { district, commodity: k });
+        }
+    }
+    None
+}
+
 /// Everyone `a` could plausibly use force against: its neighbours, the states
 /// it claims something from, and the rest of its region. Precomputed, so the
 /// monthly pass is O(n·k) rather than O(n²).
@@ -107,8 +167,9 @@ pub fn contacts(a: NationId) -> &'static [NationId] {
     &a.def().contacts
 }
 
-/// How far one state can reach the other at all.
-fn reach(a: NationId, t: NationId) -> f64 {
+/// How far one state can reach the other at all. `pub` so the resource
+/// surface (resources::reachable) reads this rule rather than a copy of it.
+pub fn reach(a: NationId, t: NationId) -> f64 {
     if adjacent(a, t) {
         REACH_BORDER
     } else if a.region() == t.region() {
@@ -194,7 +255,15 @@ pub fn war_appetite(w: &WorldState, a: NationId, t: NationId) -> f64 {
     // --- And what it would be worth. Kuwait was a third of Iraq's economy
     // sitting behind an army of two divisions; Vietnam in 1990 was worth 1.7%
     // of China's and cost a war to take. ---
-    let worth = 0.25 + 0.75 * (tn.gdp / an.gdp.max(1e-9)).clamp(0.0, 1.0);
+    let mut worth = gdp_worth(an.gdp, tn.gdp);
+    // --- Ruling 4 (resources.rs): a line stalled for want of a commodity
+    // every seller has refused twice, held by this neighbour in a district
+    // an army could reach, is worth what a target of your own size is worth.
+    // Behind the market switch, so the goldens never read it; {0,1}, so an
+    // open world rolls no die it did not roll before. ---
+    if w.rules.resource_market && last_resort(w, a, t).is_some() {
+        worth += RESOURCE_WORTH;
+    }
 
     let base = APPETITE
         * reach
