@@ -8837,6 +8837,41 @@ mod tests {
         );
     }
 
+    /// The opening screen is a playable control surface, not a wall of
+    /// pointer-only divs. Its large showcase may derive ranks and shares, but
+    /// only from the opening roster already served to the picker: it must not
+    /// quietly reach into the live game and contradict the board being dealt.
+    #[test]
+    fn the_picker_is_a_keyboard_playable_full_screen_showcase() {
+        for needle in [
+            "document.createElement(\"button\")",
+            "d.setAttribute(\"aria-pressed\"",
+            "aria-live=\"polite\"",
+            "height: 100dvh",
+            "#pickWrap { min-height: 0; overflow-y: auto",
+            "@media (prefers-reduced-motion: reduce)",
+        ] {
+            assert!(INDEX.contains(needle), "the accessible picker no longer carries: {needle}");
+        }
+
+        let showcase = INDEX
+            .split_once("function renderShowcase(n)")
+            .expect("the selected-nation showcase is gone")
+            .1
+            .split_once("function pickNation")
+            .expect("the showcase is no longer bounded by the picker")
+            .0;
+        assert!(showcase.contains("setupRank(n"), "the showcase must publish opening ranks");
+        assert!(
+            showcase.contains("setupNations.reduce"),
+            "the showcase's world share must come from the served opening roster"
+        );
+        assert!(
+            !showcase.contains("/api/state"),
+            "the showcase must not mix the live world's figures into the opening board"
+        );
+    }
+
     /// Time is the one thing this game cannot give back, and the route that
     /// spends it was reading its own argument with `unwrap_or(1)`. Every
     /// `months` the server could not use silently advanced the world by one

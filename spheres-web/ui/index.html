@@ -79,69 +79,266 @@
   }
 
   /* ---------- setup ----------
-     137 nations do not fit on one screen, so the picker is a searchable,
-     sortable, scrolling grid between a fixed masthead and a fixed footer —
-     the GOVERN button must never be scrolled out of reach. */
+     Nation selection is its own full-screen arcade cabinet: the left half is
+     the country you are about to inhabit, while the dense 1990 roster stays in
+     a deliberately lighter, searchable browser on the right. No external art
+     is needed — the soft world shapes are CSS, so the executable stays whole. */
   #setup {
-    position: fixed; inset: 0; background: radial-gradient(120% 90% at 50% 0%, #141a23 0%, var(--bg) 65%); z-index: 50;
-    display: flex; flex-direction: column; align-items: center;
-    padding: 26px 20px 0; overflow: hidden;
+    --pick-ink: #373344;
+    --pick-muted: #756f80;
+    --pick-paper: #f3eee7;
+    --pick-card: rgba(255,255,255,.62);
+    --pick-line: rgba(75,65,92,.16);
+    --pick-lilac: #bba9d2;
+    --pick-blue: #9bc8d0;
+    --pick-peach: #e8b4a1;
+    --pick-mint: #a7cdb9;
+    position: fixed; inset: 0; z-index: 50; height: 100vh; height: 100dvh; overflow: hidden;
+    display: flex; color: var(--pick-ink);
+    background:
+      radial-gradient(circle at 12% 18%, rgba(255,255,255,.95) 0 2%, transparent 24%),
+      radial-gradient(circle at 7% 76%, rgba(187,169,210,.38) 0, transparent 30%),
+      radial-gradient(circle at 94% 8%, rgba(155,200,208,.42) 0, transparent 29%),
+      linear-gradient(128deg, #f5eee5 0%, #ede6ee 49%, #dfecee 100%);
   }
+  #setup::before, #setup::after {
+    content: ""; position: absolute; pointer-events: none; border-radius: 50%;
+    filter: blur(2px); opacity: .7;
+  }
+  #setup::before {
+    width: 32vw; height: 32vw; min-width: 360px; min-height: 360px;
+    left: -15vw; bottom: -18vw; border: 1px solid rgba(255,255,255,.72);
+    box-shadow: 0 0 0 44px rgba(232,180,161,.08), 0 0 0 100px rgba(255,255,255,.08);
+  }
+  #setup::after {
+    width: 20vw; height: 20vw; right: -6vw; top: -10vw;
+    border: 72px solid rgba(255,255,255,.14);
+  }
+  .setup-shell {
+    position: relative; z-index: 1; width: 100%; height: 100%; min-height: 0;
+    display: grid; grid-template-rows: 84px minmax(0, 1fr);
+  }
+  .setup-mast {
+    display: flex; align-items: center; justify-content: space-between; gap: 30px;
+    padding: 13px clamp(22px, 3.2vw, 54px); border-bottom: 1px solid var(--pick-line);
+    background: rgba(255,255,255,.25); backdrop-filter: blur(18px);
+  }
+  .setup-brand { display: flex; align-items: baseline; gap: 22px; min-width: 0; }
   #setup .title {
-    font-family: var(--serif); font-size: 44px; font-weight: 400;
-    letter-spacing: .5em; text-indent: .5em; margin-bottom: 2px;
-    color: var(--brass-hi); text-shadow: 0 2px 12px #000;
+    font-family: var(--serif); font-size: clamp(25px, 2.7vw, 38px); line-height: 1;
+    font-weight: 700; letter-spacing: .27em; text-indent: .27em; color: #4b425b;
+    text-shadow: 0 2px 0 rgba(255,255,255,.7); white-space: nowrap;
   }
-  #setup .title::after {
-    content: ""; display: block; height: 1px; margin: 10px auto 0;
-    width: 420px; max-width: 60vw;
-    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  .setup-kicker, .setup-step-label {
+    color: #766b86; font-size: 9px; font-weight: 700; letter-spacing: .22em;
+    text-transform: uppercase;
   }
-  #setup .sub { font-family: var(--serif); color: var(--dim); margin-bottom: 20px; letter-spacing: .2em; font-size: 12px; }
-  #setupBar {
-    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
-    width: min(980px, 100%); margin-bottom: 12px;
+  .setup-era { display: flex; align-items: center; gap: 12px; text-align: right; }
+  .setup-era-copy { display: grid; gap: 2px; }
+  .setup-pulse {
+    width: 10px; height: 10px; flex: none; border-radius: 50%; background: #d79a8c;
+    box-shadow: 0 0 0 6px rgba(215,154,140,.14);
   }
-  #nationSearch {
-    flex: 1; min-width: 200px; padding: 8px 12px; border-radius: 2px;
+  #setup .sub {
+    font-family: var(--mono); color: var(--pick-muted); letter-spacing: .1em;
+    font-size: 10px; white-space: nowrap;
   }
-  #nationSearch:focus { outline: none; border-color: var(--brass-dim); }
-  #nationSort {
-    padding: 8px; border-radius: 2px;
+  .setup-layout {
+    min-height: 0; display: grid; grid-template-columns: minmax(390px, .88fr) minmax(520px, 1.12fr);
   }
-  #pickWrap {
-    flex: 1 1 auto; min-height: 0; overflow-y: auto;
-    width: min(980px, 100%); padding-right: 4px;
+  #nationShowcase {
+    --nation-hue: 258;
+    position: relative; min-width: 0; min-height: 0; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(26px, 4vw, 66px) clamp(26px, 4.4vw, 72px) clamp(24px, 3vw, 48px);
+    border-right: 1px solid var(--pick-line);
   }
-  #nationPick {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 8px; padding-bottom: 12px;
+  #nationShowcase::before {
+    content: ""; position: absolute; width: min(42vw, 560px); aspect-ratio: 1;
+    top: 50%; left: 42%; transform: translate(-50%, -53%); border-radius: 50%;
+    background: radial-gradient(circle at 35% 28%, hsla(var(--nation-hue),55%,98%,.96), hsla(var(--nation-hue),46%,78%,.42) 43%, transparent 70%);
+    filter: blur(1px); pointer-events: none; transition: background .35s ease;
   }
-  #nationPick .opt {
-    padding: 10px; border: 1px solid var(--edge-dark); border-radius: 2px;
-    background: linear-gradient(180deg, #1d242d, #171d24);
-    box-shadow: inset 0 1px 0 var(--edge-lite);
-    cursor: pointer; text-align: center;
-    transition: border-color .12s, filter .12s;
+  .showcase-copy { position: relative; z-index: 2; width: min(100%, 600px); }
+  .showcase-kicker {
+    display: flex; align-items: center; gap: 9px; margin-bottom: 18px;
+    color: #7d728d; font-size: 10px; font-weight: 700; letter-spacing: .2em;
   }
-  #nationPick .opt:hover { border-color: var(--brass-dim); filter: brightness(1.12); }
-  #nationPick .opt.sel {
-    border-color: var(--brass-dim); background: #26200f;
-    box-shadow: inset 0 1px 0 rgba(232,200,126,.13), 0 0 0 1px rgba(138,116,66,.35);
+  .showcase-kicker::before { content: ""; width: 25px; height: 2px; background: hsl(var(--nation-hue), 38%, 56%); }
+  .nation-art { position: relative; width: clamp(116px, 12vw, 178px); aspect-ratio: 1; margin: 0 0 22px 7px; }
+  .nation-orbit {
+    position: absolute; inset: 4%; border: 1px solid hsla(var(--nation-hue),35%,43%,.32);
+    border-radius: 50%; transform: rotate(-18deg) scaleY(.39);
+    box-shadow: 0 0 0 15px hsla(var(--nation-hue),60%,97%,.19);
   }
-  #nationPick .opt .nm { font-weight: 600; }
-  #nationPick .opt .gd { color: var(--dim); font-size: 11px; }
-  #nationPick .none { grid-column: 1 / -1; color: var(--dim); text-align: center; padding: 36px 0; }
-  #setupFoot {
-    display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
-    width: min(980px, 100%); padding: 12px 0 16px; border-top: 1px solid var(--brass-etch);
+  .nation-orbit::after {
+    content: ""; position: absolute; width: 9px; height: 9px; border-radius: 50%;
+    right: 2%; top: 44%; background: hsl(var(--nation-hue), 46%, 57%);
+    box-shadow: 0 2px 8px hsla(var(--nation-hue),45%,35%,.32);
   }
-  #setupFoot .grow { flex: 1; }
-  #setupFoot .hint { color: var(--faint); font-size: 11px; }
-  #startBtn { font-family: var(--serif); font-size: 14px; padding: 9px 22px; letter-spacing: .08em; }
-  .seedrow { display: flex; gap: 10px; align-items: center; color: var(--dim); }
+  .nation-planet {
+    position: absolute; inset: 19%; display: grid; place-items: center; border-radius: 50%;
+    color: rgba(255,255,255,.9); font: 700 clamp(23px, 3vw, 40px)/1 var(--serif);
+    letter-spacing: .06em; text-shadow: 0 2px 10px rgba(70,54,85,.2);
+    background:
+      radial-gradient(ellipse at 34% 24%, rgba(255,255,255,.76) 0 7%, transparent 8%),
+      radial-gradient(ellipse at 64% 64%, hsla(calc(var(--nation-hue) + 38),36%,92%,.46) 0 15%, transparent 16%),
+      linear-gradient(145deg, hsl(var(--nation-hue), 42%, 79%), hsl(calc(var(--nation-hue) + 30), 38%, 66%));
+    box-shadow: inset -13px -16px 24px hsla(var(--nation-hue),40%,40%,.2),
+                inset 8px 8px 18px rgba(255,255,255,.42), 0 18px 45px hsla(var(--nation-hue),36%,45%,.24);
+    transition: background .35s ease, box-shadow .35s ease;
+  }
+  #showcaseName {
+    max-width: 680px; margin: 0; font-family: var(--serif); font-weight: 700;
+    font-size: clamp(34px, 4.25vw, 68px); line-height: .98; letter-spacing: -.035em;
+    color: #40384e; text-wrap: balance;
+  }
+  #showcasePrompt { min-height: 42px; max-width: 500px; margin: 14px 0 20px; color: var(--pick-muted); font-size: 12px; }
+  .showcase-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+  .showcase-stat {
+    min-width: 0; padding: 11px 12px 10px; border: 1px solid rgba(255,255,255,.67);
+    border-radius: 14px; background: rgba(255,255,255,.38);
+    box-shadow: 0 8px 26px rgba(79,65,96,.06), inset 0 0 0 1px var(--pick-line);
+  }
+  .showcase-stat span { display: block; color: #81788c; font-size: 8px; font-weight: 700; letter-spacing: .16em; }
+  .showcase-stat strong {
+    display: block; margin-top: 4px; overflow: hidden; text-overflow: ellipsis;
+    color: #4b4258; font: 700 clamp(15px, 1.55vw, 22px)/1.15 var(--serif); white-space: nowrap;
+  }
+  .showcase-stat small { display: block; margin-top: 3px; color: #938b9b; font-size: 9px; }
+  #setupFoot { position: relative; z-index: 3; width: min(100%, 600px); margin-top: 22px; }
+  .seedrow {
+    display: flex; align-items: center; gap: 10px; padding: 9px 11px;
+    border: 1px solid var(--pick-line); border-radius: 13px; color: var(--pick-muted);
+    background: rgba(255,255,255,.3);
+  }
+  .seedrow label { font-size: 9px; font-weight: 700; letter-spacing: .16em; }
   .seedrow input {
-    width: 90px; padding: 6px; border-radius: 2px;
+    width: 92px; min-width: 0; padding: 5px 8px; border: 0; border-bottom: 1px solid rgba(75,65,92,.24);
+    border-radius: 0; color: #4b4258; background: transparent; box-shadow: none;
+  }
+  .seedrow input:focus { outline: 2px solid rgba(137,116,164,.26); outline-offset: 2px; }
+  .seedrow .muted { color: #938a9c; font-size: 9px; }
+  #startBtn {
+    width: 100%; min-height: 56px; margin-top: 10px; border: 0; border-radius: 17px;
+    padding: 12px 20px; color: #fff; font: 700 14px/1.2 var(--mono); letter-spacing: .1em;
+    background: linear-gradient(125deg, #76618f, #8e78a4 52%, #709da5);
+    box-shadow: 0 15px 30px rgba(82,66,103,.2), inset 0 1px 0 rgba(255,255,255,.3);
+    transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+  }
+  #startBtn:hover:not(:disabled) {
+    transform: translateY(-2px); color: #fff; border: 0; filter: saturate(1.08) brightness(1.04);
+    background: linear-gradient(125deg, #806998, #987fae 52%, #78a6ae);
+    box-shadow: 0 18px 35px rgba(82,66,103,.27), inset 0 1px 0 rgba(255,255,255,.34);
+  }
+  #startBtn:disabled {
+    color: #817a8a; background: rgba(255,255,255,.46); box-shadow: inset 0 0 0 1px var(--pick-line);
+  }
+  .nation-browser {
+    min-width: 0; min-height: 0; display: grid; grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+    padding: clamp(24px, 3.2vw, 48px) clamp(20px, 3.6vw, 58px) 22px;
+    background: rgba(255,255,255,.27); backdrop-filter: blur(20px);
+  }
+  .browser-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 17px; }
+  .browser-head h2 { margin-top: 4px; color: #453d53; font: 700 clamp(24px, 2.4vw, 36px)/1 var(--serif); letter-spacing: -.02em; }
+  #nationCount { color: #857d8f; font-size: 10px; letter-spacing: .1em; white-space: nowrap; }
+  #setupBar { display: grid; grid-template-columns: minmax(150px, 1fr) auto auto; gap: 8px; align-items: stretch; }
+  .search-shell { position: relative; min-width: 0; }
+  .search-shell::before { content: "⌕"; position: absolute; left: 13px; top: 50%; transform: translateY(-54%); color: #8d8398; font-size: 21px; pointer-events: none; }
+  #nationSearch, #nationSort, #randomBtn {
+    height: 44px; border: 1px solid rgba(255,255,255,.68); border-radius: 14px;
+    color: #51485e; background: rgba(255,255,255,.54); box-shadow: inset 0 0 0 1px var(--pick-line), 0 6px 20px rgba(79,65,96,.05);
+  }
+  #nationSearch { width: 100%; padding: 9px 13px 9px 39px; }
+  #nationSearch::placeholder { color: #9991a1; }
+  #nationSearch:focus, #nationSort:focus, #randomBtn:focus-visible { outline: 3px solid rgba(138,112,166,.22); outline-offset: 2px; border-color: rgba(108,90,130,.32); }
+  #nationSort { padding: 8px 30px 8px 12px; }
+  #randomBtn {
+    padding: 7px 14px; color: #685978; font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  }
+  #randomBtn:hover:not(:disabled) { color: #4d405d; border-color: rgba(108,90,130,.32); background: rgba(255,255,255,.78); }
+  .browser-rule { height: 1px; margin: 16px 0 13px; background: linear-gradient(90deg, var(--pick-line), transparent); }
+  #pickWrap { min-height: 0; overflow-y: auto; padding: 1px 8px 10px 1px; scrollbar-color: #c0b5c8 transparent; }
+  #nationPick { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 9px; }
+  #nationPick .opt {
+    position: relative; min-width: 0; min-height: 76px; display: grid; grid-template-columns: 36px minmax(0, 1fr);
+    align-items: center; gap: 10px; padding: 10px 12px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.7); border-radius: 15px; text-align: left;
+    color: #4c4458; background: var(--pick-card);
+    box-shadow: inset 0 0 0 1px rgba(75,65,92,.1), 0 7px 18px rgba(79,65,96,.055);
+    cursor: pointer; transition: transform .13s ease, background .13s ease, box-shadow .13s ease, border-color .13s ease;
+  }
+  #nationPick .opt::after {
+    content: ""; position: absolute; width: 70px; height: 70px; right: -38px; bottom: -45px;
+    border-radius: 50%; background: hsla(var(--nation-hue),45%,70%,.16); transition: transform .18s ease;
+  }
+  #nationPick .opt:hover {
+    transform: translateY(-2px); color: #403747; border-color: hsla(var(--nation-hue),35%,55%,.34);
+    background: rgba(255,255,255,.82); box-shadow: 0 10px 24px rgba(79,65,96,.1), inset 0 0 0 1px rgba(75,65,92,.08);
+  }
+  #nationPick .opt:focus-visible { outline: 3px solid hsla(var(--nation-hue),40%,48%,.27); outline-offset: 2px; }
+  #nationPick .opt.sel {
+    color: #3f354d; border-color: hsla(var(--nation-hue),38%,48%,.4);
+    background: linear-gradient(135deg, rgba(255,255,255,.9), hsla(var(--nation-hue),52%,86%,.68));
+    box-shadow: 0 10px 25px hsla(var(--nation-hue),32%,40%,.15), inset 0 0 0 2px rgba(255,255,255,.5);
+  }
+  #nationPick .opt.sel::after { transform: scale(1.35); }
+  .nation-check {
+    position: absolute; z-index: 2; top: 7px; right: 8px; width: 18px; height: 18px;
+    display: grid; place-items: center; border-radius: 50%; color: transparent;
+    font-size: 10px; font-weight: 900; background: transparent; transition: color .13s ease, background .13s ease;
+  }
+  #nationPick .opt.sel .nation-check { color: #fff; background: hsl(var(--nation-hue), 35%, 52%); }
+  .nation-chip {
+    width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%;
+    color: #fff; font: 700 10px/1 var(--mono); letter-spacing: .04em;
+    background: linear-gradient(145deg, hsl(var(--nation-hue),40%,75%), hsl(calc(var(--nation-hue) + 30),35%,62%));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.4);
+  }
+  .nation-card-copy { min-width: 0; }
+  #nationPick .opt .nm { display: block; overflow: hidden; text-overflow: ellipsis; font-weight: 700; font-size: 11px; white-space: nowrap; }
+  #nationPick .opt .gd { display: block; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; color: #8d8596; font-size: 9px; white-space: nowrap; }
+  #nationPick .none {
+    grid-column: 1 / -1; padding: 54px 20px; border: 1px dashed rgba(75,65,92,.2); border-radius: 18px;
+    color: var(--pick-muted); text-align: center; background: rgba(255,255,255,.26);
+  }
+  .browser-foot { display: flex; align-items: center; gap: 8px; padding-top: 12px; color: #938b9c; font-size: 9px; letter-spacing: .04em; }
+  .browser-foot::before { content: "↵"; width: 22px; height: 22px; display: grid; place-items: center; border: 1px solid var(--pick-line); border-radius: 7px; color: #6f647d; background: rgba(255,255,255,.34); }
+  @media (max-width: 960px) {
+    #setup { overflow-y: auto; }
+    .setup-shell { height: auto; min-height: 100%; grid-template-rows: auto auto; }
+    .setup-layout { grid-template-columns: 1fr; }
+    #nationShowcase { min-height: 610px; border-right: 0; border-bottom: 1px solid var(--pick-line); }
+    .nation-browser { min-height: 650px; }
+    .setup-kicker { display: none; }
+  }
+  @media (max-height: 760px) and (min-width: 961px) {
+    .setup-shell { grid-template-rows: 70px minmax(0, 1fr); }
+    #nationShowcase { padding-top: 20px; padding-bottom: 20px; }
+    .nation-browser { padding-top: 21px; }
+    .nation-art { width: 116px; margin-bottom: 12px; }
+    #showcasePrompt { margin: 9px 0 12px; min-height: 32px; }
+    .showcase-stat { padding: 8px 10px; }
+    #setupFoot { margin-top: 13px; }
+    .browser-head { margin-bottom: 11px; }
+    .browser-rule { margin: 10px 0; }
+  }
+  @media (max-width: 620px) {
+    .setup-mast { align-items: flex-start; padding: 16px 18px; }
+    .setup-brand { display: block; }
+    #setup .title { font-size: 25px; }
+    .setup-era { display: none; }
+    #nationShowcase { min-height: 570px; padding: 28px 20px; }
+    .nation-browser { min-height: 690px; padding: 28px 18px 20px; }
+    #setupBar { grid-template-columns: 1fr auto; }
+    .search-shell { grid-column: 1 / -1; }
+    #nationPick { grid-template-columns: 1fr; }
+    .showcase-stats { gap: 5px; }
+    .showcase-stat { padding: 9px 8px; }
+    .seedrow { flex-wrap: wrap; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #nationPick .opt, #nationPick .opt::after, .nation-planet, #startBtn { transition: none; }
   }
 
   /* ---------- layout ---------- */
@@ -1643,28 +1840,74 @@
 <body>
 
 <div id="setup">
-  <div class="title">SPHERES</div>
-  <!-- Filled by buildSetup from /api/roster. The literal here is only what is
-       on screen for the few hundred milliseconds before that answers. -->
-  <div class="sub" id="setupSub">JANUARY 1990 &middot; THE WORLD IS UNWRITTEN</div>
-  <div id="setupBar">
-    <input id="nationSearch" placeholder="Search nations&hellip;" autocomplete="off">
-    <select id="nationSort">
-      <option value="gdp">By GDP</option>
-      <option value="pop">By population</option>
-      <option value="name">A&ndash;Z</option>
-    </select>
-    <button id="randomBtn" title="Govern a random nation">RANDOM</button>
-  </div>
-  <div id="pickWrap"><div id="nationPick"></div></div>
-  <div id="setupFoot">
-    <div class="seedrow">
-      <span>SEED</span><input id="seed" value="1990">
-      <span class="muted">same seed, same history</span>
+  <div class="setup-shell">
+    <div class="setup-mast">
+      <div class="setup-brand">
+        <div class="title">SPHERES</div>
+        <div class="setup-kicker">THE WORLD IS YOUR CABINET</div>
+      </div>
+      <div class="setup-era">
+        <span class="setup-pulse" aria-hidden="true"></span>
+        <div class="setup-era-copy">
+          <span class="setup-step-label">CAMPAIGN SELECT</span>
+          <!-- Filled by buildSetup from /api/roster. The literal here is only
+               what is on screen for the few hundred milliseconds before that
+               answers. -->
+          <span class="sub" id="setupSub">JANUARY 1990 &middot; THE WORLD IS UNWRITTEN</span>
+        </div>
+      </div>
     </div>
-    <span class="grow"></span>
-    <span class="hint">double-click a nation to start at once</span>
-    <button class="primary" id="startBtn" disabled>CHOOSE A NATION</button>
+
+    <div class="setup-layout">
+      <section id="nationShowcase" aria-labelledby="showcaseName" aria-live="polite">
+        <div class="showcase-copy">
+          <div class="showcase-kicker">PLAYER ONE / CHOOSE YOUR SPHERE</div>
+          <div class="nation-art" aria-hidden="true">
+            <div class="nation-orbit"></div>
+            <div class="nation-planet" id="showcaseCode">?</div>
+          </div>
+          <h1 id="showcaseName">Choose a nation</h1>
+          <p id="showcasePrompt">Pick a country from the world board. Its opening output and population are drawn from the same 1990 world your campaign will begin in.</p>
+          <div class="showcase-stats" id="showcaseStats">
+            <div class="showcase-stat"><span>OUTPUT</span><strong id="showcaseGdp">—</strong><small id="showcaseGdpRank">world rank —</small></div>
+            <div class="showcase-stat"><span>PEOPLE</span><strong id="showcasePop">—</strong><small id="showcasePopRank">world rank —</small></div>
+            <div class="showcase-stat"><span>GDP / PERSON</span><strong id="showcasePerCap">—</strong><small id="showcaseShare">opening position</small></div>
+          </div>
+        </div>
+        <div id="setupFoot">
+          <div class="seedrow">
+            <label for="seed">WORLD SEED</label><input id="seed" value="1990" inputmode="numeric" aria-describedby="seedHint">
+            <span class="muted" id="seedHint">same seed, same history</span>
+          </div>
+          <button class="primary" id="startBtn" disabled>CHOOSE A NATION</button>
+        </div>
+      </section>
+
+      <section class="nation-browser" aria-labelledby="nationBrowserTitle">
+        <div class="browser-head">
+          <div>
+            <div class="setup-step-label">02 / THE WORLD BOARD</div>
+            <h2 id="nationBrowserTitle">Select your nation</h2>
+          </div>
+          <span id="nationCount" role="status" aria-live="polite">LOADING ROSTER</span>
+        </div>
+        <div id="setupBar">
+          <label class="search-shell">
+            <span class="sr-only">Search nations</span>
+            <input id="nationSearch" placeholder="Find a nation&hellip;" autocomplete="off">
+          </label>
+          <select id="nationSort" aria-label="Sort nations">
+            <option value="gdp">Output</option>
+            <option value="pop">Population</option>
+            <option value="name">A&ndash;Z</option>
+          </select>
+          <button id="randomBtn" type="button" title="Govern a random nation">SURPRISE ME</button>
+        </div>
+        <div class="browser-rule" aria-hidden="true"></div>
+        <div id="pickWrap"><div id="nationPick" aria-label="Nations"></div></div>
+        <div class="browser-foot">Double-click a nation to launch immediately. Press Enter after searching to confirm.</div>
+      </section>
+    </div>
   </div>
 </div>
 
@@ -2518,7 +2761,11 @@ async function buildSetup() {
     if (pool.length === 1) pickNation(pool[0].name);
     if (pickedNation) $("#startBtn").click();
   });
-  $("#nationSearch").focus();
+  // Autofocus is useful with a mouse and keyboard, but on touch screens it
+  // summons the software keyboard before the player has seen the world board.
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    $("#nationSearch").focus();
+  }
 }
 
 function visiblePicks() {
@@ -2531,15 +2778,61 @@ function visiblePicks() {
   return list;
 }
 
+// A restrained hue family gives every roster entry a little identity without
+// inventing a flag or attaching gameplay meaning to a colour. The source is
+// the stable nation id served by /api/roster, so it does not change with sort.
+function nationHue(n) {
+  const palette = [194, 214, 242, 266, 290, 326, 10, 146, 166];
+  let hash = 0;
+  for (const ch of n.id) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+  return palette[hash % palette.length];
+}
+
+function setupRank(n, field) {
+  return setupNations
+    .slice()
+    .sort((a, b) => b[field] - a[field])
+    .findIndex((candidate) => candidate.id === n.id) + 1;
+}
+
+function perCapita(n) {
+  const dollars = n.population > 0 ? n.gdp * 1000 / n.population : 0;
+  if (dollars >= 1000) return "$" + (dollars / 1000).toFixed(dollars >= 10000 ? 0 : 1) + "k";
+  return "$" + dollars.toFixed(0);
+}
+
+function renderShowcase(n) {
+  const hue = nationHue(n);
+  $("#nationShowcase").style.setProperty("--nation-hue", hue);
+  $("#showcaseCode").textContent = n.id.slice(0, 3);
+  $("#showcaseName").textContent = n.name;
+  $("#showcasePrompt").textContent =
+    `Take the controls in ${n.name}. Your cabinet opens on the same January 1990 board shown here.`;
+  $("#showcaseGdp").textContent = fmt.money(n.gdp);
+  $("#showcaseGdpRank").textContent = `world output #${setupRank(n, "gdp")}`;
+  $("#showcasePop").textContent = fmt.pop(n.population);
+  $("#showcasePopRank").textContent = `world population #${setupRank(n, "population")}`;
+  $("#showcasePerCap").textContent = perCapita(n);
+  const worldGdp = setupNations.reduce((sum, candidate) => sum + candidate.gdp, 0);
+  const share = worldGdp > 0 ? n.gdp / worldGdp * 100 : 0;
+  $("#showcaseShare").textContent = `${share < .1 ? share.toFixed(2) : share.toFixed(1)}% of world output`;
+}
+
 function pickNation(name, scrollTo) {
-  pickedNation = name;
+  const nation = setupNations.find((candidate) => candidate.name === name);
+  if (!nation) return;
+  pickedNation = nation.name;
+  renderShowcase(nation);
   const b = $("#startBtn");
   b.disabled = false;
-  b.textContent = "GOVERN " + name.toUpperCase();
-  [...$("#nationPick").children].forEach((c) =>
-    c.classList.toggle("sel", c.dataset.nm === name));
+  b.textContent = "GOVERN " + nation.name.toUpperCase() + "  →";
+  [...$("#nationPick").children].forEach((c) => {
+    const selected = c.dataset.nm === nation.name;
+    c.classList.toggle("sel", selected);
+    c.setAttribute("aria-pressed", selected ? "true" : "false");
+  });
   if (scrollTo) {
-    const el = [...$("#nationPick").children].find((c) => c.dataset.nm === name);
+    const el = [...$("#nationPick").children].find((c) => c.dataset.nm === nation.name);
     if (el) el.scrollIntoView({ block: "center" });
   }
 }
@@ -2548,16 +2841,23 @@ function renderPick() {
   const grid = $("#nationPick");
   grid.innerHTML = "";
   const list = visiblePicks();
+  $("#nationCount").textContent = `${list.length} ${list.length === 1 ? "NATION" : "NATIONS"}`;
   if (!list.length) {
-    grid.innerHTML = '<div class="none">no nation matches</div>';
+    grid.innerHTML = '<div class="none">No nation matches that search.<br><span class="tiny">Try a shorter name or clear the field.</span></div>';
     return;
   }
   list.forEach((n) => {
-    const d = document.createElement("div");
+    const d = document.createElement("button");
+    d.type = "button";
     d.className = "opt" + (n.name === pickedNation ? " sel" : "");
     d.dataset.nm = n.name;
-    d.innerHTML = `<div class="nm">${n.name}</div>` +
-      `<div class="gd">${fmt.money(n.gdp)} &middot; ${fmt.pop(n.population)}</div>`;
+    d.style.setProperty("--nation-hue", nationHue(n));
+    d.setAttribute("aria-pressed", n.name === pickedNation ? "true" : "false");
+    d.setAttribute("aria-label", `${n.name}, output ${fmt.money(n.gdp)}, population ${fmt.pop(n.population)}`);
+    d.innerHTML = `<span class="nation-chip" aria-hidden="true">${n.id.slice(0, 2)}</span>` +
+      `<span class="nation-card-copy"><span class="nm">${n.name}</span>` +
+      `<span class="gd">${fmt.money(n.gdp)} &middot; ${fmt.pop(n.population)}</span></span>` +
+      `<span class="nation-check" aria-hidden="true">&#10003;</span>`;
     d.onclick = () => pickNation(n.name);
     d.ondblclick = () => { pickNation(n.name); $("#startBtn").click(); };
     grid.appendChild(d);
