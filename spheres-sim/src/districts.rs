@@ -1227,10 +1227,19 @@ mod tests {
     // 5). They were written on 3f7eaf2 beside the 142 lines of population
     // code this file kept; the merge that landed as e4e3c03 took Codex's code
     // and our nine-test module, so the code arrived here unguarded. Ported
-    // verbatim from `git show 3f7eaf2:spheres-sim/src/districts.rs` — the
-    // merge's shape required no adaptation, because every symbol they read
+    // from `git show 3f7eaf2:spheres-sim/src/districts.rs` — the merge's
+    // shape required no adaptation, because every symbol they read
     // (`tables`, `population_of`, `annex_all`, `district_population_scale`)
     // survived the merge unchanged.
+    //
+    // One departure from the source, noted at review (2026-09-02) so nobody
+    // reads "ported" as byte-identical: the coverage test IS byte-identical
+    // to Codex's, but in the demography test Codex bound
+    // `let iraq_ratio = w.nation(NationId::Iraq).population / iraq0;` after
+    // the tick and asserted against that binding; here it is inlined into
+    // the assert. Same operands, same order, same 1e-12 tolerance, same
+    // position relative to `crate::tick_month` — neither widened nor
+    // narrowed, and red-checked in that form (see below).
     // ------------------------------------------------------------------
 
     /// The opening split covers EVERY mapped province, including ground
