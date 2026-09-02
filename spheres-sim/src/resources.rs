@@ -69,7 +69,7 @@
 
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 use std::sync::OnceLock;
 
 use crate::arsenal::{Class, DECK};
@@ -918,18 +918,118 @@ pub fn tick(w: &mut WorldState) {
     }
     deliver_contracts(w);
     expire_offers(w);
+    cool_grievances(w);
 }
 
-/// Contract delivery (package S2). A no-op while `contracts` is empty, which
-/// is every world cut one produces; S2 lands the money legs, force majeure
-/// and expiry here.
+/// One month of every live contract (spec section 4.6), in vector order.
+/// A contract dies with either party (successors do not inherit; headlined).
+/// Money legs move `debt_gdp` both ways — the fiscal channel `PACT_UPKEEP`
+/// and `aid_flows` already use — and an oil leg is money at today's world
+/// price, the giver's `oil_mbd` untouched. Commodity legs move nothing: they
+/// are READ by `supply()` as the receiver's inflow and by `surplus()` as the
+/// giver's commitment, and when a giver's flow has fallen below what it
+/// promised every leg of that line is delivered pro rata this month (force
+/// majeure — headlined once per giver and line, uncharged). Depth grows at
+/// a pact's rate; at zero months the contract has run its term. No relation
+/// drift while running. A no-op while `contracts` is empty, which is every
+/// world the suite runs.
 fn deliver_contracts(w: &mut WorldState) {
-    if w.resources.contracts.is_empty() {}
+    if w.resources.contracts.is_empty() {
+        return;
+    }
+    let price = w.oil_price;
+    let mut heads: Vec<String> = vec![];
+    let mut keep = Vec::with_capacity(w.resources.contracts.len());
+    for mut k in std::mem::take(&mut w.resources.contracts) {
+        let alive = |id: NationId| w.nation_opt(id).is_some_and(|n| n.alive);
+        if !alive(k.from) || !alive(k.to) {
+            let dead = if alive(k.from) { k.to } else { k.from };
+            heads.push(format!(
+                "The {} contract between {} and {} dies with {}.",
+                k.label(),
+                k.from.name(),
+                k.to.name(),
+                dead.name()
+            ));
+            continue;
+        }
+        for (payer, payee, legs) in [(k.from, k.to, &k.give), (k.to, k.from, &k.take)] {
+            for l in legs {
+                let bn = match l {
+                    Leg::Money { bn_per_year } => *bn_per_year,
+                    Leg::Commodity { c: Commodity::Oil, per_month } => oil_leg_bn_per_year(*per_month, price),
+                    _ => continue,
+                };
+                if bn > 0.0 {
+                    settle(w, payer, payee, bn);
+                }
+            }
+        }
+        k.depth = (k.depth + DEPTH_RATE).min(1.0);
+        k.months_left = k.months_left.saturating_sub(1);
+        if k.months_left == 0 {
+            heads.push(format!(
+                "The {} contract between {} and {} has run its term.",
+                k.label(),
+                k.from.name(),
+                k.to.name()
+            ));
+            continue;
+        }
+        keep.push(k);
+    }
+    w.resources.contracts = keep;
+    // Force majeure, once per (giver, line, month).
+    let mut promised: BTreeSet<(NationId, Commodity)> = BTreeSet::new();
+    for k in &w.resources.contracts {
+        for (giver, legs) in [(k.from, &k.give), (k.to, &k.take)] {
+            for (c, _) in commodity_legs(legs) {
+                promised.insert((giver, c));
+            }
+        }
+    }
+    for (giver, c) in promised {
+        if delivery_ratio(w, giver, c) < 1.0 {
+            heads.push(format!(
+                "{} cannot deliver all of its {} this month; contracts are filled pro rata.",
+                giver.name(),
+                c.name()
+            ));
+        }
+    }
+    for h in heads {
+        w.headline(h);
+    }
 }
 
-/// Offer expiry (package S2). A no-op while `offers` is empty.
+/// One month of a money leg: `bn/12` of a year's money against each side's
+/// output, the payer's debt up, the payee's down and floored at zero.
+fn settle(w: &mut WorldState, payer: NationId, payee: NationId, bn_per_year: f64) {
+    let g = w.nation(payer).gdp.max(0.1);
+    w.nation_mut(payer).debt_gdp += bn_per_year / 12.0 / g;
+    let g = w.nation(payee).gdp.max(0.1);
+    let n = w.nation_mut(payee);
+    n.debt_gdp = (n.debt_gdp - bn_per_year / 12.0 / g).max(0.0);
+}
+
+/// Offers past their month are gone (spec section 4.8). Cut two also
+/// records the lapse as an `Unanswered` refusal for the AI buyer.
 fn expire_offers(w: &mut WorldState) {
-    if w.resources.offers.is_empty() {}
+    if w.resources.offers.is_empty() {
+        return;
+    }
+    let now = month_abs(w);
+    w.resources.offers.retain(|o| o.expires > now);
+}
+
+/// A grievance is live while `until` is still ahead; past it, the row goes,
+/// so a world that has forgotten serializes as one that never knew.
+fn cool_grievances(w: &mut WorldState) {
+    if w.resources.grievances.is_empty() {
+        return;
+    }
+    let now = month_abs(w);
+    w.resources.grievances.retain(|g| g.until > now);
 }
 
 // ---------------------------------------------------------------------------
@@ -1035,8 +1135,10 @@ pub struct Grievance {
     pub until: i32,
 }
 
-/// Why a receiver refuses. Each carries fixed prose (S2 pins it).
-#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+/// Why a receiver refuses. Each carries fixed prose (`sentence`, pinned by
+/// test). `NotForThatPrice` names the price the counter would have wanted;
+/// it is served to the player's card and never remembered as a refusal.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "snake_case")]
 pub enum Reason {
     AtWar,
@@ -1049,8 +1151,30 @@ pub enum Reason {
     LandDistrust,
     GovernmentWouldFall,
     LastDistrict,
-    NotForThatPrice,
+    NotForThatPrice { bn_per_year: f64 },
     Unanswered,
+}
+
+impl Reason {
+    /// The fixed prose of spec section 4.4, verbatim.
+    pub fn sentence(&self) -> String {
+        match self {
+            Reason::AtWar => "We are at war with you.".into(),
+            Reason::Embargoed => "Sanctions bar it.".into(),
+            Reason::BrokeContract => "You broke your last contract with us.".into(),
+            Reason::Distrust => "We do not deal with a state we distrust.".into(),
+            Reason::NoSurplus => "We haven't the surplus.".into(),
+            Reason::LandContested => "That ground is being fought over.".into(),
+            Reason::NotForSale => "Nobody sells their people.".into(),
+            Reason::LandDistrust => "We do not sell land to a state we do not trust.".into(),
+            Reason::GovernmentWouldFall => "The government would not survive selling it.".into(),
+            Reason::LastDistrict => "It is all we have.".into(),
+            Reason::NotForThatPrice { bn_per_year } => {
+                format!("Not for that price: we would want ${bn_per_year:.1} bn a year.")
+            }
+            Reason::Unanswered => "You let our last offer lapse.".into(),
+        }
+    }
 }
 
 /// A seller's refusal, as the buyer remembers it (S3 writes it).
@@ -1088,10 +1212,16 @@ pub fn have(w: &WorldState) -> Cow<'_, Have> {
 
 /// Annual own production of `c`, the table's units; 0 when unbuilt.
 pub fn flow(w: &WorldState, id: NationId, c: Commodity) -> f64 {
-    if !w.resource_have.built {
+    flow_of(&w.resource_have, id, c)
+}
+
+/// `flow` against a given ledger — the world's cache, or the local build a
+/// command reads through `have()` the month after a load (spec section 1.15).
+fn flow_of(h: &Have, id: NationId, c: Commodity) -> f64 {
+    if !h.built {
         return 0.0;
     }
-    w.resource_have.flow.get(id.index()).map_or(0.0, |f| f[c.idx()])
+    h.flow.get(id.index()).map_or(0.0, |f| f[c.idx()])
 }
 
 /// Months of need in hand; `BUFFER_MONTHS` when no row exists.
@@ -1103,45 +1233,84 @@ pub fn cover(w: &WorldState, id: NationId, c: Commodity) -> f64 {
 }
 
 /// This month's need: what the kit procurement would pick wants, at the
-/// nation's line. Zero for the legacy tier and for a nation with nothing to
-/// buy.
+/// nation's line. Zero for the legacy tier, for a nation with nothing to
+/// buy, and for a seat that is not on the board.
 pub fn draw(w: &WorldState, id: NationId) -> [f64; 12] {
-    let n = w.nation(id);
+    let Some(n) = w.nation_opt(id) else { return [0.0; 12] };
     match crate::arsenal::pick(n) {
         Some(kit) => kit_need(kit, crate::arsenal::line_of(n)),
         None => [0.0; 12],
     }
 }
 
-/// Σ contract legs `id` gives of `c` this month (S2; zero while no contracts).
+/// The commodity legs of one side of a bundle — oil excluded, because an oil
+/// leg is money at the world price and never a delivery (spec section 4.6).
+fn commodity_legs(legs: &[Leg]) -> impl Iterator<Item = (Commodity, f64)> + '_ {
+    legs.iter().filter_map(|l| match l {
+        Leg::Commodity { c, per_month } if *c != Commodity::Oil => Some((*c, *per_month)),
+        _ => None,
+    })
+}
+
+/// The district legs of one side of a bundle.
+fn district_legs(legs: &[Leg]) -> impl Iterator<Item = &str> + '_ {
+    legs.iter().filter_map(|l| match l {
+        Leg::District { id } => Some(id.as_str()),
+        _ => None,
+    })
+}
+
+/// Σ contract legs `id` gives of `c` this month — what it promised, before
+/// force majeure.
 pub fn committed_out(w: &WorldState, id: NationId, c: Commodity) -> f64 {
-    contract_legs(w, id, c, true)
-}
-
-/// Σ contract legs `id` receives of `c` this month (S2; zero while no contracts).
-pub fn contracted_in(w: &WorldState, id: NationId, c: Commodity) -> f64 {
-    contract_legs(w, id, c, false)
-}
-
-fn contract_legs(w: &WorldState, id: NationId, c: Commodity, giving: bool) -> f64 {
     let mut q = 0.0;
     for k in &w.resources.contracts {
-        let (from_legs, to_legs) = (&k.give, &k.take);
-        let legs: &[Leg] = if giving {
-            if k.from == id { from_legs } else if k.to == id { to_legs } else { continue }
+        let legs = if k.from == id {
+            &k.give
         } else if k.to == id {
-            from_legs
-        } else if k.from == id {
-            to_legs
+            &k.take
         } else {
             continue;
         };
-        for l in legs {
-            if let Leg::Commodity { c: lc, per_month } = l {
-                if *lc == c {
-                    q += per_month;
-                }
-            }
+        q += commodity_legs(legs).filter(|(lc, _)| *lc == c).map(|(_, p)| p).sum::<f64>();
+    }
+    q
+}
+
+/// A giver's delivery ratio for `c`: one while its flow covers what it
+/// promised, else `flow/12 ÷ promised` — force majeure, pro rata across
+/// every contract it gives `c` under (spec section 4.6).
+pub fn delivery_ratio(w: &WorldState, giver: NationId, c: Commodity) -> f64 {
+    delivery_ratio_with(w, &w.resource_have, giver, c)
+}
+
+fn delivery_ratio_with(w: &WorldState, h: &Have, giver: NationId, c: Commodity) -> f64 {
+    let promised = committed_out(w, giver, c);
+    if promised <= 0.0 {
+        return 1.0;
+    }
+    (flow_of(h, giver, c) / 12.0 / promised).clamp(0.0, 1.0)
+}
+
+/// Σ contract legs `id` receives of `c` this month, each scaled by its
+/// giver's delivery ratio.
+pub fn contracted_in(w: &WorldState, id: NationId, c: Commodity) -> f64 {
+    contracted_in_with(w, &w.resource_have, id, c)
+}
+
+fn contracted_in_with(w: &WorldState, h: &Have, id: NationId, c: Commodity) -> f64 {
+    let mut q = 0.0;
+    for k in &w.resources.contracts {
+        let (giver, legs) = if k.to == id {
+            (k.from, &k.give)
+        } else if k.from == id {
+            (k.to, &k.take)
+        } else {
+            continue;
+        };
+        let promised: f64 = commodity_legs(legs).filter(|(lc, _)| *lc == c).map(|(_, p)| p).sum();
+        if promised > 0.0 {
+            q += promised * delivery_ratio_with(w, h, giver, c);
         }
     }
     q
@@ -1150,8 +1319,12 @@ fn contract_legs(w: &WorldState, id: NationId, c: Commodity, giving: bool) -> f6
 /// What `id` could sell of `c` this month: own flow less its own draw, its
 /// commitments, and a year of its draw held in reserve.
 pub fn surplus(w: &WorldState, id: NationId, c: Commodity) -> f64 {
+    surplus_with(w, &w.resource_have, id, c)
+}
+
+fn surplus_with(w: &WorldState, h: &Have, id: NationId, c: Commodity) -> f64 {
     let d = draw(w, id)[c.idx()];
-    flow(w, id, c) / 12.0 - d - committed_out(w, id, c) - d * RESERVE_MONTHS / 12.0
+    flow_of(h, id, c) / 12.0 - d - committed_out(w, id, c) - d * RESERVE_MONTHS / 12.0
 }
 
 fn holds(h: &Have, id: NationId, c: Commodity) -> bool {
@@ -1205,12 +1378,15 @@ pub struct Supply {
 /// market that fills the gap while any holder is open. `ration` is 0 in cut
 /// one (spec section 1.4; cut two adds the sanction ration).
 pub fn supply(w: &WorldState, buyer: NationId, c: Commodity, need: f64) -> Supply {
-    if !c.tracked() || !w.resource_have.built {
+    supply_with(w, &w.resource_have, buyer, c, need)
+}
+
+fn supply_with(w: &WorldState, h: &Have, buyer: NationId, c: Commodity, need: f64) -> Supply {
+    if !c.tracked() || !h.built {
         return Supply { own: 0.0, contracts: 0.0, market: 0.0, available: 0.0, holder: None, any_producer: false };
     }
-    let own = flow(w, buyer, c) / 12.0;
-    let contracts = contracted_in(w, buyer, c);
-    let h = &w.resource_have;
+    let own = flow_of(h, buyer, c) / 12.0;
+    let contracts = contracted_in_with(w, h, buyer, c);
     let mut any_producer = false;
     let mut holder = None;
     for id in all_nations().iter().copied() {
@@ -1366,6 +1542,742 @@ pub fn gate(w: &mut WorldState, id: NationId, kit: u16, line: f64) -> (Option<u1
         }
     }
     (None, Some(stall))
+}
+
+// ---------------------------------------------------------------------------
+// Trade (package S2): the mechanic constants (Appendix A: named, classed,
+// justified)
+// ---------------------------------------------------------------------------
+
+/// The terms a contract may run, in months (M): a year, three, five, ten.
+pub const TERMS: [u32; 4] = [12, 36, 60, 120];
+
+/// A bundle carries at most this many legs, at most one of them land (M).
+pub const MAX_LEGS: usize = 4;
+
+/// The most output a nation may have under contract at once (M): the same
+/// share `statecraft::MAX_AID_SHARE` lets a patron promise away, so the two
+/// fiscal channels a government can open abroad are bounded alike.
+pub const MAX_CONTRACT_SPEND: f64 = crate::statecraft::MAX_AID_SHARE;
+
+/// A tonne that covers a shortfall is worth its stall (M): four times the
+/// 1990 unit value, from the receiver's chair.
+pub const SCARCITY: f64 = 4.0;
+
+/// A tonne beyond the receiver's uncovered draw resells at a discount (M).
+pub const RESALE: f64 = 0.5;
+
+/// Selling your whole surplus doubles its price (M): a leg out costs
+/// `1 + STRATEGIC × q / surplus` times its value.
+pub const STRATEGIC: f64 = 1.0;
+
+/// Ten years of a district's 1990 output is the buyer's horizon (M).
+pub const LAND_YEARS: f64 = 10.0;
+
+/// A seller wants four times that horizon to part with ground (M).
+pub const SOVEREIGNTY: f64 = 4.0;
+
+/// Nobody signs at break-even (M): the receiver's gain must clear this share
+/// of what the deal costs it.
+pub const MARGIN: f64 = 0.10;
+
+/// Nobody sells their people (M): a district holding more than this share
+/// of the ceder's population is never for sale.
+pub const NOT_FOR_SALE_POP: f64 = 0.05;
+
+/// A receiver sells land only to a state it trusts at least this well (M).
+pub const LAND_TRUST: f64 = 40.0;
+
+/// A government below this stability would not survive selling ground (M).
+pub const GOVERNMENT_FLOOR: f64 = 50.0;
+
+/// Relation at signing (M): `statecraft::propose_trade`'s figure.
+pub const SIGN_RELATION: f64 = 5.0;
+
+/// Depth per month of a running contract (M): `statecraft::trade_deepens`'s
+/// rate, so a contract and a pact mature at the same pace.
+pub const DEPTH_RATE: f64 = 0.012;
+
+/// Tearing one up (M): `statecraft::abrogate_trade`'s own reputation and
+/// relation figures, and three years of being remembered by the other side.
+pub const CANCEL_REPUTATION: f64 = -6.0;
+pub const CANCEL_RELATION: f64 = -25.0;
+pub const GRIEVANCE_MONTHS: i32 = 36;
+
+/// One dollar, in the billions every value here is counted in. `ceil10`
+/// rounds a counter UP to the tenth of a billion, so a counter re-offered
+/// clears the margin by construction; this is the slack that keeps a
+/// floating-point product from undoing that at the last digit. Not a
+/// tolerance on any bar: a deal a dollar short of the margin is a deal at
+/// the margin.
+const DOLLAR: f64 = 1e-9;
+
+/// What the receiver says (spec section 4.4). `Counter` carries the money
+/// the proposer would have to pay, per year, and the receiver's own legs
+/// clipped to its surplus; re-offered unchanged, it is accepted by
+/// construction.
+#[derive(Clone, Debug, PartialEq)]
+pub enum Verdict {
+    Accept,
+    Counter { money_bn_per_year: f64, take: Vec<Leg> },
+    Refuse(Reason),
+}
+
+/// Rounds a price UP to the tenth of a billion.
+pub fn ceil10(x: f64) -> f64 {
+    (x * 10.0).ceil() / 10.0
+}
+
+/// A kb/d for a year is 365 kb; at `price` dollars a barrel that is
+/// `365 × 1000 × price` dollars, here in billions. The one place oil is
+/// priced in this module: a leg, a district's oil output, the spend cap.
+pub fn oil_leg_bn_per_year(kb_d: f64, price: f64) -> f64 {
+    kb_d * 1000.0 * 365.0 * price / 1e9
+}
+
+/// The 1990 unit value in billions of dollars per one unit of `c`; none for
+/// oil, which is priced at the world price, and for a line with no sourced
+/// price.
+pub fn unit_price_bn(c: Commodity) -> Option<f64> {
+    tables().price[c.idx()].map(|usd| usd / 1e9)
+}
+
+/// What `per_month` units of `c` a month are worth over a year, $bn: the
+/// table's price, or the world price for oil.
+pub fn leg_bn_per_year(w: &WorldState, c: Commodity, per_month: f64) -> f64 {
+    if c == Commodity::Oil {
+        oil_leg_bn_per_year(per_month, w.oil_price)
+    } else {
+        per_month * 12.0 * unit_price_bn(c).unwrap_or(0.0)
+    }
+}
+
+/// A line can be contracted while it is tracked and priced. Oil is priced at
+/// the world price; every other tracked line carries its 1990 unit value
+/// (none is omitted today; a withdrawn figure or price falls out here by
+/// itself and the leg is refused with its sentence).
+pub fn contractable(c: Commodity) -> bool {
+    c.tracked() && (c == Commodity::Oil || tables().price[c.idx()].is_some())
+}
+
+/// The sentence a leg on a line with no 1990 figure gets (spec section 4.3).
+pub fn untracked_leg_sentence(c: Commodity) -> String {
+    format!("No 1990 figure is transcribed for {}; it cannot be contracted.", c.name())
+}
+
+/// A quantity as a card prints it: thousands separated, no more digits than
+/// the size warrants.
+fn human(q: f64) -> String {
+    let s = if q >= 100.0 {
+        format!("{q:.0}")
+    } else if q >= 10.0 {
+        format!("{q:.1}")
+    } else {
+        format!("{q:.2}")
+    };
+    let s = if s.contains('.') { s.trim_end_matches('0').trim_end_matches('.').to_string() } else { s };
+    let (int, frac) = match s.split_once('.') {
+        Some((i, f)) => (i.to_string(), Some(f.to_string())),
+        None => (s, None),
+    };
+    let digits: Vec<char> = int.chars().collect();
+    let mut out = String::new();
+    for (i, ch) in digits.iter().enumerate() {
+        if i > 0 && (digits.len() - i) % 3 == 0 {
+            out.push(',');
+        }
+        out.push(*ch);
+    }
+    match frac {
+        Some(f) => format!("{out}.{f}"),
+        None => out,
+    }
+}
+
+impl Leg {
+    /// One leg in words, for the signing headline and the contract line.
+    pub fn describe(&self) -> String {
+        match self {
+            Leg::Commodity { c: Commodity::Oil, per_month } => {
+                format!("{} kb/d of oil at the world price", human(*per_month))
+            }
+            Leg::Commodity { c, per_month } => format!("{} {}/mo of {}", human(*per_month), c.unit(), c.name()),
+            Leg::Money { bn_per_year } => format!("${bn_per_year:.1}bn a year"),
+            Leg::District { id } => {
+                format!("the district of {}", crate::districts::name_of(id).unwrap_or(id))
+            }
+        }
+    }
+}
+
+impl Contract {
+    /// The line a headline names the contract after: its first commodity
+    /// leg, or "supply" for a bundle of money and land.
+    pub fn label(&self) -> &'static str {
+        self.give
+            .iter()
+            .chain(self.take.iter())
+            .find_map(|l| match l {
+                Leg::Commodity { c, .. } => Some(c.name()),
+                _ => None,
+            })
+            .unwrap_or("supply")
+    }
+    pub fn other(&self, id: NationId) -> NationId {
+        if self.from == id {
+            self.to
+        } else {
+            self.from
+        }
+    }
+}
+
+/// How many districts `id` holds.
+pub fn holdings(w: &WorldState, id: NationId) -> usize {
+    w.districts.values().filter(|&&o| o == id).count()
+}
+
+/// A district's share of its holder's people (spec section 1.11): its 1990
+/// population share over the sum across every district the holder holds
+/// today. One definition, read by the land bars, the land premium and the
+/// transfer; zero for ground the holder does not hold.
+pub fn pop_share_of(w: &WorldState, holder: NationId, d: &str) -> f64 {
+    if w.districts.get(d) != Some(&holder) {
+        return 0.0;
+    }
+    let ps = &tables().file.pop_share;
+    let mine = ps.get(d).copied().unwrap_or(0.0);
+    let total: f64 = w
+        .districts
+        .iter()
+        .filter(|&(_, &o)| o == holder)
+        .map(|(id, _)| ps.get(id).copied().unwrap_or(0.0))
+        .sum();
+    if total > 0.0 {
+        mine / total
+    } else {
+        0.0
+    }
+}
+
+/// The 1990 oil the table locates in one district, kb/d.
+fn located_oil_kbd(d: &str) -> f64 {
+    let t = tables();
+    let start = t.district_rows.partition_point(|r| r.district.as_str() < d);
+    t.district_rows[start..]
+        .iter()
+        .take_while(|r| r.district == d)
+        .filter(|r| r.c == OIL)
+        .map(|r| r.share * t.production[r.owner_1990.index()][OIL])
+        .sum()
+}
+
+/// The share of `holder`'s oil ledger that sits in `d` (spec section 4.9):
+/// the district's located 1990 oil over everything the holder's districts
+/// locate plus what its own figure never located. An unlocated producer's
+/// districts locate nothing, so selling one moves no oil, and the card says
+/// "located in ceded ground: 0%".
+pub fn located_oil_fraction(w: &WorldState, holder: NationId, d: &str) -> f64 {
+    let t = tables();
+    let mut total: f64 =
+        w.districts.iter().filter(|&(_, &o)| o == holder).map(|(id, _)| located_oil_kbd(id)).sum();
+    if t.unlocated.get(holder.index()).is_some_and(|u| u[OIL]) {
+        total += t.production[holder.index()][OIL];
+    }
+    if total > 0.0 && w.districts.get(d) == Some(&holder) {
+        located_oil_kbd(d) / total
+    } else {
+        0.0
+    }
+}
+
+/// A district's 1990 output at 1990 prices, $bn a year: the located share of
+/// each line it carries times its 1990 owner's figure, oil at the world
+/// price. The one number a district is worth in a bundle.
+pub fn district_output_bn_per_year(w: &WorldState, d: &str) -> f64 {
+    let t = tables();
+    let start = t.district_rows.partition_point(|r| r.district.as_str() < d);
+    t.district_rows[start..]
+        .iter()
+        .take_while(|r| r.district == d)
+        .map(|r| {
+            let annual = r.share * t.production[r.owner_1990.index()][r.c];
+            let c = ALL[r.c];
+            if c == Commodity::Oil {
+                oil_leg_bn_per_year(annual, w.oil_price)
+            } else {
+                annual * unit_price_bn(c).unwrap_or(0.0)
+            }
+        })
+        .sum()
+}
+
+/// Whether `d` is being fought over: on any live conflict's front, or in the
+/// ground a conflict's principals contest (front.rs's contested set — the two
+/// principals' home-theatre districts — read here without building it).
+pub fn district_contested(w: &WorldState, d: &str) -> bool {
+    let Some(&owner) = w.districts.get(d) else { return false };
+    w.conflicts.iter().any(|c| {
+        if c.front.contains_key(d) {
+            return true;
+        }
+        let (att, def) = (c.attacker(), c.defender());
+        (owner == att && crate::theatre::is_home(w, att, c.theatre))
+            || (owner == def && att != def && crate::theatre::is_home(w, def, c.theatre))
+    })
+}
+
+/// The money side of one side of a bundle, $bn a year: its money legs and
+/// its oil legs at today's world price.
+fn money_of(w: &WorldState, legs: &[Leg]) -> f64 {
+    legs.iter()
+        .map(|l| match l {
+            Leg::Money { bn_per_year } => *bn_per_year,
+            Leg::Commodity { c: Commodity::Oil, per_month } => oil_leg_bn_per_year(*per_month, w.oil_price),
+            _ => 0.0,
+        })
+        .sum()
+}
+
+/// The money `id` pays under its live contracts, $bn a year.
+pub fn contracted_spend(w: &WorldState, id: NationId) -> f64 {
+    w.resources
+        .contracts
+        .iter()
+        .map(|k| {
+            if k.from == id {
+                money_of(w, &k.give)
+            } else if k.to == id {
+                money_of(w, &k.take)
+            } else {
+                0.0
+            }
+        })
+        .sum()
+}
+
+/// What `id` may still commit, $bn a year: `MAX_CONTRACT_SPEND` of its
+/// output less what it already pays.
+pub fn cap(w: &WorldState, id: NationId) -> f64 {
+    let gdp = w.nation_opt(id).map_or(0.0, |n| n.gdp);
+    MAX_CONTRACT_SPEND * gdp - contracted_spend(w, id)
+}
+
+/// The political price of ceding ground with a bundle (spec section 4.2):
+/// twenty, plus three hundred times the share of the ceder's people on it.
+pub fn land_premium(w: &WorldState, from: NationId, give: &[Leg]) -> f64 {
+    district_legs(give).map(|d| 20.0 + 300.0 * pop_share_of(w, from, d)).sum()
+}
+
+/// The receiver's ledger of a bundle over `years`, $bn: what comes in, what
+/// goes out, and the money the proposer pays per year — the one leg a
+/// counter moves. Spec section 4.4's value arithmetic, nothing else.
+fn value_of(
+    w: &WorldState,
+    h: &Have,
+    from: NationId,
+    to: NationId,
+    give: &[Leg],
+    take: &[Leg],
+    years: f64,
+) -> (f64, f64, f64) {
+    let rel = w.relation(from, to);
+    let hostility = 1.0 + (-rel).max(0.0) / 50.0;
+    let partners = w.pact_partners(to);
+    let patrons = w.patrons_of(to);
+    let bloc = if partners.iter().chain(patrons.iter()).any(|x| w.is_sanctioning(*x, from)) { 2.0 } else { 1.0 };
+    let draw_to = draw(w, to);
+    let (mut value_in, mut cost_out, mut money_in) = (0.0, 0.0, 0.0);
+    for l in give {
+        match l {
+            Leg::Commodity { c: Commodity::Oil, per_month } => {
+                value_in += years * oil_leg_bn_per_year(*per_month, w.oil_price);
+            }
+            Leg::Commodity { c, per_month } => {
+                let need = draw_to[c.idx()];
+                let gap = (need - supply_with(w, h, to, *c, need).available).max(0.0);
+                let covering = per_month.min(gap);
+                value_in += years
+                    * 12.0
+                    * unit_price_bn(*c).unwrap_or(0.0)
+                    * (covering * SCARCITY + (per_month - covering) * RESALE);
+            }
+            Leg::Money { bn_per_year } => {
+                value_in += bn_per_year * years;
+                money_in += bn_per_year;
+            }
+            Leg::District { id } => {
+                value_in += district_output_bn_per_year(w, id)
+                    * LAND_YEARS
+                    * (1.0 + 2.0 * crate::nations::claim_share(to, from));
+            }
+        }
+    }
+    for l in take {
+        match l {
+            Leg::Commodity { c: Commodity::Oil, per_month } => {
+                cost_out += years * oil_leg_bn_per_year(*per_month, w.oil_price);
+            }
+            Leg::Commodity { c, per_month } => {
+                let s = surplus_with(w, h, to, *c).max(DOLLAR);
+                cost_out += years
+                    * 12.0
+                    * unit_price_bn(*c).unwrap_or(0.0)
+                    * per_month
+                    * (1.0 + STRATEGIC * per_month / s)
+                    * hostility
+                    * bloc;
+            }
+            Leg::Money { bn_per_year } => cost_out += bn_per_year * years,
+            Leg::District { id } => {
+                cost_out += district_output_bn_per_year(w, id) * LAND_YEARS * SOVEREIGNTY;
+            }
+        }
+    }
+    (value_in, cost_out, money_in)
+}
+
+/// The one function (spec sections 1.9 and 4.4). Pure over `&WorldState`,
+/// from the receiver's chair; the AI, the buy pass and `/api/talks` all call
+/// it. Hard bars in order with fixed prose; then value in $bn over the term:
+/// accept if `gain ≥ MARGIN × cost_out`; else counter with the proposer's
+/// money raised to the price that makes the gain exactly the margin, the
+/// receiver's commodity legs clipped to its surplus; a counter above the
+/// proposer's cap is `NotForThatPrice`. A counter re-offered unchanged is
+/// accepted by construction.
+///
+/// The spec's sketch of the counter (4.4) wrote the price as
+/// `(MARGIN × cost − nonmoney_in) / T`, which lands the receiver at
+/// `gain = (MARGIN − 1) × cost` — a loss — and could never be accepted when
+/// re-offered; the sentence beside it ("the price that makes gain = MARGIN ×
+/// cost_out") is the model, and that is `((1 + MARGIN) × cost − nonmoney_in)
+/// / T`. Decided for the sentence; recorded here and in the test.
+pub fn evaluate(
+    w: &WorldState,
+    from: NationId,
+    to: NationId,
+    give: &[Leg],
+    take: &[Leg],
+    months: u32,
+) -> Verdict {
+    let h = have(w);
+    let h: &Have = &h;
+    // --- Hard bars, in order.
+    if crate::statecraft::belligerents(w, from, to) {
+        return Verdict::Refuse(Reason::AtWar);
+    }
+    if w.is_sanctioning(from, to) || w.is_sanctioning(to, from) {
+        return Verdict::Refuse(Reason::Embargoed);
+    }
+    let now = month_abs(w);
+    if w.resources.grievances.iter().any(|g| g.victim == to && g.breaker == from && g.until > now) {
+        return Verdict::Refuse(Reason::BrokeContract);
+    }
+    let rel = w.relation(from, to);
+    if rel < RELATION_FLOOR {
+        return Verdict::Refuse(Reason::Distrust);
+    }
+    for l in take {
+        if let Leg::Commodity { c, per_month } = l {
+            let s = surplus_with(w, h, to, *c);
+            if *per_month > s && s <= 0.0 {
+                return Verdict::Refuse(Reason::NoSurplus);
+            }
+        }
+    }
+    for (ceder, legs) in [(from, give), (to, take)] {
+        for d in district_legs(legs) {
+            if district_contested(w, d) {
+                return Verdict::Refuse(Reason::LandContested);
+            }
+            if pop_share_of(w, ceder, d) > NOT_FOR_SALE_POP {
+                return Verdict::Refuse(Reason::NotForSale);
+            }
+            if ceder == to && rel < LAND_TRUST {
+                return Verdict::Refuse(Reason::LandDistrust);
+            }
+            if w.nation_opt(ceder).map_or(0.0, |n| n.stability) < GOVERNMENT_FLOOR {
+                return Verdict::Refuse(Reason::GovernmentWouldFall);
+            }
+            if holdings(w, ceder) <= 1 {
+                return Verdict::Refuse(Reason::LastDistrict);
+            }
+        }
+    }
+    // --- Value.
+    let years = (months as f64 / 12.0).max(1.0 / 12.0);
+    let (value_in, cost_out, _) = value_of(w, h, from, to, give, take, years);
+    if value_in + DOLLAR >= (1.0 + MARGIN) * cost_out {
+        return Verdict::Accept;
+    }
+    // --- Counter: keep every leg, clip what the receiver gives to its
+    // surplus, and name the money that makes the clipped bundle worth it.
+    let clipped: Vec<Leg> = take
+        .iter()
+        .map(|l| match l {
+            Leg::Commodity { c, per_month } => {
+                Leg::Commodity { c: *c, per_month: per_month.min(surplus_with(w, h, to, *c).max(0.0)) }
+            }
+            other => other.clone(),
+        })
+        .collect();
+    let (value_in, cost_out, money_in) = value_of(w, h, from, to, give, &clipped, years);
+    let nonmoney_in = value_in - money_in * years;
+    let want = ceil10(((1.0 + MARGIN) * cost_out - nonmoney_in) / years);
+    if want <= money_in + DOLLAR {
+        // The clip alone did it: the same money, the receiver's own legs.
+        return Verdict::Counter { money_bn_per_year: money_in, take: clipped };
+    }
+    if want > cap(w, from) + DOLLAR {
+        return Verdict::Refuse(Reason::NotForThatPrice { bn_per_year: want });
+    }
+    Verdict::Counter { money_bn_per_year: want, take: clipped }
+}
+
+/// Why the world refuses a bundle outright (spec section 4.3): the shape,
+/// the term, the lines, the land, the proposer's spending cap, and then the
+/// receiver's hard bars — each with its sentence. Pure, so `world_refusal`
+/// can ask it before anything is priced and a refused ask costs nothing. A
+/// counter is NOT a refusal here: `dispatch` returns it as the error so the
+/// player reads the price, and `apply_command` charges only on `Ok`.
+pub fn deal_refusal(
+    w: &WorldState,
+    from: NationId,
+    to: NationId,
+    give: &[Leg],
+    take: &[Leg],
+    months: u32,
+) -> Option<String> {
+    validate_bundle(w, from, to, give, take, months, contractable)
+}
+
+/// `deal_refusal` with the line predicate injected, so the untracked arm can
+/// be exercised while every line in the table is tracked.
+fn validate_bundle(
+    w: &WorldState,
+    from: NationId,
+    to: NationId,
+    give: &[Leg],
+    take: &[Leg],
+    months: u32,
+    contractable: impl Fn(Commodity) -> bool,
+) -> Option<String> {
+    if from == to {
+        return Some("A nation cannot trade with itself.".into());
+    }
+    let alive = |id: NationId| w.nation_opt(id).is_some_and(|n| n.alive);
+    if !alive(from) || !alive(to) {
+        return Some("Nation no longer exists.".into());
+    }
+    let legs = give.len() + take.len();
+    let land = district_legs(give).count() + district_legs(take).count();
+    if legs > MAX_LEGS || land > 1 {
+        return Some("At most four legs, one of them land.".into());
+    }
+    for l in give.iter().chain(take) {
+        if let Leg::Commodity { c, .. } = l {
+            if !contractable(*c) {
+                return Some(untracked_leg_sentence(*c));
+            }
+        }
+    }
+    if !TERMS.contains(&months) {
+        return Some("Terms run 12, 36, 60 or 120 months.".into());
+    }
+    let money = |legs: &[Leg]| legs.iter().any(|l| matches!(l, Leg::Money { .. }));
+    let hollow = legs == 0
+        || (money(give) && money(take))
+        || give.iter().chain(take).any(|l| match l {
+            Leg::Commodity { per_month, .. } => !(per_month.is_finite() && *per_month > 0.0),
+            Leg::Money { bn_per_year } => !(bn_per_year.is_finite() && *bn_per_year >= 0.0),
+            Leg::District { id } => id.is_empty(),
+        });
+    if hollow {
+        return Some("A leg must carry something.".into());
+    }
+    for (ceder, legs) in [(from, give), (to, take)] {
+        for d in district_legs(legs) {
+            if w.districts.get(d) != Some(&ceder) {
+                return Some(format!("{} does not hold {}.", ceder.name(), d));
+            }
+        }
+    }
+    let gdp = w.nation(from).gdp;
+    if contracted_spend(w, from) + money_of(w, give) > MAX_CONTRACT_SPEND * gdp + DOLLAR {
+        return Some(format!("That would put {}'s contracted spending over 1% of output.", from.name()));
+    }
+    match evaluate(w, from, to, give, take, months) {
+        Verdict::Refuse(r) => Some(r.sentence()),
+        _ => None,
+    }
+}
+
+/// The signing sentence's summary: the side with the goods sends.
+fn summary(from: NationId, to: NationId, give: &[Leg], take: &[Leg], months: u32) -> String {
+    let words = |legs: &[Leg]| -> String {
+        if legs.is_empty() {
+            "nothing".to_string()
+        } else {
+            legs.iter().map(Leg::describe).collect::<Vec<_>>().join(", ")
+        }
+    };
+    let goods = |legs: &[Leg]| legs.iter().any(|l| !matches!(l, Leg::Money { .. }));
+    if goods(give) || !goods(take) {
+        format!("{} sends {} {} for {}, {} months", from.name(), to.name(), words(give), words(take), months)
+    } else {
+        format!("{} sends {} {} for {}, {} months", to.name(), from.name(), words(take), words(give), months)
+    }
+}
+
+/// Sign (spec section 4.5). Land moves now, by consent, through the one
+/// transfer function; the contract is pushed in creation order; +5 relation;
+/// the headline. `w.rng` untouched. Returns the contract's id.
+pub(crate) fn sign(
+    w: &mut WorldState,
+    from: NationId,
+    to: NationId,
+    give: &[Leg],
+    take: &[Leg],
+    months: u32,
+) -> Result<u32, String> {
+    for (ceder, receiver, legs) in [(from, to, give), (to, from, take)] {
+        let land: Vec<String> = district_legs(legs).map(str::to_string).collect();
+        for d in land {
+            crate::districts::transfer_district(w, ceder, receiver, &d)?;
+        }
+    }
+    w.resources.next_id += 1;
+    let id = w.resources.next_id;
+    let since = month_abs(w);
+    w.resources.contracts.push(Contract {
+        id,
+        from,
+        to,
+        give: give.to_vec(),
+        take: take.to_vec(),
+        months_left: months,
+        months_total: months,
+        since,
+        depth: 0.0,
+    });
+    w.shift_relation(from, to, SIGN_RELATION);
+    w.headline(format!(
+        "{} and {} sign a supply contract: {}.",
+        from.name(),
+        to.name(),
+        summary(from, to, give, take, months)
+    ));
+    Ok(id)
+}
+
+/// `AcceptDeal`: the offer must exist and be addressed to `nation`; it is
+/// signed at its own terms (evaluated from the AI's side when it was made,
+/// so the AI accepts by construction), removed, and any refusal the buyer
+/// remembered of this seller on the lines it now gets is forgotten.
+pub(crate) fn accept_offer(w: &mut WorldState, nation: NationId, offer: u32) -> Result<(), String> {
+    let pos = w
+        .resources
+        .offers
+        .iter()
+        .position(|o| o.id == offer && o.to == nation)
+        .ok_or("No such offer.")?;
+    let o = w.resources.offers[pos].clone();
+    sign(w, o.from, o.to, &o.give, &o.take, o.months)?;
+    w.resources.offers.remove(pos);
+    let sold: Vec<Commodity> = o
+        .take
+        .iter()
+        .filter_map(|l| match l {
+            Leg::Commodity { c, .. } => Some(*c),
+            _ => None,
+        })
+        .collect();
+    w.resources
+        .refusals
+        .retain(|r| !(r.buyer == o.from && r.seller == nation && sold.contains(&r.c)));
+    Ok(())
+}
+
+/// `DeclineDeal`: the offer is removed and nothing else happens. Free, and
+/// no memory: the player said no once, which is what an AI seller's "no" is.
+pub(crate) fn decline_offer(w: &mut WorldState, nation: NationId, offer: u32) -> Result<(), String> {
+    let pos = w
+        .resources
+        .offers
+        .iter()
+        .position(|o| o.id == offer && o.to == nation)
+        .ok_or("No such offer.")?;
+    w.resources.offers.remove(pos);
+    Ok(())
+}
+
+/// `CancelDeal`: never refused beyond existence. The contract goes; the
+/// breaker pays `abrogate_trade`'s reputation and relation, and the other
+/// side remembers for three years.
+pub(crate) fn cancel_contract(w: &mut WorldState, nation: NationId, contract: u32) -> Result<(), String> {
+    let pos = w
+        .resources
+        .contracts
+        .iter()
+        .position(|k| k.id == contract && (k.from == nation || k.to == nation))
+        .ok_or("No such contract.")?;
+    let k = w.resources.contracts.remove(pos);
+    let other = k.other(nation);
+    w.shift_reputation(nation, CANCEL_REPUTATION);
+    w.shift_relation(nation, other, CANCEL_RELATION);
+    let until = month_abs(w) + GRIEVANCE_MONTHS;
+    match w.resources.grievances.iter_mut().find(|g| g.victim == other && g.breaker == nation) {
+        Some(g) => g.until = g.until.max(until),
+        None => w.resources.grievances.push(Grievance { victim: other, breaker: nation, until }),
+    }
+    w.headline(format!("{} tears up its supply contract with {}.", nation.name(), other.name()));
+    Ok(())
+}
+
+/// A contract is leverage (spec section 4.7): over every line, the
+/// depth-weighted share of `id`'s sourcing of that line that comes from
+/// `partner` under contract — `Σ depth × in_from_partner / (own/12 + in_all)`
+/// — and the largest such share is the dependency. `WorldState::
+/// trade_dependency` returns the larger of this and the pact form, so
+/// commitment.rs and theatre.rs feel a contract for free. Free while there
+/// are no contracts, which is every world the suite runs.
+pub fn contract_dependency(w: &WorldState, id: NationId, partner: NationId) -> f64 {
+    if w.resources.contracts.is_empty() {
+        return 0.0;
+    }
+    let h = have(w);
+    let h: &Have = &h;
+    let mut best: f64 = 0.0;
+    for c in ALL {
+        if c == Commodity::Oil {
+            continue;
+        }
+        let (mut from_partner, mut all) = (0.0, 0.0);
+        for k in &w.resources.contracts {
+            let (giver, legs) = if k.to == id {
+                (k.from, &k.give)
+            } else if k.from == id {
+                (k.to, &k.take)
+            } else {
+                continue;
+            };
+            let promised: f64 = commodity_legs(legs).filter(|(lc, _)| *lc == c).map(|(_, p)| p).sum();
+            if promised <= 0.0 {
+                continue;
+            }
+            let q = promised * delivery_ratio_with(w, h, giver, c);
+            all += q;
+            if giver == partner {
+                from_partner += k.depth * q;
+            }
+        }
+        if from_partner <= 0.0 {
+            continue;
+        }
+        let total = (flow_of(h, id, c) / 12.0 + all).max(1e-9);
+        best = best.max(from_partner / total);
+    }
+    best
 }
 
 #[cfg(test)]
@@ -1847,5 +2759,823 @@ mod tests {
         // Same state, same answer, no RNG: twice over.
         assert_eq!(supply(&w2, japan, Commodity::Iron, need), s3);
         assert_eq!(month_abs(&w), 0);
+    }
+
+    // -----------------------------------------------------------------
+    // Package S2 — player trade (spec section 4.10, and the brief's five:
+    // evaluate is pure, a contract delivers and expires, a breach is
+    // charged through the reneging path, a land transfer conserves
+    // ownership, and two worlds with the same deals are byte-identical).
+    // Nothing here fires without a command, which is why both goldens'
+    // actuals stay where S1 left them (lib.rs, `the_resource_layer_is_
+    // inert_*`: 0xa5c9c5b2306313d8 and 0x20c24ab0f1581807, re-pinned by
+    // nothing).
+    // -----------------------------------------------------------------
+
+    use crate::{apply_command, tick_month, Command};
+
+    fn money(bn: f64) -> Leg {
+        Leg::Money { bn_per_year: bn }
+    }
+    fn com(c: Commodity, per_month: f64) -> Leg {
+        Leg::Commodity { c, per_month }
+    }
+    fn land(id: &str) -> Leg {
+        Leg::District { id: id.to_string() }
+    }
+    fn propose(
+        w: &mut WorldState,
+        from: NationId,
+        to: NationId,
+        give: Vec<Leg>,
+        take: Vec<Leg>,
+        months: u32,
+    ) -> Result<(), String> {
+        apply_command(w, &Command::ProposeDeal { from, to, give, take, months })
+    }
+    /// The price a counter names: "We would want $X bn a year."
+    fn asked(err: &str) -> f64 {
+        err.strip_prefix("We would want $")
+            .and_then(|s| s.strip_suffix(" bn a year."))
+            .unwrap_or_else(|| panic!("not a counter: {err}"))
+            .parse()
+            .unwrap()
+    }
+    /// Ask at zero, take the counter, sign. Returns the money agreed.
+    fn buy(w: &mut WorldState, buyer: NationId, seller: NationId, c: Commodity, per_month: f64, months: u32) -> f64 {
+        let e = propose(w, buyer, seller, vec![money(0.0)], vec![com(c, per_month)], months).unwrap_err();
+        let m = asked(&e);
+        propose(w, buyer, seller, vec![money(m)], vec![com(c, per_month)], months).unwrap();
+        m
+    }
+    /// A seat with the standing to spend, open to `other`: no sanction
+    /// either way and a warm relation, so only the bar under test answers.
+    fn seat(w: &mut WorldState, id: NationId, other: NationId) {
+        w.player = Some(id);
+        w.nation_mut(id).political_capital = 100.0;
+        w.sanctions.retain(|(a, b)| !((*a == id && *b == other) || (*a == other && *b == id)));
+        w.set_relation(id, other, 60.0);
+    }
+    fn near(a: f64, b: f64, tol: f64) -> bool {
+        (a - b).abs() <= tol
+    }
+
+    /// Acceptance item 7. `evaluate` is a pure function of state: the same
+    /// world answers the same way two hundred times, a clone answers
+    /// identically, and asking leaves no trace in the save. The four commands
+    /// consume no randomness — `w.rng` is bit-identical across a signing, a
+    /// declined offer, an accepted one and a cancellation — and the same
+    /// sequence on the clone lands on the same bytes.
+    #[test]
+    fn a_deal_is_a_pure_function_of_state() {
+        let (japan, australia) = (code("Japan"), code("Australia"));
+        let mut w = built(world_1990(GameRules::default()));
+        seat(&mut w, japan, australia);
+        let give = vec![money(0.4)];
+        let take = vec![com(Commodity::Bauxite, 8_000.0)];
+        let first = evaluate(&w, japan, australia, &give, &take, 60);
+        assert!(matches!(first, Verdict::Accept | Verdict::Counter { .. }), "{first:?}");
+        let twin = w.clone();
+        let before = crate::save(&w);
+        for _ in 0..200 {
+            assert_eq!(evaluate(&w, japan, australia, &give, &take, 60), first);
+            assert_eq!(evaluate(&twin, japan, australia, &give, &take, 60), first);
+            assert_eq!(deal_refusal(&w, japan, australia, &give, &take, 60), None);
+        }
+        assert_eq!(crate::save(&w), before, "evaluate wrote something");
+
+        let script = |w: &mut WorldState| -> (u32, f64) {
+            let rng = w.rng.state;
+            let m = buy(w, japan, australia, Commodity::Bauxite, 8_000.0, 60);
+            assert_eq!(w.rng.state, rng, "ProposeDeal rolled a die");
+            let contract = w.resources.contracts[0].id;
+            for (id, accept) in [(101u32, false), (102u32, true)] {
+                w.resources.offers.push(Offer {
+                    id,
+                    from: australia,
+                    to: japan,
+                    give: vec![money(0.2)],
+                    take: vec![com(Commodity::Iron, 100.0)],
+                    months: 12,
+                    expires: 6,
+                });
+                let c = if accept {
+                    Command::AcceptDeal { nation: japan, offer: id }
+                } else {
+                    Command::DeclineDeal { nation: japan, offer: id }
+                };
+                apply_command(w, &c).unwrap();
+                assert_eq!(w.rng.state, rng, "{c:?} rolled a die");
+            }
+            assert!(w.resources.offers.is_empty());
+            assert_eq!(w.resources.contracts.len(), 2);
+            apply_command(w, &Command::CancelDeal { nation: japan, contract }).unwrap();
+            assert_eq!(w.rng.state, rng, "CancelDeal rolled a die");
+            assert_eq!(w.resources.contracts.len(), 1);
+            (contract, m)
+        };
+        let mut twin = twin;
+        assert_eq!(script(&mut w), script(&mut twin));
+        assert_eq!(crate::save(&w), crate::save(&twin));
+    }
+
+    /// Acceptance item 7: each hard bar, provoked once, answers with its
+    /// sentence exactly — through `deal_refusal` and through the command —
+    /// and charges nothing. `LastDistrict` is answered at the transfer
+    /// itself: the ordered bars put "Nobody sells their people" first, and a
+    /// nation holding one district holds all of its people in it. The shape
+    /// bars of section 4.3 follow, each uncharged.
+    #[test]
+    fn every_refusal_has_its_sentence() {
+        let (japan, australia, usa, canada, mexico, iraq, kuwait) = (
+            code("Japan"),
+            code("Australia"),
+            code("USA"),
+            code("Canada"),
+            code("Mexico"),
+            code("Iraq"),
+            code("Kuwait"),
+        );
+        let bauxite = vec![com(Commodity::Bauxite, 8_000.0)];
+        let fresh = || built(world_1990(GameRules::default()));
+        let check = |w: &mut WorldState, from: NationId, to: NationId, give: Vec<Leg>, take: Vec<Leg>, months: u32, want: &str| {
+            w.nation_mut(from).political_capital = 50.0;
+            let said = deal_refusal(w, from, to, &give, &take, months);
+            assert_eq!(said.as_deref(), Some(want));
+            let e = propose(w, from, to, give, take, months).unwrap_err();
+            assert_eq!(e, want);
+            assert_eq!(w.nation(from).political_capital, 50.0, "{want:?} was charged");
+        };
+
+        // AtWar: the receiver is fighting the proposer.
+        let mut w = fresh();
+        seat(&mut w, iraq, kuwait);
+        let th = crate::war::theatre_between(&w, iraq, kuwait);
+        crate::commitment::open_conflict(&mut w, iraq, kuwait, th).unwrap();
+        check(&mut w, iraq, kuwait, vec![money(0.0)], vec![com(Commodity::Gas, 1.0)], 60, &Reason::AtWar.sentence());
+
+        // Embargoed: a sanction either way.
+        let mut w = fresh();
+        seat(&mut w, japan, australia);
+        w.sanctions.push((australia, japan));
+        check(&mut w, japan, australia, vec![money(0.0)], bauxite.clone(), 60, &Reason::Embargoed.sentence());
+
+        // BrokeContract: a live grievance.
+        let mut w = fresh();
+        seat(&mut w, japan, australia);
+        let until = month_abs(&w) + GRIEVANCE_MONTHS;
+        w.resources.grievances.push(Grievance { victim: australia, breaker: japan, until });
+        check(&mut w, japan, australia, vec![money(0.0)], bauxite.clone(), 60, &Reason::BrokeContract.sentence());
+
+        // Distrust: under the relation floor.
+        let mut w = fresh();
+        seat(&mut w, japan, australia);
+        w.set_relation(japan, australia, RELATION_FLOOR - 1.0);
+        check(&mut w, japan, australia, vec![money(0.0)], bauxite.clone(), 60, &Reason::Distrust.sentence());
+
+        // NoSurplus: Japan mines no bauxite.
+        let mut w = fresh();
+        seat(&mut w, australia, japan);
+        assert!(surplus(&w, japan, Commodity::Bauxite) <= 0.0);
+        check(&mut w, australia, japan, vec![money(0.0)], bauxite.clone(), 60, &Reason::NoSurplus.sentence());
+
+        // LandContested: Alaska on the front of somebody else's war.
+        let mut w = fresh();
+        seat(&mut w, usa, canada);
+        let th = crate::war::theatre_between(&w, mexico, usa);
+        let id = crate::commitment::open_conflict(&mut w, mexico, usa, th).unwrap();
+        w.conflict_mut(id).unwrap().front.insert("US-AK".into(), 1.0);
+        assert!(district_contested(&w, "US-AK"));
+        check(&mut w, usa, canada, vec![land("US-AK")], vec![money(0.0)], 60, &Reason::LandContested.sentence());
+
+        // NotForSale: the most populous American district.
+        let mut w = fresh();
+        seat(&mut w, usa, canada);
+        let big = w
+            .districts
+            .iter()
+            .filter(|&(_, &o)| o == usa)
+            .map(|(d, _)| d.clone())
+            .max_by(|a, b| pop_share_of(&w, usa, a).partial_cmp(&pop_share_of(&w, usa, b)).unwrap())
+            .unwrap();
+        assert!(pop_share_of(&w, usa, &big) > NOT_FOR_SALE_POP);
+        check(&mut w, usa, canada, vec![land(&big)], vec![money(0.0)], 60, &Reason::NotForSale.sentence());
+
+        // LandDistrust: the receiver cedes to a state it does not trust.
+        let mut w = fresh();
+        seat(&mut w, canada, usa);
+        w.set_relation(canada, usa, LAND_TRUST - 1.0);
+        check(&mut w, canada, usa, vec![money(0.0)], vec![land("US-AK")], 60, &Reason::LandDistrust.sentence());
+
+        // GovernmentWouldFall: the ceder's government is too weak.
+        let mut w = fresh();
+        seat(&mut w, canada, usa);
+        w.set_relation(canada, usa, 100.0);
+        w.nation_mut(usa).stability = GOVERNMENT_FLOOR - 1.0;
+        check(&mut w, canada, usa, vec![money(0.0)], vec![land("US-AK")], 60, &Reason::GovernmentWouldFall.sentence());
+
+        // LastDistrict: Kuwait down to Al Ahmadi.
+        let mut w = fresh();
+        seat(&mut w, kuwait, iraq);
+        let others: Vec<String> =
+            w.districts.iter().filter(|&(d, &o)| o == kuwait && d != "KW-AH").map(|(d, _)| d.clone()).collect();
+        for d in others {
+            w.districts.insert(d, iraq);
+        }
+        w.districts_epoch = w.districts_epoch.wrapping_add(1);
+        assert_eq!(holdings(&w, kuwait), 1);
+        assert_eq!(
+            crate::districts::transfer_district(&mut w, kuwait, iraq, "KW-AH"),
+            Err(Reason::LastDistrict.sentence())
+        );
+        assert_eq!(pop_share_of(&w, kuwait, "KW-AH"), 1.0);
+        check(&mut w, kuwait, iraq, vec![land("KW-AH")], vec![money(0.0)], 60, &Reason::NotForSale.sentence());
+
+        // NotForThatPrice: the smallest economy on the board asks for a
+        // million tonnes of bauxite a month.
+        let mut w = fresh();
+        let small = w
+            .nations
+            .iter()
+            .filter(|n| n.alive && n.id != australia)
+            .min_by(|a, b| a.gdp.partial_cmp(&b.gdp).unwrap())
+            .unwrap()
+            .id;
+        seat(&mut w, small, australia);
+        let ask = vec![com(Commodity::Bauxite, 1_000_000.0)];
+        let said = deal_refusal(&w, small, australia, &[money(0.0)], &ask, 60).expect("a refusal");
+        assert!(said.starts_with("Not for that price: we would want $") && said.ends_with(" bn a year."), "{said}");
+        let want: f64 = said
+            .trim_start_matches("Not for that price: we would want $")
+            .trim_end_matches(" bn a year.")
+            .parse()
+            .unwrap();
+        assert!(want > cap(&w, small), "{want} vs cap {}", cap(&w, small));
+        assert_eq!(Reason::NotForThatPrice { bn_per_year: want }.sentence(), said);
+        check(&mut w, small, australia, vec![money(0.0)], ask, 60, &said);
+
+        // The two the receiver never says in this cut, pinned all the same.
+        assert_eq!(Reason::LastDistrict.sentence(), "It is all we have.");
+        assert_eq!(Reason::Unanswered.sentence(), "You let our last offer lapse.");
+
+        // The shape bars, each uncharged.
+        let mut w = fresh();
+        seat(&mut w, japan, australia);
+        let cases: Vec<(Vec<Leg>, Vec<Leg>, u32, &str)> = vec![
+            (vec![money(0.0)], bauxite.clone(), 13, "Terms run 12, 36, 60 or 120 months."),
+            (vec![money(0.0), land("JP-01"), land("JP-05")], bauxite.clone(), 60, "At most four legs, one of them land."),
+            (vec![money(0.0)], vec![money(1.0)], 60, "A leg must carry something."),
+            (vec![money(0.0)], vec![com(Commodity::Bauxite, 0.0)], 60, "A leg must carry something."),
+            (vec![land("AU-WA")], vec![money(0.0)], 60, "Japan does not hold AU-WA."),
+            (vec![money(1e9)], bauxite.clone(), 60, "That would put Japan's contracted spending over 1% of output."),
+        ];
+        for (give, take, months, want) in cases {
+            check(&mut w, japan, australia, give, take, months, want);
+        }
+        assert_eq!(
+            deal_refusal(&w, japan, japan, &[money(0.0)], &bauxite, 60).as_deref(),
+            Some("A nation cannot trade with itself.")
+        );
+    }
+
+    /// Acceptance item 7. Ask at zero: the answer is the price, as an error,
+    /// and nothing is charged. Ask again at that price: signed, three
+    /// political capital charged once, +5 relation, the headline exact, a
+    /// tenth of a billion less and the seller counters again. Ask for more
+    /// than the seller has: the counter clips the leg to the seller's
+    /// surplus and, re-offered with the clipped leg, is accepted by
+    /// construction — the spec's sentence ("the price that makes gain =
+    /// MARGIN × cost_out"), not its sketch's formula, which landed the
+    /// receiver at a loss.
+    #[test]
+    fn a_counter_re_offered_is_accepted() {
+        let (japan, australia) = (code("Japan"), code("Australia"));
+        let mut w = built(world_1990(GameRules::default()));
+        seat(&mut w, japan, australia);
+        let q = 8_000.0;
+        let e = propose(&mut w, japan, australia, vec![money(0.0)], vec![com(Commodity::Bauxite, q)], 60).unwrap_err();
+        let m = asked(&e);
+        assert!(m > 0.0 && near((m * 10.0).round(), m * 10.0, 1e-9), "{m} is not a tenth of a billion");
+        assert_eq!(w.nation(japan).political_capital, 100.0, "a counter was charged");
+        assert!(w.resources.contracts.is_empty());
+        assert_ne!(
+            evaluate(&w, japan, australia, &[money(m - 0.1)], &[com(Commodity::Bauxite, q)], 60),
+            Verdict::Accept
+        );
+        let rel = w.relation(japan, australia);
+        propose(&mut w, japan, australia, vec![money(m)], vec![com(Commodity::Bauxite, q)], 60).unwrap();
+        assert_eq!(w.nation(japan).political_capital, 97.0);
+        assert_eq!(w.relation(japan, australia), rel + SIGN_RELATION);
+        let k = &w.resources.contracts[0];
+        assert_eq!(
+            (k.id, k.from, k.to, k.months_left, k.months_total, k.since, k.depth),
+            (1, japan, australia, 60, 60, 0, 0.0)
+        );
+        assert_eq!(k.give, vec![money(m)]);
+        assert_eq!(k.take, vec![com(Commodity::Bauxite, q)]);
+        let expected = format!(
+            "Japan and Australia sign a supply contract: Australia sends Japan 8,000 t/mo of bauxite for ${m:.1}bn a year, 60 months."
+        );
+        assert_eq!(w.headlines.last(), Some(&expected));
+        assert!(crate::save(&w).contains("\"contracts\""));
+
+        // Clipping: more than Australia can spare.
+        let s = surplus(&w, australia, Commodity::Bauxite);
+        assert!(s > 0.0);
+        let big = s * 3.0;
+        match evaluate(&w, japan, australia, &[money(0.0)], &[com(Commodity::Bauxite, big)], 36) {
+            Verdict::Counter { money_bn_per_year, take } => {
+                assert_eq!(take, vec![com(Commodity::Bauxite, s)]);
+                assert_eq!(evaluate(&w, japan, australia, &[money(money_bn_per_year)], &take, 36), Verdict::Accept);
+                assert_ne!(
+                    evaluate(&w, japan, australia, &[money(money_bn_per_year)], &[com(Commodity::Bauxite, big)], 36),
+                    Verdict::Accept
+                );
+            }
+            other => panic!("{other:?}"),
+        }
+    }
+
+    /// Acceptance item 7. A leg on a line with no 1990 figure is a hard
+    /// error with its sentence. Since package D2 (fork F3) every line in the
+    /// table is tracked and priced, so the arm is exercised with the line
+    /// predicate injected; the live predicate lets a cobalt leg through to
+    /// the receiver's own answer. Hard errors charge nothing.
+    #[test]
+    fn an_untracked_leg_is_refused_uncharged() {
+        let (japan, australia) = (code("Japan"), code("Australia"));
+        let mut w = built(world_1990(GameRules::default()));
+        seat(&mut w, japan, australia);
+        let give = vec![money(0.0)];
+        let take = vec![com(Commodity::Cobalt, 1.0)];
+        let said = validate_bundle(&w, japan, australia, &give, &take, 36, |c| c != Commodity::Cobalt);
+        assert_eq!(said.as_deref(), Some("No 1990 figure is transcribed for cobalt; it cannot be contracted."));
+        assert_eq!(untracked_leg_sentence(Commodity::RareEarths), "No 1990 figure is transcribed for rare earths; it cannot be contracted.");
+        assert!(ALL.iter().all(|c| contractable(*c)), "every line is tracked and priced since D2");
+        let live = deal_refusal(&w, japan, australia, &give, &take, 36);
+        assert_ne!(live, Some(untracked_leg_sentence(Commodity::Cobalt)));
+        // A hard error through the command costs nothing.
+        let e = propose(&mut w, japan, australia, give, take, 13).unwrap_err();
+        assert_eq!(e, "Terms run 12, 36, 60 or 120 months.");
+        assert_eq!(w.nation(japan).political_capital, 100.0);
+    }
+
+    /// Acceptance item 8, ruling 2 on the money side. Japan buys 8 kt/mo of
+    /// bauxite from Australia for five years; a control world signs nothing.
+    /// Every quantity the growth model reads — gdp, growth_last, oil_mbd,
+    /// mil_strength, munitions, stability, the arsenal's book value — is
+    /// bit-identical between the two for every nation every month; the
+    /// buyer's debt runs above the control's and the seller's below it from
+    /// the first delivery; no trade pact is created and no level gain paid
+    /// (the pact lists and `trade_level_paid` agree between the arms); the
+    /// RNG stream never parts.
+    ///
+    /// Construction: Japan is the seat (the fiscal AI skips it), aggression
+    /// is off (no appetite reads a debt), and the pair's relation sits at
+    /// 100 in both arms so the signing's +5 clamps to nothing. The rules
+    /// that read a debt — the fiscal AI's consolidation at 0.85 and 0.30,
+    /// the economy's drag at 0.90 — are asserted to have fired the same way
+    /// in both arms every month: a threshold straddled by a 0.02%-of-output
+    /// transfer would be that rule speaking, not growth, and the test says
+    /// so rather than reading it as a growth effect. (A first construction
+    /// pinned both debts to 0.50; Australia's decayed to 0.306 by month 28,
+    /// which is how the sim's own paydown rate came to be known here.)
+    #[test]
+    fn a_contract_touches_no_growth() {
+        let (japan, australia) = (code("Japan"), code("Australia"));
+        let mk = || {
+            let mut w = world_1990(GameRules::default());
+            w.rules.ai_aggression = 0.0;
+            seat(&mut w, japan, australia);
+            w.set_relation(japan, australia, 100.0);
+            w
+        };
+        let (mut control, mut treated) = (mk(), mk());
+        let m = buy(&mut treated, japan, australia, Commodity::Bauxite, 8_000.0, 60);
+        assert!(m > 0.0);
+        assert_eq!(treated.rng.state, control.rng.state);
+        assert_eq!(treated.relation(japan, australia), 100.0);
+        for month in 0..60 {
+            tick_month(&mut control, &[]);
+            tick_month(&mut treated, &[]);
+            assert_eq!(treated.rng.state, control.rng.state, "month {month}: the streams parted");
+            assert_eq!(control.nations.len(), treated.nations.len());
+            for (a, b) in control.nations.iter().zip(&treated.nations) {
+                assert_eq!(a.id, b.id);
+                let pairs = [
+                    ("gdp", a.gdp, b.gdp),
+                    ("growth_last", a.growth_last, b.growth_last),
+                    ("oil_mbd", a.oil_mbd, b.oil_mbd),
+                    ("mil_strength", a.mil_strength, b.mil_strength),
+                    ("munitions", a.munitions, b.munitions),
+                    ("stability", a.stability, b.stability),
+                    ("book_value", crate::arsenal::book_value(a), crate::arsenal::book_value(b)),
+                ];
+                for (name, x, y) in pairs {
+                    assert_eq!(x.to_bits(), y.to_bits(), "month {month} {}: {name} {x} vs {y}", a.id.code());
+                }
+            }
+            for id in [japan, australia] {
+                let (c, t) = (control.nation(id).debt_gdp, treated.nation(id).debt_gdp);
+                for bar in [0.30, 0.85, 0.90] {
+                    assert_eq!(c < bar, t < bar, "month {month}: {} debt {c} vs {t} straddles {bar}", id.code());
+                }
+            }
+            assert!(treated.nation(japan).debt_gdp > control.nation(japan).debt_gdp, "month {month}");
+            assert!(treated.nation(australia).debt_gdp < control.nation(australia).debt_gdp, "month {month}");
+            assert_eq!(treated.statecraft.trade, control.statecraft.trade, "month {month}: the contract made a pact");
+            for id in [japan, australia] {
+                assert_eq!(treated.nation(id).trade_level_paid, control.nation(id).trade_level_paid);
+            }
+        }
+        assert!(treated.resources.contracts.is_empty(), "the term ran out at sixty");
+    }
+
+    /// The brief's "a contract delivers and expires". A twelve-month
+    /// contract: each delivery moves the buyer's debt up by exactly
+    /// `bn/12/gdp` and the seller's down by the same, deepens by 0.012 and
+    /// counts a month off; the twelfth removes it with its headline; the
+    /// delivery itself touches no reputation and no relation.
+    #[test]
+    fn a_contract_delivers_and_expires() {
+        let (japan, australia) = (code("Japan"), code("Australia"));
+        let mut w = built(world_1990(GameRules::default()));
+        seat(&mut w, japan, australia);
+        let m = buy(&mut w, japan, australia, Commodity::Bauxite, 8_000.0, 12);
+        let (rep_j, rep_a, rel) = (w.reputation(japan), w.reputation(australia), w.relation(japan, australia));
+        for k in 1..=12u32 {
+            let (dj, gj) = (w.nation(japan).debt_gdp, w.nation(japan).gdp);
+            let (da, ga) = (w.nation(australia).debt_gdp, w.nation(australia).gdp);
+            let want_j = dj + m / 12.0 / gj.max(0.1);
+            let want_a = (da - m / 12.0 / ga.max(0.1)).max(0.0);
+            w.headlines.clear();
+            tick(&mut w);
+            assert_eq!(w.nation(japan).debt_gdp.to_bits(), want_j.to_bits(), "delivery {k}");
+            assert_eq!(w.nation(australia).debt_gdp.to_bits(), want_a.to_bits(), "delivery {k}");
+            if k < 12 {
+                let c = &w.resources.contracts[0];
+                assert_eq!(c.months_left, 12 - k);
+                assert!(near(c.depth, DEPTH_RATE * k as f64, 1e-12));
+                assert!(w.headlines.is_empty(), "{:?}", w.headlines);
+            } else {
+                assert!(w.resources.contracts.is_empty());
+                assert_eq!(w.headlines, vec!["The bauxite contract between Japan and Australia has run its term.".to_string()]);
+            }
+            assert_eq!((w.reputation(japan), w.reputation(australia), w.relation(japan, australia)), (rep_j, rep_a, rel));
+        }
+        // A thirteenth tick finds nothing to deliver and nothing to say.
+        let (dj, da) = (w.nation(japan).debt_gdp, w.nation(australia).debt_gdp);
+        w.headlines.clear();
+        tick(&mut w);
+        assert_eq!((w.nation(japan).debt_gdp, w.nation(australia).debt_gdp), (dj, da));
+        assert!(w.headlines.is_empty());
+    }
+
+    /// Acceptance item 8. Japan takes two million tonnes of bauxite a month
+    /// from Australia — within its surplus at signing. Indonesia takes
+    /// Western Australia, where most of it is mined: the next delivery, the
+    /// seller's flow no longer covers what it promised, so the buyer's
+    /// `supply().contracts` is scaled by flow ÷ promised, the headline prints
+    /// once, the contract stands, and neither reputation nor relation moves.
+    #[test]
+    fn force_majeure_is_pro_rata_and_uncharged() {
+        let (japan, australia, indonesia) = (code("Japan"), code("Australia"), code("Indonesia"));
+        let mut w = built(world_1990(GameRules::default()));
+        seat(&mut w, japan, australia);
+        let q = 2_000_000.0;
+        assert!(surplus(&w, australia, Commodity::Bauxite) > q);
+        buy(&mut w, japan, australia, Commodity::Bauxite, q, 60);
+        assert_eq!(w.resources.contracts[0].take, vec![com(Commodity::Bauxite, q)]);
+        assert_eq!(supply(&w, japan, Commodity::Bauxite, q).contracts, q);
+        assert_eq!(delivery_ratio(&w, australia, Commodity::Bauxite), 1.0);
+
+        assert_eq!(w.districts.get("AU-WA"), Some(&australia));
+        w.districts.insert("AU-WA".into(), indonesia);
+        w.districts_epoch = w.districts_epoch.wrapping_add(1);
+        let (rep, rel) = (w.reputation(australia), w.relation(japan, australia));
+        w.headlines.clear();
+        tick(&mut w);
+        let left = flow(&w, australia, Commodity::Bauxite) / 12.0;
+        assert!(left > 0.0 && left < q, "Australia keeps {left} t/mo against a promise of {q}");
+        let ratio = delivery_ratio(&w, australia, Commodity::Bauxite);
+        assert!(near(ratio, left / q, 1e-12));
+        let s = supply(&w, japan, Commodity::Bauxite, q);
+        assert!(near(s.contracts, left, 1e-6), "{} vs {left}", s.contracts);
+        assert!(near(s.contracts, q * ratio, 1e-6));
+        let expected = "Australia cannot deliver all of its bauxite this month; contracts are filled pro rata.";
+        assert_eq!(w.headlines.iter().filter(|h| h.as_str() == expected).count(), 1, "{:?}", w.headlines);
+        assert_eq!(w.resources.contracts.len(), 1);
+        assert_eq!(w.resources.contracts[0].months_left, 59);
+        assert_eq!((w.reputation(australia), w.relation(japan, australia)), (rep, rel));
+        // The seller's surplus reads the shortfall too.
+        assert!(surplus(&w, australia, Commodity::Bauxite) < 0.0);
+        // Next month, the same sentence once more — once per giver, line and month.
+        w.headlines.clear();
+        tick(&mut w);
+        assert_eq!(w.headlines.iter().filter(|h| h.as_str() == expected).count(), 1);
+    }
+
+    /// Acceptance item 8; the brief's "breach is charged through the existing
+    /// reneging path". Tearing up a contract at zero political capital is
+    /// never refused: the standing stays at zero, reputation falls by
+    /// `abrogate_trade`'s six, the relation by its twenty-five, and the other
+    /// side answers every ask from the breaker with "You broke your last
+    /// contract with us." for thirty-six months and with a price in the
+    /// thirty-seventh, when the memory has cooled and the row is gone.
+    #[test]
+    fn cancelling_is_charged_never_refused() {
+        let (japan, australia) = (code("Japan"), code("Australia"));
+        let mut w = built(world_1990(GameRules::default()));
+        seat(&mut w, japan, australia);
+        buy(&mut w, japan, australia, Commodity::Bauxite, 8_000.0, 60);
+        buy(&mut w, japan, australia, Commodity::Bauxite, 1_000.0, 12);
+        let (first, second) = (w.resources.contracts[0].id, w.resources.contracts[1].id);
+        w.nation_mut(japan).political_capital = 0.0;
+        let (rep, rel) = (w.reputation(japan), w.relation(japan, australia));
+        let before = crate::save(&w);
+        apply_command(&mut w, &Command::CancelDeal { nation: japan, contract: first }).unwrap();
+        assert_eq!(w.nation(japan).political_capital, 0.0);
+        assert_eq!(w.reputation(japan), rep + CANCEL_REPUTATION);
+        assert_eq!(w.relation(japan, australia), rel + CANCEL_RELATION);
+        assert_eq!(w.resources.contracts.len(), 1);
+        let until = month_abs(&w) + GRIEVANCE_MONTHS;
+        assert_eq!(w.resources.grievances, vec![Grievance { victim: australia, breaker: japan, until }]);
+        assert_eq!(w.headlines.last().map(String::as_str), Some("Japan tears up its supply contract with Australia."));
+        assert_ne!(crate::save(&w), before);
+        assert_eq!(
+            apply_command(&mut w, &Command::CancelDeal { nation: japan, contract: 99 }),
+            Err("No such contract.".into())
+        );
+        // A second breach a month later is the same grievance, extended.
+        tick_month(&mut w, &[]);
+        apply_command(&mut w, &Command::CancelDeal { nation: japan, contract: second }).unwrap();
+        assert!(w.resources.contracts.is_empty());
+        let until = month_abs(&w) + GRIEVANCE_MONTHS;
+        assert_eq!(w.resources.grievances, vec![Grievance { victim: australia, breaker: japan, until }]);
+
+        w.nation_mut(japan).political_capital = 100.0;
+        let ask = |w: &mut WorldState| propose(w, japan, australia, vec![money(0.0)], vec![com(Commodity::Bauxite, 8_000.0)], 60);
+        for month in 0..GRIEVANCE_MONTHS {
+            assert_eq!(ask(&mut w), Err(Reason::BrokeContract.sentence()), "month {month}");
+            assert_eq!(w.nation(japan).political_capital, 100.0);
+            tick_month(&mut w, &[]);
+            w.nation_mut(japan).political_capital = 100.0;
+        }
+        assert_eq!(month_abs(&w), until);
+        // Only the memory is being asked about: the seat is re-warmed so a
+        // relation that drifted over three years is not what answers.
+        seat(&mut w, japan, australia);
+        let e = ask(&mut w).unwrap_err();
+        assert!(e.starts_with("We would want $"), "month 37 answered {e:?}");
+        assert_eq!(w.resources.grievances.len(), 1, "the row lives until the month's tick");
+        tick_month(&mut w, &[]);
+        assert!(w.resources.grievances.is_empty());
+    }
+
+    /// Acceptance item 8. Japan buys bauxite from Australia for ten years;
+    /// after sixty months of full cover its dependency on Australia is
+    /// positive with no pact between them — exactly the contract's depth,
+    /// because Japan mines none of its own — and the seller's on the buyer
+    /// is nothing. commitment.rs and theatre.rs read `trade_dependency` by
+    /// that one name at their pressed-access and consent sites, so the
+    /// leverage is theirs for free; the source is pinned to say so.
+    #[test]
+    fn a_contract_is_leverage() {
+        let (japan, australia) = (code("Japan"), code("Australia"));
+        let mut w = world_1990(GameRules::default());
+        w.rules.ai_aggression = 0.0;
+        seat(&mut w, japan, australia);
+        buy(&mut w, japan, australia, Commodity::Bauxite, 8_000.0, 120);
+        assert_eq!(w.trade_dependency(japan, australia), 0.0, "no cover yet");
+        for _ in 0..60 {
+            tick_month(&mut w, &[]);
+            w.statecraft.trade.retain(|t| t.a != japan && t.b != japan);
+        }
+        assert_eq!(w.trade_depth(japan, australia), 0.0, "a pact crept in");
+        let k = &w.resources.contracts[0];
+        assert_eq!(k.months_left, 60);
+        assert!(near(k.depth, 0.72, 1e-9), "{}", k.depth);
+        let dep = w.trade_dependency(japan, australia);
+        assert!(dep > 0.0);
+        assert_eq!(dep, contract_dependency(&w, japan, australia));
+        assert_eq!(flow(&w, japan, Commodity::Bauxite), 0.0);
+        assert!(near(dep, k.depth, 1e-12), "{dep} vs depth {}", k.depth);
+        assert_eq!(w.trade_dependency(australia, japan), 0.0);
+        assert!(include_str!("commitment.rs").contains("w.trade_dependency(host, seeker)"));
+        assert!(include_str!("theatre.rs").contains("w.trade_dependency(host, seeker)"));
+    }
+
+    /// Acceptance item 8; the brief's "land transfer conserves district
+    /// ownership". Through the one transfer function: Kuwait cedes Al Ahmadi
+    /// to Iraq — Iraq's gas rises by the district's located share of Kuwait's
+    /// figure, Kuwait's oil falls by the located fraction of its ledger, the
+    /// people move by the district's share of Kuwait's people, output by
+    /// three-quarters of that, Kuwait's stability by a point per percent,
+    /// Iraq's separatism by the share; the map keeps every district and
+    /// changes exactly one hand. Through the command: the United States
+    /// sells Alaska to Canada by consent — the land premium is charged, the
+    /// district's copper, gold, iron and the rest follow it, and no oil moves
+    /// because the American ledger locates none.
+    #[test]
+    fn a_district_sold_by_consent_moves_its_share() {
+        let (kuwait, iraq, usa, canada) = (code("Kuwait"), code("Iraq"), code("USA"), code("Canada"));
+        let t = tables();
+        let share_of = |c: &str, n: NationId, d: &str| t.located[c][&n].iter().find(|(x, _)| x == d).map_or(0.0, |(_, s)| *s);
+
+        let mut w = built(world_1990(GameRules::default()));
+        let (gas_share, oil_share) = (share_of("gas", kuwait, "KW-AH"), share_of("oil", kuwait, "KW-AH"));
+        assert!(gas_share > 0.3 && oil_share > 0.3);
+        let pop = pop_share_of(&w, kuwait, "KW-AH");
+        assert!(near(pop, 0.0834, 1e-3), "{pop}");
+        assert!(near(located_oil_fraction(&w, kuwait, "KW-AH"), oil_share, 1e-12));
+        let (gas_iraq, gas_kuwait) = (flow(&w, iraq, Commodity::Gas), flow(&w, kuwait, Commodity::Gas));
+        let (kp, kg, ko, ks) = {
+            let n = w.nation(kuwait);
+            (n.population, n.gdp, n.oil_mbd, n.stability)
+        };
+        let (ip, ig, io, isep) = {
+            let n = w.nation(iraq);
+            (n.population, n.gdp, n.oil_mbd, n.separatism)
+        };
+        let (count, held_kw, held_iq) = (w.districts.len(), holdings(&w, kuwait), holdings(&w, iraq));
+        let epoch = w.districts_epoch;
+        crate::districts::transfer_district(&mut w, kuwait, iraq, "KW-AH").unwrap();
+        assert_eq!(w.districts_epoch, epoch.wrapping_add(1));
+        assert_eq!(w.districts.len(), count);
+        assert_eq!((holdings(&w, kuwait), holdings(&w, iraq)), (held_kw - 1, held_iq + 1));
+        assert_eq!(w.districts.get("KW-AH"), Some(&iraq));
+        tick(&mut w);
+        assert!(near(flow(&w, iraq, Commodity::Gas) - gas_iraq, gas_share * gas_kuwait, 1e-9));
+        assert!(near(flow(&w, kuwait, Commodity::Gas), gas_kuwait * (1.0 - gas_share), 1e-9));
+        let (k, i) = (w.nation(kuwait), w.nation(iraq));
+        assert!(near(k.oil_mbd, ko * (1.0 - oil_share), 1e-12) && near(i.oil_mbd, io + ko * oil_share, 1e-12));
+        assert!(near(k.population, kp * (1.0 - pop), 1e-12) && near(i.population, ip + kp * pop, 1e-12));
+        assert!(near(k.gdp, kg * (1.0 - 0.75 * pop), 1e-9) && near(i.gdp, ig + kg * 0.75 * pop, 1e-9));
+        assert_eq!(k.stability, (ks - 100.0 * pop).max(5.0));
+        assert_eq!(i.separatism, (isep + pop).min(1.0));
+        assert!(near(flow(&w, iraq, Commodity::Oil), i.oil_mbd * 1000.0, 1e-9), "oil is the ledger");
+        // Wrong owner: refused, nothing moves.
+        let snap = crate::save(&w);
+        assert_eq!(crate::districts::transfer_district(&mut w, kuwait, iraq, "KW-AH"), Err("Kuwait does not hold KW-AH.".into()));
+        assert_eq!(crate::save(&w), snap);
+
+        // By consent, through the command.
+        let mut w = built(world_1990(GameRules::default()));
+        seat(&mut w, usa, canada);
+        let pop = pop_share_of(&w, usa, "US-AK");
+        assert!(pop > 0.0 && pop < NOT_FOR_SALE_POP);
+        assert!(t.unlocated[usa.index()][OIL]);
+        assert_eq!(located_oil_fraction(&w, usa, "US-AK"), 0.0);
+        let premium = 20.0 + 300.0 * pop;
+        assert_eq!(
+            crate::price_of(&w, &Command::ProposeDeal { from: usa, to: canada, give: vec![land("US-AK")], take: vec![money(0.0)], months: 12 }),
+            Some(3.0 + premium)
+        );
+        let (oil_usa, oil_canada) = (w.nation(usa).oil_mbd, w.nation(canada).oil_mbd);
+        let gold_canada = flow(&w, canada, Commodity::Gold);
+        let gold_share = share_of("gold", usa, "US-AK");
+        let gold_usa = t.production[usa.index()][Commodity::Gold.idx()];
+        let count = w.districts.len();
+        propose(&mut w, usa, canada, vec![land("US-AK")], vec![money(0.0)], 12).unwrap();
+        assert!(near(w.nation(usa).political_capital, 100.0 - 3.0 - premium, 1e-9));
+        assert_eq!(w.districts.get("US-AK"), Some(&canada));
+        assert_eq!(w.districts.len(), count);
+        assert_eq!((w.nation(usa).oil_mbd, w.nation(canada).oil_mbd), (oil_usa, oil_canada), "an unlocated producer's ground moves no oil");
+        assert_eq!(w.resources.contracts.len(), 1);
+        assert_eq!(w.resources.contracts[0].give, vec![land("US-AK")]);
+        assert_eq!(
+            w.headlines.last().map(String::as_str),
+            Some("United States and Canada sign a supply contract: United States sends Canada the district of Alaska for $0.0bn a year, 12 months.")
+        );
+        tick(&mut w);
+        assert!(near(flow(&w, canada, Commodity::Gold) - gold_canada, gold_share * gold_usa, 1e-9));
+    }
+
+    /// Acceptance item 8. A party dies: the contract is gone the next tick,
+    /// the headline says so, and no successor holds it.
+    #[test]
+    fn the_dead_take_their_contracts_with_them() {
+        let (japan, ussr) = (code("Japan"), code("USSR"));
+        let mut w = built(world_1990(GameRules::default()));
+        seat(&mut w, japan, ussr);
+        buy(&mut w, japan, ussr, Commodity::Iron, 10_000.0, 60);
+        assert_eq!(w.resources.contracts.len(), 1);
+        w.nation_mut(ussr).alive = false;
+        let heads = tick_month(&mut w, &[]);
+        assert!(
+            heads.iter().any(|h| h == "The iron contract between Japan and Soviet Union dies with Soviet Union."),
+            "{heads:?}"
+        );
+        assert!(w.resources.contracts.is_empty());
+        let heirs: Vec<NationId> =
+            crate::districts::SUCCESSOR_PARENTS.iter().filter(|(_, p)| *p == ussr).map(|(h, _)| *h).collect();
+        assert!(!heirs.is_empty());
+        assert!(w.resources.contracts.iter().all(|k| !heirs.contains(&k.from) && !heirs.contains(&k.to)));
+        assert_eq!(contracted_in(&w, japan, Commodity::Iron), 0.0);
+    }
+
+    /// The brief's "determinism": two worlds given the same deals — a
+    /// signing, six months, a cancellation, six more, a land sale, a year —
+    /// serialize to the same bytes; and a save taken mid-contract reloads to
+    /// the same future, legs and all.
+    #[test]
+    fn two_worlds_with_the_same_deals_are_byte_identical() {
+        let (japan, australia, usa, canada) = (code("Japan"), code("Australia"), code("USA"), code("Canada"));
+        let script = |w: &mut WorldState| {
+            seat(w, japan, australia);
+            buy(w, japan, australia, Commodity::Bauxite, 8_000.0, 60);
+            let id = w.resources.contracts.last().unwrap().id;
+            for _ in 0..6 {
+                tick_month(w, &[]);
+            }
+            apply_command(w, &Command::CancelDeal { nation: japan, contract: id }).unwrap();
+            for _ in 0..6 {
+                tick_month(w, &[]);
+            }
+            w.nation_mut(usa).political_capital = 100.0;
+            propose(w, usa, canada, vec![land("US-AK")], vec![money(0.0)], 12).unwrap();
+            for _ in 0..12 {
+                tick_month(w, &[]);
+            }
+        };
+        let (mut a, mut b) = (world_1990(GameRules::default()), world_1990(GameRules::default()));
+        script(&mut a);
+        script(&mut b);
+        assert_eq!(crate::save(&a), crate::save(&b));
+        assert_eq!(a.districts.get("US-AK"), Some(&canada));
+
+        let mut c = world_1990(GameRules::default());
+        seat(&mut c, japan, australia);
+        buy(&mut c, japan, australia, Commodity::Bauxite, 8_000.0, 60);
+        for _ in 0..3 {
+            tick_month(&mut c, &[]);
+        }
+        let text = crate::save(&c);
+        assert!(text.contains("\"contracts\"") && text.contains("\"per_month\""));
+        let mut d = crate::load(&text).unwrap();
+        assert!(!d.resource_have.built);
+        assert_eq!(d.resources, c.resources);
+        for _ in 0..12 {
+            tick_month(&mut c, &[]);
+            tick_month(&mut d, &[]);
+        }
+        assert_eq!(crate::save(&c), crate::save(&d));
+    }
+
+    /// Acceptance item 4's grep: the trade arms write only what the register
+    /// allows. Outside its tests this module never names the RNG, growth,
+    /// productivity, munitions, strength, or writes to output, oil, stability
+    /// or population; its only reach into another nation's books is
+    /// `debt_gdp` at delivery, the relation at signing and cancellation and
+    /// the reputation at cancellation. The consent slices of people, output,
+    /// oil, stability and separatism live in `districts::transfer_district`
+    /// and nowhere else.
+    #[test]
+    fn the_trade_arms_write_only_what_the_register_allows() {
+        let src = include_str!("resources.rs");
+        let code = src.split("#[cfg(test)]").next().unwrap();
+        let body: String = code
+            .lines()
+            .filter(|l| !l.trim_start().starts_with("//"))
+            .map(|l| l.split("//").next().unwrap())
+            .collect::<Vec<_>>()
+            .join("\n");
+        for forbidden in [
+            ".rng",
+            "growth_last",
+            "tfp",
+            "munitions",
+            "mil_strength",
+            ".gdp =",
+            ".gdp +=",
+            ".gdp -=",
+            ".gdp *=",
+            "oil_mbd =",
+            "oil_mbd +=",
+            "oil_mbd -=",
+            "oil_mbd *=",
+            "stability =",
+            "stability +=",
+            "stability -=",
+            "population =",
+            "population +=",
+            "population -=",
+            "separatism",
+            "trade_level",
+            "political_capital",
+        ] {
+            assert!(!body.contains(forbidden), "resources.rs touches {forbidden:?}");
+        }
+        assert_eq!(body.matches("shift_relation(").count(), 2, "signing and cancelling");
+        assert_eq!(body.matches("shift_reputation(").count(), 1, "cancelling");
+        assert!(body.contains("SIGN_RELATION") && body.contains("CANCEL_RELATION") && body.contains("CANCEL_REPUTATION"));
+        assert_eq!(body.matches("debt_gdp").count(), 3, "one settle: the payer up, the payee down, floored");
+        let districts = include_str!("districts.rs");
+        assert_eq!(districts.matches("pub fn transfer_district").count(), 1);
+        let transfer = districts.split("pub fn transfer_district").nth(1).unwrap().split("\n}\n").next().unwrap();
+        for slice in ["population", "gdp", "oil_mbd", "stability", "separatism", "districts_epoch"] {
+            assert!(transfer.contains(slice), "the transfer does not slice {slice}");
+        }
+        assert!(!transfer.contains("shift_relation"), "the contract's +5 covers it");
     }
 }

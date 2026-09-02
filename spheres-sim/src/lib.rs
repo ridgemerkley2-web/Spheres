@@ -50,6 +50,24 @@ pub enum Command {
     CovertAction { sponsor: NationId, target: NationId, op: CovertOp },
     ProposeTrade { from: NationId, to: NationId },
     AbrogateTrade { from: NationId, to: NationId },
+    /// Offer a bundle (resources.rs): money, a commodity for a commodity,
+    /// land as a named district — at most four legs, one of them land — for
+    /// 12, 36, 60 or 120 months. The other side evaluates it and answers:
+    /// accept, counter with a price, or refuse with a stated reason.
+    ProposeDeal {
+        from: NationId,
+        to: NationId,
+        give: Vec<resources::Leg>,
+        take: Vec<resources::Leg>,
+        months: u32,
+    },
+    /// The player's answer to a pending AI offer. Accepting signs it at the
+    /// offered terms; declining is free and remembered by nobody.
+    AcceptDeal { nation: NationId, offer: u32 },
+    DeclineDeal { nation: NationId, offer: u32 },
+    /// Tear one up. Never refused; charged to standing, reputation, relation
+    /// and the other side's memory — the way a trade treaty already is.
+    CancelDeal { nation: NationId, contract: u32 },
     /// Take one of the options the world is currently offering this government.
     /// Carries the stratagem's stable id, never an index into the deck.
     EnactStratagem { nation: NationId, id: String },
@@ -208,6 +226,23 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // Closing one is the unpopular half, and it is your own importers who
         // notice first.
         Command::AbrogateTrade { from, .. } => (*from, 10.0, ALWAYS),
+        // A bundle is a priced national decision: the standing to open
+        // talks, and when ground is in it, the people on that ground —
+        // twenty plus three hundred times their share of the nation, so a
+        // district holding 2% of it costs 29 in all. Refusable: a government
+        // without the standing does not get to offer its neighbours' land or
+        // its own.
+        Command::ProposeDeal { from, give, .. } => {
+            (*from, 3.0 + resources::land_premium(w, *from, give), REFUSABLE)
+        }
+        // Signing what somebody else drafted costs what drafting it does.
+        Command::AcceptDeal { nation, .. } => (*nation, 3.0, REFUSABLE),
+        // Saying no is free.
+        Command::DeclineDeal { nation, .. } => (*nation, 0.0, ALWAYS),
+        // AbrogateTrade's price and doctrine: always available, charged to
+        // the point of bankruptcy, and remembered by the other side for three
+        // years (resources.rs charges the reputation and the relation).
+        Command::CancelDeal { nation, .. } => (*nation, 10.0, ALWAYS),
         // Each stratagem carries its own price, and they are the largest in this
         // list. Reordering an economy is the most expensive thing a government
         // ever decides to do, and it should cost most of a term's standing.
@@ -303,18 +338,26 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 /// taboo forbids.
 ///
 /// Asked only of commands whose precondition is a PURE query, which today is
-/// the commitment ladder and nothing else. Everything else is left to
+/// the commitment ladder and the trade bundle. Everything else is left to
 /// `dispatch`, where the money is still reported first; the honest fix for
 /// those is to give them pure precondition queries too, not to guess here.
 ///
 /// This is not a second copy of the rule. It calls the same
-/// [`commitment::rung_blocked`] that [`commitment::set_commitment`] calls, so
-/// the two cannot answer differently — which is the whole reason this returns
-/// the sim's own prose rather than composing its own.
+/// [`commitment::rung_blocked`] that [`commitment::set_commitment`] calls, and
+/// the same [`resources::deal_refusal`] that the trade arm's `evaluate` reads
+/// through, so the two cannot answer differently — which is the whole reason
+/// this returns the sim's own prose rather than composing its own.
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     match c {
         Command::SetCommitment { conflict, nation, rung } => {
             commitment::rung_blocked(w, w.conflict(*conflict)?, *nation, *rung)
+        }
+        // A hard bar — the wrong shape, an unsourced line, a seller at war,
+        // ground that is being fought over — costs the asker nothing and is
+        // never quoted a price. A counter is not a bar: it reaches
+        // `dispatch`, which returns the price as the error, uncharged.
+        Command::ProposeDeal { from, to, give, take, months } => {
+            resources::deal_refusal(w, *from, *to, give, take, *months)
         }
         _ => None,
     }
@@ -477,6 +520,27 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         }
         Command::ProposeTrade { from, to } => statecraft::propose_trade(w, *from, *to)?,
         Command::AbrogateTrade { from, to } => statecraft::abrogate_trade(w, *from, *to)?,
+        Command::ProposeDeal { from, to, give, take, months } => {
+            // `world_refusal` has already asked `deal_refusal`, so a hard bar
+            // never reaches here. A counter is the one answer that is
+            // neither a refusal nor a signature: it is returned as the error
+            // so the player reads the price, and because `apply_command`
+            // charges only on `Ok`, reading it costs nothing.
+            match resources::evaluate(w, *from, *to, give, take, *months) {
+                resources::Verdict::Accept => {
+                    resources::sign(w, *from, *to, give, take, *months)?;
+                }
+                resources::Verdict::Counter { money_bn_per_year, .. } => {
+                    return Err(format!("We would want ${:.1} bn a year.", money_bn_per_year));
+                }
+                resources::Verdict::Refuse(r) => return Err(r.sentence()),
+            }
+        }
+        Command::AcceptDeal { nation, offer } => resources::accept_offer(w, *nation, *offer)?,
+        Command::DeclineDeal { nation, offer } => resources::decline_offer(w, *nation, *offer)?,
+        Command::CancelDeal { nation, contract } => {
+            resources::cancel_contract(w, *nation, *contract)?
+        }
         Command::EnactStratagem { nation, id } => {
             let s = stratagems::by_id(id)
                 .ok_or_else(|| format!("No such stratagem: {}", id))?;

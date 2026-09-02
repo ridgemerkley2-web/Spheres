@@ -1018,16 +1018,26 @@ impl WorldState {
     }
     /// How much of `id`'s trade runs through `partner`, 0..1. This is leverage:
     /// the side with the smaller number can afford to walk away.
+    ///
+    /// Two forms, and the larger wins: the pact form below, and a supply
+    /// contract's (`resources::contract_dependency` — the depth-weighted
+    /// share of a line's sourcing that arrives under contract from
+    /// `partner`). commitment.rs and theatre.rs read this one name, so a
+    /// contract is leverage for free; with no contract the two forms are
+    /// identical and `abrogate_trade`'s arithmetic reads exactly what it did.
     pub fn trade_dependency(&self, id: NationId, partner: NationId) -> f64 {
-        let depth = self.trade_depth(id, partner);
-        if depth <= 0.0 {
-            return 0.0;
-        }
-        let (mine, theirs) = match (self.nation_opt(id), self.nation_opt(partner)) {
-            (Some(m), Some(t)) => (m.gdp, t.gdp),
-            _ => return 0.0,
+        let pact = {
+            let depth = self.trade_depth(id, partner);
+            if depth <= 0.0 {
+                0.0
+            } else {
+                match (self.nation_opt(id), self.nation_opt(partner)) {
+                    (Some(m), Some(t)) => depth * (t.gdp / (m.gdp + t.gdp).max(1.0)),
+                    _ => 0.0,
+                }
+            }
         };
-        depth * (theirs / (mine + theirs).max(1.0))
+        pact.max(crate::resources::contract_dependency(self, id, partner))
     }
     pub fn reputation(&self, id: NationId) -> f64 {
         self.statecraft

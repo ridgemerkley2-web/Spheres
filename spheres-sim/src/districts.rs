@@ -680,6 +680,55 @@ pub fn dissolve_to(w: &mut WorldState, parent: NationId, heirs: &[NationId]) {
     }
 }
 
+/// Consent (resources.rs, spec section 4.9): one district from `from` to
+/// `to`, with what it carries. The owner must be `from` and `from` keeps at
+/// least one district. The people move by the district's share of the
+/// ceder's current population (`resources::pop_share_of`), output by
+/// three-quarters of that — the settlement's own ratio, war.rs — and oil by
+/// the share of the ceder's ledger the table locates in the district (an
+/// unlocated producer's ground locates nothing, so it moves none). The
+/// ceder's stability falls a point per percent of its people and floors at
+/// five; the receiver's separatism rises by the share. No relation write —
+/// the contract's +5 covers it. `annex_all`, `cede_share*` and
+/// `dissolve_to` are untouched: this is the one consent path and they are
+/// the settlement's.
+pub fn transfer_district(
+    w: &mut WorldState,
+    from: NationId,
+    to: NationId,
+    id: &str,
+) -> Result<(), String> {
+    if w.districts.get(id) != Some(&from) {
+        return Err(format!("{} does not hold {}.", from.name(), id));
+    }
+    if w.districts.values().filter(|&&o| o == from).count() < 2 {
+        return Err("It is all we have.".into());
+    }
+    w.districts_epoch = w.districts_epoch.wrapping_add(1);
+    let pop = crate::resources::pop_share_of(w, from, id);
+    let oil = crate::resources::located_oil_fraction(w, from, id);
+    let (moved_pop, moved_gdp, moved_oil) = {
+        let f = w.nation(from);
+        (f.population * pop, f.gdp * 0.75 * pop, f.oil_mbd * oil)
+    };
+    {
+        let f = w.nation_mut(from);
+        f.population -= moved_pop;
+        f.gdp -= moved_gdp;
+        f.oil_mbd -= moved_oil;
+        f.stability = (f.stability - 100.0 * pop).max(5.0);
+    }
+    {
+        let t = w.nation_mut(to);
+        t.population += moved_pop;
+        t.gdp += moved_gdp;
+        t.oil_mbd += moved_oil;
+        t.separatism = (t.separatism + pop).min(1.0);
+    }
+    w.districts.insert(id.to_string(), to);
+    Ok(())
+}
+
 /// Districts whose owner differs from the 1990 default — the /api/state
 /// delta. Sorted by id because the map is a BTreeMap. Usually empty early
 /// game, which is the point of delta encoding.
