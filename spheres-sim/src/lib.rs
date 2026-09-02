@@ -4314,7 +4314,20 @@ mod tests {
     /// writes nothing, so the hash is the same actual afterwards.
     #[test]
     fn the_resource_layer_is_inert_at_1990() {
-        const START_ACTUAL: u64 = 0xa5c9c5b2306313d8;
+        // MOVED 2026-09-02 with the merge of codex/trading-system, and the
+        // simulation did not move with it. Codex's two new `WorldState` fields,
+        // `district_population` and `district_population_scale`, are declared
+        // `#[serde(default)]` WITHOUT the `skip_serializing_if` their neighbours
+        // carry, so they are always written and therefore always enter
+        // `state_hash`, which is FNV-1a over the pretty-printed save. Proof, run
+        // again on this tree rather than inherited: dump the merged save, delete
+        // exactly those two blocks (and the comma their removal orphans, since
+        // they serialize last), and the text is BYTE-IDENTICAL to the 9274baa
+        // save and re-hashes to the value this constant held before —
+        // 0xa5c9c5b2306313d8 at t=0, 0x20c24ab0f1581807 at t=240 months.
+        // This constant tracks the tree's ACTUAL by construction, so moving it
+        // is not a golden re-pin; the two real goldens above stay where they are.
+        const START_ACTUAL: u64 = 0xe26e4bf8d6c60066;
         let mut w = world_1990(GameRules::default());
         let text = save(&w);
         for key in ["\"resources\"", "\"aim\"", "\"resource_gates\"", "\"cover\""] {
@@ -4357,7 +4370,20 @@ mod tests {
     /// Re-pins nothing.
     #[test]
     fn the_resource_layer_is_inert_over_time() {
-        const RUN_ACTUAL: u64 = 0x20c24ab0f1581807;
+        // MOVED 2026-09-02 with the merge of codex/trading-system, and the
+        // simulation did not move with it. Codex's two new `WorldState` fields,
+        // `district_population` and `district_population_scale`, are declared
+        // `#[serde(default)]` WITHOUT the `skip_serializing_if` their neighbours
+        // carry, so they are always written and therefore always enter
+        // `state_hash`, which is FNV-1a over the pretty-printed save. Proof, run
+        // again on this tree rather than inherited: dump the merged save, delete
+        // exactly those two blocks (and the comma their removal orphans, since
+        // they serialize last), and the text is BYTE-IDENTICAL to the 9274baa
+        // save and re-hashes to the value this constant held before —
+        // 0xa5c9c5b2306313d8 at t=0, 0x20c24ab0f1581807 at t=240 months.
+        // This constant tracks the tree's ACTUAL by construction, so moving it
+        // is not a golden re-pin; the two real goldens above stay where they are.
+        const RUN_ACTUAL: u64 = 0xbe94d6125631829c;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -4508,8 +4534,34 @@ mod tests {
     /// hand and recorded in the landing commit.
     #[test]
     fn the_market_switch_is_off_for_the_suite_and_deterministic_when_on() {
-        const START_ACTUAL: u64 = 0xa5c9c5b2306313d8;
-        const RUN_ACTUAL: u64 = 0x20c24ab0f1581807;
+        // MOVED 2026-09-02 with the merge of codex/trading-system, and the
+        // simulation did not move with it. Codex's two new `WorldState` fields,
+        // `district_population` and `district_population_scale`, are declared
+        // `#[serde(default)]` WITHOUT the `skip_serializing_if` their neighbours
+        // carry, so they are always written and therefore always enter
+        // `state_hash`, which is FNV-1a over the pretty-printed save. Proof, run
+        // again on this tree rather than inherited: dump the merged save, delete
+        // exactly those two blocks (and the comma their removal orphans, since
+        // they serialize last), and the text is BYTE-IDENTICAL to the 9274baa
+        // save and re-hashes to the value this constant held before —
+        // 0xa5c9c5b2306313d8 at t=0, 0x20c24ab0f1581807 at t=240 months.
+        // This constant tracks the tree's ACTUAL by construction, so moving it
+        // is not a golden re-pin; the two real goldens above stay where they are.
+        const START_ACTUAL: u64 = 0xe26e4bf8d6c60066;
+        // MOVED 2026-09-02 with the merge of codex/trading-system, and the
+        // simulation did not move with it. Codex's two new `WorldState` fields,
+        // `district_population` and `district_population_scale`, are declared
+        // `#[serde(default)]` WITHOUT the `skip_serializing_if` their neighbours
+        // carry, so they are always written and therefore always enter
+        // `state_hash`, which is FNV-1a over the pretty-printed save. Proof, run
+        // again on this tree rather than inherited: dump the merged save, delete
+        // exactly those two blocks (and the comma their removal orphans, since
+        // they serialize last), and the text is BYTE-IDENTICAL to the 9274baa
+        // save and re-hashes to the value this constant held before —
+        // 0xa5c9c5b2306313d8 at t=0, 0x20c24ab0f1581807 at t=240 months.
+        // This constant tracks the tree's ACTUAL by construction, so moving it
+        // is not a golden re-pin; the two real goldens above stay where they are.
+        const RUN_ACTUAL: u64 = 0xbe94d6125631829c;
         assert!(!GameRules::default().resource_market, "the suite's default must be off");
         let w = world_1990(GameRules::default());
         let off_text = save(&w);
