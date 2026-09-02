@@ -878,3 +878,130 @@ fn the_ministry_map_is_exactly_this() {
         );
     }
 }
+
+
+// ---------------------------------------------------------------------------
+// THE RULE ITSELF, MOVED THE WAY A PLAYER MOVES IT
+// ---------------------------------------------------------------------------
+
+/// The same plan, enacted through the real command.
+///
+/// `gapped` above writes the allocation straight into the stored `AnnualBudget`
+/// and deliberately leaves the three aggregates where the inherited plan put
+/// them. That isolates the GAP CHANNEL and is the right instrument for it — but
+/// it is a mutation the game cannot perform. `Command::SetAnnualBudget`
+/// (lib.rs) writes `social_spend_gdp`, `state_invest_gdp` and `mil_spend_gdp`
+/// from the plan as well, so a real press opens LEVEL routes beside the gap
+/// ones and the bar above is structurally blind to every one of them. That
+/// blindness is how `demand_gap += (social_spend() - baseline) * 0.15` survived
+/// the collapse: six ministries reached demand and inflation through the social
+/// aggregate, under a comment in `economy.rs` saying none did.
+///
+/// NO OFFSETTING CUT: only the one dial moves, which is the press a player
+/// actually makes when they raise a ministry.
+///
+/// The command's own PRICE is not a ministry arm. `SetAnnualBudget` is priced
+/// against political capital as a function of the swing, so a moved plan and an
+/// unmoved one leave different STOCKS behind and `standing` would move for all
+/// ten for a reason that has nothing to do with pensions. Both worlds are
+/// re-seated to the same stock after the command, which leaves only the TARGET
+/// free — and the target is where PENSIONS' arm lives.
+fn enacted(w: &WorldState, ministry: usize, delta: f64) -> WorldState {
+    let mut w2 = w.clone();
+    w2.nation_mut(ME).political_capital = 100.0;
+    let year = w2.year;
+    let mut allocations = w2.nation(ME).annual_budget.as_ref().expect("the books are open").allocations;
+    allocations[ministry] += delta;
+    assert!(
+        allocations[ministry] <= BUDGET_CAPS[ministry] && allocations[ministry] >= 0.0,
+        "the probe moved ministry {ministry} outside its own range"
+    );
+    apply_command(
+        &mut w2,
+        &Command::SetAnnualBudget { nation: ME, fiscal_year: year, allocations },
+    )
+    .expect("the plan is enacted");
+    // The stock, re-seated after the price was charged. See the doc above.
+    w2.nation_mut(ME).political_capital = 100.0;
+    w2
+}
+
+/// THE MAP AGAIN, FOR THE PRESS A PLAYER CAN ACTUALLY MAKE.
+///
+/// `the_ministry_map_is_exactly_this` proves the map for the gap channel. This
+/// is the same table proved for the whole press, and the two lists differ by
+/// exactly the routes the design KEEPS as aggregates and names as such:
+///
+/// * INFRASTRUCTURE, INDUSTRY and SCIENCE additionally move `potential`,
+///   `growth`, `research` and `stability`, because their dollar enters
+///   `investment_total` — "Science STAYS in investment_total" and "the dollar
+///   keeps entering investment_total" are the design's own words, and
+///   `stability` follows from `growth` through `growth_last` in the integrator,
+///   not from any budget addend.
+/// * DEFENSE moves `munitions` and `strength_peace`, because defense's
+///   allocation IS `mil_spend_gdp`; that is the row whose job is to add nothing
+///   NEW.
+/// * The six SOCIAL ministries move NOTHING beyond their own gap arms. That is
+///   the claim this bar exists for, and it was false until `economy.rs`'s
+///   `demand_gap += (social_spend() - baseline_social_spend()) * 0.15` was
+///   removed.
+///
+/// RED CHECK, run 2026-09-02 and reverted: that line restored to `economy.rs`.
+/// RED on the first row — "health moved the wrong set of arms", left
+/// `["demand_gap", "growth", "population", "stability", "target_inflation"]`
+/// against right `["population"]`, one addend reaching five readings. Every
+/// other bar in this file stayed GREEN in the same run, INCLUDING
+/// `the_ministry_map_is_exactly_this`, which is the whole argument for this one
+/// existing: the gap bar cannot see a level route by construction.
+#[test]
+fn the_enacted_ministry_map_is_exactly_this() {
+    let map: [(usize, &str, &[&str]); BUDGET_MINISTRIES] = [
+        (BUDGET_HEALTH, "health", &["population"]),
+        (BUDGET_EDUCATION, "education", &["research"]),
+        (BUDGET_HOUSING, "housing", &["population", "stability"]),
+        (
+            BUDGET_PENSIONS,
+            "pensions",
+            &["jobs_peace", "jobs_war", "standing", "stability"],
+        ),
+        (
+            BUDGET_INFRASTRUCTURE,
+            "infrastructure",
+            &["extraction", "growth", "potential", "research", "stability"],
+        ),
+        (
+            BUDGET_INDUSTRY,
+            "industry",
+            &["growth", "munitions", "potential", "research", "stability"],
+        ),
+        (
+            BUDGET_SCIENCE,
+            "science",
+            &["absorb", "growth", "potential", "research", "stability", "tech_cost"],
+        ),
+        (BUDGET_DEFENSE, "defense", &["munitions", "strength_peace"]),
+        (BUDGET_SECURITY, "security", &["separatism", "stability"]),
+        (BUDGET_DIPLOMACY, "diplomacy", &["growth", "sanctions", "stability"]),
+    ];
+    let base = staged(1990);
+    for (ministry, name, expected) in map {
+        // The reference is the SAME command with a zero delta, so the pair
+        // differs in the delta and in nothing else — not in the command, not in
+        // the aggregates it re-seats, not in the price it charged.
+        let reference = probe(&enacted(&base, ministry, 0.0));
+        let mut moved = reference.differences(&probe(&enacted(&base, ministry, DELTA)));
+        moved.sort_unstable();
+        let mut want: Vec<&str> = expected.to_vec();
+        want.sort_unstable();
+        assert_eq!(moved, want, "{name} moved the wrong set of arms");
+        // Stated separately as well as being implied by the list above, because
+        // this is the specific claim `economy.rs` makes in a comment and the one
+        // that was false: `demand_gap` forks into output AND into the price
+        // impulse, so a ministry that reaches it is charged to two aggregates at
+        // once and can be read neither way.
+        assert!(
+            !moved.contains(&"demand_gap") && !moved.contains(&"target_inflation"),
+            "{name} reaches demand through a level route: {moved:?}"
+        );
+    }
+}

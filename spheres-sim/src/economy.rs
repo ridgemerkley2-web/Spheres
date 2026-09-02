@@ -679,12 +679,38 @@ pub fn growth_terms(
     let real_rate = interest_rate - n.inflation;
     let neutral = 0.025;
     let mut demand_gap = (neutral - real_rate) * 0.55; // easy money -> above potential
-    demand_gap += (n.social_spend() - n.baseline_social_spend()) * 0.15;
     // NO MINISTRY REACHES DEMAND. Health 0.06, housing 0.28 and pensions 0.18
     // were removed here: `demand_gap` FORKS, into output above and into the
     // price impulse below, so a ministry routed through it is charged to two
     // aggregates at once and can be read neither way. Pensions' claim on the
     // labour market is now made where it can be read, in `unemployment_rate`.
+    //
+    // `demand_gap += (n.social_spend() - n.baseline_social_spend()) * 0.15`
+    // STOOD HERE AND IS GONE, and it is why the paragraph above was false when
+    // it was written. It is the exact aggregate twin of the `ds += social_gap *
+    // 12.0` already deleted from the stability block for the same reason: the
+    // real `Command::SetAnnualBudget` writes `social_spend_gdp =
+    // plan.social_total()`, and `social_total` sums HEALTH, EDUCATION, HOUSING,
+    // PENSIONS, SECURITY and DIPLOMACY -- so the three per-ministry demand
+    // addends the collapse removed were replaced by one shared addend that fired
+    // for all six, at an effective slope of 0.15 for each, and it handed
+    // EDUCATION, SECURITY and DIPLOMACY a demand arm the design never gave them.
+    //
+    // MEASURED before removing it (Brazil, seed 1990, +0.005 of GDP on one dial
+    // through the real command): every one of the six moved `demand_gap` by
+    // +0.000750000, `target_inflation` by +0.001200000 and before-noise growth
+    // by +0.000018011, identical to the last digit, and twelve months on all six
+    // carried +0.001348661 of inflation. INFRASTRUCTURE, INDUSTRY and SCIENCE
+    // moved demand and inflation by exactly 0.000000000 (they move growth by
+    // +0.000951904 through `investment_total`, which is the design's own route),
+    // and DEFENSE moved nothing. After removing it all ten read 0.000000000 on
+    // demand and inflation.
+    //
+    // INERT ON EVERY DEFAULT PATH, and the reason is the same one the stability
+    // twin carried: `social_spend_gdp` is `None` for all 137 nations at 1990 and
+    // `social_spend()` then returns `baseline_social_spend()` by definition, so
+    // the addend was exactly 0.0 and `x += 0.0` is exact. Its only two writers
+    // are player commands (`lib.rs:550` and `lib.rs:607`).
     // ...but only while there is a rate left to cut and somebody willing to
     // borrow. Pushing on a string: Japan ran the policy rate at zero for two
     // decades against a corporate sector repairing its balance sheet, and
