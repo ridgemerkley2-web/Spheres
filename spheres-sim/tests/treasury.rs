@@ -9,7 +9,7 @@
 //! Every test carries the RED CHECK that was actually run against it: the
 //! mutation made to the tree, and what the test then said. Iron rules 5 and 6.
 
-use spheres_sim::economy::{charge, effective_interest_rate, interest_gdp};
+use spheres_sim::economy::{charge, effective_interest_rate, growth_terms, interest_gdp, Conditions};
 use spheres_sim::init::world_1990;
 use spheres_sim::world::{AidKind, GameRules, NationId};
 use spheres_sim::{save, state_hash, tick_month, Command};
@@ -544,4 +544,140 @@ fn a_net_creditor_reads_as_un_desperate() {
             assert!(n.debt_gdp >= 0.0, "{:?} holds negative debt {}", n.id, n.debt_gdp);
         }
     }
+}
+
+// ---------------------------------------------------------------------------
+// 7. DEBT IS CHARGED ONCE
+// ---------------------------------------------------------------------------
+
+/// A nation pays for its debt through EXACTLY ONE channel, and which one
+/// depends on whether it keeps books.
+///
+/// `growth_terms`' inherited `debt_drag` — `(debt_gdp - 0.9) * 0.02` subtracted
+/// from growth — was calibrated when the model charged no interest at all, so
+/// it stood in for debt service, crowding-out and the risk premium together.
+/// The treasury then added a second, independent charge for the same debt: cash
+/// out of the till at the escalating `effective_interest_rate`. `SPREAD_KNEE`'s
+/// own derivation reasons the 0.60 knee against `dyads.rs`'s war-appetite line
+/// and `politics.rs`'s 0.85 consolidation trigger and never mentions the drag,
+/// so the spread was sized as the market's WHOLE charge for a ratio the model
+/// was already charging for elsewhere. A nation that opened its books paid both.
+///
+/// MEASURED on this tree, Brazil seed 1990 with debt_gdp forced to 1.20 (policy
+/// rate 2.90 and inflation 2.95, the transcribed 1990 hyperinflation figures):
+/// effective_rate 0.016000, cash `interest_gdp` 0.019200 a year, `debt_drag`
+/// 0.006000 of growth. Before the gate the open arm paid 0.025200 against the
+/// 0.006000 the identical nation pays with its books closed, 4.20x apart at the
+/// same ratio — a double charge and a player-versus-AI asymmetry in one.
+///
+/// AN INVARIANT, so iron rule 7's sampling arm does not apply: the claim is
+/// universal over the roster and over the debt range, and the sweep below is a
+/// budget question rather than a correctness one.
+///
+/// RED CHECK, run 2026-09-02 and reverted: the `n.debt_bn.is_none() &&` gate
+/// removed from `economy.rs`'s `debt_drag`, which is the tree exactly as it
+/// stood. RED: "Brazil on the books pays a growth drag as well as cash
+/// interest", left 4573567551181324024 against right 0 — the bit pattern of
+/// 0.006 against the bit pattern of zero.
+#[test]
+fn debt_is_charged_once_and_not_twice() {
+    let drag_of = |w: &spheres_sim::world::WorldState, id: NationId| {
+        let n = w.nation(id);
+        let c = Conditions::of(w, id);
+        growth_terms(n, n.state_invest_gdp, n.interest_rate, &c).debt
+    };
+
+    // The anchor: one nation, one ratio, both sets of books.
+    let mut open = world_1990(GameRules { seed: 1990, ..GameRules::default() });
+    open.player = Some(NationId::Brazil);
+    open.nation_mut(NationId::Brazil).political_capital = 100.0;
+    open.nation_mut(NationId::Brazil).debt_gdp = 1.20;
+    let closed = open.clone();
+    let year = open.year;
+    let allocations = open.nation(NationId::Brazil).budget_for(year).allocations;
+    spheres_sim::apply_command(
+        &mut open,
+        &Command::SetAnnualBudget { nation: NationId::Brazil, fiscal_year: year, allocations },
+    )
+    .expect("the books open");
+
+    let n = open.nation(NationId::Brazil);
+    assert!(n.on_the_books(), "the probe did not open the books");
+    let rate = effective_interest_rate(n.interest_rate, n.inflation, n.debt_gdp);
+    assert!(
+        (rate - 0.016000).abs() < 1e-9,
+        "the escalating rate at 1.20 of GDP is {rate:.6}, not the measured 0.016000"
+    );
+    assert!(
+        (interest_gdp(n) - 0.019200).abs() < 1e-9,
+        "cash debt service is {:.6} of GDP, not the measured 0.019200",
+        interest_gdp(n)
+    );
+    assert_eq!(
+        drag_of(&open, NationId::Brazil).to_bits(),
+        0.0f64.to_bits(),
+        "Brazil on the books pays a growth drag as well as cash interest"
+    );
+
+    // ...and the closed-books nation is UNTOUCHED: the drag it always paid, and
+    // no cash charge, which is the inertness half of the same claim.
+    assert!(
+        (drag_of(&closed, NationId::Brazil) - 0.006000).abs() < 1e-9,
+        "the closed-books drag moved: {:.6} rather than the incumbent 0.006000",
+        drag_of(&closed, NationId::Brazil)
+    );
+    assert_eq!(interest_gdp(closed.nation(NationId::Brazil)).to_bits(), 0.0f64.to_bits());
+
+    // The invariant, over the whole roster and the whole range the drag can
+    // see: no nation ever carries both charges at once.
+    let mut both = Vec::new();
+    let mut drag_seen = 0u32;
+    let mut cash_seen = 0u32;
+    for ratio in [0.0, 0.5, 0.85, 0.9, 1.0, 1.5, 2.0, 3.8] {
+        for books_open in [false, true] {
+            let mut w = world_1990(GameRules { seed: 1990, ..GameRules::default() });
+            let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+            for id in &ids {
+                w.nation_mut(*id).debt_gdp = ratio;
+            }
+            if books_open {
+                for id in &ids {
+                    w.nation_mut(*id).political_capital = 100.0;
+                    let allocations = w.nation(*id).budget_for(year).allocations;
+                    spheres_sim::apply_command(
+                        &mut w,
+                        &Command::SetAnnualBudget {
+                            nation: *id,
+                            fiscal_year: year,
+                            allocations,
+                        },
+                    )
+                    .expect("the books open");
+                }
+            }
+            for id in &ids {
+                let drag = drag_of(&w, *id);
+                let cash = interest_gdp(w.nation(*id));
+                if drag > 0.0 {
+                    drag_seen += 1;
+                }
+                if cash > 0.0 {
+                    cash_seen += 1;
+                }
+                if drag > 0.0 && cash > 0.0 {
+                    both.push((*id, ratio, drag, cash));
+                }
+            }
+        }
+    }
+    assert!(
+        both.is_empty(),
+        "{} nation-ratios pay for the same debt twice, e.g. {:?}",
+        both.len(),
+        both.first()
+    );
+    // POWER, recorded rather than assumed: the sweep has to be able to SEE both
+    // charges, or an empty `both` would be proof of nothing.
+    assert!(drag_seen > 0 && cash_seen > 0, "the sweep saw drag {drag_seen}, cash {cash_seen}");
+    println!("no double charge in {drag_seen} drag readings and {cash_seen} cash readings");
 }

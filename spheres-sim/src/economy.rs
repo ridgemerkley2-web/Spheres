@@ -873,7 +873,36 @@ pub fn growth_terms(
     let diplomatic_shield = crate::ministries::diplomacy_shield(budget_gap[BUDGET_DIPLOMACY]);
     let sanction_drag = growth_drag_of_sanctions(sanction_share) * (1.0 - diplomatic_shield);
     let war_drag = if at_war { 0.020 + n.war_exhaustion * 0.03 } else { 0.0 };
-    let debt_drag = if n.debt_gdp > 0.9 { (n.debt_gdp - 0.9) * 0.02 } else { 0.0 };
+    // DEBT IS CHARGED ONCE, and which charge a nation pays depends on whether
+    // it keeps books.
+    //
+    // This drag is INHERITED and was calibrated when the model had no interest
+    // at all: it was the only thing that made debt cost anything, so it had to
+    // stand in for debt service, crowding-out and the risk premium together.
+    // The treasury now charges the real thing on the `Some` arm of the fiscal
+    // block below -- `books.interest_bn / 12.0` in cash, struck at the
+    // escalating `effective_interest_rate` -- and `SPREAD_KNEE`'s derivation
+    // reasons the 0.60 knee against `dyads.rs` and `politics.rs` without ever
+    // noticing this line, so the spread was sized as the market's whole charge
+    // for a ratio the model was already charging for here.
+    //
+    // MEASURED this run, Brazil with the books open at debt_gdp 1.20 (policy
+    // rate 2.90, inflation 2.95, both hyperinflationary 1990 figures):
+    // effective_rate 0.016000, cash interest_gdp 0.019200 a year, debt_drag
+    // 0.006000 of growth. Paying both is 0.025200 against the 0.006000 the same
+    // nation pays with the books closed -- 4.20x, which is a double charge and a
+    // player-versus-AI asymmetry in one.
+    //
+    // So the drag is the CLOSED-BOOKS representation of debt service and the
+    // cash charge is the open-books one. Gating it here leaves every AI nation
+    // and the whole default board bit-identical -- `debt_bn` is `None` for all
+    // 137 nations until a player issues a budget -- and stops the one nation
+    // that opened its books being billed twice for the same debt.
+    let debt_drag = if n.debt_bn.is_none() && n.debt_gdp > 0.9 {
+        (n.debt_gdp - 0.9) * 0.02
+    } else {
+        0.0
+    };
     let instability_drag = if n.stability < 40.0 { (40.0 - n.stability) * 0.0009 } else { 0.0 };
 
     // ---- Oil terms of trade ----
