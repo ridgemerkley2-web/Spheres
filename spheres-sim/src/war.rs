@@ -498,6 +498,40 @@ pub fn health_retention(w: &WorldState, id: NationId) -> f64 {
     (1.0 + gap * 20.0).clamp(0.60, 1.60)
 }
 
+/// INDUSTRY & ENERGY's named arm: the war-industrial base, read as how fast
+/// the magazines come back.
+///
+/// This is the ministry the design could not ship honestly as an ENERGY
+/// system — Ridge accepted that there is no energy model to hang one on today
+/// — so it gets the half of its brief that this sim already simulates. A
+/// machine-tool base, a propellant plant and a shell line are what turn a
+/// defence budget into ordnance in the racks, and `MAGAZINE_REBUILD *
+/// capital_intensity` is precisely the quantity that describes them.
+///
+/// Not gated on war, and deliberately: an arsenal is built in peace. That is
+/// the whole of BIBLE §6's second stock — you cannot fix inside a war the
+/// factory you did not build before it.
+///
+/// INVENTED, and labelled as the design requires: the x20 slope and the
+/// 0.70/1.40 clamp. Industry caps at 0.12 of GDP against an inherited
+/// reference of 0.30 of the investment envelope — near 0.018 for a nation
+/// investing 6% through the state — so the reachable gap runs to about 0.10
+/// and the 1.40 ceiling is met two points of GDP in, with the rest of the dial
+/// buying the resource and growth channels the same money already buys. The
+/// 0.70 floor says a gutted industrial base refills a third slower and not
+/// never: a country that has stopped building shell lines still has the ones
+/// it built.
+///
+/// INERT WITHOUT A PLAN, by the same early return as `health_retention`:
+/// `budget_gap` is 0.0 on the whole default board and `x * 1.0` is exact.
+pub fn industry_refill(w: &WorldState, id: NationId) -> f64 {
+    let gap = w.nation(id).budget_gap(BUDGET_INDUSTRY);
+    if gap == 0.0 {
+        return 1.0;
+    }
+    (1.0 + gap * 20.0).clamp(0.70, 1.40)
+}
+
 /// Monthly military & war tick.
 pub fn tick(w: &mut WorldState) {
     // ---- Strength accumulation from spending, and magazines refilling ----
@@ -508,9 +542,10 @@ pub fn tick(w: &mut WorldState) {
         // in two and a half years what it can shoot off in eighteen months; one
         // without spends a decade catching up with a single campaign, and that
         // mismatch is the whole of BIBLE §6's second stock.
-        let refill = MAGAZINE_REBUILD * capital_intensity(w, *id);
-        // The ministry arm is computed here, before the nation is borrowed
-        // mutably, because it reads the world and not just the nation.
+        let refill = MAGAZINE_REBUILD * capital_intensity(w, *id) * industry_refill(w, *id);
+        // Both ministry arms are computed here, before the nation is borrowed
+        // mutably, because each of them reads the world and not just the
+        // nation.
         let retention = health_retention(w, *id);
         let n = w.nation_mut(*id);
         // Strength drifts toward what the budget sustains. The arithmetic is in
