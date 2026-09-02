@@ -745,6 +745,29 @@
   #resCard .pri.on { background:var(--amber); color:#10141a; font-weight:600; }
   #resCard .sharebar { height:3px; background:var(--well); border-radius:2px; margin-top:3px; }
   #resCard .sharebar i { display:block; height:100%; background:var(--cyan); border-radius:2px; }
+  /* The decomposition, laid out like the growth model's: one row an arm, the
+     number on the right, the product last. */
+  #resCard .arms { border-top:1px solid var(--line); padding:5px 0 6px; }
+  #resCard .arm { display:flex; align-items:baseline; gap:6px; font-size:11px; padding:1px 0; }
+  #resCard .arm .nm { color:var(--bright); }
+  #resCard .arm .note { color:var(--faint); font-size:10px; }
+  #resCard .arm .v { margin-left:auto; font-variant-numeric:tabular-nums; color:var(--dim); }
+  #resCard .arm.off .v { color:var(--faint); }
+  #resCard .arm.up .v { color:var(--cyan); }
+  #resCard .arm.down .v { color:var(--red); }
+  #resCard .arm.sum { border-top:1px solid var(--line); margin-top:3px; padding-top:4px; }
+  #resCard .arm.sum .nm, #resCard .arm.sum .v { color:var(--amber); font-weight:600; }
+  #resCard .alloc { border-top:1px solid var(--line); padding:6px 0 2px; }
+  #resCard .alloc .ahead { display:flex; align-items:baseline; gap:6px; font-size:11px; }
+  #resCard .alloc .ahead .st { margin-left:auto; color:var(--dim); font-size:10px; }
+  #resCard .arow { display:flex; align-items:center; gap:6px; font-size:11px; padding:1px 0; }
+  #resCard .arow .nm { width:74px; color:var(--bright); overflow:hidden; text-overflow:ellipsis;
+    white-space:nowrap; }
+  #resCard .arow input[type=range] { flex:1; height:3px; }
+  #resCard .arow .pc { width:38px; text-align:right; font-variant-numeric:tabular-nums;
+    color:var(--dim); }
+  #resCard .afoot { display:flex; gap:6px; margin-top:5px; }
+  #resCard .floorline { font-size:10px; color:var(--faint); font-style:italic; margin:1px 0 3px; }
 
   /* ---------- stratagems ----------
      Political capital is the currency every decision is now priced in, so it is
@@ -3023,6 +3046,70 @@ function etaText(d, tilde) {
   }
 }
 
+/// The seven arms, in the order the sim multiplies them, and their product.
+///
+/// Rendered from `r.arms` and NOTHING ELSE — no multiplication happens here.
+/// The server sends the arms off one `ResearchTerms` and sends `monthly` as that
+/// same object's `total()`, so the rows and the headline are the same month's
+/// arithmetic. The last thing this card should ever do is recompute the chain
+/// in JavaScript; the growth model tried that and the copy was wrong three ways
+/// before anybody checked.
+function armsHtml(r) {
+  const rows = (r.arms || []).map((a) => {
+    const pts = a.kind === "points";
+    // A multiplier of exactly 1 is an arm that did not fire. It is shown rather
+    // than hidden, because "war is costing you nothing" is information.
+    const cls = pts ? "" : a.value > 1 ? " up" : a.value < 1 ? " down" : " off";
+    const v = pts ? a.value.toFixed(1) : "\u00d7" + a.value.toFixed(2);
+    return `<div class="arm${cls}"><span class="nm">${a.name}</span>
+        <span class="note">${a.note}</span><span class="v">${v}</span></div>`;
+  }).join("");
+  return `<div class="arms">${rows}
+      <div class="arm sum"><span class="nm">Research points a month</span>
+        <span class="v">${r.monthly.toFixed(1)}</span></div>
+    </div>`;
+}
+
+/// The draft the eight sliders are holding, or null when the card is showing
+/// what the server sent. Kept outside `render()` because the card is rebuilt
+/// from the payload on every advance and a drag must survive that.
+let resDraft = null;
+
+/// The eight shares as the sliders should currently show them: the player's
+/// draft if they are mid-edit, else what the government has written down, else
+/// the shares the model reads off the nation's condition.
+function allocDraft(r) {
+  if (resDraft && resDraft.length === (r.domains || []).length) return resDraft;
+  if (r.allocation) return r.allocation.slice();
+  return (r.domains || []).map((d) => d.share);
+}
+
+function allocHtml(r) {
+  const doms = r.domains || [];
+  const draft = allocDraft(r);
+  const sum = draft.reduce((a, b) => a + b, 0);
+  const rows = doms.map((d, i) => {
+    const pc = sum > 0 ? (draft[i] / sum) * 100 : 0;
+    return `<div class="arow"><span class="nm">${d.name.split(" ")[0]}</span>
+        <input type="range" min="0" max="1000" step="1" data-alloc="${i}"
+               value="${Math.round((draft[i] / (sum || 1)) * 1000)}">
+        <span class="pc" data-allocpc="${i}">${pc.toFixed(1)}%</span>
+      </div>`;
+  }).join("");
+  const set = r.allocation ? "ordered by the government" : "read off the nation";
+  return `<div class="alloc">
+      <div class="ahead"><span class="nm">Budget shares</span>
+        <span class="st">${set}</span></div>
+      ${rows}
+      <div class="afoot">
+        <button class="pri" data-allocset="1"
+                title="Write these eight shares down — ${TECH_PC.priDeclare} pc">SET SHARES</button>
+        <button class="pri" data-allocclear="1" ${r.allocation ? "" : "disabled"}
+                title="Hand the budget back to the councils — ${TECH_PC.priStand} pc">HAND BACK</button>
+      </div>
+    </div>`;
+}
+
 function researchHtml(m) {
   const r = S.research;
   if (!r) return "";
@@ -3041,6 +3128,24 @@ function researchHtml(m) {
       : (d.options && d.options.length)
         ? `<div class="none">no project chosen — pick one below, or let the engine choose on the next advance</div>`
         : `<div class="none">nothing startable — every reachable technology here is already held</div>`;
+    // THE HONEST LINE. Where the build floor binds, the bill is the size of the
+    // country doing the building: it does not read the copying discount and it
+    // does not read absorptive capacity, so a bigger research budget moves the
+    // wait and nothing else. Served as a fact by the sim (`tech::floor_binds`),
+    // printed as a sentence here.
+    const floor = d.project && d.floor
+      ? `<div class="floorline">priced at the build floor — this is the cost of building it here,
+           not of learning it, and more money buys months but no discount</div>`
+      : "";
+    // THE FORFEIT AS A NUMBER. Redirecting a domain has always thrown away half
+    // of what was banked against the old project, and the confirmation banner
+    // has always said so in words. Words are not a price: the player deciding
+    // whether to switch wants to know what half of this particular bank is, and
+    // the payload already carries the bank.
+    const forfeit = d.project && d.banked > 0
+      ? `<div class="floorline">switching now forfeits ${(d.banked / 2).toFixed(1)} of the
+           ${d.banked.toFixed(1)} points banked here</div>`
+      : "";
     return `<div class="dom">
         <div class="dhead">
           <span class="nm">${d.name}</span>
@@ -3050,6 +3155,8 @@ function researchHtml(m) {
           <button class="pri" data-tree="${d.domain}" title="Open the ${d.name} tree">TREE</button>
         </div>
         ${line}
+        ${floor}
+        ${forfeit}
         <select data-focus="${d.domain}">
           <option value="">— let the engine choose —</option>
           ${opts}
@@ -3060,6 +3167,8 @@ function researchHtml(m) {
 
   return `<div class="card" id="resCard">
       <h3>Research <span>· ${r.monthly.toFixed(1)} points a month</span></h3>
+      ${armsHtml(r)}
+      ${allocHtml(r)}
       ${body}
     </div>`;
 }
@@ -3074,6 +3183,26 @@ function wireResearch() {
   document.querySelectorAll("button[data-pri]").forEach((b) => {
     b.onclick = () => setPriority(b.dataset.pri);
   });
+  // The sliders hold RAW points and the percentages beside them are those points
+  // over their own sum, recomputed on every input — which is why they always add
+  // to 100 without any slider having to push its neighbours around. The sim
+  // normalises the same way, in one place, so what this prints is what it will
+  // spend.
+  const bars = Array.from(document.querySelectorAll("input[data-alloc]"));
+  const repaint = () => {
+    const raw = bars.map((b) => +b.value);
+    const sum = raw.reduce((a, c) => a + c, 0);
+    resDraft = raw;
+    bars.forEach((b, i) => {
+      const el = document.querySelector(`[data-allocpc="${i}"]`);
+      if (el) el.textContent = (sum > 0 ? (raw[i] / sum) * 100 : 0).toFixed(1) + "%";
+    });
+  };
+  bars.forEach((b) => { b.oninput = repaint; });
+  const setb = document.querySelector("button[data-allocset]");
+  if (setb) setb.onclick = () => setAllocation(bars.map((b) => +b.value));
+  const clrb = document.querySelector("button[data-allocclear]");
+  if (clrb) clrb.onclick = () => setAllocation(null);
 }
 
 /// Both take effect immediately rather than queueing with the sliders: they are
@@ -3084,6 +3213,23 @@ window.setFocus = async function (domain, tech) {
   const r = await api("/api/command", { commands: [{ kind: "research_focus", domain, tech }] });
   if (r.errors && r.errors.length) banner(r.errors[0]);
   else banner(tech ? "Research redirected — half the banked progress carried over." : "Project handed back to the engine.");
+  await adopt(r, false);
+};
+
+/// Write the eight shares down, or hand them back. `null` stands the allocation
+/// down; anything else is eight raw numbers, which the sim divides by their own
+/// sum. The draft is cleared either way so the card goes back to reading the
+/// payload — if the command was refused, what it shows is then the truth rather
+/// than the refused draft.
+window.setAllocation = async function (weights) {
+  if (weights && !weights.some((x) => x > 0)) {
+    banner("A research budget cannot be nothing everywhere.");
+    return;
+  }
+  const r = await api("/api/command", { commands: [{ kind: "research_allocation", weights }] });
+  resDraft = null;
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  else banner(weights ? "Research budget written down." : "Research budget handed back to the councils.");
   await adopt(r, false);
 };
 

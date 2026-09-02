@@ -2474,7 +2474,12 @@ const FORCE_CURVE_STEPS: usize = 400;
 fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let n = w.nation(me);
     let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
-    let monthly = spheres_sim::tech::research_output(w, n, dev);
+    // THE DECOMPOSITION THE SIM ACTUALLY CHARGES, not a second copy of it. The
+    // seven arms and their product come off one `ResearchTerms`, and `monthly`
+    // is `total()` rather than a separate call, so the card's rows and the
+    // card's headline cannot disagree about the same month.
+    let terms = spheres_sim::tech::research_terms(w, n, dev);
+    let monthly = terms.total();
     let weights = spheres_sim::tech::domain_weights_of(w, n, dev);
 
     let domains: Vec<serde_json::Value> = spheres_sim::tech::DOMAINS
@@ -2482,16 +2487,24 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
         .map(|d| {
             let di = d.index();
             let rate = monthly * weights[di];
-            let (project, banked, cost, fields_in) = match spheres_sim::tech::project_of(w, me, *d)
-            {
-                Some((def, banked, cost)) => (
-                    serde_json::json!({ "id": def.id, "name": def.name, "year": def.earliest_year }),
-                    banked,
-                    cost,
-                    Some(def.earliest_year),
-                ),
-                None => (serde_json::Value::Null, n.tech.progress[di], 0.0, None),
-            };
+            let (project, banked, cost, fields_in, floor) =
+                match spheres_sim::tech::project_of(w, me, *d) {
+                    Some((def, banked, cost)) => (
+                        serde_json::json!({
+                            "id": def.id, "name": def.name, "year": def.earliest_year
+                        }),
+                        banked,
+                        cost,
+                        Some(def.earliest_year),
+                        // Whether this bill is the build floor rather than the
+                        // copying price — the one fact that tells a follower
+                        // its wait will not move when its budget does. Computed
+                        // sim-side like everything else here.
+                        spheres_sim::tech::index_of(def.id)
+                            .is_some_and(|t| spheres_sim::tech::floor_binds(w, me, t)),
+                    ),
+                    None => (serde_json::Value::Null, n.tech.progress[di], 0.0, None, false),
+                };
             // A projection, and a projection is only worth serving while its
             // one assumption holds: that this month's research rate is the rate
             // for the whole wait. That is fair over a few years and a fiction
@@ -2570,6 +2583,7 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "months_left": months_left,
                 "wait": wait,
                 "fields_in": fields_in,
+                "floor": floor,
                 // The commodity a domain's project is waiting on, once D2 lights
                 // a research gate; `null` until then, and the wait word "input"
                 // beside "year" is the one the page prints for it. Declared in
@@ -2592,8 +2606,42 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
         "monthly": monthly,
         "priority": n.tech.priority.map(|d| format!("{:?}", d)),
         "priority_multiplier": spheres_sim::tech::PRIORITY_MULTIPLIER,
+        // The chain in the order the sim multiplies it, so the page can lay the
+        // arms out down the card the way the growth decomposition already is.
+        // `kind` says how to print the number and nothing else: the first arm is
+        // a quantity of points, the other six are multipliers on it.
+        "arms": [
+            arm("base", "R&D intensity", "points", terms.base,
+                "what the economy puts into research before any policy"),
+            arm("ministry", "Education", "multiplier", terms.ministry,
+                "the ministry that owns the research multiplier"),
+            arm("tools", "Instruments", "multiplier", terms.tools,
+                "what the nation's own technology is worth to its laboratories"),
+            // NOT called "allocation": the budget shares below the arms are an
+            // allocation too, and two rows on one card meaning different things
+            // by the same word is how a screen starts lying.
+            arm("system", "Central planning", "multiplier", terms.system,
+                "a command economy can order the effort, not the interest"),
+            arm("disorder", "Disorder", "multiplier", terms.disorder,
+                "a state coming apart is not funding anything reliably"),
+            arm("war", "War", "multiplier", terms.war,
+                "a country at war researches what it can"),
+            arm("sanctions", "Sanctions", "multiplier", terms.sanctions,
+                "charged on the sanctioners' share of world output"),
+        ],
+        // The eight shares the government has written down, as it wrote them, or
+        // null where it has left them to be read off the nation's condition. The
+        // NORMALISED shares are the `share` on each domain above and come from
+        // the same function the spend loop uses — this is the raw entry, so a
+        // slider can come back up where the player left it.
+        "allocation": n.tech.allocation.map(|a| a.to_vec()),
         "domains": domains,
     })
+}
+
+/// One row of the research decomposition.
+fn arm(key: &str, name: &str, kind: &str, value: f64, note: &str) -> serde_json::Value {
+    serde_json::json!({ "key": key, "name": name, "kind": kind, "value": value, "note": note })
 }
 
 /// One domain's whole tree: every technology in it, what it costs this nation,
@@ -2698,6 +2746,27 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         },
         // Declaring, or standing down, the national programme.
         "research_priority" => Command::SetResearchPriority { nation: me, domain: domain() },
+        // The eight shares, written down. A missing or null "weights" stands the
+        // allocation down and hands the budget back to the read-off weights,
+        // which is the same shape `research_priority` uses for its own None.
+        // Eight numbers or nothing: a short array is a bug on the page, not a
+        // budget, and it is refused here rather than padded with zeroes.
+        "research_allocation" => Command::SetResearchAllocation {
+            nation: me,
+            weights: match v.get("weights").and_then(|x| x.as_array()) {
+                Some(a) => {
+                    if a.len() != spheres_sim::tech::DOMAIN_COUNT {
+                        return None;
+                    }
+                    let mut out = [0.0f64; spheres_sim::tech::DOMAIN_COUNT];
+                    for (i, x) in a.iter().enumerate() {
+                        out[i] = x.as_f64()?;
+                    }
+                    Some(out)
+                }
+                None => None,
+            },
+        },
         "rate" => Command::SetInterestRate { nation: me, rate: num()? },
         "tax" => Command::SetTaxRate { nation: me, rate: num()? },
         "military" => Command::SetMilSpend { nation: me, share: num()? },
@@ -4433,6 +4502,82 @@ mod tests {
         assert!(ok, "Poland is seated in 1990 and must be playable: {}", v);
         assert_eq!(g.world.player, Some(NationId::Poland));
         assert!(v["research"].is_object(), "a seated player gets a full payload");
+    }
+
+    /// THE CARD AND THE SIM ARE THE SAME MONTH. `research_json` serves seven
+    /// arms and a headline; if the page could multiply the arms and get a
+    /// different number from the headline, the card would be a second model of
+    /// research sitting next to the first — which is exactly what the browser's
+    /// copy of the growth model turned out to be.
+    ///
+    /// Asserted with `to_bits` rather than a tolerance, because the server takes
+    /// both from ONE `ResearchTerms` and there is no rounding between them. A
+    /// tolerance here would admit the very drift the bar exists to forbid.
+    ///
+    /// RED CHECK, run: `monthly` was set back to a second
+    /// `tech::research_output` call and the `ministry` arm was served as
+    /// `terms.ministry * 1.01`, the smallest lie a card could tell. The test
+    /// went red on the product against the headline.
+    #[test]
+    fn the_research_card_and_the_sim_agree_on_the_month() {
+        let mut g = Game::new(1990, Some(NationId::Brazil));
+        let v = research_json(&g.world, NationId::Brazil);
+
+        let arms = v["arms"].as_array().expect("the card serves its arms");
+        assert_eq!(arms.len(), 7, "seven arms, in the order the sim multiplies them");
+        assert_eq!(
+            arms.iter().map(|a| a["key"].as_str().unwrap()).collect::<Vec<_>>(),
+            vec!["base", "ministry", "tools", "system", "disorder", "war", "sanctions"],
+            "the order IS the specification — see ResearchTerms::total"
+        );
+        // The page's own arithmetic, done here so it never has to be done there.
+        let mut out = arms[0]["value"].as_f64().unwrap();
+        for a in &arms[1..] {
+            out *= a["value"].as_f64().unwrap();
+        }
+        assert_eq!(
+            out.max(0.0).to_bits(),
+            v["monthly"].as_f64().unwrap().to_bits(),
+            "the seven arms multiply to something other than the headline"
+        );
+
+        // And the shares on the card are the shares the spend loop uses, taken
+        // from the sim rather than rebuilt here.
+        let dev = {
+            let n = g.world.nation(NationId::Brazil);
+            (n.gdp * 1000.0 / n.population / 24000.0).min(1.0)
+        };
+        let want = spheres_sim::tech::domain_weights_of(
+            &g.world,
+            g.world.nation(NationId::Brazil),
+            dev,
+        );
+        for (i, d) in v["domains"].as_array().unwrap().iter().enumerate() {
+            assert_eq!(d["share"].as_f64().unwrap().to_bits(), want[i].to_bits());
+        }
+        assert!(v["allocation"].is_null(), "a fresh nation has ordered nothing");
+
+        // Now order the eight shares through the page's own command shape, and
+        // the card must report them normalised — and echo the raw entry back, so
+        // a slider comes up where the player left it.
+        g.world.nation_mut(NationId::Brazil).political_capital = 200.0;
+        let cmd = serde_json::json!({
+            "kind": "research_allocation",
+            "weights": [0.0, 0.0, 0.0, 300.0, 0.0, 0.0, 0.0, 100.0],
+        });
+        let c = parse_command(&g.world, &cmd, NationId::Brazil).expect("the page's shape parses");
+        spheres_sim::apply_command(&mut g.world, &c).expect("the allocation is enacted");
+
+        let v = research_json(&g.world, NationId::Brazil);
+        let doms = v["domains"].as_array().unwrap();
+        assert_eq!(doms[3]["share"].as_f64().unwrap(), 0.75);
+        assert_eq!(doms[7]["share"].as_f64().unwrap(), 0.25);
+        assert_eq!(doms[0]["share"].as_f64().unwrap(), 0.0);
+        assert_eq!(
+            v["allocation"].as_array().unwrap()[3].as_f64().unwrap(),
+            300.0,
+            "the raw entry comes back as it was written"
+        );
     }
 
     #[test]
