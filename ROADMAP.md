@@ -3,7 +3,8 @@
 ## Done (v0.5 rebuild)
 - **The resource pass back under budget, and a market-on guard that can fail**
   (2026-09-02, `63e6c90` "perf: one stall mask a month, not twelve a dyad" and
-  `ab21ddb` "test: make the market-on row bar a ratio"): `2f9791e` pointed
+  this branch's "test: make the market-on row bar a ratio" plus its
+  re-derivation onto `867b3d6`): `2f9791e` pointed
   `dyads::last_resort` at `resources::action_stalled`, which pays a `draw` — and
   therefore an `arsenal::pick` fold over the whole 46-entry `DECK` — plus a
   binary search into the 552-row ledger, ONCE PER TRACKED COMMODITY PER DYAD PER
@@ -14,7 +15,8 @@
   `resources::change_market_stock` collapsed from three binary searches to one
   (the resources row 0.0580 → 0.0348), and `arsenal::pick` reading a precomputed
   value ranking instead of refolding 46 divisions (appetite 0.0439 → 0.0226).
-  **Total 1.3598 → 0.0766**, 17.8x, and 0.0821 after the rebase onto `a9a373d`.
+  **Total 1.3598 → 0.0766**, 17.8x; 0.0821 after the rebase onto `a9a373d` and
+  0.0637 after the rebase onto `867b3d6`.
   **The bar was not touched** and no test was deleted, ignored or widened.
   Behaviour is bit-identical: both golden ACTUALS still read
   `0xe26e4bf8d6c60066` and `0xbe94d6125631829c`, and all four headless digests
@@ -30,15 +32,20 @@
   cannot do this job on a box that builds several worktrees at once** — healthy-
   under-load and the regression overlap — so the arm now asserts the row as a
   **share of the rest of the same month tick**, in which machine speed and
-  every other process cancel. Healthy 0.02119 mean over 45 quiet readings and
-  0.02062 over 10 saturated, range 0.0191-0.0217; **bar 0.025**, rule 7's floor
-  being mean + 2.326·sd = 0.0221 (z = 8.8). **Red-checked**: reintroducing
-  `4fbc806`'s three-binary-search `change_market_stock` reds it five invocations
-  out of five, **two of them under full sixteen-core saturation**, which the
-  millisecond bar could not do at all. The market-OFF arm and its 0.02 bar are
-  untouched and read 0.0029-0.0032 throughout — blind to the regression, which
-  is the blindness the ON arm exists to end. Recorded in the comment beside the
-  bar, per rule 7: it catches about 1.25x and no less, it is blind to anything
+  every other process cancel. Measured on `867b3d6`: healthy 0.01798 mean over
+  30 quiet readings and 0.01725 over 10 saturated, range 0.0150-0.0192;
+  **bar 0.022**, rule 7's floor being mean + 2.326·sd = 0.0198 (z = 5.0) and
+  the bar within 1% of the geometric midpoint of the gap it has to sit in.
+  **Red-checked**: reintroducing `4fbc806`'s three-binary-search
+  `change_market_stock` reds it five invocations out of five, **two of them
+  under full sixteen-core saturation**, which the millisecond bar could not do
+  at all. The market-OFF arm and its 0.02 bar are untouched and read
+  0.0029-0.0031 throughout — blind to the regression, which is the blindness
+  the ON arm exists to end. **Re-derive, do not scale**: the share is a property
+  of the whole tick, and `867b3d6`'s province manufacturing moved it from the
+  0.02108 measured one rebase earlier, so the bar was re-derived from its own
+  forty readings rather than carried across. Recorded in the comment beside the
+  bar, per rule 7: it catches about 1.3x and no less, it is blind to anything
   that slows this row and the whole tick equally, and it will red for a large
   speed-up elsewhere in the tick.
   Also corrected here, both from the same review: the budget test's comment

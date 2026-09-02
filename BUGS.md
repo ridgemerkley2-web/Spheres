@@ -2281,6 +2281,7 @@ itself the test's own best of three:
 | `4fbc806`       | 0.0602    | 0.0339   | 1.2657   | 1.3598 |
 | after the fix   | 0.0342    | 0.0197   | 0.0226   | 0.0766 |
 | rebased onto `a9a373d` | 0.0391 | 0.0199 | 0.0231 | 0.0821 |
+| rebased onto `867b3d6` | 0.0347 | 0.0097 | 0.0192 | 0.0637 |
 
 17.8x on the total and 56x on the appetite term, against an untouched 0.15
 ms/month bar. The before row is not a reproducible constant: a review session
@@ -2327,35 +2328,45 @@ tightened to 0.055 and red-checked — and an independent review measured that
 spanning 0.0472-0.0611 with four over the bar, against a comment claiming
 sd 0.00101 and a false red of 6e-9.
 
-**Confirmed here rather than taken on trust.** Across four saturated
-invocations on this tree the absolute best-of-five read 0.0562, 0.0574, 0.0582
-and 0.0661 ms/month — every one over 0.055 — and one individual pass read
-0.1186, 2.2x the bar, with nothing wrong. Healthy-under-load and the regression
-overlap, so no millisecond constant sits between them and more passes do not
-help, the passes being no more independent of the load than the reading is.
+**Confirmed here rather than taken on trust.** Across six saturated
+invocations on this branch the absolute best-of-five read 0.0474 to 0.0661
+ms/month, most of them over 0.055, and one individual pass read 0.1186 — 2.2x
+the bar — with nothing wrong. Healthy-under-load and the regression overlap, so
+no millisecond constant sits between them and more passes do not help, the
+passes being no more independent of the load than the reading is.
 
 **Fix.** The market-ON arm now asserts a RATIO — this row over the REST of the
 same month tick, both accumulated over the same 1,200 months of the same world
 — so machine speed, clock drift and every other process on the box multiply
-both terms and cancel. Healthy: 0.02119 mean over 45 quiet readings and 0.02062
-over 10 saturated, whole range 0.0191-0.0217. Bar **0.025**, which is
-mean + 2.326·sd = 0.0221 by rule 7 with room to spare (z = 8.8) and the
-geometric midpoint of the gap it must sit in. Red-checked by reintroducing
-`4fbc806`'s three-binary-search `change_market_stock`: 0.0306-0.0317 quiet and
-0.0293-0.0307 saturated, **RED five invocations out of five, two of them under
-full sixteen-core saturation** — which the millisecond bar could not do at all,
-being red on a busy box either way. The market-OFF arm and its 0.02 bar were
-not touched and read 0.0029-0.0032 throughout, blind to the regression, which
-is the blindness this arm exists to end.
+both terms and cancel. Measured on `867b3d6`: healthy 0.01798 mean over 30
+quiet readings and 0.01725 over 10 saturated, whole range 0.0150-0.0192. Bar
+**0.022**, which is mean + 2.326·sd = 0.0198 by rule 7 with room to spare
+(z = 5.0) and within 1% of the geometric midpoint of the gap it must sit in.
+Red-checked by reintroducing `4fbc806`'s three-binary-search
+`change_market_stock`: 0.0271-0.0309 quiet and 0.0258-0.0285 saturated, **RED
+five invocations out of five, two of them under full sixteen-core saturation**
+— which the millisecond bar could not do at all, being red on a busy box either
+way. The market-OFF arm and its 0.02 bar were not touched and read
+0.0029-0.0031 throughout, blind to the regression, which is the blindness this
+arm exists to end.
+
+**RE-DERIVE, do not scale.** The share is a property of the whole tick, so a
+commit that adds a system moves it: `867b3d6`'s province manufacturing took the
+healthy share from 0.01780 down from the 0.02108 measured one rebase earlier on
+`a9a373d`, and the bar was re-derived from scratch rather than scaled. The
+recipe is in the comment beside the bar — thirty quiet readings and ten
+saturated, `mean + 2.326*sd` as the floor, the geometric midpoint of the gap to
+the red-checked regression as the choice.
 
 **What it still cannot see**, since rule 7's power half is the half that costs:
-about 1.25x is the smallest slowdown it catches reliably, so a 10% regression
-in the posting pass is invisible; and because the denominator is the rest of
-the tick, it is blind to anything that slows this row and the whole game
-equally, and will red for a large speed-up elsewhere in the tick with nothing
-wrong here. The sibling `the_resource_pass_stays_under_budget` is still an
-absolute wall-clock bar and is still load-sensitive — 0.1338 and 0.1358 under
-sixteen-way saturation against its 0.15, and an earlier session recorded 0.1954
-and a red on a suite run with nine foreign `rustc` processes live. It is left
-alone because it is met in every regime this session could produce; the repair
-if that changes is P-2's, a share of the tick re-derived from its own sample.
+about 1.3x is the smallest slowdown it catches reliably, so a 10% regression in
+the posting pass is invisible; and because the denominator is the rest of the
+tick, it is blind to anything that slows this row and the whole game equally,
+and will red for a large speed-up elsewhere in the tick with nothing wrong
+here. The sibling `the_resource_pass_stays_under_budget` is still an absolute
+wall-clock bar and is still load-sensitive — 0.0899 and 0.0958 under sixteen-way
+saturation on `867b3d6` against its 0.15, 0.1338 and 0.1358 on `a9a373d`, and an
+earlier session recorded 0.1954 and a red on a suite run with nine foreign
+`rustc` processes live. It is left alone because it is met in every regime this
+session could produce; the repair if that changes is P-2's, a share of the tick
+re-derived from its own sample.
