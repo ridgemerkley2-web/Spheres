@@ -3016,14 +3016,31 @@ fn new_game(g: &mut Game, seed: u64, player: Option<NationId>) -> (serde_json::V
     (state_json(g, None), true)
 }
 
-fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    let port: u16 = args
-        .iter()
+/// The port to listen on. `--port N` on the command line wins; failing that
+/// the `PORT` environment variable, which is what preview tooling sets when it
+/// assigns a free port of its own choosing; failing both, 7777. A value that
+/// does not parse as a port is ignored rather than fatal, so a stray `PORT` in
+/// the environment cannot stop the game from starting.
+fn listen_port(args: &[String], env_port: Option<&str>) -> u16 {
+    args.iter()
         .position(|a| a == "--port")
         .and_then(|i| args.get(i + 1))
         .and_then(|s| s.parse().ok())
-        .unwrap_or(7777);
+        .or_else(|| env_port.and_then(|s| s.trim().parse().ok()))
+        .unwrap_or(7777)
+}
+
+/// `--no-open` keeps the server from launching the desktop browser. Tooling
+/// that opens its own tab (the preview pane, a headless check) passes it; a
+/// person double-clicking the exe does not, and gets the tab they expect.
+fn wants_browser(args: &[String]) -> bool {
+    !args.iter().any(|a| a == "--no-open")
+}
+
+fn main() {
+    let args: Vec<String> = std::env::args().collect();
+    let env_port = std::env::var("PORT").ok();
+    let port = listen_port(&args, env_port.as_deref());
 
     let mut boot = Game::new(1990, None);
     play_rules(&mut boot);
@@ -3041,7 +3058,9 @@ fn main() {
     let url = format!("http://{}", addr);
     println!("SPHERES is running at {}", url);
     println!("Press Ctrl-C to stop the server.");
-    open_browser(&url);
+    if wants_browser(&args) {
+        open_browser(&url);
+    }
 
     for mut request in server.incoming_requests() {
         let url_path = request.url().split('?').next().unwrap_or("/").to_string();
@@ -3454,6 +3473,29 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// The listen port and the browser flag, pinned so the preview tooling's
+    /// contract (a free port handed over in `PORT`, `--no-open` honoured) cannot
+    /// silently regress into "always 7777, always pops a tab" — which is what
+    /// the binary did until 2026-09-02, when `--no-open` was accepted on the
+    /// command line and ignored.
+    #[test]
+    fn the_port_and_the_browser_flag_come_from_the_command_line_then_the_environment() {
+        let a = |v: &[&str]| v.iter().map(|s| s.to_string()).collect::<Vec<_>>();
+        assert_eq!(listen_port(&a(&[]), None), 7777, "nothing asked: the default");
+        assert_eq!(listen_port(&a(&["--port", "7790"]), None), 7790, "the flag");
+        assert_eq!(listen_port(&a(&[]), Some("7791")), 7791, "the environment");
+        assert_eq!(listen_port(&a(&[]), Some(" 7792
+")), 7792, "trimmed");
+        assert_eq!(listen_port(&a(&["--port", "7790"]), Some("7791")), 7790, "flag beats environment");
+        assert_eq!(listen_port(&a(&["--port", "seven"]), Some("7791")), 7791, "a bad flag falls through");
+        assert_eq!(listen_port(&a(&[]), Some("not a port")), 7777, "a bad PORT is ignored");
+        assert_eq!(listen_port(&a(&["--port"]), None), 7777, "a dangling flag is ignored");
+        assert!(wants_browser(&a(&[])), "a person launching it gets a tab");
+        assert!(wants_browser(&a(&["--port", "7790"])));
+        assert!(!wants_browser(&a(&["--no-open"])), "tooling that opens its own tab does not");
+        assert!(!wants_browser(&a(&["--port", "7790", "--no-open"])));
+    }
 
     /// MEASUREMENT INSTRUMENT for TRIAGE F-35 / PLAN step 2, `#[ignore]`d and
     /// asserting nothing. Prints, for every nation seated in 1990, what the
