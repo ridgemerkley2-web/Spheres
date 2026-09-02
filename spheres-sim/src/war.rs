@@ -450,6 +450,54 @@ pub fn sustained_force(n: &Nation, mil_spend_gdp: f64) -> f64 {
         + crate::tech::military_floor(n)
 }
 
+/// HEALTH's named arm, and the only thing the health ministry does to a war.
+///
+/// A wartime army does not rebuild out of recruits alone: it rebuilds out of
+/// the wounded who come back. A medical system that evacuates, treats and
+/// returns a casualty to his unit is worth divisions, and one that does not
+/// turns every wound into a permanent subtraction. That is what a health
+/// budget buys a belligerent, and it is the reason this multiplies the
+/// APPROACH to `sustained_force` rather than `REPLACEMENT_RATE` itself:
+/// `REPLACEMENT_RATE` is read a second time, in `resolve_conflicts`, to define
+/// what out-killing replacement means, and a decisive battle must not become
+/// easier or harder because the loser's hospitals are good.
+///
+/// PEACETIME IS UNTOUCHED, by design and by test. A health budget in peace
+/// buys population and nothing else; there are no casualties to return.
+///
+/// INVENTED, and labelled as the design requires: the x20 slope and the
+/// 0.60/1.60 clamp. The slope is read off the dial the player actually holds —
+/// health's cap is 0.15 of GDP against an inherited reference near 0.05, so a
+/// government that puts a further two points of output into military medicine
+/// gets 1 + 0.02*20 = 1.40, a 40% faster rebuild, and the ceiling is reached
+/// three points in. The floor at 0.60 is the claim that gutting the hospitals
+/// costs an army 40% of its regeneration and not all of it: conscription still
+/// works when the medical corps does not.
+///
+/// PUBLIC so a bar can read the multiplier itself. Reading it off
+/// `mil_strength` after a month of war cannot pin the slope: the same tick
+/// resolves the fighting, and a bigger army takes proportionally bigger
+/// casualties, so the observable step is the arm net of the war it was bought
+/// for. Measured on this tree, a 1.10x retention showed up as a 0.978x step in
+/// held force. That is the model being right and the measurement being the
+/// wrong one to make.
+///
+/// INERT WITHOUT A PLAN. `budget_gap` is 0.0 for every nation with no enacted
+/// budget — which is every AI nation and the whole default board — and the
+/// early return then hands back exactly 1.0 without querying the conflict
+/// list at all. `x * 1.0` is exact in IEEE 754, so the strength loop is
+/// bit-identical on every default path.
+pub fn health_retention(w: &WorldState, id: NationId) -> f64 {
+    let gap = w.nation(id).budget_gap(BUDGET_HEALTH);
+    if gap == 0.0 {
+        return 1.0;
+    }
+    if !w.at_war(id) {
+        return 1.0;
+    }
+    (1.0 + gap * 20.0).clamp(0.60, 1.60)
+}
+
 /// Monthly military & war tick.
 pub fn tick(w: &mut WorldState) {
     // ---- Strength accumulation from spending, and magazines refilling ----
@@ -461,12 +509,15 @@ pub fn tick(w: &mut WorldState) {
         // without spends a decade catching up with a single campaign, and that
         // mismatch is the whole of BIBLE §6's second stock.
         let refill = MAGAZINE_REBUILD * capital_intensity(w, *id);
+        // The ministry arm is computed here, before the nation is borrowed
+        // mutably, because it reads the world and not just the nation.
+        let retention = health_retention(w, *id);
         let n = w.nation_mut(*id);
         // Strength drifts toward what the budget sustains. The arithmetic is in
         // `sustained_force` below, which is the only place it exists.
         let share = n.mil_spend_gdp;
         let sustained = sustained_force(n, share);
-        n.mil_strength += (sustained - n.mil_strength) * REPLACEMENT_RATE;
+        n.mil_strength += (sustained - n.mil_strength) * REPLACEMENT_RATE * retention;
         n.munitions = (n.munitions + refill).clamp(0.0, 1.0);
         // Exhaustion decays in peace
         n.war_exhaustion = (n.war_exhaustion - 0.01).max(0.0);
