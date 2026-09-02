@@ -529,8 +529,27 @@ pub fn covert_action(
         + t_sep * 0.30
         + reach * 0.20)
         .clamp(0.05, 0.80);
-    // A police state catches spies; a well-worn channel gets rolled up.
-    let expose_p = (0.10 + heat * 0.55 + t_auth * 0.15).clamp(0.05, 0.85);
+    // A police state catches spies; a well-worn channel gets rolled up — and,
+    // DIPLOMACY'S SECOND NAMED ARM, a foreign service that funds its own
+    // counter-intelligence catches them too.
+    //
+    // Note whose gap this is: the TARGET's, not the sponsor's. Diplomacy is the
+    // only ministry on the board whose budget acts on somebody else's decision,
+    // and it acts through a path that already exists and is already priced —
+    // exposure is what costs the sponsor relations and reputation below, and
+    // this arm changes only how often that path is taken. It invents no new
+    // consequence.
+    //
+    // INVENTED, and labelled as the design requires: the 10.0 slope. The design
+    // sizes it at "+0.5% of GDP is about +5 percentage points of exposure", and
+    // 0.005 * 10.0 = 0.05 is exactly that. The existing `clamp(0.05, 0.85)`
+    // bounds it, so no budget can make a service infallible.
+    //
+    // INERT WITHOUT A PLAN: `budget_gap` is 0.0 for a target with no enacted
+    // budget, and adding an exact zero to a positive sum is exact, so the RNG
+    // draw below is unchanged on every default path.
+    let t_dip = w.nation(target).budget_gap(BUDGET_DIPLOMACY);
+    let expose_p = (0.10 + heat * 0.55 + t_auth * 0.15 + t_dip * 10.0).clamp(0.05, 0.85);
 
     let worked = w.rng.chance(success_p);
     let exposed = w.rng.chance(expose_p);
