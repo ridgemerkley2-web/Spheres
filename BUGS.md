@@ -1874,3 +1874,385 @@ widened. These are re-targets, not deletions, and they follow the feature Ridge
 ruled for, so they are filed and not reverted. Ruling wanted: accept the three
 as the new bars, or require (3) to carry a measured narrowest-layout number
 the way its predecessor did.
+
+---
+
+## Awaiting an owner ruling (added 2026-09-02 by the merge-repair record agent, for the Codex province-trade-and-mines landing)
+
+`e4e3c03` "merge: integrate Codex province trade and mines" is Ridge's own merge
+of `9274baa` (ours) with `3f7eaf2` (Codex's "feat: integrate province resources
+trade and mines"), carried on branch `fix/merge-repairs` with four repair commits
+on top (`2b10e78`, `24b110e`, `7958ff4`, `104f851`). M-1..M-8 are what that
+landing brought in uncalibrated, unruled or half-wired, plus the one thing the
+merge itself moved.
+
+Every figure below was measured on `fix/merge-repairs` at `104f851` on
+2026-09-02 by the session that filed it — computed directly from
+`spheres-sim/data/resources_1990.json` and
+`spheres-web/data/district_population.json`, read out of the tree's own source,
+or read off a test run whose binary was built into this worktree's own
+`CARGO_TARGET_DIR`. Where a number comes from another session's measurement, the
+line says so and names it.
+
+### M-1 — the mine is uncalibrated: five bare constants, two of them inert, and an output that ignores the ground it sits on
+
+`resources.rs` 792-796:
+
+```rust
+pub const MINE_BUILD_MONTHS: u32 = 12;
+pub const MINE_PC_COST: f64 = 6.0;
+pub const MINE_COST_YEARS: f64 = 2.0;
+pub const MINE_COST_FLOOR_BN: f64 = 0.25;
+pub const MINE_COST_CAP_BN: f64 = 25.0;
+```
+
+Five constants, no doc comment on any of them, no class letter, no source. They
+sit under the banner at `resources.rs` 772-774 — "The mechanic constants
+(Appendix A: named, classed, justified)" — between `BUFFER_MONTHS`, whose
+comment cites the IEA's 90-day civil stock obligation and the Stock Piling Act's
+three-year war stockpile (776-779), and `RELATION_FLOOR`, whose comment carries
+a 21-seed x 40-year measurement (786-790). They are the only constants in that
+block that do not answer the banner.
+
+**Two of the five are inert, measured.** `mine_cost_bn` (`resources.rs`
+2737-2740) is `(mine_output_bn_per_year * MINE_COST_YEARS).clamp(
+MINE_COST_FLOOR_BN, MINE_COST_CAP_BN)`. Enumerating every (district, commodity)
+pair the artifact makes buildable — `quality > 0`, `reference_mine(c)` present,
+a 1990 unit price present — at the 1990 oil price of $20/bbl (`data/mod.rs`
+806):
+
+- **3,524 buildable pairs.**
+- **3,411 of them (96.79%) are at or under the $0.25bn floor**, so the floor is
+  what they are charged.
+- **0 pairs reach the $25bn cap.** The dearest mine on the board is a quality-3
+  coal district at **$0.4324bn** — a figure **54 districts** share exactly
+  (the four US districts US-WV, US-IL, US-LA and US-MS, plus ZA-MP and
+  VNM_ng-b-c-2, alongside 28 CN-\*, 7 UA-\*, 6 RU-\* and 7 others — 6 + 28 +
+  7 + 6 + 7 = 54), because output does not vary by district — see below.
+  **The cap is 57.8x above the dearest thing that can be built.**
+  (Count re-measured at ship, 2026-09-02, with the tree's own `mine_cost_bn`
+  over every presence district: 3,524 pairs, 3,411 at/under floor, 0 at cap,
+  dearest 0.432440bn shared by 54 districts.)
+- The only 113 pairs priced above the floor are **all coal**: 59 at quality 2
+  ($0.28829bn) and 54 at quality 3 ($0.43244bn). Every other line, at every
+  quality, is at the floor.
+- Oil is the one line whose price moves in play, and it does not save the cap:
+  at the $120/bbl clamp a quality-3 oil field prices at **$1.154bn**, still
+  21.7x below it.
+
+So `MINE_COST_CAP_BN` never binds, `MINE_COST_YEARS` is multiplied out by the
+floor for 96.79% of the board, and the practical price of a mine is a flat
+$0.25bn.
+
+**Output ignores the district, the deposit and the owner.** `mine_output`
+(`resources.rs` 2718-2726) is `reference_mine(commodity) * scale`, scale being
+`3 => 1.5, 2 => 1.0, 1 => 0.5` off the district's presence rank, and nothing
+else. `reference_mine` (2694-2716) is the **world median** 1990 output per
+located district for that line, computed once from the table. The measured
+medians, this run: bauxite 462,500 t; coal 6,009.547 kt; cobalt 229.781 t;
+copper 5,820 t; gas 8.064; gold 1,057.143 kg; iron 826,000 t; oil 8.782 kb/d;
+phosphate 613.815 kt; platinum_group 2,509.475 kg; rare_earths 3,785.5 t;
+uranium 50.893 t. A mine in Chile and a mine in Chad produce the same number.
+
+**The consequence, measured.** A single mine can dwarf the whole nation it sits
+in, and the sparse ones are the worst offenders because the floor prices them
+the same as the rich ones:
+
+| owner | district | line | rank | mine output/yr | 1990 national output | ratio |
+|---|---|---|---|---|---|---|
+| Laos | LAO_vientiane | coal | 1 (sparse) | 3,004.77 kt | 2.999996 kt | **1,001.6x** |
+| Ethiopia | ET-OR | platinum_group | 1 | 1,254.74 kg | 2.0 kg | 627.4x |
+| Tanzania | TZ-14 | coal | 1 | 3,004.77 kt | 6.874992 kt | 437.1x |
+| Spain | ESP_madrid | bauxite | 1 | 231,250 t | 1,000 t | 231.2x |
+| Poland | PL-SL | iron | 1 | 413,000 t | 2,000 t | 206.5x |
+
+One $0.25bn click multiplies Laos's national coal by a thousand.
+
+**And it is added, never replaced, and never depletes.** `resources.rs` 885 adds
+the transcribed located share into `flow`; `resources.rs` 904-906 then adds
+`completed_mine_outputs` **on top of it** (926 does the same for the oil column
+on the refresh path). `Mine` (`resources.rs` 1206-1211) carries `district`,
+`commodity`, `output`, `completed` — no reserve, no decay, no depletion term
+anywhere. `advance_mines` (956-1012) copies `project.output` into the `Mine` at
+completion, and `project.output` was frozen by `start_mine` (`resources.rs`
+2812) at the value `mine_output` returned on the day the click happened. **The
+output is fixed at start and paid every month for the rest of the game.**
+
+**Ruling wanted**, and it is five separate questions: (a) what each of the five
+constants is, classed and sourced the way its neighbours are; (b) whether the
+cap and the years-multiplier survive at all, given that neither can bind;
+(c) whether a mine's output should scale to the district's own located share
+rather than the world median; (d) whether a mine replaces or adds to the
+transcribed 1990 figure; (e) whether a deposit depletes. Until then the mine is
+a flat-priced, unbounded, permanent multiplier on a transcribed figure — the one
+shape iron rule 4 exists to prevent.
+
+### M-2 — the ruling breach: `start_mine` writes `debt_gdp`, and the growth model reads it
+
+`resources.rs` 2814, inside `start_mine`:
+
+```rust
+w.nation_mut(nation).debt_gdp += investment_bn / gdp;
+```
+
+`economy.rs` 592, inside `growth_terms`:
+
+```rust
+let debt_drag = if n.debt_gdp > 0.9 { (n.debt_gdp - 0.9) * 0.02 } else { 0.0 };
+```
+
+This is the first write from the resource system into a quantity the growth
+model reads, and it is against the ruling the module's own header quotes
+verbatim at `resources.rs` 66-68: *"It should only hurt if you are trying to do
+something with the resource and don't have enough of it."* — followed by
+"Nothing here is read by growth, oil, stability or munitions."
+
+**Its own guard cannot see it.** `tests::gates_write_nothing_the_growth_model_reads`
+(`lib.rs` 4455-4486) compares `gdp`, `growth_last`, `oil_mbd`, `mil_strength`,
+`munitions`, `stability` and `arsenal::book_value` bit-for-bit with the gates on
+and off, six seeds, 480 months — but it ticks with an **empty command slice**
+(`lib.rs` 4461-4462: `tick_month(&mut on, &[])`, `tick_month(&mut off, &[])`),
+and `Command::DevelopResource` is the only route into `start_mine`. The guard is
+green and blind to the one write that breaks the thing it guards.
+
+Two further properties of the write, both wanting the same ruling: it is a
+**permanent** addition to `debt_gdp` (nothing amortises it, unlike the trade
+money legs at `resources.rs` 1118 and 1121, which move debt both ways), and it is
+charged **in full on the day construction starts**, twelve months before any
+output arrives.
+
+**Ruling wanted:** does the resource system get a fiscal channel into growth (in
+which case `resources.rs` 66-68 has to be amended in the house style and the
+guard has to be given a command slice that includes `DevelopResource`), or does
+the mine's cost move somewhere the growth model does not read?
+
+### M-3 — the mine is player-only, and it widens exactly the hole R-1 measured
+
+`Command::DevelopResource` occurs **six times in the whole tree**, and not one of
+them is an AI:
+
+1. `spheres-sim/src/lib.rs` 83 — the variant.
+2. `spheres-sim/src/lib.rs` 320 — `command_price`: `MINE_PC_COST`, `REFUSABLE`.
+3. `spheres-sim/src/lib.rs` 445 — `command_refusal` -> `resources::mine_refusal`.
+4. `spheres-sim/src/lib.rs` 699 — `apply_command` -> `resources::start_mine`.
+5. `spheres-sim/src/resources.rs` 3423 — the one unit test (M-4).
+6. `spheres-web/src/main.rs` 2870 — the browser's producer, which hard-codes the
+   issuer as the player: `Command::DevelopResource { nation: me, ... }`, reached
+   from `ui/index.html` 10823.
+
+`politics.rs` — the file that issues `PledgeAid`, `EndAid`, `ProposeAlliance`,
+`CovertAction` and `ProposeTrade` on the AI's behalf — never issues it.
+
+Against **R-1** ("zero resource wars in every F2 cell over two counts", 400
+seeds, lambda-hat 0.000) this matters more than a missing AI arm usually would.
+R-1's finding is that the AI has no route from wanting a commodity to acting on
+it; the mine adds a second such route and hands it to the human only. The AI
+cannot dig, so the only thing that changes an AI nation's endowment remains
+conquest, which R-1 measured at zero.
+
+**Ruling wanted:** does the AI get a mine arm (and if so, priced against what
+appetite), or is `DevelopResource` deliberately a player verb? If the latter,
+R-8's finding applies to it too — the suite calibrates a world in which this
+command is never issued.
+
+### M-4 — the mine's lost guards: four assertions the merge narrowed away
+
+Codex's `3f7eaf2` carried two tests,
+`mine_command_pays_once_builds_for_a_year_and_enters_have` and
+`mine_project_and_output_follow_the_district_when_it_is_captured`. The merge
+combined them into one,
+`resources::tests::a_mine_builds_for_a_year_and_follows_the_district`
+(`spheres-sim/src/resources.rs` 3405-3443), and four bars did not survive.
+
+Gone, quoting `3f7eaf2:spheres-sim/src/resources.rs` 3508-3540:
+
+1. **The fiscal charge.** `let debt = w.nation(chile).debt_gdp;` then
+   `assert!((w.nation(chile).debt_gdp - debt - cost / gdp).abs() < 1e-12);` — the
+   only assertion anywhere that the mine costs money, and the only test that
+   could have caught M-2. **No test in the tree now touches the mine's fiscal
+   cost**: `investment_bn` occurs at `resources.rs` 1201, 2811, 2814, 2821 and
+   2839 and nowhere else in the workspace, and every one of those is production
+   code. (Precisely: `mod tests` opens at `resources.rs` 3260, but it is not the
+   file's first test code — `#[cfg(test)]` blocks stand at 2884, 2895, 2903,
+   3074 and 3080. The claim survives the correction: every site listed here is
+   at or below 2839, hence above none of them.)
+2. **The save/load round-trip.** `let saved = crate::save(&w);
+   assert!(saved.contains("mine_projects"));` then `crate::load(&saved)` and
+   `assert_eq!(mine_project_at(&w, &district, c).unwrap().investment_bn, cost);`.
+   `mine_projects` occurs at `resources.rs` 957, 961, 963, 985, 1160, 1183, 2744,
+   2747, 2827 and 2830 — again all production. This is state that **enters
+   `state_hash` the moment a player builds** (`Resources::is_empty`,
+   `resources.rs` 1183, is false once a project exists, so the whole `resources`
+   block starts serializing), and nothing asserts it survives a save.
+3. **The "already online" refusal.**
+   `assert!(apply_command(&mut w, &cmd).unwrap_err().contains("already online"));`
+   — the refusal string still exists in production at `resources.rs` 2790-2791,
+   asserted by nothing.
+4. **"A refused click is free."**
+   `assert_eq!(w.nation(chile).political_capital, held, "a refused click is free");`
+   — the bar that `REFUSABLE` at `lib.rs` 320 means what it says for this
+   command.
+
+Also dropped: `assert_eq!(flow(&w, chile, c), baseline, "construction is not
+production")` for the building nation.
+
+What survives is the twelve-month build and the ownership-follows-the-ground
+arm. Iron rule 5: tests are never deleted or widened. These were narrowed by a
+merge rather than by a decision, so they are filed here rather than silently
+restored — but unlike the two guards restored in `7958ff4`, restoring #1 lands a
+**red** test against M-2's breach, which is a ruling and not a repair.
+
+**Ruling wanted:** restore all four now (accepting that #1 goes red until M-2 is
+settled), or restore #2-#4 now and hold #1 until M-2 is ruled.
+
+### M-5 — the serialization that moved both goldens, with nothing in the simulation moving
+
+`world.rs` 947-952:
+
+```rust
+    #[serde(default)]
+    pub district_population: std::collections::BTreeMap<String, f64>,
+    ...
+    #[serde(default)]
+    pub(crate) district_population_scale: Vec<f64>,
+```
+
+Neither carries `skip_serializing_if`. `world.rs` has ten `skip_serializing_if`
+sites (303, 307, 724, 729, 734, 825, 833, 866, 879, 958), including the
+`resources` field two declarations below these two at 958, so the discipline is
+the house norm and these two are the exception. Both are therefore always
+written, and both always enter `state_hash`.
+
+**Measured this run** (release, this worktree's own `CARGO_TARGET_DIR`,
+`cargo test -p spheres-sim --release --lib -- --exact tests::the_1990_start_is_pinned tests::golden_hash_of_a_known_run`):
+
+- `the_1990_start_is_pinned` panics at `lib.rs:4068` — "the 1990 start state
+  changed (actual **0xe26e4bf8d6c60066**)", against the pin `0xd022d50f43c984da`
+  at `lib.rs` 4069.
+- `golden_hash_of_a_known_run` panics at `lib.rs:4314` — "timeline fingerprint
+  changed (actual **0xbe94d6125631829c**)", against the pin `0xbd5ec0f43c5f2e3b`
+  at `lib.rs` 4310.
+
+Both goldens were red before the merge too (E-3), but at `0xa5c9c5b2306313d8` and
+`0x20c24ab0f1581807`. The actuals are now Codex's numbers.
+
+**Nothing in the simulation moved**, and that was proved byte for byte by the
+repair session that filed `2b10e78` — its commit body is the record. The merged
+saves at t=0 and t=240 months, with exactly the `district_population` and
+`district_population_scale` blocks deleted **plus the comma their removal
+orphans** (they serialize last in `WorldState`, so deleting them alone leaves a
+trailing comma and yields `0xcf9a80c77dc5aaa2` / `0x204b36a998819baf` instead),
+are byte-identical to saves built and dumped from a detached worktree at
+`9274baa`, and re-hash to `0xa5c9c5b2306313d8` / `0x20c24ab0f1581807`. That
+measurement is that session's, not this one's.
+
+**A correction to the obvious fix, measured here.** Adopting the neighbours'
+discipline would **not** by itself return the tree to the old actuals. Every
+`skip_serializing_if` in `world.rs` is an emptiness or default test — all ten
+sites (303, 307, 724, 729, 734, 825, 833, 866, 879, 958) across seven predicates
+(`Option::is_none`, `Vec::is_empty`, `BTreeMap::is_empty`, `is_true`, `is_false`,
+`is_first_day`, `crate::resources::Resources::is_empty`) — and neither field is
+empty in 1990: `data/mod.rs` 812-813 seeds
+`district_population` from `districts::population_1990()` — **2,610 entries**,
+the count `spheres-web/data/district_population.json` carries in its own `counts`
+block — and `district_population_scale` to `vec![1.0; nation_count()]`.
+`is_empty` would skip neither. Restoring the old actuals needs a predicate that
+skips the map when it still equals the artifact's own seeding, which is a
+different and more expensive thing (`is_first_day` at `world.rs` 866 is the only
+value-equality precedent in the file, and it compares a scalar). **That is
+Ridge's call and not a session's, because it changes a save format either way**:
+skip-when-default means an untouched world's save loses 2,610 lines while a
+modified one keeps them, and no-skip means every save carries them forever.
+
+**Ruling wanted:** (a) leave the two fields always-serialized and accept Codex's
+actuals as the tree's actuals; (b) give them a skip-when-equal-to-seeding
+predicate, restoring `0xa5c9c5b2306313d8` / `0x20c24ab0f1581807`; or (c)
+something else. Note this is orthogonal to the pins themselves — both goldens
+stay red for **E-3's** reasons under any of the three, and T-5's protocol
+(nothing is re-pinned until every calibration bar is green) is untouched by it.
+
+### M-6 — the orphan route: `/api/district-populations` has no consumer
+
+`spheres-web/src/main.rs` 3538-3541 serves `GET /api/district-populations` from
+`district_populations_json` (`main.rs` 2422). **Nothing in the tree calls it.**
+Grepping every `.rs` and `.html` in the workspace: the route at 3538, the
+function at 2422, and one test read at `main.rs` 8644 inside
+`province_dossier_reads_live_population_and_exact_geometry`. `spheres-web/ui/index.html`
+contains the string zero times.
+
+It is a half-landed feature. Codex's `3f7eaf2:spheres-web/ui/index.html` had the
+whole consumer and the merged UI has none of it: `loadDistrictPopulations`
+(Codex 6598), `populationSurfaceAt` (Codex 6040) and `populationColor` (Codex
+6027), painted at Codex 8493-8494, driven by a `mapMode === "population"` that
+Codex's page tests at 2433, 6612, 8486, 10319 and 10355. HEAD's `index.html` has
+**zero** occurrences of `loadDistrictPopulations` and **zero** of
+`mapMode === "population"`.
+
+**The singular route is fine and is wired**: `GET /api/district-population/{id}`
+(`main.rs` 3542-3543) is called from `index.html` and drives the province
+dossier, asserted by the same test at `main.rs` 8635-8657. Only the plural
+surface is orphaned.
+
+**Recommendation, deliberately not carried out in this pass: delete the plural
+route and re-add it together with its consumer.** A route with no caller is a
+claim the tree cannot check, and the population map mode is a real feature worth
+landing whole rather than half-restoring. Not deleted here because removing a
+route is a behaviour change and this pass is the record.
+
+### M-7 — a player who saves in the browser cannot resume
+
+`spheres-web/src/main.rs` 3739-3750 implements `POST /api/load`: it reads
+`save.json`, calls `load`, `resources::warm`, replaces the `Game` and returns
+`state_json`. **`spheres-web/ui/index.html` never calls it.** The page calls
+`/api/save` exactly once (`index.html` 2391) and `/api/load` zero times; the page
+even says so in a comment at `index.html` 2298-2299 — "There is no /api/load
+handler in this UI; if one arrives it owes the same lines."
+
+So the save button writes `save.json` and there is no way to get it back without
+restarting the server against that file. This is a playability hole on the
+primary game surface (CLAUDE.md, Owner preferences).
+
+**And the handler itself loses two things** the moment it is wired. `main.rs`
+3746:
+
+```rust
+*g = Game { world: w, log: vec![], history: vec![] };
+```
+
+The dispatch log and the charted history are rebuilt **empty**, so a resumed game
+has no headline record and no past. That is a defensible reconstruction — both
+are display state and neither is in the save — but it should be a decision, and
+the page should say so to the player rather than silently show an empty ledger.
+
+**Ruling wanted:** wire `/api/load` (the comment at `index.html` 2298 names the
+tech-graph invalidation it owes), and decide whether `log` and `history` are
+reconstructed from the loaded world, left empty with the player told, or
+persisted into the save.
+
+### M-8 — BIBLE section 5's daily invariant has never seen `DevelopResource`
+
+`tests::the_daily_clock_preserves_the_market_on_world` (`lib.rs` 1071-1270) is
+the assertion of BIBLE section 5's amended condition — a day-stepped month is
+bit-identical to a month-stepped one, **commands included**. Its schedule issues
+four commands over 24 months: `ProposeDeal` at m=3 (`lib.rs` 1127), `DeclineDeal`
+at m=5 (1138), `DeclineDeal` at m=7 (1143), `AcceptDeal` at m=11 (1148).
+**`DevelopResource` is not among them, and it appears in zero daily-clock
+tests** — its six occurrences are listed in M-3 and none is in a clock test.
+
+**By inspection it should hold, so this is a coverage gap and not a defect.** The
+whole `DevelopResource` path reads no `w.day` and draws no RNG: `mine_refusal`
+(`resources.rs` 2758-2799) reads ownership, `quality_of`, `district_contested`,
+`mine_at`, `mine_project_at` and `mine_cost_bn` (which reads `w.oil_price`, a
+monthly quantity); `start_mine` (2802-2841) inserts into `mine_projects` at a
+`binary_search_by` position, so the vector stays sorted and the save is
+order-stable; `advance_mines` (956-1012) walks that sorted vector and decrements.
+Grepping `rng` and `.day` over `resources.rs` 956-1012 and 2737-2850 returns
+nothing.
+
+**The fix is one arm of schedule**, not a new test: add a `DevelopResource` arm to
+the existing test's `match m` — a district the player owns with `quality > 0`, on
+a day that is not the 1st, with `political_capital` already set to 100.0 by that
+test at `lib.rs` 1080. Filed rather than done because adding an arm to that test
+changes a BIBLE-section-5 bar, and iron rule 5 wants the session that adds it to
+watch it go red against the behaviour it guards — the honest red-check here is
+making `advance_mines` decrement per day instead of per month.

@@ -1,6 +1,82 @@
 # SPHERES Roadmap
 
 ## Done (v0.5 rebuild)
+- **Codex's province trade and mines** (2026-09-02, Ridge's own merge `e4e3c03`
+  "merge: integrate Codex province trade and mines" of `9274baa` (ours) with
+  `3f7eaf2` (`feat: integrate province resources trade and mines`), plus four
+  repair commits on `fix/merge-repairs`): living province population — the 1990
+  district residents in `spheres-web/data/district_population.json`, 2,610
+  provinces, growing with the current owner's demographic and technology path and
+  staying with the ground across a border transfer — and the district mine,
+  `Command::DevelopResource`, a twelve-month build on a mapped deposit priced at
+  `MINE_PC_COST` political capital and an investment charged to `debt_gdp`.
+  **Four repairs on landing**: (1) `2b10e78` — the four `START_ACTUAL` /
+  `RUN_ACTUAL` constants in `the_resource_layer_is_inert_at_1990`,
+  `the_resource_layer_is_inert_over_time` and
+  `the_market_switch_is_off_for_the_suite_and_deterministic_when_on` still
+  carried `0xa5c9c5b2306313d8` / `0x20c24ab0f1581807` and were pointed at the
+  tree's measured actuals `0xe26e4bf8d6c60066` / `0xbe94d6125631829c`; these
+  track the tree's current actual by construction (their own comment at
+  `lib.rs` 4338-4340 says so) and are not a golden re-pin. (2) `24b110e` — three
+  merge notes the landed merge had falsified, corrected as comments only, the
+  earlier reading kept legible as history. (3) `7958ff4` — Codex's two dropped
+  province-population guards restored from `3f7eaf2`,
+  `opening_population_covers_every_province_and_closes_to_national_totals` and
+  `province_population_follows_its_current_owners_demography`, each red-checked on
+  both of its arms and each revert recorded; the reconstruction was corrected in
+  the doing, because the opening split is **not** renormalised at birth
+  (`data/mod.rs` 812 seeds straight from `districts::population_1990()`, so
+  `reseed_population`'s renormalising loop is only reached from `load()` for a
+  pre-layer save) — blanking that loop left the coverage test green, which is how
+  it was found, so the guard is on the committed artifact itself. (4) `104f851` —
+  `tools/resources/check_resources_1990.py` failed 2 of 60 `--fast` and 4 of 63
+  on the full run (the repair session's reading, taken before its own fix), one
+  root cause: JSON line endings. LF chosen as the
+  convention and pinned by a repo-root `.gitattributes`, because the checker
+  already carried a bar demanding it (CHECK 5, "the committed file uses LF
+  newlines only"), because git already stores all 148 of those files with LF so
+  the rule changes no blob, and because a byte-hash of a transcribed data file is
+  a claim about the DATA (iron rule 4) and must not depend on which OS did the
+  checkout. Checker re-run for this record on 2026-09-02 at `104f851`: **60 checks, 0
+  failed** (`--fast`) and **63 checks, 0 failed** (full).
+  **The pins were kept**: `the_1990_start_is_pinned` stays at
+  `0xd022d50f43c984da` (`lib.rs` 4069) and `golden_hash_of_a_known_run` at
+  `0xbd5ec0f43c5f2e3b` (`lib.rs` 4310), both deliberately red until BUGS E-3's
+  endowment bar is green — but **both actuals moved**, to
+  `0xe26e4bf8d6c60066` and `0xbe94d6125631829c`, and **nothing in the simulation
+  moved with them**: Codex's `district_population` and
+  `district_population_scale` are `#[serde(default)]` with no
+  `skip_serializing_if` (`world.rs` 947-952), unlike the ten fields around them,
+  so they always enter `state_hash`. Stripping exactly those two blocks and the
+  comma their removal orphans from the merged saves at t=0 and t=240 months
+  yields text byte-identical to the `9274baa` saves and re-hashes to
+  `0xa5c9c5b2306313d8` / `0x20c24ab0f1581807`. See BUGS **M-5** — reverting that
+  is a save-format change and Ridge's call.
+  Filed, not fixed: BUGS **M-1..M-8** (the mine's five bare constants with two of
+  them inert and 96.79% of the board at the price floor; the `debt_gdp` write
+  against the ruling at `resources.rs` 66-68, invisible to its own guard because
+  that guard ticks with an empty command slice; the player-only mine against
+  R-1's zero resource wars; the mine's four lost guards; the serialization above;
+  the orphaned `/api/district-populations`; no browser load path; and the daily
+  invariant that has never seen `DevelopResource`).
+  **Suite at ship** (2026-09-02, `cargo test --release --workspace
+  --no-fail-fast` after `cargo clean -p spheres-sim -p spheres-web -p
+  spheres-cli --release`, isolated target, all three Compiling lines watched and
+  the test binaries post-dating every source): spheres-sim **200 passed / 3
+  failed / 22 ignored**, spheres-web **88 / 0 / 2**, spheres-cli **1 / 0 / 0**;
+  the five spheres-sim integration targets contribute 0 passed / 0 failed / 30
+  ignored between them. The failures are **exactly the three deliberate reds** —
+  `tech::tests::the_1990_endowment_does_not_move_year_one_growth` (BUGS E-3,
+  Belgium 0.001851 granted against 0.001749 ungranted) and the two goldens,
+  which panic at `lib.rs` 4068 with actual 0xe26e4bf8d6c60066 against the
+  untouched pin 0xd022d50f43c984da and at `lib.rs` 4314 with actual
+  0xbe94d6125631829c against the untouched pin 0xbd5ec0f43c5f2e3b. Headless
+  `run 35` (sha256, first 16 hex, the convention used above): market OFF seed
+  1990 **d1a2cfbf7c6958d7** (3,501 lines) / seed 7 **39dea3341a7f6e8c** (3,983),
+  market ON **6cb6c97ab33fb80d** (4,007) / **8d29fecfd4ff9bf4** (4,258); each of
+  the four run twice and byte-identical across the pair, and the two market-OFF
+  digests still equal 9274baa's. Provenance: `check_resources_1990.py` 60 checks
+  0 failed `--fast`, 63 checks 0 failed full.
 - **The daily calendar and the ten-ministry annual budget** (2026-09-02, Ridge's
   call — "I like the 10 ministry budget and the 1 day ticker so if the bible needs to be ammended we can do that.";
   `origin/codex/trading-system` 4875ea5 merged as 253ff2d onto
@@ -1254,3 +1330,29 @@ by accident.
 OneDrive also holds locks on `.git/worktrees/*` and the worktree directories, so
 `git worktree remove` and `git worktree prune` fail with "Permission denied" and
 the branches those worktrees hold cannot be deleted. Pausing sync should clear it.
+
+**Run the suite with `--no-fail-fast` (2026-09-02).** While the three
+deliberate reds stand, `cargo test --release --workspace` **short-circuits**: it
+runs spheres-cli and spheres-sim, and because the spheres-sim lib target fails it
+stops before spheres-web ever executes, ending with `error: 1 target failed:
+`-p spheres-sim --lib``. A run like that silently reports nothing at all for
+spheres-web, which is easy to misread as a pass. Add `--no-fail-fast` and every
+target runs; that is how the ship tally above was taken, and it is the reason
+the earlier repair pass had to invoke `-p spheres-web` separately to get its
+88 / 0 / 2. Until BUGS E-3 and the two goldens go green, treat a bare
+`--workspace` figure as incomplete.
+
+**JSON in this repo is LF, pinned by `.gitattributes` (2026-09-02).**
+`tools/resources/check_resources_1990.py` byte-hashes the transcribed sources it
+regenerates `spheres-sim/data/resources_1990.json` from, and on a Windows
+checkout half of those hashes were CRLF-worktree digests and half were LF-blob
+digests — 2 of 60 `--fast` checks and 4 of 63 full checks failing for that one
+reason. The repo-root `.gitattributes` now carries `*.json text eol=lf`. It
+changes no blob (git already stored all 148 of those files with LF), so
+`git diff --numstat -- '*.json'` over the rewritten worktree is empty; what it
+changes is what a checkout writes to disk. **Expect the first checkout after this
+lands in any tree — including `C:/Users/ridge/Spheres` — to rewrite its JSON
+files from CRLF to LF.** That is the intended effect and produces no git diff,
+but the bytes on disk do change, so nothing should be holding one of those files
+open mid-write. If that pair of provenance checks ever fails together again, look
+at line endings first; the note is repeated in the checker's own docstring.
