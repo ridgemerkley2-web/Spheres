@@ -821,7 +821,11 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         w.month = 1;
         w.year += 1;
     }
-    w.day = w.day.min(world::days_in_month(w.year, w.month));
+    // A month-stepped world lands on the first of the next month, whatever day
+    // it was resumed on: the settlement just run IS the rest of that month.
+    // Inert on the default path, where `day` is always 1; the clamp this
+    // replaced left a browser save resumed on the 15th on the 15th for ever.
+    w.day = 1;
     w.headlines.clone()
 }
 
@@ -1182,6 +1186,18 @@ mod tests {
             first_hash_miss.as_deref().unwrap_or("none"),
             first_world_miss.as_deref().unwrap_or("none in 24 months: only `headlines` differs")
         );
+    }
+
+    /// The month-stepped path resets the day. Before this `tick_month` only
+    /// clamped `day` to the month's length, so a world saved on the 15th and
+    /// resumed through `tick_month` (spheres-cli play/resume) stayed on the
+    /// 15th of every month that followed.
+    #[test]
+    fn a_month_stepped_world_lands_on_the_first() {
+        let mut w = world_1990(GameRules::default());
+        w.day = 15;
+        tick_month(&mut w, &[]);
+        assert_eq!((w.year, w.month, w.day), (1990, 2, 1));
     }
 
     #[test]
