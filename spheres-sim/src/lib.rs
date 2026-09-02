@@ -47,6 +47,21 @@ pub enum Command {
     /// down with `None`. Worth `tech::PRIORITY_MULTIPLIER` of its ordinary share
     /// of the budget, taken from the other seven.
     SetResearchPriority { nation: NationId, domain: Option<tech::Domain> },
+    /// Write the eight shares of the research budget down explicitly, in domain
+    /// index order, or hand them back to the weights the model reads off the
+    /// nation's condition with `None`.
+    ///
+    /// Not normalised by the caller: the shares are taken as ratios and divided
+    /// by their own sum, so a browser that serves eight numbers adding to 100
+    /// and a script that serves eight adding to 1 mean the same thing. Refused
+    /// if any share is negative or not finite, or if they sum to nothing —
+    /// there is no reading of "spend zero on everything".
+    ///
+    /// `SetResearchPriority` survives beside this as the one-click preset it
+    /// always was; a standing allocation supersedes it, because the eight
+    /// numbers the government wrote down are more specific than the one domain
+    /// it named.
+    SetResearchAllocation { nation: NationId, weights: Option<[f64; tech::DOMAIN_COUNT]> },
     Sanction { imposer: NationId, target: NationId },
     LiftSanction { imposer: NationId, target: NationId },
     ImproveRelations { from: NationId, to: NationId },
@@ -251,6 +266,14 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // interest behind them knows it.
         Command::SetResearchPriority { nation, domain } => {
             (*nation, if domain.is_some() { 30.0 } else { 10.0 }, REFUSABLE)
+        }
+        // Priced exactly as the preset it generalises, and for the same reason:
+        // writing the eight shares down is the same public commitment that the
+        // domains going short are going short, made in more detail. Charging it
+        // less than the one-click version would make the detailed form the
+        // cheap way to do the expensive thing.
+        Command::SetResearchAllocation { nation, weights } => {
+            (*nation, if weights.is_some() { 30.0 } else { 10.0 }, REFUSABLE)
         }
         Command::LiftSanction { imposer, .. } => (*imposer, 3.0, REFUSABLE),
         Command::ImproveRelations { from, .. } => (*from, 2.0, REFUSABLE),
@@ -652,6 +675,58 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
                     "{} stands down its national research programme.",
                     nation.name()
                 )),
+            }
+        }
+        Command::SetResearchAllocation { nation, weights } => {
+            match weights {
+                Some(a) => {
+                    // REFUSED AT THE GATE rather than repaired quietly. A share
+                    // that is NaN or below zero is not a budget a government
+                    // could have meant, and silently clamping it would hand the
+                    // player back a screen that disagreed with what they typed.
+                    if !a.iter().all(|x| x.is_finite() && *x >= 0.0) {
+                        return Err(format!(
+                            "{}'s research shares must all be real and none below zero.",
+                            nation.name()
+                        ));
+                    }
+                    if a.iter().sum::<f64>() <= 0.0 {
+                        return Err(format!(
+                            "{} cannot fund none of the eight research domains.",
+                            nation.name()
+                        ));
+                    }
+                    // STORED AS GIVEN, not normalised. The shares are ratios and
+                    // `tech::domain_weights` divides them by their own sum in the
+                    // one place the shares are ever turned into spending — which
+                    // is also the function the browser reads. Normalising here as
+                    // well would be a second definition of the same division, and
+                    // two definitions of one number is the defect this whole
+                    // decomposition exists to remove.
+                    let n = w.nation_mut(*nation);
+                    n.tech.allocation = Some(*a);
+                    let top = tech::DOMAINS
+                        .iter()
+                        .max_by(|x, y| {
+                            a[x.index()]
+                                .partial_cmp(&a[y.index()])
+                                .unwrap_or(std::cmp::Ordering::Equal)
+                        })
+                        .map(|d| d.name().to_lowercase())
+                        .unwrap_or_default();
+                    w.headline(format!(
+                        "{} writes its research budget by hand, {} first.",
+                        nation.name(),
+                        top
+                    ));
+                }
+                None => {
+                    w.nation_mut(*nation).tech.allocation = None;
+                    w.headline(format!(
+                        "{} hands its research budget back to the councils.",
+                        nation.name()
+                    ));
+                }
             }
         }
         Command::Sanction { imposer, target } => {

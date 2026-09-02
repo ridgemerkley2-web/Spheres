@@ -637,6 +637,26 @@ pub struct TechState {
     /// and reads as "no programme declared", which is what those worlds were.
     #[serde(default)]
     pub priority: Option<Domain>,
+    /// The eight shares of the research budget the government has ORDERED, or
+    /// `None` to let `domain_weights` read them off the nation's own condition
+    /// as it always has.
+    ///
+    /// Not a thumb on the scale like `priority` is. A priority multiplies one
+    /// read-off weight and lets the other seven fall out of the normalisation;
+    /// an allocation IS the eight shares, and it replaces the read-off weights
+    /// entirely — which is why a standing allocation suppresses the priority
+    /// multiplier rather than compounding with it. A government that has
+    /// written the eight numbers down has already said what it wants, and a
+    /// slider that did not deliver the share printed on it would be a screen
+    /// that lies.
+    ///
+    /// `Option` and `skip_serializing_if` for the reason every new field on
+    /// this struct has carried them since the treasury landed: `None` executes
+    /// no new arithmetic, is omitted from the serialized state, and so the
+    /// default board is byte-identical to the one before this existed. That is
+    /// what makes the golden hashes evidence rather than decoration.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub allocation: Option<[f64; DOMAIN_COUNT]>,
     /// Rebuilt from `known` every tick, so the totals can never drift away from
     /// the technologies that justify them. Still written to disk because
     /// `economy::tick` reads it before `tech::tick` gets a chance to rebuild,
@@ -708,6 +728,7 @@ impl TechState {
             tech_1990_deficit: 0.0,
             tech_1990_revealed: 0.0,
             priority: None,
+            allocation: None,
             oil_yield_applied: 0.0,
             bonus: TechBonuses::default(),
             absorption_rate: 0.0,
@@ -753,6 +774,12 @@ impl TechState {
             tech_1990_deficit: parent.tech_1990_deficit,
             tech_1990_revealed: parent.tech_1990_revealed,
             priority: None,
+            // A successor state inherits the laboratories and not the plan for
+            // them, for the same reason it does not inherit the priority: the
+            // eight shares were an act of a government that no longer exists.
+            // Written out rather than left to fall out of a derive, so that no
+            // future field on this struct is quietly inherited by accident.
+            allocation: None,
             oil_yield_applied: parent.oil_yield_applied,
             bonus: parent.bonus.clone(),
             // The programme stops; the plants that were already being fitted out
@@ -807,6 +834,20 @@ impl TechState {
         self.rebuild_bonus();
         if self.priority.is_some_and(|d| d.index() >= DOMAIN_COUNT) {
             self.priority = None;
+        }
+        // An allocation that cannot be normalised is not an allocation. A save
+        // carrying a NaN, a negative share or eight zeroes would otherwise
+        // divide by zero or by NaN in `domain_weights` and poison every domain
+        // weight on the board, so it is dropped here and the nation falls back
+        // to the weights read off its condition. `apply` refuses the same three
+        // shapes at the gate; this catches a hand-edited or truncated save,
+        // which is the only other way one can arrive.
+        if self
+            .allocation
+            .is_some_and(|a| !a.iter().all(|x| x.is_finite() && *x >= 0.0)
+                || a.iter().sum::<f64>() <= 0.0)
+        {
+            self.allocation = None;
         }
         if self.focus.len() != DOMAIN_COUNT {
             self.focus.resize(DOMAIN_COUNT, None);
@@ -1027,16 +1068,79 @@ fn development(n: &Nation) -> f64 {
     (gdp_pc / 24000.0).clamp(0.0, 1.0)
 }
 
-/// Research points generated this month. R&D intensity rises with development
-/// and with how much of output is being ploughed back; the level is calibrated
-/// so that the United States of 1990 spends a little over two percent of GDP on
-/// research and China of 1990 spends well under one. The floor is not zero even
-/// for the poorest, because the engineers who install imported plant and work
-/// out why it keeps breaking are doing research whatever the budget calls it.
-pub fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
+/// The seven named arms that make a month's research points, in the order they
+/// are charged and in no other.
+///
+/// THE INERTNESS CONTRACT, and it is the whole risk of this decomposition.
+/// `research_output` was a strictly sequential chain of `out *= ...`, three of
+/// whose arms lived inside `if` branches that skipped the multiply entirely.
+/// Floating-point multiplication is NOT associative: a decomposition that
+/// regroups the factors — multiplying the six policy arms together and applying
+/// the product once, or summing logs — is a different number in the last bits
+/// on some nation in some month, and the golden hashes would report a refactor
+/// as a behaviour change. `total()` therefore replays that chain left to right,
+/// one multiply per arm, in the order the fields are declared.
+///
+/// A dormant arm is stored as `1.0` rather than omitted, and `x * 1.0` is
+/// exactly `x` for every finite `x` under IEEE-754 — same sign, same bits — so
+/// charging a dormant arm is bit-for-bit identical to skipping it. That is what
+/// lets the three conditional arms become unconditional multiplies without
+/// moving a bit, and it is what `the_decomposition_is_the_old_scalar` measures
+/// across the whole board for 240 months rather than at t=0.
+///
+/// The terminal `.max(0.0)` is part of the chain and lives in `total()`, not at
+/// a call site, for the same reason.
+#[derive(Clone, Copy, Debug, PartialEq, Serialize)]
+pub struct ResearchTerms {
+    /// R&D intensity against a month of output: the money, before any policy.
+    pub base: f64,
+    /// EDUCATION's multiplier, already clamped. Exactly 1.0 for a nation with
+    /// no enacted budget, which is why the default path does not move.
+    pub ministry: f64,
+    /// What the nation's own instruments are worth: `1 + research_rate_eff()`.
+    pub tools: f64,
+    /// The command-economy allocation penalty, or 1.0.
+    pub system: f64,
+    /// What a state coming apart cannot fund reliably, or 1.0.
+    pub disorder: f64,
+    /// The wartime discount, or 1.0.
+    pub war: f64,
+    /// The sanction drag, charged on a share of world output rather than on a
+    /// count of flags.
+    pub sanctions: f64,
+}
+
+impl ResearchTerms {
+    /// Research points generated this month.
+    ///
+    /// A METHOD and not an eighth field, deliberately. A field would be a second
+    /// place the number is written down, and a browser reading the field while
+    /// the sim charged the chain is exactly the class of divergence this
+    /// decomposition exists to make impossible. There is one definition of the
+    /// total and every reader goes through it.
+    pub fn total(&self) -> f64 {
+        let mut out = self.base;
+        out *= self.ministry;
+        out *= self.tools;
+        out *= self.system;
+        out *= self.disorder;
+        out *= self.war;
+        out *= self.sanctions;
+        out.max(0.0)
+    }
+}
+
+/// Research points generated this month, decomposed. R&D intensity rises with
+/// development and with how much of output is being ploughed back; the level is
+/// calibrated so that the United States of 1990 spends a little over two percent
+/// of GDP on research and China of 1990 spends well under one. The floor is not
+/// zero even for the poorest, because the engineers who install imported plant
+/// and work out why it keeps breaking are doing research whatever the budget
+/// calls it.
+pub fn research_terms(w: &WorldState, n: &Nation, dev: f64) -> ResearchTerms {
     let invest = n.state_invest_gdp + n.priv_invest_gdp;
     let intensity = (0.008 + 0.017 * dev) * (0.55 + 1.5 * invest);
-    let mut out = n.gdp * intensity / 12.0;
+    let base = n.gdp * intensity / 12.0;
 
     // EDUCATION's named arm, and EDUCATION ALONE OWNS IT. Education grows the
     // pool of people who can do research, which is a claim about how much
@@ -1054,24 +1158,21 @@ pub fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     // 0.084 * 15.0 = 1.26 lands on 2.26 against the 2.25 clamp ceiling. At
     // x20 the ceiling bound five points of the dial short of its own top and
     // every step past that bought nothing.
-    let ministry_multiplier = 1.0 + n.budget_gap(crate::world::BUDGET_EDUCATION) * 15.0;
-    out *= ministry_multiplier.clamp(0.35, 2.25);
+    let ministry =
+        (1.0 + n.budget_gap(crate::world::BUDGET_EDUCATION) * 15.0).clamp(0.35, 2.25);
 
     // Better tools make more research out of the same money.
-    out *= 1.0 + n.tech.bonus.research_rate_eff();
+    let tools = 1.0 + n.tech.bonus.research_rate_eff();
 
     // A command economy can order the effort and does; what it cannot order is
     // anyone to want the result. The laboratories are full and the return is thin.
-    if n.system == EconomySystem::Command {
-        out *= 0.80;
-    }
+    let system = if n.system == EconomySystem::Command { 0.80 } else { 1.0 };
+
     // A state that is coming apart is not funding anything reliably.
-    if n.stability < 40.0 {
-        out *= 0.60 + n.stability / 100.0;
-    }
-    if w.at_war(n.id) {
-        out *= 0.85;
-    }
+    let disorder = if n.stability < 40.0 { 0.60 + n.stability / 100.0 } else { 1.0 };
+
+    let war = if w.at_war(n.id) { 0.85 } else { 1.0 };
+
     // CONVERTED FROM COUNTING FLAGS. This was
     // `out *= (1.0 - 0.03 * w.sanctioned_by_count(n.id) as f64).max(0.4);`, the
     // second of the four count-based sanction channels `economy::SANCTION_BITE`
@@ -1088,8 +1189,16 @@ pub fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     // such patch, which is the argument `WorldState::sanction_weight` makes.
     // Leaving it in would be a clamp that hides nothing and implies a bound the
     // arithmetic no longer has.
-    out *= 1.0 - 0.10 * w.sanction_weight(n.id);
-    out.max(0.0)
+    let sanctions = 1.0 - 0.10 * w.sanction_weight(n.id);
+
+    ResearchTerms { base, ministry, tools, system, disorder, war, sanctions }
+}
+
+/// The one number the spend loop banks. Kept as a free function because every
+/// caller in the sim, the tests and the server already asks for it by this name
+/// — and because there must be no second way to compute it.
+pub fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
+    research_terms(w, n, dev).total()
 }
 
 /// Where the research money goes. Nothing here names a nation: an oil importer
@@ -1157,6 +1266,30 @@ const BUILD_KNEE: f64 = 0.008;
 pub const PRIORITY_MULTIPLIER: f64 = 3.0;
 
 fn domain_weights(w: &WorldState, n: &Nation, dev: f64) -> [f64; DOMAIN_COUNT] {
+    // WHAT THE GOVERNMENT ACTUALLY ORDERED, if it has ordered anything.
+    //
+    // Taken before a single read-off weight is computed, so that on the `None`
+    // path — every nation on a default board — this is one `is_some` test and
+    // the arithmetic below is untouched, bit for bit.
+    //
+    // THE ONE PLACE THE SHARES ARE DECIDED. `domain_weights_of` is what the
+    // browser reads and `tech::tick` is what the sim spends, and both of them
+    // call THIS function; there is no second normalisation anywhere for the
+    // served weights and the used weights to disagree about. The normalisation
+    // happens HERE and nowhere else: `Command::SetResearchAllocation` validates
+    // the eight numbers and stores them exactly as given, precisely so that the
+    // division by their sum has one definition and the screen cannot print a
+    // share the spend loop does not charge.
+    if let Some(a) = n.tech.allocation {
+        let sum: f64 = a.iter().sum();
+        if sum > 0.0 && a.iter().all(|x| x.is_finite() && *x >= 0.0) {
+            let mut wt = a;
+            for x in wt.iter_mut() {
+                *x /= sum;
+            }
+            return wt;
+        }
+    }
     let at_war = w.at_war(n.id);
     let oil_stress = ((w.oil_price - 20.0) / 20.0).clamp(0.0, 2.0);
     let invest = n.state_invest_gdp + n.priv_invest_gdp;
@@ -1171,7 +1304,10 @@ fn domain_weights(w: &WorldState, n: &Nation, dev: f64) -> [f64; DOMAIN_COUNT] {
     wt[Domain::Biotech.index()] = 0.60 + 1.00 * dev;
     wt[Domain::Transport.index()] = 0.90 + 0.40 * dev;
     wt[Domain::Agriculture.index()] = 0.70 + 1.20 * (1.0 - dev);
-    // ...and then what the government has said out loud it cares about.
+    // ...and then what the government has said out loud it cares about. Not
+    // reached when an allocation stands: the early return above is the whole
+    // reason a priority and a set of shares cannot both be charged, and the
+    // `allocation` field carries the argument for which of the two wins.
     if let Some(d) = n.tech.priority {
         wt[d.index()] *= PRIORITY_MULTIPLIER;
     }
@@ -1263,6 +1399,29 @@ pub fn unlocked_by(t: u16) -> Vec<u16> {
 /// same technology is dear to whoever invents it. Exposed so a tech-tree screen
 /// can price every node without reimplementing diffusion.
 pub fn cost_of(w: &WorldState, id: NationId, t: u16) -> f64 {
+    let (copy, build) = price_parts(w, id, t);
+    copy.max(build)
+}
+
+/// Whether this nation's bill for `t` is set by the BUILD FLOOR rather than by
+/// what it costs to copy something the world already runs on.
+///
+/// THE HONEST LINE ON THE RESEARCH CARD. `effective_cost`'s own comment records
+/// the measurement — the floor binding "for every nation examined from
+/// Equatorial Guinea to India from month 120 onward" — and the consequence for
+/// a player is specific and counter-intuitive: where the floor binds, the price
+/// does not read absorptive capacity, does not read the copying discount, and
+/// does not fall when the research budget rises. It is the size of the country
+/// doing the building. A card that showed only "months at the current rate"
+/// would invite a follower to double its research and expect to halve its wait,
+/// and the wait would not move.
+pub fn floor_binds(w: &WorldState, id: NationId, t: u16) -> bool {
+    let (copy, build) = price_parts(w, id, t);
+    build > copy
+}
+
+/// The two competing prices, priced exactly as the spend loop prices them.
+fn price_parts(w: &WorldState, id: NationId, t: u16) -> (f64, f64) {
     let n = w.nation(id);
     let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
     let absorb = absorptive_capacity(w, n, dev);
@@ -1283,7 +1442,7 @@ pub fn cost_of(w: &WorldState, id: NationId, t: u16) -> f64 {
         }
     }
     let share = if world_weight > 0.0 { (holders / world_weight).clamp(0.0, 1.0) } else { 0.0 };
-    effective_cost(&registry()[t as usize], share, absorb, scale, &n.tech.bonus)
+    cost_parts(&registry()[t as usize], share, absorb, scale, &n.tech.bonus)
 }
 
 /// The prerequisite ids of a technology, as registry indices.
@@ -1382,13 +1541,13 @@ pub fn absorptive_capacity(w: &WorldState, n: &Nation, dev: f64) -> f64 {
 /// still gates the whole thing — a state nobody trades with, or that has nobody
 /// trained to read the textbook, sits next to a cheap technology and cannot buy
 /// it.
-fn effective_cost(
+fn cost_parts(
     def: &TechDef,
     adopter_share: f64,
     absorb: f64,
     scale: f64,
     bonus: &TechBonuses,
-) -> f64 {
+) -> (f64, f64) {
     let capacity = (absorb / 1.20).clamp(0.0, 1.0);
     let share = adopter_share.clamp(0.0, 1.0);
     // Something the whole world already runs on has stopped being knowledge
@@ -1470,7 +1629,29 @@ fn effective_cost(
     // floor is strictly positive, and at full universality still costs
     // Equatorial Guinea six months of its whole budget.
     let build = 0.30 * (1.0 - 0.70 * s2);
-    (def.cost * copy * own).max(def.cost * build * scale)
+    (def.cost * copy * own, def.cost * build * scale)
+}
+
+/// What one technology costs, which is whichever of the two prices above is
+/// dearer.
+///
+/// A THIN WRAPPER ON PURPOSE. The two prices were computed in one expression and
+/// immediately collapsed by `.max`, so nothing outside could ask WHICH of them
+/// was charged — and that question is the honest line the research card has to
+/// print: a follower whose bill is the build floor is paying for the plant, not
+/// for the knowledge, and doubling its research budget halves the wait on
+/// neither. Splitting the return and taking the max here is the same two
+/// expressions and the same `max`, in the same order, so it is bit-for-bit the
+/// price the spend loop always charged.
+fn effective_cost(
+    def: &TechDef,
+    adopter_share: f64,
+    absorb: f64,
+    scale: f64,
+    bonus: &TechBonuses,
+) -> f64 {
+    let (copy, build) = cost_parts(def, adopter_share, absorb, scale, bonus);
+    copy.max(build)
 }
 
 /// Pick a project for one domain. Deterministic: cheapest first, ties broken by
