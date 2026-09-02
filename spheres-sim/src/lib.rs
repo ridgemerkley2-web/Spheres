@@ -4513,50 +4513,88 @@ mod tests {
     /// ledger (0.10 ms, measured) or a monthly pass over the 2,610 districts,
     /// either of which is five times the bar.
     ///
-    /// Iron rule 7 — the MARKET-ON bar and ITS OWN measured variance, taken
-    /// on this tree 2026-09-02, release, 137 nations, after the
-    /// `change_market_stock` and `arsenal::pick` repairs this commit makes.
-    /// Its own n and its own numbers, not the off arm's, which reads an order
-    /// of magnitude lower and would size nothing here.
+    /// Iron rule 7 — the MARKET-ON bar, ITS OWN measured variance, and the
+    /// n derived from it. Re-measured from scratch 2026-09-02 on the repaired
+    /// tree (release, 137 nations, this 16-core machine). The numbers this arm
+    /// landed with the day before are superseded: they were never red-checked,
+    /// and the 0.10 bar they carried could not have gone red for the very
+    /// regression the comment claimed it caught.
     ///
-    /// n. Five quiet readings of THIS arm: 0.0370, 0.0375, 0.0416, 0.0422,
-    /// 0.0434 ms/month. Mean 0.0403, sample sd 0.0029, range 0.0064. Five is
-    /// where this stops paying: a false red needs the reading to reach the
-    /// bar, and at sd 0.0029 the bar below is twenty sd away, so the false-red
-    /// probability is not merely under 1%, it is not a number this sample can
-    /// distinguish from zero — and no n makes it smaller. What five buys is
-    /// the mean itself, to +/- 0.006 at 99% (t(4) = 4.604); n = 44 would be
-    /// needed for +/- 0.002, and nothing here turns on that third digit.
+    /// THE MEASUREMENT, three load regimes. Each reading is one whole-test
+    /// invocation, and is itself the minimum over `MARKET_ON_PASSES` passes.
     ///
-    /// The bar. Quiet is not the state this runs in, so this arm was also
-    /// read INSIDE `cargo test --workspace --release` on the same machine
-    /// the same day: 0.0435 ms/month, against 0.0403 quiet — the row is
-    /// nearly load-insensitive, while the sibling budget test's total moved
-    /// 0.0766 quiet to 0.1083 loaded, a factor of 1.41, on the same run. The
-    /// BAR is 0.10: 2.5x the mean quiet reading and 2.3x the loaded one.
+    ///     unloaded    n=10  mean 0.0417  sd 0.00110  max 0.0431
+    ///     suite       n=2   0.0415, 0.0410   (`cargo test --workspace`)
+    ///     saturated   n=5   mean 0.0487  sd 0.00101  max 0.0502
     ///
-    /// POWER, the half rule 7 says costs the most. At 0.10 this arm can only
-    /// see a regression of about 2.5x, so it would NOT have caught, say, a
-    /// 50% slowdown. What it does catch is the class of thing that actually
-    /// happened here and went unseen for a whole merge, because the test was
-    /// market-OFF and structurally blind: the market's posting pass regressed
-    /// this row 0.0041 -> 0.0577, 14x, and `change_market_stock` alone was
-    /// 0.058 -> 0.0348 of it. Anything of that shape is well over the bar.
-    /// One seed and one timeline, so there is no seed n to derive.
+    /// "Saturated" is sixteen CPU-bound processes on sixteen cores for the
+    /// whole test. It is worth measuring because this box runs several
+    /// worktrees at once, and it — not the suite — is the regime that sets the
+    /// bar: the suite reads BELOW unloaded, because the row test's own passes
+    /// are what the suite mostly contends with.
+    ///
+    /// n = 5, and it is 5 because 3 was measured to be too few. The reported
+    /// statistic is the minimum over the passes, so the passes ARE the sample.
+    /// At the inherited PASSES = 3 three saturated readings were 0.0487, 0.0484
+    /// and 0.0594 — the third is above the bar below, so 3 false-reds on a busy
+    /// machine. At 5, five saturated readings top out at 0.0502. (9 was also
+    /// measured, max 0.0491 over four; it is not used, because it doubles this
+    /// test's runtime inside a PARALLEL suite and the load it adds pushed the
+    /// sibling `the_resource_pass_stays_under_budget` over its own bar. 5 costs
+    /// 15s -> 21s and left that sibling at 0.0999 and 0.1027 against its 0.15.)
+    /// Per rule 7 the repair for the 0.0594 was more samples, not a wider bar.
+    /// The sampling n for the derivation itself is 10: pinning the mean to
+    /// +/-0.001 at 99% needs n = (2.576 * 0.00110 / 0.001)^2 = 9.
+    ///
+    /// THE BAR is 0.055, derived rather than chosen to pass. Pair the worst
+    /// regime's mean with the worst regime's sd — 0.0487 from saturation,
+    /// 0.00110 from unloaded, deliberately pessimistic since saturation's own
+    /// sd is 0.00101 — and rule 7 wants the bar at or above
+    /// mean + 2.326*sd = 0.0487 + 0.0026 = 0.0513 for a false red under 1%.
+    /// 0.055 gives z = 5.7. It is also 9.6% above the highest of all seventeen
+    /// healthy readings taken across the three regimes (0.0502).
+    ///
+    /// POWER, measured by red-check rather than asserted. The regression this
+    /// arm exists to catch is the one that got past the market-OFF arm for a
+    /// whole merge: `change_market_stock` doing three binary searches into the
+    /// 552-row ledger where one does, on the ~1,500 calls a month
+    /// `post_market_flows` makes. Reintroduced verbatim from 4fbc806 and
+    /// measured here: 0.0637, 0.0605, 0.0658, 0.0668, 0.0671 — mean 0.0648,
+    /// sd 0.00274 — RED five times out of five, the closest by 10%. Against
+    /// that distribution the bar's miss rate is z = -3.58, p = 0.02%, so this
+    /// arm is about as unlikely to miss the regression as to red without one.
+    /// Through all five the market-OFF arm read 0.0028-0.0030 against its own
+    /// 0.02 and never twitched — the blindness this arm was added to end,
+    /// demonstrated rather than argued.
+    ///
+    /// WHAT IT STILL CANNOT SEE, since rule 7 says the power half is the half
+    /// that costs. Healthy-under-saturation (max 0.0502) and that regression
+    /// (min 0.0605) are only 1.21x apart and the bar must sit between them: it
+    /// has 9.6% of room below and 9.1% above, and that is the entire budget.
+    /// So this is a tripwire for the 1.3x-and-up class, not a ratchet — a 20%
+    /// slowdown in the posting pass is invisible to it, and the honest way to
+    /// catch one of those is a tighter bar bought with more passes, not a
+    /// claim that this one would notice. The bar is also absolute milliseconds
+    /// calibrated to THIS machine: on a box where the whole profile is
+    /// proportionally slower it reds without a regression, and the repair
+    /// there is to re-derive it by the recipe above — ten unloaded readings
+    /// and five saturated — not to widen it because it went red once.
     #[test]
     fn the_resources_row_is_free() {
         use std::time::{Duration, Instant};
         const MONTHS: usize = 1200;
         const PASSES: usize = 3;
+        const MARKET_ON_PASSES: usize = 5;
         const BUDGET_MS_PER_MONTH: f64 = 0.02;
-        const MARKET_ON_BAR_MS_PER_MONTH: f64 = 0.10;
+        const MARKET_ON_BAR_MS_PER_MONTH: f64 = 0.055;
         for market in [false, true] {
+        let passes = if market { MARKET_ON_PASSES } else { PASSES };
         let slot = SYSTEMS
             .iter()
             .position(|(name, _)| *name == "resources")
             .expect("resources is a SYSTEMS entry");
         let mut best = Duration::MAX;
-        for _ in 0..PASSES {
+        for _ in 0..passes {
             let mut w = world_1990(GameRules { resource_market: market, ..GameRules::default() });
             for _ in 0..12 {
                 tick_month(&mut w, &[]);
@@ -4585,7 +4623,7 @@ mod tests {
         let ms = best.as_secs_f64() * 1000.0 / MONTHS as f64;
         let bar = if market { MARKET_ON_BAR_MS_PER_MONTH } else { BUDGET_MS_PER_MONTH };
         println!(
-            "    {:<14} {:>8.3}s  {:>7.4} ms/month  (market {market}, bar {bar}, best of {PASSES}, {MONTHS} months, 137 living at start)",
+            "    {:<14} {:>8.3}s  {:>7.4} ms/month  (market {market}, bar {bar}, best of {passes}, {MONTHS} months, 137 living at start)",
             "resources",
             best.as_secs_f64(),
             ms
