@@ -495,7 +495,7 @@ pub fn health_retention(w: &WorldState, id: NationId) -> f64 {
     if !w.at_war(id) {
         return 1.0;
     }
-    (1.0 + gap * 20.0).clamp(0.60, 1.60)
+    crate::ministries::health_replacement(gap)
 }
 
 /// INDUSTRY & ENERGY's named arm: the war-industrial base, read as how fast
@@ -529,7 +529,7 @@ pub fn industry_refill(w: &WorldState, id: NationId) -> f64 {
     if gap == 0.0 {
         return 1.0;
     }
-    (1.0 + gap * 20.0).clamp(0.70, 1.40)
+    crate::ministries::industry_refill(gap)
 }
 
 /// Monthly military & war tick.

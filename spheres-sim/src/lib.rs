@@ -8,6 +8,7 @@ pub mod front;
 pub mod government;
 pub mod exact;
 pub mod init;
+pub mod ministries;
 pub mod nations;
 pub mod politics;
 pub mod resources;

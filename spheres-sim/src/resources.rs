@@ -898,8 +898,8 @@ fn infrastructure_stock(w: &mut WorldState) -> bool {
         if !n.alive || (n.infra_extraction.is_none() && n.annual_budget.is_none()) {
             continue;
         }
-        let target = (n.budget_gap(BUDGET_INFRASTRUCTURE) * INFRA_EXTRACTION_SLOPE)
-            .clamp(-INFRA_EXTRACTION_CEILING, INFRA_EXTRACTION_CEILING);
+        let target =
+            crate::ministries::infrastructure_extraction(n.budget_gap(BUDGET_INFRASTRUCTURE));
         let held = n.infra_extraction.unwrap_or(0.0);
         let step = (target - held).clamp(-INFRA_EXTRACTION_RATE, INFRA_EXTRACTION_RATE);
         w.nations[i].infra_extraction = Some(held + step);

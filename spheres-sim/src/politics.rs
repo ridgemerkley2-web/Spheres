@@ -57,7 +57,7 @@ fn political_capital(w: &mut WorldState) {
         // reachable gap is about 0.144 and the term saturates the 100-point
         // ceiling long before that, while the largest possible cut, -0.056, is
         // -56 points and stays inside the floor.
-        target += n.budget_gap(BUDGET_PENSIONS) * 1000.0;
+        target += crate::ministries::pensions_standing(n.budget_gap(BUDGET_PENSIONS));
         let target = target.clamp(0.0, 100.0);
         // Standing is slow to build and quicker to lose.
         let rate = if target < n.political_capital { 0.055 } else { 0.028 };

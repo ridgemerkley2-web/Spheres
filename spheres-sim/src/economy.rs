@@ -175,7 +175,7 @@ pub fn unemployment_rate(n: &Nation, at_war: bool) -> f64 {
     // design sizes it at "+0.5% of GDP is about -0.1pp of unemployment",
     // and 0.005 * 0.20 = 0.001 is exactly that. The existing
     // `clamp(0.02, 0.35)` on the result bounds it in both directions.
-    let ministry_jobs = n.budget_gap(BUDGET_PENSIONS) * 0.20;
+    let ministry_jobs = crate::ministries::pensions_jobs(n.budget_gap(BUDGET_PENSIONS));
     (natural + cyclical + disorder + war + balance_sheet - ministry_jobs).clamp(0.02, 0.35)
 }
 
@@ -306,6 +306,65 @@ pub fn interest_gdp(n: &Nation) -> f64 {
                 / n.gdp.max(0.1)
         }
         None => 0.0,
+    }
+}
+
+/// The state's books for one month, annualised.
+///
+/// THE ONE DEFINITION of what a government takes in and what it pays out, and
+/// the reason it is a type rather than four expressions: `economy::tick`
+/// charges these numbers, and the money card prints them. Every previous time
+/// this codebase let the browser own an arithmetic rule, the two copies came
+/// apart -- the growth model by four whole terms, the sanction drag by 313x.
+/// The browser now reads `Fiscal` and multiplies nothing.
+///
+/// SIGN CONVENTION, settled here because the browser had two of them: `balance`
+/// is REVENUE LESS SPENDING LESS INTEREST, so positive is a surplus, in every
+/// unit and on every card. The ledger used to call the same quantity `deficit`
+/// with the opposite sign while the budget card called it `balance` with this
+/// one, and the two sat four inches apart on the same screen.
+///
+/// Interest is a share of GDP and a rate, both, because Ridge's amendment asks
+/// the card for both: `interest_gdp` is what debt service costs as a share of
+/// output, and `effective_rate` is the rate it is charged at, which rises with
+/// the debt ratio. `interest_bn` is the annual charge in billions and is what
+/// `tick` divides by twelve.
+#[derive(Clone, Copy, Debug)]
+pub struct Fiscal {
+    pub revenue_gdp: f64,
+    pub spend_gdp: f64,
+    /// Annual debt service in billions. Zero while the books are closed.
+    pub interest_bn: f64,
+    /// The same charge as a share of output -- `economy::interest_gdp`.
+    pub interest_gdp: f64,
+    /// The rate that charge is struck at, real policy rate plus the sovereign
+    /// spread. Served beside the interest line, which is Ridge's amendment.
+    pub effective_rate: f64,
+    /// Revenue less spending less interest. POSITIVE IS A SURPLUS.
+    pub balance_gdp: f64,
+}
+
+impl Fiscal {
+    pub fn of(n: &Nation, terms: &GrowthTerms) -> Fiscal {
+        let revenue_gdp = n.tax_rate + terms.budget_oil_revenue;
+        let spend_gdp = terms.social_spend + n.mil_spend_gdp + n.state_invest_gdp;
+        let effective_rate =
+            effective_interest_rate(n.interest_rate, n.inflation, n.debt_gdp);
+        let interest_bn = n.debt_bn.map_or(0.0, |debt| debt * effective_rate);
+        let interest_gdp = interest_gdp(n);
+        Fiscal {
+            revenue_gdp,
+            spend_gdp,
+            interest_bn,
+            interest_gdp,
+            effective_rate,
+            balance_gdp: revenue_gdp - spend_gdp - interest_gdp,
+        }
+    }
+
+    /// The same three quantities in billions of 1990 dollars a year.
+    pub fn in_billions(&self, gdp: f64) -> (f64, f64, f64) {
+        (self.revenue_gdp * gdp, self.spend_gdp * gdp, self.balance_gdp * gdp)
     }
 }
 
@@ -785,7 +844,7 @@ pub fn growth_terms(
     // whole effect was already modelled before the ministries existed.
     //
     // DIPLOMACY'S FIRST NAMED ARM, kept and unchanged: the sanction shield.
-    let diplomatic_shield = (budget_gap[BUDGET_DIPLOMACY] * 8.0).clamp(-0.20, 0.40);
+    let diplomatic_shield = crate::ministries::diplomacy_shield(budget_gap[BUDGET_DIPLOMACY]);
     let sanction_drag = growth_drag_of_sanctions(sanction_share) * (1.0 - diplomatic_shield);
     let war_drag = if at_war { 0.020 + n.war_exhaustion * 0.03 } else { 0.0 };
     let debt_drag = if n.debt_gdp > 0.9 { (n.debt_gdp - 0.9) * 0.02 } else { 0.0 };
@@ -1229,8 +1288,14 @@ pub fn tick(w: &mut WorldState) {
         n.inflation = n.inflation.clamp(-0.05, 3.0);
 
         // ---- Budget & debt ----
-        let revenue_gdp = n.tax_rate + terms.budget_oil_revenue;
-        let spend_gdp = terms.social_spend + n.mil_spend_gdp + n.state_invest_gdp;
+        // ONE DEFINITION of what a state takes in and what it pays out, for the
+        // same reason `GrowthTerms` is one definition of a growth rate: the
+        // money card, the ledger and this block all read `Fiscal::of` and
+        // cannot disagree about the books. The two lines this replaces were
+        // character for character what `Fiscal::of` computes.
+        let books = Fiscal::of(n, &terms);
+        let revenue_gdp = books.revenue_gdp;
+        let spend_gdp = books.spend_gdp;
         match (n.treasury_bn, n.debt_bn) {
             // THE BOOKS ARE OPEN. The two stocks are the state's finances and
             // this block is their only writer, `debt_gdp` becoming their
@@ -1253,9 +1318,12 @@ pub fn tick(w: &mut WorldState) {
             (Some(treasury), Some(debt)) => {
                 let revenue_bn = revenue_gdp * n.gdp / 12.0;
                 let spend_bn = spend_gdp * n.gdp / 12.0;
-                let interest_bn =
-                    debt * effective_interest_rate(n.interest_rate, n.inflation, n.debt_gdp)
-                        / 12.0;
+                // `books.interest_bn` is the ANNUAL charge, `debt *
+                // effective_rate`, so this is character for character the
+                // `debt * effective_interest_rate(..) / 12.0` it replaces --
+                // not the reporting share multiplied back up by GDP, which
+                // would not be the same float.
+                let interest_bn = books.interest_bn / 12.0;
                 let (treasury, debt) = pay(treasury, debt, spend_bn + interest_bn - revenue_bn);
                 n.treasury_bn = Some(treasury);
                 n.debt_bn = Some(debt);
@@ -1273,8 +1341,8 @@ pub fn tick(w: &mut WorldState) {
         }
 
         // ---- Population ----
-        let demographic_support = budget_gap[BUDGET_HEALTH] * 0.030
-            + budget_gap[BUDGET_HOUSING] * 0.015;
+        let demographic_support = crate::ministries::health_population(budget_gap[BUDGET_HEALTH])
+            + crate::ministries::housing_population(budget_gap[BUDGET_HOUSING]);
         n.population *= 1.0 + (population_growth(n) + demographic_support) / 12.0;
 
         // ---- Stability ----
@@ -1299,9 +1367,9 @@ pub fn tick(w: &mut WorldState) {
         // order. DIPLOMACY 3.0 is removed for the same reason. What is left is
         // the three ministries whose whole subject is whether the public is
         // content: HOUSING, PENSIONS and SECURITY.
-        ds += budget_gap[BUDGET_HOUSING] * 14.0
-            + budget_gap[BUDGET_PENSIONS] * 12.0
-            + budget_gap[BUDGET_SECURITY] * 16.0;
+        ds += crate::ministries::housing_stability(budget_gap[BUDGET_HOUSING])
+            + crate::ministries::pensions_stability(budget_gap[BUDGET_PENSIONS])
+            + crate::ministries::security_stability(budget_gap[BUDGET_SECURITY]);
         ds -= n.war_exhaustion * 1.2;
         // CONVERTED. This was `sanction_count * 0.15` — the first of the four
         // surviving flag-counting sanction channels, and the one the
@@ -1322,7 +1390,10 @@ pub fn tick(w: &mut WorldState) {
         if n.system == EconomySystem::Command && n.growth_last < 0.0 {
             ds -= 0.5; // command legitimacy is growth-bought
         }
-        ds += (60.0 - n.stability) * 0.01; // slow mean reversion
+        // The 0.01 is `ministries::MEAN_REVERSION`, named there because it is
+        // the reciprocal every stability CARD is quoted through: a standing
+        // contribution of x settles the nation at 60 + x/0.01.
+        ds += (60.0 - n.stability) * crate::ministries::MEAN_REVERSION; // slow mean reversion
         n.stability = (n.stability + ds / 12.0 * 12.0 * 0.25).clamp(0.0, 100.0);
 
         // Separatism strain grows when unstable, decays when stable
@@ -1342,7 +1413,7 @@ pub fn tick(w: &mut WorldState) {
             // in the nation's `separatism` stock — a player who trimmed the
             // police budget of a country with no separatist movement would
             // watch one appear — so a cut simply stops buying suppression.
-            let cohesion = budget_gap[BUDGET_SECURITY].max(0.0) * 0.04;
+            let cohesion = crate::ministries::security_cohesion(budget_gap[BUDGET_SECURITY]);
             n.separatism = (n.separatism - cohesion).max(0.0);
         }
     }

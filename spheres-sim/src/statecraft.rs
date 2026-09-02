@@ -549,7 +549,9 @@ pub fn covert_action(
     // budget, and adding an exact zero to a positive sum is exact, so the RNG
     // draw below is unchanged on every default path.
     let t_dip = w.nation(target).budget_gap(BUDGET_DIPLOMACY);
-    let expose_p = (0.10 + heat * 0.55 + t_auth * 0.15 + t_dip * 10.0).clamp(0.05, 0.85);
+    let expose_p = (0.10 + heat * 0.55 + t_auth * 0.15
+        + crate::ministries::diplomacy_counterintel(t_dip))
+    .clamp(0.05, 0.85);
 
     let worked = w.rng.chance(success_p);
     let exposed = w.rng.chance(expose_p);

@@ -1159,7 +1159,7 @@ pub fn research_terms(w: &WorldState, n: &Nation, dev: f64) -> ResearchTerms {
     // x20 the ceiling bound five points of the dial short of its own top and
     // every step past that bought nothing.
     let ministry =
-        (1.0 + n.budget_gap(crate::world::BUDGET_EDUCATION) * 15.0).clamp(0.35, 2.25);
+        crate::ministries::education_research(n.budget_gap(crate::world::BUDGET_EDUCATION));
 
     // Better tools make more research out of the same money.
     let tools = 1.0 + n.tech.bonus.research_rate_eff();
@@ -1528,7 +1528,7 @@ pub fn absorptive_capacity(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     // roughly the whole of the 0.40 development term, i.e. a maximal science
     // programme is worth about as much reach as being rich. The `clamp` below
     // still bounds the sum, as it bounded it before.
-    a += n.budget_gap(crate::world::BUDGET_SCIENCE) * 6.0;
+    a += crate::ministries::science_absorption(n.budget_gap(crate::world::BUDGET_SCIENCE));
     a.clamp(0.05, 1.20)
 }
 
