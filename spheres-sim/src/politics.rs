@@ -35,6 +35,29 @@ fn political_capital(w: &mut WorldState) {
         // security service holds a higher one than its record earns. This is
         // where the two halves of `government.rs` reach the budget.
         target += composition;
+        // PENSIONS' first named arm: a standing cut BLEEDS THE CEILING for as
+        // long as it stands.
+        //
+        // The budget desk already charges a one-off 1.35x on any cut, which is
+        // the vote. This is the other half, and it is the half a pension cut
+        // actually consists of: a government that has taken money off
+        // pensioners does not pay for it once, it pays for it every month the
+        // cut is in force, because the constituency it took the money from is
+        // the one that turns out. It is symmetric — a standing increase raises
+        // the ceiling the same way, which is why every government that could
+        // afford one bought one — and it is a CEILING and not a stock, so it
+        // moves the government's standing at the slow rate below rather than
+        // handing it a lump sum.
+        //
+        // INVENTED, and labelled as the design requires: the 1000.0 slope,
+        // which reads as TEN POINTS OF STANDING CEILING PER POINT OF GDP. The
+        // design sizes it at "+0.5% of GDP is about +5 points", and 0.005 *
+        // 1000.0 = 5.0 is exactly that. The existing clamp bounds it: pensions
+        // caps at 0.20 of GDP against a reference near 0.056, so the largest
+        // reachable gap is about 0.144 and the term saturates the 100-point
+        // ceiling long before that, while the largest possible cut, -0.056, is
+        // -56 points and stays inside the floor.
+        target += n.budget_gap(BUDGET_PENSIONS) * 1000.0;
         let target = target.clamp(0.0, 100.0);
         // Standing is slow to build and quicker to lose.
         let rate = if target < n.political_capital { 0.055 } else { 0.028 };

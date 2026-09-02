@@ -161,7 +161,21 @@ pub fn unemployment_rate(n: &Nation, at_war: bool) -> f64 {
         + n.budget_gap(BUDGET_EDUCATION) * 0.16
         + n.budget_gap(BUDGET_INFRASTRUCTURE) * 0.28
         + n.budget_gap(BUDGET_INDUSTRY) * 0.24
-        + n.budget_gap(BUDGET_SCIENCE) * 0.08;
+        + n.budget_gap(BUDGET_SCIENCE) * 0.08
+    //
+    // LABOUR-FORCE WITHDRAWAL, which is the honest reason a pension budget
+    // moves the unemployment rate and the only one: a state pension that is
+    // worth taking is a state pension people take, and the people who take
+    // it leave the measured labour force. This is why the design DROPS
+    // pensions' demand arm rather than resizing it — `demand_gap` forks into
+    // both output and inflation, so a pension rise routed through demand
+    // would reach the same GDP twice.
+    //
+    // INVENTED, and labelled as the design requires: the 0.20 slope. The
+    // design sizes it at "+0.5% of GDP is about -0.1pp of unemployment",
+    // and 0.005 * 0.20 = 0.001 is exactly that. The existing
+    // `clamp(0.02, 0.35)` on the result bounds it in both directions.
+        + n.budget_gap(BUDGET_PENSIONS) * 0.20;
     (natural + cyclical + disorder + war + balance_sheet - ministry_jobs).clamp(0.02, 0.35)
 }
 
