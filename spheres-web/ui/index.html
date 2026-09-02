@@ -336,6 +336,9 @@
   .production-head h2 { margin: 4px 0 0; color: var(--brass-hi); font: 700 16px/1 var(--serif); letter-spacing: .07em; }
   .production-head .grow { flex: 1; }
   .production-close { width: 34px; height: 34px; padding: 0; font-size: 19px; }
+  .production-modes { display: flex; flex: none; padding: 3px; border: 1px solid #394550; border-radius: 5px; background: #080c11; }
+  .production-modes button { min-height: 27px; padding: 5px 8px; border: 0; border-radius: 3px; color: var(--faint); background: transparent; font: 700 7px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+  .production-modes button.on { color: #f5d891; background: #352b17; box-shadow: inset 0 0 0 1px #725b35; }
   .production-body { min-height: 0; overflow-y: auto; padding: 10px; }
   .production-stamp { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; margin-bottom: 8px; }
   .production-stamp b { color: var(--bright); font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
@@ -404,6 +407,42 @@
   .province-pick { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 7px; min-height: 42px; padding: 7px 9px; text-align: left; }
   .province-pick b { color: var(--bright); font: 700 10px var(--serif); }
   .province-pick span { color: var(--faint); font-size: 8px; }
+  .manufacturing-hero { position: relative; overflow: hidden; margin-bottom: 8px; padding: 11px; border: 1px solid #594c34; border-radius: 7px; background: radial-gradient(circle at 92% 20%, #c9a55a24, transparent 34%), linear-gradient(135deg, #171b20, #0a1016); }
+  .manufacturing-hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(135deg, transparent 0 13px, #d7b86708 13px 14px); }
+  .manufacturing-hero .stamp { color: var(--amber); font: 700 8px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+  .manufacturing-hero .money { margin-top: 6px; color: var(--bright); font: 700 23px/1 var(--serif); }
+  .manufacturing-hero .money small { color: var(--faint); font: 8px/1 var(--mono); text-transform: uppercase; }
+  .manufacturing-hero p { position: relative; z-index: 1; margin: 7px 0 0; color: var(--dim); font-size: 9px; line-height: 1.4; }
+  .manufacturing-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 8px; }
+  .manufacturing-summary span { padding: 7px 6px; border: 1px solid #2b3641; border-radius: 5px; background: #090e13; color: var(--faint); font: 700 7px/1.1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .manufacturing-summary b { display: block; margin-top: 4px; color: var(--cyan); font-size: 14px; letter-spacing: 0; text-transform: none; }
+  .manufacturing-summary .warn b { color: #e58078; }
+  .factory-card { border-left-color: #b69249; }
+  .factory-card::before { background: linear-gradient(90deg, #7c6532, #e0bc69); }
+  .factory-card.blocked::before { background: repeating-linear-gradient(90deg, #d96560 0 3px, transparent 3px 8px); }
+  .factory-output { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 8px; }
+  .factory-output span { padding: 6px; border: 1px solid #2d3943; border-radius: 4px; color: var(--faint); background: #080d12; font: 7px/1.2 var(--mono); text-transform: uppercase; }
+  .factory-output b { display: block; margin-top: 2px; color: var(--bright); font-size: 10px; text-transform: none; }
+  .factory-classes { display: flex; gap: 4px; overflow-x: auto; margin: 0 0 8px; padding-bottom: 2px; }
+  .factory-classes button { flex: none; min-height: 27px; padding: 5px 8px; color: var(--faint); font: 700 7px/1 var(--mono); text-transform: uppercase; }
+  .factory-classes button.on { color: var(--brass-hi); border-color: #7a6537; background: #2c2414; }
+  .equipment-catalog { display: grid; gap: 6px; }
+  .equipment-choice { position: relative; min-height: 78px; padding: 9px 9px 8px 42px; text-align: left; border-color: #35424e; background: #0a1016; }
+  .equipment-choice::before { content: attr(data-class-mark); position: absolute; left: 9px; top: 10px; display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid #685837; border-radius: 50%; color: var(--brass-hi); background: #17150f; font: 700 12px/1 var(--serif); }
+  .equipment-choice b { display: block; color: var(--bright); font: 700 10px/1.25 var(--serif); }
+  .equipment-choice span { display: block; margin-top: 3px; color: var(--dim); font-size: 8px; line-height: 1.3; }
+  .equipment-choice em { display: block; margin-top: 5px; color: var(--cyan); font: 700 7px/1.2 var(--mono); font-style: normal; text-transform: uppercase; }
+  .equipment-choice.locked { opacity: .52; filter: saturate(.45); }
+  .equipment-choice.locked em { color: #d18d87; }
+  .factory-ledger { margin-top: 8px; border-top: 1px solid #2f3942; padding-top: 7px; }
+  .factory-ledger summary { cursor: pointer; color: var(--brass-hi); font: 700 8px/1.3 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .factory-ledger-list { display: grid; gap: 4px; margin-top: 7px; }
+  .factory-ledger-row { display: grid; grid-template-columns: 1fr auto; gap: 7px; padding: 6px 7px; border: 1px solid #2b3741; border-radius: 4px; background: #090e13; }
+  .factory-ledger-row b { color: var(--bright); font: 700 9px/1.2 var(--serif); }
+  .factory-ledger-row span { color: var(--faint); font: 7px/1.25 var(--mono); text-align: right; }
+  .factory-bridge { margin: 8px 0; padding: 12px 10px; border: 1px dashed #665637; border-radius: 6px; color: var(--dim); background: #13120e; font-size: 9px; line-height: 1.45; text-align: center; }
+  .factory-bridge b { display: block; margin-bottom: 4px; color: var(--brass-hi); font: 700 11px var(--serif); }
+  .factory-bridge button { width: 100%; min-height: 32px; margin-top: 8px; color: var(--brass-hi); border-color: #75613a; font: 700 8px/1 var(--mono); text-transform: uppercase; }
   .production-panel button:focus-visible, .work-card:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
   @keyframes works-in { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: none; } }
   @media (max-width: 720px) {
@@ -1696,6 +1735,10 @@
       <div class="production-head">
         <div><div class="eyebrow">National works programme</div><h2 id="productionTitle">Production Board</h2></div>
         <span class="grow"></span>
+        <div class="production-modes" role="tablist" aria-label="Production view">
+          <button type="button" id="productionBuildTab" class="on" role="tab" aria-selected="true" data-production-mode="build">Build</button>
+          <button type="button" id="productionManufactureTab" role="tab" aria-selected="false" data-production-mode="manufacture">Manufacture</button>
+        </div>
         <button class="production-close" id="productionClose" type="button" aria-label="Close production">&times;</button>
       </div>
       <div class="production-body" id="productionBody"></div>
@@ -2632,11 +2675,15 @@ async function adopt(state, withHistory) {
   STOCKW.stale = true;      // the world moved; the resource tint is re-asked on the next map
   LOGI.stale = true;        // monthly settlement may have changed; re-ask only while its plate is open
   PROD.stale = true;        // daily project work may have advanced or changed state
+  MANU.stale = true;        // monthly lines, resource stocks, orders and deliveries may have moved
   if (withHistory !== false) HIST = await api("/api/history");
   if (!ui.picked.length) ui.picked = defaultPicks();
   render();
   if (LOGI.open) logisticsFetch();
-  if (PROD.open) productionFetch();
+  if (PROD.open) {
+    if (PROD.mode === "manufacture") manufacturingFetch();
+    else productionFetch();
+  }
   if (selectedDistrict) loadProvincePopulation(selectedDistrict, true);
 }
 
@@ -2731,8 +2778,10 @@ document.addEventListener("keydown", (e) => {
     if (document.querySelector(".game-drawer.open")) { closeGameDrawers(); return; }
     if (LOGI.open && LOGI.selected) { logisticsSelect(null); return; }
     if (LOGI.open) { closeLogistics(); return; }
-    if (PROD.open && PROD.view !== "queue") { PROD.view = "queue"; PROD.pickKind = null; renderProductionPanel(); return; }
-    if (PROD.open && PROD.selected) { productionSelect(null); return; }
+    if (PROD.open && PROD.mode === "manufacture" && MANU.view !== "lines") { MANU.view = "lines"; MANU.pickKit = null; renderProductionPanel(); return; }
+    if (PROD.open && PROD.mode === "manufacture" && MANU.selected) { manufacturingSelect(null); return; }
+    if (PROD.open && PROD.mode === "build" && PROD.view !== "queue") { PROD.view = "queue"; PROD.pickKind = null; renderProductionPanel(); return; }
+    if (PROD.open && PROD.mode === "build" && PROD.selected) { productionSelect(null); return; }
     if (PROD.open) { closeProduction(); return; }
     if (selectedDistrict) { closeProvince(); return; }
     closeSheet();
@@ -9920,6 +9969,7 @@ function onMapPick(e) {
   if (route) { logisticsSelect(logisticsLaneId(route)); return; }
   const work = productionHitAt(e.clientX, e.clientY);
   if (work) {
+    if (work.line) { manufacturingSelect(work.line.id, true); return; }
     if (work.project) productionSelect(work.project.id, true);
     else if (work.district) selectProvince(work.district, true);
     return;
@@ -11869,12 +11919,18 @@ function logisticsHitAt(clientX, clientY) {
 
 const PROD = {
   open: false, data: null, stale: true, loading: false, error: null, seq: 0,
-  view: "queue", pickKind: null, selected: null, showBuilt: false, refreshQueued: false, hits: [],
+  mode: "build", view: "queue", pickKind: null, selected: null, showBuilt: false, refreshQueued: false, hits: [],
 };
 const PROD_ICON = {
   infrastructure: "▥", civilian_industry: "⚙", power_grid: "ϟ",
   research_center: "⌬", arms_plant: "⛭",
 };
+const MANU = {
+  data: null, stale: true, loading: false, error: null, seq: 0,
+  view: "lines", pickKit: null, classFilter: "All", selected: null, showLocked: false,
+  refreshQueued: false, hits: [],
+};
+const MANU_CLASS_MARK = { infantry: "⌁", armour: "▰", air: "△", naval: "≋", missile: "↟", space: "✦" };
 
 function productionQueue() { return (PROD.data && Array.isArray(PROD.data.queue)) ? PROD.data.queue : []; }
 function productionCatalog() { return (PROD.data && Array.isArray(PROD.data.catalog)) ? PROD.data.catalog : []; }
@@ -11937,22 +11993,40 @@ function renderProductionDock() {
   const button = $("#productionDockBtn"), copy = $("#dockProduction"), badge = $("#productionBadge");
   if (!button || !S) return;
   const sum = S.production_summary || {};
+  const manufacture = S.manufacturing_summary || {};
   const active = +sum.active || 0, building = +sum.building || 0;
   const slowed = +sum.slowed || 0, blocked = +sum.blocked || 0;
   const completed = +sum.completed || 0;
   const capacity = +sum.capacity || 4;
-  copy.textContent = `${active}/${capacity} active${blocked ? ` · ${blocked} blocked` : slowed ? ` · ${slowed} slow` : completed ? ` · ${completed} built` : ""}`;
-  const attention = +sum.attention || slowed + blocked;
+  const lines = +manufacture.active || 0, lineCapacity = +manufacture.capacity || 0;
+  copy.textContent = `${active}/${capacity} builds · ${lines}/${lineCapacity} lines`;
+  const attention = (+sum.attention || slowed + blocked) + (+manufacture.attention || 0);
   badge.textContent = attention > 99 ? "99+" : String(attention);
   badge.classList.toggle("on", attention > 0);
-  badge.classList.toggle("warn", !blocked && attention > 0);
-  button.disabled = !S.player || !S.production_summary;
-  button.setAttribute("aria-label", `Production: ${building} building, ${slowed} slowed, ${blocked} blocked`);
+  badge.classList.toggle("warn", !blocked && !(+manufacture.blocked) && attention > 0);
+  button.disabled = !S.player || (!S.production_summary && !S.manufacturing_summary);
+  button.setAttribute("aria-label", `Production: ${building} building, ${slowed + (+manufacture.attention || 0)} need attention, ${lines} manufacturing lines`);
   button.setAttribute("aria-expanded", PROD.open ? "true" : "false");
 }
 
+function setProductionMode(mode) {
+  if (mode !== "build" && mode !== "manufacture") return;
+  PROD.mode = mode;
+  document.querySelectorAll("[data-production-mode]").forEach((button) => {
+    const on = button.dataset.productionMode === mode;
+    button.classList.toggle("on", on);
+    button.setAttribute("aria-selected", on ? "true" : "false");
+  });
+  const title = $("#productionTitle"), eyebrow = title && title.previousElementSibling;
+  if (title) title.textContent = mode === "manufacture" ? "Manufacturing Board" : "Production Board";
+  if (eyebrow) eyebrow.textContent = mode === "manufacture" ? "Defense industrial command" : "National works programme";
+  renderProductionPanel();
+  if (mode === "manufacture") manufacturingFetch(); else productionFetch();
+  if (GLOBE) GLOBE.render();
+}
+
 function openProduction() {
-  if (!S || !S.player || !S.production_summary) return;
+  if (!S || !S.player || (!S.production_summary && !S.manufacturing_summary)) return;
   if (LOGI.open) closeLogistics();
   if (stock.open) closeStock();
   if (tech.open) closeTech();
@@ -11961,14 +12035,16 @@ function openProduction() {
   closeSheet();
   showTab("map");
   PROD.open = true; PROD.view = "queue"; PROD.pickKind = null; PROD.showBuilt = false; PROD.error = null;
+  MANU.view = "lines"; MANU.pickKit = null; MANU.error = null;
   const panel = $("#productionPanel");
   panel.classList.add("open"); panel.setAttribute("aria-hidden", "false");
   document.body.classList.add("production-open");
-  renderProductionDock(); renderProductionPanel(); productionFetch();
+  renderProductionDock(); setProductionMode(PROD.mode);
   if (GLOBE) GLOBE.render();
 }
 function closeProduction() {
   PROD.open = false; PROD.view = "queue"; PROD.pickKind = null; PROD.selected = null; PROD.showBuilt = false; PROD.refreshQueued = false; PROD.hits = [];
+  MANU.view = "lines"; MANU.pickKit = null; MANU.selected = null; MANU.refreshQueued = false; MANU.hits = [];
   const panel = $("#productionPanel");
   if (panel) { panel.classList.remove("open"); panel.setAttribute("aria-hidden", "true"); }
   document.body.classList.remove("production-open");
@@ -12091,9 +12167,222 @@ function productionBuiltHtml() {
   return `<button type="button" class="built-toggle" data-prod-built aria-expanded="${PROD.showBuilt}"><span>Completed province upgrades</span><b>${total} ${PROD.showBuilt ? "−" : "+"}</b></button>${detail}`;
 }
 
+/* Manufacturing shares this board with construction because the map should
+   remain the game. The server owns the budget, slots, recipes, locks and every
+   allowed action; this is only the tactile composition of that ledger. */
+function manufacturingLines() { return (MANU.data && Array.isArray(MANU.data.lines)) ? MANU.data.lines : []; }
+function manufacturingCatalog() { return (MANU.data && Array.isArray(MANU.data.catalog)) ? MANU.data.catalog : []; }
+function manufacturingProvinces() { return (MANU.data && Array.isArray(MANU.data.provinces)) ? MANU.data.provinces : []; }
+function manufacturingHoldings() { return (MANU.data && Array.isArray(MANU.data.stockpile)) ? MANU.data.stockpile : []; }
+function manufacturingOrders() { return (MANU.data && Array.isArray(MANU.data.orders)) ? MANU.data.orders : []; }
+function manufacturingLine(id) { return manufacturingLines().find((line) => String(line.id) === String(id)); }
+function manufacturingKit(id) { return manufacturingCatalog().find((kit) => String(kit.id) === String(id)); }
+function manufacturingTone(line) { return String(line && line.status || "producing").toLowerCase() === "blocked" ? "blocked" : "building"; }
+function manufacturingClassMark(value) { return MANU_CLASS_MARK[String(value || "").toLowerCase()] || "◆"; }
+function manufacturingBn(value, digits) { return `$${(+value || 0).toFixed(digits == null ? 2 : digits)}bn`; }
+function manufacturingRequirementHtml(requirement) {
+  const quantity = requirement.draw != null ? +requirement.draw : +requirement.required || 0;
+  const stock = +requirement.stock_available || 0, available = +requirement.priority_available || 0;
+  const shortfall = +requirement.shortfall || 0;
+  const unit = requirement.unit || "", stockUnit = requirement.stock_unit || unit;
+  const text = `${requirement.name || requirement.commodity} · ${fmtQ(quantity)}${unit ? ` ${unit}` : ""}`;
+  const title = `Available after higher priorities ${fmtQ(available)}${unit ? ` ${escText(unit)}` : ""} · national warehouse ${fmtQ(stock)}${stockUnit ? ` ${escText(stockUnit)}` : ""}`;
+  return `<span class="work-need${shortfall > 1e-9 ? " short" : ""}" title="${title}">${escText(text)}</span>`;
+}
+function manufacturingPriorityChoices(line) {
+  const choices = line && line.actions && line.actions.set_priority;
+  return Array.isArray(choices) ? choices.map(String) : [];
+}
+function manufacturingCanStop(line) { return !!(line && line.actions && line.actions.stop === true); }
+
+async function manufacturingFetch() {
+  if (!PROD.open || PROD.mode !== "manufacture") return;
+  if (MANU.loading) { MANU.refreshQueued = true; return; }
+  if (!MANU.stale && MANU.data) return;
+  MANU.loading = true; MANU.refreshQueued = false; MANU.stale = false; MANU.error = null;
+  renderProductionPanel();
+  const seq = ++MANU.seq;
+  try {
+    const data = await api("/api/manufacturing");
+    if (seq !== MANU.seq) return;
+    data.lines = Array.isArray(data.lines) ? data.lines : [];
+    data.catalog = Array.isArray(data.catalog) ? data.catalog : [];
+    data.provinces = Array.isArray(data.provinces) ? data.provinces : [];
+    data.stockpile = Array.isArray(data.stockpile) ? data.stockpile : [];
+    data.orders = Array.isArray(data.orders) ? data.orders : [];
+    MANU.data = data; MANU.stale = false;
+    if (MANU.selected && !manufacturingLine(MANU.selected)) MANU.selected = null;
+    const summary = data.summary || {};
+    $("#productionLive").textContent = `Manufacturing updated. ${+summary.producing || 0} producing, ${+summary.blocked || 0} blocked.`;
+  } catch (error) {
+    if (seq === MANU.seq) { MANU.error = error.message; MANU.stale = true; }
+  } finally {
+    if (seq === MANU.seq) {
+      const rerun = MANU.refreshQueued;
+      MANU.refreshQueued = false; MANU.loading = false;
+      renderProductionPanel(); if (GLOBE) GLOBE.render();
+      if (rerun && PROD.open && PROD.mode === "manufacture") { MANU.stale = true; manufacturingFetch(); }
+    }
+  }
+}
+
+function manufacturingLineHtml(line) {
+  const tone = manufacturingTone(line), province = line.province || {};
+  const priority = String(line.priority || "normal");
+  const choices = manufacturingPriorityChoices(line);
+  const requirements = (line.requirements || []).filter((row) => +(row.draw != null ? row.draw : row.required) > 0)
+    .map(manufacturingRequirementHtml).join("");
+  const lead = +line.lead_months || 0;
+  return `<article class="work-card factory-card ${tone}${String(MANU.selected) === String(line.id) ? " selected" : ""}" tabindex="0" data-manu-line="${logisticsEscAttr(line.id)}">
+    <div class="work-top"><span class="work-art" aria-hidden="true">${manufacturingClassMark(line.class)}</span>
+      <div class="work-title"><b>${escText(line.name || line.kit)}</b><span>${escText(province.name || province.id || "Arms plant")} · ${escText(line.class || "Equipment")}</span></div>
+      <span class="work-state">${escText(String(line.status || "producing").toUpperCase())}</span></div>
+    <div class="factory-output"><span>Planned / month<b>${manufacturingBn(line.allocation_bn_month)}</b></span><span>Lead time<b>${lead ? `${lead} mo` : "pending"}</b></span></div>
+    ${line.reason ? `<div class="work-reason">${escText(line.reason)}</div>` : ""}
+    ${requirements ? `<div class="work-needs">${requirements}</div>` : ""}
+    <div class="work-line"><span><b>${fmtQ(tone === "blocked" ? 0 : line.units_ordered_month || 0)}</b> planned units / month</span><span>${manufacturingBn(line.ordered_bn || 0)} ordered to date</span></div>
+    <div class="work-actions" aria-label="Manufacturing line controls">${["high", "normal", "low"].filter((value) => value === priority || choices.includes(value)).map((value) =>
+      `<button type="button" ${priority === value ? "disabled" : `data-manu-priority="${value}" data-manu-id="${logisticsEscAttr(line.id)}"`} class="${priority === value ? "on" : ""}" aria-pressed="${priority === value}">${value}</button>`).join("")}
+      ${manufacturingCanStop(line) ? `<button type="button" class="cancel" data-manu-stop="${logisticsEscAttr(line.id)}">Stop line</button>` : ""}</div>
+  </article>`;
+}
+
+function manufacturingLedgerHtml() {
+  const holdings = manufacturingHoldings(), orders = manufacturingOrders();
+  const heldRows = holdings.slice(0, 12).map((row) => `<div class="factory-ledger-row"><b>${escText(row.name || row.kit)}</b><span>${fmtQ(row.units)} units · ${manufacturingBn(row.book_value_bn)}<br>${Math.round((+row.condition || 0) * 100)}% condition</span></div>`).join("");
+  const orderRows = orders.slice(0, 12).map((row) => `<div class="factory-ledger-row"><b>${escText(row.name || row.kit)}</b><span>${fmtQ(row.units)} units · ${escText(row.due_date || `${row.due_months || 0} months`)}<br>${manufacturingBn(row.value_bn)}</span></div>`).join("");
+  return `<details class="factory-ledger"><summary>Arsenal &amp; delivery pipeline · ${holdings.length} held · ${orders.length} orders</summary>
+    <div class="factory-ledger-list">${orderRows || `<div class="production-empty">Nothing is on order.</div>`}${heldRows}</div></details>`;
+}
+
+function manufacturingLinesHtml() {
+  const data = MANU.data || {}, summary = data.summary || {}, finance = data.finance || {};
+  const lines = manufacturingLines(), capacity = +summary.capacity || 0;
+  const usedSlots = +summary.used_slots || 0, freeSlots = +summary.free_slots || 0;
+  const share = (+finance.procurement_share || 0) * 100;
+  const list = lines.length ? `<div class="production-list">${lines.map(manufacturingLineHtml).join("")}</div>` : "";
+  let empty = "";
+  if (!lines.length && capacity <= 0) {
+    empty = `<div class="factory-bridge"><b>No arms-plant capacity</b>Build an Arms Plant in a province to open a directed equipment line. Until then, military staff keep the inherited procurement programme running.<button type="button" data-manu-build-plant>Build an Arms Plant</button></div>`;
+  } else if (!lines.length) {
+    empty = `<div class="factory-bridge"><b>Staff procurement is active</b>Your ${capacity} plant slot${capacity === 1 ? " is" : "s are"} ready. Start a line to replace automatic buying with your own equipment plan.</div>`;
+  }
+  return `<div class="manufacturing-hero"><div class="stamp">Defense procurement envelope</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_month)} <small>per month</small></div>
+      <p>${share.toFixed(0)}% of the defense budget buys equipment. The treasury already carries that spending; imported materials settle through the resource market.</p></div>
+    <div class="manufacturing-summary"><span>Plant slots<b>${usedSlots}/${capacity}</b></span><span>Force equipped<b>${Math.round((+summary.adequacy || 0) * 100)}%</b></span><span class="${+summary.blocked ? "warn" : ""}">Pipeline<b>${manufacturingBn(summary.pipeline_value_bn)}</b></span></div>
+    ${empty}${list}${freeSlots > 0 && data.actions && data.actions.start === true ? `<button type="button" class="production-new" data-manu-new>＋ Start equipment line</button>` : ""}
+    ${manufacturingLedgerHtml()}`;
+}
+
+function manufacturingCatalogHtml() {
+  const all = manufacturingCatalog();
+  const classes = ["All", ...Array.from(new Set(all.map((kit) => String(kit.class || "Other"))))];
+  const visible = all.filter((kit) => (MANU.classFilter === "All" || kit.class === MANU.classFilter) && (MANU.showLocked || kit.unlocked));
+  const locked = all.filter((kit) => !kit.unlocked).length;
+  const cards = visible.map((kit) => {
+    const available = !!kit.unlocked && !!(kit.actions && kit.actions.start === true) && (kit.eligible_provinces || []).length > 0;
+    const meta = kit.unlocked
+      ? `${manufacturingBn(kit.unit_cost_bn, 3)} / unit · ${kit.lead_months} months to field`
+      : kit.lock_reason || (kit.tech && `Requires ${kit.tech.name || kit.tech.id}`) || "Technology locked";
+    return `<button type="button" class="equipment-choice${kit.unlocked ? "" : " locked"}" data-class-mark="${logisticsEscAttr(manufacturingClassMark(kit.class))}" ${available ? `data-manu-kit="${logisticsEscAttr(kit.id)}"` : "disabled"}>
+      <b>${escText(kit.name)}</b><span>${escText(kit.class)} · service life ${Math.round((+kit.service_months || 0) / 12)} years</span><em>${escText(meta)}</em></button>`;
+  }).join("");
+  return `<div class="production-stamp"><b>Choose the equipment</b><span>step 1 of 2<br>technology gated</span></div>
+    <div class="factory-classes">${classes.map((name) => `<button type="button" data-manu-class="${logisticsEscAttr(name)}" class="${MANU.classFilter === name ? "on" : ""}">${escText(name)}</button>`).join("")}</div>
+    <div class="equipment-catalog">${cards || `<div class="production-empty">No equipment in this filter is ready.</div>`}</div>
+    ${locked ? `<button type="button" class="built-toggle" data-manu-locked aria-expanded="${MANU.showLocked}"><span>${MANU.showLocked ? "Hide" : "Show"} technology-locked equipment</span><b>${locked}</b></button>` : ""}
+    <button type="button" class="production-back" data-manu-back>Back to lines</button>`;
+}
+
+function manufacturingProvinceHtml() {
+  const kit = manufacturingKit(MANU.pickKit);
+  if (!kit) { MANU.view = "catalog"; return manufacturingCatalogHtml(); }
+  const eligible = new Set((kit.eligible_provinces || []).map(String));
+  const provinces = manufacturingProvinces().filter((province) => eligible.has(String(province.id)) || (province.actions && Array.isArray(province.actions.start) && province.actions.start.map(String).includes(String(kit.id))));
+  const picks = provinces.map((province) => `<button type="button" class="province-pick" data-manu-province="${logisticsEscAttr(province.id)}"><b>${escText(province.name || province.id)}</b><span>${+province.free_slots || 0} free · arms plant ${+province.arms_plants || 0}</span></button>`).join("");
+  const recipe = (kit.requirements_per_bn || []).map((row) => `<span class="work-need">${escText(row.name || row.commodity)} · ${fmtQ(row.quantity || row.required || 0)} ${escText(row.unit || "")} / $bn</span>`).join("");
+  return `<div class="production-stamp"><b>${manufacturingClassMark(kit.class)} ${escText(kit.name)}</b><span>step 2 of 2<br>choose a plant</span></div>
+    <div class="project-brief"><b>${manufacturingBn(kit.unit_cost_bn, 3)} per unit · first delivery in ${kit.lead_months} months</b>${recipe ? `<div class="work-needs">${recipe}</div>` : ""}</div>
+    <div class="province-picks">${picks || `<div class="production-empty">No owned arms plant has a free slot.</div>`}</div>
+    <button type="button" class="production-back" data-manu-back>Choose another equipment line</button>`;
+}
+
+function renderManufacturingPanel() {
+  const body = $("#productionBody");
+  if (!body || !PROD.open || PROD.mode !== "manufacture") return;
+  if (MANU.error) body.innerHTML = `<div class="production-empty">${escText(MANU.error)}<br><button type="button" data-manu-retry>Retry</button></div>`;
+  else if (!MANU.data && MANU.loading) body.innerHTML = `<div class="production-empty">Opening the defense industrial ledger…</div>`;
+  else if (!MANU.data) body.innerHTML = `<div class="production-empty">Manufacturing is loading…</div>`;
+  else if (MANU.view === "catalog") body.innerHTML = manufacturingCatalogHtml();
+  else if (MANU.view === "provinces") body.innerHTML = manufacturingProvinceHtml();
+  else body.innerHTML = manufacturingLinesHtml();
+  wireManufacturingPanel();
+}
+
+function wireManufacturingPanel() {
+  const body = $("#productionBody"); if (!body || PROD.mode !== "manufacture") return;
+  body.querySelectorAll("[data-manu-line]").forEach((card) => {
+    card.onclick = (event) => { if (!event.target.closest("button")) manufacturingSelect(card.dataset.manuLine, true); };
+    card.onkeydown = (event) => { if (event.target === card && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); manufacturingSelect(card.dataset.manuLine, true); } };
+  });
+  const add = body.querySelector("[data-manu-new]");
+  if (add) add.onclick = () => { MANU.view = "catalog"; MANU.pickKit = null; renderProductionPanel(); };
+  const build = body.querySelector("[data-manu-build-plant]");
+  if (build) build.onclick = async () => { setProductionMode("build"); PROD.pickKind = "arms_plant"; PROD.view = "provinces"; PROD.stale = true; await productionFetch(); renderProductionPanel(); };
+  body.querySelectorAll("[data-manu-class]").forEach((button) => { button.onclick = () => { MANU.classFilter = button.dataset.manuClass; renderProductionPanel(); }; });
+  body.querySelectorAll("[data-manu-kit]").forEach((button) => { button.onclick = () => { MANU.pickKit = button.dataset.manuKit; MANU.view = "provinces"; renderProductionPanel(); }; });
+  body.querySelectorAll("[data-manu-province]").forEach((button) => { button.onclick = () => manufacturingStart(MANU.pickKit, button.dataset.manuProvince); });
+  body.querySelectorAll("[data-manu-priority]").forEach((button) => { button.onclick = (event) => { event.stopPropagation(); manufacturingSetPriority(button.dataset.manuId, button.dataset.manuPriority); }; });
+  body.querySelectorAll("[data-manu-stop]").forEach((button) => { button.onclick = (event) => { event.stopPropagation(); manufacturingStop(button.dataset.manuStop); }; });
+  const back = body.querySelector("[data-manu-back]");
+  if (back) back.onclick = () => { MANU.view = MANU.view === "provinces" ? "catalog" : "lines"; MANU.pickKit = null; renderProductionPanel(); };
+  const locked = body.querySelector("[data-manu-locked]");
+  if (locked) locked.onclick = () => { MANU.showLocked = !MANU.showLocked; renderProductionPanel(); };
+  const retry = body.querySelector("[data-manu-retry]");
+  if (retry) retry.onclick = () => { MANU.stale = true; MANU.error = null; manufacturingFetch(); };
+}
+
+async function manufacturingCommand(command, success) {
+  try {
+    const response = await api("/api/command", { commands: [command] });
+    const refused = response.errors && response.errors.length;
+    if (refused) banner(response.errors[0]); else if (success) banner(success);
+    MANU.stale = true; PROD.stale = true;
+    await adopt(response, false);
+    return !refused;
+  } catch (error) {
+    MANU.error = error.message || "The manufacturing command could not be sent.";
+    MANU.stale = true;
+    banner(MANU.error);
+    renderProductionPanel();
+    return false;
+  }
+}
+async function manufacturingStart(kit, district) {
+  const equipment = manufacturingKit(kit);
+  const opened = await manufacturingCommand({ kind: "start_manufacturing_line", kit, district }, `${equipment ? equipment.name : "Equipment"} line opened.`);
+  if (opened) { MANU.view = "lines"; MANU.pickKit = null; renderProductionPanel(); }
+}
+async function manufacturingSetPriority(line, priority) {
+  await manufacturingCommand({ kind: "set_manufacturing_priority", line: +line, priority }, `Manufacturing priority set to ${priority}.`);
+}
+async function manufacturingStop(id) {
+  const line = manufacturingLine(id); if (!line || !manufacturingCanStop(line)) return;
+  if (!confirm(`Stop the ${line.name || line.kit} line?\n\nEquipment already on order stays in the delivery pipeline.`)) return;
+  await manufacturingCommand({ kind: "stop_manufacturing_line", line: +id }, "Manufacturing line stopped. Existing orders remain.");
+}
+function manufacturingSelect(id, focus) {
+  MANU.selected = id == null ? null : String(id);
+  renderProductionPanel();
+  const line = manufacturingLine(MANU.selected), province = line && line.province;
+  if (focus && province && province.id && DINDEX[province.id]) selectProvince(province.id, true);
+  if (GLOBE) GLOBE.render();
+}
+
 function renderProductionPanel() {
   const body = $("#productionBody");
   if (!body || !PROD.open) return;
+  if (PROD.mode === "manufacture") { renderManufacturingPanel(); return; }
   if (PROD.error) {
     body.innerHTML = `<div class="production-empty">${escText(PROD.error)}<br><button type="button" data-prod-retry>Retry</button></div>`;
   } else if (!PROD.data && PROD.loading) {
@@ -12135,7 +12424,7 @@ function wireProductionPanel() {
 async function productionCommand(command, success) {
   const r = await api("/api/command", { commands: [command] });
   if (r.errors && r.errors.length) banner(r.errors[0]); else if (success) banner(success);
-  PROD.stale = true;
+  PROD.stale = true; MANU.stale = true;
   await adopt(r, false);
 }
 async function productionStart(kind, district) {
@@ -12163,10 +12452,15 @@ function productionSelect(id, focus) {
 
 $("#productionDockBtn").onclick = toggleProduction;
 $("#productionClose").onclick = closeProduction;
+document.querySelectorAll("[data-production-mode]").forEach((button) => {
+  button.onclick = () => setProductionMode(button.dataset.productionMode);
+});
 
 function drawProductionOverlay(ctx, view, globe) {
   PROD.hits = [];
-  if (!PROD.open || !PROD.data) return;
+  if (!PROD.open) return;
+  if (PROD.mode === "manufacture") { drawManufacturingOverlay(ctx, view, globe); return; }
+  if (!PROD.data) return;
   const r = view.ratio;
   for (const marker of productionMarkers()) {
     const project = productionQueue().find((p) => (marker.active || []).map(String).includes(String(p.id))) || null;
@@ -12200,14 +12494,54 @@ function drawProductionOverlay(ctx, view, globe) {
   ctx.setLineDash([]); ctx.globalAlpha = 1; ctx.textAlign = "center"; ctx.textBaseline = "middle";
 }
 
+function drawManufacturingOverlay(ctx, view, globe) {
+  MANU.hits = [];
+  if (!PROD.open || PROD.mode !== "manufacture" || !MANU.data) return;
+  const r = view.ratio;
+  for (const province of manufacturingProvinces().filter((row) => +row.arms_plants > 0)) {
+    const lineIds = (province.active_lines || []).map(String);
+    const lines = manufacturingLines().filter((line) => lineIds.includes(String(line.id)));
+    const line = lines.find((row) => manufacturingTone(row) === "blocked") || lines[0] || null;
+    const district = province.id;
+    const d = district && DINDEX[district];
+    if (!d) continue;
+    const point = globe.projectWorld(d.cx, d.cy, view, 1.018);
+    if (!point) continue;
+    const blocked = lines.some((row) => manufacturingTone(row) === "blocked");
+    const selected = !!line && String(MANU.selected) === String(line.id);
+    const colour = blocked ? "#df6c65" : lines.length ? "#d9b65f" : "#70808d";
+    const radius = (selected ? 11 : 8) * r;
+    ctx.globalAlpha = selected ? 1 : .92;
+    ctx.fillStyle = "#070b10"; ctx.strokeStyle = "#020406"; ctx.lineWidth = 4 * r;
+    ctx.beginPath(); ctx.arc(point[0], point[1], radius, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = colour; ctx.lineWidth = 1.7 * r;
+    ctx.setLineDash(blocked ? [2 * r, 3 * r] : []);
+    ctx.beginPath(); ctx.arc(point[0], point[1], radius, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = colour; ctx.font = `700 ${selected ? 13 : 10}px Inter, system-ui, sans-serif`;
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText(line ? manufacturingClassMark(line.class) : "⛭", point[0], point[1] + .5 * r);
+    if (selected) {
+      const text = String(line.status || "producing").toUpperCase();
+      ctx.font = `700 ${8 * r}px Inter, system-ui, sans-serif`;
+      const width = ctx.measureText(text).width + 10 * r;
+      ctx.fillStyle = "#070b10"; roundedRect(ctx, point[0] - width / 2, point[1] - 30 * r, width, 15 * r, 4 * r); ctx.fill();
+      ctx.strokeStyle = colour; ctx.lineWidth = r; ctx.stroke(); ctx.fillStyle = "#eef4f8"; ctx.fillText(text, point[0], point[1] - 22.5 * r);
+    }
+    MANU.hits.push({ line, district, x: point[0], y: point[1], radius: radius + 5 * r, r });
+    ctx.globalAlpha = 1;
+  }
+  ctx.setLineDash([]); ctx.globalAlpha = 1; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+}
+
 function productionHitAt(clientX, clientY) {
-  if (!PROD.open || !PROD.hits.length || !GLOBE || !GLOBE.lastSize) return null;
+  const hits = PROD.mode === "manufacture" ? MANU.hits : PROD.hits;
+  if (!PROD.open || !hits.length || !GLOBE || !GLOBE.lastSize) return null;
   const rect = GLCV.getBoundingClientRect(), size = GLOBE.lastSize;
   if (!rect.width || !rect.height) return null;
   const x = (clientX - rect.left) * size.width / (size.cw || rect.width);
   const y = (clientY - rect.top) * size.height / (size.ch || rect.height);
   let best = null, distance = Infinity;
-  for (const hit of PROD.hits) {
+  for (const hit of hits) {
     const d = (x - hit.x) ** 2 + (y - hit.y) ** 2;
     if (d <= hit.radius ** 2 && d < distance) { best = hit; distance = d; }
   }

@@ -842,6 +842,11 @@ pub struct GameRules {
     /// Empty state and a false switch both disappear from saves.
     #[serde(default, skip_serializing_if = "is_false")]
     pub production_system: bool,
+    /// Player-directed military manufacturing lines. OFF in the calibrated
+    /// world; with no directed lines even an enabled browser world retains the
+    /// existing automatic procurement path exactly.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub manufacturing_system: bool,
 }
 fn rules_true() -> bool {
     true
@@ -862,6 +867,7 @@ impl Default for GameRules {
             resource_market: false,
             logistics_routes: false,
             production_system: false,
+            manufacturing_system: false,
         }
     }
 }
@@ -975,6 +981,12 @@ pub struct WorldState {
     /// save until the player starts work.
     #[serde(default, skip_serializing_if = "crate::production::Production::is_empty")]
     pub production: crate::production::Production,
+
+    /// Standing player directions that divide the existing procurement line.
+    /// Equipment itself remains in `Nation::arsenal`; this sparse ledger only
+    /// records which completed province plants are directing it.
+    #[serde(default, skip_serializing_if = "crate::manufacturing::Manufacturing::is_empty")]
+    pub manufacturing: crate::manufacturing::Manufacturing,
 
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it

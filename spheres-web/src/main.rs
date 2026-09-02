@@ -2435,6 +2435,409 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
     })
 }
 
+// ===========================================================================
+// MANUFACTURING & PROCUREMENT. Construction leaves arms-plant capability on
+// provinces; this surface turns those exact slots into long-lead equipment
+// lines. The arsenal remains the only equipment ledger and the defense budget
+// remains the only money source. Nothing in this layer manufactures, pays for,
+// delivers or ages a unit.
+// ===========================================================================
+
+fn manufacturing_tech_json(
+    n: &Nation,
+    def: &spheres_sim::arsenal::EquipmentDef,
+) -> serde_json::Value {
+    match def.tech {
+        None => serde_json::Value::Null,
+        Some(id) => match spheres_sim::tech::index_of(id) {
+            Some(index) => {
+                let tech = &spheres_sim::tech::registry()[index as usize];
+                serde_json::json!({
+                    "id": id,
+                    "name": tech.name,
+                    "known": n.tech.knows_index(index),
+                })
+            }
+            None => serde_json::json!({
+                "id": id,
+                "name": id,
+                "known": false,
+            }),
+        },
+    }
+}
+
+fn manufacturing_lock_reason(
+    n: &Nation,
+    def: &spheres_sim::arsenal::EquipmentDef,
+) -> Option<String> {
+    let id = def.tech?;
+    match spheres_sim::tech::index_of(id) {
+        Some(index) if n.tech.knows_index(index) => None,
+        Some(index) => Some(format!(
+            "Research {} first.",
+            spheres_sim::tech::registry()[index as usize].name
+        )),
+        None => Some(format!("Required technology {} is not in this build.", id)),
+    }
+}
+
+/// One equipment recipe in the same compact units as the resource board.
+/// `required` is this line's planned monthly slice, `draw` is what the next
+/// settlement will actually ask for, and `shortfalls` is the sim's present-
+/// tense gap. A whole recipe is never mislabeled as a current shortage.
+fn manufacturing_requirements_json(
+    w: &WorldState,
+    me: NationId,
+    required: &[f64; 12],
+    draw: &[f64; 12],
+    shortfalls: &[f64; 12],
+    consumed: Option<&[f64; 12]>,
+) -> Vec<serde_json::Value> {
+    ALL.iter()
+        .enumerate()
+        .filter_map(|(i, c)| {
+            if required[i] <= 1e-12 && draw[i] <= 1e-12 && shortfalls[i] <= 1e-12 {
+                return None;
+            }
+            let (unit, _) = board_unit(*c);
+            let (stock_unit, stock_factor) = stock_unit(*c);
+            Some(serde_json::json!({
+                "commodity": c.key(),
+                "name": line_name(*c),
+                "required": round(on_board(*c, required[i]), 6),
+                "draw": round(on_board(*c, draw[i]), 6),
+                "priority_available": round(on_board(*c, (draw[i] - shortfalls[i]).max(0.0)), 6),
+                "stock_available": round(resources::stock_quantity(w, me, *c) * stock_factor, 6),
+                "shortfall": round(on_board(*c, shortfalls[i]), 6),
+                "consumed": consumed.map(|used| round(used[i] * stock_factor, 6)),
+                "unit": unit,
+                "stock_unit": stock_unit,
+            }))
+        })
+        .collect()
+}
+
+fn manufacturing_recipe_per_bn_json(kit: u16) -> Vec<serde_json::Value> {
+    // Manufacturing has recipes for legacy programmes too. `kit_need` is the
+    // old automatic-procurement gate and deliberately zeros that legacy tier;
+    // directed lines settle through this separate, complete recipe table.
+    let need = resources::manufacturing_need(kit, 1.0);
+    ALL.iter()
+        .enumerate()
+        .filter_map(|(i, c)| {
+            (need[i] > 1e-12).then(|| serde_json::json!({
+                "commodity": c.key(),
+                "name": line_name(*c),
+                "quantity": round(on_board(*c, need[i]), 6),
+                "unit": board_unit(*c).0,
+            }))
+        })
+        .collect()
+}
+
+fn manufacturing_delivery_date(w: &WorldState, due_months: u32) -> String {
+    // `due == 1` arrives at this month's settlement, not one month after it.
+    let add = due_months.saturating_sub(1) as i32;
+    let absolute = w.year * 12 + w.month as i32 - 1 + add;
+    let year = absolute.div_euclid(12);
+    let month = absolute.rem_euclid(12) as u32 + 1;
+    month_name(month, year)
+}
+
+fn manufacturing_start_allowed(
+    w: &WorldState,
+    me: NationId,
+    district: &str,
+    kit: &str,
+) -> bool {
+    if spheres_sim::manufacturing::start_line_error(w, me, district, kit).is_some() {
+        return false;
+    }
+    let command = Command::StartManufacturingLine {
+        nation: me,
+        district: district.to_string(),
+        kit: kit.to_string(),
+    };
+    spheres_sim::price_of(w, &command)
+        .is_some_and(|price| w.nation(me).political_capital + 1e-9 >= price)
+}
+
+fn manufacturing_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    use spheres_sim::manufacturing::LineStatus;
+
+    let mut lines = spheres_sim::manufacturing::lines_for(w, me).collect::<Vec<_>>();
+    lines.sort_by_key(|line| line.id);
+    let blocked = lines
+        .iter()
+        .filter(|line| {
+            spheres_sim::manufacturing::line_blocker(w, line).is_some()
+                || line.status == LineStatus::Blocked
+        })
+        .count();
+    let producing = lines.len().saturating_sub(blocked);
+    let owned_plants = w
+        .districts
+        .iter()
+        .filter(|(_, owner)| **owner == me)
+        .map(|(district, _)| spheres_sim::manufacturing::plant_slots(w, district) as usize)
+        .sum::<usize>();
+    let used_slots = w
+        .districts
+        .iter()
+        .filter(|(_, owner)| **owner == me)
+        .map(|(district, _)| spheres_sim::manufacturing::used_slots(w, me, district))
+        .sum::<usize>();
+    let n = w.nation(me);
+    let pipeline_value = n
+        .arsenal
+        .orders
+        .iter()
+        .filter_map(|order| {
+            spheres_sim::arsenal::registry()
+                .get(order.kit as usize)
+                .map(|def| order.units * def.unit_cost)
+        })
+        .sum::<f64>();
+    serde_json::json!({
+        "active": lines.len(),
+        "capacity": owned_plants,
+        "used_slots": used_slots,
+        "free_slots": owned_plants.saturating_sub(used_slots),
+        "plants": owned_plants,
+        "producing": producing,
+        "blocked": blocked,
+        "attention": blocked,
+        "attention_ids": lines.iter()
+            .filter(|line| {
+                spheres_sim::manufacturing::line_blocker(w, line).is_some()
+                    || line.status == LineStatus::Blocked
+            })
+            .take(3)
+            .map(|line| line.id)
+            .collect::<Vec<_>>(),
+        "held_value_bn": round(spheres_sim::arsenal::book_value(n), 3),
+        "pipeline_value_bn": round(pipeline_value, 3),
+        "adequacy": round(spheres_sim::arsenal::adequacy(n), 4),
+    })
+}
+
+fn manufacturing_line_json(
+    w: &WorldState,
+    me: NationId,
+    line: &spheres_sim::manufacturing::ManufacturingLine,
+    plans: &[spheres_sim::manufacturing::LinePlan],
+) -> serde_json::Value {
+    let priorities = [Priority::High, Priority::Normal, Priority::Low]
+        .iter()
+        .filter(|priority| **priority != line.priority)
+        .map(|priority| priority.key())
+        .collect::<Vec<_>>();
+    let draw = spheres_sim::manufacturing::line_resource_draw(w, line.id);
+    let shortfalls = spheres_sim::manufacturing::line_shortfalls(w, line.id);
+    let plan = plans.iter().find(|plan| plan.line == line.id);
+    let required = plan.map_or([0.0; 12], |plan| plan.required);
+    let allocation = plan.map_or(0.0, |plan| plan.budget_bn);
+    let live_blocker = spheres_sim::manufacturing::line_blocker(w, line);
+    let effective_blocked = live_blocker.is_some()
+        || line.status == spheres_sim::manufacturing::LineStatus::Blocked;
+    let effective_reason = live_blocker.or_else(|| line.reason.clone());
+    let Some(kit) = spheres_sim::arsenal::index_of(&line.kit) else {
+        return serde_json::json!({
+            "id": line.id,
+            "kit": line.kit,
+            "name": line.kit,
+            "class": "unknown",
+            "province": {
+                "id": line.district,
+                "name": spheres_sim::districts::name_of(&line.district).unwrap_or(&line.district),
+            },
+            "priority": line.priority.key(),
+            "status": "blocked",
+            "reason": format!("BLOCKED: equipment {} is not in this build.", line.kit),
+            "allocation_bn_month": round(allocation, 6),
+            "ordered_bn": round(line.ordered_bn, 6),
+            "requirements": manufacturing_requirements_json(
+                w, me, &required, &draw, &shortfalls, Some(&line.resources_used),
+            ),
+            "actions": { "set_priority": priorities, "stop": true },
+        });
+    };
+    let def = &spheres_sim::arsenal::registry()[kit as usize];
+    serde_json::json!({
+        "id": line.id,
+        "kit": def.id,
+        "name": def.name,
+        "class": resources::class_word(def.class),
+        "province": {
+            "id": line.district,
+            "name": spheres_sim::districts::name_of(&line.district).unwrap_or(&line.district),
+        },
+        "priority": line.priority.key(),
+        "status": if effective_blocked { "blocked" } else { "producing" },
+        "reason": effective_reason,
+        "allocation_bn_month": round(allocation, 6),
+        "ordered_bn": round(line.ordered_bn, 6),
+        "units_ordered_month": round(if effective_blocked { 0.0 } else { allocation / def.unit_cost.max(1e-12) }, 6),
+        "unit_cost_bn": round(def.unit_cost, 6),
+        "lead_months": def.lead_months,
+        "service_months": def.service_months,
+        "tech": manufacturing_tech_json(w.nation(me), def),
+        "requirements": manufacturing_requirements_json(
+            w, me, &required, &draw, &shortfalls, Some(&line.resources_used),
+        ),
+        "actions": {
+            "set_priority": priorities,
+            "stop": true,
+        },
+    })
+}
+
+/// Player-only manufacturing board. The catalogue includes locked equipment so
+/// research has a visible destination, but only the sim's current conjunction
+/// of technology, ownership, plant room and political capital produces a Start
+/// action.
+fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let n = w.nation(me);
+    let mut lines = spheres_sim::manufacturing::lines_for(w, me).collect::<Vec<_>>();
+    lines.sort_by_key(|line| line.id);
+    let plans = spheres_sim::manufacturing::planned_allocations(w, me);
+
+    let provinces = w
+        .districts
+        .iter()
+        .filter(|(_, owner)| **owner == me)
+        .filter_map(|(district, _)| {
+            let slots = spheres_sim::manufacturing::plant_slots(w, district) as usize;
+            if slots == 0 {
+                return None;
+            }
+            let used = spheres_sim::manufacturing::used_slots(w, me, district);
+            let active = lines
+                .iter()
+                .filter(|line| line.district == *district)
+                .map(|line| line.id)
+                .collect::<Vec<_>>();
+            let start = spheres_sim::arsenal::registry()
+                .iter()
+                .filter(|def| manufacturing_start_allowed(w, me, district, def.id))
+                .map(|def| def.id)
+                .collect::<Vec<_>>();
+            Some(serde_json::json!({
+                "id": district,
+                "name": spheres_sim::districts::name_of(district).unwrap_or(district),
+                "arms_plants": slots,
+                "used_slots": used,
+                "free_slots": slots.saturating_sub(used),
+                "active_lines": active,
+                "actions": { "start": start },
+            }))
+        })
+        .collect::<Vec<_>>();
+
+    let catalog = spheres_sim::arsenal::registry()
+        .iter()
+        .enumerate()
+        .map(|(index, def)| {
+            let eligible = provinces
+                .iter()
+                .filter_map(|province| province["id"].as_str())
+                .filter(|district| manufacturing_start_allowed(w, me, district, def.id))
+                .collect::<Vec<_>>();
+            let command = Command::StartManufacturingLine {
+                nation: me,
+                district: eligible.first().copied().unwrap_or_default().to_string(),
+                kit: def.id.to_string(),
+            };
+            let pc_cost = spheres_sim::price_of(w, &command).unwrap_or(0.0);
+            let lock_reason = manufacturing_lock_reason(n, def);
+            serde_json::json!({
+                "id": def.id,
+                "name": def.name,
+                "class": resources::class_word(def.class),
+                "unlocked": lock_reason.is_none(),
+                "lock_reason": lock_reason,
+                "tech": manufacturing_tech_json(n, def),
+                "quality": round(def.quality, 4),
+                "unit_cost_bn": round(def.unit_cost, 6),
+                "lead_months": def.lead_months,
+                "service_months": def.service_months,
+                "requirements_per_bn": manufacturing_recipe_per_bn_json(index as u16),
+                "eligible_provinces": eligible,
+                "pc_cost": round(pc_cost, 3),
+                "actions": { "start": !eligible.is_empty() },
+            })
+        })
+        .collect::<Vec<_>>();
+
+    let stockpile = n
+        .arsenal
+        .held
+        .iter()
+        .filter_map(|holding| {
+            let def = spheres_sim::arsenal::registry().get(holding.kit as usize)?;
+            let condition = spheres_sim::arsenal::condition(def, holding.age);
+            Some(serde_json::json!({
+                "kit": def.id,
+                "name": def.name,
+                "class": resources::class_word(def.class),
+                "units": round(holding.units, 6),
+                "mean_age_months": round(holding.age, 2),
+                "condition": round(condition, 4),
+                "book_value_bn": round(holding.units * def.unit_cost * condition, 3),
+            }))
+        })
+        .collect::<Vec<_>>();
+    let orders = n
+        .arsenal
+        .orders
+        .iter()
+        .filter_map(|order| {
+            let def = spheres_sim::arsenal::registry().get(order.kit as usize)?;
+            Some(serde_json::json!({
+                "kit": def.id,
+                "name": def.name,
+                "class": resources::class_word(def.class),
+                "units": round(order.units, 6),
+                "due_months": order.due,
+                "due_date": manufacturing_delivery_date(w, order.due),
+                "value_bn": round(order.units * def.unit_cost, 3),
+            }))
+        })
+        .collect::<Vec<_>>();
+    let monthly_budget = spheres_sim::manufacturing::budget_bn(w, me);
+    let defense_share = n.budget_for(w.year).allocations[BUDGET_DEFENSE];
+    let summary = manufacturing_summary_json(w, me);
+    let can_start = provinces.iter().any(|province| {
+        province["actions"]["start"]
+            .as_array()
+            .is_some_and(|actions| !actions.is_empty())
+    });
+
+    serde_json::json!({
+        "mode": "province_equipment_lines",
+        "nation": format!("{:?}", me),
+        "nation_name": me.name(),
+        "summary": summary,
+        "finance": {
+            "gdp_bn": round(n.gdp, 3),
+            "defense_share": round(defense_share, 6),
+            "defense_bn_year": round(n.gdp * defense_share, 3),
+            "procurement_share": spheres_sim::arsenal::PROCUREMENT_SHARE,
+            "procurement_budget_bn_month": round(monthly_budget, 6),
+            "banked_bn": round(n.arsenal.banked, 6),
+        },
+        "lines": lines.iter()
+            .map(|line| manufacturing_line_json(w, me, line, &plans))
+            .collect::<Vec<_>>(),
+        "catalog": catalog,
+        "provinces": provinces,
+        "stockpile": stockpile,
+        "orders": orders,
+        "actions": { "start": can_start },
+    })
+}
+
 /// `GET /api/stock/world?com=`: the globe's tint, the legacy contract arcs,
 /// the latest audited lanes, and the aims. `arcs` remains byte-for-shape
 /// compatible with the resource-board API that shipped before logistics.
@@ -3085,6 +3488,10 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // daily clock carries counts; the board fetches province choices,
         // recipes and authorized actions only when opened.
         "production_summary": w.player.map(|p| production_summary_json(w, p)),
+        // Manufacturing follows the same compact/full split. The daily state
+        // carries plant/line attention; the 46-item equipment catalogue and
+        // long arsenal ledger are fetched only when its Production tab opens.
+        "manufacturing_summary": w.player.map(|p| manufacturing_summary_json(w, p)),
         "policy": w.player.map(|p| policy_json(w, p)),
         "interrupt": interrupt,
     })
@@ -3622,6 +4029,24 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             project: v.get("project")?.as_u64()?.try_into().ok()?,
         },
 
+        // --- Manufacturing & procurement. Equipment is always carried by its
+        // stable deck id; the session supplies the nation, and the sim owns the
+        // plant, technology, capacity and political-capital checks.
+        "start_manufacturing_line" => Command::StartManufacturingLine {
+            nation: me,
+            district: v.get("district")?.as_str()?.to_string(),
+            kit: v.get("kit")?.as_str()?.to_string(),
+        },
+        "set_manufacturing_priority" => Command::SetManufacturingPriority {
+            nation: me,
+            line: v.get("line")?.as_u64()?.try_into().ok()?,
+            priority: Priority::parse(v.get("priority")?.as_str()?)?,
+        },
+        "stop_manufacturing_line" => Command::StopManufacturingLine {
+            nation: me,
+            line: v.get("line")?.as_u64()?.try_into().ok()?,
+        },
+
         // --- The commitment ladder. Flat objects, mapped exactly the way
         // `rate` and `sanction` are: the UI never constructs a sim type. ---
         // The theatre is optional here and it is the difference between the
@@ -3936,10 +4361,11 @@ fn play_rules(g: &mut Game) {
     g.world.rules.resource_market = true;
     g.world.rules.logistics_routes = true;
     g.world.rules.production_system = true;
+    g.world.rules.manufacturing_system = true;
 }
 
 /// Adopt a save under the current browser rules before warming or snapshotting
-/// it. Older browser saves predate the logistics and production switches;
+/// it. Older browser saves predate the logistics, production and manufacturing switches;
 /// serde reads missing fields as false, but continuing in the browser migrates
 /// them to the same rule set as a new game.
 fn loaded_play_game(w: WorldState) -> Game {
@@ -4417,6 +4843,20 @@ fn main() {
                 let g = game.lock().unwrap();
                 match g.world.player {
                     Some(me) => json_response(production_json(&g.world, me)),
+                    None => json_error(
+                        400,
+                        serde_json::json!({ "error": "no nation chosen" }),
+                    ),
+                }
+            }
+            // Full player manufacturing board. All starts are recomputed from
+            // current province ownership, completed arms plants, technology,
+            // free slots and standing; captured factories cannot leave stale
+            // buttons behind.
+            (Method::Get, "/api/manufacturing") => {
+                let g = game.lock().unwrap();
+                match g.world.player {
+                    Some(me) => json_response(manufacturing_json(&g.world, me)),
                     None => json_error(
                         400,
                         serde_json::json!({ "error": "no nation chosen" }),
@@ -9453,7 +9893,7 @@ mod tests {
         assert!(!open(serde_json::json!({ "district": 10, "commodity": "copper" })));
     }
 
-    /// Fork F1(b): the market, audit lanes and production queue are on for the
+    /// Fork F1(b): the market, audit lanes, construction and manufacturing are on for the
     /// world the browser deals and off for the one the suite runs. `Game::new` is the
     /// suite's constructor and carries the defaults; every world adopted by
     /// the browser receives `play_rules`, including a legacy save on load.
@@ -9463,28 +9903,35 @@ mod tests {
         assert!(!g.world.rules.resource_market, "the suite's world must play the market off");
         assert!(!g.world.rules.logistics_routes, "the suite's world must play logistics off");
         assert!(!g.world.rules.production_system, "the suite's world must play production off");
+        assert!(!g.world.rules.manufacturing_system, "the suite's world must play manufacturing off");
         assert!(!spheres_sim::save(&g.world).contains("resource_market"));
         assert!(!spheres_sim::save(&g.world).contains("logistics_routes"));
         assert!(!spheres_sim::save(&g.world).contains("production_system"));
+        assert!(!spheres_sim::save(&g.world).contains("manufacturing_system"));
         play_rules(&mut g);
         assert!(g.world.rules.resource_market);
         assert!(g.world.rules.logistics_routes);
         assert!(g.world.rules.production_system);
+        assert!(g.world.rules.manufacturing_system);
         assert!(spheres_sim::save(&g.world).contains("\"resource_market\": true"));
         assert!(spheres_sim::save(&g.world).contains("\"logistics_routes\": true"));
         assert!(spheres_sim::save(&g.world).contains("\"production_system\": true"));
+        assert!(spheres_sim::save(&g.world).contains("\"manufacturing_system\": true"));
 
         let mut legacy = Game::new(1990, Some(NationId::Iraq));
         legacy.world.rules.resource_market = true;
         legacy.world.rules.logistics_routes = false;
         legacy.world.rules.production_system = false;
+        legacy.world.rules.manufacturing_system = false;
         let legacy_save = spheres_sim::save(&legacy.world);
         assert!(!legacy_save.contains("logistics_routes"));
         assert!(!legacy_save.contains("production_system"));
+        assert!(!legacy_save.contains("manufacturing_system"));
         let migrated = loaded_play_game(spheres_sim::load(&legacy_save).unwrap());
         assert!(migrated.world.rules.resource_market);
         assert!(migrated.world.rules.logistics_routes);
         assert!(migrated.world.rules.production_system);
+        assert!(migrated.world.rules.manufacturing_system);
 
         let src = include_str!("main.rs");
         let needle = concat!("play_rules", "(&mut ");
@@ -10019,6 +10466,156 @@ mod tests {
         assert!(include_str!("main.rs").contains("(Method::Get, \"/api/production\")"));
     }
 
+    /// Manufacturing is a player-scoped view over completed arms plants and
+    /// the existing arsenal. It quotes the sim's one procurement envelope,
+    /// carries stable kit ids through commands, includes locked research
+    /// destinations, and keeps the daily state compact.
+    #[test]
+    fn manufacturing_api_uses_real_plants_budget_arsenal_and_session_identity() {
+        use spheres_sim::manufacturing;
+        use spheres_sim::production::ProvinceCapabilities;
+
+        let me = NationId::USA;
+        let mut g = Game::new(1990, Some(me));
+        g.world.rules.resource_market = true;
+        g.world.rules.production_system = true;
+        g.world.rules.manufacturing_system = true;
+        g.world.nation_mut(me).political_capital = 100.0;
+        let district = g
+            .world
+            .districts
+            .iter()
+            .find_map(|(district, owner)| (*owner == me).then(|| district.clone()))
+            .expect("USA owns a province");
+        g.world.production.provinces.push(ProvinceCapabilities {
+            district: district.clone(),
+            infrastructure: 0,
+            civilian_industry: 0,
+            power_grid: 0,
+            research_centers: 0,
+            arms_plants: 2,
+        });
+        g.world
+            .production
+            .provinces
+            .sort_by(|a, b| a.district.cmp(&b.district));
+
+        let opening = manufacturing_json(&g.world, me);
+        assert_eq!(opening["mode"], "province_equipment_lines");
+        assert_eq!(opening["summary"]["active"], 0);
+        assert_eq!(opening["summary"]["capacity"], 2);
+        assert_eq!(opening["summary"]["free_slots"], 2);
+        assert_eq!(
+            opening["catalog"].as_array().unwrap().len(),
+            spheres_sim::arsenal::registry().len()
+        );
+        assert!(opening["catalog"].as_array().unwrap().iter().any(|item| item["unlocked"] == true));
+        assert!(opening["catalog"].as_array().unwrap().iter().any(|item| item["unlocked"] == false));
+        assert_eq!(
+            opening["finance"]["procurement_budget_bn_month"],
+            round(manufacturing::budget_bn(&g.world, me), 6)
+        );
+        let province = opening["provinces"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|province| province["id"] == district)
+            .expect("completed plant is served");
+        let kit = province["actions"]["start"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter_map(|id| id.as_str())
+            .find(|id| *id == "arm_gen3")
+            .expect("a resource-bearing legacy programme is startable")
+            .to_string();
+        let catalog_row = opening["catalog"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|item| item["id"] == kit)
+            .expect("startable kit remains in the catalog");
+        assert!(
+            !catalog_row["requirements_per_bn"].as_array().unwrap().is_empty(),
+            "directed legacy manufacturing has real recipes too"
+        );
+
+        let start = serde_json::json!({
+            "kind": "start_manufacturing_line",
+            "district": district,
+            "kit": kit,
+            // The browser cannot direct another nation through a player route.
+            "nation": "Japan",
+        });
+        let command = parse_command(&g.world, &start, me).expect("manufacturing start parses");
+        assert!(matches!(
+            command,
+            Command::StartManufacturingLine { nation, .. } if nation == me
+        ));
+        apply_command(&mut g.world, &command).expect("served start action is authorized");
+
+        let active = manufacturing_json(&g.world, me);
+        assert_eq!(active["summary"]["active"], 1);
+        assert_eq!(active["summary"]["used_slots"], 1);
+        assert_eq!(active["summary"]["free_slots"], 1);
+        assert_eq!(active["lines"][0]["kit"], kit);
+        assert_eq!(active["lines"][0]["province"]["id"], district);
+        assert_eq!(active["lines"][0]["priority"], "normal");
+        assert_eq!(active["lines"][0]["status"], "producing");
+        assert!(active["lines"][0]["requirements"].is_array());
+        let requirement = active["lines"][0]["requirements"]
+            .as_array()
+            .and_then(|rows| rows.first())
+            .expect("a resource-bearing programme serves its live recipe");
+        assert!(requirement["priority_available"].is_number());
+        assert!(requirement["stock_available"].is_number());
+        assert!(active["lines"][0]["actions"]["stop"].as_bool().unwrap());
+        let served_book = active["stockpile"].as_array().unwrap().iter()
+            .map(|row| row["book_value_bn"].as_f64().unwrap())
+            .sum::<f64>();
+        assert!(
+            (served_book - spheres_sim::arsenal::book_value(g.world.nation(me))).abs() < 0.02,
+            "served rounded holdings close to the arsenal book"
+        );
+
+        let line = active["lines"][0]["id"].as_u64().unwrap();
+        *g.world.districts.get_mut(&district).unwrap() = NationId::Canada;
+        let stranded = manufacturing_json(&g.world, me);
+        assert_eq!(stranded["summary"]["blocked"], 1);
+        assert_eq!(stranded["lines"][0]["status"], "blocked");
+        assert_eq!(stranded["lines"][0]["units_ordered_month"], 0.0);
+        *g.world.districts.get_mut(&district).unwrap() = me;
+
+        let priority = serde_json::json!({
+            "kind": "set_manufacturing_priority", "line": line, "priority": "high",
+        });
+        let command = parse_command(&g.world, &priority, me).expect("priority parses");
+        assert!(matches!(
+            command,
+            Command::SetManufacturingPriority { nation, priority: Priority::High, .. }
+                if nation == me
+        ));
+        apply_command(&mut g.world, &command).expect("player owns line");
+        assert_eq!(manufacturing_json(&g.world, me)["lines"][0]["priority"], "high");
+
+        let compact = &state_json(&g, None)["manufacturing_summary"];
+        assert_eq!(compact["active"], 1);
+        assert!(compact.get("lines").is_none());
+        assert!(compact.get("catalog").is_none());
+
+        let stop = serde_json::json!({ "kind": "stop_manufacturing_line", "line": line });
+        let command = parse_command(&g.world, &stop, me).expect("stop parses");
+        assert!(matches!(
+            command,
+            Command::StopManufacturingLine { nation, line: id } if nation == me && id == line as u32
+        ));
+        apply_command(&mut g.world, &command).expect("player can stop line");
+        assert_eq!(manufacturing_json(&g.world, me)["summary"]["active"], 0);
+
+        assert!(Priority::parse("urgent").is_none());
+        assert!(include_str!("main.rs").contains("(Method::Get, \"/api/manufacturing\")"));
+    }
+
     /// Source-level reachability guard for the whole browser hand-off. The
     /// simulation can be perfect and still be absent from the game if the dock,
     /// fetch, order path or province overlay is removed independently.
@@ -10036,11 +10633,19 @@ mod tests {
             "kind: \"cancel_project\"",
             "function drawProductionOverlay(",
             "function productionHitAt(",
+            "data-production-mode=\"manufacture\"",
+            "function manufacturingFetch()",
+            "api(\"/api/manufacturing\")",
+            "kind: \"start_manufacturing_line\"",
+            "kind: \"set_manufacturing_priority\"",
+            "kind: \"stop_manufacturing_line\"",
+            "function drawManufacturingOverlay(",
         ] {
             assert!(INDEX.contains(needle), "missing production UI wire: {needle}");
         }
         assert!(
-            INDEX.contains("if (!PROD.open || !PROD.data) return;"),
+            INDEX.contains("if (!PROD.open) return;")
+                && INDEX.contains("if (!PROD.open || PROD.mode !== \"manufacture\" || !MANU.data) return;"),
             "province work markers must be absent from the resting globe"
         );
         assert!(INDEX.contains("k === \"q\" || k === \"Q\""));

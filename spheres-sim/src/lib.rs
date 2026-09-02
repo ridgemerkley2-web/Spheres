@@ -8,6 +8,7 @@ pub mod front;
 pub mod government;
 pub mod exact;
 pub mod init;
+pub mod manufacturing;
 pub mod nations;
 pub mod politics;
 pub mod production;
@@ -101,6 +102,17 @@ pub enum Command {
     /// Abandon active work. Political capital and materials already committed
     /// are sunk; cancellation creates neither a refund nor a debt write.
     CancelProject { nation: NationId, project: u32 },
+    /// Route one share of the existing defence procurement line through a
+    /// completed province arms plant and into a stable equipment programme.
+    StartManufacturingLine { nation: NationId, district: String, kit: String },
+    /// Reweight one standing line inside the single procurement envelope.
+    SetManufacturingPriority {
+        nation: NationId,
+        line: u32,
+        priority: production::Priority,
+    },
+    /// Stop future orders. Anything already on the arsenal order book remains.
+    StopManufacturingLine { nation: NationId, line: u32 },
     /// Take one of the options the world is currently offering this government.
     /// Carries the stratagem's stable id, never an index into the deck.
     EnactStratagem { nation: NationId, id: String },
@@ -341,6 +353,11 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         }
         Command::SetProjectPriority { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::CancelProject { nation, .. } => (*nation, 0.0, ALWAYS),
+        Command::StartManufacturingLine { nation, .. } => {
+            (*nation, manufacturing::START_LINE_PC_COST, REFUSABLE)
+        }
+        Command::SetManufacturingPriority { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::StopManufacturingLine { nation, .. } => (*nation, 0.0, ALWAYS),
         // Each stratagem carries its own price, and they are the largest in this
         // list. Reordering an economy is the most expensive thing a government
         // ever decides to do, and it should cost most of a term's standing.
@@ -468,6 +485,9 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         }
         Command::StartProject { nation, district, kind } => {
             production::start_project_error(w, *nation, district, *kind)
+        }
+        Command::StartManufacturingLine { nation, district, kit } => {
+            manufacturing::start_line_error(w, *nation, district, kit)
         }
         _ => None,
     }
@@ -731,6 +751,15 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         }
         Command::CancelProject { nation, project } => {
             production::cancel_project(w, *nation, *project)?;
+        }
+        Command::StartManufacturingLine { nation, district, kit } => {
+            manufacturing::start_line(w, *nation, district, kit)?;
+        }
+        Command::SetManufacturingPriority { nation, line, priority } => {
+            manufacturing::set_priority(w, *nation, *line, *priority)?;
+        }
+        Command::StopManufacturingLine { nation, line } => {
+            manufacturing::stop_line(w, *nation, *line)?;
         }
         Command::EnactStratagem { nation, id } => {
             let s = stratagems::by_id(id)

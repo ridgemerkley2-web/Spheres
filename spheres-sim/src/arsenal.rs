@@ -585,83 +585,109 @@ pub fn tick(w: &mut WorldState) {
     for id in ids {
         let budget = budget_of(w.nation(id));
         let line = line_of(w.nation(id));
+        let directed = w.rules.manufacturing_system
+            && crate::manufacturing::lines_for(w, id).next().is_some();
         // The one gate the resource system has in cut one. It checks the kit
         // procurement would pick against what the nation can get this month
         // — its own flow, or any open holder — and delays the line only when
         // the pile it kept for exactly this is spent. A player's stated
         // preference stalls and says so; the staff buy the best kit whose
         // inputs are held. In an open world this returns the pick untouched.
-        let (choice, stall) = match pick(w.nation(id)) {
-            Some(kit) if w.rules.resource_gates => crate::resources::gate(w, id, kit, line),
-            other => (other, None),
+        let (choice, stall) = if directed {
+            (None, None)
+        } else {
+            match pick(w.nation(id)) {
+                Some(kit) if w.rules.resource_gates => crate::resources::gate(w, id, kit, line),
+                other => (other, None),
+            }
         };
         if let Some(s) = stall {
             w.headline(s.headline());
         }
-        let n = w.nation_mut(id);
+        {
+            let n = w.nation_mut(id);
 
-        // Age what is already in service.
-        for h in n.arsenal.held.iter_mut() {
-            h.age += 1.0;
-        }
-
-        // Deliveries. An order that has run its lead time becomes a holding.
-        let mut arrived: Vec<(u16, f64)> = vec![];
-        for o in n.arsenal.orders.iter_mut() {
-            o.due = o.due.saturating_sub(1);
-            if o.due == 0 {
-                arrived.push((o.kit, o.units));
+            // Age what is already in service.
+            for h in n.arsenal.held.iter_mut() {
+                h.age += 1.0;
             }
-        }
-        n.arsenal.orders.retain(|o| o.due > 0);
-        for (kit, units) in arrived {
-            // One row per kit, merged with a units-weighted mean age. The old
-            // `age < 12` predicate opened a new row every year, so a seventy-year
-            // run carried seventy rows per kit and `units` only ever rose.
-            match n.arsenal.held.iter_mut().find(|h| h.kit == kit) {
-                Some(h) => {
-                    let total = h.units + units;
-                    if total > 0.0 {
-                        h.age *= h.units / total;
+
+            // Deliveries. An order that has run its lead time becomes a holding.
+            let mut arrived: Vec<(u16, f64)> = vec![];
+            for o in n.arsenal.orders.iter_mut() {
+                o.due = o.due.saturating_sub(1);
+                if o.due == 0 {
+                    arrived.push((o.kit, o.units));
+                }
+            }
+            n.arsenal.orders.retain(|o| o.due > 0);
+            for (kit, units) in arrived {
+                // One row per kit, merged with a units-weighted mean age. The old
+                // `age < 12` predicate opened a new row every year, so a seventy-year
+                // run carried seventy rows per kit and `units` only ever rose.
+                match n.arsenal.held.iter_mut().find(|h| h.kit == kit) {
+                    Some(h) => {
+                        let total = h.units + units;
+                        if total > 0.0 {
+                            h.age *= h.units / total;
+                        }
+                        h.units = total;
                     }
-                    h.units = total;
+                    None => n.arsenal.held.push(Holding { kit, units, age: 0.0 }),
                 }
-                None => n.arsenal.held.push(Holding { kit, units, age: 0.0 }),
             }
+
+            // ...and this month's money goes onto the order book.
+            // Money with nothing to buy is banked rather than evaporating. The
+            // economy has already been charged for it in economy.rs, so losing it
+            // here was years of funding that produced nothing, with no record.
+            // Capped at two years of the line so it cannot be hoarded for a century.
+            // `line` is `line_of(n)` as read before the gate: budget plus banked.
+            if !directed {
+                n.arsenal.banked = 0.0;
+                if choice.is_none() {
+                    n.arsenal.banked = line.min(budget * 24.0);
+                }
+                if let Some(kit) = choice {
+                    let def = &DECK[kit as usize];
+                    let units = line / def.unit_cost.max(1e-9);
+                    if units > 0.0 {
+                        match n
+                            .arsenal
+                            .orders
+                            .iter_mut()
+                            .find(|o| o.kit == kit && o.due == def.lead_months)
+                        {
+                            Some(o) => o.units += units,
+                            None => n.arsenal.orders.push(Order {
+                                kit,
+                                units,
+                                due: def.lead_months,
+                            }),
+                        }
+                    }
+                }
+            }
+
+            // Written off once it is past twice its service life, about 22% a year.
+            // Without this `units` only ever rose and `retain` below could never
+            // fire, so an arsenal was monotonically non-decreasing for the whole game.
+            for h in n.arsenal.held.iter_mut() {
+                if let Some(def) = DECK.get(h.kit as usize) {
+                    if h.age > 2.0 * def.service_months as f64 {
+                        h.units *= 0.98;
+                    }
+                }
+            }
+            n.arsenal.held.retain(|h| h.units > 1e-6);
         }
 
-        // ...and this month's money goes onto the order book.
-        // Money with nothing to buy is banked rather than evaporating. The
-        // economy has already been charged for it in economy.rs, so losing it
-        // here was years of funding that produced nothing, with no record.
-        // Capped at two years of the line so it cannot be hoarded for a century.
-        // `line` is `line_of(n)` as read before the gate: budget plus banked.
-        n.arsenal.banked = 0.0;
-        if choice.is_none() {
-            n.arsenal.banked = line.min(budget * 24.0);
+        // A directed board owns this month's placement arm. It uses the same
+        // opening `line` computed above through `line_of`, and writes the same
+        // `Order` rows; nothing automatic is placed beside it.
+        if directed {
+            crate::manufacturing::settle_nation(w, id);
         }
-        if let Some(kit) = choice {
-            let def = &DECK[kit as usize];
-            let units = line / def.unit_cost.max(1e-9);
-            if units > 0.0 {
-                match n.arsenal.orders.iter_mut().find(|o| o.kit == kit && o.due == def.lead_months) {
-                    Some(o) => o.units += units,
-                    None => n.arsenal.orders.push(Order { kit, units, due: def.lead_months }),
-                }
-            }
-        }
-
-        // Written off once it is past twice its service life, about 22% a year.
-        // Without this `units` only ever rose and `retain` below could never
-        // fire, so an arsenal was monotonically non-decreasing for the whole game.
-        for h in n.arsenal.held.iter_mut() {
-            if let Some(def) = DECK.get(h.kit as usize) {
-                if h.age > 2.0 * def.service_months as f64 {
-                    h.units *= 0.98;
-                }
-            }
-        }
-        n.arsenal.held.retain(|h| h.units > 1e-6);
     }
 }
 

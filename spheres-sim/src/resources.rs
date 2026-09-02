@@ -2138,6 +2138,14 @@ pub fn cover(w: &WorldState, id: NationId, c: Commodity) -> f64 {
 /// buy, and for a seat that is not on the board.
 pub fn draw(w: &WorldState, id: NationId) -> [f64; 12] {
     let Some(n) = w.nation_opt(id) else { return [0.0; 12] };
+    // Directed manufacturing replaces, rather than supplements, the staff's
+    // one automatic pick. The spot market must see the whole multi-line recipe
+    // before `arsenal::tick` consumes its slices in priority order.
+    if w.rules.manufacturing_system
+        && crate::manufacturing::lines_for(w, id).next().is_some()
+    {
+        return crate::manufacturing::resource_draw(w, id);
+    }
     match crate::arsenal::pick(n) {
         Some(kit) => kit_need(kit, crate::arsenal::line_of(n)),
         None => [0.0; 12],
@@ -2407,12 +2415,28 @@ fn supply_with(w: &WorldState, h: &Have, buyer: NationId, c: Commodity, need: f6
 /// What ordering `kit` with `line_bn` this month wants, in the table's units
 /// per month. Zero for the legacy tier (`tech: None`).
 pub fn kit_need(kit: u16, line_bn: f64) -> [f64; 12] {
-    let mut need = [0.0; 12];
+    let need = [0.0; 12];
     let Some(def) = DECK.get(kit as usize) else { return need };
     if def.tech.is_none() || line_bn <= 0.0 {
         return need;
     }
-    match def.class {
+    class_need(def.class, line_bn)
+}
+
+/// Physical recipe for an explicit manufacturing line. Unlike the legacy
+/// automatic-procurement gate, an explicit legacy formation is not exempt:
+/// the player is trying to manufacture it now, so its class inputs are real.
+pub fn manufacturing_need(kit: u16, line_bn: f64) -> [f64; 12] {
+    let Some(def) = DECK.get(kit as usize) else { return [0.0; 12] };
+    if line_bn <= 0.0 {
+        return [0.0; 12];
+    }
+    class_need(def.class, line_bn)
+}
+
+fn class_need(class: Class, line_bn: f64) -> [f64; 12] {
+    let mut need = [0.0; 12];
+    match class {
         Class::Naval => {
             need[Commodity::Iron.idx()] = line_bn * NAVAL_ORE_KT_PER_BN * 1000.0;
             need[Commodity::Coal.idx()] = line_bn * NAVAL_COAL_KT_PER_BN;
@@ -2429,7 +2453,7 @@ pub fn kit_need(kit: u16, line_bn: f64) -> [f64; 12] {
         }
         Class::Infantry => {}
     }
-    need
+    need.map(|quantity| (quantity * 1e9).round() / 1e9)
 }
 
 /// `(year − 1990) × 12 + (month − 1)`, the web's `month_index`.

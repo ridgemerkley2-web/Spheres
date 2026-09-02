@@ -22,6 +22,13 @@ In the CLI, type `help`. Core loop: read briefing -> set policy (rate/tax/milita
 invest), act diplomatically (improve/sanction/war) -> `next`, `year`, or `6` to
 advance -> world reacts.
 
+## Manufacturing
+
+The browser's **Production → Manufacture** board routes the existing defense
+procurement budget through completed province arms plants, the resource market,
+and long-lead Arsenal orders. See [MANUFACTURING.md](MANUFACTURING.md) for the
+economic contract, every current connection, and the staged integration plan.
+
 ## What emerges (unscripted, seed-dependent)
 - Iraq invades Kuwait in the early 90s; a US/UK coalition repels it; Iraq never tries again
 - The USSR dissolves ~1991-95 from stagnation + separatism; Russia inherits the arsenal
