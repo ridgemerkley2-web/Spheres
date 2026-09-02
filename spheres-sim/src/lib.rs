@@ -1021,10 +1021,14 @@ mod tests {
     /// AcceptDeal on plausible months — one stepped day by day through
     /// `tick_day`, the other month by month through `tick_month`, and their
     /// state hashes must agree at every month boundary for twenty-four
-    /// months. Commands are issued on the FIRST day of their month in the
-    /// daily world, which is where a player issues them: the web's
-    /// `advance_days` hands the queue to its first `tick_day` and nothing
-    /// after.
+    /// months. In the daily world the commands are issued on days a
+    /// month-stepped world never sees — the 10th, the 20th (a refused
+    /// order), the 31st and the 15th — because §5's invariant says an order
+    /// issued on ANY day of a month settles exactly as if it had been issued
+    /// at the start of it; the web's `advance_days` hands the queue to its
+    /// first `tick_day`, which is the 1st only when the player happens to be
+    /// standing on the 1st. The day-by-day returns of `tick_day`, taken
+    /// together, must also equal the one return of `tick_month`.
     ///
     /// The bar is the full `state_hash`, as the doctrine says. The message on
     /// a miss also reports the first month at which the two saves disagree
@@ -1083,6 +1087,7 @@ mod tests {
         }
 
         let mut issued = Vec::new();
+        let mut issued_on: Vec<(usize, u32)> = Vec::new();
         let mut accepted_signed = false;
         let mut resumed_mid_month: Option<String> = None;
         let mut first_hash_miss: Option<String> = None;
@@ -1106,6 +1111,11 @@ mod tests {
                         months: 60,
                     });
                 }
+                5 => {
+                    // Nobody has offered 9_999: refused, and the refusal is
+                    // a headline both worlds must carry to the month's end.
+                    cmds.push(Command::DeclineDeal { nation: player, offer: 9_999 });
+                }
                 7 => {
                     plant(&mut monthly, 9_001, seller, player, Commodity::Iron);
                     plant(&mut daily, 9_001, seller, player, Commodity::Iron);
@@ -1120,16 +1130,31 @@ mod tests {
             }
             issued.extend(cmds.iter().cloned());
 
-            tick_month(&mut monthly, &cmds);
+            let monthly_record = tick_month(&mut monthly, &cmds);
             if m == 11 {
                 // The accepted offer is a twelve-month contract and has run
                 // out by month 24, so it is read here, the month it signed.
                 accepted_signed = monthly.resources.contracts.iter().any(|c| c.from == seller && c.to == player);
             }
+            // The day (zero-based) this month's commands go in. Not the
+            // 1st: the 10th, the 20th, the last day and the 15th are days a
+            // month-stepped world never sees, and an order issued on any of
+            // them must settle as if it had been issued at the month's start.
             let days = world::days_in_month(daily.year, daily.month);
+            let issue_on = match m {
+                3 => 9,
+                5 => 19,
+                7 => days - 1,
+                11 => 14,
+                _ => 0,
+            };
+            if !cmds.is_empty() {
+                issued_on.push((m, issue_on + 1));
+            }
+            let mut daily_record: Vec<String> = Vec::new();
             for d in 0..days {
-                let today = if d == 0 { &cmds[..] } else { &[][..] };
-                tick_day(&mut daily, today);
+                let today = if d == issue_on { &cmds[..] } else { &[][..] };
+                daily_record.extend(tick_day(&mut daily, today));
                 // The critic's ten lines: in the middle of a month that holds
                 // the copper contract (signed month 11 for twelve months), the
                 // daily world goes through a save and a load and carries on
@@ -1158,6 +1183,18 @@ mod tests {
                 (monthly.year, monthly.month, 1),
                 "month {m}: the two calendars parted"
             );
+            // Every line exactly once: the day-by-day returns add up to the
+            // month's record, in the month's order.
+            assert_eq!(
+                daily_record, monthly_record,
+                "month {m}: the daily returns do not add up to the monthly record"
+            );
+            if m == 5 {
+                assert!(
+                    monthly_record.iter().any(|h| h.starts_with("[rejected]")),
+                    "month {m}: the refused order left no line: {monthly_record:?}"
+                );
+            }
             let (hd, hm) = (state_hash(&daily), state_hash(&monthly));
             if hd != hm {
                 let (wd, rd) = world_and_record(&daily);
@@ -1189,7 +1226,10 @@ mod tests {
                 }
             }
         }
-        assert_eq!(issued.len(), 3, "{issued:?}");
+        assert_eq!(issued.len(), 4, "{issued:?}");
+        // The doctrine cites this test for orders on days the month-stepped
+        // world never sees; this is the list of the days it used.
+        assert_eq!(issued_on, vec![(3, 10), (5, 20), (7, 31), (11, 15)]);
         // The list did what it says: the proposal signed, the accepted offer
         // signed, the declined one gone. Read from the monthly world.
         assert!(
