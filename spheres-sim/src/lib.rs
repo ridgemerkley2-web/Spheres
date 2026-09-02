@@ -10,6 +10,7 @@ pub mod exact;
 pub mod init;
 pub mod nations;
 pub mod politics;
+pub mod production;
 pub mod resources;
 pub mod statecraft;
 pub mod stratagems;
@@ -85,6 +86,21 @@ pub enum Command {
         district: String,
         commodity: resources::Commodity,
     },
+    /// Start one of the four player-directed province construction slots.
+    StartProject {
+        nation: NationId,
+        district: String,
+        kind: production::ProjectKind,
+    },
+    /// Reweight one active project inside the shared national capacity pool.
+    SetProjectPriority {
+        nation: NationId,
+        project: u32,
+        priority: production::Priority,
+    },
+    /// Abandon active work. Political capital and materials already committed
+    /// are sunk; cancellation creates neither a refund nor a debt write.
+    CancelProject { nation: NationId, project: u32 },
     /// Take one of the options the world is currently offering this government.
     /// Carries the stratagem's stable id, never an index into the deck.
     EnactStratagem { nation: NationId, id: String },
@@ -320,6 +336,11 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         Command::DevelopResource { nation, .. } => {
             (*nation, resources::MINE_PC_COST, REFUSABLE)
         }
+        Command::StartProject { nation, kind, .. } => {
+            (*nation, production::catalog(*kind).political_cost, REFUSABLE)
+        }
+        Command::SetProjectPriority { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::CancelProject { nation, .. } => (*nation, 0.0, ALWAYS),
         // Each stratagem carries its own price, and they are the largest in this
         // list. Reordering an economy is the most expensive thing a government
         // ever decides to do, and it should cost most of a term's standing.
@@ -444,6 +465,9 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         }
         Command::DevelopResource { nation, district, commodity } => {
             resources::mine_refusal(w, *nation, district, *commodity)
+        }
+        Command::StartProject { nation, district, kind } => {
+            production::start_project_error(w, *nation, district, *kind)
         }
         _ => None,
     }
@@ -699,6 +723,15 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::DevelopResource { nation, district, commodity } => {
             resources::start_mine(w, *nation, district, *commodity)?
         }
+        Command::StartProject { nation, district, kind } => {
+            production::start_project(w, *nation, district, *kind)?;
+        }
+        Command::SetProjectPriority { nation, project, priority } => {
+            production::set_priority(w, *nation, *project, *priority)?;
+        }
+        Command::CancelProject { nation, project } => {
+            production::cancel_project(w, *nation, *project)?;
+        }
         Command::EnactStratagem { nation, id } => {
             let s = stratagems::by_id(id)
                 .ok_or_else(|| format!("No such stratagem: {}", id))?;
@@ -846,6 +879,14 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
             w.headline(format!("[rejected] {:?}: {}", c, e));
         }
     }
+    // Construction is genuinely daily. A month-step advances every remaining
+    // playable day here; `tick_day` advances one below. It sits before the
+    // monthly resource posting in both paths, so the two clocks see the same
+    // opening stockpile and close on the same byte-for-byte world.
+    let construction_days = world::days_in_month(w.year, w.month)
+        .saturating_sub(w.day.max(1))
+        .saturating_add(1);
+    production::tick_days(w, construction_days);
     for (_, system) in SYSTEMS {
         system(w);
     }
@@ -894,6 +935,8 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
             w.headline(format!("[rejected] {:?}: {}", c, e));
         }
     }
+
+    production::tick_day(w);
 
     let last_day = world::days_in_month(w.year, w.month);
     if w.day >= last_day {

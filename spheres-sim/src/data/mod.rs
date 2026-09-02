@@ -812,6 +812,7 @@ pub fn load_world(
         district_population: crate::districts::population_1990(),
         district_population_scale: vec![1.0; crate::nations::nation_count()],
         resources: Default::default(),
+        production: Default::default(),
         by_id: vec![],
         by_id_len: 0,
         resource_have: Default::default(),

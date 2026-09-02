@@ -970,6 +970,90 @@ fn market_stock(market: &MarketState, nation: NationId, c: Commodity) -> f64 {
         .map_or(0.0, |i| market.stocks[i].quantity)
 }
 
+/// The physical quantity available to construction. Before the opt-in market
+/// has materialised its rows, this is the same legacy opening cover projected
+/// by `stock_quantity`; after that it is the actual warehouse row. Keeping one
+/// answer here prevents the production board and its atomic draw from
+/// disagreeing on opening day.
+pub fn stockpile(w: &WorldState, nation: NationId, c: Commodity) -> f64 {
+    if w.rules.resource_market {
+        stock_quantity(w, nation, c)
+    } else {
+        0.0
+    }
+}
+
+/// Draw a bundle from one nation's physical pile as a single transaction.
+///
+/// Every requirement is checked against one opening snapshot before any row
+/// moves. On failure the first short commodity (the canonical `ALL` order) is
+/// returned and the ledger is byte-for-byte untouched. The production layer
+/// uses this to make "BLOCKED" honest: a project cannot eat its iron and then
+/// discover that its copper was missing.
+pub(crate) fn consume_stockpile_atomic(
+    w: &mut WorldState,
+    nation: NationId,
+    required: &[f64; 12],
+) -> Result<(), (Commodity, f64, f64)> {
+    if w.resources.market.is_none() {
+        let c = ALL
+            .into_iter()
+            .find(|c| required[c.idx()] > 1e-12)
+            .unwrap_or(Commodity::Iron);
+        if !w.rules.resource_market {
+            return Err((c, required[c.idx()].max(0.0), 0.0));
+        }
+        // Preflight against exactly what the read API reports. A failed bundle
+        // leaves even the ledger representation untouched; a successful one
+        // seats only the legacy opening cover, never monthly production,
+        // contracts, spot clearing, prices, cash, or debt.
+        for c in ALL {
+            let want = required[c.idx()].max(0.0);
+            if want <= 1e-12 {
+                continue;
+            }
+            let have = stock_quantity(w, nation, c);
+            if have < want {
+                return Err((c, want, have));
+            }
+        }
+        w.resources.market = Some(new_market_state(w));
+    }
+    let market = w.resources.market.as_ref().expect("opening ledger materialised");
+    for c in ALL {
+        let want = required[c.idx()].max(0.0);
+        if want <= 1e-12 {
+            continue;
+        }
+        let have = market_stock(market, nation, c);
+        if have < want {
+            return Err((c, want, have));
+        }
+    }
+
+    let market = w.resources.market.as_mut().expect("checked above");
+    for c in ALL {
+        let used = required[c.idx()].max(0.0);
+        if used > 1e-12 {
+            change_market_stock(market, nation, c, -used);
+        }
+    }
+    Ok(())
+}
+
+#[cfg(test)]
+pub(crate) fn set_stockpile_for_test(
+    w: &mut WorldState,
+    nation: NationId,
+    c: Commodity,
+    quantity: f64,
+) {
+    let mut market = w.resources.market.take().unwrap_or_else(|| new_market_state(w));
+    let reserve = market_reserve_target(&market, nation, c);
+    set_market_stock(&mut market, nation, c, quantity, reserve);
+    w.resources.market = Some(market);
+}
+
 fn market_reserve_target(market: &MarketState, nation: NationId, c: Commodity) -> f64 {
     stock_slot(&market.stocks, nation, c)
         .ok()
@@ -5570,7 +5654,7 @@ mod tests {
     #[test]
     fn the_trade_arms_write_only_what_the_register_allows() {
         let src = include_str!("resources.rs");
-        let code = src.split("#[cfg(test)]").next().unwrap();
+        let code = src.split("mod tests {").next().unwrap();
         let body: String = code
             .lines()
             .filter(|l| !l.trim_start().starts_with("//"))

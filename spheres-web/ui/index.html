@@ -315,6 +315,104 @@
     .logistics-panel.open { animation: none; }
   }
 
+  /* Production is the second map-side board: a four-slot arcade queue, not a
+     spreadsheet and not another modal. It sits opposite Logistics so the
+     globe remains the visual centre of the game. */
+  #productionDockBtn { position: relative; }
+  .production-panel {
+    display: none; position: absolute; z-index: 29; right: 14px; bottom: 86px;
+    width: min(372px, calc(100vw - 28px)); max-height: calc(100% - 112px);
+    flex-direction: column; overflow: hidden; pointer-events: auto;
+    color: var(--ink); background: linear-gradient(155deg, rgba(20,26,32,.985), rgba(7,10,14,.97));
+    border: 1px solid #725b35; border-radius: 8px;
+    box-shadow: 0 18px 58px #000c, inset 0 1px #f0cf7b1c;
+  }
+  .production-panel.open { display: flex; animation: works-in .16s ease-out; }
+  .production-head {
+    display: flex; align-items: center; gap: 9px; flex: none; padding: 11px 11px 9px;
+    border-bottom: 1px solid #303843; background: linear-gradient(270deg, #c9a55a13, transparent);
+  }
+  .production-head .eyebrow { color: var(--faint); font: 700 8px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+  .production-head h2 { margin: 4px 0 0; color: var(--brass-hi); font: 700 16px/1 var(--serif); letter-spacing: .07em; }
+  .production-head .grow { flex: 1; }
+  .production-close { width: 34px; height: 34px; padding: 0; font-size: 19px; }
+  .production-body { min-height: 0; overflow-y: auto; padding: 10px; }
+  .production-stamp { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; margin-bottom: 8px; }
+  .production-stamp b { color: var(--bright); font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .production-stamp span { color: var(--faint); font-size: 8px; text-align: right; }
+  .production-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 8px; }
+  .production-summary span { padding: 7px 6px; border: 1px solid #2b3641; border-radius: 5px; background: #090e13; color: var(--faint); font: 700 7px/1.1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+  .production-summary b { display: block; margin-top: 4px; color: var(--cyan); font-size: 15px; }
+  .production-summary .slowed b { color: var(--amber); }
+  .production-summary .blocked b { color: #e58078; }
+  .production-list { display: grid; gap: 6px; }
+  .work-card {
+    position: relative; overflow: hidden; padding: 9px 9px 9px 11px;
+    border: 1px solid #2b3946; border-left: 3px solid var(--cyan); border-radius: 6px;
+    background: #0a1017e8; outline: none; cursor: pointer;
+  }
+  .work-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: var(--cyan); opacity: .8; }
+  .work-card.slowed { border-left-color: var(--amber); }
+  .work-card.slowed::before { background: repeating-linear-gradient(90deg, var(--amber) 0 7px, transparent 7px 11px); }
+  .work-card.blocked { border-left-color: #d96560; }
+  .work-card.blocked::before { background: repeating-linear-gradient(90deg, #d96560 0 3px, transparent 3px 8px); }
+  .work-card.selected { border-color: var(--brass-hi); background: #171b1f; box-shadow: inset 0 0 0 1px #c9a55a35; }
+  .work-top { display: flex; align-items: flex-start; gap: 8px; }
+  .work-art { flex: none; display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid #526270; border-radius: 50%; color: var(--brass-hi); background: #131b23; font: 700 16px/1 var(--serif); }
+  .work-title { min-width: 0; flex: 1; }
+  .work-title b { display: block; color: var(--bright); font: 700 11px/1.25 var(--serif); }
+  .work-title span { display: block; margin-top: 2px; color: var(--faint); font: 8px/1.2 var(--mono); text-transform: uppercase; }
+  .work-state { flex: none; color: var(--cyan); font: 700 8px/1.2 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .work-card.slowed .work-state { color: var(--amber); }
+  .work-card.blocked .work-state { color: #ef948d; }
+  .work-progress { height: 7px; margin-top: 8px; overflow: hidden; border: 1px solid #27343f; border-radius: 99px; background: #05080c; }
+  .work-progress i { display: block; height: 100%; background: linear-gradient(90deg, #3e8da1, #6cd4e5); }
+  .work-card.slowed .work-progress i { background: linear-gradient(90deg, #806629, #d0a547); }
+  .work-card.blocked .work-progress i { background: #7f3434; }
+  .work-line { display: flex; justify-content: space-between; gap: 7px; margin-top: 4px; color: var(--faint); font: 8px/1.3 var(--mono); }
+  .work-line b { color: var(--ink); font-weight: 700; }
+  .work-reason { margin-top: 7px; color: var(--dim); font-size: 9px; line-height: 1.35; }
+  .work-card.blocked .work-reason { color: #e7aaa5; }
+  .work-needs { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 7px; }
+  .work-need { padding: 3px 5px; border: 1px solid #303d49; border-radius: 999px; color: var(--dim); background: #090e14; font: 700 7px/1 var(--mono); }
+  .work-need.short { border-color: #74403d; color: #eeaaa4; }
+  .work-actions { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-top: 7px; }
+  .work-actions button { min-height: 28px; padding: 5px 8px; font: 700 8px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .work-actions .on { border-color: var(--brass-dim); color: var(--brass-hi); background: #302815; }
+  .work-actions .cancel { margin-left: auto; color: #e6a09a; border-color: #69413e; }
+  .production-new, .production-back { width: 100%; min-height: 34px; margin-top: 8px; color: var(--brass-hi); border-color: #67552f; font: 700 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .built-toggle { display: flex; width: 100%; min-height: 34px; align-items: center; justify-content: space-between; margin-top: 8px; padding: 7px 9px; color: var(--faint); border-color: #35424e; font: 700 8px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .built-toggle b { color: var(--brass-hi); font-size: 10px; }
+  .built-list { display: grid; gap: 5px; margin-top: 5px; }
+  .built-row { padding: 7px 9px; border: 1px solid #2c3843; border-radius: 5px; background: #090e14; }
+  .built-row b { display: block; color: var(--bright); font: 700 9px/1.2 var(--serif); }
+  .built-caps { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+  .built-cap { padding: 3px 5px; border: 1px solid #51462f; border-radius: 999px; color: var(--brass-hi); background: #16140e; font: 700 7px/1 var(--mono); text-transform: uppercase; }
+  .production-empty { padding: 18px 9px; border: 1px dashed #34414d; border-radius: 6px; color: var(--dim); font-size: 10px; line-height: 1.45; text-align: center; }
+  .project-catalog { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .project-choice { min-height: 108px; padding: 9px; text-align: left; border-color: #35424e; background: #0a1016; }
+  .project-choice:hover { border-color: var(--brass-dim); background: #131820; }
+  .project-choice .work-art { margin-bottom: 6px; }
+  .project-choice b { display: block; color: var(--bright); font: 700 10px/1.2 var(--serif); }
+  .project-choice small { display: block; margin-top: 4px; color: var(--dim); font-size: 8px; line-height: 1.3; }
+  .project-choice .project-effect { color: #b8c8d2; }
+  .project-choice em { display: block; margin-top: 6px; color: var(--brass-hi); font: 700 7px/1.25 var(--mono); font-style: normal; text-transform: uppercase; }
+  .project-brief { margin-bottom: 7px; padding: 8px; border: 1px solid #37434d; border-radius: 5px; background: #0a1016; }
+  .project-brief b { display: block; color: var(--bright); font: 700 9px/1.3 var(--serif); }
+  .project-brief .work-needs { margin-top: 6px; }
+  .province-picks { display: grid; gap: 5px; }
+  .province-pick { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 7px; min-height: 42px; padding: 7px 9px; text-align: left; }
+  .province-pick b { color: var(--bright); font: 700 10px var(--serif); }
+  .province-pick span { color: var(--faint); font-size: 8px; }
+  .production-panel button:focus-visible, .work-card:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+  @keyframes works-in { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: none; } }
+  @media (max-width: 720px) {
+    .production-panel { left: 8px; right: 8px; bottom: 68px; width: auto; max-height: min(58vh, calc(100vh - 118px)); max-height: min(58dvh, calc(100dvh - 118px)); border-radius: 10px 10px 7px 7px; }
+    body.production-open .province-dossier.open { display: none; }
+    .project-catalog { grid-template-columns: 1fr 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .production-panel.open { animation: none; } }
+
   .card { background: var(--panel); border: 1px solid var(--edge-dark); border-radius: 3px; padding: 12px; margin-bottom: 12px; box-shadow: inset 0 1px 0 var(--edge-lite); }
   .card h3 { font-family: var(--serif); font-size: 11px; font-weight: 600; letter-spacing: .18em; color: var(--amber); text-transform: uppercase; margin: -2px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--brass-etch); }
   .card h3 span { color: var(--faint); letter-spacing: .08em; font-family: var(--mono); font-weight: 400; }
@@ -1594,10 +1692,20 @@
       <div class="logistics-body" id="logisticsBody"></div>
       <div class="sr-only" id="logisticsLive" role="status" aria-live="polite"></div>
     </aside>
+    <aside class="production-panel" id="productionPanel" aria-hidden="true" aria-labelledby="productionTitle">
+      <div class="production-head">
+        <div><div class="eyebrow">National works programme</div><h2 id="productionTitle">Production Board</h2></div>
+        <span class="grow"></span>
+        <button class="production-close" id="productionClose" type="button" aria-label="Close production">&times;</button>
+      </div>
+      <div class="production-body" id="productionBody"></div>
+      <div class="sr-only" id="productionLive" role="status" aria-live="polite"></div>
+    </aside>
     <nav id="commandDock" aria-label="Game systems">
       <button class="dockbtn" data-drawer="cabinetDrawer" aria-expanded="false"><span class="icon">◈</span><span class="copy"><span class="label">Economy</span><small id="dockEconomy">budget &amp; policy</small></span></button>
       <button class="dockbtn" data-drawer="intelDrawer" aria-expanded="false"><span class="icon">⚔</span><span class="copy"><span class="label">World</span><small id="dockWorld">conflicts &amp; news</small></span></button>
       <button class="dockbtn" id="logisticsDockBtn" type="button" aria-controls="logisticsPanel" aria-expanded="false"><span class="icon">⇢</span><span class="copy"><span class="label">Logistics</span><small id="dockLogistics">monthly routes</small></span><span class="dockbadge" id="logisticsBadge" aria-hidden="true"></span></button>
+      <button class="dockbtn" id="productionDockBtn" type="button" aria-controls="productionPanel" aria-expanded="false"><span class="icon">⚙</span><span class="copy"><span class="label">Production</span><small id="dockProduction">4 project slots</small></span><span class="dockbadge" id="productionBadge" aria-hidden="true"></span></button>
     </nav>
   </main>
 </div>
@@ -1916,6 +2024,7 @@
   <div class="row"><span>Technology</span><span><kbd>T</kbd></span></div>
   <div class="row"><span>Resources board</span><span><kbd>B</kbd></span></div>
   <div class="row"><span>Logistics routes</span><span><kbd>G</kbd></span></div>
+  <div class="row"><span>Production and construction</span><span><kbd>Q</kbd></span></div>
   <div class="row"><span>Board: select a line / open talks</span><span>arrows · <kbd>Enter</kbd></span></div>
   <div class="row"><span>Domain tabs (tech screen)</span><span><kbd>1</kbd>–<kbd>8</kbd> · full map <kbd>9</kbd> · step <kbd>[</kbd> <kbd>]</kbd></span></div>
   <div class="row"><span>Find a technology (graph open)</span><span><kbd>/</kbd></span></div>
@@ -2495,6 +2604,7 @@ function toggleGameDrawer(id) {
   if (!drawer) return;
   const opening = !drawer.classList.contains("open");
   if (opening && LOGI.open) closeLogistics();
+  if (opening && PROD.open) closeProduction();
   closeGameDrawers();
   if (opening) {
     drawer.classList.add("open");
@@ -2521,10 +2631,12 @@ async function adopt(state, withHistory) {
   if (typeof S.front_held_band === "number") FRONT_HELD_BAND = S.front_held_band;
   STOCKW.stale = true;      // the world moved; the resource tint is re-asked on the next map
   LOGI.stale = true;        // monthly settlement may have changed; re-ask only while its plate is open
+  PROD.stale = true;        // daily project work may have advanced or changed state
   if (withHistory !== false) HIST = await api("/api/history");
   if (!ui.picked.length) ui.picked = defaultPicks();
   render();
   if (LOGI.open) logisticsFetch();
+  if (PROD.open) productionFetch();
   if (selectedDistrict) loadProvincePopulation(selectedDistrict, true);
 }
 
@@ -2619,6 +2731,9 @@ document.addEventListener("keydown", (e) => {
     if (document.querySelector(".game-drawer.open")) { closeGameDrawers(); return; }
     if (LOGI.open && LOGI.selected) { logisticsSelect(null); return; }
     if (LOGI.open) { closeLogistics(); return; }
+    if (PROD.open && PROD.view !== "queue") { PROD.view = "queue"; PROD.pickKind = null; renderProductionPanel(); return; }
+    if (PROD.open && PROD.selected) { productionSelect(null); return; }
+    if (PROD.open) { closeProduction(); return; }
     if (selectedDistrict) { closeProvince(); return; }
     closeSheet();
     return;
@@ -2671,6 +2786,7 @@ document.addEventListener("keydown", (e) => {
   else if (k === "t" || k === "T") toggleTechMenu();
   else if (k === "b" || k === "B") toggleStockScreen();
   else if (k === "g" || k === "G") toggleLogistics();
+  else if (k === "q" || k === "Q") toggleProduction();
   else if (k === "r" || k === "R") revertOrders();
   else if (k === "+" || k === "=") mapZoom(1.3);
   else if (k === "-" || k === "_") mapZoom(1 / 1.3);
@@ -2727,6 +2843,7 @@ function render() {
     : "budget & policy";
   $("#dockWorld").textContent = `${S.wars.length} active conflict${S.wars.length === 1 ? "" : "s"} · ${S.log.length} dispatches`;
   renderLogisticsDock();
+  renderProductionDock();
   // TECH is dead in spectator mode (research_json is null and /api/tech cannot
   // answer); the amber note dot means a domain has startable work and no project
   // chosen — the same actionable state resCard reports.
@@ -3454,6 +3571,7 @@ document.addEventListener("pointerdown", (e) => {
 /// the first. The graph is built once and then only class-patched.
 async function openTech(domain) {
   if (!S || !S.research) return;   // spectator: /api/tech cannot answer
+  if (PROD.open) closeProduction();
   closeTechMenu();
   closeSheet();
   const fresh = !tech.data;
@@ -9659,6 +9777,9 @@ function drawMapOverlay(ctx, view, globe) {
   // the same country anchors as contract arcs: there is no port/rail/sea graph
   // in this build, so a more detailed path would be invented geography.
   drawLogisticsOverlay(ctx, view, globe);
+  // Active construction is marked at the exact served province centroid only
+  // while its board is open, keeping the resting globe free of management ink.
+  drawProductionOverlay(ctx, view, globe);
 
   // ---- district names, for ONE nation at a time and only past ZB2, exactly
   // the band the flat map used. Drawn before the nation labels so a nation's
@@ -9797,6 +9918,12 @@ function onMapPick(e) {
   // Everywhere else the exact province/nation picking path below is untouched.
   const route = logisticsHitAt(e.clientX, e.clientY);
   if (route) { logisticsSelect(logisticsLaneId(route)); return; }
+  const work = productionHitAt(e.clientX, e.clientY);
+  if (work) {
+    if (work.project) productionSelect(work.project.id, true);
+    else if (work.district) selectProvince(work.district, true);
+    return;
+  }
   const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);
   if (!w) return;
   const code = countryAt(w[0], w[1]);
@@ -10876,6 +11003,7 @@ function toggleStockScreen() { if (stock.open) closeStock(); else openStock(); }
 function openStock(com) {
   if (!S || !S.resources) return;      // spectator: no board to read
   if (LOGI.open) closeLogistics();
+  if (PROD.open) closeProduction();
   closeTechMenu();
   if (tech.open) closeTech();
   closeSheet();
@@ -11486,6 +11614,7 @@ function renderLogisticsDock() {
 
 function openLogistics(com) {
   if (!S || !S.player) return;
+  if (PROD.open) closeProduction();
   if (stock.open) closeStock();
   closeGameDrawers();
   closeTechMenu();
@@ -11729,6 +11858,358 @@ function logisticsHitAt(clientX, clientY) {
     const t = den ? clamp(((x - ax) * dx + (y - ay) * dy) / den, 0, 1) : 0;
     const px = ax + t * dx, py = ay + t * dy, d = (x - px) ** 2 + (y - py) ** 2;
     if (d < bestD && d <= (7 * hit.r) ** 2) { bestD = d; best = hit.lane; }
+  }
+  return best;
+}
+
+/* ================= production: the national works board =================
+   The simulation owns every project, requirement, province, status, reason
+   and allowed action. This page supplies only the arcade composition: four
+   cards, a two-step project/province picker, and exact-centroid map marks. */
+
+const PROD = {
+  open: false, data: null, stale: true, loading: false, error: null, seq: 0,
+  view: "queue", pickKind: null, selected: null, showBuilt: false, refreshQueued: false, hits: [],
+};
+const PROD_ICON = {
+  infrastructure: "▥", civilian_industry: "⚙", power_grid: "ϟ",
+  research_center: "⌬", arms_plant: "⛭",
+};
+
+function productionQueue() { return (PROD.data && Array.isArray(PROD.data.queue)) ? PROD.data.queue : []; }
+function productionCatalog() { return (PROD.data && Array.isArray(PROD.data.catalog)) ? PROD.data.catalog : []; }
+function productionProvinces() { return (PROD.data && Array.isArray(PROD.data.provinces)) ? PROD.data.provinces : []; }
+function productionCompleted() { return (PROD.data && Array.isArray(PROD.data.completed)) ? PROD.data.completed : []; }
+function productionMarkers() { return (PROD.data && Array.isArray(PROD.data.markers)) ? PROD.data.markers : []; }
+function productionProject(id) { return productionQueue().find((p) => String(p.id) === String(id)); }
+function productionKind(p) { return String((p && (p.kind || p.project_kind)) || "project"); }
+function productionStatus(p) { return String((p && p.status) || "building").toLowerCase(); }
+function productionTone(p) {
+  const s = productionStatus(p);
+  return s === "blocked" ? "blocked" : s === "slowed" ? "slowed" : "building";
+}
+function productionProvince(p) {
+  const province = p && p.province;
+  return {
+    id: province && province.id != null ? province.id : p && (p.district || p.province_id),
+    name: province && province.name ? province.name : p && (p.district_name || p.province_name),
+  };
+}
+function productionProgress(p) {
+  if (!p) return 0;
+  if (typeof p.progress === "number") return clamp(p.progress > 1 ? p.progress / 100 : p.progress, 0, 1);
+  if (p.progress && isFinite(+p.progress.fraction)) return clamp(+p.progress.fraction, 0, 1);
+  if (isFinite(+p.progress_days) && +p.total_days > 0) return clamp(+p.progress_days / +p.total_days, 0, 1);
+  return 0;
+}
+function productionPriorityChoices(p) {
+  const a = p && p.actions;
+  const raw = a && (a.set_priority || a.priorities || a.priority);
+  return Array.isArray(raw) ? raw.map(String) : [];
+}
+function productionCanCancel(p) {
+  const a = p && p.actions;
+  return !!(a && (a.cancel === true || (Array.isArray(a) && a.includes("cancel"))));
+}
+function productionSummary(rows) {
+  const out = { building: 0, slowed: 0, blocked: 0 };
+  for (const p of rows) out[productionTone(p)]++;
+  return out;
+}
+function productionRequirements(p) {
+  return Array.isArray(p && p.requirements) ? p.requirements : [];
+}
+function productionCapabilityPairs(raw) {
+  return (Array.isArray(raw) ? raw.map((x) => [x.name || x.kind, x.level]) : Object.entries(raw || {}))
+    .filter(([, level]) => +level > 0);
+}
+function productionNeedHtml(r) {
+  const name = r.name || logisticsCommodityName(r.commodity || r.id || "resource");
+  const required = r.required != null ? +r.required : r.amount != null ? +r.amount : null;
+  const used = r.consumed != null ? +r.consumed : r.used != null ? +r.used : null;
+  const short = +r.shortfall > 0;
+  const value = used != null && required != null ? `${fmtQ(used)}/${fmtQ(required)}`
+    : required != null ? fmtQ(required) : "required";
+  return `<span class="work-need${short ? " short" : ""}">${escText(name)} · ${escText(value)}${r.unit ? ` ${escText(r.unit)}` : ""}</span>`;
+}
+
+function renderProductionDock() {
+  const button = $("#productionDockBtn"), copy = $("#dockProduction"), badge = $("#productionBadge");
+  if (!button || !S) return;
+  const sum = S.production_summary || {};
+  const active = +sum.active || 0, building = +sum.building || 0;
+  const slowed = +sum.slowed || 0, blocked = +sum.blocked || 0;
+  const completed = +sum.completed || 0;
+  const capacity = +sum.capacity || 4;
+  copy.textContent = `${active}/${capacity} active${blocked ? ` · ${blocked} blocked` : slowed ? ` · ${slowed} slow` : completed ? ` · ${completed} built` : ""}`;
+  const attention = +sum.attention || slowed + blocked;
+  badge.textContent = attention > 99 ? "99+" : String(attention);
+  badge.classList.toggle("on", attention > 0);
+  badge.classList.toggle("warn", !blocked && attention > 0);
+  button.disabled = !S.player || !S.production_summary;
+  button.setAttribute("aria-label", `Production: ${building} building, ${slowed} slowed, ${blocked} blocked`);
+  button.setAttribute("aria-expanded", PROD.open ? "true" : "false");
+}
+
+function openProduction() {
+  if (!S || !S.player || !S.production_summary) return;
+  if (LOGI.open) closeLogistics();
+  if (stock.open) closeStock();
+  if (tech.open) closeTech();
+  closeTechMenu();
+  closeGameDrawers();
+  closeSheet();
+  showTab("map");
+  PROD.open = true; PROD.view = "queue"; PROD.pickKind = null; PROD.showBuilt = false; PROD.error = null;
+  const panel = $("#productionPanel");
+  panel.classList.add("open"); panel.setAttribute("aria-hidden", "false");
+  document.body.classList.add("production-open");
+  renderProductionDock(); renderProductionPanel(); productionFetch();
+  if (GLOBE) GLOBE.render();
+}
+function closeProduction() {
+  PROD.open = false; PROD.view = "queue"; PROD.pickKind = null; PROD.selected = null; PROD.showBuilt = false; PROD.refreshQueued = false; PROD.hits = [];
+  const panel = $("#productionPanel");
+  if (panel) { panel.classList.remove("open"); panel.setAttribute("aria-hidden", "true"); }
+  document.body.classList.remove("production-open");
+  renderProductionDock();
+  if (GLOBE) GLOBE.render();
+}
+function toggleProduction() { if (PROD.open) closeProduction(); else openProduction(); }
+window.openProduction = openProduction;
+window.closeProduction = closeProduction;
+
+async function productionFetch() {
+  if (!PROD.open) return;
+  if (PROD.loading) { PROD.refreshQueued = true; return; }
+  if (!PROD.stale && PROD.data) return;
+  PROD.loading = true; PROD.refreshQueued = false; PROD.stale = false; PROD.error = null; renderProductionPanel();
+  const seq = ++PROD.seq;
+  try {
+    const data = await api("/api/production");
+    if (seq !== PROD.seq) return;
+    data.queue = Array.isArray(data.queue) ? data.queue : [];
+    data.catalog = Array.isArray(data.catalog) ? data.catalog : [];
+    data.provinces = Array.isArray(data.provinces) ? data.provinces : [];
+    PROD.data = data; PROD.stale = false;
+    if (PROD.selected && !productionProject(PROD.selected)) PROD.selected = null;
+    const sum = productionSummary(data.queue);
+    $("#productionLive").textContent = `Production updated. ${sum.building} building, ${sum.slowed} slowed, ${sum.blocked} blocked.`;
+  } catch (e) {
+    if (seq === PROD.seq) { PROD.error = e.message; PROD.stale = true; }
+  } finally {
+    if (seq === PROD.seq) {
+      const rerun = PROD.refreshQueued;
+      PROD.refreshQueued = false; PROD.loading = false;
+      renderProductionPanel(); if (GLOBE) GLOBE.render();
+      if (rerun && PROD.open) { PROD.stale = true; productionFetch(); }
+    }
+  }
+}
+
+function productionCardHtml(p) {
+  const tone = productionTone(p), kind = productionKind(p), province = productionProvince(p);
+  const frac = productionProgress(p), percent = Math.round(frac * 100);
+  const choices = productionPriorityChoices(p), priority = String(p.priority || "normal");
+  const priorityControls = ["high", "normal", "low"].filter((v) => v === priority || choices.includes(v));
+  const remaining = p.eta_days != null ? `${Math.max(0, Math.ceil(+p.eta_days))} days left`
+    : p.remaining_days != null ? `${Math.max(0, Math.ceil(+p.remaining_days))} days left` : "schedule pending";
+  const reason = p.reason || p.status_reason || "";
+  const name = p.name || kind.replace(/_/g, " ");
+  const needs = productionRequirements(p).map(productionNeedHtml).join("");
+  return `<article class="work-card ${tone}${String(PROD.selected) === String(p.id) ? " selected" : ""}" tabindex="0" data-prod-project="${logisticsEscAttr(p.id)}">
+    <div class="work-top"><span class="work-art" aria-hidden="true">${PROD_ICON[kind] || "◆"}</span>
+      <div class="work-title"><b>${escText(name)}</b><span>${escText(province.name || province.id || "Province")}</span></div>
+      <span class="work-state">${escText(productionStatus(p).toUpperCase())}</span></div>
+    <div class="work-progress" aria-label="${percent}% complete"><i style="width:${percent}%"></i></div>
+    <div class="work-line"><span><b>${percent}%</b> complete</span><span>${escText(remaining)}</span></div>
+    ${reason ? `<div class="work-reason">${escText(reason)}</div>` : ""}
+    ${needs ? `<div class="work-needs">${needs}</div>` : ""}
+    ${(priorityControls.length || productionCanCancel(p)) ? `<div class="work-actions" aria-label="Project controls">${priorityControls.map((v) =>
+      `<button type="button" ${priority === v ? "disabled" : `data-prod-priority="${logisticsEscAttr(v)}" data-prod-id="${logisticsEscAttr(p.id)}"`} class="${priority === v ? "on" : ""}" aria-pressed="${priority === v}">${escText(v)}</button>`).join("")}
+      ${productionCanCancel(p) ? `<button type="button" class="cancel" data-prod-cancel="${logisticsEscAttr(p.id)}">Cancel</button>` : ""}</div>` : ""}
+  </article>`;
+}
+
+function productionStartAllowed() {
+  const start = PROD.data && PROD.data.actions && PROD.data.actions.start;
+  return start === true || !!(start && start.enabled);
+}
+function productionFundingLabel(c) {
+  const f = c.funding || {};
+  const ministry = c.funding_ministry || f.ministry;
+  const allocation = c.funding_allocation != null ? c.funding_allocation : f.allocation;
+  const ratio = f.ratio != null ? +f.ratio : null;
+  const pc = c.pc_cost != null ? `${fmtQ(c.pc_cost)} PC` : "";
+  const funded = ministry ? `${String(ministry).replace(/_/g, " ")}${allocation != null ? ` · ${(+allocation * 100).toFixed(1)}% GDP` : ""}${ratio != null && ratio < .999 ? ` · ${Math.round(ratio * 100)}% funded` : ""}` : "";
+  return [pc, funded].filter(Boolean).join(" · ");
+}
+function productionCatalogHtml() {
+  const cards = productionCatalog().map((c) => {
+    const kind = productionKind(c), days = c.base_days || c.total_days;
+    const meta = [days ? `${Math.round(+days)} work-days` : "", productionFundingLabel(c)].filter(Boolean).join(" · ");
+    const enabled = !c.actions || c.actions.start !== false;
+    return `<button type="button" class="project-choice" ${enabled ? `data-prod-kind="${logisticsEscAttr(kind)}"` : "disabled"}>
+      <span class="work-art" aria-hidden="true">${PROD_ICON[kind] || "◆"}</span><b>${escText(c.name || kind.replace(/_/g, " "))}</b>
+      <small>${escText(c.description || "Province works programme")}</small><small class="project-effect">${escText(c.effect || "Creates a province capability.")}</small><em>${escText(meta)}</em></button>`;
+  }).join("");
+  return `<div class="production-stamp"><b>Choose the work</b><span>step 1 of 2<br>served catalogue</span></div>
+    <div class="project-catalog">${cards}</div><button type="button" class="production-back" data-prod-back>Back to queue</button>`;
+}
+function productionEligible(c, province) {
+  const ids = Array.isArray(c && c.eligible_provinces) ? c.eligible_provinces.map(String) : [];
+  const starts = province && province.actions && province.actions.start;
+  return ids.includes(String(province.id)) || (Array.isArray(starts) && starts.map(String).includes(productionKind(c)));
+}
+function productionProvinceHtml() {
+  const c = productionCatalog().find((x) => productionKind(x) === PROD.pickKind);
+  if (!c) { PROD.view = "catalog"; return productionCatalogHtml(); }
+  const provinces = productionProvinces().filter((p) => productionEligible(c, p));
+  const picks = provinces.map((p) => {
+    const caps = productionCapabilityPairs(p.capabilities)
+      .map(([name, level]) => `${String(name).replace(/_/g, " ")} ${level}`).join(" · ");
+    return `<button type="button" class="province-pick" data-prod-province="${logisticsEscAttr(p.id)}"><b>${escText(p.name || p.id)}</b><span>${escText(caps || "available ground")}</span></button>`;
+  }).join("");
+  const recipe = productionRequirements(c).map(productionNeedHtml).join("");
+  return `<div class="production-stamp"><b>${PROD_ICON[PROD.pickKind] || "◆"} ${escText(c.name || PROD.pickKind.replace(/_/g, " "))}</b><span>step 2 of 2<br>choose a province</span></div>
+    <div class="project-brief"><b>${escText(c.effect || c.description || "Province capability")}</b>${recipe ? `<div class="work-needs">${recipe}</div>` : ""}</div>
+    <div class="province-picks">${picks || `<div class="production-empty">No owned province is eligible for this project.</div>`}</div>
+    <button type="button" class="production-back" data-prod-back>Choose another project</button>`;
+}
+
+function productionBuiltHtml() {
+  const rows = productionCompleted();
+  if (!rows.length) return "";
+  const total = rows.reduce((sum, row) => sum + productionCapabilityPairs(row.capabilities)
+    .reduce((n, [, level]) => n + (+level || 0), 0), 0);
+  const detail = PROD.showBuilt ? `<div class="built-list">${rows.map((row) => {
+    const province = row.province || {};
+    const caps = productionCapabilityPairs(row.capabilities).map(([name, level]) =>
+      `<span class="built-cap">${escText(String(name).replace(/_/g, " "))} ${escText(level)}</span>`).join("");
+    return `<div class="built-row"><b>${escText(province.name || province.id || "Province")}</b><div class="built-caps">${caps}</div></div>`;
+  }).join("")}</div>` : "";
+  return `<button type="button" class="built-toggle" data-prod-built aria-expanded="${PROD.showBuilt}"><span>Completed province upgrades</span><b>${total} ${PROD.showBuilt ? "−" : "+"}</b></button>${detail}`;
+}
+
+function renderProductionPanel() {
+  const body = $("#productionBody");
+  if (!body || !PROD.open) return;
+  if (PROD.error) {
+    body.innerHTML = `<div class="production-empty">${escText(PROD.error)}<br><button type="button" data-prod-retry>Retry</button></div>`;
+  } else if (!PROD.data && PROD.loading) {
+    body.innerHTML = `<div class="production-empty">Opening the national works ledger…</div>`;
+  } else if (PROD.view === "catalog") body.innerHTML = productionCatalogHtml();
+  else if (PROD.view === "provinces") body.innerHTML = productionProvinceHtml();
+  else {
+    const rows = productionQueue(), sum = productionSummary(rows);
+    const capacity = +(PROD.data && PROD.data.capacity) || 4;
+    const list = rows.length ? `<div class="production-list">${rows.map(productionCardHtml).join("")}</div>`
+      : `<div class="production-empty">No work is under way.<br>Choose a project, then put it on the map.</div>`;
+    body.innerHTML = `<div class="production-stamp"><b>National queue · ${rows.length}/${capacity}</b><span>daily work<br>province based</span></div>
+      <div class="production-summary"><span>Building<b>${sum.building}</b></span><span class="slowed">Slowed<b>${sum.slowed}</b></span><span class="blocked">Blocked<b>${sum.blocked}</b></span></div>${list}
+      ${productionBuiltHtml()}${productionStartAllowed() ? `<button type="button" class="production-new" data-prod-new>＋ Start a project</button>` : ""}`;
+  }
+  wireProductionPanel();
+}
+
+function wireProductionPanel() {
+  const body = $("#productionBody"); if (!body) return;
+  body.querySelectorAll("[data-prod-project]").forEach((card) => {
+    card.onclick = (e) => { if (!e.target.closest("button")) productionSelect(card.dataset.prodProject, true); };
+    card.onkeydown = (e) => { if (e.target === card && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); productionSelect(card.dataset.prodProject, true); } };
+  });
+  const add = body.querySelector("[data-prod-new]");
+  if (add) add.onclick = () => { PROD.view = "catalog"; PROD.pickKind = null; renderProductionPanel(); };
+  body.querySelectorAll("[data-prod-kind]").forEach((b) => { b.onclick = () => { PROD.pickKind = b.dataset.prodKind; PROD.view = "provinces"; renderProductionPanel(); }; });
+  body.querySelectorAll("[data-prod-province]").forEach((b) => { b.onclick = () => productionStart(PROD.pickKind, b.dataset.prodProvince); });
+  body.querySelectorAll("[data-prod-priority]").forEach((b) => { b.onclick = (e) => { e.stopPropagation(); productionSetPriority(b.dataset.prodId, b.dataset.prodPriority); }; });
+  body.querySelectorAll("[data-prod-cancel]").forEach((b) => { b.onclick = (e) => { e.stopPropagation(); productionCancel(b.dataset.prodCancel); }; });
+  const back = body.querySelector("[data-prod-back]");
+  if (back) back.onclick = () => { PROD.view = PROD.view === "provinces" ? "catalog" : "queue"; PROD.pickKind = null; renderProductionPanel(); };
+  const retry = body.querySelector("[data-prod-retry]");
+  if (retry) retry.onclick = () => { PROD.stale = true; PROD.error = null; productionFetch(); };
+  const built = body.querySelector("[data-prod-built]");
+  if (built) built.onclick = () => { PROD.showBuilt = !PROD.showBuilt; renderProductionPanel(); };
+}
+
+async function productionCommand(command, success) {
+  const r = await api("/api/command", { commands: [command] });
+  if (r.errors && r.errors.length) banner(r.errors[0]); else if (success) banner(success);
+  PROD.stale = true;
+  await adopt(r, false);
+}
+async function productionStart(kind, district) {
+  const c = productionCatalog().find((x) => productionKind(x) === kind);
+  await productionCommand({ kind: "start_project", project_kind: kind, district }, `${c ? c.name : "Project"} started.`);
+  PROD.view = "queue"; PROD.pickKind = null;
+}
+async function productionSetPriority(project, priority) {
+  await productionCommand({ kind: "set_project_priority", project: +project, priority }, `Project priority set to ${priority}.`);
+}
+async function productionCancel(project) {
+  const p = productionProject(project);
+  if (!p || !productionCanCancel(p)) return;
+  if (!confirm(`Cancel ${p.name || productionKind(p).replace(/_/g, " ")} in ${productionProvince(p).name || "this province"}?\n\nMaterials already used are not returned.`)) return;
+  await productionCommand({ kind: "cancel_project", project: +project }, "Project cancelled.");
+}
+
+function productionSelect(id, focus) {
+  PROD.selected = id == null ? null : String(id);
+  renderProductionPanel();
+  const p = productionProject(PROD.selected), province = p && productionProvince(p);
+  if (focus && province && province.id && DINDEX[province.id]) selectProvince(province.id, true);
+  if (GLOBE) GLOBE.render();
+}
+
+$("#productionDockBtn").onclick = toggleProduction;
+$("#productionClose").onclick = closeProduction;
+
+function drawProductionOverlay(ctx, view, globe) {
+  PROD.hits = [];
+  if (!PROD.open || !PROD.data) return;
+  const r = view.ratio;
+  for (const marker of productionMarkers()) {
+    const project = productionQueue().find((p) => (marker.active || []).map(String).includes(String(p.id))) || null;
+    const district = marker.district || (project && productionProvince(project).id);
+    const d = district && DINDEX[district];
+    if (!d) continue;
+    const p = globe.projectWorld(d.cx, d.cy, view, 1.018);
+    if (!p) continue;
+    const tone = marker.status || (project && productionTone(project)) || "complete";
+    const selected = !!project && String(PROD.selected) === String(project.id);
+    const colour = tone === "blocked" ? "#df6c65" : tone === "slowed" ? "#d2a645" : tone === "complete" ? "#c9a55a" : "#55c9df";
+    const radius = (selected ? 11 : 8) * r;
+    ctx.globalAlpha = selected ? 1 : .9;
+    ctx.fillStyle = "#070b10"; ctx.strokeStyle = "#020406"; ctx.lineWidth = 4 * r;
+    ctx.beginPath(); ctx.arc(p[0], p[1], radius, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = colour; ctx.lineWidth = 1.7 * r;
+    ctx.setLineDash(tone === "blocked" ? [2 * r, 3 * r] : tone === "slowed" ? [5 * r, 2 * r] : []);
+    ctx.beginPath(); ctx.arc(p[0], p[1], radius, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = colour; ctx.font = `700 ${selected ? 13 : 10}px Inter, system-ui, sans-serif`;
+    ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(project ? (PROD_ICON[productionKind(project)] || "◆") : "✓", p[0], p[1] + .5 * r);
+    if (selected) {
+      const text = productionStatus(project).toUpperCase();
+      ctx.font = `700 ${8 * r}px Inter, system-ui, sans-serif`;
+      const width = ctx.measureText(text).width + 10 * r;
+      ctx.fillStyle = "#070b10"; roundedRect(ctx, p[0] - width / 2, p[1] - 30 * r, width, 15 * r, 4 * r); ctx.fill();
+      ctx.strokeStyle = colour; ctx.lineWidth = r; ctx.stroke(); ctx.fillStyle = "#eef4f8"; ctx.fillText(text, p[0], p[1] - 22.5 * r);
+    }
+    PROD.hits.push({ project, district, x: p[0], y: p[1], radius: radius + 5 * r, r });
+    ctx.globalAlpha = 1;
+  }
+  ctx.setLineDash([]); ctx.globalAlpha = 1; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+}
+
+function productionHitAt(clientX, clientY) {
+  if (!PROD.open || !PROD.hits.length || !GLOBE || !GLOBE.lastSize) return null;
+  const rect = GLCV.getBoundingClientRect(), size = GLOBE.lastSize;
+  if (!rect.width || !rect.height) return null;
+  const x = (clientX - rect.left) * size.width / (size.cw || rect.width);
+  const y = (clientY - rect.top) * size.height / (size.ch || rect.height);
+  let best = null, distance = Infinity;
+  for (const hit of PROD.hits) {
+    const d = (x - hit.x) ** 2 + (y - hit.y) ** 2;
+    if (d <= hit.radius ** 2 && d < distance) { best = hit; distance = d; }
   }
   return best;
 }

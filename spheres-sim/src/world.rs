@@ -837,6 +837,11 @@ pub struct GameRules {
     /// skipped when false, preserving old saves and the calibrated baseline.
     #[serde(default, skip_serializing_if = "is_false")]
     pub logistics_routes: bool,
+    /// Player-directed province production and construction. OFF in the
+    /// calibrated/headless world and enabled by the browser's play rules.
+    /// Empty state and a false switch both disappear from saves.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub production_system: bool,
 }
 fn rules_true() -> bool {
     true
@@ -856,6 +861,7 @@ impl Default for GameRules {
             resource_gates: true,
             resource_market: false,
             logistics_routes: false,
+            production_system: false,
         }
     }
 }
@@ -963,6 +969,12 @@ pub struct WorldState {
     /// asks for what it cannot get, and folds away when it is full again.
     #[serde(default, skip_serializing_if = "crate::resources::Resources::is_empty")]
     pub resources: crate::resources::Resources,
+
+    /// Active construction and completed province capability levels. It is a
+    /// sparse opt-in ledger and therefore absent from every legacy/default
+    /// save until the player starts work.
+    #[serde(default, skip_serializing_if = "crate::production::Production::is_empty")]
+    pub production: crate::production::Production,
 
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it
