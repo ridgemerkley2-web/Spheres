@@ -833,8 +833,22 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
 /// every daily click would multiply the model's rates by 28--31. Thirty-one
 /// January ticks therefore produce exactly the same world as one January
 /// `tick_month`, while exposing every intervening date to the player.
+///
+/// `headlines` is the MONTH's record, as it is for `tick_month`: it is
+/// cleared on the first of the month and accumulates from there, so a month
+/// stepped day by day holds exactly what one `tick_month` leaves — the
+/// commands' lines in the order they were issued, then the settlement's. The
+/// merge of codex/trading-system cleared it on every day instead, and a
+/// command's headline written on the 1st was gone from the save by the 31st
+/// (`the_daily_clock_preserves_the_market_on_world`, first miss month 3:
+/// daily 0x42003eb0969c6720 vs monthly 0x1ae2b9b73492d296, identical once
+/// `headlines` was stripped). What is RETURNED is only the day's own slice, so
+/// a caller logging each day's return sees every line exactly once.
 pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
-    w.headlines.clear();
+    if w.day <= 1 {
+        w.headlines.clear();
+    }
+    let before = w.headlines.len();
     w.reindex();
     for c in commands {
         if let Err(e) = apply_command(w, c) {
@@ -857,7 +871,7 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         w.day += 1;
     }
 
-    w.headlines.clone()
+    w.headlines[before..].to_vec()
 }
 
 /// FNV-1a over the serialized world — a cheap, stable fingerprint of an entire
@@ -993,10 +1007,17 @@ mod tests {
     /// once `headlines` is stripped, so a divergence of the RECORD and a
     /// divergence of the WORLD are not confused for each other. Added on the
     /// trial merge of codex/trading-system, 2026-09-02, and red at birth:
-    /// `tick_day` clears `w.headlines` on every day, so the headline a
-    /// command wrote on the 1st is gone from the save by the 31st, while
-    /// `tick_month` keeps it beside the systems' own. The world under the
-    /// headlines agreed at every one of the twenty-four boundaries.
+    /// `tick_day` cleared `w.headlines` on every day, so the headline a
+    /// command wrote on the 1st was gone from the save by the 31st, while
+    /// `tick_month` keeps it beside the systems' own (first miss month 3,
+    /// daily 0x42003eb0969c6720 vs monthly 0x1ae2b9b73492d296). The world
+    /// under the headlines agreed at every one of the twenty-four boundaries.
+    /// Green since `tick_day` clears the record only on the first of the
+    /// month. The same day it grew a save-and-load in the middle of month 15,
+    /// while the copper contract runs, and the resumed world must agree to
+    /// the end; with the every-day clear put back, that extended test's first
+    /// miss is still month 3 (the ProposeDeal's own signing line, gone by the
+    /// 31st), and the resumed world adds no miss of its own.
     #[test]
     fn the_daily_clock_preserves_the_market_on_world() {
         use crate::resources::{self, Commodity, Leg, Offer, Verdict};
@@ -1039,6 +1060,7 @@ mod tests {
 
         let mut issued = Vec::new();
         let mut accepted_signed = false;
+        let mut resumed_mid_month: Option<String> = None;
         let mut first_hash_miss: Option<String> = None;
         let mut first_world_miss: Option<String> = None;
         for m in 0..24usize {
@@ -1084,6 +1106,28 @@ mod tests {
             for d in 0..days {
                 let today = if d == 0 { &cmds[..] } else { &[][..] };
                 tick_day(&mut daily, today);
+                // The critic's ten lines: in the middle of a month that holds
+                // the copper contract (signed month 11 for twelve months), the
+                // daily world goes through a save and a load and carries on
+                // from the file. Everything asserted below is asserted of the
+                // resumed world, so the mid-month record — the day, the
+                // month's headlines so far, the running contract — must all
+                // survive the round trip or the hashes part.
+                if m == 15 && d == 14 {
+                    assert!(
+                        daily.resources.contracts.iter().any(|c| {
+                            c.from == seller
+                                && c.to == player
+                                && c.take.iter().any(|l| matches!(l, Leg::Commodity { c: Commodity::Copper, .. }))
+                        }),
+                        "month {m}: no copper contract to save mid-month: {:?}",
+                        daily.resources.contracts
+                    );
+                    let mid = save(&daily);
+                    daily = load(&mid).expect("the mid-month daily save must load");
+                    assert_eq!(daily.day, 16, "the save lost the day");
+                    resumed_mid_month = Some(daily.date_str());
+                }
             }
             assert_eq!(
                 (daily.year, daily.month, daily.day),
@@ -1131,6 +1175,7 @@ mod tests {
         );
         assert!(accepted_signed, "the AcceptDeal did not sign");
         assert!(monthly.resources.offers.iter().all(|o| o.id != 9_001 && o.id != 9_002));
+        assert_eq!(resumed_mid_month.as_deref(), Some("16 Apr 1991"), "the daily world was never resumed from a save");
         assert!(
             first_hash_miss.is_none(),
             "a day-stepped month is not bit-identical to a month-stepped one with the market on.\nfirst state_hash miss: {}\nfirst miss of the world under the headlines: {}",
