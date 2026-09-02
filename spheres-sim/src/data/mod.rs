@@ -798,6 +798,9 @@ impl NationRecord {
             // is exactly the movement the pin exists to refuse.
             treasury_bn: None,
             debt_bn: None,
+            // No 1990 nation has bought this; it exists only after a plan
+            // is enacted. `None` keeps the 1990 save byte-identical.
+            infra_extraction: None,
             oil_mbd: self.economy.oil_mbd,
             bubble: self.economy.bubble,
             growth_last: 0.0,

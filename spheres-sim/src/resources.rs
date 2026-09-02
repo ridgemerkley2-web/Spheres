@@ -75,7 +75,7 @@ use std::sync::OnceLock;
 use crate::arsenal::{Class, DECK};
 use crate::data::{render_errors, LoadError};
 use crate::nations::{all_nations, nation_count};
-use crate::world::{start_nations, NationId, WorldState};
+use crate::world::{start_nations, NationId, WorldState, BUDGET_INFRASTRUCTURE};
 
 pub const EMBEDDED_RESOURCES_1990: &str = include_str!("../data/resources_1990.json");
 const FILE: &str = "data/resources_1990.json";
@@ -842,6 +842,72 @@ pub struct Have {
 
 const OIL: usize = Commodity::Oil as usize;
 
+// ---------------------------------------------------------------------------
+// INFRASTRUCTURE'S NAMED ARM
+// ---------------------------------------------------------------------------
+//
+// The one thing the infrastructure ministry does, and the ministry collapse
+// took four scattered addends off it to buy this. A road to the mine, a rail
+// spur to the smelter and a working port are how a country gets more out of
+// the ground it already owns, and that is a claim about EXTRACTION and not
+// about aggregate potential growth. The dollar the ministry spends still
+// enters `investment_total` and still reaches growth through the calibrated
+// capital channel; what is new is where the SHOVEL goes.
+//
+// OIL IS EXCLUDED. Oil is already a complete national system in this sim —
+// its own price, its own export share, its own ledger in `oil_mbd` — and it
+// is not district-located production. Raising it here would be a second,
+// uncalibrated hand on a system that has one.
+
+/// The most a standing infrastructure budget can move non-oil extraction, in
+/// either direction. INVENTED, and labelled as the design requires. A quarter
+/// is the size of the gap between a mine that ships and a mine that ships when
+/// the road is dry: it is large enough to be worth a budget line and far too
+/// small to let a player conjure a resource base the ground does not hold.
+pub const INFRA_EXTRACTION_CEILING: f64 = 0.25;
+
+/// How much of the distance to its target the stock closes each month.
+/// INVENTED, and labelled as the design requires — a FIXED STEP and not a
+/// share of the gap, which is what makes this a stock the player builds rather
+/// than a switch they flip. At 0.02 a month the full quarter takes twelve and
+/// a half years to build and exactly as long to lose, so a government that
+/// funds this is committing a decade and a government that raids it is
+/// spending a decade of somebody else's work.
+pub const INFRA_EXTRACTION_RATE: f64 = 0.02;
+
+/// Points of extraction bought by a point of GDP. INVENTED, and chosen the way
+/// education's slope is chosen: so that the TOP OF THE DIAL MEETS THE CEILING
+/// and no step of the slider buys nothing. Infrastructure caps at 0.15 of GDP
+/// against an inherited reference of 0.55 of the investment envelope — about
+/// 0.033 for a nation investing 6% of output through the state — so the
+/// largest gap a player can reach is near 0.117, and 0.117 * 2.0 = 0.234 sits
+/// just under the 0.25 ceiling.
+pub const INFRA_EXTRACTION_SLOPE: f64 = 2.0;
+
+/// Walks every nation's infrastructure stock one month toward what its
+/// standing budget justifies, and answers whether any nation holds one.
+///
+/// INERT WITHOUT A PLAN, which is every AI nation, every older save and the
+/// whole default board: a nation with neither a stock nor an enacted budget is
+/// skipped before any arithmetic happens, the answer comes back `false`, and
+/// `tick` below then takes exactly the branch it always took.
+fn infrastructure_stock(w: &mut WorldState) -> bool {
+    let mut any = false;
+    for i in 0..w.nations.len() {
+        let n = &w.nations[i];
+        if !n.alive || (n.infra_extraction.is_none() && n.annual_budget.is_none()) {
+            continue;
+        }
+        let target = (n.budget_gap(BUDGET_INFRASTRUCTURE) * INFRA_EXTRACTION_SLOPE)
+            .clamp(-INFRA_EXTRACTION_CEILING, INFRA_EXTRACTION_CEILING);
+        let held = n.infra_extraction.unwrap_or(0.0);
+        let step = (target - held).clamp(-INFRA_EXTRACTION_RATE, INFRA_EXTRACTION_RATE);
+        w.nations[i].infra_extraction = Some(held + step);
+        any = true;
+    }
+    any
+}
+
 fn alive_stamp(w: &WorldState) -> (usize, usize) {
     (w.nations.len(), w.nations.iter().filter(|n| n.alive).count())
 }
@@ -883,6 +949,20 @@ pub fn have_table(w: &WorldState) -> Have {
     for n in w.nations.iter().filter(|n| n.alive) {
         flow[n.id.index()][OIL] = n.oil_mbd * 1000.0;
     }
+    // INFRASTRUCTURE'S NAMED ARM reaches the ground HERE and nowhere else, so
+    // that no reader of a flow has to know it exists. `None` — the default
+    // board — touches nothing, and a stock of exactly 0.0 multiplies by exactly
+    // 1.0, which is exact in IEEE 754.
+    for n in w.nations.iter().filter(|n| n.alive) {
+        if let Some(stock) = n.infra_extraction {
+            let f = &mut flow[n.id.index()];
+            for (c, v) in f.iter_mut().enumerate() {
+                if c != OIL {
+                    *v *= 1.0 + stock;
+                }
+            }
+        }
+    }
     for (d, mask) in &t.presence_rows {
         if let Some(cur) = w.districts.get(d) {
             presence[cur.index()] |= mask;
@@ -902,10 +982,15 @@ pub fn have_table(w: &WorldState) -> Have {
 /// before tech and arsenal read it. Rebuilds on an ownership or roster change;
 /// otherwise refreshes the oil column, which moves monthly.
 pub fn tick(w: &mut WorldState) {
+    // The infrastructure stock moves before the ledger is read, and a nation
+    // that holds one forces the rebuild: the raised flows are computed in
+    // `have_table` and there is nowhere else for them to enter.
+    let infra = infrastructure_stock(w);
     let stamp = alive_stamp(w);
     let stale = !w.resource_have.built
         || w.resource_have.epoch != w.districts_epoch
-        || w.resource_have.alive_stamp != stamp;
+        || w.resource_have.alive_stamp != stamp
+        || infra;
     if stale {
         w.resource_have = have_table(w);
     } else {

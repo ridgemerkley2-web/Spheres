@@ -341,6 +341,26 @@ pub struct Nation {
     /// `Some` alone.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub debt_bn: Option<f64>,
+    /// INFRASTRUCTURE'S NAMED ARM, held as a stock: how much a standing
+    /// infrastructure budget has actually raised this nation's non-oil
+    /// extraction, 0..`INFRA_EXTRACTION_CEILING`.
+    ///
+    /// A stock and not a switch, because that is what infrastructure is. A road
+    /// to the mine, a rail spur to the smelter and a working port are built
+    /// over years and are still there the year the budget is cut; the player
+    /// who funds this is buying a position, and the player who stops funding it
+    /// loses that position at the same rate they bought it. `resources::tick`
+    /// walks this toward its target at `INFRA_EXTRACTION_RATE` a month in both
+    /// directions.
+    ///
+    /// `None` while the nation has never enacted a budget, which is every AI
+    /// nation, every older save and the whole default board — and on `None` no
+    /// new arithmetic runs and `have_table` is untouched, so the resource layer
+    /// is bit-identical. Oil is excluded from what this raises: oil is already
+    /// a complete national system with its own price, its own export share and
+    /// its own ledger, and it is not district-located production.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub infra_extraction: Option<f64>,
     /// Oil production, million barrels/day (0 for non-producers)
     pub oil_mbd: f64,
     /// Asset bubble intensity 0..1 (Japan starts hot)

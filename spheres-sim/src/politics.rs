@@ -374,6 +374,11 @@ fn dissolve_ussr(w: &mut WorldState) {
         // which is exactly the state every other nation on the board is in.
         treasury_bn: None,
         debt_bn: None,
+        // A successor state has no roads it built. `None` is the EXPLICIT
+        // rule the design demands rather than an inherited accident: the
+        // stock is a thing a government bought with a budget, and this
+        // government has never enacted one.
+        infra_extraction: None,
         stability: 38.0,
         separatism: 0.20,
         mil_strength: strength * 0.65,
@@ -433,6 +438,11 @@ fn dissolve_ussr(w: &mut WorldState) {
         // which is exactly the state every other nation on the board is in.
         treasury_bn: None,
         debt_bn: None,
+        // A successor state has no roads it built. `None` is the EXPLICIT
+        // rule the design demands rather than an inherited accident: the
+        // stock is a thing a government bought with a budget, and this
+        // government has never enacted one.
+        infra_extraction: None,
         stability: 34.0,
         separatism: 0.35, // Crimea and the Donbas, from the day the flag went up
         mil_strength: strength * 0.15,
@@ -677,6 +687,11 @@ fn dissolve_ussr(w: &mut WorldState) {
             // The books close with the flag. See the note at `dissolve_ussr`.
             treasury_bn: None,
             debt_bn: None,
+            // A successor state has no roads it built. `None` is the EXPLICIT
+            // rule the design demands rather than an inherited accident: the
+            // stock is a thing a government bought with a budget, and this
+            // government has never enacted one.
+            infra_extraction: None,
             stability: r.stab,
             separatism: r.sep,
             mil_strength: strength * r.army,
@@ -1097,6 +1112,11 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             // The books close with the flag. See the note at `dissolve_ussr`.
             treasury_bn: None,
             debt_bn: None,
+            // A successor state has no roads it built. `None` is the EXPLICIT
+            // rule the design demands rather than an inherited accident: the
+            // stock is a thing a government bought with a budget, and this
+            // government has never enacted one.
+            infra_extraction: None,
             stability: stab,
             separatism: sep,
             mil_strength: strength * m,
