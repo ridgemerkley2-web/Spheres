@@ -12,7 +12,17 @@ polygon. Nothing is interpolated, scattered, scored, or ranked.
 python tools/resources/make_resources.py
 python tools/resources/check_resources.py
 python tools/resources/check.py
+python tools/resources/make_resources_1990.py
+python tools/resources/check_resources_1990.py
 ```
+
+`make_resources_1990.py` writes the sim's table, `spheres-sim/data/resources_1990.json`:
+the 1990 national figures keyed by roster code, a location weight per district
+for each producer (the share of the 1990 owner's figure that sits there, by one
+written rule, pruned below 1e-3 and renormalised), presence bits, a presence
+rank, the 1990 population shares, and the one new transcription — a 1990 unit
+value per mined line with its source. `check_resources_1990.py` holds that file
+against the inputs on disk, the roster, and byte-identical regeneration.
 
 `check_resources.py` verifies the committed artifact against its own declared
 rules: roster membership, provenance completeness, the confidence grading, the

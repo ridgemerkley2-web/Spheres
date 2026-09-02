@@ -10,6 +10,7 @@ pub mod exact;
 pub mod init;
 pub mod nations;
 pub mod politics;
+pub mod resources;
 pub mod statecraft;
 pub mod stratagems;
 pub mod tech;
