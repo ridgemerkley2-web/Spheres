@@ -1,0 +1,32 @@
+# Line endings, decided 2026-09-02.
+#
+# THE CONVENTION IS LF, for every JSON file in the tree. Not a style
+# preference — a correctness one, and it was `tools/resources/
+# check_resources_1990.py` failing 2 of 60 that forced the choice.
+#
+# WHY IT BROKE. The 1990 provenance chain hashes file BYTES: the `meta.
+# source_sha256` block of `spheres-sim/data/resources_1990.json` pins the
+# sha256 of four inputs, and the checker re-hashes those four off disk. This
+# repo is checked out with `core.autocrlf=true` and carried no `.gitattributes`
+# at all, so every JSON blob (LF, as git stores it) lands in a Windows worktree
+# as CRLF, and a digest is a digest OF ONE OF THOSE TWO FILES. The recorded
+# block had drifted into holding both conventions at once — LF-blob hashes for
+# district_population.json and districts.json, CRLF-worktree hashes for
+# district_resources.json and transcribed_1990_six_lines.json — so on this
+# machine exactly two of the four could pass and no re-pin of the other two
+# could ever fix it. The same root cause failed CHECK 5's "the committed file
+# uses LF newlines only" and its byte-for-byte regeneration bar.
+#
+# WHY LF AND NOT CRLF. Three reasons, in order of weight. The checker already
+# had a bar demanding LF (`b"\r" not in committed`), so LF is the house
+# convention already written down. Git already stores every one of these files
+# with LF, so this rule changes no blob — only what a checkout writes. And a
+# byte-hash of a transcribed data file is a claim about the DATA (iron rule 4);
+# it must not depend on which OS checked it out, or the nightly Linux run and
+# the Windows session will disagree forever about provenance that never moved.
+#
+# Scope is `*.json` because every JSON here is transcribed data or a generated
+# artifact — 148 of them, the 137 nation records included — and the provenance
+# rule should hold for all of them, not only the four that happened to be
+# hashed today.
+*.json text eol=lf
