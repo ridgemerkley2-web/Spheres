@@ -2655,7 +2655,7 @@ function ledgerOf(n, tax, social, mil, invest) {
 const MINISTRIES = [
   { id:"health", art:"✚", name:"Health", affects:"jobs · productivity · population", story:"hospitals and public health", cap:.15 },
   { id:"education", art:"▤", name:"Education", affects:"research · jobs · growth", story:"schools and skilled workers", cap:.12 },
-  { id:"families", art:"⌂", name:"Families", affects:"demand · trust · births", story:"children and household support", cap:.15 },
+  { id:"housing", art:"⌂", name:"Housing", affects:"demand · trust · births", story:"homes and household support", cap:.15 },
   { id:"pensions", art:"◷", name:"Pensions", affects:"demand · trust · deficit", story:"income after working life", cap:.20 },
   { id:"infrastructure", art:"▥", name:"Infrastructure", affects:"growth · jobs · investment", story:"roads, ports and power grids", cap:.15 },
   { id:"industry", art:"⚙", name:"Industry & energy", affects:"growth · firms · resilience", story:"factories and energy systems", cap:.12 },
@@ -2675,7 +2675,7 @@ function annualBudgetOf(m) {
 }
 
 function annualTotal(b) { return MINISTRIES.reduce((sum, spec) => sum + b[spec.id], 0); }
-function annualSocial(b) { return b.health + b.education + b.families + b.pensions + b.security + b.diplomacy; }
+function annualSocial(b) { return b.health + b.education + b.housing + b.pensions + b.security + b.diplomacy; }
 function annualInvest(b) { return b.infrastructure + b.industry + b.science; }
 
 function annualPoliticalCost(m, b) {

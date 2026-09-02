@@ -172,7 +172,7 @@ pub enum EconomySystem {
 pub const BUDGET_MINISTRIES: usize = 10;
 pub const BUDGET_HEALTH: usize = 0;
 pub const BUDGET_EDUCATION: usize = 1;
-pub const BUDGET_FAMILIES: usize = 2;
+pub const BUDGET_HOUSING: usize = 2;
 pub const BUDGET_PENSIONS: usize = 3;
 pub const BUDGET_INFRASTRUCTURE: usize = 4;
 pub const BUDGET_INDUSTRY: usize = 5;
@@ -183,7 +183,7 @@ pub const BUDGET_DIPLOMACY: usize = 9;
 pub const BUDGET_CAPS: [f64; BUDGET_MINISTRIES] = [
     0.15, // health
     0.12, // education
-    0.15, // families
+    0.15, // housing
     0.20, // pensions
     0.15, // infrastructure
     0.12, // industry and energy
@@ -230,7 +230,7 @@ impl AnnualBudget {
         [
             BUDGET_HEALTH,
             BUDGET_EDUCATION,
-            BUDGET_FAMILIES,
+            BUDGET_HOUSING,
             BUDGET_PENSIONS,
             BUDGET_SECURITY,
             BUDGET_DIPLOMACY,

@@ -794,7 +794,7 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
             "due": n.annual_budget.as_ref().is_none_or(|x| x.fiscal_year != w.year),
             "health": b.allocations[BUDGET_HEALTH],
             "education": b.allocations[BUDGET_EDUCATION],
-            "families": b.allocations[BUDGET_FAMILIES],
+            "housing": b.allocations[BUDGET_HOUSING],
             "pensions": b.allocations[BUDGET_PENSIONS],
             "infrastructure": b.allocations[BUDGET_INFRASTRUCTURE],
             "industry": b.allocations[BUDGET_INDUSTRY],
@@ -2714,7 +2714,7 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             allocations: [
                 v.get("health")?.as_f64()?,
                 v.get("education")?.as_f64()?,
-                v.get("families")?.as_f64()?,
+                v.get("housing")?.as_f64()?,
                 v.get("pensions")?.as_f64()?,
                 v.get("infrastructure")?.as_f64()?,
                 v.get("industry")?.as_f64()?,
@@ -4575,7 +4575,7 @@ mod tests {
         g.world.nation_mut(NationId::USA).political_capital = 100.0;
         let posted = serde_json::json!({
             "kind": "annual_budget", "fiscal_year": 1990,
-            "health": 0.055, "education": 0.040, "families": 0.045,
+            "health": 0.055, "education": 0.040, "housing": 0.045,
             "pensions": 0.060, "infrastructure": 0.025, "industry": 0.015,
             "science": 0.010, "defense": 0.050, "security": 0.015,
             "diplomacy": 0.005
@@ -4598,7 +4598,7 @@ mod tests {
 
         assert!(INDEX.contains("sliderHtml(\"rate\""));
         assert!(INDEX.contains("sliderHtml(\"tax\""));
-        for ministry in ["health", "education", "families", "pensions", "infrastructure",
+        for ministry in ["health", "education", "housing", "pensions", "infrastructure",
                          "industry", "science", "defense", "security", "diplomacy"] {
             assert!(INDEX.contains(&format!("id:\"{}\"", ministry)), "{} has no dial", ministry);
         }

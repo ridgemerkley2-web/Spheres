@@ -609,7 +609,7 @@ pub fn growth_terms(
     let mut demand_gap = (neutral - real_rate) * 0.55; // easy money -> above potential
     demand_gap += (n.social_spend() - n.baseline_social_spend()) * 0.15;
     demand_gap += budget_gap[BUDGET_HEALTH] * 0.06
-        + budget_gap[BUDGET_FAMILIES] * 0.28
+        + budget_gap[BUDGET_HOUSING] * 0.28
         + budget_gap[BUDGET_PENSIONS] * 0.18;
     // ...but only while there is a rate left to cut and somebody willing to
     // borrow. Pushing on a string: Japan ran the policy rate at zero for two
@@ -1250,7 +1250,7 @@ pub fn tick(w: &mut WorldState) {
 
         // ---- Population ----
         let demographic_support = budget_gap[BUDGET_HEALTH] * 0.030
-            + budget_gap[BUDGET_FAMILIES] * 0.015;
+            + budget_gap[BUDGET_HOUSING] * 0.015;
         n.population *= 1.0 + (population_growth(n) + demographic_support) / 12.0;
 
         // ---- Stability ----
@@ -1263,7 +1263,7 @@ pub fn tick(w: &mut WorldState) {
         ds += social_gap * 12.0;
         ds += budget_gap[BUDGET_HEALTH] * 8.0
             + budget_gap[BUDGET_EDUCATION] * 5.0
-            + budget_gap[BUDGET_FAMILIES] * 14.0
+            + budget_gap[BUDGET_HOUSING] * 14.0
             + budget_gap[BUDGET_PENSIONS] * 12.0
             + budget_gap[BUDGET_SECURITY] * 16.0
             + budget_gap[BUDGET_DIPLOMACY] * 3.0;
@@ -1297,7 +1297,7 @@ pub fn tick(w: &mut WorldState) {
             } else {
                 n.separatism = (n.separatism - 0.002).max(0.0);
             }
-            let cohesion = (budget_gap[BUDGET_FAMILIES].max(0.0)
+            let cohesion = (budget_gap[BUDGET_HOUSING].max(0.0)
                 + budget_gap[BUDGET_SECURITY].max(0.0))
                 * 0.04;
             n.separatism = (n.separatism - cohesion).max(0.0);
