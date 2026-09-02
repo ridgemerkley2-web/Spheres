@@ -585,6 +585,28 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
                 n.mil_spend_gdp = defense;
             }
             n.annual_budget = Some(plan);
+            // THE BOOKS OPEN HERE, and only here. `annual_budget` is a player
+            // command, so seating the treasury on the first one keeps money as
+            // a player-only surface exactly as the ministry channels are (the
+            // design's point 5), and leaves every AI nation and the whole
+            // default board on the ratio arithmetic they already ran.
+            //
+            // Both stocks are seated together or neither is, which is what
+            // `Nation::on_the_books` relies on. `debt_bn` comes from the two
+            // numbers the nation already carries, so the ratio does not move on
+            // the month the books open; the till comes from the transcribed
+            // 1990 reserve when one could be sourced, and from 0.0 when it
+            // could not. A nation whose reserve was refused for want of a
+            // source therefore starts with an empty till rather than an
+            // invented one (iron rule 4), which is stated in `data::
+            // reserves_1990_bn` and reported in docs/.
+            //
+            // `is_none` and not `unwrap_or`: a government that has already
+            // opened its books does not get a fresh reserve every budget.
+            if !n.on_the_books() {
+                n.debt_bn = Some(n.debt_gdp * n.gdp);
+                n.treasury_bn = Some(crate::data::reserves_1990_bn(*nation).unwrap_or(0.0));
+            }
         }
         Command::SetResearchFocus { nation, domain, tech: want } => {
             let di = domain.index();
@@ -3396,6 +3418,25 @@ mod tests {
     /// social_spend_gdp flipped None -> Some for 137/137. Against the
     /// UNTOUCHED world: `to_bits` equality on all three aggregates, and
     /// save() equality apart from `annual_budget` itself.
+    ///
+    /// RE-EXPRESSED, NOT WIDENED, 2026-09-02 when the treasury landed. The same
+    /// command now also opens the nation's books, so the save legitimately
+    /// gains `treasury_bn` and `debt_bn` beside `annual_budget` -- three fields
+    /// the command is commissioned to seat, against a claim about everything
+    /// else. Excluding them without saying what they hold would be a widening,
+    /// so the bar is TIGHTENED in the same pass to say it: `debt_gdp` itself
+    /// must not move by a bit, `debt_bn` must be exactly `debt_gdp * gdp` off
+    /// the untouched world, and `treasury_bn` must be exactly the transcribed
+    /// 1990 reserve or exactly 0.0 where none could be sourced. So the test now
+    /// proves what it always proved AND that seating the treasury introduced no
+    /// number that was not already in the world.
+    ///
+    /// RED CHECK on the tightened half, run 2026-09-02 and reverted. The
+    /// seeding line's fallback was moved from `unwrap_or(0.0)` to
+    /// `unwrap_or(1.0)` — a nation whose reserve could not be sourced starting
+    /// with $1bn it was never handed. RED: "Soviet Union's till is not its
+    /// transcribed 1990 reserve", which is precisely the invented starting
+    /// figure iron rule 4 refuses, caught at the first nation without one.
     #[test]
     fn enacting_the_inherited_budget_unchanged_is_a_no_op() {
         let untouched = world_1990(GameRules::default());
@@ -3424,6 +3465,27 @@ mod tests {
             if was.social_spend_gdp.is_none() && now.social_spend_gdp.is_some() {
                 flipped.push(id.name());
             }
+            // The books opened, and they opened on numbers the world already
+            // held. Nothing here is derived from the plan.
+            assert!(now.on_the_books(), "{} did not open its books", id.name());
+            assert_eq!(
+                was.debt_gdp.to_bits(),
+                now.debt_gdp.to_bits(),
+                "{} moved its debt ratio by seating a treasury",
+                id.name()
+            );
+            assert_eq!(
+                now.debt_bn.unwrap().to_bits(),
+                (was.debt_gdp * was.gdp).to_bits(),
+                "{}'s debt stock is not its own ratio times its own output",
+                id.name()
+            );
+            assert_eq!(
+                now.treasury_bn.unwrap().to_bits(),
+                crate::data::reserves_1990_bn(*id).unwrap_or(0.0).to_bits(),
+                "{}'s till is not its transcribed 1990 reserve",
+                id.name()
+            );
         }
         assert!(
             social_moved.is_empty() && invest_moved.is_empty() && mil_moved.is_empty() && flipped.is_empty(),
@@ -3434,11 +3496,16 @@ mod tests {
             flipped.len()
         );
 
-        // The save agrees apart from the plan itself now being on the books.
+        // The save agrees apart from the three things the command seats: the
+        // plan itself, and the two stocks the assertions above have just proved
+        // are the world's own numbers rearranged.
         fn without_plans(w: &WorldState) -> serde_json::Value {
             let mut v: serde_json::Value = serde_json::from_str(&save(w)).unwrap();
             for n in v["nations"].as_array_mut().unwrap() {
-                n.as_object_mut().unwrap().remove("annual_budget");
+                let o = n.as_object_mut().unwrap();
+                o.remove("annual_budget");
+                o.remove("treasury_bn");
+                o.remove("debt_bn");
             }
             v
         }
@@ -3451,7 +3518,7 @@ mod tests {
                     differing.push(format!("{} {keys:?}", na["id"]));
                 }
             }
-            panic!("the save moved apart from annual_budget: {differing:?}");
+            panic!("the save moved apart from annual_budget and the two stocks: {differing:?}");
         }
     }
 

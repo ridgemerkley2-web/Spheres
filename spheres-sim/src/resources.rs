@@ -1004,12 +1004,20 @@ fn deliver_contracts(w: &mut WorldState) {
 
 /// One month of a money leg: `bn/12` of a year's money against each side's
 /// output, the payer's debt up, the payee's down and floored at zero.
+///
+/// Both sides now go through `economy::charge`, which is the ONE money-leg
+/// helper. The ratios handed to it are character for character the ones this
+/// function computed for itself, so a world with the books closed -- which is
+/// every world this suite runs -- is bit-identical. What the helper adds is the
+/// other arm: for a nation keeping a treasury the SAME `bn` leaves the payer
+/// and reaches the payee, so the leg conserves in dollars instead of moving two
+/// unrelated ratios.
 fn settle(w: &mut WorldState, payer: NationId, payee: NationId, bn_per_year: f64) {
+    let bn = bn_per_year / 12.0;
     let g = w.nation(payer).gdp.max(0.1);
-    w.nation_mut(payer).debt_gdp += bn_per_year / 12.0 / g;
+    crate::economy::charge(w, payer, bn, bn_per_year / 12.0 / g);
     let g = w.nation(payee).gdp.max(0.1);
-    let n = w.nation_mut(payee);
-    n.debt_gdp = (n.debt_gdp - bn_per_year / 12.0 / g).max(0.0);
+    crate::economy::charge(w, payee, -bn, -(bn_per_year / 12.0 / g));
 }
 
 /// Offers past their month are gone (spec section 4.8), and the lapse is
@@ -4261,8 +4269,8 @@ mod tests {
     /// allows. Outside its tests this module never names the RNG, growth,
     /// productivity, munitions, strength, or writes to output, oil, stability
     /// or population; its only reach into another nation's books is
-    /// `debt_gdp` at delivery, the relation at signing and cancellation and
-    /// the reputation at cancellation. The consent slices of people, output,
+    /// one `economy::charge` per side at delivery, the relation at signing and
+    /// cancellation and the reputation at cancellation. The consent slices of people, output,
     /// oil, stability and separatism live in `districts::transfer_district`
     /// and nowhere else.
     #[test]
@@ -4304,7 +4312,25 @@ mod tests {
         assert_eq!(body.matches("shift_relation(").count(), 2, "signing and cancelling");
         assert_eq!(body.matches("shift_reputation(").count(), 1, "cancelling");
         assert!(body.contains("SIGN_RELATION") && body.contains("CANCEL_RELATION") && body.contains("CANCEL_REPUTATION"));
-        assert_eq!(body.matches("debt_gdp").count(), 3, "one settle: the payer up, the payee down, floored");
+        // RE-EXPRESSED, NOT WIDENED, when the treasury landed (2026-09-02).
+        // RED CHECK, run the same day and reverted: a bare `direct_debt_gdp`
+        // binding was added to `settle`, standing for any reintroduction of a
+        // direct reach into a nation's finances. RED: "resources.rs reaches a
+        // nation's debt directly".
+        // The bar said "one settle: the payer up, the payee down, floored" and
+        // counted three appearances of `debt_gdp`, which was the only way this
+        // module could reach a nation's finances at the time. It reaches them
+        // through `economy::charge` now, so the same claim is made against the
+        // same two legs and TIGHTENED: this module may no longer name the field
+        // at all, and the two calls are the whole of its reach.
+        assert!(!body.contains("debt_gdp"), "resources.rs reaches a nation's debt directly");
+        assert!(!body.contains("treasury_bn") && !body.contains("debt_bn"),
+            "resources.rs reaches a nation's treasury directly");
+        assert_eq!(
+            body.matches("economy::charge(").count(),
+            2,
+            "one settle: the payer charged, the payee credited"
+        );
         let districts = include_str!("districts.rs");
         assert_eq!(districts.matches("pub fn transfer_district").count(), 1);
         let transfer = districts.split("pub fn transfer_district").nth(1).unwrap().split("\n}\n").next().unwrap();

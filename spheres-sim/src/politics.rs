@@ -341,6 +341,16 @@ fn dissolve_ussr(w: &mut WorldState) {
         trade_level_paid: None,
         capital_level_paid: inherited_capital,
         state_invest_1990: None,
+        // THE BOOKS CLOSE WITH THE FLAG, and this is a rule rather than a
+        // default. `debt_gdp` at this site is an authored successor figure --
+        // 0.35 for Russia against the union's 0.45, 0.15 for Ukraine because
+        // of the 1994 zero option -- and NOT a share of the parent's dollar
+        // debt, so carrying the parent's stock across would contradict the
+        // ratio typed beside it. `None` says the successor's finances are the
+        // ratio and nothing else until its own government opens its books,
+        // which is exactly the state every other nation on the board is in.
+        treasury_bn: None,
+        debt_bn: None,
         stability: 38.0,
         separatism: 0.20,
         mil_strength: strength * 0.65,
@@ -390,6 +400,16 @@ fn dissolve_ussr(w: &mut WorldState) {
         trade_level_paid: None,
         capital_level_paid: inherited_capital,
         state_invest_1990: None,
+        // THE BOOKS CLOSE WITH THE FLAG, and this is a rule rather than a
+        // default. `debt_gdp` at this site is an authored successor figure --
+        // 0.35 for Russia against the union's 0.45, 0.15 for Ukraine because
+        // of the 1994 zero option -- and NOT a share of the parent's dollar
+        // debt, so carrying the parent's stock across would contradict the
+        // ratio typed beside it. `None` says the successor's finances are the
+        // ratio and nothing else until its own government opens its books,
+        // which is exactly the state every other nation on the board is in.
+        treasury_bn: None,
+        debt_bn: None,
         stability: 34.0,
         separatism: 0.35, // Crimea and the Donbas, from the day the flag went up
         mil_strength: strength * 0.15,
@@ -631,6 +651,9 @@ fn dissolve_ussr(w: &mut WorldState) {
             trade_level_paid: None,
             capital_level_paid: inherited_capital,
             state_invest_1990: None,
+            // The books close with the flag. See the note at `dissolve_ussr`.
+            treasury_bn: None,
+            debt_bn: None,
             stability: r.stab,
             separatism: r.sep,
             mil_strength: strength * r.army,
@@ -1048,6 +1071,9 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             trade_level_paid: None,
             capital_level_paid: inherited_capital,
             state_invest_1990: None,
+            // The books close with the flag. See the note at `dissolve_ussr`.
+            treasury_bn: None,
+            debt_bn: None,
             stability: stab,
             separatism: sep,
             mil_strength: strength * m,

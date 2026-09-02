@@ -306,8 +306,41 @@ pub struct Nation {
     /// the calibrated legacy envelopes until somebody opens the books.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub annual_budget: Option<AnnualBudget>,
-    /// Public debt as share of GDP
+    /// Public debt as share of GDP.
+    ///
+    /// STILL THE SINGLE SOURCE OF TRUTH for every reader of it — the AI fiscal
+    /// rule in politics.rs, the war-appetite term in dyads.rs, the two
+    /// stratagems, the browser's ledger. Nothing reads the two stocks below
+    /// instead. What changes when a nation opens its books is only WHO WRITES
+    /// this field: on the `None` path the fiscal block in economy.rs pushes a
+    /// ratio into it exactly as it always has; on the `Some` path that block
+    /// becomes its only writer and sets it to `debt_bn / gdp` at the end of
+    /// the month.
     pub debt_gdp: f64,
+    /// THE TREASURY, in billions of 1990 dollars — money the state actually
+    /// holds, not a ratio it carries.
+    ///
+    /// `None` is every world that has not opened its books, which is every AI
+    /// nation, every save written before this existed, and the whole default
+    /// board. On `None` NO NEW ARITHMETIC RUNS: the fiscal block takes the
+    /// branch it always took and `economy::charge` performs the caller's own
+    /// pre-treasury line, so the default path is bit-identical rather than
+    /// approximately unchanged. That claim is asserted by
+    /// `the_treasury_is_inert_while_the_books_are_closed`.
+    ///
+    /// Seeded once, by the first `Command::SetAnnualBudget` a nation issues:
+    /// `debt_bn` from `debt_gdp * gdp`, and this from the transcribed 1990
+    /// reserve when the nation has one (`data::reserves_1990_bn`) and 0.0
+    /// when it does not. A reserve that could not be sourced is left out
+    /// rather than estimated (iron rule 4), so 0.0 here means "no figure",
+    /// not "no money".
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub treasury_bn: Option<f64>,
+    /// Public debt in billions of 1990 dollars. `None` and `Some` exactly as
+    /// `treasury_bn` above; the two are seeded together and neither is ever
+    /// `Some` alone.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub debt_bn: Option<f64>,
     /// Oil production, million barrels/day (0 for non-producers)
     pub oil_mbd: f64,
     /// Asset bubble intensity 0..1 (Japan starts hot)
@@ -430,6 +463,24 @@ impl Nation {
 
     pub fn budget_gap(&self, ministry: usize) -> f64 {
         self.annual_budget.as_ref().map(|b| b.gap(ministry)).unwrap_or(0.0)
+    }
+
+    /// Whether this nation keeps a treasury in dollars rather than a debt
+    /// ratio. Both stocks are seeded together, so one predicate answers for
+    /// both and a half-seeded nation reads as closed.
+    pub fn on_the_books(&self) -> bool {
+        self.treasury_bn.is_some() && self.debt_bn.is_some()
+    }
+
+    /// What the state is worth: cash held less debt owed, in billions of 1990
+    /// dollars. Negative is the ordinary case and positive is a net creditor,
+    /// which the pre-treasury `debt_gdp.max(0.0)` floor could not represent at
+    /// all. `None` while the books are closed.
+    pub fn net_position_bn(&self) -> Option<f64> {
+        match (self.treasury_bn, self.debt_bn) {
+            (Some(t), Some(d)) => Some(t - d),
+            _ => None,
+        }
     }
 }
 

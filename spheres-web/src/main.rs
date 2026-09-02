@@ -829,6 +829,23 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "priv_invest": n.priv_invest_gdp,
         "tfp": n.tfp_trend,
         "debt": n.debt_gdp,
+        // THE TREASURY, and the reason it is served as five keys rather than
+        // recomputed in JavaScript: the sim owns the one definition of what a
+        // state is paying, so the ledger and the budget card cannot disagree
+        // about it (the same argument `GrowthTerms` carries). `treasury` and
+        // `debt_bn` are null while a nation's books are closed, which is every
+        // AI nation and every nation before the player enacts a budget;
+        // `interest_gdp` is 0.0 there, because "this nation does not model debt
+        // service" is what a caller adding it to something needs to read.
+        "treasury": n.treasury_bn,
+        "debt_bn": n.debt_bn,
+        "net_position_bn": n.net_position_bn(),
+        "interest_gdp": spheres_sim::economy::interest_gdp(n),
+        "effective_rate": spheres_sim::economy::effective_interest_rate(
+            n.interest_rate,
+            n.inflation,
+            n.debt_gdp,
+        ),
         "stability": n.stability,
         "political_capital": n.political_capital,
         "separatism": n.separatism,

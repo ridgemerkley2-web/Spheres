@@ -6048,8 +6048,10 @@ pub fn secure_pillar(w: &mut WorldState, id: NationId, pillar: Pillar) -> Result
     // because the baseline it measures against had been inflated. Standing
     // budgets are what `SetMilSpend` is for, and the army's loyalty already
     // reads that budget; this command is the envelope on top of it.
-    let n = w.nation_mut(id);
-    n.debt_gdp += 0.008;
+    // 0.008 of output is the pre-treasury line unchanged; the dollars beside
+    // it are the same money, for a nation that keeps a treasury.
+    let envelope_bn = w.nation(id).gdp * 0.008;
+    crate::economy::charge(w, id, envelope_bn, 0.008);
     w.headline(format!("{} buys the loyalty of {}.", id.name(), name));
     Ok(())
 }

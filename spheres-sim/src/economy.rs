@@ -199,6 +199,181 @@ impl Conditions {
     }
 }
 
+// ---------------------------------------------------------------------------
+// THE TREASURY
+//
+// Money as a stock rather than a ratio. Two `Option<f64>` fields on `Nation`
+// hold billions of 1990 dollars; `None` is the pre-treasury world and runs the
+// arithmetic it always ran, to the bit. Everything in this section is dead code
+// on the default board and is asserted to be, by
+// `the_treasury_is_inert_while_the_books_are_closed`.
+// ---------------------------------------------------------------------------
+
+/// The floor under the REAL policy rate a government pays on its own debt.
+///
+/// INVENTED, and carried across from the design unchanged. A government can
+/// borrow at a negative real rate -- most of the roster did in the 1970s and
+/// several did again after 2010 -- but not without limit, because at some
+/// negative real return the lender buys goods instead. -2%/yr is a bound rather
+/// than a calibration: nothing the shipped board produces sits near it, and it
+/// is here so that interest is provably bounded below rather than bounded by
+/// inspection.
+const REAL_RATE_FLOOR: f64 = -0.02;
+
+/// Where the sovereign spread starts, as a debt-to-output ratio.
+///
+/// INVENTED. Two measurements pinned it. The roster's own MEDIAN 1990 debt
+/// ratio is 0.52 -- measured across all 137 files in `data/nations/`, mean
+/// 0.642, min 0.00 (Brunei), max 3.80 (Nicaragua) -- so a knee at 0.60 leaves
+/// the median borrower paying exactly its own policy rate and charges nothing
+/// at all to the half of the world below it, which is the design's requirement
+/// that a nation at the 1990 median pay close to the policy rate. And 0.60 is
+/// the SAME line `dyads.rs` already draws for fiscal desperation in the
+/// war-appetite term, `(debt_gdp - 0.6).max(0.0) * 1.5`: the point at which the
+/// bond market starts charging a premium is the point at which a government
+/// starts behaving as though it is short of money. One line, not two.
+const SPREAD_KNEE: f64 = 0.60;
+
+/// How fast the spread widens past the knee, in rate per unit of debt ratio.
+///
+/// INVENTED. Sized off the one endpoint the design names: a nation at 90% of
+/// output "pays a visible premium". At 0.06 that premium is 1.80 percentage
+/// points -- visible against policy rates the roster carries between 2.9% and
+/// 25%, large enough to be worth consolidating away, and far short of the
+/// several hundred basis points that mean a market thinks it will not be paid.
+const SPREAD_SLOPE: f64 = 0.06;
+
+/// The most the spread can ever add, whatever the debt ratio.
+///
+/// INVENTED, and a guard rather than a calibration -- the thing that stops a
+/// spiral. Interest is the one term in this model that feeds its own input:
+/// more debt buys a wider spread buys more interest buys more debt. Uncapped,
+/// that recursion has no fixed point and the `debt_gdp < 6.0` invariant
+/// asserted in four places in lib.rs would eventually be a coin toss. At 6
+/// percentage points the cap binds from a debt ratio of 1.60 upward, so every
+/// borrower on the shipped board sits on the sloped part of the curve and only
+/// a state already past 160% of output ever meets the ceiling.
+const SPREAD_CAP: f64 = 0.06;
+
+/// What a government actually pays on its debt, as an annual rate.
+///
+/// RIDGE'S AMENDMENT, 2026-09-02: the rate is not flat. It is the real policy
+/// rate plus a sovereign spread that RISES with the debt ratio, so borrowing
+/// gets dearer the more of it a state has already done. All three coefficients
+/// are invented and each is labelled above with what it does.
+///
+/// MEASURED on this definition at a 5% policy rate against 3% inflation, so the
+/// real rate is 2.00% and the spread is the whole of the difference:
+///     debt  30% of GDP -> 2.00%/yr  (+0.00pp; below the knee)
+///     debt  60% of GDP -> 2.00%/yr  (+0.00pp; exactly at the knee)
+///     debt  90% of GDP -> 3.80%/yr  (+1.80pp)
+///     debt 150% of GDP -> 7.40%/yr  (+5.40pp)
+///     debt 160% of GDP -> 8.00%/yr  (+6.00pp, the cap, and flat above it)
+pub fn effective_interest_rate(policy_rate: f64, inflation: f64, debt_gdp: f64) -> f64 {
+    let real = (policy_rate - inflation).max(REAL_RATE_FLOOR);
+    let spread = ((debt_gdp - SPREAD_KNEE).max(0.0) * SPREAD_SLOPE).min(SPREAD_CAP);
+    real + spread
+}
+
+/// Debt service, annualised and expressed as a share of output.
+///
+/// THE ONE DEFINITION, for the same reason `GrowthTerms` is the one definition
+/// of a growth rate: the ledger, the interest row on the budget card and any
+/// future growth arm all read this, so they cannot disagree about what the
+/// state is paying. `interest_bn * 12 / gdp` reduces to `debt_bn * rate / gdp`,
+/// which is what is written.
+///
+/// Zero while the books are closed, which is what "this nation does not model
+/// debt service" must mean to a caller that adds it to something.
+pub fn interest_gdp(n: &Nation) -> f64 {
+    match n.debt_bn {
+        Some(debt) => {
+            debt * effective_interest_rate(n.interest_rate, n.inflation, n.debt_gdp)
+                / n.gdp.max(0.1)
+        }
+        None => 0.0,
+    }
+}
+
+/// Move `bn` billions out of a nation's finances, and say where it came from.
+///
+/// Out: the till first, and a till that would go negative issues debt for the
+/// remainder -- the design's rule verbatim. In (a negative `bn`): debt is
+/// retired first and only the surplus accumulates. The second half is not
+/// decoration. `debt_gdp` is still what `politics.rs` consolidates against and
+/// what `dyads.rs` reads for desperation, so a state that runs surpluses has to
+/// be able to get its ratio DOWN; if income only ever piled up in the till,
+/// debt would be monotonic and consolidation would be unreachable.
+///
+/// Debt cannot go negative here -- a surplus past the last bond becomes cash --
+/// so `debt_gdp` stays non-negative and the browser's floor
+/// (`a_nation_with_no_debt_is_not_shown_paying_it_down`) still holds unmoved. A
+/// NET creditor is representable through `Nation::net_position_bn`, which is
+/// where the design puts it, rather than through a negative ratio.
+fn pay(treasury: f64, debt: f64, bn: f64) -> (f64, f64) {
+    if bn >= 0.0 {
+        let after = treasury - bn;
+        if after < 0.0 {
+            (0.0, debt - after)
+        } else {
+            (after, debt)
+        }
+    } else {
+        let inflow = -bn;
+        let repaid = inflow.min(debt);
+        (treasury + (inflow - repaid), debt - repaid)
+    }
+}
+
+/// ONE MONEY LEG out of one nation's finances, and the single helper the five
+/// hand-rolled ratio pushers now go through: `resources::settle` (both sides),
+/// the pact upkeep and the aid and covert legs in `statecraft.rs`, and the
+/// patronage payment in `government.rs`.
+///
+/// TWO REPRESENTATIONS OF THE SAME MONEY, and neither may be derived from the
+/// other. `share` is EXACTLY the number the caller's pre-treasury line pushed
+/// into `debt_gdp`, and is what the `None` arm writes -- so the default board
+/// is bit-identical rather than nearly so. Recomputing it as `bn / gdp` would
+/// be a rounding away from the shipped timeline at every one of those five
+/// sites, because `(share * gdp) / gdp` is not `share` in binary floating
+/// point. `bn` is the dollars, and is what the `Some` arm moves.
+///
+/// The two arms are also where a real defect is repaired, and the defect is not
+/// quite the one the design names. A money leg was divided by the PAYER's
+/// output going out and by the PAYEE's coming in, which LOOKS like a leak and
+/// is not: multiply each side's ratio move back by its own output and the same
+/// `bn` comes out of both. Measured, and the mutation that would have proved
+/// otherwise was run and left the conservation bar green.
+///
+/// THE LEAK IS THE FLOOR. `settle`'s payee line ended `.max(0.0)`, so a receipt
+/// larger than the payee's debt DESTROYED the remainder: $10bn paid to Kuwait,
+/// which owes $1.8bn, retired the debt and annihilated $8.2bn. That is money
+/// leaving one state's books and reaching nobody, and it is what
+/// `a_money_leg_between_unequal_economies_conserves` is pointed at. On the
+/// `Some` arm `pay` retires the debt and keeps the remainder as cash, so the
+/// pair conserves.
+///
+/// The `.max(0.0)` on the `None` arm is the floor `settle`'s payee line already
+/// carried, and it is inert at the other four sites: their `share` is positive
+/// and `debt_gdp` is non-negative by the fiscal block's own floor, so the
+/// clamp never binds and never changes a bit.
+///
+/// A negative `bn`/`share` is a receipt.
+pub fn charge(w: &mut WorldState, id: NationId, bn: f64, share: f64) {
+    let n = w.nation_mut(id);
+    match (n.treasury_bn, n.debt_bn) {
+        (Some(treasury), Some(debt)) => {
+            let (treasury, debt) = pay(treasury, debt, bn);
+            n.treasury_bn = Some(treasury);
+            n.debt_bn = Some(debt);
+            n.debt_gdp = debt / n.gdp.max(0.1);
+        }
+        _ => {
+            n.debt_gdp = (n.debt_gdp + share).max(0.0);
+        }
+    }
+}
+
 /// Every term of one nation's annual growth rate, and the price impulse that
 /// travels with it.
 ///
@@ -1032,11 +1207,46 @@ pub fn tick(w: &mut WorldState) {
         // ---- Budget & debt ----
         let revenue_gdp = n.tax_rate + terms.budget_oil_revenue;
         let spend_gdp = terms.social_spend + n.mil_spend_gdp + n.state_invest_gdp;
-        let deficit_gdp = spend_gdp - revenue_gdp;
-        // Debt ratio: adds deficit, erodes with growth+inflation
-        n.debt_gdp += deficit_gdp / 12.0;
-        n.debt_gdp /= 1.0 + (growth_annual + n.inflation) / 12.0;
-        n.debt_gdp = n.debt_gdp.max(0.0);
+        match (n.treasury_bn, n.debt_bn) {
+            // THE BOOKS ARE OPEN. The two stocks are the state's finances and
+            // this block is their only writer, `debt_gdp` becoming their
+            // quotient at the end of the month rather than a thing pushed
+            // around by a dozen callers.
+            //
+            // TWO LINES ARE DELIBERATELY ABSENT and their absence is the point.
+            // The growth+inflation renormalisation is gone because a stock of
+            // dollars does not erode when output grows -- the RATIO falls, and
+            // it falls out of the division below, which is the same statement
+            // made once instead of twice. The `.max(0.0)` floor is gone because
+            // `pay` cannot drive debt negative anyway, and because a state that
+            // is owed money is now a positive `net_position_bn` rather than an
+            // impossible negative ratio.
+            //
+            // Interest is charged at the escalating rate (Ridge's amendment,
+            // 2026-09-02) against the debt ratio as the month FOUND it, before
+            // this month's borrowing, so a month cannot charge itself a premium
+            // for the debt it is about to issue.
+            (Some(treasury), Some(debt)) => {
+                let revenue_bn = revenue_gdp * n.gdp / 12.0;
+                let spend_bn = spend_gdp * n.gdp / 12.0;
+                let interest_bn =
+                    debt * effective_interest_rate(n.interest_rate, n.inflation, n.debt_gdp)
+                        / 12.0;
+                let (treasury, debt) = pay(treasury, debt, spend_bn + interest_bn - revenue_bn);
+                n.treasury_bn = Some(treasury);
+                n.debt_bn = Some(debt);
+                n.debt_gdp = debt / n.gdp.max(0.1);
+            }
+            // THE BOOKS ARE CLOSED, which is every AI nation and the whole
+            // default board. Not one new multiplication happens here.
+            _ => {
+                let deficit_gdp = spend_gdp - revenue_gdp;
+                // Debt ratio: adds deficit, erodes with growth+inflation
+                n.debt_gdp += deficit_gdp / 12.0;
+                n.debt_gdp /= 1.0 + (growth_annual + n.inflation) / 12.0;
+                n.debt_gdp = n.debt_gdp.max(0.0);
+            }
+        }
 
         // ---- Population ----
         let demographic_support = budget_gap[BUDGET_HEALTH] * 0.030

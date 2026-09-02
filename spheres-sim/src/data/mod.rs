@@ -245,6 +245,43 @@ pub struct EconomyRecord {
     /// exactly the kind of fact that belongs with the nation it describes.
     #[serde(default)]
     pub bubble: f64,
+    /// WHAT THE STATE HELD IN THE BANK on 1 January 1990, in billions of
+    /// current US dollars: total reserves including gold.
+    ///
+    /// Appended last so that every existing key in every existing nation file
+    /// keeps the position it has always had, and a diff of one of those files
+    /// shows an addition and nothing else.
+    ///
+    /// THE OBSERVATION IS THE 1989 ONE, and deliberately. A reserve is a STOCK,
+    /// and the stock on the morning of 1 January 1990 is the end-1989 figure;
+    /// the 1990 observation is where the reserve ended up after a year this
+    /// simulation is meant to PRODUCE. That is the same reasoning
+    /// `pop_growth_1990` above sets out for ending its window on 31 December
+    /// 1989, and for the same reason: no window ending on the eve of the start
+    /// date can contain events the game has not played yet.
+    ///
+    /// `Option`, and absent is a REFUSAL rather than a zero (iron rule 4).
+    /// Two kinds of absence, and they are different claims:
+    ///   - SEVENTEEN nations have no observation in the series at all, so no
+    ///     figure could be sourced. Albania, Angola, Brunei, Bulgaria,
+    ///     Cambodia, Cuba, Czechoslovakia, Iran, Mongolia, North Korea, Sao
+    ///     Tome, Senegal, Taiwan, the USSR, Vietnam, Yemen and Yugoslavia.
+    ///     Taiwan and the USSR are the two where that is a real loss and both
+    ///     are recorded in BUGS rather than guessed at.
+    ///   - FORTY-ONE were sourced and left out as IMMATERIAL: under the line
+    ///     stated below, the stock is spent inside a quarter of a plausible
+    ///     deficit and cannot change the shape of a fiscal path.
+    /// MATERIALITY, stated mechanically so it is not a per-country judgement:
+    /// the figure is carried when it is at least 5% of that nation's own 1990
+    /// output -- about six weeks of total state spending for a state spending
+    /// 35% of output -- or at least $10bn in absolute terms. 79 of the 137
+    /// nations clear it.
+    ///
+    /// `None` reaches the treasury as "no figure", which seats an empty till.
+    /// Skipped on serialization so that a nation without one round-trips to
+    /// the file it was read from.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub reserves_bn: Option<f64>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -361,6 +398,15 @@ fn check_record(file: &str, r: &NationRecord) -> Vec<LoadError> {
             &who,
             format!("economy.population_m is {}, expected a positive number", r.economy.population_m),
         ));
+    }
+    if let Some(res) = r.economy.reserves_bn {
+        if !(res.is_finite() && res >= 0.0) {
+            e.push(LoadError::nation_level(
+                file,
+                &who,
+                format!("economy.reserves_bn is {res}, expected a non-negative stock in $bn"),
+            ));
+        }
     }
     if !(r.economy.debt_gdp.is_finite() && r.economy.debt_gdp >= 0.0) {
         e.push(LoadError::nation_level(
@@ -743,6 +789,15 @@ impl NationRecord {
             social_spend_gdp: None,
             annual_budget: None,
             debt_gdp: self.economy.debt_gdp,
+            // THE BOOKS START CLOSED for every nation on the board, including
+            // the one the player will pick. The transcribed reserve is not
+            // seated here: it is read at the moment a government opens its
+            // books (`Command::SetAnnualBudget`), by `reserves_1990_bn` below.
+            // Seating it here would put a `Some` into the 1990 save and move
+            // `the_1990_start_is_pinned` for a figure no arm reads yet, which
+            // is exactly the movement the pin exists to refuse.
+            treasury_bn: None,
+            debt_bn: None,
             oil_mbd: self.economy.oil_mbd,
             bubble: self.economy.bubble,
             growth_last: 0.0,
@@ -890,6 +945,22 @@ pub fn sources_for(id: NationId) -> Vec<String> {
         .find(|r| r.id == id)
         .map(|r| r.sources)
         .unwrap_or_default()
+}
+
+/// What this nation held in reserve on 1 January 1990, in billions of dollars,
+/// or `None` if no figure could be sourced for it.
+///
+/// The same posture as `sources_for` and `tech_1990_for` and for the same
+/// reasons: parsed on demand from the embedded set rather than carried on
+/// `Nation`, because it is an immutable start-of-game fact, it must not enter a
+/// save, and IT MUST NOT TOUCH THE TIMELINE HASH. A stock read at the moment a
+/// government opens its books is exactly that kind of fact.
+pub fn reserves_1990_bn(id: NationId) -> Option<f64> {
+    EMBEDDED_NATIONS
+        .iter()
+        .filter_map(|s| serde_json::from_str::<NationRecord>(s.json).ok())
+        .find(|r| r.id == id)
+        .and_then(|r| r.economy.reserves_bn)
 }
 
 /// What this nation was granted on 1 January 1990, and why, for showing to a
