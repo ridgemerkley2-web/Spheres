@@ -4042,12 +4042,27 @@ mod tests {
         // rather than argued: stripping the serialized `districts` block out
         // of the new save reproduces the previous pin 0xbffd89cc8498ffaa
         // exactly, so not one pre-existing byte of the start state moved.
-        // NOT re-pinned on the merge of codex/trading-system (2026-09-02):
-        // that branch carried 0xa5c9c5b2306313d8 here, which is exactly the
-        // actual this tree already produced before it, so the merge is inert
-        // on the default path. House protocol re-pins only when every
-        // calibration bar is green, and `the_1990_endowment_does_not_move_
-        // year_one_growth` is red (BUGS E-3); the constant stays until then.
+        // NOT re-pinned on the merge of codex/trading-system, e4e3c03
+        // (2026-09-02). What stood here was written for an EARLIER trial of
+        // that merge and said the branch "carried 0xa5c9c5b2306313d8 here,
+        // which is exactly the actual this tree already produced". It was
+        // true then and it is false of the merge that landed, which measures
+        // the reverse: this tree's actual is 0xe26e4bf8d6c60066. Kept rather
+        // than deleted because the history is the point — the earlier reading
+        // is what made the six reds look like three.
+        //
+        // The number moved and the simulation did not, and that is proven
+        // byte for byte rather than argued. Codex's `district_population` and
+        // `district_population_scale` are `#[serde(default)]` with no
+        // `skip_serializing_if`, unlike every neighbour, so they are always
+        // written and always enter `state_hash`. Dump the merged 1990 save,
+        // delete exactly those two blocks and the comma their removal orphans
+        // (they serialize last), and the text is byte-identical to the
+        // 9274baa save and re-hashes to 0xa5c9c5b2306313d8. So the merge is
+        // still inert on the default path. House protocol re-pins only when
+        // every calibration bar is green, and `the_1990_endowment_does_not_
+        // move_year_one_growth` is red (BUGS E-3); the constant stays until
+        // then, deliberately red at 0xe26e4bf8d6c60066.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
@@ -4281,10 +4296,17 @@ mod tests {
         // ever, the seed-pinned conquest pair, re-scanned to seed 93 per
         // their own comments (Saudi Arabia takes Qatar 2018; the fix
         // dissolved seed 9's Mongolia).
-        // NOT re-pinned on the merge of codex/trading-system (2026-09-02):
-        // that branch's 0x20c24ab0f1581807 is the actual this tree already
-        // produced, and the endowment bar (BUGS E-3) is still red, so the
-        // protocol forbids the re-pin. Deliberately red at that actual.
+        // NOT re-pinned on the merge of codex/trading-system, e4e3c03
+        // (2026-09-02). What stood here — "that branch's 0x20c24ab0f1581807
+        // is the actual this tree already produced" — was true of an earlier
+        // trial of the merge and is false of the one that landed: this tree
+        // measures 0xbe94d6125631829c. The timeline did not move. Codex's two
+        // district-population fields serialize unconditionally and so enter
+        // `state_hash`; strip exactly those two blocks out of the merged save
+        // at t=240 months and the text is byte-identical to the 9274baa save
+        // and re-hashes to 0x20c24ab0f1581807. The endowment bar (BUGS E-3)
+        // is still red, so the protocol forbids the re-pin. Deliberately red
+        // at 0xbe94d6125631829c.
         const GOLDEN: u64 = 0xbd5ec0f43c5f2e3b;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
@@ -4299,10 +4321,24 @@ mod tests {
     // Both pins above are RED at HEAD for reasons that predate the resource
     // system — the endowment guard (BUGS E-3) blocks the re-pin — and the
     // protocol is that they go red WITH THE SAME ACTUALS after every stage of
-    // it: `the_1990_start_is_pinned` actual 0xa5c9c5b2306313d8,
-    // `golden_hash_of_a_known_run` actual 0x20c24ab0f1581807. The four tests
-    // below pin those ACTUALS, not the literals: they are the proof that the
-    // layer reproduces the timeline byte for byte, and they re-pin nothing.
+    // it. Those actuals were 0xa5c9c5b2306313d8 and 0x20c24ab0f1581807 up to
+    // and including 9274baa. They MOVED ONCE, on the merge of
+    // codex/trading-system (e4e3c03, 2026-09-02), to
+    // `the_1990_start_is_pinned` actual 0xe26e4bf8d6c60066 and
+    // `golden_hash_of_a_known_run` actual 0xbe94d6125631829c, and they moved
+    // for a serialization reason and not a simulation one: Codex's
+    // `district_population` and `district_population_scale` carry
+    // `#[serde(default)]` without the `skip_serializing_if` their neighbours
+    // use, so they always serialize and so always enter `state_hash`. Delete
+    // exactly those two blocks from the merged saves at t=0 and t=240 months
+    // — and the comma their removal orphans, since they serialize last — and
+    // the text is byte-identical to the 9274baa saves and re-hashes to the
+    // two older values. Measured that way, not asserted.
+    //
+    // The four tests below pin those ACTUALS, not the literals: they are the
+    // proof that the layer reproduces the timeline byte for byte, and they
+    // re-pin nothing. When the actual moves for a reason like the above,
+    // updating them is bookkeeping; the two goldens are the bars.
     // ------------------------------------------------------------------
 
     /// At January 1990 the layer runs no arithmetic that leaves a trace: the
