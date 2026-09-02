@@ -1,6 +1,70 @@
 # SPHERES Roadmap
 
 ## Done (v0.5 rebuild)
+- **The resource pass back under budget, and a market-on guard that can fail**
+  (2026-09-02, `63e6c90` "perf: one stall mask a month, not twelve a dyad" and
+  `ab21ddb` "test: make the market-on row bar a ratio"): `2f9791e` pointed
+  `dyads::last_resort` at `resources::action_stalled`, which pays a `draw` — and
+  therefore an `arsenal::pick` fold over the whole 46-entry `DECK` — plus a
+  binary search into the 552-row ledger, ONCE PER TRACKED COMMODITY PER DYAD PER
+  MONTH. `tests::the_resource_pass_stays_under_budget` went from 0.0400
+  ms/month at `e4e3c03` to **1.3598** against its 0.15 bar. Three repairs, each
+  measured on its own: `resources::action_stalled_mask` built once per (nation,
+  month) rather than twelve times per dyad (appetite 1.2657 → 0.0469),
+  `resources::change_market_stock` collapsed from three binary searches to one
+  (the resources row 0.0580 → 0.0348), and `arsenal::pick` reading a precomputed
+  value ranking instead of refolding 46 divisions (appetite 0.0439 → 0.0226).
+  **Total 1.3598 → 0.0766**, 17.8x, and 0.0821 after the rebase onto `a9a373d`.
+  **The bar was not touched** and no test was deleted, ignored or widened.
+  Behaviour is bit-identical: both golden ACTUALS still read
+  `0xe26e4bf8d6c60066` and `0xbe94d6125631829c`, and all four headless digests
+  are unmoved, the two market-ON ones included.
+  **The new guard, and why it is a ratio.** `the_resources_row_is_free` was
+  market-OFF only and stayed green through the whole regression. A market-ON arm
+  was added at 0.10 ms/month — a bar that could not have gone red for the
+  0.0577 it named — then tightened to 0.055, and a review then measured 0.055
+  going RED ON HEALTHY CODE on a busy box (fourteen saturated readings
+  0.0472-0.0611, four over the bar). Confirmed here: four saturated invocations
+  read best-of-five 0.0562, 0.0574, 0.0582 and 0.0661, every one over 0.055, one
+  individual pass at 0.1186 with nothing wrong. **An absolute millisecond bar
+  cannot do this job on a box that builds several worktrees at once** — healthy-
+  under-load and the regression overlap — so the arm now asserts the row as a
+  **share of the rest of the same month tick**, in which machine speed and
+  every other process cancel. Healthy 0.02119 mean over 45 quiet readings and
+  0.02062 over 10 saturated, range 0.0191-0.0217; **bar 0.025**, rule 7's floor
+  being mean + 2.326·sd = 0.0221 (z = 8.8). **Red-checked**: reintroducing
+  `4fbc806`'s three-binary-search `change_market_stock` reds it five invocations
+  out of five, **two of them under full sixteen-core saturation**, which the
+  millisecond bar could not do at all. The market-OFF arm and its 0.02 bar are
+  untouched and read 0.0029-0.0032 throughout — blind to the regression, which
+  is the blindness the ON arm exists to end. Recorded in the comment beside the
+  bar, per rule 7: it catches about 1.25x and no less, it is blind to anything
+  that slows this row and the whole tick equally, and it will red for a large
+  speed-up elsewhere in the tick.
+  Also corrected here, both from the same review: the budget test's comment
+  claimed "30.5x" against its own table's 17.8x and claimed the appetite term
+  was "back inside the 0.0112 it read before the merge" when the table says
+  0.0226 — twice it, not inside it; and `arsenal::value_order` now asserts every
+  `deck_value` is finite, a NaN there being enough to make the ranking
+  comparator non-transitive and `sort_by`'s order unspecified.
+  Filed and closed: BUGS **P-1** and **P-2**.
+  **Suite at ship** (2026-09-02, `cargo test --release --workspace
+  --no-fail-fast` after `cargo clean -p spheres-sim -p spheres-web -p
+  spheres-cli --release`, isolated target, all three Compiling lines watched and
+  the test binaries confirmed to post-date every source): spheres-sim **228
+  passed / 3 failed / 22 ignored**, spheres-web **93 / 0 / 2**, spheres-cli
+  **1 / 0 / 0**, the five integration targets all-ignored as before. The three
+  reds are the expected ones and are untouched —
+  `tech::tests::the_1990_endowment_does_not_move_year_one_growth` (BUGS E-3,
+  Belgium 0.001851 against 0.001749), `tests::the_1990_start_is_pinned` and
+  `tests::golden_hash_of_a_known_run`, whose pins stay at `0xd022d50f43c984da`
+  and `0xbd5ec0f43c5f2e3b` and whose actuals are unmoved. Headless determinism,
+  `spheres-cli run 35 <seed> | sha256sum | cut -c1-16`, each run twice:
+  market OFF `d1a2cfbf7c6958d7` (seed 1990, 3501 lines) and `39dea3341a7f6e8c`
+  (seed 7, 3983); market ON `30cf39058ba9ae1f` (4110) and `6daccc96382f7659`
+  (3967). `tools/resources/check_resources_1990.py --fast`: **60 checks, 0
+  failed**.
+
 - **Codex's province trade and mines** (2026-09-02, Ridge's own merge `e4e3c03`
   "merge: integrate Codex province trade and mines" of `9274baa` (ours) with
   `3f7eaf2` (`feat: integrate province resources trade and mines`), plus four
