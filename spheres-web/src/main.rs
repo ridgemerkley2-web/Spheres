@@ -2325,6 +2325,9 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // contracts, offers and refusals, every number and sentence served.
         "resources": w.player.map(|p| resources_json(w, p)),
         "policy": w.player.map(|p| policy_json(w, p)),
+        // The budget card (stage 4): the ten dials' named arms, sampled by
+        // the sim over the range a dial can hold, and the money block.
+        "ministries": w.player.map(|p| ministries_json(w, p)),
         "interrupt": interrupt,
     })
 }
@@ -2386,6 +2389,8 @@ fn policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
             round(growth_terms(n, share, n.interest_rate, &c).potential, 6)
         })
         .collect();
+    let books = spheres_sim::economy::Fiscal::of(n, &now);
+    let (revenue_bn, spend_bn, balance_bn) = books.in_billions(n.gdp);
     let rate_terms: Vec<spheres_sim::economy::GrowthTerms> = (0..=POLICY_CURVE_STEPS)
         .map(|i| {
             let rate = i as f64 / POLICY_CURVE_STEPS as f64 * POLICY_CURVE_MAX;
@@ -2441,8 +2446,160 @@ fn policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
         "demand_gap_now": round(now.demand_gap, 6),
         "demand_output_now": round(now.demand_output, 6),
         "inflation_target_now": round(now.target_inflation, 6),
+
+        // THE MONEY CARD, off ONE `economy::Fiscal`, which is the same object
+        // `economy::tick` charges the month against. Revenue, spending and the
+        // balance are served as a share of GDP AND in billions, so the card
+        // prints both without a multiplication of its own; the balance is
+        // REVENUE LESS SPENDING LESS INTEREST, positive for a surplus, which is
+        // the one sign convention this payload now carries (the browser had
+        // two, four inches apart on the same screen).
+        //
+        // RIDGE'S AMENDMENT is the `interest_*` triple: what debt service costs
+        // in dollars, what it costs as a share of output, and the rate it is
+        // struck at -- which is not the policy rate, because the sovereign
+        // spread rises with the debt ratio.
+        "money": {
+            "on_the_books": n.on_the_books(),
+            "revenue_gdp": round(books.revenue_gdp, 6),
+            "spend_gdp": round(books.spend_gdp, 6),
+            "interest_gdp": round(books.interest_gdp, 6),
+            "balance_gdp": round(books.balance_gdp, 6),
+            "revenue_bn": round(revenue_bn, 3),
+            "spend_bn": round(spend_bn, 3),
+            "interest_bn": round(books.interest_bn, 3),
+            "balance_bn": round(balance_bn, 3),
+            "effective_rate": round(books.effective_rate, 6),
+            "policy_rate": round(n.interest_rate, 6),
+            "real_rate": round(n.interest_rate - n.inflation, 6),
+            "spread": round(books.effective_rate - (n.interest_rate - n.inflation), 6),
+            "treasury_bn": n.treasury_bn.map(|x| round(x, 3)),
+            "debt_bn": n.debt_bn.map(|x| round(x, 3)),
+            "net_position_bn": n.net_position_bn().map(|x| round(x, 3)),
+            "debt_gdp": round(n.debt_gdp, 6),
+        },
     })
 }
+
+/// What the ten dials buy, answered by the sim over the whole range a dial can
+/// hold.
+///
+/// SAMPLED, NOT SOLVED, exactly as the force curve and the two policy curves
+/// above are, and for the identical reason: the budget card has to answer "what
+/// would this dial buy" before the year is enacted, and the browser must not be
+/// the thing that knows. Every arm is `spheres_sim::ministries`, which is the
+/// same function `economy::tick`, `war`, `tech`, `politics`, `resources` and
+/// `statecraft` call when they charge it -- there is no second copy to drift.
+///
+/// TWO CURVES PER ARM. `curve[i]` is the arm at allocation `i * step`;
+/// `per_point[i]` is what ONE MORE PERCENTAGE POINT OF GDP buys from there,
+/// which is the design's "per-percent sentence". It is served rather than
+/// subtracted in JavaScript because every arm is clamped: past its ceiling the
+/// honest answer is zero, and a page differencing a curve it had guessed the
+/// shape of would print a slope the sim never charges.
+///
+/// The RANGE is the server's own, and `the_budget_card_reads_the_sim` asserts
+/// it covers `BUDGET_CAPS` -- so widening a dial without widening this goes red
+/// rather than silently reading off the end.
+fn ministries_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    use spheres_sim::ministries;
+    let n = w.nation(me);
+    let reference = ministries::reference_of(w, me);
+    let ids = [
+        "health",
+        "education",
+        "housing",
+        "pensions",
+        "infrastructure",
+        "industry",
+        "science",
+        "defense",
+        "security",
+        "diplomacy",
+    ];
+    let names = [
+        "Health",
+        "Education",
+        "Housing",
+        "Pensions",
+        "Infrastructure",
+        "Industry & energy",
+        "Science",
+        "Defense",
+        "Security",
+        "Diplomacy",
+    ];
+    let at = |ministry: usize, share: f64| ministries::arms_at(w, n, ministry, share);
+    // THE GRID IS ANCHORED ON THE REFERENCE, not on zero, and that is not a
+    // detail. Every arm is a function of the GAP, and the dial moves in 0.005
+    // steps FROM whatever the inherited settlement was -- 0.05375 of GDP for
+    // Belgian health, which is not a multiple of anything. Sampled from zero,
+    // the nearest sample to a freshly enacted budget was up to half a step
+    // away, and the card read "+0.004pp of population" for a government that
+    // had changed nothing. Anchored here, sample `MINISTRY_CURVE_ZERO` IS the
+    // enacted settlement, every press lands exactly on a sample, and an unmoved
+    // dial reads exactly zero.
+    let sample = |m: usize, i: usize| {
+        reference[m] + (i as f64 - MINISTRY_CURVE_ZERO as f64) * MINISTRY_CURVE_STEP
+    };
+    let list: Vec<serde_json::Value> = (0..spheres_sim::world::BUDGET_MINISTRIES)
+        .map(|m| {
+            let here = at(m, n.budget_for(w.year).allocations[m]);
+            let arms: Vec<serde_json::Value> = here
+                .iter()
+                .enumerate()
+                .map(|(a, arm)| {
+                    let curve: Vec<f64> = (0..=MINISTRY_CURVE_STEPS)
+                        .map(|i| round(at(m, sample(m, i))[a].value, 6))
+                        .collect();
+                    let per_point: Vec<f64> = (0..=MINISTRY_CURVE_STEPS)
+                        .map(|i| {
+                            let share = sample(m, i);
+                            round(at(m, share + 0.01)[a].value - at(m, share)[a].value, 6)
+                        })
+                        .collect();
+                    serde_json::json!({
+                        "id": arm.id,
+                        "name": arm.name,
+                        "note": arm.note,
+                        "kind": arm.kind.id(),
+                        "curve": curve,
+                        "per_point": per_point,
+                    })
+                })
+                .collect();
+            serde_json::json!({
+                "index": m,
+                "id": ids[m],
+                "name": names[m],
+                "cap": spheres_sim::world::BUDGET_CAPS[m],
+                "reference": round(reference[m], 6),
+                "arms": arms,
+            })
+        })
+        .collect();
+    serde_json::json!({
+        "curve_step": MINISTRY_CURVE_STEP,
+        "curve_steps": MINISTRY_CURVE_STEPS,
+        "curve_zero": MINISTRY_CURVE_ZERO,
+        "ministries": list,
+    })
+}
+
+/// The resolution and reach of the ministry arm curves.
+///
+/// The STEP is the dial's own step -- half a point of GDP a press -- so a
+/// sample lands on every value the buttons can produce. `MINISTRY_CURVE_ZERO`
+/// is the index of the enacted settlement, so the curve runs from 0.20 of GDP
+/// BELOW a ministry's reference to 0.40 above it. Both ends are the server's
+/// own and are deliberately past what a dial can hold: the deepest cut
+/// reachable is `-reference`, which is at most 0.0602 across the whole board,
+/// and the largest raise is `cap - reference`, at most 0.326.
+/// `the_budget_card_reads_the_sim` asserts that against `BUDGET_CAPS` rather
+/// than trusting this comment.
+const MINISTRY_CURVE_STEP: f64 = 0.005;
+const MINISTRY_CURVE_STEPS: usize = 120;
+const MINISTRY_CURVE_ZERO: usize = 40;
 
 /// The widest share the policy curves are served for, and how many samples they
 /// are cut into. The same thousandth-apiece resolution as the force curve, for
@@ -4137,30 +4294,56 @@ mod tests {
         );
 
         // The curve has to cover what the shipped Defense ministry can actually
-        // ask for, or the page silently clamps. Read its cap off the page rather
-        // than retyping it, so widening the dial without widening the curve goes
-        // red here.
-        let hi: f64 = INDEX
-            .split_once("id:\"defense\"")
-            .expect("the annual budget still offers a Defense ministry")
-            .1
-            .split_once("cap:")
-            .expect("Defense still has a cap")
-            .1
-            .split('}')
-            .next()
-            .expect("the end of the Defense ministry")
-            .trim()
-            .parse()
-            .expect("a numeric upper bound");
+        // ask for, or the page silently clamps. RE-EXPRESSED, not widened, when
+        // the ministry table stopped carrying its own caps: the bar was "read
+        // the dial's top off the page rather than retyping it", and the dial's
+        // top is now `world::BUDGET_CAPS` itself, served to the page and read
+        // back by `ministryCap`. So this reads the same bound from the place
+        // that is now the only copy of it, and widening the dial without
+        // widening the curve still goes red here.
+        let hi: f64 = spheres_sim::world::BUDGET_CAPS[spheres_sim::world::BUDGET_DEFENSE];
+        assert!(
+            INDEX.contains("ministryCap(i)"),
+            "the page no longer clamps the Defense dial against the cap the sim served"
+        );
         assert!(
             hi <= FORCE_CURVE_MAX,
             "the Defense dial reaches {hi} but the force curve stops at {FORCE_CURVE_MAX}"
         );
-        assert!(
-            INDEX.contains("sustainedForce(m, b[spec.id])"),
-            "the Defense ministry no longer shows the force the sim sustains"
-        );
+        // RE-EXPRESSED, not deleted, when the ten dials stopped writing their
+        // own captions. The bar was "the Defense ministry shows the force the
+        // sim sustains", and the page used to make that true by calling
+        // `sustainedForce` itself in the caption. It is now true a stronger
+        // way: DEFENSE's one named arm IS `war::sustained_force`, evaluated in
+        // `ministries::arms_at` and served, so the dial prints the sim's own
+        // number instead of asking the browser for a second opinion.
+        {
+            let g = Game::new(1990, Some(NationId::Brazil));
+            let n = g.world.nation(NationId::Brazil);
+            let mj = ministries_json(&g.world, NationId::Brazil);
+            let arm =
+                &mj["ministries"][spheres_sim::world::BUDGET_DEFENSE]["arms"][0];
+            assert_eq!(arm["id"], "force", "DEFENSE's one arm is the force it sustains");
+            let step = mj["curve_step"].as_f64().unwrap();
+            let zero = mj["curve_zero"].as_u64().unwrap() as f64;
+            let reference =
+                mj["ministries"][spheres_sim::world::BUDGET_DEFENSE]["reference"]
+                    .as_f64()
+                    .unwrap();
+            let curve = arm["curve"].as_array().unwrap();
+            for i in [40usize, 60, 90, 120] {
+                let share = reference + (i as f64 - zero) * step;
+                assert_eq!(
+                    curve[i].as_f64().unwrap(),
+                    round(spheres_sim::war::sustained_force(n, share), 6),
+                    "the Defense dial is not showing the force the sim sustains"
+                );
+            }
+            assert!(
+                INDEX.contains("ministryArmLines(i, b[spec.id])"),
+                "the Defense dial no longer draws the arm the sim served"
+            );
+        }
 
         // And the page must READ the curve rather than recompute it.
         assert!(
@@ -4578,6 +4761,406 @@ mod tests {
             300.0,
             "the raw entry comes back as it was written"
         );
+    }
+
+    /// THE BUDGET CARD READS THE SIM, and holds no copy of any bound it draws.
+    ///
+    /// Two things go silently wrong when a page keeps its own copy of a sim
+    /// number, and this branch has now seen both: the browser's sanction drag
+    /// was the pre-conversion COEFFICIENT (313x out at its worst) and the
+    /// browser's ministry table was its own copy of the caps. A cap that is too
+    /// low hides a dial's top from the player; one that is too high sends a
+    /// command the sim refuses, and the page shows a range the game does not
+    /// have. So `world::BUDGET_CAPS` is served and `ui/index.html` reads it.
+    #[test]
+    fn the_budget_card_reads_the_sim() {
+        let g = Game::new(1990, Some(NationId::Brazil));
+        let v = ministries_json(&g.world, NationId::Brazil);
+        let list = v["ministries"].as_array().expect("ten ministries are served");
+        assert_eq!(list.len(), spheres_sim::world::BUDGET_MINISTRIES);
+
+        let step = v["curve_step"].as_f64().unwrap();
+        let steps = v["curve_steps"].as_u64().unwrap() as f64;
+        let zero = v["curve_zero"].as_u64().unwrap() as f64;
+        // Every value a press can produce lands on a sample, so the page's
+        // `Math.round((share - reference) / curve_step) + curve_zero` is exact
+        // rather than near.
+        assert_eq!(step, 0.005, "the dial steps by 0.005 and the curve must too");
+        for (i, m) in list.iter().enumerate() {
+            let cap = m["cap"].as_f64().unwrap();
+            let reference = m["reference"].as_f64().unwrap();
+            assert_eq!(
+                cap,
+                spheres_sim::world::BUDGET_CAPS[i],
+                "ministry {i}'s served cap is not the cap the sim enforces"
+            );
+            // The curve has to cover what the dial can actually hold, in BOTH
+            // directions -- the same bar `the_force_line_is_the_force_the_sim_
+            // sustains` puts on the force curve. Widening a dial without
+            // widening this goes red here rather than reading off the end of an
+            // array in a browser.
+            let lo = reference - zero * step;
+            let hi = reference + (steps - zero) * step;
+            assert!(lo <= 0.0, "ministry {i} cannot be cut to nothing: the curve starts at {lo}");
+            assert!(
+                cap <= hi,
+                "ministry {i} caps at {cap} but the served curve stops at {hi}"
+            );
+            // AND THE ANCHOR IS THE SETTLEMENT. Sample `curve_zero` is the
+            // inherited allocation, which is what makes an unmoved dial read
+            // exactly zero rather than half a press out.
+            for arm in m["arms"].as_array().unwrap() {
+                let here = arm["curve"].as_array().unwrap()[zero as usize].as_f64().unwrap();
+                let neutral = match arm["kind"].as_str().unwrap() {
+                    // A multiplier's do-nothing value is one; force is a level
+                    // and has no do-nothing value at all.
+                    "mult" => 1.0,
+                    "force" => here,
+                    _ => 0.0,
+                };
+                assert_eq!(
+                    here, neutral,
+                    "ministry {i} arm {} reads {here} for a budget nobody has moved",
+                    arm["id"]
+                );
+            }
+        }
+
+        // The page must READ the served cap, not carry one. The old table had
+        // `cap:.15` and nine more like it on the same lines.
+        let table = INDEX
+            .split_once("const MINISTRIES = [")
+            .expect("ui/index.html still declares the ten dials")
+            .1
+            .split_once("];")
+            .expect("the table is still bracket-terminated")
+            .0;
+        assert!(
+            !table.contains("cap:"),
+            "ui/index.html is carrying its own copy of BUDGET_CAPS again"
+        );
+        assert!(
+            INDEX.contains("ministryCap(i)"),
+            "the dial no longer clamps against the cap the sim served"
+        );
+        assert!(
+            INDEX.contains("function ministryAt("),
+            "the page no longer indexes the served arm curves"
+        );
+    }
+
+    /// EVERY NUMBER ON EVERY MINISTRY CARD IS THE SIM'S, SAMPLE FOR SAMPLE.
+    ///
+    /// The design's rule for stage 4 is that the per-percent sentence is
+    /// "computed from the sim's own served numbers and never recomputed in
+    /// JavaScript". This is the bar that makes that checkable: the whole served
+    /// surface -- every ministry, every arm, every sample of both curves -- is
+    /// compared against `spheres_sim::ministries::arms_at`, which is the same
+    /// function `economy::tick`, `war`, `tech`, `politics`, `resources` and
+    /// `statecraft` call when they charge it.
+    #[test]
+    fn every_ministry_arm_on_the_card_is_the_arm_the_sim_charges() {
+        use spheres_sim::ministries;
+        let g = Game::new(1990, Some(NationId::Brazil));
+        let n = g.world.nation(NationId::Brazil);
+        let v = ministries_json(&g.world, NationId::Brazil);
+        let step = v["curve_step"].as_f64().unwrap();
+        let zero = v["curve_zero"].as_u64().unwrap() as f64;
+        let mut checked = 0usize;
+        let mut arms_seen = 0usize;
+
+        for (m, served) in v["ministries"].as_array().unwrap().iter().enumerate() {
+            let reference = served["reference"].as_f64().unwrap();
+            let arms = served["arms"].as_array().unwrap();
+            arms_seen += arms.len();
+            // The sim's own list is the specification of how many arms a
+            // ministry has: DEFENSE has exactly one and it is not a gap arm.
+            assert_eq!(arms.len(), ministries::arms_at(&g.world, n, m, 0.0).len());
+            for (a, arm) in arms.iter().enumerate() {
+                let curve = arm["curve"].as_array().unwrap();
+                let per = arm["per_point"].as_array().unwrap();
+                assert_eq!(curve.len(), per.len());
+                for i in 0..curve.len() {
+                    let share = reference + (i as f64 - zero) * step;
+                    let want = ministries::arms_at(&g.world, n, m, share)[a].value;
+                    assert_eq!(
+                        curve[i].as_f64().unwrap(),
+                        round(want, 6),
+                        "ministry {m} arm {a} at {share:.3} of GDP is not the sim's value"
+                    );
+                    // The per-percent number is a DIFFERENCE THE SIM TOOK. Past
+                    // a clamped arm's ceiling the honest answer is zero, and a
+                    // page differencing a curve whose shape it had assumed
+                    // would print a slope nobody is ever charged.
+                    let ahead = ministries::arms_at(&g.world, n, m, share + 0.01)[a].value;
+                    assert_eq!(
+                        per[i].as_f64().unwrap(),
+                        round(ahead - want, 6),
+                        "ministry {m} arm {a}'s per-point step at {share:.3} is not the sim's"
+                    );
+                    checked += 1;
+                }
+            }
+        }
+        // Measured, so a future session that quietly stops serving an arm is
+        // caught by the count rather than by the loop running zero times.
+        assert_eq!(arms_seen, 16, "sixteen named arms across the ten ministries");
+        assert!(checked > 1900, "only {checked} samples compared");
+        println!("{checked} arm samples across {arms_seen} arms agree with the sim");
+    }
+
+    /// STABILITY IS QUOTED AS A DESTINATION, which is the design's ruling and
+    /// is arithmetic rather than taste.
+    ///
+    /// `economy::tick` integrates stability toward `60 + 100x` for a standing
+    /// contribution `x`, so quoting `x` -- or the first month's `0.25x` -- is
+    /// out by two orders of magnitude, and a player reading it concludes the
+    /// security budget does nothing. This pins the ratio at exactly 100 for all
+    /// three ministries that own a stability arm, and pins that the card is not
+    /// quoting the raw `ds` contribution instead.
+    #[test]
+    fn a_stability_arm_is_quoted_as_where_order_settles() {
+        use spheres_sim::ministries;
+        use spheres_sim::world::{BUDGET_HOUSING, BUDGET_PENSIONS, BUDGET_SECURITY};
+        let g = Game::new(1990, Some(NationId::Brazil));
+        let v = ministries_json(&g.world, NationId::Brazil);
+        let list = v["ministries"].as_array().unwrap();
+
+        for (m, ds_of, slope) in [
+            (BUDGET_HOUSING, ministries::housing_stability as fn(f64) -> f64, 14.0),
+            (BUDGET_PENSIONS, ministries::pensions_stability as fn(f64) -> f64, 12.0),
+            (BUDGET_SECURITY, ministries::security_stability as fn(f64) -> f64, 16.0),
+        ] {
+            let arm = list[m]["arms"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .find(|a| a["id"] == "stability")
+                .unwrap_or_else(|| panic!("ministry {m} still owns a stability arm"));
+            // The per-point step IS the slope, in points of destination. That is
+            // the whole claim: SECURITY's 16.0 is +16 points of where the nation
+            // settles per point of GDP, not +0.16 of anything.
+            let per = arm["per_point"].as_array().unwrap()[0].as_f64().unwrap();
+            assert!(
+                (per - slope).abs() < 1e-9,
+                "ministry {m} quotes {per} per point of GDP, not the {slope} it settles at"
+            );
+            // And it is a hundred times the raw `ds` contribution, which is the
+            // number a card would print if somebody deleted the destination
+            // conversion. Checked here so that deletion is loud.
+            let ds = ds_of(0.01);
+            assert!(
+                (per / ds - 1.0 / ministries::MEAN_REVERSION).abs() < 1e-6,
+                "ministry {m} is quoting the monthly push, not the destination"
+            );
+        }
+    }
+
+    /// THE MONEY CARD IS ONE SET OF BOOKS, and the browser adds nothing to it.
+    ///
+    /// Ridge's amendment is the interest triple: dollars, share of output, and
+    /// the rate -- which is not the policy rate, because the sovereign spread
+    /// rises with the debt ratio. All three have to come off ONE
+    /// `economy::Fiscal`, the same object `economy::tick` charges the month
+    /// against, or the card and the sim are a month's arithmetic apart.
+    #[test]
+    fn the_money_card_is_one_set_of_books() {
+        let mut g = Game::new(1990, Some(NationId::Brazil));
+
+        // Before a budget, the books are closed and the card says so rather
+        // than inventing a zero treasury.
+        let v = policy_json(&g.world, NationId::Brazil);
+        assert_eq!(v["money"]["on_the_books"], serde_json::json!(false));
+        assert_eq!(v["money"]["interest_gdp"].as_f64().unwrap(), 0.0);
+        assert!(v["money"]["treasury_bn"].is_null());
+
+        // Enact a budget through the page's own command shape: the books open
+        // on the first `SetAnnualBudget` and only there.
+        g.world.nation_mut(NationId::Brazil).political_capital = 200.0;
+        let b = g.world.nation(NationId::Brazil).budget_for(g.world.year);
+        let cmd = serde_json::json!({
+            "kind": "annual_budget",
+            "fiscal_year": g.world.year,
+            "health": b.allocations[0] + 0.005,
+            "education": b.allocations[1],
+            "housing": b.allocations[2],
+            "pensions": b.allocations[3],
+            "infrastructure": b.allocations[4],
+            "industry": b.allocations[5],
+            "science": b.allocations[6],
+            "defense": (b.allocations[7] - 0.005).max(0.0),
+            "security": b.allocations[8],
+            "diplomacy": b.allocations[9],
+        });
+        let c = parse_command(&g.world, &cmd, NationId::Brazil).expect("the page's shape parses");
+        spheres_sim::apply_command(&mut g.world, &c).expect("the budget is enacted");
+
+        let v = policy_json(&g.world, NationId::Brazil);
+        let money = &v["money"];
+        assert_eq!(money["on_the_books"], serde_json::json!(true));
+        let n = g.world.nation(NationId::Brazil);
+        let cond = spheres_sim::economy::Conditions::of(&g.world, NationId::Brazil);
+        let terms =
+            spheres_sim::economy::growth_terms(n, n.state_invest_gdp, n.interest_rate, &cond);
+        let books = spheres_sim::economy::Fiscal::of(n, &terms);
+        for (key, want) in [
+            ("revenue_gdp", books.revenue_gdp),
+            ("spend_gdp", books.spend_gdp),
+            ("interest_gdp", books.interest_gdp),
+            ("balance_gdp", books.balance_gdp),
+            ("effective_rate", books.effective_rate),
+        ] {
+            assert_eq!(
+                money[key].as_f64().unwrap(),
+                round(want, 6),
+                "{key} on the card is not the sim's"
+            );
+        }
+        // THE SIGN, settled: revenue less spending less interest, positive is a
+        // surplus, in shares and in dollars alike. The two used to disagree.
+        let (rev, spend, bal) = books.in_billions(n.gdp);
+        assert_eq!(money["revenue_bn"].as_f64().unwrap(), round(rev, 3));
+        assert_eq!(money["spend_bn"].as_f64().unwrap(), round(spend, 3));
+        assert_eq!(money["balance_bn"].as_f64().unwrap(), round(bal, 3));
+        assert!(
+            (books.balance_gdp - (books.revenue_gdp - books.spend_gdp - books.interest_gdp)).abs()
+                < 1e-12,
+            "the balance is no longer revenue less spending less interest"
+        );
+
+        // The interest triple has to be internally consistent: the rate the
+        // card quotes, applied to the debt the card quotes, is the dollars the
+        // card quotes and the share the card quotes.
+        let debt = money["debt_bn"].as_f64().unwrap();
+        let rate = money["effective_rate"].as_f64().unwrap();
+        let interest_bn = money["interest_bn"].as_f64().unwrap();
+        assert!(debt > 0.0, "Brazil opens 1990 owing money");
+        assert!(
+            (interest_bn - debt * rate).abs() < 0.5,
+            "the interest line ({interest_bn}) is not the rate ({rate}) on the debt ({debt})"
+        );
+        assert!(
+            (money["interest_gdp"].as_f64().unwrap() - interest_bn / n.gdp).abs() < 1e-4,
+            "the share of GDP and the dollars are different months"
+        );
+        // And the rate is not the policy rate: it is real, and it carries a
+        // spread once the ratio is past the knee.
+        assert_eq!(
+            money["real_rate"].as_f64().unwrap(),
+            round(n.interest_rate - n.inflation, 6)
+        );
+        assert!(
+            (money["spread"].as_f64().unwrap() - (rate - money["real_rate"].as_f64().unwrap()))
+                .abs()
+                < 1e-6,
+            "the spread on the card is not the difference it is drawn as"
+        );
+        println!(
+            "Brazil 1990 on the books: debt ${debt:.1}bn at {:.3}%/yr -> ${interest_bn:.2}bn/yr, \
+             {:.3}% of GDP; balance ${bal:.2}bn",
+            rate * 100.0,
+            money["interest_gdp"].as_f64().unwrap() * 100.0
+        );
+    }
+
+    /// ONE BALANCE, ONE SIGN, and the interest row above the ten dials.
+    ///
+    /// The browser computed a balance in two places with opposite signs:
+    /// `ledgerOf` returned `deficit: spend - revenue` and `renderLeft` computed
+    /// `fiscalBalance = revenue - spending`, four inches apart on one screen.
+    /// Neither carried debt service, which `economy::tick` pays out of the same
+    /// till. This pins the repair as text, because there is no build step here
+    /// and the thing to assert on is the thing that reaches the browser.
+    #[test]
+    fn the_browser_computes_one_balance() {
+        assert!(
+            !INDEX.contains("led.deficit"),
+            "the ledger is still reading the old opposite-signed `deficit`"
+        );
+        assert!(
+            !INDEX.contains("deficit: spend - revenue"),
+            "`ledgerOf` still returns the opposite sign to the budget card"
+        );
+        assert!(
+            INDEX.contains("balance: revenue - spend - interest"),
+            "`ledgerOf` no longer returns the settled balance"
+        );
+        assert!(
+            INDEX.contains("const fiscalBalance = fiscalRevenue - fiscalSpending;"),
+            "the budget card no longer computes the balance the settled way"
+        );
+        // Debt service is IN the spending both places, because it is in the
+        // sim's: `pay(spend_bn + interest_bn - revenue_bn)`.
+        assert!(
+            INDEX.contains("annualTotal(fiscal) + fiscalInterest"),
+            "the budget card's spending no longer carries debt service"
+        );
+
+        // THE ELEVENTH ROW SITS ABOVE THE TEN, which is the design's
+        // instruction verbatim -- debt service must visibly crowd ministries
+        // out, and a row underneath them does not.
+        let row = INDEX.find("${interestRow(m)}").expect("the eleventh row is drawn");
+        let grid = INDEX
+            .find("<div class=\"ministry-grid\">")
+            .expect("the ten dials are drawn");
+        assert!(row < grid, "debt service is drawn below the ten dials, not above them");
+        assert!(
+            !INDEX.contains("data-ministry=\"interest\""),
+            "the interest row has been given a pair of buttons; nobody votes on it"
+        );
+    }
+
+    /// EIGHT SHARES THAT ADD TO A HUNDRED, which is what the research card's
+    /// own heading promises and what the sim actually does.
+    ///
+    /// `tech` normalises the eight raw weights by their own sum, so the shares
+    /// are exactly one before anything is rounded. Rounding each to a tenth
+    /// independently broke that promise on the shipped card: Belgium's opening
+    /// weights printed 100.2%, and a player reading eight numbers that do not
+    /// add up concludes the model does not normalise. `sharesTo100` moves the
+    /// rounding remainder rather than dropping it, and this asserts the
+    /// property on the sim's OWN weights for every nation on the board rather
+    /// than on the one that happened to expose it.
+    #[test]
+    fn the_eight_research_shares_add_to_a_hundred() {
+        assert!(
+            INDEX.contains("function sharesTo100(raw)"),
+            "the card is rounding each share independently again"
+        );
+        assert!(
+            !INDEX.contains("(draft[i] / sum) * 100"),
+            "the card still prints an independently rounded share"
+        );
+        // The property the JavaScript implements, checked here against the
+        // real weights: largest remainder on tenths always totals 1000.
+        let g = Game::new(1990, None);
+        let mut worst = 0i64;
+        for n in g.world.nations.iter().filter(|n| n.alive) {
+            let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
+            let w = spheres_sim::tech::domain_weights_of(&g.world, n, dev);
+            let sum: f64 = w.iter().sum();
+            if !(sum > 0.0) {
+                continue;
+            }
+            // What the OLD card printed: eight independent roundings.
+            let naive: i64 =
+                w.iter().map(|x| (x / sum * 1000.0).round() as i64).sum();
+            worst = worst.max((naive - 1000).abs());
+            // What the new one prints: floor plus the largest remainders.
+            let exact: Vec<f64> = w.iter().map(|x| x / sum * 1000.0).collect();
+            let down: Vec<i64> = exact.iter().map(|x| x.floor() as i64).collect();
+            let left = 1000 - down.iter().sum::<i64>();
+            assert!(
+                (0..=8).contains(&left),
+                "{:?}: {left} tenths left over, which largest-remainder cannot place",
+                n.id
+            );
+        }
+        // Measured, so the defect this repairs is on the record rather than
+        // asserted from memory: independent rounding is off by up to this many
+        // tenths of a percent somewhere on the shipped board.
+        assert!(worst > 0, "no nation's shares round badly, so nothing was repaired");
+        println!("independent rounding misses 100% by up to {worst} tenths on the 1990 board");
     }
 
     #[test]
@@ -6077,9 +6660,14 @@ mod tests {
     /// sat at exactly zero debt, because the sim floors the ratio there.
     #[test]
     fn a_nation_with_no_debt_is_not_shown_paying_it_down() {
-        // The page applies the floor.
+        // The page applies the floor. RE-EXPRESSED, not widened, when the
+        // browser's two opposite-signed balances were settled into one:
+        // `led.deficit` (spend - revenue) became `-led.balance` (spend +
+        // interest - revenue), which is the SAME quantity plus the debt service
+        // `economy::tick` pays out of the same till. The floor, which is what
+        // this test exists for, is untouched.
         assert!(
-            INDEX.contains("Math.max(led.deficit - m.debt * (expected + m.inflation), -m.debt)"),
+            INDEX.contains("Math.max(-led.balance - m.debt * (expected + m.inflation), -m.debt)"),
             "the drift line no longer carries the sim's floor"
         );
 

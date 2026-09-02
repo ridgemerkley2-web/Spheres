@@ -263,6 +263,19 @@
   .ministry-copy { min-width: 0; }
   .ministry-copy b { display: block; font-size: 10px; }
   .ministry-copy small { display: block; overflow: hidden; color: var(--faint); font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
+  /* THE PER-PERCENT SENTENCE. Its own row under the dial rather than a third
+     clause in the caption: the caption is one line and elides, and a number a
+     player is meant to budget against cannot be the thing that gets elided. */
+  .ministry-arms { grid-column: 1 / -1; display: grid; gap: 2px; margin-top: 5px; }
+  .arm-line { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 6px; }
+  .arm-line .an { color: var(--faint); font-size: 8px; }
+  .arm-line .av { color: var(--brass-hi); font-size: 9px; font-variant-numeric: tabular-nums; }
+  .arm-line .ax { grid-column: 1 / -1; color: var(--dim); font-size: 8px; }
+  /* THE ELEVENTH ROW. Full width above the ten, no buttons, and tinted so it
+     does not read as a dial somebody forgot to give controls to. */
+  .interest-row { margin-bottom: 7px; border-color: #4a3a2a; background: #1b1611; }
+  .interest-row .dial-read.wide { display: grid; justify-items: end; }
+  .money-card .note { margin-top: 7px; color: var(--dim); font-size: 9px; line-height: 1.45; }
   .dial-control { display: grid; grid-template-columns: 25px 58px 25px; align-items: center; gap: 3px; }
   .dial-control button { width: 25px; height: 30px; padding: 0; border-radius: 5px; color: var(--cyan); font-size: 16px; font-weight: 700; }
   .dial-read { text-align: center; }
@@ -2666,27 +2679,133 @@ function dragsOf(n) {
 /// keeps no copy of `0.17 + (1 - authoritarianism) * 0.05` and no copy of the
 /// rule about who counts as a producer. Oil revenue is also `MAX_OIL_SHARE`-
 /// capped now, which the browser's own version was not.
+///
+/// ONE SIGN, settled here. This function used to return `deficit: spend -
+/// revenue` while the budget card four inches away computed `fiscalBalance =
+/// revenue - spending`: the same quantity under two names with opposite signs,
+/// on the same screen, and a reader had to know which was which to know whether
+/// a red number was good news. `economy::Fiscal` now fixes the convention in
+/// the sim — BALANCE IS REVENUE LESS SPENDING LESS INTEREST, POSITIVE IS A
+/// SURPLUS — and both places carry that one.
+///
+/// INTEREST is in the balance because it is in the sim's: `economy::tick` pays
+/// `spend_bn + interest_bn - revenue_bn` out of the till. A ledger that left
+/// debt service out would tell a state at 150% of GDP that it was breaking even
+/// while its treasury drained.
 function ledgerOf(n, tax, social, mil, invest) {
   const d = dragsOf(n);
+  const money = (S && S.policy && S.policy.money) || {};
+  const interest = money.interest_gdp || 0;
   const revenue = tax + d.budgetOil;
   const spend = social + mil + invest;
-  return { revenue, social, spend, deficit: spend - revenue };
+  return { revenue, social, spend, interest, balance: revenue - spend - interest };
 }
 
 /* ================= left column: you ================= */
 
+/// The ten dials, in budget-index order. ART AND WORDS ONLY: what a ministry
+/// BUYS is served — `S.ministries` carries a named arm per ministry with the
+/// sim's own curve behind it — and so is the CAP, which used to be a second
+/// copy of `world::BUDGET_CAPS` living here. A page holding its own copy of a
+/// sim bound is the same defect as a page holding its own copy of a sim rule,
+/// and `the_budget_card_reads_the_sim` now fails if the two disagree.
 const MINISTRIES = [
-  { id:"health", art:"✚", name:"Health", affects:"population · wartime replacement", story:"hospitals and public health", cap:.15 },
-  { id:"education", art:"▤", name:"Education", affects:"research", story:"schools and skilled workers", cap:.12 },
-  { id:"housing", art:"⌂", name:"Housing", affects:"trust · births", story:"homes and household support", cap:.15 },
-  { id:"pensions", art:"◷", name:"Pensions", affects:"trust · jobs · standing", story:"income after working life", cap:.20 },
-  { id:"infrastructure", art:"▥", name:"Infrastructure", affects:"resource output · investment", story:"roads, ports and power grids", cap:.15 },
-  { id:"industry", art:"⚙", name:"Industry & energy", affects:"munitions · investment", story:"factories and energy systems", cap:.12 },
-  { id:"science", art:"⌬", name:"Science", affects:"technology reach · investment", story:"laboratories and discovery", cap:.08 },
-  { id:"defense", art:"⛊", name:"Defense", affects:"forces · weapons · readiness", story:"the armed forces", cap:.35 },
-  { id:"security", art:"◆", name:"Security", affects:"order · separatism", story:"police and internal security", cap:.12 },
-  { id:"diplomacy", art:"◎", name:"Diplomacy", affects:"sanctions · counter-intelligence", story:"embassies and foreign service", cap:.08 },
+  { id:"health", art:"✚", name:"Health", story:"hospitals and public health" },
+  { id:"education", art:"▤", name:"Education", story:"schools and skilled workers" },
+  { id:"housing", art:"⌂", name:"Housing", story:"homes and household support" },
+  { id:"pensions", art:"◷", name:"Pensions", story:"income after working life" },
+  { id:"infrastructure", art:"▥", name:"Infrastructure", story:"roads, ports and power grids" },
+  { id:"industry", art:"⚙", name:"Industry & energy", story:"factories and energy systems" },
+  { id:"science", art:"⌬", name:"Science", story:"laboratories and discovery" },
+  { id:"defense", art:"⛊", name:"Defense", story:"the armed forces" },
+  { id:"security", art:"◆", name:"Security", story:"police and internal security" },
+  { id:"diplomacy", art:"◎", name:"Diplomacy", story:"embassies and foreign service" },
 ];
+
+/// What the sim served about one ministry, or null before the first payload.
+function ministryServed(i) {
+  const mm = S && S.ministries;
+  if (!mm || !mm.ministries || !mm.ministries[i]) return null;
+  return mm.ministries[i];
+}
+
+/// The cap the SIM enforces on one dial (`world::BUDGET_CAPS`), never a copy.
+/// Falls back to the widest cap the sim holds only when no payload has landed,
+/// which is a state in which no dial is drawn anyway.
+function ministryCap(i) {
+  const m = ministryServed(i);
+  return m ? m.cap : 0.35;
+}
+
+/// Index one of the sim's sampled arm curves at an allocation.
+///
+/// The same posture as `policyAt` and `sustainedForce`: the browser INDEXES,
+/// it does not interpolate and it does not re-derive.
+///
+/// THE GRID IS ANCHORED ON THE MINISTRY'S REFERENCE, because that is where the
+/// dial starts and 0.005 at a time is how it moves. Belgian health inherits
+/// 5.375% of GDP, which is not a multiple of the step; a grid counted from zero
+/// put the nearest sample half a press away and the card read a small effect
+/// for a government that had changed nothing. Sample `curve_zero` IS the
+/// enacted settlement, so an unmoved dial reads exactly zero.
+function ministryAt(served, curve, share) {
+  const mm = S && S.ministries;
+  if (!mm || !served || !curve || !curve.length) return null;
+  const i = clamp(
+    Math.round((share - served.reference) / mm.curve_step) + mm.curve_zero,
+    0, curve.length - 1);
+  return curve[i];
+}
+
+/// Print one arm's value in the unit the SIM said it is in. The page picks the
+/// glyph; the sim picked the number and the kind.
+///
+/// `delta` distinguishes a LEVEL from a STEP, and it matters for exactly one
+/// kind: a multiplier's level reads "×1.20" and its step reads "+0.20",
+/// because a step of "×0.20" would say a point of GDP cuts the arm to a
+/// fifth when it does the opposite.
+function armValueText(kind, v, delta) {
+  const sign = v >= 0 ? "+" : "";
+  switch (kind) {
+    case "rate":   return fmt.pp(v, 3) + "/yr";
+    case "points": return sign + v.toFixed(1);
+    case "mult":   return delta ? sign + v.toFixed(2) : "×" + v.toFixed(2);
+    case "share":  return fmt.pp(v, 2);
+    case "level":  return sign + v.toFixed(3);
+    case "force":  return (delta ? sign : "") + v.toFixed(1);
+    default:       return String(v);
+  }
+}
+
+/// THE PER-PERCENT SENTENCE the design asks every ministry card to carry.
+///
+/// Both numbers are the sim's: `curve` is the arm where the dial now stands and
+/// `per_point` is what one more percentage point of GDP buys FROM THERE. The
+/// second is served rather than differenced here because every arm is clamped —
+/// past its ceiling the honest answer is "nothing", and a page differencing a
+/// curve whose shape it had assumed would print a slope the sim never charges.
+///
+/// STABILITY IS A DESTINATION and says so, because the sim serves it as one:
+/// `ministries::stability_destination` divides the `ds` contribution by the
+/// integrator's own mean reversion, so what is printed is where order comes to
+/// rest and not what it does in the first month.
+function ministryArmLines(i, share) {
+  const served = ministryServed(i);
+  if (!served || !served.arms) return "";
+  return served.arms.map((a) => {
+    const now = ministryAt(served, a.curve, share);
+    const step = ministryAt(served, a.per_point, share);
+    if (now == null || step == null) return "";
+    const buys = Math.abs(step) < 5e-7
+      ? "another point of GDP buys nothing here"
+      : `+1% of GDP: ${armValueText(a.kind, step, true)}`;
+    return `<div class="arm-line" title="${a.note}">
+        <span class="an">${a.name}</span>
+        <span class="av">${armValueText(a.kind, now, false)}</span>
+        <span class="ax">${buys}</span>
+      </div>`;
+  }).join("");
+}
 
 function annualBudgetOf(m) {
   const q = queued.find((x) => x.kind === "annual_budget");
@@ -2714,26 +2833,52 @@ function annualPoliticalCost(m, b) {
   return cost;
 }
 
-function ministryDial(m, b, spec) {
+function ministryDial(m, b, spec, i) {
   const original = +(m.annual_budget && m.annual_budget[spec.id]) || 0;
   const changed = Math.abs(b[spec.id] - original) > 1e-9;
-  const force = spec.id === "defense" ? sustainedForce(m, b[spec.id]) : null;
   return `<div class="ministry-dial ${changed ? "changed" : ""}">
     <span class="ministry-art" aria-hidden="true">${spec.art}</span>
-    <span class="ministry-copy"><b>${spec.name}</b><small>${spec.story} · ${spec.affects}${force == null ? "" : ` · sustains ${force.toFixed(0)} force`}</small></span>
+    <span class="ministry-copy"><b>${spec.name}</b><small>${spec.story}</small></span>
     <span class="dial-control">
       <button data-ministry="${spec.id}" data-delta="-0.005" aria-label="Cut ${spec.name}">−</button>
       <span class="dial-read"><b>${fmt.pct(b[spec.id],1)}</b><small>${fmt.money(b[spec.id] * m.gdp)}/yr</small></span>
       <button data-ministry="${spec.id}" data-delta="0.005" aria-label="Raise ${spec.name}">+</button>
     </span>
+    <span class="ministry-arms">${ministryArmLines(i, b[spec.id])}</span>
+  </div>`;
+}
+
+/// THE ELEVENTH ROW, and it does not have a pair of buttons because nobody
+/// gets to vote on it.
+///
+/// The design's instruction verbatim: debt service sits above the ten dials so
+/// that it visibly crowds ministries out. It is the same shape as a dial and
+/// the same width, so the eye reads it as the first line of the budget — which
+/// is what it is, since `economy::tick` pays it before anything else survives.
+/// Both figures and the rate are `S.policy.money`, off one `economy::Fiscal`.
+function interestRow(m) {
+  const money = (S && S.policy && S.policy.money) || null;
+  if (!money || !money.on_the_books) return "";
+  return `<div class="ministry-dial interest-row">
+    <span class="ministry-art" aria-hidden="true">※</span>
+    <span class="ministry-copy"><b>Debt service</b><small>not a choice · paid before any ministry is</small></span>
+    <span class="dial-control">
+      <span class="dial-read wide"><b>${fmt.pct(money.interest_gdp, 1)}</b><small>${fmt.money(money.interest_bn)}/yr</small></span>
+    </span>
+    <span class="ministry-arms"><div class="arm-line">
+      <span class="an">Rate paid</span>
+      <span class="av">${fmt.pct(money.effective_rate, 2)}</span>
+      <span class="ax">real ${fmt.pct(money.real_rate, 2)}${money.spread > 5e-7 ? ` ${fmt.pp(money.spread, 2)} sovereign spread at ${fmt.pct(money.debt_gdp, 0)} of GDP` : " · no spread below 60% of GDP"}</span>
+    </div></span>
   </div>`;
 }
 
 function queueBudgetDial(m, ministry, delta) {
   const spec = MINISTRIES.find((x) => x.id === ministry);
   if (!spec) return;
+  const i = MINISTRIES.indexOf(spec);
   const next = annualBudgetOf(m);
-  next[ministry] = clamp(next[ministry] + delta, 0, spec.cap);
+  next[ministry] = clamp(next[ministry] + delta, 0, ministryCap(i));
   queued = queued.filter((c) => c.kind !== "annual_budget" && c.kind !== "military" && c.kind !== "invest");
   queued.push(next);
   noteQueued();
@@ -2756,13 +2901,74 @@ function proposed(m) {
   };
 }
 
+/// THE MONEY CARD: a treasury, not a currency.
+///
+/// Five figures, every one of them served: what the state HOLDS, what it takes
+/// in, what it pays out, what its debt costs, and what it is worth. The card
+/// multiplies nothing and adds nothing — `economy::Fiscal` is one object and
+/// `policy_json` sends its shares, its billions and its rate together, so the
+/// ledger below and the interest row above the ten dials cannot be a different
+/// month's arithmetic.
+///
+/// INTEREST IS SHOWN BOTH WAYS, which is Ridge's amendment: the dollars, the
+/// share of output, and the rate it is charged at — which is NOT the policy
+/// rate, because the sovereign spread rises with the debt ratio. A government
+/// that borrows its way past 60% of output watches the third number move
+/// without touching the first.
+///
+/// NET POSITION is the reason the treasury exists. The old model floored the
+/// debt ratio at zero, so a state that had paid off its last bond and kept
+/// saving read as "0% of GDP" for ever; a positive net position is a creditor,
+/// and `dyads.rs` reads the same books when it prices war appetite.
+///
+/// The card is absent for a nation whose books are closed — every AI, and the
+/// player before the first budget — because "no treasury" is a true statement
+/// about that nation and an invented zero would not be.
+function moneyCard(m) {
+  const money = (S && S.policy && S.policy.money) || null;
+  if (!money || !money.on_the_books) {
+    return `<div class="card money-card">
+      <h3>The Treasury <span>· books closed</span></h3>
+      <div class="tiny">This government keeps a debt ratio and not a ledger. Enact a
+        budget and the books open: a till in dollars, debt in dollars, and interest
+        charged at a rate that rises with the ratio.</div>
+    </div>`;
+  }
+  const net = money.net_position_bn;
+  return `<div class="card money-card">
+    <h3>The Treasury <span>· billions of 1990 dollars</span></h3>
+    ${statRow("Treasury", fmt.bn(money.treasury_bn), money.treasury_bn > 0 ? "up" : "down")}
+    ${statRow("Revenue", fmt.bn(money.revenue_bn) + "/yr", "")}
+    ${statRow("Ministries", fmt.bn(money.spend_bn) + "/yr", "")}
+    ${statRow("Interest", fmt.bn(money.interest_bn) + "/yr · " + fmt.pct(money.interest_gdp, 1) + " of GDP",
+              money.interest_gdp > 0.02 ? "down" : "")}
+    ${statRow(money.balance_bn >= 0 ? "Surplus" : "Deficit",
+              fmt.bn(Math.abs(money.balance_bn)) + "/yr · " + fmt.pct(Math.abs(money.balance_gdp), 1) + " of GDP",
+              money.balance_bn >= 0 ? "up" : "down")}
+    ${statRow("Debt", fmt.bn(money.debt_bn) + " · " + fmt.pct(money.debt_gdp, 0) + " of GDP",
+              money.debt_gdp > 0.9 ? "down" : "")}
+    ${statRow("Net position", (net >= 0 ? "creditor " : "debtor ") + fmt.bn(Math.abs(net)),
+              net >= 0 ? "up" : "down")}
+    <div class="note">Debt costs ${fmt.pct(money.effective_rate, 2)} a year: a real policy rate of
+      ${fmt.pct(money.real_rate, 2)}${money.spread > 5e-7
+        ? ` plus a ${fmt.pct(money.spread, 2)} sovereign spread, which is what ${fmt.pct(money.debt_gdp, 0)} of GDP costs to carry`
+        : `, with no sovereign spread below 60% of GDP`}.</div>
+  </div>`;
+}
+
 function renderLeft(m) {
   if (!m) { $("#left").innerHTML = ""; return; }
   const g = m.growth;
   const fiscal = annualBudgetOf(m);
   const planned = proposed(m);
+  const money = (S && S.policy && S.policy.money) || {};
   const fiscalRevenue = planned.tax + dragsOf(m).budgetOil;
-  const fiscalSpending = annualTotal(fiscal);
+  // THE SAME SIGN AS EVERYWHERE ELSE, and the same terms: `economy::Fiscal`
+  // pays debt service out of the same till the ministries are paid from, so
+  // the balance on this card carries it too. It is 0 while the books are
+  // closed, so an AI nation's card is unmoved.
+  const fiscalInterest = money.interest_gdp || 0;
+  const fiscalSpending = annualTotal(fiscal) + fiscalInterest;
   const fiscalBalance = fiscalRevenue - fiscalSpending;
   const fiscalCost = annualPoliticalCost(m, fiscal);
   $("#left").innerHTML = `
@@ -2792,13 +2998,16 @@ function renderLeft(m) {
       </div>
       <div class="fiscal-summary">
         <span>Revenue<b>${fmt.money(fiscalRevenue * m.gdp)}</b></span>
-        <span>Spending<b>${fmt.money(fiscalSpending * m.gdp)}</b></span>
+        <span>Outlays<b>${fmt.money(fiscalSpending * m.gdp)}</b></span>
         <span>${fiscalBalance >= 0 ? "Surplus" : "Deficit"}<b class="${fiscalBalance >= 0 ? "up" : "down"}">${fmt.money(Math.abs(fiscalBalance) * m.gdp)}</b></span>
         <span>Political cost<b class="${fiscalCost > m.political_capital ? "down" : ""}">${fiscalCost.toFixed(1)} PC</b></span>
       </div>
-      <div class="ministry-grid">${MINISTRIES.map((spec) => ministryDial(m, fiscal, spec)).join("")}</div>
-      <div class="budget-note">Each press moves 0.5% of GDP. All ten ministries roll into one atomic yearly budget; raising spending without revenue adds debt.</div>
+      ${interestRow(m)}
+      <div class="ministry-grid">${MINISTRIES.map((spec, i) => ministryDial(m, fiscal, spec, i)).join("")}</div>
+      <div class="budget-note">Each press moves 0.5% of GDP. All ten ministries roll into one atomic yearly budget; raising spending without revenue adds debt. OUTLAYS is the ten plus debt service, which is why the eleventh row is above them. Every figure under a ministry is the sim&rsquo;s own, read at the dial where it stands.</div>
     </div>
+
+    ${moneyCard(m)}
 
     <div class="card">
       <h3>Money &amp; Revenue <span>· immediate levers</span></h3>
@@ -3084,16 +3293,40 @@ function allocDraft(r) {
   return (r.domains || []).map((d) => d.share);
 }
 
+/// The eight shares as printed percentages that ADD TO EXACTLY 100.0.
+///
+/// The sim normalises the raw weights by their own sum, so the shares are
+/// exactly one before anybody rounds them. Rounding eight of them to a tenth
+/// independently is what broke the promise: Belgium's opening weights printed
+/// as 100.2%, and a card headed "budget shares" whose shares do not add up is
+/// telling the player the model does not normalise when it does.
+///
+/// Largest remainder, on tenths. Presentation only -- it moves at most one
+/// tenth onto the domains with the largest discarded fraction, and the numbers
+/// the command sends are the untouched raw slider values.
+function sharesTo100(raw) {
+  const sum = raw.reduce((a, b) => a + b, 0);
+  if (!(sum > 0)) return raw.map(() => 0);
+  const exact = raw.map((x) => (x / sum) * 1000);
+  const down = exact.map(Math.floor);
+  let left = 1000 - down.reduce((a, b) => a + b, 0);
+  const order = exact
+    .map((x, i) => [x - down[i], i])
+    .sort((a, b) => b[0] - a[0]);
+  for (let k = 0; k < order.length && left > 0; k++, left--) down[order[k][1]] += 1;
+  return down.map((t) => t / 10);
+}
+
 function allocHtml(r) {
   const doms = r.domains || [];
   const draft = allocDraft(r);
   const sum = draft.reduce((a, b) => a + b, 0);
+  const shown = sharesTo100(draft);
   const rows = doms.map((d, i) => {
-    const pc = sum > 0 ? (draft[i] / sum) * 100 : 0;
     return `<div class="arow"><span class="nm">${d.name.split(" ")[0]}</span>
         <input type="range" min="0" max="1000" step="1" data-alloc="${i}"
                value="${Math.round((draft[i] / (sum || 1)) * 1000)}">
-        <span class="pc" data-allocpc="${i}">${pc.toFixed(1)}%</span>
+        <span class="pc" data-allocpc="${i}">${shown[i].toFixed(1)}%</span>
       </div>`;
   }).join("");
   const set = r.allocation ? "ordered by the government" : "read off the nation";
@@ -3191,11 +3424,11 @@ function wireResearch() {
   const bars = Array.from(document.querySelectorAll("input[data-alloc]"));
   const repaint = () => {
     const raw = bars.map((b) => +b.value);
-    const sum = raw.reduce((a, c) => a + c, 0);
     resDraft = raw;
+    const shown = sharesTo100(raw);
     bars.forEach((b, i) => {
       const el = document.querySelector(`[data-allocpc="${i}"]`);
-      if (el) el.textContent = (sum > 0 ? (raw[i] / sum) * 100 : 0).toFixed(1) + "%";
+      if (el) el.textContent = shown[i].toFixed(1) + "%";
     });
   };
   bars.forEach((b) => { b.oninput = repaint; });
@@ -5087,7 +5320,7 @@ function paintPolicy(m) {
           (p.rate !== m.rate
             ? ` <span style="color:var(--amber)">(${fmt.pp(demandOut - demandBase)} demand)</span>` : ""),
     tax: `<b>${fmt.bn(p.tax * m.gdp)}</b>/yr revenue · ` +
-         (led.deficit >= 0 ? `deficit <b>${fmt.pct(led.deficit)}</b>` : `surplus <b>${fmt.pct(-led.deficit)}</b>`) +
+         (led.balance < 0 ? `deficit <b>${fmt.pct(-led.balance)}</b>` : `surplus <b>${fmt.pct(led.balance)}</b>`) +
          ` of GDP`,
     military: `<b>${fmt.bn(p.military * m.gdp)}</b>/yr sustains a force of <b>${force.toFixed(0)}</b>` +
               ` (now ${m.mil_strength.toFixed(0)})`,
@@ -5117,7 +5350,7 @@ function paintPolicy(m) {
   // the ledger directly beside it, and 41 of the world's nations sat at exactly
   // zero debt in that same world. A year cannot take more debt away than there
   // is, so the furthest the ratio can move down in a year is -debt.
-  const drift = Math.max(led.deficit - m.debt * (expected + m.inflation), -m.debt);
+  const drift = Math.max(-led.balance - m.debt * (expected + m.inflation), -m.debt);
   const dragList = [
     drag.war > 0 ? `war ${fmt.pp(-drag.war)}` : "",
     drag.sanctions > 0 ? `sanctions ${fmt.pp(-drag.sanctions)}` : "",
@@ -5131,14 +5364,16 @@ function paintPolicy(m) {
   if (!el) return;
   el.innerHTML =
     statRow("Revenue", fmt.pct(led.revenue) + " of GDP") +
-    statRow("Spending", fmt.pct(led.spend) + " of GDP") +
-    statRow(led.deficit >= 0 ? "Deficit" : "Surplus", fmt.pct(Math.abs(led.deficit)),
-            led.deficit > 0.04 ? "down" : led.deficit <= 0 ? "up" : "") +
+    statRow("Ministries", fmt.pct(led.spend) + " of GDP") +
+    (led.interest > 0
+      ? statRow("Debt service", fmt.pct(led.interest) + " of GDP", "down") : "") +
+    statRow(led.balance < 0 ? "Deficit" : "Surplus", fmt.pct(Math.abs(led.balance)),
+            led.balance < -0.04 ? "down" : led.balance >= 0 ? "up" : "") +
     statRow("Debt drift", fmt.pp(drift) + "/yr", drift > 0 ? "down" : "up") +
     statRow("Expected growth", fmt.signed(expected), expected >= 0 ? "up" : "down") +
     (dragList ? `<div class="note">drags: ${dragList}</div>` : "") +
-    (Math.abs(led.deficit - ledBase.deficit) > 1e-9
-      ? `<div class="note" style="color:var(--amber)">budget moves ${fmt.pp(led.deficit - ledBase.deficit)} of GDP</div>`
+    (Math.abs(led.balance - ledBase.balance) > 1e-9
+      ? `<div class="note" style="color:var(--amber)">budget moves ${fmt.pp(led.balance - ledBase.balance)} of GDP</div>`
       : "");
 }
 
