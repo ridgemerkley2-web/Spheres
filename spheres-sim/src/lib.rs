@@ -557,13 +557,33 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
                 allocations: *allocations,
                 reference,
             };
+            // Enacting the books as they stand is a no-op on the world.
+            // `inherited` splits social into 0.25/0.18/0.20/0.28/0.07/0.02
+            // and investment into 0.55/0.30/0.15, and the re-sums below are
+            // not the originals in floating point: measured on the 1990
+            // world, voting the inherited plan through unchanged moved
+            // social_spend() for 49/137 nations and state_invest_gdp for
+            // 32/137 by one ulp, and flipped social_spend_gdp from None to
+            // Some for all 137, retiring the baseline the AI governments run
+            // on. When every allocation is bit-identical to the plan already
+            // in force (the stored one, or the inherited one when none is),
+            // the aggregates are left exactly as they are and only the plan
+            // is seated; it carries zero gaps, so every ministry channel
+            // stays inert.
+            let unchanged = plan
+                .allocations
+                .iter()
+                .zip(inherited.allocations.iter())
+                .all(|(a, b)| a.to_bits() == b.to_bits());
             let social = plan.social_total();
             let investment = plan.investment_total();
             let defense = plan.defense();
             let n = w.nation_mut(*nation);
-            n.social_spend_gdp = Some(social);
-            n.state_invest_gdp = investment;
-            n.mil_spend_gdp = defense;
+            if !unchanged {
+                n.social_spend_gdp = Some(social);
+                n.state_invest_gdp = investment;
+                n.mil_spend_gdp = defense;
+            }
             n.annual_budget = Some(plan);
         }
         Command::SetResearchFocus { nation, domain, tech: want } => {
@@ -3323,6 +3343,76 @@ mod tests {
         )
         .is_err());
         assert_eq!(w.nation(me).annual_budget, held, "a refused vote partly changed the books");
+    }
+
+    /// Opening the ten-ministry books and voting them through unchanged is
+    /// a no-op on the world. It was not: `AnnualBudget::inherited` splits
+    /// social into 0.25/0.18/0.20/0.28/0.07/0.02 and investment into
+    /// 0.55/0.30/0.15, and the apply arm stored the RE-SUMS of those parts,
+    /// which are not the originals in floating point. Measured before the
+    /// guard, every nation seated in 1990 enacting `budget_for(1990)` as it
+    /// stood, social_spend() moved for 49/137 nations and state_invest_gdp
+    /// for 32/137 (one ulp each), mil_spend_gdp for 0/137, and
+    /// social_spend_gdp flipped None -> Some for 137/137. Against the
+    /// UNTOUCHED world: `to_bits` equality on all three aggregates, and
+    /// save() equality apart from `annual_budget` itself.
+    #[test]
+    fn enacting_the_inherited_budget_unchanged_is_a_no_op() {
+        let untouched = world_1990(GameRules::default());
+        let mut w = untouched.clone();
+        let mut ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+        ids.sort();
+        let seated = ids.len();
+        let (mut social_moved, mut invest_moved, mut mil_moved, mut flipped) =
+            (Vec::new(), Vec::new(), Vec::new(), Vec::new());
+        for id in &ids {
+            let allocations = w.nation(*id).budget_for(w.year).allocations;
+            let fiscal_year = w.year;
+            apply_command(&mut w, &Command::SetAnnualBudget { nation: *id, fiscal_year, allocations })
+                .unwrap_or_else(|e| panic!("{} could not enact its own budget: {e}", id.name()));
+            let (was, now) = (untouched.nation(*id), w.nation(*id));
+            assert!(now.annual_budget.is_some(), "{} has no plan seated", id.name());
+            if was.social_spend().to_bits() != now.social_spend().to_bits() {
+                social_moved.push(id.name());
+            }
+            if was.state_invest_gdp.to_bits() != now.state_invest_gdp.to_bits() {
+                invest_moved.push(id.name());
+            }
+            if was.mil_spend_gdp.to_bits() != now.mil_spend_gdp.to_bits() {
+                mil_moved.push(id.name());
+            }
+            if was.social_spend_gdp.is_none() && now.social_spend_gdp.is_some() {
+                flipped.push(id.name());
+            }
+        }
+        assert!(
+            social_moved.is_empty() && invest_moved.is_empty() && mil_moved.is_empty() && flipped.is_empty(),
+            "enacting the inherited budget unchanged moved the world: social_spend {}/{seated} {social_moved:?}; state_invest_gdp {}/{seated} {invest_moved:?}; mil_spend_gdp {}/{seated} {mil_moved:?}; social_spend_gdp flipped None -> Some {}/{seated}",
+            social_moved.len(),
+            invest_moved.len(),
+            mil_moved.len(),
+            flipped.len()
+        );
+
+        // The save agrees apart from the plan itself now being on the books.
+        fn without_plans(w: &WorldState) -> serde_json::Value {
+            let mut v: serde_json::Value = serde_json::from_str(&save(w)).unwrap();
+            for n in v["nations"].as_array_mut().unwrap() {
+                n.as_object_mut().unwrap().remove("annual_budget");
+            }
+            v
+        }
+        let (a, b) = (without_plans(&untouched), without_plans(&w));
+        if a != b {
+            let mut differing: Vec<String> = Vec::new();
+            for (na, nb) in a["nations"].as_array().unwrap().iter().zip(b["nations"].as_array().unwrap()) {
+                if na != nb {
+                    let keys: Vec<&String> = na.as_object().unwrap().iter().filter(|(k, v)| nb.get(*k) != Some(v)).map(|(k, _)| k).collect();
+                    differing.push(format!("{} {keys:?}", na["id"]));
+                }
+            }
+            panic!("the save moved apart from annual_budget: {differing:?}");
+        }
     }
 
     #[test]
