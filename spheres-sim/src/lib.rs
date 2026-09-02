@@ -975,6 +975,170 @@ mod tests {
         assert_eq!(save(&daily), save(&monthly));
     }
 
+    /// BIBLE section 5's condition asked of the world the browser actually
+    /// runs. The test above holds with `GameRules::default()`, market OFF;
+    /// `play_rules` in spheres-web turns `resource_market` ON, so this one
+    /// does too. Two such worlds take the SAME command list — a ProposeDeal
+    /// signed at the seller's own counter price, a DeclineDeal and an
+    /// AcceptDeal on plausible months — one stepped day by day through
+    /// `tick_day`, the other month by month through `tick_month`, and their
+    /// state hashes must agree at every month boundary for twenty-four
+    /// months. Commands are issued on the FIRST day of their month in the
+    /// daily world, which is where a player issues them: the web's
+    /// `advance_days` hands the queue to its first `tick_day` and nothing
+    /// after.
+    ///
+    /// The bar is the full `state_hash`, as the doctrine says. The message on
+    /// a miss also reports the first month at which the two saves disagree
+    /// once `headlines` is stripped, so a divergence of the RECORD and a
+    /// divergence of the WORLD are not confused for each other. Added on the
+    /// trial merge of codex/trading-system, 2026-09-02, and red at birth:
+    /// `tick_day` clears `w.headlines` on every day, so the headline a
+    /// command wrote on the 1st is gone from the save by the 31st, while
+    /// `tick_month` keeps it beside the systems' own. The world under the
+    /// headlines agreed at every one of the twenty-four boundaries.
+    #[test]
+    fn the_daily_clock_preserves_the_market_on_world() {
+        use crate::resources::{self, Commodity, Leg, Offer, Verdict};
+        let on = GameRules { resource_market: true, ..GameRules::default() };
+        let player = NationId::from_code("Japan").unwrap();
+        let seller = NationId::from_code("Australia").unwrap();
+        let mut monthly = world_1990(on);
+        monthly.player = Some(player);
+        // Enough standing that every command below is priced and applied
+        // rather than refused for want of capital, in BOTH worlds alike.
+        monthly.nation_mut(player).political_capital = 100.0;
+        let mut daily = monthly.clone();
+        assert_eq!(state_hash(&daily), state_hash(&monthly));
+
+        // An AI offer planted identically in both worlds, so AcceptDeal and
+        // DeclineDeal have something to answer whether or not the AI happens
+        // to ask Japan for anything in these two years.
+        fn plant(w: &mut WorldState, id: u32, from: NationId, to: NationId, c: Commodity) {
+            w.resources.next_id = w.resources.next_id.max(id);
+            w.resources.offers.push(Offer {
+                id,
+                from,
+                to,
+                give: vec![Leg::Money { bn_per_year: 0.2 }],
+                take: vec![Leg::Commodity { c, per_month: 100.0 }],
+                months: 12,
+                expires: resources::month_abs(w) + resources::PATIENCE,
+            });
+        }
+        /// The save with its `headlines` taken out, and those headlines.
+        fn world_and_record(w: &WorldState) -> (serde_json::Value, serde_json::Value) {
+            let mut v: serde_json::Value = serde_json::from_str(&save(w)).unwrap();
+            let heads = v
+                .as_object_mut()
+                .unwrap()
+                .remove("headlines")
+                .unwrap_or(serde_json::Value::Null);
+            (v, heads)
+        }
+
+        let mut issued = Vec::new();
+        let mut accepted_signed = false;
+        let mut first_hash_miss: Option<String> = None;
+        let mut first_world_miss: Option<String> = None;
+        for m in 0..24usize {
+            let mut cmds: Vec<Command> = Vec::new();
+            match m {
+                3 => {
+                    let give = vec![Leg::Money { bn_per_year: 0.0 }];
+                    let take = vec![Leg::Commodity { c: Commodity::Bauxite, per_month: 8_000.0 }];
+                    let price = match resources::evaluate(&monthly, player, seller, &give, &take, 60) {
+                        Verdict::Counter { money_bn_per_year, .. } => money_bn_per_year,
+                        Verdict::Accept => 0.0,
+                        Verdict::Refuse(r) => panic!("the probe deal was refused: {r:?}"),
+                    };
+                    cmds.push(Command::ProposeDeal {
+                        from: player,
+                        to: seller,
+                        give: vec![Leg::Money { bn_per_year: price }],
+                        take,
+                        months: 60,
+                    });
+                }
+                7 => {
+                    plant(&mut monthly, 9_001, seller, player, Commodity::Iron);
+                    plant(&mut daily, 9_001, seller, player, Commodity::Iron);
+                    cmds.push(Command::DeclineDeal { nation: player, offer: 9_001 });
+                }
+                11 => {
+                    plant(&mut monthly, 9_002, seller, player, Commodity::Copper);
+                    plant(&mut daily, 9_002, seller, player, Commodity::Copper);
+                    cmds.push(Command::AcceptDeal { nation: player, offer: 9_002 });
+                }
+                _ => {}
+            }
+            issued.extend(cmds.iter().cloned());
+
+            tick_month(&mut monthly, &cmds);
+            if m == 11 {
+                // The accepted offer is a twelve-month contract and has run
+                // out by month 24, so it is read here, the month it signed.
+                accepted_signed = monthly.resources.contracts.iter().any(|c| c.from == seller && c.to == player);
+            }
+            let days = world::days_in_month(daily.year, daily.month);
+            for d in 0..days {
+                let today = if d == 0 { &cmds[..] } else { &[][..] };
+                tick_day(&mut daily, today);
+            }
+            assert_eq!(
+                (daily.year, daily.month, daily.day),
+                (monthly.year, monthly.month, 1),
+                "month {m}: the two calendars parted"
+            );
+            let (hd, hm) = (state_hash(&daily), state_hash(&monthly));
+            if hd != hm {
+                let (wd, rd) = world_and_record(&daily);
+                let (wm, rm) = world_and_record(&monthly);
+                if first_hash_miss.is_none() {
+                    first_hash_miss = Some(format!(
+                        "month {m} ({}): daily {hd:#018x} != monthly {hm:#018x}; commands that month {cmds:?}; serialized headlines daily {rd} vs monthly {rm}",
+                        monthly.date_str()
+                    ));
+                }
+                if wd != wm && first_world_miss.is_none() {
+                    let mut differing: Vec<String> = Vec::new();
+                    if let (Some(od), Some(om)) = (wd.as_object(), wm.as_object()) {
+                        for (k, v) in od {
+                            if om.get(k) != Some(v) {
+                                differing.push(k.clone());
+                            }
+                        }
+                        for k in om.keys() {
+                            if !od.contains_key(k) {
+                                differing.push(k.clone());
+                            }
+                        }
+                    }
+                    first_world_miss = Some(format!(
+                        "month {m} ({}): keys differing with headlines stripped {differing:?}",
+                        monthly.date_str()
+                    ));
+                }
+            }
+        }
+        assert_eq!(issued.len(), 3, "{issued:?}");
+        // The list did what it says: the proposal signed, the accepted offer
+        // signed, the declined one gone. Read from the monthly world.
+        assert!(
+            monthly.resources.contracts.iter().any(|c| c.from == player && c.to == seller),
+            "the ProposeDeal did not sign: {:?}",
+            monthly.resources.contracts
+        );
+        assert!(accepted_signed, "the AcceptDeal did not sign");
+        assert!(monthly.resources.offers.iter().all(|o| o.id != 9_001 && o.id != 9_002));
+        assert!(
+            first_hash_miss.is_none(),
+            "a day-stepped month is not bit-identical to a month-stepped one with the market on.\nfirst state_hash miss: {}\nfirst miss of the world under the headlines: {}",
+            first_hash_miss.as_deref().unwrap_or("none"),
+            first_world_miss.as_deref().unwrap_or("none in 24 months: only `headlines` differs")
+        );
+    }
+
     #[test]
     fn daily_clock_observes_gregorian_leap_days() {
         let mut w = world_1990(GameRules::default());
