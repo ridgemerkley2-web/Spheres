@@ -157,11 +157,11 @@ pub fn unemployment_rate(n: &Nation, at_war: bool) -> f64 {
     let disorder = (50.0 - n.stability).max(0.0) * 0.001;
     let war = if at_war { 0.020 } else { 0.0 };
     let balance_sheet = (-n.bubble).max(0.0) * 0.035;
-    let ministry_jobs = n.budget_gap(BUDGET_HEALTH) * 0.12
-        + n.budget_gap(BUDGET_EDUCATION) * 0.16
-        + n.budget_gap(BUDGET_INFRASTRUCTURE) * 0.28
-        + n.budget_gap(BUDGET_INDUSTRY) * 0.24
-        + n.budget_gap(BUDGET_SCIENCE) * 0.08
+    // PENSIONS ALONE OWNS THIS ARM. Health 0.12, education 0.16,
+    // infrastructure 0.28, industry 0.24 and science 0.08 were removed from
+    // this expression in the ministry collapse: five ministries were pushing
+    // the same rate, none of them was calibrated, and between them they reached
+    // output twice — once here and once through `potential`.
     //
     // LABOUR-FORCE WITHDRAWAL, which is the honest reason a pension budget
     // moves the unemployment rate and the only one: a state pension that is
@@ -175,7 +175,7 @@ pub fn unemployment_rate(n: &Nation, at_war: bool) -> f64 {
     // design sizes it at "+0.5% of GDP is about -0.1pp of unemployment",
     // and 0.005 * 0.20 = 0.001 is exactly that. The existing
     // `clamp(0.02, 0.35)` on the result bounds it in both directions.
-        + n.budget_gap(BUDGET_PENSIONS) * 0.20;
+    let ministry_jobs = n.budget_gap(BUDGET_PENSIONS) * 0.20;
     (natural + cyclical + disorder + war + balance_sheet - ministry_jobs).clamp(0.02, 0.35)
 }
 
@@ -602,14 +602,13 @@ pub fn growth_terms(
     // which is the fact about Japan the model was missing entirely.
     let labour = population_growth(n) * 0.60;
     let mut potential = n.tfp_trend + invest_effect + catchup + labour;
-    // Ministry departures from the inherited mix shape the capacity created by
-    // the aggregate investment envelope. A nation that never changes its
-    // budget keeps the calibrated path exactly.
-    potential += budget_gap[BUDGET_HEALTH] * 0.015
-        + budget_gap[BUDGET_EDUCATION] * 0.050
-        + budget_gap[BUDGET_INFRASTRUCTURE] * 0.025
-        + budget_gap[BUDGET_INDUSTRY] * 0.035
-        + budget_gap[BUDGET_SCIENCE] * 0.025;
+    // NO MINISTRY REACHES POTENTIAL GROWTH DIRECTLY, and the ministry collapse
+    // removed the five that did — health 0.015, education 0.050,
+    // infrastructure 0.025, industry 0.035 and science 0.025. The money a
+    // ministry spends already reaches growth through `invest_effect` above,
+    // because `investment_total` is the state investment envelope; a second
+    // addend here was the same dollar counted twice, and it was the largest of
+    // the thirty uncalibrated channels BUGS D-1 filed.
 
     // Command economies pay an allocation penalty that worsens as they develop
     if n.system == EconomySystem::Command {
@@ -622,9 +621,11 @@ pub fn growth_terms(
     let neutral = 0.025;
     let mut demand_gap = (neutral - real_rate) * 0.55; // easy money -> above potential
     demand_gap += (n.social_spend() - n.baseline_social_spend()) * 0.15;
-    demand_gap += budget_gap[BUDGET_HEALTH] * 0.06
-        + budget_gap[BUDGET_HOUSING] * 0.28
-        + budget_gap[BUDGET_PENSIONS] * 0.18;
+    // NO MINISTRY REACHES DEMAND. Health 0.06, housing 0.28 and pensions 0.18
+    // were removed here: `demand_gap` FORKS, into output above and into the
+    // price impulse below, so a ministry routed through it is charged to two
+    // aggregates at once and can be read neither way. Pensions' claim on the
+    // labour market is now made where it can be read, in `unemployment_rate`.
     // ...but only while there is a rate left to cut and somebody willing to
     // borrow. Pushing on a string: Japan ran the policy rate at zero for two
     // decades against a corporate sector repairing its balance sheet, and
@@ -775,6 +776,15 @@ pub fn growth_terms(
     };
 
     // ---- Drags ----
+    // DEFENSE HAS NO GAP ARM ANYWHERE IN THIS FILE OR ANY OTHER, AND THAT IS
+    // THE DESIGN. Its allocation IS `mil_spend_gdp` — the priced aggregate the
+    // force model, the arsenal and `sustained_force` all already read — so a
+    // gap arm on top of it would charge the same money a second time. If a
+    // later session notices that nine ministries have a named arm and defense
+    // does not, this comment is the answer: defense is the one ministry whose
+    // whole effect was already modelled before the ministries existed.
+    //
+    // DIPLOMACY'S FIRST NAMED ARM, kept and unchanged: the sanction shield.
     let diplomatic_shield = (budget_gap[BUDGET_DIPLOMACY] * 8.0).clamp(-0.20, 0.40);
     let sanction_drag = growth_drag_of_sanctions(sanction_share) * (1.0 - diplomatic_shield);
     let war_drag = if at_war { 0.020 + n.war_exhaustion * 0.03 } else { 0.0 };
@@ -1027,7 +1037,6 @@ pub fn tick(w: &mut WorldState) {
 
         let gdp_pc = n.gdp * 1000.0 / n.population; // $ per capita
         let dev = (gdp_pc / 24000.0).min(1.0);
-        let social_gap = n.social_spend() - n.baseline_social_spend();
         // The advantage of backwardness expires. A trend rate earned while
         // catching up cannot be held once a nation *is* the frontier: there is
         // nothing left to copy, and everything after that has to be invented.
@@ -1202,10 +1211,11 @@ pub fn tick(w: &mut WorldState) {
                 + n.bubble * 0.012
                 - sanction_share * 0.025
                 - if at_war { 0.020 } else { 0.0 };
-            business_pressure += budget_gap[BUDGET_INFRASTRUCTURE] * 0.02
-                + budget_gap[BUDGET_INDUSTRY] * 0.04
-                + budget_gap[BUDGET_SCIENCE] * 0.02
-                + budget_gap[BUDGET_DIPLOMACY] * 0.01;
+            // NO MINISTRY REACHES PRIVATE INVESTMENT. Infrastructure 0.02,
+            // industry 0.04, science 0.02 and diplomacy 0.01 were removed:
+            // private investment is a THIRD route from the same budget line to
+            // the same output, on top of `investment_total` and the potential
+            // addend above, and three routes is two too many.
             if n.system == EconomySystem::Command {
                 business_pressure -= 0.003 + dev * 0.002;
             }
@@ -1274,13 +1284,24 @@ pub fn tick(w: &mut WorldState) {
         if Some(id) == player {
             ds -= (unemployment - 0.06).max(0.0) * 1.5;
         }
-        ds += social_gap * 12.0;
-        ds += budget_gap[BUDGET_HEALTH] * 8.0
-            + budget_gap[BUDGET_EDUCATION] * 5.0
-            + budget_gap[BUDGET_HOUSING] * 14.0
+        // `ds += social_gap * 12.0` STOOD HERE AND IS GONE. It was the
+        // pre-ministry route from the social aggregate to stability, and the
+        // three surviving addends below are the same claim made per ministry:
+        // a nation that raises housing raises `social_total`, so both fired,
+        // and the aggregate one could not be attributed to anything a player
+        // had done. Inert on every default path — `social_spend_gdp` is `None`
+        // for all 137 nations at 1990 and `social_spend()` then returns
+        // `baseline_social_spend()` by definition, so `social_gap` was exactly
+        // 0.0 — and a live channel for a player who had moved the old slider.
+    //
+        // HEALTH 8.0 and EDUCATION 5.0 are removed with it: neither ministry
+        // keeps a stability arm, because neither one's real claim is about
+        // order. DIPLOMACY 3.0 is removed for the same reason. What is left is
+        // the three ministries whose whole subject is whether the public is
+        // content: HOUSING, PENSIONS and SECURITY.
+        ds += budget_gap[BUDGET_HOUSING] * 14.0
             + budget_gap[BUDGET_PENSIONS] * 12.0
-            + budget_gap[BUDGET_SECURITY] * 16.0
-            + budget_gap[BUDGET_DIPLOMACY] * 3.0;
+            + budget_gap[BUDGET_SECURITY] * 16.0;
         ds -= n.war_exhaustion * 1.2;
         // CONVERTED. This was `sanction_count * 0.15` — the first of the four
         // surviving flag-counting sanction channels, and the one the
@@ -1311,9 +1332,17 @@ pub fn tick(w: &mut WorldState) {
             } else {
                 n.separatism = (n.separatism - 0.002).max(0.0);
             }
-            let cohesion = (budget_gap[BUDGET_HOUSING].max(0.0)
-                + budget_gap[BUDGET_SECURITY].max(0.0))
-                * 0.04;
+            // SECURITY ALONE OWNS THE COHESION TERM. Housing's half was
+            // removed: two ministries suppressing the same separatism made the
+            // effect a function of the budget's shape rather than of policing,
+            // and housing already answers for contentment through `ds` above.
+            //
+            // A POSITIVE GAP ONLY, and that is deliberate rather than
+            // inherited. Reading a cut here would CONJURE secession that is not
+            // in the nation's `separatism` stock — a player who trimmed the
+            // police budget of a country with no separatist movement would
+            // watch one appear — so a cut simply stops buying suppression.
+            let cohesion = budget_gap[BUDGET_SECURITY].max(0.0) * 0.04;
             n.separatism = (n.separatism - cohesion).max(0.0);
         }
     }

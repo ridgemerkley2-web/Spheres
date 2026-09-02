@@ -3347,6 +3347,24 @@ mod tests {
         );
     }
 
+    /// RE-EXPRESSED, NOT WIDENED OR DELETED, 2026-09-02, by the ministry
+    /// collapse (stage 2 of the design Ridge approved that day; its point 1 is
+    /// this instruction, "re-express the two existing test assertions,
+    /// preserving intent, never deleting").
+    ///
+    /// The intent is unchanged and both bars still stand: money moved into the
+    /// ministries buys jobs, and money moved into the ministries buys research.
+    /// What moved is WHICH DIAL buys the jobs. Unemployment's ministry channel
+    /// used to be five ministries at once — health 0.12, education 0.16,
+    /// infrastructure 0.28, industry 0.24, science 0.08 — and is now PENSIONS
+    /// ALONE, as labour-force withdrawal. So the plan this test enacts raises
+    /// pensions instead of cutting it, and pays for the raise out of defense,
+    /// which is the one ministry with no gap arm at all. Nothing about the
+    /// assertion was loosened: it is still a strict `<` and a strict `>`.
+    ///
+    /// RED CHECK, run 2026-09-02 and reverted. Pensions' 0.20 slope was set to
+    /// 0.0 — the arm present but dead. RED here, which is the bar seeing the
+    /// only channel that now reaches the number it reads.
     #[test]
     fn a_fiscal_year_budget_carries_ten_ministries_into_the_sim() {
         let mut w = seeded(12);
@@ -3362,8 +3380,8 @@ mod tests {
         allocations[BUDGET_HEALTH] += 0.005;
         allocations[BUDGET_EDUCATION] += 0.005;
         allocations[BUDGET_SCIENCE] += 0.005;
-        allocations[BUDGET_PENSIONS] -= 0.005;
-        allocations[BUDGET_DEFENSE] -= 0.010;
+        allocations[BUDGET_PENSIONS] += 0.005;
+        allocations[BUDGET_DEFENSE] -= 0.020;
         let cmd = Command::SetAnnualBudget {
             nation: me,
             fiscal_year: w.year,

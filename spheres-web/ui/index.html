@@ -2653,16 +2653,16 @@ function ledgerOf(n, tax, social, mil, invest) {
 /* ================= left column: you ================= */
 
 const MINISTRIES = [
-  { id:"health", art:"✚", name:"Health", affects:"jobs · productivity · population", story:"hospitals and public health", cap:.15 },
-  { id:"education", art:"▤", name:"Education", affects:"research · jobs · growth", story:"schools and skilled workers", cap:.12 },
-  { id:"housing", art:"⌂", name:"Housing", affects:"demand · trust · births", story:"homes and household support", cap:.15 },
-  { id:"pensions", art:"◷", name:"Pensions", affects:"demand · trust · deficit", story:"income after working life", cap:.20 },
-  { id:"infrastructure", art:"▥", name:"Infrastructure", affects:"growth · jobs · investment", story:"roads, ports and power grids", cap:.15 },
-  { id:"industry", art:"⚙", name:"Industry & energy", affects:"growth · firms · resilience", story:"factories and energy systems", cap:.12 },
-  { id:"science", art:"⌬", name:"Science", affects:"research · future growth", story:"laboratories and discovery", cap:.08 },
+  { id:"health", art:"✚", name:"Health", affects:"population · wartime replacement", story:"hospitals and public health", cap:.15 },
+  { id:"education", art:"▤", name:"Education", affects:"research", story:"schools and skilled workers", cap:.12 },
+  { id:"housing", art:"⌂", name:"Housing", affects:"trust · births", story:"homes and household support", cap:.15 },
+  { id:"pensions", art:"◷", name:"Pensions", affects:"trust · jobs · standing", story:"income after working life", cap:.20 },
+  { id:"infrastructure", art:"▥", name:"Infrastructure", affects:"resource output · investment", story:"roads, ports and power grids", cap:.15 },
+  { id:"industry", art:"⚙", name:"Industry & energy", affects:"munitions · investment", story:"factories and energy systems", cap:.12 },
+  { id:"science", art:"⌬", name:"Science", affects:"technology reach · investment", story:"laboratories and discovery", cap:.08 },
   { id:"defense", art:"⛊", name:"Defense", affects:"forces · weapons · readiness", story:"the armed forces", cap:.35 },
-  { id:"security", art:"◆", name:"Security", affects:"order · separatism · trust", story:"police and internal security", cap:.12 },
-  { id:"diplomacy", art:"◎", name:"Diplomacy", affects:"sanctions · investment · trust", story:"embassies and foreign service", cap:.08 },
+  { id:"security", art:"◆", name:"Security", affects:"order · separatism", story:"police and internal security", cap:.12 },
+  { id:"diplomacy", art:"◎", name:"Diplomacy", affects:"sanctions · counter-intelligence", story:"embassies and foreign service", cap:.08 },
 ];
 
 function annualBudgetOf(m) {
