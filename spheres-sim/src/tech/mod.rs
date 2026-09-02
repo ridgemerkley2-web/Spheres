@@ -1038,12 +1038,23 @@ pub fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     let intensity = (0.008 + 0.017 * dev) * (0.55 + 1.5 * invest);
     let mut out = n.gdp * intensity / 12.0;
 
-    // Education grows the pool of people who can do research; science pays
-    // for the laboratories themselves. A one-point-of-GDP science push is a
-    // major national programme and is meant to be immediately legible.
-    let ministry_multiplier = 1.0
-        + n.budget_gap(crate::world::BUDGET_EDUCATION) * 20.0
-        + n.budget_gap(crate::world::BUDGET_SCIENCE) * 35.0;
+    // EDUCATION's named arm, and EDUCATION ALONE OWNS IT. Education grows the
+    // pool of people who can do research, which is a claim about how much
+    // research a given amount of money buys, so it belongs on the quantity
+    // side. Science used to sit in this same expression at x35 and no longer
+    // does: it has moved to the PRICE side, `absorptive_capacity` below, where
+    // a laboratory makes a technology cheaper to reach rather than making the
+    // budget larger. Two ministries multiplying the same number was the defect
+    // the ministry collapse exists to remove.
+    //
+    // 20.0 -> 15.0, and the slope is DERIVED rather than invented. Education's
+    // dial caps at 0.12 of GDP against an inherited reference of 0.18 of the
+    // social envelope — about 0.036 for a nation running a 20% welfare state —
+    // so the largest gap the player can actually reach is near 0.084, and
+    // 0.084 * 15.0 = 1.26 lands on 2.26 against the 2.25 clamp ceiling. At
+    // x20 the ceiling bound five points of the dial short of its own top and
+    // every step past that bought nothing.
+    let ministry_multiplier = 1.0 + n.budget_gap(crate::world::BUDGET_EDUCATION) * 15.0;
     out *= ministry_multiplier.clamp(0.35, 2.25);
 
     // Better tools make more research out of the same money.
@@ -1312,7 +1323,15 @@ pub fn project_of(w: &WorldState, id: NationId, domain: Domain) -> Option<(&'sta
 /// How much of what the world already knows this nation can actually take up.
 /// Capacity, contact and openness — a closed, sanctioned, undercapitalised state
 /// sits next to the frontier and cannot reach it.
-fn absorptive_capacity(w: &WorldState, n: &Nation, dev: f64) -> f64 {
+///
+/// PUBLIC since the ministry collapse: SCIENCE's named arm lands here, and a
+/// bar that means to assert the arm has to be able to read the quantity it
+/// moves. `cost_of` below is the arm's consequence and is the honest thing to
+/// show a player, but the consequence is muted wherever `effective_cost`'s
+/// build floor binds — which the comment inside it measures as "every nation
+/// examined from month 120 onward" — so a test pointed only at the price would
+/// be reading the floor and not the ministry.
+pub fn absorptive_capacity(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     let mut sum = 0.0;
     let mut count = 0.0;
     for other in w.nations.iter().filter(|o| o.alive && o.id != n.id) {
@@ -1337,6 +1356,20 @@ fn absorptive_capacity(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     // three. The `clamp` below stays: it bounds a sum of several terms, not this
     // one, and was never a patch on the count.
     a -= 0.1333 * w.sanction_weight(n.id);
+    // SCIENCE's named arm, arriving from `research_output` where it used to be
+    // an x35 multiplier on the budget. A national laboratory system is not a
+    // way of having more research money; it is the thing that lets a country
+    // read somebody else's paper and build the machine it describes. Absorptive
+    // capacity is where that belongs, and it is why the same push now shortens
+    // the time to FIELD a technology rather than inflating the bank.
+    //
+    // INVENTED, and labelled as the design requires: the 6.0 slope. Science's
+    // dial caps at 0.08 of GDP against an inherited reference near 0.015, so
+    // the largest reachable gap is about 0.065 and 0.065 * 6.0 = 0.39 —
+    // roughly the whole of the 0.40 development term, i.e. a maximal science
+    // programme is worth about as much reach as being rich. The `clamp` below
+    // still bounds the sum, as it bounded it before.
+    a += n.budget_gap(crate::world::BUDGET_SCIENCE) * 6.0;
     a.clamp(0.05, 1.20)
 }
 
