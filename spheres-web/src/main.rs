@@ -1,3 +1,5 @@
+#![recursion_limit = "256"]
+
 //! Local web front end for SPHERES.
 //!
 //! The simulation stays the single source of truth: this server owns one
@@ -9,7 +11,7 @@ use spheres_sim::resources::{self, Commodity, Leg, Verdict, ALL};
 use spheres_sim::stratagems;
 use spheres_sim::theatre::TheatreId;
 use spheres_sim::world::*;
-use spheres_sim::{apply_command, load, save, tick_month, Command};
+use spheres_sim::{apply_command, load, save, tick_day, tick_month, Command};
 use std::sync::Mutex;
 use tiny_http::{Header, Method, Response, Server};
 
@@ -138,11 +140,10 @@ impl Game {
         }
     }
 
-    fn record(&mut self, text: String) {
-        let w = &self.world;
+    fn record_at(&mut self, t: u32, date: String, text: String) {
         self.log.push(Event {
-            t: month_index(w.year, w.month),
-            date: w.date_str(),
+            t,
+            date,
             cat: classify(&text),
             tags: mentioned(&text),
             text,
@@ -152,29 +153,63 @@ impl Game {
         }
     }
 
-    /// Advance up to `months`, stopping early on an event worth reacting to.
+    fn record(&mut self, text: String) {
+        self.record_at(
+            month_index(self.world.year, self.world.month),
+            self.world.date_str(),
+            text,
+        );
+    }
+
+    /// Advance up to `days`, stopping early on an event worth reacting to.
+    /// Monthly-calibrated systems settle when a month closes; the history keeps
+    /// one row per settlement rather than duplicating the same values every day.
     /// Returns whether it stopped early and why.
-    fn advance(&mut self, months: usize, commands: Vec<Command>) -> (bool, Option<String>) {
-        // Was the player's nation ALREADY gone when this call arrived? The
-        // interrupt below is a piece of news, and news is told once. Without
-        // this latch it fired on the first month of every later run too, so a
-        // player whose nation had dissolved got one month per request for the
-        // rest of the game however many they asked for — measured at 337 calls
-        // to reach 337 months, and there is no gesture in the UI that skips it.
-        // The `i + 1 < months` line below is the same idea for the ordinary
-        // interrupt: do not stop on a condition the caller cannot act on.
-        //
-        // `nation_opt`, not `nation`: a dissolution may take the row out of the
-        // world entirely, and the accessor with the `expect` in it has already
-        // cost this server one process today.
+    fn advance_days(&mut self, days: usize, commands: Vec<Command>) -> (bool, Option<String>) {
+        let gone = |g: &Game, me: NationId| !g.world.nation_opt(me).is_some_and(|n| n.alive);
+        let already_gone = self.world.player.is_some_and(|me| gone(self, me));
+        let mut queued = commands;
+        for i in 0..days {
+            let cmds = std::mem::take(&mut queued);
+            let event_t = month_index(self.world.year, self.world.month);
+            let event_date = self.world.date_str();
+            let before_month = (self.world.year, self.world.month);
+            let headlines = tick_day(&mut self.world, &cmds);
+            for h in &headlines {
+                self.record_at(event_t, event_date.clone(), h.clone());
+            }
+            if (self.world.year, self.world.month) != before_month {
+                self.snapshot();
+            }
+            if !already_gone {
+                if let Some(me) = self.world.player {
+                    if gone(self, me) {
+                        return (true, Some(format!("{} no longer exists.", me.name())));
+                    }
+                }
+            }
+            if i + 1 < days {
+                if let Some(e) = headlines.iter().find(|h| is_major(h, self.world.player)) {
+                    return (true, Some(e.clone()));
+                }
+            }
+        }
+        (false, None)
+    }
+
+    /// Compatibility path for older clients that still post `{ months: N }`.
+    fn advance_months(&mut self, months: usize, commands: Vec<Command>) -> (bool, Option<String>) {
+        // A destroyed nation interrupts once, not on every later request.
         let gone = |g: &Game, me: NationId| !g.world.nation_opt(me).is_some_and(|n| n.alive);
         let already_gone = self.world.player.is_some_and(|me| gone(self, me));
         let mut queued = commands;
         for i in 0..months {
             let cmds = std::mem::take(&mut queued);
+            let event_t = month_index(self.world.year, self.world.month);
+            let event_date = self.world.date_str();
             let headlines = tick_month(&mut self.world, &cmds);
             for h in &headlines {
-                self.record(h.clone());
+                self.record_at(event_t, event_date.clone(), h.clone());
             }
             self.snapshot();
             if !already_gone {
@@ -191,6 +226,13 @@ impl Game {
             }
         }
         (false, None)
+    }
+
+    /// The inherited web regression tests express their horizons in months.
+    /// Keep that exact test surface while the browser-facing clock uses days.
+    #[cfg(test)]
+    fn advance(&mut self, months: usize, commands: Vec<Command>) -> (bool, Option<String>) {
+        self.advance_months(months, commands)
     }
 }
 
@@ -745,6 +787,26 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
 
 fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
     let me = w.player;
+    let annual_budget = if me == Some(n.id) {
+        let b = n.budget_for(w.year);
+        Some(serde_json::json!({
+            "fiscal_year": b.fiscal_year,
+            "due": n.annual_budget.as_ref().is_none_or(|x| x.fiscal_year != w.year),
+            "health": b.allocations[BUDGET_HEALTH],
+            "education": b.allocations[BUDGET_EDUCATION],
+            "families": b.allocations[BUDGET_FAMILIES],
+            "pensions": b.allocations[BUDGET_PENSIONS],
+            "infrastructure": b.allocations[BUDGET_INFRASTRUCTURE],
+            "industry": b.allocations[BUDGET_INDUSTRY],
+            "science": b.allocations[BUDGET_SCIENCE],
+            "defense": b.allocations[BUDGET_DEFENSE],
+            "security": b.allocations[BUDGET_SECURITY],
+            "diplomacy": b.allocations[BUDGET_DIPLOMACY],
+            "total": b.total(),
+        }))
+    } else {
+        None
+    };
     serde_json::json!({
         "id": format!("{:?}", n.id),
         "name": n.id.name(),
@@ -758,6 +820,10 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "tax": n.tax_rate,
         "mil_spend": n.mil_spend_gdp,
         "state_invest": n.state_invest_gdp,
+        "social_spend": n.social_spend(),
+        "annual_budget": annual_budget,
+        "baseline_social_spend": n.baseline_social_spend(),
+        "unemployment": spheres_sim::economy::unemployment_rate(n, w.at_war(n.id)),
         // The UI's policy readout reproduces the growth arithmetic, and cannot do
         // it without the two terms the player never sets directly.
         "priv_invest": n.priv_invest_gdp,
@@ -2194,6 +2260,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "date": w.date_str(),
         "year": w.year,
         "month": w.month,
+        "day": w.day,
         "t": month_index(w.year, w.month),
         "player": w.player.map(|p| format!("{:?}", p)),
         "player_name": w.player.map(|p| p.name()),
@@ -2618,6 +2685,28 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         "tax" => Command::SetTaxRate { nation: me, rate: num()? },
         "military" => Command::SetMilSpend { nation: me, share: num()? },
         "invest" => Command::SetStateInvest { nation: me, share: num()? },
+        "budget" => Command::SetBudget {
+            nation: me,
+            social: v.get("social")?.as_f64()?,
+            investment: v.get("invest")?.as_f64()?,
+            military: v.get("military")?.as_f64()?,
+        },
+        "annual_budget" => Command::SetAnnualBudget {
+            nation: me,
+            fiscal_year: v.get("fiscal_year")?.as_i64()? as i32,
+            allocations: [
+                v.get("health")?.as_f64()?,
+                v.get("education")?.as_f64()?,
+                v.get("families")?.as_f64()?,
+                v.get("pensions")?.as_f64()?,
+                v.get("infrastructure")?.as_f64()?,
+                v.get("industry")?.as_f64()?,
+                v.get("science")?.as_f64()?,
+                v.get("defense")?.as_f64()?,
+                v.get("security")?.as_f64()?,
+                v.get("diplomacy")?.as_f64()?,
+            ],
+        },
         "sanction" => Command::Sanction { imposer: me, target: target()? },
         "lift" => Command::LiftSanction { imposer: me, target: target()? },
         "improve" => Command::ImproveRelations { from: me, to: target()? },
@@ -2836,6 +2925,25 @@ fn asked_seed(payload: &serde_json::Value) -> Result<u64, String> {
 /// The longest run of months this server will advance in one request, and the
 /// same span the research board will project a wait across.
 const MAX_ADVANCE: u64 = 1200;
+const MAX_ADVANCE_DAYS: u64 = 36_525;
+
+/// Read the daily browser clock without letting a malformed `days` value fall
+/// through to the legacy monthly route. `None` means an older client did not
+/// ask in days and may still use `months`.
+fn asked_days(payload: &serde_json::Value) -> Result<Option<u64>, String> {
+    match payload.get("days") {
+        None | Some(serde_json::Value::Null) => Ok(None),
+        Some(v) => v
+            .as_u64()
+            .map(|days| Some(days.clamp(1, MAX_ADVANCE_DAYS)))
+            .ok_or_else(|| {
+                format!(
+                    "{} is not a number of days. Days are a whole number from 1 to {}",
+                    v, MAX_ADVANCE_DAYS
+                )
+            }),
+    }
+}
 
 /// How far the request asked the clock to move.
 ///
@@ -3384,14 +3492,6 @@ fn main() {
                 }
             }
             (Method::Post, "/api/advance") => {
-                let months = match asked_months(&payload) {
-                    Ok(m) => m as usize,
-                    Err(e) => {
-                        let _ = request
-                            .respond(json_error(400, serde_json::json!({ "error": e })));
-                        continue;
-                    }
-                };
                 let mut g = game.lock().unwrap();
                 let me = g.world.player;
                 let cmds: Vec<Command> = match me {
@@ -3402,7 +3502,32 @@ fn main() {
                         .unwrap_or_default(),
                     None => vec![],
                 };
-                let (_stopped, why) = g.advance(months, cmds);
+                let (_stopped, why) = if let Some(days) = match asked_days(&payload) {
+                    Ok(days) => days,
+                    Err(e) => {
+                        let _ = request.respond(json_error(
+                            400,
+                            serde_json::json!({ "error": e }),
+                        ));
+                        continue;
+                    }
+                } {
+                    g.advance_days(days as usize, cmds)
+                } else {
+                    // Keep saved browser tabs and API callers from the monthly
+                    // build working while the visible game moves to daily time.
+                    let months = match asked_months(&payload) {
+                        Ok(m) => m as usize,
+                        Err(e) => {
+                            let _ = request.respond(json_error(
+                                400,
+                                serde_json::json!({ "error": e }),
+                            ));
+                            continue;
+                        }
+                    };
+                    g.advance_months(months, cmds)
+                };
                 json_response(state_json(&g, why))
             }
             (Method::Post, "/api/command") => {
@@ -3925,22 +4050,30 @@ mod tests {
             spheres_sim::war::sustained_force(n, n.mil_spend_gdp),
         );
 
-        // The curve has to cover what the shipped slider can actually ask for,
-        // or the page silently clamps. Read off the page rather than retyped, so
-        // widening the slider without widening the curve goes red here.
+        // The curve has to cover what the shipped Defense ministry can actually
+        // ask for, or the page silently clamps. Read its cap off the page rather
+        // than retyping it, so widening the dial without widening the curve goes
+        // red here.
         let hi: f64 = INDEX
-            .split_once("sliderHtml(\"military\", \"Military spending\", m.mil_spend, 0, ")
-            .expect("the page still offers a military slider")
+            .split_once("id:\"defense\"")
+            .expect("the annual budget still offers a Defense ministry")
             .1
-            .split(')')
+            .split_once("cap:")
+            .expect("Defense still has a cap")
+            .1
+            .split('}')
             .next()
-            .expect("a closing paren")
+            .expect("the end of the Defense ministry")
             .trim()
             .parse()
             .expect("a numeric upper bound");
         assert!(
             hi <= FORCE_CURVE_MAX,
-            "the military slider reaches {hi} but the force curve stops at {FORCE_CURVE_MAX}"
+            "the Defense dial reaches {hi} but the force curve stops at {FORCE_CURVE_MAX}"
+        );
+        assert!(
+            INDEX.contains("sustainedForce(m, b[spec.id])"),
+            "the Defense ministry no longer shows the force the sim sustains"
         );
 
         // And the page must READ the curve rather than recompute it.
@@ -4393,6 +4526,69 @@ mod tests {
         assert_eq!(month_index(1990, 1), 0);
         assert_eq!(month_index(1990, 12), 11);
         assert_eq!(month_index(1991, 1), 12);
+    }
+
+    #[test]
+    fn browser_clock_advances_daily_and_histories_settle_monthly() {
+        let mut g = Game::new(1990, None);
+        assert_eq!(g.world.date_str(), "1 Jan 1990");
+        assert_eq!(g.history.len(), 1);
+
+        g.advance_days(1, vec![]);
+        assert_eq!(g.world.date_str(), "2 Jan 1990");
+        assert_eq!(g.history.len(), 1);
+
+        g.advance_days(30, vec![]);
+        assert_eq!(g.world.date_str(), "1 Feb 1990");
+        assert_eq!(g.history.len(), 2);
+        assert_eq!(state_json(&g, None)["day"], 1);
+    }
+
+    #[test]
+    fn browser_surface_posts_days_not_months() {
+        assert!(INDEX.contains("+1 DAY"));
+        assert!(INDEX.contains("+7 DAYS"));
+        assert!(INDEX.contains("/api/advance\", { days, commands: queued }"));
+        assert!(INDEX.contains("effect next day"));
+    }
+
+    #[test]
+    fn ten_ministry_budget_reaches_the_atomic_fiscal_command() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        g.world.nation_mut(NationId::USA).political_capital = 100.0;
+        let posted = serde_json::json!({
+            "kind": "annual_budget", "fiscal_year": 1990,
+            "health": 0.055, "education": 0.040, "families": 0.045,
+            "pensions": 0.060, "infrastructure": 0.025, "industry": 0.015,
+            "science": 0.010, "defense": 0.050, "security": 0.015,
+            "diplomacy": 0.005
+        });
+        let cmd = parse_command(&g.world, &posted, NationId::USA).expect("budget parses");
+        assert!(matches!(cmd, Command::SetAnnualBudget { .. }));
+        apply_command(&mut g.world, &cmd).unwrap();
+        let n = g.world.nation(NationId::USA);
+        let b = n.annual_budget.as_ref().expect("the budget was not enacted");
+        assert_eq!(b.allocations.len(), 10);
+        assert_eq!(b.fiscal_year, 1990);
+        assert_eq!(n.mil_spend_gdp, 0.05);
+        assert_eq!(nation_json(&g.world, n)["annual_budget"]["due"], false);
+        g.world.year = 1991;
+        assert_eq!(
+            nation_json(&g.world, g.world.nation(NationId::USA))["annual_budget"]["due"],
+            true,
+            "a new fiscal year did not ask for a new budget"
+        );
+
+        assert!(INDEX.contains("sliderHtml(\"rate\""));
+        assert!(INDEX.contains("sliderHtml(\"tax\""));
+        for ministry in ["health", "education", "families", "pensions", "infrastructure",
+                         "industry", "science", "defense", "security", "diplomacy"] {
+            assert!(INDEX.contains(&format!("id:\"{}\"", ministry)), "{} has no dial", ministry);
+        }
+        assert!(INDEX.contains("fiscal-summary"));
+        assert!(INDEX.contains("annualPoliticalCost"));
+        assert!(INDEX.contains("Enact &amp; advance one day"));
+        assert!(INDEX.contains("Employment"));
     }
 
     /// A power that dies must leave a line that ends, not one that runs flat to
@@ -7274,17 +7470,34 @@ mod tests {
         for m in [0u64, 1, 6, 12, 60, MAX_ADVANCE] {
             assert_eq!(asked_months(&serde_json::json!({ "months": m })), Ok(m));
         }
-        // The browser's four buttons, read off the page rather than retyped, so
-        // this cannot pass while the page asks for something else.
-        for span in ["1", "6", "12", "60"] {
+        // The browser's four daily buttons, read off the page rather than
+        // retyped, so this cannot pass while the page asks for something else.
+        for span in ["1", "7", "30", "365"] {
             assert!(
                 INDEX.contains(&format!("data-adv=\"{}\"", span)),
-                "the page no longer offers a {}-month advance; re-derive this list",
+                "the page no longer offers a {}-day advance; re-derive this list",
                 span
             );
-            let m: u64 = span.parse().unwrap();
-            assert_eq!(asked_months(&serde_json::json!({ "months": m })), Ok(m));
+            let days: u64 = span.parse().unwrap();
+            assert_eq!(asked_days(&serde_json::json!({ "days": days })), Ok(Some(days)));
         }
+
+        // An explicit but unusable daily span is refused. It must never fall
+        // through and move the clock one legacy month instead.
+        for bad in [
+            serde_json::json!(-5),
+            serde_json::json!("7"),
+            serde_json::json!(3.5),
+            serde_json::json!([7]),
+        ] {
+            let e = asked_days(&serde_json::json!({ "days": bad }))
+                .expect_err("must be refused");
+            assert!(e.contains("is not a number of days"), "unhelpful refusal: {e}");
+        }
+        assert_eq!(
+            asked_days(&serde_json::json!({ "days": MAX_ADVANCE_DAYS + 1 })),
+            Ok(Some(MAX_ADVANCE_DAYS))
+        );
 
         // The clamp is a limit on the work, not a substitution of the question,
         // and it stays a clamp rather than becoming a refusal.
@@ -7633,11 +7846,16 @@ mod tests {
             INDEX.contains("#center { display: flex; flex-direction: column; overflow: hidden; }"),
             "#center's clip is half of this defect; if it moved, re-derive"
         );
-        // The narrowest layout the fixed columns allow, read off the page.
+        // The globe now owns the entire board; the former fixed side columns
+        // are drawers laid over it. That removes the 364px centre-column case
+        // entirely while retaining the wrapping protection above.
         assert!(
-            INDEX.contains("main { display: grid; grid-template-columns: 312px 1fr 348px;"),
-            "the side columns' widths are what leave the map 364px at 1024; \
-             re-derive this test's measurement if they change"
+            INDEX.contains("main { position: relative; display: block; overflow: hidden; }"),
+            "the map-first board is no longer full-width"
+        );
+        assert!(
+            INDEX.contains("#center { position: absolute; inset: 0; }"),
+            "the globe no longer fills the board behind the drawers"
         );
     }
 

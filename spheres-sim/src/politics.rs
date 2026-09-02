@@ -332,6 +332,8 @@ fn dissolve_ussr(w: &mut WorldState) {
         mil_spend_gdp: 0.045,
         state_invest_gdp: 0.04,
         priv_invest_gdp: 0.10,
+        social_spend_gdp: None,
+        annual_budget: None,
         debt_gdp: 0.35,
         oil_mbd: oil * 0.85,
         bubble: 0.0,
@@ -379,6 +381,8 @@ fn dissolve_ussr(w: &mut WorldState) {
         mil_spend_gdp: 0.035,
         state_invest_gdp: 0.04,
         priv_invest_gdp: 0.08,
+        social_spend_gdp: None,
+        annual_budget: None,
         debt_gdp: 0.15,
         oil_mbd: oil * 0.01,
         bubble: 0.0,
@@ -614,6 +618,8 @@ fn dissolve_ussr(w: &mut WorldState) {
             mil_spend_gdp: r.milspend,
             state_invest_gdp: 0.04,
             priv_invest_gdp: 0.09,
+            social_spend_gdp: None,
+            annual_budget: None,
             // The "zero option" of 1994 gave Moscow every rouble of Soviet
             // foreign debt and, with it, every Soviet foreign asset. The other
             // republics therefore start almost unencumbered, and what debt they
@@ -1033,6 +1039,8 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             mil_spend_gdp: 0.05,
             state_invest_gdp: 0.05,
             priv_invest_gdp: 0.10,
+            social_spend_gdp: None,
+            annual_budget: None,
             debt_gdp: debt,
             oil_mbd: oil * g,
             bubble: 0.0,

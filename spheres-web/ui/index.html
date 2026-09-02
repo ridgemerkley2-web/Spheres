@@ -181,10 +181,37 @@
   .timebtns button { position: relative; padding: 3px 9px; font-size: 11px; }
   .timebtns button i { font-style: normal; color: var(--faint); font-size: 10px; margin-left: 5px; }
 
-  main { display: grid; grid-template-columns: 312px 1fr 348px; overflow: hidden; }
+  main { position: relative; display: block; overflow: hidden; }
   .col { overflow-y: auto; padding: 12px; }
-  #left { border-right: 1px solid var(--line); background: var(--well); box-shadow: inset -1px 0 0 var(--edge-lite); }
-  #right { border-left: 1px solid var(--line); background: var(--well); box-shadow: inset 1px 0 0 var(--edge-lite); display: flex; flex-direction: column; }
+  #center { position: absolute; inset: 0; }
+  #left { height: 100%; background: var(--well); }
+  #right { height: 100%; background: var(--well); display: flex; flex-direction: column; }
+
+  /* The globe is the board. Dense systems stay behind large command buttons
+     until the player asks for them, so the resting screen remains readable. */
+  .game-drawer {
+    position: absolute; top: 0; bottom: 0; z-index: 31; display: flex;
+    flex-direction: column; visibility: hidden; pointer-events: none;
+    background: #0d1116f7; box-shadow: 0 18px 70px #000d;
+    transition: transform .2s ease, visibility .2s;
+  }
+  .game-drawer.left { left: 0; width: min(720px, calc(100vw - 28px)); transform: translateX(-103%); border-right: 1px solid var(--brass-etch); }
+  .game-drawer.right { right: 0; width: min(430px, calc(100vw - 28px)); transform: translateX(103%); border-left: 1px solid var(--brass-etch); }
+  .game-drawer.open { visibility: visible; pointer-events: auto; transform: translateX(0); }
+  .drawer-head { display: flex; align-items: center; gap: 10px; min-height: 58px; padding: 9px 12px; background: #151a21f5; border-bottom: 1px solid var(--brass-etch); }
+  .drawer-head .eyebrow { color: var(--faint); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; }
+  .drawer-head h2 { font-family: var(--serif); color: var(--brass-hi); font-size: 15px; letter-spacing: .08em; }
+  .drawer-head .grow { flex: 1; }
+  .drawer-close { width: 40px; height: 40px; padding: 0; font-size: 20px; }
+  #drawerScrim { position: absolute; inset: 0; z-index: 30; visibility: hidden; opacity: 0; pointer-events: none; background: #05070a80; transition: opacity .2s, visibility .2s; }
+  #drawerScrim.open { visibility: visible; opacity: 1; pointer-events: auto; }
+  #commandDock { position: absolute; z-index: 29; left: 14px; bottom: 15px; display: flex; gap: 7px; padding: 6px; border: 1px solid #435064; border-radius: 7px; background: #0d1116e8; box-shadow: 0 12px 38px #000a; backdrop-filter: blur(8px); }
+  .dockbtn { min-height: 48px; min-width: 128px; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 9px; padding: 7px 11px; border-radius: 5px; }
+  .dockbtn .icon { color: var(--brass-hi); font-size: 20px; }
+  .dockbtn .copy { text-align: left; }
+  .dockbtn .label { display: block; color: var(--bright); font-size: 10px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+  .dockbtn small { display: block; color: var(--faint); font-size: 8px; }
+  .dockbtn[aria-expanded="true"] { border-color: var(--amber); background: #332916; }
 
   .card { background: var(--panel); border: 1px solid var(--edge-dark); border-radius: 3px; padding: 12px; margin-bottom: 12px; box-shadow: inset 0 1px 0 var(--edge-lite); }
   .card h3 { font-family: var(--serif); font-size: 11px; font-weight: 600; letter-spacing: .18em; color: var(--amber); text-transform: uppercase; margin: -2px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--brass-etch); }
@@ -218,6 +245,30 @@
   .ledger { border-top: 1px solid var(--line); margin-top: 4px; padding-top: 8px; }
   .ledger .stat .v { font-weight: 600; }
   .ledger .note { color: var(--faint); font-size: 11px; margin-top: 6px; }
+
+  /* Annual cabinet budget: ten chunky, legible controls rather than another
+     wall of exposed figures. Dollar values are yearly and allocations are GDP. */
+  .budget-card { border-color: var(--brass-etch); background: linear-gradient(150deg,#1d242d,#11161d); }
+  .fiscal-head { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
+  .fiscal-year { color: var(--brass-hi); font: 700 18px/1 var(--mono); }
+  .fiscal-badge { padding: 3px 7px; border: 1px solid #765c31; border-radius: 999px; color: #e8c87e; background: #2a2214; font-size: 8px; text-transform: uppercase; }
+  .fiscal-badge.set { border-color: #356c4f; color: #8ee0ae; background: #10251a; }
+  .fiscal-summary { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 9px; }
+  .fiscal-summary span { padding: 7px; border: 1px solid var(--line); border-radius: 5px; background: #0b0f14; color: var(--faint); font-size: 8px; text-transform: uppercase; }
+  .fiscal-summary b { display: block; margin-top: 2px; color: var(--ink); font-size: 11px; text-transform: none; }
+  .ministry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .ministry-dial { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 7px; padding: 8px; border: 1px solid #303946; border-radius: 6px; background: #121821; }
+  .ministry-dial.changed { border-color: var(--brass-dim); background: #211d14; }
+  .ministry-art { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 6px; color: #b7e9f2; background: #1b3342; font-size: 17px; }
+  .ministry-copy { min-width: 0; }
+  .ministry-copy b { display: block; font-size: 10px; }
+  .ministry-copy small { display: block; overflow: hidden; color: var(--faint); font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
+  .dial-control { display: grid; grid-template-columns: 25px 58px 25px; align-items: center; gap: 3px; }
+  .dial-control button { width: 25px; height: 30px; padding: 0; border-radius: 5px; color: var(--cyan); font-size: 16px; font-weight: 700; }
+  .dial-read { text-align: center; }
+  .dial-read b { display: block; color: var(--brass-hi); font-size: 10px; }
+  .dial-read small { display: block; color: var(--faint); font-size: 7px; white-space: nowrap; }
+  .budget-note { margin-top: 8px; color: var(--faint); font-size: 9px; }
 
   /* ---------- tech tree ---------- */
   #tree .tabs { display:flex; flex-wrap:wrap; gap:4px; margin:10px 0 12px; }
@@ -1292,10 +1343,10 @@
     <span class="spacer"></span>
     <span class="queued" id="queuedNote"></span>
     <div class="timebtns">
-      <button data-adv="1">+1 MO<i>SPC</i></button>
-      <button data-adv="6">+6 MO<i>2</i></button>
-      <button data-adv="12">+1 YR<i>3</i></button>
-      <button data-adv="60">+5 YR<i>4</i></button>
+      <button data-adv="1">+1 DAY<i>SPC</i></button>
+      <button data-adv="7">+7 DAYS<i>2</i></button>
+      <button data-adv="30">+30 DAYS<i>3</i></button>
+      <button data-adv="365">+1 YEAR<i>4</i></button>
       <button id="techBtn" title="Technology">TECH<i>T</i></button>
       <button id="stockBtn" title="Resources">RESOURCES<i>B</i></button>
       <button id="saveBtn">SAVE<i>S</i></button>
@@ -1304,7 +1355,6 @@
   </header>
 
   <main>
-    <div class="col" id="left"></div>
     <div id="center">
       <div class="tabs">
         <div class="tab on" data-pane="map">Map<b>M</b></div>
@@ -1317,15 +1367,28 @@
       <div class="pane" id="pane-charts"></div>
       <div class="pane" id="pane-table"></div>
     </div>
-    <div class="col" id="right">
-      <div id="warsCard"></div>
-      <div class="card feed">
-        <h3>Event log <span id="logCount"></span></h3>
-        <div class="chips" id="logCats"></div>
-        <input id="logSearch" placeholder="filter dispatches…  (E)">
-        <div id="logList"></div>
+
+    <div id="drawerScrim"></div>
+    <aside class="game-drawer left" id="cabinetDrawer" aria-hidden="true">
+      <div class="drawer-head"><div><div class="eyebrow">Your government</div><h2>Cabinet &amp; Economy</h2></div><span class="grow"></span><button class="drawer-close" data-close-drawers aria-label="Close">×</button></div>
+      <div class="col" id="left"></div>
+    </aside>
+    <aside class="game-drawer right" id="intelDrawer" aria-hidden="true">
+      <div class="drawer-head"><div><div class="eyebrow">World situation</div><h2>Conflicts &amp; Dispatches</h2></div><span class="grow"></span><button class="drawer-close" data-close-drawers aria-label="Close">×</button></div>
+      <div class="col" id="right">
+        <div id="warsCard"></div>
+        <div class="card feed">
+          <h3>Event log <span id="logCount"></span></h3>
+          <div class="chips" id="logCats"></div>
+          <input id="logSearch" placeholder="filter dispatches…  (E)">
+          <div id="logList"></div>
+        </div>
       </div>
-    </div>
+    </aside>
+    <nav id="commandDock" aria-label="Game systems">
+      <button class="dockbtn" data-drawer="cabinetDrawer" aria-expanded="false"><span class="icon">◈</span><span class="copy"><span class="label">Economy</span><small id="dockEconomy">budget &amp; policy</small></span></button>
+      <button class="dockbtn" data-drawer="intelDrawer" aria-expanded="false"><span class="icon">⚔</span><span class="copy"><span class="label">World</span><small id="dockWorld">conflicts &amp; news</small></span></button>
+    </nav>
   </main>
 </div>
 
@@ -1632,8 +1695,8 @@
 
 <div id="keys"><div class="box">
   <h3>KEYBOARD</h3>
-  <div class="row"><span>Advance one month</span><span><kbd>Space</kbd> / <kbd>1</kbd></span></div>
-  <div class="row"><span>Advance six months / a year / five years</span><span><kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd></span></div>
+  <div class="row"><span>Advance one day</span><span><kbd>Space</kbd> / <kbd>1</kbd></span></div>
+  <div class="row"><span>Advance 7 / 30 / 365 days</span><span><kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd></span></div>
   <div class="row"><span>Map / History / League</span><span><kbd>M</kbd> <kbd>H</kbd> <kbd>L</kbd></span></div>
   <div class="row"><span>Cycle map shading</span><span><kbd>C</kbd></span></div>
   <div class="row"><span>Resource layer over the current shading</span><span><kbd>O</kbd></span></div>
@@ -2204,6 +2267,35 @@ $("#startBtn").onclick = async () => {
 
 /* ================= time ================= */
 
+function closeGameDrawers() {
+  document.querySelectorAll(".game-drawer.open").forEach((d) => {
+    d.classList.remove("open");
+    d.setAttribute("aria-hidden", "true");
+  });
+  document.querySelectorAll(".dockbtn").forEach((b) => b.setAttribute("aria-expanded", "false"));
+  $("#drawerScrim").classList.remove("open");
+}
+
+function toggleGameDrawer(id) {
+  const drawer = document.getElementById(id);
+  if (!drawer) return;
+  const opening = !drawer.classList.contains("open");
+  closeGameDrawers();
+  if (opening) {
+    drawer.classList.add("open");
+    drawer.setAttribute("aria-hidden", "false");
+    const button = document.querySelector(`[data-drawer="${id}"]`);
+    if (button) button.setAttribute("aria-expanded", "true");
+    $("#drawerScrim").classList.add("open");
+  }
+}
+
+document.querySelectorAll("[data-drawer]").forEach((b) => {
+  b.onclick = () => toggleGameDrawer(b.dataset.drawer);
+});
+document.querySelectorAll("[data-close-drawers]").forEach((b) => { b.onclick = closeGameDrawers; });
+$("#drawerScrim").onclick = closeGameDrawers;
+
 /// Take a fresh state from the server; pull the time series with it, since every
 /// chart on the page reads from that and not from the state blob.
 async function adopt(state, withHistory) {
@@ -2219,12 +2311,12 @@ async function adopt(state, withHistory) {
 }
 
 let advancing = false;
-async function advance(months) {
+async function advance(days) {
   if (advancing) return;
   advancing = true;
   document.querySelectorAll("[data-adv]").forEach((x) => (x.disabled = true));
   try {
-    const st = await api("/api/advance", { months, commands: queued });
+    const st = await api("/api/advance", { days, commands: queued });
     queued = [];
     await adopt(st);
     if (st.interrupt) banner(st.interrupt);
@@ -2303,7 +2395,10 @@ document.addEventListener("keydown", (e) => {
     if (keysCardIsOpen()) { setKeysCard(false); return; }
     if (techMenuIsOpen()) { closeTechMenu(); return; }
     if (tech.open) { techEsc(); return; }
+    // The resource board (z 40) paints over the cabinet/intel drawers (z 31),
+    // so it is the outer thing and goes first; the drawers next; the sheet last.
     if (stock.open) { closeStock(); return; }
+    if (document.querySelector(".game-drawer.open")) { closeGameDrawers(); return; }
     closeSheet();
     return;
   }
@@ -2340,16 +2435,17 @@ document.addEventListener("keydown", (e) => {
   if (stock.open) { stockKeys(e); return; }
   const k = e.key;
   if (k === " " || k === "1") { e.preventDefault(); advance(1); }
-  else if (k === "2") advance(6);
-  else if (k === "3") advance(12);
-  else if (k === "4") advance(60);
+  else if (k === "2") advance(7);
+  else if (k === "3") advance(30);
+  else if (k === "4") advance(365);
   else if (k === "m" || k === "M") showTab("map");
   else if (k === "h" || k === "H") showTab("charts");
   else if (k === "l" || k === "L") showTab("table");
   else if (k === "c" || k === "C") cycleMapMode();
   else if (k === "o" || k === "O") toggleResOverlay();
   else if (k === "x" || k === "X") cycleResCommodity(e.shiftKey ? -1 : 1);
-  else if (k === "e" || k === "E") { e.preventDefault(); $("#logSearch").focus(); $("#logSearch").select(); }
+  else if (k === "e" || k === "E") { e.preventDefault(); toggleGameDrawer("intelDrawer"); $("#logSearch").focus(); $("#logSearch").select(); }
+  else if (k === "p" || k === "P") toggleGameDrawer("cabinetDrawer");
   else if (k === "s" || k === "S") doSave();
   else if (k === "t" || k === "T") toggleTechMenu();
   else if (k === "b" || k === "B") toggleStockScreen();
@@ -2404,6 +2500,10 @@ function render() {
   $("#hdrGdp").textContent = m ? fmt.money(m.gdp) : "—";
   $("#hdrGrowth").textContent = m ? fmt.signed(m.growth) : "—";
   $("#hdrPc").textContent = m ? m.political_capital.toFixed(0) + " PC" : "—";
+  $("#dockEconomy").textContent = m && m.annual_budget
+    ? `FY ${S.year} · ${m.annual_budget.due ? "budget due" : "budget set"}`
+    : "budget & policy";
+  $("#dockWorld").textContent = `${S.wars.length} active conflict${S.wars.length === 1 ? "" : "s"} · ${S.log.length} dispatches`;
   // TECH is dead in spectator mode (research_json is null and /api/tech cannot
   // answer); the amber note dot means a domain has startable work and no project
   // chosen — the same actionable state resCard reports.
@@ -2456,7 +2556,7 @@ function render() {
 
 function noteQueued() {
   $("#queuedNote").textContent = queued.length
-    ? queued.length + (queued.length > 1 ? " orders take" : " order takes") + " effect next month  ·  R to revert"
+    ? queued.length + (queued.length > 1 ? " orders take" : " order takes") + " effect next day  ·  R to revert"
     : "";
 }
 
@@ -2543,32 +2643,105 @@ function dragsOf(n) {
 /// keeps no copy of `0.17 + (1 - authoritarianism) * 0.05` and no copy of the
 /// rule about who counts as a producer. Oil revenue is also `MAX_OIL_SHARE`-
 /// capped now, which the browser's own version was not.
-function ledgerOf(n, tax, mil, invest) {
+function ledgerOf(n, tax, social, mil, invest) {
   const d = dragsOf(n);
   const revenue = tax + d.budgetOil;
-  const social = ((S && S.policy) || {}).social_spend || 0;
   const spend = social + mil + invest;
   return { revenue, social, spend, deficit: spend - revenue };
 }
 
 /* ================= left column: you ================= */
 
+const MINISTRIES = [
+  { id:"health", art:"✚", name:"Health", affects:"jobs · productivity · population", story:"hospitals and public health", cap:.15 },
+  { id:"education", art:"▤", name:"Education", affects:"research · jobs · growth", story:"schools and skilled workers", cap:.12 },
+  { id:"families", art:"⌂", name:"Families", affects:"demand · trust · births", story:"children and household support", cap:.15 },
+  { id:"pensions", art:"◷", name:"Pensions", affects:"demand · trust · deficit", story:"income after working life", cap:.20 },
+  { id:"infrastructure", art:"▥", name:"Infrastructure", affects:"growth · jobs · investment", story:"roads, ports and power grids", cap:.15 },
+  { id:"industry", art:"⚙", name:"Industry & energy", affects:"growth · firms · resilience", story:"factories and energy systems", cap:.12 },
+  { id:"science", art:"⌬", name:"Science", affects:"research · future growth", story:"laboratories and discovery", cap:.08 },
+  { id:"defense", art:"⛊", name:"Defense", affects:"forces · weapons · readiness", story:"the armed forces", cap:.35 },
+  { id:"security", art:"◆", name:"Security", affects:"order · separatism · trust", story:"police and internal security", cap:.12 },
+  { id:"diplomacy", art:"◎", name:"Diplomacy", affects:"sanctions · investment · trust", story:"embassies and foreign service", cap:.08 },
+];
+
+function annualBudgetOf(m) {
+  const q = queued.find((x) => x.kind === "annual_budget");
+  if (q) return { ...q, fiscal_year: S.year };
+  const source = m.annual_budget || {};
+  const out = { kind:"annual_budget", fiscal_year:S.year };
+  MINISTRIES.forEach((spec) => { out[spec.id] = +source[spec.id] || 0; });
+  return out;
+}
+
+function annualTotal(b) { return MINISTRIES.reduce((sum, spec) => sum + b[spec.id], 0); }
+function annualSocial(b) { return b.health + b.education + b.families + b.pensions + b.security + b.diplomacy; }
+function annualInvest(b) { return b.infrastructure + b.industry + b.science; }
+
+function annualPoliticalCost(m, b) {
+  const weights = [110,125,105,115,100,105,135,150,145,90];
+  let cost = 0, moved = 0;
+  MINISTRIES.forEach((spec, i) => {
+    const before = +(m.annual_budget && m.annual_budget[spec.id]) || 0;
+    const delta = b[spec.id] - before;
+    moved += Math.abs(delta);
+    cost += Math.abs(delta) * weights[i] * (delta < 0 ? 1.35 : 1);
+  });
+  if (moved > 1e-9 && m.annual_budget && !m.annual_budget.due) cost += 4;
+  return cost;
+}
+
+function ministryDial(m, b, spec) {
+  const original = +(m.annual_budget && m.annual_budget[spec.id]) || 0;
+  const changed = Math.abs(b[spec.id] - original) > 1e-9;
+  const force = spec.id === "defense" ? sustainedForce(m, b[spec.id]) : null;
+  return `<div class="ministry-dial ${changed ? "changed" : ""}">
+    <span class="ministry-art" aria-hidden="true">${spec.art}</span>
+    <span class="ministry-copy"><b>${spec.name}</b><small>${spec.story} · ${spec.affects}${force == null ? "" : ` · sustains ${force.toFixed(0)} force`}</small></span>
+    <span class="dial-control">
+      <button data-ministry="${spec.id}" data-delta="-0.005" aria-label="Cut ${spec.name}">−</button>
+      <span class="dial-read"><b>${fmt.pct(b[spec.id],1)}</b><small>${fmt.money(b[spec.id] * m.gdp)}/yr</small></span>
+      <button data-ministry="${spec.id}" data-delta="0.005" aria-label="Raise ${spec.name}">+</button>
+    </span>
+  </div>`;
+}
+
+function queueBudgetDial(m, ministry, delta) {
+  const spec = MINISTRIES.find((x) => x.id === ministry);
+  if (!spec) return;
+  const next = annualBudgetOf(m);
+  next[ministry] = clamp(next[ministry] + delta, 0, spec.cap);
+  queued = queued.filter((c) => c.kind !== "annual_budget" && c.kind !== "military" && c.kind !== "invest");
+  queued.push(next);
+  noteQueued();
+  renderLeft(m);
+}
+
 function proposed(m) {
   const q = (k, fallback) => {
     const c = queued.find((x) => x.kind === k);
     return c ? c.value : fallback;
   };
+  const annual = annualBudgetOf(m);
   return {
     rate: q("rate", m.rate),
     tax: q("tax", m.tax),
-    military: q("military", m.mil_spend),
-    invest: q("invest", m.state_invest),
+    social: annualSocial(annual),
+    military: annual.defense,
+    invest: annualInvest(annual),
+    annual,
   };
 }
 
 function renderLeft(m) {
   if (!m) { $("#left").innerHTML = ""; return; }
   const g = m.growth;
+  const fiscal = annualBudgetOf(m);
+  const planned = proposed(m);
+  const fiscalRevenue = planned.tax + dragsOf(m).budgetOil;
+  const fiscalSpending = annualTotal(fiscal);
+  const fiscalBalance = fiscalRevenue - fiscalSpending;
+  const fiscalCost = annualPoliticalCost(m, fiscal);
   $("#left").innerHTML = `
     <div class="card">
       <h3>${m.name} <span>· ${m.command_economy ? "command" : "market"}</span></h3>
@@ -2576,6 +2749,7 @@ function renderLeft(m) {
       ${statRow("Growth", fmt.signed(g), g >= 0 ? "up" : "down")}
       ${statRow("GDP / person", "$" + m.gdp_pc.toFixed(0))}
       ${statRow("Population", fmt.pop(m.population))}
+      ${statRow("Employment", fmt.pct(1 - m.unemployment), m.unemployment > 0.10 ? "down" : "up")}
       ${statRow("Inflation", fmt.pct(m.inflation), m.inflation > 0.08 ? "down" : "")}
       ${statRow("Debt", fmt.pct(m.debt, 0) + " of GDP", m.debt > 0.9 ? "down" : "")}
       ${statRow("Military", m.mil_strength.toFixed(0) + (m.nuclear ? " ☢" : ""))}
@@ -2588,22 +2762,38 @@ function renderLeft(m) {
       <div class="tiny" style="margin-top:6px;cursor:pointer" onclick="openNation('${m.id}')">Open full dashboard →</div>
     </div>
 
-    ${researchHtml(m)}
-    ${stratagemsHtml(m)}
+    <div class="card budget-card">
+      <div class="fiscal-head">
+        <span class="fiscal-year">FY ${S.year}</span>
+        <span class="fiscal-badge ${m.annual_budget && !m.annual_budget.due ? "set" : ""}">${m.annual_budget && !m.annual_budget.due ? "budget enacted" : "budget due"}</span>
+      </div>
+      <div class="fiscal-summary">
+        <span>Revenue<b>${fmt.money(fiscalRevenue * m.gdp)}</b></span>
+        <span>Spending<b>${fmt.money(fiscalSpending * m.gdp)}</b></span>
+        <span>${fiscalBalance >= 0 ? "Surplus" : "Deficit"}<b class="${fiscalBalance >= 0 ? "up" : "down"}">${fmt.money(Math.abs(fiscalBalance) * m.gdp)}</b></span>
+        <span>Political cost<b class="${fiscalCost > m.political_capital ? "down" : ""}">${fiscalCost.toFixed(1)} PC</b></span>
+      </div>
+      <div class="ministry-grid">${MINISTRIES.map((spec) => ministryDial(m, fiscal, spec)).join("")}</div>
+      <div class="budget-note">Each press moves 0.5% of GDP. All ten ministries roll into one atomic yearly budget; raising spending without revenue adds debt.</div>
+    </div>
 
     <div class="card">
-      <h3>Policy</h3>
+      <h3>Money &amp; Revenue <span>· immediate levers</span></h3>
       ${sliderHtml("rate", "Interest rate", m.rate, 0, 0.40, rateSeat())}
       ${sliderHtml("tax", "Tax take", m.tax, 0.02, 0.60)}
-      ${sliderHtml("military", "Military spending", m.mil_spend, 0, 0.35)}
-      ${sliderHtml("invest", "State investment", m.state_invest, 0, 0.40)}
       <div class="ledger" id="ledger"></div>
       <div style="display:flex;gap:6px;margin-top:10px">
         <button id="revertBtn">Revert</button>
-        <button class="primary" onclick="advance(1)">Enact &amp; advance</button>
+        <button class="primary" onclick="advance(1)">Enact &amp; advance one day</button>
       </div>
-    </div>`;
+    </div>
+
+    ${stratagemsHtml(m)}
+    ${researchHtml(m)}`;
   wireSliders(m);
+  document.querySelectorAll("[data-ministry]").forEach((b) => {
+    b.onclick = () => queueBudgetDial(m, b.dataset.ministry, +b.dataset.delta);
+  });
   wireStratagems();
   wireResearch();
   $("#revertBtn").onclick = revertOrders;
@@ -4733,8 +4923,8 @@ function paintPolicy(m) {
     ? policyAt(pol.potential_curve, p.invest) : pol.potential_now;
   const potBase = pol.potential_now;
   const drag = dragsOf(m);
-  const led = ledgerOf(m, p.tax, p.military, p.invest);
-  const ledBase = ledgerOf(m, m.tax, m.mil_spend, m.state_invest);
+  const led = ledgerOf(m, p.tax, p.social, p.military, p.invest);
+  const ledBase = ledgerOf(m, m.tax, m.social_spend, m.mil_spend, m.state_invest);
   const force = sustainedForce(m, p.military);
 
   const fx = {

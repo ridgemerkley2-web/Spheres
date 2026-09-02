@@ -1038,6 +1038,14 @@ pub fn research_output(w: &WorldState, n: &Nation, dev: f64) -> f64 {
     let intensity = (0.008 + 0.017 * dev) * (0.55 + 1.5 * invest);
     let mut out = n.gdp * intensity / 12.0;
 
+    // Education grows the pool of people who can do research; science pays
+    // for the laboratories themselves. A one-point-of-GDP science push is a
+    // major national programme and is meant to be immediately legible.
+    let ministry_multiplier = 1.0
+        + n.budget_gap(crate::world::BUDGET_EDUCATION) * 20.0
+        + n.budget_gap(crate::world::BUDGET_SCIENCE) * 35.0;
+    out *= ministry_multiplier.clamp(0.35, 2.25);
+
     // Better tools make more research out of the same money.
     out *= 1.0 + n.tech.bonus.research_rate_eff();
 

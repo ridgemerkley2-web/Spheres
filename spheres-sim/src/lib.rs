@@ -28,6 +28,17 @@ pub enum Command {
     SetTaxRate { nation: NationId, rate: f64 },
     SetMilSpend { nation: NationId, share: f64 },
     SetStateInvest { nation: NationId, share: f64 },
+    /// Reallocate the three visible spending envelopes as one atomic decision.
+    /// The browser uses this instead of sending three independently-failable
+    /// orders for a single budget choice.
+    SetBudget { nation: NationId, social: f64, investment: f64, military: f64 },
+    /// Enact the complete fiscal-year settlement in one atomic vote. The ten
+    /// entries use the stable BUDGET_* indexes declared in `world`.
+    SetAnnualBudget {
+        nation: NationId,
+        fiscal_year: i32,
+        allocations: [f64; BUDGET_MINISTRIES],
+    },
     /// Put a domain's laboratories onto a named technology, or hand the choice
     /// back to them with `None`. Switching away from a project in progress
     /// forfeits half of what was banked against it.
@@ -192,6 +203,43 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             swing(w.nation(*nation).state_invest_gdp, share.clamp(0.0, 0.40), 120.0),
             REFUSABLE,
         ),
+        Command::SetBudget { nation, social, investment, military } => {
+            let n = w.nation(*nation);
+            let after_social = social.clamp(0.08, 0.40);
+            let social_price = if after_social < n.social_spend() {
+                swing(n.social_spend(), after_social, 220.0)
+            } else {
+                swing(n.social_spend(), after_social, 100.0)
+            };
+            (
+                *nation,
+                social_price
+                    + swing(n.state_invest_gdp, investment.clamp(0.0, 0.40), 120.0)
+                    + swing(n.mil_spend_gdp, military.clamp(0.0, 0.35), 150.0),
+                REFUSABLE,
+            )
+        }
+        Command::SetAnnualBudget { nation, fiscal_year, allocations } => {
+            let n = w.nation(*nation);
+            let current = n.budget_for(w.year);
+            let weights = [110.0, 125.0, 105.0, 115.0, 100.0, 105.0, 135.0, 150.0, 145.0, 90.0];
+            let mut price = 0.0;
+            let mut movement = 0.0;
+            for i in 0..BUDGET_MINISTRIES {
+                let delta = allocations[i] - current.allocations[i];
+                movement += delta.abs();
+                let cut_penalty = if delta < 0.0 { 1.35 } else { 1.0 };
+                price += delta.abs() * weights[i] * cut_penalty;
+            }
+            // Reopening a budget already enacted this fiscal year is a public
+            // reversal, not a free correction to a form.
+            if movement > 1e-9
+                && n.annual_budget.as_ref().is_some_and(|b| b.fiscal_year == *fiscal_year)
+            {
+                price += 4.0;
+            }
+            (*nation, price, REFUSABLE)
+        }
         Command::Sanction { imposer, .. } => (*imposer, 6.0, REFUSABLE),
         // Redirecting a laboratory is an ordinary act of government and priced
         // like one. The expensive part is not the announcement, it is the half
@@ -464,10 +512,59 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
             w.nation_mut(*nation).tax_rate = rate.clamp(0.02, 0.60);
         }
         Command::SetMilSpend { nation, share } => {
-            w.nation_mut(*nation).mil_spend_gdp = share.clamp(0.0, 0.35);
+            let n = w.nation_mut(*nation);
+            n.mil_spend_gdp = share.clamp(0.0, 0.35);
+            n.annual_budget = None;
         }
         Command::SetStateInvest { nation, share } => {
-            w.nation_mut(*nation).state_invest_gdp = share.clamp(0.0, 0.40);
+            let n = w.nation_mut(*nation);
+            n.state_invest_gdp = share.clamp(0.0, 0.40);
+            n.annual_budget = None;
+        }
+        Command::SetBudget { nation, social, investment, military } => {
+            let n = w.nation_mut(*nation);
+            n.social_spend_gdp = Some(social.clamp(0.08, 0.40));
+            n.state_invest_gdp = investment.clamp(0.0, 0.40);
+            n.mil_spend_gdp = military.clamp(0.0, 0.35);
+            n.annual_budget = None;
+        }
+        Command::SetAnnualBudget { nation, fiscal_year, allocations } => {
+            if *fiscal_year != w.year {
+                return Err(format!(
+                    "The {} budget cannot be enacted in {}.",
+                    fiscal_year, w.year
+                ));
+            }
+            for (i, value) in allocations.iter().enumerate() {
+                if !value.is_finite() || *value < 0.0 || *value > BUDGET_CAPS[i] {
+                    return Err(format!("Ministry {} is outside its budget range.", i + 1));
+                }
+            }
+            let total: f64 = allocations.iter().sum();
+            if total > 0.70 {
+                return Err("The state cannot budget more than 70% of GDP.".to_string());
+            }
+
+            let inherited = w.nation(*nation).budget_for(*fiscal_year);
+            let reference = w
+                .nation(*nation)
+                .annual_budget
+                .as_ref()
+                .map(|b| b.reference)
+                .unwrap_or(inherited.reference);
+            let plan = AnnualBudget {
+                fiscal_year: *fiscal_year,
+                allocations: *allocations,
+                reference,
+            };
+            let social = plan.social_total();
+            let investment = plan.investment_total();
+            let defense = plan.defense();
+            let n = w.nation_mut(*nation);
+            n.social_spend_gdp = Some(social);
+            n.state_invest_gdp = investment;
+            n.mil_spend_gdp = defense;
+            n.annual_budget = Some(plan);
         }
         Command::SetResearchFocus { nation, domain, tech: want } => {
             let di = domain.index();
@@ -724,6 +821,42 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         w.month = 1;
         w.year += 1;
     }
+    w.day = w.day.min(world::days_in_month(w.year, w.month));
+    w.headlines.clone()
+}
+
+/// Advance the playable calendar by one day.
+///
+/// Commands take effect on the day they are issued. The calibrated simulation
+/// systems remain monthly and settle on the final day of each month; running a
+/// full month of GDP growth, procurement, research, war and political change on
+/// every daily click would multiply the model's rates by 28--31. Thirty-one
+/// January ticks therefore produce exactly the same world as one January
+/// `tick_month`, while exposing every intervening date to the player.
+pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
+    w.headlines.clear();
+    w.reindex();
+    for c in commands {
+        if let Err(e) = apply_command(w, c) {
+            w.headline(format!("[rejected] {:?}: {}", c, e));
+        }
+    }
+
+    let last_day = world::days_in_month(w.year, w.month);
+    if w.day >= last_day {
+        for (_, system) in SYSTEMS {
+            system(w);
+        }
+        w.day = 1;
+        w.month += 1;
+        if w.month > 12 {
+            w.month = 1;
+            w.year += 1;
+        }
+    } else {
+        w.day += 1;
+    }
+
     w.headlines.clone()
 }
 
@@ -826,6 +959,43 @@ mod tests {
         for _ in 0..months {
             tick_month(w, &[]);
         }
+    }
+
+    #[test]
+    fn daily_clock_preserves_the_calibrated_monthly_world() {
+        let mut monthly = world_1990(GameRules::default());
+        let mut daily = monthly.clone();
+
+        tick_month(&mut monthly, &[]);
+        for _ in 0..31 {
+            tick_day(&mut daily, &[]);
+        }
+
+        assert_eq!(daily.date_str(), "1 Feb 1990");
+        assert_eq!(save(&daily), save(&monthly));
+    }
+
+    #[test]
+    fn daily_clock_observes_gregorian_leap_days() {
+        let mut w = world_1990(GameRules::default());
+        w.year = 1992;
+        w.month = 2;
+        w.day = 28;
+
+        tick_day(&mut w, &[]);
+        assert_eq!(w.date_str(), "29 Feb 1992");
+        tick_day(&mut w, &[]);
+        assert_eq!(w.date_str(), "1 Mar 1992");
+    }
+
+    #[test]
+    fn monthly_saves_load_on_the_first_day() {
+        let w = world_1990(GameRules::default());
+        let saved = save(&w);
+        assert!(!saved.contains("\"day\""));
+        let loaded = load(&saved).unwrap();
+        assert_eq!(loaded.day, 1);
+        assert_eq!(loaded.date_str(), "1 Jan 1990");
     }
 
     #[test]
@@ -2818,6 +2988,156 @@ mod tests {
         assert!(n.inflation.is_finite(), "clamped levers produced a NaN inflation");
     }
 
+    #[test]
+    fn an_arcade_budget_is_one_atomic_affordable_choice() {
+        let mut w = seeded(0);
+        let me = NationId::USA;
+        w.player = Some(me);
+        w.nation_mut(me).political_capital = 100.0;
+        let before = w.nation(me).clone();
+        let cmd = Command::SetBudget {
+            nation: me,
+            social: before.social_spend() + 0.010,
+            investment: before.state_invest_gdp - 0.005,
+            military: before.mil_spend_gdp - 0.005,
+        };
+        apply_command(&mut w, &cmd).unwrap();
+        let after = w.nation(me);
+        assert_eq!(after.social_spend(), before.social_spend() + 0.010);
+        assert_eq!(after.state_invest_gdp, before.state_invest_gdp - 0.005);
+        assert_eq!(after.mil_spend_gdp, before.mil_spend_gdp - 0.005);
+        assert!(after.political_capital < 100.0);
+
+        let held = (
+            after.social_spend(),
+            after.state_invest_gdp,
+            after.mil_spend_gdp,
+        );
+        let restored = load(&save(&w)).expect("the new budget must survive a save");
+        let restored_nation = restored.nation(me);
+        assert_eq!(
+            (
+                restored_nation.social_spend(),
+                restored_nation.state_invest_gdp,
+                restored_nation.mil_spend_gdp,
+            ),
+            held
+        );
+
+        w.nation_mut(me).political_capital = 0.0;
+        let refused = Command::SetBudget {
+            nation: me,
+            social: 0.08,
+            investment: 0.40,
+            military: 0.35,
+        };
+        assert!(apply_command(&mut w, &refused).is_err());
+        let unchanged = w.nation(me);
+        assert_eq!(
+            (unchanged.social_spend(), unchanged.state_invest_gdp, unchanged.mil_spend_gdp),
+            held,
+            "an unaffordable package partly changed the budget"
+        );
+    }
+
+    #[test]
+    fn a_fiscal_year_budget_carries_ten_ministries_into_the_sim() {
+        let mut w = seeded(12);
+        let me = NationId::USA;
+        w.player = Some(me);
+        w.nation_mut(me).political_capital = 100.0;
+        let inherited = w.nation(me).budget_for(w.year);
+        let jobs_before = economy::unemployment_rate(w.nation(me), false);
+        let dev = (w.nation(me).gdp * 1000.0 / w.nation(me).population / 24000.0).min(1.0);
+        let research_before = tech::research_output(&w, w.nation(me), dev);
+
+        let mut allocations = inherited.allocations;
+        allocations[BUDGET_HEALTH] += 0.005;
+        allocations[BUDGET_EDUCATION] += 0.005;
+        allocations[BUDGET_SCIENCE] += 0.005;
+        allocations[BUDGET_PENSIONS] -= 0.005;
+        allocations[BUDGET_DEFENSE] -= 0.010;
+        let cmd = Command::SetAnnualBudget {
+            nation: me,
+            fiscal_year: w.year,
+            allocations,
+        };
+        apply_command(&mut w, &cmd).unwrap();
+
+        let n = w.nation(me);
+        let plan = n.annual_budget.as_ref().expect("the fiscal plan was not seated");
+        assert_eq!(plan.allocations, allocations);
+        assert_eq!(n.social_spend(), plan.social_total());
+        assert_eq!(n.state_invest_gdp, plan.investment_total());
+        assert_eq!(n.mil_spend_gdp, plan.defense());
+        assert!(economy::unemployment_rate(n, false) < jobs_before);
+        assert!(tech::research_output(&w, n, dev) > research_before);
+
+        let restored = load(&save(&w)).expect("the annual budget must survive a save");
+        assert_eq!(restored.nation(me).annual_budget.as_ref().unwrap().allocations, allocations);
+
+        let stale = Command::SetAnnualBudget {
+            nation: me,
+            fiscal_year: w.year - 1,
+            allocations,
+        };
+        assert!(apply_command(&mut w, &stale).is_err(), "a stale fiscal year was enacted");
+
+        let held = w.nation(me).annual_budget.clone();
+        w.nation_mut(me).political_capital = 0.0;
+        let mut unaffordable = allocations;
+        unaffordable[BUDGET_DEFENSE] += 0.05;
+        let fiscal_year = w.year;
+        assert!(apply_command(
+            &mut w,
+            &Command::SetAnnualBudget {
+                nation: me,
+                fiscal_year,
+                allocations: unaffordable,
+            },
+        )
+        .is_err());
+        assert_eq!(w.nation(me).annual_budget, held, "a refused vote partly changed the books");
+    }
+
+    #[test]
+    fn private_investment_and_jobs_are_economic_outcomes() {
+        let mut low_tax = seeded(4);
+        let mut high_tax = low_tax.clone();
+        let id = NationId::USA;
+        for w in [&mut low_tax, &mut high_tax] {
+            w.player = Some(id);
+            let n = w.nation_mut(id);
+            n.growth_last = 0.03;
+            n.stability = 70.0;
+            n.interest_rate = 0.04;
+            n.inflation = 0.02;
+            n.bubble = 0.0;
+        }
+        low_tax.nation_mut(id).tax_rate = 0.18;
+        high_tax.nation_mut(id).tax_rate = 0.48;
+        for _ in 0..24 {
+            economy::tick(&mut low_tax);
+            economy::tick(&mut high_tax);
+        }
+        assert!(
+            low_tax.nation(id).priv_invest_gdp > high_tax.nation(id).priv_invest_gdp + 0.01,
+            "business investment ignored the tax environment"
+        );
+
+        let mut strong = low_tax.nation(id).clone();
+        strong.growth_last = 0.06;
+        strong.stability = 75.0;
+        let mut weak = strong.clone();
+        weak.growth_last = -0.04;
+        weak.stability = 35.0;
+        assert!(
+            economy::unemployment_rate(&strong, false)
+                < economy::unemployment_rate(&weak, false),
+            "employment did not reflect growth and order"
+        );
+    }
+
     /// What the four single-seed instruments actually read, across ten seeds.
     ///
     /// ROADMAP section 8 records that each of them takes ONE whole-world run at
@@ -3346,6 +3666,12 @@ mod tests {
         // rather than argued: stripping the serialized `districts` block out
         // of the new save reproduces the previous pin 0xbffd89cc8498ffaa
         // exactly, so not one pre-existing byte of the start state moved.
+        // NOT re-pinned on the merge of codex/trading-system (2026-09-02):
+        // that branch carried 0xa5c9c5b2306313d8 here, which is exactly the
+        // actual this tree already produced before it, so the merge is inert
+        // on the default path. House protocol re-pins only when every
+        // calibration bar is green, and `the_1990_endowment_does_not_move_
+        // year_one_growth` is red (BUGS E-3); the constant stays until then.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
@@ -3579,6 +3905,10 @@ mod tests {
         // ever, the seed-pinned conquest pair, re-scanned to seed 93 per
         // their own comments (Saudi Arabia takes Qatar 2018; the fix
         // dissolved seed 9's Mongolia).
+        // NOT re-pinned on the merge of codex/trading-system (2026-09-02):
+        // that branch's 0x20c24ab0f1581807 is the actual this tree already
+        // produced, and the endowment bar (BUGS E-3) is still red, so the
+        // protocol forbids the re-pin. Deliberately red at that actual.
         const GOLDEN: u64 = 0xbd5ec0f43c5f2e3b;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
