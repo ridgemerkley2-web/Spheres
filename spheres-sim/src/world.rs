@@ -702,6 +702,14 @@ pub struct GameRules {
     /// exactly as it did before the switch was declared.
     #[serde(default = "rules_true", skip_serializing_if = "is_true")]
     pub resource_gates: bool,
+    /// The resource market (resources.rs, cut two): the sanction ration on
+    /// the open market, the AI buy pass, the refusal memory and the
+    /// last-resort war. Fork F1(b): OFF by default, so every test and the
+    /// headless CLI run the world the goldens pin, bit for bit, and the
+    /// browser's new-game path turns it on. Skipped when false, so a default
+    /// world serializes exactly as it did before the switch was declared.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub resource_market: bool,
 }
 fn rules_true() -> bool {
     true
@@ -709,9 +717,18 @@ fn rules_true() -> bool {
 fn is_true(v: &bool) -> bool {
     *v
 }
+fn is_false(v: &bool) -> bool {
+    !*v
+}
 impl Default for GameRules {
     fn default() -> Self {
-        GameRules { seed: 1990, ai_aggression: 1.0, crisis_intensity: 1.0, resource_gates: true }
+        GameRules {
+            seed: 1990,
+            ai_aggression: 1.0,
+            crisis_intensity: 1.0,
+            resource_gates: true,
+            resource_market: false,
+        }
     }
 }
 

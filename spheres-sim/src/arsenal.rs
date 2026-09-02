@@ -508,18 +508,30 @@ pub(crate) fn line_of(n: &Nation) -> f64 {
     budget_of(n) + n.arsenal.banked
 }
 
+/// Each kit's technology resolved to its index once. `available` and `pick`
+/// run every nation-month, and resolving thirty-three names by search each
+/// time was most of the arsenal's cost (SPEC section 8's "free win";
+/// measured 2.2 µs a pick, six picks inside every resource evaluation). A
+/// name the tree does not know resolves to `None` and stays unorderable,
+/// exactly as before.
+fn deck_tech() -> &'static [Option<u16>] {
+    static T: std::sync::OnceLock<Vec<Option<u16>>> = std::sync::OnceLock::new();
+    T.get_or_init(|| DECK.iter().map(|k| k.tech.and_then(crate::tech::index_of)).collect())
+}
+
+/// Whether `n` may order kit `i` today. The legacy tier is always available:
+/// replacing what you already field is a budget decision, not a discovery.
+fn orderable(n: &Nation, i: usize) -> bool {
+    match (DECK[i].tech, deck_tech()[i]) {
+        (None, _) => true,
+        (Some(_), None) => false,
+        (Some(_), Some(t)) => n.tech.knows_index(t),
+    }
+}
+
 /// What this nation may order today: everything whose technology it holds.
 pub fn available(n: &Nation) -> Vec<u16> {
-    DECK.iter()
-        .enumerate()
-        .filter(|(_, k)| match k.tech {
-            // The legacy tier is always available: replacing what you already
-            // field is a budget decision, not a discovery.
-            None => true,
-            Some(t) => crate::tech::index_of(t).is_some_and(|i| n.tech.knows_index(i)),
-        })
-        .map(|(i, _)| i as u16)
-        .collect()
+    (0..DECK.len()).filter(|i| orderable(n, *i)).map(|i| i as u16).collect()
 }
 
 /// Procurement, once a month.
@@ -638,18 +650,33 @@ pub(crate) fn ranked(n: &Nation) -> Vec<u16> {
 /// otherwise the best quality per pound available, which is what a staff with no
 /// political direction does. Deterministic — `DECK` order breaks every tie.
 pub(crate) fn pick(n: &Nation) -> Option<u16> {
-    let open = available(n);
-    if open.is_empty() {
-        return None;
-    }
     if let Some(p) = n.arsenal.preference.as_deref().and_then(index_of) {
-        if open.contains(&p) {
+        if orderable(n, p as usize) {
             return Some(p);
         }
     }
-    open.into_iter().max_by(|a, b| {
-        let va = DECK[*a as usize].quality / DECK[*a as usize].unit_cost.max(1e-9);
-        let vb = DECK[*b as usize].quality / DECK[*b as usize].unit_cost.max(1e-9);
-        va.partial_cmp(&vb).unwrap_or(std::cmp::Ordering::Equal).then(b.cmp(a))
-    })
+    // One pass, no allocation: the same maximum `available(n)` sorted to —
+    // quality per pound, the lower `DECK` index on a tie.
+    let value = |i: usize| DECK[i].quality / DECK[i].unit_cost.max(1e-9);
+    let mut best: Option<usize> = None;
+    for i in 0..DECK.len() {
+        if !orderable(n, i) {
+            continue;
+        }
+        best = Some(match best {
+            None => i,
+            Some(b) => {
+                let ahead = value(i)
+                    .partial_cmp(&value(b))
+                    .unwrap_or(std::cmp::Ordering::Equal)
+                    .then(b.cmp(&i));
+                if ahead == std::cmp::Ordering::Greater {
+                    i
+                } else {
+                    b
+                }
+            }
+        });
+    }
+    best.map(|i| i as u16)
 }

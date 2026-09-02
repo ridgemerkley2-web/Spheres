@@ -94,6 +94,12 @@ pub enum Command {
     /// The primary click of the whole war layer: pick your rung.
     SetCommitment { conflict: u32, nation: NationId, rung: u8 },
     SetObjective { conflict: u32, nation: NationId, objective: Objective },
+    /// Name what a quarrel is for (resources.rs): a district of the other
+    /// side's that holds a line the opener could not buy. Free; refused
+    /// unless the conflict exists, `nation` opened it, and the district is
+    /// the opponent's and carries the line. The front takes it first and a
+    /// settlement cedes it first.
+    SetAim { conflict: u32, nation: NationId, district: String, commodity: resources::Commodity },
     SetRoE { conflict: u32, nation: NationId, roe: Roe },
     /// Announce a limit. It publicly binds you, and the other side reads it.
     SetCeiling { conflict: u32, nation: NationId, rung: u8 },
@@ -137,6 +143,20 @@ pub enum Command {
 /// and labels the free one "free".
 pub fn price_of(w: &WorldState, c: &Command) -> Option<f64> {
     command_price(w, c).map(|(_, cost, _)| cost)
+}
+
+/// Whether the government a command asks of holds the standing it would be
+/// charged — by the same function that charges it and the same test
+/// `apply_command` applies — so a caller that would only be told "has not
+/// the standing" can decline to ask. True for a command this build does not
+/// price, for a free one, and for one that is always available.
+pub fn affordable(w: &WorldState, c: &Command) -> bool {
+    match command_price(w, c) {
+        Some((payer, price, refusable)) if refusable && price > 0.0 => {
+            w.nation(payer).political_capital >= price
+        }
+        _ => true,
+    }
 }
 
 fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
@@ -294,6 +314,9 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             REFUSABLE,
         ),
         Command::SetObjective { nation, .. } => (*nation, 3.0, REFUSABLE),
+        // Saying which district a quarrel is for costs nothing: the quarrel
+        // was the purchase. Refusable so a bad aim is refused, not charged.
+        Command::SetAim { nation, .. } => (*nation, 0.0, REFUSABLE),
         // Restraint is free. Taking the gloves off is not, and it is charged
         // twice: here, and again in every parliament that was going to lend you
         // an airfield.
@@ -358,6 +381,9 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         // `dispatch`, which returns the price as the error, uncharged.
         Command::ProposeDeal { from, to, give, take, months } => {
             resources::deal_refusal(w, *from, *to, give, take, *months)
+        }
+        Command::SetAim { conflict, nation, district, commodity } => {
+            resources::aim_refusal(w, *conflict, *nation, district, *commodity)
         }
         _ => None,
     }
@@ -584,6 +610,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
                 nation.name(),
                 objective.label()
             ));
+        }
+        Command::SetAim { conflict, district, commodity, .. } => {
+            resources::set_aim(w, *conflict, district, *commodity)?
         }
         Command::SetRoE { conflict, nation, roe } => {
             let c = w.conflict_mut(*conflict).ok_or("No such conflict.")?;
@@ -3756,6 +3785,353 @@ mod tests {
             ms <= BUDGET_MS_PER_MONTH,
             "the resources row costs {ms:.4} ms/month, over the {BUDGET_MS_PER_MONTH} ms budget"
         );
+    }
+
+    /// Fork F1(b), the switch. OFF is the default: the 1990 save carries no
+    /// `resource_market` key and hashes to the pinned start actual, and
+    /// twenty years off reproduce the run actual — the two goldens S1 and S2
+    /// stood on, restated here because S3 is the cut that could have moved
+    /// them. ON: the 1990 save differs from the default by the one line that
+    /// says so and by nothing else; thirty-five years complete; two worlds
+    /// built and run alike land on the same bytes; and a save taken halfway
+    /// and reloaded lands there too. Re-pins nothing.
+    ///
+    /// Iron rule 7: exact equalities on one seed — no sample, variance 0,
+    /// n = 1. The two-process form of the same proof (two invocations of
+    /// `spheres-cli run 35 1990` with `SPHERES_RESOURCE_MARKET=1`) is run by
+    /// hand and recorded in the landing commit.
+    #[test]
+    fn the_market_switch_is_off_for_the_suite_and_deterministic_when_on() {
+        const START_ACTUAL: u64 = 0xa5c9c5b2306313d8;
+        const RUN_ACTUAL: u64 = 0x20c24ab0f1581807;
+        assert!(!GameRules::default().resource_market, "the suite's default must be off");
+        let w = world_1990(GameRules::default());
+        let off_text = save(&w);
+        assert!(!off_text.contains("resource_market"), "the switch, off, must leave no key");
+        let h = state_hash(&w);
+        assert_eq!(h, START_ACTUAL, "the switch, off, moved the 1990 start (actual {h:#018x})");
+        let mut w = world_1990(GameRules::default());
+        run_months(&mut w, 12 * 20);
+        let h = state_hash(&w);
+        assert_eq!(h, RUN_ACTUAL, "the switch, off, moved the run golden (actual {h:#018x})");
+        assert!(w.resources.is_empty(), "{:?}", w.resources);
+
+        let on = GameRules { resource_market: true, ..GameRules::default() };
+        let mut v_on: serde_json::Value = serde_json::from_str(&save(&world_1990(on.clone()))).unwrap();
+        assert_eq!(v_on["rules"]["resource_market"], serde_json::json!(true));
+        v_on["rules"].as_object_mut().unwrap().remove("resource_market");
+        let v_off: serde_json::Value = serde_json::from_str(&off_text).unwrap();
+        assert_eq!(v_on, v_off, "the switch changed something besides itself at 1990");
+
+        let mut a = world_1990(on.clone());
+        let mut b = world_1990(on.clone());
+        let mut market_heads = 0usize;
+        let mut half = None;
+        for m in 0..(12 * 35) {
+            for h in tick_month(&mut a, &[]) {
+                if h.contains(" refuses: ")
+                    || h.contains("Nobody will sell ")
+                    || h.contains(" sign a supply contract")
+                    || h.contains(" — refused by ")
+                {
+                    market_heads += 1;
+                }
+            }
+            tick_month(&mut b, &[]);
+            if m == 12 * 17 {
+                half = Some(save(&a));
+            }
+        }
+        assert_eq!(state_hash(&a), state_hash(&b), "two worlds run alike diverged");
+        assert_eq!(save(&a), save(&b));
+        let mut c = load(&half.unwrap()).unwrap();
+        run_months(&mut c, 12 * 35 - 12 * 17 - 1);
+        assert_eq!(state_hash(&c), state_hash(&a), "a save taken halfway did not reload onto the same future");
+        println!(
+            "    market on, seed 1990, 35 years: state_hash {:#018x}, {} market headlines, {} refusal rows, {} contracts",
+            state_hash(&a),
+            market_heads,
+            a.resources.refusals.len(),
+            a.resources.contracts.len()
+        );
+    }
+
+    /// Acceptance item 11, cut two: the resource pass with the market ON at
+    /// 137 nations — the `resources` row (now with the ration and the offer
+    /// inbox), the buy pass inside `politics` (timed in place, two clock
+    /// reads a month), and the appetite term's predicate asked for EVERY
+    /// contact pair every month (an upper bound: `ai_wars` asks it for the
+    /// pairs that survive its own filters) — best of three passes of 1,200
+    /// months, timed as `century_run_profile` times a row.
+    ///
+    /// Iron rule 7 — the bar and its variance. Spec section 9.5's budget is
+    /// 0.05 ms/month, the statecraft tier, and it is met: measured on this
+    /// build, 2026-09-01, release, 137 nations, market on, three readings
+    /// on a quiet machine — resources 0.0040-0.0041, buy pass 0.0236-0.0237,
+    /// appetite term 0.0113-0.0114, total 0.0389-0.0391 ms/month, a spread
+    /// of 0.0002. The BAR is 0.15, 3.8x that reading, for the reason
+    /// `the_resources_row_is_free` sets its bar 7x above its own: under the
+    /// full suite's parallel load the same three passes read 0.0575
+    /// total and a bar at the budget went red on a tree whose quiet reading
+    /// had not moved. "Best of three" is the profile's own answer to a
+    /// loaded machine and it is not enough when every pass is loaded. A
+    /// regression this exists to catch — the buy pass re-asking priced-out
+    /// sellers every month (0.89 ms/month, 143 asks a month at 14 µs each,
+    /// measured by `the_buy_pass_ask_census` before the clock row and the
+    /// allocation-free `pick`) — is six times the bar. One seed, one
+    /// timeline — not a seed-sampled statistic, so there is no n to derive.
+    #[test]
+    fn the_resource_pass_stays_under_budget() {
+        use std::time::{Duration, Instant};
+        const MONTHS: usize = 1200;
+        const PASSES: usize = 3;
+        /// Spec section 9.5's budget, met on a quiet machine (see above).
+        const BUDGET_MS_PER_MONTH: f64 = 0.05;
+        /// The bar: the budget with the suite's own load allowed for.
+        const BAR_MS_PER_MONTH: f64 = 0.15;
+        let slot = SYSTEMS.iter().position(|(name, _)| *name == "resources").expect("resources is a SYSTEMS entry");
+        let mut best = [Duration::MAX; 3];
+        for _ in 0..PASSES {
+            let mut w = world_1990(GameRules { resource_market: true, ..GameRules::default() });
+            for _ in 0..12 {
+                tick_month(&mut w, &[]);
+            }
+            resources::meter::BUY.with(|b| b.set(Duration::ZERO));
+            let (mut row, mut aim) = (Duration::ZERO, Duration::ZERO);
+            let mut opened = 0usize;
+            for _ in 0..MONTHS {
+                w.headlines.clear();
+                w.reindex();
+                for (i, (_, system)) in SYSTEMS.iter().enumerate() {
+                    if i == slot {
+                        let t = Instant::now();
+                        system(&mut w);
+                        row += t.elapsed();
+                    } else {
+                        system(&mut w);
+                    }
+                }
+                let t = Instant::now();
+                for a in nations::all_nations() {
+                    if !w.nation_opt(*a).is_some_and(|n| n.alive) {
+                        continue;
+                    }
+                    for tgt in dyads::contacts(*a) {
+                        if dyads::last_resort(&w, *a, *tgt).is_some() {
+                            opened += 1;
+                        }
+                    }
+                }
+                aim += t.elapsed();
+                w.month += 1;
+                if w.month > 12 {
+                    w.month = 1;
+                    w.year += 1;
+                }
+            }
+            std::hint::black_box(opened);
+            let buy = resources::meter::BUY.with(|b| b.get());
+            for (b, d) in best.iter_mut().zip([row, buy, aim]) {
+                *b = (*b).min(d);
+            }
+        }
+        let ms = |d: Duration| d.as_secs_f64() * 1000.0 / MONTHS as f64;
+        let (row, buy, aim) = (ms(best[0]), ms(best[1]), ms(best[2]));
+        let total = row + buy + aim;
+        for (name, v) in [("resources", row), ("buy pass", buy), ("appetite term", aim), ("total", total)] {
+            println!("    {name:<14} {v:>7.4} ms/month  (market on, best of {PASSES}, {MONTHS} months, 137 living at start)");
+        }
+        println!(
+            "    budget {BUDGET_MS_PER_MONTH} ms/month {}; bar {BAR_MS_PER_MONTH}",
+            if total <= BUDGET_MS_PER_MONTH { "met" } else { "NOT met on this reading (a loaded machine?)" }
+        );
+        assert!(
+            total <= BAR_MS_PER_MONTH,
+            "the resource pass costs {total:.4} ms/month, over the {BAR_MS_PER_MONTH} ms bar"
+        );
+    }
+
+    /// Acceptance item 10 — the census. Not an assertion: a measurement the
+    /// owner reads to pick fork F2's cell and, after a second independent
+    /// count, fork F4's bar. Prints, for the control arm (market off) and six
+    /// live cells (floor {-20, 0, +10} x ration {on, off}), over `seeds`
+    /// seeds x 480 months: every "WAR:" headline counted and fingerprinted
+    /// (FNV-1a over the sorted `seed\tmonth\ttext` lines — the control arm's
+    /// is HEAD's, by the inert invariant), the resource wars per seed as a
+    /// histogram with λ, its sample variance, p(≥ 1), the median and the
+    /// share of all wars against the pre-registered band λ ∈ [0.05, 0.69];
+    /// how many of them were legible as the month ended (every producer
+    /// refused twice and the aim in reach); the lines they were for; how many
+    /// seeds' war histories differ from control and the first month a seed
+    /// showed a market event. Then the control arm's 12 x 30-year readout
+    /// against the appetite audit's 6,6,11,10,10,6,7,7,8,11,9,7 / 98, and
+    /// the Gulf and pact-drag hit lists, control against the design cell.
+    ///
+    ///     SPHERES_CENSUS_SEEDS=200 cargo test -p spheres-sim --release --lib resource_war_census -- --ignored --nocapture
+    #[test]
+    #[ignore = "census; 200 seeds x 480 months x 7 arms, about twenty minutes in release"]
+    fn resource_war_census() {
+        use std::collections::BTreeMap;
+        let seeds: u64 = std::env::var("SPHERES_CENSUS_SEEDS").ok().and_then(|s| s.parse().ok()).unwrap_or(200);
+        const MONTHS: usize = 480;
+        fn fnv(lines: &[String]) -> u64 {
+            let mut h: u64 = 0xcbf2_9ce4_8422_2325;
+            for l in lines {
+                for b in l.as_bytes().iter().chain(b"\n") {
+                    h ^= *b as u64;
+                    h = h.wrapping_mul(0x0000_0100_0000_01b3);
+                }
+            }
+            h
+        }
+        struct Arm {
+            name: &'static str,
+            market: bool,
+            floor: f64,
+            ration: bool,
+        }
+        let arms = [
+            Arm { name: "control: market off", market: false, floor: resources::RELATION_FLOOR, ration: true },
+            Arm { name: "floor -20, ration on (the design)", market: true, floor: -20.0, ration: true },
+            Arm { name: "floor -20, ration off", market: true, floor: -20.0, ration: false },
+            Arm { name: "floor 0, ration on", market: true, floor: 0.0, ration: true },
+            Arm { name: "floor 0, ration off", market: true, floor: 0.0, ration: false },
+            Arm { name: "floor +10, ration on", market: true, floor: 10.0, ration: true },
+            Arm { name: "floor +10, ration off", market: true, floor: 10.0, ration: false },
+        ];
+        let mut control: Vec<Vec<String>> = vec![vec![]; seeds as usize];
+        println!();
+        for arm in &arms {
+            resources::census::FLOOR.with(|f| f.set(arm.floor));
+            resources::census::RATION.with(|r| r.set(arm.ration));
+            let mut wars: Vec<String> = vec![];
+            let mut per_seed: Vec<Vec<String>> = vec![vec![]; seeds as usize];
+            let mut per_seed_res = vec![0u32; seeds as usize];
+            let mut first_market: Vec<Option<usize>> = vec![None; seeds as usize];
+            let (mut legible, mut checked) = (0u32, 0u32);
+            let mut by_line: BTreeMap<String, u32> = BTreeMap::new();
+            let mut examples: Vec<String> = vec![];
+            let started = std::time::Instant::now();
+            for seed in 0..seeds {
+                let s = seed as usize;
+                let mut w = world_1990(GameRules { seed, resource_market: arm.market, ..GameRules::default() });
+                for m in 0..MONTHS {
+                    let heads = tick_month(&mut w, &[]);
+                    for h in &heads {
+                        if first_market[s].is_none()
+                            && (h.contains(" refuses: ")
+                                || h.contains(" sign a supply contract")
+                                || h.contains("Nobody will sell ")
+                                || h.contains(" line delayed - needs "))
+                        {
+                            first_market[s] = Some(m);
+                        }
+                        if !h.starts_with("WAR:") {
+                            continue;
+                        }
+                        wars.push(format!("{seed}\t{m}\t{h}"));
+                        per_seed[s].push(h.clone());
+                        if h.contains(" for the ") && h.contains(" — refused by ") {
+                            per_seed_res[s] += 1;
+                            checked += 1;
+                            let ok = w.conflicts.iter().any(|c| {
+                                c.invasion_declared
+                                    && c.aim.as_ref().is_some_and(|a| {
+                                        let by = c.origin_attacker;
+                                        h.starts_with(&format!("WAR: {} invades", by.name()))
+                                            && resources::refused_all(&w, by, a.commodity).is_some()
+                                            && resources::reachable(&w, by, &a.district)
+                                    })
+                            });
+                            if ok {
+                                legible += 1;
+                            }
+                            let line = h.split(" for the ").nth(1).and_then(|s| s.split(" of ").next()).unwrap_or("?");
+                            *by_line.entry(line.to_string()).or_default() += 1;
+                            if examples.len() < 12 {
+                                examples.push(format!("seed {seed} month {m}: {h}"));
+                            }
+                        }
+                    }
+                }
+            }
+            wars.sort();
+            let total = wars.len();
+            let res: u32 = per_seed_res.iter().sum();
+            let n = seeds as f64;
+            let lambda = res as f64 / n;
+            let var = per_seed_res.iter().map(|&x| (x as f64 - lambda).powi(2)).sum::<f64>() / (n - 1.0).max(1.0);
+            let p = per_seed_res.iter().filter(|&&x| x > 0).count() as f64 / n;
+            let mut sorted = per_seed_res.clone();
+            sorted.sort();
+            let median = sorted[sorted.len() / 2];
+            let hist: Vec<usize> = (0..4).map(|k| per_seed_res.iter().filter(|&&x| if k < 3 { x == k } else { x >= 3 }).count()).collect();
+            println!("=== {} — {seeds} seeds x {MONTHS} months, {:.0}s", arm.name, started.elapsed().as_secs_f64());
+            println!(
+                "    WAR: headlines {total} ({:.2}/seed); resource wars {res}: λ = {lambda:.3}/seed, variance {var:.3}, p(≥1) = {p:.3}, median {median}, share of all wars {:.1}%",
+                total as f64 / n,
+                100.0 * res as f64 / total.max(1) as f64
+            );
+            println!("    resource wars per seed: 0:{} 1:{} 2:{} 3+:{}   band λ ∈ [0.05, 0.69]: {}", hist[0], hist[1], hist[2], hist[3], if (0.05..=0.69).contains(&lambda) { "inside" } else { "OUTSIDE" });
+            println!("    legible as the month ended (every producer refused twice, aim in reach): {legible}/{checked}; by line {by_line:?}");
+            println!("    WAR: fingerprint {:#018x}", fnv(&wars));
+            if arm.market {
+                let differing = (0..seeds as usize).filter(|&s| per_seed[s] != control[s]).count();
+                let mut firsts: Vec<usize> = first_market.iter().flatten().copied().collect();
+                firsts.sort();
+                println!(
+                    "    seeds whose war history differs from control: {differing}/{seeds}; seeds with a market event: {}; first market month min {:?} median {:?}",
+                    firsts.len(),
+                    firsts.first(),
+                    firsts.get(firsts.len() / 2)
+                );
+            } else {
+                control = per_seed.clone();
+            }
+            for e in &examples {
+                println!("    {e}");
+            }
+        }
+        resources::census::FLOOR.with(|f| f.set(resources::RELATION_FLOOR));
+        resources::census::RATION.with(|r| r.set(true));
+
+        let readout: Vec<u32> = (0..12u64)
+            .map(|seed| {
+                let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+                let mut n = 0;
+                for _ in 0..360 {
+                    n += tick_month(&mut w, &[]).iter().filter(|h| h.starts_with("WAR:")).count() as u32;
+                }
+                n
+            })
+            .collect();
+        println!(
+            "12 x 30-year WAR: readout, control: {:?} total {} (the appetite audit recorded 6,6,11,10,10,6,7,7,8,11,9,7 / 98 at an earlier HEAD)",
+            readout,
+            readout.iter().sum::<u32>()
+        );
+        for (name, market) in [("control", false), ("design ", true)] {
+            let gulf: Vec<u64> = (0..200u64)
+                .filter(|&seed| {
+                    let mut w = world_1990(GameRules { seed, resource_market: market, ..GameRules::default() });
+                    let saw = (0..48).any(|_| tick_month(&mut w, &[]).iter().any(|h| h.contains("Iraq invades Kuwait")));
+                    saw || !w.nation(NationId::Kuwait).alive
+                })
+                .collect();
+            let drag: Vec<u64> = (0..12u64)
+                .filter(|&seed| {
+                    let mut w = world_1990(GameRules { seed, resource_market: market, ..GameRules::default() });
+                    (0..360).any(|_| {
+                        tick_month(&mut w, &[]).iter().any(|h| {
+                            h.contains("honours its defence pact") && patrons().iter().any(|p| h.starts_with(p.name()))
+                        })
+                    })
+                })
+                .collect();
+            println!("{name}: Gulf (Iraq invades Kuwait within 48 months) {}/200; pact-drag (a patron honours a pact within 360 months) {}/12 {:?}", gulf.len(), drag.len(), drag);
+            let miss: Vec<u64> = (0..200u64).filter(|s| !gulf.contains(s)).collect();
+            println!("{name}: Gulf misses {miss:?}");
+        }
     }
 
     #[test]

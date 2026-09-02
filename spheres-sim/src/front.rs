@@ -467,6 +467,13 @@ fn frontier(
             })
             .count()
     };
+    // The aim (resources.rs): the district the opener's quarrel is for sorts
+    // first after enemy pockets, on the opener's side only. No aim, no term —
+    // the comparator below is then the one it always was.
+    let aim: Option<&str> = match &c.aim {
+        Some(a) if members.contains(&c.origin_attacker) => Some(a.district.as_str()),
+        _ => None,
+    };
     out.sort_by(|x, y| {
         let (px, py) = (enemy_pockets.contains(x), enemy_pockets.contains(y));
         match (px, py) {
@@ -478,6 +485,13 @@ fn frontier(
                     .then_with(|| x.cmp(y));
             }
             (false, false) => {}
+        }
+        if let Some(aim) = aim {
+            match (x.as_str() == aim, y.as_str() == aim) {
+                (true, false) => return std::cmp::Ordering::Less,
+                (false, true) => return std::cmp::Ordering::Greater,
+                _ => {}
+            }
         }
         let (ox, oy) = (k.k[x.as_str()].0 == advancing_a, k.k[y.as_str()].0 == advancing_a);
         oy.cmp(&ox)

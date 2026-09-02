@@ -2658,16 +2658,9 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             // The TAKE card names the district and the line the quarrel is
             // for. Absent is the ordinary quarrel; present but unreadable is
             // a refusal, the theatre's own rule below. A readable aim is
-            // validated here and carried onto the conflict by S3's `SetAim`;
-            // this build validates it and opens the quarrel without it.
-            match v.get("aim") {
-                None | Some(serde_json::Value::Null) => {}
-                Some(a) => {
-                    let d = a.get("district")?.as_str()?;
-                    spheres_sim::districts::name_of(d)?;
-                    Commodity::parse(a.get("commodity")?.as_str()?)?;
-                }
-            }
+            // carried onto the conflict by `SetAim` once the quarrel is open
+            // (`apply_orders`), where the sim validates it and says why not.
+            aim_of(v).ok()?;
             Command::OpenConflict {
                 opener: me,
                 target,
@@ -2940,6 +2933,66 @@ fn asked_player(payload: &serde_json::Value) -> Result<Option<NationId>, String>
 /// `WorldState::nation`, whose `expect` is a real invariant everywhere else.
 ///
 /// Returns the payload and whether a game was actually started.
+/// Fork F1(b): the browser plays the world with the resource market on —
+/// the sanction ration, the AI buy pass, the refusal memory and the
+/// last-resort war (resources.rs) — while every test and the headless CLI
+/// play it off, so the suite and both goldens stay bit-identical. Set here,
+/// on the game the server boots and on every `/api/new`, and nowhere else.
+fn play_rules(g: &mut Game) {
+    g.world.rules.resource_market = true;
+}
+
+/// The optional aim on an `open_conflict` order: absent (or null) is no aim,
+/// `Ok(None)`; present and readable — a district the census knows and a line
+/// the sim names — is `Ok(Some)`; present and unreadable is `Err`, and the
+/// order is refused, the theatre's own rule.
+fn aim_of(v: &serde_json::Value) -> Result<Option<(String, Commodity)>, ()> {
+    match v.get("aim") {
+        None | Some(serde_json::Value::Null) => Ok(None),
+        Some(a) => {
+            let d = a.get("district").and_then(|d| d.as_str()).ok_or(())?;
+            spheres_sim::districts::name_of(d).ok_or(())?;
+            let c = a.get("commodity").and_then(|c| c.as_str()).and_then(Commodity::parse).ok_or(())?;
+            Ok(Some((d.to_string(), c)))
+        }
+    }
+}
+
+/// Apply the page's orders now, in order, and say what did not go through. A
+/// command this build cannot parse used to be dropped in silence, which from
+/// the player's side is a button that does nothing and says nothing; it is
+/// an error line instead. A quarrel opened with an aim (the TAKE card) is
+/// followed by `SetAim` on the conflict it opened: the sim validates the
+/// aim, refuses it with its sentence, and charges nothing for it.
+fn apply_orders(w: &mut WorldState, me: NationId, list: &[serde_json::Value]) -> Vec<String> {
+    let mut errors: Vec<String> = vec![];
+    for v in list {
+        match parse_command(w, v, me) {
+            Some(cmd) => {
+                if let Err(e) = apply_command(w, &cmd) {
+                    errors.push(e);
+                    continue;
+                }
+                if let Command::OpenConflict { target, .. } = cmd {
+                    if let Ok(Some((district, commodity))) = aim_of(v) {
+                        if let Some(id) = w.conflict_between(me, target).map(|c| c.id) {
+                            let aim = Command::SetAim { conflict: id, nation: me, district, commodity };
+                            if let Err(e) = apply_command(w, &aim) {
+                                errors.push(e);
+                            }
+                        }
+                    }
+                }
+            }
+            None => errors.push(format!(
+                "That order did not make sense: {}",
+                serde_json::to_string(v).unwrap_or_default()
+            )),
+        }
+    }
+    errors
+}
+
 fn new_game(g: &mut Game, seed: u64, player: Option<NationId>) -> (serde_json::Value, bool) {
     let fresh = Game::new(seed, player);
     if let Some(id) = player {
@@ -2972,7 +3025,9 @@ fn main() {
         .and_then(|s| s.parse().ok())
         .unwrap_or(7777);
 
-    let game: Mutex<Game> = Mutex::new(Game::new(1990, None));
+    let mut boot = Game::new(1990, None);
+    play_rules(&mut boot);
+    let game: Mutex<Game> = Mutex::new(boot);
 
     let addr = format!("127.0.0.1:{}", port);
     let server = match Server::http(&addr) {
@@ -3302,7 +3357,10 @@ fn main() {
                 };
                 let mut g = game.lock().unwrap();
                 match new_game(&mut g, seed, player) {
-                    (v, true) => json_response(v),
+                    (v, true) => {
+                        play_rules(&mut g);
+                        json_response(v)
+                    }
                     (v, false) => json_error(400, v),
                 }
             }
@@ -3341,28 +3399,13 @@ fn main() {
                         continue;
                     }
                 };
-                let mut errors: Vec<String> = vec![];
                 // The tick's own headlines are still sitting in the world and are
                 // already in the log; only what these commands add is news.
                 let before = g.world.headlines.len();
-                if let Some(list) = payload.get("commands").and_then(|c| c.as_array()) {
-                    for v in list {
-                        // A command this build cannot parse used to be dropped in
-                        // silence, which from the player's side is a button that
-                        // does nothing and says nothing. Say it.
-                        match parse_command(&g.world, v, me) {
-                            Some(cmd) => {
-                                if let Err(e) = apply_command(&mut g.world, &cmd) {
-                                    errors.push(e);
-                                }
-                            }
-                            None => errors.push(format!(
-                                "That order did not make sense: {}",
-                                serde_json::to_string(v).unwrap_or_default()
-                            )),
-                        }
-                    }
-                }
+                let errors: Vec<String> = match payload.get("commands").and_then(|c| c.as_array()) {
+                    Some(list) => apply_orders(&mut g.world, me, list),
+                    None => vec![],
+                };
                 let fresh: Vec<String> = g.world.headlines[before..].to_vec();
                 for h in fresh {
                     g.record(h);
@@ -8063,6 +8106,60 @@ mod tests {
         assert!(!open(serde_json::json!({ "district": "IR-10", "commodity": "spice" })));
         assert!(!open(serde_json::json!("IR-10")));
         assert!(!open(serde_json::json!({ "district": 10, "commodity": "copper" })));
+    }
+
+    /// Fork F1(b): the market is on for the world the browser deals and off
+    /// for the one the suite runs. `Game::new` is the suite's constructor and
+    /// carries the default; `play_rules` is called on the booted game and on
+    /// every `/api/new`, and the source says so exactly there and here.
+    #[test]
+    fn the_market_is_on_for_the_browser_and_off_for_the_suite() {
+        let mut g = Game::new(1990, Some(NationId::Iraq));
+        assert!(!g.world.rules.resource_market, "the suite's world must play the market off");
+        assert!(!spheres_sim::save(&g.world).contains("resource_market"));
+        play_rules(&mut g);
+        assert!(g.world.rules.resource_market);
+        assert!(spheres_sim::save(&g.world).contains("\"resource_market\": true"));
+        let src = include_str!("main.rs");
+        let needle = concat!("play_rules", "(&mut ");
+        assert_eq!(src.matches(needle).count(), 3, "boot, /api/new, and this test");
+    }
+
+    /// A quarrel opened from the TAKE card carries its aim: `apply_orders`
+    /// follows a successful open with `SetAim`, the sim validates it, and the
+    /// conflict remembers the district and the line. An aim the sim refuses —
+    /// ground the target does not hold — is an error line with the sim's
+    /// sentence, never a silently aimless quarrel.
+    #[test]
+    fn an_aim_is_carried_onto_the_quarrel_it_opened() {
+        let me = NationId::Iraq;
+        let mut g = Game::new(7, Some(me));
+        g.world.nation_mut(me).political_capital = 100.0;
+        // The district the TAKE card would name: Iran's best-sourced copper
+        // in Iraq's reach, served by the sim, never typed here.
+        let (district, _) = resources::reachable_best_district(&g.world, me, NationId::Iran, Commodity::Copper)
+            .expect("Iran holds copper in Iraq's reach");
+        let order = serde_json::json!({
+            "kind": "open_conflict", "target": "Iran",
+            "aim": { "district": district, "commodity": "copper" }
+        });
+        let errors = apply_orders(&mut g.world, me, &[order]);
+        assert_eq!(errors, Vec::<String>::new());
+        let c = g.world.conflict_between(me, NationId::Iran).expect("the quarrel opened");
+        let aim = c.aim.as_ref().expect("the quarrel carries its aim");
+        assert_eq!((aim.district.as_str(), aim.commodity), (district.as_str(), Commodity::Copper));
+
+        let mut g = Game::new(7, Some(me));
+        g.world.nation_mut(me).political_capital = 100.0;
+        let order = serde_json::json!({
+            "kind": "open_conflict", "target": "Iran",
+            "aim": { "district": "KW-AH", "commodity": "gas" }
+        });
+        let errors = apply_orders(&mut g.world, me, &[order]);
+        assert_eq!(errors.len(), 1, "{errors:?}");
+        assert!(errors[0].contains("does not hold"), "{errors:?}");
+        let c = g.world.conflict_between(me, NationId::Iran).expect("the quarrel still opened");
+        assert!(c.aim.is_none(), "a refused aim must not land");
     }
 
     /// MINE is greyed with the served block sentence — a missing card reads as

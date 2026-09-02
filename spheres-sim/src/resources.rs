@@ -1012,14 +1012,31 @@ fn settle(w: &mut WorldState, payer: NationId, payee: NationId, bn_per_year: f64
     n.debt_gdp = (n.debt_gdp - bn_per_year / 12.0 / g).max(0.0);
 }
 
-/// Offers past their month are gone (spec section 4.8). Cut two also
-/// records the lapse as an `Unanswered` refusal for the AI buyer.
+/// Offers past their month are gone (spec section 4.8), and the lapse is
+/// remembered by the AI that made them as an `Unanswered` refusal on each
+/// line it asked for (section 6.2): the AI waits for the player exactly as
+/// long as it waits for itself, and asks again when that has cooled.
 fn expire_offers(w: &mut WorldState) {
     if w.resources.offers.is_empty() {
         return;
     }
     let now = month_abs(w);
-    w.resources.offers.retain(|o| o.expires > now);
+    let (lapsed, kept): (Vec<Offer>, Vec<Offer>) =
+        std::mem::take(&mut w.resources.offers).into_iter().partition(|o| o.expires <= now);
+    w.resources.offers = kept;
+    for o in lapsed {
+        let lines: Vec<Commodity> = o
+            .take
+            .iter()
+            .filter_map(|l| match l {
+                Leg::Commodity { c, .. } => Some(*c),
+                _ => None,
+            })
+            .collect();
+        for c in lines {
+            remember_refusal(w, o.from, o.to, c, Reason::Unanswered);
+        }
+    }
 }
 
 /// A grievance is live while `until` is still ahead; past it, the row goes,
@@ -1177,7 +1194,10 @@ impl Reason {
     }
 }
 
-/// A seller's refusal, as the buyer remembers it (S3 writes it).
+/// A seller's answer, as the buyer remembers it (S3 writes it). A row with
+/// `NotForThatPrice` is not a refusal — it is the clock that keeps a
+/// priced-out ask from being repeated every month — and `is_refusal` is
+/// what every count and the predicate read.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct Refusal {
     pub buyer: NationId,
@@ -1186,6 +1206,13 @@ pub struct Refusal {
     pub reason: Reason,
     pub heat: f64,
     pub asks: u32,
+}
+
+impl Refusal {
+    /// A hard bar. PricedOut ("for any amount of money") never is.
+    pub fn is_refusal(&self) -> bool {
+        !matches!(self.reason, Reason::NotForThatPrice { .. })
+    }
 }
 
 /// What a resource war is for: the district and the line (S3 writes it;
@@ -1319,11 +1346,21 @@ fn contracted_in_with(w: &WorldState, h: &Have, id: NationId, c: Commodity) -> f
 /// What `id` could sell of `c` this month: own flow less its own draw, its
 /// commitments, and a year of its draw held in reserve.
 pub fn surplus(w: &WorldState, id: NationId, c: Commodity) -> f64 {
-    surplus_with(w, &w.resource_have, id, c)
+    surplus_with(w, &w.resource_have, &live_draws(w), id, c)
 }
 
-fn surplus_with(w: &WorldState, h: &Have, id: NationId, c: Commodity) -> f64 {
-    let d = draw(w, id)[c.idx()];
+/// Where the arithmetic reads a nation's draw this month: the live
+/// computation (`draw`, a `pick` each time), or — inside one buy pass — a
+/// memo of it, since a nation's draw does not move within the month the
+/// pass runs in. Either is a pure function of the world.
+pub type Draws<'a> = dyn Fn(NationId) -> [f64; 12] + 'a;
+
+fn live_draws(w: &WorldState) -> impl Fn(NationId) -> [f64; 12] + '_ {
+    move |id| draw(w, id)
+}
+
+fn surplus_with(w: &WorldState, h: &Have, draws: &Draws, id: NationId, c: Commodity) -> f64 {
+    let d = draws(id)[c.idx()];
     flow_of(h, id, c) / 12.0 - d - committed_out(w, id, c) - d * RESERVE_MONTHS / 12.0
 }
 
@@ -1335,7 +1372,7 @@ fn open_to(w: &WorldState, buyer: NationId, h: NationId) -> bool {
     !w.is_sanctioning(h, buyer)
         && !w.is_sanctioning(buyer, h)
         && !crate::statecraft::belligerents(w, buyer, h)
-        && w.relation(buyer, h) >= RELATION_FLOOR
+        && w.relation(buyer, h) >= relation_floor()
 }
 
 /// The first living holder of `c`, in `NationId` order, that is open to
@@ -1399,7 +1436,21 @@ fn supply_with(w: &WorldState, h: &Have, buyer: NationId, c: Commodity, need: f6
             break;
         }
     }
-    let market = if holder.is_some() { (need - own - contracts).max(0.0) } else { 0.0 };
+    let market = if holder.is_some() {
+        let gap = (need - own - contracts).max(0.0);
+        // SANCTION_RATION (cut two, behind the market switch): the share of
+        // the buyer's imports its embargoes shut out — the constant its oil
+        // exports already pay, `oil_blockade`, and the only route by which
+        // the sim's own coalitions ever close a market. Switch off, the gap
+        // is the gap, the same bytes as before the ration existed.
+        if w.rules.resource_market && ration_on() {
+            gap * (1.0 - w.oil_blockade(buyer))
+        } else {
+            gap
+        }
+    } else {
+        0.0
+    };
     Supply { own, contracts, market, available: own + contracts + market, holder, any_producer }
 }
 
@@ -1627,6 +1678,12 @@ pub enum Verdict {
 pub fn ceil10(x: f64) -> f64 {
     (x * 10.0).ceil() / 10.0
 }
+
+/// The step `ceil10` rounds to, $bn a year: the least any counter names. A
+/// proposer whose spending cap is below it is priced out of every counter
+/// before one is computed, which is how the buy pass knows not to compute
+/// it.
+pub const PRICE_STEP: f64 = 0.1;
 
 /// A kb/d for a year is 365 kb; at `price` dollars a barrel that is
 /// `365 × 1000 × price` dollars, here in billions. The one place oil is
@@ -1875,6 +1932,7 @@ pub fn land_premium(w: &WorldState, from: NationId, give: &[Leg]) -> f64 {
 fn value_of(
     w: &WorldState,
     h: &Have,
+    draws: &Draws,
     from: NationId,
     to: NationId,
     give: &[Leg],
@@ -1886,7 +1944,7 @@ fn value_of(
     let partners = w.pact_partners(to);
     let patrons = w.patrons_of(to);
     let bloc = if partners.iter().chain(patrons.iter()).any(|x| w.is_sanctioning(*x, from)) { 2.0 } else { 1.0 };
-    let draw_to = draw(w, to);
+    let draw_to = draws(to);
     let (mut value_in, mut cost_out, mut money_in) = (0.0, 0.0, 0.0);
     for l in give {
         match l {
@@ -1919,7 +1977,7 @@ fn value_of(
                 cost_out += years * oil_leg_bn_per_year(*per_month, w.oil_price);
             }
             Leg::Commodity { c, per_month } => {
-                let s = surplus_with(w, h, to, *c).max(DOLLAR);
+                let s = surplus_with(w, h, draws, to, *c).max(DOLLAR);
                 cost_out += years
                     * 12.0
                     * unit_price_bn(*c).unwrap_or(0.0)
@@ -1960,53 +2018,82 @@ pub fn evaluate(
     take: &[Leg],
     months: u32,
 ) -> Verdict {
-    let h = have(w);
-    let h: &Have = &h;
-    // --- Hard bars, in order.
+    evaluate_with(w, &live_draws(w), from, to, give, take, months)
+}
+
+/// The hard bars of spec section 4.4, in order, each with its reason;
+/// `None` when the bundle clears them all and the value decides.
+fn hard_bars(
+    w: &WorldState,
+    h: &Have,
+    draws: &Draws,
+    from: NationId,
+    to: NationId,
+    give: &[Leg],
+    take: &[Leg],
+) -> Option<Reason> {
     if crate::statecraft::belligerents(w, from, to) {
-        return Verdict::Refuse(Reason::AtWar);
+        return Some(Reason::AtWar);
     }
     if w.is_sanctioning(from, to) || w.is_sanctioning(to, from) {
-        return Verdict::Refuse(Reason::Embargoed);
+        return Some(Reason::Embargoed);
     }
     let now = month_abs(w);
     if w.resources.grievances.iter().any(|g| g.victim == to && g.breaker == from && g.until > now) {
-        return Verdict::Refuse(Reason::BrokeContract);
+        return Some(Reason::BrokeContract);
     }
     let rel = w.relation(from, to);
-    if rel < RELATION_FLOOR {
-        return Verdict::Refuse(Reason::Distrust);
+    if rel < relation_floor() {
+        return Some(Reason::Distrust);
     }
     for l in take {
         if let Leg::Commodity { c, per_month } = l {
-            let s = surplus_with(w, h, to, *c);
+            let s = surplus_with(w, h, draws, to, *c);
             if *per_month > s && s <= 0.0 {
-                return Verdict::Refuse(Reason::NoSurplus);
+                return Some(Reason::NoSurplus);
             }
         }
     }
     for (ceder, legs) in [(from, give), (to, take)] {
         for d in district_legs(legs) {
             if district_contested(w, d) {
-                return Verdict::Refuse(Reason::LandContested);
+                return Some(Reason::LandContested);
             }
             if pop_share_of(w, ceder, d) > NOT_FOR_SALE_POP {
-                return Verdict::Refuse(Reason::NotForSale);
+                return Some(Reason::NotForSale);
             }
             if ceder == to && rel < LAND_TRUST {
-                return Verdict::Refuse(Reason::LandDistrust);
+                return Some(Reason::LandDistrust);
             }
             if w.nation_opt(ceder).map_or(0.0, |n| n.stability) < GOVERNMENT_FLOOR {
-                return Verdict::Refuse(Reason::GovernmentWouldFall);
+                return Some(Reason::GovernmentWouldFall);
             }
             if holdings(w, ceder) <= 1 {
-                return Verdict::Refuse(Reason::LastDistrict);
+                return Some(Reason::LastDistrict);
             }
         }
     }
+    None
+}
+
+/// `evaluate` against a given draw source (see `Draws`).
+fn evaluate_with(
+    w: &WorldState,
+    draws: &Draws,
+    from: NationId,
+    to: NationId,
+    give: &[Leg],
+    take: &[Leg],
+    months: u32,
+) -> Verdict {
+    let h = have(w);
+    let h: &Have = &h;
+    if let Some(r) = hard_bars(w, h, draws, from, to, give, take) {
+        return Verdict::Refuse(r);
+    }
     // --- Value.
     let years = (months as f64 / 12.0).max(1.0 / 12.0);
-    let (value_in, cost_out, _) = value_of(w, h, from, to, give, take, years);
+    let (value_in, cost_out, _) = value_of(w, h, draws, from, to, give, take, years);
     if value_in + DOLLAR >= (1.0 + MARGIN) * cost_out {
         return Verdict::Accept;
     }
@@ -2016,12 +2103,12 @@ pub fn evaluate(
         .iter()
         .map(|l| match l {
             Leg::Commodity { c, per_month } => {
-                Leg::Commodity { c: *c, per_month: per_month.min(surplus_with(w, h, to, *c).max(0.0)) }
+                Leg::Commodity { c: *c, per_month: per_month.min(surplus_with(w, h, draws, to, *c).max(0.0)) }
             }
             other => other.clone(),
         })
         .collect();
-    let (value_in, cost_out, money_in) = value_of(w, h, from, to, give, &clipped, years);
+    let (value_in, cost_out, money_in) = value_of(w, h, draws, from, to, give, &clipped, years);
     let nonmoney_in = value_in - money_in * years;
     let want = ceil10(((1.0 + MARGIN) * cost_out - nonmoney_in) / years);
     if want <= money_in + DOLLAR {
@@ -2337,16 +2424,13 @@ pub fn refused_all(w: &WorldState, a: NationId, k: Commodity) -> Option<(usize, 
 /// Whether `a` remembers `s` refusing it `k` recently enough and often enough
 /// to count (heat at least `GATE_HEAT`, at least two asks).
 pub fn refusal_counted(w: &WorldState, a: NationId, s: NationId, k: Commodity) -> bool {
-    w.resources
-        .refusals
-        .iter()
-        .any(|r| r.buyer == a && r.seller == s && r.c == k && r.heat >= GATE_HEAT && r.asks >= 2)
+    refusal_of(w, a, s, k).is_some_and(|r| r.is_refusal() && r.heat >= GATE_HEAT && r.asks >= 2)
 }
 
-/// How many sellers of `k` have refused `a` at all (any live row), for the
-/// card's "N asked".
+/// How many sellers of `k` have refused `a` at all (any live refusal row),
+/// for the card's "N asked". A priced-out row is not one.
 pub fn refusals_of(w: &WorldState, a: NationId, k: Commodity) -> usize {
-    w.resources.refusals.iter().filter(|r| r.buyer == a && r.c == k && r.heat > 0.0).count()
+    w.resources.refusals.iter().filter(|r| r.buyer == a && r.c == k && r.is_refusal() && r.heat > 0.0).count()
 }
 
 /// The equipment class as the card says it.
@@ -2514,6 +2598,421 @@ pub fn reference_mine(c: Commodity) -> Option<f64> {
         }
         out
     })[c.idx()]
+}
+
+// ---------------------------------------------------------------------------
+// The market (package S3): the buy pass, the refusal memory, the aim. Behind
+// `GameRules::resource_market` (fork F1(b)): the pass returns before it reads
+// anything while the switch is off, the memory is written by nothing else, and
+// the switch is off in every test and in the headless CLI — so the goldens and
+// the headless bytes are the world before this section existed.
+// ---------------------------------------------------------------------------
+
+/// The lattice a refusal cools on: twenty-fourths. Cooling snaps to it (see
+/// `cool_refusals`) so six coolings from one land on exactly `REASK_HEAT`
+/// and twelve on exactly `GATE_HEAT` — a float subtracted twenty-four times
+/// lands a hair above both and would make every wait a month long.
+pub const HEAT_STEPS: f64 = 24.0;
+
+/// A refusal cools by this much a month (M, Appendix A): forgotten in two
+/// years, always staler than the grievance that caused it.
+pub const REFUSAL_COOL: f64 = 1.0 / HEAT_STEPS;
+
+/// One number for three waits (M, Appendix A): the re-ask cadence, an
+/// offer's life in the player's inbox, and the AI's patience before a lapse
+/// counts as a no.
+pub const PATIENCE: i32 = 6;
+
+/// A buyer asks a seller again once its refusal has cooled to this: six
+/// months of `REFUSAL_COOL` off a fresh refusal, `18/24`, exact.
+pub const REASK_HEAT: f64 = (HEAT_STEPS - PATIENCE as f64) / HEAT_STEPS;
+
+/// The term the AI asks for (M): the middle rung of `TERMS`, three years.
+pub const AI_TERM: u32 = 36;
+
+/// A player holds at most this many unanswered offers (M): an inbox, not a
+/// queue. A fourth is not asked this month.
+pub const MAX_PENDING_OFFERS: usize = 3;
+
+/// The relation floor as the code reads it: the constant, except on the
+/// census thread of a test build, which sweeps it (fork F2).
+#[cfg(not(test))]
+pub(crate) fn relation_floor() -> f64 {
+    RELATION_FLOOR
+}
+#[cfg(test)]
+pub(crate) fn relation_floor() -> f64 {
+    census::FLOOR.with(|f| f.get())
+}
+
+/// Whether the sanction ration is applied: always, except on the census
+/// thread of a test build, which sweeps it off (fork F2).
+#[cfg(not(test))]
+fn ration_on() -> bool {
+    true
+}
+#[cfg(test)]
+fn ration_on() -> bool {
+    census::RATION.with(|r| r.get())
+}
+
+/// Fork F2's two knobs, thread-local so the census (one thread) can sweep
+/// them while every other test reads the design values. Test builds only;
+/// the shipped binary reads the constants.
+#[cfg(test)]
+pub(crate) mod census {
+    use std::cell::Cell;
+    thread_local! {
+        pub static FLOOR: Cell<f64> = const { Cell::new(super::RELATION_FLOOR) };
+        pub static RATION: Cell<bool> = const { Cell::new(true) };
+    }
+}
+
+fn refusal_slot(w: &WorldState, buyer: NationId, seller: NationId, c: Commodity) -> Result<usize, usize> {
+    w.resources.refusals.binary_search_by(|r| (r.buyer, r.seller, r.c).cmp(&(buyer, seller, c)))
+}
+
+/// The row `buyer` keeps on `seller` for `c`, if any.
+pub fn refusal_of(w: &WorldState, buyer: NationId, seller: NationId, c: Commodity) -> Option<&Refusal> {
+    refusal_slot(w, buyer, seller, c).ok().map(|i| &w.resources.refusals[i])
+}
+
+/// The memory's one writer besides cooling (spec section 6.2): heat back to
+/// one, asks up one, the reason the latest. Returns the asks now on the
+/// row. Sorted by (buyer, seller, line) by construction.
+pub(crate) fn remember_refusal(
+    w: &mut WorldState,
+    buyer: NationId,
+    seller: NationId,
+    c: Commodity,
+    reason: Reason,
+) -> u32 {
+    match refusal_slot(w, buyer, seller, c) {
+        Ok(i) => {
+            let r = &mut w.resources.refusals[i];
+            r.heat = 1.0;
+            r.asks += 1;
+            r.reason = reason;
+            r.asks
+        }
+        Err(i) => {
+            w.resources.refusals.insert(i, Refusal { buyer, seller, c, reason, heat: 1.0, asks: 1 });
+            1
+        }
+    }
+}
+
+/// A signing forgets the refusal it answers.
+pub(crate) fn forget_refusal(w: &mut WorldState, buyer: NationId, seller: NationId, c: Commodity) {
+    if let Ok(i) = refusal_slot(w, buyer, seller, c) {
+        w.resources.refusals.remove(i);
+    }
+}
+
+/// Spec section 6.3, from `statecraft::tick`: every row cools one step on
+/// the lattice of twenty-fourths, and a row at zero is gone — a world that
+/// has forgotten serializes as one that never knew. Nothing else reads or
+/// writes the memory: no relation, no growth, no reputation.
+pub fn cool_refusals(w: &mut WorldState) {
+    if w.resources.refusals.is_empty() {
+        return;
+    }
+    for r in w.resources.refusals.iter_mut() {
+        r.heat = ((r.heat * HEAT_STEPS).round() - 1.0) / HEAT_STEPS;
+    }
+    w.resources.refusals.retain(|r| r.heat > 0.0);
+}
+
+/// What one ask came to.
+#[derive(Clone, Debug, PartialEq)]
+pub(crate) enum Asked {
+    /// A contract at the seller's own price.
+    Signed,
+    /// The seller is the player: an offer in its inbox.
+    Offered,
+    /// The seller's price is past what the buyer may spend. Not a refusal:
+    /// never counted, never headlined; remembered only as the clock that
+    /// says when to ask again.
+    PricedOut { bn_per_year: f64 },
+    /// A hard bar, with its reason — remembered.
+    Refused(Reason),
+    /// Not asked after all: the buyer had not the standing, or the player's
+    /// inbox is full or already holds this ask.
+    NotAsked,
+}
+
+/// One ask (spec section 6.2): `b` puts `short` of `c` a month to `s` with
+/// a placeholder for money and takes the seller's own answer — accepted as
+/// is, or countered at the seller's price with the seller's clipped legs,
+/// which re-offered is accepted by construction. A seller that is the
+/// player gets an offer in its inbox instead of a signature. No RNG.
+///
+/// Three things are not computed because their answer is already known: a
+/// buyer without the standing to sign is not asked (the command would only
+/// say so); the value stage is skipped for a buyer whose cap is under the
+/// price step (every counter would be `NotForThatPrice`); and each seller's
+/// draw is read from `memo`, the month's, rather than picked again.
+pub(crate) fn ask(
+    w: &mut WorldState,
+    b: NationId,
+    s: NationId,
+    c: Commodity,
+    short: f64,
+    capped: bool,
+    memo: &mut BTreeMap<NationId, [f64; 12]>,
+) -> Asked {
+    let give = vec![Leg::Money { bn_per_year: 0.0 }];
+    let take = vec![Leg::Commodity { c, per_month: short }];
+    let to_player = Some(s) == w.player;
+    let probe = crate::Command::ProposeDeal { from: b, to: s, give: give.clone(), take: take.clone(), months: AI_TERM };
+    if !to_player && !crate::affordable(w, &probe) {
+        return Asked::NotAsked;
+    }
+    let verdict = {
+        let wr: &WorldState = w;
+        let cell = std::cell::RefCell::new(std::mem::take(memo));
+        let draws = |id: NationId| *cell.borrow_mut().entry(id).or_insert_with(|| draw(wr, id));
+        let h = have(wr);
+        let h: &Have = &h;
+        let v = match hard_bars(wr, h, &draws, b, s, &give, &take) {
+            Some(r) => Verdict::Refuse(r),
+            None if capped => Verdict::Refuse(Reason::NotForThatPrice { bn_per_year: PRICE_STEP }),
+            None => evaluate_with(wr, &draws, b, s, &give, &take, AI_TERM),
+        };
+        *memo = cell.into_inner();
+        v
+    };
+    let (money, take) = match verdict {
+        Verdict::Accept => (0.0, take),
+        Verdict::Counter { money_bn_per_year, take } => (money_bn_per_year, take),
+        Verdict::Refuse(Reason::NotForThatPrice { bn_per_year }) => return Asked::PricedOut { bn_per_year },
+        Verdict::Refuse(r) => return Asked::Refused(r),
+    };
+    let give = vec![Leg::Money { bn_per_year: money }];
+    if Some(s) == w.player {
+        let pending = w.resources.offers.iter().filter(|o| o.to == s).count();
+        if pending >= MAX_PENDING_OFFERS {
+            return Asked::NotAsked;
+        }
+        let same = |l: &Leg| matches!(l, Leg::Commodity { c: lc, .. } if *lc == c);
+        if w.resources.offers.iter().any(|o| o.from == b && o.to == s && o.take.iter().any(same)) {
+            return Asked::NotAsked;
+        }
+        w.resources.next_id += 1;
+        let id = w.resources.next_id;
+        let expires = month_abs(w) + PATIENCE;
+        w.resources.offers.push(Offer { id, from: b, to: s, give, take, months: AI_TERM, expires });
+        return Asked::Offered;
+    }
+    match crate::apply_command(w, &crate::Command::ProposeDeal { from: b, to: s, give, take, months: AI_TERM }) {
+        Ok(()) => Asked::Signed,
+        Err(_) => Asked::NotAsked,
+    }
+}
+
+/// The buy pass (ruling 4's "must first attempt to buy"; spec sections 1.12
+/// and 6.2), the first thing `politics::ai_statecraft` does. For every AI
+/// state with a cover row — the gate materialises one on the first month a
+/// line is short, so an open world has none and the pass costs one emptiness
+/// check — for every tracked line its procurement wants more of than it can
+/// get this month, in `NationId` order over every living producer: a seller
+/// the buyer itself embargoes is blocked, not asked; a seller whose refusal
+/// has not cooled to `REASK_HEAT` is not asked yet; otherwise one `ask`. A
+/// signing forgets the refusal and ends the search for that line; a hard
+/// refusal is remembered and headlined the first time; a priced-out ask is
+/// neither. The month every producer stands refused twice is headlined
+/// once, and again only after the memory has cooled and been refreshed.
+/// Deterministic: sorted rows, registry order, no RNG.
+#[cfg(not(test))]
+pub fn ai_purchases(w: &mut WorldState) {
+    buy_pass(w)
+}
+/// In a test build the pass is timed in place, two clock reads a month, so
+/// `the_resource_pass_stays_under_budget` reads its cost inside the tick it
+/// actually runs in rather than a copy run beside it.
+#[cfg(test)]
+pub fn ai_purchases(w: &mut WorldState) {
+    meter::timed(&meter::BUY, || buy_pass(w))
+}
+
+/// The in-situ clock for the buy pass (test builds only).
+#[cfg(test)]
+pub(crate) mod meter {
+    use std::cell::Cell;
+    use std::time::{Duration, Instant};
+    thread_local! {
+        pub static BUY: Cell<Duration> = const { Cell::new(Duration::ZERO) };
+        /// Asks by outcome: signed, offered, priced out, refused, not asked.
+        pub static ASKS: Cell<[u32; 5]> = const { Cell::new([0; 5]) };
+    }
+    pub fn count(outcome: &super::Asked) {
+        let i = match outcome {
+            super::Asked::Signed => 0,
+            super::Asked::Offered => 1,
+            super::Asked::PricedOut { .. } => 2,
+            super::Asked::Refused(_) => 3,
+            super::Asked::NotAsked => 4,
+        };
+        ASKS.with(|a| {
+            let mut v = a.get();
+            v[i] += 1;
+            a.set(v);
+        });
+    }
+    pub fn timed<T>(slot: &'static std::thread::LocalKey<Cell<Duration>>, f: impl FnOnce() -> T) -> T {
+        let t = Instant::now();
+        let out = f();
+        slot.with(|s| s.set(s.get() + t.elapsed()));
+        out
+    }
+}
+
+fn buy_pass(w: &mut WorldState) {
+    if !(w.rules.resource_gates && w.rules.resource_market) || w.resources.cover.is_empty() {
+        return;
+    }
+    let player = w.player;
+    let buyers: Vec<NationId> = w.resources.cover.iter().map(|r| r.nation).collect();
+    let mut memo: BTreeMap<NationId, [f64; 12]> = BTreeMap::new();
+    for b in buyers {
+        if Some(b) == player || !w.nation_opt(b).is_some_and(|n| n.alive) {
+            continue;
+        }
+        let (kit, line) = {
+            let n = w.nation(b);
+            (crate::arsenal::pick(n), crate::arsenal::line_of(n))
+        };
+        let Some(kit) = kit else { continue };
+        let need = kit_need(kit, line);
+        memo.insert(b, need);
+        for c in ALL.iter().copied().filter(|c| c.tracked() && need[c.idx()] > 0.0) {
+            let s = supply(w, b, c, need[c.idx()]);
+            if s.available >= need[c.idx()] {
+                continue;
+            }
+            let short = need[c.idx()] - s.available;
+            let sellers: Vec<NationId> = producers(w, c).into_iter().filter(|s| *s != b).collect();
+            if sellers.is_empty() {
+                continue;
+            }
+            let before = refused_all(w, b, c).is_some();
+            // Constant across the sellers of one line: a signing ends the
+            // line's search, and nothing else here moves the cap.
+            let capped = cap(w, b) + DOLLAR < PRICE_STEP;
+            for s in sellers {
+                if w.is_sanctioning(b, s) {
+                    continue;
+                }
+                if refusal_of(w, b, s, c).is_some_and(|r| r.heat > REASK_HEAT) {
+                    continue;
+                }
+                let outcome = ask(w, b, s, c, short, capped, &mut memo);
+                #[cfg(test)]
+                meter::count(&outcome);
+                match outcome {
+                    Asked::Signed => {
+                        forget_refusal(w, b, s, c);
+                        break;
+                    }
+                    Asked::PricedOut { bn_per_year } => {
+                        // Not a refusal — a clock. Nothing counts it, nothing
+                        // prints it; it only says when to ask again.
+                        remember_refusal(w, b, s, c, Reason::NotForThatPrice { bn_per_year });
+                    }
+                    Asked::Refused(r) => {
+                        let sentence = r.sentence();
+                        if remember_refusal(w, b, s, c, r) == 1 {
+                            w.headline(format!(
+                                "{} seeks {} from {}; {} refuses: {}",
+                                b.name(),
+                                c.name(),
+                                s.name(),
+                                s.name(),
+                                sentence
+                            ));
+                        }
+                    }
+                    Asked::Offered | Asked::NotAsked => {}
+                }
+            }
+            if !before {
+                if let Some((_, sellers)) = refused_all(w, b, c) {
+                    w.headline(format!("Nobody will sell {} to {} — {} asked.", c.name(), b.name(), sellers));
+                }
+            }
+        }
+    }
+}
+
+/// Why the world refuses an aim (spec section 6.6), each with its sentence:
+/// no such conflict; `nation` did not open it; no such district; the
+/// district is not the primary opponent's; the district carries no presence
+/// of the line. Pure, so `world_refusal` asks it before anything is priced.
+pub fn aim_refusal(
+    w: &WorldState,
+    conflict: u32,
+    nation: NationId,
+    district: &str,
+    commodity: Commodity,
+) -> Option<String> {
+    let Some(c) = w.conflict(conflict) else { return Some("No such conflict.".into()) };
+    if c.origin_attacker != nation {
+        return Some(format!("Only {}, who opened the quarrel, names what it is for.", c.origin_attacker.name()));
+    }
+    let Some(name) = crate::districts::name_of(district) else {
+        return Some(format!("No district called {district}."));
+    };
+    let Some(opponent) = crate::commitment::primary_opponent(c, nation) else {
+        return Some("Not a party to that conflict.".into());
+    };
+    if w.districts.get(district) != Some(&opponent) {
+        return Some(format!("{} does not hold {}.", opponent.name(), name));
+    }
+    if !presence_of(district).contains(&commodity) {
+        return Some(format!("{} holds no {}.", name, commodity.name()));
+    }
+    None
+}
+
+/// `SetAim`'s effect: the conflict's aim. `aim_refusal` has already
+/// answered; nothing else moves, nothing is headlined — the invasion, if it
+/// comes, says what it was for.
+pub(crate) fn set_aim(w: &mut WorldState, conflict: u32, district: &str, commodity: Commodity) -> Result<(), String> {
+    let c = w.conflict_mut(conflict).ok_or("No such conflict.")?;
+    c.aim = Some(Aim { district: district.to_string(), commodity });
+    Ok(())
+}
+
+/// The invasion headline of a war opened for a line (spec section 6.7):
+/// `WAR: {a} invades {t} for the {k} of {d*} — refused by {r} of {s}
+/// sellers.` — the counts from `refused_all` at that moment, or the rows
+/// still warm if the memory has cooled beneath the bar. `None` unless the
+/// conflict carries an aim and the attacker is the state that set it.
+pub fn resource_war_headline(
+    w: &WorldState,
+    c: &crate::world::Conflict,
+    attacker: NationId,
+    defender: NationId,
+) -> Option<String> {
+    let aim = c.aim.as_ref()?;
+    if attacker != c.origin_attacker {
+        return None;
+    }
+    let k = aim.commodity;
+    let (refused, sellers) = refused_all(w, attacker, k).unwrap_or_else(|| {
+        let sellers = producers(w, k).into_iter().filter(|s| *s != attacker).count();
+        (refusals_of(w, attacker, k), sellers)
+    });
+    let name = crate::districts::name_of(&aim.district).unwrap_or(aim.district.as_str());
+    Some(format!(
+        "WAR: {} invades {} for the {} of {} — refused by {} of {} sellers.",
+        attacker.name(),
+        defender.name(),
+        k.name(),
+        name,
+        refused,
+        sellers
+    ))
 }
 
 #[cfg(test)]
@@ -3813,5 +4312,638 @@ mod tests {
             assert!(transfer.contains(slice), "the transfer does not slice {slice}");
         }
         assert!(!transfer.contains("shift_relation"), "the contract's +5 covers it");
+    }
+
+    // -----------------------------------------------------------------------
+    // Package S3: the market and the last-resort chain. Every test here turns
+    // `resource_market` on by hand; the suite's default is off, and the
+    // switch's own proof stands beside the goldens in lib.rs.
+    // -----------------------------------------------------------------------
+
+    /// A cover row for `id` with `c` at zero: the stall, by hand.
+    fn starve(w: &mut WorldState, id: NationId, c: Commodity) {
+        match w.resources.cover.binary_search_by_key(&id, |r| r.nation) {
+            Ok(i) => w.resources.cover[i].months[c.idx()] = 0.0,
+            Err(i) => {
+                let mut months = [BUFFER_MONTHS; 12];
+                months[c.idx()] = 0.0;
+                w.resources.cover.insert(i, Cover { nation: id, months });
+            }
+        }
+    }
+
+    /// Every living producer of `c` other than `buyer` and `except`
+    /// sanctions the buyer, and the buyer sanctions nobody — a seller the
+    /// buyer itself embargoes is blocked, not asked, and would keep the gate
+    /// shut for a reason this test is not about. Re-applied every month a
+    /// test runs, because statecraft may lift or add one.
+    fn close_market(w: &mut WorldState, buyer: NationId, c: Commodity, except: &[NationId]) {
+        w.sanctions.retain(|(a, _)| *a != buyer);
+        for s in producers(w, c) {
+            if s != buyer && !except.contains(&s) && !w.is_sanctioning(s, buyer) {
+                w.sanctions.push((s, buyer));
+            }
+        }
+    }
+
+    /// `months` forward on the calendar, nothing else.
+    fn advance_calendar(w: &mut WorldState, months: i32) {
+        for _ in 0..months {
+            w.month += 1;
+            if w.month > 12 {
+                w.month = 1;
+                w.year += 1;
+            }
+        }
+    }
+
+    /// Acceptance item 9: ruling 4's predicate, clause by clause, on a
+    /// hand-built memory. It never opens on a single ask, an un-asked
+    /// seller, a seller the buyer itself embargoes, a row cooled below
+    /// GATE_HEAT, a target that did not refuse, a mine no army can reach, a
+    /// claim already pressed, a priced-out ask (which writes no row — see
+    /// `priced_out_is_not_a_refusal`), or a line nobody produces. With
+    /// every refusal in place and the pile not yet empty the appetite is
+    /// the market-off value bit for bit; with the pile empty, `worth` is
+    /// exactly that value plus RESOURCE_WORTH and nothing else moved.
+    ///
+    /// Iron rule 7: a unit predicate on one hand-built world — no seed is
+    /// sampled and no die is rolled, so the variance is zero and n is one;
+    /// every clause is a hard bar, and a hard bar is tested by crossing it.
+    #[test]
+    fn the_last_resort_predicate() {
+        use crate::dyads::{gdp_worth, last_resort, settled_flag, war_appetite, RESOURCE_WORTH};
+        let (iraq, iran, chile, kuwait) = (code("Iraq"), code("Iran"), code("Chile"), code("Kuwait"));
+        let k = Commodity::Copper;
+        let mut w = built(world_1990(GameRules::default()));
+        w.rules.resource_market = true;
+        let sellers: Vec<NationId> = producers(&w, k).into_iter().filter(|s| *s != iraq).collect();
+        assert!(sellers.len() >= 10 && sellers.contains(&iran) && sellers.contains(&chile), "{}", sellers.len());
+        assert!(!sellers.contains(&kuwait), "Kuwait mines no copper");
+        let (d_star, _) = reachable_best_district(&w, iraq, iran, k).expect("Iran holds copper in Iraq's reach");
+        assert_eq!(reachable_best_district(&w, iraq, chile, k), None, "no army of Iraq's reaches Chile");
+        let aim = Aim { district: d_star.clone(), commodity: k };
+
+        // No stall, no memory: nothing. A stall alone: nothing.
+        assert_eq!(last_resort(&w, iraq, iran), None);
+        starve(&mut w, iraq, k);
+        assert_eq!(last_resort(&w, iraq, iran), None);
+        // Everyone asked once: nothing.
+        for s in &sellers {
+            remember_refusal(&mut w, iraq, *s, k, Reason::Embargoed);
+        }
+        assert_eq!(refused_all(&w, iraq, k), None);
+        assert_eq!(last_resort(&w, iraq, iran), None);
+        // Everyone asked twice: the gate opens, toward the mine that refused.
+        for s in &sellers {
+            remember_refusal(&mut w, iraq, *s, k, Reason::Embargoed);
+        }
+        assert_eq!(refused_all(&w, iraq, k), Some((sellers.len(), sellers.len())));
+        assert_eq!(last_resort(&w, iraq, iran), Some(aim.clone()));
+
+        // One un-asked producer closes it.
+        let mut v = w.clone();
+        forget_refusal(&mut v, iraq, sellers[0], k);
+        assert_eq!(last_resort(&v, iraq, iran), None);
+        // One producer blocked by the buyer's own sanction closes it.
+        let mut v = w.clone();
+        v.sanctions.push((iraq, sellers[0]));
+        assert_eq!(last_resort(&v, iraq, iran), None);
+        // A row cooled below GATE_HEAT on any one producer closes it.
+        let mut v = w.clone();
+        let i = refusal_slot(&v, iraq, sellers[0], k).unwrap();
+        v.resources.refusals[i].heat = 0.49;
+        assert_eq!(last_resort(&v, iraq, iran), None);
+        v.resources.refusals[i].heat = GATE_HEAT;
+        assert_eq!(last_resort(&v, iraq, iran), Some(aim.clone()));
+        // A priced-out row on any one producer, however many asks, never counts.
+        let mut v = w.clone();
+        v.resources.refusals[i].reason = Reason::NotForThatPrice { bn_per_year: 1.0 };
+        v.resources.refusals[i].asks = 9;
+        assert_eq!(refused_all(&v, iraq, k), None);
+        assert_eq!(last_resort(&v, iraq, iran), None);
+        // A target that is not a refuser never opens.
+        assert_eq!(last_resort(&w, iraq, kuwait), None);
+        // A mine no army can reach never opens, however often it refused.
+        assert!(refusal_counted(&w, iraq, chile, k));
+        assert_eq!(last_resort(&w, iraq, chile), None);
+        // A claim already pressed by force closes it.
+        let mut v = w.clone();
+        v.set_flag(&settled_flag(iraq, iran));
+        assert_eq!(last_resort(&v, iraq, iran), None);
+        // No producers: no target, no aim.
+        let mut v = w.clone();
+        for s in &sellers {
+            v.nation_mut(*s).alive = false;
+        }
+        assert_eq!(refused_all(&v, iraq, k), None);
+        assert_eq!(last_resort(&v, iraq, iran), None);
+
+        // Every refusal in place but the pile not empty: the appetite is the
+        // market-off value, bit for bit.
+        let mut v = w.clone();
+        v.resources.cover.clear();
+        let on = war_appetite(&v, iraq, iran);
+        v.rules.resource_market = false;
+        let off = war_appetite(&v, iraq, iran);
+        assert!(off > 1e-4, "{off}");
+        assert_eq!(on.to_bits(), off.to_bits());
+        // Everything in place and the pile empty: worth is exactly the
+        // market-off value plus RESOURCE_WORTH.
+        let on = war_appetite(&w, iraq, iran);
+        let gw = gdp_worth(w.nation(iraq).gdp, w.nation(iran).gdp);
+        let expect = off * (gw + RESOURCE_WORTH) / gw;
+        assert!(on < 0.25 && near(on, expect, 1e-12 * expect), "on {on} off {off} expected {expect}");
+    }
+
+    /// Ruling 4's audit line: a deficit alone contributes exactly 0.0. A
+    /// state with every tracked line at zero cover and no refusal on file
+    /// has, for every contact, the appetite it has with the market off — bit
+    /// for bit. Iron rule 7: unit, no seed, variance 0, n = 1.
+    #[test]
+    fn a_deficit_alone_never_raises_appetite() {
+        use crate::dyads::{contacts, war_appetite};
+        let iraq = code("Iraq");
+        let mut w = built(world_1990(GameRules::default()));
+        w.rules.resource_market = true;
+        for c in ALL.iter().copied().filter(|c| c.tracked()) {
+            starve(&mut w, iraq, c);
+        }
+        assert!(w.resources.refusals.is_empty());
+        let mut off = w.clone();
+        off.rules.resource_market = false;
+        let mut live = 0;
+        for t in contacts(iraq) {
+            let a = war_appetite(&w, iraq, *t);
+            let b = war_appetite(&off, iraq, *t);
+            assert_eq!(a.to_bits(), b.to_bits(), "{}", t.name());
+            if a > 0.0 {
+                live += 1;
+            }
+        }
+        assert!(live > 0, "Iraq has appetites in 1990; the comparison must not be vacuous");
+    }
+
+    /// PricedOut is not a refusal (spec section 6.2): a seller whose price is
+    /// past what the buyer may spend leaves no row — shown on the card at
+    /// request time, never remembered. France's copper market is closed by
+    /// every producer but Chile, France's contract cap is already spent, and
+    /// one buy pass writes a row for every embargo and none for Chile; the
+    /// universal refusal therefore never holds. Iron rule 7: unit, one
+    /// hand-built world, variance 0, n = 1.
+    #[test]
+    fn priced_out_is_not_a_refusal() {
+        let (france, chile, usa) = (code("France"), code("Chile"), code("USA"));
+        let k = Commodity::Copper;
+        let mut w = built(world_1990(GameRules::default()));
+        w.rules.resource_market = true;
+        close_market(&mut w, france, k, &[chile]);
+        w.set_relation(france, chile, 60.0);
+        w.nation_mut(france).political_capital = 100.0;
+        // The cap, already spent: a standing contract paying the whole 1% away.
+        let gdp = w.nation(france).gdp;
+        w.resources.next_id += 1;
+        w.resources.contracts.push(Contract {
+            id: w.resources.next_id,
+            from: france,
+            to: usa,
+            give: vec![money(MAX_CONTRACT_SPEND * gdp)],
+            take: vec![],
+            months_left: 120,
+            months_total: 120,
+            since: 0,
+            depth: 0.0,
+        });
+        assert!(cap(&w, france) <= 1e-9, "{}", cap(&w, france));
+        // France is short: the ration leaves a gap the one open door cannot fill.
+        let need = draw(&w, france)[k.idx()];
+        let s = supply(&w, france, k, need);
+        assert_eq!(s.holder, Some(chile));
+        assert!(s.market > 0.0 && s.available < need, "{s:?} need {need}");
+        let short = need - s.available;
+        let capped = cap(&w, france) + DOLLAR < PRICE_STEP;
+        assert!(capped);
+        assert!(matches!(ask(&mut w, france, chile, k, short, capped, &mut BTreeMap::new()), Asked::PricedOut { .. }));
+        assert_eq!(refusal_of(&w, france, chile, k), None, "an ask answers; the pass remembers");
+        // The whole pass: a refusal per embargo, none for Chile, nothing
+        // signed, no headline naming Chile — and for Chile a clock, not a
+        // refusal: never counted, never in the card's count.
+        write_cover(&mut w, france, k, s.available, need);
+        ai_purchases(&mut w);
+        let row = refusal_of(&w, france, chile, k).expect("remembered, so it is not asked again every month");
+        assert!(!row.is_refusal() && matches!(row.reason, Reason::NotForThatPrice { .. }), "{row:?}");
+        assert!(!refusal_counted(&w, france, chile, k));
+        let rows: Vec<&Refusal> =
+            w.resources.refusals.iter().filter(|r| r.buyer == france && r.c == k && r.is_refusal()).collect();
+        let embargoes: Vec<NationId> = producers(&w, k).into_iter().filter(|s| *s != france && *s != chile).collect();
+        assert_eq!(rows.len(), embargoes.len());
+        assert!(rows.iter().all(|r| r.reason == Reason::Embargoed && r.asks == 1 && r.heat == 1.0 && r.seller != chile));
+        assert_eq!(refusals_of(&w, france, k), embargoes.len());
+        assert!(!w.headlines.iter().any(|h| h.contains("from Chile")), "{:?}", w.headlines);
+        assert_eq!(w.resources.contracts.len(), 1, "nothing was signed");
+        // However often it is asked, a priced-out seller never completes the universal refusal.
+        let i = refusal_slot(&w, france, chile, k).unwrap();
+        w.resources.refusals[i].asks = 5;
+        w.resources.refusals[i].heat = 1.0;
+        for s in &embargoes {
+            remember_refusal(&mut w, france, *s, k, Reason::Embargoed);
+        }
+        assert!(embargoes.iter().all(|s| refusal_counted(&w, france, *s, k)));
+        assert!(!refusal_counted(&w, france, chile, k));
+        assert_eq!(refused_all(&w, france, k), None, "an open seller, priced out, is not a refusal");
+    }
+
+    /// Rulings 3 and 4 in a running world, France's copper market closed by
+    /// every producer, the market on. The month France first falls short —
+    /// long before the pile is empty — the buy pass asks every seller and
+    /// every seller refuses (asks = 1, each headlined once); nothing is
+    /// asked again until PATIENCE months later (asks = 2), when the
+    /// universal refusal is headlined exactly once and never again while the
+    /// memory stays warm; the last-resort gate stays shut for every contact
+    /// until the month the pile is empty and the line actually stalls —
+    /// never before BUFFER_MONTHS — and opens then only toward a refuser
+    /// with a mine in reach.
+    ///
+    /// Iron rule 7: one seed, one timeline; the timings asserted are
+    /// arithmetic on constants (PATIENCE, BUFFER_MONTHS), not samples —
+    /// variance 0, n = 1. The roster is asserted unchanged for every month
+    /// the counts are read, so a dissolution cannot quietly move them.
+    #[test]
+    fn a_starved_ai_asks_before_it_wants_and_the_universal_refusal_is_headlined_once() {
+        use crate::dyads::{contacts, last_resort};
+        let france = code("France");
+        let k = Commodity::Copper;
+        let mut w = built(world_1990(GameRules::default()));
+        w.rules.resource_market = true;
+        let roster = alive_stamp(&w);
+        let sellers: Vec<NationId> = producers(&w, k).into_iter().filter(|s| *s != france).collect();
+        let patience = PATIENCE as usize;
+        let mut stall_month = None;
+        let mut first_open = None;
+        let mut nobody: Vec<(usize, String)> = vec![];
+        for m in 1..=30 {
+            close_market(&mut w, france, k, &[]);
+            let heads = crate::tick_month(&mut w, &[]);
+            assert_eq!(alive_stamp(&w), roster, "month {m}: the roster moved under the test");
+            let seeks = heads
+                .iter()
+                .filter(|h| h.starts_with("France seeks copper from ") && h.ends_with("refuses: Sanctions bar it."))
+                .count();
+            let rows: Vec<&Refusal> = w.resources.refusals.iter().filter(|r| r.buyer == france && r.c == k).collect();
+            assert_eq!(rows.len(), sellers.len(), "month {m}");
+            let expect_asks = 1 + (m as u32 - 1) / patience as u32;
+            assert!(rows.iter().all(|r| r.asks == expect_asks && r.reason == Reason::Embargoed), "month {m}: {rows:?}");
+            assert_eq!(seeks, if m == 1 { sellers.len() } else { 0 }, "month {m}: only a first refusal is headlined");
+            nobody.extend(heads.iter().filter(|h| h.starts_with("Nobody will sell copper to France")).map(|h| (m, h.clone())));
+            assert_eq!(refused_all(&w, france, k).is_some(), m > patience, "month {m}");
+            let cv = cover(&w, france, k);
+            if cv <= 0.0 && stall_month.is_none() {
+                stall_month = Some(m);
+            }
+            let open = contacts(france).iter().any(|t| last_resort(&w, france, *t).is_some());
+            if stall_month.is_none() {
+                assert!(!open, "month {m}: the gate opened with {cv:.2} months in hand");
+            } else if open && first_open.is_none() {
+                first_open = Some(m);
+            }
+            if stall_month.is_some_and(|s| m >= s + 1) {
+                break;
+            }
+        }
+        let stall = stall_month.expect("France's copper never ran out in 30 months");
+        assert!(stall as f64 >= BUFFER_MONTHS, "a pile cannot be spent before a year: month {stall}");
+        assert_eq!(nobody.len(), 1, "{nobody:?}");
+        assert_eq!(nobody[0].0, patience + 1);
+        assert_eq!(nobody[0].1, format!("Nobody will sell copper to France — {} asked.", sellers.len()));
+        // Which contacts the gate opened toward: exactly the refusers with a mine in reach.
+        let reachable: Vec<NationId> = contacts(france)
+            .iter()
+            .copied()
+            .filter(|t| refusal_counted(&w, france, *t, k) && reachable_best_district(&w, france, *t, k).is_some())
+            .collect();
+        let open: Vec<NationId> = contacts(france).iter().copied().filter(|t| last_resort(&w, france, *t).is_some()).collect();
+        assert_eq!(open, reachable);
+        assert_eq!(first_open, if reachable.is_empty() { None } else { Some(stall) });
+    }
+
+    /// The player as seller (spec section 6.2): an AI short of a line puts
+    /// an offer in the player's inbox at the AI's own counter price instead
+    /// of signing; a second ask for the same line while one is pending is
+    /// not made; a fourth offer is not made while three wait; an offer the
+    /// player lets lapse is remembered as `Unanswered` — the AI waits for
+    /// you as long as it waits for itself — and is asked again once that has
+    /// cooled to REASK_HEAT; accepted, it is signed at its own terms and the
+    /// refusal forgotten. Iron rule 7: unit, one hand-built world, variance
+    /// 0, n = 1.
+    #[test]
+    fn a_lapsed_offer_is_a_refusal_the_ai_remembers() {
+        let (france, chile, usa) = (code("France"), code("Chile"), code("USA"));
+        let k = Commodity::Copper;
+        let setup = || {
+            let mut w = built(world_1990(GameRules::default()));
+            w.rules.resource_market = true;
+            w.player = Some(chile);
+            close_market(&mut w, france, k, &[chile]);
+            w.set_relation(france, chile, 60.0);
+            w.nation_mut(france).political_capital = 100.0;
+            let need = draw(&w, france)[k.idx()];
+            let s = supply(&w, france, k, need);
+            assert!(s.available < need);
+            write_cover(&mut w, france, k, s.available, need);
+            w
+        };
+        let mut w = setup();
+        ai_purchases(&mut w);
+        let mine = |w: &WorldState| w.resources.offers.iter().filter(|o| o.from == france && o.to == chile).count();
+        assert_eq!(mine(&w), 1);
+        let o = w.resources.offers[0].clone();
+        assert_eq!((o.months, o.expires), (AI_TERM, month_abs(&w) + PATIENCE));
+        assert!(matches!(o.take[..], [Leg::Commodity { c: Commodity::Copper, per_month }] if per_month > 0.0), "{o:?}");
+        assert!(matches!(o.give[..], [Leg::Money { bn_per_year }] if bn_per_year > 0.0), "{o:?}");
+        assert_eq!(refusal_of(&w, france, chile, k), None, "an offer is not a refusal");
+        // Asked again: the pending offer stands alone.
+        ai_purchases(&mut w);
+        assert_eq!(mine(&w), 1);
+        // Left to lapse: gone, and remembered.
+        advance_calendar(&mut w, PATIENCE);
+        tick(&mut w);
+        assert!(w.resources.offers.is_empty());
+        let r = refusal_of(&w, france, chile, k).expect("the lapse is remembered").clone();
+        assert_eq!((r.reason.clone(), r.asks, r.heat), (Reason::Unanswered, 1, 1.0));
+        assert_eq!(r.reason.sentence(), "You let our last offer lapse.");
+        // Not asked again while warm; asked again at REASK_HEAT.
+        ai_purchases(&mut w);
+        assert!(w.resources.offers.is_empty());
+        for _ in 0..PATIENCE {
+            cool_refusals(&mut w);
+        }
+        assert_eq!(refusal_of(&w, france, chile, k).unwrap().heat.to_bits(), REASK_HEAT.to_bits());
+        ai_purchases(&mut w);
+        assert_eq!(mine(&w), 1);
+        // Accepted: signed at its own terms, the refusal forgotten.
+        let id = w.resources.offers[0].id;
+        w.nation_mut(chile).political_capital = 100.0;
+        crate::apply_command(&mut w, &crate::Command::AcceptDeal { nation: chile, offer: id }).unwrap();
+        assert!(w.resources.offers.is_empty());
+        assert_eq!(refusal_of(&w, france, chile, k), None);
+        assert_eq!(w.resources.contracts.len(), 1);
+        assert_eq!((w.resources.contracts[0].from, w.resources.contracts[0].to), (france, chile));
+        // A full inbox: a fourth is not asked this month.
+        let mut w = setup();
+        for i in 0..MAX_PENDING_OFFERS as u32 {
+            w.resources.next_id += 1;
+            w.resources.offers.push(Offer {
+                id: w.resources.next_id,
+                from: usa,
+                to: chile,
+                give: vec![money(0.1 * (i + 1) as f64)],
+                take: vec![com(Commodity::Iron, 1.0)],
+                months: AI_TERM,
+                expires: month_abs(&w) + PATIENCE,
+            });
+        }
+        ai_purchases(&mut w);
+        assert_eq!(w.resources.offers.len(), MAX_PENDING_OFFERS);
+        assert_eq!(mine(&w), 0);
+    }
+
+    /// The instrument behind `the_resource_pass_stays_under_budget`'s
+    /// annotation, kept the way `war_census` is: over thirty-five years on
+    /// the default seed with the market on, the buy pass's asks by outcome
+    /// — signed, offered, priced out, refused, not asked — the month they
+    /// peaked, and the unit cost of a pick, a supply, an evaluation and a
+    /// seller's surplus. Not an assertion.
+    ///
+    ///     cargo test -p spheres-sim --release --lib the_buy_pass_ask_census -- --ignored --nocapture
+    #[test]
+    #[ignore = "instrument; run with --ignored --nocapture"]
+    fn the_buy_pass_ask_census() {
+        use std::hint::black_box;
+        use std::time::Instant;
+        let mut w = world_1990(GameRules { resource_market: true, ..GameRules::default() });
+        let mut total = [0u64; 5];
+        let mut months_with_asks = 0;
+        let mut max_month = (0u32, 0usize);
+        for m in 0..420usize {
+            meter::ASKS.with(|a| a.set([0; 5]));
+            crate::tick_month(&mut w, &[]);
+            let a = meter::ASKS.with(|a| a.get());
+            let n: u32 = a.iter().sum();
+            if n > 0 {
+                months_with_asks += 1;
+            }
+            if n > max_month.0 {
+                max_month = (n, m);
+            }
+            for i in 0..5 {
+                total[i] += a[i] as u64;
+            }
+            if m % 60 == 0 {
+                let buyers: Vec<String> = w.resources.cover.iter().map(|r| r.nation.code().to_string()).collect();
+                println!(
+                    "month {m}: sanctions {} cover rows {} refusals {} offers {} contracts {} asks {:?} buyers {:?}",
+                    w.sanctions.len(),
+                    w.resources.cover.len(),
+                    w.resources.refusals.len(),
+                    w.resources.offers.len(),
+                    w.resources.contracts.len(),
+                    a,
+                    buyers
+                );
+            }
+        }
+        println!("asks over 420 months [signed, offered, priced out, refused, not asked] = {total:?}; months with asks {months_with_asks}; max in a month {max_month:?}");
+        let t = Instant::now();
+        for _ in 0..100 {
+            for n in &w.nations {
+                if n.alive {
+                    black_box(crate::arsenal::pick(n));
+                }
+            }
+        }
+        let alive = w.nations.iter().filter(|n| n.alive).count();
+        println!("pick: {:.3} us each ({alive} alive)", t.elapsed().as_secs_f64() * 1e6 / 100.0 / alive as f64);
+        let t = Instant::now();
+        for _ in 0..1000 {
+            for n in &w.nations {
+                if n.alive {
+                    black_box(w.is_sanctioning(n.id, NationId::from_index(0).unwrap()));
+                }
+            }
+        }
+        println!("is_sanctioning: {:.3} us each ({} pairs)", t.elapsed().as_secs_f64() * 1e6 / 1000.0 / alive as f64, w.sanctions.len());
+        let buyers: Vec<NationId> = w.resources.cover.iter().map(|r| r.nation).collect();
+        for b in buyers.iter().take(3) {
+            let need = draw(&w, *b);
+            for c in ALL.iter().copied().filter(|c| c.tracked() && need[c.idx()] > 0.0) {
+                let t = Instant::now();
+                for _ in 0..1000 {
+                    black_box(supply(&w, *b, c, need[c.idx()]));
+                }
+                let su = t.elapsed().as_secs_f64() * 1e3;
+                let sellers = producers(&w, c);
+                let s = *sellers.iter().find(|s| **s != *b).unwrap();
+                let t = Instant::now();
+                for _ in 0..1000 {
+                    black_box(evaluate(&w, *b, s, &[money(0.0)], &[com(c, need[c.idx()])], AI_TERM));
+                }
+                let ev = t.elapsed().as_secs_f64() * 1e3;
+                let t = Instant::now();
+                for _ in 0..1000 {
+                    black_box(surplus(&w, s, c));
+                }
+                let sp = t.elapsed().as_secs_f64() * 1e3;
+                println!(
+                    "{} {}: supply {su:.2} us, evaluate vs {} {ev:.2} us, surplus(seller) {sp:.2} us; cap {:.3} short? {}",
+                    b.code(),
+                    c.name(),
+                    s.code(),
+                    cap(&w, *b),
+                    supply(&w, *b, c, need[c.idx()]).available < need[c.idx()]
+                );
+            }
+        }
+    }
+
+    /// The memory cools on the lattice of twenty-fourths: six coolings from
+    /// one land on REASK_HEAT and twelve on GATE_HEAT, bit for bit — the
+    /// difference between a wait of six months and one of seven — and the
+    /// twenty-fourth removes the row. Iron rule 7: exact arithmetic, n = 1.
+    #[test]
+    fn cooling_is_on_the_lattice() {
+        let (iraq, iran) = (code("Iraq"), code("Iran"));
+        let k = Commodity::Copper;
+        let mut w = built(world_1990(GameRules::default()));
+        remember_refusal(&mut w, iraq, iran, k, Reason::Distrust);
+        for i in 1..=(HEAT_STEPS as i32) {
+            cool_refusals(&mut w);
+            match refusal_of(&w, iraq, iran, k) {
+                Some(r) => {
+                    assert!(i < HEAT_STEPS as i32);
+                    let want = (HEAT_STEPS - i as f64) / HEAT_STEPS;
+                    assert_eq!(r.heat.to_bits(), want.to_bits(), "step {i}: {} vs {want}", r.heat);
+                }
+                None => assert_eq!(i, HEAT_STEPS as i32, "the row went at step {i}"),
+            }
+            if i == PATIENCE {
+                assert_eq!(refusal_of(&w, iraq, iran, k).unwrap().heat.to_bits(), REASK_HEAT.to_bits());
+            }
+            if i == 2 * PATIENCE {
+                assert_eq!(refusal_of(&w, iraq, iran, k).unwrap().heat.to_bits(), GATE_HEAT.to_bits());
+                assert!(refusal_counted(&w, iraq, iran, k) == false, "one ask never counts");
+            }
+        }
+        assert!(w.resources.refusals.is_empty());
+    }
+
+    /// The aim (spec sections 6.6 and 6.7): `SetAim` is free, refused with a
+    /// sentence unless the conflict exists, the opener names it, the
+    /// district exists, the opponent holds it and it carries the line; set,
+    /// it rides the conflict, and a settlement the opener wins moves that
+    /// district first — the held set carries it and the concession begins
+    /// with it. The defender winning carries no aim. Iron rule 7: unit,
+    /// variance 0, n = 1.
+    #[test]
+    fn the_aim_cedes_first() {
+        use crate::{apply_command, Command};
+        let (iraq, iran) = (code("Iraq"), code("Iran"));
+        let k = Commodity::Copper;
+        let mut w = built(world_1990(GameRules::default()));
+        w.nation_mut(iraq).political_capital = 100.0;
+        let th = crate::war::theatre_between(&w, iraq, iran);
+        apply_command(&mut w, &Command::OpenConflict { opener: iraq, target: iran, theatre: th }).unwrap();
+        let id = w.conflict_between(iraq, iran).unwrap().id;
+        let (d_star, _) = reachable_best_district(&w, iraq, iran, k).unwrap();
+        let name = crate::districts::name_of(&d_star).unwrap();
+        let absent = ALL.iter().copied().find(|c| !presence_of(&d_star).contains(c)).expect("a line the district lacks");
+        let aim = |nation: NationId, conflict: u32, district: &str, commodity: Commodity| Command::SetAim {
+            conflict,
+            nation,
+            district: district.to_string(),
+            commodity,
+        };
+        let pc = w.nation(iraq).political_capital;
+        assert_eq!(apply_command(&mut w, &aim(iraq, 999, &d_star, k)), Err("No such conflict.".into()));
+        assert_eq!(
+            apply_command(&mut w, &aim(iran, id, &d_star, k)),
+            Err("Only Iraq, who opened the quarrel, names what it is for.".into())
+        );
+        assert_eq!(apply_command(&mut w, &aim(iraq, id, "Nowhere", k)), Err("No district called Nowhere.".into()));
+        assert_eq!(apply_command(&mut w, &aim(iraq, id, "KW-AH", Commodity::Gas)), Err("Iran does not hold Al Ahmadi.".into()));
+        assert_eq!(
+            apply_command(&mut w, &aim(iraq, id, &d_star, absent)),
+            Err(format!("{} holds no {}.", name, absent.name()))
+        );
+        assert!(w.conflict(id).unwrap().aim.is_none());
+        apply_command(&mut w, &aim(iraq, id, &d_star, k)).unwrap();
+        assert_eq!(w.nation(iraq).political_capital, pc, "an aim is free");
+        assert_eq!(w.conflict(id).unwrap().aim, Some(Aim { district: d_star.clone(), commodity: k }));
+        // The settlement's held set carries the aim when the opener wins ...
+        let c = w.conflict(id).unwrap().clone();
+        assert!(c.front.is_empty(), "no front yet: the held set is the aim alone");
+        let held = crate::war::settlement_held(&w, &c, iraq, iran);
+        assert_eq!(held.iter().collect::<Vec<_>>(), vec![&d_star]);
+        // ... and not when the defender does.
+        assert!(crate::war::settlement_held(&w, &c, iran, iraq).is_empty());
+        // The concession, at the settlement's own share, begins with it.
+        let ceded = crate::districts::cede_share_preferring(&mut w, iraq, iran, 0.12, &held);
+        assert_eq!(ceded.first(), Some(&d_star), "{ceded:?}");
+        assert_eq!(w.districts.get(d_star.as_str()), Some(&iraq));
+    }
+
+    /// Acceptance item 10's headline: a war opened for a line prints the
+    /// district, the line and the refusals count, begins `WAR:` like every
+    /// invasion so every census and the classifier count it, and an
+    /// invasion without an aim reads exactly as it always did. Iron rule 7:
+    /// unit, exact strings, n = 1.
+    #[test]
+    fn the_resource_war_headline_is_a_war() {
+        use crate::{apply_command, Command};
+        let (iraq, iran) = (code("Iraq"), code("Iran"));
+        let k = Commodity::Copper;
+        let mut w = built(world_1990(GameRules::default()));
+        w.rules.resource_market = true;
+        w.nation_mut(iraq).political_capital = 100.0;
+        let sellers: Vec<NationId> = producers(&w, k).into_iter().filter(|s| *s != iraq).collect();
+        for s in &sellers {
+            remember_refusal(&mut w, iraq, *s, k, Reason::Embargoed);
+            remember_refusal(&mut w, iraq, *s, k, Reason::Embargoed);
+        }
+        let (d_star, _) = reachable_best_district(&w, iraq, iran, k).unwrap();
+        let name = crate::districts::name_of(&d_star).unwrap();
+        let th = crate::war::theatre_between(&w, iraq, iran);
+        apply_command(&mut w, &Command::OpenConflict { opener: iraq, target: iran, theatre: th }).unwrap();
+        let id = w.conflict_between(iraq, iran).unwrap().id;
+        apply_command(&mut w, &Command::SetAim { conflict: id, nation: iraq, district: d_star.clone(), commodity: k }).unwrap();
+        w.headlines.clear();
+        crate::war::invasion_begins(&mut w, id, iraq);
+        let expected = format!(
+            "WAR: Iraq invades Iran for the copper of {} — refused by {} of {} sellers.",
+            name,
+            sellers.len(),
+            sellers.len()
+        );
+        let wars: Vec<&String> = w.headlines.iter().filter(|h| h.starts_with("WAR:")).collect();
+        assert_eq!(wars, vec![&expected]);
+        // The same memory cooled beneath the bar: the rows still warm are counted.
+        let mut v = w.clone();
+        for _ in 0..(HEAT_STEPS as i32 / 2 + 1) {
+            cool_refusals(&mut v);
+        }
+        assert_eq!(refused_all(&v, iraq, k), None);
+        let c = v.conflict(id).unwrap().clone();
+        assert_eq!(
+            resource_war_headline(&v, &c, iraq, iran).as_deref(),
+            Some(expected.as_str()),
+            "the rows are still warm, and still counted"
+        );
+        // No aim: the sentence it always was.
+        let mut w = built(world_1990(GameRules::default()));
+        w.nation_mut(iraq).political_capital = 100.0;
+        apply_command(&mut w, &Command::OpenConflict { opener: iraq, target: iran, theatre: th }).unwrap();
+        let id = w.conflict_between(iraq, iran).unwrap().id;
+        w.headlines.clear();
+        crate::war::invasion_begins(&mut w, id, iraq);
+        assert!(w.headlines.contains(&"WAR: Iraq invades Iran!".to_string()), "{:?}", w.headlines);
     }
 }

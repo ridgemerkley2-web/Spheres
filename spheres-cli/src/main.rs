@@ -31,7 +31,11 @@ fn main() {
 }
 
 fn headless(years: usize, seed: u64) {
-    let rules = GameRules { seed, ..GameRules::default() };
+    // The resource market (fork F1(b)) is off here, as in every test, so a
+    // headless run is the world the goldens pin; `SPHERES_RESOURCE_MARKET=1`
+    // runs the world the browser deals instead.
+    let resource_market = std::env::var("SPHERES_RESOURCE_MARKET").is_ok_and(|v| v == "1");
+    let rules = GameRules { seed, resource_market, ..GameRules::default() };
     let mut w = world_1990(rules);
     for _ in 0..years * 12 {
         let headlines = tick_month(&mut w, &[]);

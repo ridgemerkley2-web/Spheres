@@ -1154,6 +1154,12 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
 /// to make a rival's client ungovernable. Everything goes through the same
 /// `Command` the player uses, so the AI cannot do anything a player could not.
 fn ai_statecraft(w: &mut WorldState) {
+    // Ruling 4's "must first try to buy": every AI state short of a line asks
+    // every willing seller before this month's appetite is priced. Behind the
+    // market switch; consumes no randomness; returns at once while nothing is
+    // short (resources.rs, spec section 6.2).
+    crate::resources::ai_purchases(w);
+
     let active: Vec<NationId> = patrons()
         .iter()
         .copied()
@@ -1470,6 +1476,23 @@ fn ai_wars(w: &mut WorldState) {
                     w,
                     &crate::Command::SetObjective { conflict: id, nation: a, objective: Objective::Seize },
                 );
+                // Ruling 4: when the quarrel is a last resort for a line every
+                // seller refused, say which district it is for. Free,
+                // refusable, validated by the command; behind the market
+                // switch, like the appetite term that opened it.
+                if w.rules.resource_market {
+                    if let Some(aim) = crate::dyads::last_resort(w, a, t) {
+                        let _ = crate::apply_command(
+                            w,
+                            &crate::Command::SetAim {
+                                conflict: id,
+                                nation: a,
+                                district: aim.district,
+                                commodity: aim.commodity,
+                            },
+                        );
+                    }
+                }
             }
         }
     }
