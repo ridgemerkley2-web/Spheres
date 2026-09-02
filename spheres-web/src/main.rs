@@ -5,6 +5,7 @@
 //! serves a browser UI that renders it. No game logic lives here.
 
 use spheres_sim::init::world_1990;
+use spheres_sim::resources::{self, Commodity, Leg, Verdict, ALL};
 use spheres_sim::stratagems;
 use spheres_sim::theatre::TheatreId;
 use spheres_sim::world::*;
@@ -97,6 +98,10 @@ impl Game {
         let rules = GameRules { seed, ..GameRules::default() };
         let mut world = world_1990(rules);
         world.player = player;
+        // The derived HAVE cache, built before the first tick so the resource
+        // board reads the ledger on the setup screen's first month. Never
+        // serialized, never hashed; the tick would build the same bytes.
+        resources::warm(&mut world);
         let mut g = Game { world, log: vec![], history: vec![] };
         g.snapshot();
         g
@@ -310,7 +315,19 @@ fn classify(h: &str) -> &'static str {
         // already matched on "economic aid" and only the arms arm was adrift.
         // Deliberately NOT the bare "cuts off", which would take
         // "{} cuts off oil to {}" out of the economy bucket it already reaches.
-        || t.contains("cuts off arms");
+        || t.contains("cuts off arms")
+        // The supply contracts (resources.rs): signing, refusing, tearing up,
+        // force majeure, expiry, and the market closing on a buyer. Diplomacy,
+        // because every one of them is one government's answer to another's
+        // ask; ahead of `economy`, which the oil contract's headline would
+        // otherwise reach on the word "oil" alone.
+        || t.contains(" sign a supply contract")
+        || t.contains(" refuses: ")
+        || t.contains(" tears up its supply contract")
+        || t.contains(" cannot deliver all of its ")
+        || t.contains(" has run its term")
+        || t.contains(" dies with ")
+        || t.contains("nobody will sell ");
     let economy = t.contains("oil")
         || t.contains("inflation")
         || t.contains("recession")
@@ -322,7 +339,11 @@ fn classify(h: &str) -> &'static str {
         || t.contains("external debt")
         || t.contains("creditors")
         || t.contains("pegs its currency")
-        || t.contains("industrial plant");
+        || t.contains("industrial plant")
+        // A procurement line delayed for want of an input (resources::Stall):
+        // "{}: {} line delayed - needs {}; every producer refuses." Economy,
+        // because it is a budget that could not be spent.
+        || t.contains(" line delayed - needs ");
     if war {
         "war"
     } else if politics {
@@ -814,6 +835,1183 @@ fn stratagems_json(w: &WorldState, id: NationId) -> serde_json::Value {
     })
 }
 
+// ===========================================================================
+// THE RESOURCE BOARD (package W1). Twelve lines, three cards a line, talks in
+// three clicks, and the globe's tint — every number and every sentence the
+// page prints is built HERE from the sim's own reads (resources.rs), and the
+// page composes nothing: it holds no coefficient, no price, no rule, and it
+// never sends a free number. A commodity rung is a multiple of this month's
+// need, a money rung a share of output, and the server turns both into the
+// sim's units. `the_board_reads_the_sim` pins the page's side of that.
+// ===========================================================================
+
+/// The board's unit for a line and the factor that takes the table's ANNUAL
+/// figure to it: tonnes a year become kilotonnes a month, kilotonnes and
+/// billion cubic feet a year become the same a month, and oil is already a
+/// rate (kb/d). One table, read by every conversion below.
+fn board_unit(c: Commodity) -> (&'static str, f64) {
+    match c.unit() {
+        "t" => ("kt/mo", 1.0 / 12_000.0),
+        "kt" => ("kt/mo", 1.0 / 12.0),
+        "bcf" => ("bcf/mo", 1.0 / 12.0),
+        "kb/d" => ("kb/d", 1.0),
+        "kg" => ("kg/mo", 1.0 / 12.0),
+        _ => ("a month", 1.0 / 12.0),
+    }
+}
+
+/// A monthly quantity in the table's units — a draw, a surplus, a contract
+/// leg — on the board. Oil is a rate and is not multiplied.
+fn on_board(c: Commodity, per_month: f64) -> f64 {
+    if c == Commodity::Oil {
+        per_month
+    } else {
+        per_month * 12.0 * board_unit(c).1
+    }
+}
+
+/// An annual quantity in the table's units — a flow — on the board.
+fn annual_on_board(c: Commodity, annual: f64) -> f64 {
+    annual * board_unit(c).1
+}
+
+/// A quantity as a card prints it: thousands separated, no more digits than
+/// the size warrants.
+fn qty(q: f64) -> String {
+    let a = q.abs();
+    let s = if a >= 100.0 {
+        format!("{a:.0}")
+    } else if a >= 10.0 {
+        format!("{a:.1}")
+    } else {
+        format!("{a:.2}")
+    };
+    let s = if s.contains('.') { s.trim_end_matches('0').trim_end_matches('.').to_string() } else { s };
+    let (int, frac) = match s.split_once('.') {
+        Some((i, f)) => (i.to_string(), Some(f.to_string())),
+        None => (s, None),
+    };
+    let digits: Vec<char> = int.chars().collect();
+    let mut out = String::new();
+    if q < 0.0 && a > 0.0 {
+        out.push('−');
+    }
+    for (i, ch) in digits.iter().enumerate() {
+        if i > 0 && (digits.len() - i) % 3 == 0 {
+            out.push(',');
+        }
+        out.push(*ch);
+    }
+    match frac {
+        Some(f) => format!("{out}.{f}"),
+        None => out,
+    }
+}
+
+/// Dollars in billions a year, as the cards print them.
+fn bn(v: f64) -> String {
+    if v.abs() >= 0.05 || v == 0.0 {
+        format!("${v:.1}bn")
+    } else {
+        format!("${:.0}m", v * 1000.0)
+    }
+}
+
+/// "a year", "3 years", "10 years".
+fn years_words(months: u32) -> String {
+    match months {
+        12 => "a year".into(),
+        m => format!("{} years", m / 12),
+    }
+}
+
+/// The card word with its first letter up: "Rare earths".
+fn line_name(c: Commodity) -> String {
+    let mut ch = c.name().chars();
+    match ch.next() {
+        Some(f) => f.to_uppercase().collect::<String>() + ch.as_str(),
+        None => String::new(),
+    }
+}
+
+/// `?com=iron` on a URL.
+fn com_param(url: &str) -> Option<Commodity> {
+    let raw = url.split_once("com=")?.1.split('&').next()?;
+    Commodity::parse(raw)
+}
+
+/// One line of one nation, read once: its flow, this month's need, the
+/// pile, and the state word the row prints — `ok` fed from its own ground,
+/// `supplied` fed by a contract or the open market, `short` when this
+/// month's need is not met but the pile is not empty, `stalled` when the
+/// gate would bind (the only red), `idle` when nothing draws on it, `market`
+/// for oil, `presence` for a line with no 1990 figure.
+struct LineRead {
+    c: Commodity,
+    tracked: bool,
+    /// Annual, the table's units.
+    flow: f64,
+    /// This month's need, the table's units.
+    need: f64,
+    cover: f64,
+    supply: Option<resources::Supply>,
+    status: &'static str,
+    reason: Option<&'static str>,
+}
+
+fn read_line(w: &WorldState, id: NationId, c: Commodity, need: f64) -> LineRead {
+    let tracked = c.tracked();
+    let flow = resources::flow(w, id, c);
+    let cover = resources::cover(w, id, c);
+    let (status, supply, reason) = if !tracked {
+        ("presence", None, None)
+    } else if c == Commodity::Oil {
+        ("market", None, None)
+    } else if need <= 0.0 {
+        ("idle", None, None)
+    } else {
+        let s = resources::supply(w, id, c, need);
+        let reason = if s.any_producer { "every producer refuses" } else { "nobody produces it" };
+        if s.available < need {
+            if cover <= 0.0 {
+                ("stalled", Some(s), Some(reason))
+            } else {
+                ("short", Some(s), Some(reason))
+            }
+        } else if s.own >= need {
+            ("ok", Some(s), None)
+        } else {
+            ("supplied", Some(s), None)
+        }
+    };
+    LineRead { c, tracked, flow, need, cover, supply, status, reason }
+}
+
+/// Who feeds a supplied line: the first contract delivering it, else the
+/// open holder the market read found.
+fn supplier_of(w: &WorldState, id: NationId, c: Commodity, s: &resources::Supply) -> Option<(NationId, &'static str)> {
+    for k in &w.resources.contracts {
+        let (giver, legs) = if k.to == id {
+            (k.from, &k.give)
+        } else if k.from == id {
+            (k.to, &k.take)
+        } else {
+            continue;
+        };
+        if legs.iter().any(|l| matches!(l, Leg::Commodity { c: lc, .. } if *lc == c)) {
+            return Some((giver, "contract"));
+        }
+    }
+    s.holder.map(|h| (h, "open"))
+}
+
+/// One row of the board. `kit` is what procurement would order this month
+/// (designation, class word); the sentence and the second line are Appendix
+/// B's, verbatim; `prov` is the hover — the provenance letter and the served
+/// source string for every figure on the row.
+fn row_json(
+    w: &WorldState,
+    id: NationId,
+    l: &LineRead,
+    kit: Option<(&'static str, &'static str)>,
+) -> serde_json::Value {
+    let c = l.c;
+    let (unit, _) = board_unit(c);
+    let produce = annual_on_board(c, l.flow);
+    let need = on_board(c, l.need);
+    let h = resources::holdings_of(w, id, c);
+    let t = resources::tables();
+    let kit_name = kit.map(|k| k.0).unwrap_or("procurement");
+    let class = kit.map(|k| k.1).unwrap_or("procurement");
+    let sup = l.supply.as_ref().and_then(|s| supplier_of(w, id, c, s));
+    let sentence = match l.status {
+        "presence" => "presence only, no 1990 figure".to_string(),
+        "market" => format!("{} kb/d — settles at the world price, ${:.0} a barrel", qty(produce), w.oil_price),
+        "idle" => {
+            if produce > 0.0 {
+                format!("you make {} {unit} — nothing in this build draws on it", qty(produce))
+            } else {
+                "nothing in this build draws on it".to_string()
+            }
+        }
+        "stalled" => format!("the {kit_name} line stalled this month"),
+        "short" => format!("{} months in hand", l.cover.ceil() as i64),
+        "ok" => format!("you make {} {unit}, lines need {}", qty(produce), qty(need)),
+        _ => {
+            if produce > 0.0 {
+                format!("you make {} {unit} — {class} line needs {}", qty(produce), qty(need))
+            } else {
+                format!("you make none — {class} line needs {} {unit}", qty(need))
+            }
+        }
+    };
+    let second = if !l.tracked {
+        Some("no 1990 figure transcribed — presence only".to_string())
+    } else if h.districts > 0 {
+        Some(format!(
+            "{} district{} · apportioned from the 1990 national figure",
+            h.districts,
+            if h.districts == 1 { "" } else { "s" }
+        ))
+    } else if h.unlocated > 0.0 {
+        Some(format!("{} {unit} unlocated — cannot be taken from you", qty(annual_on_board(c, h.unlocated))))
+    } else {
+        None
+    };
+    let mut prov: Vec<serde_json::Value> = vec![];
+    let mark = |letter: &str, text: String| serde_json::json!({ "letter": letter, "text": text });
+    if l.tracked {
+        match t.file.national_1990.get(c.key()).and_then(|m| m.get(id.code())) {
+            Some(fig) => prov.push(mark("T", format!("{} — 1990 national production, transcribed", fig.source))),
+            None => prov.push(mark("T", "no 1990 national figure — you make none".to_string())),
+        }
+        if h.districts > 0 {
+            prov.push(mark(
+                "D",
+                format!(
+                    "apportioned to your {} located districts — {}",
+                    h.districts,
+                    t.file.meta.rules.get("share").cloned().unwrap_or_default()
+                ),
+            ));
+        }
+        if h.unlocated > 0.0 {
+            prov.push(mark(
+                "D",
+                t.file.meta.rules.get("unlocated").cloned().unwrap_or_else(|| "unlocated".into()),
+            ));
+        }
+        if l.need > 0.0 {
+            prov.push(mark(
+                "M",
+                format!(
+                    "need: the {kit_name} line's budget this month at the {class} class's coefficient — a mechanic, one platform per number"
+                ),
+            ));
+            prov.push(mark(
+                "M",
+                "cover: BUFFER_MONTHS — a mechanic, twelve months of need in hand; a line binds only when it reaches zero"
+                    .to_string(),
+            ));
+        }
+        if c == Commodity::Oil {
+            prov.push(mark("T", "the world oil price — the sim's own market, live".to_string()));
+        }
+    } else {
+        prov.push(mark("T", "presence only — no 1990 figure transcribed".to_string()));
+    }
+    let present = resources::have(w).presence.get(id.index()).is_some_and(|m| m & c.bit() != 0);
+    // The hover: what is blocked and why, in plain words.
+    let hover = match l.status {
+        "stalled" => format!(
+            "the {kit_name} line asked for {} {unit} this month and could not get it — {}",
+            qty(need),
+            l.reason.unwrap_or("")
+        ),
+        "short" => format!(
+            "the {kit_name} line needs {} {unit} a month; {} months in hand — {}",
+            qty(need),
+            l.cover.ceil() as i64,
+            l.reason.unwrap_or("")
+        ),
+        "supplied" => format!(
+            "the {kit_name} line needs {} {unit} a month; fed by {}",
+            qty(need),
+            sup.map(|(n, k)| format!("{} ({})", n.name(), k)).unwrap_or_else(|| "the open market".into())
+        ),
+        "ok" => format!("your own ground feeds the {kit_name} line"),
+        "market" => "oil settles at the world price; nothing is stockpiled".to_string(),
+        "presence" => "no 1990 figure — nothing can draw on it and nothing can be contracted".to_string(),
+        _ => "nothing in this build draws on it".to_string(),
+    };
+    serde_json::json!({
+        "id": c.key(),
+        "name": line_name(c),
+        "unit": unit,
+        "tracked": l.tracked,
+        "produce_per_month": round(produce, 3),
+        "need_per_month": round(need, 3),
+        // The one big ±: what you make less what your lines want, on the board.
+        "net": round(produce - need, 3),
+        "cover_months": round(l.cover, 2),
+        "status": l.status,
+        "supplier": sup.map(|(n, _)| n.name()),
+        "supplier_id": sup.map(|(n, _)| format!("{:?}", n)),
+        "supplier_kind": sup.map(|(_, k)| k),
+        "reason": l.reason,
+        "needed_by": if l.need > 0.0 { Some(kit_name) } else { None },
+        "apportioned": h.districts > 0,
+        "districts": h.districts,
+        "unlocated_per_month": round(annual_on_board(c, h.unlocated), 3),
+        "present": present,
+        "price": if c == Commodity::Oil { Some(w.oil_price) } else { None },
+        "sentence": sentence,
+        "second": second,
+        "hover": hover,
+        // Only rows with a need or a drawn-down cover are expanded; the rest
+        // fold into one line the page prints from `folded`.
+        "fold": matches!(l.status, "idle" | "presence"),
+        "prov": prov,
+    })
+}
+
+/// A leg as the board prints it: board units, never the table's.
+fn leg_words(l: &Leg) -> String {
+    match l {
+        Leg::Commodity { c: Commodity::Oil, per_month } => {
+            format!("{} kb/d of oil at the world price", qty(*per_month))
+        }
+        Leg::Commodity { c, per_month } => {
+            format!("{} {} of {}", qty(on_board(*c, *per_month)), board_unit(*c).0, c.name())
+        }
+        Leg::Money { bn_per_year } => format!("{} a year", bn(*bn_per_year)),
+        Leg::District { id } => {
+            format!("the district of {}", spheres_sim::districts::name_of(id).unwrap_or(id))
+        }
+    }
+}
+
+fn legs_words(legs: &[Leg]) -> String {
+    if legs.is_empty() {
+        "nothing".to_string()
+    } else {
+        legs.iter().map(leg_words).collect::<Vec<_>>().join(", ")
+    }
+}
+
+fn first_commodity(legs: &[Leg]) -> Option<Commodity> {
+    legs.iter().find_map(|l| match l {
+        Leg::Commodity { c, .. } => Some(*c),
+        _ => None,
+    })
+}
+
+/// One of the player's contracts, as the board's line under the rows.
+fn contract_json(w: &WorldState, me: NationId, k: &resources::Contract) -> serde_json::Value {
+    let other = k.other(me);
+    let (get, give) = if k.to == me { (&k.give, &k.take) } else { (&k.take, &k.give) };
+    let goods = |legs: &[Leg]| legs.iter().any(|l| !matches!(l, Leg::Money { .. }));
+    let direction = if goods(get) { "in" } else { "out" };
+    let com = first_commodity(get).or_else(|| first_commodity(give));
+    let cancel_pc = spheres_sim::price_of(w, &Command::CancelDeal { nation: me, contract: k.id }).unwrap_or(0.0);
+    serde_json::json!({
+        "id": k.id,
+        "with": other.name(),
+        "with_id": format!("{:?}", other),
+        "direction": direction,
+        "com": com.map(|c| c.key()),
+        "legs": format!("{} for {}", legs_words(get), legs_words(give)),
+        "line": format!(
+            "{} {} {} · {} months left",
+            if direction == "in" { "+" } else { "−" },
+            legs_words(get),
+            if direction == "in" { format!("from {}", other.name()) } else { format!("to {}", other.name()) },
+            k.months_left
+        ),
+        "months_left": k.months_left,
+        "months_total": k.months_total,
+        "depth": round(k.depth, 3),
+        "cancel_pc": cancel_pc,
+        "cancel_note": format!(
+            "they will remember for {}",
+            match resources::GRIEVANCE_MONTHS / 12 { 1 => "a year".to_string(), 3 => "three years".to_string(), y => format!("{y} years") }
+        ),
+    })
+}
+
+/// A standing AI offer to the player (S3 writes them; the page handles
+/// absence).
+fn offer_json(w: &WorldState, me: NationId, o: &resources::Offer, now: i32) -> serde_json::Value {
+    let accept_pc = spheres_sim::price_of(w, &Command::AcceptDeal { nation: me, offer: o.id }).unwrap_or(0.0);
+    serde_json::json!({
+        "id": o.id,
+        "from": o.from.name(),
+        "from_id": format!("{:?}", o.from),
+        "legs": format!("{} asks {} for {}, {} months", o.from.name(), legs_words(&o.take), legs_words(&o.give), o.months),
+        "expires_in": (o.expires - now).max(0),
+        "accept_pc": accept_pc,
+    })
+}
+
+/// The player's board on every state payload.
+fn resources_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let draw = resources::draw(w, me);
+    let kit = resources::needed_by(w, me);
+    let now = resources::month_abs(w);
+    let mut rows = vec![];
+    let mut folded = 0;
+    let mut starved = 0;
+    for c in ALL {
+        let l = read_line(w, me, c, draw[c.idx()]);
+        if l.status == "stalled" {
+            starved += 1;
+        }
+        if matches!(l.status, "idle" | "presence") {
+            folded += 1;
+        }
+        rows.push(row_json(w, me, &l, kit));
+    }
+    let contracts: Vec<serde_json::Value> = w
+        .resources
+        .contracts
+        .iter()
+        .filter(|k| k.from == me || k.to == me)
+        .map(|k| contract_json(w, me, k))
+        .collect();
+    let offers: Vec<serde_json::Value> =
+        w.resources.offers.iter().filter(|o| o.to == me).map(|o| offer_json(w, me, o, now)).collect();
+    let refused: Vec<serde_json::Value> = ALL
+        .iter()
+        .filter_map(|c| {
+            let asked = resources::refusals_of(w, me, *c);
+            if asked == 0 {
+                return None;
+            }
+            let all = resources::refused_all(w, me, *c);
+            let target = resources::take_target(w, me, *c);
+            Some(serde_json::json!({
+                "id": c.key(),
+                "asked": asked,
+                "refused": all.map(|(r, _)| r).unwrap_or(asked),
+                "sellers": all.map(|(_, s)| s),
+                "refused_all": all.is_some(),
+                "holder": target.as_ref().map(|(t, _, _)| t.name()),
+                "holder_id": target.as_ref().map(|(t, _, _)| format!("{:?}", t)),
+                "district": target.as_ref().map(|(_, d, _)| d.clone()),
+                "district_name": target.as_ref().and_then(|(_, d, _)| spheres_sim::districts::name_of(d)),
+            }))
+        })
+        .collect();
+    serde_json::json!({
+        "rows": rows,
+        "folded": folded,
+        "contracts": contracts,
+        "offers": offers,
+        "refused": refused,
+        "starved": starved,
+        "talks_pc": spheres_sim::price_of(w, &Command::ProposeDeal { from: me, to: me, give: vec![], take: vec![], months: 36 }),
+    })
+}
+
+/// The quantity a one-leg ask is sized at: this month's need, or — when
+/// nothing draws on the line — a typical mine's output (REFERENCE_MINE, D),
+/// so the card can still ask the world a price. The table's monthly units.
+fn ask_basis(w: &WorldState, me: NationId, c: Commodity) -> (f64, &'static str) {
+    let need = resources::draw(w, me)[c.idx()];
+    if need > 0.0 {
+        (need, "need")
+    } else {
+        // Oil's figure is already a rate (kb/d); every other line's is a year.
+        let a = resources::reference_mine(c).unwrap_or(0.0);
+        (if c == Commodity::Oil { a } else { a / 12.0 }, "a typical mine")
+    }
+}
+
+/// "Chile's", "United States'".
+fn possessive(name: &str) -> String {
+    if name.ends_with('s') {
+        format!("{name}'")
+    } else {
+        format!("{name}'s")
+    }
+}
+
+/// One seller's answer to a one-leg ask, from `evaluate` — the same function
+/// `ProposeDeal` reads through, so the rail cannot disagree with the queue.
+struct SellerRead {
+    id: NationId,
+    relation: f64,
+    word: &'static str,
+    ask: f64,
+    because: String,
+    surplus: f64,
+}
+
+fn sellers_of(w: &WorldState, me: NationId, c: Commodity, q: f64) -> Vec<SellerRead> {
+    let mut out = vec![];
+    for s in resources::producers(w, c) {
+        if s == me {
+            continue;
+        }
+        let surplus = resources::surplus(w, s, c);
+        if surplus <= 0.0 {
+            continue;
+        }
+        let give = [Leg::Money { bn_per_year: 0.0 }];
+        let take = [Leg::Commodity { c, per_month: q }];
+        let (word, ask, because) = match resources::evaluate(w, me, s, &give, &take, 36) {
+            Verdict::Accept => ("willing", 0.0, "They will accept.".to_string()),
+            Verdict::Counter { money_bn_per_year, .. } => {
+                ("counter", money_bn_per_year, format!("They will counter: {} a year.", bn(money_bn_per_year)))
+            }
+            Verdict::Refuse(spheres_sim::resources::Reason::NotForThatPrice { bn_per_year }) => {
+                ("priced_out", bn_per_year, spheres_sim::resources::Reason::NotForThatPrice { bn_per_year }.sentence())
+            }
+            Verdict::Refuse(r) => ("refuses", 0.0, r.sentence()),
+        };
+        out.push(SellerRead { id: s, relation: w.relation(me, s), word, ask, because, surplus });
+    }
+    out
+}
+
+fn seller_json(w: &WorldState, c: Commodity, s: &SellerRead) -> serde_json::Value {
+    serde_json::json!({
+        "id": format!("{:?}", s.id),
+        "name": s.id.name(),
+        "relation": round(s.relation, 1),
+        "word": s.word,
+        "ask": round(s.ask, 3),
+        "because": s.because,
+        "surplus": round(on_board(c, s.surplus), 3),
+        "unit": board_unit(c).0,
+        "at_war": w.at_war(s.id),
+    })
+}
+
+/// The bar sentence on a quarrel with `t`, if any: a pact, deterrence, or a
+/// quarrel already open. Appendix B's three.
+fn quarrel_bar(w: &WorldState, me: NationId, t: NationId) -> Option<String> {
+    if w.pact_partners(me).contains(&t) {
+        return Some(format!("A pact binds you to {}", t.name()));
+    }
+    let (mine, theirs) = (w.nation(me), w.nation(t));
+    if theirs.nuclear && !mine.nuclear {
+        return Some(format!("Deterrence holds — {} is nuclear", t.name()));
+    }
+    if w.conflicts.iter().any(|k| k.involves(me) && k.involves(t) && k.side_of(me) != k.side_of(t)) {
+        return Some(format!("you are already in a quarrel with {}", t.name()));
+    }
+    None
+}
+
+/// `GET /api/stock?com=`: the selected row and its three cards.
+fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::Value {
+    let draw = resources::draw(w, me);
+    let kit = resources::needed_by(w, me);
+    let l = read_line(w, me, c, draw[c.idx()]);
+    let row = row_json(w, me, &l, kit);
+    let (unit, _) = board_unit(c);
+    let held = w.nation(me).political_capital;
+    let gdp = w.nation(me).gdp.max(1e-9);
+
+    // MINE — greyed in this build with the served block sentence.
+    let typical = resources::reference_mine(c).map(|a| annual_on_board(c, a));
+    let mine = serde_json::json!({
+        "pc": serde_json::Value::Null,
+        "blurb": "Open a mine on ground you hold.",
+        "plus": typical.map(|t| format!("+{} {unit} — a typical {} mine", qty(t), c.name()))
+            .unwrap_or_else(|| format!("— no located {} in the 1990 table to size a mine by", c.name())),
+        "minus": "— not in this build",
+        "typical": typical.map(|t| round(t, 3)),
+        "blocked": "Mining new ground is not in this build yet — the develop layer lands it.",
+    });
+
+    // TRADE — the sellers, each answered by `evaluate`.
+    let trade = if !l.tracked {
+        serde_json::Value::Null
+    } else {
+        let (q, basis) = ask_basis(w, me, c);
+        let sellers = sellers_of(w, me, c, q);
+        let willing = sellers.iter().filter(|s| matches!(s.word, "willing" | "counter")).count();
+        let refusers = sellers.iter().filter(|s| s.word == "refuses").count();
+        let priced_out = sellers.iter().filter(|s| s.word == "priced_out").count();
+        let best = sellers
+            .iter()
+            .filter(|s| matches!(s.word, "willing" | "counter"))
+            .min_by(|a, b| a.ask.partial_cmp(&b.ask).unwrap_or(std::cmp::Ordering::Equal).then(a.id.cmp(&b.id)));
+        let pc = spheres_sim::price_of(w, &Command::ProposeDeal { from: me, to: me, give: vec![], take: vec![], months: 36 })
+            .unwrap_or(3.0);
+        let plus = if l.need > 0.0 {
+            let kit_name = kit.map(|k| k.0).unwrap_or("procurement");
+            let stalling = if matches!(l.status, "short" | "stalled") {
+                format!(" (stalling in {} months)", l.cover.ceil() as i64)
+            } else {
+                String::new()
+            };
+            format!("+{} {unit} for 36 months — feeds the {kit_name} line{stalling}", qty(on_board(c, q)))
+        } else {
+            format!("+{} {unit} for 36 months — a typical mine's output; nothing needs it this month", qty(on_board(c, q)))
+        };
+        let minus = match best {
+            Some(s) if s.ask > 0.0 => {
+                format!("−{} a year at {} ask ({:.2}% of output)", bn(s.ask), possessive(s.id.name()), s.ask / gdp * 100.0)
+            }
+            Some(s) => format!("−nothing: {} would take the terms as they stand", s.id.name()),
+            None => "nobody is asking a price".to_string(),
+        };
+        serde_json::json!({
+            "pc": pc,
+            "affordable": held >= pc,
+            "shortfall": (pc - held).max(0.0),
+            "blurb": if c == Commodity::Oil {
+                format!("Oil is money here — it settles at the world price, ${:.0} a barrel; bundle it to sweeten a deal.", w.oil_price)
+            } else {
+                format!("Buy {} from a nation with a surplus.", c.name())
+            },
+            "plus": plus,
+            "minus": minus,
+            "why": format!(
+                "{} nations hold a surplus · {} would sell · {} refuse you · {} priced out",
+                sellers.len(), willing, refusers, priced_out
+            ),
+            "ask_q": round(on_board(c, q), 3),
+            "ask_basis": basis,
+            "best_seller": best.map(|s| s.id.name()),
+            "best_seller_id": best.map(|s| format!("{:?}", s.id)),
+            "best_ask": best.map(|s| round(s.ask, 3)),
+            "sellers": sellers.iter().map(|s| seller_json(w, c, s)).collect::<Vec<_>>(),
+            "blocked": serde_json::Value::Null,
+        })
+    };
+
+    // TAKE — greyed until the trade route has closed.
+    let target = resources::take_target(w, me, c);
+    let refused_all = resources::refused_all(w, me, c);
+    let asked = resources::refusals_of(w, me, c);
+    let take = match target {
+        None => serde_json::json!({
+            "open": false,
+            "blurb": format!("nobody in reach holds {}", c.name()),
+            "blocked": format!("nobody in reach holds {}", c.name()),
+            "why": "you have not tried to buy — the world will notice",
+        }),
+        Some((t, d, q)) => {
+            let dname = spheres_sim::districts::name_of(&d).unwrap_or(d.as_str());
+            let open_pc = spheres_sim::price_of(
+                w,
+                &Command::OpenConflict { opener: me, target: t, theatre: spheres_sim::war::theatre_between(w, me, t) },
+            )
+            .unwrap_or(4.0);
+            let war_pc = spheres_sim::price_of(w, &Command::DeclareWar { attacker: me, defender: t }).unwrap_or(30.0);
+            let interveners = w.pact_partners(t).len();
+            let open = refused_all.is_some();
+            serde_json::json!({
+                "pc": open_pc,
+                "war_pc": war_pc,
+                "affordable": held >= open_pc,
+                "nation": t.name(),
+                "nation_id": format!("{:?}", t),
+                "district": d,
+                "district_name": dname,
+                "quality": resources::quality_word(q),
+                "interveners": interveners,
+                "open": open,
+                "blurb": format!("{} ({}) holds it.", dname, t.name()),
+                "plus": format!(
+                    "+ the {} of {} — {} best-sourced district ({} presence)",
+                    c.name(), dname, possessive(t.name()), resources::quality_word(q)
+                ),
+                "minus": format!(
+                    "−{:.0} PC to open · {:.0} PC to declare war · {} of their friends would intervene",
+                    open_pc, war_pc, interveners
+                ),
+                "why": if open {
+                    format!("Nobody will sell — {} asked. {} has it.", asked.max(refused_all.map_or(0, |(_, s)| s)), dname)
+                } else {
+                    "you have not tried to buy — the world will notice".to_string()
+                },
+                "blocked": quarrel_bar(w, me, t),
+            })
+        }
+    };
+
+    // The advisor line, verbatim.
+    let best_seller = trade.get("best_seller").and_then(|v| v.as_str()).map(str::to_string);
+    let advisor = if l.need <= 0.0 {
+        format!("Nothing needs {} this month.", c.name())
+    } else if let Some(s) = best_seller {
+        format!("Fastest is to buy — next month if {s} agrees.")
+    } else if let Some(t) = take.get("nation").and_then(|v| v.as_str()) {
+        format!("Nobody will sell; the only {} in reach is {}.", c.name(), possessive(t))
+    } else {
+        format!("Nobody will sell; nobody in reach holds {}.", c.name())
+    };
+
+    serde_json::json!({
+        "com": c.key(),
+        "name": line_name(c),
+        "unit": unit,
+        "row": row,
+        "mine": mine,
+        "trade": trade,
+        "take": take,
+        "advisor": advisor,
+    })
+}
+
+/// `GET /api/stock?nation=`: the dossier's twelve words for any nation, and
+/// — when a player is seated — whether it would sell to them and why.
+fn stock_nation_json(w: &WorldState, me: Option<NationId>, other: NationId) -> serde_json::Value {
+    let draw = resources::draw(w, other);
+    let kit = resources::needed_by(w, other);
+    let rows: Vec<serde_json::Value> = ALL
+        .iter()
+        .map(|c| {
+            let c = *c;
+            let l = read_line(w, other, c, draw[c.idx()]);
+            let surplus = resources::surplus(w, other, c);
+            let status = if l.tracked && c != Commodity::Oil && surplus > 0.0 { "seller" } else { l.status };
+            let (unit, _) = board_unit(c);
+            let to_you = match me {
+                Some(me) if me != other && l.tracked && surplus > 0.0 => {
+                    let (q, _) = ask_basis(w, me, c);
+                    let give = [Leg::Money { bn_per_year: 0.0 }];
+                    let take = [Leg::Commodity { c, per_month: q }];
+                    let (word, because) = match resources::evaluate(w, me, other, &give, &take, 36) {
+                        Verdict::Accept => ("willing", "would take the terms as they stand".to_string()),
+                        Verdict::Counter { money_bn_per_year, .. } => {
+                            ("counter", format!("would want {} a year", bn(money_bn_per_year)))
+                        }
+                        Verdict::Refuse(r) => ("refuses", r.sentence()),
+                    };
+                    Some((word, because))
+                }
+                _ => None,
+            };
+            serde_json::json!({
+                "id": c.key(),
+                "name": line_name(c),
+                "status": status,
+                "surplus": round(on_board(c, surplus.max(0.0)), 3),
+                "produce_per_month": round(annual_on_board(c, l.flow), 3),
+                "unit": unit,
+                "needed_by": if l.need > 0.0 { kit.map(|k| k.0) } else { None },
+                "to_you": to_you.as_ref().map(|t| t.0),
+                "because": to_you.as_ref().map(|t| t.1.clone()),
+            })
+        })
+        .collect();
+    let contracts: Vec<serde_json::Value> = match me {
+        Some(me) if me != other => w
+            .resources
+            .contracts
+            .iter()
+            .filter(|k| (k.from == me && k.to == other) || (k.from == other && k.to == me))
+            .map(|k| contract_json(w, me, k))
+            .collect(),
+        _ => vec![],
+    };
+    serde_json::json!({
+        "nation": format!("{:?}", other),
+        "nation_name": other.name(),
+        "rows": rows,
+        "contracts": contracts,
+        "talks_pc": me.and_then(|me| spheres_sim::price_of(
+            w, &Command::ProposeDeal { from: me, to: other, give: vec![], take: vec![], months: 36 })),
+    })
+}
+
+/// `GET /api/stock/world?com=`: the globe's tint, the arcs, the aims.
+fn stock_world_json(w: &WorldState, c: Commodity) -> serde_json::Value {
+    let mut nations = serde_json::Map::new();
+    for n in w.nations.iter().filter(|n| n.alive) {
+        let word = if resources::refused_all(w, n.id, c).is_some() {
+            Some("refused_all")
+        } else {
+            let need = resources::draw(w, n.id)[c.idx()];
+            let l = read_line(w, n.id, c, need);
+            match l.status {
+                "stalled" => Some("stalled"),
+                "short" => Some("short"),
+                _ if c.tracked() && c != Commodity::Oil && resources::surplus(w, n.id, c) > 0.0 => Some("seller"),
+                _ => None,
+            }
+        };
+        if let Some(word) = word {
+            nations.insert(format!("{:?}", n.id), serde_json::Value::String(word.into()));
+        }
+    }
+    let arcs: Vec<serde_json::Value> = w
+        .resources
+        .contracts
+        .iter()
+        .flat_map(|k| {
+            let mut out = vec![];
+            for (giver, receiver, legs) in [(k.from, k.to, &k.give), (k.to, k.from, &k.take)] {
+                if legs.iter().any(|l| matches!(l, Leg::Commodity { c: lc, .. } if *lc == c)) {
+                    out.push(serde_json::json!({
+                        "from": format!("{:?}", giver),
+                        "to": format!("{:?}", receiver),
+                        "months_left": k.months_left,
+                        "contract": k.id,
+                    }));
+                }
+            }
+            out
+        })
+        .collect();
+    let aims: Vec<serde_json::Value> = w
+        .conflicts
+        .iter()
+        .filter_map(|k| {
+            let a = k.aim.as_ref()?;
+            Some(serde_json::json!({
+                "district": a.district,
+                "district_name": spheres_sim::districts::name_of(&a.district),
+                "commodity": a.commodity.key(),
+                "commodity_name": a.commodity.name(),
+                "conflict": k.id,
+                "nation": k.origin_attacker.name(),
+                "nation_id": format!("{:?}", k.origin_attacker),
+                "label": format!("aim of {}'s quarrel — holds {}", k.origin_attacker.name(), a.commodity.name()),
+            }))
+        })
+        .collect();
+    serde_json::json!({ "com": c.key(), "nations": nations, "arcs": arcs, "aims": aims })
+}
+
+// --- Talks: rungs in, the sim's answer out ---------------------------------
+
+/// The money ladder, as shares of the proposer's annual output (M, W1): the
+/// top rung is half of `MAX_CONTRACT_SPEND`, so a ladder can never itself
+/// put a nation over the cap the sim enforces.
+const MONEY_RUNGS: [f64; 5] = [0.0002, 0.0005, 0.001, 0.0025, 0.005];
+/// A commodity asked for: this month's need, twice it, six times it.
+const GET_RUNGS: [f64; 3] = [1.0, 2.0, 6.0];
+/// A commodity offered: a quarter, a half, all of the surplus.
+const GIVE_RUNGS: [f64; 3] = [0.25, 0.5, 1.0];
+
+/// A draft the page sends: `to`, what it asks (`take`), what it offers
+/// (`give`), the term, and the line the talks were opened on.
+struct Draft {
+    to: NationId,
+    give: Vec<Leg>,
+    take: Vec<Leg>,
+    months: u32,
+    com: Option<Commodity>,
+    take_terms: bool,
+}
+
+fn money_rung_bn(w: &WorldState, me: NationId, rung: usize) -> Option<f64> {
+    MONEY_RUNGS.get(rung).map(|s| s * w.nation(me).gdp)
+}
+
+fn get_rung_q(w: &WorldState, me: NationId, c: Commodity, rung: usize) -> Option<f64> {
+    let (base, _) = ask_basis(w, me, c);
+    GET_RUNGS.get(rung).map(|m| base * m)
+}
+
+fn give_rung_q(w: &WorldState, me: NationId, c: Commodity, rung: usize) -> Option<f64> {
+    let s = resources::surplus(w, me, c).max(0.0);
+    GIVE_RUNGS.get(rung).map(|m| s * m)
+}
+
+/// Read a draft. Every field is a rung or a name; a field the server cannot
+/// read is a refusal with its reason, never a default.
+fn draft_from(w: &WorldState, me: NationId, v: &serde_json::Value) -> Result<Draft, String> {
+    let to = v
+        .get("to")
+        .and_then(|x| x.as_str())
+        .and_then(NationId::parse)
+        .ok_or("Talks need a partner.")?;
+    let months = match v.get("months") {
+        None | Some(serde_json::Value::Null) => 36,
+        Some(m) => m.as_u64().ok_or("Terms run 12, 36, 60 or 120 months.")? as u32,
+    };
+    if !resources::TERMS.contains(&months) {
+        return Err("Terms run 12, 36, 60 or 120 months.".into());
+    }
+    let com = v.get("com").and_then(|x| x.as_str()).and_then(Commodity::parse);
+    let rung = |o: &serde_json::Value, key: &str| -> Result<Option<usize>, String> {
+        match o.get(key) {
+            None | Some(serde_json::Value::Null) => Ok(None),
+            Some(r) => r.as_u64().map(|r| Some(r as usize)).ok_or_else(|| format!("{key} must be a rung.")),
+        }
+    };
+    let mut take = vec![];
+    let mut give = vec![];
+    if let Some(g) = v.get("get").filter(|g| !g.is_null()) {
+        if let Some(c) = g.get("commodity").filter(|c| !c.is_null()) {
+            let c = c.as_str().and_then(Commodity::parse).ok_or("No such line.")?;
+            let r = rung(g, "rung")?.unwrap_or(0);
+            let q = get_rung_q(w, me, c, r).ok_or("That rung is not on the ladder.")?;
+            take.push(Leg::Commodity { c, per_month: q });
+        }
+        if let Some(d) = g.get("district").filter(|d| !d.is_null()) {
+            let d = d.as_str().ok_or("No such district.")?;
+            spheres_sim::districts::name_of(d).ok_or("No such district.")?;
+            take.push(Leg::District { id: d.to_string() });
+        }
+    }
+    if let Some(g) = v.get("give").filter(|g| !g.is_null()) {
+        if let Some(r) = rung(g, "money_rung")? {
+            let m = money_rung_bn(w, me, r).ok_or("That rung is not on the ladder.")?;
+            give.push(Leg::Money { bn_per_year: m });
+        }
+        if let Some(c) = g.get("commodity").filter(|c| !c.is_null()) {
+            let id = c.get("id").and_then(|x| x.as_str()).and_then(Commodity::parse).ok_or("No such line.")?;
+            let r = rung(c, "rung")?.unwrap_or(2);
+            let q = give_rung_q(w, me, id, r).ok_or("That rung is not on the ladder.")?;
+            give.push(Leg::Commodity { c: id, per_month: q });
+        }
+        if let Some(d) = g.get("district").filter(|d| !d.is_null()) {
+            let d = d.as_str().ok_or("No such district.")?;
+            spheres_sim::districts::name_of(d).ok_or("No such district.")?;
+            give.push(Leg::District { id: d.to_string() });
+        }
+    }
+    let take_terms = match v.get("take_terms") {
+        None | Some(serde_json::Value::Null) => false,
+        Some(b) => b.as_bool().ok_or("take_terms must be true or false.")?,
+    };
+    Ok(Draft { to, give, take, months, com, take_terms })
+}
+
+/// The counter the sim gives a draft, applied: the proposer's money raised
+/// to the receiver's price and the receiver's legs clipped to its surplus.
+/// Returns the bundle to propose and whether a counter was applied.
+fn apply_counter(w: &WorldState, me: NationId, d: &Draft) -> (Vec<Leg>, Vec<Leg>, bool) {
+    match resources::evaluate(w, me, d.to, &d.give, &d.take, d.months) {
+        Verdict::Counter { money_bn_per_year, take } => {
+            let mut give: Vec<Leg> = d.give.iter().filter(|l| !matches!(l, Leg::Money { .. })).cloned().collect();
+            if money_bn_per_year > 0.0 {
+                give.insert(0, Leg::Money { bn_per_year: money_bn_per_year });
+            }
+            (give, take, true)
+        }
+        _ => (d.give.clone(), d.take.clone(), false),
+    }
+}
+
+/// The ladders the talks sheet offers, every figure served: the money rungs
+/// as dollars, the commodity rungs on the board, the districts population-
+/// ranked (least populous first — the ones a government could part with).
+fn ladders_json(w: &WorldState, me: NationId, to: NationId, com: Option<Commodity>) -> serde_json::Value {
+    let gdp = w.nation(me).gdp;
+    let money: Vec<serde_json::Value> = MONEY_RUNGS
+        .iter()
+        .enumerate()
+        .map(|(i, s)| {
+            serde_json::json!({
+                "rung": i,
+                "bn": round(s * gdp, 4),
+                "label": format!("{} a year", bn(s * gdp)),
+                "share": format!("{:.2}% of output", s * 100.0),
+            })
+        })
+        .collect();
+    let get: Vec<serde_json::Value> = com
+        .map(|c| {
+            let (base, basis) = ask_basis(w, me, c);
+            GET_RUNGS
+                .iter()
+                .enumerate()
+                .map(|(i, m)| {
+                    serde_json::json!({
+                        "rung": i,
+                        "q": round(on_board(c, base * m), 3),
+                        "label": format!("{} {}", qty(on_board(c, base * m)), board_unit(c).0),
+                        "word": if i == 0 { basis.to_string() } else { format!("{}×", *m as i64) },
+                    })
+                })
+                .collect()
+        })
+        .unwrap_or_default();
+    let mut give_commodity = serde_json::Map::new();
+    for c in ALL {
+        if !c.tracked() || c == Commodity::Oil {
+            continue;
+        }
+        let s = resources::surplus(w, me, c);
+        if s <= 0.0 {
+            continue;
+        }
+        let rungs: Vec<serde_json::Value> = GIVE_RUNGS
+            .iter()
+            .enumerate()
+            .map(|(i, m)| {
+                let word = ["¼ of your surplus", "½", "all"][i];
+                serde_json::json!({
+                    "rung": i,
+                    "q": round(on_board(c, s * m), 3),
+                    "label": format!("{} {}", qty(on_board(c, s * m)), board_unit(c).0),
+                    "word": word,
+                })
+            })
+            .collect();
+        give_commodity.insert(c.key().to_string(), serde_json::json!({ "name": line_name(c), "rungs": rungs }));
+    }
+    let districts_of = |holder: NationId, want: Option<Commodity>| -> Vec<serde_json::Value> {
+        let mut list: Vec<(f64, String)> = w
+            .districts
+            .iter()
+            .filter(|&(_, &o)| o == holder)
+            .filter(|(d, _)| {
+                let p = resources::presence_of(d);
+                match want {
+                    Some(c) => p.contains(&c),
+                    None => !p.is_empty(),
+                }
+            })
+            .map(|(d, _)| (resources::pop_share_of(w, holder, d), d.clone()))
+            .collect();
+        list.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap_or(std::cmp::Ordering::Equal).then(a.1.cmp(&b.1)));
+        list.into_iter()
+            .take(24)
+            .map(|(share, d)| {
+                serde_json::json!({
+                    "id": d,
+                    "name": spheres_sim::districts::name_of(&d).unwrap_or(&d),
+                    "pop_pct": round(share * 100.0, 2),
+                    "holds": resources::presence_of(&d).iter().map(|c| c.name()).collect::<Vec<_>>(),
+                    "label": format!(
+                        "{} · {:.1}% of {} people · {}",
+                        spheres_sim::districts::name_of(&d).unwrap_or(&d),
+                        share * 100.0,
+                        if holder == me { "your" } else { "their" },
+                        resources::presence_of(&d).iter().map(|c| c.name()).collect::<Vec<_>>().join(", ")
+                    ),
+                })
+            })
+            .collect()
+    };
+    serde_json::json!({
+        "money": money,
+        "get": get,
+        "give_commodity": give_commodity,
+        "my_districts": districts_of(me, None),
+        "their_districts": districts_of(to, com),
+        "months": resources::TERMS,
+    })
+}
+
+/// The pluses and minuses of a draft, served: what it feeds, what it costs,
+/// and how much of a line would come from one partner.
+fn talks_lines(w: &WorldState, me: NationId, to: NationId, give: &[Leg], take: &[Leg], months: u32) -> (Vec<String>, Vec<String>) {
+    let draw = resources::draw(w, me);
+    let kit = resources::needed_by(w, me);
+    let gdp = w.nation(me).gdp.max(1e-9);
+    let mut pluses = vec![];
+    let mut minuses = vec![];
+    for l in take {
+        match l {
+            Leg::Commodity { c, per_month } => {
+                let (unit, _) = board_unit(*c);
+                pluses.push(format!("+ {} {unit} of {} for {} months", qty(on_board(*c, *per_month)), c.name(), months));
+                if draw[c.idx()] > 0.0 {
+                    let line = read_line(w, me, *c, draw[c.idx()]);
+                    let was = if matches!(line.status, "short" | "stalled") {
+                        format!(" (was stalling in {} months)", line.cover.ceil() as i64)
+                    } else {
+                        String::new()
+                    };
+                    pluses.push(format!("+ feeds your {} line{was}", kit.map(|k| k.0).unwrap_or("procurement")));
+                }
+                if *c != Commodity::Oil {
+                    let own = resources::flow(w, me, *c) / 12.0;
+                    let inn = resources::contracted_in(w, me, *c);
+                    let share = per_month / (own + inn + per_month).max(1e-9);
+                    if share > 0.0 {
+                        minuses.push(format!("− {:.0}% of your {} will come from {}", share * 100.0, c.name(), to.name()));
+                    }
+                }
+            }
+            Leg::Money { bn_per_year } => pluses.push(format!("+ {} a year for {}", bn(*bn_per_year), years_words(months))),
+            Leg::District { id } => pluses.push(format!(
+                "+ the district of {} ({:.1}% of their people)",
+                spheres_sim::districts::name_of(id).unwrap_or(id),
+                resources::pop_share_of(w, to, id) * 100.0
+            )),
+        }
+    }
+    for l in give {
+        match l {
+            Leg::Money { bn_per_year } if *bn_per_year > 0.0 => minuses.push(format!(
+                "− {} a year for {} ({:.2}% of output)",
+                bn(*bn_per_year),
+                years_words(months),
+                bn_per_year / gdp * 100.0
+            )),
+            Leg::Money { .. } => {}
+            Leg::Commodity { c, per_month } => {
+                let (unit, _) = board_unit(*c);
+                let s = resources::surplus(w, me, *c).max(1e-9);
+                minuses.push(format!(
+                    "− {} {unit} of your {} surplus ({:.0}% of it)",
+                    qty(on_board(*c, *per_month)),
+                    c.name(),
+                    (per_month / s * 100.0).min(100.0)
+                ));
+            }
+            Leg::District { id } => minuses.push(format!(
+                "− the district of {} ({:.1}% of your people)",
+                spheres_sim::districts::name_of(id).unwrap_or(id),
+                resources::pop_share_of(w, me, id) * 100.0
+            )),
+        }
+    }
+    (pluses, minuses)
+}
+
+/// `POST /api/talks`: the sim's answer to a draft — evaluate only. The
+/// verdict, its sentence, the counter if any (as a rung when one holds it),
+/// the price in political capital, and the ladders the sheet is built from.
+fn talks_json(w: &WorldState, me: NationId, v: &serde_json::Value) -> Result<serde_json::Value, String> {
+    let d = draft_from(w, me, v)?;
+    let (give, take, counter_applied) =
+        if d.take_terms { apply_counter(w, me, &d) } else { (d.give.clone(), d.take.clone(), false) };
+    let shape = resources::deal_refusal(w, me, d.to, &give, &take, d.months);
+    let verdict = resources::evaluate(w, me, d.to, &give, &take, d.months);
+    let (word, sentence, counter, reason, priced_out) = match (&verdict, &shape) {
+        (Verdict::Refuse(r), _) => (
+            "refuse",
+            format!("They will refuse: {}", r.sentence()),
+            serde_json::Value::Null,
+            Some(serde_json::to_value(r).ok().and_then(|x| match x {
+                serde_json::Value::String(s) => Some(s),
+                serde_json::Value::Object(m) => m.keys().next().cloned(),
+                _ => None,
+            })),
+            matches!(r, spheres_sim::resources::Reason::NotForThatPrice { .. }),
+        ),
+        (_, Some(s)) => ("refuse", s.clone(), serde_json::Value::Null, Some(Some("shape".to_string())), false),
+        (Verdict::Accept, None) => ("accept", "They will accept.".to_string(), serde_json::Value::Null, None, false),
+        (Verdict::Counter { money_bn_per_year, take: clipped }, None) => {
+            let m = *money_bn_per_year;
+            let rung = MONEY_RUNGS.iter().position(|s| s * w.nation(me).gdp + 1e-9 >= m);
+            (
+                "counter",
+                format!("They will counter: {} a year.", bn(m)),
+                serde_json::json!({
+                    "money_bn": round(m, 4),
+                    "money_rung": rung,
+                    "legs": clipped.iter().map(leg_words).collect::<Vec<_>>(),
+                }),
+                None,
+                false,
+            )
+        }
+    };
+    let cmd = Command::ProposeDeal { from: me, to: d.to, give: give.clone(), take: take.clone(), months: d.months };
+    let pc = spheres_sim::price_of(w, &cmd).unwrap_or(0.0);
+    let held = w.nation(me).political_capital;
+    let (pluses, minuses) = talks_lines(w, me, d.to, &give, &take, d.months);
+    Ok(serde_json::json!({
+        "to": format!("{:?}", d.to),
+        "to_name": d.to.name(),
+        "com": d.com.map(|c| c.key()),
+        "verdict": word,
+        "sentence": sentence,
+        "counter": counter,
+        "reason": reason.flatten(),
+        "priced_out": priced_out,
+        "pc": pc,
+        "affordable": held >= pc,
+        "shortfall": (pc - held).max(0.0),
+        "pluses": pluses,
+        "minuses": minuses,
+        "ladders": ladders_json(w, me, d.to, d.com),
+        "offer": {
+            "give": give.iter().map(leg_words).collect::<Vec<_>>(),
+            "take": take.iter().map(leg_words).collect::<Vec<_>>(),
+            "months": d.months,
+        },
+        "signed_line": format!("{} from {} for {} months", legs_words(&take), d.to.name(), d.months),
+        "take_terms": counter_applied,
+        "regards_you": round(w.relation(d.to, me), 1),
+    }))
+}
+
 fn round(v: f64, places: i32) -> f64 {
     if !v.is_finite() {
         return 0.0;
@@ -1039,6 +2237,9 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // inflation closes the peg, and the panel must not be a frame behind.
         "stratagems": w.player.map(|p| stratagems_json(w, p)),
         "research": w.player.map(|p| research_json(w, p)),
+        // The resource board (package W1): twelve lines, the player's
+        // contracts, offers and refusals, every number and sentence served.
+        "resources": w.player.map(|p| resources_json(w, p)),
         "policy": w.player.map(|p| policy_json(w, p)),
         "interrupt": interrupt,
     })
@@ -1285,6 +2486,13 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "months_left": months_left,
                 "wait": wait,
                 "fields_in": fields_in,
+                // The commodity a domain's project is waiting on, once D2 lights
+                // a research gate; `null` until then, and the wait word "input"
+                // beside "year" is the one the page prints for it. Declared in
+                // W1 so the page handles it from birth: a wait for an input is
+                // not a stall (the four-`null` lesson above). Nothing serves
+                // "input" yet, so the wait-word table the tests pin is untouched.
+                "input": serde_json::Value::Null,
                 "known": spheres_sim::tech::registry().iter().enumerate()
                     .filter(|(i, def)| def.domain == *d && n.tech.knows_index(*i as u16))
                     .count(),
@@ -1421,6 +2629,23 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             id: v.get("id")?.as_str()?.to_string(),
         },
 
+        // --- Supply contracts (resources.rs). The page sends RUNGS, never a
+        // free number: a money rung is a share of the proposer's output, a
+        // commodity rung a multiple of this month's need or a fraction of
+        // the surplus, and the server turns them into the sim's units. With
+        // `take_terms` the counter the sim just gave is what is proposed —
+        // the receiver's own price and its own clipped legs — so a counter
+        // re-offered is accepted by construction and the page holds no copy
+        // of it. Anything unreadable is a refusal, the `open_conflict` rule.
+        "propose_deal" => {
+            let d = draft_from(w, me, v).ok()?;
+            let (give, take, _) = if d.take_terms { apply_counter(w, me, &d) } else { (d.give, d.take, false) };
+            Command::ProposeDeal { from: me, to: d.to, give, take, months: d.months }
+        }
+        "accept_deal" => Command::AcceptDeal { nation: me, offer: v.get("offer")?.as_u64()? as u32 },
+        "decline_deal" => Command::DeclineDeal { nation: me, offer: v.get("offer")?.as_u64()? as u32 },
+        "cancel_deal" => Command::CancelDeal { nation: me, contract: v.get("contract")?.as_u64()? as u32 },
+
         // --- The commitment ladder. Flat objects, mapped exactly the way
         // `rate` and `sanction` are: the UI never constructs a sim type. ---
         // The theatre is optional here and it is the difference between the
@@ -1430,6 +2655,19 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         // be fought in — the defender's own ground.
         "open_conflict" => {
             let target = target()?;
+            // The TAKE card names the district and the line the quarrel is
+            // for. Absent is the ordinary quarrel; present but unreadable is
+            // a refusal, the theatre's own rule below. A readable aim is
+            // validated here and carried onto the conflict by S3's `SetAim`;
+            // this build validates it and opens the quarrel without it.
+            match v.get("aim") {
+                None | Some(serde_json::Value::Null) => {}
+                Some(a) => {
+                    let d = a.get("district")?.as_str()?;
+                    spheres_sim::districts::name_of(d)?;
+                    Commodity::parse(a.get("commodity")?.as_str()?)?;
+                }
+            }
             Command::OpenConflict {
                 opener: me,
                 target,
@@ -2017,6 +3255,41 @@ fn main() {
                 let g = game.lock().unwrap();
                 json_response(history_json(&g, only))
             }
+            // The resource board's three cards for one line (`?com=iron`) or
+            // the dossier's twelve words for one nation (`?nation=Chile`).
+            // Both are pure reads; nothing is charged.
+            (Method::Get, "/api/stock") => {
+                let g = game.lock().unwrap();
+                let url = request.url();
+                match (g.world.player, com_param(url), nation_param(url)) {
+                    (Some(me), Some(c), _) => json_response(stock_cards_json(&g.world, me, c)),
+                    (me, None, Some(n)) => json_response(stock_nation_json(&g.world, me, n)),
+                    (None, Some(_), _) => json_error(400, serde_json::json!({ "error": "no nation chosen" })),
+                    _ => json_error(400, serde_json::json!({ "error": "ask ?com=<line> or ?nation=<name>" })),
+                }
+            }
+            // The globe's tint for one line: who holds a surplus, who is
+            // short, who is stalled, whom everyone has refused; the contract
+            // arcs; every conflict's aim.
+            (Method::Get, "/api/stock/world") => {
+                let g = game.lock().unwrap();
+                match com_param(request.url()) {
+                    Some(c) => json_response(stock_world_json(&g.world, c)),
+                    None => json_error(400, serde_json::json!({ "error": "ask ?com=<line>" })),
+                }
+            }
+            // Evaluate only: the sim's answer to a draft, printed BEFORE the
+            // offer is sent. Nothing is charged and nothing is written.
+            (Method::Post, "/api/talks") => {
+                let g = game.lock().unwrap();
+                match g.world.player {
+                    None => json_error(400, serde_json::json!({ "error": "no nation chosen" })),
+                    Some(me) => match talks_json(&g.world, me, &payload) {
+                        Ok(v) => json_response(v),
+                        Err(e) => json_error(400, serde_json::json!({ "error": e })),
+                    },
+                }
+            }
             (Method::Post, "/api/new") => {
                 let asked = asked_seed(&payload).and_then(|s| Ok((s, asked_player(&payload)?)));
                 let (seed, player) = match asked {
@@ -2094,6 +3367,9 @@ fn main() {
                 for h in fresh {
                     g.record(h);
                 }
+                // A land sale moved districts this month; the board reads the
+                // ledger as it stands, not as the tick left it.
+                resources::warm(&mut g.world);
                 let mut out = state_json(&g, None);
                 out["errors"] = serde_json::json!(errors);
                 json_response(out)
@@ -2108,7 +3384,8 @@ fn main() {
             (Method::Post, "/api/load") => {
                 let mut g = game.lock().unwrap();
                 match std::fs::read_to_string("save.json").map_err(|e| e.to_string()).and_then(|s| load(&s)) {
-                    Ok(w) => {
+                    Ok(mut w) => {
+                        resources::warm(&mut w);
                         *g = Game { world: w, log: vec![], history: vec![] };
                         g.snapshot();
                         json_response(state_json(&g, None))
@@ -6496,5 +7773,464 @@ mod tests {
             INDEX.contains("#techTabs { position:absolute; top:44px;"),
             "the tab bar's position is why the hint needs a plate; re-derive if it moves"
         );
+    }
+
+    // =======================================================================
+    // THE RESOURCE BOARD (package W1, spec section 5.9). Every literal the
+    // page must carry is pinned in INDEX; every number it prints is checked
+    // to come from the sim through this server, not from the page.
+    // =======================================================================
+
+    /// The board reads served fields and nothing else: the page holds no
+    /// coefficient of the resource model, and the payload it reads carries
+    /// twelve rows, each with a state word, a sentence and a pile.
+    #[test]
+    fn the_board_reads_the_sim() {
+        for needle in [
+            "S.resources",
+            ".rows",
+            ".status",
+            ".sentence",
+            ".cover_months",
+            "/api/stock?com=",
+            "/api/stock?nation=",
+            "/api/stock/world?com=",
+            "\"/api/talks\"",
+            "function renderStock(",
+            "function openTalks(",
+        ] {
+            assert!(INDEX.contains(needle), "the page no longer reads {needle:?}");
+        }
+        // No coefficient of the model lives in the page. The names are the
+        // sim's own (resources.rs, Appendix A); the page prints served
+        // sentences and served numbers, so none of them has a reason to be
+        // here.
+        for name in [
+            "RELATION_FLOOR",
+            "BUFFER_MONTHS",
+            "SCARCITY",
+            "MARGIN",
+            "RESALE",
+            "STRATEGIC",
+            "SOVEREIGNTY",
+            "LAND_YEARS",
+            "kt/$bn",
+            "MONEY_RUNGS",
+        ] {
+            assert!(!INDEX.contains(name), "the page carries the model's own {name} — that belongs in the sim");
+        }
+
+        // The payload, for a seated player.
+        let g = Game::new(1990, Some(NationId::USA));
+        let st = state_json(&g, None);
+        let res = &st["resources"];
+        let rows = res["rows"].as_array().expect("twelve rows");
+        assert_eq!(rows.len(), 12, "one row per line");
+        let words = ["ok", "supplied", "short", "stalled", "idle", "market", "presence"];
+        for r in rows {
+            let status = r["status"].as_str().expect("a state word");
+            assert!(words.contains(&status), "unknown state word {status:?}");
+            assert!(!r["sentence"].as_str().unwrap_or("").is_empty(), "a row without its sentence: {r}");
+            assert!(r["cover_months"].is_number(), "a row without its pile: {r}");
+            assert!(r["net"].is_number(), "a row without its one big number: {r}");
+            assert_eq!(r["fold"].as_bool(), Some(status == "idle" || status == "presence"));
+        }
+        // January 1990 draws nothing (the legacy tier needs no new ore), so
+        // every mined line is IDLE, oil is MARKET, and nothing is red.
+        let iron = rows.iter().find(|r| r["id"] == "iron").expect("iron");
+        assert_eq!(iron["status"], "idle");
+        assert_eq!(iron["unit"], "kt/mo");
+        assert!(iron["produce_per_month"].as_f64().unwrap() > 4_000.0, "US iron in kt/mo: {iron}");
+        assert!(iron["sentence"].as_str().unwrap().starts_with("you make "), "{iron}");
+        let oil = rows.iter().find(|r| r["id"] == "oil").expect("oil");
+        assert_eq!(oil["status"], "market");
+        assert!(oil["sentence"].as_str().unwrap().contains("settles at the world price"), "{oil}");
+        assert_eq!(res["starved"], 0);
+        assert!(res["folded"].as_u64().unwrap() >= 10, "{}", res["folded"]);
+        assert_eq!(res["contracts"].as_array().unwrap().len(), 0);
+        assert_eq!(res["offers"].as_array().unwrap().len(), 0);
+        assert_eq!(res["refused"].as_array().unwrap().len(), 0);
+        assert_eq!(res["talks_pc"], 3.0);
+        // Nothing is red for anybody at the start: the six mature economies.
+        for id in [NationId::Japan, NationId::Germany, NationId::France, NationId::UK, NationId::Italy, NationId::USSR] {
+            let r = resources_json(&g.world, id);
+            assert_eq!(r["starved"], 0, "{:?} opens 1990 starved: {}", id, r);
+        }
+        // A spectator has no board and the button says so.
+        let spectator = Game::new(1990, None);
+        assert!(state_json(&spectator, None)["resources"].is_null());
+        assert!(INDEX.contains("sb.disabled = !S.resources;"));
+    }
+
+    /// The talks answer is `evaluate`'s, printed before the offer is sent:
+    /// asked twice it is identical; move the relation and it changes; the
+    /// refusal sentence is one of the sim's twelve, verbatim.
+    #[test]
+    fn the_talks_answer_is_the_sims_and_says_why() {
+        let mut g = Game::new(1990, Some(NationId::Japan));
+        let ask = serde_json::json!({
+            "to": "Australia", "com": "bauxite",
+            "get": { "commodity": "bauxite", "rung": 0 },
+            "give": { "money_rung": 0 },
+            "months": 36,
+        });
+        let a = talks_json(&g.world, NationId::Japan, &ask).expect("a readable draft");
+        let b = talks_json(&g.world, NationId::Japan, &ask).expect("a readable draft");
+        assert_eq!(a, b, "the same draft asked twice must get the same answer");
+        let verdict = a["verdict"].as_str().unwrap();
+        assert!(["accept", "counter", "refuse"].contains(&verdict), "{a}");
+        assert!(a["pc"].as_f64().unwrap() >= 3.0);
+        assert!(a["ladders"]["money"].as_array().unwrap().len() == 5);
+        assert!(a["ladders"]["get"].as_array().unwrap().len() == 3);
+        assert_eq!(a["ladders"]["months"], serde_json::json!([12, 36, 60, 120]));
+        // A counter re-offered on its own terms is accepted by construction.
+        if verdict == "counter" {
+            let mut terms = ask.clone();
+            terms["take_terms"] = serde_json::json!(true);
+            let c = talks_json(&g.world, NationId::Japan, &terms).expect("readable");
+            assert_eq!(c["verdict"], "accept", "{c}");
+            assert_eq!(c["take_terms"], true);
+        }
+        // Move the relation below the floor: the answer changes, and says why
+        // in the sim's own words.
+        g.world.shift_relation(NationId::Japan, NationId::Australia, -200.0);
+        let r = talks_json(&g.world, NationId::Japan, &ask).expect("readable");
+        assert_eq!(r["verdict"], "refuse", "{r}");
+        assert_eq!(r["sentence"], "They will refuse: We do not deal with a state we distrust.");
+        let sentences = [
+            "We are at war with you.",
+            "Sanctions bar it.",
+            "You broke your last contract with us.",
+            "We do not deal with a state we distrust.",
+            "We haven't the surplus.",
+            "That ground is being fought over.",
+            "Nobody sells their people.",
+            "We do not sell land to a state we do not trust.",
+            "The government would not survive selling it.",
+            "It is all we have.",
+            "You let our last offer lapse.",
+        ];
+        let said = r["sentence"].as_str().unwrap().trim_start_matches("They will refuse: ");
+        assert!(sentences.contains(&said) || said.starts_with("Not for that price: "), "{said}");
+        // The page prints the served sentence and composes none of its own.
+        assert!(INDEX.contains("talks.eval.sentence") || INDEX.contains("ev.sentence"));
+        for s in sentences {
+            assert!(!INDEX.contains(s), "the page carries the sim's refusal prose {s:?}");
+        }
+        // An unreadable draft is a refusal, never a default.
+        assert!(talks_json(&g.world, NationId::Japan, &serde_json::json!({ "to": "Atlantis" })).is_err());
+        assert!(talks_json(
+            &g.world,
+            NationId::Japan,
+            &serde_json::json!({ "to": "Australia", "get": { "commodity": "bauxite", "rung": "two" } })
+        )
+        .is_err());
+        assert!(talks_json(
+            &g.world,
+            NationId::Japan,
+            &serde_json::json!({ "to": "Australia", "get": { "commodity": "bauxite" }, "months": 40 })
+        )
+        .is_err());
+    }
+
+    /// The page never sends a free number: the deal it posts is built from
+    /// rungs, and with `take_terms` it is the counter the sim itself gave —
+    /// so a counter re-offered is signed, charged once, with the RNG untouched.
+    #[test]
+    fn a_deal_the_page_sends_is_the_sims_own() {
+        let mut g = Game::new(1990, Some(NationId::Japan));
+        let me = NationId::Japan;
+        let asked = serde_json::json!({
+            "kind": "propose_deal", "to": "Australia", "com": "bauxite",
+            "get": { "commodity": "bauxite", "rung": 0 },
+            "give": { "money_rung": 0 },
+            "months": 36, "take_terms": true,
+        });
+        let cmd = parse_command(&g.world, &asked, me).expect("a readable deal");
+        let Command::ProposeDeal { from, to, ref give, ref take, months } = cmd else {
+            panic!("wrong command: {cmd:?}");
+        };
+        assert_eq!((from, to, months), (me, NationId::Australia, 36));
+        assert!(take.iter().any(|l| matches!(l, Leg::Commodity { c: Commodity::Bauxite, per_month } if *per_month > 0.0)));
+        let rng = g.world.rng.state;
+        let pc = g.world.nation(me).political_capital;
+        apply_command(&mut g.world, &cmd).expect("a counter re-offered is accepted");
+        assert_eq!(g.world.rng.state, rng, "a deal consumed a random number");
+        assert!((pc - g.world.nation(me).political_capital - 3.0).abs() < 1e-9, "charged once, three");
+        assert_eq!(g.world.resources.contracts.len(), 1);
+        let _ = give;
+        // The board lists it, on the board's units, with the cancel price.
+        resources::warm(&mut g.world);
+        let res = resources_json(&g.world, me);
+        let k = &res["contracts"][0];
+        assert_eq!(k["direction"], "in");
+        assert_eq!(k["with"], "Australia");
+        assert!(k["line"].as_str().unwrap().contains("kt/mo of bauxite from Australia"), "{k}");
+        assert_eq!(k["cancel_pc"], 10.0);
+        assert_eq!(k["cancel_note"], "they will remember for three years");
+        let bauxite = res["rows"].as_array().unwrap().iter().find(|r| r["id"] == "bauxite").unwrap();
+        assert_eq!(bauxite["status"], "idle", "nothing draws on it yet, so the contract feeds nothing: {bauxite}");
+        // Tearing it up is the sim's own command, never refused.
+        let id = k["id"].as_u64().unwrap();
+        let cancel = parse_command(&g.world, &serde_json::json!({ "kind": "cancel_deal", "contract": id }), me).unwrap();
+        apply_command(&mut g.world, &cancel).expect("never refused");
+        assert!(g.world.resources.contracts.is_empty());
+        // The other three kinds parse, and an unreadable one is refused.
+        assert!(matches!(
+            parse_command(&g.world, &serde_json::json!({ "kind": "accept_deal", "offer": 3 }), me),
+            Some(Command::AcceptDeal { offer: 3, .. })
+        ));
+        assert!(matches!(
+            parse_command(&g.world, &serde_json::json!({ "kind": "decline_deal", "offer": 3 }), me),
+            Some(Command::DeclineDeal { offer: 3, .. })
+        ));
+        assert!(parse_command(&g.world, &serde_json::json!({ "kind": "cancel_deal", "contract": "seven" }), me).is_none());
+        assert!(parse_command(&g.world, &serde_json::json!({ "kind": "propose_deal", "to": "Atlantis" }), me).is_none());
+        // And the page posts exactly these kinds.
+        for kind in ["propose_deal", "cancel_deal", "accept_deal", "decline_deal"] {
+            assert!(INDEX.contains(&format!("kind: \"{kind}\"")), "the page no longer posts {kind}");
+        }
+    }
+
+    /// TAKE is greyed with "you have not tried to buy — the world will notice"
+    /// until every seller has refused twice; then it goes live and names the
+    /// district. The page renders `.off` from the served `open` and prints
+    /// the served `why`.
+    #[test]
+    fn the_take_card_is_greyed_until_the_trade_route_has_closed() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let me = NationId::USA;
+        let before = stock_cards_json(&g.world, me, Commodity::Iron);
+        let take = &before["take"];
+        assert_eq!(take["open"], false);
+        assert_eq!(take["why"], "you have not tried to buy — the world will notice");
+        assert!(take["nation"].is_string(), "a neighbour holds iron in reach: {take}");
+        assert!(take["blurb"].as_str().unwrap().ends_with(" holds it."), "{take}");
+        assert!(take["plus"].as_str().unwrap().contains("best-sourced district"), "{take}");
+        assert!(!take["plus"].as_str().unwrap().chars().any(|c| c.is_ascii_digit()), "the aim never prints a tonnage: {take}");
+        assert_eq!(take["pc"], 4.0);
+        assert_eq!(take["war_pc"], 30.0);
+        // Every producer refuses twice, hot: the route has closed.
+        let sellers: Vec<NationId> = resources::producers(&g.world, Commodity::Iron).into_iter().filter(|s| *s != me).collect();
+        assert!(sellers.len() > 10);
+        for s in &sellers {
+            g.world.resources.refusals.push(resources::Refusal {
+                buyer: me,
+                seller: *s,
+                c: Commodity::Iron,
+                reason: resources::Reason::Distrust,
+                heat: 1.0,
+                asks: 2,
+            });
+        }
+        let after = stock_cards_json(&g.world, me, Commodity::Iron);
+        let take = &after["take"];
+        assert_eq!(take["open"], true, "{take}");
+        let why = take["why"].as_str().unwrap();
+        assert!(why.starts_with("Nobody will sell — "), "{why}");
+        assert!(why.contains(&format!("{} asked. ", sellers.len())), "{why}");
+        assert!(why.ends_with(" has it."), "{why}");
+        let res = resources_json(&g.world, me);
+        let refused = &res["refused"][0];
+        assert_eq!(refused["id"], "iron");
+        assert_eq!(refused["refused_all"], true);
+        assert_eq!(refused["sellers"], sellers.len());
+        // One ask short of two on one seller: not closed.
+        g.world.resources.refusals[0].asks = 1;
+        assert_eq!(stock_cards_json(&g.world, me, Commodity::Iron)["take"]["open"], false);
+        // The page: `.off` from `open`, the served `why` printed, and the
+        // quarrel posted with its aim.
+        assert!(INDEX.contains(r#"${t.open ? "" : " off"}"#), "the TAKE card no longer greys on the served flag");
+        assert!(INDEX.contains("t.why"), "the TAKE card no longer prints the served why");
+        assert!(!INDEX.contains("you have not tried to buy"), "the page composes the sim's sentence");
+        assert!(INDEX.contains(r#"aim: { district: t.district, commodity: com }"#));
+    }
+
+    /// An aim the server cannot read is refused, not dropped: the quarrel is
+    /// opened only when the district and the line both resolve.
+    #[test]
+    fn an_aim_the_server_cannot_read_is_refused_not_replaced() {
+        let g = Game::new(7, Some(NationId::Iraq));
+        let me = NationId::Iraq;
+        let open = |aim: serde_json::Value| {
+            let mut v = serde_json::json!({ "kind": "open_conflict", "target": "Iran" });
+            v["aim"] = aim;
+            parse_command(&g.world, &v, me).is_some()
+        };
+        assert!(open(serde_json::Value::Null));
+        assert!(open(serde_json::json!({ "district": "IR-10", "commodity": "copper" })));
+        assert!(!open(serde_json::json!({ "district": "Nowhere", "commodity": "copper" })));
+        assert!(!open(serde_json::json!({ "district": "IR-10", "commodity": "spice" })));
+        assert!(!open(serde_json::json!("IR-10")));
+        assert!(!open(serde_json::json!({ "district": 10, "commodity": "copper" })));
+    }
+
+    /// MINE is greyed with the served block sentence — a missing card reads as
+    /// a missing feature, a greyed one as a plan — and the page sends no
+    /// develop command.
+    #[test]
+    fn the_mine_card_is_greyed_with_the_served_block() {
+        let g = Game::new(1990, Some(NationId::Australia));
+        let cards = stock_cards_json(&g.world, NationId::Australia, Commodity::Iron);
+        let mine = &cards["mine"];
+        assert_eq!(mine["blocked"], "Mining new ground is not in this build yet — the develop layer lands it.");
+        assert!(mine["pc"].is_null());
+        assert_eq!(mine["minus"], "— not in this build");
+        let plus = mine["plus"].as_str().unwrap();
+        assert!(plus.starts_with('+') && plus.ends_with("a typical iron mine"), "{plus}");
+        assert!(mine["typical"].as_f64().unwrap() > 0.0);
+        assert!(INDEX.contains("m.blocked"), "the page no longer prints the served block");
+        assert!(INDEX.contains(">DEVELOP</button>"));
+        assert!(INDEX.contains("<button disabled>DEVELOP</button>"), "DEVELOP must be disabled");
+        assert!(!INDEX.contains("kind: \"develop\""), "no develop command exists to post");
+        assert!(!INDEX.contains("not in this build yet"), "the page composes the sim's block sentence");
+        // The advisor line is served verbatim.
+        assert!(cards["advisor"].as_str().unwrap().ends_with('.'));
+        assert!(INDEX.contains("c.advisor"), "the advisor line is printed from the payload");
+    }
+
+    /// The hover exists, is styled like the tech tooltip, and has a place
+    /// function that keeps it in the viewport.
+    #[test]
+    fn the_stock_tip_is_painted_on_something() {
+        assert!(INDEX.contains(r#"<div id="stockTip" role="tooltip" aria-hidden="true">"#));
+        assert!(INDEX.contains("#stockTip { position:fixed; z-index:60;"));
+        assert!(INDEX.contains("#stockTip.on { opacity:1; transform:none; }"));
+        assert!(INDEX.contains("function stockTipPlace(tip, clientX, clientY) {"));
+        assert!(INDEX.contains("function stockTipShow("));
+        assert!(INDEX.contains("function stockTipHide()"));
+        // The provenance is printed from the served marks, never composed.
+        assert!(INDEX.contains("r.prov"));
+    }
+
+    /// The board's keys are on the card, and the dispatch line exists.
+    #[test]
+    fn the_board_keys_are_on_the_card() {
+        assert!(INDEX.contains(r#"<div class="row"><span>Resources board</span><span><kbd>B</kbd></span></div>"#));
+        assert!(INDEX.contains(r#"<div class="row"><span>Board: select a line / open talks</span><span>arrows · <kbd>Enter</kbd></span></div>"#));
+        assert!(INDEX.contains(r#"else if (k === "b" || k === "B") toggleStockScreen();"#));
+        assert!(INDEX.contains("if (stock.open) { stockKeys(e); return; }"));
+        assert!(INDEX.contains(r#"<button id="stockBtn" title="Resources">RESOURCES<i>B</i></button>"#));
+        assert!(INDEX.contains("function stockKeys(e) {"));
+    }
+
+    /// A line with no 1990 figure prints no number, anywhere on its row.
+    #[test]
+    fn the_six_presence_rows_print_no_number() {
+        let g = Game::new(1990, Some(NationId::USSR));
+        for c in [
+            Commodity::Cobalt,
+            Commodity::Gold,
+            Commodity::Phosphate,
+            Commodity::PlatinumGroup,
+            Commodity::RareEarths,
+            Commodity::Uranium,
+        ] {
+            // The None arm, exercised directly: the table now carries all
+            // twelve lines (fork F3), so the arm is reached only when a
+            // figure is withdrawn — and it must still print no number then.
+            let l = LineRead {
+                c,
+                tracked: false,
+                flow: resources::flow(&g.world, NationId::USSR, c),
+                need: 0.0,
+                cover: 12.0,
+                supply: None,
+                status: "presence",
+                reason: None,
+            };
+            let row = row_json(&g.world, NationId::USSR, &l, None);
+            assert_eq!(row["status"], "presence");
+            assert_eq!(row["fold"], true);
+            // No quantity, ever. The year the missing figure would have been
+            // transcribed for is the one number the copy names.
+            for key in ["sentence", "second", "hover"] {
+                let text = row[key].as_str().unwrap_or("").replace("1990", "");
+                assert!(!text.chars().any(|ch| ch.is_ascii_digit()), "{key} prints a number on a presence row: {text:?}");
+            }
+            assert_eq!(row["sentence"], "presence only, no 1990 figure");
+            assert_eq!(row["second"], "no 1990 figure transcribed — presence only");
+        }
+    }
+
+    /// Every district figure on the board says "apportioned"; an unlocated
+    /// producer's figure says it cannot be taken.
+    #[test]
+    fn every_district_figure_says_apportioned() {
+        let mut seen_apportioned = 0;
+        let mut seen_unlocated = 0;
+        for id in [NationId::USA, NationId::USSR, NationId::Australia, NationId::Brazil, NationId::China] {
+            let g = Game::new(1990, Some(id));
+            let res = resources_json(&g.world, id);
+            for r in res["rows"].as_array().unwrap() {
+                let districts = r["districts"].as_u64().unwrap();
+                let second = r["second"].as_str().unwrap_or("");
+                if districts > 0 {
+                    assert!(second.contains("apportioned"), "{:?} {}: {second:?}", id, r["id"]);
+                    assert_eq!(r["apportioned"], true);
+                    seen_apportioned += 1;
+                } else if r["unlocated_per_month"].as_f64().unwrap() > 0.0 {
+                    assert!(second.contains("unlocated — cannot be taken from you"), "{:?} {}: {second:?}", id, r["id"]);
+                    seen_unlocated += 1;
+                }
+            }
+        }
+        assert!(seen_apportioned > 20, "{seen_apportioned}");
+        assert!(seen_unlocated > 0, "the United States' oil is unlocated and must say so");
+        // The word is printed from the served second line, never composed.
+        assert!(!INDEX.contains("apportioned from the 1990"), "the page composes the sim's second line");
+        assert!(INDEX.contains("r.second"));
+    }
+
+    /// The resource headlines land in the buckets the filter row offers.
+    #[test]
+    fn the_resource_headlines_land_in_the_right_bucket() {
+        for (want, headline) in [
+            ("economy", "France: GBU-24 Paveway III line delayed - needs bauxite; every producer refuses."),
+            ("economy", "Iraq: M1A1 Abrams line delayed - needs iron; nobody produces it."),
+            ("diplomacy", "Australia and Japan sign a supply contract: Australia sends Japan 8,000 t/mo of bauxite for $0.6bn a year, 60 months."),
+            ("diplomacy", "Iraq seeks iron from Turkey; Turkey refuses: We haven't the surplus."),
+            ("diplomacy", "Nobody will sell iron to Iraq — 14 asked."),
+            ("diplomacy", "Japan tears up its supply contract with Australia."),
+            ("diplomacy", "Australia cannot deliver all of its bauxite this month; contracts are filled pro rata."),
+            ("diplomacy", "The oil contract between Kuwait and Japan has run its term."),
+            ("diplomacy", "The bauxite contract between Australia and Japan dies with Australia."),
+            ("war", "WAR: Iraq invades Iran for the copper of Khuzestan — refused by 14 of 14 sellers."),
+        ] {
+            assert_eq!(classify(headline), want, "the event log would file this under {:?}: {}", classify(headline), headline);
+        }
+        // The additions moved nothing: the rows the table test already pins
+        // still land where they did (one from each bucket the additions touch).
+        assert_eq!(classify("France and Germany sign a trade agreement."), "diplomacy");
+        assert_eq!(classify("Kuwait cuts off oil to Iraq."), "economy");
+        assert_eq!(classify("WAR: Iraq invades Kuwait!"), "war");
+    }
+
+    /// The globe's tint names who holds a surplus and who is short, served;
+    /// the dossier's twelve words say whether a nation would sell to you.
+    #[test]
+    fn the_world_tint_and_the_dossier_are_served() {
+        let g = Game::new(1990, Some(NationId::Japan));
+        let world = stock_world_json(&g.world, Commodity::Bauxite);
+        assert_eq!(world["nations"]["Australia"], "seller");
+        assert!(world["nations"].as_object().unwrap().values().all(|v| v != "stalled"), "nothing stalls in January 1990");
+        assert_eq!(world["arcs"].as_array().unwrap().len(), 0);
+        assert_eq!(world["aims"].as_array().unwrap().len(), 0);
+        let d = stock_nation_json(&g.world, Some(NationId::Japan), NationId::Australia);
+        let rows = d["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 12);
+        let bauxite = rows.iter().find(|r| r["id"] == "bauxite").unwrap();
+        assert_eq!(bauxite["status"], "seller");
+        assert!(bauxite["surplus"].as_f64().unwrap() > 0.0);
+        assert!(["willing", "counter", "refuses"].contains(&bauxite["to_you"].as_str().unwrap()), "{bauxite}");
+        assert!(!bauxite["because"].as_str().unwrap().is_empty());
+        assert_eq!(d["talks_pc"], 3.0);
+        // The page reads them and composes nothing.
+        assert!(INDEX.contains("/api/stock/world?com="));
+        assert!(INDEX.contains("function fillStockDash("));
+        assert!(INDEX.contains("r.to_you"));
+        assert!(INDEX.contains("r.because"));
+        // And the legend says where the tint comes from.
+        assert!(INDEX.contains("served by the sim"));
     }
 }

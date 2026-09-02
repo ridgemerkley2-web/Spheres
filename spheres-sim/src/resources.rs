@@ -2280,6 +2280,242 @@ pub fn contract_dependency(w: &WorldState, id: NationId, partner: NationId) -> f
     best
 }
 
+// ---------------------------------------------------------------------------
+// Surface queries (package W1): what the web serves. Every one is a pure read
+// over `&WorldState` and the static table; nothing here is written by the
+// tick and nothing here writes the world. `warm` is the one exception and it
+// writes only the derived cache, which is never serialized and never hashed.
+// ---------------------------------------------------------------------------
+
+/// A refusal counts toward "everyone refused" while its heat is at least
+/// this (M, Appendix A): a refusal counts for one year. S3 writes the rows;
+/// declared here so the surface and the last-resort predicate read one bar.
+pub const GATE_HEAT: f64 = 0.5;
+
+/// Build the derived HAVE cache if it is unbuilt or stale, exactly as the
+/// first half of `tick` does, and refresh the oil column otherwise. The web
+/// calls this when it seats a world and after a command, so the board reads
+/// the ledger before the first tick and after a land sale in the same month
+/// — the tick would build the identical cache and, finding the epoch equal,
+/// build nothing. `resource_have` is `#[serde(skip)]`: no save byte, no hash
+/// bit, no RNG word moves.
+pub fn warm(w: &mut WorldState) {
+    let stamp = alive_stamp(w);
+    let stale = !w.resource_have.built
+        || w.resource_have.epoch != w.districts_epoch
+        || w.resource_have.alive_stamp != stamp;
+    if stale {
+        w.resource_have = have_table(w);
+    } else {
+        for n in w.nations.iter().filter(|n| n.alive) {
+            w.resource_have.flow[n.id.index()][OIL] = n.oil_mbd * 1000.0;
+        }
+    }
+}
+
+/// Spec section 6.4: `Some((refused, sellers))` iff every living producer of
+/// `k` other than `a` carries `Refusal(a, s, k)` with heat at least
+/// `GATE_HEAT` and at least two asks, and none of them is shut out by `a`'s
+/// own sanction; `None` when there are no producers, or any has not refused
+/// twice. Pure; reads a memory that is empty until S3 writes it.
+pub fn refused_all(w: &WorldState, a: NationId, k: Commodity) -> Option<(usize, usize)> {
+    let sellers: Vec<NationId> = producers(w, k).into_iter().filter(|s| *s != a).collect();
+    if sellers.is_empty() {
+        return None;
+    }
+    if sellers.iter().any(|s| w.is_sanctioning(a, *s)) {
+        return None;
+    }
+    let refused = sellers.iter().filter(|s| refusal_counted(w, a, **s, k)).count();
+    if refused == sellers.len() {
+        Some((refused, sellers.len()))
+    } else {
+        None
+    }
+}
+
+/// Whether `a` remembers `s` refusing it `k` recently enough and often enough
+/// to count (heat at least `GATE_HEAT`, at least two asks).
+pub fn refusal_counted(w: &WorldState, a: NationId, s: NationId, k: Commodity) -> bool {
+    w.resources
+        .refusals
+        .iter()
+        .any(|r| r.buyer == a && r.seller == s && r.c == k && r.heat >= GATE_HEAT && r.asks >= 2)
+}
+
+/// How many sellers of `k` have refused `a` at all (any live row), for the
+/// card's "N asked".
+pub fn refusals_of(w: &WorldState, a: NationId, k: Commodity) -> usize {
+    w.resources.refusals.iter().filter(|r| r.buyer == a && r.c == k && r.heat > 0.0).count()
+}
+
+/// The equipment class as the card says it.
+pub fn class_word(c: Class) -> &'static str {
+    match c {
+        Class::Naval => "naval",
+        Class::Armour => "armour",
+        Class::Air => "air",
+        Class::Missile => "missile",
+        Class::Space => "space",
+        Class::Infantry => "infantry",
+    }
+}
+
+/// The kit `id`'s procurement would order this month — the one whose need
+/// `draw` sizes — as (designation, class word). `None` when nothing is
+/// orderable.
+pub fn needed_by(w: &WorldState, id: NationId) -> Option<(&'static str, &'static str)> {
+    let n = w.nation_opt(id)?;
+    let kit = crate::arsenal::pick(n)?;
+    let def = DECK.get(kit as usize)?;
+    Some((def.name, class_word(def.class)))
+}
+
+/// Where a nation's flow of one line sits: how many located districts it
+/// holds that carry the line, the annual output those districts locate, and
+/// the annual output nothing locates (an unlocated producer's whole figure;
+/// for oil, the ledger less what the held districts locate).
+#[derive(Clone, Copy, Debug, Default, PartialEq)]
+pub struct Holdings {
+    pub districts: usize,
+    /// Annual, the table's units.
+    pub located: f64,
+    /// Annual, the table's units.
+    pub unlocated: f64,
+}
+
+pub fn holdings_of(w: &WorldState, id: NationId, c: Commodity) -> Holdings {
+    let t = tables();
+    let ci = c.idx();
+    let mut out = Holdings::default();
+    for r in &t.district_rows {
+        if r.c != ci || w.districts.get(&r.district) != Some(&id) {
+            continue;
+        }
+        out.districts += 1;
+        out.located += r.share * t.production[r.owner_1990.index()][ci];
+    }
+    out.unlocated = if c == Commodity::Oil {
+        (flow(w, id, c) - out.located).max(0.0)
+    } else if t.unlocated.get(id.index()).is_some_and(|u| u[ci]) {
+        t.production[id.index()][ci]
+    } else {
+        0.0
+    };
+    out
+}
+
+/// The presence rank word (spec section 2.2's `quality`): never a tonnage.
+pub fn quality_word(q: u8) -> &'static str {
+    match q {
+        3 => "strong",
+        2 => "moderate",
+        1 => "sparse",
+        _ => "absent",
+    }
+}
+
+/// A district's presence rank for `c`, 0 when absent.
+pub fn quality_of(d: &str, c: Commodity) -> u8 {
+    tables().file.quality.get(d).map_or(0, |q| q[c.idx()])
+}
+
+/// The lines a district carries at any band or level, in `ALL` order.
+pub fn presence_of(d: &str) -> Vec<Commodity> {
+    let mask = tables().file.presence.get(d).copied().unwrap_or(0);
+    ALL.iter().copied().filter(|c| mask & c.bit() != 0).collect()
+}
+
+/// Could `a` put an army on `d` (spec section 1.14, clause 5)? Adjacent to
+/// ground `a` holds; or `a` has region or claim reach on the holder and `d`
+/// is peripheral by front.rs's entry rule — no land neighbour at all, or one
+/// not held by the holder.
+pub fn reachable(w: &WorldState, a: NationId, d: &str) -> bool {
+    let Some(&holder) = w.districts.get(d) else { return false };
+    let adj = crate::districts::adj_of(d);
+    if adj.iter().any(|n| w.districts.get(n.as_str()) == Some(&a)) {
+        return true;
+    }
+    if crate::dyads::reach(a, holder) <= 0.0 {
+        return false;
+    }
+    adj.is_empty() || adj.iter().any(|n| w.districts.get(n.as_str()) != Some(&holder))
+}
+
+/// `holder`'s best-sourced located district of `c` that `a` can reach:
+/// presence rank desc, ties by id asc. `None` when it holds none in reach.
+pub fn reachable_best_district(w: &WorldState, a: NationId, holder: NationId, c: Commodity) -> Option<(String, u8)> {
+    let t = tables();
+    let ci = c.idx();
+    let mut best: Option<(u8, &str)> = None;
+    for r in &t.district_rows {
+        if r.c != ci || w.districts.get(&r.district) != Some(&holder) {
+            continue;
+        }
+        let q = quality_of(&r.district, c);
+        let better = match best {
+            None => true,
+            Some((bq, bd)) => q > bq || (q == bq && r.district.as_str() < bd),
+        };
+        if better && reachable(w, a, &r.district) {
+            best = Some((q, r.district.as_str()));
+        }
+    }
+    best.map(|(q, d)| (d.to_string(), q))
+}
+
+/// The TAKE card's target: the nearest reachable holder of `c` and its
+/// best-sourced district. Sellers that have refused `a` twice rank first
+/// (the mine that refused you), then neighbours over the region, then
+/// presence rank, then `NationId` order — a total order, so two reads agree.
+pub fn take_target(w: &WorldState, a: NationId, c: Commodity) -> Option<(NationId, String, u8)> {
+    let mut best: Option<(u8, u8, u8, NationId, String)> = None;
+    for t in producers(w, c) {
+        if t == a {
+            continue;
+        }
+        let Some((d, q)) = reachable_best_district(w, a, t, c) else { continue };
+        let refused = if refusal_counted(w, a, t, c) { 0 } else { 1 };
+        let far = if crate::nations::adjacent(a, t) { 0 } else { 1 };
+        let key = (refused, far, 3 - q.min(3), t, d);
+        if best.as_ref().map_or(true, |b| key < *b) {
+            best = Some(key);
+        }
+    }
+    best.map(|(_, _, _, t, d)| {
+        let q = quality_of(&d, c);
+        (t, d, q)
+    })
+}
+
+/// REFERENCE_MINE (D, Appendix A): the median 1990 output per located
+/// district across every producer of `c`, annual, the table's units — the
+/// one figure the MINE card labels "a typical mine". Computed from the table
+/// once; `None` for a line nobody locates.
+pub fn reference_mine(c: Commodity) -> Option<f64> {
+    static M: OnceLock<[Option<f64>; 12]> = OnceLock::new();
+    M.get_or_init(|| {
+        let t = tables();
+        let mut out = [None; 12];
+        for ci in 0..12 {
+            let mut v: Vec<f64> = t
+                .district_rows
+                .iter()
+                .filter(|r| r.c == ci)
+                .map(|r| r.share * t.production[r.owner_1990.index()][ci])
+                .filter(|q| *q > 0.0)
+                .collect();
+            if v.is_empty() {
+                continue;
+            }
+            v.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+            let n = v.len();
+            out[ci] = Some(if n % 2 == 1 { v[n / 2] } else { (v[n / 2 - 1] + v[n / 2]) / 2.0 });
+        }
+        out
+    })[c.idx()]
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

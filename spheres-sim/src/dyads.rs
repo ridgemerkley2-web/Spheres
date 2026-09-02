@@ -107,8 +107,9 @@ pub fn contacts(a: NationId) -> &'static [NationId] {
     &a.def().contacts
 }
 
-/// How far one state can reach the other at all.
-fn reach(a: NationId, t: NationId) -> f64 {
+/// How far one state can reach the other at all. `pub` so the resource
+/// surface (resources::reachable) reads this rule rather than a copy of it.
+pub fn reach(a: NationId, t: NationId) -> f64 {
     if adjacent(a, t) {
         REACH_BORDER
     } else if a.region() == t.region() {

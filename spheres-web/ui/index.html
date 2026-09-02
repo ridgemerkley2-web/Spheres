@@ -567,6 +567,105 @@
   #techTip .tt-fx li.more { list-style:none; margin-left:-14px; color:var(--faint); }
   #techTip .tt-more { margin-top:6px; padding-top:5px; border-top:1px solid rgba(255,255,255,.06);
     font-size:9px; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); }
+  /* ---------- the resource board (B): #techScreen's shell, no tab bar ---------- */
+  #stockBtn { position:relative; }
+  #stockBtn.note::after { content:""; position:absolute; top:2px; right:2px; width:5px; height:5px;
+    border-radius:50%; background:var(--amber); }
+  #stockBtn[disabled] { opacity:.4; cursor:default; }
+  #stockScreen { position:fixed; inset:0; z-index:40; display:none; background:#04060a; }
+  #stockScreen .tbar { position:absolute; inset:0 0 auto 0; height:44px; display:flex; align-items:center;
+    gap:14px; padding:0 14px; background:var(--panel); border-bottom:1px solid var(--brass-dim); z-index:4; }
+  #stockScreen .ttitle { font-family:var(--serif); font-variant:small-caps; letter-spacing:.14em;
+    font-size:15px; color:var(--brass-hi); }
+  #stockScreen .tsub { color:var(--dim); font-size:11px; }
+  #stockScreen .spacer { flex:1; }
+  #stockRows { position:absolute; top:44px; left:0; right:360px; bottom:0; overflow-y:auto; padding:10px 14px 24px; }
+  .stockhead { font-family:var(--serif); font-variant:small-caps; letter-spacing:.14em; color:var(--brass-dim);
+    font-size:12px; margin:16px 0 4px; }
+  /* [glyph][name + sentence][HAVE][in hand][DEMAND][one big ±][state] */
+  .stockcols, .stockrow { display:grid; grid-template-columns:22px 1fr 120px 110px 100px 110px 96px; gap:8px; }
+  .stockcols { padding:2px 8px; color:var(--faint); font-size:10px; letter-spacing:.12em; text-transform:uppercase; }
+  .stockrow { align-items:center; padding:7px 8px; border-left:2px solid var(--dim);
+    border-bottom:1px solid var(--line); cursor:pointer; }
+  .stockrow:hover { background:var(--panel-2); }
+  .stockrow.sel { background:var(--panel-2); box-shadow:inset 0 0 0 1px var(--brass-dim); }
+  .stockrow .gy svg { width:18px; height:18px; display:block; }
+  .stockrow .nm b { font-family:var(--serif); font-variant:small-caps; letter-spacing:.08em; font-weight:400;
+    font-size:14px; color:var(--bright); display:block; }
+  .stockrow .nm .sen { display:block; font-size:12px; color:var(--ink); }
+  .stockrow .nm .tiny { display:block; }
+  .stockrow .num { text-align:right; font-variant-numeric:tabular-nums; font-size:13px; color:var(--ink); white-space:nowrap; }
+  .stockrow .num em { font-style:normal; color:var(--faint); font-size:10px; margin-left:4px; }
+  .stockrow .cov .bar { display:block; height:4px; background:var(--well); margin-top:3px; }
+  .stockrow .cov .bar i { display:block; height:100%; background:var(--amber); }
+  .stockrow .net { font-size:16px; }
+  .stockrow .st { text-align:right; font-size:11px; letter-spacing:.12em; }
+  /* state colours: OK/SUPPLIED brass · SHORT amber · STALLED red · IDLE/MARKET dim · PRESENCE faint.
+     RED IS RESERVED for stalled — never a deficit without a stalled action. */
+  .stockrow.st-ok, .stockrow.st-supplied { border-left-color:var(--brass-hi); }
+  .stockrow.st-ok .st, .stockrow.st-supplied .st, .stockrow.st-ok .net, .stockrow.st-supplied .net { color:var(--brass-hi); }
+  .stockrow.st-short { border-left-color:var(--amber); }
+  .stockrow.st-short .st, .stockrow.st-short .net { color:var(--amber); }
+  .stockrow.st-stalled { border-left-color:var(--red); }
+  .stockrow.st-stalled .st, .stockrow.st-stalled .net, .stockrow.st-stalled .sen { color:var(--red); }
+  .stockrow.st-idle .st, .stockrow.st-market .st, .stockrow.st-idle .net { color:var(--dim); }
+  .stockrow.st-presence { border-left-color:var(--faint); }
+  .stockrow.st-presence .st { color:var(--faint); }
+  .stockfold { padding:8px; color:var(--dim); font-size:11px; cursor:pointer; border-bottom:1px solid var(--line); }
+  .stockfold:hover { color:var(--ink); }
+  .contractrow, .offerrow { display:flex; gap:10px; align-items:center; padding:6px 8px;
+    border-bottom:1px solid var(--line); font-size:12px; }
+  .contractrow svg, .offerrow svg { width:14px; height:14px; flex:none; }
+  .contractrow .ln, .offerrow .ln { flex:1; }
+  .contractrow button, .offerrow button { font-size:11px; padding:3px 10px; }
+  #stockDock { position:absolute; top:44px; right:0; bottom:0; width:360px; z-index:3;
+    background:var(--panel-2); border-left:1px solid var(--brass-dim); overflow-y:auto;
+    padding:14px 16px 20px; box-shadow:-4px 0 14px rgba(0,0,0,.45); }
+  #stockDock h2 { font-family:var(--serif); font-variant:small-caps; letter-spacing:.1em;
+    color:var(--brass-hi); margin:0 0 4px; font-size:16px; display:flex; align-items:center; gap:8px; }
+  #stockDock h2 svg { width:18px; height:18px; }
+  #stockDock .sub { color:var(--dim); font-size:11px; margin:0 0 10px; }
+  #stockDock .strat .plus { color:var(--green); font-size:11.5px; }
+  #stockDock .strat .minus { color:#b06a5a; font-size:11.5px; }
+  #stockDock .strat .why.off { opacity:.55; }
+  #stockDock .advisor { margin-top:12px; color:var(--ink); }
+  @media (max-width: 1100px) {
+    #stockRows { right:300px; } #stockDock { width:300px; }
+    .stockcols, .stockrow { grid-template-columns:22px 1fr 96px 84px 80px 90px 80px; }
+  }
+  /* -- the board's hover: #techTip's block, its own singleton -- */
+  #stockTip { position:fixed; z-index:60; max-width:300px; min-width:190px; pointer-events:none;
+    background:rgba(13,17,22,.95); border:1px solid var(--line); border-left:3px solid var(--brass-dim);
+    border-radius:8px; padding:9px 12px 8px; box-shadow:0 10px 26px rgba(0,0,0,.55);
+    opacity:0; transform:translateY(5px); transition:opacity .13s ease, transform .13s ease; }
+  #stockTip.on { opacity:1; transform:none; }
+  #stockTip .tt-h { display:flex; align-items:center; gap:7px; margin-bottom:3px; }
+  #stockTip .tt-h .gy svg { width:14px; height:14px; display:block; }
+  #stockTip .tt-nm { font-size:12px; color:var(--bright); letter-spacing:.02em; }
+  #stockTip .tt-yr { margin-left:auto; padding-left:10px; font:9.5px var(--mono); color:var(--faint); }
+  #stockTip .tt-st { font-size:10.5px; margin:0 0 5px; }
+  #stockTip .tt-fx { margin:0; padding-left:0; list-style:none; font-size:10.5px; line-height:1.5; color:var(--dim); }
+  #stockTip .tt-fx b { display:inline-block; width:14px; color:var(--brass-hi); }   /* T transcribed */
+  #stockTip .tt-fx b.d { color:var(--cyan); }                                        /* D derived */
+  #stockTip .tt-fx b.m { color:var(--dim); }                                         /* M mechanic */
+  #stockTip .tt-more { margin-top:6px; padding-top:5px; border-top:1px solid rgba(255,255,255,.06);
+    font-size:9px; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); }
+  /* -- talks, in #sheet -- */
+  .talks { display:grid; grid-template-columns:220px 1fr; gap:12px; margin-top:12px; }
+  @media (max-width: 900px) { .talks { grid-template-columns:1fr; } }
+  .talks .relrow { grid-template-columns:1fr 40px 76px; }
+  .talks .word { font-size:10px; letter-spacing:.12em; text-align:right; }
+  .talks .answer { font-size:14px; margin:10px 0 6px; }
+  .talks .plus { color:var(--green); font-size:12px; }
+  .talks .minus { color:#b06a5a; font-size:12px; }
+  .talks .btnrow { align-items:center; }
+  .talks .btnrow > svg { width:16px; height:16px; }
+  .talks .btnrow button small { display:block; font-size:9.5px; color:var(--faint); letter-spacing:0; }
+  .talks .btnrow button.on small { color:#101820; }
+  .talks h4 { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); margin:10px 0 4px; }
+  .talks select { font-size:12px; max-width:100%; }
+  .talks .foot { display:flex; align-items:center; gap:9px; margin-top:8px; }
+  .talks .short { color:#b06a5a; font-size:11px; }
   /* -- motion budget: everything above is CSS-only; with animation off, every
         state read survives as a static property (glow, ring %, lock). -- */
   @media (prefers-reduced-motion: reduce) {
@@ -575,7 +674,7 @@
     .tsvg .node.focus .halo { opacity:.45; stroke-dasharray:none; }
     .tsvg .node .k { transition:none; animation:none !important; }
     .tsvg .node .ring, .tsvg .node .prog { transition:none; }
-    #techTip, .dtab, .dtab .bar i { transition:none; }
+    #techTip, #stockTip, .dtab, .dtab .bar i { transition:none; }
     #techBackdrop .bgm { transition:opacity 0s; }
   }
 
@@ -1198,6 +1297,7 @@
       <button data-adv="12">+1 YR<i>3</i></button>
       <button data-adv="60">+5 YR<i>4</i></button>
       <button id="techBtn" title="Technology">TECH<i>T</i></button>
+      <button id="stockBtn" title="Resources">RESOURCES<i>B</i></button>
       <button id="saveBtn">SAVE<i>S</i></button>
       <button id="keysBtn">?</button>
     </div>
@@ -1510,6 +1610,26 @@
   </div>
 </div>
 
+<!-- The resource board (B): twelve lines, folded, in #stockRows; the three
+     cards for the selected line in #stockDock; the hover in #stockTip. Built
+     from S.resources and /api/stock — every number and sentence is served. -->
+<div id="stockScreen">
+  <div class="tbar">
+    <span class="ttitle">Resources</span>
+    <span class="tsub" id="stockSub">&mdash;</span>
+    <span class="spacer"></span>
+    <button class="x" onclick="closeStock()">close</button>
+  </div>
+  <div id="stockRows"></div>
+  <div id="stockDock"></div>
+  <div id="stockTip" role="tooltip" aria-hidden="true">
+    <div class="tt-h"><span class="gy"></span><b class="tt-nm"></b><span class="tt-yr"></span></div>
+    <div class="tt-st"></div>
+    <ul class="tt-fx"></ul>
+    <div class="tt-more">click &mdash; mine, trade, take</div>
+  </div>
+</div>
+
 <div id="keys"><div class="box">
   <h3>KEYBOARD</h3>
   <div class="row"><span>Advance one month</span><span><kbd>Space</kbd> / <kbd>1</kbd></span></div>
@@ -1521,6 +1641,8 @@
   <div class="row"><span>Zoom the world map / reset the view</span><span><kbd>+</kbd> <kbd>&minus;</kbd> <kbd>0</kbd> · wheel · double-click</span></div>
   <div class="row"><span>Filter the event log</span><span><kbd>E</kbd></span></div>
   <div class="row"><span>Technology</span><span><kbd>T</kbd></span></div>
+  <div class="row"><span>Resources board</span><span><kbd>B</kbd></span></div>
+  <div class="row"><span>Board: select a line / open talks</span><span>arrows · <kbd>Enter</kbd></span></div>
   <div class="row"><span>Domain tabs (tech screen)</span><span><kbd>1</kbd>–<kbd>8</kbd> · full map <kbd>9</kbd> · step <kbd>[</kbd> <kbd>]</kbd></span></div>
   <div class="row"><span>Find a technology (graph open)</span><span><kbd>/</kbd></span></div>
   <div class="row"><span>Open a technology (full map)</span><span>click a node</span></div>
@@ -2090,6 +2212,7 @@ async function adopt(state, withHistory) {
   // never re-derived client-side; the literal in FRONT_HELD_BAND is only the
   // fallback for a server payload that predates the field.
   if (typeof S.front_held_band === "number") FRONT_HELD_BAND = S.front_held_band;
+  STOCKW.stale = true;      // the world moved; the resource tint is re-asked on the next map
   if (withHistory !== false) HIST = await api("/api/history");
   if (!ui.picked.length) ui.picked = defaultPicks();
   render();
@@ -2180,6 +2303,7 @@ document.addEventListener("keydown", (e) => {
     if (keysCardIsOpen()) { setKeysCard(false); return; }
     if (techMenuIsOpen()) { closeTechMenu(); return; }
     if (tech.open) { techEsc(); return; }
+    if (stock.open) { closeStock(); return; }
     closeSheet();
     return;
   }
@@ -2212,6 +2336,8 @@ document.addEventListener("keydown", (e) => {
   // The tech screen swallows everything while it is up — time keys included
   // (advancing blind from inside the screen is a misfire).
   if (tech.open) { techKeys(e); return; }
+  // So does the resource board, for the same reason.
+  if (stock.open) { stockKeys(e); return; }
   const k = e.key;
   if (k === " " || k === "1") { e.preventDefault(); advance(1); }
   else if (k === "2") advance(6);
@@ -2226,6 +2352,7 @@ document.addEventListener("keydown", (e) => {
   else if (k === "e" || k === "E") { e.preventDefault(); $("#logSearch").focus(); $("#logSearch").select(); }
   else if (k === "s" || k === "S") doSave();
   else if (k === "t" || k === "T") toggleTechMenu();
+  else if (k === "b" || k === "B") toggleStockScreen();
   else if (k === "r" || k === "R") revertOrders();
   else if (k === "+" || k === "=") mapZoom(1.3);
   else if (k === "-" || k === "_") mapZoom(1 / 1.3);
@@ -2285,6 +2412,12 @@ function render() {
   tb.title = S.research ? "Technology" : "spectating";
   tb.classList.toggle("note", !!S.research &&
     S.research.domains.some((d) => (d.options || []).length && !d.project));
+  // RESOURCES is dead in spectator mode too; its amber dot means a line you
+  // ordered is starved this month — the one red the board reserves.
+  const sb = $("#stockBtn");
+  sb.disabled = !S.resources;
+  sb.title = S.resources ? "Resources" : "spectating";
+  sb.classList.toggle("note", !!S.resources && S.resources.starved > 0);
   noteQueued();
   renderLeft(m);
   renderWars();
@@ -2300,7 +2433,12 @@ function render() {
   // resolves, ladder prices and front counts of the month it was opened in. A
   // war that had ENDED kept a full set of live buttons, every one of which the
   // sim answers "No such conflict."
-  if (selectedWar != null && !tech.open) {
+  // Talks re-evaluate each tick: the draft is kept and the sim is asked
+  // again, so a partner that went to war mid-draft flips to REFUSE.
+  if (talks.open && !tech.open) {
+    renderTalks();
+    talksAsk();
+  } else if (selectedWar != null && !tech.open) {
     if (S.wars.some((w) => w.id === selectedWar)) {
       openConflict(selectedWar, true);
     } else {
@@ -2313,6 +2451,7 @@ function render() {
   } else if (selected && !tech.open) openNation(selected, true);
   if (tech.open) refreshTech();
   if (techMenuIsOpen()) renderTechMenu();
+  if (stock.open) { renderStock(); stockFetchCards(); }
 }
 
 function noteQueued() {
@@ -2687,6 +2826,9 @@ function etaText(d, tilde) {
     case "funded": return "funded — lands next month";
     case "year":   return "funded — fields in " + d.fields_in;
     case "beyond": return "beyond a century at this rate";
+    // A wait for an input is not a stall (research_json's four-null lesson):
+    // served once D2 lights a gate, handled from birth.
+    case "input":  return "waiting on " + (d.input || "an input");
     default:       return "stalled — nothing is funding this";
   }
 }
@@ -7348,6 +7490,11 @@ function paintPolitical() {
     for (const c of codes) ctx.stroke(p2d(WORLD.countries[c]));
   }
 
+  // 2b. the resource tint: who holds a surplus, who is short, who is stalled,
+  // whom every seller has refused — served by /api/stock/world for the
+  // selected commodity and painted over the powers in both resource readings.
+  paintStockTint(ctx);
+
   // 3. districts whose sim owner disagrees with the country layer — the visible
   // mark of a concession or an annexation.
   const delta = (S && S.districts) || {};
@@ -7998,6 +8145,7 @@ function resInvalidate() {
   RESGLY_KEY = "";
   RESLIVE = null;
   RESLIM = null; RESLIM_KEY = "";
+  STOCKGL.com = null; STOCKGL.list = null;   // the globe's mark list is keyed on the filter too
 }
 
 /// Which commodities the artifact actually places, in the artifact's own
@@ -8925,6 +9073,10 @@ function drawMapOverlay(ctx, view, globe) {
     ctx.setLineDash([]);
   }
 
+  // ---- the resource layer: the commodity marks, the contract arcs and the
+  // aim rings, under the names so a label still reads over a chip.
+  drawStockOverlay(ctx, view, globe);
+
   // ---- district names, for ONE nation at a time and only past ZB2, exactly
   // the band the flat map used. Drawn before the nation labels so a nation's
   // own name stays on top of its districts' names.
@@ -9124,15 +9276,13 @@ function renderMap() {
 
   const modeLegend = mode.legend.map(([c, l]) =>
     `<span><i style="background:${c}"></i>${l}</span>`).join("");
-  // NOT YET ON THE GLOBE, and said out loud rather than left to look broken.
-  // The resource wash and the commodity marks were svg layers (resnode, the
-  // #resglyphs group) mounted into the map's own markup; the globe paints its
-  // vector layers into a texture instead, and porting them is a separate piece
-  // of work. Resources mode paints its nations scenery-grey PRECISELY BECAUSE a
-  // wash was going over them, so without this line it reads as a bug rather
-  // than as a gap -- and the same is true of Terrain's six class swatches.
+  // WHAT IS AND IS NOT ON THE GLOBE, said out loud rather than left to look
+  // broken. The commodity marks (once the svg #resglyphs group) are drawn on
+  // the overlay now, with the sim's tint, the contract arcs and the aim rings;
+  // the district WASH — the four-opacity fill under them — is still not
+  // painted into the texture, and Terrain's six class swatches are not either.
   const gap = ui.mapMode === "resources" || ui.resOverlay
-    ? `<span style="color:var(--amber)">the resource layer is not drawn on the globe yet — the panel below still reads the data</span>`
+    ? `<span style="color:var(--faint)">the district wash is not painted on the globe yet — the marks, the tint, the contract arcs and the aim rings are</span>`
     : ui.mapMode === "terrain"
       ? `<span style="color:var(--faint)">class fills are not drawn on the globe yet; the ground itself is the terrain read</span>`
       : "";
@@ -9144,7 +9294,7 @@ function renderMap() {
     </div>`;
 
   if (gap && (ui.mapMode === "resources" || ui.resOverlay)) {
-    s += `<div class="legend">${gap}</div>`;
+    s += stockLegend() + `<div class="legend">${gap}</div>`;
   }
   $("#pane-map").innerHTML = s;
   // Re-adopt the two retained canvases (re-parent, never rebuild): the WebGL
@@ -9156,6 +9306,7 @@ function renderMap() {
 
   if (ui.mapMode === "resources" || ui.resOverlay) {
     if (RESOURCES_STATE === "cold") loadResources();
+    stockWorldFetch();     // the tint and the arcs, when the filter or the world moved
     $("#resChips") && $("#resChips").querySelectorAll("[data-com]").forEach((c) => {
       c.onclick = () => { ui.resCommodity = c.dataset.com; resInvalidate(); renderMap(); };
     });
@@ -9634,6 +9785,7 @@ function openNation(id, keepScroll) {
         ${n.sanctioned_by_me
           ? `<button onclick="act('lift','${n.name}')">Lift sanctions</button>`
           : `<button onclick="act('sanction','${n.name}')">Sanction</button>`}
+        ${S.resources ? `<button onclick="openTalksWith('${n.id}')">Open talks · ${(S.resources.talks_pc || 3).toFixed(0)} pc</button>` : ""}
         ${S.wars.some((w) => w.posture.some((b) => b.id === id) && myPosture(w))
           ? "" : `<button onclick="openQuarrel('${n.name}')">Open a quarrel · 4 pc</button>`}
         <button class="danger" onclick="declareWar('${n.name}')">Declare war</button>
@@ -9687,6 +9839,16 @@ function openNation(id, keepScroll) {
       <div id="resDash" class="tiny muted">Reading the transcription…</div>
     </div>
 
+    <div class="card">
+      <h3>What it holds</h3>
+      <div class="tiny muted" style="margin-bottom:8px">
+        Its twelve lines as the ledger stands this month — what it makes, what
+        it has to spare, and whether it would sell to you, answered by the same
+        function that answers an offer. Click a line it sells to open talks.
+      </div>
+      <div id="stockDash" class="tiny muted">Reading the ledger…</div>
+    </div>
+
     ${charts}
 
     <div class="cols2">
@@ -9722,6 +9884,7 @@ function openNation(id, keepScroll) {
   });
   loadProvenance(n.name);
   fillResourceDash(n.id);
+  fillStockDash(n.id);
   // The selected nation's ring is drawn on the selection layer and its
   // districts label up on the overlay, so both owe the globe a redraw.
   selectionChanged();
@@ -9984,6 +10147,8 @@ function openSheetEl(keepScroll, scroll) {
 function closeSheet() {
   selected = null;
   selectedWar = null;
+  talks.open = false;
+  clearTimeout(talks.timer);
   $("#sheet").style.display = "none";
   $("#sheetbg").style.display = "none";
   if (S) renderMap();
@@ -10028,6 +10193,766 @@ window.declareWar = async function (target) {
   if (r.errors && r.errors.length) banner(r.errors[0]);
   await adopt(r, false);
 };
+
+/* ================= the resource board (B) =================
+   Twelve lines, folded; three cards a line; talks in three clicks; the tint,
+   the arcs and the aims on the globe. EVERYTHING HERE IS SERVED: the rows on
+   S.resources, the cards on /api/stock?com=, the dossier's twelve words on
+   /api/stock?nation=, the globe on /api/stock/world?com=, and the sim's answer
+   to a draft — before the offer is sent — on POST /api/talks. The page holds
+   no coefficient of the model, composes no sentence the sim did not serve,
+   and never sends a free number: a rung goes up, a quantity comes back.
+   Namespace stock* / talks*; nothing under res* (the map layer) and nothing
+   near #resCard (the research card).                                        */
+
+const stock = { open: false, sel: null, cards: null, cardsFor: null, seq: 0, unfolded: false };
+const STATE_WORD = {
+  ok: "OK", supplied: "SUPPLIED", short: "SHORT", stalled: "STALLED",
+  idle: "IDLE", market: "MARKET", presence: "PRESENCE", seller: "SELLER",
+};
+/// RED IS RESERVED for `stalled` — never a deficit without a stalled action.
+const STATE_COLOR = {
+  ok: "var(--brass-hi)", supplied: "var(--brass-hi)", short: "var(--amber)", stalled: "var(--red)",
+  idle: "var(--dim)", market: "var(--dim)", presence: "var(--faint)", seller: "var(--brass-hi)",
+};
+const stockHue = (k) => RCOLOR[k] || "#9fb0bd";
+/// A served quantity, printed. Formatting only — the number is the sim's.
+function fmtQ(v) {
+  if (v == null || !isFinite(v)) return "—";
+  const a = Math.abs(v);
+  const d = a >= 100 ? 0 : a >= 10 ? 1 : 2;
+  return v.toLocaleString("en-GB", { minimumFractionDigits: 0, maximumFractionDigits: d });
+}
+function fmtSigned(v) { return v == null ? "" : (v > 0 ? "+" : v < 0 ? "−" : "") + fmtQ(Math.abs(v)); }
+
+function stockRows() { return (S && S.resources && S.resources.rows) || []; }
+function stockVisibleRows() {
+  const rows = stockRows();
+  return stock.unfolded ? rows : rows.filter((r) => !r.fold);
+}
+
+/* ---------------- open / close / select ---------------- */
+
+function toggleStockScreen() { if (stock.open) closeStock(); else openStock(); }
+function openStock(com) {
+  if (!S || !S.resources) return;      // spectator: no board to read
+  closeTechMenu();
+  if (tech.open) closeTech();
+  closeSheet();
+  stock.open = true;
+  $("#stockScreen").style.display = "block";
+  if (com) stock.sel = com;
+  if (!stock.sel || !stockRows().some((r) => r.id === stock.sel)) {
+    const vis = stockVisibleRows();
+    stock.sel = (vis[0] || stockRows()[0] || {}).id || null;
+  }
+  renderStock();
+  stockFetchCards();
+}
+function closeStock() {
+  stock.open = false;
+  stockTipHide();
+  $("#stockScreen").style.display = "none";
+}
+window.openStock = openStock;
+window.closeStock = closeStock;
+
+function stockSelect(id) {
+  if (stock.sel === id) return;
+  stock.sel = id;
+  stockTipHide();
+  renderStock();
+  stockFetchCards();
+}
+function stockToggleFold() { stock.unfolded = !stock.unfolded; renderStock(); }
+window.stockToggleFold = stockToggleFold;
+
+/// The three cards for the selected line. Sequence-numbered, so a stale
+/// answer never lands on a row it was not asked about.
+async function stockFetchCards() {
+  if (!stock.sel || !S || !S.resources) return;
+  const seq = ++stock.seq;
+  let cards;
+  try {
+    cards = await api("/api/stock?com=" + encodeURIComponent(stock.sel));
+  } catch (e) {
+    if (seq === stock.seq && $("#stockDock")) $("#stockDock").innerHTML = `<div class="tiny">${escText(e.message)}</div>`;
+    return;
+  }
+  if (seq !== stock.seq || !stock.open) return;
+  stock.cards = cards;
+  stock.cardsFor = cards.com;
+  renderStockDock();
+}
+
+/* ---------------- the rows ---------------- */
+
+function stockRowHtml(r) {
+  const col = stockHue(r.id);
+  const piled = r.tracked && r.status !== "market";
+  const cov = piled ? `<span class="bar"><i style="width:${clamp(r.cover_months / 12, 0, 1) * 100}%"></i></span>` : "";
+  const covText = r.status === "market" ? "market" : piled ? `${Math.round(r.cover_months)} mo` : "—";
+  const who = r.supplier
+    ? ` · ${escText(r.supplier)}${r.supplier_kind === "open" ? " (open)" : ""}`
+    : r.reason ? ` — no supplier: ${escText(r.reason)}` : "";
+  return `<div class="stockrow st-${r.status}${r.id === stock.sel ? " sel" : ""}" data-com="${r.id}">
+      <span class="gy">${rglyph(r.id, col)}</span>
+      <span class="nm"><b>${escText(r.name)}</b><span class="sen">${escText(r.sentence)}${who}</span>${
+        r.second ? `<span class="tiny">${escText(r.second)}</span>` : ""}</span>
+      <span class="num have">${r.tracked ? fmtQ(r.produce_per_month) : "—"}<em>${r.tracked ? r.unit : ""}</em></span>
+      <span class="num cov">${covText}${cov}</span>
+      <span class="num dem">${r.tracked && r.need_per_month > 0 ? fmtQ(r.need_per_month) : "—"}</span>
+      <span class="num net">${piled ? fmtSigned(r.net) : ""}</span>
+      <span class="st">${STATE_WORD[r.status] || escText(r.status)}</span>
+    </div>`;
+}
+
+function renderStock() {
+  if (!stock.open || !S || !S.resources) return;
+  const R = S.resources;
+  const rows = stockRows(), vis = stockVisibleRows();
+  const contracts = R.contracts || [], offers = R.offers || [];
+  const fed = rows.filter((r) => r.status === "ok" || r.status === "supplied").length;
+  $("#stockSub").textContent =
+    `${fed} of ${rows.length} lines fed · ${R.starved} starved · ${contracts.length} contract${contracts.length === 1 ? "" : "s"}`;
+  // Offers (S3 writes them; absence renders nothing) above the rows.
+  const offerLines = offers.map((o) => `<div class="offerrow">${rglyph(RES_ALL, "var(--brass-dim)")}
+      <span class="ln">${escText(o.legs)} · expires in ${o.expires_in} months</span>
+      <button data-offer="${o.id}" data-answer="accept">Accept — ${o.accept_pc.toFixed(0)} political capital</button>
+      <button data-offer="${o.id}" data-answer="decline">Decline</button>
+    </div>`).join("");
+  const foldN = rows.filter((r) => r.fold).length;
+  const fold = foldN
+    ? `<div class="stockfold" onclick="stockToggleFold()">${stock.unfolded
+        ? `fold the ${foldN} line${foldN > 1 ? "s" : ""} nothing needs`
+        : `${foldN} more — nothing needs them`}</div>`
+    : "";
+  const head = `<div class="stockcols"><span></span><span>line</span><span>have</span><span>in hand</span><span>demand</span><span>net</span><span></span></div>`;
+  const contractLines = contracts.map((k) => `<div class="contractrow">${rglyph(k.com || RES_ALL, stockHue(k.com))}
+      <span class="ln">${escText(k.line)}</span>
+      <button data-cancel="${k.id}" data-with="${escText(k.with)}" data-pc="${k.cancel_pc}" data-note="${escText(k.cancel_note)}">Cancel — ${k.cancel_pc.toFixed(0)} political capital</button>
+      <span class="tiny">${escText(k.cancel_note)}</span>
+    </div>`).join("");
+  $("#stockRows").innerHTML = (offers.length ? `<div class="stockhead">Offers</div>${offerLines}` : "")
+    + head + vis.map(stockRowHtml).join("") + fold
+    + (contracts.length ? `<div class="stockhead">Contracts</div>${contractLines}` : "");
+  const byId = {};
+  rows.forEach((r) => { byId[r.id] = r; });
+  $("#stockRows").querySelectorAll(".stockrow").forEach((el) => {
+    const r = byId[el.dataset.com];
+    el.onclick = () => stockSelect(el.dataset.com);
+    el.onpointerenter = (e) => stockTipShow(r, e.clientX, e.clientY);
+    el.onpointerleave = stockTipHide;
+  });
+  $("#stockRows").querySelectorAll("[data-cancel]").forEach((b) => {
+    b.onclick = () => cancelDeal(+b.dataset.cancel, b.dataset.with, b.dataset.pc, b.dataset.note);
+  });
+  $("#stockRows").querySelectorAll("[data-offer]").forEach((b) => {
+    b.onclick = () => answerOffer(+b.dataset.offer, b.dataset.answer);
+  });
+  renderStockDock();
+}
+
+/* ---------------- the three cards ---------------- */
+
+function renderStockDock() {
+  const dock = $("#stockDock");
+  if (!dock || !stock.open) return;
+  const c = stock.cards;
+  if (!c || c.com !== stock.sel) { dock.innerHTML = `<div class="tiny">reading the ledger…</div>`; return; }
+  const m = c.mine, tr = c.trade, t = c.take;
+  const com = c.com;
+  let s = `<h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2><div class="sub">${escText(c.row.sentence)}</div>`;
+  // MINE — greyed in this build with the served block sentence: a missing
+  // card reads as a missing feature, a greyed one reads as a plan.
+  s += `<div class="strat poor"><div class="top"><span class="nm">MINE</span><span class="cost">— PC</span></div>
+      <div class="blurb">${escText(m.blurb)}</div>
+      <div class="plus">${escText(m.plus)}</div><div class="minus">${escText(m.minus)}</div>
+      <div class="foot"><button disabled>DEVELOP</button></div>
+      <div class="why">${escText(m.blocked)}</div></div>`;
+  // TRADE — opens talks with the best seller the sim found.
+  if (tr) {
+    s += `<div class="strat${tr.affordable ? "" : " poor"}"><div class="top"><span class="nm">TRADE</span><span class="cost">OPEN TALKS · ${tr.pc.toFixed(0)} PC</span></div>
+      <div class="blurb">${escText(tr.blurb)}</div>
+      <div class="plus">${escText(tr.plus)}</div><div class="minus">${escText(tr.minus)}</div>
+      <div class="why">${escText(tr.why)}</div>
+      <div class="foot"><button data-act="talks" ${tr.affordable ? "" : "disabled"}>OPEN TALKS</button>${
+        tr.affordable ? "" : `<span class="short">${Math.ceil(tr.shortfall)} more needed</span>`}</div></div>`;
+  }
+  // TAKE — greyed until the trade route has closed (served `open`), hatched
+  // with the bar sentence under a pact or a nuclear target (served `blocked`).
+  const live = t.open && !t.blocked;
+  s += `<div class="strat${live ? "" : " poor"}"><div class="top"><span class="nm">TAKE</span><span class="cost">${
+      t.pc != null ? `${t.pc.toFixed(0)} PC to open a quarrel` : "—"}</span></div>
+      <div class="blurb">${escText(t.blurb)}</div>
+      ${t.plus ? `<div class="plus">${escText(t.plus)}</div>` : ""}${t.minus ? `<div class="minus">${escText(t.minus)}</div>` : ""}
+      <div class="why${t.open ? "" : " off"}">${escText(t.why)}</div>
+      <div class="foot"><span class="rungrow${live ? "" : " off"}" style="padding:0"><button data-act="take" ${
+        live && t.affordable ? "" : "disabled"}>OPEN A QUARREL</button></span>${
+        t.blocked ? `<span class="short">${escText(t.blocked)}</span>`
+        : live && !t.affordable ? `<span class="short">${Math.ceil(t.pc - (me() || {}).political_capital)} more needed</span>` : ""}</div></div>`;
+  s += `<div class="tiny advisor">${escText(c.advisor)}</div>`;
+  dock.innerHTML = s;
+  const talksBtn = dock.querySelector("[data-act=talks]");
+  if (talksBtn) talksBtn.onclick = () => openTalks(com, tr.best_seller_id);
+  const takeBtn = dock.querySelector("[data-act=take]");
+  if (takeBtn) takeBtn.onclick = async () => {
+    const r = await api("/api/command", { commands: [{ kind: "open_conflict", target: t.nation_id, aim: { district: t.district, commodity: com } }] });
+    if (r.errors && r.errors.length) banner(r.errors[0]);
+    await adopt(r, false);
+    const mineNow = S.wars.find((w) => myPosture(w) && w.posture.some((b) => b.id === t.nation_id));
+    if (mineNow) { closeStock(); openConflict(mineNow.id); }
+  };
+}
+
+/* ---------------- the hover: what is blocked and why, and where every
+   number came from (the served provenance marks) ---------------- */
+
+function stockTipHide() {
+  const tip = $("#stockTip");
+  if (!tip) return;
+  tip.classList.remove("on");
+  tip.setAttribute("aria-hidden", "true");
+}
+/// Measure hidden, place, reveal: +16/+14 from the entry point, flip at the
+/// viewport edge, clamp inside; min y clears the tbar (techTipPlace's shape).
+function stockTipPlace(tip, clientX, clientY) {
+  tip.style.visibility = "hidden";
+  tip.classList.add("on");
+  tip.setAttribute("aria-hidden", "false");
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  let x = clientX + 16, y = clientY + 14;
+  if (x + w > innerWidth - 12) x = clientX - w - 16;
+  if (y + h > innerHeight - 12) y = clientY - h - 14;
+  x = clamp(x, 12, innerWidth - w - 12);
+  y = clamp(y, 44 + 12, innerHeight - h - 12);
+  tip.style.left = x + "px";
+  tip.style.top = y + "px";
+  tip.style.visibility = "";
+}
+function stockTipShow(r, clientX, clientY) {
+  const tip = $("#stockTip");
+  if (!tip || !r) return;
+  const col = stockHue(r.id);
+  tip.style.borderLeftColor = col;
+  tip.querySelector(".tt-h .gy").innerHTML = rglyph(r.id, col);
+  tip.querySelector(".tt-nm").textContent = r.name;
+  tip.querySelector(".tt-yr").textContent = r.tracked ? r.unit : "";
+  const st = tip.querySelector(".tt-st");
+  st.style.color = STATE_COLOR[r.status] || "var(--dim)";
+  st.textContent = `${STATE_WORD[r.status] || r.status} — ${r.hover || r.sentence}`;
+  tip.querySelector(".tt-fx").innerHTML = (r.prov || []).map((p) =>
+    `<li><b class="${p.letter.toLowerCase()}">${escText(p.letter)}</b>${escText(p.text)}</li>`).join("")
+    || `<li>no provenance served for this row</li>`;
+  stockTipPlace(tip, clientX, clientY);
+}
+
+/* ---------------- keys while the board is up (swallowed) ---------------- */
+
+function stockKeys(e) {
+  const k = e.key;
+  if (k === "Escape" || k === "b" || k === "B") { e.preventDefault(); closeStock(); return; }
+  if (k === "ArrowUp" || k === "ArrowDown") {
+    e.preventDefault();
+    const vis = stockVisibleRows();
+    if (!vis.length) return;
+    const i = vis.findIndex((r) => r.id === stock.sel);
+    const n = ((i < 0 ? 0 : i + (k === "ArrowDown" ? 1 : -1)) + vis.length) % vis.length;
+    stockSelect(vis[n].id);
+    return;
+  }
+  if (k === "Enter" || k === "2") { e.preventDefault(); const b = $("#stockDock [data-act=talks]"); if (b && !b.disabled) b.click(); return; }
+  if (k === "3") { e.preventDefault(); const b = $("#stockDock [data-act=take]"); if (b && !b.disabled) b.click(); return; }
+  // 1 is MINE, greyed in this build; the time keys are swallowed too —
+  // advancing blind from behind the board is the tech screen's misfire.
+  if (k === "1" || k === " " || (k >= "0" && k <= "9")) e.preventDefault();
+}
+
+/* ---------------- contracts and offers ---------------- */
+
+window.cancelDeal = async function (id, withName, pc, note) {
+  if (!confirm(`Tear up the contract with ${withName}?\n\nIt costs ${Math.round(+pc)} political capital and is never refused; ${note}.`)) return;
+  const r = await api("/api/command", { commands: [{ kind: "cancel_deal", contract: id }] });
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  await adopt(r, false);
+};
+window.answerOffer = async function (id, answer) {
+  const r = await api("/api/command", { commands: [
+    answer === "accept" ? { kind: "accept_deal", offer: id } : { kind: "decline_deal", offer: id },
+  ] });
+  if (r.errors && r.errors.length) banner(r.errors[0]);
+  await adopt(r, false);
+};
+
+/* ================= talks (three clicks) =================
+   Partner → what you want → what you pay. Rungs, never free numbers; the
+   sim's answer under the builder BEFORE the click; every change re-POSTs
+   /api/talks, debounced 120 ms and sequence-numbered so a stale answer never
+   lands. The draft lives here like queued[]; render() rebuilds the sheet
+   from it every tick, so a partner that goes to war mid-draft flips to
+   REFUSE with the new reason.                                              */
+
+const talks = {
+  open: false, com: null, to: null,
+  get: { commodity: null, rung: 0, district: null },
+  give: { money_rung: null, commodity: null, district: null },
+  months: 36, eval: null, error: null, seq: 0, timer: 0, sellers: [],
+};
+
+async function openTalks(com, to) {
+  if (!S || !S.resources) return;
+  let cards = stock.cards && stock.cardsFor === com ? stock.cards : null;
+  if (!cards) {
+    try { cards = await api("/api/stock?com=" + encodeURIComponent(com)); }
+    catch (e) { banner(e.message); return; }
+  }
+  talks.sellers = (cards.trade && cards.trade.sellers) || [];
+  talks.com = com;
+  talks.to = to || (cards.trade && cards.trade.best_seller_id) || (talks.sellers[0] || {}).id || null;
+  talks.get = { commodity: com, rung: 0, district: null };
+  talks.give = { money_rung: null, commodity: null, district: null };
+  talks.months = 36;
+  talks.eval = null;
+  talks.error = null;
+  if (stock.open) closeStock();
+  // One sheet, one subject: closeSheet retires whatever nation or conflict
+  // was in it (its own invariant), then the talks take it over.
+  closeSheet();
+  talks.open = true;
+  renderTalks();
+  openSheetEl(false);
+  talksAsk(true);
+}
+window.openTalks = openTalks;
+/// From the dossier: talks with this nation on the first line it sells you.
+window.openTalksWith = function (id) {
+  const rows = (stockDash.id === id && stockDash.data && stockDash.data.rows) || [];
+  const first = rows.find((r) => r.status === "seller" && r.to_you && r.to_you !== "refuses") || rows.find((r) => r.status === "seller");
+  openTalks(first ? first.id : (stockRows()[0] || { id: "oil" }).id, id);
+};
+
+function talksDraft() {
+  return {
+    to: talks.to, com: talks.com, months: talks.months,
+    get: { commodity: talks.get.commodity, rung: talks.get.rung, district: talks.get.district },
+    give: { money_rung: talks.give.money_rung, commodity: talks.give.commodity, district: talks.give.district },
+  };
+}
+function talksAsk(now) {
+  clearTimeout(talks.timer);
+  const go = async () => {
+    if (!talks.open || !talks.to) return;
+    const seq = ++talks.seq;
+    try {
+      const r = await api("/api/talks", talksDraft());
+      if (seq !== talks.seq || !talks.open) return;
+      talks.eval = r;
+      talks.error = null;
+    } catch (e) {
+      if (seq !== talks.seq || !talks.open) return;
+      talks.error = e.message;
+    }
+    renderTalks();
+  };
+  if (now) go(); else talks.timer = setTimeout(go, 120);
+}
+function talksSet(fn) { fn(); renderTalks(); talksAsk(); }
+
+function talksWord(w) {
+  return { willing: "WILLING", counter: "COUNTER", refuses: "REFUSES", priced_out: "PRICED OUT" }[w] || (w || "").toUpperCase();
+}
+function talksWordColor(w) {
+  return { willing: "var(--brass-hi)", counter: "var(--cyan)", refuses: "var(--red)", priced_out: "var(--dim)" }[w] || "var(--dim)";
+}
+
+function renderTalks() {
+  if (!talks.open) return;
+  const sheet = $("#sheet");
+  const ev = talks.eval;
+  const partner = nationById(talks.to);
+  const L = (ev && ev.ladders) || null;
+  const rail = talks.sellers.length
+    ? talks.sellers.map((s) => `<div class="relrow${s.id === talks.to ? " on" : ""}" data-to="${s.id}" style="${s.id === talks.to ? "background:#171d24" : ""}">
+        <span class="nm">${escText(s.name)}</span>
+        <span class="num" style="color:${relColor(s.relation)}">${s.relation >= 0 ? "+" : ""}${s.relation.toFixed(0)}</span>
+        <span class="word" style="color:${talksWordColor(s.word)}">${talksWord(s.word)}</span>
+      </div>`).join("")
+    : `<div class="muted">Nobody holds a surplus of ${escText(talks.com)}.</div>`;
+  const chip = (on, label, sub, attrs) => `<button class="${on ? "on" : ""}" ${attrs}>${label}${sub ? `<small>${sub}</small>` : ""}</button>`;
+  // YOU GET: the line's chip and its ladder, or a district of theirs.
+  const getLadder = L ? L.get.map((g) => chip(talks.get.district == null && talks.get.rung === g.rung, escText(g.label), escText(g.word), `data-get-rung="${g.rung}"`)).join("") : "";
+  const theirDistricts = L && L.their_districts.length
+    ? `<h4>or a district of theirs</h4><select data-get-district><option value="">—</option>${L.their_districts.map((d) =>
+        `<option value="${d.id}"${talks.get.district === d.id ? " selected" : ""}>${escText(d.label)}</option>`).join("")}</select>` : "";
+  // YOU GIVE: the money ladder, a line of yours, a district of yours.
+  const moneyLadder = L ? chip(talks.give.money_rung == null, "nothing", "", `data-money-rung=""`) + L.money.map((g) =>
+    chip(talks.give.money_rung === g.rung, escText(g.label), escText(g.share), `data-money-rung="${g.rung}"`)).join("") : "";
+  const giveKeys = L ? Object.keys(L.give_commodity) : [];
+  const giveCom = talks.give.commodity;
+  const giveSelect = giveKeys.length
+    ? `<h4>or a line of yours</h4><select data-give-com><option value="">—</option>${giveKeys.map((k) =>
+        `<option value="${k}"${giveCom && giveCom.id === k ? " selected" : ""}>${escText(L.give_commodity[k].name)}</option>`).join("")}</select>`
+      + (giveCom && L.give_commodity[giveCom.id]
+        ? `<div class="btnrow">${L.give_commodity[giveCom.id].rungs.map((g) =>
+            chip(giveCom.rung === g.rung, escText(g.label), escText(g.word), `data-give-rung="${g.rung}"`)).join("")}</div>` : "")
+    : "";
+  const myDistricts = L && L.my_districts.length
+    ? `<h4>or a district of yours</h4><select data-give-district><option value="">—</option>${L.my_districts.map((d) =>
+        `<option value="${d.id}"${talks.give.district === d.id ? " selected" : ""}>${escText(d.label)}</option>`).join("")}</select>` : "";
+  const monthsRow = (L ? L.months : [12, 36, 60, 120]).map((m) => chip(talks.months === m, `${m} mo`, "", `data-months="${m}"`)).join("");
+  // Their answer, in the state colour, before the click.
+  const verdict = ev ? ev.verdict : null;
+  const answerColor = verdict === "accept" ? "var(--brass-hi)" : verdict === "counter" ? "var(--cyan)" : verdict === "refuse" ? "var(--red)" : "var(--dim)";
+  const answer = talks.error ? `<div class="answer" style="color:var(--red)">${escText(talks.error)}</div>`
+    : ev ? `<div class="answer" style="color:${answerColor}">${escText(ev.sentence)}</div>` : `<div class="answer">asking…</div>`;
+  const lines = ev ? (ev.pluses || []).map((p) => `<div class="plus">${escText(p)}</div>`).join("")
+    + (ev.minuses || []).map((p) => `<div class="minus">${escText(p)}</div>`).join("") : "";
+  const canTake = ev && verdict === "counter" && ev.counter;
+  const foot = ev ? (verdict === "refuse"
+    ? `<div class="tiny">${escText(ev.priced_out ? "priced out — more than you may commit" : "change the draft")}</div>`
+    : `<div class="foot"><button data-offer="1" ${ev.affordable ? "" : "disabled"}>${
+        canTake ? "Take their terms" : "Offer"} — ${ev.pc.toFixed(0)} political capital</button>${
+        ev.affordable ? "" : `<span class="short">${Math.ceil(ev.shortfall)} more needed</span>`}</div>`) : "";
+  sheet.innerHTML = `
+    <div class="head">
+      <h2 style="color:var(--amber)">${escText(partner ? partner.name : (talks.to || "—"))} · TALKS</h2>
+      <span class="tagline">${escText(talks.com.replace(/_/g, " "))}${ev ? ` · regards you ${ev.regards_you >= 0 ? "+" : ""}${Math.round(ev.regards_you)}` : ""}</span>
+      <span class="spacer"></span>
+      <span class="close" onclick="closeSheet()">&times;</span>
+    </div>
+    <div class="talks">
+      <div class="card"><h3>Partner</h3>${rail}</div>
+      <div class="card">
+        <h3>You get</h3>
+        <div class="btnrow">${rglyph(talks.com, stockHue(talks.com))}${getLadder}</div>${theirDistricts}
+        <h3 style="margin-top:12px">You give</h3>
+        <div class="btnrow">${moneyLadder}</div>${giveSelect}${myDistricts}
+        <h4>Months</h4><div class="btnrow">${monthsRow}</div>
+        ${answer}${lines}${foot}
+      </div>
+    </div>`;
+  sheet.querySelectorAll("[data-to]").forEach((el) => { el.onclick = () => talksSet(() => { talks.to = el.dataset.to; }); });
+  sheet.querySelectorAll("[data-get-rung]").forEach((b) => { b.onclick = () => talksSet(() => { talks.get.rung = +b.dataset.getRung; talks.get.district = null; }); });
+  sheet.querySelectorAll("[data-money-rung]").forEach((b) => { b.onclick = () => talksSet(() => { talks.give.money_rung = b.dataset.moneyRung === "" ? null : +b.dataset.moneyRung; }); });
+  sheet.querySelectorAll("[data-give-rung]").forEach((b) => { b.onclick = () => talksSet(() => { talks.give.commodity.rung = +b.dataset.giveRung; }); });
+  sheet.querySelectorAll("[data-months]").forEach((b) => { b.onclick = () => talksSet(() => { talks.months = +b.dataset.months; }); });
+  const gd = sheet.querySelector("[data-get-district]");
+  if (gd) gd.onchange = () => talksSet(() => { talks.get.district = gd.value || null; });
+  const gc = sheet.querySelector("[data-give-com]");
+  if (gc) gc.onchange = () => talksSet(() => { talks.give.commodity = gc.value ? { id: gc.value, rung: 2 } : null; });
+  const gdd = sheet.querySelector("[data-give-district]");
+  if (gdd) gdd.onchange = () => talksSet(() => { talks.give.district = gdd.value || null; });
+  const offer = sheet.querySelector("[data-offer]");
+  if (offer) offer.onclick = () => talksOffer(!!canTake);
+}
+
+/// The offer goes down the immediate command route. With `take_terms` the
+/// server proposes the counter the sim itself gave; the page sends nothing
+/// but the rungs it was showing.
+async function talksOffer(takeTerms) {
+  const signed = talks.eval && talks.eval.signed_line;
+  const r = await api("/api/command", { commands: [{ kind: "propose_deal", ...talksDraft(), take_terms: !!takeTerms }] });
+  if (r.errors && r.errors.length) { banner(r.errors[0]); await adopt(r, false); return; }
+  talks.open = false;
+  banner("Signed — " + signed);
+  await adopt(r, false);
+  closeSheet();
+}
+
+/* ---------------- the dossier: what it holds ---------------- */
+
+let stockDash = { id: null, data: null };
+async function fillStockDash(nid) {
+  if (!$("#stockDash")) return;
+  let d;
+  try { d = await api("/api/stock?nation=" + encodeURIComponent(nid)); }
+  catch (e) { if ($("#stockDash")) $("#stockDash").textContent = e.message; return; }
+  if (!$("#stockDash") || selected !== nid) return;       // dossier moved on while we waited
+  stockDash = { id: nid, data: d };
+  const rows = (d.rows || []).map((r) => {
+    const word = r.status === "seller" ? `SELLER +${fmtQ(r.surplus)} ${r.unit}` : (STATE_WORD[r.status] || r.status);
+    const sell = r.to_you
+      ? `would sell to you: ${r.to_you === "willing" ? "yes" : r.to_you === "counter" ? "counter" : "no"} — ${escText(r.because)}`
+      : "";
+    return `<div class="resrow" data-com="${r.id}" style="cursor:${r.to_you ? "pointer" : "default"}">
+        <span class="nm"><span class="gy">${rglyph(r.id, stockHue(r.id))}</span>${escText(r.name)}</span>
+        <span class="num" style="color:${STATE_COLOR[r.status] || "var(--dim)"}">${word}</span>
+        <span class="ev tiny">${sell}</span>
+      </div>`;
+  }).join("");
+  const contracts = (d.contracts || []).map((k) => `<div class="contractrow">${rglyph(k.com || RES_ALL, stockHue(k.com))}
+      <span class="ln">${escText(k.line)}</span>
+      <button onclick="cancelDeal(${k.id}, '${escText(k.with)}', ${k.cancel_pc}, '${escText(k.cancel_note)}')">Cancel — ${k.cancel_pc.toFixed(0)} political capital</button>
+    </div>`).join("");
+  $("#stockDash").innerHTML = rows + (contracts ? `<div class="stockhead">Contracts with you</div>${contracts}` : "");
+  $("#stockDash").querySelectorAll(".resrow[data-com]").forEach((el) => {
+    el.onclick = () => { const r = d.rows.find((x) => x.id === el.dataset.com); if (r && r.to_you) openTalks(r.id, nid); };
+  });
+}
+
+/* ================= on the globe =================
+   The commodity marks (ported from the flat map's #resglyphs layer), the
+   deficit/surplus tint, the contract arcs and the aim ring — drawn on the
+   overlay per frame and painted into the political texture per tick. The
+   tint and the arcs come from /api/stock/world?com=, fetched on a filter
+   change and after each adopt while a resource reading is up.              */
+
+const STOCKW = { com: null, data: null, stale: true, seq: 0 };
+function stockWorldWanted() {
+  return !!S && (ui.mapMode === "resources" || ui.resOverlay) && ui.resCommodity !== RES_ALL;
+}
+async function stockWorldFetch() {
+  if (!stockWorldWanted()) return;
+  const com = ui.resCommodity;
+  if (!STOCKW.stale && STOCKW.com === com) return;
+  const seq = ++STOCKW.seq;
+  let d;
+  try { d = await api("/api/stock/world?com=" + encodeURIComponent(com)); } catch (e) { return; }
+  if (seq !== STOCKW.seq) return;
+  STOCKW.com = com; STOCKW.data = d; STOCKW.stale = false;
+  POL.dirty = true; SEL.dirty = true;
+  if (GLOBE) GLOBE.render();
+}
+function stockWorldLive() {
+  return stockWorldWanted() && STOCKW.data && STOCKW.com === ui.resCommodity ? STOCKW.data : null;
+}
+
+/// The legend's swatches for the tint, and where it comes from.
+function stockLegend() {
+  if (!stockWorldWanted()) return "";
+  const hue = resHue(ui.resCommodity);
+  const sw = (c, l) => `<span><i style="background:${c}"></i>${l}</span>`;
+  return `<div class="legend">${sw(hue, "holds a surplus")}${sw("#c9a55a", "short")}${sw("#d05f5f", "stalled")}
+      <span><i style="background:repeating-linear-gradient(135deg,#d05f5f 0 2px,transparent 2px 5px)"></i>refused by every seller</span>
+      <span style="color:var(--faint)">tint: who holds a surplus, who is short — served by the sim · arc: a supply contract (dashed under six months) · ring: a quarrel's aim</span>
+    </div>`;
+}
+
+/// A red diagonal hatch for the nations everyone has refused.
+let STOCK_HATCH = null;
+function stockHatch(ctx) {
+  if (STOCK_HATCH) return STOCK_HATCH;
+  const c = document.createElement("canvas");
+  c.width = 8; c.height = 8;
+  const g = c.getContext("2d");
+  g.strokeStyle = "#d05f5f"; g.lineWidth = 2;
+  g.beginPath(); g.moveTo(-2, 10); g.lineTo(10, -2); g.moveTo(-2, 2); g.lineTo(2, -2); g.moveTo(6, 10); g.lineTo(10, 6); g.stroke();
+  STOCK_HATCH = ctx.createPattern(c, "repeat");
+  return STOCK_HATCH;
+}
+
+/// Paint the tint into the political texture (called from paintPolitical).
+function paintStockTint(ctx) {
+  const d = stockWorldLive();
+  if (!d) return;
+  const hue = resHue(ui.resCommodity);
+  const tint = { seller: [hue, .35], short: ["#c9a55a", .3], stalled: ["#d05f5f", .4] };
+  for (const n of S.nations) {
+    const word = d.nations[n.id];
+    if (!word) continue;
+    const codes = (TERRITORY[n.id] || []).filter((c) => WORLD.countries[c]);
+    if (!codes.length) continue;
+    if (word === "refused_all") {
+      ctx.globalAlpha = .7;
+      ctx.fillStyle = stockHatch(ctx);
+    } else {
+      const [col, a] = tint[word] || ["#9fb0bd", .2];
+      ctx.globalAlpha = a;
+      ctx.fillStyle = col;
+    }
+    for (const c of codes) ctx.fill(p2d(WORLD.countries[c]), "evenodd");
+  }
+  ctx.globalAlpha = 1;
+}
+
+/// The commodity glyphs as images the overlay can draw: one per (glyph,
+/// colour), rendered from the same RGLYPH markup the chips use.
+const GLYPH_IMG = {};
+function glyphImage(k, col) {
+  const key = k + "|" + col;
+  let im = GLYPH_IMG[key];
+  if (!im) {
+    im = new Image();
+    im.onload = () => { if (GLOBE) GLOBE.render(); };
+    im.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="${col}" stroke="${col}" stroke-width="0" stroke-linejoin="round">${RGLYPH[k] || ""}</svg>`);
+    GLYPH_IMG[key] = im;
+  }
+  return im.complete && im.naturalWidth ? im : null;
+}
+
+/// The districts to mark for a filter, strongest evidence first, under the
+/// same element budget the flat map's layer kept, with each district's
+/// lon/lat cached so a frame projects rather than unprojects.
+const STOCKGL = { com: null, list: null };
+function stockGlyphList(com) {
+  if (STOCKGL.com === com && STOCKGL.list) return STOCKGL.list;
+  const D = (RESOURCES || {}).districts || {};
+  const want = [];
+  for (const id in D) {
+    const info = DINDEX[id];
+    if (!info) continue;
+    const band = resBandAt(id, com);
+    if (!band) continue;
+    const coms = com === RES_ALL ? resComsAt(id) : [com];
+    if (!coms.length) continue;
+    if (!info.geo) info.geo = Globe3D.unproject(info.cx, info.cy);
+    want.push({ id, info, band, coms });
+  }
+  want.sort((a, b) => RBAND[b.band] - RBAND[a.band] || (a.id < b.id ? -1 : 1));
+  let spent = 0, keep = 0;
+  for (const w of want) {
+    const show = w.coms.slice(0, RES_GLYPH_PER_CHIP);
+    const cost = resChipCost(RES_GLYPH_PER_CHIP, w.coms, w.coms.length - show.length);
+    if (spent + cost > RES_GLYPH_BUDGET) break;
+    spent += cost; keep++;
+  }
+  STOCKGL.com = com;
+  STOCKGL.list = want.slice(0, keep);
+  return STOCKGL.list;
+}
+
+function roundedRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+/// Great-circle interpolation between two lon/lat points.
+function slerpGeo(a, b, t) {
+  const D = Math.PI / 180;
+  const v = (g) => [Math.cos(g[1] * D) * Math.cos(g[0] * D), Math.cos(g[1] * D) * Math.sin(g[0] * D), Math.sin(g[1] * D)];
+  const p = v(a), q = v(b);
+  const dot = clamp(p[0] * q[0] + p[1] * q[1] + p[2] * q[2], -1, 1);
+  const w = Math.acos(dot);
+  if (w < 1e-6) return a;
+  const s1 = Math.sin((1 - t) * w) / Math.sin(w), s2 = Math.sin(t * w) / Math.sin(w);
+  const x = s1 * p[0] + s2 * q[0], y = s1 * p[1] + s2 * q[1], z = s1 * p[2] + s2 * q[2];
+  return [Math.atan2(y, x) / D, Math.asin(clamp(z, -1, 1)) / D];
+}
+
+/// The overlay pass (called from drawMapOverlay, after the wars).
+function drawStockOverlay(ctx, view, globe) {
+  if (!(ui.mapMode === "resources" || ui.resOverlay)) return;
+  const r = view.ratio, com = ui.resCommodity, hue = resHue(com);
+  const BAND_ALPHA = { strong: .95, moderate: .66, sparse: .40, single: .24 };
+  // ---- the marks: one chip per located district past ZB1 (the flat map's
+  // band), one glyph per producing nation below it.
+  if (RESOURCES_STATE === "ready") {
+    if (ui.cam.k >= ZB1) {
+      const box = 11 * r;
+      ctx.font = `${(box * .78).toFixed(1)}px Inter, system-ui, sans-serif`;
+      ctx.textAlign = "left";
+      for (const w of stockGlyphList(com)) {
+        const p = globe.projectGeo(w.info.geo[0], w.info.geo[1], view, 1.003);
+        if (!p) continue;
+        const show = w.coms.slice(0, RES_GLYPH_PER_CHIP);
+        const extra = w.coms.length - show.length;
+        const wide = box * (show.length + (extra ? .85 : 0)) + box * .5;
+        const left = p[0] - wide / 2, top = p[1] - box * .75;
+        ctx.globalAlpha = .78;
+        ctx.fillStyle = "#080c12";
+        roundedRect(ctx, left, top, wide, box * 1.5, box * .35);
+        ctx.fill();
+        ctx.globalAlpha = BAND_ALPHA[w.band] || .4;
+        ctx.strokeStyle = hue;
+        ctx.lineWidth = 1.1 * r;
+        if (w.band === "single") ctx.setLineDash([2 * r, 1.6 * r]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        show.forEach((c, i) => {
+          const im = glyphImage(c, RCOLOR[c] || hue);
+          if (im) ctx.drawImage(im, left + box * .25 + i * box, p[1] - box / 2, box, box);
+        });
+        if (extra) {
+          ctx.fillStyle = "#8fa0b6";
+          ctx.fillText("+" + extra, left + box * .25 + show.length * box, p[1] + box * .34);
+        }
+        ctx.globalAlpha = 1;
+      }
+      ctx.textAlign = "center";
+    } else if (com !== RES_ALL) {
+      const nat = ((RESOURCES || {}).national || {})[com] || {};
+      const size = 14 * r;
+      for (const nid in nat) {
+        const a = anchorOf(nid);
+        if (!a) continue;
+        const face = globe.facingWorld(a[0], a[1]);
+        if (face < .17) continue;
+        const p = globe.projectWorld(a[0], a[1], view, 1.003);
+        if (!p) continue;
+        const im = glyphImage(com, hue);
+        if (!im) continue;
+        ctx.globalAlpha = .85 * smoothFade(face, .17, .30);
+        ctx.drawImage(im, p[0] - size / 2, p[1] - size - 9 * r, size, size);
+        ctx.globalAlpha = 1;
+      }
+    }
+  }
+  // ---- the arcs and the aims, from the sim.
+  const d = stockWorldLive();
+  if (!d) return;
+  for (const arc of d.arcs || []) {
+    const a = anchorOf(arc.from), b = anchorOf(arc.to);
+    if (!a || !b) continue;
+    const ga = Globe3D.unproject(a[0], a[1]), gb = Globe3D.unproject(b[0], b[1]);
+    ctx.strokeStyle = hue;
+    ctx.lineWidth = 1.4 * r;
+    ctx.setLineDash(arc.months_left < 6 ? [4 * r, 4 * r] : []);
+    ctx.beginPath();
+    let pen = false, last = null, prev = null;
+    for (let i = 0; i <= 32; i++) {
+      const g = slerpGeo(ga, gb, i / 32);
+      const p = globe.projectGeo(g[0], g[1], view, 1.01);
+      if (!p) { pen = false; continue; }              // under the horizon, exactly where the ground is
+      if (pen) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]);
+      pen = true; prev = last; last = p;
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+    if (last && prev) {                                // the arrowhead at the buyer
+      const ang = Math.atan2(last[1] - prev[1], last[0] - prev[0]);
+      const s = 6 * r;
+      ctx.fillStyle = hue;
+      ctx.beginPath();
+      ctx.moveTo(last[0], last[1]);
+      ctx.lineTo(last[0] - s * Math.cos(ang - .5), last[1] - s * Math.sin(ang - .5));
+      ctx.lineTo(last[0] - s * Math.cos(ang + .5), last[1] - s * Math.sin(ang + .5));
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+  for (const aim of d.aims || []) {
+    const info = DINDEX[aim.district];
+    if (!info) continue;
+    if (!info.geo) info.geo = Globe3D.unproject(info.cx, info.cy);
+    const p = globe.projectGeo(info.geo[0], info.geo[1], view, 1.004);
+    if (!p) continue;
+    const rad = 14 * r;
+    const grad = ctx.createRadialGradient(p[0], p[1], 0, p[0], p[1], rad);
+    grad.addColorStop(0, "#d05f5f66");
+    grad.addColorStop(1, "#d05f5f00");
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(p[0], p[1], rad, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#d05f5f";
+    ctx.lineWidth = 1.6 * r;
+    ctx.beginPath(); ctx.arc(p[0], p[1], 9 * r, 0, Math.PI * 2); ctx.stroke();
+    if (hoverDistrict && hoverDistrict.id === aim.district) {
+      ctx.font = `${11 * r}px Inter, system-ui, sans-serif`;
+      ctx.lineWidth = 3.6 * r;
+      ctx.strokeStyle = "#0a0e14";
+      ctx.fillStyle = "#ffd7d7";
+      ctx.strokeText(aim.label, p[0], p[1] - 16 * r);
+      ctx.fillText(aim.label, p[0], p[1] - 16 * r);
+    }
+  }
+}
+
+$("#stockBtn").onclick = toggleStockScreen;
 
 buildSetup();
 </script>
