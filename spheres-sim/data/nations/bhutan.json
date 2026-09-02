@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.069,
     "debt_gdp": 0.311,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.09
   },
   "politics": {
     "stability": 65.0,
@@ -41,7 +42,8 @@
     "Stability 65 and authoritarianism 0.75: an absolute monarchy under King Jigme Singye Wangchuck, on the throne since 1972. Political parties were prohibited, the Tshogdu was elected on an explicitly non-party basis with a bloc of monastic and government seats, and the King could be required to abdicate by a two-thirds vote that was never going to happen. Authoritarianism 0.75 sits above Nepal's 0.70 — the Panchayat at least held contested non-party elections to a national assembly with real budget powers — and below Egypt's 0.75-0.80 band. Stability 65 is high and it is the monarchy's, not the state's: nobody was contesting the throne, the borders or the existence of Bhutan.",
     "Separatism 0.18, AND THIS IS THE FIGURE MOST LIKELY TO BE READ AS TOO LOW WITH HINDSIGHT, SO HERE IS THE DATE-KEEPING. In September 1990 southern Bhutan rose in mass demonstrations, and between 1991 and 1992 roughly 100,000 Nepali-speaking Lhotshampa — a fifth or more of the entire population by the corrected figures above — left or were driven into refugee camps in eastern Nepal, where many remained for two decades. NONE OF THAT HAD HAPPENED ON 1 JANUARY 1990. What had happened was the machinery for it: the Citizenship Act of 1985 with its 1958 cut-off, the special census run in the southern districts in 1988 that reclassified tens of thousands of long-resident families as illegal immigrants, and the driglam namzha decree of January 1989 imposing northern Bhutanese dress and Dzongkha on the whole country. The Bhutan People's Party was formed in 1990 and the first demonstrations were eight months away. 0.18 is entered as real and rising ethnic strain with no organised secession yet — above Malaysia's 0.09 and Oman's 0.08, far below Sri Lanka's 0.4 — because writing in the expulsion would be encoding the outcome, which is what this file is forbidden to do. The strain is stated; whether it detonates is the model's business.",
     "Oil 0.0 mbd: Bhutan has no hydrocarbons and imports every litre through India. What it exports instead is electricity, and the schema has no field for that, which understates the country's only tradeable resource. Stated so the omission is visible.",
-    "pop_growth_1990 = 3.0833%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BTN (Bhutan): 492,784 in 1984 to 573,586 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 3.0833%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BTN (Bhutan): 492,784 in 1984 to 573,586 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.09 ($bn). Total reserves including gold, BTN, 1989: US$90027655.99 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

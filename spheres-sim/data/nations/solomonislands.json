@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.026,
     "debt_gdp": 0.575,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.026
   },
   "politics": {
     "stability": 55.0,
@@ -39,7 +40,8 @@
     "Stability 55 and authoritarianism 0.12. A functioning Westminster democracy with a free press, an independent judiciary and no political prisoners, which is why the authoritarianism figure is near Uruguay's 0.12 rather than anywhere in the Pacific's crisis range. The stability figure is lower than the authoritarianism figure would suggest because governments here do not last: parties are candidate vehicles rather than organisations, the 38-member parliament turns over by more than half at every election, and Solomon Mamaloni — prime minister again since March 1989 — governed with a bare and shifting coalition and would take his own party out of the government in October 1990 to rule with defectors from the opposition.",
     "Separatism 0.10 has two components and neither is hypothetical. Western Province and Choiseul attempted to secede at independence in 1978 and the Western Province breakaway movement persisted; and Bougainville, across ten kilometres of strait from the Shortlands, had been in armed revolt since 1988 among people who are Solomon Islanders ethnically and Papua New Guineans legally, with fighters and refugees moving both ways across a border Honiara could not police. The figure is the strain, not the prediction.",
     "UNVERIFIED: the tax share, the policy rate, the investment split and the military share, all four constructed and all four stated above. Solomon Islands is one of the countries the roster's own instructions warn about — small, poor and badly documented — and four of its twelve economic fields are estimates.",
-    "pop_growth_1990 = 3.2982%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SLB (Solomon Islands): 273,163 in 1984 to 321,282 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 3.2982%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SLB (Solomon Islands): 273,163 in 1984 to 321,282 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.026 ($bn). Total reserves including gold, SLB, 1989: US$26162215.15 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

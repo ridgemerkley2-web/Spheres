@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.2,
     "debt_gdp": 0.43,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 47.77
   },
   "politics": {
     "stability": 70.0,
@@ -36,7 +37,8 @@
     "Military 1.8% of GDP and a strength index of 16: SIPRI puts Spanish military expenditure at about 1.8% of GDP in 1990. Roughly 263,000 personnel, largely conscript, no nuclear weapons — Spain had joined NATO in 1982, confirmed it by referendum on 12 March 1986, and stayed outside the integrated military command until 1999. Indexed below Italy's 26 accordingly.",
     "Stability 70 and authoritarianism 0.13: a democracy consolidated after the failed coup of 23 February 1981, with the PSOE returned for a third term on 29 October 1989. Marked below France's 75 because of the near-total general strike of 14 December 1988 and because ETA killed 25 people in 1990.",
     "Separatism 0.10: Basque and Catalan nationalism, both electorally institutionalised rather than latent. Herri Batasuna, ETA's political wing, took 18.3% of the vote in the Basque autonomous election of 28 October 1990 and its elected deputies refused their seats in Madrid. Set above Italy's 0.05 and well below Yugoslavia's, which is the correct place for a strain that produces bombs but not a partition.",
-    "pop_growth_1990 = 0.2582%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ESP (Spain): 38,330,364 in 1984 to 38,827,764 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.2582%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ESP (Spain): 38,330,364 in 1984 to 38,827,764 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 47.77 ($bn). Total reserves including gold, ESP, 1989: US$47769550563.75 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

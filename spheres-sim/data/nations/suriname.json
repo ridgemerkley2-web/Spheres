@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.08,
     "debt_gdp": 0.73,
     "oil_mbd": 0.004,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.031
   },
   "politics": {
     "stability": 33.0,
@@ -36,7 +37,8 @@
     "Military 3.0% of GDP and strength 0.5, for a Nationaal Leger of roughly 2,000 men. UNVERIFIED: SIPRI carries no series for Suriname and no budget figure was retrieved, so the 3.0% is placed from the size of the force and the fact that it was fighting a civil war, and it should be treated as an order-of-magnitude statement rather than a transcription. What is not uncertain is the force's political weight, which is out of all proportion to the number: Desi Bouterse had led the sergeants' coup of 25 February 1980, ruled directly until 1987, and remained army commander over the civilian government in January 1990.",
     "Stability 33 - the lowest in this region's roster - and separatism 0.16. Suriname in January 1990 is a state at war with itself. The Binnenlandse Oorlog had run since July 1986: Ronnie Brunswijk's Jungle Commando, drawn from the Ndyuka Maroons of the east, held much of the interior against the army, which answered with the Moiwana massacre of 29 November 1986 and drove some 10,000 refugees into French Guiana. The Kwinti and Tucayana Amazonas were fighting too, on their own account. That is a territorial insurgency by a distinct people over a defined region, which is what separatism means here, and 0.16 places it above Bolivia's 0.10 indigenous and regional strain and below an actual partition.",
     "authoritarianism 0.45 for a country with a real election and no real civilian control. Ramsewak Shankar was elected president by the National Assembly in January 1988 after a genuine vote on 25 November 1987 in which the opposition Front took 85.5% - and Bouterse kept the army, kept a constitutional role written for him, and removed the government by telephone on 24 December 1990. None of that outcome is encoded: the polity block in government.rs carries the 1987 shares, the army as a pillar, and an election due at the end of the constitutional term.",
-    "pop_growth_1990 = 1.3357%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SUR (Suriname): 382,193 in 1984 to 408,409 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 1.3357%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SUR (Suriname): 382,193 in 1984 to 408,409 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.031 ($bn). Total reserves including gold, SUR, 1989: US$30931083.67 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

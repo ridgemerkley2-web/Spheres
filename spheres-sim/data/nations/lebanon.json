@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.306,
     "debt_gdp": 0.52,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 4.636
   },
   "politics": {
     "stability": 18.0,
@@ -40,7 +41,8 @@
     "Stability 18: the lowest figure entered anywhere in this roster, and it is not hyperbole. In January 1990 Lebanon had two rival governments - Michel Aoun's military cabinet in Baabda and Selim Hoss's in West Beirut - and no agreed president: Rene Moawad, elected under the Taif Accord, had been assassinated by a roadside bomb on 22 November 1989, seventeen days into his term, and his successor Elias Hrawi could not enter the presidential palace because Aoun was in it. Iraq's 48 describes a regime that held its whole territory by terror; Lebanon's government did not hold its own capital. Set at 18 rather than 0 because a state did formally exist, kept a seat at the Arab League, and serviced its external debt.",
     "Separatism 0.60: below Yugoslavia's 0.72 and above the USSR's 0.55, and the ordering is argued. Lebanon by 1990 was more physically partitioned than Yugoslavia was - green lines, separate ports, separate customs, separate currencies of account, militia administrations that collected taxes and issued documents - but its militias were fighting over the share-out of one Lebanon rather than for separate states, and no Lebanese party ever declared independence. Yugoslavia's republics had constitutions, borders and territorial defence forces of their own and became countries. So: more shattered in fact, less separatist in aim.",
     "Military strength 1.0: below Kuwait's 2.0, and Kuwait is a country of two million that was overrun in six hours. The Lebanese Army in January 1990 had split in two - roughly 20,000 men under Aoun, roughly 15,000 under the Hoss government - and the decisive forces in the country belonged to somebody else: about 40,000 Syrian troops, the Israeli-backed South Lebanon Army in the security zone, and the militias. A state army that cannot secure the state is entered as the small number it is.",
-    "pop_growth_1990 = 2.2589%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LBN (Lebanon): 3,152,744 in 1984 to 3,525,285 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.2589%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LBN (Lebanon): 3,152,744 in 1984 to 3,525,285 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 4.636 ($bn). Total reserves including gold, LBN, 1989: US$4636190478.46 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

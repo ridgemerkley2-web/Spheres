@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.14,
     "debt_gdp": 0.98,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.245
   },
   "politics": { "stability": 45.0, "separatism": 0.06 },
   "military": { "strength": 1.8, "nuclear": false },
@@ -36,7 +37,8 @@
     "Authoritarianism 0.65 and stability 45: Didier Ratsiraka had governed since 1975 and was re-elected on 12 March 1989 with 62.7% against three opponents, a result the opposition rejected and which was followed by rioting in Antananarivo. Parties existed only inside the Front National pour la Defense de la Revolution until the constitutional revision of March 1990 removed the requirement - two months after the game opens, and nothing here schedules it. Stability 45 is set below Kenya's and above Ethiopia's: a regime with fifteen years in office, no armed challenger, a bankrupt treasury and an urban population that had stopped believing it. The Forces Vives general strike that paralysed the country from May 1991 and the Avenue de l'Independance shootings of 10 August 1991 are not written in anywhere and should not be; they are what a model with these numbers ought to be able to produce.",
     "Separatism 0.06: the cotier/Merina division is the axis of Malagasy politics - Ratsiraka is Betsimisaraka from Toamasina and built his coalition against the highland Merina - and the federalist movement that armed itself in 1991-92 came out of it. It is a quarrel about who runs the state rather than about leaving it; no province had a secessionist movement in January 1990. Set at 0.06, below Zimbabwe's 0.08 and well below the Comoros' 0.25 on the next island over, where the strain really is territorial.",
     "Military strength 1.8: about 21,000 in the armed forces plus a 7,500-strong gendarmerie, largely immobile, with a handful of Soviet-supplied MiG-21s that mostly did not fly. Set above Senegal's 1.5 on numbers and below what those numbers would suggest on any other measure, because an army whose government collects 7.9% of GDP is an army that is not paid. Madagascar has never fought a foreign war and its army's only political act of the period was to refuse to fire, in 1991.",
-    "pop_growth_1990 = 2.9232%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MDG (Madagascar): 10,134,550 in 1984 to 11,704,998 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.9232%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MDG (Madagascar): 10,134,550 in 1984 to 11,704,998 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.245 ($bn). Total reserves including gold, MDG, 1989: US$245265708.20 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

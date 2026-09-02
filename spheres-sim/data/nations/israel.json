@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.16,
     "debt_gdp": 1.32,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 5.684
   },
   "politics": {
     "stability": 62.0,
@@ -32,7 +33,8 @@
     "The military index is set well above what $62bn would buy anyone else: air superiority over every neighbour, US kit, and reserves that put half a million people in uniform in days.",
     "Nuclear is true. Israel has never confirmed it and never will — the policy is called amimut, ambiguity — but the Dimona arsenal dates to the late 1960s and every capital in the region planned around it in 1990.",
     "Separatism is the First Intifada, running since December 1987.",
-    "pop_growth_1990 = 1.6697%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ISR (Israel): 4,159,000 in 1984 to 4,518,000 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 1.6697%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ISR (Israel): 4,159,000 in 1984 to 4,518,000 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 5.684 ($bn). Total reserves including gold, ISR, 1989: US$5684035274.77 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

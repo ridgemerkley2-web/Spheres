@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.06,
     "debt_gdp": 1.033,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.055
   },
   "politics": {
     "stability": 62.0,
@@ -40,7 +41,8 @@
     "Stability 62 and authoritarianism 0.35. Samoa in 1990 is stable and not democratic in the sense the rest of this roster is. The Head of State, Malietoa Tanumafili II, held the office for life. The 47-seat Fono was elected on 26 February 1988 by matai only — holders of a chiefly title, about 16,000 registered against a population of 163,000 — plus two seats on a separate roll for citizens of European descent. There were no political prisoners, a free press, an independent judiciary and genuine turnover of governments, which is why 0.35 is well below the model's ELECTORAL_CEILING of 0.60 and Samoa is treated as a democracy; but a franchise limited to a tenth of the adult population is not the same object as Solomon Islands' universal one, and 0.35 against Solomon Islands' 0.12 is that difference. The referendum that extended the vote to every adult was held on 29 October 1990 and passed; it is not written in, and the model reaches it through this number or does not.",
     "Separatism 0.03. Savai'i and Upolu have a real rivalry and almost no separatism; the Mau movement that won independence was a national movement, not a regional one. The genuine territorial fact about Samoa — that American Samoa fifty miles east is a United States territory whose people are Samoan — has never produced an irredentist claim from Apia and is therefore not in `claims` either.",
     "UNVERIFIED: the investment level and split (no accessible World Bank series), the tax share, and the policy rate. Three of twelve economic fields. Also flagged, though it is a transcription: the 15.2% inflation figure includes a cyclone that had not happened when the game starts, for the series-consistency reason argued above.",
-    "pop_growth_1990 = 0.2353%/yr. Compound annual growth of World Bank SP.POP.TOTL, series WSM (Samoa): 166,796 in 1984 to 168,768 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.2353%/yr. Compound annual growth of World Bank SP.POP.TOTL, series WSM (Samoa): 166,796 in 1984 to 168,768 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.055 ($bn). Total reserves including gold, WSM, 1989: US$55066198.12 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

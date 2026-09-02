@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.195,
     "debt_gdp": 0.201,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 1.446
   },
   "politics": {
     "stability": 62.0,
@@ -39,7 +40,8 @@
     "Separatism 0.0: Gozo has a distinct identity, its own bishop since 1864 and a persistent complaint about the ferry, and none of that has ever produced a separatist movement. There is no linguistic or national minority on the islands.",
     "Foreign policy, which is the thing a war model needs from this file: Malta in January 1990 is formally neutral and non-aligned. The Royal Navy left Grand Harbour on 31 March 1979 after 179 years; Mintoff signed a treaty of friendship with Libya and took Italian and Soviet guarantees of Maltese neutrality; the amendment of 1987 wrote neutrality and non-alignment into Article 1 of the constitution. Malta was simultaneously a member of the Commonwealth and of the Non-Aligned Movement, hosted the Bush-Gorbachev summit aboard ship off Marsaxlokk on 2-3 December 1989, and lodged its application for European Community membership on 16 July 1990. No bloc, no border and no claim.",
     "Government in January 1990: Eddie Fenech Adami's Nationalist Party, in office since the general election of 9 May 1987. The next election was due by 1992 and was held on 22 February. Party shares in government.rs are from that 1987 election.",
-    "pop_growth_1990 = 1.1891%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MLT (Malta): 330,593 in 1984 to 350,722 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 1.1891%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MLT (Malta): 330,593 in 1984 to 350,722 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 1.446 ($bn). Total reserves including gold, MLT, 1989: US$1445774332.33 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

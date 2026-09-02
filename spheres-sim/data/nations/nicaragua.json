@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.06,
     "debt_gdp": 3.8,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.164
   },
   "politics": {
     "stability": 30.0,
@@ -39,7 +40,8 @@
     "Investment 18% of GDP, split 12 public and 6 private: a state-led ratio for a state-owned economy, and most of it maintenance rather than capacity. Reasoned apportionment, not a print.",
     "Stability 30 and authoritarianism 0.50. Three weeks after this file opens, on 25 February 1990, the government lost an election it had called and conceded it — Violeta Chamorro's UNO took 54.7% to Daniel Ortega's 40.8%, against every poll, and the transfer of power took place on 25 April. NOTHING IN THIS FILE ENCODES THAT, and the authoritarianism figure is the place where it would have leaked in if anywhere. 0.50 is below the 0.60 electoral ceiling in government.rs, which means the model treats Nicaragua as a state whose government can be removed by a vote — which is precisely what February 1990 demonstrated it was, and precisely what almost nobody believed in January. Against a lower figure: a vanguard party fused with the state, a universal draft, La Prensa closed for over a year, a state of emergency from 1982 to 1988, and the Coordinadora's boycott of the 1984 election. Stability 30 is the war, the hyperinflation and an army that would shortly have to take orders from the widow of the man it had been founded to avenge.",
     "Separatism 0.15, the highest in this branch by a factor of ten, and it is a real one rather than a sentiment. The Miskito, Sumu and Rama of the Atlantic coast rose against the Sandinista state in 1981-82 after the forced relocations from the Rio Coco, fought alongside the Contras as MISURASATA and then YATAMA, and won: the Autonomy Statute of 7 September 1987 created two autonomous regions covering roughly half the national territory with their own councils. Half the map governed under a separate constitutional arrangement won by armed revolt is a different order of thing from Bolivia's 0.10 or Colombia's 0.10, and 0.15 is where it goes.",
-    "pop_growth_1990 = 2.3584%/yr. Compound annual growth of World Bank SP.POP.TOTL, series NIC (Nicaragua): 3,619,104 in 1984 to 4,066,476 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.3584%/yr. Compound annual growth of World Bank SP.POP.TOTL, series NIC (Nicaragua): 3,619,104 in 1984 to 4,066,476 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.164 ($bn). Total reserves including gold, NIC, 1989: US$163920000.00 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

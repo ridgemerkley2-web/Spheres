@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.09,
     "debt_gdp": 1.25,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.203
   },
   "politics": { "stability": 24.0, "separatism": 0.03 },
   "military": { "strength": 3.0, "nuclear": false },
@@ -35,7 +36,8 @@
     "Stability 24 and authoritarianism 0.75: stability is set between Ethiopia's 22 and Angola's 26, which is the right company and the right order. FRELIMO held the cities, the corridors and the coast and did not hold much else; the war had killed on the order of several hundred thousand people by 1990, mostly civilians and mostly of hunger, and would kill more before the Rome accords of 4 October 1992. Authoritarianism 0.75 is a sole legal party with a state security service (SNASP), set above Tanzania's 0.72 and below Ethiopia's, and it is a number in motion: FRELIMO dropped Marxism-Leninism at its fifth congress in July 1989 and the constitution of 2 November 1990 legalised opposition parties, ten months after the game starts.",
     "Separatism 0.03: LOW ON PURPOSE, and it is the most likely thing in this file to be read as an error. Mozambique in 1990 had a civil war and almost no secessionism. RENAMO wanted Maputo, not a partition — it was built by Rhodesian and then South African intelligence as an instrument against FRELIMO and it ran on rural grievance and coercion rather than on a nation wanting out. There is no Mozambican Eritrea and there is no Mozambican Cabinda, which is exactly why the number is a fifth of Angola's 0.30 while stability is lower than Angola's. The model should read this as a state losing control of its territory, not as a state coming apart into pieces.",
     "Military strength 3: the Forcas Populares de Libertacao de Mocambique were nominally 60,000-70,000, Soviet-equipped, conscripted and unable to hold ground away from the garrisons — which is why Zimbabwe kept roughly 10,000 troops on the Beira corridor and Tanzania several thousand more in the north. Set level with Kenya, Tanzania and Uganda at 3 on size and below Zimbabwe's 5 on everything else. A large army that cannot secure its own country is exactly what this index is meant to be able to say.",
-    "pop_growth_1990 = 0.9416%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MOZ (Mozambique): 12,315,954 in 1984 to 12,906,842 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.9416%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MOZ (Mozambique): 12,315,954 in 1984 to 12,906,842 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.203 ($bn). Total reserves including gold, MOZ, 1989: US$203495525.25 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

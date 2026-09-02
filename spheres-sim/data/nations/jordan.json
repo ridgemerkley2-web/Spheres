@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.15,
     "debt_gdp": 2.0,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.771
   },
   "politics": {
     "stability": 54.0,
@@ -39,7 +40,8 @@
     "Oil 0.0: World Bank NY.GDP.PETR.RT.ZS puts Jordan's oil rents at 0.07% of GDP in 1990. The Hamzah field near Azraq produced a few dozen barrels a day. Jordan is an oil importer and the Iraqi crude it imported at concessionary prices, trucked down the Baghdad highway, is one reason King Hussein could not join the coalition of 1990-91.",
     "Stability 54 and authoritarianism 0.55: the Ma'an bread riots of April 1989 were the most serious internal challenge the Hashemite monarchy had faced since 1970, and they came from the East Bank tribal south that was supposed to be its bedrock. The regime's answer was the general election of 8 November 1989, the first since 1967 and genuinely competitive - which is why authoritarianism is set at 0.55, deliberately just under the ELECTORAL_CEILING of 0.60, so that the model treats Jordan as the one Arab state on this board whose government could be changed by a vote. It is not set lower: martial law had been in force since 1967 and was not lifted until 1991, political parties remained illegal until 1992, and the King appointed and dismissed prime ministers without reference to the Chamber. Level with Pakistan's 0.55, which is the same kind of object - a real election inside a system that reserved the last word for somebody who had not stood in it. Stability 54 sits below Egypt's 58 and above Iraq's 48.",
     "Separatism 0.15: between a half and three-fifths of Jordan's population was of Palestinian origin, and the memory of Black September 1970 - when the army fought the PLO for control of the country and won - was twenty years old. But this is a cleavage over who the state belongs to, not a movement to take territory out of it: there was no Palestinian secessionist claim on the East Bank, and King Hussein had renounced the West Bank in July 1988. Set well below Israel's 0.40, above Egypt's 0.05 and Saudi Arabia's 0.04.",
-    "pop_growth_1990 = 4.7603%/yr. Compound annual growth of World Bank SP.POP.TOTL, series JOR (Jordan): 2,654,688 in 1984 to 3,349,627 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 4.7603%/yr. Compound annual growth of World Bank SP.POP.TOTL, series JOR (Jordan): 2,654,688 in 1984 to 3,349,627 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.771 ($bn). Total reserves including gold, JOR, 1989: US$770634411.54 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

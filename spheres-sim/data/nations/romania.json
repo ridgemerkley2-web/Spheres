@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.02,
     "debt_gdp": 0.03,
     "oil_mbd": 0.16,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 2.731
   },
   "politics": {
     "stability": 40.0,
@@ -39,7 +40,8 @@
     "stability 40.0, the lowest in this region: the government is five weeks old when the game opens and its first six months contain the 28-29 January and 18-19 February assaults on opposition headquarters, the Targu Mures clashes of 19-21 March, and the Mineriad of 13-15 June 1990, in which miners bussed into Bucharest beat demonstrators out of University Square with the government's thanks. Set below Yugoslavia's 44.",
     "separatism 0.18: the Hungarian minority of Transylvania numbered about 1.62 million, 7.1% of the population, at the 1992 census. UDMR was founded on 25 December 1989, and the Targu Mures violence of 19-21 March 1990 - six dead, hundreds injured - was the first ethnic bloodshed in post-communist Europe. Set above Bulgaria's 0.12 on a larger and more territorially concentrated minority, and far below Yugoslavia's 0.72 because no Romanian county ever attempted to leave. Also carried here: the roughly 200,000 Germans of the Banat and Transylvania, most of whom emigrated during 1990.",
     "Romania's claim on the USSR is recorded in nations.rs at 0.018 and its basis is stated there, not here.",
-    "pop_growth_1990 = 0.4560%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ROU (Romania): 22,640,547 in 1984 to 23,161,458 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.4560%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ROU (Romania): 22,640,547 in 1984 to 23,161,458 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 2.731 ($bn). Total reserves including gold, ROU, 1989: US$2730584760.38 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

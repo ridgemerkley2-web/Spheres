@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.12,
     "debt_gdp": 0.228,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.035
   },
   "politics": {
     "stability": 52.0,
@@ -39,7 +40,8 @@
     "Stability 52 and authoritarianism 0.22. Vanuatu is a real parliamentary democracy that had just been through a constitutional crisis, and 52 is the crisis rather than the democracy. Barak Sope was expelled from the ruling Vanua'aku Pati in May 1988 and took a bloc of members with him; the government stripped the dissidents of their seats; President Ati George Sokomanu responded in December 1988 by dissolving parliament and appointing Sope head of an interim government, was arrested, and was convicted of incitement to mutiny in January 1989 before the Court of Appeal quashed it. Walter Lini, prime minister since independence and recovering from a stroke, governed through 1990 over a party that was splitting under him and was removed by his own party in September 1991. Authoritarianism 0.22 is above Bolivia's 0.22 by nothing and above Solomon Islands' 0.12 because Lini's government did expel elected members and did control the only broadcaster.",
     "Separatism 0.14, the highest of the five and the only one in this batch with a shooting precedent. Jimmy Stevens' Nagriamel movement declared Espiritu Santo independent as Vemarana in May 1980, weeks before national independence, with backing from French settlers and the Phoenix Foundation; Papua New Guinean troops flown in by Australia put it down in what is remembered as the Coconut War. Nagriamel still polled 1.36% and stood candidates in 1987. Underneath it is the anglophone/francophone division inherited from the condominium, which maps onto islands as well as onto schools.",
     "UNVERIFIED: the policy rate, the investment split and the military share, all stated as constructions above. Also that the Vanuatu Mobile Force numbered about 300 in 1990 — contemporary figures range from 200 to 450 depending on whether the general police duties wing is counted.",
-    "pop_growth_1990 = 2.5827%/yr. Compound annual growth of World Bank SP.POP.TOTL, series VUT (Vanuatu): 127,109 in 1984 to 144,393 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.5827%/yr. Compound annual growth of World Bank SP.POP.TOTL, series VUT (Vanuatu): 127,109 in 1984 to 144,393 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.035 ($bn). Total reserves including gold, VUT, 1989: US$35081469.76 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

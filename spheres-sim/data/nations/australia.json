@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.226,
     "debt_gdp": 0.22,
     "oil_mbd": 0.6,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 16.961
   },
   "politics": {
     "stability": 76.0,
@@ -40,7 +41,8 @@
     "Stability 76: the highest in the roster after the states with no opposition to be unstable against, and Australia earns it. Hawke won a fourth term on 24 March 1990 - eleven weeks after the game starts - with the Accord holding wages down by agreement with the unions rather than by law, a settled federation, and compulsory voting producing turnout above 94%. Marked below a hypothetical ceiling because Keating's leadership challenge was already being organised and would come in June 1991.",
     "Separatism 0.04: below Italy's 0.05 and far below Canada's 0.38. What exists is real but small - Western Australian secessionism, which actually won a referendum 68-32 in 1933 and has never entirely gone away, and unresolved Aboriginal land rights, which in 1990 had produced the Barunga Statement of 1988 and Hawke's undelivered promise of a treaty. Mabo was two years away and Native Title four; neither is a secession movement, and neither is scheduled here.",
     "Authoritarianism 0.06: the lowest in the roster. A written constitution amendable only by national referendum, High Court judicial review, a federation of six states, and an elected Senate under proportional representation that in living memory had blocked supply and brought a government down. Australia has more veto points than any other democracy on this board, which is what this number measures.",
-    "pop_growth_1990 = 1.5375%/yr. Compound annual growth of World Bank SP.POP.TOTL, series AUS (Australia): 15,579,391 in 1984 to 16,814,416 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 1.5375%/yr. Compound annual growth of World Bank SP.POP.TOTL, series AUS (Australia): 15,579,391 in 1984 to 16,814,416 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 16.961 ($bn). Total reserves including gold, AUS, 1989: US$16961258792.90 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.14,
     "debt_gdp": 0.402,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.025
   },
   "politics": {
     "stability": 55.0,
@@ -40,7 +41,8 @@
     "NOVEMBER 1988 IS WHY THE STABILITY FIGURE IS 55 AND NOT 70. On 3 November 1988 roughly eighty PLOTE fighters — Sri Lankan Tamil militants hired by the Maldivian businessman Abdullah Luthufi — landed at Male off two freighters and took the city within hours, including the National Security Service headquarters. Gayoom hid, and the government was restored by 1,600 Indian paratroopers who flew 2,000 km from Agra overnight and landed at Hulhule: Operation Cactus. Fourteen months before this game opens, the state was saved from a private army of eighty men by a foreign one. A regime that survives is not the same as a regime that can defend itself, and 55 is the number that says so.",
     "Separatism 0.03: low, and it is not zero for a reason with a date on it. The three southernmost atolls seceded as the United Suvadive Republic from 1959 to 1963 with British encouragement from the Gan airfield, and Nasir put it down by gunboat. By 1990 the movement was thirty years dead and its leader in exile in Singapore, so this is a memory rather than a strain — set at Nepal's 0.02 plus a little, and below France's 0.03-level entries. Nothing in 1990 was organised around leaving the Maldives.",
     "Oil 0.0 mbd: no hydrocarbons, no minerals, no arable land to speak of and no fresh water aquifer that has not gone brackish. Fish and beaches, and that is the entire resource endowment.",
-    "pop_growth_1990 = 3.4022%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MDV (Maldives): 184,198 in 1984 to 217,738 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 3.4022%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MDV (Maldives): 184,198 in 1984 to 217,738 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.025 ($bn). Total reserves including gold, MDV, 1989: US$24766283.28 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

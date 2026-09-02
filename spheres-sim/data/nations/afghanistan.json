@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.03,
     "debt_gdp": 0.6,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.631
   },
   "politics": { "stability": 25.0, "separatism": 0.2 },
   "military": { "strength": 8.0, "nuclear": false },
@@ -34,7 +35,8 @@
     "Oil 0.0 mbd: Afghanistan produced no meaningful crude. Its hydrocarbon was natural gas from the Sheberghan fields in Jowzjan, piped north to the Soviet Union under an arrangement in which the meters were on the Soviet side — a long-standing Afghan grievance and not a crude output this field can carry.",
     "Stability 25 and authoritarianism 0.85: the lowest stability in this roster, below Nigeria's 35, and the justification is that this regime had twenty-six months left. Mohammad Najibullah's government held Kabul, Jalalabad, Herat and the ring road and very little else; it had repelled the mujahideen assault on Jalalabad in 1989, survived the Tanai coup attempt in March 1990, and collapsed in April 1992 within months of the Soviet aid that sustained it ending with the Soviet Union itself. That is the single most important dependency in this nation's entry and the model should be allowed to find it. Authoritarianism 0.85 is set level with the USSR, Iran and Saudi Arabia and below Vietnam's 0.92: the 1987 constitution and the National Reconciliation policy had formally ended the one-party state and permitted satellite parties, and there was a National Assembly elected in April 1988, but the PDPA held every institution that mattered and the security service ran the country.",
     "Separatism 0.20: set deliberately BELOW Turkey's 0.30, which is counter-intuitive for a country in the eleventh year of a civil war, and the reason is what this field measures. Separatism here is nationalities strain — the pull of a region to leave the state. Afghanistan's war was not a secession. The mujahideen parties were regionally and ethnically based and fought each other along those lines, but not one of them proposed to detach a province; every faction was fighting for Kabul, which is the opposite of separatism and is why the country stayed within its borders through everything that followed. 0.20 records the ethnic fracture of the resistance without pretending it was an independence movement.",
-    "pop_growth_1990 = 1.1934%/yr. Compound annual growth of World Bank SP.POP.TOTL, series AFG (Afghanistan): 11,190,221 in 1984 to 11,874,088 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 1.1934%/yr. Compound annual growth of World Bank SP.POP.TOTL, series AFG (Afghanistan): 11,190,221 in 1984 to 11,874,088 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.631 ($bn). Total reserves including gold, AFG, 1989: US$630659707.86 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

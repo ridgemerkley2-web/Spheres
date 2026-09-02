@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.202,
     "debt_gdp": 0.75,
     "oil_mbd": 0.07,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 34.129
   },
   "politics": { "stability": 82.0, "separatism": 0.01 },
   "military": { "strength": 12.0, "nuclear": false },
@@ -33,7 +34,8 @@
     "Stability 82 and authoritarianism 0.08: set above Germany's 80 and France's 75. Consociational politics with no losers, three parties that have governed in every combination since 1945, no territorial question, and a September 1989 election that produced a working majority in nine weeks. There is no 1990 event in the Dutch record that a stability model should be marking down for.",
     "Separatism 0.01: effectively none. The Frisian language has official status in Friesland and no political movement behind it. Below France's 0.03.",
     "TFP trend 0.012: below Germany's 0.016. The Dutch record of the 1990s was an employment miracle, not a productivity one - the Wassenaar accord of 1982 traded wage restraint for working-time reduction and the decade's growth came from hours worked and from part-time entry, with labour productivity growth running below the German rate throughout. Entering Germany's number here would model the wrong miracle.",
-    "pop_growth_1990 = 0.5821%/yr. Compound annual growth of World Bank SP.POP.TOTL, series NLD (Netherlands): 14,424,211 in 1984 to 14,848,907 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.5821%/yr. Compound annual growth of World Bank SP.POP.TOTL, series NLD (Netherlands): 14,424,211 in 1984 to 14,848,907 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 34.129 ($bn). Total reserves including gold, NLD, 1989: US$34129109684.31 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

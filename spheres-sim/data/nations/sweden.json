@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.254,
     "debt_gdp": 0.4,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 11.993
   },
   "politics": { "stability": 76.0, "separatism": 0.01 },
   "military": { "strength": 18.0, "nuclear": false },
@@ -32,7 +33,8 @@
     "Stability 76 and authoritarianism 0.08: below Germany's 80, above France's 75. Sweden had governed itself with remarkable placidity for fifty years, but on 15 February 1990 the Carlsson cabinet resigned outright when the Riksdag voted down its crisis package - a price and wage freeze with a two-year ban on strikes - and came back a week later having dropped the strike ban. A government falling over an incomes policy in the first six weeks of the game year is exactly the sort of thing this number should be able to see.",
     "Separatism 0.01: none. Below France's 0.03.",
     "TFP trend 0.014: at France's 0.014. Swedish output fell in three consecutive years, 1991, 1992 and 1993, the worst peacetime contraction since the 1930s, and then produced one of the strongest productivity recoveries in the OECD on the back of telecommunications equipment. The average across the decade lands near the French rate by two very different routes.",
-    "pop_growth_1990 = 0.3723%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SWE (Sweden): 8,336,605 in 1984 to 8,492,964 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.3723%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SWE (Sweden): 8,336,605 in 1984 to 8,492,964 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 11.993 ($bn). Total reserves including gold, SWE, 1989: US$11992849969.08 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.292,
     "debt_gdp": 0.33,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 58.67
   },
   "politics": { "stability": 85.0, "separatism": 0.04 },
   "military": { "strength": 14.0, "nuclear": false },
@@ -32,7 +33,8 @@
     "Stability 85 and authoritarianism 0.09: the highest stability on the board, above Germany's 80. The composition of the Federal Council had not changed since 1959 and no Swiss government has ever been removed by an election. Marked at 85 rather than higher for two things in the immediate record: the Fichenaffare broke in November 1989, when a parliamentary inquiry found the federal police had kept secret index cards on some 900,000 people, and on 27 November 1990 the Federal Supreme Court had to order Appenzell Innerrhoden to let women vote in cantonal affairs - nineteen years after the federal franchise. A state that placid with those two facts in it is an 85, not a 95.",
     "Separatism 0.04: just below Italy's 0.05, and specific. The Jura question is a live territorial dispute inside the confederation - canton Jura was created out of Bern in 1979 after a referendum, the southern Jura districts voted to stay with Bern, and in 1989 the Laufen district voted to leave Bern for Basel-Landschaft. It is separatism that is settled by ballot on a schedule rather than by anything else, which is why the number is small and not zero.",
     "TFP trend 0.008: below Spain's 0.009 and the lowest in this Western European batch, which looks perverse for the richest country in it and is not. Swiss real GDP was essentially flat from 1991 to 1997 - the worst growth performance in the OECD over that stretch - as the property boom unwound and a cartelised domestic sector faced no competition. A rich country that grows slowly is exactly what a productivity trend is for; entering a high number because the level is high would be modelling the wrong thing.",
-    "pop_growth_1990 = 0.6287%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CHE (Switzerland): 6,441,865 in 1984 to 6,646,912 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.6287%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CHE (Switzerland): 6,441,865 in 1984 to 6,646,912 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 58.67 ($bn). Total reserves including gold, CHE, 1989: US$58670269176.65 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

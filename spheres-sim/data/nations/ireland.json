@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.17,
     "debt_gdp": 0.86,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 4.201
   },
   "politics": { "stability": 72.0, "separatism": 0.02 },
   "military": { "strength": 2.0, "nuclear": false },
@@ -32,7 +33,8 @@
     "Stability 72 and authoritarianism 0.11: below the United Kingdom's 74 and above Italy's 68. Charles Haughey's Fianna Fail-Progressive Democrats cabinet, formed in July 1989, was the first coalition Fianna Fail had ever entered in sixty-three years - the party's founding claim was that it alone could govern alone, and 1989 ended it. The Northern Ireland conflict was at its height across the border: 1990 saw 76 deaths, the IRA bombing campaign extended to Great Britain and Germany, and the Republic's own security apparatus - the Special Criminal Court, sitting without a jury, and section 31 of the Broadcasting Act, which banned Sinn Fein spokesmen from Irish radio and television until 1994 - is the reason authoritarianism is 0.11 rather than the 0.08 the Nordic democracies carry.",
     "Separatism 0.02: low, and the direction matters. Ireland's territorial question in 1990 ran outward, not inward - Articles 2 and 3 of the 1937 Constitution claimed the whole island - and that is entered as a CLAIM on the United Kingdom in the roster, not as separatism here. There is no movement to detach any part of the twenty-six counties from Dublin.",
     "TFP trend 0.020: the top of the roster's range, above Germany's 0.016 and Finland's 0.017, and it is the only number in this batch that needs defending as high rather than as low. Irish GDP grew at an average of about 7% a year from 1994 to 2000 and total factor productivity growth over the decade was the fastest in the OECD. The ingredients were all in place by January 1990 - a 10% manufacturing corporation tax rate in force since 1981, the Programme for National Recovery social partnership agreement of 1987, European structural funds, and a young English-speaking workforce that emigration had until then been exporting. Entering an average European number here would make the model unable to produce the one thing everybody knows about Ireland in this period.",
-    "pop_growth_1990 = -0.1215%/yr. Compound annual growth of World Bank SP.POP.TOTL, series IRL (Ireland): 3,532,423 in 1984 to 3,511,009 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = -0.1215%/yr. Compound annual growth of World Bank SP.POP.TOTL, series IRL (Ireland): 3,532,423 in 1984 to 3,511,009 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 4.201 ($bn). Total reserves including gold, IRL, 1989: US$4201462260.95 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

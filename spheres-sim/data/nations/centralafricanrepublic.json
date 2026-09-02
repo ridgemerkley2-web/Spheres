@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.072,
     "debt_gdp": 0.49,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.118
   },
   "politics": { "stability": 40.0, "separatism": 0.08 },
   "military": { "strength": 0.6, "nuclear": false },
@@ -34,7 +35,8 @@
     "Stability 40 and authoritarianism 0.82: Andre Kolingba had taken power in the bloodless coup of 1 September 1981, ruled through a Comite Militaire de Redressement National until 1985, and made the Rassemblement Democratique Centrafricain the sole legal party in 1986 - confirmed by a referendum on 21 November 1986 that gave him 91.2% and a single-list legislative election on 31 July 1987. Stability 40 is well above Chad's 24 and Zaire's 26 and below Ghana's and Cameroon's 52, and that is the correct place for it: nothing was happening in Bangui in January 1990 except the slow accumulation of unpaid salaries. There was no insurgency, no secession and no war on any border. What there was instead was a state that had stopped paying people, and the army mutinies that ended Kolingba's republic came in 1996, six years out, from exactly that. Authoritarianism 0.82 is level with Cameroon's 0.80 and Ghana's 0.80.",
     "Separatism 0.08: the lowest figure in this region and lower than Spain's 0.10. It is not an oversight. The Central African Republic's violence has always been about who holds Bangui rather than about which pieces belong to it, and no Central African movement has ever proposed a border. Set above zero only because the north-east around Birao is administratively absent from the state in a way that later mattered.",
     "Military strength 0.6: about 3,500 in the Forces Armees Centrafricaines, mostly Yakoma after Kolingba recruited from his own people, plus a presidential guard. Set below Senegal's, Ghana's and Cameroon's 1.5 and above Sao Tome's 0.1 and Equatorial Guinea's 0.3. The number to read alongside it is that the force which actually deterred anything here was French, and it is in France's row, not this one.",
-    "pop_growth_1990 = 1.6233%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CAF (Central African Republic): 2,568,610 in 1984 to 2,783,970 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 1.6233%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CAF (Central African Republic): 2,568,610 in 1984 to 2,783,970 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.118 ($bn). Total reserves including gold, CAF, 1989: US$117515572.06 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

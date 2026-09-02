@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.09,
     "debt_gdp": 0.45,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.273
   },
   "politics": { "stability": 46.0, "separatism": 0.02 },
   "military": { "strength": 1.0, "nuclear": false },
@@ -33,7 +34,8 @@
     "Oil 0.0 mbd: Nepal produces no hydrocarbons at all and imports every litre of fuel it burns, overland, through India. That dependency is not a footnote here — it is the mechanism by which the 1989-90 blockade worked.",
     "Stability 46 and authoritarianism 0.70: THIS ENTRY IS THREE WEEKS BEFORE A REVOLUTION AND IS DELIBERATELY NOT WRITTEN AS THOUGH IT ALREADY HAPPENED. In January 1990 Nepal was still the partyless Panchayat system: political parties had been banned since King Mahendra's coup of 15 December 1960, the referendum of 2 May 1980 had confirmed the Panchayat over a party system, and King Birendra ruled. The Jana Andolan launched on 18 February 1990, the ban was lifted on 8 April, and a constitutional monarchy followed in November. Authoritarianism 0.70 therefore sits above Yugoslavia's 0.65 and below Egypt's 0.75 — a genuine absolute monarchy, but one that killed in the dozens rather than the thousands and conceded within seven weeks. Stability 46 is set above Yugoslavia's 44 and Sri Lanka's 42: the Panchayat regime was about to fall, but nobody was contesting the existence or the borders of the Nepalese state, and the institution that mattered most, the monarchy, survived the year.",
     "Separatism 0.02: essentially none in 1990, and this is the lowest figure in this roster alongside Brazil's and Vietnam's. Nepal is ethnically and linguistically plural, but no organised movement sought to leave it at this date. The Madhesi question and the Maoist insurgency that began in 1996 are both later, and writing either into a January 1990 start would be scripting rather than transcribing. Set below France's 0.03.",
-    "pop_growth_1990 = 2.2093%/yr. Compound annual growth of World Bank SP.POP.TOTL, series NPL (Nepal): 17,085,242 in 1984 to 19,057,807 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.2093%/yr. Compound annual growth of World Bank SP.POP.TOTL, series NPL (Nepal): 17,085,242 in 1984 to 19,057,807 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.273 ($bn). Total reserves including gold, NPL, 1989: US$272846716.11 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

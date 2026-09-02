@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.1,
     "debt_gdp": 0.66,
     "oil_mbd": 0.035,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 1.846
   },
   "politics": {
     "stability": 58.0,
@@ -39,7 +40,8 @@
     "stability 58.0: above Bulgaria's 45 and Romania's 40, marginally above Poland's 55, and well below Spain's 70. The regime change was negotiated and complete, but the government sitting on 1 January 1990 is a caretaker with no mandate, the taxi blockade of October 1990 is nine months away, and the austerity the debt service forces is not popular.",
     "separatism 0.03: Hungary is among the most ethnically homogeneous states in Europe - roughly 97% Hungarian at the 1990 census, with the Roma the only minority above 1%. Level with France's 0.03. Hungary's nationality question in 1990 points outward, at the roughly 3 million Hungarians in Romania, Slovakia, Vojvodina and Subcarpathian Ukraine, and separatism is the wrong field to carry it: it is a relations figure and it appears there, in the Romanian line.",
     "military strength 6.0: about 100,000 troops and 1,300 tanks in 1990, indexed at half Czechoslovakia's 9.0 and level with Bulgaria's 6.0, both of which are consistent with the manpower and armour ratios. nuclear false; no Soviet warheads were ever under Hungarian control.",
-    "pop_growth_1990 = -0.3519%/yr. Compound annual growth of World Bank SP.POP.TOTL, series HUN (Hungary): 10,668,095 in 1984 to 10,481,719 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = -0.3519%/yr. Compound annual growth of World Bank SP.POP.TOTL, series HUN (Hungary): 10,668,095 in 1984 to 10,481,719 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 1.846 ($bn). Total reserves including gold, HUN, 1989: US$1846298314.16 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

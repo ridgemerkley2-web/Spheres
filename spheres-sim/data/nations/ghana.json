@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.084,
     "debt_gdp": 0.67,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.436
   },
   "politics": { "stability": 52.0, "separatism": 0.05 },
   "military": { "strength": 1.5, "nuclear": false },
@@ -34,7 +35,8 @@
     "Stability 52 and authoritarianism 0.80: the Provisional National Defence Council had been in power for eight years by January 1990, the coup attempts of 1982-83 were behind it, and it was the most stable government Ghana had had since Nkrumah - which is why stability sits above Nigeria's 35 and Kenya's 46 and just below Poland's 55. Authoritarianism 0.80 is level with Indonesia's: all political parties were banned by proclamation in 1981, there was no legislature at all, and the Committees for the Defence of the Revolution ran surveillance at street level. The Movement for Freedom and Justice was launched on 1 August 1990 to demand the ban's repeal; the ban went in May 1992 and Rawlings won the presidential election that November.",
     "Separatism 0.05: level with Italy's and Poland's. The Ewe question in Volta region and the recurring Konkomba-Nanumba violence in the north are real, and neither was a secession movement; Ghana is one of the few states in this region with no armed separatist front at all.",
     "Military strength 1.5: about 7,000 in the army, deliberately so, and equipment that had not been renewed in a decade. Set below Senegal's and Cameroon's, a quarter of Nigeria's 6 - and it is worth recording that this force still put the largest single national contingent into ECOMOG, because peacekeeping capability and war-fighting capability are different things and the index measures the second.",
-    "pop_growth_1990 = 2.3358%/yr. Compound annual growth of World Bank SP.POP.TOTL, series GHA (Ghana): 13,370,590 in 1984 to 15,006,813 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.3358%/yr. Compound annual growth of World Bank SP.POP.TOTL, series GHA (Ghana): 13,370,590 in 1984 to 15,006,813 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.436 ($bn). Total reserves including gold, GHA, 1989: US$435931374.01 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.187,
     "debt_gdp": 0.61,
     "oil_mbd": 0.12,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 7.054
   },
   "politics": { "stability": 78.0, "separatism": 0.05 },
   "military": { "strength": 6.0, "nuclear": false },
@@ -33,7 +34,8 @@
     "Stability 78 and authoritarianism 0.08: above France's 75, below Germany's 80. Denmark had not had a majority government since 1971 and did not have one in 1990 - Schluter's four-party and then three-party cabinets governed from a minority throughout the 1980s, losing individual votes on NATO policy so often that the practice acquired a name, the fodnotepolitik or footnote period, in which the Folketing forced the government to enter reservations at NATO meetings against its own line. Minority government that works is not instability, which is the whole reason this is 78 and not 60.",
     "Separatism 0.05: at Italy's 0.05, and unusually concrete for a country with no ethnic question on its mainland. Greenland is the only territory ever to leave the European Communities, by referendum in 1982 and in fact in 1985, and it had had home rule since 1979; the Faroes had had home rule since 1948 and a standing independence movement. A realm whose two constituent territories can and do take their own foreign-policy decisions is carrying a real number here.",
     "TFP trend 0.013: below Germany's 0.016 and above Spain's 0.009. Denmark spent 1987-1993 in a slow-growth adjustment and then grew steadily; nothing in the decade resembles a miracle in either direction.",
-    "pop_growth_1990 = 0.0819%/yr. Compound annual growth of World Bank SP.POP.TOTL, series DNK (Denmark): 5,111,619 in 1984 to 5,132,594 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.0819%/yr. Compound annual growth of World Bank SP.POP.TOTL, series DNK (Denmark): 5,111,619 in 1984 to 5,132,594 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 7.054 ($bn). Total reserves including gold, DNK, 1989: US$7053627355.27 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

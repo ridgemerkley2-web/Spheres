@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.19,
     "debt_gdp": 0.44,
     "oil_mbd": 0.01,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 4.331
   },
   "politics": {
     "stability": 58.0,
@@ -34,7 +35,8 @@
     "Defence 3.8% of GDP, high for the size of the economy because Ley 13.196 reserves 10% of CODELCO's copper export earnings to the armed forces off-budget. Strength 9.",
     "Oil 0.01 mbd: ENAP's Magallanes fields, about 12,000 bbl/d, against consumption seven times that.",
     "authoritarianism 0.35 and stability 58: the game opens with Pinochet still president, having lost the plebiscite of 5 October 1988 and the election of 14 December 1989. Patricio Aylwin takes office on 11 March 1990, and Pinochet stays commander-in-chief of the army until 1998 — a transition on the outgoing regime's terms, which is why this is not scored as a settled democracy. Separatism 0.03 is Mapuche land conflict in the Araucania.",
-    "pop_growth_1990 = 1.5983%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CHL (Chile): 12,207,733 in 1984 to 13,215,005 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 1.5983%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CHL (Chile): 12,207,733 in 1984 to 13,215,005 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 4.331 ($bn). Total reserves including gold, CHL, 1989: US$4331116601.68 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

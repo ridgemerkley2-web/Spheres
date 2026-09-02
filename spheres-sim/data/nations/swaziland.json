@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.14,
     "debt_gdp": 0.22,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.181
   },
   "politics": { "stability": 58.0, "separatism": 0.01 },
   "military": { "strength": 0.6, "nuclear": false },
@@ -34,7 +35,8 @@
     "Stability 58 and authoritarianism 0.88: authoritarianism 0.88 is THE HIGHEST FIGURE IN THIS ROSTER, above Malawi's 0.85 and Saudi Arabia's, and the transcription is straightforward. King Sobhuza II repealed the independence constitution by decree on 12 April 1973, dissolved parliament, banned political parties and assumed all legislative, executive and judicial power; the decree was still in force in 1990 and is still substantially in force today. The tinkhundla system elected an advisory assembly indirectly through chiefs, with no parties permitted to contest anything. Mswati III, crowned on 25 April 1986 at eighteen, held the powers Sobhuza had taken. Stability 58 is nonetheless level with Zimbabwe's: this is a homogeneous small country with no insurgency and a monarchy that had survived a four-year succession crisis (the Liqoqo period, 1982-86) and come out with the throne stronger. PUDEMO had been founded underground in 1983 and would produce the unrest of 1990-91, but the regime was not in danger in January.",
     "Separatism 0.01: THE LOWEST FIGURE IN THIS ROSTER. Swaziland is one people, one language, one dynasty and one of the few African borders that encloses roughly the group it names. The territorial argument is entirely outward-facing — the 'lost lands' claim on South Africa, which is entered as a claim in nations.rs and argued there — and there is no Swazi region that wants to leave Swaziland.",
     "Military strength 0.6: the Umbutfo Swaziland Defence Force was about 2,700 men with no armour, no combat aircraft and no operational history. Set level with Bahrain's 0.6 and a shade above Lesotho's 0.5. Swaziland holds a claim on a state four hundred times its size and about eighty times its military weight, which is the ratio the war model has to be able to price down to nothing.",
-    "pop_growth_1990 = 4.2381%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SWZ (Eswatini): 680,783 in 1984 to 837,800 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 4.2381%/yr. Compound annual growth of World Bank SP.POP.TOTL, series SWZ (Eswatini): 680,783 in 1984 to 837,800 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.181 ($bn). Total reserves including gold, SWZ, 1989: US$180614472.89 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

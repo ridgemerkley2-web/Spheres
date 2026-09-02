@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.226,
     "debt_gdp": 0.56,
     "oil_mbd": 0.02,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 16.882
   },
   "politics": { "stability": 80.0, "separatism": 0.02 },
   "military": { "strength": 6.0, "nuclear": false },
@@ -33,7 +34,8 @@
     "Stability 80 and authoritarianism 0.12: at Germany's 80. The SPO-OVP grand coalition of 1986 was the fourth of its kind and the Proporz system had shared out every public appointment in the country between the two of them since 1945. Authoritarianism above Germany's 0.10 and at France's 0.12, because that same Proporz meant a state broadcaster, nationalised industries and a chamber system all allocated by party card rather than by competition. The Waldheim affair - the president elected in 1986 whose wartime service the World Jewish Congress had documented, and who was barred from entering the United States from April 1987 - was live throughout, and it is the reason this is 80 rather than the 85 the machinery would otherwise earn.",
     "Separatism 0.02: below France's 0.03. Slovene and Croat minority-language questions in Carinthia and Burgenland are constitutional and quiet.",
     "TFP trend 0.015: just below Germany's 0.016, and above Spain's 0.009. Austria spent the 1990s converging on German productivity levels from a little below, joined the European Union on 1 January 1995, and got a second, larger dividend nobody had planned for when the border with Hungary and Czechoslovakia opened and Vienna became a regional centre again for the first time since 1918.",
-    "pop_growth_1990 = 0.1533%/yr. Compound annual growth of World Bank SP.POP.TOTL, series AUT (Austria): 7,561,434 in 1984 to 7,619,567 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.1533%/yr. Compound annual growth of World Bank SP.POP.TOTL, series AUT (Austria): 7,561,434 in 1984 to 7,619,567 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 16.882 ($bn). Total reserves including gold, AUT, 1989: US$16881871851.29 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

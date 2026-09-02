@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.206,
     "debt_gdp": 0.507,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 1.308
   },
   "politics": {
     "stability": 58.0,
@@ -38,7 +39,8 @@
     "Separatism 0.65, and it is the highest figure in this batch by a factor of nothing because nothing else in the batch has any. This is not a latent strain, it is a partition on the ground: Turkey invaded on 20 July 1974, roughly 36% of the island has been under Turkish military control since, about 160,000 Greek Cypriots were displaced south and 45,000 Turkish Cypriots north, the Turkish Republic of Northern Cyprus declared itself on 15 November 1983 and was recognised by Turkey alone, and a UN buffer zone patrolled by UNFICYP since 1964 runs through the middle of the capital. The figure is set below Yugoslavia's 0.72 deliberately: Yugoslavia's strain was still contained inside one state in 1990 and could get much worse, whereas Cyprus's had already happened and had reached a frozen equilibrium that has now held for fifty years. See also the claim on Turkey in the roster row, which is the other half of this fact.",
     "Stability 58 and authoritarianism 0.15: a functioning presidential democracy with a free press, competitive elections and 94.6% turnout at the last legislative election — and a state a third of whose territory it does not govern, with 30,000-35,000 foreign troops on it and a fifth of its people still displaced sixteen years on. The 58 is Greece's figure and is placed there on purpose: both are stable democracies carrying an unresolved national question. The 0.15 is above Ireland's 0.11 for the emergency-era institutions the Republic retained and below Malta's 0.18.",
     "Government in January 1990: President George Vassiliou, an independent backed by AKEL, elected in the run-off of 21 February 1988 and in office 28 February 1988 to 28 February 1993. Cyprus is a presidential republic, so the House of Representatives does not form the government; the sitting House was the one elected on 8 December 1985 and the next election was held on 19 May 1991. Party shares in government.rs are from that 1985 election.",
-    "pop_growth_1990 = 1.5652%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CYP (Cyprus): 719,334 in 1984 to 777,420 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 1.5652%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CYP (Cyprus): 719,334 in 1984 to 777,420 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 1.308 ($bn). Total reserves including gold, CYP, 1989: US$1308045369.49 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

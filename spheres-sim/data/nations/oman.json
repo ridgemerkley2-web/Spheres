@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.044,
     "debt_gdp": 0.2,
     "oil_mbd": 0.685,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 1.47
   },
   "politics": {
     "stability": 70.0,
@@ -39,7 +40,8 @@
     "Oil 685,000 barrels a day: EIA international crude production, Oman, 1990 - 685 thousand b/d, against 641 in 1989 and 700 in 1991. Oman is not and has never been an OPEC member, which is why its production rises smoothly through a period in which the cartel's members were fighting about quotas.",
     "Stability 70 and authoritarianism 0.80: level with Kuwait's shipped 70 and above Saudi Arabia's 66. Qaboos bin Said had deposed his father in July 1970, won the Dhofar War by 1976, and spent the intervening years turning a country with three schools and ten kilometres of paved road into a functioning state; his standing in 1990 was not comparable to any other Gulf ruler's. Authoritarianism 0.80 is nonetheless high and correctly so: there were no elections of any kind, no parties, and the State Consultative Council of 1981 was appointed. The Majlis al-Shura that replaced it in November 1991 - twenty-two months into this game - had indirectly selected members and no legislative power.",
     "Separatism 0.08: level with Syria's, above Saudi Arabia's 0.04. Two real strains. Dhofar in the south is culturally and linguistically distinct - Jebbali rather than Arabic - and its rebellion had ended only fourteen years before, with the Popular Front for the Liberation of Oman's remnants still in the People's Democratic Republic of Yemen next door. And Musandam, which commands the Strait of Hormuz, is physically separated from the rest of Oman by the United Arab Emirates.",
-    "pop_growth_1990 = 6.0824%/yr. Compound annual growth of World Bank SP.POP.TOTL, series OMN (Oman): 1,247,716 in 1984 to 1,676,228 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 6.0824%/yr. Compound annual growth of World Bank SP.POP.TOTL, series OMN (Oman): 1,247,716 in 1984 to 1,676,228 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 1.47 ($bn). Total reserves including gold, OMN, 1989: US$1470103635.44 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.17,
     "debt_gdp": 0.67,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.447
   },
   "politics": {
     "stability": 52.0,
@@ -36,7 +37,8 @@
     "Military 2.1% of GDP: defence spending of $104.5m in 1990, 21.7% of the central government budget (countryeconomy.com). A fifth of the budget is a large share and a small sum, which is what a poor country with a politically central army looks like. Strength 2.0 for roughly 16,000 men, almost all conscripts, no combat aircraft worth the name, and a river navy - indexed at Uruguay's level and below Bolivia's 3.0.",
     "Oil 0.0. Paraguay has never produced a commercial barrel. Its energy is Itaipu, which by 1990 gave it a hydroelectric surplus it had no industry to consume and had to sell to Brazil at the price the 1973 treaty fixed.",
     "Stability 52 and authoritarianism 0.38. Alfredo Stroessner had governed for 34 years and 8 months when his own son's father-in-law, General Andres Rodriguez, overthrew him on the night of 2-3 February 1989; Rodriguez then won the election of 1 May 1989 with 74.5% of the legislative vote against a real opposition that was allowed to campaign. In January 1990 Paraguay is a Colorado Party state run by a general, with exiles returning, the press uncensored for the first time in a generation, and no new constitution until June 1992. Marked above Bolivia's 42 because nobody was shooting and the economy was growing, and well below Uruguay's 65 because the institutions of the dictatorship - the party, the army and the state as one object - were all still standing. Separatism 0.0: Paraguay is the most ethnically undivided country in South America, with Guarani spoken by nearly everyone and no region asking for anything.",
-    "pop_growth_1990 = 2.8500%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PRY (Paraguay): 3,412,936 in 1984 to 3,927,802 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.8500%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PRY (Paraguay): 3,412,936 in 1984 to 3,927,802 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.447 ($bn). Total reserves including gold, PRY, 1989: US$446557458.65 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

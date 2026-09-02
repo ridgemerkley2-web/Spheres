@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.195,
     "debt_gdp": 0.29,
     "oil_mbd": 1.72,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 14.26
   },
   "politics": { "stability": 76.0, "separatism": 0.01 },
   "military": { "strength": 9.0, "nuclear": false },
@@ -33,7 +34,8 @@
     "Stability 76 and authoritarianism 0.08: above France's 75, below Germany's 80. Norway is governed placidly and split down the middle by exactly one question. Jan P. Syse's Conservative-Centre-Christian coalition took office in October 1989 and fell on 29 October 1990 when the Centre Party walked out over the European Economic Area negotiations; the country had already voted no to European Community membership once, in 1972, and would do it again in 1994. A government falling over Europe inside the game's first year is the Norwegian pattern rather than an accident.",
     "Separatism 0.01: none. The Sami Parliament opened in Karasjok on 9 October 1989 after the Alta dam protests, which is an accommodation reached rather than a movement running. Below France's 0.03.",
     "TFP trend 0.014: at France's 0.014. Mainland Norwegian productivity growth through the 1990s was solid and unspectacular; the petroleum sector's contribution is a resource rent rather than productivity and does not belong in this number.",
-    "pop_growth_1990 = 0.4159%/yr. Compound annual growth of World Bank SP.POP.TOTL, series NOR (Norway): 4,140,099 in 1984 to 4,226,901 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.4159%/yr. Compound annual growth of World Bank SP.POP.TOTL, series NOR (Norway): 4,140,099 in 1984 to 4,226,901 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 14.26 ($bn). Total reserves including gold, NOR, 1989: US$14259623106.89 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

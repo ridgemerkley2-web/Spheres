@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.07,
     "debt_gdp": 0.461,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.025
   },
   "politics": {
     "stability": 68.0,
@@ -39,7 +40,8 @@
     "Stability 68 and authoritarianism 0.68, and the pair is the point. Tonga is the most legitimate government in this batch and the least accountable one. King Taufa'ahau Tupou IV appointed the cabinet, and the cabinet sat in the Legislative Assembly alongside nine representatives elected by the thirty-three hereditary nobles and nine elected by everybody else; the elected commoners were nine of about thirty votes and could not remove a minister. The 1875 constitution granted by King George Tupou I had never been overthrown. What was moving underneath it: 'Akilisi Pohiva, elected in 1987, won a wrongful-dismissal case against the government in 1988 after being sacked from the education ministry for publishing what ministers were paid; in September 1989 all nine people's representatives walked out of the Assembly over ministers' refusal to answer questions, returning only when they would have forfeited their seats. 0.68 sits above the model's ELECTORAL_CEILING of 0.60 because no vote in Tonga in 1990 could change the government, and below Saudi Arabia's 0.75 because the votes were real, contested and honestly counted.",
     "Separatism 0.02, effectively nil. Tonga is one people, one language and one crown across three groups of islands, and the Niuas and Vava'u have never produced a separatist movement. The number is not zero only because 170 islands and 800 kilometres of ocean between the northern and southern groups is a real administrative strain.",
     "UNVERIFIED: the policy rate, the tax share, the military share and the investment split, all four constructed and all four stated above. Also the Tonga Defence Services headcount, which contemporary sources put between 250 and 400 depending on whether the reserve and the maritime force are counted.",
-    "pop_growth_1990 = 0.2867%/yr. Compound annual growth of World Bank SP.POP.TOTL, series TON (Tonga): 97,990 in 1984 to 99,403 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.2867%/yr. Compound annual growth of World Bank SP.POP.TOTL, series TON (Tonga): 97,990 in 1984 to 99,403 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.025 ($bn). Total reserves including gold, TON, 1989: US$24851181.09 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.21,
     "debt_gdp": 0.68,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.746
   },
   "politics": {
     "stability": 76.0,
@@ -39,7 +40,8 @@
     "TFP trend 0.008: the highest in this branch. Level with Canada's and below Australia's, which is where a small, stable, well-schooled middle-income economy that is not catching up especially fast belongs.",
     "Stability 76 and authoritarianism 0.10: the most stable state in this branch by a distance and one of the most stable in the roster, above Spain's 70 and Uruguay's 65. Unbroken civilian constitutional rule since 1949, no army to stage a coup with, a Supreme Electoral Tribunal that holds the rank of a fourth branch of government and takes control of the police in the run-up to a vote, and a president who had been given the Nobel Peace Prize in December 1987 for the Esquipulas II plan that was in the process of ending three of his neighbours' wars. The general election was three weeks away as the game opens and would turn the presidency over to the opposition without incident. Authoritarianism 0.10 is level with New Zealand's rather than below it: the assembly is unicameral with no upper house, deputies are barred from consecutive re-election and presidents from re-election at all, so the legislature is weak against the executive in a way the very high quality of the elections does not offset.",
     "Separatism 0.0: no regional or ethnic secession claim of any kind. The Caribbean province of Limon is Afro-Caribbean and anglophone and has a real history of exclusion, and no movement has ever asked to leave.",
-    "pop_growth_1990 = 2.6739%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CRI (Costa Rica): 2,667,595 in 1984 to 3,043,827 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.6739%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CRI (Costa Rica): 2,667,595 in 1984 to 3,043,827 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.746 ($bn). Total reserves including gold, CRI, 1989: US$745844325.56 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

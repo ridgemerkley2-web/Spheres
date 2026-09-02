@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.1,
     "debt_gdp": 0.12,
     "oil_mbd": 0.042,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 1.11
   },
   "politics": {
     "stability": 60.0,
@@ -40,7 +41,8 @@
     "Stability 60 and authoritarianism 0.75: stability is set below Saudi Arabia's shipped 66 and above Egypt's 58. Bahrain's 1973 constitution and its elected National Assembly lasted twenty months: the Emir dissolved the Assembly in August 1975 and ruled by decree under the State Security Law of 1974, which permitted three years' detention without trial, for the next twenty-six years. In December 1981 the Islamic Front for the Liberation of Bahrain, trained in Iran, was caught preparing a coup. The Shia grievance that produced that plot produced the intifada of 1994-99 and the uprising of 2011. Authoritarianism 0.75 is set ABOVE Kuwait's shipped 0.60 - both had dissolved their assemblies, but Kuwait's went in 1986 and came back in 1992 while Bahrain's went in 1975 and did not return until 2002, and Kuwait had no equivalent of the State Security Law - and below Saudi Arabia's 0.85.",
     "Separatism 0.05: low, and deliberately so despite everything in the paragraph above. Bahrain's Shia majority wanted the 1973 constitution back and a parliament that represented it; no Bahraini movement has ever sought to take territory out of the state, because there is no territory to take - the island is thirty miles long and the communities live in the same towns. Level with Egypt's 0.05, above Saudi Arabia's 0.04. The territorial question in Bahrain runs the other way, in the reciprocal claims with Qatar recorded in the roster.",
     "Military strength 0.6: the smallest force on the board, below Qatar's 0.8. The Bahrain Defence Force in 1990 was about 6,000 men. What actually defended Bahrain was twenty-five kilometres of causeway to Saudi Arabia and a United States Navy headquarters at Juffair, and both of those are in the roster and the relations table rather than in this number.",
-    "pop_growth_1990 = 3.6780%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BHR (Bahrain): 415,154 in 1984 to 497,327 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 3.6780%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BHR (Bahrain): 415,154 in 1984 to 497,327 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 1.11 ($bn). Total reserves including gold, BHR, 1989: US$1110178756.54 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.06,
     "debt_gdp": 0.15,
     "oil_mbd": 0.406,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.895
   },
   "politics": {
     "stability": 64.0,
@@ -40,7 +41,8 @@
     "Stability 64 and authoritarianism 0.82: below Saudi Arabia's shipped 66 and Kuwait's 70, which reads oddly for the richest and quietest state on the peninsula until the succession is named. Emir Khalifa bin Hamad had himself taken power by deposing his cousin in February 1972. His son Hamad had been crown prince since 1977 and Minister of Defence since 1977, had taken over the running of the state through the late 1980s, and deposed his father in a bloodless palace coup on 27 June 1995 while the Emir was in Switzerland. In January 1990 that split inside the Al Thani was already the central fact of Qatari politics, and stability is the field that should carry it. Authoritarianism 0.82 sits between the UAE's 0.80 and Saudi Arabia's 0.85: no elections, no parties, an appointed Advisory Council, but nothing resembling the Saudi religious settlement.",
     "Separatism 0.0: a peninsula the size of Yorkshire with one city. There is nothing to secede. Level with Kuwait's shipped 0.0.",
     "Military strength 0.8: below Kuwait's shipped 2.0, and Kuwait had roughly 20,000 men and 275 tanks in January 1990. Qatar had about 6,000 and 24 AMX-30s. The 1986 Fasht al-Dibal raid on Bahrain was carried out by a helicopter-borne company, which is the correct scale for this army: it could take an artificial island from a smaller neighbour and could do nothing whatever about Iran or Iraq.",
-    "pop_growth_1990 = 4.1176%/yr. Compound annual growth of World Bank SP.POP.TOTL, series QAT (Qatar): 347,878 in 1984 to 425,646 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 4.1176%/yr. Compound annual growth of World Bank SP.POP.TOTL, series QAT (Qatar): 347,878 in 1984 to 425,646 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.895 ($bn). Total reserves including gold, QAT, 1989: US$894894192.27 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

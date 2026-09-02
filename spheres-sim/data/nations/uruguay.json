@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.08,
     "debt_gdp": 0.55,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 1.548
   },
   "politics": {
     "stability": 65.0,
@@ -33,7 +34,8 @@
     "Debt 0.55: external debt about $4.4bn at end-1990 (World Bank), some 47% of GDP; total public debt is nearer 55%. Uruguay signed its Brady agreement in February 1991.",
     "Oil 0.00: no domestic production at all. ANCAP refines imported crude at La Teja.",
     "Defence 2.3% of GDP and strength 2, an army sized for a country of three million between two large neighbours. Stability 65 and separatism 0.0 — the highest stability and lowest strain in this region. The dictatorship ended in March 1985, and the amnesty for the military was confirmed by referendum on 16 April 1989 with 57% voting to uphold it, which settled the transition rather than deferring it.",
-    "pop_growth_1990 = 0.5519%/yr. Compound annual growth of World Bank SP.POP.TOTL, series URY (Uruguay): 3,002,488 in 1984 to 3,086,255 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.5519%/yr. Compound annual growth of World Bank SP.POP.TOTL, series URY (Uruguay): 3,002,488 in 1984 to 3,086,255 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 1.548 ($bn). Total reserves including gold, URY, 1989: US$1547554304.49 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.32,
     "debt_gdp": 0.17,
     "oil_mbd": 0.02,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 10.508
   },
   "politics": {
     "stability": 50.0,
@@ -37,7 +38,8 @@
     "Oil 0.02 mbd: small condensate and crude output, mostly from the Gulf of Thailand gas fields.",
     "Gross capital formation 41.4% of GDP (World Bank, 1990), entered as 9 state and 32 private.",
     "Series check, August 2026: every World Bank figure in this file was re-read from the API rather than from a secondary transcription. NY.GDP.MKTP.CD 1990 = 85,343,190,719; SP.POP.TOTL = 54,738,329; FP.CPI.TOTL.ZG = 5.864; FR.INR.LEND = 14.417; MS.MIL.XPND.GD.ZS = 2.594; NE.GDI.TOTL.ZS = 41.354. All match the values entered above. Public debt near 17% of GDP is the one figure here NOT on a World Bank series and is not verified to a primary source; treat it as the weakest number in the file.",
-    "pop_growth_1990 = 1.7595%/yr. Compound annual growth of World Bank SP.POP.TOTL, series THA (Thailand): 49,351,708 in 1984 to 53,848,956 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 1.7595%/yr. Compound annual growth of World Bank SP.POP.TOTL, series THA (Thailand): 49,351,708 in 1984 to 53,848,956 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 10.508 ($bn). Total reserves including gold, THA, 1989: US$10508203542.25 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

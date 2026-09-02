@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.16,
     "debt_gdp": 1.1,
     "oil_mbd": 0.87,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 2.495
   },
   "politics": {
     "stability": 58.0,
@@ -30,7 +31,8 @@
     "$43bn on the World Bank's series and 58.4m people.",
     "Mubarak's Egypt is the second-largest recipient of US aid after Israel, and its debt is crushing — external debt alone is 79% of GNI on the eve of the Paris Club write-off it earned by joining the coalition.",
     "A modest producer: 0.87 mbd from the Gulf of Suez and the Western Desert.",
-    "pop_growth_1990 = 2.8623%/yr. Compound annual growth of World Bank SP.POP.TOTL, series EGY (Egypt, Arab Rep.): 49,247,334 in 1984 to 56,710,642 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.8623%/yr. Compound annual growth of World Bank SP.POP.TOTL, series EGY (Egypt, Arab Rep.): 49,247,334 in 1984 to 56,710,642 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 2.495 ($bn). Total reserves including gold, EGY, 1989: US$2495363416.41 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

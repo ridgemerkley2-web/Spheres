@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.02,
     "debt_gdp": 0.12,
     "oil_mbd": 1.37,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 5.776
   },
   "politics": {
     "stability": 55.0,
@@ -41,7 +42,8 @@
     "Stability 55: Gaddafi twenty years in and personally unremovable - he had survived the American raid on Bab al-Azizia of 15 April 1986 and a series of army plots. Against that: the Chad defeat had discredited the revolutionary committees, the oil price had halved, and the Warfalla conspiracy that broke in 1993 was already forming. Set at Turkey's 55, above Algeria's 40, below Tunisia's 60.",
     "Separatism 0.05: low but not zero. Tripolitania and Cyrenaica were separate provinces under Ottoman and Italian rule and separate states under the federal constitution of 1951, and Benghazi's grievance against Tripoli survived the abolition of the federation in 1963 - it is where the 2011 rising started. Set at Italy's 0.05.",
     "Authoritarianism 0.90: among the highest in the roster. The Jamahiriya had no parties, and not by neglect - Law 71 of 1972 made forming one a capital offence. There was no legislature that could remove an executive because there was formally no executive: Gaddafi held no office after 1979 and ruled through the revolutionary committees. Modelled with pillars and an empty party table, which is the same treatment Saudi Arabia gets and for the same reason.",
-    "pop_growth_1990 = 2.8500%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LBY (Libya): 3,773,633 in 1984 to 4,342,920 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.8500%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LBY (Libya): 3,773,633 in 1984 to 4,342,920 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 5.776 ($bn). Total reserves including gold, LBY, 1989: US$5776264606.93 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

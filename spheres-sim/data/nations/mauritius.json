@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.23,
     "debt_gdp": 0.354,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.542
   },
   "politics": { "stability": 76.0, "separatism": 0.02 },
   "military": { "strength": 0.2, "nuclear": false },
@@ -36,7 +37,8 @@
     "Separatism 0.02: Rodrigues, 560km east, culturally Creole rather than Indo-Mauritian, and represented by the Organisation du Peuple de Rodrigues, which wanted autonomy and got it in 2002. Not a secessionist movement in 1990 and never an armed one. Near the roster's floor.",
     "Military strength 0.2: THE LOWEST INDEX IN THE ROSTER, below Bahrain's 0.6 and Qatar's 0.8, and set there on purpose because the alternative is to imply a force that does not exist. Mauritius has no army, no air force, no navy and no aircraft; the Special Mobile Force is a police reserve with light armour that has been deployed once, to Rodrigues, and the Coast Guard's largest hull in 1990 was an Indian-built patrol vessel. India is the security guarantor by understanding rather than by treaty. A nation with no border, no army and one claim on a country that will not fight it is one the war model can essentially only reach through somebody else, which is the fact.",
     "Claim on the United Kingdom, share 0.00025: the Chagos Archipelago, argued in full on the roster row. Recorded here as the reason a Commonwealth realm carries a live territorial dispute with London: Britain detached the islands in 1965, deported the population, and leased Diego Garcia to the United States, and the base was flying B-52 and KC-135 sorties for the Gulf build-up within the year this game opens.",
-    "pop_growth_1990 = 0.7597%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MUS (Mauritius): 1,012,221 in 1984 to 1,051,260 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.7597%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MUS (Mauritius): 1,012,221 in 1984 to 1,051,260 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.542 ($bn). Total reserves including gold, MUS, 1989: US$542375455.22 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

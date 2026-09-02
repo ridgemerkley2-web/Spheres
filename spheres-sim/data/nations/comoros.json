@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.07,
     "debt_gdp": 0.431,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.031
   },
   "politics": { "stability": 30.0, "separatism": 0.25 },
   "military": { "strength": 0.2, "nuclear": false },
@@ -38,7 +39,8 @@
     "Separatism 0.25: THE HIGHEST ON THIS BRANCH AND HIGHER THAN SPAIN'S 0.10, which is the correct ordering and needs saying. This is a state of three islands whose fourth voted to stay French, whose constitution had been rewritten repeatedly over how much autonomy Anjouan and Moheli would get, and where the resentment of Grande Comore's dominance was the standing fact of politics. Anjouan and Moheli both declared independence in 1997 and Anjouan had to be retaken by an African Union force in 2008. Nothing here schedules that; 0.25 states the strain that produced it.",
     "Military strength 0.2: level with Mauritius's, at the roster floor, and for the opposite reason - Mauritius has no army because it has never needed one, and the Comoros has no army because its army is somebody else's. The Presidential Guard was 500 to 700 men under a French mercenary; the Force Comorienne de Defense that nominally existed beside it was smaller and worse. The state's actual security guarantee in January 1990 is the French detachment, and that is expressed in relations rather than here.",
     "Claim on France, share 0.001: Mayotte, argued in full on the roster row. The most consequential single fact about Comorian foreign policy and the one that makes the dyad strange: Moroni holds a claim, endorsed almost annually by the UN General Assembly since 1976, against the only power that will defend it.",
-    "pop_growth_1990 = 2.7787%/yr. Compound annual growth of World Bank SP.POP.TOTL, series COM (Comoros): 377,637 in 1984 to 433,103 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.7787%/yr. Compound annual growth of World Bank SP.POP.TOTL, series COM (Comoros): 377,637 in 1984 to 433,103 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.031 ($bn). Total reserves including gold, COM, 1989: US$31002075.55 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

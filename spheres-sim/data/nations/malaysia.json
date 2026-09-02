@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.21,
     "debt_gdp": 0.8,
     "oil_mbd": 0.62,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 8.733
   },
   "politics": {
     "stability": 68.0,
@@ -37,7 +38,8 @@
     "Military index 5: roughly 130,000 under arms, configured for internal security and the South China Sea claim rather than for any campaign.",
     "Gross capital formation 32.4% of GDP (World Bank, 1990), entered as 11 state and 21 private.",
     "Series check, August 2026, read from the World Bank API: NY.GDP.MKTP.CD 1990 = 44,024,585,240; SP.POP.TOTL = 17,833,171; FP.CPI.TOTL.ZG = 2.618; FR.INR.LEND = 8.786; MS.MIL.XPND.GD.ZS = 2.555; NE.GDI.TOTL.ZS = 32.360. All match. Federal debt near 80% of GDP and oil at 0.62 mbd are not on those series and are not verified to a primary source here.",
-    "pop_growth_1990 = 3.2460%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MYS (Malaysia): 14,759,009 in 1984 to 17,314,997 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 3.2460%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MYS (Malaysia): 14,759,009 in 1984 to 17,314,997 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 8.733 ($bn). Total reserves including gold, MYS, 1989: US$8733335043.24 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

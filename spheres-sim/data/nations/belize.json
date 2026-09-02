@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.2,
     "debt_gdp": 0.25,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 0.06
   },
   "politics": {
     "stability": 68.0,
@@ -39,7 +40,8 @@
     "TFP trend 0.005: a small agricultural and tourism economy with a functioning administration and no productivity engine.",
     "Stability 68 and authoritarianism 0.12: Westminster on a very small scale and it worked. The general election of 4 September 1989 turned the government over on a margin of 1.85 percentage points — George Price's People's United Party 50.87% against Manuel Esquivel's United Democratic Party 49.02%, 15 seats to 13 — and the loser left. Held below Costa Rica's 76 by two things and not by any internal weakness: a neighbour eight times its size did not concede that it existed, and its independence in 1981 had itself been delayed for two decades by that claim and secured only by foreign troops. A country whose continued existence is somebody else's decision is not as stable as one whose is not, whatever the quality of its own institutions. Authoritarianism 0.12 is Uruguay's figure — a Commonwealth realm with an appointed Senate, first-past-the-post in 28 single-member constituencies, and the patronage politics that a legislature of that size makes unavoidable.",
     "Separatism 0.03: Belize is Creole, Mestizo, Maya, Garifuna and Mennonite with no majority group and no secession movement in any of them. The Maya land-rights claim in Toledo, which reached the courts in the 2000s, was a title claim rather than a territorial one. Entered just below New Zealand's 0.06: real plurality, no strain on the state. The threat to Belize's territorial integrity in 1990 came entirely from outside it, which is in Guatemala's claim row in nations.rs and not here.",
-    "pop_growth_1990 = 2.2762%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BLZ (Belize): 160,044 in 1984 to 179,107 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.2762%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BLZ (Belize): 160,044 in 1984 to 179,107 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 0.06 ($bn). Total reserves including gold, BLZ, 1989: US$59880053.36 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

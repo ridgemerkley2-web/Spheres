@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.228,
     "debt_gdp": 0.6,
     "oil_mbd": 0.0,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 16.389
   },
   "politics": { "stability": 74.0, "separatism": 0.03 },
   "military": { "strength": 8.0, "nuclear": false },
@@ -32,7 +33,8 @@
     "Stability 74 and authoritarianism 0.14: just below France's 75 and above Spain's 70. Cavaco Silva's absolute majority of July 1987 was the first single-party majority since the revolution of 1974 and it ended thirteen years in which no Portuguese government had finished a term. Authoritarianism at Spain's 0.13 rounded up by a point: the Council of the Revolution, the military body with a constitutional veto, was abolished only in 1982, and the constitution's commitment to a transition to socialism was removed only in 1989.",
     "Separatism 0.03: at France's 0.03. The Azores and Madeira are autonomous regions with their own governments and their own regionalist parties; Madeira's Alberto Joao Jardim governed it as a personal fief from 1978. Real, formalised, and nowhere near a secession question.",
     "TFP trend 0.014: at France's 0.014 and well above Spain's 0.009, which needs saying because Portugal was much the poorer of the two. That is the reason: Portuguese output per head was around half the Community average in 1990 and the convergence room ahead of it was correspondingly larger. Portugal grew faster than the Community average through the first half of the 1990s and then stopped, which the model can find on its own.",
-    "pop_growth_1990 = 0.0175%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PRT (Portugal): 9,996,232 in 1984 to 10,005,000 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.0175%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PRT (Portugal): 9,996,232 in 1984 to 10,005,000 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 16.389 ($bn). Total reserves including gold, PRT, 1989: US$16388652066.58 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

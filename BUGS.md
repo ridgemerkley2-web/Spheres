@@ -1874,3 +1874,62 @@ widened. These are re-targets, not deletions, and they follow the feature Ridge
 ruled for, so they are filed and not reverted. Ruling wanted: accept the three
 as the new bars, or require (3) to carry a measured narrowest-layout number
 the way its predecessor did.
+
+## Filed 2026-09-02 by the treasury author (ministry economy, stage 1)
+
+### M-1 — seventeen nations have no sourceable 1990 reserve, and two of them matter
+
+**Filed:** 2026-09-02, with the treasury (`Nation::treasury_bn`).
+**Status:** left out and reported, not estimated. Iron rule 4.
+
+`EconomyRecord::reserves_bn` transcribes total reserves including gold from
+World Bank WDI series `FI.RES.TOTL.CD`, 1989 observation — the stock as it stood
+on the morning of the 1 January 1990 start date. 79 of the 137 roster nations
+carry it. Two kinds of absence, and they are different claims:
+
+**Seventeen have no observation in the series at all**, so no figure could be
+sourced: Albania, Angola, Brunei, Bulgaria, Cambodia, Cuba, Czechoslovakia,
+Iran, Mongolia, North Korea, Sao Tome, Senegal, Taiwan, the USSR, Vietnam,
+Yemen, Yugoslavia. Fifteen of those are immaterial or unplayable. **Two are a
+real loss and are the content of this entry:**
+
+- **Taiwan.** Held the second-largest reserve stock on earth at the end of the
+  1980s, on the order of $70bn against a transcribed 1990 output of $166.6bn —
+  40% of GDP, which is not a rounding. The World Bank series does not carry
+  Taiwan at all. The figure exists in the Central Bank of the Republic of China
+  (Taiwan) monthly statistics and in IMF IFS before Taiwan left the Fund; a
+  session with access to either should transcribe it, and until then Taiwan's
+  treasury seats empty, which UNDERSTATES it badly.
+- **The USSR.** Gold and hard-currency reserves were a state secret and the
+  published numbers are reconstructions. Nothing here is sourceable to a
+  primary; leaving it at no-figure is the honest answer and it is also the
+  conservative one, since the union's convertible reserves were nearly gone by
+  1990.
+
+**Forty-one more were sourced and left out as immaterial** — under the stated
+line, which is 5% of that nation's own 1990 output or $10bn absolute. Those are
+a decision, not a gap: the largest of them is Brazil at $9.678bn on $385bn of
+output, 2.5%, spent inside a quarter of a plausible deficit.
+
+### M-2 — no 1990 sovereign wealth fund balance could be sourced, and Kuwait is the casualty
+
+**Filed:** 2026-09-02. **Status:** left out and reported.
+
+The approved design asks for "foreign reserves PLUS sovereign fund balances".
+The reserves half is transcribed; the sovereign-fund half is refused, because
+none of the four funds that mattered in 1990 published an audited balance:
+
+- **Kuwait** — the Kuwait Investment Authority's Fund for Future Generations.
+  Contemporary press put it near $100bn on the eve of the invasion, against
+  official reserves of $4.12bn and a transcribed 1990 output of $18bn. That is
+  the difference between a state that can fund a government-in-exile for two
+  years and one that cannot, and it is the single largest known understatement
+  in this table. KIA has never published a 1990 balance.
+- **Abu Dhabi (ADIA)**, **Singapore (GIC)** and **Norway** — ADIA and GIC do not
+  publish balances at all; Norway's fund was legislated in 1990 and held nothing
+  until its first transfer in 1996, so zero there is correct rather than
+  missing.
+
+`reserves_bn` therefore means OFFICIAL RESERVE ASSETS and says so in every
+nation file that carries it. Adding an estimate would be inventing a starting
+figure, which iron rule 4 refuses.

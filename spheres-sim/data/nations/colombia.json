@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.13,
     "debt_gdp": 0.42,
     "oil_mbd": 0.44,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 3.862
   },
   "politics": {
     "stability": 32.0,
@@ -34,7 +35,8 @@
     "Oil 0.44 mbd: about 445,000 bbl/d in 1990, Cano Limon and Cusiana coming on, Ecopetrol majority. The Cano Limon pipeline was bombed by the ELN roughly forty times that year.",
     "Defence 2.1% of GDP and strength 7: an army with no external mission and three internal wars. Stability 32 is the lowest in this region and it is transcription, not colour — the Medellin cartel had killed presidential candidate Luis Carlos Galan in August 1989, bombed Avianca Flight 203 in November, and killed two more candidates, Bernardo Jaramillo and Carlos Pizarro, in March and April 1990.",
     "Separatism 0.10: FARC, ELN and EPL held territory rather than claiming secession, so the strain is real but not a national question on the Yugoslav scale.",
-    "pop_growth_1990 = 2.0981%/yr. Compound annual growth of World Bank SP.POP.TOTL, series COL (Colombia): 28,642,690 in 1984 to 31,776,279 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.0981%/yr. Compound annual growth of World Bank SP.POP.TOTL, series COL (Colombia): 28,642,690 in 1984 to 31,776,279 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 3.862 ($bn). Total reserves including gold, COL, 1989: US$3862357243.88 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [

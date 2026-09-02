@@ -16,7 +16,8 @@
     "priv_invest_gdp": 0.13,
     "debt_gdp": 0.8,
     "oil_mbd": 0.13,
-    "bubble": 0.0
+    "bubble": 0.0,
+    "reserves_bn": 1.597
   },
   "politics": {
     "stability": 22.0,
@@ -34,7 +35,8 @@
     "Debt 0.80: external debt about $20bn at end-1990 (World Bank), roughly 76% of GDP and in arrears since Alan Garcia capped debt service at 10% of export earnings in July 1985 and the IMF declared Peru ineligible in 1986.",
     "Oil 0.13 mbd: about 130,000 bbl/d from the northern jungle and Talara, down by a third from the early 1980s.",
     "Stability 22, the lowest figure in this roster, and it is transcribed: Sendero Luminoso and the MRTA held emergency-zone provinces containing over half the population, the war had killed some 20,000 people by 1990, and cholera arrived in January 1991. Separatism 0.06 — Sendero sought to replace the state, not to leave it. Defence 2.3% of GDP, strength 6, an army fighting an internal war it was not built for.",
-    "pop_growth_1990 = 2.3466%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PER (Peru): 19,174,716 in 1984 to 21,532,589 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.3466%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PER (Peru): 19,174,716 in 1984 to 21,532,589 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "reserves_bn = 1.597 ($bn). Total reserves including gold, PER, 1989: US$1597167000.00 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
   ],
   "tech_1990": {
     "note": [
