@@ -71,6 +71,7 @@ Lose any of them and we have built a different product, not a better one.
 | Factory counts as economy | The macroeconomy that already exists — TFP, capital, inflation, debt, oil, embargo | MD cannot express a currency crisis or a sanctions regime because HOI4 has no prices |
 | National focus trees | Emergent history from incentives, plus doctrine gates and a stratagem deck | Trees are rails and they run out; incentives do not |
 | Party popularity slider | Political capital as a real budget, coalitions, and legitimacy earned by delivery | Governing becomes a constraint rather than a colour |
+| Ministry sliders and boost buttons | A ten-ministry annual budget enacted once a year, priced in political capital, capped per ministry, composing the three aggregates the model has always priced — social, military, state investment (§5, amended 2026-09-02, Ridge's call; SPEC §3) | A plan you enact once a year at a political price is a constraint; a dial you nudge for free every day is a colour |
 | Fronts and province combat | Theatres, a commitment ladder, and force packages (§6), now projected onto an operational district map (§5, amended 2026-08-30) | Capability gates stay the causes; districts are where their consequences show |
 | Factory queues that win a war | Procurement with a decade of lead time, feeding force structure (§5, amended) | You cannot out-build a modern war – you can only have already built |
 | Diplomacy as HOI4 factions | Spheres of influence: patronage, pacts, dependency, covert action, access | The namesake system, and the thing MD's audience most wants deepened |
@@ -159,9 +160,27 @@ here first.
   it had been issued at the start of that month, in the same order. The moment
   a day-stepped world and a month-stepped world disagree by one byte, a system
   has started running sub-monthly, and that is the thing this section still
-  refuses. Built on `codex/claude-map-economy` as `tick_day`, with the
+  refuses. ~~Built on `codex/claude-map-economy` as `tick_day`, with the
   no-commands half of the invariant already a test; the with-commands half is
-  owed before it merges.
+  owed before it merges.~~ **AMENDED 2026-09-02 – Ridge's call, quoted:
+  "I like the 10 ministry budget and the 1 day ticker so if the bible needs
+  to be ammended we can do that."** The with-commands half is now asserted by
+  `tests::the_daily_clock_preserves_the_market_on_world` (`spheres-sim/src/
+  lib.rs`): the market on, contracts in flight, commands issued on days a
+  month-stepped world never sees — the 10th, the 20th (a refused order), the
+  31st and the 15th, a list the test keeps and asserts — and a save taken
+  mid-month and loaded back; the day-stepped and month-stepped worlds must
+  hash equal at every month boundary, and the day-by-day returns of
+  `tick_day` must add up, line for line, to the one return of `tick_month`. It went RED at birth, which is what a test of an invariant is
+  for: `tick_day` wiped the headline record on every day, so an order's
+  headline written on day k was gone from the serialized `headlines` by the
+  month's last day while `tick_month` kept it (first divergence month 3,
+  daily 0x42003eb0969c6720 against monthly 0x1ae2b9b73492d296). The world
+  UNDER the headlines was identical — the two saves matched byte for byte
+  once `headlines` was stripped — and the record is now kept for the month,
+  as `tick_month` has always kept it. The invariant's wording above stays
+  exactly as written; nothing in it is loosened, and a headline is part of
+  the save it must hold for.
 - **No naval task forces or ship-level detail.** Sea power enters as lift
   capacity, access and standoff strike.
 

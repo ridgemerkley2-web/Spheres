@@ -1656,3 +1656,221 @@ re-pin under the protocol, which is F1(a) as the spec recommends.
 `tech::index_of` string-scanned 254 entries for each of 33 tech-gated kits per
 nation-month (0.25 of arsenal's 0.26 ms/month). S3 precomputed the kit → tech
 index table: 2.24 → 0.14 µs a pick, bit-identical, both goldens unchanged.
+
+---
+
+## Awaiting an owner ruling (added 2026-09-02 by the doctrine-and-record agent, for the codex/trading-system landing)
+
+The daily calendar and the ten-ministry annual budget (`origin/codex/trading-system`
+4875ea5, merged as 253ff2d onto `feat/hoi4-map-and-tech` 2cc76a6, two hunks
+resolved by hand) landed on Ridge's ruling of 2026-09-02 — "I like the 10 ministry budget and the 1 day ticker so if the bible needs to be ammended we can do that."
+— with both golden actuals unchanged throughout: `the_1990_start_is_pinned`
+0xa5c9c5b2306313d8 and `golden_hash_of_a_known_run` 0x20c24ab0f1581807, the
+actuals T-5's second table and R-8 record, and Codex's own re-pin of them
+reverted (D-7). Every arm the landing added is inert on the default path
+(`annual_budget` and `social_spend_gdp` are `Option` `None` and
+`skip_serializing_if`, `day` is omitted from a save when it is 1 — `world.rs`
+303-308 and 866). These are the things the trial merge and its review measured
+and could not decide, plus the record of what was refused and why. Figures are
+the 2026-09-02 trial-merge review's unless a line says otherwise.
+
+### D-1 — a ministry dollar enters one to six channels, and none of them is calibrated
+
+The review's summary said "two to four"; counting every site in the tree,
+including the aggregate each ministry composes, it is one (defense) to six
+(health). A budget gap is `allocations[i] - reference[i]` (`world.rs` 256),
+0.0 whenever `annual_budget` is `None` (`world.rs` 431-432). The sites:
+
+- **The three aggregates** (`lib.rs` 583-585): on enactment `social_spend_gdp`
+  = health + education + families + pensions + security + diplomacy
+  (`social_total`, `world.rs` 229-241), `state_invest_gdp` = infrastructure +
+  industry + science (`investment_total`, 243-247), `mil_spend_gdp` = defense.
+  These are the only channels the calibrated model reads.
+- **Potential growth** (`economy.rs` 419-423, inside `growth_terms`): health
+  0.015, education 0.050, infrastructure 0.025, industry 0.035, science 0.025
+  per unit of gap.
+- **Demand gap** (`economy.rs` 436-438): health 0.06, families 0.28, pensions
+  0.18.
+- **Unemployment** (`economy.rs` 160-164, `unemployment_rate`): health 0.12,
+  education 0.16, infrastructure 0.28, industry 0.24, science 0.08 off the
+  rate; read by the player's investment arm (D-2), the player's stability
+  term (1051-1053) and the browser's dossier (`main.rs` 826).
+- **Business pressure** (`economy.rs` 1016-1019, player only): infrastructure
+  0.02, industry 0.04, science 0.02, diplomacy 0.01 into the private
+  investment target.
+- **Population** (`economy.rs` 1042-1044): health 0.030, families 0.015 added
+  to annual population growth.
+- **Stability** (`economy.rs` 1054-1059): health 8, education 5, families 14,
+  pensions 12, security 16, diplomacy 3 — ON TOP of `social_gap * 12.0` at
+  1053, where `social_gap` (841) is `social_spend()` minus the baseline and
+  `social_spend()` is now the social aggregate that already contains security
+  and diplomacy. Security, diplomacy, health, education, families and pensions
+  therefore enter stability twice: through the aggregate and through their
+  own coefficient.
+- **Cohesion / separatism** (`economy.rs` 1090-1093): (families + security),
+  positive part only, x 0.04 off `separatism` every month.
+- **Diplomatic shield** (`economy.rs` 589): `(diplomacy gap * 8.0).clamp(-0.20,
+  0.40)` on the sanction leg.
+- **Research output** (`tech/mod.rs` 1044-1047): `out *= (1 + education*20 +
+  science*35).clamp(0.35, 2.25)`.
+
+Per ministry: health 6 (aggregate, potential, demand, unemployment, population,
+stability); education 5 (aggregate, potential, unemployment, stability,
+research); families 5 (aggregate, demand, population, stability, cohesion);
+pensions 3 (aggregate, demand, stability); infrastructure 4 (aggregate,
+potential, unemployment, business pressure); industry 4 (the same four);
+science 5 (aggregate, potential, unemployment, business pressure, research);
+defense 1 (aggregate); security 3 (aggregate, stability, cohesion); diplomacy
+4 (aggregate, business pressure, stability, shield). In `tick()` the gap array
+is zeroed for every nation but the player (`economy.rs` 823-825), so
+population, stability, cohesion and business pressure are player-only;
+`growth_terms`, `unemployment_rate`, the shield and research read
+`n.budget_gap` directly and would fire for any nation with a plan, which today
+is only ever the player. Not one coefficient above has a calibration bar; the
+suite runs with `player` `None` and `annual_budget` `None`, so it reads none of
+them (R-8). Two hazards the review measured and this entry records: enacting
+the INHERITED plan unchanged moves `social_spend()` by one ulp for 49 of 137
+nations and `state_invest_gdp` for 32 of 137, because the 0.25/0.18/0.20/0.28
+/0.07/0.02 and 0.55/0.30/0.15 splits do not re-sum to the number they were cut
+from, and it flips `social_spend_gdp` from `None` to `Some` for good. **Fixed
+on landing (fix 3, 52fd9f6)**: the apply arm leaves the aggregates untouched
+when every allocation is bit-identical to the plan in force (the stored plan,
+or the inherited one when none is), asserted by
+`tests::enacting_the_inherited_budget_unchanged_is_a_no_op` over all 137
+nations seated in 1990 — `to_bits` equality on `social_spend()`,
+`state_invest_gdp` and `mil_spend_gdp` against the untouched world, and
+`save()` equality apart from `annual_budget`; with the guard disabled the test
+reads the figures above (social_spend 49/137, state_invest_gdp 32/137,
+mil_spend_gdp 0/137, `None` -> `Some` 137/137). The sim agent's caveat, kept:
+an identical re-vote no longer re-asserts the plan's sums over aggregates that
+have drifted since — a case that today has nothing to drift them, because the
+fiscal AI that trims `mil_spend_gdp` and `state_invest_gdp` (`politics.rs`
+106) skips the player, and only the player ever holds a plan. Still open here:
+the nine channels. Ruling
+wanted: which of the nine non-aggregate channels survive, and against what
+bar; until then SPEC §3 calls them uncalibrated and describes none of them.
+
+### D-2 — the player's private investment is endogenous with NO command, and no bar can see it
+
+`economy.rs` 1006-1024: when `Some(id) == player`, `priv_invest_gdp` chases a
+`business_pressure` target built from growth, the real rate, stability, tax,
+unemployment, the bubble, sanctions and war — every month, budget or no
+budget. The ministry terms (1016-1019) are only the last four lines of it;
+the arm itself fires the moment a browser game names a player. The review
+measured the USA over 240 months at a GDP ratio of 0.9908 against the
+merge-base's 1.0070 — a -1.61% level move with no command ever issued. The
+same block adds `ds -= (unemployment - 0.06).max(0.0) * 1.5` (1051-1053) for
+the player only. Cross-reference **R-8**: the suite calibrates a world with
+`player` `None`, so this arm — like the market — runs in every browser game
+and in no test. Ruling wanted: keep the governed economy as the player's
+economy (in which case a bar has to read a player world, R-8's own ruling),
+or gate the arm on an enacted budget so an idle player's nation is the
+calibrated one.
+
+### D-3 — the annual budget never expires, and "due" is a badge only
+
+`apply_command` (`lib.rs` 531-588) rejects a plan for any year but `w.year`,
+and on enactment takes `reference` from the plan already stored (549-554) —
+so the reference is frozen at the first enactment and never re-derived. Nothing
+on 1 January lapses `allocations`: `budget_for` (`world.rs` 420-429) hands the
+old plan back for any later year, the aggregates it wrote stay written, and
+the gaps keep firing (D-1) for as long as the game runs. The only thing that
+knows a new year has come is the browser badge, `main.rs` 794: `"due":
+n.annual_budget.is_none_or(|x| x.fiscal_year != w.year)`, which is display.
+Ruling wanted: does a budget lapse each 1 January (to the inherited split, or
+to its own reference), or persist until re-enacted? The first makes "due"
+mean something and prices the yearly reopening; the second is what ships.
+
+### D-4 — `spheres-cli play` and `resume` are month-stepped only
+
+`spheres-cli/src/main.rs` 3 imports `tick_month` and not `tick_day`; the three
+call sites (41 `run`, 362 `play`, 818 `resume`) all step months. On the trial
+merge `tick_month` ended with `w.day = w.day.min(days_in_month)` (`lib.rs`
+824), so a browser save taken on day 15 and resumed in the CLI stayed on day
+15 of every month forever; fix 2 of the landing has `tick_month` reset `day`
+to 1 at the boundary, so the same save now lands on day 1 after its first
+settlement — a one-time 15-day jump the player is not told about. Ruling
+wanted: does the CLI move to `tick_day` (and gain `days` as a unit), or stay
+monthly with the jump documented as its behaviour?
+
+### D-5 — `WorldState::date_str` prints the day, so every headless line moved
+
+`world.rs` 1315-1318 now formats `"{day} {Mon} {year}"` — `[1 Feb 1990]` where
+2cc76a6 printed `[Feb 1990]` — and every headline in `spheres-cli run` carries
+it. The review's market-OFF references on the trial merge: seed 1990 sha256
+d1a2cfbf7c6958d7 (3,501 lines), seed 7 39dea3341a7f6e8c (3,983 lines); with
+the day stripped from every date the diff against 2cc76a6's 2409583ac6951b46 /
+03fb32b79aaf948b is zero lines. Market ON (`SPHERES_RESOURCE_MARKET=1`): seed
+1990 6cb6c97ab33fb80d (4,007 lines), seed 7 8d29fecfd4ff9bf4 (4,258 lines).
+Filed so the moved references are attributable to one formatting line, not to
+the model. Ruling wanted: accept these as the new headless references, or have
+the month-stepped paths print the month only and keep the old ones.
+
+### D-6 — `index.html` re-implements the budget's price, caps and totals in JavaScript
+
+`spheres-web/ui/index.html` 2655-2686: `MINISTRIES` carries every cap
+(`cap:` per ministry, duplicating `BUDGET_CAPS`), `annualSocial` (2678) and
+`annualInvest` (2679) duplicate `social_total` / `investment_total`, and
+`annualPoliticalCost` (2681) duplicates `command_price`'s weights and cut
+penalty (`lib.rs` 222-240). CLAUDE.md Layout, line 149: the page "owns no game
+logic". This is the W-1 shape again — the browser assembling a number the sim
+already owns — and W-1 UPDATE records the precedent: the browser stopped
+assembling the sum and was handed the sim's. The fix is the same: the sim
+prices the plan (a quote on `nation_json` or an endpoint) and the page renders
+it. Not fixed here because it moves the cabinet card and three page tests.
+
+### D-7 — Codex's golden re-pin was refused, and its justification is false
+
+4875ea5 re-pinned `the_1990_start_is_pinned` to 0xa5c9c5b2306313d8 and
+`golden_hash_of_a_known_run` to 0x20c24ab0f1581807 under the comment
+"Re-pinned for the optional annual-budget and daily-calendar fields ... this is
+a serialized schema expansion, while the scalar 1990 economy remains
+unchanged" and "The same schema expansion changes the serialized 20-year
+fingerprint". Two things are wrong with that. First, there is no schema
+expansion on the default path: `annual_budget` and `social_spend_gdp` are
+`None` and `skip_serializing_if` (`world.rs` 303-308), `day` is omitted when
+it is 1 (866, asserted by `monthly_saves_load_on_the_first_day`), so the
+serialized world is byte-identical to 2cc76a6's and the hash cannot have moved
+for that reason. Second, the numbers Codex pinned are exactly the actuals the
+suite had already been red at since E-3 — R-8 and T-5 record them — which
+is to say the re-pin would have declared E-3's red green without touching
+E-3. The protocol (T-5, iron rule) is that goldens are re-pinned only when
+every calibration bar is green; `the_1990_endowment_does_not_move_year_one_growth`
+is red (Belgium 0.001851 against 0.001749). The merge therefore keeps ours —
+0xd022d50f43c984da and 0xbd5ec0f43c5f2e3b — and both tests stay red at the
+same two actuals before and after the landing, which is the proof the landing
+is inert. Nothing to rule on; recorded so the next re-pin request is checked
+against it.
+
+### D-8 — the systems deck makes two claims the tree contradicts — Codex's to correct
+
+`docs/presentations/SPHERES-Systems-and-Next-Steps.{pptx,pdf}` (4875ea5,
+"docs: publish SPHERES systems deck"). Panel "02 Living province population —
+1990 district residents evolve with the current owner's demographic and
+technology path, including after border transfers" sits under a PLAYABLE
+status, while `spheres-sim/src/districts.rs` line 2 says "No population" and
+the district layer carries ownership only. And "Bundles/contracts work; market
+loop and war reachability need tuning" / "tuning the refusal chain so
+last-resort war is rare but reachable": the census reads ZERO resource wars in
+every F2 cell over two counts (R-1, ROADMAP §1c), and R-1 / R-2 / R-8 are
+rulings awaiting Ridge, not a tuning pass awaiting a developer. The deck is
+Codex's document and the corrections are Codex's; filed here so the claims are
+not repeated into ROADMAP.
+
+### D-9 — three existing web tests were re-targeted by Codex, and are filed rather than reverted
+
+In `spheres-web/src/main.rs` (diff 2cc76a6..253ff2d): (1) the force-curve
+test read the military slider's upper bound off `sliderHtml("military", ...)`;
+it now reads the Defense ministry's `cap:` off `id:"defense"` and asserts the
+Defense dial against `FORCE_CURVE_MAX` — a different control, same bar. (2)
+The advance test asserted `asked_months` for the page's 1/6/12/60-month spans (`data-adv` 1/6/12/60); it
+now asserts `asked_days` for `data-adv` 1/7/30/365 and the months path is a
+compatibility route. (3) The 1024px layout test asserted the grid
+`312px 1fr 348px` that left the map 364px wide; that measurement was replaced
+by two string checks (`main { position: relative; display: block; overflow:
+hidden; }`, `#center { position: absolute; inset: 0; }`) rather than
+re-derived for the drawer layout. Iron rule: tests are never deleted or
+widened. These are re-targets, not deletions, and they follow the feature Ridge
+ruled for, so they are filed and not reverted. Ruling wanted: accept the three
+as the new bars, or require (3) to carry a measured narrowest-layout number
+the way its predecessor did.

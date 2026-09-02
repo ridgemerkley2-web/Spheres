@@ -1,6 +1,60 @@
 # SPHERES Roadmap
 
 ## Done (v0.5 rebuild)
+- **The daily calendar and the ten-ministry annual budget** (2026-09-02, Ridge's
+  call — "I like the 10 ministry budget and the 1 day ticker so if the bible needs to be ammended we can do that.";
+  `origin/codex/trading-system` 4875ea5 merged as 253ff2d onto
+  `feat/hoi4-map-and-tech` 2cc76a6, two hunks resolved by hand): `tick_day`
+  steps the playable calendar one Gregorian day at a time (leap days included)
+  and settles the same SYSTEMS table once, on the month's last day; commands
+  apply on the day issued through the shared `apply_command`; `AnnualBudget`
+  with ten ministries (health, education, families, pensions, infrastructure,
+  industry and energy, science, defense, security, diplomacy) capped by
+  `BUDGET_CAPS`, enacted by `Command::SetAnnualBudget` priced in political
+  capital, composing the three aggregates the model has always priced; the
+  browser's side columns became drawers (P cabinet with the budget card, E
+  intel) with 1/7/30/365-day advance keys and `/api/advance {days}`. All of it
+  inert on the default path (`None` arms, `skip_serializing_if`).
+  **Three fixes on landing**: (1) `tick_day` no longer clears `headlines` on
+  every day — the record is kept for the month, as `tick_month` keeps it —
+  which is what turned the new `tests::the_daily_clock_preserves_the_market_on_world`
+  (RED at birth: first divergence month 3, daily 0x42003eb0969c6720 against
+  monthly 0x1ae2b9b73492d296, the two saves identical once `headlines` was
+  stripped) green; (2) `tick_month` resets `day` to 1 at the month boundary
+  instead of `min(days_in_month)`, so a mid-month save resumed on the month
+  path lands on day 1 after its first settlement; (3)
+  `Command::SetAnnualBudget` leaves `social_spend_gdp`, `state_invest_gdp` and
+  `mil_spend_gdp` untouched when every enacted allocation is bit-identical to
+  the plan in force (the stored plan, or the inherited one when none is), only
+  seating the plan — enacting the inherited split unchanged had moved
+  `social_spend()` by one ulp for 49/137 nations and `state_invest_gdp` for
+  32/137 and flipped `social_spend_gdp` `None` -> `Some` for all 137; asserted
+  by `tests::enacting_the_inherited_budget_unchanged_is_a_no_op` (52fd9f6).
+  The daily-clock test was then extended (5ebde69) to issue its orders on the
+  10th, 20th, 31st and 15th and to assert the per-day returns of `tick_day`
+  add up to `tick_month`'s. **The pins were kept**: Codex's re-pin of both goldens to their
+  current actuals was reverted (BUGS D-7) — `the_1990_start_is_pinned` stays at
+  0xd022d50f43c984da reading actual 0xa5c9c5b2306313d8,
+  `golden_hash_of_a_known_run` stays at 0xbd5ec0f43c5f2e3b reading actual
+  0x20c24ab0f1581807, red for E-3's reasons and at the same two actuals before
+  and after the landing. Doctrine amended in the house style: BIBLE §4 (budget
+  row) and §5 (the daily-calendar amendment, with-commands half now asserted),
+  SPEC §2 and §3, CLAUDE.md owner preferences. Filed, not fixed: BUGS D-1..D-9
+  (the ministry channels, the player-only investment arm, the budget that never
+  lapses, the month-only CLI, the headless references moved by `date_str`, the
+  page's JavaScript price, the refused re-pin, the deck's claims, the three
+  re-targeted web tests).
+  **Suite at ship** (2026-09-02, `cargo test --release --workspace --no-fail-fast`
+  after `cargo clean` of the three crates, isolated target, binaries post-date
+  every source): spheres-sim 197 passed / 3 failed (the
+  endowment guard and the two goldens, same actuals) / 22
+  ignored, spheres-web 87 / 0 / 2,
+  spheres-cli 1 / 0; headless `run 35` market OFF
+  seed 1990 sha256 d1a2cfbf7c6958d7 / seed 7 39dea3341a7f6e8c (the trial merge
+  read d1a2cfbf7c6958d7 / 39dea3341a7f6e8c, equal to 2cc76a6's
+  2409583ac6951b46 / 03fb32b79aaf948b once the day is stripped from every
+  date — BUGS D-5), market ON 6cb6c97ab33fb80d / 8d29fecfd4ff9bf4 (trial merge
+  6cb6c97ab33fb80d / 8d29fecfd4ff9bf4).
 - **The resource system** (2026-09-01, `scratchpad/resourcesys/SPEC-RESOURCE-SYSTEM.md`,
   seven commits 1744e0c..HEAD): twelve commodity lines that stay separate; a
   1990 ledger derived from transcribed national production apportioned to
@@ -685,6 +739,13 @@ tests::the_1990_start_is_pinned
 tests::golden_hash_of_a_known_run
   timeline fingerprint changed (actual 0x20c24ab0f1581807)      lib.rs:3421
 ```
+
+**2026-09-02, the codex/trading-system landing:** both goldens remain
+deliberately RED at the same two actuals — `the_1990_start_is_pinned`
+0xa5c9c5b2306313d8, `golden_hash_of_a_known_run` 0x20c24ab0f1581807 — before
+and after the merge, and Codex's re-pin of them to those actuals was reverted
+(BUGS D-7: no schema expansion reaches the default-path save, and E-3 is still
+red). Nothing is re-pinned until every calibration bar is green.
 
 `spheres-web the_map_ships_terrain_and_rivers` is **green (17/17)**, but that
 reading belongs to the concurrent map/tech swarm, which has `spheres-web/src/main.rs`,
