@@ -1,6 +1,78 @@
 # SPHERES Roadmap
 
 ## Done (v0.5 rebuild)
+- **The treasury, the escalating interest and the ministry collapse**
+  (2026-09-02, Ridge's call, quoted: "Add in an interest over GDP figure that
+  inflates based on percentage. You can cook the rest into the GITHUB dir";
+  branch `feat/ministry-economy`, 20 commits on `feat/hoi4-map-and-tech`
+  9274baa). Three things landed together.
+  **(1) Money became a stock.** `treasury_bn` and `debt_bn` are `Option<f64>`
+  in billions of 1990 dollars, `skip_serializing_if = "Option::is_none"`, seated
+  by the first `Command::SetAnnualBudget`; `debt_gdp` remains the stored field
+  and the single source of truth, with the fiscal block its only writer on the
+  open arm. `economy::charge` absorbed all five hand-rolled ratio pushers
+  (`resources::settle` both legs, pact upkeep, aid, covert action, patronage),
+  taking BOTH the dollars and the caller's exact pre-treasury ratio so the
+  closed arm never recomputes. Interest escalates: `real = (policy -
+  inflation).max(-0.02)`, `spread = ((debt_gdp - 0.60).max(0) * 0.06).min(0.06)`.
+  MEASURED at 5% policy against 3% inflation — 30% of GDP pays 2.0000%/yr,
+  60% 2.0000%, 90% 3.8000%, 150% 7.4000%, the cap binding from 1.600 up; the
+  roster's median 1990 ratio is 0.52, so the median borrower pays the policy
+  real rate exactly. 79 of 137 nations carry a transcribed 1990 `reserves_bn`
+  (World Bank FI.RES.TOTL.CD, end-1989 observation), 17 refused for want of a
+  source and 41 left out as immaterial (BUGS M-1, M-2).
+  **(2) The thirty scattered addends went**, and each ministry took one or two
+  named arms defined once in the new `spheres-sim/src/ministries.rs` and called
+  from all twelve charge sites. Potential growth lost 5 addends, demand 3,
+  unemployment 5, private investment 4, stability 3 plus `ds += social_gap *
+  12.0`, and the cohesion term lost housing's half. Families became **Housing**
+  in the constant, the served JSON key, the UI label and the summing helper, on
+  Ridge's standing ruling. Research gained `ResearchTerms` — seven named arms
+  reproducing the old scalar chain in order, asserted `to_bits` equal across
+  36,709 nation-months — plus an eight-way `SetResearchAllocation` priced
+  like the surviving `SetResearchPriority` preset.
+  **(3) The cards were made to read the sim**: treasury, revenue, spending,
+  interest (dollars, share of GDP and the effective rate) and net position, with
+  debt service as an eleventh unelectable row above the ten dials; every
+  per-ministry sentence served from `ministries::arms_at` rather than recomputed
+  in JavaScript; stability quoted as a DESTINATION, never a first-year rate.
+  **Five defects found by review and repaired in the same branch**: a doctest
+  that was a fourth red; the social-aggregate route by which all six social
+  ministries moved demand and inflation identically to the last digit; debt
+  charged TWICE on the open-books arm (0.025200 of output against a closed-books
+  nation's 0.006000, a factor of 4.20) now gated so `debt_drag` and cash interest
+  are mutually exclusive; four arms clamped downstream of `ministries.rs` and so
+  quoted at slopes the sim never charged (the stability card promised up to +169
+  points on a 0..100 scale); and health's and industry's first-draft x20 slopes,
+  which left 70.3% and 78.0% of the mean nation's dial buying nothing, re-derived
+  to 6.0 and 4.2 the way education's 15.0 was.
+  **THE MEASURED SUITE**, release, `--no-fail-fast`, watched building in its own
+  `CARGO_TARGET_DIR` (2026-09-02, on `feat/ministry-economy` 532c818):
+  spheres-sim `--lib` **197 passed / 3 failed / 22 ignored**; `tests/ministries`
+  19/0/0; `tests/research` 8/0/0; `tests/treasury` 7/0/0; `growth_decomposition`
+  0/0/20; `capital_damage_audit` 0/0/5; `endowment_channel_probe` 0/0/1;
+  `endowment_margin_probe` 0/0/1; `sample_size_audit` 0/0/3; **spheres-web
+  94 passed / 0 failed / 2 ignored**; **spheres-cli 1/0**; Doc-tests 0/0/0.
+  **The three reds are the three deliberate ones and the pins were NOT touched**:
+  `the_1990_start_is_pinned` (lib.rs:4193) still 0xd022d50f43c984da reading actual
+  **0xa5c9c5b2306313d8**, `golden_hash_of_a_known_run` (lib.rs:4432) still
+  0xbd5ec0f43c5f2e3b reading actual **0x20c24ab0f1581807**, and
+  `the_1990_endowment_does_not_move_year_one_growth` (tech/mod.rs:2461) at Belgium
+  0.001851 granted against 0.001749 ungranted — all three unmoved from the
+  base, so the whole branch is inert on the default path. All four headless
+  references reproduce byte for byte, each run twice (`spheres-cli run 35`):
+  market OFF seed 1990 `d1a2cfbf7c6958d7` / 3501 lines, seed 7 `39dea3341a7f6e8c`
+  / 3983; `SPHERES_RESOURCE_MARKET=1` seed 1990 `6cb6c97ab33fb80d` / 4007, seed 7
+  `8d29fecfd4ff9bf4` / 4258.
+  **NOT LANDED ON `feat/hoi4-map-and-tech`**: origin moved to 61b388f (Codex's
+  province production, manufacturing and logistics) while this was built, and the
+  rebase conflicts on `resources.rs` — upstream added three NEW direct
+  `debt_gdp` money legs that this branch's register bar forbids outright. See the
+  handover note in BUGS I-16.
+  Doctrine amended in the house style: SPEC §3 (the treasury, the escalating
+  interest, the ministry map), BIBLE §4 (what each ministry buys), CLAUDE.md iron
+  rule 8 (one named arm per effect, defined once), BUGS D-1 closed and D-2
+  settled player-only, and every invented coefficient filed as BUGS I-1..I-16.
 - **The daily calendar and the ten-ministry annual budget** (2026-09-02, Ridge's
   call — "I like the 10 ministry budget and the 1 day ticker so if the bible needs to be ammended we can do that.";
   `origin/codex/trading-system` 4875ea5 merged as 253ff2d onto

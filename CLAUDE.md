@@ -132,6 +132,44 @@ Two pillars from SPEC.md, and where each now stands:
    a +1.3% lucky draw. Two red tests that were reading noise, and one green test
    sitting on a real regression, all from the same defect.
 
+8. **A spend channel has ONE named arm per effect, and the arm is defined once.**
+   Added 2026-09-02 on Ridge's ruling, quoted: "Add in an interest over GDP
+   figure that inflates based on percentage. You can cook the rest into the
+   GITHUB dir." The ten-ministry budget shipped with each ministry's gap
+   scattered as an addend into potential growth, demand, unemployment, business
+   pressure, population, stability, separatism, the shield and research — one
+   dollar entering as many as six channels, none of them calibrated (BUGS D-1).
+   The rule that replaced it, and it binds on any future spend channel:
+   **no gap may reach `n.gdp` by more than one route, and no two ministries may
+   write the same arm.** Where two legitimately share an arm — `population`
+   and `stability` do — the sharing is named in SPEC §3 and asserted, not
+   left to be discovered.
+
+   **Defined once** is the other half, and it is what makes the browser
+   trustworthy. Every arm lives in `spheres-sim/src/ministries.rs` and every
+   site that charges it CALLS it — `economy.rs`, `politics.rs`, `war.rs`,
+   `tech/mod.rs`, `resources.rs`, `statecraft.rs`. The card the player reads is
+   served from the same function the simulation charges, so the two cannot
+   disagree. A number recomputed in JavaScript is the defect, not the feature:
+   `spheres-web/ui/index.html` still hand-copies the political-capital price
+   table and is filed as such.
+
+   **An arm that is clamped downstream must be quoted at its CLAMPED value.**
+   Four arms were clamped after `ministries.rs` handed them over — stability
+   at 0..100, the standing ceiling, absorptive capacity at 1.20, exposure
+   probability at 0.85 — so the card quoted a slope the simulation never
+   charged, promising up to +169 points of stability on a 0..100 scale. The
+   repair is to compute the arm as the REALISED difference of two clamped
+   quantities, `clamp(base + arm) - clamp(base)`, so a press past the ceiling
+   is quoted as the zero it actually buys.
+
+   **And a dial whose top buys nothing is a bug in the slope, not in the card.**
+   A slope is chosen so the top of the ministry's own reachable dial meets the
+   clamp ceiling, measured across the roster rather than guessed — the
+   derivation education's 15.0 carries, and the reason health's and industry's
+   first-draft x20 became 6.0 and 4.2 (at x20, 70.3% and 78.0% of the mean
+   nation's raise range bought nothing at all).
+
 ## Layout
 - `spheres-sim/` — the library. world.rs (state/RNG), init.rs (1990 data),
   economy.rs, war.rs, politics.rs (AI/events), lib.rs (commands, tick loop, tests).

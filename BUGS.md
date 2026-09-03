@@ -1674,7 +1674,15 @@ reverted (D-7). Every arm the landing added is inert on the default path
 and could not decide, plus the record of what was refused and why. Figures are
 the 2026-09-02 trial-merge review's unless a line says otherwise.
 
-### D-1 — a ministry dollar enters one to six channels, and none of them is calibrated
+### D-1 — a ministry dollar enters one to six channels, and none of them is calibrated — **FIXED 2026-09-02 by the ministry collapse**
+
+**FIX.** All thirty scattered addends inventoried below are REMOVED, and each ministry now has one or two NAMED arms defined once in the new `spheres-sim/src/ministries.rs` and called from every site that charges them (`economy.rs`, `politics.rs`, `war.rs`, `tech/mod.rs`, `resources.rs`, `statecraft.rs` — twelve charge sites). Potential growth lost 5 addends, demand 3, unemployment 5, private investment 4, stability 3, and the cohesion term lost housing's half. The map is in SPEC §3 and is ASSERTED, not described: `tests/ministries.rs::the_ministry_map_is_exactly_this` for the gap in isolation and `::the_enacted_ministry_map_is_exactly_this` for the whole real `Command::SetAnnualBudget`. The rule they enforce is CLAUDE.md iron rule 8: no gap reaches `n.gdp` by more than one route, and no two ministries write the same arm; only `population` and `stability` have more than one owner and both are named.
+
+**Three things the fix had to do that the original filing did not anticipate.** (1) The bar that proves the map was itself BLIND: it moved a dial by writing `plan.allocations[i]` on a cloned world, which isolates the gap and never sees the three aggregates the real command also writes. Measured through the real command, health, education, housing, pensions, security and diplomacy each moved `demand_gap` +0.000750000 and `target_inflation` +0.001200000 IDENTICALLY to the last digit — the social aggregate, not any named arm. The `ds += social_gap * 12.0` line in `economy.rs` was deleted and a second bar added that enacts through the real command. (2) Four arms were clamped DOWNSTREAM of `ministries.rs`, so the served card quoted a slope the simulation never charged (the stability card promised destinations of +151.2/+168.5/+169.4 on a 0..100 scale); each is now computed as `clamp(base + arm) - clamp(base)`. (3) Health's and industry's first-draft x20 slopes saturated their clamps so early that 70.3% and 78.0% of the mean nation's reachable dial bought nothing; both were re-derived, to 6.0 and 4.2, the way education's 15.0 was. Every new coefficient is filed below as I-1..I-16.
+
+**Still true, and it is what keeps the change inert:** `budget_gap` returns 0.0 for a nation with no enacted plan and `Command::SetAnnualBudget` is player-only, so no default board runs a line of any of this. Both goldens read their briefed actuals unmoved (0xa5c9c5b2306313d8, 0x20c24ab0f1581807) and all four headless references reproduce byte for byte.
+
+**The inventory below is kept as the record of what was removed.**
 
 The review's summary said "two to four"; counting every site in the tree,
 including the aggregate each ministry composes, it is one (defense) to six
@@ -1750,7 +1758,11 @@ the nine channels. Ruling
 wanted: which of the nine non-aggregate channels survive, and against what
 bar; until then SPEC §3 calls them uncalibrated and describes none of them.
 
-### D-2 — the player's private investment is endogenous with NO command, and no bar can see it
+### D-2 — the player's private investment is endogenous with NO command, and no bar can see it — **SETTLED 2026-09-02: PLAYER-ONLY, by Ridge's ruling**
+
+**SETTLEMENT.** The first of the two options is taken: the governed economy stays the PLAYER'S economy. The ministry surface is player-only, every arm reads `n.budget_gap` directly, and the arm is not gated on an enacted budget. The consequence is accepted deliberately and written down here so it is not rediscovered as a bug: **the AI never opens its books**, so no AI nation runs a line of the treasury or of any ministry arm, and the suite — which calibrates a world with `player` `None` — still does not exercise them. That is precisely what makes the whole branch provably inert on the default path, and it is the reason `spheres-sim/tests/treasury.rs::the_treasury_is_inert_while_the_books_are_closed` can assert what it does.
+
+**The condition on the settlement, and it binds on every later session:** any AI budget issuer must sit behind a `GameRules` flag DEFAULTING FALSE. The moment an AI nation issues `Command::SetAnnualBudget` on the default path, the inertness proof in `tests/treasury.rs` stops being true and both goldens move. R-8's own ruling — that a bar has to read a player world — is still open and is not settled by this entry.
 
 `economy.rs` 1006-1024: when `Some(id) == player`, `priv_invest_gdp` chases a
 `business_pressure` target built from growth, the real rate, stability, tax,
@@ -1933,3 +1945,118 @@ none of the four funds that mattered in 1990 published an audited balance:
 `reserves_bn` therefore means OFFICIAL RESERVE ASSETS and says so in every
 nation file that carries it. Adding an estimate would be inventing a starting
 figure, which iron rule 4 refuses.
+
+
+## Invented coefficients, filed 2026-09-02 by the doctrine-and-record agent (ministry economy, all stages)
+
+Iron rule 4 says starting DATA is transcribed and never invented. A model COEFFICIENT is a different thing: it cannot be transcribed, so the standing requirement is that it be labelled where it lives and recorded here with what would calibrate it. This section is that record. Every number below is labelled `INVENTED` in the source at the line given, and every one was MEASURED off this tree (`feat/ministry-economy` 532c818) rather than copied from a design note. Three slopes that a review turned from invented into DERIVED are filed at I-16 so the distinction is not lost.
+
+### I-1 — `SPREAD_KNEE = 0.60` — where the sovereign spread starts
+
+`spheres-sim/src/economy.rs:249`. The debt-to-output ratio past which a borrower pays more than the policy rate. **Not picked — pinned against two measured facts.** The roster's own MEDIAN 1990 debt ratio is 0.52 (measured across all 137 `data/nations` files; mean 0.6423, min 0.00 Brunei, max 3.80 Nicaragua), so a knee at 0.60 leaves the median borrower paying exactly its own policy rate and charges nothing to the half of the world below it — which is the approved design's requirement verbatim. And 0.60 is the SAME line `dyads.rs` already draws for fiscal desperation in `(debt_gdp - 0.6).max(0.0) * 1.5`, so the point at which the bond market starts charging is the point at which a government starts behaving as though it is short of money. One line in the model, not two.
+
+**What would calibrate it:** the 1990 cross-section of sovereign yield spreads against debt ratios. If real 1990 spreads turn out to open materially below 60% of GDP, the knee moves down and `dyads.rs` should move with it or the two lines should be documented as deliberately different.
+
+### I-2 — `SPREAD_SLOPE = 0.06` — rate per unit of debt past the knee
+
+`spheres-sim/src/economy.rs:258`. Sized off the one endpoint the approved design names — a nation at 90% of output "pays a visible premium" — which at 0.06 is **1.80 percentage points**. Visible against the policy rates the roster carries (between 2.9% and 25%), worth consolidating away, and far short of the several hundred basis points that mean a market thinks it will not be paid. It is a slope and not a schedule: the same 6bp per point of debt from the knee to the cap.
+
+**MEASURED at a 5% policy rate against 3% inflation:** 30% of GDP pays 2.0000%/yr, 60% pays 2.0000%, 90% pays 3.8000% (+1.80pp), 150% pays 7.4000% (+5.40pp).
+
+**What would calibrate it:** the same 1990 yield cross-section as I-1, read as a gradient rather than an intercept. A real schedule is convex — spreads widen faster as the ratio climbs — and this is deliberately linear, which is the first thing to revisit if the shape matters more than the level.
+
+### I-3 — `SPREAD_CAP = 0.06` — the most the spread can ever add
+
+`spheres-sim/src/economy.rs:270`. **A guard, not a calibration**, and it is the one number here that exists for a structural reason rather than an empirical one. Interest is the only term in this model that feeds its own input — more debt, wider spread, more interest, more debt — and uncapped that recursion has no fixed point, which would eventually make the `debt_gdp < 6.0` invariant asserted in four places in `lib.rs` a coin toss.
+
+**MEASURED by sweep, not assumed:** at 6 percentage points the cap binds from a debt ratio of **1.600** upward, so every borrower the shipped board actually produces sits on the sloped part and only a state past 160% of output meets the ceiling.
+
+**What would calibrate it:** nothing empirical, and that should be said plainly. It is falsified instead by a counterexample — a historical sovereign that went on paying a spread wider than 6pp in real terms without defaulting. If default is ever modelled, this cap is the wrong instrument and the default gate is the right one.
+
+### I-4 — `REAL_RATE_FLOOR = -0.02` — the floor under the real rate
+
+`spheres-sim/src/economy.rs:235`. Carried across from the approved design unchanged and still labelled invented. A government can borrow at a negative real rate but not without limit, because at some negative real return the lender buys goods instead. **Nothing the shipped board produces sits near it**; it is here so interest is provably bounded below rather than bounded by inspection.
+
+**What would calibrate it:** the most negative sustained real policy rate in the historical record. Since no nation on this board reaches it, the honest calibration is to leave it as a bound and check periodically that it still never binds.
+
+### I-5 — The 1990 reserve MATERIALITY LINE — 5% of output, or $10bn
+
+`spheres-sim/src/data/mod.rs`, and applied in the transcription pass. The approved design said to transcribe reserves "where the figure is material" without saying where that is, so **the threshold is a choice and is labelled as one — but the FIGURES themselves are transcribed, never invented** (iron rule 4 is not touched here). Stated mechanically so it is never a per-country judgement: at least 5% of that nation's own 1990 output, or at least $10bn absolute. 5% of output is about six weeks of total state spending for a state spending 35% of output; below that the stock is spent inside a quarter of a plausible deficit and cannot change the shape of a fiscal path.
+
+**MEASURED:** 79 of 137 nations clear it (largest USA $168.584bn, Germany $98.877bn, Japan $93.673bn, Italy $73.455bn, Switzerland $58.670bn; smallest carried Equatorial Guinea $0.006bn). 41 are sourced but below the line (largest Brazil $9.678bn on $385bn of output, 2.5%). 17 are refused outright for want of a source — see M-1.
+
+**What would calibrate it:** measuring whether a carried reserve below the line ever changes a fiscal path by more than rounding over 240 months. If it never does, the line is too generous and could rise; if a 3%-of-output reserve moves an outcome, it must fall and the 41 have to be transcribed.
+
+### I-6 — The SURPLUS RULE in `economy::pay` — a rule, not a number
+
+`spheres-sim/src/economy.rs`. Filed here because it is an invented DECISION with the same standing as an invented coefficient. The approved design specifies only the outflow ("the balance flows to `treasury_bn` and a treasury that would go negative issues debt instead"). Read literally on the INFLOW, debt becomes monotonic: `debt_gdp` could never fall, `politics.rs` could never consolidate, and `dyads.rs` would read a net creditor as permanently desperate. **The literal reading was implemented, tested and WATCHED GO RED before it was rejected** ("debt was not retired first", left `Some(3707.6)` against right `Some(0.0)`). The rule taken instead: a receipt retires debt first and only the remainder accumulates as cash. It is written out beside `pay()`.
+
+**What would calibrate it:** nothing numeric. It is falsified by a modelled sovereign that rationally holds cash while paying interest on debt it could retire — real governments do exactly that, for liquidity reasons this model has no representation of. If a liquidity motive is ever added, this rule is the thing it replaces.
+
+### I-7 — `health_replacement` clamp `0.60 / 1.60`
+
+`spheres-sim/src/ministries.rs:58`, reached through `war::health_retention`. The multiplier on the approach to sustained force in war — never on `REPLACEMENT_RATE` itself, which is read again to define a decisive battle. The floor at 0.60 is the claim that gutting the hospitals costs an army 40% of its regeneration and not all of it: conscription still works when the medical corps does not. The ceiling at 1.60 is the claim that money cannot more than about half again the rate at which a wounded soldier returns to the line. **The SLOPE (6.0) is DERIVED, not invented — see I-16.**
+
+**What would calibrate it:** return-to-duty rates from military medical history (WWII through Vietnam are well documented and span roughly the range this clamp asserts). This is the invented coefficient in the whole set most likely to be replaceable with a transcribed figure.
+
+### I-8 — `pensions_standing = gap * 1000.0`
+
+`spheres-sim/src/ministries.rs:96`, with the clamped realisation at `politics.rs:69` via `politics::standing_target`. Ten points of political-capital CEILING per point of GDP. **Sized to the design's own stated endpoint**: +0.5% of GDP is exactly +5 points of ceiling (0.005 * 1000 = 5.0), and that is what the card prints. MEASURED first-month step 0.275 of a point at the falling rate 0.055; MEASURED at the top of Brazil's dial, +82.389 points, with a further press moving it by zero bits because the arm is quoted as `clamp(t+arm) - clamp(t)`.
+
+**What would calibrate it:** nothing external — political capital is an invented currency with no unit. It is calibrated only INTERNALLY, against the prices in `lib.rs:241`: the question is whether a pension rise buys a plausible number of later commands relative to what those commands cost, and that comparison has not been made.
+
+### I-9 — `pensions_jobs = gap * 0.20`
+
+`spheres-sim/src/ministries.rs:103`, off `economy::unemployment_rate`. Pensions ALONE own the labour-force arm; the design dropped the demand arm entirely rather than resizing it, because `demand_gap` forks into both output and inflation. **Sized to the design's stated endpoint**: +0.5% of GDP is exactly -0.10pp of unemployment (0.005 * 0.20 = 0.001). MEASURED end to end: unemployment 0.104234 -> 0.103234.
+
+**What would calibrate it:** the labour-force participation response to pension generosity is one of the better-measured elasticities in economics (the OECD literature on effective retirement age against replacement rate). This one could be transcribed rather than invented, and should be.
+
+### I-10 — `INFRA_EXTRACTION_CEILING = 0.25`
+
+`spheres-sim/src/resources.rs:867`. The most a standing infrastructure budget can raise located NON-OIL production, in either direction — a quarter more ore out of the same ground for a road network at the top of the dial. Oil is excluded because oil is already a complete national system with its own calibration.
+
+**What would calibrate it:** the measured output response of a mining region to transport capacity — the World Bank rural/extractive access literature is the obvious source. A quarter is a guess sitting where a documented elasticity belongs.
+
+### I-11 — `INFRA_EXTRACTION_RATE = 0.02` per month
+
+`spheres-sim/src/resources.rs:876`. **A FIXED STEP, deliberately, and not a share of the gap** — which is what makes the uplift a STOCK the player builds rather than a switch he flips. MEASURED: exactly 12 months to build what the top of the dial justifies, and exactly 12 to lose it. The bar that holds it (`the_infrastructure_stock_is_built_and_lost_over_years`) was watched red against the switch: replacing the fixed step with `target - held` gave "the stock arrived in 1 months, which is a switch and not a stock".
+
+**What would calibrate it:** real construction lead times for transport infrastructure, against which a year to full effect is probably FAST. The honest complaint is that the build and the decay share one rate for no reason other than simplicity — roads decay far more slowly than they are built.
+
+### I-12 — `INFRA_EXTRACTION_SLOPE = 2.0`
+
+`spheres-sim/src/resources.rs:885`. Points of extraction bought by a point of GDP. **Chosen the way education's is** — so the top of the ministry's own reachable dial meets the ceiling and no step buys nothing. MEASURED: the reachable gap runs to about 0.117, and 0.117 * 2.0 = 0.234 sits just under the 0.25 ceiling.
+
+**What would calibrate it:** it is a derivation from I-10's ceiling, so it has no independent empirical content — calibrate the ceiling and this follows. Filed separately because it is a separate literal that a later session could move on its own and thereby silently kill the top of the dial.
+
+### I-13 — `industry_refill` clamp `0.70 / 1.40`
+
+`spheres-sim/src/ministries.rs:145`, reached through `war::industry_refill`. The multiplier on `MAGAZINE_REBUILD * capital_intensity`. Not gated on war — an arsenal is built in peace. The 0.70 floor says a gutted industrial base refills a third slower and not never: a country that has stopped building shell lines still has the ones it built. **The SLOPE (4.2) is DERIVED, not invented — see I-16**, and this is the ministry where getting it wrong cost the most, because INDUSTRY HAS EXACTLY ONE ARM: when it saturates the whole card is dead.
+
+**What would calibrate it:** munitions production ramp rates from the historical record — the 1990s are poorly documented for this, but WWII and the Korean mobilisation are not. The floor is the more suspect half: 0.70 asserts a floor under output that a collapsed industrial base may not have.
+
+### I-14 — `science_absorption = gap * 6.0`
+
+`spheres-sim/src/ministries.rs:156`, into `tech::absorptive_capacity`. Science's x35 left `research_output` and reappears here, on the PRICE side — the ability to read someone else's paper and build the machine it describes. MEASURED: the 0.065 gap the dial reaches is worth 0.39, about the whole of the existing 0.40 development term, so at the top of its dial a science ministry roughly doubles a nation's ability to absorb foreign technology.
+
+**What would calibrate it:** the technology-diffusion literature on absorptive capacity against R&D intensity (Cohen and Levinthal is the canonical framing and the cross-country work is transcribable). **Open and NOT closed by this branch:** the 1.20 ceiling on absorptive capacity leaves 49.5% of the USA's science dial dead (Japan 33.8%, Germany 20.0%, Brazil 0.0%; roster mean 2.5%). The card is now honest about it, but whether that ceiling should RISE is a tech-tree calibration with roster-wide consequences and is Ridge's call.
+
+### I-15 — `diplomacy_counterintel = gap * 10.0`
+
+`spheres-sim/src/ministries.rs:212`, with the clamped realisation through `statecraft::exposure_probability`. A funded foreign service makes a foreign covert operation against you more likely to be EXPOSED, which is what costs the sponsor relations and reputation on the path that already existed. **Sized to the design's stated endpoint**: +0.5% of GDP is exactly +5 percentage points of exposure (0.005 * 10.0 = 0.05). The arm is quoted at ZERO HEAT — the first operation against you, the most it can ever buy — and the card says so, because every later operation starts hotter with less room under the 0.85 ceiling.
+
+**MEASURED with the sample size derived at the bar (iron rule 7):** both worlds share one RNG stream so the per-seed flip is Bernoulli at p = 0.05, variance 0.0475, n = ln(0.01)/ln(0.95) = 89.8 is the floor, the bar runs 128, and the measured rate was 7/128 = 0.0547 (18 exposed unfunded against 25 funded). The bar's stated power: it sees an arm that is DEAD or BACKWARDS, not a mis-sized slope.
+
+**What would calibrate it:** nothing public and nothing honest. Counter-intelligence success rates are not a measured quantity in the open literature, and this should be treated as the least defensible number in the set.
+
+### I-16 — Three slopes that are DERIVED, not invented — and the handover the rebase is blocked on
+
+Filed here so the distinction survives, because all three were INVENTED in an earlier draft and a review turned them into derivations. **The derivation rule** (now CLAUDE.md iron rule 8): a slope is chosen so the top of the ministry's own reachable dial meets the clamp ceiling, measured across the roster, "so no step of the dial buys nothing".
+
+* **Education `15.0`** (`ministries.rs:70`). Education caps at 0.12 of GDP against an inherited reference near 0.036, so the largest reachable gap is ~0.084; 0.084 * 15.0 = 1.26 lands on 2.26 against the 2.25 clamp ceiling. At the original x20 the ceiling bound five steps short of the dial's own top.
+* **Health `6.0`** (`ministries.rs:58`). Reachable raise across all 137 living 1990 nations: min 0.09575, mean 0.10112, median 0.10125, max 0.10725. At x20 the 1.60 ceiling was met at a gap of 0.030, so 68.7%-72.0% of every nation's raise range (mean 70.3%) bought nothing. At 6.0 the ceiling is met at 0.10000, the measured mean reach to within 1.1%.
+* **Industry `4.2`** (`ministries.rs:145`). Reachable raise: min 0.03900, mean 0.09505, median 0.10200, max 0.11790. At x20 the 1.40 ceiling was met at 0.020, so 48.7%-83.0% (mean 78.0%) bought nothing. At 4.2 the ceiling is met at 0.09524, the measured mean reach to within 0.2%.
+
+**DOCUMENTATION DRIFT, found 2026-09-02 and NOT fixed here** (this agent was scoped to `.md` files only): `spheres-sim/src/war.rs:468` and `war.rs:515` still describe these as "the x20 slope" and carry the worked arithmetic `1 + 0.02*20 = 1.40`. Both functions now delegate to `ministries.rs` (`war.rs:498`, `war.rs:532`), where the live slopes are 6.0 and 4.2. The prose is stale and should be corrected by whoever next touches `war.rs`.
+
+**HANDOVER, and it is why this branch is not on `feat/hoi4-map-and-tech`.** `origin/feat/hoi4-map-and-tech` moved from 9274baa to **61b388f** (21 commits: Codex's province production, manufacturing and arcade logistics) while this work was built, and `git rebase --onto origin/feat/hoi4-map-and-tech 9274baa` **conflicts on the first commit**, in `spheres-sim/src/resources.rs`. It is a SEMANTIC conflict, not a textual one, and it should not be resolved by hand without a ruling. Both sides re-expressed the same register bar in opposite directions: upstream now asserts `debt_gdp` appears **7** times in that module, this branch asserts it appears **0** times and that the module's whole reach into a nation's finances is exactly two `economy::charge` calls. Upstream added THREE new direct money legs that did not exist at 9274baa — aggregate spot settlement (`resources.rs:1107`), debt retirement (`resources.rs:1113`) and mine construction investment (`resources.rs:3942`) — and `resources.rs:1113` reinstates exactly the `.max(0.0)` floor this branch removed after MEASURING it destroy $8.200bn out of a $10.000bn leg to Kuwait. Resolving the rebase therefore means routing upstream's three new legs through `economy::charge`, which is stage-1 design work needing its own red-checks, not a merge. **Upstream's own M-2 asks for precisely the ruling this branch already implements** ("does the resource system get a fiscal channel into growth, or does the mine's cost move somewhere the growth model does not read?"): this branch's answer is that `economy::charge` IS that single channel and `debt_drag` is gated off when the books are open. **Also note a numbering collision to settle when the trees meet:** both branches independently filed M-1 and M-2 with different content — this tree's are the 1990 reserve refusals, upstream's are the mine's calibration and ruling breach.
