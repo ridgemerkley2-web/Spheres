@@ -465,12 +465,22 @@ pub fn sustained_force(n: &Nation, mil_spend_gdp: f64) -> f64 {
 /// PEACETIME IS UNTOUCHED, by design and by test. A health budget in peace
 /// buys population and nothing else; there are no casualties to return.
 ///
-/// INVENTED, and labelled as the design requires: the x20 slope and the
-/// 0.60/1.60 clamp. The slope is read off the dial the player actually holds —
-/// health's cap is 0.15 of GDP against an inherited reference near 0.05, so a
-/// government that puts a further two points of output into military medicine
-/// gets 1 + 0.02*20 = 1.40, a 40% faster rebuild, and the ceiling is reached
-/// three points in. The floor at 0.60 is the claim that gutting the hospitals
+/// THE SLOPE IS DERIVED, NOT INVENTED, AND IT IS 6.0. ~~the x20 slope~~ —
+/// corrected 2026-09-02; the prose here described the design's first draft and
+/// the ministry collapse had already moved the live value into
+/// `ministries::health_replacement`, `(1.0 + gap * 6.0).clamp(0.60, 1.60)`.
+/// The rule (CLAUDE.md iron rule 8) is that the top of the ministry's own
+/// reachable dial must meet the clamp ceiling, so no step of the dial buys
+/// nothing. MEASURED across all 137 living 1990 nations, health's reachable
+/// raise runs min 0.09575, mean 0.10112, median 0.10125, max 0.10725; at 6.0
+/// the 1.60 ceiling is met at a gap of 0.10000, the measured mean reach to
+/// within 1.1%. A government that puts a further two points of output into
+/// military medicine therefore gets 1 + 0.02*6.0 = 1.12, a 12% faster rebuild.
+/// At the old x20 the ceiling was met three points in, at 0.030, and 68.7% to
+/// 72.0% of every nation's raise range (mean 70.3%) bought nothing.
+///
+/// STILL INVENTED, and labelled as the design requires: the 0.60/1.60 clamp
+/// (BUGS I-7). The floor at 0.60 is the claim that gutting the hospitals
 /// costs an army 40% of its regeneration and not all of it: conscription still
 /// works when the medical corps does not.
 ///
@@ -512,15 +522,22 @@ pub fn health_retention(w: &WorldState, id: NationId) -> f64 {
 /// the whole of BIBLE §6's second stock — you cannot fix inside a war the
 /// factory you did not build before it.
 ///
-/// INVENTED, and labelled as the design requires: the x20 slope and the
-/// 0.70/1.40 clamp. Industry caps at 0.12 of GDP against an inherited
-/// reference of 0.30 of the investment envelope — near 0.018 for a nation
-/// investing 6% through the state — so the reachable gap runs to about 0.10
-/// and the 1.40 ceiling is met two points of GDP in, with the rest of the dial
-/// buying the resource and growth channels the same money already buys. The
-/// 0.70 floor says a gutted industrial base refills a third slower and not
-/// never: a country that has stopped building shell lines still has the ones
-/// it built.
+/// THE SLOPE IS DERIVED, NOT INVENTED, AND IT IS 4.2. ~~the x20 slope~~ —
+/// corrected 2026-09-02, for the same reason health's row above was: the live
+/// value lives in `ministries::industry_refill`,
+/// `(1.0 + gap * 4.2).clamp(0.70, 1.40)`. Industry caps at 0.12 of GDP against
+/// an inherited reference of 0.30 of the investment envelope — near 0.018 for
+/// a nation investing 6% through the state — and the reachable raise runs,
+/// MEASURED over 137 nations, min 0.03900, mean 0.09505, median 0.10200, max
+/// 0.11790. At 4.2 the 1.40 ceiling is met at 0.09524, the measured mean reach
+/// to within 0.2%, so the top of the dial is the top of the arm. At the old x20
+/// the ceiling was met two points of GDP in, at 0.020, and 48.7% to 83.0% of
+/// the raise range (mean 78.0%) bought nothing at all here.
+///
+/// STILL INVENTED, and labelled as the design requires: the 0.70/1.40 clamp
+/// (BUGS I-13). The 0.70 floor says a gutted industrial base refills a third
+/// slower and not never: a country that has stopped building shell lines still
+/// has the ones it built.
 ///
 /// INERT WITHOUT A PLAN, by the same early return as `health_retention`:
 /// `budget_gap` is 0.0 on the whole default board and `x * 1.0` is exact.

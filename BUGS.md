@@ -1680,7 +1680,7 @@ the 2026-09-02 trial-merge review's unless a line says otherwise.
 
 **Three things the fix had to do that the original filing did not anticipate.** (1) The bar that proves the map was itself BLIND: it moved a dial by writing `plan.allocations[i]` on a cloned world, which isolates the gap and never sees the three aggregates the real command also writes. Measured through the real command, health, education, housing, pensions, security and diplomacy each moved `demand_gap` +0.000750000 and `target_inflation` +0.001200000 IDENTICALLY to the last digit — the social aggregate, not any named arm. The `ds += social_gap * 12.0` line in `economy.rs` was deleted and a second bar added that enacts through the real command. (2) Four arms were clamped DOWNSTREAM of `ministries.rs`, so the served card quoted a slope the simulation never charged (the stability card promised destinations of +151.2/+168.5/+169.4 on a 0..100 scale); each is now computed as `clamp(base + arm) - clamp(base)`. (3) Health's and industry's first-draft x20 slopes saturated their clamps so early that 70.3% and 78.0% of the mean nation's reachable dial bought nothing; both were re-derived, to 6.0 and 4.2, the way education's 15.0 was. Every new coefficient is filed below as I-1..I-16.
 
-**Still true, and it is what keeps the change inert:** `budget_gap` returns 0.0 for a nation with no enacted plan and `Command::SetAnnualBudget` is player-only, so no default board runs a line of any of this. Both goldens read their briefed actuals unmoved (0xa5c9c5b2306313d8, 0x20c24ab0f1581807) and all four headless references reproduce byte for byte.
+**Still true, and it is what keeps the change inert:** `budget_gap` returns 0.0 for a nation with no enacted plan and `Command::SetAnnualBudget` is player-only, so no default board runs a line of any of this. Both goldens read their briefed actuals unmoved ~~(0xa5c9c5b2306313d8, 0x20c24ab0f1581807)~~ and all four headless references reproduce byte for byte. **CORRECTED 2026-09-02 on the merge of `origin/feat/hoi4-map-and-tech` 61b388f:** those were the actuals of this branch standing alone. The merged tree reads **origin's** — 0xe26e4bf8d6c60066 (`the_1990_start_is_pinned`) and 0xbe94d6125631829c (`golden_hash_of_a_known_run`) — and that is a STRONGER inertness claim, not a weaker one: the whole of the difference is upstream's unconditionally serialized `district_population`, and the actuals equalling origin's exactly is the proof that nothing on this branch moves the default path. The two golden PINS (0xd022d50f43c984da, 0xbd5ec0f43c5f2e3b) were not touched and are still red.
 
 **The inventory below is kept as the record of what was removed.**
 
@@ -1889,10 +1889,14 @@ the way its predecessor did.
 
 ## Filed 2026-09-02 by the treasury author (ministry economy, stage 1)
 
-### M-1 — seventeen nations have no sourceable 1990 reserve, and two of them matter
+### M-9 — seventeen nations have no sourceable 1990 reserve, and two of them matter
 
 **Filed:** 2026-09-02, with the treasury (`Nation::treasury_bn`).
 **Status:** left out and reported, not estimated. Iron rule 4.
+**RENUMBERED 2026-09-02, ~~M-1~~ → M-9.** Both branches independently filed an
+M-1 and an M-2 with different content and the merge kept both sets. This entry
+and M-10 are the treasury author's; M-1..M-8 are the mine landing's and keep
+their numbers because they are the older, larger, cross-referenced set.
 
 `EconomyRecord::reserves_bn` transcribes total reserves including gold from
 World Bank WDI series `FI.RES.TOTL.CD`, 1989 observation — the stock as it stood
@@ -1923,9 +1927,10 @@ line, which is 5% of that nation's own 1990 output or $10bn absolute. Those are
 a decision, not a gap: the largest of them is Brazil at $9.678bn on $385bn of
 output, 2.5%, spent inside a quarter of a plausible deficit.
 
-### M-2 — no 1990 sovereign wealth fund balance could be sourced, and Kuwait is the casualty
+### M-10 — no 1990 sovereign wealth fund balance could be sourced, and Kuwait is the casualty
 
 **Filed:** 2026-09-02. **Status:** left out and reported.
+**RENUMBERED 2026-09-02, ~~M-2~~ → M-10**, for the collision described in M-9.
 
 The approved design asks for "foreign reserves PLUS sovereign fund balances".
 The reserves half is transcribed; the sovereign-fund half is refused, because
@@ -1983,7 +1988,7 @@ Iron rule 4 says starting DATA is transcribed and never invented. A model COEFFI
 
 `spheres-sim/src/data/mod.rs`, and applied in the transcription pass. The approved design said to transcribe reserves "where the figure is material" without saying where that is, so **the threshold is a choice and is labelled as one — but the FIGURES themselves are transcribed, never invented** (iron rule 4 is not touched here). Stated mechanically so it is never a per-country judgement: at least 5% of that nation's own 1990 output, or at least $10bn absolute. 5% of output is about six weeks of total state spending for a state spending 35% of output; below that the stock is spent inside a quarter of a plausible deficit and cannot change the shape of a fiscal path.
 
-**MEASURED:** 79 of 137 nations clear it (largest USA $168.584bn, Germany $98.877bn, Japan $93.673bn, Italy $73.455bn, Switzerland $58.670bn; smallest carried Equatorial Guinea $0.006bn). 41 are sourced but below the line (largest Brazil $9.678bn on $385bn of output, 2.5%). 17 are refused outright for want of a source — see M-1.
+**MEASURED:** 79 of 137 nations clear it (largest USA $168.584bn, Germany $98.877bn, Japan $93.673bn, Italy $73.455bn, Switzerland $58.670bn; smallest carried Equatorial Guinea $0.006bn). 41 are sourced but below the line (largest Brazil $9.678bn on $385bn of output, 2.5%). 17 are refused outright for want of a source — see M-9.
 
 **What would calibrate it:** measuring whether a carried reserve below the line ever changes a fiscal path by more than rounding over 240 months. If it never does, the line is too generous and could rise; if a 3%-of-output reserve moves an outcome, it must fall and the 41 have to be transcribed.
 
@@ -2013,19 +2018,19 @@ Iron rule 4 says starting DATA is transcribed and never invented. A model COEFFI
 
 ### I-10 — `INFRA_EXTRACTION_CEILING = 0.25`
 
-`spheres-sim/src/resources.rs:867`. The most a standing infrastructure budget can raise located NON-OIL production, in either direction — a quarter more ore out of the same ground for a road network at the top of the dial. Oil is excluded because oil is already a complete national system with its own calibration.
+`spheres-sim/src/resources.rs:873` (~~867~~, moved 2026-09-02 by the merge). The most a standing infrastructure budget can raise located NON-OIL production, in either direction — a quarter more ore out of the same ground for a road network at the top of the dial. Oil is excluded because oil is already a complete national system with its own calibration.
 
 **What would calibrate it:** the measured output response of a mining region to transport capacity — the World Bank rural/extractive access literature is the obvious source. A quarter is a guess sitting where a documented elasticity belongs.
 
 ### I-11 — `INFRA_EXTRACTION_RATE = 0.02` per month
 
-`spheres-sim/src/resources.rs:876`. **A FIXED STEP, deliberately, and not a share of the gap** — which is what makes the uplift a STOCK the player builds rather than a switch he flips. MEASURED: exactly 12 months to build what the top of the dial justifies, and exactly 12 to lose it. The bar that holds it (`the_infrastructure_stock_is_built_and_lost_over_years`) was watched red against the switch: replacing the fixed step with `target - held` gave "the stock arrived in 1 months, which is a switch and not a stock".
+`spheres-sim/src/resources.rs:882` (~~876~~, moved 2026-09-02 by the merge). **A FIXED STEP, deliberately, and not a share of the gap** — which is what makes the uplift a STOCK the player builds rather than a switch he flips. MEASURED: exactly 12 months to build what the top of the dial justifies, and exactly 12 to lose it. The bar that holds it (`the_infrastructure_stock_is_built_and_lost_over_years`) was watched red against the switch: replacing the fixed step with `target - held` gave "the stock arrived in 1 months, which is a switch and not a stock".
 
 **What would calibrate it:** real construction lead times for transport infrastructure, against which a year to full effect is probably FAST. The honest complaint is that the build and the decay share one rate for no reason other than simplicity — roads decay far more slowly than they are built.
 
 ### I-12 — `INFRA_EXTRACTION_SLOPE = 2.0`
 
-`spheres-sim/src/resources.rs:885`. Points of extraction bought by a point of GDP. **Chosen the way education's is** — so the top of the ministry's own reachable dial meets the ceiling and no step buys nothing. MEASURED: the reachable gap runs to about 0.117, and 0.117 * 2.0 = 0.234 sits just under the 0.25 ceiling.
+`spheres-sim/src/resources.rs:891` (~~885~~, moved 2026-09-02 by the merge). Points of extraction bought by a point of GDP. **Chosen the way education's is** — so the top of the ministry's own reachable dial meets the ceiling and no step buys nothing. MEASURED: the reachable gap runs to about 0.117, and 0.117 * 2.0 = 0.234 sits just under the 0.25 ceiling.
 
 **What would calibrate it:** it is a derivation from I-10's ceiling, so it has no independent empirical content — calibrate the ceiling and this follows. Filed separately because it is a separate literal that a later session could move on its own and thereby silently kill the top of the dial.
 
@@ -2057,9 +2062,9 @@ Filed here so the distinction survives, because all three were INVENTED in an ea
 * **Health `6.0`** (`ministries.rs:58`). Reachable raise across all 137 living 1990 nations: min 0.09575, mean 0.10112, median 0.10125, max 0.10725. At x20 the 1.60 ceiling was met at a gap of 0.030, so 68.7%-72.0% of every nation's raise range (mean 70.3%) bought nothing. At 6.0 the ceiling is met at 0.10000, the measured mean reach to within 1.1%.
 * **Industry `4.2`** (`ministries.rs:145`). Reachable raise: min 0.03900, mean 0.09505, median 0.10200, max 0.11790. At x20 the 1.40 ceiling was met at 0.020, so 48.7%-83.0% (mean 78.0%) bought nothing. At 4.2 the ceiling is met at 0.09524, the measured mean reach to within 0.2%.
 
-**DOCUMENTATION DRIFT, found 2026-09-02 and NOT fixed here** (this agent was scoped to `.md` files only): `spheres-sim/src/war.rs:468` and `war.rs:515` still describe these as "the x20 slope" and carry the worked arithmetic `1 + 0.02*20 = 1.40`. Both functions now delegate to `ministries.rs` (`war.rs:498`, `war.rs:532`), where the live slopes are 6.0 and 4.2. The prose is stale and should be corrected by whoever next touches `war.rs`.
+**DOCUMENTATION DRIFT — FIXED 2026-09-02 by the post-merge tidy.** ~~found 2026-09-02 and NOT fixed here (this agent was scoped to `.md` files only)~~: `spheres-sim/src/war.rs:468` and `war.rs:515` described these as "the x20 slope" and carried the worked arithmetic `1 + 0.02*20 = 1.40`, while both functions delegate to `ministries.rs` where the live slopes are 6.0 and 4.2. Both doc comments are now rewritten to the live values with the derivation and the measured reach: `war.rs:468` (health, 6.0, ceiling met at a gap of 0.10000 against a measured mean reach of 0.10112, and `1 + 0.02*6.0 = 1.12`) and `war.rs:525` (industry, 4.2, ceiling met at 0.09524 against a measured mean reach of 0.09505). ~~`war.rs:498`, `war.rs:532`~~ the delegating calls are now `war.rs:508` and `war.rs:549`, moved by the rewrite itself. No live value was changed; only the prose. The clamps stay INVENTED and are still filed as I-7 and I-13, which the new comments cite by number.
 
-**HANDOVER, CLOSED 2026-09-02: the merge landed.** `origin/feat/hoi4-map-and-tech` moved from 9274baa to **61b388f** (21 commits: Codex's province production, manufacturing and arcade logistics) while this work was built, and `git rebase --onto origin/feat/hoi4-map-and-tech 9274baa` conflicted on the first of 21 commits, in `spheres-sim/src/resources.rs`. It was a SEMANTIC conflict, not a textual one: both sides re-expressed the same register bar in opposite directions, upstream asserting `debt_gdp` appears **7** times in that module and this branch asserting it appears **0** times. It was resolved by MERGE and not by rebase, on the ruling this branch already implements and **upstream's own M-2 asks for** ("does the resource system get a fiscal channel into growth, or does the mine's cost move somewhere the growth model does not read?"): `economy::charge` IS that single channel. Upstream's three new direct legs — the aggregate spot settlement's outflow and receipt arms in `apply_market_net`, and the mine construction investment in `start_mine` — were each routed through it, with the `share` argument character for character the ratio each line already pushed, so a nation with the books closed is bit-identical. **The floor stayed removed**: upstream's receipt arm reinstated exactly the `.max(0.0)` this branch had deleted after MEASURING it destroy $8.200bn out of a $10.000bn leg to Kuwait, and routing that arm through `charge` puts the floor back only on the closed-books `None` arm, where it is the shipped arithmetic, and leaves the `Some` arm conserving — which `a_money_leg_between_unequal_economies_conserves` pins. Upstream's market-cash ledger is kept as the module's till while the books are closed, and is not credited when they are open, because the treasury already holds that surplus. The bar now asserts the UNION of both intents: `resources.rs` names none of `debt_gdp`, `treasury_bn` or `debt_bn`, and its whole reach is **five** `economy::charge` calls. **The M-1/M-2 numbering collision is real and is settled here by prefix, not renumbering:** both branches independently filed M-1 and M-2 with different content — this tree's are the 1990 reserve refusals and the ministry-arm ruling, filed under “Filed 2026-09-02 by the treasury author”; upstream's are the mine's calibration and ruling breach, filed under “Awaiting an owner ruling … for the Codex province-trade-and-mines landing”. Both section headings survive this merge and each M-number is read against the heading above it. Renumbering either set is a decision for Ridge, not for the merge.
+**HANDOVER, CLOSED 2026-09-02: the merge landed.** `origin/feat/hoi4-map-and-tech` moved from 9274baa to **61b388f** (21 commits: Codex's province production, manufacturing and arcade logistics) while this work was built, and `git rebase --onto origin/feat/hoi4-map-and-tech 9274baa` conflicted on the first of 21 commits, in `spheres-sim/src/resources.rs`. It was a SEMANTIC conflict, not a textual one: both sides re-expressed the same register bar in opposite directions, upstream asserting `debt_gdp` appears **7** times in that module and this branch asserting it appears **0** times. It was resolved by MERGE and not by rebase, on the ruling this branch already implements and **upstream's own M-2 asks for** ("does the resource system get a fiscal channel into growth, or does the mine's cost move somewhere the growth model does not read?"): `economy::charge` IS that single channel. Upstream's three new direct legs — the aggregate spot settlement's outflow and receipt arms in `apply_market_net`, and the mine construction investment in `start_mine` — were each routed through it, with the `share` argument character for character the ratio each line already pushed, so a nation with the books closed is bit-identical. **The floor stayed removed**: upstream's receipt arm reinstated exactly the `.max(0.0)` this branch had deleted after MEASURING it destroy $8.200bn out of a $10.000bn leg to Kuwait, and routing that arm through `charge` puts the floor back only on the closed-books `None` arm, where it is the shipped arithmetic, and leaves the `Some` arm conserving — which `a_money_leg_between_unequal_economies_conserves` pins. Upstream's market-cash ledger is kept as the module's till while the books are closed, and is not credited when they are open, because the treasury already holds that surplus. The bar now asserts the UNION of both intents: `resources.rs` names none of `debt_gdp`, `treasury_bn` or `debt_bn`, and its whole reach is **five** `economy::charge` calls. **The M-1/M-2 numbering collision was real and is now SETTLED BY RENUMBERING, 2026-09-02.** Both branches independently filed an M-1 and an M-2 with completely different content. ~~Settled here by prefix, not renumbering: both section headings survive and each M-number is read against the heading above it; renumbering either set is a decision for Ridge, not for the merge.~~ Superseded the same day: reading a number against the heading above it does not survive a grep, so this tree's two were renumbered into the free tail of the file's own M series — **M-1 → M-9** (the 1990 reserve refusals) and **M-2 → M-10** (the sovereign wealth funds). The mine landing's M-1..M-8 keep their numbers: they are the older, larger set and the only one cross-referenced from ROADMAP.md. Both old ids are struck through in place at their headings, and the three references that pointed at ours (BUGS I-5, ROADMAP.md line 23, SPEC.md section 3) were repointed.
 ---
 
 ## Awaiting an owner ruling (added 2026-09-02 by the merge-repair record agent, for the Codex province-trade-and-mines landing)
@@ -2173,6 +2178,28 @@ a flat-priced, unbounded, permanent multiplier on a transcribed figure — the o
 shape iron rule 4 exists to prevent.
 
 ### M-2 — the ruling breach: `start_mine` writes `debt_gdp`, and the growth model reads it
+
+**HALF ANSWERED 2026-09-02 by the merge of `feat/ministry-economy`, and the
+other half is still Ridge's.** The direct write below is GONE: `start_mine` now
+reads `crate::economy::charge(w, nation, investment_bn, investment_bn / gdp);`
+(`resources.rs:4058`), with the `share` argument character for character the
+ratio the old line pushed, so a nation with the books closed is bit-identical
+and one with them open funds the shaft from reserves and borrows only the
+shortfall. The register bar
+`resources::tests::the_trade_arms_write_only_what_the_register_allows` now
+forbids the module naming `debt_gdp`, `treasury_bn` or `debt_bn` at all and pins
+its whole fiscal reach at five `economy::charge` calls. **What that does NOT
+settle is the doctrine**, which is the actual question this entry asked: the
+resource system still HAS a fiscal channel into growth — `charge` writes
+`debt_gdp` and `growth_terms` reads it — it is merely routed through one helper
+instead of five hand-rolled sites. So the module header at `resources.rs` 66-68
+still says "Nothing here is read by growth, oil, stability or munitions" and
+that sentence is now FALSE of the tree, and
+`tests::gates_write_nothing_the_growth_model_reads` (`lib.rs:4688`) still ticks
+with an empty command slice and is still blind to `DevelopResource`. Amending a
+quoted ruling is Ridge's call, not a merge's, so both are left as they stand and
+recorded here. The filing below is kept verbatim as the record, and its line
+numbers are those of `fix/merge-repairs` at `104f851`, not of this tree.
 
 `resources.rs` 2814, inside `start_mine`:
 

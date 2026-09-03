@@ -398,16 +398,20 @@ fn pay(treasury: f64, debt: f64, bn: f64) -> (f64, f64) {
     }
 }
 
-/// ONE MONEY LEG out of one nation's finances, and the single helper the five
-/// hand-rolled ratio pushers now go through: `resources::settle` (both sides),
-/// the pact upkeep and the aid and covert legs in `statecraft.rs`, and the
-/// patronage payment in `government.rs`.
+/// ONE MONEY LEG out of one nation's finances, and the single helper every
+/// hand-rolled ratio pusher now goes through. ~~the five~~ — corrected
+/// 2026-09-02 on the merge of `origin/feat/hoi4-map-and-tech` 61b388f, which
+/// added three legs written after this helper existed. MEASURED on the merged
+/// tree, `economy::charge(` has NINE call sites: `resources::settle` (both
+/// sides), `apply_market_net`'s outflow and receipt arms, `start_mine`'s
+/// construction investment, the pact upkeep and the aid and covert legs in
+/// `statecraft.rs`, and the patronage payment in `government.rs`.
 ///
 /// TWO REPRESENTATIONS OF THE SAME MONEY, and neither may be derived from the
 /// other. `share` is EXACTLY the number the caller's pre-treasury line pushed
 /// into `debt_gdp`, and is what the `None` arm writes -- so the default board
 /// is bit-identical rather than nearly so. Recomputing it as `bn / gdp` would
-/// be a rounding away from the shipped timeline at every one of those five
+/// be a rounding away from the shipped timeline at every one of those nine
 /// sites, because `(share * gdp) / gdp` is not `share` in binary floating
 /// point. `bn` is the dollars, and is what the `Some` arm moves.
 ///
@@ -427,9 +431,12 @@ fn pay(treasury: f64, debt: f64, bn: f64) -> (f64, f64) {
 /// pair conserves.
 ///
 /// The `.max(0.0)` on the `None` arm is the floor `settle`'s payee line already
-/// carried, and it is inert at the other four sites: their `share` is positive
-/// and `debt_gdp` is non-negative by the fiscal block's own floor, so the
-/// clamp never binds and never changes a bit.
+/// carried, and it is inert at SEVEN of the nine sites (~~the other four~~,
+/// corrected 2026-09-02 with the merge): their `share` is positive and
+/// `debt_gdp` is non-negative by the fiscal block's own floor, so the clamp
+/// never binds and never changes a bit. The two where it can bind are the two
+/// receipts -- `settle`'s payee leg and `apply_market_net`'s receipt arm --
+/// and on both it is the arithmetic those lines already shipped.
 ///
 /// A negative `bn`/`share` is a receipt.
 ///
@@ -441,8 +448,9 @@ fn pay(treasury: f64, debt: f64, bn: f64) -> (f64, f64) {
 /// `resources::apply_market_net`, whose market-cash ledger is the pre-treasury
 /// stand-in for exactly this till: while the books are closed the surplus lands
 /// there, and while they are open the treasury has it already and the market
-/// ledger is not touched. The four other sites use it as a statement and
-/// nothing about their arithmetic moves.
+/// ledger is not touched. The EIGHT other sites use it as a statement and
+/// nothing about their arithmetic moves (~~four~~, corrected 2026-09-02 with
+/// the merge, which took the call count from six to nine).
 ///
 /// Both arms measure the same quantity against the same denominator the callers
 /// use: `debt` in dollars on the `Some` arm, and `debt_gdp.max(0.0) * gdp` on

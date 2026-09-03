@@ -5029,8 +5029,13 @@ mod tests {
     // ownership, and two worlds with the same deals are byte-identical).
     // Nothing here fires without a command, which is why both goldens'
     // actuals stay where S1 left them (lib.rs, `the_resource_layer_is_
-    // inert_*`: 0xa5c9c5b2306313d8 and 0x20c24ab0f1581807, re-pinned by
-    // nothing).
+    // inert_*`), re-pinned by nothing. CORRECTED 2026-09-02 on the merge of
+    // origin/feat/hoi4-map-and-tech: those actuals were ~~0xa5c9c5b2306313d8
+    // and 0x20c24ab0f1581807~~ and are now 0xe26e4bf8d6c60066 and
+    // 0xbe94d6125631829c, which are ORIGIN'S. They moved for a serialization
+    // reason and not a simulation one — Codex's `district_population` and
+    // `district_population_scale` serialize unconditionally and so enter
+    // `state_hash` — and the constants in lib.rs carry that proof.
     // -----------------------------------------------------------------
 
     use crate::{apply_command, tick_month, Command};

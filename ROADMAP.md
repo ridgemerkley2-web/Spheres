@@ -4,23 +4,29 @@
 - **The treasury, the escalating interest and the ministry collapse**
   (2026-09-02, Ridge's call, quoted: "Add in an interest over GDP figure that
   inflates based on percentage. You can cook the rest into the GITHUB dir";
-  branch `feat/ministry-economy`, 20 commits on `feat/hoi4-map-and-tech`
-  9274baa). Three things landed together.
+  branch `feat/ministry-economy`, ~~20~~ **21** commits on
+  `feat/hoi4-map-and-tech` 9274baa — recounted 2026-09-02,
+  `git rev-list --count 9274baa..7e8028e` = 21, the docs commit itself being the
+  twenty-first). Three things landed together.
   **(1) Money became a stock.** `treasury_bn` and `debt_bn` are `Option<f64>`
   in billions of 1990 dollars, `skip_serializing_if = "Option::is_none"`, seated
   by the first `Command::SetAnnualBudget`; `debt_gdp` remains the stored field
   and the single source of truth, with the fiscal block its only writer on the
-  open arm. `economy::charge` absorbed all five hand-rolled ratio pushers
+  open arm. `economy::charge` absorbed all ~~five~~ hand-rolled ratio pushers
   (`resources::settle` both legs, pact upkeep, aid, covert action, patronage),
   taking BOTH the dollars and the caller's exact pre-treasury ratio so the
-  closed arm never recomputes. Interest escalates: `real = (policy -
+  closed arm never recomputes. **Corrected 2026-09-02 on the merge below:** five
+  was the count on this branch alone, at six call sites; upstream had written
+  three more direct legs after the helper existed, and routing them took it to
+  **nine call sites**, MEASURED — `resources::settle` (two), `apply_market_net`
+  (two), `start_mine`, `statecraft.rs` (three) and `government.rs` (one). Interest escalates: `real = (policy -
   inflation).max(-0.02)`, `spread = ((debt_gdp - 0.60).max(0) * 0.06).min(0.06)`.
   MEASURED at 5% policy against 3% inflation — 30% of GDP pays 2.0000%/yr,
   60% 2.0000%, 90% 3.8000%, 150% 7.4000%, the cap binding from 1.600 up; the
   roster's median 1990 ratio is 0.52, so the median borrower pays the policy
   real rate exactly. 79 of 137 nations carry a transcribed 1990 `reserves_bn`
   (World Bank FI.RES.TOTL.CD, end-1989 observation), 17 refused for want of a
-  source and 41 left out as immaterial (BUGS M-1, M-2).
+  source and 41 left out as immaterial (BUGS M-9, M-10).
   **(2) The thirty scattered addends went**, and each ministry took one or two
   named arms defined once in the new `spheres-sim/src/ministries.rs` and called
   from all twelve charge sites. Potential growth lost 5 addends, demand 3,
@@ -186,7 +192,11 @@
   provinces, growing with the current owner's demographic and technology path and
   staying with the ground across a border transfer — and the district mine,
   `Command::DevelopResource`, a twelve-month build on a mapped deposit priced at
-  `MINE_PC_COST` political capital and an investment charged to `debt_gdp`.
+  `MINE_PC_COST` political capital and an investment charged ~~to `debt_gdp`~~
+  **through `economy::charge` — corrected 2026-09-02 by the
+  `feat/ministry-economy` merge, which routed this leg and the two spot-market
+  arms through the single fiscal helper; the ratio pushed is unchanged, so a
+  closed-books nation is bit-identical (BUGS M-2)**.
   **Four repairs on landing**: (1) `2b10e78` — the four `START_ACTUAL` /
   `RUN_ACTUAL` constants in `the_resource_layer_is_inert_at_1990`,
   `the_resource_layer_is_inert_over_time` and
@@ -230,9 +240,14 @@
   `0xa5c9c5b2306313d8` / `0x20c24ab0f1581807`. See BUGS **M-5** — reverting that
   is a save-format change and Ridge's call.
   Filed, not fixed: BUGS **M-1..M-8** (the mine's five bare constants with two of
-  them inert and 96.79% of the board at the price floor; the `debt_gdp` write
+  them inert and 96.79% of the board at the price floor; ~~the `debt_gdp` write
   against the ruling at `resources.rs` 66-68, invisible to its own guard because
-  that guard ticks with an empty command slice; the player-only mine against
+  that guard ticks with an empty command slice~~ — half answered 2026-09-02 by
+  the `feat/ministry-economy` merge, which routed the write through
+  `economy::charge` and drove the module's direct naming of `debt_gdp` to zero;
+  the doctrine half of M-2 is still open, because the module still has a fiscal
+  channel into growth, the header sentence at `resources.rs` 66-68 is
+  un-amended, and the guard still ticks with an empty command slice; the player-only mine against
   R-1's zero resource wars; the mine's four lost guards; the serialization above;
   the orphaned `/api/district-populations`; no browser load path; and the daily
   invariant that has never seen `DevelopResource`).
