@@ -9,6 +9,8 @@ pub mod front;
 pub mod government;
 pub mod exact;
 pub mod init;
+pub mod logistics;
+pub mod clock;
 pub mod manufacturing;
 pub mod ministries;
 pub mod nations;
@@ -136,6 +138,9 @@ pub enum Command {
     /// Choose one of the three deterministic steps toward the campaign's sole
     /// ending: world domination. The stable id comes from `domination::view`.
     ChooseDominationAgenda { nation: NationId, agenda: String },
+    /// Choose how future inbound freight is routed. Routing creates no money
+    /// or capacity; it chooses among the transport network's existing paths.
+    SetLogisticsPolicy { nation: NationId, policy: logistics::RoutePolicy },
 
     // --- Government: who holds office, and what holding it costs ---
     /// Bring a party into the cabinet. Carries the party's stable id.
@@ -397,6 +402,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // A campaign direction is information, not a policy purchase. It
         // observes existing systems and never grants a stat reward.
         Command::ChooseDominationAgenda { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::SetLogisticsPolicy { nation, .. } => (*nation, 0.0, REFUSABLE),
 
         // A coalition partner is bought, not persuaded, and the bill is the
         // distance between you: a neighbouring party wants a ministry, one at
@@ -883,6 +889,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::ChooseDominationAgenda { nation, agenda } => {
             domination::choose(w, *nation, agenda)?;
         }
+        Command::SetLogisticsPolicy { nation, policy } => {
+            logistics::set_policy(w, *nation, *policy)?;
+        }
         Command::InviteToGovernment { nation, party } => {
             government::invite(w, *nation, party)?
         }
@@ -1008,6 +1017,16 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
 
 /// Advance the world one month. Commands are applied before systems tick.
 pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
+    if clock::is_daily(w) {
+        let month = (w.year, w.month);
+        let mut news = Vec::new();
+        let mut first = true;
+        while (w.year, w.month) == month {
+            news.extend(tick_day(w, if first { commands } else { &[] }));
+            first = false;
+        }
+        return news;
+    }
     w.headlines.clear();
     // The id -> position index, refreshed once a month. A federation coming
     // apart mid-tick appends to `nations` and leaves it stale for the rest of
@@ -1042,17 +1061,16 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
     // Inert on the default path, where `day` is always 1; the clamp this
     // replaced left a browser save resumed on the 15th on the 15th for ever.
     w.day = 1;
+    clock::finish_pending_transition(w);
     w.headlines.clone()
 }
 
 /// Advance the playable calendar by one day.
 ///
-/// Commands take effect on the day they are issued. The calibrated simulation
-/// systems remain monthly and settle on the final day of each month; running a
-/// full month of GDP growth, procurement, research, war and political change on
-/// every daily click would multiply the model's rates by 28--31. Thirty-one
-/// January ticks therefore produce exactly the same world as one January
-/// `tick_month`, while exposing every intervening date to the player.
+/// Commands take effect on their issue date. Daily simulation runs every system
+/// with prorated flows and compounded hazards. A monthly batch is the same
+/// dated daily schedule, not a different integration step. Legacy mode retains
+/// its month-end settlement for calibrated replay and old-save transitions.
 ///
 /// `headlines` is the MONTH's record, as it is for `tick_month`: it is
 /// cleared on the first of the month and accumulates from there, so a month
@@ -1078,6 +1096,12 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
 
     production::tick_day(w);
 
+    if clock::is_daily(w) {
+        for (_, system) in SYSTEMS { system(w); }
+        clock::advance_date(w);
+        return w.headlines[before..].to_vec();
+    }
+
     let last_day = world::days_in_month(w.year, w.month);
     if w.day >= last_day {
         for (_, system) in SYSTEMS {
@@ -1092,6 +1116,8 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
     } else {
         w.day += 1;
     }
+
+    clock::finish_pending_transition(w);
 
     w.headlines[before..].to_vec()
 }

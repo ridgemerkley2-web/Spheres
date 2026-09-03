@@ -1727,8 +1727,13 @@ fn pick_focus(
     best.or(fallback).map(|(_, i)| i)
 }
 
-/// One month of research, diffusion and effect for every living nation.
+/// One simulation step of research, diffusion and effect for every living nation.
+/// Public research quotes remain monthly; the daily clock accrues their daily
+/// share, so a research point can unlock a technology on any day of the month.
 pub fn tick(w: &mut WorldState) {
+    let dt = crate::clock::month_fraction(w);
+    let absorption_memory = crate::clock::blend(w, ABSORPTION_MEMORY);
+    let oil_yield_blend = crate::clock::blend(w, 0.02);
     let reg = registry();
 
     // A snapshot of who knows what, weighted by the size of the economy that
@@ -1903,7 +1908,7 @@ pub fn tick(w: &mut WorldState) {
         } else {
             1.0
         };
-        let output = research_output(w, w.nation(id), dev);
+        let output = research_output(w, w.nation(id), dev) * dt;
         let weights = domain_weights(w, w.nation(id), dev);
 
         let mut firsts: Vec<u16> = vec![];
@@ -1990,11 +1995,11 @@ pub fn tick(w: &mut WorldState) {
             // pushes it up. A revelation is not a fielding, for the same reason
             // `grant_1990` leaves the rate at zero: a stock the nation already
             // had was never absorbed and must not be paid for as if it were.
-            let fielded = (learned - revealed).max(0.0) * 12.0;
+            let fielded = (learned - revealed).max(0.0) * 12.0 / dt;
             n.tech.absorption_rate +=
-                (fielded - n.tech.absorption_rate) * ABSORPTION_MEMORY;
+                (fielded - n.tech.absorption_rate) * absorption_memory;
 
-            population_multiplier = apply_bonuses(n, reference, frontier_known, absorb);
+            population_multiplier = apply_bonuses(n, reference, frontier_known, absorb, dt, oil_yield_blend);
         }
 
         district_growth.push((id, population_multiplier));
@@ -2078,7 +2083,14 @@ pub fn saturated_tech_tfp(n: &Nation) -> f64 {
 /// world pulls ahead, one that falls behind loses ground — and in January 1990,
 /// when nobody knows anything and the reference is zero, every nation sits
 /// exactly on the trend `init.rs` transcribed for it.
-fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, _absorb: f64) -> f64 {
+fn apply_bonuses(
+    n: &mut Nation,
+    reference: f64,
+    frontier_known: f64,
+    _absorb: f64,
+    dt: f64,
+    oil_yield_blend: f64,
+) -> f64 {
     let b = &n.tech.bonus;
     let tech_tfp = saturated_tech_tfp(n);
     // How far behind there is still to be, counted in technologies rather than
@@ -2131,7 +2143,7 @@ fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, _absorb: f
     if n.oil_mbd > 0.0 {
         let pending = b.oil_yield_eff() - n.tech.oil_yield_applied;
         if pending > 0.0 {
-            let step = pending * 0.02;
+            let step = pending * oil_yield_blend;
             n.oil_mbd *= 1.0 + step;
             n.tech.oil_yield_applied += step;
         }
@@ -2142,12 +2154,12 @@ fn apply_bonuses(n: &mut Nation, reference: f64, frontier_known: f64, _absorb: f
     let population_before = n.population;
     let demographic =
         b.health_eff() * 0.002 + b.fertility_eff() * 0.002 + b.environment_eff() * 0.0006;
-    n.population *= 1.0 + demographic / 12.0;
+    n.population *= 1.0 + demographic / 12.0 * dt;
 
     // A steady nudge against the growth model's own mean reversion, so a well
     // served population settles a few points higher rather than running away.
     n.stability =
-        (n.stability + (b.stability_eff() + b.environment_eff() * 0.30) * 0.005).clamp(0.0, 100.0);
+        (n.stability + (b.stability_eff() + b.environment_eff() * 0.30) * 0.005 * dt).clamp(0.0, 100.0);
     n.population / population_before
 }
 
@@ -2182,6 +2194,19 @@ mod tests {
     use super::*;
     use crate::init::world_1990;
     use crate::world::GameRules;
+
+    #[test]
+    fn daily_research_accrues_a_days_points_before_the_month_ends() {
+        let mut w = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
+        let id = NationId::USA;
+        let quoted_month = research_output(&w, w.nation(id), development(w.nation(id)));
+        let before = w.nation(id).tech.research_total;
+        tick(&mut w);
+        let posted = w.nation(id).tech.research_total - before;
+        assert!(posted > 0.0, "research must move on January 1");
+        assert!((posted - quoted_month / 31.0).abs() < 1e-12,
+            "the public monthly quote must be prorated, not charged each day");
+    }
 
     // -----------------------------------------------------------------------
     // The 1990 endowment: rebasing, succession, prerequisite holes, oil

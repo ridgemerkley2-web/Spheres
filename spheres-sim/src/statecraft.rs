@@ -76,14 +76,16 @@ pub fn tick(w: &mut WorldState) {
 /// A broken promise is remembered, then gradually not. Nobody climbs back above
 /// the baseline by waiting; that has to be earned in a war.
 fn reputations_recover(w: &mut WorldState) {
+    let dt = crate::clock::month_fraction(w);
     for (_, v) in w.statecraft.reputation.iter_mut() {
         if *v < BASE_REPUTATION {
-            *v = (*v + 0.15).min(BASE_REPUTATION);
+            *v = (*v + 0.15 * dt).min(BASE_REPUTATION);
         }
     }
 }
 
 fn pacts_upkeep(w: &mut WorldState) {
+    let dt = crate::clock::month_fraction(w);
     let pairs: Vec<(NationId, NationId)> =
         w.statecraft.pacts.iter().map(|p| (p.a, p.b)).collect();
     let mut lapsed: Vec<(NationId, NationId)> = vec![];
@@ -98,11 +100,11 @@ fn pacts_upkeep(w: &mut WorldState) {
             // `PACT_UPKEEP / 12.0` is the exact share the pre-treasury line
             // pushed into `debt_gdp` and is what the closed-books arm writes;
             // the dollars beside it are what a nation keeping a treasury pays.
-            let bn = w.nation(id).gdp * PACT_UPKEEP / 12.0;
-            crate::economy::charge(w, id, bn, PACT_UPKEEP / 12.0);
+            let bn = w.nation(id).gdp * PACT_UPKEEP / 12.0 * dt;
+            crate::economy::charge(w, id, bn, PACT_UPKEEP / 12.0 * dt);
         }
         if w.relation(a, b) < 85.0 {
-            w.shift_relation(a, b, 0.20);
+            w.shift_relation(a, b, 0.20 * dt);
         }
         // A guarantee between states that have come to loathe each other is a
         // dead letter long before anyone bothers to renounce it.
@@ -119,6 +121,8 @@ fn pacts_upkeep(w: &mut WorldState) {
 }
 
 fn aid_flows(w: &mut WorldState) {
+    let dt = crate::clock::month_fraction(w);
+    let arms_blend = crate::clock::blend(w, 0.02);
     let flows: Vec<AidFlow> = w.statecraft.aid.clone();
     let mut dead: Vec<(NationId, NationId, AidKind)> = vec![];
     for f in flows {
@@ -137,8 +141,8 @@ fn aid_flows(w: &mut WorldState) {
         };
         // Same two representations as the pact upkeep above: the ratio is
         // the pre-treasury line unchanged, the dollars are the same money.
-        let fiscal_bn = w.nation(f.patron).gdp * fiscal / 12.0;
-        crate::economy::charge(w, f.patron, fiscal_bn, fiscal / 12.0);
+        let fiscal_bn = w.nation(f.patron).gdp * fiscal / 12.0 * dt;
+        crate::economy::charge(w, f.patron, fiscal_bn, fiscal / 12.0 * dt);
 
         let (client_gdp, client_mil_share, client_strength) = {
             let c = w.nation(f.client);
@@ -150,8 +154,8 @@ fn aid_flows(w: &mut WorldState) {
                 let c = w.nation_mut(f.client);
                 // Most of a subsidy is eaten, not invested; what it reliably
                 // buys is a government that can pay its soldiers this month.
-                c.gdp *= 1.0 + infusion * 0.15 / 12.0;
-                c.stability = (c.stability + infusion * 8.0 / 12.0).min(100.0);
+                c.gdp *= 1.0 + infusion * 0.15 / 12.0 * dt;
+                c.stability = (c.stability + infusion * 8.0 / 12.0 * dt).min(100.0);
             }
             AidKind::Arms => {
                 // Transferred weapons are budget the client never had to raise.
@@ -159,12 +163,12 @@ fn aid_flows(w: &mut WorldState) {
                 // army converges on what its patron is willing to fund.
                 let sustained = ((client_gdp * client_mil_share + annual) * 0.30).sqrt() * 8.0;
                 let c = w.nation_mut(f.client);
-                c.mil_strength += (sustained - client_strength) * 0.02;
+                c.mil_strength += (sustained - client_strength) * arms_blend;
             }
         }
         // Dependence reads as friendship right up until the money stops.
         if w.relation(f.patron, f.client) < 75.0 {
-            w.shift_relation(f.patron, f.client, 0.25);
+            w.shift_relation(f.patron, f.client, 0.25 * dt);
         }
     }
     w.statecraft
@@ -173,6 +177,7 @@ fn aid_flows(w: &mut WorldState) {
 }
 
 fn trade_deepens(w: &mut WorldState) {
+    let dt = crate::clock::month_fraction(w);
     let pairs: Vec<(NationId, NationId)> = w.statecraft.trade.iter().map(|t| (t.a, t.b)).collect();
     let mut dead: Vec<(NationId, NationId)> = vec![];
     for (a, b) in pairs {
@@ -203,10 +208,10 @@ fn trade_deepens(w: &mut WorldState) {
                 .iter_mut()
                 .find(|t| t.a == a && t.b == b)
                 .expect("trade pact");
-            t.depth = (t.depth + 0.012).min(1.0);
+            t.depth = (t.depth + 0.012 * dt).min(1.0);
         }
         if w.relation(a, b) < 70.0 {
-            w.shift_relation(a, b, 0.15);
+            w.shift_relation(a, b, 0.15 * dt);
         }
     }
     w.statecraft.trade.retain(|t| !dead.contains(&(t.a, t.b)));
@@ -292,8 +297,9 @@ fn trade_level_gain(w: &mut WorldState) {
 }
 
 fn covert_channels_cool(w: &mut WorldState) {
+    let dt = crate::clock::month_fraction(w);
     for (_, _, h) in w.statecraft.covert_heat.iter_mut() {
-        *h -= 0.012;
+        *h -= 0.012 * dt;
     }
     w.statecraft.covert_heat.retain(|(_, _, h)| *h > 0.0);
 }

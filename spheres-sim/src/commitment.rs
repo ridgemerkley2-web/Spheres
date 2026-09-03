@@ -147,6 +147,8 @@ pub fn set_commitment(
     if old == rung {
         return Ok(());
     }
+    w.daily.counters.remove(&format!("war:{conflict}:rung:{nation:?}"));
+    if rung > old { w.daily.counters.remove(&format!("war:{conflict}:quiet")); }
     {
         let c = w.conflict_mut(conflict).expect("checked");
         if rung > old {
@@ -294,10 +296,10 @@ fn bind_instruments(
 /// from the war tick so that standing there shows up in `covert_heat` exactly as
 /// a player's own covert action would.
 pub fn deniable_forces_upkeep(w: &mut WorldState) {
-    if w.month % 3 != 1 {
+    if !crate::clock::is_daily(w) && w.month % 3 != 1 {
         return;
     }
-    let jobs: Vec<(NationId, NationId)> = w
+    let mut jobs: Vec<(NationId, NationId)> = w
         .conflicts
         .iter()
         .flat_map(|c| {
@@ -308,10 +310,17 @@ pub fn deniable_forces_upkeep(w: &mut WorldState) {
                 .collect::<Vec<_>>()
         })
         .collect();
+    if crate::clock::is_daily(w) {
+        jobs.sort();
+        jobs.dedup();
+        let active: Vec<_> = jobs.iter().map(|(a,b)| format!("deniable:{a:?}:{b:?}")).collect();
+        w.daily.counters.retain(|key, _| !key.starts_with("deniable:") || active.contains(key));
+    }
     for (sponsor, target) in jobs {
         if Some(sponsor) == w.player {
             continue; // the player's own services do what the player tells them
         }
+        if !crate::clock::interval_due(w, format!("deniable:{sponsor:?}:{target:?}"), 3.0) { continue; }
         let _ = apply_command(
             w,
             &Command::CovertAction { sponsor, target, op: CovertOp::StirSeparatists },
@@ -607,6 +616,7 @@ pub fn revoke_access(
         })
         .collect();
     for (cid, who, rung) in forced {
+        w.daily.counters.remove(&format!("war:{cid}:rung:{who:?}"));
         if let Some(c) = w.conflict_mut(cid) {
             if let Some(b) = c.posture_mut(who) {
                 b.rung = rung;
@@ -826,7 +836,7 @@ pub fn ai_ladder(w: &mut WorldState) {
     // in the vectors, because the first pass is holding the world immutably and
     // the RNG is the world's.
     for m in moves {
-        if m.chance < 1.0 && !w.rng.chance(m.chance) {
+        if m.chance < 1.0 && !w.rng.chance(crate::clock::chance(w, m.chance)) {
             continue;
         }
         let cmd = Command::SetCommitment { conflict: m.conflict, nation: m.nation, rung: m.rung };

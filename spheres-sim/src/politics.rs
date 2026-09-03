@@ -48,6 +48,8 @@ pub fn standing_target(w: &WorldState, id: NationId) -> f64 {
 }
 
 fn political_capital(w: &mut WorldState) {
+    let loss_rate = crate::clock::blend(w, 0.055);
+    let gain_rate = crate::clock::blend(w, 0.028);
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     for id in ids {
         let mut target = standing_target(w, id);
@@ -77,7 +79,7 @@ fn political_capital(w: &mut WorldState) {
         target += crate::ministries::pensions_standing(n.budget_gap(BUDGET_PENSIONS));
         let target = target.clamp(0.0, 100.0);
         // Standing is slow to build and quicker to lose.
-        let rate = if target < n.political_capital { 0.055 } else { 0.028 };
+        let rate = if target < n.political_capital { loss_rate } else { gain_rate };
         n.political_capital += (target - n.political_capital) * rate;
         n.political_capital = n.political_capital.clamp(0.0, 100.0);
     }
@@ -101,6 +103,11 @@ fn political_capital(w: &mut WorldState) {
 /// standing is worth, because an election held this month, or a coup, has to be
 /// reflected in the capital the government wakes up holding.
 pub fn tick(w: &mut WorldState) {
+    let dt = crate::clock::month_fraction(w);
+    let bank_rate = crate::clock::blend(w, 0.15);
+    let fiscal_cut = crate::clock::decay(w, 0.995);
+    let fiscal_restore = crate::clock::decay(w, 1.005);
+    let grievance_rate = crate::clock::blend(w, 0.008);
     political_capital(w);
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
 
@@ -138,7 +145,7 @@ pub fn tick(w: &mut WorldState) {
         // why it is this half that moved.
         let target = crate::economy::INFLATION_ANCHOR;
         let desired = (0.025 + n.inflation + (n.inflation - target) * 0.6).clamp(0.0, 0.45);
-        n.interest_rate += (desired - n.interest_rate) * 0.15;
+        n.interest_rate += (desired - n.interest_rate) * bank_rate;
     }
 
     // ---- Fiscal AI: consolidate when debt runs hot ----
@@ -148,12 +155,12 @@ pub fn tick(w: &mut WorldState) {
         }
         let n = w.nation_mut(*id);
         if n.debt_gdp > 0.85 {
-            n.tax_rate = (n.tax_rate + 0.002).min(0.55);
-            n.mil_spend_gdp = (n.mil_spend_gdp * 0.995).max(0.01);
-            n.state_invest_gdp = (n.state_invest_gdp * 0.995).max(0.02);
+            n.tax_rate = (n.tax_rate + 0.002 * dt).min(0.55);
+            n.mil_spend_gdp = (n.mil_spend_gdp * fiscal_cut).max(0.01);
+            n.state_invest_gdp = (n.state_invest_gdp * fiscal_cut).max(0.02);
         } else if n.debt_gdp < 0.3 {
             if n.tax_rate > 0.30 {
-                n.tax_rate -= 0.001;
+                n.tax_rate -= 0.001 * dt;
             }
             // CONSOLIDATION IS REVERSIBLE, and it was not. The branch above
             // cuts public investment 0.5% a month while debt runs hot and
@@ -172,7 +179,7 @@ pub fn tick(w: &mut WorldState) {
             // coefficient. `None` — a successor state with no transcribed 1990
             // share — recovers nothing.
             if let Some(base) = n.state_invest_1990 {
-                n.state_invest_gdp = (n.state_invest_gdp * 1.005).min(base);
+                n.state_invest_gdp = (n.state_invest_gdp * fiscal_restore).min(base);
             }
         }
     }
@@ -198,7 +205,7 @@ pub fn tick(w: &mut WorldState) {
             dissolve_ussr(w);
         } else if is_yugo && (stab < 25.0 || sep > 0.9) && !w.has_flag("yugoslavia_dissolved") {
             dissolve_yugoslavia(w);
-        } else if !is_ussr && !is_yugo && stab < 12.0 && w.rng.chance(0.10 * w.rules.crisis_intensity) {
+        } else if !is_ussr && !is_yugo && stab < 12.0 && monthly_chance(w, 0.10 * w.rules.crisis_intensity) {
             // Generic regime collapse: chaos, then a new regime
             let auth_shift = w.rng.range(-0.3, 0.2);
             let n = w.nation_mut(id);
@@ -224,7 +231,7 @@ pub fn tick(w: &mut WorldState) {
         if belligerents.iter().any(|(x, y)| (*x == a && *y == b) || (*x == b && *y == a)) {
             continue; // an active war keeps the wound open
         }
-        *v -= *v * 0.008; // ~9%/yr toward indifference
+        *v -= *v * grievance_rate; // ~9%/yr toward indifference
     }
 
     // ---- Sanctions relief: an embargo outlasts the war that caused it, and
@@ -1247,6 +1254,13 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
 /// month to open a chequebook, sign a guarantee, open a market, or pay somebody
 /// to make a rival's client ungovernable. Everything goes through the same
 /// `Command` the player uses, so the AI cannot do anything a player could not.
+/// Preserve a monthly event hazard while making the decision available daily.
+/// The one RNG remains WorldState's, and command effects are never prorated.
+fn monthly_chance(w: &mut WorldState, monthly_probability: f64) -> bool {
+    let probability = crate::clock::chance(w, monthly_probability);
+    w.rng.chance(probability)
+}
+
 fn ai_statecraft(w: &mut WorldState) {
     // Ruling 4's "must first try to buy": every AI state short of a line asks
     // every willing seller before this month's appetite is priced. Behind the
@@ -1268,7 +1282,7 @@ fn ai_statecraft(w: &mut WorldState) {
 
         // ---- Patronage. The scoring is where the competition lives. ----
         let headroom = crate::statecraft::MAX_AID_SHARE - w.aid_share_committed(p);
-        if headroom > 0.0008 && w.rng.chance(0.10) {
+        if headroom > 0.0008 && monthly_chance(w, 0.10) {
             if let Some(c) = best_client(w, p) {
                 // Guns for a client with an enemy, money for one with a problem.
                 let threatened = w.at_war(c)
@@ -1303,7 +1317,7 @@ fn ai_statecraft(w: &mut WorldState) {
         // ---- A guarantee, but only for a client you are already paying for and
         // cannot afford to lose. Handing them out cheaply is how a great power
         // ends up in a war over a country it could not find on a map. ----
-        if w.rng.chance(0.05) {
+        if monthly_chance(w, 0.05) {
             let candidate = w
                 .statecraft
                 .aid
@@ -1322,7 +1336,7 @@ fn ai_statecraft(w: &mut WorldState) {
         }
 
         // ---- Subversion, aimed at whoever is both hostile and brittle. ----
-        if w.rng.chance(0.022) {
+        if monthly_chance(w, 0.022) {
             if let Some(t) = best_covert_target(w, p) {
                 let (stab, sep) = {
                     let n = w.nation(t);
@@ -1356,7 +1370,7 @@ fn ai_statecraft(w: &mut WorldState) {
         if w.statecraft.trade.iter().filter(|t| t.a == a || t.b == a).count() >= 4 {
             continue;
         }
-        if !w.rng.chance(0.015) {
+        if !monthly_chance(w, 0.015) {
             continue;
         }
         let partner = w
@@ -1393,7 +1407,7 @@ fn ai_statecraft(w: &mut WorldState) {
         let threatened = w.nations.iter().any(|n| {
             n.alive && n.id != s && n.mil_strength > strength * 1.3 && w.relation(s, n.id) < -30.0
         });
-        if !threatened || !w.rng.chance(0.07) {
+        if !threatened || !monthly_chance(w, 0.07) {
             continue;
         }
         let protector = w
@@ -1539,7 +1553,7 @@ fn ai_wars(w: &mut WorldState) {
         if w.at_war(a) {
             continue;
         }
-        if !w.rng.chance(p) {
+        if !monthly_chance(w, p) {
             continue;
         }
         // The appetite does not go away because there is already an argument.

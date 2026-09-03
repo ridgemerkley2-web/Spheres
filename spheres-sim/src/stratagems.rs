@@ -420,7 +420,7 @@ pub fn ai_stratagems(w: &mut WorldState) {
         let choice = options.iter().find(|s| s.cost <= held - 20.0).map(|s| s.id);
         if let Some(sid) = choice {
             // Rare, because these are decisions of a whole term, not a month.
-            if w.rng.chance(0.02) {
+            if w.rng.chance(crate::clock::chance(w, 0.02)) {
                 let cmd = crate::Command::EnactStratagem {
                     nation: id,
                     id: sid.to_string(),
@@ -445,7 +445,7 @@ pub fn tick(w: &mut WorldState) {
     for id in seekers {
         // Roughly a decade of sustained effort, and only while the state holds
         // together well enough to run a programme at all.
-        let ready = w.nation(id).stability > 35.0 && w.rng.chance(0.008);
+        let ready = w.nation(id).stability > 35.0 && w.rng.chance(crate::clock::chance(w, 0.008));
         if ready {
             w.nation_mut(id).nuclear = true;
             w.headline(format!("{} tests a nuclear device.", id.name()));

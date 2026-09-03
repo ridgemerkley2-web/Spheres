@@ -324,6 +324,16 @@ pub fn stop_line(w: &mut WorldState, nation: NationId, line: u32) -> Result<(), 
 /// zero recipe but keeps its money slice so settlement can bank rather than
 /// silently redirect it.
 pub fn planned_allocations(w: &WorldState, nation: NationId) -> Vec<LinePlan> {
+    allocations_with_envelope(w, nation, available_bn(w, nation))
+}
+
+/// Actual slices for the current daily or legacy monthly settlement. Monthly
+/// forecasts remain monthly so reserve policies do not shrink with the clock.
+pub fn tick_allocations(w: &WorldState, nation: NationId) -> Vec<LinePlan> {
+    allocations_with_envelope(w, nation, arsenal::tick_line(w, nation))
+}
+
+fn allocations_with_envelope(w: &WorldState, nation: NationId, envelope: f64) -> Vec<LinePlan> {
     let mut lines: Vec<&ManufacturingLine> = lines_for(w, nation).collect();
     lines.sort_by_key(|line| (dispatch_rank(line.priority), line.id));
     let total_weight: f64 = lines
@@ -333,7 +343,6 @@ pub fn planned_allocations(w: &WorldState, nation: NationId) -> Vec<LinePlan> {
     if lines.is_empty() || total_weight <= 0.0 {
         return vec![];
     }
-    let envelope = available_bn(w, nation);
     let mut assigned = 0.0;
     let last = lines.len() - 1;
     lines
@@ -381,6 +390,20 @@ pub fn line_shortfalls(w: &WorldState, line_id: u32) -> [f64; 12] {
     let Some(line) = w.manufacturing.lines.iter().find(|line| line.id == line_id) else {
         return [0.0; 12];
     };
+    shortfalls_for_plans(w, line.nation, line_id, planned_allocations(w, line.nation))
+}
+
+/// Present-tense shortfall for the exact settlement recipe. Earlier successful
+/// lines reserve their daily bundles; banked funding is included once, not
+/// divided by the current month length as though it were recurring income.
+pub fn tick_line_shortfalls(w: &WorldState, line_id: u32) -> [f64; 12] {
+    let Some(line) = w.manufacturing.lines.iter().find(|line| line.id == line_id) else {
+        return [0.0; 12];
+    };
+    shortfalls_for_plans(w, line.nation, line_id, tick_allocations(w, line.nation))
+}
+
+fn shortfalls_for_plans(w: &WorldState, nation: NationId, line_id: u32, plans: Vec<LinePlan>) -> [f64; 12] {
     if !w.rules.resource_gates {
         return [0.0; 12];
     }
@@ -392,9 +415,9 @@ pub fn line_shortfalls(w: &WorldState, line_id: u32) -> [f64; 12] {
     // look supplied even though only the first could actually settle.
     let mut remaining: [f64; 12] = std::array::from_fn(|i| {
         let commodity = Commodity::from_idx(i).expect("twelve resource rows");
-        resources::stockpile(w, line.nation, commodity)
+        resources::stockpile(w, nation, commodity)
     });
-    for plan in planned_allocations(w, line.nation) {
+    for plan in plans {
         let shortfalls: [f64; 12] =
             std::array::from_fn(|i| (plan.required[i] - remaining[i]).max(0.0));
         if plan.line == line_id {
@@ -431,7 +454,7 @@ fn set_blocked(w: &mut WorldState, id: u32, reason: String) {
 /// Place one nation's directed monthly order slices. Called from `arsenal::tick`
 /// after the spot market has cleared and after old orders have delivered.
 pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
-    let plans = planned_allocations(w, nation);
+    let plans = tick_allocations(w, nation);
     if plans.is_empty() {
         return;
     }
@@ -453,6 +476,7 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
             continue;
         }
         if plan.budget_bn <= 1e-12 {
+            banked += plan.budget_bn;
             set_blocked(
                 w,
                 plan.line,
@@ -470,9 +494,10 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
                     w,
                     plan.line,
                     format!(
-                        "BLOCKED: needs {:.2} {} this month, have {:.2}.",
+                        "BLOCKED: needs {:.2} {} this {}, have {:.2}.",
                         want,
                         commodity.name(),
+                        if crate::clock::is_daily(w) { "day" } else { "month" },
                         have
                     ),
                 );
@@ -483,17 +508,20 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
         let def = &DECK[plan.kit as usize];
         let units = plan.budget_bn / def.unit_cost.max(1e-9);
         if units > 0.0 {
+            let due_days = crate::clock::is_daily(w)
+                .then(|| crate::clock::days_for_months(w, def.lead_months));
             let arsenal = &mut w.nation_mut(nation).arsenal;
             match arsenal
                 .orders
                 .iter_mut()
-                .find(|order| order.kit == plan.kit && order.due == def.lead_months)
+                .find(|order| order.kit == plan.kit && order.due == def.lead_months && order.due_days == due_days)
             {
                 Some(order) => order.units += units,
                 None => arsenal.orders.push(Order {
                     kit: plan.kit,
                     units,
                     due: def.lead_months,
+                    due_days,
                 }),
             }
         }
@@ -523,6 +551,93 @@ mod tests {
     use crate::production::{ProjectKind, ProvinceCapabilities};
     use crate::world::GameRules;
     use crate::{apply_command, load, save, tick_day, tick_month, Command};
+
+    #[test]
+    fn daily_manufacturing_places_a_daily_slice_without_shrinking_forecasts() {
+        let (mut w, nation, district) = enabled();
+        w.rules.daily_simulation = true;
+        let line = start_line(&mut w, nation, &district, "arm_gen3").unwrap();
+        let monthly = line_resource_draw(&w, line);
+        fill_draw(&mut w, nation, monthly, 12.0);
+        let day = tick_allocations(&w, nation)[0].clone();
+        assert!((day.budget_bn * 31.0 - budget_bn(&w, nation)).abs() < 1e-12);
+        settle_nation(&mut w, nation);
+        assert!((w.manufacturing.lines[0].ordered_bn - day.budget_bn).abs() < 1e-12);
+        for c in ALL {
+            assert!((w.manufacturing.lines[0].resources_used[c.idx()] - day.required[c.idx()]).abs() < 1e-9);
+            assert!((line_resource_draw(&w, line)[c.idx()] - monthly[c.idx()]).abs() < 1e-9);
+        }
+        assert!(w.nation(nation).arsenal.orders[0].due_days.unwrap() > 365);
+    }
+
+    #[test]
+    fn daily_manufacturing_two_days_stock_is_not_a_monthly_shortage() {
+        let (mut w, nation, district) = enabled();
+        w.rules.daily_simulation = true;
+        let line = start_line(&mut w, nation, &district, "arm_gen3").unwrap();
+        let day = tick_allocations(&w, nation)[0].clone();
+        fill_draw(&mut w, nation, day.required, 2.0);
+        assert!(line_shortfalls(&w, line).iter().any(|gap| *gap > 1e-12),
+            "the fixture must be insufficient for the unchanged monthly forecast");
+        assert_eq!(tick_line_shortfalls(&w, line), [0.0; 12]);
+        settle_nation(&mut w, nation);
+        assert_eq!(w.manufacturing.lines[0].status, LineStatus::Producing);
+        crate::clock::advance_date(&mut w);
+        assert_eq!(tick_line_shortfalls(&w, line), [0.0; 12]);
+        settle_nation(&mut w, nation);
+        assert_eq!(w.manufacturing.lines[0].status, LineStatus::Producing);
+        assert!(tick_line_shortfalls(&w, line).iter().any(|gap| *gap > 1e-12));
+    }
+
+    #[test]
+    fn daily_shortfalls_include_banked_cash_and_prior_successful_bundles() {
+        let (mut w, nation, district) = enabled();
+        w.rules.daily_simulation = true;
+        let low = start_line(&mut w, nation, &district, "arm_gen2").unwrap();
+        let high = start_line(&mut w, nation, &district, "arm_gen3").unwrap();
+        set_priority(&mut w, nation, low, Priority::Low).unwrap();
+        set_priority(&mut w, nation, high, Priority::High).unwrap();
+        w.nation_mut(nation).arsenal.banked = 2.0;
+        let plans = tick_allocations(&w, nation);
+        let high_plan = plans.iter().find(|p| p.line == high).unwrap();
+        let low_plan = plans.iter().find(|p| p.line == low).unwrap();
+        assert!((plans.iter().map(|p| p.budget_bn).sum::<f64>()
+            - (budget_bn(&w, nation) / 31.0 + 2.0)).abs() < 1e-12);
+        fill_draw(&mut w, nation, high_plan.required, 1.0);
+        assert_eq!(tick_line_shortfalls(&w, high), [0.0; 12]);
+        assert_eq!(tick_line_shortfalls(&w, low), low_plan.required,
+            "the earlier successful bundle must reserve its complete stock");
+        let high_budget = high_plan.budget_bn;
+        let low_budget = low_plan.budget_bn;
+        settle_nation(&mut w, nation);
+        assert_eq!(w.manufacturing.lines.iter().find(|l| l.id == high).unwrap().status,
+            LineStatus::Producing);
+        assert_eq!(w.manufacturing.lines.iter().find(|l| l.id == low).unwrap().status,
+            LineStatus::Blocked);
+        assert!((w.nation(nation).arsenal.banked - low_budget).abs() < 1e-12);
+        assert!((w.manufacturing.lines.iter().find(|l| l.id == high).unwrap().ordered_bn
+            - high_budget).abs() < 1e-12);
+    }
+
+    #[test]
+    fn tiny_daily_manufacturing_funding_accumulates_instead_of_disappearing() {
+        let (mut w, nation, district) = enabled();
+        w.rules.daily_simulation = true;
+        start_line(&mut w, nation, &district, "inf_light").unwrap();
+        let gdp = w.nation(nation).gdp;
+        w.nation_mut(nation).mil_spend_gdp = 1.55e-11 * 12.0 / (gdp * arsenal::PROCUREMENT_SHARE);
+        let recurring = budget_bn(&w, nation);
+        settle_nation(&mut w, nation);
+        assert!(w.nation(nation).arsenal.banked > 0.0);
+        assert_eq!(w.manufacturing.lines[0].ordered_bn, 0.0);
+        for _ in 1..31 {
+            crate::clock::advance_date(&mut w);
+            settle_nation(&mut w, nation);
+        }
+        let conserved = w.nation(nation).arsenal.banked + w.manufacturing.lines[0].ordered_bn;
+        assert!((conserved - recurring).abs() < 1e-22);
+        assert!(w.manufacturing.lines[0].ordered_bn > 0.0);
+    }
 
     fn enabled() -> (WorldState, NationId, String) {
         let mut w = world_1990(GameRules {

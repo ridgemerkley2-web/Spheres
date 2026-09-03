@@ -873,6 +873,8 @@ pub fn load_world(
         production: Default::default(),
         manufacturing: Default::default(),
         domination: Default::default(),
+        logistics: Default::default(),
+        daily: Default::default(),
         by_id: vec![],
         by_id_len: 0,
         resource_have: Default::default(),

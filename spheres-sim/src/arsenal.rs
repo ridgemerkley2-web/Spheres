@@ -210,6 +210,10 @@ pub struct Order {
     pub units: f64,
     /// Months still to run. This is the whole mechanism.
     pub due: u32,
+    /// Remaining calendar days on the daily scheduler. Missing on old saves;
+    /// migration derives it from the unexpired monthly term exactly once.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub due_days: Option<u32>,
 }
 
 /// Everything a nation has bought, has on order, and is still flying.
@@ -225,6 +229,8 @@ pub struct Arsenal {
     /// `tick` so it cannot be hoarded for a century.
     #[serde(default)]
     pub banked: f64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub last_tick_day: Option<i32>,
 }
 
 /// The share of a military budget that buys equipment rather than paying people
@@ -362,7 +368,7 @@ pub fn inheritance(r: &crate::data::NationRecord) -> Arsenal {
     // Orders are deliberately NOT seeded: what a nation had on order in January
     // 1990 is not in the data, and the pipeline refills itself within one lead
     // time anyway.
-    Arsenal { held, orders: vec![], preference: None, banked: 0.0 }
+    Arsenal { held, orders: vec![], preference: None, banked: 0.0, last_tick_day: None }
 }
 
 /// Which tier of a class a force at this generation fields.
@@ -508,6 +514,13 @@ pub(crate) fn line_of(n: &Nation) -> f64 {
     budget_of(n) + n.arsenal.banked
 }
 
+/// Actual appropriation available for this settlement. The old bank is a
+/// dollar stock, not a monthly flow, so only new funding is prorated.
+pub(crate) fn tick_line(w: &WorldState, nation: NationId) -> f64 {
+    budget_of(w.nation(nation)) * crate::clock::month_fraction(w)
+        + w.nation(nation).arsenal.banked
+}
+
 /// Each kit's technology resolved to its index once. `available` and `pick`
 /// run every nation-month, and resolving thirty-three names by search each
 /// time was most of the arsenal's cost (SPEC section 8's "free win";
@@ -592,10 +605,17 @@ pub fn tick(w: &mut WorldState) {
     // Technology has already advanced this month, so the spot market now
     // sees the exact procurement recipes this tick will attempt to consume.
     crate::resources::clear_spot_market(w);
+    let daily = crate::clock::is_daily(w);
+    let fraction = crate::clock::month_fraction(w);
+    let today = crate::clock::absolute_day(w);
+    let month_end = crate::clock::month_end(w);
+    let writeoff = crate::clock::decay(w, 0.98);
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     for id in ids {
+        if daily && w.nation(id).arsenal.last_tick_day == Some(today) { continue; }
+        if daily { w.nation_mut(id).arsenal.last_tick_day = Some(today); }
         let budget = budget_of(w.nation(id));
-        let line = line_of(w.nation(id));
+        let line = tick_line(w, id);
         let directed = w.rules.manufacturing_system
             && crate::manufacturing::lines_for(w, id).next().is_some();
         // The one gate the resource system has in cut one. It checks the kit
@@ -615,23 +635,34 @@ pub fn tick(w: &mut WorldState) {
         if let Some(s) = stall {
             w.headline(s.headline());
         }
+        // Resolve old monthly orders before taking the mutable nation borrow.
+        // New daily orders already carry their exact remaining lead time.
+        let migrated: Vec<Option<u32>> = w.nation(id).arsenal.orders.iter()
+            .map(|o| if daily { Some(o.due_days.unwrap_or_else(|| crate::clock::days_for_months(w, o.due))) }
+                else { None }).collect();
+        let new_due_days = choice.filter(|_| daily)
+            .map(|kit| crate::clock::days_for_months(w, DECK[kit as usize].lead_months));
         {
             let n = w.nation_mut(id);
 
             // Age what is already in service.
             for h in n.arsenal.held.iter_mut() {
-                h.age += 1.0;
+                h.age += fraction;
             }
 
             // Deliveries. An order that has run its lead time becomes a holding.
             let mut arrived: Vec<(u16, f64)> = vec![];
-            for o in n.arsenal.orders.iter_mut() {
-                o.due = o.due.saturating_sub(1);
-                if o.due == 0 {
+            for (o, remaining) in n.arsenal.orders.iter_mut().zip(migrated) {
+                if daily {
+                    o.due_days = remaining.map(|days| days.saturating_sub(1));
+                    if month_end { o.due = o.due.saturating_sub(1); }
+                } else { o.due = o.due.saturating_sub(1); }
+                let arrived_now = if daily { o.due_days == Some(0) } else { o.due == 0 };
+                if arrived_now {
                     arrived.push((o.kit, o.units));
                 }
             }
-            n.arsenal.orders.retain(|o| o.due > 0);
+            n.arsenal.orders.retain(|o| if daily { o.due_days != Some(0) } else { o.due > 0 });
             for (kit, units) in arrived {
                 // One row per kit, merged with a units-weighted mean age. The old
                 // `age < 12` predicate opened a new row every year, so a seventy-year
@@ -667,13 +698,14 @@ pub fn tick(w: &mut WorldState) {
                             .arsenal
                             .orders
                             .iter_mut()
-                            .find(|o| o.kit == kit && o.due == def.lead_months)
+                            .find(|o| o.kit == kit && o.due == def.lead_months && o.due_days == new_due_days)
                         {
                             Some(o) => o.units += units,
                             None => n.arsenal.orders.push(Order {
                                 kit,
                                 units,
                                 due: def.lead_months,
+                                due_days: new_due_days,
                             }),
                         }
                     }
@@ -686,7 +718,7 @@ pub fn tick(w: &mut WorldState) {
             for h in n.arsenal.held.iter_mut() {
                 if let Some(def) = DECK.get(h.kit as usize) {
                     if h.age > 2.0 * def.service_months as f64 {
-                        h.units *= 0.98;
+                        h.units *= writeoff;
                     }
                 }
             }
@@ -746,6 +778,58 @@ pub(crate) fn pick(n: &Nation) -> Option<u16> {
 #[cfg(test)]
 mod ranking_tests {
     use super::*;
+
+    #[test]
+    fn daily_procurement_places_only_daily_funding_and_is_idempotent() {
+        let mut w = crate::init::world_1990(crate::world::GameRules {
+            daily_simulation: true, ..crate::world::GameRules::default()
+        });
+        let id = NationId::USA;
+        w.nation_mut(id).arsenal.preference = Some("inf_light".into());
+        w.nation_mut(id).arsenal.orders.clear();
+        w.nation_mut(id).arsenal.banked = 2.0;
+        let recurring = budget_of(w.nation(id));
+        let kit = index_of("inf_light").unwrap();
+        tick(&mut w);
+        let ordered: f64 = w.nation(id).arsenal.orders.iter().map(|o| o.units * DECK[o.kit as usize].unit_cost).sum();
+        assert!((ordered - (2.0 + recurring / 31.0)).abs() < 1e-12,
+            "the bank is a stock, and must not itself be divided by 31");
+        assert_eq!(w.nation(id).arsenal.orders[0].due_days,
+            Some(crate::clock::days_for_months(&w, DECK[kit as usize].lead_months)));
+        let once = crate::save(&w);
+        tick(&mut w);
+        assert_eq!(once, crate::save(&w));
+        for _ in 1..31 { crate::clock::advance_date(&mut w); tick(&mut w); }
+        let ordered: f64 = w.nation(id).arsenal.orders.iter().map(|o| o.units * DECK[o.kit as usize].unit_cost).sum();
+        assert!((ordered - (2.0 + recurring)).abs() < 1e-10);
+    }
+
+    #[test]
+    fn daily_legacy_order_migration_respects_februarys_leap_day() {
+        let mut w = crate::init::world_1990(crate::world::GameRules {
+            daily_simulation: true, ..crate::world::GameRules::default()
+        });
+        w.year = 1992;
+        w.month = 2;
+        let id = NationId::USA;
+        let kit = index_of("inf_light").unwrap();
+        let n = w.nation_mut(id);
+        n.mil_spend_gdp = 0.0;
+        n.arsenal.held.clear();
+        n.arsenal.orders = vec![Order { kit, units: 500.0, due: 1, due_days: None }];
+        for _ in 0..28 {
+            tick(&mut w);
+            assert!(w.nation(id).arsenal.held.is_empty());
+            crate::clock::advance_date(&mut w);
+        }
+        assert_eq!(w.nation(id).arsenal.orders[0].due_days, Some(1));
+        let mut loaded = crate::load(&crate::save(&w)).unwrap();
+        tick(&mut w);
+        tick(&mut loaded);
+        assert_eq!(crate::save(&w), crate::save(&loaded));
+        assert!(w.nation(id).arsenal.orders.is_empty());
+        assert_eq!(w.nation(id).arsenal.held[0].units, 500.0);
+    }
 
     /// `pick`'s original fold, kept verbatim as the thing the ranking is
     /// checked against. If this and `pick` ever disagree, `pick` is wrong.

@@ -5428,6 +5428,14 @@ pub struct GovState {
     pub coup_pressure: f64,
     /// Months this government has been in office. A honeymoon is real and short.
     pub months_in_office: u32,
+    /// The unfinished month of a daily government. Omitted from legacy saves;
+    /// a government formed mid-month must not age a whole month at midnight.
+    #[serde(default, skip_serializing_if = "office_fraction_is_zero")]
+    pub office_month_fraction: f64,
+}
+
+fn office_fraction_is_zero(value: &f64) -> bool {
+    *value == 0.0
 }
 
 impl GovState {
@@ -5519,6 +5527,7 @@ pub fn ensure(w: &mut WorldState, id: NationId) {
         pillars,
         coup_pressure: 0.0,
         months_in_office: 0,
+        office_month_fraction: 0.0,
     };
     // Seats at the opening are the last real result read through this system's
     // own machinery, so that January 1990 and January 1994 are described the
@@ -5647,6 +5656,7 @@ fn form_government(w: &mut WorldState, id: NationId, announce: bool) {
     if let Some(g) = state_mut(w, id) {
         g.coalition = coalition;
         g.months_in_office = 0;
+        g.office_month_fraction = 0.0;
     }
     let _ = sys;
     if announce {
@@ -5733,6 +5743,8 @@ fn appeal(family: Family, pn: &Pains, development: f64) -> f64 {
 /// are small; a bad year moves five to ten points, which is about what a bad
 /// year does.
 fn drift_support(w: &mut WorldState, id: NationId) {
+    let dt = crate::clock::month_fraction(w);
+    let reversion = crate::clock::blend(w, 0.020);
     let pn = pains(w, id);
     let development = {
         let n = w.nation(id);
@@ -5760,7 +5772,7 @@ fn drift_support(w: &mut WorldState, id: NationId) {
     // What flows out of (or into) the parties of government this month. Small,
     // because it is a month: a bad year moves five or six points, which is about
     // what a bad year does.
-    let swing = record * 0.006;
+    let swing = record * 0.006 * dt;
     let appeals: Vec<(String, f64)> = families
         .iter()
         .filter(|(pid, _)| !incumbents.contains(pid))
@@ -5775,9 +5787,9 @@ fn drift_support(w: &mut WorldState, id: NationId) {
     // A party with nothing left cannot lose more, and one with everything
     // cannot gain: the transfer is bounded by what exists on each side.
     let moved = if swing < 0.0 {
-        -(-swing * held).min(0.015)
+        -(-swing * held).min(0.015 * dt)
     } else {
-        (swing * (1.0 - held)).min(0.015)
+        (swing * (1.0 - held)).min(0.015 * dt)
     };
     for e in g.support.iter_mut() {
         if incumbents.contains(&e.0) {
@@ -5797,7 +5809,7 @@ fn drift_support(w: &mut WorldState, id: NationId) {
     // structural share, not at a hundred per cent.
     for e in g.support.iter_mut() {
         let base = base_share(id, &e.0);
-        e.1 += (base - e.1) * 0.020;
+        e.1 += (base - e.1) * reversion;
         e.1 = e.1.max(0.002);
     }
     normalise(&mut g.support);
@@ -5915,7 +5927,7 @@ pub fn standing_modifier(w: &WorldState, id: NationId) -> f64 {
         // standing credit the way the flat majority bonus in the first draft
         // did — that one cancelled a third of what a war costs at home.
         if g.months_in_office < 6 && g.elected {
-            m += 6.0 - g.months_in_office as f64;
+            m += 6.0 - g.months_in_office as f64 - g.office_month_fraction;
         }
         m
     } else {
@@ -6062,6 +6074,9 @@ pub fn secure_pillar(w: &mut WorldState, id: NationId, pillar: Pillar) -> Result
 
 /// Loyalty walks toward what the regime is currently giving each institution.
 fn regime_tick(w: &mut WorldState, id: NationId) {
+    let dt = crate::clock::month_fraction(w);
+    let loss_rate = crate::clock::blend(w, 0.10);
+    let gain_rate = crate::clock::blend(w, 0.045);
     let (mil, _invest, growth, infl, stab, auth, exhaustion, sanctioned) = {
         let n = w.nation(id);
         (
@@ -6133,7 +6148,7 @@ fn regime_tick(w: &mut WorldState, id: NationId) {
         if let Some(e) = g.pillars.iter_mut().find(|(p, _)| *p == pillar) {
             // Loyalty is slow to buy and quick to lose, like everything else in
             // this game that is worth having.
-            let rate = if target < e.1 { 0.10 } else { 0.045 };
+            let rate = if target < e.1 { loss_rate } else { gain_rate };
             e.1 += (target - e.1) * rate;
             e.1 = e.1.clamp(0.0, 1.0);
         }
@@ -6145,9 +6160,9 @@ fn regime_tick(w: &mut WorldState, id: NationId) {
     // Republic seven times in twenty years.
     let weakest = g.weakest_armed().map(|(_, v)| v).unwrap_or(1.0);
     if weakest < 0.35 {
-        g.coup_pressure = (g.coup_pressure + (0.35 - weakest) * 0.15).min(1.5);
+        g.coup_pressure = (g.coup_pressure + (0.35 - weakest) * 0.15 * dt).min(1.5);
     } else {
-        g.coup_pressure = (g.coup_pressure - 0.015).max(0.0);
+        g.coup_pressure = (g.coup_pressure - 0.015 * dt).max(0.0);
     }
 }
 
@@ -6199,6 +6214,7 @@ fn maybe_coup(w: &mut WorldState, id: NationId) {
             e.1 = if e.0 == pillar { 0.90 } else { 0.72 };
         }
         g.months_in_office = 0;
+        g.office_month_fraction = 0.0;
     }
     let _ = loyalty;
     w.headline(format!("COUP IN {}: {} removes the government.", id.name().to_uppercase(), name));
@@ -6246,6 +6262,8 @@ fn ai_government(w: &mut WorldState) {
 }
 
 pub fn tick(w: &mut WorldState) {
+    let daily = crate::clock::is_daily(w);
+    let dt = crate::clock::month_fraction(w);
     ensure_all(w);
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
 
@@ -6254,7 +6272,15 @@ pub fn tick(w: &mut WorldState) {
             continue;
         }
         if let Some(g) = state_mut(w, id) {
-            g.months_in_office = g.months_in_office.saturating_add(1);
+            if daily {
+                g.office_month_fraction += dt;
+                if g.office_month_fraction >= 1.0 - 1e-12 {
+                    g.months_in_office = g.months_in_office.saturating_add(1);
+                    g.office_month_fraction = (g.office_month_fraction - 1.0).max(0.0);
+                }
+            } else {
+                g.months_in_office = g.months_in_office.saturating_add(1);
+            }
         }
 
         if is_electoral(w, id) {
@@ -6322,7 +6348,7 @@ pub fn tick(w: &mut WorldState) {
 
         // The bill for the government you are running, paid every month out of
         // the same stock everything else is priced in.
-        let cost = upkeep(w, id);
+        let cost = upkeep(w, id) * dt;
         if cost > 0.0 {
             let n = w.nation_mut(id);
             n.political_capital = (n.political_capital - cost).max(0.0);
@@ -6339,6 +6365,27 @@ mod tests {
 
     fn w1990() -> WorldState {
         world_1990(GameRules::default())
+    }
+
+    #[test]
+    fn daily_government_age_and_support_do_not_jump_a_month_per_day() {
+        let mut w = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
+        let id = NationId::USA;
+        let support = state(&w, id).unwrap().support.clone();
+        tick(&mut w);
+        let first_day = state(&w, id).unwrap();
+        assert_eq!(first_day.months_in_office, 0);
+        assert!((first_day.office_month_fraction - 1.0 / 31.0).abs() < 1e-12);
+        assert_ne!(first_day.support, support, "the electorate changes before month end");
+        for day in 2..=31 {
+            w.day = day;
+            tick(&mut w);
+        }
+        let month = state(&w, id).unwrap();
+        assert_eq!(month.months_in_office, 1);
+        assert!(month.office_month_fraction.abs() < 1e-12);
+        let resumed = crate::load(&crate::save(&w)).unwrap();
+        assert_eq!(state(&resumed, id).unwrap().months_in_office, 1);
     }
 
     #[test]

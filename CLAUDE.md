@@ -195,17 +195,15 @@ Two pillars from SPEC.md, and where each now stands:
   headless runs and quick calibration checks.
 - Eventual goal: nightly autonomous dev sessions via cron on his Proxmox box,
   driven by this file + ROADMAP.md. Keep both current as work completes.
-- The MODEL ticks monthly, and stays that way (v0.4 had hourly cadence;
-  reintroduce only with a scheduler design, not by brute-forcing 720x more
-  ticks). The CALENDAR advances daily — BIBLE §5, amended 2026-09-01 and again
-  2026-09-02 — on the strict condition that a day-stepped month is
-  bit-identical to a month-stepped one, commands included. That condition is
-  asserted by `tests::the_daily_clock_preserves_the_market_on_world` (market
-  on, contracts in flight, orders issued on the 10th, the 20th, the 31st and
-  the 15th, a mid-month save/load); a change that turns it red is wrong by
-  definition. The daily calendar (`tick_day`) and the ten-ministry
-  annual budget (`AnnualBudget`, `Command::SetAnnualBudget`, SPEC §3 as
-  amended) landed 2026-09-02 on Ridge's ruling. A daily calendar is pacing; a
-  daily system is the thing that is still refused.
+- Ridge's 2026-09-03 ruling: “Can we get everything on a daily ticker not
+  monthly?” The MODEL now runs daily in browser play; see the superseding
+  BIBLE amendment and DAILY.md. Never apply a whole monthly flow on each day:
+  use clock::month_fraction/year_fraction, compounded blend/decay/chance,
+  actual-day deadlines and same-day ledger guards. One-off commands stay whole.
+  The ten-ministry budget stays annual, spent daily. Legacy headless monthly
+  replay remains the default when daily_simulation is false; its calibration
+  and daily-calendar compatibility tests must remain unchanged. New daily
+  replay compares identical date-stamped command schedules, not commands moved
+  between dates. Daily-mode long-run balance requires its own evidence.
 
 See ROADMAP.md for what to build next.

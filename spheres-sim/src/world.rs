@@ -908,6 +908,13 @@ pub struct GameRules {
     /// skipped when false, preserving old saves and the calibrated baseline.
     #[serde(default, skip_serializing_if = "is_false")]
     pub logistics_routes: bool,
+    /// Capacity-constrained map routes and in-flight goods. Opt-in so older
+    /// saves retain instantaneous trade unless explicitly upgraded by a client.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub physical_logistics: bool,
+    /// Real daily settlement; false retains the historical monthly replay.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub daily_simulation: bool,
     /// Player-directed province production and construction. OFF in the
     /// calibrated/headless world and enabled by the browser's play rules.
     /// Empty state and a false switch both disappear from saves.
@@ -937,6 +944,8 @@ impl Default for GameRules {
             resource_gates: true,
             resource_market: false,
             logistics_routes: false,
+            physical_logistics: false,
+            daily_simulation: false,
             production_system: false,
             manufacturing_system: false,
         }
@@ -1064,6 +1073,11 @@ pub struct WorldState {
     /// in a non-player or legacy world, preserving the old save shape.
     #[serde(default, skip_serializing_if = "crate::domination::Domination::is_empty")]
     pub domination: crate::domination::Domination,
+    /// Goods outside national warehouses, transport usage and route policies.
+    #[serde(default, skip_serializing_if = "crate::logistics::Logistics::is_empty")]
+    pub logistics: crate::logistics::Logistics,
+    #[serde(default, skip_serializing_if = "crate::clock::DailyState::is_empty")]
+    pub daily: crate::clock::DailyState,
 
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it

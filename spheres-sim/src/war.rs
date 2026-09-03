@@ -551,6 +551,7 @@ pub fn industry_refill(w: &WorldState, id: NationId) -> f64 {
 
 /// Monthly military & war tick.
 pub fn tick(w: &mut WorldState) {
+    let dt = crate::clock::month_fraction(w);
     // ---- Strength accumulation from spending, and magazines refilling ----
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     for id in &ids {
@@ -564,15 +565,20 @@ pub fn tick(w: &mut WorldState) {
         // mutably, because each of them reads the world and not just the
         // nation.
         let retention = health_retention(w, *id);
+        let replacement = crate::clock::blend(w, REPLACEMENT_RATE * retention);
         let n = w.nation_mut(*id);
         // Strength drifts toward what the budget sustains. The arithmetic is in
         // `sustained_force` below, which is the only place it exists.
         let share = n.mil_spend_gdp;
         let sustained = sustained_force(n, share);
-        n.mil_strength += (sustained - n.mil_strength) * REPLACEMENT_RATE * retention;
-        n.munitions = (n.munitions + refill).clamp(0.0, 1.0);
+        if dt == 1.0 {
+            n.mil_strength += (sustained - n.mil_strength) * REPLACEMENT_RATE * retention;
+        } else {
+            n.mil_strength += (sustained - n.mil_strength) * replacement;
+        }
+        n.munitions = (n.munitions + refill * dt).clamp(0.0, 1.0);
         // Exhaustion decays in peace
-        n.war_exhaustion = (n.war_exhaustion - 0.01).max(0.0);
+        n.war_exhaustion = (n.war_exhaustion - 0.01 * dt).max(0.0);
     }
 
     // Standing on rung 5 is a thing a service keeps doing, not a state it enters.
@@ -604,6 +610,7 @@ enum Ending {
 }
 
 fn resolve_conflicts(w: &mut WorldState) {
+    let dt = crate::clock::month_fraction(w);
     let mut continuing: Vec<Conflict> = vec![];
     let mut ended: Vec<(Conflict, Ending)> = vec![];
     let conflicts = std::mem::take(&mut w.conflicts);
@@ -618,9 +625,10 @@ fn resolve_conflicts(w: &mut WorldState) {
             continue;
         }
 
-        c.months += 1;
+        c.months = crate::clock::advance_counter(w, format!("war:{}:age", c.id), c.months);
+        let old_rungs: Vec<_> = c.posture.iter().map(|b| (b.nation, b.rung)).collect();
         for b in c.posture.iter_mut() {
-            b.months_at_rung += 1;
+            b.months_at_rung = crate::clock::advance_counter(w, format!("war:{}:rung:{:?}", c.id, b.nation), b.months_at_rung);
         }
 
         let th = crate::theatre::theatre(w, c.theatre).clone();
@@ -647,7 +655,7 @@ fn resolve_conflicts(w: &mut WorldState) {
             crate::front::sync(&mut c, &contested);
         }
         let (push, hold_mult) = control_terms(&c, &a, &b, c.control);
-        let dcontrol = push * (1.0 - c.control * c.control) - CONTROL_DECAY * c.control * hold_mult;
+        let dcontrol = (push * (1.0 - c.control * c.control) - CONTROL_DECAY * c.control * hold_mult) * dt;
         if contested.k.is_empty() {
             c.control = (c.control + dcontrol).clamp(-1.0, 1.0);
         } else {
@@ -710,9 +718,11 @@ fn resolve_conflicts(w: &mut WorldState) {
                 futility = 0.0;
             }
 
-            let new_resolve =
-                (c.posture[i].resolve + recovery - casualty_pain - treasure_pain - futility)
-                    .clamp(0.0, 1.0);
+            let new_resolve = if dt == 1.0 {
+                (c.posture[i].resolve + recovery - casualty_pain - treasure_pain - futility).clamp(0.0, 1.0)
+            } else {
+                (c.posture[i].resolve + (recovery - casualty_pain - treasure_pain - futility) * dt).clamp(0.0, 1.0)
+            };
             {
                 let x = &mut c.posture[i];
                 x.resolve = new_resolve;
@@ -730,7 +740,10 @@ fn resolve_conflicts(w: &mut WorldState) {
             }
 
             // Withdrawal is a schedule, not a decision taken again each month.
-            if c.posture[i].objective == Objective::Withdraw && c.posture[i].rung > 1 {
+            let withdrawal_key = format!("war:{}:withdraw:{:?}", c.id, nation);
+            if c.posture[i].objective != Objective::Withdraw { w.daily.counters.remove(&withdrawal_key); }
+            if c.posture[i].objective == Objective::Withdraw && c.posture[i].rung > 1
+                && crate::clock::interval_due(w, withdrawal_key, 1.0) {
                 c.posture[i].rung -= 1;
                 c.posture[i].months_at_rung = 0;
             }
@@ -782,17 +795,18 @@ fn resolve_conflicts(w: &mut WorldState) {
         }
 
         for (id, rate) in structure_hits {
+            let rate = crate::clock::blend(w, rate);
             let n = w.nation_mut(id);
             n.mil_strength = (n.mil_strength * (1.0 - rate)).max(0.0);
         }
         for (id, d) in exhaustion {
             let n = w.nation_mut(id);
-            n.war_exhaustion = (n.war_exhaustion + d).min(1.0);
+            n.war_exhaustion = (n.war_exhaustion + d * dt).min(1.0);
         }
         for (id, burn) in burns {
             let dry = {
                 let n = w.nation_mut(id);
-                n.munitions = (n.munitions - burn).clamp(0.0, 1.0);
+                n.munitions = (n.munitions - burn * dt).clamp(0.0, 1.0);
                 n.munitions <= 0.0 && burn > 0.0
             };
             // A dry magazine ends a campaign for logistical rather than
@@ -803,7 +817,9 @@ fn resolve_conflicts(w: &mut WorldState) {
             // shooting campaign, it does not end the quarrel. A state whose
             // arsenal is spent still has sanctions, still has proxies, and still
             // has a service — it simply cannot conduct fires any more.
-            if dry {
+            let dry_key = format!("war:{}:dry:{:?}", c.id, id);
+            if !dry { w.daily.counters.remove(&dry_key); }
+            if dry && crate::clock::interval_due(w, dry_key, 1.0) {
                 if let Some(x) = c.posture_mut(id) {
                     if x.rung > MAX_SUSTAINABLE_DRY {
                         x.rung -= 1;
@@ -819,6 +835,11 @@ fn resolve_conflicts(w: &mut WorldState) {
         }
         for h in headlines {
             w.headline(h);
+        }
+        for (id, rung) in old_rungs {
+            if c.posture_of(id).is_none_or(|b| b.rung != rung) {
+                w.daily.counters.remove(&format!("war:{}:rung:{:?}", c.id, id));
+            }
         }
         // The leads, read BEFORE the exits can empty a side: when the last
         // defender quits the fight, the endings below still have to know who
@@ -894,7 +915,7 @@ fn resolve_conflicts(w: &mut WorldState) {
         // freezes, keeps its rungs and its grievance, and stays on the board.
         let quiet = c.posture.iter().all(|x| x.rung < SHOOTING_RUNG);
         if quiet {
-            c.quiet_months = c.quiet_months.saturating_add(1);
+            c.quiet_months = crate::clock::advance_counter(w, format!("war:{}:quiet", c.id), c.quiet_months);
             if c.quiet_months >= 18 && c.frozen_since.is_none() {
                 c.frozen_since = Some((w.year, w.month));
                 w.headline(format!(
@@ -906,6 +927,7 @@ fn resolve_conflicts(w: &mut WorldState) {
             }
         } else {
             c.quiet_months = 0;
+            w.daily.counters.remove(&format!("war:{}:quiet", c.id));
             c.frozen_since = None;
         }
 
@@ -944,6 +966,8 @@ fn resolve_conflicts(w: &mut WorldState) {
     w.conflicts = continuing;
 
     for (c, e) in ended {
+        let prefix = format!("war:{}:", c.id);
+        w.daily.counters.retain(|key, _| !key.starts_with(&prefix));
         match e {
             Ending::Conquest { winner, loser } => {
                 conquer(w, winner, loser);
@@ -1089,7 +1113,7 @@ fn settlement_ripe(w: &mut WorldState, c: &Conflict) -> Option<(NationId, Nation
         return None; // still has fight in it
     }
     let p = 0.10 * lead * (1.0 - lr) * (1.5 - wr);
-    if w.rng.chance(p.clamp(0.0, 0.5)) {
+    if w.rng.chance(crate::clock::chance(w, p.clamp(0.0, 0.5))) {
         Some((winner, loser))
     } else {
         None

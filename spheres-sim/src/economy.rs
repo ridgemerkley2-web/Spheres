@@ -1258,6 +1258,15 @@ pub fn stability_pressure_of(w: &WorldState, n: &Nation) -> f64 {
 }
 
 pub fn tick(w: &mut WorldState) {
+    let daily = crate::clock::is_daily(w);
+    let dt = crate::clock::month_fraction(w);
+    let trend_blend = crate::clock::blend(w, 0.008);
+    let growth_blend = crate::clock::blend(w, 0.10);
+    let investment_blend = crate::clock::blend(w, 0.06);
+    let inflation_blend = crate::clock::blend(w, 0.10);
+    if daily {
+        prepare_daily_shocks(w);
+    }
     oil_market(w);
 
     let oil_price = w.oil_price;
@@ -1269,7 +1278,20 @@ pub fn tick(w: &mut WorldState) {
         let sanction_share = w.sanction_weight(id);
         let at_war = w.at_war(id);
         let export_share = w.oil_export_share(id);
-        let noise = w.rng.range(-0.004, 0.004);
+        let noise = if daily {
+            match w.daily.economic_shocks.get(&id).copied() {
+                Some(shock) => shock,
+                None => {
+                    // A successor born after the month's opening needs its own
+                    // persisted shock. Never redraw it on each daily tick.
+                    let shock = w.rng.range(-0.004, 0.004);
+                    w.daily.economic_shocks.insert(id, shock);
+                    shock
+                }
+            }
+        } else {
+            w.rng.range(-0.004, 0.004)
+        };
         let crisis_mult = w.rules.crisis_intensity;
         let budget_gap: [f64; BUDGET_MINISTRIES] = std::array::from_fn(|i| {
             if Some(id) == player { w.nation(id).budget_gap(i) } else { 0.0 }
@@ -1343,7 +1365,7 @@ pub fn tick(w: &mut WorldState) {
         // offset-invariant. It does not carry to a PREDICATE and a target, which
         // is what this is: comparing against, and reverting toward, a level.
         if dev >= 1.0 && n.tfp_trend > FRONTIER_TFP {
-            n.tech.tfp_base += (FRONTIER_TFP - n.tfp_trend) * 0.008;
+            n.tech.tfp_base += (FRONTIER_TFP - n.tfp_trend) * trend_blend;
         }
 
         // The bubble's own stock, moved here from beside the boost it produces.
@@ -1354,22 +1376,26 @@ pub fn tick(w: &mut WorldState) {
         if n.bubble > 0.0 {
             // Tight real rates pop bubbles
             if real_rate > 0.025 && n.bubble > 0.5 {
-                n.bubble -= 0.06 * crisis_mult;
+                n.bubble -= 0.06 * crisis_mult * dt;
                 if n.bubble < 0.5 {
                     // POP: flip into a debt-overhang hangover (negative bubble)
                     n.bubble = -crisis_mult;
                 }
             } else {
-                n.bubble = (n.bubble + 0.004).min(1.0);
+                n.bubble = (n.bubble + 0.004 * dt).min(1.0);
             }
         } else if n.bubble < 0.0 {
-            n.bubble = (n.bubble + 0.0042).min(0.0);
+            n.bubble = (n.bubble + 0.0042 * dt).min(0.0);
         }
 
         let growth_annual = (terms.before_noise + noise).max(WORST_ANNUAL_COLLAPSE);
 
-        n.gdp *= 1.0 + growth_annual / 12.0;
-        n.growth_last = n.growth_last * 0.9 + growth_annual * 0.1;
+        n.gdp *= 1.0 + growth_annual / 12.0 * dt;
+        n.growth_last = if daily {
+            n.growth_last * (1.0 - growth_blend) + growth_annual * growth_blend
+        } else {
+            n.growth_last * 0.9 + growth_annual * 0.1
+        };
 
         // A change in the investment share buys a permanently different level of
         // output per worker, not a permanently different growth rate. With
@@ -1433,7 +1459,7 @@ pub fn tick(w: &mut WorldState) {
                 // produces reaches. It is here so the exponential is provably
                 // bounded rather than bounded by inspection.
                 let gap = ((entitled - paid) / CAPITAL_ELASTICITY).clamp(-2.0, 2.0);
-                let step = CAPITAL_ELASTICITY * CONVERGENCE * (crate::exact::exp(gap) - 1.0);
+                let step = CAPITAL_ELASTICITY * CONVERGENCE * (crate::exact::exp(gap) - 1.0) * dt;
                 n.gdp *= crate::exact::exp(step);
                 n.capital_level_paid = Some(paid + step);
             }
@@ -1472,12 +1498,12 @@ pub fn tick(w: &mut WorldState) {
                 business_pressure -= 0.003 + dev * 0.002;
             }
             let private_target = (n.priv_invest_gdp + business_pressure).clamp(0.01, 0.35);
-            n.priv_invest_gdp += (private_target - n.priv_invest_gdp) * 0.06;
+            n.priv_invest_gdp += (private_target - n.priv_invest_gdp) * investment_blend;
         }
 
         // ---- Inflation (annual rate, adjusts monthly) ----
         // Demand pressure plus oil pass-through for importers; tight money disinflates.
-        n.inflation += (terms.target_inflation - n.inflation) * 0.10;
+        n.inflation += (terms.target_inflation - n.inflation) * inflation_blend;
         n.inflation = n.inflation.clamp(-0.05, 3.0);
 
         // ---- Budget & debt ----
@@ -1509,14 +1535,14 @@ pub fn tick(w: &mut WorldState) {
             // this month's borrowing, so a month cannot charge itself a premium
             // for the debt it is about to issue.
             (Some(treasury), Some(debt)) => {
-                let revenue_bn = revenue_gdp * n.gdp / 12.0;
-                let spend_bn = spend_gdp * n.gdp / 12.0;
+                let revenue_bn = revenue_gdp * n.gdp / 12.0 * dt;
+                let spend_bn = spend_gdp * n.gdp / 12.0 * dt;
                 // `books.interest_bn` is the ANNUAL charge, `debt *
                 // effective_rate`, so this is character for character the
                 // `debt * effective_interest_rate(..) / 12.0` it replaces --
                 // not the reporting share multiplied back up by GDP, which
                 // would not be the same float.
-                let interest_bn = books.interest_bn / 12.0;
+                let interest_bn = books.interest_bn / 12.0 * dt;
                 let (treasury, debt) = pay(treasury, debt, spend_bn + interest_bn - revenue_bn);
                 n.treasury_bn = Some(treasury);
                 n.debt_bn = Some(debt);
@@ -1527,8 +1553,8 @@ pub fn tick(w: &mut WorldState) {
             _ => {
                 let deficit_gdp = spend_gdp - revenue_gdp;
                 // Debt ratio: adds deficit, erodes with growth+inflation
-                n.debt_gdp += deficit_gdp / 12.0;
-                n.debt_gdp /= 1.0 + (growth_annual + n.inflation) / 12.0;
+                n.debt_gdp += deficit_gdp / 12.0 * dt;
+                n.debt_gdp /= 1.0 + (growth_annual + n.inflation) / 12.0 * dt;
                 n.debt_gdp = n.debt_gdp.max(0.0);
             }
         }
@@ -1537,7 +1563,7 @@ pub fn tick(w: &mut WorldState) {
         let demographic_support = crate::ministries::health_population(budget_gap[BUDGET_HEALTH])
             + crate::ministries::housing_population(budget_gap[BUDGET_HOUSING]);
         let population_before = n.population;
-        n.population *= 1.0 + (population_growth(n) + demographic_support) / 12.0;
+        n.population *= 1.0 + (population_growth(n) + demographic_support) / 12.0 * dt;
         district_growth.push((id, n.population / population_before));
 
         // ---- Stability ----
@@ -1552,14 +1578,14 @@ pub fn tick(w: &mut WorldState) {
         // pressure of x settles the nation at `(60 + x/0.01).clamp(0.0, 100.0)`,
         // and the clamp is as load-bearing as the reciprocal.
         ds += (60.0 - n.stability) * crate::ministries::MEAN_REVERSION; // slow mean reversion
-        n.stability = (n.stability + ds / 12.0 * 12.0 * 0.25).clamp(0.0, 100.0);
+        n.stability = (n.stability + ds / 12.0 * 12.0 * 0.25 * dt).clamp(0.0, 100.0);
 
         // Separatism strain grows when unstable, decays when stable
         if n.separatism > 0.0 {
             if n.stability < 50.0 {
-                n.separatism = (n.separatism + 0.008 * crisis_mult).min(1.0);
+                n.separatism = (n.separatism + 0.008 * crisis_mult * dt).min(1.0);
             } else {
-                n.separatism = (n.separatism - 0.002).max(0.0);
+                n.separatism = (n.separatism - 0.002 * dt).max(0.0);
             }
             // SECURITY ALONE OWNS THE COHESION TERM. Housing's half was
             // removed: two ministries suppressing the same separatism made the
@@ -1572,7 +1598,7 @@ pub fn tick(w: &mut WorldState) {
             // police budget of a country with no separatist movement would
             // watch one appear — so a cut simply stops buying suppression.
             let cohesion = crate::ministries::security_cohesion(budget_gap[BUDGET_SECURITY]);
-            n.separatism = (n.separatism - cohesion).max(0.0);
+            n.separatism = (n.separatism - cohesion * dt).max(0.0);
         }
     }
 
@@ -1645,6 +1671,23 @@ pub fn effective_population_growth(w: &WorldState, id: NationId) -> Option<f64> 
     Some(((1.0 + economy / 12.0) * (1.0 + technology / 12.0) - 1.0) * 12.0)
 }
 
+/// A shock describes conditions during a calendar month, not a fresh lottery
+/// ticket for every daily click. Keep it in the save so a mid-month reload and
+/// a fast-forward consume exactly the same shocks. The flows themselves still
+/// settle every day and react immediately to policy, war and ownership changes.
+fn prepare_daily_shocks(w: &mut WorldState) {
+    let month = w.year * 12 + w.month as i32 - 1;
+    if w.daily.shock_month == Some(month) {
+        return;
+    }
+    w.daily.shock_month = Some(month);
+    w.daily.oil_shock = Some(w.rng.range(-0.6, 0.6));
+    w.daily.economic_shocks.clear();
+    for n in w.nations.iter().filter(|n| n.alive) {
+        w.daily.economic_shocks.insert(n.id, w.rng.range(-0.004, 0.004));
+    }
+}
+
 fn oil_market(w: &mut WorldState) {
     // Supply disruption: whatever a producer cannot ship — because its terminals
     // are a war zone, or because the world's buyers have shut it out — is supply
@@ -1665,7 +1708,64 @@ fn oil_market(w: &mut WorldState) {
     // Oil demand is famously inelastic: a tenth of supply off the market moves
     // the price far more than a tenth.
     let target = 20.0 * (1.0 + disruption_share * 4.0);
-    let noise = w.rng.range(-0.6, 0.6);
-    w.oil_price += (target - w.oil_price) * 0.18 + noise;
+    let dt = crate::clock::month_fraction(w);
+    let rate = crate::clock::blend(w, 0.18);
+    let noise = if crate::clock::is_daily(w) {
+        // Integrating this constant forcing with the same retention as the
+        // target reproduces a full monthly oil innovation at the month end.
+        w.daily.oil_shock.unwrap_or(0.0) * rate / 0.18
+    } else {
+        w.rng.range(-0.6, 0.6) * dt
+    };
+    w.oil_price += (target - w.oil_price) * rate + noise;
     w.oil_price = w.oil_price.clamp(8.0, 120.0);
+}
+
+#[cfg(test)]
+mod daily_tests {
+    use super::*;
+    use crate::init::world_1990;
+
+    #[test]
+    fn daily_economy_posts_growth_population_and_the_days_cash_only() {
+        let mut w = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
+        let id = NationId::France;
+        {
+            let n = w.nation_mut(id);
+            n.treasury_bn = Some(100.0);
+            n.debt_bn = Some(0.0);
+            n.debt_gdp = 0.0;
+            n.oil_mbd = 0.0;
+            n.tax_rate = 0.40;
+            n.social_spend_gdp = Some(0.10);
+            n.mil_spend_gdp = 0.02;
+            n.state_invest_gdp = 0.03;
+        }
+        let before = w.nation(id).clone();
+        tick(&mut w);
+        let after = w.nation(id);
+        assert_ne!(after.gdp, before.gdp, "GDP must change before month end");
+        assert_ne!(after.population, before.population, "population must change each day");
+        let expected_receipt = (0.40 - (0.10 + 0.02 + 0.03)) * after.gdp / 12.0 / 31.0;
+        assert!((after.treasury_bn.unwrap() - 100.0 - expected_receipt).abs() < 1e-12,
+            "one January day must post 1/31 of the monthly fiscal flow");
+        assert_eq!(after.debt_bn, Some(0.0));
+    }
+
+    #[test]
+    fn daily_economic_shocks_are_saved_and_are_not_redrawn_each_day() {
+        let mut w = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
+        tick(&mut w);
+        let shocks = w.daily.economic_shocks.clone();
+        let oil = w.daily.oil_shock;
+        let rng = w.rng.clone();
+        w.day = 2;
+        let mut resumed = crate::load(&crate::save(&w)).unwrap();
+        tick(&mut w);
+        tick(&mut resumed);
+        assert_eq!(w.daily.economic_shocks, shocks);
+        assert_eq!(w.daily.oil_shock, oil);
+        assert_eq!(format!("{rng:?}"), format!("{:?}", w.rng), "no new within-month shock draw");
+        assert_eq!(crate::save(&w), crate::save(&resumed));
+    }
 }

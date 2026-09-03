@@ -399,7 +399,7 @@
   }
 
   /* ---------- layout ---------- */
-  #app { display: none; height: 100vh; grid-template-rows: auto 1fr; }
+  #app { display: none; width: 100%; max-width: 100vw; height: 100vh; grid-template-rows: auto minmax(0, 1fr); overflow: hidden; overflow: clip; }
   header {
     display: flex; align-items: center; gap: 0; padding: 8px 16px;
     background: linear-gradient(180deg, #1d242d 0%, #151a21 55%, #12171d 100%);
@@ -435,7 +435,14 @@
   .timebtns button { position: relative; padding: 3px 9px; font-size: 11px; }
   .timebtns button i { font-style: normal; color: var(--faint); font-size: 10px; margin-left: 5px; }
 
-  main { position: relative; display: block; overflow: hidden; }
+  /* `hidden` still creates a programmatically scrollable box. When a policy
+     click replaced its focused button, Chromium scrolled this whole stage
+     sideways by 136px to reveal the replacement. `clip` makes main a true
+     viewport: the panes and board bodies below remain the only scroll owners. */
+  main { position: relative; display: block; min-width: 0; min-height: 0; overflow: hidden; overflow: clip; }
+  #calendarNotice { position:fixed; top:52px; left:50%; transform:translateX(-50%); z-index:120;
+    width:min(520px, calc(100vw - 32px)); padding:10px 14px; border:1px solid #c7ad83;
+    background:#292838; color:#ebdfc3; border-radius:8px; font:12px/1.5 var(--mono); }
   .col { overflow-y: auto; padding: 12px; }
   #center { position: absolute; inset: 0; }
   #left { height: 100%; background: var(--well); }
@@ -484,9 +491,12 @@
     display: none; position: absolute; z-index: 29; left: 14px; bottom: 86px;
     width: min(340px, calc(100vw - 28px)); max-height: calc(100% - 112px);
     flex-direction: column; overflow: hidden; pointer-events: auto;
-    color: var(--ink); background: linear-gradient(150deg, rgba(18,25,34,.98), rgba(6,10,15,.97));
-    border: 1px solid #75613a; border-radius: 8px;
-    box-shadow: 0 18px 58px #000c, inset 0 1px #e8c87e20;
+    color: var(--ink); background:
+      radial-gradient(circle at 92% 4%, rgba(218,185,233,.17), transparent 34%),
+      radial-gradient(circle at 3% 95%, rgba(117,204,192,.13), transparent 40%),
+      linear-gradient(155deg, rgba(28,32,50,.985), rgba(9,16,25,.98));
+    border: 1px solid #9985ae; border-radius: 14px;
+    box-shadow: 0 22px 64px #000c, inset 0 1px #fff3;
   }
   .logistics-panel.open { display: flex; animation: dispatch-in .16s ease-out; }
   .logistics-head {
@@ -494,7 +504,7 @@
     border-bottom: 1px solid #2d3744; background: linear-gradient(90deg, #c9a55a12, transparent);
   }
   .logistics-head .eyebrow { color: var(--faint); font: 700 8px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
-  .logistics-head h2 { margin: 4px 0 0; color: var(--brass-hi); font: 700 16px/1 var(--serif); letter-spacing: .07em; }
+  .logistics-head h2 { margin: 4px 0 0; color: #f2dcfa; font: 700 18px/1 var(--serif); letter-spacing: .07em; }
   .logistics-head .grow { flex: 1; }
   .logistics-close { width: 34px; height: 34px; padding: 0; font-size: 19px; }
   .logistics-body { min-height: 0; overflow-y: auto; padding: 10px; }
@@ -513,6 +523,14 @@
   .logistics-filters button[aria-pressed="true"] {
     border-color: var(--brass-dim); background: #302815; color: var(--brass-hi);
   }
+  .route-policy { margin-bottom: 9px; padding: 9px; border: 1px solid #586579; border-radius: 9px; background: #111a27bd; }
+  .route-policy-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: #dccee9; font: 700 8px/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+  .route-policy-title small { color: #7ed3c9; letter-spacing: .04em; }
+  .route-policy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 7px; }
+  .route-policy-grid button { min-height: 53px; padding: 6px 4px; border-color: #39475a; border-radius: 8px; background: #0b131e; color: #9baabc; font: 700 7px/1.2 var(--mono); text-transform: uppercase; }
+  .route-policy-grid button i { display: block; margin-bottom: 4px; color: #b5ded8; font: 18px/1 var(--serif); font-style: normal; }
+  .route-policy-grid button.on { border-color: #af8cc5; background: linear-gradient(145deg,#3a2d4c,#163b3b); color: #f8eefe; box-shadow: inset 0 0 0 1px #fff1; }
+  .route-policy-note { margin-top: 6px; color: #8494a7; font-size: 8px; line-height: 1.35; }
   .logistics-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 8px; }
   .logistics-summary span { padding: 7px 6px; border: 1px solid #293642; border-radius: 5px; background: #090f15; color: var(--faint); font: 700 7px/1.1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
   .logistics-summary b { display: block; margin-top: 4px; color: var(--cyan); font-size: 15px; }
@@ -529,6 +547,9 @@
   .lane-card.constrained::before { background: repeating-linear-gradient(90deg, var(--amber) 0 7px, transparent 7px 11px); }
   .lane-card.blocked { border-left-color: #d96560; }
   .lane-card.blocked::before { background: repeating-linear-gradient(90deg, #d96560 0 3px, transparent 3px 8px); }
+  .lane-card.held { border-left-color: #d98ebc; background: linear-gradient(120deg,#211421e8,#101723e8); }
+  .lane-card.held::before { background: repeating-linear-gradient(90deg,#d98ebc 0 6px,transparent 6px 10px); }
+  .lane-card.held .lane-state, .lane-card.held .lane-reason { color: #f2bddd; }
   .lane-card.selected { border-color: var(--brass-hi); background: #171b1f; box-shadow: inset 0 0 0 1px #c9a55a35; }
   .lane-card:hover { background: #111923; }
   .lane-top { display: flex; align-items: start; gap: 7px; }
@@ -544,6 +565,14 @@
   .lane-quantities span { min-width: 0; padding-left: 5px; border-left: 1px solid #2c3a47; color: var(--faint); font: 700 7px/1.15 var(--mono); text-transform: uppercase; }
   .lane-quantities b { display: block; overflow: hidden; margin-top: 3px; color: var(--ink); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; text-transform: none; }
   .lane-reason { margin-top: 7px; color: var(--dim); font-size: 9px; line-height: 1.35; }
+  .lane-journey { display: flex; gap: 4px; align-items: stretch; margin-top: 7px; }
+  .lane-journey span { flex: 1; min-width: 0; padding: 6px; border: 1px solid #354457; border-radius: 6px; background: #111a24; color: #8293a6; font: 700 7px/1.15 var(--mono); text-transform: uppercase; }
+  .lane-journey b { display: block; overflow: hidden; margin-top: 3px; color: #d8ece8; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; text-transform: none; }
+  .route-thread { position: relative; display: flex; gap: 4px; margin-top: 7px; padding-top: 8px; overflow: hidden; }
+  .route-thread::before { content: ""; position: absolute; top: 3px; left: 5px; right: 5px; height: 1px; background: linear-gradient(90deg,#78d1c3,#a98abe); }
+  .route-thread span { position: relative; flex: 1; overflow: hidden; color: #98a7b8; font: 7px/1.2 var(--mono); text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+  .route-thread span::before { content: ""; display: block; width: 5px; height: 5px; margin: -8px auto 4px; border: 1px solid #b8e5de; border-radius: 50%; background: #17252d; }
+  .logistics-build { width: 100%; min-height: 34px; margin-top: 8px; border-color: #526f68; color: #afe3d8; background: #10221f; font: 700 8px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
   .lane-card.blocked .lane-reason { color: #e7aaa5; }
   .lane-actions { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 7px; }
   .lane-actions button, .logistics-more { min-height: 29px; padding: 5px 9px; font: 700 8px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
@@ -2223,6 +2252,7 @@
   <header>
     <span class="brand">SPHERES</span>
     <span class="date" id="hdrDate">—</span>
+    <div id="calendarNotice" role="status" hidden></div>
     <span class="metric">OIL <b id="hdrOil">—</b></span>
     <span class="metric">YOU <b id="hdrYou">—</b></span>
     <span class="metric">GDP <b id="hdrGdp">—</b></span>
@@ -2275,7 +2305,7 @@
     </aside>
     <aside class="logistics-panel" id="logisticsPanel" aria-hidden="true" aria-labelledby="logisticsTitle">
       <div class="logistics-head">
-        <div><div class="eyebrow">Latest monthly settlement</div><h2 id="logisticsTitle">Dispatch Board</h2></div>
+        <div><div class="eyebrow">The arteries of your nation</div><h2 id="logisticsTitle">World in Motion</h2></div>
         <span class="grow"></span>
         <button class="logistics-close" id="logisticsClose" type="button" aria-label="Close logistics">&times;</button>
       </div>
@@ -2302,7 +2332,7 @@
       </button>
       <button class="dockbtn" data-drawer="cabinetDrawer" aria-expanded="false"><span class="icon">◈</span><span class="copy"><span class="label">Economy</span><small id="dockEconomy">budget &amp; policy</small></span></button>
       <button class="dockbtn" data-drawer="intelDrawer" aria-expanded="false"><span class="icon">⚔</span><span class="copy"><span class="label">World</span><small id="dockWorld">conflicts &amp; news</small></span></button>
-      <button class="dockbtn" id="logisticsDockBtn" type="button" aria-controls="logisticsPanel" aria-expanded="false"><span class="icon">⇢</span><span class="copy"><span class="label">Logistics</span><small id="dockLogistics">monthly routes</small></span><span class="dockbadge" id="logisticsBadge" aria-hidden="true"></span></button>
+      <button class="dockbtn" id="logisticsDockBtn" type="button" aria-controls="logisticsPanel" aria-expanded="false"><span class="icon">⇢</span><span class="copy"><span class="label">Logistics</span><small id="dockLogistics">daily dispatches</small></span><span class="dockbadge" id="logisticsBadge" aria-hidden="true"></span></button>
       <button class="dockbtn" id="productionDockBtn" type="button" aria-controls="productionPanel" aria-expanded="false"><span class="icon">⚙</span><span class="copy"><span class="label">Production</span><small id="dockProduction">4 project slots</small></span><span class="dockbadge" id="productionBadge" aria-hidden="true"></span></button>
     </nav>
   </main>
@@ -3664,6 +3694,8 @@ function render() {
   // the last frame is dead weight.
   for (const k in CHARTS) delete CHARTS[k];
   $("#hdrDate").textContent = S.date;
+  $("#calendarNotice").hidden = !S.simulation_transition;
+  $("#calendarNotice").textContent = S.simulation_transition ? S.simulation_transition.message : "";
   $("#hdrOil").textContent = "$" + S.oil_price.toFixed(0);
   $("#hdrYou").textContent = S.player_name || "—";
   $("#hdrGdp").textContent = m ? fmt.money(m.gdp) : "—";
@@ -3977,7 +4009,7 @@ function foreignCommitmentsHtml(m) {
       <span>Export receipts<b>${fmt.bn(+f.receipts_bn || 0)}</b></span>
       <span>Sunk mine capital<b>${fmt.bn(+f.mine_investment_bn || 0)}</b></span>
       <span class="net ${netReceipt ? "in" : "out"}">${netReceipt ? "Net receipt" : "Net outflow"}<b>${fmt.bn(Math.abs(net))}</b></span>
-    </div>${f.spot_settled ? "" : `<div class="pending">Spot cash flow will appear after the first monthly market clearing. Mine capital is shown separately and is not counted in the annual net.</div>`}
+    </div>${f.spot_settled ? "" : `<div class="pending">Spot cash flow appears after the first daily market clearing. Mine capital is shown separately and is not counted in the annual net.</div>`}
   </div>`;
 }
 
@@ -4405,9 +4437,10 @@ function treeSvg(d) {
 /// is the split the rest of this file uses everywhere else.
 function etaText(d, tilde) {
   if (!d) return "stalled";
+  if (d.days_left != null) return (tilde ? "~" : "") + d.days_left + " days";
   if (d.months_left != null) return (tilde ? "~" : "") + d.months_left + " mo";
   switch (d.wait) {
-    case "funded": return "funded — lands next month";
+    case "funded": return "funded — lands next day";
     case "year":   return "funded — fields in " + d.fields_in;
     case "beyond": return "beyond a century at this rate";
     // A wait for an input is not a stall (research_json's four-null lesson):
@@ -4431,13 +4464,13 @@ function armsHtml(r) {
     // A multiplier of exactly 1 is an arm that did not fire. It is shown rather
     // than hidden, because "war is costing you nothing" is information.
     const cls = pts ? "" : a.value > 1 ? " up" : a.value < 1 ? " down" : " off";
-    const v = pts ? a.value.toFixed(1) : "\u00d7" + a.value.toFixed(2);
+    const v = pts ? (a.value_daily ?? a.value).toFixed(2) : "\u00d7" + a.value.toFixed(2);
     return `<div class="arm${cls}"><span class="nm">${a.name}</span>
         <span class="note">${a.note}</span><span class="v">${v}</span></div>`;
   }).join("");
   return `<div class="arms">${rows}
-      <div class="arm sum"><span class="nm">Research points a month</span>
-        <span class="v">${r.monthly.toFixed(1)}</span></div>
+      <div class="arm sum"><span class="nm">Research points a day</span>
+        <span class="v">${r.daily.toFixed(2)}</span></div>
     </div>`;
 }
 
@@ -4561,7 +4594,7 @@ function researchHtml(m) {
   }).join("");
 
   return `<div class="card" id="resCard">
-      <h3>Research <span>· ${r.monthly.toFixed(1)} points a month</span></h3>
+      <h3>Research <span>· ${r.daily.toFixed(2)} points a day</span></h3>
       ${armsHtml(r)}
       ${allocHtml(r)}
       ${body}
@@ -4728,7 +4761,7 @@ function renderTechMenu() {
       </div>`;
   }).join("");
   $("#techMenu").innerHTML = rows +
-    `<div class="dfoot"><b>OPEN THE TREE</b><span>${r.monthly.toFixed(1)} points a month</span></div>`;
+    `<div class="dfoot"><b>OPEN THE TREE</b><span>${r.daily.toFixed(2)} points a day</span></div>`;
   $("#techMenu").querySelectorAll(".drow").forEach((el) => {
     el.onclick = () => openTech(el.dataset.dom);
   });
@@ -6081,7 +6114,7 @@ function techTipShow(i, clientX, clientY) {
   } else if (n.state === "open") {
     cls = "o";
     html = "Ready to research — " + Math.round(n.cost) + " pts";
-    if (rd && rd.rate > 1e-9) html += " · ~" + Math.ceil(n.cost / rd.rate) + " mo";   // the dock's formula
+    if (rd && rd.rate_daily > 1e-9) html += " · ~" + Math.ceil(n.cost / rd.rate_daily) + " days at today's rate";
     if (techGated(n)) html += " · fields no earlier than " + n.year;
   } else {
     cls = "l";
@@ -6190,8 +6223,8 @@ function techDockHtml(i) {
       const pct = rd.cost > 0 ? Math.round((rd.banked / rd.cost) * 100) : 0;
       h += `<div class="cap">${rd.banked.toFixed(1)} of ${rd.cost.toFixed(0)} banked · ${pct}% · ${
         etaText(rd)}</div>`;
-    } else if (n.state === "open" && rd && rd.rate > 1e-9) {
-      h += `<div class="cap">≈ ${Math.ceil(n.cost / rd.rate)} mo if it were the project at today's funding</div>`;
+    } else if (n.state === "open" && rd && rd.rate_daily > 1e-9) {
+      h += `<div class="cap">≈ ${Math.ceil(n.cost / rd.rate_daily)} days if it were the project at today's funding</div>`;
     }
   }
 
@@ -6321,7 +6354,7 @@ function stratagemsHtml(m) {
             ${o.affordable ? "" : `<span class="short">${Math.ceil(o.shortfall)} more needed</span>`}
           </div>
         </div>`).join("")
-    : `<div class="muted">The world is offering you nothing this month. Options
+    : `<div class="muted">The world is offering you nothing today. Options
        open as conditions do — inflation, debt, unrest, a plan that has stopped
        delivering.</div>`;
 
@@ -11556,7 +11589,7 @@ function renderCharts() {
         `<span class="chip${ui.picked.includes(n.id) ? " on" : ""}" data-pick="${n.id}">${n.name}</span>`).join("")}
       </div>
     </div>
-    <div class="card"><h3>${met.label}${indexed ? " — indexed to the first month" : ""}</h3>${main}</div>
+    <div class="card"><h3>${met.label}${indexed ? " — indexed to the first observation" : ""}</h3>${main}</div>
     <div class="card"><h3>Oil price</h3>${oil}</div>`;
 
   box.querySelectorAll("[data-metric]").forEach((c) => {
@@ -11743,7 +11776,7 @@ function openNation(id, keepScroll) {
     <div class="card">
       <h3>What it holds</h3>
       <div class="tiny muted" style="margin-bottom:8px">
-        Its twelve lines as the ledger stands this month — what it makes, what
+        Its twelve lines as the ledger stands today — what it makes, what
         it has to spare, and whether it would sell to you, answered by the same
         function that answers an offer. Click a line it sells to open talks.
       </div>
@@ -12121,7 +12154,8 @@ const stockHue = (k) => RCOLOR[k] || "#9fb0bd";
 function fmtQ(v) {
   if (v == null || !isFinite(v)) return "—";
   const a = Math.abs(v);
-  const d = a >= 100 ? 0 : a >= 10 ? 1 : 2;
+  if (a > 0 && a < 0.000001) return v.toExponential(2);
+  const d = a >= 100 ? 0 : a >= 10 ? 1 : a >= 1 || a === 0 ? 2 : 6;
   return v.toLocaleString("en-GB", { minimumFractionDigits: 0, maximumFractionDigits: d });
 }
 function fmtSigned(v) { return v == null ? "" : (v > 0 ? "+" : v < 0 ? "−" : "") + fmtQ(Math.abs(v)); }
@@ -12156,12 +12190,12 @@ function marketCardHtml(r) {
   const pile = r.stock || { quantity:null, unit:r.unit, months_cover:r.cover_months, physical:false };
   const band = marketBand(m);
   const quantity = pile.quantity == null ? "—" : `${fmtQ(pile.quantity)} ${pile.unit || r.unit}`;
-  const cover = pile.months_cover == null ? "—" : `${fmtQ(pile.months_cover)} months`;
+  const cover = pile.days_cover == null ? "—" : `${fmtQ(pile.days_cover)} days of cover`;
   const cleared = m.cleared_volume == null ? "—" : `${fmtQ(m.cleared_volume)} ${m.volume_unit || r.unit}`;
   const unmet = m.unmet_orders == null ? "—" : `${fmtQ(m.unmet_orders)} ${m.volume_unit || r.unit}`;
   const note = m.source === "world_oil_price"
     ? "Oil keeps its existing calibrated market and is not stored or cleared by the generic commodity auction."
-    : m.settled ? "Latest monthly clearing. Contracts settle before spot orders."
+    : m.settled ? "Latest daily clearing. Contracts settle before spot orders."
     : "No spot auction has cleared yet; the quote shown is the sourced 1990 reference.";
   const stockNote = pile.projected ? " Stock is a legacy-cover projection until the first physical settlement." : "";
   return `<div class="marketcard"><div class="mh">WORLD MARKET <span class="band ${escText(band)}">${escText(band)}</span></div>
@@ -12242,7 +12276,7 @@ function stockRowHtml(r) {
   const col = stockHue(r.id);
   const piled = r.tracked && r.status !== "market";
   const cov = piled ? `<span class="bar"><i style="width:${clamp(r.cover_months / 12, 0, 1) * 100}%"></i></span>` : "";
-  const covText = r.status === "market" ? "market" : piled ? `${Math.round(r.cover_months)} mo` : "—";
+  const covText = r.status === "market" ? "market" : piled ? `${Math.round(r.cover_days)} d` : "—";
   const who = r.supplier
     ? ` · ${escText(r.supplier)}${r.supplier_kind === "open" ? " (open)" : ""}`
     : r.reason ? ` — no supplier: ${escText(r.reason)}` : "";
@@ -12250,9 +12284,9 @@ function stockRowHtml(r) {
       <span class="gy">${rglyph(r.id, col)}</span>
       <span class="nm"><b>${escText(r.name)}</b><span class="sen">${escText(r.sentence)}${who}</span>${
         r.second ? `<span class="tiny">${escText(r.second)}</span>` : ""}</span>
-      <span class="num have">${r.tracked ? fmtQ(r.produce_per_month) : "—"}<em>${r.tracked ? r.unit : ""}</em></span>
+      <span class="num have">${r.tracked ? fmtQ(r.produce) : "—"}<em>${r.tracked ? r.unit : ""}</em></span>
       <span class="num cov">${covText}${cov}</span>
-      <span class="num dem">${r.tracked && r.need_per_month > 0 ? fmtQ(r.need_per_month) : "—"}</span>
+      <span class="num dem">${r.tracked && r.need > 0 ? fmtQ(r.need) : "—"}</span>
       <span class="num net">${piled ? fmtSigned(r.net) : ""}</span>
       <span class="st">${STATE_WORD[r.status] || escText(r.status)}</span>
     </div>`;
@@ -12270,7 +12304,7 @@ function renderStock() {
     + (market.quoted == null ? "" : ` · ${market.quoted} quoted${market.critical ? ` · ${market.critical} critical` : ""}`);
   // Offers (S3 writes them; absence renders nothing) above the rows.
   const offerLines = offers.map((o) => `<div class="offerrow">${rglyph(RES_ALL, "var(--brass-dim)")}
-      <span class="ln">${escText(o.legs)} · expires in ${o.expires_in} months</span>
+      <span class="ln">${escText(o.legs)} · expires in ${o.expires_in_days} days</span>
       <button data-offer="${o.id}" data-answer="accept">Accept — ${o.accept_pc.toFixed(0)} political capital</button>
       <button data-offer="${o.id}" data-answer="decline">Decline</button>
     </div>`).join("");
@@ -12330,7 +12364,7 @@ function renderStockDock() {
   const mt = mineOptions.find((o) => o.district === stock.mineTarget[com]);
   const mineLive = !!(mt && mt.eligible && m.affordable);
   const mineStatus = !mt ? m.blocked
-    : mt.active ? `${mt.district_name} · building · ${mt.months_remaining}/${mt.months_total} months left`
+    : mt.active ? `${mt.district_name} · building · ${mt.days_remaining} days left`
     : mt.online ? `${mt.district_name} · online · +${fmtQ(mt.output)} ${c.unit}`
     : mt.eligible ? `${mt.district_name} · ${mt.quality} · ${fmtQ(mt.output)} ${c.unit} · $${(+mt.cost_bn).toFixed(1)}bn`
     : mt.reason;
@@ -12589,7 +12623,7 @@ function renderTalks() {
   const myDistricts = L && L.my_districts.length
     ? `<h4>or a district of yours</h4><select data-give-district><option value="">—</option>${L.my_districts.map((d) =>
         `<option value="${d.id}"${talks.give.district === d.id ? " selected" : ""}>${escText(d.label)}</option>`).join("")}</select>` : "";
-  const monthsRow = (L ? L.months : [12, 36, 60, 120]).map((m) => chip(talks.months === m, `${m} mo`, "", `data-months="${m}"`)).join("");
+  const monthsRow = (L ? L.months : [12, 36, 60, 120]).map((m) => chip(talks.months === m, `${m/12} yr`, "Daily deliveries", `data-months="${m}"`)).join("");
   // Their answer, in the state colour, before the click.
   const verdict = ev ? ev.verdict : null;
   const answerColor = verdict === "accept" ? "var(--brass-hi)" : verdict === "counter" ? "var(--cyan)" : verdict === "refuse" ? "var(--red)" : "var(--dim)";
@@ -12617,7 +12651,7 @@ function renderTalks() {
         <div class="btnrow">${rglyph(talks.com, stockHue(talks.com))}${getLadder}</div>${theirDistricts}
         <h3 style="margin-top:12px">You give</h3>
         <div class="btnrow">${moneyLadder}</div>${giveSelect}${myDistricts}
-        <h4>Months</h4><div class="btnrow">${monthsRow}</div>
+        <h4>Contract term · deliveries every day</h4><div class="btnrow">${monthsRow}</div>
         ${answer}${lines}${foot}
       </div>
     </div>`;
@@ -12683,13 +12717,13 @@ async function fillStockDash(nid) {
 /* ================= logistics: the monthly dispatch board =================
    This is a READ of the last settlement, never a daily cargo simulation. The
    sim serves every quantity, state, reason and allowed action on /api/logistics;
-   the page only filters and draws it. Lanes terminate at national anchors and
-   are named `abstract` because this build has no sourced ports, roads, rails or
-   sea graph from which a physical itinerary could honestly be constructed. */
+   the page only filters and draws it. New saves carry modeled land and sea
+   itineraries from the globe's own geography; old abstract lanes retain their
+   honest national-anchor fallback rather than inventing a route retroactively. */
 
 const LOGI = {
   open: false, data: null, stale: true, loading: false, error: null, seq: 0,
-  com: RES_ALL, expanded: false, selected: null, hits: [],
+  com: RES_ALL, expanded: false, cargoExpanded: false, selected: null, hits: [],
 };
 const LOGI_CONSTRAINED = new Set([
   "constrained", "capacity_limited", "partially_served", "supply_short", "supply_limited",
@@ -12725,10 +12759,10 @@ function logisticsCommodityName(laneOrKey) {
   const row = stockRows().find((r) => r.id === key);
   return served || (meta && meta.label) || (row && row.name) || String(key).replace(/_/g, " ");
 }
-function logisticsState(lane) { return String(lane.state || lane.status || "delivered").toLowerCase(); }
+function logisticsState(lane) { return lane && lane.hold_reason ? "held" : String(lane.state || lane.status || "delivered").toLowerCase(); }
 function logisticsTone(lane) {
   const state = logisticsState(lane);
-  return LOGI_BLOCKED.has(state) ? "blocked" : LOGI_CONSTRAINED.has(state) ? "constrained" : "moving";
+  return state === "held" ? "held" : LOGI_BLOCKED.has(state) ? "blocked" : LOGI_CONSTRAINED.has(state) ? "constrained" : "moving";
 }
 function logisticsStateWord(lane) { return logisticsState(lane).replace(/_/g, " ").toUpperCase(); }
 function logisticsMonthLabel(value) {
@@ -12745,6 +12779,24 @@ function logisticsNumber(lane, ...keys) {
   for (const key of keys) if (lane[key] != null && isFinite(+lane[key])) return +lane[key];
   return null;
 }
+function logisticsRoute(lane) { return lane && lane.route && Array.isArray(lane.route.nodes) ? lane.route : null; }
+function logisticsDisplayNodes(route) {
+  const nodes = (route && route.nodes) || [];
+  if (nodes.length <= 6) return nodes;
+  const picks = [nodes[0], ...nodes.filter((n) => n.kind === "chokepoint").slice(0, 3), nodes[Math.floor(nodes.length / 2)], nodes[nodes.length - 1]];
+  return picks.filter((node, i) => node && picks.findIndex((x) => x.id === node.id) === i).slice(0, 6);
+}
+function logisticsRoutePoints(lane) {
+  const route = logisticsRoute(lane);
+  if (route && route.nodes.length > 1) return route.nodes.map((node) => {
+    if (isFinite(+node.lon) && isFinite(+node.lat)) return [+node.lon, +node.lat];
+    const d = node.id && DINDEX[node.id];
+    return d ? Globe3D.unproject(d.cx, d.cy) : null;
+  }).filter(Boolean);
+  const a = anchorOf(String(logisticsEndpoint(lane, true))), b = anchorOf(String(logisticsEndpoint(lane, false)));
+  return a && b ? [Globe3D.unproject(a[0], a[1]), Globe3D.unproject(b[0], b[1])] : [];
+}
+function logisticsCalendar(value) { return logisticsMonthLabel(value) || "next settlement"; }
 function logisticsQuantity(value, unit) { return value == null ? "—" : `${fmtQ(value)}${unit ? ` ${unit}` : ""}`; }
 function logisticsActions(lane) {
   return (lane.actions || []).map((a) => typeof a === "string" ? a : (a && (a.kind || a.action || a.id))).filter(Boolean);
@@ -12764,7 +12816,7 @@ function logisticsFilteredLanes() {
   let lanes = ((LOGI.data && LOGI.data.lanes) || []).filter(logisticsIsMine);
   if (LOGI.com !== RES_ALL) lanes = lanes.filter((l) => logisticsCommodity(l) === LOGI.com);
   const attention = new Set(((LOGI.data && LOGI.data.attention_ids) || []).map(String));
-  const rank = { blocked: 0, constrained: 1, moving: 2 };
+  const rank = { blocked: 0, held: 0, constrained: 1, moving: 2 };
   return lanes.map((lane, i) => ({ lane, i })).sort((a, b) => {
     const ah = attention.has(logisticsLaneId(a.lane)) ? 0 : 1;
     const bh = attention.has(logisticsLaneId(b.lane)) ? 0 : 1;
@@ -12777,7 +12829,11 @@ function logisticsSummary(lanes) {
   return out;
 }
 function logisticsFindLane(id) {
-  return ((LOGI.data && LOGI.data.lanes) || []).find((l) => logisticsLaneId(l) === String(id));
+  return [
+    ...((LOGI.data && LOGI.data.lanes) || []),
+    ...((LOGI.data && LOGI.data.cargo) || []),
+    ...((LOGI.data && LOGI.data.arrivals) || []),
+  ].find((l) => logisticsLaneId(l) === String(id));
 }
 
 function renderLogisticsDock() {
@@ -12785,7 +12841,8 @@ function renderLogisticsDock() {
   if (!button || !S) return;
   const sum = S.logistics_summary || {};
   const moving = +sum.moving || 0, constrained = +sum.constrained || 0, blocked = +sum.blocked || 0;
-  copy.textContent = `${moving} moving${blocked ? ` · ${blocked} blocked` : constrained ? ` · ${constrained} short` : ""}`;
+  const pipeline = +sum.in_transit || 0;
+  copy.textContent = `${pipeline ? `${pipeline} in transit` : `${moving} moving`}${blocked ? ` · ${blocked} blocked` : constrained ? ` · ${constrained} short` : ""}`;
   const attention = +sum.attention || blocked + constrained;
   badge.textContent = attention > 99 ? "99+" : String(attention);
   badge.classList.toggle("on", attention > 0);
@@ -12805,6 +12862,7 @@ function openLogistics(com) {
   if (com) LOGI.com = com;
   LOGI.open = true;
   LOGI.expanded = false;
+  LOGI.cargoExpanded = false;
   LOGI.error = null;
   const panel = $("#logisticsPanel");
   panel.classList.add("open");
@@ -12819,6 +12877,7 @@ function closeLogistics() {
   LOGI.open = false;
   LOGI.selected = null;
   LOGI.expanded = false;
+  LOGI.cargoExpanded = false;
   LOGI.hits = [];
   const panel = $("#logisticsPanel");
   if (panel) { panel.classList.remove("open"); panel.setAttribute("aria-hidden", "true"); }
@@ -12864,23 +12923,50 @@ function logisticsCardHtml(lane) {
   const delivered = logisticsNumber(lane, "delivered", "delivered_qty");
   const unshipped = logisticsNumber(lane, "unshipped", "unshipped_qty", "supply_limited_qty", "lost_or_unshipped_qty");
   const source = lane.source || lane.priority || "shipment";
-  const month = logisticsMonthLabel(lane.month || (LOGI.data && LOGI.data.settled_month));
+  const month = logisticsMonthLabel(lane.settled_day || lane.month || (LOGI.data && (LOGI.data.settled_day || LOGI.data.settled_month)));
   const reason = lane.reason || (lane.reason_code && String(lane.reason_code).replace(/_/g, " ")) || "";
   const focus = logisticsAllows(lane, "focus");
   const contract = lane.contract_id != null && logisticsAllows(lane, "open_contract");
   const mark = tone === "moving" ? "●" : tone === "constrained" ? "△" : "⊘";
+  const route = logisticsRoute(lane), dispatched = logisticsNumber(lane, "dispatched");
+  const journey = route ? `<div class="lane-journey"><span>Travel time<b>${+route.estimated_days || 0} days · before any hold</b></span>
+      <span>Corridor cap<b>${fmtQ((+route.capacity_tonnes || 0) / 1000)} kt/${escText(lane.capacity_period || "day")}</b></span>
+      <span>Tightest point<b>${escText(route.bottleneck || "Open corridor")}</b></span></div>
+    <div class="route-thread">${logisticsDisplayNodes(route).map((node) => `<span title="${logisticsEscAttr(node.name || node.id)}">${escText(node.name || node.id || node.kind || "waypoint")}</span>`).join("")}</div>` : "";
   return `<article class="lane-card ${tone}${LOGI.selected === id ? " selected" : ""}" tabindex="0"
       data-logi-lane="${logisticsEscAttr(id)}" aria-label="${logisticsEscAttr(`${from} to ${to}, ${logisticsStateWord(lane)}`)}">
     <div class="lane-top"><div class="lane-route">${escText(from)}<span class="arrow">→</span>${escText(to)}</div>
       <div class="lane-state"><i aria-hidden="true">${mark}</i>${escText(logisticsStateWord(lane))}</div></div>
     <div class="lane-meta">${rglyph(com, stockHue(com))}${escText(logisticsCommodityName(lane))} · ${escText(String(source))}${month ? ` · ${escText(month)}` : ""}</div>
     <div class="lane-quantities"><span>Promised<b>${logisticsQuantity(requested, unit)}</b></span>
-      <span>Delivered<b>${logisticsQuantity(delivered, unit)}</b></span>
+      <span>${dispatched == null ? "Delivered" : "Dispatched"}<b>${logisticsQuantity(dispatched == null ? delivered : dispatched, unit)}</b></span>
       <span>Unshipped<b>${logisticsQuantity(unshipped, unit)}</b></span></div>
+    ${journey}
     ${reason ? `<div class="lane-reason">${escText(reason)}</div>` : ""}
     ${focus || contract ? `<div class="lane-actions">${focus ? `<button type="button" data-logi-action="focus" data-logi-key="${logisticsEscAttr(id)}">Focus</button>` : ""}
       ${contract ? `<button type="button" data-logi-action="open_contract" data-logi-key="${logisticsEscAttr(id)}">Open contract</button>` : ""}</div>` : ""}
   </article>`;
+}
+
+function logisticsCargoHtml(cargo, arrived) {
+  const route = logisticsRoute(cargo), quantity = logisticsNumber(cargo, "quantity");
+  const held = !arrived && !!cargo.hold_reason, id = logisticsLaneId(cargo);
+  return `<article class="lane-card ${held ? "held" : "moving"}${LOGI.selected === id ? " selected" : ""}" tabindex="0" data-logi-lane="${logisticsEscAttr(id)}">
+    <div class="lane-top"><div class="lane-route">${escText(logisticsEndpointName(cargo, true))}<span class="arrow">→</span>${escText(logisticsEndpointName(cargo, false))}</div>
+      <div class="lane-state"><i aria-hidden="true">${arrived ? "◆" : held ? "Ⅱ" : "◉"}</i>${arrived ? "ARRIVED" : held ? "HELD" : "IN TRANSIT"}</div></div>
+    <div class="lane-meta">${rglyph(logisticsCommodity(cargo), stockHue(logisticsCommodity(cargo)))}${escText(logisticsCommodityName(cargo))} · cargo ${escText(cargo.id)}</div>
+    <div class="lane-journey"><span>Load<b>${logisticsQuantity(quantity, cargo.unit || "")}</b></span><span>${arrived ? "Arrived" : "Due"}<b>${escText(logisticsCalendar(arrived ? (cargo.arrived_day || cargo.arrived_month || cargo.due_day || cargo.due_month) : (cargo.due_day || cargo.due_month)))}</b></span><span>Route<b>${escText(route ? route.mode.replace(/_/g," ") : "booked")}</b></span></div>
+    ${route ? `<div class="route-thread">${logisticsDisplayNodes(route).map((node) => `<span>${escText(node.name || node.id || "waypoint")}</span>`).join("")}</div>` : ""}
+    ${cargo.hold_reason ? `<div class="lane-reason">${escText(cargo.hold_reason)}</div>` : ""}
+  </article>`;
+}
+
+function logisticsPolicyHtml() {
+  const policy = (LOGI.data && LOGI.data.policy) || {}, selected = policy.selected || "fastest";
+  const options = Array.isArray(policy.options) ? policy.options : [];
+  return `<section class="route-policy"><div class="route-policy-title">Route doctrine <small>No political cost</small></div>
+    <div class="route-policy-grid">${options.map((item) => `<button type="button" data-logi-policy="${logisticsEscAttr(item.id)}" class="${item.id === selected ? "on" : ""}" aria-pressed="${item.id === selected}" title="${logisticsEscAttr(item.description || "")}"><i aria-hidden="true">${escText(item.icon || "↗")}</i>${escText(item.label || item.id)}</button>`).join("")}</div>
+    <div class="route-policy-note">${escText(policy.note || "Applies to your next incoming dispatch.")}</div></section>`;
 }
 
 function renderLogisticsPanel() {
@@ -12891,8 +12977,12 @@ function renderLogisticsPanel() {
   const picked = LOGI.selected && all.find((lane) => logisticsLaneId(lane) === LOGI.selected);
   const visible = LOGI.expanded ? all : picked
     ? [picked, ...all.filter((lane) => lane !== picked)].slice(0, 3) : all.slice(0, 3);
-  const month = logisticsMonthLabel(LOGI.data && LOGI.data.settled_month) || "Awaiting first settlement";
-  const commodities = [...new Set(((LOGI.data && LOGI.data.lanes) || []).map(logisticsCommodity))].sort();
+  const month = logisticsMonthLabel(LOGI.data && (LOGI.data.settled_day || LOGI.data.settled_month)) || "Awaiting first daily tick";
+  const commodities = [...new Set([
+    ...((LOGI.data && LOGI.data.lanes) || []),
+    ...((LOGI.data && LOGI.data.cargo) || []),
+    ...((LOGI.data && LOGI.data.arrivals) || []),
+  ].map(logisticsCommodity))].sort();
   const chips = [RES_ALL, ...commodities].map((com) => {
     const on = LOGI.com === com;
     return `<button type="button" data-logi-com="${logisticsEscAttr(com)}" aria-pressed="${on}">${
@@ -12900,29 +12990,52 @@ function renderLogisticsPanel() {
   }).join("");
   let list;
   if (LOGI.error) list = `<div class="logistics-empty">${escText(LOGI.error)}<br><button type="button" data-logi-retry>Retry</button></div>`;
-  else if (!LOGI.data && LOGI.loading) list = `<div class="logistics-empty">Reading the latest monthly settlement…</div>`;
-  else if (!all.length) list = `<div class="logistics-empty">No ${LOGI.com === RES_ALL ? "" : escText(logisticsCommodityName(LOGI.com)) + " "}routes touch your network.<br>Abstract lanes appear only after a monthly market fill.</div>`;
+  else if (!LOGI.data && LOGI.loading) list = `<div class="logistics-empty">Reading the latest daily dispatch…</div>`;
+  else if (!all.length) list = `<div class="logistics-empty">No ${LOGI.com === RES_ALL ? "" : escText(logisticsCommodityName(LOGI.com)) + " "}dispatches on the latest tick.<br>Routes appear when a contract or spot purchase actually loads.</div>`;
   else list = `<div class="logistics-list">${visible.map(logisticsCardHtml).join("")}</div>${all.length > 3
     ? `<button type="button" class="logistics-more" data-logi-more>${LOGI.expanded ? "Show top 3" : `Show ${all.length - 3} more`}</button>` : ""}`;
-  body.innerHTML = `<div class="logistics-stamp"><b>My network · abstract lanes</b><span>${escText(month)}<br>latest monthly settlement</span></div>
+  const cargo = ((LOGI.data && LOGI.data.cargo) || []).filter((c) => LOGI.com === RES_ALL || logisticsCommodity(c) === LOGI.com)
+    .sort((a, b) => Number(!!b.hold_reason) - Number(!!a.hold_reason) || String(a.id).localeCompare(String(b.id)));
+  const arrivals = ((LOGI.data && LOGI.data.arrivals) || []).filter((c) => LOGI.com === RES_ALL || logisticsCommodity(c) === LOGI.com);
+  const cargoVisible = LOGI.cargoExpanded ? cargo : cargo.slice(0, 3);
+  const pipeline = cargo.length ? `<div class="logistics-stamp"><b>Cargo on the move</b><span>${cargo.filter((c) => c.hold_reason).length ? `${cargo.filter((c) => c.hold_reason).length} held · ` : ""}${cargo.length} booked load${cargo.length === 1 ? "" : "s"}</span></div><div class="logistics-list">${cargoVisible.map((c) => logisticsCargoHtml(c, false)).join("")}</div>${cargo.length > 3 ? `<button type="button" class="logistics-more" data-logi-cargo-more>${LOGI.cargoExpanded ? "Show priority 3" : `Show ${cargo.length - 3} more loads`}</button>` : ""}` : "";
+  const arrived = arrivals.length ? `<div class="logistics-stamp"><b>Latest arrivals</b><span>now in stockpile</span></div><div class="logistics-list">${arrivals.slice(0, 3).map((c) => logisticsCargoHtml(c, true)).join("")}</div>` : "";
+  body.innerHTML = `<div class="logistics-stamp"><b>My freight network · modeled routes</b><span>${escText(month)}<br>latest daily dispatch</span></div>
+    ${logisticsPolicyHtml()}
     <div class="logistics-filters" aria-label="Commodity filter">${chips}</div>
-    <div class="logistics-summary"><span>Moving<b>${summary.moving}</b></span><span class="constrained">Supply short<b>${summary.constrained}</b></span><span class="blocked">Closed<b>${summary.blocked}</b></span></div>${list}`;
+    <div class="logistics-summary"><span>In transit<b>${cargo.length}</b></span><span class="constrained">Supply short<b>${summary.constrained}</b></span><span class="blocked">Closed<b>${summary.blocked}</b></span></div>${pipeline}${arrived}${list}
+    <button type="button" class="logistics-build" data-logi-build>＋ Build corridor capacity</button>
+    <div class="route-policy-note">${escText((LOGI.data && LOGI.data.model_note) || "Modeled freight network. Cargo advances daily.")}</div>`;
   body.querySelectorAll("[data-logi-com]").forEach((button) => { button.onclick = () => {
-    LOGI.com = button.dataset.logiCom; LOGI.expanded = false; LOGI.selected = null; renderLogisticsPanel(); if (GLOBE) GLOBE.render();
+    LOGI.com = button.dataset.logiCom; LOGI.expanded = false; LOGI.cargoExpanded = false; LOGI.selected = null; renderLogisticsPanel(); if (GLOBE) GLOBE.render();
   }; });
   body.querySelectorAll("[data-logi-lane]").forEach((card) => {
-    card.onclick = (e) => { if (!e.target.closest("button")) logisticsSelect(card.dataset.logiLane); };
-    card.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); logisticsSelect(card.dataset.logiLane); } };
+    card.onclick = (e) => { if (!e.target.closest("button")) { const lane = logisticsFindLane(card.dataset.logiLane); if (logisticsRoute(lane)) logisticsFocus(lane); else logisticsSelect(card.dataset.logiLane); } };
+    card.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); const lane = logisticsFindLane(card.dataset.logiLane); if (logisticsRoute(lane)) logisticsFocus(lane); else logisticsSelect(card.dataset.logiLane); } };
   });
   body.querySelectorAll("[data-logi-action]").forEach((button) => { button.onclick = (e) => {
     e.stopPropagation(); const lane = logisticsFindLane(button.dataset.logiKey); if (!lane) return;
     if (button.dataset.logiAction === "focus") logisticsFocus(lane);
     else if (button.dataset.logiAction === "open_contract") logisticsOpenContract(lane);
   }; });
+  body.querySelectorAll("[data-logi-policy]").forEach((button) => { button.onclick = () => logisticsSetPolicy(button.dataset.logiPolicy); });
+  const cargoMore = body.querySelector("[data-logi-cargo-more]");
+  if (cargoMore) cargoMore.onclick = () => { LOGI.cargoExpanded = !LOGI.cargoExpanded; renderLogisticsPanel(); };
+  const build = body.querySelector("[data-logi-build]");
+  if (build) build.onclick = () => { closeLogistics(); openProduction(); setProductionMode("build"); PROD.pickKind = "infrastructure"; PROD.view = "provinces"; renderProductionPanel(); };
   const more = body.querySelector("[data-logi-more]");
   if (more) more.onclick = () => { LOGI.expanded = !LOGI.expanded; renderLogisticsPanel(); };
   const retry = body.querySelector("[data-logi-retry]");
   if (retry) retry.onclick = () => { LOGI.stale = true; LOGI.error = null; logisticsFetch(); };
+}
+
+async function logisticsSetPolicy(policy) {
+  try {
+    const response = await api("/api/command", { commands: [{ kind: "set_logistics_policy", policy }] });
+    if (response.errors && response.errors.length) banner(response.errors[0]);
+    else banner("Routing doctrine set. New incoming cargo will use it.");
+    LOGI.stale = true; await adopt(response, false);
+  } catch (error) { banner(error.message || "The route order could not be sent."); }
 }
 
 function logisticsSelect(id) {
@@ -12931,12 +13044,12 @@ function logisticsSelect(id) {
   if (GLOBE) GLOBE.render();
 }
 function logisticsFocus(lane) {
-  if (!logisticsAllows(lane, "focus")) return;
+  if (!logisticsAllows(lane, "focus") && !logisticsRoute(lane)) return;
   logisticsSelect(logisticsLaneId(lane));
-  const a = anchorOf(String(logisticsEndpoint(lane, true))), b = anchorOf(String(logisticsEndpoint(lane, false)));
-  if (!a || !b) { banner("That abstract lane has no mapped national anchor."); return; }
-  const ga = Globe3D.unproject(a[0], a[1]), gb = Globe3D.unproject(b[0], b[1]);
-  const middle = slerpGeo(ga, gb, .5), p = Globe3D.project(middle[0], middle[1]);
+  const points = logisticsRoutePoints(lane);
+  if (points.length < 2) { banner("That route has no mapped waypoints."); return; }
+  const ga = points[0], gb = points[points.length - 1];
+  const middle = points[Math.floor(points.length / 2)], p = Globe3D.project(middle[0], middle[1]);
   const D = Math.PI / 180;
   const dot = clamp(Math.sin(ga[1] * D) * Math.sin(gb[1] * D) + Math.cos(ga[1] * D) * Math.cos(gb[1] * D) * Math.cos((ga[0] - gb[0]) * D), -1, 1);
   const angle = Math.acos(dot);
@@ -12964,7 +13077,7 @@ function logisticsOpenContract(lane) {
 $("#logisticsDockBtn").onclick = toggleLogistics;
 $("#logisticsClose").onclick = closeLogistics;
 
-/* Screen-space abstract arcs. State is both colour and pattern: cyan solid is
+/* Screen-space route arcs over the 3D globe. State is both colour and pattern: cyan solid is
    delivered/moving, amber long-dash is supply-short, red broken is closed. A
    selected route alone gets its served state word; no cargo bead animates. */
 function drawLogisticsOverlay(ctx, view, globe) {
@@ -12972,7 +13085,23 @@ function drawLogisticsOverlay(ctx, view, globe) {
   if (!LOGI.open || !LOGI.data) return;
   const r = view.ratio;
   const selected = LOGI.selected;
-  const filtered = logisticsFilteredLanes();
+  const settled = logisticsFilteredLanes();
+  const pathKey = (lane) => {
+    const route = logisticsRoute(lane), segments = route && route.segments;
+    return Array.isArray(segments) && segments.length ? segments.join("→") : "";
+  };
+  const sameDispatch = (a, b) => pathKey(a) && pathKey(a) === pathKey(b)
+    && a.contract_id === b.contract_id && logisticsCommodity(a) === logisticsCommodity(b)
+    && String(logisticsEndpoint(a, true)) === String(logisticsEndpoint(b, true))
+    && String(logisticsEndpoint(a, false)) === String(logisticsEndpoint(b, false));
+  const allCargo = ((LOGI.data && LOGI.data.cargo) || []).filter(logisticsIsMine)
+    .filter((lane) => LOGI.com === RES_ALL || logisticsCommodity(lane) === LOGI.com);
+  const selectedArrival = ((LOGI.data && LOGI.data.arrivals) || []).filter(logisticsIsMine)
+    .filter((lane) => logisticsLaneId(lane) === selected);
+  const cargo = allCargo.filter((load) => logisticsLaneId(load) === selected || load.hold_reason
+    || !settled.some((lane) => sameDispatch(lane, load)));
+  const preferred = [...cargo.filter((load) => logisticsLaneId(load) === selected || load.hold_reason), ...selectedArrival];
+  const filtered = [...selectedArrival, ...cargo, ...settled.filter((lane) => !preferred.some((load) => sameDispatch(lane, load)))];
   const selectedLane = selected && filtered.find((lane) => logisticsLaneId(lane) === selected);
   const lanes = (selectedLane
     ? [selectedLane, ...filtered.filter((lane) => logisticsLaneId(lane) !== selected)]
@@ -12980,28 +13109,31 @@ function drawLogisticsOverlay(ctx, view, globe) {
     (logisticsLaneId(a) === selected ? 1 : 0) - (logisticsLaneId(b) === selected ? 1 : 0));
   for (const lane of lanes) {
     const id = logisticsLaneId(lane), tone = logisticsTone(lane);
-    const a = anchorOf(String(logisticsEndpoint(lane, true))), b = anchorOf(String(logisticsEndpoint(lane, false)));
-    if (!a || !b) continue;
-    const ga = Globe3D.unproject(a[0], a[1]), gb = Globe3D.unproject(b[0], b[1]);
-    const colour = tone === "blocked" ? "#df6c65" : tone === "constrained" ? "#d2a645" : "#55c9df";
+    const routePoints = logisticsRoutePoints(lane);
+    if (routePoints.length < 2) continue;
+    const colour = tone === "blocked" ? "#df6c65" : tone === "held" ? "#e19bc7" : tone === "constrained" ? "#d2a645" : "#55c9df";
     const alpha = selected && id !== selected ? .15 : .92;
     const segments = [];
-    let pen = false, previous = null, last = null, beforeLast = null, midpoint = null, endVisible = false;
+    let pen = false, previous = null, last = null, beforeLast = null, midpoint = null, endVisible = false, step = 0;
+    const routeSteps = (routePoints.length - 1) * 14;
     ctx.globalAlpha = alpha;
     ctx.beginPath();
-    for (let i = 0; i <= 40; i++) {
-      const g = slerpGeo(ga, gb, i / 40);
-      const p = globe.projectGeo(g[0], g[1], view, 1.012);
-      if (!p) { pen = false; previous = null; continue; }
-      if (pen) { ctx.lineTo(p[0], p[1]); segments.push([previous, p]); }
-      else ctx.moveTo(p[0], p[1]);
-      pen = true; previous = p; beforeLast = last; last = p;
-      if (!midpoint || Math.abs(i - 20) < midpoint.delta) midpoint = { p, delta: Math.abs(i - 20) };
-      endVisible = i === 40;
+    for (let leg = 0; leg < routePoints.length - 1; leg++) {
+      const ga = routePoints[leg], gb = routePoints[leg + 1];
+      for (let i = leg ? 1 : 0; i <= 14; i++, step++) {
+        const g = slerpGeo(ga, gb, i / 14);
+        const p = globe.projectGeo(g[0], g[1], view, 1.012);
+        if (!p) { pen = false; previous = null; continue; }
+        if (pen) { ctx.lineTo(p[0], p[1]); segments.push([previous, p]); }
+        else ctx.moveTo(p[0], p[1]);
+        pen = true; previous = p; beforeLast = last; last = p;
+        if (!midpoint || Math.abs(step - routeSteps / 2) < midpoint.delta) midpoint = { p, delta: Math.abs(step - routeSteps / 2) };
+        endVisible = leg === routePoints.length - 2 && i === 14;
+      }
     }
     ctx.strokeStyle = "#05080c"; ctx.lineWidth = (lane.source === "spot" ? 3.8 : 4.6) * r; ctx.setLineDash([]); ctx.stroke();
     ctx.strokeStyle = colour; ctx.lineWidth = (lane.source === "spot" ? 1.15 : 1.75) * r;
-    ctx.setLineDash(tone === "blocked" ? [3 * r, 6 * r] : tone === "constrained" ? [9 * r, 4 * r] : []);
+    ctx.setLineDash(tone === "blocked" ? [3 * r, 6 * r] : tone === "held" ? [2 * r, 3 * r] : tone === "constrained" ? [9 * r, 4 * r] : []);
     ctx.stroke(); ctx.setLineDash([]);
     for (const seg of segments) LOGI.hits.push({ lane, a: seg[0], b: seg[1], r });
     if (endVisible && last && beforeLast && tone !== "blocked") {
@@ -13365,15 +13497,15 @@ function manufacturingLineHtml(line) {
   const choices = manufacturingPriorityChoices(line);
   const requirements = (line.requirements || []).filter((row) => +(row.draw != null ? row.draw : row.required) > 0)
     .map(manufacturingRequirementHtml).join("");
-  const lead = +line.lead_months || 0;
+  const lead = +line.lead_days || 0;
   return `<article class="work-card factory-card ${tone}${String(MANU.selected) === String(line.id) ? " selected" : ""}" tabindex="0" data-manu-line="${logisticsEscAttr(line.id)}">
     <div class="work-top"><span class="work-art" aria-hidden="true">${manufacturingClassMark(line.class)}</span>
       <div class="work-title"><b>${escText(line.name || line.kit)}</b><span>${escText(province.name || province.id || "Arms plant")} · ${escText(line.class || "Equipment")}</span></div>
       <span class="work-state">${escText(String(line.status || "producing").toUpperCase())}</span></div>
-    <div class="factory-output"><span>Planned / month<b>${manufacturingBn(line.allocation_bn_month)}</b></span><span>Lead time<b>${lead ? `${lead} mo` : "pending"}</b></span></div>
+    <div class="factory-output"><span>Planned / day<b>${manufacturingBn(line.allocation_bn_day)}</b></span><span>Lead time<b>${lead ? `${lead} days` : "pending"}</b></span></div>
     ${line.reason ? `<div class="work-reason">${escText(line.reason)}</div>` : ""}
     ${requirements ? `<div class="work-needs">${requirements}</div>` : ""}
-    <div class="work-line"><span><b>${fmtQ(tone === "blocked" ? 0 : line.units_ordered_month || 0)}</b> planned units / month</span><span>${manufacturingBn(line.ordered_bn || 0)} ordered to date</span></div>
+    <div class="work-line"><span><b>${fmtQ(tone === "blocked" ? 0 : line.units_ordered_day || 0)}</b> planned units / day</span><span>${manufacturingBn(line.ordered_bn || 0)} ordered to date</span></div>
     <div class="work-actions" aria-label="Manufacturing line controls">${["high", "normal", "low"].filter((value) => value === priority || choices.includes(value)).map((value) =>
       `<button type="button" ${priority === value ? "disabled" : `data-manu-priority="${value}" data-manu-id="${logisticsEscAttr(line.id)}"`} class="${priority === value ? "on" : ""}" aria-pressed="${priority === value}">${value}</button>`).join("")}
       ${manufacturingCanStop(line) ? `<button type="button" class="cancel" data-manu-stop="${logisticsEscAttr(line.id)}">Stop line</button>` : ""}</div>
@@ -13383,7 +13515,7 @@ function manufacturingLineHtml(line) {
 function manufacturingLedgerHtml() {
   const holdings = manufacturingHoldings(), orders = manufacturingOrders();
   const heldRows = holdings.slice(0, 12).map((row) => `<div class="factory-ledger-row"><b>${escText(row.name || row.kit)}</b><span>${fmtQ(row.units)} units · ${manufacturingBn(row.book_value_bn)}<br>${Math.round((+row.condition || 0) * 100)}% condition</span></div>`).join("");
-  const orderRows = orders.slice(0, 12).map((row) => `<div class="factory-ledger-row"><b>${escText(row.name || row.kit)}</b><span>${fmtQ(row.units)} units · ${escText(row.due_date || `${row.due_months || 0} months`)}<br>${manufacturingBn(row.value_bn)}</span></div>`).join("");
+  const orderRows = orders.slice(0, 12).map((row) => `<div class="factory-ledger-row"><b>${escText(row.name || row.kit)}</b><span>${fmtQ(row.units)} units · ${escText(row.due_date || `${row.due_days || 0} days`)}<br>${manufacturingBn(row.value_bn)}</span></div>`).join("");
   return `<details class="factory-ledger"><summary>Arsenal &amp; delivery pipeline · ${holdings.length} held · ${orders.length} orders</summary>
     <div class="factory-ledger-list">${orderRows || `<div class="production-empty">Nothing is on order.</div>`}${heldRows}</div></details>`;
 }
@@ -13400,7 +13532,7 @@ function manufacturingLinesHtml() {
   } else if (!lines.length) {
     empty = `<div class="factory-bridge"><b>Staff procurement is active</b>Your ${capacity} plant slot${capacity === 1 ? " is" : "s are"} ready. Start a line to replace automatic buying with your own equipment plan.</div>`;
   }
-  return `<div class="manufacturing-hero"><div class="stamp">Defense procurement envelope</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_month)} <small>per month</small></div>
+  return `<div class="manufacturing-hero"><div class="stamp">Daily defense procurement</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_day)} <small>per day</small></div>
       <p>${share.toFixed(0)}% of the defense budget buys equipment. The treasury already carries that spending; imported materials settle through the resource market.</p></div>
     <div class="manufacturing-summary"><span>Plant slots<b>${usedSlots}/${capacity}</b></span><span>Force equipped<b>${Math.round((+summary.adequacy || 0) * 100)}%</b></span><span class="${+summary.blocked ? "warn" : ""}">Pipeline<b>${manufacturingBn(summary.pipeline_value_bn)}</b></span></div>
     ${empty}${list}${freeSlots > 0 && data.actions && data.actions.start === true ? `<button type="button" class="production-new" data-manu-new>＋ Start equipment line</button>` : ""}
@@ -13415,7 +13547,7 @@ function manufacturingCatalogHtml() {
   const cards = visible.map((kit) => {
     const available = !!kit.unlocked && !!(kit.actions && kit.actions.start === true) && (kit.eligible_provinces || []).length > 0;
     const meta = kit.unlocked
-      ? `${manufacturingBn(kit.unit_cost_bn, 3)} / unit · ${kit.lead_months} months to field`
+      ? `${manufacturingBn(kit.unit_cost_bn, 3)} / unit · ${kit.lead_days} days to field`
       : kit.lock_reason || (kit.tech && `Requires ${kit.tech.name || kit.tech.id}`) || "Technology locked";
     return `<button type="button" class="equipment-choice${kit.unlocked ? "" : " locked"}" data-class-mark="${logisticsEscAttr(manufacturingClassMark(kit.class))}" ${available ? `data-manu-kit="${logisticsEscAttr(kit.id)}"` : "disabled"}>
       <b>${escText(kit.name)}</b><span>${escText(kit.class)} · service life ${Math.round((+kit.service_months || 0) / 12)} years</span><em>${escText(meta)}</em></button>`;
@@ -13435,7 +13567,7 @@ function manufacturingProvinceHtml() {
   const picks = provinces.map((province) => `<button type="button" class="province-pick" data-manu-province="${logisticsEscAttr(province.id)}"><b>${escText(province.name || province.id)}</b><span>${+province.free_slots || 0} free · arms plant ${+province.arms_plants || 0}</span></button>`).join("");
   const recipe = (kit.requirements_per_bn || []).map((row) => `<span class="work-need">${escText(row.name || row.commodity)} · ${fmtQ(row.quantity || row.required || 0)} ${escText(row.unit || "")} / $bn</span>`).join("");
   return `<div class="production-stamp"><b>${manufacturingClassMark(kit.class)} ${escText(kit.name)}</b><span>step 2 of 2<br>choose a plant</span></div>
-    <div class="project-brief"><b>${manufacturingBn(kit.unit_cost_bn, 3)} per unit · first delivery in ${kit.lead_months} months</b>${recipe ? `<div class="work-needs">${recipe}</div>` : ""}</div>
+    <div class="project-brief"><b>${manufacturingBn(kit.unit_cost_bn, 3)} per unit · first delivery in ${kit.lead_days} days</b>${recipe ? `<div class="work-needs">${recipe}</div>` : ""}</div>
     <div class="province-picks">${picks || `<div class="production-empty">No owned arms plant has a free slot.</div>`}</div>
     <button type="button" class="production-back" data-manu-back>Choose another equipment line</button>`;
 }

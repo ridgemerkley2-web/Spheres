@@ -235,7 +235,7 @@ pub fn project(
     // actually shooting. A frozen conflict does not digest pockets.
     if c.top_rung(false) >= SHOOTING_RUNG {
         for (d, start) in &decays_a {
-            let target = (start - POCKET_SWING).max(-1.0);
+            let target = (start - POCKET_SWING * crate::clock::month_fraction(w)).max(-1.0);
             if hold_of(c, d, true) > target {
                 set_hold(c, d, target);
             }
@@ -243,7 +243,7 @@ pub fn project(
     }
     if c.top_rung(true) >= SHOOTING_RUNG {
         for (d, start) in &decays_b {
-            let target = (start + POCKET_SWING).min(1.0);
+            let target = (start + POCKET_SWING * crate::clock::month_fraction(w)).min(1.0);
             if hold_of(c, d, false) < target {
                 set_hold(c, d, target);
             }
@@ -338,7 +338,7 @@ fn allocate(
                     if river_only.get(d.as_str()).copied().unwrap_or(false) {
                         cd *= RIVER_CROSS_TEMPO;
                     }
-                    cd.max(TEMPO_FLOOR)
+                    cd.max(TEMPO_FLOOR) * crate::clock::month_fraction(w)
                 });
                 let room = match cap_d {
                     Some(cp) => (cp - moved.get(d.as_str()).copied().unwrap_or(0.0)).min(dist),

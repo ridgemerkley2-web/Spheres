@@ -8,6 +8,30 @@ only he can answer. Everything else is settled unless he says otherwise.
 Read order: this file, then SPEC.md (technical design), then PLAN.md (sequence),
 then ROADMAP.md (status), then CLAUDE.md (how to work).
 
+## Daily simulation amendment — 2026-09-03
+
+Ridge: **“Can we get everything on a daily ticker not monthly?”** This
+supersedes the monthly-only resolution constraints in §§4–6 and the earlier
+daily-calendar-only amendment below. Browser play now advances the MODEL daily:
+economy, population, resources, trade, manufacturing, research, diplomacy,
+combat, government and political AI all run on each date. Construction already
+does. Annual budgets, election terms, technology year gates and long-term
+contracts keep their meaning; they are not shortened into daily terms.
+
+Recurring monthly quantities accrue at 1 / actual days in that month; annual
+quantities at that fraction / 12. Decay, convergence and recurring event chances
+use compounded daily equivalents. Commands and one-off events pay once. Cargo
+uses real day deadlines. No hourly loop is introduced. See DAILY.md for the
+implementation and migration contract.
+
+Legacy monthly replay remains behind `GameRules.daily_simulation = false`
+(the default for existing headless calibration). Its golden pins and actuals
+must not be changed by this work. Browser boot/new/load enable daily simulation.
+The daily-mode replay invariant is **the same dated command schedule produces
+the same world**, whether single-stepped, batched, or saved and resumed.
+Moving a command from day 1 to day 20 may now change the result intentionally.
+Old monthly calibration evidence is not proof of daily-mode long-run balance.
+
 ---
 
 ## 1. The one sentence

@@ -7,6 +7,7 @@
 //! serves a browser UI that renders it. No game logic lives here.
 
 use spheres_sim::init::world_1990;
+use spheres_sim::logistics::{self, RoutePolicy};
 use spheres_sim::production::{self, Priority, Project, ProjectKind, ProjectStatus};
 use spheres_sim::resources::{self, Commodity, Leg, Verdict, ALL};
 use spheres_sim::stratagems;
@@ -81,9 +82,10 @@ struct Row {
 
 /// The world as it stood at the start of one month.
 struct Snapshot {
-    t: u32, // months since Jan 1990
+    t: f64, // fractional calendar months since Jan 1990
     year: i32,
     month: u32,
+    day: Option<u32>,
     oil: f64,
     rows: Vec<(NationId, Row)>,
 }
@@ -126,9 +128,12 @@ impl Game {
     fn snapshot(&mut self) {
         let w = &self.world;
         self.history.push(Snapshot {
-            t: month_index(w.year, w.month),
+            t: month_index(w.year, w.month) as f64 + if w.rules.daily_simulation {
+                (w.day.max(1) - 1) as f64 / spheres_sim::world::days_in_month(w.year, w.month) as f64
+            } else { 0.0 },
             year: w.year,
             month: w.month,
+            day: w.rules.daily_simulation.then_some(w.day),
             oil: w.oil_price,
             rows: w
                 .nations
@@ -176,8 +181,8 @@ impl Game {
     }
 
     /// Advance up to `days`, stopping early on an event worth reacting to.
-    /// Monthly-calibrated systems settle when a month closes; the history keeps
-    /// one row per settlement rather than duplicating the same values every day.
+    /// Daily simulation records each day's result. Legacy replay retains one
+    /// snapshot per completed monthly settlement.
     /// Returns whether it stopped early and why.
     fn advance_days(&mut self, days: usize, commands: Vec<Command>) -> (bool, Option<String>) {
         let gone = |g: &Game, me: NationId| !g.world.nation_opt(me).is_some_and(|n| n.alive);
@@ -192,7 +197,7 @@ impl Game {
             for h in &headlines {
                 self.record_at(event_t, event_date.clone(), h.clone());
             }
-            if (self.world.year, self.world.month) != before_month {
+            if self.world.rules.daily_simulation || (self.world.year, self.world.month) != before_month {
                 self.snapshot();
             }
             if !already_gone {
@@ -213,6 +218,16 @@ impl Game {
 
     /// Compatibility path for older clients that still post `{ months: N }`.
     fn advance_months(&mut self, months: usize, commands: Vec<Command>) -> (bool, Option<String>) {
+        if self.world.rules.daily_simulation || self.world.daily.activate_after_month.is_some() {
+            let mut commands = commands;
+            for _ in 0..months {
+                let remaining = spheres_sim::world::days_in_month(self.world.year, self.world.month)
+                    .saturating_sub(self.world.day.max(1)) + 1;
+                let outcome = self.advance_days(remaining as usize, std::mem::take(&mut commands));
+                if outcome.0 { return outcome; }
+            }
+            return (false, None);
+        }
         // A destroyed nation interrupts once, not on every later request.
         let gone = |g: &Game, me: NationId| !g.world.nation_opt(me).is_some_and(|n| n.alive);
         let already_gone = self.world.player.is_some_and(|me| gone(self, me));
@@ -806,10 +821,11 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
 fn foreign_commitments_json(w: &WorldState, id: NationId) -> serde_json::Value {
     let contract_imports = resources::contracted_spend(w, id);
     let export_receipts = resources::contracted_receipts(w, id);
-    // Accessors expose the latest settled MONTH. Annualising that latest month
-    // here is a budget forecast, explicitly labelled as an expected run-rate.
-    let expected_spot_imports = resources::spot_imports_bn(w, id) * 12.0;
-    let spot_export_receipts = resources::spot_exports_bn(w, id) * 12.0;
+    // Annualise the actual ledger period, not the month currently on screen:
+    // the January 31 book is still January's daily flow on February 1.
+    let fraction = resources::market_period_fraction(w);
+    let expected_spot_imports = resources::spot_imports_bn(w, id) * 12.0 / fraction;
+    let spot_export_receipts = resources::spot_exports_bn(w, id) * 12.0 / fraction;
     let mine_investment = resources::mine_investment_bn(w, id);
     let outflows = contract_imports + expected_spot_imports;
     let receipts = export_receipts + spot_export_receipts;
@@ -1023,14 +1039,50 @@ fn annual_on_board(c: Commodity, annual: f64) -> f64 {
     annual * board_unit(c).1
 }
 
+/// Forecast flows may be quoted per day, but never divide a stock or an
+/// already-settled cargo quantity by the length of the month. Oil is already
+/// a daily rate in the authored data and is deliberately left alone.
+fn daily_board_unit(c: Commodity) -> &'static str {
+    match c.unit() {
+        "t" | "kt" => "kt/day",
+        "bcf" => "bcf/day",
+        "kg" => "kg/day",
+        "kb/d" => "kb/d",
+        _ => "a day",
+    }
+}
+
+fn daily_on_board(w: &WorldState, c: Commodity, monthly: f64) -> f64 {
+    if c == Commodity::Oil { monthly }
+    else { on_board(c, monthly) / spheres_sim::world::days_in_month(w.year, w.month) as f64 }
+}
+
+fn period_board_unit(w: &WorldState, c: Commodity) -> &'static str {
+    if w.rules.daily_simulation { daily_board_unit(c) } else { board_unit(c).0 }
+}
+
+fn period_on_board(w: &WorldState, c: Commodity, monthly: f64) -> f64 {
+    if w.rules.daily_simulation { daily_on_board(w, c, monthly) } else { on_board(c, monthly) }
+}
+
+fn annual_period_on_board(w: &WorldState, c: Commodity, annual: f64) -> f64 {
+    if c == Commodity::Oil { annual }
+    else { period_on_board(w, c, annual / 12.0) }
+}
+
 /// A quantity as a card prints it: thousands separated, no more digits than
 /// the size warrants.
 fn qty(q: f64) -> String {
     let a = q.abs();
+    if a > 0.0 && a < 0.000001 {
+        return format!("{}{a:.2e}", if q < 0.0 { "−" } else { "" });
+    }
     let s = if a >= 100.0 {
         format!("{a:.0}")
     } else if a >= 10.0 {
         format!("{a:.1}")
+    } else if a > 0.0 && a < 0.01 {
+        format!("{a:.6}")
     } else {
         format!("{a:.2}")
     };
@@ -1165,6 +1217,7 @@ fn supplier_of(w: &WorldState, id: NationId, c: Commodity, s: &resources::Supply
 /// null until a conservation market has actually settled them; null is an
 /// important distinction from a cleared zero.
 fn market_quote_json(w: &WorldState, c: Commodity) -> serde_json::Value {
+    let daily_ledger = w.resources.market.as_ref().is_some_and(|m| m.period_days.is_some());
     let reference = resources::market_reference_price(w, c);
     let current = resources::market_current_price(w, c);
     let previous = resources::market_previous_price(w, c);
@@ -1209,7 +1262,8 @@ fn market_quote_json(w: &WorldState, c: Commodity) -> serde_json::Value {
         "band": band,
         "cleared_volume": cleared,
         "unmet_orders": unmet,
-        "volume_unit": board_unit(c).0,
+        "volume_unit": if daily_ledger { daily_board_unit(c) } else { board_unit(c).0 },
+        "volume_period": if daily_ledger { "day" } else { "month" },
         "settled": settled,
         "source": if c == Commodity::Oil { "world_oil_price" } else if settled { "spot_market" } else { "1990_reference" },
     })
@@ -1226,6 +1280,7 @@ fn stock_quantity_json(w: &WorldState, id: NationId, c: Commodity) -> serde_json
         "quantity": if c == Commodity::Oil { None } else { Some(round(resources::stock_quantity(w, id, c) * factor, 6)) },
         "unit": unit,
         "months_cover": if c == Commodity::Oil { None } else { Some(round(resources::stock_months(w, id, c), 2)) },
+        "days_cover": if c == Commodity::Oil { None } else { Some(round(resources::stock_months(w, id, c) * spheres_sim::world::days_in_month(w.year, w.month) as f64, 1)) },
         "physical": physical,
         "projected": !physical && c != Commodity::Oil,
     })
@@ -1242,9 +1297,15 @@ fn row_json(
     kit: Option<(&'static str, &'static str)>,
 ) -> serde_json::Value {
     let c = l.c;
-    let (unit, _) = board_unit(c);
-    let produce = annual_on_board(c, l.flow);
-    let need = on_board(c, l.need);
+    let unit = period_board_unit(w, c);
+    let produce = annual_period_on_board(w, c, l.flow);
+    let monthly_need = on_board(c, l.need);
+    // Banked procurement money is a stock: today's actual recipe can exceed a
+    // plain 1/days share. Read the same atomic draw the arsenal will request.
+    let daily_need = on_board(c, resources::tick_draw(w, id)[c.idx()]);
+    let need = if w.rules.daily_simulation { daily_need } else { monthly_need };
+    let period = if w.rules.daily_simulation { "today" } else { "this month" };
+    let cover_days = l.cover * spheres_sim::world::days_in_month(w.year, w.month) as f64;
     let h = resources::holdings_of(w, id, c);
     let t = resources::tables();
     let kit_name = kit.map(|k| k.0).unwrap_or("procurement");
@@ -1260,8 +1321,8 @@ fn row_json(
                 "nothing in this build draws on it".to_string()
             }
         }
-        "stalled" => format!("the {kit_name} line stalled this month"),
-        "short" => format!("{} months in hand", l.cover.ceil() as i64),
+        "stalled" => format!("the {kit_name} line stalled {period}"),
+        "short" => if w.rules.daily_simulation { format!("{} days in hand", cover_days.ceil() as i64) } else { format!("{} months in hand", l.cover.ceil() as i64) },
         "ok" => format!("you make {} {unit}, lines need {}", qty(produce), qty(need)),
         _ => {
             if produce > 0.0 {
@@ -1280,7 +1341,7 @@ fn row_json(
             if h.districts == 1 { "" } else { "s" }
         ))
     } else if h.unlocated > 0.0 {
-        Some(format!("{} {unit} unlocated — cannot be taken from you", qty(annual_on_board(c, h.unlocated))))
+        Some(format!("{} {unit} unlocated — cannot be taken from you", qty(annual_period_on_board(w, c, h.unlocated))))
     } else {
         None
     };
@@ -1311,7 +1372,7 @@ fn row_json(
             prov.push(mark(
                 "M",
                 format!(
-                    "need: the {kit_name} line's budget this month at the {class} class's coefficient — a mechanic, one platform per number"
+                    "need: the {kit_name} line's budget {period} at the {class} class's coefficient — a mechanic, one platform per number"
                 ),
             ));
             prov.push(mark(
@@ -1330,18 +1391,18 @@ fn row_json(
     // The hover: what is blocked and why, in plain words.
     let hover = match l.status {
         "stalled" => format!(
-            "the {kit_name} line asked for {} {unit} this month and could not get it — {}",
+            "the {kit_name} line asked for {} {unit} {period} and could not get it — {}",
             qty(need),
             l.reason.unwrap_or("")
         ),
         "short" => format!(
-            "the {kit_name} line needs {} {unit} a month; {} months in hand — {}",
+            "the {kit_name} line needs {} {unit}; {} — {}",
             qty(need),
-            l.cover.ceil() as i64,
+            if w.rules.daily_simulation { format!("{} days in hand", cover_days.ceil() as i64) } else { format!("{} months in hand", l.cover.ceil() as i64) },
             l.reason.unwrap_or("")
         ),
         "supplied" => format!(
-            "the {kit_name} line needs {} {unit} a month; fed by {}",
+            "the {kit_name} line needs {} {unit}; fed by {}",
             qty(need),
             sup.map(|(n, k)| format!("{} ({})", n.name(), k)).unwrap_or_else(|| "the open market".into())
         ),
@@ -1354,12 +1415,20 @@ fn row_json(
         "id": c.key(),
         "name": line_name(c),
         "unit": unit,
+        "monthly_unit": board_unit(c).0,
+        "daily_unit": daily_board_unit(c),
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
         "tracked": l.tracked,
-        "produce_per_month": round(produce, 3),
-        "need_per_month": round(need, 3),
+        "produce_per_month": round(annual_on_board(c, l.flow), 3),
+        "need_per_month": round(monthly_need, 3),
+        "produce_per_day": round(if c == Commodity::Oil { l.flow } else { daily_on_board(w, c, l.flow / 12.0) }, 6),
+        "need_per_day": round(if w.rules.daily_simulation { daily_need } else { daily_on_board(w, c, l.need) }, 6),
+        "produce": round(produce, 6),
+        "need": round(need, 6),
         // The one big ±: what you make less what your lines want, on the board.
         "net": round(produce - need, 3),
         "cover_months": round(l.cover, 2),
+        "cover_days": round(cover_days, 1),
         "status": l.status,
         "supplier": sup.map(|(n, _)| n.name()),
         "supplier_id": sup.map(|(n, _)| format!("{:?}", n)),
@@ -1369,6 +1438,7 @@ fn row_json(
         "apportioned": h.districts > 0,
         "districts": h.districts,
         "unlocated_per_month": round(annual_on_board(c, h.unlocated), 3),
+        "unlocated_per_day": round(if c == Commodity::Oil { h.unlocated } else { daily_on_board(w, c, h.unlocated / 12.0) }, 6),
         "present": present,
         "price": if c == Commodity::Oil { Some(w.oil_price) } else { None },
         // Additive market/stock envelopes. Old clients ignore them; the new
@@ -1387,13 +1457,13 @@ fn row_json(
 }
 
 /// A leg as the board prints it: board units, never the table's.
-fn leg_words(l: &Leg) -> String {
+fn leg_words(w: &WorldState, l: &Leg) -> String {
     match l {
         Leg::Commodity { c: Commodity::Oil, per_month } => {
             format!("{} kb/d of oil at the world price", qty(*per_month))
         }
         Leg::Commodity { c, per_month } => {
-            format!("{} {} of {}", qty(on_board(*c, *per_month)), board_unit(*c).0, c.name())
+            format!("{} {} of {}", qty(period_on_board(w, *c, *per_month)), period_board_unit(w, *c), c.name())
         }
         Leg::Money { bn_per_year } => format!("{} a year", bn(*bn_per_year)),
         Leg::District { id } => {
@@ -1402,11 +1472,11 @@ fn leg_words(l: &Leg) -> String {
     }
 }
 
-fn legs_words(legs: &[Leg]) -> String {
+fn legs_words(w: &WorldState, legs: &[Leg]) -> String {
     if legs.is_empty() {
         "nothing".to_string()
     } else {
-        legs.iter().map(leg_words).collect::<Vec<_>>().join(", ")
+        legs.iter().map(|leg| leg_words(w, leg)).collect::<Vec<_>>().join(", ")
     }
 }
 
@@ -1425,22 +1495,25 @@ fn contract_json(w: &WorldState, me: NationId, k: &resources::Contract) -> serde
     let direction = if goods(get) { "in" } else { "out" };
     let com = first_commodity(get).or_else(|| first_commodity(give));
     let cancel_pc = spheres_sim::price_of(w, &Command::CancelDeal { nation: me, contract: k.id }).unwrap_or(0.0);
+    let days_left = k.days_left.unwrap_or_else(|| spheres_sim::clock::days_for_months(w, k.months_left));
     serde_json::json!({
         "id": k.id,
         "with": other.name(),
         "with_id": format!("{:?}", other),
         "direction": direction,
         "com": com.map(|c| c.key()),
-        "legs": format!("{} for {}", legs_words(get), legs_words(give)),
+        "legs": format!("{} for {}", legs_words(w, get), legs_words(w, give)),
         "line": format!(
-            "{} {} {} · {} months left",
+            "{} {} {} · {}",
             if direction == "in" { "+" } else { "−" },
-            legs_words(get),
+            legs_words(w, get),
             if direction == "in" { format!("from {}", other.name()) } else { format!("to {}", other.name()) },
-            k.months_left
+            if w.rules.daily_simulation { format!("{days_left} days left") } else { format!("{} months left", k.months_left) }
         ),
         "months_left": k.months_left,
         "months_total": k.months_total,
+        "days_left": days_left,
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
         "depth": round(k.depth, 3),
         "cancel_pc": cancel_pc,
         "cancel_note": format!(
@@ -1458,8 +1531,9 @@ fn offer_json(w: &WorldState, me: NationId, o: &resources::Offer, now: i32) -> s
         "id": o.id,
         "from": o.from.name(),
         "from_id": format!("{:?}", o.from),
-        "legs": format!("{} asks {} for {}, {} months", o.from.name(), legs_words(&o.take), legs_words(&o.give), o.months),
+        "legs": format!("{} asks {} for {}, {} months", o.from.name(), legs_words(w, &o.take), legs_words(w, &o.give), o.months),
         "expires_in": (o.expires - now).max(0),
+        "expires_in_days": (spheres_sim::clock::date_day(1990 + o.expires.div_euclid(12), o.expires.rem_euclid(12) as u32 + 1, 1) - spheres_sim::clock::absolute_day(w)).max(0),
         "accept_pc": accept_pc,
     })
 }
@@ -1542,6 +1616,7 @@ fn resources_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let market_summary = market_summary_json(&rows);
     serde_json::json!({
         "rows": rows,
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
         "market_summary": market_summary,
         "folded": folded,
         "contracts": contracts,
@@ -1621,8 +1696,10 @@ fn seller_json(w: &WorldState, c: Commodity, s: &SellerRead) -> serde_json::Valu
         "word": s.word,
         "ask": round(s.ask, 3),
         "because": s.because,
-        "surplus": round(on_board(c, s.surplus), 3),
-        "unit": board_unit(c).0,
+        "surplus": round(period_on_board(w, c, s.surplus), 6),
+        "surplus_per_month": round(on_board(c, s.surplus), 3),
+        "surplus_per_day": round(daily_on_board(w, c, s.surplus), 6),
+        "unit": period_board_unit(w, c),
         "at_war": w.at_war(s.id),
     })
 }
@@ -1649,7 +1726,7 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
     let kit = resources::needed_by(w, me);
     let l = read_line(w, me, c, draw[c.idx()]);
     let row = row_json(w, me, &l, kit);
-    let (unit, _) = board_unit(c);
+    let unit = period_board_unit(w, c);
     let held = w.nation(me).political_capital;
     let gdp = w.nation(me).gdp.max(1e-9);
 
@@ -1681,11 +1758,13 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
                     "eligible": eligible,
                     "reason": refusal,
                     "cost_bn": resources::mine_cost_bn(w, district, c),
-                    "output": resources::mine_output(district, c).map(|v| round(annual_on_board(c, v), 3)),
+                    "output": resources::mine_output(district, c).map(|v| round(annual_period_on_board(w, c, v), 6)),
                     "active": project.is_some(),
                     "online": developed.is_some(),
                     "months_remaining": project.map(|p| p.months_left),
                     "months_total": project.map_or(resources::MINE_BUILD_MONTHS, |p| p.months_total),
+                    "days_remaining": project.map(|p| p.days_left.unwrap_or_else(|| spheres_sim::clock::days_for_months(w, p.months_left))),
+                    "build_days": spheres_sim::clock::days_for_months(w, resources::MINE_BUILD_MONTHS),
                 }),
             )
         })
@@ -1694,7 +1773,7 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
     let mine_blocked = mine_options
         .is_empty()
         .then(|| format!("No mapped {} deposit is under your control.", c.name()));
-    let typical = resources::reference_mine(c).map(|a| annual_on_board(c, a));
+    let typical = resources::reference_mine(c).map(|a| annual_period_on_board(w, c, a));
     let mine = serde_json::json!({
         "pc": resources::MINE_PC_COST,
         "affordable": held >= resources::MINE_PC_COST,
@@ -1731,9 +1810,9 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
             } else {
                 String::new()
             };
-            format!("+{} {unit} for 36 months — feeds the {kit_name} line{stalling}", qty(on_board(c, q)))
+            format!("+{} {unit} for 36 months — feeds the {kit_name} line{stalling}", qty(period_on_board(w, c, q)))
         } else {
-            format!("+{} {unit} for 36 months — a typical mine's output; nothing needs it this month", qty(on_board(c, q)))
+            format!("+{} {unit} for 36 months — a typical mine's output; nothing needs it {}", qty(period_on_board(w, c, q)), if w.rules.daily_simulation { "today" } else { "this month" })
         };
         let minus = match best {
             Some(s) if s.ask > 0.0 => {
@@ -1757,7 +1836,7 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
                 "{} nations hold a surplus · {} would sell · {} refuse you · {} priced out",
                 sellers.len(), willing, refusers, priced_out
             ),
-            "ask_q": round(on_board(c, q), 3),
+            "ask_q": round(period_on_board(w, c, q), 6),
             "ask_basis": basis,
             "best_seller": best.map(|s| s.id.name()),
             "best_seller_id": best.map(|s| format!("{:?}", s.id)),
@@ -1821,9 +1900,11 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
     // The advisor line, verbatim.
     let best_seller = trade.get("best_seller").and_then(|v| v.as_str()).map(str::to_string);
     let advisor = if l.need <= 0.0 {
-        format!("Nothing needs {} this month.", c.name())
+        format!("Nothing needs {} {}.", c.name(), if w.rules.daily_simulation { "today" } else { "this month" })
     } else if let Some(s) = best_seller {
-        format!("Fastest is to buy — next month if {s} agrees.")
+        if w.rules.daily_simulation {
+            format!("Try buying from {s}. If agreed, dispatch is daily; stock arrives after its route is completed.")
+        } else { format!("Fastest is to buy — next month if {s} agrees.") }
     } else if let Some(t) = take.get("nation").and_then(|v| v.as_str()) {
         format!("Nobody will sell; the only {} in reach is {}.", c.name(), possessive(t))
     } else {
@@ -1854,7 +1935,7 @@ fn stock_nation_json(w: &WorldState, me: Option<NationId>, other: NationId) -> s
             let l = read_line(w, other, c, draw[c.idx()]);
             let surplus = resources::surplus(w, other, c);
             let status = if l.tracked && c != Commodity::Oil && surplus > 0.0 { "seller" } else { l.status };
-            let (unit, _) = board_unit(c);
+            let unit = period_board_unit(w, c);
             let to_you = match me {
                 Some(me) if me != other && l.tracked && surplus > 0.0 => {
                     let (q, _) = ask_basis(w, me, c);
@@ -1875,8 +1956,11 @@ fn stock_nation_json(w: &WorldState, me: Option<NationId>, other: NationId) -> s
                 "id": c.key(),
                 "name": line_name(c),
                 "status": status,
-                "surplus": round(on_board(c, surplus.max(0.0)), 3),
+                "surplus": round(period_on_board(w, c, surplus.max(0.0)), 6),
                 "produce_per_month": round(annual_on_board(c, l.flow), 3),
+                "produce_per_day": round(if c == Commodity::Oil { l.flow } else { daily_on_board(w, c, l.flow / 12.0) }, 6),
+                "produce": round(annual_period_on_board(w, c, l.flow), 6),
+                "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
                 "unit": unit,
                 "needed_by": if l.need > 0.0 { kit.map(|k| k.0) } else { None },
                 "to_you": to_you.as_ref().map(|t| t.0),
@@ -1949,6 +2033,15 @@ fn shipment_lane_json(
                 a.buyer.name()
             ),
         ),
+        resources::ShipmentStatus::InTransit => (
+            "moving", "in_transit", "Loaded and in transit. It enters the buyer's stockpile on arrival.".to_string(),
+        ),
+        resources::ShipmentStatus::CapacityLimited => (
+            "constrained", "capacity_limited", "The corridor could not carry the full load. Undispatched goods remain with the seller.".to_string(),
+        ),
+        resources::ShipmentStatus::NoRoute => (
+            "blocked", "no_route", "No open route under the buyer's routing policy. No goods or payment moved.".to_string(),
+        ),
     };
     let (year, month) = absolute_month(settled_abs).unwrap_or((1990, 1));
     let lane_id = match a.contract {
@@ -1965,11 +2058,12 @@ fn shipment_lane_json(
             a.buyer
         ),
     };
-    let requested = on_board(a.commodity, a.requested.max(0.0));
-    let delivered = on_board(a.commodity, a.delivered.max(0.0));
-    let unshipped = (requested - delivered).max(0.0);
+    let requested = a.requested.max(0.0) * stock_unit(a.commodity).1;
+    let delivered = a.delivered.max(0.0) * stock_unit(a.commodity).1;
+    let dispatched = a.dispatched.map(|q| q.max(0.0) * stock_unit(a.commodity).1);
+    let unshipped = (requested - dispatched.unwrap_or(delivered)).max(0.0);
     let service_ratio = if requested > 0.0 {
-        (delivered / requested).clamp(0.0, 1.0)
+        (dispatched.unwrap_or(delivered) / requested).clamp(0.0, 1.0)
     } else {
         1.0
     };
@@ -1988,7 +2082,8 @@ fn shipment_lane_json(
     serde_json::json!({
         "id": lane_id,
         "month": month_name(month, year),
-        "mode": "abstract",
+        "mode": a.route.as_ref().map_or("abstract", |route| route.mode.as_str()),
+        "route": a.route,
         "source": source,
         // Retained as a private sort hint only long enough to build the value;
         // remove it below so no UI can accidentally turn it into a rule.
@@ -2008,9 +2103,10 @@ fn shipment_lane_json(
         "buyer_name": a.buyer.name(),
         "requested": round(requested, 3),
         "delivered": round(delivered, 3),
+        "dispatched": dispatched.map(|q| round(q, 3)),
         "unshipped": round(unshipped, 3),
         "service_ratio": round(service_ratio, 4),
-        "unit": board_unit(a.commodity).0,
+        "unit": stock_unit(a.commodity).0,
         "unit_price": a.unit_price.map(|v| round(v, 6)),
         "cost_bn": a.cost_bn.map(|v| round(v, 6)),
         "state": state,
@@ -2018,6 +2114,45 @@ fn shipment_lane_json(
         "reason": reason,
         "months_left": a.months_left,
         "actions": actions,
+    })
+}
+
+/// Cargo is a saved physical consignment, not another promise or a repeated
+/// charge. The last arrival and outstanding pipeline are distinct from this
+/// month's shipment audit, so a late delivery never appears as newly bought.
+fn cargo_json(cargo: &logistics::Cargo, arrived_month: Option<i32>) -> serde_json::Value {
+    serde_json::json!({
+        "id": format!("cargo:{}", cargo.id),
+        "state": if arrived_month.is_some() { "arrived" } else if cargo.hold_reason.is_some() { "held" } else { "in_transit" },
+        "from": format!("{:?}", cargo.seller),
+        "from_name": cargo.seller.name(),
+        "to": format!("{:?}", cargo.buyer),
+        "to_name": cargo.buyer.name(),
+        "commodity": cargo.commodity.key(),
+        "commodity_name": line_name(cargo.commodity),
+        "quantity": round(cargo.quantity * stock_unit(cargo.commodity).1, 3),
+        "unit": stock_unit(cargo.commodity).0,
+        "source": cargo.source,
+        "contract_id": cargo.contract,
+        "route": cargo.route,
+        "dispatched_month": settled_month_json(cargo.dispatched_month),
+        "due_month": settled_month_json(cargo.due_month),
+        "dispatched_day": cargo.dispatched_day.map(settled_day_json),
+        "due_day": cargo.due_day.map(settled_day_json),
+        "arrived_month": arrived_month.map(settled_month_json).unwrap_or(serde_json::Value::Null),
+        "hold_reason": cargo.hold_reason,
+    })
+}
+
+fn logistics_policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    serde_json::json!({
+        "selected": logistics::policy_for(w, me),
+        "options": [
+            { "id": "fastest", "label": "Fastest open route", "icon": "↗", "description": "Use land and sea corridors to reach your stockpile sooner." },
+            { "id": "land_only", "label": "Keep it on land", "icon": "▰", "description": "Use connected land corridors only. Overseas suppliers may become unreachable." },
+            { "id": "avoid_chokepoints", "label": "Go the long way", "icon": "↝", "description": "Avoid named sea chokepoints where an open alternative exists." },
+        ],
+        "note": "Applies to your next incoming dispatch. Cargo already loaded keeps its booked route.",
     })
 }
 
@@ -2041,6 +2176,19 @@ fn settled_month_json(abs: i32) -> serde_json::Value {
         }),
         None => serde_json::Value::Null,
     }
+}
+
+fn settled_day_json(abs: i32) -> serde_json::Value {
+    let (year, month, day) = spheres_sim::clock::date_from_day(abs);
+    serde_json::json!({ "year": year, "month": month, "day": day,
+        "absolute_day": abs, "label": format!("{} {}", day, month_name(month, year)) })
+}
+
+fn latest_settlement_json(w: &WorldState) -> serde_json::Value {
+    w.resources.market.as_ref().map_or(serde_json::Value::Null, |m| {
+        if w.rules.daily_simulation { m.last_cleared_day.map(settled_day_json).unwrap_or(serde_json::Value::Null) }
+        else { settled_month_json(m.last_cleared) }
+    })
 }
 
 /// The latest shipment records, sorted independently of insertion order so a
@@ -2067,7 +2215,10 @@ fn shipment_lanes_json(
                     })
                 })
             });
-            shipment_lane_json(market.last_cleared, a, allow_open_contract)
+            let mut lane = shipment_lane_json(market.last_cleared, a, allow_open_contract);
+            lane["settled_day"] = market.last_cleared_day.map(settled_day_json).unwrap_or(serde_json::Value::Null);
+            lane["capacity_period"] = serde_json::json!(if w.rules.daily_simulation { "day" } else { "month" });
+            lane
         })
         .collect::<Vec<_>>();
     lanes.sort_by(|a, b| {
@@ -2097,6 +2248,7 @@ fn logistics_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let count = |word: &str| lanes.iter().filter(|lane| lane["state"] == word).count();
     let constrained = count("constrained");
     let blocked = count("blocked");
+    let held = w.logistics.cargo.iter().filter(|c| (c.seller == me || c.buyer == me) && c.hold_reason.is_some()).count();
     let settled = w
         .resources
         .market
@@ -2110,11 +2262,15 @@ fn logistics_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
         .collect::<Vec<_>>();
     serde_json::json!({
         "settled_month": settled,
+        "settled_day": if w.rules.daily_simulation { latest_settlement_json(w) } else { serde_json::Value::Null },
         "moving": count("moving"),
         "constrained": constrained,
         "blocked": blocked,
-        "attention": constrained + blocked,
+        "held": held,
+        "attention": constrained + blocked + held,
         "attention_ids": attention_ids,
+        "in_transit": w.logistics.cargo.iter().filter(|c| c.seller == me || c.buyer == me).count(),
+        "arrivals": w.logistics.arrivals.iter().filter(|c| c.seller == me || c.buyer == me).count(),
     })
 }
 
@@ -2126,6 +2282,8 @@ fn logistics_json(w: &WorldState, me: NationId, commodity: Option<Commodity>) ->
     let count = |word: &str| lanes.iter().filter(|lane| lane["state"] == word).count();
     let constrained = count("constrained");
     let blocked = count("blocked");
+    let held = w.logistics.cargo.iter().filter(|c| (c.seller == me || c.buyer == me)
+        && c.hold_reason.is_some() && commodity.is_none_or(|key| key == c.commodity)).count();
     let settled = w
         .resources
         .market
@@ -2139,11 +2297,27 @@ fn logistics_json(w: &WorldState, me: NationId, commodity: Option<Commodity>) ->
         .collect::<Vec<_>>();
     serde_json::json!({
         "settled_month": settled,
+        "settled_day": if w.rules.daily_simulation { latest_settlement_json(w) } else { serde_json::Value::Null },
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+        "physical": w.rules.physical_logistics,
+        "model_note": if w.rules.daily_simulation { "Modeled freight corridors, not surveyed roads or historical port tonnage. Capacity resets daily; cargo reaches stockpiles on its booked arrival day unless held." } else { "Modeled freight corridors, not surveyed roads or historical port tonnage. Legacy monthly settlement." },
+        "policy": logistics_policy_json(w, me),
+        "cargo": w.logistics.cargo.iter()
+            .filter(|c| c.seller == me || c.buyer == me)
+            .filter(|c| commodity.is_none_or(|key| key == c.commodity))
+            .map(|cargo| cargo_json(cargo, None)).collect::<Vec<_>>(),
+        "arrivals": w.logistics.arrivals.iter()
+            .filter(|c| c.seller == me || c.buyer == me)
+            .filter(|c| commodity.is_none_or(|key| key == c.commodity))
+            .map(|cargo| { let mut value = cargo_json(cargo, w.logistics.last_month);
+                value["arrived_day"] = w.logistics.last_day.map(settled_day_json).unwrap_or(serde_json::Value::Null);
+                value }).collect::<Vec<_>>(),
         "commodity": commodity.map(|c| c.key()),
         "moving": count("moving"),
         "constrained": constrained,
         "blocked": blocked,
-        "attention": constrained + blocked,
+        "held": held,
+        "attention": constrained + blocked + held,
         "attention_ids": attention_ids,
         "lanes": lanes,
     })
@@ -2527,7 +2701,7 @@ fn manufacturing_requirements_json(
             if required[i] <= 1e-12 && draw[i] <= 1e-12 && shortfalls[i] <= 1e-12 {
                 return None;
             }
-            let (unit, _) = board_unit(*c);
+            let unit = period_board_unit(w, *c);
             let (stock_unit, stock_factor) = stock_unit(*c);
             Some(serde_json::json!({
                 "commodity": c.key(),
@@ -2557,7 +2731,7 @@ fn manufacturing_recipe_per_bn_json(kit: u16) -> Vec<serde_json::Value> {
                 "commodity": c.key(),
                 "name": line_name(*c),
                 "quantity": round(on_board(*c, need[i]), 6),
-                "unit": board_unit(*c).0,
+                "unit": stock_unit(*c).0,
             }))
         })
         .collect()
@@ -2654,17 +2828,23 @@ fn manufacturing_line_json(
     me: NationId,
     line: &spheres_sim::manufacturing::ManufacturingLine,
     plans: &[spheres_sim::manufacturing::LinePlan],
+    monthly_plans: &[spheres_sim::manufacturing::LinePlan],
 ) -> serde_json::Value {
     let priorities = [Priority::High, Priority::Normal, Priority::Low]
         .iter()
         .filter(|priority| **priority != line.priority)
         .map(|priority| priority.key())
         .collect::<Vec<_>>();
-    let draw = spheres_sim::manufacturing::line_resource_draw(w, line.id);
-    let shortfalls = spheres_sim::manufacturing::line_shortfalls(w, line.id);
     let plan = plans.iter().find(|plan| plan.line == line.id);
     let required = plan.map_or([0.0; 12], |plan| plan.required);
+    let draw = if w.rules.daily_simulation { required }
+        else { spheres_sim::manufacturing::line_resource_draw(w, line.id) };
+    let shortfalls = if w.rules.daily_simulation {
+        spheres_sim::manufacturing::tick_line_shortfalls(w, line.id)
+    } else { spheres_sim::manufacturing::line_shortfalls(w, line.id) };
     let allocation = plan.map_or(0.0, |plan| plan.budget_bn);
+    let monthly_allocation = monthly_plans.iter().find(|plan| plan.line == line.id).map_or(0.0, |plan| plan.budget_bn);
+    let daily_allocation = if w.rules.daily_simulation { allocation } else { allocation / spheres_sim::world::days_in_month(w.year, w.month) as f64 };
     let live_blocker = spheres_sim::manufacturing::line_blocker(w, line);
     let effective_blocked = live_blocker.is_some()
         || line.status == spheres_sim::manufacturing::LineStatus::Blocked;
@@ -2682,7 +2862,8 @@ fn manufacturing_line_json(
             "priority": line.priority.key(),
             "status": "blocked",
             "reason": format!("BLOCKED: equipment {} is not in this build.", line.kit),
-            "allocation_bn_month": round(allocation, 6),
+            "allocation_bn_month": round(monthly_allocation, 6),
+            "allocation_bn_day": round(daily_allocation, 6),
             "ordered_bn": round(line.ordered_bn, 6),
             "requirements": manufacturing_requirements_json(
                 w, me, &required, &draw, &shortfalls, Some(&line.resources_used),
@@ -2703,11 +2884,14 @@ fn manufacturing_line_json(
         "priority": line.priority.key(),
         "status": if effective_blocked { "blocked" } else { "producing" },
         "reason": effective_reason,
-        "allocation_bn_month": round(allocation, 6),
+        "allocation_bn_month": round(monthly_allocation, 6),
+        "allocation_bn_day": round(daily_allocation, 6),
         "ordered_bn": round(line.ordered_bn, 6),
-        "units_ordered_month": round(if effective_blocked { 0.0 } else { allocation / def.unit_cost.max(1e-12) }, 6),
+        "units_ordered_month": round(if effective_blocked { 0.0 } else { monthly_allocation / def.unit_cost.max(1e-12) }, 6),
+        "units_ordered_day": round(if effective_blocked { 0.0 } else { daily_allocation / def.unit_cost.max(1e-12) }, 6),
         "unit_cost_bn": round(def.unit_cost, 6),
         "lead_months": def.lead_months,
+        "lead_days": spheres_sim::clock::days_for_months(w, def.lead_months),
         "service_months": def.service_months,
         "tech": manufacturing_tech_json(w.nation(me), def),
         "requirements": manufacturing_requirements_json(
@@ -2728,7 +2912,8 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let n = w.nation(me);
     let mut lines = spheres_sim::manufacturing::lines_for(w, me).collect::<Vec<_>>();
     lines.sort_by_key(|line| line.id);
-    let plans = spheres_sim::manufacturing::planned_allocations(w, me);
+    let plans = spheres_sim::manufacturing::tick_allocations(w, me);
+    let monthly_plans = spheres_sim::manufacturing::planned_allocations(w, me);
 
     let provinces = w
         .districts
@@ -2788,6 +2973,7 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "quality": round(def.quality, 4),
                 "unit_cost_bn": round(def.unit_cost, 6),
                 "lead_months": def.lead_months,
+                "lead_days": spheres_sim::clock::days_for_months(w, def.lead_months),
                 "service_months": def.service_months,
                 "requirements_per_bn": manufacturing_recipe_per_bn_json(index as u16),
                 "eligible_provinces": eligible,
@@ -2821,13 +3007,16 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
         .iter()
         .filter_map(|order| {
             let def = spheres_sim::arsenal::registry().get(order.kit as usize)?;
+            let due_days = order.due_days.unwrap_or_else(|| spheres_sim::clock::days_for_months(w, order.due));
+            let due = spheres_sim::clock::date_from_day(spheres_sim::clock::absolute_day(w) + due_days.saturating_sub(1) as i32);
             Some(serde_json::json!({
                 "kit": def.id,
                 "name": def.name,
                 "class": resources::class_word(def.class),
                 "units": round(order.units, 6),
                 "due_months": order.due,
-                "due_date": manufacturing_delivery_date(w, order.due),
+                "due_days": due_days,
+                "due_date": if w.rules.daily_simulation { format!("{} {}", due.2, month_name(due.1, due.0)) } else { manufacturing_delivery_date(w, order.due) },
                 "value_bn": round(order.units * def.unit_cost, 3),
             }))
         })
@@ -2843,6 +3032,7 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
 
     serde_json::json!({
         "mode": "province_equipment_lines",
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
         "nation": format!("{:?}", me),
         "nation_name": me.name(),
         "summary": summary,
@@ -2852,10 +3042,11 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
             "defense_bn_year": round(n.gdp * defense_share, 3),
             "procurement_share": spheres_sim::arsenal::PROCUREMENT_SHARE,
             "procurement_budget_bn_month": round(monthly_budget, 6),
+            "procurement_budget_bn_day": round(monthly_budget / spheres_sim::world::days_in_month(w.year, w.month) as f64, 6),
             "banked_bn": round(n.arsenal.banked, 6),
         },
         "lines": lines.iter()
-            .map(|line| manufacturing_line_json(w, me, line, &plans))
+            .map(|line| manufacturing_line_json(w, me, line, &plans, &monthly_plans))
             .collect::<Vec<_>>(),
         "catalog": catalog,
         "provinces": provinces,
@@ -3066,8 +3257,8 @@ fn ladders_json(w: &WorldState, me: NationId, to: NationId, com: Option<Commodit
                 .map(|(i, m)| {
                     serde_json::json!({
                         "rung": i,
-                        "q": round(on_board(c, base * m), 3),
-                        "label": format!("{} {}", qty(on_board(c, base * m)), board_unit(c).0),
+                        "q": round(period_on_board(w, c, base * m), 6),
+                        "label": format!("{} {}", qty(period_on_board(w, c, base * m)), period_board_unit(w, c)),
                         "word": if i == 0 { basis.to_string() } else { format!("{}×", *m as i64) },
                     })
                 })
@@ -3090,8 +3281,8 @@ fn ladders_json(w: &WorldState, me: NationId, to: NationId, com: Option<Commodit
                 let word = ["¼ of your surplus", "½", "all"][i];
                 serde_json::json!({
                     "rung": i,
-                    "q": round(on_board(c, s * m), 3),
-                    "label": format!("{} {}", qty(on_board(c, s * m)), board_unit(c).0),
+                    "q": round(period_on_board(w, c, s * m), 6),
+                    "label": format!("{} {}", qty(period_on_board(w, c, s * m)), period_board_unit(w, c)),
                     "word": word,
                 })
             })
@@ -3153,8 +3344,8 @@ fn talks_lines(w: &WorldState, me: NationId, to: NationId, give: &[Leg], take: &
     for l in take {
         match l {
             Leg::Commodity { c, per_month } => {
-                let (unit, _) = board_unit(*c);
-                pluses.push(format!("+ {} {unit} of {} for {} months", qty(on_board(*c, *per_month)), c.name(), months));
+                let unit = period_board_unit(w, *c);
+                pluses.push(format!("+ {} {unit} of {} for {} months", qty(period_on_board(w, *c, *per_month)), c.name(), months));
                 if draw[c.idx()] > 0.0 {
                     let line = read_line(w, me, *c, draw[c.idx()]);
                     let was = if matches!(line.status, "short" | "stalled") {
@@ -3191,11 +3382,11 @@ fn talks_lines(w: &WorldState, me: NationId, to: NationId, give: &[Leg], take: &
             )),
             Leg::Money { .. } => {}
             Leg::Commodity { c, per_month } => {
-                let (unit, _) = board_unit(*c);
+                let unit = period_board_unit(w, *c);
                 let s = resources::surplus(w, me, *c).max(1e-9);
                 minuses.push(format!(
                     "− {} {unit} of your {} surplus ({:.0}% of it)",
-                    qty(on_board(*c, *per_month)),
+                    qty(period_on_board(w, *c, *per_month)),
                     c.name(),
                     (per_month / s * 100.0).min(100.0)
                 ));
@@ -3242,7 +3433,7 @@ fn talks_json(w: &WorldState, me: NationId, v: &serde_json::Value) -> Result<ser
                 serde_json::json!({
                     "money_bn": round(m, 4),
                     "money_rung": rung,
-                    "legs": clipped.iter().map(leg_words).collect::<Vec<_>>(),
+                    "legs": clipped.iter().map(|leg| leg_words(w, leg)).collect::<Vec<_>>(),
                 }),
                 None,
                 false,
@@ -3269,11 +3460,11 @@ fn talks_json(w: &WorldState, me: NationId, v: &serde_json::Value) -> Result<ser
         "minuses": minuses,
         "ladders": ladders_json(w, me, d.to, d.com),
         "offer": {
-            "give": give.iter().map(leg_words).collect::<Vec<_>>(),
-            "take": take.iter().map(leg_words).collect::<Vec<_>>(),
+            "give": give.iter().map(|leg| leg_words(w, leg)).collect::<Vec<_>>(),
+            "take": take.iter().map(|leg| leg_words(w, leg)).collect::<Vec<_>>(),
             "months": d.months,
         },
-        "signed_line": format!("{} from {} for {} months", legs_words(&take), d.to.name(), d.months),
+        "signed_line": format!("{} from {} for {} months", legs_words(w, &take), d.to.name(), d.months),
         "take_terms": counter_applied,
         "regards_you": round(w.relation(d.to, me), 1),
     }))
@@ -3402,7 +3593,10 @@ fn history_json(g: &Game, only: Option<NationId>) -> serde_json::Value {
 
 impl Snapshot {
     fn date_label(&self) -> String {
-        month_name(self.month, self.year)
+        match self.day {
+            Some(day) => format!("{} {}", day, month_name(self.month, self.year)),
+            None => month_name(self.month, self.year),
+        }
     }
 }
 
@@ -3698,6 +3892,19 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "year": w.year,
         "month": w.month,
         "day": w.day,
+        "simulation_cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+        "simulation_transition": w.daily.activate_after_month.map(|closing_month| {
+            let next = closing_month + 1;
+            let year = 1990 + next.div_euclid(12);
+            let month = next.rem_euclid(12) as u32 + 1;
+            let starts_on = format!("1 {}", month_name(month, year));
+            serde_json::json!({
+                "status": "finishing_legacy_month",
+                "starts_on": starts_on,
+                "days_until": (spheres_sim::clock::date_day(year, month, 1) - spheres_sim::clock::absolute_day(w)).max(0),
+                "message": format!("Finishing this save's open month without losing income or production. Daily simulation begins {starts_on}."),
+            })
+        }),
         "t": month_index(w.year, w.month),
         "player": w.player.map(|p| format!("{:?}", p)),
         "player_name": w.player.map(|p| p.name()),
@@ -4149,6 +4356,32 @@ const FORCE_CURVE_STEPS: usize = 400;
 /// at the current rate, which technologies are startable. The browser renders it
 /// and does no arithmetic of its own, which is the lesson from the growth model
 /// it used to mirror in JavaScript and got wrong three ways.
+/// Calendar-day ETA with the same equal-month appropriation convention as the
+/// scheduler. The research forecast holds today's monthly productivity fixed;
+/// February is not silently treated as a 31-day month. Beyond the existing
+/// projection horizon the answer remains unknown rather than a fake exact date.
+fn research_days_left(w: &WorldState, mut remaining: f64, monthly: f64) -> Option<u32> {
+    if remaining <= 0.0 || monthly <= 1e-9 || !remaining.is_finite() || !monthly.is_finite() {
+        return None;
+    }
+    if (remaining / monthly).ceil() > MAX_ADVANCE as f64 { return None; }
+    let (mut year, mut month, mut day) = (w.year, w.month, w.day.max(1));
+    let mut days = 0;
+    for _ in 0..=MAX_ADVANCE {
+        let count = spheres_sim::world::days_in_month(year, month);
+        let left = count.saturating_sub(day) + 1;
+        let daily = monthly * (1.0 / count as f64);
+        let needed = (remaining / daily).ceil();
+        if needed <= left as f64 { return Some(days + needed.max(1.0) as u32); }
+        remaining -= daily * left as f64;
+        days += left;
+        day = 1;
+        month += 1;
+        if month > 12 { month = 1; year += 1; }
+    }
+    None
+}
+
 fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let n = w.nation(me);
     let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
@@ -4158,6 +4391,8 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
     // card's headline cannot disagree about the same month.
     let terms = spheres_sim::tech::research_terms(w, n, dev);
     let monthly = terms.total();
+    let day_fraction = 1.0 / spheres_sim::world::days_in_month(w.year, w.month) as f64;
+    let daily = monthly * day_fraction;
     let weights = spheres_sim::tech::domain_weights_of(w, n, dev);
 
     let domains: Vec<serde_json::Value> = spheres_sim::tech::DOMAINS
@@ -4165,6 +4400,8 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
         .map(|d| {
             let di = d.index();
             let rate = monthly * weights[di];
+            // Same multiplication order as tech::tick: total * dt, then share.
+            let daily_rate = daily * weights[di];
             let (project, banked, cost, fields_in, floor) =
                 match spheres_sim::tech::project_of(w, me, *d) {
                     Some((def, banked, cost)) => (
@@ -4255,10 +4492,12 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "name": d.name(),
                 "share": weights[di],
                 "rate": rate,
+                "rate_daily": daily_rate,
                 "project": project,
                 "banked": banked,
                 "cost": cost,
                 "months_left": months_left,
+                "days_left": research_days_left(w, cost - banked, rate),
                 "wait": wait,
                 "fields_in": fields_in,
                 "floor": floor,
@@ -4279,9 +4518,11 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
         })
         .collect();
 
-    serde_json::json!({
+    let mut card = serde_json::json!({
         "nation": n.id.name(),
         "monthly": monthly,
+        "daily": daily,
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
         "priority": n.tech.priority.map(|d| format!("{:?}", d)),
         "priority_multiplier": spheres_sim::tech::PRIORITY_MULTIPLIER,
         // The chain in the order the sim multiplies it, so the page can lay the
@@ -4314,7 +4555,9 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
         // slider can come back up where the player left it.
         "allocation": n.tech.allocation.map(|a| a.to_vec()),
         "domains": domains,
-    })
+    });
+    card["arms"][0]["value_daily"] = serde_json::json!(terms.base * day_fraction);
+    card
 }
 
 /// One row of the research decomposition.
@@ -4509,6 +4752,15 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         "accept_deal" => Command::AcceptDeal { nation: me, offer: v.get("offer")?.as_u64()? as u32 },
         "decline_deal" => Command::DeclineDeal { nation: me, offer: v.get("offer")?.as_u64()? as u32 },
         "cancel_deal" => Command::CancelDeal { nation: me, contract: v.get("contract")?.as_u64()? as u32 },
+        "set_logistics_policy" => Command::SetLogisticsPolicy {
+            nation: me,
+            policy: match v.get("policy")?.as_str()? {
+                "fastest" => RoutePolicy::Fastest,
+                "land_only" => RoutePolicy::LandOnly,
+                "avoid_chokepoints" => RoutePolicy::AvoidChokepoints,
+                _ => return None,
+            },
+        },
         "develop_resource" => Command::DevelopResource {
             nation: me,
             district: v.get("district")?.as_str()?.to_string(),
@@ -4862,8 +5114,10 @@ fn asked_player(payload: &serde_json::Value) -> Result<Option<NationId>, String>
 /// keep opt-in rules off so old runs stay bit-identical. Set here on every
 /// world adopted by the browser: boot, `/api/new`, and `/api/load`.
 fn play_rules(g: &mut Game) {
+    spheres_sim::clock::enable_daily_play(&mut g.world);
     g.world.rules.resource_market = true;
     g.world.rules.logistics_routes = true;
+    g.world.rules.physical_logistics = true;
     g.world.rules.production_system = true;
     g.world.rules.manufacturing_system = true;
 }
@@ -6158,7 +6412,7 @@ mod tests {
 
         // And the page must say the four apart rather than collapsing them.
         assert!(INDEX.contains("function etaText(d, tilde)"), "the page lost its eta helper");
-        for phrase in ["lands next month", "fields in", "beyond a century", "nothing is funding"] {
+        for phrase in ["lands next day", "fields in", "beyond a century", "nothing is funding"] {
             assert!(INDEX.contains(phrase), "the board cannot say {phrase:?}");
         }
         assert!(
@@ -7072,6 +7326,195 @@ mod tests {
         assert_eq!(g.world.date_str(), "1 Feb 1990");
         assert_eq!(g.history.len(), 2);
         assert_eq!(state_json(&g, None)["day"], 1);
+    }
+
+    #[test]
+    fn daily_browser_history_records_real_first_day_progress() {
+        let mut g = Game::new(1990, None);
+        g.world.rules.daily_simulation = true;
+        let opening_gdp = g.world.nation(NationId::USA).gdp;
+        g.advance_days(1, vec![]);
+        assert_eq!(g.world.date_str(), "2 Jan 1990");
+        assert_eq!(g.history.len(), 2);
+        assert!(g.history[1].t > 0.0 && g.history[1].t < 1.0);
+        assert_eq!(g.history[1].day, Some(2));
+        assert_ne!(g.world.nation(NationId::USA).gdp, opening_gdp);
+        assert_eq!(g.history[1].rows.iter().find(|(id, _)| *id == NationId::USA).unwrap().1.gdp,
+            g.world.nation(NationId::USA).gdp);
+    }
+
+    #[test]
+    fn loading_a_legacy_midmonth_save_finishes_its_open_books_before_daily_play() {
+        // This is the prior browser's ruleset, including physical freight; only
+        // its clock predates daily settlement. Fourteen elapsed calendar days
+        // have not yet paid fourteen days of the old monthly economy.
+        let mut legacy = loaded_play_game(Game::new(1990, Some(NationId::USA)).world);
+        legacy.world.rules.daily_simulation = false;
+        for _ in 0..14 { tick_day(&mut legacy.world, &[]); }
+        assert_eq!(legacy.world.date_str(), "15 Jan 1990");
+        let serialized = spheres_sim::save(&legacy.world);
+        let mut expected = spheres_sim::load(&serialized).unwrap();
+        let mut migrated = loaded_play_game(spheres_sim::load(&serialized).unwrap());
+        assert!(!migrated.world.rules.daily_simulation);
+        assert_eq!(migrated.world.daily.activate_after_month, Some(0));
+        let notice = &state_json(&migrated, None)["simulation_transition"];
+        assert_eq!(notice["status"], "finishing_legacy_month");
+        assert_eq!(notice["starts_on"], "1 Feb 1990");
+        assert_eq!(notice["days_until"], 17);
+        let opening_gdp = migrated.world.nation(NationId::USA).gdp;
+
+        // Loading the pending transition again must neither activate it early
+        // nor reset or drop the month still owed to this save.
+        for _ in 0..10 { tick_day(&mut migrated.world, &[]); }
+        assert_eq!(migrated.world.nation(NationId::USA).gdp, opening_gdp);
+        migrated = loaded_play_game(spheres_sim::load(&spheres_sim::save(&migrated.world)).unwrap());
+        assert_eq!(migrated.world.date_str(), "25 Jan 1990");
+        assert!(!migrated.world.rules.daily_simulation);
+        assert_eq!(migrated.world.daily.activate_after_month, Some(0));
+        for _ in 0..7 { tick_day(&mut migrated.world, &[]); }
+        tick_month(&mut expected, &[]);
+        assert_eq!(migrated.world.date_str(), "1 Feb 1990");
+        assert!(migrated.world.rules.daily_simulation);
+        assert_eq!(migrated.world.daily.activate_after_month, None);
+        let mut paid_month = migrated.world.clone();
+        paid_month.rules.daily_simulation = false;
+        assert_eq!(spheres_sim::save(&paid_month), spheres_sim::save(&expected),
+            "the conversion must post the complete legacy month exactly once");
+        assert!(state_json(&migrated, None)["simulation_transition"].is_null());
+        let february_gdp = migrated.world.nation(NationId::USA).gdp;
+        migrated.advance_days(1, vec![]);
+        assert_eq!(migrated.world.date_str(), "2 Feb 1990");
+        assert_ne!(migrated.world.nation(NationId::USA).gdp, february_gdp,
+            "the day after the protected close must genuinely settle daily");
+    }
+
+    #[test]
+    fn daily_quotes_preserve_stock_units_and_the_actual_january_ledger_in_february() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        g.world.rules.daily_simulation = true;
+        g.world.rules.resource_market = true;
+        g.world.rules.resource_gates = true;
+        g.world.day = 31;
+        tick_day(&mut g.world, &[]);
+        assert_eq!(g.world.date_str(), "1 Feb 1990");
+        let market = g.world.resources.market.as_mut().unwrap();
+        assert_eq!(market.period_days, Some(31));
+        market.cleared_volume[Commodity::Iron.idx()] = 31_000.0;
+        market.fills = vec![resources::SpotFill {
+            buyer: NationId::USA, seller: NationId::Canada,
+            commodity: Commodity::Iron, quantity: 31_000.0, unit_price: 1.0, cost_bn: 1.0,
+        }];
+        let quote = market_quote_json(&g.world, Commodity::Iron);
+        assert_eq!(quote["volume_unit"], "kt/day");
+        assert_eq!(quote["cleared_volume"], 31.0, "actual daily tonnes are not divided a second time");
+        assert_eq!(foreign_commitments_json(&g.world, NationId::USA)["expected_spot_imports_bn"], 372.0,
+            "January's book annualises by 31, not February's 28");
+        let row = read_line(&g.world, NationId::USA, Commodity::Iron,
+            resources::draw(&g.world, NationId::USA)[Commodity::Iron.idx()]);
+        let served = row_json(&g.world, NationId::USA, &row, None);
+        assert_eq!(served["unit"], "kt/day");
+        assert_eq!(served["stock"]["unit"], "kt");
+        assert_eq!(served["produce_per_day"], round(annual_on_board(Commodity::Iron, row.flow) / 28.0, 6),
+            "the next-day forecast uses February while the historical book keeps January");
+        assert_eq!(served["stock"]["quantity"], round(resources::stock_quantity(&g.world, NationId::USA, Commodity::Iron) / 1000.0, 6));
+    }
+
+    #[test]
+    fn daily_manufacturing_two_days_stock_shows_no_false_monthly_shortage() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let me = NationId::USA;
+        g.world.rules.daily_simulation = true;
+        g.world.rules.resource_market = true;
+        g.world.rules.resource_gates = true;
+        g.world.rules.production_system = true;
+        g.world.rules.manufacturing_system = true;
+        g.world.nation_mut(me).political_capital = 100.0;
+        g.world.production.provinces.push(production::ProvinceCapabilities {
+            district: "US-CA".into(), infrastructure: 0, civilian_industry: 0,
+            power_grid: 0, research_centers: 0, arms_plants: 1,
+        });
+        apply_command(&mut g.world, &Command::StartManufacturingLine {
+            nation: me, district: "US-CA".into(), kit: "arm_gen3".into(),
+        }).unwrap();
+        resources::tick(&mut g.world);
+        let plan = spheres_sim::manufacturing::tick_allocations(&g.world, me).remove(0);
+        let market = g.world.resources.market.as_mut().unwrap();
+        for commodity in ALL {
+            let quantity = plan.required[commodity.idx()] * 2.0;
+            if let Some(stock) = market.stocks.iter_mut()
+                .find(|stock| stock.nation == me && stock.commodity == commodity) {
+                stock.quantity = quantity;
+            } else {
+                market.stocks.push(resources::Stock {
+                    nation: me, commodity, quantity, reserve_target: 0.0,
+                });
+            }
+        }
+        market.stocks.sort_by_key(|stock| (stock.nation, stock.commodity));
+        assert!(spheres_sim::manufacturing::line_shortfalls(&g.world, plan.line)
+            .iter().any(|gap| *gap > 1e-12), "the monthly forecast must be short in this fixture");
+        let view = manufacturing_json(&g.world, me);
+        let requirements = view["lines"][0]["requirements"].as_array().unwrap();
+        assert!(!requirements.is_empty());
+        for requirement in requirements {
+            let commodity = Commodity::parse(requirement["commodity"].as_str().unwrap()).unwrap();
+            let required = round(on_board(commodity, plan.required[commodity.idx()]), 6);
+            let (_, stock_factor) = stock_unit(commodity);
+            assert_eq!(requirement["unit"], daily_board_unit(commodity));
+            assert_eq!(requirement["required"], required);
+            assert_eq!(requirement["draw"], required,
+                "the amount labeled per day must not be the whole monthly recipe");
+            assert_eq!(requirement["priority_available"], required);
+            assert_eq!(requirement["shortfall"], 0.0,
+                "two days of stock covers today's actual recipe");
+            assert_eq!(requirement["stock_available"],
+                round(plan.required[commodity.idx()] * 2.0 * stock_factor, 6));
+        }
+    }
+
+    #[test]
+    fn daily_research_and_manufacturing_cards_quote_the_sims_actual_draw() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let me = NationId::USA;
+        g.world.rules.daily_simulation = true;
+        g.world.rules.resource_market = true;
+        g.world.rules.resource_gates = true;
+        g.world.rules.production_system = true;
+        g.world.rules.manufacturing_system = true;
+        g.world.nation_mut(me).political_capital = 100.0;
+        g.world.nation_mut(me).arsenal.banked = 2.0;
+        g.world.production.provinces.push(production::ProvinceCapabilities {
+            district: "US-CA".into(), infrastructure: 0, civilian_industry: 0,
+            power_grid: 0, research_centers: 0, arms_plants: 1,
+        });
+        apply_command(&mut g.world, &Command::StartManufacturingLine {
+            nation: me, district: "US-CA".into(), kit: "arm_gen3".into(),
+        }).unwrap();
+        let view = manufacturing_json(&g.world, me);
+        let planned = spheres_sim::manufacturing::tick_allocations(&g.world, me);
+        let monthly = spheres_sim::manufacturing::budget_bn(&g.world, me);
+        assert_eq!(view["finance"]["procurement_budget_bn_day"], round(monthly / 31.0, 6));
+        assert_eq!(view["lines"][0]["allocation_bn_day"], round(planned[0].budget_bn, 6));
+        assert!((planned[0].budget_bn - (monthly / 31.0 + 2.0)).abs() < 1e-12,
+            "banked money is a stock, not divided across the month");
+        for requirement in view["lines"][0]["requirements"].as_array().unwrap() {
+            let c = Commodity::parse(requirement["commodity"].as_str().unwrap()).unwrap();
+            assert_eq!(requirement["unit"], daily_board_unit(c));
+            assert_eq!(requirement["required"], round(on_board(c, planned[0].required[c.idx()]), 6));
+        }
+        let research = research_json(&g.world, me);
+        let total = research["monthly"].as_f64().unwrap();
+        assert_eq!(research["daily"].as_f64().unwrap().to_bits(), (total * (1.0 / 31.0)).to_bits());
+        assert_eq!(research["arms"][0]["value_daily"].as_f64().unwrap().to_bits(),
+            (research["arms"][0]["value"].as_f64().unwrap() * (1.0 / 31.0)).to_bits());
+        for domain in research["domains"].as_array().unwrap() {
+            assert_eq!(domain["rate_daily"].as_f64().unwrap().to_bits(),
+                (total * (1.0 / 31.0) * domain["share"].as_f64().unwrap()).to_bits());
+        }
+        g.world.day = 31;
+        assert_eq!(research_days_left(&g.world, 31.0, 31.0), Some(29));
+        g.world.year = 2000;
+        assert_eq!(research_days_left(&g.world, 31.0, 31.0), Some(30));
     }
 
     #[test]
@@ -10600,7 +11043,7 @@ mod tests {
         // are drawers laid over it. That removes the 364px centre-column case
         // entirely while retaining the wrapping protection above.
         assert!(
-            INDEX.contains("main { position: relative; display: block; overflow: hidden; }"),
+            INDEX.contains("main { position: relative; display: block; min-width: 0; min-height: 0; overflow: hidden; overflow: clip; }"),
             "the map-first board is no longer full-width"
         );
         assert!(
@@ -10989,6 +11432,7 @@ mod tests {
             take: vec![Leg::Money { bn_per_year: 1.25 }],
             months_left: 12,
             months_total: 12,
+            days_left: None,
             since: 0,
             depth: 0.0,
         });
@@ -11000,6 +11444,7 @@ mod tests {
             take: vec![Leg::Money { bn_per_year: 2.0 }],
             months_left: 12,
             months_total: 12,
+            days_left: None,
             since: 0,
             depth: 0.0,
         });
@@ -11009,6 +11454,7 @@ mod tests {
             started_by: NationId::USA,
             months_left: 6,
             months_total: 12,
+            days_left: None,
             investment_bn: 9.0,
             output: 1.0,
         });
@@ -11561,6 +12007,10 @@ mod tests {
             "api(\"/api/logistics\")",
             "function drawLogisticsOverlay(",
             "function logisticsHitAt(",
+            "function logisticsSetPolicy(",
+            "data-logi-policy",
+            "Build corridor capacity",
+            "modeled land and sea",
             "abstract lanes",
             "aria-live=\"polite\"",
         ] {
@@ -11575,6 +12025,55 @@ mod tests {
             "the current endpoint is player-scoped; do not offer a duplicate World filter"
         );
         assert!(INDEX.contains("k === \"g\" || k === \"G\""));
+        assert!(
+            INDEX.contains("main { position: relative; display: block; min-width: 0; min-height: 0; overflow: hidden; overflow: clip; }"),
+            "the game stage must clip without becoming a focus-scroll container; its child panels own scrolling"
+        );
+        assert!(INDEX.contains("cargo.arrived_day || cargo.arrived_month || cargo.due_day || cargo.due_month"),
+            "a held shipment must show its actual arrival settlement, not its original due date");
+    }
+
+    #[test]
+    fn logistics_policy_button_reaches_one_strict_atomic_command() {
+        let g = Game::new(1990, Some(NationId::Japan));
+        assert!(matches!(
+            parse_command(
+                &g.world,
+                &serde_json::json!({ "kind": "set_logistics_policy", "policy": "avoid_chokepoints" }),
+                NationId::Japan,
+            ),
+            Some(Command::SetLogisticsPolicy { nation: NationId::Japan, policy: RoutePolicy::AvoidChokepoints })
+        ));
+        assert!(parse_command(
+            &g.world,
+            &serde_json::json!({ "kind": "set_logistics_policy", "policy": "teleport" }),
+            NationId::Japan,
+        ).is_none());
+        assert!(INDEX.contains("kind: \"set_logistics_policy\""));
+    }
+
+    #[test]
+    fn logistics_cargo_labels_distinguish_in_transit_held_and_actually_arrived() {
+        let g = Game::new(1990, Some(NationId::France));
+        let mut cargo = logistics::Cargo {
+            id: 0, seller: NationId::Germany, buyer: NationId::France,
+            commodity: Commodity::Copper, quantity: 50.0,
+            source: resources::ShipmentSource::Spot, contract: None,
+            route: logistics::plan(&g.world, NationId::Germany, NationId::France).unwrap(),
+            dispatched_month: 0, due_month: 1, hold_reason: None,
+            dispatched_day: None, due_day: None,
+        };
+        let moving = cargo_json(&cargo, None);
+        assert_eq!(moving["state"], "in_transit");
+        assert_eq!(moving["quantity"], 0.05);
+        assert_eq!(moving["unit"], "kt");
+        cargo.hold_reason = Some("Sanctions closed the route.".into());
+        assert_eq!(cargo_json(&cargo, None)["state"], "held");
+        cargo.hold_reason = None;
+        let arrived = cargo_json(&cargo, Some(3));
+        assert_eq!(arrived["state"], "arrived");
+        assert_eq!(arrived["due_month"]["month"], 2);
+        assert_eq!(arrived["arrived_month"]["month"], 4);
     }
 
     /// The web layer exposes the simulation's latest shipment audit as a
@@ -11596,6 +12095,7 @@ mod tests {
             take: vec![Leg::Money { bn_per_year: 0.6 }],
             months_left: 24,
             months_total: 36,
+            days_left: None,
             since: 0,
             depth: 0.0,
         });
@@ -11614,6 +12114,8 @@ mod tests {
                 months_left: Some(24),
                 status: resources::ShipmentStatus::SupplyShort,
                 cause: None,
+                route: None,
+                dispatched: None,
             },
             resources::ShipmentAudit {
                 source: resources::ShipmentSource::Spot,
@@ -11628,6 +12130,8 @@ mod tests {
                 months_left: None,
                 status: resources::ShipmentStatus::Delivered,
                 cause: None,
+                route: None,
+                dispatched: None,
             },
             resources::ShipmentAudit {
                 source: resources::ShipmentSource::Contract,
@@ -11642,6 +12146,8 @@ mod tests {
                 months_left: Some(12),
                 status: resources::ShipmentStatus::Sanctioned,
                 cause: Some(NationId::USA),
+                route: None,
+                dispatched: None,
             },
             resources::ShipmentAudit {
                 source: resources::ShipmentSource::Contract,
@@ -11656,6 +12162,8 @@ mod tests {
                 months_left: Some(8),
                 status: resources::ShipmentStatus::WarClosed,
                 cause: Some(NationId::Japan),
+                route: None,
+                dispatched: None,
             },
         ];
 
@@ -11675,10 +12183,10 @@ mod tests {
         assert_eq!(spot["requested"], spot["delivered"], "a fill is not pair demand");
         assert_eq!(spot["actions"].as_array().unwrap().len(), 1, "spot has focus, not a fictional contract action");
         let contract = lanes.iter().find(|lane| lane["contract_id"] == 7).unwrap();
-        assert_eq!(contract["requested"], 10.0, "table tonnes are served as board kt/mo");
+        assert_eq!(contract["requested"], 10.0, "a shipment is physical kt, not a forecast rate");
         assert_eq!(contract["delivered"], 2.5);
         assert_eq!(contract["unshipped"], 7.5);
-        assert_eq!(contract["unit"], "kt/mo");
+        assert_eq!(contract["unit"], "kt");
         assert!(contract["actions"].as_array().unwrap().iter().any(|a| a["id"] == "open_contract"));
         let expired = lanes.iter().find(|lane| lane["contract_id"] == 8).unwrap();
         assert_eq!(

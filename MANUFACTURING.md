@@ -18,6 +18,35 @@ is also omitted. The calibrated/headless world therefore remains on its legacy
 path. Browser play enables the system with the resource market, logistics, and
 province production systems.
 
+### Daily-clock amendment — 2026-09-03
+
+Ridge's request to put everything on the daily ticker supersedes the monthly
+settlement language below for worlds with `daily_simulation` enabled. All
+monthly rates remain monthly **reference quantities**, not work deferred to
+month-end. Each day places `monthly_budget_bn / days_in_current_month` plus
+the existing banked dollar stock. The bank itself is never divided by the day
+count. Tiny slices below the posting threshold remain banked, not discarded.
+
+`planned_allocations`, `resource_draw` and `resources::draw` remain monthly
+forecasts for reserves and negotiations. `tick_allocations` and
+`resources::tick_draw` are the exact daily action bundles, including banked
+money once. A daily shortage means today's bundle cannot be supplied; it does
+not mean twelve months of stock must already exist. Priority and atomic
+multi-input consumption are unchanged.
+
+Orders carry optional `due_days`, derived from the real calendar at placement.
+Old orders acquire a remaining-day clock from their remaining monthly term on
+first daily processing. Equipment ages fractionally each day; retirement uses
+the daily retention factor of the existing monthly rate. Repeating the same
+day cannot place orders or age equipment twice. A month-batch repeatedly runs
+the same daily path, including across leap days and save/load.
+
+Physical freight is now implemented, as described in `LOGISTICS.md`: loaded
+imports wait for their route's actual due day before this board can use them.
+The older monthly-only logistics descriptions below are historical MVP scope.
+The ministry matrix in section 7 likewise records the earlier proposal;
+`ministries.rs`, the BIBLE amendment and SPEC define the current named arms.
+
 ## 1. Player loop
 
 1. Build an **Arms Plant** in a province through the Production board.
@@ -25,7 +54,7 @@ province production systems.
 3. Choose a real equipment designation the nation knows how to build.
 4. Assign the line to an owned province with a free arms-plant level.
 5. Set the line to High, Normal, or Low priority.
-6. Each monthly settlement divides the existing procurement envelope among the
+6. Each daily settlement (monthly in legacy audits) divides the existing procurement envelope among the
    active lines, buys any obtainable inputs through the existing market, and
    attempts each material bundle atomically.
 7. A successful slice becomes a normal arsenal order with the equipment's real
@@ -109,6 +138,7 @@ The equipment envelope already exists in `arsenal.rs`:
 monthly_budget_bn = clamp(GDP * mil_spend_gdp * PROCUREMENT_SHARE / 12, 0, 1_000_000)
 PROCUREMENT_SHARE = 0.20
 available_line_bn = monthly_budget_bn + Arsenal.banked
+daily_available_line_bn = monthly_budget_bn / days_in_current_month + Arsenal.banked
 ```
 
 `mil_spend_gdp` is the Defense ministry allocation after a detailed annual
@@ -206,7 +236,7 @@ Before any line moves, every positive commodity in its bundle is checked against
 one opening warehouse snapshot. If one input is short, the whole slice fails:
 
 ```text
-BLOCKED: needs <quantity> <commodity> this month, have <quantity>.
+BLOCKED: needs <quantity> <commodity> this day, have <quantity>.
 ```
 
 No line may consume its iron and then discover that its copper is missing.
@@ -239,8 +269,10 @@ physical `resources_used`. Browser play enables the gates.
 Manufacturing does not create a second logistics model. Existing physical lanes
 close when either party sanctions the other or they become direct belligerents.
 A physical contract's financial counter-leg suspends with the blocked shipment.
-Mere distance, port throughput, rail capacity, and chokepoints are not modeled
-by this ledger and must not be implied in UI text.
+Map-derived distance, modeled coastal gateways, shared land/sea throughput,
+and chokepoints are now owned by `logistics.rs`, not by manufacturing. Actual
+historical port/rail infrastructure is still not claimed. Paid cargo arrives
+in the common warehouse before it can feed an equipment line.
 
 Negotiated supply contracts can create `trade_dependency` and therefore
 diplomatic leverage. Anonymous spot fills do not create that bilateral leverage.
