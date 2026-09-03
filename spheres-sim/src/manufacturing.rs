@@ -510,20 +510,16 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
         if units > 0.0 {
             let due_days = crate::clock::is_daily(w)
                 .then(|| crate::clock::days_for_months(w, def.lead_months));
-            let arsenal = &mut w.nation_mut(nation).arsenal;
-            match arsenal
-                .orders
-                .iter_mut()
-                .find(|order| order.kit == plan.kit && order.due == def.lead_months && order.due_days == due_days)
-            {
-                Some(order) => order.units += units,
-                None => arsenal.orders.push(Order {
-                    kit: plan.kit,
-                    units,
-                    due: def.lead_months,
-                    due_days,
-                }),
-            }
+            let today = crate::clock::absolute_day(w);
+            // One row per kit per delivery month (arsenal::book_order).
+            crate::arsenal::book_order(
+                &mut w.nation_mut(nation).arsenal.orders,
+                today,
+                plan.kit,
+                units,
+                def.lead_months,
+                due_days,
+            );
         }
         let line = w
             .manufacturing

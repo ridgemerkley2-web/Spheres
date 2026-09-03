@@ -81,3 +81,83 @@ fn daily_mode_survives_a_year_across_several_seeds() {
         assert_eq!(clock::absolute_day(&w),365);
     }
 }
+
+/// The AI buy pass asks ONCE A MONTH in daily play, as its refusal memory,
+/// its `PATIENCE` and its "a fourth is not asked this month" are all written
+/// in months. Found 2026-09-03 by the browser check of this push: run daily,
+/// the pass re-asked every day while a freshly signed contract was still at
+/// sea (physical freight counts only the day's fills), so France signed SEVEN
+/// copper contracts with the United States on seven consecutive January days
+/// (seed 7, player Iraq), against one signing in three legacy months. Iron
+/// rule 7: an invariant on one seeded board, no statistic.
+#[test]
+fn the_ai_buy_pass_asks_once_a_month_in_daily_play() {
+    let mut w = daily_world(7);
+    w.player = Some(NationId::parse("Iraq").unwrap());
+    let mut signings = 0usize;
+    for _ in 0..90 {
+        for line in tick_day(&mut w, &[]) {
+            if line.contains("sign a supply contract") { signings += 1; }
+        }
+    }
+    let mut seen = std::collections::BTreeMap::new();
+    for k in &w.resources.contracts {
+        let legs = |legs: &[spheres_sim::resources::Leg]| legs.iter()
+            .filter_map(|l| match l { spheres_sim::resources::Leg::Commodity { c, .. } => Some(*c), _ => None })
+            .collect::<Vec<_>>();
+        for c in legs(&k.give).into_iter().chain(legs(&k.take)) {
+            let n = seen.entry((k.from, k.to, c, k.since)).or_insert(0);
+            *n += 1;
+            assert_eq!(*n, 1, "{:?} sold {:?} {:?} twice in month {}: the pass asked more than once",
+                k.from, k.to, c, k.since);
+        }
+    }
+    assert!(signings <= w.resources.contracts.len() + 3, "{signings} signings for {} contracts", w.resources.contracts.len());
+}
+
+/// Year-long replay: a dated command schedule lands on the same world whether
+/// the days are stepped one at a time, resumed from a save partway, or batched
+/// through `tick_month`. Recorded 2026-09-03 by the daily-push audit as the
+/// replay invariant the proration repairs must preserve (seed 1990 read
+/// 0xc88ea208970e7b2f before them; the value is not pinned here because the
+/// repairs move it, the equalities are what is asserted).
+#[test]
+fn a_year_of_dated_commands_replays_the_same_stepped_resumed_or_batched() {
+    for seed in [1990u64, 7] {
+        let schedule = |day: usize| -> Vec<Command> {
+            match day {
+                1 => vec![Command::SetInterestRate { nation: NationId::USA, rate: 0.07 }],
+                45 => vec![Command::SetTaxRate { nation: NationId::USA, rate: 0.40 }],
+                200 => vec![Command::SetInterestRate { nation: NationId::USA, rate: 0.05 }],
+                _ => vec![],
+            }
+        };
+        let mut stepped = daily_world(seed);
+        let mut resumed = daily_world(seed);
+        let mut batched = daily_world(seed);
+        for day in 1..=365 {
+            tick_day(&mut stepped, &schedule(day));
+            tick_day(&mut resumed, &schedule(day));
+            if day == 100 { resumed = load(&save(&resumed)).unwrap(); }
+        }
+        let mut day = 1;
+        while day <= 365 {
+            let commands = schedule(day);
+            // Batch a whole month only where no command falls inside it.
+            let rest = spheres_sim::world::days_in_month(batched.year, batched.month) - batched.day + 1;
+            let quiet = (day + 1..day + rest as usize).all(|d| schedule(d).is_empty());
+            if quiet && batched.day == 1 && day + rest as usize - 1 <= 365 {
+                tick_month(&mut batched, &commands);
+                day += rest as usize;
+            } else {
+                tick_day(&mut batched, &commands);
+                day += 1;
+            }
+        }
+        assert_eq!((stepped.year, stepped.month, stepped.day), (1991, 1, 1));
+        let h = state_hash(&stepped);
+        assert_eq!(h, state_hash(&resumed), "seed {seed}: resume moved the world");
+        assert_eq!(h, state_hash(&batched), "seed {seed}: batching moved the world");
+        eprintln!("daily replay seed {seed}: {h:#018x}");
+    }
+}

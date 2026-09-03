@@ -591,15 +591,56 @@ fn deck_value(i: usize) -> f64 {
     DECK[i].quality / DECK[i].unit_cost.max(1e-9)
 }
 
+/// Books `units` of `kit` on `orders`. Legacy replay keeps ONE row per kit
+/// per settlement month — the pre-daily key, byte for byte. Daily play keeps
+/// ONE row per kit per DELIVERY month: a purchase merges into the row whose
+/// landing day (`today + due_days`) falls in the same calendar month as its
+/// own, and the row lands when the month's latest purchase would — the last
+/// day of the month plus the lead, which is the legacy settlement date.
+/// Merging on `due_days` itself, which moves every day, opened a row per
+/// purchase per day: 49,271 rows against 1,619 after a year on the default
+/// board (2026-09-03), scanned by `find` and `retain` on every tick.
+pub(crate) fn book_order(
+    orders: &mut Vec<Order>,
+    today: i32,
+    kit: u16,
+    units: f64,
+    lead_months: u32,
+    due_days: Option<u32>,
+) {
+    let landing = |days: u32| {
+        let (y, m, _) = crate::clock::date_from_day(today + days as i32);
+        (y, m)
+    };
+    let slot = match due_days {
+        None => orders
+            .iter_mut()
+            .find(|o| o.kit == kit && o.due == lead_months && o.due_days.is_none()),
+        Some(days) => orders
+            .iter_mut()
+            .find(|o| o.kit == kit && o.due_days.is_some_and(|d| landing(d) == landing(days))),
+    };
+    match slot {
+        Some(o) => {
+            o.units += units;
+            if let (Some(days), Some(had)) = (due_days, o.due_days) {
+                o.due_days = Some(had.max(days));
+            }
+        }
+        None => orders.push(Order { kit, units, due: lead_months, due_days }),
+    }
+}
+
 /// What this nation may order today: everything whose technology it holds.
 pub fn available(n: &Nation) -> Vec<u16> {
     (0..DECK.len()).filter(|i| orderable(n, *i)).map(|i| i as u16).collect()
 }
 
-/// Procurement, once a month.
+/// Procurement, once a settlement: each month in legacy replay, each day in
+/// daily play, where the month's line is spent in daily shares.
 ///
 /// Money becomes orders, orders become holdings when their lead time runs out,
-/// and everything already held gets a month older. Nothing here rolls dice: a
+/// and everything already held gets a settlement older. Nothing here rolls dice: a
 /// procurement programme is a budget line, not a gamble.
 pub fn tick(w: &mut WorldState) {
     // Technology has already advanced this month, so the spot market now
@@ -694,20 +735,7 @@ pub fn tick(w: &mut WorldState) {
                     let def = &DECK[kit as usize];
                     let units = line / def.unit_cost.max(1e-9);
                     if units > 0.0 {
-                        match n
-                            .arsenal
-                            .orders
-                            .iter_mut()
-                            .find(|o| o.kit == kit && o.due == def.lead_months && o.due_days == new_due_days)
-                        {
-                            Some(o) => o.units += units,
-                            None => n.arsenal.orders.push(Order {
-                                kit,
-                                units,
-                                due: def.lead_months,
-                                due_days: new_due_days,
-                            }),
-                        }
+                        book_order(&mut n.arsenal.orders, today, kit, units, def.lead_months, new_due_days);
                     }
                 }
             }
@@ -829,6 +857,68 @@ mod ranking_tests {
         assert_eq!(crate::save(&w), crate::save(&loaded));
         assert!(w.nation(id).arsenal.orders.is_empty());
         assert_eq!(w.nation(id).arsenal.held[0].units, 500.0);
+    }
+
+    /// Daily play books ONE order row per kit per DELIVERY MONTH, the way a
+    /// legacy settlement books one per month. Found 2026-09-03 by the
+    /// daily-push audit: the merge key compared `due_days`, which moves every
+    /// day, so every daily purchase opened its own row for the whole lead
+    /// time — MEASURED 49,271 rows against 1,619 after twelve months on the
+    /// default board (USA 364 against 12), an 8.0x save. The month's money is
+    /// one row that lands when the month's last purchase would, which is the
+    /// legacy settlement date. Iron rule 7: an invariant on one board, no
+    /// statistic; the tolerance is float summation over 365 daily shares.
+    #[test]
+    fn daily_procurement_books_one_row_per_kit_per_delivery_month() {
+        let id = NationId::USA;
+        let kit = index_of("inf_light").unwrap();
+        let prepare = |w: &mut WorldState| {
+            let n = w.nation_mut(id);
+            n.arsenal.preference = Some("inf_light".into());
+            n.arsenal.orders.clear();
+            n.arsenal.banked = 0.0;
+        };
+        let mut legacy = crate::init::world_1990(crate::world::GameRules::default());
+        let mut daily = crate::init::world_1990(crate::world::GameRules {
+            daily_simulation: true, ..crate::world::GameRules::default()
+        });
+        prepare(&mut legacy);
+        prepare(&mut daily);
+        for _ in 0..12 {
+            tick(&mut legacy);
+            legacy.month += 1;
+        }
+        while daily.year == 1990 {
+            tick(&mut daily);
+            crate::clock::advance_date(&mut daily);
+        }
+        let rows = |w: &WorldState| w.nation(id).arsenal.orders.iter().filter(|o| o.kit == kit).count();
+        assert_eq!(rows(&legacy), 12);
+        assert_eq!(rows(&daily), 12, "one row per kit per delivery month, not one per day");
+        // The whole board: MEASURED 1,608 legacy rows against 1,610 daily on
+        // this tree, the two extra being December picks that changed kit
+        // mid-month when a migrated 1990 order landed on a day rather than at
+        // the settlement — a timing difference, not accretion (which reads
+        // 30x). The bar is +1%.
+        let world_rows = |w: &WorldState| w.nations.iter().map(|n| n.arsenal.orders.len()).sum::<usize>();
+        let (lr, dr) = (world_rows(&legacy), world_rows(&daily));
+        assert!(dr as f64 <= lr as f64 * 1.01, "the whole board books the same rows: legacy {lr} daily {dr}");
+        let units = |w: &WorldState| w.nation(id).arsenal.orders.iter().filter(|o| o.kit == kit).map(|o| o.units).sum::<f64>();
+        let (l, d) = (units(&legacy), units(&daily));
+        assert!(((d - l) / l).abs() < 1e-9, "twelve months of daily shares buy the month's units: legacy {l} daily {d}");
+        // Each row lands in the calendar month its legacy twin settles in:
+        // the last day of month m + `lead_months`, for m = 1..=12 of 1990.
+        let lead = DECK[kit as usize].lead_months;
+        // `due_days` counts from the day of the last tick, 31 Dec; the date
+        // has since advanced to 1 Jan.
+        let today = crate::clock::absolute_day(&daily) - 1;
+        let landing: Vec<(i32, u32, u32)> = daily.nation(id).arsenal.orders.iter().filter(|o| o.kit == kit)
+            .map(|o| crate::clock::date_from_day(today + o.due_days.unwrap() as i32)).collect();
+        let expected: Vec<(i32, u32, u32)> = (1..=12u32).map(|m| {
+            let (y, mm) = (1990 + (m - 1 + lead) as i32 / 12, (m - 1 + lead) % 12 + 1);
+            (y, mm, crate::world::days_in_month(y, mm).min(crate::world::days_in_month(1990, m)))
+        }).collect();
+        assert_eq!(landing, expected);
     }
 
     /// `pick`'s original fold, kept verbatim as the thing the ranking is

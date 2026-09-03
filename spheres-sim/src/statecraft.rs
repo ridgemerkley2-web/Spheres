@@ -69,8 +69,15 @@ pub fn tick(w: &mut WorldState) {
     covert_channels_cool(w);
     // A seller's refusal is remembered, then gradually not (resources.rs,
     // spec section 6.3). Free while the memory is empty, which is every
-    // world the market switch is off in.
-    crate::resources::cool_refusals(w);
+    // world the market switch is off in. ONCE A CALENDAR MONTH: the memory
+    // cools one step of twenty-fourths per call and the lattice cannot be
+    // prorated, so daily play takes its step on the month's last day, the
+    // day the legacy settlement took it. Called every day, a refusal was
+    // forgotten in 24 days instead of 24 months (2026-09-03, measured
+    // 1990-01-25 against 1992-01-01).
+    if crate::clock::month_end(w) {
+        crate::resources::cool_refusals(w);
+    }
 }
 
 /// A broken promise is remembered, then gradually not. Nobody climbs back above
