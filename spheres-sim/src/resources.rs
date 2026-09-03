@@ -1194,8 +1194,22 @@ fn set_market_cash(market: &mut MarketState, nation: NationId, balance_bn: f64) 
 /// `retired / gdp` where `retired` was the receipt capped at the debt, and the
 /// helper's `None` arm reaches the same floor from the other side --
 /// `(debt_gdp - receipt / gdp).max(0.0)` -- because a receipt smaller than the
-/// debt is the identical expression and a larger one is clamped to zero either
-/// way.
+/// debt is the identical expression.
+///
+/// A LARGER RECEIPT IS NOT QUITE IDENTICAL, and saying it was is a claim this
+/// comment made and a review caught. Upstream retired
+/// `min(receipt, debt_gdp.max(0.0) * gdp)` and then divided by `gdp` again, so
+/// `debt_gdp - (debt_gdp * gdp) / gdp` can leave a POSITIVE rounding residue
+/// where the routed form's `debt_gdp + net_cost / gdp` goes frankly negative
+/// and floors to exactly zero. MEASURED over two million random
+/// `(debt_gdp, gdp, receipt)` triples with the receipt at 1x-3x the debt:
+/// 4.48% of them differ, and the largest residue upstream leaves is
+/// 4.44e-16 of output -- one ulp at a ratio of 2.4. It is a difference and not
+/// a leak: both forms have already retired the whole debt, and the residue is
+/// upstream carrying a fraction of an ulp of debt that it has been paid for.
+/// It cannot reach the default board -- the merged tree's two golden ACTUALS
+/// are ORIGIN'S to the bit -- but the identity claim was too strong and is
+/// corrected here rather than left to be re-derived.
 ///
 /// THE MARKET CASH LEDGER IS THIS MODULE'S TILL, and only while the books are
 /// closed. `charge` reports what a receipt's debt could not absorb; with the

@@ -695,3 +695,221 @@ fn debt_is_charged_once_and_not_twice() {
     assert!(drag_seen > 0 && cash_seen > 0, "the sweep saw drag {drag_seen}, cash {cash_seen}");
     println!("no double charge in {drag_seen} drag readings and {cash_seen} cash readings");
 }
+
+// ---------------------------------------------------------------------------
+// 6. THE STRATAGEM DECK, AND THE TWO LEGS THAT PREDATE THE CHANNEL
+// ---------------------------------------------------------------------------
+
+/// `stratagems.rs` moves money only through `economy::charge`.
+///
+/// THE SAME BAR `resources.rs` CARRIES, pointed at the other module that moves
+/// a nation's finances, and it is here because a review found two legs the
+/// merge did not route: `debt_restructuring` scaled the ratio by 0.55 and
+/// `mass_privatisation` subtracted 0.08 from it, both by hand. Reading the
+/// ratio is allowed and is what an availability rule is FOR -- two stratagems
+/// are offered because of what a government owes -- so this bar forbids the
+/// ASSIGNMENT forms and nothing else. Writing the ratio without the stock is
+/// the defect; consulting it is the feature.
+///
+/// RED CHECKS, both run 2026-09-02 and both reverted, one per routed leg --
+/// because a bar that only sees one of two legs is half a bar.
+///   1. The restructuring returned to the hand-rolled scaling. RED at
+///      treasury.rs:734, "stratagems.rs writes a nation's finances directly,
+///      at \"debt_gdp *=\"", and RED at the same time in
+///      `a_stratagem_that_writes_down_debt_writes_down_the_stock`.
+///   2. The privatisation returned to the hand-rolled subtraction. RED at the
+///      same line, at "debt_gdp =", and RED at the same time in
+///      `privatisation_proceeds_retire_debt_in_dollars`.
+/// The bar and the behaviour it stands for fail together, which is the point:
+/// neither is load-bearing alone.
+#[test]
+fn the_stratagem_deck_moves_money_only_through_the_one_channel() {
+    let body = include_str!("../src/stratagems.rs");
+    for forbidden in [
+        "debt_gdp =",
+        "debt_gdp +=",
+        "debt_gdp -=",
+        "debt_gdp *=",
+        "debt_gdp /=",
+        "debt_bn =",
+        "debt_bn +=",
+        "debt_bn -=",
+        "debt_bn *=",
+        "treasury_bn",
+    ] {
+        assert!(
+            !body.contains(forbidden),
+            "stratagems.rs writes a nation's finances directly, at {forbidden:?}"
+        );
+    }
+    assert_eq!(
+        body.matches("economy::charge(").count(),
+        2,
+        "the debt write-down and the privatisation proceeds"
+    );
+}
+
+/// A government that has opened its books and restructures its debt is still
+/// out of debt a month later.
+///
+/// THE DEFECT THIS PINS, and it was live until 2026-09-02. The stratagem moved
+/// the ratio and left the stock alone, so the fiscal block's open-books arm --
+/// which derives the ratio FROM the stock every month -- put the whole debt
+/// back on the next tick. The creditors took the loss and the government kept
+/// the debt. The AI is unaffected either way, because books open only on a
+/// player's own budget command, which is why nothing on the default board moves
+/// and why `the_treasury_is_inert_while_the_books_are_closed` stays green.
+///
+/// The closed-books half is the other claim: the ratio arithmetic that shipped
+/// is reproduced BIT FOR BIT, not nearly. `share` is `ratio * 0.55 - ratio`,
+/// which Sterbenz makes exact, so the closed arm's addition is the same bits
+/// the old scaling produced -- and it has to be, because `ai_stratagems`
+/// reaches for this deck on the default board and the golden run would move.
+///
+/// RED CHECK, run 2026-09-02 and reverted: the routed call was returned to
+/// `n.debt_gdp` scaled by 0.55 with the stock left alone. RED at treasury.rs:819
+/// -- "the stock did not take the write-down: $500.500bn against $275.275bn",
+/// Brazil owing $500.5bn on $385.0bn of output and still owing every dollar of
+/// it after restructuring -- while the CLOSED-books arm stayed green, which is
+/// exactly the shape of the bug: invisible to the default board, fatal to the
+/// player's. The privatisation test stayed green in that run and went red in
+/// its own, so the two legs are pinned separately.
+#[test]
+fn a_stratagem_that_writes_down_debt_writes_down_the_stock() {
+    // (a) CLOSED BOOKS: bit-for-bit the arithmetic that shipped.
+    let mut w = world_1990(GameRules::default());
+    let id = NationId::Brazil;
+    {
+        let n = w.nation_mut(id);
+        n.debt_gdp = 1.30;
+        n.political_capital = 100.0; // the deck is priced; this is not the bar
+    }
+    let before = w.nation(id).debt_gdp;
+    assert!(!w.nation(id).on_the_books(), "the default board keeps no books");
+    spheres_sim::apply_command(
+        &mut w,
+        &Command::EnactStratagem { nation: id, id: "debt_restructuring".into() },
+    )
+    .expect("the restructuring is enacted");
+    assert_eq!(
+        w.nation(id).debt_gdp.to_bits(),
+        (before * 0.55).to_bits(),
+        "the closed arm is not the arithmetic that shipped: {} against {}",
+        w.nation(id).debt_gdp,
+        before * 0.55
+    );
+
+    // (b) OPEN BOOKS: the stock moves too, and a month of the fiscal block
+    // does not put it back.
+    let mut w = world_1990(GameRules::default());
+    let year = w.year;
+    let plan = w.nation(id).budget_for(year);
+    spheres_sim::apply_command(
+        &mut w,
+        &Command::SetAnnualBudget { nation: id, fiscal_year: year, allocations: plan.allocations },
+    )
+    .expect("the budget is enacted");
+    assert!(w.nation(id).on_the_books(), "the books did not open");
+    // Put it deep enough in the hole to qualify, both stocks together.
+    {
+        let gdp = w.nation(id).gdp;
+        let n = w.nation_mut(id);
+        n.debt_gdp = 1.30;
+        n.debt_bn = Some(1.30 * gdp);
+        n.political_capital = 100.0;
+    }
+    let owed_before = w.nation(id).debt_bn.unwrap();
+    spheres_sim::apply_command(
+        &mut w,
+        &Command::EnactStratagem { nation: id, id: "debt_restructuring".into() },
+    )
+    .expect("the restructuring is enacted");
+    let owed_after = w.nation(id).debt_bn.unwrap();
+    assert!(
+        (owed_after - owed_before * 0.55).abs() < 1e-9,
+        "the stock did not take the write-down: ${owed_after:.3}bn against ${:.3}bn",
+        owed_before * 0.55
+    );
+    // The month that used to undo it.
+    tick_month(&mut w, &[]);
+    let ratio = w.nation(id).debt_gdp;
+    assert!(
+        ratio < 0.90,
+        "the restructuring was erased: {ratio:.3} back toward {before:.3}, against {:.3}",
+        before * 0.55
+    );
+    println!(
+        "closed {:.6}, open stock ${owed_after:.3}bn, ratio after a month {ratio:.6}",
+        before * 0.55
+    );
+}
+
+/// The privatisation proceeds reach the same channel, and the ratio line they
+/// replace is reproduced exactly.
+///
+/// `share` is `-0.08`, and IEEE makes adding it and subtracting 0.08 the same
+/// bits, so the closed board does not move by an ulp. On the books the sale
+/// retires debt in DOLLARS, which is the half the hand-rolled line could not
+/// express at all.
+///
+/// RED CHECK, run 2026-09-02 and reverted: the routed call was returned to the
+/// hand-rolled subtraction on the ratio. RED at treasury.rs:895 -- "the stock
+/// did not take the proceeds: $52.800bn against $47.520bn", Poland's $52.8bn
+/// of debt untouched by a sale worth 8% of $66.0bn of output. The ratio moved
+/// and the stock did not, which is the whole defect. The restructuring test
+/// stayed green in that run, so this leg is pinned on its own.
+#[test]
+fn privatisation_proceeds_retire_debt_in_dollars() {
+    let id = NationId::Poland;
+
+    // (a) CLOSED BOOKS: the shipped line, bit for bit.
+    let mut probe = world_1990(GameRules::default());
+    {
+        let n = probe.nation_mut(id);
+        n.state_invest_gdp = 0.20; // the availability rule, not the bar
+        n.political_capital = 100.0;
+    }
+    let before = probe.nation(id).debt_gdp;
+    spheres_sim::apply_command(
+        &mut probe,
+        &Command::EnactStratagem { nation: id, id: "mass_privatisation".into() },
+    )
+    .expect("the privatisation is enacted");
+    assert_eq!(
+        probe.nation(id).debt_gdp.to_bits(),
+        (before - 0.08f64).max(0.0).to_bits(),
+        "the closed arm is not the arithmetic that shipped"
+    );
+
+    // (b) OPEN BOOKS: dollars leave the debt.
+    let mut w = world_1990(GameRules::default());
+    let year = w.year;
+    let plan = w.nation(id).budget_for(year);
+    spheres_sim::apply_command(
+        &mut w,
+        &Command::SetAnnualBudget { nation: id, fiscal_year: year, allocations: plan.allocations },
+    )
+    .expect("the budget is enacted");
+    {
+        let n = w.nation_mut(id);
+        n.state_invest_gdp = 0.20;
+        n.political_capital = 100.0;
+    }
+    let gdp = w.nation(id).gdp;
+    let owed_before = w.nation(id).debt_bn.unwrap();
+    spheres_sim::apply_command(
+        &mut w,
+        &Command::EnactStratagem { nation: id, id: "mass_privatisation".into() },
+    )
+    .expect("the privatisation is enacted");
+    let owed_after = w.nation(id).debt_bn.unwrap();
+    let expected = (owed_before - 0.08 * gdp).max(0.0);
+    assert!(
+        (owed_after - expected).abs() < 1e-9,
+        "the stock did not take the proceeds: ${owed_after:.3}bn against ${expected:.3}bn"
+    );
+    println!(
+        "closed {:.6}, open ${owed_before:.3}bn -> ${owed_after:.3}bn on gdp ${gdp:.1}bn",
+        (before - 0.08f64).max(0.0)
+    );
+}

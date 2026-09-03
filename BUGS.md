@@ -2582,3 +2582,64 @@ earlier session recorded 0.1954 and a red on a suite run with nine foreign
 `rustc` processes live. It is left alone because it is met in every regime this
 session could produce; the repair if that changes is P-2's, a share of the tick
 re-derived from its own sample.
+
+### M-11 — CLOSED: two stratagems moved the ratio and not the stock, so a player's restructuring was erased inside a month
+
+**Found by review of the 61b388f merge, 2026-09-02, and fixed the same day.**
+The merge routed the three money legs upstream had added and asserted that
+`resources.rs` reaches a nation's finances only through `economy::charge`. It
+did not look at the other module that moves money. `stratagems.rs` carried two
+legs older than the helper itself, both writing the ratio by hand:
+
+- `debt_restructuring` scaled `debt_gdp` by 0.55, and
+- `mass_privatisation` subtracted 0.08 from it, floored at zero.
+
+**Why that is a defect and not untidiness.** For a government that has opened
+its books — which is every player who has enacted a budget, and only a player,
+since `Command::SetAnnualBudget` is the only door — `debt_gdp` is DERIVED. The
+fiscal block's open-books arm recomputes it from `debt_bn` every month. So the
+stratagem moved a number that the next tick overwrote from the stock it had left
+untouched: the creditors took the loss, every major capital's opinion of the
+government fell by eight points, thirty political capital was spent, and a month
+later the debt was all still there. The AI never saw it, because AI nations keep
+no books, which is why nothing on the default board and no golden hash ever
+moved and why the suite was green over it.
+
+MEASURED on the red-check, Brazil at 1.30 of $385.0bn of output: `debt_bn`
+$500.500bn before the restructuring and $500.500bn after, against the $275.275bn
+the write-down is supposed to leave. Poland, $52.800bn owed on $66.0bn of
+output: $52.800bn after selling 8% of output's worth of state industry, against
+$47.520bn.
+
+**THE FIX is the same one BUGS M-2 asked for and the merge applied to upstream's
+legs: one fiscal channel.** Both go through `economy::charge` as receipts —
+negative `bn`, the dollars the government stops owing, beside the `share` the
+ratio line already moved. The closed-books board is BIT-IDENTICAL and had to be,
+because `ai_stratagems` reaches for this deck on the default path: the
+restructuring passes `ratio * 0.55 - ratio` rather than `-0.45 * ratio`, which
+Sterbenz makes an exact subtraction that the closed arm's addition undoes
+exactly, and the privatisation passes `-0.08`, which IEEE makes the same bits as
+subtracting it. Confirmed by `the_treasury_is_inert_while_the_books_are_closed`,
+which pins both golden actuals and stayed green across the change.
+
+**THE GUARD**, in `spheres-sim/tests/treasury.rs`:
+`the_stratagem_deck_moves_money_only_through_the_one_channel` forbids the
+ASSIGNMENT forms of `debt_gdp` and `debt_bn`, forbids `treasury_bn` outright,
+and counts exactly two `economy::charge` calls. Reading the ratio stays legal:
+two stratagems are OFFERED because of what a government owes, and an
+availability rule that cannot consult the debt is not a rule. Red-checked
+twice, once per leg, each time going red together with the behavioural test
+beside it (`a_stratagem_that_writes_down_debt_writes_down_the_stock`,
+`privatisation_proceeds_retire_debt_in_dollars`).
+
+**One live value did change, deliberately, and it is the same repair the payee
+floor got.** On the books, privatisation proceeds larger than the debt now
+retire it and BANK the remainder in the till, where the ratio line could only
+clamp at zero and lose the difference. Closed books keep the floor, because
+there the floor is the arithmetic that shipped.
+
+**What this says about the register bars generally.** The merge's bar was
+written to hold ONE module to the channel, and it did that correctly while a
+second module quietly held two legs it never looked at. The census that matters
+is `economy::charge`'s own call count, which now sits in that function's doc
+comment as ELEVEN sites and is corrected there whenever it moves.

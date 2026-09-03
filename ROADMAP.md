@@ -101,6 +101,18 @@
   interest, the ministry map), BIBLE §4 (what each ministry buys), CLAUDE.md iron
   rule 8 (one named arm per effect, defined once), BUGS D-1 closed and D-2
   settled player-only, and every invented coefficient filed as BUGS I-1..I-16.
+  **AND THE MERGE'S OWN BLIND SPOT, found by review and closed the same day
+  (BUGS M-11).** The bar it re-expressed holds `resources.rs` to the one fiscal
+  channel; `stratagems.rs` was holding two legs older than the channel and was
+  never looked at. `debt_restructuring` and `mass_privatisation` both moved
+  `debt_gdp` and left `debt_bn` alone, so for a government on the books the
+  fiscal block recomputed the ratio from the untouched stock and erased the act
+  inside a month — measured, Brazil's $500.500bn of debt still $500.500bn after
+  restructuring, against $275.275bn. Both are now routed through
+  `economy::charge`, bit-identically on the closed board (the write-down passes
+  `ratio * 0.55 - ratio`, exact by Sterbenz; the sale passes `-0.08`), and a
+  second register bar in `spheres-sim/tests/treasury.rs` holds that module to
+  the channel, red-checked once per leg.
 - **The resource pass back under budget, and a market-on guard that can fail**
   (2026-09-02, `63e6c90` "perf: one stall mask a month, not twelve a dyad" and
   this branch's "test: make the market-on row bar a ratio" plus its

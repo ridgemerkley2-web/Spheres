@@ -399,21 +399,34 @@ fn pay(treasury: f64, debt: f64, bn: f64) -> (f64, f64) {
 }
 
 /// ONE MONEY LEG out of one nation's finances, and the single helper every
-/// hand-rolled ratio pusher now goes through. ~~the five~~ — corrected
-/// 2026-09-02 on the merge of `origin/feat/hoi4-map-and-tech` 61b388f, which
-/// added three legs written after this helper existed. MEASURED on the merged
-/// tree, `economy::charge(` has NINE call sites: `resources::settle` (both
-/// sides), `apply_market_net`'s outflow and receipt arms, `start_mine`'s
-/// construction investment, the pact upkeep and the aid and covert legs in
-/// `statecraft.rs`, and the patronage payment in `government.rs`.
+/// hand-rolled ratio pusher now goes through. ~~the five~~ ~~NINE~~ — corrected
+/// twice: 2026-09-02 on the merge of `origin/feat/hoi4-map-and-tech` 61b388f,
+/// which added three legs written after this helper existed, and again the same
+/// day when a review found TWO MORE that predate it and were never routed --
+/// the debt write-down and the privatisation proceeds in `stratagems.rs`.
+/// MEASURED on this tree, `economy::charge(` has ELEVEN call sites:
+/// `resources::settle` (both sides), `apply_market_net`'s outflow and receipt
+/// arms, `start_mine`'s construction investment, the pact upkeep and the aid
+/// and covert legs in `statecraft.rs`, the patronage payment in
+/// `government.rs`, and the two stratagems.
+///
+/// THE STRATAGEM PAIR IS WHY "single channel" IS A CORRECTNESS CLAIM AND NOT
+/// TIDINESS. Both pushed `debt_gdp` by hand and left the stock alone, so for a
+/// government that had opened its books the fiscal block recomputed the ratio
+/// FROM the untouched stock on its next pass and the whole act was erased
+/// inside a month. A bar in `spheres-sim/tests/treasury.rs` now holds that
+/// module to this channel.
 ///
 /// TWO REPRESENTATIONS OF THE SAME MONEY, and neither may be derived from the
 /// other. `share` is EXACTLY the number the caller's pre-treasury line pushed
 /// into `debt_gdp`, and is what the `None` arm writes -- so the default board
 /// is bit-identical rather than nearly so. Recomputing it as `bn / gdp` would
-/// be a rounding away from the shipped timeline at every one of those nine
+/// be a rounding away from the shipped timeline at every one of those eleven
 /// sites, because `(share * gdp) / gdp` is not `share` in binary floating
-/// point. `bn` is the dollars, and is what the `Some` arm moves.
+/// point. `bn` is the dollars, and is what the `Some` arm moves. The debt
+/// write-down is the sharpest case: its `share` is `ratio * 0.55 - ratio`,
+/// which Sterbenz makes exact and which the closed arm's addition undoes
+/// exactly, where any recomputation from dollars would not.
 ///
 /// The two arms are also where a real defect is repaired, and the defect is not
 /// quite the one the design names. A money leg was divided by the PAYER's
@@ -431,12 +444,15 @@ fn pay(treasury: f64, debt: f64, bn: f64) -> (f64, f64) {
 /// pair conserves.
 ///
 /// The `.max(0.0)` on the `None` arm is the floor `settle`'s payee line already
-/// carried, and it is inert at SEVEN of the nine sites (~~the other four~~,
-/// corrected 2026-09-02 with the merge): their `share` is positive and
-/// `debt_gdp` is non-negative by the fiscal block's own floor, so the clamp
-/// never binds and never changes a bit. The two where it can bind are the two
-/// receipts -- `settle`'s payee leg and `apply_market_net`'s receipt arm --
-/// and on both it is the arithmetic those lines already shipped.
+/// carried, and it is inert at EIGHT of the eleven sites (~~the other four~~,
+/// ~~SEVEN of the nine~~, corrected twice 2026-09-02): the seven payments pass a
+/// non-negative `share` against a `debt_gdp` that is non-negative by the fiscal
+/// block's own floor, so the clamp cannot bind; and the debt write-down, though
+/// a receipt, lands on `ratio * 0.55` with `ratio > 1.10` by its own
+/// availability rule, so it cannot bind there either. The THREE where it can
+/// bind are `settle`'s payee leg, `apply_market_net`'s receipt arm and the
+/// privatisation proceeds, and on all three it is the arithmetic those lines
+/// already shipped.
 ///
 /// A negative `bn`/`share` is a receipt.
 ///
@@ -448,9 +464,14 @@ fn pay(treasury: f64, debt: f64, bn: f64) -> (f64, f64) {
 /// `resources::apply_market_net`, whose market-cash ledger is the pre-treasury
 /// stand-in for exactly this till: while the books are closed the surplus lands
 /// there, and while they are open the treasury has it already and the market
-/// ledger is not touched. The EIGHT other sites use it as a statement and
-/// nothing about their arithmetic moves (~~four~~, corrected 2026-09-02 with
-/// the merge, which took the call count from six to nine).
+/// ledger is not touched. The TEN other sites use it as a statement and
+/// nothing about their arithmetic moves (~~four~~, ~~EIGHT~~, corrected twice
+/// 2026-09-02, the merge taking the call count from six to nine and the
+/// stratagem routing to eleven). The privatisation proceeds are the one place
+/// where discarding it is a JUDGEMENT rather than a no-op: a closed-books
+/// state that raises more than it owes loses the surplus at the floor, exactly
+/// as the shipped ratio line did, while an open-books one banks it in the till
+/// -- which is the same repair the payee floor got, arriving by the same route.
 ///
 /// Both arms measure the same quantity against the same denominator the callers
 /// use: `debt` in dollars on the `Some` arm, and `debt_gdp.max(0.0) * gdp` on

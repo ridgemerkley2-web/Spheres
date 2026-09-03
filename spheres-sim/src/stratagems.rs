@@ -180,8 +180,36 @@ pub const DECK: &[Stratagem] = &[
         available: |w, id| n_of(w, id).debt_gdp > 1.10,
         enact: |w, id| {
             {
+                // THROUGH THE ONE FISCAL CHANNEL, and this leg reached it late
+                // (routed 2026-09-02, after the merge). A write-down is money
+                // the government stops owing, so it is a receipt -- a negative
+                // `bn` -- and it goes through `economy::charge` like every
+                // other money leg rather than pushing the ratio by hand.
+                //
+                // WHAT WAS WRONG WITH THE HAND-ROLLED FORM, measured: it moved
+                // the ratio and left the stock alone, so for a government that
+                // had opened its books the fiscal block's next pass recomputed
+                // the ratio FROM the untouched stock and the restructuring was
+                // erased inside a month. The creditors took the loss and the
+                // debtor kept the debt.
+                //
+                // TWO REPRESENTATIONS OF THE SAME 45%. `bn` is the dollars a
+                // government keeping a treasury stops owing. `share` is the
+                // ratio move the shipped line made, and it is written as
+                // `ratio * 0.55 - ratio` rather than `-0.45 * ratio` because
+                // the closed-books arm writes `debt_gdp + share`, and only this
+                // form reproduces the old scaling BIT FOR BIT: `0.55 * r` and
+                // `r` are within a factor of two, so Sterbenz makes the
+                // subtraction exact and the addition undoes it exactly. That
+                // matters here and not only in principle -- `ai_stratagems`
+                // reaches for this deck on the DEFAULT board, so a single ulp
+                // would move the golden run.
+                let ratio = n_of(w, id).debt_gdp;
+                let gdp = n_of(w, id).gdp;
+                let owed_bn = n_of(w, id).debt_bn.unwrap_or(ratio * gdp);
+                let share = ratio * 0.55 - ratio;
+                crate::economy::charge(w, id, -(owed_bn * 0.45), share);
                 let n = w.nation_mut(id);
-                n.debt_gdp *= 0.55;
                 n.stability = (n.stability + 4.0).min(100.0);
             }
             for m in crate::nations::majors().iter().copied() {
@@ -212,7 +240,21 @@ pub const DECK: &[Stratagem] = &[
             n.priv_invest_gdp = (n.priv_invest_gdp + 0.04).min(0.40);
             n.tech.tfp_base += 0.003;
             n.stability = (n.stability - 8.0).max(0.0);
-            n.debt_gdp = (n.debt_gdp - 0.08).max(0.0);
+            // The proceeds of the sale, through the same one channel and for
+            // the same reason as the restructuring above: a ratio pushed by
+            // hand is erased by the next fiscal pass for a government on the
+            // books. `share` is `-0.08` and the closed arm writes
+            // `(debt_gdp + share).max(0.0)`, which is the shipped line
+            // character for character -- IEEE makes `r + (-0.08)` and
+            // `r - 0.08` the same bits, and the floor is the same floor.
+            //
+            // ON THE BOOKS THE FLOOR STOPS DESTROYING THE REMAINDER, which is
+            // the same repair the payee leg got: a state that raises 8% of
+            // output selling its industry and owes less than that retires the
+            // debt and BANKS the rest, where the ratio arithmetic could only
+            // clamp at zero and lose it.
+            let gdp = n_of(w, id).gdp;
+            crate::economy::charge(w, id, -(0.08 * gdp), -0.08);
             let name = id.name();
             w.headline(format!("{} sells the state's industry.", name));
         },
