@@ -63,7 +63,16 @@ use crate::data::{render_errors, LoadError};
 use crate::world::{NationId, WorldState};
 
 pub const EMBEDDED_DISTRICTS: &str = include_str!("../data/districts.json");
+const POPULATION_FALLBACK: &str = include_str!(concat!(
+    env!("CARGO_MANIFEST_DIR"),
+    "/../spheres-web/data/district_population.json"
+));
 const FILE: &str = "data/districts.json";
+
+#[derive(Deserialize)]
+struct PopulationFallback {
+    counts: BTreeMap<String, f64>,
+}
 
 /// One admin-1 district: a stable id, the Natural Earth name, the area mapgen
 /// computed from the geometry (the shipped NE property is zero everywhere, so
@@ -481,6 +490,133 @@ fn tables() -> &'static Tables {
     })
 }
 
+/// Sourced 1990 residents from the resource artifact, with the underlying GHS
+/// surface filling only the map districts the resource artifact does not seat.
+struct PopulationTables {
+    counts: BTreeMap<String, f64>,
+    opening: BTreeMap<String, f64>,
+}
+
+fn population_tables() -> &'static PopulationTables {
+    static P: OnceLock<PopulationTables> = OnceLock::new();
+    P.get_or_init(|| {
+        let census = tables();
+        let population = &crate::resources::tables().file.pop_1990;
+        let fallback: PopulationFallback = serde_json::from_str(POPULATION_FALLBACK)
+            .unwrap_or_else(|e| panic!("district_population.json: {e}"));
+        assert_eq!(fallback.counts.len(), census.info.len());
+        for id in fallback.counts.keys() {
+            assert!(census.info.contains_key(id), "population has unknown district {id}");
+        }
+        let mut counts = fallback.counts;
+        for (district, people) in population {
+            counts.insert(district.clone(), *people as f64);
+        }
+        let opening = counts
+            .iter()
+            .map(|(district, people)| (district.clone(), *people / 1e6))
+            .collect();
+        PopulationTables { counts, opening }
+    })
+}
+
+pub fn population_1990() -> BTreeMap<String, f64> {
+    population_tables().opening.clone()
+}
+
+pub fn population_1990_of(district: &str) -> Option<f64> {
+    population_tables().opening.get(district).copied()
+}
+
+/// Reconstruct the best honest province split for a save written before the
+/// province population layer existed.
+pub fn reseed_population(w: &mut WorldState) {
+    w.district_population_scale = vec![1.0; crate::nations::nation_count()];
+    let source = population_tables();
+    w.district_population = source
+        .counts
+        .iter()
+        .map(|(d, p)| (d.clone(), p / 1e6))
+        .collect();
+    let owners: Vec<(NationId, f64)> = w
+        .nations
+        .iter()
+        .filter(|n| n.alive)
+        .map(|n| (n.id, n.population))
+        .collect();
+    for (owner, total_population) in owners {
+        let held: Vec<String> = w
+            .districts
+            .iter()
+            .filter(|&(_, &o)| o == owner)
+            .map(|(d, _)| d.clone())
+            .collect();
+        if held.is_empty() {
+            continue;
+        }
+        let weight: f64 = held
+            .iter()
+            .map(|d| source.counts.get(d).copied().unwrap_or(0.0))
+            .sum();
+        if weight > 0.0 {
+            for d in held {
+                let share = source.counts.get(&d).copied().unwrap_or(0.0) / weight;
+                w.district_population.insert(d, total_population * share);
+            }
+        } else {
+            let each = total_population / held.len() as f64;
+            for d in held {
+                w.district_population.insert(d, each);
+            }
+        }
+    }
+}
+
+pub fn grow_populations_compounded(
+    w: &mut WorldState,
+    first: &[(NationId, f64)],
+    second: &[(NationId, f64)],
+) {
+    let count = crate::nations::nation_count();
+    if w.district_population_scale.len() != count {
+        w.district_population_scale = vec![1.0; count];
+    }
+    let mut first_by_owner = vec![1.0_f64; count];
+    let mut second_by_owner = vec![1.0_f64; count];
+    for &(owner, multiplier) in first {
+        first_by_owner[owner.index()] = multiplier;
+    }
+    for &(owner, multiplier) in second {
+        second_by_owner[owner.index()] = multiplier;
+    }
+    for owner in 0..count {
+        w.district_population_scale[owner] *= first_by_owner[owner];
+        w.district_population_scale[owner] *= second_by_owner[owner];
+    }
+}
+
+pub fn population_of(w: &WorldState, district: &str) -> Option<f64> {
+    let basis = w.district_population.get(district).copied()?;
+    let scale = w
+        .districts
+        .get(district)
+        .and_then(|owner| w.district_population_scale.get(owner.index()))
+        .copied()
+        .unwrap_or(1.0);
+    Some(basis * scale)
+}
+
+fn rebase_population_for_owner(w: &mut WorldState, district: &str, to: NationId) {
+    let Some(actual) = population_of(w, district) else { return };
+    let scale = w
+        .district_population_scale
+        .get(to.index())
+        .copied()
+        .unwrap_or(1.0);
+    let basis = if scale > 0.0 { actual / scale } else { actual };
+    w.district_population.insert(district.to_string(), basis);
+}
+
 /// A district's land neighbours, sorted by id. Empty for islands, and for an
 /// id nobody shipped — never assume a district has neighbours, or that a
 /// nation's district graph is connected (Kaliningrad, Alaska, Cabinda).
@@ -569,6 +705,7 @@ pub fn annex_all(w: &mut WorldState, winner: NationId, loser: NationId) -> usize
         .collect();
     let n = taken.len();
     for d in taken {
+        rebase_population_for_owner(w, &d, winner);
         w.districts.insert(d, winner);
     }
     n
@@ -608,6 +745,7 @@ pub fn cede_share(
     let k = ((share * held.len() as f64).ceil() as usize).clamp(1, held.len() - 1);
     held.truncate(k);
     for d in &held {
+        rebase_population_for_owner(w, d, winner);
         w.districts.insert(d.clone(), winner);
     }
     held
@@ -649,6 +787,7 @@ pub fn cede_share_preferring(
     let k = ((share * held.len() as f64).ceil() as usize).clamp(1, held.len() - 1);
     held.truncate(k);
     for d in &held {
+        rebase_population_for_owner(w, d, winner);
         w.districts.insert(d.clone(), winner);
     }
     held
@@ -663,6 +802,7 @@ pub fn dissolve_to(w: &mut WorldState, parent: NationId, heirs: &[NationId]) {
     for &h in heirs {
         for d in list_of(h) {
             if w.districts.get(d) == Some(&parent) {
+                rebase_population_for_owner(w, d, h);
                 w.districts.insert(d.clone(), h);
             }
         }
@@ -675,6 +815,7 @@ pub fn dissolve_to(w: &mut WorldState, parent: NationId, heirs: &[NationId]) {
             .map(|(d, _)| d.clone())
             .collect();
         for d in residue {
+            rebase_population_for_owner(w, &d, first);
             w.districts.insert(d, first);
         }
     }
@@ -725,6 +866,7 @@ pub fn transfer_district(
         t.oil_mbd += moved_oil;
         t.separatism = (t.separatism + pop).min(1.0);
     }
+    rebase_population_for_owner(w, id, to);
     w.districts.insert(id.to_string(), to);
     Ok(())
 }
@@ -1078,6 +1220,113 @@ mod tests {
         assert!(
             err.iter().any(|e| e.message.contains("1990-owned by both")),
             "{err:?}"
+        );
+    }
+    // ------------------------------------------------------------------
+    // Codex's two province-population guards, restored 2026-09-02 (iron rule
+    // 5). They were written on 3f7eaf2 beside the 142 lines of population
+    // code this file kept; the merge that landed as e4e3c03 took Codex's code
+    // and our nine-test module, so the code arrived here unguarded. Ported
+    // from `git show 3f7eaf2:spheres-sim/src/districts.rs` — the merge's
+    // shape required no adaptation, because every symbol they read
+    // (`tables`, `population_of`, `annex_all`, `district_population_scale`)
+    // survived the merge unchanged.
+    //
+    // One departure from the source, noted at review (2026-09-02) so nobody
+    // reads "ported" as byte-identical: the coverage test IS byte-identical
+    // to Codex's, but in the demography test Codex bound
+    // `let iraq_ratio = w.nation(NationId::Iraq).population / iraq0;` after
+    // the tick and asserted against that binding; here it is inlined into
+    // the assert. Same operands, same order, same 1e-12 tolerance, same
+    // position relative to `crate::tick_month` — neither widened nor
+    // narrowed, and red-checked in that form (see below).
+    // ------------------------------------------------------------------
+
+    /// The opening split covers EVERY mapped province, including ground
+    /// nobody owns in 1990, and each living owner's provinces sum back to the
+    /// national total it was transcribed with. Note the split is NOT
+    /// renormalised at birth — `data/mod.rs` seeds straight from
+    /// `population_1990()` — so what this guards is the committed artifact
+    /// itself, and `reseed_population`'s renormalising path is only for a
+    /// save written before the layer existed.
+    ///
+    /// RED-CHECKED both arms when restored, 2026-09-02. Removing "US-WY" from
+    /// `population_1990()` reds the coverage arm (2609 against 2610); adding
+    /// 1.0m to "KW-KU" reds the closure arm ("Kuwait province population sums
+    /// to 3.1m, national total is 2.1m"). Both reverted.
+    #[test]
+    fn opening_population_covers_every_province_and_closes_to_national_totals() {
+        let w = crate::init::world_1990(crate::world::GameRules::default());
+        assert_eq!(
+            w.district_population.len(),
+            tables().info.len(),
+            "every mapped province, including currently unowned ground, needs residents"
+        );
+        assert!(
+            (population_of(&w, "US-CA").unwrap() - 30.155_130).abs() < 1e-9,
+            "California no longer matches the committed 1990 artifact"
+        );
+        for n in w.nations.iter().filter(|n| n.alive) {
+            let held: Vec<&str> = w
+                .districts
+                .iter()
+                .filter(|&(_, &owner)| owner == n.id)
+                .map(|(d, _)| d.as_str())
+                .collect();
+            if held.is_empty() {
+                continue;
+            }
+            let total: f64 = held
+                .iter()
+                .map(|d| population_of(&w, d).unwrap_or(0.0))
+                .sum();
+            assert!(
+                (total - n.population).abs() < 0.000_001,
+                "{} province population sums to {}m, national total is {}m",
+                n.id.code(),
+                total,
+                n.population
+            );
+        }
+    }
+
+    /// A province grows at exactly its CURRENT owner's demographic pace, and
+    /// changing hands moves neither a person nor the pace it will grow at
+    /// next month.
+    ///
+    /// RED-CHECKED both arms when restored, 2026-09-02. Dropping the
+    /// `second_by_owner` multiplier in `grow_populations_compounded` reds the
+    /// pace arm ("province multiplier 1.0007629166666667 diverged from owner
+    /// multiplier 1.0008353290144145"); making `rebase_population_for_owner`
+    /// an early `return` reds the transfer arm (Kuwait's province reads
+    /// 0.30094144033395603 against the 0.30130745880149995 it held a line
+    /// earlier). Both reverted.
+    #[test]
+    fn province_population_follows_its_current_owners_demography() {
+        let mut w = crate::init::world_1990(crate::world::GameRules::default());
+        let ca0 = population_of(&w, "US-CA").unwrap();
+        let usa0 = w.nation(NationId::USA).population;
+        crate::tick_month(&mut w, &[]);
+        let ca_ratio = population_of(&w, "US-CA").unwrap() / ca0;
+        let usa_ratio = w.nation(NationId::USA).population / usa0;
+        assert!(
+            (ca_ratio - usa_ratio).abs() < 1e-12,
+            "province multiplier {ca_ratio} diverged from owner multiplier {usa_ratio}"
+        );
+
+        // People stay with a transferred province and follow its new owner on
+        // the next tick; annexation does not recreate or erase the population.
+        let kuwait0 = population_of(&w, "KW-KU").unwrap();
+        annex_all(&mut w, NationId::Iraq, NationId::Kuwait);
+        assert_eq!(population_of(&w, "KW-KU"), Some(kuwait0));
+        let iraq0 = w.nation(NationId::Iraq).population;
+        crate::tick_month(&mut w, &[]);
+        assert!(
+            (population_of(&w, "KW-KU").unwrap() / kuwait0
+                - w.nation(NationId::Iraq).population / iraq0)
+                .abs()
+                < 1e-12,
+            "transferred province did not adopt its new owner's demographic pace"
         );
     }
 }

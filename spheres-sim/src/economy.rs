@@ -432,17 +432,37 @@ fn pay(treasury: f64, debt: f64, bn: f64) -> (f64, f64) {
 /// clamp never binds and never changes a bit.
 ///
 /// A negative `bn`/`share` is a receipt.
-pub fn charge(w: &mut WorldState, id: NationId, bn: f64, share: f64) {
+///
+/// RETURNS THE UNABSORBED INFLOW: the dollars of a receipt that the nation's
+/// debt could not soak up, and zero for any payment out. It is a report, not a
+/// second money leg -- on the `Some` arm `pay` has already banked that
+/// remainder in the till, so the number is only ever ACTED ON by a caller whose
+/// books are closed and which therefore keeps a till of its own. That caller is
+/// `resources::apply_market_net`, whose market-cash ledger is the pre-treasury
+/// stand-in for exactly this till: while the books are closed the surplus lands
+/// there, and while they are open the treasury has it already and the market
+/// ledger is not touched. The four other sites use it as a statement and
+/// nothing about their arithmetic moves.
+///
+/// Both arms measure the same quantity against the same denominator the callers
+/// use: `debt` in dollars on the `Some` arm, and `debt_gdp.max(0.0) * gdp` on
+/// the `None` arm, which is character for character the `debt_bn` that
+/// `apply_market_net` computed for itself before this became one channel.
+pub fn charge(w: &mut WorldState, id: NationId, bn: f64, share: f64) -> f64 {
     let n = w.nation_mut(id);
     match (n.treasury_bn, n.debt_bn) {
         (Some(treasury), Some(debt)) => {
+            let unabsorbed = (-bn - debt).max(0.0);
             let (treasury, debt) = pay(treasury, debt, bn);
             n.treasury_bn = Some(treasury);
             n.debt_bn = Some(debt);
             n.debt_gdp = debt / n.gdp.max(0.1);
+            unabsorbed
         }
         _ => {
+            let unabsorbed = (-bn - n.debt_gdp.max(0.0) * n.gdp.max(0.1)).max(0.0);
             n.debt_gdp = (n.debt_gdp + share).max(0.0);
+            unabsorbed
         }
     }
 }
@@ -1214,6 +1234,7 @@ pub fn tick(w: &mut WorldState) {
     let oil_price = w.oil_price;
     let player = w.player;
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+    let mut district_growth: Vec<(NationId, f64)> = Vec::with_capacity(ids.len());
 
     for id in ids {
         let sanction_share = w.sanction_weight(id);
@@ -1486,7 +1507,9 @@ pub fn tick(w: &mut WorldState) {
         // ---- Population ----
         let demographic_support = crate::ministries::health_population(budget_gap[BUDGET_HEALTH])
             + crate::ministries::housing_population(budget_gap[BUDGET_HOUSING]);
+        let population_before = n.population;
         n.population *= 1.0 + (population_growth(n) + demographic_support) / 12.0;
+        district_growth.push((id, n.population / population_before));
 
         // ---- Stability ----
         // The whole of the month's push, less the mean reversion, is
@@ -1523,6 +1546,11 @@ pub fn tick(w: &mut WorldState) {
             n.separatism = (n.separatism - cohesion).max(0.0);
         }
     }
+
+    // Technology applies its own population channel later in this same month.
+    // Hold this exact first multiplier transiently so both can be paid in one
+    // province-map pass, in the same arithmetic order.
+    w.district_population_growth = district_growth;
 }
 
 /// How much a nation's population growth MOVES as it gets rich, and nothing
@@ -1562,6 +1590,30 @@ pub fn transition(gdp_pc: f64) -> f64 {
 /// allowed to disagree.
 pub fn population_growth(n: &Nation) -> f64 {
     transition(n.gdp * 1000.0 / n.population) + n.pop_growth_offset
+}
+
+/// The annual demographic pace the next monthly tick will apply to one nation,
+/// including the player's health and housing budget choices. Exposed so the
+/// province dossier can state the same rate the simulation uses.
+///
+/// The two arms are `ministries::health_population` and
+/// `ministries::housing_population`, which is where the tick's own
+/// `demographic_support` comes from -- not a second copy of `* 0.030` and
+/// `* 0.015` beside it. The ministry named FAMILIES when this was written is
+/// HOUSING now; the index is the same slot and the coefficients are unmoved.
+pub fn effective_population_growth(w: &WorldState, id: NationId) -> Option<f64> {
+    let n = w.nation_opt(id)?;
+    let policy = if w.player == Some(id) {
+        crate::ministries::health_population(n.budget_gap(BUDGET_HEALTH))
+            + crate::ministries::housing_population(n.budget_gap(BUDGET_HOUSING))
+    } else {
+        0.0
+    };
+    let economy = population_growth(n) + policy;
+    let technology = crate::tech::demographic_growth(n);
+    // Both channels are applied as monthly multipliers. Return the equivalent
+    // annual pace of their product, not a browser-side approximation.
+    Some(((1.0 + economy / 12.0) * (1.0 + technology / 12.0) - 1.0) * 12.0)
 }
 
 fn oil_market(w: &mut WorldState) {

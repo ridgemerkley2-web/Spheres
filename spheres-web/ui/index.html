@@ -79,69 +79,266 @@
   }
 
   /* ---------- setup ----------
-     137 nations do not fit on one screen, so the picker is a searchable,
-     sortable, scrolling grid between a fixed masthead and a fixed footer —
-     the GOVERN button must never be scrolled out of reach. */
+     Nation selection is its own full-screen arcade cabinet: the left half is
+     the country you are about to inhabit, while the dense 1990 roster stays in
+     a deliberately lighter, searchable browser on the right. No external art
+     is needed — the soft world shapes are CSS, so the executable stays whole. */
   #setup {
-    position: fixed; inset: 0; background: radial-gradient(120% 90% at 50% 0%, #141a23 0%, var(--bg) 65%); z-index: 50;
-    display: flex; flex-direction: column; align-items: center;
-    padding: 26px 20px 0; overflow: hidden;
+    --pick-ink: #373344;
+    --pick-muted: #756f80;
+    --pick-paper: #f3eee7;
+    --pick-card: rgba(255,255,255,.62);
+    --pick-line: rgba(75,65,92,.16);
+    --pick-lilac: #bba9d2;
+    --pick-blue: #9bc8d0;
+    --pick-peach: #e8b4a1;
+    --pick-mint: #a7cdb9;
+    position: fixed; inset: 0; z-index: 50; height: 100vh; height: 100dvh; overflow: hidden;
+    display: flex; color: var(--pick-ink);
+    background:
+      radial-gradient(circle at 12% 18%, rgba(255,255,255,.95) 0 2%, transparent 24%),
+      radial-gradient(circle at 7% 76%, rgba(187,169,210,.38) 0, transparent 30%),
+      radial-gradient(circle at 94% 8%, rgba(155,200,208,.42) 0, transparent 29%),
+      linear-gradient(128deg, #f5eee5 0%, #ede6ee 49%, #dfecee 100%);
   }
+  #setup::before, #setup::after {
+    content: ""; position: absolute; pointer-events: none; border-radius: 50%;
+    filter: blur(2px); opacity: .7;
+  }
+  #setup::before {
+    width: 32vw; height: 32vw; min-width: 360px; min-height: 360px;
+    left: -15vw; bottom: -18vw; border: 1px solid rgba(255,255,255,.72);
+    box-shadow: 0 0 0 44px rgba(232,180,161,.08), 0 0 0 100px rgba(255,255,255,.08);
+  }
+  #setup::after {
+    width: 20vw; height: 20vw; right: -6vw; top: -10vw;
+    border: 72px solid rgba(255,255,255,.14);
+  }
+  .setup-shell {
+    position: relative; z-index: 1; width: 100%; height: 100%; min-height: 0;
+    display: grid; grid-template-rows: 84px minmax(0, 1fr);
+  }
+  .setup-mast {
+    display: flex; align-items: center; justify-content: space-between; gap: 30px;
+    padding: 13px clamp(22px, 3.2vw, 54px); border-bottom: 1px solid var(--pick-line);
+    background: rgba(255,255,255,.25); backdrop-filter: blur(18px);
+  }
+  .setup-brand { display: flex; align-items: baseline; gap: 22px; min-width: 0; }
   #setup .title {
-    font-family: var(--serif); font-size: 44px; font-weight: 400;
-    letter-spacing: .5em; text-indent: .5em; margin-bottom: 2px;
-    color: var(--brass-hi); text-shadow: 0 2px 12px #000;
+    font-family: var(--serif); font-size: clamp(25px, 2.7vw, 38px); line-height: 1;
+    font-weight: 700; letter-spacing: .27em; text-indent: .27em; color: #4b425b;
+    text-shadow: 0 2px 0 rgba(255,255,255,.7); white-space: nowrap;
   }
-  #setup .title::after {
-    content: ""; display: block; height: 1px; margin: 10px auto 0;
-    width: 420px; max-width: 60vw;
-    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  .setup-kicker, .setup-step-label {
+    color: #766b86; font-size: 9px; font-weight: 700; letter-spacing: .22em;
+    text-transform: uppercase;
   }
-  #setup .sub { font-family: var(--serif); color: var(--dim); margin-bottom: 20px; letter-spacing: .2em; font-size: 12px; }
-  #setupBar {
-    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
-    width: min(980px, 100%); margin-bottom: 12px;
+  .setup-era { display: flex; align-items: center; gap: 12px; text-align: right; }
+  .setup-era-copy { display: grid; gap: 2px; }
+  .setup-pulse {
+    width: 10px; height: 10px; flex: none; border-radius: 50%; background: #d79a8c;
+    box-shadow: 0 0 0 6px rgba(215,154,140,.14);
   }
-  #nationSearch {
-    flex: 1; min-width: 200px; padding: 8px 12px; border-radius: 2px;
+  #setup .sub {
+    font-family: var(--mono); color: var(--pick-muted); letter-spacing: .1em;
+    font-size: 10px; white-space: nowrap;
   }
-  #nationSearch:focus { outline: none; border-color: var(--brass-dim); }
-  #nationSort {
-    padding: 8px; border-radius: 2px;
+  .setup-layout {
+    min-height: 0; display: grid; grid-template-columns: minmax(390px, .88fr) minmax(520px, 1.12fr);
   }
-  #pickWrap {
-    flex: 1 1 auto; min-height: 0; overflow-y: auto;
-    width: min(980px, 100%); padding-right: 4px;
+  #nationShowcase {
+    --nation-hue: 258;
+    position: relative; min-width: 0; min-height: 0; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(26px, 4vw, 66px) clamp(26px, 4.4vw, 72px) clamp(24px, 3vw, 48px);
+    border-right: 1px solid var(--pick-line);
   }
-  #nationPick {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 8px; padding-bottom: 12px;
+  #nationShowcase::before {
+    content: ""; position: absolute; width: min(42vw, 560px); aspect-ratio: 1;
+    top: 50%; left: 42%; transform: translate(-50%, -53%); border-radius: 50%;
+    background: radial-gradient(circle at 35% 28%, hsla(var(--nation-hue),55%,98%,.96), hsla(var(--nation-hue),46%,78%,.42) 43%, transparent 70%);
+    filter: blur(1px); pointer-events: none; transition: background .35s ease;
   }
-  #nationPick .opt {
-    padding: 10px; border: 1px solid var(--edge-dark); border-radius: 2px;
-    background: linear-gradient(180deg, #1d242d, #171d24);
-    box-shadow: inset 0 1px 0 var(--edge-lite);
-    cursor: pointer; text-align: center;
-    transition: border-color .12s, filter .12s;
+  .showcase-copy { position: relative; z-index: 2; width: min(100%, 600px); }
+  .showcase-kicker {
+    display: flex; align-items: center; gap: 9px; margin-bottom: 18px;
+    color: #7d728d; font-size: 10px; font-weight: 700; letter-spacing: .2em;
   }
-  #nationPick .opt:hover { border-color: var(--brass-dim); filter: brightness(1.12); }
-  #nationPick .opt.sel {
-    border-color: var(--brass-dim); background: #26200f;
-    box-shadow: inset 0 1px 0 rgba(232,200,126,.13), 0 0 0 1px rgba(138,116,66,.35);
+  .showcase-kicker::before { content: ""; width: 25px; height: 2px; background: hsl(var(--nation-hue), 38%, 56%); }
+  .nation-art { position: relative; width: clamp(116px, 12vw, 178px); aspect-ratio: 1; margin: 0 0 22px 7px; }
+  .nation-orbit {
+    position: absolute; inset: 4%; border: 1px solid hsla(var(--nation-hue),35%,43%,.32);
+    border-radius: 50%; transform: rotate(-18deg) scaleY(.39);
+    box-shadow: 0 0 0 15px hsla(var(--nation-hue),60%,97%,.19);
   }
-  #nationPick .opt .nm { font-weight: 600; }
-  #nationPick .opt .gd { color: var(--dim); font-size: 11px; }
-  #nationPick .none { grid-column: 1 / -1; color: var(--dim); text-align: center; padding: 36px 0; }
-  #setupFoot {
-    display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
-    width: min(980px, 100%); padding: 12px 0 16px; border-top: 1px solid var(--brass-etch);
+  .nation-orbit::after {
+    content: ""; position: absolute; width: 9px; height: 9px; border-radius: 50%;
+    right: 2%; top: 44%; background: hsl(var(--nation-hue), 46%, 57%);
+    box-shadow: 0 2px 8px hsla(var(--nation-hue),45%,35%,.32);
   }
-  #setupFoot .grow { flex: 1; }
-  #setupFoot .hint { color: var(--faint); font-size: 11px; }
-  #startBtn { font-family: var(--serif); font-size: 14px; padding: 9px 22px; letter-spacing: .08em; }
-  .seedrow { display: flex; gap: 10px; align-items: center; color: var(--dim); }
+  .nation-planet {
+    position: absolute; inset: 19%; display: grid; place-items: center; border-radius: 50%;
+    color: rgba(255,255,255,.9); font: 700 clamp(23px, 3vw, 40px)/1 var(--serif);
+    letter-spacing: .06em; text-shadow: 0 2px 10px rgba(70,54,85,.2);
+    background:
+      radial-gradient(ellipse at 34% 24%, rgba(255,255,255,.76) 0 7%, transparent 8%),
+      radial-gradient(ellipse at 64% 64%, hsla(calc(var(--nation-hue) + 38),36%,92%,.46) 0 15%, transparent 16%),
+      linear-gradient(145deg, hsl(var(--nation-hue), 42%, 79%), hsl(calc(var(--nation-hue) + 30), 38%, 66%));
+    box-shadow: inset -13px -16px 24px hsla(var(--nation-hue),40%,40%,.2),
+                inset 8px 8px 18px rgba(255,255,255,.42), 0 18px 45px hsla(var(--nation-hue),36%,45%,.24);
+    transition: background .35s ease, box-shadow .35s ease;
+  }
+  #showcaseName {
+    max-width: 680px; margin: 0; font-family: var(--serif); font-weight: 700;
+    font-size: clamp(34px, 4.25vw, 68px); line-height: .98; letter-spacing: -.035em;
+    color: #40384e; text-wrap: balance;
+  }
+  #showcasePrompt { min-height: 42px; max-width: 500px; margin: 14px 0 20px; color: var(--pick-muted); font-size: 12px; }
+  .showcase-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+  .showcase-stat {
+    min-width: 0; padding: 11px 12px 10px; border: 1px solid rgba(255,255,255,.67);
+    border-radius: 14px; background: rgba(255,255,255,.38);
+    box-shadow: 0 8px 26px rgba(79,65,96,.06), inset 0 0 0 1px var(--pick-line);
+  }
+  .showcase-stat span { display: block; color: #81788c; font-size: 8px; font-weight: 700; letter-spacing: .16em; }
+  .showcase-stat strong {
+    display: block; margin-top: 4px; overflow: hidden; text-overflow: ellipsis;
+    color: #4b4258; font: 700 clamp(15px, 1.55vw, 22px)/1.15 var(--serif); white-space: nowrap;
+  }
+  .showcase-stat small { display: block; margin-top: 3px; color: #938b9b; font-size: 9px; }
+  #setupFoot { position: relative; z-index: 3; width: min(100%, 600px); margin-top: 22px; }
+  .seedrow {
+    display: flex; align-items: center; gap: 10px; padding: 9px 11px;
+    border: 1px solid var(--pick-line); border-radius: 13px; color: var(--pick-muted);
+    background: rgba(255,255,255,.3);
+  }
+  .seedrow label { font-size: 9px; font-weight: 700; letter-spacing: .16em; }
   .seedrow input {
-    width: 90px; padding: 6px; border-radius: 2px;
+    width: 92px; min-width: 0; padding: 5px 8px; border: 0; border-bottom: 1px solid rgba(75,65,92,.24);
+    border-radius: 0; color: #4b4258; background: transparent; box-shadow: none;
+  }
+  .seedrow input:focus { outline: 2px solid rgba(137,116,164,.26); outline-offset: 2px; }
+  .seedrow .muted { color: #938a9c; font-size: 9px; }
+  #startBtn {
+    width: 100%; min-height: 56px; margin-top: 10px; border: 0; border-radius: 17px;
+    padding: 12px 20px; color: #fff; font: 700 14px/1.2 var(--mono); letter-spacing: .1em;
+    background: linear-gradient(125deg, #76618f, #8e78a4 52%, #709da5);
+    box-shadow: 0 15px 30px rgba(82,66,103,.2), inset 0 1px 0 rgba(255,255,255,.3);
+    transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+  }
+  #startBtn:hover:not(:disabled) {
+    transform: translateY(-2px); color: #fff; border: 0; filter: saturate(1.08) brightness(1.04);
+    background: linear-gradient(125deg, #806998, #987fae 52%, #78a6ae);
+    box-shadow: 0 18px 35px rgba(82,66,103,.27), inset 0 1px 0 rgba(255,255,255,.34);
+  }
+  #startBtn:disabled {
+    color: #817a8a; background: rgba(255,255,255,.46); box-shadow: inset 0 0 0 1px var(--pick-line);
+  }
+  .nation-browser {
+    min-width: 0; min-height: 0; display: grid; grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+    padding: clamp(24px, 3.2vw, 48px) clamp(20px, 3.6vw, 58px) 22px;
+    background: rgba(255,255,255,.27); backdrop-filter: blur(20px);
+  }
+  .browser-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 17px; }
+  .browser-head h2 { margin-top: 4px; color: #453d53; font: 700 clamp(24px, 2.4vw, 36px)/1 var(--serif); letter-spacing: -.02em; }
+  #nationCount { color: #857d8f; font-size: 10px; letter-spacing: .1em; white-space: nowrap; }
+  #setupBar { display: grid; grid-template-columns: minmax(150px, 1fr) auto auto; gap: 8px; align-items: stretch; }
+  .search-shell { position: relative; min-width: 0; }
+  .search-shell::before { content: "⌕"; position: absolute; left: 13px; top: 50%; transform: translateY(-54%); color: #8d8398; font-size: 21px; pointer-events: none; }
+  #nationSearch, #nationSort, #randomBtn {
+    height: 44px; border: 1px solid rgba(255,255,255,.68); border-radius: 14px;
+    color: #51485e; background: rgba(255,255,255,.54); box-shadow: inset 0 0 0 1px var(--pick-line), 0 6px 20px rgba(79,65,96,.05);
+  }
+  #nationSearch { width: 100%; padding: 9px 13px 9px 39px; }
+  #nationSearch::placeholder { color: #9991a1; }
+  #nationSearch:focus, #nationSort:focus, #randomBtn:focus-visible { outline: 3px solid rgba(138,112,166,.22); outline-offset: 2px; border-color: rgba(108,90,130,.32); }
+  #nationSort { padding: 8px 30px 8px 12px; }
+  #randomBtn {
+    padding: 7px 14px; color: #685978; font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  }
+  #randomBtn:hover:not(:disabled) { color: #4d405d; border-color: rgba(108,90,130,.32); background: rgba(255,255,255,.78); }
+  .browser-rule { height: 1px; margin: 16px 0 13px; background: linear-gradient(90deg, var(--pick-line), transparent); }
+  #pickWrap { min-height: 0; overflow-y: auto; padding: 1px 8px 10px 1px; scrollbar-color: #c0b5c8 transparent; }
+  #nationPick { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 9px; }
+  #nationPick .opt {
+    position: relative; min-width: 0; min-height: 76px; display: grid; grid-template-columns: 36px minmax(0, 1fr);
+    align-items: center; gap: 10px; padding: 10px 12px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.7); border-radius: 15px; text-align: left;
+    color: #4c4458; background: var(--pick-card);
+    box-shadow: inset 0 0 0 1px rgba(75,65,92,.1), 0 7px 18px rgba(79,65,96,.055);
+    cursor: pointer; transition: transform .13s ease, background .13s ease, box-shadow .13s ease, border-color .13s ease;
+  }
+  #nationPick .opt::after {
+    content: ""; position: absolute; width: 70px; height: 70px; right: -38px; bottom: -45px;
+    border-radius: 50%; background: hsla(var(--nation-hue),45%,70%,.16); transition: transform .18s ease;
+  }
+  #nationPick .opt:hover {
+    transform: translateY(-2px); color: #403747; border-color: hsla(var(--nation-hue),35%,55%,.34);
+    background: rgba(255,255,255,.82); box-shadow: 0 10px 24px rgba(79,65,96,.1), inset 0 0 0 1px rgba(75,65,92,.08);
+  }
+  #nationPick .opt:focus-visible { outline: 3px solid hsla(var(--nation-hue),40%,48%,.27); outline-offset: 2px; }
+  #nationPick .opt.sel {
+    color: #3f354d; border-color: hsla(var(--nation-hue),38%,48%,.4);
+    background: linear-gradient(135deg, rgba(255,255,255,.9), hsla(var(--nation-hue),52%,86%,.68));
+    box-shadow: 0 10px 25px hsla(var(--nation-hue),32%,40%,.15), inset 0 0 0 2px rgba(255,255,255,.5);
+  }
+  #nationPick .opt.sel::after { transform: scale(1.35); }
+  .nation-check {
+    position: absolute; z-index: 2; top: 7px; right: 8px; width: 18px; height: 18px;
+    display: grid; place-items: center; border-radius: 50%; color: transparent;
+    font-size: 10px; font-weight: 900; background: transparent; transition: color .13s ease, background .13s ease;
+  }
+  #nationPick .opt.sel .nation-check { color: #fff; background: hsl(var(--nation-hue), 35%, 52%); }
+  .nation-chip {
+    width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%;
+    color: #fff; font: 700 10px/1 var(--mono); letter-spacing: .04em;
+    background: linear-gradient(145deg, hsl(var(--nation-hue),40%,75%), hsl(calc(var(--nation-hue) + 30),35%,62%));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.4);
+  }
+  .nation-card-copy { min-width: 0; }
+  #nationPick .opt .nm { display: block; overflow: hidden; text-overflow: ellipsis; font-weight: 700; font-size: 11px; white-space: nowrap; }
+  #nationPick .opt .gd { display: block; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; color: #8d8596; font-size: 9px; white-space: nowrap; }
+  #nationPick .none {
+    grid-column: 1 / -1; padding: 54px 20px; border: 1px dashed rgba(75,65,92,.2); border-radius: 18px;
+    color: var(--pick-muted); text-align: center; background: rgba(255,255,255,.26);
+  }
+  .browser-foot { display: flex; align-items: center; gap: 8px; padding-top: 12px; color: #938b9c; font-size: 9px; letter-spacing: .04em; }
+  .browser-foot::before { content: "↵"; width: 22px; height: 22px; display: grid; place-items: center; border: 1px solid var(--pick-line); border-radius: 7px; color: #6f647d; background: rgba(255,255,255,.34); }
+  @media (max-width: 960px) {
+    #setup { overflow-y: auto; }
+    .setup-shell { height: auto; min-height: 100%; grid-template-rows: auto auto; }
+    .setup-layout { grid-template-columns: 1fr; }
+    #nationShowcase { min-height: 610px; border-right: 0; border-bottom: 1px solid var(--pick-line); }
+    .nation-browser { min-height: 650px; }
+    .setup-kicker { display: none; }
+  }
+  @media (max-height: 760px) and (min-width: 961px) {
+    .setup-shell { grid-template-rows: 70px minmax(0, 1fr); }
+    #nationShowcase { padding-top: 20px; padding-bottom: 20px; }
+    .nation-browser { padding-top: 21px; }
+    .nation-art { width: 116px; margin-bottom: 12px; }
+    #showcasePrompt { margin: 9px 0 12px; min-height: 32px; }
+    .showcase-stat { padding: 8px 10px; }
+    #setupFoot { margin-top: 13px; }
+    .browser-head { margin-bottom: 11px; }
+    .browser-rule { margin: 10px 0; }
+  }
+  @media (max-width: 620px) {
+    .setup-mast { align-items: flex-start; padding: 16px 18px; }
+    .setup-brand { display: block; }
+    #setup .title { font-size: 25px; }
+    .setup-era { display: none; }
+    #nationShowcase { min-height: 570px; padding: 28px 20px; }
+    .nation-browser { min-height: 690px; padding: 28px 18px 20px; }
+    #setupBar { grid-template-columns: 1fr auto; }
+    .search-shell { grid-column: 1 / -1; }
+    #nationPick { grid-template-columns: 1fr; }
+    .showcase-stats { gap: 5px; }
+    .showcase-stat { padding: 9px 8px; }
+    .seedrow { flex-wrap: wrap; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #nationPick .opt, #nationPick .opt::after, .nation-planet, #startBtn { transition: none; }
   }
 
   /* ---------- layout ---------- */
@@ -213,6 +410,245 @@
   .dockbtn small { display: block; color: var(--faint); font-size: 8px; }
   .dockbtn[aria-expanded="true"] { border-color: var(--amber); background: #332916; }
 
+  /* Logistics is an opt-in reading laid over the globe, not a third drawer.
+     It has no scrim and occupies only its own plate, so the globe remains the
+     board: drag, zoom and province clicks still belong to #glmap everywhere
+     outside this 340px dispatch surface. */
+  #logisticsDockBtn { position: relative; }
+  .dockbadge {
+    display: none; position: absolute; top: 3px; right: 4px; min-width: 16px;
+    height: 16px; padding: 0 4px; align-items: center; justify-content: center;
+    border: 1px solid #9b4f49; border-radius: 999px; background: #401b1b;
+    color: #ffd5d1; font: 700 8px/1 var(--mono); box-shadow: 0 2px 8px #0009;
+  }
+  .dockbadge.on { display: inline-flex; }
+  .dockbadge.warn { border-color: #8b7136; background: #3a2d12; color: var(--brass-hi); }
+  .logistics-panel {
+    display: none; position: absolute; z-index: 29; left: 14px; bottom: 86px;
+    width: min(340px, calc(100vw - 28px)); max-height: calc(100% - 112px);
+    flex-direction: column; overflow: hidden; pointer-events: auto;
+    color: var(--ink); background: linear-gradient(150deg, rgba(18,25,34,.98), rgba(6,10,15,.97));
+    border: 1px solid #75613a; border-radius: 8px;
+    box-shadow: 0 18px 58px #000c, inset 0 1px #e8c87e20;
+  }
+  .logistics-panel.open { display: flex; animation: dispatch-in .16s ease-out; }
+  .logistics-head {
+    display: flex; align-items: center; gap: 9px; flex: none; padding: 11px 11px 9px;
+    border-bottom: 1px solid #2d3744; background: linear-gradient(90deg, #c9a55a12, transparent);
+  }
+  .logistics-head .eyebrow { color: var(--faint); font: 700 8px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+  .logistics-head h2 { margin: 4px 0 0; color: var(--brass-hi); font: 700 16px/1 var(--serif); letter-spacing: .07em; }
+  .logistics-head .grow { flex: 1; }
+  .logistics-close { width: 34px; height: 34px; padding: 0; font-size: 19px; }
+  .logistics-body { min-height: 0; overflow-y: auto; padding: 10px; }
+  .logistics-stamp { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+  .logistics-stamp b { color: var(--bright); font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .logistics-stamp span { color: var(--faint); font-size: 8px; text-align: right; }
+  .logistics-filters { display: flex; gap: 5px; overflow-x: auto; scrollbar-width: thin; }
+  .logistics-filters { padding-bottom: 8px; }
+  .logistics-filters button {
+    flex: none; min-height: 28px; padding: 5px 8px; border-color: #344250;
+    border-radius: 999px; color: var(--dim); background: #0b1118;
+    font: 700 8px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase;
+  }
+  .logistics-filters button { display: inline-flex; align-items: center; gap: 5px; }
+  .logistics-filters svg { width: 11px; height: 11px; }
+  .logistics-filters button[aria-pressed="true"] {
+    border-color: var(--brass-dim); background: #302815; color: var(--brass-hi);
+  }
+  .logistics-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 8px; }
+  .logistics-summary span { padding: 7px 6px; border: 1px solid #293642; border-radius: 5px; background: #090f15; color: var(--faint); font: 700 7px/1.1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+  .logistics-summary b { display: block; margin-top: 4px; color: var(--cyan); font-size: 15px; }
+  .logistics-summary .constrained b { color: var(--amber); }
+  .logistics-summary .blocked b { color: #e58078; }
+  .logistics-list { display: grid; gap: 6px; }
+  .lane-card {
+    position: relative; overflow: hidden; padding: 9px 9px 8px 11px;
+    border: 1px solid #2b3946; border-left: 3px solid var(--cyan); border-radius: 6px;
+    background: #0a1017e8; cursor: pointer; outline: none;
+  }
+  .lane-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: var(--cyan); opacity: .8; }
+  .lane-card.constrained { border-left-color: var(--amber); }
+  .lane-card.constrained::before { background: repeating-linear-gradient(90deg, var(--amber) 0 7px, transparent 7px 11px); }
+  .lane-card.blocked { border-left-color: #d96560; }
+  .lane-card.blocked::before { background: repeating-linear-gradient(90deg, #d96560 0 3px, transparent 3px 8px); }
+  .lane-card.selected { border-color: var(--brass-hi); background: #171b1f; box-shadow: inset 0 0 0 1px #c9a55a35; }
+  .lane-card:hover { background: #111923; }
+  .lane-top { display: flex; align-items: start; gap: 7px; }
+  .lane-route { min-width: 0; flex: 1; color: var(--bright); font: 700 11px/1.25 var(--serif); }
+  .lane-route .arrow { color: var(--brass-dim); padding: 0 3px; }
+  .lane-state { flex: none; max-width: 46%; color: var(--cyan); font: 700 8px/1.2 var(--mono); letter-spacing: .07em; text-align: right; text-transform: uppercase; }
+  .lane-state i { margin-right: 3px; font-style: normal; }
+  .lane-card.constrained .lane-state { color: var(--amber); }
+  .lane-card.blocked .lane-state { color: #ef948d; }
+  .lane-meta { margin-top: 3px; color: var(--faint); font: 8px/1.25 var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+  .lane-meta svg { width: 11px; height: 11px; margin-right: 4px; vertical-align: -2px; }
+  .lane-quantities { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 7px; }
+  .lane-quantities span { min-width: 0; padding-left: 5px; border-left: 1px solid #2c3a47; color: var(--faint); font: 700 7px/1.15 var(--mono); text-transform: uppercase; }
+  .lane-quantities b { display: block; overflow: hidden; margin-top: 3px; color: var(--ink); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; text-transform: none; }
+  .lane-reason { margin-top: 7px; color: var(--dim); font-size: 9px; line-height: 1.35; }
+  .lane-card.blocked .lane-reason { color: #e7aaa5; }
+  .lane-actions { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 7px; }
+  .lane-actions button, .logistics-more { min-height: 29px; padding: 5px 9px; font: 700 8px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .lane-actions button:first-child { border-color: #406776; color: #a9e5ef; }
+  .logistics-more { width: 100%; margin-top: 8px; color: var(--brass-hi); border-color: #5d4d2c; }
+  .logistics-empty { padding: 18px 9px; border: 1px dashed #34414d; border-radius: 6px; color: var(--dim); font-size: 10px; line-height: 1.45; text-align: center; }
+  .logistics-panel button:focus-visible, .lane-card:focus-visible, .dockbtn:focus-visible {
+    outline: 2px solid var(--cyan); outline-offset: 2px;
+  }
+  .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  @keyframes dispatch-in { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: none; } }
+  @media (max-width: 720px) {
+    .globe-stage { height: calc(100vh - 178px); height: calc(100dvh - 178px); }
+    #commandDock { left: 8px; right: 8px; bottom: 8px; gap: 4px; padding: 4px; }
+    .dockbtn { flex: 1; min-width: 0; min-height: 44px; grid-template-columns: auto 1fr; gap: 5px; padding: 5px 7px; }
+    .dockbtn .icon { font-size: 15px; }
+    .dockbtn .label { font-size: 8px; }
+    .dockbtn small { max-width: 92px; overflow: hidden; font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
+    .logistics-panel { left: 8px; right: 8px; bottom: 68px; width: auto; max-height: min(55vh, calc(100vh - 118px)); max-height: min(55dvh, calc(100dvh - 118px)); border-radius: 10px 10px 7px 7px; }
+    body.logistics-open .province-dossier.open { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logistics-panel.open { animation: none; }
+  }
+
+  /* Production is the second map-side board: a four-slot arcade queue, not a
+     spreadsheet and not another modal. It sits opposite Logistics so the
+     globe remains the visual centre of the game. */
+  #productionDockBtn { position: relative; }
+  .production-panel {
+    display: none; position: absolute; z-index: 29; right: 14px; bottom: 86px;
+    width: min(372px, calc(100vw - 28px)); max-height: calc(100% - 112px);
+    flex-direction: column; overflow: hidden; pointer-events: auto;
+    color: var(--ink); background: linear-gradient(155deg, rgba(20,26,32,.985), rgba(7,10,14,.97));
+    border: 1px solid #725b35; border-radius: 8px;
+    box-shadow: 0 18px 58px #000c, inset 0 1px #f0cf7b1c;
+  }
+  .production-panel.open { display: flex; animation: works-in .16s ease-out; }
+  .production-head {
+    display: flex; align-items: center; gap: 9px; flex: none; padding: 11px 11px 9px;
+    border-bottom: 1px solid #303843; background: linear-gradient(270deg, #c9a55a13, transparent);
+  }
+  .production-head .eyebrow { color: var(--faint); font: 700 8px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+  .production-head h2 { margin: 4px 0 0; color: var(--brass-hi); font: 700 16px/1 var(--serif); letter-spacing: .07em; }
+  .production-head .grow { flex: 1; }
+  .production-close { width: 34px; height: 34px; padding: 0; font-size: 19px; }
+  .production-modes { display: flex; flex: none; padding: 3px; border: 1px solid #394550; border-radius: 5px; background: #080c11; }
+  .production-modes button { min-height: 27px; padding: 5px 8px; border: 0; border-radius: 3px; color: var(--faint); background: transparent; font: 700 7px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+  .production-modes button.on { color: #f5d891; background: #352b17; box-shadow: inset 0 0 0 1px #725b35; }
+  .production-body { min-height: 0; overflow-y: auto; padding: 10px; }
+  .production-stamp { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; margin-bottom: 8px; }
+  .production-stamp b { color: var(--bright); font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .production-stamp span { color: var(--faint); font-size: 8px; text-align: right; }
+  .production-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 8px; }
+  .production-summary span { padding: 7px 6px; border: 1px solid #2b3641; border-radius: 5px; background: #090e13; color: var(--faint); font: 700 7px/1.1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+  .production-summary b { display: block; margin-top: 4px; color: var(--cyan); font-size: 15px; }
+  .production-summary .slowed b { color: var(--amber); }
+  .production-summary .blocked b { color: #e58078; }
+  .production-list { display: grid; gap: 6px; }
+  .work-card {
+    position: relative; overflow: hidden; padding: 9px 9px 9px 11px;
+    border: 1px solid #2b3946; border-left: 3px solid var(--cyan); border-radius: 6px;
+    background: #0a1017e8; outline: none; cursor: pointer;
+  }
+  .work-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: var(--cyan); opacity: .8; }
+  .work-card.slowed { border-left-color: var(--amber); }
+  .work-card.slowed::before { background: repeating-linear-gradient(90deg, var(--amber) 0 7px, transparent 7px 11px); }
+  .work-card.blocked { border-left-color: #d96560; }
+  .work-card.blocked::before { background: repeating-linear-gradient(90deg, #d96560 0 3px, transparent 3px 8px); }
+  .work-card.selected { border-color: var(--brass-hi); background: #171b1f; box-shadow: inset 0 0 0 1px #c9a55a35; }
+  .work-top { display: flex; align-items: flex-start; gap: 8px; }
+  .work-art { flex: none; display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid #526270; border-radius: 50%; color: var(--brass-hi); background: #131b23; font: 700 16px/1 var(--serif); }
+  .work-title { min-width: 0; flex: 1; }
+  .work-title b { display: block; color: var(--bright); font: 700 11px/1.25 var(--serif); }
+  .work-title span { display: block; margin-top: 2px; color: var(--faint); font: 8px/1.2 var(--mono); text-transform: uppercase; }
+  .work-state { flex: none; color: var(--cyan); font: 700 8px/1.2 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .work-card.slowed .work-state { color: var(--amber); }
+  .work-card.blocked .work-state { color: #ef948d; }
+  .work-progress { height: 7px; margin-top: 8px; overflow: hidden; border: 1px solid #27343f; border-radius: 99px; background: #05080c; }
+  .work-progress i { display: block; height: 100%; background: linear-gradient(90deg, #3e8da1, #6cd4e5); }
+  .work-card.slowed .work-progress i { background: linear-gradient(90deg, #806629, #d0a547); }
+  .work-card.blocked .work-progress i { background: #7f3434; }
+  .work-line { display: flex; justify-content: space-between; gap: 7px; margin-top: 4px; color: var(--faint); font: 8px/1.3 var(--mono); }
+  .work-line b { color: var(--ink); font-weight: 700; }
+  .work-reason { margin-top: 7px; color: var(--dim); font-size: 9px; line-height: 1.35; }
+  .work-card.blocked .work-reason { color: #e7aaa5; }
+  .work-needs { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 7px; }
+  .work-need { padding: 3px 5px; border: 1px solid #303d49; border-radius: 999px; color: var(--dim); background: #090e14; font: 700 7px/1 var(--mono); }
+  .work-need.short { border-color: #74403d; color: #eeaaa4; }
+  .work-actions { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-top: 7px; }
+  .work-actions button { min-height: 28px; padding: 5px 8px; font: 700 8px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .work-actions .on { border-color: var(--brass-dim); color: var(--brass-hi); background: #302815; }
+  .work-actions .cancel { margin-left: auto; color: #e6a09a; border-color: #69413e; }
+  .production-new, .production-back { width: 100%; min-height: 34px; margin-top: 8px; color: var(--brass-hi); border-color: #67552f; font: 700 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .built-toggle { display: flex; width: 100%; min-height: 34px; align-items: center; justify-content: space-between; margin-top: 8px; padding: 7px 9px; color: var(--faint); border-color: #35424e; font: 700 8px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .built-toggle b { color: var(--brass-hi); font-size: 10px; }
+  .built-list { display: grid; gap: 5px; margin-top: 5px; }
+  .built-row { padding: 7px 9px; border: 1px solid #2c3843; border-radius: 5px; background: #090e14; }
+  .built-row b { display: block; color: var(--bright); font: 700 9px/1.2 var(--serif); }
+  .built-caps { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+  .built-cap { padding: 3px 5px; border: 1px solid #51462f; border-radius: 999px; color: var(--brass-hi); background: #16140e; font: 700 7px/1 var(--mono); text-transform: uppercase; }
+  .production-empty { padding: 18px 9px; border: 1px dashed #34414d; border-radius: 6px; color: var(--dim); font-size: 10px; line-height: 1.45; text-align: center; }
+  .project-catalog { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .project-choice { min-height: 108px; padding: 9px; text-align: left; border-color: #35424e; background: #0a1016; }
+  .project-choice:hover { border-color: var(--brass-dim); background: #131820; }
+  .project-choice .work-art { margin-bottom: 6px; }
+  .project-choice b { display: block; color: var(--bright); font: 700 10px/1.2 var(--serif); }
+  .project-choice small { display: block; margin-top: 4px; color: var(--dim); font-size: 8px; line-height: 1.3; }
+  .project-choice .project-effect { color: #b8c8d2; }
+  .project-choice em { display: block; margin-top: 6px; color: var(--brass-hi); font: 700 7px/1.25 var(--mono); font-style: normal; text-transform: uppercase; }
+  .project-brief { margin-bottom: 7px; padding: 8px; border: 1px solid #37434d; border-radius: 5px; background: #0a1016; }
+  .project-brief b { display: block; color: var(--bright); font: 700 9px/1.3 var(--serif); }
+  .project-brief .work-needs { margin-top: 6px; }
+  .province-picks { display: grid; gap: 5px; }
+  .province-pick { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 7px; min-height: 42px; padding: 7px 9px; text-align: left; }
+  .province-pick b { color: var(--bright); font: 700 10px var(--serif); }
+  .province-pick span { color: var(--faint); font-size: 8px; }
+  .manufacturing-hero { position: relative; overflow: hidden; margin-bottom: 8px; padding: 11px; border: 1px solid #594c34; border-radius: 7px; background: radial-gradient(circle at 92% 20%, #c9a55a24, transparent 34%), linear-gradient(135deg, #171b20, #0a1016); }
+  .manufacturing-hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(135deg, transparent 0 13px, #d7b86708 13px 14px); }
+  .manufacturing-hero .stamp { color: var(--amber); font: 700 8px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+  .manufacturing-hero .money { margin-top: 6px; color: var(--bright); font: 700 23px/1 var(--serif); }
+  .manufacturing-hero .money small { color: var(--faint); font: 8px/1 var(--mono); text-transform: uppercase; }
+  .manufacturing-hero p { position: relative; z-index: 1; margin: 7px 0 0; color: var(--dim); font-size: 9px; line-height: 1.4; }
+  .manufacturing-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 8px; }
+  .manufacturing-summary span { padding: 7px 6px; border: 1px solid #2b3641; border-radius: 5px; background: #090e13; color: var(--faint); font: 700 7px/1.1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .manufacturing-summary b { display: block; margin-top: 4px; color: var(--cyan); font-size: 14px; letter-spacing: 0; text-transform: none; }
+  .manufacturing-summary .warn b { color: #e58078; }
+  .factory-card { border-left-color: #b69249; }
+  .factory-card::before { background: linear-gradient(90deg, #7c6532, #e0bc69); }
+  .factory-card.blocked::before { background: repeating-linear-gradient(90deg, #d96560 0 3px, transparent 3px 8px); }
+  .factory-output { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 8px; }
+  .factory-output span { padding: 6px; border: 1px solid #2d3943; border-radius: 4px; color: var(--faint); background: #080d12; font: 7px/1.2 var(--mono); text-transform: uppercase; }
+  .factory-output b { display: block; margin-top: 2px; color: var(--bright); font-size: 10px; text-transform: none; }
+  .factory-classes { display: flex; gap: 4px; overflow-x: auto; margin: 0 0 8px; padding-bottom: 2px; }
+  .factory-classes button { flex: none; min-height: 27px; padding: 5px 8px; color: var(--faint); font: 700 7px/1 var(--mono); text-transform: uppercase; }
+  .factory-classes button.on { color: var(--brass-hi); border-color: #7a6537; background: #2c2414; }
+  .equipment-catalog { display: grid; gap: 6px; }
+  .equipment-choice { position: relative; min-height: 78px; padding: 9px 9px 8px 42px; text-align: left; border-color: #35424e; background: #0a1016; }
+  .equipment-choice::before { content: attr(data-class-mark); position: absolute; left: 9px; top: 10px; display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid #685837; border-radius: 50%; color: var(--brass-hi); background: #17150f; font: 700 12px/1 var(--serif); }
+  .equipment-choice b { display: block; color: var(--bright); font: 700 10px/1.25 var(--serif); }
+  .equipment-choice span { display: block; margin-top: 3px; color: var(--dim); font-size: 8px; line-height: 1.3; }
+  .equipment-choice em { display: block; margin-top: 5px; color: var(--cyan); font: 700 7px/1.2 var(--mono); font-style: normal; text-transform: uppercase; }
+  .equipment-choice.locked { opacity: .52; filter: saturate(.45); }
+  .equipment-choice.locked em { color: #d18d87; }
+  .factory-ledger { margin-top: 8px; border-top: 1px solid #2f3942; padding-top: 7px; }
+  .factory-ledger summary { cursor: pointer; color: var(--brass-hi); font: 700 8px/1.3 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .factory-ledger-list { display: grid; gap: 4px; margin-top: 7px; }
+  .factory-ledger-row { display: grid; grid-template-columns: 1fr auto; gap: 7px; padding: 6px 7px; border: 1px solid #2b3741; border-radius: 4px; background: #090e13; }
+  .factory-ledger-row b { color: var(--bright); font: 700 9px/1.2 var(--serif); }
+  .factory-ledger-row span { color: var(--faint); font: 7px/1.25 var(--mono); text-align: right; }
+  .factory-bridge { margin: 8px 0; padding: 12px 10px; border: 1px dashed #665637; border-radius: 6px; color: var(--dim); background: #13120e; font-size: 9px; line-height: 1.45; text-align: center; }
+  .factory-bridge b { display: block; margin-bottom: 4px; color: var(--brass-hi); font: 700 11px var(--serif); }
+  .factory-bridge button { width: 100%; min-height: 32px; margin-top: 8px; color: var(--brass-hi); border-color: #75613a; font: 700 8px/1 var(--mono); text-transform: uppercase; }
+  .production-panel button:focus-visible, .work-card:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+  @keyframes works-in { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: none; } }
+  @media (max-width: 720px) {
+    .production-panel { left: 8px; right: 8px; bottom: 68px; width: auto; max-height: min(58vh, calc(100vh - 118px)); max-height: min(58dvh, calc(100dvh - 118px)); border-radius: 10px 10px 7px 7px; }
+    body.production-open .province-dossier.open { display: none; }
+    .project-catalog { grid-template-columns: 1fr 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .production-panel.open { animation: none; } }
+
   .card { background: var(--panel); border: 1px solid var(--edge-dark); border-radius: 3px; padding: 12px; margin-bottom: 12px; box-shadow: inset 0 1px 0 var(--edge-lite); }
   .card h3 { font-family: var(--serif); font-size: 11px; font-weight: 600; letter-spacing: .18em; color: var(--amber); text-transform: uppercase; margin: -2px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--brass-etch); }
   .card h3 span { color: var(--faint); letter-spacing: .08em; font-family: var(--mono); font-weight: 400; }
@@ -256,6 +692,20 @@
   .fiscal-summary { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 9px; }
   .fiscal-summary span { padding: 7px; border: 1px solid var(--line); border-radius: 5px; background: #0b0f14; color: var(--faint); font-size: 8px; text-transform: uppercase; }
   .fiscal-summary b { display: block; margin-top: 2px; color: var(--ink); font-size: 11px; text-transform: none; }
+  .foreign-strip { margin:0 0 9px; padding:8px; border:1px solid #31404b; border-radius:6px;
+    background:linear-gradient(105deg,#0b1319,#111820); }
+  .foreign-strip .fh { display:flex; align-items:center; gap:7px; margin-bottom:6px; color:var(--cyan);
+    font:700 8px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; }
+  .foreign-strip .fh::before { content:"↔"; display:grid; place-items:center; width:19px; height:19px;
+    border:1px solid #315467; border-radius:50%; color:#9fe6f2; background:#112733; font-size:11px; }
+  .foreign-cells { display:grid; grid-template-columns:repeat(5,1fr); gap:5px; }
+  .foreign-cells span { min-width:0; padding:5px 6px; border-left:2px solid #30434e; color:var(--faint);
+    font-size:7.5px; line-height:1.2; text-transform:uppercase; }
+  .foreign-cells b { display:block; overflow:hidden; margin-top:2px; color:var(--ink); font:600 10px/1.2 var(--mono);
+    text-overflow:ellipsis; white-space:nowrap; text-transform:none; }
+  .foreign-cells .net.in { border-left-color:#4b9b68; } .foreign-cells .net.in b { color:var(--green); }
+  .foreign-cells .net.out { border-left-color:#aa694f; } .foreign-cells .net.out b { color:#dc9c7b; }
+  .foreign-strip .pending { margin-top:5px; color:var(--faint); font-size:7.5px; }
   .ministry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
   .ministry-dial { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 7px; padding: 8px; border: 1px solid #303946; border-radius: 6px; background: #121821; }
   .ministry-dial.changed { border-color: var(--brass-dim); background: #211d14; }
@@ -682,6 +1132,34 @@
   .contractrow svg, .offerrow svg { width:14px; height:14px; flex:none; }
   .contractrow .ln, .offerrow .ln { flex:1; }
   .contractrow button, .offerrow button { font-size:11px; padding:3px 10px; }
+  .marketstrip { display:grid; grid-template-columns:repeat(6,minmax(90px,1fr)); gap:5px; margin:0 0 10px; }
+  .marketchip { display:grid; grid-template-columns:15px 1fr auto; align-items:center; gap:5px; min-width:0;
+    width:100%; padding:6px 7px; border:1px solid #26323b; border-radius:5px; background:#0a1016;
+    color:inherit; font:inherit; text-align:left; appearance:none; cursor:pointer; }
+  .marketchip:hover, .marketchip.sel { border-color:var(--brass-dim); background:#161a1d; }
+  .marketchip svg { width:13px; height:13px; display:block; }
+  .marketchip .mq { min-width:0; }
+  .marketchip .mq b { display:block; overflow:hidden; color:var(--ink); font:600 8px/1.1 var(--mono);
+    letter-spacing:.05em; text-overflow:ellipsis; text-transform:uppercase; white-space:nowrap; }
+  .marketchip .mq small { display:block; margin-top:2px; color:var(--faint); font:8px/1 var(--mono); }
+  .marketchip .mt { color:var(--dim); font:700 10px/1 var(--mono); }
+  .marketchip.band-cheap .mt, .marketchip.trend-down .mt { color:var(--green); }
+  .marketchip.band-tight .mt, .marketchip.trend-up .mt { color:var(--amber); }
+  .marketchip.band-critical { border-color:#643d36; } .marketchip.band-critical .mt { color:#e08b73; }
+  .marketcard { margin:0 0 10px; padding:9px; border:1px solid #33434f; border-radius:6px;
+    background:radial-gradient(circle at 90% 0,rgba(62,133,154,.16),transparent 45%),#0b1117; }
+  .marketcard .mh { display:flex; align-items:center; gap:7px; margin-bottom:7px; color:var(--cyan);
+    font:700 8px/1 var(--mono); letter-spacing:.13em; text-transform:uppercase; }
+  .marketcard .band { margin-left:auto; padding:2px 6px; border:1px solid #40515d; border-radius:999px; color:var(--ink); }
+  .marketcard .band.tight { border-color:#715e2d; color:var(--amber); }
+  .marketcard .band.critical { border-color:#743d35; color:#e59880; }
+  .marketcard .band.cheap { border-color:#37664b; color:var(--green); }
+  .marketcells { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; }
+  .marketcells span { min-width:0; padding:5px; border-left:2px solid #2d414d; color:var(--faint);
+    font-size:7.5px; text-transform:uppercase; }
+  .marketcells b { display:block; overflow:hidden; margin-top:2px; color:var(--bright); font:600 10px/1.2 var(--mono);
+    text-overflow:ellipsis; white-space:nowrap; text-transform:none; }
+  .marketcard .marketnote { margin-top:6px; color:var(--faint); font-size:8px; }
   #stockDock { position:absolute; top:44px; right:0; bottom:0; width:360px; z-index:3;
     background:var(--panel-2); border-left:1px solid var(--brass-dim); overflow-y:auto;
     padding:14px 16px 20px; box-shadow:-4px 0 14px rgba(0,0,0,.45); }
@@ -693,9 +1171,13 @@
   #stockDock .strat .minus { color:#b06a5a; font-size:11.5px; }
   #stockDock .strat .why.off { opacity:.55; }
   #stockDock .advisor { margin-top:12px; color:var(--ink); }
+  #stockDock .stock-route-link { width:100%; min-height:34px; margin:0 0 10px; border-color:#3c6472;
+    color:#a9e5ef; background:#0b171d; font:700 9px var(--mono); letter-spacing:.08em; }
   @media (max-width: 1100px) {
     #stockRows { right:300px; } #stockDock { width:300px; }
     .stockcols, .stockrow { grid-template-columns:22px 1fr 96px 84px 80px 90px 80px; }
+    .marketstrip { grid-template-columns:repeat(4,minmax(80px,1fr)); }
+    .foreign-cells { grid-template-columns:repeat(3,1fr); }
   }
   /* -- the board's hover: #techTip's block, its own singleton -- */
   #stockTip { position:fixed; z-index:60; max-width:300px; min-width:190px; pointer-events:none;
@@ -1264,6 +1746,58 @@
   .btnrow { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0; }
   .btnrow button.on { background: var(--amber); color: #101820; }
 
+  /* Province facts stay off the base map until the player clicks a province.
+     The result is a compact arcade card, not another permanent dashboard. */
+  .province-dossier {
+    display: none; position: absolute; z-index: 6; top: 14px; right: 14px;
+    width: min(350px, calc(100% - 28px)); max-height: calc(100% - 28px);
+    overflow: auto; pointer-events: auto; color: var(--ink);
+    background: linear-gradient(145deg, rgba(14,20,29,.97), rgba(5,9,15,.96));
+    border: 1px solid #826b3a; border-radius: 7px;
+    box-shadow: 0 16px 50px #000b, inset 0 1px #e8c87e24;
+  }
+  .province-dossier.open { display: block; animation: province-in .16s ease-out; }
+  .province-head { padding: 14px 14px 10px; border-bottom: 1px solid var(--line);
+                   background: linear-gradient(90deg, #c9a55a12, transparent); }
+  .province-lock { color: var(--brass-hi); font: 700 9px var(--mono);
+                   letter-spacing: .18em; text-transform: uppercase; }
+  .province-title { display: flex; gap: 8px; align-items: start; margin-top: 5px; }
+  .province-title h2 { flex: 1; margin: 0; font: 800 22px/1.05 var(--serif); }
+  .province-close { width: 27px; height: 27px; border: 1px solid var(--line);
+                    border-radius: 4px; background: #0b111a; color: var(--dim);
+                    cursor: pointer; font-size: 18px; line-height: 20px; }
+  .province-close:hover { color: var(--brass-hi); border-color: var(--edge-lite); }
+  .province-owner { margin-top: 5px; color: var(--dim); font-size: 11px; }
+  .province-body { padding: 10px 12px 13px; }
+  .province-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .province-stat { min-height: 48px; padding: 7px 8px; border: 1px solid #263241;
+                   border-radius: 4px; background: #0b1119cc; }
+  .province-stat .k { color: var(--faint); font: 700 8px var(--mono);
+                      letter-spacing: .12em; text-transform: uppercase; }
+  .province-stat .v { margin-top: 4px; color: #edf2f8; font: 700 13px var(--mono); }
+  .province-stat.population { grid-column: 1 / -1; min-height: 64px;
+                              background: linear-gradient(100deg, #302711dd, #0b1119cc);
+                              border-color: #806937; }
+  .province-stat.population .v { color: var(--brass-hi); font-size: 22px; }
+  .province-note { margin-top: 4px; color: var(--faint); font-size: 9px; line-height: 1.4; }
+  .province-section { margin-top: 10px; }
+  .province-section-title { margin-bottom: 5px; color: var(--faint);
+                            font: 700 8px var(--mono); letter-spacing: .14em;
+                            text-transform: uppercase; }
+  .province-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .province-tag, button.province-tag { padding: 5px 7px; border: 1px solid #2c3948;
+    border-radius: 4px; background: #101722; color: #cbd5e2; font: 600 9px var(--mono); }
+  button.province-tag { cursor: pointer; }
+  button.province-tag:hover { border-color: var(--brass); color: var(--brass-hi); }
+  .province-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 11px; }
+  .province-actions button { min-height: 31px; border: 1px solid #735f35; border-radius: 4px;
+    background: #1d1a13; color: var(--brass-hi); cursor: pointer; font: 700 9px var(--mono); }
+  @keyframes province-in { from { opacity: 0; transform: translateX(8px) scale(.985); }
+                                 to { opacity: 1; transform: none; } }
+  @media (max-width: 720px) {
+    .province-dossier { top: auto; bottom: 9px; left: 9px; right: 9px; width: auto; max-height: 58%; }
+  }
+
   /* ---------- nation dashboard ---------- */
   #sheetbg { position: fixed; inset: 0; background: #04060acc; z-index: 30; display: none; }
   #sheet {
@@ -1342,28 +1876,74 @@
 <body>
 
 <div id="setup">
-  <div class="title">SPHERES</div>
-  <!-- Filled by buildSetup from /api/roster. The literal here is only what is
-       on screen for the few hundred milliseconds before that answers. -->
-  <div class="sub" id="setupSub">JANUARY 1990 &middot; THE WORLD IS UNWRITTEN</div>
-  <div id="setupBar">
-    <input id="nationSearch" placeholder="Search nations&hellip;" autocomplete="off">
-    <select id="nationSort">
-      <option value="gdp">By GDP</option>
-      <option value="pop">By population</option>
-      <option value="name">A&ndash;Z</option>
-    </select>
-    <button id="randomBtn" title="Govern a random nation">RANDOM</button>
-  </div>
-  <div id="pickWrap"><div id="nationPick"></div></div>
-  <div id="setupFoot">
-    <div class="seedrow">
-      <span>SEED</span><input id="seed" value="1990">
-      <span class="muted">same seed, same history</span>
+  <div class="setup-shell">
+    <div class="setup-mast">
+      <div class="setup-brand">
+        <div class="title">SPHERES</div>
+        <div class="setup-kicker">THE WORLD IS YOUR CABINET</div>
+      </div>
+      <div class="setup-era">
+        <span class="setup-pulse" aria-hidden="true"></span>
+        <div class="setup-era-copy">
+          <span class="setup-step-label">CAMPAIGN SELECT</span>
+          <!-- Filled by buildSetup from /api/roster. The literal here is only
+               what is on screen for the few hundred milliseconds before that
+               answers. -->
+          <span class="sub" id="setupSub">JANUARY 1990 &middot; THE WORLD IS UNWRITTEN</span>
+        </div>
+      </div>
     </div>
-    <span class="grow"></span>
-    <span class="hint">double-click a nation to start at once</span>
-    <button class="primary" id="startBtn" disabled>CHOOSE A NATION</button>
+
+    <div class="setup-layout">
+      <section id="nationShowcase" aria-labelledby="showcaseName" aria-live="polite">
+        <div class="showcase-copy">
+          <div class="showcase-kicker">PLAYER ONE / CHOOSE YOUR SPHERE</div>
+          <div class="nation-art" aria-hidden="true">
+            <div class="nation-orbit"></div>
+            <div class="nation-planet" id="showcaseCode">?</div>
+          </div>
+          <h1 id="showcaseName">Choose a nation</h1>
+          <p id="showcasePrompt">Pick a country from the world board. Its opening output and population are drawn from the same 1990 world your campaign will begin in.</p>
+          <div class="showcase-stats" id="showcaseStats">
+            <div class="showcase-stat"><span>OUTPUT</span><strong id="showcaseGdp">—</strong><small id="showcaseGdpRank">world rank —</small></div>
+            <div class="showcase-stat"><span>PEOPLE</span><strong id="showcasePop">—</strong><small id="showcasePopRank">world rank —</small></div>
+            <div class="showcase-stat"><span>GDP / PERSON</span><strong id="showcasePerCap">—</strong><small id="showcaseShare">opening position</small></div>
+          </div>
+        </div>
+        <div id="setupFoot">
+          <div class="seedrow">
+            <label for="seed">WORLD SEED</label><input id="seed" value="1990" inputmode="numeric" aria-describedby="seedHint">
+            <span class="muted" id="seedHint">same seed, same history</span>
+          </div>
+          <button class="primary" id="startBtn" disabled>CHOOSE A NATION</button>
+        </div>
+      </section>
+
+      <section class="nation-browser" aria-labelledby="nationBrowserTitle">
+        <div class="browser-head">
+          <div>
+            <div class="setup-step-label">02 / THE WORLD BOARD</div>
+            <h2 id="nationBrowserTitle">Select your nation</h2>
+          </div>
+          <span id="nationCount" role="status" aria-live="polite">LOADING ROSTER</span>
+        </div>
+        <div id="setupBar">
+          <label class="search-shell">
+            <span class="sr-only">Search nations</span>
+            <input id="nationSearch" placeholder="Find a nation&hellip;" autocomplete="off">
+          </label>
+          <select id="nationSort" aria-label="Sort nations">
+            <option value="gdp">Output</option>
+            <option value="pop">Population</option>
+            <option value="name">A&ndash;Z</option>
+          </select>
+          <button id="randomBtn" type="button" title="Govern a random nation">SURPRISE ME</button>
+        </div>
+        <div class="browser-rule" aria-hidden="true"></div>
+        <div id="pickWrap"><div id="nationPick" aria-label="Nations"></div></div>
+        <div class="browser-foot">Double-click a nation to launch immediately. Press Enter after searching to confirm.</div>
+      </section>
+    </div>
   </div>
 </div>
 
@@ -1421,9 +2001,33 @@
         </div>
       </div>
     </aside>
+    <aside class="logistics-panel" id="logisticsPanel" aria-hidden="true" aria-labelledby="logisticsTitle">
+      <div class="logistics-head">
+        <div><div class="eyebrow">Latest monthly settlement</div><h2 id="logisticsTitle">Dispatch Board</h2></div>
+        <span class="grow"></span>
+        <button class="logistics-close" id="logisticsClose" type="button" aria-label="Close logistics">&times;</button>
+      </div>
+      <div class="logistics-body" id="logisticsBody"></div>
+      <div class="sr-only" id="logisticsLive" role="status" aria-live="polite"></div>
+    </aside>
+    <aside class="production-panel" id="productionPanel" aria-hidden="true" aria-labelledby="productionTitle">
+      <div class="production-head">
+        <div><div class="eyebrow">National works programme</div><h2 id="productionTitle">Production Board</h2></div>
+        <span class="grow"></span>
+        <div class="production-modes" role="tablist" aria-label="Production view">
+          <button type="button" id="productionBuildTab" class="on" role="tab" aria-selected="true" data-production-mode="build">Build</button>
+          <button type="button" id="productionManufactureTab" role="tab" aria-selected="false" data-production-mode="manufacture">Manufacture</button>
+        </div>
+        <button class="production-close" id="productionClose" type="button" aria-label="Close production">&times;</button>
+      </div>
+      <div class="production-body" id="productionBody"></div>
+      <div class="sr-only" id="productionLive" role="status" aria-live="polite"></div>
+    </aside>
     <nav id="commandDock" aria-label="Game systems">
       <button class="dockbtn" data-drawer="cabinetDrawer" aria-expanded="false"><span class="icon">◈</span><span class="copy"><span class="label">Economy</span><small id="dockEconomy">budget &amp; policy</small></span></button>
       <button class="dockbtn" data-drawer="intelDrawer" aria-expanded="false"><span class="icon">⚔</span><span class="copy"><span class="label">World</span><small id="dockWorld">conflicts &amp; news</small></span></button>
+      <button class="dockbtn" id="logisticsDockBtn" type="button" aria-controls="logisticsPanel" aria-expanded="false"><span class="icon">⇢</span><span class="copy"><span class="label">Logistics</span><small id="dockLogistics">monthly routes</small></span><span class="dockbadge" id="logisticsBadge" aria-hidden="true"></span></button>
+      <button class="dockbtn" id="productionDockBtn" type="button" aria-controls="productionPanel" aria-expanded="false"><span class="icon">⚙</span><span class="copy"><span class="label">Production</span><small id="dockProduction">4 project slots</small></span><span class="dockbadge" id="productionBadge" aria-hidden="true"></span></button>
     </nav>
   </main>
 </div>
@@ -1741,6 +2345,8 @@
   <div class="row"><span>Filter the event log</span><span><kbd>E</kbd></span></div>
   <div class="row"><span>Technology</span><span><kbd>T</kbd></span></div>
   <div class="row"><span>Resources board</span><span><kbd>B</kbd></span></div>
+  <div class="row"><span>Logistics routes</span><span><kbd>G</kbd></span></div>
+  <div class="row"><span>Production and construction</span><span><kbd>Q</kbd></span></div>
   <div class="row"><span>Board: select a line / open talks</span><span>arrows · <kbd>Enter</kbd></span></div>
   <div class="row"><span>Domain tabs (tech screen)</span><span><kbd>1</kbd>–<kbd>8</kbd> · full map <kbd>9</kbd> · step <kbd>[</kbd> <kbd>]</kbd></span></div>
   <div class="row"><span>Find a technology (graph open)</span><span><kbd>/</kbd></span></div>
@@ -2033,6 +2639,9 @@ let S = null;            // latest state from the server
 let HIST = null;         // recorded time series from /api/history
 let queued = [];         // policy orders not yet sent
 let selected = null;     // nation id shown in the dashboard
+let selectedDistrict = null;       // exact province/state locked on the globe
+let PROVINCE_POPULATION = null;     // live reading for the open province
+let PROVINCE_POPULATION_REQUEST = 0;
 // Conflict id shown in the sheet, and the theatre name to say when it ends.
 // The sheet is one element and holds EITHER a nation or a conflict, so exactly
 // one of `selected` and `selectedWar` is ever set — see openNation, openConflict
@@ -2188,7 +2797,11 @@ async function buildSetup() {
     if (pool.length === 1) pickNation(pool[0].name);
     if (pickedNation) $("#startBtn").click();
   });
-  $("#nationSearch").focus();
+  // Autofocus is useful with a mouse and keyboard, but on touch screens it
+  // summons the software keyboard before the player has seen the world board.
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    $("#nationSearch").focus();
+  }
 }
 
 function visiblePicks() {
@@ -2201,15 +2814,61 @@ function visiblePicks() {
   return list;
 }
 
+// A restrained hue family gives every roster entry a little identity without
+// inventing a flag or attaching gameplay meaning to a colour. The source is
+// the stable nation id served by /api/roster, so it does not change with sort.
+function nationHue(n) {
+  const palette = [194, 214, 242, 266, 290, 326, 10, 146, 166];
+  let hash = 0;
+  for (const ch of n.id) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+  return palette[hash % palette.length];
+}
+
+function setupRank(n, field) {
+  return setupNations
+    .slice()
+    .sort((a, b) => b[field] - a[field])
+    .findIndex((candidate) => candidate.id === n.id) + 1;
+}
+
+function perCapita(n) {
+  const dollars = n.population > 0 ? n.gdp * 1000 / n.population : 0;
+  if (dollars >= 1000) return "$" + (dollars / 1000).toFixed(dollars >= 10000 ? 0 : 1) + "k";
+  return "$" + dollars.toFixed(0);
+}
+
+function renderShowcase(n) {
+  const hue = nationHue(n);
+  $("#nationShowcase").style.setProperty("--nation-hue", hue);
+  $("#showcaseCode").textContent = n.id.slice(0, 3);
+  $("#showcaseName").textContent = n.name;
+  $("#showcasePrompt").textContent =
+    `Take the controls in ${n.name}. Your cabinet opens on the same January 1990 board shown here.`;
+  $("#showcaseGdp").textContent = fmt.money(n.gdp);
+  $("#showcaseGdpRank").textContent = `world output #${setupRank(n, "gdp")}`;
+  $("#showcasePop").textContent = fmt.pop(n.population);
+  $("#showcasePopRank").textContent = `world population #${setupRank(n, "population")}`;
+  $("#showcasePerCap").textContent = perCapita(n);
+  const worldGdp = setupNations.reduce((sum, candidate) => sum + candidate.gdp, 0);
+  const share = worldGdp > 0 ? n.gdp / worldGdp * 100 : 0;
+  $("#showcaseShare").textContent = `${share < .1 ? share.toFixed(2) : share.toFixed(1)}% of world output`;
+}
+
 function pickNation(name, scrollTo) {
-  pickedNation = name;
+  const nation = setupNations.find((candidate) => candidate.name === name);
+  if (!nation) return;
+  pickedNation = nation.name;
+  renderShowcase(nation);
   const b = $("#startBtn");
   b.disabled = false;
-  b.textContent = "GOVERN " + name.toUpperCase();
-  [...$("#nationPick").children].forEach((c) =>
-    c.classList.toggle("sel", c.dataset.nm === name));
+  b.textContent = "GOVERN " + nation.name.toUpperCase() + "  →";
+  [...$("#nationPick").children].forEach((c) => {
+    const selected = c.dataset.nm === nation.name;
+    c.classList.toggle("sel", selected);
+    c.setAttribute("aria-pressed", selected ? "true" : "false");
+  });
   if (scrollTo) {
-    const el = [...$("#nationPick").children].find((c) => c.dataset.nm === name);
+    const el = [...$("#nationPick").children].find((c) => c.dataset.nm === nation.name);
     if (el) el.scrollIntoView({ block: "center" });
   }
 }
@@ -2218,16 +2877,23 @@ function renderPick() {
   const grid = $("#nationPick");
   grid.innerHTML = "";
   const list = visiblePicks();
+  $("#nationCount").textContent = `${list.length} ${list.length === 1 ? "NATION" : "NATIONS"}`;
   if (!list.length) {
-    grid.innerHTML = '<div class="none">no nation matches</div>';
+    grid.innerHTML = '<div class="none">No nation matches that search.<br><span class="tiny">Try a shorter name or clear the field.</span></div>';
     return;
   }
   list.forEach((n) => {
-    const d = document.createElement("div");
+    const d = document.createElement("button");
+    d.type = "button";
     d.className = "opt" + (n.name === pickedNation ? " sel" : "");
     d.dataset.nm = n.name;
-    d.innerHTML = `<div class="nm">${n.name}</div>` +
-      `<div class="gd">${fmt.money(n.gdp)} &middot; ${fmt.pop(n.population)}</div>`;
+    d.style.setProperty("--nation-hue", nationHue(n));
+    d.setAttribute("aria-pressed", n.name === pickedNation ? "true" : "false");
+    d.setAttribute("aria-label", `${n.name}, output ${fmt.money(n.gdp)}, population ${fmt.pop(n.population)}`);
+    d.innerHTML = `<span class="nation-chip" aria-hidden="true">${n.id.slice(0, 2)}</span>` +
+      `<span class="nation-card-copy"><span class="nm">${n.name}</span>` +
+      `<span class="gd">${fmt.money(n.gdp)} &middot; ${fmt.pop(n.population)}</span></span>` +
+      `<span class="nation-check" aria-hidden="true">&#10003;</span>`;
     d.onclick = () => pickNation(n.name);
     d.ondblclick = () => { pickNation(n.name); $("#startBtn").click(); };
     grid.appendChild(d);
@@ -2308,7 +2974,7 @@ function closeGameDrawers() {
     d.classList.remove("open");
     d.setAttribute("aria-hidden", "true");
   });
-  document.querySelectorAll(".dockbtn").forEach((b) => b.setAttribute("aria-expanded", "false"));
+  document.querySelectorAll("[data-drawer]").forEach((b) => b.setAttribute("aria-expanded", "false"));
   $("#drawerScrim").classList.remove("open");
 }
 
@@ -2316,6 +2982,8 @@ function toggleGameDrawer(id) {
   const drawer = document.getElementById(id);
   if (!drawer) return;
   const opening = !drawer.classList.contains("open");
+  if (opening && LOGI.open) closeLogistics();
+  if (opening && PROD.open) closeProduction();
   closeGameDrawers();
   if (opening) {
     drawer.classList.add("open");
@@ -2341,9 +3009,18 @@ async function adopt(state, withHistory) {
   // fallback for a server payload that predates the field.
   if (typeof S.front_held_band === "number") FRONT_HELD_BAND = S.front_held_band;
   STOCKW.stale = true;      // the world moved; the resource tint is re-asked on the next map
+  LOGI.stale = true;        // monthly settlement may have changed; re-ask only while its plate is open
+  PROD.stale = true;        // daily project work may have advanced or changed state
+  MANU.stale = true;        // monthly lines, resource stocks, orders and deliveries may have moved
   if (withHistory !== false) HIST = await api("/api/history");
   if (!ui.picked.length) ui.picked = defaultPicks();
   render();
+  if (LOGI.open) logisticsFetch();
+  if (PROD.open) {
+    if (PROD.mode === "manufacture") manufacturingFetch();
+    else productionFetch();
+  }
+  if (selectedDistrict) loadProvincePopulation(selectedDistrict, true);
 }
 
 let advancing = false;
@@ -2435,6 +3112,14 @@ document.addEventListener("keydown", (e) => {
     // so it is the outer thing and goes first; the drawers next; the sheet last.
     if (stock.open) { closeStock(); return; }
     if (document.querySelector(".game-drawer.open")) { closeGameDrawers(); return; }
+    if (LOGI.open && LOGI.selected) { logisticsSelect(null); return; }
+    if (LOGI.open) { closeLogistics(); return; }
+    if (PROD.open && PROD.mode === "manufacture" && MANU.view !== "lines") { MANU.view = "lines"; MANU.pickKit = null; renderProductionPanel(); return; }
+    if (PROD.open && PROD.mode === "manufacture" && MANU.selected) { manufacturingSelect(null); return; }
+    if (PROD.open && PROD.mode === "build" && PROD.view !== "queue") { PROD.view = "queue"; PROD.pickKind = null; renderProductionPanel(); return; }
+    if (PROD.open && PROD.mode === "build" && PROD.selected) { productionSelect(null); return; }
+    if (PROD.open) { closeProduction(); return; }
+    if (selectedDistrict) { closeProvince(); return; }
     closeSheet();
     return;
   }
@@ -2485,6 +3170,8 @@ document.addEventListener("keydown", (e) => {
   else if (k === "s" || k === "S") doSave();
   else if (k === "t" || k === "T") toggleTechMenu();
   else if (k === "b" || k === "B") toggleStockScreen();
+  else if (k === "g" || k === "G") toggleLogistics();
+  else if (k === "q" || k === "Q") toggleProduction();
   else if (k === "r" || k === "R") revertOrders();
   else if (k === "+" || k === "=") mapZoom(1.3);
   else if (k === "-" || k === "_") mapZoom(1 / 1.3);
@@ -2540,6 +3227,8 @@ function render() {
     ? `FY ${S.year} · ${m.annual_budget.due ? "budget due" : "budget set"}`
     : "budget & policy";
   $("#dockWorld").textContent = `${S.wars.length} active conflict${S.wars.length === 1 ? "" : "s"} · ${S.log.length} dispatches`;
+  renderLogisticsDock();
+  renderProductionDock();
   // TECH is dead in spectator mode (research_json is null and /api/tech cannot
   // answer); the amber note dot means a domain has startable work and no project
   // chosen — the same actionable state resCard reports.
@@ -2824,6 +3513,26 @@ function annualTotal(b) { return MINISTRIES.reduce((sum, spec) => sum + b[spec.i
 function annualSocial(b) { return b.health + b.education + b.housing + b.pensions + b.security + b.diplomacy; }
 function annualInvest(b) { return b.infrastructure + b.industry + b.science; }
 
+/// Every number here is an annual $bn read served by the resource ledger. The
+/// budget page only chooses labels and units; it does not value contracts,
+/// project spot purchases or annualise mine projects itself.
+function foreignCommitmentsHtml(m) {
+  const f = m && m.foreign_commitments;
+  if (!f) return ""; // older server / spectator
+  const net = +f.net_bn || 0;
+  const netReceipt = net < 0;
+  return `<div class="foreign-strip">
+    <div class="fh">Foreign trade <span style="color:var(--faint);font-weight:400">annual run-rate</span></div>
+    <div class="foreign-cells">
+      <span>Contract imports<b>${fmt.bn(+f.contract_imports_bn || 0)}</b></span>
+      <span>Expected spot<b>${f.spot_settled ? fmt.bn(+f.expected_spot_imports_bn || 0) : "awaiting clear"}</b></span>
+      <span>Export receipts<b>${fmt.bn(+f.receipts_bn || 0)}</b></span>
+      <span>Sunk mine capital<b>${fmt.bn(+f.mine_investment_bn || 0)}</b></span>
+      <span class="net ${netReceipt ? "in" : "out"}">${netReceipt ? "Net receipt" : "Net outflow"}<b>${fmt.bn(Math.abs(net))}</b></span>
+    </div>${f.spot_settled ? "" : `<div class="pending">Spot cash flow will appear after the first monthly market clearing. Mine capital is shown separately and is not counted in the annual net.</div>`}
+  </div>`;
+}
+
 function annualPoliticalCost(m, b) {
   const weights = [110,125,105,115,100,105,135,150,145,90];
   let cost = 0, moved = 0;
@@ -3006,6 +3715,7 @@ function renderLeft(m) {
         <span>${fiscalBalance >= 0 ? "Surplus" : "Deficit"}<b class="${fiscalBalance >= 0 ? "up" : "down"}">${fmt.money(Math.abs(fiscalBalance) * m.gdp)}</b></span>
         <span>Political cost<b class="${fiscalCost > m.political_capital ? "down" : ""}">${fiscalCost.toFixed(1)} PC</b></span>
       </div>
+      ${foreignCommitmentsHtml(m)}
       ${interestRow(m)}
       <div class="ministry-grid">${MINISTRIES.map((spec, i) => ministryDial(m, fiscal, spec, i)).join("")}</div>
       <div class="budget-note">Each press moves 0.5% of GDP. All ten ministries roll into one atomic yearly budget; raising spending without revenue adds debt. OUTLAYS is the ten plus debt service, which is why the eleventh row is above them. Every figure under a ministry is the sim&rsquo;s own, read at the dial where it stands.</div>
@@ -3593,6 +4303,7 @@ document.addEventListener("pointerdown", (e) => {
 /// the first. The graph is built once and then only class-patched.
 async function openTech(domain) {
   if (!S || !S.research) return;   // spectator: /api/tech cannot answer
+  if (PROD.open) closeProduction();
   closeTechMenu();
   closeSheet();
   const fresh = !tech.data;
@@ -6378,6 +7089,138 @@ const DINDEX = (() => {
   return m;
 })();
 
+/* ---- province/state dossier -------------------------------------------
+   Geometry answers what was clicked. The sim answers who owns it and how its
+   population is changing; the immutable district census supplies terrain,
+   area and borders. None of those facts are guessed from pixels. */
+let DISTRICT_SPECS = {};
+let DISTRICT_SPECS_STATE = "cold";
+
+async function loadDistrictSpecs() {
+  if (DISTRICT_SPECS_STATE !== "cold") return;
+  DISTRICT_SPECS_STATE = "loading";
+  try {
+    const r = await fetch("/district-info.json", { cache: "force-cache" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const raw = await r.json(), index = {};
+    for (const list of Object.values(raw.nations || {}))
+      for (const d of list || []) if (!index[d.id]) index[d.id] = d;
+    DISTRICT_SPECS = index;
+    DISTRICT_SPECS_STATE = "ready";
+  } catch (_) {
+    DISTRICT_SPECS_STATE = "failed";
+  }
+  renderProvinceDossier();
+}
+
+async function loadProvincePopulation(did, keepOld) {
+  const request = ++PROVINCE_POPULATION_REQUEST;
+  if (!keepOld || !PROVINCE_POPULATION || PROVINCE_POPULATION.id !== did) {
+    PROVINCE_POPULATION = { id: did, loading: true };
+    renderProvinceDossier();
+  }
+  try {
+    const reading = await api("/api/district-population/" + encodeURIComponent(did));
+    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did) return;
+    PROVINCE_POPULATION = reading;
+  } catch (e) {
+    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did) return;
+    PROVINCE_POPULATION = { id: did, error: e.message || "population unavailable" };
+  }
+  renderProvinceDossier();
+}
+
+function provinceDepositHtml(did) {
+  if (RESOURCES_STATE === "cold") loadResources().then(renderProvinceDossier);
+  if (RESOURCES_STATE !== "ready") return `<span class="province-tag">scanning ground…</span>`;
+  const coms = resComsAt(did);
+  if (!coms.length) return `<span class="province-tag">no mapped deposit</span>`;
+  return coms.map((c) => `<span class="province-tag" style="border-color:${resHue(c)}">${
+    escText(resLabel(c))}</span>`).join("");
+}
+
+function provinceDossierHtml() {
+  const did = selectedDistrict, info = did && DINDEX[did];
+  if (!info) return "";
+  const ownerId = nationOfDistrict(did), owner = nationById(ownerId);
+  const spec = DISTRICT_SPECS[did];
+  const terrainRow = (TERRAIN.byId || {})[did] || {};
+  const terrain = (spec && spec.t) || terrainRow.t || "unclassified";
+  const feature = (spec && spec.f) || terrainRow.f || "No named physical region";
+  const pop = PROVINCE_POPULATION && PROVINCE_POPULATION.id === did ? PROVINCE_POPULATION : null;
+  const residents = pop && typeof pop.population === "number" ? fmt.pop(pop.population)
+    : pop && pop.error ? "unavailable" : "loading…";
+  const growth = pop && typeof pop.annual_growth === "number" ? fmt.signed(pop.annual_growth) + " / yr" : "updating";
+  const density = pop && typeof pop.density_per_sqkm === "number"
+    ? Math.round(pop.density_per_sqkm).toLocaleString("en-US") + " / km²" : "loading…";
+  const share = pop && typeof pop.national_share === "number" ? fmt.pct(pop.national_share, 1) : "loading…";
+  const rank = pop && typeof pop.world_rank === "number" ? `#${pop.world_rank} world` : "loading…";
+  const area = spec && spec.area_sqkm ? Math.round(spec.area_sqkm).toLocaleString("en-US") + " km²" : "loading…";
+  const neighbours = spec ? (spec.adj || []) : [];
+  const links = neighbours.length ? neighbours.map((id) => `<button type="button" class="province-tag"
+    onclick="selectProvince('${id}',true)">${escText(DINDEX[id] ? DINDEX[id].name : id)}</button>`).join("")
+    : `<span class="province-tag">${spec ? "island / no land border" : "loading borders…"}</span>`;
+  return `<div class="province-head"><div class="province-lock">◆ province / state locked</div>
+    <div class="province-title"><h2>${escText(info.name)}</h2><button class="province-close"
+      onclick="closeProvince()" aria-label="Close">&times;</button></div>
+    <div class="province-owner">${escText(owner ? owner.name : ownerId || "Unaligned")} · ${escText(did)}</div></div>
+    <div class="province-body"><div class="province-stats">
+      <div class="province-stat population"><div class="k">Population</div><div class="v">${residents}</div>
+        <div class="province-note">${escText(growth)} · residents remain with the province when borders move</div></div>
+      <div class="province-stat"><div class="k">Density</div><div class="v">${density}</div></div>
+      <div class="province-stat"><div class="k">National share</div><div class="v">${share}</div></div>
+      <div class="province-stat"><div class="k">Population rank</div><div class="v">${rank}</div></div>
+      <div class="province-stat"><div class="k">Area</div><div class="v">${area}</div></div>
+      <div class="province-stat"><div class="k">Terrain</div><div class="v">${escText(terrain)}</div></div>
+      <div class="province-stat"><div class="k">Borders</div><div class="v">${spec ? neighbours.length : "…"}</div></div>
+    </div>
+    <div class="province-section"><div class="province-section-title">Physical region</div>
+      <div class="province-tags"><span class="province-tag">${escText(feature)}</span></div></div>
+    <div class="province-section"><div class="province-section-title">Strategic deposits</div>
+      <div class="province-tags">${provinceDepositHtml(did)}</div></div>
+    <div class="province-section"><div class="province-section-title">Bordering provinces / states</div>
+      <div class="province-tags">${links}</div></div>
+    <div class="province-actions"><button onclick="centerProvince('${did}')">◎ center &amp; zoom</button>
+      <button onclick="openNation('${ownerId}')">open nation dossier</button></div></div>`;
+}
+
+function renderProvinceDossier() {
+  const box = $("#provinceDossier");
+  if (!box) return;
+  const open = !!selectedDistrict && !!DINDEX[selectedDistrict];
+  box.classList.toggle("open", open);
+  box.setAttribute("aria-hidden", open ? "false" : "true");
+  box.innerHTML = open ? provinceDossierHtml() : "";
+}
+
+window.selectProvince = function (did, move) {
+  const info = DINDEX[did];
+  if (!info) return;
+  selectedDistrict = did;
+  SEL.dirty = true;
+  renderProvinceDossier();
+  if (GLOBE) GLOBE.render();
+  if (move) camTween(info.cx, info.cy, Math.max(ui.cam.k, ZB2 + 1));
+  loadDistrictSpecs();
+  loadProvincePopulation(did, false);
+};
+
+window.centerProvince = function (did) {
+  const info = DINDEX[did];
+  if (!info) return;
+  showTab("map");
+  camTween(info.cx, info.cy, Math.max(ui.cam.k, ZB2 + 1));
+};
+
+window.closeProvince = function () {
+  PROVINCE_POPULATION_REQUEST++;
+  PROVINCE_POPULATION = null;
+  selectedDistrict = null;
+  SEL.dirty = true;
+  renderProvinceDossier();
+  if (GLOBE) GLOBE.render();
+};
+
 /* ================= the GL physical underlay (RENDER) =================
    A WebGL2 canvas under the svg that draws the physical ground — elevation,
    bathymetry, hillshade, hypsometric colour, snow, coastline — from four
@@ -8200,7 +9043,8 @@ function paintFronts(ctx) {
 /// The selection layer: the hovered or selected nation, and nothing else.
 /// Keyed, so a pointermove that stays inside one country repaints nothing.
 function paintSelection() {
-  const key = (hoverNation || "") + "|" + (selected || "") + "|" + ui.mapMode;
+  const key = (hoverNation || "") + "|" + (selected || "") + "|" +
+    (selectedDistrict || "") + "|" + ui.mapMode;
   if (key === SEL.key && !SEL.dirty) return;
   SEL.key = key; SEL.dirty = false;
   const ctx = SEL.ctx, s = SEL.s;
@@ -8223,6 +9067,18 @@ function paintSelection() {
     ctx.strokeStyle = "#e8c87e";
     ctx.lineWidth = hot ? 1.6 : 2.2;
     for (const c of codes) ctx.stroke(p2d(WORLD.countries[c]));
+  }
+  // A province click locks the exact polygon, independent of the nation
+  // dossier selection. The bright ring is visible at every globe zoom.
+  if (selectedDistrict && DINDEX[selectedDistrict]) {
+    const d = DINDEX[selectedDistrict];
+    ctx.globalAlpha = .18;
+    ctx.fillStyle = "#ffd77a";
+    ctx.fill(p2d(d.path));
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = "#ffd77a";
+    ctx.lineWidth = 2.2;
+    ctx.stroke(p2d(d.path));
   }
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   polUpload(SEL, 4);
@@ -9651,6 +10507,13 @@ function drawMapOverlay(ctx, view, globe) {
   // ---- the resource layer: the commodity marks, the contract arcs and the
   // aim rings, under the names so a label still reads over a chip.
   drawStockOverlay(ctx, view, globe);
+  // ---- logistics is a separate, opt-in monthly audit. It deliberately uses
+  // the same country anchors as contract arcs: there is no port/rail/sea graph
+  // in this build, so a more detailed path would be invented geography.
+  drawLogisticsOverlay(ctx, view, globe);
+  // Active construction is marked at the exact served province centroid only
+  // while its board is open, keeping the resting globe free of management ink.
+  drawProductionOverlay(ctx, view, globe);
 
   // ---- district names, for ONE nation at a time and only past ZB2, exactly
   // the band the flat map used. Drawn before the nation labels so a nation's
@@ -9784,11 +10647,24 @@ function globeBoot() {
 /// holding the country — which is the same rule the flat map's click had, said
 /// once instead of spread over three delegated handlers.
 function onMapPick(e) {
+  // Route marks live on the pointer-transparent overlay, so their hit test is
+  // screen-space and comes first only while the Dispatch Board is visibly up.
+  // Everywhere else the exact province/nation picking path below is untouched.
+  const route = logisticsHitAt(e.clientX, e.clientY);
+  if (route) { logisticsSelect(logisticsLaneId(route)); return; }
+  const work = productionHitAt(e.clientX, e.clientY);
+  if (work) {
+    if (work.line) { manufacturingSelect(work.line.id, true); return; }
+    if (work.project) productionSelect(work.project.id, true);
+    else if (work.district) selectProvince(work.district, true);
+    return;
+  }
   const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);
   if (!w) return;
   const code = countryAt(w[0], w[1]);
   if (!code) return;
   const d = districtAt(code, w[0], w[1]);
+  if (d) { selectProvince(d.id, false); return; }
   const id = (d && nationOfDistrict(d.id)) || nationOfCode(code);
   if (id) openNation(id);
 }
@@ -9846,6 +10722,7 @@ function renderMap() {
         onclick="globeNudge(1,0)">&#8250;</button>
       <div class="globe-zoom"><span id="globeZoom">${ui.cam.k.toFixed(1)}×</span>
         · <span id="globeCities">cities appear as you zoom</span></div>
+      <aside class="province-dossier" id="provinceDossier" aria-hidden="true"></aside>
       <noscript class="globe-fallback">The globe needs WebGL.</noscript>
     </div>`;
 
@@ -9878,6 +10755,7 @@ function renderMap() {
   const stage = $("#pane-map .globe-stage");
   stage.appendChild(GLCV);
   stage.appendChild(GLOVL);
+  renderProvinceDossier();
 
   if (ui.mapMode === "resources" || ui.resOverlay) {
     if (RESOURCES_STATE === "cold") loadResources();
@@ -10780,7 +11658,7 @@ window.declareWar = async function (target) {
    Namespace stock* / talks*; nothing under res* (the map layer) and nothing
    near #resCard (the research card).                                        */
 
-const stock = { open: false, sel: null, cards: null, cardsFor: null, seq: 0, unfolded: false };
+const stock = { open: false, sel: null, cards: null, cardsFor: null, seq: 0, unfolded: false, mineTarget: {} };
 const STATE_WORD = {
   ok: "OK", supplied: "SUPPLIED", short: "SHORT", stalled: "STALLED",
   idle: "IDLE", market: "MARKET", presence: "PRESENCE", seller: "SELLER",
@@ -10800,6 +11678,54 @@ function fmtQ(v) {
 }
 function fmtSigned(v) { return v == null ? "" : (v > 0 ? "+" : v < 0 ? "−" : "") + fmtQ(Math.abs(v)); }
 
+/// Presentation only: the server supplies the quote, unit, band and trend.
+/// No scarcity ratio or clearing rule is duplicated on this page.
+function fmtMarketPrice(m) {
+  const v = m && m.current_price;
+  if (v == null || !isFinite(v)) return "—";
+  const a = Math.abs(v);
+  const digits = a >= 100 ? 0 : a >= 1 ? 2 : a >= .01 ? 3 : 5;
+  return "$" + v.toLocaleString("en-GB", { maximumFractionDigits: digits });
+}
+function marketTrendMark(trend) {
+  return trend === "up" ? "↗" : trend === "down" ? "↘" : trend === "flat" ? "→" : "•";
+}
+function marketBand(m) { return (m && m.band) || "unpriced"; }
+
+function marketStripHtml(rows) {
+  return `<div class="marketstrip" aria-label="Commodity market strip">${rows.map((r) => {
+    const m = r.market || {};
+    const band = marketBand(m);
+    return `<button type="button" class="marketchip band-${escText(band)} trend-${escText(m.trend || "none")}${r.id === stock.sel ? " sel" : ""}" data-market-com="${r.id}" aria-pressed="${r.id === stock.sel}" title="${
+      escText(`${r.name}: ${fmtMarketPrice(m)} ${m.price_unit || ""} · ${band}${m.source === "world_oil_price" ? " · live oil market" : m.settled ? " · cleared" : " · awaiting first clearing"}`)}">
+      ${rglyph(r.id, stockHue(r.id))}<span class="mq"><b>${escText(r.name)}</b><small>${fmtMarketPrice(m)}</small></span><span class="mt">${marketTrendMark(m.trend)}</span>
+    </button>`;
+  }).join("")}</div>`;
+}
+
+function marketCardHtml(r) {
+  const m = r.market || {};
+  const pile = r.stock || { quantity:null, unit:r.unit, months_cover:r.cover_months, physical:false };
+  const band = marketBand(m);
+  const quantity = pile.quantity == null ? "—" : `${fmtQ(pile.quantity)} ${pile.unit || r.unit}`;
+  const cover = pile.months_cover == null ? "—" : `${fmtQ(pile.months_cover)} months`;
+  const cleared = m.cleared_volume == null ? "—" : `${fmtQ(m.cleared_volume)} ${m.volume_unit || r.unit}`;
+  const unmet = m.unmet_orders == null ? "—" : `${fmtQ(m.unmet_orders)} ${m.volume_unit || r.unit}`;
+  const note = m.source === "world_oil_price"
+    ? "Oil keeps its existing calibrated market and is not stored or cleared by the generic commodity auction."
+    : m.settled ? "Latest monthly clearing. Contracts settle before spot orders."
+    : "No spot auction has cleared yet; the quote shown is the sourced 1990 reference.";
+  const stockNote = pile.projected ? " Stock is a legacy-cover projection until the first physical settlement." : "";
+  return `<div class="marketcard"><div class="mh">WORLD MARKET <span class="band ${escText(band)}">${escText(band)}</span></div>
+    <div class="marketcells">
+      <span>Price<b>${fmtMarketPrice(m)} ${escText(m.price_unit || "")}</b></span>
+      <span>Reference<b>${m.reference_price == null ? "—" : fmtMarketPrice({ current_price:m.reference_price })}</b></span>
+      <span>Trend<b>${marketTrendMark(m.trend)} ${escText(m.trend || "waiting")}</b></span>
+      <span>Cleared<b>${cleared}</b></span><span>Unmet orders<b>${unmet}</b></span>
+      <span>National stock<b>${quantity} · ${cover}</b></span>
+    </div><div class="marketnote">${note}${stockNote}</div></div>`;
+}
+
 function stockRows() { return (S && S.resources && S.resources.rows) || []; }
 function stockVisibleRows() {
   const rows = stockRows();
@@ -10811,6 +11737,8 @@ function stockVisibleRows() {
 function toggleStockScreen() { if (stock.open) closeStock(); else openStock(); }
 function openStock(com) {
   if (!S || !S.resources) return;      // spectator: no board to read
+  if (LOGI.open) closeLogistics();
+  if (PROD.open) closeProduction();
   closeTechMenu();
   if (tech.open) closeTech();
   closeSheet();
@@ -10887,9 +11815,11 @@ function renderStock() {
   const R = S.resources;
   const rows = stockRows(), vis = stockVisibleRows();
   const contracts = R.contracts || [], offers = R.offers || [];
+  const market = R.market_summary || {};
   const fed = rows.filter((r) => r.status === "ok" || r.status === "supplied").length;
   $("#stockSub").textContent =
-    `${fed} of ${rows.length} lines fed · ${R.starved} starved · ${contracts.length} contract${contracts.length === 1 ? "" : "s"}`;
+    `${fed} of ${rows.length} lines fed · ${R.starved} starved · ${contracts.length} contract${contracts.length === 1 ? "" : "s"}`
+    + (market.quoted == null ? "" : ` · ${market.quoted} quoted${market.critical ? ` · ${market.critical} critical` : ""}`);
   // Offers (S3 writes them; absence renders nothing) above the rows.
   const offerLines = offers.map((o) => `<div class="offerrow">${rglyph(RES_ALL, "var(--brass-dim)")}
       <span class="ln">${escText(o.legs)} · expires in ${o.expires_in} months</span>
@@ -10908,7 +11838,8 @@ function renderStock() {
       <button data-cancel="${k.id}" data-with="${escText(k.with)}" data-pc="${k.cancel_pc}" data-note="${escText(k.cancel_note)}">Cancel — ${k.cancel_pc.toFixed(0)} political capital</button>
       <span class="tiny">${escText(k.cancel_note)}</span>
     </div>`).join("");
-  $("#stockRows").innerHTML = (offers.length ? `<div class="stockhead">Offers</div>${offerLines}` : "")
+  $("#stockRows").innerHTML = marketStripHtml(rows)
+    + (offers.length ? `<div class="stockhead">Offers</div>${offerLines}` : "")
     + head + vis.map(stockRowHtml).join("") + fold
     + (contracts.length ? `<div class="stockhead">Contracts</div>${contractLines}` : "");
   const byId = {};
@@ -10918,6 +11849,9 @@ function renderStock() {
     el.onclick = () => stockSelect(el.dataset.com);
     el.onpointerenter = (e) => stockTipShow(r, e.clientX, e.clientY);
     el.onpointerleave = stockTipHide;
+  });
+  $("#stockRows").querySelectorAll("[data-market-com]").forEach((el) => {
+    el.onclick = () => stockSelect(el.dataset.marketCom);
   });
   $("#stockRows").querySelectorAll("[data-cancel]").forEach((b) => {
     b.onclick = () => cancelDeal(+b.dataset.cancel, b.dataset.with, b.dataset.pc, b.dataset.note);
@@ -10937,14 +11871,31 @@ function renderStockDock() {
   if (!c || c.com !== stock.sel) { dock.innerHTML = `<div class="tiny">reading the ledger…</div>`; return; }
   const m = c.mine, tr = c.trade, t = c.take;
   const com = c.com;
-  let s = `<h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2><div class="sub">${escText(c.row.sentence)}</div>`;
-  // MINE — greyed in this build with the served block sentence: a missing
-  // card reads as a missing feature, a greyed one reads as a plan.
-  s += `<div class="strat poor"><div class="top"><span class="nm">MINE</span><span class="cost">— PC</span></div>
-      <div class="blurb">${escText(m.blurb)}</div>
+  let s = `<h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2><div class="sub">${escText(c.row.sentence)}</div>${marketCardHtml(c.row)}
+    <button type="button" class="stock-route-link" data-act="routes">SHOW ROUTES ON GLOBE · G</button>`;
+  // MINE / DRILL — the player chooses one mapped province. Every number and
+  // refusal is served; the sim validates it again when the button is pressed.
+  const mineOptions = m.options || [];
+  if (!stock.mineTarget[com] || !mineOptions.some((o) => o.district === stock.mineTarget[com])) {
+    stock.mineTarget[com] = ((mineOptions.find((o) => o.eligible) || mineOptions[0]) || {}).district || null;
+  }
+  const mt = mineOptions.find((o) => o.district === stock.mineTarget[com]);
+  const mineLive = !!(mt && mt.eligible && m.affordable);
+  const mineStatus = !mt ? m.blocked
+    : mt.active ? `${mt.district_name} · building · ${mt.months_remaining}/${mt.months_total} months left`
+    : mt.online ? `${mt.district_name} · online · +${fmtQ(mt.output)} ${c.unit}`
+    : mt.eligible ? `${mt.district_name} · ${mt.quality} · ${fmtQ(mt.output)} ${c.unit} · $${(+mt.cost_bn).toFixed(1)}bn`
+    : mt.reason;
+  const mineSelect = mineOptions.length ? `<select data-mine-target>${mineOptions.map((o) =>
+    `<option value="${escText(o.district)}"${o.district === stock.mineTarget[com] ? " selected" : ""}>${
+      escText(o.district_name)} · ${escText(o.quality)}${o.active ? " · BUILDING" : o.online ? " · ONLINE" : ""}</option>`
+    ).join("")}</select>` : "";
+  s += `<div class="strat${mineLive || (mt && (mt.active || mt.online)) ? "" : " poor"}"><div class="top"><span class="nm">${escText(m.verb)}</span><span class="cost">DEVELOP · ${m.pc.toFixed(0)} PC</span></div>
+      <div class="blurb">${escText(m.blurb)}</div>${mineSelect}
       <div class="plus">${escText(m.plus)}</div><div class="minus">${escText(m.minus)}</div>
-      <div class="foot"><button disabled>DEVELOP</button></div>
-      <div class="why">${escText(m.blocked)}</div></div>`;
+      <div class="foot"><button data-act="mine" ${mineLive ? "" : "disabled"}>${escText(m.verb)} THIS PROVINCE</button>${
+        !m.affordable ? `<span class="short">${Math.ceil(m.shortfall)} more needed</span>` : ""}</div>
+      <div class="why">${escText(mineStatus || "No eligible deposit.")}</div></div>`;
   // TRADE — opens talks with the best seller the sim found.
   if (tr) {
     s += `<div class="strat${tr.affordable ? "" : " poor"}"><div class="top"><span class="nm">TRADE</span><span class="cost">OPEN TALKS · ${tr.pc.toFixed(0)} PC</span></div>
@@ -10968,6 +11919,8 @@ function renderStockDock() {
         : live && !t.affordable ? `<span class="short">${Math.ceil(t.pc - (me() || {}).political_capital)} more needed</span>` : ""}</div></div>`;
   s += `<div class="tiny advisor">${escText(c.advisor)}</div>`;
   dock.innerHTML = s;
+  const routesBtn = dock.querySelector("[data-act=routes]");
+  if (routesBtn) routesBtn.onclick = () => { closeStock(); openLogistics(com); };
   const talksBtn = dock.querySelector("[data-act=talks]");
   if (talksBtn) talksBtn.onclick = () => openTalks(com, tr.best_seller_id);
   const takeBtn = dock.querySelector("[data-act=take]");
@@ -10977,6 +11930,18 @@ function renderStockDock() {
     await adopt(r, false);
     const mineNow = S.wars.find((w) => myPosture(w) && w.posture.some((b) => b.id === t.nation_id));
     if (mineNow) { closeStock(); openConflict(mineNow.id); }
+  };
+  const minePick = dock.querySelector("[data-mine-target]");
+  if (minePick) minePick.onchange = () => { stock.mineTarget[com] = minePick.value; renderStockDock(); };
+  const mineBtn = dock.querySelector("[data-act=mine]");
+  if (mineBtn) mineBtn.onclick = async () => {
+    const target = (m.options || []).find((o) => o.district === stock.mineTarget[com]);
+    if (!target || !target.eligible) return;
+    const r = await api("/api/command", { commands: [{ kind: "develop_resource", commodity: com, district: target.district }] });
+    if (r.errors && r.errors.length) banner(r.errors[0]);
+    else banner(`${m.verb === "DRILL" ? "Field" : "Mine"} project started in ${target.district_name}.`);
+    await adopt(r, false);
+    stockFetchCards();
   };
 }
 
@@ -11027,6 +11992,7 @@ function stockTipShow(r, clientX, clientY) {
 function stockKeys(e) {
   const k = e.key;
   if (k === "Escape" || k === "b" || k === "B") { e.preventDefault(); closeStock(); return; }
+  if (k === "g" || k === "G") { e.preventDefault(); const com = stock.sel; closeStock(); openLogistics(com); return; }
   if (k === "ArrowUp" || k === "ArrowDown") {
     e.preventDefault();
     const vis = stockVisibleRows();
@@ -11038,9 +12004,10 @@ function stockKeys(e) {
   }
   if (k === "Enter" || k === "2") { e.preventDefault(); const b = $("#stockDock [data-act=talks]"); if (b && !b.disabled) b.click(); return; }
   if (k === "3") { e.preventDefault(); const b = $("#stockDock [data-act=take]"); if (b && !b.disabled) b.click(); return; }
-  // 1 is MINE, greyed in this build; the time keys are swallowed too —
-  // advancing blind from behind the board is the tech screen's misfire.
-  if (k === "1" || k === " " || (k >= "0" && k <= "9")) e.preventDefault();
+  if (k === "1") { e.preventDefault(); const b = $("#stockDock [data-act=mine]"); if (b && !b.disabled) b.click(); return; }
+  // Time keys are swallowed — advancing blind from behind the board is the
+  // tech screen's misfire.
+  if (k === " " || (k >= "0" && k <= "9")) e.preventDefault();
 }
 
 /* ---------------- contracts and offers ---------------- */
@@ -11265,6 +12232,1007 @@ async function fillStockDash(nid) {
   });
 }
 
+/* ================= logistics: the monthly dispatch board =================
+   This is a READ of the last settlement, never a daily cargo simulation. The
+   sim serves every quantity, state, reason and allowed action on /api/logistics;
+   the page only filters and draws it. Lanes terminate at national anchors and
+   are named `abstract` because this build has no sourced ports, roads, rails or
+   sea graph from which a physical itinerary could honestly be constructed. */
+
+const LOGI = {
+  open: false, data: null, stale: true, loading: false, error: null, seq: 0,
+  com: RES_ALL, expanded: false, selected: null, hits: [],
+};
+const LOGI_CONSTRAINED = new Set([
+  "constrained", "capacity_limited", "partially_served", "supply_short", "supply_limited",
+]);
+const LOGI_BLOCKED = new Set([
+  "blocked", "closed", "sanctioned", "belligerent", "blockaded", "legacy_unrouted",
+  "no_route", "no_path", "access_denied",
+]);
+
+function logisticsLaneId(lane) {
+  if (!lane) return "";
+  if (lane.id != null) return String(lane.id);
+  return [logisticsEndpoint(lane, true), logisticsEndpoint(lane, false),
+    lane.commodity || lane.com || "cargo", lane.source || lane.priority || "spot",
+    lane.contract_id == null ? "" : lane.contract_id].join(":");
+}
+function logisticsEndpoint(lane, from) {
+  return from
+    ? (lane.from != null ? lane.from : lane.from_id != null ? lane.from_id : lane.seller != null ? lane.seller : lane.seller_id)
+    : (lane.to != null ? lane.to : lane.to_id != null ? lane.to_id : lane.buyer != null ? lane.buyer : lane.buyer_id);
+}
+function logisticsEndpointName(lane, from) {
+  const id = logisticsEndpoint(lane, from);
+  const served = from ? (lane.from_name || lane.seller_name) : (lane.to_name || lane.buyer_name);
+  const n = id != null && nationById(String(id));
+  return served || (n && n.name) || id || "Unknown";
+}
+function logisticsCommodity(lane) { return lane.commodity || lane.com || "cargo"; }
+function logisticsCommodityName(laneOrKey) {
+  const key = typeof laneOrKey === "string" ? laneOrKey : logisticsCommodity(laneOrKey);
+  const served = typeof laneOrKey === "object" && (laneOrKey.commodity_name || laneOrKey.name);
+  const meta = ((RESOURCES || {}).commodities || {})[key];
+  const row = stockRows().find((r) => r.id === key);
+  return served || (meta && meta.label) || (row && row.name) || String(key).replace(/_/g, " ");
+}
+function logisticsState(lane) { return String(lane.state || lane.status || "delivered").toLowerCase(); }
+function logisticsTone(lane) {
+  const state = logisticsState(lane);
+  return LOGI_BLOCKED.has(state) ? "blocked" : LOGI_CONSTRAINED.has(state) ? "constrained" : "moving";
+}
+function logisticsStateWord(lane) { return logisticsState(lane).replace(/_/g, " ").toUpperCase(); }
+function logisticsMonthLabel(value) {
+  if (value == null) return "";
+  if (typeof value === "string" || typeof value === "number") return String(value);
+  if (value.label) return String(value.label);
+  if (value.year != null && value.month != null) {
+    const m = MONTHS[clamp(+value.month - 1, 0, 11)] || value.month;
+    return `${m} ${value.year}`;
+  }
+  return "";
+}
+function logisticsNumber(lane, ...keys) {
+  for (const key of keys) if (lane[key] != null && isFinite(+lane[key])) return +lane[key];
+  return null;
+}
+function logisticsQuantity(value, unit) { return value == null ? "—" : `${fmtQ(value)}${unit ? ` ${unit}` : ""}`; }
+function logisticsActions(lane) {
+  return (lane.actions || []).map((a) => typeof a === "string" ? a : (a && (a.kind || a.action || a.id))).filter(Boolean);
+}
+function logisticsAllows(lane, action) { return logisticsActions(lane).includes(action); }
+function logisticsEscAttr(value) {
+  return escText(value == null ? "" : value).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function logisticsIsMine(lane) {
+  if (!S) return false;
+  const own = new Set([S.player, S.player_name, me() && me().id, me() && me().name]
+    .filter((x) => x != null).map(String));
+  return own.has(String(logisticsEndpoint(lane, true))) || own.has(String(logisticsEndpoint(lane, false)))
+    || own.has(String(lane.from_name || lane.seller_name || "")) || own.has(String(lane.to_name || lane.buyer_name || ""));
+}
+function logisticsFilteredLanes() {
+  let lanes = ((LOGI.data && LOGI.data.lanes) || []).filter(logisticsIsMine);
+  if (LOGI.com !== RES_ALL) lanes = lanes.filter((l) => logisticsCommodity(l) === LOGI.com);
+  const attention = new Set(((LOGI.data && LOGI.data.attention_ids) || []).map(String));
+  const rank = { blocked: 0, constrained: 1, moving: 2 };
+  return lanes.map((lane, i) => ({ lane, i })).sort((a, b) => {
+    const ah = attention.has(logisticsLaneId(a.lane)) ? 0 : 1;
+    const bh = attention.has(logisticsLaneId(b.lane)) ? 0 : 1;
+    return ah - bh || rank[logisticsTone(a.lane)] - rank[logisticsTone(b.lane)] || a.i - b.i;
+  }).map((x) => x.lane);
+}
+function logisticsSummary(lanes) {
+  const out = { moving: 0, constrained: 0, blocked: 0 };
+  for (const lane of lanes) out[logisticsTone(lane)]++;
+  return out;
+}
+function logisticsFindLane(id) {
+  return ((LOGI.data && LOGI.data.lanes) || []).find((l) => logisticsLaneId(l) === String(id));
+}
+
+function renderLogisticsDock() {
+  const button = $("#logisticsDockBtn"), copy = $("#dockLogistics"), badge = $("#logisticsBadge");
+  if (!button || !S) return;
+  const sum = S.logistics_summary || {};
+  const moving = +sum.moving || 0, constrained = +sum.constrained || 0, blocked = +sum.blocked || 0;
+  copy.textContent = `${moving} moving${blocked ? ` · ${blocked} blocked` : constrained ? ` · ${constrained} short` : ""}`;
+  const attention = +sum.attention || blocked + constrained;
+  badge.textContent = attention > 99 ? "99+" : String(attention);
+  badge.classList.toggle("on", attention > 0);
+  badge.classList.toggle("warn", !blocked && attention > 0);
+  button.disabled = !S.player;
+  button.setAttribute("aria-label", `Logistics: ${moving} moving, ${constrained} constrained, ${blocked} blocked`);
+  button.setAttribute("aria-expanded", LOGI.open ? "true" : "false");
+}
+
+function openLogistics(com) {
+  if (!S || !S.player) return;
+  if (PROD.open) closeProduction();
+  if (stock.open) closeStock();
+  closeGameDrawers();
+  closeTechMenu();
+  showTab("map");
+  if (com) LOGI.com = com;
+  LOGI.open = true;
+  LOGI.expanded = false;
+  LOGI.error = null;
+  const panel = $("#logisticsPanel");
+  panel.classList.add("open");
+  panel.setAttribute("aria-hidden", "false");
+  document.body.classList.add("logistics-open");
+  renderLogisticsDock();
+  renderLogisticsPanel();
+  logisticsFetch();
+  if (GLOBE) GLOBE.render();
+}
+function closeLogistics() {
+  LOGI.open = false;
+  LOGI.selected = null;
+  LOGI.expanded = false;
+  LOGI.hits = [];
+  const panel = $("#logisticsPanel");
+  if (panel) { panel.classList.remove("open"); panel.setAttribute("aria-hidden", "true"); }
+  document.body.classList.remove("logistics-open");
+  renderLogisticsDock();
+  if (GLOBE) GLOBE.render();
+}
+function toggleLogistics() { if (LOGI.open) closeLogistics(); else openLogistics(); }
+window.openLogistics = openLogistics;
+window.closeLogistics = closeLogistics;
+
+async function logisticsFetch() {
+  if (!LOGI.open || LOGI.loading || (!LOGI.stale && LOGI.data)) return;
+  LOGI.loading = true;
+  LOGI.error = null;
+  renderLogisticsPanel();
+  const seq = ++LOGI.seq;
+  try {
+    const data = await api("/api/logistics");
+    if (seq !== LOGI.seq) return;
+    data.lanes = Array.isArray(data.lanes) ? data.lanes : [];
+    LOGI.data = data;
+    LOGI.stale = false;
+    if (LOGI.selected && !logisticsFindLane(LOGI.selected)) LOGI.selected = null;
+    const sum = logisticsSummary(logisticsFilteredLanes());
+    $("#logisticsLive").textContent = `Logistics updated. ${sum.moving} moving, ${sum.constrained} constrained, ${sum.blocked} blocked.`;
+  } catch (e) {
+    if (seq === LOGI.seq) LOGI.error = e.message;
+  } finally {
+    if (seq === LOGI.seq) {
+      LOGI.loading = false;
+      renderLogisticsPanel();
+      if (GLOBE) GLOBE.render();
+    }
+  }
+}
+
+function logisticsCardHtml(lane) {
+  const id = logisticsLaneId(lane), tone = logisticsTone(lane);
+  const from = logisticsEndpointName(lane, true), to = logisticsEndpointName(lane, false);
+  const com = logisticsCommodity(lane), unit = lane.unit || lane.quantity_unit || "";
+  const requested = logisticsNumber(lane, "requested", "requested_qty", "matched_qty");
+  const delivered = logisticsNumber(lane, "delivered", "delivered_qty");
+  const unshipped = logisticsNumber(lane, "unshipped", "unshipped_qty", "supply_limited_qty", "lost_or_unshipped_qty");
+  const source = lane.source || lane.priority || "shipment";
+  const month = logisticsMonthLabel(lane.month || (LOGI.data && LOGI.data.settled_month));
+  const reason = lane.reason || (lane.reason_code && String(lane.reason_code).replace(/_/g, " ")) || "";
+  const focus = logisticsAllows(lane, "focus");
+  const contract = lane.contract_id != null && logisticsAllows(lane, "open_contract");
+  const mark = tone === "moving" ? "●" : tone === "constrained" ? "△" : "⊘";
+  return `<article class="lane-card ${tone}${LOGI.selected === id ? " selected" : ""}" tabindex="0"
+      data-logi-lane="${logisticsEscAttr(id)}" aria-label="${logisticsEscAttr(`${from} to ${to}, ${logisticsStateWord(lane)}`)}">
+    <div class="lane-top"><div class="lane-route">${escText(from)}<span class="arrow">→</span>${escText(to)}</div>
+      <div class="lane-state"><i aria-hidden="true">${mark}</i>${escText(logisticsStateWord(lane))}</div></div>
+    <div class="lane-meta">${rglyph(com, stockHue(com))}${escText(logisticsCommodityName(lane))} · ${escText(String(source))}${month ? ` · ${escText(month)}` : ""}</div>
+    <div class="lane-quantities"><span>Promised<b>${logisticsQuantity(requested, unit)}</b></span>
+      <span>Delivered<b>${logisticsQuantity(delivered, unit)}</b></span>
+      <span>Unshipped<b>${logisticsQuantity(unshipped, unit)}</b></span></div>
+    ${reason ? `<div class="lane-reason">${escText(reason)}</div>` : ""}
+    ${focus || contract ? `<div class="lane-actions">${focus ? `<button type="button" data-logi-action="focus" data-logi-key="${logisticsEscAttr(id)}">Focus</button>` : ""}
+      ${contract ? `<button type="button" data-logi-action="open_contract" data-logi-key="${logisticsEscAttr(id)}">Open contract</button>` : ""}</div>` : ""}
+  </article>`;
+}
+
+function renderLogisticsPanel() {
+  const body = $("#logisticsBody");
+  if (!body || !LOGI.open) return;
+  const all = logisticsFilteredLanes();
+  const summary = logisticsSummary(all);
+  const picked = LOGI.selected && all.find((lane) => logisticsLaneId(lane) === LOGI.selected);
+  const visible = LOGI.expanded ? all : picked
+    ? [picked, ...all.filter((lane) => lane !== picked)].slice(0, 3) : all.slice(0, 3);
+  const month = logisticsMonthLabel(LOGI.data && LOGI.data.settled_month) || "Awaiting first settlement";
+  const commodities = [...new Set(((LOGI.data && LOGI.data.lanes) || []).map(logisticsCommodity))].sort();
+  const chips = [RES_ALL, ...commodities].map((com) => {
+    const on = LOGI.com === com;
+    return `<button type="button" data-logi-com="${logisticsEscAttr(com)}" aria-pressed="${on}">${
+      rglyph(com, on ? "var(--brass-hi)" : stockHue(com))}${com === RES_ALL ? "All cargo" : escText(logisticsCommodityName(com))}</button>`;
+  }).join("");
+  let list;
+  if (LOGI.error) list = `<div class="logistics-empty">${escText(LOGI.error)}<br><button type="button" data-logi-retry>Retry</button></div>`;
+  else if (!LOGI.data && LOGI.loading) list = `<div class="logistics-empty">Reading the latest monthly settlement…</div>`;
+  else if (!all.length) list = `<div class="logistics-empty">No ${LOGI.com === RES_ALL ? "" : escText(logisticsCommodityName(LOGI.com)) + " "}routes touch your network.<br>Abstract lanes appear only after a monthly market fill.</div>`;
+  else list = `<div class="logistics-list">${visible.map(logisticsCardHtml).join("")}</div>${all.length > 3
+    ? `<button type="button" class="logistics-more" data-logi-more>${LOGI.expanded ? "Show top 3" : `Show ${all.length - 3} more`}</button>` : ""}`;
+  body.innerHTML = `<div class="logistics-stamp"><b>My network · abstract lanes</b><span>${escText(month)}<br>latest monthly settlement</span></div>
+    <div class="logistics-filters" aria-label="Commodity filter">${chips}</div>
+    <div class="logistics-summary"><span>Moving<b>${summary.moving}</b></span><span class="constrained">Supply short<b>${summary.constrained}</b></span><span class="blocked">Closed<b>${summary.blocked}</b></span></div>${list}`;
+  body.querySelectorAll("[data-logi-com]").forEach((button) => { button.onclick = () => {
+    LOGI.com = button.dataset.logiCom; LOGI.expanded = false; LOGI.selected = null; renderLogisticsPanel(); if (GLOBE) GLOBE.render();
+  }; });
+  body.querySelectorAll("[data-logi-lane]").forEach((card) => {
+    card.onclick = (e) => { if (!e.target.closest("button")) logisticsSelect(card.dataset.logiLane); };
+    card.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); logisticsSelect(card.dataset.logiLane); } };
+  });
+  body.querySelectorAll("[data-logi-action]").forEach((button) => { button.onclick = (e) => {
+    e.stopPropagation(); const lane = logisticsFindLane(button.dataset.logiKey); if (!lane) return;
+    if (button.dataset.logiAction === "focus") logisticsFocus(lane);
+    else if (button.dataset.logiAction === "open_contract") logisticsOpenContract(lane);
+  }; });
+  const more = body.querySelector("[data-logi-more]");
+  if (more) more.onclick = () => { LOGI.expanded = !LOGI.expanded; renderLogisticsPanel(); };
+  const retry = body.querySelector("[data-logi-retry]");
+  if (retry) retry.onclick = () => { LOGI.stale = true; LOGI.error = null; logisticsFetch(); };
+}
+
+function logisticsSelect(id) {
+  LOGI.selected = id == null ? null : String(id);
+  renderLogisticsPanel();
+  if (GLOBE) GLOBE.render();
+}
+function logisticsFocus(lane) {
+  if (!logisticsAllows(lane, "focus")) return;
+  logisticsSelect(logisticsLaneId(lane));
+  const a = anchorOf(String(logisticsEndpoint(lane, true))), b = anchorOf(String(logisticsEndpoint(lane, false)));
+  if (!a || !b) { banner("That abstract lane has no mapped national anchor."); return; }
+  const ga = Globe3D.unproject(a[0], a[1]), gb = Globe3D.unproject(b[0], b[1]);
+  const middle = slerpGeo(ga, gb, .5), p = Globe3D.project(middle[0], middle[1]);
+  const D = Math.PI / 180;
+  const dot = clamp(Math.sin(ga[1] * D) * Math.sin(gb[1] * D) + Math.cos(ga[1] * D) * Math.cos(gb[1] * D) * Math.cos((ga[0] - gb[0]) * D), -1, 1);
+  const angle = Math.acos(dot);
+  showTab("map");
+  camTween(p[0], p[1], clamp(2.4 - angle / Math.PI * 1.45, 1.05, 2.4));
+}
+function logisticsOpenContract(lane) {
+  if (!logisticsAllows(lane, "open_contract") || lane.contract_id == null) return;
+  const id = String(lane.contract_id), com = logisticsCommodity(lane);
+  closeLogistics();
+  openStock(com);
+  requestAnimationFrame(() => {
+    const button = [...document.querySelectorAll("#stockRows [data-cancel]")].find((b) => b.dataset.cancel === id);
+    const row = button && button.closest(".contractrow");
+    if (!row) { banner(`Contract ${id} is not in your Resources ledger.`); return; }
+    row.tabIndex = -1;
+    row.setAttribute("aria-label", `Contract ${id}`);
+    row.scrollIntoView({ block: "center" });
+    row.focus({ preventScroll: true });
+    row.style.boxShadow = "inset 3px 0 var(--cyan)";
+    setTimeout(() => { if (row.isConnected) row.style.boxShadow = ""; }, 2600);
+  });
+}
+
+$("#logisticsDockBtn").onclick = toggleLogistics;
+$("#logisticsClose").onclick = closeLogistics;
+
+/* Screen-space abstract arcs. State is both colour and pattern: cyan solid is
+   delivered/moving, amber long-dash is supply-short, red broken is closed. A
+   selected route alone gets its served state word; no cargo bead animates. */
+function drawLogisticsOverlay(ctx, view, globe) {
+  LOGI.hits = [];
+  if (!LOGI.open || !LOGI.data) return;
+  const r = view.ratio;
+  const selected = LOGI.selected;
+  const filtered = logisticsFilteredLanes();
+  const selectedLane = selected && filtered.find((lane) => logisticsLaneId(lane) === selected);
+  const lanes = (selectedLane
+    ? [selectedLane, ...filtered.filter((lane) => logisticsLaneId(lane) !== selected)]
+    : filtered).slice(0, 12).sort((a, b) =>
+    (logisticsLaneId(a) === selected ? 1 : 0) - (logisticsLaneId(b) === selected ? 1 : 0));
+  for (const lane of lanes) {
+    const id = logisticsLaneId(lane), tone = logisticsTone(lane);
+    const a = anchorOf(String(logisticsEndpoint(lane, true))), b = anchorOf(String(logisticsEndpoint(lane, false)));
+    if (!a || !b) continue;
+    const ga = Globe3D.unproject(a[0], a[1]), gb = Globe3D.unproject(b[0], b[1]);
+    const colour = tone === "blocked" ? "#df6c65" : tone === "constrained" ? "#d2a645" : "#55c9df";
+    const alpha = selected && id !== selected ? .15 : .92;
+    const segments = [];
+    let pen = false, previous = null, last = null, beforeLast = null, midpoint = null, endVisible = false;
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    for (let i = 0; i <= 40; i++) {
+      const g = slerpGeo(ga, gb, i / 40);
+      const p = globe.projectGeo(g[0], g[1], view, 1.012);
+      if (!p) { pen = false; previous = null; continue; }
+      if (pen) { ctx.lineTo(p[0], p[1]); segments.push([previous, p]); }
+      else ctx.moveTo(p[0], p[1]);
+      pen = true; previous = p; beforeLast = last; last = p;
+      if (!midpoint || Math.abs(i - 20) < midpoint.delta) midpoint = { p, delta: Math.abs(i - 20) };
+      endVisible = i === 40;
+    }
+    ctx.strokeStyle = "#05080c"; ctx.lineWidth = (lane.source === "spot" ? 3.8 : 4.6) * r; ctx.setLineDash([]); ctx.stroke();
+    ctx.strokeStyle = colour; ctx.lineWidth = (lane.source === "spot" ? 1.15 : 1.75) * r;
+    ctx.setLineDash(tone === "blocked" ? [3 * r, 6 * r] : tone === "constrained" ? [9 * r, 4 * r] : []);
+    ctx.stroke(); ctx.setLineDash([]);
+    for (const seg of segments) LOGI.hits.push({ lane, a: seg[0], b: seg[1], r });
+    if (endVisible && last && beforeLast && tone !== "blocked") {
+      const angle = Math.atan2(last[1] - beforeLast[1], last[0] - beforeLast[0]), size = 6 * r;
+      ctx.fillStyle = colour; ctx.beginPath(); ctx.moveTo(last[0], last[1]);
+      ctx.lineTo(last[0] - size * Math.cos(angle - .5), last[1] - size * Math.sin(angle - .5));
+      ctx.lineTo(last[0] - size * Math.cos(angle + .5), last[1] - size * Math.sin(angle + .5)); ctx.closePath(); ctx.fill();
+    }
+    if (tone === "blocked" && midpoint) {
+      const p = midpoint.p, size = 4.5 * r; ctx.strokeStyle = colour; ctx.lineWidth = 1.7 * r;
+      ctx.beginPath(); ctx.moveTo(p[0] - size, p[1] - size); ctx.lineTo(p[0] + size, p[1] + size);
+      ctx.moveTo(p[0] + size, p[1] - size); ctx.lineTo(p[0] - size, p[1] + size); ctx.stroke();
+    }
+    if (id === selected && midpoint) {
+      const text = logisticsStateWord(lane), p = midpoint.p;
+      ctx.font = `700 ${9 * r}px Inter, system-ui, sans-serif`;
+      const width = ctx.measureText(text).width + 12 * r, height = 17 * r;
+      ctx.globalAlpha = .96; ctx.fillStyle = "#070b10"; roundedRect(ctx, p[0] - width / 2, p[1] - 25 * r, width, height, 4 * r); ctx.fill();
+      ctx.strokeStyle = colour; ctx.lineWidth = r; ctx.stroke(); ctx.fillStyle = "#eef4f8"; ctx.textAlign = "center";
+      ctx.fillText(text, p[0], p[1] - 16.5 * r); ctx.textAlign = "center";
+    }
+    ctx.globalAlpha = 1;
+  }
+  ctx.setLineDash([]); ctx.globalAlpha = 1; ctx.textAlign = "center";
+}
+
+function logisticsHitAt(clientX, clientY) {
+  if (!LOGI.open || !LOGI.hits.length || !GLOBE || !GLOBE.lastSize) return null;
+  const rect = GLCV.getBoundingClientRect(), size = GLOBE.lastSize;
+  if (!rect.width || !rect.height) return null;
+  const x = (clientX - rect.left) * size.width / (size.cw || rect.width);
+  const y = (clientY - rect.top) * size.height / (size.ch || rect.height);
+  let best = null, bestD = Infinity;
+  for (const hit of LOGI.hits) {
+    const ax = hit.a[0], ay = hit.a[1], bx = hit.b[0], by = hit.b[1];
+    const dx = bx - ax, dy = by - ay, den = dx * dx + dy * dy;
+    const t = den ? clamp(((x - ax) * dx + (y - ay) * dy) / den, 0, 1) : 0;
+    const px = ax + t * dx, py = ay + t * dy, d = (x - px) ** 2 + (y - py) ** 2;
+    if (d < bestD && d <= (7 * hit.r) ** 2) { bestD = d; best = hit.lane; }
+  }
+  return best;
+}
+
+/* ================= production: the national works board =================
+   The simulation owns every project, requirement, province, status, reason
+   and allowed action. This page supplies only the arcade composition: four
+   cards, a two-step project/province picker, and exact-centroid map marks. */
+
+const PROD = {
+  open: false, data: null, stale: true, loading: false, error: null, seq: 0,
+  mode: "build", view: "queue", pickKind: null, selected: null, showBuilt: false, refreshQueued: false, hits: [],
+};
+const PROD_ICON = {
+  infrastructure: "▥", civilian_industry: "⚙", power_grid: "ϟ",
+  research_center: "⌬", arms_plant: "⛭",
+};
+const MANU = {
+  data: null, stale: true, loading: false, error: null, seq: 0,
+  view: "lines", pickKit: null, classFilter: "All", selected: null, showLocked: false,
+  refreshQueued: false, hits: [],
+};
+const MANU_CLASS_MARK = { infantry: "⌁", armour: "▰", air: "△", naval: "≋", missile: "↟", space: "✦" };
+
+function productionQueue() { return (PROD.data && Array.isArray(PROD.data.queue)) ? PROD.data.queue : []; }
+function productionCatalog() { return (PROD.data && Array.isArray(PROD.data.catalog)) ? PROD.data.catalog : []; }
+function productionProvinces() { return (PROD.data && Array.isArray(PROD.data.provinces)) ? PROD.data.provinces : []; }
+function productionCompleted() { return (PROD.data && Array.isArray(PROD.data.completed)) ? PROD.data.completed : []; }
+function productionMarkers() { return (PROD.data && Array.isArray(PROD.data.markers)) ? PROD.data.markers : []; }
+function productionProject(id) { return productionQueue().find((p) => String(p.id) === String(id)); }
+function productionKind(p) { return String((p && (p.kind || p.project_kind)) || "project"); }
+function productionStatus(p) { return String((p && p.status) || "building").toLowerCase(); }
+function productionTone(p) {
+  const s = productionStatus(p);
+  return s === "blocked" ? "blocked" : s === "slowed" ? "slowed" : "building";
+}
+function productionProvince(p) {
+  const province = p && p.province;
+  return {
+    id: province && province.id != null ? province.id : p && (p.district || p.province_id),
+    name: province && province.name ? province.name : p && (p.district_name || p.province_name),
+  };
+}
+function productionProgress(p) {
+  if (!p) return 0;
+  if (typeof p.progress === "number") return clamp(p.progress > 1 ? p.progress / 100 : p.progress, 0, 1);
+  if (p.progress && isFinite(+p.progress.fraction)) return clamp(+p.progress.fraction, 0, 1);
+  if (isFinite(+p.progress_days) && +p.total_days > 0) return clamp(+p.progress_days / +p.total_days, 0, 1);
+  return 0;
+}
+function productionPriorityChoices(p) {
+  const a = p && p.actions;
+  const raw = a && (a.set_priority || a.priorities || a.priority);
+  return Array.isArray(raw) ? raw.map(String) : [];
+}
+function productionCanCancel(p) {
+  const a = p && p.actions;
+  return !!(a && (a.cancel === true || (Array.isArray(a) && a.includes("cancel"))));
+}
+function productionSummary(rows) {
+  const out = { building: 0, slowed: 0, blocked: 0 };
+  for (const p of rows) out[productionTone(p)]++;
+  return out;
+}
+function productionRequirements(p) {
+  return Array.isArray(p && p.requirements) ? p.requirements : [];
+}
+function productionCapabilityPairs(raw) {
+  return (Array.isArray(raw) ? raw.map((x) => [x.name || x.kind, x.level]) : Object.entries(raw || {}))
+    .filter(([, level]) => +level > 0);
+}
+function productionNeedHtml(r) {
+  const name = r.name || logisticsCommodityName(r.commodity || r.id || "resource");
+  const required = r.required != null ? +r.required : r.amount != null ? +r.amount : null;
+  const used = r.consumed != null ? +r.consumed : r.used != null ? +r.used : null;
+  const short = +r.shortfall > 0;
+  const value = used != null && required != null ? `${fmtQ(used)}/${fmtQ(required)}`
+    : required != null ? fmtQ(required) : "required";
+  return `<span class="work-need${short ? " short" : ""}">${escText(name)} · ${escText(value)}${r.unit ? ` ${escText(r.unit)}` : ""}</span>`;
+}
+
+function renderProductionDock() {
+  const button = $("#productionDockBtn"), copy = $("#dockProduction"), badge = $("#productionBadge");
+  if (!button || !S) return;
+  const sum = S.production_summary || {};
+  const manufacture = S.manufacturing_summary || {};
+  const active = +sum.active || 0, building = +sum.building || 0;
+  const slowed = +sum.slowed || 0, blocked = +sum.blocked || 0;
+  const completed = +sum.completed || 0;
+  const capacity = +sum.capacity || 4;
+  const lines = +manufacture.active || 0, lineCapacity = +manufacture.capacity || 0;
+  copy.textContent = `${active}/${capacity} builds · ${lines}/${lineCapacity} lines`;
+  const attention = (+sum.attention || slowed + blocked) + (+manufacture.attention || 0);
+  badge.textContent = attention > 99 ? "99+" : String(attention);
+  badge.classList.toggle("on", attention > 0);
+  badge.classList.toggle("warn", !blocked && !(+manufacture.blocked) && attention > 0);
+  button.disabled = !S.player || (!S.production_summary && !S.manufacturing_summary);
+  button.setAttribute("aria-label", `Production: ${building} building, ${slowed + (+manufacture.attention || 0)} need attention, ${lines} manufacturing lines`);
+  button.setAttribute("aria-expanded", PROD.open ? "true" : "false");
+}
+
+function setProductionMode(mode) {
+  if (mode !== "build" && mode !== "manufacture") return;
+  PROD.mode = mode;
+  document.querySelectorAll("[data-production-mode]").forEach((button) => {
+    const on = button.dataset.productionMode === mode;
+    button.classList.toggle("on", on);
+    button.setAttribute("aria-selected", on ? "true" : "false");
+  });
+  const title = $("#productionTitle"), eyebrow = title && title.previousElementSibling;
+  if (title) title.textContent = mode === "manufacture" ? "Manufacturing Board" : "Production Board";
+  if (eyebrow) eyebrow.textContent = mode === "manufacture" ? "Defense industrial command" : "National works programme";
+  renderProductionPanel();
+  if (mode === "manufacture") manufacturingFetch(); else productionFetch();
+  if (GLOBE) GLOBE.render();
+}
+
+function openProduction() {
+  if (!S || !S.player || (!S.production_summary && !S.manufacturing_summary)) return;
+  if (LOGI.open) closeLogistics();
+  if (stock.open) closeStock();
+  if (tech.open) closeTech();
+  closeTechMenu();
+  closeGameDrawers();
+  closeSheet();
+  showTab("map");
+  PROD.open = true; PROD.view = "queue"; PROD.pickKind = null; PROD.showBuilt = false; PROD.error = null;
+  MANU.view = "lines"; MANU.pickKit = null; MANU.error = null;
+  const panel = $("#productionPanel");
+  panel.classList.add("open"); panel.setAttribute("aria-hidden", "false");
+  document.body.classList.add("production-open");
+  renderProductionDock(); setProductionMode(PROD.mode);
+  if (GLOBE) GLOBE.render();
+}
+function closeProduction() {
+  PROD.open = false; PROD.view = "queue"; PROD.pickKind = null; PROD.selected = null; PROD.showBuilt = false; PROD.refreshQueued = false; PROD.hits = [];
+  MANU.view = "lines"; MANU.pickKit = null; MANU.selected = null; MANU.refreshQueued = false; MANU.hits = [];
+  const panel = $("#productionPanel");
+  if (panel) { panel.classList.remove("open"); panel.setAttribute("aria-hidden", "true"); }
+  document.body.classList.remove("production-open");
+  renderProductionDock();
+  if (GLOBE) GLOBE.render();
+}
+function toggleProduction() { if (PROD.open) closeProduction(); else openProduction(); }
+window.openProduction = openProduction;
+window.closeProduction = closeProduction;
+
+async function productionFetch() {
+  if (!PROD.open) return;
+  if (PROD.loading) { PROD.refreshQueued = true; return; }
+  if (!PROD.stale && PROD.data) return;
+  PROD.loading = true; PROD.refreshQueued = false; PROD.stale = false; PROD.error = null; renderProductionPanel();
+  const seq = ++PROD.seq;
+  try {
+    const data = await api("/api/production");
+    if (seq !== PROD.seq) return;
+    data.queue = Array.isArray(data.queue) ? data.queue : [];
+    data.catalog = Array.isArray(data.catalog) ? data.catalog : [];
+    data.provinces = Array.isArray(data.provinces) ? data.provinces : [];
+    PROD.data = data; PROD.stale = false;
+    if (PROD.selected && !productionProject(PROD.selected)) PROD.selected = null;
+    const sum = productionSummary(data.queue);
+    $("#productionLive").textContent = `Production updated. ${sum.building} building, ${sum.slowed} slowed, ${sum.blocked} blocked.`;
+  } catch (e) {
+    if (seq === PROD.seq) { PROD.error = e.message; PROD.stale = true; }
+  } finally {
+    if (seq === PROD.seq) {
+      const rerun = PROD.refreshQueued;
+      PROD.refreshQueued = false; PROD.loading = false;
+      renderProductionPanel(); if (GLOBE) GLOBE.render();
+      if (rerun && PROD.open) { PROD.stale = true; productionFetch(); }
+    }
+  }
+}
+
+function productionCardHtml(p) {
+  const tone = productionTone(p), kind = productionKind(p), province = productionProvince(p);
+  const frac = productionProgress(p), percent = Math.round(frac * 100);
+  const choices = productionPriorityChoices(p), priority = String(p.priority || "normal");
+  const priorityControls = ["high", "normal", "low"].filter((v) => v === priority || choices.includes(v));
+  const remaining = p.eta_days != null ? `${Math.max(0, Math.ceil(+p.eta_days))} days left`
+    : p.remaining_days != null ? `${Math.max(0, Math.ceil(+p.remaining_days))} days left` : "schedule pending";
+  const reason = p.reason || p.status_reason || "";
+  const name = p.name || kind.replace(/_/g, " ");
+  const needs = productionRequirements(p).map(productionNeedHtml).join("");
+  return `<article class="work-card ${tone}${String(PROD.selected) === String(p.id) ? " selected" : ""}" tabindex="0" data-prod-project="${logisticsEscAttr(p.id)}">
+    <div class="work-top"><span class="work-art" aria-hidden="true">${PROD_ICON[kind] || "◆"}</span>
+      <div class="work-title"><b>${escText(name)}</b><span>${escText(province.name || province.id || "Province")}</span></div>
+      <span class="work-state">${escText(productionStatus(p).toUpperCase())}</span></div>
+    <div class="work-progress" aria-label="${percent}% complete"><i style="width:${percent}%"></i></div>
+    <div class="work-line"><span><b>${percent}%</b> complete</span><span>${escText(remaining)}</span></div>
+    ${reason ? `<div class="work-reason">${escText(reason)}</div>` : ""}
+    ${needs ? `<div class="work-needs">${needs}</div>` : ""}
+    ${(priorityControls.length || productionCanCancel(p)) ? `<div class="work-actions" aria-label="Project controls">${priorityControls.map((v) =>
+      `<button type="button" ${priority === v ? "disabled" : `data-prod-priority="${logisticsEscAttr(v)}" data-prod-id="${logisticsEscAttr(p.id)}"`} class="${priority === v ? "on" : ""}" aria-pressed="${priority === v}">${escText(v)}</button>`).join("")}
+      ${productionCanCancel(p) ? `<button type="button" class="cancel" data-prod-cancel="${logisticsEscAttr(p.id)}">Cancel</button>` : ""}</div>` : ""}
+  </article>`;
+}
+
+function productionStartAllowed() {
+  const start = PROD.data && PROD.data.actions && PROD.data.actions.start;
+  return start === true || !!(start && start.enabled);
+}
+function productionFundingLabel(c) {
+  const f = c.funding || {};
+  const ministry = c.funding_ministry || f.ministry;
+  const allocation = c.funding_allocation != null ? c.funding_allocation : f.allocation;
+  const ratio = f.ratio != null ? +f.ratio : null;
+  const pc = c.pc_cost != null ? `${fmtQ(c.pc_cost)} PC` : "";
+  const funded = ministry ? `${String(ministry).replace(/_/g, " ")}${allocation != null ? ` · ${(+allocation * 100).toFixed(1)}% GDP` : ""}${ratio != null && ratio < .999 ? ` · ${Math.round(ratio * 100)}% funded` : ""}` : "";
+  return [pc, funded].filter(Boolean).join(" · ");
+}
+function productionCatalogHtml() {
+  const cards = productionCatalog().map((c) => {
+    const kind = productionKind(c), days = c.base_days || c.total_days;
+    const meta = [days ? `${Math.round(+days)} work-days` : "", productionFundingLabel(c)].filter(Boolean).join(" · ");
+    const enabled = !c.actions || c.actions.start !== false;
+    return `<button type="button" class="project-choice" ${enabled ? `data-prod-kind="${logisticsEscAttr(kind)}"` : "disabled"}>
+      <span class="work-art" aria-hidden="true">${PROD_ICON[kind] || "◆"}</span><b>${escText(c.name || kind.replace(/_/g, " "))}</b>
+      <small>${escText(c.description || "Province works programme")}</small><small class="project-effect">${escText(c.effect || "Creates a province capability.")}</small><em>${escText(meta)}</em></button>`;
+  }).join("");
+  return `<div class="production-stamp"><b>Choose the work</b><span>step 1 of 2<br>served catalogue</span></div>
+    <div class="project-catalog">${cards}</div><button type="button" class="production-back" data-prod-back>Back to queue</button>`;
+}
+function productionEligible(c, province) {
+  const ids = Array.isArray(c && c.eligible_provinces) ? c.eligible_provinces.map(String) : [];
+  const starts = province && province.actions && province.actions.start;
+  return ids.includes(String(province.id)) || (Array.isArray(starts) && starts.map(String).includes(productionKind(c)));
+}
+function productionProvinceHtml() {
+  const c = productionCatalog().find((x) => productionKind(x) === PROD.pickKind);
+  if (!c) { PROD.view = "catalog"; return productionCatalogHtml(); }
+  const provinces = productionProvinces().filter((p) => productionEligible(c, p));
+  const picks = provinces.map((p) => {
+    const caps = productionCapabilityPairs(p.capabilities)
+      .map(([name, level]) => `${String(name).replace(/_/g, " ")} ${level}`).join(" · ");
+    return `<button type="button" class="province-pick" data-prod-province="${logisticsEscAttr(p.id)}"><b>${escText(p.name || p.id)}</b><span>${escText(caps || "available ground")}</span></button>`;
+  }).join("");
+  const recipe = productionRequirements(c).map(productionNeedHtml).join("");
+  return `<div class="production-stamp"><b>${PROD_ICON[PROD.pickKind] || "◆"} ${escText(c.name || PROD.pickKind.replace(/_/g, " "))}</b><span>step 2 of 2<br>choose a province</span></div>
+    <div class="project-brief"><b>${escText(c.effect || c.description || "Province capability")}</b>${recipe ? `<div class="work-needs">${recipe}</div>` : ""}</div>
+    <div class="province-picks">${picks || `<div class="production-empty">No owned province is eligible for this project.</div>`}</div>
+    <button type="button" class="production-back" data-prod-back>Choose another project</button>`;
+}
+
+function productionBuiltHtml() {
+  const rows = productionCompleted();
+  if (!rows.length) return "";
+  const total = rows.reduce((sum, row) => sum + productionCapabilityPairs(row.capabilities)
+    .reduce((n, [, level]) => n + (+level || 0), 0), 0);
+  const detail = PROD.showBuilt ? `<div class="built-list">${rows.map((row) => {
+    const province = row.province || {};
+    const caps = productionCapabilityPairs(row.capabilities).map(([name, level]) =>
+      `<span class="built-cap">${escText(String(name).replace(/_/g, " "))} ${escText(level)}</span>`).join("");
+    return `<div class="built-row"><b>${escText(province.name || province.id || "Province")}</b><div class="built-caps">${caps}</div></div>`;
+  }).join("")}</div>` : "";
+  return `<button type="button" class="built-toggle" data-prod-built aria-expanded="${PROD.showBuilt}"><span>Completed province upgrades</span><b>${total} ${PROD.showBuilt ? "−" : "+"}</b></button>${detail}`;
+}
+
+/* Manufacturing shares this board with construction because the map should
+   remain the game. The server owns the budget, slots, recipes, locks and every
+   allowed action; this is only the tactile composition of that ledger. */
+function manufacturingLines() { return (MANU.data && Array.isArray(MANU.data.lines)) ? MANU.data.lines : []; }
+function manufacturingCatalog() { return (MANU.data && Array.isArray(MANU.data.catalog)) ? MANU.data.catalog : []; }
+function manufacturingProvinces() { return (MANU.data && Array.isArray(MANU.data.provinces)) ? MANU.data.provinces : []; }
+function manufacturingHoldings() { return (MANU.data && Array.isArray(MANU.data.stockpile)) ? MANU.data.stockpile : []; }
+function manufacturingOrders() { return (MANU.data && Array.isArray(MANU.data.orders)) ? MANU.data.orders : []; }
+function manufacturingLine(id) { return manufacturingLines().find((line) => String(line.id) === String(id)); }
+function manufacturingKit(id) { return manufacturingCatalog().find((kit) => String(kit.id) === String(id)); }
+function manufacturingTone(line) { return String(line && line.status || "producing").toLowerCase() === "blocked" ? "blocked" : "building"; }
+function manufacturingClassMark(value) { return MANU_CLASS_MARK[String(value || "").toLowerCase()] || "◆"; }
+function manufacturingBn(value, digits) { return `$${(+value || 0).toFixed(digits == null ? 2 : digits)}bn`; }
+function manufacturingRequirementHtml(requirement) {
+  const quantity = requirement.draw != null ? +requirement.draw : +requirement.required || 0;
+  const stock = +requirement.stock_available || 0, available = +requirement.priority_available || 0;
+  const shortfall = +requirement.shortfall || 0;
+  const unit = requirement.unit || "", stockUnit = requirement.stock_unit || unit;
+  const text = `${requirement.name || requirement.commodity} · ${fmtQ(quantity)}${unit ? ` ${unit}` : ""}`;
+  const title = `Available after higher priorities ${fmtQ(available)}${unit ? ` ${escText(unit)}` : ""} · national warehouse ${fmtQ(stock)}${stockUnit ? ` ${escText(stockUnit)}` : ""}`;
+  return `<span class="work-need${shortfall > 1e-9 ? " short" : ""}" title="${title}">${escText(text)}</span>`;
+}
+function manufacturingPriorityChoices(line) {
+  const choices = line && line.actions && line.actions.set_priority;
+  return Array.isArray(choices) ? choices.map(String) : [];
+}
+function manufacturingCanStop(line) { return !!(line && line.actions && line.actions.stop === true); }
+
+async function manufacturingFetch() {
+  if (!PROD.open || PROD.mode !== "manufacture") return;
+  if (MANU.loading) { MANU.refreshQueued = true; return; }
+  if (!MANU.stale && MANU.data) return;
+  MANU.loading = true; MANU.refreshQueued = false; MANU.stale = false; MANU.error = null;
+  renderProductionPanel();
+  const seq = ++MANU.seq;
+  try {
+    const data = await api("/api/manufacturing");
+    if (seq !== MANU.seq) return;
+    data.lines = Array.isArray(data.lines) ? data.lines : [];
+    data.catalog = Array.isArray(data.catalog) ? data.catalog : [];
+    data.provinces = Array.isArray(data.provinces) ? data.provinces : [];
+    data.stockpile = Array.isArray(data.stockpile) ? data.stockpile : [];
+    data.orders = Array.isArray(data.orders) ? data.orders : [];
+    MANU.data = data; MANU.stale = false;
+    if (MANU.selected && !manufacturingLine(MANU.selected)) MANU.selected = null;
+    const summary = data.summary || {};
+    $("#productionLive").textContent = `Manufacturing updated. ${+summary.producing || 0} producing, ${+summary.blocked || 0} blocked.`;
+  } catch (error) {
+    if (seq === MANU.seq) { MANU.error = error.message; MANU.stale = true; }
+  } finally {
+    if (seq === MANU.seq) {
+      const rerun = MANU.refreshQueued;
+      MANU.refreshQueued = false; MANU.loading = false;
+      renderProductionPanel(); if (GLOBE) GLOBE.render();
+      if (rerun && PROD.open && PROD.mode === "manufacture") { MANU.stale = true; manufacturingFetch(); }
+    }
+  }
+}
+
+function manufacturingLineHtml(line) {
+  const tone = manufacturingTone(line), province = line.province || {};
+  const priority = String(line.priority || "normal");
+  const choices = manufacturingPriorityChoices(line);
+  const requirements = (line.requirements || []).filter((row) => +(row.draw != null ? row.draw : row.required) > 0)
+    .map(manufacturingRequirementHtml).join("");
+  const lead = +line.lead_months || 0;
+  return `<article class="work-card factory-card ${tone}${String(MANU.selected) === String(line.id) ? " selected" : ""}" tabindex="0" data-manu-line="${logisticsEscAttr(line.id)}">
+    <div class="work-top"><span class="work-art" aria-hidden="true">${manufacturingClassMark(line.class)}</span>
+      <div class="work-title"><b>${escText(line.name || line.kit)}</b><span>${escText(province.name || province.id || "Arms plant")} · ${escText(line.class || "Equipment")}</span></div>
+      <span class="work-state">${escText(String(line.status || "producing").toUpperCase())}</span></div>
+    <div class="factory-output"><span>Planned / month<b>${manufacturingBn(line.allocation_bn_month)}</b></span><span>Lead time<b>${lead ? `${lead} mo` : "pending"}</b></span></div>
+    ${line.reason ? `<div class="work-reason">${escText(line.reason)}</div>` : ""}
+    ${requirements ? `<div class="work-needs">${requirements}</div>` : ""}
+    <div class="work-line"><span><b>${fmtQ(tone === "blocked" ? 0 : line.units_ordered_month || 0)}</b> planned units / month</span><span>${manufacturingBn(line.ordered_bn || 0)} ordered to date</span></div>
+    <div class="work-actions" aria-label="Manufacturing line controls">${["high", "normal", "low"].filter((value) => value === priority || choices.includes(value)).map((value) =>
+      `<button type="button" ${priority === value ? "disabled" : `data-manu-priority="${value}" data-manu-id="${logisticsEscAttr(line.id)}"`} class="${priority === value ? "on" : ""}" aria-pressed="${priority === value}">${value}</button>`).join("")}
+      ${manufacturingCanStop(line) ? `<button type="button" class="cancel" data-manu-stop="${logisticsEscAttr(line.id)}">Stop line</button>` : ""}</div>
+  </article>`;
+}
+
+function manufacturingLedgerHtml() {
+  const holdings = manufacturingHoldings(), orders = manufacturingOrders();
+  const heldRows = holdings.slice(0, 12).map((row) => `<div class="factory-ledger-row"><b>${escText(row.name || row.kit)}</b><span>${fmtQ(row.units)} units · ${manufacturingBn(row.book_value_bn)}<br>${Math.round((+row.condition || 0) * 100)}% condition</span></div>`).join("");
+  const orderRows = orders.slice(0, 12).map((row) => `<div class="factory-ledger-row"><b>${escText(row.name || row.kit)}</b><span>${fmtQ(row.units)} units · ${escText(row.due_date || `${row.due_months || 0} months`)}<br>${manufacturingBn(row.value_bn)}</span></div>`).join("");
+  return `<details class="factory-ledger"><summary>Arsenal &amp; delivery pipeline · ${holdings.length} held · ${orders.length} orders</summary>
+    <div class="factory-ledger-list">${orderRows || `<div class="production-empty">Nothing is on order.</div>`}${heldRows}</div></details>`;
+}
+
+function manufacturingLinesHtml() {
+  const data = MANU.data || {}, summary = data.summary || {}, finance = data.finance || {};
+  const lines = manufacturingLines(), capacity = +summary.capacity || 0;
+  const usedSlots = +summary.used_slots || 0, freeSlots = +summary.free_slots || 0;
+  const share = (+finance.procurement_share || 0) * 100;
+  const list = lines.length ? `<div class="production-list">${lines.map(manufacturingLineHtml).join("")}</div>` : "";
+  let empty = "";
+  if (!lines.length && capacity <= 0) {
+    empty = `<div class="factory-bridge"><b>No arms-plant capacity</b>Build an Arms Plant in a province to open a directed equipment line. Until then, military staff keep the inherited procurement programme running.<button type="button" data-manu-build-plant>Build an Arms Plant</button></div>`;
+  } else if (!lines.length) {
+    empty = `<div class="factory-bridge"><b>Staff procurement is active</b>Your ${capacity} plant slot${capacity === 1 ? " is" : "s are"} ready. Start a line to replace automatic buying with your own equipment plan.</div>`;
+  }
+  return `<div class="manufacturing-hero"><div class="stamp">Defense procurement envelope</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_month)} <small>per month</small></div>
+      <p>${share.toFixed(0)}% of the defense budget buys equipment. The treasury already carries that spending; imported materials settle through the resource market.</p></div>
+    <div class="manufacturing-summary"><span>Plant slots<b>${usedSlots}/${capacity}</b></span><span>Force equipped<b>${Math.round((+summary.adequacy || 0) * 100)}%</b></span><span class="${+summary.blocked ? "warn" : ""}">Pipeline<b>${manufacturingBn(summary.pipeline_value_bn)}</b></span></div>
+    ${empty}${list}${freeSlots > 0 && data.actions && data.actions.start === true ? `<button type="button" class="production-new" data-manu-new>＋ Start equipment line</button>` : ""}
+    ${manufacturingLedgerHtml()}`;
+}
+
+function manufacturingCatalogHtml() {
+  const all = manufacturingCatalog();
+  const classes = ["All", ...Array.from(new Set(all.map((kit) => String(kit.class || "Other"))))];
+  const visible = all.filter((kit) => (MANU.classFilter === "All" || kit.class === MANU.classFilter) && (MANU.showLocked || kit.unlocked));
+  const locked = all.filter((kit) => !kit.unlocked).length;
+  const cards = visible.map((kit) => {
+    const available = !!kit.unlocked && !!(kit.actions && kit.actions.start === true) && (kit.eligible_provinces || []).length > 0;
+    const meta = kit.unlocked
+      ? `${manufacturingBn(kit.unit_cost_bn, 3)} / unit · ${kit.lead_months} months to field`
+      : kit.lock_reason || (kit.tech && `Requires ${kit.tech.name || kit.tech.id}`) || "Technology locked";
+    return `<button type="button" class="equipment-choice${kit.unlocked ? "" : " locked"}" data-class-mark="${logisticsEscAttr(manufacturingClassMark(kit.class))}" ${available ? `data-manu-kit="${logisticsEscAttr(kit.id)}"` : "disabled"}>
+      <b>${escText(kit.name)}</b><span>${escText(kit.class)} · service life ${Math.round((+kit.service_months || 0) / 12)} years</span><em>${escText(meta)}</em></button>`;
+  }).join("");
+  return `<div class="production-stamp"><b>Choose the equipment</b><span>step 1 of 2<br>technology gated</span></div>
+    <div class="factory-classes">${classes.map((name) => `<button type="button" data-manu-class="${logisticsEscAttr(name)}" class="${MANU.classFilter === name ? "on" : ""}">${escText(name)}</button>`).join("")}</div>
+    <div class="equipment-catalog">${cards || `<div class="production-empty">No equipment in this filter is ready.</div>`}</div>
+    ${locked ? `<button type="button" class="built-toggle" data-manu-locked aria-expanded="${MANU.showLocked}"><span>${MANU.showLocked ? "Hide" : "Show"} technology-locked equipment</span><b>${locked}</b></button>` : ""}
+    <button type="button" class="production-back" data-manu-back>Back to lines</button>`;
+}
+
+function manufacturingProvinceHtml() {
+  const kit = manufacturingKit(MANU.pickKit);
+  if (!kit) { MANU.view = "catalog"; return manufacturingCatalogHtml(); }
+  const eligible = new Set((kit.eligible_provinces || []).map(String));
+  const provinces = manufacturingProvinces().filter((province) => eligible.has(String(province.id)) || (province.actions && Array.isArray(province.actions.start) && province.actions.start.map(String).includes(String(kit.id))));
+  const picks = provinces.map((province) => `<button type="button" class="province-pick" data-manu-province="${logisticsEscAttr(province.id)}"><b>${escText(province.name || province.id)}</b><span>${+province.free_slots || 0} free · arms plant ${+province.arms_plants || 0}</span></button>`).join("");
+  const recipe = (kit.requirements_per_bn || []).map((row) => `<span class="work-need">${escText(row.name || row.commodity)} · ${fmtQ(row.quantity || row.required || 0)} ${escText(row.unit || "")} / $bn</span>`).join("");
+  return `<div class="production-stamp"><b>${manufacturingClassMark(kit.class)} ${escText(kit.name)}</b><span>step 2 of 2<br>choose a plant</span></div>
+    <div class="project-brief"><b>${manufacturingBn(kit.unit_cost_bn, 3)} per unit · first delivery in ${kit.lead_months} months</b>${recipe ? `<div class="work-needs">${recipe}</div>` : ""}</div>
+    <div class="province-picks">${picks || `<div class="production-empty">No owned arms plant has a free slot.</div>`}</div>
+    <button type="button" class="production-back" data-manu-back>Choose another equipment line</button>`;
+}
+
+function renderManufacturingPanel() {
+  const body = $("#productionBody");
+  if (!body || !PROD.open || PROD.mode !== "manufacture") return;
+  if (MANU.error) body.innerHTML = `<div class="production-empty">${escText(MANU.error)}<br><button type="button" data-manu-retry>Retry</button></div>`;
+  else if (!MANU.data && MANU.loading) body.innerHTML = `<div class="production-empty">Opening the defense industrial ledger…</div>`;
+  else if (!MANU.data) body.innerHTML = `<div class="production-empty">Manufacturing is loading…</div>`;
+  else if (MANU.view === "catalog") body.innerHTML = manufacturingCatalogHtml();
+  else if (MANU.view === "provinces") body.innerHTML = manufacturingProvinceHtml();
+  else body.innerHTML = manufacturingLinesHtml();
+  wireManufacturingPanel();
+}
+
+function wireManufacturingPanel() {
+  const body = $("#productionBody"); if (!body || PROD.mode !== "manufacture") return;
+  body.querySelectorAll("[data-manu-line]").forEach((card) => {
+    card.onclick = (event) => { if (!event.target.closest("button")) manufacturingSelect(card.dataset.manuLine, true); };
+    card.onkeydown = (event) => { if (event.target === card && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); manufacturingSelect(card.dataset.manuLine, true); } };
+  });
+  const add = body.querySelector("[data-manu-new]");
+  if (add) add.onclick = () => { MANU.view = "catalog"; MANU.pickKit = null; renderProductionPanel(); };
+  const build = body.querySelector("[data-manu-build-plant]");
+  if (build) build.onclick = async () => { setProductionMode("build"); PROD.pickKind = "arms_plant"; PROD.view = "provinces"; PROD.stale = true; await productionFetch(); renderProductionPanel(); };
+  body.querySelectorAll("[data-manu-class]").forEach((button) => { button.onclick = () => { MANU.classFilter = button.dataset.manuClass; renderProductionPanel(); }; });
+  body.querySelectorAll("[data-manu-kit]").forEach((button) => { button.onclick = () => { MANU.pickKit = button.dataset.manuKit; MANU.view = "provinces"; renderProductionPanel(); }; });
+  body.querySelectorAll("[data-manu-province]").forEach((button) => { button.onclick = () => manufacturingStart(MANU.pickKit, button.dataset.manuProvince); });
+  body.querySelectorAll("[data-manu-priority]").forEach((button) => { button.onclick = (event) => { event.stopPropagation(); manufacturingSetPriority(button.dataset.manuId, button.dataset.manuPriority); }; });
+  body.querySelectorAll("[data-manu-stop]").forEach((button) => { button.onclick = (event) => { event.stopPropagation(); manufacturingStop(button.dataset.manuStop); }; });
+  const back = body.querySelector("[data-manu-back]");
+  if (back) back.onclick = () => { MANU.view = MANU.view === "provinces" ? "catalog" : "lines"; MANU.pickKit = null; renderProductionPanel(); };
+  const locked = body.querySelector("[data-manu-locked]");
+  if (locked) locked.onclick = () => { MANU.showLocked = !MANU.showLocked; renderProductionPanel(); };
+  const retry = body.querySelector("[data-manu-retry]");
+  if (retry) retry.onclick = () => { MANU.stale = true; MANU.error = null; manufacturingFetch(); };
+}
+
+async function manufacturingCommand(command, success) {
+  try {
+    const response = await api("/api/command", { commands: [command] });
+    const refused = response.errors && response.errors.length;
+    if (refused) banner(response.errors[0]); else if (success) banner(success);
+    MANU.stale = true; PROD.stale = true;
+    await adopt(response, false);
+    return !refused;
+  } catch (error) {
+    MANU.error = error.message || "The manufacturing command could not be sent.";
+    MANU.stale = true;
+    banner(MANU.error);
+    renderProductionPanel();
+    return false;
+  }
+}
+async function manufacturingStart(kit, district) {
+  const equipment = manufacturingKit(kit);
+  const opened = await manufacturingCommand({ kind: "start_manufacturing_line", kit, district }, `${equipment ? equipment.name : "Equipment"} line opened.`);
+  if (opened) { MANU.view = "lines"; MANU.pickKit = null; renderProductionPanel(); }
+}
+async function manufacturingSetPriority(line, priority) {
+  await manufacturingCommand({ kind: "set_manufacturing_priority", line: +line, priority }, `Manufacturing priority set to ${priority}.`);
+}
+async function manufacturingStop(id) {
+  const line = manufacturingLine(id); if (!line || !manufacturingCanStop(line)) return;
+  if (!confirm(`Stop the ${line.name || line.kit} line?\n\nEquipment already on order stays in the delivery pipeline.`)) return;
+  await manufacturingCommand({ kind: "stop_manufacturing_line", line: +id }, "Manufacturing line stopped. Existing orders remain.");
+}
+function manufacturingSelect(id, focus) {
+  MANU.selected = id == null ? null : String(id);
+  renderProductionPanel();
+  const line = manufacturingLine(MANU.selected), province = line && line.province;
+  if (focus && province && province.id && DINDEX[province.id]) selectProvince(province.id, true);
+  if (GLOBE) GLOBE.render();
+}
+
+function renderProductionPanel() {
+  const body = $("#productionBody");
+  if (!body || !PROD.open) return;
+  if (PROD.mode === "manufacture") { renderManufacturingPanel(); return; }
+  if (PROD.error) {
+    body.innerHTML = `<div class="production-empty">${escText(PROD.error)}<br><button type="button" data-prod-retry>Retry</button></div>`;
+  } else if (!PROD.data && PROD.loading) {
+    body.innerHTML = `<div class="production-empty">Opening the national works ledger…</div>`;
+  } else if (PROD.view === "catalog") body.innerHTML = productionCatalogHtml();
+  else if (PROD.view === "provinces") body.innerHTML = productionProvinceHtml();
+  else {
+    const rows = productionQueue(), sum = productionSummary(rows);
+    const capacity = +(PROD.data && PROD.data.capacity) || 4;
+    const list = rows.length ? `<div class="production-list">${rows.map(productionCardHtml).join("")}</div>`
+      : `<div class="production-empty">No work is under way.<br>Choose a project, then put it on the map.</div>`;
+    body.innerHTML = `<div class="production-stamp"><b>National queue · ${rows.length}/${capacity}</b><span>daily work<br>province based</span></div>
+      <div class="production-summary"><span>Building<b>${sum.building}</b></span><span class="slowed">Slowed<b>${sum.slowed}</b></span><span class="blocked">Blocked<b>${sum.blocked}</b></span></div>${list}
+      ${productionBuiltHtml()}${productionStartAllowed() ? `<button type="button" class="production-new" data-prod-new>＋ Start a project</button>` : ""}`;
+  }
+  wireProductionPanel();
+}
+
+function wireProductionPanel() {
+  const body = $("#productionBody"); if (!body) return;
+  body.querySelectorAll("[data-prod-project]").forEach((card) => {
+    card.onclick = (e) => { if (!e.target.closest("button")) productionSelect(card.dataset.prodProject, true); };
+    card.onkeydown = (e) => { if (e.target === card && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); productionSelect(card.dataset.prodProject, true); } };
+  });
+  const add = body.querySelector("[data-prod-new]");
+  if (add) add.onclick = () => { PROD.view = "catalog"; PROD.pickKind = null; renderProductionPanel(); };
+  body.querySelectorAll("[data-prod-kind]").forEach((b) => { b.onclick = () => { PROD.pickKind = b.dataset.prodKind; PROD.view = "provinces"; renderProductionPanel(); }; });
+  body.querySelectorAll("[data-prod-province]").forEach((b) => { b.onclick = () => productionStart(PROD.pickKind, b.dataset.prodProvince); });
+  body.querySelectorAll("[data-prod-priority]").forEach((b) => { b.onclick = (e) => { e.stopPropagation(); productionSetPriority(b.dataset.prodId, b.dataset.prodPriority); }; });
+  body.querySelectorAll("[data-prod-cancel]").forEach((b) => { b.onclick = (e) => { e.stopPropagation(); productionCancel(b.dataset.prodCancel); }; });
+  const back = body.querySelector("[data-prod-back]");
+  if (back) back.onclick = () => { PROD.view = PROD.view === "provinces" ? "catalog" : "queue"; PROD.pickKind = null; renderProductionPanel(); };
+  const retry = body.querySelector("[data-prod-retry]");
+  if (retry) retry.onclick = () => { PROD.stale = true; PROD.error = null; productionFetch(); };
+  const built = body.querySelector("[data-prod-built]");
+  if (built) built.onclick = () => { PROD.showBuilt = !PROD.showBuilt; renderProductionPanel(); };
+}
+
+async function productionCommand(command, success) {
+  const r = await api("/api/command", { commands: [command] });
+  if (r.errors && r.errors.length) banner(r.errors[0]); else if (success) banner(success);
+  PROD.stale = true; MANU.stale = true;
+  await adopt(r, false);
+}
+async function productionStart(kind, district) {
+  const c = productionCatalog().find((x) => productionKind(x) === kind);
+  await productionCommand({ kind: "start_project", project_kind: kind, district }, `${c ? c.name : "Project"} started.`);
+  PROD.view = "queue"; PROD.pickKind = null;
+}
+async function productionSetPriority(project, priority) {
+  await productionCommand({ kind: "set_project_priority", project: +project, priority }, `Project priority set to ${priority}.`);
+}
+async function productionCancel(project) {
+  const p = productionProject(project);
+  if (!p || !productionCanCancel(p)) return;
+  if (!confirm(`Cancel ${p.name || productionKind(p).replace(/_/g, " ")} in ${productionProvince(p).name || "this province"}?\n\nMaterials already used are not returned.`)) return;
+  await productionCommand({ kind: "cancel_project", project: +project }, "Project cancelled.");
+}
+
+function productionSelect(id, focus) {
+  PROD.selected = id == null ? null : String(id);
+  renderProductionPanel();
+  const p = productionProject(PROD.selected), province = p && productionProvince(p);
+  if (focus && province && province.id && DINDEX[province.id]) selectProvince(province.id, true);
+  if (GLOBE) GLOBE.render();
+}
+
+$("#productionDockBtn").onclick = toggleProduction;
+$("#productionClose").onclick = closeProduction;
+document.querySelectorAll("[data-production-mode]").forEach((button) => {
+  button.onclick = () => setProductionMode(button.dataset.productionMode);
+});
+
+function drawProductionOverlay(ctx, view, globe) {
+  PROD.hits = [];
+  if (!PROD.open) return;
+  if (PROD.mode === "manufacture") { drawManufacturingOverlay(ctx, view, globe); return; }
+  if (!PROD.data) return;
+  const r = view.ratio;
+  for (const marker of productionMarkers()) {
+    const project = productionQueue().find((p) => (marker.active || []).map(String).includes(String(p.id))) || null;
+    const district = marker.district || (project && productionProvince(project).id);
+    const d = district && DINDEX[district];
+    if (!d) continue;
+    const p = globe.projectWorld(d.cx, d.cy, view, 1.018);
+    if (!p) continue;
+    const tone = marker.status || (project && productionTone(project)) || "complete";
+    const selected = !!project && String(PROD.selected) === String(project.id);
+    const colour = tone === "blocked" ? "#df6c65" : tone === "slowed" ? "#d2a645" : tone === "complete" ? "#c9a55a" : "#55c9df";
+    const radius = (selected ? 11 : 8) * r;
+    ctx.globalAlpha = selected ? 1 : .9;
+    ctx.fillStyle = "#070b10"; ctx.strokeStyle = "#020406"; ctx.lineWidth = 4 * r;
+    ctx.beginPath(); ctx.arc(p[0], p[1], radius, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = colour; ctx.lineWidth = 1.7 * r;
+    ctx.setLineDash(tone === "blocked" ? [2 * r, 3 * r] : tone === "slowed" ? [5 * r, 2 * r] : []);
+    ctx.beginPath(); ctx.arc(p[0], p[1], radius, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = colour; ctx.font = `700 ${selected ? 13 : 10}px Inter, system-ui, sans-serif`;
+    ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(project ? (PROD_ICON[productionKind(project)] || "◆") : "✓", p[0], p[1] + .5 * r);
+    if (selected) {
+      const text = productionStatus(project).toUpperCase();
+      ctx.font = `700 ${8 * r}px Inter, system-ui, sans-serif`;
+      const width = ctx.measureText(text).width + 10 * r;
+      ctx.fillStyle = "#070b10"; roundedRect(ctx, p[0] - width / 2, p[1] - 30 * r, width, 15 * r, 4 * r); ctx.fill();
+      ctx.strokeStyle = colour; ctx.lineWidth = r; ctx.stroke(); ctx.fillStyle = "#eef4f8"; ctx.fillText(text, p[0], p[1] - 22.5 * r);
+    }
+    PROD.hits.push({ project, district, x: p[0], y: p[1], radius: radius + 5 * r, r });
+    ctx.globalAlpha = 1;
+  }
+  ctx.setLineDash([]); ctx.globalAlpha = 1; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+}
+
+function drawManufacturingOverlay(ctx, view, globe) {
+  MANU.hits = [];
+  if (!PROD.open || PROD.mode !== "manufacture" || !MANU.data) return;
+  const r = view.ratio;
+  for (const province of manufacturingProvinces().filter((row) => +row.arms_plants > 0)) {
+    const lineIds = (province.active_lines || []).map(String);
+    const lines = manufacturingLines().filter((line) => lineIds.includes(String(line.id)));
+    const line = lines.find((row) => manufacturingTone(row) === "blocked") || lines[0] || null;
+    const district = province.id;
+    const d = district && DINDEX[district];
+    if (!d) continue;
+    const point = globe.projectWorld(d.cx, d.cy, view, 1.018);
+    if (!point) continue;
+    const blocked = lines.some((row) => manufacturingTone(row) === "blocked");
+    const selected = !!line && String(MANU.selected) === String(line.id);
+    const colour = blocked ? "#df6c65" : lines.length ? "#d9b65f" : "#70808d";
+    const radius = (selected ? 11 : 8) * r;
+    ctx.globalAlpha = selected ? 1 : .92;
+    ctx.fillStyle = "#070b10"; ctx.strokeStyle = "#020406"; ctx.lineWidth = 4 * r;
+    ctx.beginPath(); ctx.arc(point[0], point[1], radius, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = colour; ctx.lineWidth = 1.7 * r;
+    ctx.setLineDash(blocked ? [2 * r, 3 * r] : []);
+    ctx.beginPath(); ctx.arc(point[0], point[1], radius, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = colour; ctx.font = `700 ${selected ? 13 : 10}px Inter, system-ui, sans-serif`;
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText(line ? manufacturingClassMark(line.class) : "⛭", point[0], point[1] + .5 * r);
+    if (selected) {
+      const text = String(line.status || "producing").toUpperCase();
+      ctx.font = `700 ${8 * r}px Inter, system-ui, sans-serif`;
+      const width = ctx.measureText(text).width + 10 * r;
+      ctx.fillStyle = "#070b10"; roundedRect(ctx, point[0] - width / 2, point[1] - 30 * r, width, 15 * r, 4 * r); ctx.fill();
+      ctx.strokeStyle = colour; ctx.lineWidth = r; ctx.stroke(); ctx.fillStyle = "#eef4f8"; ctx.fillText(text, point[0], point[1] - 22.5 * r);
+    }
+    MANU.hits.push({ line, district, x: point[0], y: point[1], radius: radius + 5 * r, r });
+    ctx.globalAlpha = 1;
+  }
+  ctx.setLineDash([]); ctx.globalAlpha = 1; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+}
+
+function productionHitAt(clientX, clientY) {
+  const hits = PROD.mode === "manufacture" ? MANU.hits : PROD.hits;
+  if (!PROD.open || !hits.length || !GLOBE || !GLOBE.lastSize) return null;
+  const rect = GLCV.getBoundingClientRect(), size = GLOBE.lastSize;
+  if (!rect.width || !rect.height) return null;
+  const x = (clientX - rect.left) * size.width / (size.cw || rect.width);
+  const y = (clientY - rect.top) * size.height / (size.ch || rect.height);
+  let best = null, distance = Infinity;
+  for (const hit of hits) {
+    const d = (x - hit.x) ** 2 + (y - hit.y) ** 2;
+    if (d <= hit.radius ** 2 && d < distance) { best = hit; distance = d; }
+  }
+  return best;
+}
+
 /* ================= on the globe =================
    The commodity marks (ported from the flat map's #resglyphs layer), the
    deficit/surplus tint, the contract arcs and the aim ring — drawn on the
@@ -11471,7 +13439,9 @@ function drawStockOverlay(ctx, view, globe) {
   // ---- the arcs and the aims, from the sim.
   const d = stockWorldLive();
   if (!d) return;
-  for (const arc of d.arcs || []) {
+  // The Dispatch Board draws the same abstract relationship with settlement
+  // state. Do not double-ink the older contract arc while that reading is up.
+  for (const arc of LOGI.open ? [] : (d.arcs || [])) {
     const a = anchorOf(arc.from), b = anchorOf(arc.to);
     if (!a || !b) continue;
     const ga = Globe3D.unproject(a[0], a[1]), gb = Globe3D.unproject(b[0], b[1]);

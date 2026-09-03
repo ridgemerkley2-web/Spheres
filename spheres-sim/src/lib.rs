@@ -8,9 +8,11 @@ pub mod front;
 pub mod government;
 pub mod exact;
 pub mod init;
+pub mod manufacturing;
 pub mod ministries;
 pub mod nations;
 pub mod politics;
+pub mod production;
 pub mod resources;
 pub mod statecraft;
 pub mod stratagems;
@@ -95,6 +97,38 @@ pub enum Command {
     /// Tear one up. Never refused; charged to standing, reputation, relation
     /// and the other side's memory — the way a trade treaty already is.
     CancelDeal { nation: NationId, contract: u32 },
+    /// Develop a mapped district deposit; oil and gas are presented as fields.
+    DevelopResource {
+        nation: NationId,
+        district: String,
+        commodity: resources::Commodity,
+    },
+    /// Start one of the four player-directed province construction slots.
+    StartProject {
+        nation: NationId,
+        district: String,
+        kind: production::ProjectKind,
+    },
+    /// Reweight one active project inside the shared national capacity pool.
+    SetProjectPriority {
+        nation: NationId,
+        project: u32,
+        priority: production::Priority,
+    },
+    /// Abandon active work. Political capital and materials already committed
+    /// are sunk; cancellation creates neither a refund nor a debt write.
+    CancelProject { nation: NationId, project: u32 },
+    /// Route one share of the existing defence procurement line through a
+    /// completed province arms plant and into a stable equipment programme.
+    StartManufacturingLine { nation: NationId, district: String, kit: String },
+    /// Reweight one standing line inside the single procurement envelope.
+    SetManufacturingPriority {
+        nation: NationId,
+        line: u32,
+        priority: production::Priority,
+    },
+    /// Stop future orders. Anything already on the arsenal order book remains.
+    StopManufacturingLine { nation: NationId, line: u32 },
     /// Take one of the options the world is currently offering this government.
     /// Carries the stratagem's stable id, never an index into the deck.
     EnactStratagem { nation: NationId, id: String },
@@ -335,6 +369,19 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // the point of bankruptcy, and remembered by the other side for three
         // years (resources.rs charges the reputation and the relation).
         Command::CancelDeal { nation, .. } => (*nation, 10.0, ALWAYS),
+        Command::DevelopResource { nation, .. } => {
+            (*nation, resources::MINE_PC_COST, REFUSABLE)
+        }
+        Command::StartProject { nation, kind, .. } => {
+            (*nation, production::catalog(*kind).political_cost, REFUSABLE)
+        }
+        Command::SetProjectPriority { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::CancelProject { nation, .. } => (*nation, 0.0, ALWAYS),
+        Command::StartManufacturingLine { nation, .. } => {
+            (*nation, manufacturing::START_LINE_PC_COST, REFUSABLE)
+        }
+        Command::SetManufacturingPriority { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::StopManufacturingLine { nation, .. } => (*nation, 0.0, ALWAYS),
         // Each stratagem carries its own price, and they are the largest in this
         // list. Reordering an economy is the most expensive thing a government
         // ever decides to do, and it should cost most of a term's standing.
@@ -456,6 +503,15 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         }
         Command::SetAim { conflict, nation, district, commodity } => {
             resources::aim_refusal(w, *conflict, *nation, district, *commodity)
+        }
+        Command::DevelopResource { nation, district, commodity } => {
+            resources::mine_refusal(w, *nation, district, *commodity)
+        }
+        Command::StartProject { nation, district, kind } => {
+            production::start_project_error(w, *nation, district, *kind)
+        }
+        Command::StartManufacturingLine { nation, district, kit } => {
+            manufacturing::start_line_error(w, *nation, district, kit)
         }
         _ => None,
     }
@@ -782,6 +838,27 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::CancelDeal { nation, contract } => {
             resources::cancel_contract(w, *nation, *contract)?
         }
+        Command::DevelopResource { nation, district, commodity } => {
+            resources::start_mine(w, *nation, district, *commodity)?
+        }
+        Command::StartProject { nation, district, kind } => {
+            production::start_project(w, *nation, district, *kind)?;
+        }
+        Command::SetProjectPriority { nation, project, priority } => {
+            production::set_priority(w, *nation, *project, *priority)?;
+        }
+        Command::CancelProject { nation, project } => {
+            production::cancel_project(w, *nation, *project)?;
+        }
+        Command::StartManufacturingLine { nation, district, kit } => {
+            manufacturing::start_line(w, *nation, district, kit)?;
+        }
+        Command::SetManufacturingPriority { nation, line, priority } => {
+            manufacturing::set_priority(w, *nation, *line, *priority)?;
+        }
+        Command::StopManufacturingLine { nation, line } => {
+            manufacturing::stop_line(w, *nation, *line)?;
+        }
         Command::EnactStratagem { nation, id } => {
             let s = stratagems::by_id(id)
                 .ok_or_else(|| format!("No such stratagem: {}", id))?;
@@ -929,6 +1006,14 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
             w.headline(format!("[rejected] {:?}: {}", c, e));
         }
     }
+    // Construction is genuinely daily. A month-step advances every remaining
+    // playable day here; `tick_day` advances one below. It sits before the
+    // monthly resource posting in both paths, so the two clocks see the same
+    // opening stockpile and close on the same byte-for-byte world.
+    let construction_days = world::days_in_month(w.year, w.month)
+        .saturating_sub(w.day.max(1))
+        .saturating_add(1);
+    production::tick_days(w, construction_days);
     for (_, system) in SYSTEMS {
         system(w);
     }
@@ -978,6 +1063,8 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         }
     }
 
+    production::tick_day(w);
+
     let last_day = world::days_in_month(w.year, w.month);
     if w.day >= last_day {
         for (_, system) in SYSTEMS {
@@ -1024,6 +1111,12 @@ pub fn load(s: &str) -> Result<WorldState, String> {
     // own ground. See `districts::reseed` for what is and is not recoverable.
     if w.districts.is_empty() {
         districts::reseed(&mut w);
+    }
+    if w.district_population.is_empty() {
+        districts::reseed_population(&mut w);
+    }
+    if w.district_population_scale.len() != nations::nation_count() {
+        w.district_population_scale = vec![1.0; nations::nation_count()];
     }
     // ...and a save written before the operational map carries wars with a
     // control scalar and no front. Project the scalar back onto the ground it
@@ -4182,12 +4275,27 @@ mod tests {
         // rather than argued: stripping the serialized `districts` block out
         // of the new save reproduces the previous pin 0xbffd89cc8498ffaa
         // exactly, so not one pre-existing byte of the start state moved.
-        // NOT re-pinned on the merge of codex/trading-system (2026-09-02):
-        // that branch carried 0xa5c9c5b2306313d8 here, which is exactly the
-        // actual this tree already produced before it, so the merge is inert
-        // on the default path. House protocol re-pins only when every
-        // calibration bar is green, and `the_1990_endowment_does_not_move_
-        // year_one_growth` is red (BUGS E-3); the constant stays until then.
+        // NOT re-pinned on the merge of codex/trading-system, e4e3c03
+        // (2026-09-02). What stood here was written for an EARLIER trial of
+        // that merge and said the branch "carried 0xa5c9c5b2306313d8 here,
+        // which is exactly the actual this tree already produced". It was
+        // true then and it is false of the merge that landed, which measures
+        // the reverse: this tree's actual is 0xe26e4bf8d6c60066. Kept rather
+        // than deleted because the history is the point — the earlier reading
+        // is what made the six reds look like three.
+        //
+        // The number moved and the simulation did not, and that is proven
+        // byte for byte rather than argued. Codex's `district_population` and
+        // `district_population_scale` are `#[serde(default)]` with no
+        // `skip_serializing_if`, unlike every neighbour, so they are always
+        // written and always enter `state_hash`. Dump the merged 1990 save,
+        // delete exactly those two blocks and the comma their removal orphans
+        // (they serialize last), and the text is byte-identical to the
+        // 9274baa save and re-hashes to 0xa5c9c5b2306313d8. So the merge is
+        // still inert on the default path. House protocol re-pins only when
+        // every calibration bar is green, and `the_1990_endowment_does_not_
+        // move_year_one_growth` is red (BUGS E-3); the constant stays until
+        // then, deliberately red at 0xe26e4bf8d6c60066.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
         assert_eq!(
@@ -4421,10 +4529,17 @@ mod tests {
         // ever, the seed-pinned conquest pair, re-scanned to seed 93 per
         // their own comments (Saudi Arabia takes Qatar 2018; the fix
         // dissolved seed 9's Mongolia).
-        // NOT re-pinned on the merge of codex/trading-system (2026-09-02):
-        // that branch's 0x20c24ab0f1581807 is the actual this tree already
-        // produced, and the endowment bar (BUGS E-3) is still red, so the
-        // protocol forbids the re-pin. Deliberately red at that actual.
+        // NOT re-pinned on the merge of codex/trading-system, e4e3c03
+        // (2026-09-02). What stood here — "that branch's 0x20c24ab0f1581807
+        // is the actual this tree already produced" — was true of an earlier
+        // trial of the merge and is false of the one that landed: this tree
+        // measures 0xbe94d6125631829c. The timeline did not move. Codex's two
+        // district-population fields serialize unconditionally and so enter
+        // `state_hash`; strip exactly those two blocks out of the merged save
+        // at t=240 months and the text is byte-identical to the 9274baa save
+        // and re-hashes to 0x20c24ab0f1581807. The endowment bar (BUGS E-3)
+        // is still red, so the protocol forbids the re-pin. Deliberately red
+        // at 0xbe94d6125631829c.
         const GOLDEN: u64 = 0xbd5ec0f43c5f2e3b;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
@@ -4439,10 +4554,24 @@ mod tests {
     // Both pins above are RED at HEAD for reasons that predate the resource
     // system — the endowment guard (BUGS E-3) blocks the re-pin — and the
     // protocol is that they go red WITH THE SAME ACTUALS after every stage of
-    // it: `the_1990_start_is_pinned` actual 0xa5c9c5b2306313d8,
-    // `golden_hash_of_a_known_run` actual 0x20c24ab0f1581807. The four tests
-    // below pin those ACTUALS, not the literals: they are the proof that the
-    // layer reproduces the timeline byte for byte, and they re-pin nothing.
+    // it. Those actuals were 0xa5c9c5b2306313d8 and 0x20c24ab0f1581807 up to
+    // and including 9274baa. They MOVED ONCE, on the merge of
+    // codex/trading-system (e4e3c03, 2026-09-02), to
+    // `the_1990_start_is_pinned` actual 0xe26e4bf8d6c60066 and
+    // `golden_hash_of_a_known_run` actual 0xbe94d6125631829c, and they moved
+    // for a serialization reason and not a simulation one: Codex's
+    // `district_population` and `district_population_scale` carry
+    // `#[serde(default)]` without the `skip_serializing_if` their neighbours
+    // use, so they always serialize and so always enter `state_hash`. Delete
+    // exactly those two blocks from the merged saves at t=0 and t=240 months
+    // — and the comma their removal orphans, since they serialize last — and
+    // the text is byte-identical to the 9274baa saves and re-hashes to the
+    // two older values. Measured that way, not asserted.
+    //
+    // The four tests below pin those ACTUALS, not the literals: they are the
+    // proof that the layer reproduces the timeline byte for byte, and they
+    // re-pin nothing. When the actual moves for a reason like the above,
+    // updating them is bookkeeping; the two goldens are the bars.
     // ------------------------------------------------------------------
 
     /// At January 1990 the layer runs no arithmetic that leaves a trace: the
@@ -4454,7 +4583,20 @@ mod tests {
     /// writes nothing, so the hash is the same actual afterwards.
     #[test]
     fn the_resource_layer_is_inert_at_1990() {
-        const START_ACTUAL: u64 = 0xa5c9c5b2306313d8;
+        // MOVED 2026-09-02 with the merge of codex/trading-system, and the
+        // simulation did not move with it. Codex's two new `WorldState` fields,
+        // `district_population` and `district_population_scale`, are declared
+        // `#[serde(default)]` WITHOUT the `skip_serializing_if` their neighbours
+        // carry, so they are always written and therefore always enter
+        // `state_hash`, which is FNV-1a over the pretty-printed save. Proof, run
+        // again on this tree rather than inherited: dump the merged save, delete
+        // exactly those two blocks (and the comma their removal orphans, since
+        // they serialize last), and the text is BYTE-IDENTICAL to the 9274baa
+        // save and re-hashes to the value this constant held before —
+        // 0xa5c9c5b2306313d8 at t=0, 0x20c24ab0f1581807 at t=240 months.
+        // This constant tracks the tree's ACTUAL by construction, so moving it
+        // is not a golden re-pin; the two real goldens above stay where they are.
+        const START_ACTUAL: u64 = 0xe26e4bf8d6c60066;
         let mut w = world_1990(GameRules::default());
         let text = save(&w);
         for key in ["\"resources\"", "\"aim\"", "\"resource_gates\"", "\"cover\""] {
@@ -4497,7 +4639,20 @@ mod tests {
     /// Re-pins nothing.
     #[test]
     fn the_resource_layer_is_inert_over_time() {
-        const RUN_ACTUAL: u64 = 0x20c24ab0f1581807;
+        // MOVED 2026-09-02 with the merge of codex/trading-system, and the
+        // simulation did not move with it. Codex's two new `WorldState` fields,
+        // `district_population` and `district_population_scale`, are declared
+        // `#[serde(default)]` WITHOUT the `skip_serializing_if` their neighbours
+        // carry, so they are always written and therefore always enter
+        // `state_hash`, which is FNV-1a over the pretty-printed save. Proof, run
+        // again on this tree rather than inherited: dump the merged save, delete
+        // exactly those two blocks (and the comma their removal orphans, since
+        // they serialize last), and the text is BYTE-IDENTICAL to the 9274baa
+        // save and re-hashes to the value this constant held before —
+        // 0xa5c9c5b2306313d8 at t=0, 0x20c24ab0f1581807 at t=240 months.
+        // This constant tracks the tree's ACTUAL by construction, so moving it
+        // is not a golden re-pin; the two real goldens above stay where they are.
+        const RUN_ACTUAL: u64 = 0xbe94d6125631829c;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -4571,8 +4726,15 @@ mod tests {
     /// the oil column; the 0.10 ms rebuild is paid only when ground changes
     /// hands or a state is born or dies.
     ///
-    /// Iron rule 7 — the bar and its variance. Measured on this build,
-    /// 2026-09-01, release, 137 nations: 0.003 ms/month in four readings —
+    /// AMENDED 2026-09-02: the test now runs BOTH arms of the switch. It
+    /// built `world_1990(GameRules::default())`, which is market OFF, so it
+    /// was structurally blind to the market path — and stayed green while the
+    /// market-on row regressed from 0.0041 to 0.0577 ms/month over the
+    /// conserved-market merge. The market-on arm is below.
+    ///
+    /// Iron rule 7 — the market-OFF bar and its variance. Measured on this
+    /// build, 2026-09-01, release, 137 nations: 0.003 ms/month in four
+    /// readings —
     /// one on a quiet machine and three taken while the whole workspace suite
     /// ran in parallel — so the spread across load is below the 0.001 ms this
     /// row prints at; the probe read 0.005-0.006 (SPEC section 0.3) before
@@ -4583,33 +4745,137 @@ mod tests {
     /// derive; a regression it exists to catch is a monthly rebuild of the
     /// ledger (0.10 ms, measured) or a monthly pass over the 2,610 districts,
     /// either of which is five times the bar.
+    ///
+    /// Iron rule 7 — the MARKET-ON bar. RE-DERIVED 2026-09-02 on `867b3d6`,
+    /// the third derivation this arm has had, because the first two were both
+    /// wrong and the second was wrong in exactly the way rule 7 exists to
+    /// catch.
+    ///
+    /// The history is the argument for the shape the bar now has. The arm
+    /// landed at 0.10 ms/month — a bar that could not have gone red for the
+    /// 0.0577 regression its own comment named. It was tightened to 0.055 and
+    /// red-checked, and an independent re-measurement then found 0.055 going
+    /// RED ON HEALTHY CODE whenever the box is busy: fourteen readings under
+    /// saturation spanning 0.0472-0.0611 with four of them over the bar,
+    /// against a comment claiming sd 0.00101 and a false red of 6e-9. Checked
+    /// here rather than taken on trust: across six saturated invocations of
+    /// this test the absolute best-of-five read 0.0474 to 0.0661 ms/month,
+    /// most of them over 0.055, and one individual pass read 0.1186 — 2.2x
+    /// the bar — with nothing whatever wrong. An ABSOLUTE millisecond bar
+    /// cannot do this job on a box that builds several worktrees at once:
+    /// healthy-under-load and the regression overlap, so no constant sits
+    /// between them, and more passes do not fix it because the passes are no
+    /// more independent of the load than the reading is.
+    ///
+    /// THE BAR IS THEREFORE A RATIO, not a duration: this row over the REST
+    /// of the same month tick, both accumulated across the same 1,200 months
+    /// of the same world. Machine speed, clock drift and every other process
+    /// on the box multiply BOTH terms and cancel out of the quotient. What is
+    /// left is what the row costs relative to the rest of the game, which is
+    /// what a budget was ever about. The market-OFF arm above keeps its
+    /// absolute bar: at 0.003 ms/month it has 6x of headroom and has never
+    /// been the fragile one.
+    ///
+    /// THE MEASUREMENT, this build, release, 137 nations, 2026-09-02 on the
+    /// rebase onto `867b3d6`. Each reading is the share from ONE pass of
+    /// 1,200 months; eight whole invocations.
+    ///
+    ///     quiet        n=30  mean 0.01798  sd 0.00049  0.0164-0.0192
+    ///     saturated    n=10  mean 0.01725  sd 0.00138  0.0150-0.0189
+    ///     all healthy  n=40  mean 0.01780  sd 0.00085  0.0150-0.0192
+    ///
+    /// "Saturated" is sixteen CPU-bound processes on sixteen cores for the
+    /// whole test. Note WHICH WAY it moves: load pushes the share DOWN,
+    /// because the rest of the tick soaks up more of the contention than this
+    /// row does. The worst case for a false red is therefore an IDLE box, and
+    /// it is the quiet sample that sizes the bar — the opposite of the regime
+    /// the millisecond bar had to be sized against.
+    ///
+    /// n = 5 passes, and the reported statistic is the minimum over them, so
+    /// the passes ARE the sample: the eight invocations produced min-of-five
+    /// values of 0.0150 to 0.0178. The sampling n behind the derivation is 40
+    /// — pinning the mean to +/-0.00035 at 99% needs
+    /// n = (2.576 * 0.00085 / 0.00035)^2 = 39, and 40 readings were taken.
+    /// RE-DERIVE, do not scale: the share is a property of the whole tick, so
+    /// a commit that adds a system moves it. `867b3d6` added province
+    /// manufacturing and the healthy share fell from 0.02108 to 0.01780
+    /// between the rebase's two sides, which is why these numbers are the
+    /// second set this comment has carried today.
+    ///
+    /// THE BAR is 0.022. Rule 7's floor is mean + 2.326*sd = 0.01780 +
+    /// 0.00198 = 0.0198 for a false red under 1%; 0.022 is z = 5.0. It is
+    /// 14.6% above the highest of all forty healthy readings and 23.6% above
+    /// the highest min-of-five any invocation produced. It is also within
+    /// 1% of the geometric midpoint of the gap it has to sit in — 0.0192
+    /// healthy max against 0.0258 regressed min, midpoint 0.02226 — which is
+    /// the choice that maximises the SMALLER of the two margins instead of
+    /// either one alone.
+    ///
+    /// POWER, measured by red-check rather than asserted, against the
+    /// regression this arm exists for: `change_market_stock` doing three
+    /// binary searches into the 552-row ledger where one does, on the ~1,500
+    /// calls a month `post_market_flows` makes, reintroduced verbatim from
+    /// `4fbc806`.
+    ///
+    ///     perturbed quiet      n=15  mean 0.02809  sd 0.00101  0.0271-0.0309
+    ///     perturbed saturated  n=10  mean 0.02701  sd 0.00093  0.0258-0.0285
+    ///
+    /// RED five invocations out of five — three quiet and TWO UNDER FULL
+    /// SATURATION, which is the thing the millisecond bar could not do at
+    /// all: on a busy box it was red either way and so carried no information
+    /// there. The closest perturbed min-of-five is 0.0258, 14.7% above the
+    /// bar, and against the perturbed distribution the miss rate is z = -5.2.
+    /// Through all five the market-OFF arm read 0.0029-0.0031 against its own
+    /// 0.02 and never twitched — the blindness this arm exists to end,
+    /// demonstrated rather than argued.
+    ///
+    /// WHAT IT STILL CANNOT SEE, since rule 7 says the power half is the half
+    /// that costs. On the mean the bar is 1.24x the healthy share; allowing
+    /// for the regressed spread, the smallest slowdown it catches RELIABLY is
+    /// about 1.3x, so a 10% regression in the posting pass is still invisible
+    /// and the honest repair for that is a tighter bar bought with a bigger
+    /// sample, not a claim that this one would notice. The denominator is the
+    /// rest of the tick, so this arm is blind to anything that slows this row
+    /// and the rest of the game by the SAME factor, and it will red for a
+    /// large speed-up elsewhere in the tick with nothing wrong here — the
+    /// repair in that case is to re-derive by the recipe above, thirty quiet
+    /// readings and ten saturated, not to widen it. What it no longer depends
+    /// on is this machine: a ratio of two workloads inside one process
+    /// carries to a slower box, which the millisecond bar it replaced did
+    /// not.
     #[test]
     fn the_resources_row_is_free() {
         use std::time::{Duration, Instant};
         const MONTHS: usize = 1200;
         const PASSES: usize = 3;
+        const MARKET_ON_PASSES: usize = 5;
         const BUDGET_MS_PER_MONTH: f64 = 0.02;
+        const MARKET_ON_SHARE_OF_TICK: f64 = 0.022;
+        for market in [false, true] {
+        let passes = if market { MARKET_ON_PASSES } else { PASSES };
         let slot = SYSTEMS
             .iter()
             .position(|(name, _)| *name == "resources")
             .expect("resources is a SYSTEMS entry");
         let mut best = Duration::MAX;
-        for _ in 0..PASSES {
-            let mut w = world_1990(GameRules::default());
+        let mut best_share = f64::MAX;
+        for _ in 0..passes {
+            let mut w = world_1990(GameRules { resource_market: market, ..GameRules::default() });
             for _ in 0..12 {
                 tick_month(&mut w, &[]);
             }
-            let mut spent = Duration::ZERO;
+            let (mut spent, mut rest) = (Duration::ZERO, Duration::ZERO);
             for _ in 0..MONTHS {
                 w.headlines.clear();
                 w.reindex();
                 for (i, (_, system)) in SYSTEMS.iter().enumerate() {
+                    let t = Instant::now();
+                    system(&mut w);
+                    let d = t.elapsed();
                     if i == slot {
-                        let t = Instant::now();
-                        system(&mut w);
-                        spent += t.elapsed();
+                        spent += d;
                     } else {
-                        system(&mut w);
+                        rest += d;
                     }
                 }
                 w.month += 1;
@@ -4619,18 +4885,34 @@ mod tests {
                 }
             }
             best = best.min(spent);
+            best_share = best_share.min(spent.as_secs_f64() / rest.as_secs_f64());
+            println!(
+                "      pass: {:>7.4} ms/month, rest of the tick {:>7.4}, share {:.4}",
+                spent.as_secs_f64() * 1000.0 / MONTHS as f64,
+                rest.as_secs_f64() * 1000.0 / MONTHS as f64,
+                spent.as_secs_f64() / rest.as_secs_f64()
+            );
         }
         let ms = best.as_secs_f64() * 1000.0 / MONTHS as f64;
         println!(
-            "    {:<14} {:>8.3}s  {:>7.3} ms/month  (best of {PASSES}, {MONTHS} months, 137 living at start)",
+            "    {:<14} {:>8.3}s  {:>7.4} ms/month  share {best_share:.4}  (market {market}, best of {passes}, {MONTHS} months, 137 living at start)",
             "resources",
             best.as_secs_f64(),
             ms
         );
-        assert!(
-            ms <= BUDGET_MS_PER_MONTH,
-            "the resources row costs {ms:.4} ms/month, over the {BUDGET_MS_PER_MONTH} ms budget"
-        );
+        if market {
+            assert!(
+                best_share <= MARKET_ON_SHARE_OF_TICK,
+                "the market-on resources row costs {best_share:.4} of the rest of the month tick \
+                 ({ms:.4} ms/month), over the {MARKET_ON_SHARE_OF_TICK} bar"
+            );
+        } else {
+            assert!(
+                ms <= BUDGET_MS_PER_MONTH,
+                "the resources row costs {ms:.4} ms/month with the market off, over the {BUDGET_MS_PER_MONTH} ms bar"
+            );
+        }
+        }
     }
 
     /// Fork F1(b), the switch. OFF is the default: the 1990 save carries no
@@ -4648,8 +4930,34 @@ mod tests {
     /// hand and recorded in the landing commit.
     #[test]
     fn the_market_switch_is_off_for_the_suite_and_deterministic_when_on() {
-        const START_ACTUAL: u64 = 0xa5c9c5b2306313d8;
-        const RUN_ACTUAL: u64 = 0x20c24ab0f1581807;
+        // MOVED 2026-09-02 with the merge of codex/trading-system, and the
+        // simulation did not move with it. Codex's two new `WorldState` fields,
+        // `district_population` and `district_population_scale`, are declared
+        // `#[serde(default)]` WITHOUT the `skip_serializing_if` their neighbours
+        // carry, so they are always written and therefore always enter
+        // `state_hash`, which is FNV-1a over the pretty-printed save. Proof, run
+        // again on this tree rather than inherited: dump the merged save, delete
+        // exactly those two blocks (and the comma their removal orphans, since
+        // they serialize last), and the text is BYTE-IDENTICAL to the 9274baa
+        // save and re-hashes to the value this constant held before —
+        // 0xa5c9c5b2306313d8 at t=0, 0x20c24ab0f1581807 at t=240 months.
+        // This constant tracks the tree's ACTUAL by construction, so moving it
+        // is not a golden re-pin; the two real goldens above stay where they are.
+        const START_ACTUAL: u64 = 0xe26e4bf8d6c60066;
+        // MOVED 2026-09-02 with the merge of codex/trading-system, and the
+        // simulation did not move with it. Codex's two new `WorldState` fields,
+        // `district_population` and `district_population_scale`, are declared
+        // `#[serde(default)]` WITHOUT the `skip_serializing_if` their neighbours
+        // carry, so they are always written and therefore always enter
+        // `state_hash`, which is FNV-1a over the pretty-printed save. Proof, run
+        // again on this tree rather than inherited: dump the merged save, delete
+        // exactly those two blocks (and the comma their removal orphans, since
+        // they serialize last), and the text is BYTE-IDENTICAL to the 9274baa
+        // save and re-hashes to the value this constant held before —
+        // 0xa5c9c5b2306313d8 at t=0, 0x20c24ab0f1581807 at t=240 months.
+        // This constant tracks the tree's ACTUAL by construction, so moving it
+        // is not a golden re-pin; the two real goldens above stay where they are.
+        const RUN_ACTUAL: u64 = 0xbe94d6125631829c;
         assert!(!GameRules::default().resource_market, "the suite's default must be off");
         let w = world_1990(GameRules::default());
         let off_text = save(&w);
@@ -4726,6 +5034,69 @@ mod tests {
     /// measured by `the_buy_pass_ask_census` before the clock row and the
     /// allocation-free `pick`) — is six times the bar. One seed, one
     /// timeline — not a seed-sampled statistic, so there is no n to derive.
+    ///
+    /// 2026-09-02: it caught one, and this is the repair. The
+    /// conserved-market commit pointed `dyads::last_resort` at
+    /// `resources::action_stalled`, which pays a `draw` -- hence an
+    /// `arsenal::pick` scan of the whole `DECK` -- and a binary search into
+    /// the 552-row ledger, ONCE PER TRACKED COMMODITY PER DYAD PER MONTH.
+    /// Measured on this machine, release, quiet, best of three whole
+    /// invocations each itself this test's own best of three:
+    ///
+    ///     before   resources 0.0602  buy 0.0339  appetite 1.2657  total 1.3598
+    ///     after    resources 0.0342  buy 0.0197  appetite 0.0226  total 0.0766
+    ///
+    /// 17.8x on the total (1.3598 / 0.0766). CORRECTED 2026-09-02: this line
+    /// read "30.5x on the total, and the appetite term is back inside the
+    /// 0.0112 it read before the merge", and both halves were wrong. 30.5x
+    /// was the ratio of an older brief's baseline to the pre-merge cost, not
+    /// of the two rows printed above it. And the appetite term is 0.0226 —
+    /// TWICE the 0.0112 it read before the merge, not back inside it. It is
+    /// comfortably under the bar, which is the claim that matters, but the
+    /// appetite path was not restored to what it cost and a later session
+    /// should not read this comment as saying it was. The BEFORE row is not a
+    /// reproducible constant either: an independent build of 4fbc806 from a
+    /// pristine archive read totals of 1.6672, 1.8520 and 2.9316 over three
+    /// quiet invocations, a 1.76x spread against 0.7% on the repaired tree.
+    /// The direction and the order of magnitude hold; the single number does
+    /// not. Three repairs, each measured on its own:
+    /// `resources::action_stalled_mask` computed ONCE PER (nation, month)
+    /// above the commodity loop (appetite 1.2657 -> 0.0469; hoisted only as
+    /// far as the commodity loop it reached 0.1265, which is why the callers
+    /// hoist it all the way to the nation); `resources::change_market_stock`
+    /// collapsed from three binary searches to one (the resources row
+    /// 0.0580 -> 0.0348); and `arsenal::pick` reading a precomputed ranking
+    /// instead of refolding 46 divisions and 46 `OnceLock` reads (appetite
+    /// 0.0439 -> 0.0226, buy pass 0.0289 -> 0.0197). The bar was not touched.
+    /// Loaded, inside `cargo test --workspace --release` on this machine and
+    /// watched build, the same reading is resources 0.0451, buy 0.0307,
+    /// appetite 0.0326, total 0.1083 — green against the untouched 0.15 bar
+    /// with 28% to spare. It took all three: the same loaded run was still
+    /// RED at 0.1679 with only the mask hoisted, and still red at 0.1603
+    /// with the mask and `change_market_stock` but not the ranking.
+    ///
+    /// RE-TAKEN 2026-09-02 twice, once per rebase, and the row does not sit
+    /// still. On `a9a373d` (arcade logistics and province production landing
+    /// underneath it): resources 0.0391  buy 0.0199  appetite 0.0231  total
+    /// 0.0821, three quiet invocations reading 0.0821, 0.0825 and 0.0845. On
+    /// `867b3d6` (province manufacturing on top of that): resources 0.0347
+    /// buy 0.0097  appetite 0.0192  total 0.0637, four quiet invocations
+    /// reading 0.0624, 0.0637, 0.0644 and 0.0665. Green against the untouched
+    /// 0.15 bar either way; the point of recording both is that a single
+    /// before/after number here has a shelf life of about one merge, so
+    /// re-measure rather than quote.
+    /// KNOWN LIMIT, recorded rather than papered over: this is an absolute
+    /// wall-clock bar and it is load-sensitive in a way its sibling
+    /// `the_resources_row_is_free` no longer is. Measured here under sixteen
+    /// CPU-bound processes on sixteen cores it reads 0.0899 and 0.0958 on
+    /// this tree and read 0.1338 and 0.1358 on the previous one — green, but
+    /// on `a9a373d` with a tenth of the bar left rather than a half — and an
+    /// earlier session recorded 0.1954, RED with nothing wrong, on a
+    /// full-suite run with nine foreign `rustc` processes live. The repair if
+    /// that becomes routine is the sibling's: a share of the tick rather than
+    /// a duration, re-derived from its own sample. It is left alone today
+    /// because the bar is met in every regime this session could produce and
+    /// rule 5 does not ask for a rewrite of a bar that is holding.
     #[test]
     fn the_resource_pass_stays_under_budget() {
         use std::time::{Duration, Instant};
@@ -4762,8 +5133,11 @@ mod tests {
                     if !w.nation_opt(*a).is_some_and(|n| n.alive) {
                         continue;
                     }
+                    // One mask per attacker per month, then the four
+                    // per-target tests per dyad — `ai_wars`' own shape.
+                    let stalled = resources::action_stalled_mask(&w, *a);
                     for tgt in dyads::contacts(*a) {
-                        if dyads::last_resort(&w, *a, *tgt).is_some() {
+                        if dyads::last_resort_with(&w, *a, *tgt, &stalled).is_some() {
                             opened += 1;
                         }
                     }
@@ -5291,7 +5665,7 @@ mod tests {
                                 let lr = t.is_some_and(|t| dyads::last_resort(&w, a, t) == Some(ai.clone()));
                                 let nuc = t.is_some_and(|t| nuclear_bar(&w, a, t));
                                 let pact = t.is_some_and(|t| pact_between(&w, a, t));
-                                let ok = ra.is_some() && cv <= 0.0 && counted && reach;
+                                let ok = ra.is_some() && resources::action_stalled(&w, a, k) && counted && reach;
                                 if ok {
                                     o.legible_at_aim += 1;
                                 }

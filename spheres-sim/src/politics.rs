@@ -1510,6 +1510,15 @@ fn ai_wars(w: &mut WorldState) {
             if !an.alive || Some(a) == w.player || w.at_war(a) || an.war_exhaustion > 0.3 {
                 continue;
             }
+            // Ruling 4's predicate asks whether `a` has a stall, and that
+            // does not depend on the target: one mask for the whole sweep
+            // over `a`'s contacts, not one per dyad (resources.rs,
+            // `action_stalled_mask`).
+            let stalled = if w.rules.resource_market {
+                Some(crate::resources::action_stalled_mask(w, a))
+            } else {
+                None
+            };
             for t in crate::dyads::contacts(a).iter().copied() {
                 match w.nation_opt(t) {
                     Some(n) if n.alive => {}
@@ -1518,7 +1527,7 @@ fn ai_wars(w: &mut WorldState) {
                 if w.at_war(t) {
                     continue;
                 }
-                let p = crate::dyads::war_appetite(w, a, t);
+                let p = crate::dyads::war_appetite_with(w, a, t, stalled.as_ref());
                 if p > 0.0 {
                     v.push((a, t, p));
                 }

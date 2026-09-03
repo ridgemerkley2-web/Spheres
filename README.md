@@ -5,6 +5,14 @@ single command queue, seeded), 137 nations at the start and up to 158 once
 federations come apart, a 328-technology tree, monthly ticks.
 
 ## Run it
+
+On Windows, double-click `Play SPHERES.cmd`. It builds the current game once,
+starts the local server, and opens the nation-selection screen after the server
+is ready. The first launch needs Rust from https://rustup.rs; later launches use
+the existing build cache and are much faster.
+
+From a terminal:
+
     cargo run --release -p spheres-web                  # browser UI — map, charts, diplomacy
     cargo run --release -p spheres-cli -- play          # interactive, default seed
     cargo run --release -p spheres-cli -- play 42       # different history
@@ -12,7 +20,7 @@ federations come apart, a 328-technology tree, monthly ticks.
     cargo run --release -p spheres-cli -- resume save.json
     cargo test                                          # 103 calibration/invariant tests
 
-`spheres-web` opens http://127.0.0.1:7777 in your browser: a strategic map of the
+`spheres-web` opens http://127.0.0.1:7777 by default: a strategic map of the
 world sized by GDP and coloured by your relations, policy sliders, GDP/oil history
 charts, a league table, and a dispatch feed. Click a nation to open it and act on it.
 Time advances in months; a war or a collapse interrupts a long advance so you can
@@ -21,6 +29,13 @@ respond.
 In the CLI, type `help`. Core loop: read briefing -> set policy (rate/tax/military/
 invest), act diplomatically (improve/sanction/war) -> `next`, `year`, or `6` to
 advance -> world reacts.
+
+## Manufacturing
+
+The browser's **Production → Manufacture** board routes the existing defense
+procurement budget through completed province arms plants, the resource market,
+and long-lead Arsenal orders. See [MANUFACTURING.md](MANUFACTURING.md) for the
+economic contract, every current connection, and the staged integration plan.
 
 ## What emerges (unscripted, seed-dependent)
 - Iraq invades Kuwait in the early 90s; a US/UK coalition repels it; Iraq never tries again

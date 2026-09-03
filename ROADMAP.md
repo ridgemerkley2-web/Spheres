@@ -64,15 +64,218 @@
   market OFF seed 1990 `d1a2cfbf7c6958d7` / 3501 lines, seed 7 `39dea3341a7f6e8c`
   / 3983; `SPHERES_RESOURCE_MARKET=1` seed 1990 `6cb6c97ab33fb80d` / 4007, seed 7
   `8d29fecfd4ff9bf4` / 4258.
-  **NOT LANDED ON `feat/hoi4-map-and-tech`**: origin moved to 61b388f (Codex's
-  province production, manufacturing and logistics) while this was built, and the
-  rebase conflicts on `resources.rs` — upstream added three NEW direct
-  `debt_gdp` money legs that this branch's register bar forbids outright. See the
-  handover note in BUGS I-16.
+  **MERGED ONTO `feat/hoi4-map-and-tech` 61b388f** (2026-09-02, a merge and not
+  a rebase — the rebase failed on commit 1 of 21). Origin had moved 21 commits
+  under this branch with Codex's province production, manufacturing and arcade
+  logistics, and the collision was semantic: upstream added three NEW direct
+  `debt_gdp` money legs that this branch's register bar forbids outright, and
+  raised its own count of the field to seven while this branch had driven it to
+  zero. All three — the aggregate spot settlement's two arms in
+  `apply_market_net` and the mine investment in `start_mine` — were routed
+  through `economy::charge`, which is what BUGS M-2 asked for and what Ridge's
+  design already implied. The bar now asserts the union: `resources.rs` names
+  none of `debt_gdp`, `treasury_bn` or `debt_bn`, and its whole reach into a
+  nation's finances is five `economy::charge` calls.
+  MEASURED ON THE MERGE, and the inertness claim is now stronger than it was on
+  the branch alone. The merged tree's two ACTUALS are **origin's**, exactly —
+  0xe26e4bf8d6c60066 (start) and 0xbe94d6125631829c (run), where this branch
+  alone read 0xa5c9c5b2306313d8 / 0x20c24ab0f1581807 and the whole of the
+  difference is upstream's serialized `district_population`. The two golden
+  PINS, 0xd022d50f43c984da and 0xbd5ec0f43c5f2e3b, were not touched and are
+  still red. All FOUR headless `run 35` streams are byte-identical to origin's
+  own at 61b388f, each measured twice: market OFF seed 1990
+  **d1a2cfbf7c6958d7** (3,501 lines) / seed 7 **39dea3341a7f6e8c** (3,983), and
+  market ON **1574abf65b382173** (3,873) / **f97da62d5daee785** (4,234). The
+  market-ON pair recorded above against `867b3d6` — 30cf39058ba9ae1f /
+  6daccc96382f7659 — was already stale at 61b388f: origin moved it, not this
+  merge, which was confirmed by building 61b388f alone and reading the same two
+  hashes. Suite: spheres-sim 272 passed / 3 failed / 52 ignored with exactly the
+  three deliberate reds, spheres-web 102 passed, spheres-cli 1 passed.
   Doctrine amended in the house style: SPEC §3 (the treasury, the escalating
   interest, the ministry map), BIBLE §4 (what each ministry buys), CLAUDE.md iron
   rule 8 (one named arm per effect, defined once), BUGS D-1 closed and D-2
   settled player-only, and every invented coefficient filed as BUGS I-1..I-16.
+- **The resource pass back under budget, and a market-on guard that can fail**
+  (2026-09-02, `63e6c90` "perf: one stall mask a month, not twelve a dyad" and
+  this branch's "test: make the market-on row bar a ratio" plus its
+  re-derivation onto `867b3d6`): `2f9791e` pointed
+  `dyads::last_resort` at `resources::action_stalled`, which pays a `draw` — and
+  therefore an `arsenal::pick` fold over the whole 46-entry `DECK` — plus a
+  binary search into the 552-row ledger, ONCE PER TRACKED COMMODITY PER DYAD PER
+  MONTH. `tests::the_resource_pass_stays_under_budget` went from 0.0400
+  ms/month at `e4e3c03` to **1.3598** against its 0.15 bar. Three repairs, each
+  measured on its own: `resources::action_stalled_mask` built once per (nation,
+  month) rather than twelve times per dyad (appetite 1.2657 → 0.0469),
+  `resources::change_market_stock` collapsed from three binary searches to one
+  (the resources row 0.0580 → 0.0348), and `arsenal::pick` reading a precomputed
+  value ranking instead of refolding 46 divisions (appetite 0.0439 → 0.0226).
+  **Total 1.3598 → 0.0766**, 17.8x; 0.0821 after the rebase onto `a9a373d` and
+  0.0637 after the rebase onto `867b3d6`.
+  **The bar was not touched** and no test was deleted, ignored or widened.
+  Behaviour is bit-identical: both golden ACTUALS still read
+  `0xe26e4bf8d6c60066` and `0xbe94d6125631829c`, and all four headless digests
+  are unmoved, the two market-ON ones included.
+  **The new guard, and why it is a ratio.** `the_resources_row_is_free` was
+  market-OFF only and stayed green through the whole regression. A market-ON arm
+  was added at 0.10 ms/month — a bar that could not have gone red for the
+  0.0577 it named — then tightened to 0.055, and a review then measured 0.055
+  going RED ON HEALTHY CODE on a busy box (fourteen saturated readings
+  0.0472-0.0611, four over the bar). Confirmed here: four saturated invocations
+  read best-of-five 0.0562, 0.0574, 0.0582 and 0.0661, every one over 0.055, one
+  individual pass at 0.1186 with nothing wrong. **An absolute millisecond bar
+  cannot do this job on a box that builds several worktrees at once** — healthy-
+  under-load and the regression overlap — so the arm now asserts the row as a
+  **share of the rest of the same month tick**, in which machine speed and
+  every other process cancel. Measured on `867b3d6`: healthy 0.01798 mean over
+  30 quiet readings and 0.01725 over 10 saturated, range 0.0150-0.0192;
+  **bar 0.022**, rule 7's floor being mean + 2.326·sd = 0.0198 (z = 5.0) and
+  the bar within 1% of the geometric midpoint of the gap it has to sit in.
+  **Red-checked**: reintroducing `4fbc806`'s three-binary-search
+  `change_market_stock` reds it five invocations out of five, **two of them
+  under full sixteen-core saturation**, which the millisecond bar could not do
+  at all. The market-OFF arm and its 0.02 bar are untouched and read
+  0.0029-0.0031 throughout — blind to the regression, which is the blindness
+  the ON arm exists to end. **Re-derive, do not scale**: the share is a property
+  of the whole tick, and `867b3d6`'s province manufacturing moved it from the
+  0.02108 measured one rebase earlier, so the bar was re-derived from its own
+  forty readings rather than carried across. Recorded in the comment beside the
+  bar, per rule 7: it catches about 1.3x and no less, it is blind to anything
+  that slows this row and the whole tick equally, and it will red for a large
+  speed-up elsewhere in the tick.
+  Also corrected here, both from the same review: the budget test's comment
+  claimed "30.5x" against its own table's 17.8x and claimed the appetite term
+  was "back inside the 0.0112 it read before the merge" when the table says
+  0.0226 — twice it, not inside it; and `arsenal::value_order` now asserts every
+  `deck_value` is finite, a NaN there being enough to make the ranking
+  comparator non-transitive and `sort_by`'s order unspecified.
+  Filed and closed: BUGS **P-1** and **P-2**.
+  **Suite at ship** (2026-09-02, `cargo test --release --workspace
+  --no-fail-fast` after `cargo clean -p spheres-sim -p spheres-web -p
+  spheres-cli --release`, isolated target, all three Compiling lines watched and
+  the test binaries confirmed to post-date every source): spheres-sim **238
+  passed / 3 failed / 22 ignored**, spheres-web **94 / 0 / 2**, spheres-cli
+  **1 / 0 / 0**, the five integration targets all-ignored as before. The three
+  reds are the expected ones and are untouched —
+  `tech::tests::the_1990_endowment_does_not_move_year_one_growth` (BUGS E-3,
+  Belgium 0.001851 against 0.001749), `tests::the_1990_start_is_pinned` and
+  `tests::golden_hash_of_a_known_run`, whose pins stay at `0xd022d50f43c984da`
+  (`lib.rs` 4141) and `0xbd5ec0f43c5f2e3b` (`lib.rs` 4382) and whose actuals are
+  unmoved at `0xe26e4bf8d6c60066` and `0xbe94d6125631829c`. Headless
+  determinism, `spheres-cli run 35 <seed> | sha256sum | cut -c1-16`, each run
+  twice and each pair byte-identical: market OFF `d1a2cfbf7c6958d7` (seed 1990,
+  3501 lines) and `39dea3341a7f6e8c` (seed 7, 3983);
+  market ON `1574abf65b382173` (3873) and `f97da62d5daee785` (4234).
+  **THE TWO MARKET-ON DIGESTS MOVED, AND NOT HERE.** They were
+  `30cf39058ba9ae1f` (4110 lines) and `6daccc96382f7659` (3967) through
+  `a9a373d`, and this branch reproduced both on that rebase. `867b3d6`
+  "feat: add province manufacturing lines" moved them: a pristine `git archive`
+  of `867b3d6` built into its own target directory produces
+  `1574abf65b382173` and `f97da62d5daee785` — byte-for-byte what this branch
+  produces — while both market-OFF digests are unchanged on both sides. So the
+  market-on timeline moved with province manufacturing, which consumes from the
+  market, and nothing on this branch moved anything; the branch's own diff is
+  a test module, a one-off assertion in `arsenal::value_order` that cannot
+  reorder anything, and these two documents.
+  `tools/resources/check_resources_1990.py --fast`: **60 checks, 0 failed**.
+
+- **Codex's province trade and mines** (2026-09-02, Ridge's own merge `e4e3c03`
+  "merge: integrate Codex province trade and mines" of `9274baa` (ours) with
+  `3f7eaf2` (`feat: integrate province resources trade and mines`), plus four
+  repair commits on `fix/merge-repairs`): living province population — the 1990
+  district residents in `spheres-web/data/district_population.json`, 2,610
+  provinces, growing with the current owner's demographic and technology path and
+  staying with the ground across a border transfer — and the district mine,
+  `Command::DevelopResource`, a twelve-month build on a mapped deposit priced at
+  `MINE_PC_COST` political capital and an investment charged to `debt_gdp`.
+  **Four repairs on landing**: (1) `2b10e78` — the four `START_ACTUAL` /
+  `RUN_ACTUAL` constants in `the_resource_layer_is_inert_at_1990`,
+  `the_resource_layer_is_inert_over_time` and
+  `the_market_switch_is_off_for_the_suite_and_deterministic_when_on` still
+  carried `0xa5c9c5b2306313d8` / `0x20c24ab0f1581807` and were pointed at the
+  tree's measured actuals `0xe26e4bf8d6c60066` / `0xbe94d6125631829c`; these
+  track the tree's current actual by construction (their own comment at
+  `lib.rs` 4338-4340 says so) and are not a golden re-pin. (2) `24b110e` — three
+  merge notes the landed merge had falsified, corrected as comments only, the
+  earlier reading kept legible as history. (3) `7958ff4` — Codex's two dropped
+  province-population guards restored from `3f7eaf2`,
+  `opening_population_covers_every_province_and_closes_to_national_totals` and
+  `province_population_follows_its_current_owners_demography`, each red-checked on
+  both of its arms and each revert recorded; the reconstruction was corrected in
+  the doing, because the opening split is **not** renormalised at birth
+  (`data/mod.rs` 812 seeds straight from `districts::population_1990()`, so
+  `reseed_population`'s renormalising loop is only reached from `load()` for a
+  pre-layer save) — blanking that loop left the coverage test green, which is how
+  it was found, so the guard is on the committed artifact itself. (4) `104f851` —
+  `tools/resources/check_resources_1990.py` failed 2 of 60 `--fast` and 4 of 63
+  on the full run (the repair session's reading, taken before its own fix), one
+  root cause: JSON line endings. LF chosen as the
+  convention and pinned by a repo-root `.gitattributes`, because the checker
+  already carried a bar demanding it (CHECK 5, "the committed file uses LF
+  newlines only"), because git already stores all 148 of those files with LF so
+  the rule changes no blob, and because a byte-hash of a transcribed data file is
+  a claim about the DATA (iron rule 4) and must not depend on which OS did the
+  checkout. Checker re-run for this record on 2026-09-02 at `104f851`: **60 checks, 0
+  failed** (`--fast`) and **63 checks, 0 failed** (full).
+  **The pins were kept**: `the_1990_start_is_pinned` stays at
+  `0xd022d50f43c984da` (`lib.rs` 4069) and `golden_hash_of_a_known_run` at
+  `0xbd5ec0f43c5f2e3b` (`lib.rs` 4310), both deliberately red until BUGS E-3's
+  endowment bar is green — but **both actuals moved**, to
+  `0xe26e4bf8d6c60066` and `0xbe94d6125631829c`, and **nothing in the simulation
+  moved with them**: Codex's `district_population` and
+  `district_population_scale` are `#[serde(default)]` with no
+  `skip_serializing_if` (`world.rs` 947-952), unlike the ten fields around them,
+  so they always enter `state_hash`. Stripping exactly those two blocks and the
+  comma their removal orphans from the merged saves at t=0 and t=240 months
+  yields text byte-identical to the `9274baa` saves and re-hashes to
+  `0xa5c9c5b2306313d8` / `0x20c24ab0f1581807`. See BUGS **M-5** — reverting that
+  is a save-format change and Ridge's call.
+  Filed, not fixed: BUGS **M-1..M-8** (the mine's five bare constants with two of
+  them inert and 96.79% of the board at the price floor; the `debt_gdp` write
+  against the ruling at `resources.rs` 66-68, invisible to its own guard because
+  that guard ticks with an empty command slice; the player-only mine against
+  R-1's zero resource wars; the mine's four lost guards; the serialization above;
+  the orphaned `/api/district-populations`; no browser load path; and the daily
+  invariant that has never seen `DevelopResource`).
+  **Suite at ship** (2026-09-02, `cargo test --release --workspace
+  --no-fail-fast` after `cargo clean -p spheres-sim -p spheres-web -p
+  spheres-cli --release`, isolated target, all three Compiling lines watched and
+  the test binaries post-dating every source). This branch was **rebased onto
+  2f9791e `feat: establish conserved resource market`**, which landed on
+  `origin/feat/hoi4-map-and-tech` while the ship pass was running; all six
+  commits replayed with no conflict, and the figures below are from the rebased
+  tree. spheres-sim **209 passed / 4 failed / 22 ignored**, spheres-web
+  **89 / 0 / 2**, spheres-cli **1 / 0 / 0**; the five spheres-sim integration
+  targets contribute 0 passed / 0 failed / 30 ignored between them.
+
+  Three of the four failures are the deliberate reds, at unchanged actuals:
+  `tech::tests::the_1990_endowment_does_not_move_year_one_growth` (BUGS E-3,
+  Belgium 0.001851 granted against 0.001749 ungranted), and the two goldens,
+  which panic at `lib.rs` 4068 with actual 0xe26e4bf8d6c60066 against the
+  untouched pin 0xd022d50f43c984da and at `lib.rs` 4314 with actual
+  0xbe94d6125631829c against the untouched pin 0xbd5ec0f43c5f2e3b. **The
+  simulation did not move under 2f9791e**: both actuals read exactly what they
+  read before the rebase.
+
+  **The fourth red is upstream's, not this branch's.**
+  `tests::the_resource_pass_stays_under_budget` fails at `lib.rs` 4742: the
+  resource pass costs **1.7819 ms/month against a 0.15 ms bar**, and the cost is
+  almost entirely the new appetite term (resources 0.0680, buy pass 0.0424,
+  appetite term **1.6714**). It was proved upstream by checking 2f9791e out on
+  its own detached worktree, with none of this branch's commits present, where
+  the same test fails at 1.5173 ms/month. No commit on this branch touches
+  `resources.rs` or that test. **It is a throughput bar, not a correctness one,
+  and it needs an owner ruling: profile the appetite term down under 0.15, or
+  re-argue the bar for a market that now conserves.**
+
+  Headless `run 35` (sha256, first 16 hex, the convention used above), each run
+  twice and byte-identical across the pair: market OFF seed 1990
+  **d1a2cfbf7c6958d7** (3,501 lines) / seed 7 **39dea3341a7f6e8c** (3,983) —
+  **still equal to 9274baa's**, so the default-off world is untouched by the new
+  market. Market ON now reads **30cf39058ba9ae1f** (4,110) /
+  **6daccc96382f7659** (3,967), moved from the pre-rebase 6cb6c97ab33fb80d /
+  8d29fecfd4ff9bf4 by 2f9791e itself, which is what a conserved-market feature
+  is expected to do. Provenance: `check_resources_1990.py` 60 checks 0 failed
+  `--fast`, 63 checks 0 failed full.
 - **The daily calendar and the ten-ministry annual budget** (2026-09-02, Ridge's
   call — "I like the 10 ministry budget and the 1 day ticker so if the bible needs to be ammended we can do that.";
   `origin/codex/trading-system` 4875ea5 merged as 253ff2d onto
@@ -1326,3 +1529,29 @@ by accident.
 OneDrive also holds locks on `.git/worktrees/*` and the worktree directories, so
 `git worktree remove` and `git worktree prune` fail with "Permission denied" and
 the branches those worktrees hold cannot be deleted. Pausing sync should clear it.
+
+**Run the suite with `--no-fail-fast` (2026-09-02).** While the three
+deliberate reds stand, `cargo test --release --workspace` **short-circuits**: it
+runs spheres-cli and spheres-sim, and because the spheres-sim lib target fails it
+stops before spheres-web ever executes, ending with `error: 1 target failed:
+`-p spheres-sim --lib``. A run like that silently reports nothing at all for
+spheres-web, which is easy to misread as a pass. Add `--no-fail-fast` and every
+target runs; that is how the ship tally above was taken, and it is the reason
+the earlier repair pass had to invoke `-p spheres-web` separately to get its
+88 / 0 / 2. Until BUGS E-3 and the two goldens go green, treat a bare
+`--workspace` figure as incomplete.
+
+**JSON in this repo is LF, pinned by `.gitattributes` (2026-09-02).**
+`tools/resources/check_resources_1990.py` byte-hashes the transcribed sources it
+regenerates `spheres-sim/data/resources_1990.json` from, and on a Windows
+checkout half of those hashes were CRLF-worktree digests and half were LF-blob
+digests — 2 of 60 `--fast` checks and 4 of 63 full checks failing for that one
+reason. The repo-root `.gitattributes` now carries `*.json text eol=lf`. It
+changes no blob (git already stored all 148 of those files with LF), so
+`git diff --numstat -- '*.json'` over the rewritten worktree is empty; what it
+changes is what a checkout writes to disk. **Expect the first checkout after this
+lands in any tree — including `C:/Users/ridge/Spheres` — to rewrite its JSON
+files from CRLF to LF.** That is the intended effect and produces no git diff,
+but the bytes on disk do change, so nothing should be holding one of those files
+open mid-write. If that pair of provenance checks ever fails together again, look
+at line endings first; the note is repeated in the checker's own docstring.

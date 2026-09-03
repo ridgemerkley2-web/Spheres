@@ -23,8 +23,22 @@ use spheres_sim::{save, state_hash, tick_month, Command};
 /// are pinned HERE as the proof that the treasury changed nothing, exactly the
 /// way `the_resource_layer_is_inert_at_1990` pins them in lib.rs. If either of
 /// these moves, the change is not inert and it is wrong.
-const START_ACTUAL: u64 = 0xa5c9c5b2306313d8;
-const RUN_ACTUAL: u64 = 0x20c24ab0f1581807;
+///
+/// RE-POINTED ONCE, 2026-09-02, AT THE MERGE ONTO `feat/hoi4-map-and-tech`
+/// 61b388f, and the re-point is the INERTNESS FINDING and not a concession.
+/// These are the tree's ACTUALS, not the golden PINS -- the pins are
+/// 0xd022d50f43c984da and 0xbd5ec0f43c5f2e3b and neither was touched, and both
+/// are still red. Upstream serializes `district_population`, which enters
+/// `state_hash`, so origin's actuals are 0xe26e4bf8d6c60066 and
+/// 0xbe94d6125631829c where this branch alone read 0xa5c9c5b2306313d8 and
+/// 0x20c24ab0f1581807. MEASURED on the merge: the merged tree reads ORIGIN'S
+/// two, exactly, which is the claim -- twenty-one commits of treasury, ministry
+/// and research work moved the default board by nothing at all, and the whole
+/// of the difference from this branch's old actuals is upstream's district
+/// field. Had the merged tree read NEITHER pair, something of ours would have
+/// stopped being inert; it reads origin's, so nothing has.
+const START_ACTUAL: u64 = 0xe26e4bf8d6c60066;
+const RUN_ACTUAL: u64 = 0xbe94d6125631829c;
 
 /// With no budget seated anywhere — which is the default board, every AI
 /// nation, and every save written before the treasury existed — a 240-month

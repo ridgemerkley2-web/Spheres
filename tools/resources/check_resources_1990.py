@@ -29,7 +29,16 @@ Five groups —
      one is named in `prices_omitted`; presence has 1,471 keys and quality is
      0 exactly where the bit is 0.
   4. PROVENANCE. `source_sha256` matches the four inputs on disk, and
-     `upstream` matches the artifact's own meta.
+     `upstream` matches the artifact's own meta. These are hashes of BYTES, so
+     they are hostage to line endings: the repo is checked out with
+     core.autocrlf=true, and until 2026-09-02 it carried no `.gitattributes`,
+     which meant every JSON blob (LF in git) arrived CRLF in a Windows
+     worktree. The recorded block had drifted into holding both conventions at
+     once and two of these four could never pass. The convention is now LF for
+     every `*.json`, pinned by the repo root `.gitattributes`, which is also
+     what CHECK 5's "the committed file uses LF newlines only" has always
+     demanded. If these two checks ever fail together again, look at the
+     checkout's line endings before you look at the data.
   5. DETERMINISM. Regenerates twice to temporary files and requires all three
      byte-identical. Skipped with --fast.
 

@@ -119,9 +119,9 @@ pub fn gdp_worth(a_gdp: f64, t_gdp: f64) -> f64 {
 /// it has no choice" — as a predicate. `Some` iff ALL of, in this order,
 /// cheap ones first (spec sections 1.14 and 6.5):
 ///
-/// 1. `a` has a STALL this month: a cover row with some tracked line at zero
-///    (an open world has no row, and returns here at the cost of one binary
-///    search);
+/// 1. `a` has a STALL this month: a cover row with some tracked line whose
+///    warehouse cannot cover the selected recipe (legacy worlds use zero
+///    cover; an open world has no row and returns after one binary search);
 /// 2. UNIVERSALLY REFUSED: every living producer of that line carries a
 ///    refusal by `a` with heat at least `GATE_HEAT` and at least two asks,
 ///    and none is shut out by `a`'s own sanction (`resources::refused_all`);
@@ -137,11 +137,28 @@ pub fn gdp_worth(a_gdp: f64, t_gdp: f64) -> f64 {
 /// target that never refused, a mine no army could reach: each is `None`,
 /// and `None` adds exactly nothing to the appetite.
 pub fn last_resort(w: &WorldState, a: NationId, t: NationId) -> Option<crate::resources::Aim> {
+    w.resources.cover.binary_search_by_key(&a, |r| r.nation).ok()?;
+    last_resort_with(w, a, t, &crate::resources::action_stalled_mask(w, a))
+}
+
+/// `last_resort` with condition 1 already answered for all twelve lines.
+///
+/// Condition 1 depends only on `a`, so a caller sweeping one attacker over
+/// its contacts takes the mask ONCE and pays the rest — four cheap
+/// per-target tests — per dyad. `resources::action_stalled_mask` is the only
+/// legal way to build `stalled`, and `the_stall_mask_equals_twelve_calls`
+/// pins it to twelve `action_stalled` calls, so this is `last_resort` and not
+/// an approximation of it.
+pub fn last_resort_with(
+    w: &WorldState,
+    a: NationId,
+    t: NationId,
+    stalled: &[bool; 12],
+) -> Option<crate::resources::Aim> {
     use crate::resources as res;
-    let row = w.resources.cover.binary_search_by_key(&a, |r| r.nation).ok()?;
-    let months = w.resources.cover[row].months;
+    w.resources.cover.binary_search_by_key(&a, |r| r.nation).ok()?;
     for k in res::ALL.iter().copied().filter(|k| k.tracked()) {
-        if months[k.idx()] > 0.0 {
+        if !stalled[k.idx()] {
             continue;
         }
         if res::refused_all(w, a, k).is_none() {
@@ -211,6 +228,19 @@ fn grudge(w: &WorldState, a: NationId, t: NationId) -> f64 {
 /// is not a candidate at all and no die is rolled — which matters, because a
 /// die rolled is a die that moves every other outcome in the world.
 pub fn war_appetite(w: &WorldState, a: NationId, t: NationId) -> f64 {
+    war_appetite_with(w, a, t, None)
+}
+
+/// `war_appetite` with `a`'s stall mask, if the caller already holds it.
+/// `None` is exactly `war_appetite`; `Some(m)` must be
+/// `resources::action_stalled_mask(w, a)` for this same `w` and `a`, which is
+/// what lets `ai_wars` pay one mask per attacker instead of one per dyad.
+pub fn war_appetite_with(
+    w: &WorldState,
+    a: NationId,
+    t: NationId,
+    stalled: Option<&[bool; 12]>,
+) -> f64 {
     if a == t {
         return 0.0;
     }
@@ -261,7 +291,12 @@ pub fn war_appetite(w: &WorldState, a: NationId, t: NationId) -> f64 {
     // an army could reach, is worth what a target of your own size is worth.
     // Behind the market switch, so the goldens never read it; {0,1}, so an
     // open world rolls no die it did not roll before. ---
-    if w.rules.resource_market && last_resort(w, a, t).is_some() {
+    if w.rules.resource_market
+        && match stalled {
+            Some(m) => last_resort_with(w, a, t, m).is_some(),
+            None => last_resort(w, a, t).is_some(),
+        }
+    {
         worth += RESOURCE_WORTH;
     }
 

@@ -903,6 +903,21 @@ pub struct GameRules {
     /// world serializes exactly as it did before the switch was declared.
     #[serde(default, skip_serializing_if = "is_false")]
     pub resource_market: bool,
+    /// The abstract shipment ledger and hard route closures (resources.rs).
+    /// Operational only while `resource_market` is also on. OFF by default and
+    /// skipped when false, preserving old saves and the calibrated baseline.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub logistics_routes: bool,
+    /// Player-directed province production and construction. OFF in the
+    /// calibrated/headless world and enabled by the browser's play rules.
+    /// Empty state and a false switch both disappear from saves.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub production_system: bool,
+    /// Player-directed military manufacturing lines. OFF in the calibrated
+    /// world; with no directed lines even an enabled browser world retains the
+    /// existing automatic procurement path exactly.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub manufacturing_system: bool,
 }
 fn rules_true() -> bool {
     true
@@ -921,6 +936,9 @@ impl Default for GameRules {
             crisis_intensity: 1.0,
             resource_gates: true,
             resource_market: false,
+            logistics_routes: false,
+            production_system: false,
+            manufacturing_system: false,
         }
     }
 }
@@ -1013,12 +1031,33 @@ pub struct WorldState {
     #[serde(default)]
     pub districts: std::collections::BTreeMap<String, NationId>,
 
+    /// Residents of each admin-1 district, in millions. Population remains
+    /// attached to the province when ownership changes.
+    #[serde(default)]
+    pub district_population: std::collections::BTreeMap<String, f64>,
+    /// Cumulative demographic growth by current owner. Province values use a
+    /// rebased basis so monthly updates scale with the roster, not the map.
+    #[serde(default)]
+    pub(crate) district_population_scale: Vec<f64>,
+
     /// The resource system's persisted state: the stockpile, and (cut two)
     /// contracts, offers, refusals, grievances. Skipped while empty, which an
     /// untouched world always is: the pile is written only when a gated line
     /// asks for what it cannot get, and folds away when it is full again.
     #[serde(default, skip_serializing_if = "crate::resources::Resources::is_empty")]
     pub resources: crate::resources::Resources,
+
+    /// Active construction and completed province capability levels. It is a
+    /// sparse opt-in ledger and therefore absent from every legacy/default
+    /// save until the player starts work.
+    #[serde(default, skip_serializing_if = "crate::production::Production::is_empty")]
+    pub production: crate::production::Production,
+
+    /// Standing player directions that divide the existing procurement line.
+    /// Equipment itself remains in `Nation::arsenal`; this sparse ledger only
+    /// records which completed province plants are directing it.
+    #[serde(default, skip_serializing_if = "crate::manufacturing::Manufacturing::is_empty")]
+    pub manufacturing: crate::manufacturing::Manufacturing,
 
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it
@@ -1045,6 +1084,10 @@ pub struct WorldState {
     /// the first tick rebuilds.
     #[serde(skip)]
     pub(crate) districts_epoch: u64,
+    /// Exact population multipliers written by economy and consumed by tech
+    /// later in the same monthly tick.
+    #[serde(skip)]
+    pub(crate) district_population_growth: Vec<(NationId, f64)>,
 }
 
 fn first_day() -> u32 {

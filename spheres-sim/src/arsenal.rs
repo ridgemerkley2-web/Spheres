@@ -522,11 +522,60 @@ fn deck_tech() -> &'static [Option<u16>] {
 /// Whether `n` may order kit `i` today. The legacy tier is always available:
 /// replacing what you already field is a budget decision, not a discovery.
 fn orderable(n: &Nation, i: usize) -> bool {
-    match (DECK[i].tech, deck_tech()[i]) {
+    orderable_with(n, i, deck_tech())
+}
+
+/// `orderable` with the deck's technology column already in hand, so a scan
+/// of the whole deck pays one `OnceLock` read rather than `DECK.len()` of
+/// them. Same three cases, same answers.
+fn orderable_with(n: &Nation, i: usize, tech: &[Option<u16>]) -> bool {
+    match (DECK[i].tech, tech[i]) {
         (None, _) => true,
         (Some(_), None) => false,
         (Some(_), Some(t)) => n.tech.knows_index(t),
     }
+}
+
+/// The deck ranked exactly as `pick`'s fold ranks it — quality per pound
+/// descending, the lower `DECK` index first on a tie — computed once.
+///
+/// `pick`'s fold takes the maximum of a STRICT TOTAL order (the value
+/// comparison is broken by the index, so no two entries compare equal), and
+/// the maximum of a strict total order over a subset is the first element of
+/// the whole set's sorted sequence that the subset contains. So "the first
+/// orderable entry in this order" IS the fold's answer, and
+/// `the_ranked_pick_is_the_folded_pick` holds it to that over a real board.
+/// It saves the fold's per-entry division and, for a nation that holds the
+/// modern technology, stops within a few entries instead of scanning 46.
+fn value_order() -> &'static [u16] {
+    static ORDER: std::sync::OnceLock<Vec<u16>> = std::sync::OnceLock::new();
+    ORDER.get_or_init(|| {
+        // The comparator below folds a `None` from `partial_cmp` to `Equal`,
+        // which a non-finite value would make NON-TRANSITIVE (3, NaN, 5 gives
+        // 0 < 1 and 1 < 2 and 2 < 0), at which point `sort_by`'s order is
+        // unspecified while `pick`'s fold would still answer deterministically.
+        // `DECK` has no such entry — every `quality` is finite and `unit_cost`
+        // is floored at 1e-9 — so this is a one-off check that a future entry
+        // fails loudly here instead of diverging silently from the fold.
+        assert!(
+            (0..DECK.len()).all(|i| deck_value(i).is_finite()),
+            "a DECK entry has a non-finite quality per pound; the ranking would not be a total order"
+        );
+        let mut v: Vec<u16> = (0..DECK.len() as u16).collect();
+        v.sort_by(|a, b| {
+            deck_value(*b as usize)
+                .partial_cmp(&deck_value(*a as usize))
+                .unwrap_or(std::cmp::Ordering::Equal)
+                .then(a.cmp(b))
+        });
+        v
+    })
+}
+
+/// Quality per pound — the fold's `value`, named so the ranking and the test
+/// that checks it read the same expression.
+fn deck_value(i: usize) -> f64 {
+    DECK[i].quality / DECK[i].unit_cost.max(1e-9)
 }
 
 /// What this nation may order today: everything whose technology it holds.
@@ -540,87 +589,116 @@ pub fn available(n: &Nation) -> Vec<u16> {
 /// and everything already held gets a month older. Nothing here rolls dice: a
 /// procurement programme is a budget line, not a gamble.
 pub fn tick(w: &mut WorldState) {
+    // Technology has already advanced this month, so the spot market now
+    // sees the exact procurement recipes this tick will attempt to consume.
+    crate::resources::clear_spot_market(w);
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     for id in ids {
         let budget = budget_of(w.nation(id));
         let line = line_of(w.nation(id));
+        let directed = w.rules.manufacturing_system
+            && crate::manufacturing::lines_for(w, id).next().is_some();
         // The one gate the resource system has in cut one. It checks the kit
         // procurement would pick against what the nation can get this month
         // — its own flow, or any open holder — and delays the line only when
         // the pile it kept for exactly this is spent. A player's stated
         // preference stalls and says so; the staff buy the best kit whose
         // inputs are held. In an open world this returns the pick untouched.
-        let (choice, stall) = match pick(w.nation(id)) {
-            Some(kit) if w.rules.resource_gates => crate::resources::gate(w, id, kit, line),
-            other => (other, None),
+        let (choice, stall) = if directed {
+            (None, None)
+        } else {
+            match pick(w.nation(id)) {
+                Some(kit) if w.rules.resource_gates => crate::resources::gate(w, id, kit, line),
+                other => (other, None),
+            }
         };
         if let Some(s) = stall {
             w.headline(s.headline());
         }
-        let n = w.nation_mut(id);
+        {
+            let n = w.nation_mut(id);
 
-        // Age what is already in service.
-        for h in n.arsenal.held.iter_mut() {
-            h.age += 1.0;
-        }
-
-        // Deliveries. An order that has run its lead time becomes a holding.
-        let mut arrived: Vec<(u16, f64)> = vec![];
-        for o in n.arsenal.orders.iter_mut() {
-            o.due = o.due.saturating_sub(1);
-            if o.due == 0 {
-                arrived.push((o.kit, o.units));
+            // Age what is already in service.
+            for h in n.arsenal.held.iter_mut() {
+                h.age += 1.0;
             }
-        }
-        n.arsenal.orders.retain(|o| o.due > 0);
-        for (kit, units) in arrived {
-            // One row per kit, merged with a units-weighted mean age. The old
-            // `age < 12` predicate opened a new row every year, so a seventy-year
-            // run carried seventy rows per kit and `units` only ever rose.
-            match n.arsenal.held.iter_mut().find(|h| h.kit == kit) {
-                Some(h) => {
-                    let total = h.units + units;
-                    if total > 0.0 {
-                        h.age *= h.units / total;
+
+            // Deliveries. An order that has run its lead time becomes a holding.
+            let mut arrived: Vec<(u16, f64)> = vec![];
+            for o in n.arsenal.orders.iter_mut() {
+                o.due = o.due.saturating_sub(1);
+                if o.due == 0 {
+                    arrived.push((o.kit, o.units));
+                }
+            }
+            n.arsenal.orders.retain(|o| o.due > 0);
+            for (kit, units) in arrived {
+                // One row per kit, merged with a units-weighted mean age. The old
+                // `age < 12` predicate opened a new row every year, so a seventy-year
+                // run carried seventy rows per kit and `units` only ever rose.
+                match n.arsenal.held.iter_mut().find(|h| h.kit == kit) {
+                    Some(h) => {
+                        let total = h.units + units;
+                        if total > 0.0 {
+                            h.age *= h.units / total;
+                        }
+                        h.units = total;
                     }
-                    h.units = total;
+                    None => n.arsenal.held.push(Holding { kit, units, age: 0.0 }),
                 }
-                None => n.arsenal.held.push(Holding { kit, units, age: 0.0 }),
             }
+
+            // ...and this month's money goes onto the order book.
+            // Money with nothing to buy is banked rather than evaporating. The
+            // economy has already been charged for it in economy.rs, so losing it
+            // here was years of funding that produced nothing, with no record.
+            // Capped at two years of the line so it cannot be hoarded for a century.
+            // `line` is `line_of(n)` as read before the gate: budget plus banked.
+            if !directed {
+                n.arsenal.banked = 0.0;
+                if choice.is_none() {
+                    n.arsenal.banked = line.min(budget * 24.0);
+                }
+                if let Some(kit) = choice {
+                    let def = &DECK[kit as usize];
+                    let units = line / def.unit_cost.max(1e-9);
+                    if units > 0.0 {
+                        match n
+                            .arsenal
+                            .orders
+                            .iter_mut()
+                            .find(|o| o.kit == kit && o.due == def.lead_months)
+                        {
+                            Some(o) => o.units += units,
+                            None => n.arsenal.orders.push(Order {
+                                kit,
+                                units,
+                                due: def.lead_months,
+                            }),
+                        }
+                    }
+                }
+            }
+
+            // Written off once it is past twice its service life, about 22% a year.
+            // Without this `units` only ever rose and `retain` below could never
+            // fire, so an arsenal was monotonically non-decreasing for the whole game.
+            for h in n.arsenal.held.iter_mut() {
+                if let Some(def) = DECK.get(h.kit as usize) {
+                    if h.age > 2.0 * def.service_months as f64 {
+                        h.units *= 0.98;
+                    }
+                }
+            }
+            n.arsenal.held.retain(|h| h.units > 1e-6);
         }
 
-        // ...and this month's money goes onto the order book.
-        // Money with nothing to buy is banked rather than evaporating. The
-        // economy has already been charged for it in economy.rs, so losing it
-        // here was years of funding that produced nothing, with no record.
-        // Capped at two years of the line so it cannot be hoarded for a century.
-        // `line` is `line_of(n)` as read before the gate: budget plus banked.
-        n.arsenal.banked = 0.0;
-        if choice.is_none() {
-            n.arsenal.banked = line.min(budget * 24.0);
+        // A directed board owns this month's placement arm. It uses the same
+        // opening `line` computed above through `line_of`, and writes the same
+        // `Order` rows; nothing automatic is placed beside it.
+        if directed {
+            crate::manufacturing::settle_nation(w, id);
         }
-        if let Some(kit) = choice {
-            let def = &DECK[kit as usize];
-            let units = line / def.unit_cost.max(1e-9);
-            if units > 0.0 {
-                match n.arsenal.orders.iter_mut().find(|o| o.kit == kit && o.due == def.lead_months) {
-                    Some(o) => o.units += units,
-                    None => n.arsenal.orders.push(Order { kit, units, due: def.lead_months }),
-                }
-            }
-        }
-
-        // Written off once it is past twice its service life, about 22% a year.
-        // Without this `units` only ever rose and `retain` below could never
-        // fire, so an arsenal was monotonically non-decreasing for the whole game.
-        for h in n.arsenal.held.iter_mut() {
-            if let Some(def) = DECK.get(h.kit as usize) {
-                if h.age > 2.0 * def.service_months as f64 {
-                    h.units *= 0.98;
-                }
-            }
-        }
-        n.arsenal.held.retain(|h| h.units > 1e-6);
     }
 }
 
@@ -655,28 +733,102 @@ pub(crate) fn pick(n: &Nation) -> Option<u16> {
             return Some(p);
         }
     }
-    // One pass, no allocation: the same maximum `available(n)` sorted to —
-    // quality per pound, the lower `DECK` index on a tie.
-    let value = |i: usize| DECK[i].quality / DECK[i].unit_cost.max(1e-9);
-    let mut best: Option<usize> = None;
-    for i in 0..DECK.len() {
-        if !orderable(n, i) {
-            continue;
+    // The same maximum `available(n)` sorted to — quality per pound, the
+    // lower `DECK` index on a tie — read off the precomputed ranking instead
+    // of refolded, and with one `deck_tech()` read for the whole scan.
+    // `pick` is called for every nation every month by `resources::draw`;
+    // the fold's 46 divisions and 46 `OnceLock` reads were 0.0284 of the
+    // 0.0440 ms/month the appetite term cost (measured 2026-09-02).
+    let tech = deck_tech();
+    value_order().iter().copied().find(|i| orderable_with(n, *i as usize, tech))
+}
+
+#[cfg(test)]
+mod ranking_tests {
+    use super::*;
+
+    /// `pick`'s original fold, kept verbatim as the thing the ranking is
+    /// checked against. If this and `pick` ever disagree, `pick` is wrong.
+    fn folded_pick(n: &Nation) -> Option<u16> {
+        if let Some(p) = n.arsenal.preference.as_deref().and_then(index_of) {
+            if orderable(n, p as usize) {
+                return Some(p);
+            }
         }
-        best = Some(match best {
-            None => i,
-            Some(b) => {
-                let ahead = value(i)
-                    .partial_cmp(&value(b))
-                    .unwrap_or(std::cmp::Ordering::Equal)
-                    .then(b.cmp(&i));
-                if ahead == std::cmp::Ordering::Greater {
-                    i
-                } else {
-                    b
+        let value = |i: usize| DECK[i].quality / DECK[i].unit_cost.max(1e-9);
+        let mut best: Option<usize> = None;
+        for i in 0..DECK.len() {
+            if !orderable(n, i) {
+                continue;
+            }
+            best = Some(match best {
+                None => i,
+                Some(b) => {
+                    let ahead = value(i)
+                        .partial_cmp(&value(b))
+                        .unwrap_or(std::cmp::Ordering::Equal)
+                        .then(b.cmp(&i));
+                    if ahead == std::cmp::Ordering::Greater {
+                        i
+                    } else {
+                        b
+                    }
+                }
+            });
+        }
+        best.map(|i| i as u16)
+    }
+
+    /// The precomputed ranking answers what the fold answered, over a real
+    /// board and a real month range: 137 nations every month for 25 years,
+    /// with the market off and on, as the deck opens up under research.
+    ///
+    /// Iron rule 7: an INVARIANT — "the ranked pick is the folded pick" is a
+    /// universal claim, so a small sample can only lose power, never produce
+    /// a false red, and there is no n to derive. The power it has is recorded
+    /// instead: measured on this tree 2026-09-02, each arm compares 46,088
+    /// picks and sees 2 distinct kits chosen across them, so the answer is
+    /// not one constant compared to itself (the distinct count is asserted
+    /// above one). What this range does NOT exercise is a tie: reversing the
+    /// ranking's tie break (`b.cmp(a)` for `a.cmp(b)` in `value_order`) was
+    /// run 2026-09-02 and left the test GREEN, because no two `DECK` entries
+    /// tie on quality per pound. That arm of the order is therefore carried
+    /// by the argument in `value_order`'s comment and by `DECK` having no
+    /// duplicate value, not by this test — recorded as decorative rather
+    /// than believed.
+    ///
+    /// RED-CHECK, run 2026-09-02 on this tree against a perturbation the
+    /// board does see: sorting `value_order` ASCENDING by value fails at the
+    /// first nation compared — "market false, 1990-2 USA: ranked Some(12),
+    /// folded Some(30)". Restored.
+    #[test]
+    fn the_ranked_pick_is_the_folded_pick() {
+        use crate::init::world_1990;
+        use crate::world::GameRules;
+        use std::collections::BTreeSet;
+        for market in [false, true] {
+            let mut w = world_1990(GameRules { resource_market: market, ..GameRules::default() });
+            let (mut compared, mut seen) = (0usize, BTreeSet::new());
+            for _ in 0..(12 * 25) {
+                crate::tick_month(&mut w, &[]);
+                for n in w.nations.iter().filter(|n| n.alive) {
+                    let ranked = pick(n);
+                    assert_eq!(
+                        ranked,
+                        folded_pick(n),
+                        "market {market}, {}-{} {}: ranked {ranked:?}, folded {:?}",
+                        w.year,
+                        w.month,
+                        n.id.code(),
+                        folded_pick(n)
+                    );
+                    compared += 1;
+                    seen.insert(ranked);
                 }
             }
-        });
+            println!("    market {market}: {compared} picks compared, {} distinct kits chosen", seen.len());
+            assert!(compared > 40_000, "market {market}: {compared} is not a real board");
+            assert!(seen.len() > 1, "market {market}: one constant answer proves nothing");
+        }
     }
-    best.map(|i| i as u16)
 }
