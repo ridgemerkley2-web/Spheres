@@ -16,7 +16,17 @@ use spheres_sim::{apply_command, load, save, tick_day, tick_month, Command};
 use std::sync::Mutex;
 use tiny_http::{Header, Method, Response, Server};
 
+mod portrait_assets;
+
 const INDEX: &str = include_str!("../ui/index.html");
+/// Curated historical figures and source records keyed by stable NationId.
+/// Presentation data only: this never enters world state or save files.
+const NATION_FIGURES_JSON: &str = include_str!("../data/nation_figures.json");
+/// One request carries every nation flag used by the selector. Most symbols
+/// come from the MIT-licensed flag-icons set; dated states prefer explicit
+/// period artwork, with every remaining current-flag fallback recorded in
+/// tools/avatars/README.md.
+const NATION_FLAGS_SVG: &str = include_str!("../ui/nation-flags-v1.svg");
 /// Baked country outlines — see `src/bin/mapgen.rs`.
 const WORLD_JS: &str = include_str!("../ui/world.js");
 /// Baked admin-1 district outlines, same projection and canvas as world.js.
@@ -3396,6 +3406,242 @@ impl Snapshot {
     }
 }
 
+/// The visual language and the button destination for one domination agenda.
+///
+/// These are presentation decisions, but they still belong on the server side
+/// of the contract: a card should not have to infer that securing resources
+/// opens the resource board, or that a rival conflict belongs in the war room.
+/// Keeping that routing beside the sim read model also means another client can
+/// render the same campaign without copying a six-arm switch from the page.
+fn domination_skin(
+    archetype: &spheres_sim::domination::AgendaArchetype,
+) -> (&'static str, &'static str, &'static str, &'static [&'static str]) {
+    match archetype.key() {
+        "consolidate_economic_base" => (
+            "FORGE THE CORE",
+            "economy",
+            "verdigris",
+            &["Output", "Stability", "Political room"],
+        ),
+        "secure_strategic_resources" => (
+            "CLAIM THE VEINS",
+            "resources",
+            "cobalt",
+            &["Stockpiles", "Trade leverage", "Strategic supply"],
+        ),
+        "build_arsenal" => (
+            "AWAKEN THE FOUNDRIES",
+            "production",
+            "brass",
+            &["Arms plants", "Equipment lines", "Sustained force"],
+        ),
+        "establish_regional_sphere" => (
+            "DRAW THEM INTO ORBIT",
+            "diplomacy",
+            "violet",
+            &["Clients", "Access", "Regional influence"],
+        ),
+        "settle_rival_conflict" => (
+            "BREAK THE DEADLOCK",
+            "war",
+            "ember",
+            &["Escalation", "Resolve", "Regional command"],
+        ),
+        "subjugate_rival" => (
+            "BEND THE RIVAL",
+            "war",
+            "crimson",
+            &["Isolation", "Overmatch", "Submission"],
+        ),
+        _ => (
+            "ADVANCE THE GRAND DESIGN",
+            "world",
+            "pearl",
+            &["Influence", "Power", "Control"],
+        ),
+    }
+}
+
+fn domination_offer_json(
+    offer: &spheres_sim::domination::AgendaOffer,
+    player: NationId,
+    value: Option<f64>,
+    progress: f64,
+    state_reason: String,
+) -> serde_json::Value {
+    let (kicker, route, accent, stakes) = domination_skin(&offer.archetype);
+    let target = offer.target.map(|id| {
+        serde_json::json!({
+            "id": format!("{:?}", id),
+            "name": id.name(),
+        })
+    });
+    serde_json::json!({
+        "id": offer.id,
+        "archetype": offer.archetype.key(),
+        "archetype_label": offer.archetype.label(),
+        "title": offer.title,
+        "kicker": kicker,
+        "description": offer.brief,
+        "progress": progress.clamp(0.0, 1.0),
+        "value": value,
+        "baseline": offer.baseline,
+        "goal": offer.goal,
+        "route": route,
+        "system": route,
+        "stakes": stakes,
+        "state_reason": state_reason,
+        "accent": accent,
+        "target": target,
+        // A target's historical avatar gives a rivalry card a face. A domestic
+        // programme keeps the player's own figure on the card.
+        "figure_nation_id": format!("{:?}", offer.target.unwrap_or(player)),
+    })
+}
+
+/// The complete campaign read model. Every number and every actionable route
+/// is authored here or in `spheres_sim::domination`; the page is deliberately
+/// left with formatting, animation and input only.
+fn domination_json(w: &WorldState, player: NationId) -> serde_json::Value {
+    let campaign = spheres_sim::domination::view(w, player);
+    let global = spheres_sim::domination::status(w, player);
+    let offers = campaign
+        .offers
+        .iter()
+        .map(|offer| {
+            domination_offer_json(
+                offer,
+                player,
+                None,
+                0.0,
+                "Unchosen — select this directive to bind the campaign.".into(),
+            )
+        })
+        .collect::<Vec<_>>();
+
+    let active = campaign.chosen.as_ref().map(|active| {
+        domination_offer_json(
+            &active.offer,
+            player,
+            Some(active.value),
+            active.progress,
+            if active.progress >= 1.0 {
+                "Complete — its mark has entered the national legacy.".into()
+            } else {
+                format!(
+                    "In motion — {:.0}% of the directive is secured.",
+                    active.progress.clamp(0.0, 1.0) * 100.0
+                )
+            },
+        )
+    });
+
+    let milestone_marks = campaign.chosen.as_ref().map_or([false; 4], |a| a.milestones);
+    let milestone_names = ["Foothold", "Momentum", "Ascendancy", "Triumph"];
+    let milestones = milestone_names
+        .iter()
+        .enumerate()
+        .map(|(i, label)| {
+            serde_json::json!({
+                "threshold": (i + 1) as f64 / 4.0,
+                "label": label,
+                "reached": milestone_marks[i],
+            })
+        })
+        .collect::<Vec<_>>();
+
+    let rivals = global
+        .independent_rivals
+        .iter()
+        .map(|id| serde_json::json!({ "id": format!("{:?}", id), "name": id.name() }))
+        .collect::<Vec<_>>();
+    let legacy = campaign
+        .legacy
+        .iter()
+        .map(|entry| {
+            serde_json::json!({
+                "id": entry.id,
+                "title": entry.title,
+                "archetype": entry.archetype.key(),
+                "archetype_label": entry.archetype.label(),
+                "target": entry.target.map(|id| serde_json::json!({
+                    "id": format!("{:?}", id),
+                    "name": id.name(),
+                })),
+                "completed_year": entry.completed_year,
+                "completed_month": entry.completed_month,
+                "completed_date": month_name(entry.completed_month, entry.completed_year),
+            })
+        })
+        .collect::<Vec<_>>();
+
+    let next_action = if global.victory {
+        serde_json::json!({
+            "label": "The World Is Yours",
+            "system": "world",
+            "route": "world",
+            "reason": "No independent rival remains.",
+            "enabled": false,
+        })
+    } else if let Some(active) = campaign.chosen.as_ref() {
+        let (_, route, _, _) = domination_skin(&active.offer.archetype);
+        let label = match route {
+            "economy" => "Enter the Cabinet Room",
+            "resources" => "Open the Resource Board",
+            "production" => "Open the Production Board",
+            "diplomacy" => "Open the Diplomatic Table",
+            "war" => "Enter the War Room",
+            _ => "Return to the World",
+        };
+        serde_json::json!({
+            "label": label,
+            "system": route,
+            "route": route,
+            "reason": active.offer.brief,
+            "enabled": active.progress < 1.0,
+        })
+    } else {
+        serde_json::json!({
+            "label": "Choose the Next Directive",
+            "system": "domination",
+            "route": "domination",
+            "reason": "Three roads are open. Every one bends toward the same world throne.",
+            "enabled": true,
+        })
+    };
+    let blocker = global.incomplete_conditions.first().map(|reason| {
+        let route = campaign
+            .chosen
+            .as_ref()
+            .map(|a| domination_skin(&a.offer.archetype).1)
+            .unwrap_or("domination");
+        serde_json::json!({
+            "reason": reason,
+            "system": route,
+            "route": route,
+        })
+    });
+
+    serde_json::json!({
+        "goal": "Bring every surviving nation under direct rule or into your sphere. No independent rival remains.",
+        "generation": campaign.generation,
+        "progress": global.progress.clamp(0.0, 1.0),
+        "progress_percent": round(global.progress.clamp(0.0, 1.0) * 100.0, 1),
+        "victory": global.victory,
+        "directly_controlled": global.directly_controlled,
+        "subordinate_clients": global.subordinate_clients,
+        "independent_rivals": global.independent_rivals.len(),
+        "rivals": rivals,
+        "incomplete_conditions": global.incomplete_conditions,
+        "offers": offers,
+        "active_agenda": active,
+        "milestones": milestones,
+        "blocker": blocker,
+        "next_action": next_action,
+        "completed_legacy": legacy,
+    })
+}
+
 fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
     let w = &g.world;
     let nations: Vec<serde_json::Value> = w
@@ -3509,6 +3755,10 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // carries plant/line attention; the 46-item equipment catalogue and
         // long arsenal ledger are fetched only when its Production tab opens.
         "manufacturing_summary": w.player.map(|p| manufacturing_summary_json(w, p)),
+        // One universal campaign objective, with its three deterministic next
+        // directives and every progress/milestone/routing decision already
+        // resolved. The page paints this contract; it does not score conquest.
+        "domination": w.player.map(|p| domination_json(w, p)),
         "policy": w.player.map(|p| policy_json(w, p)),
         // The budget card (stage 4): the ten dials' named arms, sampled by
         // the sim over the range a dial can hold, and the money block.
@@ -4231,6 +4481,17 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             nation: me,
             id: v.get("id")?.as_str()?.to_string(),
         },
+        // The card carries its stable generated id, never its position among
+        // the three offers. Availability and generation are re-checked by the
+        // sim when the command lands, so a stale browser cannot choose a card
+        // from the previous hand.
+        "choose_domination_agenda" => {
+            let agenda = v.get("id")?.as_str()?.trim();
+            if agenda.is_empty() {
+                return None;
+            }
+            Command::ChooseDominationAgenda { nation: me, agenda: agenda.to_string() }
+        }
 
         // --- Supply contracts (resources.rs). The page sends RUNGS, never a
         // free number: a money rung is a share of the proposer's output, a
@@ -4777,6 +5038,66 @@ fn main() {
                     .unwrap(),
                 );
                 let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/art/nation-figures-v2.json") => {
+                let r = Response::from_string(NATION_FIGURES_JSON)
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Content-Type"[..],
+                            &b"application/json; charset=utf-8"[..],
+                        )
+                        .unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"no-cache"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/art/nation-flags-v2.svg") => {
+                let r = Response::from_string(NATION_FLAGS_SVG)
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Content-Type"[..],
+                            &b"image/svg+xml; charset=utf-8"[..],
+                        )
+                        .unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"no-cache"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, path) if path.starts_with("/art/portraits/") => {
+                let name = path.trim_start_matches("/art/portraits/");
+                if let Some(asset) = portrait_assets::get(name) {
+                    let r = Response::from_data(asset.bytes.to_vec())
+                        .with_chunked_threshold(usize::MAX)
+                        .with_header(
+                            Header::from_bytes(&b"Content-Type"[..], asset.content_type.as_bytes())
+                                .unwrap(),
+                        )
+                        .with_header(
+                            Header::from_bytes(
+                                &b"Cache-Control"[..],
+                                &b"public, max-age=31536000, immutable"[..],
+                            )
+                            .unwrap(),
+                        );
+                    let _ = request.respond(r);
+                } else {
+                    let _ = request.respond(Response::empty(404));
+                }
                 continue;
             }
             (Method::Get, "/districts.js") => {
@@ -6938,6 +7259,114 @@ mod tests {
         // A spectator with no nation gets null rather than a fabricated menu.
         let spectator = Game::new(1990, None);
         assert!(state_json(&spectator, None)["stratagems"].is_null());
+    }
+
+    /// The domination screen is deliberately a read model, not a second game
+    /// model in JavaScript. This pins every field the artistic surface needs to
+    /// the simulation's own campaign and proves a new game always receives the
+    /// promised hand of three distinct directives.
+    #[test]
+    fn domination_is_a_complete_server_authored_campaign_contract() {
+        let g = Game::new(1990, Some(NationId::Poland));
+        let state = state_json(&g, None);
+        let d = &state["domination"];
+        let sim = spheres_sim::domination::status(&g.world, NationId::Poland);
+
+        assert_eq!(d["progress"], serde_json::json!(sim.progress));
+        assert_eq!(d["victory"], serde_json::json!(sim.victory));
+        assert_eq!(
+            d["independent_rivals"],
+            serde_json::json!(sim.independent_rivals.len()),
+            "the page receives the count; it must not derive it"
+        );
+        assert_eq!(
+            d["rivals"].as_array().expect("named rival list").len(),
+            sim.independent_rivals.len()
+        );
+        assert_eq!(d["directly_controlled"], serde_json::json!(sim.directly_controlled));
+        assert_eq!(d["subordinate_clients"], serde_json::json!(sim.subordinate_clients));
+        assert!(d["goal"].as_str().is_some_and(|s| s.contains("No independent rival")));
+        assert!(d["active_agenda"].is_null());
+        assert!(d["completed_legacy"].as_array().unwrap().is_empty());
+
+        let offers = d["offers"].as_array().expect("three agenda cards");
+        assert_eq!(offers.len(), 3);
+        let ids = offers
+            .iter()
+            .map(|offer| offer["id"].as_str().expect("stable agenda id"))
+            .collect::<std::collections::BTreeSet<_>>();
+        assert_eq!(ids.len(), 3, "the three choices must be distinct");
+        for offer in offers {
+            for field in [
+                "id",
+                "title",
+                "kicker",
+                "description",
+                "route",
+                "state_reason",
+                "accent",
+                "figure_nation_id",
+            ] {
+                assert!(
+                    offer[field].as_str().is_some_and(|s| !s.trim().is_empty()),
+                    "agenda card has no {field}: {offer}"
+                );
+            }
+            assert_eq!(offer["stakes"].as_array().unwrap().len(), 3);
+            assert_eq!(offer["progress"], serde_json::json!(0.0));
+        }
+        let milestones = d["milestones"].as_array().expect("four campaign marks");
+        assert_eq!(milestones.len(), 4);
+        assert!(milestones.iter().all(|m| m["reached"] == false));
+        assert_eq!(d["next_action"]["system"], "domination");
+        assert_eq!(d["next_action"]["enabled"], true);
+        assert!(d["blocker"]["route"].as_str().is_some());
+
+        // Observers have no government and therefore no invented campaign.
+        assert!(state_json(&Game::new(1990, None), None)["domination"].is_null());
+    }
+
+    /// The browser posts the card's stable id. Prove the complete path: flat
+    /// JSON -> command enum -> sim mutation -> active read model. Missing,
+    /// mistyped and empty ids are malformed rather than silently choosing a
+    /// default card.
+    #[test]
+    fn choosing_a_domination_agenda_reaches_the_sim_by_stable_id() {
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        let before = domination_json(&g.world, NationId::Poland);
+        let id = before["offers"][0]["id"].as_str().unwrap().to_string();
+        let posted = serde_json::json!({
+            "kind": "choose_domination_agenda",
+            "id": id,
+        });
+        let command = parse_command(&g.world, &posted, NationId::Poland)
+            .expect("the agenda card's payload parses");
+        match &command {
+            Command::ChooseDominationAgenda { nation, agenda } => {
+                assert_eq!(*nation, NationId::Poland);
+                assert_eq!(agenda, &id);
+            }
+            other => panic!("agenda card produced the wrong command: {other:?}"),
+        }
+        apply_command(&mut g.world, &command).expect("a current offered agenda may be chosen");
+
+        let after = domination_json(&g.world, NationId::Poland);
+        assert_eq!(after["active_agenda"]["id"], id);
+        assert!(after["active_agenda"]["progress"].as_f64().is_some());
+        assert_ne!(after["next_action"]["system"], "domination");
+        assert_eq!(after["milestones"].as_array().unwrap().len(), 4);
+
+        for malformed in [
+            serde_json::json!({ "kind": "choose_domination_agenda" }),
+            serde_json::json!({ "kind": "choose_domination_agenda", "id": "" }),
+            serde_json::json!({ "kind": "choose_domination_agenda", "id": "   " }),
+            serde_json::json!({ "kind": "choose_domination_agenda", "id": 1 }),
+        ] {
+            assert!(
+                parse_command(&g.world, &malformed, NationId::Poland).is_none(),
+                "malformed agenda command parsed: {malformed}"
+            );
+        }
     }
 
     /// The surface itself. These strings are the panel's structure: if the markup
@@ -9641,7 +10070,7 @@ mod tests {
         // And the screen must read it rather than /api/state, with the date
         // served rather than spelt into the markup.
         assert!(
-            INDEX.contains(r#"await api("/api/roster")"#),
+            INDEX.contains(r#"api("/api/roster")"#),
             "the picker must build from the board /api/new will deal"
         );
         assert!(
@@ -9683,6 +10112,78 @@ mod tests {
             !showcase.contains("/api/state"),
             "the showcase must not mix the live world's figures into the opening board"
         );
+    }
+
+    /// Nation art keys are game identities, not modern ISO guesses. The full
+    /// 160-row check matters even though only 137 cards appear in January 1990:
+    /// a dissolved union must reveal a deliberate successor avatar rather than
+    /// a broken image later in the campaign.
+    #[test]
+    fn every_nation_has_a_historical_figure_and_flag() {
+        let manifest: serde_json::Value =
+            serde_json::from_str(NATION_FIGURES_JSON).expect("nation figure manifest is JSON");
+        let figures = manifest["nations"].as_object().expect("manifest has a nations object");
+        assert_eq!(figures.len(), spheres_sim::nations::ROSTER.len());
+
+        for row in spheres_sim::nations::ROSTER {
+            let figure = figures
+                .get(row.code)
+                .unwrap_or_else(|| panic!("{} has no historical figure", row.code));
+            assert_eq!(figure["display_name"], serde_json::json!(row.name));
+            assert_eq!(figure["start_1990"], serde_json::json!(row.start_1990));
+            assert_eq!(figure["region"], serde_json::json!(row.region));
+            for field in ["figure", "years", "role", "rationale"] {
+                assert!(
+                    figure[field].as_str().is_some_and(|value| !value.trim().is_empty()),
+                    "{} has no {field}",
+                    row.code
+                );
+            }
+            assert!(
+                NATION_FLAGS_SVG.contains(&format!(r#"id="flag-{}""#, row.code)),
+                "{} has no flag symbol",
+                row.code
+            );
+            if let Some(file) = figure["portrait"]
+                .get("asset")
+                .or_else(|| figure["portrait"].get("file"))
+                .and_then(|v| v.as_str())
+            {
+                assert!(
+                    portrait_assets::FILENAMES.contains(&file),
+                    "{} names an unbundled portrait {file}",
+                    row.code
+                );
+            }
+            let file = figure["leader_art"]
+                .get("asset")
+                .and_then(|v| v.as_str())
+                .filter(|value| !value.trim().is_empty())
+                .unwrap_or_else(|| panic!("{} has no cartoon leader art", row.code));
+            assert!(
+                portrait_assets::FILENAMES.contains(&file),
+                "{} names unbundled leader art {file}",
+                row.code
+            );
+        }
+
+        for id in figures.keys() {
+            assert!(
+                spheres_sim::nations::ROSTER.iter().any(|row| row.code == id),
+                "figure manifest contains unknown NationId {id}"
+            );
+        }
+
+        for needle in [
+            "/art/nation-figures-v2.json",
+            "/art/nation-flags-v2.svg#flag-${n.id}",
+            "historical avatar ${spec.figure}",
+            "img.decoding = \"async\"",
+            "setupNationButtons.get(n.id)",
+            "showcasePortrait",
+        ] {
+            assert!(INDEX.contains(needle), "historical picker lost {needle}");
+        }
     }
 
     /// Time is the one thing this game cannot give back, and the route that

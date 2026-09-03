@@ -165,29 +165,59 @@
     color: #7d728d; font-size: 10px; font-weight: 700; letter-spacing: .2em;
   }
   .showcase-kicker::before { content: ""; width: 25px; height: 2px; background: hsl(var(--nation-hue), 38%, 56%); }
-  .nation-art { position: relative; width: clamp(116px, 12vw, 178px); aspect-ratio: 1; margin: 0 0 22px 7px; }
-  .nation-orbit {
-    position: absolute; inset: 4%; border: 1px solid hsla(var(--nation-hue),35%,43%,.32);
-    border-radius: 50%; transform: rotate(-18deg) scaleY(.39);
-    box-shadow: 0 0 0 15px hsla(var(--nation-hue),60%,97%,.19);
-  }
-  .nation-orbit::after {
-    content: ""; position: absolute; width: 9px; height: 9px; border-radius: 50%;
-    right: 2%; top: 44%; background: hsl(var(--nation-hue), 46%, 57%);
-    box-shadow: 0 2px 8px hsla(var(--nation-hue),45%,35%,.32);
-  }
-  .nation-planet {
-    position: absolute; inset: 19%; display: grid; place-items: center; border-radius: 50%;
-    color: rgba(255,255,255,.9); font: 700 clamp(23px, 3vw, 40px)/1 var(--serif);
-    letter-spacing: .06em; text-shadow: 0 2px 10px rgba(70,54,85,.2);
+  .nation-art {
+    position: relative; width: clamp(174px, 18vw, 286px); aspect-ratio: 4 / 5;
+    margin: -4px 0 16px 3px; overflow: hidden; isolation: isolate;
+    border: 1px solid rgba(255,255,255,.82); border-radius: 48% 48% 24px 24px;
     background:
-      radial-gradient(ellipse at 34% 24%, rgba(255,255,255,.76) 0 7%, transparent 8%),
-      radial-gradient(ellipse at 64% 64%, hsla(calc(var(--nation-hue) + 38),36%,92%,.46) 0 15%, transparent 16%),
-      linear-gradient(145deg, hsl(var(--nation-hue), 42%, 79%), hsl(calc(var(--nation-hue) + 30), 38%, 66%));
-    box-shadow: inset -13px -16px 24px hsla(var(--nation-hue),40%,40%,.2),
-                inset 8px 8px 18px rgba(255,255,255,.42), 0 18px 45px hsla(var(--nation-hue),36%,45%,.24);
-    transition: background .35s ease, box-shadow .35s ease;
+      radial-gradient(circle at 50% 29%, rgba(255,255,255,.86), transparent 29%),
+      linear-gradient(155deg, hsla(var(--nation-hue),48%,91%,.93), hsla(calc(var(--nation-hue) + 34),42%,76%,.54));
+    box-shadow: 0 24px 56px hsla(var(--nation-hue),28%,40%,.17), inset 0 0 0 1px rgba(75,65,92,.09);
   }
+  .nation-art::before {
+    content: ""; position: absolute; z-index: -1; width: 82%; aspect-ratio: 1;
+    left: 9%; bottom: -34%; border-radius: 50%; background: rgba(255,255,255,.32);
+    box-shadow: 0 0 0 19px hsla(var(--nation-hue),45%,94%,.17);
+  }
+  .historical-portrait, .historical-cameo { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .historical-portrait {
+    z-index: 2; display: block; object-fit: contain; object-position: center bottom;
+    opacity: 0; visibility: hidden; filter: sepia(.12) saturate(.86) contrast(1.03);
+    transition: opacity .22s ease;
+  }
+  .historical-portrait.ready { opacity: 1; visibility: visible; }
+  .historical-portrait.character-art {
+    padding: 2% 4% 0; filter: drop-shadow(0 16px 18px rgba(67,55,78,.16)) saturate(1.02);
+  }
+  .historical-cameo { z-index: 1; display: grid; place-items: end center; }
+  .cameo-person { position: relative; width: 72%; height: 82%; opacity: .78; }
+  .cameo-person::before {
+    content: ""; position: absolute; width: 34%; aspect-ratio: .88; left: 33%; top: 7%;
+    border-radius: 48% 48% 44% 44%; background: hsl(var(--nation-hue),25%,49%);
+    box-shadow: inset -8px -5px 0 hsla(var(--nation-hue),35%,30%,.12);
+  }
+  .cameo-person::after {
+    content: ""; position: absolute; width: 76%; height: 64%; left: 12%; bottom: -8%;
+    border-radius: 48% 48% 18% 18% / 28% 28% 12% 12%;
+    background: linear-gradient(105deg, hsl(var(--nation-hue),24%,52%), hsl(calc(var(--nation-hue) + 22),21%,42%));
+    clip-path: polygon(17% 0, 39% 8%, 46% 100%, 27% 100%, 19% 48%, 14% 100%, 0 100%, 4% 30%, 17% 0, 83% 0, 96% 30%, 100% 100%, 86% 100%, 81% 48%, 73% 100%, 54% 100%, 61% 8%);
+  }
+  .cameo-initials {
+    position: absolute; z-index: 3; right: 12px; bottom: 11px; min-width: 34px; height: 34px;
+    display: grid; place-items: center; padding: 0 7px; border-radius: 50%; color: #fff;
+    font: 700 10px/1 var(--mono); letter-spacing: .06em; background: hsl(var(--nation-hue),32%,48%);
+    border: 2px solid rgba(255,255,255,.75); box-shadow: 0 5px 14px rgba(55,44,68,.16);
+  }
+  .nation-flag {
+    position: absolute; z-index: 4; left: 11px; top: 11px; width: 56px; height: 38px;
+    overflow: hidden; border: 3px solid rgba(255,255,255,.88); border-radius: 7px;
+    background: #fff; filter: drop-shadow(0 4px 6px rgba(55,44,68,.18));
+  }
+  .showcase-figure {
+    margin: -6px 0 11px 4px; color: #786d86; font-size: 10px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+  .showcase-figure strong { color: #51465e; font-family: var(--serif); font-size: 13px; letter-spacing: .02em; text-transform: none; }
   #showcaseName {
     max-width: 680px; margin: 0; font-family: var(--serif); font-weight: 700;
     font-size: clamp(34px, 4.25vw, 68px); line-height: .98; letter-spacing: -.035em;
@@ -259,18 +289,24 @@
   #randomBtn:hover:not(:disabled) { color: #4d405d; border-color: rgba(108,90,130,.32); background: rgba(255,255,255,.78); }
   .browser-rule { height: 1px; margin: 16px 0 13px; background: linear-gradient(90deg, var(--pick-line), transparent); }
   #pickWrap { min-height: 0; overflow-y: auto; padding: 1px 8px 10px 1px; scrollbar-color: #c0b5c8 transparent; }
-  #nationPick { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 9px; }
+  #nationPick { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; }
   #nationPick .opt {
-    position: relative; min-width: 0; min-height: 76px; display: grid; grid-template-columns: 36px minmax(0, 1fr);
-    align-items: center; gap: 10px; padding: 10px 12px; overflow: hidden;
-    border: 1px solid rgba(255,255,255,.7); border-radius: 15px; text-align: left;
+    position: relative; min-width: 0; min-height: 174px; aspect-ratio: .82; display: block;
+    padding: 0; overflow: hidden; isolation: isolate;
+    border: 1px solid rgba(255,255,255,.7); border-radius: 18px; text-align: left;
     color: #4c4458; background: var(--pick-card);
     box-shadow: inset 0 0 0 1px rgba(75,65,92,.1), 0 7px 18px rgba(79,65,96,.055);
     cursor: pointer; transition: transform .13s ease, background .13s ease, box-shadow .13s ease, border-color .13s ease;
   }
+  #nationPick .opt::before {
+    content: ""; position: absolute; z-index: -1; inset: 0;
+    background:
+      radial-gradient(circle at 53% 22%, rgba(255,255,255,.78), transparent 29%),
+      linear-gradient(155deg, hsla(var(--nation-hue),45%,94%,.96), hsla(calc(var(--nation-hue) + 30),38%,75%,.58));
+  }
   #nationPick .opt::after {
-    content: ""; position: absolute; width: 70px; height: 70px; right: -38px; bottom: -45px;
-    border-radius: 50%; background: hsla(var(--nation-hue),45%,70%,.16); transition: transform .18s ease;
+    content: ""; position: absolute; z-index: 1; width: 116%; aspect-ratio: 1; left: -8%; bottom: -76%;
+    border-radius: 50%; background: rgba(255,255,255,.25); transition: transform .18s ease;
   }
   #nationPick .opt:hover {
     transform: translateY(-2px); color: #403747; border-color: hsla(var(--nation-hue),35%,55%,.34);
@@ -280,24 +316,45 @@
   #nationPick .opt.sel {
     color: #3f354d; border-color: hsla(var(--nation-hue),38%,48%,.4);
     background: linear-gradient(135deg, rgba(255,255,255,.9), hsla(var(--nation-hue),52%,86%,.68));
-    box-shadow: 0 10px 25px hsla(var(--nation-hue),32%,40%,.15), inset 0 0 0 2px rgba(255,255,255,.5);
+    box-shadow: 0 12px 28px hsla(var(--nation-hue),32%,40%,.18), inset 0 0 0 3px rgba(255,255,255,.62);
   }
   #nationPick .opt.sel::after { transform: scale(1.35); }
   .nation-check {
-    position: absolute; z-index: 2; top: 7px; right: 8px; width: 18px; height: 18px;
+    position: absolute; z-index: 7; top: 8px; right: 8px; width: 22px; height: 22px;
     display: grid; place-items: center; border-radius: 50%; color: transparent;
-    font-size: 10px; font-weight: 900; background: transparent; transition: color .13s ease, background .13s ease;
+    font-size: 11px; font-weight: 900; background: rgba(255,255,255,.26); transition: color .13s ease, background .13s ease;
   }
   #nationPick .opt.sel .nation-check { color: #fff; background: hsl(var(--nation-hue), 35%, 52%); }
-  .nation-chip {
-    width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%;
-    color: #fff; font: 700 10px/1 var(--mono); letter-spacing: .04em;
-    background: linear-gradient(145deg, hsl(var(--nation-hue),40%,75%), hsl(calc(var(--nation-hue) + 30),35%,62%));
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.4);
+  .pick-figure-art { position: absolute; z-index: 2; inset: 0; display: block; overflow: hidden; }
+  .pick-portrait {
+    position: absolute; z-index: 3; inset: 0; width: 100%; height: 100%; display: block;
+    opacity: 0; visibility: hidden; object-fit: contain; object-position: center bottom;
+    filter: sepia(.12) saturate(.86) contrast(1.03); transition: opacity .18s ease;
   }
-  .nation-card-copy { min-width: 0; }
-  #nationPick .opt .nm { display: block; overflow: hidden; text-overflow: ellipsis; font-weight: 700; font-size: 11px; white-space: nowrap; }
-  #nationPick .opt .gd { display: block; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; color: #8d8596; font-size: 9px; white-space: nowrap; }
+  .pick-portrait.ready { opacity: 1; visibility: visible; }
+  .pick-portrait.character-art {
+    padding: 3% 7% 0; filter: drop-shadow(0 8px 9px rgba(67,55,78,.15)) saturate(1.02);
+  }
+  .pick-cameo { position: absolute; inset: 11% 9% 0; }
+  .pick-cameo .cameo-person { position: absolute; inset: 0 2% 0; width: auto; height: auto; }
+  .pick-cameo .cameo-initials { right: 7px; bottom: 8px; min-width: 27px; height: 27px; padding: 0 5px; font-size: 8px; }
+  .pick-flag {
+    position: absolute; z-index: 6; left: 8px; top: 8px; width: 43px; height: 30px;
+    overflow: hidden; border: 2px solid rgba(255,255,255,.9); border-radius: 5px;
+    background: #fff; filter: drop-shadow(0 3px 5px rgba(55,44,68,.17));
+  }
+  .nation-card-copy {
+    position: absolute; z-index: 5; left: 7px; right: 7px; bottom: 7px; min-width: 0;
+    padding: 8px 9px 7px; border: 1px solid rgba(255,255,255,.72); border-radius: 11px;
+    color: #fff; background: rgba(62,52,73,.72); backdrop-filter: blur(8px);
+    box-shadow: 0 5px 14px rgba(49,39,60,.14); opacity: 0; transform: translateY(9px);
+    transition: opacity .14s ease, transform .14s ease;
+  }
+  #nationPick .opt:hover .nation-card-copy,
+  #nationPick .opt:focus-visible .nation-card-copy,
+  #nationPick .opt.sel .nation-card-copy { opacity: 1; transform: translateY(0); }
+  #nationPick .opt .nm { display: block; overflow: hidden; text-overflow: ellipsis; font-weight: 800; font-size: 10px; white-space: nowrap; }
+  #nationPick .opt .figure-name { display: block; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; color: rgba(255,255,255,.78); font-size: 8px; white-space: nowrap; }
   #nationPick .none {
     grid-column: 1 / -1; padding: 54px 20px; border: 1px dashed rgba(75,65,92,.2); border-radius: 18px;
     color: var(--pick-muted); text-align: center; background: rgba(255,255,255,.26);
@@ -332,13 +389,13 @@
     .nation-browser { min-height: 690px; padding: 28px 18px 20px; }
     #setupBar { grid-template-columns: 1fr auto; }
     .search-shell { grid-column: 1 / -1; }
-    #nationPick { grid-template-columns: 1fr; }
+    #nationPick { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .showcase-stats { gap: 5px; }
     .showcase-stat { padding: 9px 8px; }
     .seedrow { flex-wrap: wrap; }
   }
   @media (prefers-reduced-motion: reduce) {
-    #nationPick .opt, #nationPick .opt::after, .nation-planet, #startBtn { transition: none; }
+    #nationPick .opt, #nationPick .opt::after, .nation-card-copy, .historical-portrait, .pick-portrait, #startBtn { transition: none; }
   }
 
   /* ---------- layout ---------- */
@@ -1871,6 +1928,214 @@
   .queued { color: var(--cyan); font-size: 11px; min-height: 15px; }
   .muted { color: var(--dim); font-size: 12px; }
   .tiny { color: var(--faint); font-size: 11px; }
+
+  /* ---------- global command / domination war room ----------
+     The resting game gets one quiet ribbon in the command dock. The campaign
+     itself opens as a room, not a spreadsheet: one objective, three choices,
+     four stamped milestones and one next move. All copy and state arrive in
+     S.domination; this layer only gives that state a ceremonial shape. */
+  #dominationDockBtn {
+    --dom-dock-progress: 0%; position: relative; min-width: 158px;
+    overflow: hidden; border-color: #655577;
+    background: linear-gradient(155deg, #292236, #171a25 58%, #112025);
+  }
+  #dominationDockBtn::after {
+    content: ""; position: absolute; left: 8px; right: 8px; bottom: 4px; height: 2px;
+    border-radius: 99px; background: linear-gradient(90deg, #bba5d6 var(--dom-dock-progress), #ffffff12 0);
+    box-shadow: 0 0 9px #a98dc650;
+  }
+  #dominationDockBtn .icon { position: relative; width: 28px; height: 28px; display: grid; place-items: center; }
+  #dominationDockBtn .icon::before, #dominationDockBtn .icon::after {
+    content: ""; position: absolute; border: 1px solid #c8b3dc; border-radius: 50%;
+  }
+  #dominationDockBtn .icon::before { inset: 4px; box-shadow: inset 0 0 9px #9ed2cd45; }
+  #dominationDockBtn .icon::after { width: 27px; height: 10px; transform: rotate(-18deg); border-color: #8fc4c0; }
+  #dominationDockBtn .dom-dock-core { width: 5px; height: 5px; border-radius: 50%; background: #e0bf79; box-shadow: 0 0 8px #e0bf79; }
+  #dominationDockBtn.attention { animation: domDockCall 2.7s ease-in-out infinite; }
+  #dominationDockBtn[aria-expanded="true"] { border-color: #d4b677; background: linear-gradient(155deg, #433252, #22212b 62%, #183033); }
+
+  #dominationScreen {
+    --dom-violet: #b8a1d3; --dom-sea: #94c6c1; --dom-brass: #d8b875;
+    --dom-ink: #f3eff4; --dom-muted: #aaa4b4; --dom-paper: #eee8ee;
+    display: none; position: fixed; inset: 0; z-index: 68; isolation: isolate;
+    color: var(--dom-ink); overflow: hidden;
+    background:
+      radial-gradient(circle at 75% 16%, #94c6c126, transparent 25%),
+      radial-gradient(circle at 10% 85%, #b8a1d32b, transparent 34%),
+      linear-gradient(145deg, #171523 0%, #0f1620 50%, #142226 100%);
+  }
+  #dominationScreen.open { display: grid; grid-template-rows: auto minmax(0, 1fr); animation: domRoomIn .26s ease-out; }
+  #dominationScreen::before {
+    content: ""; position: absolute; z-index: -3; width: min(86vw, 1160px); aspect-ratio: 1;
+    top: 47%; left: 57%; translate: -50% -50%; border: 1px solid #bba7ce24; border-radius: 50%;
+    box-shadow: 0 0 0 86px #94c6c109, 0 0 0 188px #b8a1d308, 0 0 100px #0008;
+  }
+  #dominationScreen::after {
+    content: ""; position: absolute; z-index: -2; inset: 0; opacity: .15; pointer-events: none;
+    background-image: radial-gradient(circle, #f1e6ff 0 1px, transparent 1.5px);
+    background-size: 79px 83px; mask-image: linear-gradient(120deg, transparent 3%, #000 31%, #000 75%, transparent 100%);
+  }
+  .dom-constellation { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .44; }
+  .dom-constellation path { fill: none; stroke: #a9d3ce; stroke-width: 1; stroke-dasharray: 2 12; }
+  .dom-constellation circle { fill: #e0bf79; filter: drop-shadow(0 0 4px #e0bf79); }
+  .dom-topbar {
+    min-height: 68px; display: flex; align-items: center; gap: 14px; padding: 10px clamp(14px, 3vw, 42px);
+    border-bottom: 1px solid #cbb4d126; background: #111620b8; backdrop-filter: blur(18px);
+  }
+  .dom-top-emblem { width: 37px; height: 37px; display: grid; place-items: center; border: 1px solid #8fc4c073; border-radius: 50%; color: var(--dom-brass); font: 700 17px/1 var(--serif); box-shadow: inset 0 0 0 5px #a7d2ce0a; }
+  .dom-top-copy { min-width: 0; }
+  .dom-eyebrow { color: var(--dom-sea); font: 700 8px/1 var(--mono); letter-spacing: .24em; text-transform: uppercase; }
+  .dom-top-copy h2 { margin-top: 5px; color: #f1e9f3; font: 700 clamp(17px, 2vw, 24px)/1 var(--serif); letter-spacing: .08em; }
+  .dom-topbar .grow { flex: 1; }
+  .dom-player-chip { display: flex; align-items: center; gap: 9px; min-width: 0; padding: 5px 11px 5px 6px; border: 1px solid #b8a1d33b; border-radius: 999px; background: #ffffff08; }
+  .dom-player-flag { width: 37px; height: 27px; flex: none; overflow: hidden; border: 2px solid #f4f0f0cc; border-radius: 6px; background: #fff; filter: drop-shadow(0 3px 5px #0006); }
+  .dom-player-chip span { max-width: 190px; overflow: hidden; color: #dcd4df; font: 700 9px/1 var(--mono); text-overflow: ellipsis; white-space: nowrap; letter-spacing: .09em; text-transform: uppercase; }
+  .dom-close { width: 42px; height: 42px; padding: 0; border-color: #695e73; border-radius: 50%; color: #d9ccde; background: #ffffff08; font-size: 21px; }
+
+  .dom-scroll { min-height: 0; overflow: auto; scrollbar-color: #6f6178 transparent; }
+  .dom-room { width: min(1440px, 100%); min-height: 100%; margin: 0 auto; padding: clamp(22px, 4vh, 48px) clamp(18px, 4vw, 60px) 40px; }
+  .dom-briefing {
+    display: grid; grid-template-columns: minmax(180px, .58fr) minmax(390px, 1.5fr) minmax(190px, .64fr);
+    gap: clamp(18px, 3vw, 42px); align-items: center; min-height: 270px;
+  }
+  .dom-commander { align-self: stretch; min-height: 250px; display: flex; flex-direction: column; justify-content: end; position: relative; }
+  .dom-commander::before { content: ""; position: absolute; inset: 11% 3% 0; border-radius: 48% 48% 18px 18px; background: linear-gradient(160deg, #dfd1e042, #93c7c12d); border: 1px solid #fff2; transform: rotate(-2deg); }
+  .dom-leader-art { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; opacity: 0; filter: drop-shadow(0 16px 18px #05060a7a); }
+  .dom-leader-art.ready { opacity: 1; }
+  .dom-leader-fallback { position: absolute; z-index: 0; inset: 8% 7% 0; display: grid; place-items: center; border-radius: 50% 50% 20px 20px; color: #dfd3e5; background: linear-gradient(150deg, #786b8d, #416e72); font: 700 42px/1 var(--serif); opacity: .58; }
+  .dom-leader-caption { position: relative; z-index: 2; margin: 0 7% 6px; padding: 8px 10px; border: 1px solid #ffffff31; border-radius: 11px; color: #d8d0dd; background: #171523b8; backdrop-filter: blur(8px); font: 700 8px/1.35 var(--mono); letter-spacing: .1em; text-align: center; text-transform: uppercase; }
+  .dom-mandate { min-width: 0; text-align: center; }
+  .dom-mandate-kicker { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--dom-brass); font: 700 9px/1 var(--mono); letter-spacing: .25em; text-transform: uppercase; }
+  .dom-mandate-kicker::before, .dom-mandate-kicker::after { content: ""; width: 48px; height: 1px; background: linear-gradient(90deg, transparent, var(--dom-brass)); }
+  .dom-mandate-kicker::after { transform: rotate(180deg); }
+  .dom-mandate h1 { max-width: 800px; margin: 14px auto 10px; color: #f5eff3; font: 700 clamp(34px, 4.8vw, 70px)/.91 var(--serif); letter-spacing: -.04em; text-wrap: balance; text-shadow: 0 10px 30px #080810; }
+  .dom-goal { max-width: 690px; margin: 0 auto; color: var(--dom-muted); font: 12px/1.55 var(--mono); text-wrap: balance; }
+  .dom-goal strong { color: #ddd1e3; }
+  .dom-progress-rail { width: min(660px, 92%); height: 7px; margin: 21px auto 8px; padding: 2px; border: 1px solid #b8a1d340; border-radius: 999px; background: #080c12a8; }
+  .dom-progress-rail i { display: block; width: var(--dom-progress, 0%); height: 100%; border-radius: inherit; background: linear-gradient(90deg, #8ec6c0, #b9a0d3 62%, #dab977); box-shadow: 0 0 14px #a990c570; transition: width .45s ease; }
+  .dom-progress-copy { display: flex; justify-content: center; gap: 13px; color: #8f8998; font: 700 8px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+  .dom-progress-copy b { color: #e0d6e4; }
+  .dom-rivals { justify-self: end; width: min(100%, 240px); text-align: center; }
+  .dom-rival-orbit { position: relative; width: 156px; height: 156px; margin: 0 auto 12px; display: grid; place-items: center; border: 1px solid #8fc4c04b; border-radius: 50%; box-shadow: inset 0 0 38px #8fc4c015, 0 0 0 13px #bba5d608; }
+  .dom-rival-orbit::before { content: ""; position: absolute; width: 182px; height: 64px; border: 1px solid #c8aee054; border-radius: 50%; transform: rotate(18deg); }
+  .dom-rival-orbit::after { content: ""; position: absolute; right: -9px; top: 38px; width: 7px; height: 7px; border-radius: 50%; background: var(--dom-brass); box-shadow: 0 0 9px var(--dom-brass); }
+  .dom-rival-number { color: #f3eaf2; font: 700 54px/.75 var(--serif); }
+  .dom-rival-number small { display: block; margin-top: 12px; color: #9c96a5; font: 700 7px/1.25 var(--mono); letter-spacing: .15em; text-transform: uppercase; }
+  .dom-rival-names { min-height: 28px; color: #a9a2ae; font-size: 9px; line-height: 1.45; }
+
+  #dominationBody { margin-top: clamp(20px, 3vh, 34px); }
+  .dom-section-head { display: flex; align-items: end; gap: 14px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #b7a2c82d; }
+  .dom-section-head h3 { color: #f0e7f0; font: 700 clamp(21px, 2.4vw, 32px)/1 var(--serif); letter-spacing: -.015em; }
+  .dom-section-head p { flex: 1; margin: 0; color: #8e8997; font-size: 9px; text-align: right; }
+  .dom-agenda-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 22px); }
+  .dom-agenda-card {
+    --agenda-tint: #b8a1d3; position: relative; min-height: 294px; display: flex; flex-direction: column;
+    overflow: hidden; padding: 24px 22px 20px; border: 1px solid color-mix(in srgb, var(--agenda-tint) 52%, transparent);
+    border-radius: 25px 25px 10px 25px; color: #e9e2eb; text-align: left;
+    background:
+      radial-gradient(circle at 88% 11%, color-mix(in srgb, var(--agenda-tint) 22%, transparent), transparent 30%),
+      linear-gradient(145deg, #282432ee, #151a22f2 70%);
+    box-shadow: 0 18px 38px #05060a66, inset 0 1px #ffffff15;
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .dom-agenda-card.sea { --agenda-tint: #8fc4c0; }
+  .dom-agenda-card.brass { --agenda-tint: #d2b16f; }
+  .dom-agenda-card::before { content: ""; position: absolute; width: 180px; height: 62px; right: -40px; top: 25px; border: 1px solid color-mix(in srgb, var(--agenda-tint) 48%, transparent); border-radius: 50%; transform: rotate(-24deg); }
+  .dom-agenda-card::after { content: ""; position: absolute; width: 9px; height: 9px; right: 30px; top: 36px; border-radius: 50%; background: var(--agenda-tint); box-shadow: 0 0 11px var(--agenda-tint); }
+  .dom-agenda-card:hover:not(:disabled), .dom-agenda-card:focus-visible { transform: translateY(-5px) rotate(-.2deg); border-color: var(--agenda-tint); color: #fff; box-shadow: 0 24px 48px #05060a8a, 0 0 0 3px color-mix(in srgb, var(--agenda-tint) 16%, transparent); outline: none; }
+  .dom-agenda-card:disabled { opacity: .55; }
+  .dom-card-figure { position: absolute; z-index: 0; right: -3%; bottom: -6%; width: 54%; height: 84%; object-fit: contain; object-position: right bottom; opacity: .16; filter: grayscale(.18) saturate(.65) drop-shadow(0 10px 18px #0008); pointer-events: none; transition: opacity .18s ease, transform .18s ease; }
+  .dom-agenda-card:hover .dom-card-figure, .dom-agenda-card:focus-visible .dom-card-figure { opacity: .26; transform: translateY(-3px); }
+  .dom-card-target-flag { position: absolute; z-index: 2; right: 19px; bottom: 18px; width: 39px; height: 28px; overflow: hidden; border: 2px solid #ffffffa8; border-radius: 6px; background: #fff; opacity: .82; filter: drop-shadow(0 4px 7px #0008); }
+  .dom-agenda-card > :not(.dom-card-figure):not(.dom-card-target-flag) { position: relative; z-index: 1; }
+  .dom-card-no { color: var(--agenda-tint); font: 700 8px/1 var(--mono); letter-spacing: .22em; text-transform: uppercase; }
+  .dom-agenda-card h4 { max-width: 90%; margin: 22px 0 9px; color: #f4edf2; font: 700 clamp(23px, 2.25vw, 35px)/.98 var(--serif); letter-spacing: -.025em; text-wrap: balance; }
+  .dom-card-route { color: var(--agenda-tint); font: 700 8px/1.2 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+  .dom-card-desc { margin: 15px 0 11px; color: #aaa4b2; font-size: 10px; line-height: 1.5; }
+  .dom-card-reason { margin-top: auto; padding-top: 11px; border-top: 1px solid #ffffff17; color: #d1c8d3; font: italic 12px/1.35 var(--serif); }
+  .dom-card-stakes { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+  .dom-card-stakes span { padding: 5px 7px; border: 1px solid #ffffff1c; border-radius: 999px; color: #928c9b; background: #05080c28; font: 700 7px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .dom-card-choose { display: flex; align-items: center; justify-content: space-between; margin-top: 15px; color: var(--agenda-tint); font: 700 9px/1 var(--mono); letter-spacing: .15em; text-transform: uppercase; }
+  .dom-card-choose i { font: normal 20px/1 var(--serif); }
+
+  .dom-active-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(270px, .7fr); gap: clamp(18px, 3vw, 36px); }
+  .dom-active-card, .dom-next-card, .dom-legacy-panel { border: 1px solid #b6a0ca36; border-radius: 24px 24px 9px 24px; background: linear-gradient(145deg, #24212ded, #10171dcc); box-shadow: 0 18px 44px #05060a5c; }
+  .dom-active-card { position: relative; overflow: hidden; padding: clamp(21px, 3vw, 36px); }
+  .dom-active-card::after { content: ""; position: absolute; width: 280px; height: 100px; right: -70px; top: -24px; border: 1px solid #92c6c14a; border-radius: 50%; transform: rotate(-14deg); }
+  .dom-active-route { color: var(--dom-sea); font: 700 8px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; }
+  .dom-active-card h3 { max-width: 720px; margin: 12px 0 8px; color: #f4edf3; font: 700 clamp(28px, 4vw, 50px)/.98 var(--serif); letter-spacing: -.03em; }
+  .dom-active-card > p { max-width: 760px; margin: 0; color: #ada6b3; font-size: 10px; line-height: 1.55; }
+  .dom-active-reason { margin-top: 16px; padding: 12px 14px; border-left: 2px solid var(--dom-brass); color: #d7ccd8; background: #d8b8750a; font: italic 14px/1.4 var(--serif); }
+  .dom-milestones { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 27px; }
+  .dom-milestones::before { content: ""; position: absolute; left: 9%; right: 9%; top: 31px; height: 1px; background: linear-gradient(90deg, #8fc4c080, #b8a1d380, #d8b87580); }
+  .dom-milestone { position: relative; z-index: 1; min-width: 0; text-align: center; }
+  .dom-seal { width: 62px; height: 62px; margin: 0 auto 9px; display: grid; place-items: center; border: 2px solid #71677b; border-radius: 45% 55% 48% 52%; color: #77707e; background: #181920; box-shadow: 0 0 0 4px #11151c, 0 0 0 5px #776a7d38; font: 700 11px/1 var(--serif); transform: rotate(-3deg); }
+  .dom-milestone:nth-child(even) .dom-seal { transform: rotate(3deg); }
+  .dom-milestone.reached .dom-seal { color: #352b2e; border-color: #e1c27e; background: radial-gradient(circle at 35% 30%, #f0d392, #b78e4c); box-shadow: 0 0 0 4px #17151c, 0 0 18px #d6b66b52; }
+  .dom-milestone strong { display: block; overflow: hidden; color: #c9c0cb; font: 700 8px/1.25 var(--mono); text-overflow: ellipsis; text-transform: uppercase; }
+  .dom-milestone small { display: block; margin-top: 3px; color: #7e7885; font-size: 7px; }
+  .dom-side-stack { display: grid; align-content: start; gap: 13px; }
+  .dom-next-card { padding: 22px; border-color: #8fc4c04b; background: linear-gradient(145deg, #1c292dd9, #141722e8); }
+  .dom-next-card h3 { margin: 6px 0 8px; color: #edf1ef; font: 700 24px/1 var(--serif); }
+  .dom-next-card p { min-height: 44px; margin: 0 0 15px; color: #9fa7aa; font-size: 9px; line-height: 1.5; }
+  .dom-next-button { width: 100%; min-height: 52px; border: 1px solid #9bd1cb72; border-radius: 15px; color: #f0f7f5; background: linear-gradient(130deg, #4f7776, #6f6186); font: 700 10px/1.2 var(--mono); letter-spacing: .13em; text-transform: uppercase; }
+  .dom-next-button:hover:not(:disabled) { color: #fff; border-color: #c7e8e4; background: linear-gradient(130deg, #5d8986, #806d99); }
+  .dom-blocker { margin-top: 10px; padding: 9px 10px; border: 1px solid #d8b87535; border-radius: 10px; color: #ccb883; background: #d8b8750a; font-size: 8px; line-height: 1.4; }
+  .dom-legacy-panel { padding: 18px 20px; }
+  .dom-legacy-panel h3 { margin: 5px 0 11px; color: #e8dfe9; font: 700 18px/1 var(--serif); }
+  .dom-legacy-list { display: grid; gap: 7px; }
+  .dom-legacy { display: grid; grid-template-columns: 34px 1fr; gap: 9px; align-items: center; min-width: 0; padding: 7px 8px; border: 1px solid #ffffff12; border-radius: 10px; background: #ffffff06; }
+  .dom-legacy-mark { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid #c5a763; border-radius: 48% 52% 44% 56%; color: #e3c77e; font: 700 11px/1 var(--serif); transform: rotate(-5deg); }
+  .dom-legacy b { display: block; overflow: hidden; color: #cfc6d1; font: 700 8px/1.25 var(--mono); text-overflow: ellipsis; white-space: nowrap; text-transform: uppercase; }
+  .dom-legacy span { display: block; margin-top: 3px; color: #78737f; font-size: 7px; }
+  .dom-empty { padding: 36px; border: 1px dashed #8b789c4f; border-radius: 22px; color: #aaa2af; text-align: center; }
+  .dom-victory { padding: clamp(28px, 5vw, 70px); border: 1px solid #d9b9716b; border-radius: 34px 34px 12px 34px; text-align: center; background: radial-gradient(circle at 50% 5%, #d7b66b2d, transparent 45%), linear-gradient(145deg, #29222f, #142125); box-shadow: 0 24px 70px #0008; }
+  .dom-victory-seal { width: 116px; height: 116px; margin: 0 auto 22px; display: grid; place-items: center; border: 3px double #e2c379; border-radius: 45% 55% 49% 51%; color: #efd99e; background: #8e6939; box-shadow: 0 0 0 8px #1b1720, 0 0 38px #d5ae5a55; font: 700 44px/1 var(--serif); transform: rotate(-4deg); }
+  .dom-victory h3 { color: #f6edf1; font: 700 clamp(40px, 7vw, 84px)/.9 var(--serif); letter-spacing: -.04em; }
+  .dom-victory p { max-width: 650px; margin: 16px auto 0; color: #b8adb7; font-size: 11px; line-height: 1.6; }
+
+  @keyframes domRoomIn { from { opacity: 0; transform: scale(1.012); } to { opacity: 1; transform: none; } }
+  @keyframes domDockCall { 0%,100% { box-shadow: inset 0 1px var(--edge-lite); } 50% { box-shadow: inset 0 1px var(--edge-lite), 0 0 18px #ae8dcc40; } }
+  @media (max-width: 980px) {
+    .dom-briefing { grid-template-columns: 150px 1fr; }
+    .dom-rivals { grid-column: 1 / -1; justify-self: center; display: flex; width: auto; align-items: center; gap: 24px; text-align: left; }
+    .dom-rival-orbit { width: 110px; height: 110px; margin: 0; }
+    .dom-rival-orbit::before { width: 130px; height: 48px; }
+    .dom-rival-number { font-size: 42px; }
+    .dom-agenda-grid { grid-template-columns: 1fr; }
+    .dom-agenda-card { min-height: 220px; }
+    .dom-active-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    #dominationDockBtn { min-width: 0; }
+    #dominationDockBtn .icon { width: 22px; height: 22px; }
+    .dom-topbar { min-height: 58px; padding: 8px 11px; }
+    .dom-top-emblem { display: none; }
+    .dom-top-copy h2 { font-size: 16px; }
+    .dom-player-chip span { display: none; }
+    .dom-room { padding: 20px 14px 26px; }
+    .dom-briefing { grid-template-columns: 1fr; min-height: 0; }
+    .dom-commander { width: min(180px, 55vw); min-height: 190px; justify-self: center; }
+    .dom-mandate { grid-row: 1; }
+    .dom-rivals { grid-column: auto; }
+    .dom-mandate h1 { font-size: clamp(34px, 12vw, 52px); }
+    .dom-goal { font-size: 10px; }
+    .dom-milestones { grid-template-columns: repeat(2, 1fr); row-gap: 18px; }
+    .dom-milestones::before { display: none; }
+    .dom-section-head { align-items: start; flex-direction: column; }
+    .dom-section-head p { text-align: left; }
+  }
+  @media (max-width: 520px) {
+    #commandDock .dockbtn:not(#dominationDockBtn) .copy small { display: none; }
+    #commandDock .dockbtn:not(#dominationDockBtn) { grid-template-columns: 1fr; justify-items: center; }
+    #dominationDockBtn .copy small { max-width: 88px; }
+    .dom-player-chip { padding-right: 6px; }
+    .dom-agenda-card { padding: 21px 18px 17px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #dominationDockBtn.attention, #dominationScreen.open { animation: none; }
+    .dom-progress-rail i, .dom-agenda-card, .dom-card-figure { transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -1898,10 +2163,17 @@
       <section id="nationShowcase" aria-labelledby="showcaseName" aria-live="polite">
         <div class="showcase-copy">
           <div class="showcase-kicker">PLAYER ONE / CHOOSE YOUR SPHERE</div>
-          <div class="nation-art" aria-hidden="true">
-            <div class="nation-orbit"></div>
-            <div class="nation-planet" id="showcaseCode">?</div>
+          <div class="nation-art" id="showcaseArt" aria-hidden="true">
+            <div class="historical-cameo" id="showcaseFallback">
+              <span class="cameo-person"></span>
+              <span class="cameo-initials" id="showcaseInitials">?</span>
+            </div>
+            <img class="historical-portrait" id="showcasePortrait" alt="" width="512" height="640">
+            <svg class="nation-flag" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid meet">
+              <use id="showcaseFlag"></use>
+            </svg>
           </div>
+          <div class="showcase-figure" id="showcaseFigure">Historical avatar</div>
           <h1 id="showcaseName">Choose a nation</h1>
           <p id="showcasePrompt">Pick a country from the world board. Its opening output and population are drawn from the same 1990 world your campaign will begin in.</p>
           <div class="showcase-stats" id="showcaseStats">
@@ -2024,6 +2296,10 @@
       <div class="sr-only" id="productionLive" role="status" aria-live="polite"></div>
     </aside>
     <nav id="commandDock" aria-label="Game systems">
+      <button class="dockbtn" id="dominationDockBtn" type="button" aria-controls="dominationScreen" aria-expanded="false" disabled>
+        <span class="icon" aria-hidden="true"><span class="dom-dock-core"></span></span>
+        <span class="copy"><span class="label">Global Command</span><small id="dockDomination">campaign director</small></span>
+      </button>
       <button class="dockbtn" data-drawer="cabinetDrawer" aria-expanded="false"><span class="icon">◈</span><span class="copy"><span class="label">Economy</span><small id="dockEconomy">budget &amp; policy</small></span></button>
       <button class="dockbtn" data-drawer="intelDrawer" aria-expanded="false"><span class="icon">⚔</span><span class="copy"><span class="label">World</span><small id="dockWorld">conflicts &amp; news</small></span></button>
       <button class="dockbtn" id="logisticsDockBtn" type="button" aria-controls="logisticsPanel" aria-expanded="false"><span class="icon">⇢</span><span class="copy"><span class="label">Logistics</span><small id="dockLogistics">monthly routes</small></span><span class="dockbadge" id="logisticsBadge" aria-hidden="true"></span></button>
@@ -2031,6 +2307,47 @@
     </nav>
   </main>
 </div>
+
+<section id="dominationScreen" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="dominationTitle">
+  <svg class="dom-constellation" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M54 210L238 102L392 244L592 126L784 260L1030 116L1242 248L1515 142M112 720L314 610L512 752L710 602L906 730L1150 570L1450 706"/>
+    <path d="M238 102L314 610M592 126L710 602M1030 116L1150 570M1242 248L1450 706"/>
+    <g><circle cx="54" cy="210" r="3"/><circle cx="238" cy="102" r="4"/><circle cx="392" cy="244" r="2"/><circle cx="592" cy="126" r="3"/><circle cx="784" cy="260" r="4"/><circle cx="1030" cy="116" r="3"/><circle cx="1242" cy="248" r="2"/><circle cx="1515" cy="142" r="4"/><circle cx="112" cy="720" r="3"/><circle cx="314" cy="610" r="2"/><circle cx="512" cy="752" r="4"/><circle cx="710" cy="602" r="3"/><circle cx="906" cy="730" r="2"/><circle cx="1150" cy="570" r="4"/><circle cx="1450" cy="706" r="3"/></g>
+  </svg>
+  <header class="dom-topbar">
+    <span class="dom-top-emblem" aria-hidden="true">◎</span>
+    <div class="dom-top-copy"><div class="dom-eyebrow">The long campaign</div><h2 id="dominationTitle">Global Command War Room</h2></div>
+    <span class="grow"></span>
+    <div class="dom-player-chip" aria-label="Your nation">
+      <svg class="dom-player-flag" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><use id="dominationFlag"></use></svg>
+      <span id="dominationNation">Your nation</span>
+    </div>
+    <button class="dom-close" id="dominationClose" type="button" aria-label="Close Global Command">&times;</button>
+  </header>
+  <div class="dom-scroll">
+    <div class="dom-room">
+      <section class="dom-briefing" aria-label="World domination progress">
+        <div class="dom-commander" aria-hidden="true">
+          <div class="dom-leader-fallback" id="dominationLeaderFallback">?</div>
+          <img class="dom-leader-art" id="dominationLeader" alt="" width="512" height="640">
+          <div class="dom-leader-caption" id="dominationLeaderCaption">National command</div>
+        </div>
+        <div class="dom-mandate">
+          <div class="dom-mandate-kicker" id="dominationPhase">The final mandate</div>
+          <h1>One world.<br>Your sphere.</h1>
+          <p class="dom-goal" id="dominationGoal"><strong>Universal end goal:</strong> every surviving country is directly controlled or formally subordinated. No independent rival remains.</p>
+          <div class="dom-progress-rail" id="dominationProgressRail" role="progressbar" aria-label="World domination progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
+          <div class="dom-progress-copy"><b id="dominationProgress">0%</b><span>toward global supremacy</span></div>
+        </div>
+        <div class="dom-rivals">
+          <div class="dom-rival-orbit"><div class="dom-rival-number"><span id="dominationRivalCount">—</span><small>independent<br>rivals remain</small></div></div>
+          <div class="dom-rival-names" id="dominationRivals">The world board is being read.</div>
+        </div>
+      </section>
+      <div id="dominationBody" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
 
 <div id="sheetbg"></div>
 <div id="sheet"></div>
@@ -2345,6 +2662,7 @@
   <div class="row"><span>Filter the event log</span><span><kbd>E</kbd></span></div>
   <div class="row"><span>Technology</span><span><kbd>T</kbd></span></div>
   <div class="row"><span>Resources board</span><span><kbd>B</kbd></span></div>
+  <div class="row"><span>Global Command war room</span><span><kbd>D</kbd></span></div>
   <div class="row"><span>Logistics routes</span><span><kbd>G</kbd></span></div>
   <div class="row"><span>Production and construction</span><span><kbd>Q</kbd></span></div>
   <div class="row"><span>Board: select a line / open talks</span><span>arrows · <kbd>Enter</kbd></span></div>
@@ -2744,6 +3062,8 @@ async function api(path, body) {
 /* ================= setup ================= */
 
 let setupNations = [];
+let setupFigures = {};
+const setupNationButtons = new Map();
 
 /// THE PICKER SHOWS THE BOARD THE START BUTTON WILL DEAL, and it used to show
 /// whatever world this server happened to be holding.
@@ -2761,8 +3081,12 @@ let setupNations = [];
 /// cards and the button now all describe one board. The date comes with it
 /// rather than being spelt into the markup.
 async function buildSetup() {
-  const board = await api("/api/roster");
+  const [board, figureBoard] = await Promise.all([
+    api("/api/roster"),
+    api("/art/nation-figures-v2.json").catch(() => ({ nations: {} })),
+  ]);
   setupNations = board.nations;
+  setupFigures = figureBoard.nations || {};
   const sub = $("#setupSub");
   if (sub && board.month >= 1 && board.month <= 12) {
     sub.textContent =
@@ -2824,6 +3148,67 @@ function nationHue(n) {
   return palette[hash % palette.length];
 }
 
+// Historical figures are presentation data, deliberately separate from the
+// simulation roster. Missing metadata or a failed image can never make a
+// country unplayable: both fall back to an explicit archival cameo.
+function figureFor(n) {
+  return setupFigures[n.id] || {
+    figure: "Archive pending",
+    years: "",
+    role: "historical figure",
+    portrait: null,
+  };
+}
+
+function figureInitials(spec, n) {
+  const ignored = new Set(["a", "al", "and", "da", "de", "del", "di", "of", "the"]);
+  const words = String(spec.figure || "")
+    .split(/\s+/)
+    .map((word) => word.replace(/[^\p{L}\p{N}]/gu, ""))
+    .filter((word) => word && !ignored.has(word.toLowerCase()));
+  if (!words.length) return n.id.slice(0, 2).toUpperCase();
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return (words[0][0] + words[words.length - 1][0]).toUpperCase();
+}
+
+function flagUse(use, n) {
+  use.setAttribute("href", `/art/nation-flags-v2.svg#flag-${n.id}`);
+  use.setAttribute("width", "640");
+  use.setAttribute("height", "480");
+}
+
+function loadFigurePortrait(img, spec, eager) {
+  const leaderArt = spec.leader_art && typeof spec.leader_art === "object" ? spec.leader_art : null;
+  const portraitAsset = typeof spec.portrait === "string"
+    ? spec.portrait
+    : (spec.portrait && (spec.portrait.asset || spec.portrait.file)) || "";
+  const asset = (leaderArt && leaderArt.asset) || portraitAsset;
+  const portraitRecord = spec.portrait && typeof spec.portrait === "object" ? spec.portrait : null;
+  const credit = leaderArt
+    ? [leaderArt.credit, leaderArt.generator, `Identity source: ${leaderArt.identity_source_asset || "verified portrait"}`].filter(Boolean).join(" · ")
+    : portraitRecord
+    ? [portraitRecord.source_title, portraitRecord.credit, portraitRecord.license].filter(Boolean).join(" · ")
+    : "";
+  img.classList.remove("ready");
+  img.classList.toggle("character-art", Boolean(leaderArt && leaderArt.asset));
+  img.removeAttribute("src");
+  if (credit) img.title = credit;
+  else img.removeAttribute("title");
+  img.dataset.asset = asset;
+  img.loading = eager ? "eager" : "lazy";
+  img.decoding = "async";
+  if (eager) img.setAttribute("fetchpriority", "high");
+  else img.removeAttribute("fetchpriority");
+  if (!asset) return;
+  img.onload = () => {
+    if (img.dataset.asset === asset) img.classList.add("ready");
+  };
+  img.onerror = () => {
+    if (img.dataset.asset === asset) img.classList.remove("ready");
+  };
+  img.src = `/art/portraits/${encodeURIComponent(asset)}`;
+}
+
 function setupRank(n, field) {
   return setupNations
     .slice()
@@ -2838,12 +3223,22 @@ function perCapita(n) {
 }
 
 function renderShowcase(n) {
+  const spec = figureFor(n);
   const hue = nationHue(n);
   $("#nationShowcase").style.setProperty("--nation-hue", hue);
-  $("#showcaseCode").textContent = n.id.slice(0, 3);
+  $("#showcaseInitials").textContent = figureInitials(spec, n);
+  flagUse($("#showcaseFlag"), n);
+  loadFigurePortrait($("#showcasePortrait"), spec, true);
+  const figure = $("#showcaseFigure");
+  figure.replaceChildren(document.createTextNode("Historical avatar · "));
+  const figureName = document.createElement("strong");
+  figureName.textContent = spec.figure;
+  figure.appendChild(figureName);
+  if (spec.years) figure.appendChild(document.createTextNode(` · ${spec.years}`));
   $("#showcaseName").textContent = n.name;
+  const rationale = spec.rationale || `${spec.figure} is the historical avatar selected for ${n.name}.`;
   $("#showcasePrompt").textContent =
-    `Take the controls in ${n.name}. Your cabinet opens on the same January 1990 board shown here.`;
+    `${rationale} Take the controls on the same January 1990 opening shown here.`;
   $("#showcaseGdp").textContent = fmt.money(n.gdp);
   $("#showcaseGdpRank").textContent = `world output #${setupRank(n, "gdp")}`;
   $("#showcasePop").textContent = fmt.pop(n.population);
@@ -2875,27 +3270,72 @@ function pickNation(name, scrollTo) {
 
 function renderPick() {
   const grid = $("#nationPick");
-  grid.innerHTML = "";
   const list = visiblePicks();
   $("#nationCount").textContent = `${list.length} ${list.length === 1 ? "NATION" : "NATIONS"}`;
   if (!list.length) {
     grid.innerHTML = '<div class="none">No nation matches that search.<br><span class="tiny">Try a shorter name or clear the field.</span></div>';
     return;
   }
+  grid.replaceChildren();
   list.forEach((n) => {
-    const d = document.createElement("button");
-    d.type = "button";
-    d.className = "opt" + (n.name === pickedNation ? " sel" : "");
-    d.dataset.nm = n.name;
-    d.style.setProperty("--nation-hue", nationHue(n));
-    d.setAttribute("aria-pressed", n.name === pickedNation ? "true" : "false");
-    d.setAttribute("aria-label", `${n.name}, output ${fmt.money(n.gdp)}, population ${fmt.pop(n.population)}`);
-    d.innerHTML = `<span class="nation-chip" aria-hidden="true">${n.id.slice(0, 2)}</span>` +
-      `<span class="nation-card-copy"><span class="nm">${n.name}</span>` +
-      `<span class="gd">${fmt.money(n.gdp)} &middot; ${fmt.pop(n.population)}</span></span>` +
-      `<span class="nation-check" aria-hidden="true">&#10003;</span>`;
-    d.onclick = () => pickNation(n.name);
-    d.ondblclick = () => { pickNation(n.name); $("#startBtn").click(); };
+    let d = setupNationButtons.get(n.id);
+    if (!d) {
+      const spec = figureFor(n);
+      d = document.createElement("button");
+      d.type = "button";
+      d.className = "opt";
+      d.dataset.nm = n.name;
+      d.style.setProperty("--nation-hue", nationHue(n));
+
+      const art = document.createElement("span");
+      art.className = "pick-figure-art";
+      art.setAttribute("aria-hidden", "true");
+      const cameo = document.createElement("span");
+      cameo.className = "pick-cameo";
+      const person = document.createElement("span");
+      person.className = "cameo-person";
+      const initials = document.createElement("span");
+      initials.className = "cameo-initials";
+      initials.textContent = figureInitials(spec, n);
+      cameo.append(person, initials);
+      const portrait = document.createElement("img");
+      portrait.className = "pick-portrait";
+      portrait.alt = "";
+      portrait.width = 512;
+      portrait.height = 640;
+      loadFigurePortrait(portrait, spec, false);
+      const flag = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      flag.classList.add("pick-flag");
+      flag.setAttribute("viewBox", "0 0 640 480");
+      flag.setAttribute("preserveAspectRatio", "xMidYMid meet");
+      const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+      flagUse(use, n);
+      flag.appendChild(use);
+      art.append(cameo, portrait, flag);
+
+      const copy = document.createElement("span");
+      copy.className = "nation-card-copy";
+      const country = document.createElement("span");
+      country.className = "nm";
+      country.textContent = n.name;
+      const figure = document.createElement("span");
+      figure.className = "figure-name";
+      figure.textContent = spec.figure;
+      copy.append(country, figure);
+      const check = document.createElement("span");
+      check.className = "nation-check";
+      check.setAttribute("aria-hidden", "true");
+      check.innerHTML = "&#10003;";
+      d.append(art, copy, check);
+      d.onclick = () => pickNation(n.name);
+      d.ondblclick = () => { pickNation(n.name); $("#startBtn").click(); };
+      setupNationButtons.set(n.id, d);
+    }
+    const spec = figureFor(n);
+    const isSelected = n.name === pickedNation;
+    d.classList.toggle("sel", isSelected);
+    d.setAttribute("aria-pressed", isSelected ? "true" : "false");
+    d.setAttribute("aria-label", `${n.name}; historical avatar ${spec.figure}; output ${fmt.money(n.gdp)}; population ${fmt.pop(n.population)}`);
     grid.appendChild(d);
   });
 }
@@ -3105,6 +3545,7 @@ document.addEventListener("keydown", (e) => {
     // Escape keeps the WIDE test: a focused slider is still something Escape
     // should hand back, and that behaviour is unchanged by the split above.
     if (focused(e)) { e.target.blur(); return; }
+    if (dominationIsOpen()) { closeDomination(); return; }
     if (keysCardIsOpen()) { setKeysCard(false); return; }
     if (techMenuIsOpen()) { closeTechMenu(); return; }
     if (tech.open) { techEsc(); return; }
@@ -3123,6 +3564,10 @@ document.addEventListener("keydown", (e) => {
     closeSheet();
     return;
   }
+  // Global Command is a true room: while it is open the simulation and every
+  // screen behind it are inert. Its own key handler keeps focus in the room,
+  // moves across agenda cards, and lets native button Enter/Space clicks work.
+  if (dominationIsOpen()) { dominationKeys(e); return; }
   if (typing(e) || e.ctrlKey || e.metaKey || e.altKey) return;
   // The card is a MODAL: it dims the page, it takes the click that dismisses
   // it, and Escape already treats it as the outermost thing open. It must take
@@ -3170,6 +3615,7 @@ document.addEventListener("keydown", (e) => {
   else if (k === "s" || k === "S") doSave();
   else if (k === "t" || k === "T") toggleTechMenu();
   else if (k === "b" || k === "B") toggleStockScreen();
+  else if (k === "d" || k === "D") openDomination();
   else if (k === "g" || k === "G") toggleLogistics();
   else if (k === "q" || k === "Q") toggleProduction();
   else if (k === "r" || k === "R") revertOrders();
@@ -3227,6 +3673,7 @@ function render() {
     ? `FY ${S.year} · ${m.annual_budget.due ? "budget due" : "budget set"}`
     : "budget & policy";
   $("#dockWorld").textContent = `${S.wars.length} active conflict${S.wars.length === 1 ? "" : "s"} · ${S.log.length} dispatches`;
+  renderDominationDock();
   renderLogisticsDock();
   renderProductionDock();
   // TECH is dead in spectator mode (research_json is null and /api/tech cannot
@@ -3277,6 +3724,7 @@ function render() {
   if (tech.open) refreshTech();
   if (techMenuIsOpen()) renderTechMenu();
   if (stock.open) { renderStock(); stockFetchCards(); }
+  if (dominationIsOpen()) renderDomination();
 }
 
 function noteQueued() {
@@ -13496,6 +13944,356 @@ function drawStockOverlay(ctx, view, globe) {
     }
   }
 }
+
+/* ================= global command: the domination campaign =================
+   The server owns the campaign. In particular, progress, rival count, agenda
+   availability, milestones, blockers and the next action all arrive in
+   S.domination. The browser does not infer control from GDP, population,
+   territory or wars; it composes the served answer into one arcade War Room. */
+
+const DOMW = { open: false, choosing: false, lastFocus: null };
+const DOMINATION_GOAL = "Every surviving country is directly controlled or formally subordinated. No independent rival remains.";
+
+function dominationState() { return S && S.domination && typeof S.domination === "object" ? S.domination : null; }
+function dominationIsOpen() { return DOMW.open && $("#dominationScreen").classList.contains("open"); }
+
+function dominationTone(agenda, index) {
+  const accent = String((agenda && agenda.accent) || "").toLowerCase();
+  if (accent.includes("sea") || accent.includes("cyan") || accent.includes("green") || accent.includes("verdigris")) return "sea";
+  if (accent.includes("brass") || accent.includes("gold") || accent.includes("amber") || accent.includes("ember")) return "brass";
+  return index === 1 ? "sea" : index === 2 ? "brass" : "violet";
+}
+
+function dominationStakeText(stake) {
+  if (stake == null) return "";
+  if (typeof stake === "string" || typeof stake === "number") return String(stake);
+  return String(stake.label || stake.name || stake.text || stake.value || "");
+}
+
+function dominationFigureDecor(agenda) {
+  const id = String((agenda && agenda.figure_nation_id) || (S && S.player) || "");
+  if (!id) return "";
+  const spec = setupFigures[id] || {};
+  const leader = spec.leader_art && typeof spec.leader_art === "object" ? spec.leader_art : null;
+  const portrait = spec.portrait && typeof spec.portrait === "object" ? spec.portrait : null;
+  const asset = (leader && leader.asset) || (portrait && (portrait.asset || portrait.file)) || (typeof spec.portrait === "string" ? spec.portrait : "");
+  const image = asset ? `<img class="dom-card-figure" src="/art/portraits/${logisticsEscAttr(encodeURIComponent(asset))}" alt="" width="512" height="640" loading="lazy" decoding="async">` : "";
+  return `${image}<svg class="dom-card-target-flag" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><use href="/art/nation-flags-v2.svg#flag-${logisticsEscAttr(id)}" width="640" height="480"></use></svg>`;
+}
+
+function dominationLegacyHtml(records) {
+  if (!Array.isArray(records) || !records.length) {
+    return `<div class="dom-empty">Completed agendas will be pressed into the campaign archive as legacy seals.</div>`;
+  }
+  return `<div class="dom-legacy-list">${records.slice(-5).reverse().map((record, index) => {
+    const item = typeof record === "string" ? { title: record } : (record || {});
+    const title = item.title || item.name || item.agenda || "Campaign milestone";
+    const detail = item.completed_date || item.completed_on || item.date || item.description || item.outcome || "Legacy secured";
+    const mark = item.seal || item.mark || String(records.length - index).padStart(2, "0");
+    return `<div class="dom-legacy"><span class="dom-legacy-mark" aria-hidden="true">${escText(mark)}</span><span><b>${escText(title)}</b><span>${escText(detail)}</span></span></div>`;
+  }).join("")}</div>`;
+}
+
+function dominationAgendaCardHtml(agenda, index) {
+  const a = agenda || {};
+  const id = a.id == null ? "" : String(a.id);
+  const title = a.title || "Strategic agenda";
+  const kicker = a.kicker || a.archetype_label || a.archetype || "Campaign route";
+  const route = a.route || a.system || "Global command";
+  const description = a.description || "The campaign director is preparing this route.";
+  const reason = a.state_reason || a.reason || "This option follows from the present world state.";
+  const disabled = !id || a.enabled === false || a.available === false || DOMW.choosing;
+  const stakes = (Array.isArray(a.stakes) ? a.stakes : []).map(dominationStakeText).filter(Boolean).slice(0, 3);
+  return `<button type="button" class="dom-agenda-card ${dominationTone(a, index)}" data-dom-agenda="${logisticsEscAttr(id)}" ${disabled ? "disabled" : ""}
+      aria-label="${logisticsEscAttr(`Choose agenda ${title}. ${reason}`)}">
+    ${dominationFigureDecor(a)}
+    <span class="dom-card-no">Route 0${index + 1} · ${escText(kicker)}</span>
+    <h4>${escText(title)}</h4>
+    <span class="dom-card-route">${escText(route)}</span>
+    <p class="dom-card-desc">${escText(description)}</p>
+    <div class="dom-card-reason">${escText(reason)}</div>
+    ${stakes.length ? `<div class="dom-card-stakes">${stakes.map((stake) => `<span>${escText(stake)}</span>`).join("")}</div>` : ""}
+    <span class="dom-card-choose">Choose this agenda <i aria-hidden="true">→</i></span>
+  </button>`;
+}
+
+function dominationMilestonesHtml(D, active) {
+  const served = Array.isArray(D.milestones) && D.milestones.length
+    ? D.milestones
+    : (Array.isArray(active.milestones) ? active.milestones : []);
+  // The normal contract always serves four records. The labels below are only
+  // a compatibility shell for an older state; they do not award completion.
+  const milestones = served.length ? served : [
+    { threshold: .25, label: "Foothold", reached: false },
+    { threshold: .50, label: "Momentum", reached: false },
+    { threshold: .75, label: "Ascendancy", reached: false },
+    { threshold: 1, label: "Legacy", reached: false },
+  ];
+  return `<div class="dom-milestones" aria-label="Agenda milestones">${milestones.slice(0, 4).map((m, index) => {
+    const threshold = Number.isFinite(+m.threshold) ? +m.threshold : (index + 1) / 4;
+    const percent = Math.round((threshold > 1 ? threshold / 100 : threshold) * 100);
+    const reached = m.reached === true || m.complete === true;
+    return `<div class="dom-milestone${reached ? " reached" : ""}">
+      <span class="dom-seal" aria-hidden="true">${reached ? "✓" : `${percent}%`}</span>
+      <strong>${escText(m.label || m.title || `Milestone ${index + 1}`)}</strong>
+      <small>${reached ? "seal earned" : `${percent}% checkpoint`}</small>
+    </div>`;
+  }).join("")}</div>`;
+}
+
+function dominationNextHtml(D) {
+  const action = D.next_action && typeof D.next_action === "object" ? D.next_action : null;
+  const blocker = D.blocker && typeof D.blocker === "object" ? D.blocker : null;
+  const reason = action && action.reason ? action.reason
+    : blocker && blocker.reason ? blocker.reason
+    : "The campaign director will identify the next useful move after the world advances.";
+  const label = action && action.label ? action.label : "Await next directive";
+  const enabled = !!action && action.enabled !== false;
+  return `<div class="dom-next-card">
+    <div class="dom-eyebrow">One clear move</div>
+    <h3>Next Move</h3>
+    <p>${escText(reason)}</p>
+    <button type="button" class="dom-next-button" data-dom-next ${enabled ? "" : "disabled"}>${escText(label)} &nbsp;→</button>
+    ${blocker ? `<div class="dom-blocker"><b>BLOCKED ·</b> ${escText(blocker.reason || "This route is not open yet.")}</div>` : ""}
+  </div>`;
+}
+
+function dominationActiveHtml(D, active) {
+  const a = active || {};
+  const route = a.route || a.system || a.archetype_label || "Active campaign route";
+  const title = a.title || "Strategic agenda";
+  const description = a.description || "Global Command is tracking this agenda against the living world.";
+  const reason = a.state_reason || a.reason || "This objective follows from the present balance of power.";
+  const legacy = D.completed_legacy || [];
+  return `<div class="dom-section-head"><div><div class="dom-eyebrow">Active agenda</div><h3>The campaign in motion</h3></div><p>Milestones are stamped by the simulation as the world changes.</p></div>
+  <div class="dom-active-grid">
+    <article class="dom-active-card">
+      <div class="dom-active-route">${escText(route)}</div>
+      <h3>${escText(title)}</h3>
+      <p>${escText(description)}</p>
+      <div class="dom-active-reason">${escText(reason)}</div>
+      ${dominationMilestonesHtml(D, a)}
+    </article>
+    <aside class="dom-side-stack">
+      ${dominationNextHtml(D)}
+      <div class="dom-legacy-panel"><div class="dom-eyebrow">Campaign archive</div><h3>Legacy Seals</h3>${dominationLegacyHtml(legacy)}</div>
+    </aside>
+  </div>`;
+}
+
+function dominationOffersHtml(D, offers) {
+  const legacy = D.completed_legacy || [];
+  const cards = offers.slice(0, 3).map(dominationAgendaCardHtml).join("");
+  const conditions = Array.isArray(D.incomplete_conditions) ? D.incomplete_conditions.slice(0, 4) : [];
+  if (!cards) {
+    return `<div class="dom-section-head"><div><div class="dom-eyebrow">Campaign director</div><h3>Reading the world</h3></div></div>
+      <div class="dom-empty">${conditions.length ? conditions.map((x) => escText(typeof x === "string" ? x : (x.label || x.reason || x.text || "Condition pending"))).join(" · ") : "The next three agendas will appear when the campaign state is ready."}</div>`;
+  }
+  return `<div class="dom-section-head"><div><div class="dom-eyebrow">Choose one path forward</div><h3>Three routes. One ending.</h3></div><p>Each choice comes from your present nation, rivals and unfinished campaign.</p></div>
+    <div class="dom-agenda-grid">${cards}</div>
+    ${legacy.length ? `<div class="dom-legacy-panel" style="margin-top:18px"><div class="dom-eyebrow">Campaign archive</div><h3>Legacy Seals</h3>${dominationLegacyHtml(legacy)}</div>` : ""}`;
+}
+
+function dominationVictoryHtml(D) {
+  return `<div class="dom-victory">
+    <div class="dom-victory-seal" aria-hidden="true">◎</div>
+    <div class="dom-eyebrow">The last independent rival has yielded</div>
+    <h3>World secured.</h3>
+    <p>${escText(D.goal || DOMINATION_GOAL)} The campaign remains in the archive as the permanent record of how your sphere became the world.</p>
+    <div class="dom-legacy-panel" style="max-width:620px;margin:26px auto 0;text-align:left"><div class="dom-eyebrow">Completed campaign</div><h3>Legacy Seals</h3>${dominationLegacyHtml(D.completed_legacy || [])}</div>
+  </div>`;
+}
+
+function renderDominationIdentity() {
+  const nation = me();
+  if (!nation) return;
+  $("#dominationNation").textContent = nation.name || S.player_name || nation.id;
+  flagUse($("#dominationFlag"), nation);
+  const spec = figureFor(nation);
+  const image = $("#dominationLeader");
+  const identity = `${nation.id}:${spec.figure || ""}`;
+  if (image.dataset.figure !== identity) {
+    image.dataset.figure = identity;
+    loadFigurePortrait(image, spec, true);
+  }
+  $("#dominationLeaderFallback").textContent = figureInitials(spec, nation);
+  $("#dominationLeaderCaption").textContent = spec.figure
+    ? `${spec.figure} · national command`
+    : `${nation.name || nation.id} · national command`;
+}
+
+function renderDominationDock() {
+  const button = $("#dominationDockBtn"), copy = $("#dockDomination");
+  if (!button) return;
+  const D = dominationState();
+  button.disabled = !D || !S || !S.player;
+  button.setAttribute("aria-expanded", dominationIsOpen() ? "true" : "false");
+  if (!D) {
+    copy.textContent = "campaign director offline";
+    button.style.setProperty("--dom-dock-progress", "0%");
+    button.classList.remove("attention");
+    return;
+  }
+  // Read both values directly from the state contract. progress_percent is the
+  // already-served display value; progress remains the accessible normalized
+  // value and is never reconstructed from map or nation data here.
+  const servedProgress = Number.isFinite(+D.progress) ? clamp(+D.progress, 0, 1) : 0;
+  const percent = Number.isFinite(+D.progress_percent) ? clamp(+D.progress_percent, 0, 100) : Math.round(servedProgress * 100);
+  const active = D.active_agenda && typeof D.active_agenda === "object" ? D.active_agenda : null;
+  const offers = Array.isArray(D.offers) ? D.offers : [];
+  const rivalCount = Number.isFinite(+D.independent_rivals) ? +D.independent_rivals : null;
+  copy.textContent = D.victory ? "world secured"
+    : active ? active.title || "agenda active"
+    : offers.length ? "choose the next agenda"
+    : rivalCount == null ? "campaign director" : `${rivalCount} rivals remain`;
+  button.style.setProperty("--dom-dock-progress", `${percent}%`);
+  button.classList.toggle("attention", !D.victory && !active && offers.length > 0);
+  button.setAttribute("aria-label", `Global Command. ${percent}% toward world domination. ${rivalCount == null ? "Rival count unavailable" : `${rivalCount} independent rivals remain`}.`);
+}
+
+function renderDomination() {
+  const D = dominationState();
+  if (!D) return;
+  renderDominationIdentity();
+  const servedProgress = Number.isFinite(+D.progress) ? clamp(+D.progress, 0, 1) : 0;
+  const percent = Number.isFinite(+D.progress_percent) ? clamp(+D.progress_percent, 0, 100) : Math.round(servedProgress * 100);
+  $("#dominationGoal").innerHTML = `<strong>Universal end goal:</strong> ${escText(D.goal || DOMINATION_GOAL)}`;
+  $("#dominationPhase").textContent = D.victory ? "The final seal"
+    : D.generation != null ? `Campaign generation ${D.generation}`
+    : "The final mandate";
+  $("#dominationProgress").textContent = `${Math.round(percent)}%`;
+  const rail = $("#dominationProgressRail");
+  rail.style.setProperty("--dom-progress", `${percent}%`);
+  rail.setAttribute("aria-valuenow", String(Math.round(percent)));
+  const rivalCount = Number.isFinite(+D.independent_rivals) ? Math.max(0, Math.round(+D.independent_rivals)) : null;
+  $("#dominationRivalCount").textContent = rivalCount == null ? "—" : String(rivalCount);
+  const rivalNames = Array.isArray(D.rivals)
+    ? D.rivals.slice(0, 4).map((r) => typeof r === "string" ? r : (r && (r.name || r.id))).filter(Boolean)
+    : [];
+  $("#dominationRivals").textContent = rivalNames.join(" · ") || (D.victory ? "No independent rival remains." : "Independent powers remain beyond your sphere.");
+  const active = D.active_agenda && typeof D.active_agenda === "object" ? D.active_agenda : null;
+  const offers = Array.isArray(D.offers) ? D.offers : [];
+  $("#dominationBody").innerHTML = D.victory
+    ? dominationVictoryHtml(D)
+    : active ? dominationActiveHtml(D, active)
+    : dominationOffersHtml(D, offers);
+  $("#dominationBody").querySelectorAll("[data-dom-agenda]").forEach((button) => {
+    button.onclick = () => chooseDominationAgenda(button.dataset.domAgenda);
+  });
+  const next = $("#dominationBody").querySelector("[data-dom-next]");
+  if (next) next.onclick = () => routeDominationNextMove(D.next_action);
+  renderDominationDock();
+}
+
+async function chooseDominationAgenda(id) {
+  if (!id || DOMW.choosing) return;
+  DOMW.choosing = true;
+  renderDomination();
+  try {
+    const response = await api("/api/command", { commands: [{ kind: "choose_domination_agenda", id }] });
+    if (response.errors && response.errors.length) banner(response.errors[0]);
+    else banner("Agenda sealed. Global Command is tracking the campaign.");
+    await adopt(response, false);
+  } catch (error) {
+    banner(error.message || "Global Command could not seal that agenda.");
+  } finally {
+    DOMW.choosing = false;
+    if (dominationIsOpen()) renderDomination();
+  }
+}
+window.chooseDominationAgenda = chooseDominationAgenda;
+
+function openDomination() {
+  const D = dominationState();
+  if (!D) { banner("Global Command will come online when a campaign is active."); return; }
+  if (dominationIsOpen()) return;
+  DOMW.lastFocus = document.activeElement;
+  if (keysCardIsOpen()) setKeysCard(false);
+  if (tech.open) closeTech();
+  if (stock.open) closeStock();
+  if (LOGI.open) closeLogistics();
+  if (PROD.open) closeProduction();
+  closeTechMenu();
+  closeGameDrawers();
+  closeSheet();
+  DOMW.open = true;
+  const screen = $("#dominationScreen");
+  screen.classList.add("open");
+  screen.setAttribute("aria-hidden", "false");
+  document.body.classList.add("domination-open");
+  renderDomination();
+  requestAnimationFrame(() => {
+    const target = screen.querySelector("[data-dom-agenda]:not(:disabled), [data-dom-next]:not(:disabled), .dom-close");
+    if (target) target.focus({ preventScroll: true });
+  });
+}
+
+function closeDomination() {
+  if (!DOMW.open) return;
+  DOMW.open = false;
+  const screen = $("#dominationScreen");
+  screen.classList.remove("open");
+  screen.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("domination-open");
+  renderDominationDock();
+  const back = DOMW.lastFocus;
+  DOMW.lastFocus = null;
+  if (back && back.isConnected && typeof back.focus === "function") back.focus({ preventScroll: true });
+}
+window.openDomination = openDomination;
+window.closeDomination = closeDomination;
+
+function dominationKeys(event) {
+  if (event.key === "d" || event.key === "D") { event.preventDefault(); closeDomination(); return; }
+  const room = $("#dominationScreen");
+  const agendas = [...room.querySelectorAll("[data-dom-agenda]:not(:disabled)")];
+  if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && agendas.length) {
+    event.preventDefault();
+    const current = agendas.indexOf(document.activeElement);
+    const step = event.key === "ArrowRight" ? 1 : -1;
+    agendas[(current + step + agendas.length) % agendas.length].focus();
+    return;
+  }
+  if (event.key === "Tab") {
+    const focusable = [...room.querySelectorAll("button:not(:disabled), [href], [tabindex]:not([tabindex='-1'])")]
+      .filter((el) => !el.hidden && el.getClientRects().length);
+    if (!focusable.length) { event.preventDefault(); return; }
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    return;
+  }
+  // Keep page-scroll and all simulation shortcuts behind the modal. Enter and
+  // Space on a focused button retain their native click behaviour.
+  if ((event.key === " " || event.key.startsWith("Arrow")) && !event.target.closest("button")) event.preventDefault();
+}
+
+function routeDominationNextMove(action) {
+  if (!action || action.enabled === false) return;
+  const system = String(action.system || action.route || "").toLowerCase();
+  const route = String(action.route || "").toLowerCase();
+  closeDomination();
+  if (system.includes("manufactur")) { PROD.mode = "manufacture"; openProduction(); return; }
+  if (system.includes("production") || system.includes("construction") || system.includes("industry")) { PROD.mode = "build"; openProduction(); return; }
+  if (system.includes("logistic") || system.includes("route")) { openLogistics(action.commodity); return; }
+  if (system.includes("resource") || system.includes("trade") || system.includes("mine")) {
+    const commodity = action.commodity || (route.includes(":") ? route.split(":").pop() : null);
+    openStock(commodity); return;
+  }
+  if (system.includes("tech") || system.includes("research")) { openTech(action.domain); return; }
+  if (system.includes("econom") || system.includes("budget") || system.includes("policy") || system.includes("government")) { toggleGameDrawer("cabinetDrawer"); return; }
+  if (system.includes("war") || system.includes("conflict") || system.includes("world") || system.includes("diplom")) { toggleGameDrawer("intelDrawer"); return; }
+  if (system.includes("map") || system.includes("province") || system.includes("territor")) {
+    showTab("map");
+    if (action.target && nationById(action.target)) openNation(action.target);
+    return;
+  }
+  banner(action.reason || "Global Command has marked the next move, but that system is not open yet.");
+}
+window.routeDominationNextMove = routeDominationNextMove;
+
+$("#dominationDockBtn").onclick = openDomination;
+$("#dominationClose").onclick = closeDomination;
 
 $("#stockBtn").onclick = toggleStockScreen;
 

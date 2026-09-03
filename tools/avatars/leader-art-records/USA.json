@@ -1,0 +1,16 @@
+{
+  "nation_id": "USA",
+  "figure": "Abraham Lincoln",
+  "leader_art": {
+    "asset": "USA-leader-088ed05335f8.png",
+    "sha256": "088ed05335f8aaba7e5266558bb73adae308b525fa0b43171b05c2c8cd243705",
+    "identity_source_asset": "USA-d924827d2a14.webp",
+    "style": "soft-arcade-historical-leader-v1",
+    "background_mode": "transparent",
+    "generated": "2026-09-02",
+    "generator": "OpenAI image generation",
+    "credit": "AI-generated game character based on the verified public-domain Alexander Gardner portrait recorded for this nation.",
+    "prompt_record": "tools/avatars/prompts/USA-abraham-lincoln-v1.md",
+    "review": "Identity, full-body composition, period clothing, and transparent alpha manually reviewed."
+  }
+}

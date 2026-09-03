@@ -2,6 +2,7 @@ pub mod arsenal;
 pub mod commitment;
 pub mod data;
 pub mod districts;
+pub mod domination;
 pub mod dyads;
 pub mod economy;
 pub mod front;
@@ -132,6 +133,9 @@ pub enum Command {
     /// Take one of the options the world is currently offering this government.
     /// Carries the stratagem's stable id, never an index into the deck.
     EnactStratagem { nation: NationId, id: String },
+    /// Choose one of the three deterministic steps toward the campaign's sole
+    /// ending: world domination. The stable id comes from `domination::view`.
+    ChooseDominationAgenda { nation: NationId, agenda: String },
 
     // --- Government: who holds office, and what holding it costs ---
     /// Bring a party into the cabinet. Carries the party's stable id.
@@ -390,6 +394,9 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             stratagems::by_id(id).map_or(0.0, |s| s.cost),
             REFUSABLE,
         ),
+        // A campaign direction is information, not a policy purchase. It
+        // observes existing systems and never grants a stat reward.
+        Command::ChooseDominationAgenda { nation, .. } => (*nation, 0.0, REFUSABLE),
 
         // A coalition partner is bought, not persuaded, and the bill is the
         // distance between you: a neighbouring party wants a ministry, one at
@@ -873,6 +880,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
             }
             (s.enact)(w, *nation);
         }
+        Command::ChooseDominationAgenda { nation, agenda } => {
+            domination::choose(w, *nation, agenda)?;
+        }
         Command::InviteToGovernment { nation, party } => {
             government::invite(w, *nation, party)?
         }
@@ -991,6 +1001,9 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // the government wakes up holding.
     ("government", government::tick),
     ("politics", politics::tick),
+    // The campaign director reads the settled month. It grants no bonus and
+    // consumes no RNG; it only advances milestone seals and the sole victory.
+    ("domination", domination::tick),
 ];
 
 /// Advance the world one month. Commands are applied before systems tick.

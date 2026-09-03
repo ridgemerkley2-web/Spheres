@@ -1182,6 +1182,9 @@ fn conquer(w: &mut WorldState, winner: NationId, loser: NationId) {
     // subjugated instead, and survive to resent it.
     let lsep = w.nation(loser).separatism;
     if lpop < 8.0 && lsep < 0.6 {
+        // Any clients of a sovereign seat that disappears pass to the victor;
+        // the dead seat itself can no longer sit in the formal hierarchy.
+        crate::domination::absorb_subjects(w, winner, loser);
         {
             let l = w.nation_mut(loser);
             l.alive = false;
@@ -1214,6 +1217,10 @@ fn conquer(w: &mut WorldState, winner: NationId, loser: NationId) {
             n.stability = (n.stability + 8.0).min(100.0);
         }
         w.set_relation(winner, loser, -80.0);
+        // Unlike the old one-month penalty, capitulation is now a persistent
+        // sovereignty result. Global domination walks this hierarchy
+        // transitively; aid, friendship and trade alone never count.
+        crate::domination::subjugate(w, winner, loser);
         w.headline(format!(
             "{} capitulates to {} — reparations, disarmament, humiliation.",
             loser.name(), winner.name()
@@ -1413,4 +1420,37 @@ pub fn join_side(c: &mut Conflict, id: NationId, side_a: bool, rung: u8, objecti
         c.side_b.push(id);
     }
     c.posture.push(Belligerent::new(id, rung, objective));
+}
+
+#[cfg(test)]
+mod domination_conquest_tests {
+    use super::*;
+    use crate::init::world_1990;
+
+    #[test]
+    fn a_large_capitulation_writes_the_formal_subject_relation() {
+        let mut w = world_1990(GameRules::default());
+        assert!(w.nation(NationId::Canada).population >= 8.0);
+        conquer(&mut w, NationId::USA, NationId::Canada);
+        assert!(w.nation(NationId::Canada).alive);
+        assert!(crate::domination::is_subordinate_client(
+            &w,
+            NationId::USA,
+            NationId::Canada
+        ));
+    }
+
+    #[test]
+    fn annexing_an_overlord_transfers_its_subject_tree() {
+        let mut w = world_1990(GameRules::default());
+        crate::domination::subjugate(&mut w, NationId::Kuwait, NationId::Canada);
+        assert!(w.nation(NationId::Kuwait).population < 8.0);
+        conquer(&mut w, NationId::USA, NationId::Kuwait);
+        assert!(!w.nation(NationId::Kuwait).alive);
+        assert!(crate::domination::is_subordinate_client(
+            &w,
+            NationId::USA,
+            NationId::Canada
+        ));
+    }
 }

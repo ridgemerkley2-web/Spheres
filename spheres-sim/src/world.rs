@@ -1059,6 +1059,12 @@ pub struct WorldState {
     #[serde(default, skip_serializing_if = "crate::manufacturing::Manufacturing::is_empty")]
     pub manufacturing: crate::manufacturing::Manufacturing,
 
+    /// The universal world-domination campaign: formal subject hierarchy,
+    /// deterministic agenda cards, progress seals and completed legacy. Empty
+    /// in a non-player or legacy world, preserving the old save shape.
+    #[serde(default, skip_serializing_if = "crate::domination::Domination::is_empty")]
+    pub domination: crate::domination::Domination,
+
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it
     /// could disagree with the vector it indexes, and it must not touch the
