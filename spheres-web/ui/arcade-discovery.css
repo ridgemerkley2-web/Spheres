@@ -1,0 +1,244 @@
+/* Discovery rooms: cosmetic layout only. Tech SVG card dimensions and type
+   remain owned by the graph renderer; readable detail lives in the inspector. */
+#stockScreen, #techScreen, #stockTip, #techTip, #techMenu, #sheet .talks {
+  --ink: var(--arc-text, #f4f0ec); --bright: var(--arc-text, #f4f0ec);
+  --dim: var(--arc-muted, #bdc5d1); --faint: #a4afc2;
+  --brass-hi: var(--arc-gold, #ebcc91); --brass-dim: #c5b18a;
+  --cyan: var(--arc-mint, #a8d4c3); --green: var(--arc-mint, #a8d4c3);
+  --amber: var(--arc-gold, #ebcc91); --red: var(--arc-rose, #efb4a5);
+  --line: var(--arc-edge, #c6b5e338); --panel: #192333; --panel-2: #202938; --well: #141b27;
+  color: var(--ink); font-family: var(--arc-font, system-ui, sans-serif); font-size: 16px; line-height: 1.55;
+}
+#stockScreen, #techScreen {
+  background: radial-gradient(ellipse at 85% 0%, #c6b5e317, transparent 50%),
+    radial-gradient(ellipse at 0% 80%, #a8d4c311, transparent 55%), var(--arc-bg, #141b27);
+}
+#stockScreen button, #techScreen button, #techMenu button, #sheet .talks button {
+  font-family: inherit; text-transform: none; letter-spacing: normal; cursor: pointer;
+}
+#stockScreen :is(button,select):focus-visible, #techScreen :is(button,input):focus-visible,
+#techMenu button:focus-visible, #sheet .talks :is(button,select,summary):focus-visible,
+#stockScreen summary:focus-visible {
+  outline: 3px solid var(--arc-gold, #ebcc91); outline-offset: 3px;
+}
+#stockScreen button:disabled, #techScreen button:disabled, #sheet .talks button:disabled {
+  cursor: not-allowed; opacity: .58;
+}
+#stockScreen .tbar, #techScreen .tbar {
+  height: 72px; padding: 12px clamp(18px,3vw,44px); gap: 18px;
+  background: #141b27ed; border-bottom: 1px solid var(--line); box-shadow: none;
+}
+#stockScreen .ttitle, #techScreen .ttitle {
+  color: var(--ink); font: 700 clamp(22px,2.3vw,31px)/1.15 var(--serif); font-variant: normal; letter-spacing: -.02em;
+}
+#stockScreen .tsub, #techScreen .tsub { font-size: 14px; line-height: 1.4; color: var(--dim); }
+#stockScreen .tbar .x, #techScreen .tbar .x {
+  min-width: 46px; min-height: 46px; border-radius: 50%; border: 1px solid var(--line);
+  background: #ffffff06; font-size: 16px; padding: 8px 13px; color: var(--ink);
+}
+#stockScreen .discovery-kicker, #sheet .talks .discovery-kicker {
+  display: block; margin-bottom: 5px; color: var(--cyan); font-size: 12px; font-weight: 750; letter-spacing: .15em; text-transform: uppercase;
+}
+#stockScreen .discovery-intro { padding: 2px 0 23px; }
+#stockScreen .discovery-intro h1 { margin: 5px 0 12px; font: 700 clamp(30px,3.4vw,46px)/1.15 var(--serif); letter-spacing: -.025em; }
+#stockScreen .discovery-intro p { max-width: 720px; color: var(--dim); margin: 0; font-size: 16px; }
+#stockScreen #stockRows { top: 72px; right: 420px; padding: 28px clamp(18px,2.6vw,40px) 40px; }
+#stockScreen .stockcols { display: none; }
+#stockScreen .stock-card-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+#stockScreen .stockrow {
+  position: relative; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px 18px;
+  width: 100%; align-items: start; padding: 22px; text-align: left; line-height: 1.45;
+  border: 1px solid var(--line); border-left: 3px solid var(--dim); border-radius: 22px 22px 8px 22px;
+  background: linear-gradient(145deg,#ffffff07,#ffffff02); transition: border-color .15s, background .15s;
+}
+#stockScreen .stockrow:hover { background: #c6b5e313; border-color: #c6b5e377; }
+#stockScreen .stockrow.sel { background: linear-gradient(140deg,#a8d4c321,#202b38); border-color: var(--cyan); box-shadow: inset 0 0 0 1px #a8d4c32b; }
+#stockScreen .stockrow .gy { position: absolute; top: 23px; left: 21px; }
+#stockScreen .stockrow .gy svg { width: 28px; height: 28px; }
+#stockScreen .stockrow .nm { grid-column: 1/-1; min-height: 50px; padding-left: 42px; }
+#stockScreen .stockrow .nm b { font: 700 23px/1.2 var(--serif); letter-spacing: 0; font-variant: normal; }
+#stockScreen .stockrow .nm .sen { font-size: 14px; line-height: 1.5; margin-top: 8px; color: var(--dim); }
+#stockScreen .stockrow .nm .tiny { color: var(--dim); font-size: 14px; line-height: 1.5; margin-top: 7px; }
+#stockScreen .stockrow .num { min-width: 0; text-align: left; font: 650 20px/1.25 var(--arc-font,system-ui,sans-serif); white-space: normal; color: var(--ink); }
+#stockScreen .stockrow .num::before { content: attr(data-label); display: block; margin-bottom: 4px; color: var(--dim); font-size: 13px; font-weight: 400; }
+#stockScreen .stockrow .num em { display: block; color: var(--dim); font-size: 13px; margin: 3px 0 0; }
+#stockScreen .stockrow .cov .bar { height: 5px; margin-top: 8px; border-radius: 8px; overflow: hidden; }
+#stockScreen .stockrow .st { grid-column: 1/-1; justify-self: start; text-align: left; border-radius: 20px; padding: 3px 10px; background: #ffffff08; font-size: 13px; letter-spacing: .04em; }
+#stockScreen .stockrow.st-stalled { border-left-color: var(--red); }
+#stockScreen .stockrow.st-short { border-left-color: var(--amber); }
+#stockScreen .stockrow:is(.st-ok,.st-supplied) { border-left-color: var(--cyan); }
+#stockScreen .stockrow:is(.st-ok,.st-supplied) :is(.st,.net) { color: var(--cyan); }
+#stockScreen .stockfold { width: 100%; margin-top: 16px; padding: 15px 20px; color: var(--dim); background: #ffffff04; border: 1px dashed var(--line); border-radius: 14px; font-size: 15px; text-align: left; }
+#stockScreen .stockhead { margin: 24px 0 12px; color: var(--ink); font: 700 25px/1.3 var(--serif); letter-spacing: 0; font-variant: normal; }
+#stockScreen .discovery-details, #techDock .discovery-details {
+  border: 1px solid var(--line); border-radius: 15px; padding: 15px 18px; margin: 0 0 20px; background: #111b2866;
+}
+#stockScreen .discovery-details summary, #techDock .discovery-details summary { color: var(--dim); font-size: 16px; font-weight: 600; cursor: pointer; }
+#stockScreen .discovery-details[open] summary, #techDock .discovery-details[open] summary { margin-bottom: 18px; }
+#stockScreen .marketstrip { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 9px; margin-bottom: 0; }
+#stockScreen .marketchip { min-height: 70px; padding: 12px; border-radius: 12px; grid-template-columns: 20px minmax(0,1fr) 16px; background: #202938; }
+#stockScreen .marketchip svg { width: 19px; height: 19px; }
+#stockScreen .marketchip .mq b { font: 600 14px/1.3 var(--arc-font,system-ui,sans-serif); letter-spacing: 0; white-space: normal; text-transform: none; overflow: visible; }
+#stockScreen .marketchip .mq small { margin-top: 5px; color: var(--dim); font-size: 14px; }
+#stockScreen .marketchip .mt { font-size: 17px; }
+#stockScreen :is(.contractrow,.offerrow) { flex-wrap: wrap; padding: 18px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 14px; font-size: 15px; background: #a8d4c308; }
+#stockScreen :is(.contractrow,.offerrow) .ln { flex: 1 1 250px; }
+#stockScreen :is(.contractrow,.offerrow) :is(.tiny,button) { font-size: 14px; }
+#stockScreen :is(.contractrow,.offerrow) button { min-height: 42px; padding: 9px 14px; border-radius: 10px; }
+#stockScreen .offerrow [data-answer="accept"] { background: var(--cyan); color: #15362c; border-color: var(--cyan); }
+#stockDock { top: 72px; width: 420px; padding: 26px; background: #1a2432f5; border-left: 1px solid var(--line); box-shadow: none; font-size: 16px; scroll-margin-top: 80px; }
+#stockDock h2 { font: 700 31px/1.2 var(--serif); letter-spacing: 0; font-variant: normal; margin-bottom: 10px; }
+#stockDock h2 svg { width: 30px; height: 30px; }
+#stockDock .sub { font-size: 15px; line-height: 1.55; margin-bottom: 20px; }
+#stockDock .stock-back-link { display: none; }
+#stockDock .marketcard { border-radius: 18px; padding: 18px; background: #c6b5e30a; margin-bottom: 18px; }
+#stockDock .marketcard .mh { font: 700 13px/1.4 var(--arc-font,system-ui,sans-serif); letter-spacing: .06em; margin-bottom: 15px; }
+#stockDock .marketcard .band { font-size: 12px; padding: 3px 8px; }
+#stockDock .marketcells { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px 10px; }
+#stockDock .marketcells span { padding: 0 0 0 9px; font-size: 13px; text-transform: none; color: var(--dim); }
+#stockDock .marketcells b { font: 650 16px/1.4 var(--arc-font,system-ui,sans-serif); white-space: normal; overflow: visible; margin-top: 4px; }
+#stockDock .marketcard .marketnote { font-size: 14px; line-height: 1.5; margin-top: 16px; color: var(--dim); }
+#stockDock .stock-route-link { min-height: 46px; font: 650 14px var(--arc-font,system-ui,sans-serif); letter-spacing: 0; border-radius: 12px; margin-bottom: 23px; padding: 10px; background: #a8d4c311; color: var(--cyan); }
+#stockDock .strat { padding: 21px; border: 1px solid var(--line); border-radius: 21px 21px 7px 21px; background: #ffffff04; margin: 0 0 17px; }
+#stockDock .strat .top { flex-wrap: wrap; gap: 6px 12px; align-items: baseline; }
+#stockDock .strat .nm { font: 700 25px/1.2 var(--serif); color: var(--ink); letter-spacing: 0; }
+#stockDock .strat .cost { font-size: 13px; color: var(--amber); }
+#stockDock .strat :is(.blurb,.why,.plus,.minus,.short) { font-size: 14px; line-height: 1.6; }
+#stockDock .strat .blurb { font-size: 16px; margin: 12px 0; }
+#stockDock .strat .why { margin-top: 12px; color: var(--dim); }
+#stockDock .strat .why.off { opacity: 1; }
+#stockDock .strat .minus { color: #d7bca8; }
+#stockDock .strat.poor { opacity: 1; border-style: dashed; }
+#stockDock .strat .foot { flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+#stockDock .strat button { min-height: 44px; padding: 10px 14px; font-size: 14px; font-weight: 650; border-radius: 12px; }
+#stockDock .strat button[data-act="talks"], #stockDock .strat button[data-act="mine"] { background: var(--cyan); color: #15362c; border-color: var(--cyan); }
+#stockDock select { width: 100%; min-height: 44px; font-size: 15px; background: #141d2a; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 9px; }
+#stockDock .advisor { padding: 14px; border-left: 2px solid var(--amber); background: #ebcc9108; border-radius: 0 12px 12px 0; font-size: 15px; line-height: 1.6; }
+
+/* Technology: enlarge the controls and reading surface, never graph geometry. */
+#techMenu { top: 78px; right: 18px; width: min(470px,calc(100vw - 36px)); max-height: calc(100dvh - 100px); overflow: auto; padding: 10px; border-radius: 22px; border: 1px solid var(--line); background: #1b2433f7; box-shadow: 0 22px 70px #04081288; }
+#techMenu .discovery-menu-title { padding: 12px 14px 17px; margin: 0; font: 700 26px/1.2 var(--serif); }
+#techMenu .drow { width: 100%; min-height: 85px; padding: 15px; gap: 15px; text-align: left; border: 1px solid transparent; border-bottom-color: var(--line); border-radius: 12px; background: transparent; color: var(--ink); }
+#techMenu .drow:hover { background: #a8d4c30e; border-color: #a8d4c354; }
+#techMenu .drow svg { width: 34px; height: 34px; color: var(--cyan); }
+#techMenu .drow > div { min-width: 0; flex: 1; }
+#techMenu .drow .nm { font: 650 17px/1.35 var(--arc-font,system-ui,sans-serif); letter-spacing: 0; font-variant: normal; }
+#techMenu .drow .cnt { font-size: 14px; float: right; margin-left: 12px; }
+#techMenu .drow .proj { display: block; font-size: 14px; line-height: 1.45; margin-top: 5px; }
+#techMenu .drow .bar { height: 5px; }
+#techMenu .dfoot { width: 100%; min-height: 52px; padding: 15px; gap: 12px; border-radius: 12px; margin-top: 10px; color: #17372e; background: var(--cyan); font-size: 14px; }
+#techMenu .dfoot b { color: inherit; font: 700 16px var(--arc-font,system-ui,sans-serif); letter-spacing: 0; font-variant: normal; }
+#techScreen #techFind { width: clamp(160px,21vw,320px); min-height: 43px; font: 15px var(--arc-font,system-ui,sans-serif); border-radius: 12px; padding: 10px 14px; }
+#techMenu .menu-close { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 11px; background: #c6b5e315; color: var(--ink); border: 1px solid var(--line); font-size: 24px; }
+#techMenu .discovery-menu-title { padding-right: 36px; }
+#techScreen #techFit { min-height: 43px; padding: 9px 16px; font-size: 14px; border-radius: 11px; }
+#techScreen #techTabs { top: 72px; height: 90px; padding: 10px 18px; gap: 10px; overflow-x: auto; overflow-y: hidden; background: #141b27ed; border-bottom: 1px solid var(--line); }
+#techScreen .dtab { flex: 1 0 145px; min-width: 145px; height: 68px; display: grid; padding: 7px 12px 10px; border-radius: 15px 15px 5px 15px; background: #222c3b; }
+#techScreen .dtab .nm { display: block; font: 600 14px/1.3 var(--arc-font,system-ui,sans-serif); color: var(--ink); letter-spacing: 0; font-variant: normal; white-space: normal; overflow: visible; }
+#techScreen .dtab .cnt { margin-right: 14px; font-size: 12px; }
+#techScreen .dtab .k { font-size: 10px; }
+#techScreen .dtab[aria-selected="true"] { background: #a8d4c314; box-shadow: inset 0 0 0 1px var(--dt); }
+#techScreen #techBackdrop { inset: 72px 0 0; background: radial-gradient(ellipse at 75% 8%,var(--dtF),transparent 65%),#141b27; }
+#techScreen #techStageWrap, #techScreen #techViewport { top: 162px; }
+#techScreen #techRuler { top: 162px; }
+#techScreen #techEras { background: linear-gradient(#141b27f5,#141b27e6); }
+#techScreen #techEras .era { padding-top: 13px; padding-bottom: 13px; font-size: 14px; letter-spacing: .03em; }
+#techScreen #techEras .era .yrs { display: block; margin: 4px 0 0; font-size: 11px; }
+#techScreen #techPriPill { top: 173px; right: 18px; padding: 10px 16px; font: 650 14px var(--arc-font,system-ui,sans-serif); letter-spacing: 0; }
+#techScreen #techFindHint { top: 162px; padding: 9px 16px; border-radius: 0 0 12px 12px; font-size: 14px; background: #202938f7; }
+#techScreen #techLegend { max-width: calc(100% - 24px); flex-wrap: wrap; gap: 7px 16px; padding: 11px 16px; border-radius: 13px; font-size: 13px; background: #1b2433ef; }
+#techScreen #techSvg .eraband.a { fill: #172231; } #techScreen #techSvg .eraband.b { fill: #1c2635; }
+#techScreen .tsvg .node .pl { fill: #273447; }
+#techScreen .tsvg .node.st-known .pl { fill: #323832; }
+#techScreen .tsvg .node.st-locked .pl { fill: #202939; }
+#techScreen .tsvg .edge { stroke: #637287; } #techScreen .tsvg .edge.met { stroke: #9fadaf; }
+#techDock { top: 162px; width: 420px; padding: 27px; background: #1b2635f7; border-left-color: var(--line); box-shadow: -18px 0 35px #08101a22; }
+#techDock .discovery-dock-close { float: right; width: 36px; min-height: 36px; padding: 5px; margin: -10px -10px 8px 12px; border-radius: 50%; font-size: 21px; background: #ffffff08; }
+#techDock h2 { font: 700 29px/1.2 var(--serif); font-variant: normal; letter-spacing: -.015em; margin: 0 0 13px; }
+#techDock .sub { font-size: 14px; line-height: 1.55; margin-bottom: 16px; }
+#techDock h4 { color: var(--cyan); font-size: 14px; margin: 25px 0 10px; letter-spacing: .04em; }
+#techDock .fx { padding-left: 20px; font-size: 16px; line-height: 1.65; }
+#techDock .fx li { margin-bottom: 6px; }
+#techDock .cap, #techDock .path { font-size: 14px; line-height: 1.6; margin-top: 9px; }
+#techDock .chip { padding: 9px 12px; min-height: 40px; font-size: 14px; border-radius: 11px; background: #c6b5e30a; line-height: 1.4; text-align: left; }
+#techDock .row { width: 100%; min-height: 42px; padding: 9px 10px; font-size: 14px; text-align: left; border-radius: 9px; border: 1px solid var(--line); background: #ffffff03; margin: 7px 0; }
+#techDock .row .yr { font-size: 12px; }
+#techDock .go { width: 100%; padding: 14px 18px; min-height: 52px; margin-top: 23px; border-radius: 14px; font-size: 16px; font-weight: 700; background: var(--cyan); color: #17372e; }
+#techScreen:has(#techDock[style*="display: block"]) :is(#techStageWrap,#techViewport,#techRuler) { right: 420px; }
+#techScreen:has(#techDock[style*="display: block"]) #techPriPill { right: 438px; }
+#stockTip, #techTip { max-width: min(350px,calc(100vw - 32px)); min-width: 220px; padding: 16px; background: #202938f7; border-radius: 14px; line-height: 1.55; }
+#stockTip .tt-nm, #techTip .tt-nm { font-size: 16px; }
+#stockTip .tt-yr, #techTip .tt-yr { font-size: 12px; }
+#stockTip :is(.tt-st,.tt-fx,.tt-more), #techTip :is(.tt-st,.tt-fx,.tt-more) { font-size: 14px; }
+
+/* Trade remains inside the shared sheet; no sheet/window styling escapes it. */
+#sheet .talks { grid-template-columns: minmax(220px,.8fr) minmax(0,2fr); gap: 24px; margin-top: 25px; }
+#sheet .talks .card { padding: 23px; background: #ffffff04; border: 1px solid var(--line); border-radius: 22px 22px 8px 22px; }
+#sheet .talks h3 { font: 700 27px/1.25 var(--serif); letter-spacing: -.01em; text-transform: none; margin: 0 0 18px; }
+#sheet .talks h4 { font-size: 14px; letter-spacing: .04em; color: var(--dim); margin: 18px 0 9px; }
+#sheet .talks .relrow { width: 100%; padding: 15px 12px; border: 1px solid transparent; border-bottom-color: var(--line); border-radius: 12px; text-align: left; grid-template-columns: minmax(0,1fr) auto; gap: 6px 10px; background: transparent; color: var(--ink); }
+#sheet .talks .relrow.on { border-color: var(--cyan); background: #a8d4c318 !important; }
+#sheet .talks .trade-search-label { display: block; margin: 0 0 8px; color: var(--dim); font-size: 14px; }
+#sheet .talks #tradePartnerSearch { width: 100%; min-height: 44px; padding: 10px 12px; margin-bottom: 13px; border: 1px solid var(--line); border-radius: 11px; background: #172231; color: var(--ink); font: 16px var(--arc-font,system-ui,sans-serif); }
+#sheet .talks .trade-partner-list { max-height: clamp(240px,48dvh,560px); overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
+#sheet .talks .trade-partner-list [hidden] { display: none !important; }
+#sheet .talks .relrow .nm { font-size: 16px; white-space: normal; }
+#sheet .talks .relrow .num { font-size: 14px; }
+#sheet .talks .word { grid-column: 1/-1; text-align: left; font-size: 12px; letter-spacing: .06em; }
+#sheet .talks .trade-exchange { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px; }
+#sheet .talks .trade-exchange > section { padding: 19px; border: 1px solid var(--line); border-radius: 16px; background: #c6b5e306; min-width: 0; }
+#sheet .talks .btnrow { flex-wrap: wrap; gap: 9px; }
+#sheet .talks .btnrow button { padding: 12px 15px; min-height: 49px; border-radius: 12px; font-size: 16px; background: #263142; }
+#sheet .talks .btnrow button small { font-size: 13px; color: var(--dim); margin-top: 4px; }
+#sheet .talks .btnrow button.on { background: var(--cyan); border-color: var(--cyan); color: #15362c; }
+#sheet .talks .btnrow button.on small { color: #244b40; }
+#sheet .talks select { max-width: 100%; width: 100%; min-height: 45px; padding: 9px 12px; font-size: 15px; background: #172231; border: 1px solid var(--line); border-radius: 11px; color: var(--ink); }
+#sheet .talks .trade-verdict { padding: 22px; margin-top: 22px; border: 1px solid #a8d4c345; background: #a8d4c30a; border-radius: 18px; }
+#sheet .talks .answer { font: 700 24px/1.4 var(--serif); margin: 7px 0 15px; }
+#sheet .talks :is(.plus,.minus,.short,.tiny) { font-size: 14px; line-height: 1.65; }
+#sheet .talks .minus { color: #d7bca8; }
+#sheet .talks .foot { margin-top: 19px; flex-wrap: wrap; }
+#sheet .talks .foot button { min-height: 50px; padding: 13px 20px; font-size: 16px; font-weight: 700; border-radius: 13px; background: var(--cyan); color: #15362c; }
+@media (max-width: 1180px) {
+  #stockScreen .stock-card-grid { grid-template-columns: 1fr; }
+  #stockScreen .marketstrip { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  #sheet .talks .trade-exchange { grid-template-columns: 1fr; }
+  #techScreen .tsub { display: none; }
+}
+@media (max-width: 800px) {
+  #stockScreen { overflow-y: auto; }
+  #stockScreen .tbar { position: sticky; top: 0; height: auto; min-height: 72px; }
+  #stockScreen .tsub { max-width: 40vw; font-size: 12px; }
+  #stockScreen #stockRows, #stockDock { position: relative; inset: auto; width: auto; padding: 22px 18px; }
+  #stockDock { border: 0; border-top: 1px solid var(--line); }
+  #stockDock .stock-back-link { display: block; min-height: 44px; padding: 10px 15px; margin-bottom: 20px; border-radius: 12px; font-size: 15px; }
+  #stockScreen .discovery-intro h1 { font-size: 33px; }
+  #stockScreen .stock-card-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+  #stockScreen .stockrow { padding: 17px; gap: 12px; }
+  #stockScreen .stockrow .gy { position: static; grid-column: 1/-1; }
+  #stockScreen .stockrow .nm { padding-left: 0; }
+  #stockScreen .stockrow .num { font-size: 17px; }
+  #stockScreen .stockrow .nm b { font-size: 21px; }
+  #techScreen .tbar { padding: 12px; gap: 8px; }
+  #techScreen .ttitle { font-size: 22px; }
+  #techScreen #techFind { width: 120px; min-width: 0; flex: 1; }
+  #techScreen #techFit { padding: 9px; }
+  #techScreen #techTabs { padding-inline: 12px; }
+  #techScreen .dtab { flex-basis: 150px; }
+  #techDock { top: auto; bottom: 10px; right: 10px; left: 10px; width: auto; height: 45dvh; border: 1px solid var(--line); border-radius: 22px; padding: 23px; }
+  #techScreen:has(#techDock[style*="display: block"]) :is(#techStageWrap,#techViewport) { right: 0; bottom: calc(45dvh + 20px); }
+  #techScreen:has(#techDock[style*="display: block"]) #techRuler { right: 0; }
+  #techScreen:has(#techDock[style*="display: block"]) #techPriPill { right: 18px; }
+  #techScreen #techPriPill { max-width: calc(100vw - 36px); font-size: 12px; }
+  #sheet .talks { grid-template-columns: 1fr; gap: 15px; }
+  #sheet .talks .trade-partner-list { max-height: 190px; }
+}
+@media (max-width: 480px) {
+  #stockScreen .stock-card-grid { grid-template-columns: 1fr; }
+  #stockScreen .marketstrip { grid-template-columns: 1fr 1fr; }
+  #techScreen #techFit { display: none; }
+  #stockScreen .contractrow .ln, #stockScreen .offerrow .ln { flex-basis: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #stockScreen .stockrow, #techScreen .dtab { transition: none; }
+}

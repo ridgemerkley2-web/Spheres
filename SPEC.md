@@ -172,3 +172,50 @@ Every mechanic is validated three ways; `cargo test` gates every change; regress
 3. Scope — years of work. Mitigation: vertical-slice discipline; every phase ships a playable artifact.
 4. Generic-feeling narrative — mitigated by the sim generating real drama plus template combinatorics + LLM flavor.
 5. Balance — mitigated by statistical combat testing and deterministic replays.
+# Current extension — daily ministry programs (2026-09-03, local review)
+
+Approved design: `MINISTRY_BUDGET_DESIGN.md`. `Nation.program_budget` is optional
+and absent from legacy saves. `SetProgramBudget` carries fiscal year, ten annual
+GDP allocations and a 10×5 integer-basis-point matrix; every row totals 10,000.
+Only explicit player enrollment activates the model. Deprecated coarse fiscal
+commands cannot bypass an enrolled plan. Read-only previews never enact or pay.
+
+One daily opening GDP/calendar basis releases service spending and capital
+authorization. Capital consumers preflight their complete bundle of authority,
+raw inputs, industrial goods and work capacity; a blocked bundle spends none.
+All consumers share departmental balances. End-of-day settlement posts actual
+new spending once; previously expensed procurement funds are not billed twice.
+Unused capital authority expires on fiscal-year rollover; renewal does not
+duplicate accrual or erase unfinished physical work. Capital formation excludes
+industrial running costs and reaches the existing macro channel next day.
+
+`production.industry` holds opt-in manufactured goods, extended province sites,
+project/mine financing and daily operations. Seven added construction kinds plus
+existing estates/grids and mapped mine development provide ten Industry choices.
+Processing and machinery consume the existing raw ledger and modeled power;
+freight terminals improve real gateway capacity; warehouses hold manufactured
+packs; automation/efficiency consume researched upgrades. No direct GDP writes.
+UI prices, balances, recipes, progress, eligibility and effects come from Rust.
+
+## Current extension — provincial GDP accounts (2026-09-03, local review)
+
+Approved foundation: `PROVINCE_ECONOMY.md`. Browser worlds enable an optional
+worldwide economic ledger; legacy/default worlds serialize no new ledger.
+The existing national GDP is decomposed into eight modeled sectors and mapped
+province accounts with an explicit unallocated remainder. These are estimates
+anchored to the existing national data, not sourced historical local accounts.
+
+Successful project work and physical operating flows post local value added.
+New material and capital-goods packs use named model accounting prices, raw
+inputs use the resource price table, and internal power is deducted by its
+consumer and credited to its producer once. Empty enabling capacity and military
+order placement do not fabricate production. Prior project output rates are
+replaced each day, never accumulated into GDP as cash. An enrolled department
+budget's explicitly represented capital does not additionally drive aggregate
+public-investment growth; the inherited public-investment reference remains
+with the background economy. Private investment remains a macroeconomic input.
+
+Ownership changes reconcile local accounts to existing national transfers.
+Save/resume retains the same estimates, receipts and timeline. Read-only
+province and country endpoints serve full-precision figures for all owners;
+the browser only formats them and discloses their modeled provenance.

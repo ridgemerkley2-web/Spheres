@@ -25,14 +25,28 @@ pub enum ProjectKind {
     PowerGrid,
     ResearchCenter,
     ArmsPlant,
+    MachineryWorks,
+    Generation,
+    ProcessingPlant,
+    FreightTerminal,
+    Warehouse,
+    Automation,
+    Efficiency,
 }
 
-pub const PROJECT_KINDS: [ProjectKind; 5] = [
+pub const PROJECT_KINDS: [ProjectKind; 12] = [
     ProjectKind::Infrastructure,
     ProjectKind::CivilianIndustry,
     ProjectKind::PowerGrid,
     ProjectKind::ResearchCenter,
     ProjectKind::ArmsPlant,
+    ProjectKind::MachineryWorks,
+    ProjectKind::Generation,
+    ProjectKind::ProcessingPlant,
+    ProjectKind::FreightTerminal,
+    ProjectKind::Warehouse,
+    ProjectKind::Automation,
+    ProjectKind::Efficiency,
 ];
 
 impl ProjectKind {
@@ -43,6 +57,13 @@ impl ProjectKind {
             Self::PowerGrid => "power_grid",
             Self::ResearchCenter => "research_center",
             Self::ArmsPlant => "arms_plant",
+            Self::MachineryWorks => "machinery_works",
+            Self::Generation => "generation",
+            Self::ProcessingPlant => "processing_plant",
+            Self::FreightTerminal => "freight_terminal",
+            Self::Warehouse => "warehouse",
+            Self::Automation => "automation",
+            Self::Efficiency => "efficiency",
         }
     }
 
@@ -77,7 +98,7 @@ impl Priority {
         }
     }
 
-    fn weight(self) -> f64 {
+    pub(crate) fn weight(self) -> f64 {
         match self {
             Self::High => 3.0,
             Self::Normal => 2.0,
@@ -85,7 +106,7 @@ impl Priority {
         }
     }
 
-    fn dispatch_rank(self) -> u8 {
+    pub(crate) fn dispatch_rank(self) -> u8 {
         match self {
             Self::High => 0,
             Self::Normal => 1,
@@ -164,6 +185,7 @@ impl ProvinceCapabilities {
             ProjectKind::PowerGrid => self.power_grid,
             ProjectKind::ResearchCenter => self.research_centers,
             ProjectKind::ArmsPlant => self.arms_plants,
+            _ => 0, // Extended sites live in the opt-in industry ledger.
         }
     }
 
@@ -174,6 +196,7 @@ impl ProvinceCapabilities {
             ProjectKind::PowerGrid => &mut self.power_grid,
             ProjectKind::ResearchCenter => &mut self.research_centers,
             ProjectKind::ArmsPlant => &mut self.arms_plants,
+            _ => return,
         };
         *slot = slot.saturating_add(1).min(MAX_PROVINCE_LEVEL);
     }
@@ -189,6 +212,8 @@ pub struct Production {
     pub provinces: Vec<ProvinceCapabilities>,
     #[serde(default, skip_serializing_if = "is_zero")]
     pub next_id: u32,
+    #[serde(default, skip_serializing_if = "crate::industry::Industry::is_empty")]
+    pub industry: crate::industry::Industry,
 }
 
 fn is_zero(value: &u32) -> bool {
@@ -197,7 +222,10 @@ fn is_zero(value: &u32) -> bool {
 
 impl Production {
     pub fn is_empty(&self) -> bool {
-        self.projects.is_empty() && self.provinces.is_empty() && self.next_id == 0
+        self.projects.is_empty()
+            && self.provinces.is_empty()
+            && self.next_id == 0
+            && self.industry.is_empty()
     }
 }
 
@@ -234,7 +262,7 @@ pub fn catalog(kind: ProjectKind) -> ProjectSpec {
         },
         ProjectKind::CivilianIndustry => ProjectSpec {
             kind,
-            name: "Civilian Industry",
+            name: "Industrial Estates",
             description: "Factories, machine shops, and construction suppliers.",
             effect: "+0.15 national construction capacity per level.",
             total_days: 540,
@@ -249,8 +277,8 @@ pub fn catalog(kind: ProjectKind) -> ProjectSpec {
         ProjectKind::PowerGrid => ProjectSpec {
             kind,
             name: "Power Grid",
-            description: "Generation, substations, and resilient transmission.",
-            effect: "Adds one province power-grid capability level.",
+            description: "Substations and transmission for new industrial facilities.",
+            effect: "Delivers 5 modeled power units/day per level to this province; requires national generation.",
             total_days: 420,
             political_cost: 10.0,
             funding_ministry: BUDGET_INDUSTRY,
@@ -286,11 +314,38 @@ pub fn catalog(kind: ProjectKind) -> ProjectSpec {
                 12.0, 15.0, 4.0, 10.0, 0.0, 0.0, 55.0, 0.0, 0.0, 2.0, 3.0, 0.0,
             ],
         },
+        _ => crate::industry::catalog(kind),
     }
 }
 
-pub fn catalog_all() -> [ProjectSpec; 5] {
+pub fn catalog_all() -> [ProjectSpec; 12] {
     PROJECT_KINDS.map(catalog)
+}
+
+/// Unified capability lookup; old save records retain their original shape.
+pub fn level(w: &WorldState, district: &str, kind: ProjectKind) -> u8 {
+    if crate::industry::extended(kind) {
+        crate::industry::site_level(w, district, kind)
+    } else {
+        province_capabilities(w, district).level(kind)
+    }
+}
+
+pub fn funding_department(kind: ProjectKind) -> usize {
+    match kind {
+        ProjectKind::PowerGrid | ProjectKind::Generation => 1,
+        ProjectKind::ProcessingPlant => 2,
+        ProjectKind::FreightTerminal | ProjectKind::Warehouse | ProjectKind::ArmsPlant => 3,
+        ProjectKind::Automation | ProjectKind::Efficiency => 4,
+        _ => 0,
+    }
+}
+
+pub fn project_finance(
+    w: &WorldState,
+    project: &Project,
+) -> Option<crate::industry::ProjectFinanceView> {
+    crate::industry::project_finance(w, project)
 }
 
 pub fn province_capabilities(w: &WorldState, district: &str) -> ProvinceCapabilities {
@@ -310,6 +365,10 @@ pub fn projects_for(w: &WorldState, nation: NationId) -> impl Iterator<Item = &P
 }
 
 pub fn funding_ratio(w: &WorldState, nation: NationId, kind: ProjectKind) -> f64 {
+    if crate::programs::enrolled(w, nation) {
+        let cost = crate::industry::work_cost_bn(kind) / catalog(kind).total_days as f64;
+        return (crate::industry::project_authority(w, nation, kind) / cost).clamp(0.0, 1.25);
+    }
     let spec = catalog(kind);
     let allocation = w.nation(nation).budget_for(w.year).allocations[spec.funding_ministry];
     (allocation / spec.funding_required.max(1e-9)).clamp(0.0, 1.25)
@@ -328,6 +387,11 @@ pub fn construction_capacity(w: &WorldState, nation: NationId) -> f64 {
 }
 
 fn rate_for(w: &WorldState, project: &Project) -> f64 {
+    if w.production.industry.projects.contains_key(&project.id) {
+        return crate::industry::project_plans(w)
+            .get(&project.id)
+            .map_or(0.0, |p| p.advance_days);
+    }
     let total_weight: f64 = projects_for(w, project.nation)
         .map(|p| p.priority.weight())
         .sum();
@@ -345,6 +409,10 @@ fn rate_for(w: &WorldState, project: &Project) -> f64 {
 /// ETA at today's funding, queue priorities, and completed capacity. A blocked
 /// project has no honest ETA until its stated blocker is cleared.
 pub fn estimated_days_left(w: &WorldState, project: &Project) -> Option<u32> {
+    if let Some(finance) = project_finance(w, project) {
+        return (finance.reason.is_none() && finance.next_work_days > 1e-9).then(||
+            ((project.total_days as f64 - project.progress_days).max(0.0) / finance.next_work_days).ceil() as u32);
+    }
     if project.status == ProjectStatus::Blocked
         || input_shortfalls(w, project)
             .into_iter()
@@ -362,6 +430,11 @@ pub fn estimated_days_left(w: &WorldState, project: &Project) -> Option<u32> {
 /// server-authoritative present-tense requirement; the catalog recipe is the
 /// whole-project bill and must not be mistaken for today's shortage.
 pub fn next_resource_draw(w: &WorldState, project: &Project) -> [f64; 12] {
+    if w.production.industry.projects.contains_key(&project.id) {
+        return crate::industry::project_plans(w)
+            .get(&project.id)
+            .map_or([0.0; 12], |p| p.required);
+    }
     if w.districts.get(&project.district) != Some(&project.nation)
         || !w.nation_opt(project.nation).is_some_and(|n| n.alive)
         || funding_ratio(w, project.nation, project.kind) < 0.05
@@ -438,13 +511,16 @@ pub fn start_project_error(
             district
         ));
     }
-    if province_capabilities(w, district).level(kind) >= MAX_PROVINCE_LEVEL {
+    if level(w, district, kind) >= MAX_PROVINCE_LEVEL {
         return Some(format!(
             "{} is already at level {} in {}.",
             catalog(kind).name,
             MAX_PROVINCE_LEVEL,
             district
         ));
+    }
+    if let Some(reason) = crate::industry::project_refusal(w, nation, district, kind) {
+        return Some(reason);
     }
     None
 }
@@ -473,6 +549,12 @@ pub fn start_project(
         total_days: spec.total_days,
         resources_used: [0.0; 12],
     });
+    if crate::programs::enrolled(w, nation) {
+        w.production
+            .industry
+            .projects
+            .insert(id, crate::industry::ProjectFunding::default());
+    }
     w.headline(format!(
         "{} starts {} in {}.",
         nation.name(),
@@ -529,6 +611,7 @@ pub fn cancel_project(w: &mut WorldState, nation: NationId, project: u32) -> Res
         ));
     }
     let removed = w.production.projects.remove(index);
+    w.production.industry.projects.remove(&project);
     w.headline(format!(
         "{} cancels {} in {}; committed materials are sunk.",
         nation.name(),
@@ -545,7 +628,11 @@ fn set_blocked(w: &mut WorldState, id: u32, reason: String) {
     }
 }
 
-fn complete_capability(w: &mut WorldState, district: &str, kind: ProjectKind) {
+pub(crate) fn complete_capability(w: &mut WorldState, district: &str, kind: ProjectKind) {
+    if crate::industry::extended(kind) {
+        crate::industry::complete_site(w, district, kind);
+        return;
+    }
     match w
         .production
         .provinces
@@ -565,16 +652,45 @@ pub fn tick_day(w: &mut WorldState) {
     if !w.rules.production_system || w.production.projects.is_empty() {
         return;
     }
+    crate::industry::begin_work_day(w);
 
     // Snapshot the opening queue. A blocked project does not partly consume,
     // and a completion cannot change another project's allocation until the
     // next day.
     let mut opening = w.production.projects.clone();
+    let program_plans = crate::industry::project_plans(w);
     // Priority governs scarce inputs as well as capacity. Stable id breaks a
     // tie, so replay order never depends on a map or on a UI's card order.
     opening.sort_by_key(|project| (project.priority.dispatch_rank(), project.id));
     let mut completed: Vec<(u32, NationId, String, ProjectKind)> = vec![];
     for project in opening {
+        if let Some(plan) = program_plans.get(&project.id) {
+            if w.production
+                .industry
+                .projects
+                .get(&project.id)
+                .is_some_and(|f| f.last_day == Some(crate::clock::absolute_day(w)))
+            {
+                continue;
+            }
+            if let Err(reason) = crate::industry::settle_project(w, &project, plan) {
+                set_blocked(w, project.id, reason);
+            } else if w
+                .production
+                .projects
+                .iter()
+                .find(|p| p.id == project.id)
+                .is_some_and(|p| p.progress_days + 1e-9 >= p.total_days as f64)
+            {
+                completed.push((
+                    project.id,
+                    project.nation,
+                    project.district.clone(),
+                    project.kind,
+                ));
+            }
+            continue;
+        }
         if w.districts.get(&project.district) != Some(&project.nation) {
             set_blocked(
                 w,
@@ -671,6 +787,8 @@ pub fn tick_day(w: &mut WorldState) {
         if row.progress_days + 1e-9 >= row.total_days as f64 {
             completed.push((row.id, row.nation, row.district.clone(), row.kind));
         }
+        crate::gdp_projects::record_construction(w,&project,advance,
+            crate::industry::work_cost_bn(project.kind)*advance/project.total_days.max(1) as f64,false);
     }
 
     for (id, nation, district, kind) in completed {
@@ -678,8 +796,9 @@ pub fn tick_day(w: &mut WorldState) {
             continue;
         };
         w.production.projects.remove(index);
+        w.production.industry.projects.remove(&id);
         complete_capability(w, &district, kind);
-        let level = province_capabilities(w, &district).level(kind);
+        let level = level(w, &district, kind);
         w.headline(format!(
             "{} completes {} level {} in {}.",
             nation.name(),

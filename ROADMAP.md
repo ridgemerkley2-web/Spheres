@@ -1,5 +1,22 @@
 # SPHERES Roadmap
 
+## Local review — not yet committed or pushed (2026-09-03)
+
+Ministry programs: fifty visible department budgets under ten ministries,
+atomic annual-plan commands, shared daily project funding, realized-spend fiscal
+settlement, Defense ownership of supply and force support, and ten Industry
+investment choices with a powered materials/machinery/construction chain.
+See `MINISTRY_BUDGET_DESIGN.md` for implemented boundaries and remaining slices.
+Keep general services prebaked; next decisions are balancing/build pacing and
+which service department or manufactured-goods market to deepen after review.
+
+Province GDP foundation: worldwide country/sector/province accounts, modeled
+starting allocations anchored to existing national GDP, explicit unmapped
+remainders, and local value-added receipts for current project activity.
+Province cards and country Economy dossiers expose the composition and distinguish
+production from enabling capacity. See `PROVINCE_ECONOMY.md` for accounting and
+data boundaries. This extends, and does not discard, the ministry review build.
+
 ## Done (v0.5 rebuild)
 - **The treasury, the escalating interest and the ministry collapse**
   (2026-09-02, Ridge's call, quoted: "Add in an interest over GDP figure that

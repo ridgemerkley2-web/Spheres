@@ -1,0 +1,54 @@
+/* The campaign sheet shares the arcade palette, but gives data the spotlight. */
+#pane-charts:has(.chronicle) { padding-top: 24px; }
+.chronicle { color: var(--arc-text); font: 16px/1.5 var(--arc-font); }
+.chr-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 18px; padding: 0; border: 0; background: none; box-shadow: none; }
+.chr-heading h1 { font: 700 clamp(36px,4vw,58px)/1.06 var(--serif); letter-spacing: -.025em; margin: 10px 0 12px; }
+.chr-heading p { color: var(--arc-muted); font-size: 18px; margin: 0; }
+.chr-orbit { width: 135px; height: 105px; flex: none; margin-right: 18px; position: relative; border: 1px solid #c6b5e343; border-radius: 50%; transform: rotate(-22deg); background: radial-gradient(ellipse,#a8d4c31c,transparent 68%); }
+.chr-orbit::before { content: ""; position: absolute; inset: 13px -10px; border: 1px solid #a8d4c339; border-radius: 50%; }
+.chr-orbit span { position: absolute; inset: 0; display: grid; place-items: center; transform: rotate(22deg); color: var(--arc-mint); font-size: 64px; }
+.chr-orbit i { position: absolute; right: 8px; top: 1px; width: 18px; height: 18px; border-radius: 50%; background: var(--arc-gold); box-shadow: 0 0 22px #ebcc9133; }
+.chr-toolbar { display: flex; align-items: end; flex-wrap: wrap; gap: 22px; padding: 20px 0; border-block: 1px solid var(--arc-edge); }
+.chr-toolbar label, .chr-period > span { display: block; font-size: 14px; color: var(--arc-muted); }
+.chr-toolbar select { display: block; margin-top: 7px; width: min(300px,100%); min-height: 46px; font: 600 17px var(--arc-font); background: #202b3b; color: var(--arc-text); border: 1px solid #c6b5e359; border-radius: 12px; padding: 10px 36px 10px 14px; }
+.chr-period > div { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 7px; }
+.chr-toolbar button, #chronicleBack { min-height: 46px; padding: 10px 15px; border-radius: 12px; font: 650 15px/1.4 var(--arc-font); background: #202b3b; border: 1px solid var(--arc-edge); color: var(--arc-text); }
+.chr-toolbar button[aria-pressed="true"] { color: #17332b; background: var(--arc-mint); border-color: var(--arc-mint); }
+#chronicleCompare { margin-left: auto; background: transparent; color: var(--arc-gold); }
+.chr-timeline { margin: 22px 0 26px; padding: 19px 24px 15px; background: linear-gradient(110deg,#c6b5e313,#a8d4c30b); border: 1px solid var(--arc-edge); border-radius: 18px; }
+.chr-time-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.chr-time-top label { font-weight: 650; }
+.chr-time-top small { display: block; color: var(--arc-muted); font: 14px/1.5 var(--arc-font); font-weight: 400; margin-top: 3px; }
+.chr-time-top output { font: 700 28px/1.3 var(--serif); color: var(--arc-gold); white-space: nowrap; }
+#chronicleDate { width: 100%; margin: 13px 0 5px; height: 32px; accent-color: var(--arc-mint); cursor: pointer; }
+.chr-time-ends { display: flex; justify-content: space-between; gap: 18px; font-size: 13px; color: var(--arc-muted); }
+.chr-timeline > p { font-size: 14px; margin: 10px 0 0; color: var(--arc-muted); }
+.chr-metric-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
+.chr-metric { --chr-color: var(--arc-mint); min-width: 0; overflow: hidden; padding: 21px 22px 10px; background: radial-gradient(ellipse at 95% 0,color-mix(in srgb,var(--chr-color) 8%,transparent),transparent 60%),#1c2634; border: 1px solid var(--arc-edge); border-radius: 22px 22px 7px 22px; }
+.chr-rose { --chr-color: var(--arc-rose); } .chr-gold { --chr-color: var(--arc-gold); } .chr-lilac { --chr-color: var(--arc-lilac); } .chr-blue { --chr-color: #abcde3; }
+.chr-card-top { display: flex; gap: 12px; align-items: center; justify-content: space-between; color: var(--arc-muted); font-size: 13px; }
+.chr-card-mark { color: var(--chr-color); font-size: 26px; line-height: 1; }
+.chr-metric h2 { margin: 6px 0 7px; color: var(--arc-text); font: 700 24px/1.3 var(--serif); }
+.chr-number { font: 700 clamp(29px,3.1vw,44px)/1.2 var(--serif); letter-spacing: -.015em; overflow-wrap: anywhere; }
+.chr-unit { color: var(--arc-muted); font-size: 13px; margin: 6px 0 17px; }
+.chr-change { display: flex; align-items: center; gap: 10px; color: var(--arc-text); font-size: 18px; }
+.chr-change-arrow { font-size: 24px; color: var(--chr-color); line-height: 1; }
+.chr-baseline { color: var(--arc-muted); font-size: 13px; margin: 5px 0 12px; min-height: 20px; }
+.chr-plot { width: 100%; min-width: 0; min-height: 176px; }
+.chr-chart { display: block; max-width: 100%; min-width: 0; overflow: visible; }
+.chr-chart .chr-axis { font: 11px var(--arc-font); fill: var(--arc-muted); }
+.chr-chart .chr-grid { stroke: #c6b5e329; stroke-width: 1; }
+.chr-chart .chr-line { stroke: var(--chr-color); stroke-width: 2.6; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.chr-chart .chr-cursor { stroke: var(--arc-muted); opacity: .55; stroke-dasharray: 3 4; }
+.chr-chart .chr-dot { fill: var(--chr-color); stroke: #1c2634; stroke-width: 2; }
+.chr-no-series { display: grid; place-items: center; min-height: 160px; font-size: 15px; color: var(--arc-muted); }
+.chr-foot { display: flex; align-items: start; justify-content: space-between; gap: 22px; margin-top: 24px; color: var(--arc-muted); font-size: 14px; }
+.chr-foot details { max-width: 610px; } .chr-foot summary { cursor: pointer; color: var(--arc-text); } .chr-foot p { line-height: 1.7; }
+@media (max-width: 1100px) { .chr-metric-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } #chronicleCompare { margin-left: 0; } }
+@media (max-width: 650px) {
+  .chr-heading { gap: 12px; } .chr-heading h1 { font-size: 36px; } .chr-heading p { font-size: 16px; } .chr-orbit { width: 65px; height: 65px; } .chr-orbit span { font-size: 38px; }
+  .chr-toolbar { gap: 17px; } .chr-toolbar label, .chr-period { width: 100%; } .chr-toolbar select { width: 100%; } .chr-period > div { display: grid; grid-template-columns: repeat(4,1fr); } .chr-period button { padding-inline: 9px; font-size: 14px; }
+  .chr-timeline { padding: 18px 16px; } .chr-time-top { align-items: start; flex-direction: column; gap: 8px; } .chr-time-top output { font-size: 28px; }
+  .chr-metric-grid { grid-template-columns: 1fr; gap: 17px; } .chr-metric { padding: 21px 20px 8px; } .chr-number { font-size: 40px; }
+  .chr-foot { flex-direction: column; }
+}

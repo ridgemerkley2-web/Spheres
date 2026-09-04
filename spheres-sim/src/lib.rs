@@ -7,8 +7,10 @@ pub mod dyads;
 pub mod economy;
 pub mod front;
 pub mod government;
+pub mod gdp_projects;
 pub mod exact;
 pub mod init;
+pub mod industry;
 pub mod logistics;
 pub mod clock;
 pub mod manufacturing;
@@ -16,6 +18,8 @@ pub mod ministries;
 pub mod nations;
 pub mod politics;
 pub mod production;
+pub mod programs;
+pub mod province_economy;
 pub mod resources;
 pub mod statecraft;
 pub mod stratagems;
@@ -44,6 +48,13 @@ pub enum Command {
         nation: NationId,
         fiscal_year: i32,
         allocations: [f64; BUDGET_MINISTRIES],
+    },
+    /// Enroll actual-expenditure departmental budgets in one atomic annual vote.
+    SetProgramBudget {
+        nation: NationId,
+        fiscal_year: i32,
+        allocations: [f64; BUDGET_MINISTRIES],
+        departments: programs::Shares,
     },
     /// Put a domain's laboratories onto a named technology, or hand the choice
     /// back to them with `None`. Switching away from a project in progress
@@ -278,6 +289,11 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
                 REFUSABLE,
             )
         }
+        Command::SetProgramBudget { nation, fiscal_year, allocations, departments } => {
+            let annual = Command::SetAnnualBudget { nation:*nation, fiscal_year:*fiscal_year, allocations:*allocations };
+            let base = command_price(w, &annual).map_or(0.0, |(_, p, _)|p);
+            (*nation, base + programs::department_price(w, *nation, *fiscal_year, allocations, departments), REFUSABLE)
+        }
         Command::SetAnnualBudget { nation, fiscal_year, allocations } => {
             let n = w.nation(*nation);
             let current = n.budget_for(w.year);
@@ -504,6 +520,12 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 /// this returns the sim's own prose rather than composing its own.
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     match c {
+        Command::SetMilSpend { nation, .. } | Command::SetStateInvest { nation, .. }
+        | Command::SetBudget { nation, .. } | Command::SetAnnualBudget { nation, .. }
+            if programs::enrolled(w, *nation) => Some("Use the department budget to change an enrolled spending plan.".into()),
+        Command::SetProgramBudget { nation, fiscal_year, allocations, departments } => {
+            programs::validation(w, *nation, *fiscal_year, allocations, departments)
+        }
         Command::SetCommitment { conflict, nation, rung } => {
             commitment::rung_blocked(w, w.conflict(*conflict)?, *nation, *rung)
         }
@@ -620,6 +642,12 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
             n.state_invest_gdp = investment.clamp(0.0, 0.40);
             n.mil_spend_gdp = military.clamp(0.0, 0.35);
             n.annual_budget = None;
+        }
+        Command::SetProgramBudget { nation, fiscal_year, allocations, departments } => {
+            if let Some(why) = programs::validation(w, *nation, *fiscal_year, allocations, departments) { return Err(why); }
+            dispatch(w, &Command::SetAnnualBudget { nation:*nation, fiscal_year:*fiscal_year, allocations:*allocations })?;
+            programs::install(w, *nation, *fiscal_year, *departments);
+            industry::enroll_projects(w, *nation);
         }
         Command::SetAnnualBudget { nation, fiscal_year, allocations } => {
             if *fiscal_year != w.year {
@@ -991,6 +1019,7 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // arsenal's gate in this same month, so it is built before tech and
     // procurement get their turn. Nothing else reads it.
     ("resources", resources::tick),
+    ("industry", industry::tick_day),
     // Research is funded out of the output the economy has just produced, and
     // what it unlocks is in the nation's hands before the soldiers and the
     // politicians get their turn with it.
@@ -1094,10 +1123,14 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         }
     }
 
+    province_economy::begin_day(w);
+    programs::begin_day(w);
     production::tick_day(w);
 
     if clock::is_daily(w) {
         for (_, system) in SYSTEMS { system(w); }
+        programs::finish_day(w);
+        province_economy::finish_day(w);
         clock::advance_date(w);
         return w.headlines[before..].to_vec();
     }

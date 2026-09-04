@@ -347,7 +347,8 @@ pub struct Fiscal {
 impl Fiscal {
     pub fn of(n: &Nation, terms: &GrowthTerms) -> Fiscal {
         let revenue_gdp = n.tax_rate + terms.budget_oil_revenue;
-        let spend_gdp = terms.social_spend + n.mil_spend_gdp + n.state_invest_gdp;
+        let spend_gdp = crate::programs::fiscal_spending_share(n,
+            terms.social_spend + n.mil_spend_gdp + n.state_invest_gdp);
         let effective_rate =
             effective_interest_rate(n.interest_rate, n.inflation, n.debt_gdp);
         let interest_bn = n.debt_bn.map_or(0.0, |debt| debt * effective_rate);
@@ -564,6 +565,7 @@ pub fn growth_terms(
     interest_rate: f64,
     c: &Conditions,
 ) -> GrowthTerms {
+    let state_invest = crate::programs::effective_investment(n, state_invest);
     let oil_price = c.oil_price;
     let sanction_share = c.sanction_share;
     let at_war = c.at_war;
@@ -1296,12 +1298,13 @@ pub fn tick(w: &mut WorldState) {
         let budget_gap: [f64; BUDGET_MINISTRIES] = std::array::from_fn(|i| {
             if Some(id) == player { w.nation(id).budget_gap(i) } else { 0.0 }
         });
+        let project_level = crate::province_economy::project_level(w, id);
         let n = w.nation_mut(id);
 
         // The whole of this nation's year, priced by `growth_terms` — the one
         // definition, which the browser's policy panel is now handed rather
         // than reimplementing. What stays here is only what MUTATES.
-        let invest = n.state_invest_gdp + n.priv_invest_gdp;
+        let invest = crate::programs::effective_investment(n, n.state_invest_gdp) + n.priv_invest_gdp;
         let terms = growth_terms(
             n,
             n.state_invest_gdp,
@@ -1389,8 +1392,11 @@ pub fn tick(w: &mut WorldState) {
         }
 
         let growth_annual = (terms.before_noise + noise).max(WORST_ANNUAL_COLLAPSE);
+        let opening_output = n.gdp;
+        let previous_reported_growth = n.growth_last;
 
-        n.gdp *= 1.0 + growth_annual / 12.0 * dt;
+        crate::province_economy::apply_macro_factor(&mut n.gdp, project_level,
+            1.0 + growth_annual / 12.0 * dt);
         n.growth_last = if daily {
             n.growth_last * (1.0 - growth_blend) + growth_annual * growth_blend
         } else {
@@ -1460,9 +1466,18 @@ pub fn tick(w: &mut WorldState) {
                 // bounded rather than bounded by inspection.
                 let gap = ((entitled - paid) / CAPITAL_ELASTICITY).clamp(-2.0, 2.0);
                 let step = CAPITAL_ELASTICITY * CONVERGENCE * (crate::exact::exp(gap) - 1.0) * dt;
-                n.gdp *= crate::exact::exp(step);
+                crate::province_economy::apply_macro_factor(&mut n.gdp, project_level,
+                    crate::exact::exp(step));
                 n.capital_level_paid = Some(paid + step);
             }
+        }
+        if project_level.is_some_and(|level|level>0.0) && opening_output > 0.0 {
+            // Report the base-only macro multiplier plus the capital-level
+            // adjustment actually realized. Project replacement adds its own
+            // separate level delta at the end of this same daily tick.
+            let actual_annual = (n.gdp / opening_output - 1.0) / (dt / 12.0);
+            n.growth_last = previous_reported_growth * (1.0 - growth_blend)
+                + actual_annual * growth_blend;
         }
 
         // THE OIL TERMS-OF-TRADE LEVEL BELONGS HERE, beside the other two level
@@ -1516,6 +1531,12 @@ pub fn tick(w: &mut WorldState) {
         let revenue_gdp = books.revenue_gdp;
         let spend_gdp = books.spend_gdp;
         match (n.treasury_bn, n.debt_bn) {
+            _ if n.program_budget.is_some() => {
+                // Actual programme disbursements are not all known until
+                // procurement/industry finish. One end-of-day fiscal posting
+                // replaces, rather than supplements, the blanket ministry bill.
+                crate::programs::stage_fiscal(n, revenue_gdp, books.interest_bn);
+            }
             // THE BOOKS ARE OPEN. The two stocks are the state's finances and
             // this block is their only writer, `debt_gdp` becoming their
             // quotient at the end of the month rather than a thing pushed

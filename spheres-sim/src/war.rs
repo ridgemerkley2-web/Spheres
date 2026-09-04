@@ -442,7 +442,7 @@ pub fn seize_terms(w: &WorldState, c: &Conflict, control: f64) -> (f64, f64) {
 /// `adequacy_at` falls as the share rises, so a caller that assumed the closed
 /// form would flatter every increase and punish every cut.
 pub fn sustained_force(n: &Nation, mil_spend_gdp: f64) -> f64 {
-    let budget = n.gdp * mil_spend_gdp; // $bn/yr
+    let budget = n.gdp * crate::programs::force_support_share(n, mil_spend_gdp); // $bn/yr
     (budget * 0.30).max(0.0).sqrt()
         * 8.0
         * crate::tech::military_multiplier(n)
@@ -542,6 +542,9 @@ pub fn health_retention(w: &WorldState, id: NationId) -> f64 {
 /// INERT WITHOUT A PLAN, by the same early return as `health_retention`:
 /// `budget_gap` is 0.0 on the whole default board and `x * 1.0` is exact.
 pub fn industry_refill(w: &WorldState, id: NationId) -> f64 {
+    if crate::programs::enrolled(w, id) {
+        return crate::programs::refill_multiplier(w.nation(id), None);
+    }
     let gap = w.nation(id).budget_gap(BUDGET_INDUSTRY);
     if gap == 0.0 {
         return 1.0;

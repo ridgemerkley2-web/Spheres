@@ -788,6 +788,8 @@ impl NationRecord {
             priv_invest_gdp: self.economy.priv_invest_gdp,
             social_spend_gdp: None,
             annual_budget: None,
+            program_budget: None,
+            province_investment_reference: None,
             debt_gdp: self.economy.debt_gdp,
             // THE BOOKS START CLOSED for every nation on the board, including
             // the one the player will pick. The transcribed reserve is not
@@ -875,6 +877,7 @@ pub fn load_world(
         domination: Default::default(),
         logistics: Default::default(),
         daily: Default::default(),
+        province_economy: None,
         by_id: vec![],
         by_id_len: 0,
         resource_have: Default::default(),

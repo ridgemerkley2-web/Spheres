@@ -436,7 +436,7 @@ pub fn adequacy(n: &Nation) -> f64 {
 /// term is inside it — would be wrong in a direction that flatters raising
 /// spending and punishes cutting it.
 pub fn adequacy_at(n: &Nation, mil_spend_gdp: f64) -> f64 {
-    let line = (n.gdp * mil_spend_gdp * PROCUREMENT_SHARE / 12.0).max(0.0);
+    let line = (n.gdp * mil_spend_gdp * crate::programs::procurement_share(n) / 12.0).max(0.0);
     let want = line * EQUIP_HORIZON;
     if want <= 0.0 {
         return BARE_FORCE;
@@ -504,7 +504,7 @@ pub fn strength_of(n: &Nation) -> f64 {
 /// the non-NaN operand. It does not handle +inf, which would place an
 /// infinite order and field an infinite arsenal.
 pub(crate) fn budget_of(n: &Nation) -> f64 {
-    (n.gdp * n.mil_spend_gdp * PROCUREMENT_SHARE / 12.0).clamp(0.0, 1e6)
+    (n.gdp * n.mil_spend_gdp * crate::programs::procurement_share(n) / 12.0).clamp(0.0, 1e6)
 }
 
 /// What the line can spend this month: the budget plus whatever earlier
@@ -517,6 +517,9 @@ pub(crate) fn line_of(n: &Nation) -> f64 {
 /// Actual appropriation available for this settlement. The old bank is a
 /// dollar stock, not a monthly flow, so only new funding is prorated.
 pub(crate) fn tick_line(w: &WorldState, nation: NationId) -> f64 {
+    if crate::programs::enrolled(w, nation) {
+        return crate::programs::available_bn(w, nation, crate::world::BUDGET_DEFENSE, 3);
+    }
     budget_of(w.nation(nation)) * crate::clock::month_fraction(w)
         + w.nation(nation).arsenal.banked
 }
@@ -616,6 +619,7 @@ pub fn tick(w: &mut WorldState) {
         if daily { w.nation_mut(id).arsenal.last_tick_day = Some(today); }
         let budget = budget_of(w.nation(id));
         let line = tick_line(w, id);
+        let program_funded = crate::programs::enrolled(w, id);
         let directed = w.rules.manufacturing_system
             && crate::manufacturing::lines_for(w, id).next().is_some();
         // The one gate the resource system has in cut one. It checks the kit
@@ -634,6 +638,10 @@ pub fn tick(w: &mut WorldState) {
         };
         if let Some(s) = stall {
             w.headline(s.headline());
+        }
+        if program_funded && !directed && choice.is_some() {
+            crate::programs::spend(w, id, crate::world::BUDGET_DEFENSE, 3, line)
+                .expect("procurement's shared pool was preflighted before consuming its atomic recipe");
         }
         // Resolve old monthly orders before taking the mutable nation borrow.
         // New daily orders already carry their exact remaining lead time.
@@ -687,7 +695,7 @@ pub fn tick(w: &mut WorldState) {
             // `line` is `line_of(n)` as read before the gate: budget plus banked.
             if !directed {
                 n.arsenal.banked = 0.0;
-                if choice.is_none() {
+                if choice.is_none() && !program_funded {
                     n.arsenal.banked = line.min(budget * 24.0);
                 }
                 if let Some(kit) = choice {

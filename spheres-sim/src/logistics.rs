@@ -363,6 +363,12 @@ fn route_open(
     Ok(())
 }
 
+/// Only mapped gateways can receive a player-built terminal upgrade. This is
+/// routing geometry, not an assertion that a historical port existed here.
+pub fn has_terminal(district: &str) -> bool {
+    network().edges.iter().any(|e| e.kind == "terminal" && (e.a == district || e.b == district))
+}
+
 fn segment_capacity(w: &WorldState, e: &Edge) -> (f64, String) {
     let net = network();
     let (a, b) = (&net.nodes[net.index[&e.a]], &net.nodes[net.index[&e.b]]);
@@ -374,7 +380,9 @@ fn segment_capacity(w: &WorldState, e: &Edge) -> (f64, String) {
                 .unwrap_or_else(|| "Open-sea lift".into()),
         ),
         "terminal" => (
-            45_000.0,
+            45_000.0 * (1.0 + production::level(w,
+                if a.kind == "district" { &a.id } else { &b.id },
+                production::ProjectKind::FreightTerminal) as f64 * 0.25),
             format!(
                 "{} freight terminal",
                 if a.kind == "district" {
@@ -920,6 +928,20 @@ mod tests {
         assert!(n.edges.len() > 15_000);
         assert!(n.nodes.iter().any(|x| x.id == "US-TX"));
         assert!(n.nodes.iter().any(|x| x.kind == "chokepoint"));
+    }
+    #[test]
+    fn completed_freight_terminal_increases_only_its_real_gateway_capacity() {
+        let mut w = world();
+        w.rules.daily_simulation = true;
+        let e = network().edges.iter().find(|e| e.kind == "terminal").unwrap();
+        let district = if network().nodes[network().index[&e.a]].kind == "district" { &e.a } else { &e.b };
+        assert!(has_terminal(district));
+        assert!(!has_terminal("not-a-mapped-province"));
+        let before = segment_capacity(&w,e).0;
+        production::complete_capability(&mut w,district,production::ProjectKind::FreightTerminal);
+        assert!((segment_capacity(&w,e).0-before*1.25).abs()<1e-8);
+        let sea = network().edges.iter().find(|e|e.kind=="sea").unwrap();
+        assert!((segment_capacity(&w,sea).0-75_000.0*crate::clock::month_fraction(&w)).abs()<1e-8);
     }
     #[test]
     fn land_only_is_a_real_policy() {

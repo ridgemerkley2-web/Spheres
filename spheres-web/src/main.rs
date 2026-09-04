@@ -9,6 +9,7 @@
 use spheres_sim::init::world_1990;
 use spheres_sim::logistics::{self, RoutePolicy};
 use spheres_sim::production::{self, Priority, Project, ProjectKind, ProjectStatus};
+use spheres_sim::programs;
 use spheres_sim::resources::{self, Commodity, Leg, Verdict, ALL};
 use spheres_sim::stratagems;
 use spheres_sim::theatre::TheatreId;
@@ -28,6 +29,19 @@ const NATION_FIGURES_JSON: &str = include_str!("../data/nation_figures.json");
 /// period artwork, with every remaining current-flag fallback recorded in
 /// tools/avatars/README.md.
 const NATION_FLAGS_SVG: &str = include_str!("../ui/nation-flags-v1.svg");
+/// Decorative Cabinet illustration; embedded and served locally, with no sim state.
+const CABINET_CITY_SVG: &str = include_str!("../ui/cabinet-city.svg");
+const ARCADE_CSS: &str = include_str!("../ui/arcade.css");
+const ARCADE_OPERATIONS_CSS: &str = include_str!("../ui/arcade-operations.css");
+const ARCADE_DISCOVERY_CSS: &str = include_str!("../ui/arcade-discovery.css");
+const CHRONICLE_CSS: &str = include_str!("../ui/chronicle.css");
+const CHRONICLE_DATA_JS: &str = include_str!("../ui/chronicle-data.js");
+const CHRONICLE_UI_JS: &str = include_str!("../ui/chronicle-ui.js");
+const PROGRAMS_CSS: &str = include_str!("../ui/programs.css");
+const PROGRAMS_UI_JS: &str = include_str!("../ui/programs-ui.js");
+const PROGRAMS_ART_SVG: &str = include_str!("../ui/programs-art.svg");
+const PROVINCE_ECONOMY_CSS: &str = include_str!("../ui/province-economy.css");
+const PROVINCE_ECONOMY_UI_JS: &str = include_str!("../ui/province-economy-ui.js");
 /// Baked country outlines — see `src/bin/mapgen.rs`.
 const WORLD_JS: &str = include_str!("../ui/world.js");
 /// Baked admin-1 district outlines, same projection and canvas as world.js.
@@ -1758,6 +1772,10 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
                     "eligible": eligible,
                     "reason": refusal,
                     "cost_bn": resources::mine_cost_bn(w, district, c),
+                    "funding_kind": if programs::enrolled(w,me) { "daily_department_work" } else { "upfront_capital" },
+                    "finance": w.production.industry.mines.get(&spheres_sim::industry::mine_key(district,c)).map(|f|serde_json::json!({
+                        "spent_bn":f.spent_bn,"reason":f.reason,"progress_days":f.progress_days,"total_days":f.total_days,
+                        "department":"Minerals & processing","available_bn":programs::available_bn(w,me,BUDGET_INDUSTRY,2)})),
                     "output": resources::mine_output(district, c).map(|v| round(annual_period_on_board(w, c, v), 6)),
                     "active": project.is_some(),
                     "online": developed.is_some(),
@@ -2345,6 +2363,53 @@ fn ministry_key(index: usize) -> &'static str {
     }
 }
 
+/// The simulation supplies all amounts, eligibility and prices. This adapter
+/// groups the fifty ledger rows for the cabinet without creating another model.
+fn programs_json(w: &WorldState, me: NationId, preview: Option<programs::ProgramPreview>) -> serde_json::Value {
+    let p = preview.unwrap_or_else(|| programs::preview(w, me));
+    let names = ["Health", "Education", "Housing", "Pensions", "Infrastructure", "Industry & Energy", "Science", "Defense", "Security", "Diplomacy"];
+    let rows = (0..BUDGET_MINISTRIES).map(|m| {
+        let departments = p.rows.iter().filter(|r| r.ministry == m).collect::<Vec<_>>();
+        let editable = matches!(m, BUDGET_INFRASTRUCTURE | BUDGET_INDUSTRY | BUDGET_SCIENCE | BUDGET_DEFENSE);
+        serde_json::json!({"index":m,"key":ministry_key(m),"name":names[m],"editable":editable,
+            "annual_bn":departments.iter().map(|r|r.annual_bn).sum::<f64>(),
+            "daily_bn":departments.iter().map(|r|r.daily_bn).sum::<f64>(),
+            "available_bn":departments.iter().map(|r|r.available_bn).sum::<f64>(),
+            "spent_today_bn":departments.iter().map(|r|r.spent_today_bn).sum::<f64>(),
+            "spent_ytd_bn":departments.iter().map(|r|r.spent_ytd_bn).sum::<f64>(),
+            "carried_bn":departments.iter().map(|r|r.carry_bn).sum::<f64>(),
+            "departments":departments.iter().map(|r|serde_json::json!({
+                "index":r.department,"name":r.name,"kind":if r.capital {"capital"} else {"operating"},
+                "editable":editable,"share_bp":r.share_bp,"annual_bn":r.annual_bn,"daily_bn":r.daily_bn,
+                "available_bn":r.available_bn,"spent_today_bn":r.spent_today_bn,"spent_ytd_bn":r.spent_ytd_bn,
+                "description":if r.capital {"Shared project authorization. Only actual work is charged; unused funds carry within the financial year."} else {"Automatically delivered through the ministry's existing service model; not a separate new simulation."}
+            })).collect::<Vec<_>>()})
+    }).collect::<Vec<_>>();
+    let choices = production::catalog_all().iter().filter(|c| c.funding_ministry == BUDGET_INDUSTRY).map(|c| {
+        let enabled = w.districts.iter().any(|(id,owner)| *owner == me && production_start_allowed(w,me,id,c.kind));
+        serde_json::json!({"id":c.kind.key(),"project_kind":c.kind.key(),"department":production::funding_department(c.kind),
+            "name":c.name,"description":c.description,"effect":c.effect,"total_days":c.total_days,"pc_cost":c.political_cost,
+            "work_cost_bn":spheres_sim::industry::work_cost_bn(c.kind),
+            "icon":"◈","tag":"Physical investment","enabled":enabled,"reason":if enabled {""} else {"No eligible province yet. Check standing, budget, technology and built prerequisites on the production board."}})
+    }).chain(std::iter::once(serde_json::json!({"id":"mine","department":2,"name":"Develop a mine","description":"Turn an eligible mapped deposit into national resource production.","effect":"Feeds your physical resource stockpile. Deposit and commodity requirements still apply.","icon":"◆","tag":"Mapped resources","enabled":true}))).collect::<Vec<_>>();
+    serde_json::json!({"enabled":p.enabled,"due":!p.renewed,"fiscal_year":p.fiscal_year,"basis_gdp":p.basis_gdp,
+        "departments":p.departments,"ministryrows":rows,"political_cost":p.political_cost,
+        "annual_authorized_bn":p.annual_authorized_bn,"daily_authorized_bn":p.daily_authorized_bn,
+        "actual_spent_today_bn":p.actual_spent_today_bn,"capital_available_bn":p.capital_available_bn,
+        "expired_authority_bn":p.expired_authority_bn,"note":p.note,"investment_choices":choices,
+        "last_spending_day":p.last_spending_day,"spending_fiscal_year":p.spending_fiscal_year,
+        "defense_force":p.defense_force,"magazine_refill_mult":p.magazine_refill_mult,
+        "industry":spheres_sim::industry::snapshot(w,me)})
+}
+
+fn program_preview_json(w: &WorldState, me: NationId, payload: &serde_json::Value) -> Result<serde_json::Value,String> {
+    let Some(Command::SetProgramBudget { fiscal_year, allocations, departments, .. }) = parse_command(w,payload,me) else {
+        return Err("Expected a complete department budget: ten ministry amounts and ten rows of five whole basis-point shares.".into());
+    };
+    if fiscal_year != w.year { return Err("The budget year must match the current year.".into()); }
+    programs::preview_with_plan(w,me,allocations,departments).map(|p|programs_json(w,me,Some(p)))
+}
+
 fn production_requirements_json(
     w: &WorldState,
     me: NationId,
@@ -2397,6 +2462,10 @@ fn production_funding_json(
         "allocation": round(allocation, 6),
         "required": round(spec.funding_required, 6),
         "ratio": round(production::funding_ratio(w, me, kind), 4),
+        "department_mode":programs::enrolled(w,me),
+        "department_name":programs::NAMES[spec.funding_ministry][production::funding_department(kind)],
+        "work_cost_bn":spheres_sim::industry::work_cost_bn(kind),
+        "available_bn":spheres_sim::industry::project_authority(w,me,kind),
     })
 }
 
@@ -2410,12 +2479,16 @@ fn capabilities_json(c: &production::ProvinceCapabilities) -> serde_json::Value 
     })
 }
 
-fn capability_total(c: &production::ProvinceCapabilities) -> usize {
-    c.infrastructure as usize
-        + c.civilian_industry as usize
-        + c.power_grid as usize
-        + c.research_centers as usize
-        + c.arms_plants as usize
+fn district_capabilities_json(w: &WorldState, district: &str) -> serde_json::Value {
+    let mut result = capabilities_json(&production::province_capabilities(w,district));
+    for kind in production::PROJECT_KINDS.into_iter().filter(|kind| spheres_sim::industry::extended(*kind)) {
+        result[kind.key()] = serde_json::json!(production::level(w,district,kind));
+    }
+    result
+}
+
+fn district_capability_total(w: &WorldState, district: &str) -> usize {
+    production::PROJECT_KINDS.into_iter().map(|kind| production::level(w,district,kind) as usize).sum()
 }
 
 fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_json::Value {
@@ -2445,6 +2518,7 @@ fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_j
         "eta_days": production::estimated_days_left(w, p),
         "pc_cost": round(spec.political_cost, 3),
         "funding": production_funding_json(w, me, p.kind),
+        "finance": production::project_finance(w,p),
         "requirements": production_requirements_json(w, me, &spec.recipe, Some(p)),
         // This endpoint is player-only and `projects_for` filters by nation;
         // these are therefore actual permissions, not generic button hints.
@@ -2461,12 +2535,8 @@ fn production_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let count = |status| projects.iter().filter(|p| p.status == status).count();
     let slowed = count(ProjectStatus::Slowed);
     let blocked = count(ProjectStatus::Blocked);
-    let completed = w
-        .production
-        .provinces
-        .iter()
-        .filter(|p| w.districts.get(&p.district).copied() == Some(me))
-        .map(capability_total)
+    let completed = w.districts.iter().filter(|(_,owner)| **owner == me)
+        .map(|(id,_)| district_capability_total(w,id))
         .sum::<usize>();
     serde_json::json!({
         "active": projects.len(),
@@ -2548,7 +2618,6 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let provinces = owned
         .iter()
         .map(|district| {
-            let capabilities = production::province_capabilities(w, district);
             let active = projects
                 .iter()
                 .filter(|p| p.district.as_str() == district.as_str())
@@ -2562,37 +2631,31 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
             serde_json::json!({
                 "id": district.as_str(),
                 "name": spheres_sim::districts::name_of(district).unwrap_or(district),
-                "capabilities": capabilities_json(&capabilities),
+                "capabilities": district_capabilities_json(w,district),
                 "active_projects": active,
                 "actions": { "start": start },
             })
         })
         .collect::<Vec<_>>();
 
-    let completed = w
-        .production
-        .provinces
-        .iter()
-        .filter(|p| w.districts.get(&p.district).copied() == Some(me))
-        .filter(|p| capability_total(p) > 0)
-        .map(|p| serde_json::json!({
+    let completed = owned.iter().filter(|id| district_capability_total(w,id) > 0)
+        .map(|district| serde_json::json!({
             "province": {
-                "id": p.district,
-                "name": spheres_sim::districts::name_of(&p.district).unwrap_or(&p.district),
+                "id": district,
+                "name": spheres_sim::districts::name_of(district).unwrap_or(district),
             },
-            "capabilities": capabilities_json(p),
+            "capabilities": district_capabilities_json(w,district),
         }))
         .collect::<Vec<_>>();
 
     let markers = owned
         .iter()
         .filter_map(|district| {
-            let capabilities = production::province_capabilities(w, district);
             let active = projects
                 .iter()
                 .filter(|p| p.district.as_str() == district.as_str())
                 .collect::<Vec<_>>();
-            if active.is_empty() && capability_total(&capabilities) == 0 {
+            if active.is_empty() && district_capability_total(w,district) == 0 {
                 return None;
             }
             let status = if active.iter().any(|p| p.status == ProjectStatus::Blocked) {
@@ -2608,7 +2671,7 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "district": district.as_str(),
                 "active": active.iter().map(|p| p.id).collect::<Vec<_>>(),
                 "status": status,
-                "capabilities": capabilities_json(&capabilities),
+                "capabilities": district_capabilities_json(w,district),
             }))
         })
         .collect::<Vec<_>>();
@@ -3962,6 +4025,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // carries plant/line attention; the 46-item equipment catalogue and
         // long arsenal ledger are fetched only when its Production tab opens.
         "manufacturing_summary": w.player.map(|p| manufacturing_summary_json(w, p)),
+        "programs": w.player.map(|p| programs_json(w, p, None)),
         // One universal campaign objective, with its three deterministic next
         // directives and every progress/milestone/routing decision already
         // resolved. The page paints this contract; it does not score conquest.
@@ -4025,11 +4089,43 @@ fn district_population_json(w: &WorldState, district: &str) -> Option<serde_json
         "world_count": w.district_population.len(),
         "owner": owner.map(|id| format!("{:?}", id)),
         "owner_name": owner.map(|id| id.name()),
+        // Same simulation ledger for every owner, not the player's projects
+        // cache. Keep full precision so components reconcile before display.
+        "economy": spheres_sim::province_economy::province(w, district).map(|ledger| {
+            let mut value = serde_json::to_value(ledger).expect("province ledger is serializable");
+            value["receipt_date_label"] = serde_json::json!(economic_receipt_label(w));
+            value
+        }),
         "annual_growth": growth.map(|g| round(g, 6)),
         "year": w.year,
         "month": w.month,
         "day": w.day,
     }))
+}
+
+/// Full country composition is fetched on demand. A view never initializes a
+/// ledger or advances the world, and unsupported/dead nation IDs are explicit.
+fn economic_ledger_json(w: &WorldState, id: NationId) -> Option<serde_json::Value> {
+    let n = w.nation_opt(id).filter(|n| n.alive)?;
+    let ledger = spheres_sim::province_economy::snapshot(w, id)?;
+    let mut value = serde_json::to_value(ledger).expect("economic ledger is serializable");
+    value["nation"] = serde_json::json!(format!("{:?}", id));
+    value["name"] = serde_json::json!(n.id.name());
+    value["year"] = serde_json::json!(w.year);
+    value["month"] = serde_json::json!(w.month);
+    value["day"] = serde_json::json!(w.day);
+    value["receipt_date_label"] = serde_json::json!(economic_receipt_label(w));
+    Some(value)
+}
+
+fn economic_receipt_label(w: &WorldState) -> String {
+    match w.province_economy.as_ref().and_then(|ledger| ledger.settled_day) {
+        Some(day) => {
+            let (year, month, date) = spheres_sim::clock::date_from_day(day);
+            format!("Work settled {date} {} · not a forecast", month_name(month, year))
+        }
+        None => "Opening baseline · no daily project settlement yet".into(),
+    }
 }
 
 /// The live population surface for the opt-in province population map layer.
@@ -4714,6 +4810,21 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
                 v.get("diplomacy")?.as_f64()?,
             ],
         },
+        "program_budget" => {
+            let fiscal_year = i32::try_from(v.get("fiscal_year")?.as_i64()?).ok()?;
+            let mut allocations = [0.0; BUDGET_MINISTRIES];
+            for (i, amount) in allocations.iter_mut().enumerate() { *amount = v.get(ministry_key(i))?.as_f64()?; }
+            let rows = v.get("departments")?.as_array()?;
+            if rows.len() != BUDGET_MINISTRIES { return None; }
+            let mut departments = [[0u16;5];BUDGET_MINISTRIES];
+            for (i,row) in rows.iter().enumerate() {
+                let values = row.as_array()?;
+                if values.len() != 5 { return None; }
+                for (j,value) in values.iter().enumerate() { departments[i][j] = u16::try_from(value.as_u64()?).ok()?; }
+                if departments[i].iter().map(|x|*x as u32).sum::<u32>() != 10000 { return None; }
+            }
+            Command::SetProgramBudget { nation:me,fiscal_year,allocations,departments }
+        },
         "sanction" => Command::Sanction { imposer: me, target: target()? },
         "lift" => Command::LiftSanction { imposer: me, target: target()? },
         "improve" => Command::ImproveRelations { from: me, to: target()? },
@@ -5120,6 +5231,7 @@ fn play_rules(g: &mut Game) {
     g.world.rules.physical_logistics = true;
     g.world.rules.production_system = true;
     g.world.rules.manufacturing_system = true;
+    spheres_sim::province_economy::enable(&mut g.world);
 }
 
 /// Adopt a save under the current browser rules before warming or snapshotting
@@ -5328,6 +5440,42 @@ fn main() {
                             &b"no-cache"[..],
                         )
                         .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, path @ ("/arcade.css" | "/arcade-operations.css" | "/arcade-discovery.css" | "/chronicle.css" | "/programs.css" | "/province-economy.css")) => {
+                let css = match path {
+                    "/arcade-operations.css" => ARCADE_OPERATIONS_CSS,
+                    "/arcade-discovery.css" => ARCADE_DISCOVERY_CSS,
+                    "/chronicle.css" => CHRONICLE_CSS,
+                    "/programs.css" => PROGRAMS_CSS,
+                    "/province-economy.css" => PROVINCE_ECONOMY_CSS,
+                    _ => ARCADE_CSS,
+                };
+                let _ = request.respond(Response::from_string(css)
+                    .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, path @ ("/chronicle-data.js" | "/chronicle-ui.js" | "/programs-ui.js" | "/province-economy-ui.js")) => {
+                let js = match path { "/chronicle-data.js" => CHRONICLE_DATA_JS, "/programs-ui.js" => PROGRAMS_UI_JS, "/province-economy-ui.js" => PROVINCE_ECONOMY_UI_JS, _ => CHRONICLE_UI_JS };
+                let _ = request.respond(Response::from_string(js)
+                    .with_header(Header::from_bytes("Content-Type", "text/javascript; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, "/assets/cabinet-city.svg") => {
+                let r = Response::from_string(CABINET_CITY_SVG)
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Content-Type"[..],
+                            &b"image/svg+xml; charset=utf-8"[..],
+                        )
+                        .unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(&b"Cache-Control"[..], &b"no-cache"[..]).unwrap(),
                     );
                 let _ = request.respond(r);
                 continue;
@@ -5545,6 +5693,16 @@ fn main() {
                 let g = game.lock().unwrap();
                 json_response(district_populations_json(&g.world))
             }
+            (Method::Get, path) if path.starts_with("/api/economic-ledger/") => {
+                let asked = NationId::parse(path.trim_start_matches("/api/economic-ledger/"));
+                let g = game.lock().unwrap();
+                match asked.and_then(|id| economic_ledger_json(&g.world, id)) {
+                    Some(v) => json_response(v),
+                    None => json_error(404, serde_json::json!({
+                        "error": "No economic ledger for this country in the current game."
+                    })),
+                }
+            }
             (Method::Get, path) if path.starts_with("/api/district-population/") => {
                 let district = path.trim_start_matches("/api/district-population/");
                 let g = game.lock().unwrap();
@@ -5657,6 +5815,19 @@ fn main() {
             // Full player production board. Province choices and actions are
             // recomputed against current ownership on every read, so conquest
             // cannot leave a stale Build button authorized.
+            (Method::Get, "/assets/programs-art.svg") => Response::from_string(PROGRAMS_ART_SVG)
+                .with_header(Header::from_bytes("Content-Type", "image/svg+xml; charset=utf-8").unwrap()),
+            (Method::Get, "/api/programs") => {
+                let g = game.lock().unwrap();
+                match g.world.player { Some(me) => json_response(programs_json(&g.world,me,None)), None => json_error(400,serde_json::json!({"error":"no nation chosen"})) }
+            }
+            (Method::Post, "/api/program-preview") => {
+                let g = game.lock().unwrap();
+                match g.world.player {
+                    Some(me) => match program_preview_json(&g.world,me,&payload) { Ok(value) => json_response(value), Err(error) => json_error(400,serde_json::json!({"error":error})) },
+                    None => json_error(400,serde_json::json!({"error":"no nation chosen"})),
+                }
+            }
             (Method::Get, "/api/production") => {
                 let g = game.lock().unwrap();
                 match g.world.player {
@@ -5715,6 +5886,14 @@ fn main() {
             (Method::Post, "/api/advance") => {
                 let mut g = game.lock().unwrap();
                 let me = g.world.player;
+                if let Some(player) = me {
+                    let invalid = payload.get("commands").and_then(|v|v.as_array()).is_some_and(|commands| commands.iter().any(|command|
+                        command.get("kind").and_then(|v|v.as_str()) == Some("program_budget") && parse_command(&g.world,command,player).is_none()));
+                    if invalid {
+                        let _ = request.respond(json_error(400,serde_json::json!({"error":"Invalid department budget. Nothing was enacted and the calendar has not advanced."})));
+                        continue;
+                    }
+                }
                 let cmds: Vec<Command> = match me {
                     Some(me) => payload
                         .get("commands")
@@ -5817,6 +5996,76 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn department_payload(w: &WorldState, me: NationId) -> serde_json::Value {
+        let mut payload = serde_json::json!({"kind":"program_budget","fiscal_year":w.year,"departments":programs::default_departments()});
+        for (i,amount) in w.nation(me).budget_for(w.year).allocations.iter().enumerate() { payload[ministry_key(i)] = serde_json::json!(amount); }
+        payload
+    }
+
+    #[test]
+    fn department_contract_is_strict_read_only_and_has_fifty_rows_and_ten_investments() {
+        let mut g = Game::new(1990,Some(NationId::USA));
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        g.world.rules.resource_market=true; g.world.rules.production_system=true;
+        let me = NationId::USA;
+        let payload = department_payload(&g.world,me);
+        let before = save(&g.world);
+        let view = program_preview_json(&g.world,me,&payload).unwrap();
+        assert_eq!(save(&g.world),before,"preview must not open the live books");
+        assert_eq!(view["ministryrows"].as_array().unwrap().len(),10);
+        assert_eq!(view["investment_choices"].as_array().unwrap().len(),10);
+        for row in view["ministryrows"].as_array().unwrap() {
+            let children = row["departments"].as_array().unwrap();
+            assert_eq!(children.len(),5);
+            let sum = children.iter().map(|d|d["annual_bn"].as_f64().unwrap()).sum::<f64>();
+            assert!((sum-row["annual_bn"].as_f64().unwrap()).abs()<1e-9);
+            assert_eq!(children.iter().map(|d|d["share_bp"].as_u64().unwrap()).sum::<u64>(),10000);
+        }
+        let cmd = parse_command(&g.world,&payload,me).unwrap();
+        let capital_before = g.world.nation(me).political_capital;
+        apply_command(&mut g.world,&cmd).unwrap();
+        assert!((view["political_cost"].as_f64().unwrap() - (capital_before-g.world.nation(me).political_capital)).abs()<1e-9);
+        let live = programs_json(&g.world,me,None);
+        assert_eq!(live["departments"],view["departments"]);
+        assert!(live["enabled"].as_bool().unwrap());
+        assert!(!live["due"].as_bool().unwrap());
+        for bad in [serde_json::json!(-1),serde_json::json!(65536),serde_json::json!(1.5),serde_json::json!("2000")] {
+            let mut invalid=payload.clone();invalid["departments"][0][0]=bad;
+            assert!(parse_command(&g.world,&invalid,me).is_none());
+        }
+        let mut invalid=payload.clone();invalid["departments"][0]=serde_json::json!([2500,2500,2500,2500]);
+        assert!(parse_command(&g.world,&invalid,me).is_none());
+        invalid=payload.clone();invalid["fiscal_year"]=serde_json::json!(4294969286i64);
+        assert!(parse_command(&g.world,&invalid,me).is_none());
+        invalid=payload.clone();invalid["fiscal_year"]=serde_json::json!(1991);
+        assert!(program_preview_json(&g.world,me,&invalid).is_err());
+    }
+
+    #[test]
+    fn department_assets_and_snapshot_are_wired_without_enrolling_on_read() {
+        let mut g=Game::new(1990,Some(NationId::USA));
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        let before=save(&g.world);let view=state_json(&g,None);
+        assert_eq!(view["programs"]["enabled"],false);
+        assert_eq!(save(&g.world),before);
+        for asset in ["/programs.css","/programs-ui.js"] {assert!(INDEX.contains(asset));}
+        assert!(PROGRAMS_UI_JS.contains("/api/program-preview"));
+        assert!(PROGRAMS_ART_SVG.contains("<svg"));
+        assert!(!PROGRAMS_ART_SVG.contains("<script"));
+    }
+
+    #[test]
+    fn cabinet_city_art_is_accessible_embedded_and_served_without_external_assets() {
+        assert!(CABINET_CITY_SVG.contains("viewBox=\"0 0 960 640\""));
+        assert!(CABINET_CITY_SVG.contains("aria-labelledby=\"city-title city-desc\""));
+        assert!(CABINET_CITY_SVG.contains("<title id=\"city-title\">"));
+        assert!(CABINET_CITY_SVG.contains("<desc id=\"city-desc\">"));
+        assert!(!CABINET_CITY_SVG.contains("<script"));
+        assert!(!CABINET_CITY_SVG.contains("<image"));
+        assert!(!CABINET_CITY_SVG.contains("href=\"http"));
+        assert!(include_str!("main.rs").contains("(Method::Get, \"/assets/cabinet-city.svg\")"));
+    }
 
     /// The listen port and the browser flag, pinned so the preview tooling's
     /// contract (a free port handed over in `PORT`, `--no-open` honoured) cannot
@@ -7124,25 +7373,41 @@ mod tests {
             INDEX.contains("balance: revenue - spend - interest"),
             "`ledgerOf` no longer returns the settled balance"
         );
-        assert!(
-            INDEX.contains("const fiscalBalance = fiscalRevenue - fiscalSpending;"),
-            "the budget card no longer computes the balance the settled way"
-        );
-        // Debt service is IN the spending both places, because it is in the
-        // sim's: `pay(spend_bn + interest_bn - revenue_bn)`.
-        assert!(
-            INDEX.contains("annualTotal(fiscal) + fiscalInterest"),
-            "the budget card's spending no longer carries debt service"
-        );
+        // The displayed draft now goes through the shared ledger instead of
+        // keeping a second assembly in renderLeft. Inspect the actual helper,
+        // so unused variables elsewhere cannot satisfy this accounting guard.
+        let summary = INDEX
+            .split_once("function cabinetBudgetSummary(m) {")
+            .expect("the budget has one shared draft summary").1
+            .split_once("\n}")
+            .expect("the summary helper is complete").0;
+        assert_eq!(summary.matches("ledgerOf(m, p.tax, p.social, p.military, p.invest)").count(), 1,
+            "the draft must read the shared revenue/spending/balance ledger once");
+        assert_eq!(summary.matches("fmt.money(led.revenue * m.gdp)").count(), 1,
+            "revenue must be the ledger's revenue, in annual dollars");
+        assert_eq!(summary.matches("fmt.money((led.spend + led.interest) * m.gdp)").count(), 1,
+            "displayed outlays must include ministries and interest exactly once");
+        assert_eq!(summary.matches("led.interest").count(), 1,
+            "the settled balance already includes interest; do not charge it again");
+        assert!(summary.contains("led.balance < 0 ? \"Funding gap\" : \"Surplus\""));
+        assert_eq!(summary.matches("fmt.money(Math.abs(led.balance) * m.gdp)").count(), 1,
+            "the surplus/deficit amount must use the ledger's single sign convention");
 
-        // THE ELEVENTH ROW SITS ABOVE THE TEN, which is the design's
-        // instruction verbatim -- debt service must visibly crowd ministries
-        // out, and a row underneath them does not.
-        let row = INDEX.find("${interestRow(m)}").expect("the eleventh row is drawn");
-        let grid = INDEX
-            .find("<div class=\"ministry-grid\">")
-            .expect("the ten dials are drawn");
-        assert!(row < grid, "debt service is drawn below the ten dials, not above them");
+        // THE ELEVENTH ROW SITS ABOVE THE TEN, now selectable ministry tiles
+        // and one inspector rather than ten simultaneous controls. Scope this
+        // assertion to the actual budget panel: an obsolete helper or a row in
+        // another tab cannot satisfy the visual-order contract.
+        let budget_panel = INDEX
+            .split_once("<section id=\"cabinet-budget\"")
+            .expect("the yearly budget has its own tabpanel").1
+            .split_once("<section id=\"cabinet-policy\"")
+            .expect("the budget panel ends before policy").0;
+        let row = budget_panel.find("${interestRow(m)}").expect("debt service is drawn in the budget");
+        let tiles = budget_panel.find("${cabinetMinistryTiles(m, fiscal)}").expect("all ten ministries are selectable");
+        let inspector = budget_panel.find("id=\"cabinetInspector\"").expect("a ministry has a focused inspector");
+        assert!(row < tiles && row < inspector, "debt service must remain above both selection and funding controls");
+        assert!(budget_panel.contains("${cabinetBudgetSummary(m)}"),
+            "the budget tab must actually display the shared summary");
         assert!(
             !INDEX.contains("data-ministry=\"interest\""),
             "the interest row has been given a pair of buttons; nobody votes on it"
@@ -7558,9 +7823,23 @@ mod tests {
                          "industry", "science", "defense", "security", "diplomacy"] {
             assert!(INDEX.contains(&format!("id:\"{}\"", ministry)), "{} has no dial", ministry);
         }
-        assert!(INDEX.contains("fiscal-summary"));
+        let ministry_tiles = INDEX
+            .split_once("function cabinetMinistryTiles(m, fiscal) {")
+            .expect("all ministries have selectable cards").1
+            .split_once("\n}")
+            .expect("the ministry renderer is complete").0;
+        assert!(ministry_tiles.contains("MINISTRIES.map(spec =>"), "cards must expose every ministry, not a hand-picked subset");
+        assert!(ministry_tiles.contains("data-cab-ministry=\"${spec.id}\""));
+        assert!(ministry_tiles.contains("aria-controls=\"cabinetInspector\""));
+        assert!(INDEX.contains("CAB.ministry = b.dataset.cabMinistry;"), "selecting a card must change the inspected ministry");
+        assert_eq!(INDEX.matches("${ministryDial(m, fiscal, spec, i)}").count(), 1,
+            "one focused funding control replaces ten simultaneously expanded dials");
+        assert!(INDEX.contains("id=\"cabinetBudgetSummary\""));
+        assert!(INDEX.contains("${cabinetBudgetSummary(m)}"));
         assert!(INDEX.contains("annualPoliticalCost"));
-        assert!(INDEX.contains("Enact &amp; advance one day"));
+        assert!(INDEX.contains("async function cabinetEnact()"));
+        assert!(INDEX.contains("Enact & advance 1 day →"));
+        assert!(INDEX.contains("await advance(1);"));
         assert!(INDEX.contains("Employment"));
     }
 
@@ -8507,7 +8786,9 @@ mod tests {
         // The card is a SIBLING of #app, so it can paint over the picker. If it
         // is ever moved inside, the branch above will open an invisible card.
         let at_app_open = INDEX.find("<div id=\"app\">").expect("#app is gone");
-        let at_keys = INDEX.find("<div id=\"keys\">").expect("#keys is gone");
+        let at_keys = INDEX.find("<div id=\"keys\"").expect("#keys is gone");
+        assert!(INDEX[at_keys..].starts_with("<div id=\"keys\" role=\"dialog\" aria-modal=\"true\""),
+            "the shortcut card must announce itself as a modal dialog");
         let at_app_close = INDEX.find("<div id=\"sheetbg\">").expect("#sheetbg is gone");
         assert!(
             at_keys > at_app_close && at_app_close > at_app_open,
@@ -8716,9 +8997,9 @@ mod tests {
              behind it again"
         );
         assert!(
-            INDEX.contains("else if (e.key === \" \") e.preventDefault();"),
-            "Space must still be swallowed while the card is up, or the page \
-             scrolls under it"
+            INDEX.contains("else if (e.key === \" \" && !e.target?.closest?.('button')) e.preventDefault();"),
+            "Space must not scroll behind the card, but its native Close \
+             button must still be keyboard-operable"
         );
         // Ordering is the whole of it. The card's gate must come before the
         // `!S` bail and before the tech dispatch, or a card opened over either
@@ -11812,6 +12093,77 @@ mod tests {
     }
 
     #[test]
+    fn economic_ledgers_cover_every_living_country_and_reconcile_without_mutation() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        // Exercise the two simulation entry points directly; do not boot an
+        // extra browser or enact a player's budget just to read its accounts.
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        spheres_sim::province_economy::enable(&mut g.world);
+        let before = save(&g.world);
+        for n in g.world.nations.iter().filter(|n| n.alive) {
+            let ledger = economic_ledger_json(&g.world, n.id).expect("every living country has an account");
+            let total = ledger["total_gdp_bn"].as_f64().unwrap();
+            assert!((total - n.gdp).abs() <= 1e-9 * n.gdp.max(1.0), "{:?}", n.id);
+            let sector_total: f64 = ledger["sectors"].as_array().unwrap().iter()
+                .map(|s| s["gdp_bn"].as_f64().unwrap()).sum();
+            assert!((sector_total - total).abs() <= 1e-9 * total.max(1.0), "sector sum {:?}", n.id);
+            let located: f64 = ledger["provinces"].as_array().unwrap().iter()
+                .map(|p| p["total_gdp_bn"].as_f64().unwrap()).sum();
+            let unmapped = ledger["unallocated_gdp_bn"].as_f64().unwrap();
+            assert!((located + unmapped - total).abs() <= 1e-9 * total.max(1.0), "province sum {:?}", n.id);
+            assert!(ledger["note"].as_str().unwrap().to_lowercase().contains("model"));
+        }
+        assert_eq!(save(&g.world), before, "viewing economies cannot mutate simulation state");
+    }
+
+    #[test]
+    fn province_economy_api_is_live_for_foreign_owners_and_keeps_population() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        spheres_sim::province_economy::enable(&mut g.world);
+        let foreign = g.world.districts.iter()
+            .find(|(_, owner)| **owner == NationId::Japan).map(|(id, _)| id.clone()).unwrap();
+        for district in ["US-CA", foreign.as_str()] {
+            let row = district_population_json(&g.world, district).unwrap();
+            assert!(row["population"].as_f64().unwrap() > 0.0);
+            let ledger = &row["economy"];
+            assert!(ledger["total_gdp_bn"].as_f64().unwrap() > 0.0);
+            assert_eq!(ledger["project_gdp_bn"], 0.0);
+            assert!(!ledger["sectors"].as_array().unwrap().is_empty());
+            assert!(ledger["projects"].as_array().unwrap().is_empty());
+        }
+        assert!(district_population_json(&g.world, "not-a-province").is_none());
+        assert!(economic_ledger_json(&g.world, NationId::EastTimor).is_none());
+    }
+
+    #[test]
+    fn province_economy_assets_ship_locally_and_keep_accounting_in_rust() {
+        assert!(INDEX.contains("/province-economy.css"));
+        assert!(INDEX.contains("/province-economy-ui.js"));
+        assert!(PROVINCE_ECONOMY_UI_JS.contains("/api/economic-ledger/"));
+        assert!(PROVINCE_ECONOMY_UI_JS.contains("total_gdp_bn"));
+        assert!(PROVINCE_ECONOMY_CSS.contains("@media"));
+    }
+
+    #[test]
+    fn economic_readings_refresh_daily_and_distinguish_settlement_date() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        spheres_sim::province_economy::enable(&mut g.world);
+        let opening = district_population_json(&g.world, "US-CA").unwrap();
+        assert!(opening["economy"]["receipt_date_label"].as_str().unwrap().contains("Opening baseline"));
+        tick_day(&mut g.world, &[]);
+        let current = district_population_json(&g.world, "US-CA").unwrap();
+        assert_eq!(current["day"], 2);
+        assert_ne!(current["economy"]["total_gdp_bn"], opening["economy"]["total_gdp_bn"]);
+        let label = current["economy"]["receipt_date_label"].as_str().unwrap();
+        assert!(label.starts_with("Work settled 1 "), "{label}");
+        let gdp = current["economy"]["total_gdp_bn"].as_f64().unwrap();
+        let start = opening["economy"]["total_gdp_bn"].as_f64().unwrap();
+        assert!((current["economy"]["change_since_opening"].as_f64().unwrap() - (gdp / start - 1.0)).abs() < 1e-12);
+    }
+
+    #[test]
     fn province_dossier_reads_live_population_and_exact_geometry() {
         let g = Game::new(1990, Some(NationId::USA));
         let ca = district_population_json(&g.world, "US-CA").expect("California is mapped");
@@ -11866,7 +12218,10 @@ mod tests {
         assert!(INDEX.contains(r#"<div class="row"><span>Board: select a line / open talks</span><span>arrows · <kbd>Enter</kbd></span></div>"#));
         assert!(INDEX.contains(r#"else if (k === "b" || k === "B") toggleStockScreen();"#));
         assert!(INDEX.contains("if (stock.open) { stockKeys(e); return; }"));
-        assert!(INDEX.contains(r#"<button id="stockBtn" title="Resources">RESOURCES<i>B</i></button>"#));
+        assert!(INDEX.contains(r#"<button class="dockbtn" id="stockBtn" title="Resources" aria-controls="stockScreen">"#),
+            "the command dock must expose the resource board as a real button");
+        assert!(INDEX.contains(r##"$("#stockBtn").onclick = toggleStockScreen;"##),
+            "moving the resource button must preserve its board-opening action");
         assert!(INDEX.contains("function stockKeys(e) {"));
     }
 
@@ -12229,7 +12584,7 @@ mod tests {
 
         let opening = production_json(&g.world, me);
         assert_eq!(opening["mode"], "province_projects");
-        assert_eq!(opening["catalog"].as_array().unwrap().len(), 5);
+        assert_eq!(opening["catalog"].as_array().unwrap().len(), 12);
         assert_eq!(opening["summary"]["active"], 0);
         assert_eq!(opening["summary"]["capacity"], production::MAX_ACTIVE_PROJECTS);
         assert_eq!(opening["queue"].as_array().unwrap().len(), 0);

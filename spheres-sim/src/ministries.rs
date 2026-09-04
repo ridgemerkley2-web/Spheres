@@ -364,7 +364,7 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
     };
     const SETTLES: &str = "where order comes to rest, not where it is this month";
     let reference = n.budget_for(w.year).reference[ministry];
-    let gap = allocation - reference;
+    let gap = if n.program_budget.is_some() { crate::programs::service_gap(n, ministry, allocation) } else { allocation - reference };
     match ministry {
         BUDGET_HEALTH => vec![
             Arm {
@@ -454,6 +454,7 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
             kind: ArmKind::Share,
             value: infrastructure_extraction(gap),
         }],
+        BUDGET_INDUSTRY if n.program_budget.is_some() => vec![],
         BUDGET_INDUSTRY => vec![Arm {
             id: "refill",
             name: "Magazine refill",
@@ -482,6 +483,13 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
                 value: (base + science_absorption(gap)).clamp(0.05, 1.20)
                     - base.clamp(0.05, 1.20),
             }
+        }],
+        BUDGET_DEFENSE if n.program_budget.is_some() => vec![Arm {
+            id: "force", name: "Sustained force", note: "standing defense envelope; procurement shares its department with arms-plant construction",
+            kind: ArmKind::Force, value: crate::war::sustained_force(n, allocation),
+        }, Arm {
+            id: "refill", name: "Magazine refill", note: "Defense maintenance & supply replaces Industry's former refill responsibility",
+            kind: ArmKind::Mult, value: crate::programs::refill_multiplier(n, Some(allocation)),
         }],
         BUDGET_DEFENSE => vec![Arm {
             id: "force",

@@ -343,6 +343,8 @@ fn allocations_with_envelope(w: &WorldState, nation: NationId, envelope: f64) ->
     if lines.is_empty() || total_weight <= 0.0 {
         return vec![];
     }
+    let program_funded = crate::programs::enrolled(w, nation);
+    let mut remaining = envelope;
     let mut assigned = 0.0;
     let last = lines.len() - 1;
     lines
@@ -355,9 +357,12 @@ fn allocations_with_envelope(w: &WorldState, nation: NationId, envelope: f64) ->
             // disappearing from the envelope.
             let kit = arsenal::index_of(&line.kit).unwrap_or(u16::MAX);
             let budget = if position == last {
-                (envelope - assigned).max(0.0)
+                // Strict shared-pool debits must use their own sequential
+                // residual. Preserve inherited arithmetic for unenrolled saves.
+                if program_funded { remaining.max(0.0) } else { (envelope - assigned).max(0.0) }
             } else {
                 let slice = envelope * priority_weight(line.priority) / total_weight;
+                remaining -= slice;
                 assigned += slice;
                 slice
             };
@@ -454,6 +459,7 @@ fn set_blocked(w: &mut WorldState, id: u32, reason: String) {
 /// Place one nation's directed monthly order slices. Called from `arsenal::tick`
 /// after the spot market has cleared and after old orders have delivered.
 pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
+    let program_funded = crate::programs::enrolled(w, nation);
     let plans = tick_allocations(w, nation);
     if plans.is_empty() {
         return;
@@ -505,6 +511,10 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
             }
         }
 
+        if program_funded {
+            crate::programs::spend(w, nation, crate::world::BUDGET_DEFENSE, 3, plan.budget_bn)
+                .expect("the priority allocation reserves this exact department slice before its atomic recipe");
+        }
         let def = &DECK[plan.kit as usize];
         let units = plan.budget_bn / def.unit_cost.max(1e-9);
         if units > 0.0 {
@@ -539,9 +549,10 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
                 line.resources_used[commodity.idx()] += plan.required[commodity.idx()];
             }
         }
+        crate::gdp_projects::record_manufacturing_commitment(w,&opening_line,plan.budget_bn,units);
     }
 
-    w.nation_mut(nation).arsenal.banked = banked.min(recurring * 24.0);
+    w.nation_mut(nation).arsenal.banked = if program_funded { 0.0 } else { banked.min(recurring * 24.0) };
 }
 
 #[cfg(test)]
@@ -846,6 +857,38 @@ mod tests {
             (new_value - envelope).abs() < 1e-9,
             "directed and automatic procurement both fired"
         );
+    }
+
+    #[test]
+    fn enrolled_lines_spend_only_the_exact_shared_department_residual_once() {
+        let (mut w, nation, district) = enabled();
+        w.rules.daily_simulation = true;
+        w.rules.resource_gates = false;
+        w.production.provinces.iter_mut().find(|p|p.district==district).unwrap().arms_plants=3;
+        let allocations=w.nation(nation).budget_for(w.year).allocations;
+        crate::apply_command(&mut w,&crate::Command::SetProgramBudget {
+            nation,fiscal_year:1990,allocations,departments:crate::programs::default_departments(),
+        }).unwrap();
+        for (kit, priority) in [("arm_gen2",Priority::Low),("arm_gen3",Priority::Normal),("air_gen4",Priority::High)] {
+            let line=start_line(&mut w,nation,&district,kit).unwrap();
+            set_priority(&mut w,nation,line,priority).unwrap();
+        }
+        crate::programs::begin_day(&mut w);
+        let pool=crate::programs::available_bn(&w,nation,crate::world::BUDGET_DEFENSE,3);
+        // A same-day plant project already reserved part of the same pool.
+        crate::programs::spend(&mut w,nation,crate::world::BUDGET_DEFENSE,3,pool/3.0).unwrap();
+        let residual=crate::programs::available_bn(&w,nation,crate::world::BUDGET_DEFENSE,3);
+        let before=w.nation(nation).arsenal.orders.len();
+        settle_nation(&mut w,nation);
+        assert_eq!(crate::programs::available_bn(&w,nation,crate::world::BUDGET_DEFENSE,3),0.0);
+        assert_eq!(w.nation(nation).arsenal.banked,0.0,"unused authority is never duplicated into the old prepaid bank");
+        let orders=&w.nation(nation).arsenal.orders[before..];
+        assert_eq!(orders.len(),3);
+        let bought: f64=orders.iter().map(|o|o.units*DECK[o.kit as usize].unit_cost).sum();
+        assert!((bought-residual).abs()<1e-12);
+        let order_count=w.nation(nation).arsenal.orders.len();
+        settle_nation(&mut w,nation);
+        assert_eq!(w.nation(nation).arsenal.orders.len(),order_count,"spent authority cannot place another batch");
     }
 
     #[test]

@@ -1,0 +1,255 @@
+/* Operations rooms: presentation only. Every rule is scoped to its own room. */
+:is(#productionPanel, #logisticsPanel) {
+  --ops-ink: var(--arc-ink, #f1f0ec);
+  --ops-muted: var(--arc-muted, #b2bfc9);
+  --ops-mint: var(--arc-mint, #aed9c5);
+  --ops-lilac: var(--arc-lilac, #c6b6df);
+  --ops-gold: var(--arc-gold, #edd2a0);
+  --ops-line: rgba(183, 207, 218, .2);
+  position: fixed;
+  inset: 16px;
+  z-index: var(--arc-room-z, 80);
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  color: var(--ops-ink);
+  border: 1px solid rgba(191, 206, 223, .32);
+  border-radius: 28px;
+  background: radial-gradient(ellipse at 95% 0, #51446942, transparent 48%),
+    radial-gradient(ellipse at 0 100%, #37686230, transparent 45%), #142231;
+  box-shadow: 0 24px 90px #050c1bad, inset 0 1px #ffffff12;
+  font: 400 16px/1.55 var(--arc-font, system-ui, -apple-system, "Segoe UI", sans-serif);
+  overscroll-behavior: contain;
+  isolation: isolate;
+}
+:is(#productionPanel, #logisticsPanel) *,
+:is(#productionPanel, #logisticsPanel) *::before,
+:is(#productionPanel, #logisticsPanel) *::after { box-sizing: border-box; }
+:is(#productionPanel, #logisticsPanel).open { display: flex; }
+:is(#productionPanel, #logisticsPanel) :is(.production-head, .logistics-head) {
+  gap: 18px; padding: 22px 32px; border-color: var(--ops-line); background: #11203180;
+}
+:is(#productionPanel, #logisticsPanel) .eyebrow {
+  color: var(--ops-mint); font: 600 14px/1.3 var(--arc-font, system-ui, sans-serif); font-family: inherit;
+  font-size: 14px; line-height: 1.3; letter-spacing: .08em; text-transform: uppercase;
+}
+:is(#productionPanel, #logisticsPanel) :is(.production-head, .logistics-head) h2 {
+  margin-top: 6px; color: var(--ops-ink); font: 650 clamp(26px, 2.6vw, 38px)/1.15 Georgia, serif;
+  letter-spacing: -.025em;
+}
+:is(#productionPanel, #logisticsPanel) :is(.production-body, .logistics-body) {
+  flex: 1; padding: 28px max(28px, calc((100% - 1280px) / 2)); min-height: 0;
+  scrollbar-color: #779b9c #172636; scrollbar-width: thin;
+}
+:is(#productionPanel, #logisticsPanel) button {
+  min-height: 46px; padding: 11px 17px; border: 1px solid var(--ops-line); border-radius: 13px;
+  background: #243548; color: var(--ops-ink); box-shadow: none;
+  font: 600 16px/1.3 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 16px; line-height: 1.3;
+  letter-spacing: 0; text-transform: none; cursor: pointer; white-space: normal;
+  transition: background .14s, border-color .14s, transform .14s;
+}
+:is(#productionPanel, #logisticsPanel) button:hover:not(:disabled) {
+  background: #304858; border-color: #a6cebf; color: #fbfcf6; transform: translateY(-1px);
+}
+:is(#productionPanel, #logisticsPanel) button:disabled { cursor: not-allowed; opacity: .65; }
+:is(#productionPanel, #logisticsPanel) :is(button, summary, article[tabindex]):focus-visible {
+  outline: 3px solid var(--ops-gold); outline-offset: 4px;
+}
+:is(#productionPanel, #logisticsPanel) :is(.production-close, .logistics-close) {
+  width: 48px; height: 48px; min-width: 48px; padding: 0; border-radius: 50%; font-size: 28px;
+}
+#productionPanel .production-modes { gap: 5px; padding: 5px; border-color: var(--ops-line); border-radius: 18px; background: #0e1b29; }
+#productionPanel .production-modes button { padding: 11px 20px; background: transparent; border-color: transparent; }
+#productionPanel .production-modes button.on,
+#productionPanel .factory-classes button.on,
+#logisticsPanel .logistics-filters button[aria-pressed="true"] {
+  color: #183b38; background: var(--ops-mint); border-color: var(--ops-mint); box-shadow: none;
+}
+:is(#productionPanel, #logisticsPanel) .operations-hero {
+  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(220px, .75fr); align-items: center;
+  gap: 24px; margin-bottom: 24px; padding: 28px 34px;
+  border: 1px solid #bed0db26; border-radius: 25px;
+  background: radial-gradient(ellipse at 92% 0, #dacb9b16, transparent 55%), linear-gradient(125deg, #283b4a, #1d2c40);
+}
+:is(#productionPanel, #logisticsPanel) .operations-hero h3 {
+  margin: 8px 0 12px; color: var(--ops-ink); font: 500 clamp(30px, 3.5vw, 48px)/1.06 Georgia, serif; letter-spacing: -.025em;
+}
+:is(#productionPanel, #logisticsPanel) .operations-hero p { max-width: 650px; margin: 0; color: #c1ccd5; font-size: 16px; line-height: 1.65; }
+:is(#productionPanel, #logisticsPanel) .operations-art { display: block; width: 100%; max-height: 190px; overflow: visible; }
+:is(#productionPanel, #logisticsPanel) .operations-kicker { color: var(--ops-mint); font-size: 14px; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; }
+:is(#productionPanel, #logisticsPanel) .operations-section-title { margin: 26px 0 14px; color: var(--ops-ink); font: 500 26px/1.2 Georgia, serif; }
+:is(#productionPanel, #logisticsPanel) :is(.production-stamp, .logistics-stamp) {
+  gap: 18px; margin: 20px 0 16px; align-items: center;
+}
+:is(#productionPanel, #logisticsPanel) :is(.production-stamp, .logistics-stamp) b { color: var(--ops-ink); font: 600 20px/1.4 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 20px; line-height: 1.4; letter-spacing: 0; text-transform: none; }
+:is(#productionPanel, #logisticsPanel) :is(.production-stamp, .logistics-stamp) span { color: var(--ops-muted); font-size: 14px; line-height: 1.5; }
+:is(#productionPanel, #logisticsPanel) :is(.production-summary, .manufacturing-summary, .logistics-summary) { gap: 14px; margin: 0 0 24px; }
+:is(#productionPanel, #logisticsPanel) :is(.production-summary, .manufacturing-summary, .logistics-summary) > span {
+  padding: 19px 23px; border-color: var(--ops-line); border-radius: 18px; background: #203243;
+  color: var(--ops-muted); font: 500 14px/1.35 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.35; letter-spacing: .02em; text-transform: none;
+}
+:is(#productionPanel, #logisticsPanel) :is(.production-summary, .manufacturing-summary, .logistics-summary) b { margin-top: 8px; color: var(--ops-mint); font-size: 32px; font-weight: 650; }
+:is(#productionPanel, #logisticsPanel) :is(.production-summary .slowed, .logistics-summary .constrained) b { color: var(--ops-gold); }
+:is(#productionPanel, #logisticsPanel) :is(.production-summary .blocked, .manufacturing-summary .warn, .logistics-summary .blocked) b { color: #efb0a4; }
+:is(#productionPanel, #logisticsPanel) :is(.production-list, .logistics-list) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
+:is(#productionPanel, #logisticsPanel) :is(.work-card, .lane-card) {
+  padding: 22px; border: 1px solid var(--ops-line); border-radius: 20px; background: #1c2d3f;
+  box-shadow: 0 10px 25px #09131e20; cursor: pointer;
+}
+:is(#productionPanel, #logisticsPanel) :is(.work-card, .lane-card)::before { inset: 0 22px auto; height: 3px; border-radius: 0 0 4px 4px; background: var(--ops-mint); }
+:is(#productionPanel, #logisticsPanel) :is(.work-card, .lane-card).selected { border-color: var(--ops-gold); background: #29394a; box-shadow: 0 0 0 2px #edd2a020; }
+:is(#productionPanel, #logisticsPanel) :is(.work-card, .lane-card):hover { background: #26384b; }
+:is(#productionPanel, #logisticsPanel) :is(.work-card, .lane-card).blocked::before { background: repeating-linear-gradient(90deg, #e9aaa2 0 5px, transparent 5px 10px); }
+:is(#productionPanel, #logisticsPanel) :is(.work-card.slowed, .lane-card.constrained)::before { background: repeating-linear-gradient(90deg, #e4c796 0 10px, transparent 10px 15px); }
+#logisticsPanel .lane-card.held { background: #352e46; }
+#logisticsPanel .lane-card.held::before { background: var(--ops-lilac); }
+#productionPanel .work-top { gap: 13px; }
+#productionPanel .work-art { width: 50px; height: 50px; color: #183d3a; background: var(--ops-mint); border: 0; border-radius: 16px; font-size: 28px; }
+#productionPanel .work-title b { color: var(--ops-ink); font: 600 21px/1.25 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 21px; line-height: 1.25; }
+#productionPanel .work-title span { margin-top: 6px; color: var(--ops-muted); font: 400 14px/1.5 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.5; text-transform: none; }
+:is(#productionPanel, #logisticsPanel) :is(.work-state, .lane-state) { padding: 6px 9px; border-radius: 9px; color: var(--ops-mint); background: #b8d8c80b; font: 650 14px/1.25 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.25; letter-spacing: 0; text-transform: capitalize; overflow-wrap: anywhere; }
+#productionPanel .work-progress { height: 11px; margin-top: 22px; border: 0; background: #112030; }
+#productionPanel .work-progress i { background: linear-gradient(90deg, #78b6a6, #b9dec9); }
+#productionPanel .work-line { gap: 16px; margin-top: 11px; flex-wrap: wrap; color: var(--ops-muted); font: 400 14px/1.5 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.5; }
+#productionPanel .work-line b { color: var(--ops-ink); }
+:is(#productionPanel, #logisticsPanel) :is(.work-reason, .lane-reason) { margin-top: 14px; padding: 11px 13px; border-radius: 10px; color: #d7dce0; background: #c7b8df0a; font-size: 14px; line-height: 1.6; }
+:is(#productionPanel, #logisticsPanel) :is(.work-actions, .lane-actions) { gap: 9px; margin-top: 17px; }
+:is(#productionPanel, #logisticsPanel) :is(.work-actions, .lane-actions) button { font-size: 14px; }
+#productionPanel .work-actions .on { color: #253b39; border-color: var(--ops-mint); background: var(--ops-mint); opacity: 1; }
+#productionPanel .work-actions .cancel { color: #f0bcb1; border-color: #ddb1a93d; background: #382c38; }
+:is(#productionPanel, #logisticsPanel) .operations-details { margin-top: 16px; padding-top: 4px; border-top: 1px solid var(--ops-line); }
+:is(#productionPanel, #logisticsPanel) .operations-details summary { min-height: 46px; padding: 12px 4px; color: var(--ops-lilac); font-size: 14px; font-weight: 600; cursor: pointer; }
+:is(#productionPanel, #logisticsPanel) .operations-details[open] summary { margin-bottom: 7px; }
+#productionPanel .work-needs { gap: 8px; margin-top: 10px; }
+#productionPanel .work-need { padding: 9px 12px; border-color: var(--ops-line); color: #c9d3db; background: #152636; font: 500 14px/1.4 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.4; }
+#productionPanel .work-need.short { color: #f4b5aa; border-color: #d994864d; }
+:is(#productionPanel, #logisticsPanel) :is(.production-new, .logistics-build) { margin: 0 0 22px; min-height: 54px; color: #193c38; border-color: var(--ops-mint); background: var(--ops-mint); }
+#productionPanel .production-back { margin-top: 22px; }
+:is(#productionPanel, #logisticsPanel) :is(.production-empty, .logistics-empty, .factory-bridge) { padding: 36px 26px; border: 1px dashed #aec7cd4d; border-radius: 22px; background: #1b2b3c; color: var(--ops-muted); font-size: 16px; line-height: 1.75; }
+#productionPanel .factory-bridge b { color: var(--ops-gold); margin-bottom: 10px; font: 500 25px/1.25 Georgia, serif; }
+#productionPanel .factory-bridge button { width: auto; display: block; margin: 22px auto 0; }
+#productionPanel :is(.project-catalog, .equipment-catalog) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+#productionPanel :is(.project-choice, .equipment-choice) { min-height: 220px; padding: 24px; border-radius: 22px; background: #203244; }
+#productionPanel .project-choice .work-art { margin-bottom: 19px; }
+#productionPanel :is(.project-choice, .equipment-choice) b { color: var(--ops-ink); font: 600 22px/1.3 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 22px; line-height: 1.3; }
+#productionPanel :is(.project-choice small, .equipment-choice span) { margin-top: 12px; color: var(--ops-muted); font-size: 14px; line-height: 1.6; }
+#productionPanel .project-choice .project-effect { color: var(--ops-mint); }
+#productionPanel :is(.project-choice, .equipment-choice) em { margin-top: 18px; color: var(--ops-gold); font: 500 14px/1.55 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.55; font-style: normal; text-transform: none; }
+#productionPanel .equipment-choice { padding-top: 91px; }
+#productionPanel .equipment-choice::before { top: 23px; left: 23px; width: 49px; height: 49px; border: 0; border-radius: 15px; color: #38314c; background: var(--ops-lilac); font-size: 25px; }
+#productionPanel .equipment-choice.locked { opacity: .72; }
+#productionPanel .project-brief { margin: 0 0 22px; padding: 23px; border-color: var(--ops-line); border-radius: 18px; background: #203244; }
+#productionPanel .project-brief b { font: 500 18px/1.5 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 18px; line-height: 1.5; color: var(--ops-ink); }
+#productionPanel .province-picks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+#productionPanel .province-pick { grid-template-columns: 1fr; padding: 22px; gap: 9px; min-height: 105px; }
+#productionPanel .province-pick b { font: 600 20px/1.3 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 20px; line-height: 1.3; color: var(--ops-ink); }
+#productionPanel .province-pick span { font-size: 14px; color: var(--ops-muted); }
+#productionPanel .built-toggle { margin-top: 20px; padding: 16px 20px; color: var(--ops-lilac); }
+#productionPanel .built-toggle b { color: var(--ops-lilac); font-size: 16px; }
+#productionPanel .built-list { gap: 12px; margin-top: 14px; }
+#productionPanel .built-row { padding: 20px; background: #1b2c3c; border-color: var(--ops-line); border-radius: 14px; }
+#productionPanel .built-row b { font: 600 18px/1.4 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 18px; line-height: 1.4; color: var(--ops-ink); }
+#productionPanel .built-caps { gap: 10px; margin-top: 12px; }
+#productionPanel .built-cap { padding: 8px 11px; font: 500 14px/1.3 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.3; color: var(--ops-gold); background: #e8cd9b09; border-color: #e8cd9b30; text-transform: none; }
+#productionPanel .factory-output { gap: 12px; margin-top: 20px; }
+#productionPanel .factory-output span { padding: 13px; font: 400 14px/1.5 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.5; text-transform: none; color: var(--ops-muted); background: #142637; border-color: var(--ops-line); border-radius: 12px; }
+#productionPanel .factory-output b { margin-top: 6px; color: var(--ops-ink); font-size: 19px; }
+#productionPanel .factory-classes { gap: 9px; margin-bottom: 23px; padding: 3px 0 9px; flex-wrap: wrap; }
+#productionPanel .factory-ledger { margin-top: 24px; padding: 16px 22px; border: 1px solid var(--ops-line); border-radius: 18px; background: #1c2d3e; }
+#productionPanel .factory-ledger summary { min-height: 44px; padding: 10px 0; color: var(--ops-lilac); font: 600 16px/1.5 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 16px; line-height: 1.5; text-transform: none; letter-spacing: 0; }
+#productionPanel .factory-ledger-list { gap: 10px; margin-top: 16px; }
+#productionPanel .factory-ledger-row { padding: 15px; border-color: var(--ops-line); border-radius: 12px; background: #142636; }
+#productionPanel .factory-ledger-row b { color: var(--ops-ink); font: 600 16px/1.5 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 16px; line-height: 1.5; }
+#productionPanel .factory-ledger-row span { color: var(--ops-muted); font: 400 14px/1.5 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.5; }
+#productionPanel .manufacturing-hero { padding: 26px; margin-bottom: 22px; border-radius: 22px; border-color: var(--ops-line); background: #26394a; }
+#productionPanel .manufacturing-hero .stamp { font-size: 14px; color: var(--ops-gold); }
+#productionPanel .manufacturing-hero .money { font-size: 38px; margin-top: 12px; }
+#productionPanel .manufacturing-hero .money small { font-size: 14px; color: var(--ops-muted); }
+#productionPanel .manufacturing-hero p { font-size: 16px; line-height: 1.65; color: var(--ops-muted); }
+#logisticsPanel .operations-freight-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 26px; align-items: start; }
+#logisticsPanel .operations-freight-main { min-width: 0; }
+#logisticsPanel .operations-freight-aside { position: sticky; top: 0; }
+#logisticsPanel .operations-freight-main .logistics-list { grid-template-columns: 1fr; }
+#logisticsPanel .logistics-filters { gap: 9px; padding: 2px 0 18px; }
+#logisticsPanel .logistics-filters button { gap: 8px; padding: 11px 16px; border-radius: 999px; color: var(--ops-muted); background: #1e3043; font-size: 14px; }
+#logisticsPanel .logistics-filters svg { width: 18px; height: 18px; }
+#logisticsPanel .route-policy { margin-bottom: 22px; padding: 24px; border-color: var(--ops-line); border-radius: 22px; background: #223347; }
+#logisticsPanel .route-policy-title { display: block; font: 600 21px/1.35 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 21px; line-height: 1.35; color: var(--ops-ink); letter-spacing: 0; text-transform: none; }
+#logisticsPanel .route-policy-title small { display: block; margin-top: 8px; color: var(--ops-mint); font-size: 14px; }
+#logisticsPanel .route-policy-grid { grid-template-columns: 1fr; gap: 11px; margin-top: 19px; }
+#logisticsPanel .route-policy-grid button { display: grid; grid-template-columns: 34px 1fr; gap: 11px; align-items: center; padding: 15px; min-height: 74px; color: var(--ops-muted); text-align: left; }
+#logisticsPanel .route-policy-grid button i { margin: 0; color: var(--ops-lilac); font-size: 26px; }
+#logisticsPanel .route-policy-grid button b { display: block; font-size: 16px; }
+#logisticsPanel .route-policy-grid button small { display: block; margin-top: 7px; color: #c1ccd4; font-size: 14px; font-weight: 400; line-height: 1.5; }
+#logisticsPanel .route-policy-grid button.on { border-color: #b8d6c396; color: var(--ops-ink); background: #3a5658; }
+#logisticsPanel .route-policy-note { margin-top: 15px; color: var(--ops-muted); font-size: 14px; line-height: 1.65; }
+#logisticsPanel .lane-top { gap: 14px; }
+#logisticsPanel .lane-route { color: var(--ops-ink); font: 600 21px/1.35 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 21px; line-height: 1.35; }
+#logisticsPanel .lane-route .arrow { color: var(--ops-gold); padding: 0 11px; }
+#logisticsPanel .lane-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; margin-top: 12px; color: var(--ops-muted); font: 400 14px/1.6 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.6; letter-spacing: 0; text-transform: none; }
+#logisticsPanel .lane-meta svg { width: 18px; height: 18px; }
+#logisticsPanel :is(.lane-quantities, .lane-journey) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+#logisticsPanel :is(.lane-quantities, .lane-journey) span { min-width: 0; padding: 12px; border: 1px solid var(--ops-line); border-radius: 12px; background: #162838; color: var(--ops-muted); font: 400 14px/1.45 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.45; text-transform: none; }
+#logisticsPanel :is(.lane-quantities, .lane-journey) b { margin-top: 6px; color: var(--ops-ink); font-size: 16px; line-height: 1.5; white-space: normal; overflow: visible; overflow-wrap: anywhere; }
+#logisticsPanel .route-thread { gap: 12px; margin-top: 18px; padding-top: 15px; flex-wrap: wrap; overflow: visible; }
+#logisticsPanel .route-thread::before { top: 4px; }
+#logisticsPanel .route-thread span { flex: 1 1 100px; overflow: visible; white-space: normal; color: var(--ops-muted); font: 400 14px/1.5 var(--arc-font, system-ui, sans-serif); font-family: inherit; font-size: 14px; line-height: 1.5; }
+#logisticsPanel .route-thread span::before { width: 8px; height: 8px; margin: -15px auto 7px; background: var(--ops-mint); border: 0; }
+#logisticsPanel .logistics-more { margin-top: 16px; }
+:is(#productionPanel, #logisticsPanel) .operations-map-return { display: none; }
+:is(#productionPanel, #logisticsPanel).map-view { left: auto; width: min(530px, calc(100vw - 32px)); top: 78px; bottom: 98px; border-radius: 22px; }
+:is(#productionPanel, #logisticsPanel).map-view :is(.production-head, .logistics-head) { flex-wrap: wrap; gap: 10px; padding: 19px; }
+:is(#productionPanel, #logisticsPanel).map-view :is(.production-head, .logistics-head) h2 { font-size: 27px; }
+:is(#productionPanel, #logisticsPanel).map-view :is(.production-body, .logistics-body) { padding: 18px; }
+:is(#productionPanel, #logisticsPanel).map-view .operations-map-return { display: block; }
+:is(#productionPanel, #logisticsPanel).map-view :is(.operations-hero, .production-summary, .manufacturing-summary, .logistics-summary) { display: none; }
+:is(#productionPanel, #logisticsPanel).map-view :is(.production-list, .logistics-list, .equipment-catalog, .project-catalog, .province-picks, .operations-freight-workspace) { grid-template-columns: 1fr; }
+:is(#productionPanel, #logisticsPanel).map-view .operations-freight-aside { position: static; }
+@media (max-width: 1100px) {
+  #logisticsPanel .operations-freight-workspace { grid-template-columns: minmax(0, 1fr) 275px; gap: 18px; }
+  #productionPanel :is(.project-catalog, .equipment-catalog) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #productionPanel .work-top { flex-wrap: wrap; }
+}
+@media (max-width: 800px) {
+  :is(#productionPanel, #logisticsPanel) { inset: 8px; border-radius: 22px; }
+  :is(#productionPanel, #logisticsPanel) :is(.production-head, .logistics-head) { flex-wrap: wrap; gap: 12px; padding: 20px; }
+  :is(#productionPanel, #logisticsPanel) :is(.production-body, .logistics-body) { padding: 20px; }
+  #productionPanel .production-modes { order: 4; width: 100%; }
+  #productionPanel .production-modes button { flex: 1; }
+  :is(#productionPanel, #logisticsPanel) .operations-hero { grid-template-columns: 1fr; gap: 10px; padding: 24px; }
+  :is(#productionPanel, #logisticsPanel) .operations-art { max-height: 145px; }
+  :is(#productionPanel, #logisticsPanel) :is(.production-list, .logistics-list, .operations-freight-workspace) { grid-template-columns: 1fr; }
+  #logisticsPanel .operations-freight-aside { position: static; }
+  #logisticsPanel .route-policy-grid { grid-template-columns: repeat(3, 1fr); }
+  #logisticsPanel .route-policy-grid button { display: flex; flex-direction: column; justify-content: center; padding: 14px 10px; text-align: center; }
+  :is(#productionPanel, #logisticsPanel) :is(.production-summary, .manufacturing-summary, .logistics-summary) { gap: 9px; }
+  :is(#productionPanel, #logisticsPanel) :is(.production-summary, .manufacturing-summary, .logistics-summary) > span { padding: 15px 12px; }
+  :is(#productionPanel, #logisticsPanel) :is(.production-summary, .manufacturing-summary, .logistics-summary) b { font-size: 27px; }
+}
+@media (max-width: 520px) {
+  :is(#productionPanel, #logisticsPanel) :is(.production-head, .logistics-head) { padding: 17px; }
+  :is(#productionPanel, #logisticsPanel) :is(.production-body, .logistics-body) { padding: 15px; }
+  :is(#productionPanel, #logisticsPanel) .operations-hero { padding: 22px; }
+  :is(#productionPanel, #logisticsPanel) :is(.production-stamp, .logistics-stamp) { align-items: start; flex-direction: column; gap: 6px; }
+  :is(#productionPanel, #logisticsPanel) :is(.production-stamp, .logistics-stamp) span { text-align: left; }
+  #productionPanel :is(.project-catalog, .equipment-catalog, .province-picks) { grid-template-columns: 1fr; }
+  :is(#productionPanel, #logisticsPanel) :is(.work-card, .lane-card) { padding: 18px; }
+  #logisticsPanel :is(.lane-top, .lane-journey) { flex-wrap: wrap; }
+  #logisticsPanel .lane-top { flex-direction: column; }
+  #logisticsPanel .lane-state { max-width: none; }
+  #logisticsPanel .lane-journey { grid-template-columns: 1fr; }
+  #logisticsPanel .lane-quantities { gap: 6px; }
+  #logisticsPanel .lane-quantities span { padding: 10px 7px; }
+  #logisticsPanel .lane-route { font-size: 19px; }
+  #logisticsPanel .route-policy-grid { grid-template-columns: 1fr; }
+  #logisticsPanel .route-policy-grid button { flex-direction: row; justify-content: start; gap: 14px; }
+  #productionPanel .factory-ledger-row { grid-template-columns: 1fr; }
+  #productionPanel .factory-ledger-row span { text-align: left; }
+  :is(#productionPanel, #logisticsPanel).map-view { inset: auto 8px 88px; width: auto; max-height: 60dvh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(#productionPanel, #logisticsPanel).open { animation: none; }
+  :is(#productionPanel, #logisticsPanel) button { transition: none; }
+}

@@ -347,3 +347,35 @@ What replaces focus trees, stated as a promise we can be held to:
    assistance to something that genuinely beats MD, with a playable artifact
    beating it on every axis MD players actually praise at around 15–18 months.
    Allowing for life, 3–4 calendar years to 1.0. The HOI4-clone path is 4–6.
+# Adopted amendment — ministry departments (2026-09-03, local review)
+
+Ridge approved building the five-department ministry proposal and explicitly
+reserved review before pushing. `MINISTRY_BUDGET_DESIGN.md` records the scope.
+This supersedes Industry's magazine-refill-only named ministry role **only for
+explicitly enrolled daily player plans**. Defense maintenance takes ammunition
+support; Industry funds physical civilian investment and its operating inputs.
+Ten parents still reconcile to one fiscal plan. Fifty department rows do not
+claim fifty independently calibrated service models. Services may remain managed.
+Daily project authority is shared, unused capital is not spent, and real completed
+work alone enters the existing investment channel; there is no additive GDP award.
+Mapped raw resources remain the existing twelve. New manufactured packs are game
+inventory, not a fabricated deposit dataset. Legacy worlds remain unchanged.
+
+## Adopted amendment — provincial GDP foundation (2026-09-03, local review)
+
+Ridge approved reflecting investments in provincial GDP and asked for every
+country's GDP to have a composition, assigning a modeled starting figure now.
+`PROVINCE_ECONOMY.md` defines this extension. The existing national starting GDP
+remains the anchor; province and sector allocations are explicitly labeled
+game estimates, not fabricated historical statistics or invented factory sites.
+Mapped provinces plus the unallocated national remainder reconcile to GDP.
+
+Actual construction work and realized incremental production can contribute
+local value added. This supersedes the previous no-direct-GDP-write boundary
+for the new daily provincial accounts only: output less intermediate inputs is
+an annual rate, never a cumulative cash award. Enabling assets do not receive
+duplicate output credit. Explicitly represented investment replaces its old
+aggregate public-capital route; it cannot be paid again through that route.
+Oil's existing national system, treasury settlement, and default headless replay
+retain their ownership. Better sector data and additional operating systems can
+replace the modeled foundation later. Review still precedes any GitHub push.

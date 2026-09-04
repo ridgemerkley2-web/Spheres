@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-labelledby="city-title city-desc">
+  <title id="city-title">The prosperity garden</title>
+  <desc id="city-desc">An illustrated miniature civic city on a floating garden, with a golden treasury, mint towers, a lavender library, a glass conservatory and a little bridge over a teal river. An orbiting sun lights the skyline.</desc>
+  <defs>
+    <linearGradient id="island" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#344958"/><stop offset="1" stop-color="#182b3d"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#759f94"/><stop offset=".55" stop-color="#527c77"/><stop offset="1" stop-color="#365860"/>
+    </linearGradient>
+    <linearGradient id="mint" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#cce7ce"/><stop offset="1" stop-color="#91c6b5"/>
+    </linearGradient>
+    <linearGradient id="lilac" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ddd1ee"/><stop offset="1" stop-color="#a39dc6"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fae6b5"/><stop offset="1" stop-color="#d5b778"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2=".7" y2="1">
+      <stop stop-color="#99cece"/><stop offset=".48" stop-color="#69aeb2"/><stop offset="1" stop-color="#427f92"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#bbdeda" stop-opacity=".95"/><stop offset="1" stop-color="#609a9d" stop-opacity=".8"/>
+    </linearGradient>
+    <radialGradient id="halo">
+      <stop stop-color="#dfc88d" stop-opacity=".18"/><stop offset="1" stop-color="#dfc88d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ground-shadow">
+      <stop stop-color="#0a1627" stop-opacity=".62"/><stop offset="1" stop-color="#0a1627" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft-shadow" x="-30%" y="-25%" width="160%" height="165%">
+      <feDropShadow dx="0" dy="9" stdDeviation="7" flood-color="#142837" flood-opacity=".25"/>
+    </filter>
+    <g id="tree">
+      <ellipse cx="0" cy="8" rx="18" ry="7" fill="#26494e" opacity=".35"/>
+      <path d="M0 7V-35" stroke="#d3bf98" stroke-width="5" stroke-linecap="round"/>
+      <path d="M-1-19-13-31M0-12 12-27" fill="none" stroke="#d3bf98" stroke-width="3" stroke-linecap="round"/>
+      <path d="M-24-36c0-14 8-29 24-36 16 7 25 22 25 36 0 13-10 23-25 23s-24-10-24-23Z" fill="url(#mint)"/>
+      <path d="M0-61v37M0-41l-11-10M0-31l12-12" fill="none" stroke="#639b89" stroke-opacity=".65" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <g id="round-tree">
+      <ellipse cx="0" cy="8" rx="15" ry="6" fill="#26494e" opacity=".35"/>
+      <path d="M0 6V-31" stroke="#d7c6a7" stroke-width="4" stroke-linecap="round"/>
+      <circle cy="-38" r="24" fill="#b8acd0"/>
+      <path d="M0-53v32M0-36l-10-8M0-29l10-9" fill="none" stroke="#8b80aa" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <g id="flower">
+      <path d="M0 0v-9" stroke="#a7c8a4" stroke-width="2"/>
+      <circle cy="-12" r="4" fill="#f2d299"/>
+    </g>
+    <g id="spark" fill="#e8d5a8">
+      <path d="M0-7 1.8-1.8 7 0 1.8 1.8 0 7-1.8 1.8-7 0-1.8-1.8Z"/>
+    </g>
+  </defs>
+
+  <!-- A quiet astronomical crest leaves room for the cabinet's own typography. -->
+  <circle cx="546" cy="206" r="188" fill="url(#halo)"/>
+  <g fill="none" stroke="#c6b98f" stroke-width="1.3">
+    <ellipse cx="524" cy="206" rx="247" ry="134" transform="rotate(-16 524 206)" opacity=".19"/>
+    <path d="M272 184c78-133 328-150 474-9" stroke-dasharray="3 10" opacity=".32"/>
+    <path d="M322 97c38-32 86-51 139-56M659 90c58 36 96 90 101 140" opacity=".24"/>
+  </g>
+  <circle cx="628" cy="120" r="47" fill="url(#gold)"/>
+  <circle cx="628" cy="120" r="57" fill="none" stroke="#e8d5a8" stroke-width="1" opacity=".22"/>
+  <path d="M573 119c21 22 81 20 112-8" fill="none" stroke="#f7e5b8" stroke-width="2" opacity=".8"/>
+  <circle cx="292" cy="166" r="5" fill="#a9cfc7"/>
+  <circle cx="736" cy="175" r="3" fill="#d6c4e2"/>
+  <use href="#spark" x="375" y="103"/>
+  <use href="#spark" x="748" y="279" transform="rotate(14 748 279)"/>
+  <use href="#spark" x="232" y="299" transform="scale(.75) translate(77 100)"/>
+  <circle cx="442" cy="67" r="2" fill="#d9c7e5" opacity=".7"/>
+  <circle cx="792" cy="231" r="2" fill="#9cc6bd" opacity=".8"/>
+
+  <!-- The city sits on a hand-cut, layered garden island. -->
+  <ellipse cx="487" cy="547" rx="352" ry="62" fill="url(#ground-shadow)"/>
+  <path d="M171 399c23-39 141-88 277-94 159-7 300 42 359 102l-2 54c-87 77-273 120-421 82-85-21-175-52-211-89Z" fill="url(#island)"/>
+  <path d="M176 434c112 78 310 119 492 47 49-19 96-41 134-66" fill="none" stroke="#93b8ad" stroke-opacity=".18" stroke-width="3"/>
+  <path d="M193 468c58 30 101 48 159 61M614 512c66-16 111-37 148-58" fill="none" stroke="#111e2e" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/>
+  <path d="M171 399c31-50 158-90 285-94 147-5 286 40 351 102-48 57-193 103-313 99-148-5-262-51-323-107Z" fill="url(#grass)"/>
+  <path d="M190 400c97 65 194 85 303 88 106 4 226-28 293-80" fill="none" stroke="#b2c6a3" stroke-opacity=".27" stroke-width="2"/>
+
+  <!-- A stream runs through the garden, falling softly over its cut edge. -->
+  <path d="M617 335c-53 10-18 51-65 65-46 13-88 11-95 32-7 23 38 31 39 73l42-3c-1-38-43-58-28-68 15-11 67-8 93-32 30-27 1-39 40-57Z" fill="url(#water)"/>
+  <path d="m496 505 2 40c11 2 27 1 40-2v-41" fill="#619aab" opacity=".8"/>
+  <path d="M502 501v38M510 504v32M529 501v36" stroke="#a8d8d4" stroke-opacity=".4" stroke-width="2" stroke-linecap="round"/>
+  <path d="M632 342c-50 16-3 49-62 63M514 442c8 17 18 30 17 43" fill="none" stroke="#c4e1d6" stroke-opacity=".45" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Winding warm paths connect homes, learning and the treasury. -->
+  <path d="M223 404c60 9 88 21 132 31 58 14 79-23 113-45 38-26 92-18 126-4 31 14 76 39 136 31" fill="none" stroke="#42686a" stroke-width="24" stroke-linecap="round" opacity=".4"/>
+  <path d="M223 400c60 9 88 21 132 31 58 14 79-23 113-45 38-26 92-18 126-4 31 14 76 39 136 31" fill="none" stroke="#d2c3a0" stroke-width="18" stroke-linecap="round"/>
+  <path d="M332 353c-19 29-9 57 23 78M666 343c-2 31-4 49-14 65" fill="none" stroke="#d2c3a0" stroke-width="11" stroke-linecap="round"/>
+
+  <!-- A compact, terraced skyline: dimensional faces, rounded corners and lit windows. -->
+  <g filter="url(#soft-shadow)">
+    <path d="m346 202 49-21 46 22v159l-49 23-46-25Z" fill="#6d9e99"/>
+    <path d="m346 202 49 22v161l-49-25Z" fill="url(#mint)"/>
+    <path d="m346 202 49-21 46 22-46 21Z" fill="#dfebd5"/>
+    <path d="m367 184 28-13 24 12v14l-24 12-28-13Z" fill="#98beb0"/>
+    <path d="m367 184 28 12 24-13-24-12Z" fill="#d4e6cd"/>
+    <path d="M358 232v17m13-11v17m-13 0v17m13-11v17m-13 0v17m13-11v17m-13 0v17m13-11v17" stroke="#659a93" stroke-width="5"/>
+    <path d="m408 236 19-9m-19 31 19-9m-19 31 19-9m-19 31 19-9m-19 31 19-9" stroke="#b9d7bf" stroke-width="5" opacity=".7"/>
+
+    <path d="m287 280 36-17 33 17v104l-36 17-33-17Z" fill="#8a87b2"/>
+    <path d="m287 280 33 16v105l-33-17Z" fill="url(#lilac)"/>
+    <path d="m287 280 36-17 33 17-36 16Z" fill="#e3d9ed"/>
+    <path d="m296 307 14 6m-14 14 14 6m-14 14 14 6m-14 14 14 6" stroke="#8d85ac" stroke-width="5"/>
+    <path d="m330 309 16-7m-16 28 16-7m-16 28 16-7" stroke="#c9bfdb" stroke-width="4"/>
+
+    <path d="m628 245 42-18 47 24v135l-43 20-46-23Z" fill="#609798"/>
+    <path d="m628 245 46 23v138l-46-23Z" fill="url(#mint)"/>
+    <path d="m628 245 42-18 47 24-43 17Z" fill="#d5e6cf"/>
+    <path d="M640 279v70m13-63v70" stroke="#79aaa0" stroke-width="5"/>
+    <path d="m687 285 17-8m-17 29 17-8m-17 29 17-8m-17 29 17-8" stroke="#acd4c3" stroke-width="4" opacity=".8"/>
+    <path d="m640 248 28-12 31 15-28 12Z" fill="#7baaa0"/>
+    <path d="m663 244 8-4 10 5-9 4Z" fill="#c5dec2"/>
+  </g>
+
+  <!-- The treasury is the warm heart of the room, not a real country's landmark. -->
+  <g filter="url(#soft-shadow)">
+    <path d="m411 365 103-36 102 38-103 47Z" fill="#536b68" opacity=".5"/>
+    <path d="m412 354 99-34 101 39v18l-101 42-99-41Z" fill="#b79e74"/>
+    <path d="m412 354 99-34 101 39-101 41Z" fill="#f0dbab"/>
+    <path d="m428 272 82-30 85 32v80l-84 33-83-32Z" fill="#bfab80"/>
+    <path d="m428 272 82 31v84l-82-32Z" fill="url(#gold)"/>
+    <path d="m510 303 85-29v80l-84 33Z" fill="#c7b489"/>
+    <path d="m415 271 96-59 97 61-98 39Z" fill="#d6b679"/>
+    <path d="m415 271 96-43 97 45-98 34Z" fill="#f4deb0"/>
+    <path d="m430 272 80-32 80 34-80 28Z" fill="#bfa272"/>
+    <path d="m445 272 65-23 64 26-64 20Z" fill="#eed4a0"/>
+    <path d="M494 239v-34" stroke="#dabd86" stroke-width="3"/>
+    <path d="M495 205c12-7 20 6 32-1v16c-12 7-20-6-32 1Z" fill="#b7cfc0"/>
+    <g stroke="#f6e4bb" stroke-width="10" stroke-linecap="round">
+      <path d="M444 307v43M466 316v42M489 325v42"/>
+      <path d="M529 325v39M554 315v39M579 305v39"/>
+    </g>
+    <g stroke="#ac966f" stroke-width="2" stroke-linecap="round" opacity=".65">
+      <path d="M446 308v41M468 317v40M491 326v40"/>
+    </g>
+    <path d="m422 357 89 35 93-37M417 365l94 37 98-40" fill="none" stroke="#f1dab0" stroke-width="3"/>
+    <circle cx="510" cy="273" r="12" fill="#ead5a9" stroke="#a99063" stroke-width="1.5"/>
+    <path d="m510 263 2.5 6.7 7 .3-5.5 4.4 1.8 6.6-5.8-3.9-5.8 3.9 1.8-6.6-5.5-4.4 7-.3Z" fill="#a88f60"/>
+  </g>
+
+  <!-- Learning and a glass garden: two little places worth zooming into. -->
+  <g filter="url(#soft-shadow)">
+    <path d="m269 381 55-25 60 28v52l-55 26-60-27Z" fill="#8f88ae"/>
+    <path d="m269 381 60 28v53l-60-27Z" fill="url(#lilac)"/>
+    <path d="m261 379 61-29 70 30-64 29Z" fill="#e1d4e6"/>
+    <path d="m276 377 47-20 51 23-46 21Z" fill="#b4a8cd"/>
+    <path d="m286 376 37-15 40 18-34 15Z" fill="#8d84af"/>
+    <path d="M283 414v-8l11 5v8m11 10v-13l11 5v13" fill="none" stroke="#857a9f" stroke-width="5"/>
+    <path d="m344 435 0-18c0-9 18-16 18-7v17Z" fill="#59627e"/>
+    <path d="m334 449 42-19" stroke="#d9cae2" stroke-width="3"/>
+
+    <path d="m619 406 56-25 70 31-59 29Z" fill="#41696c" opacity=".45"/>
+    <path d="M622 386c0-35 27-65 49-55 16 8 30 32 30 54v31l-30 14-49-23Z" fill="url(#glass)"/>
+    <path d="M652 373c0-33 24-49 41-38 21 13 37 34 37 53v29l-29 13-49-25Z" fill="url(#glass)"/>
+    <path d="M622 386c0-35 27-65 49-55l22 4c21 13 37 34 37 53v29l-29 13-79-23Z" fill="none" stroke="#cadcd0" stroke-width="3"/>
+    <path d="M652 410v-37c0-27 17-44 33-42M678 420v-42c0-24 10-30 18-27M704 425v-43c0-11-3-25-10-32M622 386l79 32 29-14M628 359l75 34 23-12" fill="none" stroke="#d0dfd2" stroke-width="2" opacity=".8"/>
+    <path d="M641 395v-28m0 13c-17 0-16-15-16-15 16-1 16 15 16 15m1 5c17 0 17-15 17-15-16-1-17 15-17 15M684 412v-26m0 9c-13 0-14-12-14-12 13-1 14 12 14 12" fill="#8eb699" stroke="#789f87" stroke-width="2"/>
+  </g>
+
+  <!-- A tiny arched footbridge keeps the garden's winding route continuous. -->
+  <g>
+    <path d="M464 431c10-24 45-32 71-18v19c-22-13-51-4-61 16l-10-4Z" fill="#a79177"/>
+    <path d="M461 430c13-29 48-36 77-19l-4 8c-26-13-54-6-66 20Z" fill="#ebd4ad"/>
+    <path d="M463 423v-15m13 1v-14m16 6v-14m17 13v-14m17 18v-14m11 22v-14" stroke="#e4ceab" stroke-width="3" stroke-linecap="round"/>
+    <path d="M463 408c15-23 44-27 74-10" fill="none" stroke="#f1dbb5" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Small planted details make the miniature feel cared for. -->
+  <use href="#tree" x="256" y="367"/>
+  <use href="#round-tree" x="754" y="396"/>
+  <use href="#tree" x="580" y="466"/>
+  <use href="#tree" x="225" y="417" transform="translate(67 125) scale(.72)"/>
+  <use href="#round-tree" x="407" y="472" transform="translate(122 142) scale(.7)"/>
+  <use href="#tree" x="750" y="434" transform="translate(180 104) scale(.76)"/>
+  <g fill="#a3c4a6">
+    <ellipse cx="380" cy="460" rx="15" ry="7"/><ellipse cx="611" cy="435" rx="16" ry="8"/>
+    <ellipse cx="246" cy="397" rx="11" ry="5"/><ellipse cx="711" cy="451" rx="19" ry="7"/>
+  </g>
+  <g opacity=".9">
+    <use href="#flower" x="365" y="468"/><use href="#flower" x="383" y="475"/>
+    <use href="#flower" x="606" y="447"/><use href="#flower" x="620" y="443"/>
+    <use href="#flower" x="725" y="454"/><use href="#flower" x="699" y="460"/>
+  </g>
+  <g fill="none" stroke="#dbc9a2" stroke-linecap="round">
+    <path d="M397 418v-24m0 0c-8-1-9-6-9-6" stroke-width="3"/>
+    <path d="M722 401v-22m0 0c-7-1-8-6-8-6" stroke-width="3"/>
+  </g>
+  <circle cx="389" cy="387" r="4" fill="#f1dbaa"/>
+  <circle cx="714" cy="373" r="4" fill="#f1dbaa"/>
+  <path d="M592 486h25m-18 7h9M306 447l17 6m-9 2 8 3M563 353l14 5" stroke="#c6d3b8" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>
+</svg>

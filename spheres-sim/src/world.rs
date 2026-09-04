@@ -306,6 +306,13 @@ pub struct Nation {
     /// the calibrated legacy envelopes until somebody opens the books.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub annual_budget: Option<AnnualBudget>,
+    /// Actual-expenditure departments, explicitly enrolled by the player.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub program_budget: Option<crate::programs::ProgramBudget>,
+    /// Frozen inherited public investment while province output accounts own
+    /// explicit projects. Absent unless the browser's accounting is enabled.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub province_investment_reference: Option<f64>,
     /// Public debt as share of GDP.
     ///
     /// STILL THE SINGLE SOURCE OF TRUTH for every reader of it — the AI fiscal
@@ -482,7 +489,10 @@ impl Nation {
     }
 
     pub fn budget_gap(&self, ministry: usize) -> f64 {
-        self.annual_budget.as_ref().map(|b| b.gap(ministry)).unwrap_or(0.0)
+        self.annual_budget.as_ref().map(|b| {
+            if self.program_budget.is_some() { crate::programs::service_gap(self, ministry, b.allocations[ministry]) }
+            else { b.gap(ministry) }
+        }).unwrap_or(0.0)
     }
 
     /// Whether this nation keeps a treasury in dollars rather than a debt
@@ -1078,6 +1088,8 @@ pub struct WorldState {
     pub logistics: crate::logistics::Logistics,
     #[serde(default, skip_serializing_if = "crate::clock::DailyState::is_empty")]
     pub daily: crate::clock::DailyState,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub province_economy: Option<crate::province_economy::ProvinceEconomy>,
 
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it

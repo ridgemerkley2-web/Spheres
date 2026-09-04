@@ -819,6 +819,163 @@
   .dial-read small { display: block; color: var(--faint); font-size: 7px; white-space: nowrap; }
   .budget-note { margin-top: 8px; color: var(--faint); font-size: 9px; }
 
+  /* The Cabinet Room shares Global Command's storybook palette, but uses
+     reading-size type and one decision at a time. All styles stay in this room. */
+  #cabinetDrawer {
+    --cab-mint: #a8d4c3; --cab-lilac: #c6b5e3; --cab-gold: #ebcc91;
+    --cab-text: #f5f0ed; --cab-muted: #c0c4cf;
+    position: fixed; inset: 0; z-index: 68; width: 100%; display: none;
+    transform: none; transition: none; isolation: isolate; overflow: hidden; overflow: clip;
+    color: var(--cab-text); font: 16px/1.5 system-ui, sans-serif;
+    background: radial-gradient(ellipse at 86% 10%, #619e942b, transparent 46%),
+      radial-gradient(ellipse at 4% 78%, #9778b333, transparent 50%), #131923;
+  }
+  #cabinetDrawer.open { display: grid; grid-template-rows: auto auto minmax(0,1fr) auto; animation: domRoomIn .24s ease-out; }
+  #cabinetDrawer::before { content: ""; position: absolute; pointer-events: none; z-index: -1;
+    width: 1200px; height: 1200px; right: -280px; top: -400px; border: 1px solid #c7b5df18;
+    border-radius: 50%; box-shadow: 0 0 0 100px #b6d4d406, 0 0 0 250px #c7b5df04; }
+  #cabinetDrawer button { font-family: inherit; text-transform: none; letter-spacing: normal; cursor: pointer; }
+  #cabinetDrawer button:focus-visible, #cabinetDrawer summary:focus-visible,
+  #cabinetDrawer input:focus-visible, #cabinetDrawer select:focus-visible { outline: 3px solid var(--cab-gold); outline-offset: 4px; }
+  #cabinetDrawer button:disabled { cursor: not-allowed; opacity: .48; }
+  #cabinetDrawer [hidden] { display: none !important; }
+  .cab-topbar { display: flex; align-items: center; gap: 16px; padding: 16px clamp(20px,3vw,52px); background: #101723bf; border-bottom: 1px solid #cad1e322; }
+  .cab-topbar .grow { flex: 1; }
+  .cab-emblem { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid #ebcc9177; border-radius: 17px 17px 5px 17px; color: var(--cab-gold); background: #ebcc910c; font-size: 30px; }
+  .cab-kicker { color: var(--cab-mint); font: 700 12px/1.3 system-ui,sans-serif; text-transform: uppercase; letter-spacing: .16em; }
+  .cab-topbar h2 { margin: 2px 0 0; color: var(--cab-text); font: 700 clamp(21px,2vw,29px)/1.2 var(--serif); letter-spacing: 0; }
+  .cab-date { color: var(--cab-muted); font-size: 15px; }
+  #cabinetDrawer .cab-close { min-width: 48px; height: 48px; border: 1px solid #c6b5e344; border-radius: 50%; background: #ffffff08; font-size: 28px; }
+  .cab-tabs { display: flex; gap: 10px; justify-content: center; padding: 12px 20px; background: #10172360; }
+  .cab-tabs button { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 9px 22px; color: var(--cab-lilac); border: 1px solid transparent; border-radius: 12px; background: transparent; font-size: 14px; }
+  .cab-tabs button span { color: var(--cab-muted); font-size: 17px; font-weight: 650; }
+  .cab-tabs button[aria-selected="true"] { background: #a8d4c31b; border-color: #a8d4c357; }
+  .cab-tabs button[aria-selected="true"] span { color: #e9f7ef; }
+  #cabinetDrawer #left { min-height: 0; height: auto; padding: 22px clamp(18px,4vw,64px) 36px; overflow: auto; background: transparent; scrollbar-color: #776d8b transparent; }
+  .cab-page { width: min(1480px,100%); margin: auto; }
+  .cab-hero { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 24px; min-height: 290px; }
+  .cab-hero h1 { margin: 12px 0 16px; font: 700 clamp(38px,4.3vw,66px)/1.03 var(--serif); letter-spacing: -.035em; text-wrap: balance; }
+  .cab-hero h1 em { font-style: normal; color: var(--cab-mint); }
+  .cab-hero p { max-width: 580px; margin: 0; color: var(--cab-muted); font-size: clamp(17px,1.3vw,20px); line-height: 1.6; }
+  #cabinetDrawer .cab-hero-cta { margin-top: 20px; padding: 11px 20px; min-height: 48px; border-radius: 13px; border-color: #a8d4c36b; background: #a8d4c322; color: #d6f1e4; font-size: 17px; font-weight: 650; }
+  .cab-city { width: 100%; height: 310px; object-fit: contain; filter: drop-shadow(0 18px 25px #0004); }
+  .cab-pulse { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; margin: 18px 0 30px; }
+  .cab-pulse article { padding: 20px 24px; border: 1px solid #c6b5e333; border-radius: 20px 20px 7px 20px; background: linear-gradient(145deg,#ffffff09,#ffffff03); }
+  .cab-pulse .cab-label { display: block; color: var(--cab-muted); font-size: 16px; }
+  .cab-pulse strong { display: block; margin: 6px 0; color: var(--cab-gold); font: 700 clamp(28px,2.8vw,42px)/1.15 var(--serif); }
+  .cab-pulse p { margin: 0; font-size: 14px; color: var(--cab-muted); }
+  .cab-section-head { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin: 6px 0 20px; }
+  .cab-section-head h2 { margin: 4px 0 0; font: 700 clamp(27px,2.7vw,40px)/1.12 var(--serif); }
+  .cab-section-head p { max-width: 520px; margin: 0; color: var(--cab-muted); }
+  .cab-paths { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin-bottom: 28px; }
+  #cabinetDrawer .cab-path { position: relative; overflow: hidden; padding: 25px; min-height: 205px; border: 1px solid #c6b5e34d; border-radius: 24px 24px 8px 24px; text-align: left; color: var(--cab-text); background: linear-gradient(135deg,#73628a2e,#202432); transition: transform .18s,border-color .18s; }
+  #cabinetDrawer .cab-path:nth-child(2) { background: linear-gradient(135deg,#48766b45,#1b2830); border-color: #a8d4c34d; }
+  #cabinetDrawer .cab-path:nth-child(3) { background: linear-gradient(135deg,#92795737,#25232d); border-color: #ebcc914d; }
+  .cab-path::after { content: ""; position: absolute; right: -22px; top: 25px; width: 115px; height: 115px; border: 1px solid #e1cfeb24; border-radius: 50%; box-shadow: 0 0 0 12px #ffffff03; }
+  .cab-path:hover { transform: translateY(-4px); }
+  .cab-path .cab-glyph { display: inline-grid; place-items: center; width: 46px; height: 46px; color: var(--cab-gold); background: #ffffff09; border-radius: 12px; font-size: 27px; }
+  .cab-path strong { display: block; margin: 12px 0 7px; font: 700 27px/1.2 var(--serif); }
+  .cab-path p { max-width: 350px; margin: 0; color: var(--cab-muted); font-size: 16px; line-height: 1.5; }
+  .cab-path .cab-arrow { position: absolute; right: 23px; top: 27px; color: var(--cab-mint); font-size: 27px; }
+  #cabinetDrawer .cab-details { padding: 18px 22px; margin: 16px 0; border: 1px solid #c6b5e330; border-radius: 15px; background: #10162170; }
+  .cab-details > summary { cursor: pointer; color: var(--cab-text); font-size: 18px; font-weight: 600; }
+  .cab-details[open] > summary { margin-bottom: 18px; }
+  #cabinetDrawer .card { padding: 24px; border: 1px solid #c6b5e330; border-radius: 20px; margin-bottom: 20px; background: #151d29b8; box-shadow: none; }
+  #cabinetDrawer .card h3 { margin: 0 0 18px; padding-bottom: 12px; font: 700 26px/1.3 var(--serif); text-transform: none; letter-spacing: 0; color: var(--cab-text); }
+  #cabinetDrawer .card h3 span { font: 14px/1.5 system-ui,sans-serif; color: var(--cab-muted); letter-spacing: 0; }
+  #cabinetDrawer .tiny, #cabinetDrawer .note, #cabinetDrawer .budget-note { color: var(--cab-muted); font: 15px/1.6 system-ui,sans-serif; }
+  #cabinetDrawer .stat { padding: 9px 0; font-size: 16px; border-bottom: 1px solid #ffffff0a; }
+  #cabinetDrawer .stat .k { color: var(--cab-muted); }
+  #cabinetDrawer .stat .v { white-space: normal; text-align: right; }
+  .cab-budget-summary { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 0 0 20px; }
+  .cab-budget-summary article { border-left: 3px solid var(--cab-lilac); padding: 10px 20px; background: #c6b5e30b; border-radius: 0 12px 12px 0; }
+  .cab-budget-summary span { color: var(--cab-muted); font-size: 15px; }
+  .cab-budget-summary strong { display: block; font-size: clamp(23px,2.3vw,34px); color: var(--cab-text); }
+  .cab-budget-workbench { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(320px,1fr); gap: 24px; align-items: start; }
+  .cab-ministry-tiles { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+  #cabinetDrawer .cab-ministry-tile { display: grid; grid-template-columns: 48px minmax(0,1fr) auto; align-items: center; gap: 12px; min-height: 110px; padding: 18px; border: 1px solid #c6b5e32e; border-radius: 18px 18px 6px 18px; text-align: left; background: #242637aa; }
+  #cabinetDrawer .cab-ministry-tile[aria-pressed="true"] { border-color: var(--cab-mint); background: linear-gradient(140deg,#3c665855,#242637); box-shadow: inset 0 0 0 1px #a8d4c340; }
+  .cab-ministry-tile .cab-glyph { font-size: 30px; color: var(--cab-lilac); text-align: center; }
+  .cab-ministry-tile:nth-child(3n+2) .cab-glyph { color: var(--cab-mint); }
+  .cab-ministry-tile:nth-child(3n) .cab-glyph { color: var(--cab-gold); }
+  .cab-ministry-tile strong { font-size: 17px; color: var(--cab-text); display: block; }
+  .cab-ministry-tile small { display: block; color: var(--cab-muted); font-size: 13px; margin-top: 3px; }
+  .cab-ministry-tile .cab-share { color: var(--cab-gold); font-weight: 700; font-size: 18px; text-align: right; }
+  .cab-ministry-tile .cab-share small { color: var(--cab-mint); font-weight: 500; }
+  .cab-inspector { position: sticky; top: 0; padding: 28px; border: 1px solid #a8d4c359; border-radius: 26px 26px 8px 26px; background: radial-gradient(circle at 100% 0,#a8d4c319,transparent 60%),#1c2630; }
+  .cab-inspector h3 { font: 700 32px/1.2 var(--serif); margin: 10px 0; color: var(--cab-text); }
+  .cab-inspector p { color: var(--cab-muted); margin: 0 0 18px; }
+  #cabinetDrawer .cab-back { display: none; margin-bottom: 18px; min-height: 44px; padding: 9px 15px; border-radius: 10px; color: var(--cab-mint); font-size: 16px; }
+  #cabinetDrawer .ministry-dial { padding: 0; background: none; border: none; display: block; }
+  #cabinetDrawer .ministry-dial > .ministry-art, #cabinetDrawer .ministry-dial > .ministry-copy { display: none; }
+  #cabinetDrawer .dial-control { display: grid; grid-template-columns: 56px minmax(0,1fr) 56px; gap: 14px; margin: 18px 0; }
+  #cabinetDrawer .dial-control button { width: 56px; height: 62px; background: #a8d4c31c; border-color: #a8d4c36b; color: #dbf6e9; border-radius: 15px; font-size: 32px; }
+  #cabinetDrawer .dial-read b { font-size: 34px; color: var(--cab-gold); line-height: 1.2; }
+  #cabinetDrawer .dial-read small { color: var(--cab-muted); font-size: 15px; margin-top: 5px; white-space: normal; }
+  #cabinetDrawer .ministry-arms { gap: 12px; }
+  #cabinetDrawer .arm-line { padding: 13px 0; border-top: 1px solid #c6b5e328; grid-template-columns: 1fr auto; gap: 5px 10px; }
+  #cabinetDrawer .arm-line .an { color: var(--cab-text); font-size: 16px; }
+  #cabinetDrawer .arm-line .av { color: var(--cab-mint); font-size: 19px; font-weight: 650; }
+  #cabinetDrawer .arm-line .ax { color: var(--cab-muted); font-size: 14px; }
+  #cabinetDrawer .interest-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 12px; margin: 0 0 22px; padding: 18px 24px; background: #ebcc9110; border: 1px solid #ebcc9133; border-radius: 16px; }
+  #cabinetDrawer .interest-row > .ministry-copy { display: block; }
+  #cabinetDrawer .interest-row .ministry-copy b { font-size: 18px; }
+  #cabinetDrawer .interest-row .ministry-copy small { font-size: 14px; color: var(--cab-muted); white-space: normal; }
+  #cabinetDrawer .interest-row .dial-control { display: block; margin: 0; }
+  #cabinetDrawer .interest-row .dial-read b { font-size: 24px; }
+  #cabinetDrawer .interest-row .ministry-arms { grid-column: 1/-1; }
+  #cabinetDrawer .interest-row .arm-line { padding: 0; border: none; }
+  .cab-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  #cabinetDrawer .slider { padding: 20px; margin: 0 0 18px; background: #ffffff05; border: 1px solid #c6b5e322; border-radius: 15px; }
+  #cabinetDrawer .slider .nm { color: var(--cab-text); font-size: 20px; font-weight: 600; }
+  #cabinetDrawer .slider .val { font-size: 27px; color: var(--cab-mint); }
+  #cabinetDrawer .slider .val em { display: block; margin: 0; font-size: 14px; }
+  #cabinetDrawer .slider .track { height: 38px; margin: 12px 0; }
+  #cabinetDrawer .slider input { height: 38px; accent-color: var(--cab-mint); cursor: pointer; }
+  #cabinetDrawer .slider .fx, #cabinetDrawer .slider .who { font-size: 16px; line-height: 1.6; color: var(--cab-muted); }
+  #cabinetDrawer .slider .who { padding: 12px 0; color: var(--cab-gold); }
+  #cabinetDrawer .foreign-strip { padding: 20px; border-radius: 18px; background: #151e29; }
+  #cabinetDrawer .foreign-strip .fh { font: 650 18px/1.4 system-ui,sans-serif; letter-spacing: 0; text-transform: none; }
+  #cabinetDrawer .foreign-cells { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin-top: 18px; }
+  #cabinetDrawer .foreign-cells span { color: var(--cab-muted); font-size: 14px; text-transform: none; }
+  #cabinetDrawer .foreign-cells b { font: 650 22px/1.5 system-ui,sans-serif; white-space: normal; }
+  #cabinetDrawer .foreign-strip .pending { color: var(--cab-muted); font-size: 14px; margin-top: 15px; }
+  #cabinetDrawer .foreign-strip .fh > span { color: var(--cab-muted) !important; }
+  #cabinetDrawer .stratlist { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+  #cabinetDrawer .strat { padding: 20px; border-radius: 16px; background: #c6b5e310; margin: 0; }
+  #cabinetDrawer .strat .nm { font-size: 20px; } #cabinetDrawer .strat .cost { font-size: 17px; }
+  #cabinetDrawer .strat .blurb, #cabinetDrawer .strat .why, #cabinetDrawer .strat .short { font-size: 15px; line-height: 1.6; }
+  #cabinetDrawer .strat button { min-height: 44px; padding: 10px 20px; font-size: 16px; }
+  #cabinetDrawer #resCard .dom { padding: 18px 0; }
+  #cabinetDrawer #resCard :is(.nm,.proj,.eta,.none,.floorline,.rname,.why,.of,.lbl) { font-size: 15px; line-height: 1.6; }
+  #cabinetDrawer #resCard button, #cabinetDrawer #resCard select { min-height: 44px; font-size: 15px; }
+  .cab-draft { display: flex; align-items: center; gap: 22px; padding: 16px clamp(20px,4vw,64px); border-top: 1px solid #c6b5e33d; background: #151c28f5; box-shadow: 0 -12px 36px #0002; }
+  .cab-draft-copy { flex: 1; min-width: 0; }
+  .cab-draft-copy strong { display: block; color: var(--cab-text); font-size: 17px; }
+  .cab-draft-copy p { margin: 3px 0 0; color: var(--cab-muted); font-size: 14px; }
+  .cab-draft .cab-actions { display: flex; gap: 12px; }
+  #cabinetDrawer .cab-draft button { min-height: 52px; padding: 12px 22px; font-size: 17px; border-radius: 13px; }
+  #cabinetDrawer .cab-enact { color: #152d27; background: linear-gradient(120deg,#b4dcc7,#ccc1e3); border: 1px solid #d6e9dc; font-weight: 750; }
+  .cab-alert { padding: 13px 16px; margin: 12px 0; border-left: 3px solid #edb19e; border-radius: 0 10px 10px 0; color: #f0c9bc; background: #edb19e0d; font-size: 16px; }
+  #cabinetDrawer .up { color: #b9dfc7; } #cabinetDrawer .down { color: #f0b4a7; }
+  @media (min-width: 1800px) { .cab-hero { min-height: 350px; } .cab-city { height: 360px; } }
+  @media (max-width: 1080px) { .cab-budget-workbench { grid-template-columns: 1fr 1fr; } .cab-ministry-tiles { grid-template-columns: 1fr; } .cab-hero { min-height: 250px; } .cab-city { height: 250px; } .cab-pulse article { padding: 18px; } }
+  @media (max-width: 760px) {
+    .cab-topbar { padding: 12px 16px; gap: 10px; } .cab-emblem { display: none; } .cab-date { display: none; }
+    .cab-tabs { gap: 5px; padding: 8px 12px; } .cab-tabs button { padding: 8px 10px; flex: 1; justify-content: center; font-size: 0; gap: 0; } .cab-tabs button span { font-size: 14px; }
+    .cab-hero { grid-template-columns: 1fr; gap: 0; } .cab-hero h1 { font-size: 40px; } .cab-city { height: 180px; grid-row: 1; }
+    .cab-pulse { grid-template-columns: 1fr 1fr; gap: 10px; } .cab-pulse strong { font-size: 31px; }
+    .cab-paths,.cab-two-col,.cab-budget-workbench { grid-template-columns: 1fr; }
+    #cabinetDrawer .cab-path { min-height: 175px; } .cab-section-head { display: block; } .cab-section-head p { margin-top: 12px; }
+    .cab-budget-summary { gap: 7px; } .cab-budget-summary article { padding: 10px; } .cab-budget-summary strong { font-size: 22px; } .cab-budget-summary span { font-size: 13px; }
+    .cab-ministry-tiles { grid-template-columns: 1fr 1fr; gap: 8px; } #cabinetDrawer .cab-ministry-tile { padding: 14px; grid-template-columns: minmax(0,1fr); align-content: space-between; gap: 10px; min-height: 128px; } .cab-ministry-tile .cab-glyph { display: none; } .cab-ministry-tile strong { font-size: 16px; } .cab-ministry-tile small { font-size: 13px; }
+    .cab-ministry-tile .cab-share { display: flex; justify-content: space-between; align-items: baseline; text-align: left; }
+    .cab-inspector { position: static; padding: 22px; } #cabinetDrawer .cab-back { display: inline-block; } #cabinetDrawer .stratlist { grid-template-columns: 1fr; }
+    .cab-draft { padding: 12px 16px; gap: 10px; flex-wrap: wrap; } .cab-draft-copy { flex-basis: 100%; } .cab-draft .cab-actions { width: 100%; } .cab-actions .cab-enact { flex: 1; } #cabinetDrawer .cab-draft button { padding: 10px 16px; font-size: 15px; }
+    #cabinetDrawer .foreign-cells { grid-template-columns: 1fr 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { #cabinetDrawer.open { animation: none; } .cab-path { transition: none; } }
+
   /* ---------- tech tree ---------- */
   #tree .tabs { display:flex; flex-wrap:wrap; gap:4px; margin:10px 0 12px; }
   #tree .tabs button { background:var(--panel-2); color:var(--dim); border:1px solid var(--line);
@@ -2166,6 +2323,12 @@
     .dom-progress-rail i, .dom-agenda-card, .dom-card-figure { transition: none; }
   }
 </style>
+<link rel="stylesheet" href="/arcade.css">
+<link rel="stylesheet" href="/arcade-operations.css">
+<link rel="stylesheet" href="/arcade-discovery.css">
+<link rel="stylesheet" href="/chronicle.css">
+<link rel="stylesheet" href="/programs.css">
+<link rel="stylesheet" href="/province-economy.css">
 </head>
 <body>
 
@@ -2253,33 +2416,33 @@
     <span class="brand">SPHERES</span>
     <span class="date" id="hdrDate">—</span>
     <div id="calendarNotice" role="status" hidden></div>
-    <span class="metric">OIL <b id="hdrOil">—</b></span>
-    <span class="metric">YOU <b id="hdrYou">—</b></span>
+    <span class="metric quiet-metric">OIL <b id="hdrOil">—</b></span>
+    <span class="metric player-metric">YOU <b id="hdrYou">—</b></span>
     <span class="metric">GDP <b id="hdrGdp">—</b></span>
-    <span class="metric">GROWTH <b id="hdrGrowth">—</b></span>
+    <span class="metric quiet-metric">GROWTH <b id="hdrGrowth">—</b></span>
     <span class="metric">CAPITAL <b id="hdrPc" style="color:var(--amber)">—</b></span>
     <span class="spacer"></span>
     <span class="queued" id="queuedNote"></span>
     <div class="timebtns">
       <button data-adv="1">+1 DAY<i>SPC</i></button>
-      <button data-adv="7">+7 DAYS<i>2</i></button>
-      <button data-adv="30">+30 DAYS<i>3</i></button>
-      <button data-adv="365">+1 YEAR<i>4</i></button>
-      <button id="techBtn" title="Technology">TECH<i>T</i></button>
-      <button id="stockBtn" title="Resources">RESOURCES<i>B</i></button>
-      <button id="saveBtn">SAVE<i>S</i></button>
-      <button id="keysBtn">?</button>
+      <details class="arc-time-menu"><summary>More</summary><div>
+        <button data-adv="7">+7 DAYS<i>2</i></button>
+        <button data-adv="30">+30 DAYS<i>3</i></button>
+        <button data-adv="365">+1 YEAR<i>4</i></button>
+        <button id="saveBtn">Save campaign<i>S</i></button>
+      </div></details>
+      <button id="keysBtn" aria-label="How to play">?</button>
     </div>
   </header>
 
   <main>
     <div id="center">
       <div class="tabs">
-        <div class="tab on" data-pane="map">Map<b>M</b></div>
-        <div class="tab" data-pane="charts">History<b>H</b></div>
-        <div class="tab" data-pane="table">League<b>L</b></div>
+        <button class="tab on" data-pane="map">Map<b>M</b></button>
+        <button class="tab" data-pane="charts">History<b>H</b></button>
+        <button class="tab" data-pane="table">League<b>L</b></button>
         <span class="grow"></span>
-        <span class="tiny" id="mapModes"></span>
+        <details class="arc-map-tools"><summary>Map layers</summary><div id="mapModes"></div></details>
       </div>
       <div class="pane on" id="pane-map"></div>
       <div class="pane" id="pane-charts"></div>
@@ -2287,35 +2450,36 @@
     </div>
 
     <div id="drawerScrim"></div>
-    <aside class="game-drawer left" id="cabinetDrawer" aria-hidden="true">
-      <div class="drawer-head"><div><div class="eyebrow">Your government</div><h2>Cabinet &amp; Economy</h2></div><span class="grow"></span><button class="drawer-close" data-close-drawers aria-label="Close">×</button></div>
-      <div class="col" id="left"></div>
-    </aside>
     <aside class="game-drawer right" id="intelDrawer" aria-hidden="true">
-      <div class="drawer-head"><div><div class="eyebrow">World situation</div><h2>Conflicts &amp; Dispatches</h2></div><span class="grow"></span><button class="drawer-close" data-close-drawers aria-label="Close">×</button></div>
+      <div class="drawer-head"><div><div class="eyebrow">The world in motion</div><h2 id="worldRoomTitle">World Briefing</h2></div><span class="grow"></span><button class="drawer-close" data-close-drawers aria-label="Close World Briefing">×</button></div>
       <div class="col" id="right">
+        <div class="arc-room-intro"><span class="arc-seal" aria-hidden="true">◎</span><div><div class="arc-kicker">Listen. Understand. Act.</div><h1>Every move has a ripple.</h1><p>Follow conflicts and the stories changing the world. Choose a dispatch to meet the nation behind it.</p></div></div>
+        <div class="arc-world-grid">
         <div id="warsCard"></div>
         <div class="card feed">
           <h3>Event log <span id="logCount"></span></h3>
           <div class="chips" id="logCats"></div>
-          <input id="logSearch" placeholder="filter dispatches…  (E)">
+          <input id="logSearch" aria-label="Search world dispatches" placeholder="Search world dispatches…">
           <div id="logList"></div>
+        </div>
         </div>
       </div>
     </aside>
-    <aside class="logistics-panel" id="logisticsPanel" aria-hidden="true" aria-labelledby="logisticsTitle">
+    <aside class="logistics-panel" id="logisticsPanel" role="dialog" aria-modal="false" aria-hidden="true" aria-labelledby="logisticsTitle" tabindex="-1">
       <div class="logistics-head">
         <div><div class="eyebrow">The arteries of your nation</div><h2 id="logisticsTitle">World in Motion</h2></div>
         <span class="grow"></span>
+        <button class="operations-map-return" id="logisticsRoomReturn" type="button">Back to room</button>
         <button class="logistics-close" id="logisticsClose" type="button" aria-label="Close logistics">&times;</button>
       </div>
       <div class="logistics-body" id="logisticsBody"></div>
       <div class="sr-only" id="logisticsLive" role="status" aria-live="polite"></div>
     </aside>
-    <aside class="production-panel" id="productionPanel" aria-hidden="true" aria-labelledby="productionTitle">
+    <aside class="production-panel" id="productionPanel" role="dialog" aria-modal="false" aria-hidden="true" aria-labelledby="productionTitle" tabindex="-1">
       <div class="production-head">
-        <div><div class="eyebrow">National works programme</div><h2 id="productionTitle">Production Board</h2></div>
+        <div><div class="eyebrow">Shape your nation's future</div><h2 id="productionTitle">National Works</h2></div>
         <span class="grow"></span>
+        <button class="operations-map-return" id="productionRoomReturn" type="button">Back to room</button>
         <div class="production-modes" role="tablist" aria-label="Production view">
           <button type="button" id="productionBuildTab" class="on" role="tab" aria-selected="true" data-production-mode="build">Build</button>
           <button type="button" id="productionManufactureTab" role="tab" aria-selected="false" data-production-mode="manufacture">Manufacture</button>
@@ -2332,11 +2496,30 @@
       </button>
       <button class="dockbtn" data-drawer="cabinetDrawer" aria-expanded="false"><span class="icon">◈</span><span class="copy"><span class="label">Economy</span><small id="dockEconomy">budget &amp; policy</small></span></button>
       <button class="dockbtn" data-drawer="intelDrawer" aria-expanded="false"><span class="icon">⚔</span><span class="copy"><span class="label">World</span><small id="dockWorld">conflicts &amp; news</small></span></button>
+      <button class="dockbtn" id="stockBtn" title="Resources" aria-controls="stockScreen"><span class="icon" aria-hidden="true">◈</span><span class="copy"><span class="label">Resources</span><small>mine &amp; trade</small></span></button>
+      <button class="dockbtn" id="techBtn" title="Technology" aria-controls="techScreen"><span class="icon" aria-hidden="true">⌬</span><span class="copy"><span class="label">Research</span><small>discover &amp; develop</small></span></button>
       <button class="dockbtn" id="logisticsDockBtn" type="button" aria-controls="logisticsPanel" aria-expanded="false"><span class="icon">⇢</span><span class="copy"><span class="label">Logistics</span><small id="dockLogistics">daily dispatches</small></span><span class="dockbadge" id="logisticsBadge" aria-hidden="true"></span></button>
       <button class="dockbtn" id="productionDockBtn" type="button" aria-controls="productionPanel" aria-expanded="false"><span class="icon">⚙</span><span class="copy"><span class="label">Production</span><small id="dockProduction">4 project slots</small></span><span class="dockbadge" id="productionBadge" aria-hidden="true"></span></button>
     </nav>
   </main>
 </div>
+
+<section class="game-drawer cabinet-room" id="cabinetDrawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="cabinetTitle">
+  <header class="cab-topbar">
+    <span class="cab-emblem" aria-hidden="true">✦</span>
+    <div><div class="cab-kicker">National command</div><h2 id="cabinetTitle">Cabinet &amp; Economy</h2></div>
+    <span class="grow"></span><span id="cabinetDate" class="cab-date"></span>
+    <button class="cab-close" data-close-drawers aria-label="Close Cabinet and return to map">×</button>
+  </header>
+  <nav class="cab-tabs" role="tablist" aria-label="Cabinet views">
+    <button id="cab-tab-overview" role="tab" aria-selected="true" aria-controls="cabinet-overview" data-cab-tab="overview">01 <span>The big picture</span></button>
+    <button id="cab-tab-budget" role="tab" aria-selected="false" aria-controls="cabinet-budget" tabindex="-1" data-cab-tab="budget">02 <span>Your yearly budget</span></button>
+    <button id="cab-tab-policy" role="tab" aria-selected="false" aria-controls="cabinet-policy" tabindex="-1" data-cab-tab="policy">03 <span>Money &amp; policy</span></button>
+  </nav>
+  <div class="col" id="left"></div>
+  <footer id="cabinetDraft" class="cab-draft" aria-label="Cabinet orders"></footer>
+  <div id="cabinetLive" class="sr-only" role="status" aria-live="polite"></div>
+</section>
 
 <section id="dominationScreen" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="dominationTitle">
   <svg class="dom-constellation" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -2380,7 +2563,7 @@
 </section>
 
 <div id="sheetbg"></div>
-<div id="sheet"></div>
+<div id="sheet" role="dialog" aria-modal="true" aria-label="National decisions" tabindex="-1"></div>
 <div id="banner"></div>
 
 <!-- The tech screen's symbol language: every sigil and badge on every surface
@@ -2492,19 +2675,19 @@
 
 <!-- The glance layer: rendered entirely from S.research — zero fetches, and it
      re-renders from the render() hook while open, so the ETAs tick. -->
-<div id="techMenu"></div>
+<div id="techMenu" role="dialog" aria-modal="true" aria-label="Choose a research field" tabindex="-1"></div>
 
 <!-- The full screen. #techViewport is NEVER replaced — camera/input listeners
      bind to it once (the map's audited invariant); #techSvg is rebuilt via one
      innerHTML assignment per data build, then only class/attribute-patched. -->
-<div id="techScreen">
+<div id="techScreen" role="dialog" aria-modal="true" aria-label="Technology and research" tabindex="-1">
   <div class="tbar">
     <span class="ttitle">Technology</span>
     <span class="tsub" id="techCount">— of 328 fielded</span>
-    <input id="techFind" placeholder="find… /">
+    <input id="techFind" placeholder="Find a discovery… /" aria-label="Find a technology">
     <span class="spacer"></span>
     <button id="techFit">FIT</button>
-    <button class="x" onclick="closeTech()">close</button>
+    <button class="x" aria-label="Close technology and return to map" onclick="closeTech()">close</button>
   </div>
   <!-- Nine tabs (eight domains + full map), built from S.research.domains in
        payload order so index == the 1–8 key. data-view on #techScreen is the
@@ -2663,12 +2846,12 @@
 <!-- The resource board (B): twelve lines, folded, in #stockRows; the three
      cards for the selected line in #stockDock; the hover in #stockTip. Built
      from S.resources and /api/stock — every number and sentence is served. -->
-<div id="stockScreen">
+<div id="stockScreen" role="dialog" aria-modal="true" aria-label="Resources and trade" tabindex="-1">
   <div class="tbar">
     <span class="ttitle">Resources</span>
     <span class="tsub" id="stockSub">&mdash;</span>
     <span class="spacer"></span>
-    <button class="x" onclick="closeStock()">close</button>
+    <button class="x" aria-label="Close resources and return to map" onclick="closeStock()">close</button>
   </div>
   <div id="stockRows"></div>
   <div id="stockDock"></div>
@@ -2680,8 +2863,9 @@
   </div>
 </div>
 
-<div id="keys"><div class="box">
-  <h3>KEYBOARD</h3>
+<div id="keys" role="dialog" aria-modal="true" aria-label="How to play"><div class="box">
+  <button class="arc-help-close" onclick="setKeysCard(false)" aria-label="Close help">×</button><h3>Your command guide</h3>
+  <p style="font-size:16px;line-height:1.6;color:var(--dim)">Drag to turn the globe. Select a province to explore it. Open a system from the command dock; your decisions take effect through the game's existing orders.</p>
   <div class="row"><span>Advance one day</span><span><kbd>Space</kbd> / <kbd>1</kbd></span></div>
   <div class="row"><span>Advance 7 / 30 / 365 days</span><span><kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd></span></div>
   <div class="row"><span>Map / History / League</span><span><kbd>M</kbd> <kbd>H</kbd> <kbd>L</kbd></span></div>
@@ -2717,6 +2901,10 @@
      served by the same binary that serves this page: no CDN, no build step. -->
 <script src="/cities.js"></script>
 <script src="/globe3d.js"></script>
+<script src="/chronicle-data.js"></script>
+<script src="/chronicle-ui.js"></script>
+<script src="/programs-ui.js"></script>
+<script src="/province-economy-ui.js"></script>
 <script>
 "use strict";
 const WORLD = window.WORLD;
@@ -3414,6 +3602,7 @@ $("#startBtn").onclick = async () => {
   }
   // A new world invalidates the built tech graph. (There is no /api/load
   // handler in this UI; if one arrives it owes the same lines.)
+  resetProvinceDossierState();
   tech.data = null; tech.sel = null;
   tech.mode = "domain"; tech.curDomain = null;
   tech._stEls = null; tech._stEdges = null;
@@ -3439,29 +3628,127 @@ $("#startBtn").onclick = async () => {
 
 /* ================= time ================= */
 
+const ARCADE_ROOMS = { sheetFocus: null, worldFocus: null, helpFocus: null };
+function arcadeTopRoom() {
+  if (keysCardIsOpen()) return $("#keys");
+  if ($("#sheet").style.display === "block") return $("#sheet");
+  if (dominationIsOpen()) return $("#dominationScreen");
+  if (cabinetIsOpen()) return $("#cabinetDrawer");
+  if (techMenuIsOpen()) return $("#techMenu");
+  if (stock.open) return $("#stockScreen");
+  if (tech.open) return $("#techScreen");
+  if (PROD.open && !$("#productionPanel").classList.contains("map-view")) return $("#productionPanel");
+  if (LOGI.open && !$("#logisticsPanel").classList.contains("map-view")) return $("#logisticsPanel");
+  if ($("#intelDrawer").classList.contains("open")) return $("#intelDrawer");
+  return null;
+}
+function arcadeTrapTab(e, room) {
+  const items = [...room.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), summary, [href], [tabindex="0"]')]
+    .filter(el => el.tabIndex >= 0 && el.getClientRects().length && !el.closest('[hidden], [inert]'));
+  if (!items.length) { e.preventDefault(); room.focus({ preventScroll: true }); return; }
+  const first = items[0], last = items[items.length - 1];
+  if (!room.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+  else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+}
+function arcadeAccessibleActions(root) {
+  root.querySelectorAll('.warcard[onclick], .rungrow:not(.off), .relrow[data-id], .resrow[data-com], .item[data-open], .chip:not(button), .close:not(button), .x:not(button), .fzoom').forEach(el => {
+    el.setAttribute("role", "button"); el.tabIndex = 0;
+    el.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); el.click(); } };
+  });
+}
+window.arcadeRoomMapViewChanged = function (panel, on) {
+  panel.setAttribute("aria-modal", String(!on));
+  if (!on) {
+    const focus = [...panel.querySelectorAll('button:not(:disabled)')].find(el => el.getClientRects().length && !el.closest('[hidden], [inert]'));
+    if (focus) focus.focus({ preventScroll: true });
+  }
+};
+
+const CAB = { tab: "overview", ministry: "health", lastFocus: null, busy: false, error: "" };
+function cabinetIsOpen() { return $("#cabinetDrawer").classList.contains("open"); }
+
 function closeGameDrawers() {
+  const wasCabinet = cabinetIsOpen();
+  const wasWorld = $("#intelDrawer").classList.contains("open");
   document.querySelectorAll(".game-drawer.open").forEach((d) => {
     d.classList.remove("open");
     d.setAttribute("aria-hidden", "true");
   });
   document.querySelectorAll("[data-drawer]").forEach((b) => b.setAttribute("aria-expanded", "false"));
   $("#drawerScrim").classList.remove("open");
+  if (wasCabinet) {
+    $("#app").inert = false;
+    if (CAB.lastFocus && CAB.lastFocus.isConnected) CAB.lastFocus.focus({ preventScroll: true });
+    CAB.lastFocus = null;
+  }
+  if (wasWorld && ARCADE_ROOMS.worldFocus?.isConnected) {
+    ARCADE_ROOMS.worldFocus.focus({ preventScroll: true });
+    ARCADE_ROOMS.worldFocus = null;
+  }
 }
 
 function toggleGameDrawer(id) {
   const drawer = document.getElementById(id);
   if (!drawer) return;
   const opening = !drawer.classList.contains("open");
+  const returnFocus = document.activeElement;
   if (opening && LOGI.open) closeLogistics();
   if (opening && PROD.open) closeProduction();
   closeGameDrawers();
   if (opening) {
+    if (id === "cabinetDrawer") {
+      if (!me()) { banner("Choose a nation to open its cabinet."); return; }
+      if (dominationIsOpen()) closeDomination();
+      if (tech.open) closeTech();
+      if (stock.open) closeStock();
+      closeTechMenu();
+      closeSheet();
+      CAB.lastFocus = returnFocus;
+      $("#app").inert = true;
+      renderLeft(me());
+    }
+    if (id === "intelDrawer") {
+      if (dominationIsOpen()) closeDomination();
+      if (stock.open) closeStock();
+      if (tech.open) closeTech();
+      closeSheet(); closeTechMenu();
+      ARCADE_ROOMS.worldFocus = returnFocus;
+      drawer.setAttribute("role", "dialog");
+      drawer.setAttribute("aria-modal", "true");
+      drawer.setAttribute("aria-labelledby", "worldRoomTitle");
+    }
     drawer.classList.add("open");
     drawer.setAttribute("aria-hidden", "false");
     const button = document.querySelector(`[data-drawer="${id}"]`);
     if (button) button.setAttribute("aria-expanded", "true");
     $("#drawerScrim").classList.add("open");
+    if (id === "cabinetDrawer") $("#cab-tab-" + CAB.tab).focus({ preventScroll: true });
+    if (id === "intelDrawer") drawer.querySelector(".drawer-close").focus({ preventScroll: true });
   }
+}
+
+function cabinetKeys(e) {
+  if (e.key === "Escape") { e.preventDefault(); closeGameDrawers(); return; }
+  if (e.target.closest('[role="tablist"]') && ["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) {
+    e.preventDefault();
+    const tabs = ["overview", "budget", "policy"];
+    const index = tabs.indexOf(CAB.tab);
+    const next = e.key === "Home" ? 0 : e.key === "End" ? 2 : (index + (e.key === "ArrowRight" ? 1 : 2)) % 3;
+    selectCabinetTab(tabs[next]);
+    $("#cab-tab-" + tabs[next]).focus();
+    return;
+  }
+  if (e.key === "Tab") {
+    const items = [...$("#cabinetDrawer").querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), summary, [href], [tabindex="0"]')]
+      .filter(el => el.tabIndex >= 0 && el.getClientRects().length);
+    if (!items.length) { e.preventDefault(); return; }
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+  // All gameplay shortcuts stop here. Native controls retain Space/Enter,
+  // and native range arrows still move the focused policy dial.
 }
 
 document.querySelectorAll("[data-drawer]").forEach((b) => {
@@ -3474,6 +3761,8 @@ $("#drawerScrim").onclick = closeGameDrawers;
 /// chart on the page reads from that and not from the state blob.
 async function adopt(state, withHistory) {
   S = state;
+  if (typeof invalidateProgramPreview === "function") invalidateProgramPreview();
+  if (typeof invalidateEconomicLedger === "function") invalidateEconomicLedger();
   // The held/contested band is TRANSPORTED from the sim (front::HELD_BAND),
   // never re-derived client-side; the literal in FRONT_HELD_BAND is only the
   // fallback for a server payload that predates the field.
@@ -3510,7 +3799,7 @@ async function advance(days) {
 }
 
 document.querySelectorAll("[data-adv]").forEach((b) => {
-  b.onclick = () => advance(+b.dataset.adv);
+  b.onclick = () => { const menu = b.closest("details"); if (menu) menu.open = false; advance(+b.dataset.adv); };
 });
 
 $("#saveBtn").onclick = doSave;
@@ -3562,7 +3851,12 @@ function typing(e) {
 /// `style.display === "flex"` in four, which is how the keydown handler came to
 /// have no opinion about it at all.
 function keysCardIsOpen() { return $("#keys").style.display === "flex"; }
-function setKeysCard(open) { $("#keys").style.display = open ? "flex" : "none"; }
+function setKeysCard(open) {
+  if (open && !keysCardIsOpen()) ARCADE_ROOMS.helpFocus = document.activeElement;
+  $("#keys").style.display = open ? "flex" : "none";
+  if (open) $("#keys button").focus();
+  else if (ARCADE_ROOMS.helpFocus?.isConnected) { ARCADE_ROOMS.helpFocus.focus({ preventScroll: true }); ARCADE_ROOMS.helpFocus = null; }
+}
 function toggleKeysCard() { setKeysCard(!keysCardIsOpen()); }
 
 /// Is a key one of the card's own two dismissals? `?` on a US layout arrives as
@@ -3571,6 +3865,15 @@ function toggleKeysCard() { setKeysCard(!keysCardIsOpen()); }
 function isKeysCardToggle(e) { return e.key === "?" || (e.key === "/" && e.shiftKey); }
 
 document.addEventListener("keydown", (e) => {
+  const room = arcadeTopRoom();
+  if (room && e.key === "Tab") { arcadeTrapTab(e, room); return; }
+  if (room && room.id === "sheet") {
+    if (e.key === "Escape") { e.preventDefault(); closeSheet(); }
+    // Keep text, native selects and buttons usable; never advance the world
+    // or rotate the globe while an agreement or conflict decision covers it.
+    return;
+  }
+  if (cabinetIsOpen()) { cabinetKeys(e); return; }
   if (e.key === "Escape") {
     // Escape keeps the WIDE test: a focused slider is still something Escape
     // should hand back, and that behaviour is unchanged by the split above.
@@ -3610,7 +3913,7 @@ document.addEventListener("keydown", (e) => {
   // so the page stays traversable.
   if (keysCardIsOpen()) {
     if (isKeysCardToggle(e)) { e.preventDefault(); toggleKeysCard(); }
-    else if (e.key === " ") e.preventDefault();   // otherwise the page scrolls under the card
+    else if (e.key === " " && !e.target?.closest?.('button')) e.preventDefault();   // keep the close button's native activation
     return;
   }
   // OPENING the card is not a game control, so it does not wait for a game.
@@ -3629,6 +3932,11 @@ document.addEventListener("keydown", (e) => {
   if (tech.open) { techKeys(e); return; }
   // So does the resource board, for the same reason.
   if (stock.open) { stockKeys(e); return; }
+  if (room?.id === "techMenu" && (e.key === "t" || e.key === "T")) { openTech(null); return; }
+  if (room && ["intelDrawer", "logisticsPanel", "productionPanel", "techMenu"].includes(room.id)) return;
+  // Native controls own their activation and navigation keys. A Space press
+  // on a map tab or disclosure must not also spend a simulation day.
+  if (e.target?.closest?.('button, summary, select, [role="tab"]') && [" ", "Enter", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(e.key)) return;
   const k = e.key;
   if (k === " " || k === "1") { e.preventDefault(); advance(1); }
   else if (k === "2") advance(7);
@@ -3879,16 +4187,16 @@ function ledgerOf(n, tax, social, mil, invest) {
 /// sim bound is the same defect as a page holding its own copy of a sim rule,
 /// and `the_budget_card_reads_the_sim` now fails if the two disagree.
 const MINISTRIES = [
-  { id:"health", art:"✚", name:"Health", story:"hospitals and public health" },
-  { id:"education", art:"▤", name:"Education", story:"schools and skilled workers" },
-  { id:"housing", art:"⌂", name:"Housing", story:"homes and household support" },
-  { id:"pensions", art:"◷", name:"Pensions", story:"income after working life" },
-  { id:"infrastructure", art:"▥", name:"Infrastructure", story:"roads, ports and power grids" },
-  { id:"industry", art:"⚙", name:"Industry & energy", story:"factories and energy systems" },
-  { id:"science", art:"⌬", name:"Science", story:"laboratories and discovery" },
-  { id:"defense", art:"⛊", name:"Defense", story:"the armed forces" },
-  { id:"security", art:"◆", name:"Security", story:"police and internal security" },
-  { id:"diplomacy", art:"◎", name:"Diplomacy", story:"embassies and foreign service" },
+  { id:"health", art:"✚", name:"Health", story:"births & wartime recovery" },
+  { id:"education", art:"▤", name:"Education", story:"more research points" },
+  { id:"housing", art:"⌂", name:"Housing", story:"births & contentment" },
+  { id:"pensions", art:"◷", name:"Pensions", story:"retirement & public support" },
+  { id:"infrastructure", art:"▥", name:"Infrastructure", story:"stronger non-oil extraction" },
+  { id:"industry", art:"⚙", name:"Industry & energy", story:"factories, power & industrial supply" },
+  { id:"science", art:"⌬", name:"Science", story:"adopting foreign discoveries" },
+  { id:"defense", art:"⛊", name:"Defense", story:"sustaining your armed forces" },
+  { id:"security", art:"◆", name:"Security", story:"order & separatism control" },
+  { id:"diplomacy", art:"◎", name:"Diplomacy", story:"sanctions & counter-intelligence" },
 ];
 
 /// What the sim served about one ministry, or null before the first payload.
@@ -3981,11 +4289,12 @@ function ministryArmLines(i, share) {
 }
 
 function annualBudgetOf(m) {
-  const q = queued.find((x) => x.kind === "annual_budget");
-  if (q) return { ...q, fiscal_year: S.year };
+  const q = queued.find((x) => x.kind === "annual_budget" || x.kind === "program_budget");
+  if (q) return S.programs ? { ...q, kind:"program_budget", fiscal_year:S.year, departments:programPlanOf() } : { ...q, fiscal_year: S.year };
   const source = m.annual_budget || {};
   const out = { kind:"annual_budget", fiscal_year:S.year };
   MINISTRIES.forEach((spec) => { out[spec.id] = +source[spec.id] || 0; });
+  if (S.programs) { out.kind="program_budget"; out.departments=programPlanOf(); }
   return out;
 }
 
@@ -4014,6 +4323,7 @@ function foreignCommitmentsHtml(m) {
 }
 
 function annualPoliticalCost(m, b) {
+  if (S.programs) return PG.key === programDraftKey(m) && PG.preview ? PG.preview.political_cost : NaN;
   const weights = [110,125,105,115,100,105,135,150,145,90];
   let cost = 0, moved = 0;
   MINISTRIES.forEach((spec, i) => {
@@ -4033,11 +4343,11 @@ function ministryDial(m, b, spec, i) {
     <span class="ministry-art" aria-hidden="true">${spec.art}</span>
     <span class="ministry-copy"><b>${spec.name}</b><small>${spec.story}</small></span>
     <span class="dial-control">
-      <button data-ministry="${spec.id}" data-delta="-0.005" aria-label="Cut ${spec.name}">−</button>
+      <button data-ministry="${spec.id}" data-delta="-0.005" aria-label="Cut ${spec.name}" ${b[spec.id] <= 0 ? "disabled" : ""}>−</button>
       <span class="dial-read"><b>${fmt.pct(b[spec.id],1)}</b><small>${fmt.money(b[spec.id] * m.gdp)}/yr</small></span>
-      <button data-ministry="${spec.id}" data-delta="0.005" aria-label="Raise ${spec.name}">+</button>
+      <button data-ministry="${spec.id}" data-delta="0.005" aria-label="Raise ${spec.name}" ${b[spec.id] >= ministryCap(i) ? "disabled" : ""}>+</button>
     </span>
-    <span class="ministry-arms">${ministryArmLines(i, b[spec.id])}</span>
+    <span class="ministry-arms">${i === 5 && S.programs ? "Five shared investment pools · ten physical investment choices below. Ammunition support belongs to Defense." : ministryArmLines(i, b[spec.id])}</span>
   </div>`;
 }
 
@@ -4072,10 +4382,14 @@ function queueBudgetDial(m, ministry, delta) {
   const i = MINISTRIES.indexOf(spec);
   const next = annualBudgetOf(m);
   next[ministry] = clamp(next[ministry] + delta, 0, ministryCap(i));
-  queued = queued.filter((c) => c.kind !== "annual_budget" && c.kind !== "military" && c.kind !== "invest");
+  queued = queued.filter((c) => c.kind !== "program_budget" && c.kind !== "annual_budget" && c.kind !== "military" && c.kind !== "invest");
   queued.push(next);
   noteQueued();
   renderLeft(m);
+  const button = $("#left").querySelector(`[data-ministry="${ministry}"][data-delta="${delta}"]:not(:disabled)`)
+    || $("#left").querySelector(`[data-ministry="${ministry}"]:not(:disabled)`);
+  if (cabinetIsOpen() && button) button.focus({ preventScroll: true });
+  $("#cabinetLive").textContent = `${spec.name}: ${fmt.pct(next[ministry],1)} of GDP. Draft only.`;
 }
 
 function proposed(m) {
@@ -4132,10 +4446,10 @@ function moneyCard(m) {
     <h3>The Treasury <span>· billions of 1990 dollars</span></h3>
     ${statRow("Treasury", fmt.bn(money.treasury_bn), money.treasury_bn > 0 ? "up" : "down")}
     ${statRow("Revenue", fmt.bn(money.revenue_bn) + "/yr", "")}
-    ${statRow("Ministries", fmt.bn(money.spend_bn) + "/yr", "")}
+    ${statRow(S.programs?.enabled ? "Latest spending · annualized" : "Ministries", fmt.bn(money.spend_bn) + "/yr", "")}
     ${statRow("Interest", fmt.bn(money.interest_bn) + "/yr · " + fmt.pct(money.interest_gdp, 1) + " of GDP",
               money.interest_gdp > 0.02 ? "down" : "")}
-    ${statRow(money.balance_bn >= 0 ? "Surplus" : "Deficit",
+    ${statRow((S.programs?.enabled ? "Run-rate " : "") + (money.balance_bn >= 0 ? "Surplus" : "Deficit"),
               fmt.bn(Math.abs(money.balance_bn)) + "/yr · " + fmt.pct(Math.abs(money.balance_gdp), 1) + " of GDP",
               money.balance_bn >= 0 ? "up" : "down")}
     ${statRow("Debt", fmt.bn(money.debt_bn) + " · " + fmt.pct(money.debt_gdp, 0) + " of GDP",
@@ -4149,80 +4463,196 @@ function moneyCard(m) {
   </div>`;
 }
 
+function selectCabinetTab(tab) {
+  if (!["overview", "budget", "policy"].includes(tab)) return;
+  CAB.tab = tab;
+  document.querySelectorAll("[data-cab-tab]").forEach(b => {
+    const selected = b.dataset.cabTab === tab;
+    b.setAttribute("aria-selected", String(selected));
+    b.tabIndex = selected ? 0 : -1;
+  });
+  document.querySelectorAll(".cab-page").forEach(p => { p.hidden = p.id !== "cabinet-" + tab; });
+  $("#left").scrollTop = 0;
+}
+document.querySelectorAll("[data-cab-tab]").forEach(b => { b.onclick = () => selectCabinetTab(b.dataset.cabTab); });
+
+function cabinetMinistryTiles(m, fiscal) {
+  return MINISTRIES.map(spec => {
+    const changed = Math.abs(fiscal[spec.id] - (+m.annual_budget?.[spec.id] || 0)) > 1e-9;
+    return `<button class="cab-ministry-tile" data-cab-ministry="${spec.id}" aria-pressed="${CAB.ministry === spec.id}" aria-controls="cabinetInspector">
+      <span class="cab-glyph" aria-hidden="true">${spec.art}</span>
+      <span><strong>${spec.name}</strong><small>${spec.story}</small></span>
+      <span class="cab-share">${fmt.pct(fiscal[spec.id],1)}<small>${changed ? "Draft" : "of GDP"}</small></span>
+    </button>`;
+  }).join("");
+}
+
+function cabinetBudgetSummary(m) {
+  const p = proposed(m);
+  const led = ledgerOf(m, p.tax, p.social, p.military, p.invest);
+  return `<article><span>Money in / year</span><strong>${fmt.money(led.revenue * m.gdp)}</strong></article>
+    <article><span>${S.programs ? "Authorized envelope + interest" : "Ministries + interest"} / year</span><strong>${fmt.money((led.spend + led.interest) * m.gdp)}</strong></article>
+    <article><span>${S.programs ? "At full use: " : ""}${led.balance < 0 ? "Funding gap" : "Surplus"} / year</span><strong class="${led.balance < 0 ? "down" : "up"}">${fmt.money(Math.abs(led.balance) * m.gdp)}</strong></article>`;
+}
+
+function paintCabinetDraft(m) {
+  if (!m) return;
+  $("#left").inert = CAB.busy;
+  $("#left").setAttribute("aria-busy", String(CAB.busy));
+  const fiscal = annualBudgetOf(m);
+  const due = !m.annual_budget || m.annual_budget.due || (S.programs && (!S.programs.enabled || S.programs.due));
+  const hasBudget = queued.some(c => c.kind === "annual_budget" || c.kind === "program_budget");
+  const cost = annualPoliticalCost(m, fiscal);
+  const costLabel = Number.isFinite(cost) ? cost.toFixed(1) : "updating…";
+  const hasPolicy = queued.some(c => c.kind === "tax" || c.kind === "rate");
+  const title = queued.length ? `${queued.length} queued order${queued.length === 1 ? "" : "s"} · not yet enacted`
+    : due ? `Your ${S.year} budget is ready to enact` : "Your enacted plan is running";
+  $("#cabinetDraft").innerHTML = `<div class="cab-draft-copy"><strong>${title}</strong>
+    <p>${hasBudget || due ? `Budget estimate: ${costLabel} political capital · you have ${m.political_capital.toFixed(1)}.` : "Adjust a ministry or policy to draft your next move."}
+    ${hasPolicy ? "Policy orders may cost additional capital." : ""} ${CAB.error ? `Attention: ${escText(CAB.error)}` : "Enacting also advances the game one day."}</p></div>
+    <div class="cab-actions"><button id="revertBtn" ${!queued.length || CAB.busy ? "disabled" : ""}>Discard draft</button>
+    <button class="cab-enact" id="cabinetEnact" ${CAB.busy || advancing ? "disabled" : ""}>${CAB.busy ? "Enacting…" : hasBudget || due || queued.length ? "Enact & advance 1 day →" : "Advance 1 day →"}</button></div>`;
+  $("#revertBtn").onclick = () => { CAB.error = ""; revertOrders(); };
+  $("#cabinetEnact").onclick = cabinetEnact;
+  const summary = $("#cabinetBudgetSummary");
+  if (summary) summary.innerHTML = cabinetBudgetSummary(m);
+  const budgetNotes = $("#cabinetBudgetEstimate");
+  if (budgetNotes) budgetNotes.textContent = `Budget-only estimate: ${costLabel} political capital. Other orders and foreign commitments are separate.`;
+}
+
+async function cabinetEnact() {
+  if (CAB.busy || advancing) return;
+  const m = me();
+  if (!m) return;
+  // Enact really opens the books even if the player keeps every inherited
+  // allocation. The old empty-queue button only advanced the calendar.
+  if ((!m.annual_budget || m.annual_budget.due || (S.programs && (!S.programs.enabled || S.programs.due))) && !queued.some(c => c.kind === "annual_budget" || c.kind === "program_budget")) {
+    queued.push(annualBudgetOf(m));
+    noteQueued();
+  }
+  CAB.busy = true; CAB.error = "";
+  const orderDate = S.date;
+  paintCabinetDraft(m);
+  try {
+    await advance(1);
+    // The advance endpoint reports refusals in the sim's dated event log;
+    // /api/command's `errors` field does not exist on this route.
+    const refusals = (S.log || []).filter(e => e.date === orderDate && e.text.startsWith("[rejected]"));
+    CAB.error = refusals.map(e => {
+      const split = e.text.lastIndexOf("}: ");
+      return split < 0 ? e.text : e.text.slice(split + 3);
+    }).join(" · ");
+    $("#cabinetLive").textContent = CAB.error || "Orders processed. The calendar advanced one day.";
+  } catch (error) {
+    CAB.error = error.message || "Could not enact. Your draft has been kept; try again.";
+    $("#cabinetLive").textContent = CAB.error;
+  } finally {
+    CAB.busy = false;
+    paintCabinetDraft(me());
+    if (cabinetIsOpen()) $("#cabinetEnact").focus({ preventScroll: true });
+  }
+}
+
 function renderLeft(m) {
   if (!m) { $("#left").innerHTML = ""; return; }
+  const scroll = $("#left").scrollTop;
+  const openDetails = [...$("#left").querySelectorAll("details[open][id]")].map(el => el.id);
   const g = m.growth;
   const fiscal = annualBudgetOf(m);
-  const planned = proposed(m);
   const money = (S && S.policy && S.policy.money) || {};
-  const fiscalRevenue = planned.tax + dragsOf(m).budgetOil;
-  // THE SAME SIGN AS EVERYWHERE ELSE, and the same terms: `economy::Fiscal`
-  // pays debt service out of the same till the ministries are paid from, so
-  // the balance on this card carries it too. It is 0 while the books are
-  // closed, so an AI nation's card is unmoved.
-  const fiscalInterest = money.interest_gdp || 0;
-  const fiscalSpending = annualTotal(fiscal) + fiscalInterest;
-  const fiscalBalance = fiscalRevenue - fiscalSpending;
   const fiscalCost = annualPoliticalCost(m, fiscal);
+  const spec = MINISTRIES.find(s => s.id === CAB.ministry) || MINISTRIES[0];
+  const i = MINISTRIES.indexOf(spec);
+  $("#cabinetDate").textContent = `${S.day || 1} ${MONTHS[(S.month || 1) - 1]} ${S.year} · annual plan, daily world`;
   $("#left").innerHTML = `
-    <div class="card">
-      <h3>${m.name} <span>· ${m.command_economy ? "command" : "market"}</span></h3>
-      ${statRow("GDP", fmt.money(m.gdp))}
-      ${statRow("Growth", fmt.signed(g), g >= 0 ? "up" : "down")}
-      ${statRow("GDP / person", "$" + m.gdp_pc.toFixed(0))}
-      ${statRow("Population", fmt.pop(m.population))}
-      ${statRow("Employment", fmt.pct(1 - m.unemployment), m.unemployment > 0.10 ? "down" : "up")}
-      ${statRow("Inflation", fmt.pct(m.inflation), m.inflation > 0.08 ? "down" : "")}
-      ${statRow("Debt", fmt.pct(m.debt, 0) + " of GDP", m.debt > 0.9 ? "down" : "")}
-      ${statRow("Military", m.mil_strength.toFixed(0) + (m.nuclear ? " ☢" : ""))}
-      ${barRow("Stability", m.stability.toFixed(0) + "/100", m.stability / 100, stabColor(m.stability))}
-      ${m.separatism > 0.01 ? barRow("Separatism", fmt.pct(m.separatism, 0), m.separatism, "var(--red)") : ""}
-      ${m.war_exhaustion > 0.01 ? barRow("War exhaustion", fmt.pct(m.war_exhaustion, 0), m.war_exhaustion, "var(--red)") : ""}
-      ${m.oil_mbd > 0 ? statRow("Oil exports", (m.oil_mbd * m.export_share).toFixed(1) + " / " + m.oil_mbd.toFixed(1) + " mbd",
-                                m.export_share < 0.9 ? "down" : "") : ""}
-      ${m.sanctioned_by_count > 0 ? statRow("Sanctioned by", m.sanctioned_by_count + " nations", "down") : ""}
-      <div class="tiny" style="margin-top:6px;cursor:pointer" onclick="openNation('${m.id}')">Open full dashboard →</div>
-    </div>
+    <section id="cabinet-overview" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-overview">
+      <div class="cab-hero">
+        <div><div class="cab-kicker">${escText(m.name)} · your nation's next chapter</div>
+          <h1>A stronger nation.<br><em>One choice at a time.</em></h1>
+          <p>Fund what matters. Keep the books in balance. Give your people—and your next great ambition—room to grow.</p><button class="cab-hero-cta" data-cab-go="budget">Shape your yearly budget →</button></div>
+        <img class="cab-city" src="/assets/cabinet-city.svg" alt="An illustrated garden city with a treasury, library and bridge">
+      </div>
+      <div class="cab-pulse" aria-label="Current national indicators">
+        <article><span class="cab-label">Your economic engine</span><strong>${fmt.money(m.gdp)}</strong><p>Annual national output · GDP</p></article>
+        <article><span class="cab-label">The growth pulse</span><strong class="${g >= 0 ? "up" : "down"}">${fmt.signed(g)}</strong><p>Annualized growth · ${g < 0 ? "output is shrinking" : g > 0 ? "output is expanding" : "starting position"}</p></article>
+        <article><span class="cab-label">The cost of living</span><strong>${fmt.pct(m.inflation)}</strong><p>Inflation · ${m.inflation < 0 ? "prices are falling" : "how fast prices are rising"}</p></article>
+        <article><span class="cab-label">Public stability</span><strong>${m.stability.toFixed(0)}<span style="font:16px system-ui"> / 100</span></strong><p>The nation's political footing</p></article>
+      </div>
+      <div class="cab-section-head"><div><div class="cab-kicker">Choose your next move</div><h2>Big decisions. Clear controls.</h2></div></div>
+      <div class="cab-paths">
+        <button class="cab-path" data-cab-go="budget"><span class="cab-glyph" aria-hidden="true">▥</span><span class="cab-arrow">↗</span><strong>Build your budget</strong><p>Ten ministries. Pick a card, set its funding, and see what it buys.</p></button>
+        <button class="cab-path" data-cab-go="policy"><span class="cab-glyph" aria-hidden="true">◈</span><span class="cab-arrow">↗</span><strong>Steer the economy</strong><p>Explore taxes, interest rates and the treasury—with consequences in view.</p></button>
+        <button class="cab-path" id="cabinetPlaysBtn"><span class="cab-glyph" aria-hidden="true">✦</span><span class="cab-arrow">↘</span><strong>Play your hand</strong><p>Use political capital on the cabinet actions available right now.</p></button>
+      </div>
+      <details class="cab-details" id="cabinetPlays"><summary>Cabinet plays · ${m.political_capital.toFixed(0)} political capital</summary>${stratagemsHtml(m)}</details>
+      <details class="cab-details" id="cabinetNationDetails"><summary>The national picture · population, jobs &amp; pressures</summary>
+        <div class="cab-two-col"><div>
+          ${statRow("Population", fmt.pop(m.population))}${statRow("GDP per person", "$" + m.gdp_pc.toFixed(0))}
+          ${statRow("Employment", fmt.pct(1-m.unemployment))}${statRow("Debt", fmt.pct(m.debt,0) + " of GDP")}
+        </div><div>${statRow("Military strength", m.mil_strength.toFixed(0))}
+          ${statRow("War exhaustion", fmt.pct(m.war_exhaustion || 0,0))}${statRow("Separatism", fmt.pct(m.separatism || 0,0))}
+          ${statRow("Sanctions", (m.sanctioned_by_count || 0) + " nations sanctioning you")}
+          ${m.oil_mbd > 0 ? statRow("Oil exports", (m.oil_mbd * m.export_share).toFixed(1) + " mbd") : ""}
+        </div></div><button id="cabinetNationBtn">Open full national dashboard →</button>
+      </details>
+      <details class="cab-details" id="cabinetResearch"><summary>Research desk · allocation &amp; projects</summary>${researchHtml(m)}</details>
+    </section>
 
-    <div class="card budget-card">
-      <div class="fiscal-head">
-        <span class="fiscal-year">FY ${S.year}</span>
-        <span class="fiscal-badge ${m.annual_budget && !m.annual_budget.due ? "set" : ""}">${m.annual_budget && !m.annual_budget.due ? "budget enacted" : "budget due"}</span>
-      </div>
-      <div class="fiscal-summary">
-        <span>Revenue<b>${fmt.money(fiscalRevenue * m.gdp)}</b></span>
-        <span>Outlays<b>${fmt.money(fiscalSpending * m.gdp)}</b></span>
-        <span>${fiscalBalance >= 0 ? "Surplus" : "Deficit"}<b class="${fiscalBalance >= 0 ? "up" : "down"}">${fmt.money(Math.abs(fiscalBalance) * m.gdp)}</b></span>
-        <span>Political cost<b class="${fiscalCost > m.political_capital ? "down" : ""}">${fiscalCost.toFixed(1)} PC</b></span>
-      </div>
-      ${foreignCommitmentsHtml(m)}
+    <section id="cabinet-budget" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-budget" hidden>
+      <div class="cab-section-head"><div><div class="cab-kicker">FY ${S.year} · ${m.annual_budget && !m.annual_budget.due ? "enacted plan + your draft" : "your first move: set the plan"}</div><h2>What will your nation become?</h2></div>
+        <p>Choose a ministry. Each + or − moves <strong>0.5% of GDP</strong>. Nothing changes until you enact.</p></div>
+      <div id="cabinetBudgetSummary" class="cab-budget-summary">${cabinetBudgetSummary(m)}</div>
+      ${!money.on_the_books ? `<p class="cab-alert">First budget: enacting opens the treasury and starts cash interest charges. The draft totals above do not yet include that interest.</p>` : ""}
       ${interestRow(m)}
-      <div class="ministry-grid">${MINISTRIES.map((spec, i) => ministryDial(m, fiscal, spec, i)).join("")}</div>
-      <div class="budget-note">Each press moves 0.5% of GDP. All ten ministries roll into one atomic yearly budget; raising spending without revenue adds debt. OUTLAYS is the ten plus debt service, which is why the eleventh row is above them. Every figure under a ministry is the sim&rsquo;s own, read at the dial where it stands.</div>
-    </div>
+      <div class="cab-budget-workbench"><div class="cab-ministry-tiles" aria-label="Choose a ministry">${cabinetMinistryTiles(m, fiscal)}</div>
+        <section class="cab-inspector" id="cabinetInspector" aria-label="${spec.name} funding">
+          <button class="cab-back" id="cabinetMinistriesBtn">← All ministries</button>
+          <div class="cab-kicker">${spec.art} Ministry spotlight</div><h3>${spec.name}</h3><p>Funds ${spec.story}.</p>
+          ${ministryDial(m, fiscal, spec, i)}
+          <p class="budget-note">Funding: share of GDP · money: per year.<br>Effects above are the simulation's own readings. “+1%” means two button presses; some benefits build over time.</p>
+          <div class="cab-kicker">${Math.abs(fiscal[spec.id] - (+m.annual_budget?.[spec.id] || 0)) > 1e-9 ? "Draft change · not yet enacted" : "Current funding · no change"}</div>
+        </section></div>
+      ${S.programs ? programBoardHtml(m,i) : ""}
+      <details class="cab-details" id="cabinetBudgetNotes"><summary>How the yearly plan works</summary><p>All ten ministries and their departments are submitted as one budget. Political capital pays for changing the plan; cuts and reopening an enacted year cost more. A funding gap uses cash or borrowing. Debt service is automatic, not an eleventh dial. Unused project authority expires at year end; unfinished projects keep their progress and need renewed funding.</p><p id="cabinetBudgetEstimate">Budget-only estimate: ${Number.isFinite(fiscalCost) ? fiscalCost.toFixed(1) : "updating…"} political capital. Other orders and foreign commitments are separate.</p><p>Draft totals show the authorized envelope, not a promise that every dollar is spent. They hold current debt-service charges steady. A policy-rate change affects cash interest after enactment.</p></details>
+    </section>
 
-    ${moneyCard(m)}
-
-    <div class="card">
-      <h3>Money &amp; Revenue <span>· immediate levers</span></h3>
-      ${sliderHtml("rate", "Interest rate", m.rate, 0, 0.40, rateSeat())}
-      ${sliderHtml("tax", "Tax take", m.tax, 0.02, 0.60)}
-      <div class="ledger" id="ledger"></div>
-      <div style="display:flex;gap:6px;margin-top:10px">
-        <button id="revertBtn">Revert</button>
-        <button class="primary" onclick="advance(1)">Enact &amp; advance one day</button>
-      </div>
-    </div>
-
-    ${stratagemsHtml(m)}
-    ${researchHtml(m)}`;
+    <section id="cabinet-policy" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-policy" hidden>
+      <div class="cab-section-head"><div><div class="cab-kicker">The engine room</div><h2>Money with a purpose.</h2></div><p>Policy controls show your draft. The treasury shows the plan running now. All money is in constant 1990 dollars.</p></div>
+      <div class="cab-two-col"><div class="card"><h3>Your policy controls</h3>
+        <p class="budget-note">Taxes fund the plan. Interest rates move demand and inflation. Drag a control to preview its effects.</p>
+        ${sliderHtml("tax", "Tax take", m.tax, 0.02, 0.60)}
+        ${sliderHtml("rate", "Interest rate", m.rate, 0, 0.40, rateSeat())}
+        <details class="cab-details" id="cabinetForecast"><summary>Draft forecast &amp; economic pressures</summary><div class="ledger" id="ledger"></div></details>
+      </div><div>${moneyCard(m)}${foreignCommitmentsHtml(m)}<p class="budget-note">Trade figures are an annual run-rate, not additional ministry spending. Sunk mine capital is shown separately.</p></div></div>
+    </section>`;
   wireSliders(m);
+  if (S.programs) wireProgramBoard(m,i);
   document.querySelectorAll("[data-ministry]").forEach((b) => {
     b.onclick = () => queueBudgetDial(m, b.dataset.ministry, +b.dataset.delta);
   });
   wireStratagems();
   wireResearch();
-  $("#revertBtn").onclick = revertOrders;
+  $("#left").querySelectorAll("[data-cab-go]").forEach(b => { b.onclick = () => { selectCabinetTab(b.dataset.cabGo); $("#cab-tab-" + CAB.tab).focus(); }; });
+  $("#left").querySelectorAll("[data-cab-ministry]").forEach(b => { b.onclick = () => {
+    CAB.ministry = b.dataset.cabMinistry;
+    renderLeft(m);
+    const next = $("#left").querySelector(`[data-cab-ministry="${CAB.ministry}"]`);
+    next.focus({ preventScroll: true });
+    if (window.innerWidth <= 760) $("#cabinetInspector").scrollIntoView({ block: "start", behavior: "instant" });
+  }; });
+  $("#cabinetPlaysBtn").onclick = () => { const panel = $("#cabinetPlays"); panel.open = true; panel.querySelector("summary").focus(); panel.scrollIntoView({ block:"start" }); };
+  $("#cabinetMinistriesBtn").onclick = () => {
+    const tile = $("#left").querySelector(`[data-cab-ministry="${CAB.ministry}"]`);
+    tile.focus({ preventScroll: true });
+    $("#left").querySelector(".cab-ministry-tiles").scrollIntoView({ block: "start" });
+  };
+  $("#cabinetNationBtn").onclick = () => { closeGameDrawers(); openNation(m.id); };
+  // Opening a research tree leaves the cabinet; drafts remain queued.
+  $("#cabinetResearch").querySelectorAll("[data-tree]").forEach(b => { b.onclick = () => { closeGameDrawers(); openTech(b.dataset.tree); }; });
+  selectCabinetTab(CAB.tab);
+  openDetails.forEach(id => { const el = document.getElementById(id); if (el) el.open = true; });
+  $("#left").scrollTop = scroll;
+  paintCabinetDraft(m);
 }
 
 /* ================= tech tree =================
@@ -4724,14 +5154,26 @@ const tech = {
 /* ---------------- glance dropdown ---------------- */
 
 function techMenuIsOpen() { return $("#techMenu").style.display === "block"; }
-function closeTechMenu() { $("#techMenu").style.display = "none"; }
+function closeTechMenu() {
+  const wasOpen = techMenuIsOpen();
+  $("#techMenu").style.display = "none";
+  $("#techBtn").setAttribute("aria-expanded", "false");
+  if (wasOpen) {
+    const target = tech.menuFocus?.isConnected && tech.menuFocus.getClientRects().length ? tech.menuFocus : $("#techBtn");
+    target?.focus({ preventScroll: true });
+    tech.menuFocus = null;
+  }
+}
 
 function toggleTechMenu() {
   if (!S || !S.research) return;                    // spectator: T is a no-op
   if (tech.open) { closeTech(); return; }
   if (techMenuIsOpen()) { openTech(null); return; } // T again → the remembered view
+  tech.menuFocus = document.activeElement;
   renderTechMenu();
   $("#techMenu").style.display = "block";
+  $("#techBtn").setAttribute("aria-expanded", "true");
+  $("#techMenu .drow, #techMenu button").focus({ preventScroll: true });
 }
 
 /// Rendered entirely from S.research — zero fetches, tick-fresh (render() calls
@@ -4739,6 +5181,10 @@ function toggleTechMenu() {
 function renderTechMenu() {
   const r = S.research;
   if (!r) return;
+  const active = $("#techMenu").contains(document.activeElement) ? document.activeElement : null;
+  const activeDomain = active?.dataset.dom;
+  const activeFooter = active?.classList.contains("dfoot");
+  const activeClose = active?.classList.contains("menu-close");
   const rows = r.domains.map((d) => {
     const star = r.priority === d.domain
       ? `<span class="star" title="national programme · ${r.priority_multiplier}x share">★</span>` : "";
@@ -4752,20 +5198,23 @@ function renderTechMenu() {
     } else {
       proj = `<span class="proj">nothing startable</span>`;
     }
-    return `<div class="drow" data-dom="${d.domain}">
+    return `<button type="button" class="drow" data-dom="${d.domain}" aria-label="Explore ${escText(d.name)}">
         <svg><use href="#${TECH_SIG[d.domain]}"/></svg>
         <div>
           <div class="nm">${d.name} ${star}<span class="cnt">${d.known}/${d.total}</span></div>
           ${proj}
         </div>
-      </div>`;
+      </button>`;
   }).join("");
-  $("#techMenu").innerHTML = rows +
-    `<div class="dfoot"><b>OPEN THE TREE</b><span>${r.daily.toFixed(2)} points a day</span></div>`;
+  $("#techMenu").innerHTML = `<button type="button" class="menu-close" aria-label="Close research field chooser" onclick="closeTechMenu()">×</button><h2 class="discovery-menu-title">What comes next?</h2>` + rows +
+    `<button type="button" class="dfoot"><b>Explore technology</b><span>${r.daily.toFixed(2)} points a day</span></button>`;
   $("#techMenu").querySelectorAll(".drow").forEach((el) => {
     el.onclick = () => openTech(el.dataset.dom);
   });
   $("#techMenu").querySelector(".dfoot").onclick = () => openTech(null);
+  const replacement = activeDomain ? [...$("#techMenu").querySelectorAll(".drow")].find(el => el.dataset.dom === activeDomain)
+    : activeFooter ? $("#techMenu .dfoot") : activeClose ? $("#techMenu .menu-close") : null;
+  replacement?.focus({ preventScroll: true });
 }
 
 $("#techBtn").onclick = toggleTechMenu;
@@ -4784,9 +5233,15 @@ document.addEventListener("pointerdown", (e) => {
 /// the first. The graph is built once and then only class-patched.
 async function openTech(domain) {
   if (!S || !S.research) return;   // spectator: /api/tech cannot answer
+  const returnFocus = document.activeElement;
+  if (LOGI.open) closeLogistics();
   if (PROD.open) closeProduction();
+  if (stock.open) closeStock();
+  if (dominationIsOpen()) closeDomination();
+  closeGameDrawers();
   closeTechMenu();
   closeSheet();
+  if (!tech.open) tech.lastFocus = returnFocus;
   const fresh = !tech.data;
   const land = domain != null ? domain
     : tech.mode === "map" ? "all"
@@ -4795,6 +5250,7 @@ async function openTech(domain) {
   $("#techScreen").dataset.view = land;   // before first paint: no wrong-layer flash
   $("#techScreen").style.display = "block";
   tech.open = true;
+  $("#techScreen .tbar .x").focus({ preventScroll: true });
   if (fresh) {
     const nodes = await fetchTechAll();
     if (!tech.open) return;        // closed while the eight fetches were in flight
@@ -4818,8 +5274,11 @@ function setTechView(v, keepSel) {
   if (v === "all") tech.mode = "map";
   else { tech.mode = "domain"; tech.curDomain = v; }
   $("#techScreen").dataset.view = v;
-  document.querySelectorAll("#techTabs .dtab").forEach((t) =>
-    t.setAttribute("aria-selected", t.dataset.dom === v ? "true" : "false"));
+  document.querySelectorAll("#techTabs .dtab").forEach((t) => {
+    const selected = t.dataset.dom === v;
+    t.setAttribute("aria-selected", String(selected));
+    t.tabIndex = selected ? 0 : -1;
+  });
   if (window.techTipHide) window.techTipHide();   // tooltip is WP-B; hides passively
   $("#techFindHint").style.display = "none";
   if (!keepSel) {
@@ -4840,10 +5299,16 @@ function setTechView(v, keepSel) {
 
 /// Hides the overlay; keeps SVG + camera for cheap reopen.
 function closeTech() {
+  const wasOpen = tech.open;
   tech.open = false;
   cancelAnimationFrame(techCamAnim); techCamAnim = 0;
   if (window.techTipHide) window.techTipHide();
   $("#techScreen").style.display = "none";
+  if (wasOpen) {
+    const target = tech.lastFocus?.isConnected && tech.lastFocus.getClientRects().length ? tech.lastFocus : $("#techBtn");
+    target?.focus({ preventScroll: true });
+    tech.lastFocus = null;
+  }
 }
 window.closeTech = closeTech;
 
@@ -5753,6 +6218,7 @@ function techWire() {
     const t = e.target instanceof Element ? e.target.closest(".dtab") : null;
     if (t) setTechView(t.dataset.dom);
   });
+  $("#techTabs").addEventListener("keydown", techTabKeys);
 
   // -- WP-A: the priority pill — the same setPriority path as the left column
   // (declare 30 pc / stand down 10 pc, lib.rs:153-155).
@@ -5784,8 +6250,23 @@ function techEsc() {
 /// everywhere: 1–8 opens that domain's VIEW in both modes, 9 the full map,
 /// [ ] cycle the domain tabs; camera keys (fit/zoom/pan) are map-only, and
 /// in a domain view the arrows scroll the stage instead.
+function techTabKeys(e) {
+  if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
+  const current = e.target.closest?.(".dtab");
+  if (!current) return;
+  const tabs = [...$("#techTabs").querySelectorAll(".dtab")];
+  const index = tabs.indexOf(current);
+  const next = e.key === "Home" ? 0 : e.key === "End" ? tabs.length - 1
+    : (index + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length;
+  e.preventDefault(); e.stopPropagation();
+  setTechView(tabs[next].dataset.dom);
+  tabs[next].focus({ preventScroll: true });
+  tabs[next].scrollIntoView({ block: "nearest", inline: "nearest" });
+}
 function techKeys(e) {
   const k = e.key;
+  // Native controls own Enter/Space/arrows; room hotkeys must not steal them.
+  if (e.target && e.target.closest && e.target.closest("button,input,select,textarea,summary,[contenteditable=true]")) return;
   e.preventDefault();
   if (window.techTipHide) window.techTipHide();   // any navigation drops the tip
   if (!tech.data) return;   // first build still in flight
@@ -6086,7 +6567,8 @@ function techTipPlace(tip, clientX, clientY) {
   if (x + w > innerWidth - 12) x = clientX - w - 16;    // flip left
   if (y + h > innerHeight - 12) y = clientY - h - 14;   // flip above
   x = clamp(x, 12, innerWidth - w - 12);
-  y = clamp(y, 106 + 12, innerHeight - h - 12);
+  const stageTop = $("#techTabs").getBoundingClientRect().bottom;
+  y = clamp(y, stageTop + 12, innerHeight - h - 12);
   tip.style.left = x + "px";
   tip.style.top = y + "px";
   tip.style.visibility = "";
@@ -6177,10 +6659,19 @@ window.techTipWarm = techTipWarm;
 
 function techOpenDock(i) {
   const d = $("#techDock");
+  const repin = d.style.display !== "block" || d.dataset.node !== String(i);
   const keep = d.scrollTop;
   d.innerHTML = techDockHtml(i);
   d.style.display = "block";
+  d.dataset.node = String(i);
   d.scrollTop = keep;
+  // The reading panel reserves real space. Keep the selected discovery inside
+  // the remaining graph area, without recentering on ordinary state refreshes.
+  if (repin && tech.mode === "map") techFlyTo(i);
+  else if (repin) {
+    const node = techEls().nodes[i];
+    if (node) node.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+  }
 }
 
 function techDockHtml(i) {
@@ -6194,7 +6685,7 @@ function techDockHtml(i) {
   let h = "";
 
   // -- header: sigil (core ring first for core_ nodes), name, provenance line
-  h += `<h2>` +
+  h += `<button type="button" class="discovery-dock-close" onclick="techEsc()" aria-label="Close technology details">×</button><h2>` +
     (isCore ? `<svg width="18" height="18" style="color:var(--brass-dim)"><use href="#sig-core-ring"/></svg> ` : "") +
     `<svg width="18" height="18"><use href="#${TECH_SIG[n.domain]}"/></svg> ${escText(n.name)}</h2>`;
   h += `<div class="sub">${escText(rd ? rd.name : n.domain)} · ${n.era} · from ${n.year} · ` +
@@ -6242,14 +6733,14 @@ function techDockHtml(i) {
   } else {
     h += `<div>` + pres.map((p) => {
       const pi = tech.byId.get(p.id);
-      return `<span class="chip${p.known ? " known" : ""}"${pi != null ? ` data-fly="${pi}"` : ""}>` +
-        `<svg><use href="#${TECH_SIG[p.domain]}"/></svg>${escText(p.name)}</span>`;
+      return `<button type="button" class="chip${p.known ? " known" : ""}"${pi != null ? ` data-fly="${pi}"` : " disabled"}>` +
+        `<svg><use href="#${TECH_SIG[p.domain]}"/></svg>${escText(p.name)}</button>`;
     }).join("") + `</div>`;
     if (n.state === "locked") h += techPathProse(i);
   }
 
   // -- opens: derived post[] rows (payload unlocks carry no ids), fly-to links
-  h += `<h4>Opens</h4>`;
+  h += `<details class="discovery-details"><summary>Discoveries this unlocks</summary>`;
   const posts = tech.post[i] || [];
   if (!posts.length) {
     h += `<div class="cap">Nothing further in the tree waits on it — it is a leaf.</div>`;
@@ -6258,12 +6749,13 @@ function techDockHtml(i) {
     h += `<div class="cap">opens ${posts.length}${out ? ", " + out + " outside this domain" : ""}</div>`;
     h += posts.map((j) => {
       const u = tech.data[j];
-      return `<div class="row link" data-fly="${j}"><svg><use href="#${TECH_SIG[u.domain]}"/></svg>` +
-        `${escText(u.name)}<span class="yr">${u.year}</span></div>`;
+      return `<button type="button" class="row link" data-fly="${j}"><svg><use href="#${TECH_SIG[u.domain]}"/></svg>` +
+        `${escText(u.name)}<span class="yr">${u.year}</span></button>`;
     }).join("");
   }
 
   // -- action row: the left column's command flow, with the honest captions
+  h += `</details>`;
   if (n.state === "open" && (n.focus || mine)) {
     const pct = rd && rd.cost > 0 ? Math.round((rd.banked / rd.cost) * 100) : 0;
     h += `<div class="cap" style="margin-top:10px">IN PROGRESS — ${pct}% · ${
@@ -6404,7 +6896,7 @@ function sliderHtml(kind, label, val, lo, hi, who) {
       </div>
       <div class="track">
         <i class="ghost" style="left:${ghost.toFixed(1)}%"></i>
-        <input type="range" min="${Math.round(lo * 1000)}" max="${Math.round(hi * 1000)}"
+        <input type="range" aria-label="${label}" min="${Math.round(lo * 1000)}" max="${Math.round(hi * 1000)}"
                value="${Math.round(shown * 1000)}" step="1">
       </div>
       ${who ? `<div class="who${who.amber ? " amber" : ""}">${who.text}</div>` : ""}
@@ -6448,6 +6940,7 @@ function wireSliders(m) {
       if (Math.abs(v - orig) > 1e-9) queued.push({ kind, value: v });
       noteQueued();
       paintPolicy(m);
+      paintCabinetDraft(m);
     };
   });
   paintPolicy(m);
@@ -6710,7 +7203,7 @@ function bar(frac, color, mark) {
 }
 
 function renderWars() {
-  if (!S.wars.length) { $("#warsCard").innerHTML = ""; return; }
+  if (!S.wars.length) { $("#warsCard").innerHTML = `<div class="arc-empty"><div class="arc-seal" style="margin:0 auto 20px" aria-hidden="true">✦</div><strong>A moment of peace.</strong>No active conflicts. This board will show the sides, stakes and next decisions when tensions become a conflict.</div>`; return; }
   const cards = S.wars.map((w) => {
     const mine = myPosture(w);
     const theirs = mine
@@ -6759,6 +7252,7 @@ function renderWars() {
     </div>`;
   }).join("");
   $("#warsCard").innerHTML = `<div class="card"><h3>Conflicts</h3>${cards}</div>`;
+  arcadeAccessibleActions($("#warsCard"));
 }
 
 /// The conflict sheet: the ladder as nine clickable rows, each of which either
@@ -6979,8 +7473,8 @@ function renderLog() {
   const present = new Set(S.log.map((e) => e.cat));
   cats.innerHTML = CATS.filter(([k]) => k === "all" || (k === "mine" ? !!S.player : present.has(k)))
     .map(([k, label, col]) =>
-      `<span class="chip${k === ui.logCat ? " on" : ""}" data-cat="${k}">
-         <i class="sw" style="background:${col}"></i>${label}</span>`).join("");
+      `<button class="chip${k === ui.logCat ? " on" : ""}" data-cat="${k}" aria-pressed="${k===ui.logCat}">
+         <i class="sw" style="background:${col}"></i>${label}</button>`).join("");
   cats.querySelectorAll(".chip").forEach((c) => {
     c.onclick = () => { ui.logCat = c.dataset.cat; renderLog(); };
   });
@@ -6990,10 +7484,11 @@ function renderLog() {
   $("#logList").innerHTML = shown.length
     ? shown.slice(0, 500).map((e) => logItem(e)).join("") +
       (shown.length > 500 ? `<div class="tiny" style="padding:8px 0">…${shown.length - 500} older dispatches</div>` : "")
-    : `<div class="muted" style="padding:8px 0">Nothing matches.</div>`;
+    : `<div class="arc-empty"><strong>${S.log.length ? "No matching dispatches." : "History is waiting."}</strong>${S.log.length ? "Try another search or category." : "Advance a day to see the world's first moves."}</div>`;
   $("#logList").querySelectorAll("[data-open]").forEach((el) => {
     el.onclick = () => openNation(el.dataset.open);
   });
+  arcadeAccessibleActions($("#logList"));
 }
 
 function logItem(e) {
@@ -7648,19 +8143,22 @@ function provinceDossierHtml() {
     <div class="province-body"><div class="province-stats">
       <div class="province-stat population"><div class="k">Population</div><div class="v">${residents}</div>
         <div class="province-note">${escText(growth)} · residents remain with the province when borders move</div></div>
+      <div class="province-stat"><div class="k">Terrain</div><div class="v">${escText(terrain)}</div></div>
+      <div class="province-stat"><div class="k">Area</div><div class="v">${area}</div></div>
+    </div>
+    ${provinceEconomyHtml(pop)}
+    <details data-detail-key="geography"><summary>Population &amp; geography</summary><div class="province-stats">
       <div class="province-stat"><div class="k">Density</div><div class="v">${density}</div></div>
       <div class="province-stat"><div class="k">National share</div><div class="v">${share}</div></div>
       <div class="province-stat"><div class="k">Population rank</div><div class="v">${rank}</div></div>
-      <div class="province-stat"><div class="k">Area</div><div class="v">${area}</div></div>
-      <div class="province-stat"><div class="k">Terrain</div><div class="v">${escText(terrain)}</div></div>
       <div class="province-stat"><div class="k">Borders</div><div class="v">${spec ? neighbours.length : "…"}</div></div>
     </div>
     <div class="province-section"><div class="province-section-title">Physical region</div>
-      <div class="province-tags"><span class="province-tag">${escText(feature)}</span></div></div>
+      <div class="province-tags"><span class="province-tag">${escText(feature)}</span></div></div></details>
     <div class="province-section"><div class="province-section-title">Strategic deposits</div>
       <div class="province-tags">${provinceDepositHtml(did)}</div></div>
-    <div class="province-section"><div class="province-section-title">Bordering provinces / states</div>
-      <div class="province-tags">${links}</div></div>
+    <details data-detail-key="borders"><summary>Bordering provinces / states · ${neighbours.length}</summary>
+      <div class="province-tags">${links}</div></details>
     <div class="province-actions"><button onclick="centerProvince('${did}')">◎ center &amp; zoom</button>
       <button onclick="openNation('${ownerId}')">open nation dossier</button></div></div>`;
 }
@@ -7668,10 +8166,16 @@ function provinceDossierHtml() {
 function renderProvinceDossier() {
   const box = $("#provinceDossier");
   if (!box) return;
+  rememberProvinceDossier();
   const open = !!selectedDistrict && !!DINDEX[selectedDistrict];
+  const view = provinceDossierView(selectedDistrict);
   box.classList.toggle("open", open);
   box.setAttribute("aria-hidden", open ? "false" : "true");
   box.innerHTML = open ? provinceDossierHtml() : "";
+  box.dataset.province = selectedDistrict || "";
+  economicRestoreDetails(box, view.details);
+  box.scrollTop = view.scroll;
+  wireProvinceDossierState(box);
 }
 
 window.selectProvince = function (did, move) {
@@ -11176,6 +11680,7 @@ function camUserInput() {
 /// FURNITURE — the stage, the legend, the shading chips — plus telling the
 /// globe that the world it is drawing has changed.
 function renderMap() {
+  rememberProvinceDossier();
   // The map is the only screen that needs globe3d.js, and it is fetched from
   // this same binary -- so this cannot fire against a matched deploy. It exists
   // because renderMap runs BEFORE the dossiers, the charts and the log in
@@ -11254,16 +11759,19 @@ function renderMap() {
   // Resources mode, where the layer is already the whole map.
   const inRes = ui.mapMode === "resources";
   $("#mapModes").innerHTML = `<span class="chips">` + Object.entries(MAP_MODES).map(([k, v]) =>
-    `<span class="chip${k === ui.mapMode ? " on amber" : ""}" data-mode="${k}">${v.label}</span>`).join("")
-    + `<span class="chip ovl${!inRes && ui.resOverlay ? " on amber" : ""}"${inRes ? "" : ` data-resovl="1"`}
+    `<button class="chip${k === ui.mapMode ? " on amber" : ""}" data-mode="${k}" aria-pressed="${k === ui.mapMode}">${v.label}</button>`).join("")
+    + `<button class="chip ovl${!inRes && ui.resOverlay ? " on amber" : ""}" aria-pressed="${!inRes && ui.resOverlay}" ${inRes ? "disabled" : `data-resovl="1"`}
         style="${inRes ? "opacity:.45;cursor:default" : ""}"
         title="${inRes ? "the Resources shading already IS this layer"
           : "lay the resource layer over this shading (O) — one commodity, or all of them"}"
         >${rglyph(ui.resCommodity,
-          !inRes && ui.resOverlay ? "#0a0e14" : resHue(ui.resCommodity))}resources</span>`
+          !inRes && ui.resOverlay ? "#0a0e14" : resHue(ui.resCommodity))}resources</button>`
     + `</span>`;
   $("#mapModes").querySelectorAll("[data-mode]").forEach((c) => {
-    c.onclick = () => { ui.mapMode = c.dataset.mode; POL.dirty = true; SEL.dirty = true; renderMap(); };
+    c.onclick = () => {
+      ui.mapMode = c.dataset.mode; POL.dirty = true; SEL.dirty = true; renderMap();
+      const menu = $("#mapModes").closest('details'); menu.open = false; menu.querySelector('summary').focus();
+    };
   });
   const ovlChip = $("#mapModes [data-resovl]");
   if (ovlChip) ovlChip.onclick = toggleResOverlay;
@@ -11376,7 +11884,30 @@ function chart(cfg) {
   if (cfg.clampLo !== undefined) lo = Math.max(lo, cfg.clampLo);
 
   const PW = W - PADL - PADR, PH = H - PADT - PADB;
-  const X = (i) => PADL + (i / (N - 1)) * PW;
+  // `t` is calendar months, including a fraction of that actual month. Convert
+  // it to UTC days so an old monthly sample and a new daily one share one
+  // honest time axis, including February and leap years.
+  const dayAt = (t) => {
+    if (!Number.isFinite(t)) return NaN;
+    const month = Math.floor(t);
+    const start = Date.UTC(1990, month, 1) / 86400000;
+    const end = Date.UTC(1990, month + 1, 1) / 86400000;
+    return start + (t - month) * (end - start);
+  };
+  const days = HIST.t.map(dayAt);
+  const chronological = days.every((v, i) => Number.isFinite(v) && (!i || v >= days[i - 1])) && days[N - 1] > days[0];
+  const times = chronological ? days : HIST.t.map((_, i) => i);
+  const timeSpan = times[N - 1] - times[0];
+  const timeX = (t) => PADL + ((t - times[0]) / timeSpan) * PW;
+  const X = (i) => timeX(times[clamp(i, 0, N - 1)]);
+  const nearest = (t) => {
+    let left = 0, right = N - 1;
+    while (left < right) {
+      const mid = Math.floor((left + right) / 2);
+      if (times[mid] < t) left = mid + 1; else right = mid;
+    }
+    return left > 0 && t - times[left - 1] <= times[left] - t ? left - 1 : left;
+  };
   const Y = (v) => PADT + PH - ((v - lo) / (hi - lo)) * PH;
   const f = cfg.fmtY || ((v) => v.toFixed(1));
 
@@ -11390,17 +11921,25 @@ function chart(cfg) {
           <text x="${PADL - 8}" y="${(Y(v) + 4).toFixed(1)}" text-anchor="end" font-size="10"
             fill="#5d6773">${f(v)}</text>`;
   }
-  // year ticks
-  const ticks = Math.min(8, Math.max(2, Math.floor(N / 24) + 1));
+  // Evenly spaced calendar ticks, snapped to observations. A daily label is
+  // "2 Jan 1990", not "Jan 1990": taking its second word loses the year.
+  const ticks = chronological ? Math.min(8, Math.max(2, Math.ceil(timeSpan / 90))) : Math.min(8, Math.max(2, Math.floor(N / 24) + 1));
+  const ticked = new Set();
   for (let k = 0; k <= ticks; k++) {
-    const i = Math.round((k / ticks) * (N - 1));
+    const i = nearest(times[0] + (k / ticks) * timeSpan);
+    if (ticked.has(i)) continue;
+    ticked.add(i);
+    const words = labelAt(i).trim().split(/\s+/);
+    const tickLabel = chronological && timeSpan <= 62 ? labelAt(i) : words.slice(chronological && timeSpan <= 730 ? -2 : -1).join(" ");
     s += `<line x1="${X(i).toFixed(1)}" y1="${PADT}" x2="${X(i).toFixed(1)}" y2="${PADT + PH}" stroke="#151a21"/>
           <text x="${X(i).toFixed(1)}" y="${H - 7}" text-anchor="middle" font-size="10"
-            fill="#5d6773">${(labelAt(i).split(" ")[1] || "")}</text>`;
+            fill="#5d6773">${tickLabel}</text>`;
   }
   // event marks along the axis
   (cfg.marks || []).forEach((mk) => {
-    s += `<rect x="${(X(mk.i) - 1).toFixed(1)}" y="${PADT + PH - 4}" width="2" height="8"
+    const at = chronological && Number.isFinite(mk.t) ? dayAt(mk.t) : times[mk.i];
+    if (!Number.isFinite(at) || at < times[0] || at > times[N - 1]) return;
+    s += `<rect x="${(timeX(at) - 1).toFixed(1)}" y="${PADT + PH - 4}" width="2" height="8"
             fill="${mk.color}" opacity=".85"><title>${mk.title}</title></rect>`;
   });
   // series
@@ -11450,7 +11989,7 @@ function chart(cfg) {
   s += `<rect class="hit" x="${PADL}" y="${PADT}" width="${PW}" height="${PH}" fill="transparent"/>`;
   s += `</svg>`;
 
-  CHARTS[id] = { N, W, PADL, PADR, PADT, PADB, PW, PH, lo, hi, ser, fmt: cfg.fmtHover || f };
+  CHARTS[id] = { N, W, PADL, PADR, PADT, PADB, PW, PH, lo, hi, ser, times, labels: HIST.labels.slice(), fmt: cfg.fmtHover || f };
   return `<div class="chartbox"><div class="readout" id="ro-${id}">${cfg.hint || ""}</div>${s}</div>`;
 }
 
@@ -11465,8 +12004,15 @@ function wireCharts(root) {
     const move = (e) => {
       const r = svg.getBoundingClientRect();
       const vx = ((e.clientX - r.left) / r.width) * c.W;
-      const i = clamp(Math.round(((vx - c.PADL) / c.PW) * (c.N - 1)), 0, c.N - 1);
-      const x = c.PADL + (i / (c.N - 1)) * c.PW;
+      const span = c.times[c.N - 1] - c.times[0];
+      const at = c.times[0] + clamp((vx - c.PADL) / c.PW, 0, 1) * span;
+      let left = 0, right = c.N - 1;
+      while (left < right) {
+        const mid = Math.floor((left + right) / 2);
+        if (c.times[mid] < at) left = mid + 1; else right = mid;
+      }
+      const i = left > 0 && at - c.times[left - 1] <= c.times[left] - at ? left - 1 : left;
+      const x = c.PADL + ((c.times[i] - c.times[0]) / span) * c.PW;
       cur.setAttribute("x1", x); cur.setAttribute("x2", x);
       cur.setAttribute("opacity", ".7");
       const parts = [];
@@ -11482,7 +12028,7 @@ function wireCharts(root) {
           dot.setAttribute("opacity", "0");
         }
       });
-      if (ro) ro.innerHTML = `<b>${labelAt(i)}</b>` + (parts.length ? " · " + parts.join(" · ") : "");
+      if (ro) ro.innerHTML = `<b>${c.labels[i] || ""}</b>` + (parts.length ? " · " + parts.join(" · ") : "");
     };
     svg.addEventListener("mousemove", move);
     svg.addEventListener("mouseleave", () => {
@@ -11532,22 +12078,49 @@ function defaultPicks() {
 /// Ticks under the axis for the events worth remembering — a chart of the
 /// nineties should show you where the wars were.
 function marksFor(ids) {
-  if (!HIST) return [];
-  const t0 = HIST.t[0];
+  if (!HIST || !HIST.t.length || !S) return [];
+  const first = HIST.t[0], last = HIST.t[HIST.t.length - 1];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const eventTime = (e) => {
+    // New logs carry the real event day; old ones carry only a calendar month.
+    // Use the numeric month only when a readable date is unavailable.
+    const match = /^(?:(\d{1,2}) )?([A-Za-z]{3}) (\d{4,})$/.exec(e.date || "");
+    if (match) {
+      const month = months.indexOf(match[2]), year = Number(match[3]), day = Number(match[1] || 1);
+      const count = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+      if (month >= 0 && day >= 1 && day <= count) return (year - 1990) * 12 + month + (day - 1) / count;
+    }
+    return Number.isFinite(e.t) ? e.t : NaN;
+  };
   const want = new Set(ids || []);
-  return S.log.filter((e) => (e.cat === "war" || e.cat === "politics") &&
-      (!ids || e.tags.some((t) => want.has(t))))
-    .map((e) => ({
-      i: clamp(e.t - t0, 0, HIST.t.length - 1),
-      color: e.cat === "war" ? "#d05f5f" : "#9a7cd0",
-      title: e.date + " — " + e.text,
-    })).slice(0, 400);
+  return (S.log || []).filter((e) => (e.cat === "war" || e.cat === "politics") &&
+      (!ids || (e.tags || []).some((t) => want.has(t))))
+    .map((e) => {
+      const t = eventTime(e);
+      if (!Number.isFinite(t) || t < first || t > last) return null;
+      let left = 0, right = HIST.t.length - 1;
+      while (left < right) {
+        const mid = Math.floor((left + right) / 2);
+        if (HIST.t[mid] < t) left = mid + 1; else right = mid;
+      }
+      const i = left > 0 && t - HIST.t[left - 1] <= HIST.t[left] - t ? left - 1 : left;
+      return { t, i, color: e.cat === "war" ? "#d05f5f" : "#9a7cd0", title: (e.date || labelAt(i)) + " — " + e.text };
+    }).filter(Boolean).slice(0, 400);
 }
 
+let historyQuery = "";
 function renderCharts() {
+  if (CHRONICLE.view === "sheet") { renderChronicle(); return; }
+  renderComparisonCharts();
+}
+function renderComparisonCharts() {
   const box = $("#pane-charts");
+  const active = box.contains(document.activeElement) ? document.activeElement : null;
+  const focusKey = active?.dataset.metric ? `[data-metric="${active.dataset.metric}"]` : active?.dataset.pick ? `[data-pick="${active.dataset.pick}"]` : active?.hasAttribute("data-index") ? '[data-index]' : active?.id === "historyNationSearch" ? '#historyNationSearch' : null;
+  const pickerOpen = !!$("#historyPicker")?.open;
+  const intro = `<div class="arc-room-intro"><span class="arc-seal" aria-hidden="true">↗</span><div><div class="arc-kicker">The campaign chronicle</div><h1>Watch your choices unfold.</h1><p>Compare nations over time. Choose a measure, then add the countries you want to follow.</p><button id="chronicleBack" onclick="setChronicleView('sheet')">← Back to infographic</button></div></div>`;
   if (!HIST || HIST.t.length < 2) {
-    box.innerHTML = `<div class="muted">Advance time to build a history.</div>`;
+    box.innerHTML = intro + `<div class="arc-empty"><strong>The first page is still unwritten.</strong>Advance time to build a history. Your charts will trace the changes from day to day.</div>`;
     return;
   }
   const met = METRICS[ui.metric];
@@ -11577,17 +12150,19 @@ function renderCharts() {
   const gone = S.dead.filter((d) => HIST.nations[d.id]);
 
   box.innerHTML = `
+    ${intro}
     <div class="card">
       <h3>Metric</h3>
       <div class="chips">${Object.entries(METRICS).map(([k, v]) =>
-        `<span class="chip${k === ui.metric ? " on" : ""}" data-metric="${k}">${v.label}</span>`).join("")}
+        `<button class="chip${k === ui.metric ? " on" : ""}" data-metric="${k}" aria-pressed="${k===ui.metric}">${v.label}</button>`).join("")}
         ${ui.metric === "gdp"
-          ? `<span class="chip${ui.indexed ? " on amber" : ""}" data-index="1">Index = 100</span>` : ""}
+          ? `<button class="chip${ui.indexed ? " on amber" : ""}" data-index="1" aria-pressed="${ui.indexed}">Index = 100</button>` : ""}
       </div>
-      <h3 style="margin-top:12px">Nations</h3>
-      <div class="chips">${[...all, ...gone].map((n) =>
-        `<span class="chip${ui.picked.includes(n.id) ? " on" : ""}" data-pick="${n.id}">${n.name}</span>`).join("")}
-      </div>
+      <details class="arc-details" id="historyPicker" ${pickerOpen ? "open" : ""}><summary>Choose nations · ${ids.length} selected</summary>
+      <input id="historyNationSearch" aria-label="Find a nation to compare" placeholder="Find a nation to compare…">
+      <div class="chips" id="historyNationList">${[...all, ...gone].map((n) =>
+        `<button class="chip${ui.picked.includes(n.id) ? " on" : ""}" data-pick="${n.id}" aria-pressed="${ui.picked.includes(n.id)}">${n.name}</button>`).join("")}
+      </div></details>
     </div>
     <div class="card"><h3>${met.label}${indexed ? " — indexed to the first observation" : ""}</h3>${main}</div>
     <div class="card"><h3>Oil price</h3>${oil}</div>`;
@@ -11605,7 +12180,13 @@ function renderCharts() {
       renderCharts();
     };
   });
+  const find = $("#historyNationSearch");
+  find.value = historyQuery;
+  const filterNations = () => { historyQuery = find.value; box.querySelectorAll("[data-pick]").forEach(b => { b.hidden = !b.textContent.toLowerCase().includes(historyQuery.toLowerCase()); }); };
+  find.oninput = filterNations;
+  filterNations();
   wireCharts(box);
+  if (focusKey) box.querySelector(focusKey)?.focus({ preventScroll: true });
 }
 
 /* ================= league table ================= */
@@ -11613,16 +12194,20 @@ function renderCharts() {
 const COLS = [
   ["name", "NATION", (n) => n.name, "left"],
   ["gdp", "GDP", (n) => fmt.money(n.gdp)],
-  ["gdp_pc", "GDP/PC", (n) => "$" + n.gdp_pc.toFixed(0)],
+  ["gdp_pc", "GDP / person", (n) => "$" + n.gdp_pc.toFixed(0)],
   ["growth", "GROWTH", (n) => `<span class="${n.growth >= 0 ? "up" : "down"}">${fmt.signed(n.growth)}</span>`],
-  ["inflation", "INFL", (n) => fmt.pct(n.inflation)],
+  ["inflation", "Inflation", (n) => fmt.pct(n.inflation)],
   ["debt", "DEBT", (n) => fmt.pct(n.debt, 0)],
-  ["stability", "STAB", (n) => n.stability.toFixed(0)],
-  ["mil_strength", "MIL", (n) => n.mil_strength.toFixed(0) + (n.nuclear ? " ☢" : "")],
-  ["relation", "REL", (n) => (n.relation === null || n.relation === undefined ? "—" : n.relation.toFixed(0))],
+  ["stability", "Stability", (n) => n.stability.toFixed(0)],
+  ["mil_strength", "Military", (n) => n.mil_strength.toFixed(0) + (n.nuclear ? " ☢" : "")],
+  ["relation", "Relations", (n) => (n.relation === null || n.relation === undefined ? "—" : n.relation.toFixed(0))],
 ];
 
+let leagueQuery = "";
 function renderTable() {
+  const active = document.activeElement;
+  const focusedSort = $("#pane-table").contains(active) ? active?.closest?.('[data-sort]')?.dataset.sort : null;
+  const focusedSearch = active?.id === "leagueSearch";
   const rows = [...S.nations].sort((a, b) => {
     const k = ui.sortKey;
     const av = k === "name" ? a.name : a[k], bv = k === "name" ? b.name : b[k];
@@ -11632,19 +12217,20 @@ function renderTable() {
   }).map((n) => `
     <tr data-id="${n.id}" style="cursor:pointer;${n.id === S.player ? "color:var(--amber)" : ""}">
       ${COLS.map(([, , f, align]) =>
-        `<td style="text-align:${align || "right"};padding:2px 6px">${f(n)}</td>`).join("")}
+        `<td style="text-align:${align || "right"};padding:2px 6px">${align === "left" ? `<button data-nation="${n.id}" style="background:none;border:none;box-shadow:none;color:inherit;text-align:left">${f(n)}</button>` : f(n)}</td>`).join("")}
     </tr>`).join("");
   const dead = S.dead.length
     ? `<div class="muted" style="margin-top:10px">Gone: ${S.dead.map((d) => d.name).join(", ")}</div>` : "";
-  $("#pane-table").innerHTML = `<div class="card">
+  $("#pane-table").innerHTML = `<div class="arc-room-intro"><span class="arc-seal" aria-hidden="true">♜</span><div><div class="arc-kicker">The world stage</div><h1>Know the players.</h1><p>Find a nation, compare its position, and open its dossier. Select a column heading to change the ranking.</p></div></div><div class="card">
+      <input id="leagueSearch" aria-label="Find a nation in the world league" placeholder="Find a nation…"><div class="arc-table-scroll">
       <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
-        <tr style="color:var(--dim);font-size:10px;letter-spacing:.1em">
+        <thead><tr style="color:var(--dim);font-size:10px;letter-spacing:.1em">
           ${COLS.map(([k, label, , align]) =>
-            `<th data-sort="${k}" style="text-align:${align || "right"};padding:2px 6px;cursor:pointer">${
-              label}${ui.sortKey === k ? (ui.sortDir < 0 ? " ▾" : " ▴") : ""}</th>`).join("")}
-        </tr>
+            `<th data-sort="${k}" aria-sort="${ui.sortKey === k ? (ui.sortDir < 0 ? "descending" : "ascending") : "none"}" style="text-align:${align || "right"};padding:2px 6px;cursor:pointer">${
+              `<button aria-label="Sort by ${label}">${label}${ui.sortKey === k ? (ui.sortDir < 0 ? " ▾" : " ▴") : ""}</button>`}</th>`).join("")}
+        </tr></thead><tbody>
         ${rows}
-      </table>${dead}
+        </tbody></table></div>${dead}<div id="leagueEmpty" class="arc-empty" hidden>No nation matches that search.</div>
       <div class="tiny" style="margin-top:8px">click a heading to sort · click a row for the dossier</div></div>`;
   $("#pane-table").querySelectorAll("[data-sort]").forEach((th) => {
     th.onclick = () => {
@@ -11656,13 +12242,39 @@ function renderTable() {
   $("#pane-table").querySelectorAll("tr[data-id]").forEach((tr) => {
     tr.onclick = () => openNation(tr.dataset.id);
   });
+  const find = $("#leagueSearch"); find.value = leagueQuery;
+  const filter = () => {
+    leagueQuery = find.value;
+    let visible = 0;
+    $("#pane-table").querySelectorAll("tr[data-id]").forEach(tr => {
+      tr.hidden = !tr.querySelector("button[data-nation]").textContent.toLowerCase().includes(leagueQuery.toLowerCase());
+      if (!tr.hidden) visible++;
+    });
+    $("#leagueEmpty").hidden = visible > 0;
+  };
+  find.oninput = filter; filter();
+  if (focusedSort) $("#pane-table").querySelector(`[data-sort="${focusedSort}"] button`)?.focus({ preventScroll: true });
+  else if (focusedSearch) find.focus({ preventScroll: true });
 }
 
 /* ================= nation dashboard ================= */
 
+let nationView = "overview";
+function selectNationView(view) {
+  if (!["overview", "economy", "resources", "world"].includes(view)) return;
+  nationView = view;
+  $("#sheet").querySelectorAll("[data-nation-page]").forEach(el => { el.hidden = el.dataset.nationPage !== view; });
+  $("#sheet").querySelectorAll("[data-nation-view]").forEach(el => {
+    el.setAttribute("aria-selected", String(el.dataset.nationView === view));
+    el.tabIndex = el.dataset.nationView === view ? 0 : -1;
+  });
+  if (view === "economy" && typeof fillNationEconomy === "function") fillNationEconomy(selected);
+}
+
 function openNation(id, keepScroll) {
   const n = nationById(id);
   const sheet = $("#sheet");
+  rememberNationEconomy();
   // One sheet, one subject: opening a nation retires whatever conflict was in
   // it, so render() cannot go on refreshing a war behind a dossier.
   selectedWar = null;
@@ -11676,6 +12288,7 @@ function openNation(id, keepScroll) {
     selectionChanged();
     return;
   }
+  if (selected !== id && !keepScroll) nationView = "overview";
   selected = id;
   const m = me();
   const isMe = m && n.id === m.id;
@@ -11711,10 +12324,23 @@ function openNation(id, keepScroll) {
 
   sheet.innerHTML = `
     <div class="head">
-      <h2 style="color:${isMe ? "var(--amber)" : "var(--ink)"}">${n.name}</h2>
-      <span class="tagline">${describe(n)}</span>
+      <div><div class="arc-kicker">The nations of your world</div><h2>National dossier</h2></div>
       <span class="spacer"></span>
-      ${isMe ? "" : `<span class="actions">
+      <button class="close" onclick="closeSheet()" aria-label="Close national dossier">&times;</button>
+    </div>
+    <div class="arc-nation-hero"><div class="arc-nation-art"><span class="arc-initials" aria-hidden="true">${escText(figureInitials(figureFor(n),n))}</span><img id="dossierPortrait" alt="" width="512" height="640"><svg class="arc-flag" viewBox="0 0 640 480" aria-label="${escText(n.name)} flag"><use id="dossierFlag"></use></svg></div>
+      <div><div class="arc-kicker">${isMe ? "Your nation" : "A nation in your world"}</div><h1>${escText(n.name)}</h1><p>${describe(n)}</p><p>Historical avatar · ${escText(figureFor(n).figure)}</p></div>
+    </div>
+    <nav class="arc-nation-tabs" role="tablist" aria-label="National dossier sections">${[["overview","Overview"],["economy","Economy"],["resources","Resources"],["world","World ties"]].map(([key,label]) => `<button role="tab" id="nation-tab-${key}" data-nation-view="${key}" aria-controls="nation-page-${key}" aria-selected="${nationView===key}">${label}</button>`).join("")}</nav>
+    <section id="nation-page-overview" data-nation-page="overview" role="tabpanel" aria-labelledby="nation-tab-overview">
+      <div class="arc-nation-pulse">
+        <article><span>National output</span><strong>${fmt.money(n.gdp)}</strong></article>
+        <article><span>People</span><strong>${fmt.pop(n.population)}</strong></article>
+        <article><span>Annualized growth</span><strong>${fmt.signed(n.growth)}</strong></article>
+        <article><span>Stability</span><strong>${n.stability.toFixed(0)} / 100</strong></article>
+      </div>
+      <div class="card"><h3>${isMe ? "Your next decision" : "Shape the relationship"}</h3><p class="muted">${isMe ? "Set your yearly plan in the Cabinet, or explore this nation's economy, resources and relationships above." : "Build trust, negotiate a deal, or challenge this nation. Choose a move and weigh its political cost."}</p>
+      ${isMe ? `<div class="actions"><button class="primary" id="dossierCabinet">Enter your Cabinet →</button></div>` : `<div class="actions">
         <button onclick="act('improve','${n.name}')">Improve relations</button>
         ${n.sanctioned_by_me
           ? `<button onclick="act('lift','${n.name}')">Lift sanctions</button>`
@@ -11723,11 +12349,13 @@ function openNation(id, keepScroll) {
         ${S.wars.some((w) => w.posture.some((b) => b.id === id) && myPosture(w))
           ? "" : `<button onclick="openQuarrel('${n.name}')">Open a quarrel · 4 pc</button>`}
         <button class="danger" onclick="declareWar('${n.name}')">Declare war</button>
-      </span>`}
-      <span class="close" onclick="closeSheet()">&times;</span>
-    </div>
+      </div>`}</div>
+    </section>
 
+    <section id="nation-page-economy" data-nation-page="economy" role="tabpanel" aria-labelledby="nation-tab-economy">
+    ${nationEconomyHtml(n.id)}
     <div class="card" style="margin-top:12px">
+      <h3>The national balance sheet</h3>
       <div class="statgrid">
         ${statRow("GDP", fmt.money(n.gdp))}
         ${statRow("GDP / person", "$" + n.gdp_pc.toFixed(0))}
@@ -11750,9 +12378,11 @@ function openNation(id, keepScroll) {
             n.relation >= 20 ? "up" : n.relation < -20 ? "down" : "")}
       </div>
     </div>
+    ${charts}
+    </section>
 
-    <div class="card">
-      <h3>Where the 1990 figures come from</h3>
+    <section id="nation-page-resources" data-nation-page="resources" role="tabpanel" aria-labelledby="nation-tab-resources">
+    <details class="arc-details"><summary>Where the 1990 figures come from</summary>
       <div class="tiny muted" style="margin-bottom:8px">
         Nothing in this game is authored, so every opening number owes an
         account of itself. This is the one the data file gives — including
@@ -11760,7 +12390,7 @@ function openNation(id, keepScroll) {
         than the print history recorded.
       </div>
       <div id="provenance" class="tiny muted">Reading the file…</div>
-    </div>
+    </details>
 
     <div class="card">
       <h3>What is under its ground</h3>
@@ -11783,10 +12413,12 @@ function openNation(id, keepScroll) {
       <div id="stockDash" class="tiny muted">Reading the ledger…</div>
     </div>
 
-    ${charts}
+    </section>
 
+    <section id="nation-page-world" data-nation-page="world" role="tabpanel" aria-labelledby="nation-tab-world">
     <div class="cols2">
       <div class="card"><h3>Standing in the world</h3>
+        <div class="arc-rel-list">
         ${rels.map((r) => `<div class="relrow" data-id="${r.id}">
             <span class="nm">${r.name}${r.sanctioning ? " ⊘" : ""}${r.sanctioned_by ? " ⊗" : ""}</span>
             <span class="num" style="color:${relColor(r.value)}">${r.value >= 0 ? "+" : ""}${r.value.toFixed(0)}</span>
@@ -11795,7 +12427,7 @@ function openNation(id, keepScroll) {
                 ? `left:50%;width:${(r.value / 100) * 50}%`
                 : `right:50%;width:${(-r.value / 100) * 50}%`}"></i></span>
           </div>`).join("")}
-        <div class="tiny" style="margin-top:6px">⊘ sanctions them · ⊗ sanctioned by them</div>
+        </div><div class="tiny" style="margin-top:6px">⊘ sanctions them · ⊗ sanctioned by them</div>
       </div>
       <div class="card"><h3>Wars</h3>
         ${wars.length ? wars.map((w) => `<div class="warcard">
@@ -11810,8 +12442,26 @@ function openNation(id, keepScroll) {
           ? news.map((e) => logItem(e)).join("")
           : `<div class="muted">Nothing has been written about it yet.</div>`}</div>
       </div>
-    </div>`;
+    </div></section>`;
 
+  selectNationView(nationView);
+  sheet.querySelectorAll("[data-nation-view]").forEach(b => {
+    b.onclick = () => selectNationView(b.dataset.nationView);
+    b.onkeydown = e => {
+      const tabs = [...sheet.querySelectorAll("[data-nation-view]")];
+      let i = tabs.indexOf(b);
+      if (e.key === "ArrowRight") i = (i + 1) % tabs.length;
+      else if (e.key === "ArrowLeft") i = (i + tabs.length - 1) % tabs.length;
+      else if (e.key === "Home") i = 0;
+      else if (e.key === "End") i = tabs.length - 1;
+      else return;
+      e.preventDefault(); e.stopPropagation();
+      selectNationView(tabs[i].dataset.nationView); tabs[i].focus();
+    };
+  });
+  if (isMe) $("#dossierCabinet").onclick = () => { closeSheet(); toggleGameDrawer("cabinetDrawer"); };
+  flagUse($("#dossierFlag"),n);
+  loadFigurePortrait($("#dossierPortrait"),figureFor(n),false);
   openSheetEl(keepScroll, scroll);
   sheet.querySelectorAll(".relrow[data-id]").forEach((r) => {
     r.onclick = () => openNation(r.dataset.id);
@@ -12071,11 +12721,19 @@ function deadSheet(d) {
 
 function openSheetEl(keepScroll, scroll) {
   const sheet = $("#sheet");
+  const opening = sheet.style.display !== "block";
+  if (opening) ARCADE_ROOMS.sheetFocus = document.activeElement;
   sheet.style.display = "block";
+  sheet.setAttribute("aria-label", selectedWar != null ? "Conflict decisions" : talks.open ? "Trade negotiations" : selected ? "National dossier" : "National decisions");
   $("#sheetbg").style.display = "block";
   if (keepScroll && scroll) sheet.scrollTop = scroll;
   else if (!keepScroll) sheet.scrollTop = 0;
   wireCharts(sheet);
+  arcadeAccessibleActions(sheet);
+  if (opening || !keepScroll) {
+    const focus = sheet.querySelector('.head .close, .head .x, .head button[aria-label], .head button');
+    (focus || sheet).focus({ preventScroll: true });
+  }
 }
 
 function closeSheet() {
@@ -12085,6 +12743,8 @@ function closeSheet() {
   clearTimeout(talks.timer);
   $("#sheet").style.display = "none";
   $("#sheetbg").style.display = "none";
+  if (ARCADE_ROOMS.sheetFocus?.isConnected) ARCADE_ROOMS.sheetFocus.focus({ preventScroll: true });
+  ARCADE_ROOMS.sheetFocus = null;
   if (S) renderMap();
 }
 window.closeSheet = closeSheet;
@@ -12219,13 +12879,19 @@ function stockVisibleRows() {
 function toggleStockScreen() { if (stock.open) closeStock(); else openStock(); }
 function openStock(com) {
   if (!S || !S.resources) return;      // spectator: no board to read
+  const returnFocus = document.activeElement;
   if (LOGI.open) closeLogistics();
   if (PROD.open) closeProduction();
+  if (dominationIsOpen()) closeDomination();
+  closeGameDrawers();
   closeTechMenu();
   if (tech.open) closeTech();
   closeSheet();
+  if (!stock.open) stock.lastFocus = returnFocus;
   stock.open = true;
   $("#stockScreen").style.display = "block";
+  stockTipHide();
+  $("#stockScreen").onscroll = stockTipHide;
   if (com) stock.sel = com;
   if (!stock.sel || !stockRows().some((r) => r.id === stock.sel)) {
     const vis = stockVisibleRows();
@@ -12233,11 +12899,18 @@ function openStock(com) {
   }
   renderStock();
   stockFetchCards();
+  $("#stockScreen .tbar .x").focus({ preventScroll: true });
 }
 function closeStock() {
+  const wasOpen = stock.open;
   stock.open = false;
   stockTipHide();
   $("#stockScreen").style.display = "none";
+  if (wasOpen) {
+    const target = stock.lastFocus?.isConnected && stock.lastFocus.getClientRects().length ? stock.lastFocus : $("#stockBtn");
+    target?.focus({ preventScroll: true });
+    stock.lastFocus = null;
+  }
 }
 window.openStock = openStock;
 window.closeStock = closeStock;
@@ -12248,6 +12921,7 @@ function stockSelect(id) {
   stockTipHide();
   renderStock();
   stockFetchCards();
+  if (window.innerWidth <= 800) $("#stockDock").scrollIntoView({ block: "start", behavior: "instant" });
 }
 function stockToggleFold() { stock.unfolded = !stock.unfolded; renderStock(); }
 window.stockToggleFold = stockToggleFold;
@@ -12272,7 +12946,18 @@ async function stockFetchCards() {
 
 /* ---------------- the rows ---------------- */
 
-function stockRowHtml(r) {
+// Prefer the server's explicit daily projections even during an old save's
+// pending month-close migration. Stocks/cover and provenance are not rescaled.
+function dailyRowView(row) {
+  if (row.produce_per_day == null || row.need_per_day == null || !row.daily_unit) return row;
+  return { ...row, produce: row.produce_per_day, need: row.need_per_day,
+    net: row.produce_per_day - row.need_per_day, unit: row.daily_unit,
+    sentence: row.unit !== row.daily_unit && row.sentence?.includes(row.unit)
+      ? `You make ${fmtQ(row.produce_per_day)} ${row.daily_unit}; current demand ${fmtQ(row.need_per_day)} ${row.daily_unit}.`
+      : row.sentence };
+}
+function stockRowHtml(row) {
+  const r = dailyRowView(row);
   const col = stockHue(r.id);
   const piled = r.tracked && r.status !== "market";
   const cov = piled ? `<span class="bar"><i style="width:${clamp(r.cover_months / 12, 0, 1) * 100}%"></i></span>` : "";
@@ -12280,16 +12965,16 @@ function stockRowHtml(r) {
   const who = r.supplier
     ? ` · ${escText(r.supplier)}${r.supplier_kind === "open" ? " (open)" : ""}`
     : r.reason ? ` — no supplier: ${escText(r.reason)}` : "";
-  return `<div class="stockrow st-${r.status}${r.id === stock.sel ? " sel" : ""}" data-com="${r.id}">
+  return `<button type="button" class="stockrow st-${r.status}${r.id === stock.sel ? " sel" : ""}" data-com="${r.id}" aria-pressed="${r.id === stock.sel}" aria-controls="stockDock">
       <span class="gy">${rglyph(r.id, col)}</span>
       <span class="nm"><b>${escText(r.name)}</b><span class="sen">${escText(r.sentence)}${who}</span>${
         r.second ? `<span class="tiny">${escText(r.second)}</span>` : ""}</span>
-      <span class="num have">${r.tracked ? fmtQ(r.produce) : "—"}<em>${r.tracked ? r.unit : ""}</em></span>
-      <span class="num cov">${covText}${cov}</span>
-      <span class="num dem">${r.tracked && r.need > 0 ? fmtQ(r.need) : "—"}</span>
-      <span class="num net">${piled ? fmtSigned(r.net) : ""}</span>
+      <span class="num have" data-label="Production">${r.tracked ? fmtQ(r.produce) : "—"}<em>${r.tracked ? r.unit : ""}</em></span>
+      <span class="num cov" data-label="Stock cover">${covText}${cov}</span>
+      <span class="num dem" data-label="Demand">${r.tracked && r.need > 0 ? fmtQ(r.need) : "—"}<em>${r.tracked && r.need > 0 ? r.unit : ""}</em></span>
+      <span class="num net" data-label="Net flow">${piled ? fmtSigned(r.net) : "—"}<em>${piled ? r.unit : ""}</em></span>
       <span class="st">${STATE_WORD[r.status] || escText(r.status)}</span>
-    </div>`;
+    </button>`;
 }
 
 function renderStock() {
@@ -12298,6 +12983,9 @@ function renderStock() {
   const rows = stockRows(), vis = stockVisibleRows();
   const contracts = R.contracts || [], offers = R.offers || [];
   const market = R.market_summary || {};
+  const expanded = [...$("#stockRows").querySelectorAll("details[open][id]")].map(el => el.id);
+  const focusedRow = document.activeElement && document.activeElement.closest && document.activeElement.closest("#stockRows .stockrow");
+  const focusCommodity = focusedRow && focusedRow.dataset.com;
   const fed = rows.filter((r) => r.status === "ok" || r.status === "supplied").length;
   $("#stockSub").textContent =
     `${fed} of ${rows.length} lines fed · ${R.starved} starved · ${contracts.length} contract${contracts.length === 1 ? "" : "s"}`
@@ -12310,9 +12998,9 @@ function renderStock() {
     </div>`).join("");
   const foldN = rows.filter((r) => r.fold).length;
   const fold = foldN
-    ? `<div class="stockfold" onclick="stockToggleFold()">${stock.unfolded
-        ? `fold the ${foldN} line${foldN > 1 ? "s" : ""} nothing needs`
-        : `${foldN} more — nothing needs them`}</div>`
+    ? `<button type="button" class="stockfold" aria-expanded="${stock.unfolded}" onclick="stockToggleFold()">${stock.unfolded
+        ? `Show less · hide ${foldN} unused line${foldN > 1 ? "s" : ""}`
+        : `Explore ${foldN} more · no current demand`}</button>`
     : "";
   const head = `<div class="stockcols"><span></span><span>line</span><span>have</span><span>in hand</span><span>demand</span><span>net</span><span></span></div>`;
   const contractLines = contracts.map((k) => `<div class="contractrow">${rglyph(k.com || RES_ALL, stockHue(k.com))}
@@ -12320,16 +13008,18 @@ function renderStock() {
       <button data-cancel="${k.id}" data-with="${escText(k.with)}" data-pc="${k.cancel_pc}" data-note="${escText(k.cancel_note)}">Cancel — ${k.cancel_pc.toFixed(0)} political capital</button>
       <span class="tiny">${escText(k.cancel_note)}</span>
     </div>`).join("");
-  $("#stockRows").innerHTML = marketStripHtml(rows)
+  $("#stockRows").innerHTML = `<div class="discovery-intro"><span class="discovery-kicker">Resources &amp; exchange</span><h1>Keep your next move supplied.</h1><p>Choose a resource to mine, trade or inspect its routes. Shortages only block the actions that need them.</p></div>`
+    + `<details class="discovery-details" id="stockMarketQuotes"><summary>World market · prices &amp; trends</summary>${marketStripHtml(rows)}</details>`
     + (offers.length ? `<div class="stockhead">Offers</div>${offerLines}` : "")
-    + head + vis.map(stockRowHtml).join("") + fold
-    + (contracts.length ? `<div class="stockhead">Contracts</div>${contractLines}` : "");
+    + head + `<div class="stock-card-grid">${vis.map(stockRowHtml).join("")}</div>` + fold
+    + (contracts.length ? `<details class="discovery-details" id="stockContracts"><summary>${contracts.length} active contract${contracts.length === 1 ? "" : "s"} · terms &amp; cancellation</summary>${contractLines}</details>` : "");
+  expanded.forEach(id => { const el = $("#stockRows").querySelector("#" + id); if (el) el.open = true; });
   const byId = {};
   rows.forEach((r) => { byId[r.id] = r; });
   $("#stockRows").querySelectorAll(".stockrow").forEach((el) => {
     const r = byId[el.dataset.com];
     el.onclick = () => stockSelect(el.dataset.com);
-    el.onpointerenter = (e) => stockTipShow(r, e.clientX, e.clientY);
+    el.onpointerenter = (e) => { if (e.pointerType !== "touch") stockTipShow(r, e.clientX, e.clientY); };
     el.onpointerleave = stockTipHide;
   });
   $("#stockRows").querySelectorAll("[data-market-com]").forEach((el) => {
@@ -12341,6 +13031,12 @@ function renderStock() {
   $("#stockRows").querySelectorAll("[data-offer]").forEach((b) => {
     b.onclick = () => answerOffer(+b.dataset.offer, b.dataset.answer);
   });
+  $("#stockRows").onscroll = stockTipHide;
+  $("#stockRows").onpointerleave = stockTipHide;
+  if (focusCommodity) {
+    const card = [...$("#stockRows").querySelectorAll(".stockrow")].find(el => el.dataset.com === focusCommodity);
+    if (card) card.focus({ preventScroll: true });
+  }
   renderStockDock();
 }
 
@@ -12353,7 +13049,7 @@ function renderStockDock() {
   if (!c || c.com !== stock.sel) { dock.innerHTML = `<div class="tiny">reading the ledger…</div>`; return; }
   const m = c.mine, tr = c.trade, t = c.take;
   const com = c.com;
-  let s = `<h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2><div class="sub">${escText(c.row.sentence)}</div>${marketCardHtml(c.row)}
+  let s = `<button type="button" class="stock-back-link" data-act="back">← Choose another resource</button><h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2><div class="sub">${escText(c.row.sentence)}</div>${marketCardHtml(c.row)}
     <button type="button" class="stock-route-link" data-act="routes">SHOW ROUTES ON GLOBE · G</button>`;
   // MINE / DRILL — the player chooses one mapped province. Every number and
   // refusal is served; the sim validates it again when the button is pressed.
@@ -12364,11 +13060,11 @@ function renderStockDock() {
   const mt = mineOptions.find((o) => o.district === stock.mineTarget[com]);
   const mineLive = !!(mt && mt.eligible && m.affordable);
   const mineStatus = !mt ? m.blocked
-    : mt.active ? `${mt.district_name} · building · ${mt.days_remaining} days left`
+    : mt.active ? `${mt.district_name} · ${mt.finance?.reason || "building"} · ${mt.days_remaining} work-days left${mt.finance ? ` · ${fmt.money(mt.finance.spent_bn)} spent from Minerals & processing` : ""}`
     : mt.online ? `${mt.district_name} · online · +${fmtQ(mt.output)} ${c.unit}`
-    : mt.eligible ? `${mt.district_name} · ${mt.quality} · ${fmtQ(mt.output)} ${c.unit} · $${(+mt.cost_bn).toFixed(1)}bn`
+    : mt.eligible ? `${mt.district_name} · ${mt.quality} · ${fmtQ(mt.output)} ${c.unit} · ${fmt.money(+mt.cost_bn)}${mt.funding_kind === "daily_department_work" ? " work budget, paid as built; materials separate" : " upfront capital"}`
     : mt.reason;
-  const mineSelect = mineOptions.length ? `<select data-mine-target>${mineOptions.map((o) =>
+  const mineSelect = mineOptions.length ? `<select data-mine-target aria-label="Province to develop">${mineOptions.map((o) =>
     `<option value="${escText(o.district)}"${o.district === stock.mineTarget[com] ? " selected" : ""}>${
       escText(o.district_name)} · ${escText(o.quality)}${o.active ? " · BUILDING" : o.online ? " · ONLINE" : ""}</option>`
     ).join("")}</select>` : "";
@@ -12401,6 +13097,8 @@ function renderStockDock() {
         : live && !t.affordable ? `<span class="short">${Math.ceil(t.pc - (me() || {}).political_capital)} more needed</span>` : ""}</div></div>`;
   s += `<div class="tiny advisor">${escText(c.advisor)}</div>`;
   dock.innerHTML = s;
+  const backBtn = dock.querySelector("[data-act=back]");
+  if (backBtn) backBtn.onclick = () => $("#stockRows").scrollIntoView({ block: "start", behavior: "instant" });
   const routesBtn = dock.querySelector("[data-act=routes]");
   if (routesBtn) routesBtn.onclick = () => { closeStock(); openLogistics(com); };
   const talksBtn = dock.querySelector("[data-act=talks]");
@@ -12435,6 +13133,7 @@ function stockTipHide() {
   if (!tip) return;
   tip.classList.remove("on");
   tip.setAttribute("aria-hidden", "true");
+  tip.style.visibility = "hidden";
 }
 /// Measure hidden, place, reveal: +16/+14 from the entry point, flip at the
 /// viewport edge, clamp inside; min y clears the tbar (techTipPlace's shape).
@@ -12447,19 +13146,20 @@ function stockTipPlace(tip, clientX, clientY) {
   if (x + w > innerWidth - 12) x = clientX - w - 16;
   if (y + h > innerHeight - 12) y = clientY - h - 14;
   x = clamp(x, 12, innerWidth - w - 12);
-  y = clamp(y, 44 + 12, innerHeight - h - 12);
+  const barBottom = $("#stockScreen .tbar").getBoundingClientRect().bottom;
+  y = clamp(y, barBottom + 12, innerHeight - h - 12);
   tip.style.left = x + "px";
   tip.style.top = y + "px";
   tip.style.visibility = "";
 }
 function stockTipShow(r, clientX, clientY) {
   const tip = $("#stockTip");
-  if (!tip || !r) return;
+  if (!tip || !r || !stock.open) return;
   const col = stockHue(r.id);
   tip.style.borderLeftColor = col;
   tip.querySelector(".tt-h .gy").innerHTML = rglyph(r.id, col);
   tip.querySelector(".tt-nm").textContent = r.name;
-  tip.querySelector(".tt-yr").textContent = r.tracked ? r.unit : "";
+  tip.querySelector(".tt-yr").textContent = r.tracked ? dailyRowView(r).unit : "";
   const st = tip.querySelector(".tt-st");
   st.style.color = STATE_COLOR[r.status] || "var(--dim)";
   st.textContent = `${STATE_WORD[r.status] || r.status} — ${r.hover || r.sentence}`;
@@ -12473,7 +13173,9 @@ function stockTipShow(r, clientX, clientY) {
 
 function stockKeys(e) {
   const k = e.key;
-  if (k === "Escape" || k === "b" || k === "B") { e.preventDefault(); closeStock(); return; }
+  if (k === "Escape") { e.preventDefault(); closeStock(); return; }
+  if (e.target && e.target.closest && e.target.closest("button,input,select,textarea,summary,[contenteditable=true]")) return;
+  if (k === "b" || k === "B") { e.preventDefault(); closeStock(); return; }
   if (k === "g" || k === "G") { e.preventDefault(); const com = stock.sel; closeStock(); openLogistics(com); return; }
   if (k === "ArrowUp" || k === "ArrowDown") {
     e.preventDefault();
@@ -12520,7 +13222,7 @@ const talks = {
   open: false, com: null, to: null,
   get: { commodity: null, rung: 0, district: null },
   give: { money_rung: null, commodity: null, district: null },
-  months: 36, eval: null, error: null, seq: 0, timer: 0, sellers: [],
+  months: 36, eval: null, error: null, seq: 0, timer: 0, sellers: [], partnerQuery: "",
 };
 
 async function openTalks(com, to) {
@@ -12538,6 +13240,7 @@ async function openTalks(com, to) {
   talks.months = 36;
   talks.eval = null;
   talks.error = null;
+  talks.partnerQuery = "";
   if (stock.open) closeStock();
   // One sheet, one subject: closeSheet retires whatever nation or conflict
   // was in it (its own invariant), then the talks take it over.
@@ -12592,21 +13295,26 @@ function talksWordColor(w) {
 function renderTalks() {
   if (!talks.open) return;
   const sheet = $("#sheet");
+  const focusAttrs = ["data-to", "data-get-rung", "data-money-rung", "data-give-rung", "data-months", "data-get-district", "data-give-com", "data-give-district", "data-offer", "id"];
+  const active = sheet.contains(document.activeElement) ? document.activeElement : null;
+  const focusAttr = active && focusAttrs.find(attr => active.hasAttribute(attr));
+  const focusValue = focusAttr ? active.getAttribute(focusAttr) : null;
+  const partnerScroll = sheet.querySelector(".trade-partner-list")?.scrollTop || 0;
   const ev = talks.eval;
   const partner = nationById(talks.to);
   const L = (ev && ev.ladders) || null;
   const rail = talks.sellers.length
-    ? talks.sellers.map((s) => `<div class="relrow${s.id === talks.to ? " on" : ""}" data-to="${s.id}" style="${s.id === talks.to ? "background:#171d24" : ""}">
+    ? talks.sellers.map((s) => `<button type="button" class="relrow${s.id === talks.to ? " on" : ""}" data-to="${s.id}" aria-pressed="${s.id === talks.to}">
         <span class="nm">${escText(s.name)}</span>
         <span class="num" style="color:${relColor(s.relation)}">${s.relation >= 0 ? "+" : ""}${s.relation.toFixed(0)}</span>
         <span class="word" style="color:${talksWordColor(s.word)}">${talksWord(s.word)}</span>
-      </div>`).join("")
+      </button>`).join("")
     : `<div class="muted">Nobody holds a surplus of ${escText(talks.com)}.</div>`;
-  const chip = (on, label, sub, attrs) => `<button class="${on ? "on" : ""}" ${attrs}>${label}${sub ? `<small>${sub}</small>` : ""}</button>`;
+  const chip = (on, label, sub, attrs) => `<button type="button" class="${on ? "on" : ""}" aria-pressed="${on}" ${attrs}>${label}${sub ? `<small>${sub}</small>` : ""}</button>`;
   // YOU GET: the line's chip and its ladder, or a district of theirs.
   const getLadder = L ? L.get.map((g) => chip(talks.get.district == null && talks.get.rung === g.rung, escText(g.label), escText(g.word), `data-get-rung="${g.rung}"`)).join("") : "";
   const theirDistricts = L && L.their_districts.length
-    ? `<h4>or a district of theirs</h4><select data-get-district><option value="">—</option>${L.their_districts.map((d) =>
+    ? `<h4>or a district of theirs</h4><select data-get-district aria-label="District to receive"><option value="">—</option>${L.their_districts.map((d) =>
         `<option value="${d.id}"${talks.get.district === d.id ? " selected" : ""}>${escText(d.label)}</option>`).join("")}</select>` : "";
   // YOU GIVE: the money ladder, a line of yours, a district of yours.
   const moneyLadder = L ? chip(talks.give.money_rung == null, "nothing", "", `data-money-rung=""`) + L.money.map((g) =>
@@ -12614,14 +13322,14 @@ function renderTalks() {
   const giveKeys = L ? Object.keys(L.give_commodity) : [];
   const giveCom = talks.give.commodity;
   const giveSelect = giveKeys.length
-    ? `<h4>or a line of yours</h4><select data-give-com><option value="">—</option>${giveKeys.map((k) =>
+    ? `<h4>or a line of yours</h4><select data-give-com aria-label="Resource to offer"><option value="">—</option>${giveKeys.map((k) =>
         `<option value="${k}"${giveCom && giveCom.id === k ? " selected" : ""}>${escText(L.give_commodity[k].name)}</option>`).join("")}</select>`
       + (giveCom && L.give_commodity[giveCom.id]
         ? `<div class="btnrow">${L.give_commodity[giveCom.id].rungs.map((g) =>
             chip(giveCom.rung === g.rung, escText(g.label), escText(g.word), `data-give-rung="${g.rung}"`)).join("")}</div>` : "")
     : "";
   const myDistricts = L && L.my_districts.length
-    ? `<h4>or a district of yours</h4><select data-give-district><option value="">—</option>${L.my_districts.map((d) =>
+    ? `<h4>or a district of yours</h4><select data-give-district aria-label="District to cede"><option value="">—</option>${L.my_districts.map((d) =>
         `<option value="${d.id}"${talks.give.district === d.id ? " selected" : ""}>${escText(d.label)}</option>`).join("")}</select>` : "";
   const monthsRow = (L ? L.months : [12, 36, 60, 120]).map((m) => chip(talks.months === m, `${m/12} yr`, "Daily deliveries", `data-months="${m}"`)).join("");
   // Their answer, in the state colour, before the click.
@@ -12642,17 +13350,19 @@ function renderTalks() {
       <h2 style="color:var(--amber)">${escText(partner ? partner.name : (talks.to || "—"))} · TALKS</h2>
       <span class="tagline">${escText(talks.com.replace(/_/g, " "))}${ev ? ` · regards you ${ev.regards_you >= 0 ? "+" : ""}${Math.round(ev.regards_you)}` : ""}</span>
       <span class="spacer"></span>
-      <span class="close" onclick="closeSheet()">&times;</span>
+      <button type="button" class="close" id="talksClose" aria-label="Close trade negotiations" onclick="closeSheet()">&times;</button>
     </div>
     <div class="talks">
-      <div class="card"><h3>Partner</h3>${rail}</div>
+      <div class="card trade-partners"><span class="discovery-kicker">01 · Choose a partner</span><h3>Who will you trade with?</h3>
+        <label class="trade-search-label" for="tradePartnerSearch">Find a trading partner</label><input id="tradePartnerSearch" type="search" placeholder="Search nations…" autocomplete="off">
+        <div class="trade-partner-list" role="group" aria-label="Trading partners">${rail}</div><p id="tradePartnerEmpty" class="muted" hidden>No partner matches that search.</p></div>
       <div class="card">
-        <h3>You get</h3>
-        <div class="btnrow">${rglyph(talks.com, stockHue(talks.com))}${getLadder}</div>${theirDistricts}
-        <h3 style="margin-top:12px">You give</h3>
-        <div class="btnrow">${moneyLadder}</div>${giveSelect}${myDistricts}
+        <div class="trade-exchange"><section><span class="discovery-kicker">02 · What you need</span><h3>You receive</h3>
+          <div class="btnrow">${rglyph(talks.com, stockHue(talks.com))}${getLadder}</div>${theirDistricts}</section>
+        <section><span class="discovery-kicker">03 · Make it worthwhile</span><h3>You offer</h3>
+          <div class="btnrow">${moneyLadder}</div>${giveSelect}${myDistricts}</section></div>
         <h4>Contract term · deliveries every day</h4><div class="btnrow">${monthsRow}</div>
-        ${answer}${lines}${foot}
+        <div class="trade-verdict" aria-live="polite"><span class="discovery-kicker">Their answer · before you commit</span>${answer}${lines}${foot}</div>
       </div>
     </div>`;
   sheet.querySelectorAll("[data-to]").forEach((el) => { el.onclick = () => talksSet(() => { talks.to = el.dataset.to; }); });
@@ -12668,6 +13378,24 @@ function renderTalks() {
   if (gdd) gdd.onchange = () => talksSet(() => { talks.give.district = gdd.value || null; });
   const offer = sheet.querySelector("[data-offer]");
   if (offer) offer.onclick = () => talksOffer(!!canTake);
+  const partnerSearch = sheet.querySelector("#tradePartnerSearch");
+  partnerSearch.value = talks.partnerQuery || "";
+  const filterPartners = () => {
+    talks.partnerQuery = partnerSearch.value;
+    let visible = 0;
+    sheet.querySelectorAll("[data-to]").forEach(el => {
+      el.hidden = !el.querySelector(".nm").textContent.toLowerCase().includes(talks.partnerQuery.toLowerCase());
+      if (!el.hidden) visible++;
+    });
+    sheet.querySelector("#tradePartnerEmpty").hidden = visible > 0 || !talks.sellers.length;
+  };
+  partnerSearch.oninput = filterPartners;
+  filterPartners();
+  sheet.querySelector(".trade-partner-list").scrollTop = partnerScroll;
+  if (focusAttr) {
+    const replacement = [...sheet.querySelectorAll(`[${focusAttr}]`)].find(el => el.getAttribute(focusAttr) === focusValue);
+    if (replacement) replacement.focus({ preventScroll: true });
+  }
 }
 
 /// The offer goes down the immediate command route. With `take_terms` the
@@ -12714,8 +13442,8 @@ async function fillStockDash(nid) {
   });
 }
 
-/* ================= logistics: the monthly dispatch board =================
-   This is a READ of the last settlement, never a daily cargo simulation. The
+/* ================= logistics: the daily freight room =================
+   This is a READ of the sim's daily cargo and last settlement. The
    sim serves every quantity, state, reason and allowed action on /api/logistics;
    the page only filters and draws it. New saves carry modeled land and sea
    itineraries from the globe's own geography; old abstract lanes retain their
@@ -12732,6 +13460,66 @@ const LOGI_BLOCKED = new Set([
   "blocked", "closed", "sanctioned", "belligerent", "blockaded", "legacy_unrouted",
   "no_route", "no_path", "access_denied",
 ]);
+
+// Decorative code-native art, never a chart or a simulation-derived map.
+function operationsSceneHtml(kind) {
+  const freight = kind === "logistics";
+  return `<svg class="operations-art" viewBox="0 0 360 205" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="189" cy="171" rx="150" ry="24" fill="#0c1c2b" opacity=".32"/>
+    <ellipse cx="183" cy="104" rx="151" ry="72" fill="none" stroke="#c1b7d0" stroke-opacity=".22" transform="rotate(-13 183 104)"/>
+    <circle cx="278" cy="45" r="25" fill="#eed3a0"/><path d="M245 45c15 15 47 14 65-2" fill="none" stroke="#f6e3bb" stroke-width="2"/>
+    <path d="m45 150 104-46 169 40-100 49Z" fill="#4b7374"/><path d="m45 150 173 43 100-49v11l-100 47-173-42Z" fill="#284959"/>
+    ${freight ? `<path d="m63 151 75-31 151 32-73 33Z" fill="#70a6b3"/><path d="m95 159 85 17m-48-41 100 23m-30-1 30 6" stroke="#bddad0" stroke-opacity=".45" stroke-width="2"/>
+      <path d="m107 128 28-21 101 20-27 26-84-17Z" fill="#d5c3a1"/><path d="m125 136 84 17 27-26-2 15-26 25-78-17Z" fill="#91bab9"/>
+      <path d="m141 105 24-11 21 5v27l-24 11-21-5Z" fill="#c7b7dc"/><path d="m141 105 21 5 24-11-21-5Z" fill="#e0d2ec"/>
+      <path d="m162 110 24-11v27l-24 11Z" fill="#9998bc"/>
+      <path d="m173 126 20-10 21 4v16l-21 10-20-5Z" fill="#9fcfb9"/>
+      <path d="M250 127V60l-59-13v67" fill="none" stroke="#d9c29a" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M193 51h72M218 56v41m-5 0v7h9" fill="none" stroke="#edd6ad" stroke-width="3"/>
+      <path d="m59 141 22-10 16 4v15l-21 11-17-5Z" fill="#bbafd3"/><path d="m265 141 20-10 15 4v16l-20 10-15-4Z" fill="#a6cdbb"/>`
+    : `<path d="m89 130 42-19 65 16v38l-43 21-64-19Z" fill="#8a8fad"/><path d="m89 130 64 17v39l-64-19Z" fill="#c8bade"/>
+      <path d="m87 129 23-28 20 7 20-17 23 25 25 11-45 20Z" fill="#e0d4e7"/>
+      <path d="M109 145v14m19-9v15m41-15v15m13-21v15" stroke="#6f7e98" stroke-width="6"/>
+      <path d="m207 83 29-13 31 8v80l-30 14-30-9Z" fill="#78a49f"/><path d="m207 83 30 8v81l-30-9Z" fill="#b5d8c0"/>
+      <path d="m207 83 29-13 31 8-30 13Z" fill="#daead0"/><path d="M217 105v12m11-9v12m-11 9v12m11-9v12" stroke="#6e9e98" stroke-width="4"/>
+      <path d="M159 114V39l69 18v19" fill="none" stroke="#d5bb90" stroke-width="5" stroke-linejoin="round"/>
+      <path d="m141 35 104 26m-79-10 15-4 11 17 12-10 13 15M196 57v32m-6 0v7h12" fill="none" stroke="#efdab0" stroke-width="2"/>
+      <path d="m174 156 23-11 23 6v14l-23 11-23-6Z" fill="#e1c48e"/><path d="m174 156 23 6 23-11-23-6Z" fill="#f3deb5"/>`}
+    <path d="M74 144v-25m207 32v-24" stroke="#d3c5a5" stroke-width="4"/>
+    <path d="M74 93c-23 13-22 32 0 32 22 0 23-19 0-32Z" fill="#b2d8be"/>
+    <circle cx="281" cy="114" r="18" fill="#c6b4d9"/>
+    <path d="M74 102v18m207-14v20" stroke="#709b91" stroke-width="2"/>
+    <path d="m80 58 2 6 6 2-6 2-2 6-2-6-6-2 6-2Zm237 43 1.5 4.5 4.5 1.5-4.5 1.5-1.5 4.5-1.5-4.5-4.5-1.5 4.5-1.5Z" fill="#e9d5ae"/>
+  </svg>`;
+}
+function operationsHeroHtml(kind, kicker, title, copy) {
+  return `<section class="operations-hero"><div><div class="operations-kicker">${escText(kicker)}</div><h3>${escText(title)}</h3><p>${escText(copy)}</p></div>${operationsSceneHtml(kind)}</section>`;
+}
+function operationsSetMapView(panelId, on) {
+  const panel = $("#" + panelId);
+  if (!panel) return;
+  if (on) closeSheet();
+  panel.classList.toggle("map-view", !!on);
+  if (window.arcadeRoomMapViewChanged) window.arcadeRoomMapViewChanged(panel, !!on);
+}
+function operationsDetailsState(body) {
+  const state = new Map();
+  body.querySelectorAll("details").forEach((detail) => {
+    const card = detail.closest("[data-prod-project], [data-manu-line], [data-logi-lane]");
+    const id = card ? card.dataset.prodProject || card.dataset.manuLine || card.dataset.logiLane : "room";
+    const summary = detail.querySelector("summary");
+    if (summary) state.set(`${id}:${summary.textContent}`, { open: detail.open, selected: !!card && card.classList.contains("selected") });
+  });
+  return state;
+}
+function operationsRestoreDetails(body, state) {
+  body.querySelectorAll("details").forEach((detail) => {
+    const card = detail.closest("[data-prod-project], [data-manu-line], [data-logi-lane]");
+    const id = card ? card.dataset.prodProject || card.dataset.manuLine || card.dataset.logiLane : "room";
+    const summary = detail.querySelector("summary"), previous = summary && state.get(`${id}:${summary.textContent}`);
+    if (previous && previous.selected === (!!card && card.classList.contains("selected"))) detail.open = previous.open;
+  });
+}
 
 function logisticsLaneId(lane) {
   if (!lane) return "";
@@ -12854,23 +13642,30 @@ function renderLogisticsDock() {
 
 function openLogistics(com) {
   if (!S || !S.player) return;
+  const launchFocus = document.activeElement;
   if (PROD.open) closeProduction();
   if (stock.open) closeStock();
+  if (tech.open) closeTech();
   closeGameDrawers();
   closeTechMenu();
+  closeSheet();
   showTab("map");
   if (com) LOGI.com = com;
   LOGI.open = true;
   LOGI.expanded = false;
   LOGI.cargoExpanded = false;
   LOGI.error = null;
+  LOGI.lastFocus = launchFocus;
   const panel = $("#logisticsPanel");
+  panel.classList.remove("map-view");
   panel.classList.add("open");
   panel.setAttribute("aria-hidden", "false");
+  panel.setAttribute("aria-modal", "true");
   document.body.classList.add("logistics-open");
   renderLogisticsDock();
   renderLogisticsPanel();
   logisticsFetch();
+  $("#logisticsClose").focus({ preventScroll: true });
   if (GLOBE) GLOBE.render();
 }
 function closeLogistics() {
@@ -12880,9 +13675,12 @@ function closeLogistics() {
   LOGI.cargoExpanded = false;
   LOGI.hits = [];
   const panel = $("#logisticsPanel");
-  if (panel) { panel.classList.remove("open"); panel.setAttribute("aria-hidden", "true"); }
+  if (panel) { panel.classList.remove("open", "map-view"); panel.setAttribute("aria-hidden", "true"); panel.setAttribute("aria-modal", "false"); }
   document.body.classList.remove("logistics-open");
   renderLogisticsDock();
+  const focus = LOGI.lastFocus && LOGI.lastFocus.isConnected && LOGI.lastFocus.getClientRects().length ? LOGI.lastFocus : $("#logisticsDockBtn");
+  if (focus) focus.focus({ preventScroll: true });
+  LOGI.lastFocus = null;
   if (GLOBE) GLOBE.render();
 }
 function toggleLogistics() { if (LOGI.open) closeLogistics(); else openLogistics(); }
@@ -12941,9 +13739,9 @@ function logisticsCardHtml(lane) {
     <div class="lane-quantities"><span>Promised<b>${logisticsQuantity(requested, unit)}</b></span>
       <span>${dispatched == null ? "Delivered" : "Dispatched"}<b>${logisticsQuantity(dispatched == null ? delivered : dispatched, unit)}</b></span>
       <span>Unshipped<b>${logisticsQuantity(unshipped, unit)}</b></span></div>
-    ${journey}
     ${reason ? `<div class="lane-reason">${escText(reason)}</div>` : ""}
-    ${focus || contract ? `<div class="lane-actions">${focus ? `<button type="button" data-logi-action="focus" data-logi-key="${logisticsEscAttr(id)}">Focus</button>` : ""}
+    ${journey ? `<details class="operations-details"${LOGI.selected === id ? " open" : ""}><summary>Route, capacity &amp; waypoints</summary>${journey}</details>` : ""}
+    ${focus || route || contract ? `<div class="lane-actions">${focus || route ? `<button type="button" data-logi-action="focus" data-logi-key="${logisticsEscAttr(id)}">Show on globe</button>` : ""}
       ${contract ? `<button type="button" data-logi-action="open_contract" data-logi-key="${logisticsEscAttr(id)}">Open contract</button>` : ""}</div>` : ""}
   </article>`;
 }
@@ -12956,22 +13754,23 @@ function logisticsCargoHtml(cargo, arrived) {
       <div class="lane-state"><i aria-hidden="true">${arrived ? "◆" : held ? "Ⅱ" : "◉"}</i>${arrived ? "ARRIVED" : held ? "HELD" : "IN TRANSIT"}</div></div>
     <div class="lane-meta">${rglyph(logisticsCommodity(cargo), stockHue(logisticsCommodity(cargo)))}${escText(logisticsCommodityName(cargo))} · cargo ${escText(cargo.id)}</div>
     <div class="lane-journey"><span>Load<b>${logisticsQuantity(quantity, cargo.unit || "")}</b></span><span>${arrived ? "Arrived" : "Due"}<b>${escText(logisticsCalendar(arrived ? (cargo.arrived_day || cargo.arrived_month || cargo.due_day || cargo.due_month) : (cargo.due_day || cargo.due_month)))}</b></span><span>Route<b>${escText(route ? route.mode.replace(/_/g," ") : "booked")}</b></span></div>
-    ${route ? `<div class="route-thread">${logisticsDisplayNodes(route).map((node) => `<span>${escText(node.name || node.id || "waypoint")}</span>`).join("")}</div>` : ""}
     ${cargo.hold_reason ? `<div class="lane-reason">${escText(cargo.hold_reason)}</div>` : ""}
+    ${route ? `<details class="operations-details"${LOGI.selected === id ? " open" : ""}><summary>Journey &amp; waypoints</summary><div class="route-thread">${logisticsDisplayNodes(route).map((node) => `<span>${escText(node.name || node.id || "waypoint")}</span>`).join("")}</div></details><div class="lane-actions"><button type="button" data-logi-action="focus" data-logi-key="${logisticsEscAttr(id)}">Show on globe</button></div>` : ""}
   </article>`;
 }
 
 function logisticsPolicyHtml() {
   const policy = (LOGI.data && LOGI.data.policy) || {}, selected = policy.selected || "fastest";
   const options = Array.isArray(policy.options) ? policy.options : [];
-  return `<section class="route-policy"><div class="route-policy-title">Route doctrine <small>No political cost</small></div>
-    <div class="route-policy-grid">${options.map((item) => `<button type="button" data-logi-policy="${logisticsEscAttr(item.id)}" class="${item.id === selected ? "on" : ""}" aria-pressed="${item.id === selected}" title="${logisticsEscAttr(item.description || "")}"><i aria-hidden="true">${escText(item.icon || "↗")}</i>${escText(item.label || item.id)}</button>`).join("")}</div>
+  return `<section class="route-policy"><div class="route-policy-title">Choose your route <small>Change freely · no political cost</small></div>
+    <div class="route-policy-grid">${options.map((item) => `<button type="button" data-logi-policy="${logisticsEscAttr(item.id)}" class="${item.id === selected ? "on" : ""}" aria-pressed="${item.id === selected}" title="${logisticsEscAttr(item.description || "")}"><i aria-hidden="true">${escText(item.icon || "↗")}</i><span><b>${escText(item.label || item.id)}</b>${item.description ? `<small>${escText(item.description)}</small>` : ""}</span></button>`).join("")}</div>
     <div class="route-policy-note">${escText(policy.note || "Applies to your next incoming dispatch.")}</div></section>`;
 }
 
 function renderLogisticsPanel() {
   const body = $("#logisticsBody");
   if (!body || !LOGI.open) return;
+  const details = operationsDetailsState(body);
   const all = logisticsFilteredLanes();
   const summary = logisticsSummary(all);
   const picked = LOGI.selected && all.find((lane) => logisticsLaneId(lane) === LOGI.selected);
@@ -12999,19 +13798,23 @@ function renderLogisticsPanel() {
   const arrivals = ((LOGI.data && LOGI.data.arrivals) || []).filter((c) => LOGI.com === RES_ALL || logisticsCommodity(c) === LOGI.com);
   const cargoVisible = LOGI.cargoExpanded ? cargo : cargo.slice(0, 3);
   const pipeline = cargo.length ? `<div class="logistics-stamp"><b>Cargo on the move</b><span>${cargo.filter((c) => c.hold_reason).length ? `${cargo.filter((c) => c.hold_reason).length} held · ` : ""}${cargo.length} booked load${cargo.length === 1 ? "" : "s"}</span></div><div class="logistics-list">${cargoVisible.map((c) => logisticsCargoHtml(c, false)).join("")}</div>${cargo.length > 3 ? `<button type="button" class="logistics-more" data-logi-cargo-more>${LOGI.cargoExpanded ? "Show priority 3" : `Show ${cargo.length - 3} more loads`}</button>` : ""}` : "";
-  const arrived = arrivals.length ? `<div class="logistics-stamp"><b>Latest arrivals</b><span>now in stockpile</span></div><div class="logistics-list">${arrivals.slice(0, 3).map((c) => logisticsCargoHtml(c, true)).join("")}</div>` : "";
-  body.innerHTML = `<div class="logistics-stamp"><b>My freight network · modeled routes</b><span>${escText(month)}<br>latest daily dispatch</span></div>
-    ${logisticsPolicyHtml()}
-    <div class="logistics-filters" aria-label="Commodity filter">${chips}</div>
-    <div class="logistics-summary"><span>In transit<b>${cargo.length}</b></span><span class="constrained">Supply short<b>${summary.constrained}</b></span><span class="blocked">Closed<b>${summary.blocked}</b></span></div>${pipeline}${arrived}${list}
-    <button type="button" class="logistics-build" data-logi-build>＋ Build corridor capacity</button>
-    <div class="route-policy-note">${escText((LOGI.data && LOGI.data.model_note) || "Modeled freight network. Cargo advances daily.")}</div>`;
+  const arrived = arrivals.length ? `<details class="operations-details"><summary>Latest arrivals · ${arrivals.length} loads now in stockpile</summary><div class="logistics-list">${arrivals.map((c) => logisticsCargoHtml(c, true)).join("")}</div></details>` : "";
+  body.innerHTML = `${operationsHeroHtml("logistics", "The world, connected", "Keep your nation moving.", "Follow each shipment from departure to arrival. Choose its path, find the hold-up, and build the connections that keep your plans running.")}
+    <div class="logistics-summary"><span>In transit<b>${cargo.length}</b></span><span class="constrained">Supply short<b>${summary.constrained}</b></span><span class="blocked">Closed<b>${summary.blocked}</b></span></div>
+    <div class="operations-freight-workspace"><div class="operations-freight-main">
+      <div class="logistics-filters" aria-label="Commodity filter">${chips}</div>${pipeline}${arrived}
+      <details class="operations-details"${!cargo.length || LOGI.error ? " open" : ""}><summary>Latest dispatches · ${escText(month)}</summary>${list}</details>
+    </div><aside class="operations-freight-aside" aria-label="Route controls">${logisticsPolicyHtml()}
+      <button type="button" class="logistics-build" data-logi-build>＋ Build corridor capacity</button>
+      <details class="operations-details"><summary>About this freight network</summary><p class="route-policy-note">${escText((LOGI.data && LOGI.data.model_note) || "Modeled freight network. Cargo advances daily.")}</p></details>
+    </aside></div>`;
+  operationsRestoreDetails(body, details);
   body.querySelectorAll("[data-logi-com]").forEach((button) => { button.onclick = () => {
     LOGI.com = button.dataset.logiCom; LOGI.expanded = false; LOGI.cargoExpanded = false; LOGI.selected = null; renderLogisticsPanel(); if (GLOBE) GLOBE.render();
   }; });
   body.querySelectorAll("[data-logi-lane]").forEach((card) => {
-    card.onclick = (e) => { if (!e.target.closest("button")) { const lane = logisticsFindLane(card.dataset.logiLane); if (logisticsRoute(lane)) logisticsFocus(lane); else logisticsSelect(card.dataset.logiLane); } };
-    card.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); const lane = logisticsFindLane(card.dataset.logiLane); if (logisticsRoute(lane)) logisticsFocus(lane); else logisticsSelect(card.dataset.logiLane); } };
+    card.onclick = (e) => { if (!e.target.closest("button, details")) logisticsSelect(card.dataset.logiLane); };
+    card.onkeydown = (e) => { if (e.target === card && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); logisticsSelect(card.dataset.logiLane); } };
   });
   body.querySelectorAll("[data-logi-action]").forEach((button) => { button.onclick = (e) => {
     e.stopPropagation(); const lane = logisticsFindLane(button.dataset.logiKey); if (!lane) return;
@@ -13045,6 +13848,7 @@ function logisticsSelect(id) {
 }
 function logisticsFocus(lane) {
   if (!logisticsAllows(lane, "focus") && !logisticsRoute(lane)) return;
+  operationsSetMapView("logisticsPanel", true);
   logisticsSelect(logisticsLaneId(lane));
   const points = logisticsRoutePoints(lane);
   if (points.length < 2) { banner("That route has no mapped waypoints."); return; }
@@ -13076,6 +13880,7 @@ function logisticsOpenContract(lane) {
 
 $("#logisticsDockBtn").onclick = toggleLogistics;
 $("#logisticsClose").onclick = closeLogistics;
+$("#logisticsRoomReturn").onclick = () => operationsSetMapView("logisticsPanel", false);
 
 /* Screen-space route arcs over the 3D globe. State is both colour and pattern: cyan solid is
    delivered/moving, amber long-dash is supply-short, red broken is closed. A
@@ -13283,8 +14088,8 @@ function setProductionMode(mode) {
     button.setAttribute("aria-selected", on ? "true" : "false");
   });
   const title = $("#productionTitle"), eyebrow = title && title.previousElementSibling;
-  if (title) title.textContent = mode === "manufacture" ? "Manufacturing Board" : "Production Board";
-  if (eyebrow) eyebrow.textContent = mode === "manufacture" ? "Defense industrial command" : "National works programme";
+  if (title) title.textContent = mode === "manufacture" ? "The Foundry" : "National Works";
+  if (eyebrow) eyebrow.textContent = mode === "manufacture" ? "Build your next generation" : "Shape your nation's future";
   renderProductionPanel();
   if (mode === "manufacture") manufacturingFetch(); else productionFetch();
   if (GLOBE) GLOBE.render();
@@ -13292,6 +14097,7 @@ function setProductionMode(mode) {
 
 function openProduction() {
   if (!S || !S.player || (!S.production_summary && !S.manufacturing_summary)) return;
+  const launchFocus = document.activeElement;
   if (LOGI.open) closeLogistics();
   if (stock.open) closeStock();
   if (tech.open) closeTech();
@@ -13301,19 +14107,26 @@ function openProduction() {
   showTab("map");
   PROD.open = true; PROD.view = "queue"; PROD.pickKind = null; PROD.showBuilt = false; PROD.error = null;
   MANU.view = "lines"; MANU.pickKit = null; MANU.error = null;
+  PROD.lastFocus = launchFocus;
   const panel = $("#productionPanel");
+  panel.classList.remove("map-view");
   panel.classList.add("open"); panel.setAttribute("aria-hidden", "false");
+  panel.setAttribute("aria-modal", "true");
   document.body.classList.add("production-open");
   renderProductionDock(); setProductionMode(PROD.mode);
+  $("#productionClose").focus({ preventScroll: true });
   if (GLOBE) GLOBE.render();
 }
 function closeProduction() {
   PROD.open = false; PROD.view = "queue"; PROD.pickKind = null; PROD.selected = null; PROD.showBuilt = false; PROD.refreshQueued = false; PROD.hits = [];
   MANU.view = "lines"; MANU.pickKit = null; MANU.selected = null; MANU.refreshQueued = false; MANU.hits = [];
   const panel = $("#productionPanel");
-  if (panel) { panel.classList.remove("open"); panel.setAttribute("aria-hidden", "true"); }
+  if (panel) { panel.classList.remove("open", "map-view"); panel.setAttribute("aria-hidden", "true"); panel.setAttribute("aria-modal", "false"); }
   document.body.classList.remove("production-open");
   renderProductionDock();
+  const focus = PROD.lastFocus && PROD.lastFocus.isConnected && PROD.lastFocus.getClientRects().length ? PROD.lastFocus : $("#productionDockBtn");
+  if (focus) focus.focus({ preventScroll: true });
+  PROD.lastFocus = null;
   if (GLOBE) GLOBE.render();
 }
 function toggleProduction() { if (PROD.open) closeProduction(); else openProduction(); }
@@ -13365,10 +14178,13 @@ function productionCardHtml(p) {
     <div class="work-progress" aria-label="${percent}% complete"><i style="width:${percent}%"></i></div>
     <div class="work-line"><span><b>${percent}%</b> complete</span><span>${escText(remaining)}</span></div>
     ${reason ? `<div class="work-reason">${escText(reason)}</div>` : ""}
+    ${p.finance ? `<div class="work-reason"><strong>${escText(p.finance.department_name)} budget</strong><br>${fmt.money(p.finance.spent_bn)} spent of ${fmt.money(p.finance.cost_bn)} domestic work · ${fmt.money(p.finance.remaining_bn)} remains.<br>${fmt.money(p.finance.daily_request_bn)} next requested work bill. Materials and imported purchases are separate.</div>` : ""}
+    <details class="operations-details"${String(PROD.selected) === String(p.id) ? " open" : ""}><summary>Materials &amp; project priority</summary>
     ${needs ? `<div class="work-needs">${needs}</div>` : ""}
     ${(priorityControls.length || productionCanCancel(p)) ? `<div class="work-actions" aria-label="Project controls">${priorityControls.map((v) =>
       `<button type="button" ${priority === v ? "disabled" : `data-prod-priority="${logisticsEscAttr(v)}" data-prod-id="${logisticsEscAttr(p.id)}"`} class="${priority === v ? "on" : ""}" aria-pressed="${priority === v}">${escText(v)}</button>`).join("")}
-      ${productionCanCancel(p) ? `<button type="button" class="cancel" data-prod-cancel="${logisticsEscAttr(p.id)}">Cancel</button>` : ""}</div>` : ""}
+      ${productionCanCancel(p) ? `<button type="button" class="cancel" data-prod-cancel="${logisticsEscAttr(p.id)}">Cancel project</button>` : ""}</div>` : ""}</details>
+    <div class="work-actions"><button type="button" data-prod-map="${logisticsEscAttr(p.id)}">Show on globe</button></div>
   </article>`;
 }
 
@@ -13378,6 +14194,7 @@ function productionStartAllowed() {
 }
 function productionFundingLabel(c) {
   const f = c.funding || {};
+  if (f.department_mode) return `${fmtQ(c.pc_cost)} PC · ${fmt.money(f.work_cost_bn)} total work · ${f.department_name} · ${fmt.money(f.available_bn)} shared funds for next cycle; materials separate`;
   const ministry = c.funding_ministry || f.ministry;
   const allocation = c.funding_allocation != null ? c.funding_allocation : f.allocation;
   const ratio = f.ratio != null ? +f.ratio : null;
@@ -13394,7 +14211,8 @@ function productionCatalogHtml() {
       <span class="work-art" aria-hidden="true">${PROD_ICON[kind] || "◆"}</span><b>${escText(c.name || kind.replace(/_/g, " "))}</b>
       <small>${escText(c.description || "Province works programme")}</small><small class="project-effect">${escText(c.effect || "Creates a province capability.")}</small><em>${escText(meta)}</em></button>`;
   }).join("");
-  return `<div class="production-stamp"><b>Choose the work</b><span>step 1 of 2<br>served catalogue</span></div>
+  return `${operationsHeroHtml("production", "Step 1 · Choose your project", "Build something that lasts.", "Choose what your nation needs. Next, pick the province where it will take shape.")}
+    <div class="production-stamp"><b>Your next investment</b><span>Costs and effects come from the simulation</span></div>
     <div class="project-catalog">${cards}</div><button type="button" class="production-back" data-prod-back>Back to queue</button>`;
 }
 function productionEligible(c, province) {
@@ -13413,7 +14231,7 @@ function productionProvinceHtml() {
   }).join("");
   const recipe = productionRequirements(c).map(productionNeedHtml).join("");
   return `<div class="production-stamp"><b>${PROD_ICON[PROD.pickKind] || "◆"} ${escText(c.name || PROD.pickKind.replace(/_/g, " "))}</b><span>step 2 of 2<br>choose a province</span></div>
-    <div class="project-brief"><b>${escText(c.effect || c.description || "Province capability")}</b>${recipe ? `<div class="work-needs">${recipe}</div>` : ""}</div>
+    <div class="project-brief"><b>${escText(c.effect || c.description || "Province capability")}</b><p>${escText(productionFundingLabel(c))}</p>${recipe ? `<details class="operations-details"><summary>Materials for this project</summary><div class="work-needs">${recipe}</div></details>` : ""}</div>
     <div class="province-picks">${picks || `<div class="production-empty">No owned province is eligible for this project.</div>`}</div>
     <button type="button" class="production-back" data-prod-back>Choose another project</button>`;
 }
@@ -13504,11 +14322,13 @@ function manufacturingLineHtml(line) {
       <span class="work-state">${escText(String(line.status || "producing").toUpperCase())}</span></div>
     <div class="factory-output"><span>Planned / day<b>${manufacturingBn(line.allocation_bn_day)}</b></span><span>Lead time<b>${lead ? `${lead} days` : "pending"}</b></span></div>
     ${line.reason ? `<div class="work-reason">${escText(line.reason)}</div>` : ""}
-    ${requirements ? `<div class="work-needs">${requirements}</div>` : ""}
     <div class="work-line"><span><b>${fmtQ(tone === "blocked" ? 0 : line.units_ordered_day || 0)}</b> planned units / day</span><span>${manufacturingBn(line.ordered_bn || 0)} ordered to date</span></div>
+    <details class="operations-details"${String(MANU.selected) === String(line.id) ? " open" : ""}><summary>Daily materials &amp; line priority</summary>
+    ${requirements ? `<div class="work-needs">${requirements}</div>` : ""}
     <div class="work-actions" aria-label="Manufacturing line controls">${["high", "normal", "low"].filter((value) => value === priority || choices.includes(value)).map((value) =>
       `<button type="button" ${priority === value ? "disabled" : `data-manu-priority="${value}" data-manu-id="${logisticsEscAttr(line.id)}"`} class="${priority === value ? "on" : ""}" aria-pressed="${priority === value}">${value}</button>`).join("")}
-      ${manufacturingCanStop(line) ? `<button type="button" class="cancel" data-manu-stop="${logisticsEscAttr(line.id)}">Stop line</button>` : ""}</div>
+      ${manufacturingCanStop(line) ? `<button type="button" class="cancel" data-manu-stop="${logisticsEscAttr(line.id)}">Stop line</button>` : ""}</div></details>
+    <div class="work-actions"><button type="button" data-manu-map="${logisticsEscAttr(line.id)}">Show on globe</button></div>
   </article>`;
 }
 
@@ -13532,10 +14352,11 @@ function manufacturingLinesHtml() {
   } else if (!lines.length) {
     empty = `<div class="factory-bridge"><b>Staff procurement is active</b>Your ${capacity} plant slot${capacity === 1 ? " is" : "s are"} ready. Start a line to replace automatic buying with your own equipment plan.</div>`;
   }
-  return `<div class="manufacturing-hero"><div class="stamp">Daily defense procurement</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_day)} <small>per day</small></div>
+  return `${operationsHeroHtml("manufacturing", "Industry with a purpose", "Equip your ambitions.", "Turn funded plant slots into a steady equipment pipeline. Pick a programme, assign a province, and give your most important lines first call on materials.")}
+    <div class="manufacturing-hero"><div class="stamp">Daily defense procurement</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_day)} <small>per day</small></div>
       <p>${share.toFixed(0)}% of the defense budget buys equipment. The treasury already carries that spending; imported materials settle through the resource market.</p></div>
     <div class="manufacturing-summary"><span>Plant slots<b>${usedSlots}/${capacity}</b></span><span>Force equipped<b>${Math.round((+summary.adequacy || 0) * 100)}%</b></span><span class="${+summary.blocked ? "warn" : ""}">Pipeline<b>${manufacturingBn(summary.pipeline_value_bn)}</b></span></div>
-    ${empty}${list}${freeSlots > 0 && data.actions && data.actions.start === true ? `<button type="button" class="production-new" data-manu-new>＋ Start equipment line</button>` : ""}
+    ${freeSlots > 0 && data.actions && data.actions.start === true ? `<button type="button" class="production-new" data-manu-new>＋ Start equipment line</button>` : ""}${empty}${list}
     ${manufacturingLedgerHtml()}`;
 }
 
@@ -13552,7 +14373,8 @@ function manufacturingCatalogHtml() {
     return `<button type="button" class="equipment-choice${kit.unlocked ? "" : " locked"}" data-class-mark="${logisticsEscAttr(manufacturingClassMark(kit.class))}" ${available ? `data-manu-kit="${logisticsEscAttr(kit.id)}"` : "disabled"}>
       <b>${escText(kit.name)}</b><span>${escText(kit.class)} · service life ${Math.round((+kit.service_months || 0) / 12)} years</span><em>${escText(meta)}</em></button>`;
   }).join("");
-  return `<div class="production-stamp"><b>Choose the equipment</b><span>step 1 of 2<br>technology gated</span></div>
+  return `${operationsHeroHtml("manufacturing", "Step 1 · Choose a programme", "Make your next move.", "Browse equipment your nation knows how to build. Choose a programme, then place it in a free arms-plant slot.")}
+    <div class="production-stamp"><b>Equipment catalogue</b><span>Locked programmes stay tucked away until you need them</span></div>
     <div class="factory-classes">${classes.map((name) => `<button type="button" data-manu-class="${logisticsEscAttr(name)}" class="${MANU.classFilter === name ? "on" : ""}">${escText(name)}</button>`).join("")}</div>
     <div class="equipment-catalog">${cards || `<div class="production-empty">No equipment in this filter is ready.</div>`}</div>
     ${locked ? `<button type="button" class="built-toggle" data-manu-locked aria-expanded="${MANU.showLocked}"><span>${MANU.showLocked ? "Hide" : "Show"} technology-locked equipment</span><b>${locked}</b></button>` : ""}
@@ -13567,7 +14389,7 @@ function manufacturingProvinceHtml() {
   const picks = provinces.map((province) => `<button type="button" class="province-pick" data-manu-province="${logisticsEscAttr(province.id)}"><b>${escText(province.name || province.id)}</b><span>${+province.free_slots || 0} free · arms plant ${+province.arms_plants || 0}</span></button>`).join("");
   const recipe = (kit.requirements_per_bn || []).map((row) => `<span class="work-need">${escText(row.name || row.commodity)} · ${fmtQ(row.quantity || row.required || 0)} ${escText(row.unit || "")} / $bn</span>`).join("");
   return `<div class="production-stamp"><b>${manufacturingClassMark(kit.class)} ${escText(kit.name)}</b><span>step 2 of 2<br>choose a plant</span></div>
-    <div class="project-brief"><b>${manufacturingBn(kit.unit_cost_bn, 3)} per unit · first delivery in ${kit.lead_days} days</b>${recipe ? `<div class="work-needs">${recipe}</div>` : ""}</div>
+    <div class="project-brief"><b>${manufacturingBn(kit.unit_cost_bn, 3)} per unit · first delivery in ${kit.lead_days} days</b>${recipe ? `<details class="operations-details"><summary>Materials per $bn of orders</summary><div class="work-needs">${recipe}</div></details>` : ""}</div>
     <div class="province-picks">${picks || `<div class="production-empty">No owned arms plant has a free slot.</div>`}</div>
     <button type="button" class="production-back" data-manu-back>Choose another equipment line</button>`;
 }
@@ -13575,21 +14397,24 @@ function manufacturingProvinceHtml() {
 function renderManufacturingPanel() {
   const body = $("#productionBody");
   if (!body || !PROD.open || PROD.mode !== "manufacture") return;
+  const details = operationsDetailsState(body);
   if (MANU.error) body.innerHTML = `<div class="production-empty">${escText(MANU.error)}<br><button type="button" data-manu-retry>Retry</button></div>`;
   else if (!MANU.data && MANU.loading) body.innerHTML = `<div class="production-empty">Opening the defense industrial ledger…</div>`;
   else if (!MANU.data) body.innerHTML = `<div class="production-empty">Manufacturing is loading…</div>`;
   else if (MANU.view === "catalog") body.innerHTML = manufacturingCatalogHtml();
   else if (MANU.view === "provinces") body.innerHTML = manufacturingProvinceHtml();
   else body.innerHTML = manufacturingLinesHtml();
+  operationsRestoreDetails(body, details);
   wireManufacturingPanel();
 }
 
 function wireManufacturingPanel() {
   const body = $("#productionBody"); if (!body || PROD.mode !== "manufacture") return;
   body.querySelectorAll("[data-manu-line]").forEach((card) => {
-    card.onclick = (event) => { if (!event.target.closest("button")) manufacturingSelect(card.dataset.manuLine, true); };
-    card.onkeydown = (event) => { if (event.target === card && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); manufacturingSelect(card.dataset.manuLine, true); } };
+    card.onclick = (event) => { if (!event.target.closest("button, details")) manufacturingSelect(card.dataset.manuLine, false); };
+    card.onkeydown = (event) => { if (event.target === card && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); manufacturingSelect(card.dataset.manuLine, false); } };
   });
+  body.querySelectorAll("[data-manu-map]").forEach((button) => { button.onclick = () => { operationsSetMapView("productionPanel", true); manufacturingSelect(button.dataset.manuMap, true); }; });
   const add = body.querySelector("[data-manu-new]");
   if (add) add.onclick = () => { MANU.view = "catalog"; MANU.pickKit = null; renderProductionPanel(); };
   const build = body.querySelector("[data-manu-build-plant]");
@@ -13648,6 +14473,7 @@ function renderProductionPanel() {
   const body = $("#productionBody");
   if (!body || !PROD.open) return;
   if (PROD.mode === "manufacture") { renderManufacturingPanel(); return; }
+  const details = operationsDetailsState(body);
   if (PROD.error) {
     body.innerHTML = `<div class="production-empty">${escText(PROD.error)}<br><button type="button" data-prod-retry>Retry</button></div>`;
   } else if (!PROD.data && PROD.loading) {
@@ -13659,19 +14485,22 @@ function renderProductionPanel() {
     const capacity = +(PROD.data && PROD.data.capacity) || 4;
     const list = rows.length ? `<div class="production-list">${rows.map(productionCardHtml).join("")}</div>`
       : `<div class="production-empty">No work is under way.<br>Choose a project, then put it on the map.</div>`;
-    body.innerHTML = `<div class="production-stamp"><b>National queue · ${rows.length}/${capacity}</b><span>daily work<br>province based</span></div>
-      <div class="production-summary"><span>Building<b>${sum.building}</b></span><span class="slowed">Slowed<b>${sum.slowed}</b></span><span class="blocked">Blocked<b>${sum.blocked}</b></span></div>${list}
-      ${productionBuiltHtml()}${productionStartAllowed() ? `<button type="button" class="production-new" data-prod-new>＋ Start a project</button>` : ""}`;
+    body.innerHTML = `${operationsHeroHtml("production", "The foundations of tomorrow", "Build what comes next.", "Connect your provinces, grow your industry, and create the places your next plans depend on. Every project advances on the daily clock.")}
+      <div class="production-summary"><span>Building<b>${sum.building}</b></span><span class="slowed">Slowed<b>${sum.slowed}</b></span><span class="blocked">Blocked<b>${sum.blocked}</b></span></div>
+      ${productionStartAllowed() ? `<button type="button" class="production-new" data-prod-new>＋ Start a project</button>` : ""}
+      <div class="production-stamp"><b>Your works in progress</b><span>${rows.length} of ${capacity} national project slots · daily work</span></div>${list}${productionBuiltHtml()}`;
   }
+  operationsRestoreDetails(body, details);
   wireProductionPanel();
 }
 
 function wireProductionPanel() {
   const body = $("#productionBody"); if (!body) return;
   body.querySelectorAll("[data-prod-project]").forEach((card) => {
-    card.onclick = (e) => { if (!e.target.closest("button")) productionSelect(card.dataset.prodProject, true); };
-    card.onkeydown = (e) => { if (e.target === card && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); productionSelect(card.dataset.prodProject, true); } };
+    card.onclick = (e) => { if (!e.target.closest("button, details")) productionSelect(card.dataset.prodProject, false); };
+    card.onkeydown = (e) => { if (e.target === card && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); productionSelect(card.dataset.prodProject, false); } };
   });
+  body.querySelectorAll("[data-prod-map]").forEach((button) => { button.onclick = () => { operationsSetMapView("productionPanel", true); productionSelect(button.dataset.prodMap, true); }; });
   const add = body.querySelector("[data-prod-new]");
   if (add) add.onclick = () => { PROD.view = "catalog"; PROD.pickKind = null; renderProductionPanel(); };
   body.querySelectorAll("[data-prod-kind]").forEach((b) => { b.onclick = () => { PROD.pickKind = b.dataset.prodKind; PROD.view = "provinces"; renderProductionPanel(); }; });
@@ -13717,6 +14546,7 @@ function productionSelect(id, focus) {
 
 $("#productionDockBtn").onclick = toggleProduction;
 $("#productionClose").onclick = closeProduction;
+$("#productionRoomReturn").onclick = () => operationsSetMapView("productionPanel", false);
 document.querySelectorAll("[data-production-mode]").forEach((button) => {
   button.onclick = () => setProductionMode(button.dataset.productionMode);
 });

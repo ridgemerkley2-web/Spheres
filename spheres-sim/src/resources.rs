@@ -1358,7 +1358,9 @@ fn new_market_state(w: &WorldState) -> MarketState {
         if !w.nation_opt(id).is_some_and(|n| n.alive) {
             continue;
         }
-        let need = draw(w, id);
+        // Only legacy procurement cover is inherited. A newly commissioned
+        // factory/project must not conjure a year's inputs by raising NEED.
+        let need = procurement_draw(w, id);
         for c in ALL.into_iter().filter(|c| *c != Commodity::Oil && need[c.idx()] > 0.0) {
             let capacity = need[c.idx()] * BUFFER_MONTHS;
             set_market_stock(&mut state, id, c, need[c.idx()] * cover(w, id, c), capacity);
@@ -1398,6 +1400,7 @@ fn post_market_flows(w: &mut WorldState) {
             }
         }
     }
+    crate::gdp_projects::record_mines(w);
 
     market.contract_spend_bn = all_nations()
         .iter()
@@ -1856,7 +1859,22 @@ fn advance_mines(w: &mut WorldState) {
     let daily = crate::clock::is_daily(w);
     let mut keep = Vec::with_capacity(w.resources.mine_projects.len());
     let mut completed = vec![];
-    for mut project in std::mem::take(&mut w.resources.mine_projects) {
+    crate::industry::begin_work_day(w);
+    for mut project in w.resources.mine_projects.clone() {
+        let program_key = crate::industry::mine_key(&project.district, project.commodity);
+        if w.production.industry.mines.contains_key(&program_key) {
+            if let Some(progress) = crate::industry::advance_mine(w, &project) {
+                let total = w.production.industry.mines[&program_key].total_days;
+                let remaining = (total as f64 - progress).max(0.0).ceil() as u32;
+                project.days_left = Some(remaining);
+                project.months_left = remaining.div_ceil(30);
+                if remaining == 0 {
+                    w.production.industry.mines.remove(&program_key);
+                    completed.push(Mine {district:project.district,commodity:project.commodity,output:project.output,completed:now});
+                } else { keep.push(project); }
+                continue;
+            }
+        }
         let active = w
             .districts
             .get(&project.district)
@@ -1871,6 +1889,8 @@ fn advance_mines(w: &mut WorldState) {
                 if crate::clock::month_end(w) {
                     project.months_left = project.months_left.saturating_sub(1);
                 }
+                crate::gdp_projects::record_mine_construction(w,&project,1.0,
+                    project.investment_bn/(project.months_total.max(1) as f64*365.0/12.0),false);
             } else {
                 project.months_left = project.months_left.saturating_sub(1);
             }
@@ -2458,7 +2478,7 @@ pub fn cover(w: &WorldState, id: NationId, c: Commodity) -> f64 {
 /// This month's need: what the kit procurement would pick wants, at the
 /// nation's line. Zero for the legacy tier, for a nation with nothing to
 /// buy, and for a seat that is not on the board.
-pub fn draw(w: &WorldState, id: NationId) -> [f64; 12] {
+fn procurement_draw(w: &WorldState, id: NationId) -> [f64; 12] {
     let Some(n) = w.nation_opt(id) else { return [0.0; 12] };
     // Directed manufacturing replaces, rather than supplements, the staff's
     // one automatic pick. The spot market must see the whole multi-line recipe
@@ -2474,12 +2494,19 @@ pub fn draw(w: &WorldState, id: NationId) -> [f64; 12] {
     }
 }
 
+pub fn draw(w: &WorldState, id: NationId) -> [f64; 12] {
+    let mut need = procurement_draw(w, id);
+    let civilian = crate::industry::resource_demand_daily(w, id);
+    for i in 0..12 { need[i] += civilian[i] / crate::clock::month_fraction(w); }
+    need
+}
+
 /// Inputs the next settlement will actually attempt. Unlike the monthly
 /// reserve-policy forecast, daily funding is prorated and banked money is not.
 pub fn tick_draw(w: &WorldState, id: NationId) -> [f64; 12] {
     if !crate::clock::is_daily(w) { return draw(w, id); }
     let Some(n) = w.nation_opt(id) else { return [0.0; 12] };
-    if w.rules.manufacturing_system && crate::manufacturing::lines_for(w, id).next().is_some() {
+    let mut need = if w.rules.manufacturing_system && crate::manufacturing::lines_for(w, id).next().is_some() {
         let mut need = [0.0; 12];
         for plan in crate::manufacturing::tick_allocations(w, id) {
             for c in ALL { need[c.idx()] += plan.required[c.idx()]; }
@@ -2487,7 +2514,10 @@ pub fn tick_draw(w: &WorldState, id: NationId) -> [f64; 12] {
         need
     } else {
         crate::arsenal::pick(n).map_or([0.0; 12], |kit| kit_need(kit, crate::arsenal::tick_line(w, id)))
-    }
+    };
+    let civilian = crate::industry::resource_demand_daily(w, id);
+    for i in 0..12 { need[i] += civilian[i]; }
+    need
 }
 
 /// The commodity legs of one side of a bundle — oil excluded, because an oil
@@ -3158,7 +3188,7 @@ pub fn stock_quantity(w: &WorldState, id: NationId, c: Commodity) -> f64 {
     if let Some(market) = &w.resources.market {
         return market_stock(market, id, c);
     }
-    draw(w, id)[c.idx()] * cover(w, id, c)
+    procurement_draw(w, id)[c.idx()] * cover(w, id, c)
 }
 
 pub fn stock_months(w: &WorldState, id: NationId, c: Commodity) -> f64 {
@@ -3494,14 +3524,15 @@ pub fn contracted_receipts(w: &WorldState, id: NationId) -> f64 {
         .sum()
 }
 
-/// Capital already committed to active mine projects. This is a one-time,
-/// sunk project amount—not a recurring annual budget outflow.
+/// Work capital already spent on active mine projects. Legacy mines were
+/// prepaid; new department-funded mines report only completed, paid work.
 pub fn mine_investment_bn(w: &WorldState, id: NationId) -> f64 {
     w.resources
         .mine_projects
         .iter()
         .filter(|p| p.started_by == id)
-        .map(|p| p.investment_bn)
+        .map(|p| w.production.industry.mines.get(&crate::industry::mine_key(&p.district,p.commodity))
+            .map_or(p.investment_bn, |f| f.spent_bn))
         .sum()
 }
 
@@ -4239,6 +4270,9 @@ pub fn mine_refusal(
     district: &str,
     c: Commodity,
 ) -> Option<String> {
+    if crate::programs::enrolled(w, nation) && !(w.rules.production_system && w.rules.resource_market) {
+        return Some("Department-funded mines require construction and the physical resource market.".into());
+    }
     if !w.rules.resource_gates {
         return Some("The resource system is not enabled for this world.".into());
     }
@@ -4294,7 +4328,9 @@ pub fn start_mine(
     // closed borrows the identical ratio; with them open the till funds the
     // shaft first and only the shortfall is borrowed, which is what building a
     // mine out of reserves means.
-    crate::economy::charge(w, nation, investment_bn, investment_bn / gdp);
+    let program = crate::programs::enrolled(w, nation);
+    if !program { crate::economy::charge(w, nation, investment_bn, investment_bn / gdp); }
+    else { crate::industry::enroll_mine(w, district, c, crate::clock::days_for_months(w, MINE_BUILD_MONTHS)); }
     let project = MineProject {
         district: district.to_string(),
         commodity: c,
@@ -4318,10 +4354,11 @@ pub fn start_mine(
         "mine"
     };
     let district_name = crate::districts::name_of(district).unwrap_or(district);
-    w.headline(format!(
-        "{} commits ${:.1} bn to a {} {} in {}; first output in {} months.",
-        nation.name(), investment_bn, c.name(), verb, district_name, MINE_BUILD_MONTHS
-    ));
+    if program {
+        w.headline(format!("{} commissions a {} {} in {}; modeled work ${:.1} bn, paid as completed from Minerals & processing. Inputs and construction capacity are shared.", nation.name(), c.name(), verb, district_name, investment_bn));
+    } else {
+        w.headline(format!("{} commits ${:.1} bn to a {} {} in {}; first output in {} months.", nation.name(), investment_bn, c.name(), verb, district_name, MINE_BUILD_MONTHS));
+    }
     Ok(())
 }
 

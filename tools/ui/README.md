@@ -1,0 +1,67 @@
+# Arcade UI checks
+
+Run the UI suites from the repository root:
+
+```sh
+node --test tools/ui/check_arcade.cjs tools/ui/check_cabinet.cjs tools/ui/check_operations_arcade.cjs tools/ui/check_discovery_arcade.cjs tools/ui/check_chronicle.cjs tools/ui/check_history_charts.cjs
+cargo test -p spheres-web --release --bin spheres-web
+```
+
+The JavaScript suites use Node's built-in test runner and VM to execute the
+actual functions extracted from `spheres-web/ui/index.html`. They need no
+browser, npm install, running server or campaign. Run a single file with
+`node --test tools/ui/check_operations_arcade.cjs`, for example.
+
+| Suite | Main coverage |
+| --- | --- |
+| `check_arcade.cjs` | Room precedence, explicit globe-view exceptions, Tab containment, hidden/inert controls, accessible action rows, nation pages and roving tabindex. |
+| `check_cabinet.cjs` | Mixed budget drafts, close/reopen and discard, ministry curves, range-key behavior, one-day enactment, in-flight protection, refusal messages, treasury/interest units and local art. |
+| `check_operations_arcade.cjs` | Production, manufacturing and freight renderers; real daily quantities; eligibility; materials/route disclosure; room/globe navigation; native control keys; focus restoration and existing command payloads. |
+| `check_discovery_arcade.cjs` | Resource and research presentation, focus/inspector behavior, progressive disclosure and existing action wiring. |
+| `check_chronicle.cjs` | Read-only history windows, born/ended nations, missing values, deltas, chart geometry, date cursor retention, first-day states and infographic asset wiring. |
+| `check_history_charts.cjs` | Comparison-chart calendar spacing, daily labels, hover dates and retained-history event markers. |
+| `check_programs.cjs` | Exact department-share conservation, immutable drafts, strict inputs, enacted-plan gates, safe labels, preview freshness and physical industry rendering. Run with `node --test tools/ui/check_programs.cjs`. |
+
+The Rust web suite checks the served simulation contract as well as the UI's
+entry points. Do not replace it with source checks or loosen its expectations
+to accommodate a presentation change. The UI still owns no simulation rules:
+amounts, dates, recipes, eligibility and allowed actions come from the server.
+Annual budget values remain annual; daily settlements remain daily.
+
+## Preview QA without touching user campaigns
+
+Use a fresh preview process on an unused local port with its own disposable
+campaign. Never reset, load over, advance or issue test commands in an existing
+user campaign. Do not assume another browser tab is isolated: tabs using the
+same server share that server's world. Do not stop unrelated preview processes.
+
+The HTML, CSS and SVG are embedded at compile time. Rebuild after editing, then
+start the rebuilt binary with `--port <unused-port> --no-open` and reload its
+preview tab. If an existing executable is locked by a running test or server,
+wait for your test or use a separate preview target directory; do not terminate
+the user's process to unlock it.
+
+Check both desktop and narrow layouts:
+
+- Setup and Global Command: labels match the rendered elements, character art
+  stays intact, actions and supporting text remain readable.
+- Every room: Escape closes the expected layer, Tab stays within the active
+  full-screen room, close returns focus, and native buttons, summaries and
+  sliders keep their own keyboard behavior.
+- Cabinet: select ministries, change a draft, revert, and enact once. Test
+  network/refusal states only in the disposable campaign.
+- Operations: project catalogue to province, line catalogue to plant, blocked
+  and empty states, expanded details after a daily refresh, and Show on globe
+  followed by Back to room and close/reopen.
+- Resources and research: filters, inspectors, locked/unavailable actions,
+  and visible daily units; verify room transitions do not leave hidden focus.
+- Nation pages, province details, world dispatches and history: readable cards,
+  no horizontal overflow hiding controls, and no console errors.
+- Chronicle: first-day single points; shared date slider and keyboard controls;
+  nation and time-window selection; all six metrics and real starting-point
+  deltas; comparison view and return; desktop and narrow chart labels. History
+  retains up to 3,000 snapshots and restarts when a save is loaded: do not
+  fabricate earlier values or describe a retained window as the full campaign.
+
+Restore temporary viewport changes afterward. Report which states were actually
+checked; fixture-based renderer checks are not a substitute for visual QA.
