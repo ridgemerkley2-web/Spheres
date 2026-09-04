@@ -856,6 +856,7 @@ pub fn transfer_district(
         let f = w.nation_mut(from);
         f.population -= moved_pop;
         f.gdp -= moved_gdp;
+        crate::economy::refresh_debt_ratio(f);
         f.oil_mbd -= moved_oil;
         f.stability = (f.stability - 100.0 * pop).max(5.0);
     }
@@ -863,6 +864,7 @@ pub fn transfer_district(
         let t = w.nation_mut(to);
         t.population += moved_pop;
         t.gdp += moved_gdp;
+        crate::economy::refresh_debt_ratio(t);
         t.oil_mbd += moved_oil;
         t.separatism = (t.separatism + pop).min(1.0);
     }
@@ -885,6 +887,31 @@ pub fn deltas(w: &WorldState) -> Vec<(String, NationId)> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn finance_consent_transfer_reprices_open_books_and_preserves_closed_books() {
+        for open in [false, true] {
+            let mut w = crate::init::world_1990(crate::world::GameRules::default());
+            let ids = [NationId::Tonga, NationId::Australia];
+            for id in ids {
+                if open {
+                    let n = w.nation_mut(id);
+                    n.treasury_bn = Some(1.0);
+                    n.debt_bn = Some(n.debt_gdp * n.gdp);
+                }
+            }
+            let before = ids.map(|id| w.nation(id).clone());
+            transfer_district(&mut w, ids[0], ids[1], "TO-04").unwrap();
+            assert!(w.nation(ids[0]).gdp < 0.1, "reproduce the actual small-country edge");
+            for (id, old) in ids.into_iter().zip(before) {
+                let n = w.nation(id);
+                assert_eq!(n.debt_bn, old.debt_bn, "ceding GDP does not repay debt");
+                assert_eq!(n.treasury_bn, old.treasury_bn, "no second cash transfer");
+                let expected = if open { n.debt_bn.unwrap() / n.gdp } else { old.debt_gdp };
+                assert_eq!(n.debt_gdp, expected, "{id:?} ratio must update on consent, open={open}");
+            }
+        }
+    }
 
     #[test]
     fn embedded_districts_parse_clean() {

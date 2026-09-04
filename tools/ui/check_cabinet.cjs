@@ -87,6 +87,7 @@ function fixture(names) {
     const ARCADE_ROOMS = {sheetFocus:null, worldFocus:null, helpFocus:null};
     let queued = [];
     let advancing = false;
+    let pendingAdvance = null;
     let S = { year: 1991, ministries: {
       curve_step: 0.005, curve_zero: 2,
       ministries: MINISTRIES.map((m, i) => ({id:m.id, index:i, cap:0.15, reference:0.02}))
@@ -259,7 +260,7 @@ test('enacting an untouched first budget queues the inherited plan and advances 
   const c = fixture(['annualBudgetOf', 'cabinetEnact']);
   evaluate(c, `let advances = []; let draftsPainted = 0;
     function paintCabinetDraft(){ draftsPainted++; }
-    async function advance(days){ advances.push({days,commands:JSON.parse(JSON.stringify(queued))}); queued=[]; }
+    async function advance(days){ advances.push({days,commands:JSON.parse(JSON.stringify(queued))}); queued=[]; return true; }
     queued = [{kind:'tax',value:0.3}];`);
   await evaluate(c, 'cabinetEnact()');
   const calls = plain(c, 'advances');
@@ -309,7 +310,7 @@ test('all draft controls are inert only while the asynchronous enact is pending'
   assert.equal(c.element('left').attributes['aria-busy'], 'true');
   await evaluate(c, 'cabinetEnact()');
   assert.equal(evaluate(c, 'calls'), 1, 'enact remains guarded while its first request is pending');
-  evaluate(c, 'finishAdvance()');
+  evaluate(c, 'finishAdvance(true)');
   await pending;
   assert.equal(evaluate(c, 'CAB.busy'), false);
   assert.equal(c.element('left').inert, false, 'the workbench must become editable again');
@@ -329,6 +330,7 @@ test('dated command refusals are surfaced in the footer and live region after ad
         {date:'1 Jan 1991',text:'[rejected] SetAnnualBudget { nation: France }: Not enough political capital'}
       ];
       queued = [];
+      return true;
     }`);
   await evaluate(c, 'cabinetEnact()');
   assert.equal(evaluate(c, 'CAB.error'), 'Not enough political capital');

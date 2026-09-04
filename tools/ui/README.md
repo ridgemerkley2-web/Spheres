@@ -3,7 +3,7 @@
 Run the UI suites from the repository root:
 
 ```sh
-node --test tools/ui/check_arcade.cjs tools/ui/check_cabinet.cjs tools/ui/check_operations_arcade.cjs tools/ui/check_discovery_arcade.cjs tools/ui/check_chronicle.cjs tools/ui/check_history_charts.cjs
+node --test tools/ui/check_arcade.cjs tools/ui/check_cabinet.cjs tools/ui/check_operations_arcade.cjs tools/ui/check_discovery_arcade.cjs tools/ui/check_chronicle.cjs tools/ui/check_history_charts.cjs tools/ui/check_programs.cjs tools/ui/check_province_economy.cjs tools/ui/check_session.cjs
 cargo test -p spheres-web --release --bin spheres-web
 ```
 
@@ -21,6 +21,8 @@ browser, npm install, running server or campaign. Run a single file with
 | `check_chronicle.cjs` | Read-only history windows, born/ended nations, missing values, deltas, chart geometry, date cursor retention, first-day states and infographic asset wiring. |
 | `check_history_charts.cjs` | Comparison-chart calendar spacing, daily labels, hover dates and retained-history event markers. |
 | `check_programs.cjs` | Exact department-share conservation, immutable drafts, strict inputs, enacted-plan gates, safe labels, preview freshness and physical industry rendering. Run with `node --test tools/ui/check_programs.cjs`. |
+| `check_province_economy.cjs` | Province and national GDP decomposition, real project contributions, honest modeled-data labels, and deferred rendering safety. |
+| `check_session.cjs` | Campaign continuation/load, pending-turn preservation and retries, visible network failures, and initial globe positioning. |
 
 The Rust web suite checks the served simulation contract as well as the UI's
 entry points. Do not replace it with source checks or loosen its expectations
@@ -65,3 +67,16 @@ Check both desktop and narrow layouts:
 
 Restore temporary viewport changes afterward. Report which states were actually
 checked; fixture-based renderer checks are not a substitute for visual QA.
+
+For the save/load and network-recovery browser regression, start a separate
+server **from an empty disposable directory** (its `save.json` will be replaced),
+then run:
+
+```sh
+node tools/ui/check_session_browser.cjs http://127.0.0.1:7791 --disposable
+```
+
+This requires Playwright on `NODE_PATH`; set `PLAYWRIGHT_CHANNEL=msedge` when
+using an installed Edge browser. It checks lost-response retry across reload,
+queued edits, malformed batches, save/load, and desktop/phone room navigation.
+Never point it at an existing user's campaign server.

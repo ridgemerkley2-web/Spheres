@@ -162,6 +162,7 @@ fn aid_flows(w: &mut WorldState) {
                 // Most of a subsidy is eaten, not invested; what it reliably
                 // buys is a government that can pay its soldiers this month.
                 c.gdp *= 1.0 + infusion * 0.15 / 12.0 * dt;
+                crate::economy::refresh_debt_ratio(c);
                 c.stability = (c.stability + infusion * 8.0 / 12.0 * dt).min(100.0);
             }
             AidKind::Arms => {
@@ -296,6 +297,7 @@ fn trade_level_gain(w: &mut WorldState) {
             None => n.trade_level_paid = Some(owed), // a loaded save is already paid
             Some(paid) if owed > paid => {
                 n.gdp *= 1.0 + (owed - paid);
+                crate::economy::refresh_debt_ratio(n);
                 n.trade_level_paid = Some(owed);
             }
             _ => {}
@@ -610,6 +612,7 @@ pub fn covert_action(
                 let hit = w.rng.range(0.006, 0.018);
                 let t = w.nation_mut(target);
                 t.gdp *= 1.0 - hit;
+                crate::economy::refresh_debt_ratio(t);
                 t.stability = (t.stability - 1.5).max(0.0);
                 w.headline(format!(
                     "A run of accidents wrecks {}'s industrial plant. The inquiry finds nothing.",
@@ -717,9 +720,11 @@ pub fn abrogate_trade(w: &mut WorldState, from: NationId, to: NationId) -> Resul
     {
         let n = w.nation_mut(to);
         n.gdp *= 1.0 - dep_to * 0.06;
+        crate::economy::refresh_debt_ratio(n);
         n.stability = (n.stability - dep_to * 8.0).max(0.0);
     }
     w.nation_mut(from).gdp *= 1.0 - dep_from * 0.06;
+    crate::economy::refresh_debt_ratio(w.nation_mut(from));
     w.shift_relation(from, to, -25.0);
     w.shift_reputation(from, -6.0);
     w.headline(format!(

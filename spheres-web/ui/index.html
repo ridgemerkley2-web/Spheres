@@ -2329,6 +2329,32 @@
 <link rel="stylesheet" href="/chronicle.css">
 <link rel="stylesheet" href="/programs.css">
 <link rel="stylesheet" href="/province-economy.css">
+<style>
+.session-card { display:flex; flex-wrap:wrap; gap:16px 28px; align-items:center; margin:0 0 22px; padding:22px; border-radius:24px; border:1px solid #d5d5e4; color:#42415b; background:linear-gradient(110deg,#e5f2eb,#eee8f6); }
+/* Campaign controls are a real third setup row. The old two-row viewport
+   grid squeezed this card into the picker's flexible row and let roster
+   contents paint over its buttons. Each row now takes its own space; short
+   windows scroll the setup rather than overlapping or clipping controls. */
+#setup { overflow-y:auto; overflow-x:hidden; }
+#setup .setup-shell { display:block; height:auto; min-height:100%; align-self:flex-start; }
+#setup .setup-mast { min-height:70px; box-sizing:border-box; }
+#newCampaignPicker { min-height:640px; }
+#newCampaignPicker #nationShowcase { display:block; min-height:0; }
+#newCampaignPicker .nation-browser { height:max(640px,calc(100dvh - 300px)); box-sizing:border-box; }
+#newCampaignPicker .showcase-copy,#newCampaignPicker #setupFoot { flex-shrink:0; }
+#setup .session-card { min-width:0; margin:18px clamp(18px,3.2vw,54px) 0; align-self:start; }
+@media(max-width:960px) { #newCampaignPicker { min-height:0; } }
+.session-card h2 { margin:6px 0; font-size:clamp(23px,3vw,34px); }
+.session-card p { margin:8px 0 0; max-width:64ch; }
+.session-card small { flex-basis:100%; line-height:1.55; }
+.session-actions { display:flex; gap:10px; flex-wrap:wrap; margin-left:auto; }
+.session-actions button,.session-pending button { min-height:44px; white-space:normal; }
+.session-card button:focus-visible,.session-pending button:focus-visible { outline:3px solid #6754b0; outline-offset:3px; }
+#newCampaignPicker[hidden],.session-card [hidden],.session-pending[hidden] { display:none; }
+.session-pending { position:fixed; z-index:10050; left:50%; bottom:18px; transform:translateX(-50%); width:min(700px,calc(100% - 24px)); box-sizing:border-box; display:flex; align-items:center; gap:14px; padding:14px 18px; border:1px solid #e2bc92; border-radius:18px; background:#fff0dc; color:#513e34; box-shadow:0 10px 35px #332a3830; font-size:14px; }
+.session-pending span { flex:1; }
+@media(max-width:600px) { .session-card {padding:16px;} .session-actions {margin-left:0;} .session-pending {align-items:stretch;flex-direction:column;} }
+</style>
 </head>
 <body>
 
@@ -2351,7 +2377,14 @@
       </div>
     </div>
 
-    <div class="setup-layout">
+    <section class="session-card" aria-label="Your campaigns">
+      <div><div class="setup-step-label">YOUR NEXT CHAPTER</div><h2 id="sessionTitle">Welcome to the world.</h2>
+      <p id="sessionStatus" role="status">Checking for a live campaign…</p></div>
+      <div class="session-actions"><button class="primary" id="continueBtn" hidden>Continue live campaign →</button>
+        <button id="loadBtn">Load saved campaign</button><button id="newCampaignBtn">New campaign</button></div>
+      <small>Continue keeps this server's history. Loading restores save.json; charts and dispatches begin at the saved date. A new campaign replaces the live world, not your disk save.</small>
+    </section>
+    <div class="setup-layout" id="newCampaignPicker" hidden>
       <section id="nationShowcase" aria-labelledby="showcaseName" aria-live="polite">
         <div class="showcase-copy">
           <div class="showcase-kicker">PLAYER ONE / CHOOSE YOUR SPHERE</div>
@@ -2430,6 +2463,7 @@
         <button data-adv="30">+30 DAYS<i>3</i></button>
         <button data-adv="365">+1 YEAR<i>4</i></button>
         <button id="saveBtn">Save campaign<i>S</i></button>
+        <button id="campaignsBtn">Campaigns · Continue / Load / New</button>
       </div></details>
       <button id="keysBtn" aria-label="How to play">?</button>
     </div>
@@ -2564,7 +2598,8 @@
 
 <div id="sheetbg"></div>
 <div id="sheet" role="dialog" aria-modal="true" aria-label="National decisions" tabindex="-1"></div>
-<div id="banner"></div>
+<div id="banner" role="status"></div>
+<div id="pendingTurn" class="session-pending" role="status" hidden><span id="pendingTurnText"></span><button id="retryAdvanceBtn">Check pending turn</button><button id="reviewTurnBtn" hidden>Review current state</button></div>
 
 <!-- The tech screen's symbol language: every sigil and badge on every surface
      resolves from this in-document sprite — no CDN, no fonts, no images. -->
@@ -3193,7 +3228,7 @@ const ui = {
   resCommodity: "oil",   // which commodity the resource layer is painting ("__all" = every one)
   resOverlay: false,     // resource layer riding on TOP of whatever shading is selected
   resLimitsOpen: false,  // the "what this layer cannot say" disclosure, kept across ticks
-  cam: { cx: 0, cy: 0, k: 1 },   // map camera; cx,cy in viewBox units, k = zoom (cx/cy lazily centred)
+  cam: { cx: undefined, cy: undefined, k: 1 },   // uninitialized is distinct from legitimate map coordinate zero
   logCat: "all",
   logQuery: "",
   metric: "gdp",
@@ -3255,6 +3290,8 @@ const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 /// server that was not there arrived as a bare "Failed to fetch" nobody caught.
 /// Callers get a thrown Error carrying a sentence fit to show a player.
 async function api(path, body) {
+  const requestedSession = S?.session_id;
+  if (body !== undefined && requestedSession && ["/api/command", "/api/save"].includes(path)) body = { ...body, session_id: requestedSession };
   let r;
   try {
     r = await fetch(path, {
@@ -3271,9 +3308,16 @@ async function api(path, body) {
   if (!r.ok) {
     // The routes answer a refusal as {"error": "..."}; anything else (a 404
     // from a route this build does not have) still gets a sentence.
-    throw new Error((data && data.error) || `${path} was refused (${r.status})`);
+    const error = new Error((data && data.error) || `${path} was refused (${r.status})`);
+    error.status = r.status;
+    error.notAdvanced = data?.not_advanced === true;
+    error.requiresReview = data?.requires_review === true;
+    throw error;
   }
   if (data === null) throw new Error(`${path} did not answer with JSON`);
+  if (requestedSession && S?.session_id !== requestedSession && !["/api/new", "/api/load"].includes(path)) {
+    throw new Error("The campaign changed while this request was in flight. Its old response was not adopted.");
+  }
   return data;
 }
 
@@ -3282,6 +3326,113 @@ async function api(path, body) {
 let setupNations = [];
 let setupFigures = {};
 const setupNationButtons = new Map();
+const SESSION = { live: null, busy: false, client: null, sequence: 0 };
+
+function renderSessionActions() {
+  $("#continueBtn").hidden = !SESSION.live?.player;
+  $("#continueBtn").disabled = SESSION.busy;
+  $("#loadBtn").disabled = SESSION.busy || advancing || !!pendingAdvance;
+  $("#newCampaignBtn").disabled = SESSION.busy || advancing || !!pendingAdvance;
+  $("#sessionTitle").textContent = SESSION.live?.player ? "Your world is waiting." : "Welcome to the world.";
+  $("#sessionStatus").textContent = SESSION.live?.player
+    ? `${SESSION.live.player} · ${SESSION.live.date} · live on this server`
+    : "Continue a saved world, or choose a nation for a new campaign.";
+}
+
+async function bootSession() {
+  // Roster art and live-world discovery are independent; an art failure must
+  // never hide the route back into an existing campaign.
+  const roster = buildSetup().catch(error => banner(error.message || "The nation roster could not load."));
+  try {
+    SESSION.live = await api("/api/state");
+    if (SESSION.live.player) restorePendingAdvance(SESSION.live, false);
+    renderSessionActions();
+    syncAdvanceControls();
+    $("#newCampaignPicker").hidden = !!SESSION.live.player;
+  } catch (error) {
+    renderSessionActions();
+    $("#sessionStatus").textContent = error.message;
+    $("#newCampaignPicker").hidden = false;
+    banner(error.message);
+  }
+  await roster;
+}
+
+function resetCampaignUi() {
+  closeGlobalMenus();
+  // Cancel campaign-specific readers before another world's ids are adopted.
+  resetProvinceDossierState();
+  tech.data = null; tech.sel = null;
+  tech.mode = "domain"; tech.curDomain = null;
+  tech._stEls = null; tech._stEdges = null;
+  closeTech(); closeStock(); closeTechMenu(); closeGameDrawers();
+  if (LOGI.open) closeLogistics();
+  if (PROD.open) closeProduction();
+  if (dominationIsOpen()) closeDomination();
+  selected = null; selectedWar = null; selectedWarName = "";
+  $("#sheet").style.display = "none"; $("#sheetbg").style.display = "none";
+  talks.open = false; ++talks.seq; clearTimeout(talks.timer);
+  for (const cache of [LOGI, PROD, MANU, STOCKW]) {
+    ++cache.seq; cache.data = null; cache.stale = true; cache.loading = false; cache.error = null;
+  }
+  ++stock.seq; stock.cards = null; stock.cardsFor = null; stock.sel = null; stock.mineTarget = {};
+  stockDash = { id: null, data: null };
+  ECONOMIC_LEDGER.details.clear(); invalidateEconomicLedger();
+  queued = []; pendingAdvance = null; CAB.error = ""; HIST = null;
+  ui.picked = []; ui.cam = { cx: undefined, cy: undefined, k: 1 };
+}
+
+async function enterCampaign(state, replacing = false) {
+  closeGlobalMenus();
+  if (!state || state.error || !state.player) throw new Error(state?.error || "This world has no player nation. Choose a new campaign.");
+  const changed = replacing || S?.session_id !== state.session_id;
+  if (changed) resetCampaignUi();
+  SESSION.live = state;
+  $("#setup").style.display = "none";
+  $("#app").style.display = "grid";
+  if (changed) restorePendingAdvance(state, replacing);
+  await adopt(state, true, true);
+  renderSessionActions(); syncAdvanceControls();
+  $("#hdrDate").focus?.({ preventScroll: true });
+}
+
+async function continueCampaign() {
+  if (SESSION.busy || advancing) return;
+  SESSION.busy = true; renderSessionActions();
+  try { await enterCampaign(await api("/api/state")); }
+  catch (error) { banner(error.message || "Could not continue the live campaign."); }
+  finally { SESSION.busy = false; renderSessionActions(); }
+}
+
+async function loadCampaign() {
+  if (SESSION.busy || advancing || pendingAdvance) return;
+  if (SESSION.live?.player && !window.confirm("Load save.json and replace the live campaign? Unsaved progress and browser drafts will be replaced. History charts restart at the saved date.")) return;
+  SESSION.busy = true; renderSessionActions();
+  try {
+    await enterCampaign(await api("/api/load", {}), true);
+    banner("Saved campaign loaded. History and dispatches restart at the saved date.");
+  } catch (error) { banner(error.message || "Could not load save.json. The live campaign was kept."); }
+  finally { SESSION.busy = false; renderSessionActions(); }
+}
+
+function showCampaigns() {
+  if (advancing) return;
+  closeGlobalMenus();
+  closeGameDrawers(); closeTech(); closeStock();
+  if (dominationIsOpen()) closeDomination();
+  if (LOGI.open) closeLogistics();
+  if (PROD.open) closeProduction();
+  $("#sheet").style.display = "none"; $("#sheetbg").style.display = "none";
+  SESSION.live = S;
+  $("#app").style.display = "none"; $("#setup").style.display = "flex";
+  $("#newCampaignPicker").hidden = true;
+  renderSessionActions(); $("#continueBtn").focus();
+}
+
+$("#continueBtn").onclick = continueCampaign;
+$("#loadBtn").onclick = loadCampaign;
+$("#campaignsBtn").onclick = showCampaigns;
+$("#newCampaignBtn").onclick = () => { $("#newCampaignPicker").hidden = false; $("#nationSearch").focus(); };
 
 /// THE PICKER SHOWS THE BOARD THE START BUTTON WILL DEAL, and it used to show
 /// whatever world this server happened to be holding.
@@ -3580,7 +3731,7 @@ function seedFromBox() {
 
 $("#startBtn").onclick = async () => {
   const b = $("#startBtn");
-  if (!pickedNation || b.disabled) return;
+  if (!pickedNation || b.disabled || SESSION.busy || advancing || pendingAdvance) return;
   const seed = seedFromBox();
   if (seed === null) {
     banner(`"${$("#seed").value.trim()}" is not a seed — a seed is a whole number, and the same one always gives the same history.`);
@@ -3589,6 +3740,8 @@ $("#startBtn").onclick = async () => {
     return;
   }
   const label = b.textContent;
+  if (SESSION.live?.player && !window.confirm("Start a new campaign and replace this server's live world? Your disk save will not be changed.")) return;
+  SESSION.busy = true; renderSessionActions();
   b.disabled = true;
   b.textContent = "STARTING…";
   let st;
@@ -3598,19 +3751,11 @@ $("#startBtn").onclick = async () => {
     banner(e.message || "Could not start a game.");
     b.disabled = false;
     b.textContent = label;
+    SESSION.busy = false; renderSessionActions();
     return;
   }
-  // A new world invalidates the built tech graph. (There is no /api/load
-  // handler in this UI; if one arrives it owes the same lines.)
-  resetProvinceDossierState();
-  tech.data = null; tech.sel = null;
-  tech.mode = "domain"; tech.curDomain = null;
-  tech._stEls = null; tech._stEdges = null;
-  closeTech();
-  $("#setup").style.display = "none";
-  $("#app").style.display = "grid";
   try {
-    await adopt(st, true);
+    await enterCampaign(st, true);
   } catch (e) {
     // The world was made — the failure is downstream of it — but a half-drawn
     // board is worse than the screen the player came from. Put them back.
@@ -3618,17 +3763,29 @@ $("#startBtn").onclick = async () => {
     $("#setup").style.display = "flex";
     b.disabled = false;
     b.textContent = label;
+    SESSION.busy = false; SESSION.live = st; renderSessionActions();
     banner(e.message || "The world started but could not be drawn.");
     return;
   }
   b.disabled = false;
   b.textContent = label;
+  SESSION.busy = false; renderSessionActions();
   banner("Click any nation on the map to open its dashboard — press ? for all keys");
 };
 
 /* ================= time ================= */
 
 const ARCADE_ROOMS = { sheetFocus: null, worldFocus: null, helpFocus: null };
+function closeGlobalMenus() {
+  // Only header/map navigation; project and economy disclosures belong to
+  // their rooms and must keep their own expansion state.
+  document.querySelectorAll("#app .arc-time-menu[open], #app .arc-map-tools[open]").forEach(menu => { menu.open = false; });
+}
+document.addEventListener("focusin", () => {
+  // Every arcade room moves focus inside on entry, including keyboard entry.
+  // Retire native global popovers before they can float above that room.
+  if (arcadeTopRoom()) closeGlobalMenus();
+});
 function arcadeTopRoom() {
   if (keysCardIsOpen()) return $("#keys");
   if ($("#sheet").style.display === "block") return $("#sheet");
@@ -3759,7 +3916,10 @@ $("#drawerScrim").onclick = closeGameDrawers;
 
 /// Take a fresh state from the server; pull the time series with it, since every
 /// chart on the page reads from that and not from the state blob.
-async function adopt(state, withHistory) {
+async function adopt(state, withHistory, allowCampaignChange = false) {
+  if (!allowCampaignChange && S?.session_id && state.session_id && S.session_id !== state.session_id) {
+    throw new Error("The live campaign changed. Open Campaigns and Continue to inspect it before sending more orders.");
+  }
   S = state;
   if (typeof invalidateProgramPreview === "function") invalidateProgramPreview();
   if (typeof invalidateEconomicLedger === "function") invalidateEconomicLedger();
@@ -3771,7 +3931,13 @@ async function adopt(state, withHistory) {
   LOGI.stale = true;        // monthly settlement may have changed; re-ask only while its plate is open
   PROD.stale = true;        // daily project work may have advanced or changed state
   MANU.stale = true;        // monthly lines, resource stocks, orders and deliveries may have moved
-  if (withHistory !== false) HIST = await api("/api/history");
+  let historyError = null;
+  if (withHistory !== false) {
+    try { HIST = await api("/api/history"); }
+    catch (error) { HIST = null; historyError = error; }
+  }
+  // A newer load/command response may have been adopted while history loaded.
+  if (S !== state) return;
   if (!ui.picked.length) ui.picked = defaultPicks();
   render();
   if (LOGI.open) logisticsFetch();
@@ -3780,23 +3946,124 @@ async function adopt(state, withHistory) {
     else productionFetch();
   }
   if (selectedDistrict) loadProvincePopulation(selectedDistrict, true);
+  if (historyError) banner("The campaign updated, but history could not load: " + historyError.message);
 }
 
 let advancing = false;
-async function advance(days) {
-  if (advancing) return;
-  advancing = true;
-  document.querySelectorAll("[data-adv]").forEach((x) => (x.disabled = true));
+let pendingAdvance = null;
+
+function nextAdvanceIdentity() {
+  if (!SESSION.client) {
+    try {
+      const stored = JSON.parse(sessionStorage.getItem("spheres.turn-client") || "null");
+      if (stored?.client && Number.isSafeInteger(stored.sequence)) { SESSION.client = stored.client; SESSION.sequence = stored.sequence; }
+    } catch (_) { /* private browsing can deny storage; the live tab still works */ }
+    if (!SESSION.client) SESSION.client = typeof crypto.randomUUID === "function" ? crypto.randomUUID()
+      : Array.from(crypto.getRandomValues(new Uint32Array(4)), n => n.toString(16)).join("-");
+  }
+  ++SESSION.sequence;
+  try { sessionStorage.setItem("spheres.turn-client", JSON.stringify({client:SESSION.client,sequence:SESSION.sequence})); } catch (_) {}
+  return { client_id: SESSION.client, request_seq: SESSION.sequence };
+}
+
+function persistPendingAdvance() {
   try {
-    const st = await api("/api/advance", { days, commands: queued });
-    queued = [];
+    if (!pendingAdvance) { sessionStorage.removeItem("spheres.pending-turn"); return; }
+    sessionStorage.setItem("spheres.pending-turn", JSON.stringify({payload:pendingAdvance.payload, queued, reviewRequired:!!pendingAdvance.reviewRequired,
+      // Bind only unchanged submitted objects, not a later replacement that
+      // happens to share the same command kind.
+      submitted: queued.map((command,index) => pendingAdvance.sources.some((source,i) => source === command && JSON.stringify(command) === pendingAdvance.snapshots[i]) ? index : -1).filter(i=>i>=0) }));
+  } catch (_) { /* retain the in-memory receipt even if storage is unavailable */ }
+}
+
+function restorePendingAdvance(state, replacing) {
+  if (replacing) { persistPendingAdvance(); return; }
+  let stored;
+  try { stored = JSON.parse(sessionStorage.getItem("spheres.pending-turn") || "null"); } catch (_) { return; }
+  if (!stored?.payload || !Array.isArray(stored.queued) || !Array.isArray(stored.submitted)) return;
+  if (stored.payload.session_id !== state.session_id) {
+    banner("A turn was unconfirmed in a previous campaign/server session. It cannot be retried here. Review the current world before re-entering those orders.");
+    return;
+  }
+  queued = stored.queued;
+  pendingAdvance = { payload: stored.payload, sources: stored.submitted.map(index=>queued[index]).filter(Boolean), restored:true, reviewRequired:!!stored.reviewRequired };
+  // Restoration uses the original serialized commands when deciding which
+  // retained references were submitted; ordering may differ after new edits.
+  pendingAdvance.snapshots = pendingAdvance.sources.map(source=>JSON.stringify(source));
+}
+
+function syncAdvanceControls() {
+  document.querySelectorAll("[data-adv]").forEach(x => { x.disabled = advancing || !!pendingAdvance; });
+  $("#retryAdvanceBtn").disabled = advancing;
+  $("#retryAdvanceBtn").hidden = !!pendingAdvance?.reviewRequired;
+  $("#reviewTurnBtn").hidden = !pendingAdvance?.reviewRequired;
+  $("#pendingTurn").hidden = !pendingAdvance;
+  $("#pendingTurnText").textContent = pendingAdvance
+    ? advancing ? "Confirming this turn… New draft edits will wait for the next turn."
+      : pendingAdvance.reviewRequired ? "The campaign or browser turn sequence changed. Review current state before deciding what to do with the earlier orders. They will not be replayed automatically."
+      : "Turn outcome unconfirmed. Check this same turn before advancing again; your draft is retained."
+    : "";
+  $("#saveBtn").disabled = advancing || !!pendingAdvance;
+}
+
+async function advance(days, retry = false) {
+  if (advancing) return false;
+  if (pendingAdvance && !retry) { banner("Check the pending turn first. No additional time has been requested."); return false; }
+  if (!pendingAdvance) {
+    const sources = queued.slice();
+    pendingAdvance = { payload: { days, commands: JSON.parse(JSON.stringify(sources)), session_id: S?.session_id, ...nextAdvanceIdentity() },
+      sources, snapshots:sources.map(command=>JSON.stringify(command)) };
+  }
+  const request = pendingAdvance;
+  persistPendingAdvance();
+  advancing = true;
+  syncAdvanceControls();
+  let confirmed = false;
+  try {
+    const st = await api("/api/advance", request.payload);
+    confirmed = true;
+    queued = queued.filter(command => !request.sources.some((source,index) => source === command && JSON.stringify(command) === request.snapshots[index]));
+    pendingAdvance = null; persistPendingAdvance(); noteQueued();
     await adopt(st);
     if (st.interrupt) banner(st.interrupt);
+    return true;
+  } catch (error) {
+    // Only an explicit server refusal certifies that this attempt did not
+    // advance. Network/JSON/500 failures may have lost an already committed
+    // response, so they keep the same protected request for reconciliation.
+    if (error.notAdvanced) { pendingAdvance = null; persistPendingAdvance(); }
+    if (error.requiresReview && pendingAdvance) { pendingAdvance.reviewRequired = true; persistPendingAdvance(); }
+    const message = confirmed ? "The turn was recorded, but the display could not refresh. Continue the live campaign. " + error.message
+      : error.message + (error.notAdvanced ? " Your draft is still queued." : error.requiresReview ? " Use Review current state; the submitted orders are retained until you decide." : " Use Check pending turn to confirm it safely; do not start another turn.");
+    CAB.error = message; banner(message);
+    return false;
   } finally {
     advancing = false;
-    document.querySelectorAll("[data-adv]").forEach((x) => (x.disabled = false));
+    syncAdvanceControls();
   }
 }
+$("#retryAdvanceBtn").onclick = async () => { if (!S) await continueCampaign(); if (S && pendingAdvance) advance(pendingAdvance.payload.days, true); };
+async function reviewPendingTurn() {
+  if (!pendingAdvance || advancing) return;
+  if (!S) await continueCampaign();
+  if (!S || !pendingAdvance) return;
+  const request = pendingAdvance;
+  try {
+    const state = await api("/api/state");
+    const changed = state.session_id !== request.payload.session_id;
+    const question = changed ? "This is a different campaign/server session. Continue it and clear the old campaign's drafts without replaying them?"
+      : "Use the current server state without replaying the earlier submitted orders? Their retained draft copies will be cleared; newer edits will stay queued. Review the event log before re-entering an order.";
+    if (!window.confirm(question)) return;
+    if (changed) await enterCampaign(state, true);
+    else {
+      queued = queued.filter(command => !request.sources.some((source,index) => source === command && JSON.stringify(command) === request.snapshots[index]));
+      pendingAdvance = null; persistPendingAdvance(); noteQueued(); await adopt(state);
+    }
+    syncAdvanceControls(); renderSessionActions();
+    banner("Current campaign restored. Earlier submitted orders were not replayed. Review the event log before issuing them again.");
+  } catch (error) { banner("Could not review the current campaign: " + error.message); }
+}
+$("#reviewTurnBtn").onclick = reviewPendingTurn;
 
 document.querySelectorAll("[data-adv]").forEach((b) => {
   b.onclick = () => { const menu = b.closest("details"); if (menu) menu.open = false; advance(+b.dataset.adv); };
@@ -3804,8 +4071,15 @@ document.querySelectorAll("[data-adv]").forEach((b) => {
 
 $("#saveBtn").onclick = doSave;
 async function doSave() {
-  const r = await api("/api/save", {});
-  banner(r.ok ? "Saved to save.json" : "Save failed: " + r.error);
+  if (advancing || pendingAdvance) { banner("Confirm the pending turn before saving the campaign."); return false; }
+  $("#saveBtn").disabled = true;
+  try {
+    const r = await api("/api/save", {});
+    if (!r.ok) throw new Error(r.error || "The server could not write save.json.");
+    banner("Saved to save.json. Load saved campaign restores it from Campaigns.");
+    return true;
+  } catch (error) { banner("Save failed: " + error.message); return false; }
+  finally { $("#saveBtn").disabled = advancing || !!pendingAdvance; }
 }
 
 function banner(text) {
@@ -4068,6 +4342,11 @@ function render() {
 }
 
 function noteQueued() {
+  if (pendingAdvance) persistPendingAdvance();
+  if (pendingAdvance) {
+    $("#queuedNote").textContent = "Turn awaiting confirmation · newer edits retained";
+    return;
+  }
   $("#queuedNote").textContent = queued.length
     ? queued.length + (queued.length > 1 ? " orders take" : " order takes") + " effect next day  ·  R to revert"
     : "";
@@ -4511,7 +4790,7 @@ function paintCabinetDraft(m) {
     <p>${hasBudget || due ? `Budget estimate: ${costLabel} political capital · you have ${m.political_capital.toFixed(1)}.` : "Adjust a ministry or policy to draft your next move."}
     ${hasPolicy ? "Policy orders may cost additional capital." : ""} ${CAB.error ? `Attention: ${escText(CAB.error)}` : "Enacting also advances the game one day."}</p></div>
     <div class="cab-actions"><button id="revertBtn" ${!queued.length || CAB.busy ? "disabled" : ""}>Discard draft</button>
-    <button class="cab-enact" id="cabinetEnact" ${CAB.busy || advancing ? "disabled" : ""}>${CAB.busy ? "Enacting…" : hasBudget || due || queued.length ? "Enact & advance 1 day →" : "Advance 1 day →"}</button></div>`;
+    <button class="cab-enact" id="cabinetEnact" ${CAB.busy || advancing || pendingAdvance ? "disabled" : ""}>${CAB.busy ? "Enacting…" : hasBudget || due || queued.length ? "Enact & advance 1 day →" : "Advance 1 day →"}</button></div>`;
   $("#revertBtn").onclick = () => { CAB.error = ""; revertOrders(); };
   $("#cabinetEnact").onclick = cabinetEnact;
   const summary = $("#cabinetBudgetSummary");
@@ -4521,7 +4800,7 @@ function paintCabinetDraft(m) {
 }
 
 async function cabinetEnact() {
-  if (CAB.busy || advancing) return;
+  if (CAB.busy || advancing || pendingAdvance) return;
   const m = me();
   if (!m) return;
   // Enact really opens the books even if the player keeps every inherited
@@ -4534,7 +4813,8 @@ async function cabinetEnact() {
   const orderDate = S.date;
   paintCabinetDraft(m);
   try {
-    await advance(1);
+    const advanced = await advance(1);
+    if (!advanced) { $("#cabinetLive").textContent = CAB.error; return; }
     // The advance endpoint reports refusals in the sim's dated event log;
     // /api/command's `errors` field does not exist on this route.
     const refusals = (S.log || []).filter(e => e.date === orderDate && e.text.startsWith("[rejected]"));
@@ -7069,6 +7349,7 @@ function paintPolicy(m) {
 function revertOrders() {
   if (!queued.length) return;
   queued = [];
+  if (pendingAdvance) banner("Draft cleared. The already-submitted turn cannot be cancelled; confirm its outcome with Check pending turn.");
   noteQueued();
   const m = me();
   if (m) renderLeft(m);
@@ -15259,7 +15540,7 @@ $("#dominationClose").onclick = closeDomination;
 
 $("#stockBtn").onclick = toggleStockScreen;
 
-buildSetup();
+bootSession();
 </script>
 </body>
 </html>

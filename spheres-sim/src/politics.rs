@@ -211,6 +211,7 @@ pub fn tick(w: &mut WorldState) {
             let n = w.nation_mut(id);
             n.stability = 45.0;
             n.gdp *= 0.93;
+            crate::economy::refresh_debt_ratio(n);
             n.authoritarianism = (n.authoritarianism + auth_shift).clamp(0.05, 0.95);
             w.headline(format!("Revolution in {} — the old regime falls.", id.name()));
         }

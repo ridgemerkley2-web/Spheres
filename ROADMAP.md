@@ -1,6 +1,12 @@
 # SPHERES Roadmap
 
-## Local review — not yet committed or pushed (2026-09-03)
+## Ministry/province foundation and audit repair release (2026-09-03)
+
+Ridge authorized implementation repairs and publication after verification.
+The eleven reproducible audit failures are repaired, with regression coverage
+and the two latest Claude commits (`7ccb706`, `67e55e0`) integrated first.
+See `AUDIT_FIXES_2026-09-03.md` for fixes, tests and the three pre-existing
+calibration failures that remain explicitly open. No calibration pin was changed.
 
 Ministry programs: fifty visible department budgets under ten ministries,
 atomic annual-plan commands, shared daily project funding, realized-spend fiscal

@@ -9,7 +9,7 @@
 
 use serde::{Deserialize, Serialize};
 
-use crate::arsenal::{self, Order, DECK};
+use crate::arsenal::{self, DECK};
 use crate::production::{self, Priority};
 use crate::resources::{self, Commodity, ALL};
 use crate::world::{NationId, WorldState};

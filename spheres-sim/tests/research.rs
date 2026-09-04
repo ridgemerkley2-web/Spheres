@@ -411,17 +411,40 @@ fn an_unnormalisable_allocation_is_refused() {
     let mut w = world_1990(GameRules::default());
     w.nation_mut(ME).political_capital = 200.0;
 
-    let cases: [[f64; tech::DOMAIN_COUNT]; 3] = [
+    let cases: [[f64; tech::DOMAIN_COUNT]; 4] = [
         [f64::NAN, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
         [-1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
         [0.0; tech::DOMAIN_COUNT],
+        [1e308; tech::DOMAIN_COUNT],
     ];
     for (k, c) in cases.iter().enumerate() {
         let out =
             apply_command(&mut w, &Command::SetResearchAllocation { nation: ME, weights: Some(*c) });
         assert!(out.is_err(), "case {k} was accepted: {c:?}");
         assert!(w.nation(ME).tech.allocation.is_none(), "case {k} left an allocation standing");
+        assert_eq!(w.nation(ME).political_capital, 200.0, "case {k} spent capital");
     }
+}
+
+#[test]
+fn overflowing_saved_research_shares_fall_back_to_real_spending() {
+    let mut w = world_1990(GameRules::default());
+    w.nation_mut(ME).tech.allocation = Some([1e308; tech::DOMAIN_COUNT]);
+    let mut restored = spheres_sim::load(&spheres_sim::save(&w)).unwrap();
+    // Shape migration occurs on the first research settlement, not JSON decode.
+    tech::tick(&mut restored);
+    assert!(restored.nation(ME).tech.allocation.is_none());
+    let shares = tech::domain_weights_of(&restored, restored.nation(ME), 0.5);
+    assert!(shares.iter().all(|v| v.is_finite() && *v >= 0.0));
+    assert!((shares.iter().sum::<f64>() - 1.0).abs() < 1e-12);
+}
+
+#[test]
+fn overflowing_unsanitized_research_shares_cannot_zero_the_budget() {
+    let mut w = world_1990(GameRules::default());
+    w.nation_mut(ME).tech.allocation = Some([1e308; tech::DOMAIN_COUNT]);
+    let shares = tech::domain_weights_of(&w, w.nation(ME), 0.5);
+    assert!((shares.iter().sum::<f64>() - 1.0).abs() < 1e-12);
 }
 
 /// Writing the eight shares down costs what naming one domain costs. The

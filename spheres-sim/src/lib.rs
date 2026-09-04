@@ -536,6 +536,7 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         Command::ProposeDeal { from, to, give, take, months } => {
             resources::deal_refusal(w, *from, *to, give, take, *months)
         }
+        Command::AcceptDeal { nation, offer } => resources::offer_refusal(w, *nation, *offer),
         Command::SetAim { conflict, nation, district, commodity } => {
             resources::aim_refusal(w, *conflict, *nation, district, *commodity)
         }
@@ -788,9 +789,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
                             nation.name()
                         ));
                     }
-                    if a.iter().sum::<f64>() <= 0.0 {
+                    if tech::allocation_total(a).is_none() {
                         return Err(format!(
-                            "{} cannot fund none of the eight research domains.",
+                            "{}'s research shares must have a finite, positive total.",
                             nation.name()
                         ));
                     }
@@ -1200,6 +1201,23 @@ pub fn load(s: &str) -> Result<WorldState, String> {
     // loaded world that is only ever read — the web server rendering a turn —
     // gets the same lookups as one that has ticked.
     w.reindex();
+    // Older open-book saves may carry a ratio quoted before a GDP/land change
+    // or against the former $100m floor. Stocks are authoritative on that path.
+    // First enrollment deliberately seats debt=ratio*GDP without changing the
+    // inherited ratio; undoing that product may differ by one floating-point
+    // rounding step. That is not a stale account: preserving it keeps a save
+    // taken immediately after enrollment on the exact same next-day timeline.
+    for n in &mut w.nations {
+        if n.on_the_books() && n.gdp.is_finite() && n.gdp > 0.0 {
+            let derived = n.debt_bn.unwrap() / n.gdp;
+            let rounding = 8.0 * f64::EPSILON * derived.abs().max(n.debt_gdp.abs()).max(1.0);
+            if derived.is_finite()
+                && (!n.debt_gdp.is_finite() || (derived - n.debt_gdp).abs() > rounding)
+            {
+                economy::refresh_debt_ratio(n);
+            }
+        }
+    }
     Ok(w)
 }
 

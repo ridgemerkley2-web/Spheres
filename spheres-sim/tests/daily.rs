@@ -82,6 +82,48 @@ fn daily_mode_survives_a_year_across_several_seeds() {
     }
 }
 
+/// Browser-like systems together, including the newly enrolled ministry books
+/// and province accounts. These are invariants, not a sampled calibration bar.
+#[test]
+fn daily_ministries_and_province_accounts_close_and_resume_together() {
+    for (seed, nation) in [(7, NationId::USA), (1990, NationId::Tonga)] {
+        let mut w = daily_world(seed);
+        w.player = Some(nation);
+        spheres_sim::province_economy::enable(&mut w);
+        let allocations = w.nation(nation).budget_for(w.year).allocations;
+        let fiscal_year = w.year;
+        spheres_sim::apply_command(&mut w, &Command::SetProgramBudget {
+            nation, fiscal_year, allocations,
+            departments: spheres_sim::programs::default_departments(),
+        }).unwrap();
+        let mut resumed = load(&save(&w)).unwrap();
+        for day in 0..90 {
+            tick_day(&mut w, &[]);
+            tick_day(&mut resumed, &[]);
+            if day == 44 { resumed = load(&save(&resumed)).unwrap(); }
+            assert!(save(&w) == save(&resumed), "replay drift, seed {seed} day {day}");
+            for n in w.nations.iter().filter(|n| n.alive) {
+                assert!(n.gdp.is_finite() && n.gdp > 0.0, "{:?} GDP", n.id);
+                assert!(n.population.is_finite() && n.population > 0.0, "{:?} population", n.id);
+                if n.on_the_books() {
+                    assert_eq!(n.debt_gdp, n.debt_bn.unwrap() / n.gdp);
+                    assert!(n.treasury_bn.unwrap().is_finite() && n.treasury_bn.unwrap() >= 0.0);
+                }
+            }
+            assert!(w.districts.values().all(|id| w.nation(*id).alive), "dead seat holds land");
+        }
+        for n in w.nations.iter().filter(|n| n.alive) {
+            let view = spheres_sim::province_economy::snapshot(&w, n.id).unwrap();
+            let sum = view.provinces.iter().map(|p| p.total_gdp_bn).sum::<f64>()
+                + view.unallocated_gdp_bn;
+            assert!((sum - n.gdp).abs() <= n.gdp.max(1.0) * 1e-10,
+                "{:?} province output does not reconcile", n.id);
+            assert!((view.sectors.iter().map(|s| s.gdp_bn).sum::<f64>() - n.gdp).abs()
+                <= n.gdp.max(1.0) * 1e-10, "{:?} sector output does not reconcile", n.id);
+        }
+    }
+}
+
 /// The AI buy pass asks ONCE A MONTH in daily play, as its refusal memory,
 /// its `PATIENCE` and its "a fourth is not asked this month" are all written
 /// in months. Found 2026-09-03 by the browser check of this push: run daily,

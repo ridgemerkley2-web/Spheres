@@ -84,6 +84,7 @@ pub const DECK: &[Stratagem] = &[
             n.system = EconomySystem::Market;
             n.inflation *= 0.35;
             n.gdp *= 0.88;
+            crate::economy::refresh_debt_ratio(n);
             n.stability = (n.stability - 14.0).max(0.0);
             n.priv_invest_gdp = (n.priv_invest_gdp + 0.03).min(0.40);
             let name = id.name();

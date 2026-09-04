@@ -836,16 +836,15 @@ impl TechState {
             self.priority = None;
         }
         // An allocation that cannot be normalised is not an allocation. A save
-        // carrying a NaN, a negative share or eight zeroes would otherwise
-        // divide by zero or by NaN in `domain_weights` and poison every domain
+        // carrying a NaN, a negative share, zeroes or an overflowing total would
+        // otherwise divide by zero, NaN or infinity in `domain_weights` and poison every domain
         // weight on the board, so it is dropped here and the nation falls back
-        // to the weights read off its condition. `apply` refuses the same three
+        // to the weights read off its condition. `apply` refuses the same
         // shapes at the gate; this catches a hand-edited or truncated save,
         // which is the only other way one can arrive.
         if self
             .allocation
-            .is_some_and(|a| !a.iter().all(|x| x.is_finite() && *x >= 0.0)
-                || a.iter().sum::<f64>() <= 0.0)
+            .is_some_and(|a| allocation_total(&a).is_none())
         {
             self.allocation = None;
         }
@@ -1265,6 +1264,16 @@ const BUILD_KNEE: f64 = 0.008;
 
 pub const PRIORITY_MULTIPLIER: f64 = 3.0;
 
+/// A valid share vector must have a finite, positive total as well as finite
+/// components. Finite inputs alone can overflow during summation, turning every
+/// normalized share into zero. Commands, save migration and spending share this
+/// check so an unusable budget cannot be accepted or silently retained.
+pub(crate) fn allocation_total(a: &[f64; DOMAIN_COUNT]) -> Option<f64> {
+    let sum: f64 = a.iter().sum();
+    (sum.is_finite() && sum > 0.0 && a.iter().all(|x| x.is_finite() && *x >= 0.0))
+        .then_some(sum)
+}
+
 fn domain_weights(w: &WorldState, n: &Nation, dev: f64) -> [f64; DOMAIN_COUNT] {
     // WHAT THE GOVERNMENT ACTUALLY ORDERED, if it has ordered anything.
     //
@@ -1281,8 +1290,7 @@ fn domain_weights(w: &WorldState, n: &Nation, dev: f64) -> [f64; DOMAIN_COUNT] {
     // division by their sum has one definition and the screen cannot print a
     // share the spend loop does not charge.
     if let Some(a) = n.tech.allocation {
-        let sum: f64 = a.iter().sum();
-        if sum > 0.0 && a.iter().all(|x| x.is_finite() && *x >= 0.0) {
+        if let Some(sum) = allocation_total(&a) {
             let mut wt = a;
             for x in wt.iter_mut() {
                 *x /= sum;

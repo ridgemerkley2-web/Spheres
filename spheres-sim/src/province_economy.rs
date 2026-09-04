@@ -430,11 +430,9 @@ pub fn finish_day(w: &mut WorldState) {
                 // transfer. Match the existing smoothed annual-growth display.
                 n.growth_last += (n.gdp - before) / growth_basis / fraction * blend;
             }
-            // Only a new output level needs a new denominator; no cash moves.
-            // Do not impose the treasury helper's $100m floor on microstates.
-            if let Some(debt) = n.debt_bn {
-                n.debt_gdp = debt / n.gdp.max(1e-9);
-            }
+            // Same stock/output quotient as fiscal and territorial settlement;
+            // only a new output level needs refreshing, and no cash moves.
+            crate::economy::refresh_debt_ratio(n);
         }
     }
     let accounts = w.province_economy.as_mut().unwrap();
@@ -818,6 +816,36 @@ mod tests {
             "a blocked/stopped day produces nothing"
         );
     }
+
+    #[test]
+    fn finance_province_output_refreshes_debt_ratio_without_touching_cash() {
+        let mut w = prepared();
+        let id = NationId::Tonga;
+        let n = w.nation_mut(id);
+        n.gdp = 0.05;
+        n.treasury_bn = Some(1.0);
+        n.debt_bn = Some(0.04);
+        n.debt_gdp = 0.8;
+        enable(&mut w);
+        let d = district(&w, id);
+        for annual_output in [0.01, 0.01, 0.0] {
+            begin_day(&mut w);
+            if annual_output > 0.0 {
+                receipt(&mut w, &d, "measured_site", annual_output);
+            }
+            finish_day(&mut w);
+            let n = w.nation(id);
+            assert!((n.gdp - (0.05 + annual_output)).abs() < 1e-15);
+            assert_eq!(n.debt_gdp, n.debt_bn.unwrap() / n.gdp);
+            assert_eq!(n.debt_bn, Some(0.04));
+            assert_eq!(n.treasury_bn, Some(1.0));
+            let saved = crate::save(&w);
+            finish_day(&mut w);
+            assert_eq!(crate::save(&w), saved, "closing a day twice is inert");
+            w = crate::load(&saved).unwrap();
+            clock::advance_date(&mut w);
+        }
+    }
     #[test]
     fn consent_reattributes_project_output_without_transferring_gdp_twice() {
         let mut w = prepared();
@@ -989,11 +1017,16 @@ mod tests {
         reconcile(&w, NationId::USA);
         clock::advance_date(&mut w);
         w.nation_mut(NationId::USA).gdp = 0.02;
+        // Dollar debt and treasury are seated together; a half-open fixture
+        // would exercise the legacy ratio arm, not this open-book invariant.
+        w.nation_mut(NationId::USA).treasury_bn = Some(0.0);
         w.nation_mut(NationId::USA).debt_bn = Some(0.01);
         begin_day(&mut w);
         receipt(&mut w, &d, "tiny", 0.01);
         finish_day(&mut w);
         near(w.nation(NationId::USA).debt_gdp, 1.0 / 3.0);
+        assert_eq!(w.nation(NationId::USA).debt_bn, Some(0.01));
+        assert_eq!(w.nation(NationId::USA).treasury_bn, Some(0.0));
     }
     #[test]
     fn output_heavy_cession_to_small_economy_cannot_mint_gdp_on_transfer_or_restart() {

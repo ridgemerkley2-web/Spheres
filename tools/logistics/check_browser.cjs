@@ -20,6 +20,11 @@ const { chromium } = require('playwright');
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(url.href);
+    await page.waitForFunction(() => !!SESSION.live);
+    if (await page.locator('#newCampaignPicker').isHidden()) {
+      await page.locator('#newCampaignBtn').click();
+      page.once('dialog', dialog => dialog.accept());
+    }
     await page.locator('#nationPick [aria-label^="France;"]').click();
     await page.locator('#startBtn').click();
     await page.locator('#logisticsDockBtn').waitFor({ state: 'visible' });
@@ -52,10 +57,16 @@ const { chromium } = require('playwright');
     if (screenshotDir) await page.screenshot({path:path.join(screenshotDir,'daily-manufacturing.png')});
     await page.locator('#productionClose').click();
     for (let month = 0; month < 2; month++) {
+      if (await page.locator('.arc-time-menu').getAttribute('open') === null) {
+        await page.locator('.arc-time-menu > summary').click();
+      }
       const advanced = page.waitForResponse(response => response.url().endsWith('/api/advance'));
       await page.locator('[data-adv="30"]').click();
       assert((await advanced).ok());
       await page.waitForFunction(() => !document.querySelector('[data-adv="30"]').disabled);
+    }
+    if (await page.locator('.arc-time-menu').getAttribute('open') !== null) {
+      await page.locator('.arc-time-menu > summary').click();
     }
     await page.locator('#logisticsDockBtn').click();
     await page.locator('[data-logi-policy="land_only"]').waitFor();

@@ -971,6 +971,15 @@ fn resolve_conflicts(w: &mut WorldState) {
     for (c, e) in ended {
         let prefix = format!("war:{}:", c.id);
         w.daily.counters.retain(|key, _| !key.starts_with(&prefix));
+        // Endings were computed against the same pre-settlement board. An
+        // earlier annexation can have removed either party in this local queue,
+        // even though conquer already pruned w.conflicts. Stale terms lapse;
+        // they cannot award land/population to a dead seat or collect twice.
+        if let Ending::Conquest { winner, loser } | Ending::Settled { winner, loser } = &e {
+            if !settlement_parties_live(w, *winner, *loser) {
+                continue;
+            }
+        }
         match e {
             Ending::Conquest { winner, loser } => {
                 conquer(w, winner, loser);
@@ -1145,6 +1154,13 @@ pub(crate) fn settlement_held(
     held
 }
 
+/// Queued terms cannot outlive either party or award a nation its own assets.
+fn settlement_parties_live(w: &WorldState, winner: NationId, loser: NationId) -> bool {
+    winner != loser
+        && w.nation_opt(winner).is_some_and(|n| n.alive)
+        && w.nation_opt(loser).is_some_and(|n| n.alive)
+}
+
 /// Terms short of conquest: reparations always, territory only from a state that
 /// cannot answer with annihilation. `held` is the ground the winner's front
 /// actually reached — those districts cede first, and an empty set reproduces
@@ -1155,6 +1171,9 @@ fn negotiated_peace(
     loser: NationId,
     held: &std::collections::BTreeSet<String>,
 ) {
+    if !settlement_parties_live(w, winner, loser) {
+        return;
+    }
     let (lgdp, lpop, loil, lnuclear) = {
         let l = w.nation(loser);
         (l.gdp, l.population, l.oil_mbd, l.nuclear)
@@ -1163,6 +1182,7 @@ fn negotiated_peace(
     {
         let l = w.nation_mut(loser);
         l.gdp -= lgdp * (0.03 + cede * 0.5);
+        crate::economy::refresh_debt_ratio(l);
         l.population -= lpop * cede;
         l.oil_mbd -= loil * cede;
         l.stability = (l.stability - 10.0).max(5.0);
@@ -1171,6 +1191,7 @@ fn negotiated_peace(
     {
         let n = w.nation_mut(winner);
         n.gdp += lgdp * (0.02 + cede * 0.4);
+        crate::economy::refresh_debt_ratio(n);
         n.population += lpop * cede;
         n.oil_mbd += loil * cede;
         n.stability = (n.stability + 4.0).min(100.0);
@@ -1199,6 +1220,9 @@ fn negotiated_peace(
 }
 
 fn conquer(w: &mut WorldState, winner: NationId, loser: NationId) {
+    if !settlement_parties_live(w, winner, loser) {
+        return;
+    }
     let (lgdp, lpop, loil) = {
         let l = w.nation(loser);
         (l.gdp, l.population, l.oil_mbd)
@@ -1219,6 +1243,7 @@ fn conquer(w: &mut WorldState, winner: NationId, loser: NationId) {
         }
         let n = w.nation_mut(winner);
         n.gdp += lgdp * 0.75; // war-damaged
+        crate::economy::refresh_debt_ratio(n);
         n.population += lpop;
         n.oil_mbd += loil * 0.85;
         n.stability = (n.stability + 6.0).min(100.0);
@@ -1228,12 +1253,18 @@ fn conquer(w: &mut WorldState, winner: NationId, loser: NationId) {
         // with its borders intact.
         crate::districts::annex_all(w, winner, loser);
         w.headline(format!("{} has annexed {}.", winner.name(), loser.name()));
+        // Conflict ids are reused after old rows disappear. Retire their daily
+        // clocks with the cancelled rows, or a later quarrel inherits their age.
+        let cancelled: Vec<_> = w.conflicts.iter().filter(|c| c.involves(loser))
+            .map(|c| format!("war:{}:", c.id)).collect();
+        w.daily.counters.retain(|key, _| !cancelled.iter().any(|prefix| key.starts_with(prefix)));
         w.conflicts.retain(|c| !c.involves(loser));
     } else {
         // Subjugation: reparations, ceded industry, a broken military, a shaken regime
         {
             let l = w.nation_mut(loser);
             l.gdp *= 0.85;
+            crate::economy::refresh_debt_ratio(l);
             l.mil_strength *= 0.4;
             l.stability = (l.stability - 20.0).max(5.0);
             l.war_exhaustion = 0.6;
@@ -1241,6 +1272,7 @@ fn conquer(w: &mut WorldState, winner: NationId, loser: NationId) {
         {
             let n = w.nation_mut(winner);
             n.gdp += lgdp * 0.05; // reparations
+            crate::economy::refresh_debt_ratio(n);
             n.stability = (n.stability + 8.0).min(100.0);
         }
         w.set_relation(winner, loser, -80.0);
@@ -1455,6 +1487,112 @@ pub fn join_side(c: &mut Conflict, id: NationId, side_a: bool, rung: u8, objecti
 mod domination_conquest_tests {
     use super::*;
     use crate::init::world_1990;
+
+    fn conquest_ready(w: &WorldState, id: u32, attacker: NationId, defender: NationId) -> Conflict {
+        let mut defence = Belligerent::new(defender, INVASION_RUNG, Objective::Hold);
+        defence.resolve = 0.0;
+        let mut c = Conflict {
+            id, theatre: theatre_between(w, attacker, defender),
+            side_a: vec![attacker], side_b: vec![defender],
+            posture: vec![Belligerent::new(attacker, INVASION_RUNG, Objective::Seize), defence],
+            control: 1.0, months: 24, quiet_months: 0, frozen_since: None,
+            start_year: 1990, start_month: 1, origin_attacker: attacker,
+            invasion_declared: true, front: Default::default(), pockets: vec![], aim: None,
+        };
+        for district in crate::front::contested_set(w, &c).k.keys() {
+            c.front.insert(district.clone(), 1.0);
+        }
+        c
+    }
+
+    #[test]
+    fn an_annexed_winner_cannot_collect_another_queued_conquest() {
+        for daily_simulation in [false, true] {
+            let mut w = world_1990(GameRules { daily_simulation, ..GameRules::default() });
+            w.nation_mut(NationId::Kuwait).separatism = 0.0;
+            w.nation_mut(NationId::Qatar).separatism = 0.0;
+            w.conflicts = vec![
+                conquest_ready(&w, 1, NationId::Iraq, NationId::Kuwait),
+                conquest_ready(&w, 2, NationId::Kuwait, NationId::Qatar),
+            ];
+            // The first ending removes the winner of the second from the board.
+            resolve_conflicts(&mut w);
+            assert!(!w.nation(NationId::Kuwait).alive);
+            assert_eq!(w.nation(NationId::Kuwait).gdp, 0.0);
+            assert!(!w.districts.values().any(|id| *id == NationId::Kuwait));
+            assert!(w.nation(NationId::Qatar).alive);
+            assert!(!w.has_flag(&crate::dyads::settled_flag(NationId::Kuwait, NationId::Qatar)));
+            assert_eq!(w.headlines.iter().filter(|h| h.contains("has annexed")).count(), 1);
+        }
+    }
+
+    #[test]
+    fn a_dead_loser_cannot_pay_two_queued_conquests() {
+        for daily_simulation in [false, true] {
+            let mut w = world_1990(GameRules { daily_simulation, ..GameRules::default() });
+            w.nation_mut(NationId::Kuwait).separatism = 0.0;
+            let pop_before = w.nation(NationId::Qatar).population;
+            w.conflicts = vec![
+                conquest_ready(&w, 1, NationId::Iraq, NationId::Kuwait),
+                conquest_ready(&w, 2, NationId::Qatar, NationId::Kuwait),
+            ];
+            resolve_conflicts(&mut w);
+            assert!(!w.nation(NationId::Kuwait).alive);
+            assert_eq!(w.nation(NationId::Qatar).population, pop_before);
+            assert_eq!(w.headlines.iter().filter(|h| h.contains("has annexed")).count(), 1);
+        }
+    }
+
+    #[test]
+    fn settlement_helpers_ignore_dead_or_identical_parties() {
+        let mut w = world_1990(GameRules::default());
+        w.nation_mut(NationId::Kuwait).alive = false;
+        for (winner, loser) in [(NationId::Kuwait, NationId::Qatar),
+            (NationId::Qatar, NationId::Kuwait), (NationId::Qatar, NationId::Qatar)] {
+            let before = crate::save(&w);
+            conquer(&mut w, winner, loser);
+            assert!(crate::save(&w) == before, "invalid conquest changed the world");
+            negotiated_peace(&mut w, winner, loser, &Default::default());
+            assert!(crate::save(&w) == before, "invalid settlement changed the world");
+        }
+    }
+
+    #[test]
+    fn war_terms_reprice_surviving_open_books_without_a_second_cash_bill() {
+        for conquest in [false, true] {
+            let mut w = world_1990(GameRules::default());
+            let parties = [NationId::USA, NationId::Canada];
+            for id in parties {
+                let n = w.nation_mut(id);
+                n.treasury_bn = Some(1.0);
+                n.debt_bn = Some(n.gdp * n.debt_gdp);
+            }
+            let stocks = parties.map(|id| (w.nation(id).treasury_bn, w.nation(id).debt_bn));
+            if conquest { conquer(&mut w, parties[0], parties[1]); }
+            else { negotiated_peace(&mut w, parties[0], parties[1], &Default::default()); }
+            for (id, old) in parties.into_iter().zip(stocks) {
+                let n = w.nation(id);
+                assert!(n.alive);
+                assert_eq!((n.treasury_bn, n.debt_bn), old);
+                assert_eq!(n.debt_gdp, n.debt_bn.unwrap() / n.gdp);
+            }
+        }
+    }
+
+    #[test]
+    fn annexation_retires_daily_clocks_of_cancelled_conflicts() {
+        let mut w = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
+        w.nation_mut(NationId::Kuwait).separatism = 0.0;
+        w.conflicts = vec![conquest_ready(&w, 3, NationId::Kuwait, NationId::Qatar)];
+        w.daily.counters.insert("war:3:age".into(), 24.8);
+        w.daily.counters.insert("war:3:rung:Kuwait".into(), 4.2);
+        w.daily.counters.insert("war:30:age".into(), 5.0);
+        conquer(&mut w, NationId::Iraq, NationId::Kuwait);
+        assert!(w.conflicts.is_empty());
+        assert!(!w.daily.counters.keys().any(|key| key.starts_with("war:3:")),
+            "a reused conflict id must not inherit a cancelled war's fractional age");
+        assert_eq!(w.daily.counters.get("war:30:age"), Some(&5.0));
+    }
 
     #[test]
     fn a_large_capitulation_writes_the_formal_subject_relation() {

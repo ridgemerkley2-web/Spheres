@@ -123,6 +123,17 @@ struct Game {
     world: WorldState,
     log: Vec<Event>,
     history: Vec<Snapshot>,
+    session_id: String,
+    // One receipt per browser client, not one full snapshot per turn. Older
+    // sequence numbers are refused rather than accidentally replayed.
+    advance_receipts: std::collections::BTreeMap<String, (u64, serde_json::Value, Option<String>)>,
+}
+
+fn fresh_session_id() -> String {
+    static NEXT: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+    format!("{}-{}-{}", std::process::id(),
+        std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap_or_default().as_nanos(),
+        NEXT.fetch_add(1, std::sync::atomic::Ordering::Relaxed))
 }
 
 impl Game {
@@ -134,7 +145,7 @@ impl Game {
         // board reads the ledger on the setup screen's first month. Never
         // serialized, never hashed; the tick would build the same bytes.
         resources::warm(&mut world);
-        let mut g = Game { world, log: vec![], history: vec![] };
+        let mut g = Game { world, log: vec![], history: vec![], session_id: fresh_session_id(), advance_receipts: Default::default() };
         g.snapshot();
         g
     }
@@ -3955,6 +3966,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "year": w.year,
         "month": w.month,
         "day": w.day,
+        "session_id": g.session_id,
         "simulation_cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
         "simulation_transition": w.daily.activate_after_month.map(|closing_month| {
             let next = closing_month + 1;
@@ -5239,7 +5251,7 @@ fn play_rules(g: &mut Game) {
 /// serde reads missing fields as false, but continuing in the browser migrates
 /// them to the same rule set as a new game.
 fn loaded_play_game(w: WorldState) -> Game {
-    let mut g = Game { world: w, log: vec![], history: vec![] };
+    let mut g = Game { world: w, log: vec![], history: vec![], session_id: fresh_session_id(), advance_receipts: Default::default() };
     play_rules(&mut g);
     resources::warm(&mut g.world);
     g.snapshot();
@@ -5298,7 +5310,7 @@ fn apply_orders(w: &mut WorldState, me: NationId, list: &[serde_json::Value]) ->
 }
 
 fn new_game(g: &mut Game, seed: u64, player: Option<NationId>) -> (serde_json::Value, bool) {
-    let fresh = Game::new(seed, player);
+    let mut fresh = Game::new(seed, player);
     if let Some(id) = player {
         // Asked of the world that was just built rather than of `start_1990`,
         // so this stays true if the roster ever seats a nation it does not
@@ -5316,8 +5328,73 @@ fn new_game(g: &mut Game, seed: u64, player: Option<NationId>) -> (serde_json::V
             );
         }
     }
+    // The first response and history point must use the rules the browser will
+    // actually advance, including daily units and the province ledger.
+    play_rules(&mut fresh);
+    resources::warm(&mut fresh.world);
+    fresh.history.clear();
+    fresh.snapshot();
     *g = fresh;
     (state_json(g, None), true)
+}
+
+/// Parse the complete batch before any simulation mutation. Semantic refusals
+/// still follow tick_day's documented per-order event log; malformed JSON
+/// commands must never disappear while the calendar moves on.
+fn advance_commands(w: &WorldState, payload: &serde_json::Value) -> Result<Vec<Command>, String> {
+    let list = match payload.get("commands") {
+        None => return Ok(vec![]),
+        Some(value) => value.as_array().ok_or("Commands must be an array. Nothing was enacted and the calendar has not advanced.")?,
+    };
+    if list.is_empty() { return Ok(vec![]); }
+    let me = w.player.ok_or("Choose a nation before submitting orders.")?;
+    list.iter().enumerate().map(|(i, value)| parse_command(w, value, me).ok_or_else(|| {
+        let kind = value.get("kind").and_then(|v| v.as_str()).unwrap_or("unknown");
+        format!("Order {} ({kind}) is invalid. Nothing was enacted and the calendar has not advanced.", i + 1)
+    })).collect()
+}
+
+/// Shared by the HTTP route and regressions, including response-loss retries.
+#[derive(Debug)]
+struct AdvanceError { message: String, requires_review: bool }
+impl From<String> for AdvanceError {
+    fn from(message: String) -> Self { Self { message, requires_review: false } }
+}
+impl From<&str> for AdvanceError {
+    fn from(message: &str) -> Self { message.to_string().into() }
+}
+fn advance_request(g: &mut Game, payload: &serde_json::Value) -> Result<serde_json::Value, AdvanceError> {
+    if let Some(session) = payload.get("session_id") {
+        if session.as_str() != Some(g.session_id.as_str()) {
+            return Err(AdvanceError { message: "This campaign changed or the server restarted. Review the current campaign; the earlier turn's outcome cannot be inferred here.".into(), requires_review: true });
+        }
+    }
+    let token = match (payload.get("client_id"), payload.get("request_seq")) {
+        (None, None) => None, // older clients retain their existing API
+        (Some(client), Some(seq)) => {
+            let client = client.as_str().filter(|s| !s.is_empty() && s.len() <= 96).ok_or("Invalid browser request identity.")?;
+            let seq = seq.as_u64().filter(|n| *n > 0).ok_or("Invalid browser request sequence.")?;
+            if payload.get("session_id").and_then(|v|v.as_str()).is_none() { return Err("A protected turn requires its campaign identity.".into()); }
+            if let Some((last, previous, why)) = g.advance_receipts.get(client) {
+                if seq == *last {
+                    if previous != payload { return Err("That turn identity already belongs to different orders. Nothing was advanced.".into()); }
+                    return Ok(state_json(g, why.clone()));
+                }
+                if seq < *last { return Err(AdvanceError { message: "A newer turn from this browser identity was already processed. Review the current state; these earlier orders will not be automatically replayed.".into(), requires_review: true }); }
+            } else if g.advance_receipts.len() >= 256 {
+                return Err("This campaign has too many browser sessions. Continue in an existing tab.".into());
+            }
+            Some((client.to_owned(), seq))
+        }
+        _ => return Err("A protected turn needs both a browser identity and sequence.".into()),
+    };
+    let commands = advance_commands(&g.world, payload)?;
+    let days = asked_days(payload)?;
+    let months = if days.is_none() { Some(asked_months(payload)?) } else { None };
+    let (_, why) = if let Some(days) = days { g.advance_days(days as usize, commands) }
+        else { g.advance_months(months.unwrap() as usize, commands) };
+    if let Some((client, seq)) = token { g.advance_receipts.insert(client, (seq, payload.clone(), why.clone())); }
+    Ok(state_json(g, why))
 }
 
 /// The port to listen on. `--port N` on the command line wins; failing that
@@ -5386,6 +5463,16 @@ fn main() {
         // HEAD requests on its own, so `curl -I` sees the same status and
         // headers as a GET instead of falling through to the 404 arm.
         let route_method = if method == Method::Head { Method::Get } else { method.clone() };
+        // A delayed old tab must not issue orders/save over a replacement
+        // campaign. New/load are explicit replacement actions instead.
+        if method == Method::Post && matches!(url_path.as_str(), "/api/command" | "/api/save") {
+            if let Some(session) = payload.get("session_id") {
+                if session.as_str() != Some(game.lock().unwrap().session_id.as_str()) {
+                    let _ = request.respond(json_error(400, serde_json::json!({"error":"This campaign changed. Continue the current campaign before submitting orders or saving."})));
+                    continue;
+                }
+            }
+        }
         let response = match (&route_method, url_path.as_str()) {
             (Method::Get, "/") | (Method::Get, "/index.html") => {
                 let r = Response::from_string(INDEX).with_header(
@@ -5876,59 +5963,16 @@ fn main() {
                 };
                 let mut g = game.lock().unwrap();
                 match new_game(&mut g, seed, player) {
-                    (v, true) => {
-                        play_rules(&mut g);
-                        json_response(v)
-                    }
+                    (v, true) => json_response(v),
                     (v, false) => json_error(400, v),
                 }
             }
             (Method::Post, "/api/advance") => {
                 let mut g = game.lock().unwrap();
-                let me = g.world.player;
-                if let Some(player) = me {
-                    let invalid = payload.get("commands").and_then(|v|v.as_array()).is_some_and(|commands| commands.iter().any(|command|
-                        command.get("kind").and_then(|v|v.as_str()) == Some("program_budget") && parse_command(&g.world,command,player).is_none()));
-                    if invalid {
-                        let _ = request.respond(json_error(400,serde_json::json!({"error":"Invalid department budget. Nothing was enacted and the calendar has not advanced."})));
-                        continue;
-                    }
+                match advance_request(&mut g, &payload) {
+                    Ok(value) => json_response(value),
+                    Err(error) => json_error(400, serde_json::json!({"error":error.message,"not_advanced":!error.requires_review,"requires_review":error.requires_review})),
                 }
-                let cmds: Vec<Command> = match me {
-                    Some(me) => payload
-                        .get("commands")
-                        .and_then(|c| c.as_array())
-                        .map(|a| a.iter().filter_map(|v| parse_command(&g.world, v, me)).collect())
-                        .unwrap_or_default(),
-                    None => vec![],
-                };
-                let (_stopped, why) = if let Some(days) = match asked_days(&payload) {
-                    Ok(days) => days,
-                    Err(e) => {
-                        let _ = request.respond(json_error(
-                            400,
-                            serde_json::json!({ "error": e }),
-                        ));
-                        continue;
-                    }
-                } {
-                    g.advance_days(days as usize, cmds)
-                } else {
-                    // Keep saved browser tabs and API callers from the monthly
-                    // build working while the visible game moves to daily time.
-                    let months = match asked_months(&payload) {
-                        Ok(m) => m as usize,
-                        Err(e) => {
-                            let _ = request.respond(json_error(
-                                400,
-                                serde_json::json!({ "error": e }),
-                            ));
-                            continue;
-                        }
-                    };
-                    g.advance_months(months, cmds)
-                };
-                json_response(state_json(&g, why))
             }
             (Method::Post, "/api/command") => {
                 // Apply a command immediately without advancing time — used for
@@ -5965,7 +6009,7 @@ fn main() {
                 let g = game.lock().unwrap();
                 match std::fs::write("save.json", save(&g.world)) {
                     Ok(_) => json_response(serde_json::json!({ "ok": true, "path": "save.json" })),
-                    Err(e) => json_response(serde_json::json!({ "ok": false, "error": e.to_string() })),
+                    Err(e) => json_error(500, serde_json::json!({ "ok": false, "error": e.to_string() })),
                 }
             }
             (Method::Post, "/api/load") => {
@@ -5975,7 +6019,7 @@ fn main() {
                         *g = loaded_play_game(w);
                         json_response(state_json(&g, None))
                     }
-                    Err(e) => json_response(serde_json::json!({ "error": e })),
+                    Err(e) => json_error(400, serde_json::json!({ "error": e })),
                 }
             }
             _ => Response::from_string("not found").with_status_code(404),
@@ -5996,6 +6040,55 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn browser_new_snapshot_and_first_history_are_daily() {
+        let mut g = Game::new(1, None);
+        let (view, ok) = new_game(&mut g, 1990, Some(NationId::USA));
+        assert!(ok);
+        assert_eq!(view["simulation_cadence"], "daily");
+        assert_eq!(view, state_json(&g, None), "POST response must already match the next GET");
+        assert_eq!(g.history.len(), 1);
+        assert_eq!(g.history[0].day, Some(1));
+        assert_eq!(view["session_id"], g.session_id);
+    }
+
+    #[test]
+    fn browser_advance_rejects_every_malformed_batch_before_mutation() {
+        let mut g = loaded_play_game(Game::new(1, Some(NationId::USA)).world);
+        let before = save(&g.world);
+        let history = g.history.len();
+        for commands in [
+            serde_json::json!([{"kind":"tax","value":"invalid"}]),
+            serde_json::json!([{"kind":"tax","value":0.3},{"kind":"unknown"}]),
+            serde_json::json!([null]), serde_json::json!({}), serde_json::Value::Null,
+        ] {
+            let result = advance_request(&mut g, &serde_json::json!({"days":1,"commands":commands}));
+            assert!(result.is_err(), "{result:?}");
+            assert_eq!(save(&g.world), before);
+            assert_eq!(g.history.len(), history);
+        }
+    }
+
+    #[test]
+    fn browser_advance_lost_response_retry_is_exactly_once_and_session_bound() {
+        let mut g = loaded_play_game(Game::new(1, Some(NationId::USA)).world);
+        let payload = serde_json::json!({"days":1,"commands":[],"session_id":g.session_id,"client_id":"browser-test","request_seq":1});
+        let first = advance_request(&mut g, &payload).unwrap();
+        let settled = save(&g.world); let history = g.history.len();
+        assert_eq!(advance_request(&mut g, &payload).unwrap(), first);
+        assert_eq!(save(&g.world), settled); assert_eq!(g.history.len(), history);
+        let mut changed = payload.clone(); changed["days"] = serde_json::json!(2);
+        assert!(advance_request(&mut g, &changed).is_err());
+        changed = payload.clone(); changed["request_seq"] = serde_json::json!(2);
+        advance_request(&mut g, &changed).unwrap();
+        assert!(advance_request(&mut g, &payload).is_err(), "old receipts cannot replay after a newer turn");
+        let loaded = loaded_play_game(g.world.clone());
+        assert_ne!(g.session_id, loaded.session_id);
+        g = loaded; let before = save(&g.world);
+        assert!(advance_request(&mut g, &changed).is_err());
+        assert_eq!(save(&g.world), before, "old browser requests cannot mutate a loaded campaign");
+    }
 
     fn department_payload(w: &WorldState, me: NationId) -> serde_json::Value {
         let mut payload = serde_json::json!({"kind":"program_budget","fiscal_year":w.year,"departments":programs::default_departments()});
@@ -7786,7 +7879,8 @@ mod tests {
     fn browser_surface_posts_days_not_months() {
         assert!(INDEX.contains("+1 DAY"));
         assert!(INDEX.contains("+7 DAYS"));
-        assert!(INDEX.contains("/api/advance\", { days, commands: queued }"));
+        assert!(INDEX.contains("payload: { days, commands: JSON.parse(JSON.stringify(sources))"));
+        assert!(INDEX.contains("api(\"/api/advance\", request.payload)"));
         assert!(INDEX.contains("effect next day"));
     }
 
@@ -8138,7 +8232,7 @@ mod tests {
         // the server's own sentence out when there is one.
         assert!(INDEX.contains("if (!r.ok)"), "api() must check the response status");
         assert!(
-            INDEX.contains("throw new Error((data && data.error)"),
+            INDEX.contains("const error = new Error((data && data.error)") && INDEX.contains("throw error;"),
             "a refusal must surface the server's own message"
         );
         // A dead server is a caught failure, not an unhandled rejection.
@@ -8962,14 +9056,14 @@ mod tests {
             "openConflict must accept keepScroll — a per-tick rebuild that resets \
              scrollTop throws the reader to the top every month"
         );
-        // The sheet holds EITHER a nation or a conflict. Three writes of null:
+        // The sheet holds EITHER a nation or a conflict. Four writes of null:
         // the declaration, openNation (which takes the sheet over) and
-        // closeSheet. Lose any one and a stale war goes on being refreshed
+        // closeSheet, and a replacement campaign. Lose any one and a stale war goes on being refreshed
         // behind a dossier, or after the sheet is shut.
         assert_eq!(
             INDEX.matches("selectedWar = null;").count(),
-            3,
-            "selectedWar must be cleared by openNation and closeSheet as well as \
+            4,
+            "selectedWar must be cleared by campaign reset, openNation and closeSheet as well as \
              declared — the sheet holds one subject at a time"
         );
     }

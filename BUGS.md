@@ -1,5 +1,14 @@
 # BUGS
 
+## 2026-09-03 implementation repair update
+
+The eleven reproducible findings from the latest browser/simulation audit have
+been repaired; see `AUDIT_FIXES_2026-09-03.md` for the complete closure record.
+This includes the missing Load/Continue controls noted in Y-13. The separate
+E-3 calibration choice, stale golden pins, and other entries needing design/data
+rulings are not implicitly closed by this release. Claude's Y-1..Y-3 repairs
+were reviewed and merged before the new fixes.
+
 Findings from the stability audit. Each entry carries the seed, the year and the
 symptom, and — where the detector turned out to be firing on healthy behaviour —
 what the investigation showed and why nothing was changed.

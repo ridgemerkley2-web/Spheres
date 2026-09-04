@@ -1669,6 +1669,14 @@ pub(crate) fn clear_spot_market(w: &mut WorldState) {
             (id, monthly)
         })
         .collect();
+    // Pure per-nation quote; computing it once also avoids rebuilding every
+    // directed line and industrial recipe for each separate commodity market.
+    let enrolled_bundles: BTreeMap<NationId, [f64; 12]> = all_nations()
+        .iter()
+        .copied()
+        .filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive) && crate::programs::enrolled(w, *id))
+        .map(|id| (id, tick_draw(w, id)))
+        .collect();
 
     for c in ALL.into_iter().filter(|c| *c != Commodity::Oil && c.tracked()) {
         let ci = c.idx();
@@ -1688,7 +1696,14 @@ pub(crate) fn clear_spot_market(w: &mut WorldState) {
             // same target defines both sides, so a nation cannot buy and sell
             // one line in the same clearing, and a blocked multi-input recipe
             // stops buying the input it already accumulated.
-            let target = market_reserve_target(&market, id, c) + need;
+            // An enrolled plan can retain already-paid procurement money or
+            // accumulate unused authority. Its next atomic order can therefore
+            // exceed an ordinary month's recipe. Ask for that executable bundle
+            // ONCE on top of the unchanged monthly reserve, rather than strand
+            // the backlog at a stock target too small to let it run. Legacy
+            // monthly/unenrolled arithmetic remains exactly the existing path.
+            let next_bundle = enrolled_bundles.get(&id).map_or(need, |bundle| need.max(bundle[ci]));
+            let target = market_reserve_target(&market, id, c) + next_bundle;
             let incoming = if crate::logistics::enabled(w) { crate::logistics::pending(w, id, c) } else { 0.0 };
             if quantity + incoming < target {
                 let wanted = target - quantity - incoming;
@@ -3774,6 +3789,26 @@ fn validate_bundle(
     months: u32,
     contractable: impl Fn(Commodity) -> bool,
 ) -> Option<String> {
+    if let Some(why) = bundle_structure_refusal(w, from, to, give, take, months, contractable) {
+        return Some(why);
+    }
+    match evaluate(w, from, to, give, take, months) {
+        Verdict::Refuse(r) => Some(r.sentence()),
+        _ => None,
+    }
+}
+
+/// Current legal/structural checks shared by a new proposal and acceptance of
+/// an old offer. The price of an already offered bundle is not renegotiated.
+fn bundle_structure_refusal(
+    w: &WorldState,
+    from: NationId,
+    to: NationId,
+    give: &[Leg],
+    take: &[Leg],
+    months: u32,
+    contractable: impl Fn(Commodity) -> bool,
+) -> Option<String> {
     if from == to {
         return Some("A nation cannot trade with itself.".into());
     }
@@ -3818,10 +3853,7 @@ fn validate_bundle(
     if contracted_spend(w, from) + money_of(w, give) > MAX_CONTRACT_SPEND * gdp + DOLLAR {
         return Some(format!("That would put {}'s contracted spending over 1% of output.", from.name()));
     }
-    match evaluate(w, from, to, give, take, months) {
-        Verdict::Refuse(r) => Some(r.sentence()),
-        _ => None,
-    }
+    None
 }
 
 /// The signing sentence's summary: the side with the goods sends.
@@ -3883,11 +3915,30 @@ pub(crate) fn sign(
     Ok(id)
 }
 
-/// `AcceptDeal`: the offer must exist and be addressed to `nation`; it is
-/// signed at its own terms (evaluated from the AI's side when it was made,
-/// so the AI accepts by construction), removed, and any refusal the buyer
-/// remembered of this seller on the lines it now gets is forgotten.
+/// Revalidate a pending approval before either political pricing or mutation.
+/// Expiry, legal parties, current commitments and diplomatic/territorial hard
+/// bars can change while an offer waits. Its agreed price remains its price:
+/// accepting is not a second market-value negotiation.
+pub fn offer_refusal(w: &WorldState, nation: NationId, offer: u32) -> Option<String> {
+    let Some(o) = w.resources.offers.iter().find(|o| o.id == offer && o.to == nation) else {
+        return Some("No such offer.".into());
+    };
+    if o.expires <= month_abs(w) {
+        return Some("This offer has expired.".into());
+    }
+    if let Some(why) = bundle_structure_refusal(w, o.from, o.to, &o.give, &o.take, o.months, contractable) {
+        return Some(why);
+    }
+    hard_bars(w, &have(w), &live_draws(w), o.from, o.to, &o.give, &o.take)
+        .map(|r| r.sentence())
+}
+
+/// `AcceptDeal`: validate current hard conditions, then sign at the saved terms,
+/// remove the offer, and forget the buyer's refusal of the supplied lines.
 pub(crate) fn accept_offer(w: &mut WorldState, nation: NationId, offer: u32) -> Result<(), String> {
+    if let Some(why) = offer_refusal(w, nation, offer) {
+        return Err(why);
+    }
     let pos = w
         .resources
         .offers
@@ -5557,6 +5608,172 @@ mod tests {
     }
     fn near(a: f64, b: f64, tol: f64) -> bool {
         (a - b).abs() <= tol
+    }
+
+    #[test]
+    fn audit_trade_accept_revalidates_before_mutation_or_political_cost() {
+        let (from, to) = (code("USA"), code("Japan"));
+        let fresh = || {
+            let mut w = built(world_1990(GameRules::default()));
+            seat(&mut w, to, from);
+            w.resources.offers.push(Offer {
+                id: 100, from, to, give: vec![money(0.1)], take: vec![],
+                months: 12, expires: month_abs(&w) + 1,
+            });
+            w
+        };
+        let check = |w: &mut WorldState, want: &str| {
+            let before = crate::save(w);
+            assert_eq!(apply_command(w, &Command::AcceptDeal { nation: to, offer: 100 }).unwrap_err(), want);
+            assert_eq!(crate::save(w), before, "a refused acceptance must not mutate the offer, land, RNG or standing");
+        };
+        let mut w = fresh();
+        w.sanctions.push((to, from));
+        check(&mut w, &Reason::Embargoed.sentence());
+        // World validity wins even if the player could not afford to sign.
+        w.nation_mut(to).political_capital = 0.0;
+        check(&mut w, &Reason::Embargoed.sentence());
+        let mut w = fresh();
+        w.month = 2;
+        check(&mut w, "This offer has expired.");
+        for dead in [from, to] {
+            let mut w = fresh();
+            w.nation_mut(dead).alive = false;
+            check(&mut w, "Nation no longer exists.");
+        }
+        let mut w = fresh();
+        let theatre = crate::war::theatre_between(&w, from, to);
+        crate::commitment::open_conflict(&mut w, from, to, theatre).unwrap();
+        check(&mut w, &Reason::AtWar.sentence());
+        let mut w = fresh();
+        w.nation_mut(from).gdp = 1.0;
+        check(&mut w, "That would put United States's contracted spending over 1% of output.");
+        let mut w = fresh();
+        w.resources.offers[0].give = vec![land("JP-01")];
+        check(&mut w, "United States does not hold JP-01.");
+    }
+
+    fn prepaid_importer_fixture(physical: bool, directed: bool) -> (WorldState, NationId, f64, [f64; 12]) {
+        use crate::production::ProvinceCapabilities;
+        let (buyer, seller) = (code("Kuwait"), code("USA"));
+        let mut w = built(world_1990(GameRules {
+            daily_simulation: true, resource_market: true,
+            production_system: true, manufacturing_system: true,
+            logistics_routes: physical, physical_logistics: physical,
+            ..GameRules::default()
+        }));
+        seat(&mut w, buyer, seller);
+        if physical {
+            // Isolate route travel/capacity from competition with the rest of
+            // the world, which belongs to market-calibration tests.
+            for n in &mut w.nations { n.alive = n.id == buyer || n.id == seller; }
+        }
+        let district = w.districts.iter().find(|(_, n)| **n == buyer).unwrap().0.clone();
+        w.production.provinces.push(ProvinceCapabilities {
+            district: district.clone(), infrastructure: 0, civilian_industry: 0,
+            power_grid: 0, research_centers: 0, arms_plants: 1,
+        });
+        if directed {
+            crate::manufacturing::start_line(&mut w, buyer, &district, "arm_gen3").unwrap();
+        } else {
+            // Legacy automatic kits intentionally have no resource gate. Give
+            // this synthetic stock-flow fixture a material-gated armour kit.
+            let tech = crate::tech::index_of("aero_active_protection_system").unwrap();
+            let n = w.nation_mut(buyer);
+            n.tech.known.push(tech);
+            n.tech.known.sort_unstable();
+            n.tech.known.dedup();
+            n.arsenal.preference = Some("trophy".into());
+        }
+        let bank = crate::manufacturing::budget_bn(&w, buyer) * 24.0;
+        w.nation_mut(buyer).arsenal.banked = bank;
+        let allocations = w.nation(buyer).budget_for(w.year).allocations;
+        let year = w.year;
+        apply_command(&mut w, &Command::SetProgramBudget {
+            nation: buyer, fiscal_year: year, allocations,
+            departments: crate::programs::default_departments(),
+        }).unwrap();
+        crate::programs::begin_day(&mut w);
+        tick(&mut w);
+        let monthly = draw(&w, buyer);
+        let required = tick_draw(&w, buyer);
+        assert!(required[Commodity::Iron.idx()] > monthly[Commodity::Iron.idx()] * 13.0);
+        assert_eq!(flow(&w, buyer, Commodity::Iron), 0.0);
+        // This is the old policy's completely replenished reserve. There is
+        // ample open supply; the regression was failure to ask for any of it.
+        for c in ALL {
+            if monthly[c.idx()] > 0.0 {
+                set_stockpile_for_test(&mut w, buyer, c, monthly[c.idx()] * 13.0);
+                set_stockpile_for_test(&mut w, seller, c, 1e9);
+            }
+        }
+        (w, buyer, bank, monthly)
+    }
+
+    #[test]
+    fn audit_trade_prepaid_procurement_orders_its_missing_backlog_inputs_once() {
+        use crate::world::BUDGET_DEFENSE;
+        let (mut w, buyer, bank, monthly) = prepaid_importer_fixture(false, true);
+        let before = crate::save(&w);
+        let mut resumed = crate::load(&before).unwrap();
+        for game in [&mut w, &mut resumed] {
+            crate::arsenal::tick(game);
+            let line = &game.manufacturing.lines[0];
+            assert_eq!(line.status, crate::manufacturing::LineStatus::Producing, "{:?}", line.reason);
+            assert!(line.ordered_bn >= bank);
+            let market = game.resources.market.as_ref().unwrap();
+            assert!(market.fills.iter().any(|f| f.buyer == buyer && f.commodity == Commodity::Iron));
+            let p = game.nation(buyer).program_budget.as_ref().unwrap();
+            assert_eq!(p.prepaid_bn[BUDGET_DEFENSE][3], 0.0);
+            assert_eq!(p.prepaid_used_today_bn[BUDGET_DEFENSE][3], bank);
+            assert!((p.spent_today_bn[BUDGET_DEFENSE][3] - p.accrued_today_bn[BUDGET_DEFENSE][3]).abs() < 1e-12,
+                "already-paid procurement must not enter fresh spending again");
+            // It is one backlog, not twelve more monthly reserve grants.
+            assert!((market_reserve_target(market, buyer, Commodity::Iron)
+                - monthly[Commodity::Iron.idx()] * BUFFER_MONTHS).abs() < 1e-8);
+            let settled = crate::save(game);
+            crate::arsenal::tick(game);
+            assert_eq!(crate::save(game), settled, "retry must neither order nor pay again");
+        }
+        assert_eq!(crate::save(&w), crate::save(&resumed));
+    }
+
+    #[test]
+    fn audit_trade_prepaid_staff_and_freight_eventually_feed_the_retained_order() {
+        use crate::world::BUDGET_DEFENSE;
+        for directed in [false, true] {
+            let (mut w, buyer, bank, _) = prepaid_importer_fixture(true, directed);
+            let opening_iron = stock_quantity(&w, buyer, Commodity::Iron);
+            crate::arsenal::tick(&mut w);
+            assert!(w.nation(buyer).arsenal.orders.is_empty(), "paid cargo is not on-hand stock");
+            assert!(!w.logistics.cargo.is_empty(), "backlog must submit an actual freight order");
+            assert_eq!(stock_quantity(&w, buyer, Commodity::Iron), opening_iron);
+            assert_eq!(w.nation(buyer).program_budget.as_ref().unwrap().prepaid_bn[BUDGET_DEFENSE][3], bank);
+            let saved = crate::save(&w);
+            let mut resumed = crate::load(&saved).unwrap();
+            let mut saw_arrival = false;
+            let mut completed = false;
+            for _ in 0..180 {
+                for game in [&mut w, &mut resumed] {
+                    crate::programs::finish_day(game);
+                    crate::clock::advance_date(game);
+                    crate::programs::begin_day(game);
+                    tick(game);
+                    crate::arsenal::tick(game);
+                }
+                saw_arrival |= w.logistics.arrivals.iter().any(|c| c.buyer == buyer);
+                assert_eq!(crate::save(&w), crate::save(&resumed));
+                if !w.nation(buyer).arsenal.orders.is_empty() {
+                    completed = true;
+                    break;
+                }
+            }
+            assert!(saw_arrival && completed, "physical backlog never reached procurement (directed={directed})");
+            let p = w.nation(buyer).program_budget.as_ref().unwrap();
+            assert_eq!(p.prepaid_bn[BUDGET_DEFENSE][3], 0.0);
+            assert_eq!(p.prepaid_used_today_bn[BUDGET_DEFENSE][3], bank);
+            assert!(p.spent_today_bn[BUDGET_DEFENSE][3] < bank, "prepaid stock was charged a second time");
+        }
     }
 
     /// Acceptance item 7. `evaluate` is a pure function of state: the same

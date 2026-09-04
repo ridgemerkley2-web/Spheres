@@ -301,11 +301,29 @@ pub fn effective_interest_rate(policy_rate: f64, inflation: f64, debt_gdp: f64) 
 /// debt service" must mean to a caller that adds it to something.
 pub fn interest_gdp(n: &Nation) -> f64 {
     match n.debt_bn {
-        Some(debt) => {
+        Some(debt) if n.gdp.is_finite() && n.gdp > 0.0 => {
             debt * effective_interest_rate(n.interest_rate, n.inflation, n.debt_gdp)
-                / n.gdp.max(0.1)
+                / n.gdp
         }
-        None => 0.0,
+        // A dead zero-output state has no meaningful service/GDP quotient.
+        // Do not invent $100m of output to make one printable.
+        _ => 0.0,
+    }
+}
+
+/// Synchronize the derived ratio after an open-book cash or GDP change.
+/// Closed books retain their independently simulated ratio exactly. A living
+/// state's positive output is the denominator, even below $100m; a territorial
+/// loss changes credit risk, not its outstanding dollar debt or its cash.
+/// Zero-output/dead accounts retain their last finite ratio as historical state
+/// rather than manufacturing output or writing an infinite ratio to the save.
+pub fn refresh_debt_ratio(n: &mut Nation) {
+    if !n.on_the_books() || !n.gdp.is_finite() || n.gdp <= 0.0 {
+        return;
+    }
+    let ratio = n.debt_bn.unwrap() / n.gdp;
+    if ratio.is_finite() {
+        n.debt_gdp = ratio;
     }
 }
 
@@ -486,7 +504,7 @@ pub fn charge(w: &mut WorldState, id: NationId, bn: f64, share: f64) -> f64 {
             let (treasury, debt) = pay(treasury, debt, bn);
             n.treasury_bn = Some(treasury);
             n.debt_bn = Some(debt);
-            n.debt_gdp = debt / n.gdp.max(0.1);
+            refresh_debt_ratio(n);
             unabsorbed
         }
         _ => {
@@ -1536,6 +1554,9 @@ pub fn tick(w: &mut WorldState) {
                 // procurement/industry finish. One end-of-day fiscal posting
                 // replaces, rather than supplements, the blanket ministry bill.
                 crate::programs::stage_fiscal(n, revenue_gdp, books.interest_bn);
+                // The bill keeps its opening risk quote, but later systems must
+                // see the debt stock divided by the output just produced.
+                refresh_debt_ratio(n);
             }
             // THE BOOKS ARE OPEN. The two stocks are the state's finances and
             // this block is their only writer, `debt_gdp` becoming their
@@ -1567,7 +1588,7 @@ pub fn tick(w: &mut WorldState) {
                 let (treasury, debt) = pay(treasury, debt, spend_bn + interest_bn - revenue_bn);
                 n.treasury_bn = Some(treasury);
                 n.debt_bn = Some(debt);
-                n.debt_gdp = debt / n.gdp.max(0.1);
+                refresh_debt_ratio(n);
             }
             // THE BOOKS ARE CLOSED, which is every AI nation and the whole
             // default board. Not one new multiplication happens here.
@@ -1746,6 +1767,156 @@ fn oil_market(w: &mut WorldState) {
 mod daily_tests {
     use super::*;
     use crate::init::world_1990;
+
+    #[test]
+    fn finance_small_gdp_charge_keeps_the_exact_stock_ratio() {
+        let mut w = world_1990(GameRules::default());
+        let id = NationId::Tonga;
+        for gdp in [0.074_238_331_610_281_32, 0.05, 1e-12] {
+            let n = w.nation_mut(id);
+            n.gdp = gdp;
+            n.treasury_bn = Some(gdp);
+            n.debt_bn = Some(gdp * 0.8);
+            n.debt_gdp = 0.8;
+            charge(&mut w, id, gdp * 0.1, 0.1);
+            let n = w.nation(id);
+            assert_eq!(n.debt_gdp, n.debt_bn.unwrap() / n.gdp,
+                "open-book debt is a stock divided by actual output, even below $100m");
+            assert_eq!(n.treasury_bn, Some(gdp - gdp * 0.1));
+        }
+    }
+
+    #[test]
+    fn finance_small_gdp_interest_share_matches_the_cash_bill() {
+        let mut w = world_1990(GameRules::default());
+        let n = w.nation_mut(NationId::Tonga);
+        n.gdp = 0.05;
+        n.treasury_bn = Some(1.0);
+        n.debt_bn = Some(0.04);
+        n.debt_gdp = n.debt_bn.unwrap() / n.gdp;
+        n.interest_rate = 0.05;
+        n.inflation = 0.03;
+        let cash_interest = n.debt_bn.unwrap()
+            * effective_interest_rate(n.interest_rate, n.inflation, n.debt_gdp);
+        assert_eq!(interest_gdp(n), cash_interest / n.gdp,
+            "the interest row must quote the same cash bill as a share of actual GDP");
+    }
+
+    #[test]
+    fn finance_ratio_refresh_is_inert_without_books_and_safe_without_output() {
+        let mut w = world_1990(GameRules::default());
+        let before = crate::save(&w);
+        for n in &mut w.nations {
+            refresh_debt_ratio(n);
+        }
+        assert_eq!(crate::save(&w), before, "closed-book replay must be byte-identical");
+        let n = w.nation_mut(NationId::Tonga);
+        n.treasury_bn = Some(1.0);
+        n.debt_bn = Some(0.04);
+        n.debt_gdp = 0.8;
+        n.gdp = 0.0;
+        n.alive = false;
+        refresh_debt_ratio(n);
+        assert_eq!(n.debt_gdp, 0.8, "a dead country's last ratio is historical state");
+        assert_eq!(interest_gdp(n), 0.0, "service/output is undefined at zero output");
+        assert_eq!(n.debt_bn, Some(0.04));
+        assert_eq!(n.treasury_bn, Some(1.0));
+        crate::load(&crate::save(&w)).unwrap();
+    }
+
+    #[test]
+    fn finance_shock_therapy_refreshes_ratio_without_billing_the_gdp_loss() {
+        let mut w = world_1990(GameRules::default());
+        let id = NationId::Tonga;
+        let n = w.nation_mut(id);
+        n.treasury_bn = Some(1.0);
+        n.debt_bn = Some(n.gdp * n.debt_gdp);
+        let debt = n.debt_bn.unwrap();
+        let gdp = n.gdp;
+        (crate::stratagems::by_id("shock_therapy").unwrap().enact)(&mut w, id);
+        let n = w.nation(id);
+        assert_eq!(n.gdp, gdp * 0.88);
+        assert_eq!(n.debt_bn, Some(debt));
+        assert_eq!(n.treasury_bn, Some(1.0));
+        assert_eq!(n.debt_gdp, debt / n.gdp);
+    }
+
+    #[test]
+    fn finance_loading_a_stale_small_country_ratio_repairs_only_the_quotient() {
+        let mut w = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
+        let id = NationId::Tonga;
+        let n = w.nation_mut(id);
+        n.gdp = 0.05;
+        n.debt_bn = Some(0.04);
+        n.treasury_bn = Some(1.0);
+        n.debt_gdp = 0.4; // Historical bug: $40m / max($50m, $100m).
+        let old_save = crate::save(&w);
+        let loaded = crate::load(&old_save).unwrap();
+        assert_eq!(loaded.nation(id).debt_gdp, 0.04 / 0.05);
+        w.nation_mut(id).debt_gdp = 0.04 / 0.05;
+        assert_eq!(crate::save(&loaded), crate::save(&w),
+            "repairing old books must not repay debt, grant cash, or move the timeline");
+        let current_save = crate::save(&loaded);
+        assert_eq!(crate::save(&crate::load(&current_save).unwrap()), current_save,
+            "the migration is idempotent");
+    }
+
+    #[test]
+    fn finance_first_budget_roundtrip_keeps_original_ratio_rounding() {
+        let base = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
+        let mut rounded = 0;
+        for id in [NationId::USA, NationId::France, NationId::Japan, NationId::Tonga,
+            NationId::Belgium, NationId::Uganda, NationId::UK, NationId::Germany] {
+            let mut w = base.clone();
+            w.player = Some(id);
+            let allocations = w.nation(id).budget_for(w.year).allocations;
+            let command = crate::Command::SetAnnualBudget { nation: id, fiscal_year: w.year, allocations };
+            crate::apply_command(&mut w, &command).unwrap();
+            let n = w.nation(id);
+            rounded += usize::from(n.debt_gdp != n.debt_bn.unwrap() / n.gdp);
+            let saved = crate::save(&w);
+            let mut loaded = crate::load(&saved).unwrap();
+            assert!(crate::save(&loaded) == saved,
+                "{id:?}: initial debt=ratio*GDP roundoff is not a broken saved account");
+            crate::tick_day(&mut w, &[]);
+            crate::tick_day(&mut loaded, &[]);
+            assert!(crate::save(&w) == crate::save(&loaded),
+                "{id:?}: loading immediately after enrollment must preserve its next day");
+        }
+        assert!(rounded > 0, "fixture must exercise a non-invertible float product");
+    }
+
+    #[test]
+    fn finance_small_gdp_daily_and_program_settlement_resume_exactly() {
+        for enrolled in [false, true] {
+            let mut w = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
+            let id = NationId::Tonga;
+            w.player = Some(id);
+            let allocations = w.nation(id).budget_for(w.year).allocations;
+            let command = if enrolled {
+                crate::Command::SetProgramBudget { nation: id, fiscal_year: w.year,
+                    allocations, departments: crate::programs::default_departments() }
+            } else {
+                crate::Command::SetAnnualBudget { nation: id, fiscal_year: w.year, allocations }
+            };
+            crate::apply_command(&mut w, &command).unwrap();
+            let n = w.nation_mut(id);
+            n.gdp = 0.05;
+            n.treasury_bn = Some(1.0);
+            n.debt_bn = Some(0.04);
+            n.debt_gdp = n.debt_bn.unwrap() / n.gdp;
+            let mut loaded = crate::load(&crate::save(&w)).unwrap();
+            for _ in 0..35 {
+                crate::tick_day(&mut w, &[]);
+                crate::tick_day(&mut loaded, &[]);
+                let n = w.nation(id);
+                assert_eq!(n.debt_gdp, n.debt_bn.unwrap() / n.gdp,
+                    "daily closing stock ratio differs, program enrollment={enrolled}");
+                assert!(crate::save(&w) == crate::save(&loaded),
+                    "save-resume diverged, program enrollment={enrolled}");
+            }
+        }
+    }
 
     #[test]
     fn daily_economy_posts_growth_population_and_the_days_cash_only() {
