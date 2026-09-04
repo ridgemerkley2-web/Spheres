@@ -1244,9 +1244,11 @@ fn conquer(w: &mut WorldState, winner: NationId, loser: NationId) {
             n.stability = (n.stability + 8.0).min(100.0);
         }
         w.set_relation(winner, loser, -80.0);
-        // Unlike the old one-month penalty, capitulation is now a persistent
-        // sovereignty result. Global domination walks this hierarchy
-        // transitively; aid, friendship and trade alone never count.
+        // The capitulation arithmetic above is unchanged; what fb08fa5 added
+        // beside it is a persistent sovereignty row that nothing in war,
+        // statecraft or politics reads. Global domination walks this hierarchy
+        // transitively; aid, friendship and trade alone never count. Not
+        // gated on the player: any capitulation writes the row.
         crate::domination::subjugate(w, winner, loser);
         w.headline(format!(
             "{} capitulates to {} — reparations, disarmament, humiliation.",

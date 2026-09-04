@@ -7,9 +7,12 @@
 //!
 //! Everything is deterministic.  Offers are ranked from the current world,
 //! carry stable string ids, and consume no RNG.  Progress is observed once per
-//! monthly settlement.  Completing an agenda records a legacy entry and deals
-//! three more cards; it never writes GDP, resources, standing, technology or
-//! military strength.
+//! settlement — each monthly settlement in legacy replay, each day in daily
+//! play, since `tick` sits in the SYSTEMS table and that table runs whole on
+//! every day (lib.rs `tick_day`); milestones latch, so the cadence changes
+//! when a mark is seen, never whether.  Completing an agenda records a legacy
+//! entry and deals three more cards; it never writes GDP, resources, standing,
+//! technology or military strength.
 
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;

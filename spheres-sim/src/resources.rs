@@ -2028,7 +2028,9 @@ fn deliver_contracts(w: &mut WorldState) {
         }
         w.resources.market = Some(market);
     }
-    // Force majeure, once per (giver, line, month).
+    // Force majeure, once per (giver, line, settlement) — per month in legacy
+    // replay, per DAY in daily play, where a giver short all month is
+    // headlined every day of it (BUGS Y-3).
     let mut promised: BTreeSet<(NationId, Commodity)> = BTreeSet::new();
     for k in &w.resources.contracts {
         if contract_hard_closed(w, k) {
@@ -7733,5 +7735,52 @@ mod tests {
         w.headlines.clear();
         crate::war::invasion_begins(&mut w, id, iraq);
         assert!(w.headlines.contains(&"WAR: Iraq invades Iran!".to_string()), "{:?}", w.headlines);
+    }
+
+    /// Daily play cools a refusal ONCE A CALENDAR MONTH, on the same lattice
+    /// of twenty-fourths and to the same dates as legacy replay. Found
+    /// 2026-09-03 by the daily-push audit: `cool_refusals` takes one lattice
+    /// step per call and `statecraft::tick` called it on every daily pass, so
+    /// a seller's refusal was forgotten in 24 DAYS instead of 24 months and a
+    /// buyer re-asked after 6 days instead of `PATIENCE` months — 30.4x too
+    /// fast, and silent. The lattice cannot be prorated (`HEAT_STEPS`), so the
+    /// call is gated to the month's last day instead. MEASURED on this tree
+    /// before the gate: the row was gone on 1990-01-25; after it, 1992-01-01
+    /// in both modes. Iron rule 7: unit, one hand-built row, variance 0, n = 1.
+    #[test]
+    fn daily_play_cools_a_refusal_once_a_month_not_once_a_day() {
+        let (france, chile) = (code("France"), code("Chile"));
+        let k = Commodity::Copper;
+        let row = Refusal { buyer: france, seller: chile, c: k, reason: Reason::Unanswered, heat: 1.0, asks: 1 };
+        let mut legacy = world_1990(GameRules::default());
+        let mut daily = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
+        legacy.resources.refusals.push(row.clone());
+        daily.resources.refusals.push(row);
+        let heat = |w: &WorldState| refusal_of(w, france, chile, k).map(|r| r.heat.to_bits());
+        // Twenty-four legacy settlements, each dated the first of the next month.
+        let mut legacy_heat = vec![];
+        for _ in 0..24 {
+            crate::statecraft::tick(&mut legacy);
+            advance_calendar(&mut legacy, 1);
+            legacy_heat.push(((legacy.year, legacy.month), heat(&legacy)));
+        }
+        assert_eq!(legacy_heat[PATIENCE as usize - 1], ((1990, 7), Some(REASK_HEAT.to_bits())));
+        assert_eq!(legacy_heat[23], ((1992, 1), None), "forgotten in two years");
+        // The same two years a day at a time: untouched inside a month, one
+        // step at its end, and the same heat on the same first-of-month.
+        let mut daily_heat = vec![];
+        while daily.year < 1992 {
+            let before = heat(&daily);
+            let last = daily.day >= crate::world::days_in_month(daily.year, daily.month);
+            crate::statecraft::tick(&mut daily);
+            if !last {
+                assert_eq!(heat(&daily), before, "{}-{}-{}: cooled inside the month", daily.year, daily.month, daily.day);
+            }
+            crate::clock::advance_date(&mut daily);
+            if daily.day == 1 {
+                daily_heat.push(((daily.year, daily.month), heat(&daily)));
+            }
+        }
+        assert_eq!(daily_heat, legacy_heat);
     }
 }

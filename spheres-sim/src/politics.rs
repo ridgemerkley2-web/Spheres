@@ -1273,8 +1273,15 @@ fn ai_statecraft(w: &mut WorldState) {
     // Ruling 4's "must first try to buy": every AI state short of a line asks
     // every willing seller before this month's appetite is priced. Behind the
     // market switch; consumes no randomness; returns at once while nothing is
-    // short (resources.rs, spec section 6.2).
-    crate::resources::ai_purchases(w);
+    // short (resources.rs, spec section 6.2). ONCE A MONTH in daily play too:
+    // the pass's memory, its PATIENCE and its inbox cap are all written in
+    // months, and physical freight counts only the day's fills, so a pass run
+    // every day re-asked while its own signing was still at sea — seven
+    // France-USA copper contracts on seven January days (2026-09-03, seed 7,
+    // player Iraq) against one signing in three legacy months.
+    if crate::clock::month_end(w) {
+        crate::resources::ai_purchases(w);
+    }
 
     let active: Vec<NationId> = patrons()
         .iter()

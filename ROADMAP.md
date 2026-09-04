@@ -18,6 +18,73 @@ production from enabling capacity. See `PROVINCE_ECONOMY.md` for accounting and
 data boundaries. This extends, and does not discard, the ministry review build.
 
 ## Done (v0.5 rebuild)
+- **Two Codex pushes checked and three of their daily passes repaired**
+  (2026-09-03, branch `check/daily-ad60482` off `feat/hoi4-map-and-tech`
+  ad60482, commits 7ccb706 and the docs commit after it; every figure below
+  was measured on that tree in a watched clean release build). The two pushes
+  since our 3ecea29 landing: **fb08fa5** "feat: add historical leaders and
+  domination campaign" (660 files, +29,488/-63) and **ad60482** "feat: run
+  the simulation daily with physical freight logistics" (30 files,
+  +3,977/-338; Ridge's ruling quoted, "Can we get everything on a daily
+  ticker not monthly?", BIBLE/CLAUDE/SPEC amended and DAILY.md added).
+  **What held.** Both golden pins and both ACTUAL constants are textually
+  unchanged and the actuals still MEASURE `0xe26e4bf8d6c60066` /
+  `0xbe94d6125631829c`, run alone with `--exact`, twice; the four legacy
+  daily-calendar tests are present, un-ignored and green; not one test
+  function name is absent (447 → 509 `#[test]` attributes, 62 → 62
+  `#[ignore`; 513 after the repairs); legacy
+  headless determinism is byte-identical to 3ecea29 on all eight
+  (seed × market) pairs of `run 35`, each run twice — market OFF 1990
+  `d1a2cfbf7c6958d7` (3,501 lines), 7 `39dea3341a7f6e8c` (3,983); market ON
+  1990 `1574abf65b382173` (3,873), 7 `f97da62d5daee785` (4,234). The daily
+  push's own proration was read line by line and is correct wherever it
+  touched (flows × dt, convergence through `clock::blend`/`decay`, hazards
+  through `clock::chance`, counters and deadlines in actual days, levels and
+  dimensionless ministry multipliers left unscaled — including all ten of our
+  ministry arms, the treasury's fiscal block and `ResearchTerms::total()`).
+  **What did not hold — three monthly passes the push never touched, now
+  running thirty times a month, all fixed in 7ccb706 with a test watched red
+  each (BUGS Y-1..Y-3).** (1) `resources::cool_refusals` steps its lattice of
+  twenty-fourths once per call and `statecraft::tick` called it daily: a
+  refusal forgotten in 24 DAYS, not months (row gone 1990-01-25 against
+  1992-01-01, 30.4x). Gated to the month's last day; the lattice cannot be
+  prorated. (2) The AI buy pass ran daily while physical freight counts only
+  the day's fills, so it re-asked while its own signing was at sea — France
+  signed SEVEN copper contracts with the USA on 3–9 January (seed 7, player
+  Iraq) against one signing in three legacy months, and "cannot deliver"
+  was headlined 88 times in 90 days. Gated to the month's last day. (3)
+  Arsenal and manufacturing merged order rows on `due_days`, which moves
+  every day: 49,271 rows against 1,619 after twelve default months (USA 364
+  against 12), the save 8,264,934 bytes against 1,034,809. One
+  `arsenal::book_order` keys daily rows on the DELIVERY calendar month; after
+  it 1,621 rows (USA 12), 1,092,641 bytes, board book value 2984.567 bn in
+  both modes. A year-long replay test (stepped == resumed at day 100 ==
+  `tick_month`-batched; seed 1990 `0x3391cbcef7c62098`, seed 7
+  `0x5f6650ed1e0cd621`) now sits in `tests/daily.rs`.
+  **Filed, not fixed, because each needs a ruling (BUGS Y-4..Y-15):** the
+  daily integrator is biased LOW against the calibrated monthly model
+  (the audit's skeptic probe: 131/137 nations lower after one month, median
+  −1.6e-4 of level, USA −8.1e-5; twelve months median −3.3e-3) because legacy evaluates the growth
+  rate at the start of the month and daily along the path — the "own
+  evidence" CLAUDE.md asked for, negative for year one; the player's private
+  investment flow is 3.0% over under `blend`; the tech burst cap is per tick;
+  covert upkeep's phase moved; the force-majeure headline is per day; the
+  domination campaign adds the game's only ending, requires war to reach it,
+  runs its observer daily, writes a sovereignty row nothing reads, and
+  amended no doctrine and quoted no ruling; the daily amendment struck
+  nothing through; two spheres-web assertions changed meaning; the browser's
+  "Enact & advance" enacts nothing on untouched dials; and the binary
+  weight — 303 `include_bytes!` totalling 322,059,267 bytes (160 AI-generated
+  leader PNGs 305,173,085 + 143 Commons portraits 16,886,182), the pack
+  291.44 MiB, `spheres-web.exe` 349,737,875 bytes. Licence state as measured:
+  every one of the 143 portraits carries a free licence on the allow-list
+  (108 public domain, 11 CC0, 4 CC BY 4.0, 2 CC BY 2.0, 1 CC BY 3.0, 8 CC
+  BY-SA 3.0, 5 CC BY-SA 4.0, 3 CC BY-SA 2.0, 1 CC BY-SA 2.5), 17 nations
+  fall back to a cameo, all 160 leader artworks record "OpenAI image
+  generation" with a prompt record and sha256; `tools/avatars/check_assets.py`
+  passes; `tools/resources/check_resources_1990.py --fast` 60 checks, 0
+  failed. **Suite after the repairs, watched clean:** spheres-cli 1 / 0; spheres-sim 331 passed / 3 failed / 52 ignored (lib 288 / 3 / 22 in 192.79 s; tests/daily.rs 6 / 0; ministries 19; research 8; treasury 10; the five ignored-only probes 30); spheres-web 112 / 0 / 2; clean+build+test wall 15:31:10 to 15:36:57 = 347 s; the daily replay test reads 0x3391cbcef7c62098 (seed 1990) / 0x5f6650ed1e0cd621 (seed 7); both goldens re-run alone twice, actuals 0xe26e4bf8d6c60066 / 0xbe94d6125631829c; all eight `run 35` digests re-measured equal to 3ecea29 after the repairs — the reds
+  exactly the three deliberate ones (BUGS E-3 and the two goldens).
 - **The treasury, the escalating interest and the ministry collapse**
   (2026-09-02, Ridge's call, quoted: "Add in an interest over GDP figure that
   inflates based on percentage. You can cook the rest into the GITHUB dir";

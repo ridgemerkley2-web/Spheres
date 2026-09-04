@@ -2643,3 +2643,238 @@ written to hold ONE module to the channel, and it did that correctly while a
 second module quietly held two legs it never looked at. The census that matters
 is `economy::charge`'s own call count, which now sits in that function's doc
 comment as ELEVEN sites and is corrected there whenever it moves.
+
+---
+
+## Filed 2026-09-03 by the daily-push checker (fb08fa5 leaders and domination; ad60482 daily ticker)
+
+The two pushes since our 3ecea29 landing were checked on a fresh worktree at
+ad60482 with a watched clean release build; the shared checkout was not
+touched. Legacy replay is intact: both golden ACTUALS still measure
+`0xe26e4bf8d6c60066` / `0xbe94d6125631829c` and all eight `run 35` headless
+digests equal 3ecea29's. Y-1..Y-3 were FIXED in 7ccb706 with a test watched
+red each; the rest are filed because the correct form needs a ruling. Every
+number here was measured on that tree.
+
+### Y-1 — FIXED: a refusal cooled in 24 days, not 24 months
+
+`resources::cool_refusals` (resources.rs, "Spec section 6.3") takes ONE step
+on its lattice of twenty-fourths per call — deliberately, so six coolings
+land on exactly `REASK_HEAT` — and `statecraft::tick` called it on every pass.
+In daily play that is every day: a fresh refusal was gone on 1990-01-25
+instead of 1992-01-01 and a buyer re-asked after 6 days instead of `PATIENCE`
+months, 30.4x too fast and silent (the market is on in every browser game).
+The lattice cannot take a `* dt`, so the CALL is gated to `clock::month_end`,
+the day the legacy settlement took the step. Test
+`daily_play_cools_a_refusal_once_a_month_not_once_a_day`: bit-identical heat
+on every first-of-month for 24 months in both modes; watched red at
+"1990-1-1: cooled inside the month".
+
+### Y-2 — FIXED: one order row per purchase per day
+
+`arsenal::tick` and `manufacturing::tick_allocations` merged a purchase into
+an existing order only when `o.due_days == new_due_days`, and `new_due_days`
+moves every day. Every daily purchase opened its own row for its whole lead
+time (24..216 months): 49,271 rows against 1,619 after twelve default months
+(USA 364 against 12), save 8,264,934 bytes against 1,034,809, and `find` and
+`retain` scanned them every tick. One `arsenal::book_order` now keys a daily
+row on the DELIVERY calendar month (`today + due_days`) and lands the row when
+the month's latest purchase would — the last day of the month plus the lead,
+which is the legacy settlement date; the legacy key is byte for byte the old
+one. After: 1,621 rows (USA 12), 1,092,641 bytes, board book value 2984.567
+bn in both modes. Test
+`daily_procurement_books_one_row_per_kit_per_delivery_month`, watched red at
+"left: 365 right: 12". The `due` field of a merged row is now cosmetic in
+daily play (it may read one month less than the lead when the month-end
+decrement ran before the day's purchase); `due_days` is the mechanism.
+
+### Y-3 — FIXED by a gate, with the remainder filed: the AI buy pass asked every day
+
+`politics::ai_statecraft` called `resources::ai_purchases` on every pass. Its
+memory (`PATIENCE`, `REASK_HEAT`, `MAX_PENDING_OFFERS`, "a fourth is not asked
+this month") is written in months, and physical freight's `supply_with`
+counts only the day's fills — a contract in flight for ~21 days contributes
+zero — so the pass re-asked while its own signing was still at sea. Seed 7,
+player Iraq, daily: France signed SEVEN copper contracts with the United
+States on 3–9 January (the browser check and the skeptic's headless
+reproduction agree: per_month 0.1233..0.1240 each, $0.1bn/yr, 36 months, and
+"United States cannot deliver all of its copper this day" headlined 88 times
+in 90 days); legacy signed once in three months (re-measured by the repair
+pass: 1 signing, 1 such headline, 1 contract). The pass is now
+gated to `clock::month_end`, the cadence its memory is written in. Test
+`the_ai_buy_pass_asks_once_a_month_in_daily_play`, watched red at "France sold
+USA Copper twice in month 0".
+
+**The remainder, which needs a ruling.** Probed after the gate on seeds 7 and
+1990 for a full daily year: France's cover row exists only on 2–9 January and
+every month-end pass finds nothing — 0 signings, 0 contracts, 0 refusal rows
+in 365 days, against legacy's one March signing. The transient shortage a
+daily world shows in its first week is now invisible to a monthly ask. The
+alternative — ask on the first short day and remember "asked this month" per
+(buyer, seller, line) — needs a new state field and a decision on whether an
+AI that was short for eight days should have signed a 36-month contract for
+it. Filed, not decided.
+
+### Y-4 — the force-majeure headline is once per (giver, line, DAY)
+
+`resources::settle` headlines "cannot deliver all of its X this day;
+contracts are filled pro rata" once per (giver, line, settlement), and the
+settlement is daily now. A giver short all month is headlined thirty times.
+Y-3's gate removed the case that produced the audit's 88 in 90 days (0 in
+90 and in 365 days after it, there being no contracts on those seeds now), but a real shortfall will still print daily. A
+once-per-episode gate needs a memory of which (giver, line) was already
+headlined this month — a schema field, filed rather than invented.
+
+### Y-5 — the daily integrator is biased LOW against the calibrated monthly model
+
+Not a proration error — every `* dt` is right — but a different integrator of
+the same model. Figures in this entry are the 2026-09-03 audit's skeptic
+re-measurement (economy::tick alone, same base world, shocks drawn in the
+same order), recorded here rather than re-run by the repair pass. Legacy evaluates `growth_terms().before_noise` ONCE at the
+start of the month and applies it whole (an explicit Euler step); daily
+evaluates it along the path, and the annual rate FALLS across the first
+months for 134/137 nations (USA 0.018045 → 0.016118, Vietnam 0.100560 →
+0.086191, Argentina 0.017801 → −0.101783). With the same shocks drawn in the
+same order: after one economy-only month 131/137 nations are lower (USA
+5987.402124 vs 5986.916813, −8.1e-5 = 6.5% of the month's growth; median
+−1.6e-4; Argentina −3.9e-3), inflation lower 134/137, stability lower 124/137
+(Brazil −0.133); after twelve months 133/137 lower, median −3.3e-3 of level,
+Vietnam −1.8e-2, stability median −0.050. Half the in-month rate drop /12
+predicts the gap (USA −8.03e-5 predicted vs −8.11e-5 measured). This is the
+"own evidence" CLAUDE.md asks daily-mode balance for, and for year one it is
+negative. The repair is a ruling: re-calibrate daily, or make daily evaluate
+the month's rate once (which is what `economic_shocks` already does for the
+noise). Not touched.
+
+### Y-6 — the player's private-investment flow is 3.0% over under `blend`
+
+`economy.rs`: `priv += (priv + pressure − priv) * investment_blend`, i.e. a
+FLOW of `0.06 × pressure` a month, wrapped in `clock::blend(0.06)`. Daily,
+`blend` gives 0.001994 and 31 of them sum to 0.061814 = 1.0302× the monthly
+flow (28-day month the same). Player-only (`Some(id) == player`); not 30x;
+repricing, so filed.
+
+### Y-7 — the technology burst cap is per tick, and a tick is a day
+
+`tech/mod.rs` bounds adoptions per domain per tick at 6 ("several cheap
+adoptions can land in one month ... invention never comes in floods"); daily
+that allows 186 a month. Latent on this board, by the audit's probe: 24
+months seed 1990, the most techs learned in one tick is 2 (legacy) and 1
+(daily), USA 44/44, Japan 40/39 known. Filed; the cap's unit is a design choice.
+
+### Y-8 — covert upkeep keeps its cadence and loses its phase
+
+`commitment::deniable_forces_upkeep` fires on calendar months 1, 4, 7, 10 in
+legacy (`w.month % 3 == 1`) and through `clock::interval_due(.., 3.0)` in
+daily, whose counter starts at 0 when the (sponsor, target) pair first
+appears. The audit's skeptic measured, Iraq at rung 5 against Kuwait, seed 10:
+first covert heat
+at tick 1 (settled 1990-02-01) in legacy, day 90 (1990-04-01) in daily. Same
+cadence, anchored to appearance instead of the calendar quarter. Filed.
+
+### Y-9 — the domination campaign (fb08fa5): one ending, reachable only by war, and no ruling
+
+`spheres-sim/src/domination.rs` (1,109 lines) adds the game's ONLY ending
+("no sovereign rival remains outside the player's hierarchy") and a hand of
+three agenda cards. Mechanism verified: pays nothing, unlocks nothing, costs
+0.0 PC, consumes no RNG, no per-nation content — a signpost, not a focus tree.
+But: `status()` counts only the formal hierarchy, `subjugate` is called only
+from capitulation and `absorb_subjects` only from annexation, so the ending is
+reachable only through war, against BIBLE §"A full campaign with zero wars
+must be a complete, satisfying playthrough"; every hand carries a
+subjugate/settle-rival card; `war.rs` writes the subject row on EVERY
+capitulation, player or not (save shape changes on seed 93 — two capitulations
+— and seed 9, none on 1990 or 7, so the goldens cannot see it); nothing in war,
+statecraft or politics reads the hierarchy, so a subject can still sanction
+or attack its overlord; `tick` runs daily in daily play (the header said
+"once per monthly settlement" — corrected in 7ccb706) and
+`campaign_settlement_matches_the_daily_calendar` tests the legacy path only.
+fb08fa5 touched none of BIBLE.md, CLAUDE.md, SPEC.md, DAILY.md or BUGS.md and
+its message is one line: no ruling quoted, no doctrine amended. The ending,
+the war-only reachability and the leader policy each need Ridge's word.
+
+### Y-10 — the daily amendment did not follow the amendment convention
+
+BIBLE.md's "Daily simulation amendment — 2026-09-03" is dated and quotes the
+ruling, but adds 24 lines and strikes NOTHING through (0 `~~` in the
+addition; the superseded §§4–6 text and the 2026-09-02 daily-calendar
+amendment stand un-struck beneath it); CLAUDE.md and SPEC.md DELETED their
+monthly-model paragraphs outright instead of striking them. The convention
+(old text struck, amendment dated, ruling quoted) is three parts; two were
+kept. Filed for the doctrine owner; the text itself is not disputed.
+
+### Y-11 — two spheres-web assertions changed meaning
+
+Of ten pre-existing test bodies the push touched (the audit's body-level
+diff), eight only add
+`days_left: None` to a `Contract` literal. Two changed what a legacy test
+asserts: `a_funded_project_is_not_reported_as_stalled` expects "lands next
+day" where it expected "lands next month", and the contract-summary test lost
+`assert_eq!(contract["requested"], 10.0, "table tonnes are served as board
+kt/mo")` and `assert_eq!(contract["unit"], "kt/mo")` — a rate relabelled as a
+physical quantity. Across the whole `*.rs` diff those are the only two removed
+`assert` lines (327 added, re-counted by the repair pass); `#[test]` 447 →
+509 and `#[ignore` 62 → 62 by attribute grep; no tolerance widened. Recorded as a change of meaning, not reverted.
+
+### Y-12 — the binary carries 322 MB of pictures
+
+`spheres-web/src/portrait_assets.rs` embeds 303 files by `include_bytes!`:
+160 AI-generated full-body leader PNGs, 305,173,085 bytes, and 143 Commons
+portraits (webp), 16,886,182 bytes — 322,059,267 bytes in all.
+`spheres-web.exe` is 349,737,875 bytes (the test harness does not carry them);
+the git pack is 291.44 MiB. Licence state, measured from
+`spheres-web/data/nation_figures.json`: all 143 portraits carry an
+allow-listed free licence (108 public domain, 11 CC0, 4 CC BY 4.0, 2 CC BY
+2.0, 1 CC BY 3.0, 8 CC BY-SA 3.0, 5 CC BY-SA 4.0, 3 CC BY-SA 2.0, 1 CC BY-SA
+2.5) with creator, source page, licence URL, rights statement, credit and
+sha256; 17 nations have no portrait and use a named cameo; all 160 leader
+artworks record "OpenAI image generation", a prompt record under
+`tools/avatars/prompts` and a credit line. `tools/avatars/check_assets.py`
+passes (160 rows, 160 entries, 160 flags, 143 portraits, 17 cameos, 160
+artworks). Whether the images stay embedded, ship beside the binary, or are
+converted is a ruling (CC BY-SA portraits also oblige attribution in the
+shipped UI, which the selector's credit line is meant to carry).
+
+### Y-13 — browser surface, as played daily (Iraq, seed 7)
+
+Recorded from the browser check, none changed: "Enact & advance one day"
+with untouched dials advances the day and enacts nothing (`index.html`
+`onclick="advance(1)"`; a budget command is queued only by a dial change);
+the day-1 history label reads "Jan 1990" where later days read "2 Jan 1990";
+the mine card says "$0.3bn" and its headline "$0.2 bn" for the same 0.25, and
+"a oil field"; the page has no load control (`/api/load` exists); the game log
+and history are not in the save; an AI contract's headline quantity is in
+t/mo ("0.12 t/mo") while the player's is in t ("485 t/mo") for the same leg
+type. UI, filed.
+
+### Y-14 — invented coefficients in the three new modules
+
+`clock.rs`: none but the `1e-9` floor guard in `advance_counter` /
+`interval_due`; the rest is Gregorian arithmetic (146,097-day eras, the
+726,773-day offset to 1990-01-01). `logistics.rs`: `EPS 1e-9`; sea segment
+75,000 t/month, freight terminal 45,000, land corridor 25,000 × (1 + 0.20 ×
+infrastructure level) × terrain {Mountain 0.55, Highland 0.78, Desert 0.82,
+Wetland 0.72, Tundra 0.65, Lowland 1.0}; `tonnes_per_unit` kg 0.001, kt
+1,000, bcf 20,000, kb/d 4,080; transit `estimated_days = ceil(weight/1,680)
++ 2`; `floor9` 1e-9 quantisation; a 10,000,000 route-weight sentinel. The
+header says the network "claims no historical port, rail or road count" —
+these are game capacities, unsourced by declaration. `domination.rs`:
+`CLIENT_LEVERAGE_THRESHOLD 0.10`; enabling-card scores 39 + 18·(1 − GDP
+share), 43 + 8·min(rival/own, 3), 44 + min(rivals, 50)/10, 46 + 3·missing
+lines; repetition penalty 12 per occurrence in the last three legacies;
+direct-card score 45 adjacency + 0.4 per negative relation point +
+12·min(power ratio, 4) + 5·min(GDP ratio, 4); goals +10% GDP (min +1 bn), +2
+strategic lines, +12% military-industrial power (min +5), +1.0 client
+influence; `military_industrial_power = mil_strength + 0.05·book_value +
+5·arms_plants + 2·civilian_industry`; client-influence legs 0.20 economic aid,
+0.20 arms, 0.15 pact, 0.15·relation/75, 0.30·dependency/0.10; progress
+weights 0.35 sovereign / 0.25 population / 0.25 GDP / 0.15 ground; milestones
+0.25/0.50/0.75/1.0. All hand-tuned, none derived; the module is inert on the
+default path so none moves a golden.
+
+### Y-15 — `clock::advance_counter` cannot see a caller's silent reset
+
+If a caller resets its public counter to 0 without `counters.remove(key)`,
+`advance_counter` keeps the old fractional age and reads 1 after 6 more days
+instead of 31 (the audit's probe, after 25 daily calls). Every present reset site removes the key (commitment.rs,
+war.rs), so it is latent; a future site that forgets will drift. Filed.
