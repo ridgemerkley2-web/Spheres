@@ -444,15 +444,7 @@
       for (const city of cities) {
         const point = this.projectGeo(city.lon, city.lat, view, 1.002);
         if (!point) continue;
-        const fontSize = clamp(10.5 + Math.log2(Math.max(this.zoom, 1)) * 1.1, 10.5, 16) * ratio;
-        const width = city.name.length * fontSize * .56;
-        // Rectangle overlap against everything already drawn. O(n^2) on a list
-        // the zoom bands keep short — 1249 cities only all pass the filter at
-        // the closest zoom, where almost none of them project.
-        const box=[point[0]+6*ratio+width/2,point[1],width,fontSize];
-        if (placed.some((p) => Math.abs(p[0] - box[0]) < (p[2] + width) * .5 + 8 * ratio
-                            && Math.abs(p[1] - box[1]) < ((p[3]||fontSize)+fontSize)/2 + 6 * ratio)) continue;
-        placed.push(box);
+        // A city remains a place on the map even when its name cannot fit.
         context.beginPath();
         context.arc(point[0], point[1], (city.capital ? 3.2 : 2.2) * ratio, 0, PI * 2);
         context.fillStyle = city.capital ? "#ffd08a" : "#7de1f2";
@@ -460,14 +452,25 @@
         context.strokeStyle = "#06101bcc";
         context.lineWidth = 1.5 * ratio;
         context.stroke();
+        shown += 1;
+        if (this.options.showLabels === false) continue;
+
+        const fontSize = clamp(10.5 + Math.log2(Math.max(this.zoom, 1)) * 1.1, 10.5, 16) * ratio;
         context.font = `${city.capital ? 600 : 400} ${fontSize}px Inter, system-ui, sans-serif`;
+        const width = context.measureText(city.name).width;
+        // Rectangle overlap against everything already drawn. O(n^2) on a list
+        // the zoom bands keep short — 1249 cities only all pass the filter at
+        // the closest zoom, where almost none of them project.
+        const box=[point[0]+6*ratio+width/2,point[1],width,fontSize];
+        if (placed.some((p) => Math.abs(p[0] - box[0]) < (p[2] + width) * .5 + 8 * ratio
+                            && Math.abs(p[1] - box[1]) < ((p[3]||fontSize)+fontSize)/2 + 6 * ratio)) continue;
+        placed.push(box);
         context.textBaseline = "middle";
         context.lineWidth = 3 * ratio;
         context.strokeStyle = "#050b13ee";
         context.strokeText(city.name, point[0] + 6 * ratio, point[1]);
         context.fillStyle = city.capital ? "#ffe0ad" : "#d8e7f3";
         context.fillText(city.name, point[0] + 6 * ratio, point[1]);
-        shown += 1;
       }
       this.citiesShown = shown;
       if (this.options.onCitiesChange) this.options.onCitiesChange(shown);

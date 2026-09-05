@@ -250,21 +250,25 @@ test('expanded sections survive insertion, reorder and async rerender by stable 
 });
 
 function provinceRenderFixture() {
-  const c=fixture(['renderMap','renderProvinceDossier','provinceDossierHtml','loadProvincePopulation','adopt']);
-  let province=element();province.dataset={};
+  const c=fixture(['rememberMapControlFocus','restoreMapControlFocus','renderMap','renderProvinceDossier','provinceDossierHtml','loadProvincePopulation','adopt']);
+  let province=element();province.dataset={};let legend=element();
   const stage={appendChild(){}}, mapModes=element();
   const pane={set innerHTML(value){
     // Replacing the real map ancestor destroys the old drawer, just as a
     // browser does. Reusing one fake drawer would hide this regression.
     assert(value.includes('id="provinceDossier"'));
-    province=element();province.dataset={};
+    province=element();province.dataset={};legend=element();mapModes.scrollTop=0;
   }};
   Object.defineProperty(c,'provinceBox',{get:()=>province});
+  Object.defineProperty(c,'legendBox',{get:()=>legend});c.mapModes=mapModes;
   c.$=selector=>selector==='#provinceDossier'?province:selector==='#pane-map'?pane:
-    selector==='#pane-map .globe-stage'?stage:selector==='#mapModes'?mapModes:null;
+    selector==='#pane-map .globe-stage'?stage:selector==='#pane-map .map-legend'?legend:selector==='#mapModes'?mapModes:null;
   c.document.querySelector=selector=>selector==='#provinceDossier'?province:
     selector==='#nationEconomicLedger'?c.box:null;
   c.window={Globe3D:{}};
+  // Map furniture is a separate module; this fixture exercises the retained
+  // province drawer through a full parent replacement.
+  c.MapControls={html:()=>'',bind(){}};
   for(const name of ['globeBoot','applyCam','glShimmerKick','camWork','invalidateProgramPreview'])c[name]=()=>{};
   c.globeReadout=()=>'';c.rglyph=()=>'';c.resHue=()=>'';
   c.nationOfDistrict=id=>id==='US-CA'?'USA':'France';
@@ -290,11 +294,14 @@ test('actual adopt → full map rebuild → async province refresh keeps open se
     detail(c,key).open=true;detail(c,key).ontoggle();
   }
   c.provinceBox.scrollTop=240;c.provinceBox.onscroll();
+  c.legendBox.scrollTop=164;c.mapModes.scrollTop=93;
   const oldNode=c.provinceBox;
   await c.adopt(run(c,"({...S,date:'3 Jan 1991',day:3})"),false);
   assert.notEqual(c.provinceBox,oldNode,'the actual renderMap path must replace the drawer element');
   for(const key of ['economy-sectors','economy-projects','geography'])assert.equal(detail(c,key).open,true,key);
   assert.equal(c.provinceBox.scrollTop,240);
+  assert.equal(c.legendBox.scrollTop,164,'the replaced map legend retains its scroll position');
+  assert.equal(c.mapModes.scrollTop,93,'rebuilt layer controls retain their scroll position');
   assert.equal(requests.length,1);assert.equal(requests[0].url,'/api/district-population/US-CA');
   requests[0].resolve({id:'US-CA',population:30,economy:reading({total_gdp_bn:123})});
   await new Promise(setImmediate); // drain the VM's cross-realm async continuation

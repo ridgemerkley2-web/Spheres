@@ -23,6 +23,10 @@ browser, npm install, running server or campaign. Run a single file with
 | `check_programs.cjs` | Exact department-share conservation, immutable drafts, strict inputs, enacted-plan gates, safe labels, preview freshness and physical industry rendering. Run with `node --test tools/ui/check_programs.cjs`. |
 | `check_province_economy.cjs` | Province and national GDP decomposition, real project contributions, honest modeled-data labels, and deferred rendering safety. |
 | `check_session.cjs` | Campaign continuation/load, pending-turn preservation and retries, visible network failures, and initial globe positioning. |
+| `check_map_controls.cjs` | Actual control module: view-only actions, detail flags, camera bounds, native states, repeated binding and focus across replacement. |
+| `check_map_focus.cjs` | Layer/filter focus after replacement, native commodity buttons, escaped labels and Escape priority for open navigation. |
+| `check_map_detail.cjs` | Actual map paint and draw functions: province ownership under decorative toggles, progressive borders, zoom-cache invalidation and Terrain shader uniform reset. |
+| `check_city_labels.cjs` | Actual city overlay: measured text, collision handling, persistent markers and independent city/name visibility. |
 | `check_competition.cjs` | Exchange view rendering, authoritative supply forecasts and saved AI review snapshots, escaping, all-size filters, served purchase quantities, repeat-safe receipts, campaign binding and stale-request invalidation. |
 
 Run Exchange helper checks with `node --test tools/ui/check_competition.cjs`.
@@ -60,6 +64,13 @@ the user's process to unlock it.
 
 Check both desktop and narrow layouts:
 
+- Map: compare Terrain, Political and Fronts, then use More layers from History.
+  Zoom from world to province scale, rotate, return to World and center Home.
+  Check Borders, Provinces, Cities and Labels separately; selection and changed
+  provincial ownership must remain visible. City markers stay when names cannot
+  fit. Verify the dock clears the legend, Details opens without clipping, and
+  keyboard focus survives a map refresh. Terrain uses the existing relief,
+  river and boundary data; this pass does not add new geographic measurements.
 - Setup and Global Command: labels match the rendered elements, character art
   stays intact, actions and supporting text remain readable.
 - Every room: Escape closes the expected layer, Tab stays within the active

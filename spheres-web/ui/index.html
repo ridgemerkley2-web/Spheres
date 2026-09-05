@@ -2360,6 +2360,7 @@
 @media(max-width:600px) { .session-pending {align-items:stretch;flex-direction:column;} }
 </style>
 <link rel="stylesheet" href="/main-menu.css">
+<link rel="stylesheet" href="/map-controls.css">
 </head>
 <body>
 
@@ -2954,6 +2955,7 @@
      served by the same binary that serves this page: no CDN, no build step. -->
 <script src="/cities.js"></script>
 <script src="/globe3d.js"></script>
+<script src="/map-controls.js"></script>
 <script src="/campaign-transport.js"></script>
 <script src="/area-art.js"></script>
 <script src="/campaign-ui.js"></script>
@@ -3250,7 +3252,8 @@ let pickedNation = null;
 // Everything the UI remembers between renders that is not game state.
 const ui = {
   tab: "map",
-  mapMode: "political",
+  mapMode: "terrain",
+  mapDetails: { borders: true, provinces: true, cities: true, labels: true },
   resCommodity: "oil",   // which commodity the resource layer is painting ("__all" = every one)
   resOverlay: false,     // resource layer riding on TOP of whatever shading is selected
   resLimitsOpen: false,  // the "what this layer cannot say" disclosure, kept across ticks
@@ -3935,7 +3938,19 @@ const ARCADE_ROOMS = { sheetFocus: null, worldFocus: null, helpFocus: null };
 function closeGlobalMenus() {
   // Only header/map navigation; project and economy disclosures belong to
   // their rooms and must keep their own expansion state.
-  document.querySelectorAll("#app .arc-time-menu[open], #app .arc-map-tools[open]").forEach(menu => { menu.open = false; });
+  document.querySelectorAll("#app .arc-time-menu[open], #app .arc-map-tools[open], #app .map-detail-menu[open]").forEach(menu => { menu.open = false; });
+}
+function closeNavigationDisclosure(event) {
+  if (event.key !== "Escape") return false;
+  const menus = [...document.querySelectorAll("#app .arc-time-menu[open], #app .arc-map-tools[open], #app .map-detail-menu[open]")];
+  const target = event.target || document.activeElement;
+  const menu = menus.find(item => item.contains(target)) || menus[0];
+  if (!menu) return false;
+  event.preventDefault();
+  event.stopPropagation();
+  menu.open = false;
+  menu.querySelector("summary")?.focus({ preventScroll: true });
+  return true;
 }
 document.addEventListener("focusin", () => {
   // Every arcade room moves focus inside on entry, including keyboard entry.
@@ -4515,6 +4530,9 @@ document.addEventListener("keydown", (e) => {
   }
   if (cabinetIsOpen()) { cabinetKeys(e); return; }
   if (e.key === "Escape") {
+    // A disclosure above the globe closes before the province beneath it.
+    // Full-screen rooms keep their own Escape behavior and focus ownership.
+    if (!room && closeNavigationDisclosure(e)) return;
     // Escape keeps the WIDE test: a focused slider is still something Escape
     // should hand back, and that behaviour is unchanged by the split above.
     if (focused(e)) { e.target.blur(); return; }
@@ -8653,8 +8671,8 @@ function camFromGlobe(yaw, pitch, zoom) {
 
 /// The political texture bakes two things that depend on the ZOOM rather than
 /// on the world: the district mesh (ZB1) and the district labels' band (ZB2).
-/// Crossing a band is therefore the one camera move that dirties it — which is
-/// why this is a band check and not a repaint on every frame.
+/// Band crossings dirty those layers; Terrain also uses quantized zoom steps
+/// for its finer borders. Neither path repaints on every camera frame.
 let CAMBAND = -1;
 function camBandCheck() {
   const band = (ui.cam.k >= ZB1 ? 1 : 0) + (ui.cam.k >= ZB2 ? 1 : 0);
@@ -8665,6 +8683,8 @@ function camBandCheck() {
   // about seven repaints across the whole zoom range rather than one per frame.
   const fop = camDials().fop;
   if (Math.abs(fop - POL.fop) > 0.015) POL.dirty = true;
+  // Terrain border detail evolves between the old 2.2/4 zoom bands too.
+  if (mapDetailKey(ui.mapMode, ui.cam.k) !== POL.detailKey) POL.dirty = true;
 }
 
 function resetCam() {
@@ -9186,6 +9206,7 @@ uniform sampler2D uSel;
 
 // ---- per-mode art dials (BLEND owns their values) ----
 uniform float uGround;       // physical ground strength       0 .. 1
+uniform float uTerrainView;  // cartographic detail; 1 only in Terrain mode
 uniform float uSat;          // land-cover saturation  0 .. 1, and >= 2.23
                              // saturates the tBiome ramp's own 0.45 floor at
                              // every zoom (Terrain mode uses that; see MAP_MODES)
@@ -9463,7 +9484,10 @@ void main() {
   // macro blur fully gone by ZB1. This is what "far out = subdued" is
   // physically made of.
   float texPerPx = uTexPerWorld / max(uPxPerWorld, 1e-6);
-  float L  = clamp(log2(max(texPerPx, 1e-6)) + mix(2.30, 0.0, tRelief), 0.0, uMaxLod);
+  // Terrain keeps more of the measured relief at world scale. The screen-space
+  // mip floor still prevents aliasing; thematic maps retain their softer read.
+  float macroBlur = mix(2.30, 0.65, uTerrainView);
+  float L  = clamp(log2(max(texPerPx, 1e-6)) + mix(macroBlur, 0.0, tRelief), 0.0, uMaxLod);
   float st = exp2(L) / uTexPerWorld;              // finite-difference step, canvas units
 
   vec4 C  = textureLod(uPhys, uv, L);
@@ -9938,7 +9962,8 @@ void main() {
   // somebody has to read.
   float diffuse = max(dot(gNormal, GLOBE_SUN), 0.0);
   float rim     = pow(1.0 - max(gNormal.z, 0.0), 2.6);
-  col = col * (0.55 + 0.52 * diffuse) + ATMO * rim * 0.26;
+  col = col * (mix(0.55, 0.63, uTerrainView) + mix(0.52, 0.44, uTerrainView) * diffuse)
+      + ATMO * rim * 0.26;
   // The limb, antialiased against the page: the ray grazes as disc -> 0, so the
   // coverage falls out of the SAME quadratic the hit did rather than out of a
   // second silhouette that could disagree with it.
@@ -10426,7 +10451,7 @@ async function glInit() {
     gl, progMap, progGrid, vao, phys: dec.tex, lake, ramp, seaRamp,
     u: U(progMap, ["invRot", "camDist", "half", "res",
       "world", "texPerWorld", "pxPerWorld", "lk", "maxLod",
-      "ground", "sat", "shade", "sea", "hazeMax", "shimmer", "time", "ao", "glint",
+      "ground", "terrainView", "sat", "shade", "sea", "hazeMax", "shimmer", "time", "ao", "glint",
       "phys", "ramp", "seaRamp", "lake", "lakeMax", "pol", "polOp", "sel"]),
     uGrid: progGrid ? U(progGrid, ["frag2World", "world", "pxPerWorld"]) : null,
   };
@@ -10538,6 +10563,24 @@ const HATCH = (() => {
   return c;
 })();
 
+/// Bucket Terrain zoom so its border detail repaints at discrete intervals.
+function mapDetailKey(modeKey, zoom) {
+  return modeKey === "terrain" ? Math.floor(Math.log2(Math.max(1, zoom)) * 8) : 0;
+}
+
+function mapDetailStyle(modeKey, zoom) {
+  if (modeKey !== "terrain") return {
+    nationWidth: .5, provinceOpacity: zoom >= ZB1 ? .5 : 0,
+    provinceWidth: .5, riverOpacity: zoom >= ZB1 ? .55 : .25, riverWidth: .7,
+  };
+  return {
+    nationWidth: zramp(zoom, .95, .32, 1, 12),
+    provinceOpacity: zramp(zoom, 0, .46, 1.35, 4),
+    provinceWidth: zramp(zoom, .52, .25, 1.35, 12),
+    riverOpacity: .82, riverWidth: zramp(zoom, .68, .34, 1, 12),
+  };
+}
+
 /// Paint the political texture. Bottom to top, in exactly the order the svg
 /// stacked its groups, because that order was argued over once already and the
 /// arguments did not stop being true when the paper became a ball.
@@ -10545,6 +10588,9 @@ function paintPolitical() {
   const t0 = performance.now();
   const ctx = POL.ctx, s = POL.s, g = camDials(), m = me();
   const mode = MAP_MODES[ui.mapMode];
+  const terrainView = ui.mapMode === "terrain";
+  const detail = mapDetailStyle(ui.mapMode, ui.cam.k);
+  const borders = ui.mapDetails?.borders !== false;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, POL.canvas.width, POL.canvas.height);
   ctx.setTransform(s, 0, 0, s, 0, 0);          // draw in CANVAS UNITS from here down
@@ -10571,7 +10617,7 @@ function paintPolitical() {
   // make, and it still draws.
   ctx.strokeStyle = "#161c25";
   ctx.lineWidth = .45;
-  for (const code in WORLD.countries) {
+  if (borders) for (const code in WORLD.countries) {
     if (!claimed[code]) ctx.stroke(p2d(WORLD.countries[code]));
   }
 
@@ -10599,9 +10645,18 @@ function paintPolitical() {
     ctx.fillStyle = col;
     for (const c of codes) ctx.fill(p2d(WORLD.countries[c]), "evenodd");
     ctx.globalAlpha = 1;
-    ctx.strokeStyle = isMe ? "#c9a55a" : mode.opaque ? "#10151c" : col;
-    ctx.lineWidth = isMe ? .95 : mode.opaque ? .5 : .55;
-    for (const c of codes) ctx.stroke(p2d(WORLD.countries[c]));
+    // A dark casing keeps a fine light border legible over both snow and forest.
+    // The player's gold outline remains a locator when general borders are off.
+    if (borders || isMe) {
+      if (terrainView) {
+        ctx.strokeStyle = "#101d22";
+        ctx.lineWidth = detail.nationWidth * (isMe ? 2.6 : 2.1);
+        for (const c of codes) ctx.stroke(p2d(WORLD.countries[c]));
+      }
+      ctx.strokeStyle = isMe ? (terrainView ? "#dcc18b" : "#c9a55a") : terrainView ? "#b5bdad" : mode.opaque ? "#10151c" : col;
+      ctx.lineWidth = terrainView ? detail.nationWidth * (isMe ? 1.25 : 1) : isMe ? .95 : mode.opaque ? .5 : .55;
+      for (const c of codes) ctx.stroke(p2d(WORLD.countries[c]));
+    }
   }
 
   // 2b. the resource tint: who holds a surplus, who is short, who is stalled,
@@ -10627,11 +10682,11 @@ function paintPolitical() {
   // 4. the fronts.
   paintFronts(ctx);
 
-  // 5. the district mesh, one band in, exactly as `svg.zb1 .dline` had it.
-  if (ui.cam.k >= ZB1) {
-    ctx.globalAlpha = .5;
-    ctx.strokeStyle = "#10151c";
-    ctx.lineWidth = .5;
+  // 5. Local boundaries emerge as the player approaches the ground.
+  if (ui.mapDetails?.provinces !== false && detail.provinceOpacity > 0) {
+    ctx.globalAlpha = detail.provinceOpacity;
+    ctx.strokeStyle = terrainView ? "#d1cfad" : "#10151c";
+    ctx.lineWidth = detail.provinceWidth;
     for (const iso in DISTRICTS.byCountry) {
       for (const d of DISTRICTS.byCountry[iso]) ctx.stroke(p2d(d.path));
     }
@@ -10640,21 +10695,22 @@ function paintPolitical() {
 
   // 6. rivers and lakes, above the mesh so the mesh never rules through a
   // river, and quiet at world zoom for the same reason the mesh is absent.
-  const wet = ui.mapMode === "terrain" ? .9 : ui.cam.k >= ZB1 ? .55 : .25;
+  const wet = detail.riverOpacity;
   if (RIVERS.lakes.length) {
     ctx.globalAlpha = ui.mapMode === "terrain" ? .55 : .3;
-    ctx.fillStyle = "#4c8ee0";
+    ctx.fillStyle = terrainView ? "#386c8b" : "#4c8ee0";
     for (const d of RIVERS.lakes) ctx.fill(p2d(d));
   }
   ctx.globalAlpha = wet;
-  ctx.strokeStyle = "#4c8ee0";
-  ctx.lineWidth = .7;
+  ctx.strokeStyle = terrainView ? "#78adb7" : "#4c8ee0";
+  ctx.lineWidth = detail.riverWidth;
   for (const r of RIVERS.rivers) ctx.stroke(p2d(r.d));
   ctx.globalAlpha = 1;
 
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   POL.dirty = false;
   POL.fop = g.fop;                 // what this paint baked, for camRampCheck
+  POL.detailKey = mapDetailKey(ui.mapMode, ui.cam.k);
   POL.ms = performance.now() - t0;
   polUpload(POL, 3);
 }
@@ -10853,6 +10909,7 @@ function glDrawGlobe(view) {
   gl.uniform1f(u.lk, view.lk);
   gl.uniform1f(u.maxLod, GL.maxLod);
   gl.uniform1f(u.ground, dial.ground);
+  gl.uniform1f(u.terrainView, ui.mapMode === "terrain" ? 1 : 0);
   gl.uniform1f(u.sat, dial.sat);
   gl.uniform1f(u.shade, dial.shade);
   gl.uniform1f(u.sea, dial.sea);
@@ -11736,6 +11793,21 @@ function resEvidence(did) {
     + (fld ? ` · ${fld}` : "");
 }
 
+/// Native filter controls retain keyboard activation and expose selection.
+function resourceCommodityChips(live, selected) {
+  const escape = value => String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[char]));
+  return [RES_ALL, ...live].map(key => {
+    const all = key === RES_ALL;
+    const on = key === selected;
+    const color = all ? resHue(RES_ALL) : RCOLOR[key] || "#9fb0bd";
+    const title = all ? "Show all mapped commodities" : (RESOURCES.commodities[key] || {}).label || key;
+    const label = all ? "all" : key.replace(/_/g, " ");
+    return `<button type="button" class="chip${on ? " on amber" : ""}" data-com="${escape(key)}" aria-pressed="${on}" title="${escape(title)}">${rglyph(key, on ? "#0a0e14" : color)}${escape(label)}</button>`;
+  }).join("");
+}
+
 /// Under-map panel for the Resources shading. Three things, in this order,
 /// because that is the order a reader needs them: WHICH commodity, HOW STRONG
 /// each patch is, and WHO produced it with nothing located. The last is not a
@@ -11756,15 +11828,7 @@ function resPanel() {
   // The filter. "All" first, then one chip per placed commodity — this is what
   // lets a player isolate copper across the whole world, or drop the filter and
   // see every located resource at once.
-  const chips = `<span class="chip${all ? " on amber" : ""}" data-com="${RES_ALL}"
-      title="every commodity the artifact places, in one wash">${
-        rglyph(RES_ALL, all ? "#0a0e14" : resHue(RES_ALL))}all</span>` +
-    live.map((k) => {
-      const c = RCOLOR[k] || "#9fb0bd";
-      const on = k === com;
-      return `<span class="chip${on ? " on amber" : ""}" data-com="${k}" title="${
-        (RESOURCES.commodities[k] || {}).label || k}">${rglyph(k, on ? "#0a0e14" : c)}${k.replace(/_/g, " ")}</span>`;
-    }).join("");
+  const chips = resourceCommodityChips(live, com);
   const unl = resUnlocatedNations(com);
   // Units come from the artifact, abbreviated only for width. The number is
   // the transcribed national figure and is shown so the size of the hole is
@@ -12227,7 +12291,7 @@ function drawMapOverlay(ctx, view, globe) {
   // everything already placed this frame.
   const rank = (n) => (m && n.id === m.id ? 1e15 : 0)
     + (n.id === hoverNation || n.id === selected ? 1e14 : 0) + (n.gdp || 0);
-  const order = S.nations.slice().sort((a, b) => rank(b) - rank(a));
+  const order = ui.mapDetails?.labels === false ? [] : S.nations.slice().sort((a, b) => rank(b) - rank(a));
   const placed = globe.labelBoxes || (globe.labelBoxes=[]);
   for (const n of order) {
     const a = anchorOf(n.id);
@@ -12271,7 +12335,8 @@ function drawMapOverlay(ctx, view, globe) {
   }
   // Nations reserve space first, then local provinces, then cities in Globe3D.
   // Every layer shares the same complete text rectangles.
-  const detail = ui.cam.k >= ZB2 ? (hoverNation || selected || S.player) : null;
+  const detail = ui.mapDetails?.labels !== false && ui.mapDetails?.provinces !== false && ui.cam.k >= ZB2
+    ? (hoverNation || selected || S.player) : null;
   if(detail && TERRITORY[detail]){
     ctx.font=`${11*r}px Inter, system-ui, sans-serif`;ctx.lineWidth=2.6*r;
     ctx.strokeStyle="#0a0e14cc";ctx.fillStyle="#b9c6d6";
@@ -12374,6 +12439,40 @@ function camUserInput() {
   camAnim = 0;
 }
 
+/// Remember the stable identity of a layer or commodity button before redraw.
+function rememberMapControlFocus() {
+  const active = document.activeElement;
+  if (!active) return null;
+  for (const [containerId, key] of [["mapModes", "mode"], ["mapModes", "resovl"], ["resChips", "com"]]) {
+    const container = document.getElementById(containerId);
+    if (container?.contains(active) && active.dataset?.[key] !== undefined) {
+      return { containerId, key, value: active.dataset[key], element: active };
+    }
+  }
+  return null;
+}
+
+function restoreMapControlFocus(saved) {
+  if (!saved) return false;
+  const container = document.getElementById(saved.containerId);
+  if (!container) return false;
+  const active = document.activeElement;
+  // A room that acquired focus during a refresh retains it.
+  if (active && active !== document.body && active !== saved.element && active.isConnected && !container.contains(active)) return false;
+  const target = [...container.querySelectorAll("button")].find(button => button.dataset[saved.key] === saved.value);
+  const usable = button => button && !button.disabled && button.isConnected && button.getClientRects().length > 0;
+  if (usable(target)) {
+    target.focus({ preventScroll: true });
+    return true;
+  }
+  const summary = saved.containerId === "mapModes" ? container.closest("details")?.querySelector("summary") : null;
+  if (usable(summary)) {
+    summary.focus({ preventScroll: true });
+    return true;
+  }
+  return false;
+}
+
 /// One tick's worth of map. Note what is NOT here any more: 300 lines that
 /// built an <svg> string with every country, every district fill, every front
 /// mark and every label in it, per tick. The geometry moved into a texture
@@ -12382,6 +12481,9 @@ function camUserInput() {
 /// FURNITURE — the stage, the legend, the shading chips — plus telling the
 /// globe that the world it is drawing has changed.
 function renderMap() {
+  const mapFocus = rememberMapControlFocus();
+  const legendScroll = $("#pane-map .map-legend")?.scrollTop || 0;
+  const modesScroll = $("#mapModes")?.scrollTop || 0;
   rememberProvinceDossier();
   // The map is the only screen that needs globe3d.js, and it is fetched from
   // this same binary -- so this cannot fire against a matched deploy. It exists
@@ -12401,41 +12503,31 @@ function renderMap() {
   // the camera to the middle of the canvas when the player looked at it.
   if (ui.cam.cx === undefined) { const home=S.player ? anchorOf(S.player) : null; ui.cam.cx = home?.[0] ?? WORLD.w / 2; ui.cam.cy = home?.[1] ?? WORLD.h / 2; }
 
-  const pos = globeReadout();
   let s = `<div class="globe-stage">
-      <div class="globe-readout" id="globeReadout">${pos} · WebGL 3D</div>
-      <button class="globe-turn prev" type="button" aria-label="Rotate globe west"
-        onclick="globeNudge(-1,0)">&#8249;</button>
-      <button class="globe-turn next" type="button" aria-label="Rotate globe east"
-        onclick="globeNudge(1,0)">&#8250;</button>
-      <div class="globe-zoom"><span id="globeZoom">${ui.cam.k.toFixed(1)}×</span>
-        · <span id="globeCities">cities appear as you zoom</span></div>
+      ${MapControls.html()}
       <aside class="province-dossier" id="provinceDossier" aria-hidden="true"></aside>
       <noscript class="globe-fallback">The globe needs WebGL.</noscript>
     </div>`;
 
-  const modeLegend = mode.legend.map(([c, l]) =>
+  const terrainLegend = [["#829274", "Terrain relief"], ["#b5bdad", "National border"], ["#dcc18b", "Your nation"], ["#78adb7", "Rivers & lakes"]];
+  const modeLegend = (ui.mapMode === "terrain" ? terrainLegend : mode.legend).map(([c, l]) =>
     `<span><i style="background:${c}"></i>${l}</span>`).join("");
-  // WHAT IS AND IS NOT ON THE GLOBE, said out loud rather than left to look
-  // broken. The commodity marks (once the svg #resglyphs group) are drawn on
-  // the overlay now, with the sim's tint, the contract arcs and the aim rings;
-  // the district WASH — the four-opacity fill under them — is still not
-  // painted into the texture, and Terrain's six class swatches are not either.
+  // Explain the resource read using the features that are actually rendered.
   const gap = ui.mapMode === "resources" || ui.resOverlay
-    ? `<span style="color:var(--faint)">the district wash is not painted on the globe yet — the marks, the tint, the contract arcs and the aim rings are</span>`
-    : ui.mapMode === "terrain"
-      ? `<span style="color:var(--faint)">class fills are not drawn on the globe yet; the ground itself is the terrain read</span>`
-      : "";
+    ? `<span style="color:var(--faint)">Resource symbols and trade routes are shown. District density shading is unavailable in globe view.</span>`
+    : "";
+  s += `<div class="map-legend" aria-label="Map legend">`;
   s += ui.mapMode === "resources" ? resPanel()
     : ui.resOverlay ? resOverlayPanel(modeLegend) : `<div class="legend">
       ${modeLegend}${gap}
       <span>☢ nuclear</span><span>⊘ sanctioned</span>
-      <span style="color:var(--faint)">click a nation for its dossier · C to change shading · O for the resource overlay · drag to turn, wheel or pinch to zoom, double-click to dive</span>
+      <span class="map-legend-hint" style="color:var(--faint)">Drag to rotate · Scroll or pinch to zoom · Select a province to inspect</span>
     </div>`;
 
   if (gap && (ui.mapMode === "resources" || ui.resOverlay)) {
     s += stockLegend() + `<div class="legend">${gap}</div>`;
   }
+  s += `</div>`;
   $("#pane-map").innerHTML = s;
   // Re-adopt the two retained canvases (re-parent, never rebuild): the WebGL
   // context, its compiled shaders and ~30 MB of uploaded texture live on GLCV,
@@ -12471,7 +12563,7 @@ function renderMap() {
     + `</span>`;
   $("#mapModes").querySelectorAll("[data-mode]").forEach((c) => {
     c.onclick = () => {
-      ui.mapMode = c.dataset.mode; POL.dirty = true; SEL.dirty = true; renderMap();
+      ui.mapMode = c.dataset.mode; POL.dirty = true; SEL.dirty = true; showTab("map"); renderMap();
       const menu = $("#mapModes").closest('details'); menu.open = false; menu.querySelector('summary').focus();
     };
   });
@@ -12484,9 +12576,14 @@ function renderMap() {
   POL.dirty = true;
   SEL.dirty = true;
   globeBoot();
+  MapControls.bind();
   applyCam();           // pushes the camera and draws, SYNCHRONOUSLY
   glShimmerKick();      // a mode switch back into political re-arms the water
   camWork();
+  const legend = $("#pane-map .map-legend");
+  if (legend) legend.scrollTop = legendScroll;
+  $("#mapModes").scrollTop = modesScroll;
+  restoreMapControlFocus(mapFocus);
 }
 
 /// The camera's position, in words, for the readout over the globe. Latitude
@@ -12502,10 +12599,7 @@ function globeReadout() {
 /// the stage around them. Called from the camera's own pull path, so it tracks
 /// a drag rather than a tick.
 function globeReadoutSync() {
-  const r = $("#globeReadout");
-  if (r) r.textContent = globeReadout() + " · WebGL 3D";
-  const z = $("#globeZoom");
-  if (z) z.textContent = ui.cam.k.toFixed(1) + "×";
+  MapControls.sync();
 }
 
 /// The second line under a map label follows the shading, so the map answers the

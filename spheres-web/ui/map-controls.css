@@ -1,0 +1,68 @@
+/* Scoped map furniture; menus and simulation controls retain their handlers. */
+#app.map-controls-ready { height: 100dvh; --map-dock-space: 108px; }
+#app.map-controls-ready > header { position: relative; z-index: 40; }
+#app.map-controls-ready .timebtns { flex-wrap: wrap; min-width: 0; }
+#app.map-controls-ready #center { isolation: isolate; z-index: 0; padding-bottom: var(--map-dock-space); box-sizing: border-box; }
+#app.map-controls-ready #center > .tabs { position: relative; z-index: 12; flex: none; }
+#app.map-controls-ready .arc-map-tools { position: static; }
+#app.map-controls-ready .arc-map-tools #mapModes { right: 12px; top: calc(100% - 1px); width: min(510px,calc(100% - 24px)); max-height: min(360px,55dvh); overflow-y: auto; z-index: 13; box-sizing: border-box; }
+#app.map-controls-ready #center > .pane { min-height: 0; }
+#app.map-controls-ready #pane-map.on { display: flex; flex-direction: column; padding: 0; overflow: auto; }
+#app.map-controls-ready #pane-map .globe-stage { flex: 1 0 240px; height: auto; min-height: 240px; }
+#app.map-controls-ready #pane-map .map-legend { flex: 0 1 auto; min-height: 42px; max-height: min(150px,24dvh); overflow: auto; background: #17212d; border-top: 1px solid var(--arc-edge); }
+#app.map-controls-ready #pane-map .map-legend .legend { border: 0; border-radius: 0; background: transparent; box-shadow: none; padding: 10px 16px; gap: 9px 16px; font-size: 12px; letter-spacing: 0; }
+#app.map-controls-ready #pane-map .map-legend .chip { min-height: 44px; padding: 9px 12px; font-size: 12px; letter-spacing: 0; }
+#app.map-controls-ready #commandDock { left: 12px; right: 12px; bottom: 10px; width: auto; max-width: none; gap: 6px; padding: 7px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: #a8d4c3 #172231; scroll-padding: 8px; }
+#app.map-controls-ready #commandDock .dockbtn { flex: 1 0 116px; min-width: 116px; min-height: 64px; padding: 9px 11px; gap: 8px; }
+#app.map-controls-ready #commandDock #dominationDockBtn { min-width: 150px; }
+#app.map-controls-ready .decision-nav button { min-height: 44px; }
+
+.map-controls { position: absolute; top: 12px; left: 12px; z-index: 5; max-width: calc(100% - 24px); display: flex; flex-direction: column; align-items: flex-start; gap: 7px; font-family: var(--arc-font); color: var(--arc-text); }
+.map-view-controls, .map-camera-controls { display: flex; align-items: center; gap: 5px; padding: 5px; border: 1px solid #c6b5e34a; border-radius: 14px; background: #15202eea; box-shadow: 0 5px 20px #0004; }
+.map-controls button, .map-detail-menu > summary { min-width: 44px; min-height: 44px; padding: 9px 12px; border: 1px solid #b5c5d230; border-radius: 9px; background: #263547; color: #edf1f4; font: 650 13px/1.2 var(--arc-font); cursor: pointer; white-space: nowrap; }
+.map-controls button:hover:not(:disabled), .map-detail-menu > summary:hover { border-color: var(--arc-mint); background: #35495a; }
+.map-controls button[aria-pressed="true"] { color: #172c29; background: var(--arc-mint); border-color: var(--arc-mint); }
+.map-controls button:disabled { opacity: .42; cursor: default; }
+.map-quick-modes { display: flex; gap: 4px; }
+.map-detail-menu { position: relative; }
+.map-detail-menu > summary { display: flex; align-items: center; gap: 5px; list-style: none; box-sizing: border-box; }
+.map-detail-menu > summary::-webkit-details-marker { display: none; }
+.map-detail-menu > summary::after { content: "▾"; color: var(--arc-gold); }
+.map-detail-options { position: absolute; top: calc(100% + 9px); right: 0; z-index: 8; display: grid; gap: 6px; width: 208px; max-height: min(280px,45dvh); overflow: auto; padding: 9px; background: #172331; border: 1px solid #a8d4c366; border-radius: 13px; box-shadow: 0 10px 30px #0008; }
+.map-detail-options button { display: flex; align-items: center; justify-content: space-between; gap: 24px; text-align: left; }
+.map-detail-state { font-size: 11px; opacity: .85; }
+.map-camera-controls { gap: 4px; }
+.map-camera-controls button { padding: 6px; font-size: 23px; line-height: 1; }
+.map-camera-caption { display: block; font-size: 10px; margin-top: 3px; }
+.map-view-status { min-width: 97px; padding: 0 5px; text-align: center; font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+@media (max-width: 700px) {
+  #app.map-controls-ready { --map-dock-space: 86px; }
+  #app.map-controls-ready .timebtns { justify-content: flex-end; gap: 5px; }
+  #app.map-controls-ready #commandDock { left: 7px; right: 7px; bottom: 6px; padding: 5px; }
+  #app.map-controls-ready #commandDock .dockbtn { flex-basis: 100px; min-width: 100px; min-height: 54px; }
+  #app.map-controls-ready #commandDock #dominationDockBtn { min-width: 132px; }
+  #app.map-controls-ready #center > .tabs { padding: 5px 8px; gap: 4px; }
+  #app.map-controls-ready #center > .tabs > .tab { padding: 8px 10px; }
+  #app.map-controls-ready .arc-map-tools summary { padding: 9px 10px; font-size: 12px; }
+  #app.map-controls-ready .decision-nav { gap: 4px; }
+  #app.map-controls-ready .decision-nav button { padding: 6px 9px; font-size: 12px; }
+  .map-controls { top: 8px; left: 8px; max-width: calc(100% - 16px); gap: 5px; }
+  .map-controls button, .map-detail-menu > summary { padding: 8px 10px; font-size: 12px; }
+  .map-view-controls, .map-camera-controls { gap: 3px; padding: 4px; }
+  .map-camera-controls button { padding: 5px; font-size: 23px; }
+  .map-view-status { min-width: 74px; max-width: 85px; padding: 0 2px; white-space: normal; line-height: 1.3; }
+  #app.map-controls-ready #pane-map .map-legend { max-height: 105px; }
+}
+@media (max-width: 380px) {
+  .map-camera-controls { flex-wrap: wrap; max-width: 100%; box-sizing: border-box; }
+  .map-view-controls { flex-wrap: wrap; }
+  .map-controls { max-width: calc(100% - 16px); }
+}
+@media (max-height: 700px) {
+  #app.map-controls-ready { --map-dock-space: 84px; }
+  #app.map-controls-ready #commandDock .dockbtn { min-height: 50px; }
+  #app.map-controls-ready #commandDock .dockbtn small { display: none; }
+  #app.map-controls-ready #pane-map .globe-stage { flex-basis: 210px; min-height: 210px; }
+  #app.map-controls-ready #pane-map .map-legend { max-height: 78px; }
+}

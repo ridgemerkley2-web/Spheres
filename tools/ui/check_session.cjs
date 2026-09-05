@@ -185,13 +185,13 @@ test('review requires confirmation and never resubmits old orders, retaining new
   assert(paths.every(([path,body])=>path==='/api/state'&&body===undefined),'review is read-only, not another advance');
 });
 
-test('campaign changes and modal entry close only global More and Map menus',()=>{
+test('campaign changes and modal entry close global More and Map menus without closing room disclosures',()=>{
   const c=fixture(['closeGlobalMenus']);
-  const time={open:true},map={open:true},project={open:true},economy={open:true};let selector;
-  c.document.querySelectorAll=value=>{selector=value;return [time,map];};
+  const time={open:true},map={open:true},detail={open:true},project={open:true},economy={open:true};let selector;
+  c.document.querySelectorAll=value=>{selector=value;return [time,map,detail];};
   run(c,'closeGlobalMenus()');
-  assert.equal(selector,'#app .arc-time-menu[open], #app .arc-map-tools[open]');
-  assert.equal(time.open,false);assert.equal(map.open,false);
+  assert.equal(selector,'#app .arc-time-menu[open], #app .arc-map-tools[open], #app .map-detail-menu[open]');
+  assert.equal(time.open,false);assert.equal(map.open,false);assert.equal(detail.open,false);
   assert.equal(project.open,true);assert.equal(economy.open,true);
   for(const name of ['showCampaigns','resetCampaignUi','enterCampaign'])assert.match(fn(name),/closeGlobalMenus\(\)/);
   assert.ok(page.includes('document.addEventListener("focusin", () => {'));

@@ -40,6 +40,12 @@ project, and use **Find** to open a province without hunting on the globe.
 **Decisions** contains diplomatic requests, standing policies, monetary choices
 and optional peaceful campaign aims. Domination remains an available aim.
 
+The map opens in **Terrain**. Use its corner controls to switch to **Political**
+or **Fronts**, zoom, rotate, return to **World**, or center **Home**. **Details**
+toggles borders, provinces, cities and labels; **More layers** holds the economic
+and resource views. Provincial boundaries appear gradually as you zoom in.
+Drag to rotate, scroll or pinch to zoom, and select a province to inspect it.
+
 ## Campaigns and recovery
 
 The main menu offers **Continue campaign**, **New campaign** and **Saved campaigns**.
