@@ -85,6 +85,86 @@ production from enabling capacity. See `PROVINCE_ECONOMY.md` for accounting and
 data boundaries. This extends, and does not discard, the ministry review build.
 
 ## Done (v0.5 rebuild)
+- **The daily counter became HOI4's clock** (2026-09-04, branch
+  `feat/hoi4-speed` off `feat/hoi4-map-and-tech` 67e55e0; Ridge's request
+  quoted: "Can you fix the daily counter to be a speed up and slow down counter
+  like HOI4"). The four fixed jump buttons (+1 DAY / +7 DAYS / +30 DAYS / +1
+  YEAR) are gone. The header now carries a readout of the state the clock is
+  actually in (PAUSED or RUNNING, and the speed), a pause/play button labelled
+  with the action it will take, five clickable speed pips, and a single-day
+  step. The ladder is real milliseconds between simulated days — 1 = 1000,
+  2 = 500, 3 = 250, 4 = 100, 5 = 0 (uncapped) — and the runner CHAINS: post one
+  day with any queued commands, await it, adopt, then wait. One request in
+  flight at any moment, so a slow server slows the clock instead of stacking
+  days behind it. Measured in the browser at ab1244a with the pane VISIBLE
+  (a hidden pane clamps setTimeout to 1000 ms and flattens the top of the
+  ladder), seed 1990 as the USA: 1083 / 620 / 350 / 200 / 126 ms a day against
+  a server taking 83 ms median.
+  Keys are HOI4's: Space toggles, 1-5 set a speed and run, + and - walk the
+  ladder without unpausing, N steps a day and pauses; the world map's zoom moved
+  off + and - to Z and Shift+Z.
+  **The sim decides when to stop, as it always did.** `advance_days` already
+  stopped a span early on a major headline, but its arm was guarded by
+  `i + 1 < days` — and the running clock posts ONE day, where the last day is
+  the only day, so `interrupt` came back null every time. Found in the browser:
+  3.5 simulated years at speed 5 without one pause while the log filled with
+  headlines naming the player. The arm now reports on the last day too and the
+  stopped-early flag stays `i + 1 < days`; `is_major` still decides alone.
+  **Four repairs from the skeptic pass, each with a bar watched red.**
+  (1) Pause did not stop a day already IN FLIGHT: `clock.timer` is null across
+  the await, so pause-then-play left the old chain alive beside the new one and
+  each armed its own next day — 2 live chains from one pause-then-play, 3 from
+  six presses of Space during one held day, peak 7, and 13 wakeups producing
+  4 days. The clock now carries a generation; every pause and play bumps it and
+  a chain retires the moment it stops matching. Re-measured with a day held
+  4 s: never more than one chain, and a day the single-flight guard refuses is
+  asked again a frame later rather than at speed 5's zero delay. (2) The
+  no-game guard read an inline style that is never set — `#app` is hidden by a
+  stylesheet rule, measured "" against `getComputedStyle` "none" on the picker,
+  so half the guard was dead; it reads the computed value now. (3) A player
+  could not stop the clock from behind the resource board or the tech screen,
+  which swallow the keyboard: two more days landed at speed 1 while the header
+  was covered. Space now reaches the clock from any screen and banners what it
+  did; every other clock key is still swallowed there. (4) The keys card and
+  Global Command cannot pass Space through (one sits above the banner, the
+  other spends Space clicking an agenda button), so they stop the clock as they
+  open — which is what Global Command's own "the simulation is inert" already
+  claimed. Verified live on this build: board open, Space, 0 requests and the
+  date frozen over 3 s; card open, 0 requests over 2.5 s; Global Command open,
+  0 requests over 2.5 s; and the clock still stops itself on an event —
+  "Venezuela escalates to rung 2 - sanctions." at 25 Mar 1990, 1039 ms after
+  play, with the banner saying the clock is paused.
+  **Rebased onto 4b31168** (`merge: integrate HOI4 clock with economic
+  systems`, which already carried ab1244a), and the merge needed three
+  rulings, and a fifth repair of its own. **The fifth:** upstream rewrote
+  `advance()` to catch its own failures and answer `false` — a blocked
+  economic order, a pending turn awaiting reconciliation, or a request that
+  failed — where it used to throw. Read as a landed day, `false.interrupt` is
+  merely undefined, so the runner would have armed the next day and walked on
+  through its own error banner once a second. The runner now reads three
+  answers in order: `null` is the single-flight refusal and is asked again a
+  frame later, `false` is a turn that did not happen and stops the clock with
+  the reason already on the banner, and only a state is read for an interrupt.
+  Measured on the merged build by rejecting one `/api/advance`: the clock
+  stopped at 18 Feb 1990, the banner kept the server's own sentence, and 0
+  further requests went out over 3 s. (a) Upstream had bound its own Space at the TOP of the keydown
+  handler — pause-only, ahead of the cabinet, the decision sheet and the
+  competition room, which is the half of the rule those rooms need. Both
+  bindings would otherwise have fired on one press, so the top rule now stands
+  aside for the tech screen and the resource board and the full toggle keeps
+  them, banner and all; the toggle took upstream's native-control exclusion so
+  a Space on a focused button, tab or disclosure stays that control's press.
+  (b) Upstream stopped the clock on a refused day ("never spin on a failed
+  day"). A day that FAILS still stops it — that is the catch, unchanged — but a
+  refusal is only a step landing as play was pressed, and it is now asked again
+  one frame later, which cannot spin at speed 5's zero delay either. (c) The
+  keys card's markup became a command guide with its own focus handling, and
+  the pause keeps both. Two more tests re-expressed rather than deleted:
+  `the_shortcut_card_opens_before_a_game_exists` and
+  `the_shortcut_card_swallows_the_keys_behind_it` anchored their ordering
+  claims on the old spectator bail literal, and now anchor on the same line in
+  its gameIsUp() form. Eleven mutations, eleven reds, watched on the merged
+  tree.
 - **Two Codex pushes checked and three of their daily passes repaired**
   (2026-09-03, branch `check/daily-ad60482` off `feat/hoi4-map-and-tech`
   ad60482, commits 7ccb706 and the docs commit after it; every figure below

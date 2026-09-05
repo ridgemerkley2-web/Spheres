@@ -23,8 +23,14 @@ From a terminal:
 `spheres-web` opens http://127.0.0.1:7777 by default: a strategic map of the
 world sized by GDP and coloured by your relations, policy sliders, GDP/oil history
 charts, a league table, and a dispatch feed. Click a nation to open it and act on it.
-Time advances in months; a war or a collapse interrupts a long advance so you can
-respond.
+The clock is HOI4's: it runs by itself until something stops it. Space stops it
+from any screen — the cabinet, the tech screen and the resource board included —
+and starts it again from the map or either of those two boards; 1-5 pick a speed
+(one simulated day every 1000, 500, 250, 100 or 0 ms of real time — the last is
+as fast as the server answers), + and - walk that ladder, N steps a single day.
+Opening the shortcut card or Global Command stops the clock outright. A war or a
+collapse pauses it and says why, and you press Space again when you have decided
+what to do.
 
 In the CLI, type `help`. Core loop: read briefing -> set policy (rate/tax/military/
 invest), act diplomatically (improve/sanction/war) -> `next`, `year`, or `6` to

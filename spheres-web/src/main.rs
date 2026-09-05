@@ -9007,6 +9007,21 @@ mod tests {
         }
     }
 
+    /// The text of one top-level function in the page, from its opening line to
+    /// the closing brace in the first column — so an assertion can be made about
+    /// THAT function rather than about the whole file, which is how a guard in
+    /// one place passes for a guard in another.
+    fn page_fn(open_line: &str) -> &'static str {
+        let start = INDEX
+            .find(open_line)
+            .unwrap_or_else(|| panic!("the page has no `{open_line}`"));
+        let rest = &INDEX[start..];
+        let end = rest
+            .find("\n}")
+            .unwrap_or_else(|| panic!("`{open_line}` is never closed at the first column"));
+        &rest[..end]
+    }
+
     /// One request in flight, always. The runner CHAINS — post a day, await it,
     /// adopt it, then arm the next — so a server slower than the delay slows
     /// the clock instead of stacking days behind it. An interval timer or an
@@ -9018,7 +9033,7 @@ mod tests {
         assert!(INDEX.contains("advancing = false;"));
         assert!(INDEX.contains("st = await advance(1);"), "the runner does not await its day");
         assert!(
-            INDEX.contains("clock.timer = setTimeout(clockStep, clockDelayMs());"),
+            INDEX.contains("clock.timer = setTimeout(() => clockStep(gen), clockDelayMs());"),
             "the next day is not armed after the last one landed"
         );
         assert!(
@@ -9031,25 +9046,176 @@ mod tests {
         );
     }
 
+    /// PAUSE MEANS STOP, including the day already in flight — the defect the
+    /// skeptic pass found and this is the bar that guards the repair. Clearing
+    /// `clock.timer` cannot retire a chain that is sitting in its await, because
+    /// the timer is null for exactly that stretch: pause-then-play left the old
+    /// chain alive beside the new one, and each armed its own next day. Measured
+    /// in the browser before the repair, with one day's answer held six seconds:
+    /// 2 live chains after one pause-then-play, 3 after six presses of Space
+    /// during one in-flight day, peak 7 in a session, and 13 wakeups producing
+    /// 4 days. The repair is a generation token, and every one of its parts is
+    /// asserted here because any one of them missing brings the chains back.
+    #[test]
+    fn pausing_retires_the_day_that_is_already_in_flight() {
+        assert!(
+            INDEX.contains("const clock = { running: false, speed: 3, timer: null, gen: 0 };"),
+            "the clock carries no generation, so nothing can retire a chain mid-await"
+        );
+        assert!(page_fn("function clockPause() {").contains("clock.gen++;"), "pause retires nothing");
+        let play = page_fn("function clockPlay() {");
+        assert!(play.contains("clock.gen++;"), "play does not take a generation of its own");
+        assert!(play.contains("clockStep(clock.gen);"), "the new chain is not told which one it is");
+        let step = page_fn("async function clockStep(gen) {");
+        let (before, after) = step
+            .split_once("await advance(1);")
+            .expect("the runner no longer awaits a single day");
+        assert!(
+            before.contains("if (gen !== clock.gen) return;"),
+            "a retired chain would still start a day"
+        );
+        assert!(
+            after.contains("if (gen !== clock.gen || !clock.running) return;"),
+            "a chain retired while its day was in flight would carry on"
+        );
+        assert!(
+            after.contains("clock.timer = setTimeout(() => clockStep(gen), clockDelayMs());"),
+            "the next day must be armed as the same generation"
+        );
+        assert!(
+            !step.contains("setTimeout(clockStep,"),
+            "a timer armed without a generation outlives the pause that should have killed it"
+        );
+        // A day the single-flight guard REFUSED is not a day: it is asked again
+        // a frame later, never at speed 5's zero delay, which would spin the
+        // event loop for as long as the other post took.
+        assert!(after.contains("if (st === null) {"), "a refused day is read as a landed one");
+        assert!(
+            after.contains("clock.timer = setTimeout(() => clockStep(gen), CLOCK_RETRY_MS);"),
+            "a refused day re-arms at the running speed"
+        );
+        assert!(INDEX.contains("const CLOCK_RETRY_MS = 16;"), "no retry delay to re-arm on");
+        // advance() answers three ways: a state, `null` when the single-flight
+        // guard refused the day, and `false` when the turn was BLOCKED or FAILED
+        // and the page has already banner-ed the reason. The runner must tell
+        // the last two apart — ask again after a refusal, stop after a failure —
+        // and must read both before `st.interrupt`, or a day that never ran arms
+        // the next one and the clock walks on through its own error message.
+        assert!(
+            page_fn("async function advance(days, retry = false) {").contains("return false;"),
+            "advance no longer answers false; re-derive the runner's arms"
+        );
+        let refused = after.find("if (st === null) {").expect("no refused-day arm");
+        let failed = after
+            .find("if (!st) {")
+            .expect("a blocked or failed turn no longer stops the clock");
+        let interrupt = after.find("if (st.interrupt) {").expect("no interrupt arm");
+        assert!(refused < failed, "the failure arm swallows the refusal it should have retried");
+        assert!(failed < interrupt, "a day that never ran is read for an interrupt");
+        let failed_arm = &after[failed..interrupt];
+        assert!(failed_arm.contains("clockPause();"), "a failed day must stop the clock");
+    }
+
+    /// A player must be able to STOP the clock from wherever they are standing.
+    /// The tech screen and the resource board swallow the keyboard while they
+    /// are up — rightly, since both spend the digits on their own work — and
+    /// before this they swallowed pause with it: measured at speed 1, B to open
+    /// the board then Space, Space, 1, 5, and two more days landed behind it.
+    /// The rule now is one of two things for every full-screen surface: let
+    /// Space through, or stop the clock as you open. The two rooms that cannot
+    /// pass it through take the second half — the keys card is above the banner
+    /// so a press there would have no visible answer, and Global Command spends
+    /// Space clicking the focused agenda button.
+    #[test]
+    fn the_pause_key_reaches_the_clock_from_every_screen() {
+        let space = INDEX
+            .find("if (e.key === \" \" && !e.target?.closest?.('button, summary, select, [role=\"tab\"]')) {")
+            .expect("space is not bound ahead of the screens that swallow the keyboard");
+        let tech = INDEX
+            .find("if (tech.open) { techKeys(e); return; }")
+            .expect("the tech dispatch is gone");
+        let stock = INDEX
+            .find("if (stock.open) { stockKeys(e); return; }")
+            .expect("the resource board dispatch is gone");
+        assert!(space < tech, "the tech screen swallows the pause key");
+        assert!(space < stock, "the resource board swallows the pause key");
+        assert!(
+            page_fn("document.addEventListener(\"keydown\", (e) => {").contains("clockToggle();"),
+            "the pause key no longer toggles the clock"
+        );
+        // The board must stop eating a key it no longer receives.
+        assert!(
+            !page_fn("function stockKeys(e) {").contains("k === \" \""),
+            "the board still swallows Space, which now never reaches it"
+        );
+        // Those two screens cover the header readout, so the press says out loud
+        // what it did.
+        assert!(INDEX.contains("if (tech.open || stock.open) {"));
+        assert!(INDEX.contains(
+            "banner(clock.running ? \"The clock is running — speed \" + clock.speed : \"The clock is paused\");"
+        ));
+        // And the two rooms that take the other half of the rule.
+        assert!(
+            page_fn("function setKeysCard(open) {").contains("if (open) clockPause();"),
+            "the keys card leaves the world running behind a modal that swallows pause"
+        );
+        assert!(
+            page_fn("function openDomination() {").contains("clockPause();"),
+            "Global Command claims the simulation is inert while it is open"
+        );
+        // TWO rules, one press. The pause-only rule at the top of the handler
+        // reaches the rooms this dispatch never gets past — the cabinet, the
+        // decision sheet, the competition room — and the full toggle above takes
+        // the two boards that also have to say what happened. They must not
+        // both fire on the same press, so the top rule excludes those two.
+        let room_pause = INDEX
+            .find("if (clock.running && e.key === \" \" && !typing(e)")
+            .expect("nothing pauses the clock from the rooms below the dispatch");
+        let cabinet = INDEX
+            .find("if (cabinetIsOpen()) { cabinetKeys(e); return; }")
+            .expect("the cabinet dispatch is gone");
+        assert!(room_pause < cabinet, "the cabinet swallows the pause key");
+        assert!(
+            INDEX.contains("      && !tech.open && !stock.open\r\n"),
+            "both space rules fire on one press: the top rule no longer stands aside for the two boards"
+        );
+        // Said on the card, both halves.
+        assert!(INDEX.contains(
+            "<span>Pause / run the clock &mdash; pause reaches every screen</span><span><kbd>Space</kbd></span>"
+        ));
+        assert!(INDEX.contains(
+            "<span>Opening this card, or Global Command, pauses the clock</span>"
+        ));
+    }
+
     /// The keys are HOI4's. Space toggles; 1..5 pick a speed and run at it;
     /// plus and minus walk the ladder; N steps a single day. The two screens
     /// that swallow the keyboard still swallow it, and the world map's zoom
     /// moved to Z rather than being dropped when + and − became the ladder.
     #[test]
     fn the_clock_keys_are_hoi4s() {
-        assert!(INDEX.contains(r#"if (k === " ") { e.preventDefault(); clockToggle(); }"#), "space no longer toggles");
+        // Space is bound ahead of the screen dispatches rather than inside the
+        // chain below — see the_pause_key_reaches_the_clock_from_every_screen,
+        // which is where that ordering is the claim.
+        assert!(
+            INDEX.contains(r#"if (e.key === " " && !e.target?.closest?.('button, summary, select, [role="tab"]')) {"#),
+            "space no longer toggles"
+        );
         assert!(INDEX.contains(r#"k >= "1" && k <= "5""#), "the number keys no longer pick a speed");
         assert!(INDEX.contains("setSpeed(+k); clockPlay();"), "a number key must set the speed and run");
         assert!(INDEX.contains(r#"else if (k === "+" || k === "=") { e.preventDefault(); setSpeed(clock.speed + 1); }"#));
         assert!(INDEX.contains(r#"else if (k === "-" || k === "_") { e.preventDefault(); setSpeed(clock.speed - 1); }"#));
         assert!(INDEX.contains(r#"else if (k === "n" || k === "N") { e.preventDefault(); stepDay(); }"#), "no single-step key");
         // Every one of them is on the card the player opens with `?`.
-        assert!(INDEX.contains(r#"<span>Pause / run the clock</span><span><kbd>Space</kbd></span>"#));
+        assert!(INDEX.contains(
+            r#"<span>Pause / run the clock &mdash; pause reaches every screen</span><span><kbd>Space</kbd></span>"#
+        ));
         assert!(INDEX.contains(r#"<span>Speed up / slow down</span><span><kbd>+</kbd> <kbd>&minus;</kbd></span>"#));
         assert!(INDEX.contains(r#"<span>Step one day, and pause</span><span><kbd>N</kbd></span>"#));
         assert!(INDEX.contains("+1 DAY<i>N</i>"), "the step button does not show its key");
-        // The early returns that keep the clock keys out of the tech screen and
-        // the resource board are the ones that were already there.
+        // The early returns that keep the ADVANCE keys out of the tech screen
+        // and the resource board are the ones that were already there; pause is
+        // the single exception and is bound above them.
         assert!(INDEX.contains("if (tech.open) { techKeys(e); return; }"));
         assert!(INDEX.contains("if (stock.open) { stockKeys(e); return; }"));
         // The map zoom that + and − used to own.
@@ -9092,14 +9258,14 @@ mod tests {
         assert!(INDEX.contains("if (st.interrupt) banner(st.interrupt);"));
         // And the page's half: the runner pauses on it and says the clock is
         // paused, rather than banner-ing and rolling on.
-        assert!(INDEX.contains("if (st && st.interrupt) {"), "the runner ignores the interrupt");
+        assert!(INDEX.contains("if (st.interrupt) {"), "the runner ignores the interrupt");
         assert!(INDEX.contains("the clock is paused — press Space to resume"));
         let runner = INDEX
-            .split("async function clockStep()")
+            .split("async function clockStep(gen)")
             .nth(1)
             .expect("no runner");
         let interrupt_arm = runner
-            .split("if (st && st.interrupt) {")
+            .split("if (st.interrupt) {")
             .nth(1)
             .expect("the runner has no interrupt arm");
         let arm = &interrupt_arm[..interrupt_arm.find("  }").expect("unterminated interrupt arm")];
@@ -9147,12 +9313,31 @@ mod tests {
     #[test]
     fn the_clock_does_not_run_without_a_game() {
         // One reader for "is there a game to run", and everything that moves
-        // time asks it: the post itself, the play, and the loop between days.
+        // time asks it: the post itself, the play, the loop between days and the
+        // keyboard.
+        //
+        // It reads the COMPUTED display, and that is the repair of 2026-09-04.
+        // `#app` is hidden by a stylesheet rule, not an inline style, so the
+        // inline read measured "" on the nation picker: the second half of the
+        // conjunction was true there and held nothing back, leaving `!!S` alone
+        // to keep the clock off the picker. Measured on the boot page —
+        // `$("#app").style.display` "" against `getComputedStyle` "none".
         assert!(INDEX.contains(
-            "function gameIsUp() { return !!S && $(\"#app\").style.display !== \"none\"; }"
+            "function gameIsUp() { return !!S && getComputedStyle($(\"#app\")).display !== \"none\"; }"
         ), "the no-game guard is gone or has been copied");
+        assert!(
+            !INDEX.contains("$(\"#app\").style.display === \"none\""),
+            "something asks whether the game is up by reading an inline style that is never set"
+        );
         assert!(INDEX.contains("if (!gameIsUp()) return null;"), "advance would post without a game");
-        assert!(INDEX.contains("if (!gameIsUp()) return;"), "play would start without a game");
+        assert!(
+            page_fn("function clockPlay() {").contains("if (!gameIsUp()) return;"),
+            "play would start without a game"
+        );
+        assert!(
+            INDEX.contains("if (!gameIsUp()) return;   // the spectator bail: no game, no game keys"),
+            "the keyboard would work a game that is not there"
+        );
         assert!(
             INDEX.contains("if (!gameIsUp()) { clockPause(); return; }"),
             "the loop would keep ticking a game that is gone"
@@ -10121,13 +10306,18 @@ mod tests {
     /// screen (the dispatch to techKeys is below the same bail), which is why
     /// techKeys must no longer carry a `?` branch — a second copy of a toggle
     /// that can never run is exactly what drifts.
+    ///
+    /// Re-expressed 2026-09-04: the bail was `!S || #app is hidden` read from an
+    /// inline style that is never set, and it now asks `gameIsUp()` — the same
+    /// reader the clock asks, reading the COMPUTED display. Same bail, same
+    /// place, same claim; only the anchor moved.
     #[test]
     fn the_shortcut_card_opens_before_a_game_exists() {
         let at_toggle = INDEX
             .find("if (isKeysCardToggle(e)) { toggleKeysCard(); return; }")
             .expect("the card's open branch is gone from the global handler");
         let at_bail = INDEX
-            .find("if (!S || $(\"#app\").style.display === \"none\") return;")
+            .find("if (!gameIsUp()) return;   // the spectator bail: no game, no game keys")
             .expect("the keydown handler's spectator bail is gone");
         assert!(
             at_toggle < at_bail,
@@ -10388,8 +10578,11 @@ mod tests {
         let at_gate = INDEX
             .find("if (isKeysCardToggle(e)) { e.preventDefault(); toggleKeysCard(); }")
             .expect("the card's keydown gate is gone");
+        // Re-expressed 2026-09-04 with the bail itself: it asks gameIsUp() now,
+        // which reads the computed display instead of an inline style that is
+        // never set. The ordering claim is untouched.
         let at_bail = INDEX
-            .find("if (!S || $(\"#app\").style.display === \"none\") return;")
+            .find("if (!gameIsUp()) return;   // the spectator bail: no game, no game keys")
             .expect("the keydown handler's spectator bail is gone");
         let at_tech = INDEX
             .find("if (tech.open) { techKeys(e); return; }")

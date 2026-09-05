@@ -2950,7 +2950,7 @@
 <div id="keys" role="dialog" aria-modal="true" aria-label="How to play"><div class="box">
   <button class="arc-help-close" onclick="setKeysCard(false)" aria-label="Close help">×</button><h3>Your command guide</h3>
   <p style="font-size:16px;line-height:1.6;color:var(--dim)">Drag to turn the globe. Select a province to explore it. Open a system from the command dock; your decisions take effect through the game's existing orders.</p>
-  <div class="row"><span>Pause / run the clock</span><span><kbd>Space</kbd></span></div>
+  <div class="row"><span>Pause / run the clock &mdash; pause reaches every screen</span><span><kbd>Space</kbd></span></div>
   <div class="row"><span>Run at speed 1&ndash;5 (1000 / 500 / 250 / 100 / 0 ms a day)</span><span><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> <kbd>5</kbd></span></div>
   <div class="row"><span>Speed up / slow down</span><span><kbd>+</kbd> <kbd>&minus;</kbd></span></div>
   <div class="row"><span>Step one day, and pause</span><span><kbd>N</kbd></span></div>
@@ -2977,6 +2977,7 @@
   <div class="row"><span>Revert queued orders</span><span><kbd>R</kbd></span></div>
   <div class="row"><span>Close anything open</span><span><kbd>Esc</kbd></span></div>
   <div class="row"><span>This card</span><span><kbd>?</kbd></span></div>
+  <div class="row"><span>Opening this card, or Global Command, pauses the clock</span><span>&mdash;</span></div>
 </div></div>
 
 <script src="/world.js"></script>
@@ -4067,7 +4068,16 @@ async function adopt(state, withHistory, allowCampaignChange = false) {
 /// The one reader of "is there a game to run" — the nation picker is still up,
 /// or the first state has not landed yet. Everything that moves time asks it,
 /// because the clock must never run when there is no game behind it.
-function gameIsUp() { return !!S && $("#app").style.display !== "none"; }
+///
+/// COMPUTED, not inline, and the difference was a hole (2026-09-04). `#app` is
+/// hidden by the stylesheet rule `#app { display: none }` and not by an inline
+/// style, so on the nation picker `$("#app").style.display` measures "" — the
+/// second half of this test was TRUE there and held nothing back. `!!S` alone
+/// kept the clock off the picker, which it did, but a guard with a dead half is
+/// a guard half gone. `getComputedStyle` reads the rule and the inline style
+/// both, so the one path that hides `#app` again — the start handler, when
+/// adopt throws — is seen as well.
+function gameIsUp() { return !!S && getComputedStyle($("#app")).display !== "none"; }
 
 /// One post of /api/advance, and the ONLY one: `advancing` is the single-flight
 /// guard, so a second caller — a key, a button, the runner below — is refused
@@ -4205,7 +4215,24 @@ $("#reviewTurnBtn").onclick = reviewPendingTurn;
 const SPEED_DELAY_MS = [1000, 500, 250, 100, 0];   // speed 1..5, ms of real time between days
 const SPEED_MIN = 1;
 const SPEED_MAX = SPEED_DELAY_MS.length;           // 5
-const clock = { running: false, speed: 3, timer: null };
+/// A day REFUSED rather than run — the single-flight guard was held by a step
+/// that landed as play was pressed — is asked again on the next frame instead
+/// of after the current speed's delay: at speed 5 that delay is zero, and a
+/// chain that re-armed on a refusal would spin the event loop for as long as
+/// the other post took.
+const CLOCK_RETRY_MS = 16;
+/// `gen` is the running loop's identity, and it is what makes pause mean STOP.
+/// Without it a chain whose day was IN FLIGHT was tracked by nothing:
+/// `clock.timer` is null across the await, so clockPause had nothing to clear,
+/// and the chain woke after its day, saw `running` true again and armed a
+/// second timer beside the one clockPlay had just started. Measured before the
+/// repair, with one day's answer deliberately held six seconds: pause-then-play
+/// left 2 live chains, six presses of Space during one in-flight day left 3
+/// (peak 7 over a session), and 13 wakeups produced 4 days because a chain
+/// whose day was refused re-armed anyway. Every pause and every play bumps
+/// `gen`; a chain carries the number it was born with and retires the moment it
+/// stops matching, so exactly one chain is ever live.
+const clock = { running: false, speed: 3, timer: null, gen: 0 };
 
 function clockDelayMs() { return SPEED_DELAY_MS[clock.speed - SPEED_MIN]; }
 
@@ -4231,6 +4258,7 @@ function clockRenderState() {
 
 function clockPause() {
   clock.running = false;
+  clock.gen++;                                            // retires the chain already in flight
   if (clock.timer !== null) { clearTimeout(clock.timer); clock.timer = null; }
   clockRenderState();
 }
@@ -4239,29 +4267,62 @@ function clockPlay() {
   if (clock.running) return;
   if (!gameIsUp()) return;                                // no game, no clock
   clock.running = true;
+  clock.gen++;                                            // this chain, and no earlier one
   clockRenderState();
-  clockStep();                                            // the first day starts at once
+  clockStep(clock.gen);                                   // the first day starts at once
 }
 
 function clockToggle() { if (clock.running) clockPause(); else clockPlay(); }
 
-/// One turn of the loop. The wait is read AFTER the day has landed, which is
-/// what makes a speed change take effect on the next day without restarting the
-/// loop or dropping the request already in flight.
-async function clockStep() {
+/// One turn of the loop, and it belongs to the generation it was born in: every
+/// path out re-asks whether this is still the live chain, because the await in
+/// the middle is long enough for the player to pause and play again. The wait is
+/// read AFTER the day has landed, which is what makes a speed change take effect
+/// on the next day without restarting the loop or dropping the request already
+/// in flight.
+async function clockStep(gen) {
+  if (gen !== clock.gen) return;                 // a pause or a play retired this chain
   clock.timer = null;
   if (!clock.running) return;
   let st = null;
   try {
     st = await advance(1);
   } catch (e) {
+    if (gen !== clock.gen) return;
     clockPause();
     banner(e.message || "The clock stopped: the server did not answer.");
     return;
   }
-  if (!clock.running) return;                    // paused while that day was in flight
-  if (!st) { clockPause(); return; }             // refused or unconfirmed: never spin on a failed day
-  if (st && st.interrupt) {
+  if (gen !== clock.gen || !clock.running) return;   // retired or paused while that day was in flight
+  if (st === null) {
+    // Refused, not run: something else held the single-flight guard, so no day
+    // landed, nothing was adopted and there is nothing here to read. Ask again.
+    //
+    // Merged 2026-09-04 against the upstream line that stopped the clock here
+    // ("refused or unconfirmed: never spin on a failed day"). Both sides refuse
+    // to spin; they disagree about what a refusal IS. A day that FAILS still
+    // stops the clock and says so — that is the catch above, and it is
+    // unchanged. A day merely REFUSED is a single step landing at the moment
+    // play was pressed, which is no reason to take the game away from the
+    // player, and the retry is one frame rather than the running speed, so it
+    // cannot spin at speed 5's zero delay either.
+    clock.timer = setTimeout(() => clockStep(gen), CLOCK_RETRY_MS);
+    return;
+  }
+  if (!st) {
+    // `false` is advance's OTHER refusal, and it is nothing like the first: the
+    // turn was blocked (an economic order awaiting an answer, a pending turn
+    // still to be reconciled) or it failed, and advance has already put the
+    // reason on the banner. This is upstream's "never spin on a failed day",
+    // kept as its own arm — re-asking every speed-tick would paper the banner
+    // over with itself, and a clock the player cannot read is worse than a
+    // stopped one. It must be told apart from `null` ABOVE this line, and both
+    // must be read before `st.interrupt`, or a day that never ran arms the next
+    // one and the clock walks on through its own error.
+    clockPause();
+    return;
+  }
+  if (st.interrupt) {
     // A major event stops the clock and leaves it stopped. This is the whole
     // point of the feature: the server decides what counts as major, and the
     // player decides when to start again.
@@ -4270,7 +4331,7 @@ async function clockStep() {
     return;
   }
   if (!gameIsUp()) { clockPause(); return; }
-  clock.timer = setTimeout(clockStep, clockDelayMs());
+  clock.timer = setTimeout(() => clockStep(gen), clockDelayMs());
 }
 
 function setSpeed(n) {
@@ -4350,7 +4411,14 @@ function typing(e) {
 /// `style.display === "flex"` in four, which is how the keydown handler came to
 /// have no opinion about it at all.
 function keysCardIsOpen() { return $("#keys").style.display === "flex"; }
+/// Opening the card STOPS THE CLOCK. The card is a modal that dims the page and
+/// swallows the keyboard — Space included, since letting it toggle from here
+/// would be the one press with no visible answer (the card sits at z 70, above
+/// the banner at 60 and the header behind it). A modal that takes the pause key
+/// must not leave the world running underneath, so it pauses instead, and the
+/// card's own last line says so.
 function setKeysCard(open) {
+  if (open) clockPause();
   if (open && !keysCardIsOpen()) ARCADE_ROOMS.helpFocus = document.activeElement;
   $("#keys").style.display = open ? "flex" : "none";
   if (open) $("#keys button").focus();
@@ -4368,7 +4436,16 @@ document.addEventListener("keydown", (e) => {
   if (room && e.key === "Tab") { arcadeTrapTab(e, room); return; }
   // A running clock may be paused from a room whose own key handler otherwise
   // swallows global shortcuts. Native controls and text fields keep Space.
+  // PAUSE-ONLY, and it reaches every room below — the cabinet, the decision
+  // sheet and the competition room all swallow the shortcuts, and a player who
+  // cannot stop the clock from behind one has no way to stop it at all. It only
+  // STOPS: starting the world again from behind a screen that covers it is the
+  // misfire this file has always refused.
+  // The tech screen and the resource board are excluded because the full toggle
+  // below takes them, banner and all — two rules that both fire on one press is
+  // how they drift apart.
   if (clock.running && e.key === " " && !typing(e) && !e.ctrlKey && !e.metaKey && !e.altKey
+      && !tech.open && !stock.open
       && !e.target?.closest?.('button, summary, select, [role="tab"]')) {
     e.preventDefault(); clockPause(); return;
   }
@@ -4435,11 +4512,37 @@ document.addEventListener("keydown", (e) => {
   // This also serves the tech screen, which is below the dispatch two lines on;
   // techKeys therefore no longer needs a `?` branch of its own.
   if (isKeysCardToggle(e)) { toggleKeysCard(); return; }
-  if (!S || $("#app").style.display === "none") return;
-  // The tech screen swallows everything while it is up — time keys included
-  // (advancing blind from inside the screen is a misfire).
+  // One reader for "is there a game", the same one the clock itself asks — not
+  // a second copy of the test that can drift from it. The trailing comment is
+  // load-bearing: two tests anchor an ordering claim on THIS line, and
+  // `if (!gameIsUp()) return;` on its own also stands in clockPlay above.
+  if (!gameIsUp()) return;   // the spectator bail: no game, no game keys
+  // PAUSE IS NOT SWALLOWED, and that is the rule for every full-screen surface
+  // here: it either lets Space through, or it stops the clock when it opens.
+  // The tech screen and the resource board take the keyboard while they are up,
+  // and they should — advancing blind from behind a full-screen board is a
+  // misfire, and both spend the digits on their own work. But STOPPING is never
+  // blind, and before this line a player who opened the board with the clock
+  // running had no way at all to stop it: measured at speed 1, B to open the
+  // board then Space, Space, 1, 5, and two more days landed behind it while the
+  // header that would have shown them was covered. Space gets through. Every
+  // other clock key still stops at the two dispatches below.
+  // The full toggle: pause AND play. The exclusion is upstream's, and it is
+  // the reason this can sit ahead of the native-control guard further down —
+  // a Space on a focused button, tab or disclosure is that control's press,
+  // not the clock's.
+  if (e.key === " " && !e.target?.closest?.('button, summary, select, [role="tab"]')) {
+    e.preventDefault();
+    clockToggle();
+    // Those two screens cover the header readout, so from behind them the press
+    // says out loud what it did; the banner paints above both (z 60 over z 40).
+    if (tech.open || stock.open) {
+      banner(clock.running ? "The clock is running — speed " + clock.speed : "The clock is paused");
+    }
+    return;
+  }
+  // Everything else those two screens keep.
   if (tech.open) { techKeys(e); return; }
-  // So does the resource board, for the same reason.
   if (stock.open) { stockKeys(e); return; }
   if (room?.id === "techMenu" && (e.key === "t" || e.key === "T")) { openTech(null); return; }
   if (room && ["intelDrawer", "logisticsPanel", "productionPanel", "techMenu"].includes(room.id)) return;
@@ -4447,11 +4550,11 @@ document.addEventListener("keydown", (e) => {
   // on a map tab or disclosure must not also spend a simulation day.
   if (e.target?.closest?.('button, summary, select, [role="tab"]') && [" ", "Enter", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(e.key)) return;
   const k = e.key;
-  // HOI4's clock keys. Space is the pause/play toggle; 1..5 pick a speed and
-  // run at it; plus and minus walk the ladder without touching pause; N steps
-  // a single day (and pauses, since a step of a running clock means nothing).
-  if (k === " ") { e.preventDefault(); clockToggle(); }
-  else if (k >= "1" && k <= "5" && k.length === 1) { e.preventDefault(); setSpeed(+k); clockPlay(); }
+  // The rest of HOI4's clock keys — Space above is the first of them. 1..5 pick
+  // a speed and run at it; plus and minus walk the ladder without touching
+  // pause; N steps a single day (and pauses, since a step of a running clock
+  // means nothing).
+  if (k >= "1" && k <= "5" && k.length === 1) { e.preventDefault(); setSpeed(+k); clockPlay(); }
   else if (k === "+" || k === "=") { e.preventDefault(); setSpeed(clock.speed + 1); }
   else if (k === "-" || k === "_") { e.preventDefault(); setSpeed(clock.speed - 1); }
   else if (k === "n" || k === "N") { e.preventDefault(); stepDay(); }
@@ -13892,9 +13995,13 @@ function stockKeys(e) {
   if (k === "Enter" || k === "2") { e.preventDefault(); const b = $("#stockDock [data-act=talks]"); if (b && !b.disabled) b.click(); return; }
   if (k === "3") { e.preventDefault(); const b = $("#stockDock [data-act=take]"); if (b && !b.disabled) b.click(); return; }
   if (k === "1") { e.preventDefault(); const b = $("#stockDock [data-act=mine]"); if (b && !b.disabled) b.click(); return; }
-  // Time keys are swallowed — advancing blind from behind the board is the
-  // tech screen's misfire.
-  if (k === " " || (k >= "0" && k <= "9")) e.preventDefault();
+  // The ADVANCE keys are swallowed — advancing blind from behind the board is
+  // the tech screen's misfire, and the digits are this board's own anyway.
+  // Space is no longer among them and never arrives here: the global handler
+  // takes it as the clock's pause before this screen is dispatched to, because
+  // a board the player cannot stop the clock from is a board that runs away
+  // with the game.
+  if (k >= "0" && k <= "9") e.preventDefault();
 }
 
 /* ---------------- contracts and offers ---------------- */
@@ -15898,6 +16005,12 @@ function openDomination() {
   if (!D) { banner("Global Command will come online when a campaign is active."); return; }
   if (dominationIsOpen()) return;
   DOMW.lastFocus = document.activeElement;
+  // "While it is open the simulation and every screen behind it are inert" is
+  // this room's own claim, and a clock that kept ticking behind it made the
+  // sentence false. Space cannot be borrowed for pause here — it clicks the
+  // focused agenda button, which is the room's whole interaction — so the room
+  // takes the other half of the rule and stops the clock as it opens.
+  clockPause();
   if (keysCardIsOpen()) setKeysCard(false);
   if (tech.open) closeTech();
   if (stock.open) closeStock();
