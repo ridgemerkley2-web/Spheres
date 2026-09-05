@@ -294,6 +294,9 @@ pub fn project_refusal(
     district: &str,
     kind: K,
 ) -> Option<String> {
+    if w.rules.military_operations {
+        if let Some(reason) = crate::control::blocker(w, nation, district) { return Some(reason); }
+    }
     if programs::enrolled(w, nation) && resources::district_contested(w, district) {
         return Some("Construction cannot start in a contested province.".into());
     }

@@ -17,6 +17,8 @@ pub mod industry;
 pub mod industry_planning;
 pub mod industrial_modules;
 pub mod logistics;
+pub mod operations;
+pub mod control;
 pub mod clock;
 pub mod manufacturing;
 pub mod materials;
@@ -208,6 +210,8 @@ pub enum Command {
     JoinConflict { conflict: u32, nation: NationId, side_a: bool, objective: Objective },
     /// The primary click of the whole war layer: pick your rung.
     SetCommitment { conflict: u32, nation: NationId, rung: u8 },
+    /// Optional national force ceiling, 0..10000 basis points; None is staff allocation.
+    SetForceAllocation { conflict: u32, nation: NationId, share_bp: Option<u16> },
     SetObjective { conflict: u32, nation: NationId, objective: Objective },
     /// Name what a quarrel is for (resources.rs): a district of the other
     /// side's that holds a line the opener could not buy. Free; refused
@@ -508,6 +512,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             REFUSABLE,
         ),
         Command::SetObjective { nation, .. } => (*nation, 3.0, REFUSABLE),
+        Command::SetForceAllocation { nation, .. } => (*nation, 0.0, REFUSABLE),
         // Saying which district a quarrel is for costs nothing: the quarrel
         // was the purchase. Refusable so a bad aim is refused, not charged.
         Command::SetAim { nation, .. } => (*nation, 0.0, REFUSABLE),
@@ -591,6 +596,9 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         }
         Command::SetCommitment { conflict, nation, rung } => {
             commitment::rung_blocked(w, w.conflict(*conflict)?, *nation, *rung)
+        }
+        Command::SetForceAllocation { conflict, nation, share_bp } => {
+            operations::allocation_refusal(w, *conflict, *nation, *share_bp)
         }
         // A hard bar — the wrong shape, an unsourced line, a seller at war,
         // ground that is being fought over — costs the asker nothing and is
@@ -1054,6 +1062,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
                 nation.name(),
                 objective.label()
             ));
+        }
+        Command::SetForceAllocation { conflict, nation, share_bp } => {
+            operations::set_allocation(w, *conflict, *nation, *share_bp)?;
         }
         Command::SetAim { conflict, district, commodity, .. } => {
             resources::set_aim(w, *conflict, district, *commodity)?

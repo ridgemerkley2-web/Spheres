@@ -949,6 +949,7 @@ pub fn have_table(w: &WorldState) -> Have {
             continue;
         }
         if let Some(cur) = w.districts.get(&r.district) {
+            if w.rules.military_operations && !crate::control::can_operate(w, *cur, &r.district) { continue; }
             flow[cur.index()][r.c] += r.share * t.production[r.owner_1990.index()][r.c];
         }
     }
@@ -1962,6 +1963,7 @@ fn completed_mine_outputs(
         .filter(|m| only.map_or(true, |c| m.commodity == c))
         .filter_map(|m| {
             let owner = *w.districts.get(&m.district)?;
+            if w.rules.military_operations && !crate::control::can_operate(w, owner, &m.district) { return None; }
             w.nation_opt(owner)
                 .filter(|n| n.alive)
                 .map(|_| (owner, m.commodity, m.output))
@@ -4151,6 +4153,7 @@ pub fn district_output_bn_per_year(w: &WorldState, d: &str) -> f64 {
 /// principals' home-theatre districts — read here without building it).
 pub fn district_contested(w: &WorldState, d: &str) -> bool {
     let Some(&owner) = w.districts.get(d) else { return false };
+    if w.rules.military_operations { return !crate::control::can_operate(w, owner, d); }
     w.conflicts.iter().any(|c| {
         if c.front.contains_key(d) {
             return true;

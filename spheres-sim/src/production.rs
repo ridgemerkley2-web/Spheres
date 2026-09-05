@@ -769,6 +769,12 @@ pub fn tick_day(w: &mut WorldState) {
             }
             continue;
         }
+        if w.rules.military_operations {
+            if let Some(reason) = crate::control::blocker(w, project.nation, &project.district) {
+                set_blocked(w, project.id, format!("BLOCKED: {reason}"));
+                continue;
+            }
+        }
         if w.districts.get(&project.district) != Some(&project.nation) {
             set_blocked(
                 w,

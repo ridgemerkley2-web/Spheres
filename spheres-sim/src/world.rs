@@ -727,6 +727,10 @@ pub fn rung_name(r: u8) -> &'static str {
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct Belligerent {
     pub nation: NationId,
+    /// Optional ceiling as basis points of national force. None lets the staff
+    /// allocate automatically; overlapping requests share the national stock.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub force_share_bp: Option<u16>,
     /// 1..=9
     pub rung: u8,
     /// A publicly announced limit. Binds the automatic and AI responses, and the
@@ -749,6 +753,7 @@ impl Belligerent {
     pub fn new(nation: NationId, rung: u8, objective: Objective) -> Belligerent {
         Belligerent {
             nation,
+            force_share_bp: None,
             rung: rung.clamp(1, 9),
             ceiling: 9,
             objective,
@@ -925,6 +930,10 @@ pub struct GameRules {
     /// Real daily settlement; false retains the historical monthly replay.
     #[serde(default, skip_serializing_if = "is_false")]
     pub daily_simulation: bool,
+    /// Conserved theatre deployments, exposed-force casualties and physical
+    /// control. Explicit opt-in keeps historical replay/calibration unchanged.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub military_operations: bool,
     /// Player-directed province production and construction. OFF in the
     /// calibrated/headless world and enabled by the browser's play rules.
     /// Empty state and a false switch both disappear from saves.
@@ -960,6 +969,7 @@ impl Default for GameRules {
             logistics_routes: false,
             physical_logistics: false,
             daily_simulation: false,
+            military_operations: false,
             production_system: false,
             manufacturing_system: false,
             economic_competition: false,

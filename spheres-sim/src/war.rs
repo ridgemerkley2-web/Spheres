@@ -131,6 +131,7 @@ pub fn magazine_multiplier(w: &WorldState, id: NationId) -> f64 {
 /// rung to stand on, whether the fight is at home, whether a third state has
 /// consented to host you, and whether the magazines are still full.
 pub fn committed_force(w: &WorldState, c: &Conflict, id: NationId) -> f64 {
+    if w.rules.military_operations { return crate::operations::committed_force(w, c, id); }
     let b = match c.posture_of(id) {
         Some(b) => b,
         None => return 0.0,
@@ -211,7 +212,7 @@ fn roe_seize(r: Roe) -> f64 {
         Roe::Unrestricted => 1.15,
     }
 }
-fn roe_burn(r: Roe) -> f64 {
+pub(crate) fn roe_burn(r: Roe) -> f64 {
     match r {
         Roe::Restrained => 0.80,
         Roe::Standard => 1.00,
@@ -273,6 +274,10 @@ struct Side {
 }
 
 fn side_profile(w: &WorldState, c: &Conflict, side_a: bool) -> Side {
+    side_profile_in(w, c, side_a, None)
+}
+
+fn side_profile_in(w: &WorldState, c: &Conflict, side_a: bool, snapshot: Option<&crate::operations::Snapshot>) -> Side {
     let members = if side_a { &c.side_a } else { &c.side_b };
     let mut mass = 0.0;
     let (mut q, mut k, mut s, mut deny) = (0.0, 0.0, 0.0, 0.0);
@@ -290,7 +295,8 @@ fn side_profile(w: &WorldState, c: &Conflict, side_a: bool) -> Side {
         if b.roe == Roe::Unrestricted {
             unrestricted = true;
         }
-        let m = committed_force(w, c, *id);
+        let deployment = snapshot.and_then(|s| s.rows.get(&(c.id, *id)));
+        let m = deployment.map_or_else(|| committed_force(w, c, *id), |r| r.effective_force);
         if m <= 0.0 {
             continue;
         }
@@ -303,9 +309,13 @@ fn side_profile(w: &WorldState, c: &Conflict, side_a: bool) -> Side {
                 && b.rung <= 5
         });
         mass += m;
-        q += m * quality(w, *id) * if advised { 1.25 } else { 1.0 };
-        k += m * obj_kill(b.objective) * roe_kill(b.roe);
-        s += m * obj_seize(b.objective) * roe_seize(b.roe);
+        q += m * deployment.map_or_else(|| quality(w, *id), |r| r.quality) * if advised { 1.25 } else { 1.0 };
+        let caps = if w.rules.military_operations {
+            deployment.map_or_else(|| crate::operations::capabilities(w.nation(*id)), |r| r.capabilities)
+        } else { crate::operations::Capabilities { land: 1.0, strike: 1.0, lift: 1.0 } };
+        let attack_role = if b.rung == 6 { caps.strike } else { (caps.land + caps.strike) * 0.5 };
+        k += m * obj_kill(b.objective) * roe_kill(b.roe) * attack_role;
+        s += m * obj_seize(b.objective) * roe_seize(b.roe) * caps.land;
         if b.objective == Objective::Deny {
             deny += m;
         }
@@ -616,6 +626,9 @@ fn resolve_conflicts(w: &mut WorldState) {
     let dt = crate::clock::month_fraction(w);
     let mut continuing: Vec<Conflict> = vec![];
     let mut ended: Vec<(Conflict, Ending)> = vec![];
+    // Snapshot before removing conflicts: every theatre shares one finite
+    // national force, and later theatres cannot reuse or reread earlier losses.
+    let mut operations = w.rules.military_operations.then(|| crate::operations::Snapshot::new(w));
     let conflicts = std::mem::take(&mut w.conflicts);
 
     for mut c in conflicts {
@@ -635,12 +648,12 @@ fn resolve_conflicts(w: &mut WorldState) {
         }
 
         let th = crate::theatre::theatre(w, c.theatre).clone();
-        let a = side_profile(w, &c, true);
-        let b = side_profile(w, &c, false);
+        let a = side_profile_in(w, &c, true, operations.as_ref());
+        let b = side_profile_in(w, &c, false, operations.as_ref());
 
         // ---- STEP 2: the gate ----
-        let kill_ab = kill_rate(&a, &b, &th);
-        let kill_ba = kill_rate(&b, &a, &th);
+        let kill_ab = if operations.is_some() && b.mass <= 0.0 { 0.0 } else { kill_rate(&a, &b, &th) };
+        let kill_ba = if operations.is_some() && a.mass <= 0.0 { 0.0 } else { kill_rate(&b, &a, &th) };
 
         // ---- STEP 3: control, saturating so it cannot run away — and, where
         // the principals have theatre ground, projected onto the district map.
@@ -680,7 +693,12 @@ fn resolve_conflicts(w: &mut WorldState) {
                 Some(s) => s,
                 None => continue,
             };
-            let (kill_in, kill_out) = if side_a { (kill_ba, kill_ab) } else { (kill_ab, kill_ba) };
+            let (mut kill_in, kill_out) = if side_a { (kill_ba, kill_ab) } else { (kill_ab, kill_ba) };
+            if operations.is_some() {
+                let prey_rung = if side_a { a.top_rung } else { b.top_rung };
+                let own = c.posture[i].rung.min(9) as usize;
+                kill_in = (kill_in * RUNG_EXPOSURE[own] / RUNG_EXPOSURE[prey_rung.min(9) as usize].max(1e-12)).clamp(0.0, 0.50);
+            }
             let opp_unrestricted = if side_a { b.unrestricted } else { a.unrestricted };
             let mine = if side_a { c.control } else { -c.control };
             let enemy_top = c.top_rung(!side_a);
@@ -695,18 +713,24 @@ fn resolve_conflicts(w: &mut WorldState) {
                 Some(n) => (n.gdp, n.mil_spend_gdp, n.mil_strength),
                 None => continue,
             };
+            let deployed_fraction = operations.as_ref().map_or(1.0, |s|
+                s.deployed(c.id, nation) / s.strength(nation).max(1e-12));
+            let utilization = operations.as_ref().map_or(1.0, |_| {
+                let wanted = RUNG_COMMIT[rung.min(9) as usize];
+                if wanted > 0.0 { (deployed_fraction / wanted).clamp(0.0,1.0) } else { 0.0 }
+            });
 
             let decisive = ((kill_out - REPLACEMENT_RATE) / DECISIVE_KILL).clamp(0.0, 1.0);
             let held = mine.clamp(0.0, 1.0);
             let held_against = (-mine).clamp(0.0, 1.0);
             let withdrawing = objective == Objective::Withdraw;
-            let mut casualty_pain = 0.55 * kill_in / stake.max(0.05);
+            let mut casualty_pain = 0.55 * kill_in * deployed_fraction / stake.max(0.05);
             if objective == Objective::Hold {
                 casualty_pain *= 0.6;
             }
             let mut treasure_pain = 0.06
                 * (RUNG_COMMIT[(rung as usize).min(9)] * strength * 0.9)
-                / (gdp * milshare + 8.0);
+                / (gdp * milshare + 8.0) * utilization;
             // Holding ground you cannot convert into an ending is the thing that
             // actually loses modern wars, and it is the only term here that gets
             // *worse* the better the position looks on the map.
@@ -754,7 +778,7 @@ fn resolve_conflicts(w: &mut WorldState) {
             structure_hits.push((nation, kill_in));
             exhaustion.push((
                 nation,
-                0.036 * RUNG_COMMIT[(rung as usize).min(9)] * (1.0 + 2.0 * casualty_pain),
+                0.036 * RUNG_COMMIT[(rung as usize).min(9)] * (1.0 + 2.0 * casualty_pain) * utilization,
             ));
             burns.push((
                 nation,
@@ -799,15 +823,20 @@ fn resolve_conflicts(w: &mut WorldState) {
 
         for (id, rate) in structure_hits {
             let rate = crate::clock::blend(w, rate);
-            let n = w.nation_mut(id);
-            n.mil_strength = (n.mil_strength * (1.0 - rate)).max(0.0);
+            if let Some(s) = &mut operations { s.record_loss(c.id, id, rate); }
+            else {
+                let n = w.nation_mut(id);
+                n.mil_strength = (n.mil_strength * (1.0 - rate)).max(0.0);
+            }
         }
         for (id, d) in exhaustion {
             let n = w.nation_mut(id);
             n.war_exhaustion = (n.war_exhaustion + d * dt).min(1.0);
         }
         for (id, burn) in burns {
-            let dry = {
+            let dry = if let Some(s) = &operations {
+                s.dry(id) && s.deployed(c.id, id) > 0.0 && burn > 0.0
+            } else {
                 let n = w.nation_mut(id);
                 n.munitions = (n.munitions - burn * dt).clamp(0.0, 1.0);
                 n.munitions <= 0.0 && burn > 0.0
@@ -966,6 +995,7 @@ fn resolve_conflicts(w: &mut WorldState) {
 
         continuing.push(c);
     }
+    if let Some(s) = operations { s.settle(w); }
     w.conflicts = continuing;
 
     for (c, e) in ended {
@@ -1079,6 +1109,12 @@ fn resolve_conflicts(w: &mut WorldState) {
             }
             Ending::Lapsed => {}
         }
+    }
+    if w.rules.military_operations {
+        // Front changes do not alter the ownership epoch. Refresh the derived
+        // extraction view so a captured mine stops quoting domestic output now.
+        w.resource_have.built = false;
+        crate::resources::warm(w);
     }
 }
 

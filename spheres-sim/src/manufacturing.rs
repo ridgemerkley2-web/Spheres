@@ -139,6 +139,11 @@ fn dispatch_rank(priority: Priority) -> u8 {
 }
 
 fn line_error(w: &WorldState, line: &ManufacturingLine) -> Option<String> {
+    if w.rules.military_operations {
+        if let Some(reason) = crate::control::blocker(w, line.nation, &line.district) {
+            return Some(format!("BLOCKED: {reason}"));
+        }
+    }
     if !w.nation_opt(line.nation).is_some_and(|n| n.alive) {
         return Some("BLOCKED: the sponsoring government no longer exists.".into());
     }
@@ -200,6 +205,9 @@ pub fn start_line_error(
     district: &str,
     kit: &str,
 ) -> Option<String> {
+    if w.rules.military_operations {
+        if let Some(reason) = crate::control::blocker(w, nation, district) { return Some(reason); }
+    }
     if !w.rules.manufacturing_system {
         return Some("Military manufacturing is not enabled in this game.".into());
     }

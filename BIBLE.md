@@ -430,3 +430,13 @@ again. Installed factories, queued expansion and finite contracts remain distinc
 in planning, including for the AI. Frozen historical estimates and visible source
 gaps survive. Other manufacturing groups, jobs, households and new Welfare
 mechanisms remain later work. These boundaries ship with the integrated release.
+
+## Adopted amendment — conserved military operations (2026-09-04)
+
+Ridge authorized implementing the game-audit recommendations. `MILITARY_OPERATIONS.md`
+defines the extension: one shared national deployment budget and overseas ceiling,
+per-belligerent exposed-force losses, bounded equipment roles, and a single
+physical-control rule for production and freight. The player allocates national
+intent, never individual units. Occupation remains distinct from sovereignty.
+Browser play opts into this behavior; default headless calibration remains
+available. Game role weights are declared assumptions requiring daily balance evidence.

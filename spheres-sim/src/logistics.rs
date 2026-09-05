@@ -338,6 +338,10 @@ fn district_passable(w: &WorldState, node: &Node, seller: NationId, buyer: Natio
     let Some(owner) = w.districts.get(node.id.as_str()).copied() else {
         return false;
     };
+    if w.rules.military_operations {
+        return crate::control::controller(w, &node.id)
+            .is_some_and(|controller| owner_passable(w, controller, seller, buyer));
+    }
     owner_passable(w, effective_owner(w, &node.id, owner), seller, buyer)
 }
 
