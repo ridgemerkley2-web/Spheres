@@ -44,7 +44,9 @@ def main():
     files=sorted(p for p in release.rglob('*') if p.is_file())
     (release/'SHA256SUMS.txt').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.relative_to(release).as_posix()+'\n' for p in files),encoding='utf-8')
     archive=args.output/'SPHERES-0.6-Windows.zip'
-    with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
+    # Cached dependency licenses can predate ZIP's 1980 epoch; clamp only the
+    # archive timestamps, preserving copied license contents and their hashes.
+    with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9,strict_timestamps=False) as z:
         for p in sorted(release.rglob('*')):
             if p.is_file():z.write(p,p.relative_to(args.output))
     patch=args.output/'SPHERES-0.6-source.patch'
