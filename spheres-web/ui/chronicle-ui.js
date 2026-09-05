@@ -170,7 +170,7 @@ function renderChronicle() {
   const first = range.start == null ? "—" : labelAt(range.start), last = range.end == null ? "—" : labelAt(range.end);
   const periodLabel = CHRONICLE.days ? `Last ${CHRONICLE.days.toLocaleString("en-US")} days of the record` : "All recorded history";
   box.innerHTML = `<section id="chronicleSheet" class="chronicle" aria-label="Campaign infographic">
-    <header class="chr-heading"><div><div class="arc-kicker">The campaign chronicle · Over time</div><h1>A nation in motion.</h1><p>Six perspectives on ${escText(nation.name)}. One timeline.</p></div><div class="chr-orbit" aria-hidden="true"><span>↗</span><i></i></div></header>
+    <header class="chr-heading"><div><div class="arc-kicker">The campaign chronicle · Over time</div><h1>A nation in motion.</h1><p>Six perspectives on ${escText(nation.name)}. One timeline.</p></div>${globalThis.AreaArt?.html("history", "compact") || ""}</header>
     <div class="chr-toolbar"><label for="chronicleNation">Follow a nation<select id="chronicleNation">${nations.map(([id,n]) => `<option value="${escText(id)}"${id === CHRONICLE.nation ? " selected" : ""}>${escText(n.name)}</option>`).join("")}</select></label>
       <div class="chr-period"><span>Time window</span><div role="group" aria-label="History time window">${[[30,"30 days"],[365,"1 year"],[1825,"5 years"],[0,"All time"]].map(([days,label]) => `<button id="chroniclePeriod${days}" type="button" data-chronicle-days="${days}" aria-pressed="${days === CHRONICLE.days}">${label}</button>`).join("")}</div></div>
       <button id="chronicleCompare" type="button">Compare nations ↗</button></div>

@@ -37,6 +37,24 @@ fn build_info()->serde_json::Value {serde_json::json!({
 const INDEX: &str = include_str!("../ui/index.html");
 const CAMPAIGN_TRANSPORT_JS: &str = include_str!("../ui/campaign-transport.js");
 const CAMPAIGN_UI_JS: &str = include_str!("../ui/campaign-ui.js");
+const AREA_ART_JS: &str = include_str!("../ui/area-art.js");
+const AREA_ART_CSS: &str = include_str!("../ui/area-art.css");
+/// Fixed local display assets only. Never resolve a request path on disk.
+fn area_art_asset(name: &str) -> Option<&'static [u8]> {
+    Some(match name {
+        "cabinet-v1.webp" => include_bytes!("../ui/area-art/cabinet-v1.webp"),
+        "treasury-v1.webp" => include_bytes!("../ui/area-art/treasury-v1.webp"),
+        "production-v1.webp" => include_bytes!("../ui/area-art/production-v1.webp"),
+        "research-v1.webp" => include_bytes!("../ui/area-art/research-v1.webp"),
+        "diplomacy-v1.webp" => include_bytes!("../ui/area-art/diplomacy-v1.webp"),
+        "military-v1.webp" => include_bytes!("../ui/area-art/military-v1.webp"),
+        "logistics-v1.webp" => include_bytes!("../ui/area-art/logistics-v1.webp"),
+        "resources-v1.webp" => include_bytes!("../ui/area-art/resources-v1.webp"),
+        "history-v1.webp" => include_bytes!("../ui/area-art/history-v1.webp"),
+        "campaign-v1.webp" => include_bytes!("../ui/area-art/campaign-v1.webp"),
+        _ => return None,
+    })
+}
 /// Curated historical figures and source records keyed by stable NationId.
 /// Presentation data only: this never enters world state or save files.
 const NATION_FIGURES_JSON: &str = include_str!("../data/nation_figures.json");
@@ -6097,6 +6115,23 @@ fn main() {
             (Method::Get, "/decision-tools.css") => Response::from_string(DECISION_TOOLS_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/decision-tools.js") => Response::from_string(DECISION_TOOLS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/performance-ui.js") => Response::from_string(PERFORMANCE_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/area-art.js") => Response::from_string(AREA_ART_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/area-art.css") => Response::from_string(AREA_ART_CSS)
+                .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, path) if path.starts_with("/art/areas/") => {
+                if let Some(bytes) = area_art_asset(&path["/art/areas/".len()..]) {
+                    let _ = request.respond(Response::from_data(bytes.to_vec())
+                        .with_chunked_threshold(usize::MAX)
+                        .with_header(Header::from_bytes("Content-Type", "image/webp").unwrap())
+                        .with_header(Header::from_bytes("Cache-Control", "public, max-age=31536000, immutable").unwrap()));
+                } else {
+                    let _ = request.respond(Response::from_string("Not found").with_status_code(404));
+                }
+                continue;
+            }
             (Method::Get, path @ ("/arcade.css" | "/arcade-operations.css" | "/arcade-discovery.css" | "/chronicle.css" | "/programs.css" | "/province-economy.css" | "/competition.css" | "/agency.css")) => {
                 let css = match path {
                     "/arcade-operations.css" => ARCADE_OPERATIONS_CSS,
@@ -7076,6 +7111,22 @@ mod tests {
         assert!(PROGRAMS_UI_JS.contains("/api/program-preview"));
         assert!(PROGRAMS_ART_SVG.contains("<svg"));
         assert!(!PROGRAMS_ART_SVG.contains("<script"));
+    }
+
+    #[test]
+    fn room_paintings_are_embedded_webp_and_paths_are_allowlisted() {
+        for name in ["cabinet", "treasury", "production", "research", "diplomacy",
+            "military", "logistics", "resources", "history", "campaign"] {
+            let bytes = area_art_asset(&format!("{name}-v1.webp")).expect("embedded painting");
+            assert!(bytes.len() > 12);
+            assert_eq!(&bytes[..4], b"RIFF");
+            assert_eq!(&bytes[8..12], b"WEBP");
+        }
+        for name in ["../cabinet-v1.webp", "cabinet.webp", "cabinet-v1.webp?x", "", "unknown-v1.webp"] {
+            assert!(area_art_asset(name).is_none());
+        }
+        assert!(INDEX.contains("/area-art.js"));
+        assert!(INDEX.contains("/area-art.css"));
     }
 
     #[test]

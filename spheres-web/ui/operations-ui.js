@@ -8,6 +8,7 @@
     const rows = (data.deployments || []).filter(r => focus == null || r.conflict === focus);
     return `<section class="military-operations" aria-label="National force allocation">
       <header><span>National command</span><h3>Your forces and reserves</h3></header>
+      ${focus == null ? (root.AreaArt?.html("military", "banner") || "") : ""}
       <dl class="military-force-totals"><div><dt>National force</dt><dd>${number(data.structure)}</dd></div><div><dt>Deployed</dt><dd>${number(data.deployed)}</dd></div><div><dt>In reserve</dt><dd>${number(data.reserve)}</dd></div></dl>
       <p>Overseas: ${number(data.overseas_deployed)} deployed · ${number(data.overseas_limit)} sustainable. These are force points, not troop counts.</p>
       <p>Allocation limits share one national force. Access, equipment and your commitment rung can reduce what actually deploys.</p>

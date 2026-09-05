@@ -360,10 +360,13 @@ test('dated command refusals are surfaced in the footer and live region after ad
   assert.equal(c.element('left').inert, false, 'refusal must not leave the editor locked');
 });
 
-test('the illustrated cabinet asset is local and routed as SVG', () => {
+test('the cabinet painting is local and the original vector remains available', () => {
   const server = fs.readFileSync(path.join(root, 'spheres-web/src/main.rs'), 'utf8');
   const asset = fs.readFileSync(path.join(root, 'spheres-web/ui/cabinet-city.svg'), 'utf8');
-  assert.match(page, /src="\/assets\/cabinet-city\.svg"/);
+  const art = require('../../spheres-web/ui/area-art.js');
+  assert.match(page, /AreaArt\?\.html\("cabinet"\)/);
+  assert.match(art.html('cabinet'), /src="\/art\/areas\/cabinet-v1\.webp"/);
+  assert.match(server, /"cabinet-v1\.webp" => include_bytes!\("\.\.\/ui\/area-art\/cabinet-v1\.webp"\)/);
   assert.match(server, /\(Method::Get, "\/assets\/cabinet-city\.svg"\)/);
   assert.match(server, /CABINET_CITY_SVG[^;]*include_str!\("\.\.\/ui\/cabinet-city\.svg"\)/);
   assert.match(asset, /<svg\b/);

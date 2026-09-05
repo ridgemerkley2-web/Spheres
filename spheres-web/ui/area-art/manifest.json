@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "generated_date": "2026-09-05",
+  "generator": "OpenAI built-in image generation tool",
+  "setting": "Fictional illustrative environments for a geopolitical game beginning in 1990; not depictions of identified countries, locations or historical events.",
+  "display_processing": {
+    "library": "Pillow",
+    "version": "12.3.0",
+    "format": "WebP",
+    "quality": 88,
+    "method": 6,
+    "resize": false,
+    "creative_edits": false
+  },
+  "source_note": "Original generated PNG bytes retained unchanged; provenance metadata remains in source files.",
+  "areas": [
+    {
+      "key": "cabinet",
+      "version": 1,
+      "source": {
+        "path": "tools/area-art/source/cabinet-v1.png",
+        "sha256": "d7d50f31bd9f7844fdb2246e1d3f6320e799b35a2f1251a40858db427d3bec73",
+        "bytes": 2693374,
+        "width": 1536,
+        "height": 1024
+      },
+      "display": {
+        "path": "spheres-web/ui/area-art/cabinet-v1.webp",
+        "sha256": "da299964b1660789086f94c2bd2e5ae480baae6a5c1eae8ff1399049b3ef23b4",
+        "bytes": 302732,
+        "width": 1536,
+        "height": 1024
+      },
+      "prompt": "tools/area-art/prompts/cabinet-v1.md",
+      "style_reference": null,
+      "object_position": "50% 50%"
+    },
+    {
+      "key": "treasury",
+      "version": 1,
+      "source": {
+        "path": "tools/area-art/source/treasury-v1.png",
+        "sha256": "0d303d22de88bf3241ab7da5001f48c3d20f90e1d983873c0930ac9f8f922ba0",
+        "bytes": 2788445,
+        "width": 1536,
+        "height": 1024
+      },
+      "display": {
+        "path": "spheres-web/ui/area-art/treasury-v1.webp",
+        "sha256": "603c6ceb2357bc72eb3386e6075ae096c3585e1483c07018a40279fda531dd59",
+        "bytes": 323154,
+        "width": 1536,
+        "height": 1024
+      },
+      "prompt": "tools/area-art/prompts/treasury-v1.md",
+      "style_reference": "tools/area-art/source/cabinet-v1.png",
+      "object_position": "50% 50%"
+    },
+    {
+      "key": "production",
+      "version": 1,
+      "source": {
+        "path": "tools/area-art/source/production-v1.png",
+        "sha256": "5fcdcb1c86262943da902b473e670177ec5f177b035fdbe511cb34b39769f729",
+        "bytes": 2883863,
+        "width": 1536,
+        "height": 1024
+      },
+      "display": {
+        "path": "spheres-web/ui/area-art/production-v1.webp",
+        "sha256": "aa9a43e89f9d98c202348863dd08f32daabff486378e5b4edc722a4877eed550",
+        "bytes": 341076,
+        "width": 1536,
+        "height": 1024
+      },
+      "prompt": "tools/area-art/prompts/production-v1.md",
+      "style_reference": "tools/area-art/source/cabinet-v1.png",
+      "object_position": "50% 50%"
+    },
+    {
+      "key": "research",
+      "version": 1,
+      "source": {
+        "path": "tools/area-art/source/research-v1.png",
+        "sha256": "a10c0268829d0f34887dbf50dc58a9922e6ec93294a59fd83fa24887214cb452",
+        "bytes": 2541944,
+        "width": 1536,
+        "height": 1024
+      },
+      "display": {
+        "path": "spheres-web/ui/area-art/research-v1.webp",
+        "sha256": "cb8e904bb1c113bf399fd4d478eba3a734c3abee0e0aef6a004d88fa1d65b72d",
+        "bytes": 230286,
+        "width": 1536,
+        "height": 1024
+      },
+      "prompt": "tools/area-art/prompts/research-v1.md",
+      "style_reference": "tools/area-art/source/cabinet-v1.png",
+      "object_position": "50% 50%"
+    },
+    {
+      "key": "diplomacy",
+      "version": 1,
+      "source": {
+        "path": "tools/area-art/source/diplomacy-v1.png",
+        "sha256": "ff787d6df42edafa86e9780a15f537dee2e5ff8f281cdf15eeec1b94389a3488",
+        "bytes": 2335715,
+        "width": 1536,
+        "height": 1024
+      },
+      "display": {
+        "path": "spheres-web/ui/area-art/diplomacy-v1.webp",
+        "sha256": "08756b23ac60f5f11f0facaafc970288bb1c84fc7d8c664c7fef83131408f3b1",
+        "bytes": 209926,
+        "width": 1536,
+        "height": 1024
+      },
+      "prompt": "tools/area-art/prompts/diplomacy-v1.md",
+      "style_reference": "tools/area-art/source/cabinet-v1.png",
+      "object_position": "50% 50%"
+    },
+    {
+      "key": "military",
+      "version": 1,
+      "source": {
+        "path": "tools/area-art/source/military-v1.png",
+        "sha256": "0bc9c6e655cc9e4e3939e9af45ef9b2ce3edf77037ddc8a374bd6fa361276cc8",
+        "bytes": 2637900,
+        "width": 1536,
+        "height": 1024
+      },
+      "display": {
+        "path": "spheres-web/ui/area-art/military-v1.webp",
+        "sha256": "adf40b9dab68458f646fb1d307b011b6c239ac7cefc2174e4689511db718d397",
+        "bytes": 248520,
+        "width": 1536,
+        "height": 1024
+      },
+      "prompt": "tools/area-art/prompts/military-v1.md",
+      "style_reference": "tools/area-art/source/cabinet-v1.png",
+      "object_position": "50% 50%"
+    },
+    {
+      "key": "logistics",
+      "version": 1,
+      "source": {
+        "path": "tools/area-art/source/logistics-v1.png",
+        "sha256": "e5b4ed56d190926029d9658d8723d678257fb3d9724753e17fc7427211eda701",
+        "bytes": 2858395,
+        "width": 1536,
+        "height": 1024
+      },
+      "display": {
+        "path": "spheres-web/ui/area-art/logistics-v1.webp",
+        "sha256": "a8ea39ab721e42f0c60258f23715cf13370a9551a3890d4aa9a6b639b7649499",
+        "bytes": 328080,
+        "width": 1536,
+        "height": 1024
+      },
+      "prompt": "tools/area-art/prompts/logistics-v1.md",
+      "style_reference": "tools/area-art/source/cabinet-v1.png",
+      "object_position": "50% 50%"
+    },
+    {
+      "key": "resources",
+      "version": 1,
+      "source": {
+        "path": "tools/area-art/source/resources-v1.png",
+        "sha256": "8f58d0bb5886d5f9c76c1aa8e8ced2cfc5f57d868396c61b2622a1a06f540760",
+        "bytes": 3009005,
+        "width": 1536,
+        "height": 1024
+      },
+      "display": {
+        "path": "spheres-web/ui/area-art/resources-v1.webp",
+        "sha256": "8380e4916f2ab8186ce6ab1384714a6fec940c2cabe8f91ea0ab7878023fe5c1",
+        "bytes": 369638,
+        "width": 1536,
+        "height": 1024
+      },
+      "prompt": "tools/area-art/prompts/resources-v1.md",
+      "style_reference": "tools/area-art/source/cabinet-v1.png",
+      "object_position": "50% 50%"
+    },
+    {
+      "key": "history",
+      "version": 1,
+      "source": {
+        "path": "tools/area-art/source/history-v1.png",
+        "sha256": "a38d18665ffcd7f9e9517cf9dca1b66ca7338ec74d81763b5720838e5d298834",
+        "bytes": 2413503,
+        "width": 1536,
+        "height": 1024
+      },
+      "display": {
+        "path": "spheres-web/ui/area-art/history-v1.webp",
+        "sha256": "59615fb983148ef3d18392496637d7dfea867e10acb6e429c76b03d34ce642e6",
+        "bytes": 213796,
+        "width": 1536,
+        "height": 1024
+      },
+      "prompt": "tools/area-art/prompts/history-v1.md",
+      "style_reference": "tools/area-art/source/cabinet-v1.png",
+      "object_position": "50% 50%"
+    },
+    {
+      "key": "campaign",
+      "version": 1,
+      "source": {
+        "path": "tools/area-art/source/campaign-v1.png",
+        "sha256": "ecc25983f1c5f51aae7ab1d8408552284bbd46e466d4083ab99634df4937a57e",
+        "bytes": 2640484,
+        "width": 1536,
+        "height": 1024
+      },
+      "display": {
+        "path": "spheres-web/ui/area-art/campaign-v1.webp",
+        "sha256": "553dbc0f02ffd30cfc4b2b9a71b6c4bea6c77a4f8dde24562460f56e114aa474",
+        "bytes": 282346,
+        "width": 1536,
+        "height": 1024
+      },
+      "prompt": "tools/area-art/prompts/campaign-v1.md",
+      "style_reference": "tools/area-art/source/cabinet-v1.png",
+      "object_position": "50% 50%"
+    }
+  ]
+}

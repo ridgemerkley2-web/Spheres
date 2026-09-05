@@ -2353,6 +2353,7 @@
 <link rel="stylesheet" href="/competition.css">
 <link rel="stylesheet" href="/agency.css">
 <link rel="stylesheet" href="/operations-ui.css">
+<link rel="stylesheet" href="/area-art.css">
 <style>
 .session-card { display:flex; flex-wrap:wrap; gap:16px 28px; align-items:center; margin:0 0 22px; padding:22px; border-radius:24px; border:1px solid #d5d5e4; color:#42415b; background:linear-gradient(110deg,#e5f2eb,#eee8f6); }
 /* Campaign controls are a real third setup row. The old two-row viewport
@@ -2404,6 +2405,7 @@
     <section class="session-card" aria-label="Your campaigns">
       <div><div class="setup-step-label">YOUR NEXT CHAPTER</div><h2 id="sessionTitle">Welcome to the world.</h2>
       <p id="sessionStatus" role="status">Checking for a live campaign…</p></div>
+      <div class="session-room-art" data-area-art="campaign" data-area-art-size="campaign"></div>
       <div class="session-actions"><button class="primary" id="continueBtn" hidden>Continue live campaign →</button>
         <button id="loadBtn">Load saved campaign</button><button id="newCampaignBtn">New campaign</button></div>
       <div class="session-actions"><label>Saved campaign <select id="saveSlots" aria-label="Saved campaign"><option value="default">Default save</option></select></label><button id="loadBackupBtn">Load previous backup</button></div>
@@ -2997,6 +2999,7 @@
 <script src="/cities.js"></script>
 <script src="/globe3d.js"></script>
 <script src="/campaign-transport.js"></script>
+<script src="/area-art.js"></script>
 <script src="/campaign-ui.js"></script>
 <script src="/chronicle-data.js"></script>
 <script src="/chronicle-ui.js"></script>
@@ -5171,7 +5174,7 @@ function renderLeft(m) {
         <div><div class="cab-kicker">${escText(m.name)} · your nation's next chapter</div>
           <h1>A stronger nation.<br><em>One choice at a time.</em></h1>
           <p>Fund what matters. Keep the books in balance. Give your people—and your next great ambition—room to grow.</p><button class="cab-hero-cta" data-cab-go="budget">Shape your yearly budget →</button></div>
-        <img class="cab-city" src="/assets/cabinet-city.svg" alt="An illustrated garden city with a treasury, library and bridge">
+        ${globalThis.AreaArt?.html("cabinet") || ""}
       </div>
       <div class="cab-pulse" aria-label="Current national indicators">
         <article><span class="cab-label">Your economic engine</span><strong>${fmt.money(m.gdp)}</strong><p>Annual national output · GDP</p></article>
@@ -5200,8 +5203,8 @@ function renderLeft(m) {
     </section>
 
     <section id="cabinet-budget" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-budget" hidden>
-      <div class="cab-section-head"><div><div class="cab-kicker">FY ${S.year} · ${m.annual_budget && !m.annual_budget.due ? "enacted plan + your draft" : "your first move: set the plan"}</div><h2>What will your nation become?</h2></div>
-        <p>Choose a ministry. Each + or − moves <strong>0.5% of GDP</strong>. Nothing changes until you enact.</p></div>
+      <div class="area-heading"><div class="cab-section-head"><div><div class="cab-kicker">FY ${S.year} · ${m.annual_budget && !m.annual_budget.due ? "enacted plan + your draft" : "your first move: set the plan"}</div><h2>What will your nation become?</h2></div>
+        <p>Choose a ministry. Each + or − moves <strong>0.5% of GDP</strong>. Nothing changes until you enact.</p></div>${globalThis.AreaArt?.html("treasury", "compact") || ""}</div>
       <div id="cabinetBudgetSummary" class="cab-budget-summary">${cabinetBudgetSummary(m)}</div>
       ${!money.on_the_books ? `<p class="cab-alert">First budget: enacting opens the treasury and starts cash interest charges. The server's proposed totals include this interest at your draft policy rate.</p>` : ""}
       ${interestRow(m)}
@@ -5218,7 +5221,7 @@ function renderLeft(m) {
     </section>
 
     <section id="cabinet-policy" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-policy" hidden>
-      <div class="cab-section-head"><div><div class="cab-kicker">The engine room</div><h2>Money with a purpose.</h2></div><p>Policy controls show your draft. The treasury shows the plan running now. All money is in constant 1990 dollars.</p></div>
+      <div class="area-heading"><div class="cab-section-head"><div><div class="cab-kicker">The engine room</div><h2>Money with a purpose.</h2></div><p>Policy controls show your draft. The treasury shows the plan running now. All money is in constant 1990 dollars.</p></div>${globalThis.AreaArt?.html("treasury", "compact") || ""}</div>
       <div class="cab-two-col"><div class="card"><h3>Your policy controls</h3>
         <p class="budget-note">Taxes fund the plan. Interest rates move demand and inflation. Drag a control to preview its effects.</p>
         ${sliderHtml("tax", "Tax take", m.tax, 0.02, 0.60)}
@@ -5809,7 +5812,7 @@ function renderTechMenu() {
         </div>
       </button>`;
   }).join("");
-  $("#techMenu").innerHTML = `<button type="button" class="menu-close" aria-label="Close research field chooser" onclick="closeTechMenu()">×</button><h2 class="discovery-menu-title">What comes next?</h2>${r.acquisition_quota?.migration_hold?`<p class="floorline">${escText(r.acquisition_quota.note)}</p>`:""}` + rows +
+  $("#techMenu").innerHTML = `<button type="button" class="menu-close" aria-label="Close research field chooser" onclick="closeTechMenu()">×</button><h2 class="discovery-menu-title">What comes next?</h2>${globalThis.AreaArt?.html("research", "compact") || ""}${r.acquisition_quota?.migration_hold?`<p class="floorline">${escText(r.acquisition_quota.note)}</p>`:""}` + rows +
     `<button type="button" class="dfoot"><b>Explore technology</b><span>${r.daily.toFixed(2)} points a day</span></button>`;
   $("#techMenu").querySelectorAll(".drow").forEach((el) => {
     el.onclick = () => openTech(el.dataset.dom);
@@ -13692,7 +13695,7 @@ function stockStrategicSummaryHtml(resources) {
     `<button type="button" data-supply-alert="${escText(alert.id)}"><span>${rglyph(alert.id, stockHue(alert.id))}</span><span><b>${escText(alert.name || alert.id)}</b><small>${escText(alert.headline || alert.reason || "Review this supply line.")}</small></span></button>`
   ).join("")}</div>${remainingCount > secondaryAlerts.length ? `<p class="supply-command-queue-note">${remainingCount - secondaryAlerts.length} more risk${remainingCount - secondaryAlerts.length === 1 ? " is" : "s are"} tracked on the resource board below.</p>` : ""}</details>` : "";
   return `<section class="supply-command-brief" aria-labelledby="supplyCommandHeading">
-    <span class="discovery-kicker">Resources &amp; exchange</span><h1 id="supplyCommandHeading">Strategic Supply Command</h1>
+    <div class="supply-command-art-heading"><div><span class="discovery-kicker">Resources &amp; exchange</span><h1 id="supplyCommandHeading">Strategic Supply Command</h1></div>${globalThis.AreaArt?.html("resources", "compact") || ""}</div>
     ${stockStrategicMissionHtml(resources)}
     <div class="supply-command-toolbar"><div><b>Look ahead</b><span>The mission stays fixed at 90 days. These buttons change the cards and selected brief.</span></div><div class="supply-command-horizons" role="group" aria-label="Resource planning horizon">${horizonButtons}</div></div>
     ${alertHtml}
@@ -14250,8 +14253,11 @@ const LOGI_BLOCKED = new Set([
   "no_route", "no_path", "access_denied",
 ]);
 
-// Decorative code-native art, never a chart or a simulation-derived map.
+// Original room art, never a chart or a simulation-derived map. Keep the small
+// code-native illustration as a fallback if the presentation module is absent.
 function operationsSceneHtml(kind) {
+  const painting = globalThis.AreaArt?.html(kind === "manufacturing" ? "military" : kind);
+  if (painting) return painting;
   const freight = kind === "logistics";
   return `<svg class="operations-art" viewBox="0 0 360 205" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
     <ellipse cx="189" cy="171" rx="150" ry="24" fill="#0c1c2b" opacity=".32"/>

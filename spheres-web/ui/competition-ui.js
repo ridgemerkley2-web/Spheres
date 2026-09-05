@@ -18,7 +18,10 @@ function competitionBadge(status) {
   return `<span class="comp-status ${warning?"warn":""}">${competitionText(String(status||"ready").replace(/_/g," "))}</span>`;
 }
 function competitionArt() { return `<svg class="comp-art" viewBox="0 0 340 230" aria-hidden="true"><circle cx="152" cy="112" r="87" fill="#274651" stroke="#adcfc1" stroke-width="2"/><ellipse cx="152" cy="112" rx="45" ry="87" fill="none" stroke="#89b4ac" opacity=".6"/><path d="M69 82h166M66 136h171M152 25v174" fill="none" stroke="#89b4ac" opacity=".6"/><path d="M45 163Q147 10 290 77M58 49Q186 222 300 158" fill="none" stroke="#e3c995" stroke-width="3" stroke-dasharray="5 8"/><circle cx="82" cy="117" r="11" fill="#c6b6df"/><circle cx="211" cy="80" r="10" fill="#e3c995"/><circle cx="190" cy="168" r="9" fill="#b6d8c4"/><path d="M216 131l35-19 36 19v53l-36 20-35-20z" fill="#c6b6df"/><path d="M216 131l35 21 36-21M251 152v52" fill="none" stroke="#635472" stroke-width="2"/><path d="M20 161l28-16 29 16v40l-29 17-28-17z" fill="#d9c28e"/><path d="M20 161l28 17 29-17M48 178v40" fill="none" stroke="#81714f" stroke-width="2"/></svg>`; }
-function competitionHero(kicker,title,text) { return `<div class="comp-hero"><div><div class="comp-kicker">${competitionText(kicker)}</div><h1>${competitionText(title)}</h1><p>${competitionText(text)}</p></div>${competitionArt()}</div>`; }
+function competitionHero(kicker,title,text) {
+  const area = {industry:"production", trade:"resources", world:"production", sphere:"diplomacy"}[COMP.tab] || "production";
+  return `<div class="comp-hero"><div><div class="comp-kicker">${competitionText(kicker)}</div><h1>${competitionText(title)}</h1><p>${competitionText(text)}</p></div>${globalThis.AreaArt?.html(area) || competitionArt()}</div>`;
+}
 
 function competitionModuleHtml(data) {
   const board=data.module_board;if(!board)return "";

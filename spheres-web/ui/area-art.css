@@ -1,0 +1,63 @@
+/* Visible, framed oil/gouache paintings. Decorative scenes never carry data,
+   controls, simulated borders or a claim about the selected country's past. */
+.area-art {
+  --area-focus: 50% 50%;
+  position: relative; isolation: isolate; display: block; min-width: 0;
+  width: 100%; margin: 0; overflow: hidden; aspect-ratio: 3 / 2;
+  border: 1px solid #cdb99570; border-radius: 18px 18px 6px 18px;
+  background: #152b32; box-shadow: 0 14px 30px #0003;
+  pointer-events: none; user-select: none;
+}
+.area-art::after { content: ""; position: absolute; inset: 7px; border: 1px solid #f3dec829; border-radius: 11px 11px 2px 11px; pointer-events: none; }
+.area-art img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--area-focus); opacity: 1; filter: none; }
+.area-art--hero { min-height: 240px; max-height: 350px; }
+.area-art--compact { height: 190px; aspect-ratio: auto; }
+.area-art--banner { height: 210px; aspect-ratio: auto; }
+.area-art--campaign { height: 100%; min-height: 270px; max-height: 350px; }
+.area-heading { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(250px,.85fr); gap: 28px; align-items: center; margin-bottom: 24px; }
+.area-heading > :first-child { min-width: 0; }
+.area-heading .cab-section-head { display: block; margin: 0; }
+.area-heading .cab-section-head p { margin-top: 14px; }
+.cab-hero { grid-template-columns: minmax(0,1fr) minmax(300px,1fr); }
+.cab-hero > .area-art { height: 330px; }
+.operations-hero { grid-template-columns: minmax(0,1fr) minmax(280px,.95fr); }
+.operations-hero > .area-art { height: 290px; }
+.comp-hero { grid-template-columns: minmax(0,1fr) minmax(300px,.8fr); }
+.comp-hero > .area-art { height: 280px; }
+.chr-heading { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(260px,.85fr); }
+.chr-heading > .area-art { height: 220px; }
+.military-operations > .area-art { margin-bottom: 20px; height: 200px; }
+.agency-room-art { padding: 22px 22px 0; }
+.agency-room-art > .area-art { height: 210px; }
+.decision-body > .area-art { margin-bottom: 22px; height: 210px; }
+#techMenu > .area-art { width: calc(100% - 20px); margin: 0 10px 12px; height: 180px; }
+#stockScreen .supply-command-art-heading { display: grid; grid-template-columns: minmax(0,1fr) minmax(260px,.8fr); gap: 24px; align-items: center; margin-bottom: 24px; }
+#stockScreen .supply-command-art-heading .area-art { height: 230px; }
+#stockScreen .supply-command-art-heading h1 { margin-bottom: 0; }
+#setup .session-card { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(280px,.8fr); column-gap: 30px; }
+#setup .session-card > :not(.session-room-art) { grid-column: 1; }
+#setup .session-room-art { grid-column: 2; grid-row: 1 / 6; min-width: 0; height: 100%; }
+#setup .session-actions { margin-left: 0; justify-content: flex-start; }
+#setup .session-card .area-art { height: 100%; }
+@media (min-width: 1800px) { .cab-hero > .area-art { height: 360px; max-height: 380px; } }
+@media (max-width: 1000px) {
+  .cab-hero, .operations-hero, .comp-hero { grid-template-columns: minmax(0,1fr) minmax(240px,.85fr); gap: 22px; }
+  .cab-hero > .area-art, .operations-hero > .area-art, .comp-hero > .area-art { height: 250px; min-height: 200px; }
+}
+@media (max-width: 800px) {
+  .area-heading, .cab-hero, .operations-hero, .comp-hero, .chr-heading,
+  #stockScreen .supply-command-art-heading, #setup .session-card { grid-template-columns: minmax(0,1fr); gap: 18px; }
+  .area-art--hero, .cab-hero > .area-art, .operations-hero > .area-art, .comp-hero > .area-art { min-height: 0; height: 210px; max-height: none; aspect-ratio: auto; }
+  .area-art--compact, .area-art--banner, .chr-heading > .area-art,
+  #stockScreen .supply-command-art-heading .area-art, .agency-room-art > .area-art,
+  .decision-body > .area-art { height: 180px; }
+  #setup .session-room-art { grid-column: 1; grid-row: auto; height: 200px; }
+  #setup .session-card .area-art { min-height: 0; max-height: none; }
+}
+@media (max-width: 480px) {
+  .area-art { border-radius: 12px 12px 4px 12px; }
+  .area-art--hero, .cab-hero > .area-art, .operations-hero > .area-art, .comp-hero > .area-art { height: 185px; }
+  #techMenu > .area-art { height: 145px; }
+  .agency-room-art { padding: 12px 12px 0; }
+  #setup .session-room-art { height: 185px; }
+}

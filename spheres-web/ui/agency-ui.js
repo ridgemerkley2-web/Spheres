@@ -10,7 +10,7 @@ function agencyPanel() {
   panel = document.createElement("dialog");
   panel.id = "agencyPanel";
   panel.setAttribute("aria-labelledby", "agencyTitle");
-  panel.innerHTML = '<header><div><small>Your government, your decisions</small><h2 id="agencyTitle">Decisions & commitments</h2></div><button type="button" id="agencyClose" aria-label="Close decisions">Close</button></header><div id="agencyBody"></div><p id="agencyStatus" role="status" aria-live="polite"></p>';
+  panel.innerHTML = `<header><div><small>Your government, your decisions</small><h2 id="agencyTitle">Decisions & commitments</h2></div><button type="button" id="agencyClose" aria-label="Close decisions">Close</button></header><div class="agency-room-art">${globalThis.AreaArt?.html("diplomacy", "banner") || ""}</div><div id="agencyBody"></div><p id="agencyStatus" role="status" aria-live="polite"></p>`;
   panel.addEventListener("keydown", event => event.stopPropagation());
   document.body.appendChild(panel);
   panel.querySelector("#agencyClose").onclick = () => panel.close();
