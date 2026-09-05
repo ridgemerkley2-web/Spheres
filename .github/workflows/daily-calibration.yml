@@ -7,15 +7,23 @@ permissions:
   contents: read
 jobs:
   campaign-panel:
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [idle_human, balanced_budget, fiscal_stress, commodity_dependence, small_state, command_economy, war_shock]
+        economic_ai: ['false']
+        include:
+          - scenario: balanced_budget
+            economic_ai: 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - run: mkdir -p artifacts/calibration
-      - run: cargo run --locked --release -p spheres-sim --example daily_calibration -- --years 30 --seeds 1990,7,42 --output artifacts/calibration/daily.csv
+      - run: cargo run --locked --release -p spheres-sim --example daily_calibration -- --years 30 --seeds 1990,7,42 --scenarios ${{ matrix.scenario }} --economic-competition ${{ matrix.economic_ai }} --output artifacts/calibration/daily.csv
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: daily-campaign-evidence
+          name: daily-${{ matrix.scenario }}-ai-${{ matrix.economic_ai }}
           path: artifacts/calibration

@@ -52,9 +52,10 @@ regression size it should detect, derive its sample size from that bar's own
 measured variance and a false-red probability below 1%, and demonstrate power.
 This instrument adds no calibration tolerance and cannot justify widening one.
 
-Integration contract: the root release supplies the new inherited-sector
-`enrich_new_world` initialization immediately after `enable_new_world`, and the
-`military_operations` flag alongside its browser rules. The initial development
-smoke panel predates those two hooks and is evidence about this instrument and
-its explicit policy fixtures, not the final integrated browser campaign. The
-final release must run matched panels after those hooks and the freight repair.
+Integrated initialization now calls `enrich_new_world` immediately after
+`enable_new_world` and enables `military_operations`, matching the browser's
+fresh-world setup. Physical freight defaults on; Economic Competition remains
+explicit. Nightly/manual CI runs the seven scenarios separately and includes a
+matched balanced-budget panel with economic AI enabled. The earlier instrument
+smoke used physical freight off and predates final integration; it is not the
+release balance result. The release evidence lists the actual executed panels.

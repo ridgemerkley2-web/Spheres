@@ -202,3 +202,17 @@ test('campaign actions occupy a separate row and short screens can scroll withou
   assert.ok(page.includes('#newCampaignPicker #nationShowcase { display:block; min-height:0; }'));
   assert.ok(page.includes('#newCampaignPicker .showcase-copy,#newCampaignPicker #setupFoot { flex-shrink:0; }'));
 });
+
+
+test('starting a replacement campaign cannot reuse the previous named save target',async()=>{
+  const c=fixture(['resetCampaignUi','doSave']);
+  for(const name of ['closeGlobalMenus','resetProvinceDossierState','closeTech','closeStock','closeTechMenu','closeGameDrawers','closeLogistics','closeProduction','closeDomination','invalidateEconomicLedger','clearTimeout'])c[name]=()=>{};
+  c.dominationIsOpen=()=>false;
+  run(c,`let tech={},LOGI={},PROD={},MANU={},STOCKW={},stock={},stockDash={},selected=null,selectedWar=null,selectedWarName='',talks={};
+    const ECONOMIC_LEDGER={details:new Map()},ui={};let HIST=null;SESSION.slot='valuable-campaign';`);
+  const saves=[];c.api=async(url,body)=>{saves.push({url,slot:body.slot});return {ok:true,slot:body.slot};};
+  assert.equal(await run(c,'doSave()'),true);
+  run(c,'resetCampaignUi()');
+  assert.equal(await run(c,'doSave()'),true);
+  assert.deepEqual(saves,[{url:'/api/save',slot:'valuable-campaign'},{url:'/api/save',slot:'default'}]);
+});

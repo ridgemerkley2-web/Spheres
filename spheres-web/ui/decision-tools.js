@@ -31,8 +31,9 @@ if(typeof window!=="undefined"){
   function toolsEsc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
   function toolsDialog(title,body){
     if(typeof clockPause==="function")clockPause();
+    ++DTOOLS.seq;
     let box=document.getElementById("decisionDialog");
-    if(!box){box=document.createElement("dialog");box.id="decisionDialog";box.className="decision-dialog";document.body.append(box);box.addEventListener("keydown",e=>e.stopPropagation());box.addEventListener("close",()=>DTOOLS.returnFocus?.focus({preventScroll:true}));}
+    if(!box){box=document.createElement("dialog");box.id="decisionDialog";box.className="decision-dialog";document.body.append(box);box.addEventListener("keydown",e=>e.stopPropagation());box.addEventListener("close",()=>{if(box.open)return;++DTOOLS.seq;DTOOLS.returnFocus?.focus({preventScroll:true});});}
     box.setAttribute("aria-label",title);
     if(!box.open)DTOOLS.returnFocus=document.activeElement;
     box.innerHTML=`<header><h2>${toolsEsc(title)}</h2><button type="button" data-tools-close aria-label="Close ${toolsEsc(title)}">Close</button></header><div class="decision-body">${body}</div>`;
@@ -41,7 +42,7 @@ if(typeof window!=="undefined"){
     return box;
   }
   window.homeNation=function(){if(!S?.player)return;closeGameDrawers();showTab("map");const point=anchorOf(S.player);if(point)camTween(point[0],point[1],2.2);};
-  window.openBuildInfo=async function(){const box=toolsDialog("About SPHERES","<p>Reading build information…</p>");try{const b=await api("/api/build");box.querySelector(".decision-body").innerHTML=`<p><strong>SPHERES ${toolsEsc(b.version)}</strong> · ${toolsEsc(b.revision)}</p><p>Branch: ${toolsEsc(b.branch)} · Built ${toolsEsc(new Date(b.built_at_unix_seconds*1000).toISOString())}</p><p>${toolsEsc(b.distribution)}</p><p>Save directory: <code>${toolsEsc(b.save_directory)}</code></p><p>${toolsEsc(b.campaign_format)}</p><button onclick="openPlaytestFeedback()">Record playtest feedback</button>`;}catch(e){box.querySelector(".decision-body").textContent=e.message;}};
+  window.openBuildInfo=async function(){const box=toolsDialog("About SPHERES","<p>Reading build information…</p>"),seq=DTOOLS.seq;try{const b=await api("/api/build");if(seq!==DTOOLS.seq||!box.open)return;box.querySelector(".decision-body").innerHTML=`<p><strong>SPHERES ${toolsEsc(b.version)}</strong> · ${toolsEsc(b.revision)}</p><p>Branch: ${toolsEsc(b.branch)} · Built ${toolsEsc(new Date(b.built_at_unix_seconds*1000).toISOString())}</p><p>${toolsEsc(b.distribution)}</p><p>Save directory: <code>${toolsEsc(b.save_directory)}</code></p><p>${toolsEsc(b.campaign_format)}</p>${typeof openPerformanceSample==="function"?'<button onclick="openPerformanceSample()">Performance sample</button>':""}<button onclick="openPlaytestFeedback()">Record playtest feedback</button>`;}catch(e){if(seq===DTOOLS.seq&&box.open)box.querySelector(".decision-body").textContent=e.message;}};
   window.openWorldFinder=function(){
     if(!S)return;
     const box=toolsDialog("Find a nation or province",`<label for="worldFindInput">Name, code or owner</label><input id="worldFindInput" type="search" autocomplete="off" placeholder="Japan, US-CA, Kuwait…"><p id="worldFindCount" role="status"></p><div id="worldFindRows" class="decision-list"></div>`);
@@ -50,10 +51,12 @@ if(typeof window!=="undefined"){
     input.oninput=update;input.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();box.querySelector("[data-find-id]")?.click();}};update();input.focus();
   };
   window.openAdvisor=async function(){
-    if(!S?.player)return;DTOOLS.view="guide";const seq=++DTOOLS.seq;
+    if(!S?.player)return;DTOOLS.view="guide";const state=S;
     const box=toolsDialog("Your development advisor",`<p role="status">Reading your current budget and projects…</p>`);
+    const seq=DTOOLS.seq;
     try{const works=await api("/api/production");if(seq!==DTOOLS.seq||!box.open)return;
-      const g=DecisionTools.guide(S.programs,works),p=g.project,causes=DecisionTools.causes(S.policy);
+      if(S!==state)throw new Error("The campaign changed while advice was loading. Refresh advice to inspect the current state.");
+      const g=DecisionTools.guide(state.programs,works),p=g.project,causes=DecisionTools.causes(state.policy);
       const steps=["Fund","Choose","Supply","Build","Operate"];
       const next=p?`<article><h3>${toolsEsc(p.name)} · ${toolsEsc(p.province?.name)}</h3><p>${Math.round((p.progress||0)*100)}% complete · ${p.eta_days==null?"No reliable ETA while blocked":`about ${p.eta_days} days at current throughput`}</p><p>${toolsEsc(p.effect)}</p><ul>${(p.requirements||[]).map(r=>`<li>${toolsEsc(r.name)}: ${r.stock_available} ${toolsEsc(r.unit)} on hand · ${r.incoming_quantity||0} in transit${r.shortfall>0?` · missing ${r.shortfall} for the next work cycle`:""}${r.shortfall>0?` <button data-supply="${toolsEsc(r.commodity)}">Find supplies</button>`:""}</li>`).join("")}</ul><p>Department: ${toolsEsc(p.funding?.ministry_name)}. ${toolsEsc(p.reason||"Ready for funded work.")}</p></article>`:"";
       box.querySelector(".decision-body").innerHTML=`<ol class="advisor-steps">${steps.map((s,i)=>`<li ${i===g.step?'aria-current="step"':""}>${s}</li>`).join("")}</ol><h3>${g.title}</h3><p>${g.text}</p>${next}<div class="decision-actions"><button id="advisorNext">${g.action==="budget"?"Review budget":g.action==="economy"?"Inspect economic output":"Open National Works"}</button><button id="advisorExchange">Scaled workshops & supply planning</button><button onclick="openAdvisor()">Refresh advice</button></div>${causes.length?`<h3>Largest current growth contributions</h3><p>These are the simulation's current terms, not an attribution of every change since your last decision.</p><ul>${causes.map(c=>`<li>${toolsEsc(c.key.replaceAll("_"," "))}: ${c.value>=0?"+":""}${(c.value*100).toFixed(2)} percentage points / year</li>`).join("")}</ul><button id="advisorCauses">Inspect policies and costs</button>`:""}<p>Optional guidance. You choose and enact every policy.</p><button onclick="openPlaytestFeedback()">Record playtest feedback</button>`;
@@ -61,7 +64,7 @@ if(typeof window!=="undefined"){
       box.querySelector("#advisorExchange").onclick=()=>{box.close();openCompetition();};
       box.querySelector("#advisorCauses")?.addEventListener("click",()=>{box.close();if(!cabinetIsOpen())toggleGameDrawer("cabinetDrawer");});
       box.querySelectorAll("[data-supply]").forEach(b=>b.onclick=()=>{box.close();openStock(b.dataset.supply);});
-    }catch(error){if(box.open)box.querySelector(".decision-body").innerHTML=`<p role="alert">${toolsEsc(error.message)}</p><button onclick="openAdvisor()">Retry</button>`;}
+    }catch(error){if(seq===DTOOLS.seq&&box.open)box.querySelector(".decision-body").innerHTML=`<p role="alert">${toolsEsc(error.message)}</p><button onclick="openAdvisor()">Retry</button>`;}
   };
   window.openResearchList=function(){
     const box=toolsDialog("Research decisions",`<label for="researchListQuery">Search discoveries and effects</label><input id="researchListQuery" type="search"><label for="researchListFilter">Show</label><select id="researchListFilter"><option value="now">Available now</option><option value="available">Prerequisites met</option><option value="all">All discoveries</option><option value="known">Already held</option></select><p>Estimates use today's research allocation and price. Calendar gates and prerequisites still apply; changing focus uses the existing command preview.</p><div id="researchListRows" class="decision-list"></div>`);

@@ -3002,6 +3002,7 @@
 <script src="/chronicle-ui.js"></script>
 <script src="/programs-ui.js"></script>
 <script src="/decision-tools.js"></script>
+<script src="/performance-ui.js"></script>
 <script src="/province-economy-ui.js"></script>
 <script src="/competition-ui.js"></script>
 <script src="/agency-ui.js"></script>
@@ -3501,6 +3502,7 @@ async function bootSession() {
 }
 
 function resetCampaignUi() {
+  SESSION.slot = "default";
   closeGlobalMenus();
   if (typeof resetCompetition === "function") resetCompetition();
   // Cancel campaign-specific readers before another world's ids are adopted.
@@ -3560,6 +3562,7 @@ async function loadCampaign(backup = false) {
   try {
     await enterCampaign(await api("/api/load", { slot, backup: backup === true }), true);
     SESSION.slot = slot;
+    if (typeof syncCommandControls === "function") syncCommandControls();
     banner(S.storage_notice || "Campaign loaded with its history and dispatches.");
   } catch (error) { banner(error.message || "Could not load save.json. The live campaign was kept."); }
   finally { SESSION.busy = false; renderSessionActions(); }
@@ -4103,7 +4106,8 @@ async function adopt(state, withHistory, allowCampaignChange = false) {
   // A newer load/command response may have been adopted while history loaded.
   if (S !== state) return;
   if (!ui.picked.length) ui.picked = defaultPicks();
-  render();
+  if (typeof PerformanceSample !== "undefined") PerformanceSample.measureRender(()=>render());
+  else render();
   if (LOGI.open) logisticsFetch();
   if (typeof COMP !== "undefined" && COMP.open) competitionFetch();
   if (PROD.open) {

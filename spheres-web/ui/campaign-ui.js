@@ -1,8 +1,43 @@
 /* Campaign storage, command recovery and selected history presentation. The
    importable state machines live in campaign-transport.js. */
 let commandBusyButton=null;
+let commandWasBusy=false,commandRecoveryKey=null,commandRecoveryReturnFocus=null;
+function campaignModalOpen(){
+  return document.querySelector("dialog[open]") || (typeof arcadeTopRoom==="function" && arcadeTopRoom());
+}
+function revealCommandRecovery(){
+  const pending=COMMAND_CHANNEL.pending;
+  if(!pending||COMMAND_CHANNEL.busy)return;
+  commandRecoveryKey=`${pending.session_id}:${pending.client_id}:${pending.request_seq}`;
+  // A native dialog makes body-level controls inert regardless of z-index.
+  // Use each room's normal close path so its opener, forms and queued intent
+  // have the same lifecycle as a manual close. The frozen receipt stays put.
+  document.querySelectorAll("dialog[open]").forEach(dialog=>dialog.close());
+  if(typeof closeGlobalMenus==="function")closeGlobalMenus();
+  if(typeof COMP!=="undefined" && COMP.open)closeCompetition();
+  if(typeof keysCardIsOpen==="function" && keysCardIsOpen())setKeysCard(false);
+  if(typeof closeGameDrawers==="function")closeGameDrawers();
+  if(typeof techMenuIsOpen==="function" && techMenuIsOpen())closeTechMenu();
+  if(typeof tech!=="undefined" && tech.open)closeTech();
+  if(typeof stock!=="undefined" && stock.open)closeStock();
+  if(typeof PROD!=="undefined" && PROD.open)closeProduction();
+  if(typeof LOGI!=="undefined" && LOGI.open)closeLogistics();
+  if(typeof dominationIsOpen==="function" && dominationIsOpen())closeDomination();
+  if(document.getElementById("sheet")?.style.display==="block" && typeof closeSheet==="function")closeSheet();
+  const current=document.activeElement;
+  if(current && current.id!=="retryCommandBtn" && current.id!=="reviewCommandBtn")commandRecoveryReturnFocus=current;
+  const focus=()=>{if(COMMAND_CHANNEL.pending && !COMMAND_CHANNEL.busy && !campaignModalOpen())document.getElementById("retryCommandBtn")?.focus({preventScroll:true});};
+  focus();setTimeout(focus,0); // Native close events may restore their opener later.
+}
+function finishCommandRecovery(){
+  if(COMMAND_CHANNEL.pending)return;
+  const target=commandRecoveryReturnFocus;commandRecoveryReturnFocus=null;
+  if(target?.isConnected && !target.disabled && target.getClientRects().length)target.focus({preventScroll:true});
+}
 function syncCommandControls() {
   const pending=COMMAND_CHANNEL.pending,busy=COMMAND_CHANNEL.busy;
+  const uncertain=!!pending&&!busy&&commandWasBusy;commandWasBusy=busy;
+  if(!pending)commandRecoveryKey=null;
   if(pending && typeof clock!=="undefined" && clock.running)clockPause();
   const box=document.getElementById("pendingCommand");
   if(box){box.hidden=!pending;document.getElementById("pendingCommandText").textContent=busy
@@ -18,6 +53,8 @@ function syncCommandControls() {
   }
   document.querySelectorAll("[data-step]").forEach(b=>b.disabled=advancing||!!pendingAdvance||!!pending);
   const enact=document.getElementById("cabinetEnact");if(enact)enact.disabled=CAB.busy||advancing||!!pendingAdvance||!!pending;
+  const save=document.getElementById("saveBtn");if(save){const slot=SESSION.slot||"default";save.textContent="Save · "+slot;save.title="Save the current campaign and history to "+slot;}
+  if(uncertain || (pending&&!busy&&commandRecoveryKey&&campaignModalOpen()))revealCommandRecovery();
 }
 async function retryCampaignCommand() {
   if(!S)await continueCampaign();
@@ -25,7 +62,7 @@ async function retryCampaignCommand() {
   try {const result=await COMMAND_CHANNEL.retry();
     if(typeof COMP!=="undefined" && COMP.pending){COMP.pending=null;competitionPendingStore();}
     await adopt(result,false);banner(result.errors?.length?result.errors.join(" "):"Order confirmed. It was applied once.");
-  }catch(error){banner(error.message);}finally{syncCommandControls();}
+  }catch(error){banner(error.message);}finally{syncCommandControls();finishCommandRecovery();}
 }
 async function reviewCampaignCommand() {
   if(COMMAND_CHANNEL.busy)return;
@@ -36,7 +73,7 @@ async function reviewCampaignCommand() {
     if(state.player)await enterCampaign(state,state.session_id!==S?.session_id);
     else {SESSION.live=state;S=null;renderSessionActions();}
     banner("Current state restored. The earlier order was not replayed or undone.");
-  }catch(error){banner(error.message);}finally{syncCommandControls();}
+  }catch(error){banner(error.message);}finally{syncCommandControls();finishCommandRecovery();}
 }
 async function refreshSaveSlots() {
   const select=document.getElementById("saveSlots");if(!select)return;
@@ -110,4 +147,5 @@ function installCampaignControls() {
   document.getElementById("saveNamedBtn").onclick=saveNamedCampaign;
   document.getElementById("loadBackupBtn").onclick=()=>loadCampaign(true);
   refreshSaveSlots();syncCommandControls();
+  if(COMMAND_CHANNEL.pending&&!COMMAND_CHANNEL.busy)revealCommandRecovery();
 }

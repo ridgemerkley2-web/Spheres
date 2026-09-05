@@ -28,6 +28,6 @@ pub fn allocation_masses(w:&WorldState,ids:&[String],enriched:bool)->Vec<f64>{
     ids.iter().enumerate().map(|(i,d)|{
         let area=districts::area_of(d);
         if area<=0.0||pop[i]<=0.0||mean<=0.0 {return pop[i];}
-        pop[i]*(1.0+0.1*((pop[i]/area)/mean).ln().clamp(-2.5,2.5))
+        pop[i]*(1.0+0.1*crate::exact::ln((pop[i]/area)/mean).clamp(-2.5,2.5))
     }).collect()
 }

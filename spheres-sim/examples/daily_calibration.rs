@@ -91,8 +91,8 @@ fn main()->Result<(),Box<dyn std::error::Error>> {
         if selected.as_ref().is_some_and(|s|!s.iter().any(|n|n==scenario)) {continue;}
         for seed in &seeds {
             let mut w=world_1990(GameRules{seed:*seed,daily_simulation:true,resource_market:true,logistics_routes:true,physical_logistics,
-                production_system:true,manufacturing_system:true,economic_competition,..GameRules::default()});
-            w.player=Some(id);starting_industry::enable_new_world(&mut w)?;province_economy::enable(&mut w);resources::warm(&mut w);
+                production_system:true,manufacturing_system:true,economic_competition,military_operations:true,..GameRules::default()});
+            w.player=Some(id);starting_industry::enable_new_world(&mut w)?;starting_industry::enrich_new_world(&mut w)?;province_economy::enable(&mut w);resources::warm(&mut w);
             let initial=w.nation(id).budget_for(w.year).allocations;let start=w.nation(id).gdp;let mut counts=Counts::default();
             if scenario=="fiscal_stress" {w.nation_mut(id).political_capital=100.0;}
             if scenario=="war_shock" {w.nation_mut(NationId::Iraq).political_capital=100.0;apply_command(&mut w,&Command::DeclareWar{attacker:NationId::Iraq,defender:NationId::Kuwait})?;}

@@ -22,6 +22,8 @@ mod history;
 mod portrait_assets;
 mod storage;
 mod transport;
+#[cfg(test)]
+mod performance;
 use history::{Event, Snapshot};
 
 fn build_info()->serde_json::Value {serde_json::json!({
@@ -54,6 +56,7 @@ const CHRONICLE_UI_JS: &str = include_str!("../ui/chronicle-ui.js");
 const PROGRAMS_CSS: &str = include_str!("../ui/programs.css");
 const PROGRAMS_UI_JS: &str = include_str!("../ui/programs-ui.js");
 const DECISION_TOOLS_JS: &str = include_str!("../ui/decision-tools.js");
+const PERFORMANCE_UI_JS: &str = include_str!("../ui/performance-ui.js");
 const DECISION_TOOLS_CSS: &str = include_str!("../ui/decision-tools.css");
 const PROGRAMS_ART_SVG: &str = include_str!("../ui/programs-art.svg");
 const PROVINCE_ECONOMY_CSS: &str = include_str!("../ui/province-economy.css");
@@ -6061,6 +6064,7 @@ fn main() {
             }
             (Method::Get, "/decision-tools.css") => Response::from_string(DECISION_TOOLS_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/decision-tools.js") => Response::from_string(DECISION_TOOLS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/performance-ui.js") => Response::from_string(PERFORMANCE_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, path @ ("/arcade.css" | "/arcade-operations.css" | "/arcade-discovery.css" | "/chronicle.css" | "/programs.css" | "/province-economy.css" | "/competition.css" | "/agency.css")) => {
                 let css = match path {
                     "/arcade-operations.css" => ARCADE_OPERATIONS_CSS,
