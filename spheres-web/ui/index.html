@@ -2348,6 +2348,7 @@
 <link rel="stylesheet" href="/arcade-discovery.css">
 <link rel="stylesheet" href="/chronicle.css">
 <link rel="stylesheet" href="/programs.css">
+<link rel="stylesheet" href="/decision-tools.css">
 <link rel="stylesheet" href="/province-economy.css">
 <link rel="stylesheet" href="/competition.css">
 <style>
@@ -2508,6 +2509,7 @@
         <button class="tab" data-pane="table">League<b>L</b></button>
         <span class="grow"></span>
         <details class="arc-map-tools"><summary>Map layers</summary><div id="mapModes"></div></details>
+        <nav class="decision-nav" aria-label="Map assistance"><button type="button" onclick="homeNation()">Home</button><button type="button" onclick="openWorldFinder()">Find</button><button type="button" onclick="openAdvisor()">Advisor</button></nav>
       </div>
       <div class="pane on" id="pane-map"></div>
       <div class="pane" id="pane-charts"></div>
@@ -2771,6 +2773,7 @@
     <input id="techFind" placeholder="Find a discovery… /" aria-label="Find a technology">
     <span class="spacer"></span>
     <button id="techFit">FIT</button>
+    <button type="button" onclick="openResearchList()">Research list</button>
     <button class="x" aria-label="Close technology and return to map" onclick="closeTech()">close</button>
   </div>
   <!-- Nine tabs (eight domains + full map), built from S.research.domains in
@@ -2990,6 +2993,7 @@
 <script src="/chronicle-data.js"></script>
 <script src="/chronicle-ui.js"></script>
 <script src="/programs-ui.js"></script>
+<script src="/decision-tools.js"></script>
 <script src="/province-economy-ui.js"></script>
 <script src="/competition-ui.js"></script>
 <script>
@@ -3680,7 +3684,7 @@ function loadFigurePortrait(img, spec, eager) {
   img.onerror = () => {
     if (img.dataset.asset === asset) img.classList.remove("ready");
   };
-  img.src = `/art/portraits/${encodeURIComponent(asset)}`;
+  img.src = `/art/portraits/${encodeURIComponent(asset)}?v=display512-v1`;
 }
 
 function setupRank(n, field) {
@@ -5013,6 +5017,13 @@ function cabinetMinistryTiles(m, fiscal) {
 }
 
 function cabinetBudgetSummary(m) {
+  if (S.programs && typeof PG!=="undefined") {
+    const fiscal=PG.key===programDraftKey(m) ? PG.preview?.fiscal : null;
+    if (!fiscal) return `<article><span>Proposed annual finances</span><strong>${PG.error ? "Preview unavailable" : "Calculating…"}</strong></article><article><span>Debt service included when the books open</span><strong>Awaiting server quote</strong></article><article><span>Draft preserved</span><strong>${PG.error ? "Retry funding preview" : "Current GDP basis"}</strong></article>`;
+    return `<article><span>Proposed revenue / year</span><strong>${fmt.money(fiscal.revenue_bn)}</strong></article>
+      <article><span>Authority + debt service / year</span><strong>${fmt.money(fiscal.total_at_full_use_bn)}</strong><small>Includes ${fmt.money(fiscal.interest_bn)} interest${fiscal.opening_books ? " when books open" : ""}</small></article>
+      <article><span>At full use: ${fiscal.balance_at_full_use_bn<0 ? "funding gap" : "surplus"} / year</span><strong class="${fiscal.balance_at_full_use_bn<0 ? "down" : "up"}">${fmt.money(Math.abs(fiscal.balance_at_full_use_bn))}</strong><small>At current GDP; actual work is charged as delivered.</small></article>`;
+  }
   const p = proposed(m);
   const led = ledgerOf(m, p.tax, p.social, p.military, p.invest);
   return `<article><span>Money in / year</span><strong>${fmt.money(led.revenue * m.gdp)}</strong></article>
@@ -12029,30 +12040,6 @@ function drawMapOverlay(ctx, view, globe) {
   // while its board is open, keeping the resting globe free of management ink.
   drawProductionOverlay(ctx, view, globe);
 
-  // ---- district names, for ONE nation at a time and only past ZB2, exactly
-  // the band the flat map used. Drawn before the nation labels so a nation's
-  // own name stays on top of its districts' names.
-  const detail = ui.cam.k >= ZB2 ? (hoverNation || selected) : null;
-  if (detail && TERRITORY[detail]) {
-    ctx.font = `${11 * r}px Inter, system-ui, sans-serif`;
-    ctx.lineWidth = 2.6 * r;
-    ctx.strokeStyle = "#0a0e14cc";
-    ctx.fillStyle = "#b9c6d6";
-    const placed = [];
-    for (const iso of TERRITORY[detail]) {
-      for (const d of DISTRICTS.byCountry[iso] || []) {
-        const p = globe.projectWorld(d.cx, d.cy, view);
-        if (!p) continue;
-        const width = d.name.length * 5.6 * r;
-        if (placed.some((q) => Math.abs(q[0] - p[0]) < (q[2] + width) * .5 + 4 * r
-                            && Math.abs(q[1] - p[1]) < 13 * r)) continue;
-        placed.push([p[0], p[1], width]);
-        ctx.strokeText(d.name, p[0], p[1]);
-        ctx.fillText(d.name, p[0], p[1]);
-      }
-    }
-  }
-
   // ---- nation labels ------------------------------------------------------
   // THE FLAT MAP COULD DRAW ALL OF THEM AND THIS CANNOT, and the reason is
   // geometric rather than aesthetic. A rectangle gives every nation the same
@@ -12070,7 +12057,7 @@ function drawMapOverlay(ctx, view, globe) {
   const rank = (n) => (m && n.id === m.id ? 1e15 : 0)
     + (n.id === hoverNation || n.id === selected ? 1e14 : 0) + (n.gdp || 0);
   const order = S.nations.slice().sort((a, b) => rank(b) - rank(a));
-  const placed = [];
+  const placed = globe.labelBoxes || (globe.labelBoxes=[]);
   for (const n of order) {
     const a = anchorOf(n.id);
     if (!a) continue;
@@ -12087,10 +12074,12 @@ function drawMapOverlay(ctx, view, globe) {
     const width = ctx.measureText(text).width;
     // The subline yields to the district names, the same trade `svg.zb2 .sub`
     // made: at that zoom the map is answering a finer question.
-    const sub = ui.cam.k < ZB2 ? mapSub(n) : "";
+    const sub = (isMe || hot) && ui.cam.k >= 1.5 && ui.cam.k < ZB2 ? mapSub(n) : "";
+    let boxWidth=width;
+    if(sub){ctx.font=`${10*r}px Inter, system-ui, sans-serif`;boxWidth=Math.max(width,ctx.measureText(sub).width);ctx.font=`${isMe || hot ? 700 : 400} ${size}px Inter, system-ui, sans-serif`;}
     const height = sub ? size + 12 * r : size;
-    const box = [p[0], p[1] + (sub ? 6 * r : 0), width, height];
-    if (!isMe && !hot && placed.some((q) =>
+    const box = [p[0], p[1] + (sub ? 6 * r : 0), boxWidth, height];
+    if (!isMe && placed.some((q) =>
         Math.abs(q[0] - box[0]) < (q[2] + box[2]) * .5 + 3 * r &&
         Math.abs(q[1] - box[1]) < (q[3] + box[3]) * .5 + 2 * r)) continue;
     placed.push(box);
@@ -12108,6 +12097,19 @@ function drawMapOverlay(ctx, view, globe) {
       ctx.fillText(sub, p[0], p[1] + 12 * r);
     }
     ctx.globalAlpha = 1;
+  }
+  // Nations reserve space first, then local provinces, then cities in Globe3D.
+  // Every layer shares the same complete text rectangles.
+  const detail = ui.cam.k >= ZB2 ? (hoverNation || selected || S.player) : null;
+  if(detail && TERRITORY[detail]){
+    ctx.font=`${11*r}px Inter, system-ui, sans-serif`;ctx.lineWidth=2.6*r;
+    ctx.strokeStyle="#0a0e14cc";ctx.fillStyle="#b9c6d6";
+    for(const iso of TERRITORY[detail])for(const d of DISTRICTS.byCountry[iso]||[]){
+      const p=globe.projectWorld(d.cx,d.cy,view);if(!p)continue;
+      const box=[p[0],p[1],ctx.measureText(d.name).width,11*r];
+      if(placed.some(q=>DecisionTools.overlap(q,box,4*r)))continue;
+      placed.push(box);ctx.strokeText(d.name,p[0],p[1]);ctx.fillText(d.name,p[0],p[1]);
+    }
   }
   ctx.textAlign = "left";
 }
@@ -12226,7 +12228,7 @@ function renderMap() {
   // `=== undefined`, not falsy: cx wraps into [0, WORLD.w) now, so 0 is a legal
   // camera x -- the antimeridian on the equator -- and a falsy test would slam
   // the camera to the middle of the canvas when the player looked at it.
-  if (ui.cam.cx === undefined) { ui.cam.cx = WORLD.w / 2; ui.cam.cy = WORLD.h / 2; }
+  if (ui.cam.cx === undefined) { const home=S.player ? anchorOf(S.player) : null; ui.cam.cx = home?.[0] ?? WORLD.w / 2; ui.cam.cy = home?.[1] ?? WORLD.h / 2; }
 
   const pos = globeReadout();
   let s = `<div class="globe-stage">

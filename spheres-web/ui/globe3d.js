@@ -300,8 +300,9 @@
       const context = this.overlayContext;
       context.clearRect(0, 0, size.width, size.height);
       context.lineJoin = "round";
-      this.drawCities(view);
+      this.labelBoxes = [];
       if (this.options.onOverlay) this.options.onOverlay(context, view, this);
+      this.drawCities(view);
     }
 
     // ---- projection ------------------------------------------------------
@@ -438,7 +439,7 @@
       // Strongest claim first, so the collision test below drops the weaker
       // label rather than whichever happened to be earlier in the file.
       cities.sort((a, b) => a.rank - b.rank || b.pop - a.pop);
-      const placed = [];
+      const placed = this.labelBoxes || [];
       let shown = 0;
       for (const city of cities) {
         const point = this.projectGeo(city.lon, city.lat, view, 1.002);
@@ -448,9 +449,10 @@
         // Rectangle overlap against everything already drawn. O(n^2) on a list
         // the zoom bands keep short — 1249 cities only all pass the filter at
         // the closest zoom, where almost none of them project.
-        if (placed.some((p) => Math.abs(p[0] - point[0]) < (p[2] + width) * .5 + 8 * ratio
-                            && Math.abs(p[1] - point[1]) < fontSize + 6 * ratio)) continue;
-        placed.push([point[0], point[1], width]);
+        const box=[point[0]+6*ratio+width/2,point[1],width,fontSize];
+        if (placed.some((p) => Math.abs(p[0] - box[0]) < (p[2] + width) * .5 + 8 * ratio
+                            && Math.abs(p[1] - box[1]) < ((p[3]||fontSize)+fontSize)/2 + 6 * ratio)) continue;
+        placed.push(box);
         context.beginPath();
         context.arc(point[0], point[1], (city.capital ? 3.2 : 2.2) * ratio, 0, PI * 2);
         context.fillStyle = city.capital ? "#ffd08a" : "#7de1f2";

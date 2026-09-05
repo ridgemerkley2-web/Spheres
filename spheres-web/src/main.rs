@@ -39,6 +39,8 @@ const CHRONICLE_DATA_JS: &str = include_str!("../ui/chronicle-data.js");
 const CHRONICLE_UI_JS: &str = include_str!("../ui/chronicle-ui.js");
 const PROGRAMS_CSS: &str = include_str!("../ui/programs.css");
 const PROGRAMS_UI_JS: &str = include_str!("../ui/programs-ui.js");
+const DECISION_TOOLS_JS: &str = include_str!("../ui/decision-tools.js");
+const DECISION_TOOLS_CSS: &str = include_str!("../ui/decision-tools.css");
 const PROGRAMS_ART_SVG: &str = include_str!("../ui/programs-art.svg");
 const PROVINCE_ECONOMY_CSS: &str = include_str!("../ui/province-economy.css");
 const PROVINCE_ECONOMY_UI_JS: &str = include_str!("../ui/province-economy-ui.js");
@@ -2925,11 +2927,20 @@ fn goods_quotes_json(w:&WorldState,me:NationId,payload:&serde_json::Value)->Resu
 }
 
 fn program_preview_json(w: &WorldState, me: NationId, payload: &serde_json::Value) -> Result<serde_json::Value,String> {
-    let Some(Command::SetProgramBudget { fiscal_year, allocations, departments, .. }) = parse_command(w,payload,me) else {
+    let Some(command @ Command::SetProgramBudget { fiscal_year, .. }) = parse_command(w,payload,me) else {
         return Err("Expected a complete department budget: ten ministry amounts and ten rows of five whole basis-point shares.".into());
     };
     if fiscal_year != w.year { return Err("The budget year must match the current year.".into()); }
-    programs::preview_with_plan(w,me,allocations,departments).map(|p|programs_json(w,me,Some(p)))
+    let policies=match payload.get("policy_commands") {
+        None => Vec::new(),
+        Some(v) => v.as_array().ok_or("Policy orders must be an array.")?.iter()
+            .map(|v|parse_command(w,v,me).ok_or_else(||"Invalid fiscal policy order.".to_string()))
+            .collect::<Result<Vec<_>,_>>()?,
+    };
+    let (p,fiscal)=spheres_sim::fiscal_preview::with_budget(w,me,&policies,&command)?;
+    let mut view=programs_json(w,me,Some(p));
+    view["fiscal"]=serde_json::to_value(fiscal).map_err(|e|e.to_string())?;
+    Ok(view)
 }
 
 fn production_requirements_json(
@@ -2958,6 +2969,8 @@ fn production_requirements_json(
                 "remaining": round(remaining, 6),
                 "next_draw": round(next_draw[i], 6),
                 "stock_available": round(available, 6),
+                "incoming_quantity": round(spheres_sim::logistics::pending(w, me, *c), 6),
+                "incoming_within_30_days": round(spheres_sim::logistics::pending_within_days(w, me, *c, 30), 6),
                 // Completion can be months or years away, so today's pile is
                 // not an honest present-tense shortage against the whole
                 // recipe. This is the sim's current next-atomic-draw gap;
@@ -5266,6 +5279,8 @@ fn tech_tree_json(w: &WorldState, me: NationId, domain: spheres_sim::tech::Domai
     let n = w.nation(me);
     let reg = tech::registry();
     let focus = n.tech.focus[domain.index()];
+    let dev=tech::dev_of(n);
+    let rate=tech::research_output(w,n,dev)*tech::domain_weights_of(w,n,dev)[domain.index()];
 
     let nodes: Vec<serde_json::Value> = reg
         .iter()
@@ -5285,6 +5300,13 @@ fn tech_tree_json(w: &WorldState, me: NationId, domain: spheres_sim::tech::Domai
                 "list_cost": def.cost,   // static list price; cost < list_cost ⇒ diffusion discount
                 "state": if known { "known" } else if open { "open" } else { "locked" },
                 "focus": focus == Some(idx),
+                "earliest_available":open && def.earliest_year<=w.year,
+                "floor_binds":tech::floor_binds(w,me,idx),
+                "estimated_days":if known || !open {None} else {
+                    let funding=research_days_left(w,(tech::cost_of(w,me,idx)-n.tech.progress[domain.index()]).max(0.0),rate);
+                    let calendar=(spheres_sim::clock::date_day(def.earliest_year,1,1)-spheres_sim::clock::absolute_day(w)).max(0);
+                    funding.map(|d|d.max(calendar as u32))
+                },
                 // What holding it actually does, and what it opens. Without
                 // these a tree is a list of names with prices on them.
                 "effects": def.effects.iter().map(tech::describe_effect).collect::<Vec<_>>(),
@@ -6202,6 +6224,8 @@ fn main() {
                 let _ = request.respond(r);
                 continue;
             }
+            (Method::Get, "/decision-tools.css") => Response::from_string(DECISION_TOOLS_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/decision-tools.js") => Response::from_string(DECISION_TOOLS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, path @ ("/arcade.css" | "/arcade-operations.css" | "/arcade-discovery.css" | "/chronicle.css" | "/programs.css" | "/province-economy.css" | "/competition.css")) => {
                 let css = match path {
                     "/arcade-operations.css" => ARCADE_OPERATIONS_CSS,
@@ -7051,6 +7075,34 @@ mod tests {
         let mut payload = serde_json::json!({"kind":"program_budget","fiscal_year":w.year,"departments":programs::default_departments()});
         for (i,amount) in w.nation(me).budget_for(w.year).allocations.iter().enumerate() { payload[ministry_key(i)] = serde_json::json!(amount); }
         payload
+    }
+
+    #[test]
+    fn first_budget_quote_includes_opening_debt_and_ordered_policy_without_mutating_world() {
+        let mut g=Game::new(1990,Some(NationId::USA));
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        let me=NationId::USA;
+        let mut payload=department_payload(&g.world,me);
+        payload["policy_commands"]=serde_json::json!([
+            {"kind":"rate","value":0.12},{"kind":"tax","value":0.30}
+        ]);
+        let before=save(&g.world);
+        let view=program_preview_json(&g.world,me,&payload).unwrap();
+        assert_eq!(save(&g.world),before);
+        assert!(view["fiscal"]["interest_bn"].as_f64().unwrap_or(0.0)>0.0,
+            "the first budget must quote interest on the books it opens");
+        let mut actual=g.world.clone();
+        for input in payload["policy_commands"].as_array().unwrap() {
+            apply_command(&mut actual,&parse_command(&g.world,input,me).unwrap()).unwrap();
+        }
+        apply_command(&mut actual,&parse_command(&g.world,&payload,me).unwrap()).unwrap();
+        let n=actual.nation(me);
+        let t=spheres_sim::economy::growth_terms(n,n.state_invest_gdp,n.interest_rate,&spheres_sim::economy::Conditions::of(&actual,me));
+        let f=spheres_sim::economy::Fiscal::of(n,&t);
+        assert!((view["fiscal"]["interest_bn"].as_f64().unwrap()-f.interest_bn).abs()<1e-9);
+        assert!((view["fiscal"]["revenue_gdp"].as_f64().unwrap()-f.revenue_gdp).abs()<1e-12);
+        payload["policy_commands"]=serde_json::json!([{"kind":"sanction","target":"Iraq"}]);
+        assert!(program_preview_json(&g.world,me,&payload).is_err(),"only fiscal policy belongs in this quote");
     }
 
     #[test]

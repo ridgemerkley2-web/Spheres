@@ -8,6 +8,7 @@ pub mod dyads;
 pub mod economy;
 pub mod economic_ai;
 pub mod front;
+pub mod fiscal_preview;
 pub mod government;
 pub mod gdp_projects;
 pub mod exact;

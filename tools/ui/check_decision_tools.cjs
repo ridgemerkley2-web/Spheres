@@ -1,0 +1,6 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const d=require('../../spheres-web/ui/decision-tools.js');
+test('shared labels reserve the entire text rectangle across layers',()=>{assert(d.overlap([10,10,40,20],[35,15,10,10]));assert(!d.overlap([10,10,40,20],[100,100,10,10]));});
+test('finder finds owned provinces without requiring a globe hit',()=>{const rows=d.search([{id:'USA',name:'United States',alive:true}],{'US-CA':{name:'California'}},()=> 'USA','California','USA');assert.equal(rows[0].id,'US-CA');assert.equal(rows[0].kind,'province');});
+test('advisor observes funding, missing inputs and completed output in order',()=>{assert.equal(d.guide({enabled:false},{}).step,0);assert.equal(d.guide({enabled:true},{queue:[{status:'blocked',reason:'No steel'}]}).step,2);assert.equal(d.guide({enabled:true},{completed:[{}]}).step,4);});
+test('research list keeps full names, filters available prerequisites, and sorts focus first',()=>{const nodes=[{id:'a',domain:'Energy',name:'A long discovery',state:'open',year:1990},{id:'b',domain:'Energy',name:'Other',state:'locked',year:1980},{id:'c',domain:'Energy',name:'Focused',state:'open',focus:true,year:2000}];assert.deepEqual(d.research(nodes,'all','','available').map(n=>n.id),['c','a']);assert.equal(d.research(nodes,'all','long','all')[0].id,'a');});

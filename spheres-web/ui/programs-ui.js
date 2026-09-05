@@ -31,7 +31,11 @@ function programRedistribute(row, selected, value) {
 }
 
 function programDraftKey(m) {
-  return JSON.stringify([S?.player, S?.date, programBudgetCommand(m)]);
+  return JSON.stringify([S?.player, S?.date, programPreviewCommand(m)]);
+}
+
+function programPreviewCommand(m) {
+  return { ...programBudgetCommand(m), policy_commands: queued.filter(c=>c.kind==="tax" || c.kind==="rate") };
 }
 
 function programView(m) {
@@ -144,7 +148,7 @@ async function refreshProgramPreview(m, force=false) {
   if (!force && (PG.key === key || PG.failedKey === key || PG.pending && PG.requestKey === key)) return;
   const seq=++PG.seq; PG.pending=true; PG.requestKey=key;
   try {
-    const response = await api("/api/program-preview",programBudgetCommand(m));
+    const response = await api("/api/program-preview",programPreviewCommand(m));
     if (seq !== PG.seq || key !== programDraftKey(me())) return;
     PG.preview=response; PG.key=key; PG.error=""; PG.failedKey=null;
   } catch(error) { if (seq !== PG.seq) return; PG.error=(error.message||"Funding preview unavailable")+". Showing the enacted ledger; your draft is kept."; PG.preview=null; PG.key=null; PG.failedKey=key; }
