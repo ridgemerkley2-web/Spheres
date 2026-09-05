@@ -172,3 +172,45 @@ fn untouched_legacy_world_and_read_only_decision_view_create_no_state() {
     assert_eq!(before,spheres_sim::save(&w));
     assert!(!before.contains("\"agency\""));
 }
+
+#[test]
+fn a_later_sphere_agreement_retires_the_call_without_abandonment_costs() {
+    let (mut w,cid)=defense_fixture();
+    w.rules.economic_competition=true;
+    assert!(spheres_sim::agency::response_error(&w,N::USA,w.agency.offers[0].id,true).is_none());
+    spheres_sim::domination::subjugate(&mut w,N::Iraq,N::USA);
+    assert!(spheres_sim::sovereignty::hostility_blocked(&w,N::USA,N::Iraq));
+    let rep=w.reputation(N::USA);let relation=w.relation(N::USA,N::Kuwait);let rng=w.rng.clone();
+    let mut early=w.clone();let mut explicit=w.clone();
+    let id=explicit.agency.offers[0].id;
+    apply_command(&mut explicit,&Command::RespondDiplomacy{nation:N::USA,offer:id,accept:false}).unwrap();
+    spheres_sim::agency::tick(&mut early);
+    for _ in 0..7 {spheres_sim::clock::advance_date(&mut w);}
+    let mut resumed=spheres_sim::load(&spheres_sim::save(&w)).unwrap();
+    for game in [&mut w,&mut resumed] {spheres_sim::agency::tick(game);spheres_sim::agency::tick(game);}
+    for game in [&w,&resumed,&early,&explicit] {
+        assert!(game.agency.offers.is_empty());assert_eq!(game.agency.history.len(),1);
+        assert_eq!(game.agency.history[0].outcome,"closed: circumstances changed");
+        assert!(game.allied(N::USA,N::Kuwait),"an impossible call does not repudiate the pact");
+        assert_eq!(game.reputation(N::USA),rep);assert_eq!(game.relation(N::USA,N::Kuwait),relation);
+        assert_eq!(game.rng,rng);assert!(!game.conflict(cid).unwrap().involves(N::USA));
+    }
+    assert_eq!(spheres_sim::save(&w),spheres_sim::save(&resumed));
+}
+
+#[test]
+fn legacy_requests_use_one_settlement_date_and_remain_answerable_after_landing() {
+    let mut monthly=fixture(N::USA);monthly.rules.daily_simulation=false;
+    monthly.statecraft.trade.clear();monthly.set_relation(N::Japan,N::USA,100.0);
+    let mut dated=monthly.clone();dated.day=31;
+    for w in [&mut monthly,&mut dated] {statecraft::propose_trade(w,N::Japan,N::USA).unwrap();}
+    assert_eq!(monthly.agency,dated.agency,"monthly settlement has one date regardless of batch size");
+    assert_eq!(monthly.agency.offers[0].issued_day,spheres_sim::clock::date_day(1990,1,31));
+    for w in [&mut monthly,&mut dated] {
+        w.month=2;w.day=1;
+        let id=w.agency.offers[0].id;
+        apply_command(w,&Command::RespondDiplomacy{nation:N::USA,offer:id,accept:true}).unwrap();
+        assert!(w.trade_depth(N::Japan,N::USA)>0.0,"the monthly landing has a real reply opportunity");
+    }
+    assert_eq!(monthly.agency,dated.agency);
+}

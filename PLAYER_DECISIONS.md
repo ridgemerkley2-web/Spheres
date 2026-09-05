@@ -1,4 +1,4 @@
-# Player decisions — approved audit repair (2026-09-04)
+# Player decisions â€” approved audit repair (2026-09-04)
 
 The user approved implementing the audit recommendations. These are named game
 rules, not claims about historical deadlines or central-bank behavior.
@@ -47,3 +47,18 @@ exactly-once costs, stale conflict references, explicit policy, and unchanged
 serialization on a world that has not used the feature. Root runs the full suite
 and integrated browser checks; no calibration tolerance or replay pin is changed
 by this repair.
+
+
+Final review corrections: a pending call closes without abandonment costs if its
+recipient later joins an opposing member's formal sphere, the conflict ends,
+the pact lapses or it otherwise loses the underlying obligation. Both expiry and
+manual decline use this shared circumstance check; access/rung restrictions still
+block acceptance under the ordinary rules. A delayed-sphere-change regression
+covers early cleanup, expiration, explicit decline and save/resume.
+
+Legacy monthly simulation dates requests and decision history at the month's
+canonical closing date, independent of whether the caller batches a whole month
+or steps its display calendar daily. Expiry is processed at that same settlement
+date. Manual replies validate the actual current calendar date, so the next-month
+landing remains a real opportunity to respond. Actual daily simulation retains its
+precise issue dates. The existing complete-world cadence regression stays intact.

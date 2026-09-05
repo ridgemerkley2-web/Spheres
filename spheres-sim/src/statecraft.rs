@@ -1,10 +1,10 @@
-//! Statecraft â€” everything a power does to another power short of shooting at it.
+//! Statecraft — everything a power does to another power short of shooting at it.
 //!
 //! Four instruments, all of them commands like any other, all of them available
 //! to the AI on exactly the terms the player gets:
 //!
 //! * **Defence pacts** turn a vague affinity into a written commitment that
-//!   drags you into other people's wars â€” and that you can break, at a price.
+//!   drags you into other people's wars — and that you can break, at a price.
 //! * **Aid and arms** buy a government's survival, and with it its alignment.
 //! * **Covert action** breaks a rival's client without a declaration, until the
 //!   day it is caught and the whole thing rebounds.
@@ -45,7 +45,7 @@ const PACT_UPKEEP: f64 = 0.003;
 
 /// The most output any patron can promise to clients. The Soviet Union, the
 /// most profligate patron of the era, disbursed roughly $6.9bn to the Third
-/// World in 1985 against a GNP near $1.5tn â€” under half a percent.
+/// World in 1985 against a GNP near $1.5tn — under half a percent.
 /// https://en.wikipedia.org/wiki/Economy_of_the_Soviet_Union
 pub const MAX_AID_SHARE: f64 = 0.010;
 
@@ -206,7 +206,7 @@ fn trade_deepens(w: &mut WorldState) {
             continue;
         }
         // Integration deepens. THE LEVEL GAIN IS NO LONGER PAID HERE: it used to
-        // be paid per pact, per month, on this increment â€” see `trade_level_gain`
+        // be paid per pact, per month, on this increment — see `trade_level_gain`
         // below for why summing that over a roster is a growth rate wearing a
         // level's clothes, and what replaces it.
         {
@@ -232,16 +232,16 @@ fn trade_deepens(w: &mut WorldState) {
 ///
 /// The per-pact form this replaces summed `theirs / (mine + theirs)` over every
 /// agreement. That quantity is already a *share* of a nation's trading
-/// universe, so N of them add past one and keep going â€” the United States held
+/// universe, so N of them add past one and keep going — the United States held
 /// 41 agreements on the ten-seed average by 2024 for a summed reach well past
 /// two, a permanent uplift still climbing every four years, and measured at
 /// 1.17 points of annual growth for thirty-five years. An unbounded stream of
-/// level shifts is a rate, which is exactly the error BIBLE Â§8 records finding
+/// level shifts is a rate, which is exactly the error BIBLE §8 records finding
 /// in this very function and fixing only per-agreement: `TRADE_LEVEL_GAIN`
 /// bounds *one* agreement, and nothing bounded the roster.
 ///
 /// Aggregated, reach is bounded by 1 however many agreements are held, so the
-/// whole portfolio is bounded by TRADE_LEVEL_GAIN â€” the claim the constant's
+/// whole portfolio is bounded by TRADE_LEVEL_GAIN — the claim the constant's
 /// own comment already makes and could not keep. WITH A SINGLE PACT THE TWO
 /// FORMS ARE IDENTICAL: `depth * theirs / (mine + theirs)`. The small partner's
 /// transformation is untouched; only the giant collecting sixty fractions of a
@@ -271,7 +271,7 @@ fn trade_reach(w: &WorldState, id: NationId) -> f64 {
 /// Paid on the RISE in entitlement and never clawed back. Two reasons, both
 /// structural rather than convenient. Reach moves when a partner's economy
 /// moves relative to yours, and paying on that would hand a nation growth for
-/// its partners' growth â€” the same rate-for-a-level bug through the back door.
+/// its partners' growth — the same rate-for-a-level bug through the back door.
 /// And a pact that collapses and is re-signed re-enters at depth 0.05, so
 /// without a high-water mark sign/collapse/re-sign is an unbounded GDP pump
 /// under player action. What losing an agreement costs is priced where it
@@ -571,13 +571,13 @@ pub fn covert_action(
         + t_sep * 0.30
         + reach * 0.20)
         .clamp(0.05, 0.80);
-    // A police state catches spies; a well-worn channel gets rolled up â€” and,
+    // A police state catches spies; a well-worn channel gets rolled up — and,
     // DIPLOMACY'S SECOND NAMED ARM, a foreign service that funds its own
     // counter-intelligence catches them too.
     //
     // Note whose gap this is: the TARGET's, not the sponsor's. Diplomacy is the
     // only ministry on the board whose budget acts on somebody else's decision,
-    // and it acts through a path that already exists and is already priced â€”
+    // and it acts through a path that already exists and is already priced —
     // exposure is what costs the sponsor relations and reputation below, and
     // this arm changes only how often that path is taken. It invents no new
     // consequence.
@@ -659,7 +659,7 @@ pub fn covert_action(
             w.shift_relation(sponsor, x, -5.0);
         }
         w.headline(format!(
-            "{} exposes {} {} in {} â€” the scandal rallies the country behind its government.",
+            "{} exposes {} {} in {} — the scandal rallies the country behind its government.",
             target.name(),
             sponsor.name(),
             op.label(),
@@ -771,7 +771,7 @@ pub fn abrogate_trade(w: &mut WorldState, from: NationId, to: NationId) -> Resul
 /// campaign. Before the ladder there was one rung and this was always 8.
 ///
 /// A defensive pact obliges nobody to join a war of aggression, so the
-/// attacker's own guarantors are not called at all â€” the whole asymmetry is
+/// attacker's own guarantors are not called at all — the whole asymmetry is
 /// what makes a guarantee cheap to give and expensive to keep.
 pub fn call_the_guarantors(w: &mut WorldState, c: &mut Conflict, at: u8) -> Vec<NationId> {
     let (attacker, defender) = (c.origin_attacker, c.defender());

@@ -85,6 +85,13 @@ fn same_request(a: &OfferKind, b: &OfferKind) -> bool {
         _ => a == b,
     }
 }
+/// Legacy systems settle one whole calendar month, whether entered on its
+/// first date (`tick_month`) or last date (`tick_day`). Give their ledger one
+/// canonical closing date. Actual manual reply validation still uses today.
+fn ledger_day(w:&WorldState)->i32 {
+    if clock::is_daily(w) {clock::absolute_day(w)}
+    else {clock::date_day(w.year,w.month,days_in_month(w.year,w.month))}
+}
 fn queue(w: &mut WorldState, from: NationId, to: NationId, kind: OfferKind) -> Result<u64,String> {
     if let Some(old) = w.agency.offers.iter().find(|o| o.from==from && o.to==to && same_request(&o.kind,&kind)) {
         return Err(format!("Request #{} already awaits a response.",old.id));
@@ -92,7 +99,7 @@ fn queue(w: &mut WorldState, from: NationId, to: NationId, kind: OfferKind) -> R
     w.agency.next_id = w.agency.next_id.checked_add(1).ok_or("The request ledger is full.")?;
     let id=w.agency.next_id;
     let days=if matches!(kind,OfferKind::CallToArms{..}) {DEFENSE_REPLY_DAYS} else {TREATY_REPLY_DAYS};
-    let offer=Offer{id,from,to,kind,issued_day:clock::absolute_day(w),expires_day:clock::absolute_day(w)+days};
+    let offer=Offer{id,from,to,kind,issued_day:ledger_day(w),expires_day:ledger_day(w)+days};
     let title=title(&offer);
     let review=chosen_policy(w,to,&offer.kind)==ResponsePolicy::Review;
     w.agency.offers.push(offer);
@@ -101,7 +108,7 @@ fn queue(w: &mut WorldState, from: NationId, to: NationId, kind: OfferKind) -> R
 }
 fn record(w:&mut WorldState, offer:Offer, outcome:&str) {
     w.agency.offers.retain(|o|o.id!=offer.id);
-    w.agency.history.push(Decision{offer,resolved_day:clock::absolute_day(w),outcome:outcome.into()});
+    w.agency.history.push(Decision{offer,resolved_day:ledger_day(w),outcome:outcome.into()});
     if w.agency.history.len()>HISTORY_LIMIT { w.agency.history.remove(0); }
 }
 fn chosen_policy(w:&WorldState,to:NationId,kind:&OfferKind)->ResponsePolicy {
@@ -127,14 +134,19 @@ fn call_matches(c:&Conflict,o:&Offer)->bool {
         if c.id==conflict && c.origin_attacker==attacker && c.start_year==year
         && c.start_month==month && c.side_b.contains(&o.from))
 }
-fn call_error(w:&WorldState,c:&Conflict,o:&Offer)->Option<String> {
+fn call_circumstances_error(w:&WorldState,c:&Conflict,o:&Offer)->Option<String> {
     if !call_matches(c,o) {return Some("That conflict has ended or changed sides.".into());}
     if c.involves(o.to) {return Some("Your country is already a party to this conflict.".into());}
-    let OfferKind::CallToArms{rung,guaranteed,..}=o.kind else {return Some("Not a defense request.".into())};
+    let OfferKind::CallToArms{guaranteed,..}=o.kind else {return Some("Not a defense request.".into())};
     if guaranteed && !w.allied(o.to,o.from) {return Some("The defense pact is no longer in force.".into());}
     if c.side_a.iter().any(|foe|crate::sovereignty::hostility_blocked(w,o.to,*foe)) {
         return Some("The request conflicts with your formal sphere.".into());
     }
+    None
+}
+fn call_error(w:&WorldState,c:&Conflict,o:&Offer)->Option<String> {
+    if let Some(why)=call_circumstances_error(w,c,o) {return Some(why);}
+    let OfferKind::CallToArms{rung,..}=o.kind else {return Some("Not a defense request.".into())};
     let mut proposed=c.clone();
     war::join_side(&mut proposed,o.to,false,1,Objective::Deny);
     commitment::rung_blocked(w,&proposed,o.to,rung)
@@ -190,6 +202,15 @@ pub fn response_error(w:&WorldState,nation:NationId,id:u64,accept:bool)->Option<
 pub fn respond(w:&mut WorldState,nation:NationId,id:u64,accept:bool)->Result<(),String> {
     if let Some(why)=response_error(w,nation,id,accept) {return Err(why);}
     let o=w.agency.offers.iter().find(|o|o.id==id).unwrap().clone();
+    if !accept {
+        if let OfferKind::CallToArms{conflict,..}=o.kind {
+            if w.conflict(conflict).is_none_or(|c|call_circumstances_error(w,c,&o).is_some()) {
+                w.headline(format!("{} closes the defense request from {} because its circumstances changed; no abandonment penalty applies.",o.to.name(),o.from.name()));
+                record(w,o,"closed: circumstances changed");
+                return Ok(());
+            }
+        }
+    }
     match o.kind {
         OfferKind::DefensePact if accept=>statecraft::sign_pact(w,o.from,o.to),
         OfferKind::TradeTreaty if accept=>statecraft::sign_trade(w,o.from,o.to),
@@ -213,12 +234,12 @@ pub fn retire_conflict(w:&mut WorldState,id:u32) {
 }
 pub fn tick(w:&mut WorldState) {
     if w.agency.offers.is_empty() {return;}
-    let today=clock::absolute_day(w);
+    let today=ledger_day(w);
     let pending=w.agency.offers.clone();
     for o in pending {
         let alive=[o.from,o.to].iter().all(|id|w.nation_opt(*id).is_some_and(|n|n.alive));
         let valid=alive && match o.kind {
-            OfferKind::CallToArms{conflict,guaranteed,..}=>w.conflict(conflict).is_some_and(|c|call_matches(c,&o) && !c.involves(o.to)) && (!guaranteed || w.allied(o.to,o.from)),
+            OfferKind::CallToArms{conflict,..}=>w.conflict(conflict).is_some_and(|c|call_circumstances_error(w,c,&o).is_none()),
             _=>true,
         };
         if !valid {record(w,o,"closed: circumstances changed");continue;}
