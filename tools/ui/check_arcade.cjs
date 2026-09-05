@@ -175,7 +175,7 @@ test('help contains time shortcuts but leaves its native close button usable',()
   const c=vm.createContext({document:{addEventListener:(type,fn)=>listener=fn},
     arcadeTopRoom:()=>({id:'keys'}),cabinetIsOpen:()=>false,dominationIsOpen:()=>false,
     focused:()=>false,typing:()=>false,keysCardIsOpen:()=>true,isKeysCardToggle:()=>false,
-    setKeysCard:()=>closed++,advance:()=>advanced++,clock:{running:false},
+    setKeysCard:()=>closed++,advance:()=>advanced++,clock:{running:false},clockPause(){},
   });
   vm.runInContext(page.slice(match.index,end+4),c);
   const event=(key,button)=>({key,target:{closest:()=>button?{}:null},preventDefault(){prevented++;}});

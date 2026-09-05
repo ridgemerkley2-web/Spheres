@@ -302,7 +302,7 @@ test('research chooser blocks blind time while preserving native activation and 
     arcadeTopRoom:()=>({id:'techMenu'}),cabinetIsOpen:()=>false,dominationIsOpen:()=>false,
     focused:()=>false,typing:()=>false,keysCardIsOpen:()=>false,isKeysCardToggle:()=>false,
     techMenuIsOpen:()=>true,closeTechMenu:()=>closed++,openTech:()=>opened++,
-    S:{},tech:{open:false},stock:{open:false},clock:{running:false},$:()=>({style:{display:'block'}}),advance:()=>advanced++,
+    S:{},tech:{open:false},stock:{open:false},$:()=>({style:{display:'block'}}),advance:()=>advanced++,clock:{running:false},clockPause(){},
   });
   vm.runInContext(html.slice(match.index,end+4),c);
   let prevented=0;

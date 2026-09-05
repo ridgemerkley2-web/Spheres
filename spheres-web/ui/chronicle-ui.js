@@ -150,13 +150,14 @@ function renderChronicle() {
   CHRONICLE.observer?.disconnect();
   const box = document.querySelector("#pane-charts");
   const activeId = box.contains(document.activeElement) ? document.activeElement.id : null;
-  const nations = Object.entries(HIST?.nations || {}).sort((a,b) => a[1].name.localeCompare(b[1].name));
+  const available=HIST?.available?Object.fromEntries(Object.entries(HIST.available).map(([id,name])=>[id,{name}])):HIST?.nations||{};
+  const nations = Object.entries(available).sort((a,b) => a[1].name.localeCompare(b[1].name));
   if (!nations.length) {
     box.innerHTML = `<div class="arc-empty"><strong>Your story starts here.</strong>Advance time to build a history. Recorded snapshots will appear here as your campaign unfolds.</div>`;
     CHRONICLE.model = null; return;
   }
-  if (!HIST.nations[CHRONICLE.nation]) CHRONICLE.nation = HIST.nations[S.player] ? S.player : nations[0][0];
-  const nation = HIST.nations[CHRONICLE.nation], range = chronicleRange(HIST, CHRONICLE.nation, CHRONICLE.days);
+  if (!available[CHRONICLE.nation]) CHRONICLE.nation = available[S.player] ? S.player : nations[0][0];
+  const nation = available[CHRONICLE.nation], range = chronicleRange(HIST, CHRONICLE.nation, CHRONICLE.days);
   // Pin the date, not the retained-array offset: old observations are trimmed.
   const pinned = CHRONICLE.cursor == null ? -1 : HIST.labels.indexOf(CHRONICLE.cursor);
   const cursor = range.start == null ? null : CHRONICLE.cursor == null ? range.end : Math.max(range.start, Math.min(range.end, pinned < 0 ? range.start : pinned));
@@ -179,9 +180,9 @@ function renderChronicle() {
       <div class="chr-time-ends"><span>${escText(first)}</span><span>${escText(last)}</span></div>
       <p>${archived ? "Archived nation · the record ends here. " : ""}${range.start === range.end ? "One snapshot so far. Advance time to build a history." : "Move the date slider to read all six metrics together."}</p></div>
     <div class="chr-metric-grid">${Object.entries(CHRONICLE_METRICS).map(([key,spec]) => `<article class="chr-metric chr-${CHRONICLE_COLORS[key]}" data-chronicle-metric="${key}" aria-labelledby="chrTitle-${key}"><div class="chr-card-top"><span>${CHRONICLE_COPY[key][0]}</span><span class="chr-card-mark" aria-hidden="true">${key === "gdp" ? "◈" : key === "growth" ? "↗" : key === "inflation" ? "≋" : key === "debt" ? "▤" : key === "stability" ? "◎" : "⚑"}</span></div><h2 id="chrTitle-${key}">${escText(spec.label)}</h2><div class="chr-number">—</div><p class="chr-unit">${CHRONICLE_COPY[key][1]}</p><div class="chr-change"><span class="chr-change-arrow"></span><strong class="chr-change-value"></strong></div><p class="chr-baseline"></p><div class="chr-plot"></div></article>`).join("")}</div>`}
-    <footer class="chr-foot"><span>${escText(periodLabel)} · ${escText(first)} — ${escText(last)}</span><details><summary>How to read this sheet</summary><p>Each chart has its own labeled scale. Changes compare the selected date with the first recorded date in the window. Percentage-point changes (pp) are not percentage growth. Missing values stay empty; a nation's line ends when its record does. Growth is the recorded smoothed annual rate, not GDP change over this window. History retains up to 3,000 snapshots and restarts after loading a save. Figures are recorded observations, not forecasts.</p></details></footer>
+    <footer class="chr-foot"><span>${escText(periodLabel)} · ${escText(first)} — ${escText(last)}</span><details><summary>How to read this sheet</summary><p>Each chart has its own labeled scale. Changes compare the selected date with the first recorded date in the window. Percentage-point changes (pp) are not percentage growth. Missing values stay empty; a nation's line ends when its record does. Growth is the recorded smoothed annual rate, not GDP change over this window. Campaign saves preserve history. Recent three years retain daily observations, the last twenty years retain monthly endpoints, and earlier years retain annual endpoints. Nation births and endings remain. Legacy saves start a new record. Figures are recorded observations, not forecasts.</p></details></footer>
   </section>`;
-  document.querySelector("#chronicleNation").onchange = e => { CHRONICLE.nation = e.target.value; CHRONICLE.cursor = null; renderChronicle(); };
+  document.querySelector("#chronicleNation").onchange = e => { CHRONICLE.nation = e.target.value; CHRONICLE.cursor = null; if(typeof requestVisibleHistory==="function")requestVisibleHistory();renderChronicle(); };
   box.querySelectorAll("[data-chronicle-days]").forEach(b => { b.onclick = () => { CHRONICLE.days = +b.dataset.chronicleDays; CHRONICLE.cursor = null; renderChronicle(); }; });
   document.querySelector("#chronicleCompare").onclick = () => setChronicleView("compare");
   const slider = document.querySelector("#chronicleDate");

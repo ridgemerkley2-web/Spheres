@@ -350,7 +350,7 @@ test('A pending economic order cannot be rebound to a new campaign',async()=>{
   run(c,`COMP.pending={session_id:'old',client_id:'test',request_seq:1,commands:[]};`);
   await run(c,'competitionSendPending()');assert.equal(c.sent.length,0);
   assert(run(c,'COMP.error').includes('older campaign'));
-  const apiStart=page.indexOf('async function api(path, body)');
+  const apiStart=page.indexOf('async function api(');
   const apiEnd=page.indexOf('\n}',apiStart);
   vm.runInContext(page.slice(apiStart,apiEnd+2),c);
   await assert.rejects(run(c,`api('/api/command',{session_id:'old',commands:[]})`),/another campaign/);
@@ -416,7 +416,7 @@ function sessionFixture() {
   c.clockPause=()=>{};
   c.$=id=>{if(!nodes.has(id))nodes.set(id,{disabled:false,textContent:'Start',style:{},focus(){}});return nodes.get(id);};
   c.banner=message=>c.sent.push({banner:message});
-  c.window={confirm:()=>true};
+  c.window={confirm:()=>true};c.clockPause=()=>{};
   c.renderSessionActions=()=>{};c.syncAdvanceControls=()=>{};c.persistPendingAdvance=()=>{};c.noteQueued=()=>{};
   c.seedFromBox=()=>42;c.enterCampaign=async state=>{c.entered=state;};
   run(c,`let queued=[],CAB={},HIST=null,ui={picked:[]},LOGI={open:false},PROD={open:false},MANU={},STOCKW={},selectedDistrict=null;

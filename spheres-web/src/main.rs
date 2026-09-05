@@ -18,7 +18,11 @@ use spheres_sim::{apply_command, load, save, tick_day, tick_month, Command};
 use std::sync::Mutex;
 use tiny_http::{Header, Method, Response, Server};
 
+mod history;
 mod portrait_assets;
+mod storage;
+mod transport;
+use history::{Event, Snapshot};
 
 fn build_info()->serde_json::Value {serde_json::json!({
     "version":env!("CARGO_PKG_VERSION"),"revision":env!("SPHERES_REVISION"),
@@ -29,6 +33,8 @@ fn build_info()->serde_json::Value {serde_json::json!({
 })}
 
 const INDEX: &str = include_str!("../ui/index.html");
+const CAMPAIGN_TRANSPORT_JS: &str = include_str!("../ui/campaign-transport.js");
+const CAMPAIGN_UI_JS: &str = include_str!("../ui/campaign-ui.js");
 /// Curated historical figures and source records keyed by stable NationId.
 /// Presentation data only: this never enters world state or save files.
 const NATION_FIGURES_JSON: &str = include_str!("../data/nation_figures.json");
@@ -98,47 +104,16 @@ const GLOBE3D_JS: &str = include_str!("../ui/globe3d.js");
 /// lazily, only when the Resources shading is first opened.
 const RESOURCES_JSON: &str = include_str!("../data/district_resources.json");
 
-/// The six per-nation numbers the UI plots. Recorded every month so a decade of
-/// stagnation reads as a shape rather than a pair of endpoints.
-#[derive(Clone, Copy)]
-struct Row {
-    gdp: f64,
-    growth: f64,
-    inflation: f64,
-    debt: f64,
-    stability: f64,
-    mil: f64,
-}
-
-/// The world as it stood at the start of one month.
-struct Snapshot {
-    t: f64, // fractional calendar months since Jan 1990
-    year: i32,
-    month: u32,
-    day: Option<u32>,
-    oil: f64,
-    rows: Vec<(NationId, Row)>,
-}
-
-/// A headline plus the handles the UI filters on: when it happened, what kind of
-/// event it was, and who it was about.
-struct Event {
-    t: u32,
-    date: String,
-    text: String,
-    cat: &'static str,
-    tags: Vec<NationId>,
-}
-
-/// Sixty years of monthly history is 720 rows; the caps are there so a player who
-/// runs the clock for centuries cannot make the server eat the machine.
-const MAX_HISTORY: usize = 3000;
+/// The active view receives a recent dispatch window; the full archive is saved.
 const MAX_LOG: usize = 4000;
 
 struct Game {
     world: WorldState,
     log: Vec<Event>,
     history: Vec<Snapshot>,
+    history_epoch: u64,
+    autosaved_month: u32,
+    storage_notice: Option<String>,
     session_id: String,
     // One receipt per browser client, not one full snapshot per turn. Older
     // sequence numbers are refused rather than accidentally replayed.
@@ -183,56 +158,23 @@ impl Game {
         // board reads the ledger on the setup screen's first month. Never
         // serialized, never hashed; the tick would build the same bytes.
         resources::warm(&mut world);
-        let mut g = Game { world, log: vec![], history: vec![], session_id: fresh_session_id(), advance_receipts: Default::default(), command_receipts:Default::default() };
+        let mut g = Game { world, log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(), command_receipts:Default::default() };
         g.snapshot();
         g
     }
 
     fn snapshot(&mut self) {
-        let w = &self.world;
-        self.history.push(Snapshot {
-            t: month_index(w.year, w.month) as f64 + if w.rules.daily_simulation {
-                (w.day.max(1) - 1) as f64 / spheres_sim::world::days_in_month(w.year, w.month) as f64
-            } else { 0.0 },
-            year: w.year,
-            month: w.month,
-            day: w.rules.daily_simulation.then_some(w.day),
-            oil: w.oil_price,
-            rows: w
-                .nations
-                .iter()
-                .filter(|n| n.alive)
-                .map(|n| {
-                    (
-                        n.id,
-                        Row {
-                            gdp: n.gdp,
-                            growth: n.growth_last,
-                            inflation: n.inflation,
-                            debt: n.debt_gdp,
-                            stability: n.stability,
-                            mil: n.mil_strength,
-                        },
-                    )
-                })
-                .collect(),
-        });
-        if self.history.len() > MAX_HISTORY {
-            self.history.remove(0);
-        }
+        if history::record(&mut self.history,&self.world) {self.history_epoch+=1;}
     }
 
     fn record_at(&mut self, t: u32, date: String, text: String) {
         self.log.push(Event {
             t,
             date,
-            cat: classify(&text),
+            cat: classify(&text).into(),
             tags: mentioned(&text),
             text,
         });
-        if self.log.len() > MAX_LOG {
-            self.log.remove(0);
-        }
     }
 
     fn record(&mut self, text: String) {
@@ -4191,89 +4133,7 @@ fn round_sig(v: f64, digits: i32) -> f64 {
 /// (successor states appear late) and simply stop when it dies, so a dead power's
 /// line ends rather than running flat to the end of the game.
 fn history_json(g: &Game, only: Option<NationId>) -> serde_json::Value {
-    let mut order: Vec<NationId> = vec![];
-    for s in &g.history {
-        for (id, _) in &s.rows {
-            if !order.contains(id) {
-                order.push(*id);
-            }
-        }
-    }
-    if let Some(one) = only {
-        order.retain(|id| *id == one);
-    }
-
-    let mut nations = serde_json::Map::new();
-    for id in &order {
-        let mut t0: Option<usize> = None;
-        let mut gap = 0usize;
-        let mut last: Option<Row> = None;
-        let (mut gdp, mut growth, mut infl, mut debt, mut stab, mut mil) =
-            (vec![], vec![], vec![], vec![], vec![], vec![]);
-        // The two columns that are MAGNITUDES go out at four significant
-        // figures; the four that are RATES or bounded scores keep a fixed
-        // decimal place, which is the right precision for a number that lives
-        // near zero. See `round_sig` for why the distinction matters here and
-        // nowhere else in this file.
-        let mut push = |r: Row| {
-            gdp.push(round_sig(r.gdp, 6));
-            growth.push(round(r.growth, 5));
-            infl.push(round(r.inflation, 5));
-            debt.push(round(r.debt, 4));
-            stab.push(round(r.stability, 2));
-            mil.push(round_sig(r.mil, 6));
-        };
-        for (i, s) in g.history.iter().enumerate() {
-            match s.rows.iter().find(|(x, _)| x == id).map(|(_, r)| *r) {
-                Some(r) => {
-                    if t0.is_none() {
-                        t0 = Some(i);
-                    }
-                    for _ in 0..std::mem::take(&mut gap) {
-                        if let Some(p) = last {
-                            push(p);
-                        }
-                    }
-                    push(r);
-                    last = Some(r);
-                }
-                None => {
-                    if t0.is_some() {
-                        gap += 1;
-                    }
-                }
-            }
-        }
-        if let Some(t0) = t0 {
-            nations.insert(
-                format!("{:?}", id),
-                serde_json::json!({
-                    "name": id.name(),
-                    "t0": t0,
-                    "gdp": gdp, "growth": growth, "inflation": infl,
-                    "debt": debt, "stability": stab, "mil": mil,
-                }),
-            );
-        }
-    }
-
-    serde_json::json!({
-        "t": g.history.iter().map(|s| s.t).collect::<Vec<_>>(),
-        "labels": g.history.iter().map(|s| s.date_label()).collect::<Vec<_>>(),
-        "oil": g.history.iter().map(|s| round(s.oil, 2)).collect::<Vec<_>>(),
-        "metrics": ["gdp", "growth", "inflation", "debt", "stability", "mil"],
-        "order": order.iter().map(|id| format!("{:?}", id)).collect::<Vec<_>>(),
-        "nations": nations,
-    })
-}
-
-impl Snapshot {
-    fn date_label(&self) -> String {
-        match self.day {
-            Some(day) => format!("{} {}", day, month_name(self.month, self.year)),
-            None => month_name(self.month, self.year),
-        }
-    }
+    history::json(&g.history,only.map(|id|std::collections::BTreeSet::from([id])).as_ref())
 }
 
 /// The visual language and the button destination for one domination agenda.
@@ -4546,12 +4406,12 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         .filter(|c| c.side_a.iter().any(alive) && c.side_b.iter().any(alive))
         .map(|c| conflict_json(w, c))
         .collect();
-    // Newest first, and the whole archive — the event log is meant to be scrolled
-    // back through, not just glanced at.
+    // Recent events travel with state; older archive pages are fetched lazily.
     let log: Vec<serde_json::Value> = g
         .log
         .iter()
         .rev()
+        .take(MAX_LOG)
         .map(|e| {
             serde_json::json!({
                 "date": e.date,
@@ -4569,6 +4429,10 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "month": w.month,
         "day": w.day,
         "session_id": g.session_id,
+        "history_epoch":g.history_epoch,
+        "history_cursor":g.history.last().map(|s|s.t),
+        "dispatch_count":g.log.len(),
+        "storage_notice":g.storage_notice,
         "simulation_cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
         "simulation_transition": w.daily.activate_after_month.map(|closing_month| {
             let next = closing_month + 1;
@@ -5929,7 +5793,7 @@ fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
 /// serde reads missing fields as false, but continuing in the browser migrates
 /// them to the same rule set as a new game.
 fn loaded_play_game(w: WorldState) -> Game {
-    let mut g = Game { world: w, log: vec![], history: vec![], session_id: fresh_session_id(), advance_receipts: Default::default(),command_receipts:Default::default() };
+    let mut g = Game { world: w, log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(),command_receipts:Default::default() };
     play_rules(&mut g);
     resources::warm(&mut g.world);
     g.snapshot();
@@ -6034,89 +5898,7 @@ fn advance_commands(w: &WorldState, payload: &serde_json::Value) -> Result<Vec<C
     })).collect()
 }
 
-/// Shared by the HTTP route and regressions, including response-loss retries.
-#[derive(Debug)]
-struct AdvanceError { message: String, requires_review: bool }
-impl From<String> for AdvanceError {
-    fn from(message: String) -> Self { Self { message, requires_review: false } }
-}
-impl From<&str> for AdvanceError {
-    fn from(message: &str) -> Self { message.to_string().into() }
-}
-fn advance_request(g: &mut Game, payload: &serde_json::Value) -> Result<serde_json::Value, AdvanceError> {
-    if let Some(session) = payload.get("session_id") {
-        if session.as_str() != Some(g.session_id.as_str()) {
-            return Err(AdvanceError { message: "This campaign changed or the server restarted. Review the current campaign; the earlier turn's outcome cannot be inferred here.".into(), requires_review: true });
-        }
-    }
-    let token = match (payload.get("client_id"), payload.get("request_seq")) {
-        (None, None) => None, // older clients retain their existing API
-        (Some(client), Some(seq)) => {
-            let client = client.as_str().filter(|s| !s.is_empty() && s.len() <= 96).ok_or("Invalid browser request identity.")?;
-            let seq = seq.as_u64().filter(|n| *n > 0).ok_or("Invalid browser request sequence.")?;
-            if payload.get("session_id").and_then(|v|v.as_str()).is_none() { return Err("A protected turn requires its campaign identity.".into()); }
-            if let Some((last, previous, why)) = g.advance_receipts.get(client) {
-                if seq == *last {
-                    if previous != payload { return Err("That turn identity already belongs to different orders. Nothing was advanced.".into()); }
-                    return Ok(state_json(g, why.clone()));
-                }
-                if seq < *last { return Err(AdvanceError { message: "A newer turn from this browser identity was already processed. Review the current state; these earlier orders will not be automatically replayed.".into(), requires_review: true }); }
-            } else if g.advance_receipts.len() >= 256 {
-                return Err("This campaign has too many browser sessions. Continue in an existing tab.".into());
-            }
-            Some((client.to_owned(), seq))
-        }
-        _ => return Err("A protected turn needs both a browser identity and sequence.".into()),
-    };
-    let commands = advance_commands(&g.world, payload)?;
-    let days = asked_days(payload)?;
-    let months = if days.is_none() { Some(asked_months(payload)?) } else { None };
-    let (_, why) = if let Some(days) = days { g.advance_days(days as usize, commands) }
-        else { g.advance_months(months.unwrap() as usize, commands) };
-    if let Some((client, seq)) = token { g.advance_receipts.insert(client, (seq, payload.clone(), why.clone())); }
-    Ok(state_json(g, why))
-}
-
-/// An immediate financial order may be safely retried after a lost response.
-/// Identity belongs to this server campaign, not the simulation RNG. Receipts
-/// cache only request/result metadata; every response contains CURRENT state.
-fn immediate_request(g:&mut Game,payload:&serde_json::Value)->Result<serde_json::Value,String> {
-    let me=g.world.player.ok_or("Choose a nation first.")?;
-    if payload.get("session_id").is_some_and(|v|v.as_str()!=Some(&g.session_id)) {
-        return Err("This campaign changed. Review current state before sending orders.".into());
-    }
-    let list=payload.get("commands").and_then(|v|v.as_array()).ok_or("Commands must be a list.")?;
-    let fingerprint=serde_json::to_string(list).map_err(|e|e.to_string())?;
-    let token=match (payload.get("client_id"),payload.get("request_seq")) {
-        (None,None)=>None,
-        (Some(client),Some(seq))=>{
-            let client=client.as_str().filter(|c|!c.is_empty() && c.len()<=96
-                && c.bytes().all(|b|b.is_ascii_alphanumeric() || b==b'-' || b==b'_'))
-                .ok_or("Invalid command browser identity.")?;
-            let seq=seq.as_u64().filter(|s|*s>0).ok_or("Invalid command sequence.")?;
-            if payload.get("session_id").and_then(|v|v.as_str()).is_none() {return Err("Protected orders require campaign identity.".into());}
-            if let Some((last,body,errors))=g.command_receipts.get(client) {
-                if seq<*last {return Err("A newer order was already processed. Review the current state; older orders will not replay.".into());}
-                if seq==*last {
-                    if *body!=fingerprint {return Err("This receipt belongs to a different order. Review the current state.".into());}
-                    let mut out=state_json(g,None);
-                    out["errors"]=serde_json::json!(errors); out["command_replayed"]=true.into();
-                    return Ok(out);
-                }
-            } else if g.command_receipts.len()>=256 {return Err("Too many command sessions. Continue in an existing browser tab.".into());}
-            Some((client.to_owned(),seq))
-        },
-        _=>return Err("Protected orders need both a browser identity and a sequence.".into()),
-    };
-    let before=g.world.headlines.len();
-    let errors=apply_orders(&mut g.world,me,list);
-    for headline in g.world.headlines[before..].to_vec() {g.record(headline);}
-    resources::warm(&mut g.world);
-    if let Some((client,seq))=token {g.command_receipts.insert(client,(seq,fingerprint,errors.clone()));}
-    let mut out=state_json(g,None); out["errors"]=serde_json::json!(errors);
-    out["command_replayed"]=false.into();
-    Ok(out)
-}
+use transport::{advance_request,immediate_request};
 
 /// The port to listen on. `--port N` on the command line wins; failing that
 /// the `PORT` environment variable, which is what preview tooling sets when it
@@ -6189,7 +5971,7 @@ fn main() {
         if method == Method::Post && matches!(url_path.as_str(), "/api/command" | "/api/save") {
             if let Some(session) = payload.get("session_id") {
                 if session.as_str() != Some(game.lock().unwrap().session_id.as_str()) {
-                    let _ = request.respond(json_error(400, serde_json::json!({"error":"This campaign changed. Continue the current campaign before submitting orders or saving."})));
+                    let _ = request.respond(json_error(400, serde_json::json!({"error":"This campaign changed. Continue the current campaign before submitting orders or saving.","requires_review":true,"not_applied":false})));
                     continue;
                 }
             }
@@ -6211,6 +5993,10 @@ fn main() {
                 );
                 let _ = request.respond(r);
                 continue;
+            }
+            (Method::Get, "/campaign-transport.js") | (Method::Get, "/campaign-ui.js") => {
+                Response::from_string(if url_path == "/campaign-ui.js" {CAMPAIGN_UI_JS}else{CAMPAIGN_TRANSPORT_JS})
+                    .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
             }
             (Method::Get, "/world.js") => {
                 let r = Response::from_string(WORLD_JS).with_header(
@@ -6601,10 +6387,13 @@ fn main() {
                     })),
                 }
             }
+            (Method::Get, "/api/events") => {
+                let g=game.lock().unwrap();
+                json_response(history::events(&g,request.url()))
+            }
             (Method::Get, "/api/history") => {
-                let only = nation_param(request.url());
                 let g = game.lock().unwrap();
-                json_response(history_json(&g, only))
+                json_response(history::request(&g,request.url()))
             }
             // The resource board's three cards for one line (`?com=iron`) or
             // the dossier's twelve words for one nation (`?nation=Chile`).
@@ -6745,31 +6534,33 @@ fn main() {
             (Method::Post, "/api/advance") => {
                 let mut g = game.lock().unwrap();
                 match advance_request(&mut g, &payload) {
-                    Ok(value) => json_response(value),
+                    Ok(mut value) => {
+                        storage::autosave(std::path::Path::new("."), &mut g);
+                        value["storage_notice"]=serde_json::json!(g.storage_notice);
+                        json_response(value)
+                    },
                     Err(error) => json_error(400, serde_json::json!({"error":error.message,"not_advanced":!error.requires_review,"requires_review":error.requires_review})),
                 }
             }
             (Method::Post, "/api/command") => {
                 let mut g = game.lock().unwrap();
                 match immediate_request(&mut g,&payload) {
-                    Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e,"requires_review":true})),
+                    Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e.message,"not_applied":!e.requires_review,"requires_review":e.requires_review})),
                 }
             }
+            (Method::Get, "/api/saves") => json_response(storage::list(std::path::Path::new("."))),
             (Method::Post, "/api/save") => {
-                let g = game.lock().unwrap();
-                match std::fs::write("save.json", save(&g.world)) {
-                    Ok(_) => json_response(serde_json::json!({ "ok": true, "path": "save.json" })),
-                    Err(e) => json_error(500, serde_json::json!({ "ok": false, "error": e.to_string() })),
+                let g=game.lock().unwrap();
+                match storage::slot(&payload).and_then(|slot|storage::write(std::path::Path::new("."),slot,&g)) {
+                    Ok(value)=>json_response(value),
+                    Err(error)=>json_error(500,serde_json::json!({"ok":false,"error":error})),
                 }
             }
             (Method::Post, "/api/load") => {
-                let mut g = game.lock().unwrap();
-                match std::fs::read_to_string("save.json").map_err(|e| e.to_string()).and_then(|s| load(&s)) {
-                    Ok(w) => {
-                        *g = loaded_play_game(w);
-                        json_response(state_json(&g, None))
-                    }
-                    Err(e) => json_error(400, serde_json::json!({ "error": e })),
+                let mut g=game.lock().unwrap();
+                match storage::slot(&payload).and_then(|slot|storage::read(std::path::Path::new("."),slot,payload["backup"].as_bool().unwrap_or(false))) {
+                    Ok(loaded)=>{*g=loaded;g.autosaved_month=month_index(g.world.year,g.world.month);json_response(state_json(&g,None))},
+                    Err(error)=>json_error(400,serde_json::json!({"error":error})),
                 }
             }
             _ => Response::from_string("not found").with_status_code(404),
@@ -9385,7 +9176,13 @@ mod tests {
         let h = history_json(&g, None);
         let n = h["nations"].as_object().unwrap();
         let months = h["t"].as_array().unwrap().len();
-        assert_eq!(months, 361, "one row per month plus the opening snapshot");
+        assert_eq!(h["t"][0],0.0,"the opening snapshot survives compaction");
+        assert_eq!(h["t"][months-1],360.0,"the latest observation survives");
+        let recent:Vec<_>=h["t"].as_array().unwrap().iter().filter_map(|v|v.as_f64().filter(|t|*t>=120.0)).collect();
+        assert_eq!(recent,(120..=360).map(|m|m as f64).collect::<Vec<_>>(),"all monthly observations in the last twenty years remain");
+        for year in 1990..2000 {
+            assert!(g.history.iter().any(|s|s.year==year && s.month==12),"year {year}'s endpoint must survive");
+        }
 
         let ussr = &n["USSR"];
         let ussr_end = ussr["t0"].as_u64().unwrap() as usize + ussr["gdp"].as_array().unwrap().len();

@@ -337,8 +337,8 @@ test('renderer uses one coherent fallback time axis and explains retained histor
   assert.deepEqual(plain(vm.runInContext('CHRONICLE.model.times',c)),[240,241,242]);
   const markup=c.element('#pane-charts').innerHTML;
   assert(markup.includes('All recorded history'));
-  assert(markup.includes('History retains up to 3,000 snapshots'));
-  assert(markup.includes('restarts after loading a save'));
+  assert(markup.includes('Recent three years retain daily observations'));
+  assert(markup.includes('Campaign saves preserve history'));
   assert(markup.includes('Smoothed annualized growth rate'));
   assert(!markup.includes('Full campaign'));
 });
