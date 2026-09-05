@@ -5319,7 +5319,8 @@ fn tech_tree_json(w: &WorldState, me: NationId, domain: spheres_sim::tech::Domai
                 "earliest_available":open && def.earliest_year<=w.year,
                 "floor_binds":tech::floor_binds(w,me,idx),
                 "estimated_days":if known || !open {None} else {
-                    let funding=research_days_left(w,(tech::cost_of(w,me,idx)-n.tech.progress[domain.index()]).max(0.0),rate);
+                    let remaining=(tech::cost_of(w,me,idx)-n.tech.progress[domain.index()]).max(0.0);
+                    let funding=if remaining<=0.0 {Some(1)} else {research_days_left(w,remaining,rate)};
                     let calendar=(spheres_sim::clock::date_day(def.earliest_year,1,1)-spheres_sim::clock::absolute_day(w)).max(0);
                     funding.map(|d|d.max(calendar as u32))
                 },

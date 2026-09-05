@@ -5145,7 +5145,7 @@ function renderLeft(m) {
       <div class="cab-section-head"><div><div class="cab-kicker">FY ${S.year} · ${m.annual_budget && !m.annual_budget.due ? "enacted plan + your draft" : "your first move: set the plan"}</div><h2>What will your nation become?</h2></div>
         <p>Choose a ministry. Each + or − moves <strong>0.5% of GDP</strong>. Nothing changes until you enact.</p></div>
       <div id="cabinetBudgetSummary" class="cab-budget-summary">${cabinetBudgetSummary(m)}</div>
-      ${!money.on_the_books ? `<p class="cab-alert">First budget: enacting opens the treasury and starts cash interest charges. The draft totals above do not yet include that interest.</p>` : ""}
+      ${!money.on_the_books ? `<p class="cab-alert">First budget: enacting opens the treasury and starts cash interest charges. The server's proposed totals include this interest at your draft policy rate.</p>` : ""}
       ${interestRow(m)}
       <div class="cab-budget-workbench"><div class="cab-ministry-tiles" aria-label="Choose a ministry">${cabinetMinistryTiles(m, fiscal)}</div>
         <section class="cab-inspector" id="cabinetInspector" aria-label="${spec.name} funding">
@@ -15687,7 +15687,7 @@ function dominationFigureDecor(agenda) {
   const leader = spec.leader_art && typeof spec.leader_art === "object" ? spec.leader_art : null;
   const portrait = spec.portrait && typeof spec.portrait === "object" ? spec.portrait : null;
   const asset = (leader && leader.asset) || (portrait && (portrait.asset || portrait.file)) || (typeof spec.portrait === "string" ? spec.portrait : "");
-  const image = asset ? `<img class="dom-card-figure" src="/art/portraits/${logisticsEscAttr(encodeURIComponent(asset))}" alt="" width="512" height="640" loading="lazy" decoding="async">` : "";
+  const image = asset ? `<img class="dom-card-figure" src="/art/portraits/${logisticsEscAttr(encodeURIComponent(asset))}?v=display512-v1" alt="" width="512" height="640" loading="lazy" decoding="async">` : "";
   return `${image}<svg class="dom-card-target-flag" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><use href="/art/nation-flags-v2.svg#flag-${logisticsEscAttr(id)}" width="640" height="480"></use></svg>`;
 }
 
