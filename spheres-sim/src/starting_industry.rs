@@ -32,6 +32,7 @@ pub const GROUP_NAMES: [&str; 5] = [
     "Other manufacturing",
 ];
 pub const ALLOCATION_BASIS: &str = "Population-weighted game allocation, not historical factory locations. Countries missing map coverage retain an unallocated national account.";
+pub const ENRICHED_ALLOCATION_BASIS: &str = "Population with a bounded density proxy for urban activity (0.75–1.25 times population, then normalized). Model allocation, not measured provincial GDP or historical factory locations. Broad sector observations and fallback sources are frozen with the campaign.";
 pub const NOTE: &str = "Estimated factory equivalents, not literal establishments. Inherited manufacturing output is already included in GDP; no goods, cash, operating inputs or construction are granted. Capacity stays frozen while the existing macroeconomy changes its output. Utilization above 100% indicates that output has outgrown the opening estimate, not new automatically built factories.";
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -175,6 +176,8 @@ pub struct StartingIndustry {
     pub annual_capacity_per_equivalent_bn: f64,
     pub starting_utilization: f64,
     pub profiles: BTreeMap<NationId, CountryProfile>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub broad_profiles: BTreeMap<NationId, crate::sector_profiles::Profile>,
     pub provinces: BTreeMap<String, InheritedAssets>,
     pub unallocated: BTreeMap<NationId, InheritedAssets>,
 }
@@ -258,6 +261,7 @@ pub fn enable_new_world(w: &mut WorldState) -> Result<bool, String> {
         annual_capacity_per_equivalent_bn: ANNUAL_CAPACITY_PER_EQUIVALENT_BN,
         starting_utilization: STARTING_UTILIZATION,
         profiles,
+        broad_profiles:BTreeMap::new(),
         provinces: BTreeMap::new(),
         unallocated: BTreeMap::new(),
     };
@@ -304,6 +308,24 @@ pub fn enable_new_world(w: &mut WorldState) -> Result<bool, String> {
     Ok(true)
 }
 
+/// Explicit fresh browser enrichment, after inherited seeding and before any
+/// province account or activity. Old saves retain their original frozen mix.
+pub fn enrich_new_world(w:&mut WorldState)->Result<(),String>{
+    if (w.year,w.month,w.day)!=(1990,1,1)||w.province_economy.is_some(){return Err("Sector enrichment requires a new unopened 1990 campaign.".into());}
+    let Some(current)=w.starting_industry.as_ref() else{return Err("Seed inherited accounts first.".into());};
+    if !current.broad_profiles.is_empty(){return Ok(());}
+    let mut state=current.clone();
+    state.broad_profiles=crate::sector_profiles::data().clone();
+    for &id in start_nations(){
+        let owned:Vec<_>=w.districts.iter().filter(|(_,owner)|**owner==id).map(|(d,_)|d.clone()).collect();
+        if owned.is_empty(){continue;}
+        let masses=crate::sector_profiles::allocation_masses(w,&owned,true);
+        let sum:f64=masses.iter().sum();let total=w.nation(id).gdp;let mut remaining=total;
+        for(i,d)in owned.iter().enumerate(){let amount=if i+1==owned.len(){remaining}else if sum>0.0{total*masses[i]/sum}else{total/owned.len()as f64};let amount=amount.min(remaining).max(0.0);remaining=(remaining-amount).max(0.0);state.provinces.insert(d.clone(),allocated_assets(id,amount,&state.profiles[&id]));}
+    }
+    w.starting_industry=Some(state);Ok(())
+}
+
 /// Manufacturing receives its sourced/proxied national share. Other sectors
 /// retain their relative game presets, rescaled into the remaining GDP; this
 /// does not claim that agriculture/services/etc. have historical shares.
@@ -327,6 +349,7 @@ pub fn sector_shares(w: &WorldState, nation: NationId, district: Option<&str>) -
         Some(d) => state.provinces.get(d).map(|a| a.origin),
         None => state.unallocated.get(&nation).map(|a| a.origin),
     };
+    if let Some(profile)=origin.and_then(|id|state.broad_profiles.get(&id)){return profile.shares;}
     origin
         .and_then(|id| state.profiles.get(&id))
         .map_or(province_economy::MODEL_SECTOR_SHARES, shares)
@@ -392,6 +415,7 @@ pub struct NationSnapshot {
     pub starting_utilization: f64,
     pub groups: Vec<GroupSnapshot>,
     pub sources: Vec<SourceSnapshot>,
+    pub broad_sector_sources: BTreeMap<NationId,crate::sector_profiles::Profile>,
     pub allocation_basis: &'static str,
     pub note: &'static str,
 }
@@ -507,11 +531,12 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Option<NationSnapshot> {
         annual_capacity_per_equivalent_bn: state.annual_capacity_per_equivalent_bn,
         starting_utilization: state.starting_utilization,
         groups: result,
+        broad_sector_sources: origins.iter().filter_map(|id|state.broad_profiles.get(id).map(|p|(*id,p.clone()))).collect(),
         sources: origins
             .into_iter()
             .map(|id| source(id, &state.profiles[&id]))
             .collect(),
-        allocation_basis: ALLOCATION_BASIS,
+        allocation_basis: if state.broad_profiles.is_empty(){ALLOCATION_BASIS}else{ENRICHED_ALLOCATION_BASIS},
         note: NOTE,
     })
 }
@@ -533,7 +558,7 @@ pub fn province(w: &WorldState, district: &str) -> Option<ProvinceSnapshot> {
         utilization: utilization(current, capacity),
         groups,
         source: source(assets.origin, &state.profiles[&assets.origin]),
-        allocation_basis: ALLOCATION_BASIS,
+        allocation_basis: if state.broad_profiles.is_empty(){ALLOCATION_BASIS}else{ENRICHED_ALLOCATION_BASIS},
         note: NOTE,
     })
 }

@@ -29,6 +29,7 @@ pub mod production;
 pub mod programs;
 pub mod province_economy;
 pub mod starting_industry;
+pub mod sector_profiles;
 pub mod resources;
 pub mod statecraft;
 pub mod sovereignty;

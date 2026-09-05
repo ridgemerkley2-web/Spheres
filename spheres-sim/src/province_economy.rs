@@ -154,10 +154,8 @@ fn ensure_accounts(w: &mut WorldState) {
             .filter(|(_, owner)| **owner == id)
             .map(|(d, _)| d.clone())
             .collect();
-        let masses: Vec<f64> = owned
-            .iter()
-            .map(|d| nonnegative(districts::population_of(w, d).unwrap_or(0.0)))
-            .collect();
+        let enriched=w.starting_industry.as_ref().is_some_and(|s|!s.broad_profiles.is_empty());
+        let masses=crate::sector_profiles::allocation_masses(w,&owned,enriched);
         let sum: f64 = masses.iter().sum();
         let mut remaining = total;
         for (i, d) in owned.iter().enumerate() {
@@ -643,7 +641,9 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Option<NationSnapshot> {
         });
         MaterialsAccounting::from_rows(background, &[])
     });
-    let note = if w.starting_industry.is_some() { INDUSTRY_NOTE } else { NOTE };
+    let note = if w.starting_industry.as_ref().is_some_and(|s|!s.broad_profiles.is_empty()) {
+        "Modeled province accounts: broad national agriculture/industry/services shares use frozen WDI observations or disclosed income-peer estimates; manufacturing retains the inherited UNIDO estimate. Sub-sector splits and bounded density-weighted population allocations are model assumptions. Province weights follow land and reconcile to national GDP; this grants no output or inventory. See inherited-industry source records for observation years, peer countries and normalization."
+    } else if w.starting_industry.is_some() { INDUSTRY_NOTE } else { NOTE };
     for (i, d) in owned.iter().enumerate() {
         let fallback = ProvinceBasis {
             weight: 1.0,

@@ -5884,6 +5884,7 @@ fn play_rules(g: &mut Game) {
 fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
     spheres_sim::clock::enable_daily_play(&mut g.world);
     spheres_sim::starting_industry::enable_new_world(&mut g.world)?;
+    spheres_sim::starting_industry::enrich_new_world(&mut g.world)?;
     play_rules(g);
     Ok(())
 }
