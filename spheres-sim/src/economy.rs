@@ -1204,18 +1204,47 @@ pub fn growth_terms(
 /// gates the ministry channels on the nation being the PLAYER (the design's
 /// point 5); a function reading `n.budget_gap` directly would quietly hand the
 /// three arms to every AI government that ever seats a plan.
-pub fn stability_pressure(
+#[derive(Clone, Copy, Debug)]
+pub struct StabilityPressure {
+    pub growth: f64,
+    pub inflation_drag: f64,
+    pub unemployment_drag: f64,
+    pub housing: f64,
+    pub pensions: f64,
+    pub security: f64,
+    pub war_exhaustion_drag: f64,
+    pub sanctions_drag: f64,
+    pub command_recession_drag: f64,
+    pub total: f64,
+}
+
+/// Components of the standing pressure, in the integrator's unscaled units.
+/// The total preserves the original addition/subtraction and ministry grouping
+/// exactly. Read models consume these terms; they do not recreate the formula.
+pub fn stability_pressure_terms(
     n: &Nation,
     budget_gap: &[f64; BUDGET_MINISTRIES],
     unemployment: f64,
     is_player: bool,
     sanction_share: f64,
-) -> f64 {
+) -> StabilityPressure {
+    let mut terms = StabilityPressure {
+        growth: (n.growth_last - 0.015) * 6.0,
+        inflation_drag: (n.inflation - 0.05).max(0.0) * 4.0,
+        unemployment_drag: if is_player { (unemployment - 0.06).max(0.0) * 1.5 } else { 0.0 },
+        housing: crate::ministries::housing_stability(budget_gap[BUDGET_HOUSING]),
+        pensions: crate::ministries::pensions_stability(budget_gap[BUDGET_PENSIONS]),
+        security: crate::ministries::security_stability(budget_gap[BUDGET_SECURITY]),
+        war_exhaustion_drag: n.war_exhaustion * 1.2,
+        sanctions_drag: sanction_share * 0.50,
+        command_recession_drag: if n.system == EconomySystem::Command && n.growth_last < 0.0 { 0.5 } else { 0.0 },
+        total: 0.0,
+    };
     let mut ds = 0.0;
-    ds += (n.growth_last - 0.015) * 6.0; // growth legitimizes
-    ds -= (n.inflation - 0.05).max(0.0) * 4.0; // high inflation corrodes
+    ds += terms.growth; // growth legitimizes
+    ds -= terms.inflation_drag; // high inflation corrodes
     if is_player {
-        ds -= (unemployment - 0.06).max(0.0) * 1.5;
+        ds -= terms.unemployment_drag;
     }
     // `ds += social_gap * 12.0` STOOD HERE AND IS GONE. It was the
     // pre-ministry route from the social aggregate to stability, and the
@@ -1232,10 +1261,8 @@ pub fn stability_pressure(
     // order. DIPLOMACY 3.0 is removed for the same reason. What is left is
     // the three ministries whose whole subject is whether the public is
     // content: HOUSING, PENSIONS and SECURITY.
-    ds += crate::ministries::housing_stability(budget_gap[BUDGET_HOUSING])
-        + crate::ministries::pensions_stability(budget_gap[BUDGET_PENSIONS])
-        + crate::ministries::security_stability(budget_gap[BUDGET_SECURITY]);
-    ds -= n.war_exhaustion * 1.2;
+    ds += terms.housing + terms.pensions + terms.security;
+    ds -= terms.war_exhaustion_drag;
     // CONVERTED. This was `sanction_count * 0.15` — the first of the four
     // surviving flag-counting sanction channels, and the one the
     // SANCTION_BITE comment above named as "the stability term below". It is
@@ -1251,11 +1278,32 @@ pub fn stability_pressure(
     // the only thing that changes is what a coalition costs: at G5 weight
     // (~0.52) the bill falls from 0.75 to 0.26 a month, and it can no longer
     // rise without limit as the roster grows.
-    ds -= sanction_share * 0.50;
+    ds -= terms.sanctions_drag;
     if n.system == EconomySystem::Command && n.growth_last < 0.0 {
-        ds -= 0.5; // command legitimacy is growth-bought
+        ds -= terms.command_recession_drag; // command legitimacy is growth-bought
     }
-    ds
+    terms.total = ds;
+    terms
+}
+
+pub fn stability_pressure(
+    n: &Nation,
+    budget_gap: &[f64; BUDGET_MINISTRIES],
+    unemployment: f64,
+    is_player: bool,
+    sanction_share: f64,
+) -> f64 {
+    stability_pressure_terms(n, budget_gap, unemployment, is_player, sanction_share).total
+}
+
+/// Existing integrator coefficients, shared with explanations. These report a
+/// current economic push, not political events or a forecast of future inputs.
+pub fn stability_mean_reversion(stability: f64) -> f64 {
+    (60.0 - stability) * crate::ministries::MEAN_REVERSION
+}
+
+pub fn stability_flow(pressure: f64, month_fraction: f64) -> f64 {
+    pressure / 12.0 * 12.0 * 0.25 * month_fraction
 }
 
 /// The same pressure, read off the world for a nation that is not mid-tick.
@@ -1265,10 +1313,14 @@ pub fn stability_pressure(
 /// all -- so its card shows a flat zero rather than a promise the sim will not
 /// keep.
 pub fn stability_pressure_of(w: &WorldState, n: &Nation) -> f64 {
+    stability_pressure_terms_of(w, n).total
+}
+
+pub fn stability_pressure_terms_of(w: &WorldState, n: &Nation) -> StabilityPressure {
     let is_player = w.player == Some(n.id);
     let budget_gap: [f64; BUDGET_MINISTRIES] =
         std::array::from_fn(|i| if is_player { n.budget_gap(i) } else { 0.0 });
-    stability_pressure(
+    stability_pressure_terms(
         n,
         &budget_gap,
         unemployment_rate(n, w.at_war(n.id)),
@@ -1631,8 +1683,8 @@ pub fn tick(w: &mut WorldState) {
         // the reciprocal every stability CARD is quoted through: a standing
         // pressure of x settles the nation at `(60 + x/0.01).clamp(0.0, 100.0)`,
         // and the clamp is as load-bearing as the reciprocal.
-        ds += (60.0 - n.stability) * crate::ministries::MEAN_REVERSION; // slow mean reversion
-        n.stability = (n.stability + ds / 12.0 * 12.0 * 0.25 * dt).clamp(0.0, 100.0);
+        ds += stability_mean_reversion(n.stability); // slow mean reversion
+        n.stability = (n.stability + stability_flow(ds, dt)).clamp(0.0, 100.0);
 
         // Separatism strain grows when unstable, decays when stable
         if n.separatism > 0.0 {
@@ -1779,6 +1831,48 @@ fn oil_market(w: &mut WorldState) {
 mod daily_tests {
     use super::*;
     use crate::init::world_1990;
+
+    #[test]
+    fn stability_explanation_preserves_original_arithmetic() {
+        // The previous integrator is the independent bit-level oracle. Keep its
+        // grouping and conditional subtraction: a presentation refactor must not
+        // change seeded monthly or daily trajectories, even at clamp boundaries.
+        let w = world_1990(GameRules::default());
+        for id in [NationId::USA, NationId::USSR, NationId::Tonga, NationId::Brazil] {
+            for k in 0..12 {
+                let mut n = w.nation(id).clone();
+                n.growth_last = [-0.3, -0.01, 0.015, 0.08][k % 4];
+                n.inflation = [0.0, 0.05, 0.31][k % 3];
+                n.war_exhaustion = k as f64 / 11.0;
+                let gaps = std::array::from_fn(|i| (i as f64 - k as f64) * 0.007);
+                let unemployment = k as f64 * 0.027;
+                let sanctions = k as f64 / 12.0;
+                for is_player in [false, true] {
+                    let mut old = 0.0;
+                    old += (n.growth_last - 0.015) * 6.0;
+                    old -= (n.inflation - 0.05).max(0.0) * 4.0;
+                    if is_player { old -= (unemployment - 0.06).max(0.0) * 1.5; }
+                    old += crate::ministries::housing_stability(gaps[BUDGET_HOUSING])
+                        + crate::ministries::pensions_stability(gaps[BUDGET_PENSIONS])
+                        + crate::ministries::security_stability(gaps[BUDGET_SECURITY]);
+                    old -= n.war_exhaustion * 1.2;
+                    old -= sanctions * 0.50;
+                    if n.system == EconomySystem::Command && n.growth_last < 0.0 { old -= 0.5; }
+                    let terms = stability_pressure_terms(&n, &gaps, unemployment, is_player, sanctions);
+                    assert_eq!(old.to_bits(), terms.total.to_bits(), "{id:?} case {k}, player={is_player}");
+                    assert_eq!(old.to_bits(), stability_pressure(&n, &gaps, unemployment, is_player, sanctions).to_bits());
+                    for stability in [0.0, 0.001, 59.999, 60.0, 99.999, 100.0] {
+                        for dt in [1.0, 1.0 / 28.0, 1.0 / 29.0, 1.0 / 30.0, 1.0 / 31.0] {
+                            let before = old + (60.0 - stability) * crate::ministries::MEAN_REVERSION;
+                            let expected = (stability + before / 12.0 * 12.0 * 0.25 * dt).clamp(0.0, 100.0);
+                            let after = terms.total + stability_mean_reversion(stability);
+                            assert_eq!(expected.to_bits(), (stability + stability_flow(after, dt)).clamp(0.0, 100.0).to_bits());
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     #[test]
     fn finance_small_gdp_charge_keeps_the_exact_stock_ratio() {

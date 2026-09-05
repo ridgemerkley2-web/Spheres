@@ -485,8 +485,11 @@ pub(crate) struct ClearingRoutes {
 }
 
 struct SearchTree {
+    dist: Vec<u64>,
     prev: Vec<Option<(usize, usize)>>,
     settled: Vec<usize>,
+    queue: BinaryHeap<Visit>,
+    next_rank: usize,
 }
 
 impl ClearingRoutes {
@@ -521,49 +524,56 @@ impl ClearingRoutes {
         let passable = |i: usize| net.nodes[i].kind != "district"
             || self.effective_owners[i].is_some_and(|owner| owner_pass[owner.index()]);
         let starts: Vec<_> = self.owned_nodes[seller.index()].iter().copied().filter(|&i| passable(i)).collect();
-        let goals: Vec<_> = self.owned_nodes[buyer.index()].iter().copied().filter(|&i| passable(i)).collect();
+        let goals: BTreeSet<_> = self.owned_nodes[buyer.index()].iter().copied().filter(|&i| passable(i)).collect();
         if starts.is_empty() || goals.is_empty() {
             return Err("No mapped freight gateway exists for one endpoint.".into());
         }
         let key = (seller, policy, owner_pass.clone());
         if !self.trees.contains_key(&key) {
-            // About 23MB at the current graph size. More distinct diplomatic
-            // masks use the original search, not an unbounded world cache.
+            // Bound retained source searches, including their resumable heaps.
+            // More distinct masks use the original search, never a world cache.
             if self.trees.len() >= 128 { return plan(w, seller, buyer); }
             let mut dist = vec![u64::MAX; net.nodes.len()];
-            let mut prev = vec![None; net.nodes.len()];
-            let mut settled = vec![usize::MAX; net.nodes.len()];
-            let mut q = BinaryHeap::new();
-            for s in starts { dist[s] = 0; q.push(Visit { cost: 0, node: s }); }
-            let mut rank = 0usize;
-            while let Some(Visit { cost, node }) = q.pop() {
-                if cost != dist[node] { continue; }
-                settled[node] = rank;
-                rank += 1;
-                for &ei in &net.adj[node] {
-                    let e = &net.edges[ei];
-                    let (a, b) = net.endpoints[ei];
-                    let next = if a == node { b } else { a };
-                    if policy == RoutePolicy::LandOnly
-                        && (e.kind == "sea" || net.nodes[next].kind == "gateway") { continue; }
-                    if !passable(next) { continue; }
-                    let penalty = if policy == RoutePolicy::AvoidChokepoints && e.chokepoint.is_some() {
-                        10_000_000
-                    } else { 0 };
-                    let travel = e.km as u64 * if e.kind == "sea" { 3 } else { 4 };
-                    let nc = cost + travel + penalty;
-                    if nc < dist[next] {
-                        dist[next] = nc;
-                        prev[next] = Some((node, ei));
-                        q.push(Visit { cost: nc, node: next });
-                    }
+            let mut queue = BinaryHeap::new();
+            for s in starts { dist[s] = 0; queue.push(Visit { cost: 0, node: s }); }
+            self.trees.insert(key.clone(), SearchTree {
+                dist, prev: vec![None; net.nodes.len()], settled: vec![usize::MAX; net.nodes.len()],
+                queue, next_rank: 0,
+            });
+        }
+        let tree = self.trees.get_mut(&key).unwrap();
+        let mut finish = goals.iter().copied().filter(|&i| tree.settled[i] != usize::MAX)
+            .min_by_key(|&i| tree.settled[i]);
+        // Extend precisely the same Dijkstra traversal only as far as this
+        // buyer requires. Already settled goals keep their original rank and
+        // predecessor chain. Expand the stopping goal before pausing so a
+        // later destination can resume without losing any outgoing edge.
+        while finish.is_none() {
+            let Some(Visit { cost, node }) = tree.queue.pop() else { break; };
+            if cost != tree.dist[node] { continue; }
+            tree.settled[node] = tree.next_rank;
+            tree.next_rank += 1;
+            for &ei in &net.adj[node] {
+                let e = &net.edges[ei];
+                let (a, b) = net.endpoints[ei];
+                let next = if a == node { b } else { a };
+                if policy == RoutePolicy::LandOnly
+                    && (e.kind == "sea" || net.nodes[next].kind == "gateway") { continue; }
+                if !passable(next) { continue; }
+                let penalty = if policy == RoutePolicy::AvoidChokepoints && e.chokepoint.is_some() {
+                    10_000_000
+                } else { 0 };
+                let travel = e.km as u64 * if e.kind == "sea" { 3 } else { 4 };
+                let nc = cost + travel + penalty;
+                if nc < tree.dist[next] {
+                    tree.dist[next] = nc;
+                    tree.prev[next] = Some((node, ei));
+                    tree.queue.push(Visit { cost: nc, node: next });
                 }
             }
-            self.trees.insert(key.clone(), SearchTree { prev, settled });
+            if goals.contains(&node) { finish = Some(node); }
         }
-        let tree = &self.trees[&key];
-        let finish = goals.into_iter().filter(|&i| tree.settled[i] != usize::MAX)
-            .min_by_key(|&i| tree.settled[i]).ok_or_else(|| match policy {
+        let finish = finish.ok_or_else(|| match policy {
                 RoutePolicy::LandOnly => "No open all-land route exists.".to_string(),
                 _ => "No open physical route exists.".to_string(),
             })?;
@@ -926,11 +936,12 @@ fn dispatch_impl(
             reason: None,
         };
     }
+    let capacities = routes.as_ref().filter(|r| !r.capacities.is_empty()).map(|r| r.capacities.as_slice());
     let remaining_tonnes = route
         .segments
         .iter()
         .map(|s| {
-            let cap = route_segment_capacity(w, s).unwrap_or(route.capacity_tonnes);
+            let cap = route_segment_capacity_with(w, s, capacities).unwrap_or(route.capacity_tonnes);
             (cap - w.logistics.usage_tonnes.get(s).copied().unwrap_or(0.0)).max(0.0)
         })
         .fold(f64::INFINITY, f64::min);
@@ -1001,10 +1012,16 @@ pub(crate) fn dispatch_bundle(w: &mut WorldState,
 }
 
 fn route_segment_capacity(w: &WorldState, key: &str) -> Option<f64> {
+    route_segment_capacity_with(w, key, None)
+}
+
+/// Frozen capacities are scoped to one spot clearing, whose infrastructure
+/// and calendar cannot change. Live usage is still subtracted at every call.
+fn route_segment_capacity_with(w: &WorldState, key: &str, capacities: Option<&[f64]>) -> Option<f64> {
     network()
         .edge_index
         .get(key)
-        .map(|&i| segment_capacity(w, &network().edges[i]).0)
+        .map(|&i| capacities.map_or_else(|| segment_capacity(w, &network().edges[i]).0, |v| v[i]))
 }
 
 /// Fraction of all legs a physical bundle can dispatch together. Demand is
@@ -1303,6 +1320,100 @@ mod tests {
             cached_seconds, cache_build_seconds, uncached_seconds * 1000.0 / repetitions as f64,
             cached_seconds * 1000.0 / repetitions as f64, all_cold_plans_seconds);
     }
+    #[test]
+    fn clearing_tree_pauses_resumes_and_keeps_first_settled_goal() {
+        let mut w = world();
+        w.rules.military_operations = true;
+        // One stable permission mask lets these destinations share a search.
+        w.sanctions.clear();
+        w.conflicts.clear();
+        let before = crate::save(&w);
+        let mut trees = ClearingRoutes::new(&w);
+        let seller = NationId::Netherlands;
+        let near = NationId::Belgium;
+        let first = trees.plan(&w, seller, near).unwrap();
+        assert_eq!(first, plan_impl(&w, seller, near, false).unwrap());
+        assert_eq!(trees.trees.len(), 1);
+        let tree = trees.trees.values().next().unwrap();
+        let paused_rank = tree.next_rank;
+        assert!(paused_rank < network().nodes.len(), "a nearby destination cannot exhaust the whole graph");
+        assert!(!tree.queue.is_empty(), "later destinations retain a resumable frontier");
+        let previous = tree.prev.clone();
+        let settled = tree.settled.clone();
+        // Japan forces a resume; USA/France have multiple owned goal nodes;
+        // the final Belgium request must return its original earliest goal.
+        for buyer in [NationId::Japan, NationId::USA, NationId::France, near] {
+            assert_eq!(trees.plan(&w, seller, buyer), plan_impl(&w, seller, buyer, false));
+        }
+        assert_eq!(trees.trees.len(), 1);
+        let tree = trees.trees.values().next().unwrap();
+        assert!(tree.next_rank > paused_rank);
+        for (i, rank) in settled.into_iter().enumerate().filter(|(_, rank)| *rank != usize::MAX) {
+            assert_eq!(tree.settled[i], rank);
+            assert_eq!(tree.prev[i], previous[i], "resuming cannot rewrite a settled predecessor");
+        }
+        assert_eq!(trees.plan(&w, seller, near).unwrap(), first);
+        assert_eq!(crate::save(&w), before);
+    }
+
+    #[test]
+    fn clearing_tree_exhaustion_preserves_unreachable_and_blocked_results() {
+        let mut w = world();
+        w.rules.military_operations = true;
+        w.sanctions.clear();
+        w.conflicts.clear();
+        for buyer in [NationId::Japan, NationId::Belgium] {
+            w.logistics.policies.insert(buyer, RoutePolicy::LandOnly);
+        }
+        let mut trees = ClearingRoutes::new(&w);
+        let seller = NationId::Netherlands;
+        let unavailable = trees.plan(&w, seller, NationId::Japan);
+        assert!(unavailable.is_err(), "Japan has no all-land route from the Netherlands");
+        assert_eq!(unavailable, plan_impl(&w, seller, NationId::Japan, false));
+        assert_eq!(trees.trees.len(), 1);
+        assert!(trees.trees.values().next().unwrap().queue.is_empty());
+        let exhausted_rank = trees.trees.values().next().unwrap().next_rank;
+        assert_eq!(trees.plan(&w, seller, NationId::Belgium), plan_impl(&w, seller, NationId::Belgium, false));
+        assert_eq!(trees.plan(&w, seller, NationId::Japan), unavailable);
+        assert_eq!(trees.trees.values().next().unwrap().next_rank, exhausted_rank);
+        w.sanctions.push((seller, NationId::Belgium));
+        let mut blocked = ClearingRoutes::new(&w);
+        assert_eq!(blocked.plan(&w, seller, NationId::Belgium), plan_impl(&w, seller, NationId::Belgium, false));
+        assert!(blocked.trees.is_empty(), "blocked endpoints preserve the original early refusal");
+    }
+
+    #[test]
+    fn clearing_frozen_capacities_preserve_live_usage_and_dispatches() {
+        let mut w = world();
+        w.rules.daily_simulation = true;
+        w.rules.military_operations = true;
+        w.sanctions.clear();
+        w.conflicts.clear();
+        begin_month(&mut w);
+        let mut cached_routes = ClearingRoutes::new(&w);
+        for (seller, buyer) in [(NationId::Germany, NationId::France), (NationId::USA, NationId::Japan)] {
+            for (commodity, quantity) in [(Commodity::Iron, 10.0), (Commodity::Coal, 1e8), (Commodity::Copper, 1.0)] {
+                let nominal = plan(&w, seller, buyer).unwrap();
+                // Keep the same real usage, search budget, heap order and
+                // input lot. Only the frozen capacity reads differ.
+                let mut cached_budget = cached_routes.search_nodes_left;
+                let mut plain_budget = cached_budget;
+                let a = freight_routing::select(&w, seller, buyer, nominal.clone(), quantity * tonnes_per_unit(commodity),
+                    &w.logistics.usage_tonnes, Some(&cached_routes.capacities), Some(&mut cached_budget));
+                let b = freight_routing::select(&w, seller, buyer, nominal, quantity * tonnes_per_unit(commodity),
+                    &w.logistics.usage_tonnes, None, Some(&mut plain_budget));
+                assert_eq!(a, b);
+                assert_eq!(cached_budget, plain_budget);
+                for edge in &a.0.segments {
+                    assert_eq!(route_segment_capacity_with(&w, edge, Some(&cached_routes.capacities)),
+                        route_segment_capacity(&w, edge));
+                }
+                dispatch_in_clearing(&mut w, seller, buyer, commodity, quantity, &mut cached_routes);
+            }
+        }
+        assert!(!w.logistics.usage_tonnes.is_empty());
+    }
+
     #[test]
     fn clearing_trees_match_original_pair_routes_across_policy_and_ownership() {
         let ids = [NationId::USA, NationId::Japan, NationId::Netherlands, NationId::Belgium,

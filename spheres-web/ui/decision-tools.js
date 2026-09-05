@@ -22,8 +22,17 @@
     if((works?.completed||[]).length)return {step:4,title:"Put completed capacity to work",text:"Inspect the completed site's operating status, inputs and actual output. Compare its value added with your opening economy; a building alone does not guarantee production.",action:"economy"};
     return {step:1,title:"Choose one useful project",text:"Start with a project whose funding and inputs you can sustain. A small economy can obtain a paid, scaled workshop through Exchange. Every project quote shows prerequisites and political cost before you commit.",action:"works"};
   }
-  function causes(policy){return ["war","sanctions","embargo","debt_drag","unrest","oil","bubble","demand_output_now"].map(key=>({key,value:policy?.[key]})).filter(r=>Number.isFinite(r.value)&&r.value!==0).sort((a,b)=>Math.abs(b.value)-Math.abs(a.value)).slice(0,4);}
-  return {overlap,search,research,guide,causes};
+  function causes(policy){return ["war","sanctions","embargo","debt_drag","unrest","oil","bubble","demand_output_now"].map(key=>({key,value:Number.isFinite(policy?.[key])?policy[key]*(["war","sanctions","embargo","debt_drag","unrest"].includes(key)?-1:1):null})).filter(r=>Number.isFinite(r.value)&&r.value!==0).sort((a,b)=>Math.abs(b.value)-Math.abs(a.value)).slice(0,4);}
+  function stabilityHtml(policy){
+    const s=policy?.stability;if(!s||!Number.isFinite(s.monthly_points_before_bounds))return "";
+    const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const signed=n=>`${n>=0?"+":""}${n.toFixed(4)}`;
+    const terms=(s.terms||[]).filter(t=>Number.isFinite(t.monthly_points)&&t.monthly_points!==0).slice().sort((a,b)=>Math.abs(b.monthly_points)-Math.abs(a.monthly_points));
+    const labels={budget:"Review ministry budgets and costs",decisions:"Review monetary and diplomatic decisions",world:"Review conflicts and commitments"};
+    const actions=[...new Set(terms.map(t=>t.action))].filter(a=>Object.hasOwn(labels,a));
+    return `<section aria-label="Current stability contributors"><h3>Current economic stability pressure</h3><p><strong>${signed(s.monthly_points_before_bounds)} stability points per month</strong> at current conditions, before the 0–100 bounds.${s.month_fraction<1&&Number.isFinite(s.step_points_before_bounds)?` Today's daily step is ${signed(s.step_points_before_bounds)} points before bounds.`:""}</p><p>The same economic terms and gradual return toward 60 used by the simulation, shown as monthly equivalents. Conditions change during a turn; political events, war outcomes and other direct changes are separate. This does not attribute the change since your last decision.</p>${terms.length?`<ul>${terms.map(t=>`<li>${esc(t.label)}: ${signed(t.monthly_points)} points/month</li>`).join("")}</ul>`:"<p>No current economic pressure.</p>"}<div class="decision-actions">${actions.map(a=>`<button type="button" data-stability-action="${a}">${labels[a]}</button>`).join("")}</div></section>`;
+  }
+  return {overlap,search,research,guide,causes,stabilityHtml};
 });
 
 if(typeof window!=="undefined"){
@@ -63,6 +72,8 @@ if(typeof window!=="undefined"){
       box.querySelector("#advisorNext").onclick=()=>{box.close();if(g.action==="budget"){if(!cabinetIsOpen())toggleGameDrawer("cabinetDrawer");}else if(g.action==="economy"){openNation(S.player);selectNationView("economy");}else openProduction();};
       box.querySelector("#advisorExchange").onclick=()=>{box.close();openCompetition();};
       box.querySelector("#advisorCauses")?.addEventListener("click",()=>{box.close();if(!cabinetIsOpen())toggleGameDrawer("cabinetDrawer");});
+      box.querySelector(".decision-body").insertAdjacentHTML("beforeend",DecisionTools.stabilityHtml(state.policy));
+      box.querySelectorAll("[data-stability-action]").forEach(b=>b.onclick=()=>{box.close();if(b.dataset.stabilityAction==="decisions")openAgency();else if(b.dataset.stabilityAction==="world")toggleGameDrawer("intelDrawer");else if(!cabinetIsOpen())toggleGameDrawer("cabinetDrawer");});
       box.querySelectorAll("[data-supply]").forEach(b=>b.onclick=()=>{box.close();openStock(b.dataset.supply);});
     }catch(error){if(seq===DTOOLS.seq&&box.open)box.querySelector(".decision-body").innerHTML=`<p role="alert">${toolsEsc(error.message)}</p><button onclick="openAdvisor()">Retry</button>`;}
   };

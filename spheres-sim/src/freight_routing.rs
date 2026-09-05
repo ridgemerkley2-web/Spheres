@@ -2,8 +2,8 @@
 //! Searches use integer travel costs and stable graph order, never random ties.
 use super::*;
 
-fn remaining(w: &WorldState, route: &RoutePlan, used: &BTreeMap<String, f64>) -> f64 {
-    route.segments.iter().map(|edge| (route_segment_capacity(w, edge)
+fn remaining(w: &WorldState, route: &RoutePlan, used: &BTreeMap<String, f64>, capacities: Option<&[f64]>) -> f64 {
+    route.segments.iter().map(|edge| (route_segment_capacity_with(w, edge, capacities)
         .unwrap_or(route.capacity_tonnes) - used.get(edge).copied().unwrap_or(0.0)).max(0.0))
         .fold(f64::INFINITY, f64::min)
 }
@@ -19,13 +19,13 @@ pub(super) fn select(w: &WorldState, seller: NationId, buyer: NationId, nominal:
         || search_budget.as_ref().is_some_and(|left| **left == 0) {
         return (nominal, false);
     }
-    let room = remaining(w, &nominal, used);
+    let room = remaining(w, &nominal, used, capacities);
     if wanted_tonnes <= room { return (nominal, false); }
     let first = plan_search(w, seller, buyer, true, Some((used, wanted_tonnes, capacities)), search_budget.as_deref_mut());
     let alternate = first.or_else(|_| plan_search(w, seller, buyer, true,
         Some((used, room + 1e-7, capacities)), search_budget.as_deref_mut()));
     match alternate {
-        Ok(mut route) if remaining(w, &route, used) > room => {
+        Ok(mut route) if remaining(w, &route, used, capacities) > room => {
             route.dispatch_note = Some(format!("Congestion required an alternate route: {} days of travel instead of {}.",
                 route.estimated_days, nominal.estimated_days));
             (route, true)

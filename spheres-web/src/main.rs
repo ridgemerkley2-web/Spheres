@@ -4647,6 +4647,36 @@ fn district_populations_json(w: &WorldState) -> serde_json::Value {
     })
 }
 
+/// Current economic stability contributors, served from the integrator's own terms.
+fn stability_json(w: &WorldState, n: &Nation) -> serde_json::Value {
+    use spheres_sim::economy::{stability_flow, stability_mean_reversion, stability_pressure_terms_of};
+    let t = stability_pressure_terms_of(w, n);
+    let reversion = stability_mean_reversion(n.stability);
+    let total = t.total + reversion;
+    let dt = spheres_sim::clock::month_fraction(w);
+    let terms: Vec<_> = [
+        ("growth", "Growth above or below 1.5%", t.growth, "budget"),
+        ("inflation", "Inflation above 5%", -t.inflation_drag, "decisions"),
+        ("unemployment", "Unemployment above 6%", -t.unemployment_drag, "budget"),
+        ("housing", "Housing budget versus baseline", t.housing, "budget"),
+        ("pensions", "Pensions budget versus baseline", t.pensions, "budget"),
+        ("security", "Security budget versus baseline", t.security, "budget"),
+        ("war_exhaustion", "War exhaustion", -t.war_exhaustion_drag, "world"),
+        ("sanctions", "Sanctioning economies", -t.sanctions_drag, "decisions"),
+        ("command_recession", "Command-economy recession", -t.command_recession_drag, "budget"),
+        ("mean_reversion", "Gradual return toward 60 stability", reversion, ""),
+    ].into_iter().map(|(id, label, pressure, action)| serde_json::json!({
+        "id": id, "label": label, "monthly_points": stability_flow(pressure, 1.0), "action": action,
+    })).collect();
+    serde_json::json!({
+        "current": n.stability,
+        "monthly_points_before_bounds": stability_flow(total, 1.0),
+        "step_points_before_bounds": stability_flow(total, dt),
+        "month_fraction": dt,
+        "terms": terms,
+    })
+}
+
 /// What the policy sliders will actually buy, answered by the sim.
 ///
 /// THE ONE THING HERE IS THE FORCE CURVE, and it is a curve rather than a
@@ -4761,6 +4791,7 @@ fn policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
         "demand_gap_now": round(now.demand_gap, 6),
         "demand_output_now": round(now.demand_output, 6),
         "inflation_target_now": round(now.target_inflation, 6),
+        "stability": stability_json(w, n),
 
         // THE MONEY CARD, off ONE `economy::Fiscal`, which is the same object
         // `economy::tick` charges the month against. Revenue, spending and the
@@ -11920,6 +11951,44 @@ mod tests {
     /// it — and `policy_json` serves it: two sampled curves for the two sliders
     /// that reach growth, and a number for every term that is fixed for the
     /// month.
+    #[test]
+    fn stability_read_model_uses_the_integrators_terms_and_calendar_scale() {
+        use spheres_sim::economy::{stability_flow, stability_mean_reversion, stability_pressure_terms_of};
+        let mut g = Game::new(1990, Some(NationId::USA));
+        for daily in [false, true] {
+            g.world.rules.daily_simulation = daily;
+            for month in [1, 2, 4] {
+                g.world.month = month;
+                let n = g.world.nation_mut(NationId::USA);
+                n.growth_last = -0.04;
+                n.inflation = 0.2;
+                n.war_exhaustion = 0.4;
+                n.stability = 81.0;
+                let before = save(&g.world);
+                for id in [NationId::USA, NationId::USSR] {
+                    let n = g.world.nation(id);
+                    let t = stability_pressure_terms_of(&g.world, n);
+                    let total = t.total + stability_mean_reversion(n.stability);
+                    let s = stability_json(&g.world, n);
+                    let terms = s["terms"].as_array().unwrap();
+                    assert_eq!(s["monthly_points_before_bounds"].as_f64().unwrap(), stability_flow(total, 1.0));
+                    assert_eq!(s["step_points_before_bounds"].as_f64().unwrap(), stability_flow(total, spheres_sim::clock::month_fraction(&g.world)));
+                    let term = |key: &str| terms.iter().find(|v| v["id"] == key).unwrap()["monthly_points"].as_f64().unwrap();
+                    assert_eq!(term("inflation"), stability_flow(-t.inflation_drag, 1.0));
+                    assert_eq!(term("growth"), stability_flow(t.growth, 1.0));
+                    assert_eq!(term("war_exhaustion"), stability_flow(-t.war_exhaustion_drag, 1.0));
+                    if id != NationId::USA {
+                        for key in ["housing", "pensions", "security", "unemployment"] { assert_eq!(term(key), 0.0); }
+                    }
+                    let sum: f64 = terms.iter().map(|v| v["monthly_points"].as_f64().unwrap()).sum();
+                    assert!((sum - stability_flow(total, 1.0)).abs() < 1e-12, "Only floating-point regrouping separates displayed components from total");
+                }
+                assert_eq!(policy_json(&g.world, NationId::USA)["stability"], stability_json(&g.world, g.world.nation(NationId::USA)));
+                assert_eq!(save(&g.world), before, "Reading contributors cannot mutate the world");
+            }
+        }
+    }
+
     #[test]
     fn the_policy_panel_reads_the_sim() {
         // The curves must cover what the SIM can hold, not what the slider can

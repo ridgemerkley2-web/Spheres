@@ -1631,8 +1631,17 @@ fn mine_for_shortage(
 /// paid or actually produced inputs for its first machine shop, plus claims for
 /// already commissioned consumers. Ordinary player policies remain untouched.
 pub fn export_reserve(w: &WorldState, nation: NationId, good: crate::commerce::Good) -> f64 {
-    let line = supply_forecast(w, nation).lines.into_iter()
-        .find(|line| line.good == good);
+    let forecast = supply_forecast(w, nation);
+    export_reserve_from_forecast(w, nation, good, &forecast)
+}
+
+fn export_reserve_from_forecast(
+    w: &WorldState,
+    nation: NationId,
+    good: crate::commerce::Good,
+    forecast: &SupplyForecast,
+) -> f64 {
+    let line = forecast.lines.iter().find(|line| line.good == good);
     line.map_or(0.0, |line| {
         let committed = committed_supply_reserve(w, nation, good);
         // Without this latch, a standing reserve-zero offer can resell each
@@ -1664,11 +1673,15 @@ fn offer_surplus(w: &mut WorldState, nation: NationId) {
     }
     // Explicit standing consent. These are two bounded, zero-PC policy
     // commands, not two fabricated buyers. Protect real domestic claims first.
+    // SetGoodsSale changes only sale policy, which this forecast does not read.
+    // Reuse both goods' opening forecast within this pair of policy commands;
+    // never carry it across purchases, new work, or another nation's review.
+    let forecast = supply_forecast(w, nation);
     for (index, good) in [Good::Intermediates, Good::CapitalGoods]
         .into_iter()
         .enumerate()
     {
-        let reserve = export_reserve(w, nation, good);
+        let reserve = export_reserve_from_forecast(w, nation, good, &forecast);
         let previous = w
             .economic_ai
             .nations
@@ -2238,4 +2251,108 @@ fn review(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyContext) 
         Some((district, kind)),
         raw_context,
     );
+}
+
+#[cfg(test)]
+mod sale_forecast_tests {
+    use super::*;
+    use crate::commerce::{self, Good};
+
+    // Retain the old independent two-forecast path as a parity oracle. Its
+    // arithmetic, command order, and skip conditions predate the cache.
+    fn original_offer_surplus(w: &mut WorldState, nation: NationId) -> usize {
+        if !commerce::enabled(w) { return 0; }
+        let mut commands = 0;
+        for (index, good) in [Good::Intermediates, Good::CapitalGoods].into_iter().enumerate() {
+            let line = supply_forecast(w, nation).lines.into_iter().find(|line| line.good == good);
+            let reserve = line.map_or(0.0, |line| {
+                let committed = committed_supply_reserve(w, nation, good);
+                let prospective = if good == Good::Intermediates
+                    && line.stock + line.imports + line.domestic_contracts + line.recent_domestic_daily > 1e-9
+                {
+                    (line.startup_reserve - committed).max(0.0).min(MACHINERY_STARTER_PACKS)
+                } else { 0.0 };
+                line.project_remaining + committed + line.operating_daily * REVIEW_DAYS as f64 + prospective
+            });
+            assert_eq!(reserve.to_bits(), export_reserve(w, nation, good).to_bits());
+            let previous = w.economic_ai.nations.get(&nation).and_then(|p| p.offered_reserves[index]);
+            if reserve <= 1e-9 && commerce::stock(w, nation, good) <= reserve
+                && previous.is_none() && commerce::sale(w, nation, good).is_none() { continue; }
+            if previous == Some(reserve) && commerce::sale(w, nation, good).is_some_and(|policy| {
+                policy.enabled && policy.reserve == reserve && policy.ask_multiplier == 1.05
+            }) { continue; }
+            if crate::apply_command(w, &Command::SetGoodsSale {
+                nation, good, reserve, ask_multiplier: 1.05, enabled: true,
+            }).is_ok() {
+                commands += 1;
+                w.economic_ai.nations.entry(nation).or_default().offered_reserves[index] = Some(reserve);
+            }
+        }
+        commands
+    }
+
+    #[test]
+    fn shared_sale_forecast_matches_independent_reads_and_command_effects() {
+        let nation = NationId::USA;
+        let mut base = crate::init::world_1990(GameRules {
+            seed: 42, daily_simulation: true, economic_competition: true,
+            resource_market: true, physical_logistics: true, logistics_routes: true,
+            production_system: true, manufacturing_system: true, military_operations: true,
+            ..GameRules::default()
+        });
+        base.player = Some(NationId::France);
+        base.nation_mut(nation).political_capital = 1000.0;
+        let allocations = base.nation(nation).budget_for(base.year).allocations;
+        let fiscal_year = base.year;
+        crate::apply_command(&mut base, &Command::SetProgramBudget {
+            nation, fiscal_year, allocations, departments: programs::default_departments(),
+        }).unwrap();
+        let district = base.districts.iter().find(|(_, owner)| **owner == nation).unwrap().0.clone();
+        let mut command_counts = std::collections::BTreeSet::new();
+        for factory in 0..3 {
+            for stock in [0.0, 0.5, 50.0] {
+                for policy in 0..3 {
+                    let mut original = base.clone();
+                    if factory > 0 {
+                        original.production.provinces.push(production::ProvinceCapabilities {
+                            district: district.clone(), infrastructure: 1, civilian_industry: 1,
+                            power_grid: 1, research_centers: 0, arms_plants: 0,
+                        });
+                    }
+                    if factory == 2 {
+                        let mut sites = [0; 7];
+                        for kind in [K::Generation, K::ProcessingPlant, K::MachineryWorks] {
+                            sites[industry::EXTENDED.iter().position(|k| *k == kind).unwrap()] = 1;
+                        }
+                        original.production.industry.sites.insert(district.clone(), sites);
+                    }
+                    original.production.industry.goods.insert(nation, industry::Goods {
+                        intermediates: stock, capital_goods: stock * 0.5,
+                    });
+                    for (index, good) in [Good::Intermediates, Good::CapitalGoods].into_iter().enumerate() {
+                        if policy > 0 {
+                            let reserve = if policy == 1 { 7.0 } else { export_reserve(&original, nation, good) };
+                            commerce::set_sale(&mut original, nation, good, reserve,
+                                if policy == 1 { 2.0 } else { 1.05 }, policy == 2).unwrap();
+                            if policy == 2 {
+                                original.economic_ai.nations.entry(nation).or_default().offered_reserves[index] = Some(reserve);
+                            }
+                        }
+                    }
+                    let mut cached = original.clone();
+                    let rng_before = serde_json::to_string(&original.rng).unwrap();
+                    command_counts.insert(original_offer_surplus(&mut original, nation));
+                    offer_surplus(&mut cached, nation);
+                    assert_eq!(serde_json::to_string(&cached.rng).unwrap(), rng_before);
+                    assert_eq!(crate::save(&cached), crate::save(&original),
+                        "factory={factory}, stock={stock}, policy={policy}: exact command effects and world bytes");
+                    let after = crate::save(&cached);
+                    offer_surplus(&mut cached, nation);
+                    assert_eq!(crate::save(&cached), after, "unchanged policies remain inert");
+                }
+            }
+        }
+        assert!(command_counts.contains(&0) && command_counts.contains(&2),
+            "cover both skipped and executed policy command pairs");
+    }
 }

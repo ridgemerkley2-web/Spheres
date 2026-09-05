@@ -14419,13 +14419,14 @@ function renderLogisticsDock() {
   const sum = S.logistics_summary || {};
   const moving = +sum.moving || 0, constrained = +sum.constrained || 0, blocked = +sum.blocked || 0;
   const pipeline = +sum.in_transit || 0;
-  copy.textContent = `${pipeline ? `${pipeline} in transit` : `${moving} moving`}${blocked ? ` · ${blocked} blocked` : constrained ? ` · ${constrained} short` : ""}`;
+  const flowLabel = pipeline ? `${pipeline} in transit` : `${moving} moving`;
+  copy.textContent = `${flowLabel}${blocked ? ` · ${blocked} blocked` : constrained ? ` · ${constrained} short` : ""}`;
   const attention = +sum.attention || blocked + constrained;
   badge.textContent = attention > 99 ? "99+" : String(attention);
   badge.classList.toggle("on", attention > 0);
   badge.classList.toggle("warn", !blocked && attention > 0);
   button.disabled = !S.player;
-  button.setAttribute("aria-label", `Logistics: ${moving} moving, ${constrained} constrained, ${blocked} blocked`);
+  button.setAttribute("aria-label", `Logistics: ${flowLabel}, ${constrained} constrained, ${blocked} blocked`);
   button.setAttribute("aria-expanded", LOGI.open ? "true" : "false");
 }
 

@@ -6,7 +6,7 @@ const source=name=>fs.readFileSync(path.join(__dirname,'../../spheres-web/ui',na
 
 function decisionFixture(){
   const elements=new Map(),listeners=new Map();
-  const node=id=>{if(!elements.has(id))elements.set(id,{id,value:'',innerHTML:'',textContent:'',focus(){}});return elements.get(id);};
+  const node=id=>{if(!elements.has(id))elements.set(id,{id,value:'',innerHTML:'',textContent:'',focus(){},addEventListener(kind,fn){this['on'+kind]=fn;},insertAdjacentHTML(where,html){assert.equal(where,'beforeend');this.innerHTML+=html;}});return elements.get(id);};
   const box={open:false,attrs:{},querySelector:node,querySelectorAll:()=>[],
     setAttribute(k,v){this.attrs[k]=v;},addEventListener(k,fn){listeners.set(k,fn);},
     showModal(){this.open=true;},close(){this.open=false;listeners.get('close')?.();},
@@ -46,6 +46,19 @@ test('advice does not mix old projects with a newer adopted campaign state',asyn
   const pending=c.window.openAdvisor();c.S={...c.S,date:'2 Jan 1990'};finish({queue:[]});await pending;
   assert(c.body().innerHTML.includes('The campaign changed while advice was loading'));
   assert(!c.body().innerHTML.includes('advisorNext'));
+});
+
+test('actual Advisor renders stability and opens only explicitly chosen policy rooms',async()=>{
+  for(const [action,target] of [['budget','cabinetDrawer'],['world','intelDrawer'],['decisions','agency']]){
+    const c=decisionFixture(),button={dataset:{stabilityAction:action}},calls=[];
+    c.api=async()=>({queue:[]});c.cabinetIsOpen=()=>false;c.toggleGameDrawer=id=>calls.push(id);c.openAgency=()=>calls.push('agency');
+    c.S.policy={stability:{monthly_points_before_bounds:-.1,month_fraction:1,terms:[{label:'Current pressure',monthly_points:-.1,action}]}};
+    c.box.querySelectorAll=selector=>selector==='[data-stability-action]'?[button]:[];
+    await c.window.openAdvisor();
+    assert.match(c.body().innerHTML,/Current economic stability pressure/);assert.match(c.body().innerHTML,/-0\.1000 stability points per month/);
+    assert.deepEqual(calls,[]);assert.equal(c.box.open,true);
+    button.onclick();assert.deepEqual(calls,[target]);assert.equal(c.box.open,false);
+  }
 });
 
 function recoveryFixture(){

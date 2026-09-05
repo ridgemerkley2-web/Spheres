@@ -105,6 +105,17 @@ test('the entire shipped inline JavaScript remains syntactically valid', () => {
   assert(scripts.length);
   scripts.forEach(script=>new vm.Script(script));
 });
+test('logistics dock announces the same in-transit stock shown visually after refresh',()=>{
+  const c=fixture(['renderLogisticsDock']);
+  const nodes=Object.fromEntries(['#logisticsDockBtn','#dockLogistics','#logisticsBadge'].map(id=>[id,{textContent:'',attrs:{},classList:{toggle(){}},setAttribute(k,v){this.attrs[k]=v;}}]));
+  c.$=id=>nodes[id];
+  run(c,`S.logistics_summary={moving:1,in_transit:8,constrained:2,blocked:0};renderLogisticsDock();`);
+  assert.equal(nodes['#dockLogistics'].textContent,'8 in transit · 2 short');
+  assert.equal(nodes['#logisticsDockBtn'].attrs['aria-label'],'Logistics: 8 in transit, 2 constrained, 0 blocked');
+  run(c,`S.logistics_summary={moving:1,in_transit:0,constrained:0,blocked:0};renderLogisticsDock();`);
+  assert.equal(nodes['#dockLogistics'].textContent,'1 moving');
+  assert.equal(nodes['#logisticsDockBtn'].attrs['aria-label'],'Logistics: 1 moving, 0 constrained, 0 blocked');
+});
 test('operations styling stays scoped, readable and touch-sized', () => {
   assert.match(styles, /:is\(#productionPanel, #logisticsPanel\)\s*\{[\s\S]*?position: fixed;[\s\S]*?inset: 16px;/);
   assert.match(styles, /min-height: 46px/);
