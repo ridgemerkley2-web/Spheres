@@ -273,7 +273,15 @@ function competitionWire() {
   body.querySelectorAll("[data-comp-action]").forEach(b=>b.onclick=()=>competitionAction(b));
   body.querySelector("[data-comp-retry]")?.addEventListener("click",competitionSendPending);
   body.querySelector("[data-comp-refresh]")?.addEventListener("click",competitionFetch);
-  body.querySelector("[data-comp-dismiss]")?.addEventListener("click",()=>{if(confirm("Have you reviewed the contracts and current treasury? Clearing this notice does not cancel or refund any order.")){COMP.pending=null;COMP.error="";competitionPendingStore();competitionRender();}});
+  body.querySelector("[data-comp-dismiss]")?.addEventListener("click",async()=>{
+    const receipt=COMP.pending;if(!receipt||COMP.busy)return;
+    if(!await campaignConfirm("Have you reviewed the contracts and current treasury? Clearing this notice does not cancel or refund any order.",{title:"Review Exchange order",confirmLabel:"Dismiss notice"}))return;
+    if(COMP.pending!==receipt||COMP.busy)return;
+    COMP.pending=null;COMP.error="";competitionPendingStore();
+    const other=typeof COMMAND_CHANNEL!=="undefined"?COMMAND_CHANNEL.pending:null;
+    if(other && !COMMAND_CHANNEL.busy && other.session_id===receipt.session_id && other.client_id===receipt.client_id && other.request_seq===receipt.request_seq)COMMAND_CHANNEL.clear();
+    competitionRender();
+  });
   body.querySelector("#competitionQuoteForm")?.addEventListener("submit",e=>{e.preventDefault();competitionFindSuppliers(e.currentTarget);});
   body.querySelectorAll(".comp-sale-form").forEach(form=>form.onsubmit=e=>{e.preventDefault();competitionCommand({kind:"set_goods_sale",good:form.dataset.good,reserve:Number(form.elements.reserve.value),ask_multiplier:Number(form.elements.ask.value)/100,enabled:form.elements.enabled.checked});});
   body.querySelector("#competitionTier")?.addEventListener("change",e=>{COMP.tier=e.target.value;competitionRender();});
@@ -295,21 +303,30 @@ function competitionWire() {
   }
   body.querySelector("#competitionFilter")?.addEventListener("input",e=>{COMP.filter=e.target.value;const pos=e.target.selectionStart;competitionRender();const input=document.getElementById("competitionFilter");input.focus();input.setSelectionRange(pos,pos);});
 }
-function competitionAction(button) {
+async function competitionAction(button) {
   const action=button.dataset.compAction,target=button.dataset.nation;
+  const state=S,data=COMP.data,quotes=COMP.quotes,modules=COMP.moduleQuotes,materials=COMP.materialQuote;
+  const confirmOrder=async message=>{
+    if(COMP.busy||COMP.pending||advancing||pendingAdvance)return false;
+    if(!await campaignConfirm(message,{title:"Confirm Exchange order"}))return false;
+    if(S!==state||COMP.data!==data||COMP.quotes!==quotes||COMP.moduleQuotes!==modules||COMP.materialQuote!==materials||COMP.stale||COMP.busy||COMP.pending||advancing||pendingAdvance){
+      COMP.error="The campaign or quote changed while confirmation was open. Refresh the order and confirm its current terms.";competitionRender();return false;
+    }
+    return true;
+  };
   if(action==="materials-toggle"){COMP.materialOpen=!COMP.materialOpen;competitionRender();
     document.querySelector?.(COMP.materialOpen?"#competitionMaterialsProvince":'[data-comp-action="materials-toggle"]')?.focus({preventScroll:true});return;}
   if(action==="materials-order"){
     if(COMP.stale||COMP.materialLoading)return;
     const q=competitionMaterialsSelection().quote;if(!q?.can_start||q.refusal)return;
     const warning=q.blockers?.length?` Work is currently limited: ${q.blockers.join(" ")}`:"";
-    if(!confirm(`Order ${competitionNumber(q.quantity)} intermediate packs from ${competitionDistrict(q.district)} over ${competitionNumber(q.delivery_days)} days? ${competitionNumber(q.political_cost)} political capital now. If fully made: ${competitionMoney(q.conversion_total_bn)} from Factories and ${competitionMoney(q.energy_total_bn)} from Energy, charged as work happens. You supply the raw inputs. Unfinished work expires.${warning}`))return;
+    if(!await confirmOrder(`Order ${competitionNumber(q.quantity)} intermediate packs from ${competitionDistrict(q.district)} over ${competitionNumber(q.delivery_days)} days? ${competitionNumber(q.political_cost)} political capital now. If fully made: ${competitionMoney(q.conversion_total_bn)} from Factories and ${competitionMoney(q.energy_total_bn)} from Energy, charged as work happens. You supply the raw inputs. Unfinished work expires.${warning}`))return;
     return competitionCommand({kind:"order_materials",district:q.district,quantity:q.quantity,delivery_days:q.delivery_days});
   }
   if(action==="materials-cancel"){
     if(COMP.stale)return;
     const order=COMP.data?.materials?.orders?.find(o=>o.id===Number(button.dataset.id)&&["pending","running","limited","paused","blocked"].includes(o.status));
-    if(order&&confirm("Cancel only the remaining Materials work? Delivered packs stay yours; completed work and the approval cost are not refunded."))return competitionCommand({kind:"cancel_materials_order",order:order.id});
+    if(order&&await confirmOrder("Cancel only the remaining Materials work? Delivered packs stay yours; completed work and the approval cost are not refunded."))return competitionCommand({kind:"cancel_materials_order",order:order.id});
     return;
   }
   if(action==="materials-import"||action==="materials-sell"){
@@ -329,25 +346,25 @@ function competitionAction(button) {
     const response=COMP.moduleQuotes||(!COMP.moduleDistrict||COMP.moduleDistrict===board?.selection?.district?board?.selection:null);
     const q=response?.quotes?.[Number(button.dataset.moduleQuote)];
     if(!q?.can_start||q.reason)return;
-    if(!confirm(`Build ${competitionNumber(q.scale*100)}% of a standard workshop in ${competitionDistrict(q.district)}? Installation: ${competitionMoney(q.cost_bn)}, plus raw materials and ${competitionNumber(q.political_cost)} political capital. Size is fixed when ordered. No goods arrive until construction finishes and operating inputs are available.`))return;
+    if(!await confirmOrder(`Build ${competitionNumber(q.scale*100)}% of a standard workshop in ${competitionDistrict(q.district)}? Installation: ${competitionMoney(q.cost_bn)}, plus raw materials and ${competitionNumber(q.political_cost)} political capital. Size is fixed when ordered. No goods arrive until construction finishes and operating inputs are available.`))return;
     return competitionCommand({kind:"start_industry_module",district:q.district,capacity_micros:q.capacity_micros});
   }
   if(action==="trade"){COMP.tab="trade";COMP.trade.good=button.dataset.good||COMP.trade.good;COMP.quotes=null;competitionRender();return;}
   if(action==="buy"){
     const q=COMP.quotes?.quotes?.[Number(button.dataset.quote)];if(!q)return;
-    if(!confirm(`Reserve ${competitionNumber(q.quantity)} ${competitionGood(q.good)} from ${competitionName(q.seller)} for ${competitionMoney(q.total_price_bn)} and 2 political capital? Goods become usable only after arrival.`))return;
+    if(!await confirmOrder(`Reserve ${competitionNumber(q.quantity)} ${competitionGood(q.good)} from ${competitionName(q.seller)} for ${competitionMoney(q.total_price_bn)} and 2 political capital? Goods become usable only after arrival.`))return;
     return competitionCommand({kind:"propose_goods_trade",target:q.seller,good:q.good,quantity:q.quantity,unit_price_bn:q.unit_price_bn,delivery_days:COMP.quotes.delivery_days});
   }
   if(action==="accept")return competitionCommand({kind:"accept_goods_offer",offer:Number(button.dataset.id)});
   if(action==="cancel"){
-    if(confirm("Cancel only the undispatched remainder? Already paid cargo stays in transit; cancellation costs reputation."))return competitionCommand({kind:"cancel_goods_trade",contract:Number(button.dataset.id)});return;
+    if(await confirmOrder("Cancel only the undispatched remainder? Already paid cargo stays in transit; cancellation costs reputation."))return competitionCommand({kind:"cancel_goods_trade",contract:Number(button.dataset.id)});return;
   }
   if(action==="compact"||action==="join"){
     const join=action==="join";
-    if(confirm(join?`Join ${competitionName(target)} as a formally subordinate government? You retain your economy and may later leave.`:`Offer formal leadership to ${competitionName(target)}? Their economy stays theirs; the agreement counts toward world domination and can unravel.`))return competitionCommand({kind:join?"join_economic_union":"propose_economic_union",target});return;
+    if(await confirmOrder(join?`Join ${competitionName(target)} as a formally subordinate government? You retain your economy and may later leave.`:`Offer formal leadership to ${competitionName(target)}? Their economy stays theirs; the agreement counts toward world domination and can unravel.`))return competitionCommand({kind:join?"join_economic_union":"propose_economic_union",target});return;
   }
   if(action==="leave"||action==="release"){
-    if(confirm(action==="leave"?"Reassert independence? This costs political capital, reputation and relations, but does not automatically start a war.":`Release ${competitionName(target)} from your formal hierarchy?`))return competitionCommand(action==="leave"?{kind:"leave_economic_union"}:{kind:"release_subject",target});return;
+    if(await confirmOrder(action==="leave"?"Reassert independence? This costs political capital, reputation and relations, but does not automatically start a war.":`Release ${competitionName(target)} from your formal hierarchy?`))return competitionCommand(action==="leave"?{kind:"leave_economic_union"}:{kind:"release_subject",target});return;
   }
   closeCompetition();
   if(action==="budget")toggleGameDrawer("cabinetDrawer");

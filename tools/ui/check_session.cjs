@@ -175,9 +175,9 @@ test('review requires confirmation and never resubmits old orders, retaining new
   run(c,"queued=[{kind:'tax',value:.2}]");await run(c,'advance(1)');
   run(c,"queued.push({kind:'interest',value:.04})");
   const paths=[];c.api=async(path,body)=>{paths.push([path,body]);return {date:'3 Jan 1990',session_id:'campaign-1'};};
-  c.window={confirm:()=>false};await run(c,'reviewPendingTurn()');
+  c.campaignConfirm=async()=>false;await run(c,'reviewPendingTurn()');
   assert.equal(run(c,'queued.length'),2);assert.notEqual(run(c,'pendingAdvance'),null);
-  c.window.confirm=()=>true;await run(c,'reviewPendingTurn()');
+  c.campaignConfirm=async()=>true;await run(c,'reviewPendingTurn()');
   assert.equal(run(c,'pendingAdvance'),null);
   assert.deepEqual(JSON.parse(run(c,'JSON.stringify(queued)')),[{kind:'interest',value:.04}]);
   assert(paths.every(([path,body])=>path==='/api/state'&&body===undefined),'review is read-only, not another advance');

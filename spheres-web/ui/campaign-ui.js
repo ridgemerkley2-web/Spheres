@@ -1,13 +1,49 @@
 /* Campaign storage, command recovery and selected history presentation. The
    importable state machines live in campaign-transport.js. */
+let campaignConfirmation=null;
+function campaignConfirm(message,{title="Confirm campaign action",confirmLabel="Confirm"}={}){
+  // A second invocation never inherits consent from the dialog already open.
+  if(campaignConfirmation)return Promise.resolve(false);
+  if(typeof clockPause==="function")clockPause();
+  const opener=document.activeElement,state=typeof S==="undefined"?null:S;
+  const dialog=document.createElement("dialog");
+  dialog.id="campaignConfirmDialog";dialog.className="decision-dialog";
+  dialog.setAttribute("aria-labelledby","campaignConfirmTitle");
+  dialog.setAttribute("aria-describedby","campaignConfirmMessage");
+  dialog.innerHTML='<header><h2 id="campaignConfirmTitle"></h2></header><div class="decision-body"><p id="campaignConfirmMessage" style="white-space:pre-line"></p><div class="decision-actions"><button type="button" id="campaignConfirmCancel" autofocus>Cancel</button><button type="button" id="campaignConfirmAccept"></button></div></div>';
+  dialog.querySelector("#campaignConfirmTitle").textContent=title;
+  dialog.querySelector("#campaignConfirmMessage").textContent=message;
+  dialog.querySelector("#campaignConfirmAccept").textContent=confirmLabel;
+  document.body.append(dialog);campaignConfirmation=dialog;
+  return new Promise(resolve=>{
+    let settled=false;
+    const finish=accepted=>{
+      if(settled)return;settled=true;
+      // A day or campaign adopted during the prompt invalidates its context.
+      if(accepted && typeof S!=="undefined" && S!==state){accepted=false;banner("The campaign changed while confirmation was open. Review the current state and choose the action again.");}
+      campaignConfirmation=null;
+      if(dialog.open)dialog.close();dialog.remove();
+      if(opener?.isConnected && !opener.disabled)opener.focus({preventScroll:true});
+      resolve(accepted);
+    };
+    dialog.querySelector("#campaignConfirmCancel").onclick=()=>finish(false);
+    dialog.querySelector("#campaignConfirmAccept").onclick=()=>finish(true);
+    dialog.addEventListener("keydown",event=>event.stopPropagation());
+    dialog.addEventListener("cancel",event=>{event.preventDefault();finish(false);});
+    dialog.addEventListener("close",()=>finish(false));
+    try{dialog.showModal();dialog.querySelector("#campaignConfirmCancel").focus({preventScroll:true});}
+    catch(error){finish(false);banner("Could not open confirmation. The action was cancelled. "+error.message);}
+  });
+}
 let commandBusyButton=null;
 let commandWasBusy=false,commandRecoveryKey=null,commandRecoveryReturnFocus=null;
 function campaignModalOpen(){
+  if(campaignConfirmation)return false;
   return document.querySelector("dialog[open]") || (typeof arcadeTopRoom==="function" && arcadeTopRoom());
 }
 function revealCommandRecovery(){
   const pending=COMMAND_CHANNEL.pending;
-  if(!pending||COMMAND_CHANNEL.busy)return;
+  if(!pending||COMMAND_CHANNEL.busy||campaignConfirmation)return;
   commandRecoveryKey=`${pending.session_id}:${pending.client_id}:${pending.request_seq}`;
   // A native dialog makes body-level controls inert regardless of z-index.
   // Use each room's normal close path so its opener, forms and queued intent
@@ -66,8 +102,10 @@ async function retryCampaignCommand() {
 }
 async function reviewCampaignCommand() {
   if(COMMAND_CHANNEL.busy)return;
+  const receipt=COMMAND_CHANNEL.pending;if(!receipt)return;
   try {const state=await api("/api/state");
-    if(!window.confirm("Review the current campaign and dismiss this order's pending notice? This does not replay or undo the order. Check its event log and accounts before issuing a new action."))return;
+    if(!await campaignConfirm("Review the current campaign and dismiss this order's pending notice? This does not replay or undo the order. Check its event log and accounts before issuing a new action.",{title:"Review pending order",confirmLabel:"Dismiss notice"}))return;
+    if(COMMAND_CHANNEL.busy||COMMAND_CHANNEL.pending!==receipt)return;
     COMMAND_CHANNEL.clear();
     if(typeof COMP!=="undefined"){COMP.pending=null;competitionPendingStore();}
     if(state.player)await enterCampaign(state,state.session_id!==S?.session_id);

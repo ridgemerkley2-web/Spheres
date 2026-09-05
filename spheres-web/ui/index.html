@@ -3449,12 +3449,17 @@ function guardEconomicOrder(action, body) {
   if (!S?.player && SESSION.live && !SESSION.live.player && !COMP.busy
       && COMP.pending?.session_id !== SESSION.live.session_id
       && ["new", "load", "/api/new", "/api/load"].includes(action)) {
-    if (window.confirm("An unconfirmed financial order belongs to a previous campaign/server session. This server cannot establish whether it completed. Dismiss its notice without replaying or refunding it? Review the saved ledger before issuing a replacement order. Then choose Load or Start again.")) {
-      COMP.pending = null;
-      competitionPendingStore();
-      banner("Previous campaign receipt explicitly dismissed; nothing was replayed or refunded. Choose Load or Start again when ready.");
-    } else {
-      banner("The previous financial receipt is retained. Load and Start remain blocked until you explicitly dismiss its unknown outcome.");
+    if (!COMP.confirmingDismissal) {
+      const receipt=COMP.pending;
+      COMP.confirmingDismissal=campaignConfirm("An unconfirmed financial order belongs to a previous campaign/server session. This server cannot establish whether it completed. Dismiss its notice without replaying or refunding it? Review the saved ledger before issuing a replacement order. Then choose Load or Start again.",{title:"Previous campaign order",confirmLabel:"Dismiss notice"}).then(confirmed=>{
+        if(COMP.pending!==receipt||COMP.busy)return;
+        if(confirmed){
+          COMP.pending=null;competitionPendingStore();
+          const other=typeof COMMAND_CHANNEL!=="undefined"?COMMAND_CHANNEL.pending:null;
+          if(other && !COMMAND_CHANNEL.busy && other.session_id===receipt.session_id && other.client_id===receipt.client_id && other.request_seq===receipt.request_seq)COMMAND_CHANNEL.clear();
+          banner("Previous campaign receipt explicitly dismissed; nothing was replayed or refunded. Choose Load or Start again when ready.");
+        }else banner("The previous financial receipt is retained. Load and Start remain blocked until you explicitly dismiss its unknown outcome.");
+      }).catch(error=>banner(error.message)).finally(()=>{COMP.confirmingDismissal=null;});
     }
     return true;
   }
@@ -3557,7 +3562,8 @@ async function loadCampaign(backup = false) {
   if (SESSION.busy || advancing || pendingAdvance) return;
   clockPause();
   const slot = $("#saveSlots")?.value || "default";
-  if (SESSION.live?.player && !window.confirm("Load " + slot + (backup ? " backup" : "") + " and replace the live campaign? Unsaved progress and browser drafts will be replaced. Saved campaign history is restored.")) return;
+  if (SESSION.live?.player && !await campaignConfirm("Load " + slot + (backup ? " backup" : "") + " and replace the live campaign? Unsaved progress and browser drafts will be replaced. Saved campaign history is restored.",{title:"Load saved campaign",confirmLabel:"Load campaign"})) return;
+  if (SESSION.busy || advancing || pendingAdvance) return;
   SESSION.busy = true; renderSessionActions();
   try {
     await enterCampaign(await api("/api/load", { slot, backup: backup === true }), true);
@@ -3901,7 +3907,8 @@ $("#startBtn").onclick = async () => {
   // this same line, as it owes the tech-graph reset below.
   clockPause();
   const label = b.textContent;
-  if (SESSION.live?.player && !window.confirm("Start a new campaign and replace this server's live world? Your disk save will not be changed.")) return;
+  if (SESSION.live?.player && !await campaignConfirm("Start a new campaign and replace this server's live world? Your disk save will not be changed.",{title:"Start new campaign",confirmLabel:"Start campaign"})) return;
+  if (SESSION.busy || advancing || pendingAdvance) return;
   SESSION.busy = true; renderSessionActions();
   b.disabled = true;
   b.textContent = "STARTING…";
@@ -4239,7 +4246,8 @@ async function reviewPendingTurn() {
     const changed = state.session_id !== request.payload.session_id;
     const question = changed ? "This is a different campaign/server session. Continue it and clear the old campaign's drafts without replaying them?"
       : "Use the current server state without replaying the earlier submitted orders? Their retained draft copies will be cleared; newer edits will stay queued. Review the event log before re-entering an order.";
-    if (!window.confirm(question)) return;
+    if (!await campaignConfirm(question,{title:"Review pending turn",confirmLabel:"Review current state"})) return;
+    if(pendingAdvance!==request||advancing)return;
     if (changed) await enterCampaign(state, true);
     else {
       queued = queued.filter(command => !request.sources.some((source,index) => source === command && JSON.stringify(command) === request.snapshots[index]));
@@ -7469,7 +7477,7 @@ function wireStratagems() {
 /// queued with the sliders. The sim re-checks availability and charges the
 /// capital; anything it refuses comes back as an error and is shown as one.
 window.enact = async function (id, name, cost) {
-  if (!confirm(`${name}?\n\nIt costs ${cost} political capital and takes effect at once.\nThere is no taking it back.`)) return;
+  if (!await campaignConfirm(`${name}?\n\nIt costs ${cost} political capital and takes effect at once.\nThere is no taking it back.`)) return;
   const r = await api("/api/command", { commands: [{ kind: "stratagem", id }] });
   if (r.errors && r.errors.length) banner(r.errors[0]);
   else banner(name + " — enacted.");
@@ -13389,7 +13397,7 @@ window.openQuarrel = async function (target) {
 };
 
 window.declareWar = async function (target) {
-  if (!confirm("Declare war on " + target + "?\n\nThis will bring sanctions, and may bring their friends.")) return;
+  if (!await campaignConfirm("Declare war on " + target + "?\n\nThis will bring sanctions, and may bring their friends.")) return;
   const r = await api("/api/command", { commands: [{ kind: "war", target }] });
   if (r.errors && r.errors.length) banner(r.errors[0]);
   await adopt(r, false);
@@ -13978,7 +13986,7 @@ function stockKeys(e) {
 /* ---------------- contracts and offers ---------------- */
 
 window.cancelDeal = async function (id, withName, pc, note) {
-  if (!confirm(`Tear up the contract with ${withName}?\n\nIt costs ${Math.round(+pc)} political capital and is never refused; ${note}.`)) return;
+  if (!await campaignConfirm(`Tear up the contract with ${withName}?\n\nIt costs ${Math.round(+pc)} political capital and is never refused; ${note}.`)) return;
   const r = await api("/api/command", { commands: [{ kind: "cancel_deal", contract: id }] });
   if (r.errors && r.errors.length) banner(r.errors[0]);
   await adopt(r, false);
@@ -15260,7 +15268,7 @@ async function manufacturingSetPriority(line, priority) {
 }
 async function manufacturingStop(id) {
   const line = manufacturingLine(id); if (!line || !manufacturingCanStop(line)) return;
-  if (!confirm(`Stop the ${line.name || line.kit} line?\n\nEquipment already on order stays in the delivery pipeline.`)) return;
+  if (!await campaignConfirm(`Stop the ${line.name || line.kit} line?\n\nEquipment already on order stays in the delivery pipeline.`)) return;
   await manufacturingCommand({ kind: "stop_manufacturing_line", line: +id }, "Manufacturing line stopped. Existing orders remain.");
 }
 function manufacturingSelect(id, focus) {
@@ -15334,7 +15342,7 @@ async function productionSetPriority(project, priority) {
 async function productionCancel(project) {
   const p = productionProject(project);
   if (!p || !productionCanCancel(p)) return;
-  if (!confirm(`Cancel ${p.name || productionKind(p).replace(/_/g, " ")} in ${productionProvince(p).name || "this province"}?\n\nMaterials already used are not returned.`)) return;
+  if (!await campaignConfirm(`Cancel ${p.name || productionKind(p).replace(/_/g, " ")} in ${productionProvince(p).name || "this province"}?\n\nMaterials already used are not returned.`)) return;
   await productionCommand({ kind: "cancel_project", project: +project }, "Project cancelled.");
 }
 

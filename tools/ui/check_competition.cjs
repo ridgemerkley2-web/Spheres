@@ -11,7 +11,7 @@ const page=fs.readFileSync(path.join(root,'spheres-web/ui/index.html'),'utf8');
 function fixture() {
   const sent=[],stored=new Map();
   const c=vm.createContext({sent,console,Promise,Number,JSON,
-    document:{addEventListener(){}},confirm:()=>true,
+    document:{addEventListener(){}},campaignConfirm:async()=>true,
     sessionStorage:{setItem:(k,v)=>stored.set(k,v),getItem:k=>stored.get(k),removeItem:k=>stored.delete(k)},
     economyMoney:n=>`$${n}bn`,nextAdvanceIdentity:()=>({client_id:'test',request_seq:1}),
     api:async(p,b)=>{sent.push({p,b:JSON.parse(JSON.stringify(b??null))});return {session_id:'one',errors:[]};},
@@ -328,11 +328,20 @@ test('World view filters actual server tiers and names, without claiming guarant
 });
 test('Purchase uses the exact served affordable quote, never the larger form request',async()=>{
   const c=fixture();
-  run(c,`COMP.trade.quantity=500;COMP.quotes={delivery_days:30,quotes:[{seller:'Canada',good:'capital_goods',quantity:2.5,unit_price_bn:.003,total_price_bn:.0075}]};`);
+  run(c,`COMP.stale=false;COMP.trade.quantity=500;COMP.quotes={delivery_days:30,quotes:[{seller:'Canada',good:'capital_goods',quantity:2.5,unit_price_bn:.003,total_price_bn:.0075}]};`);
   await run(c,`competitionAction({dataset:{compAction:'buy',quote:'0'}})`);
   assert.equal(c.sent.length,1);
   assert.deepEqual(c.sent[0].b.commands,[{kind:'propose_goods_trade',target:'Canada',good:'capital_goods',quantity:2.5,unit_price_bn:.003,delivery_days:30}]);
   assert.equal(c.sent[0].b.session_id,'one');assert.equal(c.sent[0].b.request_seq,1);
+});
+test('an Exchange quote changed during asynchronous consent cannot submit its old terms',async()=>{
+  for(const change of ['COMP.quotes={delivery_days:60,quotes:[]}','S={...S,date:"2 Jan 1990"}','advancing=true']){
+    const c=fixture();let answer;c.campaignConfirm=()=>new Promise(resolve=>answer=resolve);
+    run(c,`COMP.stale=false;COMP.quotes={delivery_days:30,quotes:[{seller:'Canada',good:'capital_goods',quantity:2.5,unit_price_bn:.003,total_price_bn:.0075}]};`);
+    const purchase=run(c,`competitionAction({dataset:{compAction:'buy',quote:'0'}})`);
+    assert.equal(c.sent.length,0,'consent is awaited');run(c,change);answer(true);await purchase;
+    assert.equal(c.sent.length,0,change);assert.match(run(c,'COMP.error'),/changed while confirmation/);
+  }
 });
 test('Lost response keeps the exact receipt for retry, and blocks a new order',async()=>{
   const c=fixture();
@@ -498,9 +507,9 @@ test('A previous-server receipt requires explicit dismissal before an empty serv
   const c=sessionFixture();
   c.fetch=async path=>{c.sent.push({path});return {ok:true,text:async()=>JSON.stringify({session_id:'new',player:'USA'})};};
   run(c,`S=null;SESSION.live={session_id:'new',player:null};COMP.pending={session_id:'old',client_id:'test',request_seq:7,commands:[]};`);
-  c.window.confirm=()=>false;await run(c,'loadCampaign()');
+  c.campaignConfirm=async()=>false;await run(c,'loadCampaign()');await run(c,'COMP.confirmingDismissal');
   assert.equal(run(c,'COMP.pending.request_seq'),7);assert(!c.sent.some(v=>v.path));
-  c.window.confirm=()=>true;await run(c,'loadCampaign()');
+  c.campaignConfirm=async()=>true;await run(c,'loadCampaign()');await run(c,'COMP.confirmingDismissal');
   assert.equal(run(c,'COMP.pending'),null);assert(!c.sent.some(v=>v.path),'dismissal does not itself replace a campaign');
   await run(c,'loadCampaign()');assert.deepEqual(c.sent.filter(v=>v.path).map(v=>v.path),['/api/load']);
 });
