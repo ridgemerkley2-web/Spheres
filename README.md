@@ -25,6 +25,15 @@ the precise version, branch, source revision, build date and absolute save folde
 Saves use the server's working directory. The packaged launcher selects its own
 folder so moving a shortcut does not move your saves.
 
+The clock is HOI4's: it runs by itself until something stops it. Space stops it
+from any screen — the cabinet, the tech screen and the resource board included —
+and starts it again from the map or either of those two boards; 1-5 pick a speed
+(one simulated day every 1000, 500, 250, 100 or 0 ms of real time — the last is
+as fast as the server answers), + and - walk that ladder, N steps a single day.
+Opening the shortcut card or Global Command stops the clock outright. A war or a
+collapse pauses it and says why, and you press Space again when you have decided
+what to do.
+
 Choose a country, use **Advisor** to fund a budget and follow a development
 project, and use **Find** to open a province without hunting on the globe.
 **Research list** explains availability, prerequisites, payoff and estimated time.
