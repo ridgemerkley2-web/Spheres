@@ -10,10 +10,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        scenario: [idle_human, balanced_budget, fiscal_stress, commodity_dependence, small_state, command_economy, war_shock]
+        scenario: [idle_human, balanced_budget, fiscal_stress, commodity_dependence, small_state, command_economy, war_shock, import_dependent_industry, enrolled_budget, investment_program, supply_disruption]
+        seed: [1990, 7, 42]
         economic_ai: ['false']
         include:
           - scenario: balanced_budget
+            seed: 1990
+            economic_ai: 'true'
+          - scenario: balanced_budget
+            seed: 7
+            economic_ai: 'true'
+          - scenario: balanced_budget
+            seed: 42
             economic_ai: 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 180
@@ -21,9 +29,27 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - run: mkdir -p artifacts/calibration
-      - run: cargo run --locked --release -p spheres-sim --example daily_calibration -- --years 30 --seeds 1990,7,42 --scenarios ${{ matrix.scenario }} --economic-competition ${{ matrix.economic_ai }} --output artifacts/calibration/daily.csv
+      - run: cargo run --locked --release -p spheres-sim --example daily_calibration -- --years 30 --seeds ${{ matrix.seed }} --scenarios ${{ matrix.scenario }} --economic-competition ${{ matrix.economic_ai }} --output artifacts/calibration/daily.csv
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: daily-${{ matrix.scenario }}-ai-${{ matrix.economic_ai }}
+          name: daily-v2-${{ matrix.scenario }}-ai-${{ matrix.economic_ai }}-seed-${{ matrix.seed }}
           path: artifacts/calibration
+  aggregate:
+    needs: campaign-panel
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: daily-v2-*
+          path: artifacts/panels
+      - run: python tools/calibration/aggregate.py --input-dir artifacts/panels --output artifacts/daily-merged.csv
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: daily-v2-aggregate
+          path: |
+            artifacts/daily-merged.csv
+            artifacts/daily-merged.summary.json
