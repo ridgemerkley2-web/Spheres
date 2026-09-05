@@ -72,3 +72,18 @@ Existing affected suites pass: war 13, arsenal 4, manufacturing 15, production 1
 industry 13, logistics 17 (one existing ignored profile). Workspace compilation
 passes. No existing assertions, historical inputs, calibration thresholds or
 golden pins changed. Fixtures establish correctness, not statistical balance.
+
+## Player controls
+
+The Wars card and each participating conflict sheet show national force, actual
+fielded force, reserves and the shared overseas limit. Players can select an
+automatic ceiling, zero (reserve), preset percentages or preserve any saved
+basis-point value. The command is free and binds the authenticated campaign
+player. Negative, fractional, oversized and missing inputs are refused.
+The UI adopts the returned authoritative world after a successful command and
+shows command failures inline. Browser boot/new/load enables these rules.
+
+Validation adds four real-module Node renderer/submission tests, two Rust web
+parser/state/load tests and the existing browser rule migration test. The 14
+existing operations UI tests, all nine military integration tests and workspace
+compilation pass. Full browser viewport coverage is an integration check.

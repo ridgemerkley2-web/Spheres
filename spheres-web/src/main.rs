@@ -55,6 +55,8 @@ const AGENCY_CSS: &str = include_str!("../ui/agency.css");
 const AGENCY_UI_JS: &str = include_str!("../ui/agency-ui.js");
 const COMPETITION_CSS: &str = include_str!("../ui/competition.css");
 const COMPETITION_UI_JS: &str = include_str!("../ui/competition-ui.js");
+const MILITARY_OPERATIONS_JS: &str = include_str!("../ui/operations-ui.js");
+const MILITARY_OPERATIONS_CSS: &str = include_str!("../ui/operations-ui.css");
 /// Baked country outlines — see `src/bin/mapgen.rs`.
 const WORLD_JS: &str = include_str!("../ui/world.js");
 /// Baked admin-1 district outlines, same projection and canvas as world.js.
@@ -824,6 +826,7 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
                 // cannot drift apart.
                 "defending_home": defending,
                 "committed": spheres_sim::war::committed_force(w, c, b.nation),
+                "force_share_bp": b.force_share_bp,
                 "rungs": rungs,
             })
         })
@@ -4592,6 +4595,8 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "nations": nations,
         "dead": dead,
         "wars": wars,
+        "operations": w.player.filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
+            .map(|id| spheres_sim::operations::view(w, id)),
         // The sim's held/contested threshold for per-district front control,
         // served so the browser never re-derives it (its literal is only a
         // fallback for a server that predates this key).
@@ -5632,6 +5637,13 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             nation: me,
             rung: num()? as u8,
         },
+        "force_allocation" => Command::SetForceAllocation {
+            conflict: v.get("conflict")?.as_u64()?.try_into().ok()?, nation: me,
+            share_bp: match v.get("share_bp")? {
+                serde_json::Value::Null => None,
+                value => Some(value.as_u64()?.try_into().ok()?),
+            },
+        },
         "objective" => Command::SetObjective {
             conflict: conflict()?,
             nation: me,
@@ -5889,6 +5901,7 @@ fn play_rules(g: &mut Game) {
     g.world.rules.resource_market = true;
     g.world.rules.logistics_routes = true;
     g.world.rules.physical_logistics = true;
+    g.world.rules.military_operations = true;
     g.world.rules.production_system = true;
     g.world.rules.manufacturing_system = true;
     spheres_sim::province_economy::enable(&mut g.world);
@@ -6201,6 +6214,18 @@ fn main() {
                     .unwrap(),
                 );
                 let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/operations-ui.js") => {
+                let _ = request.respond(Response::from_string(MILITARY_OPERATIONS_JS)
+                    .with_header(Header::from_bytes("Content-Type", "text/javascript; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, "/operations-ui.css") => {
+                let _ = request.respond(Response::from_string(MILITARY_OPERATIONS_CSS)
+                    .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
                 continue;
             }
             (Method::Get, "/art/nation-figures-v2.json") => {
@@ -14595,5 +14620,54 @@ mod tests {
             "province work markers must be absent from the resting globe"
         );
         assert!(INDEX.contains("k === \"q\" || k === \"Q\""));
+    }
+}
+
+#[cfg(test)]
+mod military_operations_api_tests {
+    use super::*;
+
+    #[test]
+    fn allocation_parser_binds_the_player_and_rejects_malformed_numbers() {
+        let g = Game::new(1990, Some(NationId::Iraq));
+        for value in [serde_json::Value::Null, serde_json::json!(0), serde_json::json!(10000)] {
+            let order = serde_json::json!({"kind":"force_allocation", "conflict":7,
+                "nation":"France", "share_bp":value});
+            let c = parse_command(&g.world, &order, NationId::Iraq).unwrap();
+            assert!(matches!(c, Command::SetForceAllocation { nation: NationId::Iraq, conflict: 7, .. }));
+        }
+        for value in [serde_json::json!(-1), serde_json::json!(1.2), serde_json::json!(65536), serde_json::json!("0")] {
+            let order = serde_json::json!({"kind":"force_allocation","conflict":7,"share_bp":value});
+            assert!(parse_command(&g.world, &order, NationId::Iraq).is_none());
+        }
+        for order in [serde_json::json!({"kind":"force_allocation","conflict":7}),
+            serde_json::json!({"kind":"force_allocation","conflict":4294967296u64,"share_bp":0})] {
+            assert!(parse_command(&g.world, &order, NationId::Iraq).is_none());
+        }
+    }
+
+    #[test]
+    fn browser_rules_allocation_command_and_snapshot_agree_across_load() {
+        let mut g = Game::new(1990, Some(NationId::Iraq));
+        assert!(!g.world.rules.military_operations);
+        let enable = play_rules;
+        enable(&mut g);
+        assert!(g.world.rules.military_operations);
+        let th = spheres_sim::war::theatre_between(&g.world, NationId::Iraq, NationId::Iran);
+        let cid = spheres_sim::commitment::open_conflict(&mut g.world, NationId::Iraq, NationId::Iran, th).unwrap();
+        g.world.conflict_mut(cid).unwrap().posture_mut(NationId::Iraq).unwrap().rung = 8;
+        let order = serde_json::json!({"kind":"force_allocation", "conflict":cid, "share_bp":0});
+        let c = parse_command(&g.world, &order, NationId::Iraq).unwrap();
+        apply_command(&mut g.world, &c).unwrap();
+        let snapshot = state_json(&g, None);
+        assert_eq!(snapshot["operations"]["deployed"], 0.0);
+        assert_eq!(snapshot["operations"]["reserve"], snapshot["operations"]["structure"]);
+        assert_eq!(snapshot["operations"]["deployments"][0]["allocation_bp"], 0);
+        let resumed = loaded_play_game(load(&save(&g.world)).unwrap());
+        assert_eq!(state_json(&resumed, None)["operations"], snapshot["operations"]);
+        let invalid = Command::SetForceAllocation { conflict:cid, nation:NationId::Iraq, share_bp:Some(10001) };
+        let before = save(&g.world);
+        assert!(apply_command(&mut g.world, &invalid).is_err());
+        assert_eq!(save(&g.world), before);
     }
 }
