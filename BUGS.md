@@ -1,5 +1,14 @@
 # BUGS
 
+## 2026-09-04 approved E-3 and replay assessment
+
+`TECH_REFERENCE_REPAIR.md` closes the credited-revelation benchmark defect under
+the original calibration bars. `HEADLESS_BASELINE_2026-09-04.md` records the
+assessed start and 20-year fingerprints and their negative controls. The dated
+records below describe earlier releases; their E-3/pin blockers are superseded
+by this explicit repair and baseline assessment, subject to the final integrated
+workspace suite. Other unresolved design/data entries are unaffected.
+
 ## 2026-09-03 implementation repair update
 
 The eleven reproducible findings from the latest browser/simulation audit have
@@ -1154,7 +1163,8 @@ in Western Europe by 36 PC.
 records the credited-revelation-only benchmark correction. The original endowment,
 frontier, China and mature-economy bars pass unchanged. The historical diagnosis
 below is retained; its statement that no design ruling exists is superseded.
-Final integrated replay pins await their separately documented assessment.
+`HEADLESS_BASELINE_2026-09-04.md` records the subsequent assessed exact replay
+references; the full integrated workspace suite remains the release gate.
 
 
 **Measured 2026-09-01 by the sim-and-web fixer, with a new instrument

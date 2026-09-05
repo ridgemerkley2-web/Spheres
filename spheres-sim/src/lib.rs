@@ -4529,8 +4529,10 @@ mod tests {
         // then, deliberately red at 0xe26e4bf8d6c60066.
         let w = world_1990(GameRules::default());
         let h = state_hash(&w);
+        // Assessed start schema baseline; no initial economic or RNG change from E-3.
+        // See HEADLESS_BASELINE_2026-09-04.md. Earlier history above remains chronological.
         assert_eq!(
-            h, 0xd022d50f43c984dau64,
+            h, 0xe26e4bf8d6c60066u64,
             "the 1990 start state changed (actual {h:#018x})"
         );
     }
@@ -4771,7 +4773,9 @@ mod tests {
         // and re-hashes to 0x20c24ab0f1581807. The endowment bar (BUGS E-3)
         // is still red, so the protocol forbids the re-pin. Deliberately red
         // at 0xbe94d6125631829c.
-        const GOLDEN: u64 = 0xbd5ec0f43c5f2e3b;
+        // Approved audit baseline, 2026-09-04: see HEADLESS_BASELINE_2026-09-04.md.
+        // E-3 is repaired and its original calibration bars remain unchanged.
+        const GOLDEN: u64 = 0x0cbd02497c30957c;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -4883,7 +4887,8 @@ mod tests {
         // 0xa5c9c5b2306313d8 at t=0, 0x20c24ab0f1581807 at t=240 months.
         // This constant tracks the tree's ACTUAL by construction, so moving it
         // is not a golden re-pin; the two real goldens above stay where they are.
-        const RUN_ACTUAL: u64 = 0xbe94d6125631829c;
+        // Updated with the approved E-3 semantic/schema baseline; resource invariance is still tested on/off.
+        const RUN_ACTUAL: u64 = 0x0cbd02497c30957c;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -5188,7 +5193,8 @@ mod tests {
         // 0xa5c9c5b2306313d8 at t=0, 0x20c24ab0f1581807 at t=240 months.
         // This constant tracks the tree's ACTUAL by construction, so moving it
         // is not a golden re-pin; the two real goldens above stay where they are.
-        const RUN_ACTUAL: u64 = 0xbe94d6125631829c;
+        // Updated with the approved E-3 semantic/schema baseline; resource invariance is still tested on/off.
+        const RUN_ACTUAL: u64 = 0x0cbd02497c30957c;
         assert!(!GameRules::default().resource_market, "the suite's default must be off");
         let w = world_1990(GameRules::default());
         let off_text = save(&w);

@@ -54,3 +54,10 @@ hashes are intentionally not re-pinned in this commit. The final integrated tree
 must first establish the expected semantic/serialization changes and run the full
 workspace suite; only then should its documented start and 20-year references
 replace stale literals. No test is deleted or weakened to accomplish that.
+
+
+The subsequent baseline assessment is now recorded in
+`HEADLESS_BASELINE_2026-09-04.md`. Both negative controls were observed red on
+the intentionally restored raw benchmark and then restored. The start and
+20-year exact references are updated together with their duplicated inertness
+references; the full integrated suite remains the release gate.
