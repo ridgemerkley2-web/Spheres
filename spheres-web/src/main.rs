@@ -4135,6 +4135,7 @@ fn round_sig(v: f64, digits: i32) -> f64 {
 /// The recorded time series, column-major. One nation's arrays start at `t0`
 /// (successor states appear late) and simply stop when it dies, so a dead power's
 /// line ends rather than running flat to the end of the game.
+#[cfg(test)]
 fn history_json(g: &Game, only: Option<NationId>) -> serde_json::Value {
     history::json(&g.history,only.map(|id|std::collections::BTreeSet::from([id])).as_ref())
 }
