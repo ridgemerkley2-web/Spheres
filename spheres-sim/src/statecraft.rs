@@ -1,10 +1,10 @@
-//! Statecraft — everything a power does to another power short of shooting at it.
+//! Statecraft â€” everything a power does to another power short of shooting at it.
 //!
 //! Four instruments, all of them commands like any other, all of them available
 //! to the AI on exactly the terms the player gets:
 //!
 //! * **Defence pacts** turn a vague affinity into a written commitment that
-//!   drags you into other people's wars — and that you can break, at a price.
+//!   drags you into other people's wars â€” and that you can break, at a price.
 //! * **Aid and arms** buy a government's survival, and with it its alignment.
 //! * **Covert action** breaks a rival's client without a declaration, until the
 //!   day it is caught and the whole thing rebounds.
@@ -45,7 +45,7 @@ const PACT_UPKEEP: f64 = 0.003;
 
 /// The most output any patron can promise to clients. The Soviet Union, the
 /// most profligate patron of the era, disbursed roughly $6.9bn to the Third
-/// World in 1985 against a GNP near $1.5tn — under half a percent.
+/// World in 1985 against a GNP near $1.5tn â€” under half a percent.
 /// https://en.wikipedia.org/wiki/Economy_of_the_Soviet_Union
 pub const MAX_AID_SHARE: f64 = 0.010;
 
@@ -206,7 +206,7 @@ fn trade_deepens(w: &mut WorldState) {
             continue;
         }
         // Integration deepens. THE LEVEL GAIN IS NO LONGER PAID HERE: it used to
-        // be paid per pact, per month, on this increment — see `trade_level_gain`
+        // be paid per pact, per month, on this increment â€” see `trade_level_gain`
         // below for why summing that over a roster is a growth rate wearing a
         // level's clothes, and what replaces it.
         {
@@ -232,16 +232,16 @@ fn trade_deepens(w: &mut WorldState) {
 ///
 /// The per-pact form this replaces summed `theirs / (mine + theirs)` over every
 /// agreement. That quantity is already a *share* of a nation's trading
-/// universe, so N of them add past one and keep going — the United States held
+/// universe, so N of them add past one and keep going â€” the United States held
 /// 41 agreements on the ten-seed average by 2024 for a summed reach well past
 /// two, a permanent uplift still climbing every four years, and measured at
 /// 1.17 points of annual growth for thirty-five years. An unbounded stream of
-/// level shifts is a rate, which is exactly the error BIBLE §8 records finding
+/// level shifts is a rate, which is exactly the error BIBLE Â§8 records finding
 /// in this very function and fixing only per-agreement: `TRADE_LEVEL_GAIN`
 /// bounds *one* agreement, and nothing bounded the roster.
 ///
 /// Aggregated, reach is bounded by 1 however many agreements are held, so the
-/// whole portfolio is bounded by TRADE_LEVEL_GAIN — the claim the constant's
+/// whole portfolio is bounded by TRADE_LEVEL_GAIN â€” the claim the constant's
 /// own comment already makes and could not keep. WITH A SINGLE PACT THE TWO
 /// FORMS ARE IDENTICAL: `depth * theirs / (mine + theirs)`. The small partner's
 /// transformation is untouched; only the giant collecting sixty fractions of a
@@ -271,7 +271,7 @@ fn trade_reach(w: &WorldState, id: NationId) -> f64 {
 /// Paid on the RISE in entitlement and never clawed back. Two reasons, both
 /// structural rather than convenient. Reach moves when a partner's economy
 /// moves relative to yours, and paying on that would hand a nation growth for
-/// its partners' growth — the same rate-for-a-level bug through the back door.
+/// its partners' growth â€” the same rate-for-a-level bug through the back door.
 /// And a pact that collapses and is re-signed re-enters at depth 0.05, so
 /// without a high-water mark sign/collapse/re-sign is an unbounded GDP pump
 /// under player action. What losing an agreement costs is priced where it
@@ -320,7 +320,7 @@ fn covert_channels_cool(w: &mut WorldState) {
 /// An offer, not a fact: the other government has to want it. What it weighs is
 /// how it feels about you, what your word has been worth to others, and whether
 /// signing would put it on the wrong side of a power it cannot afford to annoy.
-pub fn propose_pact(w: &mut WorldState, from: NationId, to: NationId) -> Result<(), String> {
+pub(crate) fn pact_error(w: &WorldState, from: NationId, to: NationId) -> Result<(), String> {
     if from == to {
         return Err("A nation cannot guarantee itself.".into());
     }
@@ -351,6 +351,12 @@ pub fn propose_pact(w: &mut WorldState, from: NationId, to: NationId) -> Result<
         return Err("Too many standing commitments already.".into());
     }
 
+    Ok(())
+}
+
+pub fn propose_pact(w: &mut WorldState, from: NationId, to: NationId) -> Result<(), String> {
+    pact_error(w,from,to)?;
+    if crate::agency::offer_treaty(w,from,to,crate::agency::OfferKind::DefensePact)? { return Ok(()); }
     let rel = w.relation(from, to);
     let mut p = ((rel + 10.0) / 140.0).clamp(0.0, 0.85);
     p *= (w.reputation(from) / BASE_REPUTATION).clamp(0.35, 1.20);
@@ -367,6 +373,18 @@ pub fn propose_pact(w: &mut WorldState, from: NationId, to: NationId) -> Result<
     p *= 1.0 + (lopsided - 1.0) * 0.06;
 
     if w.rng.chance(p.min(0.9)) {
+        sign_pact(w,from,to);
+    } else {
+        w.headline(format!(
+            "{} declines {}'s offer of a defence pact.",
+            to.name(),
+            from.name()
+        ));
+    }
+    Ok(())
+}
+
+pub(crate) fn sign_pact(w: &mut WorldState, from: NationId, to: NationId) {
         let (a, b) = if from <= to { (from, to) } else { (to, from) };
         w.statecraft.pacts.push(Pact {
             a,
@@ -380,14 +398,6 @@ pub fn propose_pact(w: &mut WorldState, from: NationId, to: NationId) -> Result<
             from.name(),
             to.name()
         ));
-    } else {
-        w.headline(format!(
-            "{} declines {}'s offer of a defence pact.",
-            to.name(),
-            from.name()
-        ));
-    }
-    Ok(())
 }
 
 /// Renouncing a guarantee in peacetime is merely embarrassing. Renouncing one
@@ -561,13 +571,13 @@ pub fn covert_action(
         + t_sep * 0.30
         + reach * 0.20)
         .clamp(0.05, 0.80);
-    // A police state catches spies; a well-worn channel gets rolled up — and,
+    // A police state catches spies; a well-worn channel gets rolled up â€” and,
     // DIPLOMACY'S SECOND NAMED ARM, a foreign service that funds its own
     // counter-intelligence catches them too.
     //
     // Note whose gap this is: the TARGET's, not the sponsor's. Diplomacy is the
     // only ministry on the board whose budget acts on somebody else's decision,
-    // and it acts through a path that already exists and is already priced —
+    // and it acts through a path that already exists and is already priced â€”
     // exposure is what costs the sponsor relations and reputation below, and
     // this arm changes only how often that path is taken. It invents no new
     // consequence.
@@ -649,7 +659,7 @@ pub fn covert_action(
             w.shift_relation(sponsor, x, -5.0);
         }
         w.headline(format!(
-            "{} exposes {} {} in {} — the scandal rallies the country behind its government.",
+            "{} exposes {} {} in {} â€” the scandal rallies the country behind its government.",
             target.name(),
             sponsor.name(),
             op.label(),
@@ -664,7 +674,7 @@ pub fn covert_action(
 /// Accepted agreements deepen into dependency over years rather than at once,
 /// and dependency is what later becomes leverage. Errors if a nation proposes
 /// to itself or the pair cannot trade.
-pub fn propose_trade(w: &mut WorldState, from: NationId, to: NationId) -> Result<(), String> {
+pub(crate) fn trade_error(w: &WorldState, from: NationId, to: NationId) -> Result<(), String> {
     if from == to {
         return Err("A nation cannot trade with itself.".into());
     }
@@ -681,6 +691,12 @@ pub fn propose_trade(w: &mut WorldState, from: NationId, to: NationId) -> Result
         return Err("Cannot open markets to a nation you are fighting.".into());
     }
 
+    Ok(())
+}
+
+pub fn propose_trade(w: &mut WorldState, from: NationId, to: NationId) -> Result<(), String> {
+    trade_error(w,from,to)?;
+    if crate::agency::offer_treaty(w,from,to,crate::agency::OfferKind::TradeTreaty)? { return Ok(()); }
     let rel = w.relation(from, to);
     // Nobody signs away tariff protection to a country they distrust, but the
     // prospect of a much larger market makes a government swallow a lot.
@@ -688,14 +704,7 @@ pub fn propose_trade(w: &mut WorldState, from: NationId, to: NationId) -> Result
     let reach = gf / (gf + gt).max(1.0);
     let p = (((rel + 20.0) / 130.0) * (0.55 + reach)).clamp(0.0, 0.85);
     if w.rng.chance(p) {
-        let (a, b) = if from <= to { (from, to) } else { (to, from) };
-        w.statecraft.trade.push(TradePact { a, b, depth: 0.05 });
-        w.shift_relation(from, to, 5.0);
-        w.headline(format!(
-            "{} and {} sign a trade agreement.",
-            from.name(),
-            to.name()
-        ));
+        sign_trade(w,from,to);
     } else {
         w.headline(format!(
             "Trade talks between {} and {} break down.",
@@ -704,6 +713,17 @@ pub fn propose_trade(w: &mut WorldState, from: NationId, to: NationId) -> Result
         ));
     }
     Ok(())
+}
+
+pub(crate) fn sign_trade(w: &mut WorldState, from: NationId, to: NationId) {
+        let (a, b) = if from <= to { (from, to) } else { (to, from) };
+        w.statecraft.trade.push(TradePact { a, b, depth: 0.05 });
+        w.shift_relation(from, to, 5.0);
+        w.headline(format!(
+            "{} and {} sign a trade agreement.",
+            from.name(),
+            to.name()
+        ));
 }
 
 /// The leverage that dependency created, finally used. It costs the dependent
@@ -751,7 +771,7 @@ pub fn abrogate_trade(w: &mut WorldState, from: NationId, to: NationId) -> Resul
 /// campaign. Before the ladder there was one rung and this was always 8.
 ///
 /// A defensive pact obliges nobody to join a war of aggression, so the
-/// attacker's own guarantors are not called at all — the whole asymmetry is
+/// attacker's own guarantors are not called at all â€” the whole asymmetry is
 /// what makes a guarantee cheap to give and expensive to keep.
 pub fn call_the_guarantors(w: &mut WorldState, c: &mut Conflict, at: u8) -> Vec<NationId> {
     let (attacker, defender) = (c.origin_attacker, c.defender());
@@ -776,6 +796,11 @@ pub fn call_the_guarantors(w: &mut WorldState, c: &mut Conflict, at: u8) -> Vec<
             continue;
         }
         if !alive(w, g) || c.involves(g) {
+            continue;
+        }
+        if w.player == Some(g) {
+            crate::agency::offer_call(w,c,g,at,true);
+            refused.push(g); // Also suppress the looser automatic intervention rule.
             continue;
         }
         let att_nuclear = w.nation(attacker).nuclear;
@@ -814,15 +839,7 @@ pub fn call_the_guarantors(w: &mut WorldState, c: &mut Conflict, at: u8) -> Vec<
             ));
         } else {
             refused.push(g);
-            dissolve_pact(w, g, defender);
-            w.shift_reputation(g, -25.0);
-            w.shift_relation(g, defender, -45.0);
-            w.headline(format!(
-                "{} abandons its pact with {}. The guarantee proves worthless.",
-                g.name(),
-                defender.name()
-            ));
-            cheapened_guarantees(w, g, defender);
+            decline_guarantee(w,g,defender);
         }
     }
     refused
@@ -852,4 +869,16 @@ fn alive(w: &WorldState, id: NationId) -> bool {
 /// to sign something.
 pub fn belligerents(w: &WorldState, a: NationId, b: NationId) -> bool {
     w.conflict_between(a, b).is_some()
+}
+
+pub(crate) fn decline_guarantee(w: &mut WorldState, guarantor: NationId, defender: NationId) {
+    dissolve_pact(w, guarantor, defender);
+    w.shift_reputation(guarantor, -25.0);
+    w.shift_relation(guarantor, defender, -45.0);
+    w.headline(format!(
+        "{} abandons its pact with {}. The guarantee proves worthless.",
+        guarantor.name(),
+        defender.name()
+    ));
+    cheapened_guarantees(w, guarantor, defender);
 }

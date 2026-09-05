@@ -440,3 +440,13 @@ physical-control rule for production and freight. The player allocates national
 intent, never individual units. Occupation remains distinct from sovereignty.
 Browser play opts into this behavior; default headless calibration remains
 available. Game role weights are declared assumptions requiring daily balance evidence.
+
+## Adopted amendment — player diplomatic and monetary decisions (2026-09-04, local review)
+
+The user approved the audit recommendations. `PLAYER_DECISIONS.md` records the
+consent inbox, visible response policies, persistent player sanctions and explicit
+peg exit. Human treaty signatures and war participation require a decision or an
+express standing policy. Named response deadlines and existing commitment costs
+remain visible. Daily monetary pegs bind both player and AI; floating manual
+policy can return to the automatic bank. Sovereignty compacts remain intact, and
+untouched legacy headless worlds retain their prior rules and serialization.

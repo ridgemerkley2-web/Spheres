@@ -1,3 +1,4 @@
+pub mod agency;
 pub mod arsenal;
 pub mod commitment;
 pub mod commerce;
@@ -46,6 +47,10 @@ use world::*;
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub enum Command {
     SetInterestRate { nation: NationId, rate: f64 },
+    BreakCurrencyPeg { nation: NationId },
+    ResumeAutomaticBank { nation: NationId },
+    RespondDiplomacy { nation: NationId, offer: u64, accept: bool },
+    SetDiplomaticPolicy { nation: NationId, policy: agency::StandingPolicy },
     SetTaxRate { nation: NationId, rate: f64 },
     SetMilSpend { nation: NationId, share: f64 },
     SetStateInvest { nation: NationId, share: f64 },
@@ -354,7 +359,10 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             }
             (*nation, price, REFUSABLE)
         }
-        Command::Sanction { imposer, .. } => (*imposer, 6.0, REFUSABLE),
+        Command::Sanction { imposer, target } => (*imposer, if w.is_sanctioning(*imposer,*target) { 0.0 } else { 6.0 }, REFUSABLE),
+        Command::BreakCurrencyPeg { nation } => (*nation, agency::BREAK_PEG_PC, ALWAYS),
+        Command::ResumeAutomaticBank { nation } | Command::RespondDiplomacy { nation, .. }
+        | Command::SetDiplomaticPolicy { nation, .. } => (*nation, 0.0, REFUSABLE),
         // Redirecting a laboratory is an ordinary act of government and priced
         // like one. The expensive part is not the announcement, it is the half
         // of the banked progress the switch throws away, which the model charges
@@ -374,7 +382,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         Command::SetResearchAllocation { nation, weights } => {
             (*nation, if weights.is_some() { 30.0 } else { 10.0 }, REFUSABLE)
         }
-        Command::LiftSanction { imposer, .. } => (*imposer, 3.0, REFUSABLE),
+        Command::LiftSanction { imposer, target } => (*imposer, if w.is_sanctioning(*imposer,*target) { 3.0 } else { 0.0 }, REFUSABLE),
         Command::ImproveRelations { from, .. } => (*from, 2.0, REFUSABLE),
         // The most expensive thing a government can decide to do.
         Command::DeclareWar { attacker, .. } => (*attacker, 30.0, REFUSABLE),
@@ -572,6 +580,8 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 /// this returns the sim's own prose rather than composing its own.
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     match c {
+        Command::SetInterestRate { nation, .. } if agency::pegged_rate(w,*nation).is_some() => Some("Exit the currency peg before changing its policy rate.".into()),
+        Command::RespondDiplomacy { nation, offer, accept } => agency::response_error(w,*nation,*offer,*accept),
         Command::Sanction { imposer, target } => sovereignty::hostility_reason(w, *imposer, *target),
         Command::LeaveEconomicUnion { nation } | Command::ReleaseSubject { nation, .. }
             if !w.nation_opt(*nation).is_some_and(|n| n.alive) => Some("This government no longer exists.".into()),
@@ -690,6 +700,10 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
 
 fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     match c {
+        Command::BreakCurrencyPeg { nation } => agency::break_peg(w,*nation)?,
+        Command::ResumeAutomaticBank { nation } => agency::resume_bank(w,*nation)?,
+        Command::RespondDiplomacy { nation, offer, accept } => agency::respond(w,*nation,*offer,*accept)?,
+        Command::SetDiplomaticPolicy { nation, policy } => agency::set_policy(w,*nation,*policy)?,
         Command::SetInterestRate { nation, rate } => {
             w.nation_mut(*nation).interest_rate = rate.clamp(0.0, 0.60);
             // The player has taken the wheel; the AI bank stands down for good.
@@ -1157,6 +1171,7 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // the government wakes up holding.
     ("government", government::tick),
     ("politics", politics::tick),
+    ("agency", agency::tick),
     ("economic_ai", economic_ai::tick),
     ("sovereignty", sovereignty::tick),
     // The campaign director reads the settled month. It grants no bonus and

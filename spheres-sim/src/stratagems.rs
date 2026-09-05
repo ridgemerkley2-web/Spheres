@@ -106,6 +106,7 @@ pub const DECK: &[Stratagem] = &[
         },
         enact: |w, id| {
             w.set_flag(&format!("peg_{:?}", id));
+            crate::agency::establish_peg(w,id,0.055);
             // Pegging is a monetary decision, so it counts as governing the
             // rate: without this the default bank in politics.rs — which runs
             // for a player who has not touched monetary policy — would drift

@@ -296,3 +296,14 @@ into legacy or default worlds. This layer adds no general raw-stockpile plan,
 household or labor demand, free goods, guaranteed output, or AI authority over
 the player's country. Descriptive six-year evidence and remaining limits are in
 `AI_INDUSTRIAL_SUPPLY_RESULTS.md`.
+
+
+## Current extension — player diplomatic and monetary decisions (2026-09-04, local review)
+
+The user approved the audit recommendations. `PLAYER_DECISIONS.md` records the
+consent inbox, visible response policies, persistent player sanctions and explicit
+peg exit. Human treaty signatures and war participation require a decision or an
+express standing policy. Named response deadlines and existing commitment costs
+remain visible. Daily monetary pegs bind both player and AI; floating manual
+policy can return to the automatic bank. Sovereignty compacts remain intact, and
+untouched legacy headless worlds retain their prior rules and serialization.

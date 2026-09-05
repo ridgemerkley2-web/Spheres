@@ -1507,6 +1507,10 @@ pub fn invasion_begins(w: &mut WorldState, conflict: u32, attacker: NationId) {
         }
         if !c.side_a.iter().any(|foe| crate::sovereignty::hostility_blocked(w,m,*foe))
             && would_intervene(w, m, defender, attacker) {
+            if w.player == Some(m) {
+                crate::agency::offer_call(w,&mut c,m,8,false);
+                continue;
+            }
             join_side(&mut c, m, false, 8, Objective::Deny);
             w.headline(format!("{} joins the war in defense of {}.", m.name(), defender.name()));
         }

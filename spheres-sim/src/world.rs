@@ -1012,6 +1012,8 @@ pub struct WorldState {
     /// a save written before statecraft existed still loads.
     #[serde(default)]
     pub statecraft: Statecraft,
+    #[serde(default, skip_serializing_if = "crate::agency::Agency::is_empty")]
+    pub agency: crate::agency::Agency,
     /// Parties, elections, coalitions, and the pillars an unelected regime has
     /// to keep paying. Defaulted for the same reason `statecraft` is: a save
     /// written before governments existed still loads, and `government::ensure`

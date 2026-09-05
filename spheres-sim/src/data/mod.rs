@@ -859,6 +859,7 @@ pub fn load_world(
         sanctions: vec![],
         wars: vec![],
         statecraft: Statecraft::default(),
+        agency: Default::default(),
         governments: Default::default(),
         conflicts: vec![],
         theatres: crate::theatre::default_theatres(),

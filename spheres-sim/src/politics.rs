@@ -130,6 +130,10 @@ pub fn tick(w: &mut WorldState) {
         // -5.8pt demand gap, and a United States that shrinks every month for
         // thirty-five years without one line of it being a decision anyone made.
         // See `WorldState::player_set_rate`.
+        if let Some(rate) = crate::agency::pegged_rate(w,*id) {
+            w.nation_mut(*id).interest_rate = rate;
+            continue;
+        }
         if Some(*id) == w.player && w.player_set_rate {
             continue;
         }
@@ -247,7 +251,7 @@ pub fn tick(w: &mut WorldState) {
             let target_alive = w.nations.iter().any(|n| n.id == target && n.alive);
             // Grievance decay sets the clock: a minor partner's embargo fades in
             // ~5 years, a principal antagonist's holds for a decade.
-            let keep = target_alive && (w.at_war(target) || w.relation(imposer, target) < -15.0);
+            let keep = target_alive && (Some(imposer) == w.player || w.at_war(target) || w.relation(imposer, target) < -15.0);
             ((imposer, target), keep)
         })
         .collect();

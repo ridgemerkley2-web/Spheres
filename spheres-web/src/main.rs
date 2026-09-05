@@ -44,6 +44,8 @@ const DECISION_TOOLS_CSS: &str = include_str!("../ui/decision-tools.css");
 const PROGRAMS_ART_SVG: &str = include_str!("../ui/programs-art.svg");
 const PROVINCE_ECONOMY_CSS: &str = include_str!("../ui/province-economy.css");
 const PROVINCE_ECONOMY_UI_JS: &str = include_str!("../ui/province-economy-ui.js");
+const AGENCY_CSS: &str = include_str!("../ui/agency.css");
+const AGENCY_UI_JS: &str = include_str!("../ui/agency-ui.js");
 const COMPETITION_CSS: &str = include_str!("../ui/competition.css");
 const COMPETITION_UI_JS: &str = include_str!("../ui/competition-ui.js");
 /// Baked country outlines — see `src/bin/mapgen.rs`.
@@ -4630,6 +4632,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // directives and every progress/milestone/routing decision already
         // resolved. The page paints this contract; it does not score conquest.
         "domination": w.player.map(|p| domination_json(w, p)),
+        "agency": w.player.map(|p| spheres_sim::agency::view(w, p)),
         "policy": w.player.map(|p| policy_json(w, p)),
         // The budget card (stage 4): the ten dials' named arms, sampled by
         // the sim over the range a dial can hold, and the money block.
@@ -5366,6 +5369,10 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             .and_then(spheres_sim::tech::Domain::parse)
     };
     Some(match kind {
+        "respond_diplomacy" => Command::RespondDiplomacy { nation:me,offer:v.get("offer")?.as_u64()?,accept:v.get("accept")?.as_bool()? },
+        "set_diplomatic_policy" => Command::SetDiplomaticPolicy { nation:me,policy:serde_json::from_value(v.get("policy")?.clone()).ok()? },
+        "break_currency_peg" => Command::BreakCurrencyPeg { nation:me },
+        "resume_automatic_bank" => Command::ResumeAutomaticBank { nation:me },
         "enable_economic_competition" => Command::EnableEconomicCompetition { nation:me },
         "propose_economic_union" => Command::ProposeEconomicUnion { patron:me,partner:target()? },
         "join_economic_union" => Command::JoinEconomicUnion { nation:me,patron:target()? },
@@ -6227,7 +6234,7 @@ fn main() {
             }
             (Method::Get, "/decision-tools.css") => Response::from_string(DECISION_TOOLS_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/decision-tools.js") => Response::from_string(DECISION_TOOLS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
-            (Method::Get, path @ ("/arcade.css" | "/arcade-operations.css" | "/arcade-discovery.css" | "/chronicle.css" | "/programs.css" | "/province-economy.css" | "/competition.css")) => {
+            (Method::Get, path @ ("/arcade.css" | "/arcade-operations.css" | "/arcade-discovery.css" | "/chronicle.css" | "/programs.css" | "/province-economy.css" | "/competition.css" | "/agency.css")) => {
                 let css = match path {
                     "/arcade-operations.css" => ARCADE_OPERATIONS_CSS,
                     "/arcade-discovery.css" => ARCADE_DISCOVERY_CSS,
@@ -6235,6 +6242,7 @@ fn main() {
                     "/programs.css" => PROGRAMS_CSS,
                     "/province-economy.css" => PROVINCE_ECONOMY_CSS,
                     "/competition.css" => COMPETITION_CSS,
+                    "/agency.css" => AGENCY_CSS,
                     _ => ARCADE_CSS,
                 };
                 let _ = request.respond(Response::from_string(css)
@@ -6242,8 +6250,8 @@ fn main() {
                     .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
                 continue;
             }
-            (Method::Get, path @ ("/chronicle-data.js" | "/chronicle-ui.js" | "/programs-ui.js" | "/province-economy-ui.js" | "/competition-ui.js")) => {
-                let js = match path { "/chronicle-data.js" => CHRONICLE_DATA_JS, "/programs-ui.js" => PROGRAMS_UI_JS, "/province-economy-ui.js" => PROVINCE_ECONOMY_UI_JS, "/competition-ui.js" => COMPETITION_UI_JS, _ => CHRONICLE_UI_JS };
+            (Method::Get, path @ ("/chronicle-data.js" | "/chronicle-ui.js" | "/programs-ui.js" | "/province-economy-ui.js" | "/competition-ui.js" | "/agency-ui.js")) => {
+                let js = match path { "/chronicle-data.js" => CHRONICLE_DATA_JS, "/programs-ui.js" => PROGRAMS_UI_JS, "/province-economy-ui.js" => PROVINCE_ECONOMY_UI_JS, "/competition-ui.js" => COMPETITION_UI_JS, "/agency-ui.js" => AGENCY_UI_JS, _ => CHRONICLE_UI_JS };
                 let _ = request.respond(Response::from_string(js)
                     .with_header(Header::from_bytes("Content-Type", "text/javascript; charset=utf-8").unwrap())
                     .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
@@ -6468,6 +6476,10 @@ fn main() {
                     );
                 let _ = request.respond(r);
                 continue;
+            }
+            (Method::Get, "/api/agency") => {
+                let g = game.lock().unwrap();
+                json_response(serde_json::json!(g.world.player.map(|p| spheres_sim::agency::view(&g.world,p))))
             }
             (Method::Get, "/api/state") => {
                 let g = game.lock().unwrap();
@@ -6737,6 +6749,29 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn agency_browser_contract_revalidates_and_preserves_pending_decisions() {
+        let mut g = Game::new(42, Some(NationId::USA));
+        g.world.statecraft.pacts.clear();
+        g.world.set_relation(NationId::Kuwait,NationId::USA,100.0);
+        spheres_sim::statecraft::propose_pact(&mut g.world,NationId::Kuwait,NationId::USA).unwrap();
+        let before=save(&g.world);
+        let view=state_json(&g,None);
+        let id=view["agency"]["offers"][0]["id"].as_u64().unwrap();
+        assert_eq!(view["agency"]["policy"]["calls_to_arms"],"review");
+        assert_eq!(save(&g.world),before);
+        let payload=serde_json::json!({"kind":"respond_diplomacy","offer":id,"accept":true});
+        let command=parse_command(&g.world,&payload,NationId::USA).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        assert!(g.world.allied(NationId::Kuwait,NationId::USA));
+        assert_eq!(state_json(&g,None)["agency"]["offers"].as_array().unwrap().len(),0);
+        assert!(parse_command(&g.world,&serde_json::json!({"kind":"respond_diplomacy","offer":-1,"accept":true}),NationId::USA).is_none());
+        assert!(parse_command(&g.world,&serde_json::json!({"kind":"set_diplomatic_policy","policy":{"calls_to_arms":"guess"}}),NationId::USA).is_none());
+        assert!(INDEX.contains("renderAgency(S)"));
+        assert!(AGENCY_UI_JS.contains("/api/command"));
+        assert!(AGENCY_CSS.contains("#agencyPanel::backdrop"));
+    }
 
     #[test]
     fn competition_browser_reads_are_pure_and_cover_every_starting_economy() {

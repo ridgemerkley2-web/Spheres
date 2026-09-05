@@ -1,0 +1,27 @@
+#agencyBtn { border:0; border-radius:8px; padding:7px 10px; background:#e9e6f2; color:#403952; font:inherit; cursor:pointer; }
+#agencyBtn.attention { background:#ffdfa4; color:#513609; font-weight:750; }
+#agencyCount:empty { display:none; }
+#agencyPanel { width:min(850px,calc(100vw - 32px)); max-height:88dvh; padding:0; border:1px solid #c8c1d5; border-radius:18px; color:#343044; background:#f7f6fa; box-shadow:0 18px 70px #15102166; overflow:auto; }
+#agencyPanel::backdrop { background:#14102099; }
+#agencyPanel > header { position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:15px; padding:18px 22px; background:#ece8f2; border-bottom:1px solid #d7d1e2; z-index:1; }
+#agencyPanel h2 { margin:3px 0; font-size:23px; }
+#agencyPanel h3 { margin:0 0 12px; font-size:18px; }
+#agencyPanel h3 span { font-weight:400; font-size:13px; }
+#agencyPanel h4 { margin:0 0 8px; font-size:16px; }
+#agencyPanel p { line-height:1.5; margin:8px 0 12px; }
+#agencyBody { display:grid; gap:18px; padding:22px; }
+#agencyBody section { padding:18px; border:1px solid #d9d3e3; border-radius:12px; background:#fff; }
+#agencyPanel button, #agencyPanel select { font:inherit; border:1px solid #bdb4cd; border-radius:8px; padding:10px 13px; background:#ede9f4; color:#393147; cursor:pointer; }
+#agencyPanel button:disabled { opacity:.5; cursor:not-allowed; }
+#agencyPanel :focus-visible { outline:3px solid #7755b9; outline-offset:3px; }
+.agency-offer { border-top:1px solid #ded8e7; padding:16px 0 5px; }
+.agency-actions { display:flex; gap:10px; }
+.agency-deadline { font-size:13px; color:#76501c; }
+.agency-refusal { color:#983f3c; }
+.agency-empty { color:#716981; }
+#agencyPolicy { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+#agencyPolicy label { display:grid; gap:7px; }
+#agencyPolicy button { grid-column:1 / -1; justify-self:start; }
+#agencyStatus { position:sticky; bottom:0; padding:12px 22px; margin:0!important; background:#ece8f2; }
+#agencyStatus:empty { display:none; }
+@media(max-width:600px) { #agencyBody { padding:12px; } #agencyPanel > header { padding:14px; } #agencyPanel h2 { font-size:19px; } #agencyPolicy { grid-template-columns:1fr; } #agencyBtn { font-size:12px; padding:7px; } }
