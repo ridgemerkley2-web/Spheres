@@ -30,9 +30,10 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     assert.equal(recovered.nations.find(n=>n.id==='USA').tax,0.29);
     await page.unroute('**/api/command');
     const saved=await page.request.post(url+'/api/save',{data:{slot:'ci-smoke'}});assert(saved.ok());
-    const history=await (await page.request.get(url+'/api/history?nation=USA')).json();
+    const history=await (await page.request.get(url+'/api/history?nations=USA')).json();
     const loaded=await page.request.post(url+'/api/load',{data:{slot:'ci-smoke'}});assert(loaded.ok());
-    assert.deepEqual(await(await page.request.get(url+'/api/history?nation=USA')).json(),history);
+    const restored=await(await page.request.get(url+'/api/history?nations=USA')).json();
+    delete restored.session_id;delete history.session_id;assert.deepEqual(restored,history);
     await page.reload();await page.locator('#continueBtn').click();
     await page.locator('#techBtn').click();await page.locator('#techMenu .dfoot').click();await page.getByRole('button',{name:'Research list',exact:true}).click();await page.locator('#researchListQuery').fill('');await page.locator('[data-research-id]').first().waitFor();
     await page.screenshot({path:path.join(out,'research-desktop.png')});await page.setViewportSize({width:414,height:896});

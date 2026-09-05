@@ -25,7 +25,7 @@ def variant(source: Path) -> tuple[Path, dict]:
         im.save(buf, format="WEBP", quality=82, method=6, exact=True)
         encoded = buf.getvalue()
         # Never add bytes to already-small WebP sources.
-        if source.suffix.lower() == ".webp" and len(raw) < len(encoded) and max(original_size) <= 640:
+        if source.suffix.lower() == ".webp" and len(raw) < len(encoded) and original_size[0] <= 512 and original_size[1] <= 640:
             encoded = raw
         filename = source.stem.split("-leader-")[0] + "-" + hashlib.sha256(encoded).hexdigest()[:16] + ".webp"
         OUT.mkdir(parents=True, exist_ok=True)

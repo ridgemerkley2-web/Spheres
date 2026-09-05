@@ -1,5 +1,13 @@
 # Province economies — local review, 3 September 2026
 
+> **Current 0.6 amendment:** the historical implementation notes below describe
+> their original revision. Research Centers now perform funded, input-consuming
+> prototype work (see INVESTMENT_COMPLETION_AUDIT.md). Fresh campaigns use sourced
+> broad sector profiles and bounded provincial density weights (SECTOR_PROFILES.md).
+> Browser military rules pause occupied/contested located extraction and industry
+> (MILITARY_OPERATIONS.md). Old verification counts are historical evidence;
+> the release verification report supplies current results.
+
 Ridge approved a worldwide GDP foundation: every country has an economic
 composition, its mapped provinces have local accounts, and the current project
 systems appear in those accounts. This work remains local until review.
