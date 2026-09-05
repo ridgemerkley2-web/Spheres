@@ -27,7 +27,7 @@ and output shape. Seeds must be distinct. The configured rules are saved per run
 | import_dependent_industry | Japan; no policy commands; transcribed industrial economy and import exposure |
 | enrolled_budget | USA; renew the unchanged inherited annual ministry allocations and default department shares through the ordinary budget command |
 | investment_program | USA; the same inherited annual budget as enrolled_budget, then one annual project attempt from the existing deterministic investment recommendation; pay normal political and construction costs and wait for real inputs |
-| supply_disruption | Japan; observe paid spot imports during January 1990, then on 1 February attempt one ordinary priced sanction against the largest supplier by cumulative import value, with nation-id ordering breaking ties; no political-capital grant or forced success |
+| supply_disruption | Japan; observe paid spot imports during January 1990, then on 1 February attempt one ordinary priced sanction against the largest supplier by cumulative import value, with nation-id ordering breaking ties; if there is no supplier, issue the ordinary LandOnly freight-policy command to close overseas route eligibility; no grant or forced success |
 
 The two political-capital overrides are explicitly controlled fixtures, not new
 campaign starting grants or simulated historical facts. Policy goes through normal
@@ -56,7 +56,10 @@ counts, conserved deployed/reserve force, arsenal inventory value, magazine
 coverage and shortage-days, cargo delay-days, dated technology acquisitions, and
 observer/simulation runtime. The summary retains each attempted command, its
 outcome and actual political-capital charge; unavailable investment recommendations
-and an absent January supplier are distinct from refused commands.
+are distinct from refused commands. The disruption event records which intervention
+was used. The sanction costs the existing 6 political capital; route policy has
+its existing zero price. An idle Japan need not have bought strategic commodities
+in January, so the fallback closes routes without inventing a trading relationship.
 
 Civilian capital authority utilization is cumulative freshly expensed capital
 spending divided by cumulative accrued authority in Infrastructure departments
@@ -117,3 +120,15 @@ explicit. Nightly/manual CI runs the eleven scenarios separately and includes a
 matched balanced-budget panel with economic AI enabled. The earlier instrument
 smoke used physical freight off and predates final integration; it is not the
 release balance result. The release evidence lists the actual executed panels.
+
+CI runs one world per `(scenario, seed, economic_ai)` job and uploads uniquely
+named schema-2 artifacts, then combines completed artifacts with:
+
+```text
+python tools/calibration/aggregate.py --input-dir artifacts/panels --output artifacts/daily-merged.csv
+```
+
+The standard-library aggregator checks annual completeness, duplicate seeds and
+matching years/rules before reporting per-scenario/per-AI sample counts and `n-1`
+variance. It can combine finished per-seed jobs without re-running their worlds.
+Missing legacy metrics remain unavailable and legacy instruments are labeled.

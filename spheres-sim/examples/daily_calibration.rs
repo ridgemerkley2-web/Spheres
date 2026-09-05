@@ -14,7 +14,7 @@ const SCENARIOS:[(&str,NationId,&str);11]=[
     ("import_dependent_industry",NationId::Japan,"Japan; no policy commands; transcribed industry and import exposure"),
     ("enrolled_budget",NationId::USA,"USA; renew unchanged inherited annual ministry allocations with default department shares through normal priced commands"),
     ("investment_program",NationId::USA,"USA; unchanged inherited annual department plan and one annual project attempt from the existing deterministic investment candidate; normal prices, funding and material gates; no grants"),
-    ("supply_disruption",NationId::Japan,"Japan; observe January1990 paid spot imports; on February1 attempt one priced sanction against largest supplier by cumulative paid import value (nation-id tie break); no forced success or grants"),
+    ("supply_disruption",NationId::Japan,"Japan; observe January1990 paid spot imports; on February1 attempt one priced sanction against largest supplier by paid value (nation-id tie break), or ordinary LandOnly route policy if none; record actual intervention and its normal price; no grants"),
 ];
 #[derive(Clone,serde::Serialize)]
 struct Row {
@@ -158,7 +158,10 @@ fn policy(w:&mut WorldState,scenario:&str,initial:&[f64;BUDGET_MINISTRIES],count
         match economic_ai::candidate(w,id) {
             Ok((district,kind,reason))=>{
                 counts.events.push(serde_json::json!({"date":date(clock::absolute_day(w)),"investment_recommendation":reason,"district":district,"kind":kind}));
-                command(w,&Command::StartProject{nation:id,district,kind},counts);
+                let project=if kind==production::ProjectKind::StarterIndustry {
+                    Command::StartIndustryModule{nation:id,capacity_micros:economic_ai::module_order_capacity(w,id,&district),district}
+                } else {Command::StartProject{nation:id,district,kind}};
+                command(w,&project,counts);
             }
             Err(reason)=>counts.events.push(serde_json::json!({"date":date(clock::absolute_day(w)),"investment_unavailable":reason})),
         }
@@ -169,8 +172,10 @@ fn disruption(w:&mut WorldState,scenario:&str,c:&mut Counts) {
     c.disruption_attempted=true;let id=w.player.unwrap();
     let supplier=c.imports.iter().filter(|(_,value)|**value>0.0)
         .max_by(|(a,av),(b,bv)|av.total_cmp(bv).then_with(||b.cmp(a))).map(|(id,value)|(*id,*value));
-    c.events.push(serde_json::json!({"date":date(clock::absolute_day(w)),"disruption_supplier":supplier.map(|s|s.0),"observed_january_import_bn":supplier.map(|s|s.1),"selection":"largest paid January spot-import value; lowest nation id on tie; absent supplier means no disruption"}));
-    if let Some((target,_))=supplier {command(w,&Command::Sanction{imposer:id,target},c);}
+    c.events.push(serde_json::json!({"date":date(clock::absolute_day(w)),"disruption_supplier":supplier.map(|s|s.0),"observed_january_import_bn":supplier.map(|s|s.1),"selection":"largest paid January spot-import value; lowest nation id on tie; absent supplier uses the ordinary LandOnly route-closure command, whose current model price is0PC"}));
+    let intervention=if let Some((target,_))=supplier {Command::Sanction{imposer:id,target}}
+        else {Command::SetLogisticsPolicy{nation:id,policy:spheres_sim::logistics::RoutePolicy::LandOnly}};
+    command(w,&intervention,c);
 }
 
 #[cfg(test)]
@@ -223,7 +228,10 @@ mod tests {
         assert!(w.is_sanctioning(NationId::Japan,NationId::USA));
         assert_eq!(w.nation(NationId::Japan).political_capital,pc-6.0);
         let once=spheres_sim::save(&w);disruption(&mut w,"supply_disruption",&mut c);assert_eq!(spheres_sim::save(&w),once);
-        let mut empty=Counts::default();let before=spheres_sim::save(&w);disruption(&mut w,"supply_disruption",&mut empty);assert_eq!(spheres_sim::save(&w),before);
+        let mut empty=Counts::default();let pc=w.nation(NationId::Japan).political_capital;disruption(&mut w,"supply_disruption",&mut empty);
+        assert_eq!(spheres_sim::logistics::policy_for(&w,NationId::Japan),spheres_sim::logistics::RoutePolicy::LandOnly);
+        assert_eq!(w.nation(NationId::Japan).political_capital,pc,"route policy has its existing zero price");
+        assert!(spheres_sim::logistics::plan(&w,NationId::Australia,NationId::Japan).is_err(),"fallback must actually close an overseas route");
     }
     #[test]
     fn observers_classify_outcomes_and_settled_spending_without_double_counting_rates() {
