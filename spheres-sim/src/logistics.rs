@@ -28,6 +28,9 @@ use crate::world::{NationId, WorldState};
 
 pub const EMBEDDED_NETWORK: &str = include_str!("../data/logistics_network.json");
 const EPS: f64 = 1e-9;
+/// Two optional alternate attempts can each settle at most this many nodes.
+/// The nominal route remains available when the bounded search cannot improve it.
+const CONGESTION_SEARCH_NODE_LIMIT: usize = 1024;
 
 #[derive(Clone, Copy, Debug, Default, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 #[serde(rename_all = "snake_case")]
@@ -77,6 +80,9 @@ pub struct RoutePlan {
     pub chokepoints: Vec<String>,
     /// Stable edge keys. Public for save continuity; clients may ignore it.
     pub segments: Vec<String>,
+    /// A dispatch-only explanation; absent from nominal routes and old saves.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub dispatch_note: Option<String>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -205,6 +211,7 @@ struct Network {
     /// Integer endpoints preserve authored edge order without repeated string
     /// tree lookups at every Dijkstra relaxation.
     endpoints: Vec<(usize, usize)>,
+    edge_keys: Vec<String>,
 }
 
 fn network() -> &'static Network {
@@ -237,6 +244,7 @@ fn network() -> &'static Network {
             a.sort_unstable();
         }
         Network {
+            edge_keys: f.edges.iter().map(edge_key).collect(),
             nodes: f.nodes,
             index,
             edges: f.edges,
@@ -345,6 +353,11 @@ fn district_passable(w: &WorldState, node: &Node, seller: NationId, buyer: Natio
     owner_passable(w, effective_owner(w, &node.id, owner), seller, buyer)
 }
 
+fn freight_controller(w: &WorldState, district: &str) -> Option<NationId> {
+    if w.rules.military_operations { crate::control::controller(w, district) }
+    else { w.districts.get(district).map(|&owner| effective_owner(w, district, owner)) }
+}
+
 fn route_open(
     w: &WorldState,
     seller: NationId,
@@ -362,11 +375,27 @@ fn route_open(
     if statecraft::belligerents(w, seller, buyer) {
         return Err("War closed the route.".into());
     }
+    if w.rules.military_operations && (route.nodes.first().is_none_or(|n| !crate::control::can_operate(w, seller, &n.id))
+        || route.nodes.last().is_none_or(|n| !crate::control::can_operate(w, buyer, &n.id))) {
+        return Err("A booked freight endpoint is no longer under its sponsoring government's ownership and control.".into());
+    }
+    let mut permissions = vec![None; if w.rules.military_operations { crate::nations::nation_count() } else { 0 }];
     for n in &route.nodes {
         let Some(i) = network().index.get(&n.id) else {
             return Err("The saved route no longer exists.".into());
         };
-        if !district_passable(w, &network().nodes[*i], seller, buyer) {
+        let node = &network().nodes[*i];
+        let passable = if w.rules.military_operations && node.kind == "district" {
+            freight_controller(w, &node.id).is_some_and(|owner| {
+                if let Some(allowed) = permissions[owner.index()] { allowed }
+                else {
+                    let allowed = owner_passable(w, owner, seller, buyer);
+                    permissions[owner.index()] = Some(allowed);
+                    allowed
+                }
+            })
+        } else { district_passable(w, node, seller, buyer) };
+        if !passable {
             return Err(format!("Transit through {} is closed.", n.name));
         }
     }
@@ -448,6 +477,11 @@ pub(crate) struct ClearingRoutes {
     owned_nodes: Vec<Vec<usize>>,
     effective_owners: Vec<Option<NationId>>,
     trees: BTreeMap<(NationId, RoutePolicy, Vec<bool>), SearchTree>,
+    /// Infrastructure and calendar cannot change during one spot clearing.
+    capacities: Vec<f64>,
+    /// A deterministic gameplay search budget for one complete spot clearing.
+    /// Budget exhaustion keeps the nominal route; it never changes capacity.
+    search_nodes_left: usize,
 }
 
 struct SearchTree {
@@ -465,10 +499,9 @@ impl ClearingRoutes {
                 owned_nodes[owner.index()].push(i);
             }
         }
-        let effective_owners = net.nodes.iter().map(|n| {
-            w.districts.get(&n.id).map(|&owner| effective_owner(w, &n.id, owner))
-        }).collect();
-        Self { owned_nodes, effective_owners, trees: BTreeMap::new() }
+        let effective_owners = net.nodes.iter().map(|n| freight_controller(w, &n.id)).collect();
+        let capacities = if w.rules.military_operations { net.edges.iter().map(|e| segment_capacity(w, e).0).collect() } else { vec![] };
+        Self { owned_nodes, effective_owners, trees: BTreeMap::new(), capacities, search_nodes_left: 32_768 }
     }
 
     fn plan(&mut self, w: &WorldState, seller: NationId, buyer: NationId) -> Result<RoutePlan, String> {
@@ -539,6 +572,12 @@ impl ClearingRoutes {
 }
 
 fn plan_impl(w: &WorldState, seller: NationId, buyer: NationId, memoize: bool) -> Result<RoutePlan, String> {
+    plan_search(w, seller, buyer, memoize, None, None)
+}
+
+fn plan_search(w: &WorldState, seller: NationId, buyer: NationId, memoize: bool,
+    capacity: Option<(&BTreeMap<String, f64>, f64, Option<&[f64]>)>,
+    mut search_budget: Option<&mut usize>) -> Result<RoutePlan, String> {
     if seller == buyer {
         return Err("Domestic freight does not need an international route.".into());
     }
@@ -566,8 +605,7 @@ fn plan_impl(w: &WorldState, seller: NationId, buyer: NationId, memoize: bool) -
         if let Some(result) = node_pass[i] { return result; }
         let node = &net.nodes[i];
         let result = if node.kind != "district" { true }
-        else if let Some(owner) = w.districts.get(&node.id).copied() {
-            let owner = effective_owner(w, &node.id, owner);
+        else if let Some(owner) = freight_controller(w, &node.id) {
             if let Some(result) = owner_pass[owner.index()] { result }
             else {
                 let result = owner_passable(w, owner, seller, buyer);
@@ -603,17 +641,31 @@ fn plan_impl(w: &WorldState, seller: NationId, buyer: NationId, memoize: bool) -
         q.push(Visit { cost: 0, node: s });
     }
     let mut finish = None;
+    let mut settled_nodes = 0;
     while let Some(Visit { cost, node }) = q.pop() {
         if cost != dist[node] {
             continue;
+        }
+        if let Some(left) = search_budget.as_mut() {
+            if **left == 0 { break; }
+            **left -= 1;
         }
         if goals.contains(&node) {
             finish = Some(node);
             break;
         }
+        if capacity.is_some() {
+            settled_nodes += 1;
+            if settled_nodes >= CONGESTION_SEARCH_NODE_LIMIT { break; }
+        }
         for &ei in &net.adj[node] {
             let e = &net.edges[ei];
             let (a, b) = if memoize { net.endpoints[ei] } else { (net.index[&e.a], net.index[&e.b]) };
+            if let Some((used, minimum, capacities)) = capacity {
+                let limit = capacities.map_or_else(|| segment_capacity(w, e).0, |v| v[ei]);
+                let remaining = limit - used.get(&net.edge_keys[ei]).copied().unwrap_or(0.0);
+                if remaining < minimum { continue; }
+            }
             let next = if a == node { b } else { a };
             if policy == RoutePolicy::LandOnly
                 && (e.kind == "sea" || net.nodes[next].kind == "gateway")
@@ -716,8 +768,12 @@ fn assemble_plan(w: &WorldState, mut at: usize, prev: &[Option<(usize, usize)>])
         bottleneck: bottleneck.1,
         chokepoints: chokes.into_iter().collect(),
         segments,
+        dispatch_note: None,
     })
 }
+
+#[path = "freight_routing.rs"]
+mod freight_routing;
 
 fn tonnes_per_unit(c: Commodity) -> f64 {
     match c.unit() {
@@ -762,6 +818,8 @@ pub fn reserve_freight(
         Err(reason) => return refused(&reason),
     };
     w.logistics.route_cache.insert(key, route.clone());
+    let (route, alternate) = freight_routing::select(w, seller, buyer, route,
+        requested * tonnes_per_unit, &w.logistics.usage_tonnes, None, None);
     let remaining = route.segments.iter().map(|segment| {
         (route_segment_capacity(w, segment).unwrap_or(route.capacity_tonnes)
             - w.logistics.usage_tonnes.get(segment).copied().unwrap_or(0.0)).max(0.0)
@@ -772,8 +830,8 @@ pub fn reserve_freight(
     for segment in &route.segments {
         *w.logistics.usage_tonnes.entry(segment.clone()).or_default() += quantity * tonnes_per_unit;
     }
-    Dispatch { quantity, route: Some(route), reason: (quantity < requested).then(||
-        "Shared freight capacity is committed; the remaining lot waits for another day.".into()) }
+    let reason = freight_routing::dispatch_reason(w, alternate, quantity < requested, &route);
+    Dispatch { quantity, route: Some(route), reason }
 }
 
 /// Saved manufactured cargo follows exactly the raw-cargo permission checks.
@@ -790,19 +848,20 @@ pub fn dispatch(
     source: ShipmentSource,
     contract: Option<u32>,
 ) -> Dispatch {
-    dispatch_impl(w, seller, buyer, commodity, requested, source, contract, None)
+    dispatch_impl(w, seller, buyer, commodity, requested, source, contract, None, None)
 }
 
 pub(crate) fn dispatch_in_clearing(
     w: &mut WorldState, seller: NationId, buyer: NationId, commodity: Commodity,
     requested: f64, routes: &mut ClearingRoutes,
 ) -> Dispatch {
-    dispatch_impl(w, seller, buyer, commodity, requested, ShipmentSource::Spot, None, Some(routes))
+    dispatch_impl(w, seller, buyer, commodity, requested, ShipmentSource::Spot, None, Some(routes), None)
 }
 
 fn dispatch_impl(
     w: &mut WorldState, seller: NationId, buyer: NationId, commodity: Commodity,
-    requested: f64, source: ShipmentSource, contract: Option<u32>, routes: Option<&mut ClearingRoutes>,
+    requested: f64, source: ShipmentSource, contract: Option<u32>, mut routes: Option<&mut ClearingRoutes>,
+    preplanned: Option<Result<RoutePlan, String>>,
 ) -> Dispatch {
     if !enabled(w) {
         return Dispatch {
@@ -831,17 +890,18 @@ fn dispatch_impl(
     }
     let policy = policy_for(w, buyer);
     let key = (seller, buyer, policy);
-    let route = w
+    let frozen = preplanned.is_some();
+    let route = preplanned.unwrap_or_else(|| w
         .logistics
         .route_cache
         .get(&key)
         .cloned()
         .filter(|r| route_open(w, seller, buyer, r).is_ok())
         .map(Ok)
-        .unwrap_or_else(|| match routes {
+        .unwrap_or_else(|| match routes.as_mut() {
             Some(routes) => routes.plan(w, seller, buyer),
             None => plan(w, seller, buyer),
-        });
+        }));
     let route = match route {
         Ok(route) => route,
         Err(reason) => return Dispatch {
@@ -850,7 +910,15 @@ fn dispatch_impl(
             reason: Some(reason),
         },
     };
-    w.logistics.route_cache.insert(key, route.clone());
+    if !frozen { w.logistics.route_cache.insert(key, route.clone()); }
+    let (route, alternate) = if frozen { (route, false) } else {
+        let (capacities, budget) = match routes.as_mut() {
+            Some(r) if !r.capacities.is_empty() => (Some(r.capacities.as_slice()), Some(&mut r.search_nodes_left)),
+            _ => (None, None),
+        };
+        freight_routing::select(w, seller, buyer, route, requested * tonnes_per_unit(commodity), &w.logistics.usage_tonnes,
+            capacities, budget)
+    };
     if requested == 0.0 {
         return Dispatch {
             quantity: 0.0,
@@ -871,7 +939,9 @@ fn dispatch_impl(
         return Dispatch {
             quantity: 0.0,
             route: Some(route),
-            reason: Some("Route capacity is fully committed for this tick.".into()),
+            reason: Some(if w.rules.military_operations {
+                "No available freight route was found for this lot; the remaining goods wait for the next settlement."
+            } else { "Route capacity is fully committed for this tick." }.into()),
         };
     }
     let tonnes = quantity * tonnes_per_unit(commodity);
@@ -898,13 +968,36 @@ fn dispatch_impl(
     });
     Dispatch {
         quantity,
-        route: Some(route),
-        reason: if quantity + EPS < requested {
+        route: Some(route.clone()),
+        reason: if w.rules.military_operations {
+            freight_routing::dispatch_reason(w, alternate, quantity + EPS < requested, &route)
+        } else if quantity + EPS < requested {
             Some("The route moved only what its shared freight capacity could carry.".into())
         } else {
             None
         },
     }
+}
+
+/// Execute an atomic contract service fraction against frozen route choices.
+/// The resource ledger owns stock/cash; this function reserves capacity only.
+pub(crate) fn dispatch_bundle(w: &mut WorldState,
+    legs: &[(NationId, NationId, Commodity, f64)], stock_fraction: f64, contract: u32,
+) -> (f64, Vec<Dispatch>) {
+    let bundle = freight_routing::prepare_bundle(w, legs, &w.logistics.usage_tonnes);
+    let service = stock_fraction.clamp(0.0, 1.0).min(bundle.ratio);
+    let mut dispatches = Vec::with_capacity(legs.len());
+    for (&(seller, buyer, commodity, quantity), route) in legs.iter().zip(bundle.routes) {
+        let alternate = route.as_ref().is_ok_and(|r| r.dispatch_note.is_some());
+        let mut dispatched = dispatch_impl(w, seller, buyer, commodity, quantity * service,
+            ShipmentSource::Contract, Some(contract), None, Some(route));
+        if alternate && dispatched.quantity > 0.0 {
+            dispatched.reason = dispatched.route.as_ref().and_then(|route|
+                freight_routing::dispatch_reason(w, true, service < 1.0, route));
+        }
+        dispatches.push(dispatched);
+    }
+    (bundle.ratio, dispatches)
 }
 
 fn route_segment_capacity(w: &WorldState, key: &str) -> Option<f64> {
@@ -921,6 +1014,9 @@ fn route_segment_capacity(w: &WorldState, key: &str) -> Option<f64> {
 pub fn bundle_capacity_ratio(w: &WorldState, legs: &[(NationId, NationId, Commodity, f64)]) -> f64 {
     if !enabled(w) {
         return 1.0;
+    }
+    if w.rules.military_operations {
+        return freight_routing::prepare_bundle(w, legs, &w.logistics.usage_tonnes).ratio;
     }
     let mut demand: BTreeMap<String, f64> = BTreeMap::new();
     for &(seller, buyer, commodity, quantity) in legs {
@@ -967,6 +1063,7 @@ pub fn fresh_contract_capacity_ratios(
     if !enabled(w) {
         return bundles.iter().map(|(id, _)| (*id, 1.0)).collect();
     }
+    if w.rules.military_operations { return freight_routing::fresh_contract_ratios(w, bundles); }
     let mut ordered = bundles.to_vec();
     ordered.sort_by_key(|(id, _)| *id);
     let mut used: BTreeMap<String, f64> = BTreeMap::new();
@@ -1033,6 +1130,9 @@ pub fn begin_month(w: &mut WorldState) -> Vec<Cargo> {
     let old = std::mem::take(&mut w.logistics.cargo);
     let mut keep = vec![];
     let mut arrivals = vec![];
+    // Repeated consignments may share a booked path. Control and permissions
+    // do not change during this arrival pass, so one exact path check suffices.
+    let mut open_routes: BTreeMap<(NationId, NationId, Vec<String>), Result<(), String>> = BTreeMap::new();
     for mut c in old {
         if daily && c.due_day.is_none() {
             // Legacy freight arrived at the END of due_month: preserve that
@@ -1046,6 +1146,10 @@ pub fn begin_month(w: &mut WorldState) -> Vec<Cargo> {
         let in_transit = if daily { c.due_day.is_some_and(|due| due > today) }
             else { c.due_month > now };
         if in_transit {
+            if w.rules.military_operations {
+                let key = (c.seller, c.buyer, c.route.nodes.iter().map(|n| n.id.clone()).collect());
+                c.hold_reason = open_routes.entry(key).or_insert_with(|| route_open(w, c.seller, c.buyer, &c.route)).clone().err();
+            }
             keep.push(c);
             continue;
         }
@@ -1555,5 +1659,206 @@ mod tests {
         );
         assert_eq!(d.quantity, 3.);
         assert!(w.logistics.is_empty());
+    }
+
+    #[test]
+    fn military_routing_uses_an_alternate_after_the_fastest_corridor_fills() {
+        let mut w = world();
+        w.rules.daily_simulation = true;
+        w.rules.military_operations = true;
+        set_policy(&mut w, NationId::France, RoutePolicy::LandOnly).unwrap();
+        begin_month(&mut w);
+        let first = dispatch(&mut w, NationId::Germany, NationId::France,
+            Commodity::Coal, 1e8, ShipmentSource::Spot, None);
+        let second = dispatch(&mut w, NationId::Germany, NationId::France,
+            Commodity::Iron, 1.0, ShipmentSource::Spot, None);
+        assert!(second.quantity > 0.5, "an open alternate corridor must carry freight, got {}", second.quantity);
+        assert_ne!(first.route.unwrap().segments, second.route.unwrap().segments);
+        for (edge, used) in &w.logistics.usage_tonnes {
+            assert!(*used <= route_segment_capacity(&w, edge).unwrap() + EPS);
+        }
+    }
+
+    #[test]
+    fn military_routing_all_search_paths_refuse_a_contested_endpoint() {
+        let mut w = world();
+        w.rules.military_operations = true;
+        crate::war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+        let cid = w.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+        let districts: Vec<_> = w.districts.iter().filter(|(_,n)| **n == NationId::Kuwait).map(|(d,_)| d.clone()).collect();
+        for district in districts { w.conflict_mut(cid).unwrap().front.insert(district, 0.0); }
+        let original = plan_impl(&w, NationId::USA, NationId::Kuwait, false);
+        assert!(original.is_err());
+        assert_eq!(plan(&w, NationId::USA, NationId::Kuwait), original);
+        let mut trees = ClearingRoutes::new(&w);
+        assert_eq!(trees.plan(&w, NationId::USA, NationId::Kuwait), original);
+    }
+
+    #[test]
+    fn military_routing_alternates_replay_after_save_and_keep_actual_arrival_dates() {
+        let mut w = world();
+        w.rules.daily_simulation = true;
+        w.rules.military_operations = true;
+        set_policy(&mut w, NationId::France, RoutePolicy::LandOnly).unwrap();
+        begin_month(&mut w);
+        dispatch(&mut w, NationId::Germany, NationId::France, Commodity::Coal, 1e8, ShipmentSource::Spot, None);
+        let mut resumed = crate::load(&crate::save(&w)).unwrap();
+        // The live world's nominal route cache is populated; a save has none.
+        let live = dispatch(&mut w, NationId::Germany, NationId::France, Commodity::Iron, 1.0, ShipmentSource::Spot, None);
+        let replay = dispatch(&mut resumed, NationId::Germany, NationId::France, Commodity::Iron, 1.0, ShipmentSource::Spot, None);
+        assert_eq!(live, replay);
+        assert!(live.route.as_ref().unwrap().dispatch_note.is_some());
+        assert_eq!(crate::save(&w), crate::save(&resumed));
+        let cargo = w.logistics.cargo.last().unwrap();
+        assert_eq!(cargo.due_day.unwrap() - cargo.dispatched_day.unwrap(), cargo.route.estimated_days as i32);
+        let saved_note = cargo.route.dispatch_note.clone();
+        let due = cargo.due_day.unwrap();
+        let id = cargo.id;
+        while crate::clock::absolute_day(&w) < due {
+            crate::clock::advance_date(&mut w);
+            let arrivals = begin_month(&mut w);
+            if crate::clock::absolute_day(&w) < due { assert!(arrivals.iter().all(|c| c.id != id)); }
+            else { assert_eq!(arrivals.iter().find(|c| c.id == id).unwrap().route.dispatch_note, saved_note); }
+        }
+        assert!(begin_month(&mut w).is_empty());
+    }
+
+    #[test]
+    fn military_routing_contract_forecasts_and_frozen_barter_legs_share_capacity() {
+        let mut w = world();
+        w.rules.daily_simulation = true;
+        w.rules.military_operations = true;
+        set_policy(&mut w, NationId::France, RoutePolicy::LandOnly).unwrap();
+        begin_month(&mut w);
+        let legs = vec![(NationId::Germany, NationId::France, Commodity::Iron, 100_000.0),
+            (NationId::Germany, NationId::France, Commodity::Copper, 50_000.0)];
+        let before = crate::save(&w);
+        let forecast = fresh_contract_capacity_ratios(&w, &[(2, legs.clone()), (1, legs.clone())]);
+        assert_eq!(crate::save(&w), before, "forecast is read-only");
+        for id in 1..=2 {
+            let ratio = bundle_capacity_ratio(&w, &legs);
+            let (actual, dispatches) = dispatch_bundle(&mut w, &legs, 1.0, id);
+            assert!((actual - ratio).abs() < 1e-12);
+            assert!((forecast[&id] - actual).abs() < 1e-9);
+            assert!(actual > 0.0 && actual < 1.0);
+            for (d, leg) in dispatches.iter().zip(&legs) {
+                assert!((d.quantity / leg.3 - actual).abs() < 1e-12, "barter legs have one service fraction");
+            }
+        }
+        for (edge, used) in &w.logistics.usage_tonnes {
+            assert!(*used <= route_segment_capacity(&w, edge).unwrap() + 1e-8);
+        }
+        assert!(w.logistics.cargo.iter().any(|c| c.route.dispatch_note.is_some()));
+    }
+
+    #[test]
+    fn military_routing_goods_use_alternates_and_an_exhausted_graph_moves_nothing() {
+        let mut w = world();
+        w.rules.daily_simulation = true;
+        w.rules.military_operations = true;
+        set_policy(&mut w, NationId::France, RoutePolicy::LandOnly).unwrap();
+        begin_month(&mut w);
+        dispatch(&mut w, NationId::Germany, NationId::France, Commodity::Coal, 1e8, ShipmentSource::Spot, None);
+        let goods = reserve_freight(&mut w, NationId::Germany, NationId::France, 1.0, 1.0);
+        assert_eq!(goods.quantity, 1.0);
+        assert!(goods.reason.unwrap().contains("alternate"));
+        assert!(goods.route.unwrap().dispatch_note.is_some());
+        for (edge, used) in &w.logistics.usage_tonnes {
+            assert!(*used <= route_segment_capacity(&w, edge).unwrap() + EPS);
+        }
+        for edge in &network().edges { w.logistics.usage_tonnes.insert(edge_key(edge), segment_capacity(&w, edge).0); }
+        let before = crate::save(&w);
+        let blocked = dispatch(&mut w, NationId::Germany, NationId::France, Commodity::Iron, 1.0, ShipmentSource::Spot, None);
+        assert_eq!(blocked.quantity, 0.0);
+        assert!(blocked.reason.unwrap().contains("next settlement"));
+        assert_eq!(crate::save(&w), before, "no goods, money or cargo are created");
+        w.sanctions.push((NationId::Germany, NationId::France));
+        assert!(dispatch(&mut w, NationId::Germany, NationId::France, Commodity::Iron, 1.0, ShipmentSource::Spot, None).route.is_none());
+        set_policy(&mut w, NationId::USA, RoutePolicy::LandOnly).unwrap();
+        assert!(reserve_freight(&mut w, NationId::Japan, NationId::USA, 1.0, 1.0).route.is_none());
+    }
+
+    #[test]
+    fn military_routing_warns_of_a_hold_before_due_without_rebooking_paid_cargo() {
+        let mut w = world();
+        w.rules.daily_simulation = true;
+        w.rules.military_operations = true;
+        begin_month(&mut w);
+        dispatch(&mut w, NationId::Japan, NationId::USA, Commodity::Iron, 1.0, ShipmentSource::Spot, None);
+        let booked = w.logistics.cargo[0].clone();
+        assert!(booked.route.estimated_days > 2);
+        w.sanctions.push((NationId::USA, NationId::Japan));
+        crate::clock::advance_date(&mut w);
+        assert!(begin_month(&mut w).is_empty());
+        assert!(w.logistics.cargo[0].hold_reason.as_ref().unwrap().contains("sanctions"));
+        assert_eq!(w.logistics.cargo[0].route, booked.route);
+        assert_eq!(w.logistics.cargo[0].due_day, booked.due_day);
+        w.sanctions.clear();
+        crate::clock::advance_date(&mut w);
+        assert!(begin_month(&mut w).is_empty());
+        assert!(w.logistics.cargo[0].hold_reason.is_none());
+        assert_eq!(w.logistics.cargo[0].id, booked.id);
+        assert_eq!(w.logistics.cargo[0].quantity, booked.quantity);
+    }
+
+    #[test]
+    fn military_routing_replans_a_cached_departure_after_endpoint_cession() {
+        let mut w = world();
+        w.rules.daily_simulation = true;
+        w.rules.military_operations = true;
+        begin_month(&mut w);
+        let original = dispatch(&mut w, NationId::Germany, NationId::France, Commodity::Iron, 1.0, ShipmentSource::Spot, None).route.unwrap();
+        let source = original.nodes.first().unwrap().id.clone();
+        w.districts.insert(source.clone(), NationId::France);
+        assert!(route_open(&w, NationId::Germany, NationId::France, &original).is_err());
+        let next = dispatch(&mut w, NationId::Germany, NationId::France, Commodity::Iron, 1.0, ShipmentSource::Spot, None);
+        assert!(next.quantity > 0.0);
+        assert_ne!(next.route.unwrap().nodes.first().unwrap().id, source);
+        crate::clock::advance_date(&mut w);
+        begin_month(&mut w);
+        assert!(w.logistics.cargo.iter().find(|c| c.route == original).unwrap().hold_reason.is_some());
+    }
+
+    #[test]
+    #[ignore = "bounded observer of the actual daily world; no timing threshold"]
+    fn military_routing_daily_market_profile() {
+        let days = std::env::var("SPHERES_MILITARY_PROFILE_DAYS").ok()
+            .and_then(|v| v.parse::<u32>().ok()).unwrap_or(3).clamp(1, 45);
+        for modern in [false, true] {
+            let mut w = world();
+            w.rules.daily_simulation = true;
+            w.rules.military_operations = modern;
+            w.rules.production_system = true;
+            w.rules.manufacturing_system = true;
+            w.rules.economic_competition = true;
+            crate::starting_industry::enable_new_world(&mut w).unwrap();
+            crate::province_economy::enable(&mut w);
+            let started = std::time::Instant::now();
+            for _ in 0..days { crate::tick_day(&mut w, &[]); }
+            eprintln!("military_operations={modern} days={days} seconds={:.3} cargo={}", started.elapsed().as_secs_f64(), w.logistics.cargo.len());
+        }
+    }
+
+    #[test]
+    fn military_routing_search_budget_exhaustion_preserves_nominal_capacity() {
+        let mut w = world();
+        w.rules.daily_simulation = true;
+        w.rules.military_operations = true;
+        begin_month(&mut w);
+        let nominal = plan(&w, NationId::Germany, NationId::France).unwrap();
+        for edge in &nominal.segments {
+            w.logistics.usage_tonnes.insert(edge.clone(), route_segment_capacity(&w, edge).unwrap());
+        }
+        let mut routes = ClearingRoutes::new(&w);
+        routes.search_nodes_left = 1;
+        let before = crate::save(&w);
+        let d = dispatch_in_clearing(&mut w, NationId::Germany, NationId::France, Commodity::Iron, 1.0, &mut routes);
+        assert_eq!(routes.search_nodes_left, 0);
+        assert_eq!(d.quantity, 0.0);
+        assert_eq!(d.route, Some(nominal));
+        assert_eq!(crate::save(&w), before);
+        let retry = dispatch_in_clearing(&mut w, NationId::Germany, NationId::France, Commodity::Iron, 1.0, &mut routes);
+        assert_eq!(retry, d);
+        assert_eq!(routes.search_nodes_left, 0);
     }
 }

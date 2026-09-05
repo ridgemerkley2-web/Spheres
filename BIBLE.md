@@ -472,3 +472,10 @@ else's growth. `TECH_REFERENCE_REPAIR.md` defines the narrow correction. Initial
 stock weighting stays intact; only subsequent credited revelations are excluded
 from the runtime benchmark. This intentional daily and monthly model change
 requires an assessed new replay baseline, with existing calibration bars intact.
+## Adopted amendment — bounded congestion routing (2026-09-04)
+
+The approved military/logistics audit extension may choose a legal alternate
+freight route against the same shared physical capacity. Search is deterministic
+and bounded, with the original route as fallback. Barter legs freeze routes
+before one service fraction is charged. No extra stock, capacity, money or
+instant arrival is created. `MILITARY_OPERATIONS.md` records these boundaries.

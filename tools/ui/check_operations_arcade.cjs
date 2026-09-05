@@ -261,3 +261,14 @@ test('opening and closing operations resets map mode, modality and launch focus'
     assert.equal(restored,before+1);
   }
 });
+
+test('cargo keeps escaped diversion information alongside its booked date', () => {
+  const c=fixture();
+  c.cargo={...lane,id:4,quantity:2,due_day:'19 Jan 1990',route:{...lane.route,
+    dispatch_note:'Congestion required an alternate route: 7 days instead of 2. <script>'}};
+  const html=run(c,'logisticsCargoHtml(cargo,false)');
+  assert.match(html,/19 Jan 1990/);
+  assert.match(html,/7 days instead of 2/);
+  assert.match(html,/&lt;script&gt;/);
+  assert(!html.includes('<script>'));
+});

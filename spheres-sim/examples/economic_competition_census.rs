@@ -444,6 +444,7 @@ mod tests {
             bottleneck: "fixture".into(),
             chokepoints: vec![],
             segments: vec![],
+            dispatch_note: None,
         };
         let ledger = commerce::Commerce {
             cargo: vec![

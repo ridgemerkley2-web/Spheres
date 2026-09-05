@@ -87,3 +87,64 @@ Validation adds four real-module Node renderer/submission tests, two Rust web
 parser/state/load tests and the existing browser rule migration test. The 14
 existing operations UI tests, all nine military integration tests and workspace
 compilation pass. Full browser viewport coverage is an integration check.
+
+## Congestion-aware freight
+
+With military operations enabled, a dispatch first tries the normal route. If
+that route cannot carry the requested lot, two deterministic searches may find
+(1) a route that fits the whole lot or (2) one with more available capacity.
+Each search settles at most 1,024 graph nodes, using the existing integer travel
+costs and stable tie order. Failure or the bound leaves the original route and
+its available fraction. This is a bounded local improvement, not a global
+maximum-flow solver or a guarantee that every distant alternative is found.
+The same policy, diplomatic and physical-control restrictions apply throughout.
+
+Raw and manufactured goods reserve the existing shared edge ledger. A diversion
+creates one cargo on its actual route, with that route's travel time and an
+explanation retained through saves and displayed in the freight room. Unshipped
+goods remain at origin. Contract routes are frozen together before allocation;
+every barter leg and its payment retain one service fraction. Fresh contract
+forecasts use the same routing and capacity rules. Nothing is split in transit.
+
+Nominal paths remain cached independently of diversions, and capacity values are
+reused only within one spot clearing, whose infrastructure/calendar cannot
+change. Cargo permission checks may reuse an identical booked path during one
+arrival pass. Both are ephemeral, never save truth. Contested endpoints are
+rejected by original, memoized and shared-tree searches. Cession invalidates
+cached departures. Loaded cargo keeps its booked route and quantity; closures
+are visible before the due date, and arrival is held until that route reopens.
+No unknown mid-journey position is invented to teleport paid cargo elsewhere.
+
+Seven routing invariants cover alternates, capacity, all-land/sanctions refusal,
+save/cache parity, exact arrival dates, frozen bundle/forecast parity, early
+holds and cession. A resource-ledger regression checks two diverted barter
+contracts debit only their common service fractions. The first two routing
+regressions were watched fail before repair. An optional 1–45 day observer uses
+`SPHERES_MILITARY_PROFILE_DAYS` to measure actual daily worlds, without a timing
+threshold or any wall-clock input to simulation.
+
+Spot clearing has one additional deterministic budget of 32,768 settled nodes
+for alternate searches, consumed in the existing commodity/buyer/seller order.
+Once exhausted, later orders retain their nominal routes. This is a declared
+routing rule, not a time limit or an unsaved cache hit deciding gameplay. Both
+cached and uncached clearing paths use it; clearing is atomic and its daily
+completion is saved, so reload cannot obtain another budget for the same day.
+The exhaustion regression verifies unchanged capacity and no phantom cargo.
+The day-32 full-ledger regression compares cached clearing against a reloaded
+world with pure-read caches disabled and checks same-day idempotence.
+
+The 40-day debug observer measured 14.382 seconds with legacy military rules and
+15.755 seconds with the extension (6,109 versus 6,188 outstanding consignments).
+This replaced a 133.477-second intermediate result before the shared search
+budget. These are one-run development measurements, not statistically calibrated
+performance bars; later campaigns and release builds need the integration
+performance harness. The extension changes physical control and combat as well
+as routes, so the two final worlds are not expected to be identical.
+
+Final targeted validation: logistics 25 passed (two profile observers ignored),
+resource freight 7 passed, modern day-32 full-ledger parity 1 passed, commerce
+16 passed, military integration 9 passed, web logistics 4 passed, and Node
+operations/military UI 19 passed. `cargo check --workspace --all-targets` passes.
+No legacy regression assertions or calibration pins were modified. Integration
+owns the complete suite, actual browser viewport QA and later-year release
+performance sampling.

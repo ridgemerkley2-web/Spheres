@@ -1472,6 +1472,15 @@ fn post_market_flows(w: &mut WorldState) {
                 if o.6.is_some() { 0.0 }
                 else { ratios.get(&(o.1, o.3)).copied().unwrap_or(0.0) }
             }).fold(1.0_f64, f64::min);
+            if w.rules.military_operations {
+                let (capacity_fraction, dispatches) = crate::logistics::dispatch_bundle(w, &legs, stock_fraction, contract);
+                for (i, dispatched) in (start..end).zip(dispatches) {
+                    physical_supply_limited[i] = stock_fraction < 1.0 && stock_fraction <= capacity_fraction;
+                    if obligations[i].6.is_none() { physical_dispatches[i] = Some(dispatched); }
+                }
+                start = end;
+                continue;
+            }
             let capacity_fraction = crate::logistics::bundle_capacity_ratio(w, &legs);
             let service = stock_fraction.min(capacity_fraction);
             for i in start..end {
@@ -1762,7 +1771,9 @@ fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
             .map(|id| (id, crate::materials::resource_reserve(w, id))).collect()
     } else { BTreeMap::new() };
     let mut failed_paths: BTreeMap<(NationId, NationId), crate::logistics::Dispatch> = BTreeMap::new();
-    let mut route_search = (cache_pure_reads && crate::logistics::enabled(w))
+    // Modern clearing also owns a deterministic alternate-search budget;
+    // disabling pure-read caches must not disable that gameplay bound.
+    let mut route_search = ((cache_pure_reads || w.rules.military_operations) && crate::logistics::enabled(w))
         .then(|| crate::logistics::ClearingRoutes::new(w));
 
     for c in ALL.into_iter().filter(|c| *c != Commodity::Oil && c.tracked()) {
@@ -5792,6 +5803,29 @@ mod tests {
     }
 
     #[test]
+    fn modern_spot_search_budget_and_read_caches_preserve_every_saved_ledger() {
+        let mut w = world_1990(GameRules {
+            daily_simulation: true, economic_competition: true, production_system: true,
+            resource_market: true, manufacturing_system: true, logistics_routes: true,
+            physical_logistics: true, military_operations: true, ..GameRules::default()
+        });
+        crate::starting_industry::enable_new_world(&mut w).unwrap();
+        crate::province_economy::enable(&mut w);
+        for _ in 0..31 { crate::tick_day(&mut w, &[]); }
+        crate::programs::begin_day(&mut w);
+        crate::production::tick_day(&mut w);
+        post_market_flows(&mut w);
+        let mut plain = crate::load(&crate::save(&w)).unwrap();
+        clear_spot_market_impl(&mut w, true);
+        clear_spot_market_impl(&mut plain, false);
+        assert_eq!(crate::save(&w), crate::save(&plain), "budget, routes, cash, stocks, prices, audits and paid cargo must replay together");
+        assert!(!w.resources.market.as_ref().unwrap().fills.is_empty());
+        let before = crate::save(&w);
+        clear_spot_market_impl(&mut w, true);
+        assert_eq!(crate::save(&w), before, "a repeated clearing cannot obtain a fresh search or capacity budget");
+    }
+
+    #[test]
     fn daily_extraction_is_visible_immediately_and_totals_one_year() {
         for year in [1991, 1992] {
             let mut w = built(world_1990(GameRules {
@@ -8037,6 +8071,44 @@ mod tests {
         assert!((market_cash_bn(&w, buyer) - (100.0 - fractions[0])).abs() < 1e-8);
         assert_eq!(w.logistics.cargo.len(), 2);
         assert!(rows.iter().all(|a| a.delivered == 0.0));
+    }
+
+    #[test]
+    fn freight_modern_bundles_pay_only_the_common_service_fraction_after_diversion() {
+        let mut w = freight_world();
+        w.rules.military_operations = true;
+        w.rules.daily_simulation = true;
+        let (seller, buyer) = (code("Germany"), code("France"));
+        crate::logistics::set_policy(&mut w, buyer, crate::logistics::RoutePolicy::LandOnly).unwrap();
+        for c in [Commodity::Coal, Commodity::Copper] {
+            set_market_stock(w.resources.market.as_mut().unwrap(), seller, c, 1e8, 0.0);
+        }
+        set_market_cash(w.resources.market.as_mut().unwrap(), buyer, 100.0);
+        for id in [902, 903] {
+            freight_contract(&mut w, id, vec![
+                Leg::Commodity { c: Commodity::Coal, per_month: 100_000.0 },
+                Leg::Commodity { c: Commodity::Copper, per_month: 100_000.0 },
+            ], 12);
+        }
+        let mut loaded = crate::load(&crate::save(&w)).unwrap();
+        tick(&mut w);
+        tick(&mut loaded);
+        assert_eq!(crate::save(&w), crate::save(&loaded));
+        let market = w.resources.market.as_ref().unwrap();
+        let mut payment = 0.0;
+        for id in [902, 903] {
+            let rows: Vec<_> = market.shipment_audits.iter().filter(|a| a.contract == Some(id)).collect();
+            assert_eq!(rows.len(), 2);
+            let ratios: Vec<_> = rows.iter().map(|a| a.dispatched.unwrap() / a.requested).collect();
+            assert!(ratios[0] > 0.0 && ratios[0] < 1.0);
+            assert!((ratios[0] - ratios[1]).abs() < 1e-10);
+            payment += ratios[0] * crate::clock::month_fraction(&w);
+            assert!(rows.iter().all(|a| a.delivered == 0.0));
+        }
+        assert!((market_contract_spend(market, buyer) - payment).abs() < 1e-9);
+        assert!((market_cash_bn(&w, buyer) - (100.0 - payment)).abs() < 1e-8);
+        assert_eq!(w.logistics.cargo.len(), 4);
+        assert!(w.logistics.cargo.iter().any(|c| c.route.dispatch_note.is_some()));
     }
 
     #[test]

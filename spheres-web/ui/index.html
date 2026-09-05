@@ -14478,6 +14478,7 @@ function logisticsCargoHtml(cargo, arrived) {
     <div class="lane-meta">${rglyph(logisticsCommodity(cargo), stockHue(logisticsCommodity(cargo)))}${escText(logisticsCommodityName(cargo))} · cargo ${escText(cargo.id)}</div>
     <div class="lane-journey"><span>Load<b>${logisticsQuantity(quantity, cargo.unit || "")}</b></span><span>${arrived ? "Arrived" : "Due"}<b>${escText(logisticsCalendar(arrived ? (cargo.arrived_day || cargo.arrived_month || cargo.due_day || cargo.due_month) : (cargo.due_day || cargo.due_month)))}</b></span><span>Route<b>${escText(route ? route.mode.replace(/_/g," ") : "booked")}</b></span></div>
     ${cargo.hold_reason ? `<div class="lane-reason">${escText(cargo.hold_reason)}</div>` : ""}
+    ${route?.dispatch_note ? `<div class="lane-reason">${escText(route.dispatch_note)}</div>` : ""}
     ${route ? `<details class="operations-details"${LOGI.selected === id ? " open" : ""}><summary>Journey &amp; waypoints</summary><div class="route-thread">${logisticsDisplayNodes(route).map((node) => `<span>${escText(node.name || node.id || "waypoint")}</span>`).join("")}</div></details><div class="lane-actions"><button type="button" data-logi-action="focus" data-logi-key="${logisticsEscAttr(id)}">Show on globe</button></div>` : ""}
   </article>`;
 }

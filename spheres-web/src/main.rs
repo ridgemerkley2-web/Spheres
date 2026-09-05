@@ -2493,6 +2493,8 @@ fn shipment_lane_json(
             "blocked", "no_route", "No open route under the buyer's routing policy. No goods or payment moved.".to_string(),
         ),
     };
+    let reason = a.route.as_ref().and_then(|r| r.dispatch_note.as_ref())
+        .map_or_else(|| reason.clone(), |note| format!("{reason} {note}"));
     let (year, month) = absolute_month(settled_abs).unwrap_or((1990, 1));
     let lane_id = match a.contract {
         Some(id) => format!(
