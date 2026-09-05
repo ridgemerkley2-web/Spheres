@@ -42,8 +42,14 @@ and optional peaceful campaign aims. Domination remains an available aim.
 
 ## Campaigns and recovery
 
-**Continue** resumes the world already running in the local server. **Load** reads
-a saved campaign. These are different actions. Save explicitly before closing.
+The main menu offers **Continue campaign**, **New campaign** and **Saved campaigns**.
+Continue resumes the world already running in the local server. Saved campaigns
+contains Load, available backups and named saves. Save explicitly before closing.
+
+New campaign opens the searchable 1990 nation roster. Compare opening population
+and output, choose a nation, then press **Govern**. **World settings** contains the
+optional seed. Historical avatars are drawn from each nation's history and do not
+identify its serving leader in 1990.
 Named slots and the default `save.json` retain the world, dispatch archive and
 multiresolution history. Atomic writes keep a previous backup; rotating autosaves
 provide additional recovery points. The save screen lists slots and backups.

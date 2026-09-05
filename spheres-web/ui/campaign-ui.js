@@ -70,6 +70,19 @@ function finishCommandRecovery(){
   const target=commandRecoveryReturnFocus;commandRecoveryReturnFocus=null;
   if(target?.isConnected && !target.disabled && target.getClientRects().length)target.focus({preventScroll:true});
 }
+function syncClockControls() {
+  const toggle=document.getElementById("playPauseBtn");
+  if(!toggle)return;
+  // Pause only retires the local timer chain. A running clock must remain
+  // stoppable while a day is in flight; Play still respects recovery locks.
+  const running=typeof clock!=="undefined"&&clock.running;
+  const pendingTurn=typeof pendingAdvance!=="undefined"&&!!pendingAdvance;
+  const turnInFlight=typeof advancing!=="undefined"&&advancing;
+  const channel=typeof COMMAND_CHANNEL==="undefined"?null:COMMAND_CHANNEL;
+  const sessionBusy=typeof SESSION!=="undefined"&&SESSION.busy;
+  toggle.disabled=!running&&(!!channel?.pending||!!channel?.busy||
+    (pendingTurn&&!turnInFlight)||!!sessionBusy);
+}
 function syncCommandControls() {
   const pending=COMMAND_CHANNEL.pending,busy=COMMAND_CHANNEL.busy;
   const uncertain=!!pending&&!busy&&commandWasBusy;commandWasBusy=busy;
@@ -84,12 +97,14 @@ function syncCommandControls() {
     commandBusyButton=document.activeElement;commandBusyButton.disabled=true;
   }
   if(!busy && commandBusyButton){if(commandBusyButton.isConnected)commandBusyButton.disabled=false;commandBusyButton=null;}
-  for(const id of ["saveBtn","stepBtn","playPauseBtn","loadBtn","newCampaignBtn","saveNamedBtn","loadBackupBtn"]){
+  for(const id of ["saveBtn","stepBtn","loadBtn","newCampaignBtn","saveNamedBtn","loadBackupBtn"]){
     const b=document.getElementById(id);if(b)b.disabled=!!pending||busy||advancing||!!pendingAdvance||SESSION.busy;
   }
   document.querySelectorAll("[data-step]").forEach(b=>b.disabled=advancing||!!pendingAdvance||!!pending);
   const enact=document.getElementById("cabinetEnact");if(enact)enact.disabled=CAB.busy||advancing||!!pendingAdvance||!!pending;
   const save=document.getElementById("saveBtn");if(save){const slot=SESSION.slot||"default";save.textContent="Save · "+slot;save.title="Save the current campaign and history to "+slot;}
+  syncClockControls();
+  if(typeof renderMainMenuState === "function")renderMainMenuState();
   if(uncertain || (pending&&!busy&&commandRecoveryKey&&campaignModalOpen()))revealCommandRecovery();
 }
 async function retryCampaignCommand() {
@@ -116,7 +131,7 @@ async function reviewCampaignCommand() {
 async function refreshSaveSlots() {
   const select=document.getElementById("saveSlots");if(!select)return;
   const previous=select.value||SESSION.slot||"default";
-  try {const result=await api("/api/saves");select.replaceChildren();
+  try {const result=await api("/api/saves");SESSION.saves=result.slots;select.replaceChildren();
     for(const entry of result.slots){const option=document.createElement("option");option.value=entry.slot;
       option.textContent=`${entry.slot} · ${entry.player||"campaign"} · ${entry.date||"legacy date"}${entry.readable?"":" · damaged; try backup"}`;
       option.dataset.backup=String(entry.backup);select.append(option);}
@@ -124,6 +139,7 @@ async function refreshSaveSlots() {
     if([...select.options].some(o=>o.value===previous))select.value=previous;
     document.getElementById("saveSlotStatus").textContent=result.autosave;
   }catch(error){document.getElementById("saveSlotStatus").textContent="Could not read save slots: "+error.message;}
+  if(typeof renderMainMenuState === "function")renderMainMenuState();
 }
 async function saveNamedCampaign() {
   const input=document.getElementById("saveName"),slot=CampaignTransport.slotName(input.value);

@@ -29,23 +29,46 @@ const path = require('node:path');
     };
     await page.goto(base.href);
     await page.waitForFunction(() => !!SESSION.live);
-    // A repeated test may find the previous disposable campaign.
-    if (await page.locator('#newCampaignPicker').isHidden()) await page.locator('#newCampaignBtn').click();
+    await page.locator('#campaignHome').waitFor({state:'visible'});
+    const beforeMenu = await state();
     for (const [width,height] of [[1440,1000],[414,1000],[820,700]]) {
       await page.setViewportSize({width,height});
-      // Trial clicks perform real hit testing without loading or starting a game.
-      await page.locator('#loadBtn').click({trial:true});
+      // Home, saves and nation choice are distinct screens. Menu navigation
+      // must neither replace the live world nor require a disk save to exist.
       await page.locator('#newCampaignBtn').click({trial:true});
+      await page.locator('#openSavesBtn').click({trial:true});
+      if (screenshots) await page.screenshot({path:path.join(screenshots,`home-${width}.png`)});
+      await page.locator('#openSavesBtn').click();
+      await page.locator('#savedCampaigns').waitFor({state:'visible'});
+      assert(await page.locator('#campaignHome').isHidden());
+      assert(await page.locator('#newCampaignPicker').isHidden());
+      if (await page.locator('#saveSlots').isEnabled()) await page.locator('#saveSlots').click({trial:true});
+      else await page.locator('#menuSaveEmpty').waitFor({state:'visible'});
+      if (await page.locator('#loadBtn').isEnabled()) await page.locator('#loadBtn').click({trial:true});
+      if (screenshots) await page.screenshot({path:path.join(screenshots,`saves-${width}.png`)});
+      await page.locator('#savedCampaigns [data-menu-back]').click();
+      await page.locator('#campaignHome').waitFor({state:'visible'});
+      await page.locator('#newCampaignBtn').click();
+      await page.locator('#newCampaignPicker').waitFor({state:'visible'});
+      assert(await page.locator('#campaignHome').isHidden());
+      assert(await page.locator('#savedCampaigns').isHidden());
       await page.locator('#nationPick [aria-label^="France;"]').click();
       await page.locator('#startBtn').click({trial:true});
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1),
         `Country picker overflows at ${width}`);
       if (screenshots) await page.screenshot({path:path.join(screenshots,`setup-${width}.png`)});
+      await page.locator('#newCampaignPicker [data-menu-back]').click();
+      await page.locator('#campaignHome').waitFor({state:'visible'});
     }
+    assert.deepEqual(await state(), beforeMenu, 'Menu navigation changed the live campaign');
     await page.setViewportSize({width:1440,height:1000});
+    await page.locator('#newCampaignBtn').click();
     await page.locator('#nationPick [aria-label^="France;"]').click();
     const started = page.waitForResponse(r => r.url().endsWith('/api/new'));
     await page.locator('#startBtn').click();
+    // A repeated run can find a previous disposable campaign, which still
+    // requires the game's explicit replacement confirmation.
+    if (beforeMenu.player) await page.locator('#campaignConfirmAccept').click();
     const initial = await (await started).json();
     await page.locator('#app').waitFor({state:'visible'});
     const current = await state();
@@ -121,7 +144,12 @@ const path = require('node:path');
     assert.notEqual((await state()).date, savedWorld.date);
     await more();
     await page.locator('#campaignsBtn').click();
+    if (await page.locator('#savedCampaigns').isHidden()) await page.locator('#openSavesBtn').click();
     await page.locator('#loadBtn').click();
+    await page.locator('#campaignConfirmDialog').waitFor({state:'visible'});
+    assert(await page.locator('#campaignConfirmCancel').evaluate(element => element === document.activeElement),
+      'Load confirmation should initially focus Cancel');
+    await page.locator('#campaignConfirmAccept').click();
     await page.locator('#app').waitFor({state:'visible'});
     const loaded = await state();
     assert.equal(loaded.date, savedWorld.date);

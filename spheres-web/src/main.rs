@@ -38,6 +38,7 @@ const INDEX: &str = include_str!("../ui/index.html");
 const CAMPAIGN_TRANSPORT_JS: &str = include_str!("../ui/campaign-transport.js");
 const CAMPAIGN_UI_JS: &str = include_str!("../ui/campaign-ui.js");
 const AREA_ART_JS: &str = include_str!("../ui/area-art.js");
+const MAIN_MENU_CSS: &str = include_str!("../ui/main-menu.css");
 const AREA_ART_CSS: &str = include_str!("../ui/area-art.css");
 /// Fixed local display assets only. Never resolve a request path on disk.
 fn area_art_asset(name: &str) -> Option<&'static [u8]> {
@@ -6117,6 +6118,9 @@ fn main() {
             (Method::Get, "/performance-ui.js") => Response::from_string(PERFORMANCE_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/area-art.js") => Response::from_string(AREA_ART_JS)
                 .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/main-menu.css") => Response::from_string(MAIN_MENU_CSS)
+                .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
                 .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
             (Method::Get, "/area-art.css") => Response::from_string(AREA_ART_CSS)
                 .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())

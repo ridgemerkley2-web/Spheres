@@ -14,7 +14,14 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     for(let n=0;;n++){try{if((await fetch(url+'/api/state')).ok)break;}catch(_){}if(n>=200)throw Error('Disposable server failed to start');await new Promise(r=>setTimeout(r,100));}
     browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
     page.setDefaultTimeout(30000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
-    await page.goto(url);await page.locator('#nationPick [aria-label^="United States;"]').click();await page.locator('#startBtn').click();await page.locator('#app').waitFor({state:'visible'});
+    await page.goto(url);await page.locator('#campaignHome').waitFor({state:'visible'});
+    assert(await page.locator('#newCampaignPicker').isHidden());
+    await page.locator('#openSavesBtn').click();await page.locator('#savedCampaigns').waitFor({state:'visible'});
+    await page.locator('#menuSaveEmpty').waitFor({state:'visible'});
+    assert(await page.locator('#loadBtn').isDisabled(),'A fresh disposable folder has no campaign to load');
+    await page.locator('#savedCampaigns [data-menu-back]').click();
+    await page.locator('#newCampaignBtn').click();await page.locator('#newCampaignPicker').waitFor({state:'visible'});
+    await page.locator('#nationPick [aria-label^="United States;"]').click();await page.locator('#startBtn').click();await page.locator('#app').waitFor({state:'visible'});
     const state=async()=> (await page.request.get(url+'/api/state')).json();
     const initial=await state();assert.equal(initial.player,'USA');assert.equal(initial.simulation_cadence,'daily');
     await page.getByRole('button',{name:'Advisor',exact:true}).click();await page.getByRole('heading',{name:'Fund your plan',exact:true}).waitFor();await page.getByRole('button',{name:'Close Your development advisor',exact:true}).click();
@@ -23,7 +30,8 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     // Let the normal command channel create the receipt. Lose only the first
     // already-committed response, then recover via the visible receipt button.
     let lost=false;await page.route('**/api/command',async route=>{if(lost)return route.continue();lost=true;await route.fetch();await route.abort('failed');});
-    await page.evaluate(()=>api('/api/command',{commands:[{kind:'tax',value:0.29}]}));
+    const lostError=await page.evaluate(async()=>{try{await api('/api/command',{commands:[{kind:'tax',value:0.29}]});return null;}catch(error){return error.message;}});
+    assert(lostError,'The lost response must be visible as an uncertain command outcome');
     await page.locator('#retryCommandBtn').waitFor({state:'visible'});const committed=await state();
     await page.locator('#retryCommandBtn').click();await page.locator('#pendingCommand').waitFor({state:'hidden'});
     const recovered=await state();assert.equal(recovered.nations.find(n=>n.id==='USA').political_capital,committed.nations.find(n=>n.id==='USA').political_capital);

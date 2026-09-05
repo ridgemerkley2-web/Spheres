@@ -4,6 +4,7 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const {test}=require('node:test');
 const page=fs.readFileSync(path.resolve(__dirname,'../../spheres-web/ui/index.html'),'utf8');
 const clockSource=page.slice(page.indexOf('const SPEED_DELAY_MS ='),page.indexOf('function setSpeed(n) {'));
+const campaignSource=fs.readFileSync(path.resolve(__dirname,'../../spheres-web/ui/campaign-ui.js'),'utf8');
 function fixture(advance){
   const timers=new Map(),messages=[];let nextId=0;
   const context=vm.createContext({advance,gameIsUp:()=>true,banner:text=>messages.push(text),
@@ -15,6 +16,63 @@ function fixture(advance){
     fire(){assert.equal(timers.size,1);const [id,timer]=timers.entries().next().value;timers.delete(id);return timer.fn();}};
 }
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
+
+function controlFixture(){
+  const f=fixture(()=>f.context.advancing?null:new Promise(()=>{}));
+  const nodes=new Map();
+  const node=id=>{
+    if(!nodes.has(id))nodes.set(id,{id,disabled:false,hidden:false,innerHTML:'',textContent:'',title:'',
+      classList:{toggle(){}},click(){if(!this.disabled)this.onclick?.();}});
+    return nodes.get(id);
+  };
+  Object.assign(f.context,{COMMAND_CHANNEL:{pending:null,busy:false},SESSION:{busy:false,slot:'default'},
+    CAB:{busy:false},advancing:false,pendingAdvance:null,$:selector=>node(selector.slice(1)),
+    document:{activeElement:null,getElementById:node,querySelectorAll:selector=>selector==='[data-step]'?[node('stepBtn')]:[]}});
+  vm.runInContext(campaignSource,f.context);
+  f.run(page.match(/^\$\("#playPauseBtn"\)\.onclick = clockToggle;$/m)[0]);
+  return {...f,node};
+}
+
+test('rendered PAUSE stays clickable during a day while mutation controls remain locked',async()=>{
+  const f=controlFixture();f.context.advancing=true;f.context.pendingAdvance={};
+  f.run('clock.running=true;clockRenderState();syncCommandControls()');
+  assert.match(f.node('playPauseBtn').innerHTML,/PAUSE/);
+  assert.equal(f.node('playPauseBtn').disabled,false,'the running clock must always offer Pause');
+  for(const id of ['saveBtn','stepBtn','loadBtn','newCampaignBtn','saveNamedBtn','loadBackupBtn','cabinetEnact']){
+    assert.equal(f.node(id).disabled,true,id+' must remain protected');
+  }
+  f.node('playPauseBtn').click();
+  assert.equal(f.context.clockState.running,false);assert.match(f.node('playPauseBtn').innerHTML,/PLAY/);
+  assert.equal(f.node('playPauseBtn').disabled,false,'an ordinary in-flight day permits local resume');
+  f.node('playPauseBtn').click();await flush();
+  assert.equal(f.context.clockState.running,true);assert.match(f.node('playPauseBtn').innerHTML,/PAUSE/);
+  assert.equal(f.timers.size,1);f.node('playPauseBtn').click();assert.equal(f.timers.size,0);
+});
+
+test('rendered PLAY remains locked for unresolved receipts, immediate commands and campaign transitions',()=>{
+  for(const setup of [
+    'pendingAdvance={};advancing=false;',
+    'COMMAND_CHANNEL.pending={};',
+    'COMMAND_CHANNEL.pending={};COMMAND_CHANNEL.busy=true;',
+    'COMMAND_CHANNEL.busy=true;',
+    'SESSION.busy=true;'
+  ]){
+    const f=controlFixture();f.run(setup+'clockRenderState();syncCommandControls();clockRenderState();');
+    assert.match(f.node('playPauseBtn').innerHTML,/PLAY/);
+    assert.equal(f.node('playPauseBtn').disabled,true,setup);
+    f.node('playPauseBtn').click();assert.equal(f.context.clockState.running,false,setup);
+  }
+});
+
+test('clicking Pause immediately locks the resulting PLAY when a receipt needs review',()=>{
+  const f=controlFixture();f.context.pendingAdvance={};
+  f.run('clock.running=true;clockRenderState();');
+  assert.equal(f.node('playPauseBtn').disabled,false);
+  f.node('playPauseBtn').click();assert.equal(f.context.clockState.running,false);
+  assert.equal(f.node('playPauseBtn').disabled,true,'clock rendering must refresh the Play lock without another transport event');
+  f.context.pendingAdvance=null;f.run('syncCommandControls();');
+  assert.equal(f.node('playPauseBtn').disabled,false,'confirmed receipt restores Play');
+});
 
 test('pause and play during a held day leave one timer and one request chain',async()=>{
   let held,calls=0,inFlight=0,maxInFlight=0;

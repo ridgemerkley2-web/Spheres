@@ -78,11 +78,8 @@
     border-bottom-width: 2px; border-radius: 3px; padding: 0 5px; color: var(--bright);
   }
 
-  /* ---------- setup ----------
-     Nation selection is its own full-screen arcade cabinet: the left half is
-     the country you are about to inhabit, while the dense 1990 roster stays in
-     a deliberately lighter, searchable browser on the right. No external art
-     is needed — the soft world shapes are CSS, so the executable stays whole. */
+  /* Setup foundations and archival portrait fallbacks.
+     Campaign entry, roster layout and responsive themes live in main-menu.css. */
   #setup {
     --pick-ink: #373344;
     --pick-muted: #756f80;
@@ -2355,118 +2352,76 @@
 <link rel="stylesheet" href="/operations-ui.css">
 <link rel="stylesheet" href="/area-art.css">
 <style>
-.session-card { display:flex; flex-wrap:wrap; gap:16px 28px; align-items:center; margin:0 0 22px; padding:22px; border-radius:24px; border:1px solid #d5d5e4; color:#42415b; background:linear-gradient(110deg,#e5f2eb,#eee8f6); }
-/* Campaign controls are a real third setup row. The old two-row viewport
-   grid squeezed this card into the picker's flexible row and let roster
-   contents paint over its buttons. Each row now takes its own space; short
-   windows scroll the setup rather than overlapping or clipping controls. */
-#setup { overflow-y:auto; overflow-x:hidden; }
-#setup .setup-shell { display:block; height:auto; min-height:100%; align-self:flex-start; }
-#setup .setup-mast { min-height:70px; box-sizing:border-box; }
-#newCampaignPicker { min-height:640px; }
-#newCampaignPicker #nationShowcase { display:block; min-height:0; }
-#newCampaignPicker .nation-browser { height:max(640px,calc(100dvh - 300px)); box-sizing:border-box; }
-#newCampaignPicker .showcase-copy,#newCampaignPicker #setupFoot { flex-shrink:0; }
-#setup .session-card { min-width:0; margin:18px clamp(18px,3.2vw,54px) 0; align-self:start; }
-@media(max-width:960px) { #newCampaignPicker { min-height:0; } }
-.session-card h2 { margin:6px 0; font-size:clamp(23px,3vw,34px); }
-.session-card p { margin:8px 0 0; max-width:64ch; }
-.session-card small { flex-basis:100%; line-height:1.55; }
-.session-actions { display:flex; gap:10px; flex-wrap:wrap; margin-left:auto; }
-.session-actions button,.session-pending button { min-height:44px; white-space:normal; }
-.session-card button:focus-visible,.session-pending button:focus-visible { outline:3px solid #6754b0; outline-offset:3px; }
-#newCampaignPicker[hidden],.session-card [hidden],.session-pending[hidden] { display:none; }
+.session-pending button { min-height:44px; white-space:normal; }
+.session-pending button:focus-visible { outline:3px solid #6754b0; outline-offset:3px; }
+.session-pending[hidden] { display:none; }
 .session-pending { position:fixed; z-index:10050; left:50%; bottom:18px; transform:translateX(-50%); width:min(700px,calc(100% - 24px)); box-sizing:border-box; display:flex; align-items:center; gap:14px; padding:14px 18px; border:1px solid #e2bc92; border-radius:18px; background:#fff0dc; color:#513e34; box-shadow:0 10px 35px #332a3830; font-size:14px; }
 .session-pending span { flex:1; }
-@media(max-width:600px) { .session-card {padding:16px;} .session-actions {margin-left:0;} .session-pending {align-items:stretch;flex-direction:column;} }
+@media(max-width:600px) { .session-pending {align-items:stretch;flex-direction:column;} }
 </style>
+<link rel="stylesheet" href="/main-menu.css">
 </head>
 <body>
 
-<div id="setup">
+<div id="setup" data-menu-view="home">
   <div class="setup-shell">
     <div class="setup-mast">
-      <div class="setup-brand">
-        <div class="title">SPHERES</div>
-        <div class="setup-kicker">THE WORLD IS YOUR CABINET</div>
-      </div>
-      <div class="setup-era">
-        <span class="setup-pulse" aria-hidden="true"></span>
-        <div class="setup-era-copy">
-          <span class="setup-step-label">CAMPAIGN SELECT</span>
-          <!-- Filled by buildSetup from /api/roster. The literal here is only
-               what is on screen for the few hundred milliseconds before that
-               answers. -->
-          <span class="sub" id="setupSub">JANUARY 1990 &middot; THE WORLD IS UNWRITTEN</span>
-        </div>
-      </div>
+      <div class="setup-brand"><div class="title">SPHERES</div><div class="setup-kicker">A WORLD SHAPED BY YOU</div></div>
+      <div class="setup-era"><span class="setup-pulse" aria-hidden="true"></span><span class="sub" id="setupSub">JANUARY 1990 · THE WORLD IS UNWRITTEN</span></div>
     </div>
 
-    <section class="session-card" aria-label="Your campaigns">
-      <div><div class="setup-step-label">YOUR NEXT CHAPTER</div><h2 id="sessionTitle">Welcome to the world.</h2>
-      <p id="sessionStatus" role="status">Checking for a live campaign…</p></div>
-      <div class="session-room-art" data-area-art="campaign" data-area-art-size="campaign"></div>
-      <div class="session-actions"><button class="primary" id="continueBtn" hidden>Continue live campaign →</button>
-        <button id="loadBtn">Load saved campaign</button><button id="newCampaignBtn">New campaign</button></div>
-      <div class="session-actions"><label>Saved campaign <select id="saveSlots" aria-label="Saved campaign"><option value="default">Default save</option></select></label><button id="loadBackupBtn">Load previous backup</button></div>
-      <div class="session-actions"><label>Save as <input id="saveName" maxlength="64" placeholder="My-campaign" aria-label="New save name"></label><button id="saveNamedBtn">Save named campaign</button></div>
-      <small id="saveSlotStatus">Three monthly autosaves rotate alongside your named saves. Saves preserve the full campaign history and dispatch archive.</small>
+    <section id="campaignHome" class="menu-home" aria-labelledby="sessionTitle">
+      <div class="menu-world-art" data-area-art="campaign" data-area-art-size="campaign"></div>
+      <div class="menu-home-copy">
+        <div class="menu-eyebrow">GRAND STRATEGY · A NEW ERA</div>
+        <h1 id="sessionTitle">Shape a<br>changing world.</h1>
+        <p class="menu-intro">Lead a nation from January 1990. Build its economy, shape alliances, and decide what comes next.</p>
+        <div class="menu-actions">
+          <button class="menu-primary" id="continueBtn" hidden>Continue campaign <span aria-hidden="true">↗</span></button>
+          <button class="menu-primary" id="newCampaignBtn">New campaign <span aria-hidden="true">↗</span></button>
+          <button class="menu-secondary" id="openSavesBtn">Saved campaigns <span id="menuSaveCount"></span><span aria-hidden="true">→</span></button>
+        </div>
+        <p id="sessionStatus" class="menu-live-status" role="status">Checking for a live campaign…</p>
+        <div class="menu-small-actions"><button id="menuHelpBtn">How to play</button><span aria-hidden="true">/</span><button id="menuAboutBtn">About Spheres</button></div>
+      </div>
+      <div class="menu-world-caption" aria-hidden="true"><span>THE NEXT CHAPTER</span><strong>History is unwritten.</strong><i>Every nation. A different possibility.</i></div>
+      <div class="menu-home-foot"><span><b id="menuRosterCount">137</b> PLAYABLE NATIONS</span><span>1990 <b>START DATE</b></span><span>AN OPEN-ENDED CAMPAIGN</span></div>
     </section>
+
+    <section id="savedCampaigns" class="menu-saves" aria-labelledby="savedCampaignTitle" hidden>
+      <button class="menu-back" data-menu-back>← Main menu</button>
+      <div class="menu-eyebrow">YOUR CAMPAIGNS</div><h1 id="savedCampaignTitle" tabindex="-1">Pick up where you left off.</h1>
+      <p class="menu-section-intro">Load a saved world with its history and dispatches.</p>
+      <div class="menu-save-panel">
+        <label class="menu-field">Saved campaign<select id="saveSlots" aria-label="Saved campaign"><option value="default">Checking saved campaigns…</option></select></label>
+        <div class="menu-save-actions"><button class="menu-primary" id="loadBtn">Load campaign →</button><button class="menu-secondary" id="loadBackupBtn">Load previous backup</button></div>
+        <p id="menuSaveEmpty" class="menu-empty" hidden>No saved campaigns yet. Start a new campaign to begin your story.</p>
+        <div id="menuSaveCurrent" hidden><div class="menu-save-rule"></div><h2>Save your current campaign</h2><div class="menu-save-form"><label class="menu-field">Campaign name<input id="saveName" maxlength="64" placeholder="My-campaign" aria-label="New save name"></label><button class="menu-secondary" id="saveNamedBtn">Save campaign</button></div></div>
+        <p id="saveSlotStatus" class="menu-save-note">Saves preserve your campaign history and dispatches. Monthly autosaves rotate automatically.</p>
+      </div>
+    </section>
+
     <div class="setup-layout" id="newCampaignPicker" hidden>
-      <section id="nationShowcase" aria-labelledby="showcaseName" aria-live="polite">
-        <div class="showcase-copy">
-          <div class="showcase-kicker">PLAYER ONE / CHOOSE YOUR SPHERE</div>
-          <div class="nation-art" id="showcaseArt" aria-hidden="true">
-            <div class="historical-cameo" id="showcaseFallback">
-              <span class="cameo-person"></span>
-              <span class="cameo-initials" id="showcaseInitials">?</span>
-            </div>
-            <img class="historical-portrait" id="showcasePortrait" alt="" width="512" height="640">
-            <svg class="nation-flag" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid meet">
-              <use id="showcaseFlag"></use>
-            </svg>
-          </div>
-          <div class="showcase-figure" id="showcaseFigure">Historical avatar</div>
-          <h1 id="showcaseName">Choose a nation</h1>
-          <p id="showcasePrompt">Pick a country from the world board. Its opening output and population are drawn from the same 1990 world your campaign will begin in.</p>
-          <div class="showcase-stats" id="showcaseStats">
-            <div class="showcase-stat"><span>OUTPUT</span><strong id="showcaseGdp">—</strong><small id="showcaseGdpRank">world rank —</small></div>
-            <div class="showcase-stat"><span>PEOPLE</span><strong id="showcasePop">—</strong><small id="showcasePopRank">world rank —</small></div>
-            <div class="showcase-stat"><span>GDP / PERSON</span><strong id="showcasePerCap">—</strong><small id="showcaseShare">opening position</small></div>
-          </div>
-        </div>
-        <div id="setupFoot">
-          <div class="seedrow">
-            <label for="seed">WORLD SEED</label><input id="seed" value="1990" inputmode="numeric" aria-describedby="seedHint">
-            <span class="muted" id="seedHint">same seed, same history</span>
-          </div>
-          <button class="primary" id="startBtn" disabled>CHOOSE A NATION</button>
-        </div>
+      <div class="menu-selection-head"><button class="menu-back" data-menu-back>← Main menu</button><div><span class="menu-eyebrow">NEW CAMPAIGN</span><h1>Choose your nation.</h1></div><p>One world. A different starting point.</p></div>
+      <section class="nation-browser" aria-labelledby="nationBrowserTitle">
+        <div class="browser-head"><h2 id="nationBrowserTitle" tabindex="-1">The world in 1990</h2><span id="nationCount" role="status" aria-live="polite">LOADING ROSTER</span></div>
+        <div id="setupBar"><label class="search-shell"><span class="sr-only">Search nations</span><input id="nationSearch" placeholder="Search by nation name…" autocomplete="off"></label><select id="nationSort" aria-label="Sort nations"><option value="gdp">Largest economies</option><option value="pop">Largest populations</option><option value="name">Name A–Z</option></select></div>
+        <div class="menu-list-heading" aria-hidden="true"><span>NATION</span><span>1990 OUTPUT</span></div>
+        <div id="pickWrap"><div id="nationPick" aria-label="Nations"></div></div>
+        <div class="browser-foot"><span>All nations are playable.</span><button id="randomBtn" type="button" title="Choose a random nation">Surprise me ↗</button></div>
       </section>
 
-      <section class="nation-browser" aria-labelledby="nationBrowserTitle">
-        <div class="browser-head">
-          <div>
-            <div class="setup-step-label">02 / THE WORLD BOARD</div>
-            <h2 id="nationBrowserTitle">Select your nation</h2>
+      <section id="nationShowcase" aria-labelledby="showcaseName" aria-live="polite">
+        <div class="menu-nation-top"><span class="menu-eyebrow">YOUR NATION · JANUARY 1990</span><svg class="nation-flag" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><use id="showcaseFlag"></use></svg></div>
+        <div class="showcase-copy"><h2 id="showcaseName">Choose a nation</h2><p id="showcasePrompt">Select a country to review its opening position.</p>
+          <div class="showcase-stats" id="showcaseStats">
+            <div class="showcase-stat"><span>ECONOMIC OUTPUT</span><strong id="showcaseGdp">—</strong><small id="showcaseGdpRank">world rank —</small></div>
+            <div class="showcase-stat"><span>POPULATION</span><strong id="showcasePop">—</strong><small id="showcasePopRank">world rank —</small></div>
+            <div class="showcase-stat"><span>GDP PER PERSON</span><strong id="showcasePerCap">—</strong><small id="showcaseShare">opening position</small></div>
           </div>
-          <span id="nationCount" role="status" aria-live="polite">LOADING ROSTER</span>
+          <div class="menu-nation-story"><div class="nation-art" id="showcaseArt" aria-hidden="true"><div class="historical-cameo" id="showcaseFallback"><span class="cameo-person"></span><span class="cameo-initials" id="showcaseInitials">?</span></div><img class="historical-portrait" id="showcasePortrait" alt="" width="512" height="640"></div><div><div class="showcase-figure" id="showcaseFigure">Historical avatar</div><p id="showcaseBiography">Choose a nation to discover its historical avatar.</p><span class="menu-avatar-note">A figure from this nation's history, not its 1990 leader.</span></div></div>
         </div>
-        <div id="setupBar">
-          <label class="search-shell">
-            <span class="sr-only">Search nations</span>
-            <input id="nationSearch" placeholder="Find a nation&hellip;" autocomplete="off">
-          </label>
-          <select id="nationSort" aria-label="Sort nations">
-            <option value="gdp">Output</option>
-            <option value="pop">Population</option>
-            <option value="name">A&ndash;Z</option>
-          </select>
-          <button id="randomBtn" type="button" title="Govern a random nation">SURPRISE ME</button>
-        </div>
-        <div class="browser-rule" aria-hidden="true"></div>
-        <div id="pickWrap"><div id="nationPick" aria-label="Nations"></div></div>
-        <div class="browser-foot">Double-click a nation to launch immediately. Press Enter after searching to confirm.</div>
+        <div id="setupFoot"><details class="menu-world-options"><summary>World settings <span>January 1990 start</span></summary><div class="seedrow"><label for="seed">WORLD SEED</label><input id="seed" value="1990" inputmode="numeric" aria-describedby="seedHint"><span id="seedHint">The same seed and decisions produce the same history.</span></div></details><button class="primary menu-primary" id="startBtn" disabled>Choose a nation</button><p class="menu-start-note">Review your starting position, then begin the campaign.</p></div>
       </section>
     </div>
   </div>
@@ -3424,7 +3379,7 @@ async function api(path, body, rawCommand = false) {
 let setupNations = [];
 let setupFigures = {};
 const setupNationButtons = new Map();
-const SESSION = { live: null, busy: false, client: null, sequence: 0, slot: "default" };
+const SESSION = { live: null, busy: false, client: null, sequence: 0, slot: "default", saves: null };
 const COMMAND_CHANNEL = CampaignTransport.create({
   request: body => api("/api/command", body, true), session: () => S?.session_id,
   identity: () => nextAdvanceIdentity(), storage: (()=>{try{return sessionStorage;}catch(_){return null;}})(),
@@ -3479,16 +3434,48 @@ function guardEconomicOrder(action, body) {
   return true;
 }
 
+function showMenuView(view, focus = true) {
+  const screens = { home: "#campaignHome", nation: "#newCampaignPicker", saves: "#savedCampaigns" };
+  if (!screens[view]) return;
+  $("#setup").dataset.menuView = view;
+  for (const [name, selector] of Object.entries(screens)) $(selector).hidden = name !== view;
+  $("#setup").scrollTop = 0;
+  if (view === "nation" && !pickedNation && setupNations.length) pickNation(visiblePicks()[0]?.name || setupNations[0].name);
+  renderMainMenuState();
+  if (focus) {
+    let target = view === "nation" ? "#nationSearch" : view === "saves" ? "#saveSlots" : SESSION.live?.player ? "#continueBtn" : "#newCampaignBtn";
+    // Avoid opening a software keyboard before the player sees the roster.
+    if (view === "nation" && !window.matchMedia("(hover: hover) and (pointer: fine)").matches) target = "#nationBrowserTitle";
+    if (view === "saves" && $(target).disabled) target = "#savedCampaignTitle";
+    $(target).focus({ preventScroll: true });
+  }
+}
+
+function renderMainMenuState() {
+  const saves = SESSION.saves;
+  $("#menuSaveCount").textContent = saves?.length ? String(saves.length) : "";
+  $("#menuSaveEmpty").hidden = !Array.isArray(saves) || saves.length > 0;
+  $("#loadBtn").hidden = !saves?.length;
+  const locked = SESSION.busy || advancing || !!pendingAdvance || !!COMMAND_CHANNEL.pending || !!COMMAND_CHANNEL.busy;
+  $("#loadBtn").disabled = !saves?.length || locked;
+  const slot = saves?.find(entry => entry.slot === $("#saveSlots").value);
+  $("#loadBackupBtn").hidden = !slot?.backup;
+  $("#loadBackupBtn").disabled = !slot?.backup || locked;
+  $("#saveSlots").disabled = !saves?.length || SESSION.busy;
+  $("#menuSaveCurrent").hidden = !S?.player;
+}
+
 function renderSessionActions() {
   $("#continueBtn").hidden = !SESSION.live?.player;
   $("#continueBtn").disabled = SESSION.busy;
   $("#loadBtn").disabled = SESSION.busy || advancing || !!pendingAdvance;
   $("#newCampaignBtn").disabled = SESSION.busy || advancing || !!pendingAdvance;
-  $("#sessionTitle").textContent = SESSION.live?.player ? "Your world is waiting." : "Welcome to the world.";
+  $("#sessionTitle").innerHTML = SESSION.live?.player ? "Your world<br>is waiting." : "Shape a<br>changing world.";
   $("#sessionStatus").textContent = SESSION.live?.player
     ? `${SESSION.live.player} · ${SESSION.live.date} · live on this server`
-    : "Continue a saved world, or choose a nation for a new campaign.";
+    : "A new campaign begins with the nation you choose.";
   if(typeof syncCommandControls === "function")syncCommandControls();
+  renderMainMenuState();
 }
 
 async function bootSession() {
@@ -3500,11 +3487,11 @@ async function bootSession() {
     if (SESSION.live.player) restorePendingAdvance(SESSION.live, false);
     renderSessionActions();
     syncAdvanceControls();
-    $("#newCampaignPicker").hidden = !!SESSION.live.player;
+    showMenuView("home", false);
   } catch (error) {
     renderSessionActions();
     $("#sessionStatus").textContent = error.message;
-    $("#newCampaignPicker").hidden = false;
+    showMenuView("home", false);
     banner(error.message);
   }
   await roster;
@@ -3589,15 +3576,19 @@ function showCampaigns() {
   $("#sheet").style.display = "none"; $("#sheetbg").style.display = "none";
   SESSION.live = S;
   $("#app").style.display = "none"; $("#setup").style.display = "flex";
-  $("#newCampaignPicker").hidden = true;
-  renderSessionActions(); $("#continueBtn").focus();
+  renderSessionActions(); showMenuView("home");
   if (typeof refreshSaveSlots === "function") refreshSaveSlots();
 }
 
 $("#continueBtn").onclick = continueCampaign;
 $("#loadBtn").onclick = () => loadCampaign(false);
 $("#campaignsBtn").onclick = showCampaigns;
-$("#newCampaignBtn").onclick = () => { $("#newCampaignPicker").hidden = false; $("#nationSearch").focus(); };
+$("#newCampaignBtn").onclick = () => showMenuView("nation");
+$("#openSavesBtn").onclick = () => { showMenuView("saves"); refreshSaveSlots(); };
+$("#saveSlots").onchange = renderMainMenuState;
+document.querySelectorAll("[data-menu-back]").forEach(button => { button.onclick = () => showMenuView("home"); });
+$("#menuHelpBtn").onclick = toggleKeysCard;
+$("#menuAboutBtn").onclick = openBuildInfo;
 
 /// THE PICKER SHOWS THE BOARD THE START BUTTON WILL DEAL, and it used to show
 /// whatever world this server happened to be holding.
@@ -3620,6 +3611,7 @@ async function buildSetup() {
     api("/art/nation-figures-v2.json").catch(() => ({ nations: {} })),
   ]);
   setupNations = board.nations;
+  $("#menuRosterCount").textContent = String(setupNations.length);
   setupFigures = figureBoard.nations || {};
   const sub = $("#setupSub");
   if (sub && board.month >= 1 && board.month <= 12) {
@@ -3627,6 +3619,7 @@ async function buildSetup() {
       `${MONTHS_FULL[board.month - 1]} ${board.year} · THE WORLD IS UNWRITTEN`.toUpperCase();
   }
   renderPick();
+  if (!pickedNation && setupNations.length) pickNation(visiblePicks()[0]?.name || setupNations[0].name);
   $("#nationSearch").oninput = renderPick;
   $("#nationSort").onchange = renderPick;
   $("#randomBtn").onclick = () => {
@@ -3657,7 +3650,7 @@ async function buildSetup() {
   });
   // Autofocus is useful with a mouse and keyboard, but on touch screens it
   // summons the software keyboard before the player has seen the world board.
-  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  if (!$("#newCampaignPicker").hidden && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
     $("#nationSearch").focus();
   }
 }
@@ -3771,8 +3764,9 @@ function renderShowcase(n) {
   if (spec.years) figure.appendChild(document.createTextNode(` · ${spec.years}`));
   $("#showcaseName").textContent = n.name;
   const rationale = spec.rationale || `${spec.figure} is the historical avatar selected for ${n.name}.`;
-  $("#showcasePrompt").textContent =
-    `${rationale} Take the controls on the same January 1990 opening shown here.`;
+  $("#showcaseBiography").textContent = rationale;
+  const outputRank = setupRank(n, "gdp");
+  $("#showcasePrompt").textContent = `Begin with ${fmt.pop(n.population)} people and the world's #${outputRank} economy. Your decisions on industry, trade and diplomacy shape what follows.`;
   $("#showcaseGdp").textContent = fmt.money(n.gdp);
   $("#showcaseGdpRank").textContent = `world output #${setupRank(n, "gdp")}`;
   $("#showcasePop").textContent = fmt.pop(n.population);
@@ -3824,20 +3818,6 @@ function renderPick() {
       const art = document.createElement("span");
       art.className = "pick-figure-art";
       art.setAttribute("aria-hidden", "true");
-      const cameo = document.createElement("span");
-      cameo.className = "pick-cameo";
-      const person = document.createElement("span");
-      person.className = "cameo-person";
-      const initials = document.createElement("span");
-      initials.className = "cameo-initials";
-      initials.textContent = figureInitials(spec, n);
-      cameo.append(person, initials);
-      const portrait = document.createElement("img");
-      portrait.className = "pick-portrait";
-      portrait.alt = "";
-      portrait.width = 512;
-      portrait.height = 640;
-      loadFigurePortrait(portrait, spec, false);
       const flag = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       flag.classList.add("pick-flag");
       flag.setAttribute("viewBox", "0 0 640 480");
@@ -3845,7 +3825,7 @@ function renderPick() {
       const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
       flagUse(use, n);
       flag.appendChild(use);
-      art.append(cameo, portrait, flag);
+      art.append(flag);
 
       const copy = document.createElement("span");
       copy.className = "nation-card-copy";
@@ -3854,13 +3834,16 @@ function renderPick() {
       country.textContent = n.name;
       const figure = document.createElement("span");
       figure.className = "figure-name";
-      figure.textContent = spec.figure;
+      figure.textContent = `${fmt.pop(n.population)} people`;
       copy.append(country, figure);
+      const output = document.createElement("span");
+      output.className = "nation-output";
+      output.textContent = fmt.money(n.gdp);
       const check = document.createElement("span");
       check.className = "nation-check";
       check.setAttribute("aria-hidden", "true");
       check.innerHTML = "&#10003;";
-      d.append(art, copy, check);
+      d.append(art, copy, output, check);
       d.onclick = () => pickNation(n.name);
       d.ondblclick = () => { pickNation(n.name); $("#startBtn").click(); };
       setupNationButtons.set(n.id, d);
@@ -3901,6 +3884,7 @@ $("#startBtn").onclick = async () => {
   const seed = seedFromBox();
   if (seed === null) {
     banner(`"${$("#seed").value.trim()}" is not a seed — a seed is a whole number, and the same one always gives the same history.`);
+    $("#seed").closest("details").open = true;
     $("#seed").focus();
     $("#seed").select();
     return;
@@ -4323,6 +4307,7 @@ function clockRenderState() {
   document.querySelectorAll("[data-speed]").forEach((b) => {
     b.classList.toggle("on", +b.dataset.speed === clock.speed);
   });
+  if(typeof syncClockControls==="function")syncClockControls();
 }
 
 function clockPause() {

@@ -49,7 +49,7 @@ test('declarative campaign mounting uses the same allowlist and preserves its ho
   assert.equal(slots[0].innerHTML, art.html('campaign','campaign'));
   assert.equal(slots[1].innerHTML, '');
   assert(page.indexOf('/area-art.js') < page.indexOf('/agency-ui.js'));
-  assert.match(page, /class="session-room-art" data-area-art="campaign"/);
+  assert.match(page, /class="menu-world-art" data-area-art="campaign"/);
 });
 
 test('production, arms manufacturing and logistics render the matching paintings', () => {

@@ -151,12 +151,14 @@ test('server refusal metadata distinguishes certain rejection from uncertain tra
 });
 
 test('boot reads state and roster without mutating the campaign and reveals Continue',async()=>{
-  const c=fixture(['bootSession','renderSessionActions']);const paths=[];
+  const c=fixture(['bootSession','renderSessionActions','showMenuView','renderMainMenuState']);const paths=[];
+  c.COMMAND_CHANNEL={pending:null,busy:false};
   c.buildSetup=async()=>paths.push('roster');c.restorePendingAdvance=()=>{};
   c.api=async path=>{paths.push(path);return {player:'France',date:'31 Jan 1990',session_id:'existing'};};
   await run(c,'bootSession()');
   assert.deepEqual(paths,['roster','/api/state']);
   assert.equal(c.$('#continueBtn').hidden,false);assert.equal(c.$('#newCampaignPicker').hidden,true);
+  assert.equal(c.$('#campaignHome').hidden,false);assert.equal(c.$('#savedCampaigns').hidden,true);
   assert.match(c.$('#sessionStatus').textContent,/France.*31 Jan 1990/);
 });
 
@@ -195,14 +197,6 @@ test('campaign changes and modal entry close only global More and Map menus',()=
   assert.ok(page.includes('document.addEventListener("focusin", () => {'));
   assert.ok(page.includes('if (arcadeTopRoom()) closeGlobalMenus();'));
 });
-
-test('campaign actions occupy a separate row and short screens can scroll without clipping Start',()=>{
-  assert.ok(page.includes('#setup .setup-shell { display:block; height:auto; min-height:100%; align-self:flex-start; }'));
-  assert.ok(page.includes('#setup { overflow-y:auto; overflow-x:hidden; }'));
-  assert.ok(page.includes('#newCampaignPicker #nationShowcase { display:block; min-height:0; }'));
-  assert.ok(page.includes('#newCampaignPicker .showcase-copy,#newCampaignPicker #setupFoot { flex-shrink:0; }'));
-});
-
 
 test('starting a replacement campaign cannot reuse the previous named save target',async()=>{
   const c=fixture(['resetCampaignUi','doSave']);
