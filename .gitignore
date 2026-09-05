@@ -26,5 +26,9 @@ tools/population/raster/
 spheres-web/ui/*.checktmp.png
 spheres-web/data/*.checktmp.json
 __pycache__/
+node_modules/
+artifacts/
+saves/
+save.json.bak
 # Exact flag-icons build input is downloaded on demand (tools/avatars/README.md).
 .tmp-flag-icons/

@@ -162,7 +162,8 @@ test('all three arcade stylesheets are local, embedded and served as CSS',()=>{
     assert(server.includes(`"/${name}.css"`));
     assert(fs.statSync(path.resolve(__dirname,`../../spheres-web/ui/${name}.css`)).size>100);
   }
-  const route=server.slice(server.indexOf('path @ ("/arcade.css"'),server.indexOf('path @ ("/arcade.css"')+800);
+  const routeStart=server.indexOf('path @ ("/arcade.css"');
+  const route=server.slice(routeStart,server.indexOf('(Method::Get',routeStart+1));
   assert(route.includes('text/css'),'stylesheet route must use CSS MIME type');
 });
 
@@ -174,7 +175,7 @@ test('help contains time shortcuts but leaves its native close button usable',()
   const c=vm.createContext({document:{addEventListener:(type,fn)=>listener=fn},
     arcadeTopRoom:()=>({id:'keys'}),cabinetIsOpen:()=>false,dominationIsOpen:()=>false,
     focused:()=>false,typing:()=>false,keysCardIsOpen:()=>true,isKeysCardToggle:()=>false,
-    setKeysCard:()=>closed++,advance:()=>advanced++,
+    setKeysCard:()=>closed++,advance:()=>advanced++,clock:{running:false},
   });
   vm.runInContext(page.slice(match.index,end+4),c);
   const event=(key,button)=>({key,target:{closest:()=>button?{}:null},preventDefault(){prevented++;}});

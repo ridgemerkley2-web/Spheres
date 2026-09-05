@@ -413,6 +413,7 @@ function pageFunction(name, optional=false) {
 }
 function sessionFixture() {
   const c=fixture(),nodes=new Map();
+  c.clockPause=()=>{};
   c.$=id=>{if(!nodes.has(id))nodes.set(id,{disabled:false,textContent:'Start',style:{},focus(){}});return nodes.get(id);};
   c.banner=message=>c.sent.push({banner:message});
   c.window={confirm:()=>true};

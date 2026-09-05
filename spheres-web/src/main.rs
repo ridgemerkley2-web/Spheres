@@ -20,6 +20,13 @@ use tiny_http::{Header, Method, Response, Server};
 
 mod portrait_assets;
 
+fn build_info()->serde_json::Value {serde_json::json!({
+    "version":env!("CARGO_PKG_VERSION"),"revision":env!("SPHERES_REVISION"),
+    "save_directory":std::env::current_dir().ok().map(|p|p.display().to_string()),
+    "campaign_format":"versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution":"Local offline game server; source and attribution accompany the release"
+})}
+
 const INDEX: &str = include_str!("../ui/index.html");
 /// Curated historical figures and source records keyed by stable NationId.
 /// Presentation data only: this never enters world state or save files.
@@ -4581,6 +4588,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // bank's, nor that moving it dismisses the bank for good.
         "player_set_rate": w.player_set_rate,
         "oil_price": w.oil_price,
+        "build":{"version":env!("CARGO_PKG_VERSION"),"revision":env!("SPHERES_REVISION")},
         "nations": nations,
         "dead": dead,
         "wars": wars,
@@ -6175,6 +6183,7 @@ fn main() {
             continue;
         }
         let response = match (&route_method, url_path.as_str()) {
+            (Method::Get, "/api/build") => json_response(build_info()),
             (Method::Get, "/") | (Method::Get, "/index.html") => {
                 let r = Response::from_string(INDEX).with_header(
                     Header::from_bytes(&b"Content-Type"[..], &b"text/html; charset=utf-8"[..])

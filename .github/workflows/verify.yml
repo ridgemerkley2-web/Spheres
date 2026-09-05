@@ -1,0 +1,34 @@
+name: Verify SPHERES
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/ui/package-lock.json
+      - run: cargo test --locked --release --workspace --no-fail-fast
+      - run: node tools/ui/run-unit.cjs
+      - run: cargo build --locked --release -p spheres-web
+      - run: npm ci --prefix tools/ui
+      - run: npx --prefix tools/ui playwright install --with-deps chromium
+      - run: node tools/ui/ci-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-evidence-${{ matrix.os }}
+          path: artifacts/browser-ci

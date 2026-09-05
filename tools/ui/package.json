@@ -1,0 +1,7 @@
+{
+  "name": "spheres-browser-checks",
+  "private": true,
+  "version": "0.6.0",
+  "scripts": {"test": "node run-unit.cjs", "test:browser": "node ci-browser.cjs"},
+  "devDependencies": {"playwright": "1.58.2"}
+}

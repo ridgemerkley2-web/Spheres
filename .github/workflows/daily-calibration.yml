@@ -1,0 +1,21 @@
+name: Daily campaign calibration
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 5 * * *'
+permissions:
+  contents: read
+jobs:
+  campaign-panel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: mkdir -p artifacts/calibration
+      - run: cargo run --locked --release -p spheres-sim --example daily_calibration -- --years 30 --seeds 1990,7,42 --output artifacts/calibration/daily.csv
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: daily-campaign-evidence
+          path: artifacts/calibration
