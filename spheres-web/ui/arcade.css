@@ -45,8 +45,12 @@ button.danger { color: #f2c2b8; background: #653e4226; border-color: #d49e9166; 
 #app > header .queued { padding: 0; font-size: 13px; }
 .timebtns { align-items: center; order: 0; background: none; border: 0; box-shadow: none; padding: 0; gap: 8px; }
 .timebtns button, .arc-time-menu > summary { min-height: 44px; padding: 10px 15px; font: 650 15px/1.4 var(--arc-font); }
-.timebtns button[data-adv="1"] { background: #a8d4c325; border-color: #a8d4c359; color: #dcf6e8; }
+.timebtns #playPauseBtn, .timebtns #stepBtn { background: #a8d4c325; border-color: #a8d4c359; color: #dcf6e8; }
 .timebtns button i { display: none; }
+#app > header .clockstate { order: 0; min-height: 44px; display: grid; place-items: center; padding: 8px 12px; margin: 0; border-radius: 10px; }
+.timebtns .speedbar { display: flex; gap: 3px; padding: 4px; border: 1px solid var(--arc-edge); border-radius: 12px; background: #10182488; }
+.timebtns .speedbar .speedpip { min-width: 38px; min-height: 36px; padding: 6px 9px; }
+.timebtns .speedbar .speedpip.on { color: #172c29; background: var(--arc-mint); border-color: var(--arc-mint); }
 .arc-time-menu { position: relative; }
 .arc-time-menu > summary { list-style: none; cursor: pointer; border: 1px solid var(--arc-edge); border-radius: 10px; }
 .arc-time-menu > summary::after { content: " ▾"; color: var(--arc-gold); }

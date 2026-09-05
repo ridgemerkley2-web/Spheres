@@ -434,6 +434,21 @@
   }
   .timebtns button { position: relative; padding: 3px 9px; font-size: 11px; }
   .timebtns button i { font-style: normal; color: var(--faint); font-size: 10px; margin-left: 5px; }
+  /* The clock's own readout: what state the clock is IN, beside the button that
+     says what pressing it would DO. */
+  header .clockstate {
+    order: 9; font-size: 10px; letter-spacing: .12em; color: var(--dim);
+    padding: 4px 8px; margin-right: 8px; border-radius: 2px; white-space: nowrap;
+    background: var(--well); border: 1px solid var(--edge-dark);
+    font-variant-numeric: tabular-nums;
+  }
+  header .clockstate.running { color: var(--cyan); }
+  .speedbar { display: flex; gap: 2px; }
+  .speedbar .speedpip { padding: 3px 7px; font-variant-numeric: tabular-nums; }
+  .speedbar .speedpip.on {
+    color: var(--amber); border-color: var(--amber);
+    background: linear-gradient(180deg, #4a4430 0%, #38321e 100%);
+  }
 
   /* `hidden` still creates a programmatically scrollable box. When a policy
      click replaced its focused button, Chromium scrolled this whole stage
@@ -2462,12 +2477,22 @@
     <span class="metric">CAPITAL <b id="hdrPc" style="color:var(--amber)">—</b></span>
     <span class="spacer"></span>
     <span class="queued" id="queuedNote"></span>
+    <span class="clockstate" id="clockState">PAUSED</span>
     <div class="timebtns">
-      <button data-adv="1">+1 DAY<i>SPC</i></button>
+      <!-- HOI4's time control: the clock RUNS at a chosen speed until something
+           stops it. The button is the pause/play toggle and carries the action
+           it will do; the state the clock is actually in is the readout to its
+           left, so neither has to be read as the other. -->
+      <button id="playPauseBtn" title="Run the clock (Space)">PLAY<i>SPC</i></button>
+      <div class="speedbar" id="speedBar" role="group" aria-label="Simulation speed">
+        <button class="speedpip" data-speed="1" data-speed-ms="1000" title="Speed 1 — one day every 1000 ms. Click, or press 1, to run at this speed.">1</button>
+        <button class="speedpip" data-speed="2" data-speed-ms="500" title="Speed 2 — one day every 500 ms. Click, or press 2, to run at this speed.">2</button>
+        <button class="speedpip" data-speed="3" data-speed-ms="250" title="Speed 3 — one day every 250 ms. Click, or press 3, to run at this speed.">3</button>
+        <button class="speedpip" data-speed="4" data-speed-ms="100" title="Speed 4 — one day every 100 ms. Click, or press 4, to run at this speed.">4</button>
+        <button class="speedpip" data-speed="5" data-speed-ms="0" title="Speed 5 — no wait at all: one day as fast as the server answers. Click, or press 5, to run at this speed.">5</button>
+      </div>
+      <button id="stepBtn" data-step="1" title="Advance one day; the clock pauses first">+1 DAY<i>N</i></button>
       <details class="arc-time-menu"><summary>More</summary><div>
-        <button data-adv="7">+7 DAYS<i>2</i></button>
-        <button data-adv="30">+30 DAYS<i>3</i></button>
-        <button data-adv="365">+1 YEAR<i>4</i></button>
         <button id="saveBtn">Save campaign<i>S</i></button>
         <button id="campaignsBtn">Campaigns · Continue / Load / New</button>
       </div></details>
@@ -2925,13 +2950,15 @@
 <div id="keys" role="dialog" aria-modal="true" aria-label="How to play"><div class="box">
   <button class="arc-help-close" onclick="setKeysCard(false)" aria-label="Close help">×</button><h3>Your command guide</h3>
   <p style="font-size:16px;line-height:1.6;color:var(--dim)">Drag to turn the globe. Select a province to explore it. Open a system from the command dock; your decisions take effect through the game's existing orders.</p>
-  <div class="row"><span>Advance one day</span><span><kbd>Space</kbd> / <kbd>1</kbd></span></div>
-  <div class="row"><span>Advance 7 / 30 / 365 days</span><span><kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd></span></div>
+  <div class="row"><span>Pause / run the clock</span><span><kbd>Space</kbd></span></div>
+  <div class="row"><span>Run at speed 1&ndash;5 (1000 / 500 / 250 / 100 / 0 ms a day)</span><span><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> <kbd>5</kbd></span></div>
+  <div class="row"><span>Speed up / slow down</span><span><kbd>+</kbd> <kbd>&minus;</kbd></span></div>
+  <div class="row"><span>Step one day, and pause</span><span><kbd>N</kbd></span></div>
   <div class="row"><span>Map / History / League</span><span><kbd>M</kbd> <kbd>H</kbd> <kbd>L</kbd></span></div>
   <div class="row"><span>Cycle map shading</span><span><kbd>C</kbd></span></div>
   <div class="row"><span>Resource layer over the current shading</span><span><kbd>O</kbd></span></div>
   <div class="row"><span>Next / previous commodity (all &rarr; bauxite &rarr; &hellip;)</span><span><kbd>X</kbd> <kbd>Shift</kbd>+<kbd>X</kbd></span></div>
-  <div class="row"><span>Zoom the world map / reset the view</span><span><kbd>+</kbd> <kbd>&minus;</kbd> <kbd>0</kbd> · wheel · double-click</span></div>
+  <div class="row"><span>Zoom the world map / reset the view</span><span><kbd>Z</kbd> <kbd>Shift</kbd>+<kbd>Z</kbd> <kbd>0</kbd> · wheel · double-click</span></div>
   <div class="row"><span>Filter the event log</span><span><kbd>E</kbd></span></div>
   <div class="row"><span>Technology</span><span><kbd>T</kbd></span></div>
   <div class="row"><span>Resources board</span><span><kbd>B</kbd></span></div>
@@ -3482,6 +3509,7 @@ async function continueCampaign() {
 async function loadCampaign() {
   if (typeof guardEconomicOrder === "function" && guardEconomicOrder("load")) return;
   if (SESSION.busy || advancing || pendingAdvance) return;
+  clockPause();
   if (SESSION.live?.player && !window.confirm("Load save.json and replace the live campaign? Unsaved progress and browser drafts will be replaced. History charts restart at the saved date.")) return;
   SESSION.busy = true; renderSessionActions();
   try {
@@ -3492,7 +3520,8 @@ async function loadCampaign() {
 }
 
 function showCampaigns() {
-  if (advancing) return;
+  clockPause();
+  if (advancing) { banner("The clock is paused. Open Campaigns again after the current day lands."); return; }
   closeGlobalMenus();
   closeGameDrawers(); closeTech(); closeStock();
   if (dominationIsOpen()) closeDomination();
@@ -3816,6 +3845,11 @@ $("#startBtn").onclick = async () => {
     $("#seed").select();
     return;
   }
+  // The clock stops before the world underneath it is replaced. A day in flight
+  // would otherwise land on the new world, and a running loop would carry on
+  // ticking a game the player has just left. Any future /api/load handler owes
+  // this same line, as it owes the tech-graph reset below.
+  clockPause();
   const label = b.textContent;
   if (SESSION.live?.player && !window.confirm("Start a new campaign and replace this server's live world? Your disk save will not be changed.")) return;
   SESSION.busy = true; renderSessionActions();
@@ -4030,6 +4064,15 @@ async function adopt(state, withHistory, allowCampaignChange = false) {
   if (historyError) banner("The campaign updated, but history could not load: " + historyError.message);
 }
 
+/// The one reader of "is there a game to run" — the nation picker is still up,
+/// or the first state has not landed yet. Everything that moves time asks it,
+/// because the clock must never run when there is no game behind it.
+function gameIsUp() { return !!S && $("#app").style.display !== "none"; }
+
+/// One post of /api/advance, and the ONLY one: `advancing` is the single-flight
+/// guard, so a second caller — a key, a button, the runner below — is refused
+/// rather than queued behind the first. Returns the state the server answered
+/// with so a caller can read `interrupt`; null when it did not run.
 let advancing = false;
 let pendingAdvance = null;
 
@@ -4074,7 +4117,7 @@ function restorePendingAdvance(state, replacing) {
 }
 
 function syncAdvanceControls() {
-  document.querySelectorAll("[data-adv]").forEach(x => { x.disabled = advancing || !!pendingAdvance; });
+  document.querySelectorAll("[data-step]").forEach(x => { x.disabled = advancing || !!pendingAdvance; });
   $("#retryAdvanceBtn").disabled = advancing;
   $("#retryAdvanceBtn").hidden = !!pendingAdvance?.reviewRequired;
   $("#reviewTurnBtn").hidden = !pendingAdvance?.reviewRequired;
@@ -4085,11 +4128,14 @@ function syncAdvanceControls() {
       : "Turn outcome unconfirmed. Check this same turn before advancing again; your draft is retained."
     : "";
   $("#saveBtn").disabled = advancing || !!pendingAdvance;
+  const enact = $("#cabinetEnact");
+  if (enact) enact.disabled = CAB.busy || advancing || !!pendingAdvance;
 }
 
 async function advance(days, retry = false) {
   if (typeof guardEconomicOrder === "function" && guardEconomicOrder("advance")) return false;
-  if (advancing) return false;
+  if (advancing) return null;
+  if (!gameIsUp()) return null;
   if (pendingAdvance && !retry) { banner("Check the pending turn first. No additional time has been requested."); return false; }
   if (!pendingAdvance) {
     const sources = queued.slice();
@@ -4108,7 +4154,7 @@ async function advance(days, retry = false) {
     pendingAdvance = null; persistPendingAdvance(); noteQueued();
     await adopt(st);
     if (st.interrupt) banner(st.interrupt);
-    return true;
+    return st;
   } catch (error) {
     // Only an explicit server refusal certifies that this attempt did not
     // advance. Network/JSON/500 failures may have lost an already committed
@@ -4147,9 +4193,105 @@ async function reviewPendingTurn() {
 }
 $("#reviewTurnBtn").onclick = reviewPendingTurn;
 
-document.querySelectorAll("[data-adv]").forEach((b) => {
-  b.onclick = () => { const menu = b.closest("details"); if (menu) menu.open = false; advance(+b.dataset.adv); };
+/* ---- the clock, HOI4's: it runs by itself until something stops it ----
+   Five speeds, and the ladder is REAL MILLISECONDS BETWEEN DAYS. Speed 5 waits
+   zero, which is HOI4's fastest and means exactly "as fast as the server can
+   answer": the loop chains — post one day, await it, adopt it, wait, post the
+   next — so one request is in flight at any moment and a slow server slows the
+   clock rather than piling days up behind it.
+   Nothing here decides anything about the world. The day, its headlines and the
+   interrupt that stops the clock are all the server's answer; the sim stays the
+   single source of truth and this is a metronome in front of it. */
+const SPEED_DELAY_MS = [1000, 500, 250, 100, 0];   // speed 1..5, ms of real time between days
+const SPEED_MIN = 1;
+const SPEED_MAX = SPEED_DELAY_MS.length;           // 5
+const clock = { running: false, speed: 3, timer: null };
+
+function clockDelayMs() { return SPEED_DELAY_MS[clock.speed - SPEED_MIN]; }
+
+/// Everything a player reads about the clock is written here, from the clock's
+/// actual state — never from what a press was supposed to have done.
+function clockRenderState() {
+  const state = $("#clockState");
+  if (state) {
+    state.textContent = (clock.running ? "RUNNING" : "PAUSED") + " · SPEED " + clock.speed;
+    state.classList.toggle("running", clock.running);
+  }
+  const toggle = $("#playPauseBtn");
+  if (toggle) {
+    toggle.innerHTML = (clock.running ? "PAUSE" : "PLAY") + "<i>SPC</i>";
+    toggle.title = clock.running
+      ? "Pause the clock (Space)"
+      : "Run the clock at speed " + clock.speed + " (Space)";
+  }
+  document.querySelectorAll("[data-speed]").forEach((b) => {
+    b.classList.toggle("on", +b.dataset.speed === clock.speed);
+  });
+}
+
+function clockPause() {
+  clock.running = false;
+  if (clock.timer !== null) { clearTimeout(clock.timer); clock.timer = null; }
+  clockRenderState();
+}
+
+function clockPlay() {
+  if (clock.running) return;
+  if (!gameIsUp()) return;                                // no game, no clock
+  clock.running = true;
+  clockRenderState();
+  clockStep();                                            // the first day starts at once
+}
+
+function clockToggle() { if (clock.running) clockPause(); else clockPlay(); }
+
+/// One turn of the loop. The wait is read AFTER the day has landed, which is
+/// what makes a speed change take effect on the next day without restarting the
+/// loop or dropping the request already in flight.
+async function clockStep() {
+  clock.timer = null;
+  if (!clock.running) return;
+  let st = null;
+  try {
+    st = await advance(1);
+  } catch (e) {
+    clockPause();
+    banner(e.message || "The clock stopped: the server did not answer.");
+    return;
+  }
+  if (!clock.running) return;                    // paused while that day was in flight
+  if (!st) { clockPause(); return; }             // refused or unconfirmed: never spin on a failed day
+  if (st && st.interrupt) {
+    // A major event stops the clock and leaves it stopped. This is the whole
+    // point of the feature: the server decides what counts as major, and the
+    // player decides when to start again.
+    clockPause();
+    banner(st.interrupt + "  ·  the clock is paused — press Space to resume");
+    return;
+  }
+  if (!gameIsUp()) { clockPause(); return; }
+  clock.timer = setTimeout(clockStep, clockDelayMs());
+}
+
+function setSpeed(n) {
+  clock.speed = clamp(Math.round(n), SPEED_MIN, SPEED_MAX);
+  clockRenderState();
+}
+
+/// The single step, usable while paused — and it pauses first, because stepping
+/// a running clock one day means nothing.
+function stepDay() {
+  clockPause();
+  return advance(1);
+}
+
+$("#playPauseBtn").onclick = clockToggle;
+document.querySelectorAll("[data-speed]").forEach((b) => {
+  b.onclick = () => { setSpeed(+b.dataset.speed); clockPlay(); };
 });
+$("#stepBtn").onclick = stepDay;
+clockRenderState();
+window.stepDay = stepDay;
 
 $("#saveBtn").onclick = doSave;
 async function doSave() {
@@ -4224,6 +4366,12 @@ function isKeysCardToggle(e) { return e.key === "?" || (e.key === "/" && e.shift
 document.addEventListener("keydown", (e) => {
   const room = arcadeTopRoom();
   if (room && e.key === "Tab") { arcadeTrapTab(e, room); return; }
+  // A running clock may be paused from a room whose own key handler otherwise
+  // swallows global shortcuts. Native controls and text fields keep Space.
+  if (clock.running && e.key === " " && !typing(e) && !e.ctrlKey && !e.metaKey && !e.altKey
+      && !e.target?.closest?.('button, summary, select, [role="tab"]')) {
+    e.preventDefault(); clockPause(); return;
+  }
   if (room?.id === "competitionRoom") {
     if (e.key === "Escape") { e.preventDefault(); closeCompetition(); }
     return;
@@ -4299,10 +4447,14 @@ document.addEventListener("keydown", (e) => {
   // on a map tab or disclosure must not also spend a simulation day.
   if (e.target?.closest?.('button, summary, select, [role="tab"]') && [" ", "Enter", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(e.key)) return;
   const k = e.key;
-  if (k === " " || k === "1") { e.preventDefault(); advance(1); }
-  else if (k === "2") advance(7);
-  else if (k === "3") advance(30);
-  else if (k === "4") advance(365);
+  // HOI4's clock keys. Space is the pause/play toggle; 1..5 pick a speed and
+  // run at it; plus and minus walk the ladder without touching pause; N steps
+  // a single day (and pauses, since a step of a running clock means nothing).
+  if (k === " ") { e.preventDefault(); clockToggle(); }
+  else if (k >= "1" && k <= "5" && k.length === 1) { e.preventDefault(); setSpeed(+k); clockPlay(); }
+  else if (k === "+" || k === "=") { e.preventDefault(); setSpeed(clock.speed + 1); }
+  else if (k === "-" || k === "_") { e.preventDefault(); setSpeed(clock.speed - 1); }
+  else if (k === "n" || k === "N") { e.preventDefault(); stepDay(); }
   else if (k === "m" || k === "M") showTab("map");
   else if (k === "h" || k === "H") showTab("charts");
   else if (k === "l" || k === "L") showTab("table");
@@ -4318,8 +4470,11 @@ document.addEventListener("keydown", (e) => {
   else if (k === "g" || k === "G") toggleLogistics();
   else if (k === "q" || k === "Q") toggleProduction();
   else if (k === "r" || k === "R") revertOrders();
-  else if (k === "+" || k === "=") mapZoom(1.3);
-  else if (k === "-" || k === "_") mapZoom(1 / 1.3);
+  // The world map's zoom moved off + and − when those became the speed ladder:
+  // Z in, Shift+Z out. The tech screen keeps + and − for its own map, since it
+  // swallows every key above before this dispatch is reached.
+  else if (k === "z") mapZoom(1.3);
+  else if (k === "Z") mapZoom(1 / 1.3);
   else if (k === "0") resetCam();
   // The arrows turn the globe, and only while the map is the screen being
   // looked at -- every other tab wants them for its own scrolling.

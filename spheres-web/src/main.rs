@@ -256,10 +256,20 @@ impl Game {
                     }
                 }
             }
-            if i + 1 < days {
-                if let Some(e) = headlines.iter().find(|h| is_major(h, self.world.player)) {
-                    return (true, Some(e.clone()));
-                }
+            if let Some(e) = headlines.iter().find(|h| is_major(h, self.world.player)) {
+                // Reported on the LAST day of the span too, and that is the
+                // whole of what changed here (2026-09-04). `i + 1 < days`
+                // used to suppress it, which was harmless while the browser
+                // asked for 7, 30 or 365 days at a time — but HOI4's running
+                // clock posts ONE day and repeats, and for a one-day span the
+                // last day is the only day. The clock would have run straight
+                // through every event it exists to stop for. Measured before
+                // the repair: 3.5 simulated years of browser play at speed 5,
+                // seed 1990 as the USA, with headlines naming the player in
+                // the log and the clock never once pausing.
+                // The flag stays truthful: a span only STOPPED early if days
+                // remained. Nothing decides what is major but `is_major`.
+                return (i + 1 < days, Some(e.clone()));
             }
         }
         (false, None)
@@ -8894,13 +8904,271 @@ mod tests {
         assert_eq!(research_days_left(&g.world, 31.0, 31.0), Some(30));
     }
 
+    /// The browser posts DAYS, never months. Re-expressed 2026-09-04, when the
+    /// four fixed jump buttons became HOI4's running clock: "+7 DAYS" is gone
+    /// from the page because that button is gone, so this asserts the same
+    /// claim on the surface that replaced it. The single-step control still
+    /// reads "+1 DAY", the runner and the step each ask for exactly one day,
+    /// the post still carries a `days` field, and the queued note still
+    /// promises the next DAY. Nothing on the page asks for months.
     #[test]
     fn browser_surface_posts_days_not_months() {
-        assert!(INDEX.contains("+1 DAY"));
-        assert!(INDEX.contains("+7 DAYS"));
+        assert!(INDEX.contains("+1 DAY"), "the single-day step lost its label");
         assert!(INDEX.contains("payload: { days, commands: JSON.parse(JSON.stringify(sources))"));
         assert!(INDEX.contains("api(\"/api/advance\", request.payload)"));
+        assert!(INDEX.contains("st = await advance(1);"), "the clock's runner no longer asks for one day");
+        assert!(INDEX.contains("return advance(1);"), "the single step no longer asks for one day");
+        assert!(!INDEX.contains("{ months"), "something on the page went back to posting months");
         assert!(INDEX.contains("effect next day"));
+    }
+
+    /// The speed ladder, in real milliseconds between simulated days, read out
+    /// of the page rather than retyped here — so this cannot pass against a
+    /// ladder the runner does not actually wait on.
+    fn page_speed_ladder() -> Vec<u32> {
+        let tail = INDEX
+            .split("const SPEED_DELAY_MS = [")
+            .nth(1)
+            .expect("the page has no SPEED_DELAY_MS ladder");
+        tail.split(']')
+            .next()
+            .unwrap()
+            .split(',')
+            .map(|s| {
+                s.trim()
+                    .parse::<u32>()
+                    .expect("a speed delay that is not a whole number of milliseconds")
+            })
+            .collect()
+    }
+
+    /// HOI4's ladder: five levels, and the wait between days shortens down it
+    /// until speed 5 waits nothing at all and the clock runs exactly as fast as
+    /// the server answers. Every figure a player can read — the pip's own
+    /// attribute, its tooltip, the keyboard card — is asserted against the same
+    /// array the runner waits on, so the page cannot promise one pace and keep
+    /// another.
+    #[test]
+    fn the_speed_ladder_is_five_levels_of_real_milliseconds() {
+        let ladder = page_speed_ladder();
+        assert_eq!(ladder, vec![1000u32, 500, 250, 100, 0], "the speed ladder moved");
+        assert!(INDEX.contains("SPEED_MAX = SPEED_DELAY_MS.length"), "the top of the ladder is retyped somewhere");
+        for (i, ms) in ladder.iter().enumerate() {
+            let level = i + 1;
+            assert!(
+                INDEX.contains(&format!(r#"data-speed="{level}" data-speed-ms="{ms}""#)),
+                "speed {level} has no clickable pip quoting {ms} ms"
+            );
+            // The tooltip a player actually reads. The last rung has no wait at
+            // all, so it says that instead of quoting a zero.
+            if *ms > 0 {
+                assert!(
+                    INDEX.contains(&format!("Speed {level} — one day every {ms} ms")),
+                    "speed {level}'s tooltip does not quote {ms} ms"
+                );
+            } else {
+                assert!(
+                    INDEX.contains(&format!("Speed {level} — no wait at all")),
+                    "the uncapped speed does not say so"
+                );
+            }
+        }
+        // And the keyboard card quotes the ladder itself, not a copy of it.
+        let quoted = ladder.iter().map(|m| m.to_string()).collect::<Vec<_>>().join(" / ");
+        assert!(
+            INDEX.contains(&format!("({quoted} ms a day)")),
+            "the keys card no longer quotes the ladder it is describing"
+        );
+    }
+
+    /// The clock is a pause/play toggle over a speed ladder, and what it SAYS
+    /// is read from what it IS: the button carries the action pressing it would
+    /// take, the readout beside it carries the state the clock is in.
+    #[test]
+    fn the_browser_carries_a_pause_play_toggle_and_a_truthful_readout() {
+        assert!(INDEX.contains(r#"id="playPauseBtn""#), "no pause/play control");
+        assert!(INDEX.contains(r#"id="clockState""#), "no readout of what the clock is doing");
+        assert!(INDEX.contains("function clockToggle()"));
+        assert!(INDEX.contains("function clockPause()"));
+        assert!(INDEX.contains("function clockPlay()"));
+        assert!(INDEX.contains("function setSpeed(n)"));
+        // The readout names both halves of the state — paused or running, and
+        // which speed — from the clock's own fields.
+        assert!(INDEX.contains(r#"(clock.running ? "RUNNING" : "PAUSED") + " · SPEED " + clock.speed"#));
+        assert!(INDEX.contains(r#"(clock.running ? "PAUSE" : "PLAY")"#));
+        // A single-day step survives, usable while paused, with a key and a
+        // button of its own.
+        assert!(INDEX.contains("function stepDay()"));
+        assert!(INDEX.contains(r#"id="stepBtn" data-step="1""#));
+        assert!(INDEX.contains(r##"$("#stepBtn").onclick = stepDay;"##));
+        // The four controls that shared the old bar are still beside it.
+        for id in ["techBtn", "stockBtn", "saveBtn", "keysBtn"] {
+            assert!(INDEX.contains(&format!(r#"id="{id}""#)), "{id} left the header");
+        }
+    }
+
+    /// One request in flight, always. The runner CHAINS — post a day, await it,
+    /// adopt it, then arm the next — so a server slower than the delay slows
+    /// the clock instead of stacking days behind it. An interval timer or an
+    /// unawaited post would break that, and neither is allowed here.
+    #[test]
+    fn the_clock_never_has_two_days_in_flight() {
+        assert!(INDEX.contains("if (advancing) return null;"), "the single-flight guard is gone");
+        assert!(INDEX.contains("advancing = true;"));
+        assert!(INDEX.contains("advancing = false;"));
+        assert!(INDEX.contains("st = await advance(1);"), "the runner does not await its day");
+        assert!(
+            INDEX.contains("clock.timer = setTimeout(clockStep, clockDelayMs());"),
+            "the next day is not armed after the last one landed"
+        );
+        assert!(
+            !INDEX.contains("setInterval(clockStep"),
+            "an interval would post days without waiting for the last to answer"
+        );
+        assert!(
+            INDEX.contains("if (clock.timer !== null) { clearTimeout(clock.timer); clock.timer = null; }"),
+            "pausing must disarm the timer it armed"
+        );
+    }
+
+    /// The keys are HOI4's. Space toggles; 1..5 pick a speed and run at it;
+    /// plus and minus walk the ladder; N steps a single day. The two screens
+    /// that swallow the keyboard still swallow it, and the world map's zoom
+    /// moved to Z rather than being dropped when + and − became the ladder.
+    #[test]
+    fn the_clock_keys_are_hoi4s() {
+        assert!(INDEX.contains(r#"if (k === " ") { e.preventDefault(); clockToggle(); }"#), "space no longer toggles");
+        assert!(INDEX.contains(r#"k >= "1" && k <= "5""#), "the number keys no longer pick a speed");
+        assert!(INDEX.contains("setSpeed(+k); clockPlay();"), "a number key must set the speed and run");
+        assert!(INDEX.contains(r#"else if (k === "+" || k === "=") { e.preventDefault(); setSpeed(clock.speed + 1); }"#));
+        assert!(INDEX.contains(r#"else if (k === "-" || k === "_") { e.preventDefault(); setSpeed(clock.speed - 1); }"#));
+        assert!(INDEX.contains(r#"else if (k === "n" || k === "N") { e.preventDefault(); stepDay(); }"#), "no single-step key");
+        // Every one of them is on the card the player opens with `?`.
+        assert!(INDEX.contains(r#"<span>Pause / run the clock</span><span><kbd>Space</kbd></span>"#));
+        assert!(INDEX.contains(r#"<span>Speed up / slow down</span><span><kbd>+</kbd> <kbd>&minus;</kbd></span>"#));
+        assert!(INDEX.contains(r#"<span>Step one day, and pause</span><span><kbd>N</kbd></span>"#));
+        assert!(INDEX.contains("+1 DAY<i>N</i>"), "the step button does not show its key");
+        // The early returns that keep the clock keys out of the tech screen and
+        // the resource board are the ones that were already there.
+        assert!(INDEX.contains("if (tech.open) { techKeys(e); return; }"));
+        assert!(INDEX.contains("if (stock.open) { stockKeys(e); return; }"));
+        // The map zoom that + and − used to own.
+        assert!(INDEX.contains(r#"else if (k === "z") mapZoom(1.3);"#));
+        assert!(INDEX.contains(r#"else if (k === "Z") mapZoom(1 / 1.3);"#));
+        assert!(
+            INDEX.contains("<kbd>Z</kbd> <kbd>Shift</kbd>+<kbd>Z</kbd>"),
+            "the card still sends a player to + and − for the world map"
+        );
+    }
+
+    /// The point of the whole feature: a major event stops the clock and leaves
+    /// it stopped. Both halves are asserted — the server's, which decides what
+    /// is major and stops the span early with the headline, and the page's,
+    /// which reads that field, pauses, and says so.
+    ///
+    /// The server half is exercised rather than described. Seed 1990 as the USA
+    /// is asked for ten years in one span; it stops early, and the headline it
+    /// stops on is one `is_major` agrees with. This is an INVARIANT, not a
+    /// statistic — the stop either happens on a major headline or it does not —
+    /// so one world exercises it completely (iron rule 7).
+    #[test]
+    fn a_major_event_stops_the_clock_and_the_server_is_what_decides() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let asked = 3650usize;
+        let before = month_index(g.world.year, g.world.month);
+        let (stopped, why) = g.advance_days(asked, vec![]);
+        assert!(stopped, "ten years passed with nothing worth stopping for");
+        let headline = why.expect("a stop with no headline to show the player");
+        assert!(
+            is_major(&headline, Some(NationId::USA)),
+            "the clock stopped on something the server does not call major: {headline}"
+        );
+        let moved = month_index(g.world.year, g.world.month) - before;
+        assert!(
+            (moved as usize) * 28 < asked,
+            "the span was not cut short: {moved} months of the {asked} days asked for"
+        );
+        // The field that carries it to the browser.
+        assert!(INDEX.contains("if (st.interrupt) banner(st.interrupt);"));
+        // And the page's half: the runner pauses on it and says the clock is
+        // paused, rather than banner-ing and rolling on.
+        assert!(INDEX.contains("if (st && st.interrupt) {"), "the runner ignores the interrupt");
+        assert!(INDEX.contains("the clock is paused — press Space to resume"));
+        let runner = INDEX
+            .split("async function clockStep()")
+            .nth(1)
+            .expect("no runner");
+        let interrupt_arm = runner
+            .split("if (st && st.interrupt) {")
+            .nth(1)
+            .expect("the runner has no interrupt arm");
+        let arm = &interrupt_arm[..interrupt_arm.find("  }").expect("unterminated interrupt arm")];
+        assert!(arm.contains("clockPause();"), "a major event must stop the clock");
+        assert!(arm.contains("return;"), "the runner must not arm another day after an interrupt");
+    }
+
+    /// The clock posts ONE day at a time, so the day-at-a-time replay has to
+    /// report the event the clock is supposed to stop on. It did not: the
+    /// early-stop arm was guarded by `i + 1 < days`, and for a one-day span the
+    /// last day is the only day, so `interrupt` came back null every time. This
+    /// was found in the browser, not here — seed 1990 as the USA, speed 5, and
+    /// the clock ran through 1990 into July 1993 without pausing once while the
+    /// event log filled with headlines naming the player.
+    ///
+    /// An INVARIANT, not a statistic (iron rule 7): a day that produces a major
+    /// headline either hands it back or it does not, so one world exercises it.
+    #[test]
+    fn a_one_day_advance_still_reports_the_event_the_clock_must_stop_on() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let mut told = None;
+        let mut days = 0usize;
+        for _ in 0..3650 {
+            days += 1;
+            let (stopped, why) = g.advance_days(1, vec![]);
+            assert!(!stopped, "a one-day span has no days left to cut short");
+            if let Some(w) = why {
+                told = Some(w);
+                break;
+            }
+        }
+        let headline = told.expect(
+            "ten years posted one day at a time and not one event was handed back —              the running clock has nothing to stop on",
+        );
+        assert!(
+            is_major(&headline, Some(NationId::USA)),
+            "reported something the server does not call major: {headline}"
+        );
+        assert!(days > 1, "the very first day is a suspicious place to stop");
+    }
+
+    /// The clock never runs when there is no game — not on the nation picker,
+    /// not before the first state lands — and it stops before the world under
+    /// it is replaced.
+    #[test]
+    fn the_clock_does_not_run_without_a_game() {
+        // One reader for "is there a game to run", and everything that moves
+        // time asks it: the post itself, the play, and the loop between days.
+        assert!(INDEX.contains(
+            "function gameIsUp() { return !!S && $(\"#app\").style.display !== \"none\"; }"
+        ), "the no-game guard is gone or has been copied");
+        assert!(INDEX.contains("if (!gameIsUp()) return null;"), "advance would post without a game");
+        assert!(INDEX.contains("if (!gameIsUp()) return;"), "play would start without a game");
+        assert!(
+            INDEX.contains("if (!gameIsUp()) { clockPause(); return; }"),
+            "the loop would keep ticking a game that is gone"
+        );
+        // Starting a new game stops the clock BEFORE the world under it is
+        // replaced: a day in flight would otherwise land on the new world.
+        let start = INDEX
+            .find(r##"$("#startBtn").onclick"##)
+            .expect("no start-game handler");
+        let post = INDEX[start..]
+            .find(r#"api("/api/new""#)
+            .expect("the start handler no longer posts /api/new");
+        assert!(
+            INDEX[start..start + post].contains("clockPause();"),
+            "a new game must stop the clock before it replaces the world"
+        );
     }
 
     #[test]
@@ -12057,14 +12325,27 @@ mod tests {
         for m in [0u64, 1, 6, 12, 60, MAX_ADVANCE] {
             assert_eq!(asked_months(&serde_json::json!({ "months": m })), Ok(m));
         }
-        // The browser's four daily buttons, read off the page rather than
-        // retyped, so this cannot pass while the page asks for something else.
+        // The browser's own span, read off the page rather than retyped, so
+        // this cannot pass while the page asks for something else.
+        // Re-expressed 2026-09-04: the four fixed jump buttons became HOI4's
+        // running clock, which posts ONE day at a time and repeats. The page's
+        // only remaining data-carrying span is the single-step control, and the
+        // runner's is the literal `advance(1)` beside it — so those are what is
+        // read off the page now. The four spans the route must still parse are
+        // kept below: /api/advance is a public route and older tabs still ask.
+        assert!(
+            INDEX.contains(r#"data-step="1""#),
+            "the page no longer offers a one-day step; re-derive this list"
+        );
+        assert!(
+            INDEX.contains("st = await advance(1);"),
+            "the clock's runner no longer posts a single day; re-derive this list"
+        );
+        assert!(
+            !INDEX.contains("data-adv="),
+            "a fixed jump button is back on the page: assert its span here too"
+        );
         for span in ["1", "7", "30", "365"] {
-            assert!(
-                INDEX.contains(&format!("data-adv=\"{}\"", span)),
-                "the page no longer offers a {}-day advance; re-derive this list",
-                span
-            );
             let days: u64 = span.parse().unwrap();
             assert_eq!(asked_days(&serde_json::json!({ "days": days })), Ok(Some(days)));
         }

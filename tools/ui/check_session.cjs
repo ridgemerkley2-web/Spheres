@@ -22,6 +22,7 @@ function fixture(names = ['advance']) {
     sessionStorage:{getItem:key=>storage.get(key)||null,setItem:(key,value)=>storage.set(key,value),removeItem:key=>storage.delete(key)},
     renderSessionActions(){}, syncAdvanceControls(){}, persistPendingAdvance(){},
     nextAdvanceIdentity:()=>({client_id:'test-browser',request_seq:1}),
+    gameIsUp:()=>true,
   });
   vm.runInContext(`let queued=[]; let S={date:'1 Jan 1990',session_id:'campaign-1',player:'USA'};
     let advancing=false; let pendingAdvance=null; let sessionBusy=false;
@@ -82,7 +83,7 @@ test('uncertain retry resends the identical frozen turn, never newly added draft
   run(c,"queued.push({kind:'interest',value:.04})");
   assert.equal(await run(c,'advance(30)'),false,'a fresh advance is blocked while outcome is uncertain');
   assert.equal(sent.length,1);
-  assert.equal(await run(c,'advance(1,true)'),true);
+  assert.equal((await run(c,'advance(1,true)')).date,'2 Jan 1990');
   assert.deepEqual(sent[1],sent[0]);
   assert.deepEqual(JSON.parse(run(c,'JSON.stringify(queued)')),[{kind:'interest',value:.04}]);
   assert.equal(run(c,'pendingAdvance'),null);
@@ -119,7 +120,7 @@ test('reload restores the same pending receipt and only its still-matching draft
   // even when it no longer occupies the original command's array position.
   run(reopened,'persistPendingAdvance();queued=[];pendingAdvance=null;restorePendingAdvance(S,false)');
   const sent=[];reopened.api=async(url,body)=>{sent.push(body);return {date:'2 Jan 1990',session_id:'campaign-1'};};
-  assert.equal(await run(reopened,'advance(1,true)'),true);
+  assert.equal((await run(reopened,'advance(1,true)')).date,'2 Jan 1990');
   assert.equal(sent[0].request_seq,1);
   assert.deepEqual(JSON.parse(run(reopened,'JSON.stringify(queued)')),[{kind:'tax',value:.3}]);
   assert.equal(run(reopened,'nextAdvanceIdentity().request_seq'),2);
