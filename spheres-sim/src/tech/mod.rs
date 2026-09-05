@@ -648,6 +648,10 @@ pub struct TechState {
     /// a proof that the machinery is inert rather than an assertion that it is.
     #[serde(default, skip_serializing_if = "is_positive_zero")]
     pub tfp_1990_offset: f64,
+    /// Productivity revealed from under-listed 1990 knowledge after this save
+    /// adopted the correction. Removed from the runtime world benchmark once.
+    #[serde(default, skip_serializing_if = "is_positive_zero")]
+    pub tfp_1990_revelation: f64,
     /// How far behind the January 1990 frontier this nation's transcription
     /// left it, counted in technologies: `world_frontier(1990) - count(1990)`.
     ///
@@ -788,6 +792,7 @@ impl TechState {
             research_total: 0.0,
             tfp_base,
             tfp_1990_offset: 0.0,
+            tfp_1990_revelation: 0.0,
             tech_1990_deficit: 0.0,
             tech_1990_revealed: 0.0,
             priority: None,
@@ -834,6 +839,7 @@ impl TechState {
             research_total: 0.0,
             tfp_base: transcribed - parent.tfp_1990_offset,
             tfp_1990_offset: parent.tfp_1990_offset,
+            tfp_1990_revelation: parent.tfp_1990_revelation,
             // The 1990 deficit travels with the known set it explains, for the
             // same reason the offset does: a successor taking the union's whole
             // 1990 stock must not also be handed a fresh convergence gap against
@@ -977,8 +983,10 @@ impl TechState {
 
 /// The technology the world economy on average operates with, GDP-weighted.
 ///
-/// THE one definition. `tick` and the loader's rebasing pass both read it here,
-/// so they cannot drift apart about what a nation is being scored against —
+/// The loader and explicit re-endowment use this raw initial reference. Daily
+/// and monthly runtime ticks use `productivity_reference` to exclude credited
+/// revelations of already-priced 1990 knowledge. Both share the same initial
+/// GDP weighting, so they cannot drift about the starting benchmark —
 /// which is the only thing that makes `tfp_base + (s - reference)` reproduce a
 /// transcribed figure at all.
 pub fn world_reference(nations: &[Nation]) -> f64 {
@@ -994,6 +1002,23 @@ pub fn world_reference(nations: &[Nation]) -> f64 {
     } else {
         0.0
     }
+}
+
+/// Runtime benchmark excludes only subsequent revelations of already-priced
+/// 1990 knowledge. They raise the known-set value and the domestic offset equally;
+/// the global benchmark must not penalize other countries for this authoring fix.
+/// Initial inherited stocks retain their existing GDP weighting. Genuine new
+/// productivity continues to move the benchmark. Old saves start their separate
+/// revelation ledger at zero: loading does not invent a retrospective credit.
+pub fn productivity_reference(nations: &[Nation]) -> f64 {
+    let mut acc=0.0;
+    let mut world_gdp=0.0;
+    for n in nations.iter().filter(|n|n.alive) {
+        let g=n.gdp.max(0.0);
+        world_gdp+=g;
+        acc+=(saturated_tech_tfp(n)-n.tech.tfp_1990_revelation)*g;
+    }
+    if world_gdp>0.0 {acc/world_gdp} else {0.0}
 }
 
 /// The most technologies anybody alive holds — the frontier, counted in
@@ -1116,6 +1141,7 @@ fn pool_1990_held(n: &Nation) -> f64 {
 pub fn rebase_to_transcribed(n: &mut Nation, transcribed: f64, reference: f64, frontier_1990: f64) {
     let offset = saturated_tech_tfp(n) - reference;
     n.tech.tfp_1990_offset = offset;
+    n.tech.tfp_1990_revelation = 0.0;
     n.tech.tfp_base = transcribed - offset;
     n.tech.tech_1990_deficit =
         (frontier_1990 - n.tech.count() as f64).max(0.0) * development(n);
@@ -1846,12 +1872,10 @@ pub fn tick(w: &mut WorldState) {
     // anyone has. Both are read off the state at the top of the tick, so what
     // one nation is scored against never depends on who was ticked first.
     //
-    // The reference goes through `world_reference` rather than being summed
-    // here, because the loader subtracts this exact quantity out of `tfp_base`
-    // and the two must agree to the bit or a transcribed trend stops reproducing
-    // itself. Same accumulation, same order, same divisor as the loop it
-    // replaced.
-    let reference = world_reference(&w.nations);
+    // Net subsequent credited revelations out of each contribution. Otherwise a
+    // revelation that earns no domestic productivity still raises the global
+    // benchmark and reduces every country's trend (BUGS E-3).
+    let reference = productivity_reference(&w.nations);
     // Same argument as the reference, and the same remedy: `world_frontier` is
     // the one definition, because the loader subtracts a deficit taken against
     // this exact quantity and the two must agree or a 1990 gap stops cancelling.
@@ -2095,6 +2119,7 @@ pub fn tick(w: &mut WorldState) {
                 let credited = (saturated_tech_tfp(n) - s_before) * (revealed / learned);
                 n.tech.tfp_base -= credited;
                 n.tech.tfp_1990_offset += credited;
+                n.tech.tfp_1990_revelation += credited;
                 n.tech.tech_1990_revealed += revealed;
             }
 
@@ -2542,6 +2567,27 @@ mod tests {
                 a.id.code(), a.tech.count(), a.growth_last, b.growth_last,
                 a.growth_last - b.growth_last);
         }
+    }
+
+    #[test]
+    fn credited_revelation_cannot_move_the_world_productivity_benchmark() {
+        let mut w=world_1990(GameRules::default());
+        let before=productivity_reference(&w.nations);
+        let raw_before=world_reference(&w.nations);
+        let n=w.nation_mut(NationId::Belgium);
+        let original=saturated_tech_tfp(n);
+        n.tech.grant_1990(&pool_1990());
+        let revealed=saturated_tech_tfp(n)-original;
+        assert!(revealed>1e-3,"the fixture must reveal economically meaningful knowledge");
+        n.tech.tfp_base-=revealed;
+        n.tech.tfp_1990_offset+=revealed;
+        n.tech.tfp_1990_revelation+=revealed;
+        assert_eq!(TechState::inherit(&n.tech,0.013).tfp_1990_revelation,n.tech.tfp_1990_revelation,"a successor inherits the credited stock and its benchmark correction together");
+        assert!((world_reference(&w.nations)-raw_before).abs()>1e-6,"the old raw benchmark responds to the authoring gap");
+        assert!((productivity_reference(&w.nations)-before).abs()<1e-14,"already-priced knowledge cannot reduce every other country's trend");
+        // Genuine uncredited progress is still present in the benchmark.
+        w.nation_mut(NationId::Belgium).tech.tfp_1990_revelation-=revealed;
+        assert!(productivity_reference(&w.nations)>before+1e-6);
     }
 
     #[test]

@@ -462,3 +462,13 @@ is the only campaign outcome. Existing sovereignty and domination conditions
 remain unchanged. Completing an aim grants no bonus, never halts the world, and
 can be archived to continue in sandbox. Daily observations, persistent frozen
 baselines and pure views preserve deterministic saves and default legacy replay.
+
+
+## Adopted amendment — credited technology revelations (2026-09-04, local review)
+
+The approved audit repair resolves BUGS E-3: revealing already-priced 1990
+technology may not raise the world productivity benchmark and lower everyone
+else's growth. `TECH_REFERENCE_REPAIR.md` defines the narrow correction. Initial
+stock weighting stays intact; only subsequent credited revelations are excluded
+from the runtime benchmark. This intentional daily and monthly model change
+requires an assessed new replay baseline, with existing calibration bars intact.

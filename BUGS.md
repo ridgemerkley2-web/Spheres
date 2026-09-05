@@ -1150,6 +1150,13 @@ in Western Europe by 36 PC.
 
 ### E-3 — E-2's mechanism is wrong: the residual is the world reference, not the capital arm
 
+**RESOLVED 2026-09-04 under the approved audit work:** `TECH_REFERENCE_REPAIR.md`
+records the credited-revelation-only benchmark correction. The original endowment,
+frontier, China and mature-economy bars pass unchanged. The historical diagnosis
+below is retained; its statement that no design ruling exists is superseded.
+Final integrated replay pins await their separately documented assessment.
+
+
 **Measured 2026-09-01 by the sim-and-web fixer, with a new instrument
 (`spheres-sim/tests/endowment_channel_probe.rs`) added for the purpose. This
 entry CORRECTS E-2's mechanism paragraph and does not dispute its attribution:

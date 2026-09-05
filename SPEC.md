@@ -319,3 +319,13 @@ is the only campaign outcome. Existing sovereignty and domination conditions
 remain unchanged. Completing an aim grants no bonus, never halts the world, and
 can be archived to continue in sandbox. Daily observations, persistent frozen
 baselines and pure views preserve deterministic saves and default legacy replay.
+
+
+## Current extension — technology revelation benchmark (2026-09-04, local review)
+
+`TECH_REFERENCE_REPAIR.md` resolves the approved E-3 design issue. Runtime
+productivity uses the GDP-weighted known-set value less each nation's cumulative
+credited 1990 revelations. Initialization retains the raw reference. The separate
+sparse credit ledger moves with inherited technology, starts at zero for older
+saves, and excludes no genuine new research. This semantic change is shared by
+daily and monthly simulation; calibration tolerances and historical data stay put.

@@ -77,7 +77,7 @@ struct Terms {
 }
 
 fn terms(w: &WorldState, n: &Nation) -> Terms {
-    let reference = tech::world_reference(&w.nations);
+    let reference = tech::productivity_reference(&w.nations);
     let sat = tech::saturated_tech_tfp(n);
     let tfp_base = n.tech.tfp_base;
     Terms {
