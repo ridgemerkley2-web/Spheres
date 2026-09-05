@@ -301,7 +301,7 @@ test('research chooser blocks blind time while preserving native activation and 
   const c=vm.createContext({document:{addEventListener:(type,fn)=>listener=fn},
     arcadeTopRoom:()=>({id:'techMenu'}),cabinetIsOpen:()=>false,dominationIsOpen:()=>false,
     focused:()=>false,typing:()=>false,keysCardIsOpen:()=>false,isKeysCardToggle:()=>false,
-    techMenuIsOpen:()=>true,closeTechMenu:()=>closed++,openTech:()=>opened++,
+    techMenuIsOpen:()=>true,closeTechMenu:()=>closed++,openTech:()=>opened++,gameIsUp:()=>true,
     S:{},tech:{open:false},stock:{open:false},$:()=>({style:{display:'block'}}),advance:()=>advanced++,clock:{running:false},clockPause(){},
   });
   vm.runInContext(html.slice(match.index,end+4),c);
