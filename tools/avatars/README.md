@@ -212,3 +212,23 @@ After the audit is green, run the web tests as the integration check:
 ```sh
 cargo test -p spheres-web
 ```
+
+
+## Display variants (0.6)
+
+Source art and per-image attribution remain unchanged. The runtime now embeds
+content-addressed WebP variants bounded to 512 × 640, preserving aspect ratio
+and transparency. `display-art/manifest.json` records source hashes, dimensions,
+byte counts and the derivative version. Existing portrait URLs resolve to these
+variants with the correct MIME type and an explicit cache version.
+
+Rebuild offline after editing the source art with Python and Pillow 12.3.0:
+
+```sh
+python tools/avatars/display_variants.py
+```
+
+The source-collection generator invokes the same derivative step. Generation
+reduces the 303-art inventory from 322,059,267 bytes to 7,749,894 bytes; the
+manifest is the exact per-file accounting. Sources are never overwritten.
+License obligations remain attached to the source and apply to its derivative.

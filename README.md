@@ -1,69 +1,91 @@
-# SPHERES v0.5 — Playable Slice
+# SPHERES 0.6
 
-Grand strategy simulation, January 1990 start. Deterministic core (SplitMix64,
-single command queue, seeded), 137 nations at the start and up to 158 once
-federations come apart, a 328-technology tree, monthly ticks.
+A deterministic grand strategy sandbox beginning in January 1990, with 137
+starting nations, successor states, eight research domains and 328 discoveries.
+Govern through budgets, production, trade, diplomacy and military commitments.
+The browser advances by **calendar day**, with pause, five speeds and one-day steps.
+The command-line historical runner retains its separate monthly calibration mode.
 
-## Run it
+## Play
 
-On Windows, double-click `Play SPHERES.cmd`. It builds the current game once,
-starts the local server, and opens the nation-selection screen after the server
-is ready. The first launch needs Rust from https://rustup.rs; later launches use
-the existing build cache and are much faster.
+For the ready-built Windows release, extract the whole ZIP to a writable folder
+and double-click **Play SPHERES.cmd**. No Rust installation is needed. Keep the
+server window open while playing. The game and its artwork run locally.
 
-From a terminal:
+For a source checkout, install Rust, then double-click the repository's
+`Play SPHERES.cmd`, or run:
 
-    cargo run --release -p spheres-web                  # browser UI — map, charts, diplomacy
-    cargo run --release -p spheres-cli -- play          # interactive, default seed
-    cargo run --release -p spheres-cli -- play 42       # different history
-    cargo run --release -p spheres-cli -- run 30 1990   # headless 30-year report
-    cargo run --release -p spheres-cli -- resume save.json
-    cargo test                                          # 103 calibration/invariant tests
+```sh
+cargo run --locked --release -p spheres-web
+```
 
-`spheres-web` opens http://127.0.0.1:7777 by default: a strategic map of the
-world sized by GDP and coloured by your relations, policy sliders, GDP/oil history
-charts, a league table, and a dispatch feed. Click a nation to open it and act on it.
-Time advances in months; a war or a collapse interrupts a long advance so you can
-respond.
+Open http://127.0.0.1:7777 if the browser does not open. A custom port is available
+with `--port 7823`; `--no-open` suppresses automatic browser launch. **About** shows
+the precise version, branch, source revision, build date and absolute save folder.
+Saves use the server's working directory. The packaged launcher selects its own
+folder so moving a shortcut does not move your saves.
 
-In the CLI, type `help`. Core loop: read briefing -> set policy (rate/tax/military/
-invest), act diplomatically (improve/sanction/war) -> `next`, `year`, or `6` to
-advance -> world reacts.
+Choose a country, use **Advisor** to fund a budget and follow a development
+project, and use **Find** to open a province without hunting on the globe.
+**Research list** explains availability, prerequisites, payoff and estimated time.
+**Decisions** contains diplomatic requests, standing policies, monetary choices
+and optional peaceful campaign aims. Domination remains an available aim.
 
-## Manufacturing
+## Campaigns and recovery
 
-The browser's **Production → Manufacture** board routes the existing defense
-procurement budget through completed province arms plants, the resource market,
-and long-lead Arsenal orders. See [MANUFACTURING.md](MANUFACTURING.md) for the
-economic contract, every current connection, and the staged integration plan.
+**Continue** resumes the world already running in the local server. **Load** reads
+a saved campaign. These are different actions. Save explicitly before closing.
+Named slots and the default `save.json` retain the world, dispatch archive and
+multiresolution history. Atomic writes keep a previous backup; rotating autosaves
+provide additional recovery points. The save screen lists slots and backups.
+Older raw-world saves remain readable, but cannot recreate history they never
+stored. New 1990 industry profiles are granted only when starting a new campaign.
 
-## What emerges (unscripted, seed-dependent)
-- Iraq invades Kuwait in the early 90s; a US/UK coalition repels it; Iraq never tries again
-- The USSR dissolves ~1991-95 from stagnation + separatism; Russia inherits the arsenal
-- Japan's bubble pops into a lost decade
-- China compounds into a roughly 11x miracle over thirty years
-- India & Pakistan test in 1998; nuclear deterrence forbids their wars thereafter
-- The coalition embargo on Iraq outlives the war by about a decade, hollowing its
-  economy while the shortfall it caused keeps oil dear for everyone else
-- Yugoslavia comes apart in the nineties and the wars follow from separatism, not
-  from a script; Slovenia gets out early, Bosnia does not
-- Ukraine is born out of the Soviet dissolution and gives its warheads back
-- The United States takes and holds the technological frontier, and the nations
-  behind it converge by copying — which is cheaper than inventing, and gets
-  harder the closer they get
+A lost action response leaves a visible pending receipt. Retry that receipt or
+review the authoritative state. Reload preserves pending command identity;
+repeating the same receipt cannot charge the action twice. Starting or loading a
+different campaign invalidates old session receipts.
 
-## Notes
-This is the v0.5 rebuild of the sim core (compact re-implementation after the
-v0.4 container was lost): same architecture, monthly rather than hourly ticks.
-Reimplemented since: Yugoslavia + successors, the expanded roster, and the
-technology tree. Still not back from v0.4: democratic election detail, and
-technological eras as live rotating paradigms — the tree carries `Era` only as a
-calibration bracket, not as a paradigm the world passes through.
+## Development and verification
 
-Statecraft is merged: mutual defence pacts with an upkeep both signatories pay,
-patronage as a standing transfer, trade dependency that accumulates and then
-becomes leverage, and covert action that is deniable until it is not.
+```sh
+cargo test --locked --release --workspace --no-fail-fast
+node tools/ui/run-unit.cjs
+cargo build --locked --release -p spheres-web
+```
 
-`feat/financial-system` (currencies, FX regimes, contagion) is still on its own
-branch, blocked on data rather than on work: `WorldState.finance` covers only the
-original 16 nations. See ROADMAP.
+The Node unit runner needs no browser or dependencies. CI also installs the
+pinned browser tooling in `tools/ui` and runs `ci-browser.cjs` against its own
+disposable server. Never point recovery tests at a campaign you want to keep.
+Windows and Linux CI cover the locked Rust build, simulation/accounting tests,
+UI tests, lost-response recovery, saves and narrow-screen rendering. The
+workflow must run on GitHub before a remote CI result can be claimed.
+
+Daily calibration is separate from the legacy monthly report:
+
+```sh
+cargo run --locked --release -p spheres-sim --example daily_calibration -- --years 30 --seeds 1990,7,42 --output results.csv
+cargo run --locked --release -p spheres-cli -- run 30 1990
+```
+
+The first command exercises named scenarios using browser daily rules and
+writes per-year observations and summary variance. Three seeds are an exploratory
+baseline, not proof of balanced difficulty. The nightly/manual calibration
+workflow keeps this slower scan separate from pull-request verification.
+
+## Current contracts
+
+Start with [CURRENT_ARCHITECTURE.md](CURRENT_ARCHITECTURE.md) and
+[DECISIONS.md](DECISIONS.md). Detailed rules live in
+[PLAYER_DECISIONS.md](PLAYER_DECISIONS.md),
+[MILITARY_OPERATIONS.md](MILITARY_OPERATIONS.md),
+[CAMPAIGN_AIMS.md](CAMPAIGN_AIMS.md),
+[SECTOR_PROFILES.md](SECTOR_PROFILES.md),
+[MANUFACTURING.md](MANUFACTURING.md) and
+[PROVINCE_ECONOMY.md](PROVINCE_ECONOMY.md).
+[PLAYTEST.md](PLAYTEST.md) gives a short, repeatable usability protocol.
+
+Historical design rulings remain in BIBLE.md, SPEC.md and the domain documents.
+They should be read with dated amendments; earlier roadmap statements are not a
+reliable description of the current browser. Missing elections detail, household
+microeconomics and individual military platforms are not implied by this release.

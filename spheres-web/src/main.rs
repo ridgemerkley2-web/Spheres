@@ -22,6 +22,7 @@ mod portrait_assets;
 
 fn build_info()->serde_json::Value {serde_json::json!({
     "version":env!("CARGO_PKG_VERSION"),"revision":env!("SPHERES_REVISION"),
+    "branch":env!("SPHERES_BRANCH"),"built_at_unix_seconds":env!("SPHERES_BUILD_EPOCH").parse::<u64>().ok(),
     "save_directory":std::env::current_dir().ok().map(|p|p.display().to_string()),
     "campaign_format":"versioned world, event archive and retained history; legacy raw worlds remain readable",
     "distribution":"Local offline game server; source and attribution accompany the release"
