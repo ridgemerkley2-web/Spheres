@@ -94,6 +94,20 @@
 :is(#productionPanel, #logisticsPanel) :is(.production-summary .slowed, .logistics-summary .constrained) b { color: var(--ops-gold); }
 :is(#productionPanel, #logisticsPanel) .production-summary .paused b { color: #f0c982; }
 :is(#productionPanel, #logisticsPanel) :is(.production-summary .blocked, .manufacturing-summary .warn, .logistics-summary .blocked) b { color: #efb0a4; }
+#productionPanel .construction-pulse {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0 0 16px;
+  padding: 18px; border: 1px solid #9cccbc42; border-radius: 22px;
+  background: radial-gradient(circle at 92% 15%, #d8c9911f, transparent 42%), linear-gradient(135deg, #24404a, #1c3042);
+}
+#productionPanel .construction-pulse > span { padding: 13px 15px; border-radius: 15px; color: var(--ops-muted); background: #142938b8; font-size: 14px; line-height: 1.35; }
+#productionPanel .construction-pulse b { display: block; margin-top: 6px; color: var(--ops-mint); font-size: 27px; font-weight: 650; }
+#productionPanel .construction-pulse b small { color: var(--ops-muted); font-size: 14px; font-weight: 550; }
+#productionPanel .construction-pulse p { grid-column: 1 / -1; margin: 2px 4px 0; color: #d4dde2; font-size: 15px; line-height: 1.55; }
+#productionPanel .portfolio-impact { display: flex; align-items: center; gap: 16px; margin: 0 0 22px; padding: 17px 20px; border: 1px solid #ceb97945; border-radius: 17px; background: #322f354d; }
+#productionPanel .portfolio-impact b { flex: 0 0 auto; color: var(--ops-gold); font: 600 18px/1.3 Georgia, serif; }
+#productionPanel .portfolio-impact span { color: #d0d9df; font-size: 14px; line-height: 1.55; }
+#productionPanel .production-blocker { margin: -8px 0 22px; padding: 13px 16px; border: 1px solid #d69a8d45; border-radius: 14px; color: #f0b9ad; background: #392b35; font-size: 14px; line-height: 1.5; text-align: center; }
+#productionPanel .project-choice .project-blocker { margin-top: 14px; padding: 10px 12px; border-radius: 11px; color: #efb0a4; background: #3b2d376e; }
 :is(#productionPanel, #logisticsPanel) :is(.production-list, .logistics-list) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
 :is(#productionPanel, #logisticsPanel) :is(.work-card, .lane-card) {
   padding: 22px; border: 1px solid var(--ops-line); border-radius: 20px; background: #1c2d3f;
@@ -207,7 +221,7 @@
 :is(#productionPanel, #logisticsPanel).map-view :is(.production-head, .logistics-head) h2 { font-size: 27px; }
 :is(#productionPanel, #logisticsPanel).map-view :is(.production-body, .logistics-body) { padding: 18px; }
 :is(#productionPanel, #logisticsPanel).map-view .operations-map-return { display: block; }
-:is(#productionPanel, #logisticsPanel).map-view :is(.operations-hero, .production-summary, .manufacturing-summary, .logistics-summary) { display: none; }
+:is(#productionPanel, #logisticsPanel).map-view :is(.operations-hero, .construction-pulse, .production-summary, .manufacturing-summary, .logistics-summary) { display: none; }
 :is(#productionPanel, #logisticsPanel).map-view :is(.production-list, .logistics-list, .equipment-catalog, .project-catalog, .province-picks, .operations-freight-workspace) { grid-template-columns: 1fr; }
 :is(#productionPanel, #logisticsPanel).map-view .operations-freight-aside { position: static; }
 @media (max-width: 1100px) {
@@ -230,6 +244,7 @@
   :is(#productionPanel, #logisticsPanel) :is(.production-summary, .manufacturing-summary, .logistics-summary) { gap: 9px; }
   :is(#productionPanel, #logisticsPanel) :is(.production-summary, .manufacturing-summary, .logistics-summary) > span { padding: 15px 12px; }
   :is(#productionPanel, #logisticsPanel) :is(.production-summary, .manufacturing-summary, .logistics-summary) b { font-size: 27px; }
+  #productionPanel .construction-pulse { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 520px) {
   :is(#productionPanel, #logisticsPanel) :is(.production-head, .logistics-head) { padding: 17px; }
@@ -238,6 +253,9 @@
   :is(#productionPanel, #logisticsPanel) :is(.production-stamp, .logistics-stamp) { align-items: start; flex-direction: column; gap: 6px; }
   :is(#productionPanel, #logisticsPanel) :is(.production-stamp, .logistics-stamp) span { text-align: left; }
   #productionPanel :is(.project-catalog, .equipment-catalog, .province-picks) { grid-template-columns: 1fr; }
+  #productionPanel .construction-pulse { grid-template-columns: 1fr; }
+  #productionPanel .construction-pulse p { grid-column: 1; }
+  #productionPanel .portfolio-impact { align-items: flex-start; flex-direction: column; }
   :is(#productionPanel, #logisticsPanel) :is(.work-card, .lane-card) { padding: 18px; }
   #logisticsPanel :is(.lane-top, .lane-journey) { flex-wrap: wrap; }
   #logisticsPanel .lane-top { flex-direction: column; }

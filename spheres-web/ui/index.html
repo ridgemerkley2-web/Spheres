@@ -613,9 +613,9 @@
     .logistics-panel.open { animation: none; }
   }
 
-  /* Production is the second map-side board: a four-slot arcade queue, not a
-     spreadsheet and not another modal. It sits opposite Logistics so the
-     globe remains the visual centre of the game. */
+  /* Production is the second map-side board: an arcade planning portfolio,
+     not a spreadsheet and not another modal. It sits opposite Logistics so
+     the globe remains the visual centre of the game. */
   #productionDockBtn { position: relative; }
   .production-panel {
     display: none; position: absolute; z-index: 29; right: 14px; bottom: 86px;
@@ -2565,7 +2565,7 @@
       <button class="dockbtn" id="stockBtn" title="Resources" aria-controls="stockScreen"><span class="icon" aria-hidden="true">◈</span><span class="copy"><span class="label">Resources</span><small id="dockResources">mine &amp; trade</small></span></button>
       <button class="dockbtn" id="techBtn" title="Technology" aria-controls="techScreen"><span class="icon" aria-hidden="true">⌬</span><span class="copy"><span class="label">Research</span><small>discover &amp; develop</small></span></button>
       <button class="dockbtn" id="logisticsDockBtn" type="button" aria-controls="logisticsPanel" aria-expanded="false"><span class="icon">⇢</span><span class="copy"><span class="label">Logistics</span><small id="dockLogistics">daily dispatches</small></span><span class="dockbadge" id="logisticsBadge" aria-hidden="true"></span></button>
-      <button class="dockbtn" id="productionDockBtn" type="button" aria-controls="productionPanel" aria-expanded="false"><span class="icon">⚙</span><span class="copy"><span class="label">Production</span><small id="dockProduction">4 project slots</small></span><span class="dockbadge" id="productionBadge" aria-hidden="true"></span></button>
+      <button class="dockbtn" id="productionDockBtn" type="button" aria-controls="productionPanel" aria-expanded="false"><span class="icon">⚙</span><span class="copy"><span class="label">Production</span><small id="dockProduction">12-project portfolio</small></span><span class="dockbadge" id="productionBadge" aria-hidden="true"></span></button>
     </nav>
   </main>
 </div>
@@ -14794,8 +14794,9 @@ function logisticsHitAt(clientX, clientY) {
 
 /* ================= production: the national works board =================
    The simulation owns every project, requirement, province, status, reason
-   and allowed action. This page supplies only the arcade composition: four
-   cards, a two-step project/province picker, and exact-centroid map marks. */
+   and allowed action. This page supplies only the arcade composition: a
+   planning portfolio, a two-step project/province picker, and exact-centroid
+   map marks. */
 
 const PROD = {
   open: false, data: null, stale: true, loading: false, error: null, seq: 0,
@@ -14803,7 +14804,9 @@ const PROD = {
 };
 const PROD_ICON = {
   infrastructure: "▥", civilian_industry: "⚙", power_grid: "ϟ",
-  research_center: "⌬", arms_plant: "⛭",
+  research_center: "⌬", arms_plant: "⛭", machinery_works: "⚒",
+  generation: "☀", processing_plant: "◇", freight_terminal: "⇄",
+  warehouse: "▦", automation: "⌁", efficiency: "↗",
 };
 const MANU = {
   data: null, stale: true, loading: false, error: null, seq: 0,
@@ -14882,9 +14885,9 @@ function renderProductionDock() {
   const active = +sum.active || 0, building = +sum.building || 0;
   const slowed = +sum.slowed || 0, paused = +sum.paused || 0, blocked = +sum.blocked || 0;
   const completed = +sum.completed || 0;
-  const capacity = +sum.capacity || 4;
+  const capacity = +(sum.queue_capacity || sum.capacity) || 12;
   const lines = +manufacture.active || 0, lineCapacity = +manufacture.capacity || 0;
-  copy.textContent = `${active}/${capacity} builds · ${lines}/${lineCapacity} lines`;
+  copy.textContent = `${active}/${capacity} planned · ${lines}/${lineCapacity} lines`;
   const attention = (+sum.attention || slowed + paused + blocked) + (+manufacture.attention || 0);
   badge.textContent = attention > 99 ? "99+" : String(attention);
   badge.classList.toggle("on", attention > 0);
@@ -15012,6 +15015,34 @@ function productionStartAllowed() {
   const start = PROD.data && PROD.data.actions && PROD.data.actions.start;
   return start === true || !!(start && start.enabled);
 }
+function productionStartReason() {
+  const actions = PROD.data && PROD.data.actions;
+  const start = actions && actions.start;
+  return String((actions && actions.start_reason) || (start && start.reason) || "");
+}
+function productionQueueCapacity() {
+  const data = PROD.data || {}, summary = data.summary || {};
+  return +(data.queue_capacity || summary.queue_capacity || data.capacity || summary.capacity) || 12;
+}
+function productionCrewCapacity() {
+  const summary = (PROD.data && PROD.data.summary) || {};
+  return +summary.construction_capacity_daily || 0;
+}
+function productionNextFinish(rows) {
+  const days = rows.map((p) => +p.eta_days).filter((value) => Number.isFinite(value) && value >= 0);
+  return days.length ? Math.ceil(Math.min(...days)) : null;
+}
+function productionPortfolioPreview() {
+  const weights = { high: 3, normal: 2, low: 1 };
+  const currentWeight = productionQueue().reduce((total, project) => total + (weights[String(project.priority || "normal")] || 2), 0);
+  const crews = productionCrewCapacity();
+  if (!(crews > 0)) return "Every new project shares your national crews, department money, and materials.";
+  const before = currentWeight > 0 ? crews * 2 / currentWeight : crews;
+  const after = crews * 2 / (currentWeight + 2);
+  return currentWeight > 0
+    ? `One more standard project spreads the crew share from about ${fmtQ(before)} to ${fmtQ(after)} work-days per day before local bonuses, funding, and materials.`
+    : `Your first standard project can use about ${fmtQ(after)} national work-days per day before local bonuses, funding, and materials.`;
+}
 function productionFundingLabel(c) {
   const f = c.funding || {};
   if (f.department_mode) return `${fmtQ(c.pc_cost)} PC · ${fmt.money(f.work_cost_bn)} total work · ${f.department_name} · ${fmt.money(f.available_bn)} shared funds for next cycle; materials separate`;
@@ -15027,11 +15058,14 @@ function productionCatalogHtml() {
     const kind = productionKind(c), days = c.base_days || c.total_days;
     const meta = [days ? `${Math.round(+days)} work-days` : "", productionFundingLabel(c)].filter(Boolean).join(" · ");
     const enabled = !c.actions || c.actions.start !== false;
+    const blocker = enabled ? "" : String(c.start_reason || productionStartReason() || "This project is not available yet.");
     return `<button type="button" class="project-choice" ${enabled ? `data-prod-kind="${logisticsEscAttr(kind)}"` : "disabled"}>
       <span class="work-art" aria-hidden="true">${PROD_ICON[kind] || "◆"}</span><b>${escText(c.name || kind.replace(/_/g, " "))}</b>
-      <small>${escText(c.description || "Province works programme")}</small><small class="project-effect">${escText(c.effect || "Creates a province capability.")}</small><em>${escText(meta)}</em></button>`;
+      <small>${escText(c.description || "Province works programme")}</small><small class="project-effect">${escText(c.effect || "Creates a province capability.")}</small><em>${escText(meta)}</em>
+      ${blocker ? `<small class="project-blocker">${escText(blocker)}</small>` : ""}</button>`;
   }).join("");
   return `${operationsHeroHtml("production", "Step 1 · Choose your project", "Build something that lasts.", "Choose what your nation needs. Next, pick the province where it will take shape.")}
+    <div class="portfolio-impact"><b>What another project changes</b><span>${escText(productionPortfolioPreview())}</span></div>
     <div class="production-stamp"><b>Your next investment</b><span>Costs and effects come from the simulation</span></div>
     <div class="project-catalog">${cards}</div><button type="button" class="production-back" data-prod-back>Back to queue</button>`;
 }
@@ -15050,9 +15084,10 @@ function productionProvinceHtml() {
     return `<button type="button" class="province-pick" data-prod-province="${logisticsEscAttr(p.id)}"><b>${escText(p.name || p.id)}</b><span>${escText(caps || "available ground")}</span></button>`;
   }).join("");
   const recipe = productionRequirements(c).map(productionNeedHtml).join("");
+  const noProvinceReason = String(c.start_reason || productionStartReason() || "No owned province is eligible for this project.");
   return `<div class="production-stamp"><b>${PROD_ICON[PROD.pickKind] || "◆"} ${escText(c.name || PROD.pickKind.replace(/_/g, " "))}</b><span>step 2 of 2<br>choose a province</span></div>
     <div class="project-brief"><b>${escText(c.effect || c.description || "Province capability")}</b><p>${escText(productionFundingLabel(c))}</p>${recipe ? `<details class="operations-details"><summary>Materials for this project</summary><div class="work-needs">${recipe}</div></details>` : ""}</div>
-    <div class="province-picks">${picks || `<div class="production-empty">No owned province is eligible for this project.</div>`}</div>
+    <div class="province-picks">${picks || `<div class="production-empty">${escText(noProvinceReason)}</div>`}</div>
     <button type="button" class="production-back" data-prod-back>Choose another project</button>`;
 }
 
@@ -15181,6 +15216,8 @@ function manufacturingLinesHtml() {
     empty = `<div class="factory-bridge"><b>No arms-plant capacity</b>Build an Arms Plant in a province to open a directed equipment line. Until then, military staff keep the inherited procurement programme running.<button type="button" data-manu-build-plant>Build an Arms Plant</button></div>`;
   } else if (!lines.length) {
     empty = `<div class="factory-bridge"><b>Staff procurement is active</b>Your ${capacity} plant slot${capacity === 1 ? " is" : "s are"} ready. Start a line to replace automatic buying with your own equipment plan.</div>`;
+  } else if (freeSlots <= 0) {
+    empty = `<div class="factory-bridge"><b>${capacity === 1 ? "The plant slot is" : `All ${capacity} plant slots are`} assigned</b>Your equipment lines share the defense procurement budget. Build another Arms Plant to create one more programme slot.<button type="button" data-manu-build-plant>Build another Arms Plant</button></div>`;
   }
   return `${operationsHeroHtml("manufacturing", "Industry with a purpose", "Equip your ambitions.", "Turn funded plant slots into a steady equipment pipeline. Pick a programme, assign a province, and give your most important lines first call on materials.")}
     <div class="manufacturing-hero"><div class="stamp">Daily defense procurement</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_day)} <small>per day</small></div>
@@ -15312,13 +15349,19 @@ function renderProductionPanel() {
   else if (PROD.view === "provinces") body.innerHTML = productionProvinceHtml();
   else {
     const rows = productionQueue(), sum = productionSummary(rows);
-    const capacity = +(PROD.data && PROD.data.capacity) || 4;
+    const capacity = productionQueueCapacity(), crews = productionCrewCapacity();
+    const nextFinish = productionNextFinish(rows), full = rows.length >= capacity;
+    const startReason = productionStartReason();
+    const startAction = productionStartAllowed()
+      ? `<button type="button" class="production-new" data-prod-new>＋ Plan another project</button>`
+      : `<button type="button" class="production-new" disabled>${full ? `Portfolio full — ${rows.length}/${capacity}` : "Planning unavailable"}</button>${startReason ? `<p class="production-blocker">${escText(startReason)}</p>` : ""}`;
     const list = rows.length ? `<div class="production-list">${rows.map(productionCardHtml).join("")}</div>`
       : `<div class="production-empty">No work is under way.<br>Choose a project, then put it on the map.</div>`;
     body.innerHTML = `${operationsHeroHtml("production", "The foundations of tomorrow", "Build what comes next.", "Connect your provinces, grow your industry, and create the places your next plans depend on. Every project advances on the daily clock.")}
+      <div class="construction-pulse"><span>Planning queue<b>${rows.length}/${capacity}</b></span><span>National crews<b>${fmtQ(crews)}<small> work-days/day</small></b></span><span>Next finish<b>${nextFinish == null ? "—" : `${nextFinish} days`}</b></span><p>${rows.length ? `${rows.length} project${rows.length === 1 ? "" : "s"} share${rows.length === 1 ? "s" : ""} ${fmtQ(crews)} national work-days per day. Rush, standard, and background priorities decide where those crews go first.` : "Plan several projects now; the daily clock will divide national crews, money, and materials between them."}</p></div>
       <div class="production-summary"><span>Building<b>${sum.building}</b></span><span class="slowed">Slowed<b>${sum.slowed}</b></span><span class="paused">Waiting<b>${sum.paused}</b></span><span class="blocked">Blocked<b>${sum.blocked}</b></span></div>
-      ${productionStartAllowed() ? `<button type="button" class="production-new" data-prod-new>＋ Start a project</button>` : ""}
-      <div class="production-stamp"><b>Your works in progress</b><span>${rows.length} of ${capacity} national project slots · daily work</span></div>${list}${productionBuiltHtml()}`;
+      ${startAction}
+      <div class="production-stamp"><b>Your works in progress</b><span>${rows.length} of ${capacity} plans · one shared daily workforce</span></div>${list}${productionBuiltHtml()}`;
   }
   operationsRestoreDetails(body, details);
   wireProductionPanel();

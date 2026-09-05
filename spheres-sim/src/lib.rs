@@ -124,7 +124,9 @@ pub enum Command {
         district: String,
         commodity: resources::Commodity,
     },
-    /// Start one of the four player-directed province construction slots.
+    /// Add work to the player-directed national planning queue. Queued projects
+    /// divide the existing construction workforce; another order never grants
+    /// free throughput.
     StartProject {
         nation: NationId,
         district: String,

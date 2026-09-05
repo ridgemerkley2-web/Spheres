@@ -25,7 +25,8 @@ const helpers = [
   'productionKind', 'productionStatus', 'productionTone', 'productionProvince',
   'productionProgress', 'productionPriorityChoices', 'productionCanCancel',
   'productionRequirements', 'productionCapabilityPairs', 'productionModuleLabel', 'productionNeedHtml',
-  'productionCardHtml', 'productionSummary', 'productionStartAllowed', 'productionBuiltHtml',
+  'productionCardHtml', 'productionSummary', 'productionStartAllowed', 'productionStartReason',
+  'productionQueueCapacity', 'productionCrewCapacity', 'productionNextFinish', 'productionPortfolioPreview', 'productionBuiltHtml',
   'productionFundingLabel', 'productionCatalogHtml', 'productionEligible', 'productionProvinceHtml',
   'manufacturingLines', 'manufacturingCatalog', 'manufacturingProvinces', 'manufacturingHoldings',
   'manufacturingOrders', 'manufacturingKit', 'manufacturingTone', 'manufacturingClassMark',
@@ -70,7 +71,7 @@ function fixture(extra = []) {
     adopt: async () => {}, banner: message => c.calls.push(message),
   });
   vm.runInContext(`
-    const PROD={open:true,mode:'build',view:'queue',selected:null,data:{queue:[],catalog:[],provinces:[],capacity:4,actions:{start:true}}};
+    const PROD={open:true,mode:'build',view:'queue',selected:null,data:{queue:[],catalog:[],provinces:[],queue_capacity:12,summary:{construction_capacity_daily:1.25},actions:{start:true}}};
     const MANU={selected:null,view:'lines',classFilter:'All',showLocked:false,data:{lines:[],catalog:[],provinces:[],stockpile:[],orders:[]}};
     const LOGI={open:true,com:'all',expanded:false,cargoExpanded:false,selected:null,data:{lanes:[],cargo:[],arrivals:[]}};
     const LOGI_BLOCKED=new Set(['blocked','closed']);
@@ -121,7 +122,9 @@ test('production overview keeps one clear start action and exact server progress
   assert.match(c.body.innerHTML,/Build what comes next/);
   assert.equal((c.body.innerHTML.match(/data-prod-new/g)||[]).length,1);
   assert.match(c.body.innerHTML,/40%/); assert.match(c.body.innerHTML,/60 days left/);
-  assert.match(c.body.innerHTML,/1 of 4 national project slots/);
+  assert.match(c.body.innerHTML,/Planning queue<b>1\/12/);
+  assert.match(c.body.innerHTML,/1 project shares 1.25 national work-days per day/);
+  assert.match(c.body.innerHTML,/1 of 12 plans · one shared daily workforce/);
   assert.match(c.body.innerHTML,/<details class="operations-details"><summary>Materials &amp; project priority/);
   assert.match(c.body.innerHTML,/Iron · 8\/20 kt/);
   assert.match(c.body.innerHTML,/data-prod-priority="high" data-prod-id="7"/);
@@ -129,14 +132,32 @@ test('production overview keeps one clear start action and exact server progress
   run(c,'PROD.selected="7";renderProductionPanel();');
   assert.match(c.body.innerHTML,/<details class="operations-details" open>/);
 });
+test('a full planning portfolio explains the limit instead of hiding the control', () => {
+  const c=fixture(['renderProductionPanel']); c.project=project;
+  run(c,`PROD.data.queue=Array.from({length:12},(_,i)=>({...project,id:i+1}));
+    PROD.data.actions={start:false,start_reason:'Planning queue full: 12/12 projects. Finish or cancel one before planning another.'};renderProductionPanel();`);
+  assert.match(c.body.innerHTML,/Portfolio full — 12\/12/);
+  assert.match(c.body.innerHTML,/Planning queue full: 12\/12 projects\. Finish or cancel one/);
+  assert.equal((c.body.innerHTML.match(/data-prod-new/g)||[]).length,0);
+});
 test('project catalogue and province choice retain eligibility and authored costs', () => {
   const c=fixture();
   run(c,`PROD.data.catalog=[{kind:'infrastructure',name:'Infrastructure',base_days:180,pc_cost:8,effect:'More corridor capacity',eligible_provinces:['US-CA']}];
     PROD.data.provinces=[{id:'US-CA',name:'California'},{id:'US-NY',name:'New York'}];PROD.pickKind='infrastructure';`);
   const catalog=run(c,'productionCatalogHtml()');
   assert.match(catalog,/data-prod-kind="infrastructure"/);assert.match(catalog,/180 work-days · 8 PC/);
+  assert.match(catalog,/What another project changes/);assert.match(catalog,/national work-days per day/);
   const provinces=run(c,'productionProvinceHtml()');
   assert.match(provinces,/data-prod-province="US-CA"/);assert.doesNotMatch(provinces,/US-NY/);
+});
+
+test('an unavailable project shows the simulation refusal', () => {
+  const c=fixture();
+  run(c,`PROD.data.actions={start:false,start_reason:'Needs 8 political capital; you have 2.0.'};
+    PROD.data.catalog=[{kind:'infrastructure',name:'Infrastructure',actions:{start:false},eligible_provinces:[],start_reason:'Needs 8 political capital; you have 2.0.'}];
+    PROD.data.provinces=[{id:'US-CA',name:'California'}];PROD.pickKind='infrastructure';`);
+  assert.match(run(c,'productionCatalogHtml()'),/Needs 8 political capital; you have 2\.0\./);
+  assert.match(run(c,'productionProvinceHtml()'),/Needs 8 political capital; you have 2\.0\./);
 });
 
 test('completed fractional workshops stay visible without becoming full-site levels', () => {
@@ -172,6 +193,15 @@ test('empty manufacturing gives a useful next step and does not invent free plan
   const html=run(c,'manufacturingLinesHtml()');
   assert.match(html,/data-manu-build-plant/);assert.doesNotMatch(html,/data-manu-new/);
   assert.match(html,/\$0\.25bn/);assert.match(html,/20% of the defense budget/);
+});
+test('full manufacturing offers the physical path to another line', () => {
+  const c=fixture();c.line=line;
+  run(c,`MANU.data.lines=[line];MANU.data.summary={capacity:1,used_slots:1,free_slots:0};
+    MANU.data.finance={procurement_budget_bn_day:.25,procurement_share:.2};MANU.data.actions={start:false};`);
+  const html=run(c,'manufacturingLinesHtml()');
+  assert.match(html,/The plant slot is assigned/);
+  assert.match(html,/data-manu-build-plant>Build another Arms Plant/);
+  assert.doesNotMatch(html,/data-manu-new/);
 });
 test('freight cards preserve delivered quantities, date, holds and daily corridor units', () => {
   const c=fixture();c.lane=lane;

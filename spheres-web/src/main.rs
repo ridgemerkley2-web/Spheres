@@ -3065,12 +3065,27 @@ fn production_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let slowed = count(ProjectStatus::Slowed);
     let paused = count(ProjectStatus::Paused);
     let blocked = count(ProjectStatus::Blocked);
+    let nominal_work_daily = projects
+        .iter()
+        .map(|project| production::nominal_work_rate(w, project))
+        .sum::<f64>();
+    let feasible_work_daily = projects
+        .iter()
+        .map(|project| production::work_rate_today(w, project))
+        .sum::<f64>();
     let completed = w.districts.iter().filter(|(_,owner)| **owner == me)
         .map(|(id,_)| district_capability_total(w,id))
         .sum::<usize>();
     serde_json::json!({
         "active": projects.len(),
-        "capacity": production::MAX_ACTIVE_PROJECTS,
+        // `capacity` remains as a compatibility alias for old clients. The
+        // named fields keep the administrative queue and physical workforce
+        // from being presented as though they were the same constraint.
+        "capacity": production::MAX_QUEUED_PROJECTS,
+        "queue_capacity": production::MAX_QUEUED_PROJECTS,
+        "construction_capacity_daily": round(production::construction_capacity(w, me), 4),
+        "nominal_work_daily": round(nominal_work_daily, 4),
+        "feasible_work_daily": round(feasible_work_daily, 4),
         "building": count(ProjectStatus::Building),
         "slowed": slowed,
         "paused": paused,
@@ -3091,22 +3106,55 @@ fn production_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
 /// The exact conjunction `apply_command` will ask before starting: the
 /// production module's live-world refusal plus the central command price. This
 /// prevents a Build action being advertised to a government that cannot pay.
-fn production_start_allowed(
+fn production_start_reason(
     w: &WorldState,
     me: NationId,
     district: &str,
     kind: ProjectKind,
-) -> bool {
-    if production::start_project_error(w, me, district, kind).is_some() {
-        return false;
+) -> Option<String> {
+    if let Some(reason) = production::start_project_error(w, me, district, kind) {
+        return Some(reason);
     }
     let command = Command::StartProject {
         nation: me,
         district: district.to_string(),
         kind,
     };
-    spheres_sim::price_of(w, &command)
-        .is_some_and(|price| w.nation(me).political_capital + 1e-9 >= price)
+    match spheres_sim::price_of(w, &command) {
+        Some(price) if w.nation(me).political_capital + 1e-9 >= price => None,
+        Some(price) => Some(format!(
+            "Needs {:.0} political capital; you have {:.1}.",
+            price,
+            w.nation(me).political_capital
+        )),
+        None => Some("This project cannot be commissioned right now.".into()),
+    }
+}
+
+fn production_start_allowed(
+    w: &WorldState,
+    me: NationId,
+    district: &str,
+    kind: ProjectKind,
+) -> bool {
+    production_start_reason(w, me, district, kind).is_none()
+}
+
+/// Pick the refusal that explains the largest share of unavailable choices.
+/// Ties are alphabetical, so the same world always serves the same copy.
+fn common_production_refusal(reasons: impl IntoIterator<Item = String>) -> Option<String> {
+    let mut counts = std::collections::BTreeMap::<String, usize>::new();
+    for reason in reasons {
+        *counts.entry(reason).or_default() += 1;
+    }
+    counts
+        .into_iter()
+        .max_by(|(a_reason, a_count), (b_reason, b_count)| {
+            a_count
+                .cmp(b_count)
+                .then_with(|| b_reason.cmp(a_reason))
+        })
+        .map(|(reason, _)| reason)
 }
 
 /// Player-only production board. The fixed catalog order comes from the sim;
@@ -3135,6 +3183,11 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 .filter(|district| production_start_allowed(w, me, district, spec.kind))
                 .map(|district| (*district).clone())
                 .collect::<Vec<_>>();
+            let start_reason = eligible.is_empty().then(|| {
+                common_production_refusal(owned.iter().filter_map(|district| {
+                    production_start_reason(w, me, district, spec.kind)
+                }))
+            }).flatten();
             serde_json::json!({
                 "kind": spec.kind.key(),
                 "name": spec.name,
@@ -3145,6 +3198,7 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "funding": production_funding_json(w, me, spec.kind),
                 "requirements": production_requirements_json(w, me, &spec.recipe, None),
                 "eligible_provinces": eligible,
+                "start_reason": start_reason,
                 "actions": { "start": !eligible.is_empty() },
             })
         })
@@ -3223,12 +3277,51 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
             .iter()
             .any(|spec| production_start_allowed(w, me, district, spec.kind))
     });
+    let cheapest_unaffordable = owned
+        .iter()
+        .flat_map(|district| {
+            production::PROJECT_KINDS.into_iter().filter_map(move |kind| {
+                if kind == ProjectKind::StarterIndustry
+                    || production::start_project_error(w, me, district, kind).is_some()
+                {
+                    return None;
+                }
+                let command = Command::StartProject {
+                    nation: me,
+                    district: (*district).clone(),
+                    kind,
+                };
+                spheres_sim::price_of(w, &command)
+                    .filter(|price| w.nation(me).political_capital + 1e-9 < *price)
+            })
+        })
+        .min_by(f64::total_cmp);
+    let start_reason = (!can_start).then(|| {
+        cheapest_unaffordable.map_or_else(
+            || {
+                common_production_refusal(owned.iter().flat_map(|district| {
+                    production::catalog_all().into_iter().filter_map(move |spec| {
+                        production_start_reason(w, me, district, spec.kind)
+                    })
+                }))
+                .or_else(|| Some("No controlled province is available for new construction.".into()))
+            },
+            |price| {
+                Some(format!(
+                    "Needs {:.0} political capital; you have {:.1}.",
+                    price,
+                    w.nation(me).political_capital
+                ))
+            },
+        )
+    }).flatten();
 
     serde_json::json!({
         "mode": "province_projects",
         "nation": format!("{:?}", me),
         "nation_name": me.name(),
-        "capacity": production::MAX_ACTIVE_PROJECTS,
+        "capacity": production::MAX_QUEUED_PROJECTS,
+        "queue_capacity": production::MAX_QUEUED_PROJECTS,
         "summary": production_summary_json(w, me),
         "catalog": catalog,
         "queue": queue,
@@ -3237,6 +3330,7 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
         "markers": markers,
         "actions": {
             "start": can_start,
+            "start_reason": start_reason,
         },
     })
 }
@@ -14416,7 +14510,21 @@ mod tests {
         assert_eq!(opening["mode"], "province_projects");
         assert_eq!(opening["catalog"].as_array().unwrap().len(), 12);
         assert_eq!(opening["summary"]["active"], 0);
-        assert_eq!(opening["summary"]["capacity"], production::MAX_ACTIVE_PROJECTS);
+        assert_eq!(
+            opening["summary"]["queue_capacity"],
+            production::MAX_QUEUED_PROJECTS
+        );
+        assert_eq!(
+            opening["queue_capacity"],
+            production::MAX_QUEUED_PROJECTS
+        );
+        assert!(opening["summary"]["construction_capacity_daily"]
+            .as_f64()
+            .is_some_and(|capacity| capacity > 0.0));
+        assert_eq!(opening["summary"]["nominal_work_daily"], 0.0);
+        assert_eq!(opening["summary"]["feasible_work_daily"], 0.0);
+        assert_eq!(opening["actions"]["start"], true);
+        assert!(opening["actions"]["start_reason"].is_null());
         assert_eq!(opening["queue"].as_array().unwrap().len(), 0);
         let provinces = opening["provinces"].as_array().expect("owned provinces");
         assert!(!provinces.is_empty());
@@ -14493,6 +14601,9 @@ mod tests {
         g.world.nation_mut(me).political_capital = 0.0;
         let insolvent = production_json(&g.world, me);
         assert_eq!(insolvent["actions"]["start"], false);
+        assert!(insolvent["actions"]["start_reason"]
+            .as_str()
+            .is_some_and(|reason| reason.contains("political capital")));
         assert!(insolvent["provinces"].as_array().unwrap().iter().all(|p| {
             p["actions"]["start"].as_array().unwrap().is_empty()
         }));
@@ -14506,6 +14617,48 @@ mod tests {
         assert!(ProjectKind::parse("space_elevator").is_none());
         assert!(Priority::parse("urgent").is_none());
         assert!(include_str!("main.rs").contains("(Method::Get, \"/api/production\")"));
+    }
+
+    #[test]
+    fn production_api_names_the_full_planning_portfolio() {
+        let me = NationId::USA;
+        let mut g = Game::new(1990, Some(me));
+        g.world.rules.resource_market = true;
+        g.world.rules.production_system = true;
+        let districts = g
+            .world
+            .districts
+            .iter()
+            .filter(|(_, owner)| **owner == me)
+            .map(|(district, _)| district.clone())
+            .take(production::MAX_QUEUED_PROJECTS)
+            .collect::<Vec<_>>();
+        assert_eq!(districts.len(), production::MAX_QUEUED_PROJECTS);
+        for district in districts {
+            production::start_project(
+                &mut g.world,
+                me,
+                &district,
+                ProjectKind::Infrastructure,
+            )
+            .unwrap();
+        }
+
+        let full = production_json(&g.world, me);
+        assert_eq!(
+            full["summary"]["active"],
+            production::MAX_QUEUED_PROJECTS
+        );
+        assert_eq!(full["actions"]["start"], false);
+        assert!(full["actions"]["start_reason"]
+            .as_str()
+            .is_some_and(|reason| reason.contains("12/12")));
+        assert!(full["catalog"].as_array().unwrap().iter().all(|project| {
+            project["actions"]["start"] == false
+                && project["start_reason"]
+                    .as_str()
+                    .is_some_and(|reason| reason.contains("Planning queue full"))
+        }));
     }
 
     /// Manufacturing is a player-scoped view over completed arms plants and

@@ -14,7 +14,10 @@ use crate::world::{
     NationId, WorldState, BUDGET_DEFENSE, BUDGET_INDUSTRY, BUDGET_INFRASTRUCTURE, BUDGET_SCIENCE,
 };
 
-pub const MAX_ACTIVE_PROJECTS: usize = 4;
+/// Administrative ceiling for planned work, not a source of construction
+/// throughput. Every queued project still divides the same national workforce,
+/// department authority and physical inputs.
+pub const MAX_QUEUED_PROJECTS: usize = 12;
 pub const MAX_PROVINCE_LEVEL: u8 = 5;
 
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -551,10 +554,10 @@ pub(crate) fn start_project_common_error(
         }
         _ => {}
     }
-    if projects_for(w, nation).count() >= MAX_ACTIVE_PROJECTS {
+    if projects_for(w, nation).count() >= MAX_QUEUED_PROJECTS {
         return Some(format!(
-            "All {} construction slots are already active.",
-            MAX_ACTIVE_PROJECTS
+            "Planning queue full: {0}/{0} projects. Finish or cancel one before planning another.",
+            MAX_QUEUED_PROJECTS,
         ));
     }
     if projects_for(w, nation).any(|p| p.district == district && p.kind == kind) {
@@ -983,7 +986,7 @@ mod tests {
     }
 
     #[test]
-    fn ownership_slots_and_foreign_project_clicks_are_refused_atomically() {
+    fn ownership_queue_limit_and_foreign_project_clicks_are_refused_atomically() {
         let mut w = enabled();
         let nation = NationId::USA;
         let foreign = w
@@ -1007,7 +1010,8 @@ mod tests {
         assert_eq!(w.nation(nation).political_capital, pc);
 
         let districts = owned(&w, nation);
-        for district in districts.iter().take(MAX_ACTIVE_PROJECTS) {
+        assert!(districts.len() > MAX_QUEUED_PROJECTS);
+        for district in districts.iter().take(MAX_QUEUED_PROJECTS) {
             apply_command(
                 &mut w,
                 &Command::StartProject {
@@ -1018,23 +1022,84 @@ mod tests {
             )
             .unwrap();
         }
+        assert_eq!(projects_for(&w, nation).count(), MAX_QUEUED_PROJECTS);
         let before = w.production.clone();
         let pc = w.nation(nation).political_capital;
-        assert!(apply_command(
+        let refusal = apply_command(
             &mut w,
             &Command::StartProject {
                 nation,
-                district: districts[MAX_ACTIVE_PROJECTS].clone(),
+                district: districts[MAX_QUEUED_PROJECTS].clone(),
                 kind: ProjectKind::Infrastructure,
             },
         )
-        .is_err());
+        .unwrap_err();
+        assert!(refusal.contains("Planning queue"));
+        assert!(refusal.contains(&MAX_QUEUED_PROJECTS.to_string()));
         assert_eq!(w.production, before);
         assert_eq!(w.nation(nation).political_capital, pc);
 
         let id = w.production.projects[0].id;
         assert!(set_priority(&mut w, NationId::Japan, id, Priority::High).is_err());
         assert!(cancel_project(&mut w, NationId::Japan, id).is_err());
+    }
+
+    #[test]
+    fn a_larger_queue_shares_unchanged_national_throughput() {
+        let nation = NationId::USA;
+
+        let mut solo = enabled();
+        let solo_district = owned(&solo, nation)[0].clone();
+        fill_recipe(&mut solo, nation, ProjectKind::Infrastructure, 1.0);
+        start_project(
+            &mut solo,
+            nation,
+            &solo_district,
+            ProjectKind::Infrastructure,
+        )
+        .unwrap();
+        let solo_rate = nominal_work_rate(&solo, &solo.production.projects[0]);
+        tick_day(&mut solo);
+        let solo_progress = solo.production.projects[0].progress_days;
+
+        let mut shared = enabled();
+        let districts = owned(&shared, nation);
+        assert!(districts.len() >= MAX_QUEUED_PROJECTS);
+        fill_recipe(
+            &mut shared,
+            nation,
+            ProjectKind::Infrastructure,
+            MAX_QUEUED_PROJECTS as f64,
+        );
+        for district in districts.iter().take(MAX_QUEUED_PROJECTS) {
+            start_project(
+                &mut shared,
+                nation,
+                district,
+                ProjectKind::Infrastructure,
+            )
+            .unwrap();
+        }
+
+        let shared_first_rate = nominal_work_rate(&shared, &shared.production.projects[0]);
+        let shared_total_rate: f64 = shared
+            .production
+            .projects
+            .iter()
+            .map(|project| nominal_work_rate(&shared, project))
+            .sum();
+        assert!(shared_first_rate < solo_rate);
+        assert!((shared_total_rate - solo_rate).abs() < 1e-9);
+
+        tick_day(&mut shared);
+        let shared_progress: f64 = shared
+            .production
+            .projects
+            .iter()
+            .map(|project| project.progress_days)
+            .sum();
+        assert!((solo_progress - solo_rate).abs() < 1e-9);
+        assert!((shared_progress - solo_progress).abs() < 1e-9);
     }
 
     #[test]
