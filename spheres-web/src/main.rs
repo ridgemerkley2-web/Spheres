@@ -42,6 +42,8 @@ const PROGRAMS_UI_JS: &str = include_str!("../ui/programs-ui.js");
 const PROGRAMS_ART_SVG: &str = include_str!("../ui/programs-art.svg");
 const PROVINCE_ECONOMY_CSS: &str = include_str!("../ui/province-economy.css");
 const PROVINCE_ECONOMY_UI_JS: &str = include_str!("../ui/province-economy-ui.js");
+const COMPETITION_CSS: &str = include_str!("../ui/competition.css");
+const COMPETITION_UI_JS: &str = include_str!("../ui/competition-ui.js");
 /// Baked country outlines — see `src/bin/mapgen.rs`.
 const WORLD_JS: &str = include_str!("../ui/world.js");
 /// Baked admin-1 district outlines, same projection and canvas as world.js.
@@ -127,6 +129,7 @@ struct Game {
     // One receipt per browser client, not one full snapshot per turn. Older
     // sequence numbers are refused rather than accidentally replayed.
     advance_receipts: std::collections::BTreeMap<String, (u64, serde_json::Value, Option<String>)>,
+    command_receipts: std::collections::BTreeMap<String, (u64, String, Vec<String>)>,
 }
 
 fn fresh_session_id() -> String {
@@ -134,6 +137,27 @@ fn fresh_session_id() -> String {
     format!("{}-{}-{}", std::process::id(),
         std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap_or_default().as_nanos(),
         NEXT.fetch_add(1, std::sync::atomic::Ordering::Relaxed))
+}
+
+fn exchange_read_path(path: &str) -> bool {
+    matches!(path, "/api/competition" | "/api/goods-quotes" |
+        "/api/industry-module-quotes" | "/api/materials-quote")
+}
+
+/// Exchange reads are campaign-scoped even though three of them use POST for
+/// structured quote criteria. Session ids contain only digits and hyphens, so
+/// the GET value needs no percent decoding after the browser encodes it.
+fn exchange_session_matches(method: &Method, url: &str, payload: &serde_json::Value,
+    current_session: &str) -> bool {
+    let requested = if matches!(method, &Method::Get | &Method::Head) {
+        url.split_once('?').and_then(|(_, query)| query.split('&').find_map(|field| {
+            let (key, value) = field.split_once('=')?;
+            (key == "session_id").then_some(value)
+        }))
+    } else {
+        payload.get("session_id").and_then(|value| value.as_str())
+    };
+    requested == Some(current_session)
 }
 
 impl Game {
@@ -145,7 +169,7 @@ impl Game {
         // board reads the ledger on the setup screen's first month. Never
         // serialized, never hashed; the tick would build the same bytes.
         resources::warm(&mut world);
-        let mut g = Game { world, log: vec![], history: vec![], session_id: fresh_session_id(), advance_receipts: Default::default() };
+        let mut g = Game { world, log: vec![], history: vec![], session_id: fresh_session_id(), advance_receipts: Default::default(), command_receipts:Default::default() };
         g.snapshot();
         g
     }
@@ -1481,6 +1505,367 @@ fn row_json(
     })
 }
 
+/// Browser adapter for the simulation's live strategic raw-material forecast.
+/// All horizon arithmetic stays in `economic_ai::raw_supply_forecast`; this
+/// layer only converts the sim's authored physical units into the stock-level
+/// unit already used by the Resources room and supplies plain-language UI
+/// labels. Oil deliberately has no synthetic warehouse quantities.
+fn strategic_quantity(c: Commodity, value: f64) -> Option<f64> {
+    (c != Commodity::Oil).then(|| round(value * stock_unit(c).1, 9))
+}
+
+fn strategic_status(
+    c: Commodity,
+    line: &spheres_sim::economic_ai::RawSupplyLine,
+    horizon: usize,
+) -> &'static str {
+    if c == Commodity::Oil {
+        "market"
+    } else if line.blocked_now {
+        // Red is reserved for a consumer that cannot be fed now.
+        "stalled"
+    } else if line.demand[horizon] <= 1e-9 {
+        "idle"
+    } else if line.shortage[horizon] <= 1e-9 {
+        "secure"
+    } else if line.shortage[0] > 1e-9 {
+        // A gap inside the next strategic review needs action at every view.
+        "action"
+    } else {
+        "watch"
+    }
+}
+
+fn strategic_action_json(status: &str, days: i32) -> serde_json::Value {
+    let (kind, label, detail) = match status {
+        "market" => (
+            "watch_market",
+            "Watch the oil market",
+            "Oil is a priced flow. Use the market and trade controls below; there is no generic oil warehouse to refill.".to_string(),
+        ),
+        "stalled" => (
+            "unblock_now",
+            "Unblock current work",
+            "Compare TRADE with the blocked consumer's priority before advancing. MINE is the slower structural option.".to_string(),
+        ),
+        "action" => (
+            "secure_run",
+            "Secure the next review",
+            "Cover the 30-day gap with available stock, an executable delivery, a contract, or domestic output.".to_string(),
+        ),
+        "watch" => (
+            "prepare_supply",
+            "Prepare supply",
+            format!("Compare MINE and TRADE before the {days}-day gap reaches the RUN window."),
+        ),
+        "secure" => (
+            "hold_course",
+            "Hold course",
+            format!("The served sources cover this {days}-day plan. Keep the routes and contracts in force."),
+        ),
+        _ => (
+            "none",
+            "No action",
+            "No committed consumer draws this material in the selected window.".to_string(),
+        ),
+    };
+    serde_json::json!({
+        "kind": kind,
+        "label": label,
+        "detail": detail,
+    })
+}
+
+fn strategic_resource_json(
+    w: &WorldState,
+    forecast: &spheres_sim::economic_ai::RawSupplyForecast,
+    line: &spheres_sim::economic_ai::RawSupplyLine,
+) -> serde_json::Value {
+    let c = line.commodity;
+    let (unit, factor) = stock_unit(c);
+    let converted = |value: f64| round(value * factor, 9);
+    let mut drivers = Vec::new();
+    let mut driver = |label: &str, value: f64, suffix: &str| {
+        if c != Commodity::Oil && value > 1e-9 {
+            drivers.push(serde_json::json!({
+                "label": label,
+                "value": converted(value),
+                "unit": format!("{unit}{suffix}"),
+            }));
+        }
+    };
+    driver("Civilian operating use", line.civilian_operating_daily, "/day");
+    driver("Military recurring use", line.military_recurring_monthly, "/month");
+    driver("Committed project work remaining", line.project_remaining, "");
+    driver("Mine construction remaining", line.mine_remaining, "");
+    driver("Materials orders remaining", line.materials_remaining, "");
+
+    let horizons = forecast
+        .horizons_days
+        .iter()
+        .enumerate()
+        .map(|(horizon, days)| {
+            let status = strategic_status(c, line, horizon);
+            let gap = strategic_quantity(c, line.shortage[horizon]);
+            let headline = match status {
+                "market" => format!(
+                    "Priced flow at ${:.0} a barrel — oil is not held in the raw-material warehouse.",
+                    w.oil_price
+                ),
+                "stalled" => format!(
+                    "Blocked now — {}",
+                    line.blocker_reason.as_deref().unwrap_or("a current consumer cannot secure this material.")
+                ),
+                "action" => format!(
+                    "Act now: the next review is short {} {unit}.",
+                    qty(converted(line.shortage[0]))
+                ),
+                "watch" => format!(
+                    "Plan ahead: the {days}-day outlook is short {} {unit}.",
+                    qty(gap.unwrap_or(0.0))
+                ),
+                "secure" => format!("The {days}-day need is covered by secured supply."),
+                _ => format!("No committed use is scheduled inside {days} days."),
+            };
+            serde_json::json!({
+                "days": days,
+                "demand": strategic_quantity(c, line.demand[horizon]),
+                "covered": strategic_quantity(c, line.coverage[horizon]),
+                "gap": gap,
+                "status": status,
+                "headline": headline,
+                "reason": line.reason,
+                "recommended_action": strategic_action_json(status, *days),
+                "sources": {
+                    // Only allocable stock contributes to coverage. Full stock
+                    // and prior outbound claims remain visible separately so
+                    // the player can see why arrived material is spoken for.
+                    "stock": strategic_quantity(c, line.allocable_stock[horizon]),
+                    "warehouse_stock": strategic_quantity(c, line.stock),
+                    "prior_claims": strategic_quantity(c, line.prior_claims[horizon]),
+                    "domestic_output": strategic_quantity(c, line.domestic_coverage[horizon]),
+                    "contracted_inbound": strategic_quantity(c, line.contract_coverage[horizon]),
+                    // Paid inbound is only cargo the sim says is due and
+                    // route-executable inside this window, not arrived stock.
+                    "paid_inbound": strategic_quantity(c, line.pending[horizon]),
+                },
+            })
+        })
+        .collect::<Vec<_>>();
+
+    serde_json::json!({
+        "as_of_day": forecast.as_of_day,
+        "quantity_unit": unit,
+        "storable": c != Commodity::Oil,
+        "storage_note": if c == Commodity::Oil {
+            Some("Oil is a priced national flow. It is neither stored in nor cleared through the generic raw-material warehouse; the price and trade cards below remain authoritative.")
+        } else {
+            None
+        },
+        "raw_status": line.status,
+        "immediate_draw": strategic_quantity(c, line.immediate_draw),
+        "immediate_shortage": strategic_quantity(c, line.immediate_shortage),
+        "blocked_now": line.blocked_now,
+        "blocker_reason": line.blocker_reason,
+        "finite_remaining": strategic_quantity(c, line.finite_remaining),
+        "net_domestic_monthly": strategic_quantity(c, line.net_domestic_monthly),
+        "contracted_in_monthly": strategic_quantity(c, line.contracted_in_monthly),
+        "drivers": drivers,
+        "horizons": horizons,
+    })
+}
+
+fn row_json_with_strategic(
+    w: &WorldState,
+    id: NationId,
+    l: &LineRead,
+    kit: Option<(&'static str, &'static str)>,
+    forecast: &spheres_sim::economic_ai::RawSupplyForecast,
+) -> serde_json::Value {
+    let mut row = row_json(w, id, l, kit);
+    if let Some(line) = forecast.lines.iter().find(|line| line.commodity == l.c) {
+        row["strategic"] = strategic_resource_json(w, forecast, line);
+    }
+    row
+}
+
+fn strategic_summary_json(rows: &[serde_json::Value], as_of_day: i32) -> serde_json::Value {
+    let mut attention = rows
+        .iter()
+        .filter_map(|row| {
+            let window = row["strategic"]["horizons"]
+                .as_array()?
+                .iter()
+                .find(|window| window["days"] == 90)?;
+            let status = window["status"].as_str()?;
+            let rank = match status {
+                "stalled" => 0,
+                "action" => 1,
+                "watch" => 2,
+                _ => return None,
+            };
+            Some((rank, serde_json::json!({
+                "id": row["id"],
+                "name": row["name"],
+                "status": status,
+                "headline": window["headline"],
+                "reason": window["reason"],
+                "recommended_action": window["recommended_action"],
+            })))
+        })
+        .collect::<Vec<_>>();
+    // Canonical commodity order is retained within a severity tier.
+    attention.sort_by_key(|(rank, _)| *rank);
+    let attention_count = attention.len();
+    let primary_alert = attention.first().map(|(_, alert)| alert.clone());
+    let attention = attention
+        .into_iter()
+        .take(3)
+        .map(|(_, alert)| alert)
+        .collect::<Vec<_>>();
+
+    // The mission is deliberately count-based. Quantities from different
+    // commodities cannot be added into a meaningful progress bar. Reuse the
+    // already-served 90-day presentation states so this adapter does not
+    // create a second definition of supply or shortage.
+    let mut active_lines = 0usize;
+    let mut secured_lines = 0usize;
+    let mut blocked_lines = 0usize;
+    let mut first_active_id = None;
+    for row in rows {
+        let Some(window) = row["strategic"]["horizons"]
+            .as_array()
+            .and_then(|windows| windows.iter().find(|window| window["days"] == 90))
+        else {
+            continue;
+        };
+        match window["status"].as_str().unwrap_or("idle") {
+            "secure" => {
+                active_lines += 1;
+                secured_lines += 1;
+                first_active_id.get_or_insert_with(|| row["id"].clone());
+            }
+            "watch" | "action" => {
+                active_lines += 1;
+                first_active_id.get_or_insert_with(|| row["id"].clone());
+            }
+            "stalled" => {
+                active_lines += 1;
+                blocked_lines += 1;
+                first_active_id.get_or_insert_with(|| row["id"].clone());
+            }
+            // Idle materials and market-only oil are exploration choices, not
+            // padding in the mission score.
+            _ => {}
+        }
+    }
+    let mission_state = if active_lines == 0 {
+        "idle"
+    } else if blocked_lines > 0 {
+        "blocked"
+    } else if attention_count > 0 {
+        "at_risk"
+    } else {
+        "secure"
+    };
+    let mission_complete = active_lines > 0 && secured_lines == active_lines;
+    let progress_percent = (active_lines > 0).then(|| {
+        ((secured_lines as f64 / active_lines as f64) * 100.0).round() as usize
+    });
+    let progress_label = if active_lines == 0 {
+        "No active material demand yet.".to_string()
+    } else {
+        format!(
+            "{secured_lines} of {active_lines} active material{} secured",
+            if active_lines == 1 { "" } else { "s" }
+        )
+    };
+    let status_label = match mission_state {
+        "blocked" => "WORK STOPPED",
+        "at_risk" => "NEEDS A DECISION",
+        "secure" => "CURRENTLY SECURE",
+        _ => "AWAITING ORDERS",
+    };
+    let primary_action = if let Some(alert) = primary_alert.as_ref() {
+        let name = alert["name"].as_str().unwrap_or("priority material");
+        let status = alert["status"].as_str().unwrap_or("watch");
+        let (severity, label) = match status {
+            "stalled" => ("blocked_now", format!("Unblock {name} now")),
+            "action" => ("run_gap", format!("Secure {name} now")),
+            _ => ("plan_gap", format!("Plan {name} supply")),
+        };
+        serde_json::json!({
+            "kind": "review_resource",
+            "resource_id": alert["id"],
+            "name": alert["name"],
+            "severity": severity,
+            "label": label,
+            "detail": alert["headline"],
+            // This is navigation guidance only. The executable Mine, Trade,
+            // and Take choices remain owned by the selected-resource endpoint.
+            "recommended_action": alert["recommended_action"],
+        })
+    } else {
+        serde_json::json!({
+            "kind": "return_to_map",
+            "resource_id": serde_json::Value::Null,
+            "name": serde_json::Value::Null,
+            "severity": serde_json::Value::Null,
+            "label": if mission_state == "idle" {
+                "Return to command"
+            } else {
+                "Objective secure — return to command"
+            },
+            "detail": if mission_state == "idle" {
+                "Then open Production and start a project or production line; its required materials will appear here."
+            } else {
+                "No supply decision is required today. Keep the campaign moving."
+            },
+            "recommended_action": serde_json::Value::Null,
+        })
+    };
+    let headline = if active_lines == 0 {
+        "No active material demand yet.".to_string()
+    } else if attention_count == 0 {
+        "All active 90-day supply lines are covered.".to_string()
+    } else {
+        format!(
+            "{attention_count} strategic supply line{} need{} attention.",
+            if attention_count == 1 { "" } else { "s" },
+            if attention_count == 1 { "s" } else { "" }
+        )
+    };
+    serde_json::json!({
+        "as_of_day": as_of_day,
+        "default_horizon_days": 90,
+        "attention_count": attention_count,
+        "headline": headline,
+        "mission": {
+            "id": "cover_active_supply",
+            "horizon_days": 90,
+            "title": "Protect the next 90 days",
+            "objective": "Keep every active production and construction line supplied.",
+            "state": mission_state,
+            "status_label": status_label,
+            "active_lines": active_lines,
+            "secured_lines": secured_lines,
+            "attention_lines": attention_count,
+            "blocked_lines": blocked_lines,
+            "progress_percent": progress_percent,
+            "progress_label": progress_label,
+            "complete": mission_complete,
+            "focus_resource_id": primary_alert.as_ref().map(|alert| alert["id"].clone()).or(first_active_id),
+        },
+        "primary_action": primary_action,
+        "dock_label": if attention_count == 0 {
+            "supply forecast ready".to_string()
+        } else {
+            format!("{attention_count} supply alert{}", if attention_count == 1 { "" } else { "s" })
+        },
+        "attention": attention,
+    })
+}
+
 /// A leg as the board prints it: board units, never the table's.
 fn leg_words(w: &WorldState, l: &Leg) -> String {
     match l {
@@ -1593,19 +1978,27 @@ fn market_summary_json(rows: &[serde_json::Value]) -> serde_json::Value {
 fn resources_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let draw = resources::draw(w, me);
     let kit = resources::needed_by(w, me);
+    // The command room is live. NationPlan keeps the last AI review for audit
+    // history, but the player sees today's ledgers and executable routes.
+    let strategic = spheres_sim::economic_ai::raw_supply_forecast(w, me);
     let now = resources::month_abs(w);
     let mut rows = vec![];
     let mut folded = 0;
     let mut starved = 0;
     for c in ALL {
         let l = read_line(w, me, c, draw[c.idx()]);
-        if l.status == "stalled" {
+        if strategic
+            .lines
+            .iter()
+            .find(|line| line.commodity == c)
+            .is_some_and(|line| line.blocked_now)
+        {
             starved += 1;
         }
         if matches!(l.status, "idle" | "presence") {
             folded += 1;
         }
-        rows.push(row_json(w, me, &l, kit));
+        rows.push(row_json_with_strategic(w, me, &l, kit, &strategic));
     }
     let contracts: Vec<serde_json::Value> = w
         .resources
@@ -1639,10 +2032,12 @@ fn resources_json(w: &WorldState, me: NationId) -> serde_json::Value {
         })
         .collect();
     let market_summary = market_summary_json(&rows);
+    let strategic_summary = strategic_summary_json(&rows, strategic.as_of_day);
     serde_json::json!({
         "rows": rows,
         "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
         "market_summary": market_summary,
+        "strategic_summary": strategic_summary,
         "folded": folded,
         "contracts": contracts,
         "offers": offers,
@@ -1750,7 +2145,8 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
     let draw = resources::draw(w, me);
     let kit = resources::needed_by(w, me);
     let l = read_line(w, me, c, draw[c.idx()]);
-    let row = row_json(w, me, &l, kit);
+    let strategic = spheres_sim::economic_ai::raw_supply_forecast(w, me);
+    let row = row_json_with_strategic(w, me, &l, kit, &strategic);
     let unit = period_board_unit(w, c);
     let held = w.nation(me).political_capital;
     let gdp = w.nation(me).gdp.max(1e-9);
@@ -2378,7 +2774,8 @@ fn ministry_key(index: usize) -> &'static str {
 /// groups the fifty ledger rows for the cabinet without creating another model.
 fn programs_json(w: &WorldState, me: NationId, preview: Option<programs::ProgramPreview>) -> serde_json::Value {
     let p = preview.unwrap_or_else(|| programs::preview(w, me));
-    let names = ["Health", "Education", "Housing", "Pensions", "Infrastructure", "Industry & Energy", "Science", "Defense", "Security", "Diplomacy"];
+    // Slot 3 and the wire key remain `pensions` for existing budgets and saves.
+    let names = ["Health", "Education", "Housing", "Welfare", "Infrastructure", "Industry & Energy", "Science", "Defense", "Security", "Diplomacy"];
     let rows = (0..BUDGET_MINISTRIES).map(|m| {
         let departments = p.rows.iter().filter(|r| r.ministry == m).collect::<Vec<_>>();
         let editable = matches!(m, BUDGET_INFRASTRUCTURE | BUDGET_INDUSTRY | BUDGET_SCIENCE | BUDGET_DEFENSE);
@@ -2396,7 +2793,7 @@ fn programs_json(w: &WorldState, me: NationId, preview: Option<programs::Program
                 "description":if r.capital {"Shared project authorization. Only actual work is charged; unused funds carry within the financial year."} else {"Automatically delivered through the ministry's existing service model; not a separate new simulation."}
             })).collect::<Vec<_>>()})
     }).collect::<Vec<_>>();
-    let choices = production::catalog_all().iter().filter(|c| c.funding_ministry == BUDGET_INDUSTRY).map(|c| {
+    let choices = production::catalog_all().iter().filter(|c| c.funding_ministry == BUDGET_INDUSTRY && c.kind != ProjectKind::StarterIndustry).map(|c| {
         let enabled = w.districts.iter().any(|(id,owner)| *owner == me && production_start_allowed(w,me,id,c.kind));
         serde_json::json!({"id":c.kind.key(),"project_kind":c.kind.key(),"department":production::funding_department(c.kind),
             "name":c.name,"description":c.description,"effect":c.effect,"total_days":c.total_days,"pc_cost":c.political_cost,
@@ -2411,6 +2808,110 @@ fn programs_json(w: &WorldState, me: NationId, preview: Option<programs::Program
         "last_spending_day":p.last_spending_day,"spending_fiscal_year":p.spending_fiscal_year,
         "defense_force":p.defense_force,"magazine_refill_mult":p.magazine_refill_mult,
         "industry":spheres_sim::industry::snapshot(w,me)})
+}
+
+/// Read-only assembly: the simulation owns decisions, prices and delivered
+/// output. Economic tiers are descriptive UI bands in billions of 1990 dollars.
+fn competition_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let n=w.nation(me);
+    let rivals=w.nations.iter().filter(|n|n.alive).map(|n| {
+        let tier=if n.gdp<1.0 {"Micro"} else if n.gdp<10.0 {"Small"}
+            else if n.gdp<100.0 {"Medium"} else if n.gdp<1000.0 {"Large"} else {"Major"};
+        serde_json::json!({"nation":n.id,"name":n.id.name(),"gdp_bn":n.gdp,"tier":tier,
+            "is_player":Some(n.id)==w.player,"enrolled":programs::enrolled(w,n.id),
+            "plan":w.economic_ai.nations.get(&n.id),
+            "production":production_summary_json(w,n.id),
+            "project_gdp_bn":spheres_sim::province_economy::project_level(w,n.id).unwrap_or(0.0)})
+    }).collect::<Vec<_>>();
+    serde_json::json!({"enabled":spheres_sim::economic_ai::enabled(w) && spheres_sim::commerce::active(w),"nation":me,"name":me.name(),
+        "date":w.date_str(),"day":spheres_sim::clock::absolute_day(w),
+        "balance":{"gdp_bn":n.gdp,"growth":n.growth_last,"cash_bn":n.treasury_bn,
+            "debt_bn":n.debt_bn,"on_the_books":n.on_the_books(),
+            "project_gdp_bn":spheres_sim::province_economy::project_level(w,me).unwrap_or(0.0)},
+        "industry":spheres_sim::industry::snapshot(w,me),
+        "capacity_plan":spheres_sim::industry_planning::plan(w,me),
+        "supply_forecast":spheres_sim::economic_ai::supply_forecast(w,me),
+        "starting_industry":spheres_sim::starting_industry::snapshot(w,me),
+        "materials":spheres_sim::materials::snapshot(w,me),
+        "module_board":industry_module_board_json(w,me),
+        "industry_settlement":w.production.industry.last_day.map(settled_day_json),
+        "commerce":spheres_sim::commerce::snapshot(w,me),
+        "sphere":spheres_sim::sovereignty::view(w,me),"countries":rivals,
+        "note":"A daily competition model. Physical output contributes value added once; selling stored goods is a cash receipt, not a second GDP award. Economic tiers are current-size game bands, not difficulty ratings."})
+}
+
+fn materials_quote_json(w:&WorldState,me:NationId,payload:&serde_json::Value)->Result<serde_json::Value,String> {
+    let district=payload.get("district").and_then(|v|v.as_str()).ok_or("Choose a province for Materials production.")?;
+    if w.districts.get(district)!=Some(&me) {return Err("Choose a province your government owns.".into());}
+    let quantity=payload.get("quantity").and_then(|v|v.as_f64())
+        .filter(|v|v.is_finite() && *v>=1e-9 && *v<=1_000_000.0).ok_or("Choose a positive quantity up to one million packs.")?;
+    let days=payload.get("delivery_days").and_then(|v|v.as_u64()).and_then(|v|u32::try_from(v).ok())
+        .filter(|v|(7..=365).contains(v)).ok_or("Choose a production window from 7 to 365 days.")?;
+    let q=spheres_sim::materials::quote(w,me,district,quantity,days);
+    let mut value=serde_json::to_value(q).map_err(|e|e.to_string())?;
+    let command=Command::OrderMaterials{nation:me,district:district.into(),quantity,delivery_days:days};
+    let price=spheres_sim::price_of(w,&command).unwrap_or(spheres_sim::materials::ORDER_PC);
+    value["political_cost"]=serde_json::json!(price);
+    value["political_available"]=serde_json::json!(w.nation(me).political_capital);
+    Ok(value)
+}
+
+fn industry_module_quotes_json(w:&WorldState,me:NationId,payload:&serde_json::Value)->Result<serde_json::Value,String> {
+    use spheres_sim::industrial_modules as modules;
+    let district=payload.get("district").and_then(|v|v.as_str()).ok_or("Choose a province for your workshop.")?;
+    if w.districts.get(district)!=Some(&me) { return Err("Choose a province your government owns.".into()); }
+    let recommended=modules::recommended_capacity_micros(w,me);
+    let sizes=if let Some(value)=payload.get("capacity_micros") {
+        let size=value.as_u64().and_then(|v|u32::try_from(v).ok())
+            .filter(|v|(1..=modules::STANDARD_MICROS).contains(v)).ok_or("Choose a whole capacity between 1 and 1,000,000 millionths.")?;
+        vec![("Your custom module",size)]
+    } else {
+        vec![("Pocket workshop",(recommended/2).max(1)),("Budget fit",recommended),
+            ("Room to grow",recommended.saturating_mul(2).min(modules::STANDARD_MICROS))]
+    };
+    let quotes=sizes.into_iter().map(|(label,size)|{
+        let q=modules::quote(w,me,district,size);
+        let command=Command::StartIndustryModule{nation:me,district:district.into(),capacity_micros:size};
+        let price=spheres_sim::price_of(w,&command).unwrap_or(q.political_cost);
+        let reason=q.reason.clone().or_else(||(w.nation(me).political_capital<price)
+            .then(||format!("Needs {price:.1} political capital; {:.1} available.",w.nation(me).political_capital)));
+        let requirements=production_requirements_json(w,me,&q.recipe,None);
+        let mut value=serde_json::to_value(q).expect("finite module quote");
+        value["label"]=serde_json::json!(label);
+        value["district"]=serde_json::json!(district);
+        value["reason"]=serde_json::json!(reason);
+        value["can_start"]=serde_json::json!(reason.is_none());
+        value["requirements"]=serde_json::json!(requirements);
+        value
+    }).collect::<Vec<_>>();
+    Ok(serde_json::json!({"district":district,"quotes":quotes}))
+}
+
+fn industry_module_board_json(w:&WorldState,me:NationId)->serde_json::Value {
+    let provinces=w.districts.iter().filter(|(_,owner)|**owner==me).map(|(id,_)|
+        serde_json::json!({"id":id,"name":spheres_sim::districts::name_of(id).unwrap_or(id),
+            "capacity":spheres_sim::industrial_modules::capacity(w,id)})).collect::<Vec<_>>();
+    let district=provinces.first().and_then(|p|p["id"].as_str());
+    let quotes=district.and_then(|d|industry_module_quotes_json(w,me,&serde_json::json!({"district":d})).ok());
+    let projects=production::projects_for(w,me).filter(|p|p.kind==ProjectKind::StarterIndustry)
+        .map(|p|production_project_json(w,me,p)).collect::<Vec<_>>();
+    let legacy_active=production::projects_for(w,me).filter(|p|p.kind!=ProjectKind::StarterIndustry).count();
+    serde_json::json!({"provinces":provinces,"selection":quotes,"projects":projects,
+        "legacy_active":legacy_active,
+        "note":"One paid module includes an estate, generation, local grid and materials processing at the purchased scale. Raw supplies and operating budgets remain required. Capacity stays fixed until you buy an expansion; it never grows automatically with GDP.",
+        "coverage_reason":if district.is_none(){Some("This country has no mapped province or freight gateway in the current data. Construction and physical manufactured trade need sourced map coverage.")}else{None}})
+}
+
+fn goods_quotes_json(w:&WorldState,me:NationId,payload:&serde_json::Value)->Result<serde_json::Value,String> {
+    let good=payload.get("good").and_then(|g|g.as_str()).and_then(spheres_sim::commerce::Good::parse)
+        .ok_or("Choose intermediate packs or capital goods.")?;
+    let quantity=payload.get("quantity").and_then(|q|q.as_f64())
+        .filter(|q|q.is_finite() && *q>=1e-9 && *q<=1_000_000.0).ok_or("Enter a positive quantity no greater than one million packs.")?;
+    let days=payload.get("delivery_days").and_then(|q|q.as_u64())
+        .filter(|d|(1..=365).contains(d)).ok_or("Choose a dispatch window from 1 to 365 days.")? as u32;
+    Ok(serde_json::json!({"good":good,"requested_quantity":quantity,"delivery_days":days,
+        "quotes":spheres_sim::commerce::market_quotes(w,me,good,quantity,days),
+        "note":"Quotes may be smaller than requested when cash or seller surplus is limited. Cash reserves on acceptance; goods become usable only after arrival."}))
 }
 
 fn program_preview_json(w: &WorldState, me: NationId, payload: &serde_json::Value) -> Result<serde_json::Value,String> {
@@ -2504,6 +3005,8 @@ fn district_capability_total(w: &WorldState, district: &str) -> usize {
 
 fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_json::Value {
     let spec = production::catalog(p.kind);
+    let scale=spheres_sim::industrial_modules::scale(p);
+    let recipe=spec.recipe.map(|value|value*scale);
     let progress = (p.progress_days / p.total_days.max(1) as f64).clamp(0.0, 1.0);
     let priorities = [Priority::High, Priority::Normal, Priority::Low]
         .iter()
@@ -2513,6 +3016,7 @@ fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_j
     serde_json::json!({
         "id": p.id,
         "kind": p.kind.key(),
+        "capacity_micros":p.capacity_micros,
         "name": spec.name,
         "description": spec.description,
         "effect": spec.effect,
@@ -2521,16 +3025,20 @@ fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_j
             "name": spheres_sim::districts::name_of(&p.district).unwrap_or(&p.district),
         },
         "priority": p.priority.key(),
-        "progress_days": round(p.progress_days, 3),
-        "total_days": p.total_days,
+        "progress_days": round(p.progress_days*scale, 3),
+        "total_days":if p.capacity_micros.is_some(){serde_json::json!(p.total_days as f64*scale)}else{serde_json::json!(p.total_days)},
+        "work_unit":"physical work-days, not a calendar deadline",
         "progress": round(progress, 4),
         "status": p.status.key(),
         "reason": p.reason,
         "eta_days": production::estimated_days_left(w, p),
+        "nominal_work_rate": round(production::nominal_work_rate(w, p), 4),
+        "work_rate_today": round(production::work_rate_today(w, p), 4),
+        "throughput_ratio": round(production::throughput_ratio(w, p), 4),
         "pc_cost": round(spec.political_cost, 3),
         "funding": production_funding_json(w, me, p.kind),
         "finance": production::project_finance(w,p),
-        "requirements": production_requirements_json(w, me, &spec.recipe, Some(p)),
+        "requirements": production_requirements_json(w, me, &recipe, Some(p)),
         // This endpoint is player-only and `projects_for` filters by nation;
         // these are therefore actual permissions, not generic button hints.
         "actions": {
@@ -2545,6 +3053,7 @@ fn production_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
     projects.sort_by_key(|p| p.id);
     let count = |status| projects.iter().filter(|p| p.status == status).count();
     let slowed = count(ProjectStatus::Slowed);
+    let paused = count(ProjectStatus::Paused);
     let blocked = count(ProjectStatus::Blocked);
     let completed = w.districts.iter().filter(|(_,owner)| **owner == me)
         .map(|(id,_)| district_capability_total(w,id))
@@ -2554,14 +3063,18 @@ fn production_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
         "capacity": production::MAX_ACTIVE_PROJECTS,
         "building": count(ProjectStatus::Building),
         "slowed": slowed,
+        "paused": paused,
         "blocked": blocked,
-        "attention": slowed + blocked,
+        "attention": slowed + paused + blocked,
         "attention_ids": projects.iter()
             .filter(|p| p.status != ProjectStatus::Building)
             .take(3)
             .map(|p| p.id)
             .collect::<Vec<_>>(),
         "completed": completed,
+        "module_provinces":w.production.industry.modules.keys().filter(|d|w.districts.get(*d)==Some(&me)).count(),
+        "module_capacity":w.production.industry.modules.iter().filter(|(d,_)|w.districts.get(*d)==Some(&me))
+            .map(|(_,micros)|*micros as f64/1_000_000.0).sum::<f64>(),
     })
 }
 
@@ -2605,6 +3118,7 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
 
     let catalog = production::catalog_all()
         .iter()
+        .filter(|spec|spec.kind!=ProjectKind::StarterIndustry)
         .map(|spec| {
             let eligible = owned
                 .iter()
@@ -2643,19 +3157,22 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "id": district.as_str(),
                 "name": spheres_sim::districts::name_of(district).unwrap_or(district),
                 "capabilities": district_capabilities_json(w,district),
+                "module_capacity": spheres_sim::industrial_modules::capacity(w,district),
                 "active_projects": active,
                 "actions": { "start": start },
             })
         })
         .collect::<Vec<_>>();
 
-    let completed = owned.iter().filter(|id| district_capability_total(w,id) > 0)
+    let completed = owned.iter().filter(|id| district_capability_total(w,id) > 0
+        || spheres_sim::industrial_modules::capacity(w,id) > 0.0)
         .map(|district| serde_json::json!({
             "province": {
                 "id": district,
                 "name": spheres_sim::districts::name_of(district).unwrap_or(district),
             },
             "capabilities": district_capabilities_json(w,district),
+            "module_capacity": spheres_sim::industrial_modules::capacity(w,district),
         }))
         .collect::<Vec<_>>();
 
@@ -2666,11 +3183,14 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 .iter()
                 .filter(|p| p.district.as_str() == district.as_str())
                 .collect::<Vec<_>>();
-            if active.is_empty() && district_capability_total(w,district) == 0 {
+            if active.is_empty() && district_capability_total(w,district) == 0
+                && spheres_sim::industrial_modules::capacity(w,district) <= 0.0 {
                 return None;
             }
             let status = if active.iter().any(|p| p.status == ProjectStatus::Blocked) {
                 Some("blocked")
+            } else if active.iter().any(|p| p.status == ProjectStatus::Paused) {
+                Some("paused")
             } else if active.iter().any(|p| p.status == ProjectStatus::Slowed) {
                 Some("slowed")
             } else if active.iter().any(|p| p.status == ProjectStatus::Building) {
@@ -2683,6 +3203,7 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "active": active.iter().map(|p| p.id).collect::<Vec<_>>(),
                 "status": status,
                 "capabilities": district_capabilities_json(w,district),
+                "module_capacity": spheres_sim::industrial_modules::capacity(w,district),
             }))
         })
         .collect::<Vec<_>>();
@@ -2850,7 +3371,27 @@ fn manufacturing_summary_json(w: &WorldState, me: NationId) -> serde_json::Value
                 || line.status == LineStatus::Blocked
         })
         .count();
-    let producing = lines.len().saturating_sub(blocked);
+    let paused = lines
+        .iter()
+        .filter(|line| {
+            spheres_sim::manufacturing::line_blocker(w, line).is_none()
+                && line.status == LineStatus::Paused
+        })
+        .count();
+    let slowed = lines
+        .iter()
+        .filter(|line| {
+            spheres_sim::manufacturing::line_blocker(w, line).is_none()
+                && line.status == LineStatus::Slowed
+        })
+        .count();
+    let producing = lines
+        .iter()
+        .filter(|line| {
+            spheres_sim::manufacturing::line_blocker(w, line).is_none()
+                && line.status == LineStatus::Producing
+        })
+        .count();
     let owned_plants = w
         .districts
         .iter()
@@ -2881,12 +3422,14 @@ fn manufacturing_summary_json(w: &WorldState, me: NationId) -> serde_json::Value
         "free_slots": owned_plants.saturating_sub(used_slots),
         "plants": owned_plants,
         "producing": producing,
+        "slowed": slowed,
+        "paused": paused,
         "blocked": blocked,
-        "attention": blocked,
+        "attention": slowed + paused + blocked,
         "attention_ids": lines.iter()
             .filter(|line| {
                 spheres_sim::manufacturing::line_blocker(w, line).is_some()
-                    || line.status == LineStatus::Blocked
+                    || line.status != LineStatus::Producing
             })
             .take(3)
             .map(|line| line.id)
@@ -2923,6 +3466,7 @@ fn manufacturing_line_json(
     let effective_blocked = live_blocker.is_some()
         || line.status == spheres_sim::manufacturing::LineStatus::Blocked;
     let effective_reason = live_blocker.or_else(|| line.reason.clone());
+    let status = if effective_blocked { "blocked" } else { line.status.key() };
     let Some(kit) = spheres_sim::arsenal::index_of(&line.kit) else {
         return serde_json::json!({
             "id": line.id,
@@ -2946,6 +3490,23 @@ fn manufacturing_line_json(
         });
     };
     let def = &spheres_sim::arsenal::registry()[kit as usize];
+    let planned_units_day = daily_allocation / def.unit_cost.max(1e-12);
+    let period_days = if w.rules.daily_simulation {
+        1.0
+    } else {
+        spheres_sim::world::days_in_month(w.year, w.month) as f64
+    };
+    let actual_bn_day = if effective_blocked {
+        Some(0.0)
+    } else {
+        line.settled_day.map(|_| line.ordered_today_bn / period_days)
+    };
+    let actual_units_day = actual_bn_day.map(|value| value / def.unit_cost.max(1e-12));
+    let actual_throughput = if effective_blocked {
+        Some(0.0)
+    } else {
+        line.settled_day.map(|_| line.throughput_today)
+    };
     serde_json::json!({
         "id": line.id,
         "kit": def.id,
@@ -2956,13 +3517,16 @@ fn manufacturing_line_json(
             "name": spheres_sim::districts::name_of(&line.district).unwrap_or(&line.district),
         },
         "priority": line.priority.key(),
-        "status": if effective_blocked { "blocked" } else { "producing" },
+        "status": status,
         "reason": effective_reason,
         "allocation_bn_month": round(monthly_allocation, 6),
         "allocation_bn_day": round(daily_allocation, 6),
         "ordered_bn": round(line.ordered_bn, 6),
         "units_ordered_month": round(if effective_blocked { 0.0 } else { monthly_allocation / def.unit_cost.max(1e-12) }, 6),
-        "units_ordered_day": round(if effective_blocked { 0.0 } else { daily_allocation / def.unit_cost.max(1e-12) }, 6),
+        "units_planned_day": round(if effective_blocked { 0.0 } else { planned_units_day }, 6),
+        "units_ordered_day": actual_units_day.map(|value| round(value, 6)),
+        "allocation_bn_actual_day": actual_bn_day.map(|value| round(value, 6)),
+        "throughput_ratio": actual_throughput.map(|value| round(value, 4)),
         "unit_cost_bn": round(def.unit_cost, 6),
         "lead_months": def.lead_months,
         "lead_days": spheres_sim::clock::days_for_months(w, def.lead_months),
@@ -4038,6 +4602,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // long arsenal ledger are fetched only when its Production tab opens.
         "manufacturing_summary": w.player.map(|p| manufacturing_summary_json(w, p)),
         "programs": w.player.map(|p| programs_json(w, p, None)),
+        "economic_competition": w.rules.economic_competition,
         // One universal campaign objective, with its three deterministic next
         // directives and every progress/milestone/routing decision already
         // resolved. The page paints this contract; it does not score conquest.
@@ -4101,6 +4666,7 @@ fn district_population_json(w: &WorldState, district: &str) -> Option<serde_json
         "world_count": w.district_population.len(),
         "owner": owner.map(|id| format!("{:?}", id)),
         "owner_name": owner.map(|id| id.name()),
+        "starting_industry": spheres_sim::starting_industry::province(w, district),
         // Same simulation ledger for every owner, not the player's projects
         // cache. Keep full precision so components reconcile before display.
         "economy": spheres_sim::province_economy::province(w, district).map(|ledger| {
@@ -4127,6 +4693,8 @@ fn economic_ledger_json(w: &WorldState, id: NationId) -> Option<serde_json::Valu
     value["month"] = serde_json::json!(w.month);
     value["day"] = serde_json::json!(w.day);
     value["receipt_date_label"] = serde_json::json!(economic_receipt_label(w));
+    value["starting_industry"] = serde_json::to_value(spheres_sim::starting_industry::snapshot(w, id))
+        .expect("industrial estimates are serializable");
     Some(value)
 }
 
@@ -4357,7 +4925,7 @@ fn ministries_json(w: &WorldState, me: NationId) -> serde_json::Value {
         "Health",
         "Education",
         "Housing",
-        "Pensions",
+        "Welfare",
         "Infrastructure",
         "Industry & energy",
         "Science",
@@ -4502,6 +5070,7 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let day_fraction = 1.0 / spheres_sim::world::days_in_month(w.year, w.month) as f64;
     let daily = monthly * day_fraction;
     let weights = spheres_sim::tech::domain_weights_of(w, n, dev);
+    let quota = spheres_sim::tech::acquisition_quota_status(w,me);
 
     let domains: Vec<serde_json::Value> = spheres_sim::tech::DOMAINS
         .iter()
@@ -4622,6 +5191,8 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "total": spheres_sim::tech::registry().iter()
                     .filter(|def| def.domain == *d).count(),
                 "options": options,
+                "acquisitions_remaining": quota.as_ref().map(|q|q.remaining[di]),
+                "acquisition_wait": quota.as_ref().is_some_and(|q|q.remaining[di]==0),
             })
         })
         .collect();
@@ -4633,6 +5204,7 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
         "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
         "priority": n.tech.priority.map(|d| format!("{:?}", d)),
         "priority_multiplier": spheres_sim::tech::PRIORITY_MULTIPLIER,
+        "acquisition_quota": quota,
         // The chain in the order the sim multiplies it, so the page can lay the
         // arms out down the card the way the growth decomposition already is.
         // `kind` says how to print the number and nothing else: the first arm is
@@ -4762,6 +5334,30 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             .and_then(spheres_sim::tech::Domain::parse)
     };
     Some(match kind {
+        "enable_economic_competition" => Command::EnableEconomicCompetition { nation:me },
+        "propose_economic_union" => Command::ProposeEconomicUnion { patron:me,partner:target()? },
+        "join_economic_union" => Command::JoinEconomicUnion { nation:me,patron:target()? },
+        "leave_economic_union" => Command::LeaveEconomicUnion { nation:me },
+        "release_subject" => Command::ReleaseSubject { nation:me,subject:target()? },
+        "propose_goods_trade" => Command::ProposeGoodsTrade {
+            buyer:me, seller:target()?,
+            good:v.get("good")?.as_str().and_then(spheres_sim::commerce::Good::parse)?,
+            quantity:v.get("quantity")?.as_f64()?,unit_price_bn:v.get("unit_price_bn")?.as_f64()?,
+            delivery_days:u32::try_from(v.get("delivery_days")?.as_u64()?).ok()?,
+        },
+        "accept_goods_offer" => Command::AcceptGoodsOffer { nation:me,offer:v.get("offer")?.as_u64()? },
+        "cancel_goods_trade" => Command::CancelGoodsTrade { nation:me,contract:v.get("contract")?.as_u64()? },
+        "order_materials" => Command::OrderMaterials {
+            nation:me,district:v.get("district")?.as_str()?.into(),
+            quantity:v.get("quantity")?.as_f64().filter(|v|v.is_finite() && *v>=1e-9 && *v<=1_000_000.0)?,
+            delivery_days:u32::try_from(v.get("delivery_days")?.as_u64()?).ok().filter(|v|(7..=365).contains(v))?,
+        },
+        "cancel_materials_order" => Command::CancelMaterialsOrder {nation:me,order:u32::try_from(v.get("order")?.as_u64()?).ok()?},
+        "set_goods_sale" => Command::SetGoodsSale {
+            nation:me, good:v.get("good")?.as_str().and_then(spheres_sim::commerce::Good::parse)?,
+            reserve:v.get("reserve")?.as_f64()?,ask_multiplier:v.get("ask_multiplier")?.as_f64()?,
+            enabled:v.get("enabled")?.as_bool()?,
+        },
         // Choosing what a domain's laboratories work on. A missing or empty
         // "tech" hands the choice back to them.
         "research_focus" => Command::SetResearchFocus {
@@ -4897,6 +5493,11 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             nation: me,
             district: v.get("district")?.as_str()?.to_string(),
             kind: ProjectKind::parse(v.get("project_kind")?.as_str()?)?,
+        },
+        "start_industry_module" => Command::StartIndustryModule {
+            nation:me,
+            district:v.get("district")?.as_str()?.to_string(),
+            capacity_micros:v.get("capacity_micros")?.as_u64()?.try_into().ok()?,
         },
         "set_project_priority" => Command::SetProjectPriority {
             nation: me,
@@ -5246,12 +5847,21 @@ fn play_rules(g: &mut Game) {
     spheres_sim::province_economy::enable(&mut g.world);
 }
 
+/// New campaigns alone receive the modeled 1990 industrial inheritance.
+/// Loading an existing campaign must never retroactively grant/reseed assets.
+fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
+    spheres_sim::clock::enable_daily_play(&mut g.world);
+    spheres_sim::starting_industry::enable_new_world(&mut g.world)?;
+    play_rules(g);
+    Ok(())
+}
+
 /// Adopt a save under the current browser rules before warming or snapshotting
 /// it. Older browser saves predate the logistics, production and manufacturing switches;
 /// serde reads missing fields as false, but continuing in the browser migrates
 /// them to the same rule set as a new game.
 fn loaded_play_game(w: WorldState) -> Game {
-    let mut g = Game { world: w, log: vec![], history: vec![], session_id: fresh_session_id(), advance_receipts: Default::default() };
+    let mut g = Game { world: w, log: vec![], history: vec![], session_id: fresh_session_id(), advance_receipts: Default::default(),command_receipts:Default::default() };
     play_rules(&mut g);
     resources::warm(&mut g.world);
     g.snapshot();
@@ -5330,7 +5940,9 @@ fn new_game(g: &mut Game, seed: u64, player: Option<NationId>) -> (serde_json::V
     }
     // The first response and history point must use the rules the browser will
     // actually advance, including daily units and the province ledger.
-    play_rules(&mut fresh);
+    if let Err(error) = fresh_play_rules(&mut fresh) {
+        return (serde_json::json!({"error": error}), false);
+    }
     resources::warm(&mut fresh.world);
     fresh.history.clear();
     fresh.snapshot();
@@ -5397,6 +6009,47 @@ fn advance_request(g: &mut Game, payload: &serde_json::Value) -> Result<serde_js
     Ok(state_json(g, why))
 }
 
+/// An immediate financial order may be safely retried after a lost response.
+/// Identity belongs to this server campaign, not the simulation RNG. Receipts
+/// cache only request/result metadata; every response contains CURRENT state.
+fn immediate_request(g:&mut Game,payload:&serde_json::Value)->Result<serde_json::Value,String> {
+    let me=g.world.player.ok_or("Choose a nation first.")?;
+    if payload.get("session_id").is_some_and(|v|v.as_str()!=Some(&g.session_id)) {
+        return Err("This campaign changed. Review current state before sending orders.".into());
+    }
+    let list=payload.get("commands").and_then(|v|v.as_array()).ok_or("Commands must be a list.")?;
+    let fingerprint=serde_json::to_string(list).map_err(|e|e.to_string())?;
+    let token=match (payload.get("client_id"),payload.get("request_seq")) {
+        (None,None)=>None,
+        (Some(client),Some(seq))=>{
+            let client=client.as_str().filter(|c|!c.is_empty() && c.len()<=96
+                && c.bytes().all(|b|b.is_ascii_alphanumeric() || b==b'-' || b==b'_'))
+                .ok_or("Invalid command browser identity.")?;
+            let seq=seq.as_u64().filter(|s|*s>0).ok_or("Invalid command sequence.")?;
+            if payload.get("session_id").and_then(|v|v.as_str()).is_none() {return Err("Protected orders require campaign identity.".into());}
+            if let Some((last,body,errors))=g.command_receipts.get(client) {
+                if seq<*last {return Err("A newer order was already processed. Review the current state; older orders will not replay.".into());}
+                if seq==*last {
+                    if *body!=fingerprint {return Err("This receipt belongs to a different order. Review the current state.".into());}
+                    let mut out=state_json(g,None);
+                    out["errors"]=serde_json::json!(errors); out["command_replayed"]=true.into();
+                    return Ok(out);
+                }
+            } else if g.command_receipts.len()>=256 {return Err("Too many command sessions. Continue in an existing browser tab.".into());}
+            Some((client.to_owned(),seq))
+        },
+        _=>return Err("Protected orders need both a browser identity and a sequence.".into()),
+    };
+    let before=g.world.headlines.len();
+    let errors=apply_orders(&mut g.world,me,list);
+    for headline in g.world.headlines[before..].to_vec() {g.record(headline);}
+    resources::warm(&mut g.world);
+    if let Some((client,seq))=token {g.command_receipts.insert(client,(seq,fingerprint,errors.clone()));}
+    let mut out=state_json(g,None); out["errors"]=serde_json::json!(errors);
+    out["command_replayed"]=false.into();
+    Ok(out)
+}
+
 /// The port to listen on. `--port N` on the command line wins; failing that
 /// the `PORT` environment variable, which is what preview tooling sets when it
 /// assigns a free port of its own choosing; failing both, 7777. A value that
@@ -5424,7 +6077,7 @@ fn main() {
     let port = listen_port(&args, env_port.as_deref());
 
     let mut boot = Game::new(1990, None);
-    play_rules(&mut boot);
+    fresh_play_rules(&mut boot).expect("embedded 1990 industrial estimates must validate");
     let game: Mutex<Game> = Mutex::new(boot);
 
     let addr = format!("127.0.0.1:{}", port);
@@ -5472,6 +6125,14 @@ fn main() {
                     continue;
                 }
             }
+        }
+        // Exchange snapshots and quotes are read-only, but they must not cross
+        // campaign boundaries: a second tab may have replaced the server Game
+        // while this tab still displays its old map and drafts.
+        if exchange_read_path(&url_path) && !exchange_session_matches(&method, request.url(), &payload,
+            &game.lock().unwrap().session_id) {
+            let _ = request.respond(json_error(400, serde_json::json!({"error":"This campaign changed. Continue the current campaign before refreshing the Exchange or requesting quotes."})));
+            continue;
         }
         let response = match (&route_method, url_path.as_str()) {
             (Method::Get, "/") | (Method::Get, "/index.html") => {
@@ -5531,13 +6192,14 @@ fn main() {
                 let _ = request.respond(r);
                 continue;
             }
-            (Method::Get, path @ ("/arcade.css" | "/arcade-operations.css" | "/arcade-discovery.css" | "/chronicle.css" | "/programs.css" | "/province-economy.css")) => {
+            (Method::Get, path @ ("/arcade.css" | "/arcade-operations.css" | "/arcade-discovery.css" | "/chronicle.css" | "/programs.css" | "/province-economy.css" | "/competition.css")) => {
                 let css = match path {
                     "/arcade-operations.css" => ARCADE_OPERATIONS_CSS,
                     "/arcade-discovery.css" => ARCADE_DISCOVERY_CSS,
                     "/chronicle.css" => CHRONICLE_CSS,
                     "/programs.css" => PROGRAMS_CSS,
                     "/province-economy.css" => PROVINCE_ECONOMY_CSS,
+                    "/competition.css" => COMPETITION_CSS,
                     _ => ARCADE_CSS,
                 };
                 let _ = request.respond(Response::from_string(css)
@@ -5545,8 +6207,8 @@ fn main() {
                     .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
                 continue;
             }
-            (Method::Get, path @ ("/chronicle-data.js" | "/chronicle-ui.js" | "/programs-ui.js" | "/province-economy-ui.js")) => {
-                let js = match path { "/chronicle-data.js" => CHRONICLE_DATA_JS, "/programs-ui.js" => PROGRAMS_UI_JS, "/province-economy-ui.js" => PROVINCE_ECONOMY_UI_JS, _ => CHRONICLE_UI_JS };
+            (Method::Get, path @ ("/chronicle-data.js" | "/chronicle-ui.js" | "/programs-ui.js" | "/province-economy-ui.js" | "/competition-ui.js")) => {
+                let js = match path { "/chronicle-data.js" => CHRONICLE_DATA_JS, "/programs-ui.js" => PROGRAMS_UI_JS, "/province-economy-ui.js" => PROVINCE_ECONOMY_UI_JS, "/competition-ui.js" => COMPETITION_UI_JS, _ => CHRONICLE_UI_JS };
                 let _ = request.respond(Response::from_string(js)
                     .with_header(Header::from_bytes("Content-Type", "text/javascript; charset=utf-8").unwrap())
                     .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
@@ -5908,6 +6570,31 @@ fn main() {
                 let g = game.lock().unwrap();
                 match g.world.player { Some(me) => json_response(programs_json(&g.world,me,None)), None => json_error(400,serde_json::json!({"error":"no nation chosen"})) }
             }
+            (Method::Get, "/api/competition") => {
+                let g=game.lock().unwrap();
+                match g.world.player {Some(me)=>json_response(competition_json(&g.world,me)),None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
+            }
+            (Method::Post, "/api/goods-quotes") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>match goods_quotes_json(&g.world,me,&payload) {Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Post, "/api/industry-module-quotes") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>match industry_module_quotes_json(&g.world,me,&payload) {Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Post, "/api/materials-quote") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>match materials_quote_json(&g.world,me,&payload) {Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
             (Method::Post, "/api/program-preview") => {
                 let g = game.lock().unwrap();
                 match g.world.player {
@@ -5975,35 +6662,10 @@ fn main() {
                 }
             }
             (Method::Post, "/api/command") => {
-                // Apply a command immediately without advancing time — used for
-                // diplomacy the player expects to take effect the moment they click.
                 let mut g = game.lock().unwrap();
-                let me = match g.world.player {
-                    Some(m) => m,
-                    None => {
-                        let _ = request.respond(json_response(
-                            serde_json::json!({ "error": "no nation chosen" }),
-                        ));
-                        continue;
-                    }
-                };
-                // The tick's own headlines are still sitting in the world and are
-                // already in the log; only what these commands add is news.
-                let before = g.world.headlines.len();
-                let errors: Vec<String> = match payload.get("commands").and_then(|c| c.as_array()) {
-                    Some(list) => apply_orders(&mut g.world, me, list),
-                    None => vec![],
-                };
-                let fresh: Vec<String> = g.world.headlines[before..].to_vec();
-                for h in fresh {
-                    g.record(h);
+                match immediate_request(&mut g,&payload) {
+                    Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e,"requires_review":true})),
                 }
-                // A land sale moved districts this month; the board reads the
-                // ledger as it stands, not as the tick left it.
-                resources::warm(&mut g.world);
-                let mut out = state_json(&g, None);
-                out["errors"] = serde_json::json!(errors);
-                json_response(out)
             }
             (Method::Post, "/api/save") => {
                 let g = game.lock().unwrap();
@@ -6040,6 +6702,291 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn competition_browser_reads_are_pure_and_cover_every_starting_economy() {
+        let g = loaded_play_game(Game::new(42, Some(NationId::USA)).world);
+        let before = save(&g.world);
+        let view = competition_json(&g.world, NationId::USA);
+        assert_eq!(view["enabled"], false);
+        assert_eq!(view["countries"].as_array().unwrap().len(), 137);
+        for tier in ["Micro", "Small", "Medium", "Large", "Major"] {
+            assert!(view["countries"].as_array().unwrap().iter().any(|n| n["tier"] == tier));
+        }
+        let query=serde_json::json!({"good":"capital_goods","quantity":10,"delivery_days":90});
+        assert!(goods_quotes_json(&g.world,NationId::USA,&query).is_ok());
+        for (key,value) in [("good",serde_json::json!("oil")),("quantity",serde_json::json!(-1)),
+            ("delivery_days",serde_json::json!(4294967297u64))] {
+            let mut bad=query.clone();bad[key]=value;
+            assert!(goods_quotes_json(&g.world,NationId::USA,&bad).is_err());
+        }
+        assert_eq!(save(&g.world),before,"Viewing the Exchange never opens accounts or grants goods");
+        assert!(INDEX.contains("src=\"/competition-ui.js\""));
+        assert!(INDEX.contains("id=\"competitionRoom\""));
+        assert!(COMPETITION_CSS.contains("#competitionRoom[hidden]"));
+        assert!(COMPETITION_UI_JS.contains("competitionApi(\"/api/competition\")"));
+    }
+
+    #[test]
+    fn exchange_reads_require_the_exact_active_campaign_session() {
+        let current="123-456-7";
+        let empty=serde_json::json!({});
+        for path in ["/api/competition", "/api/goods-quotes",
+            "/api/industry-module-quotes", "/api/materials-quote"] {
+            assert!(exchange_read_path(path), "{path} must stay behind the campaign boundary");
+        }
+        assert!(!exchange_read_path("/api/command"), "command/save retain their existing guard");
+        assert!(exchange_session_matches(&Method::Get,
+            "/api/competition?unused=1&session_id=123-456-7", &empty, current));
+        assert!(exchange_session_matches(&Method::Head,
+            "/api/competition?session_id=123-456-7", &empty, current));
+        assert!(!exchange_session_matches(&Method::Get,
+            "/api/competition", &empty, current), "an unbound read must fail closed");
+        assert!(!exchange_session_matches(&Method::Get,
+            "/api/competition?session_id=another-campaign", &empty, current));
+        assert!(exchange_session_matches(&Method::Post, "/api/goods-quotes",
+            &serde_json::json!({"session_id":current}), current));
+        assert!(!exchange_session_matches(&Method::Post, "/api/goods-quotes",
+            &empty, current), "an unbound quote must fail closed");
+        assert!(!exchange_session_matches(&Method::Post, "/api/goods-quotes",
+            &serde_json::json!({"session_id":"another-campaign"}), current));
+    }
+
+    #[test]
+    fn competition_commands_bind_actor_and_reject_overflow() {
+        let g=Game::new(42,Some(NationId::USA));
+        let mut request=serde_json::json!({"kind":"propose_goods_trade","buyer":"Canada","nation":"Canada",
+            "target":"Canada","good":"capital_goods","quantity":10,"unit_price_bn":0.001,"delivery_days":90});
+        assert!(matches!(parse_command(&g.world,&request,NationId::USA),
+            Some(Command::ProposeGoodsTrade { buyer:NationId::USA,seller:NationId::Canada,delivery_days:90,.. })));
+        request["delivery_days"]=serde_json::json!(4294967297u64);
+        assert!(parse_command(&g.world,&request,NationId::USA).is_none());
+        for kind in ["enable_economic_competition","leave_economic_union","join_economic_union",
+            "propose_economic_union","release_subject"] {
+            assert!(parse_command(&g.world,&serde_json::json!({"kind":kind,"target":"Canada"}),NationId::USA).is_some());
+        }
+    }
+    #[test]
+    fn competition_capacity_plan_is_exact_read_only_and_keeps_fractional_assets() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::USA).unwrap().0.clone();
+        g.world.production.industry.modules.insert(district,12_345);
+        let before=save(&g.world);
+        let view=competition_json(&g.world,NationId::USA);
+        assert_eq!(view["capacity_plan"],serde_json::to_value(spheres_sim::industry_planning::plan(&g.world,NationId::USA)).unwrap(),
+            "web must serve the shared plan, not rederive demand or capacity");
+        assert_eq!(view["supply_forecast"],serde_json::to_value(spheres_sim::economic_ai::supply_forecast(&g.world,NationId::USA)).unwrap(),
+            "web must serve the shared supply forecast, not reconstruct coverage in JavaScript");
+        let goods=view["capacity_plan"]["goods"].as_array().unwrap();
+        assert_eq!(goods.len(),2);
+        let materials=goods.iter().find(|g|g["good"]=="intermediates").unwrap();
+        assert_eq!(materials["installed_daily"],0.012345);
+        assert_eq!(materials["committed_daily"],0.0);
+        let machinery=goods.iter().find(|g|g["good"]=="capital_goods").unwrap();
+        assert_eq!(machinery["installed_daily"],0.0);
+        assert!(goods.iter().all(|g|g["status"].is_string()&&g["reason"].is_string()));
+        assert_eq!(save(&g.world),before,"planning reads must not grant stock, authority or capacity");
+    }
+
+    #[test]
+    fn module_only_province_is_visible_without_rounding_integer_capabilities() {
+        let mut g=Game::new(1990,Some(NationId::USA));
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::USA).unwrap().0.clone();
+        g.world.production.industry.modules.insert(district.clone(),12_345);
+        let before=save(&g.world);
+        let board=production_json(&g.world,NationId::USA);
+        let completed=board["completed"].as_array().unwrap().iter()
+            .find(|row|row["province"]["id"]==district).expect("completed workshop must stay visible");
+        assert_eq!(completed["module_capacity"],0.012345);
+        assert!(completed["capabilities"].as_object().unwrap().values().all(|v|v.as_u64()==Some(0)),
+            "fractional workshop must never become integer level one");
+        let marker=board["markers"].as_array().unwrap().iter()
+            .find(|row|row["district"]==district).expect("completed workshop must retain its map marker");
+        assert_eq!(marker["module_capacity"],0.012345);
+        let province=board["provinces"].as_array().unwrap().iter().find(|row|row["id"]==district).unwrap();
+        assert_eq!(province["module_capacity"],0.012345);
+        assert_eq!(board["summary"]["completed"],0);
+        assert_eq!(board["summary"]["module_provinces"],1);
+        assert_eq!(save(&g.world),before,"visibility reads cannot grant assets or change state");
+    }
+
+    #[test]
+    fn module_quotes_are_pure_scaled_actor_bound_and_reject_invalid_capacity() {
+        let mut g=Game::new(42,Some(NationId::Tonga));
+        g.world.rules.economic_competition=true;
+        g.world.rules.daily_simulation=true;
+        let year=g.world.year;
+        let allocations=g.world.nation(NationId::Tonga).budget_for(year).allocations;
+        apply_command(&mut g.world,&Command::SetProgramBudget{nation:NationId::Tonga,fiscal_year:year,
+            allocations,departments:programs::default_departments()}).unwrap();
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::Tonga).unwrap().0.clone();
+        let before=save(&g.world);
+        let payload=serde_json::json!({"district":district,"capacity_micros":5000});
+        let view=industry_module_quotes_json(&g.world,NationId::Tonga,&payload).unwrap();
+        let q=&view["quotes"][0];
+        assert!((q["cost_bn"].as_f64().unwrap()-0.0029).abs()<1e-12);
+        assert_eq!(q["capacity_micros"],5000);
+        assert_eq!(q["output_daily"],0.005);
+        assert_eq!(q["minimum_calendar_days"],90);
+        assert!(q["requirements"].as_array().unwrap().iter().any(|r|r["required"].as_f64().unwrap()>0.0));
+        assert_eq!(before,save(&g.world));
+        for bad in [serde_json::json!(0),serde_json::json!(-1),serde_json::json!(1.5),serde_json::json!(1_000_001),serde_json::json!(4294967297u64),serde_json::Value::Null] {
+            let mut p=payload.clone();p["capacity_micros"]=bad;
+            assert!(industry_module_quotes_json(&g.world,NationId::Tonga,&p).is_err());
+        }
+        assert!(industry_module_quotes_json(&g.world,NationId::USA,&payload).is_err());
+        let cmd=serde_json::json!({"kind":"start_industry_module","nation":"USA","district":district,"capacity_micros":5000});
+        assert!(matches!(parse_command(&g.world,&cmd,NationId::Tonga),Some(Command::StartIndustryModule{nation:NationId::Tonga,capacity_micros:5000,..})));
+        for bad in [serde_json::json!(-1),serde_json::json!(1.5),serde_json::json!(4294967297u64)] {
+            let mut p=cmd.clone();p["capacity_micros"]=bad;
+            assert!(parse_command(&g.world,&p,NationId::Tonga).is_none());
+        }
+        let missing=industry_module_board_json(&g.world,NationId::Seychelles);
+        assert!(missing["provinces"].as_array().unwrap().is_empty());
+        assert!(missing["coverage_reason"].as_str().unwrap().contains("freight gateway"));
+        assert_eq!(before,save(&g.world));
+    }
+
+    #[test]
+    fn materials_quote_and_commands_are_pure_bounded_and_actor_bound() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        assert!(new_game(&mut g,42,Some(NationId::USA)).1);
+        g.world.rules.economic_competition=true;
+        g.world.nation_mut(NationId::USA).political_capital=100.0;
+        let department=department_payload(&g.world,NationId::USA);
+        let command=parse_command(&g.world,&department,NationId::USA).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::USA).unwrap().0.clone();
+        let payload=serde_json::json!({"kind":"order_materials","nation":"Canada","district":district,"quantity":1,"delivery_days":30});
+        let before=save(&g.world);
+        let quote=materials_quote_json(&g.world,NationId::USA,&payload).unwrap();
+        assert_eq!(quote["eligible"],true);
+        assert_eq!(quote["can_start"],true,"Inputs may block delivery, not signing");
+        assert_eq!(quote["political_cost"],spheres_sim::materials::ORDER_PC);
+        assert_eq!(quote["feasible_today"],0.0,"Inherited capacity does not grant usable power");
+        assert!(!quote["requirements"].as_array().unwrap().is_empty());
+        assert!(materials_quote_json(&g.world,NationId::Canada,&payload).is_err());
+        assert!(matches!(parse_command(&g.world,&payload,NationId::USA),Some(Command::OrderMaterials{nation:NationId::USA,delivery_days:30,..})));
+        for (field,bad) in [("quantity",serde_json::json!(0)),("quantity",serde_json::json!(-1)),
+            ("quantity",serde_json::json!(1_000_001)),("quantity",serde_json::Value::Null),
+            ("delivery_days",serde_json::json!(6)),("delivery_days",serde_json::json!(366)),
+            ("delivery_days",serde_json::json!(4294967297u64))] {
+            let mut invalid=payload.clone();invalid[field]=bad;
+            assert!(materials_quote_json(&g.world,NationId::USA,&invalid).is_err(),"{invalid}");
+            assert!(parse_command(&g.world,&invalid,NationId::USA).is_none(),"{invalid}");
+        }
+        let view=competition_json(&g.world,NationId::USA);
+        assert!(view["materials"]["capacity_daily"].as_f64().unwrap()>0.0);
+        assert_eq!(save(&g.world),before,"Quotes and dashboards cannot create stock, contracts or spending");
+        g.world.nation_mut(NationId::USA).political_capital=0.0;
+        assert_eq!(materials_quote_json(&g.world,NationId::USA,&payload).unwrap()["can_start"],false);
+    }
+
+    #[test]
+    fn materials_signing_and_cancellation_receipts_are_once_only_without_free_packs() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        assert!(new_game(&mut g,42,Some(NationId::USA)).1);g.world.rules.economic_competition=true;
+        g.world.nation_mut(NationId::USA).political_capital=100.0;
+        let department=department_payload(&g.world,NationId::USA);
+        let command=parse_command(&g.world,&department,NationId::USA).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::USA).unwrap().0.clone();
+        let initial_stock=spheres_sim::commerce::stock(&g.world,NationId::USA,spheres_sim::commerce::Good::Intermediates);
+        let initial_gdp=g.world.nation(NationId::USA).gdp;
+        let pc=g.world.nation(NationId::USA).political_capital;
+        let payload=serde_json::json!({"session_id":g.session_id,"client_id":"materials-test","request_seq":1,
+            "commands":[{"kind":"order_materials","district":district,"quantity":1,"delivery_days":30}]});
+        assert_eq!(immediate_request(&mut g,&payload).unwrap()["errors"],serde_json::json!([]));
+        assert_eq!(g.world.materials.as_ref().unwrap().orders.len(),1);
+        assert_eq!(g.world.nation(NationId::USA).political_capital,pc-spheres_sim::materials::ORDER_PC);
+        assert_eq!(g.world.nation(NationId::USA).gdp,initial_gdp);
+        assert_eq!(spheres_sim::commerce::stock(&g.world,NationId::USA,spheres_sim::commerce::Good::Intermediates),initial_stock);
+        let once=save(&g.world);
+        assert_eq!(immediate_request(&mut g,&payload).unwrap()["command_replayed"],true);
+        assert_eq!(save(&g.world),once);
+        let id=g.world.materials.as_ref().unwrap().orders[0].id;
+        let cancellation=serde_json::json!({"session_id":g.session_id,"client_id":"materials-test","request_seq":2,
+            "commands":[{"kind":"cancel_materials_order","order":id}]});
+        assert_eq!(immediate_request(&mut g,&cancellation).unwrap()["errors"],serde_json::json!([]));
+        let cancelled=save(&g.world);
+        assert_eq!(g.world.materials.as_ref().unwrap().orders[0].status,"cancelled");
+        assert_eq!(immediate_request(&mut g,&cancellation).unwrap()["command_replayed"],true);
+        assert_eq!(save(&g.world),cancelled);
+        let mut loaded=loaded_play_game(g.world.clone());
+        let before=save(&loaded.world);
+        assert!(immediate_request(&mut loaded,&cancellation).is_err(),"Old campaign request cannot act on reloaded world");
+        assert_eq!(save(&loaded.world),before);
+        let foreign=serde_json::json!({"kind":"cancel_materials_order","order":id,"nation":"USA"});
+        assert!(matches!(parse_command(&g.world,&foreign,NationId::Canada),Some(Command::CancelMaterialsOrder{nation:NationId::Canada,..})));
+    }
+
+    #[test]
+    fn research_card_discloses_old_midmonth_hold_without_inventing_acquisitions() {
+        let mut g=loaded_play_game(Game::new(42,Some(NationId::USA)).world);
+        g.world.day=15;
+        g.world.nation_mut(NationId::USA).tech.acquisition_quota=None;
+        let before=save(&g.world);
+        let card=research_json(&g.world,NationId::USA);
+        assert_eq!(card["acquisition_quota"]["migration_hold"],true);
+        assert!(card["acquisition_quota"]["acquired"].as_array().unwrap().iter().all(|n|n==0));
+        assert!(card["domains"].as_array().unwrap().iter().all(|n|n["acquisition_wait"]==true));
+        assert_eq!(save(&g.world),before);
+        g.world.rules.daily_simulation=false;
+        let legacy=research_json(&g.world,NationId::USA);
+        assert!(legacy["acquisition_quota"].is_null());
+        assert!(legacy["domains"].as_array().unwrap().iter().all(|n|n["acquisition_wait"]==false));
+    }
+
+    #[test]
+    fn economic_order_receipts_are_once_only_current_and_campaign_bound() {
+        let mut g=loaded_play_game(Game::new(42,Some(NationId::USA)).world);
+        g.world.nation_mut(NationId::USA).political_capital=100.0;
+        let payload=serde_json::json!({"session_id":g.session_id,"client_id":"exchange-test","request_seq":1,
+            "commands":[department_payload(&g.world,NationId::USA)]});
+        let pc=g.world.nation(NationId::USA).political_capital;
+        let response=immediate_request(&mut g,&payload).unwrap();
+        assert_eq!(response["errors"],serde_json::json!([]));
+        assert!(g.world.nation(NationId::USA).political_capital<pc);
+        let settled=save(&g.world);
+        assert_eq!(immediate_request(&mut g,&payload).unwrap()["command_replayed"],true);
+        assert_eq!(save(&g.world),settled,"Retry cannot spend a second political or financial charge");
+        // A receipt confirms the old order but returns the latest world, not a rollback snapshot.
+        g.world.nation_mut(NationId::USA).political_capital+=1.0;
+        let newer=save(&g.world);
+        let replay=immediate_request(&mut g,&payload).unwrap();
+        let current=state_json(&g,None);
+        assert_eq!(replay["nations"],current["nations"]);
+        assert_eq!(save(&g.world),newer);
+        let mut changed=payload.clone();changed["commands"]=serde_json::json!([]);
+        assert!(immediate_request(&mut g,&changed).is_err());
+        changed["request_seq"]=serde_json::json!(2);
+        immediate_request(&mut g,&changed).unwrap();
+        assert!(immediate_request(&mut g,&payload).is_err());
+        let mut loaded=loaded_play_game(g.world.clone());let before=save(&loaded.world);
+        assert!(immediate_request(&mut loaded,&changed).is_err());
+        assert_eq!(save(&loaded.world),before);
+    }
+
+    #[test]
+    fn competition_enable_is_explicit_and_never_grants_money_or_factories() {
+        let mut g=loaded_play_game(Game::new(42,Some(NationId::USA)).world);
+        g.world.rules.resource_gates=false;
+        let totals=g.world.nations.iter().map(|n|(n.id,n.gdp,n.treasury_bn,n.political_capital)).collect::<Vec<_>>();
+        assert!(!g.world.rules.economic_competition);
+        assert!(apply_command(&mut g.world,&Command::EnableEconomicCompetition {nation:NationId::Canada}).is_err());
+        apply_command(&mut g.world,&Command::EnableEconomicCompetition {nation:NationId::USA}).unwrap();
+        assert!(g.world.rules.economic_competition);
+        assert!(spheres_sim::commerce::active(&g.world),"Enable must activate every commerce dependency even on imported saves");
+        assert_eq!(g.world.nations.iter().map(|n|(n.id,n.gdp,n.treasury_bn,n.political_capital)).collect::<Vec<_>>(),totals);
+        assert!(g.world.production.projects.is_empty());
+        let before=save(&g.world);
+        apply_command(&mut g.world,&Command::EnableEconomicCompetition {nation:NationId::USA}).unwrap();
+        assert_eq!(save(&g.world),before,"Repeated enable is inert");
+        g.world.rules.resource_gates=false;
+        assert_eq!(competition_json(&g.world,NationId::USA)["enabled"],false);
+        apply_command(&mut g.world,&Command::EnableEconomicCompetition {nation:NationId::USA}).unwrap();
+        assert!(spheres_sim::commerce::active(&g.world),"An explicit re-enable repairs an incomplete imported configuration");
+    }
 
     #[test]
     fn browser_new_snapshot_and_first_history_are_daily() {
@@ -7090,6 +8037,78 @@ mod tests {
     /// low hides a dial's top from the player; one that is too high sends a
     /// command the sim refuses, and the page shows a range the game does not
     /// have. So `world::BUDGET_CAPS` is served and `ui/index.html` reads it.
+    #[test]
+    fn new_campaign_industrial_estimates_are_visible_without_reseeding_loaded_saves() {
+        let me = NationId::USA;
+        let mut g = Game::new(1990, Some(me));
+        let opening: Vec<_> = g.world.nations.iter().map(|n| (n.id, n.gdp)).collect();
+        assert!(loaded_play_game(g.world.clone()).world.starting_industry.is_none(),
+            "loading an old campaign cannot retroactively seed 1990 assets");
+        let (_, started) = new_game(&mut g, 1990, Some(me));
+        assert!(started);
+        assert!(g.world.starting_industry.is_some());
+        assert_eq!(opening, g.world.nations.iter().map(|n| (n.id, n.gdp)).collect::<Vec<_>>(),
+            "capacity estimates decompose existing GDP, never increase it");
+        let before = save(&g.world);
+        let view = competition_json(&g.world, me);
+        let expected = serde_json::to_value(spheres_sim::starting_industry::snapshot(&g.world, me)).unwrap();
+        assert!(!expected.is_null());
+        assert_eq!(view["starting_industry"], expected);
+        assert_eq!(economic_ledger_json(&g.world, me).unwrap()["starting_industry"], expected);
+        let district = g.world.districts.iter().find(|(_, n)| **n == me).unwrap().0.clone();
+        assert!(spheres_sim::starting_industry::province(&g.world, &district).is_some());
+        assert_eq!(before, save(&g.world), "all inherited-industry read models are pure");
+        let loaded = loaded_play_game(spheres_sim::load(&before).unwrap());
+        assert_eq!(loaded.world.starting_industry, g.world.starting_industry,
+            "existing estimates and historical capacity survive load unchanged");
+        assert!(g.world.production.industry.goods.is_empty(), "historical estimates do not grant packs");
+    }
+
+    #[test]
+    fn welfare_reuses_pensions_budget_and_save_slot() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let me = NationId::USA;
+        g.world.nation_mut(me).political_capital = 100.0;
+        // This is the pre-rename browser payload, including the legacy key.
+        let posted = serde_json::json!({
+            "kind": "annual_budget", "fiscal_year": 1990,
+            "health": 0.055, "education": 0.040, "housing": 0.045,
+            "pensions": 0.060, "infrastructure": 0.025, "industry": 0.015,
+            "science": 0.010, "defense": 0.050, "security": 0.015,
+            "diplomacy": 0.005
+        });
+        let command = parse_command(&g.world, &posted, me).expect("legacy budget still parses");
+        apply_command(&mut g.world, &command).unwrap();
+        let before = save(&g.world);
+        let ministries = ministries_json(&g.world, me);
+        let programs = programs_json(&g.world, me, None);
+        assert_eq!(BUDGET_PENSIONS, 3);
+        assert_eq!(ministries["ministries"].as_array().unwrap().len(), 10);
+        assert_eq!(programs["ministryrows"].as_array().unwrap().len(), 10);
+        let welfare = &ministries["ministries"][BUDGET_PENSIONS];
+        let departments = &programs["ministryrows"][BUDGET_PENSIONS];
+        assert_eq!(welfare["name"], "Welfare");
+        assert_eq!(departments["name"], "Welfare");
+        assert_eq!(welfare["id"], "pensions");
+        assert_eq!(departments["key"], "pensions");
+        assert_eq!(welfare["cap"], 0.20);
+        assert_eq!(departments["editable"], false, "the rename does not invent five new models");
+        let rows = departments["departments"].as_array().unwrap();
+        assert_eq!(rows.len(), 5);
+        for (row, expected) in rows.iter().zip([
+            "Retirement benefits", "Disability benefits", "Survivor benefits",
+            "Minimum-income supplements", "Benefits administration",
+        ]) {
+            assert_eq!(row["name"], expected);
+        }
+        assert_eq!(nation_json(&g.world, g.world.nation(me))["annual_budget"]["pensions"], 0.060);
+        assert_eq!(before, save(&g.world), "rendering Welfare must not alter accounts or saves");
+        let loaded = spheres_sim::load(&before).expect("existing budget arrays still load");
+        assert_eq!(save(&loaded), before, "no budget or financial migration is needed");
+        assert_eq!(ministries_json(&loaded, me), ministries);
+        assert_eq!(programs_json(&loaded, me, None), programs);
+    }
+
     #[test]
     fn the_budget_card_reads_the_sim() {
         let g = Game::new(1990, Some(NationId::Brazil));
@@ -11731,6 +12750,249 @@ mod tests {
         let spectator = Game::new(1990, None);
         assert!(state_json(&spectator, None)["resources"].is_null());
         assert!(INDEX.contains("sb.disabled = !S.resources;"));
+    }
+
+    /// Strategic Supply Command is a read-only projection of the live sim.
+    /// The adapter may convert display units, but it may not invent a horizon,
+    /// add sources in JavaScript, read the AI's stale review snapshot, or turn
+    /// oil into a physical stockpile.
+    #[test]
+    fn strategic_supply_command_serves_the_live_twelve_line_forecast() {
+        let g = Game::new(1990, Some(NationId::USA));
+        let before = save(&g.world);
+        let raw = spheres_sim::economic_ai::raw_supply_forecast(&g.world, NationId::USA);
+        let res = resources_json(&g.world, NationId::USA);
+        assert_eq!(save(&g.world), before, "opening Supply Command mutated the world");
+
+        let rows = res["rows"].as_array().expect("strategic resource rows");
+        assert_eq!(rows.len(), ALL.len());
+        assert_eq!(raw.lines.len(), ALL.len());
+        assert_eq!(res["strategic_summary"]["default_horizon_days"], 90);
+        assert_eq!(res["strategic_summary"]["as_of_day"], raw.as_of_day);
+        let mission = &res["strategic_summary"]["mission"];
+        assert_eq!(mission["id"], "cover_active_supply");
+        assert_eq!(mission["horizon_days"], 90);
+        assert!(matches!(
+            mission["state"].as_str(),
+            Some("idle" | "blocked" | "at_risk" | "secure")
+        ));
+        let allowed = ["market", "idle", "secure", "watch", "action", "stalled"];
+
+        for (commodity, line) in ALL.iter().copied().zip(raw.lines.iter()) {
+            assert_eq!(line.commodity, commodity, "sim forecast lost canonical order");
+            let row = &rows[commodity.idx()];
+            assert_eq!(row["id"], commodity.key());
+            let strategic = &row["strategic"];
+            assert_eq!(strategic["as_of_day"], raw.as_of_day);
+            assert_eq!(strategic["quantity_unit"], stock_unit(commodity).0);
+            assert_eq!(strategic["storable"], commodity != Commodity::Oil);
+            let horizons = strategic["horizons"].as_array().expect("three served windows");
+            assert_eq!(horizons.len(), 3);
+            for (h, window) in horizons.iter().enumerate() {
+                assert_eq!(window["days"], raw.horizons_days[h]);
+                let status = window["status"].as_str().expect("served presentation state");
+                assert!(allowed.contains(&status), "unknown strategic status {status}: {window}");
+                assert!(!window["headline"].as_str().unwrap_or("").is_empty());
+                assert!(!window["reason"].as_str().unwrap_or("").is_empty());
+                for key in ["kind", "label", "detail"] {
+                    assert!(window["recommended_action"].get(key).is_some(), "missing action {key}: {window}");
+                }
+                if commodity == Commodity::Oil {
+                    assert_eq!(status, "market");
+                    for key in ["demand", "covered", "gap"] {
+                        assert!(window[key].is_null(), "oil invented {key}: {window}");
+                    }
+                    for key in ["stock", "warehouse_stock", "prior_claims", "domestic_output", "contracted_inbound", "paid_inbound"] {
+                        assert!(window["sources"][key].is_null(), "oil invented {key}: {window}");
+                    }
+                } else {
+                    let factor = stock_unit(commodity).1;
+                    assert_eq!(window["demand"], round(line.demand[h] * factor, 9));
+                    assert_eq!(window["covered"], round(line.coverage[h] * factor, 9));
+                    assert_eq!(window["gap"], round(line.shortage[h] * factor, 9));
+                    assert_eq!(
+                        window["sources"]["stock"],
+                        round(line.allocable_stock[h] * factor, 9)
+                    );
+                    assert_eq!(window["sources"]["warehouse_stock"], round(line.stock * factor, 9));
+                    assert_eq!(
+                        window["sources"]["prior_claims"],
+                        round(line.prior_claims[h] * factor, 9)
+                    );
+                    assert_eq!(
+                        window["sources"]["domestic_output"],
+                        round(line.domestic_coverage[h] * factor, 9)
+                    );
+                    assert_eq!(
+                        window["sources"]["contracted_inbound"],
+                        round(line.contract_coverage[h] * factor, 9)
+                    );
+                    assert_eq!(window["sources"]["paid_inbound"], round(line.pending[h] * factor, 9));
+                    assert_eq!(status == "stalled", line.blocked_now,
+                        "red must mean an immediate blocked draw: {window}");
+                }
+            }
+        }
+
+        let oil = &rows[Commodity::Oil.idx()]["strategic"];
+        assert_eq!(oil["storable"], false);
+        assert!(oil["storage_note"].as_str().unwrap_or("").contains("priced national flow"));
+
+        let alerts = res["strategic_summary"]["attention"].as_array().expect("ranked alerts");
+        assert!(alerts.len() <= 3, "the map-level brief may show at most three alerts");
+        let rank = |status: &str| match status { "stalled" => 0, "action" => 1, "watch" => 2, _ => 99 };
+        assert!(alerts.windows(2).all(|pair| {
+            rank(pair[0]["status"].as_str().unwrap_or(""))
+                <= rank(pair[1]["status"].as_str().unwrap_or(""))
+        }), "alerts are not severity-ranked: {alerts:?}");
+        for alert in alerts {
+            let row = rows.iter().find(|row| row["id"] == alert["id"]).expect("alert points to a row");
+            let window = row["strategic"]["horizons"].as_array().unwrap()
+                .iter().find(|window| window["days"] == 90).unwrap();
+            assert_eq!(alert["status"], window["status"]);
+            assert_eq!(alert["headline"], window["headline"]);
+            assert_eq!(alert["recommended_action"], window["recommended_action"]);
+        }
+
+        let ninety_day_statuses = rows
+            .iter()
+            .filter_map(|row| {
+                row["strategic"]["horizons"]
+                    .as_array()?
+                    .iter()
+                    .find(|window| window["days"] == 90)?["status"]
+                    .as_str()
+            })
+            .collect::<Vec<_>>();
+        let active = ninety_day_statuses
+            .iter()
+            .filter(|status| matches!(status, &&"secure" | &&"watch" | &&"action" | &&"stalled"))
+            .count();
+        let secured = ninety_day_statuses
+            .iter()
+            .filter(|status| matches!(status, &&"secure"))
+            .count();
+        let blocked = ninety_day_statuses
+            .iter()
+            .filter(|status| matches!(status, &&"stalled"))
+            .count();
+        assert_eq!(mission["active_lines"], active);
+        assert_eq!(mission["secured_lines"], secured);
+        assert_eq!(mission["attention_lines"], active - secured);
+        assert_eq!(mission["blocked_lines"], blocked);
+        assert_eq!(mission["complete"], active > 0 && active == secured);
+        if active == 0 {
+            assert!(mission["progress_percent"].is_null());
+        } else {
+            assert_eq!(
+                mission["progress_percent"],
+                ((secured as f64 / active as f64) * 100.0).round() as usize
+            );
+        }
+
+        let iron = rows.iter().find(|row| row["id"] == "iron").unwrap();
+        let cards = stock_cards_json(&g.world, NationId::USA, Commodity::Iron);
+        assert_eq!(cards["row"]["strategic"], iron["strategic"],
+            "the selected brief disagrees with its twelve-button row");
+        assert_eq!(save(&g.world), before, "reading selected Supply Command cards mutated the world");
+    }
+
+    #[test]
+    fn strategic_supply_red_requires_an_authoritative_recorded_block() {
+        let g = Game::new(1990, Some(NationId::USA));
+        let raw = spheres_sim::economic_ai::raw_supply_forecast(&g.world, NationId::USA);
+        let mut line = raw
+            .lines
+            .iter()
+            .find(|line| line.commodity == Commodity::Iron)
+            .expect("iron forecast")
+            .clone();
+        // Model the dangerous post-success view directly: the next RUN window
+        // has a prospective gap and no pile remains, but no subsystem recorded
+        // a failed consumer. That is amber action, never red.
+        line.demand = [1.0, 1.0, 1.0];
+        line.shortage = [1.0, 1.0, 1.0];
+        line.immediate_draw = 1.0;
+        line.immediate_shortage = 1.0;
+        line.blocked_now = false;
+        line.blocker_reason = None;
+        assert_eq!(strategic_status(Commodity::Iron, &line, 0), "action");
+        assert_eq!(strategic_status(Commodity::Iron, &line, 1), "action");
+
+        line.blocked_now = true;
+        line.blocker_reason = Some("BLOCKED: needs 1 Iron, have 0.".into());
+        assert_eq!(strategic_status(Commodity::Iron, &line, 0), "stalled");
+        assert_eq!(strategic_status(Commodity::Iron, &line, 2), "stalled");
+        let served = strategic_resource_json(&g.world, &raw, &line);
+        assert_eq!(served["blocked_now"], true);
+        assert!(served["horizons"][0]["headline"]
+            .as_str()
+            .unwrap_or("")
+            .contains("BLOCKED: needs 1 Iron"));
+    }
+
+    #[test]
+    fn strategic_supply_mission_has_one_ranked_objective_and_honest_idle_state() {
+        let row = |id: &str, name: &str, ninety: &str, year: &str| {
+            let action = serde_json::json!({
+                "kind": "served_action",
+                "label": format!("Review {name}"),
+                "detail": format!("Served guidance for {name}."),
+            });
+            serde_json::json!({
+                "id": id,
+                "name": name,
+                "strategic": {
+                    "horizons": [
+                        {"days": 30, "status": ninety, "headline": format!("{name} 30."), "reason": "served", "recommended_action": action},
+                        {"days": 90, "status": ninety, "headline": format!("{name} 90."), "reason": "served", "recommended_action": action},
+                        {"days": 365, "status": year, "headline": format!("{name} 365."), "reason": "served", "recommended_action": action},
+                    ]
+                }
+            })
+        };
+
+        let rows = vec![
+            row("oil", "Oil", "market", "market"),
+            row("gold", "Gold", "idle", "idle"),
+            row("copper", "Copper", "watch", "watch"),
+            row("iron", "Iron", "secure", "secure"),
+            row("coal", "Coal", "stalled", "stalled"),
+            row("cobalt", "Cobalt", "action", "action"),
+        ];
+        let summary = strategic_summary_json(&rows, 0);
+        let mission = &summary["mission"];
+        assert_eq!(mission["state"], "blocked");
+        assert_eq!(mission["active_lines"], 4);
+        assert_eq!(mission["secured_lines"], 1);
+        assert_eq!(mission["attention_lines"], 3);
+        assert_eq!(mission["blocked_lines"], 1);
+        assert_eq!(mission["progress_percent"], 25);
+        assert_eq!(mission["complete"], false);
+        assert_eq!(summary["primary_action"]["resource_id"], "coal");
+        assert_eq!(summary["primary_action"]["kind"], "review_resource");
+        assert_eq!(summary["primary_action"]["severity"], "blocked_now");
+        assert_eq!(
+            summary["primary_action"]["recommended_action"],
+            rows[4]["strategic"]["horizons"][1]["recommended_action"]
+        );
+
+        let idle = strategic_summary_json(
+            &[row("oil", "Oil", "market", "market"), row("gold", "Gold", "idle", "idle")],
+            0,
+        );
+        assert_eq!(idle["mission"]["state"], "idle");
+        assert_eq!(idle["mission"]["complete"], false);
+        assert!(idle["mission"]["progress_percent"].is_null());
+        assert_eq!(idle["primary_action"]["kind"], "return_to_map");
+        assert_eq!(idle["headline"], "No active material demand yet.");
+        assert_eq!(idle["primary_action"]["label"], "Return to command");
+
+        let future_only = strategic_summary_json(&[row("iron", "Iron", "secure", "watch")], 0);
+        assert_eq!(future_only["mission"]["state"], "secure");
+        assert_eq!(future_only["mission"]["progress_percent"], 100);
+        assert_eq!(future_only["mission"]["complete"], true);
+        assert_eq!(future_only["primary_action"]["kind"], "return_to_map");
     }
 
     /// The market foundation is additive: old row fields remain, while every

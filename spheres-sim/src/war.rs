@@ -975,6 +975,8 @@ fn resolve_conflicts(w: &mut WorldState) {
         // earlier annexation can have removed either party in this local queue,
         // even though conquer already pruned w.conflicts. Stale terms lapse;
         // they cannot award land/population to a dead seat or collect twice.
+        // A prior subjugation can also make the queued opponents members of the
+        // same formal sphere. Those terms lapse before rewards OR claim flags.
         if let Ending::Conquest { winner, loser } | Ending::Settled { winner, loser } = &e {
             if !settlement_parties_live(w, *winner, *loser) {
                 continue;
@@ -1154,11 +1156,76 @@ pub(crate) fn settlement_held(
     held
 }
 
-/// Queued terms cannot outlive either party or award a nation its own assets.
+/// Reconcile a changed hierarchy, not the entire diplomatic board. Only members
+/// of `transferred` leave fights against their new bloc; an annexed, dead seat
+/// leaves every fight. Other participants, front/control/pocket state and war
+/// provenance remain exactly as in an ordinary participant withdrawal.
+///
+/// Empty sides close administratively, outside the victory/peace-term pipeline:
+/// no reparations, claims, territory, stability penalty or conquest is earned.
+/// This opt-in path is deliberately absent from legacy monthly/default games.
+pub(crate) fn reconcile_sphere_hostilities(
+    w: &mut WorldState,
+    transferred: &std::collections::BTreeSet<NationId>,
+) {
+    if !crate::sovereignty::enabled(w) || transferred.is_empty() {
+        return;
+    }
+    let conflicts = std::mem::take(&mut w.conflicts);
+    for mut c in conflicts {
+        // Compute all withdrawals against the original sides, before changing
+        // either one, so coalition order cannot change who is incompatible.
+        let exits: Vec<_> = c.participants().into_iter().filter(|id| {
+            transferred.contains(id) && (w.nation_opt(*id).is_none_or(|n| !n.alive)
+                || if c.side_a.contains(id) {
+                    c.side_b.iter().any(|other| crate::sovereignty::hostility_blocked(w, *id, *other))
+                } else {
+                    c.side_a.iter().any(|other| crate::sovereignty::hostility_blocked(w, *id, *other))
+                })
+        }).collect();
+        if exits.is_empty() {
+            w.conflicts.push(c);
+            continue;
+        }
+        c.side_a.retain(|id| !exits.contains(id));
+        c.side_b.retain(|id| !exits.contains(id));
+        c.posture.retain(|b| !exits.contains(&b.nation));
+        if c.side_a.is_empty() || c.side_b.is_empty() {
+            let prefix = format!("war:{}:", c.id);
+            w.daily.counters.retain(|key, _| !key.starts_with(&prefix));
+            w.headline(format!("Conflict #{} ends in an administrative ceasefire after a sphere change — no settlement terms.", c.id));
+        } else {
+            for id in exits {
+                for timer in ["rung", "withdraw", "dry"] {
+                    w.daily.counters.remove(&format!("war:{}:{timer}:{id:?}", c.id));
+                }
+                w.headline(format!("{} withdraws from conflict #{} after a sphere change.", id.name(), c.id));
+            }
+            w.conflicts.push(c);
+        }
+    }
+    // Conquest, unlike voluntary compacts, cannot preflight a peaceful merger.
+    // End only sanctions made internal by this transferred subtree. Foreign
+    // sanctions and those between wholly unrelated countries remain untouched.
+    let sanctions = std::mem::take(&mut w.sanctions);
+    for (imposer, target) in sanctions {
+        if (transferred.contains(&imposer) || transferred.contains(&target))
+            && crate::sovereignty::hostility_blocked(w, imposer, target)
+        {
+            w.headline(format!("{} lifts sanctions on {} after joining the same formal sphere.", imposer.name(), target.name()));
+        } else {
+            w.sanctions.push((imposer, target));
+        }
+    }
+}
+
+/// Queued terms cannot outlive either party, award a nation its own assets, or
+/// collect again after an earlier ending has joined these parties' formal bloc.
 fn settlement_parties_live(w: &WorldState, winner: NationId, loser: NationId) -> bool {
     winner != loser
         && w.nation_opt(winner).is_some_and(|n| n.alive)
         && w.nation_opt(loser).is_some_and(|n| n.alive)
+        && !crate::sovereignty::hostility_blocked(w, winner, loser)
 }
 
 /// Terms short of conquest: reparations always, territory only from a state that
@@ -1253,12 +1320,19 @@ fn conquer(w: &mut WorldState, winner: NationId, loser: NationId) {
         // with its borders intact.
         crate::districts::annex_all(w, winner, loser);
         w.headline(format!("{} has annexed {}.", winner.name(), loser.name()));
+        if crate::sovereignty::enabled(w) {
+            // The vanished seat withdraws; its surviving external coalition
+            // partners keep their war. Descendant/bloc conflicts were already
+            // reconciled by absorb_subjects, before the seat disappeared.
+            reconcile_sphere_hostilities(w, &std::collections::BTreeSet::from([loser]));
+        } else {
         // Conflict ids are reused after old rows disappear. Retire their daily
         // clocks with the cancelled rows, or a later quarrel inherits their age.
         let cancelled: Vec<_> = w.conflicts.iter().filter(|c| c.involves(loser))
             .map(|c| format!("war:{}:", c.id)).collect();
         w.daily.counters.retain(|key, _| !cancelled.iter().any(|prefix| key.starts_with(prefix)));
         w.conflicts.retain(|c| !c.involves(loser));
+        }
     } else {
         // Subjugation: reparations, ceded industry, a broken military, a shaken regime
         {
@@ -1302,6 +1376,7 @@ pub fn conflict_participants(c: &Conflict) -> Vec<NationId> {
 
 /// Would `m` come to `victim`'s defence?
 pub fn would_intervene(w: &WorldState, m: NationId, victim: NationId, attacker: NationId) -> bool {
+    if crate::sovereignty::hostility_blocked(w,m,attacker) { return false; }
     if m == attacker || m == victim || w.nation_opt(m).is_none_or(|n| !n.alive) {
         return false;
     }
@@ -1373,7 +1448,7 @@ pub fn invasion_begins(w: &mut WorldState, conflict: u32, attacker: NationId) {
     // Coalition response: majors sanction the aggressor...
     let majors: Vec<NationId> = majors().to_vec();
     for m in majors.iter().copied() {
-        if m == attacker || !w.nation(m).alive {
+        if m == attacker || !w.nation(m).alive || crate::sovereignty::hostility_blocked(w,m,attacker) {
             continue;
         }
         if !w.is_sanctioning(m, attacker) {
@@ -1394,7 +1469,8 @@ pub fn invasion_begins(w: &mut WorldState, conflict: u32, attacker: NationId) {
         if c.involves(m) || refused.contains(&m) {
             continue;
         }
-        if would_intervene(w, m, defender, attacker) {
+        if !c.side_a.iter().any(|foe| crate::sovereignty::hostility_blocked(w,m,*foe))
+            && would_intervene(w, m, defender, attacker) {
             join_side(&mut c, m, false, 8, Objective::Deny);
             w.headline(format!("{} joins the war in defense of {}.", m.name(), defender.name()));
         }
@@ -1427,6 +1503,7 @@ pub fn invasion_begins(w: &mut WorldState, conflict: u32, attacker: NationId) {
 /// wants to skip the whole climb can still pay for the top rung in one act, and
 /// the tests that stage a war outright use it.
 pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -> Result<(), String> {
+    if let Some(reason) = crate::sovereignty::hostility_reason(w,attacker,defender) { return Err(reason); }
     if attacker == defender {
         return Err("A nation cannot declare war on itself.".into());
     }
@@ -1503,6 +1580,169 @@ mod domination_conquest_tests {
             c.front.insert(district.clone(), 1.0);
         }
         c
+    }
+
+    fn sphere_world() -> WorldState {
+        world_1990(GameRules { daily_simulation: true, economic_competition: true, ..GameRules::default() })
+    }
+
+    fn quiet_conflict(w: &WorldState, id: u32, a: NationId, b: NationId) -> Conflict {
+        let mut c = conquest_ready(w, id, a, b);
+        for participant in &mut c.posture {
+            participant.rung = 2;
+            participant.resolve = 1.0;
+        }
+        c.control = 0.2;
+        c.invasion_declared = false;
+        c
+    }
+
+    #[test]
+    fn sphere_subjugation_withdraws_only_new_subtree_and_never_awards_terms() {
+        let mut w = sphere_world();
+        crate::domination::subjugate(&mut w, NationId::USA, NationId::France);
+        crate::domination::subjugate(&mut w, NationId::USA, NationId::UK);
+        crate::domination::subjugate(&mut w, NationId::Canada, NationId::Mexico);
+        let mut coalition = quiet_conflict(&w, 11, NationId::Canada, NationId::France);
+        join_side(&mut coalition, NationId::Iraq, true, 2, Objective::Deny);
+        join_side(&mut coalition, NationId::Iran, false, 2, Objective::Hold);
+        coalition.front.insert("test-front-preserved".into(), 0.4);
+        coalition.pockets.push(vec!["test-pocket-preserved".into()]);
+        let mut expected_coalition = coalition.clone();
+        expected_coalition.side_a.retain(|id| *id != NationId::Canada);
+        expected_coalition.posture.retain(|b| b.nation != NationId::Canada);
+        let descendant = quiet_conflict(&w, 12, NationId::Mexico, NationId::UK);
+        let external = quiet_conflict(&w, 13, NationId::Canada, NationId::Qatar);
+        let unrelated = quiet_conflict(&w, 14, NationId::Iraq, NationId::Iran);
+        w.conflicts = vec![coalition, descendant, external.clone(), unrelated.clone()];
+        w.sanctions = vec![(NationId::Canada, NationId::France), (NationId::UK, NationId::Mexico),
+            (NationId::Canada, NationId::Iran), (NationId::Iraq, NationId::France)];
+        for key in ["war:11:age", "war:11:rung:Canada", "war:11:withdraw:Canada", "war:11:dry:Canada",
+            "war:11:rung:Iraq", "war:12:age", "war:12:quiet", "war:120:age", "war:13:age"] {
+            w.daily.counters.insert(key.into(), 3.2);
+        }
+        let before_nations = serde_json::to_string(&w.nations).unwrap();
+        let before_districts = w.districts.clone();
+        let before_flags = w.flags.clone();
+        crate::domination::subjugate(&mut w, NationId::USA, NationId::Canada);
+        assert_eq!(w.conflicts, vec![expected_coalition, external, unrelated]);
+        assert_eq!(w.sanctions, vec![(NationId::Canada, NationId::Iran), (NationId::Iraq, NationId::France)]);
+        assert!(!w.daily.counters.keys().any(|k| k.starts_with("war:12:")));
+        for suffix in ["rung", "withdraw", "dry"] {
+            assert!(!w.daily.counters.contains_key(&format!("war:11:{suffix}:Canada")));
+        }
+        for key in ["war:11:age", "war:11:rung:Iraq", "war:120:age", "war:13:age"] {
+            assert_eq!(w.daily.counters.get(key), Some(&3.2));
+        }
+        assert_eq!(serde_json::to_string(&w.nations).unwrap(), before_nations);
+        assert_eq!(w.districts, before_districts);
+        assert_eq!(w.flags, before_flags, "administrative withdrawal is not a won claim or repelled invasion");
+        assert!(w.headlines.iter().any(|h| h.contains("administrative ceasefire")));
+    }
+
+    #[test]
+    fn sphere_absorption_preserves_external_coalitions_and_reconciles_descendants() {
+        let mut w = sphere_world();
+        crate::domination::subjugate(&mut w, NationId::USA, NationId::France);
+        crate::domination::subjugate(&mut w, NationId::Kuwait, NationId::Canada);
+        crate::domination::subjugate(&mut w, NationId::Canada, NationId::Mexico);
+        w.nation_mut(NationId::Kuwait).separatism = 0.0;
+        let mut coalition = quiet_conflict(&w, 21, NationId::Kuwait, NationId::Iran);
+        join_side(&mut coalition, NationId::Iraq, true, 2, Objective::Deny);
+        let mut expected = coalition.clone();
+        expected.side_a.retain(|id| *id != NationId::Kuwait);
+        expected.posture.retain(|b| b.nation != NationId::Kuwait);
+        w.conflicts = vec![coalition, quiet_conflict(&w, 22, NationId::Mexico, NationId::France),
+            quiet_conflict(&w, 23, NationId::Kuwait, NationId::Qatar)];
+        for key in ["war:21:age", "war:21:rung:Kuwait", "war:21:rung:Iraq", "war:22:age", "war:23:age"] {
+            w.daily.counters.insert(key.into(), 1.5);
+        }
+        let others_before = [NationId::Iraq, NationId::Iran, NationId::Canada, NationId::Mexico,
+            NationId::France, NationId::Qatar].map(|id| serde_json::to_string(w.nation(id)).unwrap());
+        let district_owners = w.districts.clone();
+        let flags = w.flags.clone();
+        conquer(&mut w, NationId::USA, NationId::Kuwait);
+        assert!(!w.nation(NationId::Kuwait).alive);
+        assert!(crate::domination::is_subordinate_client(&w, NationId::USA, NationId::Mexico));
+        assert_eq!(w.conflicts, vec![expected]);
+        assert_eq!(w.daily.counters.len(), 2);
+        assert_eq!(w.daily.counters.get("war:21:age"), Some(&1.5));
+        assert_eq!(w.daily.counters.get("war:21:rung:Iraq"), Some(&1.5));
+        for (id, before) in [NationId::Iraq, NationId::Iran, NationId::Canada, NationId::Mexico,
+            NationId::France, NationId::Qatar].into_iter().zip(others_before) {
+            assert_eq!(serde_json::to_string(w.nation(id)).unwrap(), before);
+        }
+        assert_eq!(w.flags, flags);
+        for (district, owner) in district_owners {
+            if owner != NationId::Kuwait { assert_eq!(w.districts.get(&district), Some(&owner)); }
+        }
+    }
+
+    #[test]
+    fn sphere_transfer_does_not_withdraw_old_parent_or_sibling_and_is_idempotent() {
+        let mut w = sphere_world();
+        crate::domination::subjugate(&mut w, NationId::USA, NationId::France);
+        crate::domination::subjugate(&mut w, NationId::UK, NationId::Canada);
+        crate::domination::subjugate(&mut w, NationId::Canada, NationId::Mexico);
+        crate::domination::subjugate(&mut w, NationId::UK, NationId::Qatar);
+        let parent_war = quiet_conflict(&w, 31, NationId::UK, NationId::France);
+        let sibling_war = quiet_conflict(&w, 32, NationId::Qatar, NationId::France);
+        w.conflicts = vec![parent_war.clone(), sibling_war.clone(),
+            quiet_conflict(&w, 33, NationId::Mexico, NationId::France)];
+        w.sanctions = vec![(NationId::UK, NationId::France), (NationId::Qatar, NationId::France),
+            (NationId::France, NationId::Mexico)];
+        crate::domination::subjugate(&mut w, NationId::USA, NationId::Canada);
+        assert_eq!(w.conflicts, vec![parent_war, sibling_war]);
+        assert_eq!(w.sanctions, vec![(NationId::UK, NationId::France), (NationId::Qatar, NationId::France)]);
+        assert_eq!(crate::domination::direct_overlord(&w, NationId::Qatar), Some(NationId::UK));
+        let after = crate::save(&w);
+        crate::domination::subjugate(&mut w, NationId::USA, NationId::Canada);
+        assert!(crate::save(&w) == after, "same-date repeated reconciliation may not add headlines or consequences");
+    }
+
+    #[test]
+    fn sphere_reconciliation_is_inert_without_both_daily_and_competition() {
+        for (daily_simulation, economic_competition) in [(false, false), (true, false), (false, true)] {
+            let mut w = world_1990(GameRules { daily_simulation, economic_competition, ..GameRules::default() });
+            crate::domination::subjugate(&mut w, NationId::USA, NationId::France);
+            w.conflicts = vec![quiet_conflict(&w, 11, NationId::Canada, NationId::France)];
+            w.sanctions = vec![(NationId::Canada, NationId::France)];
+            w.daily.counters.insert("war:11:age".into(), 1.2);
+            let before = (w.conflicts.clone(), w.sanctions.clone(), w.daily.counters.clone(), w.headlines.clone());
+            crate::domination::subjugate(&mut w, NationId::USA, NationId::Canada);
+            assert_eq!((w.conflicts.clone(), w.sanctions.clone(), w.daily.counters.clone(), w.headlines.clone()), before);
+        }
+    }
+
+    #[test]
+    fn queued_conquest_cannot_collect_again_after_first_ending_merges_the_sphere() {
+        let mut w = sphere_world();
+        crate::domination::subjugate(&mut w, NationId::USA, NationId::France);
+        let canada_gdp = w.nation(NationId::Canada).gdp;
+        let france_gdp = w.nation(NationId::France).gdp;
+        let usa_gdp = w.nation(NationId::USA).gdp;
+        w.conflicts = vec![conquest_ready(&w, 1, NationId::USA, NationId::Canada),
+            conquest_ready(&w, 2, NationId::France, NationId::Canada)];
+        resolve_conflicts(&mut w);
+        assert!(w.conflicts.is_empty());
+        assert_eq!(w.nation(NationId::Canada).gdp, canada_gdp * 0.85);
+        assert_eq!(w.nation(NationId::USA).gdp, usa_gdp + canada_gdp * 0.05);
+        assert_eq!(w.nation(NationId::France).gdp, france_gdp);
+        assert_eq!(crate::domination::direct_overlord(&w, NationId::Canada), Some(NationId::USA));
+        assert!(w.has_flag(&crate::dyads::settled_flag(NationId::USA, NationId::Canada)));
+        assert!(!w.has_flag(&crate::dyads::settled_flag(NationId::France, NationId::Canada)));
+        assert!(!w.daily.counters.keys().any(|key| key.starts_with("war:1:") || key.starts_with("war:2:")));
+    }
+
+    #[test]
+    fn same_sphere_queued_terms_helpers_are_financially_inert() {
+        let mut w = sphere_world();
+        crate::domination::subjugate(&mut w, NationId::USA, NationId::Canada);
+        let before = crate::save(&w);
+        conquer(&mut w, NationId::USA, NationId::Canada);
+        assert!(crate::save(&w) == before, "same-bloc conquest must have no side effects");
+        negotiated_peace(&mut w, NationId::USA, NationId::Canada, &Default::default());
+        assert!(crate::save(&w) == before, "same-bloc peace terms must have no side effects");
     }
 
     #[test]

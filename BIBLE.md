@@ -379,3 +379,54 @@ aggregate public-capital route; it cannot be paid again through that route.
 Oil's existing national system, treasury settlement, and default headless replay
 retain their ownership. Better sector data and additional operating systems can
 replace the modeled foundation later. Review still precedes any GitHub push.
+
+## Adopted amendment — scalable starter workshops (2026-09-04, integrated release)
+
+Ridge approved the small-country construction repair: physical starter capacity
+may be purchased in proportional modules instead of requiring the same full-size
+industrial complex from every economy. `SMALL_COUNTRY_MODULES.md` records the
+implementation and its evidence. This is available only in daily Economic
+Competition; the default headless model remains unchanged.
+
+Each module buys a frozen share of estate, generation, grid and processing, with
+proportional installation costs, raw inputs and output. It is new paid capacity,
+never a fabricated 1990 endowment or an automatic GDP-relative factory grant.
+Real construction and operation use the existing fiscal and provincial accounts;
+completion and resale cannot pay a second GDP bonus. Existing paid projects retain
+their size and sunk work. Missing map coverage is disclosed, not invented.
+
+## Adopted amendment — inherited industrial estimates and Welfare (2026-09-04, integrated release)
+
+After the 137-country inventory audit, Ridge approved building historically
+grounded **game capacity estimates**, not a literal historical factory census.
+`STARTING_INDUSTRY.md` records the boundary. Fresh browser campaigns may represent
+the existing manufacturing economy as sourced or explicitly estimated sector
+shares and fractional factory equivalents. Provincial placement remains a labeled
+population proxy; missing geography stays unallocated. No estimate may be passed
+off as transcribed establishment counts, and source gaps remain visible.
+
+Opening GDP already contains this output. Estimates cannot grant duplicate GDP,
+cash, stockpile goods, power or operating inputs. Frozen inherited capacity may
+inform investment priority but cannot replace physical pack availability. Existing
+saves and default headless runs must not be silently reseeded. Later physical
+chains must replace the inherited accounting they make explicit, not pay it twice.
+
+Ridge also approved replacing Pensions with the Ministry of Welfare. The existing
+budget slot, five managed service departments and named economic effects remain
+compatible; renaming does not create five new models or change the fiscal ledger.
+
+## Adopted amendment — Materials operating pilot (2026-09-04, integrated release)
+
+Ridge approved the Materials-first operating recommendation, its arcade screen
+and multi-year country coverage checks. `MATERIALS_OPERATIONS.md` defines the
+boundary. Finite government toll-manufacturing contracts may use inherited
+Materials capacity, government-owned raw inputs and actual ministry-funded
+conversion/power services. Capacity alone grants neither inventory nor free
+power. Missing inputs pause the attempted order, never the background economy.
+
+Observed value added replaces its occupied inherited share; only output beyond
+that allowance is additional GDP. Payments and subsequent trade do not count
+again. Installed factories, queued expansion and finite contracts remain distinct
+in planning, including for the AI. Frozen historical estimates and visible source
+gaps survive. Other manufacturing groups, jobs, households and new Welfare
+mechanisms remain later work. These boundaries ship with the integrated release.

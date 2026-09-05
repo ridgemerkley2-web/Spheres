@@ -140,11 +140,17 @@ pub struct Domination {
     pub campaigns: Vec<Campaign>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub subjects: Vec<Subordination>,
+    /// Voluntary economic relationships; military subordination remains above.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub compacts: Vec<crate::sovereignty::Compact>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sovereignty_day: Option<i32>,
 }
 
 impl Domination {
     pub fn is_empty(&self) -> bool {
-        self.campaigns.is_empty() && self.subjects.is_empty()
+        self.campaigns.is_empty() && self.subjects.is_empty() && self.compacts.is_empty()
+            && self.sovereignty_day.is_none()
     }
 }
 
@@ -205,6 +211,19 @@ pub fn is_subordinate_client(w: &WorldState, overlord: NationId, subject: Nation
     false
 }
 
+/// Capture only the tree changing allegiance, before any links are rewritten.
+/// If a former subject defeats its ancestor, its own existing subtree stays on
+/// the winning side and must not be forced out of unrelated coalition wars.
+fn transferred_subtree(w: &WorldState, winner: NationId, loser: NationId, include_loser: bool) -> BTreeSet<NationId> {
+    if !crate::sovereignty::enabled(w) {
+        return BTreeSet::new();
+    }
+    w.nations.iter().filter(|n| n.alive && n.id != winner
+        && ((include_loser && n.id == loser) || is_subordinate_client(w, loser, n.id))
+        && !is_subordinate_client(w, winner, n.id))
+        .map(|n| n.id).collect()
+}
+
 /// Persist the result of a conquest too large to annex.  If a subject defeats
 /// an ancestor, its old direct link is cut first, preventing a cycle.  Existing
 /// subjects of the defeated government stay beneath it and therefore pass,
@@ -213,6 +232,7 @@ pub fn subjugate(w: &mut WorldState, overlord: NationId, subject: NationId) {
     if overlord == subject {
         return;
     }
+    let transferred = transferred_subtree(w, overlord, subject, true);
     if is_subordinate_client(w, subject, overlord) {
         w.domination.subjects.retain(|r| r.subject != overlord);
     }
@@ -224,11 +244,15 @@ pub fn subjugate(w: &mut WorldState, overlord: NationId, subject: NationId) {
         since_month: w.month,
     });
     sort_subjects(&mut w.domination.subjects);
+    crate::war::reconcile_sphere_hostilities(w, &transferred);
 }
 
 /// A state that disappears cannot remain a node in the hierarchy.  Its direct
 /// subjects pass to the annexing power; its own subject row disappears.
 pub fn absorb_subjects(w: &mut WorldState, winner: NationId, loser: NationId) {
+    // The annexed seat itself is removed from wars after conquer marks it dead;
+    // here only its surviving descendants acquire the victor's allegiance.
+    let transferred = transferred_subtree(w, winner, loser, false);
     let (year, month) = (w.year, w.month);
     let winner_was_below_loser = is_subordinate_client(w, loser, winner);
     let old = std::mem::take(&mut w.domination.subjects);
@@ -248,6 +272,7 @@ pub fn absorb_subjects(w: &mut WorldState, winner: NationId, loser: NationId) {
     }
     w.domination.subjects = next;
     sort_subjects(&mut w.domination.subjects);
+    crate::war::reconcile_sphere_hostilities(w, &transferred);
 }
 
 fn sort_subjects(rows: &mut Vec<Subordination>) {

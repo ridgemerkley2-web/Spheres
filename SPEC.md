@@ -181,9 +181,13 @@ Only explicit player enrollment activates the model. Deprecated coarse fiscal
 commands cannot bypass an enrolled plan. Read-only previews never enact or pay.
 
 One daily opening GDP/calendar basis releases service spending and capital
-authorization. Capital consumers preflight their complete bundle of authority,
-raw inputs, industrial goods and work capacity; a blocked bundle spends none.
-All consumers share departmental balances. End-of-day settlement posts actual
+authorization. Capital consumers preflight authority, raw inputs, industrial
+goods and work capacity. The tightest temporary input sets one throughput ratio;
+work, every input draw, manufactured goods and cash all scale by that ratio.
+Zero feasible throughput pauses without spending or losing completed work.
+Hard blocks are reserved for structural failures such as invalid ownership,
+contested ground or unavailable technology. All consumers share departmental
+balances. End-of-day settlement posts actual
 new spending once; previously expensed procurement funds are not billed twice.
 Unused capital authority expires on fiscal-year rollover; renewal does not
 duplicate accrual or erase unfinished physical work. Capital formation excludes
@@ -219,3 +223,76 @@ Ownership changes reconcile local accounts to existing national transfers.
 Save/resume retains the same estimates, receipts and timeline. Read-only
 province and country endpoints serve full-precision figures for all owners;
 the browser only formats them and discloses their modeled provenance.
+
+## Current extension — inherited Materials operation (2026-09-04, integrated release)
+
+Approved pilot: `MATERIALS_OPERATIONS.md`. Fresh campaigns with frozen inherited
+industry can commission finite government toll-manufacturing orders. Commands
+reserve estimated Materials capacity, never grant packs on signing. Production
+consumes government raw stocks and actual conversion/energy department authority
+after existing funded plants, sharing those plants' remaining generation, grids
+and storage. Quantities are finite, fractional and deadline-bound. Scarce inputs
+reduce delivery proportionally; an empty input pauses the order without changing
+background national production, charging cash or losing its remaining quantity.
+
+Actual Materials value-added receipts identify their already-inherited portion.
+GDP settlement uses only the difference as additional output; the UI separately
+reports observed output, inherited overlap, unobserved background and addition.
+Internal generation uses the existing single fuel/power accounting route.
+Finite domestic commitments cover near-term demand and require real power in
+capacity planning, but cannot count as installed factories, stock or imports.
+Economic Competition opponents use the same quoted, priced command path.
+
+The subsequent approved AI integration (`MATERIALS_AI_INTEGRATION.md`) permits
+a bounded 15-pack startup intention for the first machinery line, separate from
+public demand. Owned inputs must back the full finite lot; a copied capacity
+plan checks its power alongside the prospective machine. Current operating
+authority and both political prices plus the existing reserve gate the paired
+commands. Waiting for funding does not change the physical budget target.
+Existing warehouse consumption and the startup lot net owned/imported/contracted
+supply once. Immediate sale-policy updates protect the new consumer's packs;
+reachable capital-goods imports avoid an unnecessary warehouse rescue machine.
+Orders signed after the day's production settlement start service tomorrow,
+so their stated delivery window contains the full number of workable dates.
+Pre-settlement commands still start today; loading does not extend old deadlines.
+
+The optional order ledger is absent from untouched legacy serialization. Existing
+saves without inherited capacity are not silently reseeded. Default headless
+rules and their baseline replay remain unchanged. Household demand, employment,
+private-company profit and the other inherited manufacturing groups are later
+extensions, not implied by this pilot.
+
+## Current extension — AI industrial supply manager (2026-09-04, integrated release)
+
+Approved layer: `AI_INDUSTRIAL_SUPPLY.md`. Opt-in Economic Competition governments
+review Materials and Machinery supply every 30 days while daily work, production
+and freight continue. A pure 90-day forecast counts remaining project goods
+once, recurring operating and prototype use across the horizon, bounded startup
+reserves, stock, paid inbound lots, finite domestic Materials contracts and only
+positive output settled today or yesterday. It never calls a signature,
+unfinished capacity or an estimate stock or production.
+
+One replenishment action is limited to the 90-day gap, one review period of
+recurring use plus one-off project and startup needs, and unclaimed storage.
+Foreign purchases are additionally capped by an executable quote, treasury cash
+and 0.1% of GDP, with at most one manufactured-goods import per review. Feasible
+inherited Materials capacity precedes foreign trade; an accepted import ends the
+review and invalidates the pre-purchase processor choice. A domestic finite lot
+cannot exceed the complete unreserved raw bundle already owned; a one-day flow
+quote is not treated as a month of inputs. Raw-market failure may start one
+mapped mine, and storage expands only for positive demand with near-full
+committed capacity. AI exports reserve project goods, committed startup inputs
+and 30 days of recurring use. Once paid or actually produced supply begins
+filling a prospective first-machine lot, at most 15 additional packs are
+protected so partial lots cannot churn back into the market.
+
+Every mutation uses the ordinary priced command path. The player receives a live
+Rust forecast; world reporting reads each AI government's dated `supply_review`,
+captured after its recorded action, so successful purchases and orders already
+appear as incoming coverage. Exchange snapshots and price quotes require the
+exact active campaign session, so an older tab fails closed rather than mixing
+campaign ledgers. Forecasting alone is read-only and does not serialize a review
+into legacy or default worlds. This layer adds no general raw-stockpile plan,
+household or labor demand, free goods, guaranteed output, or AI authority over
+the player's country. Descriptive six-year evidence and remaining limits are in
+`AI_INDUSTRIAL_SUPPLY_RESULTS.md`.

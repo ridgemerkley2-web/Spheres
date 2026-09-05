@@ -68,6 +68,60 @@ function reading(overrides={}) {
     province_count:1,unallocated_gdp_bn:0,provinces:[{id:'US-CA',name:'California',total_gdp_bn:101}],...overrides};
 }
 
+test('Materials GDP bridge displays the served decomposition without adding observed output twice',()=>{
+  const c=fixture(),materials={background_annual_bn:10.1234,observed_annual_bn:3.5678,
+    already_included_annual_bn:3.4321,additional_annual_bn:.1357,unobserved_annual_bn:6.6913,total_annual_bn:10.2591};
+  const data=reading({materials_accounting:materials}),before=JSON.stringify(data);
+  for(const scope of ['nation','province']){
+    const html=c.economicCompositionHtml(data,scope);
+    for(const text of ['Materials: observed vs inherited','Observed Materials output','Already included in GDP',
+      'Additional output','Still represented by the background model','$3.568bn','$3.432bn','$135.7m','$6.691bn',
+      'Observed output is not all new GDP'])assert(html.includes(text),text);
+    assert.match(html,/<details class="pe-details" data-detail-key="economy-materials">/);
+  }
+  assert.equal(JSON.stringify(data),before);assert.equal(c.calls.length,0);
+  assert(!c.economicCompositionHtml(reading(),'nation').includes('economy-materials'));
+});
+
+test('An observed inherited Materials project names the included GDP share without subtracting in JavaScript',()=>{
+  const c=fixture();
+  const html=c.economyProjectsHtml([{kind:'inherited_materials',name:'Materials conversion',counted:true,
+    annual_gdp_bn:.1234,inherited_annual_gdp_bn:.1,status:'running'}]);
+  assert(html.includes('$123.4m'));assert(html.includes('$100m'));
+  assert(html.includes('already represented in the inherited economy'));
+  assert(html.includes('Observed project output / year'));
+  assert(!html.includes('$23.4m'),'the renderer does not calculate an additional GDP amount');
+});
+
+test('All-country and province inherited estimates stay compact and expose location uncertainty',()=>{
+  const c=fixture(),model={factory_equivalents:.004321,current_output_annual_bn:.00034568,utilization:.8,
+    province_count:0,unallocated_factory_equivalents:.004321,
+    groups:[{key:'food_textiles',name:'Food & textiles',factory_equivalents:.000012345,
+      current_output_annual_bn:.0000009876,utilization:1.1}],
+    sources:[{origin:'Tonga',share_quality:'estimated',mix_quality:'estimated',source:'Game model',notes:'Not establishments.'}],
+    allocation_basis:'Population-weighted proxy; no source locates these factories.',note:'GDP is already included.'};
+  const nation=c.economicCompositionHtml(reading({starting_industry:model}),'nation');
+  const province=c.provinceEconomyHtml({economy:reading(),starting_industry:{...model,district:'TG-1',origin:'Tonga',source:model.sources[0]}});
+  for(const html of [nation,province]){
+    assert.match(html,/data-detail-key="economy-inherited-industry"/);
+    assert.doesNotMatch(html,/<details[^>]*data-detail-key="economy-inherited-industry"[^>]*\sopen/);
+    assert(html.includes('0.000012345'));assert(html.includes('110.0%'),'utilization is not clamped to 100%');
+    assert(html.includes('Population-weighted proxy'));assert(html.includes('not literal buildings'));
+    assert(html.includes('GDP already included'));assert(html.includes('not stockpile packs'));
+  }
+  assert(nation.includes('0.004321'),'unmapped national estimates are not silently removed');
+  assert(province.includes('Location proxy'),'province estimates must not imply a measured factory location');
+  assert(!c.economicCompositionHtml(reading(),'nation').includes('economy-inherited-industry'));
+});
+
+test('Inherited counts retain tiny nonzero capacity and unknown amounts never become free zeros',()=>{
+  const c=fixture();
+  assert.equal(c.economyCapacityNumber(.00000000012345),'0.00000000012345');
+  for(const bad of [null,undefined,NaN,Infinity,-Infinity,'1',false])assert.equal(c.economyCapacityNumber(bad),'—');
+  const html=c.economyStartingIndustryHtml({groups:[null,{}],sources:[null,{}]},'province');
+  assert.doesNotMatch(html,/NaN|Infinity|undefined|<strong>0<\/strong>/);assert(html.includes('not available'));
+});
+
 test('the real page loads the assets and refreshes selected economy readings from server state',()=>{
   new vm.Script(source);
   for(const block of page.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g))if(block[1].trim())new vm.Script(block[1]);

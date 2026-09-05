@@ -1277,12 +1277,24 @@ pub fn stability_pressure_of(w: &WorldState, n: &Nation) -> f64 {
     )
 }
 
+/// Fraction of a month's additive business-pressure flow applied this step.
+/// Kept public so calendar-conservation tests exercise the actual coefficient
+/// used by settlement, rather than a second formula in a test or the browser.
+pub fn private_investment_flow_fraction(w: &WorldState) -> f64 {
+    // `private_target` is rebuilt as CURRENT share + business pressure each
+    // step: this is an additive flow, not relaxation toward a fixed stock.
+    // Compounding .06 with blend overcharged a 31-day month by 3.023%.
+    // Correct only daily play; the monthly literal and operation order stay
+    // exactly as calibrated. Other genuine adjustment stocks still use blend.
+    if crate::clock::is_daily(w) { 0.06 * crate::clock::month_fraction(w) } else { 0.06 }
+}
+
 pub fn tick(w: &mut WorldState) {
     let daily = crate::clock::is_daily(w);
     let dt = crate::clock::month_fraction(w);
     let trend_blend = crate::clock::blend(w, 0.008);
     let growth_blend = crate::clock::blend(w, 0.10);
-    let investment_blend = crate::clock::blend(w, 0.06);
+    let investment_flow = private_investment_flow_fraction(w);
     let inflation_blend = crate::clock::blend(w, 0.10);
     if daily {
         prepare_daily_shocks(w);
@@ -1531,7 +1543,7 @@ pub fn tick(w: &mut WorldState) {
                 business_pressure -= 0.003 + dev * 0.002;
             }
             let private_target = (n.priv_invest_gdp + business_pressure).clamp(0.01, 0.35);
-            n.priv_invest_gdp += (private_target - n.priv_invest_gdp) * investment_blend;
+            n.priv_invest_gdp += (private_target - n.priv_invest_gdp) * investment_flow;
         }
 
         // ---- Inflation (annual rate, adjusts monthly) ----

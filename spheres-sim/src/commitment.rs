@@ -85,6 +85,10 @@ pub fn rung_blocked(w: &WorldState, c: &Conflict, id: NationId, rung: u8) -> Opt
         return Some("There are nine rungs.".into());
     }
     let b = c.posture_of(id)?;
+    if rung > b.rung && c.participants().iter().any(|other|
+        c.side_of(*other) != c.side_of(id) && crate::sovereignty::hostility_blocked(w,id,*other)) {
+        return Some("Leave the formal sphere before escalating against another member.".into());
+    }
     if rung > b.ceiling {
         return Some(format!(
             "You have publicly bound yourself to rung {} or below.",
@@ -369,6 +373,7 @@ pub fn open_conflict(
     if opener == target {
         return Err("A nation cannot open a conflict with itself.".into());
     }
+    if let Some(reason) = crate::sovereignty::hostility_reason(w,opener,target) { return Err(reason); }
     if w.nation_opt(opener).is_none_or(|n| !n.alive)
         || w.nation_opt(target).is_none_or(|n| !n.alive)
     {
@@ -437,6 +442,9 @@ pub fn join_conflict(
     };
     if already {
         return Err("You are already a party to that conflict.".into());
+    }
+    if foes.iter().any(|foe| crate::sovereignty::hostility_blocked(w,joiner,*foe)) {
+        return Err("Leave the formal sphere before taking a side against another member.".into());
     }
     let stake = if theatre::is_home(w, joiner, th) { 1.0 } else { 0.45 };
     {

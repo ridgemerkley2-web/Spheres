@@ -24,7 +24,7 @@ const helpers = [
   'productionQueue', 'productionCatalog', 'productionProvinces', 'productionCompleted',
   'productionKind', 'productionStatus', 'productionTone', 'productionProvince',
   'productionProgress', 'productionPriorityChoices', 'productionCanCancel',
-  'productionRequirements', 'productionCapabilityPairs', 'productionNeedHtml',
+  'productionRequirements', 'productionCapabilityPairs', 'productionModuleLabel', 'productionNeedHtml',
   'productionCardHtml', 'productionSummary', 'productionStartAllowed', 'productionBuiltHtml',
   'productionFundingLabel', 'productionCatalogHtml', 'productionEligible', 'productionProvinceHtml',
   'manufacturingLines', 'manufacturingCatalog', 'manufacturingProvinces', 'manufacturingHoldings',
@@ -91,7 +91,8 @@ const project = { id: 7, name: 'Rail & roads', kind: 'infrastructure', province:
   actions: {set_priority:['high','low'],cancel:true} };
 const line = { id: 9, name: 'Armour programme', kit:'arm_gen3', class:'armour',
   province:{id:'US-CA',name:'California'}, status:'producing', priority:'normal',
-  allocation_bn_day:.03,lead_days:450,units_ordered_day:4.5,ordered_bn:8,
+  allocation_bn_day:.03,allocation_bn_actual_day:.03,throughput_ratio:1,
+  lead_days:450,units_planned_day:4.5,units_ordered_day:4.5,ordered_bn:8,
   requirements:[{commodity:'iron',name:'Iron',draw:2,required:2,unit:'kt/day',stock_unit:'kt',stock_available:4,priority_available:2,shortfall:0}],
   actions:{set_priority:['high','low'],stop:true} };
 const lane = {id:'shipment-1',from:'Canada',to:'USA',from_name:'Canada',to_name:'United States',
@@ -137,17 +138,33 @@ test('project catalogue and province choice retain eligibility and authored cost
   const provinces=run(c,'productionProvinceHtml()');
   assert.match(provinces,/data-prod-province="US-CA"/);assert.doesNotMatch(provinces,/US-NY/);
 });
+
+test('completed fractional workshops stay visible without becoming full-site levels', () => {
+  const c=fixture();
+  run(c,`PROD.showBuilt=true;PROD.data.completed=[{province:{id:'US-CA',name:'California'},
+    capabilities:{civilian_industry:0,power_grid:0},module_capacity:0.012345}];`);
+  const built=run(c,'productionBuiltHtml()');
+  assert.match(built,/Starter workshop · 1\.2345% standard capacity/);
+  assert.match(built,/0 full-site levels · 1 workshop province/);
+  assert.doesNotMatch(built,/civilian industry 1|power grid 1/);
+  run(c,`PROD.data.catalog=[{kind:'infrastructure',eligible_provinces:['US-CA']}];
+    PROD.data.provinces=[{id:'US-CA',name:'California',module_capacity:0.012345,
+    capabilities:{civilian_industry:0,power_grid:0}}];PROD.pickKind='infrastructure';`);
+  const pick=run(c,'productionProvinceHtml()');
+  assert.match(pick,/Starter workshop · 1\.2345% standard capacity/);
+  assert.doesNotMatch(pick,/available ground/);
+});
 test('manufacturing displays actual daily draw without changing it to a monthly recipe', () => {
   const c=fixture();c.line=line;
   const html=run(c,'manufacturingLineHtml(line)');
   assert.match(html,/\$0\.03bn/);assert.match(html,/450 days/);
-  assert.match(html,/4\.5<\/b> planned units \/ day/);assert.match(html,/Iron · 2 kt\/day/);
+  assert.match(html,/4\.5 units last day · 4\.5 planned/);assert.match(html,/Iron · 2 kt\/day/);
   assert.match(html,/national warehouse 4 kt/);assert.doesNotMatch(html,/class="work-need short"/);
   assert.match(html,/<details class="operations-details"><summary>Daily materials &amp; line priority/);
   assert.match(html,/data-manu-priority="high" data-manu-id="9"/);
   assert.match(html,/data-manu-stop="9"/);assert.match(html,/data-manu-map="9"/);
-  run(c,'line.status="blocked";line.reason="Needs more iron";');
-  assert.match(run(c,'manufacturingLineHtml(line)'),/0<\/b> planned units \/ day/);
+  run(c,'line.status="blocked";line.reason="Needs more iron";line.units_planned_day=0;line.units_ordered_day=0;line.allocation_bn_actual_day=0;line.throughput_ratio=0;');
+  assert.match(run(c,'manufacturingLineHtml(line)'),/0 units last day · 0 planned/);
 });
 test('empty manufacturing gives a useful next step and does not invent free plant capacity', () => {
   const c=fixture();

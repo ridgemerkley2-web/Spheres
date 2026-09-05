@@ -120,6 +120,26 @@ test('annual drafts adopt the current fiscal year without changing the saved dra
   assert.equal(evaluate(c, 'queued[0].fiscal_year'), 1990, 'reading a draft is not a mutation');
 });
 
+test('Welfare keeps the existing Pensions budget key and changes only its own allocation', () => {
+  const c = fixture(['annualBudgetOf', 'annualSocial', 'annualInvest', 'ministryServed',
+    'ministryCap', 'queueBudgetDial', 'proposed']);
+  const ministries = plain(c, 'MINISTRIES');
+  assert.equal(ministries.length, 10);
+  assert.equal(ministries[3].id, 'pensions', 'saved drafts and posted commands keep the stable key');
+  assert.equal(ministries[3].name, 'Welfare');
+  assert.match(ministries[3].story, /income support/);
+  const before = plain(c, 'annualBudgetOf(m)');
+  evaluate(c, 'queueBudgetDial(m, MINISTRIES[3].id, 0.005)');
+  const after = plain(c, 'annualBudgetOf(m)');
+  assert(Math.abs(after.pensions - before.pensions - 0.005) < 1e-12);
+  for (const key of Object.keys(before).filter(key => key !== 'pensions')) {
+    assert.deepEqual(after[key], before[key], `${key} must not change with Welfare`);
+  }
+  assert.equal(Object.hasOwn(after, 'welfare'), false, 'do not introduce an unparsed command key');
+  assert.equal(evaluate(c, 'queued.filter(order => order.kind === "annual_budget").length'), 1);
+  assert.equal(evaluate(c, 'm.annual_budget.pensions'), before.pensions, 'drafting is not spending');
+});
+
 test('ministry presses preserve tax, rate and unrelated orders and one atomic annual draft', () => {
   const c = fixture(['annualBudgetOf', 'annualSocial', 'annualInvest', 'ministryServed',
     'ministryCap', 'queueBudgetDial', 'proposed']);

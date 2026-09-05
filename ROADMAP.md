@@ -1,5 +1,66 @@
 # SPHERES Roadmap
 
+## Integrated release — AI industrial supply manager (2026-09-04)
+
+Economic Competition governments now review evidenced Materials and Machinery
+needs every 30 days against a 90-day forecast. The pure Rust forecast counts
+unfinished projects once, recurring use across the horizon, bounded startup
+reserves, stock, paid inbound lots, finite domestic Materials contracts and only
+recent positive settled output. Replenishment is limited to the next review
+tranche and available storage; manufactured imports are also bounded by an
+executable quote, treasury cash and 0.1% of GDP. Feasible domestic Materials
+orders precede foreign purchases, and an accepted import forces a re-plan before
+any stale processor choice can start. Domestic lots are capped to the complete
+unreserved raw bundle on hand, not today's possible output multiplied by 30.
+Closed raw routes may trigger one mapped mine, storage expands only for evidenced
+turnover, and exports protect committed 30-day claims plus at most one 15-pack
+first-machine lot once real accumulation has begun. Every mutation uses the
+ordinary priced command path; player and
+default paths remain inert. The Exchange shows a live player forecast and each
+AI government's dated, post-action saved review. See
+`AI_INDUSTRIAL_SUPPLY.md` for formulas and boundaries, and
+`AI_INDUSTRIAL_SUPPLY_RESULTS.md` for the final six-year audit. The corrected
+seed-42 run covered all 137 countries: 254 of 279 finite Materials orders
+completed, 33 countries started machinery and 30 were producing by the cutoff.
+Bauxite blocks fell from 202 in the audit build to zero; the remaining 23 blocked
+order-days were operating-authority interruptions. All accounting, no-gift,
+save/resume and RNG-continuation invariants passed. Exchange reads and quotes are
+now campaign-bound, so a stale tab fails closed.
+
+Included in the integrated economic release. The Materials startup layer below
+remains the physical bootstrap this manager uses.
+
+## Integrated release — Materials AI startup integration (2026-09-04)
+
+Ridge approved the AI follow-up. The first machinery investment can use a
+backed, finite inherited Materials lot instead of another processor. A shared
+physical intention checks the whole raw lot and both power loads, with an
+explicit wait for daily funding and combined political costs. Stock, imports
+and domestic contracts are netted once, startup output is protected from sale,
+and the warehouse rescue prefers an existing capital-goods import when available.
+No prospective demand enters public consumption or automatic raw purchases.
+Post-settlement orders also receive their full delivery window; old saved dates
+remain unchanged. Final checks: 719 release tests passed with the same three
+pre-existing failures, 180 UI tests passed, and all three natural-world censuses
+passed accounting and exact save/RNG continuation. At six years, seed 42 had
+31 Materials producers and 34 installed machinery levels, versus 22 and 31 in
+the prior pilot; 69 contracts completed, two expired and two remained active.
+See `MATERIALS_AI_INTEGRATION.md` and `MATERIALS_AI_INTEGRATION_RESULTS.md` for
+scope, measured limitations and evidence. Prior economic groundwork is preserved.
+
+## Integrated release — inherited Materials operations (2026-09-04)
+
+The inherited 1990 industry estimates now support finite, paid Materials orders
+with real inputs, shared daily power/grid/department authority, physical packs
+and non-duplicative provincial GDP. The arcade Exchange panel exposes the order
+desk and reuses existing construction and trade. AI planning distinguishes these
+finite commitments from installed factories and actual stock. See
+`MATERIALS_OPERATIONS.md` for boundaries and verification. The ministry,
+provincial, competition, small-country and inherited-industry changes are part of
+the same integrated build. The AI startup follow-up
+above comes before another manufacturing group or jobs/household/Welfare links;
+none of those extensions imply automatic free supplies from national capacity.
+
 ## Ministry/province foundation and audit repair release (2026-09-03)
 
 Ridge authorized implementation repairs and publication after verification.

@@ -241,6 +241,7 @@ pub fn war_appetite_with(
     t: NationId,
     stalled: Option<&[bool; 12]>,
 ) -> f64 {
+    if crate::sovereignty::hostility_blocked(w,a,t) { return 0.0; }
     if a == t {
         return 0.0;
     }

@@ -21,6 +21,38 @@ function economyPercent(value, signed=false) {
   return Number.isFinite(value) ? (signed && value > 0 ? "+" : "") + (value*100).toFixed(1) + "%" : "—";
 }
 
+function economyCapacityNumber(value) {
+  return Number.isFinite(value) ? (value===0?0:value).toLocaleString("en-US",{maximumSignificantDigits:5}) : "—";
+}
+
+// One presentation of the same server estimate in the Exchange and every
+// nation's/province's dossier. Never derive factories from GDP in the browser.
+function economyStartingIndustryHtml(data, scope="nation", expanded=false) {
+  if (!data || typeof data!=="object" || Array.isArray(data)) return "";
+  const groups=Array.isArray(data.groups)?data.groups.filter(g=>g&&typeof g==="object"):[];
+  const sources=(Array.isArray(data.sources)?data.sources:data.source?[data.source]:[]).filter(s=>s&&typeof s==="object");
+  const metric=(label,value)=>`<div><dt>${economyText(label)}</dt><dd>${economyText(value)}</dd></div>`;
+  const quality=value=>value?String(value).replace(/_/g," "):"not available";
+  const body=`<p class="pe-inherited-caveat"><strong>Model capacity—not literal buildings.</strong> GDP already included; not stockpile packs. New funded pack-producing plants are tracked separately.</p>
+    ${scope==="province"?`<p class="pe-inherited-caveat"><strong>Location proxy.</strong> This is an allocated share of national capacity, not evidence of factories at these locations.</p>`:""}
+    <dl class="pe-inherited-totals">${metric("Estimated factory equivalents",economyCapacityNumber(data.factory_equivalents))}${metric("Current value added / year",economyMoney(data.current_output_annual_bn))}${metric("Current modeled utilization",economyPercent(data.utilization))}</dl>
+    <div class="pe-inherited-groups">${groups.map((g,index)=>`<article class="pe-inherited-group pe-inherited-tone-${index%5}"><span class="pe-inherited-symbol" aria-hidden="true">${["✿","◈","✦","⚙","▥"][index%5]}</span><h4>${economyText(g.name||g.key||"Group estimate not available")}</h4>
+      <strong>${economyCapacityNumber(g.factory_equivalents)}</strong><span class="pe-inherited-unit">estimated factory equivalents</span>
+      <dl class="pe-inherited-values">${metric("Value added / year",economyMoney(g.current_output_annual_bn))}${metric("Modeled utilization",economyPercent(g.utilization))}</dl></article>`).join("")||`<p class="pe-empty">Group estimates are not available in this reading.</p>`}</div>
+    <details class="pe-inherited-method" data-detail-key="economy-inherited-method"><summary data-econ-focus="economy-inherited-method">Sources, assumptions &amp; province allocation</summary>
+      <p>All factory-equivalent counts are game estimates, even where a national manufacturing share is reported. They are not a census of establishments. Utilization compares modeled current output with the fixed estimated starting capacity; it can exceed 100%.</p>
+      <dl class="pe-inherited-totals">${metric("Estimated annual capacity",economyMoney(data.capacity_annual_bn))}${metric("Opening value added / year",economyMoney(data.opening_output_annual_bn))}
+        ${Number.isFinite(data.annual_capacity_per_equivalent_bn)?metric("Annual capacity per equivalent",economyMoney(data.annual_capacity_per_equivalent_bn)):""}${Number.isFinite(data.starting_utilization)?metric("Starting utilization assumption",economyPercent(data.starting_utilization)):""}
+        ${scope!=="province"?metric("Mapped provinces",economyCapacityNumber(data.province_count))+metric("Equivalents without a mapped province",economyCapacityNumber(data.unallocated_factory_equivalents)):""}</dl>
+      <p><strong>Province allocation:</strong> ${economyText(data.allocation_basis||"Allocation basis not available.")}</p>
+      ${sources.length>1?`<p>Multiple origins · ${sources.length} source records. Each origin retains its own evidence quality.</p>`:""}
+      <div class="pe-inherited-sources">${sources.map(s=>`<article><h5>${economyText(s.origin||"Origin not available")}</h5><p>Manufacturing-share quality: <strong>${economyText(quality(s.share_quality))}</strong><br>Sector-mix quality: <strong>${economyText(quality(s.mix_quality))}</strong></p>
+        ${Number.isFinite(s.manufacturing_share)?`<p>Starting manufacturing share: ${economyPercent(s.manufacturing_share)}</p>`:""}<p>${economyText(s.source||"Source not available.")}</p>${s.notes?`<p>${economyText(s.notes)}</p>`:""}</article>`).join("")||`<p>Source metadata is not available in this reading.</p>`}</div>
+      ${data.note?`<p>${economyText(data.note)}</p>`:""}</details>`;
+  if(expanded)return `<div class="pe-inherited">${body}</div>`;
+  return `<details class="pe-details pe-inherited" data-detail-key="economy-inherited-industry"><summary data-econ-focus="economy-inherited-industry">Inherited industry · 1990 estimates <span>${economyCapacityNumber(data.factory_equivalents)} equivalents</span></summary>${body}</details>`;
+}
+
 function economyProjectClass(value) {
   const names = {
     incremental_value_added:"Project value added", inherited_value_added:"Existing project output",
@@ -71,7 +103,8 @@ function economyProjectsHtml(projects) {
     <div class="pe-project-top"><span class="pe-badge">${economyText(economyProjectClass(project.classification))}</span><span>${economyText(String(project.status || "Recorded").replace(/_/g," "))}</span></div>
     <h4>${economyText(project.name || project.kind || "Project")}</h4>
     ${project.district ? `<p class="pe-place">${economyText(project.district)}</p>` : ""}
-    <div class="pe-project-output"><strong>${economyMoney(project.annual_gdp_bn)}</strong><span>${project.counted ? "GDP attributed to this project / year" : "additional direct GDP / year"}</span></div>
+    <div class="pe-project-output"><strong>${economyMoney(project.annual_gdp_bn)}</strong><span>${project.inherited_annual_gdp_bn>0 ? "Observed project output / year" : project.counted ? "GDP attributed to this project / year" : "additional direct GDP / year"}</span></div>
+    ${project.inherited_annual_gdp_bn>0?`<p class="pe-note">Of this output, <strong>${economyMoney(project.inherited_annual_gdp_bn)}</strong> is already represented in the inherited economy. It is identified here, not added to GDP again.</p>`:""}
     <p>${economyText(project.reason || "The simulation has not supplied an explanation for this effect.")}</p>
     ${["inherited_activity","legacy_imputed","legacy_unmodeled"].includes(project.classification) ? `<p class="pe-note">Already represented in the inherited economy. Its separate inherited value is not estimated here.</p>` : ""}
     ${project.classification === "inherited_value_added" ? `<p class="pe-note">Existing output reclassified from the inherited baseline, not a new GDP bonus.</p>` : ""}
@@ -85,6 +118,15 @@ function economyProjectsHtml(projects) {
   </article>`).join("")}</div>`;
 }
 
+function economyMaterialsAccountingHtml(account) {
+  if(!account||typeof account!=="object"||Array.isArray(account))return "";
+  const metric=(label,value)=>`<div><dt>${economyText(label)}</dt><dd>${economyMoney(value)}</dd></div>`;
+  return `<details class="pe-details" data-detail-key="economy-materials"><summary data-econ-focus="economy-materials">Materials: observed vs inherited</summary>
+    <p class="pe-note">Observed output is not all new GDP. The operating pilot identifies production already represented in the background economy; only additional output adds to the total.</p>
+    <dl class="pe-receipt">${metric("Background Materials economy / year",account.background_annual_bn)}${metric("Observed Materials output / year",account.observed_annual_bn)}${metric("Already included in GDP / year",account.already_included_annual_bn)}${metric("Additional output / year",account.additional_annual_bn)}${metric("Still represented by the background model / year",account.unobserved_annual_bn)}${metric("Total Materials value added / year",account.total_annual_bn)}</dl>
+    <p class="pe-note">These are two views of the same output, not amounts to add together. Unobserved activity remains modeled background output. This is not a complete household demand or private-business simulation.</p></details>`;
+}
+
 function economicCompositionHtml(data, scope) {
   if (!data || typeof data !== "object") return `<div class="pe-empty">Economic composition is not available on this server yet. No province GDP has been guessed.</div>`;
   const nation = scope === "nation";
@@ -94,6 +136,8 @@ function economicCompositionHtml(data, scope) {
     <div class="pe-parts"><article><span>Inherited economy</span><strong>${economyMoney(data.inherited_gdp_bn)}</strong><small>modeled annual output</small></article>
       <article><span>Project contribution</span><strong>${economyMoney(data.project_gdp_bn)}</strong><small>current annualized value added</small></article></div>
     <p class="pe-caveat">Modeled estimates, not measured historical state accounts. The inherited economy and counted project activity make up this output.</p>
+    ${economyStartingIndustryHtml(data.starting_industry,scope)}
+    ${economyMaterialsAccountingHtml(data.materials_accounting)}
     <details class="pe-details" data-detail-key="economy-sectors"><summary data-econ-focus="economy-sectors">Inside the economy <span>${Array.isArray(data.sectors) ? data.sectors.length : 0} sectors</span></summary>
       ${economySectorsHtml(data.sectors)}<p class="pe-note">Sector totals combine modeled inherited activity and counted project output. They are not ministry budgets or extra GDP bonuses.</p></details>
     <details class="pe-details" data-detail-key="economy-projects"><summary data-econ-focus="economy-projects">Projects &amp; their impact <span>${Array.isArray(data.projects) ? data.projects.length : 0} entries</span></summary>
@@ -108,7 +152,7 @@ function economicCompositionHtml(data, scope) {
 function provinceEconomyHtml(reading) {
   if (!reading || reading.loading) return `<section class="pe-province" aria-label="Province economy"><div class="pe-empty" role="status">Reading the province's economic ledger…</div></section>`;
   if (reading.error) return `<section class="pe-province" aria-label="Province economy"><div class="pe-empty" role="status">Economic reading unavailable. ${economyText(reading.error)}</div></section>`;
-  return `<section class="pe-province" aria-label="Province economy">${economicCompositionHtml(reading.economy,"province")}</section>`;
+  return `<section class="pe-province" aria-label="Province economy">${economicCompositionHtml(reading.economy,"province")}${reading.economy?.starting_industry?"":economyStartingIndustryHtml(reading.starting_industry,"province")}</section>`;
 }
 
 function economyProvincesHtml(data) {

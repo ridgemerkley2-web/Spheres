@@ -1639,6 +1639,72 @@ fn spot_flow_out(market: &MarketState, id: NationId, c: Commodity) -> f64 {
 /// sets next month's quote. Matching is fixed by commodity, lowest cover,
 /// buyer id, then seller id, with no RNG or unordered iteration.
 pub(crate) fn clear_spot_market(w: &mut WorldState) {
+    clear_spot_market_impl(w, true)
+}
+
+/// Share of a requested physical bundle that can be supplied from the opening
+/// stockpile, `0..=1`.  This is intentionally a pure read: callers may use the
+/// result to reduce work, money and every input together before making the
+/// still-atomic draw below.  A shortage therefore slows a line instead of
+/// letting one ingredient disappear before another is found to be missing.
+pub(crate) fn bundle_throughput(
+    w: &WorldState,
+    nation: NationId,
+    required: &[f64; 12],
+) -> f64 {
+    let mut throughput: f64 = 1.0;
+    for c in ALL {
+        let want = required[c.idx()].max(0.0);
+        if want <= 1e-12 {
+            continue;
+        }
+        let have = stockpile(w, nation, c).max(0.0);
+        let supplied = if have + 1e-12 >= want {
+            1.0
+        } else {
+            (have / want).clamp(0.0, 1.0)
+        };
+        throughput = throughput.min(supplied);
+    }
+    throughput
+}
+
+/// The tightest physical input in a requested bundle.  Returned even for a
+/// partial shortage so status surfaces can explain the slowdown in plain
+/// language without recomputing a different allocation.
+pub(crate) fn limiting_bundle_input(
+    w: &WorldState,
+    nation: NationId,
+    required: &[f64; 12],
+) -> Option<(Commodity, f64, f64)> {
+    ALL.into_iter()
+        .filter_map(|c| {
+            let want = required[c.idx()].max(0.0);
+            if want <= 1e-12 {
+                return None;
+            }
+            let have = stockpile(w, nation, c).max(0.0);
+            (have + 1e-12 < want).then_some((c, want, have))
+        })
+        .min_by(|a, b| {
+            let ar = a.2 / a.1.max(1e-12);
+            let br = b.2 / b.1.max(1e-12);
+            ar.partial_cmp(&br).unwrap_or(std::cmp::Ordering::Equal)
+        })
+}
+
+/// Quantize one proportional bundle down onto the market ledger's nanounit
+/// lattice.  Rounding down is deliberate: a slowdown must never overdraw the
+/// limiting stockpile by a floating-point remainder.
+pub(crate) fn scale_bundle(required: &[f64; 12], throughput: f64) -> [f64; 12] {
+    let share = throughput.clamp(0.0, 1.0);
+    std::array::from_fn(|i| {
+        let full = required[i].max(0.0);
+        ((full * share * 1e9).floor() / 1e9).min(full)
+    })
+}
+
+fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
     if !(w.rules.resource_gates && w.rules.resource_market) {
         return;
     }
@@ -1675,27 +1741,51 @@ pub(crate) fn clear_spot_market(w: &mut WorldState) {
         .iter()
         .copied()
         .filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive) && crate::programs::enrolled(w, *id))
-        .map(|id| (id, tick_draw(w, id)))
+        .map(|id| (id, tick_draw_inner(w, id, false)))
         .collect();
+
+    // The entire clearing changes only local stock/finance ledgers and freight
+    // reservations. Recipes, ownership, diplomacy, policies and the calendar
+    // cannot change until it returns. Cache these pure reads for this call
+    // only; no save data, cross-day assumptions or stale capacity are involved.
+    // The uncached arm is retained as a regression oracle for full ledgers.
+    let opening_draws: Option<BTreeMap<NationId, [f64; 12]>> = cache_pure_reads.then(|| all_nations()
+        .iter().copied().filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
+        .map(|id| (id, draw_inner(w, id, false))).collect());
+    // Manual Materials contracts protect their already-owned ingredients from
+    // automatic surplus sales, but never ask the spot market to buy them. This
+    // is a finite remaining-input reserve, not thirteen months of a new line.
+    let manual_reserves: BTreeMap<NationId, [f64; 12]> = if w.materials.is_some() {
+        all_nations().iter().copied()
+            .filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
+            .map(|id| (id, crate::materials::resource_reserve(w, id))).collect()
+    } else { BTreeMap::new() };
+    let mut failed_paths: BTreeMap<(NationId, NationId), crate::logistics::Dispatch> = BTreeMap::new();
+    let mut route_search = (cache_pure_reads && crate::logistics::enabled(w))
+        .then(|| crate::logistics::ClearingRoutes::new(w));
 
     for c in ALL.into_iter().filter(|c| *c != Commodity::Oil && c.tracked()) {
         let ci = c.idx();
         let mut orders: Vec<(NationId, f64, f64)> = vec![];
         let mut offers: Vec<(NationId, f64)> = vec![];
         for id in all_nations().iter().copied().filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive)) {
-            let need = draw(w, id)[ci];
-            if need > 0.0 || stock_slot(&market.stocks, id, c).is_ok() {
+            let need = opening_draws.as_ref().map_or_else(|| draw_inner(w, id, false)[ci], |d| d[&id][ci]);
+            let manual = manual_reserves.get(&id).map_or(0.0, |raw| raw[ci]);
+            let automatic_reserve = round_market((need * BUFFER_MONTHS).max(0.0));
+            if need > 0.0 || manual > 0.0 || stock_slot(&market.stocks, id, c).is_ok() {
                 let quantity = market_stock(&market, id, c);
                 // The target is today's procurement policy, not a high-water
                 // mark. Lowering it makes obsolete stock sellable; it never
                 // deletes the physical quantity already in the warehouse.
-                set_market_stock(&mut market, id, c, quantity, need * BUFFER_MONTHS);
+                set_market_stock(&mut market, id, c, quantity, need * BUFFER_MONTHS + manual);
             }
             let quantity = market_stock(&market, id, c);
-            // Production (and instant legacy contracts) is already in the pile. The
-            // same target defines both sides, so a nation cannot buy and sell
-            // one line in the same clearing, and a blocked multi-input recipe
-            // stops buying the input it already accumulated.
+            // Production (and instant legacy contracts) is already in the pile.
+            // Automatic restocking has its existing purchase target. A manual
+            // Materials contract raises only the surplus-sale threshold by its
+            // finite remaining recipe: owned inputs are protected, never bought
+            // by that protection. The mutually exclusive buy/sell branches
+            // still prevent trading both sides of one line in a clearing.
             // An enrolled plan can retain already-paid procurement money or
             // accumulate unused authority. Its next atomic order can therefore
             // exceed an ordinary month's recipe. Ask for that executable bundle
@@ -1703,14 +1793,15 @@ pub(crate) fn clear_spot_market(w: &mut WorldState) {
             // the backlog at a stock target too small to let it run. Legacy
             // monthly/unenrolled arithmetic remains exactly the existing path.
             let next_bundle = enrolled_bundles.get(&id).map_or(need, |bundle| need.max(bundle[ci]));
-            let target = market_reserve_target(&market, id, c) + next_bundle;
+            let target = automatic_reserve + next_bundle;
+            let sell_target = market_reserve_target(&market, id, c) + next_bundle;
             let incoming = if crate::logistics::enabled(w) { crate::logistics::pending(w, id, c) } else { 0.0 };
             if quantity + incoming < target {
                 let wanted = target - quantity - incoming;
                 let cover = if need > 0.0 { quantity / need } else { BUFFER_MONTHS };
                 orders.push((id, wanted, cover));
-            } else if quantity > target {
-                offers.push((id, quantity - target));
+            } else if quantity > sell_target {
+                offers.push((id, quantity - sell_target));
             }
         }
         orders.sort_by(|a, b| a.2.total_cmp(&b.2).then_with(|| a.0.cmp(&b.0)));
@@ -1753,9 +1844,21 @@ pub(crate) fn clear_spot_market(w: &mut WorldState) {
                 }
                 let by_cash = if old_price > 0.0 { cash_left * 1e9 / old_price } else { 0.0 };
                 let proposed = round_market(order_left.min(seller_left).min(by_cash));
-                let dispatch = crate::logistics::enabled(w).then(|| crate::logistics::dispatch(
-                    w, seller, buyer, c, proposed, ShipmentSource::Spot, None,
-                ));
+                let dispatch = crate::logistics::enabled(w).then(|| {
+                    if cache_pure_reads {
+                        if let Some(failed) = failed_paths.get(&(seller, buyer)) { return failed.clone(); }
+                    }
+                    let result = match route_search.as_mut() {
+                        Some(routes) => crate::logistics::dispatch_in_clearing(w, seller, buyer, c, proposed, routes),
+                        None => crate::logistics::dispatch(w, seller, buyer, c, proposed, ShipmentSource::Spot, None),
+                    };
+                    // Only absence of a route is reusable. A capacity-limited
+                    // route still consults the live edge ledger on every try.
+                    if cache_pure_reads && result.route.is_none() && proposed.is_finite() && proposed >= 0.0 {
+                        failed_paths.insert((seller, buyer), result.clone());
+                    }
+                    result
+                });
                 let quantity = dispatch.as_ref().map_or(proposed, |d| d.quantity);
                 if quantity <= 0.0 {
                     if let Some(d) = dispatch {
@@ -2511,9 +2614,38 @@ fn procurement_draw(w: &WorldState, id: NationId) -> [f64; 12] {
     }
 }
 
+/// Annual own production read against an explicitly supplied HAVE view. This
+/// is the cold-cache-safe accessor for pure reports: callers can build the
+/// derived table once with [`have`] and reuse it without mutating the world or
+/// rebuilding the table for every commodity.
+pub fn flow_from(h: &Have, id: NationId, c: Commodity) -> f64 {
+    flow_of(h, id, c)
+}
+
+/// Standing one-policy-month military recipe, excluding a bank accumulated by
+/// earlier blocked procurement. This is forecast input only; settlement keeps
+/// using [`procurement_draw`] and its existing bank semantics.
+pub(crate) fn recurring_procurement_draw(w: &WorldState, id: NationId) -> [f64; 12] {
+    let Some(nation) = w.nation_opt(id) else {
+        return [0.0; 12];
+    };
+    if w.rules.manufacturing_system
+        && crate::manufacturing::lines_for(w, id).next().is_some()
+    {
+        return crate::manufacturing::recurring_resource_draw(w, id);
+    }
+    crate::arsenal::pick(nation).map_or([0.0; 12], |kit| {
+        kit_need(kit, crate::arsenal::budget_of(nation))
+    })
+}
+
 pub fn draw(w: &WorldState, id: NationId) -> [f64; 12] {
+    draw_inner(w, id, true)
+}
+fn draw_inner(w: &WorldState, id: NationId, include_materials: bool) -> [f64; 12] {
     let mut need = procurement_draw(w, id);
-    let civilian = crate::industry::resource_demand_daily(w, id);
+    let civilian = if include_materials { crate::industry::resource_demand_daily(w, id) }
+        else { crate::industry::automatic_resource_demand_daily(w, id) };
     for i in 0..12 { need[i] += civilian[i] / crate::clock::month_fraction(w); }
     need
 }
@@ -2521,7 +2653,10 @@ pub fn draw(w: &WorldState, id: NationId) -> [f64; 12] {
 /// Inputs the next settlement will actually attempt. Unlike the monthly
 /// reserve-policy forecast, daily funding is prorated and banked money is not.
 pub fn tick_draw(w: &WorldState, id: NationId) -> [f64; 12] {
-    if !crate::clock::is_daily(w) { return draw(w, id); }
+    tick_draw_inner(w, id, true)
+}
+fn tick_draw_inner(w: &WorldState, id: NationId, include_materials: bool) -> [f64; 12] {
+    if !crate::clock::is_daily(w) { return draw_inner(w, id, include_materials); }
     let Some(n) = w.nation_opt(id) else { return [0.0; 12] };
     let mut need = if w.rules.manufacturing_system && crate::manufacturing::lines_for(w, id).next().is_some() {
         let mut need = [0.0; 12];
@@ -2532,7 +2667,8 @@ pub fn tick_draw(w: &WorldState, id: NationId) -> [f64; 12] {
     } else {
         crate::arsenal::pick(n).map_or([0.0; 12], |kit| kit_need(kit, crate::arsenal::tick_line(w, id)))
     };
-    let civilian = crate::industry::resource_demand_daily(w, id);
+    let civilian = if include_materials { crate::industry::resource_demand_daily(w, id) }
+        else { crate::industry::automatic_resource_demand_daily(w, id) };
     for i in 0..12 { need[i] += civilian[i]; }
     need
 }
@@ -2655,6 +2791,502 @@ fn contracted_in_with(w: &WorldState, h: &Have, id: NationId, c: Commodity) -> f
     q
 }
 
+/// First simulation date that has not yet passed through the resource
+/// settlement. Strategic horizons are measured in future executable ticks,
+/// so an in-tick review after today's settlement and the UI read immediately
+/// after the date advances share the same window.
+pub fn forecast_start_day(w: &WorldState) -> i32 {
+    let today = crate::clock::absolute_day(w);
+    if w.resources.last_tick_day == Some(today) {
+        today.saturating_add(1)
+    } else {
+        today
+    }
+}
+
+/// Fraction of one annual HAVE flow posted over the next `days` unsettled
+/// resource dates. This follows the same calendar fractions as daily market
+/// settlement, including month-length and leap-year boundaries.
+pub fn annual_flow_fraction_for_days(w: &WorldState, days: i32) -> f64 {
+    let start = forecast_start_day(w);
+    (0..days.max(0))
+        .map(|offset| {
+            let (year, month, _) = crate::clock::date_from_day(start.saturating_add(offset));
+            1.0 / 12.0 / crate::world::days_in_month(year, month).max(1) as f64
+        })
+        .sum()
+}
+
+fn contract_days_left(w: &WorldState, contract: &Contract) -> f64 {
+    contract.days_left.map_or_else(
+        || {
+            if crate::clock::is_daily(w) {
+                crate::clock::days_for_months(w, contract.months_left) as f64
+            } else {
+                contract.months_left as f64 * 365.0 / 12.0
+            }
+        },
+        f64::from,
+    )
+}
+
+#[derive(Clone, Debug, PartialEq)]
+pub struct ContractSupplyForecast {
+    /// Contract goods that can dispatch and arrive within each horizon.
+    pub inbound: Vec<[[f64; 3]; 12]>,
+    /// Contract goods that leave the giver within each horizon.
+    pub outbound: Vec<[[f64; 3]; 12]>,
+}
+
+#[derive(Clone)]
+struct ForecastContractLeg {
+    giver: NationId,
+    receiver: NationId,
+    commodity: Commodity,
+    per_month: f64,
+    travel_days: i32,
+}
+
+#[derive(Clone)]
+struct ForecastContract {
+    id: u32,
+    service_days: f64,
+    legs: Vec<ForecastContractLeg>,
+}
+
+/// Project recurring physical contracts once from an authoritative opening
+/// warehouse. It mirrors the important settlement invariants without writing:
+/// own production accrues once, all open promises from one giver/line share
+/// that finite pile pro rata, bundles share fresh route capacity in contract-id
+/// order, dispatch reduces the pile once, and an inbound unit is credited only
+/// after its route time. Cargo already dispatched is absent here and remains
+/// solely in the freight pending ledger.
+pub fn contract_supply_forecast_with(
+    w: &WorldState,
+    h: &Have,
+    horizons_days: [i32; 3],
+) -> ContractSupplyForecast {
+    #[cfg(test)]
+    meter::count_raw_projector();
+    let nation_slots = nation_count();
+    let mut forecast = ContractSupplyForecast {
+        inbound: vec![[[0.0; 3]; 12]; nation_slots],
+        outbound: vec![[[0.0; 3]; 12]; nation_slots],
+    };
+    let max_days = horizons_days.into_iter().max().unwrap_or(0).max(0);
+    if max_days == 0 {
+        return forecast;
+    }
+    let physical = crate::logistics::enabled(w);
+    let mut contracts = vec![];
+    'contract: for contract in &w.resources.contracts {
+        let service_days = contract_days_left(w, contract);
+        if service_days <= 0.0
+            || !w
+                .nation_opt(contract.from)
+                .is_some_and(|nation| nation.alive)
+            || !w
+                .nation_opt(contract.to)
+                .is_some_and(|nation| nation.alive)
+            || hard_close_between(w, contract.from, contract.to).is_some()
+        {
+            continue;
+        }
+        let mut legs = vec![];
+        for (giver, receiver, terms) in [
+            (contract.from, contract.to, &contract.give),
+            (contract.to, contract.from, &contract.take),
+        ] {
+            let physical_terms: Vec<_> = commodity_legs(terms)
+                .filter(|(commodity, per_month)| {
+                    *commodity != Commodity::Oil && *per_month > 0.0
+                })
+                .collect();
+            if physical_terms.is_empty() {
+                continue;
+            }
+            let travel_days = if physical {
+                let Ok(route) = crate::logistics::plan(w, giver, receiver) else {
+                    // A negotiated bundle is atomic. One route-less physical
+                    // counterleg means no part of the bundle is secured.
+                    continue 'contract;
+                };
+                route.estimated_days.max(1) as i32
+            } else {
+                0
+            };
+            for (commodity, per_month) in physical_terms {
+                legs.push(ForecastContractLeg {
+                    giver,
+                    receiver,
+                    commodity,
+                    per_month,
+                    travel_days,
+                });
+            }
+        }
+        if !legs.is_empty() {
+            contracts.push(ForecastContract {
+                id: contract.id,
+                service_days,
+                legs,
+            });
+        }
+    }
+    contracts.sort_by_key(|contract| contract.id);
+    if contracts.is_empty() {
+        return forecast;
+    }
+
+    let mut available = BTreeMap::<(NationId, Commodity), f64>::new();
+    for contract in &contracts {
+        for leg in &contract.legs {
+            available
+                .entry((leg.giver, leg.commodity))
+                .or_insert_with(|| stockpile(w, leg.giver, leg.commodity).max(0.0));
+        }
+    }
+    let forecast_start = forecast_start_day(w);
+    let mut arrival_events = BTreeMap::<i32, Vec<(NationId, Commodity, f64)>>::new();
+    if physical {
+        for cargo in &w.logistics.cargo {
+            if cargo.commodity == Commodity::Oil
+                || crate::logistics::freight_route_open(
+                    w,
+                    cargo.seller,
+                    cargo.buyer,
+                    &cargo.route,
+                )
+                .is_err()
+            {
+                continue;
+            }
+            let due = cargo.due_day.unwrap_or_else(|| {
+                let year = 1990 + cargo.due_month.div_euclid(12);
+                let month = cargo.due_month.rem_euclid(12) as u32 + 1;
+                crate::clock::date_day(
+                    year,
+                    month,
+                    crate::world::days_in_month(year, month),
+                )
+            });
+            let offset = due.saturating_sub(forecast_start).max(0);
+            if offset < max_days {
+                arrival_events.entry(offset).or_default().push((
+                    cargo.buyer,
+                    cargo.commodity,
+                    cargo.quantity,
+                ));
+            }
+        }
+    }
+    for offset in 0..max_days {
+        // Arrivals are credited before production and contract dispatch, just
+        // as `post_market_flows` calls the freight arrival clock first. These
+        // existing cargo units remain reported only by `pending`; adding them
+        // here merely permits a real intermediary to re-export them later.
+        for (buyer, commodity, quantity) in
+            arrival_events.remove(&offset).unwrap_or_default()
+        {
+            *available.entry((buyer, commodity)).or_default() += quantity;
+        }
+        let date = forecast_start.saturating_add(offset);
+        let (year, month, _) = crate::clock::date_from_day(date);
+        let fraction = 1.0 / crate::world::days_in_month(year, month).max(1) as f64;
+        // Mirror daily resource posting: one twelfth of annual HAVE spread
+        // across the actual dates in that date's month.
+        for ((giver, commodity), pile) in &mut available {
+            *pile += flow_of(h, *giver, *commodity).max(0.0) / 12.0 * fraction;
+        }
+        let active: Vec<&ForecastContract> = contracts
+            .iter()
+            .filter(|contract| contract.service_days > offset as f64)
+            .collect();
+        if active.is_empty() {
+            continue;
+        }
+        let mut promised = BTreeMap::<(NationId, Commodity), f64>::new();
+        for contract in &active {
+            for leg in &contract.legs {
+                *promised.entry((leg.giver, leg.commodity)).or_default() +=
+                    leg.per_month * fraction;
+            }
+        }
+        let ratios: BTreeMap<_, _> = promised
+            .iter()
+            .map(|(key, quantity)| {
+                let stock = available.get(key).copied().unwrap_or(0.0);
+                (*key, (stock / quantity.max(1e-9)).clamp(0.0, 1.0))
+            })
+            .collect();
+        // Physical negotiated bundles are atomic. First find the least served
+        // stock leg, then preview route capacity against that stock-limited
+        // bundle in stable id order. This is `min(stock, capacity)`, never the
+        // incorrect product of two independently computed full-bundle ratios;
+        // only the actually serviced freight reserves an edge for later ids.
+        let bundle_stock: BTreeMap<u32, f64> = if physical {
+            active
+                .iter()
+                .map(|contract| {
+                    let ratio = contract
+                        .legs
+                        .iter()
+                        .map(|leg| {
+                            ratios
+                                .get(&(leg.giver, leg.commodity))
+                                .copied()
+                                .unwrap_or(0.0)
+                        })
+                        .fold(1.0_f64, f64::min);
+                    (contract.id, ratio)
+                })
+                .collect()
+        } else {
+            BTreeMap::new()
+        };
+        let capacity = if physical {
+            let bundles: Vec<_> = active
+                .iter()
+                .map(|contract| {
+                    let stock_ratio = bundle_stock.get(&contract.id).copied().unwrap_or(0.0);
+                    (
+                        contract.id,
+                        contract
+                            .legs
+                            .iter()
+                            .map(|leg| {
+                                (
+                                    leg.giver,
+                                    leg.receiver,
+                                    leg.commodity,
+                                    // Capacity and demand use the snapshot's
+                                    // same settlement fraction here, making
+                                    // their ratio a month-length-invariant
+                                    // monthly capacity preview. Actual future
+                                    // dispatch below still uses its dated
+                                    // fraction.
+                                    leg.per_month
+                                        * crate::clock::month_fraction(w)
+                                        * stock_ratio,
+                                )
+                            })
+                            .collect(),
+                    )
+                })
+                .collect();
+            crate::logistics::fresh_contract_capacity_ratios(w, &bundles)
+        } else {
+            BTreeMap::new()
+        };
+        let mut dispatched = BTreeMap::<(NationId, Commodity), f64>::new();
+        for contract in active {
+            for leg in &contract.legs {
+                let service = if physical {
+                    bundle_stock.get(&contract.id).copied().unwrap_or(0.0)
+                        * capacity.get(&contract.id).copied().unwrap_or(0.0)
+                } else {
+                    ratios
+                        .get(&(leg.giver, leg.commodity))
+                        .copied()
+                        .unwrap_or(0.0)
+                };
+                let quantity = leg.per_month * fraction * service;
+                if quantity <= 0.0 {
+                    continue;
+                }
+                *dispatched.entry((leg.giver, leg.commodity)).or_default() += quantity;
+                for (window, horizon) in horizons_days.iter().copied().enumerate() {
+                    if offset < horizon {
+                        forecast.outbound[leg.giver.index()][leg.commodity.idx()][window] +=
+                            quantity;
+                    }
+                    if offset.saturating_add(leg.travel_days) < horizon {
+                        forecast.inbound[leg.receiver.index()][leg.commodity.idx()][window] +=
+                            quantity;
+                    }
+                }
+                // Physical goods can fund a later dispatch on their due date.
+                // Abstract transfers are applied atomically after all current
+                // obligations, so they become re-exportable only next day.
+                let available_offset = if physical {
+                    offset.saturating_add(leg.travel_days)
+                } else {
+                    offset.saturating_add(1)
+                };
+                if available_offset < max_days {
+                    arrival_events.entry(available_offset).or_default().push((
+                        leg.receiver,
+                        leg.commodity,
+                        quantity,
+                    ));
+                }
+            }
+        }
+        for ((giver, commodity), quantity) in dispatched {
+            let pile = available.entry((giver, commodity)).or_default();
+            *pile = (*pile - quantity).max(0.0);
+        }
+    }
+    for nation in &mut forecast.inbound {
+        for commodity in nation {
+            for quantity in commodity {
+                *quantity = round_market(*quantity);
+            }
+        }
+    }
+    for nation in &mut forecast.outbound {
+        for commodity in nation {
+            for quantity in commodity {
+                *quantity = round_market(*quantity);
+            }
+        }
+    }
+    forecast
+}
+
+pub fn contract_supply_forecast(
+    w: &WorldState,
+    horizons_days: [i32; 3],
+) -> ContractSupplyForecast {
+    let h = have(w);
+    contract_supply_forecast_with(w, &h, horizons_days)
+}
+
+/// Future, presently executable non-oil contract service inside a horizon.
+/// The term is clipped before scaling and starts after any dispatch already in
+/// the freight ledger, so pending cargo and future promises are counted once.
+pub fn contracted_in_for_days(
+    w: &WorldState,
+    id: NationId,
+    c: Commodity,
+    horizon_days: i32,
+) -> f64 {
+    let h = have(w);
+    contracted_in_for_days_with(w, &h, id, c, horizon_days)
+}
+
+/// Cold-cache-safe variant used by a multi-line report that already owns one
+/// derived HAVE view.
+pub fn contracted_in_for_days_with(
+    w: &WorldState,
+    h: &Have,
+    id: NationId,
+    c: Commodity,
+    horizon_days: i32,
+) -> f64 {
+    if c == Commodity::Oil || horizon_days <= 0 {
+        return 0.0;
+    }
+    contract_supply_forecast_with(w, h, [horizon_days; 3]).inbound[id.index()][c.idx()][0]
+}
+
+/// Presently executable outgoing contract service inside a horizon. Strategic
+/// coverage uses the portion beyond future domestic output as a prior claim on
+/// today's physical stock; exposing it avoids counting one warehouse unit for
+/// both an export promise and a domestic consumer.
+pub fn contracted_out_for_days(
+    w: &WorldState,
+    id: NationId,
+    c: Commodity,
+    horizon_days: i32,
+) -> f64 {
+    let h = have(w);
+    contracted_out_for_days_with(w, &h, id, c, horizon_days)
+}
+
+/// Cold-cache-safe variant used by a multi-line report that already owns one
+/// derived HAVE view.
+pub fn contracted_out_for_days_with(
+    w: &WorldState,
+    h: &Have,
+    id: NationId,
+    c: Commodity,
+    horizon_days: i32,
+) -> f64 {
+    if c == Commodity::Oil || horizon_days <= 0 {
+        return 0.0;
+    }
+    contract_supply_forecast_with(w, h, [horizon_days; 3]).outbound[id.index()][c.idx()][0]
+}
+
+/// Domestic output retained after presently executable outgoing contract
+/// service. Flow is future capacity, never an inventory credit; the forecast
+/// keeps it separate from the current physical stockpile.
+pub fn net_domestic_for_days(
+    w: &WorldState,
+    id: NationId,
+    c: Commodity,
+    horizon_days: i32,
+) -> f64 {
+    let h = have(w);
+    net_domestic_for_days_with(w, &h, id, c, horizon_days)
+}
+
+/// Cold-cache-safe variant used by a multi-line report that already owns one
+/// derived HAVE view.
+pub fn net_domestic_for_days_with(
+    w: &WorldState,
+    h: &Have,
+    id: NationId,
+    c: Commodity,
+    horizon_days: i32,
+) -> f64 {
+    if c == Commodity::Oil || horizon_days <= 0 {
+        return 0.0;
+    }
+    let gross = flow_of(h, id, c).max(0.0)
+        * annual_flow_fraction_for_days(w, horizon_days);
+    let outgoing = contract_supply_forecast_with(w, h, [horizon_days; 3]).outbound
+        [id.index()][c.idx()][0];
+    round_market((gross - outgoing).max(0.0))
+}
+
+/// Whether an already signed, presently executable contract is an inbound
+/// remedy for this material. This intentionally ignores today's fill audit:
+/// economic AI may sign after clearing, before the contract has a fill row.
+pub fn has_live_inbound_contract(w: &WorldState, id: NationId, c: Commodity) -> bool {
+    w.resources.contracts.iter().any(|contract| {
+        let (giver, legs) = if contract.to == id {
+            (contract.from, &contract.give)
+        } else if contract.from == id {
+            (contract.to, &contract.take)
+        } else {
+            return false;
+        };
+        commodity_legs(legs).any(|(commodity, per_month)| commodity == c && per_month > 0.0)
+            && hard_close_between(w, giver, id).is_none()
+            && (!crate::logistics::enabled(w)
+                || crate::logistics::plan(w, giver, id).is_ok())
+    })
+}
+
+/// A contract signed in the current monthly review is an in-progress remedy,
+/// even though a post-clearing signature cannot yet have a dispatch audit.
+/// Older partial contracts do not suppress peaceful mine reassessment forever.
+pub fn has_new_inbound_contract(w: &WorldState, id: NationId, c: Commodity) -> bool {
+    let now = month_abs(w);
+    w.resources.contracts.iter().any(|contract| {
+        let (giver, legs) = if contract.to == id {
+            (contract.from, Some(&contract.give))
+        } else if contract.from == id {
+            (contract.to, Some(&contract.take))
+        } else {
+            (id, None)
+        };
+        contract.since == now
+            && contract_days_left(w, contract) > 0.0
+            && w.nation_opt(id).is_some_and(|nation| nation.alive)
+            && w.nation_opt(giver).is_some_and(|nation| nation.alive)
+            && hard_close_between(w, giver, id).is_none()
+            && (!crate::logistics::enabled(w)
+                || crate::logistics::plan(w, giver, id).is_ok())
+            && legs.is_some_and(|legs| {
+                commodity_legs(legs)
+                    .any(|(commodity, per_month)| commodity == c && per_month > 0.0)
+            })
+    })
+}
+
 /// What `id` could sell of `c` this month: own flow less its own draw, its
 /// commitments, and a year of its draw held in reserve.
 pub fn surplus(w: &WorldState, id: NationId, c: Commodity) -> f64 {
@@ -2698,6 +3330,40 @@ pub fn open_holder(w: &WorldState, buyer: NationId, c: Commodity) -> Option<Nati
         .filter(|id| *id != buyer && holds(&h, *id, c))
         .filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
         .find(|id| open_to(w, buyer, *id))
+}
+
+/// Whether this producer is a presently executable peaceful supply option for
+/// a strategic buyer: live surplus, no existing diplomatic hard bar, and a
+/// physical route when logistics is enabled. This is an option test only; it
+/// neither asks nor writes refusal evidence.
+pub fn peaceful_supplier_available(
+    w: &WorldState,
+    buyer: NationId,
+    seller: NationId,
+    c: Commodity,
+) -> bool {
+    if buyer == seller
+        || c == Commodity::Oil
+        || !w.nation_opt(seller).is_some_and(|nation| nation.alive)
+    {
+        return false;
+    }
+    let h = have(w);
+    if !holds(&h, seller, c) || !open_to(w, buyer, seller) {
+        return false;
+    }
+    let now = month_abs(w);
+    if w.resources.grievances.iter().any(|grievance| {
+        grievance.victim == seller
+            && grievance.breaker == buyer
+            && grievance.until > now
+    }) {
+        return false;
+    }
+    if crate::logistics::enabled(w) && crate::logistics::plan(w, seller, buyer).is_err() {
+        return false;
+    }
+    surplus_with(w, &h, &live_draws(w), seller, c) > 1e-9
 }
 
 /// Every living producer of `c`, `NationId` order.
@@ -3798,6 +4464,13 @@ fn validate_bundle(
     }
 }
 
+/// The ordinary automatically procured operating/project bundle, excluding a
+/// manual inherited-Materials contract. Economic AI uses this after the market
+/// has actually cleared before calling a raw shortage a failed trade route.
+pub(crate) fn automatic_tick_draw(w: &WorldState, id: NationId) -> [f64; 12] {
+    tick_draw_inner(w, id, false)
+}
+
 /// Current legal/structural checks shared by a new proposal and acceptance of
 /// an old offer. The price of an already offered bundle is not renegotiated.
 fn bundle_structure_refusal(
@@ -4659,6 +5332,10 @@ pub(crate) mod meter {
         pub static BUY: Cell<Duration> = const { Cell::new(Duration::ZERO) };
         /// Asks by outcome: signed, offered, priced out, refused, not asked.
         pub static ASKS: Cell<[u32; 5]> = const { Cell::new([0; 5]) };
+        pub static RAW_PROJECTORS: Cell<u32> = const { Cell::new(0) };
+    }
+    pub fn count_raw_projector() {
+        RAW_PROJECTORS.with(|count| count.set(count.get().saturating_add(1)));
     }
     pub fn count(outcome: &super::Asked) {
         let i = match outcome {
@@ -4683,7 +5360,7 @@ pub(crate) mod meter {
 }
 
 fn buy_pass(w: &mut WorldState) {
-    if !(w.rules.resource_gates && w.rules.resource_market) || w.resources.cover.is_empty() {
+    if !(w.rules.resource_gates && w.rules.resource_market) {
         return;
     }
     let player = w.player;
@@ -4706,8 +5383,24 @@ fn buy_pass(w: &mut WorldState) {
                 continue;
             }
             let short = need[c.idx()] - s.available;
-            let sellers: Vec<NationId> = producers(w, c).into_iter().filter(|s| *s != b).collect();
+            let sellers: Vec<NationId> = producers(w, c)
+                .into_iter()
+                .filter(|seller| *seller != b)
+                .filter(|seller| {
+                    !crate::logistics::enabled(w)
+                        || crate::logistics::plan(w, *seller, b).is_ok()
+                })
+                .collect();
             if sellers.is_empty() {
+                continue;
+            }
+            if w.resources.offers.iter().any(|offer| {
+                offer.from == b
+                    && Some(offer.to) == player
+                    && offer.take.iter().any(|leg| {
+                        matches!(leg, Leg::Commodity { c: asked, .. } if *asked == c)
+                    })
+            }) {
                 continue;
             }
             let before = refused_all(w, b, c).is_some();
@@ -4729,6 +5422,7 @@ fn buy_pass(w: &mut WorldState) {
                         forget_refusal(w, b, s, c);
                         break;
                     }
+                    Asked::Offered => break,
                     Asked::PricedOut { bn_per_year } => {
                         // Not a refusal — a clock. Nothing counts it, nothing
                         // prints it; it only says when to ask again.
@@ -4747,13 +5441,176 @@ fn buy_pass(w: &mut WorldState) {
                             ));
                         }
                     }
-                    Asked::Offered | Asked::NotAsked => {}
+                    Asked::NotAsked => {}
                 }
             }
             if !before {
                 if let Some((_, sellers)) = refused_all(w, b, c) {
                     w.headline(format!("Nobody will sell {} to {} — {} asked.", c.name(), b.name(), sellers));
                 }
+            }
+        }
+    }
+    civilian_recurring_buy_pass(w, player, &mut memo);
+}
+
+/// At most one additional civilian recurring-material intent per eligible AI
+/// nation and monthly review. It is deliberately a second phase: the inherited
+/// military cover pass above runs first, byte-for-byte in its old order.
+/// Finite project, mine, and Materials bills never become 36-month legs.
+fn civilian_recurring_buy_pass(
+    w: &mut WorldState,
+    player: Option<NationId>,
+    memo: &mut BTreeMap<NationId, [f64; 12]>,
+) {
+    if !crate::economic_ai::enabled(w) || !w.rules.production_system {
+        return;
+    }
+    // The contract projector is a world calculation, not a buyer calculation.
+    // Snapshot it once after the military phase (which may sign contracts) and
+    // share that immutable opening view across this civilian decision wave.
+    let raw_context = crate::economic_ai::RawSupplyContext::new(w);
+    let buyers: Vec<NationId> = all_nations()
+        .iter()
+        .copied()
+        .filter(|buyer| Some(*buyer) != player)
+        .filter(|buyer| w.nation_opt(*buyer).is_some_and(|nation| nation.alive))
+        .filter(|buyer| crate::programs::enrolled(w, *buyer))
+        .collect();
+    for buyer in buyers {
+        let forecast = crate::economic_ai::raw_supply_forecast_with_context(
+            w,
+            buyer,
+            &raw_context,
+        );
+        let civilian_components = crate::industry::raw_demand_components(w, buyer);
+        let civilian_gap = |line: &crate::economic_ai::RawSupplyLine| {
+            if line.commodity == Commodity::Oil || line.civilian_operating_daily <= 0.0 {
+                return 0.0;
+            }
+            let i = line.commodity.idx();
+            let prior_finite = civilian_components.projects_horizon[i][0]
+                + civilian_components.mines_horizon[i][0];
+            let available_for_civilian = (line.coverage[0] - prior_finite).max(0.0);
+            // Match the forecast's executable window exactly. An enrolled
+            // programme expiring at year-end cannot turn unfunded January
+            // plant demand (or a later military gap) into a 36-month
+            // civilian-material contract.
+            let civilian_run = line.civilian_operating_daily
+                * crate::industry::funded_days_in_horizon(
+                    w,
+                    buyer,
+                    crate::economic_ai::RAW_HORIZON_DAYS[0],
+                );
+            (civilian_run - available_for_civilian)
+                .max(0.0)
+                .min(line.shortage[0])
+        };
+        // Canonical row order and a hard break below make this one material
+        // intent, even when several longer-horizon warnings exist.
+        let Some(line) = forecast.lines.iter().find(|line| {
+            line.shortage[0] > 0.0 && civilian_gap(line) > 1e-9
+        }) else {
+            continue;
+        };
+        let commodity = line.commodity;
+        // Project and mine slices execute before installed civilian plants;
+        // Materials and military are later consumers and do not reduce this
+        // recurring request. Selection and sizing share the exact same gap.
+        let gap_30 = civilian_gap(line);
+        // Convert only the uncovered recurring RUN rate into one policy-month
+        // contract leg. 90/365 warnings and finite bills never size the ask.
+        let run_policy_months = crate::economic_ai::RAW_HORIZON_DAYS[0] as f64
+            * 12.0
+            / 365.0;
+        let per_month = gap_30 / run_policy_months;
+        if !per_month.is_finite() || per_month <= 1e-9 {
+            continue;
+        }
+        let sellers: Vec<NationId> = producers(w, commodity)
+            .into_iter()
+            .filter(|seller| *seller != buyer)
+            .filter(|seller| {
+                !crate::logistics::enabled(w)
+                    || crate::logistics::plan(w, *seller, buyer).is_ok()
+            })
+            .collect();
+        if sellers.is_empty() {
+            continue;
+        }
+        if w.resources.offers.iter().any(|offer| {
+            offer.from == buyer
+                && Some(offer.to) == player
+                && offer.take.iter().any(|leg| {
+                    matches!(leg, Leg::Commodity { c, .. } if *c == commodity)
+                })
+        }) {
+            // The player's pending answer is already this month's remedy.
+            // Do not duplicate its full gap against a later AI seller.
+            continue;
+        }
+        let before = refused_all(w, buyer, commodity).is_some();
+        let capped = cap(w, buyer) + DOLLAR < PRICE_STEP;
+        // The civilian ask must quote the full live draw to the evaluator;
+        // overwrite any military-only memo row left by the first phase.
+        memo.insert(buyer, draw(w, buyer));
+        for seller in sellers {
+            if w.is_sanctioning(buyer, seller)
+                || refusal_of(w, buyer, seller, commodity)
+                    .is_some_and(|refusal| refusal.heat > REASK_HEAT)
+            {
+                continue;
+            }
+            let outcome = ask(
+                w,
+                buyer,
+                seller,
+                commodity,
+                per_month,
+                capped,
+                memo,
+            );
+            #[cfg(test)]
+            meter::count(&outcome);
+            match outcome {
+                Asked::Signed => {
+                    forget_refusal(w, buyer, seller, commodity);
+                    break;
+                }
+                Asked::Offered => break,
+                Asked::PricedOut { bn_per_year } => {
+                    remember_refusal(
+                        w,
+                        buyer,
+                        seller,
+                        commodity,
+                        Reason::NotForThatPrice { bn_per_year },
+                    );
+                }
+                Asked::Refused(reason) => {
+                    let sentence = reason.sentence();
+                    if remember_refusal(w, buyer, seller, commodity, reason) == 1 {
+                        w.headline(format!(
+                            "{} seeks recurring {} for civilian industry from {}; {} refuses: {}",
+                            buyer.name(),
+                            commodity.name(),
+                            seller.name(),
+                            seller.name(),
+                            sentence
+                        ));
+                    }
+                }
+                Asked::NotAsked => {}
+            }
+        }
+        if !before {
+            if let Some((_, sellers)) = refused_all(w, buyer, commodity) {
+                w.headline(format!(
+                    "Nobody will sell recurring {} to {}'s civilian industry — {} asked.",
+                    commodity.name(),
+                    buyer.name(),
+                    sellers
+                ));
             }
         }
     }
@@ -4835,6 +5692,101 @@ mod tests {
     use super::*;
     use crate::init::world_1990;
     use crate::world::GameRules;
+
+    /// Diagnostic observer, not a performance bar or a changed economic path.
+    /// Compare real clearing with immutable searches for its actual endpoint
+    /// pairs and cache-hit dispatch validation. No timings enter WorldState.
+    #[test]
+    #[ignore]
+    fn spot_route_profile_for_real_day_32() {
+        let mut w = world_1990(GameRules {
+            daily_simulation: true, economic_competition: true, production_system: true,
+            resource_market: true, manufacturing_system: true, logistics_routes: true,
+            physical_logistics: true, ..GameRules::default()
+        });
+        crate::starting_industry::enable_new_world(&mut w).unwrap();
+        crate::province_economy::enable(&mut w);
+        for _ in 0..31 { crate::tick_day(&mut w, &[]); }
+        crate::programs::begin_day(&mut w);
+        crate::production::tick_day(&mut w);
+        post_market_flows(&mut w);
+        let started = std::time::Instant::now();
+        clear_spot_market_impl(&mut w, true);
+        let clear = started.elapsed();
+        let pairs: std::collections::BTreeSet<_> = w.resources.market.as_ref().unwrap().fills.iter()
+            .map(|f| (f.seller, f.buyer)).collect();
+        let before = crate::save(&w);
+        let started = std::time::Instant::now();
+        for &(seller,buyer) in &pairs { assert!(crate::logistics::plan(&w,seller,buyer).is_ok()); }
+        let searches = started.elapsed();
+        let started = std::time::Instant::now();
+        for &(seller,buyer) in &pairs {
+            let dispatch = crate::logistics::dispatch(&mut w,seller,buyer,Commodity::Iron,0.0,ShipmentSource::Spot,None);
+            assert!(dispatch.route.is_some());
+        }
+        let cache_hits = started.elapsed();
+        assert_eq!(crate::save(&w),before,"profiling reads and zero-dispatch cache hits must preserve every saved byte");
+        eprintln!("SPOT_ROUTE_PROFILE clear={clear:?} unique_filled_pairs={} pure_searches={searches:?} cache_hit_validations={cache_hits:?}",pairs.len());
+    }
+
+    #[test]
+    fn spot_read_cache_matches_uncached_full_ledger_on_all_country_civilian_demand() {
+        let mut w = world_1990(GameRules {
+            daily_simulation: true, economic_competition: true, production_system: true,
+            resource_market: true, manufacturing_system: true, logistics_routes: true,
+            physical_logistics: true, ..GameRules::default()
+        });
+        for _ in 0..31 { crate::tick_day(&mut w, &[]); }
+        assert!(w.production.projects.len() > 50, "real simultaneous civilian demand fixture");
+        crate::programs::begin_day(&mut w);
+        crate::production::tick_day(&mut w);
+        post_market_flows(&mut w);
+        let mut plain = w.clone();
+        let started = std::time::Instant::now();
+        clear_spot_market_impl(&mut w, true);
+        let cached = started.elapsed();
+        let started = std::time::Instant::now();
+        clear_spot_market_impl(&mut plain, false);
+        let uncached = started.elapsed();
+        assert_eq!(crate::save(&w), crate::save(&plain), "every price, fill, fee, cash balance, audit and cargo must match");
+        eprintln!("SPOT_PROFILE cached={cached:?} uncached={uncached:?} fills={} audits={} cargo={}",
+            w.resources.market.as_ref().unwrap().fills.len(),w.resources.market.as_ref().unwrap().shipment_audits.len(),w.logistics.cargo.len());
+        let started = std::time::Instant::now();
+        crate::arsenal::tick(&mut w);
+        eprintln!("SPOT_PROFILE cached={cached:?} uncached={uncached:?} arsenal_after_clearing={:?}",started.elapsed());
+    }
+
+    #[test]
+    fn spot_tree_cache_preserves_materials_and_full_ledgers_across_seed_and_policy() {
+        for (seed, policy) in [(42, crate::logistics::RoutePolicy::Fastest),
+            (71, crate::logistics::RoutePolicy::LandOnly),
+            (99, crate::logistics::RoutePolicy::AvoidChokepoints)] {
+            let mut w = world_1990(GameRules {
+                seed, daily_simulation: true, economic_competition: true, production_system: true,
+                resource_market: true, manufacturing_system: true, logistics_routes: true,
+                physical_logistics: true, ..GameRules::default()
+            });
+            crate::starting_industry::enable_new_world(&mut w).unwrap();
+            crate::province_economy::enable(&mut w);
+            for _ in 0..31 { crate::tick_day(&mut w, &[]); }
+            crate::programs::begin_day(&mut w);
+            crate::production::tick_day(&mut w);
+            let district = w.districts.iter().find(|(d, owner)| **owner == NationId::USA
+                && crate::materials::capacity_daily(&w, d) > 1.0).unwrap().0.clone();
+            crate::materials::start_order(&mut w, NationId::USA, &district, 3.0, 30).unwrap();
+            w.sanctions.extend([(NationId::India, NationId::Germany), (NationId::France, NationId::Japan)]);
+            crate::war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+            for buyer in [NationId::USA, NationId::Japan, NationId::Germany, NationId::India] {
+                crate::logistics::set_policy(&mut w, buyer, policy).unwrap();
+            }
+            post_market_flows(&mut w);
+            let mut plain = w.clone();
+            clear_spot_market_impl(&mut w, true);
+            clear_spot_market_impl(&mut plain, false);
+            assert_eq!(crate::save(&w), crate::save(&plain),
+                "seed={seed} policy={policy:?}: all stocks, cash, routes, capacity, cargo, audits and Materials orders match");
+        }
+    }
 
     #[test]
     fn daily_extraction_is_visible_immediately_and_totals_one_year() {
@@ -5745,10 +6697,24 @@ mod tests {
             let (mut w, buyer, bank, _) = prepaid_importer_fixture(true, directed);
             let opening_iron = stock_quantity(&w, buyer, Commodity::Iron);
             crate::arsenal::tick(&mut w);
-            assert!(w.nation(buyer).arsenal.orders.is_empty(), "paid cargo is not on-hand stock");
             assert!(!w.logistics.cargo.is_empty(), "backlog must submit an actual freight order");
-            assert_eq!(stock_quantity(&w, buyer, Commodity::Iron), opening_iron);
-            assert_eq!(w.nation(buyer).program_budget.as_ref().unwrap().prepaid_bn[BUDGET_DEFENSE][3], bank);
+            let opening_program = w.nation(buyer).program_budget.as_ref().unwrap();
+            let mut prepaid_used = opening_program.prepaid_used_today_bn[BUDGET_DEFENSE][3];
+            if directed {
+                let line = &w.manufacturing.lines[0];
+                assert_eq!(line.status, crate::manufacturing::LineStatus::Slowed);
+                assert!(line.throughput_today > 0.0 && line.throughput_today < 1.0);
+                assert!(!w.nation(buyer).arsenal.orders.is_empty(),
+                    "on-hand material should sustain a proportional first batch");
+                assert!(stock_quantity(&w, buyer, Commodity::Iron) < opening_iron);
+                assert!(opening_program.prepaid_bn[BUDGET_DEFENSE][3] > 0.0
+                    && opening_program.prepaid_bn[BUDGET_DEFENSE][3] < bank);
+            } else {
+                assert!(w.nation(buyer).arsenal.orders.is_empty(),
+                    "legacy staff procurement still waits for its atomic cargo bundle");
+                assert_eq!(stock_quantity(&w, buyer, Commodity::Iron), opening_iron);
+                assert_eq!(opening_program.prepaid_bn[BUDGET_DEFENSE][3], bank);
+            }
             let saved = crate::save(&w);
             let mut resumed = crate::load(&saved).unwrap();
             let mut saw_arrival = false;
@@ -5761,9 +6727,12 @@ mod tests {
                     tick(game);
                     crate::arsenal::tick(game);
                 }
+                prepaid_used += w.nation(buyer).program_budget.as_ref().unwrap()
+                    .prepaid_used_today_bn[BUDGET_DEFENSE][3];
                 saw_arrival |= w.logistics.arrivals.iter().any(|c| c.buyer == buyer);
                 assert_eq!(crate::save(&w), crate::save(&resumed));
-                if !w.nation(buyer).arsenal.orders.is_empty() {
+                if w.nation(buyer).program_budget.as_ref().unwrap()
+                    .prepaid_bn[BUDGET_DEFENSE][3] <= 1e-12 {
                     completed = true;
                     break;
                 }
@@ -5771,7 +6740,8 @@ mod tests {
             assert!(saw_arrival && completed, "physical backlog never reached procurement (directed={directed})");
             let p = w.nation(buyer).program_budget.as_ref().unwrap();
             assert_eq!(p.prepaid_bn[BUDGET_DEFENSE][3], 0.0);
-            assert_eq!(p.prepaid_used_today_bn[BUDGET_DEFENSE][3], bank);
+            assert!((prepaid_used - bank).abs() < 1e-8,
+                "the retained prepaid balance must be consumed exactly once across partial days");
             assert!(p.spent_today_bn[BUDGET_DEFENSE][3] < bank, "prepaid stock was charged a second time");
         }
     }
@@ -7712,6 +8682,197 @@ mod tests {
         ai_purchases(&mut w);
         assert_eq!(w.resources.offers.len(), MAX_PENDING_OFFERS);
         assert_eq!(mine(&w), 0);
+    }
+
+    #[test]
+    fn the_civilian_buy_wave_builds_one_global_raw_projection() {
+        let mut w = world_1990(GameRules {
+            daily_simulation: true,
+            economic_competition: true,
+            production_system: true,
+            resource_gates: true,
+            resource_market: true,
+            ..GameRules::default()
+        });
+        meter::RAW_PROJECTORS.with(|count| count.set(0));
+        buy_pass(&mut w);
+        assert_eq!(
+            meter::RAW_PROJECTORS.with(|count| count.get()),
+            1,
+            "the 365-day world projector is shared across the whole buyer wave"
+        );
+    }
+
+    #[test]
+    fn expiring_authority_sizes_a_civilian_contract_from_civilian_work_only() {
+        let buyer = code("USA");
+        let seller = code("Australia");
+        let commodity = Commodity::Bauxite;
+        let mut w = built(world_1990(GameRules {
+            daily_simulation: true,
+            economic_competition: true,
+            production_system: true,
+            resource_gates: true,
+            resource_market: true,
+            manufacturing_system: false,
+            ..GameRules::default()
+        }));
+        w.player = None;
+        w.year = 1990;
+        w.month = 12;
+        w.day = 31;
+        w.nation_mut(buyer).political_capital = 1_000.0;
+        w.set_relation(buyer, seller, 60.0);
+        let allocations = w.nation(buyer).budget_for(w.year).allocations;
+        crate::apply_command(
+            &mut w,
+            &crate::Command::SetProgramBudget {
+                nation: buyer,
+                fiscal_year: 1990,
+                allocations,
+                departments: crate::programs::default_departments(),
+            },
+        )
+        .unwrap();
+        let district = w
+            .districts
+            .iter()
+            .find_map(|(district, owner)| (*owner == buyer).then(|| district.clone()))
+            .unwrap();
+        // Site order: machinery, generation, processing, freight, warehouse,
+        // automation, efficiency.
+        w.production
+            .industry
+            .sites
+            .insert(district, [0, 2, 1, 0, 0, 0, 0]);
+        let kit = crate::arsenal::index_of("f15e").unwrap();
+        let tech = crate::tech::index_of(
+            crate::arsenal::DECK[kit as usize].tech.unwrap(),
+        )
+        .unwrap();
+        if let Err(index) = w.nation(buyer).tech.known.binary_search(&tech) {
+            w.nation_mut(buyer).tech.known.insert(index, tech);
+        }
+        w.nation_mut(buyer).arsenal.preference = Some("f15e".into());
+        w.nation_mut(buyer).mil_spend_gdp = 0.05;
+        set_stockpile_for_test(&mut w, buyer, commodity, 0.0);
+        set_stockpile_for_test(&mut w, seller, commodity, 1.0e9);
+        close_market(&mut w, buyer, commodity, &[seller]);
+
+        let forecast = crate::economic_ai::raw_supply_forecast(&w, buyer);
+        let line = &forecast.lines[commodity.idx()];
+        assert!(line.civilian_operating_daily > 0.0);
+        assert!(line.military_recurring_monthly > 0.0);
+        assert_eq!(crate::industry::funded_days_in_horizon(&w, buyer, 30), 1.0);
+        assert!(line.shortage[0] > line.civilian_operating_daily);
+
+        civilian_recurring_buy_pass(&mut w, None, &mut BTreeMap::new());
+        let per_month = w
+            .resources
+            .contracts
+            .iter()
+            .find_map(|contract| {
+                (contract.from == buyer && contract.to == seller).then(|| {
+                    contract.take.iter().find_map(|leg| match leg {
+                        Leg::Commodity { c, per_month } if *c == commodity => Some(*per_month),
+                        _ => None,
+                    })
+                })
+            })
+            .flatten()
+            .expect("civilian review signs the one-day funded bauxite remedy");
+        let expected = line.civilian_operating_daily
+            / (crate::economic_ai::RAW_HORIZON_DAYS[0] as f64 * 12.0 / 365.0);
+        assert!(
+            (per_month - expected).abs() < 1e-8,
+            "military demand must not inflate the civilian leg: {per_month} vs {expected}"
+        );
+    }
+
+    #[test]
+    fn the_inherited_military_pass_never_asks_a_route_less_seller() {
+        let buyer = code("France");
+        let seller = code("Australia");
+        let commodity = Commodity::Copper;
+        let mut w = built(world_1990(GameRules {
+            resource_gates: true,
+            resource_market: true,
+            logistics_routes: true,
+            physical_logistics: true,
+            ..GameRules::default()
+        }));
+        w.player = None;
+        crate::logistics::set_policy(&mut w, buyer, crate::logistics::RoutePolicy::LandOnly)
+            .unwrap();
+        assert!(crate::logistics::plan(&w, seller, buyer).is_err());
+        for row in &mut w.resource_have.flow {
+            row[commodity.idx()] = 0.0;
+        }
+        w.resource_have.flow[seller.index()][commodity.idx()] = 1.0e9;
+        w.resource_have.presence[seller.index()] |= commodity.bit();
+        if let Some(market) = &mut w.resources.market {
+            market.fills.clear();
+            market.contract_fills.clear();
+            market.shipment_audits.clear();
+            if let Ok(index) = market
+                .stocks
+                .binary_search_by_key(&(buyer, commodity), |row| (row.nation, row.commodity))
+            {
+                market.stocks[index].quantity = 0.0;
+            }
+        }
+        let need = draw(&w, buyer)[commodity.idx()];
+        assert!(need > 0.0);
+        write_cover(&mut w, buyer, commodity, 0.0, need);
+        meter::ASKS.with(|asks| asks.set([0; 5]));
+        buy_pass(&mut w);
+        assert_eq!(meter::ASKS.with(|asks| asks.get()), [0; 5]);
+        assert!(w.resources.contracts.is_empty());
+        assert!(w.resources.offers.is_empty());
+        assert!(w.resources.refusals.is_empty());
+    }
+
+    #[test]
+    fn economic_review_projects_nothing_during_cooldown_then_once_when_due() {
+        let mut w = world_1990(GameRules {
+            daily_simulation: true,
+            economic_competition: true,
+            production_system: true,
+            resource_gates: true,
+            resource_market: true,
+            ..GameRules::default()
+        });
+        let reviewed = crate::clock::absolute_day(&w);
+        let fiscal_year = w.year;
+        let ids: Vec<_> = w
+            .nations
+            .iter()
+            .filter(|nation| nation.alive && Some(nation.id) != w.player)
+            .map(|nation| nation.id)
+            .collect();
+        for nation in ids {
+            w.economic_ai.nations.insert(
+                nation,
+                crate::economic_ai::NationPlan {
+                    last_review_day: reviewed,
+                    fiscal_year,
+                    ..Default::default()
+                },
+            );
+        }
+        meter::RAW_PROJECTORS.with(|count| count.set(0));
+        for _ in 0..29 {
+            crate::clock::advance_date(&mut w);
+            crate::economic_ai::tick(&mut w);
+        }
+        assert_eq!(meter::RAW_PROJECTORS.with(|count| count.get()), 0);
+        crate::clock::advance_date(&mut w);
+        crate::economic_ai::tick(&mut w);
+        assert_eq!(
+            meter::RAW_PROJECTORS.with(|count| count.get()),
+            1,
+            "one due global review wave shares one contract projection"
+        );
     }
 
     /// The instrument behind `the_resource_pass_stays_under_budget`'s

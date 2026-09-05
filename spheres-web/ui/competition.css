@@ -1,0 +1,208 @@
+/* The Exchange: a painted, full-page economic room. No simulation in CSS. */
+#competitionRoom {
+  position:fixed; inset:16px; z-index:95; display:flex; flex-direction:column;
+  border:1px solid #aecdc84d; border-radius:28px; overflow:hidden;
+  background:radial-gradient(ellipse at 90% 0,#62547745,transparent 48%),
+    radial-gradient(ellipse at 0 90%,#4f80613d,transparent 45%),#142331;
+  box-shadow:0 25px 100px #020b19c9; color:#f1f0e9;
+  font:400 17px/1.6 var(--arc-font,system-ui,-apple-system,"Segoe UI",sans-serif);
+}
+#competitionRoom[hidden] {display:none}
+#competitionRoom * {box-sizing:border-box}
+#competitionRoom h2,#competitionRoom h3 {font-family:Georgia,serif;letter-spacing:-.025em;line-height:1.2}
+#competitionRoom p {margin:10px 0;color:#bfccd2}
+#competitionRoom button,#competitionRoom input,#competitionRoom select {
+  font:inherit;min-height:46px;border-radius:12px;border:1px solid #a9c7ce55;
+  padding:10px 16px;color:#f1f0e9;background:#203644;box-shadow:none;
+}
+#competitionRoom button:hover:not(:disabled) {background:#344f59;border-color:#b3d7c6}
+#competitionRoom button:focus-visible,#competitionRoom input:focus-visible,#competitionRoom select:focus-visible {
+  outline:3px solid #e8d0a5;outline-offset:3px;
+}
+#competitionRoom button:disabled {opacity:.5;cursor:not-allowed}
+#competitionRoom .comp-primary {background:#b6d8c4;color:#182d32;font-weight:700;border-color:#c8e2d1}
+#competitionRoom .comp-primary:hover:not(:disabled) {background:#d0e8d8;color:#182d32}
+.comp-header {display:flex;align-items:center;gap:18px;padding:22px 32px;border-bottom:1px solid #adc7d226}
+.comp-header h2 {font-size:32px;margin:0}
+.comp-header .comp-date {margin-left:auto;color:#c9d4d8}
+.comp-mark {display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:#e1c18d22;color:#edd2a0;font-size:34px}
+.comp-kicker {color:#b6d8c4;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.comp-tabs {display:flex;gap:10px;padding:16px 32px;flex-wrap:wrap;border-bottom:1px solid #adc7d226}
+#competitionRoom .comp-tabs [aria-selected="true"],
+#competitionRoom .comp-tabs [aria-selected="true"]:hover {background:#c6b6df;color:#263148;border-color:#dcd0eb;font-weight:700}
+.comp-body {flex:1;overflow:auto;padding:28px 32px 48px;overscroll-behavior:contain}
+.comp-hero {display:grid;grid-template-columns:minmax(0,1fr) 300px;align-items:center;gap:24px;max-width:1500px;margin:0 auto 24px}
+.comp-hero h1 {font:500 clamp(34px,4vw,62px)/1.08 Georgia,serif;letter-spacing:-.04em;margin:10px 0;color:#f7edda;max-width:760px}
+.comp-hero p {max-width:780px;font-size:19px}
+.comp-art {width:100%;max-height:220px;filter:drop-shadow(0 14px 28px #08142080)}
+.comp-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;margin:20px 0}
+.comp-card {border:1px solid #afc8ca40;border-radius:22px;background:linear-gradient(150deg,#2e424960,#182f3fbb);padding:24px;min-width:0}
+.comp-card h3 {font-size:27px;margin:4px 0 16px;color:#e5d2ad;overflow-wrap:anywhere}
+.comp-card .comp-big {display:block;font-size:clamp(26px,2.8vw,40px);font-weight:650;color:#c8e2d2;letter-spacing:-.045em}
+.comp-card .comp-symbol {float:right;font-size:38px;color:#bcafcf}
+.comp-metrics {display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px;margin:16px 0}
+.comp-metrics dt {color:#b8c7cf;font-size:15px}
+.comp-metrics dd {margin:4px 0;font-size:21px;color:#f0e4ce;font-weight:650;overflow-wrap:anywhere}
+.comp-actions {display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.comp-status {display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border-radius:30px;background:#aed9c523;color:#bee4cf;font-size:15px}
+.comp-status.warn {background:#edc98d20;color:#edc98d}
+.comp-status.bad {background:#dcadb025;color:#f0c3bf}
+.comp-note {border-left:3px solid #d9c5a0;padding:10px 18px;margin:20px 0;background:#e9d4a609;color:#cbd6d8}
+.comp-empty {padding:32px;border:1px dashed #b3c8d652;border-radius:20px;color:#c1cdd5;text-align:center}
+.comp-error {padding:18px;border:1px solid #d6a39b66;border-radius:16px;background:#673c3833;color:#f5d3c7;margin-bottom:18px}
+.comp-form {display:flex;align-items:end;flex-wrap:wrap;gap:15px;margin:18px 0}
+.comp-form label {display:flex;flex-direction:column;gap:8px;min-width:170px;flex:1;color:#d8e0df}
+.comp-form input,.comp-form select {width:100%;min-width:0}
+.comp-form .comp-check {flex-direction:row;align-items:center;min-width:160px}
+.comp-form input[type="checkbox"] {min-height:24px;width:24px;accent-color:#b6d8c4}
+.comp-table-wrap {overflow:auto;border:1px solid #acc6ce30;border-radius:18px}
+.comp-table {border-collapse:collapse;width:100%;font-size:16px;text-align:left}
+.comp-table th,.comp-table td {padding:16px 20px;border-bottom:1px solid #acc6ce25;vertical-align:top}
+.comp-table th {color:#c7dccc;font-weight:600;background:#1d3441;white-space:nowrap}
+.comp-table td:last-child {min-width:300px;max-width:540px;color:#bccbd4}
+.comp-table .comp-country {font-weight:650;color:#f1e4cd;white-space:nowrap}
+.comp-decision-cell>.comp-status {font-size:16px;font-weight:650;padding:6px 13px}
+.comp-world-target {padding:12px 15px;border-left:3px solid #c6b6df;background:#c6b6df0d;border-radius:0 12px 12px 0;color:#d7e2df!important}
+.comp-world-target strong {color:#eeddbd}
+.comp-world-supply {margin:14px 0 2px!important;padding:12px 15px!important;background:#11273359}
+.comp-world-supply summary {min-height:44px;align-content:center;font-size:16px!important;font-weight:650;color:#d4e3d9!important}
+.comp-world-supply section {padding:12px 0;border-bottom:1px solid #b5cfca26}
+.comp-world-supply section:last-of-type {border-bottom:0}
+.comp-world-supply section>div {display:flex;align-items:center;justify-content:space-between;gap:12px}
+.comp-world-supply-score {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}
+.comp-world-supply-score dt {color:#aebfc5;font-size:13px}.comp-world-supply-score dd {margin:2px 0;color:#eadcbc;font-size:18px;font-weight:650;overflow-wrap:anywhere}
+.comp-world-asof {font-size:14px;color:#aebfc5!important}
+.comp-section-heading {display:flex;align-items:center;justify-content:space-between;gap:18px;margin:32px 0 18px}
+.comp-section-heading h3 {font-size:30px;margin:0}
+.comp-body details {border:1px solid #afc8ca33;border-radius:17px;padding:18px 22px;margin:16px 0}
+.comp-body summary {font-size:19px;cursor:pointer;color:#c5d6d5}
+.comp-body > .comp-content {max-width:1550px;margin:auto}
+#competitionRoom .comp-capacity {margin:32px 0}
+#competitionRoom .comp-supply {margin:38px 0}
+#competitionRoom .comp-supply-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:22px 0}
+#competitionRoom .comp-supply-card {position:relative;overflow:hidden;border-color:#b8d9cd55;background:radial-gradient(ellipse at 100% 0,#8bc2ae23,transparent 65%),#20363fc9}
+#competitionRoom .comp-supply-capital_goods {border-color:#c4b5d75c;background:radial-gradient(ellipse at 100% 0,#b2a0d333,transparent 65%),#293442d9}
+#competitionRoom .comp-supply-card h4 {font:500 32px/1.15 Georgia,serif;color:#e6d7b8;letter-spacing:-.025em;margin:0 0 10px}
+#competitionRoom .comp-supply-card .comp-symbol {float:none;font-size:54px;line-height:1;color:#b7d8c4}
+#competitionRoom .comp-supply-capital_goods .comp-symbol {color:#cabbe2}
+#competitionRoom .comp-supply-reason {min-height:54px;font-size:17px;color:#d3dfdc;overflow-wrap:anywhere}
+#competitionRoom .comp-supply-score {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+#competitionRoom .comp-supply-score>div {min-width:0;padding:15px;border:1px solid #b9d4ca37;border-radius:16px;background:#142b3559}
+#competitionRoom .comp-supply-score dt {font-size:14px;color:#b8c9cc}
+#competitionRoom .comp-supply-score dd {margin:5px 0 0;font-size:clamp(22px,2.3vw,32px);line-height:1.15;font-weight:650;color:#f0dfbe;overflow-wrap:anywhere}
+#competitionRoom .comp-supply-card details {background:#13253240;padding:16px;margin-bottom:0}
+#competitionRoom .comp-supply-card summary {min-height:44px;align-content:center;font-size:16px}
+/* The same estimate travels with every country's and province's dossier.
+   These scoped classes never change physical-capacity or stockpile styling. */
+.pe-inherited {min-width:0;color:#d7e3e0;font:400 16px/1.6 var(--arc-font,system-ui,sans-serif);overflow-wrap:anywhere}
+.pe-inherited-caveat {padding:14px 18px;border-left:3px solid #d5c2e4;border-radius:0 12px 12px 0;background:#b8a7cf13}
+.pe-inherited-caveat strong {color:#ede0be}
+.pe-inherited-totals {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:16px;margin:20px 0}
+.pe-inherited dt {font-size:14px;color:#b9cacb}
+.pe-inherited dd {margin:4px 0;font-size:19px;font-weight:600;color:#f1e1be}
+.pe-inherited-groups {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px;margin:22px 0}
+.pe-inherited-group {position:relative;min-width:0;border:1px solid #bfd6c743;border-radius:20px;padding:22px 18px;background:radial-gradient(ellipse at 100% 0,#b4d4c124,transparent 85%),#243b45}
+.pe-inherited-group h4 {position:relative;font:500 23px/1.2 Georgia,serif;letter-spacing:-.02em;color:#ece0c8;margin:0 28px 18px 0;min-height:56px}
+.pe-inherited-group>strong {display:block;font:600 clamp(25px,2.3vw,35px)/1.2 var(--arc-font,system-ui,sans-serif);color:#c8e2d2;letter-spacing:-.035em}
+.pe-inherited-unit {display:block;font-size:14px;color:#c5d3d6;margin:8px 0 18px}
+.pe-inherited-symbol {position:absolute;right:17px;top:20px;color:#c6dace;font-size:27px;line-height:1}
+.pe-inherited-tone-1,.pe-inherited-tone-3 {background:radial-gradient(ellipse at 100% 0,#c5afdf26,transparent 85%),#2b3948;border-color:#d0badd45}
+.pe-inherited-tone-1>strong,.pe-inherited-tone-3>strong {color:#d4c7e9}
+.pe-inherited-tone-2 {background:radial-gradient(ellipse at 100% 0,#e2c89520,transparent 85%),#343c43}
+.pe-inherited-values {display:grid;gap:10px;margin:0;border-top:1px solid #bdd1d02b;padding-top:14px}
+.pe-inherited-sources {display:grid;gap:12px}
+.pe-inherited-sources article {padding:16px 18px;border:1px solid #b7ced42e;border-radius:14px;background:#172c3655}
+.pe-inherited-sources h5 {margin:0;font:600 18px/1.4 var(--arc-font,system-ui,sans-serif);color:#d8dfd1}
+.pe-inherited .pe-inherited-method {padding:16px 18px;border:1px solid #b7ced43d;border-radius:16px}
+.pe-inherited .pe-inherited-method summary {min-height:44px;align-content:center;font-size:16px;color:#d0dad6;cursor:pointer}
+.pe-inherited summary:focus-visible {outline:3px solid #e8d0a5;outline-offset:4px;border-radius:5px}
+.pe-province .pe-inherited-groups {grid-template-columns:minmax(0,1fr)}
+#competitionRoom .comp-inherited {margin:32px 0 40px;padding-bottom:24px;border-bottom:1px solid #b6d0d133}
+#competitionRoom .comp-inherited .comp-section-heading h3 {font-size:clamp(27px,3vw,37px);color:#e8ddc4}
+#competitionRoom .comp-inherited-plan-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;margin:20px 0 0}
+#competitionRoom .comp-inherited-plan h4 {font:500 24px/1.2 Georgia,serif;color:#e8ddc4;margin:0 0 15px}
+#competitionRoom .comp-inherited-plan summary {font-size:17px;min-height:44px;align-content:center}
+@media(max-width:550px) {.pe-inherited-groups {grid-template-columns:minmax(0,1fr)}.pe-inherited-group h4 {min-height:0}}
+#competitionRoom .comp-capacity-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:22px 0}
+#competitionRoom .comp-capacity-card {position:relative;overflow:hidden;border-color:#b8d9cd55;background:radial-gradient(ellipse at 100% 0,#8bc2ae23,transparent 65%),#20363fc9}
+#competitionRoom .comp-capacity-capital_goods {border-color:#c4b5d75c;background:radial-gradient(ellipse at 100% 0,#b2a0d333,transparent 65%),#293442d9}
+#competitionRoom .comp-capacity-title {display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:18px}
+#competitionRoom .comp-capacity-title h4 {font:500 32px/1.15 Georgia,serif;color:#e6d7b8;letter-spacing:-.025em;margin:0 0 10px}
+#competitionRoom .comp-capacity-title p {margin:0;font-size:16px}
+#competitionRoom .comp-capacity-title .comp-symbol {float:none;font-size:54px;line-height:1;color:#b7d8c4}
+#competitionRoom .comp-capacity-capital_goods .comp-symbol {color:#cabbe2}
+#competitionRoom .comp-capacity-reason {font-size:17px;color:#d3dfdc;overflow-wrap:anywhere}
+#competitionRoom .comp-capacity-card details {background:#13253240;padding:16px;margin-bottom:0}
+#competitionRoom .comp-capacity-card summary {font-size:16px;min-height:44px;align-content:center}
+@media(max-width:800px) {#competitionRoom .comp-capacity-grid,#competitionRoom .comp-supply-grid {grid-template-columns:1fr}}
+.comp-workshop {margin:30px 0;padding:26px;border-radius:26px;border:1px solid #b7d8c466;background:radial-gradient(ellipse at 95% 0,#c1b3de25,transparent 55%),linear-gradient(130deg,#37534e88,#243747)}
+.comp-workshop-heading {display:flex;align-items:center;justify-content:space-between;gap:20px}
+.comp-workshop-heading h3 {font-size:clamp(28px,3vw,40px);margin:8px 0;color:#efdfbe}
+.comp-workshop-art {font-size:76px;color:#b7d8c4;line-height:1;white-space:nowrap;transform:rotate(-5deg)}
+.comp-workshop-art span {font-size:36px;color:#e7c997;vertical-align:top}
+.comp-module-choice {background:#182f3fa8}
+.comp-module-progress {display:block;font-weight:650;color:#d6e9db}
+.comp-module-progress progress {display:block;appearance:none;width:100%;height:13px;margin:16px 0;border:0;border-radius:12px;overflow:hidden;background:#122734;accent-color:#b7d8c4}
+.comp-module-progress progress::-webkit-progress-bar {background:#122734}
+.comp-module-progress progress::-webkit-progress-value {background:linear-gradient(90deg,#96cbbb,#dbcba7);border-radius:12px}
+/* Materials is an operating desk, not another spreadsheet on the map. */
+#competitionRoom .comp-materials {margin:36px 0;padding:30px;border:1px solid #b5d2c266;border-radius:28px;background:radial-gradient(ellipse at 95% 5%,#a8b9d929,transparent 48%),linear-gradient(135deg,#314e4c88,#23333f);overflow-wrap:anywhere}
+.comp-material-heading {display:flex;align-items:center;justify-content:space-between;gap:24px}
+#competitionRoom .comp-material-heading h3 {font-size:clamp(34px,3.4vw,48px);color:#f1e1c1;margin:10px 0}
+.comp-material-heading p {max-width:750px;font-size:19px}
+.comp-material-art {flex:0 0 190px;width:190px;max-height:150px;filter:drop-shadow(0 12px 18px #0c202a77)}
+.comp-material-stats {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}
+.comp-material-stat {min-width:0;border:1px solid #ccdbc343;background:#b6d4bb16;border-radius:22px;padding:24px;position:relative;overflow:hidden}
+#competitionRoom .comp-material-stat h4 {margin:0 0 10px;font:500 25px/1.25 Georgia,serif;color:#ecddbf}
+.comp-material-stat strong {font-size:clamp(30px,3.7vw,50px);font-weight:650;line-height:1.15;letter-spacing:-.04em;color:#d2e9d7;overflow-wrap:anywhere}
+.comp-material-stat>span {position:absolute;right:14px;top:8px;font-size:50px;opacity:.12;line-height:1}
+#competitionRoom .comp-material-stat p {font-size:16px;margin:10px 0 0;color:#cbd8d8}
+.comp-material-stat.output {background:#ccb7e31a;border-color:#d2bed653}.comp-material-stat.output strong {color:#e0d0ec}
+.comp-material-stat.demand {background:#dfc99817;border-color:#dfc99850}.comp-material-stat.demand strong {color:#efddbb}
+.comp-material-signal {display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}.comp-material-signal p {flex:1;min-width:min(100%,260px)}
+#competitionRoom .comp-material-signal .comp-status {font-size:17px;font-weight:600;padding:6px 14px;flex-shrink:0}
+#competitionRoom .comp-material-promise {font-size:16px;color:#c4d0d1}
+.comp-material-desk {margin-top:26px;padding-top:12px;border-top:1px solid #b8d4d03d}
+.comp-material-desk .comp-form label:first-child {flex:1.5 1 220px}.comp-material-desk .comp-form label {min-width:min(100%,160px)}
+.comp-material-quote {margin-top:18px;padding:24px;border:1px solid #c6dab658;border-radius:20px;background:#11283377}
+#competitionRoom .comp-material-quote h4,#competitionRoom .comp-material-order h4,#competitionRoom .comp-materials>.comp-section-heading h4 {font:500 27px/1.3 Georgia,serif;color:#efdfc0;margin:4px 0 12px}
+.comp-material-quote>.comp-section-heading {margin-top:0}.comp-material-quote .comp-metrics {grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}
+.comp-material-warning {border-left:3px solid #dbbf8c;border-radius:0 12px 12px 0;padding:14px 18px;background:#cba5730e;margin:22px 0}
+.comp-material-warning strong {color:#ead2a9}.comp-material-warning ul {padding-left:22px;margin:10px 0}.comp-material-warning li {margin:6px 0;color:#dccdb4}
+#competitionRoom .comp-material-ledger {margin-bottom:0;background:#17303955}.comp-material-ledger .comp-metrics {grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr))}
+#competitionRoom .comp-materials summary:focus-visible {outline:3px solid #e8d0a5;outline-offset:4px;border-radius:5px}
+@media(max-width:1000px) {.comp-material-art {display:none}.comp-material-stat {padding:20px}.comp-material-stat strong {font-size:34px}}
+@media(max-width:680px) {
+  .comp-table-wrap {overflow:visible;border:0}.comp-table,.comp-table tbody {display:block;width:100%}
+  .comp-table thead {position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+  .comp-table tr {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0 0 16px;border:1px solid #afc8ca40;border-radius:20px;background:linear-gradient(150deg,#2e424960,#182f3fbb);overflow:hidden}
+  .comp-table td,.comp-table td:last-child {display:block;min-width:0;max-width:none;padding:13px 17px;border-bottom:1px solid #acc6ce25;overflow-wrap:anywhere}
+  .comp-table td::before {content:attr(data-label);display:block;margin-bottom:5px;color:#aebfc5;font-size:13px;letter-spacing:.07em;text-transform:uppercase}
+  .comp-table .comp-country,.comp-table .comp-decision-cell {grid-column:1/-1;white-space:normal}.comp-table .comp-country {font-size:22px;background:#213846}
+  .comp-table .comp-country::before {display:none}.comp-table .comp-decision-cell {border-bottom:0}
+  .comp-world-supply-score {grid-template-columns:repeat(3,minmax(0,1fr))}.comp-world-supply {padding:10px 12px!important}
+  #competitionRoom .comp-materials {padding:20px 16px;border-radius:22px}.comp-material-stats {grid-template-columns:minmax(0,1fr);gap:12px}
+  .comp-material-stat {padding:18px 20px;display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;align-items:center}
+  #competitionRoom .comp-material-stat h4 {font-size:23px;margin:0}.comp-material-stat strong {font-size:30px;text-align:right}
+  #competitionRoom .comp-material-stat p {grid-column:1/-1;margin:0}.comp-material-stat>span {display:none}
+  .comp-material-quote {padding:18px 14px}.comp-material-quote>.comp-section-heading {align-items:start;flex-direction:column;gap:4px}
+  .comp-material-desk .comp-form label:first-child,.comp-material-desk .comp-form label {flex:1 1 100%}
+}
+@media(max-width:430px) {
+  .comp-table tr {grid-template-columns:minmax(0,1fr)}.comp-table .comp-country,.comp-table .comp-decision-cell {grid-column:1}
+  #competitionRoom .comp-supply-score {grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:900px) {
+  .comp-hero {grid-template-columns:1fr}.comp-art {display:none}
+  .comp-header {padding:18px 22px}.comp-header .comp-date {display:none}
+  .comp-tabs {padding:12px 22px}.comp-body {padding:20px 22px 38px}
+}
+@media(max-width:550px) {
+  #competitionRoom {inset:0;border-radius:0;font-size:17px}
+  .comp-header {gap:12px;padding:16px}.comp-mark {display:none}.comp-header h2 {font-size:28px}
+  .comp-header button {margin-left:auto}.comp-tabs {padding:10px 16px;gap:8px}
+  #competitionRoom .comp-tabs button {flex:1 1 42%;font-size:15px;padding:9px}
+  .comp-body {padding:20px 16px}.comp-card {padding:20px}.comp-form label {min-width:100%}
+  .comp-actions button {flex:1 1 100%}.comp-grid {gap:14px}
+  .comp-workshop {padding:18px}.comp-workshop-art {display:none}
+}

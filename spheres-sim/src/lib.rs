@@ -1,27 +1,34 @@
 pub mod arsenal;
 pub mod commitment;
+pub mod commerce;
 pub mod data;
 pub mod districts;
 pub mod domination;
 pub mod dyads;
 pub mod economy;
+pub mod economic_ai;
 pub mod front;
 pub mod government;
 pub mod gdp_projects;
 pub mod exact;
 pub mod init;
 pub mod industry;
+pub mod industry_planning;
+pub mod industrial_modules;
 pub mod logistics;
 pub mod clock;
 pub mod manufacturing;
+pub mod materials;
 pub mod ministries;
 pub mod nations;
 pub mod politics;
 pub mod production;
 pub mod programs;
 pub mod province_economy;
+pub mod starting_industry;
 pub mod resources;
 pub mod statecraft;
+pub mod sovereignty;
 pub mod stratagems;
 pub mod tech;
 pub mod theatre;
@@ -123,6 +130,12 @@ pub enum Command {
         district: String,
         kind: production::ProjectKind,
     },
+    /// Paid estate, power, grid and processing capacity, frozen at order time.
+    StartIndustryModule {
+        nation: NationId,
+        district: String,
+        capacity_micros: u32,
+    },
     /// Reweight one active project inside the shared national capacity pool.
     SetProjectPriority {
         nation: NationId,
@@ -149,6 +162,26 @@ pub enum Command {
     /// Choose one of the three deterministic steps toward the campaign's sole
     /// ending: world domination. The stable id comes from `domination::view`.
     ChooseDominationAgenda { nation: NationId, agenda: String },
+    /// Explicit save-compatible opt-in; never grants budgets, stocks or assets.
+    EnableEconomicCompetition { nation: NationId },
+    ProposeEconomicUnion { patron: NationId, partner: NationId },
+    JoinEconomicUnion { nation: NationId, patron: NationId },
+    LeaveEconomicUnion { nation: NationId },
+    ReleaseSubject { nation: NationId, subject: NationId },
+    ProposeGoodsTrade {
+        buyer: NationId, seller: NationId, good: commerce::Good,
+        quantity: f64, unit_price_bn: f64, delivery_days: u32,
+    },
+    AcceptGoodsOffer { nation: NationId, offer: u64 },
+    CancelGoodsTrade { nation: NationId, contract: u64 },
+    /// Purchase conversion work from inherited industry. Inputs, power and
+    /// actual work are paid on production; a signature creates no free packs.
+    OrderMaterials { nation: NationId, district: String, quantity: f64, delivery_days: u32 },
+    CancelMaterialsOrder { nation: NationId, order: u32 },
+    SetGoodsSale {
+        nation: NationId, good: commerce::Good, reserve: f64,
+        ask_multiplier: f64, enabled: bool,
+    },
     /// Choose how future inbound freight is routed. Routing creates no money
     /// or capacity; it chooses among the transport network's existing paths.
     SetLogisticsPolicy { nation: NationId, policy: logistics::RoutePolicy },
@@ -400,6 +433,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         Command::StartProject { nation, kind, .. } => {
             (*nation, production::catalog(*kind).political_cost, REFUSABLE)
         }
+        Command::StartIndustryModule { nation, .. } => (*nation, production::catalog(production::ProjectKind::StarterIndustry).political_cost, REFUSABLE),
         Command::SetProjectPriority { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::CancelProject { nation, .. } => (*nation, 0.0, ALWAYS),
         Command::StartManufacturingLine { nation, .. } => {
@@ -418,6 +452,17 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // A campaign direction is information, not a policy purchase. It
         // observes existing systems and never grants a stat reward.
         Command::ChooseDominationAgenda { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::EnableEconomicCompetition { nation } => (*nation, 0.0, REFUSABLE),
+        Command::ProposeEconomicUnion { patron, .. } => (*patron, sovereignty::COMPACT_PC, REFUSABLE),
+        Command::JoinEconomicUnion { nation, .. } => (*nation, sovereignty::COMPACT_PC, REFUSABLE),
+        Command::LeaveEconomicUnion { nation } => (*nation, sovereignty::EXIT_PC, ALWAYS),
+        Command::ReleaseSubject { nation, .. } => (*nation, 0.0, ALWAYS),
+        Command::ProposeGoodsTrade { buyer, .. } => (*buyer, commerce::NEGOTIATION_PC, REFUSABLE),
+        Command::AcceptGoodsOffer { nation, .. } => (*nation, commerce::NEGOTIATION_PC, REFUSABLE),
+        Command::CancelGoodsTrade { nation, .. } => (*nation, 0.0, ALWAYS),
+        Command::OrderMaterials { nation, .. } => (*nation, materials::ORDER_PC, REFUSABLE),
+        Command::CancelMaterialsOrder { nation, .. } => (*nation, 0.0, ALWAYS),
+        Command::SetGoodsSale { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::SetLogisticsPolicy { nation, .. } => (*nation, 0.0, REFUSABLE),
 
         // A coalition partner is bought, not persuaded, and the bill is the
@@ -520,6 +565,23 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 /// this returns the sim's own prose rather than composing its own.
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     match c {
+        Command::Sanction { imposer, target } => sovereignty::hostility_reason(w, *imposer, *target),
+        Command::LeaveEconomicUnion { nation } | Command::ReleaseSubject { nation, .. }
+            if !w.nation_opt(*nation).is_some_and(|n| n.alive) => Some("This government no longer exists.".into()),
+        Command::CovertAction { sponsor, target, .. } => sovereignty::hostility_reason(w, *sponsor, *target),
+        Command::ProposeEconomicUnion { patron, partner } | Command::JoinEconomicUnion { nation: partner, patron } => {
+            let q = sovereignty::quote(w, *patron, *partner);
+            (!q.ready).then_some(q.reason)
+        }
+        Command::ProposeGoodsTrade { buyer, seller, good, quantity, unit_price_bn, delivery_days } =>
+            commerce::proposal_refusal(w,*buyer,*seller,*good,*quantity,*unit_price_bn,*delivery_days),
+        Command::AcceptGoodsOffer { nation, offer } => commerce::offer_refusal(w,*nation,*offer),
+        Command::CancelGoodsTrade { nation, contract } => commerce::cancel_refusal(w,*nation,*contract),
+        Command::OrderMaterials { nation, district, quantity, delivery_days } =>
+            materials::order_refusal(w, *nation, district, *quantity, *delivery_days),
+        Command::CancelMaterialsOrder { nation, order } => materials::cancel_refusal(w, *nation, *order),
+        Command::SetGoodsSale { nation, good, reserve, ask_multiplier, enabled } =>
+            commerce::sale_refusal(w,*nation,*good,*reserve,*ask_multiplier,*enabled),
         Command::SetMilSpend { nation, .. } | Command::SetStateInvest { nation, .. }
         | Command::SetBudget { nation, .. } | Command::SetAnnualBudget { nation, .. }
             if programs::enrolled(w, *nation) => Some("Use the department budget to change an enrolled spending plan.".into()),
@@ -545,6 +607,9 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         }
         Command::StartProject { nation, district, kind } => {
             production::start_project_error(w, *nation, district, *kind)
+        }
+        Command::StartIndustryModule { nation, district, capacity_micros } => {
+            industrial_modules::start_error(w, *nation, district, *capacity_micros)
         }
         Command::StartManufacturingLine { nation, district, kit } => {
             manufacturing::start_line_error(w, *nation, district, kit)
@@ -886,6 +951,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::StartProject { nation, district, kind } => {
             production::start_project(w, *nation, district, *kind)?;
         }
+        Command::StartIndustryModule { nation, district, capacity_micros } => {
+            industrial_modules::start(w, *nation, district, *capacity_micros)?;
+        }
         Command::SetProjectPriority { nation, project, priority } => {
             production::set_priority(w, *nation, *project, *priority)?;
         }
@@ -917,6 +985,41 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         }
         Command::ChooseDominationAgenda { nation, agenda } => {
             domination::choose(w, *nation, agenda)?;
+        }
+        Command::EnableEconomicCompetition { nation } => {
+            if w.player != Some(*nation) || !w.nation_opt(*nation).is_some_and(|n|n.alive) {
+                return Err("Only the active player can enable Economic Competition.".into());
+            }
+            if !clock::is_daily(w) { return Err("Finish the legacy month's settlement before enabling Economic Competition.".into()); }
+            let first_enable=!w.rules.economic_competition;
+            w.rules.economic_competition = true;
+            w.rules.production_system = true;
+            w.rules.resource_gates = true;
+            w.rules.resource_market = true;
+            w.rules.logistics_routes = true;
+            w.rules.physical_logistics = true;
+            province_economy::enable(w);
+            if first_enable {
+                w.headline("Economic Competition begins: governments can invest, trade manufactured goods and negotiate formal economic compacts.".into());
+            }
+        }
+        Command::ProposeEconomicUnion { patron, partner } => sovereignty::propose(w,*patron,*partner,false)?,
+        Command::JoinEconomicUnion { nation, patron } => sovereignty::propose(w,*patron,*nation,true)?,
+        Command::LeaveEconomicUnion { nation } => sovereignty::leave(w,*nation)?,
+        Command::ReleaseSubject { nation, subject } => sovereignty::release(w,*nation,*subject)?,
+        Command::ProposeGoodsTrade { buyer, seller, good, quantity, unit_price_bn, delivery_days } => {
+            let result=commerce::propose(w,*buyer,*seller,*good,*quantity,*unit_price_bn,*delivery_days)?;
+            w.headline(format!("TRADE: {} receives manufactured-goods {} #{} from {}.",buyer.name(),result.kind,result.id,seller.name()));
+        }
+        Command::AcceptGoodsOffer { nation, offer } => { commerce::accept_offer(w,*nation,*offer)?; }
+        Command::CancelGoodsTrade { nation, contract } => { commerce::cancel(w,*nation,*contract)?; }
+        Command::OrderMaterials { nation, district, quantity, delivery_days } => {
+            let id = materials::start_order(w, *nation, district, *quantity, *delivery_days)?;
+            w.headline(format!("INDUSTRY: {} commissions Materials order #{}; production requires paid work and inputs.", nation.name(), id));
+        }
+        Command::CancelMaterialsOrder { nation, order } => { materials::cancel_order(w, *nation, *order)?; }
+        Command::SetGoodsSale { nation, good, reserve, ask_multiplier, enabled } => {
+            commerce::set_sale(w,*nation,*good,*reserve,*ask_multiplier,*enabled)?;
         }
         Command::SetLogisticsPolicy { nation, policy } => {
             logistics::set_policy(w, *nation, *policy)?;
@@ -1020,6 +1123,7 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // arsenal's gate in this same month, so it is built before tech and
     // procurement get their turn. Nothing else reads it.
     ("resources", resources::tick),
+    ("commerce", commerce::tick_day),
     ("industry", industry::tick_day),
     // Research is funded out of the output the economy has just produced, and
     // what it unlocks is in the nation's hands before the soldiers and the
@@ -1040,6 +1144,8 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // the government wakes up holding.
     ("government", government::tick),
     ("politics", politics::tick),
+    ("economic_ai", economic_ai::tick),
+    ("sovereignty", sovereignty::tick),
     // The campaign director reads the settled month. It grants no bonus and
     // consumes no RNG; it only advances milestone seals and the sole victory.
     ("domination", domination::tick),

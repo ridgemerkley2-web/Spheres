@@ -11,7 +11,7 @@
 //! Province weights travel with their land and are normalized into the current
 //! owner's inherited residual. This is accounting, not a new settlement formula.
 use crate::{
-    clock, districts, gdp_projects,
+    clock, districts, gdp_projects, starting_industry,
     world::{NationId, WorldState},
 };
 use serde::{Deserialize, Serialize};
@@ -170,6 +170,7 @@ fn ensure_accounts(w: &mut WorldState) {
             };
             let amount = amount.min(remaining).max(0.0);
             remaining = (remaining - amount).max(0.0);
+            let sector_shares = starting_industry::sector_shares(w, id, Some(d));
             w.province_economy
                 .as_mut()
                 .unwrap()
@@ -185,7 +186,7 @@ fn ensure_accounts(w: &mut WorldState) {
                     },
                     opening_gdp_bn: amount,
                     opening_date: date,
-                    sector_shares: MODEL_SECTOR_SHARES,
+                    sector_shares,
                 });
         }
     }
@@ -198,7 +199,7 @@ fn prior_project_levels(w: &WorldState) -> BTreeMap<NationId, f64> {
             if row.counted {
                 if let Some(&owner) = w.districts.get(&row.district) {
                     if w.nation_opt(owner).is_some_and(|n| n.alive) {
-                        *out.entry(owner).or_insert(0.0) += nonnegative(row.annual_gdp_bn);
+                        *out.entry(owner).or_insert(0.0) += nonnegative(gdp_projects::incremental_gdp_bn(row));
                     }
                 }
             }
@@ -211,6 +212,7 @@ fn adjust_row(row: &mut gdp_projects::Contribution, factor: f64) {
         return;
     }
     row.annual_gdp_bn *= factor;
+    row.inherited_annual_gdp_bn *= factor;
     row.daily_value_added_bn *= factor;
     row.gross_output_daily_bn *= factor;
     row.intermediate_inputs_daily_bn *= factor;
@@ -306,9 +308,12 @@ pub fn finish_day(w: &mut WorldState) {
     rows.sort_by(|a, b| a.district.cmp(&b.district).then_with(|| a.id.cmp(&b.id)));
     let mut next = BTreeMap::new();
     for row in &mut rows {
-        if !row.annual_gdp_bn.is_finite() || row.annual_gdp_bn < 0.0 {
+        if !row.annual_gdp_bn.is_finite() || row.annual_gdp_bn < 0.0
+            || !row.inherited_annual_gdp_bn.is_finite() || row.inherited_annual_gdp_bn < 0.0
+            || row.inherited_annual_gdp_bn > row.annual_gdp_bn {
             row.counted = false;
             row.annual_gdp_bn = 0.0;
+            row.inherited_annual_gdp_bn = 0.0;
             row.daily_value_added_bn = 0.0;
             row.gross_output_daily_bn = 0.0;
             row.intermediate_inputs_daily_bn = 0.0;
@@ -353,7 +358,7 @@ pub fn finish_day(w: &mut WorldState) {
                         .into();
                         row.valuation_basis.push_str(&format!(" {:.6} of this first measured activity was already inside opening GDP; only the remainder changes its level.",share));
                     }
-                    *next.entry(owner).or_insert(0.0) += row.annual_gdp_bn;
+                    *next.entry(owner).or_insert(0.0) += gdp_projects::incremental_gdp_bn(row);
                 }
             }
         }
@@ -404,7 +409,7 @@ pub fn finish_day(w: &mut WorldState) {
     for row in rows.iter().filter(|r| r.counted) {
         if let Some(&owner) = w.districts.get(&row.district) {
             if w.nation_opt(owner).is_some_and(|n| n.alive) {
-                *next.entry(owner).or_insert(0.0) += row.annual_gdp_bn;
+                *next.entry(owner).or_insert(0.0) += gdp_projects::incremental_gdp_bn(row);
             }
         }
     }
@@ -447,6 +452,48 @@ pub struct SectorSnapshot {
     pub gdp_bn: f64,
     pub share: f64,
 }
+/// Decomposition, not an additional GDP total. The background amount includes
+/// observed inherited output. Unobserved + observed = Materials total, while
+/// background + additional = that same total. Readings use posted receipts.
+#[derive(Clone, Debug, Default, Serialize)]
+pub struct MaterialsAccounting {
+    pub background_annual_bn: f64,
+    pub observed_annual_bn: f64,
+    pub already_included_annual_bn: f64,
+    pub additional_annual_bn: f64,
+    pub unobserved_annual_bn: f64,
+    pub total_annual_bn: f64,
+}
+impl MaterialsAccounting {
+    fn from_rows(background: f64, rows: &[gdp_projects::Contribution]) -> Self {
+        let mut included = 0.0;
+        let mut additional = 0.0;
+        for row in rows.iter().filter(|r| r.counted && r.kind == "inherited_materials") {
+            included += nonnegative(row.inherited_annual_gdp_bn);
+            additional += nonnegative(gdp_projects::incremental_gdp_bn(row));
+        }
+        // Settlement can transfer land at a different book value. Physical
+        // receipts retain quantities, but the observed inherited share cannot
+        // exceed the GDP-valued background now owned with that district.
+        included = included.min(background);
+        Self {
+            background_annual_bn: background,
+            observed_annual_bn: included + additional,
+            already_included_annual_bn: included,
+            additional_annual_bn: additional,
+            unobserved_annual_bn: (background - included).max(0.0),
+            total_annual_bn: background + additional,
+        }
+    }
+    fn add(&mut self, other: &Self) {
+        self.background_annual_bn += other.background_annual_bn;
+        self.observed_annual_bn += other.observed_annual_bn;
+        self.already_included_annual_bn += other.already_included_annual_bn;
+        self.additional_annual_bn += other.additional_annual_bn;
+        self.unobserved_annual_bn += other.unobserved_annual_bn;
+        self.total_annual_bn += other.total_annual_bn;
+    }
+}
 #[derive(Clone, Debug, Serialize)]
 pub struct ProvinceSnapshot {
     pub id: String,
@@ -460,6 +507,8 @@ pub struct ProvinceSnapshot {
     pub change_since_opening_bn: f64,
     pub sectors: Vec<SectorSnapshot>,
     pub projects: Vec<gdp_projects::Contribution>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub materials_accounting: Option<MaterialsAccounting>,
     pub current_date: Date,
     pub opening_date: Date,
     pub contribution_date: Option<Date>,
@@ -479,6 +528,8 @@ pub struct NationSnapshot {
     pub province_count: usize,
     pub sectors: Vec<SectorSnapshot>,
     pub projects: Vec<gdp_projects::Contribution>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub materials_accounting: Option<MaterialsAccounting>,
     pub provinces: Vec<ProvinceSnapshot>,
     pub current_date: Date,
     pub opening_date: Date,
@@ -487,6 +538,7 @@ pub struct NationSnapshot {
     pub note: &'static str,
 }
 const NOTE:&str="Modeled allocation, not measured provincial GDP: inherited national output is population-weighted at first observation using a generic eight-sector game preset. Weights follow the land and reconcile to its current owner's economy. Project GDP is actual value added, not sales: daily factories use a fixed 365-day annual equivalent; annual-source mines retain their source-year rate. Intermediate production is not counted twice. Change since opening is a level change, not an annual growth rate.";
+const INDUSTRY_NOTE:&str="Modeled allocation, not measured provincial GDP: inherited national output is population-weighted. Manufacturing uses the opening country's sourced or explicitly proxied national share; the other seven sector shares remain rescaled game presets. Inherited factory equivalents and their output are already inside this GDP, not an added production award. Weights and inherited industry follow the land. Unlocated industry remains explicitly national. Project GDP is actual value added, not sales: daily factories use a fixed 365-day annual equivalent; annual-source mines retain their source-year rate. Intermediate production is not counted twice. Change since opening is a level change, not an annual growth rate.";
 
 fn sectors(total: f64, mut values: [f64; 8]) -> Vec<SectorSnapshot> {
     let mut remaining = total;
@@ -527,6 +579,7 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Option<NationSnapshot> {
     let mut visible: BTreeMap<String, gdp_projects::Contribution> = BTreeMap::new();
     for mut row in gdp_projects::contributions(w) {
         row.annual_gdp_bn = 0.0;
+        row.inherited_annual_gdp_bn = 0.0;
         row.daily_value_added_bn = 0.0;
         row.gross_output_daily_bn = 0.0;
         row.intermediate_inputs_daily_bn = 0.0;
@@ -544,7 +597,7 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Option<NationSnapshot> {
     let raw_project: f64 = rows
         .iter()
         .filter(|r| r.counted)
-        .map(|r| nonnegative(r.annual_gdp_bn))
+        .map(|r| nonnegative(gdp_projects::incremental_gdp_bn(r)))
         .sum();
     let scale = if raw_project > total && raw_project > 0.0 {
         total / raw_project
@@ -559,7 +612,7 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Option<NationSnapshot> {
     let project: f64 = rows
         .iter()
         .filter(|r| r.counted)
-        .map(|r| r.annual_gdp_bn)
+        .map(gdp_projects::incremental_gdp_bn)
         .sum();
     let inherited = (total - project).max(0.0);
     let weights: Vec<f64> = owned
@@ -571,16 +624,32 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Option<NationSnapshot> {
                 .map_or(0.0, |p| nonnegative(p.weight))
         })
         .collect();
-    let weight_sum: f64 = weights.iter().sum();
-    let mut remainder = inherited;
+    let unallocated_weight = starting_industry::unallocated_weight(w, nation);
+    let weight_sum: f64 = weights.iter().sum::<f64>() + unallocated_weight;
+    let unallocated = if owned.is_empty() {
+        inherited
+    } else if unallocated_weight > 0.0 && weight_sum > 0.0 {
+        inherited * unallocated_weight / weight_sum
+    } else { 0.0 };
+    let mut remainder = (inherited - unallocated).max(0.0);
     let mut provinces = Vec::new();
-    let mut national_sectors = [0.0; 8];
+    let mut materials_view_rows = BTreeMap::new();
+    let unallocated_shares = starting_industry::sector_shares(w, nation, None);
+    let mut national_sectors = std::array::from_fn(|s| unallocated * unallocated_shares[s]);
+    let mut materials_accounting = w.starting_industry.as_ref().map(|state| {
+        let background = state.unallocated.get(&nation).map_or(0.0, |asset| {
+            let profile = &state.profiles[&asset.origin];
+            unallocated * profile.manufacturing_share * profile.sector_weights.materials
+        });
+        MaterialsAccounting::from_rows(background, &[])
+    });
+    let note = if w.starting_industry.is_some() { INDUSTRY_NOTE } else { NOTE };
     for (i, d) in owned.iter().enumerate() {
         let fallback = ProvinceBasis {
             weight: 1.0,
             opening_gdp_bn: 0.0,
             opening_date: Date::of(w),
-            sector_shares: MODEL_SECTOR_SHARES,
+            sector_shares: starting_industry::sector_shares(w, nation, Some(d)),
         };
         let p = ledger.provinces.get(*d).unwrap_or(&fallback);
         let base = if i + 1 == owned.len() {
@@ -592,21 +661,53 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Option<NationSnapshot> {
         };
         let base = base.min(remainder).max(0.0);
         remainder = (remainder - base).max(0.0);
-        let local: Vec<_> = rows
+        let mut local: Vec<_> = rows
             .iter()
             .filter(|r| r.district.as_str() == d.as_str())
             .cloned()
             .collect();
+        if let Some((state, asset)) = w.starting_industry.as_ref()
+            .and_then(|state| state.provinces.get(*d).map(|asset| (state, asset))) {
+            let profile = &state.profiles[&asset.origin];
+            let background = base * profile.manufacturing_share * profile.sector_weights.materials;
+            let covered: f64 = local.iter().filter(|r| r.counted && r.kind == "inherited_materials")
+                .map(|r| r.inherited_annual_gdp_bn).sum();
+            if covered > background && covered > 0.0 {
+                for row in local.iter_mut().filter(|r| r.counted && r.kind == "inherited_materials") {
+                    // Pure book-value view: preserve the already-settled
+                    // additional portion, reduce only inherited observation to
+                    // the smaller background received with this land. Physical
+                    // packs and actual payments remain unchanged.
+                    let included = row.inherited_annual_gdp_bn * background / covered;
+                    let annual = gdp_projects::incremental_gdp_bn(row) + included;
+                    if row.annual_gdp_bn > 0.0 {
+                        adjust_row(row, annual / row.annual_gdp_bn);
+                    }
+                    row.inherited_annual_gdp_bn = included;
+                    materials_view_rows.insert(row.id.clone(), row.clone());
+                }
+            }
+        }
         let added: f64 = local
             .iter()
             .filter(|r| r.counted)
-            .map(|r| r.annual_gdp_bn)
+            .map(gdp_projects::incremental_gdp_bn)
             .sum();
         let value = base + added;
         let mut breakdown = std::array::from_fn(|s| base * p.sector_shares[s]);
         for r in local.iter().filter(|r| r.counted) {
             let s = SECTORS.iter().position(|s| *s == r.sector).unwrap_or(6);
-            breakdown[s] += r.annual_gdp_bn;
+            breakdown[s] += gdp_projects::incremental_gdp_bn(r);
+        }
+        let local_materials = w.starting_industry.as_ref().and_then(|state| {
+            state.provinces.get(*d).map(|asset| {
+                let profile = &state.profiles[&asset.origin];
+                MaterialsAccounting::from_rows(base * profile.manufacturing_share
+                    * profile.sector_weights.materials, &local)
+            })
+        });
+        if let (Some(national), Some(local)) = (&mut materials_accounting, &local_materials) {
+            national.add(local);
         }
         let breakdown = sectors(value, breakdown);
         for (s, entry) in breakdown.iter().enumerate() {
@@ -628,16 +729,16 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Option<NationSnapshot> {
             change_since_opening_bn: value - p.opening_gdp_bn,
             sectors: breakdown,
             projects: local,
+            materials_accounting: local_materials,
             current_date: Date::of(w),
             opening_date: p.opening_date,
             contribution_date: ledger.settled_day.map(Date::from_day),
             settled_day: ledger.settled_day,
-            note: NOTE,
+            note,
         });
     }
-    let unallocated = if owned.is_empty() { total } else { 0.0 };
-    if owned.is_empty() {
-        national_sectors = std::array::from_fn(|s| total * MODEL_SECTOR_SHARES[s]);
+    for row in &mut rows {
+        if let Some(adjusted) = materials_view_rows.remove(&row.id) { *row = adjusted; }
     }
     Some(NationSnapshot {
         nation,
@@ -655,12 +756,13 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Option<NationSnapshot> {
         province_count: provinces.len(),
         sectors: sectors(total, national_sectors),
         projects: rows,
+        materials_accounting,
         provinces,
         current_date: Date::of(w),
         opening_date: basis.opening_date,
         contribution_date: ledger.settled_day.map(Date::from_day),
         settled_day: ledger.settled_day,
-        note: NOTE,
+        note,
     })
 }
 pub fn province(w: &WorldState, district: &str) -> Option<ProvinceSnapshot> {
@@ -669,6 +771,14 @@ pub fn province(w: &WorldState, district: &str) -> Option<ProvinceSnapshot> {
         .provinces
         .into_iter()
         .find(|p| p.id == district)
+}
+
+/// Last posted, current-owner reconciled Materials overlap and additional GDP.
+/// Reading a board never promotes today's incomplete flows into production.
+pub fn materials_summary(w: &WorldState, nation: NationId) -> (f64, f64) {
+    snapshot(w, nation).and_then(|s| s.materials_accounting)
+        .map(|s| (s.already_included_annual_bn, s.additional_annual_bn))
+        .unwrap_or((0.0, 0.0))
 }
 
 #[cfg(test)]
@@ -711,6 +821,7 @@ mod tests {
             reason: None,
             counted: true,
             annual_gdp_bn: value,
+            inherited_annual_gdp_bn: 0.0,
             daily_value_added_bn: value / 365.0,
             gross_output_daily_bn: value / 365.0,
             intermediate_inputs_daily_bn: 0.0,
@@ -987,6 +1098,8 @@ mod tests {
             progress_days: 0.0,
             total_days: 100,
             resources_used: [0.0; 12],
+            capacity_micros: None,
+            started_day: None,
         });
         let before = crate::save(&w);
         let s = province(&w, &d).unwrap();

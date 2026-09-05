@@ -150,7 +150,10 @@ pub fn tick(w: &mut WorldState) {
 
     // ---- Fiscal AI: consolidate when debt runs hot ----
     for id in &ids {
-        if Some(*id) == w.player {
+        // An enrolled opponent uses priced department/tax commands through
+        // economic_ai. Direct aggregate writes would disagree with its plan
+        // and silently bypass political costs and shared project authority.
+        if Some(*id) == w.player || crate::programs::enrolled(w, *id) {
             continue;
         }
         let n = w.nation_mut(*id);

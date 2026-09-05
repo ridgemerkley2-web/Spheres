@@ -549,6 +549,66 @@ fn is_positive_zero(x: &f64) -> bool {
     x.to_bits() == 0
 }
 
+/// The calibrated burst ceiling, per domain and calendar month in daily play.
+pub const ACQUISITIONS_PER_DOMAIN_MONTH: u8 = 6;
+
+/// Daily play keeps the old six-acquisition burst limit on its intended
+/// calendar-month scale. A migration hold reserves the unknown remainder of
+/// an older mid-month save; it never invents six historical acquisitions.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub struct AcquisitionQuota {
+    pub month_index: i32,
+    pub acquired: [u8; DOMAIN_COUNT],
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub migration_hold: bool,
+}
+
+fn quota_for_date(existing: Option<AcquisitionQuota>, month_index: i32, day: u32) -> AcquisitionQuota {
+    match existing {
+        Some(quota) if quota.month_index == month_index => quota,
+        previous => AcquisitionQuota {
+            month_index,
+            acquired: [0; DOMAIN_COUNT],
+            migration_hold: previous.is_none() && day > 1,
+        },
+    }
+}
+
+#[derive(Clone, Debug, Serialize)]
+pub struct AcquisitionQuotaStatus {
+    pub month_index: i32,
+    pub limit_per_domain: u8,
+    pub acquired: [u8; DOMAIN_COUNT],
+    pub remaining: [u8; DOMAIN_COUNT],
+    pub migration_hold: bool,
+    pub reset_year: i32,
+    pub reset_month: u32,
+    pub note: &'static str,
+}
+
+/// Pure calendar-aware view, including a pending legacy-save migration before
+/// the first resumed tick. Rendering cannot reset or spend a research slot.
+pub fn acquisition_quota_status(w: &WorldState, nation: NationId) -> Option<AcquisitionQuotaStatus> {
+    if !crate::clock::is_daily(w) { return None; }
+    let n = w.nation_opt(nation)?;
+    let quota = quota_for_date(n.tech.acquisition_quota, crate::clock::month_index(w), w.day);
+    Some(AcquisitionQuotaStatus {
+        month_index: quota.month_index,
+        limit_per_domain: ACQUISITIONS_PER_DOMAIN_MONTH,
+        acquired: quota.acquired,
+        remaining: std::array::from_fn(|di| if quota.migration_hold { 0 }
+            else { ACQUISITIONS_PER_DOMAIN_MONTH.saturating_sub(quota.acquired[di]) }),
+        migration_hold: quota.migration_hold,
+        reset_year: w.year + i32::from(w.month == 12),
+        reset_month: if w.month == 12 { 1 } else { w.month + 1 },
+        note: if quota.migration_hold {
+            "Older mid-month save: acquisitions wait until next calendar month because earlier completions were not recorded. Research effort continues to bank."
+        } else {
+            "Up to 6 paid technology acquisitions per domain per calendar month. Unused slots expire; research effort continues to bank."
+        },
+    })
+}
+
 /// What a nation knows and what it is working on. Indices into `registry()`,
 /// kept sorted, which keeps saves compact and comparisons total.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Default)]
@@ -563,6 +623,8 @@ pub struct TechState {
     pub focus: Vec<Option<u16>>,
     /// Research points banked against the current project in each domain.
     pub progress: Vec<f64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub acquisition_quota: Option<AcquisitionQuota>,
     /// Lifetime research points generated — the honest measure of effort.
     pub research_total: f64,
     /// The nation's productivity trend before any technology touched it.
@@ -722,6 +784,7 @@ impl TechState {
             known: vec![],
             focus: vec![None; DOMAIN_COUNT],
             progress: vec![0.0; DOMAIN_COUNT],
+            acquisition_quota: None,
             research_total: 0.0,
             tfp_base,
             tfp_1990_offset: 0.0,
@@ -764,6 +827,10 @@ impl TechState {
             known: parent.known.clone(),
             focus: vec![None; DOMAIN_COUNT],
             progress: vec![0.0; DOMAIN_COUNT],
+            // The already-fielded knowledge is inherited, so its current
+            // calendar usage is too. A political succession is not six new
+            // slots for each domain of the same inherited programme.
+            acquisition_quota: parent.acquisition_quota,
             research_total: 0.0,
             tfp_base: transcribed - parent.tfp_1990_offset,
             tfp_1990_offset: parent.tfp_1990_offset,
@@ -1407,6 +1474,12 @@ pub fn unlocked_by(t: u16) -> Vec<u16> {
 /// same technology is dear to whoever invents it. Exposed so a tech-tree screen
 /// can price every node without reimplementing diffusion.
 pub fn cost_of(w: &WorldState, id: NationId, t: u16) -> f64 {
+    crate::industry::research_cost(w, id, t, undiscounted_cost_of(w, id, t))
+}
+
+/// The common acquisition quote before purchased prototype/testing work.
+/// Kept separate so labs cannot recursively discount their own spending cap.
+pub(crate) fn undiscounted_cost_of(w: &WorldState, id: NationId, t: u16) -> f64 {
     let (copy, build) = price_parts(w, id, t);
     copy.max(build)
 }
@@ -1484,7 +1557,9 @@ pub fn project_of(w: &WorldState, id: NationId, domain: Domain) -> Option<(&'sta
         }
     }
     let share = if world_weight > 0.0 { (mine / world_weight).clamp(0.0, 1.0) } else { 0.0 };
-    Some((def, banked, effective_cost(def, share, absorb, scale, &n.tech.bonus)))
+    Some((def, banked, crate::industry::research_cost(
+        w, id, t, effective_cost(def, share, absorb, scale, &n.tech.bonus),
+    )))
 }
 
 /// How much of what the world already knows this nation can actually take up.
@@ -1739,6 +1814,12 @@ fn pick_focus(
 /// Public research quotes remain monthly; the daily clock accrues their daily
 /// share, so a research point can unlock a technology on any day of the month.
 pub fn tick(w: &mut WorldState) {
+    // Explicit opt-in, once-per-calendar-day operation. Factories have already
+    // supplied inventory; the same prototype credit prices the UI and charge.
+    crate::industry::research_day(w);
+    let daily = crate::clock::is_daily(w);
+    let month_index = crate::clock::month_index(w);
+    let day = w.day;
     let dt = crate::clock::month_fraction(w);
     let absorption_memory = crate::clock::blend(w, ABSORPTION_MEMORY);
     let oil_yield_blend = crate::clock::blend(w, 0.02);
@@ -1918,12 +1999,18 @@ pub fn tick(w: &mut WorldState) {
         };
         let output = research_output(w, w.nation(id), dev) * dt;
         let weights = domain_weights(w, w.nation(id), dev);
+        let prototype_credits = if crate::industry::research_enabled(w) {
+            w.production.industry.research.get(&id).map(|p| p.credits.clone())
+        } else { None };
 
         let mut firsts: Vec<u16> = vec![];
         let population_multiplier;
         {
             let n = w.nation_mut(id);
             n.tech.ensure_shape(n.tfp_trend);
+            if daily {
+                n.tech.acquisition_quota = Some(quota_for_date(n.tech.acquisition_quota, month_index, day));
+            }
             n.tech.research_total += output;
             let known_before = n.tech.count();
             // Taken before the learn loop and with investment shares fixed for
@@ -1955,18 +2042,32 @@ pub fn tick(w: &mut WorldState) {
                         n.tech.focus[di] = None;
                         continue;
                     }
+                    // Points accrue above regardless of the calendar ceiling.
+                    // Keep a visible next focus, but do not charge it or spend
+                    // a slot until the next month opens. Monthly play takes
+                    // exactly the original six-attempt loop with no saved quota.
+                    if daily && n.tech.acquisition_quota.is_some_and(|quota|
+                        quota.migration_hold || quota.acquired[di] >= ACQUISITIONS_PER_DOMAIN_MONTH) {
+                        break;
+                    }
                     let def = &reg[ti];
                     let share = if world_weight > 0.0 {
                         (weight[ti] / world_weight).clamp(0.0, 1.0)
                     } else {
                         0.0
                     };
-                    let cost = effective_cost(def, share, absorb, scale, &n.tech.bonus);
+                    let cost = crate::industry::credit_adjusted_cost(
+                        effective_cost(def, share, absorb, scale, &n.tech.bonus),
+                        prototype_credits.as_ref().and_then(|p| p.get(&t)).copied().unwrap_or(0.0),
+                    );
                     if n.tech.progress[di] < cost || year < def.earliest_year {
                         break;
                     }
                     n.tech.progress[di] -= cost;
                     n.tech.learn(t);
+                    if daily {
+                        n.tech.acquisition_quota.as_mut().expect("daily quota seated").acquired[di] += 1;
+                    }
                     n.tech.focus[di] = None;
                     if weight[ti] <= 0.0 {
                         firsts.push(t);

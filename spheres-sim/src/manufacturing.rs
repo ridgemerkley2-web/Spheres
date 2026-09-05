@@ -20,6 +20,8 @@ pub const START_LINE_PC_COST: f64 = 8.0;
 #[serde(rename_all = "snake_case")]
 pub enum LineStatus {
     Producing,
+    Slowed,
+    Paused,
     Blocked,
 }
 
@@ -27,6 +29,8 @@ impl LineStatus {
     pub fn key(self) -> &'static str {
         match self {
             Self::Producing => "producing",
+            Self::Slowed => "slowed",
+            Self::Paused => "paused",
             Self::Blocked => "blocked",
         }
     }
@@ -47,6 +51,18 @@ pub struct ManufacturingLine {
     pub ordered_bn: f64,
     /// Cumulative physical inputs consumed, in the resource table's units.
     pub resources_used: [f64; 12],
+    /// Actual procurement value ordered on the latest settlement date. This is
+    /// transient presentation state: persisting it would make otherwise
+    /// identical daily and monthly simulations serialize differently.
+    #[serde(default, skip)]
+    pub ordered_today_bn: f64,
+    /// Fraction of the scheduled line that physical inputs supplied in its
+    /// latest settlement. Presentation state only; after loading a save the UI
+    /// explicitly waits for the next settlement instead of inventing a rate.
+    #[serde(default, skip)]
+    pub throughput_today: f64,
+    #[serde(default, skip)]
+    pub settled_day: Option<i32>,
 }
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
@@ -83,7 +99,7 @@ pub fn lines_for(w: &WorldState, nation: NationId) -> impl Iterator<Item = &Manu
 }
 
 /// The recurring monthly procurement appropriation, excluding money banked
-/// from an earlier blocked month. This is the server-authoritative budget
+/// from an earlier under-supplied month. This is the server-authoritative budget
 /// number a surface should quote.
 pub fn budget_bn(w: &WorldState, nation: NationId) -> f64 {
     arsenal::budget_of(w.nation(nation))
@@ -170,8 +186,8 @@ fn line_error(w: &WorldState, line: &ManufacturingLine) -> Option<String> {
     None
 }
 
-/// A live physical or technology blocker for a standing line. Settlement also
-/// persists material shortages on the line, but ownership and plant capacity
+/// A live structural or technology blocker for a standing line. Settlement
+/// persists material slowdowns separately, while ownership and plant capacity
 /// can change between month-ends; UI readers use this preview so a captured
 /// factory never remains labelled as producing until the next tick.
 pub fn line_blocker(w: &WorldState, line: &ManufacturingLine) -> Option<String> {
@@ -190,7 +206,7 @@ pub fn start_line_error(
     if !w.rules.resource_market {
         return Some("Military manufacturing requires the resource market to be enabled.".into());
     }
-    if w.player != Some(nation) {
+    if !crate::economic_ai::may_direct(w, nation) {
         return Some("Only the player can direct military manufacturing.".into());
     }
     if !w.nation_opt(nation).is_some_and(|n| n.alive) {
@@ -247,6 +263,9 @@ pub fn start_line(
         reason: None,
         ordered_bn: 0.0,
         resources_used: [0.0; 12],
+        ordered_today_bn: 0.0,
+        throughput_today: 0.0,
+        settled_day: None,
     });
     let name = arsenal::index_of(kit)
         .and_then(|i| DECK.get(i as usize))
@@ -269,7 +288,7 @@ pub fn set_priority(
     if !w.rules.manufacturing_system {
         return Err("Military manufacturing is not enabled in this game.".into());
     }
-    if w.player != Some(nation) {
+    if !crate::economic_ai::may_direct(w, nation) {
         return Err("Only the player can direct military manufacturing.".into());
     }
     let row = w
@@ -293,7 +312,7 @@ pub fn stop_line(w: &mut WorldState, nation: NationId, line: u32) -> Result<(), 
     if !w.rules.manufacturing_system {
         return Err("Military manufacturing is not enabled in this game.".into());
     }
-    if w.player != Some(nation) {
+    if !crate::economic_ai::may_direct(w, nation) {
         return Err("Only the player can direct military manufacturing.".into());
     }
     let Some(index) = w.manufacturing.lines.iter().position(|row| row.id == line) else {
@@ -325,6 +344,20 @@ pub fn stop_line(w: &mut WorldState, nation: NationId, line: u32) -> Result<(), 
 /// silently redirect it.
 pub fn planned_allocations(w: &WorldState, nation: NationId) -> Vec<LinePlan> {
     allocations_with_envelope(w, nation, available_bn(w, nation))
+}
+
+/// Standing one-month material recipe for the directed lines, excluding the
+/// one-off bank accumulated while earlier settlements were under-supplied. Strategic
+/// forecasts use this instead of [`resource_draw`] so saved money is never
+/// mistaken for recurring demand.
+pub fn recurring_resource_draw(w: &WorldState, nation: NationId) -> [f64; 12] {
+    let mut total = [0.0; 12];
+    for plan in allocations_with_envelope(w, nation, budget_bn(w, nation)) {
+        for commodity in ALL {
+            total[commodity.idx()] += plan.required[commodity.idx()];
+        }
+    }
+    total.map(|quantity| (quantity * 1e9).round() / 1e9)
 }
 
 /// Actual slices for the current daily or legacy monthly settlement. Monthly
@@ -413,11 +446,9 @@ fn shortfalls_for_plans(w: &WorldState, nation: NationId, line_id: u32, plans: V
         return [0.0; 12];
     }
 
-    // Preview the same atomic, priority-ordered settlement as `settle_nation`.
-    // Each successful earlier plan reserves its inputs; a blocked plan reserves
-    // nothing, so a smaller lower-priority line may still run. Comparing every
-    // row to the opening stockpile independently made two competing lines both
-    // look supplied even though only the first could actually settle.
+    // Preview the same proportional, priority-ordered settlement as
+    // `settle_nation`. Each earlier plan reserves the fraction its tightest
+    // input can support, leaving any physical remainder for lower priorities.
     let mut remaining: [f64; 12] = std::array::from_fn(|i| {
         let commodity = Commodity::from_idx(i).expect("twelve resource rows");
         resources::stockpile(w, nation, commodity)
@@ -428,11 +459,18 @@ fn shortfalls_for_plans(w: &WorldState, nation: NationId, line_id: u32, plans: V
         if plan.line == line_id {
             return shortfalls;
         }
-        if shortfalls.iter().all(|shortfall| *shortfall <= 1e-12) {
-            for commodity in ALL {
-                remaining[commodity.idx()] =
-                    (remaining[commodity.idx()] - plan.required[commodity.idx()]).max(0.0);
+        let mut throughput: f64 = 1.0;
+        for commodity in ALL {
+            let want = plan.required[commodity.idx()];
+            if want > 1e-12 {
+                throughput = throughput
+                    .min((remaining[commodity.idx()] / want).clamp(0.0, 1.0));
             }
+        }
+        let used = resources::scale_bundle(&plan.required, throughput);
+        for commodity in ALL {
+            remaining[commodity.idx()] =
+                (remaining[commodity.idx()] - used[commodity.idx()]).max(0.0);
         }
     }
     [0.0; 12]
@@ -467,8 +505,15 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
     let recurring = budget_bn(w, nation);
     let mut banked = 0.0;
     w.nation_mut(nation).arsenal.banked = 0.0;
+    let today = crate::clock::absolute_day(w);
+    let settlement_period = if crate::clock::is_daily(w) { "day" } else { "month" };
 
     for plan in plans {
+        if let Some(line) = w.manufacturing.lines.iter_mut().find(|line| line.id == plan.line) {
+            line.ordered_today_bn = 0.0;
+            line.throughput_today = 0.0;
+            line.settled_day = Some(today);
+        }
         let opening_line = w
             .manufacturing
             .lines
@@ -483,44 +528,57 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
         }
         if plan.budget_bn <= 1e-12 {
             banked += plan.budget_bn;
-            set_blocked(
-                w,
-                plan.line,
-                "BLOCKED: the defense budget has no procurement funding.".into(),
-            );
+            let line = w.manufacturing.lines.iter_mut().find(|line| line.id == plan.line).unwrap();
+            line.status = LineStatus::Paused;
+            line.reason = Some("PAUSED: the defense budget has no procurement funding; the line retains its place and will resume automatically.".into());
             continue;
         }
 
+        let mut throughput = 1.0;
+        let mut required = plan.required;
+        let mut limiting_input = None;
         if w.rules.resource_gates {
+            throughput = resources::bundle_throughput(w, nation, &plan.required);
+            limiting_input = resources::limiting_bundle_input(w, nation, &plan.required);
+            if throughput <= 1e-12 {
+                banked += plan.budget_bn;
+                let line = w.manufacturing.lines.iter_mut().find(|line| line.id == plan.line).unwrap();
+                line.status = LineStatus::Paused;
+                line.reason = Some(limiting_input.map_or_else(
+                    || "PAUSED: the equipment line is waiting for physical inputs.".into(),
+                    |(commodity, want, have)| format!(
+                        "PAUSED: waiting for {}; full-speed production needs {:.2} this {}, with {:.2} available.",
+                        commodity.name(), want, settlement_period, have
+                    ),
+                ));
+                continue;
+            }
+            required = resources::scale_bundle(&plan.required, throughput);
             if let Err((commodity, want, have)) =
-                resources::consume_stockpile_atomic(w, nation, &plan.required)
+                resources::consume_stockpile_atomic(w, nation, &required)
             {
                 banked += plan.budget_bn;
-                set_blocked(
-                    w,
-                    plan.line,
-                    format!(
-                        "BLOCKED: needs {:.2} {} this {}, have {:.2}.",
-                        want,
-                        commodity.name(),
-                        if crate::clock::is_daily(w) { "day" } else { "month" },
-                        have
-                    ),
-                );
+                let line = w.manufacturing.lines.iter_mut().find(|line| line.id == plan.line).unwrap();
+                line.status = LineStatus::Paused;
+                line.reason = Some(format!(
+                    "PAUSED: {} supply changed before settlement; needs {:.2}, with {:.2} available.",
+                    commodity.name(), want, have
+                ));
                 continue;
             }
         }
 
+        let ordered_today = plan.budget_bn * throughput;
+        banked += (plan.budget_bn - ordered_today).max(0.0);
         if program_funded {
-            crate::programs::spend(w, nation, crate::world::BUDGET_DEFENSE, 3, plan.budget_bn)
-                .expect("the priority allocation reserves this exact department slice before its atomic recipe");
+            crate::programs::spend(w, nation, crate::world::BUDGET_DEFENSE, 3, ordered_today)
+                .expect("the priority allocation reserves this proportional department slice before its atomic recipe");
         }
         let def = &DECK[plan.kit as usize];
-        let units = plan.budget_bn / def.unit_cost.max(1e-9);
+        let units = ordered_today / def.unit_cost.max(1e-9);
         if units > 0.0 {
             let due_days = crate::clock::is_daily(w)
                 .then(|| crate::clock::days_for_months(w, def.lead_months));
-            let today = crate::clock::absolute_day(w);
             // One row per kit per delivery month (arsenal::book_order).
             crate::arsenal::book_order(
                 &mut w.nation_mut(nation).arsenal.orders,
@@ -537,15 +595,31 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
             .iter_mut()
             .find(|line| line.id == plan.line)
             .expect("planned line still exists");
-        line.status = LineStatus::Producing;
-        line.reason = None;
-        line.ordered_bn += plan.budget_bn;
+        line.status = if throughput + 1e-12 < 1.0 {
+            LineStatus::Slowed
+        } else {
+            LineStatus::Producing
+        };
+        line.reason = if throughput + 1e-12 < 1.0 {
+            limiting_input.map_or_else(
+                || Some(format!("SLOWED: physical inputs limit this line to {:.0}% throughput today.", throughput * 100.0)),
+                |(commodity, want, have)| Some(format!(
+                    "SLOWED: {} limits this line to {:.0}% throughput; full speed needs {:.2}, with {:.2} available before production.",
+                    commodity.name(), throughput * 100.0, want, have
+                )),
+            )
+        } else {
+            None
+        };
+        line.ordered_bn += ordered_today;
+        line.ordered_today_bn = ordered_today;
+        line.throughput_today = throughput;
         if w.rules.resource_gates {
             for commodity in ALL {
-                line.resources_used[commodity.idx()] += plan.required[commodity.idx()];
+                line.resources_used[commodity.idx()] += required[commodity.idx()];
             }
         }
-        crate::gdp_projects::record_manufacturing_commitment(w,&opening_line,plan.budget_bn,units);
+        crate::gdp_projects::record_manufacturing_commitment(w,&opening_line,ordered_today,units);
     }
 
     w.nation_mut(nation).arsenal.banked = if program_funded { 0.0 } else { banked.min(recurring * 24.0) };
@@ -620,7 +694,7 @@ mod tests {
         assert_eq!(w.manufacturing.lines.iter().find(|l| l.id == high).unwrap().status,
             LineStatus::Producing);
         assert_eq!(w.manufacturing.lines.iter().find(|l| l.id == low).unwrap().status,
-            LineStatus::Blocked);
+            LineStatus::Paused);
         assert!((w.nation(nation).arsenal.banked - low_budget).abs() < 1e-12);
         assert!((w.manufacturing.lines.iter().find(|l| l.id == high).unwrap().ordered_bn
             - high_budget).abs() < 1e-12);
@@ -769,9 +843,16 @@ mod tests {
         let low_plan = plans.iter().find(|p| p.line == low).unwrap().clone();
         assert!((high_plan.budget_bn / low_plan.budget_bn - 3.0).abs() < 1e-9);
 
-        // One high-priority bundle only. Both armour lines ask for the same
-        // commodities, so stable priority dispatch is the deciding fact.
-        fill_draw(&mut w, nation, high_plan.required, 1.0);
+        // Give the high-priority line its full bundle and leave roughly half a
+        // bundle for the low-priority line. Stable priority dispatch gives the
+        // first line full speed; the second must continue at partial speed.
+        for commodity in ALL {
+            let available = high_plan.required[commodity.idx()]
+                + low_plan.required[commodity.idx()] * 0.5;
+            if available > 0.0 {
+                resources::set_stockpile_for_test(&mut w, nation, commodity, available);
+            }
+        }
         assert!(line_shortfalls(&w, high)
             .iter()
             .all(|shortfall| *shortfall <= 1e-12));
@@ -798,7 +879,7 @@ mod tests {
                 .find(|l| l.id == low)
                 .unwrap()
                 .status,
-            LineStatus::Blocked
+            LineStatus::Slowed
         );
         assert!(w
             .nation(nation)
@@ -806,16 +887,27 @@ mod tests {
             .orders
             .iter()
             .any(|o| o.kit == high_plan.kit));
-        assert!(!w
+        assert!(w
             .nation(nation)
             .arsenal
             .orders
             .iter()
             .any(|o| o.kit == low_plan.kit));
+        let low_line = w
+            .manufacturing
+            .lines
+            .iter()
+            .find(|line| line.id == low)
+            .unwrap();
+        assert!((low_line.throughput_today - 0.5).abs() < 2e-8);
+        assert!((low_line.ordered_today_bn - low_plan.budget_bn * 0.5).abs() < 2e-8);
         for commodity in ALL {
             let closing = resources::stockpile(&w, nation, commodity);
             assert!(
-                (stock_before[commodity.idx()] - high_plan.required[commodity.idx()] - closing)
+                (stock_before[commodity.idx()]
+                    - high_plan.required[commodity.idx()]
+                    - low_plan.required[commodity.idx()] * low_line.throughput_today
+                    - closing)
                     .abs()
                     < 2e-9
             );
@@ -911,7 +1003,13 @@ mod tests {
         settle_nation(&mut w, nation);
         assert!(!w.nation(nation).arsenal.orders.is_empty());
         let restored = load(&save(&w)).unwrap();
-        assert_eq!(restored.manufacturing, w.manufacturing);
+        let mut durable = w.manufacturing.clone();
+        for line in &mut durable.lines {
+            line.ordered_today_bn = 0.0;
+            line.throughput_today = 0.0;
+            line.settled_day = None;
+        }
+        assert_eq!(restored.manufacturing, durable);
 
         stop_line(&mut w, nation, line).unwrap();
         let orders = w.nation(nation).arsenal.orders.clone();

@@ -935,6 +935,10 @@ pub struct GameRules {
     /// existing automatic procurement path exactly.
     #[serde(default, skip_serializing_if = "is_false")]
     pub manufacturing_system: bool,
+    /// Civilian investment AI, manufactured commerce and economic statecraft.
+    /// Explicitly enabled for the daily review campaign; absent from legacy saves.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub economic_competition: bool,
 }
 fn rules_true() -> bool {
     true
@@ -958,6 +962,7 @@ impl Default for GameRules {
             daily_simulation: false,
             production_system: false,
             manufacturing_system: false,
+            economic_competition: false,
         }
     }
 }
@@ -1090,6 +1095,18 @@ pub struct WorldState {
     pub daily: crate::clock::DailyState,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub province_economy: Option<crate::province_economy::ProvinceEconomy>,
+    /// Explicit new-campaign estimates of manufacturing already inside GDP.
+    /// Absent legacy saves remain absent; no load or tick backfills this stock.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub starting_industry: Option<crate::starting_industry::StartingIndustry>,
+    /// Paid finite conversion orders against inherited Materials capacity.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub materials: Option<crate::materials::Materials>,
+    /// Manufactured-goods contracts, cash escrow and buyer-owned freight.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub commerce: Option<crate::commerce::Commerce>,
+    #[serde(default, skip_serializing_if = "crate::economic_ai::EconomicAi::is_empty")]
+    pub economic_ai: crate::economic_ai::EconomicAi,
 
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it
@@ -1327,12 +1344,14 @@ impl WorldState {
     /// How much of `id`'s trade runs through `partner`, 0..1. This is leverage:
     /// the side with the smaller number can afford to walk away.
     ///
-    /// Two forms, and the larger wins: the pact form below, and a supply
+    /// The largest of three forms wins: the pact form below, a raw supply
     /// contract's (`resources::contract_dependency` — the depth-weighted
     /// share of a line's sourcing that arrives under contract from
     /// `partner`). commitment.rs and theatre.rs read this one name, so a
     /// contract is leverage for free; with no contract the two forms are
     /// identical and `abrogate_trade`'s arithmetic reads exactly what it did.
+    /// Economic Competition also admits actually delivered manufactured value;
+    /// signing a goods contract alone creates no dependency.
     pub fn trade_dependency(&self, id: NationId, partner: NationId) -> f64 {
         let pact = {
             let depth = self.trade_depth(id, partner);
@@ -1346,6 +1365,7 @@ impl WorldState {
             }
         };
         pact.max(crate::resources::contract_dependency(self, id, partner))
+            .max(crate::commerce::dependency(self, id, partner))
     }
     pub fn reputation(&self, id: NationId) -> f64 {
         self.statecraft

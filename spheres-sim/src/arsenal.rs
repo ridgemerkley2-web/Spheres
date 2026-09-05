@@ -216,6 +216,16 @@ pub struct Order {
     pub due_days: Option<u32>,
 }
 
+/// Structured outcome of the latest arsenal settlement's raw-input gate.
+/// Headlines are a month-long narrative and cannot identify whether a later
+/// daily attempt succeeded, so strategic UI reads this dated receipt instead.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ResourceStall {
+    pub day: i32,
+    pub commodity: crate::resources::Commodity,
+    pub reason: String,
+}
+
 /// Everything a nation has bought, has on order, and is still flying.
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct Arsenal {
@@ -231,6 +241,8 @@ pub struct Arsenal {
     pub banked: f64,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub last_tick_day: Option<i32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub last_resource_stall: Option<ResourceStall>,
 }
 
 /// The share of a military budget that buys equipment rather than paying people
@@ -368,7 +380,14 @@ pub fn inheritance(r: &crate::data::NationRecord) -> Arsenal {
     // Orders are deliberately NOT seeded: what a nation had on order in January
     // 1990 is not in the data, and the pipeline refills itself within one lead
     // time anyway.
-    Arsenal { held, orders: vec![], preference: None, banked: 0.0, last_tick_day: None }
+    Arsenal {
+        held,
+        orders: vec![],
+        preference: None,
+        banked: 0.0,
+        last_tick_day: None,
+        last_resource_stall: None,
+    }
 }
 
 /// Which tier of a class a force at this generation fields.
@@ -657,7 +676,11 @@ pub fn tick(w: &mut WorldState) {
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     for id in ids {
         if daily && w.nation(id).arsenal.last_tick_day == Some(today) { continue; }
-        if daily { w.nation_mut(id).arsenal.last_tick_day = Some(today); }
+        {
+            let arsenal = &mut w.nation_mut(id).arsenal;
+            if daily { arsenal.last_tick_day = Some(today); }
+            arsenal.last_resource_stall = None;
+        }
         let budget = budget_of(w.nation(id));
         let line = tick_line(w, id);
         let program_funded = crate::programs::enrolled(w, id);
@@ -678,7 +701,13 @@ pub fn tick(w: &mut WorldState) {
             }
         };
         if let Some(s) = stall {
-            w.headline(s.headline());
+            let reason = s.headline();
+            w.nation_mut(id).arsenal.last_resource_stall = Some(ResourceStall {
+                day: today,
+                commodity: s.commodity,
+                reason: reason.clone(),
+            });
+            w.headline(reason);
         }
         if program_funded && !directed && choice.is_some() {
             crate::programs::spend(w, id, crate::world::BUDGET_DEFENSE, 3, line)

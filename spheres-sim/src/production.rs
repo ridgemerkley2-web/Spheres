@@ -32,9 +32,10 @@ pub enum ProjectKind {
     Warehouse,
     Automation,
     Efficiency,
+    StarterIndustry,
 }
 
-pub const PROJECT_KINDS: [ProjectKind; 12] = [
+pub const PROJECT_KINDS: [ProjectKind; 13] = [
     ProjectKind::Infrastructure,
     ProjectKind::CivilianIndustry,
     ProjectKind::PowerGrid,
@@ -47,6 +48,7 @@ pub const PROJECT_KINDS: [ProjectKind; 12] = [
     ProjectKind::Warehouse,
     ProjectKind::Automation,
     ProjectKind::Efficiency,
+    ProjectKind::StarterIndustry,
 ];
 
 impl ProjectKind {
@@ -64,6 +66,7 @@ impl ProjectKind {
             Self::Warehouse => "warehouse",
             Self::Automation => "automation",
             Self::Efficiency => "efficiency",
+            Self::StarterIndustry => "starter_industry",
         }
     }
 
@@ -120,6 +123,7 @@ impl Priority {
 pub enum ProjectStatus {
     Building,
     Slowed,
+    Paused,
     Blocked,
 }
 
@@ -128,6 +132,7 @@ impl ProjectStatus {
         match self {
             Self::Building => "building",
             Self::Slowed => "slowed",
+            Self::Paused => "paused",
             Self::Blocked => "blocked",
         }
     }
@@ -148,6 +153,12 @@ pub struct Project {
     /// Cumulative input in the resource table's raw units, indexed by
     /// `Commodity::idx()`. It closes exactly to `ProjectSpec::recipe`.
     pub resources_used: [f64; 12],
+    /// Starter packages retain 1800 normalized progress units. Real work,
+    /// prices and inputs are multiplied by this immutable millionth capacity.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub capacity_micros: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub started_day: Option<i32>,
 }
 
 impl Project {
@@ -318,7 +329,7 @@ pub fn catalog(kind: ProjectKind) -> ProjectSpec {
     }
 }
 
-pub fn catalog_all() -> [ProjectSpec; 12] {
+pub fn catalog_all() -> [ProjectSpec; 13] {
     PROJECT_KINDS.map(catalog)
 }
 
@@ -383,7 +394,10 @@ pub fn construction_capacity(w: &WorldState, nation: NationId) -> f64 {
         .filter(|row| w.districts.get(&row.district) == Some(&nation))
         .map(|row| row.civilian_industry as u32)
         .sum();
-    (1.25 + industry as f64 * 0.15).min(4.0)
+    let modules: f64 = w.production.industry.modules.iter()
+        .filter(|(d, _)| w.districts.get(*d) == Some(&nation))
+        .map(|(_, micros)| *micros as f64 / 1_000_000.0).sum();
+    (1.25 + (industry as f64 + modules) * 0.15).min(4.0)
 }
 
 fn rate_for(w: &WorldState, project: &Project) -> f64 {
@@ -406,23 +420,53 @@ fn rate_for(w: &WorldState, project: &Project) -> f64 {
         .min(1.5)
 }
 
-/// ETA at today's funding, queue priorities, and completed capacity. A blocked
-/// project has no honest ETA until its stated blocker is cleared.
+/// Work that today's construction capacity and budget schedule before physical
+/// input scarcity is applied.
+pub fn nominal_work_rate(w: &WorldState, project: &Project) -> f64 {
+    if w.production.industry.projects.contains_key(&project.id) {
+        return crate::industry::project_plans(w)
+            .get(&project.id)
+            .map_or(0.0, |p| p.target_advance_days);
+    }
+    rate_for(w, project)
+}
+
+/// Feasible work today after the tightest raw or manufactured input is applied.
+pub fn work_rate_today(w: &WorldState, project: &Project) -> f64 {
+    if w.production.industry.projects.contains_key(&project.id) {
+        return crate::industry::project_plans(w)
+            .get(&project.id)
+            .map_or(0.0, |p| p.advance_days);
+    }
+    let nominal = rate_for(w, project);
+    let requested = next_resource_draw(w, project);
+    nominal * resources::bundle_throughput(w, project.nation, &requested)
+}
+
+pub fn throughput_ratio(w: &WorldState, project: &Project) -> f64 {
+    let nominal = nominal_work_rate(w, project);
+    if nominal <= 1e-9 {
+        0.0
+    } else {
+        (work_rate_today(w, project) / nominal).clamp(0.0, 1.0)
+    }
+}
+
+/// ETA at today's funding, queue priorities, completed capacity and physical
+/// input availability. A blocked or zero-throughput project has no honest ETA
+/// until its stated constraint is cleared.
 pub fn estimated_days_left(w: &WorldState, project: &Project) -> Option<u32> {
     if let Some(finance) = project_finance(w, project) {
         return (finance.reason.is_none() && finance.next_work_days > 1e-9).then(||
             ((project.total_days as f64 - project.progress_days).max(0.0) / finance.next_work_days).ceil() as u32);
     }
-    if project.status == ProjectStatus::Blocked
-        || input_shortfalls(w, project)
-            .into_iter()
-            .any(|amount| amount > 1e-9)
-    {
+    if project.status == ProjectStatus::Blocked {
         return None;
     }
-    let rate = rate_for(w, project);
-    (rate > 1e-9).then(|| {
-        ((project.total_days as f64 - project.progress_days).max(0.0) / rate).ceil() as u32
+    let effective_rate = work_rate_today(w, project);
+    (effective_rate > 1e-9).then(|| {
+        ((project.total_days as f64 - project.progress_days).max(0.0) / effective_rate).ceil()
+            as u32
     })
 }
 
@@ -437,7 +481,7 @@ pub fn next_resource_draw(w: &WorldState, project: &Project) -> [f64; 12] {
     }
     if w.districts.get(&project.district) != Some(&project.nation)
         || !w.nation_opt(project.nation).is_some_and(|n| n.alive)
-        || funding_ratio(w, project.nation, project.kind) < 0.05
+        || funding_ratio(w, project.nation, project.kind) <= 1e-9
     {
         return [0.0; 12];
     }
@@ -479,13 +523,22 @@ pub fn start_project_error(
     district: &str,
     kind: ProjectKind,
 ) -> Option<String> {
+    if kind == ProjectKind::StarterIndustry {
+        return Some("Choose an explicit capacity for the Starter Industry module.".into());
+    }
+    start_project_common_error(w, nation, district, kind)
+}
+
+pub(crate) fn start_project_common_error(
+    w: &WorldState, nation: NationId, district: &str, kind: ProjectKind,
+) -> Option<String> {
     if !w.rules.production_system {
         return Some("Production and construction are not enabled in this game.".into());
     }
     if !w.rules.resource_market {
         return Some("Production requires the resource market to be enabled.".into());
     }
-    if w.player != Some(nation) {
+    if !crate::economic_ai::may_direct(w, nation) {
         return Some("Only the player can direct construction.".into());
     }
     if !w.nation_opt(nation).is_some_and(|n| n.alive) {
@@ -522,6 +575,11 @@ pub fn start_project_error(
     if let Some(reason) = crate::industry::project_refusal(w, nation, district, kind) {
         return Some(reason);
     }
+    if kind != ProjectKind::StarterIndustry && crate::industrial_modules::COMPONENTS.contains(&kind)
+        && crate::industrial_modules::reserved_capacity(w, district, kind) + 1_000_000 > 5_000_000
+    {
+        return Some("This investment would exceed five standard capacities including Starter Industry modules.".into());
+    }
     None
 }
 
@@ -548,6 +606,8 @@ pub fn start_project(
         progress_days: 0.0,
         total_days: spec.total_days,
         resources_used: [0.0; 12],
+        capacity_micros: None,
+        started_day: None,
     });
     if crate::programs::enrolled(w, nation) {
         w.production
@@ -573,7 +633,7 @@ pub fn set_priority(
     if !w.rules.production_system {
         return Err("Production and construction are not enabled in this game.".into());
     }
-    if w.player != Some(nation) {
+    if !crate::economic_ai::may_direct(w, nation) {
         return Err("Only the player can direct construction.".into());
     }
     let row = w
@@ -597,7 +657,7 @@ pub fn cancel_project(w: &mut WorldState, nation: NationId, project: u32) -> Res
     if !w.rules.production_system {
         return Err("Production and construction are not enabled in this game.".into());
     }
-    if w.player != Some(nation) {
+    if !crate::economic_ai::may_direct(w, nation) {
         return Err("Only the player can direct construction.".into());
     }
     let Some(index) = w.production.projects.iter().position(|p| p.id == project) else {
@@ -628,6 +688,13 @@ fn set_blocked(w: &mut WorldState, id: u32, reason: String) {
     }
 }
 
+fn set_paused(w: &mut WorldState, id: u32, reason: String) {
+    if let Some(project) = w.production.projects.iter_mut().find(|p| p.id == id) {
+        project.status = ProjectStatus::Paused;
+        project.reason = Some(reason);
+    }
+}
+
 pub(crate) fn complete_capability(w: &mut WorldState, district: &str, kind: ProjectKind) {
     if crate::industry::extended(kind) {
         crate::industry::complete_site(w, district, kind);
@@ -654,9 +721,10 @@ pub fn tick_day(w: &mut WorldState) {
     }
     crate::industry::begin_work_day(w);
 
-    // Snapshot the opening queue. A blocked project does not partly consume,
-    // and a completion cannot change another project's allocation until the
-    // next day.
+    // Snapshot the opening queue. Physical scarcity is allocated in priority
+    // order and scales a project's whole daily bundle; structural blockers
+    // consume nothing. A completion cannot change another project's allocation
+    // until the next day.
     let mut opening = w.production.projects.clone();
     let program_plans = crate::industry::project_plans(w);
     // Priority governs scarce inputs as well as capacity. Stable id breaks a
@@ -673,8 +741,18 @@ pub fn tick_day(w: &mut WorldState) {
             {
                 continue;
             }
+            if plan.advance_days <= 1e-9 {
+                if let Some(reason) = &plan.slow_reason {
+                    set_paused(w, project.id, reason.clone());
+                    continue;
+                }
+            }
             if let Err(reason) = crate::industry::settle_project(w, &project, plan) {
-                set_blocked(w, project.id, reason);
+                if reason.starts_with("PAUSED:") {
+                    set_paused(w, project.id, reason);
+                } else {
+                    set_blocked(w, project.id, reason);
+                }
             } else if w
                 .production
                 .projects
@@ -710,12 +788,12 @@ pub fn tick_day(w: &mut WorldState) {
 
         let spec = catalog(project.kind);
         let funding = funding_ratio(w, project.nation, project.kind);
-        if funding < 0.05 {
-            set_blocked(
+        if funding <= 1e-9 {
+            set_paused(
                 w,
                 project.id,
                 format!(
-                    "BLOCKED: the {} budget has no construction funding.",
+                    "PAUSED: the {} budget has no construction funding; completed work is preserved.",
                     spec.funding_label
                 ),
             );
@@ -723,15 +801,16 @@ pub fn tick_day(w: &mut WorldState) {
         }
         let rate = rate_for(w, &project);
         if rate <= 1e-9 {
-            set_blocked(
+            set_paused(
                 w,
                 project.id,
-                "BLOCKED: no construction capacity is assigned.".into(),
+                "PAUSED: no construction capacity is assigned; completed work is preserved."
+                    .into(),
             );
             continue;
         }
-        let advance = rate.min((project.total_days as f64 - project.progress_days).max(0.0));
-        if advance <= 1e-9 {
+        let planned_advance = rate.min((project.total_days as f64 - project.progress_days).max(0.0));
+        if planned_advance <= 1e-9 {
             completed.push((
                 project.id,
                 project.nation,
@@ -741,18 +820,33 @@ pub fn tick_day(w: &mut WorldState) {
             continue;
         }
 
-        let required = next_resource_draw(w, &project);
+        let requested = next_resource_draw(w, &project);
+        let throughput = resources::bundle_throughput(w, project.nation, &requested);
+        let limiting = resources::limiting_bundle_input(w, project.nation, &requested);
+        if throughput <= 1e-9 {
+            let reason = limiting.map_or_else(
+                || "PAUSED: no construction inputs are available today.".into(),
+                |(commodity, want, have)| {
+                    format!(
+                        "PAUSED: {} supply is empty; full-speed work needs {:.2} today and has {:.2}.",
+                        commodity.name(), want, have
+                    )
+                },
+            );
+            set_paused(w, project.id, reason);
+            continue;
+        }
+        let advance = planned_advance * throughput;
+        let required = resources::scale_bundle(&requested, throughput);
         if let Err((commodity, want, have)) =
             resources::consume_stockpile_atomic(w, project.nation, &required)
         {
-            set_blocked(
+            set_paused(
                 w,
                 project.id,
                 format!(
-                    "BLOCKED: needs {:.2} {} today, have {:.2}.",
-                    want,
-                    commodity.name(),
-                    have
+                    "PAUSED: {} supply changed before settlement; needs {:.2}, has {:.2}.",
+                    commodity.name(), want, have
                 ),
             );
             continue;
@@ -769,7 +863,16 @@ pub fn tick_day(w: &mut WorldState) {
             row.resources_used[c.idx()] =
                 (row.resources_used[c.idx()] + required[c.idx()]).min(spec.recipe[c.idx()]);
         }
-        if funding + 1e-9 < 1.0 {
+        if throughput + 1e-9 < 1.0 {
+            row.status = ProjectStatus::Slowed;
+            row.reason = Some(limiting.map_or_else(
+                || format!("SLOWED: materials limit today's work to {:.0}% throughput.", throughput * 100.0),
+                |(commodity, want, have)| format!(
+                    "SLOWED: {} limits today's work to {:.0}% throughput; full speed needs {:.2}, with {:.2} available.",
+                    commodity.name(), throughput * 100.0, want, have
+                ),
+            ));
+        } else if funding + 1e-9 < 1.0 {
             row.status = ProjectStatus::Slowed;
             row.reason = Some(format!(
                 "SLOWED: the {} budget funds {:.0}% throughput.",
@@ -795,8 +898,14 @@ pub fn tick_day(w: &mut WorldState) {
         let Some(index) = w.production.projects.iter().position(|p| p.id == id) else {
             continue;
         };
-        w.production.projects.remove(index);
+        let finished = w.production.projects.remove(index);
         w.production.industry.projects.remove(&id);
+        if kind == ProjectKind::StarterIndustry {
+            crate::industrial_modules::complete(w, &finished);
+            w.headline(format!("{} completes a {:.4}% Starter Industry module in {}.",
+                nation.name(), finished.capacity_micros.unwrap_or(0) as f64 / 10_000.0, district));
+            continue;
+        }
         complete_capability(w, &district, kind);
         let level = level(w, &district, kind);
         w.headline(format!(
@@ -929,7 +1038,7 @@ mod tests {
     }
 
     #[test]
-    fn a_shortage_blocks_without_consuming_then_resumes() {
+    fn an_empty_input_pauses_without_consuming_then_resumes() {
         let mut w = enabled();
         let nation = NationId::USA;
         let district = owned(&w, nation)[0].clone();
@@ -942,15 +1051,52 @@ mod tests {
         let before = w.resources.clone();
         tick_day(&mut w);
         let project = w.production.projects.iter().find(|p| p.id == id).unwrap();
-        assert_eq!(project.status, ProjectStatus::Blocked);
+        assert_eq!(project.status, ProjectStatus::Paused);
         assert_eq!(project.progress_days, 0.0);
         assert_eq!(w.resources, before);
+        assert!(project.reason.as_deref().is_some_and(|reason| reason.starts_with("PAUSED:")));
 
         fill_recipe(&mut w, nation, ProjectKind::Infrastructure, 1.0);
         tick_day(&mut w);
         let project = w.production.projects.iter().find(|p| p.id == id).unwrap();
         assert!(project.progress_days > 0.0);
         assert_ne!(project.status, ProjectStatus::Blocked);
+    }
+
+    #[test]
+    fn a_partial_input_scales_progress_and_every_resource_draw() {
+        let mut w = enabled();
+        let nation = NationId::USA;
+        let district = owned(&w, nation)[0].clone();
+        fill_recipe(&mut w, nation, ProjectKind::Infrastructure, 1.0);
+        let id = start_project(&mut w, nation, &district, ProjectKind::Infrastructure).unwrap();
+        let opening_project = w.production.projects.iter().find(|p| p.id == id).unwrap().clone();
+        let nominal = nominal_work_rate(&w, &opening_project);
+        let requested = next_resource_draw(&w, &opening_project);
+        let limiting = ALL.into_iter().find(|c| requested[c.idx()] > 1e-9).unwrap();
+        resources::set_stockpile_for_test(
+            &mut w,
+            nation,
+            limiting,
+            requested[limiting.idx()] * 0.4,
+        );
+        let expected_throughput = resources::bundle_throughput(&w, nation, &requested);
+        assert!((expected_throughput - 0.4).abs() < 1e-6);
+        let opening: [f64; 12] = std::array::from_fn(|i| {
+            resources::stockpile(&w, nation, Commodity::from_idx(i).unwrap())
+        });
+
+        tick_day(&mut w);
+
+        let project = w.production.projects.iter().find(|p| p.id == id).unwrap();
+        assert_eq!(project.status, ProjectStatus::Slowed);
+        assert!((project.progress_days - nominal * expected_throughput).abs() < 1e-9);
+        assert!(project.reason.as_deref().is_some_and(|reason| reason.contains("40%")));
+        for c in ALL {
+            let consumed = opening[c.idx()] - resources::stockpile(&w, nation, c);
+            assert!((consumed - project.resources_used[c.idx()]).abs() < 2e-9);
+            assert!(consumed <= requested[c.idx()] * 0.4 + 2e-9);
+        }
     }
 
     #[test]
@@ -1068,7 +1214,7 @@ mod tests {
         let low_project = w.production.projects.iter().find(|p| p.id == low).unwrap();
         assert!(high_project.progress_days > 0.0);
         assert_eq!(low_project.progress_days, 0.0);
-        assert_eq!(low_project.status, ProjectStatus::Blocked);
+        assert_eq!(low_project.status, ProjectStatus::Paused);
     }
 
     #[test]

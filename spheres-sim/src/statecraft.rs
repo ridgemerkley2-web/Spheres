@@ -757,6 +757,12 @@ pub fn call_the_guarantors(w: &mut WorldState, c: &mut Conflict, at: u8) -> Vec<
     let (attacker, defender) = (c.origin_attacker, c.defender());
     let mut refused: Vec<NationId> = vec![];
     for g in w.pact_partners(defender) {
+        if c.side_a.iter().any(|foe| crate::sovereignty::hostility_blocked(w,g,*foe)) {
+            // The formal sphere outranks an outside guarantee. No hidden
+            // opposing coalition entry and no repeated random loyalty roll.
+            refused.push(g);
+            continue;
+        }
         if g == attacker {
             // The guarantor is the invader. There is no roll to make.
             dissolve_pact(w, g, defender);

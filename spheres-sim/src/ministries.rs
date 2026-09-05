@@ -431,7 +431,7 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
             Arm {
                 id: "jobs",
                 name: "Unemployment",
-                note: "a pension worth taking is a pension people take",
+                note: "retirement support reduces the measured labour force; this is not job creation",
                 // A SHARE of the labour force, not a rate per year: the two
                 // population arms move a growth rate and this moves a level,
                 // and a card that gave both the same unit would be inviting the

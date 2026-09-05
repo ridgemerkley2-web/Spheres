@@ -92,6 +92,7 @@
 }
 :is(#productionPanel, #logisticsPanel) :is(.production-summary, .manufacturing-summary, .logistics-summary) b { margin-top: 8px; color: var(--ops-mint); font-size: 32px; font-weight: 650; }
 :is(#productionPanel, #logisticsPanel) :is(.production-summary .slowed, .logistics-summary .constrained) b { color: var(--ops-gold); }
+:is(#productionPanel, #logisticsPanel) .production-summary .paused b { color: #f0c982; }
 :is(#productionPanel, #logisticsPanel) :is(.production-summary .blocked, .manufacturing-summary .warn, .logistics-summary .blocked) b { color: #efb0a4; }
 :is(#productionPanel, #logisticsPanel) :is(.production-list, .logistics-list) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
 :is(#productionPanel, #logisticsPanel) :is(.work-card, .lane-card) {
@@ -103,6 +104,8 @@
 :is(#productionPanel, #logisticsPanel) :is(.work-card, .lane-card):hover { background: #26384b; }
 :is(#productionPanel, #logisticsPanel) :is(.work-card, .lane-card).blocked::before { background: repeating-linear-gradient(90deg, #e9aaa2 0 5px, transparent 5px 10px); }
 :is(#productionPanel, #logisticsPanel) :is(.work-card.slowed, .lane-card.constrained)::before { background: repeating-linear-gradient(90deg, #e4c796 0 10px, transparent 10px 15px); }
+:is(#productionPanel, #logisticsPanel) .work-card.paused::before { background: repeating-linear-gradient(90deg, #f0c982 0 6px, transparent 6px 12px); }
+:is(#productionPanel, #logisticsPanel) .work-card.paused .work-state { color: #f0c982; }
 #logisticsPanel .lane-card.held { background: #352e46; }
 #logisticsPanel .lane-card.held::before { background: var(--ops-lilac); }
 #productionPanel .work-top { gap: 13px; }

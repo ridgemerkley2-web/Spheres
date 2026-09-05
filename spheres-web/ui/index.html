@@ -626,10 +626,11 @@
   .production-stamp { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; margin-bottom: 8px; }
   .production-stamp b { color: var(--bright); font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
   .production-stamp span { color: var(--faint); font-size: 8px; text-align: right; }
-  .production-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 8px; }
+  .production-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-bottom: 8px; }
   .production-summary span { padding: 7px 6px; border: 1px solid #2b3641; border-radius: 5px; background: #090e13; color: var(--faint); font: 700 7px/1.1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
   .production-summary b { display: block; margin-top: 4px; color: var(--cyan); font-size: 15px; }
   .production-summary .slowed b { color: var(--amber); }
+  .production-summary .paused b { color: #efc27b; }
   .production-summary .blocked b { color: #e58078; }
   .production-list { display: grid; gap: 6px; }
   .work-card {
@@ -640,6 +641,8 @@
   .work-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: var(--cyan); opacity: .8; }
   .work-card.slowed { border-left-color: var(--amber); }
   .work-card.slowed::before { background: repeating-linear-gradient(90deg, var(--amber) 0 7px, transparent 7px 11px); }
+  .work-card.paused { border-left-color: #d8a85d; }
+  .work-card.paused::before { background: repeating-linear-gradient(90deg, #d8a85d 0 4px, transparent 4px 9px); }
   .work-card.blocked { border-left-color: #d96560; }
   .work-card.blocked::before { background: repeating-linear-gradient(90deg, #d96560 0 3px, transparent 3px 8px); }
   .work-card.selected { border-color: var(--brass-hi); background: #171b1f; box-shadow: inset 0 0 0 1px #c9a55a35; }
@@ -650,10 +653,12 @@
   .work-title span { display: block; margin-top: 2px; color: var(--faint); font: 8px/1.2 var(--mono); text-transform: uppercase; }
   .work-state { flex: none; color: var(--cyan); font: 700 8px/1.2 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
   .work-card.slowed .work-state { color: var(--amber); }
+  .work-card.paused .work-state { color: #efc27b; }
   .work-card.blocked .work-state { color: #ef948d; }
   .work-progress { height: 7px; margin-top: 8px; overflow: hidden; border: 1px solid #27343f; border-radius: 99px; background: #05080c; }
   .work-progress i { display: block; height: 100%; background: linear-gradient(90deg, #3e8da1, #6cd4e5); }
   .work-card.slowed .work-progress i { background: linear-gradient(90deg, #806629, #d0a547); }
+  .work-card.paused .work-progress i { background: #806629; }
   .work-card.blocked .work-progress i { background: #7f3434; }
   .work-line { display: flex; justify-content: space-between; gap: 7px; margin-top: 4px; color: var(--faint); font: 8px/1.3 var(--mono); }
   .work-line b { color: var(--ink); font-weight: 700; }
@@ -703,7 +708,7 @@
   .factory-card { border-left-color: #b69249; }
   .factory-card::before { background: linear-gradient(90deg, #7c6532, #e0bc69); }
   .factory-card.blocked::before { background: repeating-linear-gradient(90deg, #d96560 0 3px, transparent 3px 8px); }
-  .factory-output { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 8px; }
+  .factory-output { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 8px; }
   .factory-output span { padding: 6px; border: 1px solid #2d3943; border-radius: 4px; color: var(--faint); background: #080d12; font: 7px/1.2 var(--mono); text-transform: uppercase; }
   .factory-output b { display: block; margin-top: 2px; color: var(--bright); font-size: 10px; text-transform: none; }
   .factory-classes { display: flex; gap: 4px; overflow-x: auto; margin: 0 0 8px; padding-bottom: 2px; }
@@ -2329,6 +2334,7 @@
 <link rel="stylesheet" href="/chronicle.css">
 <link rel="stylesheet" href="/programs.css">
 <link rel="stylesheet" href="/province-economy.css">
+<link rel="stylesheet" href="/competition.css">
 <style>
 .session-card { display:flex; flex-wrap:wrap; gap:16px 28px; align-items:center; margin:0 0 22px; padding:22px; border-radius:24px; border:1px solid #d5d5e4; color:#42415b; background:linear-gradient(110deg,#e5f2eb,#eee8f6); }
 /* Campaign controls are a real third setup row. The old two-row viewport
@@ -2529,14 +2535,32 @@
         <span class="copy"><span class="label">Global Command</span><small id="dockDomination">campaign director</small></span>
       </button>
       <button class="dockbtn" data-drawer="cabinetDrawer" aria-expanded="false"><span class="icon">◈</span><span class="copy"><span class="label">Economy</span><small id="dockEconomy">budget &amp; policy</small></span></button>
+      <button class="dockbtn" id="competitionDockBtn" type="button" aria-controls="competitionRoom" aria-expanded="false"><span class="icon" aria-hidden="true">⇄</span><span class="copy"><span class="label">Exchange</span><small>industry &amp; influence</small></span></button>
       <button class="dockbtn" data-drawer="intelDrawer" aria-expanded="false"><span class="icon">⚔</span><span class="copy"><span class="label">World</span><small id="dockWorld">conflicts &amp; news</small></span></button>
-      <button class="dockbtn" id="stockBtn" title="Resources" aria-controls="stockScreen"><span class="icon" aria-hidden="true">◈</span><span class="copy"><span class="label">Resources</span><small>mine &amp; trade</small></span></button>
+      <button class="dockbtn" id="stockBtn" title="Resources" aria-controls="stockScreen"><span class="icon" aria-hidden="true">◈</span><span class="copy"><span class="label">Resources</span><small id="dockResources">mine &amp; trade</small></span></button>
       <button class="dockbtn" id="techBtn" title="Technology" aria-controls="techScreen"><span class="icon" aria-hidden="true">⌬</span><span class="copy"><span class="label">Research</span><small>discover &amp; develop</small></span></button>
       <button class="dockbtn" id="logisticsDockBtn" type="button" aria-controls="logisticsPanel" aria-expanded="false"><span class="icon">⇢</span><span class="copy"><span class="label">Logistics</span><small id="dockLogistics">daily dispatches</small></span><span class="dockbadge" id="logisticsBadge" aria-hidden="true"></span></button>
       <button class="dockbtn" id="productionDockBtn" type="button" aria-controls="productionPanel" aria-expanded="false"><span class="icon">⚙</span><span class="copy"><span class="label">Production</span><small id="dockProduction">4 project slots</small></span><span class="dockbadge" id="productionBadge" aria-hidden="true"></span></button>
     </nav>
   </main>
 </div>
+
+<section id="competitionRoom" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="competitionTitle" tabindex="-1" hidden>
+  <header class="comp-header">
+    <span class="comp-mark" aria-hidden="true">⇄</span>
+    <div><div class="comp-kicker">National command</div><h2 id="competitionTitle">The Exchange</h2></div>
+    <span id="competitionDate" class="comp-date"></span>
+    <button id="competitionRefresh" class="comp-button" type="button">Refresh</button>
+    <button id="competitionClose" class="comp-button" type="button">Back to map</button>
+  </header>
+  <nav class="comp-tabs" role="tablist" aria-label="Economic competition views">
+    <button id="comp-tab-industry" role="tab" aria-selected="true" aria-controls="competitionBody" data-comp-tab="industry">01 · Your industry</button>
+    <button id="comp-tab-trade" role="tab" aria-selected="false" aria-controls="competitionBody" tabindex="-1" data-comp-tab="trade">02 · Goods market</button>
+    <button id="comp-tab-world" role="tab" aria-selected="false" aria-controls="competitionBody" tabindex="-1" data-comp-tab="world">03 · World economies</button>
+    <button id="comp-tab-sphere" role="tab" aria-selected="false" aria-controls="competitionBody" tabindex="-1" data-comp-tab="sphere">04 · Your sphere</button>
+  </nav>
+  <div id="competitionBody" class="comp-body" role="tabpanel" aria-labelledby="comp-tab-industry"></div>
+</section>
 
 <section class="game-drawer cabinet-room" id="cabinetDrawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="cabinetTitle">
   <header class="cab-topbar">
@@ -2881,9 +2905,9 @@
 <!-- The resource board (B): twelve lines, folded, in #stockRows; the three
      cards for the selected line in #stockDock; the hover in #stockTip. Built
      from S.resources and /api/stock — every number and sentence is served. -->
-<div id="stockScreen" role="dialog" aria-modal="true" aria-label="Resources and trade" tabindex="-1">
+<div id="stockScreen" role="dialog" aria-modal="true" aria-label="Strategic Supply Command" tabindex="-1">
   <div class="tbar">
-    <span class="ttitle">Resources</span>
+    <span class="ttitle">Supply Command</span>
     <span class="tsub" id="stockSub">&mdash;</span>
     <span class="spacer"></span>
     <button class="x" aria-label="Close resources and return to map" onclick="closeStock()">close</button>
@@ -2940,6 +2964,7 @@
 <script src="/chronicle-ui.js"></script>
 <script src="/programs-ui.js"></script>
 <script src="/province-economy-ui.js"></script>
+<script src="/competition-ui.js"></script>
 <script>
 "use strict";
 const WORLD = window.WORLD;
@@ -3290,7 +3315,14 @@ const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 /// server that was not there arrived as a bare "Failed to fetch" nobody caught.
 /// Callers get a thrown Error carrying a sentence fit to show a player.
 async function api(path, body) {
+  if (body !== undefined && ["/api/command", "/api/advance", "/api/save", "/api/load", "/api/new"].includes(path)
+      && typeof guardEconomicOrder === "function" && guardEconomicOrder(path, body)) {
+    throw new Error("Confirm the pending financial order in the Exchange before sending another change.");
+  }
   const requestedSession = S?.session_id;
+  if (body?.session_id && requestedSession && body.session_id !== requestedSession && ["/api/command", "/api/save"].includes(path)) {
+    throw new Error("This order belongs to another campaign. Review that campaign before retrying it.");
+  }
   if (body !== undefined && requestedSession && ["/api/command", "/api/save"].includes(path)) body = { ...body, session_id: requestedSession };
   let r;
   try {
@@ -3328,6 +3360,48 @@ let setupFigures = {};
 const setupNationButtons = new Map();
 const SESSION = { live: null, busy: false, client: null, sequence: 0 };
 
+// An unconfirmed financial mutation owns the write lane even after its room
+// closes. The exact receipt can still reconcile; reads/Continue remain usable.
+// This optional boundary also preserves older builds without the Exchange.
+function guardEconomicOrder(action, body) {
+  if (typeof COMP === "undefined") return false;
+  // Reload must not unlock writes merely because the Exchange has not been
+  // opened yet. A failed storage read still leaves the live receipt untouched.
+  if (!COMP.pending) {
+    try {
+      const stored = JSON.parse(sessionStorage.getItem("spheres.pending-economic-order") || "null");
+      if (stored?.session_id && Array.isArray(stored.commands)) COMP.pending = stored;
+    } catch (_) { /* A live receipt remains authoritative. */ }
+  }
+  if (!COMP.busy && !COMP.pending) return false;
+  if (action === "/api/command" && COMP.pending && body === COMP.pending && !advancing) return false;
+  // A restarted, empty server cannot open the old campaign's Exchange. Keep
+  // replacement blocked until the player explicitly acknowledges the unknown
+  // outcome; dismissal never retries/refunds an order or executes replacement.
+  if (!S?.player && SESSION.live && !SESSION.live.player && !COMP.busy
+      && COMP.pending?.session_id !== SESSION.live.session_id
+      && ["new", "load", "/api/new", "/api/load"].includes(action)) {
+    if (window.confirm("An unconfirmed financial order belongs to a previous campaign/server session. This server cannot establish whether it completed. Dismiss its notice without replaying or refunding it? Review the saved ledger before issuing a replacement order. Then choose Load or Start again.")) {
+      COMP.pending = null;
+      competitionPendingStore();
+      banner("Previous campaign receipt explicitly dismissed; nothing was replayed or refunded. Choose Load or Start again when ready.");
+    } else {
+      banner("The previous financial receipt is retained. Load and Start remain blocked until you explicitly dismiss its unknown outcome.");
+    }
+    return true;
+  }
+  const reason = advancing
+    ? "Wait for the in-flight turn to finish, then confirm the financial order in the Exchange. Its receipt is retained."
+    : "Confirm the pending financial order in the Exchange before advancing, saving, replacing the campaign or sending another order. Use Check order receipt, or review the ledger and explicitly dismiss its notice. If you are at the campaign picker, Continue the live campaign first.";
+  banner(reason);
+  if (S?.player && typeof openCompetition === "function") {
+    if (!COMP.open) openCompetition();
+    COMP.error = reason;
+    competitionRender();
+  }
+  return true;
+}
+
 function renderSessionActions() {
   $("#continueBtn").hidden = !SESSION.live?.player;
   $("#continueBtn").disabled = SESSION.busy;
@@ -3360,6 +3434,7 @@ async function bootSession() {
 
 function resetCampaignUi() {
   closeGlobalMenus();
+  if (typeof resetCompetition === "function") resetCompetition();
   // Cancel campaign-specific readers before another world's ids are adopted.
   resetProvinceDossierState();
   tech.data = null; tech.sel = null;
@@ -3405,6 +3480,7 @@ async function continueCampaign() {
 }
 
 async function loadCampaign() {
+  if (typeof guardEconomicOrder === "function" && guardEconomicOrder("load")) return;
   if (SESSION.busy || advancing || pendingAdvance) return;
   if (SESSION.live?.player && !window.confirm("Load save.json and replace the live campaign? Unsaved progress and browser drafts will be replaced. History charts restart at the saved date.")) return;
   SESSION.busy = true; renderSessionActions();
@@ -3731,6 +3807,7 @@ function seedFromBox() {
 
 $("#startBtn").onclick = async () => {
   const b = $("#startBtn");
+  if (typeof guardEconomicOrder === "function" && guardEconomicOrder("new")) return;
   if (!pickedNation || b.disabled || SESSION.busy || advancing || pendingAdvance) return;
   const seed = seedFromBox();
   if (seed === null) {
@@ -3787,6 +3864,7 @@ document.addEventListener("focusin", () => {
   if (arcadeTopRoom()) closeGlobalMenus();
 });
 function arcadeTopRoom() {
+  if (typeof COMP !== "undefined" && COMP.open) return $("#competitionRoom");
   if (keysCardIsOpen()) return $("#keys");
   if ($("#sheet").style.display === "block") return $("#sheet");
   if (dominationIsOpen()) return $("#dominationScreen");
@@ -3826,6 +3904,7 @@ const CAB = { tab: "overview", ministry: "health", lastFocus: null, busy: false,
 function cabinetIsOpen() { return $("#cabinetDrawer").classList.contains("open"); }
 
 function closeGameDrawers() {
+  if (typeof COMP !== "undefined" && COMP.open) closeCompetition();
   const wasCabinet = cabinetIsOpen();
   const wasWorld = $("#intelDrawer").classList.contains("open");
   document.querySelectorAll(".game-drawer.open").forEach((d) => {
@@ -3923,6 +4002,7 @@ async function adopt(state, withHistory, allowCampaignChange = false) {
   S = state;
   if (typeof invalidateProgramPreview === "function") invalidateProgramPreview();
   if (typeof invalidateEconomicLedger === "function") invalidateEconomicLedger();
+  if (typeof competitionInvalidate === "function") competitionInvalidate();
   // The held/contested band is TRANSPORTED from the sim (front::HELD_BAND),
   // never re-derived client-side; the literal in FRONT_HELD_BAND is only the
   // fallback for a server payload that predates the field.
@@ -3941,6 +4021,7 @@ async function adopt(state, withHistory, allowCampaignChange = false) {
   if (!ui.picked.length) ui.picked = defaultPicks();
   render();
   if (LOGI.open) logisticsFetch();
+  if (typeof COMP !== "undefined" && COMP.open) competitionFetch();
   if (PROD.open) {
     if (PROD.mode === "manufacture") manufacturingFetch();
     else productionFetch();
@@ -4007,6 +4088,7 @@ function syncAdvanceControls() {
 }
 
 async function advance(days, retry = false) {
+  if (typeof guardEconomicOrder === "function" && guardEconomicOrder("advance")) return false;
   if (advancing) return false;
   if (pendingAdvance && !retry) { banner("Check the pending turn first. No additional time has been requested."); return false; }
   if (!pendingAdvance) {
@@ -4071,6 +4153,7 @@ document.querySelectorAll("[data-adv]").forEach((b) => {
 
 $("#saveBtn").onclick = doSave;
 async function doSave() {
+  if (typeof guardEconomicOrder === "function" && guardEconomicOrder("save")) return false;
   if (advancing || pendingAdvance) { banner("Confirm the pending turn before saving the campaign."); return false; }
   $("#saveBtn").disabled = true;
   try {
@@ -4141,6 +4224,10 @@ function isKeysCardToggle(e) { return e.key === "?" || (e.key === "/" && e.shift
 document.addEventListener("keydown", (e) => {
   const room = arcadeTopRoom();
   if (room && e.key === "Tab") { arcadeTrapTab(e, room); return; }
+  if (room?.id === "competitionRoom") {
+    if (e.key === "Escape") { e.preventDefault(); closeCompetition(); }
+    return;
+  }
   if (room && room.id === "sheet") {
     if (e.key === "Escape") { e.preventDefault(); closeSheet(); }
     // Keep text, native selects and buttons usable; never advance the world
@@ -4272,6 +4359,7 @@ function nationById(id) { return S.nations.find((n) => n.id === id); }
 
 function render() {
   const m = me();
+  $("#competitionDockBtn").disabled = !m;
   // Every chart on the page is about to be rebuilt, so the hover registry from
   // the last frame is dead weight.
   for (const k in CHARTS) delete CHARTS[k];
@@ -4303,7 +4391,10 @@ function render() {
   const sb = $("#stockBtn");
   sb.disabled = !S.resources;
   sb.title = S.resources ? "Resources" : "spectating";
-  sb.classList.toggle("note", !!S.resources && S.resources.starved > 0);
+  const supplySummary = S.resources && S.resources.strategic_summary;
+  const dockResources = $("#dockResources");
+  if (dockResources) dockResources.textContent = supplySummary?.dock_label || "mine & trade";
+  sb.classList.toggle("note", !!S.resources && (S.resources.starved > 0 || (supplySummary?.attention_count || 0) > 0));
   noteQueued();
   renderLeft(m);
   renderWars();
@@ -4469,7 +4560,7 @@ const MINISTRIES = [
   { id:"health", art:"✚", name:"Health", story:"births & wartime recovery" },
   { id:"education", art:"▤", name:"Education", story:"more research points" },
   { id:"housing", art:"⌂", name:"Housing", story:"births & contentment" },
-  { id:"pensions", art:"◷", name:"Pensions", story:"retirement & public support" },
+  { id:"pensions", art:"♥", name:"Welfare", story:"retirement, disability & income support" },
   { id:"infrastructure", art:"▥", name:"Infrastructure", story:"stronger non-oil extraction" },
   { id:"industry", art:"⚙", name:"Industry & energy", story:"factories, power & industrial supply" },
   { id:"science", art:"⌬", name:"Science", story:"adopting foreign discoveries" },
@@ -5147,6 +5238,7 @@ function treeSvg(d) {
 /// is the split the rest of this file uses everywhere else.
 function etaText(d, tilde) {
   if (!d) return "stalled";
+  if (d.acquisition_wait) return "acquisitions reopen next month · research keeps banking";
   if (d.days_left != null) return (tilde ? "~" : "") + d.days_left + " days";
   if (d.months_left != null) return (tilde ? "~" : "") + d.months_left + " mo";
   switch (d.wait) {
@@ -5305,6 +5397,7 @@ function researchHtml(m) {
 
   return `<div class="card" id="resCard">
       <h3>Research <span>· ${r.daily.toFixed(2)} points a day</span></h3>
+      ${r.acquisition_quota?`<p class="floorline">${escText(r.acquisition_quota.note)}</p>`:""}
       ${armsHtml(r)}
       ${allocHtml(r)}
       ${body}
@@ -5486,7 +5579,7 @@ function renderTechMenu() {
         </div>
       </button>`;
   }).join("");
-  $("#techMenu").innerHTML = `<button type="button" class="menu-close" aria-label="Close research field chooser" onclick="closeTechMenu()">×</button><h2 class="discovery-menu-title">What comes next?</h2>` + rows +
+  $("#techMenu").innerHTML = `<button type="button" class="menu-close" aria-label="Close research field chooser" onclick="closeTechMenu()">×</button><h2 class="discovery-menu-title">What comes next?</h2>${r.acquisition_quota?.migration_hold?`<p class="floorline">${escText(r.acquisition_quota.note)}</p>`:""}` + rows +
     `<button type="button" class="dfoot"><b>Explore technology</b><span>${r.daily.toFixed(2)} points a day</span></button>`;
   $("#techMenu").querySelectorAll(".drow").forEach((el) => {
     el.onclick = () => openTech(el.dataset.dom);
@@ -13069,8 +13162,8 @@ window.declareWar = async function (target) {
   await adopt(r, false);
 };
 
-/* ================= the resource board (B) =================
-   Twelve lines, folded; three cards a line; talks in three clicks; the tint,
+/* ================= Strategic Supply Command =================
+   Twelve visible line buttons; three cards a line; talks in three clicks; the tint,
    the arcs and the aims on the globe. EVERYTHING HERE IS SERVED: the rows on
    S.resources, the cards on /api/stock?com=, the dossier's twelve words on
    /api/stock?nation=, the globe on /api/stock/world?com=, and the sim's answer
@@ -13080,14 +13173,16 @@ window.declareWar = async function (target) {
    Namespace stock* / talks*; nothing under res* (the map layer) and nothing
    near #resCard (the research card).                                        */
 
-const stock = { open: false, sel: null, cards: null, cardsFor: null, seq: 0, unfolded: false, mineTarget: {} };
+const stock = { open: false, view: "overview", sel: null, cards: null, cardsFor: null, seq: 0, unfolded: false, horizon: 90, mineTarget: {}, focusResourceOnLoad: false };
 const STATE_WORD = {
   ok: "OK", supplied: "SUPPLIED", short: "SHORT", stalled: "STALLED",
+  secure: "SECURE", watch: "WATCH", action: "ACTION NEEDED",
   idle: "IDLE", market: "MARKET", presence: "PRESENCE", seller: "SELLER",
 };
 /// RED IS RESERVED for `stalled` — never a deficit without a stalled action.
 const STATE_COLOR = {
   ok: "var(--brass-hi)", supplied: "var(--brass-hi)", short: "var(--amber)", stalled: "var(--red)",
+  secure: "var(--cyan)", watch: "var(--amber)", action: "var(--amber)",
   idle: "var(--dim)", market: "var(--dim)", presence: "var(--faint)", seller: "var(--brass-hi)",
 };
 const stockHue = (k) => RCOLOR[k] || "#9fb0bd";
@@ -13151,8 +13246,35 @@ function marketCardHtml(r) {
 
 function stockRows() { return (S && S.resources && S.resources.rows) || []; }
 function stockVisibleRows() {
-  const rows = stockRows();
-  return stock.unfolded ? rows : rows.filter((r) => !r.fold);
+  // Supply Command is a stable twelve-button instrument panel. A quiet or
+  // presence-only resource is still a strategic choice, so it is never hidden.
+  return stockRows();
+}
+
+function stockStrategicWindow(row, days = stock.horizon) {
+  const windows = row && row.strategic && Array.isArray(row.strategic.horizons)
+    ? row.strategic.horizons : [];
+  return windows.find((window) => window && window.days === days) || null;
+}
+function stockStrategicStatus(row, window = stockStrategicWindow(row)) {
+  // A strategic window carries authoritative actual-block evidence. The old
+  // row status is only a compatibility fallback for payloads without it.
+  return (window && window.status) || (row && row.status) || "idle";
+}
+function stockSetHorizon(days) {
+  if (![30, 90, 365].includes(days) || stock.horizon === days) return;
+  stock.horizon = days;
+  renderStock();
+  document.querySelector(`#stockRows [data-stock-horizon="${days}"]`)?.focus({ preventScroll: true });
+}
+function stockFollowObjective(kind, resourceId) {
+  if (kind === "return_to_map") { closeStock(); return; }
+  if (kind !== "review_resource" || !resourceId || !stockRows().some((row) => row.id === resourceId)) return;
+  // The mission and its risk queue are explicitly fixed at 90 days. A player
+  // may explore another horizon, but following the mission must open the same
+  // brief that produced its recommendation.
+  stock.horizon = 90;
+  stockSelect(resourceId);
 }
 
 /* ---------------- open / close / select ---------------- */
@@ -13170,13 +13292,15 @@ function openStock(com) {
   closeSheet();
   if (!stock.open) stock.lastFocus = returnFocus;
   stock.open = true;
+  stock.view = com ? "resource" : "overview";
   $("#stockScreen").style.display = "block";
   stockTipHide();
   $("#stockScreen").onscroll = stockTipHide;
   if (com) stock.sel = com;
   if (!stock.sel || !stockRows().some((r) => r.id === stock.sel)) {
     const vis = stockVisibleRows();
-    stock.sel = (vis[0] || stockRows()[0] || {}).id || null;
+    const missionFocus = S.resources?.strategic_summary?.mission?.focus_resource_id;
+    stock.sel = (vis.find((row) => row.id === missionFocus) || vis[0] || stockRows()[0] || {}).id || null;
   }
   renderStock();
   stockFetchCards();
@@ -13197,12 +13321,21 @@ window.openStock = openStock;
 window.closeStock = closeStock;
 
 function stockSelect(id) {
-  if (stock.sel === id) return;
+  if (stock.sel === id && stock.view === "resource") return;
+  stock.view = "resource";
   stock.sel = id;
+  stock.focusResourceOnLoad = true;
   stockTipHide();
   renderStock();
   stockFetchCards();
   if (window.innerWidth <= 800) $("#stockDock").scrollIntoView({ block: "start", behavior: "instant" });
+}
+function stockShowOverview() {
+  stock.view = "overview";
+  stock.focusResourceOnLoad = false;
+  stockTipHide();
+  renderStock();
+  requestAnimationFrame(() => document.querySelector("#stockRows [data-supply-primary], #stockRows [data-com]")?.focus({ preventScroll: true }));
 }
 function stockToggleFold() { stock.unfolded = !stock.unfolded; renderStock(); }
 window.stockToggleFold = stockToggleFold;
@@ -13223,6 +13356,10 @@ async function stockFetchCards() {
   stock.cards = cards;
   stock.cardsFor = cards.com;
   renderStockDock();
+  if (stock.focusResourceOnLoad) {
+    stock.focusResourceOnLoad = false;
+    requestAnimationFrame(() => $("#stockDock [data-act=back]")?.focus({ preventScroll: true }));
+  }
 }
 
 /* ---------------- the rows ---------------- */
@@ -13240,6 +13377,16 @@ function dailyRowView(row) {
 function stockRowHtml(row) {
   const r = dailyRowView(row);
   const col = stockHue(r.id);
+  const forecast = stockStrategicWindow(row);
+  if (forecast) {
+    const status = stockStrategicStatus(row, forecast);
+    return `<button type="button" class="stockrow supply-command-resource st-${escText(status)}${r.id === stock.sel ? " sel" : ""}" data-com="${r.id}" aria-pressed="${r.id === stock.sel}" aria-controls="stockDock">
+      <span class="gy">${rglyph(r.id, col)}</span>
+      <span class="nm"><b>${escText(r.name)}</b><span class="sen">${escText(forecast.headline || forecast.reason || r.sentence)}</span></span>
+      <span class="st">${escText(STATE_WORD[status] || status).replaceAll("_", " ")}</span>
+      <span class="supply-command-cue" aria-hidden="true">View brief&nbsp;→</span>
+    </button>`;
+  }
   const piled = r.tracked && r.status !== "market";
   const cov = piled ? `<span class="bar"><i style="width:${clamp(r.cover_months / 12, 0, 1) * 100}%"></i></span>` : "";
   const covText = r.status === "market" ? "market" : piled ? `${Math.round(r.cover_days)} d` : "—";
@@ -13258,8 +13405,110 @@ function stockRowHtml(row) {
     </button>`;
 }
 
+function stockStrategicMissionHtml(resources) {
+  const summary = resources && resources.strategic_summary;
+  const mission = summary && summary.mission;
+  const action = summary && summary.primary_action;
+  if (!mission) return `<p class="supply-command-legacy-intro">Pick a planning horizon, then open one resource for its need, coverage and next move.</p>`;
+  const active = Number.isFinite(+mission.active_lines) ? Math.max(0, +mission.active_lines) : 0;
+  const secured = Number.isFinite(+mission.secured_lines) ? Math.max(0, +mission.secured_lines) : 0;
+  const percent = mission.progress_percent == null || !Number.isFinite(+mission.progress_percent)
+    ? null : clamp(+mission.progress_percent, 0, 100);
+  const rows = resources && Array.isArray(resources.rows) ? resources.rows : [];
+  const validReview = action?.kind === "review_resource" && rows.some((row) => row.id === action.resource_id);
+  const validReturn = action?.kind === "return_to_map";
+  const actionButton = validReview || validReturn
+    ? `<button type="button" class="supply-command-primary" data-supply-primary="${escText(action.kind)}"${validReview ? ` data-resource-id="${escText(action.resource_id)}" aria-controls="stockDock"` : ` aria-controls="pane-map"`}><span>${escText(action.label || "Review the mission")}</span><b aria-hidden="true">→</b></button>`
+    : `<p class="supply-command-no-action">No safe mission action is available.</p>`;
+  const progressAria = active > 0
+    ? `aria-valuemin="0" aria-valuemax="${active}" aria-valuenow="${secured}" aria-valuetext="${escText(mission.progress_label || "")}"`
+    : `aria-valuetext="${escText(mission.progress_label || "No active material demand yet.")}"`;
+  const score = active > 0
+    ? `${secured}<span> / ${active} secure</span>`
+    : `<span>No active lines</span>`;
+  return `<article class="supply-command-mission mission-${escText(mission.state || "idle")}" aria-labelledby="supplyMissionTitle">
+    <div class="supply-command-mission-mark" aria-hidden="true"><b>90</b><span>days</span></div>
+    <div class="supply-command-mission-copy">
+      <span class="discovery-kicker">Current mission</span>
+      <h2 id="supplyMissionTitle">${escText(mission.title || "Protect the next 90 days")}</h2>
+      <p>${escText(mission.objective || "Keep every active production and construction line supplied.")}</p>
+      <div class="supply-command-progress-copy"><strong>${escText(mission.status_label || mission.state || "Mission status")}</strong><b>${score}</b></div>
+      <div class="supply-command-progress" role="progressbar" aria-label="90-day supply mission progress" ${progressAria}><i style="width:${percent == null ? 0 : percent}%"></i></div>
+      <small>${escText(mission.progress_label || "Mission progress is unavailable.")}</small>
+    </div>
+    <div class="supply-command-next"><span>Next move</span>${actionButton}<small>${escText(action?.detail || "Open a resource brief to plan the next move.")}</small></div>
+  </article>`;
+}
+
+function stockStrategicSummaryHtml(resources) {
+  const summary = resources && resources.strategic_summary;
+  const alerts = summary && Array.isArray(summary.attention) ? summary.attention.slice(0, 3) : [];
+  const secondaryAlerts = alerts.slice(1);
+  const horizonButtons = [[30, "30 days"], [90, "90 days"], [365, "1 year"]].map(([days, label]) =>
+    `<button type="button" data-stock-horizon="${days}" aria-pressed="${days === stock.horizon}">${label}</button>`).join("");
+  const remainingCount = Math.max(0, +(summary?.attention_count || 0) - 1);
+  const alertHtml = secondaryAlerts.length ? `<details class="supply-command-risk-queue"><summary>${remainingCount} other 90-day risk${remainingCount === 1 ? "" : "s"}</summary><div class="supply-command-alerts" aria-label="Other priority 90-day supply alerts, fixed">${secondaryAlerts.map((alert) =>
+    `<button type="button" data-supply-alert="${escText(alert.id)}"><span>${rglyph(alert.id, stockHue(alert.id))}</span><span><b>${escText(alert.name || alert.id)}</b><small>${escText(alert.headline || alert.reason || "Review this supply line.")}</small></span></button>`
+  ).join("")}</div>${remainingCount > secondaryAlerts.length ? `<p class="supply-command-queue-note">${remainingCount - secondaryAlerts.length} more risk${remainingCount - secondaryAlerts.length === 1 ? " is" : "s are"} tracked on the resource board below.</p>` : ""}</details>` : "";
+  return `<section class="supply-command-brief" aria-labelledby="supplyCommandHeading">
+    <span class="discovery-kicker">Resources &amp; exchange</span><h1 id="supplyCommandHeading">Strategic Supply Command</h1>
+    ${stockStrategicMissionHtml(resources)}
+    <div class="supply-command-toolbar"><div><b>Look ahead</b><span>The mission stays fixed at 90 days. These buttons change the cards and selected brief.</span></div><div class="supply-command-horizons" role="group" aria-label="Resource planning horizon">${horizonButtons}</div></div>
+    ${alertHtml}
+  </section>`;
+}
+
+function stockStrategicDetailHtml(row) {
+  const strategic = row && row.strategic;
+  const forecast = stockStrategicWindow(row);
+  if (!strategic || !forecast) return "";
+  const unit = strategic.quantity_unit || row.stock?.unit || row.unit || "";
+  const value = (number) => number == null ? "—" : `${fmtQ(number)} ${escText(unit)}`;
+  const status = stockStrategicStatus(row, forecast);
+  const action = forecast.recommended_action || {};
+  const sources = forecast.sources || {};
+  const drivers = Array.isArray(strategic.drivers) ? strategic.drivers : [];
+  const forecastMethod = forecast.reason && forecast.reason !== forecast.headline
+    ? `<details class="supply-command-method"><summary>How this forecast works</summary><p>${escText(forecast.reason)}</p></details>` : "";
+  const sourceRows = [
+    ["Stock free after prior claims", sources.stock], ["Domestic output", sources.domestic_output],
+    ["Contracted inbound", sources.contracted_inbound], ["Paid inbound · due", sources.paid_inbound],
+  ];
+  const stockContext = sources.warehouse_stock == null ? ""
+    : `<p class="supply-command-source-note">Warehouse on hand: <b>${value(sources.warehouse_stock)}</b> · Prior outbound claims: <b>${value(sources.prior_claims)}</b>. The four retained-source figures above account for those claims once.</p>`;
+  return `<section class="supply-command-detail st-${escText(status)}" aria-labelledby="supplyCommandDetailHeading">
+    <div class="supply-command-detail-head"><div><span class="discovery-kicker">${forecast.days} day brief</span><h3 id="supplyCommandDetailHeading">Supply outlook</h3></div><span class="st">${escText(STATE_WORD[status] || status).replaceAll("_", " ")}</span></div>
+    <dl class="supply-command-score"><div><dt>Need</dt><dd>${value(forecast.demand)}</dd></div><div><dt>Covered</dt><dd>${value(forecast.covered)}</dd></div><div><dt>Gap</dt><dd>${value(forecast.gap)}</dd></div></dl>
+    <p class="supply-command-reason">${escText(forecast.headline || "No forecast explanation is available.")}</p>
+    <div class="supply-command-action"><span>Recommended move</span><strong>${escText(action.label || "Hold course")}</strong><p>${escText(action.detail || "No intervention is recommended for this horizon.")}</p></div>
+    ${forecastMethod}
+    ${drivers.length ? `<details><summary>What needs this resource?</summary><dl class="supply-command-sources">${drivers.map((driver) => `<div><dt>${escText(driver.label)}</dt><dd>${driver.value == null ? "—" : `${fmtQ(driver.value)} ${escText(driver.unit || unit)}`}</dd></div>`).join("")}</dl></details>` : ""}
+    <details><summary>What covers this need?</summary>${strategic.storable === false ? `<p>${escText(strategic.storage_note || "This resource is market-settled and is not held in the generic national stockpile.")}</p>` : `<dl class="supply-command-sources">${sourceRows.map(([label, number]) => `<div><dt>${label}</dt><dd>${value(number)}</dd></div>`).join("")}</dl>${stockContext}`}</details>
+  </section>`;
+}
+
+// One compact, decision-first reading for the action screen. The deeper source
+// accounting remains below the three choices; this keeps the reason for acting
+// visible without making the player decode the full ledger first.
+function stockActionObjectiveHtml(row) {
+  const strategic = row && row.strategic;
+  const forecast = stockStrategicWindow(row);
+  if (!strategic || !forecast) return "";
+  const unit = strategic.quantity_unit || row.stock?.unit || row.unit || "";
+  const value = (number) => number == null ? "—" : `${fmtQ(number)} ${escText(unit)}`;
+  const status = stockStrategicStatus(row, forecast);
+  const action = forecast.recommended_action || {};
+  return `<section class="stock-resource-objective st-${escText(status)}" aria-labelledby="stockResourceObjectiveHeading">
+    <div class="stock-resource-objective-copy"><span class="discovery-kicker">Your ${forecast.days}-day objective</span><h3 id="stockResourceObjectiveHeading">${escText(forecast.headline || "Review this supply line.")}</h3>
+      <p><strong>Recommended move:</strong> ${escText(action.label || "Hold course")}. ${escText(action.detail || "No intervention is recommended for this horizon.")}</p></div>
+    <dl class="stock-resource-objective-score"><div><dt>Need</dt><dd>${value(forecast.demand)}</dd></div><div><dt>Covered</dt><dd>${value(forecast.covered)}</dd></div><div><dt>Gap</dt><dd>${value(forecast.gap)}</dd></div></dl>
+  </section>`;
+}
+
 function renderStock() {
   if (!stock.open || !S || !S.resources) return;
+  $("#stockScreen").classList.toggle("view-resource", stock.view === "resource");
+  $("#stockScreen").classList.toggle("view-overview", stock.view !== "resource");
   const R = S.resources;
   const rows = stockRows(), vis = stockVisibleRows();
   const contracts = R.contracts || [], offers = R.offers || [];
@@ -13268,31 +13517,30 @@ function renderStock() {
   const focusedRow = document.activeElement && document.activeElement.closest && document.activeElement.closest("#stockRows .stockrow");
   const focusCommodity = focusedRow && focusedRow.dataset.com;
   const fed = rows.filter((r) => r.status === "ok" || r.status === "supplied").length;
-  $("#stockSub").textContent =
-    `${fed} of ${rows.length} lines fed · ${R.starved} starved · ${contracts.length} contract${contracts.length === 1 ? "" : "s"}`
-    + (market.quoted == null ? "" : ` · ${market.quoted} quoted${market.critical ? ` · ${market.critical} critical` : ""}`);
+  $("#stockSub").textContent = R.strategic_summary
+    ? `${R.strategic_summary.headline}${R.starved ? ` · ${R.starved} blocked now` : ""} · ${contracts.length} contract${contracts.length === 1 ? "" : "s"}`
+    : `${fed} of ${rows.length} lines fed · ${R.starved} starved · ${contracts.length} contract${contracts.length === 1 ? "" : "s"}`
+      + (market.quoted == null ? "" : ` · ${market.quoted} quoted${market.critical ? ` · ${market.critical} critical` : ""}`);
   // Offers (S3 writes them; absence renders nothing) above the rows.
   const offerLines = offers.map((o) => `<div class="offerrow">${rglyph(RES_ALL, "var(--brass-dim)")}
       <span class="ln">${escText(o.legs)} · expires in ${o.expires_in_days} days</span>
       <button data-offer="${o.id}" data-answer="accept">Accept — ${o.accept_pc.toFixed(0)} political capital</button>
       <button data-offer="${o.id}" data-answer="decline">Decline</button>
     </div>`).join("");
-  const foldN = rows.filter((r) => r.fold).length;
-  const fold = foldN
-    ? `<button type="button" class="stockfold" aria-expanded="${stock.unfolded}" onclick="stockToggleFold()">${stock.unfolded
-        ? `Show less · hide ${foldN} unused line${foldN > 1 ? "s" : ""}`
-        : `Explore ${foldN} more · no current demand`}</button>`
-    : "";
-  const head = `<div class="stockcols"><span></span><span>line</span><span>have</span><span>in hand</span><span>demand</span><span>net</span><span></span></div>`;
+  // Old payloads retain their ledger headings. Strategic buttons carry a
+  // plain-language headline instead, so empty HAVE/NET column labels would be
+  // visual noise rather than useful context.
+  const head = vis.some((row) => stockStrategicWindow(row)) ? ""
+    : `<div class="stockcols"><span></span><span>line</span><span>have</span><span>in hand</span><span>demand</span><span>net</span><span></span></div>`;
   const contractLines = contracts.map((k) => `<div class="contractrow">${rglyph(k.com || RES_ALL, stockHue(k.com))}
       <span class="ln">${escText(k.line)}</span>
       <button data-cancel="${k.id}" data-with="${escText(k.with)}" data-pc="${k.cancel_pc}" data-note="${escText(k.cancel_note)}">Cancel — ${k.cancel_pc.toFixed(0)} political capital</button>
       <span class="tiny">${escText(k.cancel_note)}</span>
     </div>`).join("");
-  $("#stockRows").innerHTML = `<div class="discovery-intro"><span class="discovery-kicker">Resources &amp; exchange</span><h1>Keep your next move supplied.</h1><p>Choose a resource to mine, trade or inspect its routes. Shortages only block the actions that need them.</p></div>`
+  $("#stockRows").innerHTML = stockStrategicSummaryHtml(R)
     + `<details class="discovery-details" id="stockMarketQuotes"><summary>World market · prices &amp; trends</summary>${marketStripHtml(rows)}</details>`
     + (offers.length ? `<div class="stockhead">Offers</div>${offerLines}` : "")
-    + head + `<div class="stock-card-grid">${vis.map(stockRowHtml).join("")}</div>` + fold
+    + head + `<div class="supply-command-board-heading"><b>All strategic materials</b><span>Select any material to inspect its supply plan.</span></div><div class="stock-card-grid" aria-label="Twelve strategic resources">${vis.map(stockRowHtml).join("")}</div>`
     + (contracts.length ? `<details class="discovery-details" id="stockContracts"><summary>${contracts.length} active contract${contracts.length === 1 ? "" : "s"} · terms &amp; cancellation</summary>${contractLines}</details>` : "");
   expanded.forEach(id => { const el = $("#stockRows").querySelector("#" + id); if (el) el.open = true; });
   const byId = {};
@@ -13305,6 +13553,15 @@ function renderStock() {
   });
   $("#stockRows").querySelectorAll("[data-market-com]").forEach((el) => {
     el.onclick = () => stockSelect(el.dataset.marketCom);
+  });
+  $("#stockRows").querySelectorAll("[data-stock-horizon]").forEach((el) => {
+    el.onclick = () => stockSetHorizon(+el.dataset.stockHorizon);
+  });
+  $("#stockRows").querySelectorAll("[data-supply-alert]").forEach((el) => {
+    el.onclick = () => { stock.horizon = 90; stockSelect(el.dataset.supplyAlert); };
+  });
+  $("#stockRows").querySelectorAll("[data-supply-primary]").forEach((el) => {
+    el.onclick = () => stockFollowObjective(el.dataset.supplyPrimary, el.dataset.resourceId || null);
   });
   $("#stockRows").querySelectorAll("[data-cancel]").forEach((b) => {
     b.onclick = () => cancelDeal(+b.dataset.cancel, b.dataset.with, b.dataset.pc, b.dataset.note);
@@ -13330,8 +13587,13 @@ function renderStockDock() {
   if (!c || c.com !== stock.sel) { dock.innerHTML = `<div class="tiny">reading the ledger…</div>`; return; }
   const m = c.mine, tr = c.trade, t = c.take;
   const com = c.com;
-  let s = `<button type="button" class="stock-back-link" data-act="back">← Choose another resource</button><h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2><div class="sub">${escText(c.row.sentence)}</div>${marketCardHtml(c.row)}
-    <button type="button" class="stock-route-link" data-act="routes">SHOW ROUTES ON GLOBE · G</button>`;
+  const legacySub = c.row.strategic ? "" : `<div class="sub">${escText(c.row.sentence)}</div>`;
+  const objectiveHtml = stockActionObjectiveHtml(c.row);
+  const overviewHtml = `<div class="stock-resource-overview">${stockStrategicDetailHtml(c.row)}<div class="stock-resource-market">${marketCardHtml(c.row)}
+    <button type="button" class="stock-route-link" data-act="routes">SHOW ROUTES ON GLOBE · G</button></div></div>`;
+  let s = `<main class="stock-resource-page"><button type="button" class="stock-back-link" data-act="back">← Supply overview</button>
+    <header class="stock-resource-title"><span class="discovery-kicker">Resource action screen</span><h2>${rglyph(com, stockHue(com))}${escText(c.name)}</h2>${legacySub}<p>See the objective, then choose one clear way to secure this material.</p></header>
+    ${objectiveHtml}<section class="stock-resource-functions" aria-labelledby="resourceFunctionsHeading"><span class="discovery-kicker">Choose a function</span><h3 id="resourceFunctionsHeading">How will you secure ${escText(c.name)}?</h3><p>Trade is usually the fastest peaceful option. Development builds long-term supply. Take stays locked until the market has truly closed.</p><div class="stock-action-grid">`;
   // MINE / DRILL — the player chooses one mapped province. Every number and
   // refusal is served; the sim validates it again when the button is pressed.
   const mineOptions = m.options || [];
@@ -13349,15 +13611,16 @@ function renderStockDock() {
     `<option value="${escText(o.district)}"${o.district === stock.mineTarget[com] ? " selected" : ""}>${
       escText(o.district_name)} · ${escText(o.quality)}${o.active ? " · BUILDING" : o.online ? " · ONLINE" : ""}</option>`
     ).join("")}</select>` : "";
-  s += `<div class="strat${mineLive || (mt && (mt.active || mt.online)) ? "" : " poor"}"><div class="top"><span class="nm">${escText(m.verb)}</span><span class="cost">DEVELOP · ${m.pc.toFixed(0)} PC</span></div>
+  const mineCard = `<div class="strat${mineLive || (mt && (mt.active || mt.online)) ? "" : " poor"}"><div class="top"><span class="nm">${escText(m.verb)}</span><span class="cost">DEVELOP · ${m.pc.toFixed(0)} PC</span></div>
       <div class="blurb">${escText(m.blurb)}</div>${mineSelect}
       <div class="plus">${escText(m.plus)}</div><div class="minus">${escText(m.minus)}</div>
       <div class="foot"><button data-act="mine" ${mineLive ? "" : "disabled"}>${escText(m.verb)} THIS PROVINCE</button>${
         !m.affordable ? `<span class="short">${Math.ceil(m.shortfall)} more needed</span>` : ""}</div>
       <div class="why">${escText(mineStatus || "No eligible deposit.")}</div></div>`;
   // TRADE — opens talks with the best seller the sim found.
+  let tradeCard = "";
   if (tr) {
-    s += `<div class="strat${tr.affordable ? "" : " poor"}"><div class="top"><span class="nm">TRADE</span><span class="cost">OPEN TALKS · ${tr.pc.toFixed(0)} PC</span></div>
+    tradeCard = `<div class="strat${tr.affordable ? "" : " poor"}"><div class="top"><span class="nm">TRADE</span><span class="cost">OPEN TALKS · ${tr.pc.toFixed(0)} PC</span></div>
       <div class="blurb">${escText(tr.blurb)}</div>
       <div class="plus">${escText(tr.plus)}</div><div class="minus">${escText(tr.minus)}</div>
       <div class="why">${escText(tr.why)}</div>
@@ -13367,7 +13630,7 @@ function renderStockDock() {
   // TAKE — greyed until the trade route has closed (served `open`), hatched
   // with the bar sentence under a pact or a nuclear target (served `blocked`).
   const live = t.open && !t.blocked;
-  s += `<div class="strat${live ? "" : " poor"}"><div class="top"><span class="nm">TAKE</span><span class="cost">${
+  const takeCard = `<div class="strat${live ? "" : " poor"}"><div class="top"><span class="nm">TAKE</span><span class="cost">${
       t.pc != null ? `${t.pc.toFixed(0)} PC to open a quarrel` : "—"}</span></div>
       <div class="blurb">${escText(t.blurb)}</div>
       ${t.plus ? `<div class="plus">${escText(t.plus)}</div>` : ""}${t.minus ? `<div class="minus">${escText(t.minus)}</div>` : ""}
@@ -13376,10 +13639,12 @@ function renderStockDock() {
         live && t.affordable ? "" : "disabled"}>OPEN A QUARREL</button></span>${
         t.blocked ? `<span class="short">${escText(t.blocked)}</span>`
         : live && !t.affordable ? `<span class="short">${Math.ceil(t.pc - (me() || {}).political_capital)} more needed</span>` : ""}</div></div>`;
-  s += `<div class="tiny advisor">${escText(c.advisor)}</div>`;
+  // The human-facing order mirrors the peaceful-first policy: negotiate,
+  // develop domestic supply, and only then show the gated coercive route.
+  s += `${tradeCard}${mineCard}${takeCard}</div></section><section class="stock-resource-explanation" aria-label="Supply details"><span class="discovery-kicker">Why this matters</span>${overviewHtml}</section><div class="tiny advisor">${escText(c.advisor)}</div></main>`;
   dock.innerHTML = s;
   const backBtn = dock.querySelector("[data-act=back]");
-  if (backBtn) backBtn.onclick = () => $("#stockRows").scrollIntoView({ block: "start", behavior: "instant" });
+  if (backBtn) backBtn.onclick = stockShowOverview;
   const routesBtn = dock.querySelector("[data-act=routes]");
   if (routesBtn) routesBtn.onclick = () => { closeStock(); openLogistics(com); };
   const talksBtn = dock.querySelector("[data-act=talks]");
@@ -13440,10 +13705,12 @@ function stockTipShow(r, clientX, clientY) {
   tip.style.borderLeftColor = col;
   tip.querySelector(".tt-h .gy").innerHTML = rglyph(r.id, col);
   tip.querySelector(".tt-nm").textContent = r.name;
-  tip.querySelector(".tt-yr").textContent = r.tracked ? dailyRowView(r).unit : "";
+  const forecast = stockStrategicWindow(r);
+  const status = stockStrategicStatus(r, forecast);
+  tip.querySelector(".tt-yr").textContent = forecast ? `${forecast.days} days` : r.tracked ? dailyRowView(r).unit : "";
   const st = tip.querySelector(".tt-st");
-  st.style.color = STATE_COLOR[r.status] || "var(--dim)";
-  st.textContent = `${STATE_WORD[r.status] || r.status} — ${r.hover || r.sentence}`;
+  st.style.color = STATE_COLOR[status] || "var(--dim)";
+  st.textContent = `${STATE_WORD[status] || status} — ${forecast ? forecast.headline : r.hover || r.sentence}`;
   tip.querySelector(".tt-fx").innerHTML = (r.prov || []).map((p) =>
     `<li><b class="${p.letter.toLowerCase()}">${escText(p.letter)}</b>${escText(p.text)}</li>`).join("")
     || `<li>no provenance served for this row</li>`;
@@ -13454,9 +13721,9 @@ function stockTipShow(r, clientX, clientY) {
 
 function stockKeys(e) {
   const k = e.key;
-  if (k === "Escape") { e.preventDefault(); closeStock(); return; }
+  if (k === "Escape") { e.preventDefault(); if (stock.view === "resource") stockShowOverview(); else closeStock(); return; }
   if (e.target && e.target.closest && e.target.closest("button,input,select,textarea,summary,[contenteditable=true]")) return;
-  if (k === "b" || k === "B") { e.preventDefault(); closeStock(); return; }
+  if (k === "b" || k === "B") { e.preventDefault(); if (stock.view === "resource") stockShowOverview(); else closeStock(); return; }
   if (k === "g" || k === "G") { e.preventDefault(); const com = stock.sel; closeStock(); openLogistics(com); return; }
   if (k === "ArrowUp" || k === "ArrowDown") {
     e.preventDefault();
@@ -14293,7 +14560,7 @@ function productionKind(p) { return String((p && (p.kind || p.project_kind)) || 
 function productionStatus(p) { return String((p && p.status) || "building").toLowerCase(); }
 function productionTone(p) {
   const s = productionStatus(p);
-  return s === "blocked" ? "blocked" : s === "slowed" ? "slowed" : "building";
+  return s === "blocked" ? "blocked" : s === "paused" ? "paused" : s === "slowed" ? "slowed" : "building";
 }
 function productionProvince(p) {
   const province = p && p.province;
@@ -14319,7 +14586,7 @@ function productionCanCancel(p) {
   return !!(a && (a.cancel === true || (Array.isArray(a) && a.includes("cancel"))));
 }
 function productionSummary(rows) {
-  const out = { building: 0, slowed: 0, blocked: 0 };
+  const out = { building: 0, slowed: 0, paused: 0, blocked: 0 };
   for (const p of rows) out[productionTone(p)]++;
   return out;
 }
@@ -14329,6 +14596,11 @@ function productionRequirements(p) {
 function productionCapabilityPairs(raw) {
   return (Array.isArray(raw) ? raw.map((x) => [x.name || x.kind, x.level]) : Object.entries(raw || {}))
     .filter(([, level]) => +level > 0);
+}
+function productionModuleLabel(row) {
+  const capacity = row && row.module_capacity;
+  return typeof capacity === "number" && Number.isFinite(capacity) && capacity > 0
+    ? `Starter workshop · ${(capacity * 100).toLocaleString("en-US", {maximumFractionDigits:4})}% standard capacity` : "";
 }
 function productionNeedHtml(r) {
   const name = r.name || logisticsCommodityName(r.commodity || r.id || "resource");
@@ -14346,17 +14618,17 @@ function renderProductionDock() {
   const sum = S.production_summary || {};
   const manufacture = S.manufacturing_summary || {};
   const active = +sum.active || 0, building = +sum.building || 0;
-  const slowed = +sum.slowed || 0, blocked = +sum.blocked || 0;
+  const slowed = +sum.slowed || 0, paused = +sum.paused || 0, blocked = +sum.blocked || 0;
   const completed = +sum.completed || 0;
   const capacity = +sum.capacity || 4;
   const lines = +manufacture.active || 0, lineCapacity = +manufacture.capacity || 0;
   copy.textContent = `${active}/${capacity} builds · ${lines}/${lineCapacity} lines`;
-  const attention = (+sum.attention || slowed + blocked) + (+manufacture.attention || 0);
+  const attention = (+sum.attention || slowed + paused + blocked) + (+manufacture.attention || 0);
   badge.textContent = attention > 99 ? "99+" : String(attention);
   badge.classList.toggle("on", attention > 0);
   badge.classList.toggle("warn", !blocked && !(+manufacture.blocked) && attention > 0);
   button.disabled = !S.player || (!S.production_summary && !S.manufacturing_summary);
-  button.setAttribute("aria-label", `Production: ${building} building, ${slowed + (+manufacture.attention || 0)} need attention, ${lines} manufacturing lines`);
+  button.setAttribute("aria-label", `Production: ${building} building, ${slowed} slowed, ${paused} waiting for supply, ${lines} manufacturing lines`);
   button.setAttribute("aria-expanded", PROD.open ? "true" : "false");
 }
 
@@ -14429,7 +14701,7 @@ async function productionFetch() {
     PROD.data = data; PROD.stale = false;
     if (PROD.selected && !productionProject(PROD.selected)) PROD.selected = null;
     const sum = productionSummary(data.queue);
-    $("#productionLive").textContent = `Production updated. ${sum.building} building, ${sum.slowed} slowed, ${sum.blocked} blocked.`;
+    $("#productionLive").textContent = `Production updated. ${sum.building} building, ${sum.slowed} slowed, ${sum.paused} waiting for supply, ${sum.blocked} blocked.`;
   } catch (e) {
     if (seq === PROD.seq) { PROD.error = e.message; PROD.stale = true; }
   } finally {
@@ -14452,12 +14724,17 @@ function productionCardHtml(p) {
   const reason = p.reason || p.status_reason || "";
   const name = p.name || kind.replace(/_/g, " ");
   const needs = productionRequirements(p).map(productionNeedHtml).join("");
+  const throughput = p.throughput_ratio != null ? clamp(+p.throughput_ratio || 0, 0, 1) : null;
+  const rate = p.work_rate_today != null ? +p.work_rate_today || 0 : null;
+  const nominalRate = p.nominal_work_rate != null ? +p.nominal_work_rate || 0 : null;
+  const pace = throughput == null ? "" : `<div class="work-line"><span><b>${Math.round(throughput * 100)}%</b> next-day speed</span><span>${fmtQ(rate)} of ${fmtQ(nominalRate)} work-days</span></div>`;
   return `<article class="work-card ${tone}${String(PROD.selected) === String(p.id) ? " selected" : ""}" tabindex="0" data-prod-project="${logisticsEscAttr(p.id)}">
     <div class="work-top"><span class="work-art" aria-hidden="true">${PROD_ICON[kind] || "◆"}</span>
       <div class="work-title"><b>${escText(name)}</b><span>${escText(province.name || province.id || "Province")}</span></div>
       <span class="work-state">${escText(productionStatus(p).toUpperCase())}</span></div>
     <div class="work-progress" aria-label="${percent}% complete"><i style="width:${percent}%"></i></div>
     <div class="work-line"><span><b>${percent}%</b> complete</span><span>${escText(remaining)}</span></div>
+    ${pace}
     ${reason ? `<div class="work-reason">${escText(reason)}</div>` : ""}
     ${p.finance ? `<div class="work-reason"><strong>${escText(p.finance.department_name)} budget</strong><br>${fmt.money(p.finance.spent_bn)} spent of ${fmt.money(p.finance.cost_bn)} domestic work · ${fmt.money(p.finance.remaining_bn)} remains.<br>${fmt.money(p.finance.daily_request_bn)} next requested work bill. Materials and imported purchases are separate.</div>` : ""}
     <details class="operations-details"${String(PROD.selected) === String(p.id) ? " open" : ""}><summary>Materials &amp; project priority</summary>
@@ -14506,8 +14783,8 @@ function productionProvinceHtml() {
   if (!c) { PROD.view = "catalog"; return productionCatalogHtml(); }
   const provinces = productionProvinces().filter((p) => productionEligible(c, p));
   const picks = provinces.map((p) => {
-    const caps = productionCapabilityPairs(p.capabilities)
-      .map(([name, level]) => `${String(name).replace(/_/g, " ")} ${level}`).join(" · ");
+    const caps = [...productionCapabilityPairs(p.capabilities)
+      .map(([name, level]) => `${String(name).replace(/_/g, " ")} ${level}`), productionModuleLabel(p)].filter(Boolean).join(" · ");
     return `<button type="button" class="province-pick" data-prod-province="${logisticsEscAttr(p.id)}"><b>${escText(p.name || p.id)}</b><span>${escText(caps || "available ground")}</span></button>`;
   }).join("");
   const recipe = productionRequirements(c).map(productionNeedHtml).join("");
@@ -14522,13 +14799,15 @@ function productionBuiltHtml() {
   if (!rows.length) return "";
   const total = rows.reduce((sum, row) => sum + productionCapabilityPairs(row.capabilities)
     .reduce((n, [, level]) => n + (+level || 0), 0), 0);
+  const workshops = rows.filter(row => productionModuleLabel(row)).length;
   const detail = PROD.showBuilt ? `<div class="built-list">${rows.map((row) => {
     const province = row.province || {};
     const caps = productionCapabilityPairs(row.capabilities).map(([name, level]) =>
-      `<span class="built-cap">${escText(String(name).replace(/_/g, " "))} ${escText(level)}</span>`).join("");
+      `<span class="built-cap">${escText(String(name).replace(/_/g, " "))} ${escText(level)}</span>`).join("")
+      + (productionModuleLabel(row) ? `<span class="built-cap">${escText(productionModuleLabel(row))}</span>` : "");
     return `<div class="built-row"><b>${escText(province.name || province.id || "Province")}</b><div class="built-caps">${caps}</div></div>`;
   }).join("")}</div>` : "";
-  return `<button type="button" class="built-toggle" data-prod-built aria-expanded="${PROD.showBuilt}"><span>Completed province upgrades</span><b>${total} ${PROD.showBuilt ? "−" : "+"}</b></button>${detail}`;
+  return `<button type="button" class="built-toggle" data-prod-built aria-expanded="${PROD.showBuilt}"><span>Completed province upgrades</span><b>${workshops ? `${total} full-site levels · ${workshops} workshop province${workshops === 1 ? "" : "s"}` : total} ${PROD.showBuilt ? "−" : "+"}</b></button>${detail}`;
 }
 
 /* Manufacturing shares this board with construction because the map should
@@ -14541,7 +14820,10 @@ function manufacturingHoldings() { return (MANU.data && Array.isArray(MANU.data.
 function manufacturingOrders() { return (MANU.data && Array.isArray(MANU.data.orders)) ? MANU.data.orders : []; }
 function manufacturingLine(id) { return manufacturingLines().find((line) => String(line.id) === String(id)); }
 function manufacturingKit(id) { return manufacturingCatalog().find((kit) => String(kit.id) === String(id)); }
-function manufacturingTone(line) { return String(line && line.status || "producing").toLowerCase() === "blocked" ? "blocked" : "building"; }
+function manufacturingTone(line) {
+  const status = String(line && line.status || "producing").toLowerCase();
+  return status === "blocked" ? "blocked" : status === "paused" ? "paused" : status === "slowed" ? "slowed" : "building";
+}
 function manufacturingClassMark(value) { return MANU_CLASS_MARK[String(value || "").toLowerCase()] || "◆"; }
 function manufacturingBn(value, digits) { return `$${(+value || 0).toFixed(digits == null ? 2 : digits)}bn`; }
 function manufacturingRequirementHtml(requirement) {
@@ -14577,7 +14859,7 @@ async function manufacturingFetch() {
     MANU.data = data; MANU.stale = false;
     if (MANU.selected && !manufacturingLine(MANU.selected)) MANU.selected = null;
     const summary = data.summary || {};
-    $("#productionLive").textContent = `Manufacturing updated. ${+summary.producing || 0} producing, ${+summary.blocked || 0} blocked.`;
+    $("#productionLive").textContent = `Manufacturing updated. ${+summary.producing || 0} producing, ${+summary.slowed || 0} slowed, ${+summary.paused || 0} waiting, ${+summary.blocked || 0} blocked.`;
   } catch (error) {
     if (seq === MANU.seq) { MANU.error = error.message; MANU.stale = true; }
   } finally {
@@ -14597,13 +14879,18 @@ function manufacturingLineHtml(line) {
   const requirements = (line.requirements || []).filter((row) => +(row.draw != null ? row.draw : row.required) > 0)
     .map(manufacturingRequirementHtml).join("");
   const lead = +line.lead_days || 0;
+  const settled = line.allocation_bn_actual_day != null && line.throughput_ratio != null;
+  const actualMoney = settled ? manufacturingBn(line.allocation_bn_actual_day) : "Awaiting";
+  const actualSpeed = settled ? `${Math.round(clamp(+line.throughput_ratio || 0, 0, 1) * 100)}%` : "Next tick";
+  const actualUnits = settled ? `${fmtQ(line.units_ordered_day || 0)} units last day · ${fmtQ(line.units_planned_day || 0)} planned`
+    : `${fmtQ(line.units_planned_day || 0)} units planned for the next day`;
   return `<article class="work-card factory-card ${tone}${String(MANU.selected) === String(line.id) ? " selected" : ""}" tabindex="0" data-manu-line="${logisticsEscAttr(line.id)}">
     <div class="work-top"><span class="work-art" aria-hidden="true">${manufacturingClassMark(line.class)}</span>
       <div class="work-title"><b>${escText(line.name || line.kit)}</b><span>${escText(province.name || province.id || "Arms plant")} · ${escText(line.class || "Equipment")}</span></div>
       <span class="work-state">${escText(String(line.status || "producing").toUpperCase())}</span></div>
-    <div class="factory-output"><span>Planned / day<b>${manufacturingBn(line.allocation_bn_day)}</b></span><span>Lead time<b>${lead ? `${lead} days` : "pending"}</b></span></div>
+    <div class="factory-output"><span>Actual last day<b>${actualMoney}</b></span><span>Last run<b>${actualSpeed}</b></span><span>Lead time<b>${lead ? `${lead} days` : "pending"}</b></span></div>
     ${line.reason ? `<div class="work-reason">${escText(line.reason)}</div>` : ""}
-    <div class="work-line"><span><b>${fmtQ(tone === "blocked" ? 0 : line.units_ordered_day || 0)}</b> planned units / day</span><span>${manufacturingBn(line.ordered_bn || 0)} ordered to date</span></div>
+    <div class="work-line"><span>${actualUnits}</span><span>${manufacturingBn(line.ordered_bn || 0)} ordered to date</span></div>
     <details class="operations-details"${String(MANU.selected) === String(line.id) ? " open" : ""}><summary>Daily materials &amp; line priority</summary>
     ${requirements ? `<div class="work-needs">${requirements}</div>` : ""}
     <div class="work-actions" aria-label="Manufacturing line controls">${["high", "normal", "low"].filter((value) => value === priority || choices.includes(value)).map((value) =>
@@ -14767,7 +15054,7 @@ function renderProductionPanel() {
     const list = rows.length ? `<div class="production-list">${rows.map(productionCardHtml).join("")}</div>`
       : `<div class="production-empty">No work is under way.<br>Choose a project, then put it on the map.</div>`;
     body.innerHTML = `${operationsHeroHtml("production", "The foundations of tomorrow", "Build what comes next.", "Connect your provinces, grow your industry, and create the places your next plans depend on. Every project advances on the daily clock.")}
-      <div class="production-summary"><span>Building<b>${sum.building}</b></span><span class="slowed">Slowed<b>${sum.slowed}</b></span><span class="blocked">Blocked<b>${sum.blocked}</b></span></div>
+      <div class="production-summary"><span>Building<b>${sum.building}</b></span><span class="slowed">Slowed<b>${sum.slowed}</b></span><span class="paused">Waiting<b>${sum.paused}</b></span><span class="blocked">Blocked<b>${sum.blocked}</b></span></div>
       ${productionStartAllowed() ? `<button type="button" class="production-new" data-prod-new>＋ Start a project</button>` : ""}
       <div class="production-stamp"><b>Your works in progress</b><span>${rows.length} of ${capacity} national project slots · daily work</span></div>${list}${productionBuiltHtml()}`;
   }
@@ -14847,13 +15134,13 @@ function drawProductionOverlay(ctx, view, globe) {
     if (!p) continue;
     const tone = marker.status || (project && productionTone(project)) || "complete";
     const selected = !!project && String(PROD.selected) === String(project.id);
-    const colour = tone === "blocked" ? "#df6c65" : tone === "slowed" ? "#d2a645" : tone === "complete" ? "#c9a55a" : "#55c9df";
+    const colour = tone === "blocked" ? "#df6c65" : tone === "paused" ? "#efc27b" : tone === "slowed" ? "#d2a645" : tone === "complete" ? "#c9a55a" : "#55c9df";
     const radius = (selected ? 11 : 8) * r;
     ctx.globalAlpha = selected ? 1 : .9;
     ctx.fillStyle = "#070b10"; ctx.strokeStyle = "#020406"; ctx.lineWidth = 4 * r;
     ctx.beginPath(); ctx.arc(p[0], p[1], radius, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.strokeStyle = colour; ctx.lineWidth = 1.7 * r;
-    ctx.setLineDash(tone === "blocked" ? [2 * r, 3 * r] : tone === "slowed" ? [5 * r, 2 * r] : []);
+    ctx.setLineDash(tone === "blocked" ? [2 * r, 3 * r] : tone === "paused" ? [4 * r, 4 * r] : tone === "slowed" ? [5 * r, 2 * r] : []);
     ctx.beginPath(); ctx.arc(p[0], p[1], radius, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
     ctx.fillStyle = colour; ctx.font = `700 ${selected ? 13 : 10}px Inter, system-ui, sans-serif`;
     ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(project ? (PROD_ICON[productionKind(project)] || "◆") : "✓", p[0], p[1] + .5 * r);
@@ -14877,21 +15164,26 @@ function drawManufacturingOverlay(ctx, view, globe) {
   for (const province of manufacturingProvinces().filter((row) => +row.arms_plants > 0)) {
     const lineIds = (province.active_lines || []).map(String);
     const lines = manufacturingLines().filter((line) => lineIds.includes(String(line.id)));
-    const line = lines.find((row) => manufacturingTone(row) === "blocked") || lines[0] || null;
+    const line = lines.find((row) => manufacturingTone(row) === "blocked")
+      || lines.find((row) => manufacturingTone(row) === "paused")
+      || lines.find((row) => manufacturingTone(row) === "slowed")
+      || lines[0] || null;
     const district = province.id;
     const d = district && DINDEX[district];
     if (!d) continue;
     const point = globe.projectWorld(d.cx, d.cy, view, 1.018);
     if (!point) continue;
     const blocked = lines.some((row) => manufacturingTone(row) === "blocked");
+    const paused = !blocked && lines.some((row) => manufacturingTone(row) === "paused");
+    const slowed = !blocked && !paused && lines.some((row) => manufacturingTone(row) === "slowed");
     const selected = !!line && String(MANU.selected) === String(line.id);
-    const colour = blocked ? "#df6c65" : lines.length ? "#d9b65f" : "#70808d";
+    const colour = blocked ? "#df6c65" : paused ? "#efc27b" : slowed ? "#d2a645" : lines.length ? "#d9b65f" : "#70808d";
     const radius = (selected ? 11 : 8) * r;
     ctx.globalAlpha = selected ? 1 : .92;
     ctx.fillStyle = "#070b10"; ctx.strokeStyle = "#020406"; ctx.lineWidth = 4 * r;
     ctx.beginPath(); ctx.arc(point[0], point[1], radius, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.strokeStyle = colour; ctx.lineWidth = 1.7 * r;
-    ctx.setLineDash(blocked ? [2 * r, 3 * r] : []);
+    ctx.setLineDash(blocked ? [2 * r, 3 * r] : paused ? [4 * r, 4 * r] : slowed ? [7 * r, 3 * r] : []);
     ctx.beginPath(); ctx.arc(point[0], point[1], radius, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
     ctx.fillStyle = colour; ctx.font = `700 ${selected ? 13 : 10}px Inter, system-ui, sans-serif`;
     ctx.textAlign = "center"; ctx.textBaseline = "middle";
