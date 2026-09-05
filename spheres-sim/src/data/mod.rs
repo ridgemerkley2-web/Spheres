@@ -860,6 +860,7 @@ pub fn load_world(
         wars: vec![],
         statecraft: Statecraft::default(),
         agency: Default::default(),
+        campaign_aims: Default::default(),
         governments: Default::default(),
         conflicts: vec![],
         theatres: crate::theatre::default_theatres(),

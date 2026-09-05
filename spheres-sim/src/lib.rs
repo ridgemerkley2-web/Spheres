@@ -1,4 +1,5 @@
 pub mod agency;
+pub mod campaign_aims;
 pub mod arsenal;
 pub mod commitment;
 pub mod commerce;
@@ -51,6 +52,8 @@ pub enum Command {
     ResumeAutomaticBank { nation: NationId },
     RespondDiplomacy { nation: NationId, offer: u64, accept: bool },
     SetDiplomaticPolicy { nation: NationId, policy: agency::StandingPolicy },
+    ChooseCampaignAim { nation: NationId, aim: campaign_aims::Aim },
+    ContinueSandbox { nation: NationId },
     SetTaxRate { nation: NationId, rate: f64 },
     SetMilSpend { nation: NationId, share: f64 },
     SetStateInvest { nation: NationId, share: f64 },
@@ -362,7 +365,8 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         Command::Sanction { imposer, target } => (*imposer, if w.is_sanctioning(*imposer,*target) { 0.0 } else { 6.0 }, REFUSABLE),
         Command::BreakCurrencyPeg { nation } => (*nation, agency::BREAK_PEG_PC, ALWAYS),
         Command::ResumeAutomaticBank { nation } | Command::RespondDiplomacy { nation, .. }
-        | Command::SetDiplomaticPolicy { nation, .. } => (*nation, 0.0, REFUSABLE),
+        | Command::SetDiplomaticPolicy { nation, .. } | Command::ChooseCampaignAim { nation, .. }
+        | Command::ContinueSandbox { nation } => (*nation, 0.0, REFUSABLE),
         // Redirecting a laboratory is an ordinary act of government and priced
         // like one. The expensive part is not the announcement, it is the half
         // of the banked progress the switch throws away, which the model charges
@@ -700,6 +704,8 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
 
 fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     match c {
+        Command::ChooseCampaignAim { nation, aim } => campaign_aims::choose(w,*nation,*aim)?,
+        Command::ContinueSandbox { nation } => campaign_aims::continue_sandbox(w,*nation)?,
         Command::BreakCurrencyPeg { nation } => agency::break_peg(w,*nation)?,
         Command::ResumeAutomaticBank { nation } => agency::resume_bank(w,*nation)?,
         Command::RespondDiplomacy { nation, offer, accept } => agency::respond(w,*nation,*offer,*accept)?,
@@ -1266,6 +1272,7 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         for (_, system) in SYSTEMS { system(w); }
         programs::finish_day(w);
         province_economy::finish_day(w);
+        campaign_aims::tick(w);
         clock::advance_date(w);
         return w.headlines[before..].to_vec();
     }

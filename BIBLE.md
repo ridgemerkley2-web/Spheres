@@ -450,3 +450,15 @@ express standing policy. Named response deadlines and existing commitment costs
 remain visible. Daily monetary pegs bind both player and AI; floating manual
 policy can return to the automatic bank. Sovereignty compacts remain intact, and
 untouched legacy headless worlds retain their prior rules and serialization.
+
+
+## Adopted amendment — optional peaceful campaign aims (2026-09-04, local review)
+
+The user approved implementing the audit report, including prosperity, science,
+stability, strategic supply and diplomatic leadership alongside domination.
+`CAMPAIGN_AIMS.md` defines these optional model-derived achievements and their
+named target/holding rules. This supersedes the previous claim that domination
+is the only campaign outcome. Existing sovereignty and domination conditions
+remain unchanged. Completing an aim grants no bonus, never halts the world, and
+can be archived to continue in sandbox. Daily observations, persistent frozen
+baselines and pure views preserve deterministic saves and default legacy replay.

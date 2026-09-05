@@ -49,6 +49,7 @@ function renderAgency(state) {
     <section><h3>Standing diplomatic policy</h3><p>Apply automatically to future requests. Existing requests keep their own reply deadline.</p><form id="agencyPolicy">${[["defense_pacts","Defense pacts"],["trade_treaties","Trade treaties"],["calls_to_arms","Calls to arms"]].map(([key,label]) => `<label>${label}<select name="${key}">${[["review","Ask me"],["accept","Accept when legal"],["decline","Decline"]].map(([value,text]) => `<option value="${value}" ${a.policy[key]===value ? "selected" : ""}>${text}</option>`).join("")}</select></label>`).join("")}<button type="submit">Save standing policy</button></form></section>
     <section><h3>Monetary commitment</h3>${a.monetary.kind === "pegged" ? `<p>Your currency is pegged. The policy rate is held at ${(a.monetary.rate*100).toFixed(2)}%. Exit the peg before changing rates.</p><p>Exit cost: ${a.break_peg_pc} political capital, −5 stability, +2 percentage points of inflation. The automatic central bank then resumes.</p><button type="button" id="agencyBreakPeg">Exit currency peg · ${a.break_peg_pc} PC</button>` : `<p>Floating currency · ${a.automatic_bank ? "automatic central bank" : "manual policy rate"}.</p>${a.automatic_bank ? "" : '<button type="button" id="agencyResumeBank">Resume automatic central bank · free</button>'}`}</section>
     <section><h3>Recent decisions</h3>${a.history.length ? `<ul>${a.history.slice().reverse().map(h=>`<li>Request #${h.offer.id}: ${esc(h.outcome)}</li>`).join("")}</ul>` : '<p class="agency-empty">Your responses will be recorded here and retained in your save.</p>'}</section>`;
+  renderCampaignAims(state?.campaign_aims, body);
   body.querySelectorAll("[data-agency-accept]").forEach(b => b.onclick = () => agencyCommand({kind:"respond_diplomacy",offer:Number(b.dataset.agencyAccept),accept:true}));
   body.querySelectorAll("[data-agency-decline]").forEach(b => b.onclick = () => agencyCommand({kind:"respond_diplomacy",offer:Number(b.dataset.agencyDecline),accept:false}));
   body.querySelector("#agencyPolicy").onsubmit = event => { event.preventDefault(); agencyCommand({kind:"set_diplomatic_policy",policy:Object.fromEntries(new FormData(event.target))}); };
@@ -57,4 +58,17 @@ function renderAgency(state) {
   const resume = body.querySelector("#agencyResumeBank");
   if (resume) resume.onclick = () => agencyCommand({kind:"resume_automatic_bank"});
   body.querySelectorAll("button,select").forEach(b => { if (AGENCY.busy) b.disabled = true; });
+}
+
+function renderCampaignAims(aims, body) {
+  if (!aims) return;
+  const esc=agencyEscape, active=aims.active, evaluation=aims.evaluation;
+  const section=document.createElement("section");
+  section.className="agency-aims";
+  const title=aim => aims.offers.find(o=>o.aim===aim)?.title || aim;
+  section.innerHTML=`<h3>Campaign aims</h3><p>${esc(aims.note)}</p>${active ? `<article class="agency-offer"><h4>${esc(title(active.aim))} ${active.completed_day!==null ? "· Achieved" : "· Active"}</h4><p>Fixed target: ${active.target.toFixed(2)} ${esc(evaluation.metric)}. Current: ${evaluation.value.toFixed(2)}.</p><progress max="1" value="${active.completed_day!==null ? 1 : evaluation.progress}" aria-label="Campaign target progress"></progress><p>${active.held_days} / ${active.hold_days} qualifying days. ${active.completed_day!==null ? "Achievement recorded. The world can keep running." : "Breaking any condition resets the consecutive-day count."}</p>${active.completed_day===null && evaluation.blockers.length ? `<ul>${evaluation.blockers.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>` : ""}<button type="button" data-sandbox>Continue in sandbox${active.completed_day===null ? " · set aim aside" : ""}</button></article>` : `<div class="agency-aim-grid">${aims.offers.map(o=>`<article class="agency-offer"><h4>${esc(o.title)}</h4><p>${esc(o.description)}</p>${o.unavailable ? `<p class="agency-refusal">${esc(o.unavailable)}</p>` : ""}<button type="button" data-campaign-aim="${o.aim}" ${o.unavailable ? "disabled" : ""}>Choose this aim · free</button></article>`).join("")}</div>`}${aims.history.length ? `<details><summary>Campaign record (${aims.history.length})</summary><ul>${aims.history.slice().reverse().map(r=>`<li>${esc(title(r.goal.aim))}: ${esc(r.outcome)} · ${r.goal.held_days} qualifying days</li>`).join("")}</ul></details>` : ""}`;
+  body.prepend(section);
+  section.querySelectorAll("[data-campaign-aim]").forEach(b=>b.onclick=()=>agencyCommand({kind:"choose_campaign_aim",aim:b.dataset.campaignAim}));
+  const sandbox=section.querySelector("[data-sandbox]");
+  if(sandbox) sandbox.onclick=()=>agencyCommand({kind:"continue_sandbox"});
 }

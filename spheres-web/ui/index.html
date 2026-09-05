@@ -15799,7 +15799,7 @@ function dominationOffersHtml(D, offers) {
     return `<div class="dom-section-head"><div><div class="dom-eyebrow">Campaign director</div><h3>Reading the world</h3></div></div>
       <div class="dom-empty">${conditions.length ? conditions.map((x) => escText(typeof x === "string" ? x : (x.label || x.reason || x.text || "Condition pending"))).join(" · ") : "The next three agendas will appear when the campaign state is ready."}</div>`;
   }
-  return `<div class="dom-section-head"><div><div class="dom-eyebrow">Choose one path forward</div><h3>Three routes. One ending.</h3></div><p>Each choice comes from your present nation, rivals and unfinished campaign.</p></div>
+  return `<div class="dom-section-head"><div><div class="dom-eyebrow">Choose one path forward</div><h3>Three routes toward domination.</h3><button type="button" onclick="openAgency()">Explore peaceful campaign aims</button></div><p>Each choice comes from your present nation, rivals and unfinished campaign.</p></div>
     <div class="dom-agenda-grid">${cards}</div>
     ${legacy.length ? `<div class="dom-legacy-panel" style="margin-top:18px"><div class="dom-eyebrow">Campaign archive</div><h3>Legacy Seals</h3>${dominationLegacyHtml(legacy)}</div>` : ""}`;
 }

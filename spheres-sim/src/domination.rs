@@ -1,9 +1,9 @@
 //! The universal campaign director.
 //!
-//! SPHERES has one ending: no sovereign rival remains outside the player's
-//! hierarchy.  The agendas here are not alternate victories and do not pay
-//! bonuses.  They are state-derived signposts that turn the existing economy,
-//! resources, industry, statecraft and war systems toward that one ending.
+//! The domination objective requires no sovereign rival outside the player's
+//! hierarchy. Its agendas remain signposts toward that objective and pay no
+//! bonuses. Optional peaceful campaign aims live in `campaign_aims`; they do
+//! not change this module's formal sovereignty or conquest conditions.
 //!
 //! Everything is deterministic.  Offers are ranked from the current world,
 //! carry stable string ids, and consume no RNG.  Progress is observed once per

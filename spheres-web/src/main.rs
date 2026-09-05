@@ -4646,6 +4646,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // resolved. The page paints this contract; it does not score conquest.
         "domination": w.player.map(|p| domination_json(w, p)),
         "agency": w.player.map(|p| spheres_sim::agency::view(w, p)),
+        "campaign_aims": w.player.map(|p| spheres_sim::campaign_aims::view(w, p)),
         "policy": w.player.map(|p| policy_json(w, p)),
         // The budget card (stage 4): the ten dials' named arms, sampled by
         // the sim over the range a dial can hold, and the money block.
@@ -5383,6 +5384,8 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             .and_then(spheres_sim::tech::Domain::parse)
     };
     Some(match kind {
+        "choose_campaign_aim" => Command::ChooseCampaignAim { nation:me,aim:serde_json::from_value(v.get("aim")?.clone()).ok()? },
+        "continue_sandbox" => Command::ContinueSandbox { nation:me },
         "respond_diplomacy" => Command::RespondDiplomacy { nation:me,offer:v.get("offer")?.as_u64()?,accept:v.get("accept")?.as_bool()? },
         "set_diplomatic_policy" => Command::SetDiplomaticPolicy { nation:me,policy:serde_json::from_value(v.get("policy")?.clone()).ok()? },
         "break_currency_peg" => Command::BreakCurrencyPeg { nation:me },
@@ -6784,6 +6787,23 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn campaign_aim_browser_commands_freeze_and_close_model_targets() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        g.world.rules.daily_simulation=true;
+        let command=parse_command(&g.world,&serde_json::json!({"kind":"choose_campaign_aim","aim":"prosperity"}),NationId::USA).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        let target=state_json(&g,None)["campaign_aims"]["active"]["target"].as_f64().unwrap();
+        g.world.nation_mut(NationId::USA).gdp*=1.5;
+        assert_eq!(state_json(&g,None)["campaign_aims"]["active"]["target"],target);
+        let command=parse_command(&g.world,&serde_json::json!({"kind":"continue_sandbox"}),NationId::USA).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        let view=state_json(&g,None);
+        assert!(view["campaign_aims"]["active"].is_null());
+        assert_eq!(view["campaign_aims"]["history"][0]["outcome"],"set aside");
+        assert!(parse_command(&g.world,&serde_json::json!({"kind":"choose_campaign_aim","aim":"free_money"}),NationId::USA).is_none());
+    }
 
     #[test]
     fn agency_browser_contract_revalidates_and_preserves_pending_decisions() {
