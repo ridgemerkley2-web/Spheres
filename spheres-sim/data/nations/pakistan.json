@@ -24,13 +24,16 @@
   },
   "military": {
     "strength": 16.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 550000,
+    "milex_1990_usd_bn": 2.810102
   },
   "sources": [
     "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
     "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance.",
     "THE NUCLEAR FLAG AND WHAT IT MEANS HERE. `nuclear: false` is not a claim that Pakistan held no device on 1 January 1990; it is the convention this roster applies, and this file did not previously say which convention that was, which left the figure contested rather than merely debatable. THE CONVENTION IS OBSERVABILITY: the flag models a deterrent that other governments could see and plan around, because deterring is the only thing it does in the model. It is NOT declaration - israel.json sets nuclear TRUE on an arsenal Israel has never confirmed, because every capital in the region planned around Dimona in 1990 - and it is NOT possession, or southafrica.json would be true on six assembled devices. southafrica.json argues the rule at length for the hardest case on the board and is the reference statement of it; this note records only that Pakistan is set false on that same single rule, so that a reader can tell a deliberate convention from an oversight. NO HISTORICAL SOURCE FOR PAKISTAN'S 1 JANUARY 1990 WEAPON STATUS IS TRANSCRIBED HERE and none should be inferred from this note; the scripted proliferation date in politics.rs turns the flag true in May 1998 with the Chagai tests, which is the observable event this convention keys on and is separate from whatever Pakistan held before it. If the convention is ever changed to possession it must be changed for South Africa, Israel, Pakistan and India together, each will need its own transcribed source at that point, and the model will need a disarmament path first - nothing in the sim ever sets a nuclear flag back to false.",
-    "pop_growth_1990 = 3.3734%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PAK (Pakistan): 95,164,936 in 1984 to 112,336,629 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 3.3734%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PAK (Pakistan): 95,164,936 in 1984 to 112,336,629 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 550000 and military.milex_1990_usd_bn = 2.810102 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (PAK, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (PAK, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 2,810,101,624 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

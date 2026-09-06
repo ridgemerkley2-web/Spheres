@@ -24,7 +24,8 @@
   },
   "military": {
     "strength": 12.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 297000
   },
   "sources": [
     "CUBA HAS NO HONEST DOLLAR GDP FOR 1990 AND THIS FILE SHOULD NOT PRETEND OTHERWISE. Cuba reported Global Social Product on the Soviet material-product system, not GDP, and converted at an administrative one-peso-to-one-dollar rate. The World Bank carries $28.645bn for 1990 on that official rate, and $28.6bn is the figure entered here for consistency with the rest of the roster; contemporary CIA and academic estimates using purchasing-power or shadow rates run from roughly $15bn to $30bn for the same year. Population 10.6m is solid (ONE, 1990).",
@@ -35,7 +36,8 @@
     "Oil 0.018 mbd: domestic production about 18,000 bbl/d of heavy crude, against imports from the USSR of some 200,000-300,000 bbl/d that were the true energy base and that stop arriving in 1991-92.",
     "Defence 6% of GDP and strength 12: the FAR were the largest and most combat-experienced force in Latin America, having fought in Angola from 1975 until the last troops came home in May 1991, and in Ethiopia. Strength sits well above what the economy buys anyone else, on the same grounds as Israel's does.",
     "Stability 58 and separatism 0.0: the regime was institutionally solid — no ethnic or regional cleavage at all — but 1989 had brought the trial and execution of General Arnaldo Ochoa, a Hero of the Republic, in July, and the patron was visibly dying. authoritarianism 0.92 sits above the electoral ceiling: National Assembly deputies were chosen indirectly by municipal assemblies until the 1993 reform, and there was one legal party.",
-    "pop_growth_1990 = 0.8970%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CUB (Cuba): 10,073,299 in 1984 to 10,533,243 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.8970%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CUB (Cuba): 10,073,299 in 1984 to 10,533,243 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 297000. personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (CUB, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (CUB, 1990). milex: the World Bank series returns 0 for this nation, which is an absent observation and not a budget; the loader admits a positive number or absence, so nothing is entered and the field is absent. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

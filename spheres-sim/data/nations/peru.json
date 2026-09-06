@@ -25,7 +25,9 @@
   },
   "military": {
     "strength": 6.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 125000,
+    "milex_1990_usd_bn": 0.777067
   },
   "sources": [
     "GDP $26.4bn and 22.0m people (World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, 1990; exact prints $26.410bn and 22,014,771). The dollar figure is the least reliable in this file: with the inti collapsing and a split exchange market, any dollar conversion of Peruvian output in 1990 is an artefact of which rate is used, and estimates run from roughly $22bn to $30bn. Real GDP fell 5.1% in 1990 on top of 12.3% in 1989, a cumulative contraction of about a quarter over three years, hence a TFP trend of -1.5%/yr.",
@@ -36,7 +38,8 @@
     "Oil 0.13 mbd: about 130,000 bbl/d from the northern jungle and Talara, down by a third from the early 1980s.",
     "Stability 22, the lowest figure in this roster, and it is transcribed: Sendero Luminoso and the MRTA held emergency-zone provinces containing over half the population, the war had killed some 20,000 people by 1990, and cholera arrived in January 1991. Separatism 0.06 — Sendero sought to replace the state, not to leave it. Defence 2.3% of GDP, strength 6, an army fighting an internal war it was not built for.",
     "pop_growth_1990 = 2.3466%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PER (Peru): 19,174,716 in 1984 to 21,532,589 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
-    "reserves_bn = 1.597 ($bn). Total reserves including gold, PER, 1989: US$1597167000.00 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
+    "reserves_bn = 1.597 ($bn). Total reserves including gold, PER, 1989: US$1597167000.00 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4).",
+    "military.personnel_1990 = 125000 and military.milex_1990_usd_bn = 0.777067 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (PER, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (PER, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 777,066,945 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

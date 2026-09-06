@@ -19,7 +19,7 @@
     "bubble": 0.0
   },
   "politics": { "stability": 62.0, "separatism": 0.0 },
-  "military": { "strength": 1.0, "nuclear": false },
+  "military": { "strength": 1.0, "nuclear": false, "personnel_1990": 3000, "milex_1990_usd_bn": 0.03861 },
   "sources": [
     "GDP $4.59bn: World Bank NY.GDP.MKTP.CD, series JAM, 1990 = 4,592,208,087. On 2.38m people that is $1,930 a head, the second-highest in this Caribbean block after the Bahamas. Real growth in 1990 was +4.2% (NY.GDP.MKTP.KD.ZG), the fourth year of the recovery that followed the 1985 bauxite shutdown and the third since Hurricane Gilbert flattened the island in September 1988.",
     "Population 2.38m: World Bank SP.POP.TOTL, series JAM, 1990 = 2,379,877.",
@@ -34,7 +34,8 @@
     "Stability 62 and authoritarianism 0.15: a Westminster democracy with an unbroken record of alternation since 1944 and a genuinely violent one. The election of 30 October 1980 killed somewhere near 800 people; the election of 9 February 1989, which is the one in the government table, was by comparison quiet and produced a clean transfer from Edward Seaga to Michael Manley on a turnout of 78.4%. Stability 62 is set level with Tanzania's 62 and above Senegal's 60 - a state that is not seriously contested, carrying garrison-constituency gang politics and a homicide rate that was already among the world's highest. Authoritarianism 0.15 is set at Italy's level and above Spain's 0.13.",
     "Separatism 0.0: none. There is no Jamaican region that wants out and never has been.",
     "Military strength 1.0: the Jamaica Defence Force was about 3,000 regulars including the Coast Guard and Air Wing, British-trained, with no combat aircraft and no armour. Its live role in 1990 was drug interdiction and hurricane relief. Set level with Haiti's 1.0 and below Senegal's 1.5, which is the right order: the JDF is smaller than the FAd'H and better at its job.",
-    "pop_growth_1990 = 0.8454%/yr. Compound annual growth of World Bank SP.POP.TOTL, series JAM (Jamaica): 2,264,562 in 1984 to 2,361,916 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.8454%/yr. Compound annual growth of World Bank SP.POP.TOTL, series JAM (Jamaica): 2,264,562 in 1984 to 2,361,916 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 3000 and military.milex_1990_usd_bn = 0.03861 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (JAM, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (JAM, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 38,609,945 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

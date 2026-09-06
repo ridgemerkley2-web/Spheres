@@ -24,7 +24,8 @@
   },
   "military": {
     "strength": 2.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 32000
   },
   "sources": [
     "GDP $2.56bn and population 2.099m (World Bank, 1990).",
@@ -37,7 +38,8 @@
     "Military index 2: about 25,000 under arms, plus the Soviet 39th Army, whose withdrawal was agreed in 1989 and completed in 1992.",
     "Gross capital formation 29.1% of GDP (World Bank, 1990), entered as 27 state and 2 private, which is what the split looks like in an economy where the plan does the investing.",
     "Series check, August 2026, read from the World Bank API: NY.GDP.MKTP.CD 1990 = 2,560,785,660; SP.POP.TOTL = 2,098,710; MS.MIL.XPND.GD.ZS = 4.281; NE.GDI.TOTL.ZS = 29.067. All match. FP.CPI.TOTL.ZG and FR.INR.LEND return NO VALUE for Mongolia in 1990, which is the direct confirmation of what this file says above: the inflation and interest figures here are constructions and not transcriptions.",
-    "pop_growth_1990 = 2.5341%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MNG (Mongolia): 1,874,349 in 1984 to 2,124,185 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.5341%/yr. Compound annual growth of World Bank SP.POP.TOTL, series MNG (Mongolia): 1,874,349 in 1984 to 2,124,185 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 32000. personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (MNG, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (MNG, 1990). milex: the World Bank series returns 0 for this nation, which is an absent observation and not a budget; the loader admits a positive number or absence, so nothing is entered and the field is absent. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

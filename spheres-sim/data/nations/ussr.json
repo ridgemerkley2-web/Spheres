@@ -24,12 +24,14 @@
   },
   "military": {
     "strength": 92.0,
-    "nuclear": true
+    "nuclear": true,
+    "milex_1990_usd_bn": 128.0
   },
   "sources": [
     "No per-nation sourcing note existed when this nation was first entered in init.rs; the table header recorded only \"Transcribed-not-invented: approximate 1990 historical starting conditions\".",
     "Figures below are transcribed unchanged from that table. Their origin was not documented at the time and is a known gap in provenance.",
-    "pop_growth_1990 = 0.9403%/yr. The Soviet Union has no World Bank series of its own, so this is the SUM of all fifteen successor republics' World Bank SP.POP.TOTL (RUS UKR BLR UZB KAZ GEO AZE LTU MDA LVA KGZ TJK ARM TKM EST): 273,146,555 in 1984 to 286,232,551 in 1989, compounded over the five years ending on the eve of the start date. The 1989 sum of 286,232,551 is within 1% of this file's transcribed population_m of 289.0, which is the check that the union has been reassembled and not double-counted."
+    "pop_growth_1990 = 0.9403%/yr. The Soviet Union has no World Bank series of its own, so this is the SUM of all fifteen successor republics' World Bank SP.POP.TOTL (RUS UKR BLR UZB KAZ GEO AZE LTU MDA LVA KGZ TJK ARM TKM EST): 273,146,555 in 1984 to 286,232,551 in 1989, compounded over the five years ending on the eve of the start date. The 1989 sum of 286,232,551 is within 1% of this file's transcribed population_m of 289.0, which is the check that the union has been reassembled and not double-counted.",
+    "military.milex_1990_usd_bn = 128.0 ($bn). milex_usd: Wikipedia, Soviet Armed Forces (https://en.wikipedia.org/wiki/Soviet_Armed_Forces), infobox: \"Budget: US$128 billion (official, 1988)\"; the same infobox gives \"US$200-300 billion (CIA, Pentagon estimate, 1988)\". The OFFICIAL figure is transcribed; the CIA range is recorded here as the alternative reading. CIA Factbook 1991 gives 63.9 billion rubles with no dollar conversion. Nearest USD year to 1990 found: 1988. [fallback year 1988, not 1990]. milex entered in billions to six decimals (the nearest $1,000) of the fetched 128,000,000,000 current US$. YEAR FALLBACK: milex is the 1988 observation, the nearest in 1988-1992. PARTIAL/REFUSED (the data pass): personnel: No 1988-1992 total-forces figure could be sourced this run. Wikipedia Soviet_Armed_Forces infobox gives only 4,900,000 (1985), outside the window; Wikipedia Soviet_Army infobox gives 3,668,075 active (1991) but the infobox line carries no citation and the page describes the Ground Forces branch, so the figure is ambiguous and uncited; CIA Factbook 1990/1991 give manpower availability only; the IISS Military Balance 1990-91 itself (scribd.com/document/901440042) returned only the document shell. REFUSED under iron rule 4. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

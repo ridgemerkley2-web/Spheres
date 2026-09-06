@@ -25,7 +25,9 @@
   },
   "military": {
     "strength": 0.8,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 11000,
+    "milex_1990_usd_bn": 0.790797
   },
   "sources": [
     "GDP $7.36bn: World Bank NY.GDP.MKTP.CD, series QAT, 1990 - $7,360,439,560.44. Cross-checked against the Bank's Atlas GNI per capita for Qatar in 1990 of $17,040, which on 440,175 people implies $7.50bn - within 2% of the GDP figure. The two series agree closely, which is what one expects of a small economy on a hard dollar peg with one export.",
@@ -42,7 +44,8 @@
     "Separatism 0.0: a peninsula the size of Yorkshire with one city. There is nothing to secede. Level with Kuwait's shipped 0.0.",
     "Military strength 0.8: below Kuwait's shipped 2.0, and Kuwait had roughly 20,000 men and 275 tanks in January 1990. Qatar had about 6,000 and 24 AMX-30s. The 1986 Fasht al-Dibal raid on Bahrain was carried out by a helicopter-borne company, which is the correct scale for this army: it could take an artificial island from a smaller neighbour and could do nothing whatever about Iran or Iraq.",
     "pop_growth_1990 = 4.1176%/yr. Compound annual growth of World Bank SP.POP.TOTL, series QAT (Qatar): 347,878 in 1984 to 425,646 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
-    "reserves_bn = 0.895 ($bn). Total reserves including gold, QAT, 1989: US$894894192.27 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
+    "reserves_bn = 0.895 ($bn). Total reserves including gold, QAT, 1989: US$894894192.27 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4).",
+    "military.personnel_1990 = 11000 and military.milex_1990_usd_bn = 0.790797 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (QAT, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (QAT, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 790,796,703 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [
