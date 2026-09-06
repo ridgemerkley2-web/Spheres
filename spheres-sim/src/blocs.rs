@@ -389,7 +389,21 @@ pub fn challenger(w: &WorldState, id: NationId) -> Option<(Bloc, f64)> {
 /// regime: its weakest armed institution under `COERCION_ARMED` or its mean
 /// loyalty under `COERCION_MEAN`. An electoral state: only where the winner
 /// is non-Western or authoritarianism is at or over `COERCION_AUTH` — a
-/// democracy is not overthrown by its own liberals. Lines INVENTED.
+/// democracy is not overthrown by its own liberals.
+///
+/// CALIBRATED 2026-09-06 (the bloc census, anchor A3). The design's lines
+/// were 0.50 (weakest) and 0.55 (mean), INVENTED; both now read the pillar
+/// model's own UNPAID line, 0.35 — where `regime_tick` starts counting coup
+/// pressure and `ai_government` starts buying — so a regime cannot put the
+/// crowd down exactly where one of its armed institutions is at the point
+/// of moving against it, or where its institutions on average are. At
+/// 0.50 / 0.55 every junta that had just removed a government failed the
+/// test within two years of the coup, because its pillars walk from
+/// 0.90 / 0.72 to budget targets that sit under 0.50 in a poor state, and
+/// the deposed colour — still the largest movement — retook the capital:
+/// the census read Belarus (Party pillar 0.28-0.51, mean 0.47-0.58) and
+/// Cambodia (Army 0.46-0.52, mean 0.67) returning to the Communist colour
+/// in 60/60 and 42/60 seeds. A3 asks for at most 10%.
 pub fn coercion_fails(w: &WorldState, id: NationId, winner: Bloc) -> bool {
     let g = match government::state(w, id) {
         Some(g) => g,
@@ -401,8 +415,8 @@ pub fn coercion_fails(w: &WorldState, id: NationId, winner: Bloc) -> bool {
     g.weakest_armed().map_or(1.0, |(_, v)| v) < COERCION_ARMED || g.mean_loyalty() < COERCION_MEAN
 }
 
-pub const COERCION_ARMED: f64 = 0.50;
-pub const COERCION_MEAN: f64 = 0.55;
+pub const COERCION_ARMED: f64 = 0.35;
+pub const COERCION_MEAN: f64 = 0.35;
 pub const COERCION_AUTH: f64 = 0.40;
 /// The uprising's two lines: discontent and the challenger's influence.
 pub const UPRISING_DISCONTENT: f64 = 0.45;
