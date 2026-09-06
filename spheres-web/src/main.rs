@@ -15512,7 +15512,15 @@ mod tests {
         assert_eq!(iq["coup_pressure"], 0.0);
         assert!(iq["next_election"].is_null());
         let acts = iq["actions"].as_array().unwrap();
-        assert_eq!(acts.len(), 5, "three payments, two stratagems");
+        // S3: a regime carries a programme per present non-ruling bloc (Iraq:
+        // the Non-Aligned colour of the Mukhabarat), the round table and a
+        // ban per party of the table (the Ba'ath). Re-pinned 2026-09-06 from
+        // five to eight, the kinds in order.
+        assert_eq!(acts.len(), 8, "three payments, two stratagems, a programme, the round table, a ban");
+        let kinds: Vec<&str> = acts.iter().map(|a| a["kind"].as_str().unwrap()).collect();
+        assert_eq!(kinds, ["secure_pillar", "secure_pillar", "secure_pillar", "stratagem", "stratagem", "programme", "round_table", "ban"]);
+        assert_eq!(acts[5]["command"], serde_json::json!({ "kind": "declare_programme", "bloc": "non_aligned" }));
+        assert_eq!(acts[7]["command"], serde_json::json!({ "kind": "ban_party", "party": "iq_baath" }));
         assert_eq!(acts[0]["kind"], "secure_pillar");
         assert_eq!(acts[0]["price"], 14.0);
         assert!(acts[0]["refusal"].is_null());
