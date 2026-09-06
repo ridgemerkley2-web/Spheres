@@ -15136,13 +15136,15 @@ mod tests {
     /// removed from `play_rules`: `ruling_bloc` came back null.
     #[test]
     fn the_political_arm_is_on_in_play_and_null_headless() {
-        let mut g = Game::new(7, Some(NationId::Poland));
+        let g = Game::new(7, Some(NationId::Poland));
         assert!(!g.world.rules.ideology_blocs);
         let off = nation_json(&g.world, g.world.nation(NationId::Poland));
         for key in ["ruling_bloc", "discontent", "blocs", "leader", "government_of_the_day", "takeover"] {
             assert!(off[key].is_null(), "{key} is served while the arm is off: {}", off[key]);
         }
-        play_rules(&mut g);
+        // Through the browser's own load path, which is the one that calls
+        // `play_rules` (the call-site count is pinned by the market test).
+        let g = loaded_play_game(g.world);
         assert!(g.world.rules.ideology_blocs, "play_rules must switch the lens on");
         assert!(!g.world.rules.ideology_takeover, "the roads are S4 and stay off");
         assert!(g.world.leadership.is_some(), "the leader table is loaded before the first /api/state");
@@ -15221,8 +15223,7 @@ mod tests {
     /// `g.value / g.trigger` for a gauge bar.
     #[test]
     fn the_government_screen_is_served_not_computed() {
-        let mut g = Game::new(7, Some(NationId::Poland));
-        play_rules(&mut g);
+        let g = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
         let w = &g.world;
         let pl = government_json(w, NationId::Poland);
         assert_eq!(pl["on"], true);
