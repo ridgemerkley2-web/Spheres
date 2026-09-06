@@ -1,5 +1,31 @@
 # SPHERES Roadmap
 
+## Done — S5 shipped: the skeptics' findings repaired at the root, D4 reverted, the census re-read (2026-09-06)
+
+Branch `feat/ideology-census`, fast-forwarded onto `feat/hoi4-map-and-tech`.
+The A6 bar attributed an uprising by the PRE-TICK `uprising_armed` flag, so
+a crown the movement armed inside the tick was filed beside the bar; it now
+reads the firing site's own clause, the headline (a crowned "the B movement
+takes power" is a route event, "the old regime falls" is the collapse), and
+counts the gap — 165 of 1570 crowns at N=200, none in a 1990 democracy, A6
+still 0 in 200/200 and 0 in 12/12 at 420 months (BUGS S7-1). D4's wiring
+(5086cfa) is REVERTED as a departure from the calibration brief's scope and
+because it narrowed an existing test's assertion while the same pass refused
+the hostile-army annulment on the ground that no existing test is touched;
+the standard is now one, both rulings sit side by side for Ridge in S7-3,
+and the commit stays in history for a cherry-pick. A5's diagnosis gains the
+transcription half: Lithuania's and Hungary's returning parties are
+SocialDemocratic (Western) and three of the six already lead in 1990 (S7-5).
+Every number re-measured on the tree that ships (S7-2, S7-4): N=200 census
+identical seed for seed to the pre-D4 file; the four pinned bars green in
+20 s; every watched red re-run after a fresh watched build (A10 under route 2
+reads 0.24975, not 0.2499). Suite after `cargo clean`: sim lib 452/3/25 (the
+three deliberate reds at unmoved actuals), 28 integration binaries green,
+web 160/0/2, cli 1/0; digests d1a2cfbf7c6958d7 / 3501 and 39dea3341a7f6e8c /
+3983 twice each; live Poland and Iraq at seed 7 read CALIBRATION PENDING with
+live gauges, a year at speed 5 as Iraq with zero console errors (S7-6).
+`ideology_takeover` stays OFF.
+
 ## Done — S5 pinned: the N=200 census, four bars, the switch decision (2026-09-06; D4 wired here and reverted in the ship pass, BUGS S7-3)
 
 The census at N=200 (97 s; 137 s with the rebuild after D4), per seed
