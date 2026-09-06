@@ -415,7 +415,10 @@ pub const NOT_IN_THIS_BUILD: &str = "not in this build";
 /// at or under 0.55, stability inside 30..70; collapse — stability at or under
 /// 12.
 pub fn takeover_readout(w: &WorldState, id: NationId) -> TakeoverReadout {
-    let n = w.nation(id);
+    // A roster id not in this world — a successor state before its federation
+    // falls — has no stability to read; it is served as a calm 100 rather than
+    // a panic, because the browser asks about ids, not about nations.
+    let stability = w.nation_opt(id).map_or(100.0, |n| n.stability);
     let g: Option<&GovState> = government::state(w, id);
     let loyalty = |p: Pillar| g.map_or(1.0, |g| g.loyalty(p));
     let pressure = g.map_or(0.0, |g| g.coup_pressure);
@@ -438,9 +441,9 @@ pub fn takeover_readout(w: &WorldState, id: NationId) -> TakeoverReadout {
     let round_table = closed(vec![
         Gauge::above("Western influence", western, 0.40),
         Gauge::below("party loyalty", loyalty(Pillar::Party), 0.55),
-        Gauge::inside("stability", n.stability, 30.0, 70.0),
+        Gauge::inside("stability", stability, 30.0, 70.0),
     ]);
-    let collapse = closed(vec![Gauge::below("stability", n.stability, 12.0)]);
+    let collapse = closed(vec![Gauge::below("stability", stability, 12.0)]);
     TakeoverReadout { coup, uprising, round_table, collapse }
 }
 
