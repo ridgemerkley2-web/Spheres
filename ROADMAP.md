@@ -1,5 +1,21 @@
 # SPHERES Roadmap
 
+## Done — S5, the bloc census and the first calibration pass (2026-09-06)
+
+`spheres-sim/tests/bloc_census.rs` (`#[ignore]`d, N from `SPHERES_CENSUS_SEEDS`,
+default 60, 27 s in release) reads every anchor of the design's "What history
+it must reproduce" per seed. Two moves kept, both for A3: an unarmed collapse
+is the pre-arm collapse and not a crown (Peru, Georgia gone), and the coercion
+lines read the pillar model's unpaid line 0.35. Final N=60: A1 5/6/8 inside its
+band but degenerate (Sao Tome, Philippines, Comoros), A2 0/60, A3 58/60 seeds
+(Belarus, Cambodia, Ukraine), A4 1/2/3, A5 0/60, A6 0 in 60/60, A7 0.16, A8 8/8,
+A9 0.953, A10 0.33. What blocks the rest is recorded in BUGS S5-1..S5-9: the
+hostile-army annulment is measured (A3 -> 38/60) and red on the Jordan assertion
+of an existing test; every road threshold is pinned as a literal by
+`every_road_reads_closed_while_takeover_is_off`; A2 and A4 need unbuilt design
+pieces, not constants. `ideology_takeover` stays off in the browser. Both golden
+actuals and both headless digests unmoved.
+
 ## Done — the political arm, S3/S4 shipped: the web surface, the skeptics' repairs, the census first reading (2026-09-06)
 
 Branch `feat/ideology-roads`, fast-forwarded onto `feat/hoi4-map-and-tech`
