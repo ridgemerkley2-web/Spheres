@@ -424,7 +424,7 @@ pub fn ai_stratagems(w: &mut WorldState) {
         .filter(|n| n.alive && Some(n.id) != w.player)
         .map(|n| n.id)
         .collect();
-    for id in actors {
+    for id in actors.iter().copied() {
         let held = w.nation(id).political_capital;
         // Keep a reserve. A government that spends to the floor cannot answer
         // the next crisis, and the crisis is what stratagems are for.
@@ -446,6 +446,24 @@ pub fn ai_stratagems(w: &mut WorldState) {
                     id: sid.to_string(),
                 };
                 let _ = crate::apply_command(w, &cmd);
+            }
+        }
+    }
+
+    // ---- The political arm's five levers (S3): the same 0.02 monthly draw
+    // as the deck, at the deck's own site, so the government module keeps
+    // drawing nothing. The whole block is behind the switch, and the DRAW
+    // COMES AFTER THE CHOICE — `government::ai_lever` is pure and answers
+    // `None` before reading anything with the arm off — so a switched-on
+    // world in which no government has a lever to pull draws nothing either,
+    // and its stream parts from the off world's only in a month one could
+    // act (the same finding as the sponsors' draw in `politics`).
+    if w.rules.ideology_blocs {
+        for id in actors.iter().copied() {
+            if let Some(cmd) = crate::government::ai_lever(w, id) {
+                if w.rng.chance(crate::clock::chance(w, 0.02)) {
+                    let _ = crate::apply_command(w, &cmd);
+                }
             }
         }
     }

@@ -7581,6 +7581,102 @@ pub fn lever_effects(w: &WorldState, c: &crate::Command) -> Option<Vec<String>> 
     })
 }
 
+/// The lever an AI government would reach for this month, or `None` — pure,
+/// and `None` before reading anything while `rules.ideology_blocs` is off.
+/// The four rules and their lines are the design's (S3, INVENTED): a
+/// suspension when electoral, stability under 30, authoritarianism at or
+/// over 0.25 and 55 political capital held; a ban on the largest party of
+/// the strongest non-ruling non-Western bloc at or over 0.35 of influence,
+/// authoritarianism at or over 0.40 and 60 held; a programme toward the
+/// strongest pillar's colour when the ruling movement is under 0.30 and 70
+/// held; a round table when discontent is at or over 0.50, the largest
+/// movement at or over 0.35, the armed pillars' mean loyalty under 0.50 and
+/// 60 held. Each is asked its own refusal, so the AI never asks for what the
+/// world would refuse. The draw that decides whether the government acts on
+/// the choice lives in `stratagems::ai_stratagems`, the module that already
+/// draws for the deck; this module draws nothing.
+pub fn ai_lever(w: &WorldState, id: NationId) -> Option<crate::Command> {
+    use crate::Command;
+    if !w.rules.ideology_blocs {
+        return None;
+    }
+    let n = w.nation_opt(id).filter(|n| n.alive)?;
+    let g = state(w, id)?;
+    let pc = n.political_capital;
+    let electoral = is_electoral(w, id);
+    if electoral && n.stability < 30.0 && n.authoritarianism >= 0.25 && pc >= 55.0 {
+        if suspend_refusal(w, id).is_none() {
+            return Some(Command::SuspendConstitution { nation: id });
+        }
+    }
+    if n.authoritarianism >= 0.40 && pc >= 60.0 {
+        if let Some(ruling) = crate::blocs::ruling_bloc(w, id) {
+            let infl = crate::blocs::influence(w, id);
+            let mut target: Option<(Bloc, f64)> = None;
+            for (b, v) in infl {
+                if b == ruling || b == Bloc::Western || v < 0.35 {
+                    continue;
+                }
+                if target.map_or(true, |(_, tv)| v > tv) {
+                    target = Some((b, v));
+                }
+            }
+            if let Some((b, _)) = target {
+                let mut largest: Option<(&str, f64)> = None;
+                for (party, s) in &g.support {
+                    if bloc_of(id, party) != b
+                        || g.banned.iter().any(|q| q == party)
+                        || g.leader() == Some(party.as_str())
+                    {
+                        continue;
+                    }
+                    if largest.map_or(true, |(_, ls)| *s > ls) {
+                        largest = Some((party.as_str(), *s));
+                    }
+                }
+                if let Some((party, _)) = largest {
+                    if ban_refusal(w, id, party).is_none() {
+                        return Some(Command::BanParty { nation: id, party: party.to_string() });
+                    }
+                }
+            }
+        }
+    }
+    if electoral {
+        return None;
+    }
+    let ruling = g.regime_bloc.or_else(|| crate::blocs::ruling_bloc(w, id))?;
+    if g.movements.len() != 5 {
+        return None;
+    }
+    if pc >= 70.0 && g.movements[ruling as usize].1 < 0.30 {
+        if let Some((_, bloc)) = strongest_pillar_bloc(id, g) {
+            if bloc != ruling && programme_refusal(w, id, bloc).is_none() {
+                return Some(Command::DeclareProgramme { nation: id, bloc });
+            }
+        }
+    }
+    if pc >= 60.0 {
+        let armed: Vec<f64> = g
+            .pillars
+            .iter()
+            .filter(|(p, _)| matches!(p, Pillar::Army | Pillar::Security | Pillar::Party))
+            .map(|(_, v)| *v)
+            .collect();
+        let armed_mean =
+            if armed.is_empty() { 1.0 } else { armed.iter().sum::<f64>() / armed.len() as f64 };
+        let largest = largest_non_ruling(&g.movements, ruling).map_or(0.0, |(_, s)| s);
+        if crate::blocs::discontent(w, id) >= 0.50
+            && largest >= 0.35
+            && armed_mean < 0.50
+            && round_table_refusal(w, id).is_none()
+        {
+            return Some(Command::ConveneRoundTable { nation: id });
+        }
+    }
+    None
+}
+
 // ---------------------------------------------------------------------------
 // The tick
 // ---------------------------------------------------------------------------
@@ -9211,5 +9307,209 @@ mod tests {
         assert_eq!(refusal_of(&w, &Command::LegalizeParty { nation: pl, party: "pl_sld".into() }), None);
         assert!(refusal_of(&w, &Command::BanParty { nation: pl, party: "pl_sld".into() }).unwrap().contains("already banned"));
         println!("levers through: 1990 {at_start}, crisis {in_crisis}, with a ban {with_ban}");
+    }
+
+    /// The AI reaches for each lever only under its thresholds, read off
+    /// the pure `ai_lever`: `None` with the arm off whatever the state, and
+    /// each rule flips at its own line — a suspension at stability 29 / 30,
+    /// authoritarianism 0.25 / 0.24, capital 55 / 54; a ban when the
+    /// Communist bloc's influence reaches 0.35 (Poland's 0.22 of support
+    /// and 0.18 of backing, none at 0.12), never Western (Egypt's Wafd at
+    /// 0.40 is passed over, its Islamic Alliance at 0.40 is not), at 0.40 /
+    /// 0.39 and 60 / 59; a programme toward the PLA's colour when China's
+    /// Communist movement reads 0.29 and not 0.30, at 70 / 69; a round
+    /// table for Indonesia at discontent 0.575, a Western movement of 0.35
+    /// / 0.34, an armed mean of 0.40 / 0.50, at 60 / 59. Then twenty AI
+    /// years on seed 7 with the arm on, the lever headlines counted for the
+    /// record, and none on the off world. Watched red with the 0.35 line
+    /// dropped from the ban rule: Poland with the Communists at 0.22 read
+    /// Some(BanParty { pl_sld }) against None.
+    #[test]
+    fn the_ai_takes_each_lever_only_under_its_thresholds() {
+        use crate::statecraft::add_backing;
+        use crate::{tick_month, Command};
+        let (pl, eg, cn, id) = (NationId::Poland, NationId::Egypt, NationId::China, NationId::Indonesia);
+        // Off: nothing, whatever the state.
+        let mut off = w1990();
+        {
+            let n = off.nation_mut(pl);
+            n.stability = 10.0;
+            n.authoritarianism = 0.50;
+            n.political_capital = 500.0;
+        }
+        assert_eq!(ai_lever(&off, pl), None);
+        assert_eq!(ai_lever(&off, cn), None);
+
+        let mut w = world_1990(on_rules(7));
+        // (1) The suspension.
+        {
+            let n = w.nation_mut(pl);
+            n.stability = 29.0;
+            n.authoritarianism = 0.25;
+            n.political_capital = 55.0;
+        }
+        assert_eq!(ai_lever(&w, pl), Some(Command::SuspendConstitution { nation: pl }));
+        w.nation_mut(pl).stability = 30.0;
+        assert_eq!(ai_lever(&w, pl), None, "stability 30");
+        w.nation_mut(pl).stability = 29.0;
+        w.nation_mut(pl).authoritarianism = 0.24;
+        assert_eq!(ai_lever(&w, pl), None, "authoritarianism 0.24");
+        w.nation_mut(pl).authoritarianism = 0.25;
+        w.nation_mut(pl).political_capital = 54.0;
+        assert_eq!(ai_lever(&w, pl), None, "54 held");
+        // (2) The ban: the largest party of the strongest non-ruling,
+        // non-Western bloc at or over 0.35 of influence.
+        {
+            let n = w.nation_mut(pl);
+            n.stability = 50.0;
+            n.authoritarianism = 0.40;
+            n.political_capital = 60.0;
+        }
+        assert_eq!(ai_lever(&w, pl), None, "the Communists at 0.22");
+        add_backing(&mut w, NationId::USSR, pl, Bloc::Communist);
+        add_backing(&mut w, NationId::USSR, pl, Bloc::Communist);
+        let infl = crate::blocs::influence(&w, pl)[Bloc::Communist as usize].1;
+        assert!((infl - 0.34).abs() < 1e-9, "{infl}");
+        assert_eq!(ai_lever(&w, pl), None, "the Communists at 0.34");
+        add_backing(&mut w, NationId::China, pl, Bloc::Communist);
+        let infl = crate::blocs::influence(&w, pl)[Bloc::Communist as usize].1;
+        assert!((infl - 0.40).abs() < 1e-9, "{infl}");
+        assert_eq!(ai_lever(&w, pl), Some(Command::BanParty { nation: pl, party: "pl_sld".into() }));
+        w.nation_mut(pl).authoritarianism = 0.39;
+        assert_eq!(ai_lever(&w, pl), None, "authoritarianism 0.39");
+        w.nation_mut(pl).authoritarianism = 0.40;
+        w.nation_mut(pl).political_capital = 59.0;
+        assert_eq!(ai_lever(&w, pl), None, "59 held");
+        // Never a Western party: Egypt with the Wafd's bloc at 0.40 passes,
+        // the Islamic Alliance's at 0.40 does not.
+        {
+            let g = state_mut(&mut w, eg).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.40),
+                (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.098),
+                (Bloc::Islamist, 0.10),
+                (Bloc::NonAligned, 0.40),
+            ];
+        }
+        {
+            let n = w.nation_mut(eg);
+            n.authoritarianism = 0.60;
+            n.political_capital = 65.0;
+        }
+        assert!(!is_electoral(&w, eg));
+        assert_eq!(ai_lever(&w, eg), None, "a Western bloc is never banned");
+        {
+            let g = state_mut(&mut w, eg).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.10),
+                (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.098),
+                (Bloc::Islamist, 0.40),
+                (Bloc::NonAligned, 0.40),
+            ];
+        }
+        assert_eq!(ai_lever(&w, eg), Some(Command::BanParty { nation: eg, party: "eg_alliance".into() }));
+        // (3) The programme toward the strongest pillar's colour.
+        {
+            let g = state_mut(&mut w, cn).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.25),
+                (Bloc::Communist, 0.29),
+                (Bloc::Nationalist, 0.20),
+                (Bloc::Islamist, 0.002),
+                (Bloc::NonAligned, 0.258),
+            ];
+            for e in g.pillars.iter_mut() {
+                e.1 = if e.0 == Pillar::Army { 0.80 } else { 0.60 };
+            }
+        }
+        w.nation_mut(cn).political_capital = 70.0;
+        assert_eq!(ai_lever(&w, cn), Some(Command::DeclareProgramme { nation: cn, bloc: Bloc::Nationalist }));
+        state_mut(&mut w, cn).unwrap().movements[Bloc::Communist as usize].1 = 0.30;
+        assert_eq!(ai_lever(&w, cn), None, "the ruling movement at 0.30");
+        state_mut(&mut w, cn).unwrap().movements[Bloc::Communist as usize].1 = 0.29;
+        w.nation_mut(cn).political_capital = 69.0;
+        assert_eq!(ai_lever(&w, cn), None, "69 held");
+        // (4) The round table.
+        {
+            let n = w.nation_mut(id);
+            n.stability = 15.0;
+            n.inflation = 0.18;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+            n.political_capital = 60.0;
+        }
+        let d = crate::blocs::discontent(&w, id);
+        assert!((d - 0.575).abs() < 1e-12, "{d}");
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.35),
+                (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.098),
+                (Bloc::Islamist, 0.10),
+                (Bloc::NonAligned, 0.45),
+            ];
+            for e in g.pillars.iter_mut() {
+                e.1 = if e.0 == Pillar::Business { 0.90 } else { 0.40 };
+            }
+        }
+        assert_eq!(ai_lever(&w, id), Some(Command::ConveneRoundTable { nation: id }));
+        state_mut(&mut w, id).unwrap().movements[Bloc::Western as usize].1 = 0.34;
+        assert_eq!(ai_lever(&w, id), None, "the largest movement at 0.34");
+        state_mut(&mut w, id).unwrap().movements[Bloc::Western as usize].1 = 0.35;
+        for e in state_mut(&mut w, id).unwrap().pillars.iter_mut() {
+            if e.0 != Pillar::Business {
+                e.1 = 0.50;
+            }
+        }
+        assert_eq!(ai_lever(&w, id), None, "an armed mean of 0.50");
+        for e in state_mut(&mut w, id).unwrap().pillars.iter_mut() {
+            if e.0 != Pillar::Business {
+                e.1 = 0.40;
+            }
+        }
+        w.nation_mut(id).stability = 40.0;
+        assert!(crate::blocs::discontent(&w, id) < 0.50);
+        assert_eq!(ai_lever(&w, id), None, "discontent under 0.50");
+        w.nation_mut(id).stability = 15.0;
+        w.nation_mut(id).political_capital = 59.0;
+        assert_eq!(ai_lever(&w, id), None, "59 held");
+        w.nation_mut(id).political_capital = 60.0;
+        assert_eq!(ai_lever(&w, id), Some(Command::ConveneRoundTable { nation: id }));
+
+        // The record: twenty AI years on seed 7, the arm on, default
+        // aggression; and none of the stems on the off world.
+        const STEMS: [&str; 5] = [" suspends its constitution", " bans ", " legalises ", " declares a ", " convenes a round table"];
+        let mut on_w = world_1990(GameRules { seed: 7, ideology_blocs: true, ..GameRules::default() });
+        let mut counts = [0usize; 5];
+        let mut candidate_months = 0usize;
+        for _ in 0..240 {
+            // Nation-months in which some AI government had a lever to pull
+            // (each of which is one 0.02 draw), for the record.
+            let ids: Vec<NationId> = on_w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+            candidate_months += ids.iter().filter(|id| ai_lever(&on_w, **id).is_some()).count();
+            let news = tick_month(&mut on_w, &[]);
+            for h in &news {
+                for (i, s) in STEMS.iter().enumerate() {
+                    if h.contains(s) {
+                        counts[i] += 1;
+                    }
+                }
+            }
+        }
+        println!(
+            "AI levers in twenty years on seed 7: {candidate_months} nation-months with a lever to pull; suspensions {}, bans {}, legalisations {}, programmes {}, round tables {}",
+            counts[0], counts[1], counts[2], counts[3], counts[4]
+        );
+        let mut off_w = world_1990(GameRules { seed: 7, ..GameRules::default() });
+        for _ in 0..240 {
+            let news = tick_month(&mut off_w, &[]);
+            for h in &news {
+                assert!(!STEMS.iter().any(|s| h.contains(s)), "the off world pulled a lever: {h}");
+            }
+        }
     }
 }
