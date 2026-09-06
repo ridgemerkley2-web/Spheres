@@ -16,7 +16,7 @@
 //! every gauge to draw from the first day.
 
 use crate::data::{Office, Tie};
-use crate::government::{self, bloc_of, pillar_bloc, polity, polity_in, Bloc, GovState, Pillar};
+use crate::government::{self, bloc_of, pillar_bloc, polity, Bloc, GovState, Pillar};
 use crate::world::*;
 use serde::Serialize;
 
@@ -68,7 +68,7 @@ pub fn described_ruling_bloc(w: &WorldState, id: NationId) -> Option<Bloc> {
     if let Some(b) = leader_bloc(w, id) {
         return Some(b);
     }
-    let pol = polity_in(w, id)?;
+    let pol = polity(id)?;
     let mut best: Option<&government::PartySpec> = None;
     for s in pol.parties {
         if best.map_or(true, |b| s.start > b.start) {
@@ -102,8 +102,8 @@ fn slot(shares: &mut [(Bloc, f64); 5], bloc: Bloc) -> &mut f64 {
 /// Whether a bloc has any standing presence in a polity's transcribed shape: a
 /// party of that bloc in the (possibly dormant) table, or the bloc's installing
 /// pillar in the pillar list. Foreign backing as a presence is S3.
-pub fn bloc_present(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
-    let pol = match polity_in(w, id) {
+pub fn bloc_present(id: NationId, bloc: Bloc) -> bool {
+    let pol = match polity(id) {
         Some(p) => p,
         None => return false,
     };
@@ -115,10 +115,10 @@ pub fn bloc_present(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
 /// [`RULING_SEED`], the remainder split equally over the non-ruling blocs
 /// present in the polity, every bloc floored at [`SHARE_FLOOR`], normalised to
 /// one. Pure: the same table and the same ruling bloc give the same seed.
-pub fn flat_seed(w: &WorldState, id: NationId, ruling: Bloc) -> [(Bloc, f64); 5] {
+pub fn flat_seed(id: NationId, ruling: Bloc) -> [(Bloc, f64); 5] {
     let mut shares = zero_shares();
     let present: Vec<Bloc> =
-        Bloc::ALL.iter().copied().filter(|b| *b != ruling && bloc_present(w, id, *b)).collect();
+        Bloc::ALL.iter().copied().filter(|b| *b != ruling && bloc_present(id, *b)).collect();
     *slot(&mut shares, ruling) = RULING_SEED;
     if !present.is_empty() {
         let each = (1.0 - RULING_SEED) / present.len() as f64;
@@ -171,7 +171,7 @@ pub fn bloc_shares(w: &WorldState, id: NationId) -> [(Bloc, f64); 5] {
         return shares;
     }
     match described_ruling_bloc(w, id) {
-        Some(r) => flat_seed(w, id, r),
+        Some(r) => flat_seed(id, r),
         None => zero_shares(),
     }
 }
@@ -352,8 +352,8 @@ pub fn strongest_challenger(w: &WorldState, id: NationId) -> Option<(Bloc, f64)>
 /// because a Western winner has nothing to govern through in a party-less
 /// polity until a table is transcribed (design S4: "closed until a table
 /// exists").
-pub fn bloc_can_win(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
-    let pol = match polity_in(w, id) {
+pub fn bloc_can_win(id: NationId, bloc: Bloc) -> bool {
+    let pol = match polity(id) {
         Some(p) => p,
         None => return false,
     };
@@ -375,7 +375,7 @@ pub fn challenger(w: &WorldState, id: NationId) -> Option<(Bloc, f64)> {
     let ruling = ruling_bloc(w, id)?;
     let mut best: Option<(Bloc, f64)> = None;
     for (b, v) in influence(w, id) {
-        if b == ruling || !bloc_can_win(w, id, b) {
+        if b == ruling || !bloc_can_win(id, b) {
             continue;
         }
         if best.map_or(true, |(_, bv)| v > bv) {
@@ -444,7 +444,7 @@ pub fn uprising_closed(w: &WorldState, id: NationId) -> Option<&'static str> {
         return None;
     }
     match strongest_challenger(w, id) {
-        Some((Bloc::Western, _)) if polity_in(w, id).is_some_and(|p| p.parties.is_empty()) => Some(NO_TABLE_FOR_WESTERN),
+        Some((Bloc::Western, _)) if polity(id).is_some_and(|p| p.parties.is_empty()) => Some(NO_TABLE_FOR_WESTERN),
         _ => Some(NO_CHALLENGER),
     }
 }
@@ -780,7 +780,7 @@ pub struct BlocRow {
 /// `BanParty`). A bloc present through a pillar alone is never banned.
 pub fn bloc_banned(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
     let banned: &[String] = government::state(w, id).map_or(&[], |g| g.banned.as_slice());
-    let members: Vec<&str> = polity_in(w, id)
+    let members: Vec<&str> = polity(id)
         .map(|pol| pol.parties.iter().filter(|s| bloc_of(id, s.id) == bloc).map(|s| s.id).collect())
         .unwrap_or_default();
     !members.is_empty() && members.iter().all(|p| banned.iter().any(|q| q == p))
@@ -849,7 +849,7 @@ fn any_row(w: &WorldState, id: NationId) -> Option<&Office> {
 
 /// The leader card for one nation. `None` only where the nation has no polity.
 pub fn leader(w: &WorldState, id: NationId) -> Option<Leader> {
-    let pol = polity_in(w, id)?;
+    let pol = polity(id)?;
     if let Some(row) = leader_row(w, id) {
         // The office has changed hands (S4): described by institution, the
         // remaining heir kept, nothing of the transcribed person.
@@ -1067,15 +1067,6 @@ mod tests {
     /// re-expressed here, not widened, because the approved S3 design makes
     /// the switched-on world act by construction. Watched red with a 1e-9
     /// leak of the drift into support: "parted at month 0 with no stem".
-    ///
-    /// D4 WIRED 2026-09-06: the government clause compares `support` for
-    /// every nation except the two whose ON-world table is the D4 block
-    /// (`polity_in` differs from `polity`), because seating a table the OFF
-    /// world cannot see is the wiring itself and not a leak; coalition and
-    /// pillars are still compared for them. MEASURED before the clause:
-    /// "parted at month 0 with no stem: [rng, Nepal government, Haiti
-    /// government, news [...]]"; with it the pin above (month 35, Libya) is
-    /// unmoved and the six OFF hashes are unmoved.
     #[test]
     fn the_bloc_layer_is_inert_over_time() {
         const BASE: [u64; 6] = [
@@ -1123,17 +1114,7 @@ mod tests {
                 why.push("rng".into());
             }
             for (a, b) in off.governments.states.iter().zip(&on.governments.states) {
-                // D4 (wired 2026-09-06): the ON world seats the Nepal and
-                // Haiti tables that `polity_in` serves only under the
-                // switch, so their dormant `support` differs from the OFF
-                // world's empty one by construction — a record, not an act,
-                // until the seam makes them electoral (auth < 0.60), which
-                // is an act with its own stem. Coalition and pillars are
-                // still compared for them; support is compared everywhere
-                // else.
-                let d4 = government::polity_in(&on, a.nation).map(|p| p as *const government::Polity)
-                    != government::polity(a.nation).map(|p| p as *const government::Polity);
-                if (!d4 && a.support != b.support) || a.coalition != b.coalition || a.pillars != b.pillars {
+                if a.support != b.support || a.coalition != b.coalition || a.pillars != b.pillars {
                     why.push(format!("{} government", a.nation.code()));
                 }
             }
@@ -1318,7 +1299,7 @@ mod tests {
         let g = government::state(&w, NationId::China).unwrap();
         assert_eq!(g.regime_bloc, Some(Bloc::Communist));
         assert_eq!(g.movements.len(), 5);
-        assert_eq!(g.movements, flat_seed(&w, NationId::China, Bloc::Communist).to_vec());
+        assert_eq!(g.movements, flat_seed(NationId::China, Bloc::Communist).to_vec());
         assert!(g.movements[Bloc::Communist as usize].1 > 0.59);
         for pl in government::state(&w, NationId::Poland).unwrap().movements.iter() {
             panic!("an electoral nation stored a movement: {pl:?}");

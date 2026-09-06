@@ -361,7 +361,7 @@ pub const ELECTORAL_CEILING: f64 = 0.60;
 /// for it.
 pub fn is_electoral(w: &WorldState, id: NationId) -> bool {
     w.nation_opt(id).is_some_and(|n| n.alive && n.authoritarianism < ELECTORAL_CEILING)
-        && polity_in(w, id).is_some_and(|p| !p.parties.is_empty())
+        && polity(id).is_some_and(|p| !p.parties.is_empty())
 }
 
 // The tables. Vote shares are from the last national election before January
@@ -5496,44 +5496,7 @@ pub fn polity(id: NationId) -> Option<&'static Polity> {
     POLITIES.iter().find(|x| x.nation == id)
 }
 
-/// The polity lookup UNDER THE SWITCH (design D4, wired 2026-09-06): the
-/// `D4_POLITIES` block where one exists and `rules.ideology_blocs` is on,
-/// else the `POLITIES` block. The OFF world therefore never sees the Nepal
-/// and Haiti party tables — its `GovState.support` for the two and the 1990
-/// start hash do not move — while the lens world seats them like any other
-/// dormant table. Every reader with the world in hand asks this. The readers
-/// without one (`regime_is_communist` and `pillar_bloc` through it,
-/// `home_pillar`, the two `pillar_name`s) read `POLITIES`, and are
-/// table-invariant for the two D4 nations: the pillars, the ruling
-/// institution and the system are identical in both blocks and neither
-/// table's largest party is Communist — asserted, not assumed, by
-/// `d4_tables_are_read_under_the_switch_and_invisible_off`. Party-id-keyed
-/// readers (`spec`, `base_share`) resolve the id in whichever table carries
-/// it (`table_of`), because a D4 id can only be in a state the switch seated.
-pub fn polity_in(w: &WorldState, id: NationId) -> Option<&'static Polity> {
-    if w.rules.ideology_blocs {
-        if let Some(pol) = D4_POLITIES.iter().find(|x| x.nation == id) {
-            return Some(pol);
-        }
-    }
-    polity(id)
-}
-
-/// The table that carries a party id: `POLITIES` first, then `D4_POLITIES`
-/// (ids are unique across the two, asserted by the D4 shape test). A live
-/// id resolves exactly as it did before D4 was wired.
-fn table_of(id: NationId, party: &str) -> Option<&'static Polity> {
-    if let Some(pol) = polity(id) {
-        if pol.parties.iter().any(|p| p.id == party) {
-            return Some(pol);
-        }
-    }
-    D4_POLITIES.iter().find(|x| x.nation == id && x.parties.iter().any(|p| p.id == party))
-}
-
-/// Design D4, TRANSCRIBED 2026-09-06 and WIRED UNDER THE SWITCH the same day
-/// (`polity_in` serves these blocks only while `rules.ideology_blocs` is on;
-/// BUGS P-8 / S4-10 / R-6 closed). The May 1991 Nepal and
+/// Design D4, TRANSCRIBED AND NOT WIRED (2026-09-06). The May 1991 Nepal and
 /// December 1990 Haiti party tables, row for row from
 /// docs/political-arm/nepal-haiti-d4-pending.txt with their sources, kept
 /// beside `POLITIES` rather than in it. Landing them in `POLITIES` was
@@ -5547,11 +5510,9 @@ fn table_of(id: NationId, party: &str) -> Option<&'static Polity> {
 /// 0.5988, Western / Communist / Nationalist 0.1327 each, Islamist 0.002;
 /// Haiti (the army ruling Nationalist) Nationalist 0.5988, Western /
 /// Communist / Non-Aligned 0.1327 each, Islamist 0.002; the 1990 census
-/// stayed 67/17/7/3/43. The second of P-8's two options is the one built: a
-/// table the OFF world cannot see, through `polity_in`, so the start golden
-/// keeps its actual and the lens world reads nine Nepal rows and six Haiti
-/// rows from the first seating (asserted by
-/// `d4_tables_are_read_under_the_switch_and_invisible_off`).
+/// stayed 67/17/7/3/43. Wiring them is Ridge's call: a re-pin of the start
+/// golden, or a table the OFF world cannot see. Until then nothing reads
+/// this const but its own shape test.
 pub const D4_POLITIES: &[Polity] = &[
     // Nepal — House of Representatives, 12 May 1991, the first multi-party
     // election since 1959, under the constitution promulgated 9 November 1990:
@@ -5684,7 +5645,7 @@ pub const D4_POLITIES: &[Polity] = &[
 ];
 
 fn spec(id: NationId, party: &str) -> Option<&'static PartySpec> {
-    table_of(id, party)?.parties.iter().find(|p| p.id == party)
+    polity(id)?.parties.iter().find(|p| p.id == party)
 }
 
 /// The transcribed row for one party of one polity, for a surface that names
@@ -5716,11 +5677,6 @@ pub fn bloc_of(id: NationId, party: &str) -> Bloc {
 /// Non-Aligned one. Read off the table rather than off `Nation.system`, because
 /// `Command` in the 1990 data also covers Iran, Iraq, Syria, Libya, Algeria and
 /// Myanmar, none of which a party apparatus would hand to the Comintern's heirs.
-///
-/// Reads `POLITIES` with no world in hand (`pillar_bloc` needs it without
-/// one). For the two D4 nations both tables answer false — Nepal's largest
-/// row is the Nepali Congress, Haiti's the FNCD — which the wiring test
-/// asserts, so the answer is the same under either switch.
 pub fn regime_is_communist(id: NationId) -> bool {
     let pol = match polity(id) {
         Some(p) => p,
@@ -5797,7 +5753,7 @@ pub fn pillar_bloc(id: NationId, pillar: Pillar) -> Bloc {
 /// and ceilings set by who their voters actually are; an economy moves the
 /// margin, not the whole country.
 fn base_share(id: NationId, party: &str) -> f64 {
-    let pol = match table_of(id, party) {
+    let pol = match polity(id) {
         Some(p) => p,
         None => return 0.0,
     };
@@ -5955,7 +5911,7 @@ pub fn ensure(w: &mut WorldState, id: NationId) {
         seed_blocs(w, id);
         return;
     }
-    let pol = match polity_in(w, id) {
+    let pol = match polity(id) {
         Some(p) => p,
         None => return,
     };
@@ -6030,7 +5986,7 @@ pub fn seed_blocs(w: &mut WorldState, id: NationId) {
         Some(b) => b,
         None => return,
     };
-    let movements = crate::blocs::flat_seed(w, id, ruling);
+    let movements = crate::blocs::flat_seed(id, ruling);
     // A bloc seeded at or over the surge line has not CROSSED it: the latch
     // is seeded closed for it, so the first tick does not announce the
     // seed as news (measured 2026-09-05: Iraq's and Syria's lone Non-Aligned
@@ -6130,7 +6086,7 @@ fn distance(id: NationId, a: &str, b: &str) -> f64 {
 /// seats. If it cannot get there, it governs as a minority — which is a real
 /// outcome and an expensive one, not a failure state.
 fn form_government(w: &mut WorldState, id: NationId, announce: bool) {
-    let sys = match polity_in(w, id) {
+    let sys = match polity(id) {
         Some(p) => p.system,
         None => return,
     };
@@ -6144,7 +6100,7 @@ fn form_government(w: &mut WorldState, id: NationId, announce: bool) {
         r.sort_by(|a, b| {
             b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal).then(a.0.cmp(&b.0))
         });
-        let ps = polity_in(w, id)
+        let ps = polity(id)
             .map(|p| p.parties.iter().filter(|s| s.pariah).map(|s| s.id.to_string()).collect())
             .unwrap_or_default();
         (r, ps)
@@ -6301,7 +6257,7 @@ pub(crate) fn drift_support(w: &mut WorldState, id: NationId) {
     if incumbents.is_empty() {
         return;
     }
-    let families: Vec<(String, Family)> = match polity_in(w, id) {
+    let families: Vec<(String, Family)> = match polity(id) {
         Some(pol) => pol.parties.iter().map(|s| (s.id.to_string(), s.family)).collect(),
         None => return,
     };
@@ -6375,8 +6331,8 @@ fn representative_families(bloc: Bloc) -> &'static [Family] {
 /// dormant table — never the max, so a bloc with one extreme party does not
 /// collect every grievance — and over `representative_families` where the
 /// table carries none. Floored at 0.01 as `drift_support` floors a party's.
-fn bloc_appeal(w: &WorldState, id: NationId, bloc: Bloc, pn: &Pains, development: f64) -> f64 {
-    let members: Vec<Family> = polity_in(w, id)
+fn bloc_appeal(id: NationId, bloc: Bloc, pn: &Pains, development: f64) -> f64 {
+    let members: Vec<Family> = polity(id)
         .map(|pol| {
             pol.parties.iter().filter(|s| bloc_of(id, s.id) == bloc).map(|s| s.family).collect()
         })
@@ -6433,8 +6389,8 @@ pub(crate) fn drift_movements(w: &mut WorldState, id: NationId) {
     let appeals: Vec<(Bloc, f64)> = Bloc::ALL
         .iter()
         .copied()
-        .filter(|b| *b != ruling && crate::blocs::bloc_present(w, id, *b))
-        .map(|b| (b, bloc_appeal(w, id, b, &pn, development)))
+        .filter(|b| *b != ruling && crate::blocs::bloc_present(id, *b))
+        .map(|b| (b, bloc_appeal(id, b, &pn, development)))
         .collect();
     let appeal_total: f64 = appeals.iter().map(|(_, a)| *a).sum();
     let held = shares[ruling as usize].1;
@@ -6453,7 +6409,7 @@ pub(crate) fn drift_movements(w: &mut WorldState, id: NationId) {
             e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
         }
     }
-    let seed = crate::blocs::flat_seed(w, id, ruling);
+    let seed = crate::blocs::flat_seed(id, ruling);
     for (i, e) in shares.iter_mut().enumerate() {
         e.1 += (seed[i].1 - e.1) * reversion;
         e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
@@ -6574,7 +6530,7 @@ fn reseeded_support(w: &WorldState, id: NationId) -> Option<(Vec<(String, f64)>,
         Some(g) if g.movements.len() == 5 => g.movements.clone(),
         _ => return None,
     };
-    let pol = polity_in(w, id)?;
+    let pol = polity(id)?;
     if pol.parties.is_empty() {
         return None;
     }
@@ -6593,7 +6549,7 @@ fn reseeded_support(w: &WorldState, id: NationId) -> Option<(Vec<(String, f64)>,
     let mut lost: Vec<String> = vec![];
     for b in Bloc::ALL {
         let carried = pol.parties.iter().any(|p| bloc_of(id, p.id) == b);
-        if !carried && crate::blocs::bloc_present(w, id, b) {
+        if !carried && crate::blocs::bloc_present(id, b) {
             lost.push(format!(
                 "the {} movement, {:.0}% of the country, has no party to carry it",
                 b.label(),
@@ -6672,11 +6628,11 @@ fn due(w: &WorldState, g: &GovState) -> bool {
 /// the seat formula's job, and it does it once per election instead of
 /// permanently rewriting the electorate.
 pub fn hold_election(w: &mut WorldState, id: NationId) {
-    let sys = match polity_in(w, id) {
+    let sys = match polity(id) {
         Some(p) => p.system,
         None => return,
     };
-    let term = polity_in(w, id).map(|p| p.term_months).unwrap_or(48);
+    let term = polity(id).map(|p| p.term_months).unwrap_or(48);
     let count = state(w, id).map(|g| g.support.len()).unwrap_or(0);
     if count == 0 {
         return;
@@ -6761,7 +6717,7 @@ fn annul_election(w: &mut WorldState, id: NationId) -> bool {
         None => return false,
     };
     let bloc = bloc_of(id, &winner);
-    let members: Vec<String> = polity_in(w, id)
+    let members: Vec<String> = polity(id)
         .map(|pol| pol.parties.iter().filter(|s| bloc_of(id, s.id) == bloc).map(|s| s.id.to_string()).collect())
         .unwrap_or_default();
     if let Some(g) = state_mut(w, id) {
@@ -6933,7 +6889,7 @@ pub fn secure_pillar_refusal(w: &WorldState, id: NationId, pillar: Pillar) -> Op
     if is_electoral(w, id) {
         return Some(format!("{} answers to an electorate, not to its institutions.", id.name()));
     }
-    if polity_in(w, id).and_then(|p| p.pillars.iter().find(|s| s.pillar == pillar)).is_none() {
+    if polity(id).and_then(|p| p.pillars.iter().find(|s| s.pillar == pillar)).is_none() {
         return Some(format!("{} has no such institution.", id.name()));
     }
     match state(w, id) {
@@ -6999,7 +6955,7 @@ pub fn secure_pillar(w: &mut WorldState, id: NationId, pillar: Pillar) -> Result
     if let Some(why) = secure_pillar_refusal(w, id, pillar) {
         return Err(why);
     }
-    let name = polity_in(w, id)
+    let name = polity(id)
         .and_then(|p| p.pillars.iter().find(|s| s.pillar == pillar))
         .map(|s| s.name)
         .unwrap_or("its institution");
@@ -7273,7 +7229,7 @@ pub fn ban_plan(w: &WorldState, id: NationId, party: &str) -> Result<BanPlan, St
     let n = w.nation(id);
     let support = g.support_of(party);
     let seats_after = if is_electoral(w, id) {
-        let sys = polity_in(w, id).map(|p| p.system).ok_or("no polity")?;
+        let sys = polity(id).map(|p| p.system).ok_or("no polity")?;
         let mut banned = g.banned.clone();
         banned.push(party.to_string());
         seats_from_legal(true, &g.support, sys, &banned)
@@ -7368,7 +7324,7 @@ pub fn legalize_plan(w: &WorldState, id: NationId, party: &str) -> Result<Legali
     let s = spec(id, party).ok_or("no such party")?;
     let g = state(w, id).ok_or("no government")?;
     let seats_after = if is_electoral(w, id) {
-        let sys = polity_in(w, id).map(|p| p.system).ok_or("no polity")?;
+        let sys = polity(id).map(|p| p.system).ok_or("no polity")?;
         let banned: Vec<String> = g.banned.iter().filter(|p| *p != party).cloned().collect();
         seats_from_legal(true, &g.support, sys, &banned)
     } else {
@@ -7529,7 +7485,7 @@ pub fn programme_effects(w: &WorldState, id: NationId, bloc: Bloc) -> Vec<String
         format!("Stability {:.0} → {:.0}.", p.stability_before, p.stability_after),
     ];
     for (pillar, before, after) in &p.pillars {
-        let name = polity_in(w, id)
+        let name = polity(id)
             .and_then(|pol| pol.pillars.iter().find(|s| s.pillar == *pillar))
             .map(|s| s.name)
             .unwrap_or(pillar.key());
@@ -7599,7 +7555,7 @@ pub fn round_table_refusal(w: &WorldState, id: NationId) -> Option<String> {
     if is_electoral(w, id) {
         return Some(format!("{} already answers to an electorate.", id.name()));
     }
-    if polity_in(w, id).is_none_or(|p| p.parties.is_empty()) {
+    if polity(id).is_none_or(|p| p.parties.is_empty()) {
         return Some(format!("{} has no parties to seat at a round table.", id.name()));
     }
     let g = match state(w, id) {
@@ -7999,7 +7955,7 @@ fn movements_from_parties(w: &WorldState, id: NationId, ruling: Bloc, bonus: f64
 /// keep paying and not only the two that removed it. Pillars already present
 /// keep their loyalty; the caller writes over them.
 fn seat_spec_pillars(w: &mut WorldState, id: NationId) {
-    let spec: Vec<Pillar> = polity_in(w, id).map(|p| p.pillars.iter().map(|s| s.pillar).collect()).unwrap_or_default();
+    let spec: Vec<Pillar> = polity(id).map(|p| p.pillars.iter().map(|s| s.pillar).collect()).unwrap_or_default();
     if let Some(g) = state_mut(w, id) {
         for p in spec {
             if !g.pillars.iter().any(|(q, _)| *q == p) {
@@ -8147,7 +8103,7 @@ pub(crate) fn uprising(w: &mut WorldState, id: NationId) {
     }
     normalise_blocs(&mut movements);
     let home = home_pillar(id, winner);
-    let pillars: Vec<(Pillar, f64)> = polity_in(w, id)
+    let pillars: Vec<(Pillar, f64)> = polity(id)
         .map(|p| p.pillars.iter().map(|s| (s.pillar, if Some(s.pillar) == home { 0.80 } else { 0.55 })).collect())
         .unwrap_or_default();
     if let Some(g) = state_mut(w, id) {
@@ -8444,7 +8400,7 @@ pub fn tick(w: &mut WorldState) {
             }
             let needs_pillars = state(w, id).is_some_and(|g| g.pillars.is_empty());
             if needs_pillars {
-                let seeded: Vec<(Pillar, f64)> = polity_in(w, id)
+                let seeded: Vec<(Pillar, f64)> = polity(id)
                     .map(|p| p.pillars.iter().map(|s| (s.pillar, 0.60)).collect())
                     .unwrap_or_default();
                 if let Some(g) = state_mut(w, id) {
@@ -8536,9 +8492,9 @@ pub enum Succession {
 
 /// The largest party of a bloc in the polity's table by its transcribed
 /// share, if the table carries one.
-fn largest_party_of(w: &WorldState, id: NationId, bloc: Bloc) -> Option<&'static PartySpec> {
+fn largest_party_of(id: NationId, bloc: Bloc) -> Option<&'static PartySpec> {
     let mut best: Option<&PartySpec> = None;
-    for s in polity_in(w, id)?.parties {
+    for s in polity(id)?.parties {
         if bloc_of(id, s.id) != bloc {
             continue;
         }
@@ -8619,14 +8575,14 @@ pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option
         Succession::Takeover { bloc } => match bloc {
             Bloc::Nationalist | Bloc::NonAligned => {
                 let pillar = home_pillar(id, *bloc)
-                    .or_else(|| polity_in(w, id).and_then(|p| p.pillars.iter().map(|s| s.pillar).find(|p| *p == Pillar::Army)))
-                    .or_else(|| polity_in(w, id).and_then(|p| p.pillars.first().map(|s| s.pillar)));
+                    .or_else(|| polity(id).and_then(|p| p.pillars.iter().map(|s| s.pillar).find(|p| *p == Pillar::Army)))
+                    .or_else(|| polity(id).and_then(|p| p.pillars.first().map(|s| s.pillar)));
                 match pillar {
                     Some(p) => by_pillar(p),
-                    None => (seat(polity_in(w, id).map(|p| p.ruling).unwrap_or("the state").to_string(), "head of state".into(), None, None), false),
+                    None => (seat(polity(id).map(|p| p.ruling).unwrap_or("the state").to_string(), "head of state".into(), None, None), false),
                 }
             }
-            Bloc::Islamist | Bloc::Communist | Bloc::Western => match largest_party_of(w, id, *bloc) {
+            Bloc::Islamist | Bloc::Communist | Bloc::Western => match largest_party_of(id, *bloc) {
                 Some(p) => (seat(government_of(id, p.id), "head of government".into(), Some(p.id.to_string()), None), false),
                 None => {
                     let fallback = if *bloc == Bloc::Islamist { Pillar::Clergy } else { Pillar::Party };
@@ -9178,7 +9134,7 @@ mod tests {
         let mut w = world_1990(on_rules(7));
         let id = NationId::Indonesia;
         assert!(!is_electoral(&w, id));
-        assert!(crate::blocs::bloc_present(&w, id, Bloc::Nationalist), "ABRI stands for it");
+        assert!(crate::blocs::bloc_present(id, Bloc::Nationalist), "ABRI stands for it");
         let hand = vec![
             (Bloc::Western, 0.10),
             (Bloc::Communist, 0.002),
@@ -9276,8 +9232,7 @@ mod tests {
         assert!(surges.is_empty(), "the seed was announced as news: {surges:?}");
     }
 
-    /// Design D4, transcribed beside the live table and wired under the
-    /// switch by `polity_in` (see `D4_POLITIES`): the two
+    /// Design D4, transcribed and NOT wired (see `D4_POLITIES`): the two
     /// blocks are shaped as the table is shaped — ids unique against
     /// `POLITIES`, shares in (0, 1] summing to at most 1.02, nine Nepal rows
     /// and six Haiti rows, the Chamber's 48-month term, the same pillars as
@@ -9317,63 +9272,6 @@ mod tests {
         assert_eq!(D4_POLITIES[1].term_months, 48);
         let w = w1990();
         assert!(!is_electoral(&w, NationId::Nepal) && !is_electoral(&w, NationId::Haiti));
-    }
-
-    /// D4 WIRED UNDER THE SWITCH (2026-09-06). Off: `polity_in` is `polity`
-    /// for every nation of the roster and the two states carry no party. On:
-    /// `polity_in` serves the D4 block for Nepal and Haiti, `ensure` seats
-    /// its table (nine and six rows, normalised, the Nepali Congress and the
-    /// FNCD leading), Haiti's term is the Chamber's 48, both stay regimes
-    /// (authoritarianism 0.70 / 0.78 over the 0.60 ceiling), the flat seed
-    /// reads what P-8 measured (Nepal Non-Aligned 0.5988, Haiti Nationalist
-    /// 0.5988, Islamist 0.002 in both), and the id-only readers that stay on
-    /// `POLITIES` answer the same for either table. Watched red with the
-    /// switch test removed from `polity_in`: the OFF world seated `np_nc`.
-    #[test]
-    fn d4_tables_are_read_under_the_switch_and_invisible_off() {
-        let off = w1990();
-        for n in &off.nations {
-            let a = polity_in(&off, n.id).map(|p| p as *const Polity);
-            let b = polity(n.id).map(|p| p as *const Polity);
-            assert_eq!(a, b, "{:?}: the OFF lookup is the live table", n.id);
-        }
-        for id in [NationId::Nepal, NationId::Haiti] {
-            let g = state(&off, id).expect("seated");
-            assert!(g.support.is_empty() && g.seats.is_empty(), "{id:?}: the OFF world saw a D4 row");
-        }
-        let on = world_1990(on_rules(7));
-        let np = polity_in(&on, NationId::Nepal).unwrap();
-        let ht = polity_in(&on, NationId::Haiti).unwrap();
-        assert_eq!(np.parties.len(), 9);
-        assert_eq!(ht.parties.len(), 6);
-        assert_eq!(ht.term_months, 48);
-        assert_eq!(polity_in(&on, NationId::Poland).map(|p| p as *const Polity), polity(NationId::Poland).map(|p| p as *const Polity));
-        for (id, lead, rows) in [(NationId::Nepal, "np_nc", 9usize), (NationId::Haiti, "ht_fncd", 6)] {
-            let g = state(&on, id).expect("seated");
-            assert_eq!(g.support.len(), rows, "{id:?}");
-            let total: f64 = g.support.iter().map(|(_, v)| *v).sum();
-            assert!((total - 1.0).abs() < 1e-9, "{id:?}: {total}");
-            let top = g.support.iter().max_by(|a, b| a.1.partial_cmp(&b.1).unwrap()).unwrap();
-            assert_eq!(top.0, lead, "{id:?}");
-            assert!(!is_electoral(&on, id), "{id:?} stays a regime");
-            assert!(g.regime_bloc.is_some() && g.movements.len() == 5, "{id:?}: the arm seeded it");
-            assert!((g.movements[Bloc::Islamist as usize].1 - 0.002).abs() < 1e-3, "{id:?}: {:?}", g.movements);
-        }
-        let np_g = state(&on, NationId::Nepal).unwrap();
-        assert!((np_g.movements[Bloc::NonAligned as usize].1 - 0.5988).abs() < 1e-3, "{:?}", np_g.movements);
-        let ht_g = state(&on, NationId::Haiti).unwrap();
-        assert!((ht_g.movements[Bloc::Nationalist as usize].1 - 0.5988).abs() < 1e-3, "{:?}", ht_g.movements);
-        // The id-only readers stay on POLITIES and are table-invariant here.
-        for pol in D4_POLITIES {
-            let largest = pol.parties.iter().max_by(|a, b| a.start.partial_cmp(&b.start).unwrap()).unwrap();
-            assert_ne!(bloc_of(pol.nation, largest.id), Bloc::Communist, "{:?}", pol.nation);
-            assert!(!regime_is_communist(pol.nation));
-            assert_eq!(pillar_bloc(pol.nation, Pillar::Party), Bloc::NonAligned);
-            for s in pol.parties {
-                assert!(spec(pol.nation, s.id).is_some(), "{} resolves through table_of", s.id);
-                assert!(base_share(pol.nation, s.id) > 0.0, "{}", s.id);
-            }
-        }
     }
 
     #[test]
@@ -10585,10 +10483,9 @@ mod tests {
     fn a_western_winner_is_refused_in_a_party_less_polity() {
         let sa = NationId::SaudiArabia;
         assert!(polity(sa).unwrap().parties.is_empty());
-        let table = w1990();
-        assert!(crate::blocs::bloc_present(&table, sa, Bloc::Western), "the merchant houses carry the Western bloc");
-        assert!(!crate::blocs::bloc_can_win(&table, sa, Bloc::Western));
-        assert!(crate::blocs::bloc_can_win(&table, sa, Bloc::Islamist));
+        assert!(crate::blocs::bloc_present(sa, Bloc::Western), "the merchant houses carry the Western bloc");
+        assert!(!crate::blocs::bloc_can_win(sa, Bloc::Western));
+        assert!(crate::blocs::bloc_can_win(sa, Bloc::Islamist));
         let arm = |w: &mut WorldState| {
             {
                 let n = w.nation_mut(sa);

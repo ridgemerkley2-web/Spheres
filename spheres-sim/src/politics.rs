@@ -1648,7 +1648,7 @@ pub(crate) fn ai_back_bloc_choice(w: &WorldState, sponsor: NationId, target: Nat
         sponsored.is_none() && w.patrons_of(target).iter().any(|q| w.relation(sponsor, *q) < -20.0);
     let mut best: Option<(crate::government::Bloc, f64)> = None;
     for (b, v) in crate::blocs::influence(w, target) {
-        if b == ruling || v < 0.15 || !crate::blocs::bloc_present(w, target, b) {
+        if b == ruling || v < 0.15 || !crate::blocs::bloc_present(target, b) {
             continue;
         }
         if Some(b) != own && !rivals_client {
