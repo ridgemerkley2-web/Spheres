@@ -1,5 +1,71 @@
 # SPHERES Roadmap
 
+## Done — the political arm, stage S4: the roads, succession, mortality (2026-09-06)
+
+Branch `feat/ideology-roads`, eight commits on part two (712de08), every one
+inert with the switches off: the golden actuals stand at 0xe26e4bf8d6c60066
+/ 0xbe94d6125631829c, the six BASE hashes and the month-35 pin of
+`the_bloc_layer_is_inert_over_time` are unmoved, and the two market-off
+headless digests read run 35 1990 d1a2cfbf7c6958d7 (3501 lines) and run 35 7 39dea3341a7f6e8c (3983 lines), sha256 of stdout, unchanged from cd6e2ff. BUGS.md S4-1..S4-10 carry the
+coefficients, the readings the design left open, and what is not here.
+`rules.ideology_takeover` is still off everywhere — the browser reads every
+road `calibration pending` with live gauges — and mortality and succession
+ride the lens switch.
+
+- **One break** (`government::regime_break`, d8df9b6): `maybe_coup`'s block
+  verbatim, taking only the authoritarianism rule and the colour from its
+  caller, so the regime's own coup, route 2 and the annulment cannot come
+  apart.
+- **Route 2** (79c2ea8): the electoral branch walks the Army and Security
+  lines of `pillar_targets` (regime_tick's formulas, factored, arithmetic
+  untouched) in a polity whose state holds an Army, accrues pressure at the
+  electoral rate and breaks before the fragile branch; the seam keeps Army
+  and Security through the clearing. Measured: Pakistan unpaid at stability
+  35 crosses 0.35 in month 11 and is removed in month 30 (not "about
+  eighteen": S4-1); paid at 6.2% and stability 70 never in 240 months.
+- **The annulment** (9a6885b): inside `hold_election` between the seats and
+  the formation; the Army live, a Communist or Islamist would-be leader,
+  authoritarianism ≥ 0.35, discontent ≥ 0.25, no court. Measured: Algeria's
+  December 1991 vote the FIS won is annulled with dz_fis banned and the
+  regime Nationalist at 0.80; Jordan's court dismisses and does not annul.
+- **Route 3** (0386136): the politics.rs collapse chain gains an arm under
+  the switch at the same site and the same draw; `blocs::challenger` (W over
+  the winnable blocs — never Regionalist-only, never Western without a
+  table), `coercion_fails`, `uprising_armed`; `government::uprising` sets
+  the winner's authoritarianism, W +0.15, the home pillar 0.80. Measured:
+  Sudan's Communist movement at 0.46 / discontent 0.70 / army 0.30 takes
+  power in month 13; Saudi Arabia's Western bloc cannot win; six democracies
+  on seeds 0..3 see no road in 420 months.
+- **Route 4** (6f4a6d8): the one authoritarianism drift, 0.01 a month to
+  0.55 under Western influence ≥ 0.40, stability 30..70, the Party pillar
+  under 0.55. Measured: Indonesia opens in month 21 and votes in month 39;
+  Saudi Arabia stops at 0.55 as a regime.
+- **The foreign payoff** (e218372): `statecraft::takeover_payoff` off one
+  plan, `caught` factored from `covert_action` verbatim. Measured on Sudan:
+  Moscow +40 then −35 exposed on the spot, −25 with Washington, the
+  democracies −8, the loser's patrons −10.
+- **Succession** (bea4513, D2): `data::Emergent` on the row, `Office::
+  tie_now` read by the ruling bloc and the court; `government::Succession`
+  and `seat_office` on every change of government; term limits by the
+  month. Never a name but the transcribed heir once. Measured: 121 offices
+  changed hands in forty years on the roads (seed 7).
+- **Mortality** (ca41545, D1): `politics::mortality`, last in `SYSTEMS`,
+  q(age) = 0.015·2^((age−65)/7). Measured: 86–96 deaths per seed over forty
+  years, six different first deaths; the daily == monthly identity holds
+  with both switches on and a BackBloc, a BanParty and a ConveneRoundTable
+  on days 10, 20 and 31.
+- **Suite, watched:** spheres-sim lib 446 passed / 4 failed / 25 ignored, run in four
+  exact-name groups (112 / 99 / 103 / 132 in 15.6 s, 41.5 s, 49.1 s and
+  1275.9 s) — the three deliberate reds (E-3's bar and the two goldens at
+  their actuals) plus P-12's wall-clock bar, which read 0.6075 ms/month
+  alone in the debug profile and 0.0651 ms/month alone in the release
+  profile, green there; spheres-web 154 / 0 / 2 in 176.8 s; spheres-cli
+  1 / 0.
+- **Not in this stage:** the web's lever cards, "Back a movement" card,
+  backing hatch, event cards and dock banner (S4-9); D4's wiring (P-8,
+  S4-10); the calibration of every road against 1989-92, which is what
+  keeps `ideology_takeover` off.
+
 ## Done — the political arm, stage S3 part two: the five levers, the crackdown arm, the AI political rules (2026-09-06)
 
 Branch `feat/ideology-roads`, three commits on part one (38c1654), every one
