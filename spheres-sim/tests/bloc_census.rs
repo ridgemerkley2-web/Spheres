@@ -41,11 +41,21 @@
 //!   pre-existing stability < 12 collapse, the movement
 //!   (`blocs::uprising_armed`), both, or neither ("none": crossed inside
 //!   the tick, which the pre-tick reading cannot see).
-//! - A5's "ex-communist return by ballot": a Communist-bloc-led coalition
-//!   seated by BALLOT (as above) in a nation that was Communist-ruled on
-//!   1 January 1990, or an ex-Warsaw-Pact state (Poland, Hungary,
-//!   Czechoslovakia, Romania, Bulgaria, the USSR), or a successor state born
-//!   after 1990. Counted by end-1996 (the design's date) and over the run.
+//! - A5's "ex-communist return by ballot" (re-expressed 2026-09-06 on Ridge's
+//!   ruling R3(d), quoted: "so the ex-communist-return bar reads the
+//!   historical event - a successor party led back into government by
+//!   ballot - rather than reclassifying social democrats as communists"): a
+//!   BALLOT (as above) after which the coalition is LED by a party carrying
+//!   the transcribed `successor_of_ruling_party` flag
+//!   (`government::successor_of_ruling_party`) that did not lead it before
+//!   the vote, in a nation that was Communist-ruled on 1 January 1990, or an
+//!   ex-Warsaw-Pact state (Poland, Hungary, Czechoslovakia, Romania,
+//!   Bulgaria, the USSR), or a successor state born after 1990. Counted as
+//!   DISTINCT NATIONS by end-1996 (the design's date: "in at least three of
+//!   the ex-communist states by 1996") and over the run. Until 2026-09-06
+//!   the bar read a Communist-BLOC-led coalition by ballot, which the
+//!   transcription could not register for Lithuania's LDDP or Hungary's
+//!   MSZP (Social Democratic rows; BUGS S7-5).
 //! - A6's "route event": annulment, coup against an elected government,
 //!   regime coup, suspension, round table, or an uprising the MOVEMENT armed
 //!   AT THE FIRING SITE, in a nation whose 1990 authoritarianism was
@@ -120,6 +130,8 @@ struct Seed {
     communist_states: u32,
     opened_1996: u32,
     opened_attr: [u32; 4], // drift, uprising, lever, card
+    /// distinct ex-communist nations where a flagged successor party was
+    /// led back into government by ballot (A5), by end-1996 and over the run
     excomm_1996: u32,
     excomm_run: u32,
     a6_route: u32,
@@ -260,6 +272,8 @@ fn run_seed(seed: u64, months: usize, verbose: bool, by_nation: &mut HashMap<&'s
     let mut islamist_set: HashSet<usize> = HashSet::new();
     let mut islamist_set_2000: HashSet<usize> = HashSet::new();
     let mut communist_set: HashSet<usize> = HashSet::new();
+    let mut excomm_1996_set: HashSet<usize> = HashSet::new();
+    let mut excomm_run_set: HashSet<usize> = HashSet::new();
     let mut elcoup_by: HashMap<&'static str, u32> = HashMap::new();
     let mut alive_before = start.len();
 
@@ -444,6 +458,20 @@ fn run_seed(seed: u64, months: usize, verbose: bool, by_nation: &mut HashMap<&'s
                 && events.get(&i).map_or(false, |ev| ev.contains(&Route::Ballot))
             {
                 out.ballot_party_flips += 1;
+                // A5: a successor party led back into government by ballot.
+                let led_by_successor = after
+                    .leader
+                    .as_deref()
+                    .is_some_and(|p| government::successor_of_ruling_party(w.nations[i].id, p));
+                if led_by_successor && excomm.contains(&i) {
+                    let nm = name_of(&w, i);
+                    if excomm_run_set.insert(i) {
+                        bump("excomm_run", nm);
+                    }
+                    if m < END_1996 && excomm_1996_set.insert(i) {
+                        bump("excomm_1996", nm);
+                    }
+                }
             }
             if before.ruling == after.ruling || after.ruling.is_none() {
                 // An opening without a colour change still counts for A4.
@@ -477,14 +505,6 @@ fn run_seed(seed: u64, months: usize, verbose: bool, by_nation: &mut HashMap<&'s
             match route {
                 Route::Ballot if before.electoral && after.electoral => {
                     out.ballot_flips += 1;
-                    if new == Bloc::Communist && excomm.contains(&i) {
-                        out.excomm_run += 1;
-                        bump("excomm_run", nm);
-                        if m < END_1996 {
-                            out.excomm_1996 += 1;
-                            bump("excomm_1996", nm);
-                        }
-                    }
                 }
                 Route::Annul | Route::ElCoup | Route::RegCoup | Route::Uprising | Route::Programme => {
                     out.take[new as usize] += 1;
@@ -574,6 +594,8 @@ fn run_seed(seed: u64, months: usize, verbose: bool, by_nation: &mut HashMap<&'s
     out.islamist_states = islamist_set.len() as u32;
     out.islamist_states_by_2000 = islamist_set_2000.len() as u32;
     out.communist_states = communist_set.len() as u32;
+    out.excomm_1996 = excomm_1996_set.len() as u32;
+    out.excomm_run = excomm_run_set.len() as u32;
     out.a10_n = a10.len() as u32;
     out.a10_median = median(&a10);
     let mut v: Vec<(&'static str, u32)> = elcoup_by.into_iter().collect();
@@ -645,7 +667,7 @@ fn bloc_census() {
     let ex96 = rows.iter().filter(|r| r.excomm_1996 >= 1).count();
     let ex96_3 = rows.iter().filter(|r| r.excomm_1996 >= 3).count();
     let exrun = rows.iter().filter(|r| r.excomm_run >= 1).count();
-    println!("A5 ex-communist return by ballot: seeds with >= 1 by end-1996 {}/{} = {:.3}; >= 3 by end-1996 {}/{}; >= 1 over the run {}/{}; per seed by 1996 {}",
+    println!("A5 successor party led back into government by ballot (distinct nations): seeds with >= 1 by end-1996 {}/{} = {:.3}; >= 3 by end-1996 {}/{} (the bar); >= 1 over the run {}/{}; nations per seed by 1996 {}",
         ex96, rows.len(), ex96 as f64 / nf, ex96_3, rows.len(), exrun, rows.len(), stats(&col(&|r| r.excomm_1996 as f64)));
     println!("A6 route events in 1990 auth <= 0.20 nations per seed: {} (pre-existing stability<12 collapses beside: {}); seeds with zero route events {}/{}",
         stats(&col(&|r| r.a6_route as f64)), stats(&col(&|r| r.a6_collapse as f64)), rows.iter().filter(|r| r.a6_route == 0).count(), rows.len());
@@ -950,33 +972,39 @@ fn a4_the_democratisation_wave_opens_fifteen_regimes_by_1996() {
     assert!((15.0..=40.0).contains(&m), "median regimes electoral by 1996: {m}");
 }
 
-/// A5 — OUT, `#[ignore]`d (BUGS S6-3). An ex-communist return by ballot — a
-/// Communist-family-led coalition seated by ballot in any 1990 Communist-ruled
-/// or ex-Warsaw-Pact state, or a successor — by end-1996 in a majority of
-/// seeds (Bulgaria, Albania, Mongolia, Lithuania, Poland, Hungary).
+/// A5 — OUT, `#[ignore]`d (BUGS S6-3), RE-EXPRESSED 2026-09-06 on Ridge's
+/// ruling R3(d): "a transcribed successor_of_ruling_party flag on every party
+/// that is the legal or organisational successor of a communist ruling party
+/// ... so the ex-communist-return bar reads the historical event - a
+/// successor party led back into government by ballot - rather than
+/// reclassifying social democrats as communists." The bar: in a MAJORITY of
+/// seeds, a flagged party (`government::successor_of_ruling_party`; 24 rows,
+/// `every_successor_flag_has_a_source`) is led back into government by
+/// ballot in AT LEAST THREE distinct ex-communist states by end-1996 — the
+/// anchor's six being Bulgaria 1990 (`bg_bsp`), Albania 1991 (`al_ppsh`),
+/// Mongolia 1990 (`mn_mprp`), Lithuania 1992 (`lt_ldpp`), Poland 1993
+/// (`pl_sld`), Hungary 1994 (`hu_mszp`), every one of which now carries the
+/// flag whatever its family, so the transcription no longer hides two of
+/// them (BUGS S7-5 closed on that half).
 ///
-/// READING (N=200, 252 months): 0/200 by end-1996 and 0/200 over the run;
-/// p = 0.000, the bar red at any n. WHY, in two parts. The TRANSCRIPTION
-/// first (the honesty skeptic's finding, BUGS S7-5): of the design's six
-/// named returns, Lithuania's `lt_ldpp` and Hungary's `hu_mszp` are
-/// transcribed `Family::SocialDemocratic` with no bloc override, so their
-/// return by ballot is a Western -> Western change this bar cannot register
-/// by construction; Bulgaria's `bg_bsp` (0.472), Albania's `al_ppsh` (0.562)
-/// and Mongolia's `mn_mprp` (0.623) already LEAD at the 1990 seating, so
-/// their "return" needs a lose-then-return sequence; only Poland's `pl_sld`
-/// (`Family::Communist`, 0.22) is a plain flip. Two-sixths of the anchor is
-/// unreachable by data and three-sixths need two ballots, and that is a data
-/// question for Ridge (S5-8). Then the MODEL (BUGS S5-7): the ballot is the
-/// party model's `drift_support`, which the arm does not touch; a
-/// Communist-family leader by vote needs that model's record line to favour
-/// it, and it does not in 1990-96 (Poland reads 0/200).
+/// READING (N=200, 252 months, this tree, `census_n200_flag`): 0/200 seeds
+/// with >= 1 nation by end-1996, 0/200 with >= 3, 0/200 over the run; p =
+/// 0.000, the bar red at any n and its false-red probability 0 — a
+/// decorative bar until the model moves, recorded as such (iron rule 7).
+/// n = 12 is the placeholder the other out bars carry; the derivation is
+/// re-run from the census the day p leaves zero. WHY it is still zero is
+/// now the MODEL alone (BUGS S5-7): the ballot is the party model's
+/// `drift_support`, which the arm does not touch, and three of the six
+/// (BSP, PS, MPRP) lead at the 1990 seating so their event is a lose-then-
+/// return the record line never produces; Poland's plain flip reads 0/200.
 #[test]
 #[ignore]
 fn a5_ex_communists_return_by_ballot_in_most_seeds() {
     let rows = census(12, MONTHS);
-    let seeds = rows.iter().filter(|r| r.excomm_1996 >= 1).count();
-    eprintln!("A5: {seeds}/12 seeds with an ex-communist return by ballot by 1996\n{}", seed_summary(&rows));
-    assert!(seeds > 6, "ex-communist return by ballot in {seeds}/12 seeds");
+    let seeds = rows.iter().filter(|r| r.excomm_1996 >= 3).count();
+    eprintln!("A5: {seeds}/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996
+{}", seed_summary(&rows));
+    assert!(seeds > 6, "a successor party led back into government by ballot in three states, in {seeds}/12 seeds");
 }
 
 /// A7 — OUT, `#[ignore]`d (BUGS S6-3). Ballot flips of the ruling bloc are at

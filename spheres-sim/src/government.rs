@@ -209,6 +209,21 @@ pub struct PartySpec {
     /// decision with its source on the row. Read through `bloc_of`, never
     /// directly.
     pub bloc: Option<Bloc>,
+    /// The legal or organisational SUCCESSOR of a Marxist-Leninist ruling
+    /// party — the MSZP out of the MSZMP, the SdRP/SLD out of the PZPR, the
+    /// BSP out of the BCP — or that ruling party itself reorganised or
+    /// renamed after 1 January 1990 (R3(d), Ridge's ruling of 2026-09-06:
+    /// "so the ex-communist-return bar reads the historical event - a
+    /// successor party led back into government by ballot - rather than
+    /// reclassifying social democrats as communists"). `false` on every row
+    /// but the transcribed ones; every `true` carries a
+    /// `// successor_of_ruling_party:` comment with its source on the row,
+    /// asserted by `every_successor_flag_has_a_source`. Read by the census's
+    /// A5 bar through `successor_of_ruling_party`; nothing in the tick reads
+    /// it. A ruling party that kept its name and organisation (the CPSU, the
+    /// CPC, the CPV, FRELIMO, the PAICV) is not a successor and carries no
+    /// flag.
+    pub successor_of_ruling_party: bool,
 }
 
 impl PartySpec {
@@ -216,6 +231,12 @@ impl PartySpec {
     /// so the six hundred rows that keep the default do not change.
     pub const fn aligned(self, bloc: Bloc) -> PartySpec {
         PartySpec { bloc: Some(bloc), ..self }
+    }
+    /// Mark a party the successor of a Marxist-Leninist ruling party (R3(d)).
+    /// A const builder on the `aligned` pattern, so the six hundred rows
+    /// that are not one do not change.
+    pub const fn successor(self) -> PartySpec {
+        PartySpec { successor_of_ruling_party: true, ..self }
     }
 }
 
@@ -226,7 +247,7 @@ const fn p(
     family: Family,
     start: f64,
 ) -> PartySpec {
-    PartySpec { id, name, native, family, start, pariah: false, bloc: None }
+    PartySpec { id, name, native, family, start, pariah: false, bloc: None, successor_of_ruling_party: false }
 }
 const fn pariah(
     id: &'static str,
@@ -235,7 +256,7 @@ const fn pariah(
     family: Family,
     start: f64,
 ) -> PartySpec {
-    PartySpec { id, name, native, family, start, pariah: true, bloc: None }
+    PartySpec { id, name, native, family, start, pariah: true, bloc: None, successor_of_ruling_party: false }
 }
 
 /// How votes become seats. The choice is not cosmetic: it decides whether a
@@ -420,7 +441,8 @@ pub const POLITIES: &[Polity] = &[
         parties: &[
             p("ru_ldpr", "Liberal Democratic Party of Russia", "Liberalno-demokraticheskaya partiya Rossii", Family::Nationalist, 0.229),
             p("ru_vybor", "Russia's Choice", "Vybor Rossii", Family::Liberal, 0.155),
-            p("ru_kprf", "Communist Party of the Russian Federation", "Kommunisticheskaya partiya Rossiyskoy Federatsii", Family::Communist, 0.124),
+            // successor_of_ruling_party: Communist Party of the RSFSR (CPSU branch, banned 1991) - founded 14 February 1993 at the Second Extraordinary Congress of Russian Communists 'where it declared itself to be the successor of the Communist Party of the RSFSR'; 1993-02-14. https://en.wikipedia.org/wiki/Communist_Party_of_the_Russian_Federation
+            p("ru_kprf", "Communist Party of the Russian Federation", "Kommunisticheskaya partiya Rossiyskoy Federatsii", Family::Communist, 0.124).successor(),
             // bloc -> Communist: The collective-farm lobby, the KPRF's ally in every Duma. https://en.wikipedia.org/wiki/Agrarian_Party_of_Russia
             p("ru_apr", "Agrarian Party of Russia", "Agrarnaya partiya Rossii", Family::Agrarian, 0.080).aligned(Bloc::Communist),
             p("ru_yabloko", "Yabloko", "Yabloko", Family::Liberal, 0.079),
@@ -442,7 +464,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (0, 0),
         parties: &[
-            p("ua_kpu", "Communist Party of Ukraine", "Komunistychna partiya Ukrayiny", Family::Communist, 0.247),
+            // successor_of_ruling_party: Soviet-era Communist Party of Ukraine (banned 30 August 1991) - 1st Congress of the newly founded KPU 19 June 1993 'officially designated as the 29th Congress to denote it as a direct successor to the Soviet KPU'; 1993-06-19. https://en.wikipedia.org/wiki/Communist_Party_of_Ukraine
+            p("ua_kpu", "Communist Party of Ukraine", "Komunistychna partiya Ukrayiny", Family::Communist, 0.247).successor(),
             p("ua_rukh", "People's Movement of Ukraine", "Narodnyi Rukh Ukrayiny", Family::Nationalist, 0.094),
             p("ua_spu", "Socialist Party of Ukraine", "Sotsialistychna partiya Ukrayiny", Family::SocialDemocratic, 0.086),
             p("ua_ndp", "People's Democratic Party", "Narodno-demokratychna partiya", Family::Liberal, 0.050),
@@ -724,7 +747,8 @@ pub const POLITIES: &[Polity] = &[
         parties: &[
             // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Solidarity_Citizens%27_Committee
             p("pl_solidarity", "Solidarity Citizens' Committee", "Komitet Obywatelski Solidarnosc", Family::BigTent, 0.60).aligned(Bloc::Western),
-            p("pl_sld", "Democratic Left Alliance", "Sojusz Lewicy Demokratycznej", Family::Communist, 0.22),
+            // successor_of_ruling_party: Polish United Workers' Party (PZPR) - SdRP founded 28 January 1990 as 'the main party of the successor parties'; ran as the Democratic Left Alliance (SLD) coalition from 1991; folded into SLD 15 April 1999; 1990-01-28. https://en.wikipedia.org/wiki/Social_Democracy_of_the_Republic_of_Poland
+            p("pl_sld", "Democratic Left Alliance", "Sojusz Lewicy Demokratycznej", Family::Communist, 0.22).successor(),
             p("pl_psl", "Polish People's Party", "Polskie Stronnictwo Ludowe", Family::Agrarian, 0.12),
             p("pl_sd", "Alliance of Democrats", "Stronnictwo Demokratyczne", Family::Liberal, 0.06),
         ],
@@ -914,7 +938,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (0, 0),
         parties: &[
-            p("rs_sps", "Socialist Party of Serbia", "Socijalisticka partija Srbije", Family::Nationalist, 0.461),
+            // successor_of_ruling_party: League of Communists of Serbia (SKS) merged with the Socialist Alliance of Working People to create the SPS at the 17 July 1990 congress; 1990-07-17. https://en.wikipedia.org/wiki/Socialist_Party_of_Serbia
+            p("rs_sps", "Socialist Party of Serbia", "Socijalisticka partija Srbije", Family::Nationalist, 0.461).successor(),
             p("rs_spo", "Serbian Renewal Movement", "Srpski pokret obnove", Family::Nationalist, 0.158),
             p("rs_ds", "Democratic Party", "Demokratska stranka", Family::Liberal, 0.074),
         ],
@@ -935,7 +960,8 @@ pub const POLITIES: &[Polity] = &[
         next: (0, 0),
         parties: &[
             p("hr_hdz", "Croatian Democratic Union", "Hrvatska demokratska zajednica", Family::Nationalist, 0.419),
-            p("hr_sdp", "Party of Democratic Reform", "Stranka demokratskih promjena", Family::SocialDemocratic, 0.350),
+            // successor_of_ruling_party: League of Communists of Croatia (SKH) - rebranded SKH-Party of Democratic Reform in February 1990, ran in the 1990 election as SKH-SDP, adopted the SDP name 3 November 1990; 1990-02. https://en.wikipedia.org/wiki/Social_Democratic_Party_of_Croatia
+            p("hr_sdp", "Party of Democratic Reform", "Stranka demokratskih promjena", Family::SocialDemocratic, 0.350).successor(),
             p("hr_kns", "Coalition of National Accord", "Koalicija narodnog sporazuma", Family::Liberal, 0.153),
         ],
         ruling: "the Sabor",
@@ -953,7 +979,8 @@ pub const POLITIES: &[Polity] = &[
         parties: &[
             // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/DEMOS_(Slovenia)
             p("si_demos", "DEMOS", "Demokraticna opozicija Slovenije", Family::BigTent, 0.540).aligned(Bloc::Western),
-            p("si_sdp", "Party of Democratic Renewal", "Stranka demokraticne prenove", Family::SocialDemocratic, 0.173),
+            // successor_of_ruling_party: League of Communists of Slovenia (ZKS) - renamed ZKS-Party of Democratic Renewal 4 February 1990; became the United List of Social Democrats (ZLSD) at the 29 May 1993 congress; 1990-02-04. https://en.wikipedia.org/wiki/Social_Democrats_(Slovenia)
+            p("si_sdp", "Party of Democratic Renewal", "Stranka demokraticne prenove", Family::SocialDemocratic, 0.173).successor(),
             p("si_ldp", "Liberal Democratic Party", "Liberalno demokratska stranka", Family::Liberal, 0.145),
         ],
         ruling: "the National Assembly",
@@ -976,7 +1003,8 @@ pub const POLITIES: &[Polity] = &[
             p("ba_sda", "Party of Democratic Action", "Stranka demokratske akcije", Family::Religious, 0.358).aligned(Bloc::Nationalist),
             p("ba_sds", "Serbian Democratic Party", "Srpska demokratska stranka", Family::Nationalist, 0.300),
             p("ba_hdz", "Croatian Democratic Union of BiH", "Hrvatska demokratska zajednica BiH", Family::Nationalist, 0.184),
-            p("ba_sdp", "Social Democratic Party", "Socijaldemokratska partija", Family::SocialDemocratic, 0.060),
+            // successor_of_ruling_party: League of Communists of Bosnia and Herzegovina - SDP BiH 'is considered the successor of the League of Communists of Bosnia and Herzegovina'; SK BiH dissolved 24 February 1991, succeeded by SDP BiH; SDP BiH re-established 27 December 1992; 1991-02-24. https://en.wikipedia.org/wiki/Social_Democratic_Party_of_Bosnia_and_Herzegovina ; https://en.wikipedia.org/wiki/League_of_Communists_of_Bosnia_and_Herzegovina
+            p("ba_sdp", "Social Democratic Party", "Socijaldemokratska partija", Family::SocialDemocratic, 0.060).successor(),
         ],
         ruling: "the Assembly",
         pillars: &[],
@@ -1505,7 +1533,8 @@ pub const POLITIES: &[Polity] = &[
         parties: &[
             // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Civic_Forum
             p("cs_of", "Civic Forum", "Obcanske forum", Family::BigTent, 0.351).aligned(Bloc::Western),
-            p("cs_ksc", "Communist Party of Czechoslovakia", "Komunisticka strana Ceskoslovenska", Family::Communist, 0.136),
+            // successor_of_ruling_party: Communist Party of Czechoslovakia (KSC), the row's own party - reorganised in 1990 as a federation of the KSCM (established 31 March 1990) and the Communist Party of Slovakia (which became the Party of the Democratic Left: KSS 22 Nov 1990 -> SDL 1 Feb 1992); federation dissolved 1992; 1990-03-31. https://en.wikipedia.org/wiki/Communist_Party_of_Bohemia_and_Moravia ; https://en.wikipedia.org/wiki/Party_of_the_Democratic_Left_(Slovakia)
+            p("cs_ksc", "Communist Party of Czechoslovakia", "Komunisticka strana Ceskoslovenska", Family::Communist, 0.136).successor(),
             // Listed separately from Civic Forum rather than merged into it,
             // because the difference between them is the entire subject of this
             // nation's file. They were allied, they were not one party, and the
@@ -1545,7 +1574,8 @@ pub const POLITIES: &[Polity] = &[
             p("hu_mdf", "Hungarian Democratic Forum", "Magyar Demokrata Forum", Family::Conservative, 0.247),
             p("hu_szdsz", "Alliance of Free Democrats", "Szabad Demokratak Szovetsege", Family::Liberal, 0.214),
             p("hu_fkgp", "Independent Smallholders' Party", "Fuggetlen Kisgazdapart", Family::Agrarian, 0.117),
-            p("hu_mszp", "Hungarian Socialist Party", "Magyar Szocialista Part", Family::SocialDemocratic, 0.109),
+            // successor_of_ruling_party: Hungarian Socialist Workers' Party (MSZMP) - dissolved and refounded itself as the MSZP; 'one of two legal successors'; 1989-10-07. https://en.wikipedia.org/wiki/Hungarian_Socialist_Party
+            p("hu_mszp", "Hungarian Socialist Party", "Magyar Szocialista Part", Family::SocialDemocratic, 0.109).successor(),
             // Liberal, and in 1990 that is not a projection backwards from what
             // Fidesz later became: it was founded in 1988 as a youth movement
             // with an upper age limit of 35, sat in the Liberal International
@@ -1553,7 +1583,8 @@ pub const POLITIES: &[Polity] = &[
             // except the economy.
             p("hu_fidesz", "Alliance of Young Democrats", "Fiatal Demokratak Szovetsege", Family::Liberal, 0.089),
             p("hu_kdnp", "Christian Democratic People's Party", "Kereszatenydemokrata Neppart", Family::ChristianDemocratic, 0.065),
-            p("hu_mszmp", "Hungarian Socialist Workers' Party", "Magyar Szocialista Munkaspart", Family::Communist, 0.037),
+            // successor_of_ruling_party: Hungarian Socialist Workers' Party (MSZMP) - re-established under the old name by members who opposed the MSZP transformation; the other legal successor; 1989-12-17. https://en.wikipedia.org/wiki/Hungarian_Workers%27_Party
+            p("hu_mszmp", "Hungarian Socialist Workers' Party", "Magyar Szocialista Munkaspart", Family::Communist, 0.037).successor(),
         ],
         ruling: "the National Assembly",
         pillars: &[],
@@ -1615,7 +1646,8 @@ pub const POLITIES: &[Polity] = &[
             // labels Poland's SLD Communist: on 1 January 1990 this is the
             // Bulgarian Communist Party, in office since 1944, and it does not
             // change its name until 3 April.
-            p("bg_bsp", "Bulgarian Socialist Party", "Balgarska sotsialisticheska partiya", Family::Communist, 0.472),
+            // successor_of_ruling_party: Bulgarian Communist Party - 'abandoned Marxism-Leninism and refounded itself as the BSP in April 1990'; 1990-04-03. https://en.wikipedia.org/wiki/Bulgarian_Socialist_Party
+            p("bg_bsp", "Bulgarian Socialist Party", "Balgarska sotsialisticheska partiya", Family::Communist, 0.472).successor(),
             // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Union_of_Democratic_Forces_(Bulgaria)
             p("bg_sds", "Union of Democratic Forces", "Sayuz na demokratichnite sili", Family::BigTent, 0.362).aligned(Bloc::Western),
             p("bg_bzns", "Bulgarian Agrarian National Union", "Balgarski zemedelski naroden sayuz", Family::Agrarian, 0.080),
@@ -1647,7 +1679,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (0, 0),
         parties: &[
-            p("al_ppsh", "Party of Labour of Albania", "Partia e Punes e Shqiperise", Family::Communist, 0.562),
+            // successor_of_ruling_party: Party of Labour of Albania (PPSh), the row's own party - 'At an extraordinary congress on 10-13 June 1991, the PPSh reorganized as the PS'; 1991-06-13. https://en.wikipedia.org/wiki/Socialist_Party_of_Albania
+            p("al_ppsh", "Party of Labour of Albania", "Partia e Punes e Shqiperise", Family::Communist, 0.562).successor(),
             p("al_pd", "Democratic Party of Albania", "Partia Demokratike e Shqiperise", Family::Liberal, 0.387),
             p("al_omonia", "Omonia", "Omonoia", Family::Regionalist, 0.007),
         ],
@@ -1706,7 +1739,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 60,
         next: (0, 0),
         parties: &[
-            p("by_kpb", "Communist Party of Byelorussia", "Kamunistychnaya partyya Belarusi", Family::Communist, 0.850),
+            // successor_of_ruling_party: Communist Party of Byelorussia, the row's own party - activities suspended 25 August 1991 to 3 February 1993; the Party of Communists of Belarus (PKB) founded 7 December 1991 'as the legal successor to the ruling Communist Party of Byelorussia'; CPB voted to join the PKB at its XXXII congress 25 April 1993; 1991-12-07. https://en.wikipedia.org/wiki/Communist_Party_of_Byelorussia ; https://en.wikipedia.org/wiki/Party_of_Communists_of_Belarus
+            p("by_kpb", "Communist Party of Byelorussia", "Kamunistychnaya partyya Belarusi", Family::Communist, 0.850).successor(),
             p("by_bnf", "Belarusian Popular Front", "Belaruski Narodny Front", Family::Nationalist, 0.120),
         ],
         ruling: "the Supreme Soviet",
@@ -1753,7 +1787,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 60,
         next: (0, 0),
         parties: &[
-            p("uz_pdp", "People's Democratic Party of Uzbekistan", "Ozbekiston Xalq Demokratik Partiyasi", Family::BigTent, 0.860),
+            // successor_of_ruling_party: Communist Party of Uzbekistan - 'founded in October 1991 after the Communist Party of Uzbekistan voted to cut its ties with the CPSU'; 'the legal successor of the Communist Party of Uzbekistan'; 1991-10. https://en.wikipedia.org/wiki/People%27s_Democratic_Party_of_Uzbekistan
+            p("uz_pdp", "People's Democratic Party of Uzbekistan", "Ozbekiston Xalq Demokratik Partiyasi", Family::BigTent, 0.860).successor(),
             p("uz_erk", "Erk Democratic Party", "Erk Demokratik Partiyasi", Family::Liberal, 0.127),
         ],
         ruling: "the Presidency of the Republic of Uzbekistan",
@@ -1808,7 +1843,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 60,
         next: (0, 0),
         parties: &[
-            p("tj_kpt", "Communist Party of Tajikistan", "Hizbi Kommunistii Tojikiston", Family::Communist, 0.569),
+            // successor_of_ruling_party: Communist Party of Tajikistan, the row's own party - after independence 'voted to rename itself the Socialist Party of Tajikistan to circumvent the ban'; ban lifted by December 1991 and the Communist Party name resumed; 1991-12. https://en.wikipedia.org/wiki/Communist_Party_of_Tajikistan
+            p("tj_kpt", "Communist Party of Tajikistan", "Hizbi Kommunistii Tojikiston", Family::Communist, 0.569).successor(),
             p("tj_hnt", "Democratic Party of Tajikistan", "Hizbi Demokrati Tojikiston", Family::Liberal, 0.301),
         ],
         ruling: "the Presidency of the Republic of Tajikistan",
@@ -1833,7 +1869,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 60,
         next: (0, 0),
         parties: &[
-            p("tm_dpt", "Democratic Party of Turkmenistan", "Turkmenistanyn Demokratik Partiyasy", Family::BigTent, 0.983),
+            // successor_of_ruling_party: Communist Party of Turkmenistan - 'created following the dissolution of the Soviet Union as a successor party to the Communist Party of Turkmenistan'; 1991-12-16. https://en.wikipedia.org/wiki/Democratic_Party_of_Turkmenistan
+            p("tm_dpt", "Democratic Party of Turkmenistan", "Turkmenistanyn Demokratik Partiyasy", Family::BigTent, 0.983).successor(),
         ],
         ruling: "the Presidency of Turkmenistan",
         pillars: &[
@@ -1930,7 +1967,8 @@ pub const POLITIES: &[Polity] = &[
         parties: &[
             // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Sajudis
             p("lt_sajudis", "Sajudis", "Lietuvos Persitvarkymo Sajudis", Family::BigTent, 0.645).aligned(Bloc::Western),
-            p("lt_ldpp", "Lithuanian Democratic Labour Party", "Lietuvos demokratine darbo partija", Family::SocialDemocratic, 0.284),
+            // successor_of_ruling_party: Communist Party of Lithuania (independent of the CPSU since December 1989) - 'the main body of the CPL reorganized as the DLPL'; 1990-12. https://en.wikipedia.org/wiki/Democratic_Labour_Party_of_Lithuania
+            p("lt_ldpp", "Lithuanian Democratic Labour Party", "Lietuvos demokratine darbo partija", Family::SocialDemocratic, 0.284).successor(),
             p("lt_lls", "Union of Poles in Lithuania", "Lietuvos lenku sajunga", Family::Regionalist, 0.050),
         ],
         ruling: "the Seimas",
@@ -2912,7 +2950,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (0, 0),
         parties: &[
-            p("ao_mpla", "MPLA", "Movimento Popular de Libertacao de Angola", Family::SocialDemocratic, 0.5374),
+            // successor_of_ruling_party: MPLA-Party of Labour (MPLA-PT, 1977-1990), the row's own party - 'On its third congress in December 1990, it declared social democracy to be its official ideology'; the source gives the name-reversion date only as 1990; 1990-12. https://en.wikipedia.org/wiki/MPLA
+            p("ao_mpla", "MPLA", "Movimento Popular de Libertacao de Angola", Family::SocialDemocratic, 0.5374).successor(),
             // NOT marked pariah, deliberately. A pariah in this table is a
             // party inside a parliament that nobody will govern with — the
             // Italian, French and Spanish cordons. UNITA was an armed rival
@@ -3204,7 +3243,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 60,
         next: (0, 0),
         parties: &[
-            p("af_pdpa", "People's Democratic Party of Afghanistan", "Hizb-i Dimukratik-i Khalq-i Afghanistan", Family::Communist, 1.00),
+            // successor_of_ruling_party: People's Democratic Party of Afghanistan, the row's own party - 'in June 1990 he [Najibullah] renamed the party the Homeland Party. The party dropped the Marxist-Leninist ideology'; 1990-06. https://en.wikipedia.org/wiki/People%27s_Democratic_Party_of_Afghanistan
+            p("af_pdpa", "People's Democratic Party of Afghanistan", "Hizb-i Dimukratik-i Khalq-i Afghanistan", Family::Communist, 1.00).successor(),
         ],
         ruling: "the People's Democratic Party of Afghanistan",
         pillars: &[
@@ -3334,7 +3374,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 60,
         next: (0, 0),
         parties: &[
-            p("mn_mprp", "Mongolian People's Revolutionary Party", "Mongol Ardyn Khuvisgalt Nam", Family::Communist, 0.623),
+            // successor_of_ruling_party: Mongolian People's Revolutionary Party, the row's own party - ruling party 1921-1990, kept name and organisation through the 1990 revolution, 'subsequently abandoned Marxism-Leninism in favour of democratic socialism'; contested 1990 and 1992 as the same party; 1990. https://en.wikipedia.org/wiki/Mongolian_People%27s_Party
+            p("mn_mprp", "Mongolian People's Revolutionary Party", "Mongol Ardyn Khuvisgalt Nam", Family::Communist, 0.623).successor(),
             p("mn_mdp", "Mongolian Democratic Party", "Mongolyn Ardchilsan Nam", Family::Liberal, 0.243),
             p("mn_msdp", "Mongolian Social Democratic Party", "Mongolyn Sotsial Demokrat Nam", Family::SocialDemocratic, 0.056),
             p("mn_mnpp", "Mongolian National Progress Party", "Mongolyn Undesnii Devshliin Nam", Family::Conservative, 0.056),
@@ -3477,7 +3518,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 60,
         next: (0, 0),
         parties: &[
-            p("kh_kprp", "Kampuchean People's Revolutionary Party", "Pak Pracheachon Padevat Kampuchea", Family::Communist, 1.00),
+            // successor_of_ruling_party: Kampuchean People's Revolutionary Party, the row's own party - 'In 1991, the party was renamed to the Cambodian People's Party' and 'abandoned the one-party system and Marxism-Leninism'; 1991. https://en.wikipedia.org/wiki/Cambodian_People%27s_Party
+            p("kh_kprp", "Kampuchean People's Revolutionary Party", "Pak Pracheachon Padevat Kampuchea", Family::Communist, 1.00).successor(),
         ],
         ruling: "the Kampuchean People's Revolutionary Party",
         pillars: &[
@@ -4003,7 +4045,8 @@ pub const POLITIES: &[Polity] = &[
         next: (0, 0),
         parties: &[
             p("st_pcd", "Democratic Convergence Party", "Partido de Convergencia Democratica - Grupo de Reflexao", Family::Liberal, 0.5933),
-            p("st_mlstp", "MLSTP/Social Democratic Party", "Movimento de Libertacao de Sao Tome e Principe", Family::SocialDemocratic, 0.3331),
+            // successor_of_ruling_party: MLSTP, the row's own party - 'At the MLSTP Party Congress in October 1990 ... the party's name was amended to the Movement for the Liberation of Sao Tome and Principe - Social Democratic Party (MLSTP-PSD)'; 1990-10. https://en.wikipedia.org/wiki/Movement_for_the_Liberation_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_%E2%80%93_Social_Democratic_Party
+            p("st_mlstp", "MLSTP/Social Democratic Party", "Movimento de Libertacao de Sao Tome e Principe", Family::SocialDemocratic, 0.3331).successor(),
             p("st_codo", "Opposition Democratic Coalition", "Coligacao Democratica da Oposicao", Family::Liberal, 0.0571),
             p("st_fcd", "Christian Democratic Front", "Frente Democrata-Crista", Family::ChristianDemocratic, 0.0165),
         ],
@@ -5043,7 +5086,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (0, 0),
         parties: &[
-            p("mk_skm", "League of Communists - Party for Democratic Change", "Sojuz na komunistite - Partija za demokratska preobrazba", Family::SocialDemocratic, 0.248),
+            // successor_of_ruling_party: League of Communists of Macedonia (SKM) - 'founded on 20 April 1991 at the 11th Congress of the League of Communists of Macedonia, when it was transformed into the SDSM'; 1991-04-20. https://en.wikipedia.org/wiki/Social_Democratic_Union_of_Macedonia
+            p("mk_skm", "League of Communists - Party for Democratic Change", "Sojuz na komunistite - Partija za demokratska preobrazba", Family::SocialDemocratic, 0.248).successor(),
             p("mk_vmro", "VMRO-DPMNE", "Vnatresna makedonska revolucionerna organizacija", Family::Nationalist, 0.214),
             p("mk_srsm", "Union of Reform Forces", "Sojuz na reformskite sili", Family::Liberal, 0.147),
             // The Albanian minority party, filed the way Bosnia's three
@@ -5081,7 +5125,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (0, 0),
         parties: &[
-            p("me_skcg", "League of Communists of Montenegro", "Savez komunista Crne Gore", Family::Communist, 0.583),
+            // successor_of_ruling_party: League of Communists of Montenegro (SKCG), the row's own party - 'changed its name to the Democratic Party of Socialists of Montenegro on 22 June 1991'; 1991-06-22. https://en.wikipedia.org/wiki/Democratic_Party_of_Socialists_of_Montenegro
+            p("me_skcg", "League of Communists of Montenegro", "Savez komunista Crne Gore", Family::Communist, 0.583).successor(),
             p("me_srsj", "Union of Reform Forces", "Savez reformskih snaga Jugoslavije", Family::Liberal, 0.141),
             p("me_ns", "People's Party", "Narodna stranka", Family::Nationalist, 0.133),
             p("me_dk", "Democratic Coalition", "Demokratska koalicija", Family::Nationalist, 0.105),
@@ -5708,6 +5753,14 @@ pub fn bloc_of(id: NationId, party: &str) -> Bloc {
         Some(s) => s.bloc.unwrap_or_else(|| s.family.bloc()),
         None => Bloc::NonAligned,
     }
+}
+
+/// Whether a party is the transcribed successor of a Marxist-Leninist ruling
+/// party (`PartySpec::successor_of_ruling_party`, R3(d)); false for a party
+/// id not in the table. Read by the census's A5 bar — "a successor party led
+/// back into government by ballot" — and by nothing in the tick.
+pub fn successor_of_ruling_party(id: NationId, party: &str) -> bool {
+    spec(id, party).is_some_and(|s| s.successor_of_ruling_party)
 }
 
 /// A regime is Communist when the largest party in its transcribed table is
@@ -9626,6 +9679,55 @@ mod tests {
         }
         assert_eq!(overridden, sourced, "every override is written with a sourced comment above it");
         assert_eq!(overridden, 34, "the override count as integrated on 2026-09-05");
+    }
+
+    /// R3(d): every `.successor()` row carries a `// successor_of_ruling_party:`
+    /// comment naming the ruling party it succeeded, the date, and a URL,
+    /// and the count of flagged rows is the transcription's — 24 rows from
+    /// blocs4-data/successor-flag.json, fetched 2026-09-06 (nine candidates
+    /// refused there for want of a sourced succession or a table row: the
+    /// PDS, Romania's FSN, Kazakhstan's SNEK, Latvia's Equal Rights,
+    /// Moldova's Socialist bloc, Georgia's CP, and three more). Read off this
+    /// file's own text, the way the override test above is. Watched red by
+    /// deleting the comment above `pl_sld` and by forcing the count to 25.
+    #[test]
+    fn every_successor_flag_has_a_source() {
+        let text = include_str!("government.rs");
+        let lines: Vec<&str> = text.lines().collect();
+        let mut sourced = 0usize;
+        for (i, line) in lines.iter().enumerate() {
+            if !line.contains(".successor()") {
+                continue;
+            }
+            let row = line.trim_start();
+            if !row.starts_with("p(") && !row.starts_with("pariah(") {
+                continue; // the builder's own definition, and this test
+            }
+            let id = line.split('"').nth(1).unwrap_or("?");
+            let above = lines[i - 1].trim_start();
+            assert!(
+                above.starts_with("// successor_of_ruling_party: "),
+                "{id}: the line above the flag is not a `successor_of_ruling_party:` comment: {above:?}"
+            );
+            assert!(above.contains("http"), "{id}: the flag's comment carries no URL: {above:?}");
+            sourced += 1;
+        }
+        let mut flagged = 0usize;
+        for pol in POLITIES.iter().chain(D4_POLITIES) {
+            for s in pol.parties {
+                if s.successor_of_ruling_party {
+                    flagged += 1;
+                    assert!(successor_of_ruling_party(pol.nation, s.id), "{}: the reader disagrees with the row", s.id);
+                }
+            }
+        }
+        assert_eq!(flagged, sourced, "a flag without a sourced comment, or the reverse");
+        assert_eq!(flagged, 24, "the successor count as transcribed on 2026-09-06");
+        assert!(successor_of_ruling_party(NationId::Poland, "pl_sld"));
+        assert!(successor_of_ruling_party(NationId::Hungary, "hu_mszp"));
+        assert!(!successor_of_ruling_party(NationId::USSR, "su_cpsu"), "a ruling party that kept its name is not a successor");
+        assert!(!successor_of_ruling_party(NationId::Romania, "ro_fsn"), "the FSN split from the PCR; refused");
+        assert!(!successor_of_ruling_party(NationId::Poland, "not_a_party"));
     }
 
     // -----------------------------------------------------------------------
