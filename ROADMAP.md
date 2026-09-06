@@ -1,5 +1,42 @@
 # SPHERES Roadmap
 
+## Done — the political arm, the history pass and the calibration pass: M1, R2, M2, R1, R3(d), R3(e) landed; the census re-read; no constant moved; the switch stays OFF (2026-09-06)
+
+Branch `feat/ideology-history` off `origin/feat/hoi4-map-and-tech` (2e164ae),
+Ridge's determinations quoted: "Make determinations for these and continue. I
+want it based on historical data." Seven commits landed the two model pieces
+and the rulings (BUGS H-1..H-5): presence through backing and the sponsors'
+standing programme (M1), the hostile-army annulment (R2), the pay-per-soldier
+arm sized to zero by its own measurement (M2), D4's Nepal and Haiti tables
+under the lens switch (R1), the successor flag on 24 sourced rows with A5
+re-expressed to it (R3(d)), and 1990 personnel and military expenditure in
+125 / 118 nation files (R3(e)); R3(a), (b), (c) are transcribed under
+`docs/political-arm/*-pending*` and stopped as three re-pin questions. The
+calibration pass then read the census at N=60 (34 s) and N=200 (113 s) and
+at 420 months (N=60, 59 s), and MOVED NOTHING: every permitted move for an
+out-of-band anchor is pinned by an existing test (the flat seed and the drift
+constants, the AI's round-table lines, the road lines) or short of the band by
+arithmetic on those pins — the fetched bases for the moves drafted (Benin
+1989-90, Zambia 1990-91, Cambodia 1997) and a four-seed probe of the AI round
+table (16-17 regimes reach discontent 0.40; the largest movement sits at
+0.12-0.25 in all but two) are in BUGS H-6. The N=200 table, per seed
+min/med/max: A1 coups against elected governments 5/6/9, top-3 share 1.00
+(Sao Tome 541, Philippines 447, Comoros 200 of 1252), annulments 0/1/1
+(Algeria 105/200 alone); A2 1/200 by 2000, Algeria annulled 105/200; A3
+117/200 = 0.585, Cambodia alone (2e164ae: 197/200); A4 1/2/3 (Sao Tome and
+South Africa 200/200); A5 0/200; A6 0 in 200/200, 0 in 60/60 at 420 months;
+A7 0.148 (bloc flips 2/2/5 against 11/15/21 takeovers); A8 8/8 in 200/200;
+A9 3472/3472 = 1.000; A10 0.26/0.28/0.32. The four pinned bars re-derived
+from this sample and re-watched red on a fresh build (A6 35..53 route events
+a seed, A8 8/40, A10 0.020; A9 green at 1.000, decorative against the roads
+as its comment says); the six ignored bars carry this tree's readings. THE
+SWITCH: `ideology_takeover` stays OFF — out are A1's concentration arm, A2,
+A3, A4, A5, A7, each with its distance in BUGS H-6. Suite on the tree that
+ships: sim lib 457 / 3 / 25 (the three deliberate reds at unmoved actuals
+0xe26e4bf8d6c60066 and 0xbe94d6125631829c), 28 integration binaries green
+(`bloc_census` 4 pinned bars, 25.9 s), web and cli in the census commit's
+body; digests d1a2cfbf7c6958d7 / 3501 and 39dea3341a7f6e8c / 3983 unmoved.
+
 ## Done — S5 shipped: the skeptics' findings repaired at the root, D4 reverted, the census re-read (2026-09-06)
 
 Branch `feat/ideology-census`, fast-forwarded onto `feat/hoi4-map-and-tech`.
