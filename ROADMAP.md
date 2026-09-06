@@ -1,5 +1,39 @@
 # SPHERES Roadmap
 
+## Done — the political arm, stage S3 part one: movements, foreign backing, the AI covert arm (2026-09-06)
+
+Branch `feat/ideology-roads` off `origin/feat/hoi4-map-and-tech` (cd6e2ff),
+four commits, every one inert with `rules.ideology_blocs` off: the golden
+actuals stand at 0xe26e4bf8d6c60066 / 0xbe94d6125631829c and the six BASE
+hashes of `the_bloc_layer_is_inert_over_time` are unmoved. BUGS.md S3-1..S3-8
+carry the invented coefficients and the two re-expressed bars.
+
+- **Movements move** (`government::drift_movements`): the regime sibling of
+  `drift_support`, same record off the same `pains`, the ruling bloc's loss
+  shared over the present non-ruling blocs by the MEAN appeal of their
+  families, reversion 0.005 toward the flat seed. Quiet settles at 0.713,
+  ruin at 0.158, measured. **The liberalisation seam** seats a dormant table
+  from the movements when the first free elections are scheduled, and names
+  the bloc no party carries. **The surge latch**: "passes a third of the
+  country" once per upward crossing of 0.30.
+- **Foreign backing** (`CovertOp::BackBloc`, `Statecraft.backing`): the
+  fourth covert op on the same rolls and the same costs, a fixed +0.06 per
+  clean op, 0.12 per sponsor, 0.25 per bloc, cooling 0.006 a month; exposure
+  halves and names the sponsor and taints the bloc 0.02. **Gravity**: a
+  patron's bloc counts up to 0.10 in a client it pays, a view of the aid
+  flows. Influence = share + backing; effective army loyalty = loyalty −
+  Nationalist backing. Backing never enters support (asserted bit for bit).
+- **The AI** (`politics::ai_back_bloc_choice`): patrons back their own bloc
+  anywhere and any qualifying bloc in a rival's client on their existing
+  covert draw; the five transcribed ideological sponsors (Saudi Arabia, Iran,
+  Pakistan, Libya, Cuba — `NationDef.ideological_sponsor`) back their bloc
+  only, drawing only when they have something to back.
+- **D4** is transcribed as `government::D4_POLITIES` and NOT wired: wiring it
+  moves the start golden (measured, BUGS P-8). Ridge decides.
+- **Not in this part** (S3 part two, S4, web): the five levers, the Security
+  Crackdown arm, the AI stratagem arms, the roads, succession and mortality,
+  the government screen's cards.
+
 ## Done — the political arm, stages S0-S2: the bloc lens, the leader table, the government screen (2026-09-05)
 
 Built on Ridge's approval of "The Political Arm of SPHERES", revision 2, quoted:
