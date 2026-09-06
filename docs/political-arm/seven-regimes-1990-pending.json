@@ -1,0 +1,112 @@
+{
+  "task": "R3(c) - family of the ruling party on 1 January 1990 for the seven regimes whose leader row reads Western",
+  "fetched": "2026-09-06",
+  "rule": "Every family_correct follows what a URL fetched this run says was true on 1 January 1990. Family::bloc(): SocialDemocratic/Conservative/Liberal -> Western; Communist -> Communist; Nationalist -> Nationalist; BigTent/Regionalist -> NonAligned. The leader row's bloc is read by blocs::leader_bloc: bloc_override first, else bloc_of(tie party) -> PartySpec.bloc or family.bloc().",
+  "rows": [
+    {
+      "nation": "Angola",
+      "party": "ao_mpla (MPLA; leader row Jose Eduardo dos Santos, office 'President of the Republic and President of the MPLA-PT', tie ao_mpla, bloc_override null)",
+      "family_now": "SocialDemocratic -> Bloc::Western",
+      "family_correct": "Communist",
+      "bloc_correct": "Communist",
+      "evidence": "MPLA infobox: historical ideology 1977-1990 'Communism, Marxism-Leninism, scientific socialism', position 'far-left' 1977-1990. Text: 'At its first congress in 1977, the MPLA adopted Marxism-Leninism as the party ideology' and 'On its third congress in December 1990, it declared social democracy to be its official ideology.' People's Republic of Angola infobox: government 'Unitary communist state', 1975-1992; 'on 11 November 1975, Agostinho Neto ... declared Angola's independence as the People's Republic of Angola a one-party Marxist-Leninist state'; 'Abolition of Marxist government' 25 August 1992. On 1 January 1990 the party was eleven months short of its third congress: a Marxist-Leninist ruling party. The dormant ao_mpla row carries the September 1992 result, by which time the party was social democratic; the correction belongs to the 1 Jan 1990 reading (leader-row bloc_override Communist, or a dated family), not to the 1992 share.",
+      "source": [
+        "https://en.wikipedia.org/wiki/MPLA",
+        "https://en.wikipedia.org/wiki/People%27s_Republic_of_Angola"
+      ],
+      "since": "Marxist-Leninist from the 1st congress, 1977; social democratic from the 3rd congress, December 1990. Regime a Marxist-Leninist one-party state from 11 November 1975."
+    },
+    {
+      "nation": "CapeVerde",
+      "party": "cv_paicv (PAICV; leader row Aristides Pereira, 'President of the Republic and Secretary-General of the PAICV', tie cv_paicv, bloc_override null)",
+      "family_now": "SocialDemocratic -> Bloc::Western",
+      "family_correct": "SocialDemocratic (UNCHANGED - no fetched source says the PAICV itself was Marxist-Leninist on 1 January 1990; Communist is REFUSED as unsourced)",
+      "bloc_correct": "Western (unchanged)",
+      "evidence": "PAICV page: founded 20 January 1981 out of the PAIGC, 'pursued socialist objectives', sole legal party; infobox ideology 'Democratic socialism, Social democracy', position 'centre-left to left-wing', Socialist International - and, unlike the MPLA, MLSTP and FRELIMO infoboxes, it carries NO historical Marxism-Leninism entry. Aristides Pereira page: his government was 'more pragmatic and social democratic than socialist ideological', the PAICV kept a 'policy of non-alignment', and 'After PAICV decided to introduce multiparty democracy in February 1990, Pereira stepped down as General Secretary of PAICV in July 1990 and was succeeded in that post by Pires.' PAICV page: 'At an extraordinary party congress in February 1990, the PAICV approved the introduction of multiparty democracy.' History of Cape Verde: 'The one-party state was abolished on 28 September of that year' (1990); MpD page: 'The MpD was established on 14 March 1990'; 1991 election page: elections 13 January 1991, MpD 56 of 79 seats, turnout 75.3%. Socialist Cape Verde page: 'a socialist state ruled by the PAIGC from its independence from Portugal in 1975' and 'a one party authoritarian state'. Only the parent PAIGC's infobox lists 'Marxism-Leninism' as historical ideology, and the PAIGC's Cape Verdean branch became the PAICV in 1981. The brief's phrase 'the PAICV renounced Marxism-Leninism during 1990' appeared only in an unfetched search snippet (grokipedia) and is not adopted. What changed in 1990 was the monopoly (February congress, 28 September amendment), not the family: the row is already right on the fetched sources. A one-party socialist, non-aligned regime reading Western is the consequence of Family::bloc() for SocialDemocratic; if the run wants a NonAligned reading it needs a sourced bloc_override, and the Pereira page's 'policy of non-alignment' is the only fetched sentence that would carry it.",
+      "source": [
+        "https://en.wikipedia.org/wiki/African_Party_for_the_Independence_of_Cape_Verde",
+        "https://en.wikipedia.org/wiki/Aristides_Pereira",
+        "https://en.wikipedia.org/wiki/History_of_Cape_Verde",
+        "https://en.wikipedia.org/wiki/Movement_for_Democracy_(Cape_Verde)",
+        "https://en.wikipedia.org/wiki/1991_Cape_Verdean_parliamentary_election",
+        "https://en.wikipedia.org/wiki/Socialist_Cape_Verde",
+        "https://en.wikipedia.org/wiki/African_Party_for_the_Independence_of_Guinea_and_Cape_Verde"
+      ],
+      "since": "PAICV founded 20 January 1981 as sole legal party; multiparty approved February 1990; one-party state abolished 28 September 1990; lost 13 January 1991."
+    },
+    {
+      "nation": "Fiji",
+      "party": "fj_alliance (Alliance Party; leader row Kamisese Mara, 'Prime Minister of the interim administration', since 1987-12-05, tie fj_alliance, bloc_override null; Polity.ruling 'the interim administration')",
+      "family_now": "Conservative -> Bloc::Western (via the fj_alliance tie)",
+      "family_correct": "Nationalist for the regime of 1 January 1990 (an unelected, army-installed, chiefly interim administration whose programme was an ethnic-Fijian constitutional order the Indo-Fijian near-half could not vote against); the fj_alliance PARTY row itself stays Conservative (centre-right, IDU) - but that party was dissolved in 1987, so the leader tie points at a party that did not exist on 1 January 1990",
+      "bloc_correct": "Nationalist (implement as a sourced bloc_override on the Mara leader row, or re-tie the row to the Great Council of Chiefs Party pillar; do not change the dormant 1987 fj_alliance share)",
+      "evidence": "Rabuka page: 'He handed over power on 5 December to an interim administration, headed by Ganilau as President and Ratu Sir Kamisese Mara as prime minister, but remained Commander of the Army and Minister of Home Affairs, the National Youth Service, and the Auxiliary Army Service'; 'Following the adoption in 1990 of a new constitution that guaranteed ethnic Fijian domination of the political system, Rabuka was chosen to lead the newly formed Soqosoqo ni Vakavulewa ni Taukei in 1991.' Mara page: resumed office 5 December 1987 heading an unelected interim administration until 1992 when he 'handed over power to an elected government', and gave 'his consent to a new constitution, drafted in 1990, which guaranteed indigenous Fijian supremacy.' Alliance Party page: 'centre-right', 'a member of the International Democrat Union', 'the former Prime Minister Ratu Mara, the Alliance Party leader, was called back to head a transitional government', formed 12 March 1966 and dissolved in 1987. SVT page: 'The party was founded in 1990 as the political vehicle of the Great Council of Chiefs' with 'the declared goal of uniting all indigenous Fijians'; constitutional changes 'abolished multiracial voting in favor of communal electoral rolls organized by ethnicity'. Great Council of Chiefs page: after the coups 'the Council reverted to being an exclusively aristocratic body', the 1990 constitution let it 'appoint the President of Fiji and the Vice-President' and 24 of 34 senators, and it 'had originally sponsored' the SVT. Constitution of Fiji page: 1990 chamber of 37 Fijian, 27 Indian, 5 general, 1 Rotuma seats; premiership reserved for ethnic Fijians. 1987 coups page: Ganilau 'made the first President of Fiji on 6 December 1987'. No fetched page gave the day of the 1990 promulgation (the existing code comment's 25 July is not confirmed by anything fetched this run; the fetched pages say '1990').",
+      "source": [
+        "https://en.wikipedia.org/wiki/Sitiveni_Rabuka",
+        "https://en.wikipedia.org/wiki/Kamisese_Mara",
+        "https://en.wikipedia.org/wiki/Alliance_Party_(Fiji)",
+        "https://en.wikipedia.org/wiki/Soqosoqo_ni_Vakavulewa_ni_Taukei",
+        "https://en.wikipedia.org/wiki/Great_Council_of_Chiefs",
+        "https://en.wikipedia.org/wiki/Constitution_of_Fiji",
+        "https://en.wikipedia.org/wiki/1987_Fijian_coups_d%27%C3%A9tat"
+      ],
+      "since": "Interim administration from 5 December 1987 (Alliance Party dissolved 1987); ethnic-Fijian constitution adopted 1990; SVT founded 1990, Rabuka its leader 1991; elected government 1992."
+    },
+    {
+      "nation": "Malawi",
+      "party": "mw_mcp (Malawi Congress Party; leader row Hastings Kamuzu Banda, 'Life President', since 1966-07-06, tie mw_mcp, bloc_override null)",
+      "family_now": "Conservative -> Bloc::Western",
+      "family_correct": "Conservative (UNCHANGED - already right)",
+      "bloc_correct": "Western (unchanged)",
+      "evidence": "MCP infobox: ideology 'Ubuntu, Conservatism, African nationalism, Anti-communism', '1964-1993: State capitalism', position 'centre-right, with right-wing factions', affiliation Centrist Democrat International, founded 30 September 1959; 'When Malawi became a republic in 1966, the MCP was formally declared to be the only legal party'; 'For the next 27 years, the government and the MCP were effectively one. All adult citizens were required to be party members'; 'The MCP lost its monopoly on power in a 1993 referendum'. Banda page: republic constitution 6 July 1966 'formally made the MCP the only legal party'; 'In 1970, a congress of the MCP declared Banda its president for life. In 1971, the legislature declared Banda President for Life of Malawi as well'; 'one of the few African leaders to support the United States in the Vietnam War, a position he adopted in part due to his hatred of communism'; 'Malawi refused to establish diplomatic relations with any of the communist governments of Eastern Europe or Asia'; 'the only African ruler to establish diplomatic ties with South Africa during apartheid'; referendum 14 June 1993, 64 percent for multiparty. A one-party conservative, anti-communist, Western-aligned state: the BigTent -> NonAligned alternative offered in the brief is not what the fetched sources say, so it is not taken.",
+      "source": [
+        "https://en.wikipedia.org/wiki/Malawi_Congress_Party",
+        "https://en.wikipedia.org/wiki/Hastings_Banda"
+      ],
+      "since": "Sole legal party from 6 July 1966; Banda MCP life president 1970, President for Life 1971; monopoly lost 14 June 1993."
+    },
+    {
+      "nation": "Mozambique",
+      "party": "mz_frelimo (FRELIMO; leader row Joaquim Chissano, 'President', since 1986-11-06, tie mz_frelimo, bloc_override null)",
+      "family_now": "SocialDemocratic -> Bloc::Western",
+      "family_correct": "SocialDemocratic (UNCHANGED - already right on 1 January 1990: Marxism-Leninism was dropped five months earlier)",
+      "bloc_correct": "Western (unchanged; the regime remained a one-party state until the 30 November 1990 constitution, which is the pillars' business, not the family's)",
+      "evidence": "Marshall, 'On the Ropes: Socialism & Frelimo's 5th Congress', Southern Africa Report, November 1989 (fetched PDF, text extracted with pypdf): 'The Congress itself, held from July 24 to 30, culminated a lengthy preparatory period'; 'Strikingly absent in the Congress documents was any reference to Marxism-Leninism'; 'Congress decisions to abandon Marxism-Leninism as Frelimo's official ideology, to open up party membership to property-owning Mozambicans ...'; the shift from 'the vanguard of the worker-peasant alliance' to 'the vanguard of the Mozambican people'. FRELIMO page: 3rd congress February 1977 'transformed itself into a Marxist-Leninist vanguard party of the worker-peasant alliance'; 'In 1989 at the 5th Party Congress, FRELIMO officially dropped all references to Marxism-Leninism and class struggle from its party directives and documents' and 'democratic socialism was adopted as the official ideology of FRELIMO'; infobox historical '1977-1989: Communism, Marxism-Leninism', current 'Democratic socialism', Socialist International. People's Republic of Mozambique infobox: 'Unitary socialist republic', 1975-1990, constitutional reform 30 November 1990; FRELIMO page: 'In 1990 a revised constitution was adopted which introduced a multi-party system to Mozambique and ended one-party rule.'",
+      "source": [
+        "https://www.marxists.org/subject/africa/frelimo/moz-ropes.pdf",
+        "https://en.wikipedia.org/wiki/FRELIMO",
+        "https://en.wikipedia.org/wiki/People%27s_Republic_of_Mozambique"
+      ],
+      "since": "Marxist-Leninist from the 3rd congress, February 1977; democratic socialism from the 5th congress, 24-30 July 1989; one-party state ended 30 November 1990."
+    },
+    {
+      "nation": "SaoTome",
+      "party": "st_mlstp (MLSTP; leader row Manuel Pinto da Costa, 'President of the Republic and Secretary-General of the MLSTP', since 1975-07-12, tie st_mlstp, bloc_override null)",
+      "family_now": "SocialDemocratic -> Bloc::Western",
+      "family_correct": "Communist",
+      "bloc_correct": "Communist",
+      "evidence": "MLSTP-PSD infobox: historical ideology 'Communism, Marxism-Leninism', historical position 'far-left'; current 'Social democracy, Democratic socialism'. Text: one-party state from independence 12 July 1975, 'the party's socialist orientation and in turn the nation's orientation led to strong ties with Cuba, East Germany and the Soviet Union'; in late 1989 'a progressive faction within the party embarked on a transition to full multi-party system'; new constitution 'approved overwhelmingly in an August 1990 referendum'; 'At the MLSTP Party Congress in October 1990, Carlos Graca was appointed as the new Secretary-General, in succession to Manuel Pinto da Costa. In addition, the party's name was amended to the Movement for the Liberation of Sao Tome and Principe - Social Democratic Party (MLSTP-PSD)', adopting social democracy and democratic socialism then; January 1991 election 30.5% and 21 seats. Democratic Republic of Sao Tome and Principe page: the one-party communist state 'remained in place until 1990', constitutional referendum 22 August 1990. Pinto da Costa page: president 12 July 1975 - 4 March 1991, 'extensive relations with Angola and the MPLA'. On 1 January 1990 the party's ideology was still the Marxism-Leninism it renounced at the October 1990 congress; the December 1989 central-committee resolution on multipartyism in the code comment (not re-fetched this run) is a decision about the monopoly, not a change of family. The dormant st_mlstp row is the January 1991 result, by which time the party was MLSTP-PSD; the correction belongs to the 1 Jan 1990 reading (leader-row bloc_override Communist, or a dated family).",
+      "source": [
+        "https://en.wikipedia.org/wiki/Movement_for_the_Liberation_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_%E2%80%93_Social_Democratic_Party",
+        "https://en.wikipedia.org/wiki/Democratic_Republic_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe",
+        "https://en.wikipedia.org/wiki/Manuel_Pinto_da_Costa"
+      ],
+      "since": "Marxist-Leninist one-party state from 12 July 1975; referendum 22 August 1990; social democracy and the PSD suffix from the October 1990 congress."
+    },
+    {
+      "nation": "SouthAfrica",
+      "party": "za_np (National Party; leader row F. W. de Klerk, 'State President', since 1989-08-15, NP leader since 1989-02-02, tie za_np, bloc_override null; Polity.ruling 'the tricameral Parliament')",
+      "family_now": "Conservative -> Bloc::Western",
+      "family_correct": "Nationalist for the regime of 1 January 1990 (Afrikaner nationalism, far-right, a racial oligarchy the black majority could not vote in); the za_np PARTY row at 0.2039 is the 27 April 1994 party, which the same source dates 1990-1997 as centre-right 'conservative liberalism / liberal conservatism', so Conservative is right for that share",
+      "bloc_correct": "Nationalist (implement as a sourced bloc_override on the de Klerk leader row, or a dated family; do not change the 1994 share's Conservative)",
+      "evidence": "National Party infobox: ideology 1948-1990 'Afrikaner nationalism, Segregationism, Anti-communism, Anti-British sentiment, National conservatism, Scientific racism, Cultural racism, Social conservatism, White supremacy, Republicanism, Volkscapitalisme'; position '1914-1990: Far-right; 1990-1997: Centre-right'; 1990-1997 'Civic nationalism, South African nationalism, Conservative liberalism, Christian democracy, Liberal conservatism, Neoliberalism'; 'from 1958 onwards non-white people were barred from voting'; 'Black South Africans ... remained unrepresented even after the reforms'; 'Most Black political organisations remained banned, and prominent Black leaders, including Nelson Mandela, remained imprisoned'. 1989 election page: 6 September 1989, House of Assembly 166 directly elected of 178, NP 1,039,704 votes, 48.19%, 94 seats, 'the first elections since 1961 in which the NP failed to win a majority of the vote'; Conservative Party 680,131 (31.52%) 39 seats; Democratic Party 431,444 (20.00%) 33 seats; separate Houses of Representatives (coloured) and Delegates (Indian); 'Black South Africans were entirely excluded from voting'; 'the last under apartheid'. De Klerk page: NP leader 2 February 1989 (69-61 over du Plessis), acting State President 15 August 1989, elected 20 September 1989, 2 February 1990 address legalising the ANC and the Communist Party, Mandela released 11 February 1990. On 1 January 1990 - one month before the 2 February speech the infobox uses as the boundary of its 1948-1990 period - the ruling party was a far-right Afrikaner-nationalist party governing a state whose majority had no vote.",
+      "source": [
+        "https://en.wikipedia.org/wiki/National_Party_(South_Africa)",
+        "https://en.wikipedia.org/wiki/1989_South_African_general_election",
+        "https://en.wikipedia.org/wiki/F._W._de_Klerk",
+        "https://en.wikipedia.org/wiki/Apartheid"
+      ],
+      "since": "NP in office from 1948; far-right Afrikaner-nationalist period dated 1948-1990 by the source; last whites-only election 6 September 1989; the turn dated 2 February 1990."
+    }
+  ]
+}

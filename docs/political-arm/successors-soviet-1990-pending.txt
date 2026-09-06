@@ -1,0 +1,468 @@
+// R3(a) - THE SOVIET SUCCESSORS' DORMANT TABLES: the last election before each
+// republic's own birth. Transcribed 2026-09-06 from pages fetched this run
+// (each block names its URL). Seat shares of the chamber's full seat count
+// unless the row says vote share. Where the page gives a range or an
+// approximation the row says so and carries the page's figure, not a
+// smoothing of it. Shares do not sum to 1 where the page's rows do not: the
+// remainder is independents or vacancies and padding it would be inventing
+// (the Estonia-1992 precedent in POLITIES). Ids: an existing id is kept where
+// the page's party is the same organisation (KPU, KPT, LTF, Sajudis, HHSh,
+// AXC, Rahvarinne, PDP-as-CPUz, DPT-as-CPT, KPRF-as-CPSU-RSFSR, LDDP-as-LKP);
+// a party that did not stand in the election is not carried into the block,
+// and that is recorded per block. Every block keeps `next: (0, 0)` and the
+// pillars of the block it replaces, for the reason the POLITIES header gives
+// (the union comes apart on a different month in every seed).
+//
+// REFUSALS (rule 4) are listed at the foot of the file.
+
+    // Russia - RSFSR Congress of People's Deputies, 4 March 1990 with a second
+    // round 14-18 March. 1,068 seats: CPSU members 920, non-partisans 148;
+    // "around 350 of those elected (CPSU or independents) were deemed to be in
+    // the democratic bloc and supportive of the Democratic Russia programme".
+    // Two-round single-member: over 50% of the vote and 50% turnout to win in
+    // the first round. Turnout 76.4% / 65.8% (infobox). The democratic row is
+    // the page's 350 over 1,068; the communist row is the remainder of the
+    // chamber, every member of which was nominated under the CPSU's monopoly
+    // (Article 6 was repealed ten days after the first round). Democratic
+    // Russia's own page puts the bloc at "about 300 out of 1,068"; the election
+    // page's 350 is used and the 300 recorded here. The 1993 Duma table this
+    // replaces was look-ahead data (BIBLE section 8).
+    // https://en.wikipedia.org/wiki/1990_Russian_Supreme_Soviet_election
+    // https://en.wikipedia.org/wiki/Democratic_Russia
+    Polity {
+        nation: NationId::Russia,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 718 of 1,068 = the chamber less the democratic bloc. Id kept from the 1993 table: the KPRF is the successor of the CPSU's Russian organisation and the successor flag (R3(d)) reads this id. https://en.wikipedia.org/wiki/1990_Russian_Supreme_Soviet_election
+            p("ru_kprf", "Communist Party of the Soviet Union (RSFSR deputies)", "Kommunisticheskaya partiya Sovetskogo Soyuza", Family::Communist, 0.672),
+            // bloc -> Western: the democratic bloc of the Congress, around 350 of 1,068, the caucus that elected Yeltsin chairman. https://en.wikipedia.org/wiki/Democratic_Russia
+            p("ru_dr", "Democratic Russia", "Demokraticheskaya Rossiya", Family::Liberal, 0.328).aligned(Bloc::Western),
+        ],
+        ruling: "the Congress of People's Deputies of the RSFSR",
+        pillars: &[
+            pl(Pillar::Army, "the Russian Armed Forces"),
+            pl(Pillar::Security, "the security services"),
+            pl(Pillar::Business, "the new financial groups"),
+        ],
+    },
+
+    // Ukraine - Supreme Soviet of the Ukrainian SSR, 4 March 1990 with a
+    // second round 10-18 March. 450 seats, 442 filled: Communist Party of
+    // Ukraine 331, Democratic Bloc 111. Majoritarian in 450 districts, second
+    // round where nobody reached 50%. Turnout 85% / 79%. Within the 331 the
+    // page counts the "Group of 239" (For a Soviet Sovereign Ukraine) at 239
+    // and the CPU Democratic Platform at 41. Shares are of the 442 seated.
+    // The 1998 table this replaces was look-ahead data (BIBLE section 8).
+    // https://en.wikipedia.org/wiki/1990_Ukrainian_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Ukraine,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 331 of 442. Id kept: the KPU of the 1998 table is the same organisation. https://en.wikipedia.org/wiki/1990_Ukrainian_Supreme_Soviet_election
+            p("ua_kpu", "Communist Party of Ukraine", "Komunistychna partiya Ukrayiny", Family::Communist, 0.749),
+            // bloc -> Western: the Democratic Bloc, 111 of 442, the opposition umbrella built around Rukh. A new id because the bloc is not Rukh (ua_rukh) and the page does not split it. https://en.wikipedia.org/wiki/1990_Ukrainian_Supreme_Soviet_election
+            p("ua_demblok", "Democratic Bloc", "Demokratychnyi blok", Family::BigTent, 0.251).aligned(Bloc::Western),
+        ],
+        ruling: "the Supreme Soviet of the Ukrainian SSR",
+        pillars: &[
+            pl(Pillar::Army, "the Ukrainian Armed Forces"),
+            pl(Pillar::Business, "the industrial directors"),
+        ],
+    },
+
+    // Belarus - Supreme Soviet of the Byelorussian SSR, 4 March 1990 with
+    // rounds to 14 May. 360 seats: 310 elected, 50 appointed by organisations
+    // of veterans and invalids; 98 elected on 4 March (turnout 86.5%), 131 on
+    // 17-18 March, by-elections 22 April, 5 May, 10-14 May; 278 elected in all
+    // and thirteen seats never filled. The election page gives the Popular
+    // Front "around 25-37 seats" and, by the start of 1991, the Communists in
+    // four groups (170 + Agrarian 40 + Industrialists 35 + "Union" 30 = 275)
+    // and the BNF faction at 27. The composition transcribed is the 12th
+    // Supreme Council page's, a single set summing to 360: Communist Party of
+    // Byelorussia 302, independents 32, Belarusian Popular Front 26. The
+    // present block reads 0.850 / 0.120 from the election page's range; the
+    // 26 of 360 is what the composition page says.
+    // https://en.wikipedia.org/wiki/1990_Byelorussian_Supreme_Soviet_election
+    // https://en.wikipedia.org/wiki/12th_Belarusian_Supreme_Soviet
+    Polity {
+        nation: NationId::Belarus,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 302 of 360. https://en.wikipedia.org/wiki/12th_Belarusian_Supreme_Soviet
+            p("by_kpb", "Communist Party of Byelorussia", "Kamunistychnaya partyya Belarusi", Family::Communist, 0.839),
+            // 26 of 360 (the election page's range is 25-37). https://en.wikipedia.org/wiki/12th_Belarusian_Supreme_Soviet
+            p("by_bnf", "Belarusian Popular Front", "Belaruski Narodny Front", Family::Nationalist, 0.072),
+        ],
+        ruling: "the Supreme Soviet",
+        pillars: &[
+            pl(Pillar::Army, "the Belorussian Military District's inheritance"),
+            pl(Pillar::Party, "the collective-farm and industrial nomenklatura"),
+            pl(Pillar::Security, "the State Security Committee"),
+        ],
+    },
+
+    // Kazakhstan - Supreme Soviet of the Kazakh SSR, 25 March 1990. 360 seats,
+    // 270 directly elected and 90 chosen by public associations: Communist
+    // Party of Kazakhstan 342, independents 18. Turnout 83.97% (8,177,059 of
+    // 9,738,548). Nohlen, Grotz & Hartmann (2001) Elections in Asia I, p.423,
+    // p.420, as cited on the page. The present block's kz_snek (SNEK) did not
+    // exist in 1990 and is not carried; the ruling party is transcribed under
+    // a new id.
+    // https://en.wikipedia.org/wiki/1990_Kazakh_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Kazakhstan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 342 of 360. https://en.wikipedia.org/wiki/1990_Kazakh_Supreme_Soviet_election
+            p("kz_kpk", "Communist Party of Kazakhstan", "Qazaqstan Kommunistik Partiyasy", Family::Communist, 0.950),
+        ],
+        ruling: "the Supreme Soviet of the Kazakh SSR",
+        pillars: &[
+            pl(Pillar::Army, "the Kazakh Armed Forces"),
+            pl(Pillar::Party, "the presidential apparatus"),
+            pl(Pillar::Security, "the Committee for National Security"),
+            pl(Pillar::Business, "the oil and metals groups"),
+        ],
+    },
+
+    // Uzbekistan - Supreme Soviet of the Uzbek SSR, 18 February 1990. 500
+    // seats, 368 decided in the first round: Communist Party of Uzbekistan
+    // 348 of those 368 (69.6% of the chamber), the Unity (Birlik) opposition
+    // "around 50 seats", 132 seats to a second round the page does not report.
+    // Turnout 94%. Nohlen et al. (2001) I, p.490 and p.495 as cited. The
+    // Birlik figure is the page's approximation and is carried as such. The
+    // present block's uz_erk (Erk) did not stand and is not carried.
+    // https://en.wikipedia.org/wiki/1990_Uzbek_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Uzbekistan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 348 of 500 after the first round. Id kept: the present block records that the PDP is the Communist Party of Uzbekistan renamed, and the successor flag reads this id. https://en.wikipedia.org/wiki/1990_Uzbek_Supreme_Soviet_election
+            p("uz_pdp", "Communist Party of Uzbekistan", "Ozbekiston Kommunistik Partiyasi", Family::Communist, 0.696),
+            // bloc -> Western: "around 50 seats" of 500, the page's approximation. https://en.wikipedia.org/wiki/1990_Uzbek_Supreme_Soviet_election
+            p("uz_birlik", "Unity", "Birlik", Family::Nationalist, 0.100).aligned(Bloc::Western),
+        ],
+        ruling: "the Supreme Soviet of the Uzbek SSR",
+        pillars: &[
+            pl(Pillar::Army, "the Turkestan Military District's inheritance"),
+            pl(Pillar::Party, "the People's Democratic Party apparatus"),
+            pl(Pillar::Security, "the National Security Service"),
+        ],
+    },
+
+    // Kyrgyzstan - Supreme Soviet of the Kirghiz SSR, 25 February 1990 with a
+    // second round 7 April. The Communist Party of Kirghizia, the only party,
+    // "around 90% of the seats"; turnout 92% (election page, Nohlen et al.
+    // 2001 I, pp.440-455 as cited). The seat count is the party page's
+    // infobox, "315 / 350 (90%)", which carries no reference of its own -
+    // the two pages agree on the 90% and the 350 rests on the infobox alone.
+    // Some deputies were "informally affiliated with the Democratic Movement
+    // of Kyrgyzstan"; the page gives no number, so the present block's kg_dkk
+    // is not carried and no democratic row is typed.
+    // https://en.wikipedia.org/wiki/1990_Kirghiz_Supreme_Soviet_election
+    // https://en.wikipedia.org/wiki/Communist_Party_of_Kirghizia
+    Polity {
+        nation: NationId::Kyrgyzstan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 315 of 350. https://en.wikipedia.org/wiki/Communist_Party_of_Kirghizia
+            p("kg_kpk", "Communist Party of Kirghizia", "Kyrgyzstan Kommunisttik Partiyasy", Family::Communist, 0.900),
+        ],
+        ruling: "the Supreme Soviet of the Kirghiz SSR",
+        pillars: &[
+            pl(Pillar::Army, "what the Turkestan Military District left behind"),
+            pl(Pillar::Security, "the State Committee for National Security"),
+        ],
+    },
+
+    // Tajikistan - Supreme Soviet of the Tajik SSR, 25 February 1990. 230
+    // seats: Communist Party of Tajikistan 221 (96%), independents 9 (4%).
+    // Rastokhez and the Islamic Renaissance Party "contested the elections as
+    // independent candidates", unregistered, and the page counts them inside
+    // the 9; several de facto opposition candidates also sat inside the CPT's
+    // 221. Nohlen et al. (2001) I, p.462, p.465 as cited. The present block's
+    // tj_hnt (Democratic Party) did not stand and is not carried.
+    // https://en.wikipedia.org/wiki/1990_Tajik_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Tajikistan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 221 of 230. Id kept from the 1991 block, the same party. https://en.wikipedia.org/wiki/1990_Tajik_Supreme_Soviet_election
+            p("tj_kpt", "Communist Party of Tajikistan", "Hizbi Kommunistii Tojikiston", Family::Communist, 0.961),
+        ],
+        ruling: "the Supreme Soviet of the Tajik SSR",
+        pillars: &[
+            pl(Pillar::Party, "the Leninabad and Kulob regional machines"),
+            pl(Pillar::Security, "the interior ministry and the KGB residue"),
+        ],
+    },
+
+    // Turkmenistan - Supreme Soviet of the Turkmen SSR, 7 January 1990, a week
+    // into this start state. 175 seats; the Communist Party of Turkmenistan,
+    // the only registered party, "around 90% of the 175 seats"; turnout 94%
+    // (election page, Nohlen et al. 2001). The seat count is the Commons
+    // parliament diagram for 1990-1994, "Communist Party of Turkmenistan: 157,
+    // Independents: 18", a file with no source of its own beyond the diagram
+    // tool; it agrees with the page's 90%.
+    // https://en.wikipedia.org/wiki/1990_Turkmen_Supreme_Soviet_election
+    // https://commons.wikimedia.org/wiki/File:Supreme_Soviet_of_Turkmen_SSR_and_Republic_of_Turkmenistan_in_1990-1994.svg
+    Polity {
+        nation: NationId::Turkmenistan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 157 of 175. Id kept: the present block records that the DPT is the CPT renamed in December 1991, and the successor flag reads this id. https://en.wikipedia.org/wiki/1990_Turkmen_Supreme_Soviet_election
+            p("tm_dpt", "Communist Party of Turkmenistan", "Turkmenistanyn Kommunistik Partiyasy", Family::Communist, 0.897),
+        ],
+        ruling: "the Supreme Soviet of the Turkmen SSR",
+        pillars: &[
+            pl(Pillar::Army, "the Turkmen share of the Turkestan Military District"),
+            pl(Pillar::Party, "the presidential apparatus and the Niyazov cult"),
+            pl(Pillar::Security, "the Committee for National Security"),
+            pl(Pillar::Business, "the gas ministry"),
+        ],
+    },
+
+    // Moldova - Supreme Soviet of the Moldavian SSR, February-March 1990, all
+    // 380 seats in uninominal constituencies, first sitting 17 April 1990. The
+    // Communist Party of Moldavia was the only registered party; opposition
+    // candidates ran as independents. Open Popular Front supporters "won
+    // about 27% of the seats" and the Front's page carries the infobox figure
+    // 101 / 380; "together with moderate Communists, mainly from rural
+    // districts, they commanded a majority". The communist row is the rest of
+    // the chamber, 279 of 380, every member of which stood under the CPM's
+    // registration - it holds the Gagauz and Transnistrian deputies who later
+    // walked out and the rural moderates who voted with the Front, and the
+    // fetched pages do not split it (a figure of "almost 80" internationalist
+    // seats appeared only in an unfetched search snippet and is refused).
+    // The 1994 table this replaces was look-ahead data.
+    // https://en.wikipedia.org/wiki/1990_Moldavian_Supreme_Soviet_election
+    // https://en.wikipedia.org/wiki/Popular_Front_of_Moldova
+    Polity {
+        nation: NationId::Moldova,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 279 of 380, the chamber less the Front. https://en.wikipedia.org/wiki/1990_Moldavian_Supreme_Soviet_election
+            p("md_pcm", "Communist Party of Moldavia", "Partidul Comunist al Moldovei", Family::Communist, 0.734),
+            // bloc -> Western: 101 of 380, the pro-Romanian democratic front against the party-state. New id; whether md_fpcd of the 1994 table is this organisation renamed was not fetched this run. https://en.wikipedia.org/wiki/Popular_Front_of_Moldova
+            p("md_fpm", "Popular Front of Moldova", "Frontul Popular din Moldova", Family::Nationalist, 0.266).aligned(Bloc::Western),
+        ],
+        ruling: "the Supreme Soviet of the Moldavian SSR",
+        pillars: &[],
+    },
+
+    // Lithuania - Supreme Council, 24 February 1990, second round 4-10 March,
+    // a third round 17 and 21 April in six constituencies. 141 seats, 71 for
+    // a majority, single-member two-round. Of the 135 seated after two rounds,
+    // "91 had been endorsed by Sajudis, including 58 of the 64 independents".
+    // Party rows: LKP (independent of the CPSU) 46, LSDP 9, LKP (CPSU) 7,
+    // Greens 4, LDP 3, LKDP 2, independents 64. Turnout 71.72%. The Sajudis
+    // row and the LKP row overlap by the 33 party members Sajudis endorsed,
+    // which is why the three rows sum to 1.02: the page does not say which
+    // LKP deputies were among them. The present block's lt_lls (Union of
+    // Poles, 0.050) is not on the fetched page and is not carried.
+    // https://en.wikipedia.org/wiki/1990_Lithuanian_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Lithuania,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // bloc -> Western: 91 of 141 Sajudis-endorsed. https://en.wikipedia.org/wiki/1990_Lithuanian_Supreme_Soviet_election
+            p("lt_sajudis", "Sajudis", "Lietuvos Persitvarkymo Sajudis", Family::BigTent, 0.645).aligned(Bloc::Western),
+            // 46 of 141, the LKP that had broken with the CPSU; id kept, the LDDP of the present block is this party renamed, and the successor flag reads it. Family Communist on the 1 January 1990 reading (the Bulgaria precedent). https://en.wikipedia.org/wiki/1990_Lithuanian_Supreme_Soviet_election
+            p("lt_ldpp", "Communist Party of Lithuania (independent)", "Lietuvos komunistu partija", Family::Communist, 0.326),
+            // 7 of 141, the rump on the CPSU platform. https://en.wikipedia.org/wiki/1990_Lithuanian_Supreme_Soviet_election
+            p("lt_lkp_cpsu", "Communist Party of Lithuania (CPSU platform)", "Lietuvos komunistu partija (TSKP)", Family::Communist, 0.049),
+        ],
+        ruling: "the Supreme Council of Lithuania",
+        pillars: &[],
+    },
+
+    // Latvia - Supreme Council, 18 March 1990, run-offs 25 March and 29 April,
+    // 170 seats decided in the first round. 201 seats. Vote shares, from the
+    // page's table (Nohlen & Stover 2010, Elections in Europe, p.1122 as
+    // cited): Popular Front of Latvia 1,086,439 = 68.20%, 131 seats; Communist
+    // Party of Latvia 342,499 = 21.50%, 55 seats; independents 164,080 =
+    // 10.30%, 15 seats; 1,593,018 votes of 1,960,638 registered. The present
+    // block carries seat shares (0.652 / 0.274) and names the communist row
+    // Equal Rights; the fetched table names it the Communist Party of Latvia
+    // and the id is kept.
+    // https://en.wikipedia.org/wiki/1990_Latvian_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Latvia,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // bloc -> Western: 68.20% of the vote, 131 of 201. https://en.wikipedia.org/wiki/1990_Latvian_Supreme_Soviet_election
+            p("lv_ltf", "Popular Front of Latvia", "Latvijas Tautas fronte", Family::BigTent, 0.682).aligned(Bloc::Western),
+            // 21.50% of the vote, 55 of 201. https://en.wikipedia.org/wiki/1990_Latvian_Supreme_Soviet_election
+            p("lv_lidz", "Communist Party of Latvia", "Latvijas Komunistiska partija", Family::Communist, 0.215),
+        ],
+        ruling: "the Supreme Council of Latvia",
+        pillars: &[],
+    },
+
+    // Estonia - Supreme Soviet of the Estonian SSR, 18 March 1990. 105 seats:
+    // Popular Front of Estonia 43, Communist Party of Estonia - Free Estonia
+    // 27 (the reform communists for independence), Joint Council of Work
+    // Collectives 25 (the pro-Moscow Russophone list), independents 10. 42
+    // constituencies, single-member by first-past-the-post and multi-member
+    // by single transferable vote, four seats for the Soviet forces' military
+    // districts. Turnout 78.24% (911,203 of 1,164,603). Nohlen & Stover 2010
+    // and the Estonian National Electoral Committee as cited. The 1992 table
+    // this replaces was look-ahead data.
+    // https://en.wikipedia.org/wiki/1990_Estonian_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Estonia,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // bloc -> Western: 43 of 105. Id kept from the 1992 table. https://en.wikipedia.org/wiki/1990_Estonian_Supreme_Soviet_election
+            p("ee_rahvarinne", "Popular Front of Estonia", "Rahvarinne", Family::BigTent, 0.410).aligned(Bloc::Western),
+            // 27 of 105. https://en.wikipedia.org/wiki/1990_Estonian_Supreme_Soviet_election
+            p("ee_ekp", "Communist Party of Estonia - Free Estonia", "Eestimaa Kommunistlik Partei - Vaba Eesti", Family::Communist, 0.257),
+            // 25 of 105, "anti-independence, pro-Moscow". https://en.wikipedia.org/wiki/1990_Estonian_Supreme_Soviet_election
+            p("ee_otk", "Joint Council of Work Collectives", "Tookollektiivide Uhendnoukogu", Family::Communist, 0.238),
+        ],
+        ruling: "the Supreme Soviet of the Estonian SSR",
+        pillars: &[],
+    },
+
+    // Georgia - Supreme Soviet, 28 October 1990, second round 11 November.
+    // 250 seats, 125 by proportional list with a 4% bar and 125 in
+    // single-member two-round districts. Vote shares from the page's table
+    // (Nohlen et al. 2001 I, p.382 as cited): Round Table - Free Georgia
+    // 1,248,111 = 53.99%, 155 seats (81 list + 74 district); Communist Party
+    // of Georgia 683,824 = 29.58%, 64 seats (44 + 20); People's Front 1.89%,
+    // 12 seats; Democratic Georgia bloc 1.76%, 4; Rustaveli Society 2.32%, 1;
+    // Liberation and Economic Revival bloc 1.46%, 1; independents 9; vacant
+    // 4; 2,311,923 votes, turnout 69.59%. The present block reads the Round
+    // Table at 0.640 from the same URL; the table fetched this run says 53.99
+    // and that is the figure carried. The four small lists are not typed
+    // because their families are not on the fetched page.
+    // https://en.wikipedia.org/wiki/1990_Georgian_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Georgia,
+        system: Electoral::Proportional,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 53.99% of the vote, 155 of 250. https://en.wikipedia.org/wiki/1990_Georgian_Supreme_Soviet_election
+            p("ge_mrsm", "Round Table-Free Georgia", "Mrgvali Magida-Tavisupali Sakartvelo", Family::Nationalist, 0.540),
+            // 29.58% of the vote, 64 of 250. https://en.wikipedia.org/wiki/1990_Georgian_Supreme_Soviet_election
+            p("ge_kpg", "Communist Party of Georgia", "Sakartvelos Komunisturi Partia", Family::Communist, 0.296),
+        ],
+        ruling: "the Supreme Council of Georgia",
+        pillars: &[
+            pl(Pillar::Army, "the National Guard and the Mkhedrioni"),
+            pl(Pillar::Security, "the state security apparatus"),
+        ],
+    },
+
+    // Armenia - Supreme Soviet of the Armenian SSR, 20 May 1990, further
+    // rounds 3 June and 15 July for low turnout. 259 seats: Communist Party
+    // of Armenia 136, independents 59 - "all officially independents, but
+    // almost all were members of the Pan-Armenian National Movement" - and 64
+    // seats still vacant at the end of July (16 in February 1991). 1,286,464
+    // votes of 2,137,210 registered, turnout 60.19%. Nohlen et al. 2001 I,
+    // p.329, p.335 as cited. Shares are of the 259 seats and sum to 0.753;
+    // the vacancies are not padded. The 1991 presidential table this replaces
+    // was look-ahead data.
+    // https://en.wikipedia.org/wiki/1990_Armenian_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Armenia,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 136 of 259. https://en.wikipedia.org/wiki/1990_Armenian_Supreme_Soviet_election
+            p("am_hkk", "Communist Party of Armenia", "Hayastani Komunistakan Kusaktsutyun", Family::Communist, 0.525),
+            // bloc -> Western: 59 of 259, the independents the page counts as PANM. Id and override kept from the 1991 block. https://en.wikipedia.org/wiki/1990_Armenian_Supreme_Soviet_election
+            p("am_hhsh", "Pan-Armenian National Movement", "Hayots Hamazgayin Sharzhum", Family::BigTent, 0.228).aligned(Bloc::Western),
+        ],
+        ruling: "the Supreme Soviet of the Armenian SSR",
+        pillars: &[
+            pl(Pillar::Army, "the Armenian Army and the Karabakh volunteers"),
+            pl(Pillar::Security, "the state security apparatus"),
+        ],
+    },
+
+    // Azerbaijan - Supreme Soviet of the Azerbaijan SSR, 30 September and 14
+    // October 1990, under the state of emergency that followed Black January.
+    // 360 seats: Azerbaijan Communist Party 280, Azerbaijan Popular Front 45,
+    // independents 15, vacant 20. Altstadt, as quoted on the page: the
+    // elections "were characterized by intimidation, including the jailing of
+    // several Popular Front candidates, the murder of two others, and
+    // unabashed stuffing of ballot boxes". The present block refused this
+    // election for want of comparable shares; the page fetched this run
+    // carries seat counts and they are transcribed, with the manner of the
+    // count recorded here. The 1992 table this replaces was look-ahead data
+    // and its az_msi is not carried.
+    // https://en.wikipedia.org/wiki/1990_Azerbaijani_Supreme_Soviet_election
+    Polity {
+        nation: NationId::Azerbaijan,
+        system: Electoral::TwoRound,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            // 280 of 360. https://en.wikipedia.org/wiki/1990_Azerbaijani_Supreme_Soviet_election
+            p("az_akp", "Azerbaijan Communist Party", "Azarbaycan Kommunist Partiyasi", Family::Communist, 0.778),
+            // 45 of 360. Id kept from the 1992 block, the same organisation. https://en.wikipedia.org/wiki/1990_Azerbaijani_Supreme_Soviet_election
+            p("az_axc", "Popular Front of Azerbaijan", "Azarbaycan Xalq Cabhasi", Family::Nationalist, 0.125),
+        ],
+        ruling: "the Supreme Soviet of the Azerbaijan SSR",
+        pillars: &[
+            pl(Pillar::Army, "the Azerbaijani Army and the OMON detachments"),
+            pl(Pillar::Security, "the Ministry of National Security"),
+            pl(Pillar::Business, "the state oil company"),
+        ],
+    },
+
+// ---------------------------------------------------------------------------
+// REFUSALS (iron rule 4: unsourced is a refusal)
+// - Moldova, an internationalist/Yedinstvo row: "almost 80 seats - 21 percent"
+//   surfaced only in a search snippet; globalsecurity.org and refworld.org
+//   returned 403, countrystudies.us had nothing on 1990, the Yedinstvo page
+//   404. Folded into the CPM residual, recorded above.
+// - Lithuania, Union of Poles (lt_lls, 0.050 in the present block): not on the
+//   fetched election page. Not carried.
+// - Georgia, People's Front / Democratic Georgia / Rustaveli Society /
+//   Liberation bloc rows: seat counts fetched, families not. Not typed.
+// - Kyrgyzstan, a Democratic Movement row: the page says "some MPs" were
+//   affiliated and gives no number. Not typed. (ru.wikipedia's election page
+//   returned 404; the 350 rests on the Communist Party of Kirghizia infobox.)
+// - Uzbekistan, the second-round outcome for the 132 undecided seats: not on
+//   the page. First-round shares carried as such.
+// - Russia, the Democratic Russia count: 350 (election page) vs "about 300"
+//   (the bloc's page); the election page's figure carried, the other recorded.
+// - Native-language names for the Kazakh, Kirghiz, Turkmen, Azerbaijani,
+//   Armenian, Estonian and Moldavian communist parties and the Estonian JCWC:
+//   not on the fetched pages; typed as transliterations of the English name
+//   and to be treated as unsourced strings, not data.
+// - Electoral::TwoRound for Kazakhstan, Tajikistan, Turkmenistan and Moldova:
+//   the pages state single-member districts (Moldova) or no system at all
+//   (the three others); the Soviet 1989-90 two-round rule the Russian,
+//   Ukrainian and Lithuanian pages describe is assumed for them, and that
+//   assumption is the one unsourced field in the file.
+// - term_months 60 is the existing successor blocks' constant, not a fetched
+//   figure; carried unchanged.
