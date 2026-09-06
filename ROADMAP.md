@@ -1,5 +1,31 @@
 # SPHERES Roadmap
 
+## Done — S5 pinned: the N=200 census, four bars, D4 under the switch, the switch decision (2026-09-06)
+
+The census at N=200 (97 s; 137 s with the rebuild after D4), per seed
+min/med/max: A1 coups against elected governments 4/6/9, inside 4..14 and
+degenerate (Sao Tome 545, Philippines 460, Comoros 200 of 1269); A2 Islamist
+takeover by 2000 0/200 seeds; A3 Communist takeover 197/200 seeds, 0/2/4 a
+seed; A4 regimes electoral by end-1996 1/2/3; A5 0/200; A6 route events in
+1990 democracies 0 in 200/200 and 0 in 60/60 at 420 months; A7 ratio 0.16;
+A8 8/8 in 200/200; A9 0.953; A10 0.27/0.33/0.38. Four bars PINNED with n
+derived from that sample and a power statement beside each (BUGS S6-2): A6 an
+invariant over 420 months on 12 seeds, A8 on 40 seeds (decorative against one
+regime falling, said so), A9 on 12 seeds (decorative against the road
+constants, guards the Army-pillar transcription, said so), A10 on 12 seeds;
+each watched red against the lines it guards, or recorded as not red and why.
+Six bars written and `#[ignore]`d at their reading, never widened (A1's
+concentration arm, A2, A3, A4, A5, A7; BUGS S6-3). D4's Nepal and Haiti
+tables WIRED under the lens switch (`government::polity_in`; P-8, S4-10, R-6
+closed) with the default path byte-identical: both golden actuals
+(0xe26e4bf8d6c60066, 0xbe94d6125631829c) and both headless digests
+(d1a2cfbf7c6958d7 / 3501, 39dea3341a7f6e8c / 3983) unmoved, the inertness
+trio green, the switched-on census moved in one seed of 200. THE SWITCH
+DECISION: `ideology_takeover` stays OFF in the browser — five anchors and one
+arm are out, the list with distances in BUGS S6-5. Suite: sim lib 453/3/25
+(the three deliberate reds at unmoved actuals), 28 integration binaries
+green, web 160/0/2, cli 1/0.
+
 ## Done — S5, the bloc census and the first calibration pass (2026-09-06)
 
 `spheres-sim/tests/bloc_census.rs` (`#[ignore]`d, N from `SPHERES_CENSUS_SEEDS`,
