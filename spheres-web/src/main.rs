@@ -1117,7 +1117,8 @@ fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
         }
         _ => ruling.into_iter().collect(),
     };
-    let banned: Vec<Bloc> = g.map_or(vec![], |g| g.banned.clone());
+    // Bans are per party (S3); a bloc reads banned when every party of it is.
+    let banned: Vec<String> = g.map_or(vec![], |g| g.banned.clone());
     let bar: Vec<serde_json::Value> = politics
         .as_ref()
         .map(|p| {
@@ -1157,7 +1158,7 @@ fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
                         "seats": g.map_or(0.0, |g| g.seat_share(s.id)),
                         "in_government": g.is_some_and(|g| g.in_government(s.id)),
                         "leads": g.and_then(|g| g.leader()) == Some(s.id),
-                        "banned": banned.contains(b),
+                        "banned": banned.iter().any(|p| p == s.id),
                     })
                 })
                 .collect();
@@ -1168,7 +1169,7 @@ fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
                 "bloc": b,
                 "label": b.label(),
                 "share": shares[*b as usize].1,
-                "banned": banned.contains(b),
+                "banned": blocs::bloc_banned(w, id, *b),
                 "parties": parties,
             }))
         })

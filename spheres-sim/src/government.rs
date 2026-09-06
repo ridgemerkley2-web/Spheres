@@ -5819,10 +5819,13 @@ pub struct GovState {
     /// nation and whenever the arm is off.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub surging: Vec<Bloc>,
-    /// Blocs this government has proscribed. Nothing writes it in this build —
-    /// the Ban command is S3 — and it serialises nothing while empty.
+    /// The parties this government has proscribed, by stable id (S3,
+    /// `BanParty`). A banned party keeps its support — the voters are still
+    /// there, and its bloc still counts them in influence — and holds no
+    /// seats: `seats_from_legal` reads this list on every election. Empty,
+    /// and absent from the save, until something is banned.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
-    pub banned: Vec<Bloc>,
+    pub banned: Vec<String>,
     /// The bloc that holds power in a regime, seeded from the leader row and
     /// kept when the arm is on. An electoral nation's ruling bloc is read off
     /// its coalition leader instead and is not stored.
@@ -6040,6 +6043,35 @@ fn seats_from(support: &[(String, f64)], sys: Electoral) -> Vec<(String, f64)> {
         e.1 /= total;
     }
     out
+}
+
+/// `seats_from` behind the political arm's switch (S3): with the arm on and a
+/// ban in force, the chamber is read from the LEGAL parties alone — their
+/// support run through the same formula, unrenormalised, so the threshold
+/// still reads vote shares — and every banned party is listed at zero in
+/// table order. With the arm off, or nothing banned, this IS `seats_from`,
+/// which is untouched. Every party banned leaves an empty chamber of zeros.
+fn seats_from_legal(
+    on: bool,
+    support: &[(String, f64)],
+    sys: Electoral,
+    banned: &[String],
+) -> Vec<(String, f64)> {
+    if !on || banned.is_empty() {
+        return seats_from(support, sys);
+    }
+    let legal: Vec<(String, f64)> =
+        support.iter().filter(|(p, _)| !banned.contains(p)).cloned().collect();
+    if legal.is_empty() {
+        return support.iter().map(|(p, _)| (p.clone(), 0.0)).collect();
+    }
+    let seated = seats_from(&legal, sys);
+    support
+        .iter()
+        .map(|(p, _)| {
+            (p.clone(), seated.iter().find(|(q, _)| q == p).map_or(0.0, |(_, v)| *v))
+        })
+        .collect()
 }
 
 fn distance(id: NationId, a: &str, b: &str) -> f64 {
@@ -6476,6 +6508,21 @@ fn note_surges(w: &mut WorldState, id: NationId) {
 /// electoral nation stores none. Returns `None`, and writes nothing, with the
 /// switch off or where there are no movements to read.
 fn reseed_support_from_movements(w: &mut WorldState, id: NationId) -> Option<String> {
+    let (support, lost) = reseeded_support(w, id)?;
+    if let Some(g) = state_mut(w, id) {
+        g.support = support;
+        g.movements.clear();
+        g.surging.clear();
+        g.regime_bloc = None;
+    }
+    lost
+}
+
+/// The seam's arithmetic as a pure read: the support it would seat and the
+/// clause for what is lost, or `None` where it would write nothing (the
+/// switch off, no movements, no parties). `reseed_support_from_movements`
+/// writes exactly this, and the round table's card quotes it.
+fn reseeded_support(w: &WorldState, id: NationId) -> Option<(Vec<(String, f64)>, Option<String>)> {
     if !w.rules.ideology_blocs {
         return None;
     }
@@ -6511,17 +6558,27 @@ fn reseed_support_from_movements(w: &mut WorldState, id: NationId) -> Option<Str
         }
     }
     normalise(&mut support);
+    let lost = if lost.is_empty() { None } else { Some(lost.join(" and ")) };
+    Some((support, lost))
+}
+
+/// A regime that has just opened up owes the country a vote: date it
+/// `months` out, seat the dormant table from the movements (the
+/// liberalisation seam, a no-op with the arm off), clear the pillars and the
+/// pressure, and form the interim government. Returns the seam's clause for
+/// the bloc no party carries. Called by the tick when authoritarianism has
+/// fallen under the ceiling by any route (18 months), and by the round table
+/// (6). Draws no RNG.
+fn schedule_first_elections(w: &mut WorldState, id: NationId, months: u32) -> Option<String> {
+    let when = add_months(w.year, w.month, months);
+    let lost = reseed_support_from_movements(w, id);
     if let Some(g) = state_mut(w, id) {
-        g.support = support;
-        g.movements.clear();
-        g.surging.clear();
-        g.regime_bloc = None;
+        g.next_election = when;
+        g.pillars.clear();
+        g.coup_pressure = 0.0;
     }
-    if lost.is_empty() {
-        None
-    } else {
-        Some(lost.join(" and "))
-    }
+    form_government(w, id, false);
+    lost
 }
 
 // ---------------------------------------------------------------------------
@@ -6572,9 +6629,12 @@ pub fn hold_election(w: &mut WorldState, id: NationId) {
         return;
     }
     let (y, m) = (w.year, w.month);
+    let on = w.rules.ideology_blocs;
     if let Some(g) = state_mut(w, id) {
         normalise(&mut g.support);
-        g.seats = seats_from(&g.support, sys);
+        // `seats_from` itself, with the arm off or nothing banned.
+        let banned = g.banned.clone();
+        g.seats = seats_from_legal(on, &g.support, sys, &banned);
         g.next_election = add_months(y, m, term);
         g.elected = true;
     }
@@ -6832,6 +6892,696 @@ pub fn secure_pillar(w: &mut WorldState, id: NationId, pillar: Pillar) -> Result
 }
 
 // ---------------------------------------------------------------------------
+// The five levers (the political arm, S3 part two)
+// ---------------------------------------------------------------------------
+//
+// Each lever is four functions off ONE plan. `*_refusal` is the prose, read
+// without touching the world — `lib::world_refusal` asks it before any state
+// is read, and the arm asks it again before it writes, so the button and the
+// refusal cannot disagree. `*_plan` computes every number the lever will
+// write, once, from the world as it stands, clamped where the world clamps.
+// The arm writes the plan's numbers and nothing else, and `*_effects` renders
+// the same plan for the card — so the sentence the player reads and the number
+// the world takes are the same number (iron rule 8), and a test can compare
+// them bit for bit. Nothing here draws the RNG; the government module never
+// does.
+
+/// The five prices, in political capital. INVENTED (design S3, approved
+/// 2026-09-05): read by `lib::command_price` and served by `lib::price_of`.
+pub const SUSPEND_PC: f64 = 40.0;
+pub const BAN_PC: f64 = 18.0;
+pub const LEGALIZE_PC: f64 = 12.0;
+pub const PROGRAMME_PC: f64 = 35.0;
+pub const ROUND_TABLE_PC: f64 = 30.0;
+
+/// The one sentence every lever answers with while `rules.ideology_blocs` is
+/// off — the same sentence `statecraft::back_bloc_refusal` gives.
+pub const NO_MOVEMENTS: &str = "This world does not model ideological movements.";
+
+/// A democracy, as the diplomatic arms of this tree read one: the line
+/// `stratagems` (`security_crackdown`, `liberalisation`) reads.
+pub const DEMOCRACY_BELOW: f64 = 0.30;
+
+/// Everyone alive under the democracy line but the actor, in roster order.
+fn democracies(w: &WorldState, except: NationId) -> Vec<NationId> {
+    w.nations
+        .iter()
+        .filter(|x| x.alive && x.authoritarianism < DEMOCRACY_BELOW && x.id != except)
+        .map(|x| x.id)
+        .collect()
+}
+
+fn fmt_shares(shares: &[(Bloc, f64)]) -> String {
+    shares.iter().map(|(b, s)| format!("{} {:.3}", b.label(), s)).collect::<Vec<_>>().join(", ")
+}
+
+/// The surge latch as a seed writes it: CLOSED for every non-ruling bloc
+/// already at or over the line, because a bloc handed 0.30 has not crossed
+/// it (`seed_blocs` seeds the same way).
+fn latched_at_seed(movements: &[(Bloc, f64)], ruling: Bloc) -> Vec<Bloc> {
+    movements.iter().filter(|(b, s)| *b != ruling && *s >= 0.30).map(|(b, _)| *b).collect()
+}
+
+/// The pillar with the highest loyalty, ties to the first in the regime's
+/// list, and the bloc it would install.
+fn strongest_pillar_bloc(id: NationId, g: &GovState) -> Option<(Pillar, Bloc)> {
+    let mut best: Option<(Pillar, f64)> = None;
+    for (p, v) in &g.pillars {
+        if best.map_or(true, |(_, bv)| *v > bv) {
+            best = Some((*p, *v));
+        }
+    }
+    best.map(|(p, _)| (p, pillar_bloc(id, p)))
+}
+
+/// The largest movement other than the ruling one, ties in enum order.
+fn largest_non_ruling(movements: &[(Bloc, f64)], ruling: Bloc) -> Option<(Bloc, f64)> {
+    let mut best: Option<(Bloc, f64)> = None;
+    for (b, s) in movements {
+        if *b == ruling {
+            continue;
+        }
+        if best.map_or(true, |(_, bs)| *s > bs) {
+            best = Some((*b, *s));
+        }
+    }
+    best
+}
+
+// ---- (1) Suspend the constitution -----------------------------------------
+
+/// Everything `suspend_constitution` writes, computed once.
+#[derive(Clone, Debug, PartialEq)]
+pub struct SuspendPlan {
+    /// The incumbent's colour, which the regime keeps.
+    pub ruling: Bloc,
+    pub auth_before: f64,
+    pub auth_after: f64,
+    pub stability_before: f64,
+    pub stability_after: f64,
+    /// The movements seeded from the parties' bloc sums, the ruling bloc
+    /// +0.10, floored and normalised.
+    pub movements: [(Bloc, f64); 5],
+    pub democracies: Vec<NationId>,
+}
+
+/// Why a suspension would be refused, read without touching the world.
+pub fn suspend_refusal(w: &WorldState, id: NationId) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some(NO_MOVEMENTS.into());
+    }
+    if !is_electoral(w, id) {
+        return Some(format!("{} holds no elections; there is no constitution to suspend.", id.name()));
+    }
+    let g = match state(w, id) {
+        Some(g) => g,
+        None => return Some("no government".into()),
+    };
+    let n = w.nation(id);
+    let seats = g.government_seats();
+    if !(n.stability < 45.0 || seats < 0.5) {
+        return Some(format!(
+            "{} is not in the crisis a suspension needs: stability {:.0} (under 45) or a government short of a majority ({:.0}% held).",
+            id.name(), n.stability, seats * 100.0
+        ));
+    }
+    if n.authoritarianism < 0.20 {
+        return Some(format!(
+            "{} is too open to rule by decree: authoritarianism {:.2}, 0.20 needed.",
+            id.name(), n.authoritarianism
+        ));
+    }
+    if crate::blocs::ruling_bloc(w, id).is_none() {
+        return Some(format!("{} has no governing colour to keep.", id.name()));
+    }
+    None
+}
+
+pub fn suspend_plan(w: &WorldState, id: NationId) -> Result<SuspendPlan, String> {
+    if let Some(why) = suspend_refusal(w, id) {
+        return Err(why);
+    }
+    let ruling = crate::blocs::ruling_bloc(w, id).ok_or("no ruling bloc")?;
+    let n = w.nation(id);
+    let mut movements = crate::blocs::bloc_shares(w, id);
+    movements[ruling as usize].1 += 0.10;
+    for e in movements.iter_mut() {
+        e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+    }
+    normalise_blocs(&mut movements);
+    Ok(SuspendPlan {
+        ruling,
+        auth_before: n.authoritarianism,
+        auth_after: (n.authoritarianism + 0.30).max(0.65).min(0.98),
+        stability_before: n.stability,
+        stability_after: (n.stability - 6.0).max(0.0),
+        movements,
+        democracies: democracies(w, id),
+    })
+}
+
+/// The card's arms, from the same plan the arm writes. Empty where the lever
+/// is refused.
+pub fn suspend_effects(w: &WorldState, id: NationId) -> Vec<String> {
+    let p = match suspend_plan(w, id) {
+        Ok(p) => p,
+        Err(_) => return vec![],
+    };
+    vec![
+        format!(
+            "Authoritarianism {:.2} → {:.2}: {} rules by decree and holds no elections.",
+            p.auth_before, p.auth_after, id.name()
+        ),
+        format!(
+            "The {} bloc keeps power as the regime's colour; the cabinet is kept as a dormant record.",
+            p.ruling.label()
+        ),
+        format!("Movements seeded from the parties, the ruling bloc +0.10: {}.", fmt_shares(&p.movements)),
+        format!("Stability {:.0} → {:.0}.", p.stability_before, p.stability_after),
+        format!("Relations −10 with {} democracies.", p.democracies.len()),
+    ]
+}
+
+pub fn suspend_constitution(w: &mut WorldState, id: NationId) -> Result<(), String> {
+    let p = suspend_plan(w, id)?;
+    {
+        let n = w.nation_mut(id);
+        n.authoritarianism = p.auth_after;
+        n.stability = p.stability_after;
+    }
+    if let Some(g) = state_mut(w, id) {
+        g.regime_bloc = Some(p.ruling);
+        g.movements = p.movements.to_vec();
+        g.surging = latched_at_seed(&p.movements, p.ruling);
+    }
+    for d in &p.democracies {
+        w.shift_relation(*d, id, -10.0);
+    }
+    w.headline(format!("{} suspends its constitution and rules by decree.", id.name()));
+    Ok(())
+}
+
+// ---- (2) Ban a party, (3) legalise one ------------------------------------
+
+/// Everything `ban_party` writes, computed once.
+#[derive(Clone, Debug, PartialEq)]
+pub struct BanPlan {
+    pub party: String,
+    pub name: &'static str,
+    pub auth_before: f64,
+    pub auth_after: f64,
+    pub stability_before: f64,
+    pub stability_after: f64,
+    /// The party's support, which it KEEPS: a ban takes seats, not voters.
+    pub support: f64,
+    pub seats_before: f64,
+    /// The chamber re-read through `seats_from_legal` with the ban in force
+    /// (an electoral nation), or unchanged (a regime's dormant chamber).
+    pub seats_after: Vec<(String, f64)>,
+    pub leaves_cabinet: bool,
+    pub democracies: Vec<NationId>,
+}
+
+/// Why a ban would be refused, read without touching the world.
+pub fn ban_refusal(w: &WorldState, id: NationId, party: &str) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some(NO_MOVEMENTS.into());
+    }
+    let s = match spec(id, party) {
+        Some(s) => s,
+        None => return Some(format!("No such party: {}", party)),
+    };
+    let g = match state(w, id) {
+        Some(g) => g,
+        None => return Some("no government".into()),
+    };
+    if g.banned.iter().any(|p| p == party) {
+        return Some(format!("{} is already banned.", s.name));
+    }
+    if g.leader() == Some(party) {
+        return Some("A government cannot ban the party that leads it.".into());
+    }
+    let auth = w.nation(id).authoritarianism;
+    if auth < 0.30 && !s.pariah {
+        return Some(format!(
+            "{} is too open to ban a party (authoritarianism {:.2}, 0.30 needed), and {} is no pariah.",
+            id.name(), auth, s.name
+        ));
+    }
+    None
+}
+
+pub fn ban_plan(w: &WorldState, id: NationId, party: &str) -> Result<BanPlan, String> {
+    if let Some(why) = ban_refusal(w, id, party) {
+        return Err(why);
+    }
+    let s = spec(id, party).ok_or("no such party")?;
+    let g = state(w, id).ok_or("no government")?;
+    let n = w.nation(id);
+    let support = g.support_of(party);
+    let seats_after = if is_electoral(w, id) {
+        let sys = polity(id).map(|p| p.system).ok_or("no polity")?;
+        let mut banned = g.banned.clone();
+        banned.push(party.to_string());
+        seats_from_legal(true, &g.support, sys, &banned)
+    } else {
+        g.seats.clone()
+    };
+    Ok(BanPlan {
+        party: party.to_string(),
+        name: s.name,
+        auth_before: n.authoritarianism,
+        auth_after: (n.authoritarianism + 0.04).min(0.98),
+        stability_before: n.stability,
+        stability_after: if support >= 0.15 { (n.stability - 3.0).max(0.0) } else { n.stability },
+        support,
+        seats_before: g.seat_share(party),
+        seats_after,
+        leaves_cabinet: g.in_government(party),
+        democracies: democracies(w, id),
+    })
+}
+
+pub fn ban_effects(w: &WorldState, id: NationId, party: &str) -> Vec<String> {
+    let p = match ban_plan(w, id, party) {
+        Ok(p) => p,
+        Err(_) => return vec![],
+    };
+    let seats_now = p.seats_after.iter().find(|(q, _)| *q == p.party).map_or(0.0, |(_, v)| *v);
+    let mut out = vec![
+        format!(
+            "{} holds no seats: {:.1}% → {:.1}% of the chamber; its {:.1}% of support is kept and still counts in influence.",
+            p.name, p.seats_before * 100.0, seats_now * 100.0, p.support * 100.0
+        ),
+        format!("Authoritarianism {:.2} → {:.2}.", p.auth_before, p.auth_after),
+        format!("Stability {:.0} → {:.0} (−3 when the party holds 15% or more).", p.stability_before, p.stability_after),
+        format!("Relations −4 with {} democracies.", p.democracies.len()),
+    ];
+    if p.leaves_cabinet {
+        out.push(format!("{} leaves the cabinet.", p.name));
+    }
+    out
+}
+
+pub fn ban_party(w: &mut WorldState, id: NationId, party: &str) -> Result<(), String> {
+    let p = ban_plan(w, id, party)?;
+    {
+        let n = w.nation_mut(id);
+        n.authoritarianism = p.auth_after;
+        n.stability = p.stability_after;
+    }
+    if let Some(g) = state_mut(w, id) {
+        g.banned.push(p.party.clone());
+        g.coalition.retain(|q| *q != p.party);
+        g.seats = p.seats_after.clone();
+    }
+    for d in &p.democracies {
+        w.shift_relation(*d, id, -4.0);
+    }
+    w.headline(format!("{} bans {}.", id.name(), p.name));
+    Ok(())
+}
+
+/// Everything `legalize_party` writes, computed once.
+#[derive(Clone, Debug, PartialEq)]
+pub struct LegalizePlan {
+    pub party: String,
+    pub name: &'static str,
+    pub auth_before: f64,
+    pub auth_after: f64,
+    pub seats_after: Vec<(String, f64)>,
+    pub democracies: Vec<NationId>,
+}
+
+/// Why a legalisation would be refused, read without touching the world.
+pub fn legalize_refusal(w: &WorldState, id: NationId, party: &str) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some(NO_MOVEMENTS.into());
+    }
+    let s = match spec(id, party) {
+        Some(s) => s,
+        None => return Some(format!("No such party: {}", party)),
+    };
+    match state(w, id) {
+        None => Some("no government".into()),
+        Some(g) if !g.banned.iter().any(|p| p == party) => Some(format!("{} is not banned.", s.name)),
+        Some(_) => None,
+    }
+}
+
+pub fn legalize_plan(w: &WorldState, id: NationId, party: &str) -> Result<LegalizePlan, String> {
+    if let Some(why) = legalize_refusal(w, id, party) {
+        return Err(why);
+    }
+    let s = spec(id, party).ok_or("no such party")?;
+    let g = state(w, id).ok_or("no government")?;
+    let seats_after = if is_electoral(w, id) {
+        let sys = polity(id).map(|p| p.system).ok_or("no polity")?;
+        let banned: Vec<String> = g.banned.iter().filter(|p| *p != party).cloned().collect();
+        seats_from_legal(true, &g.support, sys, &banned)
+    } else {
+        g.seats.clone()
+    };
+    let auth = w.nation(id).authoritarianism;
+    Ok(LegalizePlan {
+        party: party.to_string(),
+        name: s.name,
+        auth_before: auth,
+        auth_after: (auth - 0.02).max(0.05),
+        seats_after,
+        democracies: democracies(w, id),
+    })
+}
+
+pub fn legalize_effects(w: &WorldState, id: NationId, party: &str) -> Vec<String> {
+    let p = match legalize_plan(w, id, party) {
+        Ok(p) => p,
+        Err(_) => return vec![],
+    };
+    let seats = p.seats_after.iter().find(|(q, _)| *q == p.party).map_or(0.0, |(_, v)| *v);
+    vec![
+        format!("{} may hold seats again: {:.1}% of the chamber on today's support.", p.name, seats * 100.0),
+        format!("Authoritarianism {:.2} → {:.2}.", p.auth_before, p.auth_after),
+        format!("Relations +3 with {} democracies.", p.democracies.len()),
+    ]
+}
+
+pub fn legalize_party(w: &mut WorldState, id: NationId, party: &str) -> Result<(), String> {
+    let p = legalize_plan(w, id, party)?;
+    w.nation_mut(id).authoritarianism = p.auth_after;
+    if let Some(g) = state_mut(w, id) {
+        g.banned.retain(|q| *q != p.party);
+        g.seats = p.seats_after.clone();
+    }
+    for d in &p.democracies {
+        w.shift_relation(*d, id, 3.0);
+    }
+    w.headline(format!("{} legalises {}.", id.name(), p.name));
+    Ok(())
+}
+
+// ---- (4) Declare a programme ----------------------------------------------
+
+/// Everything `declare_programme` writes, computed once.
+#[derive(Clone, Debug, PartialEq)]
+pub struct ProgrammePlan {
+    pub old: Bloc,
+    pub new: Bloc,
+    pub stability_before: f64,
+    pub stability_after: f64,
+    /// (pillar, loyalty before, loyalty after) for every pillar the programme
+    /// moves: the Clergy +0.15 under an Islamist programme and −0.10 under
+    /// any other, the Army +0.10 under a Nationalist one, the Party −0.15 on
+    /// leaving the Communist colour — each where the pillar is present.
+    pub pillars: Vec<(Pillar, f64, f64)>,
+    /// (patron, shift): −15 for every great-power patron ruling in the old
+    /// colour, +10 for every one ruling in the new.
+    pub patrons: Vec<(NationId, f64)>,
+    /// The movements with the new colour +0.10, floored and normalised.
+    pub movements: [(Bloc, f64); 5],
+}
+
+/// Why a programme would be refused, read without touching the world.
+pub fn programme_refusal(w: &WorldState, id: NationId, bloc: Bloc) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some(NO_MOVEMENTS.into());
+    }
+    if is_electoral(w, id) {
+        return Some(format!("{} answers to an electorate; a programme is declared by decree.", id.name()));
+    }
+    let g = match state(w, id) {
+        Some(g) if g.movements.len() == 5 => g,
+        _ => return Some("no regime".into()),
+    };
+    let old = match g.regime_bloc.or_else(|| crate::blocs::ruling_bloc(w, id)) {
+        Some(b) => b,
+        None => return Some("no regime".into()),
+    };
+    if old == bloc {
+        return Some(format!("{} already rules in the {} colour.", id.name(), bloc.label()));
+    }
+    let share = g.movements[bloc as usize].1;
+    let strongest = strongest_pillar_bloc(id, g);
+    if share < 0.25 && strongest.map(|(_, b)| b) != Some(bloc) {
+        return Some(format!(
+            "The {} movement in {} is {:.0}% of the country (25% needed), and it is not the colour of the regime's strongest institution.",
+            bloc.label(), id.name(), share * 100.0
+        ));
+    }
+    None
+}
+
+pub fn programme_plan(w: &WorldState, id: NationId, bloc: Bloc) -> Result<ProgrammePlan, String> {
+    if let Some(why) = programme_refusal(w, id, bloc) {
+        return Err(why);
+    }
+    let g = state(w, id).ok_or("no regime")?;
+    let old = g.regime_bloc.or_else(|| crate::blocs::ruling_bloc(w, id)).ok_or("no regime")?;
+    let n = w.nation(id);
+    let mut pillars: Vec<(Pillar, f64, f64)> = vec![];
+    for (p, v) in &g.pillars {
+        let shift = match p {
+            Pillar::Clergy => {
+                if bloc == Bloc::Islamist {
+                    0.15
+                } else {
+                    -0.10
+                }
+            }
+            Pillar::Army if bloc == Bloc::Nationalist => 0.10,
+            Pillar::Party if old == Bloc::Communist => -0.15,
+            _ => 0.0,
+        };
+        if shift != 0.0 {
+            pillars.push((*p, *v, (*v + shift).clamp(0.0, 1.0)));
+        }
+    }
+    let mut patrons: Vec<(NationId, f64)> = vec![];
+    for p in crate::nations::patrons().iter().copied() {
+        if p == id || !w.nation_opt(p).is_some_and(|x| x.alive) {
+            continue;
+        }
+        match crate::blocs::ruling_bloc(w, p) {
+            Some(b) if b == old => patrons.push((p, -15.0)),
+            Some(b) if b == bloc => patrons.push((p, 10.0)),
+            _ => {}
+        }
+    }
+    let mut movements = [(Bloc::Western, 0.0); 5];
+    for (i, e) in g.movements.iter().enumerate() {
+        movements[i] = *e;
+    }
+    movements[bloc as usize].1 += 0.10;
+    for e in movements.iter_mut() {
+        e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+    }
+    normalise_blocs(&mut movements);
+    Ok(ProgrammePlan {
+        old,
+        new: bloc,
+        stability_before: n.stability,
+        stability_after: (n.stability - 5.0).max(0.0),
+        pillars,
+        patrons,
+        movements,
+    })
+}
+
+pub fn programme_effects(w: &WorldState, id: NationId, bloc: Bloc) -> Vec<String> {
+    let p = match programme_plan(w, id, bloc) {
+        Ok(p) => p,
+        Err(_) => return vec![],
+    };
+    let mut out = vec![
+        format!("{} rules in the {} colour instead of the {}.", id.name(), p.new.label(), p.old.label()),
+        format!("Stability {:.0} → {:.0}.", p.stability_before, p.stability_after),
+    ];
+    for (pillar, before, after) in &p.pillars {
+        let name = polity(id)
+            .and_then(|pol| pol.pillars.iter().find(|s| s.pillar == *pillar))
+            .map(|s| s.name)
+            .unwrap_or(pillar.key());
+        out.push(format!("Loyalty of {} {:.2} → {:.2}.", name, before, after));
+    }
+    for (patron, shift) in &p.patrons {
+        out.push(format!("Relations {:+.0} with {}.", shift, patron.name()));
+    }
+    out.push(format!("The {} movement +0.10, then normalised: {}.", p.new.label(), fmt_shares(&p.movements)));
+    out
+}
+
+pub fn declare_programme(w: &mut WorldState, id: NationId, bloc: Bloc) -> Result<(), String> {
+    let p = programme_plan(w, id, bloc)?;
+    w.nation_mut(id).stability = p.stability_after;
+    if let Some(g) = state_mut(w, id) {
+        g.regime_bloc = Some(p.new);
+        for (pillar, _, after) in &p.pillars {
+            if let Some(e) = g.pillars.iter_mut().find(|(q, _)| q == pillar) {
+                e.1 = *after;
+            }
+        }
+        g.movements = p.movements.to_vec();
+        // The old colour is a non-ruling movement now, at whatever share it
+        // held: latched closed, as a seed is, so the next tick does not
+        // announce the incumbent's own following as a surge.
+        let latched = latched_at_seed(&p.movements, p.new);
+        g.surging.retain(|b| *b != p.new);
+        for b in latched {
+            if !g.surging.contains(&b) {
+                g.surging.push(b);
+            }
+        }
+    }
+    for (patron, shift) in &p.patrons {
+        w.shift_relation(*patron, id, *shift);
+    }
+    w.headline(format!("{} declares a {} programme.", id.name(), p.new.label()));
+    Ok(())
+}
+
+// ---- (5) Convene a round table --------------------------------------------
+
+/// Everything `convene_round_table` writes, computed once.
+#[derive(Clone, Debug, PartialEq)]
+pub struct RoundTablePlan {
+    pub auth_before: f64,
+    pub auth_after: f64,
+    pub stability_before: f64,
+    pub stability_after: f64,
+    /// The names of the parties whose bans are lifted.
+    pub lifted: Vec<&'static str>,
+    /// The date of the first free elections, six months out.
+    pub election: (i32, u32),
+    /// The party support the seam seats from the movements.
+    pub support: Vec<(String, f64)>,
+    /// The seam's clause for the bloc no party carries, if any.
+    pub lost: Option<String>,
+}
+
+/// Why a round table would be refused, read without touching the world.
+pub fn round_table_refusal(w: &WorldState, id: NationId) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some(NO_MOVEMENTS.into());
+    }
+    if is_electoral(w, id) {
+        return Some(format!("{} already answers to an electorate.", id.name()));
+    }
+    if polity(id).is_none_or(|p| p.parties.is_empty()) {
+        return Some(format!("{} has no parties to seat at a round table.", id.name()));
+    }
+    let g = match state(w, id) {
+        Some(g) if g.movements.len() == 5 => g,
+        _ => return Some("no regime".into()),
+    };
+    let ruling = match g.regime_bloc.or_else(|| crate::blocs::ruling_bloc(w, id)) {
+        Some(b) => b,
+        None => return Some("no regime".into()),
+    };
+    let d = crate::blocs::discontent(w, id);
+    if d < 0.40 {
+        return Some(format!(
+            "{} is not restive enough for a round table: discontent {:.2}, 0.40 needed.",
+            id.name(), d
+        ));
+    }
+    let largest = largest_non_ruling(&g.movements, ruling).map_or(0.0, |(_, s)| s);
+    if largest < 0.25 {
+        return Some(format!(
+            "No movement in {} is large enough to sit across the table: the largest is {:.0}% of the country, 25% needed.",
+            id.name(), largest * 100.0
+        ));
+    }
+    None
+}
+
+pub fn round_table_plan(w: &WorldState, id: NationId) -> Result<RoundTablePlan, String> {
+    if let Some(why) = round_table_refusal(w, id) {
+        return Err(why);
+    }
+    let g = state(w, id).ok_or("no regime")?;
+    let n = w.nation(id);
+    let lifted: Vec<&'static str> =
+        g.banned.iter().filter_map(|p| spec(id, p).map(|s| s.name)).collect();
+    let (support, lost) = reseeded_support(w, id).ok_or("no movements to seat from")?;
+    Ok(RoundTablePlan {
+        auth_before: n.authoritarianism,
+        auth_after: (n.authoritarianism - 0.25).min(0.59).max(0.05),
+        stability_before: n.stability,
+        stability_after: (n.stability + 8.0).min(100.0),
+        lifted,
+        election: add_months(w.year, w.month, 6),
+        support,
+        lost,
+    })
+}
+
+pub fn round_table_effects(w: &WorldState, id: NationId) -> Vec<String> {
+    let p = match round_table_plan(w, id) {
+        Ok(p) => p,
+        Err(_) => return vec![],
+    };
+    let mut out = vec![
+        format!(
+            "Authoritarianism {:.2} → {:.2}: {} answers to an electorate from today.",
+            p.auth_before, p.auth_after, id.name()
+        ),
+        format!("Stability {:.0} → {:.0}.", p.stability_before, p.stability_after),
+        format!("First free elections in six months, {}-{:02}.", p.election.0, p.election.1),
+        format!(
+            "The parties are seated from the movements: {}.",
+            p.support.iter().map(|(q, s)| format!("{} {:.3}", q, s)).collect::<Vec<_>>().join(", ")
+        ),
+    ];
+    if let Some(clause) = &p.lost {
+        out.push(format!("Lost in the seating: {}.", clause));
+    }
+    if !p.lifted.is_empty() {
+        out.push(format!("Every ban lifted: {}.", p.lifted.join(", ")));
+    } else {
+        out.push("No bans to lift.".to_string());
+    }
+    out
+}
+
+pub fn convene_round_table(w: &mut WorldState, id: NationId) -> Result<(), String> {
+    let p = round_table_plan(w, id)?;
+    {
+        let n = w.nation_mut(id);
+        n.authoritarianism = p.auth_after;
+        n.stability = p.stability_after;
+    }
+    if let Some(g) = state_mut(w, id) {
+        g.banned.clear();
+    }
+    let lost = schedule_first_elections(w, id, 6);
+    w.headline(match lost {
+        None => format!("{} convenes a round table; first free elections in six months.", id.name()),
+        Some(clause) => format!(
+            "{} convenes a round table; first free elections in six months, though {}.",
+            id.name(),
+            clause
+        ),
+    });
+    Ok(())
+}
+
+// ---- The list, and the AI -------------------------------------------------
+
+/// The one-sentence arms of a lever, from the same plan the arm writes, for
+/// the card. `None` for a command that is not one of the five.
+pub fn lever_effects(w: &WorldState, c: &crate::Command) -> Option<Vec<String>> {
+    use crate::Command;
+    Some(match c {
+        Command::SuspendConstitution { nation } => suspend_effects(w, *nation),
+        Command::BanParty { nation, party } => ban_effects(w, *nation, party),
+        Command::LegalizeParty { nation, party } => legalize_effects(w, *nation, party),
+        Command::DeclareProgramme { nation, bloc } => programme_effects(w, *nation, *bloc),
+        Command::ConveneRoundTable { nation } => round_table_effects(w, *nation),
+        _ => return None,
+    })
+}
+
+// ---------------------------------------------------------------------------
 // The tick
 // ---------------------------------------------------------------------------
 
@@ -7052,17 +7802,10 @@ pub fn tick(w: &mut WorldState) {
             // through a stratagem, a revolution or a collapse.
             let unscheduled = state(w, id).is_some_and(|g| g.next_election.0 == 0);
             if unscheduled {
-                let when = add_months(w.year, w.month, 18);
-                // The liberalisation seam (S3): the dormant table is seated
-                // from the movements, not from the last pre-1990 result. A
-                // no-op, returning `None`, with the arm off.
-                let lost = reseed_support_from_movements(w, id);
-                if let Some(g) = state_mut(w, id) {
-                    g.next_election = when;
-                    g.pillars.clear();
-                    g.coup_pressure = 0.0;
-                }
-                form_government(w, id, false);
+                // The liberalisation seam (S3) runs inside: the dormant table
+                // is seated from the movements, not from the last pre-1990
+                // result. A no-op, returning `None`, with the arm off.
+                let lost = schedule_first_elections(w, id, 18);
                 w.headline(match lost {
                     None => format!("{} sets a date for its first free elections.", id.name()),
                     Some(clause) => format!(
@@ -7893,5 +8636,580 @@ mod tests {
         }
         assert_eq!(overridden, sourced, "every override is written with a sourced comment above it");
         assert_eq!(overridden, 34, "the override count as integrated on 2026-09-05");
+    }
+
+    // -----------------------------------------------------------------------
+    // The five levers (S3 part two)
+    // -----------------------------------------------------------------------
+
+    fn democracies_but(w: &WorldState, id: NationId) -> Vec<NationId> {
+        w.nations
+            .iter()
+            .filter(|x| x.alive && x.authoritarianism < DEMOCRACY_BELOW && x.id != id)
+            .map(|x| x.id)
+            .collect()
+    }
+
+    /// Off: refused with the arm's sentence before any state is read (hash
+    /// and RNG untouched), and priced 40. On: refused out of crisis, refused
+    /// too open, refused by the treasury, in that order of prose; then the
+    /// act, and every number the card quoted is the number the world took —
+    /// authoritarianism 0.25 → 0.65 (the floor, not the +0.30), stability
+    /// 40 → 34, −10 with every democracy, the movements seeded from the
+    /// party sums with the ruling bloc +0.10 — and Poland is a Western
+    /// regime with its Solidarity cabinet kept as a dormant record. Watched
+    /// red with `regime_bloc` written Nationalist instead of the incumbent's
+    /// colour: Poland read Some(Nationalist) against the Some(Western) it
+    /// governed in.
+    #[test]
+    fn suspending_the_constitution_keeps_the_incumbent_s_colour() {
+        use crate::{apply_command, price_of, refusal_of, state_hash, tick_month, Command};
+        let pl = NationId::Poland;
+        let c = Command::SuspendConstitution { nation: pl };
+        let off = w1990();
+        let before = (state_hash(&off), off.rng.state);
+        assert_eq!(refusal_of(&off, &c).as_deref(), Some(NO_MOVEMENTS));
+        let mut trial = off.clone();
+        assert_eq!(apply_command(&mut trial, &c).err().as_deref(), Some(NO_MOVEMENTS));
+        assert_eq!((state_hash(&trial), trial.rng.state), before, "a refused lever touched the world");
+        assert_eq!(price_of(&off, &c), Some(SUSPEND_PC));
+        assert_eq!(SUSPEND_PC, 40.0);
+        assert!(suspend_effects(&off, pl).is_empty());
+
+        let mut w = world_1990(on_rules(7));
+        assert!(is_electoral(&w, pl));
+        let ruling = crate::blocs::ruling_bloc(&w, pl).unwrap();
+        assert_eq!(ruling, Bloc::Western);
+        w.nation_mut(pl).stability = 60.0;
+        w.nation_mut(pl).authoritarianism = 0.25;
+        w.nation_mut(pl).political_capital = 50.0;
+        assert!(state(&w, pl).unwrap().government_seats() >= 0.5);
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("is not in the crisis a suspension needs"), "{why}");
+        assert!(suspend_effects(&w, pl).is_empty(), "no card for a refused lever");
+        w.nation_mut(pl).stability = 40.0;
+        w.nation_mut(pl).authoritarianism = 0.10;
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("too open to rule by decree: authoritarianism 0.10"), "{why}");
+        w.nation_mut(pl).authoritarianism = 0.25;
+        w.nation_mut(pl).political_capital = 10.0;
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("has not the standing"), "{why}");
+        w.nation_mut(pl).political_capital = 50.0;
+        assert_eq!(refusal_of(&w, &c), None);
+
+        let plan = suspend_plan(&w, pl).unwrap();
+        let effects = suspend_effects(&w, pl);
+        let shares = crate::blocs::bloc_shares(&w, pl);
+        let coalition = state(&w, pl).unwrap().coalition.clone();
+        let seats = state(&w, pl).unwrap().seats.clone();
+        let democracies = democracies_but(&w, pl);
+        assert_eq!(plan.democracies, democracies);
+        assert!(democracies.len() > 20, "{}", democracies.len());
+        let rel_before: Vec<f64> = democracies.iter().map(|d| w.relation(*d, pl)).collect();
+        apply_command(&mut w, &c).expect("goes through");
+        let n = w.nation(pl);
+        assert_eq!(n.authoritarianism.to_bits(), plan.auth_after.to_bits());
+        assert_eq!(plan.auth_after, 0.65, "0.25 + 0.30 is under the 0.65 floor");
+        assert_eq!(n.stability.to_bits(), plan.stability_after.to_bits());
+        assert_eq!(plan.stability_after, 34.0);
+        assert!((n.political_capital - 10.0).abs() < 1e-9, "{}", n.political_capital);
+        assert!(!is_electoral(&w, pl));
+        assert_eq!(crate::blocs::ruling_bloc(&w, pl), Some(ruling), "the incumbent keeps the colour");
+        let g = state(&w, pl).unwrap();
+        assert_eq!(g.regime_bloc, Some(ruling));
+        assert_eq!(g.coalition, coalition, "the cabinet is a dormant record");
+        assert_eq!(g.seats, seats);
+        assert_eq!(g.movements, plan.movements.to_vec());
+        let total: f64 = g.movements.iter().map(|(_, s)| *s).sum();
+        assert!((total - 1.0).abs() < 1e-12);
+        let expected_ruling = {
+            let mut exp = shares;
+            exp[ruling as usize].1 += 0.10;
+            for e in exp.iter_mut() {
+                e.1 = e.1.max(SHARE_FLOOR_T);
+            }
+            let total: f64 = exp.iter().map(|(_, s)| *s).sum();
+            exp[ruling as usize].1 / total
+        };
+        assert!((g.movements[ruling as usize].1 - expected_ruling).abs() < 1e-12, "{} vs {expected_ruling}", g.movements[ruling as usize].1);
+        assert!(expected_ruling > 0.60, "{expected_ruling}");
+        assert!(g.surging.is_empty(), "no non-ruling bloc reached the surge line: {:?}", g.movements);
+        for (d, r0) in democracies.iter().zip(&rel_before) {
+            assert_eq!(w.relation(*d, pl), (r0 - 10.0).clamp(-100.0, 100.0), "{}", d.code());
+        }
+        assert!(w.headlines.iter().any(|h| h == "Poland suspends its constitution and rules by decree."), "{:?}", w.headlines);
+        // The card said what the world did.
+        assert!(effects.iter().any(|e| e.starts_with("Authoritarianism 0.25 → 0.65")), "{effects:?}");
+        assert!(effects.iter().any(|e| e == "Stability 40 → 34."), "{effects:?}");
+        assert!(effects.iter().any(|e| e == &format!("Relations −10 with {} democracies.", democracies.len())), "{effects:?}");
+        assert!(effects.iter().any(|e| e.starts_with("The Western bloc keeps power")), "{effects:?}");
+        assert!(effects.iter().any(|e| e.contains(&format!("Western {:.3}", g.movements[0].1))), "{effects:?}");
+        // The next tick takes the regime path: no election is scheduled, the
+        // colour holds, and a second suspension has nothing to suspend.
+        tick_month(&mut w, &[]);
+        assert_eq!(crate::blocs::ruling_bloc(&w, pl), Some(Bloc::Western));
+        assert_eq!(state(&w, pl).unwrap().next_election, (0, 0));
+        assert!(refusal_of(&w, &c).unwrap().contains("holds no elections"));
+    }
+
+    const SHARE_FLOOR_T: f64 = crate::blocs::SHARE_FLOOR;
+
+    /// Poland with the Democratic Left holding 55% of the chamber against a
+    /// Solidarity minority cabinet. The ban is refused too open (0.10), for
+    /// the leader, and for a party that does not exist; priced 18. Then the
+    /// act: support bit-identical before and after, the SLD's seats 0.55 → 0,
+    /// the chamber re-read over the three legal parties (Solidarity
+    /// 0.30/0.45), the Communist bloc's share still 0.55 in influence and the
+    /// bloc read as banned; authoritarianism 0.35 → 0.39, stability 50 → 47,
+    /// −4 with every democracy. Legalising reverses it: seats back to the
+    /// old chamber bit for bit, 0.39 → 0.37, +3. And with the arm OFF a
+    /// hand-written ban is ignored by `hold_election`: the wrapper IS
+    /// `seats_from`. Watched red with the `on` gate dropped from
+    /// `seats_from_legal`: the off world's chamber read Solidarity 0.769,
+    /// SLD 0 against the 0.60 / 0.22 the old formula seats.
+    #[test]
+    fn banning_a_majority_party_keeps_its_support_and_zeroes_its_seats() {
+        use crate::{apply_command, price_of, refusal_of, Command};
+        let pl = NationId::Poland;
+        let mut w = world_1990(on_rules(7));
+        {
+            let g = state_mut(&mut w, pl).unwrap();
+            for e in g.support.iter_mut() {
+                e.1 = match e.0.as_str() {
+                    "pl_sld" => 0.55,
+                    "pl_solidarity" => 0.30,
+                    "pl_psl" => 0.10,
+                    _ => 0.05,
+                };
+            }
+            g.seats = seats_from(&g.support, Electoral::Proportional);
+            assert!(g.seat_share("pl_sld") > 0.5);
+            assert_eq!(g.leader(), Some("pl_solidarity"));
+        }
+        let c = Command::BanParty { nation: pl, party: "pl_sld".into() };
+        assert_eq!(price_of(&w, &c), Some(BAN_PC));
+        assert_eq!(BAN_PC, 18.0);
+        assert_eq!(refusal_of(&w1990(), &c).as_deref(), Some(NO_MOVEMENTS));
+        w.nation_mut(pl).authoritarianism = 0.10;
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("too open to ban a party (authoritarianism 0.10"), "{why}");
+        w.nation_mut(pl).authoritarianism = 0.35;
+        assert_eq!(
+            refusal_of(&w, &Command::BanParty { nation: pl, party: "pl_solidarity".into() }).as_deref(),
+            Some("A government cannot ban the party that leads it.")
+        );
+        assert_eq!(
+            refusal_of(&w, &Command::BanParty { nation: pl, party: "pl_nobody".into() }).as_deref(),
+            Some("No such party: pl_nobody")
+        );
+        w.nation_mut(pl).political_capital = 100.0;
+        w.nation_mut(pl).stability = 50.0;
+        assert_eq!(refusal_of(&w, &c), None);
+        let support_before = state(&w, pl).unwrap().support.clone();
+        let seats_before = state(&w, pl).unwrap().seats.clone();
+        let plan = ban_plan(&w, pl, "pl_sld").unwrap();
+        let effects = ban_effects(&w, pl, "pl_sld");
+        let democracies = democracies_but(&w, pl);
+        let rel_before: Vec<f64> = democracies.iter().map(|d| w.relation(*d, pl)).collect();
+        apply_command(&mut w, &c).expect("goes through");
+        let g = state(&w, pl).unwrap();
+        assert_eq!(g.support, support_before, "a ban takes seats, not voters");
+        assert_eq!(g.seat_share("pl_sld"), 0.0);
+        assert_eq!(g.seats, plan.seats_after);
+        assert!((g.seats.iter().map(|(_, v)| *v).sum::<f64>() - 1.0).abs() < 1e-12);
+        assert!((g.seat_share("pl_solidarity") - 0.30 / 0.45).abs() < 1e-12, "{}", g.seat_share("pl_solidarity"));
+        assert_eq!(g.banned, vec!["pl_sld".to_string()]);
+        assert_eq!(g.leader(), Some("pl_solidarity"));
+        assert!(!plan.leaves_cabinet);
+        assert_eq!(w.nation(pl).authoritarianism.to_bits(), plan.auth_after.to_bits());
+        assert!((plan.auth_after - 0.39).abs() < 1e-12);
+        assert_eq!(w.nation(pl).stability, 47.0);
+        assert!((w.nation(pl).political_capital - 82.0).abs() < 1e-9);
+        for (d, r0) in democracies.iter().zip(&rel_before) {
+            assert_eq!(w.relation(*d, pl), (r0 - 4.0).clamp(-100.0, 100.0), "{}", d.code());
+        }
+        assert!(w.headlines.iter().any(|h| h == "Poland bans Democratic Left Alliance."), "{:?}", w.headlines);
+        assert!((crate::blocs::bloc_shares(&w, pl)[Bloc::Communist as usize].1 - 0.55).abs() < 1e-12, "still counted in influence");
+        assert!(crate::blocs::bloc_banned(&w, pl, Bloc::Communist));
+        assert!(!crate::blocs::bloc_banned(&w, pl, Bloc::Western));
+        assert!(crate::blocs::bloc_rows(&w, pl)[Bloc::Communist as usize].banned);
+        assert!(effects[0].contains("55.0% of support is kept"), "{}", effects[0]);
+        assert!(effects[0].contains(&format!("{:.1}% → 0.0%", plan.seats_before * 100.0)), "{}", effects[0]);
+        assert!(effects.iter().any(|e| e == "Authoritarianism 0.35 → 0.39."), "{effects:?}");
+        assert!(effects.iter().any(|e| e.starts_with("Stability 50 → 47")), "{effects:?}");
+        assert!(effects.iter().any(|e| e == &format!("Relations −4 with {} democracies.", democracies.len())), "{effects:?}");
+        assert!(refusal_of(&w, &c).unwrap().contains("is already banned"));
+
+        // Legalise: the reverse, and the chamber is the old one bit for bit.
+        let c2 = Command::LegalizeParty { nation: pl, party: "pl_sld".into() };
+        assert_eq!(price_of(&w, &c2), Some(LEGALIZE_PC));
+        assert_eq!(LEGALIZE_PC, 12.0);
+        assert_eq!(
+            refusal_of(&w, &Command::LegalizeParty { nation: pl, party: "pl_psl".into() }).as_deref(),
+            Some("Polish People's Party is not banned.")
+        );
+        assert_eq!(refusal_of(&w1990(), &c2).as_deref(), Some(NO_MOVEMENTS));
+        let plan2 = legalize_plan(&w, pl, "pl_sld").unwrap();
+        let effects2 = legalize_effects(&w, pl, "pl_sld");
+        let rel_before: Vec<f64> = democracies.iter().map(|d| w.relation(*d, pl)).collect();
+        apply_command(&mut w, &c2).expect("goes through");
+        let g = state(&w, pl).unwrap();
+        assert_eq!(g.seats, seats_before);
+        assert_eq!(g.seats, plan2.seats_after);
+        assert!(g.banned.is_empty());
+        assert_eq!(g.support, support_before);
+        assert_eq!(w.nation(pl).authoritarianism.to_bits(), plan2.auth_after.to_bits());
+        assert!((plan2.auth_after - 0.37).abs() < 1e-12);
+        assert!((w.nation(pl).political_capital - 70.0).abs() < 1e-9);
+        for (d, r0) in democracies.iter().zip(&rel_before) {
+            assert_eq!(w.relation(*d, pl), (r0 + 3.0).clamp(-100.0, 100.0), "{}", d.code());
+        }
+        assert!(w.headlines.iter().any(|h| h == "Poland legalises Democratic Left Alliance."));
+        assert!(effects2[0].contains(&format!("{:.1}% of the chamber", seats_before.iter().find(|(p, _)| p == "pl_sld").unwrap().1 * 100.0)), "{}", effects2[0]);
+        assert!(effects2.iter().any(|e| e == "Authoritarianism 0.39 → 0.37."), "{effects2:?}");
+
+        // Off: the wrapper is `seats_from`, whatever is written in `banned`.
+        let mut off = w1990();
+        state_mut(&mut off, pl).unwrap().banned = vec!["pl_sld".to_string()];
+        hold_election(&mut off, pl);
+        let g = state(&off, pl).unwrap();
+        assert_eq!(g.seats, seats_from(&g.support, Electoral::Proportional));
+        assert!(g.seat_share("pl_sld") > 0.0, "the off world does not read bans");
+    }
+
+    /// China declares a Western programme. Refused in its own colour, refused
+    /// for an electorate (Poland), refused while the Western movement is
+    /// 13% and the strongest pillar is the PLA's; priced 35. With the
+    /// movement raised to 0.30: the plan names the Central Committee −0.15
+    /// (leaving the Communist colour) and no other pillar, −15 with every
+    /// great power ruling Communist (the USSR) and +10 with every one ruling
+    /// Western (the USA among them), the Western movement 0.30 → 0.40/1.10;
+    /// the world takes exactly those numbers, and the old colour at 0.45 is
+    /// latched so the next tick prints no surge for it. Then Egypt toward its
+    /// strongest institution: al-Azhar at 0.90 makes an Islamist programme
+    /// legal with the movement at 13%, and the Clergy's +0.15 is quoted at
+    /// its CLAMPED 1.00. Watched red with the clamp dropped from the plan:
+    /// the plan read [(Clergy, 0.9, 1.05)] against [(Clergy, 0.9, 1.0)].
+    #[test]
+    fn declaring_a_programme_moves_the_named_pillars_and_the_patrons_relations() {
+        use crate::nations::patrons;
+        use crate::{apply_command, price_of, refusal_of, tick_month, Command};
+        let cn = NationId::China;
+        let mut w = world_1990(on_rules(7));
+        assert!(!is_electoral(&w, cn));
+        assert_eq!(state(&w, cn).unwrap().regime_bloc, Some(Bloc::Communist));
+        let c = Command::DeclareProgramme { nation: cn, bloc: Bloc::Western };
+        assert_eq!(price_of(&w, &c), Some(PROGRAMME_PC));
+        assert_eq!(PROGRAMME_PC, 35.0);
+        assert_eq!(refusal_of(&w1990(), &c).as_deref(), Some(NO_MOVEMENTS));
+        assert_eq!(
+            refusal_of(&w, &Command::DeclareProgramme { nation: cn, bloc: Bloc::Communist }).as_deref(),
+            Some("China already rules in the Communist colour.")
+        );
+        assert_eq!(
+            refusal_of(&w, &Command::DeclareProgramme { nation: NationId::Poland, bloc: Bloc::Communist }).as_deref(),
+            Some("Poland answers to an electorate; a programme is declared by decree.")
+        );
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("13% of the country (25% needed)"), "{why}");
+        assert!(programme_effects(&w, cn, Bloc::Western).is_empty());
+        {
+            let g = state_mut(&mut w, cn).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.30),
+                (Bloc::Communist, 0.50),
+                (Bloc::Nationalist, 0.10),
+                (Bloc::Islamist, 0.002),
+                (Bloc::NonAligned, 0.098),
+            ];
+        }
+        w.nation_mut(cn).political_capital = 100.0;
+        w.nation_mut(cn).stability = 60.0;
+        assert_eq!(refusal_of(&w, &c), None);
+        let plan = programme_plan(&w, cn, Bloc::Western).unwrap();
+        let effects = programme_effects(&w, cn, Bloc::Western);
+        assert_eq!(plan.pillars.len(), 1, "{:?}", plan.pillars);
+        assert_eq!(plan.pillars[0].0, Pillar::Party);
+        assert!((plan.pillars[0].2 - (plan.pillars[0].1 - 0.15)).abs() < 1e-12);
+        let expected: Vec<(NationId, f64)> = patrons()
+            .iter()
+            .copied()
+            .filter(|p| *p != cn && w.nation_opt(*p).is_some_and(|n| n.alive))
+            .filter_map(|p| match crate::blocs::ruling_bloc(&w, p) {
+                Some(Bloc::Communist) => Some((p, -15.0)),
+                Some(Bloc::Western) => Some((p, 10.0)),
+                _ => None,
+            })
+            .collect();
+        assert_eq!(plan.patrons, expected);
+        assert!(plan.patrons.contains(&(NationId::USSR, -15.0)), "{:?}", plan.patrons);
+        assert!(plan.patrons.contains(&(NationId::USA, 10.0)), "{:?}", plan.patrons);
+        assert!(plan.patrons.len() >= 3);
+        let rel_before: Vec<f64> = plan.patrons.iter().map(|(p, _)| w.relation(*p, cn)).collect();
+        let army_before = state(&w, cn).unwrap().loyalty(Pillar::Army);
+        apply_command(&mut w, &c).expect("goes through");
+        let g = state(&w, cn).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Western));
+        assert_eq!(crate::blocs::ruling_bloc(&w, cn), Some(Bloc::Western));
+        assert_eq!(g.loyalty(Pillar::Party).to_bits(), plan.pillars[0].2.to_bits());
+        assert_eq!(g.loyalty(Pillar::Army).to_bits(), army_before.to_bits(), "the PLA is not named by a Western programme");
+        for ((p, s), r0) in plan.patrons.iter().zip(&rel_before) {
+            assert_eq!(w.relation(*p, cn), (r0 + s).clamp(-100.0, 100.0), "{}", p.code());
+        }
+        assert_eq!(g.movements, plan.movements.to_vec());
+        assert!((g.movements[Bloc::Western as usize].1 - 0.40 / 1.10).abs() < 1e-12);
+        assert_eq!(w.nation(cn).stability, 55.0);
+        assert!((w.nation(cn).political_capital - 65.0).abs() < 1e-9);
+        assert!(w.headlines.iter().any(|h| h == "China declares a Western programme."), "{:?}", w.headlines);
+        assert!(g.surging.contains(&Bloc::Communist), "{:?}", g.surging);
+        assert!(effects.iter().any(|e| e == &format!("Relations -15 with {}.", NationId::USSR.name())), "{effects:?}");
+        assert!(effects.iter().any(|e| e == &format!("Relations +10 with {}.", NationId::USA.name())), "{effects:?}");
+        assert!(effects.iter().any(|e| e.starts_with("Loyalty of the Central Committee")), "{effects:?}");
+        assert!(effects.iter().any(|e| e == "Stability 60 → 55."), "{effects:?}");
+        assert!(effects.iter().any(|e| e.contains(&format!("Western {:.3}", 0.40 / 1.10))), "{effects:?}");
+        let news = tick_month(&mut w, &[]);
+        assert!(!news.iter().any(|h| h.contains("movement in China passes")), "{news:?}");
+
+        // Egypt toward its strongest institution, the Clergy's arm at its clamp.
+        let eg = NationId::Egypt;
+        assert_eq!(state(&w, eg).unwrap().regime_bloc, Some(Bloc::NonAligned));
+        let c = Command::DeclareProgramme { nation: eg, bloc: Bloc::Islamist };
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("25% needed"), "{why}");
+        if let Some(e) = state_mut(&mut w, eg).unwrap().pillars.iter_mut().find(|(p, _)| *p == Pillar::Clergy) {
+            e.1 = 0.90;
+        }
+        w.nation_mut(eg).political_capital = 100.0;
+        assert_eq!(refusal_of(&w, &c), None, "the strongest pillar's colour needs no movement");
+        let plan = programme_plan(&w, eg, Bloc::Islamist).unwrap();
+        let effects = programme_effects(&w, eg, Bloc::Islamist);
+        assert_eq!(plan.pillars, vec![(Pillar::Clergy, 0.90, 1.0)], "{:?}", plan.pillars);
+        assert!(effects.iter().any(|e| e == "Loyalty of al-Azhar 0.90 → 1.00."), "{effects:?}");
+        apply_command(&mut w, &c).expect("goes through");
+        let g = state(&w, eg).unwrap();
+        assert_eq!(g.loyalty(Pillar::Clergy), 1.0);
+        assert_eq!(g.regime_bloc, Some(Bloc::Islamist));
+        // And a Nationalist programme next names the army up and the clergy down.
+        {
+            let g = state_mut(&mut w, eg).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.10),
+                (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.30),
+                (Bloc::Islamist, 0.50),
+                (Bloc::NonAligned, 0.098),
+            ];
+        }
+        let plan = programme_plan(&w, eg, Bloc::Nationalist).unwrap();
+        let army = state(&w, eg).unwrap().loyalty(Pillar::Army);
+        assert_eq!(plan.pillars, vec![(Pillar::Army, army, (army + 0.10).min(1.0)), (Pillar::Clergy, 1.0, 0.90)], "{:?}", plan.pillars);
+    }
+
+    /// Indonesia. Refused for an electorate (Poland), for a state with no
+    /// parties (Saudi Arabia), while quiet (discontent under 0.40), and while
+    /// no movement reaches 25%; priced 30. With stability 20 and prices at
+    /// 18% (discontent 0.533) and the Islamist movement at 0.30, after a ban
+    /// on the PPP: authoritarianism → min(auth − 0.25, 0.59), stability
+    /// 20 → 28, the ban lifted, the parties seated from the movements by the
+    /// seam (Golkar 0.50/0.90, PPP 0.30/0.90, PDI 0.10/0.90) with the
+    /// Nationalist 9.8% named as lost, elections dated six months out — and
+    /// the country votes on that date. Watched red with the seam's call
+    /// dropped from `schedule_first_elections`: the support stayed at the
+    /// 1987 result (Golkar 0.731, PPP 0.160) against the seam's 0.556 / 0.333.
+    #[test]
+    fn convening_a_round_table_opens_the_country_in_six_months() {
+        use crate::{apply_command, price_of, refusal_of, tick_month, Command};
+        let id = NationId::Indonesia;
+        let mut w = world_1990(on_rules(7));
+        assert!(!is_electoral(&w, id));
+        assert_eq!(state(&w, id).unwrap().regime_bloc, Some(Bloc::NonAligned));
+        let c = Command::ConveneRoundTable { nation: id };
+        assert_eq!(price_of(&w, &c), Some(ROUND_TABLE_PC));
+        assert_eq!(ROUND_TABLE_PC, 30.0);
+        assert_eq!(refusal_of(&w1990(), &c).as_deref(), Some(NO_MOVEMENTS));
+        assert_eq!(
+            refusal_of(&w, &Command::ConveneRoundTable { nation: NationId::Poland }).as_deref(),
+            Some("Poland already answers to an electorate.")
+        );
+        assert_eq!(
+            refusal_of(&w, &Command::ConveneRoundTable { nation: NationId::SaudiArabia }).as_deref(),
+            Some("Saudi Arabia has no parties to seat at a round table.")
+        );
+        w.nation_mut(id).political_capital = 200.0;
+        // A ban to lift, made BEFORE the country is set restive: the ban's
+        // own -3 of stability would otherwise land on the 20 below.
+        apply_command(&mut w, &Command::BanParty { nation: id, party: "id_ppp".into() }).expect("banned");
+        assert_eq!(state(&w, id).unwrap().banned, vec!["id_ppp".to_string()]);
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("is not restive enough for a round table: discontent"), "{why}");
+        {
+            let n = w.nation_mut(id);
+            n.stability = 20.0;
+            n.inflation = 0.18;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+        }
+        let d = crate::blocs::discontent(&w, id);
+        assert!((d - (0.5 * (40.0 / 60.0) + 0.20)).abs() < 1e-12, "{d}");
+        let why = refusal_of(&w, &c).unwrap();
+        assert!(why.contains("No movement in Indonesia is large enough"), "{why}");
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            g.movements = vec![
+                (Bloc::Western, 0.10),
+                (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.098),
+                (Bloc::Islamist, 0.30),
+                (Bloc::NonAligned, 0.50),
+            ];
+        }
+        assert_eq!(refusal_of(&w, &c), None);
+        let plan = round_table_plan(&w, id).unwrap();
+        let effects = round_table_effects(&w, id);
+        assert_eq!(plan.lifted, vec!["United Development Party"]);
+        assert_eq!(plan.election, add_months(w.year, w.month, 6));
+        assert_eq!(plan.election, (1990, 7));
+        assert_eq!(plan.lost.as_deref(), Some("the Nationalist movement, 10% of the country, has no party to carry it"));
+        let auth_before = w.nation(id).authoritarianism;
+        apply_command(&mut w, &c).expect("goes through");
+        let n = w.nation(id);
+        assert_eq!(n.authoritarianism.to_bits(), plan.auth_after.to_bits());
+        assert_eq!(plan.auth_after, (auth_before - 0.25).min(0.59).max(0.05));
+        assert!(n.authoritarianism < ELECTORAL_CEILING);
+        assert_eq!(n.stability, 28.0);
+        assert!((n.political_capital - (200.0 - BAN_PC - ROUND_TABLE_PC)).abs() < 1e-9);
+        assert!(is_electoral(&w, id));
+        let g = state(&w, id).unwrap();
+        assert!(g.banned.is_empty(), "every ban lifted");
+        assert_eq!(g.next_election, (1990, 7));
+        assert_eq!(g.support, plan.support);
+        assert!((g.support_of("id_golkar") - 0.50 / 0.90).abs() < 1e-12, "{}", g.support_of("id_golkar"));
+        assert!((g.support_of("id_ppp") - 0.30 / 0.90).abs() < 1e-12);
+        assert!((g.support_of("id_pdi") - 0.10 / 0.90).abs() < 1e-12);
+        assert!(g.movements.is_empty() && g.regime_bloc.is_none() && g.pillars.is_empty());
+        assert_eq!(g.leader(), Some("id_golkar"), "the interim government");
+        assert!(
+            w.headlines.iter().any(|h| h == "Indonesia convenes a round table; first free elections in six months, though the Nationalist movement, 10% of the country, has no party to carry it."),
+            "{:?}", w.headlines
+        );
+        assert!(effects.iter().any(|e| e == "Stability 20 → 28."), "{effects:?}");
+        assert!(effects.iter().any(|e| e == "First free elections in six months, 1990-07."), "{effects:?}");
+        assert!(effects.iter().any(|e| e == "Every ban lifted: United Development Party."), "{effects:?}");
+        assert!(effects.iter().any(|e| e.contains(&format!("id_golkar {:.3}", 0.50 / 0.90))), "{effects:?}");
+        assert!(effects.iter().any(|e| e.starts_with(&format!("Authoritarianism {:.2} → {:.2}", auth_before, plan.auth_after))), "{effects:?}");
+        // Six months on, the country votes.
+        let mut voted = false;
+        for _ in 0..7 {
+            let news = tick_month(&mut w, &[]);
+            if news.iter().any(|h| h.starts_with("Indonesia votes")) {
+                voted = true;
+            }
+        }
+        assert!(voted, "no election by 1990-07");
+        assert!(state(&w, id).unwrap().elected);
+        assert!(refusal_of(&w, &c).unwrap().contains("already answers to an electorate"));
+    }
+
+    /// `refusal_of` says exactly what `apply_command` would for every one of
+    /// the five levers over Poland and Iraq — off (the arm's one sentence,
+    /// and nothing touched), at the 1990 start, with Poland in crisis and
+    /// Iraq restive, and with a ban in force — and `lever_effects` answers
+    /// for the five and for nothing else. The lever's condition outranks the
+    /// treasury's: a penniless Poland out of crisis is told about the crisis.
+    /// Watched red with the five arms dropped from `world_refusal`: the off
+    /// world's suspension read the treasury's sentence ("Poland has not the
+    /// standing: 28.5 political capital held, 40.0 needed.") against the
+    /// arm's, because nothing was refusing it before the price.
+    #[test]
+    fn refusal_of_agrees_with_apply_command_for_every_lever_over_poland_and_iraq() {
+        use crate::{apply_command, price_of, refusal_of, state_hash, Command};
+        let (pl, iq) = (NationId::Poland, NationId::Iraq);
+        let cases: Vec<Command> = vec![
+            Command::SuspendConstitution { nation: pl },
+            Command::SuspendConstitution { nation: iq },
+            Command::BanParty { nation: pl, party: "pl_sld".into() },
+            Command::BanParty { nation: pl, party: "pl_solidarity".into() },
+            Command::BanParty { nation: iq, party: "iq_baath".into() },
+            Command::BanParty { nation: iq, party: "iq_nobody".into() },
+            Command::LegalizeParty { nation: pl, party: "pl_sld".into() },
+            Command::LegalizeParty { nation: iq, party: "iq_baath".into() },
+            Command::DeclareProgramme { nation: pl, bloc: Bloc::Western },
+            Command::DeclareProgramme { nation: iq, bloc: Bloc::Nationalist },
+            Command::DeclareProgramme { nation: iq, bloc: Bloc::NonAligned },
+            Command::DeclareProgramme { nation: iq, bloc: Bloc::Islamist },
+            Command::ConveneRoundTable { nation: pl },
+            Command::ConveneRoundTable { nation: iq },
+        ];
+        let prices = [40.0, 40.0, 18.0, 18.0, 18.0, 18.0, 12.0, 12.0, 35.0, 35.0, 35.0, 35.0, 30.0, 30.0];
+        let off = w1990();
+        let before = (state_hash(&off), off.rng.state);
+        for (c, price) in cases.iter().zip(prices) {
+            assert_eq!(refusal_of(&off, c).as_deref(), Some(NO_MOVEMENTS), "{c:?}");
+            let mut trial = off.clone();
+            assert_eq!(apply_command(&mut trial, c).err().as_deref(), Some(NO_MOVEMENTS), "{c:?}");
+            assert_eq!((state_hash(&trial), trial.rng.state), before, "{c:?} touched the off world");
+            assert_eq!(price_of(&off, c), Some(price), "{c:?}");
+            assert_eq!(lever_effects(&off, c), Some(vec![]), "{c:?}");
+        }
+        assert_eq!(lever_effects(&off, &Command::CallElection { nation: pl }), None);
+        let agree = |w: &WorldState, label: &str| -> usize {
+            let before = state_hash(w);
+            let mut through = 0;
+            for c in &cases {
+                let read = refusal_of(w, c);
+                let mut trial = w.clone();
+                let did = apply_command(&mut trial, c);
+                assert_eq!(read, did.clone().err(), "{label}: {c:?}");
+                if read.is_none() {
+                    through += 1;
+                    assert!(!lever_effects(w, c).unwrap().is_empty(), "{label}: {c:?} went through with no card");
+                } else {
+                    assert!(lever_effects(w, c).unwrap().is_empty(), "{label}: {c:?} refused with a card");
+                }
+            }
+            assert_eq!(state_hash(w), before, "{label}: refusal_of wrote something");
+            through
+        };
+        let mut w = world_1990(on_rules(7));
+        let at_start = agree(&w, "1990");
+        // Poland in crisis, Iraq restive, both solvent.
+        {
+            let n = w.nation_mut(pl);
+            n.stability = 30.0;
+            n.authoritarianism = 0.30;
+            n.political_capital = 200.0;
+        }
+        {
+            let n = w.nation_mut(iq);
+            n.stability = 15.0;
+            n.inflation = 0.20;
+            n.political_capital = 200.0;
+        }
+        assert!(crate::blocs::discontent(&w, iq) >= 0.40);
+        let in_crisis = agree(&w, "crisis");
+        assert!(in_crisis > at_start, "{in_crisis} vs {at_start}");
+        for c in [
+            &Command::SuspendConstitution { nation: pl },
+            &Command::BanParty { nation: pl, party: "pl_sld".into() },
+            &Command::DeclareProgramme { nation: iq, bloc: Bloc::NonAligned },
+            &Command::ConveneRoundTable { nation: iq },
+        ] {
+            assert_eq!(refusal_of(&w, c), None, "{c:?}");
+        }
+        // The condition outranks the treasury.
+        w.nation_mut(pl).political_capital = 0.0;
+        w.nation_mut(pl).stability = 60.0;
+        let why = refusal_of(&w, &Command::SuspendConstitution { nation: pl }).unwrap();
+        assert!(why.contains("is not in the crisis"), "{why}");
+        assert_eq!(why, apply_command(&mut w.clone(), &Command::SuspendConstitution { nation: pl }).err().unwrap());
+        // With a ban in force, legalising goes through and banning again does not.
+        w.nation_mut(pl).political_capital = 200.0;
+        apply_command(&mut w, &Command::BanParty { nation: pl, party: "pl_sld".into() }).expect("banned");
+        let with_ban = agree(&w, "ban");
+        assert_eq!(refusal_of(&w, &Command::LegalizeParty { nation: pl, party: "pl_sld".into() }), None);
+        assert!(refusal_of(&w, &Command::BanParty { nation: pl, party: "pl_sld".into() }).unwrap().contains("already banned"));
+        println!("levers through: 1990 {at_start}, crisis {in_crisis}, with a ban {with_ban}");
     }
 }

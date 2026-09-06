@@ -555,8 +555,9 @@ pub fn takeover_readout(w: &WorldState, id: NationId) -> TakeoverReadout {
 // browser prints numbers and never derives one
 // ---------------------------------------------------------------------------
 
-/// One bloc's line: its share S_B, its foreign backing F_B (zero in this
-/// build), and whether this government has proscribed it (nothing does yet).
+/// One bloc's line: its share S_B, its foreign backing F_B, and whether this
+/// government has proscribed it — every party of the bloc in the table
+/// banned (`bloc_banned`).
 #[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct BlocRow {
     pub bloc: Bloc,
@@ -565,17 +566,27 @@ pub struct BlocRow {
     pub banned: bool,
 }
 
+/// Whether a bloc is proscribed as a whole: the polity's table carries at
+/// least one party of it and this government has banned every one (S3,
+/// `BanParty`). A bloc present through a pillar alone is never banned.
+pub fn bloc_banned(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
+    let banned: &[String] = government::state(w, id).map_or(&[], |g| g.banned.as_slice());
+    let members: Vec<&str> = polity(id)
+        .map(|pol| pol.parties.iter().filter(|s| bloc_of(id, s.id) == bloc).map(|s| s.id).collect())
+        .unwrap_or_default();
+    !members.is_empty() && members.iter().all(|p| banned.iter().any(|q| q == p))
+}
+
 /// The five rows in enum order.
 pub fn bloc_rows(w: &WorldState, id: NationId) -> Vec<BlocRow> {
     let shares = bloc_shares(w, id);
     let back = backing(w, id);
-    let banned: &[Bloc] = government::state(w, id).map_or(&[], |g| g.banned.as_slice());
     (0..5)
         .map(|i| BlocRow {
             bloc: shares[i].0,
             share: shares[i].1,
             backing: back[i].1,
-            banned: banned.contains(&shares[i].0),
+            banned: bloc_banned(w, id, shares[i].0),
         })
         .collect()
 }

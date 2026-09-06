@@ -201,6 +201,23 @@ pub enum Command {
     /// institutions that could remove it.
     SecurePillar { nation: NationId, pillar: government::Pillar },
 
+    // --- The political arm's five levers (S3). Every one is refused with
+    // "This world does not model ideological movements." while
+    // `rules.ideology_blocs` is off, before any state is read. ---
+    /// Rule by decree: the elected government stays in office as a regime in
+    /// its own colour and stops holding elections.
+    SuspendConstitution { nation: NationId },
+    /// Proscribe a party: it keeps its voters and loses its seats.
+    BanParty { nation: NationId, party: String },
+    /// Lift a ban.
+    LegalizeParty { nation: NationId, party: String },
+    /// A regime changes its colour by decree, toward a movement or its
+    /// strongest institution.
+    DeclareProgramme { nation: NationId, bloc: government::Bloc },
+    /// A regime sits down with the opposition: bans lifted, the country
+    /// opened up, first free elections in six months.
+    ConveneRoundTable { nation: NationId },
+
     // --- The commitment ladder (BIBLE §6) ------------------------------------
     /// Start a quarrel at rung 1. Conflicts begin when somebody climbs, not with
     /// a declaration, and this is deliberately the cheapest thing in the enum.
@@ -484,6 +501,12 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         Command::CallElection { nation } => (*nation, 25.0, REFUSABLE),
         // Patronage. Cheaper than an election and it has to be paid again.
         Command::SecurePillar { nation, .. } => (*nation, 14.0, REFUSABLE),
+        // The five levers (S3), priced in `government` beside their arms.
+        Command::SuspendConstitution { nation } => (*nation, government::SUSPEND_PC, REFUSABLE),
+        Command::BanParty { nation, .. } => (*nation, government::BAN_PC, REFUSABLE),
+        Command::LegalizeParty { nation, .. } => (*nation, government::LEGALIZE_PC, REFUSABLE),
+        Command::DeclareProgramme { nation, .. } => (*nation, government::PROGRAMME_PC, REFUSABLE),
+        Command::ConveneRoundTable { nation } => (*nation, government::ROUND_TABLE_PC, REFUSABLE),
 
         // --- The ladder. Every rung is a purchase. ---------------------------
         // Opening at rhetoric is nearly free on purpose: the first rung has to
@@ -579,6 +602,14 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
                 .or_else(|| sovereignty::hostility_reason(w, *sponsor, *target))
         }
         Command::CovertAction { sponsor, target, .. } => sovereignty::hostility_reason(w, *sponsor, *target),
+        // The five levers (S3): each lever's own pure query, which answers
+        // the arm's switch before it reads anything else, then the lever's
+        // conditions in the sim's prose. The same function the arm asks.
+        Command::SuspendConstitution { nation } => government::suspend_refusal(w, *nation),
+        Command::BanParty { nation, party } => government::ban_refusal(w, *nation, party),
+        Command::LegalizeParty { nation, party } => government::legalize_refusal(w, *nation, party),
+        Command::DeclareProgramme { nation, bloc } => government::programme_refusal(w, *nation, *bloc),
+        Command::ConveneRoundTable { nation } => government::round_table_refusal(w, *nation),
         Command::ProposeEconomicUnion { patron, partner } | Command::JoinEconomicUnion { nation: partner, patron } => {
             let q = sovereignty::quote(w, *patron, *partner);
             (!q.ready).then_some(q.reason)
@@ -1074,6 +1105,13 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::SecurePillar { nation, pillar } => {
             government::secure_pillar(w, *nation, *pillar)?
         }
+        Command::SuspendConstitution { nation } => government::suspend_constitution(w, *nation)?,
+        Command::BanParty { nation, party } => government::ban_party(w, *nation, party)?,
+        Command::LegalizeParty { nation, party } => government::legalize_party(w, *nation, party)?,
+        Command::DeclareProgramme { nation, bloc } => {
+            government::declare_programme(w, *nation, *bloc)?
+        }
+        Command::ConveneRoundTable { nation } => government::convene_round_table(w, *nation)?,
 
         Command::OpenConflict { opener, target, theatre } => {
             commitment::open_conflict(w, *opener, *target, *theatre)?;
