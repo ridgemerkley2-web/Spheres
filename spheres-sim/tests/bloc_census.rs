@@ -174,6 +174,12 @@ struct Snap {
     armed: bool,
     per_head: f64,
     leader: Option<String>,
+    /// pre-tick readings for the verbose trace: challenger (bloc, I_W),
+    /// weakest armed loyalty, mean loyalty, authoritarianism
+    chall: Option<(Bloc, f64)>,
+    weakest: f64,
+    mean: f64,
+    auth: f64,
 }
 
 fn snapshot(w: &WorldState) -> Vec<Snap> {
@@ -192,6 +198,10 @@ fn snapshot(w: &WorldState) -> Vec<Snap> {
                 armed: gov && blocs::uprising_armed(w, id),
                 per_head: n.gdp * 1000.0 / n.population.max(0.001),
                 leader: government::state(w, id).and_then(|g| g.leader()).map(|s| s.to_string()),
+                chall: if gov { blocs::challenger(w, id) } else { None },
+                weakest: government::state(w, id).and_then(|g| g.weakest_armed()).map_or(1.0, |(_, v)| v),
+                mean: government::state(w, id).map_or(1.0, |g| g.mean_loyalty()),
+                auth: n.authoritarianism,
             }
         })
         .collect()
@@ -491,7 +501,11 @@ fn run_seed(seed: u64, verbose: bool, by_nation: &mut HashMap<&'static str, Hash
                 }
             }
             if verbose {
-                println!("  s{seed} m{m} {nm}: {:?} -> {:?} by {:?}", before.ruling, after.ruling, route);
+                println!(
+                    "  s{seed} m{m} {nm}: {:?} -> {:?} by {:?} | pre-tick stab {:.1} D {:.3} auth {:.2} chall {:?} weakest {:.3} mean {:.3} armed {} electoral {}",
+                    before.ruling, after.ruling, route, before.stab, before.d, before.auth,
+                    before.chall.map(|(b, v)| (b, (v * 1000.0).round() / 1000.0)), before.weakest, before.mean, before.armed, before.electoral
+                );
             }
         }
         let _ = clauses;
