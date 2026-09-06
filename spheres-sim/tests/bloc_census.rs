@@ -27,6 +27,23 @@
 //! browser while any anchor is out (BUGS S6-5). Every watched-red reading
 //! below was re-measured by the ship pass on the tree it ships (S7-4).
 //!
+//! RE-READ 2026-09-06 by the calibration pass on `feat/ideology-history`
+//! (M1, R2, M2, R1, R3(d) and R3(e) landed on 2e164ae; BUGS H-6): the N=200
+//! census of this tree is `census_n200_cal` (112.6 s), the N=60 baseline
+//! `census_n60_base` (34.0 s), the 420-month N=60 scan `census_n60_420`
+//! (59.0 s). Every SAMPLE and READING paragraph below carries this tree's
+//! figures, with 2e164ae's beside them where they moved; the four pinned
+//! bars' n and power were re-derived from this sample (A9 pooled 1.000 and
+//! A10 0.279 moved; A6 and A8 did not) and each was re-watched red on a
+//! fresh build. NO constant moved on that pass: every permitted move for an
+//! out-of-band anchor is either pinned by an existing test (the flat seed
+//! and the drift constants by `a_regime_s_movements_move_with_the_pains_
+//! and_revert`, the AI's round-table lines by
+//! `the_ai_takes_each_lever_only_under_its_thresholds`, the road lines by
+//! `every_road_reads_closed_while_takeover_is_off`) or cannot reach
+//! the band by arithmetic on the pinned lines (A2, A3); the record with the
+//! numbers is BUGS H-6. The switch stays OFF.
+//!
 //! DEFINITIONS, so the numbers below mean one thing:
 //! - A "takeover" is a change of the RULING BLOC (`blocs::ruling_bloc`, read
 //!   before and after each month's tick) attributed to that month's headline
@@ -744,15 +761,19 @@ fn seed_summary(rows: &[Seed]) -> String {
 /// 0.15) is the pre-arm `politics.rs` chain, fires in 198/200 seeds at 252
 /// months, and is counted beside the bar, never against it.
 ///
-/// SAMPLE (iron rule 7, re-measured 2026-09-06 by the ship pass on the N=200
-/// census of this tree, 252 months, with the headline attribution): 0 route
-/// events in 200/200 seeds; the pre-tick flag missed 165 of the 1570 crowns
-/// (armed inside the tick, none of them in a 1990 democracy — Sao Tome 38,
-/// Zaire 22, Belarus 21, Chad 17, Comoros 17, Philippines 16, Cambodia 15,
-/// Mozambique 15, Ukraine 2, Afghanistan 1, Iraq 1). At 420 months: 0 in
-/// 60/60 seeds on the scan (`SPHERES_CENSUS_MONTHS=420`, Argentina's collapse
-/// beside in 59/60, 53 of 571 crowns missed by the flag) and 0 in 12/12 at
-/// this bar's own width, the collapse beside in 12/12. A universal claim
+/// SAMPLE (iron rule 7, re-measured 2026-09-06 by the calibration pass on
+/// the N=200 census of THIS tree — M1, R2, M2, R1, R3(d), R3(e) landed —
+/// 252 months, `census_n200_cal`): 0 route events in 200/200 seeds,
+/// Argentina's collapse beside in 200/200; the pre-tick flag missed 132 of
+/// the 1284 crowns (armed inside the tick, none of them in a 1990 democracy —
+/// Sao Tome 46, Comoros 20, Mozambique 20, Zaire 20, Philippines 18,
+/// Cambodia 6, Chad 2). At 420 months: 0 in 60/60 seeds on the scan
+/// (`SPHERES_CENSUS_MONTHS=420`, `census_n60_420`, 59 s; Argentina's
+/// collapse beside in 60/60, 46 of 473 crowns missed by the flag) and 0 in
+/// 12/12 at this bar's own width, the collapse beside in 12/12. (The ship
+/// pass's reading of 2e164ae, for the record: 0 in 200/200, 165 of 1570
+/// crowns missed; at 420 months 0 in 60/60, the collapse beside in 59/60.)
+/// A universal claim
 /// cannot red falsely, so n is a POWER budget: twelve seeds see a road that
 /// reaches one democracy at a per-seed rate q with probability 1-(1-q)^12 —
 /// q = 0.10: 0.72, q = 0.20: 0.93, q = 0.30: 0.99. This bar sees a road that
@@ -760,10 +781,12 @@ fn seed_summary(rows: &[Seed]) -> String {
 /// one seed in twenty (0.46). Runs 11-13 s in release (measured 10.7 s green,
 /// 13.0 s red).
 ///
-/// WATCHED RED 2026-09-06 (the ship pass, on this tree) with the uprising
-/// road thrown open — `COERCION_ARMED` / `COERCION_MEAN` 0.35 -> 1.00 and
-/// `UPRISING_DISCONTENT` / `UPRISING_INFLUENCE` 0.45 -> 0.00: route events in
-/// 1990 democracies in 12/12 seeds, 33..65 a seed. NOT red with route 2
+/// WATCHED RED 2026-09-06 (the calibration pass, on this tree, a fresh
+/// watched build) with the uprising road thrown open — `COERCION_ARMED` /
+/// `COERCION_MEAN` 0.35 -> 1.00 and `UPRISING_DISCONTENT` /
+/// `UPRISING_INFLUENCE` 0.45 -> 0.00: route events in 1990 democracies in
+/// 12/12 seeds, 35..53 a seed (the ship pass read 33..65 on 2e164ae). NOT
+/// red with route 2
 /// thrown open instead (`ELECTORAL_COUP_ARMY` 0.35 -> 0.95 and
 /// `ELECTORAL_COUP_DISCONTENT` 0.25 -> 0.00; over A9's twelve seeds at 252
 /// months that mutation reads 706 coups and annulments against 229): no 1990
@@ -782,8 +805,11 @@ fn a6_no_road_reaches_a_1990_democracy_in_thirty_five_years() {
 /// Arabia, Syria, Egypt, Libya} keep their 1990 ruling bloc to December 2010
 /// in at least 60% of seeds: 24 of 40 here.
 ///
-/// SAMPLE (iron rule 7, N=200, 252 months): 8 of 8 kept in 200/200 seeds
-/// (per seed min 8, median 8), p = 1.000. The Bernoulli formula gives sd 0
+/// SAMPLE (iron rule 7, N=200, 252 months; re-read 2026-09-06 by the
+/// calibration pass on this tree, `census_n200_cal`, and unchanged): 8 of 8
+/// kept in 200/200 seeds (per seed min 8, median 8), p = 1.000; at 420
+/// months 60/60 seeds keep six, per seed min 7, median 8, mean 7.967
+/// (`census_n60_420`). The Bernoulli formula gives sd 0
 /// and n = 0 — no sample can red this bar falsely while the reading holds —
 /// so n is sized for POWER against the regression the bar exists to catch,
 /// the big regimes' survival collapsing: at n = 40 the bar (24) reds with
@@ -793,12 +819,14 @@ fn a6_no_road_reaches_a_1990_democracy_in_thirty_five_years() {
 /// a single regime and sees only three of the eight going, which is what the
 /// design's sentence asks. Runs about 23 s in release (measured 22.7-23.2 s).
 ///
-/// WATCHED 2026-09-06 (the ship pass, on this tree) with `COERCION_ARMED` /
+/// WATCHED 2026-09-06 (the ship pass, on 2e164ae) with `COERCION_ARMED` /
 /// `COERCION_MEAN` 0.35 -> 1.00 (coercion always fails) and
 /// `UPRISING_DISCONTENT` / `UPRISING_INFLUENCE` 0.45 -> 0.10: still GREEN,
 /// 38/40 seeds kept six, per seed 4..8 — the eight's discontent sits under
 /// 0.10, the same fact that makes the bar decorative; at 0.45 -> 0.00 (any
-/// crowd at all): RED, 7/40 seeds kept six, per seed 2..7.
+/// crowd at all): RED, 7/40 seeds kept six, per seed 2..7. RE-WATCHED RED
+/// 2026-09-06 by the calibration pass on this tree (a fresh watched build,
+/// the same 0.45 -> 0.00 mutation): 8/40 seeds kept six, per seed 1..7.
 #[test]
 fn a8_six_of_the_eight_big_regimes_keep_their_bloc_in_most_seeds() {
     let rows = census(40, MONTHS);
@@ -811,15 +839,22 @@ fn a8_six_of_the_eight_big_regimes_keep_their_bloc_in_most_seeds() {
 /// pillar, and annulments) strike nations under $8,000 per head, pooled over
 /// twelve seeds.
 ///
-/// SAMPLE (iron rule 7, N=200, 252 months): pooled 3718/3900 = 0.953; the
-/// per-seed share min 0.938, median 0.950, mean 0.953, sd 0.0151, and no seed
-/// of 200 under 0.80. n = (2.326·0.0151 / (0.953 − 0.80))² = 0.05, so one seed
-/// would do for the false-red bound; twelve are asked for POWER, bootstrapped
-/// from the 200 per-seed shares shifted down: the pooled share falling to
-/// 0.75 (the rich-nation share of coups rising from 4.7% to 25%, ×5) reds
-/// with probability 1.000, to 0.80 (×4.3) 0.30, to 0.85 (×3) 0.00. This bar
-/// sees coups moving into rich nations at four times today's rate; it does
-/// not see a doubling. Runs 6-7 s in release (measured 6.2-7.0 s).
+/// SAMPLE (iron rule 7, N=200, 252 months, RE-DERIVED 2026-09-06 by the
+/// calibration pass on this tree, `census_n200_cal`): pooled 3472/3472 =
+/// 1.000 — R2 (an election is annulled only by a hostile army) removed the
+/// Belarus and Ukraine annulments, which were the only strikes over $8,000 a
+/// head, so every coup and annulment of every seed now lands under the line;
+/// the per-seed share is 1.000 in 200/200, sd 0.0000, and the Bernoulli n is
+/// 0 (no sample can red this bar falsely while the reading holds). Twelve
+/// are asked for POWER, bootstrapped from the 200 per-seed shares shifted
+/// down (4000 resamples): the share falling by 0.25 (a quarter of coups
+/// moving into rich nations) reds with probability 1.000, by 0.20 0.400, by
+/// 0.15 0.000. This bar sees a quarter of the coups moving into rich nations;
+/// it does not see a fifth — and against the roads it is DECORATIVE (below),
+/// which is said here so nobody believes it guards them. On 2e164ae the
+/// pin pass read pooled 3718/3900 = 0.953, per seed 0.938 / 0.950 / 0.953,
+/// sd 0.0151, n = 0.05, and the power at 0.75 / 0.80 / 0.85 read 1.000 /
+/// 0.30 / 0.00. Runs 6-7 s in release (measured 6.2-7.0 s).
 ///
 /// WATCHED 2026-09-06 (the ship pass, on this tree) and NOT RED with route 2
 /// thrown open — `ELECTORAL_COUP_ARMY` 0.35 -> 0.95 and
@@ -828,7 +863,8 @@ fn a8_six_of_the_eight_big_regimes_keep_their_bloc_in_most_seeds() {
 /// 620/706 = 0.878, still over the bar, because the polities that carry an
 /// Army pillar in the transcribed table are the poor ones; and NOT RED with
 /// the uprising road thrown open (coercion 1.00, the uprising lines 0.00):
-/// 72/76 = 0.947. This bar therefore guards the TRANSCRIPTION (which
+/// 72/76 = 0.947 on 2e164ae, 44/44 = 1.000 on this tree (the calibration
+/// pass, a fresh watched build). This bar therefore guards the TRANSCRIPTION (which
 /// polities carry an Army) and the pre-existing pillar model's per-head
 /// structure, not a road constant: DECORATIVE against the roads (iron rule
 /// 7's last paragraph), recorded as such, and pinned because the anchor
@@ -847,16 +883,23 @@ fn a9_four_coups_in_five_strike_nations_under_8000_a_head() {
 /// the twelve pre-tick months before a non-ballot takeover, less the roster
 /// median of the same — is at least 0.25.
 ///
-/// SAMPLE (iron rule 7, N=200, 252 months): the per-seed median reads median
-/// 0.326, mean 0.324, sd 0.0333, min 0.267, max 0.380; n = (2.326·0.0333 /
-/// (0.324 − 0.25))² = 1.1, and the bootstrap of the median over twelve seeds
-/// lands under 0.25 in 0 of 4000 resamples (no seed of 200 is under 0.267).
-/// Twelve are asked for POWER, the same bootstrap over the sample shifted
-/// down: a lead falling by 0.10 (0.33 -> 0.23, a 30% fall) reds with
-/// probability 0.92, by 0.08 0.57, by 0.06 0.18. This bar sees the takeover
-/// roads losing a third of their discontent dependence; it does not see a
-/// fifth. Runs 6-7 s in release (measured 6.2-6.9 s); reads 0.334 on this
-/// tree (per seed 0.278..0.364).
+/// SAMPLE (iron rule 7, N=200, 252 months, RE-DERIVED 2026-09-06 by the
+/// calibration pass on this tree, `census_n200_cal`): the per-seed median
+/// reads median 0.279, mean 0.2791, sd 0.0103, min 0.257, max 0.32 — lower
+/// and tighter than 2e164ae's (median 0.326, mean 0.324, sd 0.0333, min
+/// 0.267, max 0.380), because R2 took the Belarus and Ukraine annulments,
+/// whose discontent led the roster by the most, out of the takeover set. n =
+/// (2.326·0.0103 / (0.2791 − 0.25))² = 0.68, and the bootstrap of the median
+/// over twelve seeds lands under 0.25 in 0 of 4000 resamples (no seed of 200
+/// is under 0.257). Twelve are asked for POWER, the same bootstrap over the
+/// sample shifted down: a lead falling by 0.04 (0.28 -> 0.24, a seventh)
+/// reds with probability 1.000, by 0.03 0.652, by 0.02 0.005. This bar sees
+/// the takeover roads losing a seventh of their discontent lead; it does not
+/// see a fourteenth (on 2e164ae it saw a third and not a fifth: 0.10 -> 0.92,
+/// 0.08 -> 0.57, 0.06 -> 0.18 — the margin to the bar is now 0.03 where it
+/// was 0.07, so the bar is closer and the watch is tighter). Runs 6-7 s in
+/// release; reads 0.280 on this tree (per seed 0.265..0.311; the ship pass
+/// read 0.334 on 2e164ae, per seed 0.278..0.364).
 ///
 /// WATCHED RED 2026-09-06 (the ship pass, on this tree) with
 /// `COERCION_ARMED` / `COERCION_MEAN` 0.35 -> 1.00 and `UPRISING_DISCONTENT`
@@ -864,7 +907,10 @@ fn a9_four_coups_in_five_strike_nations_under_8000_a_head() {
 /// median lead 0.118 over twelve seeds (per seed 0.077..0.270); at 0.45 ->
 /// 0.00: 0.017; and with route 2 thrown open (`ELECTORAL_COUP_ARMY` 0.95,
 /// `ELECTORAL_COUP_DISCONTENT` 0.00): 0.24975 (per seed 0.224..0.262), under
-/// the bar by a quarter of a thousandth and RED.
+/// the bar by a quarter of a thousandth and RED — all three on 2e164ae.
+/// RE-WATCHED RED 2026-09-06 by the calibration pass on this tree (a fresh
+/// watched build, coercion 1.00 and the uprising lines 0.00): median lead
+/// 0.020, per seed 0.014..0.026.
 #[test]
 fn a10_discontent_leads_the_roster_by_a_quarter_before_a_takeover() {
     let rows = census(12, MONTHS);
@@ -883,14 +929,19 @@ fn a10_discontent_leads_the_roster_by_a_quarter_before_a_takeover() {
 /// as a median — is this session's expression of the design's sentence, which
 /// carries no number; it is recorded as such and is Ridge's to re-express.
 ///
-/// READING (N=200, 252 months): median 6 (mean 6.35, sd 0.854), bootstrap
-/// P(median outside 4..14 | n=12) = 0.0000 — the band arm alone is pinnable at
-/// twelve seeds; the top-3 share reads median 1.00 (mean 0.956, sd 0.072, 0 of
-/// 200 seeds under 0.5), so the concentration arm is red at any n: Sao Tome
-/// 545, Philippines 460, Comoros 200, Algeria 44, Mozambique 13, Suriname 7
-/// of 1269. WHY (BUGS S5-7): route 2's army loyalty is the pre-existing Army
+/// READING (N=200, 252 months, re-read 2026-09-06 on this tree,
+/// `census_n200_cal`): median 6 (mean 6.26, sd 0.858; 2e164ae read 6.35),
+/// bootstrap P(median outside 4..14 | n=12) = 0.0000 — the band arm alone is
+/// pinnable at twelve seeds; the top-3 share reads median 1.00 (mean 0.955,
+/// sd 0.072, 0 of 200 seeds under 0.5), so the concentration arm is red at
+/// any n: Sao Tome 541, Philippines 447, Comoros 200, Algeria 45, Mozambique
+/// 12, Suriname 7 of 1252 (2e164ae: 545 / 460 / 200 / 44 / 13 / 7 of 1269).
+/// WHY (BUGS S5-7, H-3): route 2's army loyalty is the pre-existing Army
 /// pillar target, a defence SHARE with no per-head term, so a micro-polity at
-/// the 1% fiscal floor reads 0.28 forever while Pakistan reads >= 0.47.
+/// the 1% fiscal floor reads 0.28 forever while Pakistan reads >= 0.47; the
+/// pay-per-soldier arm M2 was built as ruled and sized to ZERO by its own
+/// measurement (the ruled ratio reads the coup-prone armies as the best paid
+/// in the roster), and the route-2 lines are pinned literals (S5-4).
 #[test]
 #[ignore]
 fn a1_coups_against_elected_governments_are_spread_not_three_micro_polities() {
@@ -907,16 +958,24 @@ fn a1_coups_against_elected_governments_are_spread_not_three_micro_polities() {
 /// in at least one state in a majority of seeds by 2000 and in at most 90%;
 /// Algeria goes Islamist in a minority and is annulled in >= 10%.
 ///
-/// READING (N=200, 252 months): 0/200 seeds by end-2000 (1/200 over the run,
-/// Algeria once); p = 0.000, so the Bernoulli n against a majority bar is
-/// undefined (sd 0, margin 0.5) and the bar is red at any n. Algeria is
-/// Islamist-LED at the 1990 seating (the table carries the 1991 share) so it
-/// cannot "go" Islamist; annulled in 105/200 = 0.525 (>= 0.10 holds). WHY
-/// (BUGS S5-5): Afghanistan's polity has no Islamist party or pillar, D5's
-/// presence-through-backing clause was left out of S3, the AI sponsor needs
-/// presence AND I >= 0.15; elsewhere the flat seed (0.133 / 0.100) and the
-/// party model's record line hold the bloc down (largest Islamist influence in
-/// a winnable non-Islamist state 0.43 / 0.64 / 0.65 min / med / max).
+/// READING (N=200, 252 months, re-read 2026-09-06 on this tree,
+/// `census_n200_cal`): 1/200 seeds by end-2000 (1/200 over the run, Algeria
+/// once, after its annulment; 2e164ae read 0/200); p = 0.005, so the
+/// Bernoulli n against a majority bar is (2.326·0.071 / 0.495)² = 0.1 and the
+/// bar is red at any n. Algeria is Islamist-LED at the 1990 seating (the table
+/// carries the 1991 share) so it cannot "go" Islamist; annulled in 105/200 =
+/// 0.525 (>= 0.10 holds: P(0 of 12) = 0.0001). WHY (BUGS S5-5, H-1, H-6): M1
+/// built the presence-through-backing clause and the sponsors' standing
+/// programme, so the Islamist bloc is now PRESENT in Kabul from month 0 —
+/// and stops there, by arithmetic on the pinned lines: its share cannot
+/// exceed the flat seed's split (0.40 over the blocs present, 0.133 with
+/// three; `RULING_SEED` 0.60 is pinned by the drift test), its backing cannot
+/// exceed `BACKING_TOTAL_CAP` 0.25, so I <= 0.383 against the pinned 0.45
+/// line, and Kabul's army at its transcribed 15% defence share reads 0.85 on
+/// the share arm (M2's pay arm at weight 0, H-3), so coercion never fails
+/// (`COERCION_ARMED` 0.35). Elsewhere the flat seed and the party model's
+/// record line hold the bloc down (largest Islamist influence in a winnable
+/// non-Islamist state 0.43 / 0.64 / 0.65 min / med / max, unchanged).
 #[test]
 #[ignore]
 fn a2_an_islamist_takeover_without_a_ballot_in_most_seeds_by_2000() {
@@ -935,14 +994,24 @@ fn a2_an_islamist_takeover_without_a_ballot_in_most_seeds_by_2000() {
 /// reachable — the reachability arm is the existing unit test
 /// `a_communist_movement_at_discontent_0_70_with_an_unpaid_army_takes_power`.
 ///
-/// READING (N=200, 252 months): 197/200 = 0.985 seeds; per seed median 2
-/// (sd 0.763): Belarus 181, Cambodia 142, Ukraine 91, Afghanistan 3 of 417.
-/// n = (2.326·0.122 / 0.885)² = 0.10 — at any n the bar is red. WHY (BUGS
-/// S5-2, S5-3, S5-8): the two moves kept took it from 60/60 seeds at 3/5/6 a
-/// seed to this; the remainder is the annulment of a merely-present army
-/// (its repair, a hostile army, measured 38/60 and red on the Jordan
-/// assertion of an existing test — not landed, Ridge's ruling, BUGS S7-3)
-/// and Cambodia's pre-existing coup by an Army at a 1% defence share.
+/// READING (N=200, 252 months, re-read 2026-09-06 on this tree,
+/// `census_n200_cal`): 117/200 = 0.585 seeds (2e164ae read 197/200 = 0.985);
+/// per seed 0/1/1 (mean 0.585, sd 0.494): Cambodia 117 of 117 — Belarus
+/// (181) and Ukraine (91) are gone with R2, the hostile-army annulment, and
+/// Afghanistan's 3 with it. n = (2.326·0.493 / (0.585 − 0.10))² = 5.6 and
+/// P(more than 2 of 20 | p = 0.585) = 1.000 — at any n the bar is red. WHY
+/// (BUGS S5-2, S5-3, H-2, H-6): what remains is Cambodia's pre-existing
+/// regime coup by an Army whose live defence share sits near the 1% floor
+/// (weakest pillar 0.28 at the coup), which paints the state Nationalist,
+/// after which the deposed Communist movement — still the largest, latched —
+/// retakes it where coercion fails at the same 0.28. The coercion lines
+/// already quote the pillar model's unpaid line and no fetched figure sits
+/// under it, so nothing permitted moves this; history's own Cambodian event
+/// is the CPP's seizure of sole power from FUNCINPEC in July 1997 (fetched:
+/// "Co-premier Norodom Ranariddh is ousted by co-premier Hun Sen"), a
+/// successor party taking power by force, which the census reads as a
+/// Communist non-ballot takeover and the anchor's <= 10% does not admit —
+/// a question for Ridge, not a widening.
 #[test]
 #[ignore]
 fn a3_a_communist_takeover_without_a_ballot_is_rare() {
@@ -956,13 +1025,30 @@ fn a3_a_communist_takeover_without_a_ballot_is_rare() {
 /// seed has 15..40 of the 1990 regimes electoral by December 1996 (history:
 /// ~30-35 of 60 held a competitive election by 1995).
 ///
-/// READING (N=200, 252 months): median 2 (mean 1.61, sd 0.565, max 3); Sao
-/// Tome 200, South Africa 200, Morocco 11, Mozambique 4, Kuwait 3,
-/// Afghanistan 1 of 419; bootstrap P(median outside 15..40 | n=12) = 1.000.
-/// WHY (BUGS S5-6): I_Western >= 0.40 holds only in the seven Western-RULED
-/// regimes, patronage gravity is dead (no aid enters any regime), the wave
-/// states' Party loyalty parks at 0.65-0.85, the AI round table fires 0 times
-/// in 200 seeds, and every route-4 line is pinned as a literal (S5-4).
+/// READING (N=200, 252 months, re-read 2026-09-06 on this tree,
+/// `census_n200_cal`): median 2 (mean 1.65, sd 0.616, max 3); Sao Tome 200,
+/// South Africa 200, Morocco 13, Kuwait 12, Mozambique 3 of 428 (2e164ae:
+/// mean 1.61, Morocco 11, Mozambique 4, Kuwait 3, Afghanistan 1 of 419);
+/// bootstrap P(median outside 15..40 | n=12) = 1.000; round-table levers 0
+/// in 200/200 seeds. WHY (BUGS S5-6, H-6): I_Western >= 0.40 holds only in
+/// the seven Western-RULED regimes, patronage gravity is dead (no aid enters
+/// any regime), the wave states' Party loyalty parks at 0.65-0.85, and every
+/// route-4 line is pinned as a literal (S5-4). The calibration pass probed
+/// the AI's round table over 1990-96 on four seeds: 16-17 regimes reach
+/// discontent >= 0.40 at some month, but the LARGEST non-ruling movement
+/// sits at 0.12-0.25 in all of them but Chad (0.40) and Sao Tome (0.99) —
+/// Zambia holds discontent 0.60 for 36-37 months with its largest movement
+/// at 0.24, Zaire 0.67 with 0.24, Mozambique 0.57 with 0.23 — so the AI's
+/// four lines (0.50 / 0.35 / armed mean 0.50 / 60 PC) coincide in 0
+/// nation-months, and even the lever's own refusal lines (0.40 / 0.25 / the
+/// 30 PC price) admit only Chad and Sao Tome. The binding constant is the
+/// flat seed (`RULING_SEED` 0.60, the remainder split over 2-4 present
+/// blocs), pinned at 0.5988 with its equilibrium by
+/// `a_regime_s_movements_move_with_the_pains_and_revert`, and the drift's
+/// record line, which reads prices, growth and war and not the order pain
+/// that carries half of discontent; the AI's lines are pinned by
+/// `the_ai_takes_each_lever_only_under_its_thresholds` (0.34 / 0.50 / 59
+/// each read `None`). Neither is this pass's to touch.
 #[test]
 #[ignore]
 fn a4_the_democratisation_wave_opens_fifteen_regimes_by_1996() {
@@ -987,7 +1073,8 @@ fn a4_the_democratisation_wave_opens_fifteen_regimes_by_1996() {
 /// flag whatever its family, so the transcription no longer hides two of
 /// them (BUGS S7-5 closed on that half).
 ///
-/// READING (N=200, 252 months, this tree, `census_n200_flag`): 0/200 seeds
+/// READING (N=200, 252 months, this tree, `census_n200_flag`; re-read by the
+/// calibration pass as `census_n200_cal`, identical): 0/200 seeds
 /// with >= 1 nation by end-1996, 0/200 with >= 3, 0/200 over the run; p =
 /// 0.000, the bar red at any n and its false-red probability 0 — a
 /// decorative bar until the model moves, recorded as such (iron rule 7).
@@ -1010,12 +1097,15 @@ fn a5_ex_communists_return_by_ballot_in_most_seeds() {
 /// A7 — OUT, `#[ignore]`d (BUGS S6-3). Ballot flips of the ruling bloc are at
 /// least three times the non-ballot takeovers, as a per-seed median ratio.
 ///
-/// READING (N=200, 252 months): bloc-level ratio median 0.158 (sd 0.055),
-/// party-level 0.235 (sd 0.055); bootstrap P(median >= 3 | n=12) = 0.000.
-/// WHY (BUGS S5-7): the takeover count is dominated by the pre-existing regime
-/// coups, coloured Nationalist under the roads (10.5 a seed), and a ballot flip
-/// at bloc level is rare by construction (Conservative -> Labour is Western ->
-/// Western).
+/// READING (N=200, 252 months, re-read 2026-09-06 on this tree,
+/// `census_n200_cal`): bloc-level ratio median 0.148 (mean 0.174, sd 0.053;
+/// 2e164ae read 0.158), party-level median 0.25 (sd 0.056); ballot bloc flips
+/// 2/2/5 a seed against 11/15/21 non-ballot takeovers (2e164ae: 2/3/6 against
+/// 14/19/24 — R2 took 4 takeovers a seed out and the ballot side did not
+/// move); bootstrap P(median >= 3 | n=12) = 0.000. WHY (BUGS S5-7): the
+/// takeover count is dominated by the pre-existing regime coups, coloured
+/// Nationalist under the roads (10.6 a seed), and a ballot flip at bloc level
+/// is rare by construction (Conservative -> Labour is Western -> Western).
 #[test]
 #[ignore]
 fn a7_ballots_flip_the_ruling_bloc_three_times_as_often_as_takeovers() {
