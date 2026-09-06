@@ -18,11 +18,14 @@
 //!
 //! THE BARS (2026-09-06, the pin-and-wire pass) sit below the scan and read
 //! the same `run_seed`, each with its own seed count derived beside it from
-//! the N=200 census of this tree (`census_n200_d4`, 252 months; the file's
-//! summary is quoted in BUGS S6-1). Four are pinned — A6, A8, A9, A10 — and
-//! six are written and `#[ignore]`d with their measured reading and the
-//! reason (A1, A2, A3, A4, A5, A7; BUGS S6-3), never widened. `ideology_
-//! takeover` stays OFF in the browser while any anchor is out (BUGS S6-5).
+//! the N=200 census of this tree (`census_n200_s7`, 252 months, re-read by
+//! the ship pass after the D4 revert and the A6 repair — its 200 seed lines
+//! are identical to the pin pass's pre-D4 file; the summary is quoted in
+//! BUGS S7-2). Four are pinned — A6, A8, A9, A10 — and six are written and
+//! `#[ignore]`d with their measured reading and the reason (A1, A2, A3, A4,
+//! A5, A7; BUGS S6-3), never widened. `ideology_takeover` stays OFF in the
+//! browser while any anchor is out (BUGS S6-5). Every watched-red reading
+//! below was re-measured by the ship pass on the tree it ships (S7-4).
 //!
 //! DEFINITIONS, so the numbers below mean one thing:
 //! - A "takeover" is a change of the RULING BLOC (`blocs::ruling_bloc`, read
@@ -45,10 +48,18 @@
 //!   after 1990. Counted by end-1996 (the design's date) and over the run.
 //! - A6's "route event": annulment, coup against an elected government,
 //!   regime coup, suspension, round table, or an uprising the MOVEMENT armed
-//!   pre-tick (`blocs::uprising_armed`), in a nation whose 1990
-//!   authoritarianism was <= 0.20. An uprising the movement did not arm is
-//!   the pre-existing stability < 12 collapse (or its crossing inside the
-//!   tick) and is reported beside it, not as a route event.
+//!   AT THE FIRING SITE, in a nation whose 1990 authoritarianism was
+//!   <= 0.20. The firing site's clause is read off the HEADLINE, which is the
+//!   only record of it: `politics::tick` crowns the challenger
+//!   (`government::uprising`, "Revolution in X: the B movement takes
+//!   power.") only where `blocs::uprising_armed` held inside the tick, and
+//!   runs the pre-arm collapse ("Revolution in X — the old regime falls.")
+//!   otherwise, and `uprising_armed` implies a challenger, so the crown and
+//!   the clause are the same event. The crown counts against the bar; the
+//!   collapse is reported beside it. (Until 2026-09-06 the bar read the
+//!   PRE-TICK flag instead, which filed a crown the movement armed inside the
+//!   tick beside the bar rather than against it — the honesty skeptic's
+//!   finding, BUGS S7-1.)
 //! - A9 reads GDP per head (`gdp * 1000 / population`, dollars) pre-tick in
 //!   the coup's month over every coup and annulment.
 //! - A10: for every non-ballot takeover, the nation's mean discontent over
@@ -95,6 +106,9 @@ struct Seed {
     /// uprisings by winner bloc (enum order); [5] = no winner ("old regime falls")
     upr: [u32; 6],
     upr_clause: [u32; 4], // stab12, movement, both, none
+    /// crowned uprisings whose pre-tick `uprising_armed` read false (armed
+    /// inside the tick; BUGS S7-1)
+    crown_unarmed_pre: u32,
     /// non-ballot takeovers (ruling bloc changed) by NEW bloc, enum order
     take: [u32; 5],
     take_total: u32,
@@ -350,13 +364,24 @@ fn run_seed(seed: u64, months: usize, verbose: bool, by_nation: &mut HashMap<&'s
                     _ => 3,
                 };
                 out.upr_clause[c] += 1;
+                if winner.is_some() && !armed {
+                    // A crown the movement armed INSIDE the tick: the
+                    // pre-tick reading cannot see it (BUGS S7-1), counted so
+                    // the gap between the clause and the headline is on the
+                    // record.
+                    out.crown_unarmed_pre += 1;
+                    bump("crown_unarmed_pre", name_of(&w, idx));
+                }
                 clauses.push((idx, winner));
                 if low_auth.contains(&idx) {
-                    // A route event only where the MOVEMENT armed it pre-tick
-                    // (clause movement or both); the stability < 12 collapse,
-                    // and a "none" that crossed 12 inside the tick, are the
-                    // pre-existing collapse and are reported beside it.
-                    if armed {
+                    // A route event only where the MOVEMENT armed it at the
+                    // firing site, which the headline records: a crowned
+                    // winner is `government::uprising` behind
+                    // `blocs::uprising_armed` inside the tick; "the old
+                    // regime falls" is the pre-arm collapse. The pre-tick
+                    // flag (`armed`) is the CLAUSE reading above, kept for
+                    // the trace, and is not what the bar reads.
+                    if winner.is_some() {
                         out.a6_route += 1;
                         bump("a6", name_of(&w, idx));
                     } else {
@@ -642,6 +667,10 @@ fn bloc_census() {
         stats(&col(&|r| r.upr[0] as f64)), stats(&col(&|r| r.upr[1] as f64)), stats(&col(&|r| r.upr[2] as f64)), stats(&col(&|r| r.upr[3] as f64)), stats(&col(&|r| r.upr[4] as f64)), stats(&col(&|r| r.upr[5] as f64)));
     println!("uprising clause stab12/movement/both/none: {} / {} / {} / {}",
         stats(&col(&|r| r.upr_clause[0] as f64)), stats(&col(&|r| r.upr_clause[1] as f64)), stats(&col(&|r| r.upr_clause[2] as f64)), stats(&col(&|r| r.upr_clause[3] as f64)));
+    println!("crowned uprisings the pre-tick flag did not see (armed inside the tick, S7-1): {} (total {} of {} crowns)",
+        stats(&col(&|r| r.crown_unarmed_pre as f64)),
+        rows.iter().map(|r| r.crown_unarmed_pre).sum::<u32>(),
+        rows.iter().map(|r| r.upr[..5].iter().sum::<u32>()).sum::<u32>());
     println!();
     println!("BY NATION over all seeds (top 14 each)");
     let mut tables: Vec<&&str> = by_nation.keys().collect();
@@ -684,31 +713,39 @@ fn seed_summary(rows: &[Seed]) -> String {
 
 /// A6 — INVARIANT, PINNED. No nation at 1990 authoritarianism <= 0.20 sees a
 /// route event — an annulment, a coup against an elected government, a regime
-/// coup, a suspension, a round table, or an uprising the MOVEMENT armed
-/// pre-tick (`blocs::uprising_armed`) — over the design's 35 years (420
-/// months) with both switches on. The pre-existing stability < 12 collapse is
-/// NOT a route event: Argentina's (1990 authoritarianism 0.15) is the pre-arm
-/// `politics.rs` chain, fires in 198/200 seeds at 252 months, and is counted
-/// beside the bar, never against it.
+/// coup, a suspension, a round table, or an uprising the MOVEMENT armed at
+/// the firing site (a crowned "Revolution in X: the B movement takes power.",
+/// which `politics::tick` prints only behind `blocs::uprising_armed` inside
+/// the tick; header, S7-1) — over the design's 35 years (420 months) with
+/// both switches on. The pre-existing stability < 12 collapse ("the old
+/// regime falls") is NOT a route event: Argentina's (1990 authoritarianism
+/// 0.15) is the pre-arm `politics.rs` chain, fires in 198/200 seeds at 252
+/// months, and is counted beside the bar, never against it.
 ///
-/// SAMPLE (iron rule 7, measured 2026-09-06 on the N=200 census of this tree,
-/// 252 months): 0 route events in 200/200 seeds. At 420 months: 0 in 60/60
-/// seeds on the scan (`SPHERES_CENSUS_MONTHS=420`, Argentina's collapse
-/// beside in 59/60) and 0 in 12/12 at this bar's own width, the collapse
-/// beside in 12/12. A universal claim cannot red falsely, so
-/// n is a POWER budget: twelve seeds see a road that reaches one democracy
-/// at a per-seed rate q with probability 1-(1-q)^12 — q = 0.10: 0.72,
-/// q = 0.20: 0.93, q = 0.30: 0.99. This bar sees a road that touches a
-/// democracy in one seed of five; it does not see one that touches one seed
-/// in twenty (0.46). Runs about 25 s in release.
+/// SAMPLE (iron rule 7, re-measured 2026-09-06 by the ship pass on the N=200
+/// census of this tree, 252 months, with the headline attribution): 0 route
+/// events in 200/200 seeds; the pre-tick flag missed 165 of the 1570 crowns
+/// (armed inside the tick, none of them in a 1990 democracy — Sao Tome 38,
+/// Zaire 22, Belarus 21, Chad 17, Comoros 17, Philippines 16, Cambodia 15,
+/// Mozambique 15, Ukraine 2, Afghanistan 1, Iraq 1). At 420 months: 0 in
+/// 60/60 seeds on the scan (`SPHERES_CENSUS_MONTHS=420`, Argentina's collapse
+/// beside in 59/60, 53 of 571 crowns missed by the flag) and 0 in 12/12 at
+/// this bar's own width, the collapse beside in 12/12. A universal claim
+/// cannot red falsely, so n is a POWER budget: twelve seeds see a road that
+/// reaches one democracy at a per-seed rate q with probability 1-(1-q)^12 —
+/// q = 0.10: 0.72, q = 0.20: 0.93, q = 0.30: 0.99. This bar sees a road that
+/// touches a democracy in one seed of five; it does not see one that touches
+/// one seed in twenty (0.46). Runs 11-13 s in release (measured 10.7 s green,
+/// 13.0 s red).
 ///
-/// WATCHED RED 2026-09-06 with the uprising road thrown open —
-/// `COERCION_ARMED` / `COERCION_MEAN` 0.35 -> 1.00 and `UPRISING_DISCONTENT`
-/// / `UPRISING_INFLUENCE` 0.45 -> 0.00: route events in 1990 democracies in
-/// 12/12 seeds, 32..57 a seed. NOT red with route 2 thrown open instead
-/// (`ELECTORAL_COUP_ARMY` 0.35 -> 0.95 and `ELECTORAL_COUP_DISCONTENT` 0.25
-/// -> 0.00, coups against elected governments 45..52 a seed against 6): no
-/// 1990 democracy at authoritarianism <= 0.20 carries an Army pillar in its
+/// WATCHED RED 2026-09-06 (the ship pass, on this tree) with the uprising
+/// road thrown open — `COERCION_ARMED` / `COERCION_MEAN` 0.35 -> 1.00 and
+/// `UPRISING_DISCONTENT` / `UPRISING_INFLUENCE` 0.45 -> 0.00: route events in
+/// 1990 democracies in 12/12 seeds, 33..65 a seed. NOT red with route 2
+/// thrown open instead (`ELECTORAL_COUP_ARMY` 0.35 -> 0.95 and
+/// `ELECTORAL_COUP_DISCONTENT` 0.25 -> 0.00; over A9's twelve seeds at 252
+/// months that mutation reads 706 coups and annulments against 229): no 1990
+/// democracy at authoritarianism <= 0.20 carries an Army pillar in its
 /// transcribed table, so route 2 cannot reach one by construction — on that
 /// road the invariant is held by the transcription, and this bar reads it.
 #[test]
@@ -732,13 +769,14 @@ fn a6_no_road_reaches_a_1990_democracy_in_thirty_five_years() {
 /// 0.30 (exact binomial). SAID PLAINLY: a bar of six of eight cannot see ONE
 /// regime falling in every seed (7/8 still passes) — it is decorative against
 /// a single regime and sees only three of the eight going, which is what the
-/// design's sentence asks. Runs about 20 s in release.
+/// design's sentence asks. Runs about 23 s in release (measured 22.7-23.2 s).
 ///
-/// WATCHED 2026-09-06 with `COERCION_ARMED` / `COERCION_MEAN` 0.35 -> 1.00
-/// (coercion always fails) and `UPRISING_DISCONTENT` / `UPRISING_INFLUENCE`
-/// 0.45 -> 0.10: still GREEN — the eight's discontent sits under 0.10, the
-/// same fact that makes the bar decorative; at 0.45 -> 0.00 (any crowd at
-/// all): RED, 5/40 seeds kept six, per seed 2..7.
+/// WATCHED 2026-09-06 (the ship pass, on this tree) with `COERCION_ARMED` /
+/// `COERCION_MEAN` 0.35 -> 1.00 (coercion always fails) and
+/// `UPRISING_DISCONTENT` / `UPRISING_INFLUENCE` 0.45 -> 0.10: still GREEN,
+/// 38/40 seeds kept six, per seed 4..8 — the eight's discontent sits under
+/// 0.10, the same fact that makes the bar decorative; at 0.45 -> 0.00 (any
+/// crowd at all): RED, 7/40 seeds kept six, per seed 2..7.
 #[test]
 fn a8_six_of_the_eight_big_regimes_keep_their_bloc_in_most_seeds() {
     let rows = census(40, MONTHS);
@@ -759,14 +797,16 @@ fn a8_six_of_the_eight_big_regimes_keep_their_bloc_in_most_seeds() {
 /// 0.75 (the rich-nation share of coups rising from 4.7% to 25%, ×5) reds
 /// with probability 1.000, to 0.80 (×4.3) 0.30, to 0.85 (×3) 0.00. This bar
 /// sees coups moving into rich nations at four times today's rate; it does
-/// not see a doubling. Runs about 6 s in release.
+/// not see a doubling. Runs 6-7 s in release (measured 6.2-7.0 s).
 ///
-/// WATCHED 2026-09-06 and NOT RED with route 2 thrown open —
-/// `ELECTORAL_COUP_ARMY` 0.35 -> 0.95 and `ELECTORAL_COUP_DISCONTENT` 0.25 ->
-/// 0.00 — which multiplies coups against elected governments eight-fold
-/// (45..52 a seed against 6) and reads 620/706 = 0.878, still over the bar,
-/// because the polities that carry an Army pillar in the transcribed table
-/// are the poor ones. This bar therefore guards the TRANSCRIPTION (which
+/// WATCHED 2026-09-06 (the ship pass, on this tree) and NOT RED with route 2
+/// thrown open — `ELECTORAL_COUP_ARMY` 0.35 -> 0.95 and
+/// `ELECTORAL_COUP_DISCONTENT` 0.25 -> 0.00 — which triples the coups and
+/// annulments pooled over the twelve seeds (706 against 229) and reads
+/// 620/706 = 0.878, still over the bar, because the polities that carry an
+/// Army pillar in the transcribed table are the poor ones; and NOT RED with
+/// the uprising road thrown open (coercion 1.00, the uprising lines 0.00):
+/// 72/76 = 0.947. This bar therefore guards the TRANSCRIPTION (which
 /// polities carry an Army) and the pre-existing pillar model's per-head
 /// structure, not a road constant: DECORATIVE against the roads (iron rule
 /// 7's last paragraph), recorded as such, and pinned because the anchor
@@ -793,13 +833,16 @@ fn a9_four_coups_in_five_strike_nations_under_8000_a_head() {
 /// down: a lead falling by 0.10 (0.33 -> 0.23, a 30% fall) reds with
 /// probability 0.92, by 0.08 0.57, by 0.06 0.18. This bar sees the takeover
 /// roads losing a third of their discontent dependence; it does not see a
-/// fifth. Runs about 6 s in release.
+/// fifth. Runs 6-7 s in release (measured 6.2-6.9 s); reads 0.334 on this
+/// tree (per seed 0.278..0.364).
 ///
-/// WATCHED RED 2026-09-06 with `COERCION_ARMED` / `COERCION_MEAN` 0.35 ->
-/// 1.00 and `UPRISING_DISCONTENT` / `UPRISING_INFLUENCE` 0.45 -> 0.10
-/// (takeovers no longer need the crowd): median lead 0.141 over twelve
-/// seeds; and with route 2 thrown open (`ELECTORAL_COUP_ARMY` 0.95,
-/// `ELECTORAL_COUP_DISCONTENT` 0.00): 0.2499, a hair under the bar.
+/// WATCHED RED 2026-09-06 (the ship pass, on this tree) with
+/// `COERCION_ARMED` / `COERCION_MEAN` 0.35 -> 1.00 and `UPRISING_DISCONTENT`
+/// / `UPRISING_INFLUENCE` 0.45 -> 0.10 (takeovers no longer need the crowd):
+/// median lead 0.118 over twelve seeds (per seed 0.077..0.270); at 0.45 ->
+/// 0.00: 0.017; and with route 2 thrown open (`ELECTORAL_COUP_ARMY` 0.95,
+/// `ELECTORAL_COUP_DISCONTENT` 0.00): 0.24975 (per seed 0.224..0.262), under
+/// the bar by a quarter of a thousandth and RED.
 #[test]
 fn a10_discontent_leads_the_roster_by_a_quarter_before_a_takeover() {
     let rows = census(12, MONTHS);
@@ -876,8 +919,8 @@ fn a2_an_islamist_takeover_without_a_ballot_in_most_seeds_by_2000() {
 /// S5-2, S5-3, S5-8): the two moves kept took it from 60/60 seeds at 3/5/6 a
 /// seed to this; the remainder is the annulment of a merely-present army
 /// (its repair, a hostile army, measured 38/60 and red on the Jordan
-/// assertion of an existing test) and Cambodia's pre-existing coup by an Army
-/// at a 1% defence share.
+/// assertion of an existing test — not landed, Ridge's ruling, BUGS S7-3)
+/// and Cambodia's pre-existing coup by an Army at a 1% defence share.
 #[test]
 #[ignore]
 fn a3_a_communist_takeover_without_a_ballot_is_rare() {
@@ -913,10 +956,20 @@ fn a4_the_democratisation_wave_opens_fifteen_regimes_by_1996() {
 /// seeds (Bulgaria, Albania, Mongolia, Lithuania, Poland, Hungary).
 ///
 /// READING (N=200, 252 months): 0/200 by end-1996 and 0/200 over the run;
-/// p = 0.000, the bar red at any n. WHY (BUGS S5-7): the ballot is the party
-/// model's `drift_support`, which the arm does not touch; a Communist-family
-/// leader by vote needs that model's record line to favour it, and it does not
-/// in 1990-96.
+/// p = 0.000, the bar red at any n. WHY, in two parts. The TRANSCRIPTION
+/// first (the honesty skeptic's finding, BUGS S7-5): of the design's six
+/// named returns, Lithuania's `lt_ldpp` and Hungary's `hu_mszp` are
+/// transcribed `Family::SocialDemocratic` with no bloc override, so their
+/// return by ballot is a Western -> Western change this bar cannot register
+/// by construction; Bulgaria's `bg_bsp` (0.472), Albania's `al_ppsh` (0.562)
+/// and Mongolia's `mn_mprp` (0.623) already LEAD at the 1990 seating, so
+/// their "return" needs a lose-then-return sequence; only Poland's `pl_sld`
+/// (`Family::Communist`, 0.22) is a plain flip. Two-sixths of the anchor is
+/// unreachable by data and three-sixths need two ballots, and that is a data
+/// question for Ridge (S5-8). Then the MODEL (BUGS S5-7): the ballot is the
+/// party model's `drift_support`, which the arm does not touch; a
+/// Communist-family leader by vote needs that model's record line to favour
+/// it, and it does not in 1990-96 (Poland reads 0/200).
 #[test]
 #[ignore]
 fn a5_ex_communists_return_by_ballot_in_most_seeds() {

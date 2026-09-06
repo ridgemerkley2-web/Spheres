@@ -1,6 +1,6 @@
 # SPHERES Roadmap
 
-## Done — S5 pinned: the N=200 census, four bars, D4 under the switch, the switch decision (2026-09-06)
+## Done — S5 pinned: the N=200 census, four bars, the switch decision (2026-09-06; D4 wired here and reverted in the ship pass, BUGS S7-3)
 
 The census at N=200 (97 s; 137 s with the rebuild after D4), per seed
 min/med/max: A1 coups against elected governments 4/6/9, inside 4..14 and
@@ -16,8 +16,9 @@ constants, guards the Army-pillar transcription, said so), A10 on 12 seeds;
 each watched red against the lines it guards, or recorded as not red and why.
 Six bars written and `#[ignore]`d at their reading, never widened (A1's
 concentration arm, A2, A3, A4, A5, A7; BUGS S6-3). D4's Nepal and Haiti
-tables WIRED under the lens switch (`government::polity_in`; P-8, S4-10, R-6
-closed) with the default path byte-identical: both golden actuals
+tables were WIRED under the lens switch here (`government::polity_in`, commit
+5086cfa) and REVERTED by the ship pass (BUGS S7-3; P-8, S4-10, R-6 stand) —
+while wired, the default path was byte-identical: both golden actuals
 (0xe26e4bf8d6c60066, 0xbe94d6125631829c) and both headless digests
 (d1a2cfbf7c6958d7 / 3501, 39dea3341a7f6e8c / 3983) unmoved, the inertness
 trio green, the switched-on census moved in one seed of 200. THE SWITCH
