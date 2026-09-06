@@ -102,6 +102,83 @@ impl Family {
     }
 }
 
+// ---------------------------------------------------------------------------
+// Blocs
+// ---------------------------------------------------------------------------
+
+/// The five ideological blocs of the political arm ("The Political Arm of
+/// SPHERES", revision 2, decision D6). A bloc is coarser than a family: it is
+/// the side a party or an institution would be counted on in the world's
+/// argument of 1990, which is what foreign backing, a takeover and the map's
+/// ideology mode all read. THE ORDER IS FIXED — ties break in enum order
+/// everywhere, so reordering these variants would move a timeline.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
+pub enum Bloc {
+    Western,
+    Communist,
+    Nationalist,
+    Islamist,
+    NonAligned,
+}
+
+impl Bloc {
+    pub const ALL: [Bloc; 5] =
+        [Bloc::Western, Bloc::Communist, Bloc::Nationalist, Bloc::Islamist, Bloc::NonAligned];
+    pub fn label(self) -> &'static str {
+        match self {
+            Bloc::Western => "Western",
+            Bloc::Communist => "Communist",
+            Bloc::Nationalist => "Nationalist",
+            Bloc::Islamist => "Islamist",
+            Bloc::NonAligned => "Non-Aligned",
+        }
+    }
+    /// The stable key the browser and the saves use.
+    pub fn key(self) -> &'static str {
+        match self {
+            Bloc::Western => "western",
+            Bloc::Communist => "communist",
+            Bloc::Nationalist => "nationalist",
+            Bloc::Islamist => "islamist",
+            Bloc::NonAligned => "non_aligned",
+        }
+    }
+    pub fn parse(s: &str) -> Option<Bloc> {
+        Some(match s.trim().to_lowercase().replace('-', "_").as_str() {
+            "western" | "west" => Bloc::Western,
+            "communist" => Bloc::Communist,
+            "nationalist" => Bloc::Nationalist,
+            "islamist" => Bloc::Islamist,
+            "non_aligned" | "nonaligned" | "non_aligned_movement" => Bloc::NonAligned,
+            _ => return None,
+        })
+    }
+}
+
+impl Family {
+    /// The bloc a family is counted on when its party carries no override.
+    /// Two families are too broad to default well and are overridden row by
+    /// row on the table below: `BigTent`, where a democratic umbrella formed
+    /// against a party-state (Solidarity, DEMOS, Civic Forum) is Western and
+    /// the state big tents (Congress, the PRI, Golkar, the NDP) stay
+    /// Non-Aligned; and `Religious`, where the Islamist parties keep the
+    /// default and the ten non-Islamic confessional parties are Western.
+    pub fn bloc(self) -> Bloc {
+        match self {
+            Family::Liberal
+            | Family::ChristianDemocratic
+            | Family::Conservative
+            | Family::SocialDemocratic
+            | Family::Green
+            | Family::Agrarian => Bloc::Western,
+            Family::Communist => Bloc::Communist,
+            Family::Nationalist => Bloc::Nationalist,
+            Family::Religious => Bloc::Islamist,
+            Family::BigTent | Family::Regionalist => Bloc::NonAligned,
+        }
+    }
+}
+
 fn family_distance(a: Family, b: Family) -> f64 {
     let (ax, ay) = a.axis();
     let (bx, by) = b.axis();
@@ -127,6 +204,19 @@ pub struct PartySpec {
     /// Italy's *conventio ad excludendum* against the PCI and the MSI, France's
     /// cordon sanitaire against the Front National.
     pub pariah: bool,
+    /// The bloc this party is counted on where the family default is wrong.
+    /// `None` on the great majority of rows; every `Some` is a transcribed
+    /// decision with its source on the row. Read through `bloc_of`, never
+    /// directly.
+    pub bloc: Option<Bloc>,
+}
+
+impl PartySpec {
+    /// Pin a party to a bloc other than its family's default. A const builder
+    /// so the six hundred rows that keep the default do not change.
+    pub const fn aligned(self, bloc: Bloc) -> PartySpec {
+        PartySpec { bloc: Some(bloc), ..self }
+    }
 }
 
 const fn p(
@@ -136,7 +226,7 @@ const fn p(
     family: Family,
     start: f64,
 ) -> PartySpec {
-    PartySpec { id, name, native, family, start, pariah: false }
+    PartySpec { id, name, native, family, start, pariah: false, bloc: None }
 }
 const fn pariah(
     id: &'static str,
@@ -145,7 +235,7 @@ const fn pariah(
     family: Family,
     start: f64,
 ) -> PartySpec {
-    PartySpec { id, name, native, family, start, pariah: true }
+    PartySpec { id, name, native, family, start, pariah: true, bloc: None }
 }
 
 /// How votes become seats. The choice is not cosmetic: it decides whether a
@@ -331,7 +421,8 @@ pub const POLITIES: &[Polity] = &[
             p("ru_ldpr", "Liberal Democratic Party of Russia", "Liberalno-demokraticheskaya partiya Rossii", Family::Nationalist, 0.229),
             p("ru_vybor", "Russia's Choice", "Vybor Rossii", Family::Liberal, 0.155),
             p("ru_kprf", "Communist Party of the Russian Federation", "Kommunisticheskaya partiya Rossiyskoy Federatsii", Family::Communist, 0.124),
-            p("ru_apr", "Agrarian Party of Russia", "Agrarnaya partiya Rossii", Family::Agrarian, 0.080),
+            // bloc -> Communist: The collective-farm lobby, the KPRF's ally in every Duma. https://en.wikipedia.org/wiki/Agrarian_Party_of_Russia
+            p("ru_apr", "Agrarian Party of Russia", "Agrarnaya partiya Rossii", Family::Agrarian, 0.080).aligned(Bloc::Communist),
             p("ru_yabloko", "Yabloko", "Yabloko", Family::Liberal, 0.079),
         ],
         ruling: "the Presidency of the Russian Federation",
@@ -393,7 +484,8 @@ pub const POLITIES: &[Polity] = &[
         parties: &[
             p("jp_ldp", "Liberal Democratic Party", "Jiyu-Minshuto", Family::Conservative, 0.494),
             p("jp_jsp", "Japan Socialist Party", "Nihon Shakaito", Family::SocialDemocratic, 0.172),
-            p("jp_komeito", "Komeito", "Komeito", Family::Religious, 0.094),
+            // bloc -> Western: Buddhist, not Islamist. https://en.wikipedia.org/wiki/K%C5%8Dmeit%C5%8D_(1962%E2%80%931998)
+            p("jp_komeito", "Komeito", "Komeito", Family::Religious, 0.094).aligned(Bloc::Western),
             p("jp_jcp", "Japanese Communist Party", "Nihon Kyosanto", Family::Communist, 0.088),
             p("jp_dsp", "Democratic Socialist Party", "Minshato", Family::SocialDemocratic, 0.064),
         ],
@@ -494,7 +586,8 @@ pub const POLITIES: &[Polity] = &[
         parties: &[
             p("in_inc", "Indian National Congress (I)", "", Family::BigTent, 0.395),
             p("in_jd", "Janata Dal", "", Family::Agrarian, 0.178),
-            p("in_bjp", "Bharatiya Janata Party", "", Family::Religious, 0.114),
+            // bloc -> Nationalist: Hindu nationalist rather than confessional. https://en.wikipedia.org/wiki/Bharatiya_Janata_Party
+            p("in_bjp", "Bharatiya Janata Party", "", Family::Religious, 0.114).aligned(Bloc::Nationalist),
             p("in_cpm", "Communist Party of India (Marxist)", "", Family::Communist, 0.065),
         ],
         ruling: "the Lok Sabha",
@@ -510,7 +603,8 @@ pub const POLITIES: &[Polity] = &[
         next: (1993, 11),
         parties: &[
             p("pk_ppp", "Pakistan Peoples Party", "", Family::SocialDemocratic, 0.385),
-            p("pk_iji", "Islami Jamhoori Ittehad", "Islamic Democratic Alliance", Family::Religious, 0.302),
+            // bloc -> Western: The anti-PPP alliance of the establishment right, not an Islamist movement. https://en.wikipedia.org/wiki/Islami_Jamhoori_Ittehad
+            p("pk_iji", "Islami Jamhoori Ittehad", "Islamic Democratic Alliance", Family::Religious, 0.302).aligned(Bloc::Western),
             p("pk_mqm", "Muttahida Qaumi Movement", "", Family::Regionalist, 0.054),
         ],
         ruling: "the National Assembly",
@@ -628,7 +722,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (1991, 10),
         parties: &[
-            p("pl_solidarity", "Solidarity Citizens' Committee", "Komitet Obywatelski Solidarnosc", Family::BigTent, 0.60),
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Solidarity_Citizens%27_Committee
+            p("pl_solidarity", "Solidarity Citizens' Committee", "Komitet Obywatelski Solidarnosc", Family::BigTent, 0.60).aligned(Bloc::Western),
             p("pl_sld", "Democratic Left Alliance", "Sojusz Lewicy Demokratycznej", Family::Communist, 0.22),
             p("pl_psl", "Polish People's Party", "Polskie Stronnictwo Ludowe", Family::Agrarian, 0.12),
             p("pl_sd", "Alliance of Democrats", "Stronnictwo Demokratyczne", Family::Liberal, 0.06),
@@ -716,10 +811,13 @@ pub const POLITIES: &[Polity] = &[
         parties: &[
             p("il_likud", "Likud", "Likud", Family::Conservative, 0.311),
             p("il_labour", "Alignment", "Ma'arach", Family::SocialDemocratic, 0.300),
-            p("il_shas", "Shas", "Shas", Family::Religious, 0.047),
-            p("il_agudat", "Agudat Yisrael", "Agudat Yisrael", Family::Religious, 0.045),
+            // bloc -> Western: Haredi, not Islamist. https://en.wikipedia.org/wiki/Shas
+            p("il_shas", "Shas", "Shas", Family::Religious, 0.047).aligned(Bloc::Western),
+            // bloc -> Western: Haredi, not Islamist. https://en.wikipedia.org/wiki/Agudat_Yisrael
+            p("il_agudat", "Agudat Yisrael", "Agudat Yisrael", Family::Religious, 0.045).aligned(Bloc::Western),
             p("il_ratz", "Citizens' Rights Movement", "Ratz", Family::Liberal, 0.043),
-            p("il_mafdal", "National Religious Party", "Mafdal", Family::Religious, 0.039),
+            // bloc -> Western: Religious Zionist, not Islamist. https://en.wikipedia.org/wiki/National_Religious_Party
+            p("il_mafdal", "National Religious Party", "Mafdal", Family::Religious, 0.039).aligned(Bloc::Western),
             p("il_tehiya", "Tehiya", "Tehiya", Family::Nationalist, 0.031),
         ],
         ruling: "the Knesset",
@@ -852,7 +950,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (0, 0),
         parties: &[
-            p("si_demos", "DEMOS", "Demokraticna opozicija Slovenije", Family::BigTent, 0.540),
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/DEMOS_(Slovenia)
+            p("si_demos", "DEMOS", "Demokraticna opozicija Slovenije", Family::BigTent, 0.540).aligned(Bloc::Western),
             p("si_sdp", "Party of Democratic Renewal", "Stranka demokraticne prenove", Family::SocialDemocratic, 0.173),
             p("si_ldp", "Liberal Democratic Party", "Liberalno demokratska stranka", Family::Liberal, 0.145),
         ],
@@ -872,7 +971,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (0, 0),
         parties: &[
-            p("ba_sda", "Party of Democratic Action", "Stranka demokratske akcije", Family::Religious, 0.358),
+            // bloc -> Western: A Bosniak national party seeking Western recognition, not an Islamist one. https://en.wikipedia.org/wiki/Party_of_Democratic_Action
+            p("ba_sda", "Party of Democratic Action", "Stranka demokratske akcije", Family::Religious, 0.358).aligned(Bloc::Western),
             p("ba_sds", "Serbian Democratic Party", "Srpska demokratska stranka", Family::Nationalist, 0.300),
             p("ba_hdz", "Croatian Democratic Union of BiH", "Hrvatska demokratska zajednica BiH", Family::Nationalist, 0.184),
             p("ba_sdp", "Social Democratic Party", "Socijaldemokratska partija", Family::SocialDemocratic, 0.060),
@@ -958,9 +1058,12 @@ pub const POLITIES: &[Polity] = &[
             // the Tweede Kamer continuously since 1922 without ever once
             // being in government. A model that deletes them loses the thing
             // that made Dutch politics consociational in the first place.
-            p("nl_sgp", "Reformed Political Party", "Staatkundig Gereformeerde Partij", Family::Religious, 0.019),
-            p("nl_gpv", "Reformed Political League", "Gereformeerd Politiek Verbond", Family::Religious, 0.012),
-            p("nl_rpf", "Reformatory Political Federation", "Reformatorische Politieke Federatie", Family::Religious, 0.010),
+            // bloc -> Western: Reformed Protestant, not Islamist. https://en.wikipedia.org/wiki/Reformed_Political_Party
+            p("nl_sgp", "Reformed Political Party", "Staatkundig Gereformeerde Partij", Family::Religious, 0.019).aligned(Bloc::Western),
+            // bloc -> Western: Reformed Protestant, not Islamist. https://en.wikipedia.org/wiki/Reformed_Political_League
+            p("nl_gpv", "Reformed Political League", "Gereformeerd Politiek Verbond", Family::Religious, 0.012).aligned(Bloc::Western),
+            // bloc -> Western: Reformed Protestant, not Islamist. https://en.wikipedia.org/wiki/Reformatory_Political_Federation
+            p("nl_rpf", "Reformatory Political Federation", "Reformatorische Politieke Federatie", Family::Religious, 0.010).aligned(Bloc::Western),
         ],
         ruling: "the Tweede Kamer",
         pillars: &[],
@@ -1080,7 +1183,8 @@ pub const POLITIES: &[Polity] = &[
             p("ch_ldu", "Ring of Independents", "Landesring der Unabhangigen", Family::Liberal, 0.042),
             p("ch_lps", "Liberal Party", "Liberale Partei der Schweiz", Family::Liberal, 0.027),
             p("ch_na", "National Action", "Nationale Aktion", Family::Nationalist, 0.025),
-            p("ch_evp", "Evangelical People's Party", "Evangelische Volkspartei", Family::Religious, 0.019),
+            // bloc -> Western: Protestant, not Islamist. https://en.wikipedia.org/wiki/Evangelical_People%27s_Party_of_Switzerland
+            p("ch_evp", "Evangelical People's Party", "Evangelische Volkspartei", Family::Religious, 0.019).aligned(Bloc::Western),
             p("ch_pda", "Swiss Party of Labour", "Partei der Arbeit der Schweiz", Family::Communist, 0.008),
         ],
         // The one place in this batch where `ruling` is doing real work. The
@@ -1149,7 +1253,8 @@ pub const POLITIES: &[Polity] = &[
             // still, in 1990, the only unreconstructed pro-Soviet communist
             // party of any size in Western Europe.
             p("pt_cdu", "Unitary Democratic Coalition", "Coligacao Democratica Unitaria", Family::Communist, 0.121),
-            p("pt_prd", "Democratic Renewal Party", "Partido Renovador Democratico", Family::BigTent, 0.049),
+            // bloc -> Western: Centrist party of a NATO democracy. https://en.wikipedia.org/wiki/Democratic_Renewal_Party_(Portugal)
+            p("pt_prd", "Democratic Renewal Party", "Partido Renovador Democratico", Family::BigTent, 0.049).aligned(Bloc::Western),
             p("pt_cds", "Democratic and Social Centre", "Centro Democratico e Social", Family::ChristianDemocratic, 0.044),
         ],
         ruling: "the Assembly of the Republic",
@@ -1341,7 +1446,8 @@ pub const POLITIES: &[Polity] = &[
             // country did not have. They are the two sides of the Treaty of
             // 1921 and the civil war that followed it, and voters inherited
             // the allegiance. Fianna Fail is entered BigTent for that reason.
-            p("ie_ff", "Fianna Fail", "Fianna Fail - The Republican Party", Family::BigTent, 0.441),
+            // bloc -> Western: Governing party of a liberal democracy. https://en.wikipedia.org/wiki/Fianna_F%C3%A1il
+            p("ie_ff", "Fianna Fail", "Fianna Fail - The Republican Party", Family::BigTent, 0.441).aligned(Bloc::Western),
             p("ie_fg", "Fine Gael", "Fine Gael", Family::ChristianDemocratic, 0.293),
             p("ie_lab", "Labour Party", "Pairti Lucht Oibre", Family::SocialDemocratic, 0.095),
             p("ie_pd", "Progressive Democrats", "An Phairti Daonlathach", Family::Liberal, 0.055),
@@ -1396,7 +1502,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 24,
         next: (1990, 6),
         parties: &[
-            p("cs_of", "Civic Forum", "Obcanske forum", Family::BigTent, 0.351),
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Civic_Forum
+            p("cs_of", "Civic Forum", "Obcanske forum", Family::BigTent, 0.351).aligned(Bloc::Western),
             p("cs_ksc", "Communist Party of Czechoslovakia", "Komunisticka strana Ceskoslovenska", Family::Communist, 0.136),
             // Listed separately from Civic Forum rather than merged into it,
             // because the difference between them is the entire subject of this
@@ -1404,7 +1511,8 @@ pub const POLITIES: &[Polity] = &[
             // Hyphen War of January to April 1990 — a constitutional crisis
             // about where to put a hyphen in the state's own name — was fought
             // between their two parliamentary clubs.
-            p("cs_vpn", "Public Against Violence", "Verejnost proti nasiliu", Family::BigTent, 0.110),
+            // bloc -> Western: Civic Forum's Slovak twin. https://en.wikipedia.org/wiki/Public_Against_Violence
+            p("cs_vpn", "Public Against Violence", "Verejnost proti nasiliu", Family::BigTent, 0.110).aligned(Bloc::Western),
             p("cs_kdh", "Christian Democratic Movement", "Krestanskodemokraticke hnutie", Family::ChristianDemocratic, 0.064),
             p("cs_kdu", "Christian and Democratic Union", "Krestanska a demokraticka unie", Family::ChristianDemocratic, 0.057),
             p("cs_hsd", "Movement for Self-governing Democracy - Moravia and Silesia", "Hnuti za samospravnou demokracii - Spolecnost pro Moravu a Slezsko", Family::Regionalist, 0.052),
@@ -1507,7 +1615,8 @@ pub const POLITIES: &[Polity] = &[
             // Bulgarian Communist Party, in office since 1944, and it does not
             // change its name until 3 April.
             p("bg_bsp", "Bulgarian Socialist Party", "Balgarska sotsialisticheska partiya", Family::Communist, 0.472),
-            p("bg_sds", "Union of Democratic Forces", "Sayuz na demokratichnite sili", Family::BigTent, 0.362),
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Union_of_Democratic_Forces_(Bulgaria)
+            p("bg_sds", "Union of Democratic Forces", "Sayuz na demokratichnite sili", Family::BigTent, 0.362).aligned(Bloc::Western),
             p("bg_bzns", "Bulgarian Agrarian National Union", "Balgarski zemedelski naroden sayuz", Family::Agrarian, 0.080),
             // The party of the Turkish minority that the previous government
             // had spent five years trying to assimilate and then expel.
@@ -1816,7 +1925,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (0, 0),
         parties: &[
-            p("lt_sajudis", "Sajudis", "Lietuvos Persitvarkymo Sajudis", Family::BigTent, 0.645),
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Sajudis
+            p("lt_sajudis", "Sajudis", "Lietuvos Persitvarkymo Sajudis", Family::BigTent, 0.645).aligned(Bloc::Western),
             p("lt_ldpp", "Lithuanian Democratic Labour Party", "Lietuvos demokratine darbo partija", Family::SocialDemocratic, 0.284),
             p("lt_lls", "Union of Poles in Lithuania", "Lietuvos lenku sajunga", Family::Regionalist, 0.050),
         ],
@@ -1836,7 +1946,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (0, 0),
         parties: &[
-            p("lv_ltf", "Popular Front of Latvia", "Latvijas Tautas fronte", Family::BigTent, 0.652),
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Popular_Front_of_Latvia
+            p("lv_ltf", "Popular Front of Latvia", "Latvijas Tautas fronte", Family::BigTent, 0.652).aligned(Bloc::Western),
             p("lv_lidz", "Equal Rights", "Lidztiesiba", Family::Communist, 0.274),
         ],
         ruling: "the Saeima",
@@ -1859,7 +1970,8 @@ pub const POLITIES: &[Polity] = &[
         parties: &[
             p("ee_isamaa", "Pro Patria", "Isamaa", Family::Conservative, 0.220),
             p("ee_kk", "Safe Home", "Kindel Kodu", Family::Agrarian, 0.136),
-            p("ee_rahvarinne", "Popular Front of Estonia", "Rahvarinne", Family::BigTent, 0.123),
+            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Popular_Front_of_Estonia
+            p("ee_rahvarinne", "Popular Front of Estonia", "Rahvarinne", Family::BigTent, 0.123).aligned(Bloc::Western),
             p("ee_mood", "Moderates", "Moodukad", Family::SocialDemocratic, 0.097),
             p("ee_ersp", "Estonian National Independence Party", "Eesti Rahvusliku Soltumatuse Partei", Family::Nationalist, 0.088),
             p("ee_ek", "Estonian Citizen", "Eesti Kodanik", Family::Nationalist, 0.069),
@@ -2651,7 +2763,8 @@ pub const POLITIES: &[Polity] = &[
             p("za_ff", "Freedom Front", "Vryheidsfront", Family::Nationalist, 0.0217),
             p("za_dp", "Democratic Party", "", Family::Liberal, 0.0173),
             p("za_pac", "Pan Africanist Congress", "", Family::Nationalist, 0.0125),
-            p("za_acdp", "African Christian Democratic Party", "", Family::Religious, 0.0045),
+            // bloc -> Western: Christian, not Islamist. https://en.wikipedia.org/wiki/African_Christian_Democratic_Party
+            p("za_acdp", "African Christian Democratic Party", "", Family::Religious, 0.0045).aligned(Bloc::Western),
         ],
         ruling: "the tricameral Parliament",
         pillars: &[
@@ -3259,7 +3372,8 @@ pub const POLITIES: &[Polity] = &[
             p("th_pkt", "Thai Citizens' Party", "Prachakorn Thai", Family::Nationalist, 0.087),
             p("th_rassadorn", "People's Party", "Rassadorn", Family::BigTent, 0.059),
             p("th_muanchon", "Mass Party", "Muan Chon", Family::BigTent, 0.048),
-            p("th_palangdharma", "Righteous Force Party", "Palang Dharma", Family::Religious, 0.039),
+            // bloc -> Western: Buddhist, not Islamist. https://en.wikipedia.org/wiki/Palang_Dharma_Party
+            p("th_palangdharma", "Righteous Force Party", "Palang Dharma", Family::Religious, 0.039).aligned(Bloc::Western),
         ],
         ruling: "the House of Representatives",
         pillars: &[pl(Pillar::Army, "the Royal Thai Army")],
@@ -3333,7 +3447,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 36,
         next: (1992, 5),
         parties: &[
-            p("ph_ldp", "Struggle of Democratic Filipinos", "Laban ng Demokratikong Pilipino", Family::BigTent, 0.660),
+            // bloc -> Western: Aquino's governing coalition, a treaty ally. https://en.wikipedia.org/wiki/Laban_ng_Demokratikong_Pilipino
+            p("ph_ldp", "Struggle of Democratic Filipinos", "Laban ng Demokratikong Pilipino", Family::BigTent, 0.660).aligned(Bloc::Western),
             p("ph_gad", "Grand Alliance for Democracy", "", Family::Conservative, 0.100),
             p("ph_np", "Nacionalista Party", "Partido Nacionalista", Family::Conservative, 0.075),
             p("ph_lp", "Liberal Party", "Partido Liberal", Family::Liberal, 0.070),
@@ -3608,7 +3723,8 @@ pub const POLITIES: &[Polity] = &[
             // beating the PNM, and it came apart on schedule: Basdeo Panday
             // and three others were expelled in 1988 and founded the United
             // National Congress in April 1989.
-            p("tt_nar", "National Alliance for Reconstruction", "", Family::BigTent, 0.663),
+            // bloc -> Western: Governing party of a Commonwealth democracy. https://en.wikipedia.org/wiki/National_Alliance_for_Reconstruction
+            p("tt_nar", "National Alliance for Reconstruction", "", Family::BigTent, 0.663).aligned(Bloc::Western),
             p("tt_pnm", "People's National Movement", "", Family::Conservative, 0.320),
             p("tt_njac", "National Joint Action Committee", "", Family::Nationalist, 0.015),
             // The United National Congress is deliberately absent, on the
@@ -4231,7 +4347,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 60,
         next: (1991, 9),
         parties: &[
-            p("mu_all", "the Alliance", "MSM - Labour - PMSD", Family::BigTent, 0.629),
+            // bloc -> Western: Governing alliance of a Commonwealth democracy. https://en.wikipedia.org/wiki/1987_Mauritian_general_election
+            p("mu_all", "the Alliance", "MSM - Labour - PMSD", Family::BigTent, 0.629).aligned(Bloc::Western),
             p("mu_mmm", "Mauritian Militant Movement", "Mouvement Militant Mauricien", Family::SocialDemocratic, 0.339),
             p("mu_opr", "Rodrigues People's Organisation", "Organisation du Peuple Rodriguais", Family::Regionalist, 0.032),
         ],
@@ -4540,7 +4657,8 @@ pub const POLITIES: &[Polity] = &[
         // authoritarianism figure or it does not.
         next: (1991, 4),
         parties: &[
-            p("ws_hrpp", "Human Rights Protection Party", "", Family::BigTent, 0.5106),
+            // bloc -> Western: Governing party of a Commonwealth democracy. https://en.wikipedia.org/wiki/Human_Rights_Protection_Party
+            p("ws_hrpp", "Human Rights Protection Party", "", Family::BigTent, 0.5106).aligned(Bloc::Western),
             p("ws_coalition", "Samoan National Development Party", "Coalition", Family::Conservative, 0.4894),
         ],
         ruling: "the Fono",
@@ -5356,7 +5474,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 60,
         next: (1992, 11),
         parties: &[
-            p("sr_fdo", "Front for Democracy and Development", "Front voor Democratie en Ontwikkeling", Family::BigTent, 0.855),
+            // bloc -> Western: Democratic umbrella against Bouterse's military. https://en.wikipedia.org/wiki/Front_for_Democracy_and_Development
+            p("sr_fdo", "Front for Democracy and Development", "Front voor Democratie en Ontwikkeling", Family::BigTent, 0.855).aligned(Bloc::Western),
             p("sr_ndp", "National Democratic Party", "Nationale Democratische Partij", Family::Nationalist, 0.093),
             p("sr_palu", "Progressive Workers' and Farmers' Union", "Progressieve Arbeiders en Landbouwers Unie", Family::Communist, 0.017),
             p("sr_pl", "Pendawa Lima", "", Family::Regionalist, 0.016),
@@ -5374,6 +5493,92 @@ pub fn polity(id: NationId) -> Option<&'static Polity> {
 
 fn spec(id: NationId, party: &str) -> Option<&'static PartySpec> {
     polity(id)?.parties.iter().find(|p| p.id == party)
+}
+
+/// The bloc a party is counted on: its transcribed override if it carries one,
+/// else its family's default. A party id that is not in the table reads as
+/// Non-Aligned rather than panicking, because a save may name a party a later
+/// build renamed and the readout must not take the game down.
+pub fn bloc_of(id: NationId, party: &str) -> Bloc {
+    match spec(id, party) {
+        Some(s) => s.bloc.unwrap_or_else(|| s.family.bloc()),
+        None => Bloc::NonAligned,
+    }
+}
+
+/// A regime is Communist when the largest party in its transcribed table is
+/// one — the CPSU at 0.40 of the post-Article-6 table, the CPC at 1.00 — which
+/// is what decides whether its Party pillar installs the Communist bloc or the
+/// Non-Aligned one. Read off the table rather than off `Nation.system`, because
+/// `Command` in the 1990 data also covers Iran, Iraq, Syria, Libya, Algeria and
+/// Myanmar, none of which a party apparatus would hand to the Comintern's heirs.
+pub fn regime_is_communist(id: NationId) -> bool {
+    let pol = match polity(id) {
+        Some(p) => p,
+        None => return false,
+    };
+    let mut best: Option<&PartySpec> = None;
+    for s in pol.parties {
+        if best.map_or(true, |b| s.start > b.start) {
+            best = Some(s);
+        }
+    }
+    best.is_some_and(|s| s.bloc.unwrap_or_else(|| s.family.bloc()) == Bloc::Communist)
+}
+
+/// Whether the Clergy pillar of this polity is an Islamic institution — the
+/// ulema, al-Azhar, the seminaries of Qom — rather than a church or a Buddhist
+/// establishment. Transcribed from the pillar rows above, one nation each:
+/// twelve polities carry a Clergy pillar and every one is named here.
+pub fn clergy_is_muslim(id: NationId) -> bool {
+    match id {
+        // "the ulema"; "the seminaries of Qom"; "al-Azhar"; "Hezbollah and the
+        // Revolutionary Guard contingent at Baalbek"; "the Ibadi ulema and the
+        // office of the Grand Mufti"; "the tribal confederations of Hashid and
+        // Bakil" (Zaydi and Shafi'i tribes whose political vehicle was Islah);
+        // "the Commandership of the Faithful"; "the state religious
+        // establishment" (Brunei's Melayu Islam Beraja).
+        NationId::SaudiArabia
+        | NationId::Iran
+        | NationId::Egypt
+        | NationId::Lebanon
+        | NationId::Oman
+        | NationId::Yemen
+        | NationId::Morocco
+        | NationId::Brunei => true,
+        // "the Methodist Church in Fiji"; "the Free Wesleyan Church of Tonga";
+        // "the Zhung Dratshang under the Je Khenpo"; "the Roman Catholic
+        // hierarchy" (Lesotho).
+        _ => false,
+    }
+}
+
+/// The bloc an institution installs when it takes power, or is counted on
+/// while it merely props one up (design D3 pillar map): the army is
+/// Nationalist, the security services are Non-Aligned, business is Western,
+/// the party apparatus is Communist in a Communist regime and Non-Aligned
+/// otherwise, the clergy Islamist where it is Muslim and Western where it is a
+/// church.
+pub fn pillar_bloc(id: NationId, pillar: Pillar) -> Bloc {
+    match pillar {
+        Pillar::Army => Bloc::Nationalist,
+        Pillar::Security => Bloc::NonAligned,
+        Pillar::Business => Bloc::Western,
+        Pillar::Party => {
+            if regime_is_communist(id) {
+                Bloc::Communist
+            } else {
+                Bloc::NonAligned
+            }
+        }
+        Pillar::Clergy => {
+            if clergy_is_muslim(id) {
+                Bloc::Islamist
+            } else {
+                Bloc::Western
+            }
+        }
+    }
 }
 
 /// A party's structural constituency: the transcribed share, normalised. This
