@@ -5735,6 +5735,10 @@ fn normalise(v: &mut [(String, f64)]) {
 /// written before this module existed still loads and simply grows one.
 pub fn ensure(w: &mut WorldState, id: NationId) {
     if state(w, id).is_some() {
+        // Seated already. The only thing left to do is the political arm's
+        // seed, which returns at once unless the arm is on and this nation is
+        // an unseeded regime — a save switched on after it was written.
+        seed_blocs(w, id);
         return;
     }
     let pol = match polity(id) {
@@ -5768,6 +5772,53 @@ pub fn ensure(w: &mut WorldState, id: NationId) {
     w.governments.states.push(g);
     if is_electoral(w, id) {
         form_government(w, id, false);
+    }
+    seed_blocs(w, id);
+}
+
+/// The political arm's opening state for one nation, written once and only
+/// while `rules.ideology_blocs` is on. Everything above this line runs exactly
+/// as it did before the arm existed; this returns on the switch BEFORE it reads
+/// or writes anything, draws no RNG, and is idempotent, so `ensure_all` can
+/// call it every tick and a save written before the arm — or with it off —
+/// grows its blocs the first time it is loaded with the arm on.
+///
+/// The seed is FLAT from the leader row (design D5): the ruling bloc at 0.60,
+/// the remaining 0.40 split equally over the non-ruling blocs PRESENT in the
+/// polity — a party of that bloc in the dormant table, or the bloc's installing
+/// pillar in the pillar list; foreign backing is S3 — every bloc floored at
+/// 0.002, then normalised. Dormant tables stay dormant: `support` is untouched.
+pub fn seed_blocs(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_blocs {
+        return;
+    }
+    if w.leadership.is_none() {
+        // A save written before the arm, or with it off, carries no table.
+        // The embedded one is refused on the same terms it is at world_1990.
+        let rows = crate::data::parse_leaders(&crate::data::EMBEDDED_LEADERS)
+            .unwrap_or_else(|e| panic!("{}", crate::data::render_errors(&e)));
+        w.leadership = Some(rows);
+    }
+    // An electoral nation stores nothing: its shares are its party support and
+    // its ruling bloc is its coalition leader, both read live.
+    if is_electoral(w, id) {
+        return;
+    }
+    let unseeded = match state(w, id) {
+        Some(g) => g.regime_bloc.is_none() && g.movements.is_empty(),
+        None => return,
+    };
+    if !unseeded {
+        return;
+    }
+    let ruling = match crate::blocs::described_ruling_bloc(w, id) {
+        Some(b) => b,
+        None => return,
+    };
+    let movements = crate::blocs::flat_seed(id, ruling);
+    if let Some(g) = state_mut(w, id) {
+        g.regime_bloc = Some(ruling);
+        g.movements = movements.to_vec();
     }
 }
 
