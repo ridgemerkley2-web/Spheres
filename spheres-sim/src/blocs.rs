@@ -445,8 +445,9 @@ impl Gauge {
 #[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct Road {
     pub gauges: Vec<Gauge>,
-    /// Whether the road can be taken. FALSE ON EVERY ROAD IN THIS BUILD: the
-    /// roads are S4 and `rules.ideology_takeover` is off everywhere.
+    /// Whether the road can be taken in this world: the mechanic behind it
+    /// (S4) is switched on and the polity has the shape it needs. `reason`
+    /// says why not, in the sim's words, and is empty on an open road.
     pub open: bool,
     pub reason: &'static str,
     /// `armed()` and `half_armed()` at construction, served for the screen and
@@ -456,11 +457,17 @@ pub struct Road {
 }
 
 impl Road {
-    fn closed(gauges: Vec<Gauge>) -> Road {
-        let mut r = Road { gauges, open: false, reason: NOT_IN_THIS_BUILD, armed: false, half_armed: false };
+    /// A road with its gauges and the REAL reason it is closed, or `None`
+    /// for one that is open.
+    fn new(gauges: Vec<Gauge>, closed: Option<&'static str>) -> Road {
+        let mut r = Road { gauges, open: closed.is_none(), reason: closed.unwrap_or(""), armed: false, half_armed: false };
         r.armed = r.armed();
         r.half_armed = r.half_armed();
         r
+    }
+    #[cfg(test)]
+    fn closed(gauges: Vec<Gauge>) -> Road {
+        Road::new(gauges, Some(CALIBRATION_PENDING))
     }
     /// Whether every gauge is at its trigger — what `open` would read if the
     /// build were S4. Served so the screen can say "would be open" honestly.
@@ -500,8 +507,17 @@ impl TakeoverReadout {
     }
 }
 
-/// The one reason every road gives in this build.
+/// The reason every road gives while `rules.ideology_takeover` is off — the
+/// browser's state in this build: the mechanics are landed (S4) and gated,
+/// their calibration against the 1989-92 episodes pending (BUGS.md), so the
+/// gauges read live and the roads stay shut.
+pub const CALIBRATION_PENDING: &str = "calibration pending";
+/// A road whose mechanic has not landed. No road reads it after S4 route 4;
+/// kept for the readout's history and the screen's vocabulary.
 pub const NOT_IN_THIS_BUILD: &str = "not in this build";
+/// The coup road in a polity whose state carries no Army pillar: nobody to
+/// stage one.
+pub const NO_ARMY: &str = "no army pillar in this polity";
 
 /// The takeover watch: per road, the gauges the S4 mechanics will read and
 /// whether the road is open. In this build every road is closed with
@@ -525,26 +541,47 @@ pub fn takeover_readout(w: &WorldState, id: NationId) -> TakeoverReadout {
     let disc = discontent(w, id);
     let infl = influence(w, id);
     let western = infl[Bloc::Western as usize].1;
-    let closed = Road::closed;
+    let on = w.rules.ideology_takeover;
+    let has_army = g.is_some_and(|g| g.pillars.iter().any(|(p, _)| *p == Pillar::Army));
 
-    let coup = closed(vec![
-        Gauge::below("army loyalty", effective_army_loyalty(w, id), 0.35),
-        Gauge::above("discontent", disc, 0.25),
-        Gauge::above("coup pressure", pressure, 1.0 / w.rules.crisis_intensity.max(0.1)),
-    ]);
+    // Route 2 (and the regime's own coup): closed without the switch, closed
+    // where nobody could stage one.
+    let coup = Road::new(
+        vec![
+            Gauge::below("army loyalty", effective_army_loyalty(w, id), 0.35),
+            Gauge::above("discontent", disc, 0.25),
+            Gauge::above("coup pressure", pressure, 1.0 / w.rules.crisis_intensity.max(0.1)),
+        ],
+        if !on {
+            Some(CALIBRATION_PENDING)
+        } else if !has_army {
+            Some(NO_ARMY)
+        } else {
+            None
+        },
+    );
     let (cv, cb) = match strongest_challenger(w, id) {
         Some((b, v)) => (v, Some(b)),
         None => (0.0, None),
     };
     let mut challenger = Gauge::above("challenger influence", cv, 0.45);
     challenger.bloc = cb;
-    let uprising = closed(vec![Gauge::above("discontent", disc, 0.45), challenger]);
-    let round_table = closed(vec![
-        Gauge::above("Western influence", western, 0.40),
-        Gauge::below("party loyalty", loyalty(Pillar::Party), 0.55),
-        Gauge::inside("stability", stability, 30.0, 70.0),
-    ]);
-    let collapse = closed(vec![Gauge::below("stability", stability, 12.0)]);
+    let uprising = Road::new(
+        vec![Gauge::above("discontent", disc, 0.45), challenger],
+        if !on { Some(CALIBRATION_PENDING) } else { Some(NOT_IN_THIS_BUILD) },
+    );
+    let round_table = Road::new(
+        vec![
+            Gauge::above("Western influence", western, 0.40),
+            Gauge::below("party loyalty", loyalty(Pillar::Party), 0.55),
+            Gauge::inside("stability", stability, 30.0, 70.0),
+        ],
+        if !on { Some(CALIBRATION_PENDING) } else { Some(NOT_IN_THIS_BUILD) },
+    );
+    let collapse = Road::new(
+        vec![Gauge::below("stability", stability, 12.0)],
+        if !on { Some(CALIBRATION_PENDING) } else { Some(NOT_IN_THIS_BUILD) },
+    );
     let mut out = TakeoverReadout { coup, uprising, round_table, collapse, half_armed: false };
     out.half_armed = out.half_armed();
     out
@@ -1204,18 +1241,24 @@ mod tests {
         assert_eq!(ruling_bloc(&w, id), Some(Bloc::Islamist));
     }
 
-    /// Every road reads closed with the build's reason, on and off, and the
-    /// gauges carry the design's triggers. Watched red with the collapse road
-    /// served open.
+    /// Every road reads closed with "calibration pending" while
+    /// `rules.ideology_takeover` is off — the lens on or off — and the
+    /// gauges carry the design's triggers. Re-expressed from "every road
+    /// reads closed in this build" when S4 landed the mechanics behind the
+    /// switch: the OFF reading is the same bar under the design's new word,
+    /// and the ON readings have their own test below. Watched red (S1) with
+    /// the collapse road served open; watched red (S4) with the coup road's
+    /// `None` reason served regardless of the switch: "USA: a road is open".
     #[test]
-    fn every_road_reads_closed_in_this_build() {
+    fn every_road_reads_closed_while_takeover_is_off() {
         for rules in [GameRules::default(), on(1990)] {
             let w = world_1990(rules);
+            assert!(!w.rules.ideology_takeover);
             for id in alive(&w) {
                 let t = takeover_readout(&w, id);
                 for road in t.roads() {
                     assert!(!road.open, "{}: a road is open", id.code());
-                    assert_eq!(road.reason, NOT_IN_THIS_BUILD);
+                    assert_eq!(road.reason, CALIBRATION_PENDING);
                     for g in &road.gauges {
                         assert!(g.value.is_finite() && g.progress().is_finite(), "{}: {g:?}", id.code());
                     }
@@ -1326,7 +1369,7 @@ mod tests {
             assert_eq!(p.blocs.iter().map(|r| r.bloc).collect::<Vec<_>>(), Bloc::ALL.to_vec());
             let t = &p.takeover;
             for r in t.roads() {
-                assert!(!r.open && r.reason == NOT_IN_THIS_BUILD);
+                assert!(!r.open && r.reason == CALIBRATION_PENDING, "{}: the takeover switch is off", id.code());
                 assert_eq!(r.armed, r.armed(), "{}", id.code());
                 assert_eq!(r.half_armed, r.half_armed(), "{}", id.code());
                 for g in &r.gauges {

@@ -6572,9 +6572,18 @@ fn reseeded_support(w: &WorldState, id: NationId) -> Option<(Vec<(String, f64)>,
 fn schedule_first_elections(w: &mut WorldState, id: NationId, months: u32) -> Option<String> {
     let when = add_months(w.year, w.month, months);
     let lost = reseed_support_from_movements(w, id);
+    let takeover = w.rules.ideology_takeover;
     if let Some(g) = state_mut(w, id) {
         g.next_election = when;
-        g.pillars.clear();
+        // An electoral state keeps no pillars — except, under the roads (S4,
+        // route 2), the two that can remove an elected government: the Army
+        // and the Security service stay, at the loyalty they had, and the
+        // electoral branch keeps walking them.
+        if takeover {
+            g.pillars.retain(|(p, _)| matches!(p, Pillar::Army | Pillar::Security));
+        } else {
+            g.pillars.clear();
+        }
         g.coup_pressure = 0.0;
     }
     form_government(w, id, false);
@@ -7023,12 +7032,7 @@ pub fn suspend_plan(w: &WorldState, id: NationId) -> Result<SuspendPlan, String>
     }
     let ruling = crate::blocs::ruling_bloc(w, id).ok_or("no ruling bloc")?;
     let n = w.nation(id);
-    let mut movements = crate::blocs::bloc_shares(w, id);
-    movements[ruling as usize].1 += 0.10;
-    for e in movements.iter_mut() {
-        e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
-    }
-    normalise_blocs(&mut movements);
+    let movements = movements_from_parties(w, id, ruling, 0.10);
     Ok(SuspendPlan {
         ruling,
         auth_before: n.authoritarianism,
@@ -7681,11 +7685,12 @@ pub fn ai_lever(w: &WorldState, id: NationId) -> Option<crate::Command> {
 // The tick
 // ---------------------------------------------------------------------------
 
-/// Loyalty walks toward what the regime is currently giving each institution.
-fn regime_tick(w: &mut WorldState, id: NationId) {
-    let dt = crate::clock::month_fraction(w);
-    let loss_rate = crate::clock::blend(w, 0.10);
-    let gain_rate = crate::clock::blend(w, 0.045);
+/// What each named institution currently wants of the regime, 0..1 — the
+/// targets loyalty walks toward. Factored out of `regime_tick` so the arm's
+/// electoral army tick (S4, route 2) reads the Army and Security lines from
+/// the same formulas; every input is read at the same point and the
+/// arithmetic is untouched.
+fn pillar_targets(w: &WorldState, id: NationId, pillars: &[Pillar]) -> Vec<(Pillar, f64)> {
     let (mil, _invest, growth, infl, stab, auth, exhaustion, sanctioned) = {
         let n = w.nation(id);
         (
@@ -7698,12 +7703,8 @@ fn regime_tick(w: &mut WorldState, id: NationId) {
             w.sanction_weight(id),
         )
     };
-    let pillars: Vec<Pillar> = match state(w, id) {
-        Some(g) => g.pillars.iter().map(|(p, _)| *p).collect(),
-        None => return,
-    };
     let mut targets: Vec<(Pillar, f64)> = vec![];
-    for pillar in pillars {
+    for pillar in pillars.iter().copied() {
         let t = match pillar {
             // Generals are bought with budgets and lost in wars that go badly.
             // The floor is deliberately low: the first draft started the army at
@@ -7749,19 +7750,40 @@ fn regime_tick(w: &mut WorldState, id: NationId) {
         };
         targets.push((pillar, t.clamp(0.0, 1.0)));
     }
+    targets
+}
+
+/// Loyalty walks toward its target: slow to buy and quick to lose, like
+/// everything else in this game that is worth having.
+fn walk_pillars(w: &mut WorldState, id: NationId, targets: Vec<(Pillar, f64)>) {
+    let loss_rate = crate::clock::blend(w, 0.10);
+    let gain_rate = crate::clock::blend(w, 0.045);
     let g = match state_mut(w, id) {
         Some(g) => g,
         None => return,
     };
     for (pillar, target) in targets {
         if let Some(e) = g.pillars.iter_mut().find(|(p, _)| *p == pillar) {
-            // Loyalty is slow to buy and quick to lose, like everything else in
-            // this game that is worth having.
             let rate = if target < e.1 { loss_rate } else { gain_rate };
             e.1 += (target - e.1) * rate;
             e.1 = e.1.clamp(0.0, 1.0);
         }
     }
+}
+
+/// Loyalty walks toward what the regime is currently giving each institution.
+fn regime_tick(w: &mut WorldState, id: NationId) {
+    let dt = crate::clock::month_fraction(w);
+    let pillars: Vec<Pillar> = match state(w, id) {
+        Some(g) => g.pillars.iter().map(|(p, _)| *p).collect(),
+        None => return,
+    };
+    let targets = pillar_targets(w, id, &pillars);
+    walk_pillars(w, id, targets);
+    let g = match state_mut(w, id) {
+        Some(g) => g,
+        None => return,
+    };
     // Pressure builds while one of the *armed* institutions is going unpaid.
     // Merchants and clergy withdraw legitimacy, which is what
     // `standing_modifier` reads; they do not put soldiers on the street. The
@@ -7773,6 +7795,137 @@ fn regime_tick(w: &mut WorldState, id: NationId) {
     } else {
         g.coup_pressure = (g.coup_pressure - 0.015 * dt).max(0.0);
     }
+}
+
+// ---------------------------------------------------------------------------
+// The roads (S4), route 2: a military coup against an elected government.
+// Everything here returns before reading anything while
+// `rules.ideology_takeover` is off, and draws no RNG in any state.
+// ---------------------------------------------------------------------------
+
+/// The Army's loyalty at or under which an elected government's own
+/// soldiers start to count the months, and the discontent at or over which
+/// they do. INVENTED (design S4, route 2).
+pub const ELECTORAL_COUP_ARMY: f64 = 0.35;
+pub const ELECTORAL_COUP_DISCONTENT: f64 = 0.25;
+/// The months an elected government must have sat before its army moves
+/// (the regime's own coup waits 36 after a break; the elected government's
+/// honeymoon is the shorter one). INVENTED (design S4, route 2).
+pub const ELECTORAL_COUP_SETTLED: u32 = 12;
+
+/// Route 2's slow half: in an electoral polity whose state carries an Army
+/// pillar, the Army and Security lines of `pillar_targets` are walked as a
+/// regime's are, and pressure accrues at the ELECTORAL rate — while the
+/// effective army loyalty (the pillar less the Nationalist bloc's foreign
+/// backing) is under `ELECTORAL_COUP_ARMY` and discontent at or over
+/// `ELECTORAL_COUP_DISCONTENT`, `0.30 * (2*(0.35 - eff) + (D - 0.25)) * dt`
+/// to a cap of 1.5; otherwise it cools 0.03*dt. The rate and the cap are
+/// INVENTED (design S4). Nothing here while the takeover switch is off, or
+/// where the state holds no Army.
+fn electoral_army_tick(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_takeover {
+        return;
+    }
+    let armed: Vec<Pillar> = match state(w, id) {
+        Some(g) if g.pillars.iter().any(|(p, _)| *p == Pillar::Army) => g
+            .pillars
+            .iter()
+            .map(|(p, _)| *p)
+            .filter(|p| matches!(p, Pillar::Army | Pillar::Security))
+            .collect(),
+        _ => return,
+    };
+    let targets = pillar_targets(w, id, &armed);
+    walk_pillars(w, id, targets);
+    let dt = crate::clock::month_fraction(w);
+    let eff = crate::blocs::effective_army_loyalty(w, id);
+    let d = crate::blocs::discontent(w, id);
+    if let Some(g) = state_mut(w, id) {
+        if eff < ELECTORAL_COUP_ARMY && d >= ELECTORAL_COUP_DISCONTENT {
+            let rate = 0.30 * (2.0 * (ELECTORAL_COUP_ARMY - eff) + (d - ELECTORAL_COUP_DISCONTENT));
+            g.coup_pressure = (g.coup_pressure + rate * dt).min(1.5);
+        } else {
+            g.coup_pressure = (g.coup_pressure - 0.03 * dt).max(0.0);
+        }
+    }
+}
+
+/// The movements a polity that has just stopped voting carries: its parties'
+/// bloc sums, `bonus` added to `ruling`, floored and normalised. What
+/// `SuspendConstitution` seeds (its +0.10), and what a coup or an uprising in
+/// an electoral state seeds first, so the regime branch has movements to
+/// move.
+fn movements_from_parties(w: &WorldState, id: NationId, ruling: Bloc, bonus: f64) -> [(Bloc, f64); 5] {
+    let mut movements = crate::blocs::bloc_shares(w, id);
+    movements[ruling as usize].1 += bonus;
+    for e in movements.iter_mut() {
+        e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+    }
+    normalise_blocs(&mut movements);
+    movements
+}
+
+/// Every pillar of the polity's spec seated in the state, so a regime that
+/// has just replaced an elected government has all of its institutions to
+/// keep paying and not only the two that removed it. Pillars already present
+/// keep their loyalty; the caller writes over them.
+fn seat_spec_pillars(w: &mut WorldState, id: NationId) {
+    let spec: Vec<Pillar> = polity(id).map(|p| p.pillars.iter().map(|s| s.pillar).collect()).unwrap_or_default();
+    if let Some(g) = state_mut(w, id) {
+        for p in spec {
+            if !g.pillars.iter().any(|(q, _)| *q == p) {
+                g.pillars.push((p, 0.72));
+            }
+        }
+    }
+}
+
+/// Route 2's trigger and break: pressure at or past `1 / crisis_intensity`
+/// and the government at least `ELECTORAL_COUP_SETTLED` months in office ->
+/// `regime_break` with the Army as the mover, authoritarianism
+/// `max(auth + 0.25, 0.65)`, the regime in the NATIONALIST colour, the
+/// coalition kept as a dormant record, the movements seeded from the
+/// parties' bloc sums (the deposed government's colour the largest), the
+/// spec's pillars seated at 0.90 / 0.72. Returns whether it fired. Nothing
+/// while the takeover switch is off.
+fn maybe_electoral_coup(w: &mut WorldState, id: NationId) -> bool {
+    if !w.rules.ideology_takeover {
+        return false;
+    }
+    let (pressure, settled, has_army) = match state(w, id) {
+        Some(g) => (g.coup_pressure, g.months_in_office, g.pillars.iter().any(|(p, _)| *p == Pillar::Army)),
+        None => return false,
+    };
+    if !has_army || settled < ELECTORAL_COUP_SETTLED {
+        return false;
+    }
+    if pressure < 1.0 / w.rules.crisis_intensity.max(0.1) {
+        return false;
+    }
+    let ruling = crate::blocs::ruling_bloc(w, id).unwrap_or(Bloc::Nationalist);
+    let movements = movements_from_parties(w, id, ruling, 0.0);
+    let auth = w.nation(id).authoritarianism;
+    seat_spec_pillars(w, id);
+    if let Some(g) = state_mut(w, id) {
+        g.movements = movements.to_vec();
+        g.surging = latched_at_seed(&movements, Bloc::Nationalist);
+    }
+    let name = pillar_name(id, Pillar::Army);
+    regime_break(
+        w,
+        id,
+        Break {
+            pillar: Pillar::Army,
+            auth_after: (auth + 0.25).max(0.65).min(0.98),
+            regime_bloc: Some(Bloc::Nationalist),
+            headline: format!(
+                "COUP IN {}: {} removes the elected government.",
+                id.name().to_uppercase(),
+                name
+            ),
+        },
+    );
+    true
 }
 
 fn maybe_coup(w: &mut WorldState, id: NationId) {
@@ -7963,6 +8116,17 @@ pub fn tick(w: &mut WorldState) {
             }
 
             drift_support(w, id);
+
+            // The roads (S4, route 2): the army of an elected government has a
+            // loyalty and a pressure of its own, and moves BEFORE the fragile
+            // branch below, which would otherwise reset the office clock the
+            // trigger reads. Both return at once with the takeover switch off.
+            electoral_army_tick(w, id);
+            if maybe_electoral_coup(w, id) {
+                // The government this branch was judging no longer exists;
+                // the regime branch takes over next tick.
+                continue;
+            }
 
             // A government that has lost the country does not always last the
             // term. Israel's fell on a confidence motion in March 1990 and
@@ -9561,5 +9725,106 @@ mod tests {
                 assert!(!STEMS.iter().any(|s| h.contains(s)), "the off world pulled a lever: {h}");
             }
         }
+    }
+    fn roads_rules(seed: u64) -> GameRules {
+        GameRules { seed, ideology_blocs: true, ideology_takeover: true, ai_aggression: 0.0, ..GameRules::default() }
+    }
+
+    /// Route 2 (S4). Pakistan, an electoral polity with an Army pillar, its
+    /// defence budget cut to a tenth of a percent every month and its
+    /// stability held at 35 (Pakistan's own 52 reads discontent 0.147, under
+    /// the 0.25 line; the rest are Pakistan's transcribed numbers): the army
+    /// removes the elected government in about eighteen months — the Army
+    /// line falls to 0.35 in about eleven, the pressure then climbs at
+    /// 0.30·(2·(0.35 − eff) + (D − 0.25)) a month. The same country paying
+    /// its army at its own 6.2% with stability 70 never sees one in twenty
+    /// years. With the takeover switch OFF (lens on) the unpaid army is not
+    /// even walked: pillars stay at their seating and pressure at zero.
+    /// Watched red with `electoral_army_tick` not called from the tick:
+    /// "twenty years of an unpaid Pakistan Army and nobody moved".
+    #[test]
+    fn an_unpaid_army_removes_an_elected_government_and_a_paid_one_never_does() {
+        let pk = NationId::Pakistan;
+        let starve = |w: &mut WorldState| {
+            let n = w.nation_mut(pk);
+            n.mil_spend_gdp = 0.001;
+            n.stability = 35.0;
+        };
+        // OFF: nothing is walked and nothing accrues.
+        let mut off = world_1990(on_rules(7));
+        off.player = Some(pk);
+        assert!(is_electoral(&off, pk));
+        let pillars_at_seat = state(&off, pk).unwrap().pillars.clone();
+        assert!(pillars_at_seat.iter().any(|(p, _)| *p == Pillar::Army));
+        for _ in 0..36 {
+            starve(&mut off);
+            for h in crate::tick_month(&mut off, &[]) {
+                assert!(!h.contains("COUP IN PAKISTAN"), "{h}");
+            }
+        }
+        let g = state(&off, pk).unwrap();
+        assert_eq!(g.pillars, pillars_at_seat, "the takeover switch off walked an electoral army");
+        assert_eq!(g.coup_pressure, 0.0);
+
+        // ON: the unpaid army moves.
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(pk);
+        let auth_before = w.nation(pk).authoritarianism;
+        let coalition_before = state(&w, pk).unwrap().coalition.clone();
+        assert!(!coalition_before.is_empty());
+        let mut coup_month: Option<usize> = None;
+        let mut crossed_at: Option<usize> = None;
+        for m in 0..240 {
+            starve(&mut w);
+            let news = crate::tick_month(&mut w, &[]);
+            if crossed_at.is_none() && crate::blocs::effective_army_loyalty(&w, pk) < ELECTORAL_COUP_ARMY {
+                crossed_at = Some(m + 1);
+            }
+            if news.iter().any(|h| h.contains("COUP IN PAKISTAN: the Pakistan Army removes the elected government.")) {
+                coup_month = Some(m + 1);
+                break;
+            }
+            assert!(is_electoral(&w, pk), "month {m}: Pakistan stopped voting without a coup");
+        }
+        let month = coup_month.expect("twenty years of an unpaid Pakistan Army and nobody moved");
+        let crossed = crossed_at.unwrap();
+        println!("route 2: the Pakistan Army crossed 0.35 in month {crossed} and moved in month {month}");
+        assert!((12..=36).contains(&month), "the coup came in month {month}, not about eighteen (measured 30 at these constants)");
+        assert!(month >= ELECTORAL_COUP_SETTLED as usize);
+        let n = w.nation(pk);
+        assert!(!is_electoral(&w, pk));
+        assert!(n.authoritarianism >= 0.65 && n.authoritarianism >= auth_before + 0.25 - 1e-12, "{}", n.authoritarianism);
+        let g = state(&w, pk).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Nationalist));
+        assert_eq!(g.coalition, coalition_before, "the cabinet is kept as a dormant record");
+        assert_eq!(g.coup_pressure, 0.0);
+        assert_eq!(g.months_in_office, 0);
+        let spec: Vec<Pillar> = polity(pk).unwrap().pillars.iter().map(|s| s.pillar).collect();
+        for p in &spec {
+            let v = g.loyalty(*p);
+            assert_eq!(v, if *p == Pillar::Army { 0.90 } else { 0.72 }, "{p:?}");
+        }
+        assert_eq!(g.pillars.len(), spec.len());
+        assert_eq!(g.movements.len(), 5);
+        let sum: f64 = g.movements.iter().map(|(_, s)| *s).sum();
+        assert!((sum - 1.0).abs() < 1e-9);
+        // The regime branch takes over: no election is ever due again.
+        crate::tick_month(&mut w, &[]);
+        assert_eq!(state(&w, pk).unwrap().next_election, (0, 0));
+
+        // A paid army in a calm country never moves.
+        let mut safe = world_1990(roads_rules(7));
+        safe.player = Some(pk);
+        for _ in 0..240 {
+            {
+                let n = safe.nation_mut(pk);
+                n.mil_spend_gdp = 0.062;
+                n.stability = 70.0;
+            }
+            for h in crate::tick_month(&mut safe, &[]) {
+                assert!(!h.contains("COUP IN PAKISTAN"), "a paid Pakistan Army staged a coup: {h}");
+            }
+        }
+        assert!(state(&safe, pk).unwrap().coup_pressure == 0.0);
     }
 }

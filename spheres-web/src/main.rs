@@ -15169,8 +15169,8 @@ mod tests {
         assert_eq!(blocs[0]["backing"], 0.0, "foreign backing is S3 and reads zero");
         assert_eq!(blocs[0]["banned"], false);
         for road in ["coup", "uprising", "round_table", "collapse"] {
-            assert_eq!(pl["takeover"][road]["open"], false, "{road} must read closed in this build");
-            assert_eq!(pl["takeover"][road]["reason"], "not in this build");
+            assert_eq!(pl["takeover"][road]["open"], false, "{road} must read closed with the takeover switch off");
+            assert_eq!(pl["takeover"][road]["reason"], spheres_sim::blocs::CALIBRATION_PENDING);
             assert!(!pl["takeover"][road]["gauges"].as_array().unwrap().is_empty());
         }
         assert!(pl["takeover"]["half_armed"].is_boolean());
