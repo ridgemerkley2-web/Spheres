@@ -519,7 +519,7 @@ fn run_seed(seed: u64, verbose: bool, by_nation: &mut HashMap<&'static str, Hash
                 continue;
             }
             let id = w.nations[i].id;
-            if !blocs::bloc_can_win(id, Bloc::Islamist) {
+            if !blocs::bloc_can_win(&w, id, Bloc::Islamist) {
                 continue;
             }
             let v = blocs::influence(&w, id)[Bloc::Islamist as usize].1;

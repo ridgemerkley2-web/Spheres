@@ -1179,7 +1179,7 @@ fn covert_json(w: &WorldState, sponsor: NationId, target: NationId) -> serde_jso
          Some("a run of accidents".into()), "sabotage".into(), None);
     if w.rules.ideology_blocs {
         for b in Bloc::ALL {
-            if !blocs::bloc_present(target, b) {
+            if !blocs::bloc_present(w, target, b) {
                 continue;
             }
             push(
@@ -1212,7 +1212,7 @@ fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
     use spheres_sim::blocs;
     use spheres_sim::government as gov;
     use spheres_sim::government::Bloc;
-    let pol = gov::polity(id);
+    let pol = gov::polity_in(w, id);
     let g = gov::state(w, id);
     let electoral = gov::is_electoral(w, id);
     let held = w.nation_opt(id).map_or(0.0, |n| n.political_capital);
@@ -1401,7 +1401,7 @@ fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
             ));
         } else {
             for b in Bloc::ALL {
-                if ruling == Some(b) || !blocs::bloc_present(id, b) {
+                if ruling == Some(b) || !blocs::bloc_present(w, id, b) {
                     continue;
                 }
                 let cmd = Command::DeclareProgramme { nation: id, bloc: b };
@@ -15813,7 +15813,7 @@ mod tests {
         let programmes = kinds(&iq, "programme");
         let present: Vec<gov::Bloc> = gov::Bloc::ALL
             .into_iter()
-            .filter(|b| *b != gov::Bloc::Nationalist && spheres_sim::blocs::bloc_present(NationId::Iraq, *b))
+            .filter(|b| *b != gov::Bloc::Nationalist && spheres_sim::blocs::bloc_present(&g.world, NationId::Iraq, *b))
             .collect();
         assert_eq!(programmes.len(), present.len());
         assert!(!programmes.is_empty());
@@ -15874,7 +15874,7 @@ mod tests {
         let kinds: Vec<&str> = ops.iter().map(|o| o["kind"].as_str().unwrap()).collect();
         assert_eq!(kinds[..3], ["fund_opposition", "stir_separatists", "sabotage_industry"]);
         let backs: Vec<&serde_json::Value> = ops.iter().filter(|o| o["kind"] == "back_bloc").collect();
-        let present: Vec<Bloc> = Bloc::ALL.into_iter().filter(|b| spheres_sim::blocs::bloc_present(NationId::Cuba, *b)).collect();
+        let present: Vec<Bloc> = Bloc::ALL.into_iter().filter(|b| spheres_sim::blocs::bloc_present(w, NationId::Cuba, *b)).collect();
         assert_eq!(backs.len(), present.len());
         assert!(backs.len() >= 2, "{present:?}");
         for o in ops {
