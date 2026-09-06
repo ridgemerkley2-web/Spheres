@@ -1,4 +1,5 @@
 pub mod arsenal;
+pub mod blocs;
 pub mod commitment;
 pub mod commerce;
 pub mod data;

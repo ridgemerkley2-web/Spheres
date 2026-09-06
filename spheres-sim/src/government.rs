@@ -5495,6 +5495,12 @@ fn spec(id: NationId, party: &str) -> Option<&'static PartySpec> {
     polity(id)?.parties.iter().find(|p| p.id == party)
 }
 
+// The political arm's readouts live in `crate::blocs` and are reachable under
+// the name the design gives them.
+pub use crate::blocs::{
+    bloc_shares, discontent, government_of_the_day, influence, ruling_bloc, takeover_readout,
+};
+
 /// The bloc a party is counted on: its transcribed override if it carries one,
 /// else its family's default. A party id that is not in the table reads as
 /// Non-Aligned rather than panicking, because a save may name a party a later
