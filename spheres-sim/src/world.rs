@@ -939,6 +939,21 @@ pub struct GameRules {
     /// Explicitly enabled for the daily review campaign; absent from legacy saves.
     #[serde(default, skip_serializing_if = "is_false")]
     pub economic_competition: bool,
+    /// The political arm, stage S1: the five ideological blocs, the leader
+    /// table, the discontent gauge and the takeover watch as READOUTS. OFF by
+    /// default on the `resource_market` pattern, so every test and the headless
+    /// CLI run the world the goldens pin, bit for bit; the browser's play rules
+    /// turn it on. Every state this switch seeds (`GovState.movements`,
+    /// `GovState.regime_bloc`, `WorldState.leadership`) serialises nothing
+    /// while it is off, and the government module draws no RNG for it.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub ideology_blocs: bool,
+    /// The four roads to power — coup, uprising, round table, collapse — as
+    /// MECHANICS rather than readouts. Stage S4, not built here: every road
+    /// reads closed with the reason "not in this build" while this is false,
+    /// and nothing in the tree turns it on.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub ideology_takeover: bool,
 }
 fn rules_true() -> bool {
     true
@@ -963,6 +978,8 @@ impl Default for GameRules {
             production_system: false,
             manufacturing_system: false,
             economic_competition: false,
+            ideology_blocs: false,
+            ideology_takeover: false,
         }
     }
 }
