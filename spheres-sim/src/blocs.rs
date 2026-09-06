@@ -40,7 +40,7 @@ pub const RULING_SEED: f64 = 0.60;
 /// 1990 table — is skipped on the same terms: it asserts nothing, and the
 /// nation is described from its table.
 pub fn leader_row(w: &WorldState, id: NationId) -> Option<&Office> {
-    w.leadership.as_ref()?.iter().find(|o| o.nation == id && o.name.is_some())
+    w.leadership.as_ref()?.iter().find(|o| o.nation == id && o.holds())
 }
 
 /// The bloc the leader row puts in power: a sourced `bloc_override` first
@@ -52,9 +52,9 @@ pub fn leader_bloc(w: &WorldState, id: NationId) -> Option<Bloc> {
     if let Some(b) = row.bloc_override {
         return Some(b);
     }
-    Some(match row.tie.as_ref()? {
-        Tie::Party(p) => bloc_of(id, p),
-        Tie::Pillar(pl) => pillar_bloc(id, *pl),
+    Some(match row.tie_now()? {
+        Tie::Party(p) => bloc_of(id, &p),
+        Tie::Pillar(pl) => pillar_bloc(id, pl),
     })
 }
 
@@ -192,8 +192,8 @@ pub(crate) fn court_pillar(w: &WorldState, id: NationId) -> Option<Pillar> {
         return None;
     }
     let row = leader_row(w, id)?;
-    match &row.tie {
-        Some(Tie::Pillar(pl)) if w.nation(id).authoritarianism >= COURT_RULES_ABOVE => Some(*pl),
+    match row.tie_now() {
+        Some(Tie::Pillar(pl)) if w.nation(id).authoritarianism >= COURT_RULES_ABOVE => Some(pl),
         _ => None,
     }
 }
@@ -837,6 +837,24 @@ fn any_row(w: &WorldState, id: NationId) -> Option<&Office> {
 pub fn leader(w: &WorldState, id: NationId) -> Option<Leader> {
     let pol = polity(id)?;
     if let Some(row) = leader_row(w, id) {
+        // The office has changed hands (S4): described by institution, the
+        // remaining heir kept, nothing of the transcribed person.
+        if let Some(e) = &row.emergent {
+            return Some(Leader {
+                name: None,
+                native: None,
+                described: Some(e.described.clone()),
+                office: e.office.clone(),
+                since: Some(e.since.clone()),
+                party_name: e.party.as_deref().and_then(|p| party_name(id, p)),
+                party: e.party.clone(),
+                pillar_name: e.pillar.and_then(|p| pillar_name(id, p)),
+                pillar: e.pillar,
+                heir: row.heir.clone(),
+                must_leave_by: None,
+                also: vec![],
+            });
+        }
         let (party, pillar) = match &row.tie {
             Some(Tie::Party(p)) => (Some(p.clone()), None),
             Some(Tie::Pillar(pl)) => (None, Some(*pl)),
@@ -1091,6 +1109,18 @@ mod tests {
                 why.push(format!("news {on_only:?}"));
             }
             if why.is_empty() {
+                continue;
+            }
+            // Succession (D2, S4) is the arm's RECORD and not an act on the
+            // model: a term limit reached (Honduras's 1990-01-27 in month 1)
+            // seats a description and prints "is led by", and nothing the
+            // model reads moves. A month whose only difference is such
+            // lines is not a parting. Watched: with the lines counted as
+            // acts, "parted at month 1 with no stem".
+            let record_only = why.len() == 1
+                && why[0].starts_with("news ")
+                && on_only.iter().all(|h| h.contains(" is led by "));
+            if record_only {
                 continue;
             }
             let stems: Vec<&&String> =
@@ -1393,6 +1423,7 @@ mod tests {
             also: vec![],
             sources: vec!["test".into()],
             note: Some("REFUSED: test".into()),
+            emergent: None,
         });
         assert_eq!(leader_row(&w, id), None);
         assert_eq!(leader_bloc(&w, id), None);

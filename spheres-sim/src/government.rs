@@ -6639,6 +6639,7 @@ pub fn hold_election(w: &mut WorldState, id: NationId) {
     }
     let (y, m) = (w.year, w.month);
     let on = w.rules.ideology_blocs;
+    let led_before: Option<String> = state(w, id).and_then(|g| g.leader()).map(|s| s.to_string());
     if let Some(g) = state_mut(w, id) {
         normalise(&mut g.support);
         // `seats_from` itself, with the arm off or nothing banned.
@@ -6653,6 +6654,15 @@ pub fn hold_election(w: &mut WorldState, id: NationId) {
         return;
     }
     form_government(w, id, true);
+    // Succession (D2): a NEW leading party seats "the {party} government";
+    // the same leading party as before the vote keeps whoever held the
+    // office (the Congress the table seats for the United States is led by
+    // the Democrats before and after 1992, and Bush stays until his
+    // ceiling). Nothing with the lens off.
+    let leads_now = state(w, id).and_then(|g| g.leader()).map(|s| s.to_string());
+    if let Some(leader) = leads_now.filter(|l| Some(l) != led_before.as_ref()) {
+        seat_office(w, id, &Succession::Election { leader });
+    }
 }
 
 /// The party `form_government` would seat first from the seats as they
@@ -7516,6 +7526,7 @@ pub fn declare_programme(w: &mut WorldState, id: NationId, bloc: Bloc) -> Result
         w.shift_relation(*patron, id, *shift);
     }
     w.headline(format!("{} declares a {} programme.", id.name(), p.new.label()));
+    seat_office(w, id, &Succession::Programme);
     Ok(())
 }
 
@@ -8111,6 +8122,7 @@ pub(crate) fn uprising(w: &mut WorldState, id: NationId) {
         g.next_election = (0, 0);
     }
     w.headline(format!("Revolution in {}: the {} movement takes power.", id.name(), winner.label()));
+    seat_office(w, id, &Succession::Takeover { bloc: winner });
     crate::statecraft::takeover_payoff(w, id, winner, old);
 }
 
@@ -8243,6 +8255,8 @@ fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
         }
     }
     w.headline(b.headline);
+    // Succession (D2): the institution that moved seats its own name.
+    seat_office(w, id, &Succession::Coup { pillar: b.pillar });
     // The foreign payoff (S4): nothing while the takeover switch is off.
     if let Some(winner) = b.regime_bloc {
         crate::statecraft::takeover_payoff(w, id, winner, loser);
@@ -8407,7 +8421,213 @@ pub fn tick(w: &mut WorldState) {
         }
     }
 
+    term_limits(w);
     ai_government(w);
+}
+
+/// A constitutional term limit already binding on 1 January 1990 (the
+/// table's `must_leave_by`, Bush's second-term ceiling) reached: the office
+/// seats "a new {party} president" (D2). The one dated fact the arm acts
+/// on, and it is a transcribed one. Nothing with the lens off; reads
+/// nothing while no row carries a date.
+fn term_limits(w: &mut WorldState) {
+    if !w.rules.ideology_blocs {
+        return;
+    }
+    let today = (w.year, w.month, w.day.max(1));
+    let due: Vec<NationId> = match &w.leadership {
+        Some(rows) => rows
+            .iter()
+            .filter(|o| o.holds())
+            .filter(|o| o.must_leave_by.as_deref().and_then(crate::data::parse_date).is_some_and(|d| d <= today))
+            .map(|o| o.nation)
+            .collect(),
+        None => return,
+    };
+    let mut due = due;
+    due.sort();
+    for id in due {
+        if w.nation_opt(id).is_some_and(|n| n.alive) {
+            seat_office(w, id, &Succession::TermLimit);
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Succession (design D2, S4): who holds the office after a change of
+// government. NO NAME IS EVER WRITTEN FOR A DATE AFTER 1 JANUARY 1990 except
+// the transcribed heir, seated once.
+// ---------------------------------------------------------------------------
+
+/// How the office changed hands.
+#[derive(Clone, Debug, PartialEq)]
+pub enum Succession {
+    /// A vote seated `leader` at the head of the coalition.
+    Election { leader: String },
+    /// An institution removed the government (the regime's own coup, route 2,
+    /// the annulment).
+    Coup { pillar: Pillar },
+    /// A movement took power (route 3).
+    Takeover { bloc: Bloc },
+    /// The table's `must_leave_by` was reached.
+    TermLimit,
+    /// The transcribed leader died in office (D1).
+    Death,
+    /// The regime changed its colour by decree.
+    Programme,
+}
+
+/// The largest party of a bloc in the polity's table by its transcribed
+/// share, if the table carries one.
+fn largest_party_of(id: NationId, bloc: Bloc) -> Option<&'static PartySpec> {
+    let mut best: Option<&PartySpec> = None;
+    for s in polity(id)?.parties {
+        if bloc_of(id, s.id) != bloc {
+            continue;
+        }
+        if best.map_or(true, |b| s.start > b.start) {
+            best = Some(s);
+        }
+    }
+    best
+}
+
+fn government_of(id: NationId, party: &str) -> String {
+    format!("the {} government", spec(id, party).map(|s| s.name).unwrap_or(party))
+}
+
+/// The seat the rules give, or `None` where the incumbent stays: a pure
+/// read of the row and the table. `heir` says whether the transcribed heir
+/// is the one seated (the caller then consumes it).
+pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option<(crate::data::Emergent, bool)> {
+    use crate::data::{Emergent, Tie};
+    let row = crate::blocs::leader_row(w, id)?;
+    let today = format!("{:04}-{:02}-{:02}", w.year, w.month, w.day.max(1));
+    let holder = row.tie_now();
+    let holder_party: Option<String> = match &holder {
+        Some(Tie::Party(p)) => Some(p.clone()),
+        _ => None,
+    };
+    let holder_pillar: Option<Pillar> = match &holder {
+        Some(Tie::Pillar(p)) => Some(*p),
+        _ => None,
+    };
+    let seat = |described: String, office: String, party: Option<String>, pillar: Option<Pillar>| Emergent {
+        described,
+        office,
+        party,
+        pillar,
+        since: today.clone(),
+    };
+    // A monarch or a party-state leader removed: the transcribed heir once,
+    // then "the ruling house".
+    let house = |row: &crate::data::Office| -> (Emergent, bool) {
+        match &row.heir {
+            Some(h) => (seat(h.name.clone(), row.office.clone(), None, Some(Pillar::Party)), true),
+            None => (seat("the ruling house".into(), row.office.clone(), None, Some(Pillar::Party)), false),
+        }
+    };
+    let by_pillar = |pillar: Pillar| -> (Emergent, bool) {
+        (seat(pillar_name(id, pillar).to_string(), "head of state".into(), None, Some(pillar)), false)
+    };
+    Some(match how {
+        Succession::Election { leader } => {
+            // The transcribed person whose own party leads keeps the office;
+            // an emergent holder is a description and gives way to the next.
+            if row.emergent.is_none() && holder_party.as_deref() == Some(leader.as_str()) {
+                return None;
+            }
+            (seat(government_of(id, leader), "head of government".into(), Some(leader.clone()), None), false)
+        }
+        Succession::Coup { pillar } => {
+            if *pillar == Pillar::Party && holder_pillar == Some(Pillar::Party) {
+                house(row)
+            } else {
+                by_pillar(*pillar)
+            }
+        }
+        Succession::Takeover { bloc } => match bloc {
+            Bloc::Nationalist | Bloc::NonAligned => {
+                let pillar = home_pillar(id, *bloc)
+                    .or_else(|| polity(id).and_then(|p| p.pillars.iter().map(|s| s.pillar).find(|p| *p == Pillar::Army)))
+                    .or_else(|| polity(id).and_then(|p| p.pillars.first().map(|s| s.pillar)));
+                match pillar {
+                    Some(p) => by_pillar(p),
+                    None => (seat(polity(id).map(|p| p.ruling).unwrap_or("the state").to_string(), "head of state".into(), None, None), false),
+                }
+            }
+            Bloc::Islamist | Bloc::Communist | Bloc::Western => match largest_party_of(id, *bloc) {
+                Some(p) => (seat(government_of(id, p.id), "head of government".into(), Some(p.id.to_string()), None), false),
+                None => {
+                    let fallback = if *bloc == Bloc::Islamist { Pillar::Clergy } else { Pillar::Party };
+                    let pillar = home_pillar(id, *bloc).unwrap_or(fallback);
+                    by_pillar(pillar)
+                }
+            },
+        },
+        Succession::TermLimit => match &holder_party {
+            Some(p) => (
+                seat(
+                    format!("a new {} president", spec(id, p).map(|s| s.name).unwrap_or(p)),
+                    row.office.clone(),
+                    Some(p.clone()),
+                    None,
+                ),
+                false,
+            ),
+            None => return None,
+        },
+        Succession::Death => match (&holder_party, holder_pillar) {
+            (Some(p), _) => (seat(government_of(id, p), row.office.clone(), Some(p.clone()), None), false),
+            (None, Some(Pillar::Party)) => house(row),
+            (None, Some(pl)) => by_pillar(pl),
+            (None, None) => return None,
+        },
+        Succession::Programme => {
+            if row.heir.is_some() || holder_pillar == Some(Pillar::Party) {
+                house(row)
+            } else if let Some(p) = &holder_party {
+                (seat(government_of(id, p), "head of government".into(), Some(p.clone()), None), false)
+            } else if let Some(pl) = holder_pillar {
+                by_pillar(pl)
+            } else {
+                return None;
+            }
+        }
+    })
+}
+
+/// Seat the office after a change of government (D2): the row's transcribed
+/// person is gone for good — name, native form, tie, override, term limit
+/// and the `also` list cleared; the heir consumed if seated — and the
+/// emergent holder written. Nothing with the lens off (no table), and
+/// nothing where the rules keep the incumbent. Draws no RNG.
+pub fn seat_office(w: &mut WorldState, id: NationId, how: &Succession) {
+    if !w.rules.ideology_blocs {
+        return;
+    }
+    let (seat, heir_used) = match succession_seat(w, id, how) {
+        Some(x) => x,
+        None => return,
+    };
+    let described = seat.described.clone();
+    if let Some(rows) = w.leadership.as_mut() {
+        if let Some(row) = rows.iter_mut().find(|o| o.nation == id && o.holds()) {
+            row.name = None;
+            row.native = None;
+            row.tie = None;
+            row.bloc_override = None;
+            row.must_leave_by = None;
+            row.also.clear();
+            if heir_used {
+                row.heir = None;
+            }
+            row.emergent = Some(seat);
+        }
+    }
+    if matches!(how, Succession::TermLimit | Succession::Death) {
+        w.headline(format!("{} is led by {}.", id.name(), described));
+    }
 }
 
 #[cfg(test)]
@@ -10527,5 +10747,128 @@ mod tests {
         }
         let fired = fired.expect("no revolution in 120 months");
         println!("payoff: Sudan's revolution fired in month {fired} with the Soviet channel exposed");
+    }
+    /// Succession (D2): every rule seats the right description and never a
+    /// name. Poland re-electing Solidarity keeps Mazowiecki; the PSL winning
+    /// seats "the Polish People's Party government"; a Republican Guard coup
+    /// in Iraq seats "the Republican Guard"; a Communist takeover of Sudan
+    /// seats "the Sudanese Communist Party government" and a Nationalist one
+    /// "the Sudanese Armed Forces"; Bush's ceiling seats "a new Republican
+    /// Party president" on the first tick dated past 1997-01-20; Hussein's
+    /// death seats Hassan bin Talal — the transcribed heir, once — as King,
+    /// and a second death "the ruling house"; a Party coup against Fahd
+    /// seats Abdullah once and a programme after it "the ruling house". Over
+    /// forty years on the roads (seed 7) no emergent description is any
+    /// transcribed leader's name except that row's own heir, and no row's
+    /// `name` is ever anything but its transcribed one or null. With the
+    /// lens off nothing is written. Watched red with the heir kept on the
+    /// row after it was seated: Jordan's second death seated Hassan again.
+    #[test]
+    fn every_succession_rule_seats_the_right_description_and_never_a_name() {
+        use crate::blocs::{leader, leader_row};
+        let (pl, iq, sd, us, jo, sa) = (NationId::Poland, NationId::Iraq, NationId::Sudan, NationId::USA, NationId::Jordan, NationId::SaudiArabia);
+        let mut off = w1990();
+        seat_office(&mut off, pl, &Succession::Coup { pillar: Pillar::Army });
+        assert!(off.leadership.is_none());
+
+        let mut w = world_1990(on_rules(7));
+        let names: Vec<String> = w.leadership.as_ref().unwrap().iter().filter_map(|o| o.name.clone()).collect();
+        assert_eq!(names.len(), 132);
+        // Elections.
+        seat_office(&mut w, pl, &Succession::Election { leader: "pl_solidarity".into() });
+        assert_eq!(leader(&w, pl).unwrap().name.as_deref(), Some("Tadeusz Mazowiecki"), "the same leading party keeps the person");
+        seat_office(&mut w, pl, &Succession::Election { leader: "pl_psl".into() });
+        let l = leader(&w, pl).unwrap();
+        assert_eq!(l.name, None);
+        assert_eq!(l.described.as_deref(), Some("the Polish People's Party government"));
+        assert_eq!(l.party.as_deref(), Some("pl_psl"));
+        assert_eq!(l.since.as_deref(), Some("1990-01-01"));
+        assert_eq!(crate::blocs::leader_bloc(&w, pl), Some(bloc_of(pl, "pl_psl")));
+        seat_office(&mut w, pl, &Succession::Election { leader: "pl_solidarity".into() });
+        let l = leader(&w, pl).unwrap();
+        assert_eq!(l.described.as_deref(), Some("the Solidarity Citizens' Committee government"), "a removed incumbent never returns by name");
+        assert_eq!(l.name, None);
+        // Coups and takeovers.
+        seat_office(&mut w, iq, &Succession::Coup { pillar: Pillar::Army });
+        let l = leader(&w, iq).unwrap();
+        assert_eq!(l.described.as_deref(), Some("the Republican Guard"));
+        assert_eq!(l.pillar, Some(Pillar::Army));
+        assert_eq!(l.name, None);
+        seat_office(&mut w, sd, &Succession::Takeover { bloc: Bloc::Communist });
+        let l = leader(&w, sd).unwrap();
+        assert_eq!(l.described.as_deref(), Some("the Sudanese Communist Party government"));
+        assert_eq!(l.party.as_deref(), Some("sd_scp"));
+        let mut w2 = world_1990(on_rules(7));
+        seat_office(&mut w2, sd, &Succession::Takeover { bloc: Bloc::Nationalist });
+        assert_eq!(leader(&w2, sd).unwrap().described.as_deref(), Some("the Sudanese Armed Forces"));
+        // The term limit.
+        seat_office(&mut w, us, &Succession::TermLimit);
+        let l = leader(&w, us).unwrap();
+        assert_eq!(l.described.as_deref(), Some("a new Republican Party president"));
+        assert_eq!(l.office, "President of the United States");
+        assert_eq!(l.party.as_deref(), Some("us_rep"));
+        assert_eq!(l.must_leave_by, None);
+        // Death, and the heir once.
+        assert_eq!(leader(&w, jo).unwrap().name.as_deref(), Some("Hussein"));
+        seat_office(&mut w, jo, &Succession::Death);
+        let l = leader(&w, jo).unwrap();
+        assert_eq!(l.described.as_deref(), Some("Hassan bin Talal"));
+        assert_eq!(l.office, "King");
+        assert_eq!(l.pillar, Some(Pillar::Party));
+        assert!(l.heir.is_none(), "the heir is consumed");
+        assert!(crate::blocs::government_of_the_day(&w, jo).is_some(), "the court still rules under the heir");
+        seat_office(&mut w, jo, &Succession::Death);
+        assert_eq!(leader(&w, jo).unwrap().described.as_deref(), Some("the ruling house"));
+        // A Party coup against a monarch, then a programme.
+        seat_office(&mut w, sa, &Succession::Coup { pillar: Pillar::Party });
+        assert_eq!(leader(&w, sa).unwrap().described.as_deref(), Some("Abdullah bin Abdulaziz Al Saud"));
+        seat_office(&mut w, sa, &Succession::Programme);
+        assert_eq!(leader(&w, sa).unwrap().described.as_deref(), Some("the ruling house"));
+        assert!(leader_row(&w, sa).unwrap().heir.is_none());
+        let sa_row = leader_row(&w, sa).unwrap();
+        assert!(sa_row.name.is_none() && sa_row.tie.is_none() && sa_row.also.is_empty());
+
+        // Through the tick: Bush's ceiling, 1997-01-20, on the first tick
+        // dated past it.
+        let mut w = world_1990(on_rules(7));
+        let mut seated: Option<String> = None;
+        for _ in 0..120 {
+            let news = crate::tick_month(&mut w, &[]);
+            if let Some(h) = news.iter().find(|h| h.starts_with("United States is led by")) {
+                seated = Some(h.clone());
+                break;
+            }
+        }
+        assert_eq!(seated.as_deref(), Some("United States is led by a new Republican Party president."));
+        assert_eq!(leader(&w, us).unwrap().since.as_deref(), Some("1997-02-01"));
+
+        // Forty years on the roads: never a name.
+        let mut w = world_1990(roads_rules(7));
+        let heirs: Vec<(NationId, String)> = w
+            .leadership
+            .as_ref()
+            .unwrap()
+            .iter()
+            .filter_map(|o| o.heir.as_ref().map(|h| (o.nation, h.name.clone())))
+            .collect();
+        let transcribed: Vec<(NationId, Option<String>)> =
+            w.leadership.as_ref().unwrap().iter().map(|o| (o.nation, o.name.clone())).collect();
+        for _ in 0..480 {
+            crate::tick_month(&mut w, &[]);
+        }
+        let mut emergent = 0usize;
+        for o in w.leadership.as_ref().unwrap() {
+            let was = transcribed.iter().find(|(n, _)| *n == o.nation).map(|(_, n)| n.clone()).unwrap();
+            assert!(o.name.is_none() || o.name == was, "{:?}: {:?}", o.nation, o.name);
+            if let Some(e) = &o.emergent {
+                emergent += 1;
+                assert!(o.name.is_none() && o.tie.is_none() && o.must_leave_by.is_none() && o.also.is_empty(), "{:?}", o.nation);
+                let own_heir = heirs.iter().any(|(n, h)| *n == o.nation && *h == e.described);
+                assert!(own_heir || !names.contains(&e.described), "{:?} seats a name: {}", o.nation, e.described);
+                assert!(!e.described.is_empty());
+            }
+        }
+        println!("succession: {emergent} offices changed hands in forty years on the roads (seed 7)");
+        assert!(emergent > 0, "forty years and nobody left office");
     }
 }

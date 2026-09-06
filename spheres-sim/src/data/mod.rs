@@ -1002,6 +1002,25 @@ pub struct Also {
     pub party: Option<String>,
 }
 
+/// Who holds an office once the game has moved (design D2, S4): a
+/// DESCRIPTION by institution — "the Solidarity government", "the
+/// Republican Guard", "a new Republican Party president", "the ruling house"
+/// — and never a name, with the one exception the design allows, the
+/// transcribed heir of 1 January 1990 seated once. Written only by
+/// `government::seat_office`; null in the data file, which the loader holds
+/// to. `party` / `pillar` are what the new holder governs through, and are
+/// what the ruling bloc and the monarchy exception read from then on.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct Emergent {
+    pub described: String,
+    pub office: String,
+    pub party: Option<String>,
+    pub pillar: Option<crate::government::Pillar>,
+    /// `YYYY-MM-DD`, the model's date of the change.
+    pub since: String,
+}
+
 /// One row of the leader table. Dates are `YYYY-MM-DD` strings, checked by the
 /// loader; `born` is carried for the S4 hazard draw and may be null where no
 /// source gave a full date.
@@ -1040,6 +1059,32 @@ pub struct Office {
     pub sources: Vec<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub note: Option<String>,
+    /// The office's holder after a change of government (S4): `Some` once
+    /// the transcribed person has been replaced, and the row's `name`,
+    /// `native`, `tie`, `bloc_override`, `must_leave_by` and `also` are
+    /// then null or empty — the row asserts only what the model did. Absent
+    /// from the save until written.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub emergent: Option<Emergent>,
+}
+
+impl Office {
+    /// Whether the row seats anybody at all: a transcribed name, or an
+    /// emergent holder. A REFUSED row seats nobody.
+    pub fn holds(&self) -> bool {
+        self.name.is_some() || self.emergent.is_some()
+    }
+    /// What the CURRENT holder governs through: the emergent holder's party
+    /// or pillar once there is one, else the transcribed tie.
+    pub fn tie_now(&self) -> Option<Tie> {
+        if let Some(e) = &self.emergent {
+            if let Some(p) = &e.party {
+                return Some(Tie::Party(p.clone()));
+            }
+            return e.pillar.map(Tie::Pillar);
+        }
+        self.tie.clone()
+    }
 }
 
 /// The start of the game, as a date, for the "no name after this" rule.
@@ -1096,6 +1141,12 @@ fn check_office(file: &str, o: &Office) -> Vec<LoadError> {
     }
     if o.name.is_some() && o.native.is_none() {
         e.push(err("native is null on a named row — repeat the name where there is no native form".into()));
+    }
+    if o.emergent.is_some() {
+        e.push(err(
+            "emergent is set in the file — the table transcribes 1 January 1990, and what follows is the model's to write"
+                .into(),
+        ));
     }
     if o.office.trim().is_empty() {
         e.push(err("office is empty — say what institution this person directed".into()));
