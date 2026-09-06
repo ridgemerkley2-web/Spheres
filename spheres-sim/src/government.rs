@@ -5500,6 +5500,12 @@ fn spec(id: NationId, party: &str) -> Option<&'static PartySpec> {
     polity(id)?.parties.iter().find(|p| p.id == party)
 }
 
+/// The transcribed row for one party of one polity, for a surface that names
+/// parties. `None` for an id the table does not carry.
+pub fn party_spec(id: NationId, party: &str) -> Option<&'static PartySpec> {
+    spec(id, party)
+}
+
 // The political arm's readouts live in `crate::blocs` and are reachable under
 // the name the design gives them.
 pub use crate::blocs::{
@@ -6252,22 +6258,84 @@ pub fn invite_price(w: &WorldState, id: NationId, party: &str) -> f64 {
 // Commands
 // ---------------------------------------------------------------------------
 
-pub fn invite(w: &mut WorldState, id: NationId, party: &str) -> Result<(), String> {
+/// Why an invitation would be refused, read without touching the world. The
+/// ONE place the prose lives: `invite` asks this first and the government
+/// screen serves it beside the price, so the button and the refusal cannot
+/// disagree (iron rule 8, applied to a sentence).
+pub fn invite_refusal(w: &WorldState, id: NationId, party: &str) -> Option<String> {
     if !is_electoral(w, id) {
-        return Err(format!("{} does not form governments by negotiation.", id.name()));
+        return Some(format!("{} does not form governments by negotiation.", id.name()));
     }
-    let s = spec(id, party).ok_or_else(|| format!("No such party: {}", party))?;
-    let g = state(w, id).ok_or("no government")?;
+    let s = match spec(id, party) {
+        Some(s) => s,
+        None => return Some(format!("No such party: {}", party)),
+    };
+    let g = match state(w, id) {
+        Some(g) => g,
+        None => return Some("no government".into()),
+    };
     if g.in_government(party) {
-        return Err(format!("{} is already in the government.", s.name));
+        return Some(format!("{} is already in the government.", s.name));
     }
     if s.pariah {
-        return Err(format!("No party in {} will sit in cabinet with {}.", id.name(), s.name));
+        return Some(format!("No party in {} will sit in cabinet with {}.", id.name(), s.name));
     }
     if g.seat_share(party) <= 0.0 {
-        return Err(format!("{} holds no seats.", s.name));
+        return Some(format!("{} holds no seats.", s.name));
     }
-    let name = s.name;
+    None
+}
+
+/// Why an expulsion would be refused. See `invite_refusal`.
+pub fn expel_refusal(w: &WorldState, id: NationId, party: &str) -> Option<String> {
+    let s = match spec(id, party) {
+        Some(s) => s,
+        None => return Some(format!("No such party: {}", party)),
+    };
+    let g = match state(w, id) {
+        Some(g) => g,
+        None => return Some("no government".into()),
+    };
+    if !g.in_government(party) {
+        return Some(format!("{} is not in the government.", s.name));
+    }
+    if g.leader() == Some(party) {
+        return Some("A government cannot expel the party that leads it.".into());
+    }
+    None
+}
+
+/// Why an early election would be refused. See `invite_refusal`.
+pub fn call_election_refusal(w: &WorldState, id: NationId) -> Option<String> {
+    if !is_electoral(w, id) {
+        return Some(format!("{} does not hold elections.", id.name()));
+    }
+    if state(w, id).is_none_or(|g| g.months_in_office < 6) {
+        return Some("A government six months old cannot go back to the country yet.".into());
+    }
+    None
+}
+
+/// Why paying an institution would be refused. See `invite_refusal`.
+pub fn secure_pillar_refusal(w: &WorldState, id: NationId, pillar: Pillar) -> Option<String> {
+    if is_electoral(w, id) {
+        return Some(format!("{} answers to an electorate, not to its institutions.", id.name()));
+    }
+    if polity(id).and_then(|p| p.pillars.iter().find(|s| s.pillar == pillar)).is_none() {
+        return Some(format!("{} has no such institution.", id.name()));
+    }
+    match state(w, id) {
+        None => Some("no regime".into()),
+        Some(g) if !g.pillars.iter().any(|(p, _)| *p == pillar) => Some("no such pillar".into()),
+        Some(_) => None,
+    }
+}
+
+pub fn invite(w: &mut WorldState, id: NationId, party: &str) -> Result<(), String> {
+    if let Some(why) = invite_refusal(w, id, party) {
+        return Err(why);
+    }
+    let name = spec(id, party).map(|s| s.name).unwrap_or(party);
     if let Some(g) = state_mut(w, id) {
         g.coalition.push(party.to_string());
     }
@@ -6276,15 +6344,10 @@ pub fn invite(w: &mut WorldState, id: NationId, party: &str) -> Result<(), Strin
 }
 
 pub fn expel(w: &mut WorldState, id: NationId, party: &str) -> Result<(), String> {
-    let s = spec(id, party).ok_or_else(|| format!("No such party: {}", party))?;
-    let g = state(w, id).ok_or("no government")?;
-    if !g.in_government(party) {
-        return Err(format!("{} is not in the government.", s.name));
+    if let Some(why) = expel_refusal(w, id, party) {
+        return Err(why);
     }
-    if g.leader() == Some(party) {
-        return Err("A government cannot expel the party that leads it.".into());
-    }
-    let name = s.name;
+    let name = spec(id, party).map(|s| s.name).unwrap_or(party);
     if let Some(g) = state_mut(w, id) {
         g.coalition.retain(|p| p != party);
     }
@@ -6309,11 +6372,8 @@ pub fn expel(w: &mut WorldState, id: NationId, party: &str) -> Result<(), String
 }
 
 pub fn call_election(w: &mut WorldState, id: NationId) -> Result<(), String> {
-    if !is_electoral(w, id) {
-        return Err(format!("{} does not hold elections.", id.name()));
-    }
-    if state(w, id).is_none_or(|g| g.months_in_office < 6) {
-        return Err("A government six months old cannot go back to the country yet.".into());
+    if let Some(why) = call_election_refusal(w, id) {
+        return Err(why);
     }
     w.headline(format!("{} goes to the country early.", id.name()));
     hold_election(w, id);
@@ -6324,13 +6384,13 @@ pub fn call_election(w: &mut WorldState, id: NationId) -> Result<(), String> {
 /// the army's loyalty is bought with the defence budget, the party's and the
 /// merchants' with the state's, and all of it goes on the debt.
 pub fn secure_pillar(w: &mut WorldState, id: NationId, pillar: Pillar) -> Result<(), String> {
-    if is_electoral(w, id) {
-        return Err(format!("{} answers to an electorate, not to its institutions.", id.name()));
+    if let Some(why) = secure_pillar_refusal(w, id, pillar) {
+        return Err(why);
     }
     let name = polity(id)
         .and_then(|p| p.pillars.iter().find(|s| s.pillar == pillar))
         .map(|s| s.name)
-        .ok_or_else(|| format!("{} has no such institution.", id.name()))?;
+        .unwrap_or("its institution");
     {
         let g = state_mut(w, id).ok_or("no regime")?;
         let entry = g

@@ -621,6 +621,57 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     }
 }
 
+/// The refusal `apply_command` WOULD give, read without touching the world, in
+/// the order it would give it: the world's bar first, then the treasury's, then
+/// the command's own — for the commands whose own check has been split out as a
+/// read (`government::*_refusal`, `stratagems::closed_reason`). `None` where the
+/// command would go through, or where its own check is not readable ahead of
+/// time (it may still be refused inside `dispatch`). Served by the government
+/// screen beside each price, so the page prints the sim's sentence and never
+/// composes one.
+pub fn refusal_of(w: &WorldState, c: &Command) -> Option<String> {
+    if let Some(why) = world_refusal(w, c) {
+        return Some(why);
+    }
+    if let Some((payer, price, refusable)) = command_price(w, c).filter(|(_, p, _)| *p > 0.0) {
+        let held = w.nation_opt(payer).map_or(0.0, |n| n.political_capital);
+        if refusable && held < price {
+            return Some(standing_refusal(payer, held, price));
+        }
+    }
+    match c {
+        Command::InviteToGovernment { nation, party } => government::invite_refusal(w, *nation, party),
+        Command::ExpelFromGovernment { nation, party } => government::expel_refusal(w, *nation, party),
+        Command::CallElection { nation } => government::call_election_refusal(w, *nation),
+        Command::SecurePillar { nation, pillar } => government::secure_pillar_refusal(w, *nation, *pillar),
+        Command::EnactStratagem { nation, id } => stratagems::closed_reason(w, *nation, id),
+        _ => None,
+    }
+}
+
+/// The treasury's refusal, defined once for `apply_command` and `refusal_of`.
+///
+/// Rounded APART, not to nearest: what is held rounds DOWN and what is needed
+/// rounds UP, both to the tenth actually shown. At `{:.0}` the two could land
+/// on the same integer and the refusal read as a contradiction — measured,
+/// 57.596 held against a price of 57.600 printed as "58 political capital
+/// held, 58 needed", which tells a player they have exactly what they were
+/// just told they lack.
+///
+/// Rounding apart makes that impossible rather than unlikely:
+/// `floor(held) <= held < price <= ceil(price)`, so the two printed numbers
+/// are equal only if `price <= held`, which is the branch this is not in.
+/// Prices are not whole numbers — they scale — so one decimal is the least
+/// that can carry the difference.
+fn standing_refusal(payer: NationId, held: f64, price: f64) -> String {
+    let held_shown = (held * 10.0).floor() / 10.0;
+    let need_shown = (price * 10.0).ceil() / 10.0;
+    format!(
+        "{} has not the standing: {:.1} political capital held, {:.1} needed.",
+        payer.name(), held_shown, need_shown
+    )
+}
+
 pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
     // Priced before anything happens, so a command that cannot be afforded also
     // cannot take effect — and charged only once the act itself has gone
@@ -649,24 +700,7 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
     if let Some((payer, price, refusable)) = bill {
         let held = w.nation(payer).political_capital;
         if refusable && held < price {
-            // Rounded APART, not to nearest: what is held rounds DOWN and what
-            // is needed rounds UP, both to the tenth actually shown. At `{:.0}`
-            // the two could land on the same integer and the refusal read as a
-            // contradiction — measured, 57.596 held against a price of 57.600
-            // printed as "58 political capital held, 58 needed", which tells a
-            // player they have exactly what they were just told they lack.
-            //
-            // Rounding apart makes that impossible rather than unlikely:
-            // `floor(held) <= held < price <= ceil(price)`, so the two printed
-            // numbers are equal only if `price <= held`, which is the branch
-            // this is not in. Prices are not whole numbers — they scale — so
-            // one decimal is the least that can carry the difference.
-            let held_shown = (held * 10.0).floor() / 10.0;
-            let need_shown = (price * 10.0).ceil() / 10.0;
-            return Err(format!(
-                "{} has not the standing: {:.1} political capital held, {:.1} needed.",
-                payer.name(), held_shown, need_shown
-            ));
+            return Err(standing_refusal(payer, held, price));
         }
     }
     let outcome = dispatch(w, c);
@@ -973,17 +1007,13 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
             manufacturing::stop_line(w, *nation, *line)?;
         }
         Command::EnactStratagem { nation, id } => {
-            let s = stratagems::by_id(id)
-                .ok_or_else(|| format!("No such stratagem: {}", id))?;
             // Checked again here, not only when the menu was drawn: the world
             // may have moved between a government deciding and acting.
-            if !(s.available)(w, *nation) {
-                return Err(format!(
-                    "{} is no longer open to {}.",
-                    s.name,
-                    nation.name()
-                ));
+            if let Some(why) = stratagems::closed_reason(w, *nation, id) {
+                return Err(why);
             }
+            let s = stratagems::by_id(id)
+                .ok_or_else(|| format!("No such stratagem: {}", id))?;
             (s.enact)(w, *nation);
         }
         Command::ChooseDominationAgenda { nation, agenda } => {

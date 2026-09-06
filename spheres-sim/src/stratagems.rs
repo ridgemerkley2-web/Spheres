@@ -384,6 +384,21 @@ pub fn available(w: &WorldState, id: NationId) -> Vec<&'static Stratagem> {
     DECK.iter().filter(|s| (s.available)(w, id)).collect()
 }
 
+/// Why enacting a stratagem would be refused by the world, read without
+/// touching it: the deck does not carry the id, or the condition that opened
+/// the option has closed. The one place the prose lives: `dispatch` asks it
+/// and the government screen serves it.
+pub fn closed_reason(w: &WorldState, id: NationId, stratagem: &str) -> Option<String> {
+    let s = match by_id(stratagem) {
+        Some(s) => s,
+        None => return Some(format!("No such stratagem: {}", stratagem)),
+    };
+    if !(s.available)(w, id) {
+        return Some(format!("{} is no longer open to {}.", s.name, id.name()));
+    }
+    None
+}
+
 /// Look a stratagem up by its stable `id`, or `None` if nothing carries it.
 ///
 /// Saves store the id, so this is also the load path — which is why an id must
