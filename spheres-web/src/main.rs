@@ -413,7 +413,24 @@ fn classify(h: &str) -> &'static str {
         // The two dissolution-aftermath lines, which are the only headlines the
         // sim writes with no `{}` in them at all and were the last strays.
         || t.contains("inherits the arsenal")
-        || t.contains("remain in belgrade's hands");
+        || t.contains("remain in belgrade's hands")
+        // The political arm (S3/S4), every stem the sim composes: the levers
+        // ("{} suspends its constitution and rules by decree.", "{} bans {}.",
+        // "{} legalises {}.", "{} declares a {} programme.", "{} convenes a
+        // round table; ..."), the surge latch ("The {bloc} movement in {}
+        // passes a third of the country."), the roads ("COUP IN {}: ...",
+        // "Revolution in {}: the {bloc} movement takes power." — both reach
+        // `coup in` / `revolution` above) and mortality ("{name} dies in
+        // office."). The exposure of a backer, "{} exposes {} backing the {}
+        // movement in {} — the scandal rallies the country", already reaches
+        // this bucket on "scandal", as every exposure did before the arm.
+        || t.contains("suspends its constitution")
+        || t.contains(" bans ")
+        || t.contains(" legalises ")
+        || t.contains(" declares a ")
+        || t.contains("convenes a round table")
+        || t.contains("passes a third of the country")
+        || t.contains("dies in office");
     let diplomacy = t.contains("sanction")
         || t.contains("diplomatic hand")
         || t.contains("defence pact")
@@ -435,6 +452,9 @@ fn classify(h: &str) -> &'static str {
         // with weapons nobody will account for".
         || t.contains("covert operation")
         || t.contains("turn up with weapons")
+        // A `BackBloc` that worked: "Money and organisers reach the {} movement
+        // in {}; nobody can say from where." An exposure is politics above.
+        || t.contains("money and organisers reach")
         // Patronage, which the sim writes four ways and all of them end in a
         // sum per year: arms sales, economic aid, raised aid, expanded transfers.
         || t.contains("arms sales")
@@ -547,7 +567,17 @@ fn is_major(headline: &str, me: Option<NationId>) -> bool {
         || h.contains("repels")
         || h.contains("escalates to rung")
         || h.contains("grants")
-        || h.contains("revokes");
+        || h.contains("revokes")
+        // The political arm's event cards (S3/S4): every one of these is a
+        // change of government or a scandal that names two of them, and the
+        // clock stops on it whoever it is about. The sim composes the
+        // sentence; nothing here does.
+        || h.contains("coup in ")
+        || h.contains("suspends its constitution")
+        || h.contains("convenes a round table")
+        || h.contains(" exposes ")
+        || h.contains("passes a third of the country")
+        || h.contains("dies in office");
     // `names_nation`, not `contains`, for the reason recorded there: the bare
     // test read every Romanian headline as news about Oman, and stopped an
     // Omani player's advance for Romanian election results.
@@ -1087,6 +1117,89 @@ fn action_json(
         "price": spheres_sim::price_of(w, cmd).unwrap_or(0.0),
         "affordable": spheres_sim::affordable(w, cmd),
         "refusal": spheres_sim::refusal_of(w, cmd),
+        "effects": effects_of(w, cmd),
+    })
+}
+
+/// The one-sentence arms a command would charge, from the function that
+/// charges them (iron rule 8): `government::lever_effects` for the five
+/// levers, `statecraft::crackdown_backing_effects` for the Security
+/// Crackdown's gated arm, `statecraft::back_bloc_effects` for a `BackBloc`.
+/// Empty for a command whose arms are not served this way, and empty where
+/// the lever is refused (the refusal is the card then).
+fn effects_of(w: &WorldState, cmd: &Command) -> Vec<String> {
+    if let Some(v) = spheres_sim::government::lever_effects(w, cmd) {
+        return v;
+    }
+    match cmd {
+        Command::EnactStratagem { nation, id } if id == "security_crackdown" => {
+            spheres_sim::statecraft::crackdown_backing_effects(w, *nation)
+        }
+        Command::CovertAction { sponsor, target, op: CovertOp::BackBloc(bloc) } => {
+            spheres_sim::statecraft::back_bloc_effects(w, *sponsor, *target, *bloc)
+        }
+        _ => vec![],
+    }
+}
+
+/// GET /api/covert?nation= — the covert card on the TARGET's dossier: the
+/// three existing operations and "Back a movement" for every bloc present
+/// in the target's polity, each with the sim's price and refusal, and the
+/// two probabilities the sim would roll for this sponsor against this
+/// target — `statecraft::covert_odds`, the function `covert_action` rolls —
+/// served as `works` and `exposed`. The sponsor is the player. Backing a
+/// bloc carries `back_bloc_effects`; nothing here is composed.
+fn covert_json(w: &WorldState, sponsor: NationId, target: NationId) -> serde_json::Value {
+    use spheres_sim::blocs;
+    use spheres_sim::government::Bloc;
+    let held = w.nation_opt(sponsor).map_or(0.0, |n| n.political_capital);
+    let both_alive = w.nation_opt(sponsor).is_some_and(|n| n.alive) && w.nation_opt(target).is_some_and(|n| n.alive);
+    let (works, exposed) = if both_alive && sponsor != target {
+        spheres_sim::statecraft::covert_odds(w, sponsor, target)
+    } else {
+        (0.0, 0.0)
+    };
+    let ruling = blocs::ruling_bloc(w, target);
+    let mut ops: Vec<serde_json::Value> = vec![];
+    let mut push = |op: CovertOp, kind: &str, label: String, detail: Option<String>, opkey: String, bloc: Option<Bloc>| {
+        let cmd = Command::CovertAction { sponsor, target, op };
+        let mut v = action_json(
+            w, &cmd, kind, label, detail, None,
+            serde_json::json!({ "kind": "covert", "target": target.name(), "op": opkey }),
+        );
+        v["op"] = serde_json::json!(opkey);
+        v["bloc"] = serde_json::json!(bloc);
+        ops.push(v);
+    };
+    push(CovertOp::FundOpposition, "fund_opposition", "Fund the opposition".into(),
+         Some("strikes and street protest".into()), "opposition".into(), None);
+    push(CovertOp::StirSeparatists, "stir_separatists", "Arm the separatists".into(),
+         Some("weapons nobody will account for".into()), "separatists".into(), None);
+    push(CovertOp::SabotageIndustry, "sabotage_industry", "Sabotage its industry".into(),
+         Some("a run of accidents".into()), "sabotage".into(), None);
+    if w.rules.ideology_blocs {
+        for b in Bloc::ALL {
+            if !blocs::bloc_present(target, b) {
+                continue;
+            }
+            push(
+                CovertOp::BackBloc(b), "back_bloc", format!("Back the {} movement", b.label()),
+                Some(if ruling == Some(b) { "the government's own colour".into() } else { "money and organisers, deniably".into() }),
+                format!("back:{}", b.key()), Some(b),
+            );
+        }
+    }
+    serde_json::json!({
+        "sponsor": format!("{:?}", sponsor),
+        "target": format!("{:?}", target),
+        "target_name": target.name(),
+        "on": w.rules.ideology_blocs,
+        "political_capital": held,
+        "heat": w.covert_heat(sponsor, target),
+        "works": works,
+        "exposed": exposed,
+        "ruling_bloc": ruling,
+        "ops": ops,
     })
 }
 
@@ -1119,6 +1232,33 @@ fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
     };
     // Bans are per party (S3); a bloc reads banned when every party of it is.
     let banned: Vec<String> = g.map_or(vec![], |g| g.banned.clone());
+    // The foreign money behind each bloc (S3): the covert stock entry by
+    // entry, the sponsor NAMED ONLY ONCE EXPOSED — the server never sends an
+    // unexposed sponsor, so the page cannot leak one — and patronage gravity
+    // as one line, a view of the aid flows. `backing` on the row is the
+    // capped F_B the bar hatches; these are its parts.
+    let gravity = blocs::gravity(w, id);
+    let abroad = |b: Bloc| -> Vec<serde_json::Value> {
+        let mut v: Vec<serde_json::Value> = w
+            .statecraft
+            .backing
+            .iter()
+            .filter(|e| e.target == id && e.bloc == b && e.weight > 0.0)
+            .map(|e| {
+                serde_json::json!({
+                    "kind": "covert",
+                    "weight": e.weight,
+                    "exposed": e.exposed,
+                    "sponsor": e.exposed.then(|| e.sponsor.name()),
+                })
+            })
+            .collect();
+        let g = gravity[b as usize].1;
+        if g > 0.0 {
+            v.push(serde_json::json!({ "kind": "patronage", "weight": g, "exposed": true, "sponsor": null }));
+        }
+        v
+    };
     let bar: Vec<serde_json::Value> = politics
         .as_ref()
         .map(|p| {
@@ -1129,6 +1269,7 @@ fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
                         "bloc": r.bloc,
                         "share": r.share,
                         "backing": r.backing,
+                        "abroad": abroad(r.bloc),
                         "banned": r.banned,
                         "governing": governing.contains(&r.bloc),
                         "ruling": ruling == Some(r.bloc),
@@ -1243,6 +1384,53 @@ fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
                 w, &cmd, "stratagem", s.name.to_string(), Some(s.because.to_string()), Some(s.blurb),
                 serde_json::json!({ "kind": "stratagem", "id": sid }),
             ));
+        }
+    }
+    // The five levers (S3), served with the sim's price, the sim's refusal
+    // and the sim's effects list even while the arm is off (the refusal is
+    // then "This world does not model ideological movements."): a
+    // suspension for a polity that votes, a programme for every present
+    // bloc other than the one that rules and a round table for a regime, and
+    // a ban or a legalisation for every party in the table, dormant or not.
+    if let Some(pol) = pol {
+        if electoral {
+            let cmd = Command::SuspendConstitution { nation: id };
+            actions.push(action_json(
+                w, &cmd, "suspend", "Suspend the constitution".into(), Some("rule by decree".into()), None,
+                serde_json::json!({ "kind": "suspend_constitution" }),
+            ));
+        } else {
+            for b in Bloc::ALL {
+                if ruling == Some(b) || !blocs::bloc_present(id, b) {
+                    continue;
+                }
+                let cmd = Command::DeclareProgramme { nation: id, bloc: b };
+                actions.push(action_json(
+                    w, &cmd, "programme", format!("Declare a {} programme", b.label()), Some("change the regime's colour".into()), None,
+                    serde_json::json!({ "kind": "declare_programme", "bloc": b.key() }),
+                ));
+            }
+            let cmd = Command::ConveneRoundTable { nation: id };
+            actions.push(action_json(
+                w, &cmd, "round_table", "Convene a round table".into(), Some("first free elections in six months".into()), None,
+                serde_json::json!({ "kind": "convene_round_table" }),
+            ));
+        }
+        for s in pol.parties {
+            let party = s.id.to_string();
+            if banned.iter().any(|p| p == s.id) {
+                let cmd = Command::LegalizeParty { nation: id, party: party.clone() };
+                actions.push(action_json(
+                    w, &cmd, "legalize", format!("Legalise {}", s.name), Some("lift the ban".into()), None,
+                    serde_json::json!({ "kind": "legalize_party", "party": party }),
+                ));
+            } else {
+                let cmd = Command::BanParty { nation: id, party: party.clone() };
+                actions.push(action_json(
+                    w, &cmd, "ban", format!("Ban {}", s.name), Some("no seats; its voters stay".into()), None,
+                    serde_json::json!({ "kind": "ban_party", "party": party }),
+                ));
+            }
         }
     }
 
@@ -5794,6 +5982,25 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             nation: me,
             pillar: spheres_sim::government::Pillar::parse(v.get("pillar")?.as_str()?)?,
         },
+        // The five levers (S3). A bloc is its stable key ("non_aligned"); an
+        // unreadable one is a refusal, not a guess.
+        "suspend_constitution" => Command::SuspendConstitution { nation: me },
+        "ban_party" => Command::BanParty { nation: me, party: v.get("party")?.as_str()?.to_string() },
+        "legalize_party" => Command::LegalizeParty { nation: me, party: v.get("party")?.as_str()?.to_string() },
+        "declare_programme" => Command::DeclareProgramme {
+            nation: me,
+            bloc: spheres_sim::government::Bloc::parse(v.get("bloc")?.as_str()?)?,
+        },
+        "convene_round_table" => Command::ConveneRoundTable { nation: me },
+        // Covert action from the target's dossier: `op` is what the sim's own
+        // `CovertOp::parse` reads — "opposition", "separatists", "sabotage",
+        // or "back:<bloc>" (S3); the "coup" alias stays on funding the
+        // opposition there, not here.
+        "covert" => Command::CovertAction {
+            sponsor: me,
+            target: target()?,
+            op: CovertOp::parse(v.get("op")?.as_str()?)?,
+        },
         // The card carries its stable generated id, never its position among
         // the three offers. Availability and generation are re-checked by the
         // sim when the command lands, so a stale browser cannot choose a card
@@ -6853,6 +7060,19 @@ fn main() {
                 let r = match asked.or(g.world.player) {
                     Some(id) => json_response(government_json(&g.world, id)),
                     None => json_error(400, serde_json::json!({ "error": "no nation chosen" })),
+                };
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/api/covert") => {
+                // The covert card on a target's dossier: `?nation=` is the
+                // TARGET, the sponsor is the player. Nothing without a seat.
+                let asked = nation_param(request.url());
+                let g = game.lock().unwrap();
+                let r = match (g.world.player, asked) {
+                    (Some(me), Some(target)) => json_response(covert_json(&g.world, me, target)),
+                    (None, _) => json_error(400, serde_json::json!({ "error": "Choose a nation first." })),
+                    (_, None) => json_error(400, serde_json::json!({ "error": "no target chosen" })),
                 };
                 let _ = request.respond(r);
                 continue;
@@ -15449,5 +15669,382 @@ mod tests {
         );
         assert_eq!(parse_command(w, &serde_json::json!({ "kind": "secure_pillar", "pillar": "navy" }), me), None);
         assert_eq!(parse_command(w, &serde_json::json!({ "kind": "invite_to_government" }), me), None);
+    }
+
+    // =======================================================================
+    // S3/S4 — the web surface of the political arm: the levers, the covert
+    // card, the hatched bar, the watch, the chip and the dock, the stems.
+    // =======================================================================
+
+    /// The five levers and the covert card reach the sim from the page as
+    /// payloads `parse_command` reads — a party by its stable id, a bloc by
+    /// its stable key ("non_aligned"), a covert op by the sim's own
+    /// `CovertOp::parse` string ("back:communist") — and an unreadable one
+    /// is a refusal, not a guess. Watched red with the `"covert"` arm
+    /// removed from `parse_command`: the BackBloc line read `None`.
+    #[test]
+    fn the_levers_and_the_covert_kinds_parse_from_the_page() {
+        use spheres_sim::government::Bloc;
+        let g = Game::new(7, Some(NationId::Poland));
+        let w = &g.world;
+        let me = NationId::Poland;
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "suspend_constitution" }), me),
+            Some(Command::SuspendConstitution { nation: me })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "ban_party", "party": "pl_sld" }), me),
+            Some(Command::BanParty { nation: me, party: "pl_sld".into() })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "legalize_party", "party": "pl_sld" }), me),
+            Some(Command::LegalizeParty { nation: me, party: "pl_sld".into() })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "declare_programme", "bloc": "non_aligned" }), NationId::Iraq),
+            Some(Command::DeclareProgramme { nation: NationId::Iraq, bloc: Bloc::NonAligned })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "convene_round_table" }), NationId::Iraq),
+            Some(Command::ConveneRoundTable { nation: NationId::Iraq })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "covert", "target": "Cuba", "op": "back:communist" }), NationId::USA),
+            Some(Command::CovertAction { sponsor: NationId::USA, target: NationId::Cuba, op: CovertOp::BackBloc(Bloc::Communist) })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "covert", "target": "Cuba", "op": "opposition" }), NationId::USA),
+            Some(Command::CovertAction { sponsor: NationId::USA, target: NationId::Cuba, op: CovertOp::FundOpposition })
+        );
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "declare_programme", "bloc": "monarchist" }), me), None);
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "ban_party" }), me), None);
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "covert", "target": "Cuba", "op": "back:royalist" }), me), None);
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "covert", "op": "sabotage" }), me), None);
+    }
+
+    /// The levers on the government screen are served with the sim's price,
+    /// the sim's refusal and the sim's effects list — `lever_effects`, off
+    /// the same plan the arm writes — for the very command the page would
+    /// post. Measured this run, seed 7 through the browser's load path:
+    /// Poland (electoral, four parties) carries one suspension at 40 PC,
+    /// refused out of crisis, and four bans at 18 PC, Solidarity's refused
+    /// as the party that leads; once `pl_sld` is banned (authoritarianism
+    /// staged to 0.50 first, the ban's own line) its action turns into a
+    /// legalisation at 12 PC with the ban's group flag set. Iraq (a regime)
+    /// carries one programme per present non-ruling bloc, each at 35 PC, and
+    /// a round table at 30 PC refused for want of discontent. Off, every
+    /// lever is still listed and refused "This world does not model
+    /// ideological movements." with an empty effects list. Watched red with
+    /// `"effects": vec![]` in `action_json`: the ban's four sentences read
+    /// as none.
+    #[test]
+    fn the_levers_are_served_with_the_sim_s_price_refusal_and_effects() {
+        use spheres_sim::government as gov;
+        let check = |w: &WorldState, v: &serde_json::Value, id: NationId| {
+            for a in v["actions"].as_array().unwrap() {
+                let cmd = parse_command(w, &a["command"], id)
+                    .unwrap_or_else(|| panic!("the page's payload does not parse: {}", a["command"]));
+                assert_eq!(a["price"], spheres_sim::price_of(w, &cmd).unwrap_or(0.0), "{}", a["label"]);
+                assert_eq!(a["refusal"], serde_json::json!(spheres_sim::refusal_of(w, &cmd)), "{}", a["label"]);
+                assert_eq!(a["affordable"], spheres_sim::affordable(w, &cmd), "{}", a["label"]);
+                assert_eq!(a["effects"], serde_json::json!(effects_of(w, &cmd)), "{}", a["label"]);
+                if let Some(fx) = gov::lever_effects(w, &cmd) {
+                    assert_eq!(a["effects"], serde_json::json!(fx), "{}", a["label"]);
+                }
+            }
+        };
+        let mut g = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
+        let pl = government_json(&g.world, NationId::Poland);
+        let kinds = |v: &serde_json::Value, k: &str| -> Vec<serde_json::Value> {
+            v["actions"].as_array().unwrap().iter().filter(|a| a["kind"] == k).cloned().collect()
+        };
+        let suspend = kinds(&pl, "suspend");
+        assert_eq!(suspend.len(), 1);
+        assert_eq!(suspend[0]["price"], gov::SUSPEND_PC);
+        assert_eq!(suspend[0]["command"], serde_json::json!({ "kind": "suspend_constitution" }));
+        assert_eq!(suspend[0]["refusal"], serde_json::json!(gov::suspend_refusal(&g.world, NationId::Poland)));
+        assert!(suspend[0]["refusal"].as_str().unwrap().contains("is not in the crisis a suspension needs"));
+        let bans = kinds(&pl, "ban");
+        assert_eq!(bans.len(), 4, "one ban per party of the table");
+        assert!(bans.iter().all(|b| b["price"] == gov::BAN_PC));
+        let lead = bans.iter().find(|b| b["command"]["party"] == "pl_solidarity").unwrap();
+        assert_eq!(lead["refusal"], "A government cannot ban the party that leads it.");
+        assert!(kinds(&pl, "legalize").is_empty() && kinds(&pl, "programme").is_empty() && kinds(&pl, "round_table").is_empty());
+        check(&g.world, &pl, NationId::Poland);
+        // Stage the ban's own line and ban the post-communists: the action
+        // turns into a legalisation, the group reads banned, the effects
+        // list is the sim's.
+        g.world.nation_mut(NationId::Poland).authoritarianism = 0.50;
+        let pl = government_json(&g.world, NationId::Poland);
+        let sld = kinds(&pl, "ban").into_iter().find(|b| b["command"]["party"] == "pl_sld").unwrap();
+        assert!(sld["refusal"].is_null(), "{}", sld["refusal"]);
+        let fx = sld["effects"].as_array().unwrap();
+        assert_eq!(fx.len(), 4, "{fx:?}");
+        assert!(fx[0].as_str().unwrap().starts_with("Democratic Left Alliance holds no seats:"), "{}", fx[0]);
+        gov::ban_party(&mut g.world, NationId::Poland, "pl_sld").unwrap();
+        let pl = government_json(&g.world, NationId::Poland);
+        let legal = kinds(&pl, "legalize");
+        assert_eq!(legal.len(), 1);
+        assert_eq!(legal[0]["price"], gov::LEGALIZE_PC);
+        assert_eq!(legal[0]["command"], serde_json::json!({ "kind": "legalize_party", "party": "pl_sld" }));
+        assert_eq!(kinds(&pl, "ban").len(), 3);
+        let groups = pl["groups"].as_array().unwrap();
+        assert_eq!(groups[1]["bloc"], "Communist");
+        assert_eq!(groups[1]["banned"], true);
+        assert_eq!(groups[1]["parties"][0]["banned"], true);
+        assert_eq!(pl["bar"][1]["banned"], true);
+        check(&g.world, &pl, NationId::Poland);
+        // The regime.
+        let iq = government_json(&g.world, NationId::Iraq);
+        let programmes = kinds(&iq, "programme");
+        let present: Vec<gov::Bloc> = gov::Bloc::ALL
+            .into_iter()
+            .filter(|b| *b != gov::Bloc::Nationalist && spheres_sim::blocs::bloc_present(NationId::Iraq, *b))
+            .collect();
+        assert_eq!(programmes.len(), present.len());
+        assert!(!programmes.is_empty());
+        assert!(programmes.iter().all(|p| p["price"] == gov::PROGRAMME_PC));
+        assert_eq!(programmes[0]["command"]["kind"], "declare_programme");
+        let rt = kinds(&iq, "round_table");
+        assert_eq!(rt.len(), 1);
+        assert_eq!(rt[0]["price"], gov::ROUND_TABLE_PC);
+        assert_eq!(rt[0]["refusal"], serde_json::json!(gov::round_table_refusal(&g.world, NationId::Iraq)));
+        assert!(kinds(&iq, "suspend").is_empty());
+        check(&g.world, &iq, NationId::Iraq);
+        // Off: listed, refused in the arm's one sentence, no effects.
+        let off = Game::new(7, Some(NationId::Poland));
+        let v = government_json(&off.world, NationId::Poland);
+        let levers: Vec<&serde_json::Value> = v["actions"].as_array().unwrap().iter()
+            .filter(|a| ["suspend", "ban", "legalize", "programme", "round_table"].contains(&a["kind"].as_str().unwrap()))
+            .collect();
+        assert_eq!(levers.len(), 5, "the suspension and four bans");
+        for a in &levers {
+            assert_eq!(a["refusal"], gov::NO_MOVEMENTS, "{}", a["label"]);
+            assert!(a["effects"].as_array().unwrap().is_empty());
+        }
+        check(&off.world, &v, NationId::Poland);
+        // The page: the levers under their own head, the effects list read
+        // from the served field, nothing composed.
+        let screen = page_fn("function renderGovernment() {");
+        assert!(screen.contains(r#"const LEVERS = new Set(["suspend", "ban", "legalize", "programme", "round_table"]);"#));
+        assert!(screen.contains("a.effects.map((e) => `<li>${escText(e)}</li>`)"));
+        assert!(screen.contains("The levers"));
+    }
+
+    /// The covert card on a target's dossier: the three operations and
+    /// "Back a movement" for every bloc present in the target, each with the
+    /// sim's price and refusal, and `works` / `exposed` equal to
+    /// `statecraft::covert_odds` — the function `covert_action` rolls, moved
+    /// out of it verbatim. Measured this run, the USA against Cuba: works
+    /// 0.3300, exposed 0.2380, six operations (three plus the
+    /// blocs present), backing the Communist movement refused
+    /// "You cannot back a government covertly — send aid.", every op 5 PC.
+    /// Off: three ops, the odds still served. Watched red with `works`
+    /// served as 0.0: the equality with `covert_odds` failed.
+    #[test]
+    fn the_back_a_movement_card_quotes_the_odds_the_sim_rolls() {
+        use spheres_sim::government::Bloc;
+        let g = loaded_play_game(Game::new(7, Some(NationId::USA)).world);
+        let w = &g.world;
+        let v = covert_json(w, NationId::USA, NationId::Cuba);
+        assert_eq!(v["on"], true);
+        assert_eq!(v["target_name"], "Cuba");
+        assert_eq!(v["ruling_bloc"], "Communist");
+        let (works, exposed) = spheres_sim::statecraft::covert_odds(w, NationId::USA, NationId::Cuba);
+        assert_eq!(v["works"], works);
+        assert_eq!(v["exposed"], exposed);
+        eprintln!("MEASURED covert_odds USA->Cuba works {works:.4} exposed {exposed:.4} ops {}", v["ops"].as_array().unwrap().len());
+        assert!((0.05..=0.80).contains(&works) && (0.05..=0.85).contains(&exposed), "{works} {exposed}");
+        assert_eq!(v["heat"], 0.0);
+        let ops = v["ops"].as_array().unwrap();
+        let kinds: Vec<&str> = ops.iter().map(|o| o["kind"].as_str().unwrap()).collect();
+        assert_eq!(kinds[..3], ["fund_opposition", "stir_separatists", "sabotage_industry"]);
+        let backs: Vec<&serde_json::Value> = ops.iter().filter(|o| o["kind"] == "back_bloc").collect();
+        let present: Vec<Bloc> = Bloc::ALL.into_iter().filter(|b| spheres_sim::blocs::bloc_present(NationId::Cuba, *b)).collect();
+        assert_eq!(backs.len(), present.len());
+        assert!(backs.len() >= 2, "{present:?}");
+        for o in ops {
+            let cmd = parse_command(w, &o["command"], NationId::USA)
+                .unwrap_or_else(|| panic!("the card's payload does not parse: {}", o["command"]));
+            assert!(matches!(cmd, Command::CovertAction { sponsor: NationId::USA, target: NationId::Cuba, .. }));
+            assert_eq!(o["price"], spheres_sim::price_of(w, &cmd).unwrap(), "{}", o["label"]);
+            assert_eq!(o["price"], 5.0);
+            assert_eq!(o["refusal"], serde_json::json!(spheres_sim::refusal_of(w, &cmd)), "{}", o["label"]);
+            assert_eq!(o["effects"], serde_json::json!(effects_of(w, &cmd)), "{}", o["label"]);
+            if let Command::CovertAction { op: CovertOp::BackBloc(b), .. } = cmd {
+                assert_eq!(o["bloc"], serde_json::json!(b));
+                assert_eq!(o["op"], format!("back:{}", b.key()));
+                assert_eq!(o["effects"], serde_json::json!(spheres_sim::statecraft::back_bloc_effects(w, NationId::USA, NationId::Cuba, b)));
+                assert!(o["effects"][0].as_str().unwrap().starts_with("If it works: +0.06 backing"), "{}", o["effects"][0]);
+            }
+        }
+        let ruling = backs.iter().find(|o| o["bloc"] == "Communist").expect("Cuba's Communist row");
+        assert_eq!(ruling["refusal"], "You cannot back a government covertly — send aid.");
+        // Nationalist is present through the Army pillar alone: a movement
+        // with no party, and the one the live check backs.
+        let nat = backs.iter().find(|o| o["bloc"] == "Nationalist").expect("Cuba's Nationalist row");
+        assert!(nat["refusal"].is_null(), "{}", nat["refusal"]);
+        assert_eq!(nat["command"], serde_json::json!({ "kind": "covert", "target": "Cuba", "op": "back:nationalist" }));
+        assert!(backs.iter().all(|o| o["bloc"] != "Western"), "Cuba's table carries no Western party");
+        // Off: the three operations stand, the movements do not.
+        let off = Game::new(7, Some(NationId::USA));
+        let v = covert_json(&off.world, NationId::USA, NationId::Cuba);
+        assert_eq!(v["on"], false);
+        assert_eq!(v["ops"].as_array().unwrap().len(), 3);
+        assert_eq!(v["works"], spheres_sim::statecraft::covert_odds(&off.world, NationId::USA, NationId::Cuba).0);
+        // The page: one fetch on the target, the served names, no formula.
+        assert!(INDEX.contains(r#"api("/api/covert?nation=" + encodeURIComponent(nid))"#));
+        let card = page_fn("async function fillCovertDash(nid) {");
+        for served in ["d.works", "d.exposed", "d.heat", "a.price", "a.refusal", "a.effects", "a.bloc", "d.ops"] {
+            assert!(card.contains(served), "the card no longer reads the served `{served}`");
+        }
+        assert!(INDEX.contains("if (!isMe) fillCovertDash(n.id);"));
+        assert!(INDEX.contains(r#"<div id="covertDash" class="tiny muted">"#));
+        for computed in ["0.12 +", "(60.0 -", "0.0008", "clamp(0.05"] {
+            assert!(!INDEX.contains(computed), "the page derives a covert number of its own: `{computed}`");
+        }
+    }
+
+    /// The bar's foreign row: each bloc's served F_B drawn as a hatch under
+    /// its share, with the parts listed — a covert entry's sponsor NAMED ONLY
+    /// ONCE EXPOSED, and the server never sends an unexposed one. Measured
+    /// this run: the Soviet Union backing Poland's Communist movement puts
+    /// 0.06 on the row with `sponsor: null`; after exposure the entry reads
+    /// 0.03, exposed, "Soviet Union". Watched red with the sponsor served
+    /// unconditionally: the null read "Soviet Union".
+    #[test]
+    fn the_bar_hatches_foreign_backing_and_names_the_sponsor_only_after_exposure() {
+        use spheres_sim::government::Bloc;
+        let mut g = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
+        let pl = government_json(&g.world, NationId::Poland);
+        for b in pl["bar"].as_array().unwrap() {
+            assert_eq!(b["backing"], 0.0);
+            assert!(b["abroad"].as_array().unwrap().is_empty());
+        }
+        let added = spheres_sim::statecraft::add_backing(&mut g.world, NationId::USSR, NationId::Poland, Bloc::Communist);
+        assert_eq!(added, spheres_sim::statecraft::BACKING_STEP);
+        let pl = government_json(&g.world, NationId::Poland);
+        let row = &pl["bar"][1];
+        assert_eq!(row["bloc"], "Communist");
+        assert_eq!(row["backing"], spheres_sim::blocs::backing(&g.world, NationId::Poland)[Bloc::Communist as usize].1);
+        assert_eq!(row["backing"], 0.06);
+        let abroad = row["abroad"].as_array().unwrap();
+        assert_eq!(abroad.len(), 1);
+        assert_eq!(abroad[0]["kind"], "covert");
+        assert_eq!(abroad[0]["weight"], 0.06);
+        assert_eq!(abroad[0]["exposed"], false);
+        assert!(abroad[0]["sponsor"].is_null(), "an unexposed sponsor was served: {}", abroad[0]);
+        assert!(!serde_json::to_string(&pl).unwrap().contains("Soviet Union"), "the sponsor's name leaked somewhere on the screen");
+        spheres_sim::statecraft::expose_backing(&mut g.world, NationId::USSR, NationId::Poland, Bloc::Communist);
+        let pl = government_json(&g.world, NationId::Poland);
+        let abroad = pl["bar"][1]["abroad"].as_array().unwrap();
+        assert_eq!(abroad[0]["exposed"], true);
+        assert_eq!(abroad[0]["sponsor"], NationId::USSR.name());
+        assert_eq!(abroad[0]["weight"], 0.03);
+        assert_eq!(pl["bar"][1]["backing"], 0.03);
+        // The page: the hatched row reads the served `backing` and names a
+        // sponsor from the served field alone.
+        assert!(INDEX.contains(r#"<div class="govabroad" role="img" aria-label="backed from abroad">"#));
+        let screen = page_fn("function renderGovernment() {");
+        assert!(screen.contains("width:${(b.backing * 100).toFixed(2)}%;--hatch:${blocColor(b.bloc)}"));
+        assert!(screen.contains(r#"e.sponsor ? `${escText(e.sponsor)}, exposed` : "nobody can say from where""#));
+        assert!(INDEX.contains(".govabroad i.exposed { outline:1px solid var(--red);"));
+    }
+
+    /// The takeover watch reads every road closed with the REAL reason — in
+    /// the browser `rules.ideology_takeover` is off, so "calibration pending"
+    /// on all four — with live gauges and the served `armed` flag beside it;
+    /// the header chip pulses and the dock names the road when any gauge on
+    /// it passes half its trigger, both from the served `half_armed` flags.
+    /// Measured this run, seed 7: Poland's coup road half-armed (discontent
+    /// 0.2917 against a trigger of 0.25 is past half), so the dock reads
+    /// "watch: coup past half" and the chip carries `pulse`. Watched red
+    /// with the `chip.classList.toggle("pulse", ...)` line removed.
+    #[test]
+    fn the_watch_reads_calibration_pending_and_the_dock_names_the_road() {
+        let g = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
+        let w = &g.world;
+        assert!(!w.rules.ideology_takeover);
+        let pl = government_json(w, NationId::Poland);
+        for road in ["coup", "uprising", "round_table", "collapse"] {
+            let r = &pl["takeover"][road];
+            assert_eq!(r["open"], false, "{road}");
+            assert_eq!(r["reason"], spheres_sim::blocs::CALIBRATION_PENDING, "{road}");
+            assert!(r["armed"].is_boolean() && r["half_armed"].is_boolean(), "{road}");
+            for gauge in r["gauges"].as_array().unwrap() {
+                assert!(gauge["value"].is_number() && gauge["progress"].is_number() && gauge["met"].is_boolean());
+            }
+        }
+        let coup = &pl["takeover"]["coup"];
+        assert_eq!(coup["half_armed"], true, "{coup}");
+        assert_eq!(pl["takeover"]["half_armed"], true);
+        let disc = coup["gauges"][1].clone();
+        assert_eq!(disc["name"], "discontent");
+        assert!(disc["progress"].as_f64().unwrap() >= 1.0, "{disc}");
+        // On /api/state too, which is what the header and the dock read.
+        let n = nation_json(w, w.nation(NationId::Poland));
+        assert_eq!(n["takeover"]["coup"]["half_armed"], true);
+        // The page.
+        let render = page_fn("function render() {");
+        assert!(render.contains(r#"chip.classList.toggle("pulse", !!(m && m.takeover && m.takeover.half_armed));"#));
+        assert!(render.contains(r##"$("#govBtn").classList.toggle("watch", roadsHot.length > 0);"##));
+        assert!(render.contains(r##"$("#dockGovernment").textContent = roadsHot.length ? `watch: ${roadsHot.join(", ")} past half` : "who holds power";"##));
+        assert!(render.contains(".filter(([k]) => m.takeover[k] && m.takeover[k].half_armed)"));
+        assert!(INDEX.contains("@keyframes discontentPulse"));
+        assert!(INDEX.contains("#hdrDiscontentChip.pulse { animation:discontentPulse"));
+        let screen = page_fn("function renderGovernment() {");
+        assert!(screen.contains(r#"${r.armed ? ` <span class="armed">\u00b7 every gauge met</span>` : ""}"#));
+        assert!(screen.contains(r#"${r.reason ? ` \u2014 ${escText(r.reason)}` : ""}"#));
+    }
+
+    /// The political arm's headlines are filed and promoted by the sim's own
+    /// stems: every lever, the surge latch, both roads, an exposure and a
+    /// death in office. `classify` files them (politics; the covert success
+    /// that names no sponsor is diplomacy, as the other covert lines are;
+    /// the exposure was politics already, on "scandal") and `is_major` stops the
+    /// clock on the ones that change a government or name a scandal,
+    /// whoever they are about. Watched red with the `"dies in office"` stem
+    /// removed from `is_major`.
+    #[test]
+    fn the_political_arm_s_headlines_are_filed_and_promoted() {
+        let politics = [
+            "Poland suspends its constitution and rules by decree.",
+            "Poland bans Democratic Left Alliance.",
+            "Poland legalises Democratic Left Alliance.",
+            "China declares a Western programme.",
+            "Indonesia convenes a round table; first free elections in six months.",
+            "The Nationalist movement in China passes a third of the country.",
+            "COUP IN PAKISTAN: the Pakistan Army removes the elected government.",
+            "COUP IN ALGERIA: the army annuls the election Islamic Salvation Front won.",
+            "Revolution in Romania: the Western movement takes power.",
+            "Tadeusz Mazowiecki dies in office.",
+            // Filed on "scandal", the stem every exposure carried before the arm.
+            "Poland exposes United States backing the Communist movement in Poland — the scandal rallies the country behind its government.",
+        ];
+        for h in politics {
+            assert_eq!(classify(h), "politics", "{h}");
+        }
+        let diplomacy = [
+            "Money and organisers reach the Communist movement in Poland; nobody can say from where.",
+        ];
+        for h in diplomacy {
+            assert_eq!(classify(h), "diplomacy", "{h}");
+        }
+        let major = [
+            "Poland suspends its constitution and rules by decree.",
+            "Indonesia convenes a round table; first free elections in six months.",
+            "The Nationalist movement in China passes a third of the country.",
+            "COUP IN PAKISTAN: the Pakistan Army removes the elected government.",
+            "Revolution in Romania: the Western movement takes power.",
+            "Tadeusz Mazowiecki dies in office.",
+            "Poland exposes United States backing the Communist movement in Poland — the scandal rallies the country behind its government.",
+        ];
+        for h in major {
+            assert!(is_major(h, Some(NationId::Oman)), "{h} does not stop the clock for a bystander");
+        }
+        for h in ["Poland bans Democratic Left Alliance.", "China declares a Western programme.",
+                  "Money and organisers reach the Communist movement in Poland; nobody can say from where."] {
+            assert!(!is_major(h, Some(NationId::Oman)), "{h} stops a bystander's clock");
+        }
     }
 }

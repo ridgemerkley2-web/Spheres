@@ -698,31 +698,13 @@ pub fn end_aid(
     Ok(())
 }
 
-/// Deniable, probabilistic, and worse than useless once it is caught. Two rolls
-/// in a fixed order: whether the operation worked, and whether it stayed secret.
-pub fn covert_action(
-    w: &mut WorldState,
-    sponsor: NationId,
-    target: NationId,
-    op: CovertOp,
-) -> Result<(), String> {
-    if sponsor == target {
-        return Err("A service does not run operations against its own state.".into());
-    }
-    if !alive(w, sponsor) || !alive(w, target) {
-        return Err("Nation no longer exists.".into());
-    }
-    if let CovertOp::BackBloc(bloc) = op {
-        if let Some(why) = back_bloc_refusal(w, target, bloc) {
-            return Err(why);
-        }
-    }
-
-    // Running a service costs money whether or not anything comes of it.
-    // 0.0008 of output is the pre-treasury line unchanged.
-    let service_bn = w.nation(sponsor).gdp * 0.0008;
-    crate::economy::charge(w, sponsor, service_bn, 0.0008);
-
+/// The two probabilities a covert operation rolls — (worked, exposed) — read
+/// without touching the world. THE ONE PLACE they are computed (iron rule 8):
+/// `covert_action` rolls exactly these, after its service charge (which
+/// moves the treasury and never output, so the card and the roll agree), and
+/// the dossier's "Back a movement" card quotes them as "works p% / exposed
+/// q%". The block below is `covert_action`'s, moved verbatim.
+pub fn covert_odds(w: &WorldState, sponsor: NationId, target: NationId) -> (f64, f64) {
     let (s_gdp, t_gdp) = (w.nation(sponsor).gdp, w.nation(target).gdp);
     let (t_stab, t_sep, t_auth) = {
         let t = w.nation(target);
@@ -759,6 +741,36 @@ pub fn covert_action(
     let t_dip = w.nation(target).budget_gap(BUDGET_DIPLOMACY);
     let expose_p =
         exposure_probability(heat, t_auth, crate::ministries::diplomacy_counterintel(t_dip));
+
+    (success_p, expose_p)
+}
+
+/// Deniable, probabilistic, and worse than useless once it is caught. Two rolls
+/// in a fixed order: whether the operation worked, and whether it stayed secret.
+pub fn covert_action(
+    w: &mut WorldState,
+    sponsor: NationId,
+    target: NationId,
+    op: CovertOp,
+) -> Result<(), String> {
+    if sponsor == target {
+        return Err("A service does not run operations against its own state.".into());
+    }
+    if !alive(w, sponsor) || !alive(w, target) {
+        return Err("Nation no longer exists.".into());
+    }
+    if let CovertOp::BackBloc(bloc) = op {
+        if let Some(why) = back_bloc_refusal(w, target, bloc) {
+            return Err(why);
+        }
+    }
+
+    // Running a service costs money whether or not anything comes of it.
+    // 0.0008 of output is the pre-treasury line unchanged.
+    let service_bn = w.nation(sponsor).gdp * 0.0008;
+    crate::economy::charge(w, sponsor, service_bn, 0.0008);
+
+    let (success_p, expose_p) = covert_odds(w, sponsor, target);
 
     let worked = w.rng.chance(success_p);
     let exposed = w.rng.chance(expose_p);
