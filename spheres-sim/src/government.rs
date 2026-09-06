@@ -7796,21 +7796,69 @@ fn maybe_coup(w: &mut WorldState, id: NationId) {
     if pressure < 1.0 / w.rules.crisis_intensity.max(0.1) {
         return;
     }
-    let name = polity(id)
+    let name = pillar_name(id, pillar);
+    // The one number the regime's own coup and the arm's roads compute
+    // differently is the authoritarianism the new regime opens at: here the
+    // pre-arm rule, per pillar, read before anything is written.
+    let auth = w.nation(id).authoritarianism;
+    let auth_after = match pillar {
+        Pillar::Army | Pillar::Security => (auth + 0.08).min(0.98),
+        Pillar::Clergy => (auth + 0.05).min(0.98),
+        _ => (auth - 0.04).max(0.05),
+    };
+    // Under the arm the institution that moved rules in its own colour; with
+    // the arm off nothing is written, because `regime_bloc` is never stored
+    // there.
+    let regime_bloc = if w.rules.ideology_blocs { Some(pillar_bloc(id, pillar)) } else { None };
+    let _ = loyalty;
+    regime_break(
+        w,
+        id,
+        Break {
+            pillar,
+            auth_after,
+            regime_bloc,
+            headline: format!("COUP IN {}: {} removes the government.", id.name().to_uppercase(), name),
+        },
+    );
+}
+
+/// The transcribed name of one of a regime's institutions, or the generic.
+fn pillar_name(id: NationId, pillar: Pillar) -> &'static str {
+    polity(id)
         .and_then(|pol| pol.pillars.iter().find(|s| s.pillar == pillar))
         .map(|s| s.name)
-        .unwrap_or("the security apparatus");
-    // A coup is not a revolution: the state survives, the government does not,
-    // and whoever moved is now in charge and more afraid than the last lot.
+        .unwrap_or("the security apparatus")
+}
+
+/// What a coup leaves behind, computed by the caller and written by
+/// [`regime_break`]: the institution that moved, the authoritarianism the
+/// new regime opens at, the colour it rules in (written only under the arm),
+/// and the headline.
+pub(crate) struct Break {
+    pub pillar: Pillar,
+    pub auth_after: f64,
+    pub regime_bloc: Option<Bloc>,
+    pub headline: String,
+}
+
+/// A coup is not a revolution: the state survives, the government does not,
+/// and whoever moved is now in charge and more afraid than the last lot.
+///
+/// ONE function for the regime's own coup (`maybe_coup`, the pre-arm
+/// mechanic, whose block this is verbatim: stability −16 to a floor of 5,
+/// output ×0.97, political capital reseated, pressure cleared, the mover at
+/// 0.90 and every other institution at 0.72, the office clock to zero) and
+/// for the arm's roads (S4: the coup against an elected government, the
+/// annulment), so the two cannot come apart. The only things that differ
+/// between callers arrive in the [`Break`]: the authoritarianism rule and
+/// the colour. Draws no RNG.
+fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
     {
         let n = w.nation_mut(id);
         n.stability = (n.stability - 16.0).max(5.0);
         n.gdp *= 0.97;
-        n.authoritarianism = match pillar {
-            Pillar::Army | Pillar::Security => (n.authoritarianism + 0.08).min(0.98),
-            Pillar::Clergy => (n.authoritarianism + 0.05).min(0.98),
-            _ => (n.authoritarianism - 0.04).max(0.05),
-        };
+        n.authoritarianism = b.auth_after;
         n.political_capital = crate::politics::seated_political_capital(
             n.stability, n.inflation, n.authoritarianism,
         );
@@ -7820,13 +7868,15 @@ fn maybe_coup(w: &mut WorldState, id: NationId) {
         for e in g.pillars.iter_mut() {
             // The institution that moved is loyal to itself; the rest fall in
             // behind it, because the alternative has just been demonstrated.
-            e.1 = if e.0 == pillar { 0.90 } else { 0.72 };
+            e.1 = if e.0 == b.pillar { 0.90 } else { 0.72 };
         }
         g.months_in_office = 0;
         g.office_month_fraction = 0.0;
+        if let Some(bloc) = b.regime_bloc {
+            g.regime_bloc = Some(bloc);
+        }
     }
-    let _ = loyalty;
-    w.headline(format!("COUP IN {}: {} removes the government.", id.name().to_uppercase(), name));
+    w.headline(b.headline);
 }
 
 /// AI regimes pay their bills. A government that will not spend on the people
