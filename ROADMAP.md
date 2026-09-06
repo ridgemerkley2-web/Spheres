@@ -36,6 +36,13 @@ ships: sim lib 457 / 3 / 25 (the three deliberate reds at unmoved actuals
 0xe26e4bf8d6c60066 and 0xbe94d6125631829c), 28 integration binaries green
 (`bloc_census` 4 pinned bars, 25.9 s), web and cli in the census commit's
 body; digests d1a2cfbf7c6958d7 / 3501 and 39dea3341a7f6e8c / 3983 unmoved.
+The ship pass (BUGS H-7) corrected three overstated sources at their site
+(Powell's abstract, Operation Cyclone's figures, four personnel refusals that
+had been called sourced zeros), recorded the third touched test and the three
+R3 stops plainly, watched the suite from a clean build (839 / 3 / 65, the
+three deliberate reds at the same actuals), re-ran both digests twice, read
+Algeria, Afghanistan and Iraq on seed 7 through the page, and fast-forwarded
+the branch onto `feat/hoi4-map-and-tech`.
 
 ## Done — S5 shipped: the skeptics' findings repaired at the root, D4 reverted, the census re-read (2026-09-06)
 

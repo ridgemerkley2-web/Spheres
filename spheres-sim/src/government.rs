@@ -7954,10 +7954,17 @@ pub const ARMY_PAY_WEIGHT: f64 = 0.0;
 /// `0.20 + 0.65 · ((1 − w) · share + w · pay) − exhaustion · 0.45`, where
 /// `pay` is the ratio's position between `ARMY_PAY_UNPAID_AT` and
 /// `ARMY_PAY_FULL_AT`, clamped to 0..1. The FORM is INVENTED and labelled
-/// so (the ruling's words). Historical basis of the arm: Powell (2012,
-/// Journal of Conflict Resolution 56(6), "Determinants of the Attempting
-/// and Outcome of Coups d'etat") finds military expenditure per soldier
-/// the strongest deterrent of coup attempts in the 1950-2000 record;
+/// so (the ruling's words). Historical basis of the arm, as the ruling
+/// names it: Powell (2012, Journal of Conflict Resolution 56(6) 1017-1040,
+/// "Determinants of the Attempting and Outcome of Coups d'etat", doi
+/// 10.1177/0022002712445732). What the fetched abstract itself says
+/// (OpenAlex, 2026-09-06): the model is tested on "a global sample from
+/// 1961 to 2000" and "characteristics of military appear to be far more
+/// important than economic influences on coups" — military expenditure
+/// per soldier is the ruling's reading of that finding, not a sentence of
+/// the abstract (the body was not fetched); an earlier draft of this
+/// comment wrote "the strongest deterrent ... in the 1950-2000 record",
+/// which the abstract does not support, corrected in BUGS H-7.
 /// Londregan and Poole (1990, World Politics 42(2), "Poverty, the Coup
 /// Trap, and the Seizure of Executive Power") the poverty gradient. The
 /// share arm's own history is in `pillar_targets`' comment.

@@ -1493,9 +1493,13 @@ fn ai_statecraft(w: &mut WorldState) {
     // reason it is wrong as history: a lottery at 0.022 lands Pakistan's
     // money in Afghanistan three times in twenty years on seed 7, while the
     // stock a clean operation puts in (`BACKING_STEP` 0.06) is spent in ten
-    // months (`BACKING_DECAY` 0.006) — Operation Cyclone was appropriated
-    // and delivered every fiscal year from 1980 to 1992, Saudi money matched
-    // it dollar for dollar, and the Peshawar parties never went unpaid. So
+    // months (`BACKING_DECAY` 0.006) — Operation Cyclone ran from 1979
+    // to 1992, "$695,000 USD in mid-1979, ... $20-$30 million per year in
+    // 1980, and rose to $630 million per year in 1987", and Saudi Arabia
+    // "agreed to match dollar for dollar the money the CIA was sending"
+    // (Wikipedia, Operation Cyclone, fetched 2026-09-06; the page gives
+    // no per-year figure past those, so "every fiscal year" is not a claim
+    // this comment makes — BUGS H-7). So
     // a sponsor with a movement to back acts WHENEVER ITS CHANNEL HAS
     // COOLED to `SPONSOR_PROGRAMME_HEAT`, once a calendar month, and draws
     // nothing itself: the operation's own two dice (`covert_action`) are the
