@@ -8434,12 +8434,18 @@ fn term_limits(w: &mut WorldState) {
     if !w.rules.ideology_blocs {
         return;
     }
-    let today = (w.year, w.month, w.day.max(1));
+    // By the MONTH, not the day: a month-stepped world settles the whole
+    // month on the 1st and a legacy day-stepped one on the last day, and
+    // the two must agree (`the_daily_clock_preserves_the_political_arm_on_
+    // world`); a ceiling falling inside a month is reached in that month.
+    let this_month = (w.year, w.month);
     let due: Vec<NationId> = match &w.leadership {
         Some(rows) => rows
             .iter()
             .filter(|o| o.holds())
-            .filter(|o| o.must_leave_by.as_deref().and_then(crate::data::parse_date).is_some_and(|d| d <= today))
+            .filter(|o| {
+                o.must_leave_by.as_deref().and_then(crate::data::parse_date).is_some_and(|(y, m, _)| (y, m) <= this_month)
+            })
             .map(|o| o.nation)
             .collect(),
         None => return,
@@ -8502,7 +8508,10 @@ fn government_of(id: NationId, party: &str) -> String {
 pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option<(crate::data::Emergent, bool)> {
     use crate::data::{Emergent, Tie};
     let row = crate::blocs::leader_row(w, id)?;
-    let today = format!("{:04}-{:02}-{:02}", w.year, w.month, w.day.max(1));
+    // The model's date: the day under the daily clock, the first of the
+    // month under the legacy one, whose settlement day is not a date.
+    let day = if crate::clock::is_daily(w) { w.day.max(1) } else { 1 };
+    let today = format!("{:04}-{:02}-{:02}", w.year, w.month, day);
     let holder = row.tie_now();
     let holder_party: Option<String> = match &holder {
         Some(Tie::Party(p)) => Some(p.clone()),
@@ -10754,7 +10763,8 @@ mod tests {
     /// in Iraq seats "the Republican Guard"; a Communist takeover of Sudan
     /// seats "the Sudanese Communist Party government" and a Nationalist one
     /// "the Sudanese Armed Forces"; Bush's ceiling seats "a new Republican
-    /// Party president" on the first tick dated past 1997-01-20; Hussein's
+    /// Party president" in the month of 1997-01-20 (by the month, so the
+    /// legacy day-stepped clock agrees with the month-stepped one); Hussein's
     /// death seats Hassan bin Talal — the transcribed heir, once — as King,
     /// and a second death "the ruling house"; a Party coup against Fahd
     /// seats Abdullah once and a programme after it "the ruling house". Over
@@ -10828,8 +10838,7 @@ mod tests {
         let sa_row = leader_row(&w, sa).unwrap();
         assert!(sa_row.name.is_none() && sa_row.tie.is_none() && sa_row.also.is_empty());
 
-        // Through the tick: Bush's ceiling, 1997-01-20, on the first tick
-        // dated past it.
+        // Through the tick: Bush's ceiling, 1997-01-20, in its month.
         let mut w = world_1990(on_rules(7));
         let mut seated: Option<String> = None;
         for _ in 0..120 {
@@ -10840,7 +10849,7 @@ mod tests {
             }
         }
         assert_eq!(seated.as_deref(), Some("United States is led by a new Republican Party president."));
-        assert_eq!(leader(&w, us).unwrap().since.as_deref(), Some("1997-02-01"));
+        assert_eq!(leader(&w, us).unwrap().since.as_deref(), Some("1997-01-01"));
 
         // Forty years on the roads: never a name.
         let mut w = world_1990(roads_rules(7));

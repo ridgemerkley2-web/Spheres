@@ -288,6 +288,66 @@ pub fn tick(w: &mut WorldState) {
     }
 }
 
+// ---------------------------------------------------------------------------
+// Mortality (design D1, S4): the transcribed leaders are mortal.
+// ---------------------------------------------------------------------------
+
+/// The annual hazard of death in office at `age`, INVENTED as a fit to the
+/// 1990 male life tables of the leaders' own countries — a Gompertz curve,
+/// `0.015 · 2^((age − 65) / 7)`: 1.5% at 65, 3% at 72, 6% at 79, 12% at 86,
+/// capped at one. A coefficient of the approved design, not a transcribed
+/// figure; filed in BUGS.md with what would calibrate it.
+pub fn death_hazard(age: f64) -> f64 {
+    (0.015 * crate::exact::powf(2.0, (age - 65.0) / 7.0)).clamp(0.0, 1.0)
+}
+
+/// Age in completed years on 1 January of `year` for someone born on
+/// `born` (`YYYY-MM-DD`). `None` where the table carries no birth date.
+pub fn age_on_new_year(born: &str, year: i32) -> Option<f64> {
+    let (by, bm, bd) = crate::data::parse_date(born)?;
+    let completed = year - by - if (bm, bd) > (1, 1) { 1 } else { 0 };
+    Some(completed as f64)
+}
+
+/// One draw per living transcribed leader per game year, in sorted
+/// `NationId` order, from the one RNG — the LAST system of the month, so a
+/// switched-on world's stream parts from a switched-off one's only between
+/// months and never inside one. Fires in January, once (`clock::month_end`
+/// holds the daily clock to one draw). A leader whose row carries no birth
+/// date (Libya, Malawi, Saudi Arabia, Vanuatu in the 1990 table) is not
+/// drawn for: an unsourced age is a refusal, not a default. On death the
+/// office is seated by the leader's own party or pillar
+/// (`government::seat_office`, design D2) and the headline reads
+/// "{name} dies in office." Returns before reading anything while
+/// `rules.ideology_blocs` is off, which is every world the goldens pin.
+pub fn mortality(w: &mut WorldState) {
+    if !w.rules.ideology_blocs {
+        return;
+    }
+    if w.month != 1 || !crate::clock::month_end(w) {
+        return;
+    }
+    let mut living: Vec<(NationId, String, f64)> = match &w.leadership {
+        Some(rows) => rows
+            .iter()
+            .filter(|o| o.name.is_some() && o.emergent.is_none())
+            .filter(|o| w.nation_opt(o.nation).is_some_and(|n| n.alive))
+            .filter_map(|o| {
+                let age = age_on_new_year(o.born.as_deref()?, w.year)?;
+                Some((o.nation, o.name.clone()?, age))
+            })
+            .collect(),
+        None => return,
+    };
+    living.sort_by(|a, b| a.0.cmp(&b.0));
+    for (id, name, age) in living {
+        if w.rng.chance(death_hazard(age)) {
+            w.headline(format!("{} dies in office.", name));
+            crate::government::seat_office(w, id, &crate::government::Succession::Death);
+        }
+    }
+}
+
 /// A NOTE ON WHAT THE SUCCESSORS INHERIT, AND WHAT THEY ARE STILL PAID TWICE
 /// FOR. `TechState::inherit` now carries the parent's 1990 offset forward, so a
 /// republic that takes the union's transcribed 1990 technology does not also
@@ -1717,4 +1777,88 @@ fn ai_wars(w: &mut WorldState) {
     }
 
     // AI peace offers: badly losing attackers sue for peace (abstract: white peace at high exhaustion handled in war tick)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::init::world_1990;
+
+    /// The hazard curve at its named points, and the age arithmetic on the
+    /// table's own dates: Najibullah (1947-08-06) is 42 on 1 January 1990,
+    /// Bush (1924-06-12) 65, Castro (1926-08-13) 63; a birthday on New
+    /// Year's Day counts.
+    #[test]
+    fn the_hazard_doubles_every_seven_years_from_1_5_percent_at_65() {
+        assert!((death_hazard(65.0) - 0.015).abs() < 1e-12);
+        assert!((death_hazard(72.0) - 0.030).abs() < 1e-9);
+        assert!((death_hazard(79.0) - 0.060).abs() < 1e-9);
+        assert!((death_hazard(58.0) - 0.0075).abs() < 1e-9);
+        assert_eq!(death_hazard(200.0), 1.0);
+        assert_eq!(age_on_new_year("1947-08-06", 1990), Some(42.0));
+        assert_eq!(age_on_new_year("1924-06-12", 1990), Some(65.0));
+        assert_eq!(age_on_new_year("1926-08-13", 1990), Some(63.0));
+        assert_eq!(age_on_new_year("1950-01-01", 1990), Some(40.0));
+        assert_eq!(age_on_new_year("1950-01-02", 1990), Some(39.0));
+        assert_eq!(age_on_new_year("not a date", 1990), None);
+    }
+
+    /// Mortality (D1), a census over seeds: with the lens on, a transcribed
+    /// leader dies in office in MOST seeds over forty years, and never on a
+    /// fixed date — the first death's (leader, date) differs between seeds.
+    /// With the lens off the line never prints and the seat never changes.
+    ///
+    /// Rule 7. The per-seed event is "at least one death in forty years";
+    /// with 133 dated leaders and a mean hazard near 3% a year the measured
+    /// per-seed rate is p = 1.0 on every seed tried (deaths per seed over
+    /// forty years, seeds 0..5, printed below: the smallest was in the
+    /// dozens), so the false-red probability of a "most seeds" bar is 0 at
+    /// any n and the sample is a budget: n = 6. The POWER statement is what
+    /// the bar is for: it catches the draw not running at all (a hazard of
+    /// zero, or the pass gated off), which reads 0 deaths on every seed —
+    /// watched red with `death_hazard` returning 0.0: "seed 0: forty years
+    /// and nobody died". A bar on the RATE of deaths (against the life
+    /// tables) is not asked here: the hazard is INVENTED and filed, and a
+    /// bar on it would be a calibration the design has not made.
+    #[test]
+    fn a_transcribed_leader_dies_in_most_seeds_over_forty_years_and_never_on_a_fixed_date() {
+        let mut firsts: Vec<(String, String)> = vec![];
+        let mut counts: Vec<usize> = vec![];
+        for seed in 0..6u64 {
+            let mut w = world_1990(GameRules { seed, ideology_blocs: true, ..GameRules::default() });
+            let mut deaths = 0usize;
+            let mut first: Option<(String, String)> = None;
+            for _ in 0..480 {
+                let news = crate::tick_month(&mut w, &[]);
+                for h in news.iter().filter(|h| h.ends_with(" dies in office.")) {
+                    deaths += 1;
+                    if first.is_none() {
+                        first = Some((h.clone(), w.date_str()));
+                    }
+                }
+            }
+            println!("mortality: seed {seed}, {deaths} deaths in forty years, first {first:?}");
+            assert!(deaths > 0, "seed {seed}: forty years and nobody died");
+            firsts.push(first.unwrap());
+            counts.push(deaths);
+            // Nobody who died is named again anywhere in the table.
+            for o in w.leadership.as_ref().unwrap() {
+                if o.emergent.is_some() {
+                    assert!(o.name.is_none(), "{:?}", o.nation);
+                }
+            }
+        }
+        let most = counts.iter().filter(|c| **c > 0).count();
+        assert!(most * 2 > counts.len(), "deaths in {most} of {} seeds", counts.len());
+        let dates: std::collections::BTreeSet<&String> = firsts.iter().map(|(_, d)| d).collect();
+        let who: std::collections::BTreeSet<&String> = firsts.iter().map(|(n, _)| n).collect();
+        assert!(dates.len() > 1 || who.len() > 1, "the first death is the same on every seed: {firsts:?}");
+        let mut off = world_1990(GameRules { seed: 0, ..GameRules::default() });
+        for _ in 0..480 {
+            for h in crate::tick_month(&mut off, &[]) {
+                assert!(!h.ends_with(" dies in office."), "the lens off: {h}");
+            }
+        }
+        assert!(off.leadership.is_none());
+    }
 }

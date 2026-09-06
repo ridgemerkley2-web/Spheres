@@ -1123,6 +1123,23 @@ mod tests {
             if record_only {
                 continue;
             }
+            // Mortality (D1, S4) is the arm's one draw: every January the
+            // switched-on world draws once per living transcribed leader,
+            // LAST in the month, so the only thing that differs at the
+            // month's end is the RNG state (and, on a death, the record).
+            // The stream is re-synced here so the comparison goes on; a
+            // leak of the draw into the model — anything but the RNG and
+            // those lines — is still a parting. Watched: without the
+            // re-sync, "parted at month 0 with no stem: [rng, news [Honduras
+            // is led by ..., Yitzhak Shamir dies in office., ...]]".
+            let january = month % 12 == 0;
+            let draw_only = january
+                && why.iter().all(|x| x == "rng" || x.starts_with("news "))
+                && on_only.iter().all(|h| h.contains(" dies in office.") || h.contains(" is led by "));
+            if draw_only {
+                on.rng.state = off.rng.state;
+                continue;
+            }
             let stems: Vec<&&String> =
                 on_only.iter().filter(|h| STEMS.iter().any(|s| h.contains(s))).collect();
             assert!(!stems.is_empty(), "parted at month {month} with no stem: {why:?}");
