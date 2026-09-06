@@ -187,7 +187,7 @@ pub const COURT_RULES_ABOVE: f64 = 0.40;
 /// The monarchy exception (design, ruling bloc): in an electoral polity whose
 /// leader row ties to a PILLAR, that pillar rules while authoritarianism is at
 /// or above [`COURT_RULES_ABOVE`]. Returns the pillar when it applies.
-fn court_pillar(w: &WorldState, id: NationId) -> Option<Pillar> {
+pub(crate) fn court_pillar(w: &WorldState, id: NationId) -> Option<Pillar> {
     if !government::is_electoral(w, id) {
         return None;
     }

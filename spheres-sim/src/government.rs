@@ -6647,7 +6647,83 @@ pub fn hold_election(w: &mut WorldState, id: NationId) {
         g.next_election = add_months(y, m, term);
         g.elected = true;
     }
+    // The annulment (S4): after the seats and before the formation, the
+    // army may refuse the result. Nothing while the takeover switch is off.
+    if annul_election(w, id) {
+        return;
+    }
     form_government(w, id, true);
+}
+
+/// The party `form_government` would seat first from the seats as they
+/// stand: the most seats, ties by id.
+fn would_be_leader(g: &GovState) -> Option<String> {
+    let mut r: Vec<(String, f64)> = g.seats.iter().filter(|(_, v)| *v > 0.0).cloned().collect();
+    r.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal).then(a.0.cmp(&b.0)));
+    r.into_iter().next().map(|(p, _)| p)
+}
+
+/// The annulment's conditions, read without touching the world: the winner
+/// the army would refuse, or `None`. A live Army pillar in the state; the
+/// would-be coalition leader's bloc Communist or Islamist; authoritarianism
+/// at or over `ANNULMENT_AUTH`; discontent at or over `ANNULMENT_DISCONTENT`;
+/// and the monarchy exception NOT holding (a court that appoints the
+/// government has no election to annul — it dismisses). Lines INVENTED
+/// (design S4, the Algerian shape). `None` before any read with the
+/// takeover switch off.
+pub fn annulment_check(w: &WorldState, id: NationId) -> Option<String> {
+    if !w.rules.ideology_takeover {
+        return None;
+    }
+    let g = state(w, id)?;
+    if !g.pillars.iter().any(|(p, _)| *p == Pillar::Army) {
+        return None;
+    }
+    let winner = would_be_leader(g)?;
+    if !matches!(bloc_of(id, &winner), Bloc::Communist | Bloc::Islamist) {
+        return None;
+    }
+    if w.nation(id).authoritarianism < ANNULMENT_AUTH {
+        return None;
+    }
+    if crate::blocs::discontent(w, id) < ANNULMENT_DISCONTENT {
+        return None;
+    }
+    if crate::blocs::court_pillar(w, id).is_some() {
+        return None;
+    }
+    Some(winner)
+}
+
+pub const ANNULMENT_AUTH: f64 = 0.35;
+pub const ANNULMENT_DISCONTENT: f64 = 0.25;
+
+/// The annulment's break: every party of the winner's bloc banned, then the
+/// electoral break (`break_electoral`) with the headline "the army annuls
+/// the election {party} won". Returns whether it fired.
+fn annul_election(w: &mut WorldState, id: NationId) -> bool {
+    let winner = match annulment_check(w, id) {
+        Some(p) => p,
+        None => return false,
+    };
+    let bloc = bloc_of(id, &winner);
+    let members: Vec<String> = polity(id)
+        .map(|pol| pol.parties.iter().filter(|s| bloc_of(id, s.id) == bloc).map(|s| s.id.to_string()).collect())
+        .unwrap_or_default();
+    if let Some(g) = state_mut(w, id) {
+        for p in members {
+            if !g.banned.contains(&p) {
+                g.banned.push(p);
+            }
+        }
+    }
+    let name = spec(id, &winner).map(|s| s.name).unwrap_or("the largest party");
+    break_electoral(
+        w,
+        id,
+        format!("COUP IN {}: the army annuls the election {} won.", id.name().to_uppercase(), name),
+    );
+    true
 }
 
 // ---------------------------------------------------------------------------
@@ -7902,6 +7978,23 @@ fn maybe_electoral_coup(w: &mut WorldState, id: NationId) -> bool {
     if pressure < 1.0 / w.rules.crisis_intensity.max(0.1) {
         return false;
     }
+    let name = pillar_name(id, Pillar::Army);
+    break_electoral(
+        w,
+        id,
+        format!("COUP IN {}: {} removes the elected government.", id.name().to_uppercase(), name),
+    );
+    true
+}
+
+/// The break an elected government suffers at the army's hands, shared by
+/// route 2 and the annulment: the movements seeded from the parties' bloc
+/// sums (the deposed government's colour the largest, the latch closed on
+/// whatever is already over the line), the spec's pillars seated, then
+/// `regime_break` with the Army as the mover, authoritarianism
+/// `max(auth + 0.25, 0.65)` and the NATIONALIST colour; the cabinet stays as
+/// a dormant record.
+fn break_electoral(w: &mut WorldState, id: NationId, headline: String) {
     let ruling = crate::blocs::ruling_bloc(w, id).unwrap_or(Bloc::Nationalist);
     let movements = movements_from_parties(w, id, ruling, 0.0);
     let auth = w.nation(id).authoritarianism;
@@ -7910,7 +8003,6 @@ fn maybe_electoral_coup(w: &mut WorldState, id: NationId) -> bool {
         g.movements = movements.to_vec();
         g.surging = latched_at_seed(&movements, Bloc::Nationalist);
     }
-    let name = pillar_name(id, Pillar::Army);
     regime_break(
         w,
         id,
@@ -7918,14 +8010,9 @@ fn maybe_electoral_coup(w: &mut WorldState, id: NationId) -> bool {
             pillar: Pillar::Army,
             auth_after: (auth + 0.25).max(0.65).min(0.98),
             regime_bloc: Some(Bloc::Nationalist),
-            headline: format!(
-                "COUP IN {}: {} removes the elected government.",
-                id.name().to_uppercase(),
-                name
-            ),
+            headline,
         },
     );
-    true
 }
 
 fn maybe_coup(w: &mut WorldState, id: NationId) {
@@ -9826,5 +9913,91 @@ mod tests {
             }
         }
         assert!(state(&safe, pk).unwrap().coup_pressure == 0.0);
+    }
+    /// The annulment (S4). Algeria on the roads: the FIS leads the table at
+    /// 0.542, the ANP is a live pillar, authoritarianism 0.55, discontent at
+    /// Algeria's numbers (stability 40 and inflation 16.7% held at their
+    /// transcribed values, 0.405 at the start) over 0.25 — at the December
+    /// 1991 election the army annuls the
+    /// result the FIS won: every Islamist party banned, the regime
+    /// Nationalist at authoritarianism max(0.55 + 0.25, 0.65) = 0.80, the
+    /// FLN cabinet kept as a dormant record. With the takeover switch off the
+    /// same December seats the FIS. Jordan is the monarchy exception: the
+    /// Ikhwan lead its chamber under a court at 0.55, and with discontent
+    /// forced over the line the court still DISMISSES rather than annuls —
+    /// the election forms a government; the same Jordan at 0.38, under the
+    /// court's line and over the annulment's, annuls. Watched red with the
+    /// court check dropped from `annulment_check`: Jordan at 0.55 annulled.
+    #[test]
+    fn the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court() {
+        let dz = NationId::Algeria;
+        let run = |takeover: bool| -> (WorldState, Vec<String>, Vec<String>) {
+            let mut rules = roads_rules(7);
+            rules.ideology_takeover = takeover;
+            let mut w = world_1990(rules);
+            w.player = Some(dz);
+            let mut news = vec![];
+            let mut before_the_vote = vec![];
+            for m in 0..24 {
+                if m == 23 {
+                    before_the_vote = state(&w, dz).unwrap().coalition.clone();
+                }
+                // Algeria's transcribed numbers, held: left to the model with
+                // Algiers in the player's seat, inflation falls from 16.7% to
+                // 0.1% by December 1991 (measured 2026-09-06) and discontent
+                // from 0.405 to 0.219, under the line, in October 1990.
+                let n = w.nation_mut(dz);
+                n.stability = 40.0;
+                n.inflation = 0.167;
+                news.extend(crate::tick_month(&mut w, &[]));
+            }
+            (w, news, before_the_vote)
+        };
+        let (off, off_news, _) = run(false);
+        assert!(off_news.iter().any(|h| h.starts_with("Algeria votes: Islamic Salvation Front")), "{off_news:?}");
+        assert!(!off_news.iter().any(|h| h.contains("COUP IN ALGERIA")));
+        assert!(is_electoral(&off, dz));
+        assert_eq!(state(&off, dz).unwrap().leader(), Some("dz_fis"));
+
+        let (w, news, dormant) = run(true);
+        let stem = "COUP IN ALGERIA: the army annuls the election Islamic Salvation Front won.";
+        assert!(news.iter().any(|h| h == stem), "{news:?}");
+        assert!(!news.iter().any(|h| h.starts_with("Algeria votes")), "the annulled vote seated a government: {news:?}");
+        let n = w.nation(dz);
+        assert!(!is_electoral(&w, dz));
+        assert!((n.authoritarianism - 0.80).abs() < 1e-12, "{}", n.authoritarianism);
+        let g = state(&w, dz).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Nationalist));
+        assert_eq!(g.banned, vec!["dz_fis".to_string()], "every party of the winner's bloc is banned");
+        // The table's opening seating already has the FIS leading (its share
+        // is the 1991 result, entered as the last vote before 1990), so the
+        // dormant record is the cabinet that sat before the annulled vote.
+        assert!(!dormant.is_empty());
+        assert_eq!(g.coalition, dormant, "the cabinet that sat before the vote is the dormant record");
+        assert_eq!(g.loyalty(Pillar::Army), 0.90);
+        assert_eq!(g.loyalty(Pillar::Party), 0.72);
+        assert_eq!(g.months_in_office, 0);
+        assert!(crate::blocs::bloc_banned(&w, dz, Bloc::Islamist));
+        println!("annulment: Algeria discontent at the vote read {:.3}", crate::blocs::discontent(&w, dz));
+
+        // The court.
+        let jo = NationId::Jordan;
+        let mut w = world_1990(roads_rules(7));
+        w.nation_mut(jo).stability = 40.0;
+        assert!(crate::blocs::discontent(&w, jo) >= ANNULMENT_DISCONTENT);
+        assert_eq!(w.nation(jo).authoritarianism, 0.55);
+        assert!(crate::blocs::government_of_the_day(&w, jo).is_some(), "the court rules Jordan");
+        assert_eq!(annulment_check(&w, jo), None);
+        hold_election(&mut w, jo);
+        assert!(is_electoral(&w, jo));
+        assert_eq!(state(&w, jo).unwrap().leader(), Some("jo_ikhwan"));
+        assert!(state(&w, jo).unwrap().banned.is_empty());
+        w.nation_mut(jo).authoritarianism = 0.38;
+        assert!(crate::blocs::government_of_the_day(&w, jo).is_none());
+        assert_eq!(annulment_check(&w, jo).as_deref(), Some("jo_ikhwan"));
+        hold_election(&mut w, jo);
+        assert!(!is_electoral(&w, jo));
+        assert_eq!(state(&w, jo).unwrap().banned, vec!["jo_ikhwan".to_string()]);
+        assert!(w.headlines.iter().any(|h| h == "COUP IN JORDAN: the army annuls the election Muslim Brotherhood and allied Islamists won."), "{:?}", w.headlines);
     }
 }
