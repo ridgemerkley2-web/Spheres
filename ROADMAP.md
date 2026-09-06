@@ -1,5 +1,48 @@
 # SPHERES Roadmap
 
+## Done — the political arm, stage S3 part two: the five levers, the crackdown arm, the AI political rules (2026-09-06)
+
+Branch `feat/ideology-roads`, three commits on part one (38c1654), every one
+inert with `rules.ideology_blocs` off: the golden actuals stand at
+0xe26e4bf8d6c60066 / 0xbe94d6125631829c, the six BASE hashes and the month-35
+pin of `the_bloc_layer_is_inert_over_time` are unmoved, and the two market-off
+headless digests read run 35 1990 d1a2cfbf7c6958d7 (3501 lines) and run 35 7 39dea3341a7f6e8c (3983 lines), sha256 of stdout, unchanged from cd6e2ff. BUGS.md S3-9..S3-14 carry the
+coefficients, the two readings the design left open, and one re-measurement.
+
+- **The five levers** (`Command::SuspendConstitution` 40 PC, `BanParty` 18,
+  `LegalizeParty` 12, `DeclareProgramme` 35, `ConveneRoundTable` 30, all
+  refusable): each is refusal / plan / arm / effects off ONE plan in
+  `government.rs`, so `lib::world_refusal` refuses with the sim's prose before
+  any state ("This world does not model ideological movements." off, the
+  lever's condition on), the arm writes the plan's numbers and nothing else,
+  and `government::lever_effects` serves the same plan as the card, clamped
+  where the world clamps (rule 8). `seats_from_legal` is the gated wrapper —
+  a banned party keeps its support and holds no seats — and `seats_from` is
+  untouched. The tick's first-elections block is `schedule_first_elections`
+  (18 months from the tick, 6 from the round table), the seam inside it.
+  Measured: Poland suspends to the 0.65 floor and stays Western with its
+  cabinet dormant; the SLD at 55% of the chamber banned holds 0 seats and
+  0.55 of support; China's Western programme moves the Central Committee
+  −0.15, the USSR −15, five Western powers +10; Indonesia's round table seats
+  Golkar 0.556 / PPP 0.333 / PDI 0.111 from the movements, names the
+  Nationalist 10% as lost, and votes in 1990-07.
+- **The Security Crackdown** gains `statecraft::halve_foreign_backing`: every
+  stored backing entry behind a non-ruling bloc halved, the ruling bloc's and
+  patronage gravity untouched, the card from the same rule. Measured: Poland's
+  0.18 of Communist backing → 0.09, the RNG untouched.
+- **The AI** (`government::ai_lever`, pure; the draw beside the deck's in
+  `stratagems::ai_stratagems`, after the choice): suspend at stability < 30 /
+  auth ≥ 0.25 / 55 PC, ban the strongest non-ruling non-Western bloc's largest
+  party at influence ≥ 0.35 / auth ≥ 0.40 / 60 PC, a programme toward the
+  strongest pillar's colour at a ruling movement < 0.30 / 70 PC, a round table
+  at discontent ≥ 0.50 / a 0.35 movement / an armed mean < 0.50 / 60 PC. Each
+  line flips at its own value (measured both sides). Twenty years on seed 7:
+  0 nation-months with a lever to pull, 0 levers — the arm is quiet (S3-12).
+- **Suite, watched:** spheres-sim lib 435 passed / 4 failed / 25 ignored in 1329.86 s under load (the three deliberate reds - E-3's bar and the two goldens at their actuals - plus P-12's wall-clock bar, which read 0.6143 ms/month in the debug suite and alone, and 0.0671 ms/month alone in the release profile, green); spheres-web 154 / 0 / 2; spheres-cli 1 / 0.
+- **Not in this part** (S4, web): the roads, succession and mortality, D4's
+  wiring (P-8), the government screen's lever cards and the "Back a movement"
+  card.
+
 ## Done — the political arm, stage S3 part one: movements, foreign backing, the AI covert arm (2026-09-06)
 
 Branch `feat/ideology-roads` off `origin/feat/hoi4-map-and-tech` (cd6e2ff),
