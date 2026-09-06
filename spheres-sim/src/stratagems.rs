@@ -288,6 +288,10 @@ pub const DECK: &[Stratagem] = &[
             for d in democracies {
                 w.shift_relation(d, id, -6.0);
             }
+            // The political arm (S3): the same crackdown halves the foreign
+            // money behind every non-ruling movement. Gated inside the arm,
+            // which returns before reading anything with the arm off.
+            crate::statecraft::halve_foreign_backing(w, id);
             let name = id.name();
             w.headline(format!("{} moves against its own streets.", name));
         },

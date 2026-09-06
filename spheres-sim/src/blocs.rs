@@ -1827,4 +1827,72 @@ mod tests {
         let c = Command::ExpelFromGovernment { nation: pl, party: "pl_solidarity".into() };
         assert_eq!(refusal_of(&w, &c).as_deref(), Some("A government cannot expel the party that leads it."));
     }
+
+    /// The Security Crackdown's gated arm. Poland (Western) carries USSR
+    /// 0.12 and China 0.06 behind the Communists, the UK 0.06 behind the
+    /// Non-Aligned and — hand-written, since the command refuses it — the
+    /// USA 0.06 behind the ruling Western bloc. The crackdown halves the
+    /// three non-ruling entries (0.06, 0.03, 0.03) and leaves the ruling
+    /// one at 0.06; the card quoted exactly the realised F_B before and
+    /// after (0.180 → 0.090 Communist, 0.060 → 0.030 Non-Aligned, no
+    /// Western line); the enactment draws no RNG; and the off world's
+    /// crackdown carries no such arm and no such card. Watched red with
+    /// the arm's call dropped from the stratagem: the USSR entry's 0.06 bar
+    /// failed, the entry not having been halved.
+    #[test]
+    fn a_crackdown_halves_the_foreign_backing_of_every_non_ruling_bloc() {
+        use crate::statecraft::{add_backing, crackdown_backing_effects};
+        use crate::{apply_command, refusal_of, Command};
+        let (usa, ussr, china, uk, pl) = (NationId::USA, NationId::USSR, NationId::China, NationId::UK, NationId::Poland);
+        let crack = Command::EnactStratagem { nation: pl, id: "security_crackdown".into() };
+        let mut w = world_1990(on(7));
+        assert_eq!(ruling_bloc(&w, pl), Some(Bloc::Western));
+        add_backing(&mut w, ussr, pl, Bloc::Communist);
+        add_backing(&mut w, ussr, pl, Bloc::Communist);
+        add_backing(&mut w, china, pl, Bloc::Communist);
+        add_backing(&mut w, uk, pl, Bloc::NonAligned);
+        add_backing(&mut w, usa, pl, Bloc::Western);
+        assert!((back(&w, pl, Bloc::Communist) - 0.18).abs() < 1e-12);
+        {
+            let n = w.nation_mut(pl);
+            n.stability = 40.0;
+            n.authoritarianism = 0.40;
+            n.political_capital = 100.0;
+        }
+        assert_eq!(refusal_of(&w, &crack), None);
+        let card = crackdown_backing_effects(&w, pl);
+        assert_eq!(
+            card,
+            vec![
+                "Foreign backing of the Communist movement halved: 0.180 → 0.090.".to_string(),
+                "Foreign backing of the Non-Aligned movement halved: 0.060 → 0.030.".to_string(),
+            ]
+        );
+        let rng_before = w.rng.state;
+        apply_command(&mut w, &crack).expect("enacted");
+        assert_eq!(w.rng.state, rng_before, "the crackdown drew");
+        assert!((w.backing_of(ussr, pl, Bloc::Communist) - 0.06).abs() < 1e-12);
+        assert!((w.backing_of(china, pl, Bloc::Communist) - 0.03).abs() < 1e-12);
+        assert!((w.backing_of(uk, pl, Bloc::NonAligned) - 0.03).abs() < 1e-12);
+        assert!((w.backing_of(usa, pl, Bloc::Western) - 0.06).abs() < 1e-12, "the ruling bloc's money is not raided");
+        assert!((back(&w, pl, Bloc::Communist) - 0.09).abs() < 1e-12);
+        assert!((back(&w, pl, Bloc::NonAligned) - 0.03).abs() < 1e-12);
+        assert_eq!(w.nation(pl).stability, 56.0, "the old arms still land");
+        assert!(w.headlines.iter().any(|h| h == "Poland moves against its own streets."));
+        // Nothing to halve, nothing to say.
+        let quiet = world_1990(on(7));
+        assert!(crackdown_backing_effects(&quiet, pl).is_empty());
+        // Off: no arm, no card, and the crackdown as it always was.
+        let mut off = world_1990(GameRules::default());
+        {
+            let n = off.nation_mut(pl);
+            n.stability = 40.0;
+            n.authoritarianism = 0.40;
+            n.political_capital = 100.0;
+        }
+        assert!(crackdown_backing_effects(&off, pl).is_empty());
+        apply_command(&mut off, &crack).expect("enacted");
+        assert!(off.statecraft.backing.is_empty());
+        assert_eq!(off.nation(pl).stability, 56.0);
+    }
 }

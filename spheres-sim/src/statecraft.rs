@@ -419,6 +419,53 @@ pub fn expose_backing(w: &mut WorldState, sponsor: NationId, target: NationId, b
     crate::government::taint_bloc(w, target, bloc, EXPOSURE_TAINT);
 }
 
+/// The Security Crackdown's gated arm (S3): every stored backing entry
+/// behind a NON-ruling bloc in this nation is halved — the apparatus on the
+/// street rolls up the foreign money behind the opposition. The ruling
+/// bloc's entries are untouched (a government is not raiding its own
+/// friends), and patronage gravity, a view of the aid flows, is not a stock
+/// and cannot be halved. Returns before reading anything while the arm is
+/// off or the stock is empty. Draws no RNG.
+pub fn halve_foreign_backing(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_blocs || w.statecraft.backing.is_empty() {
+        return;
+    }
+    let ruling = crate::blocs::ruling_bloc(w, id);
+    for b in w.statecraft.backing.iter_mut() {
+        if b.target == id && Some(b.bloc) != ruling {
+            b.weight *= 0.5;
+        }
+    }
+}
+
+/// The crackdown arm's card, from the same rule `halve_foreign_backing`
+/// applies (iron rule 8): per non-ruling bloc with backing, F_B before and
+/// after, each quoted at its CLAMPED value — the stock halved, the gravity
+/// kept, the total capped as `blocs::backing` caps it. Empty with the arm
+/// off, and empty where there is nothing to halve.
+pub fn crackdown_backing_effects(w: &WorldState, id: NationId) -> Vec<String> {
+    if !w.rules.ideology_blocs {
+        return vec![];
+    }
+    let ruling = crate::blocs::ruling_bloc(w, id);
+    let stock = crate::blocs::backing_stock(w, id);
+    let grav = crate::blocs::gravity(w, id);
+    let before = crate::blocs::backing(w, id);
+    let mut out = vec![];
+    for i in 0..5 {
+        let (bloc, s) = stock[i];
+        if s <= 0.0 || Some(bloc) == ruling {
+            continue;
+        }
+        let after = (s * 0.5 + grav[i].1).min(BACKING_TOTAL_CAP);
+        out.push(format!(
+            "Foreign backing of the {} movement halved: {:.3} → {:.3}.",
+            bloc.label(), before[i].1, after
+        ));
+    }
+    out
+}
+
 /// The one-sentence arms of a `BackBloc`, from the same constants and the
 /// same `backing_room` the op charges, for the card (iron rule 8).
 pub fn back_bloc_effects(w: &WorldState, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) -> Vec<String> {
