@@ -99,10 +99,33 @@ fn slot(shares: &mut [(Bloc, f64); 5], bloc: Bloc) -> &mut f64 {
     &mut shares[bloc as usize].1
 }
 
+/// The foreign backing F_B at or over which a bloc is PRESENT in a polity
+/// whose transcribed shape carries no party and no pillar of it — the
+/// design's third presence clause (D5, "foreign backing already behind
+/// it"), built 2026-09-06 on Ridge's ruling M1. One clean `BackBloc`
+/// operation puts `statecraft::BACKING_STEP` = 0.06 behind a bloc, so THE
+/// FIRST SUCCESSFUL OPERATION CREATES THE PRESENCE, and it lapses when the
+/// money stops (the stock cools `BACKING_DECAY` a month). Historical
+/// anchor: the Afghan mujahideen parties existed inside Afghanistan only as
+/// Pakistani- and Saudi-funded organisations run from Peshawar; Sudan's NIF
+/// grew on Gulf money; Nicaragua's contras were a movement a sponsor
+/// created. The line is the ruling's own number.
+pub const PRESENCE_BACKING: f64 = 0.05;
+
 /// Whether a bloc has any standing presence in a polity's transcribed shape: a
 /// party of that bloc in the (possibly dormant) table, or the bloc's installing
-/// pillar in the pillar list. Foreign backing as a presence is S3.
-pub fn bloc_present(id: NationId, bloc: Bloc) -> bool {
+/// pillar in the pillar list — or, since M1, foreign backing of at least
+/// [`PRESENCE_BACKING`] behind it (`backing`, the stock plus patronage
+/// gravity). The backing clause reads the world, which is why the world is
+/// an argument; with the arm off the stock is always empty (`BackBloc` is
+/// refused) and nothing the tick reads asks, so the answer is the table's.
+pub fn bloc_present(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
+    bloc_in_table(id, bloc) || bloc_backed(w, id, bloc)
+}
+
+/// The table half of [`bloc_present`]: a party or an installing pillar of the
+/// bloc in the polity's transcribed shape. Pure in the table.
+pub fn bloc_in_table(id: NationId, bloc: Bloc) -> bool {
     let pol = match polity(id) {
         Some(p) => p,
         None => return false,
@@ -111,14 +134,22 @@ pub fn bloc_present(id: NationId, bloc: Bloc) -> bool {
         || pol.pillars.iter().any(|s| pillar_bloc(id, s.pillar) == bloc)
 }
 
+/// The backing half of [`bloc_present`]: foreign backing of at least
+/// [`PRESENCE_BACKING`] behind the bloc in this nation.
+pub fn bloc_backed(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
+    backing(w, id)[bloc as usize].1 >= PRESENCE_BACKING
+}
+
 /// The flat seed of a regime's movements (design D5): the ruling bloc at
 /// [`RULING_SEED`], the remainder split equally over the non-ruling blocs
 /// present in the polity, every bloc floored at [`SHARE_FLOOR`], normalised to
-/// one. Pure: the same table and the same ruling bloc give the same seed.
-pub fn flat_seed(id: NationId, ruling: Bloc) -> [(Bloc, f64); 5] {
+/// one. Pure in the world: the same table, the same backing and the same
+/// ruling bloc give the same seed (a bloc present through backing takes an
+/// equal split, M1).
+pub fn flat_seed(w: &WorldState, id: NationId, ruling: Bloc) -> [(Bloc, f64); 5] {
     let mut shares = zero_shares();
     let present: Vec<Bloc> =
-        Bloc::ALL.iter().copied().filter(|b| *b != ruling && bloc_present(id, *b)).collect();
+        Bloc::ALL.iter().copied().filter(|b| *b != ruling && bloc_present(w, id, *b)).collect();
     *slot(&mut shares, ruling) = RULING_SEED;
     if !present.is_empty() {
         let each = (1.0 - RULING_SEED) / present.len() as f64;
@@ -171,7 +202,7 @@ pub fn bloc_shares(w: &WorldState, id: NationId) -> [(Bloc, f64); 5] {
         return shares;
     }
     match described_ruling_bloc(w, id) {
-        Some(r) => flat_seed(id, r),
+        Some(r) => flat_seed(w, id, r),
         None => zero_shares(),
     }
 }
@@ -351,8 +382,11 @@ pub fn strongest_challenger(w: &WorldState, id: NationId) -> Option<(Bloc, f64)>
 /// takes a capital), and — for the Western bloc — carried by a party table,
 /// because a Western winner has nothing to govern through in a party-less
 /// polity until a table is transcribed (design S4: "closed until a table
-/// exists").
-pub fn bloc_can_win(id: NationId, bloc: Bloc) -> bool {
+/// exists"). A bloc present through foreign backing alone (M1,
+/// [`bloc_backed`]) could win on the same terms as one carried by a pillar:
+/// the Peshawar parties took Kabul in April 1992 with no seat and no
+/// institution inside the country — but a Western one still needs a table.
+pub fn bloc_can_win(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
     let pol = match polity(id) {
         Some(p) => p,
         None => return false,
@@ -365,7 +399,7 @@ pub fn bloc_can_win(id: NationId, bloc: Bloc) -> bool {
     if bloc == Bloc::Western {
         return by_party;
     }
-    by_party || by_pillar
+    by_party || by_pillar || bloc_backed(w, id, bloc)
 }
 
 /// W: the strongest non-ruling bloc by influence among those that could
@@ -375,7 +409,7 @@ pub fn challenger(w: &WorldState, id: NationId) -> Option<(Bloc, f64)> {
     let ruling = ruling_bloc(w, id)?;
     let mut best: Option<(Bloc, f64)> = None;
     for (b, v) in influence(w, id) {
-        if b == ruling || !bloc_can_win(id, b) {
+        if b == ruling || !bloc_can_win(w, id, b) {
             continue;
         }
         if best.map_or(true, |(_, bv)| v > bv) {
@@ -1067,6 +1101,26 @@ mod tests {
     /// re-expressed here, not widened, because the approved S3 design makes
     /// the switched-on world act by construction. Watched red with a 1e-9
     /// leak of the drift into support: "parted at month 0 with no stem".
+    ///
+    /// M1, 2026-09-06 (S3-7 / S4-8 continued): the first-act pin moved from
+    /// (35, "backing the Western movement in Libya") to month 0, because
+    /// Ridge's ruling M1 — "a sponsor's AI covert arm may back its OWN bloc
+    /// in a target where that bloc is ABSENT when the target is hostile to
+    /// the sponsor (relation at or below -30) or a rival's client - the
+    /// first successful operation creates the presence" — gives Pakistan
+    /// (at -70 with Kabul) a choice in Afghanistan from January 1990, and
+    /// the sponsors' standing programme (`politics::SPONSOR_PROGRAMME_HEAT`)
+    /// sends it that month. MEASURED on this seed before the pin moved:
+    /// "the first act moved: [A covert operation against Afghanistan comes
+    /// to nothing., Afghanistan exposes Pakistan backing the Islamist
+    /// movement in Afghanistan …, A covert operation against Afghanistan
+    /// comes to nothing., Money and organisers reach the Islamist movement
+    /// in Afghanistan …, A covert operation against Chile comes to
+    /// nothing.]" — Pakistan, Saudi Arabia and Iran in Afghanistan, Cuba in
+    /// Chile, in registry order. The six OFF hashes are untouched; the
+    /// on-world now tracks the off-world for the month before the arm's
+    /// first act rather than thirty-five, which is what the ruling costs
+    /// this bar and is recorded here rather than hidden.
     #[test]
     fn the_bloc_layer_is_inert_over_time() {
         const BASE: [u64; 6] = [
@@ -1083,7 +1137,7 @@ mod tests {
             let h = state_hash(&w);
             assert_eq!(h, BASE[seed as usize], "seed {seed} moved (actual {h:#018x})");
         }
-        const FIRST_ACT: (usize, &str) = (35, "backing the Western movement in Libya");
+        const FIRST_ACT: (usize, &str) = (0, "the Islamist movement in Afghanistan");
         const STEMS: [&str; 4] =
             ["Money and organisers reach", "backing the", "has no party to carry it", "comes to nothing"];
         let mut off = world_1990(GameRules::default());
@@ -1299,7 +1353,7 @@ mod tests {
         let g = government::state(&w, NationId::China).unwrap();
         assert_eq!(g.regime_bloc, Some(Bloc::Communist));
         assert_eq!(g.movements.len(), 5);
-        assert_eq!(g.movements, flat_seed(NationId::China, Bloc::Communist).to_vec());
+        assert_eq!(g.movements, flat_seed(&w, NationId::China, Bloc::Communist).to_vec());
         assert!(g.movements[Bloc::Communist as usize].1 > 0.59);
         for pl in government::state(&w, NationId::Poland).unwrap().movements.iter() {
             panic!("an electoral nation stored a movement: {pl:?}");
@@ -1889,7 +1943,14 @@ mod tests {
         assert!((back(&w, eg, Bloc::Western) - GRAVITY_WEIGHT).abs() < 1e-12, "past the knee the weight is the full 0.10");
         tick_month(&mut w, &[]);
         assert!((back(&w, eg, Bloc::Western) - GRAVITY_WEIGHT).abs() < 1e-12, "the month after");
-        assert!(w.statecraft.backing.is_empty(), "nothing was stored");
+        // M1 (2026-09-06): was `w.statecraft.backing.is_empty()`. The
+        // sponsors' standing programme now acts in month 0 (Pakistan in
+        // Afghanistan), so the WHOLE store is no longer empty after a
+        // month on this seed; the clause's own claim — that the flow's
+        // gravity was not stored — is what is asserted. Narrowed, not
+        // widened: MEASURED red before the change: "nothing was stored".
+        assert_eq!(stock(&w, eg, Bloc::Western), 0.0, "nothing was stored for the flow");
+        assert!(!w.statecraft.backing.iter().any(|e| e.target == eg), "nothing was stored in Egypt");
         // Stock and gravity share one cap.
         for _ in 0..4 {
             add_backing(&mut w, NationId::UK, eg, Bloc::Western);
@@ -2035,6 +2096,89 @@ mod tests {
         let mut off_w = world_1990(GameRules { seed: 7, ..GameRules::default() });
         run_months(&mut off_w, 240);
         assert!(off_w.statecraft.backing.is_empty(), "the switch was off");
+    }
+
+    /// M1 (Ridge's ruling, 2026-09-06). Afghanistan's transcribed polity
+    /// carries no Religious party and no Clergy pillar, so the Islamist bloc
+    /// is ABSENT there by table and, before M1, nothing could ever put it
+    /// there (BUGS S5-5: the design's own Afghan case measured 0/200). Now:
+    /// Pakistan (an Islamist sponsor at -70 with Kabul) and Saudi Arabia
+    /// (-55) have a choice there under the creating clause; a sponsor the
+    /// target is not hostile to does not; one clean Pakistani operation
+    /// (`BACKING_STEP` 0.06 ≥ `PRESENCE_BACKING`) makes the bloc PRESENT and
+    /// one that COULD WIN; the created presence keeps receiving (absent from
+    /// the table is what the clause reads) until the sponsor's cap holds it;
+    /// and the AI arm's own target choice names Afghanistan for Pakistan on
+    /// the 1990 board. Off: absent, and no choice. Watched red with the
+    /// creating clause removed from `ai_back_bloc_choice` ("the sponsor has
+    /// no choice in a target where its bloc is absent") and with the backing
+    /// clause removed from `bloc_present` ("one operation did not create
+    /// the presence").
+    #[test]
+    fn an_absent_islamist_bloc_becomes_present_after_one_sponsor_operation() {
+        use crate::politics::{ai_back_bloc_choice, best_covert_target, HOSTILE_TARGET};
+        use crate::statecraft::{add_backing, BACKING_SPONSOR_CAP, BACKING_STEP};
+        let (af, pk, sa) = (NationId::Afghanistan, NationId::Pakistan, NationId::SaudiArabia);
+        assert!(!bloc_in_table(af, Bloc::Islamist), "the table carries no Islamist party or pillar");
+        let off = world_1990(GameRules::default());
+        assert!(!bloc_present(&off, af, Bloc::Islamist));
+        assert_eq!(ai_back_bloc_choice(&off, pk, af), None, "off: no choice");
+        let mut w = world_1990(on(7));
+        assert_eq!(ruling_bloc(&w, af), Some(Bloc::Communist));
+        assert!(!bloc_present(&w, af, Bloc::Islamist));
+        assert!(!bloc_can_win(&w, af, Bloc::Islamist));
+        assert!(w.relation(pk, af) <= HOSTILE_TARGET, "{}", w.relation(pk, af));
+        assert!(w.relation(sa, af) <= HOSTILE_TARGET, "{}", w.relation(sa, af));
+        assert_eq!(ai_back_bloc_choice(&w, pk, af), Some(Bloc::Islamist), "the creating clause");
+        assert_eq!(ai_back_bloc_choice(&w, sa, af), Some(Bloc::Islamist));
+        // Not hostile, not a rival's client: no clause.
+        let was = w.relation(pk, af);
+        w.set_relation(pk, af, 0.0);
+        assert_eq!(ai_back_bloc_choice(&w, pk, af), None, "a sponsor Kabul is not hostile to has no choice");
+        w.set_relation(pk, af, was);
+        // The arm's own target choice on the 1990 board.
+        let target = best_covert_target(&w, pk);
+        println!("Pakistan's best covert target in January 1990: {target:?}");
+        assert_eq!(target, Some(af), "the arm would take the first operation in Afghanistan");
+        // One clean operation creates the presence.
+        let added = add_backing(&mut w, pk, af, Bloc::Islamist);
+        assert_eq!(added, BACKING_STEP);
+        assert!(added >= PRESENCE_BACKING);
+        assert!(bloc_backed(&w, af, Bloc::Islamist));
+        assert!(bloc_present(&w, af, Bloc::Islamist), "one operation created the presence");
+        assert!(bloc_can_win(&w, af, Bloc::Islamist));
+        assert!(!bloc_in_table(af, Bloc::Islamist), "the table is untouched");
+        // One operation makes it a bloc that could win, not yet the
+        // challenger: the Nationalist flat-seed share (0.133) outweighs 0.06.
+        let (chal, ci) = challenger(&w, af).unwrap();
+        assert_eq!(chal, Bloc::Nationalist, "{ci}");
+        // The created presence keeps receiving until the sponsor's cap.
+        assert_eq!(ai_back_bloc_choice(&w, pk, af), Some(Bloc::Islamist), "the sponsor keeps paying");
+        assert_eq!(add_backing(&mut w, pk, af, Bloc::Islamist), BACKING_SPONSOR_CAP - BACKING_STEP);
+        assert_eq!(add_backing(&mut w, pk, af, Bloc::Islamist), 0.0, "the sponsor's cap holds");
+        assert_eq!(ai_back_bloc_choice(&w, sa, af), Some(Bloc::Islamist), "a second sponsor still has room");
+        add_backing(&mut w, sa, af, Bloc::Islamist);
+        add_backing(&mut w, sa, af, Bloc::Islamist);
+        add_backing(&mut w, NationId::Iran, af, Bloc::Islamist);
+        let i = influence(&w, af)[Bloc::Islamist as usize].1;
+        assert!(i > ci, "{i} against the Nationalist {ci}");
+        assert_eq!(challenger(&w, af).map(|(b, _)| b), Some(Bloc::Islamist), "three sponsors at the bloc cap make it the challenger");
+        // The flat seed the drift reverts to now carries the bloc.
+        let seed = flat_seed(&w, af, Bloc::Communist);
+        assert!(seed[Bloc::Islamist as usize].1 > SHARE_FLOOR, "{seed:?}");
+        // And the readout, over a run: how often the arm lands it.
+        let mut on_w = world_1990(on(7));
+        let mut afghan = 0usize;
+        let mut first: Option<usize> = None;
+        for month in 0..240 {
+            for h in tick_month(&mut on_w, &[]) {
+                if h == "Money and organisers reach the Islamist movement in Afghanistan; nobody can say from where." {
+                    afghan += 1;
+                    first.get_or_insert(month);
+                }
+            }
+        }
+        println!("seed 7: Islamist backings landed in Afghanistan in twenty years {afghan}, first in month {first:?}");
     }
 
     /// `refusal_of` says exactly what `apply_command` would, read without

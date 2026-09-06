@@ -5986,7 +5986,7 @@ pub fn seed_blocs(w: &mut WorldState, id: NationId) {
         Some(b) => b,
         None => return,
     };
-    let movements = crate::blocs::flat_seed(id, ruling);
+    let movements = crate::blocs::flat_seed(w, id, ruling);
     // A bloc seeded at or over the surge line has not CROSSED it: the latch
     // is seeded closed for it, so the first tick does not announce the
     // seed as news (measured 2026-09-05: Iraq's and Syria's lone Non-Aligned
@@ -6389,7 +6389,7 @@ pub(crate) fn drift_movements(w: &mut WorldState, id: NationId) {
     let appeals: Vec<(Bloc, f64)> = Bloc::ALL
         .iter()
         .copied()
-        .filter(|b| *b != ruling && crate::blocs::bloc_present(id, *b))
+        .filter(|b| *b != ruling && crate::blocs::bloc_present(w, id, *b))
         .map(|b| (b, bloc_appeal(id, b, &pn, development)))
         .collect();
     let appeal_total: f64 = appeals.iter().map(|(_, a)| *a).sum();
@@ -6409,7 +6409,7 @@ pub(crate) fn drift_movements(w: &mut WorldState, id: NationId) {
             e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
         }
     }
-    let seed = crate::blocs::flat_seed(id, ruling);
+    let seed = crate::blocs::flat_seed(w, id, ruling);
     for (i, e) in shares.iter_mut().enumerate() {
         e.1 += (seed[i].1 - e.1) * reversion;
         e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
@@ -6549,7 +6549,7 @@ fn reseeded_support(w: &WorldState, id: NationId) -> Option<(Vec<(String, f64)>,
     let mut lost: Vec<String> = vec![];
     for b in Bloc::ALL {
         let carried = pol.parties.iter().any(|p| bloc_of(id, p.id) == b);
-        if !carried && crate::blocs::bloc_present(id, b) {
+        if !carried && crate::blocs::bloc_present(w, id, b) {
             lost.push(format!(
                 "the {} movement, {:.0}% of the country, has no party to carry it",
                 b.label(),
@@ -9134,7 +9134,7 @@ mod tests {
         let mut w = world_1990(on_rules(7));
         let id = NationId::Indonesia;
         assert!(!is_electoral(&w, id));
-        assert!(crate::blocs::bloc_present(id, Bloc::Nationalist), "ABRI stands for it");
+        assert!(crate::blocs::bloc_present(&w, id, Bloc::Nationalist), "ABRI stands for it");
         let hand = vec![
             (Bloc::Western, 0.10),
             (Bloc::Communist, 0.002),
@@ -10483,9 +10483,10 @@ mod tests {
     fn a_western_winner_is_refused_in_a_party_less_polity() {
         let sa = NationId::SaudiArabia;
         assert!(polity(sa).unwrap().parties.is_empty());
-        assert!(crate::blocs::bloc_present(sa, Bloc::Western), "the merchant houses carry the Western bloc");
-        assert!(!crate::blocs::bloc_can_win(sa, Bloc::Western));
-        assert!(crate::blocs::bloc_can_win(sa, Bloc::Islamist));
+        let w1990 = world_1990(roads_rules(7));
+        assert!(crate::blocs::bloc_present(&w1990, sa, Bloc::Western), "the merchant houses carry the Western bloc");
+        assert!(!crate::blocs::bloc_can_win(&w1990, sa, Bloc::Western));
+        assert!(crate::blocs::bloc_can_win(&w1990, sa, Bloc::Islamist));
         let arm = |w: &mut WorldState| {
             {
                 let n = w.nation_mut(sa);

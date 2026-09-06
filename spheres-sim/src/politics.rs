@@ -1476,16 +1476,31 @@ fn ai_statecraft(w: &mut WorldState) {
         }
     }
 
-    // ---- The regional ideological sponsors (design D3, S3): the same 0.022
-    // draw and the same target choice as a patron's covert arm, for their own
-    // bloc only, and nothing else — no aid, no guarantees, no other op. The
-    // whole block is behind the switch, so an off-world's RNG stream is
-    // untouched; and the DRAW COMES AFTER THE CHOICE, so a switched-on world
-    // in which no sponsor has a movement to back draws nothing either — the
-    // stream parts from the off-world's only in a month a sponsor could act
-    // (measured 2026-09-05: drawing first parted the two at month 0 on every
-    // seed tried, with nothing to show for it).
-    if w.rules.ideology_blocs {
+    // ---- The regional ideological sponsors (design D3, S3): the same target
+    // choice as a patron's covert arm, for their own bloc only, and nothing
+    // else — no aid, no guarantees, no other op. The whole block is behind
+    // the switch, so an off-world's RNG stream is untouched.
+    //
+    // A STANDING PROGRAMME, NOT A LOTTERY (M1, 2026-09-06, anchor A2). S3
+    // gave the sponsors the patron arm's 0.022-a-month draw, taken after
+    // the choice. Two things were wrong with it once M1 gave a sponsor a
+    // choice in a hostile target from the first month. First, a failed draw
+    // parts the switched-on stream from the off-world's silently — no
+    // operation, no headline, every later draw of the month shifted — so
+    // the one bar that reads the two worlds side by side
+    // (`the_bloc_layer_is_inert_over_time`) can never see the act it parts
+    // on (measured: "parted at month 0 with no stem"). Second, and the
+    // reason it is wrong as history: a lottery at 0.022 lands Pakistan's
+    // money in Afghanistan three times in twenty years on seed 7, while the
+    // stock a clean operation puts in (`BACKING_STEP` 0.06) is spent in ten
+    // months (`BACKING_DECAY` 0.006) — Operation Cyclone was appropriated
+    // and delivered every fiscal year from 1980 to 1992, Saudi money matched
+    // it dollar for dollar, and the Peshawar parties never went unpaid. So
+    // a sponsor with a movement to back acts WHENEVER ITS CHANNEL HAS
+    // COOLED to `SPONSOR_PROGRAMME_HEAT`, once a calendar month, and draws
+    // nothing itself: the operation's own two dice (`covert_action`) are the
+    // stream's only parting, and they always print a line.
+    if w.rules.ideology_blocs && crate::clock::month_end(w) {
         let sponsors: Vec<NationId> = crate::nations::ideological_sponsors()
             .iter()
             .copied()
@@ -1497,7 +1512,7 @@ fn ai_statecraft(w: &mut WorldState) {
             }
             let choice = best_covert_target(w, p).and_then(|t| ai_back_bloc_choice(w, p, t).map(|b| (t, b)));
             if let Some((t, b)) = choice {
-                if monthly_chance(w, 0.022) {
+                if w.covert_heat(p, t) < SPONSOR_PROGRAMME_HEAT {
                     let _ = crate::apply_command(
                         w,
                         &crate::Command::CovertAction { sponsor: p, target: t, op: CovertOp::BackBloc(b) },
@@ -1637,6 +1652,21 @@ fn best_client(w: &WorldState, patron: NationId) -> Option<NationId> {
 /// the sponsor is at under -20 with, the same test `best_covert_target`
 /// reads). Pure, and `None` before reading anything while
 /// `rules.ideology_blocs` is off. The 0.15 line is INVENTED (design S3).
+///
+/// M1 (Ridge's ruling, 2026-09-06), the creating clause: where no present
+/// bloc qualifies and the sponsor's OWN bloc is ABSENT from the target's
+/// TABLE (`blocs::bloc_in_table` false — no party and no pillar of it; a
+/// presence the sponsor's own money created, `blocs::bloc_backed`, counts
+/// as absent here so the money keeps arriving until the caps hold it), the
+/// sponsor backs its own bloc anyway when the target is HOSTILE to it
+/// (relation at or under `HOSTILE_TARGET`, the line `best_covert_target`
+/// already reads) or a rival's client (the same test as above, here for
+/// every sponsor). The first successful operation then creates the
+/// presence (`blocs::PRESENCE_BACKING`). A present qualifying bloc is
+/// always preferred, so nothing an existing choice returned changes.
+/// Historical anchor: the Peshawar parties, the NIF, the contras —
+/// movements that existed inside the target only as a sponsor's creation,
+/// and were paid for as long as the sponsor stayed hostile.
 pub(crate) fn ai_back_bloc_choice(w: &WorldState, sponsor: NationId, target: NationId) -> Option<crate::government::Bloc> {
     if !w.rules.ideology_blocs {
         return None;
@@ -1644,11 +1674,11 @@ pub(crate) fn ai_back_bloc_choice(w: &WorldState, sponsor: NationId, target: Nat
     let sponsored = sponsor.def().ideological_sponsor;
     let own = sponsored.or_else(|| crate::blocs::ruling_bloc(w, sponsor));
     let ruling = crate::blocs::ruling_bloc(w, target)?;
-    let rivals_client =
-        sponsored.is_none() && w.patrons_of(target).iter().any(|q| w.relation(sponsor, *q) < -20.0);
+    let rival_backed = w.patrons_of(target).iter().any(|q| w.relation(sponsor, *q) < -20.0);
+    let rivals_client = sponsored.is_none() && rival_backed;
     let mut best: Option<(crate::government::Bloc, f64)> = None;
     for (b, v) in crate::blocs::influence(w, target) {
-        if b == ruling || v < 0.15 || !crate::blocs::bloc_present(target, b) {
+        if b == ruling || v < 0.15 || !crate::blocs::bloc_present(w, target, b) {
             continue;
         }
         if Some(b) != own && !rivals_client {
@@ -1658,8 +1688,35 @@ pub(crate) fn ai_back_bloc_choice(w: &WorldState, sponsor: NationId, target: Nat
             best = Some((b, v));
         }
     }
-    best.map(|(b, _)| b)
+    if let Some((b, _)) = best {
+        return Some(b);
+    }
+    let own = own?;
+    if own == ruling || crate::blocs::bloc_in_table(target, own) {
+        return None;
+    }
+    if w.relation(sponsor, target) <= HOSTILE_TARGET || rival_backed {
+        return Some(own);
+    }
+    None
 }
+
+/// The relation at or under which a state is a covert target at all —
+/// `best_covert_target`'s line, named so the M1 clause reads the same one.
+pub(crate) const HOSTILE_TARGET: f64 = -30.0;
+
+/// The covert heat under which an ideological sponsor's standing programme
+/// sends the next operation (M1). DERIVED, not chosen: a clean operation
+/// heats the channel by 0.18 (`covert_action`) and the channel cools 0.012
+/// a month (`covert_channels_cool`); the money it put in, `BACKING_STEP`,
+/// cools away in `BACKING_STEP / BACKING_DECAY` = 10 months. A programme
+/// that holds what it put in returns exactly then, when the channel reads
+/// 0.18 − 10 × 0.012 = 0.06 — one operation per sponsor per target every
+/// ten months on a clean channel, every thirty-one after an exposure (the
+/// +0.25 `caught` adds). The patron arm keeps its 0.022 draw, which both
+/// worlds take.
+pub(crate) const SPONSOR_PROGRAMME_HEAT: f64 =
+    0.18 - 0.012 * (crate::statecraft::BACKING_STEP / crate::statecraft::BACKING_DECAY);
 
 /// Subversion goes where hostility meets brittleness. A rival's client is the
 /// classic target: cheaper to break than the rival, and it hurts the rival anyway.
@@ -1668,7 +1725,7 @@ pub(crate) fn best_covert_target(w: &WorldState, sponsor: NationId) -> Option<Na
         .iter()
         .filter(|n| n.alive && n.id != sponsor)
         .map(|n| n.id)
-        .filter(|t| w.relation(sponsor, *t) <= -30.0 && !w.allied(sponsor, *t))
+        .filter(|t| w.relation(sponsor, *t) <= HOSTILE_TARGET && !w.allied(sponsor, *t))
         .map(|t| {
             let n = w.nation(t);
             let brittle = (70.0 - n.stability).max(0.0) / 70.0 + n.separatism * 0.5;
