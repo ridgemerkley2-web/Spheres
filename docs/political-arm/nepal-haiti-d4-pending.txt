@@ -1,11 +1,22 @@
-// NOT LANDED. Design D4 of "The Political Arm of SPHERES" (rev. 2, approved
-// 2026-09-05): the May 1991 Nepal and December 1990 Haiti party tables as
-// DORMANT rows, transcribed by the data pass with the URLs below and kept
-// here, outside POLITIES, until the fifteen rows are audited against them
-// and the switched-on hashes are re-measured. See BUGS.md P-8. Neither
-// nation is electoral at the start (authoritarianism 0.70 and 0.78 against
-// the 0.60 ceiling), so landing them cannot move the goldens; it does move
-// the seeded movements with the arm on, which is why it waits.
+// STILL NOT WIRED — and now MEASURED (2026-09-06, S3 part one). The two
+// blocks below are landed in spheres-sim/src/government.rs as the const
+// D4_POLITIES beside POLITIES, row for row with their sources and a shape
+// test (government::tests::d4_tables_are_transcribed_beside_the_live_table_
+// and_not_in_it), but NOT in POLITIES. Wiring them into POLITIES was tried
+// this session and the premise of BUGS.md P-8 — "landing them cannot move
+// the goldens" — was wrong: `government::ensure` seats GovState.support and
+// .seats from any table on the first day, so the serialized 1990 start
+// moved from 0xe26e4bf8d6c60066 to 0x63a37522993aa5a4 with the switch OFF.
+// A dormant table is inert to the TICK, not to the start hash. With the
+// blocks wired and the arm ON the seeded movements measured: Nepal (the
+// court ruling Non-Aligned) Non-Aligned 0.5988, Western / Communist /
+// Nationalist 0.1327 each, Islamist 0.002; Haiti (the army ruling
+// Nationalist) Nationalist 0.5988, Western / Communist / Non-Aligned 0.1327
+// each, Islamist 0.002; the 1990 ruling-bloc census stayed 67/17/7/3/43.
+// RIDGE DECIDES: a deliberate re-pin of the start golden (then wire the
+// blocks and drop the pillar-only ones, Haiti term_months 72 -> 48), or a
+// table the OFF world cannot see (a design change: every reader of
+// Polity.parties would have to ask the switch).
 
 // D4 transcriptions, 2026-09-05. Two POLITIES-style blocks in the syntax of
 // spheres-sim/src/government.rs (p(id, name, native, Family, share);

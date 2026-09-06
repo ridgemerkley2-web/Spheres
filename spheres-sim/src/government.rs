@@ -5496,6 +5496,154 @@ pub fn polity(id: NationId) -> Option<&'static Polity> {
     POLITIES.iter().find(|x| x.nation == id)
 }
 
+/// Design D4, TRANSCRIBED AND NOT WIRED (2026-09-06). The May 1991 Nepal and
+/// December 1990 Haiti party tables, row for row from
+/// docs/political-arm/nepal-haiti-d4-pending.txt with their sources, kept
+/// beside `POLITIES` rather than in it. Landing them in `POLITIES` was
+/// tried this session and MEASURED: `ensure` seats `support` and `seats`
+/// from any table on the first day, so the serialized 1990 start moved from
+/// 0xe26e4bf8d6c60066 to 0x63a37522993aa5a4 with the switch OFF — the
+/// golden actual the S3 stages are bound not to move (BUGS.md P-8's premise
+/// that a dormant table is inert to the goldens was wrong; a dormant table
+/// is inert to the TICK). With the two blocks wired, and the arm on, the
+/// seeded movements read: Nepal (the court ruling Non-Aligned) Non-Aligned
+/// 0.5988, Western / Communist / Nationalist 0.1327 each, Islamist 0.002;
+/// Haiti (the army ruling Nationalist) Nationalist 0.5988, Western /
+/// Communist / Non-Aligned 0.1327 each, Islamist 0.002; the 1990 census
+/// stayed 67/17/7/3/43. Wiring them is Ridge's call: a re-pin of the start
+/// golden, or a table the OFF world cannot see. Until then nothing reads
+/// this const but its own shape test.
+pub const D4_POLITIES: &[Polity] = &[
+    // Nepal — House of Representatives, 12 May 1991, the first multi-party
+    // election since 1959, under the constitution promulgated 9 November 1990:
+    // 205 single-member first-past-the-post seats, five-year term, turnout
+    // 65.15%. Nepali Congress 39.50% (110 seats), CPN (UML) 29.27% (69),
+    // RPP (Chand) 6.87% (3), RPP (Thapa) 5.63% (1), United People's Front
+    // 5.05% (9), Nepal Sadbhawana 4.28% (6), CPN (Democratic) 2.54% (2), Nepal
+    // Workers Peasants 1.31% (2), independents 4.36% (3). Girija Prasad
+    // Koirala formed the government. The table is dormant on 1 January 1990 —
+    // parties were still banned and the Jana Andolan was seven weeks away —
+    // and the UML (January 1991 merger), the two RPPs (1990) and the UPF
+    // (1991) did not yet exist; they are entered at their first contested
+    // result, which is the rule this table already uses for parties founded
+    // after the last pre-1990 vote.
+    // https://en.wikipedia.org/wiki/1991_Nepalese_general_election
+    // https://en.wikipedia.org/wiki/House_of_Representatives_(Nepal)
+    // https://en.wikipedia.org/wiki/Nepali_Congress
+    // https://en.wikipedia.org/wiki/Communist_Party_of_Nepal_(Unified_Marxist%E2%80%93Leninist)
+    // https://en.wikipedia.org/wiki/Rastriya_Prajatantra_Party
+    // https://en.wikipedia.org/wiki/Rastriya_Prajatantra_Party_(Chand)
+    // https://en.wikipedia.org/wiki/Samyukta_Janamorcha_Nepal
+    // https://en.wikipedia.org/wiki/Nepal_Sadbhawana_Party
+    // https://en.wikipedia.org/wiki/Communist_Party_of_Nepal_(Democratic)
+    // https://en.wikipedia.org/wiki/Nepal_Workers_Peasants_Party
+    Polity {
+        nation: NationId::Nepal,
+        system: Electoral::FirstPastThePost,
+        term_months: 60,
+        next: (0, 0),
+        parties: &[
+            p("np_nc", "Nepali Congress", "Nepali Kangres", Family::SocialDemocratic, 0.3950),
+            p("np_uml", "Communist Party of Nepal (Unified Marxist-Leninist)", "Nepal Kamyunist Parti (Ekikrit Marksbadi-Leninbadi)", Family::Communist, 0.2927),
+            // Panchayat-era elite, constitutional monarchist, Hindu nationalist
+            // by the party page; contested 1991 as two factions, merged
+            // 8 February 1992. Conservative rather than Nationalist because
+            // the programme was the throne, not the nation.
+            p("np_rpp_chand", "Rastriya Prajatantra Party (Chand)", "Rastriya Prajatantra Parti (Chand)", Family::Conservative, 0.0687),
+            p("np_rpp_thapa", "Rastriya Prajatantra Party (Thapa)", "Rastriya Prajatantra Parti (Thapa)", Family::Conservative, 0.0563),
+            // Front of the CPN (Unity Centre), Baburam Bhattarai chairman —
+            // the future Maoists.
+            p("np_upf", "United People's Front of Nepal", "Samyukta Janamorcha Nepal", Family::Communist, 0.0505),
+            // Madhesi rights party of the Tarai.
+            p("np_nsp", "Nepal Sadbhawana Party", "Nepal Sadbhawana Parti", Family::Regionalist, 0.0428),
+            p("np_cpnd", "Communist Party of Nepal (Democratic)", "Nepal Kamyunist Parti (Prajatantrik)", Family::Communist, 0.0254),
+            p("np_nwpp", "Nepal Workers Peasants Party", "Nepal Majdur Kisan Parti", Family::Communist, 0.0131),
+            // The 4.36% cast for independents, entered as the table enters
+            // Jordan's (jo_tribal) — a bloc of the result, not a party.
+            p("np_ind", "independents", "", Family::BigTent, 0.0436),
+        ],
+        ruling: "the Panchayat",
+        pillars: &[
+            pl(Pillar::Party, "the palace secretariat"),
+            pl(Pillar::Army, "the Royal Nepal Army"),
+            pl(Pillar::Business, "the Rana and Chhetri landholding families"),
+        ],
+    },
+    // Haiti — general election of 16 December 1990 (presidential first round
+    // and legislative first round) with a legislative second round on
+    // 20 January 1991; the 1987 constitution gives the president five years
+    // (no consecutive term, runoff if no majority), deputies four, senators six
+    // (a third every two years), all by two-round vote. Turnout 50.16%.
+    // THE SHARES BELOW ARE THE PRESIDENTIAL FIRST ROUND, because no fetched
+    // source publishes a national vote share for the Chamber; the Chamber
+    // seats (81) were FNCD 27, ANDP 17, PDCH 7, PAIN 6, RDNP 6, MDN 5, MKN 5,
+    // PNT 3, independents 5, and the Senate (27) FNCD 13, ANDP 6, MRN 2,
+    // PAIN 2, PDCH 1, PNT 1, RDNP 1, independent 1. Aristide (FNCD) 67.48%,
+    // Bazin (ANDP) 14.22%, Dejoie (PAIN) 4.88%, de Ronceray (MDN) 3.34%,
+    // Claude (PDCH) 3.00%, Theodore (PUCH) 1.83%, others 5.25%. Aristide was
+    // sworn in on 7 February 1991 and deposed eight months later.
+    // The table is dormant on 1 January 1990 (Avril governs; the previous vote
+    // was annulled by the army).
+    // https://en.wikipedia.org/wiki/1990%E2%80%9391_Haitian_general_election
+    // https://en.wikipedia.org/wiki/Haitian_general_election,_1990%E2%80%931991
+    // https://en.wikipedia.org/wiki/45th_Legislature_of_the_Haitian_Parliament
+    // https://en.wikipedia.org/wiki/President_of_Haiti
+    // https://en.wikipedia.org/wiki/Chamber_of_Deputies_(Haiti)
+    // https://en.wikipedia.org/wiki/Senate_(Haiti)
+    // https://en.wikipedia.org/wiki/Jean-Bertrand_Aristide
+    // https://en.wikipedia.org/wiki/List_of_political_parties_in_Haiti
+    // https://en.wikipedia.org/wiki/Rally_of_Progressive_National_Democrats
+    // https://en.wikipedia.org/wiki/Unified_Party_of_Haitian_Communists
+    // https://en.wikisource.org/wiki/The_World_Factbook_(1990)/Haiti
+    // https://pdba.georgetown.edu/Parties/Haiti/desc.html
+    // https://www.refworld.org/docid/3ae6acc958.html (MIDH + PANPRA + MNP-28 = ANDP)
+    // https://www.irb-cisr.gc.ca/en/country-information/rir/Pages/index.aspx?doc=458131 (MDN, founded 4 August 1986, described as far-right)
+    Polity {
+        nation: NationId::Haiti,
+        system: Electoral::TwoRound,
+        // Four years is the Chamber's term under the 1987 constitution; the
+        // pillar-only block in POLITIES carries 72, which is the Senate's.
+        // The party table is the Chamber's, so the Chamber's term is entered.
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // "A populist coalition of the impoverished majority and
+            // progressive parties opposed to the Duvalier dictatorship"
+            // (Aristide page); KONAKOM and the Group of 57 inside it, the
+            // Lavalas movement behind it. BigTent is the description: it was a
+            // front, and it broke with Aristide within two years.
+            p("ht_fncd", "National Front for Change and Democracy", "Front National pour le Changement et la Democratie", Family::BigTent, 0.6748),
+            // Bazin's MIDH with PANPRA and MNP-28. Bazin: World Bank economist,
+            // the US-favoured candidate, centrist and pro-market; entered
+            // Liberal on that, with the caveat that PANPRA (Serge Gilles) was
+            // social democratic.
+            p("ht_andp", "National Alliance for Democracy and Progress", "Alliance Nationale pour la Democratie et le Progres", Family::Liberal, 0.1422),
+            // The Dejoie family's party of 1957 revived by the son; planter
+            // and industrialist money. Conservative on the family's class
+            // basis; no fetched source states a programme.
+            p("ht_pain", "National Agricultural and Industrial Party", "Parti Agricole et Industriel National", Family::Conservative, 0.0488),
+            // Hubert de Ronceray; founded 4 August 1986, the first party the
+            // Ministry of Justice recognised; described as far-right and later
+            // a member of the Duvalierist-leaning MPSN grouping.
+            p("ht_mdn", "Mobilization for National Development", "Mobilisation pour le Developpement National", Family::Nationalist, 0.0334),
+            p("ht_pdch", "Christian Democratic Party of Haiti", "Parti Democrate Chretien d'Haiti", Family::ChristianDemocratic, 0.0300),
+            p("ht_puch", "Unified Party of Haitian Communists", "Parti Unifie des Communistes Haitiens", Family::Communist, 0.0183),
+            // REFUSED, not estimated: the RDNP (Leslie Manigat, centre-right
+            // Christian-democratic nationalist; 6 deputies, 1 senator), the
+            // National Cobite Movement (5 deputies) and the National Labour
+            // Party (3 deputies, 1 senator) fielded no presidential candidate
+            // and no fetched source gives them a national vote share. They
+            // wait for a legislative share to be transcribed.
+        ],
+        ruling: "the Armed Forces of Haiti",
+        pillars: &[
+            pl(Pillar::Army, "the Forces Armees d'Haiti"),
+            pl(Pillar::Security, "the Service d'Information National"),
+            pl(Pillar::Business, "the Port-au-Prince import houses"),
+        ],
+    },
+];
+
 fn spec(id: NationId, party: &str) -> Option<&'static PartySpec> {
     polity(id)?.parties.iter().find(|p| p.id == party)
 }
@@ -7563,6 +7711,48 @@ mod tests {
         let news = crate::tick_month(&mut w, &[]);
         let surges: Vec<&String> = news.iter().filter(|h| h.contains("passes a third")).collect();
         assert!(surges.is_empty(), "the seed was announced as news: {surges:?}");
+    }
+
+    /// Design D4, transcribed and NOT wired (see `D4_POLITIES`): the two
+    /// blocks are shaped as the table is shaped — ids unique against
+    /// `POLITIES`, shares in (0, 1] summing to at most 1.02, nine Nepal rows
+    /// and six Haiti rows, the Chamber's 48-month term, the same pillars as
+    /// the live blocks — and `POLITIES` still carries the two nations as the
+    /// pillar-only regimes the goldens pin (empty tables, so neither can be
+    /// electoral and the seam cannot fire for them). Watched red with the
+    /// Nepal block's `np_nc` renamed `id_golkar`: a duplicate id against
+    /// Indonesia's.
+    #[test]
+    fn d4_tables_are_transcribed_beside_the_live_table_and_not_in_it() {
+        let live_ids: Vec<&str> = POLITIES.iter().flat_map(|p| p.parties.iter().map(|s| s.id)).collect();
+        let mut seen: Vec<&str> = vec![];
+        for pol in D4_POLITIES {
+            let live = polity(pol.nation).expect("the live block exists");
+            assert!(live.parties.is_empty(), "{:?}: the live table is no longer pillar-only", pol.nation);
+            assert_eq!(live.ruling, pol.ruling);
+            assert_eq!(live.pillars.len(), pol.pillars.len());
+            for (a, b) in live.pillars.iter().zip(pol.pillars) {
+                assert!(a.pillar == b.pillar && a.name == b.name, "{:?}: pillars differ", pol.nation);
+            }
+            assert_eq!(pol.next, (0, 0));
+            for s in pol.parties {
+                assert!(!s.id.is_empty() && !s.name.is_empty());
+                assert!(s.start > 0.0 && s.start <= 1.0, "{}", s.id);
+                assert!(!live_ids.contains(&s.id), "duplicate party id {} against POLITIES", s.id);
+                assert!(!seen.contains(&s.id), "duplicate party id {}", s.id);
+                seen.push(s.id);
+            }
+            let total: f64 = pol.parties.iter().map(|s| s.start).sum();
+            assert!(total <= 1.02, "{:?}: {total}", pol.nation);
+        }
+        assert_eq!(D4_POLITIES.len(), 2);
+        assert_eq!(D4_POLITIES[0].nation, NationId::Nepal);
+        assert_eq!(D4_POLITIES[0].parties.len(), 9);
+        assert_eq!(D4_POLITIES[1].nation, NationId::Haiti);
+        assert_eq!(D4_POLITIES[1].parties.len(), 6);
+        assert_eq!(D4_POLITIES[1].term_months, 48);
+        let w = w1990();
+        assert!(!is_electoral(&w, NationId::Nepal) && !is_electoral(&w, NationId::Haiti));
     }
 
     #[test]
