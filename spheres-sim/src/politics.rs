@@ -217,9 +217,29 @@ pub fn tick(w: &mut WorldState) {
             // random `auth_shift` is NOT drawn: the winner sets the opening
             // authoritarianism. The branch below keeps its exact code and its
             // exact draw when this switch is off.
-            let armed = stab < 12.0 || crate::blocs::uprising_armed(w, id);
+            //
+            // CALIBRATED 2026-09-06 (the bloc census, anchor A3): the crown
+            // goes to the challenger only where the MOVEMENT armed the road.
+            // A collapse the movement did not arm is the pre-arm collapse
+            // VERBATIM — the block below, its random shift included — and
+            // not a route event. Before this line the collapse handed the
+            // capital to whichever non-ruling bloc was largest: the first
+            // reading measured Peru's Shining Path at 0.25 of the vote and
+            // Georgia's CP at 0.36 taking power in sixty seeds of sixty.
+            let movement = crate::blocs::uprising_armed(w, id);
+            let armed = stab < 12.0 || movement;
             if armed && monthly_chance(w, 0.10 * w.rules.crisis_intensity) {
-                crate::government::uprising(w, id);
+                if movement {
+                    crate::government::uprising(w, id);
+                } else {
+                    let auth_shift = w.rng.range(-0.3, 0.2);
+                    let n = w.nation_mut(id);
+                    n.stability = 45.0;
+                    n.gdp *= 0.93;
+                    crate::economy::refresh_debt_ratio(n);
+                    n.authoritarianism = (n.authoritarianism + auth_shift).clamp(0.05, 0.95);
+                    w.headline(format!("Revolution in {} — the old regime falls.", id.name()));
+                }
             }
         } else if !is_ussr && !is_yugo && stab < 12.0 && monthly_chance(w, 0.10 * w.rules.crisis_intensity) {
             // Generic regime collapse: chaos, then a new regime
