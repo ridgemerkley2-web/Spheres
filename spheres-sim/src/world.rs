@@ -1025,6 +1025,14 @@ pub struct WorldState {
     /// seats each one from the transcribed 1990 party table on the next tick.
     #[serde(default)]
     pub governments: crate::government::Governments,
+    /// Who directed each executive on 1 January 1990, from
+    /// `data/leaders_1990.json`. `Some` only when `rules.ideology_blocs` is
+    /// on, and absent from the save otherwise, so a default world serialises
+    /// exactly as it did before the political arm existed. No name in it is
+    /// ever written for a date after 1 January 1990 (design D2): the offices
+    /// are described by their institution once the game moves.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub leadership: Option<Vec<crate::data::Office>>,
     /// Brent-ish oil price, USD/barrel
     pub oil_price: f64,
     /// Event log for the current month (drained by UI)

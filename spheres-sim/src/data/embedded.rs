@@ -178,3 +178,11 @@ pub const EMBEDDED_RELATIONS: Source<'static> = Source {
     file: "data/relations_1990.json",
     json: include_str!("../../data/relations_1990.json"),
 };
+
+/// Who directed the executive of each nation on 1 January 1990. Read into
+/// `WorldState.leadership` only when `GameRules.ideology_blocs` is on; see
+/// `super::parse_leaders` for the schema and the refusals.
+pub const EMBEDDED_LEADERS: Source<'static> = Source {
+    file: "data/leaders_1990.json",
+    json: include_str!("../../data/leaders_1990.json"),
+};

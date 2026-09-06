@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "rows": [
+    {
+      "nation": "Poland",
+      "name": "Tadeusz Mazowiecki",
+      "native": "Tadeusz Mazowiecki",
+      "office": "Prime Minister (Chairman of the Council of Ministers)",
+      "since": "1989-08-24",
+      "born": "1927-04-18",
+      "tie": { "party": "pl_solidarity" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Wojciech Jaruzelski", "office": "President of the Republic", "since": "1989-07-19", "party": null }
+      ],
+      "sources": [
+        "https://rulers.org/rulp2.html",
+        "https://en.wikipedia.org/wiki/Tadeusz_Mazowiecki"
+      ],
+      "note": "rulers.org: '24 Aug 1989 - 4 Jan 1991 Tadeusz Mazowiecki (b. 1927 - d. 2013)'; full birth date 18 April 1927 from the Wikipedia infobox. Head of government in a parliamentary system, so he and not the president directs the executive. Jaruzelski's PZPR is not in the party table (it dissolved itself on 29 January 1990), hence party null."
+    },
+    {
+      "nation": "Pakistan",
+      "name": "Benazir Bhutto",
+      "native": "Benazir Bhutto",
+      "office": "Prime Minister",
+      "since": "1988-12-02",
+      "born": "1953-06-21",
+      "tie": { "party": "pk_ppp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Ghulam Ishaq Khan", "office": "President", "since": "1988-08-17", "party": null }
+      ],
+      "sources": [
+        "https://rulers.org/rulp1.html",
+        "https://en.wikipedia.org/wiki/Benazir_Bhutto"
+      ],
+      "note": "rulers.org: '2 Dec 1988 - 6 Aug 1990 Benazir Bhutto (f) (1st time) (b. 1953 - d. 2007)'; full birth date 21 June 1953 from the Wikipedia infobox. The president who dismissed her that August is in 'also' as a fact of 1 January 1990, not as a forecast."
+    },
+    {
+      "nation": "Thailand",
+      "name": "Chatichai Choonhavan",
+      "native": "Chatichai Choonhavan",
+      "office": "Prime Minister",
+      "since": "1988-08-04",
+      "born": "1920-04-05",
+      "tie": { "party": "th_chartthai" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Bhumibol Adulyadej", "office": "King (Rama IX)", "since": "1946-06-09", "party": null }
+      ],
+      "sources": [
+        "https://rulers.org/rult.html",
+        "https://en.wikipedia.org/wiki/Chatichai_Choonhavan"
+      ],
+      "note": "rulers.org: '4 Aug 1988 - 23 Feb 1991 Chatichai Choonhavan (b. 1922 - d. 1998)'; the Wikipedia infobox gives 5 April 1920 and names his party as Thai Nation (Chart Thai). The two sources disagree on the birth year; the full date is entered and the disagreement recorded here rather than resolved."
+    }
+  ]
+}
