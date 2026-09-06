@@ -32,10 +32,12 @@ pub const RULING_SEED: f64 = 0.60;
 // ---------------------------------------------------------------------------
 
 /// The leader table's row for this nation, if the arm is on and one was
-/// transcribed. The 23 successor states have none by design (D2): they are
-/// described from birth.
+/// transcribed and NAMED. The 23 successor states have none by design (D2):
+/// they are described from birth. A REFUSED row — a nameless row whose tie
+/// could not resolve, Chile and Panama in the 1990 table — is skipped on the
+/// same terms: it asserts nothing, and the nation is described from its table.
 pub fn leader_row(w: &WorldState, id: NationId) -> Option<&Office> {
-    w.leadership.as_ref()?.iter().find(|o| o.nation == id)
+    w.leadership.as_ref()?.iter().find(|o| o.nation == id && o.name.is_some())
 }
 
 /// The bloc the leader row puts in power: a sourced `bloc_override` first
@@ -47,7 +49,7 @@ pub fn leader_bloc(w: &WorldState, id: NationId) -> Option<Bloc> {
     if let Some(b) = row.bloc_override {
         return Some(b);
     }
-    Some(match &row.tie {
+    Some(match row.tie.as_ref()? {
         Tie::Party(p) => bloc_of(id, p),
         Tie::Pillar(pl) => pillar_bloc(id, *pl),
     })
@@ -186,7 +188,7 @@ fn court_pillar(w: &WorldState, id: NationId) -> Option<Pillar> {
     }
     let row = leader_row(w, id)?;
     match &row.tie {
-        Tie::Pillar(pl) if w.nation(id).authoritarianism >= COURT_RULES_ABOVE => Some(*pl),
+        Some(Tie::Pillar(pl)) if w.nation(id).authoritarianism >= COURT_RULES_ABOVE => Some(*pl),
         _ => None,
     }
 }
@@ -631,38 +633,64 @@ mod tests {
         assert!((discontent(&w, id) - 1.0).abs() < 1e-12);
     }
 
-    /// The 1990 census, asserted for the rows the fixture carries and for the
-    /// regimes whose ruling bloc the table alone decides. The full-roster
-    /// numbers wait for the full leader table at the integrate stage. Watched
-    /// red by dropping Solidarity's Western override: Poland read
-    /// Some(NonAligned) against Some(Western).
+    /// The ruling bloc of every 1990 nation, as a sorted list per bloc, with
+    /// the census printed so a red run shows the whole picture.
+    fn census_1990(w: &WorldState) -> ([usize; 5], [Vec<&'static str>; 5]) {
+        let mut census = [0usize; 5];
+        let mut who: [Vec<&str>; 5] = Default::default();
+        for id in alive(w) {
+            let b = ruling_bloc(w, id)
+                .unwrap_or_else(|| panic!("{} has no ruling bloc with the arm on", id.code()));
+            census[b as usize] += 1;
+            who[b as usize].push(id.code());
+        }
+        for b in Bloc::ALL {
+            who[b as usize].sort_unstable();
+            println!("{b:?} {}: {:?}", census[b as usize], who[b as usize]);
+        }
+        (census, who)
+    }
+
+    /// The 1990 census over the full leader table, integrated 2026-09-05 and
+    /// MEASURED on that tree: Western 67, Communist 17, Nationalist 7,
+    /// Islamist 3, Non-Aligned 43, summing to the 137 nations of the roster.
+    /// The counts are pinned as transcribed data is pinned elsewhere in this
+    /// suite — a change here is a change to a sourced row or to the pillar map,
+    /// and it is meant to be noticed. The bars of the design brief that the
+    /// rows AGREE with are asserted here; the three they disagree with live in
+    /// `the_1990_census_meets_the_design_brief`, which is red until Ridge
+    /// decides. Watched red by dropping Solidarity's Western override: Poland
+    /// read Some(NonAligned) against Some(Western), and the Western count fell
+    /// to 66.
     #[test]
     fn the_1990_ruling_bloc_census() {
         let w = world_1990(on(1990));
         let rows = w.leadership.as_ref().expect("the table is loaded when the arm is on");
-        assert_eq!(rows.len(), 3, "the S1 fixture carries three rows");
-        let mut census = [0usize; 5];
-        for id in alive(&w) {
-            let b = ruling_bloc(&w, id)
-                .unwrap_or_else(|| panic!("{} has no ruling bloc with the arm on", id.code()));
-            census[b as usize] += 1;
-        }
-        // Every row in the fixture heads a Western government: Solidarity's
-        // umbrella, the PPP, Chart Thai.
-        for o in rows {
-            assert_eq!(ruling_bloc(&w, o.nation), Some(Bloc::Western), "{}", o.nation.code());
-            assert_eq!(leader_bloc(&w, o.nation), Some(Bloc::Western), "{}", o.nation.code());
-        }
-        assert!(census[Bloc::Western as usize] >= 3, "{census:?}");
-        // Regimes the table decides without a row.
+        assert_eq!(rows.len(), alive(&w).len(), "one row per 1990 nation");
+        let (census, who) = census_1990(&w);
+        assert_eq!(census.iter().sum::<usize>(), alive(&w).len());
+        assert!(census.iter().all(|c| *c > 0), "every bloc rules somewhere in 1990: {census:?}");
+        assert_eq!(census, [67, 17, 7, 3, 43], "the census as transcribed on 2026-09-05");
+        // The decided cases (design D1-D6) as the table alone settles them.
+        assert_eq!(ruling_bloc(&w, NationId::Poland), Some(Bloc::Western), "Solidarity's umbrella");
+        assert_eq!(leader_bloc(&w, NationId::Poland), Some(Bloc::Western));
         assert_eq!(ruling_bloc(&w, NationId::China), Some(Bloc::Communist));
         assert_eq!(ruling_bloc(&w, NationId::USSR), Some(Bloc::Communist));
         assert_eq!(ruling_bloc(&w, NationId::Iran), Some(Bloc::Islamist));
-        assert_eq!(ruling_bloc(&w, NationId::Sudan), Some(Bloc::Islamist));
+        assert_eq!(ruling_bloc(&w, NationId::Sudan), Some(Bloc::Islamist), "Bashir's sourced override");
         assert_eq!(ruling_bloc(&w, NationId::SaudiArabia), Some(Bloc::NonAligned));
         assert_eq!(ruling_bloc(&w, NationId::USA), Some(Bloc::Western));
-        assert!(census.iter().all(|c| *c > 0), "every bloc rules somewhere in 1990: {census:?}");
-        assert_eq!(census.iter().sum::<usize>(), alive(&w).len());
+        // The bars of the brief the rows meet.
+        assert!(census[Bloc::Western as usize] >= 55, "Western: {census:?}");
+        for id in ["Iraq", "Syria"] {
+            assert!(who[Bloc::Nationalist as usize].contains(&id), "{id} is not Nationalist: {who:?}");
+        }
+        for id in ["Iran", "Sudan"] {
+            assert!(who[Bloc::Islamist as usize].contains(&id), "{id} is not Islamist: {who:?}");
+        }
+        for id in ["SaudiArabia", "Egypt", "Indonesia", "Jordan"] {
+            assert!(who[Bloc::NonAligned as usize].contains(&id), "{id} is not Non-Aligned: {who:?}");
+        }
         // The stored seed agrees with the readout and is FLAT.
         let g = government::state(&w, NationId::China).unwrap();
         assert_eq!(g.regime_bloc, Some(Bloc::Communist));
@@ -672,6 +700,57 @@ mod tests {
         for pl in government::state(&w, NationId::Poland).unwrap().movements.iter() {
             panic!("an electoral nation stored a movement: {pl:?}");
         }
+        // A refused row is described from its table: Chile, whose Pinochet has
+        // no valid tie, and Panama, whose Endara stood on a struck-off party,
+        // read as the chamber their tables seat — both Western.
+        for id in [NationId::Chile, NationId::Panama] {
+            assert_eq!(leader_row(&w, id), None, "{}", id.code());
+            assert_eq!(leader_bloc(&w, id), None, "{}", id.code());
+            assert_eq!(ruling_bloc(&w, id), Some(Bloc::Western), "{}", id.code());
+        }
+    }
+
+    /// The three bars of the design brief (2026-09-05) that the transcribed
+    /// rows DISAGREE with, kept as written and RED ON PURPOSE until Ridge rules
+    /// on the rows or the bars — reported, not bent (iron rule 5). Measured on
+    /// the integrated table:
+    ///
+    /// * Communist 11-13 — the rows read 17: USSR, China, Vietnam, NorthKorea,
+    ///   Cuba, Albania, Mongolia, Laos, Cambodia, Afghanistan, Ethiopia, plus
+    ///   Yugoslavia (Markovic, yu_skj), Bulgaria (Mladenov, bg_bsp, an
+    ///   electoral polity at authoritarianism 0.40 whose chamber the BSP
+    ///   leads), Nicaragua (Ortega, ni_fsln, electoral at 0.50), Congo (Sassou
+    ///   Nguesso, cg_pct), Madagascar (Ratsiraka, mg_arema) and Seychelles
+    ///   (Rene, sc_sppf) — every one the Communist family of its own
+    ///   transcribed party.
+    /// * Islamist exactly Iran and Sudan — the rows read Iran, Sudan AND
+    ///   Algeria: Algeria is electoral at authoritarianism 0.55 and the party
+    ///   table seats the June 1990 local result, FIS 0.542, so the chamber
+    ///   leader is the FIS whatever Bendjedid's own FLN tie says. That is the
+    ///   pre-existing table's transcription, not the leader row's.
+    /// * Nationalist includes Libya — the rows read Libya Non-Aligned: Gaddafi
+    ///   is tied to the Party pillar (the Revolutionary Committees Movement),
+    ///   which the D3 pillar map installs as Non-Aligned in a non-Communist
+    ///   regime, and no fetched source gave the row a bloc_override the way
+    ///   Sudan's did.
+    #[test]
+    fn the_1990_census_meets_the_design_brief() {
+        let w = world_1990(on(1990));
+        let (census, who) = census_1990(&w);
+        let mut misses = vec![];
+        if !(11..=13).contains(&census[Bloc::Communist as usize]) {
+            misses.push(format!("Communist {} against the brief's 11-13", census[Bloc::Communist as usize]));
+        }
+        if who[Bloc::Islamist as usize] != ["Iran", "Sudan"] {
+            misses.push(format!("Islamist {:?} against the brief's exactly Iran and Sudan", who[Bloc::Islamist as usize]));
+        }
+        if !who[Bloc::Nationalist as usize].contains(&"Libya") {
+            misses.push(format!(
+                "Libya reads {:?} against the brief's Nationalist",
+                ruling_bloc(&w, NationId::Libya)
+            ));
+        }
+        assert!(misses.is_empty(), "the rows disagree with the design brief: {misses:#?}");
     }
 
     /// Every alive nation's shares are non-negative and sum to one, with the
@@ -703,32 +782,18 @@ mod tests {
     /// The monarchy exception: an electoral polity whose leader row ties to a
     /// pillar is ruled by that pillar's bloc while authoritarianism is at or
     /// over 0.40, and the chamber leader is served as the government of the
-    /// day. The fixture has no Jordan row yet, so one is written into the
-    /// loaded table here, tied to "the Hashemite court" (Pillar::Party).
-    /// Watched red with the exception disabled: Jordan read Islamist.
+    /// day. The 1990 table carries King Hussein tied to the Hashemite court
+    /// (Pillar::Party), so the exception is live at the start; the no-row path
+    /// is exercised by taking his row out of the loaded table. Watched red
+    /// with the exception disabled: Jordan read Islamist.
     #[test]
     fn the_court_outranks_the_chamber_in_jordan() {
         let mut w = world_1990(on(1990));
         let id = NationId::Jordan;
         assert!(government::is_electoral(&w, id));
-        assert_eq!(government_of_the_day(&w, id), None, "no row, no exception");
-        let chamber = ruling_bloc(&w, id).unwrap();
-        assert_eq!(chamber, Bloc::Islamist, "the Brotherhood leads the 1989 chamber");
-        w.leadership.as_mut().unwrap().push(Office {
-            nation: id,
-            name: "test".into(),
-            native: "test".into(),
-            office: "King".into(),
-            since: "1952-08-11".into(),
-            born: None,
-            tie: Tie::Pillar(Pillar::Party),
-            bloc_override: None,
-            heir: None,
-            must_leave_by: None,
-            also: vec![],
-            sources: vec!["test".into()],
-            note: None,
-        });
+        let row = leader_row(&w, id).expect("the 1990 table names Jordan's king");
+        assert_eq!(row.name.as_deref(), Some("Hussein"));
+        assert_eq!(row.tie, Some(Tie::Pillar(Pillar::Party)), "the Hashemite court");
         assert!(w.nation(id).authoritarianism >= COURT_RULES_ABOVE);
         assert_eq!(ruling_bloc(&w, id), Some(pillar_bloc(id, Pillar::Party)));
         assert_eq!(ruling_bloc(&w, id), Some(Bloc::NonAligned));
@@ -736,8 +801,33 @@ mod tests {
         assert_eq!(government_of_the_day(&w, id), Some(leader));
         // Liberalise below the line and the chamber rules again.
         w.nation_mut(id).authoritarianism = COURT_RULES_ABOVE - 0.01;
-        assert_eq!(ruling_bloc(&w, id), Some(Bloc::Islamist));
+        assert_eq!(ruling_bloc(&w, id), Some(Bloc::Islamist), "the Brotherhood leads the 1989 chamber");
         assert_eq!(government_of_the_day(&w, id), None);
+        // No row, no exception, at any level of authoritarianism.
+        w.nation_mut(id).authoritarianism = COURT_RULES_ABOVE + 0.10;
+        w.leadership.as_mut().unwrap().retain(|o| o.nation != id);
+        assert_eq!(leader_row(&w, id), None);
+        assert_eq!(government_of_the_day(&w, id), None, "no row, no exception");
+        assert_eq!(ruling_bloc(&w, id), Some(Bloc::Islamist));
+        // And a REFUSED row is no row: a nameless Jordan asserts nothing.
+        w.leadership.as_mut().unwrap().push(Office {
+            nation: id,
+            name: None,
+            native: None,
+            office: "King".into(),
+            since: "1952-08-11".into(),
+            born: None,
+            tie: None,
+            bloc_override: None,
+            heir: None,
+            must_leave_by: None,
+            also: vec![],
+            sources: vec!["test".into()],
+            note: Some("REFUSED: test".into()),
+        });
+        assert_eq!(leader_row(&w, id), None);
+        assert_eq!(leader_bloc(&w, id), None);
+        assert_eq!(ruling_bloc(&w, id), Some(Bloc::Islamist));
     }
 
     /// Every road reads closed with the build's reason, on and off, and the

@@ -2,30 +2,1757 @@
   "version": 1,
   "rows": [
     {
-      "nation": "Poland",
-      "name": "Tadeusz Mazowiecki",
-      "native": "Tadeusz Mazowiecki",
-      "office": "Prime Minister (Chairman of the Council of Ministers)",
-      "since": "1989-08-24",
-      "born": "1927-04-18",
-      "tie": { "party": "pl_solidarity" },
+      "nation": "Afghanistan",
+      "name": "Mohammad Najibullah",
+      "native": "محمد نجيب الله",
+      "office": "General Secretary of the PDPA and President of the Republic",
+      "since": "1986-05-04",
+      "born": "1947-08-06",
+      "tie": { "party": "af_pdpa" },
       "bloc_override": null,
       "heir": null,
       "must_leave_by": null,
       "also": [
-        { "name": "Wojciech Jaruzelski", "office": "President of the Republic", "since": "1989-07-19", "party": null }
+        { "name": "Sultan Ali Keshtmand", "office": "Chairman of the Council of Ministers", "since": "1989-02-21", "party": "af_pdpa" }
       ],
       "sources": [
-        "https://rulers.org/rulp2.html",
-        "https://en.wikipedia.org/wiki/Tadeusz_Mazowiecki"
+        "https://en.wikipedia.org/wiki/Mohammad_Najibullah",
+        "https://en.wikipedia.org/wiki/Sultan_Ali_Keshtmand"
       ],
-      "note": "rulers.org: '24 Aug 1989 - 4 Jan 1991 Tadeusz Mazowiecki (b. 1927 - d. 2013)'; full birth date 18 April 1927 from the Wikipedia infobox. Head of government in a parliamentary system, so he and not the president directs the executive. Jaruzelski's PZPR is not in the party table (it dissolved itself on 29 January 1990), hence party null."
+      "note": "Regime rule: general secretary. Najibullah took the party post 4 May 1986 and the presidency 30 Nov 1987; since is the party date. worldstatesmen.org/Afghanistan.html returned 404 twice this run."
+    },
+    {
+      "nation": "Albania",
+      "name": "Ramiz Alia",
+      "native": "Ramiz Alia",
+      "office": "First Secretary of the Party of Labour and Chairman of the Presidium of the People's Assembly",
+      "since": "1985-04-13",
+      "born": "1925-10-18",
+      "tie": { "party": "al_ppsh" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Adil Carcani", "office": "Chairman of the Council of Ministers", "since": "1981-12-18", "party": "al_ppsh" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ramiz_Alia",
+        "https://en.wikipedia.org/wiki/Adil_%C3%87ar%C3%A7ani"
+      ],
+      "note": "Regime rule: first secretary (since 13 Apr 1985); head of state since 22 Nov 1982. worldstatesmen.org/Albania.html returned 404 twice this run."
+    },
+    {
+      "nation": "Algeria",
+      "name": "Chadli Bendjedid",
+      "native": "الشاذلي بن جديد",
+      "office": "President of the Republic",
+      "since": "1979-02-09",
+      "born": "1929-04-14",
+      "tie": { "party": "dz_fln" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Mouloud Hamrouche", "office": "Prime Minister", "since": "1989-09-09", "party": "dz_fln" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Algeria.html",
+        "https://en.wikipedia.org/wiki/Chadli_Bendjedid",
+        "https://en.wikipedia.org/wiki/Mouloud_Hamrouche"
+      ],
+      "note": "The president governs; the reformist PM is the other face of the executive."
+    },
+    {
+      "nation": "Angola",
+      "name": "Jose Eduardo dos Santos",
+      "native": "José Eduardo dos Santos",
+      "office": "President of the Republic and President of the MPLA-PT",
+      "since": "1979-09-21",
+      "born": "1942-08-28",
+      "tie": { "party": "ao_mpla" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Angola.html",
+        "https://en.wikipedia.org/wiki/Jos%C3%A9_Eduardo_dos_Santos"
+      ],
+      "note": "worldstatesmen lists 20 Sep 1979, Wikipedia says he took office 21 Sep 1979; the inauguration date is used. No prime minister (post abolished 1978-1991)."
+    },
+    {
+      "nation": "Argentina",
+      "name": "Carlos Menem",
+      "native": "Carlos Saúl Menem",
+      "office": "President of the Nation",
+      "since": "1989-07-08",
+      "born": "1930-07-02",
+      "tie": { "party": "ar_pj" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1995-07-08",
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Argentina.html",
+        "https://en.wikipedia.org/wiki/Carlos_Menem"
+      ],
+      "note": "The constitution as in force in 1990 set a single six-year term with no immediate re-election (Wikipedia); must_leave_by is 8 Jul 1995. The 1994 reform that later let him run again is after the start date."
+    },
+    {
+      "nation": "Australia",
+      "name": "Bob Hawke",
+      "native": "Robert James Lee Hawke",
+      "office": "Prime Minister",
+      "since": "1983-03-11",
+      "born": "1929-12-09",
+      "tie": { "party": "au_alp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Australia.html",
+        "https://en.wikipedia.org/wiki/Bob_Hawke"
+      ],
+      "note": ""
+    },
+    {
+      "nation": "Austria",
+      "name": "Franz Vranitzky",
+      "native": "Franz Vranitzky",
+      "office": "Federal Chancellor",
+      "since": "1986-06-16",
+      "born": "1937-10-04",
+      "tie": { "party": "at_spo" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Kurt Waldheim", "office": "Federal President", "since": "1986-07-08", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Austria.html",
+        "https://en.wikipedia.org/wiki/Franz_Vranitzky"
+      ],
+      "note": "Parliamentary system: the chancellor directs the executive; the federal president is recorded in also."
+    },
+    {
+      "nation": "Bahamas",
+      "name": "Lynden Pindling",
+      "native": "Lynden Oscar Pindling",
+      "office": "Prime Minister",
+      "since": "1969-05-10",
+      "born": "1930-03-22",
+      "tie": { "party": "bs_plp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Bahamas.html",
+        "https://en.wikipedia.org/wiki/Lynden_Pindling"
+      ],
+      "note": "Premier from 16 Jan 1967; the office was retitled Prime Minister 10 May 1969, which is the since used."
+    },
+    {
+      "nation": "Bahrain",
+      "name": "Isa bin Salman Al Khalifa",
+      "native": "عيسى بن سلمان آل خليفة",
+      "office": "Emir of Bahrain",
+      "since": "1961-11-02",
+      "born": "1933-06-03",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": { "name": "Hamad bin Isa Al Khalifa", "office": "Crown Prince and heir apparent", "since": "1964-06-27" },
+      "must_leave_by": null,
+      "also": [
+        { "name": "Khalifa bin Salman Al Khalifa", "office": "Prime Minister", "since": "1971-08-16", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Bahrain.html",
+        "https://en.wikipedia.org/wiki/Isa_bin_Salman_Al_Khalifa",
+        "https://en.wikipedia.org/wiki/Hamad_bin_Isa_Al_Khalifa",
+        "https://en.wikipedia.org/wiki/Khalifa_bin_Salman_Al_Khalifa"
+      ],
+      "note": "Ruler (Hakim) from 2 Nov 1961, styled Emir from 16 Aug 1971; the Party pillar is the Al Khalifa family council. The PM headed the State Council from 10 Jan 1970 (Wikipedia) and took the PM title 16 Aug 1971 (worldstatesmen); the title date is used."
+    },
+    {
+      "nation": "Bangladesh",
+      "name": "Hussain Muhammad Ershad",
+      "native": "হুসেইন মুহাম্মদ এরশাদ",
+      "office": "President of the Republic and Chairman of the Jatiya Party",
+      "since": "1983-12-11",
+      "born": "1930-02-01",
+      "tie": { "party": "bd_jp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Kazi Zafar Ahmed", "office": "Prime Minister", "since": "1989-08-12", "party": "bd_jp" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Bangladesh.html",
+        "https://en.wikipedia.org/wiki/Hussain_Muhammad_Ershad",
+        "https://en.wikipedia.org/wiki/Kazi_Zafar_Ahmed"
+      ],
+      "note": "Ershad took the presidency 11 Dec 1983; the Jatiya Party was founded 1 Jan 1986 and is the tie the polity table carries."
+    },
+    {
+      "nation": "Belgium",
+      "name": "Wilfried Martens",
+      "native": "Wilfried Martens",
+      "office": "Prime Minister",
+      "since": "1981-12-17",
+      "born": "1936-04-19",
+      "tie": { "party": "be_cvp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Baudouin", "office": "King of the Belgians", "since": "1951-07-17", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Belgium.html",
+        "https://en.wikipedia.org/wiki/Wilfried_Martens"
+      ],
+      "note": ""
+    },
+    {
+      "nation": "Belize",
+      "name": "George Price",
+      "native": "George Cadle Price",
+      "office": "Prime Minister",
+      "since": "1989-09-07",
+      "born": "1919-01-15",
+      "tie": { "party": "bz_pup" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Belize.html",
+        "https://en.wikipedia.org/wiki/George_Cadle_Price",
+        "https://en.wikipedia.org/wiki/1989_Belizean_general_election"
+      ],
+      "note": "worldstatesmen gives 7 Nov 1989, Wikipedia 7 Sep 1989; the election was 4 Sep 1989 so the September date is used."
+    },
+    {
+      "nation": "Bhutan",
+      "name": "Jigme Singye Wangchuck",
+      "native": "འཇིགས་མེད་སེང་གེ་དབང་ཕྱུག་",
+      "office": "Druk Gyalpo (King of Bhutan)",
+      "since": "1972-07-21",
+      "born": "1955-11-11",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Bhutan.html",
+        "https://en.wikipedia.org/wiki/Jigme_Singye_Wangchuck"
+      ],
+      "note": "No prime minister 1964-1998; the king governed directly through the Lhengye Zhungtshog, which is the Party pillar. No formally designated heir sourced for 1 Jan 1990."
+    },
+    {
+      "nation": "Bolivia",
+      "name": "Jaime Paz Zamora",
+      "native": "Jaime Paz Zamora",
+      "office": "President of the Republic",
+      "since": "1989-08-06",
+      "born": "1939-04-15",
+      "tie": { "party": "bo_mir" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1993-08-06",
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Bolivia.html",
+        "https://en.wikipedia.org/wiki/Jaime_Paz_Zamora"
+      ],
+      "note": "Four-year term ending 6 Aug 1993 per both sources; the 1967 constitution's ban on consecutive re-election was not separately fetched, so must_leave_by rests on the term end alone."
+    },
+    {
+      "nation": "Botswana",
+      "name": "Quett Masire",
+      "native": "Quett Ketumile Joni Masire",
+      "office": "President of the Republic",
+      "since": "1980-07-18",
+      "born": "1925-07-23",
+      "tie": { "party": "bw_bdp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Botswana.html",
+        "https://en.wikipedia.org/wiki/Quett_Masire"
+      ],
+      "note": "Acting from 13 Jul 1980, elected by the National Assembly 18 Jul 1980."
+    },
+    {
+      "nation": "Brazil",
+      "name": "Jose Sarney",
+      "native": "José Sarney",
+      "office": "President of the Republic",
+      "since": "1985-03-15",
+      "born": "1930-04-24",
+      "tie": { "party": "br_pmdb" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1990-03-15",
+      "also": [
+        { "name": "Fernando Collor de Mello", "office": "President-elect (inaugurated 15 Mar 1990)", "since": "1989-12-17", "party": "br_prn" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Brazil.html",
+        "https://en.wikipedia.org/wiki/Jos%C3%A9_Sarney",
+        "https://en.wikipedia.org/wiki/Fernando_Collor_de_Mello",
+        "https://en.wikipedia.org/wiki/1989_Brazilian_presidential_election"
+      ],
+      "note": "Start-date rule: Sarney not Collor. Sarney was acting president from 15 Mar 1985 and president from 21 Apr 1985; since is the day he took the executive. Collor won the runoff of 17 Dec 1989 and is the also row as president-elect."
+    },
+    {
+      "nation": "Brunei",
+      "name": "Hassanal Bolkiah",
+      "native": "حسن البلقية",
+      "office": "Sultan and Prime Minister",
+      "since": "1967-10-05",
+      "born": "1946-07-15",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Brunei.html",
+        "https://en.wikipedia.org/wiki/Hassanal_Bolkiah"
+      ],
+      "note": "worldstatesmen lists 4 Oct 1967, Wikipedia 5 Oct 1967; Wikipedia's date used. Prime Minister himself since 1 Jan 1984. No crown prince proclamation sourced for 1990, so heir is null."
+    },
+    {
+      "nation": "Bulgaria",
+      "name": "Petar Mladenov",
+      "native": "Петър Младенов",
+      "office": "General Secretary of the Bulgarian Communist Party and Chairman of the State Council",
+      "since": "1989-11-10",
+      "born": "1936-08-22",
+      "tie": { "party": "bg_bsp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Georgi Atanasov", "office": "Chairman of the Council of Ministers", "since": "1986-03-21", "party": "bg_bsp" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Bulgaria.html",
+        "https://en.wikipedia.org/wiki/Petar_Mladenov",
+        "https://en.wikipedia.org/wiki/Georgi_Atanasov_(politician)",
+        "https://en.wikipedia.org/wiki/Bulgarian_Communist_Party"
+      ],
+      "note": "On 1 Jan 1990 the party was still the BCP (renamed BSP April 1990); bg_bsp is the polity table's id for it. Mladenov took the party 10 Nov 1989 and the State Council 17 Nov 1989."
+    },
+    {
+      "nation": "Cambodia",
+      "name": "Heng Samrin",
+      "native": "ហេង សំរិន",
+      "office": "General Secretary of the KPRP and Chairman of the Council of State",
+      "since": "1981-12-05",
+      "born": "1934-05-25",
+      "tie": { "party": "kh_kprp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Hun Sen", "office": "Chairman of the Council of Ministers", "since": "1985-01-14", "party": "kh_kprp" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Cambodia.html",
+        "https://en.wikipedia.org/wiki/Heng_Samrin",
+        "https://en.wikipedia.org/wiki/Hun_Sen"
+      ],
+      "note": "Regime rule: general secretary, so Heng Samrin; Hun Sen, who ran the government, is the also row. Hun Sen was acting from 26 Dec 1984."
+    },
+    {
+      "nation": "Cameroon",
+      "name": "Paul Biya",
+      "native": "Paul Biya",
+      "office": "President of the Republic and President of the CPDM",
+      "since": "1982-11-06",
+      "born": "1933-02-13",
+      "tie": { "party": "cm_cpdm" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Cameroon.html",
+        "https://en.wikipedia.org/wiki/Paul_Biya"
+      ],
+      "note": "No prime minister (post abolished 25 Jan 1984 - 26 Apr 1991)."
+    },
+    {
+      "nation": "Canada",
+      "name": "Brian Mulroney",
+      "native": "Martin Brian Mulroney",
+      "office": "Prime Minister of Canada",
+      "since": "1984-09-17",
+      "born": "1939-03-20",
+      "tie": { "party": "ca_pc" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Jeanne Sauve", "office": "Governor General of Canada", "since": "1984-05-14", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Canada.html",
+        "https://en.wikipedia.org/wiki/Brian_Mulroney"
+      ],
+      "note": "Parliamentary system: the prime minister directs the executive. Hnatyshyn took over as Governor General only on 29 Jan 1990."
+    },
+    {
+      "nation": "CapeVerde",
+      "name": "Aristides Pereira",
+      "native": "Aristides Maria Pereira",
+      "office": "President of the Republic and Secretary-General of the PAICV",
+      "since": "1975-07-08",
+      "born": "1923-11-17",
+      "tie": { "party": "cv_paicv" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Pedro Pires", "office": "Prime Minister", "since": "1975-07-08", "party": "cv_paicv" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Cape_Verde.html",
+        "https://en.wikipedia.org/wiki/Aristides_Pereira",
+        "https://en.wikipedia.org/wiki/Pedro_Pires"
+      ],
+      "note": "worldstatesmen dates the presidency from 5 Jul 1975 and Wikipedia from 8 Jul 1975 (independence day); the Wikipedia date is used. Pereira held the party's general secretaryship on 1 Jan 1990 (he handed it to Pires only in July 1990). One-party state, so the party leader/president is the face, not the prime minister."
+    },
+    {
+      "nation": "CentralAfricanRepublic",
+      "name": "Andre Kolingba",
+      "native": "Andre-Dieudonne Kolingba",
+      "office": "President of the Republic (also head of government)",
+      "since": "1981-09-01",
+      "born": "1936-08-12",
+      "tie": { "party": "cf_rdc" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Central_African_Republic.html",
+        "https://en.wikipedia.org/wiki/Andr%C3%A9_Kolingba"
+      ],
+      "note": "Brigadier general who took power as chairman of the Military Committee for National Recovery on 1 Sep 1981; by 1990 he ruled through the RDC, the sole legal party under the 1986 constitution, so the tie is the party rather than the Army pillar. He also held the prime ministership himself (no separate PM on 1 Jan 1990)."
+    },
+    {
+      "nation": "Chad",
+      "name": "Hissene Habre",
+      "native": "Hissein Habre",
+      "office": "President of the Republic and leader of UNIR",
+      "since": "1982-06-07",
+      "born": "1942-08-13",
+      "tie": { "party": "td_unir" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Chad.html",
+        "https://en.wikipedia.org/wiki/Hiss%C3%A8ne_Habr%C3%A9"
+      ],
+      "note": "Took power 7 Jun 1982 (acting head of state), formally president from 29 Oct 1982; the earlier date is used as the start of his rule. Led UNIR from its founding on 24 Jun 1984."
+    },
+    {
+      "nation": "Chile",
+      "name": null,
+      "native": null,
+      "office": "President of the Republic and Commander-in-Chief of the Army",
+      "since": "1974-12-17",
+      "born": "1915-11-25",
+      "tie": null,
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1990-03-11",
+      "also": [
+        { "name": "Patricio Aylwin", "office": "President-elect (elected 14 Dec 1989, takes office 11 Mar 1990)", "since": "1989-12-14", "party": "cl_pdc" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Chile.html",
+        "https://en.wikipedia.org/wiki/Augusto_Pinochet",
+        "https://en.wikipedia.org/wiki/Patricio_Aylwin"
+      ],
+      "note": "REFUSED: tie. The sourced facts are Augusto Pinochet Ugarte (President of the Republic and Commander-in-Chief of the Army, since 17 Dec 1974, born 25 Nov 1915), who belonged to no party; Chile's polity block has no pillar list, so no tie in the schema resolves against the table as transcribed, and the Army tie the data pass wrote is not a mechanical correction the block can prove. Integrator 2026-09-05: name and tie nulled rather than an Army pillar invented for Chile; Chile is described from its table until Ridge decides. Original note: TIE NEEDS A DECISION: Pinochet belonged to no party and Chile's polity block has an EMPTY pillar list, so no tie in the schema is valid against the current POLITIES table; 'Army' is written because that is the institution he headed (C-in-C 23 Aug 1973 - 11 Mar 1998). The loader as specified would refuse this row unless Chile gains an Army pillar or a pillar-less tie is allowed. worldstatesmen gives the presidency from 27 Jun 1974 (Supreme Chief of the Nation); Wikipedia's 17 Dec 1974 (formal title of President) is used. must_leave_by is the constitutionally fixed handover date under the 1980 constitution's transition."
+    },
+    {
+      "nation": "China",
+      "name": "Jiang Zemin",
+      "native": "Jiang Zemin",
+      "office": "General Secretary of the Communist Party of China and Chairman of the Central Military Commission",
+      "since": "1989-06-24",
+      "born": "1926-08-17",
+      "tie": { "party": "cn_cpc" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Deng Xiaoping", "office": "paramount leader without formal office (retired from the CMC chairmanship 9 Nov 1989)", "since": "1989-11-09", "party": "cn_cpc" },
+        { "name": "Li Peng", "office": "Premier of the State Council", "since": "1987-11-24", "party": "cn_cpc" },
+        { "name": "Yang Shangkun", "office": "President of the People's Republic", "since": "1988-04-08", "party": "cn_cpc" }
+      ],
+      "sources": [
+        "https://rulers.org/rulc2.html",
+        "https://en.wikipedia.org/wiki/Jiang_Zemin",
+        "https://en.wikipedia.org/wiki/Deng_Xiaoping",
+        "https://en.wikipedia.org/wiki/Li_Peng"
+      ],
+      "note": "Decided case per the design: Jiang (Party) with Deng in also. Jiang became general secretary 24 Jun 1989 and CMC chairman 9 Nov 1989. Li Peng was acting premier from 24 Nov 1987 (rulers.org; Wikipedia says 23 Nov) and confirmed 9 Apr 1988. Deng's 'since' is the date his last formal post ended."
+    },
+    {
+      "nation": "Colombia",
+      "name": "Virgilio Barco",
+      "native": "Virgilio Barco Vargas",
+      "office": "President of the Republic",
+      "since": "1986-08-07",
+      "born": "1921-09-17",
+      "tie": { "party": "co_pl" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1990-08-07",
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Colombia.html",
+        "https://en.wikipedia.org/wiki/Virgilio_Barco_Vargas"
+      ],
+      "note": "Single four-year term with no consecutive re-election: the term ended 7 Aug 1990."
+    },
+    {
+      "nation": "Comoros",
+      "name": "Said Mohamed Djohar",
+      "native": "Said Mohamed Djohar",
+      "office": "Interim President of the Republic (former president of the Supreme Court, installed after Abdallah's assassination)",
+      "since": "1989-11-27",
+      "born": "1918-08-22",
+      "tie": { "party": "km_udzima" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Comoros.html",
+        "https://en.wikipedia.org/wiki/Said_Mohamed_Djohar",
+        "https://en.wikipedia.org/wiki/1990_Comorian_presidential_election"
+      ],
+      "note": "Hard call on the tie: worldstatesmen lists Djohar as non-party on 1 Jan 1990, but he was already the incumbent-state candidate and stood for Udzima (Comorian Union for Progress) in the 4/11 Mar 1990 election, which he won; there is no other valid tie (he was not of the Garde Presidentielle, whose mercenaries had just been expelled). Interim from 26 Nov 1989 per worldstatesmen, formal 27 Nov."
+    },
+    {
+      "nation": "Congo",
+      "name": "Denis Sassou Nguesso",
+      "native": "Denis Sassou-Nguesso",
+      "office": "President of the Republic and President of the Central Committee of the PCT",
+      "since": "1979-02-08",
+      "born": "1943-11-23",
+      "tie": { "party": "cg_pct" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Alphonse Poaty-Souchlaty", "office": "Prime Minister", "since": "1989-08-07", "party": "cg_pct" }
+      ],
+      "sources": [
+        "https://rulers.org/rulc3.html",
+        "https://www.worldstatesmen.org/Congo-Brazzaville.html",
+        "https://en.wikipedia.org/wiki/Denis_Sassou_Nguesso",
+        "https://en.wikipedia.org/wiki/Alphonse_Poaty-Souchlaty"
+      ],
+      "note": "Provisional president from 8 Feb 1979 (rulers.org), confirmed by the party congress 30/31 Mar 1979 (worldstatesmen); the earlier date is used. rulers.org's summary of prime ministers mis-read the 1990 holder; worldstatesmen and Wikipedia both give Poaty-Souchlaty from 7 Aug 1989."
+    },
+    {
+      "nation": "CostaRica",
+      "name": "Oscar Arias",
+      "native": "Oscar Arias Sanchez",
+      "office": "President of the Republic",
+      "since": "1986-05-08",
+      "born": "1940-09-13",
+      "tie": { "party": "cr_pln" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1990-05-08",
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Costa_Rica.html",
+        "https://en.wikipedia.org/wiki/%C3%93scar_Arias"
+      ],
+      "note": "The election was on 4 Feb 1990, so there was no president-elect on 1 Jan 1990; Calderon Fournier took office 8 May 1990. Term fixed by the constitution's re-election ban."
+    },
+    {
+      "nation": "Cuba",
+      "name": "Fidel Castro",
+      "native": "Fidel Alejandro Castro Ruz",
+      "office": "President of the Council of State and First Secretary of the Communist Party of Cuba",
+      "since": "1976-12-02",
+      "born": "1926-08-13",
+      "tie": { "party": "cu_pcc" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Raul Castro", "office": "Second Secretary of the PCC, First Vice President of the Council of State, Minister of the Revolutionary Armed Forces", "since": "1965-10-03", "party": "cu_pcc" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Cuba.html",
+        "https://en.wikipedia.org/wiki/Fidel_Castro",
+        "https://en.wikipedia.org/wiki/Ra%C3%BAl_Castro"
+      ],
+      "note": "since is the Council of State presidency (2 Dec 1976); First Secretary from 3 Oct 1965 (Wikipedia; worldstatesmen dates the party leadership to 26 Mar 1962 under the predecessor party). Raul was the constitutional successor by office but was never formally designated heir, so heir stays null."
+    },
+    {
+      "nation": "Cyprus",
+      "name": "George Vassiliou",
+      "native": "Georgios Vasileiou",
+      "office": "President of the Republic",
+      "since": "1988-02-28",
+      "born": "1931-05-20",
+      "tie": { "party": "cy_akel" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/George_Vassiliou",
+        "https://www.worldstatesmen.org/Cyprus.html"
+      ],
+      "note": "Hard call on the tie: Vassiliou was elected as an independent with AKEL's support and Cyprus's polity has no pillars, so the backing party is the only valid tie; the ruling bloc read off it (Communist) overstates a centrist technocrat. Presidential system: the president is the executive. worldstatesmen's Cyprus page lists him but the extraction could not read the Republic's post-1977 lines, so Wikipedia is the primary source."
+    },
+    {
+      "nation": "Czechoslovakia",
+      "name": "Vaclav Havel",
+      "native": "Vaclav Havel",
+      "office": "President of the Czechoslovak Socialist Republic (Civic Forum)",
+      "since": "1989-12-29",
+      "born": "1936-10-05",
+      "tie": { "party": "cs_of" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Marian Calfa", "office": "Prime Minister (chairman of the Government of National Understanding)", "since": "1989-12-10", "party": "cs_ksc" }
+      ],
+      "sources": [
+        "https://rulers.org/rulc4.html",
+        "https://en.wikipedia.org/wiki/V%C3%A1clav_Havel",
+        "https://en.wikipedia.org/wiki/Mari%C3%A1n_%C4%8Calfa"
+      ],
+      "note": "Hard call: a parliamentary system would point to the prime minister, but on 1 Jan 1990 the executive was directed by Civic Forum through Havel (elected unanimously by the Federal Assembly 29 Dec 1989), while PM Calfa was still nominally KSC (he left the party for VPN on 18 Jan 1990). Choosing Calfa would make the ruling bloc Communist at the start, which the Government of National Understanding was not. Calfa's party field is his formal membership on 1 Jan 1990."
+    },
+    {
+      "nation": "Denmark",
+      "name": "Poul Schluter",
+      "native": "Poul Holmskov Schluter",
+      "office": "Prime Minister of Denmark",
+      "since": "1982-09-10",
+      "born": "1929-04-03",
+      "tie": { "party": "dk_c" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Margrethe II", "office": "Queen of Denmark", "since": "1972-01-14", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Denmark.html",
+        "https://en.wikipedia.org/wiki/Poul_Schl%C3%BCter"
+      ],
+      "note": "Parliamentary monarchy: the prime minister directs the executive."
+    },
+    {
+      "nation": "DominicanRepublic",
+      "name": "Joaquin Balaguer",
+      "native": "Joaquin Antonio Balaguer Ricardo",
+      "office": "President of the Republic",
+      "since": "1986-08-16",
+      "born": "1906-09-01",
+      "tie": { "party": "do_prsc" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Dominican_Republic.html",
+        "https://en.wikipedia.org/wiki/Joaqu%C3%ADn_Balaguer"
+      ],
+      "note": "Third presidency began 16 Aug 1986; he stood again in May 1990, so no hard term bound him and must_leave_by is null."
+    },
+    {
+      "nation": "Ecuador",
+      "name": "Rodrigo Borja",
+      "native": "Rodrigo Borja Cevallos",
+      "office": "President of the Republic",
+      "since": "1988-08-10",
+      "born": "1935-06-19",
+      "tie": { "party": "ec_id" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1992-08-10",
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Ecuador.html",
+        "https://en.wikipedia.org/wiki/Rodrigo_Borja_Cevallos"
+      ],
+      "note": "Single four-year term, no immediate re-election."
+    },
+    {
+      "nation": "Egypt",
+      "name": "Hosni Mubarak",
+      "native": "Muhammad Hosni Mubarak",
+      "office": "President of the Republic and chairman of the National Democratic Party",
+      "since": "1981-10-14",
+      "born": "1928-05-04",
+      "tie": { "party": "eg_ndp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Atef Sedki", "office": "Prime Minister", "since": "1986-11-10", "party": "eg_ndp" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Egypt.html",
+        "https://en.wikipedia.org/wiki/Hosni_Mubarak",
+        "https://en.wikipedia.org/wiki/Atef_Sedki"
+      ],
+      "note": "The president governs; the prime minister is his appointee. Tie is the NDP (the polity's Party pillar is the same institution), so the seeded ruling bloc is NonAligned per the state-big-tent rule."
+    },
+    {
+      "nation": "ElSalvador",
+      "name": "Alfredo Cristiani",
+      "native": "Alfredo Felix Cristiani Burkard",
+      "office": "President of the Republic",
+      "since": "1989-06-01",
+      "born": "1947-11-22",
+      "tie": { "party": "sv_arena" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1994-06-01",
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/El_Salvador.html",
+        "https://en.wikipedia.org/wiki/Alfredo_Cristiani"
+      ],
+      "note": "worldstatesmen's extraction first named Duarte in error; its own line gives Cristiani from 1 Jun 1989 - 1 Jun 1994 (ARENA), which Wikipedia confirms. Single five-year term under the 1983 constitution."
+    },
+    {
+      "nation": "EquatorialGuinea",
+      "name": "Teodoro Obiang Nguema Mbasogo",
+      "native": "Teodoro Obiang Nguema Mbasogo",
+      "office": "President of the Republic and president of the PDGE",
+      "since": "1979-08-03",
+      "born": "1942-06-05",
+      "tie": { "party": "gq_pdge" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Equatorial_Guinea.html",
+        "https://en.wikipedia.org/wiki/Teodoro_Obiang_Nguema_Mbasogo"
+      ],
+      "note": "Took power in the 3 Aug 1979 coup as chairman of the Supreme Military Council; founded the PDGE in 1987 as the sole legal party, so the party is the tie rather than the Army pillar (which in this polity is the Moroccan guard, not his own institution)."
+    },
+    {
+      "nation": "Ethiopia",
+      "name": "Mengistu Haile Mariam",
+      "native": "Mengistu Haile Mariam",
+      "office": "President of the People's Democratic Republic and General Secretary of the Workers' Party of Ethiopia",
+      "since": "1984-09-12",
+      "born": "1937-05-21",
+      "tie": { "party": "et_wpe" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Hailu Yimenu", "office": "Acting Prime Minister", "since": "1989-11-08", "party": "et_wpe" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Ethiopia.html",
+        "https://en.wikipedia.org/wiki/Mengistu_Haile_Mariam"
+      ],
+      "note": "since is the WPE general secretaryship (12 Sep 1984), the office that carried power; the PDRE presidency followed on 10 Sep 1987. Lieutenant colonel, but by 1990 ruled through the party, so the tie is et_wpe."
+    },
+    {
+      "nation": "Fiji",
+      "name": "Kamisese Mara",
+      "native": "Ratu Sir Kamisese Kapaiwai Tuimacilai Mara",
+      "office": "Prime Minister of the interim administration",
+      "since": "1987-12-05",
+      "born": "1920-05-06",
+      "tie": { "party": "fj_alliance" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Penaia Ganilau", "office": "President of Fiji", "since": "1987-12-08", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Kamisese_Mara",
+        "https://en.wikipedia.org/wiki/Penaia_Ganilau",
+        "https://www.worldstatesmen.org/Fiji.html"
+      ],
+      "note": "Recalled 5 Dec 1987 to head the post-coup interim administration; Alliance Party leader, so tied to the dormant fj_alliance row rather than to the Army pillar Rabuka commanded. Ganilau's presidential start is 8 Dec 1987 on Wikipedia and 5 Dec 1987 on worldstatesmen; Wikipedia's date is used. Rabuka (RFMF commander, 1987-Apr 1991) omitted from also because no source fetched gave a day-precise start."
+    },
+    {
+      "nation": "Finland",
+      "name": "Harri Holkeri",
+      "native": "Harri Hermanni Holkeri",
+      "office": "Prime Minister of Finland",
+      "since": "1987-04-30",
+      "born": "1937-01-06",
+      "tie": { "party": "fi_kok" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Mauno Koivisto", "office": "President of Finland", "since": "1982-01-27", "party": "fi_sdp" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Harri_Holkeri",
+        "https://en.wikipedia.org/wiki/Mauno_Koivisto",
+        "https://www.worldstatesmen.org/Finland.html"
+      ],
+      "note": "Parliamentary system: the PM directs the executive; Koivisto's presidency (foreign policy) recorded in also."
+    },
+    {
+      "nation": "France",
+      "name": "Francois Mitterrand",
+      "native": "François Maurice Adrien Marie Mitterrand",
+      "office": "President of the Republic",
+      "since": "1981-05-21",
+      "born": "1916-10-26",
+      "tie": { "party": "fr_ps" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Michel Rocard", "office": "Prime Minister of France", "since": "1988-05-10", "party": "fr_ps" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Fran%C3%A7ois_Mitterrand",
+        "https://en.wikipedia.org/wiki/Michel_Rocard",
+        "https://www.worldstatesmen.org/France.html"
+      ],
+      "note": "Decided case in the design: Mitterrand with Rocard in also. Re-election was permitted in 1990 so no must_leave_by."
+    },
+    {
+      "nation": "Gabon",
+      "name": "Omar Bongo",
+      "native": "Albert-Bernard (Omar) Bongo",
+      "office": "President of the Republic",
+      "since": "1967-12-02",
+      "born": "1935-12-30",
+      "tie": { "party": "ga_pdg" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Leon Mebiame", "office": "Prime Minister of Gabon", "since": "1975-04-16", "party": "ga_pdg" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Omar_Bongo",
+        "https://en.wikipedia.org/wiki/L%C3%A9on_M%C3%A9biame",
+        "https://www.worldstatesmen.org/Gabon.html"
+      ],
+      "note": "Presidential start is 2 Dec 1967 on Wikipedia, 28 Nov 1967 on worldstatesmen; Wikipedia used. Head of the PDG single-party regime, so tied to ga_pdg rather than the Party pillar (the PDG Bureau Politique) - same bloc either way."
+    },
+    {
+      "nation": "Germany",
+      "name": "Helmut Kohl",
+      "native": "Helmut Josef Michael Kohl",
+      "office": "Federal Chancellor",
+      "since": "1982-10-01",
+      "born": "1930-04-03",
+      "tie": { "party": "de_union" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Richard von Weizsacker", "office": "Federal President", "since": "1984-07-01", "party": "de_union" },
+        { "name": "Hans Modrow", "office": "Chairman of the Council of Ministers of the German Democratic Republic", "since": "1989-11-13", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Helmut_Kohl",
+        "https://en.wikipedia.org/wiki/Richard_von_Weizs%C3%A4cker",
+        "https://en.wikipedia.org/wiki/Hans_Modrow",
+        "https://www.worldstatesmen.org/Germany.html"
+      ],
+      "note": "The Germany roster entry is the Federal Republic; the GDR still existed on 1 Jan 1990 and its head of government (Modrow, SED) is recorded in also as a fact of that date. His party is not in the polity table so party is null."
+    },
+    {
+      "nation": "Ghana",
+      "name": "Jerry Rawlings",
+      "native": "Jerry John Rawlings",
+      "office": "Chairman of the Provisional National Defence Council",
+      "since": "1981-12-31",
+      "born": "1947-06-22",
+      "tie": { "pillar": "Army" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jerry_Rawlings",
+        "https://www.worldstatesmen.org/Ghana.html"
+      ],
+      "note": "Flight Lieutenant who took power by coup; the NDC (gh_ndc) was founded only in 1992, so on 1 Jan 1990 the tie is the Army pillar (the Ghana Armed Forces), not a party."
+    },
+    {
+      "nation": "Greece",
+      "name": "Xenophon Zolotas",
+      "native": "Xenofon Efthymiou Zolotas",
+      "office": "Prime Minister of Greece (all-party government)",
+      "since": "1989-11-23",
+      "born": "1904-03-26",
+      "tie": { "party": "gr_nd" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Christos Sartzetakis", "office": "President of the Hellenic Republic", "since": "1985-03-29", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Xenophon_Zolotas",
+        "https://en.wikipedia.org/wiki/Konstantinos_Mitsotakis",
+        "https://en.wikipedia.org/wiki/Christos_Sartzetakis",
+        "https://www.worldstatesmen.org/Greece.html"
+      ],
+      "note": "Zolotas was a non-party economist heading an ecumenical government of New Democracy, PASOK and Synaspismos after the 5 Nov 1989 election. The schema needs a party or pillar tie and Greece has no pillars; ND was the largest party in the coalition (46% per the Mitsotakis page, 0.462 in the table) so the tie is gr_nd. This is a convenience tie, not a statement that Zolotas was an ND man."
+    },
+    {
+      "nation": "Guatemala",
+      "name": "Vinicio Cerezo",
+      "native": "Marco Vinicio Cerezo Arévalo",
+      "office": "President of the Republic",
+      "since": "1986-01-14",
+      "born": "1942-12-26",
+      "tie": { "party": "gt_dcg" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1991-01-14",
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Vinicio_Cerezo"
+      ],
+      "note": "Single fixed term ending 14 Jan 1991 per the fetched page; the Nov 1990 election had not yet happened, so no president-elect in also."
+    },
+    {
+      "nation": "Guyana",
+      "name": "Desmond Hoyte",
+      "native": "Hugh Desmond Hoyte",
+      "office": "President of Guyana",
+      "since": "1985-08-06",
+      "born": "1929-03-09",
+      "tie": { "party": "gy_pnc" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Hamilton Green", "office": "Prime Minister of Guyana", "since": "1985-08-06", "party": "gy_pnc" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Desmond_Hoyte",
+        "https://en.wikipedia.org/wiki/Hamilton_Green"
+      ],
+      "note": "Executive president under the 1980 constitution; tied to the PNC party row rather than the identically-named Party pillar."
+    },
+    {
+      "nation": "Haiti",
+      "name": "Prosper Avril",
+      "native": "Matthieu Prosper Avril",
+      "office": "President of the Republic (military government)",
+      "since": "1988-09-17",
+      "born": "1937-12-12",
+      "tie": { "pillar": "Army" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Prosper_Avril"
+      ],
+      "note": "Lieutenant General who took power in the Sept 1988 coup against Namphy; Haiti has no party table so the tie is the Army pillar (Forces Armees d'Haiti)."
+    },
+    {
+      "nation": "Honduras",
+      "name": "Jose Azcona",
+      "native": "José Simón Azcona del Hoyo",
+      "office": "President of the Republic",
+      "since": "1986-01-27",
+      "born": "1927-01-26",
+      "tie": { "party": "hn_pl" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1990-01-27",
+      "also": [
+        { "name": "Rafael Leonardo Callejas", "office": "President-elect (elected 26 Nov 1989, inaugurated 27 Jan 1990)", "since": "1989-11-26", "party": "hn_pn" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jos%C3%A9_Azcona_del_Hoyo",
+        "https://en.wikipedia.org/wiki/Rafael_Leonardo_Callejas",
+        "https://en.wikipedia.org/wiki/1989_Honduran_general_election"
+      ],
+      "note": "Start-date rule: Azcona was in office on 1 Jan 1990 with 26 days left; Callejas (PN, 52.30%) is the president-elect in also."
+    },
+    {
+      "nation": "Hungary",
+      "name": "Miklos Nemeth",
+      "native": "Németh Miklós",
+      "office": "Chairman of the Council of Ministers",
+      "since": "1988-11-24",
+      "born": "1948-01-24",
+      "tie": { "party": "hu_mszp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Matyas Szuros", "office": "Provisional President of the Republic", "since": "1989-10-23", "party": "hu_mszp" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mikl%C3%B3s_N%C3%A9meth",
+        "https://en.wikipedia.org/wiki/M%C3%A1ty%C3%A1s_Sz%C5%B1r%C3%B6s"
+      ],
+      "note": "The MSZMP dissolved into the MSZP in Oct 1989 and Németh's page lists him MSZP 1989-1990, so the tie is hu_mszp rather than the rump hu_mszmp."
+    },
+    {
+      "nation": "Iceland",
+      "name": "Steingrimur Hermannsson",
+      "native": "Steingrímur Hermannsson",
+      "office": "Prime Minister of Iceland",
+      "since": "1988-09-28",
+      "born": "1928-06-22",
+      "tie": { "party": "is_fram" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Vigdis Finnbogadottir", "office": "President of Iceland", "since": "1980-08-01", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Steingr%C3%ADmur_Hermannsson",
+        "https://en.wikipedia.org/wiki/Vigd%C3%ADs_Finnbogad%C3%B3ttir"
+      ]
+    },
+    {
+      "nation": "India",
+      "name": "V. P. Singh",
+      "native": "Vishwanath Pratap Singh",
+      "office": "Prime Minister of India",
+      "since": "1989-12-02",
+      "born": "1931-06-25",
+      "tie": { "party": "in_jd" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "R. Venkataraman", "office": "President of India", "since": "1987-07-25", "party": "in_inc" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/V._P._Singh",
+        "https://en.wikipedia.org/wiki/R._Venkataraman"
+      ],
+      "note": "National Front minority government in office one month on 1 Jan 1990."
+    },
+    {
+      "nation": "Indonesia",
+      "name": "Suharto",
+      "native": "Soeharto",
+      "office": "President of the Republic",
+      "since": "1968-03-27",
+      "born": "1921-06-08",
+      "tie": { "party": "id_golkar" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Sudharmono", "office": "Vice President of Indonesia", "since": "1988-03-11", "party": "id_golkar" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Suharto",
+        "https://en.wikipedia.org/wiki/Sudharmono"
+      ],
+      "note": "Acting president from 12 Mar 1967, full from 27 Mar 1968; the full date is used. Tied to Golkar (his 'political vehicle' per the fetched page, BigTent -> NonAligned) rather than the ABRI Army pillar (-> Nationalist): by 1990 he had long been retired from active service and governed through Golkar's parliamentary supermajority. The Vice President is not a formally designated heir under the 1945 constitution, so heir is null."
+    },
+    {
+      "nation": "Iran",
+      "name": "Ali Khamenei",
+      "native": "Sayyid Ali Hosseini Khamenei",
+      "office": "Supreme Leader of the Islamic Republic",
+      "since": "1989-06-04",
+      "born": "1939-04-19",
+      "tie": { "pillar": "Clergy" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Akbar Hashemi Rafsanjani", "office": "President of Iran", "since": "1989-08-16", "party": "ir_jrm" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ali_Khamenei",
+        "https://en.wikipedia.org/wiki/Akbar_Hashemi_Rafsanjani"
+      ],
+      "note": "Decided case in the design: Khamenei (Clergy pillar) with Rafsanjani in also; Rafsanjani was a founder of the Combatant Clergy Association (ir_jrm)."
+    },
+    {
+      "nation": "Iraq",
+      "name": "Saddam Hussein",
+      "native": "Saddam Hussein Abd al-Majid al-Tikriti",
+      "office": "President of the Republic and Chairman of the Revolutionary Command Council",
+      "since": "1979-07-16",
+      "born": "1937-04-28",
+      "tie": { "party": "iq_baath" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Izzat Ibrahim al-Douri", "office": "Vice Chairman of the Revolutionary Command Council", "since": "1979-07-16", "party": "iq_baath" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Saddam_Hussein",
+        "https://en.wikipedia.org/wiki/Izzat_Ibrahim_al-Douri"
+      ],
+      "note": "Birth date 28 Apr 1937 is the official one; the fetched page flags it as unclear."
+    },
+    {
+      "nation": "Ireland",
+      "name": "Charles Haughey",
+      "native": "Cathal Ó hEochaidh",
+      "office": "Taoiseach",
+      "since": "1987-03-10",
+      "born": "1925-09-16",
+      "tie": { "party": "ie_ff" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Des O'Malley", "office": "Minister for Industry and Commerce (Progressive Democrats coalition partner)", "since": "1989-07-05", "party": "ie_pd" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Charles_Haughey",
+        "https://en.wikipedia.org/wiki/Des_O%27Malley"
+      ],
+      "note": "The FF-PD coalition of July 1989 was the first coalition in Fianna Fáil's history; Haughey's third term began 10 Mar 1987 and continued through the 1989 election."
+    },
+    {
+      "nation": "Israel",
+      "name": "Yitzhak Shamir",
+      "native": "Yitzhak Shamir",
+      "office": "Prime Minister of Israel (national unity government)",
+      "since": "1986-10-20",
+      "born": "1915-10-22",
+      "tie": { "party": "il_likud" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Shimon Peres", "office": "Acting Prime Minister and Minister of Finance", "since": "1988-12-22", "party": "il_labour" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Yitzhak_Shamir",
+        "https://en.wikipedia.org/wiki/Shimon_Peres",
+        "https://en.wikipedia.org/wiki/Twenty-third_government_of_Israel"
+      ],
+      "note": "The 23rd government (Likud, Alignment, Shas, NRP, Agudat Yisrael, Degel HaTorah) was formed 22 Dec 1988; Shamir's continuous premiership dates from 20 Oct 1986."
+    },
+    {
+      "nation": "Italy",
+      "name": "Giulio Andreotti",
+      "native": "Giulio Andreotti",
+      "office": "President of the Council of Ministers",
+      "since": "1989-07-23",
+      "born": "1919-01-14",
+      "tie": { "party": "it_dc" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Francesco Cossiga", "office": "President of the Republic", "since": "1985-07-03", "party": "it_dc" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Giulio_Andreotti",
+        "https://en.wikipedia.org/wiki/Francesco_Cossiga"
+      ]
+    },
+    {
+      "nation": "Jamaica",
+      "name": "Michael Manley",
+      "native": "Michael Norman Manley",
+      "office": "Prime Minister",
+      "since": "1989-02-10",
+      "born": "1924-12-10",
+      "tie": { "party": "jm_pnp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Michael_Manley"
+      ],
+      "note": "Second premiership, from the 10 Feb 1989 PNP victory."
+    },
+    {
+      "nation": "Japan",
+      "name": "Toshiki Kaifu",
+      "native": "海部俊樹",
+      "office": "Prime Minister",
+      "since": "1989-08-10",
+      "born": "1931-01-02",
+      "tie": { "party": "jp_ldp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Toshiki_Kaifu"
+      ],
+      "note": "Parliamentary system: the prime minister directs the executive; the Emperor is not an executive office."
+    },
+    {
+      "nation": "Jordan",
+      "name": "Hussein",
+      "native": "Hussein bin Talal",
+      "office": "King",
+      "since": "1952-08-11",
+      "born": "1935-11-14",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": { "name": "Hassan bin Talal", "office": "Crown Prince", "since": "1965-04-01" },
+      "must_leave_by": null,
+      "also": [
+        { "name": "Mudar Badran", "office": "Prime Minister", "since": "1989-12-07", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Hussein_of_Jordan",
+        "https://en.wikipedia.org/wiki/Hassan_bin_Talal",
+        "https://en.wikipedia.org/wiki/Mudar_Badran"
+      ],
+      "note": "Design decided case: the King ties to the Hashemite court pillar (Party) - the monarchy exception. Badran's chamber government is served as government_of_the_day. Wikipedia text says Badran was appointed 4 Dec 1989 while the infobox reads 7 Dec 1989; the infobox date is used. Badran had no party: parties were still banned in Jordan at the Nov 1989 election."
+    },
+    {
+      "nation": "Kenya",
+      "name": "Daniel arap Moi",
+      "native": "Daniel Toroitich arap Moi",
+      "office": "President",
+      "since": "1978-10-14",
+      "born": "1924-09-02",
+      "tie": { "party": "ke_kanu" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Daniel_arap_Moi",
+        "https://www.worldstatesmen.org/Kenya.htm"
+      ],
+      "note": "Acting president from 22 Aug 1978 on Kenyatta's death, sworn in 14 Oct 1978; the sworn date is used. Tied to KANU, the sole legal party, rather than to the KANU Governing Council pillar so the bloc is read from the party row."
+    },
+    {
+      "nation": "Kuwait",
+      "name": "Jaber Al-Ahmad Al-Sabah",
+      "native": "Jaber Al-Ahmad Al-Jaber Al-Sabah",
+      "office": "Emir",
+      "since": "1977-12-31",
+      "born": "1926-06-29",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": { "name": "Saad Al-Abdullah Al-Salim Al-Sabah", "office": "Crown Prince", "since": "1978-02-16" },
+      "must_leave_by": null,
+      "also": [
+        { "name": "Saad Al-Abdullah Al-Salim Al-Sabah", "office": "Prime Minister", "since": "1978-02-08", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jaber_Al-Ahmad_Al-Sabah",
+        "https://en.wikipedia.org/wiki/Saad_Al-Salim_Al-Sabah"
+      ],
+      "note": "The National Assembly was dissolved in 1986, so the Emir governs through the ruling family (Party pillar). The crown prince was also prime minister."
+    },
+    {
+      "nation": "Laos",
+      "name": "Kaysone Phomvihane",
+      "native": "Kaysone Phomvihane",
+      "office": "General Secretary of the Lao People's Revolutionary Party and Prime Minister",
+      "since": "1975-12-08",
+      "born": "1920-12-13",
+      "tie": { "party": "la_lprp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Phoumi Vongvichit", "office": "Acting President", "since": "1986-10-29", "party": "la_lprp" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Kaysone_Phomvihane",
+        "https://www.worldstatesmen.org/Laos.htm",
+        "https://en.wikipedia.org/wiki/Phoumi_Vongvichit"
+      ],
+      "note": "General secretary since 22 Mar 1955; the since date is the premiership from which he ran the state. Souphanouvong remained titular president but Phoumi Vongvichit had acted for him since 1986 (Wikipedia 29 Oct, worldstatesmen 31 Oct 1986; Wikipedia's date used)."
+    },
+    {
+      "nation": "Lebanon",
+      "name": "Elias Hrawi",
+      "native": "Elias Hrawi",
+      "office": "President",
+      "since": "1989-11-24",
+      "born": "1926-09-04",
+      "tie": { "pillar": "Security" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Selim Hoss", "office": "Prime Minister", "since": "1987-06-02", "party": null },
+        { "name": "Michel Aoun", "office": "Rival Prime Minister (interim military government, East Beirut)", "since": "1988-09-22", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Elias_Hrawi",
+        "https://en.wikipedia.org/wiki/Selim_Hoss",
+        "https://en.wikipedia.org/wiki/Michel_Aoun",
+        "https://rulers.org/rull.html"
+      ],
+      "note": "Hardest call. The polity's ruling prose is 'the rival cabinets of Michel Aoun and Selim Hoss'. Hrawi, elected 24 Nov 1989 by 47 of 53 deputies at Chtoura in the Syrian-held Bekaa, is the head of state whom the Hoss cabinet recognised and the one the outside world recognised; the Taif accord had not yet moved executive power to the cabinet in practice. The polity has no parties and Hrawi was an independent Maronite, so the tie is to the pillar his government actually rested on: the Syrian Army (Security). Aoun's rival administration lasted until 13 Oct 1990."
+    },
+    {
+      "nation": "Lesotho",
+      "name": "Justin Lekhanya",
+      "native": "Justin Metsing Lekhanya",
+      "office": "Chairman of the Military Council",
+      "since": "1986-01-24",
+      "born": "1938-04-07",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Moshoeshoe II", "office": "King", "since": "1966-10-04", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Justin_Lekhanya",
+        "https://en.wikipedia.org/wiki/Moshoeshoe_II"
+      ],
+      "note": "The polity names the Military Council as its Party pillar, so the chairman ties to Party rather than Army. King Moshoeshoe II still held formal executive and legislative power on 1 Jan 1990; he was stripped of it in February 1990 and deposed 12 Nov 1990 (Wikipedia)."
+    },
+    {
+      "nation": "Libya",
+      "name": "Muammar Gaddafi",
+      "native": "Muammar al-Qadhdhafi",
+      "office": "Brotherly Leader and Guide of the Revolution",
+      "since": "1979-03-02",
+      "born": null,
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Miftah al-Usta Umar", "office": "Secretary-General of the General People's Congress", "since": "1986-03-02", "party": null },
+        { "name": "Umar Mustafa al-Muntasir", "office": "Secretary of the General People's Committee", "since": "1987-03-02", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Muammar_Gaddafi",
+        "https://www.worldstatesmen.org/Libya.htm",
+        "https://rulers.org/rull.html"
+      ],
+      "note": "born is null on purpose: Wikipedia's infobox gives only 'c. 1942' and worldstatesmen/rulers.org give 'b. 1942'; no fetched source carries a day. De facto chief since 1 Sep 1969 (rulers.org); the formal title dates from 2 Mar 1979 when he gave up the GPC secretaryship (Wikipedia). Tied to the Revolutionary Committees Movement (Party pillar), his personal instrument of rule."
+    },
+    {
+      "nation": "Luxembourg",
+      "name": "Jacques Santer",
+      "native": "Jacques Louis Santer",
+      "office": "Prime Minister",
+      "since": "1984-07-20",
+      "born": "1937-05-18",
+      "tie": { "party": "lu_csv" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jacques_Santer"
+      ],
+      "note": ""
+    },
+    {
+      "nation": "Madagascar",
+      "name": "Didier Ratsiraka",
+      "native": "Didier Ignace Ratsiraka",
+      "office": "President",
+      "since": "1975-06-15",
+      "born": "1936-11-04",
+      "tie": { "party": "mg_arema" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Victor Ramahatra", "office": "Prime Minister", "since": "1988-02-12", "party": "mg_arema" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Didier_Ratsiraka",
+        "https://en.wikipedia.org/wiki/Victor_Ramahatra",
+        "https://rulers.org/rulm1.html"
+      ],
+      "note": "Founded AREMA in 1976 as its secretary-general (Wikipedia). Re-elected March 1989; the since date is his first accession."
+    },
+    {
+      "nation": "Malawi",
+      "name": "Hastings Kamuzu Banda",
+      "native": "Hastings Kamuzu Banda",
+      "office": "Life President",
+      "since": "1966-07-06",
+      "born": null,
+      "tie": { "party": "mw_mcp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Hastings_Banda",
+        "https://rulers.org/rulm1.html"
+      ],
+      "note": "born is null on purpose: Wikipedia gives 'c. 1898 or 1906' and rulers.org 'b. 1898?'; no fetched source carries a day. President from 6 Jul 1966, declared President for Life in 1971 and MCP life president in 1970 (Wikipedia)."
+    },
+    {
+      "nation": "Malaysia",
+      "name": "Mahathir Mohamad",
+      "native": "Mahathir bin Mohamad",
+      "office": "Prime Minister",
+      "since": "1981-07-16",
+      "born": "1925-07-10",
+      "tie": { "party": "my_bn" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Azlan Shah", "office": "Yang di-Pertuan Agong", "since": "1989-04-26", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mahathir_Mohamad",
+        "https://en.wikipedia.org/wiki/Azlan_Shah_of_Perak",
+        "https://rulers.org/rulm1.html"
+      ],
+      "note": "UMNO president; the polity table carries the Barisan Nasional coalition (my_bn) rather than UMNO, so the tie is to my_bn."
+    },
+    {
+      "nation": "Maldives",
+      "name": "Maumoon Abdul Gayoom",
+      "native": "Maumoon Abdul Gayoom",
+      "office": "President",
+      "since": "1978-11-11",
+      "born": "1937-12-29",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Maumoon_Abdul_Gayoom",
+        "https://rulers.org/rulm1.html"
+      ],
+      "note": "No parties in the polity; the President's Office and Gayoom family network is the Party pillar."
+    },
+    {
+      "nation": "Malta",
+      "name": "Eddie Fenech Adami",
+      "native": "Edward Fenech Adami",
+      "office": "Prime Minister",
+      "since": "1987-05-12",
+      "born": "1934-02-07",
+      "tie": { "party": "mt_pn" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Censu Tabone", "office": "President", "since": "1989-04-04", "party": "mt_pn" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Eddie_Fenech_Adami",
+        "https://rulers.org/rulm1.html"
+      ],
+      "note": ""
+    },
+    {
+      "nation": "Mauritius",
+      "name": "Anerood Jugnauth",
+      "native": "Anerood Jugnauth",
+      "office": "Prime Minister",
+      "since": "1982-06-15",
+      "born": "1930-03-29",
+      "tie": { "party": "mu_all" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Anerood_Jugnauth",
+        "https://rulers.org/rulm1.html"
+      ],
+      "note": "MSM leader; the polity table carries the 1987 MSM-Labour-PMSD Alliance as mu_all, so the tie is to that row. Wikipedia gives 15 Jun 1982, rulers.org 16 Jun 1982; Wikipedia's date used."
+    },
+    {
+      "nation": "Mexico",
+      "name": "Carlos Salinas de Gortari",
+      "native": "Carlos Salinas de Gortari",
+      "office": "President",
+      "since": "1988-12-01",
+      "born": "1948-04-03",
+      "tie": { "party": "mx_pri" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1994-11-30",
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Carlos_Salinas_de_Gortari"
+      ],
+      "note": "Single non-renewable six-year sexenio; the term end as given by the source."
+    },
+    {
+      "nation": "Mongolia",
+      "name": "Jambyn Batmonkh",
+      "native": "Jambyn Batmönkh",
+      "office": "General Secretary of the Mongolian People's Revolutionary Party",
+      "since": "1984-08-24",
+      "born": "1926-03-10",
+      "tie": { "party": "mn_mprp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Dumaagiin Sodnom", "office": "Chairman of the Council of Ministers", "since": "1984-12-12", "party": "mn_mprp" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jambyn_Batm%C3%B6nkh",
+        "https://en.wikipedia.org/wiki/Dumaagiin_Sodnom",
+        "https://rulers.org/rulm2.html"
+      ],
+      "note": "Also Chairman of the Presidium of the People's Great Khural from 12 Dec 1984; the party post is the one that directed the executive."
+    },
+    {
+      "nation": "Morocco",
+      "name": "Hassan II",
+      "native": "Hassan II",
+      "office": "King",
+      "since": "1961-02-26",
+      "born": "1929-07-09",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Azzedine Laraki", "office": "Prime Minister", "since": "1986-09-30", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Hassan_II_of_Morocco",
+        "https://en.wikipedia.org/wiki/Mohammed_VI_of_Morocco",
+        "https://en.wikipedia.org/wiki/Azzedine_Laraki"
+      ],
+      "note": "The King directs the executive through the Makhzen (Party pillar). heir is null because the fetched Mohammed VI page states he was not proclaimed Crown Prince during his father's reign. Laraki served as a non-party technocrat."
+    },
+    {
+      "nation": "Mozambique",
+      "name": "Joaquim Chissano",
+      "native": "Joaquim Alberto Chissano",
+      "office": "President",
+      "since": "1986-11-06",
+      "born": "1939-10-22",
+      "tie": { "party": "mz_frelimo" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Mario da Graca Machungo", "office": "Prime Minister", "since": "1986-07-17", "party": "mz_frelimo" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Joaquim_Chissano",
+        "https://en.wikipedia.org/wiki/M%C3%A1rio_da_Gra%C3%A7a_Machungo",
+        "https://rulers.org/rulm2.html"
+      ],
+      "note": "FRELIMO party leader from 1986 on succeeding Machel."
+    },
+    {
+      "nation": "Myanmar",
+      "name": "Saw Maung",
+      "native": "Saw Maung",
+      "office": "Chairman of the State Law and Order Restoration Council",
+      "since": "1988-09-18",
+      "born": "1928-12-05",
+      "tie": { "pillar": "Army" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Saw Maung", "office": "Prime Minister", "since": "1988-09-21", "party": null }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Saw_Maung"
+      ],
+      "note": "SLORC chairman and prime minister were the same man; the SLORC chairmanship is the executive. Army officer, tied to the Tatmadaw. worldstatesmen.org/Myanmar.html returned 404 twice this run."
+    },
+    {
+      "nation": "Nepal",
+      "name": "Birendra Bir Bikram Shah Dev",
+      "native": "Birendra Bir Bikram Shah Dev",
+      "office": "King of Nepal",
+      "since": "1972-01-31",
+      "born": "1945-12-29",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Marich Man Singh Shrestha", "office": "Prime Minister", "since": "1986-06-15", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Nepal.html",
+        "https://en.wikipedia.org/wiki/Birendra_of_Nepal",
+        "https://en.wikipedia.org/wiki/Marich_Man_Singh_Shrestha"
+      ],
+      "note": "Design decision: the King on the Party pillar (the palace secretariat). Panchayat in force on 1 Jan 1990; parties banned until April 1990. Shrestha was an independent of the Panchayat, so party null. Crown Prince Dipendra not recorded as heir: no fetched source this run named him formally."
+    },
+    {
+      "nation": "Netherlands",
+      "name": "Ruud Lubbers",
+      "native": "Rudolphus Franciscus Marie Lubbers",
+      "office": "Prime Minister of the Netherlands",
+      "since": "1982-11-04",
+      "born": "1939-05-07",
+      "tie": { "party": "nl_cda" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Wim Kok", "office": "Deputy Prime Minister and Minister of Finance", "since": "1989-11-07", "party": "nl_pvda" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ruud_Lubbers",
+        "https://en.wikipedia.org/wiki/Third_Lubbers_cabinet",
+        "https://en.wikipedia.org/wiki/Wim_Kok"
+      ],
+      "note": "Third Lubbers cabinet (CDA-PvdA) installed 7 Nov 1989; since carries his continuous premiership from 1982."
+    },
+    {
+      "nation": "NewZealand",
+      "name": "Geoffrey Palmer",
+      "native": "Geoffrey Winston Russell Palmer",
+      "office": "Prime Minister of New Zealand",
+      "since": "1989-08-08",
+      "born": "1942-04-21",
+      "tie": { "party": "nz_lab" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Geoffrey_Palmer_(New_Zealand_politician)"
+      ],
+      "note": "Succeeded Lange 8 Aug 1989; in office on 1 Jan 1990 (resigned 4 Sep 1990, after the start)."
+    },
+    {
+      "nation": "Nicaragua",
+      "name": "Daniel Ortega",
+      "native": "Jose Daniel Ortega Saavedra",
+      "office": "President of Nicaragua",
+      "since": "1985-01-10",
+      "born": "1945-11-11",
+      "tie": { "party": "ni_fsln" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Sergio Ramirez", "office": "Vice President", "since": "1985-01-10", "party": "ni_fsln" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Daniel_Ortega"
+      ],
+      "note": "Election due 25 Feb 1990 with Ortega standing; no hard term bound, so must_leave_by null."
+    },
+    {
+      "nation": "Nigeria",
+      "name": "Ibrahim Babangida",
+      "native": "Ibrahim Badamasi Babangida",
+      "office": "President and Chairman of the Armed Forces Ruling Council",
+      "since": "1985-08-27",
+      "born": "1941-08-17",
+      "tie": { "pillar": "Army" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ibrahim_Babangida",
+        "https://www.rulers.org/ruln2.html"
+      ],
+      "note": "Augustus Aikhomu was Chief of General Staff (de facto vice president) from October 1986, but no fetched source gave the day, so he is not entered in also under the YYYY-MM-DD schema. The SDP/NRC table is the decreed two-party system of 1989-90, not yet elected."
+    },
+    {
+      "nation": "NorthKorea",
+      "name": "Kim Il-sung",
+      "native": "Kim Il-sung",
+      "office": "General Secretary of the Workers' Party of Korea and President of the DPRK",
+      "since": "1966-10-12",
+      "born": "1912-04-15",
+      "tie": { "party": "kp_wpk" },
+      "bloc_override": null,
+      "heir": { "name": "Kim Jong-il", "office": "Member of the Presidium of the WPK Politburo, designated successor", "since": "1980-10-10" },
+      "must_leave_by": null,
+      "also": [
+        { "name": "Yon Hyong-muk", "office": "Premier of the Administration Council", "since": "1988-12-11", "party": "kp_wpk" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Kim_Il_Sung",
+        "https://en.wikipedia.org/wiki/Kim_Jong_Il",
+        "https://en.wikipedia.org/wiki/Yon_Hyong-muk"
+      ],
+      "note": "Design says Party: tied to the WPK party row (kp_wpk), which the dormant table carries, rather than the Party pillar (the OGD), so the regime bloc seeds Communist from the party. Since is the general secretaryship (1966); presidency from 28 Dec 1972. Heir: the fetched Kim Jong Il page gives the 6th Congress as October 1980 (senior posts in the Presidium, Military Commission and Secretariat) with no day, and an earlier 1974 proclamation. The day 10 in the heir since was NOT read from a fetched page this run - integrator should verify the Congress opening date or hold the heir since at month precision."
+    },
+    {
+      "nation": "Norway",
+      "name": "Jan P. Syse",
+      "native": "Jan Peder Syse",
+      "office": "Prime Minister of Norway",
+      "since": "1989-10-16",
+      "born": "1930-11-25",
+      "tie": { "party": "no_h" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jan_P._Syse",
+        "https://en.wikipedia.org/wiki/Syse%27s_Cabinet"
+      ],
+      "note": "Minority centre-right coalition of Hoyre, Senterpartiet and KrF."
+    },
+    {
+      "nation": "Oman",
+      "name": "Qaboos bin Said",
+      "native": "Qabus bin Sa'id Al Sa'id",
+      "office": "Sultan of Oman and Prime Minister",
+      "since": "1970-07-23",
+      "born": "1940-11-18",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Oman.html",
+        "https://en.wikipedia.org/wiki/Qaboos_bin_Said"
+      ],
+      "note": "Tied to the Diwan of the Royal Court (Party pillar). Wikipedia lists him as prime minister from 2 Jan 1972; worldstatesmen shows the chief-minister office lapsing into the Sultan's hands from 1972. No heir was ever named."
     },
     {
       "nation": "Pakistan",
       "name": "Benazir Bhutto",
       "native": "Benazir Bhutto",
-      "office": "Prime Minister",
+      "office": "Prime Minister of Pakistan",
       "since": "1988-12-02",
       "born": "1953-06-21",
       "tie": { "party": "pk_ppp" },
@@ -33,21 +1760,575 @@
       "heir": null,
       "must_leave_by": null,
       "also": [
-        { "name": "Ghulam Ishaq Khan", "office": "President", "since": "1988-08-17", "party": null }
+        { "name": "Ghulam Ishaq Khan", "office": "President of Pakistan", "since": "1988-12-13", "party": null }
       ],
       "sources": [
-        "https://rulers.org/rulp1.html",
-        "https://en.wikipedia.org/wiki/Benazir_Bhutto"
+        "https://en.wikipedia.org/wiki/Benazir_Bhutto",
+        "https://en.wikipedia.org/wiki/Ghulam_Ishaq_Khan"
       ],
-      "note": "rulers.org: '2 Dec 1988 - 6 Aug 1990 Benazir Bhutto (f) (1st time) (b. 1953 - d. 2007)'; full birth date 21 June 1953 from the Wikipedia infobox. The president who dismissed her that August is in 'also' as a fact of 1 January 1990, not as a forecast."
+      "note": "Parliamentary system: the PM directs the executive; the president who dismissed her on 6 Aug 1990 is the other holder of split power (acting president from 17 Aug 1988, elected 13 Dec 1988, no party)."
+    },
+    {
+      "nation": "Panama",
+      "name": null,
+      "native": null,
+      "office": "President of Panama",
+      "since": "1989-12-20",
+      "born": "1936-05-12",
+      "tie": null,
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Ricardo Arias Calderon", "office": "First Vice President", "since": "1989-12-20", "party": "pa_pdc" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Guillermo_Endara"
+      ],
+      "note": "REFUSED: tie. The sourced facts are Guillermo Endara (Partido Panamenista Autentico), sworn in 20 Dec 1989 at Fort Clayton, born 12 May 1936; but his party is not in the Panama polity table - the block itself records that the Panamenistas had been struck off and he stood on his partners' lines. The data pass wrote a pa_pdc tie (the ADOC coalition's largest line, PDC 40.18, VP Arias Calderon) that was NOT Endara's own membership; the integrator nulled it on 2026-09-05 so a refused row asserts nothing. Integrator: either add a pa_ppa entry or accept the coalition-leader tie and fill the name. No must_leave_by: the 1994 term end date was not read from a fetched page this run."
+    },
+    {
+      "nation": "PapuaNewGuinea",
+      "name": "Rabbie Namaliu",
+      "native": "Rabbie Langanai Namaliu",
+      "office": "Prime Minister of Papua New Guinea",
+      "since": "1988-07-04",
+      "born": "1947-04-03",
+      "tie": { "party": "pg_pangu" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Rabbie_Namaliu"
+      ],
+      "note": ""
+    },
+    {
+      "nation": "Paraguay",
+      "name": "Andres Rodriguez",
+      "native": "Andres Rodriguez Pedotti",
+      "office": "President of Paraguay",
+      "since": "1989-02-03",
+      "born": "1923-06-19",
+      "tie": { "party": "py_anr" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1993-08-15",
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Paraguay.html",
+        "https://en.wikipedia.org/wiki/Andr%C3%A9s_Rodr%C3%ADguez_(politician)"
+      ],
+      "note": "General who took power by coup 3 Feb 1989, provisional to 15 May 1989, then elected as the Colorado candidate for the balance of Stroessner's term ending 15 Aug 1993 - hence must_leave_by. Tied to the Colorado party row rather than the Army pillar because he governed as its elected candidate."
+    },
+    {
+      "nation": "Peru",
+      "name": "Alan Garcia",
+      "native": "Alan Gabriel Ludwig Garcia Perez",
+      "office": "President of Peru",
+      "since": "1985-07-28",
+      "born": "1949-05-23",
+      "tie": { "party": "pe_apra" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1990-07-28",
+      "also": [
+        { "name": "Guillermo Larco Cox", "office": "President of the Council of Ministers", "since": "1989-09-30", "party": "pe_apra" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Alan_Garc%C3%ADa",
+        "https://en.wikipedia.org/wiki/Guillermo_Larco_Cox"
+      ],
+      "note": "must_leave_by is the fixed term end 28 Jul 1990 with the election due April 1990; the re-election bar itself was not confirmed by a fetched page."
+    },
+    {
+      "nation": "Philippines",
+      "name": "Corazon Aquino",
+      "native": "Maria Corazon Sumulong Cojuangco-Aquino",
+      "office": "President of the Philippines",
+      "since": "1986-02-25",
+      "born": "1933-01-25",
+      "tie": { "party": "ph_ind" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1992-06-30",
+      "also": [
+        { "name": "Salvador Laurel", "office": "Vice President", "since": "1986-02-25", "party": "ph_np" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Corazon_Aquino",
+        "https://en.wikipedia.org/wiki/Salvador_Laurel"
+      ],
+      "note": "Wikipedia lists her as Independent from 1987; the polity table carries an 'independents' row (ph_ind), which is the honest tie - she was never an LDP member. The 1987 constitution barred re-election; term ends 30 Jun 1992."
+    },
+    {
+      "nation": "Poland",
+      "name": "Tadeusz Mazowiecki",
+      "native": "Tadeusz Mazowiecki",
+      "office": "Prime Minister of Poland",
+      "since": "1989-08-24",
+      "born": "1927-04-18",
+      "tie": { "party": "pl_solidarity" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Wojciech Jaruzelski", "office": "President of Poland", "since": "1989-07-19", "party": "pl_sld" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Tadeusz_Mazowiecki",
+        "https://en.wikipedia.org/wiki/Wojciech_Jaruzelski"
+      ],
+      "note": "Design decision. Jaruzelski's party was the PZPR, which the table carries under its successor row pl_sld."
+    },
+    {
+      "nation": "Portugal",
+      "name": "Anibal Cavaco Silva",
+      "native": "Anibal Antonio Cavaco Silva",
+      "office": "Prime Minister of Portugal",
+      "since": "1985-11-06",
+      "born": "1939-07-15",
+      "tie": { "party": "pt_psd" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Mario Soares", "office": "President of the Republic", "since": "1986-03-09", "party": "pt_ps" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/An%C3%ADbal_Cavaco_Silva",
+        "https://en.wikipedia.org/wiki/M%C3%A1rio_Soares"
+      ],
+      "note": ""
+    },
+    {
+      "nation": "Qatar",
+      "name": "Khalifa bin Hamad Al Thani",
+      "native": "Khalifa bin Hamad Al Thani",
+      "office": "Emir of Qatar and Prime Minister",
+      "since": "1972-02-22",
+      "born": "1932-09-17",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": { "name": "Hamad bin Khalifa Al Thani", "office": "Heir Apparent and Minister of Defence", "since": "1977-05-31" },
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Khalifa_bin_Hamad_Al_Thani",
+        "https://en.wikipedia.org/wiki/Prime_Minister_of_Qatar",
+        "https://en.wikipedia.org/wiki/Hamad_bin_Khalifa_Al_Thani",
+        "https://www.encyclopedia.com/international/encyclopedias-almanacs-transcripts-and-maps/al-thani-hamad-bin-khalifa-1950"
+      ],
+      "note": "Tied to the Al Thani family council (Party pillar). Prime minister since 29 May 1970 per the PM list; Emir since the 22 Feb 1972 coup. Heir date 31 May 1977 read from encyclopedia.com; Wikipedia gives the year only."
+    },
+    {
+      "nation": "Romania",
+      "name": "Ion Iliescu",
+      "native": "Ion Iliescu",
+      "office": "President of the Council of the National Salvation Front",
+      "since": "1989-12-22",
+      "born": "1930-03-03",
+      "tie": { "party": "ro_fsn" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Petre Roman", "office": "Prime Minister (ad interim)", "since": "1989-12-26", "party": "ro_fsn" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ion_Iliescu",
+        "https://en.wikipedia.org/wiki/Petre_Roman"
+      ],
+      "note": "Nine days after Ceausescu's fall; the FSN Council was the provisional executive. Iliescu is the face because the Council presidency directed it; Roman ran the government."
+    },
+    {
+      "nation": "Samoa",
+      "name": "Tofilau Eti Alesana",
+      "native": "Tofilau Eti Alesana",
+      "office": "Prime Minister of Western Samoa",
+      "since": "1988-04-08",
+      "born": "1924-06-04",
+      "tie": { "party": "ws_hrpp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Malietoa Tanumafili II", "office": "O le Ao o le Malo", "since": "1963-04-05", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Samoa.html",
+        "https://en.wikipedia.org/wiki/Tofilau_Eti_Alesana"
+      ],
+      "note": ""
+    },
+    {
+      "nation": "SaoTome",
+      "name": "Manuel Pinto da Costa",
+      "native": "Manuel do Espirito Santo Pinto da Costa",
+      "office": "President of the Republic and Secretary-General of the MLSTP",
+      "since": "1975-07-12",
+      "born": "1937-08-05",
+      "tie": { "party": "st_mlstp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Celestino Rocha da Costa", "office": "Prime Minister", "since": "1988-01-08", "party": "st_mlstp" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Sao_Tome.html",
+        "https://en.wikipedia.org/wiki/Manuel_Pinto_da_Costa",
+        "https://en.wikipedia.org/wiki/Celestino_Rocha_da_Costa"
+      ],
+      "note": "One-party state on 1 Jan 1990; the polity's party table is the Jan 1991 result and lies dormant. Pinto da Costa was MLSTP secretary-general 1972-Oct 1990 per worldstatesmen (post abolished 10 Sep 1990); the party tie is to the dormant MLSTP row, which the Party pillar (MLSTP Comite Central) also names."
+    },
+    {
+      "nation": "SaudiArabia",
+      "name": "Fahd bin Abdulaziz Al Saud",
+      "native": "Fahd bin Abd al-Aziz Al Saud",
+      "office": "King and Prime Minister",
+      "since": "1982-06-13",
+      "born": null,
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": { "name": "Abdullah bin Abdulaziz Al Saud", "office": "Crown Prince and First Deputy Prime Minister", "since": "1982-06-13" },
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Saudi_Arabia.htm",
+        "https://en.wikipedia.org/wiki/Fahd_of_Saudi_Arabia",
+        "https://en.wikipedia.org/wiki/Abdullah_of_Saudi_Arabia"
+      ],
+      "note": "born left null: worldstatesmen gives '1923?', Wikipedia gives '1920, 1921 or 1923' - no source fetched commits to a date. Decided case: Party pillar = the Al Saud family council; heir Abdullah, named Crown Prince the day Fahd acceded."
+    },
+    {
+      "nation": "Senegal",
+      "name": "Abdou Diouf",
+      "native": "Abdou Diouf",
+      "office": "President of the Republic",
+      "since": "1981-01-01",
+      "born": "1935-09-07",
+      "tie": { "party": "sn_ps" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Senegal.html",
+        "https://en.wikipedia.org/wiki/Abdou_Diouf"
+      ],
+      "note": "The post of Prime Minister was abolished 29 Apr 1983 - 8 Apr 1991, so the president directed the executive alone."
+    },
+    {
+      "nation": "Seychelles",
+      "name": "France-Albert Rene",
+      "native": "France-Albert René",
+      "office": "President of the Republic",
+      "since": "1977-06-05",
+      "born": "1935-11-16",
+      "tie": { "party": "sc_sppf" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Seychelles.html",
+        "https://en.wikipedia.org/wiki/France-Albert_Ren%C3%A9"
+      ],
+      "note": "One-party SPPF state; also president of the SPPF."
+    },
+    {
+      "nation": "Singapore",
+      "name": "Lee Kuan Yew",
+      "native": "Lee Kuan Yew",
+      "office": "Prime Minister",
+      "since": "1959-06-05",
+      "born": "1923-09-16",
+      "tie": { "party": "sg_pap" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Goh Chok Tong", "office": "First Deputy Prime Minister", "since": "1985-01-02", "party": "sg_pap" },
+        { "name": "Wee Kim Wee", "office": "President", "since": "1985-09-01", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Singapore.html",
+        "https://en.wikipedia.org/wiki/Lee_Kuan_Yew",
+        "https://en.wikipedia.org/wiki/Goh_Chok_Tong"
+      ],
+      "note": "Goh was the PAP's chosen successor since 1985 but held no constitutional heir office, so he goes in also, not heir."
+    },
+    {
+      "nation": "SolomonIslands",
+      "name": "Solomon Mamaloni",
+      "native": "Solomon Sunaone Mamaloni",
+      "office": "Prime Minister",
+      "since": "1989-03-28",
+      "born": "1943-01-23",
+      "tie": { "party": "sb_pap" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "George Lepping", "office": "Governor-General", "since": "1988-07-07", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Solomon_Islands.html",
+        "https://en.wikipedia.org/wiki/Solomon_Mamaloni"
+      ],
+      "note": "Second term. Both sources list him as People's Alliance Party on 1 Jan 1990."
+    },
+    {
+      "nation": "SouthAfrica",
+      "name": "F. W. de Klerk",
+      "native": "Frederik Willem de Klerk",
+      "office": "State President",
+      "since": "1989-08-15",
+      "born": "1936-03-18",
+      "tie": { "party": "za_np" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/South_Africa.html",
+        "https://en.wikipedia.org/wiki/F._W._de_Klerk"
+      ],
+      "note": "Acting State President from 15 Aug 1989, sworn in fully 20 Sep 1989; National Party leader since 2 Feb 1989. The polity's party table is the 1994 result; the NP row is the valid tie."
+    },
+    {
+      "nation": "SouthKorea",
+      "name": "Roh Tae-woo",
+      "native": "노태우",
+      "office": "President of the Republic",
+      "since": "1988-02-25",
+      "born": "1932-12-04",
+      "tie": { "party": "kr_djp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1993-02-25",
+      "also": [
+        { "name": "Kang Young-hoon", "office": "Prime Minister", "since": "1988-12-16", "party": "kr_djp" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Korea_South.htm",
+        "https://en.wikipedia.org/wiki/Roh_Tae-woo",
+        "https://en.wikipedia.org/wiki/Kang_Young-hoon"
+      ],
+      "note": "Single non-renewable five-year term under the 1987 constitution, ending 25 Feb 1993. DJP merged into the Democratic Liberal Party on 22 Jan 1990 - after the start date, so the tie is DJP."
+    },
+    {
+      "nation": "Spain",
+      "name": "Felipe Gonzalez",
+      "native": "Felipe González Márquez",
+      "office": "President of the Government",
+      "since": "1982-12-02",
+      "born": "1942-03-05",
+      "tie": { "party": "es_psoe" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Juan Carlos I", "office": "King", "since": "1975-11-22", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Spain.html",
+        "https://en.wikipedia.org/wiki/Felipe_Gonz%C3%A1lez"
+      ],
+      "note": "Third mandate after the 29 Oct 1989 election."
+    },
+    {
+      "nation": "SriLanka",
+      "name": "Ranasinghe Premadasa",
+      "native": "රණසිංහ ප්‍රේමදාස",
+      "office": "President of the Republic",
+      "since": "1989-01-02",
+      "born": "1924-06-23",
+      "tie": { "party": "lk_unp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "D. B. Wijetunga", "office": "Prime Minister", "since": "1989-03-06", "party": "lk_unp" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Sri_Lanka.html",
+        "https://en.wikipedia.org/wiki/Ranasinghe_Premadasa"
+      ],
+      "note": "Executive presidency under the 1978 constitution: the president governs. worldstatesmen dates Wijetunga 3 Mar 1989, Wikipedia 6 Mar 1989; Wikipedia's appointment date used."
+    },
+    {
+      "nation": "Sudan",
+      "name": "Omar al-Bashir",
+      "native": "عمر حسن أحمد البشير",
+      "office": "Chairman of the Revolutionary Command Council for National Salvation",
+      "since": "1989-06-30",
+      "born": "1944-01-01",
+      "tie": { "pillar": "Army" },
+      "bloc_override": "Islamist",
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Sudan.html",
+        "https://en.wikipedia.org/wiki/Omar_al-Bashir",
+        "https://en.wikipedia.org/wiki/Hassan_al-Turabi"
+      ],
+      "note": "Decided case: Army tie, bloc_override Islamist - the coup was backed by the National Islamic Front and Bashir allied with Turabi. Turabi held no formal office on 1 Jan 1990 (arrested after the coup, parties banned), so he is not in also."
+    },
+    {
+      "nation": "Suriname",
+      "name": "Ramsewak Shankar",
+      "native": "Ramsewak Shankar",
+      "office": "President of the Republic",
+      "since": "1988-01-25",
+      "born": "1937-11-06",
+      "tie": { "party": "sr_fdo" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Henck Arron", "office": "Vice-President", "since": "1988-01-25", "party": "sr_fdo" },
+        { "name": "Desi Bouterse", "office": "Commander of the National Army", "since": "1980-02-25", "party": "sr_ndp" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Suriname.html",
+        "https://en.wikipedia.org/wiki/Ramsewak_Shankar",
+        "https://en.wikipedia.org/wiki/D%C3%A9si_Bouterse"
+      ],
+      "note": "Shankar's VHP was a component of the Front for Democracy and Development (sr_fdo). Bouterse's formal National Military Council chairmanship ended 1987 but Wikipedia says he 'retained much power as army commander' through 1990; his since is the 1980 coup date as the only fetched date."
+    },
+    {
+      "nation": "Swaziland",
+      "name": "Mswati III",
+      "native": "Mswati III (born Makhosetive Dlamini)",
+      "office": "King (Ngwenyama)",
+      "since": "1986-04-25",
+      "born": "1968-04-19",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Obed Dlamini", "office": "Prime Minister", "since": "1989-07-12", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Swaziland.html",
+        "https://en.wikipedia.org/wiki/Mswati_III"
+      ],
+      "note": "Party pillar = the Swazi National Council (the royal court; Pillar::parse maps 'court' to Party). No party table exists."
+    },
+    {
+      "nation": "Sweden",
+      "name": "Ingvar Carlsson",
+      "native": "Gösta Ingvar Carlsson",
+      "office": "Prime Minister",
+      "since": "1986-03-13",
+      "born": "1934-11-09",
+      "tie": { "party": "se_sap" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Carl XVI Gustaf", "office": "King", "since": "1973-09-15", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Sweden.html",
+        "https://en.wikipedia.org/wiki/Ingvar_Carlsson"
+      ],
+      "note": "Acting PM from 28 Feb 1986 after Palme's murder (worldstatesmen dates the term from then); formally elected 13 Mar 1986."
+    },
+    {
+      "nation": "Switzerland",
+      "name": "Arnold Koller",
+      "native": "Arnold Koller",
+      "office": "President of the Confederation (Federal Council)",
+      "since": "1990-01-01",
+      "born": "1933-08-29",
+      "tie": { "party": "ch_cvp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1990-12-31",
+      "also": [
+        { "name": "Jean-Pascal Delamuraz", "office": "President of the Confederation for 1989", "since": "1989-01-01", "party": "ch_fdp" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Switzerland.html",
+        "https://en.wikipedia.org/wiki/Arnold_Koller"
+      ],
+      "note": "The executive is the seven-member Federal Council; the presidency rotates annually and Koller's year began on the start date itself. Federal Councillor since 1 Jan 1987 (elected 10 Dec 1986). must_leave_by is the hard end of the one-year presidency."
+    },
+    {
+      "nation": "Syria",
+      "name": "Hafez al-Assad",
+      "native": "حافظ الأسد",
+      "office": "President of the Republic and Regional Secretary of the Ba'ath Party",
+      "since": "1971-03-12",
+      "born": "1930-10-06",
+      "tie": { "party": "sy_baath" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Mahmoud Zuabi", "office": "Prime Minister", "since": "1987-11-01", "party": "sy_baath" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Syria.html",
+        "https://en.wikipedia.org/wiki/Hafez_al-Assad"
+      ],
+      "note": "worldstatesmen dates the presidency from 22 Feb 1971 (acting), Wikipedia from the 12 Mar 1971 referendum; Regional Secretary since 18 Nov 1970."
+    },
+    {
+      "nation": "Taiwan",
+      "name": "Lee Teng-hui",
+      "native": "李登輝",
+      "office": "President of the Republic of China and Chairman of the Kuomintang",
+      "since": "1988-01-13",
+      "born": "1923-01-15",
+      "tie": { "party": "tw_kmt" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Lee Huan", "office": "Premier (President of the Executive Yuan)", "since": "1989-06-01", "party": "tw_kmt" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Taiwan.html",
+        "https://en.wikipedia.org/wiki/Lee_Teng-hui"
+      ],
+      "note": "Succeeded Chiang Ching-kuo on his death; KMT chairman (acting from 13 Jan 1988, elected 27 Jul 1988)."
+    },
+    {
+      "nation": "Tanzania",
+      "name": "Ali Hassan Mwinyi",
+      "native": "Ali Hassan Mwinyi",
+      "office": "President of the United Republic",
+      "since": "1985-11-05",
+      "born": "1925-05-08",
+      "tie": { "party": "tz_ccm" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Julius Nyerere", "office": "Chairman of Chama Cha Mapinduzi", "since": "1977-02-05", "party": "tz_ccm" },
+        { "name": "Joseph Warioba", "office": "Prime Minister", "since": "1985-11-05", "party": "tz_ccm" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Tanzania.html",
+        "https://en.wikipedia.org/wiki/Ali_Hassan_Mwinyi",
+        "https://en.wikipedia.org/wiki/Julius_Nyerere"
+      ],
+      "note": "Split power: Nyerere kept the CCM chair until 1990 (Wikipedia: chaired TANU/CCM 1954-1990; Mwinyi took the chair in 1990). Nyerere's since is CCM's founding date, 5 Feb 1977, from the infobox range 'CCM (1977-1999)' - month/day not confirmed by the fetch."
     },
     {
       "nation": "Thailand",
       "name": "Chatichai Choonhavan",
-      "native": "Chatichai Choonhavan",
+      "native": "ชาติชาย ชุณหะวัณ",
       "office": "Prime Minister",
       "since": "1988-08-04",
-      "born": "1920-04-05",
+      "born": "1922-04-25",
       "tie": { "party": "th_chartthai" },
       "bloc_override": null,
       "heir": null,
@@ -56,10 +2337,390 @@
         { "name": "Bhumibol Adulyadej", "office": "King (Rama IX)", "since": "1946-06-09", "party": null }
       ],
       "sources": [
+        "https://www.worldstatesmen.org/Thailand.html",
         "https://rulers.org/rult.html",
+        "https://rulers.org/indexc2.html",
         "https://en.wikipedia.org/wiki/Chatichai_Choonhavan"
       ],
-      "note": "rulers.org: '4 Aug 1988 - 23 Feb 1991 Chatichai Choonhavan (b. 1922 - d. 1998)'; the Wikipedia infobox gives 5 April 1920 and names his party as Thai Nation (Chart Thai). The two sources disagree on the birth year; the full date is entered and the disagreement recorded here rather than resolved."
+      "note": "Chairman of the Thai Nation Party 1986-1991. Birth date CONFLICT: rulers.org gives 25 Apr 1922 (worldstatesmen agrees on 1922); Wikipedia gives 5 Apr 1920. The two rulers-specialist sources are followed."
+    },
+    {
+      "nation": "Tonga",
+      "name": "Taufa'ahau Tupou IV",
+      "native": "Tāufaʻāhau Tupou IV",
+      "office": "King",
+      "since": "1965-12-16",
+      "born": "1918-07-04",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": { "name": "Crown Prince Tupouto'a (Siaosi Taufa'ahau Manumataongo)", "office": "Crown Prince", "since": "1966-05-04" },
+      "must_leave_by": null,
+      "also": [
+        { "name": "Prince Fatafehi Tu'ipelehake", "office": "Prime Minister", "since": "1965-12-16", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Tonga.html",
+        "https://rulers.org/rult.html",
+        "https://en.wikipedia.org/wiki/T%C4%81ufa%CA%BB%C4%81hau_Tupou_IV",
+        "https://en.wikipedia.org/wiki/George_Tupou_V"
+      ],
+      "note": "Party pillar = the thirty-three hereditary nobles, the court estate through which the House of Tupou governs; the king appointed the PM (his brother) and the cabinet. No party table exists."
+    },
+    {
+      "nation": "TrinidadTobago",
+      "name": "A. N. R. Robinson",
+      "native": "Arthur Napoleon Raymond Robinson",
+      "office": "Prime Minister",
+      "since": "1986-12-18",
+      "born": "1926-12-16",
+      "tie": { "party": "tt_nar" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Noor Hassanali", "office": "President", "since": "1987-03-19", "party": null }
+      ],
+      "sources": [
+        "https://rulers.org/rult.html",
+        "https://www.worldstatesmen.org/Trinidad.html",
+        "https://en.wikipedia.org/wiki/A._N._R._Robinson"
+      ],
+      "note": "Parliamentary system: the prime minister directs the executive. Robinson led the NAR government of December 1986."
+    },
+    {
+      "nation": "Tunisia",
+      "name": "Zine El Abidine Ben Ali",
+      "native": "Zayn al-Abidin bin Ali",
+      "office": "President of the Republic",
+      "since": "1987-11-07",
+      "born": "1936-09-03",
+      "tie": { "party": "tn_rcd" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Hamed Karoui", "office": "Prime Minister", "since": "1989-09-27", "party": "tn_rcd" }
+      ],
+      "sources": [
+        "https://rulers.org/rult.html",
+        "https://www.worldstatesmen.org/Tunisia.html",
+        "https://en.wikipedia.org/wiki/Zine_El_Abidine_Ben_Ali",
+        "https://en.wikipedia.org/wiki/Hamed_Karoui"
+      ],
+      "note": "Presidential system; the president governs and chairs the RCD (Ben Ali's party listed PSD 1986-1988 then RCD 1988-2011)."
+    },
+    {
+      "nation": "Turkey",
+      "name": "Turgut Ozal",
+      "native": "Halil Turgut Özal",
+      "office": "President of the Republic",
+      "since": "1989-11-09",
+      "born": "1927-10-13",
+      "tie": { "party": "tr_anap" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Yildirim Akbulut", "office": "Prime Minister", "since": "1989-11-09", "party": "tr_anap" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Turkey.html",
+        "https://en.wikipedia.org/wiki/Turgut_%C3%96zal",
+        "https://en.wikipedia.org/wiki/Y%C4%B1ld%C4%B1r%C4%B1m_Akbulut"
+      ],
+      "note": "Design's decided case: Ozal, with Akbulut in also. Ozal formally left ANAP on taking the presidency (worldstatesmen still lists him AnaP); the tie is to the party he built and still steered through Akbulut."
+    },
+    {
+      "nation": "UAE",
+      "name": "Zayed bin Sultan Al Nahyan",
+      "native": "Zayid ibn Sultan Al Nahayyan",
+      "office": "President of the United Arab Emirates and Ruler of Abu Dhabi",
+      "since": "1971-12-02",
+      "born": "1918-05-06",
+      "tie": { "pillar": "Party" },
+      "bloc_override": null,
+      "heir": { "name": "Khalifa bin Zayed Al Nahyan", "office": "Crown Prince of Abu Dhabi", "since": "1969-02-01" },
+      "must_leave_by": null,
+      "also": [
+        { "name": "Rashid bin Saeed Al Maktoum", "office": "Vice President and Prime Minister, Ruler of Dubai", "since": "1979-04-30", "party": null }
+      ],
+      "sources": [
+        "https://rulers.org/rulu.html",
+        "https://www.worldstatesmen.org/United_Arab_Emirates.html",
+        "https://en.wikipedia.org/wiki/Zayed_bin_Sultan_Al_Nahyan",
+        "https://en.wikipedia.org/wiki/Khalifa_bin_Zayed_Al_Nahyan",
+        "https://en.wikipedia.org/wiki/Rashid_bin_Saeed_Al_Maktoum"
+      ],
+      "note": "Party pillar = the Supreme Council of Rulers, which Zayed chaired as President. Born date is the conventional 6 May 1918; Wikipedia flags it uncertain and rulers.org gives c.1918. Heir is heir to Abu Dhabi (nominated 1 Feb 1969), not a formal federal successor. Rashid's PM start: worldstatesmen/rulers 25 Apr 1979, Wikipedia 30 Apr 1979."
+    },
+    {
+      "nation": "UK",
+      "name": "Margaret Thatcher",
+      "native": "Margaret Hilda Thatcher",
+      "office": "Prime Minister",
+      "since": "1979-05-04",
+      "born": "1925-10-13",
+      "tie": { "party": "uk_con" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Elizabeth II", "office": "Queen", "since": "1952-02-06", "party": null }
+      ],
+      "sources": [
+        "https://rulers.org/rulu.html",
+        "https://www.worldstatesmen.org/United_Kingdom.html",
+        "https://en.wikipedia.org/wiki/Margaret_Thatcher"
+      ]
+    },
+    {
+      "nation": "USA",
+      "name": "George H. W. Bush",
+      "native": "George Herbert Walker Bush",
+      "office": "President of the United States",
+      "since": "1989-01-20",
+      "born": "1924-06-12",
+      "tie": { "party": "us_rep" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1997-01-20",
+      "also": [
+        { "name": "Tom Foley", "office": "Speaker of the House of Representatives", "since": "1989-06-06", "party": "us_dem" },
+        { "name": "George J. Mitchell", "office": "Senate Majority Leader", "since": "1989-01-03", "party": "us_dem" }
+      ],
+      "sources": [
+        "https://rulers.org/rulu.html",
+        "https://www.worldstatesmen.org/United_States.html",
+        "https://en.wikipedia.org/wiki/George_H._W._Bush",
+        "https://en.wikipedia.org/wiki/Tom_Foley",
+        "https://en.wikipedia.org/wiki/George_J._Mitchell"
+      ],
+      "note": "Design's decided case. must_leave_by is the 22nd Amendment two-term limit measured from 20 Jan 1989."
+    },
+    {
+      "nation": "USSR",
+      "name": "Mikhail Gorbachev",
+      "native": "Mikhail Sergeyevich Gorbachyov",
+      "office": "General Secretary of the CPSU Central Committee and Chairman of the Supreme Soviet",
+      "since": "1985-03-11",
+      "born": "1931-03-02",
+      "tie": { "party": "su_cpsu" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Nikolai Ryzhkov", "office": "Chairman of the Council of Ministers", "since": "1985-09-27", "party": "su_cpsu" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mikhail_Gorbachev",
+        "https://en.wikipedia.org/wiki/Nikolai_Ryzhkov"
+      ],
+      "note": "Design's decided case: Gorbachev (Party). Tied to su_cpsu, which sits in the polity table and yields Communist under the seeding rule (party before pillar). Since = general secretaryship; the Supreme Soviet chair dates from 25 May 1989. worldstatesmen Soviet_Union.html and Russia.html both returned 404 this run."
+    },
+    {
+      "nation": "Uganda",
+      "name": "Yoweri Museveni",
+      "native": "Yoweri Kaguta Museveni",
+      "office": "President",
+      "since": "1986-01-29",
+      "born": "1944-09-15",
+      "tie": { "party": "ug_nrm" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Samson Kisekka", "office": "Prime Minister", "since": "1986-01-30", "party": "ug_nrm" }
+      ],
+      "sources": [
+        "https://rulers.org/rulu.html",
+        "https://www.worldstatesmen.org/Uganda.html",
+        "https://en.wikipedia.org/wiki/Yoweri_Museveni"
+      ],
+      "note": "Since: sworn in 29 Jan 1986 (Wikipedia); rulers.org and worldstatesmen date the takeover 26 Jan 1986. Born: Wikipedia 15 Sep 1944; rulers.org '1944?'."
+    },
+    {
+      "nation": "Uruguay",
+      "name": "Julio Maria Sanguinetti",
+      "native": "Julio María Sanguinetti Coirolo",
+      "office": "President of the Republic",
+      "since": "1985-03-01",
+      "born": "1936-01-06",
+      "tie": { "party": "uy_pc" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1990-03-01",
+      "also": [
+        { "name": "Luis Alberto Lacalle", "office": "President-elect (elected 26 Nov 1989, inaugurated 1 Mar 1990)", "since": "1989-11-26", "party": "uy_pn" }
+      ],
+      "sources": [
+        "https://rulers.org/rulu.html",
+        "https://www.worldstatesmen.org/Uruguay.html",
+        "https://en.wikipedia.org/wiki/Julio_Mar%C3%ADa_Sanguinetti",
+        "https://en.wikipedia.org/wiki/Luis_Alberto_Lacalle",
+        "https://en.wikipedia.org/wiki/1989_Uruguayan_general_election"
+      ],
+      "note": "Start-date rule (Sarney not Collor): Sanguinetti was in office on 1 Jan 1990; his fixed five-year term ended 1 Mar 1990, hence must_leave_by."
+    },
+    {
+      "nation": "Vanuatu",
+      "name": "Walter Lini",
+      "native": "Walter Hadye Lini",
+      "office": "Prime Minister",
+      "since": "1980-07-30",
+      "born": null,
+      "tie": { "party": "vu_vp" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Fred Timakata", "office": "President", "since": "1989-01-30", "party": null }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Vanuatu.html",
+        "https://en.wikipedia.org/wiki/Walter_Lini"
+      ],
+      "note": "born: every source fetched gives the year 1942 only, no day; left null rather than invented."
+    },
+    {
+      "nation": "Venezuela",
+      "name": "Carlos Andres Perez",
+      "native": "Carlos Andrés Pérez Rodríguez",
+      "office": "President of the Republic",
+      "since": "1989-02-02",
+      "born": "1922-10-27",
+      "tie": { "party": "ve_ad" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": "1994-02-02",
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Venezuela.html",
+        "https://en.wikipedia.org/wiki/Carlos_Andr%C3%A9s_P%C3%A9rez"
+      ],
+      "note": "must_leave_by is the fixed five-year term from 2 Feb 1989 under the 1961 constitution (no immediate re-election)."
+    },
+    {
+      "nation": "Vietnam",
+      "name": "Nguyen Van Linh",
+      "native": "Nguyễn Văn Linh",
+      "office": "General Secretary of the Communist Party of Vietnam",
+      "since": "1986-12-18",
+      "born": "1915-07-01",
+      "tie": { "party": "vn_cpv" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Do Muoi", "office": "Chairman of the Council of Ministers", "since": "1988-06-22", "party": "vn_cpv" },
+        { "name": "Vo Chi Cong", "office": "Chairman of the Council of State", "since": "1987-06-18", "party": "vn_cpv" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Nguy%E1%BB%85n_V%C4%83n_Linh",
+        "https://en.wikipedia.org/wiki/%C4%90%E1%BB%97_M%C6%B0%E1%BB%9Di",
+        "https://en.wikipedia.org/wiki/V%C3%B5_Ch%C3%AD_C%C3%B4ng"
+      ],
+      "note": "Party-state: the general secretary directs the executive. worldstatesmen Vietnam.html fetched but its summary covered only the pre-1956 period."
+    },
+    {
+      "nation": "Yemen",
+      "name": "Ali Abdullah Saleh",
+      "native": "'Ali 'Abdullah Salih",
+      "office": "President of the Yemen Arab Republic",
+      "since": "1978-07-18",
+      "born": "1947-03-21",
+      "tie": { "party": "ye_gpc" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Ali Salem al-Beidh", "office": "Secretary-General of the Yemeni Socialist Party and Chairman of the Presidium of the PDRY (South Yemen)", "since": "1986-02-06", "party": "ye_ysp" },
+        { "name": "Abdul Aziz Abdul Ghani", "office": "Prime Minister of the Yemen Arab Republic", "since": "1983-11-13", "party": "ye_gpc" },
+        { "name": "Yasin Said Numan", "office": "Prime Minister of the PDRY", "since": "1986-02-08", "party": "ye_ysp" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Yemen.html",
+        "https://en.wikipedia.org/wiki/Ali_Abdullah_Saleh",
+        "https://en.wikipedia.org/wiki/Ali_Salem_al-Beidh"
+      ],
+      "note": "On 1 Jan 1990 Yemen was two states (unified 22 May 1990). The roster carries one Yemen with the unified table, whose Army pillar is named for Saleh's officers; Saleh is the face and the southern leadership sits in also. worldstatesmen gives al-Beidh's Presidium chair from 25 Jan 1986 and party post from 6 Feb 1986; Wikipedia's infobox gives 6 Feb 1986 for the party post. rulers.org ruly.html returned 404."
+    },
+    {
+      "nation": "Yugoslavia",
+      "name": "Ante Markovic",
+      "native": "Ante Marković",
+      "office": "President of the Federal Executive Council",
+      "since": "1989-03-16",
+      "born": "1924-11-25",
+      "tie": { "party": "yu_skj" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Janez Drnovsek", "office": "President of the Presidency of the SFRY", "since": "1989-05-15", "party": "yu_skj" }
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ante_Markovi%C4%87",
+        "https://en.wikipedia.org/wiki/Janez_Drnov%C5%A1ek"
+      ],
+      "note": "Design's decided case. Markovic was an SKJ member until 1990 (Wikipedia infobox), hence the yu_skj tie. worldstatesmen Yugoslavia.html and rulers.org ruly.html returned 404 this run."
+    },
+    {
+      "nation": "Zaire",
+      "name": "Mobutu Sese Seko",
+      "native": "Joseph-Désiré Mobutu",
+      "office": "President of the Republic",
+      "since": "1965-11-25",
+      "born": "1930-10-14",
+      "tie": { "party": "zr_mpr" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Kengo wa Dondo", "office": "First State Commissioner (Prime Minister)", "since": "1988-11-26", "party": "zr_mpr" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Congo-Kinshasa.html",
+        "https://en.wikipedia.org/wiki/Mobutu_Sese_Seko",
+        "https://en.wikipedia.org/wiki/Kengo_Wa_Dondo"
+      ],
+      "note": "Since = seizure of power 25 Nov 1965 (worldstatesmen); Wikipedia's infobox dates the Zaire presidency from 27 Oct 1971 (the renaming)."
+    },
+    {
+      "nation": "Zambia",
+      "name": "Kenneth Kaunda",
+      "native": "Kenneth David Kaunda",
+      "office": "President of the Republic",
+      "since": "1964-10-24",
+      "born": "1924-04-28",
+      "tie": { "party": "zm_unip" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [
+        { "name": "Malimba Masheke", "office": "Prime Minister", "since": "1989-03-15", "party": "zm_unip" }
+      ],
+      "sources": [
+        "https://www.worldstatesmen.org/Zambia.html",
+        "https://en.wikipedia.org/wiki/Kenneth_Kaunda"
+      ]
+    },
+    {
+      "nation": "Zimbabwe",
+      "name": "Robert Mugabe",
+      "native": "Robert Gabriel Mugabe",
+      "office": "Executive President",
+      "since": "1987-12-31",
+      "born": "1924-02-21",
+      "tie": { "party": "zw_zanupf" },
+      "bloc_override": null,
+      "heir": null,
+      "must_leave_by": null,
+      "also": [],
+      "sources": [
+        "https://www.worldstatesmen.org/Zimbabwe.html",
+        "https://en.wikipedia.org/wiki/Robert_Mugabe"
+      ],
+      "note": "The prime ministership was abolished 31 Dec 1987 when Mugabe became executive president."
     }
   ]
 }

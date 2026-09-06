@@ -1005,16 +1005,30 @@ pub struct Also {
 /// One row of the leader table. Dates are `YYYY-MM-DD` strings, checked by the
 /// loader; `born` is carried for the S4 hazard draw and may be null where no
 /// source gave a full date.
+///
+/// A REFUSED row is one whose facts were fetched but whose tie cannot resolve
+/// against the polity table as transcribed — Pinochet, who belonged to no
+/// party in a polity with no pillars; Endara, whose party the table records as
+/// struck off. Such a row keeps its office, dates and sources for the record,
+/// but its `name` and `tie` are null and its note begins with `REFUSED`, and
+/// the loader holds it to exactly that shape: a null name without the word is
+/// refused as an omission, a named leader without a tie is refused as an
+/// unsourced bloc. Downstream, a refused row asserts nothing — `blocs::
+/// leader_row` skips it and the nation is described from its table, the way a
+/// successor state is (design D2).
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct Office {
     pub nation: NationId,
-    pub name: String,
-    pub native: String,
+    /// Null only on a REFUSED row.
+    pub name: Option<String>,
+    /// Null only on a REFUSED row.
+    pub native: Option<String>,
     pub office: String,
     pub since: String,
     pub born: Option<String>,
-    pub tie: Tie,
+    /// Null only on a REFUSED row.
+    pub tie: Option<Tie>,
     /// A sourced bloc that beats the one the tie would derive — Sudan's Bashir
     /// heads the army and governs as an Islamist.
     pub bloc_override: Option<crate::government::Bloc>,
@@ -1030,6 +1044,9 @@ pub struct Office {
 
 /// The start of the game, as a date, for the "no name after this" rule.
 const START_DATE: (i32, u32, u32) = (1990, 1, 1);
+
+/// The word a nameless row's note must open with.
+pub const REFUSED: &str = "REFUSED";
 
 /// Parse `YYYY-MM-DD` strictly — ten characters, a real month, a real day of
 /// that month. The one date format the table accepts.
@@ -1055,8 +1072,30 @@ fn check_office(file: &str, o: &Office) -> Vec<LoadError> {
     let who = o.nation.code().to_string();
     let err = |msg: String| LoadError::nation_level(file, &who, msg);
 
-    if o.name.trim().is_empty() {
-        e.push(err("name is empty — one face per nation, and this row has none".into()));
+    let refused = o.note.as_deref().is_some_and(|n| n.starts_with(REFUSED));
+    match &o.name {
+        Some(n) if n.trim().is_empty() => {
+            e.push(err("name is empty — one face per nation, and this row has none".into()))
+        }
+        Some(_) if o.tie.is_none() => e.push(err(
+            "tie is null but the row names a leader — a named leader ties to a party or a              pillar, or the row is REFUSED"
+                .into(),
+        )),
+        Some(_) => {}
+        None if !refused => e.push(err(format!(
+            "name is null but the note does not begin with {REFUSED:?} — a nameless row is a              refusal and says why, never an omission"
+        ))),
+        None => {
+            if o.native.is_some() || o.tie.is_some() || o.bloc_override.is_some() || o.heir.is_some() {
+                e.push(err(
+                    "a REFUSED row asserts nothing: native, tie, bloc_override and heir must all                      be null"
+                        .into(),
+                ));
+            }
+        }
+    }
+    if o.name.is_some() && o.native.is_none() {
+        e.push(err("native is null on a named row — repeat the name where there is no native form".into()));
     }
     if o.office.trim().is_empty() {
         e.push(err("office is empty — say what institution this person directed".into()));
@@ -1078,7 +1117,8 @@ fn check_office(file: &str, o: &Office) -> Vec<LoadError> {
         ))),
         Some(pol) => {
             match &o.tie {
-                Tie::Party(p) => {
+                None => {}
+                Some(Tie::Party(p)) => {
                     if !pol.parties.iter().any(|s| s.id == p) {
                         e.push(err(format!(
                             "tie.party {p:?} is not in {}'s party table — the ids there are {:?}",
@@ -1087,7 +1127,7 @@ fn check_office(file: &str, o: &Office) -> Vec<LoadError> {
                         )));
                     }
                 }
-                Tie::Pillar(pl) => {
+                Some(Tie::Pillar(pl)) => {
                     if !pol.pillars.iter().any(|s| s.pillar == *pl) {
                         e.push(err(format!(
                             "tie.pillar {pl:?} is not in {}'s pillar list — the pillars there are {:?}",
@@ -1264,31 +1304,78 @@ mod tests {
     /// polity table of its own nation. Watched red on this tree by pointing
     /// Poland's tie at "pl_nope" in the fixture: the loader refused it with
     /// `tie.party "pl_nope" is not in Poland's party table`.
+    ///
+    /// The full table, integrated 2026-09-05: one row for each of the 137
+    /// nations in the 1990 roster (the 23 successor states have none by design
+    /// D2), of which exactly two are REFUSED — Chile, whose Pinochet belonged
+    /// to no party in a polity with no pillars, and Panama, whose Endara stood
+    /// on a party the table records as struck off. Every named row has a tie,
+    /// a native form and at least one fetched source; every refused row has a
+    /// note that says so. Watched red on the merged table by nulling Poland's
+    /// name without the REFUSED note and by nulling its tie with the name kept
+    /// (both refused by the loader, see `a_bad_leader_row_is_refused`), and by
+    /// changing the expected refusal count.
     #[test]
     fn every_leader_row_loads_and_ties_to_its_polity() {
         let rows = parse_leaders(&EMBEDDED_LEADERS)
             .unwrap_or_else(|e| panic!("{}", render_errors(&e)));
-        assert!(!rows.is_empty(), "the leader table is empty");
+        let roster: Vec<NationId> = start_nations().to_vec();
+        assert_eq!(rows.len(), roster.len(), "one face per 1990 nation");
+        for id in &roster {
+            assert!(rows.iter().any(|o| o.nation == *id), "{} has no row", id.code());
+        }
+        // Sorted by nation id, so a diff of the file reads as a diff of nations.
+        let mut sorted: Vec<&str> = rows.iter().map(|o| o.nation.code()).collect();
+        sorted.sort_unstable();
+        assert_eq!(sorted, rows.iter().map(|o| o.nation.code()).collect::<Vec<_>>());
+        let mut refused = vec![];
         for o in &rows {
             let pol = crate::government::polity(o.nation)
                 .unwrap_or_else(|| panic!("{} has no polity", o.nation.code()));
-            match &o.tie {
-                Tie::Party(p) => assert!(
-                    pol.parties.iter().any(|s| s.id == p),
-                    "{}: tie {p} not in the table",
-                    o.nation.code()
-                ),
-                Tie::Pillar(pl) => assert!(
-                    pol.pillars.iter().any(|s| s.pillar == *pl),
-                    "{}: pillar {pl:?} not in the list",
-                    o.nation.code()
-                ),
+            match (&o.name, &o.tie) {
+                (None, None) => {
+                    assert!(o.note.as_deref().is_some_and(|n| n.starts_with(REFUSED)));
+                    assert!(o.native.is_none() && o.bloc_override.is_none() && o.heir.is_none());
+                    refused.push(o.nation.code());
+                }
+                (Some(name), Some(tie)) => {
+                    assert!(!name.trim().is_empty(), "{}: nameless", o.nation.code());
+                    assert!(o.native.is_some(), "{}: no native form", o.nation.code());
+                    match tie {
+                        Tie::Party(p) => assert!(
+                            pol.parties.iter().any(|s| s.id == p),
+                            "{}: tie {p} not in the table",
+                            o.nation.code()
+                        ),
+                        Tie::Pillar(pl) => assert!(
+                            pol.pillars.iter().any(|s| s.pillar == *pl),
+                            "{}: pillar {pl:?} not in the list",
+                            o.nation.code()
+                        ),
+                    }
+                }
+                (name, tie) => panic!("{}: name {name:?} with tie {tie:?}", o.nation.code()),
+            }
+            for a in &o.also {
+                if let Some(p) = &a.party {
+                    assert!(pol.parties.iter().any(|s| s.id == p), "{}: also {p}", o.nation.code());
+                }
             }
             assert!(!o.sources.is_empty(), "{}: unsourced", o.nation.code());
+            assert!(o.sources.iter().all(|s| s.starts_with("http")), "{}: {:?}", o.nation.code(), o.sources);
             assert!(parse_date(&o.since).is_some_and(|d| d <= (1990, 1, 1)));
             // No nation appears twice: one face each.
             assert_eq!(rows.iter().filter(|r| r.nation == o.nation).count(), 1);
         }
+        assert_eq!(refused, vec!["Chile", "Panama"], "the refused rows of the 1990 table");
+        // The decided cases of the design, as the table carries them.
+        let row = |id: NationId| rows.iter().find(|o| o.nation == id).unwrap();
+        assert_eq!(row(NationId::China).name.as_deref(), Some("Jiang Zemin"));
+        assert_eq!(row(NationId::Iran).tie, Some(Tie::Pillar(crate::government::Pillar::Clergy)));
+        assert_eq!(row(NationId::Sudan).bloc_override, Some(crate::government::Bloc::Islamist));
+        assert_eq!(row(NationId::USA).must_leave_by.as_deref(), Some("1997-01-20"));
+        assert_eq!(row(NationId::NorthKorea).heir.as_ref().map(|h| h.name.as_str()), Some("Kim Jong-il"));
+        assert_eq!(row(NationId::Brazil).name.as_deref(), Some("Jose Sarney"), "Sarney, not Collor");
     }
 
     /// The four refusals the design names, each exercised against the shipped
@@ -1323,6 +1410,15 @@ mod tests {
         refuse(&good.replacen("\"since\": \"1989-08-24\"", "\"since\": \"24 Aug 1989\"", 1), "not a YYYY-MM-DD date");
         // An unknown field, on the same terms as a nation record.
         refuse(&good.replacen("\"native\"", "\"natvie\"", 1), "unknown field");
+        // A nameless row that does not say REFUSED, and a named row without a tie.
+        refuse(
+            &good.replacen("\"name\": \"Tadeusz Mazowiecki\"", "\"name\": null", 1),
+            "name is null but the note does not begin with",
+        );
+        refuse(
+            &good.replacen("\"tie\": { \"party\": \"pl_solidarity\" }", "\"tie\": null", 1),
+            "tie is null but the row names a leader",
+        );
         // Two rows for one nation.
         let twice = {
             let first = good.find("    {\n      \"nation\": \"Poland\"").unwrap();
