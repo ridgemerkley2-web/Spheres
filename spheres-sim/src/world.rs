@@ -606,6 +606,23 @@ pub struct Statecraft {
     /// Sparse, like `relations`: a state that has never broken its word is
     /// simply absent and reads as the baseline.
     pub reputation: Vec<(NationId, f64)>,
+    /// Foreign backing of a bloc inside another state — the F_B term of the
+    /// political arm's influence, I_B = S_B + F_B (design road 2, S3). Nothing
+    /// writes it in this build; it is declared so the influence readout and
+    /// the surface it feeds are complete, and it serialises nothing while
+    /// empty.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub backing: Vec<Backing>,
+}
+
+/// One sponsor's standing weight behind one bloc in one target state.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct Backing {
+    pub sponsor: NationId,
+    pub target: NationId,
+    pub bloc: crate::government::Bloc,
+    /// Added to the bloc's share to make its influence, 0..1.
+    pub weight: f64,
 }
 
 /// What a state's word is worth before it has spent any of it.

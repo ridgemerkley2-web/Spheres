@@ -5637,6 +5637,24 @@ pub struct GovState {
     /// a government formed mid-month must not age a whole month at midnight.
     #[serde(default, skip_serializing_if = "office_fraction_is_zero")]
     pub office_month_fraction: f64,
+    /// The political arm (`rules.ideology_blocs`). For a regime that holds no
+    /// elections, the standing of each bloc in the country — the thing a vote
+    /// would measure if one were held — as (bloc, share) over all five blocs in
+    /// enum order, summing to one. Seeded FLAT from the leader row on the first
+    /// switched-on `ensure` (design D5) and moved by nothing in this build;
+    /// drift is S3. Empty, and absent from the save, for an electoral nation
+    /// (whose shares are read off `support`) and whenever the arm is off.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub movements: Vec<(Bloc, f64)>,
+    /// Blocs this government has proscribed. Nothing writes it in this build —
+    /// the Ban command is S3 — and it serialises nothing while empty.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub banned: Vec<Bloc>,
+    /// The bloc that holds power in a regime, seeded from the leader row and
+    /// kept when the arm is on. An electoral nation's ruling bloc is read off
+    /// its coalition leader instead and is not stored.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub regime_bloc: Option<Bloc>,
 }
 
 fn office_fraction_is_zero(value: &f64) -> bool {
@@ -5733,6 +5751,9 @@ pub fn ensure(w: &mut WorldState, id: NationId) {
         coup_pressure: 0.0,
         months_in_office: 0,
         office_month_fraction: 0.0,
+        movements: vec![],
+        banned: vec![],
+        regime_bloc: None,
     };
     // Seats at the opening are the last real result read through this system's
     // own machinery, so that January 1990 and January 1994 are described the
@@ -5897,14 +5918,16 @@ fn form_government(w: &mut WorldState, id: NationId, announce: bool) {
 // ---------------------------------------------------------------------------
 
 /// The four things a government is judged on, each 0 (fine) to 1 (unbearable).
-struct Pains {
-    prices: f64,
-    growth: f64,
-    war: f64,
-    order: f64,
+/// `order` alone may exceed 1: it carries separatism on top of the stability
+/// gap, which is why `blocs::discontent` clamps it before weighing it.
+pub(crate) struct Pains {
+    pub(crate) prices: f64,
+    pub(crate) growth: f64,
+    pub(crate) war: f64,
+    pub(crate) order: f64,
 }
 
-fn pains(w: &WorldState, id: NationId) -> Pains {
+pub(crate) fn pains(w: &WorldState, id: NationId) -> Pains {
     let n = w.nation(id);
     Pains {
         // Anything above 3% starts to be felt; 18% is where a government is
