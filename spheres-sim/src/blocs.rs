@@ -342,6 +342,100 @@ pub fn strongest_challenger(w: &WorldState, id: NationId) -> Option<(Bloc, f64)>
 }
 
 // ---------------------------------------------------------------------------
+// The uprising's arithmetic (S4, route 3), pure — the mechanic in
+// `government::uprising` and the draw in `politics::tick` read these.
+// ---------------------------------------------------------------------------
+
+/// Whether a bloc could WIN an uprising in this polity: present, and not
+/// only through Regionalist parties (a regional list is not a movement that
+/// takes a capital), and — for the Western bloc — carried by a party table,
+/// because a Western winner has nothing to govern through in a party-less
+/// polity until a table is transcribed (design S4: "closed until a table
+/// exists").
+pub fn bloc_can_win(id: NationId, bloc: Bloc) -> bool {
+    let pol = match polity(id) {
+        Some(p) => p,
+        None => return false,
+    };
+    let by_party = pol
+        .parties
+        .iter()
+        .any(|s| bloc_of(id, s.id) == bloc && s.family != government::Family::Regionalist);
+    let by_pillar = pol.pillars.iter().any(|s| pillar_bloc(id, s.pillar) == bloc);
+    if bloc == Bloc::Western {
+        return by_party;
+    }
+    by_party || by_pillar
+}
+
+/// W: the strongest non-ruling bloc by influence among those that could
+/// win (`bloc_can_win`), ties in enum order. `None` where nothing rules or
+/// nothing could.
+pub fn challenger(w: &WorldState, id: NationId) -> Option<(Bloc, f64)> {
+    let ruling = ruling_bloc(w, id)?;
+    let mut best: Option<(Bloc, f64)> = None;
+    for (b, v) in influence(w, id) {
+        if b == ruling || !bloc_can_win(id, b) {
+            continue;
+        }
+        if best.map_or(true, |(_, bv)| v > bv) {
+            best = Some((b, v));
+        }
+    }
+    best
+}
+
+/// Whether the state could not put the crowd down (design S4, route 3). A
+/// regime: its weakest armed institution under `COERCION_ARMED` or its mean
+/// loyalty under `COERCION_MEAN`. An electoral state: only where the winner
+/// is non-Western or authoritarianism is at or over `COERCION_AUTH` — a
+/// democracy is not overthrown by its own liberals. Lines INVENTED.
+pub fn coercion_fails(w: &WorldState, id: NationId, winner: Bloc) -> bool {
+    let g = match government::state(w, id) {
+        Some(g) => g,
+        None => return false,
+    };
+    if government::is_electoral(w, id) {
+        return winner != Bloc::Western || w.nation(id).authoritarianism >= COERCION_AUTH;
+    }
+    g.weakest_armed().map_or(1.0, |(_, v)| v) < COERCION_ARMED || g.mean_loyalty() < COERCION_MEAN
+}
+
+pub const COERCION_ARMED: f64 = 0.50;
+pub const COERCION_MEAN: f64 = 0.55;
+pub const COERCION_AUTH: f64 = 0.40;
+/// The uprising's two lines: discontent and the challenger's influence.
+pub const UPRISING_DISCONTENT: f64 = 0.45;
+pub const UPRISING_INFLUENCE: f64 = 0.45;
+
+/// Whether route 3 is ARMED by the movement (the stability-under-12
+/// collapse beside it is the pre-arm mechanic and is read by the caller):
+/// discontent at or over 0.45, the challenger's influence at or over 0.45,
+/// and coercion failing. Pure; the draw that decides whether it fires lives
+/// in `politics::tick`.
+pub fn uprising_armed(w: &WorldState, id: NationId) -> bool {
+    let (winner, i_w) = match challenger(w, id) {
+        Some(x) => x,
+        None => return false,
+    };
+    discontent(w, id) >= UPRISING_DISCONTENT && i_w >= UPRISING_INFLUENCE && coercion_fails(w, id, winner)
+}
+
+/// Why the uprising road is closed, or `None` where it is open.
+pub fn uprising_closed(w: &WorldState, id: NationId) -> Option<&'static str> {
+    if !w.rules.ideology_takeover {
+        return Some(CALIBRATION_PENDING);
+    }
+    if challenger(w, id).is_some() {
+        return None;
+    }
+    match strongest_challenger(w, id) {
+        Some((Bloc::Western, _)) if polity(id).is_some_and(|p| p.parties.is_empty()) => Some(NO_TABLE_FOR_WESTERN),
+        _ => Some(NO_CHALLENGER),
+    }
+}
+
+// ---------------------------------------------------------------------------
 // The takeover watch
 // ---------------------------------------------------------------------------
 
@@ -518,6 +612,11 @@ pub const NOT_IN_THIS_BUILD: &str = "not in this build";
 /// The coup road in a polity whose state carries no Army pillar: nobody to
 /// stage one.
 pub const NO_ARMY: &str = "no army pillar in this polity";
+/// The uprising road where no non-ruling bloc could win.
+pub const NO_CHALLENGER: &str = "no movement that could take power";
+/// The uprising road where the only challenger is Western in a party-less
+/// polity: closed until a table is transcribed.
+pub const NO_TABLE_FOR_WESTERN: &str = "no party table to seat a Western winner";
 
 /// The takeover watch: per road, the gauges the S4 mechanics will read and
 /// whether the road is open. In this build every road is closed with
@@ -560,15 +659,17 @@ pub fn takeover_readout(w: &WorldState, id: NationId) -> TakeoverReadout {
             None
         },
     );
-    let (cv, cb) = match strongest_challenger(w, id) {
+    // Route 3: W where one could win, else the strongest challenger for the
+    // display with the road closed on it.
+    let (cv, cb) = match challenger(w, id).or_else(|| strongest_challenger(w, id)) {
         Some((b, v)) => (v, Some(b)),
         None => (0.0, None),
     };
-    let mut challenger = Gauge::above("challenger influence", cv, 0.45);
+    let mut challenger = Gauge::above("challenger influence", cv, UPRISING_INFLUENCE);
     challenger.bloc = cb;
     let uprising = Road::new(
-        vec![Gauge::above("discontent", disc, 0.45), challenger],
-        if !on { Some(CALIBRATION_PENDING) } else { Some(NOT_IN_THIS_BUILD) },
+        vec![Gauge::above("discontent", disc, UPRISING_DISCONTENT), challenger],
+        uprising_closed(w, id),
     );
     let round_table = Road::new(
         vec![

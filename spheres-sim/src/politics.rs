@@ -208,6 +208,19 @@ pub fn tick(w: &mut WorldState) {
             dissolve_ussr(w);
         } else if is_yugo && (stab < 25.0 || sep > 0.9) && !w.has_flag("yugoslavia_dissolved") {
             dissolve_yugoslavia(w);
+        } else if !is_ussr && !is_yugo && w.rules.ideology_takeover {
+            // The roads (S4, route 3), the uprising: the same site and the
+            // SAME draw as the collapse below, taken only when the road is
+            // armed — the pre-arm collapse (stability under 12) or the
+            // movement (discontent and the challenger's influence both at or
+            // over 0.45 and coercion failing, `blocs::uprising_armed`). The
+            // random `auth_shift` is NOT drawn: the winner sets the opening
+            // authoritarianism. The branch below keeps its exact code and its
+            // exact draw when this switch is off.
+            let armed = stab < 12.0 || crate::blocs::uprising_armed(w, id);
+            if armed && monthly_chance(w, 0.10 * w.rules.crisis_intensity) {
+                crate::government::uprising(w, id);
+            }
         } else if !is_ussr && !is_yugo && stab < 12.0 && monthly_chance(w, 0.10 * w.rules.crisis_intensity) {
             // Generic regime collapse: chaos, then a new regime
             let auth_shift = w.rng.range(-0.3, 0.2);

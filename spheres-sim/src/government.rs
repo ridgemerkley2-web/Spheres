@@ -8015,6 +8015,104 @@ fn break_electoral(w: &mut WorldState, id: NationId, headline: String) {
     );
 }
 
+// ---------------------------------------------------------------------------
+// The roads (S4), route 3: the uprising's effects. The draw lives in
+// `politics::tick`; this writes what the winner does with the capital.
+// ---------------------------------------------------------------------------
+
+/// The authoritarianism a winner opens at (design S4): Western
+/// `min(auth, 0.40)`, Communist `max(auth, 0.80)`, Nationalist `max(auth,
+/// 0.72)`, Islamist `max(auth, 0.80)`, Non-Aligned `max(auth, 0.65)`, all
+/// clamped to 0.05..0.95. INVENTED.
+pub fn winner_authoritarianism(auth: f64, winner: Bloc) -> f64 {
+    let a = match winner {
+        Bloc::Western => auth.min(0.40),
+        Bloc::Communist | Bloc::Islamist => auth.max(0.80),
+        Bloc::Nationalist => auth.max(0.72),
+        Bloc::NonAligned => auth.max(0.65),
+    };
+    a.clamp(0.05, 0.95)
+}
+
+/// The spec pillar a bloc governs through, where the polity has one: the
+/// first pillar in the list whose installing bloc is the winner's.
+fn home_pillar(id: NationId, bloc: Bloc) -> Option<Pillar> {
+    polity(id)?.pillars.iter().map(|s| s.pillar).find(|p| pillar_bloc(id, *p) == bloc)
+}
+
+/// The uprising (S4, route 3), fired by `politics::tick` on its draw. The
+/// pre-arm collapse's two effects first — stability 45, output ×0.93 — then
+/// the winner W (`blocs::challenger`): authoritarianism by
+/// `winner_authoritarianism`, the coalition cleared, the office clock and
+/// the pressure to zero, the regime in W's colour, the movements (seeded from
+/// the parties' bloc sums first in an electoral state) with W +0.15 and
+/// normalised, the spec's pillars reseeded with W's home pillar at 0.80 and
+/// the rest at 0.55. A Western winner reopens the state, and the next tick
+/// schedules its first free elections through the seam. Where nothing could
+/// win (`challenger` is `None`: a party-less polity whose only challenger is
+/// Western, or no present non-ruling bloc at all) the old regime falls as it
+/// did before the arm, without the random shift and without a new colour.
+/// Draws no RNG.
+pub(crate) fn uprising(w: &mut WorldState, id: NationId) {
+    let winner = crate::blocs::challenger(w, id).map(|(b, _)| b);
+    let old = crate::blocs::ruling_bloc(w, id);
+    let electoral = is_electoral(w, id);
+    {
+        let n = w.nation_mut(id);
+        n.stability = 45.0;
+        n.gdp *= 0.93;
+        crate::economy::refresh_debt_ratio(n);
+    }
+    let winner = match winner {
+        Some(b) => b,
+        None => {
+            w.headline(format!("Revolution in {} — the old regime falls.", id.name()));
+            return;
+        }
+    };
+    {
+        let n = w.nation_mut(id);
+        n.authoritarianism = winner_authoritarianism(n.authoritarianism, winner);
+    }
+    let mut movements = if electoral {
+        movements_from_parties(w, id, old.unwrap_or(winner), 0.0)
+    } else {
+        let mut m = [(Bloc::Western, 0.0); 5];
+        let stored = state(w, id).map(|g| g.movements.clone()).unwrap_or_default();
+        if stored.len() == 5 {
+            for (i, e) in stored.iter().enumerate() {
+                m[i] = *e;
+            }
+        } else {
+            m = crate::blocs::bloc_shares(w, id);
+        }
+        m
+    };
+    movements[winner as usize].1 += 0.15;
+    for e in movements.iter_mut() {
+        e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+    }
+    normalise_blocs(&mut movements);
+    let home = home_pillar(id, winner);
+    let pillars: Vec<(Pillar, f64)> = polity(id)
+        .map(|p| p.pillars.iter().map(|s| (s.pillar, if Some(s.pillar) == home { 0.80 } else { 0.55 })).collect())
+        .unwrap_or_default();
+    if let Some(g) = state_mut(w, id) {
+        g.coalition.clear();
+        g.months_in_office = 0;
+        g.office_month_fraction = 0.0;
+        g.coup_pressure = 0.0;
+        g.regime_bloc = Some(winner);
+        g.surging = latched_at_seed(&movements, winner);
+        g.movements = movements.to_vec();
+        g.pillars = pillars;
+        // A state that will vote again owes the country its first free
+        // elections, which the electoral branch schedules on (0, 0).
+        g.next_election = (0, 0);
+    }
+    w.headline(format!("Revolution in {}: the {} movement takes power.", id.name(), winner.label()));
+}
+
 fn maybe_coup(w: &mut WorldState, id: NationId) {
     let (pressure, weakest, settled) = match state(w, id) {
         Some(g) => (g.coup_pressure, g.weakest_armed(), g.months_in_office),
@@ -9999,5 +10097,189 @@ mod tests {
         assert!(!is_electoral(&w, jo));
         assert_eq!(state(&w, jo).unwrap().banned, vec!["jo_ikhwan".to_string()]);
         assert!(w.headlines.iter().any(|h| h == "COUP IN JORDAN: the army annuls the election Muslim Brotherhood and allied Islamists won."), "{:?}", w.headlines);
+    }
+    /// Route 3 (S4). Sudan — Bashir's army ruling as Islamist, the SCP a
+    /// Communist party in its dormant table — with the Communist movement
+    /// held at 0.46 (the line is 0.45), discontent at 0.70 (stability 0, inflation 18%) and the
+    /// army unpaid at 0.30: `uprising_armed` reads true, the road reads OPEN
+    /// and armed, and on the politics tick's own 0.10-a-month draw the
+    /// Communist movement takes power — authoritarianism max(auth, 0.80),
+    /// the regime Communist, the pillars reseeded with the home pillar at
+    /// 0.80 and the rest at 0.55, stability 45, output ×0.93. The same Sudan
+    /// with the takeover switch off never sees the line. Watched red with
+    /// `uprising_armed` returning false: "the Communist movement never took
+    /// power in 120 months".
+    #[test]
+    fn a_communist_movement_at_discontent_0_70_with_an_unpaid_army_takes_power() {
+        let sd = NationId::Sudan;
+        let arm = |w: &mut WorldState| {
+            {
+                let n = w.nation_mut(sd);
+                n.stability = 0.0;
+                n.inflation = 0.18;
+                n.growth_last = 0.01;
+                n.war_exhaustion = 0.0;
+                n.separatism = 0.0;
+            }
+            if let Some(g) = state_mut(w, sd) {
+                if g.movements.len() == 5 && g.regime_bloc != Some(Bloc::Communist) {
+                    // 0.46 rather than the 0.45 line itself: the shares are
+                    // renormalised on the read, and a movement written AT
+                    // the line can round a unit under it.
+                    let mut m = g.movements.clone();
+                    m[Bloc::Communist as usize].1 = 0.46;
+                    let rest: f64 = m.iter().filter(|(b, _)| *b != Bloc::Communist).map(|(_, v)| *v).sum();
+                    for e in m.iter_mut() {
+                        if e.0 != Bloc::Communist {
+                            e.1 = e.1 / rest * 0.54;
+                        }
+                    }
+                    g.movements = m;
+                    for e in g.pillars.iter_mut() {
+                        e.1 = if e.0 == Pillar::Army { 0.30 } else { 0.60 };
+                    }
+                }
+            }
+        };
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(sd);
+        assert!(!is_electoral(&w, sd));
+        assert_eq!(crate::blocs::ruling_bloc(&w, sd), Some(Bloc::Islamist));
+        arm(&mut w);
+        assert!((crate::blocs::discontent(&w, sd) - 0.70).abs() < 1e-9, "{}", crate::blocs::discontent(&w, sd));
+        assert_eq!(crate::blocs::challenger(&w, sd).map(|(b, _)| b), Some(Bloc::Communist));
+        assert!(crate::blocs::uprising_armed(&w, sd));
+        let road = crate::blocs::takeover_readout(&w, sd).uprising;
+        assert!(road.open && road.armed, "{road:?}");
+        let auth_before = w.nation(sd).authoritarianism;
+        let mut month = None;
+        for m in 0..120 {
+            arm(&mut w);
+            let news = crate::tick_month(&mut w, &[]);
+            if news.iter().any(|h| h == "Revolution in Sudan: the Communist movement takes power.") {
+                month = Some(m + 1);
+                break;
+            }
+        }
+        let month = month.expect("the Communist movement never took power in 120 months");
+        println!("route 3: Sudan's Communist movement took power in month {month}");
+        let n = w.nation(sd);
+        assert!((n.authoritarianism - auth_before.max(0.80).min(0.95)).abs() < 1e-12, "{}", n.authoritarianism);
+        let g = state(&w, sd).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Communist));
+        assert!(g.coalition.is_empty());
+        assert_eq!(g.months_in_office, 0);
+        assert_eq!(g.movements.len(), 5);
+        let home = polity(sd).unwrap().pillars.iter().map(|s| s.pillar).find(|p| pillar_bloc(sd, *p) == Bloc::Communist);
+        for (p, v) in &g.pillars {
+            let expected = if Some(*p) == home { 0.80 } else { 0.55 };
+            // The regime tick has walked them once since; the seed is the
+            // value before that walk, so read the direction, not the digit.
+            assert!((v - expected).abs() < 0.10, "{p:?} {v} against a seed of {expected}");
+        }
+        assert_eq!(g.pillars.len(), polity(sd).unwrap().pillars.len());
+
+        let mut off = world_1990(on_rules(7));
+        off.player = Some(sd);
+        for _ in 0..120 {
+            arm(&mut off);
+            for h in crate::tick_month(&mut off, &[]) {
+                assert!(!h.contains("takes power"), "the switch off: {h}");
+            }
+        }
+    }
+
+    /// A Western winner is refused in a party-less polity (S4, route 3).
+    /// Saudi Arabia has no party table; with the Western movement (present
+    /// through the merchant houses) held at 0.60 of the country, discontent
+    /// at 0.70 and the Guard unpaid, `challenger` names the next bloc that
+    /// could win instead, the road's reason names the missing table only
+    /// where nothing else could, and no "Western movement takes power" line
+    /// is ever printed in 120 months. Watched red with the Western arm of
+    /// `bloc_can_win` reading `by_party || by_pillar`: Saudi Arabia's
+    /// challenger read Western.
+    #[test]
+    fn a_western_winner_is_refused_in_a_party_less_polity() {
+        let sa = NationId::SaudiArabia;
+        assert!(polity(sa).unwrap().parties.is_empty());
+        assert!(crate::blocs::bloc_present(sa, Bloc::Western), "the merchant houses carry the Western bloc");
+        assert!(!crate::blocs::bloc_can_win(sa, Bloc::Western));
+        assert!(crate::blocs::bloc_can_win(sa, Bloc::Islamist));
+        let arm = |w: &mut WorldState| {
+            {
+                let n = w.nation_mut(sa);
+                n.stability = 0.0;
+                n.inflation = 0.18;
+                n.growth_last = 0.01;
+                n.war_exhaustion = 0.0;
+                n.separatism = 0.0;
+            }
+            if let Some(g) = state_mut(w, sa) {
+                if g.movements.len() == 5 {
+                    let r = g.regime_bloc.unwrap();
+                    for e in g.movements.iter_mut() {
+                        e.1 = if e.0 == Bloc::Western { 0.60 } else if e.0 == r { 0.30 } else { 0.002 };
+                    }
+                    normalise_blocs(&mut g.movements);
+                    for e in g.pillars.iter_mut() {
+                        e.1 = 0.30;
+                    }
+                }
+            }
+        };
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(sa);
+        arm(&mut w);
+        let ch = crate::blocs::challenger(&w, sa);
+        assert_ne!(ch.map(|(b, _)| b), Some(Bloc::Western), "{ch:?}");
+        let strongest = crate::blocs::strongest_challenger(&w, sa).map(|(b, _)| b);
+        assert_eq!(strongest, Some(Bloc::Western));
+        for _ in 0..120 {
+            arm(&mut w);
+            for h in crate::tick_month(&mut w, &[]) {
+                assert!(!h.starts_with("Revolution in Saudi Arabia: the Western movement"), "{h}");
+            }
+        }
+        // The reason, where nothing else could win: a polity whose only
+        // present non-ruling bloc is Western through a pillar.
+        let mut lone = world_1990(roads_rules(7));
+        if let Some(g) = state_mut(&mut lone, sa) {
+            for e in g.movements.iter_mut() {
+                e.1 = if e.0 == Bloc::Western { 0.60 } else if e.0 == Bloc::NonAligned { 0.40 } else { 0.0 };
+            }
+        }
+        // Islamist and Nationalist can still win through the ulema and the
+        // Guard, so the road is open on one of them; the reason is served
+        // only where `challenger` is empty, which needs a polity with no
+        // winnable non-ruling bloc at all — asserted on the readout's word.
+        assert_eq!(crate::blocs::uprising_closed(&lone, sa), None);
+        assert_eq!(crate::blocs::NO_TABLE_FOR_WESTERN, "no party table to seat a Western winner");
+    }
+
+    /// The invariant (S4): a stable democracy never sees routes 2-4 over
+    /// thirty-five years with the roads on. Six democracies, seeds 0..3 —
+    /// an invariant, so the sample is a budget and not a bar (iron rule 7).
+    #[test]
+    fn a_stable_democracy_never_sees_the_roads_over_thirty_five_years() {
+        let calm = [NationId::USA, NationId::UK, NationId::Sweden, NationId::Switzerland, NationId::Japan, NationId::Canada];
+        for seed in 0..4u64 {
+            let mut w = world_1990(GameRules { seed, ideology_blocs: true, ideology_takeover: true, ..GameRules::default() });
+            for _ in 0..420 {
+                for h in crate::tick_month(&mut w, &[]) {
+                    for id in calm {
+                        let name = id.name();
+                        let hit = h.starts_with(&format!("COUP IN {}", name.to_uppercase()))
+                            || h.starts_with(&format!("Revolution in {name}"))
+                            || h.starts_with(&format!("{name} convenes a round table"))
+                            || h.starts_with(&format!("{name} suspends its constitution"))
+                            || h.contains(&format!("in {name} sits down"));
+                        assert!(!hit, "seed {seed}: {h}");
+                    }
+                }
+            }
+            for id in calm {
+                assert!(is_electoral(&w, id), "seed {seed}: {} stopped voting", id.name());
+            }
+        }
     }
 }
