@@ -14150,7 +14150,9 @@ const BLOC_LABEL = { Western: "Western", Communist: "Communist", Nationalist: "N
 function blocColor(b) { return BLOC_COLOR[b] || "#333c48"; }
 function blocLabel(b) { return BLOC_LABEL[b] || "\u2014"; }
 /// The header chip's band, from the served percentage: green under 25, amber
-/// 25-49, red at 50 and above. The number itself is blocs::discontent.
+/// 25-49, red at 50 and above. The number itself is blocs::discontent. The two
+/// band edges, 25 and 50, are INVENTED (design, approved 2026-09-05) and filed
+/// in BUGS.md P-4: they colour a chip and decide nothing in the sim.
 function discontentBand(pct) { return pct < 25 ? "green" : pct < 50 ? "amber" : "red"; }
 /// The person, or the institution where no person is named (design D2).
 function leaderLine(n) { const l = n && n.leader; return l ? (l.name || l.described || null) : null; }

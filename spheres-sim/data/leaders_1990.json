@@ -350,7 +350,7 @@
         "https://en.wikipedia.org/wiki/Georgi_Atanasov_(politician)",
         "https://en.wikipedia.org/wiki/Bulgarian_Communist_Party"
       ],
-      "note": "On 1 Jan 1990 the party was still the BCP (renamed BSP April 1990); bg_bsp is the polity table's id for it. Mladenov took the party 10 Nov 1989 and the State Council 17 Nov 1989."
+      "note": "On 1 Jan 1990 the party was still the BCP (renamed BSP April 1990); bg_bsp is the polity table's id for it. Mladenov took the party 10 Nov 1989 and the State Council 17 Nov 1989. Atanasov's dates conflict between the two cited sources: Wikipedia gives 21 Mar 1986 - 3 Feb 1990, worldstatesmen 24 Mar 1986 - 8 Feb 1990; the row takes Wikipedia's, and both are a fact of 1 Jan 1990 either way."
     },
     {
       "nation": "Cambodia",
@@ -533,12 +533,12 @@
     },
     {
       "nation": "Comoros",
-      "name": "Said Mohamed Djohar",
-      "native": "Said Mohamed Djohar",
+      "name": null,
+      "native": null,
       "office": "Interim President of the Republic (former president of the Supreme Court, installed after Abdallah's assassination)",
       "since": "1989-11-27",
       "born": "1918-08-22",
-      "tie": { "party": "km_udzima" },
+      "tie": null,
       "bloc_override": null,
       "heir": null,
       "must_leave_by": null,
@@ -548,7 +548,7 @@
         "https://en.wikipedia.org/wiki/Said_Mohamed_Djohar",
         "https://en.wikipedia.org/wiki/1990_Comorian_presidential_election"
       ],
-      "note": "Hard call on the tie: worldstatesmen lists Djohar as non-party on 1 Jan 1990, but he was already the incumbent-state candidate and stood for Udzima (Comorian Union for Progress) in the 4/11 Mar 1990 election, which he won; there is no other valid tie (he was not of the Garde Presidentielle, whose mercenaries had just been expelled). Interim from 26 Nov 1989 per worldstatesmen, formal 27 Nov."
+      "note": "REFUSED: tie. The sourced facts are Said Mohamed Djohar (Interim President of the Republic from 27 Nov 1989 per worldstatesmen and Wikipedia, born 22 Aug 1918), whom worldstatesmen lists as NON-PARTY on 1 Jan 1990. The km_udzima tie the data pass wrote is his label at the 4/11 Mar 1990 election, a fact AFTER the start date (design D2), and the only other institution in the block, the Garde Presidentielle, had just killed his predecessor and was not his. No tie the table can prove exists, so the row is refused on 2026-09-05 rather than carry a forward inference: name and tie nulled, office and dates kept, and the Comoros is described from its table until a pre-1990 tie is sourced or Ridge rules."
     },
     {
       "nation": "Congo",
@@ -613,12 +613,12 @@
     },
     {
       "nation": "Cyprus",
-      "name": "George Vassiliou",
-      "native": "Georgios Vasileiou",
+      "name": null,
+      "native": null,
       "office": "President of the Republic",
       "since": "1988-02-28",
       "born": "1931-05-20",
-      "tie": { "party": "cy_akel" },
+      "tie": null,
       "bloc_override": null,
       "heir": null,
       "must_leave_by": null,
@@ -627,7 +627,7 @@
         "https://en.wikipedia.org/wiki/George_Vassiliou",
         "https://www.worldstatesmen.org/Cyprus.html"
       ],
-      "note": "Hard call on the tie: Vassiliou was elected as an independent with AKEL's support and Cyprus's polity has no pillars, so the backing party is the only valid tie; the ruling bloc read off it (Communist) overstates a centrist technocrat. Presidential system: the president is the executive. worldstatesmen's Cyprus page lists him but the extraction could not read the Republic's post-1977 lines, so Wikipedia is the primary source."
+      "note": "REFUSED: tie. The sourced facts are George Vassiliou (President of the Republic since 28 Feb 1988, born 20 May 1931), whom the fetched Wikipedia page describes as an INDEPENDENT elected with AKEL's support; Cyprus's polity has no pillars. The cy_akel tie the data pass wrote was the backing party, not a membership, and its own note conceded that the Communist bloc it produced overstated a centrist technocrat. A backing is not a tie the schema knows, so the row is refused on 2026-09-05: name and tie nulled, office and dates kept, and Cyprus is described from its chamber until Ridge rules or the schema gains a sourced way to say 'independent'. Presidential system: the president is the executive. worldstatesmen's Cyprus page lists him but the extraction could not read the Republic's post-1977 lines, so Wikipedia is the primary source."
     },
     {
       "nation": "Czechoslovakia",
@@ -910,12 +910,12 @@
     },
     {
       "nation": "Greece",
-      "name": "Xenophon Zolotas",
-      "native": "Xenofon Efthymiou Zolotas",
+      "name": null,
+      "native": null,
       "office": "Prime Minister of Greece (all-party government)",
       "since": "1989-11-23",
       "born": "1904-03-26",
-      "tie": { "party": "gr_nd" },
+      "tie": null,
       "bloc_override": null,
       "heir": null,
       "must_leave_by": null,
@@ -928,7 +928,7 @@
         "https://en.wikipedia.org/wiki/Christos_Sartzetakis",
         "https://www.worldstatesmen.org/Greece.html"
       ],
-      "note": "Zolotas was a non-party economist heading an ecumenical government of New Democracy, PASOK and Synaspismos after the 5 Nov 1989 election. The schema needs a party or pillar tie and Greece has no pillars; ND was the largest party in the coalition (46% per the Mitsotakis page, 0.462 in the table) so the tie is gr_nd. This is a convenience tie, not a statement that Zolotas was an ND man."
+      "note": "REFUSED: tie. The sourced facts are Xenophon Zolotas (Prime Minister since 23 Nov 1989, born 26 Mar 1904), a NON-PARTY central banker heading the ecumenical government of New Democracy, PASOK and Synaspismos after the 5 Nov 1989 election; Greece's polity has no pillars. The gr_nd tie the data pass wrote was, in its own words, 'a convenience tie, not a statement that Zolotas was an ND man' (ND being the largest coalition partner, 0.462 in the table), which is exactly the unsourced bloc the loader exists to refuse. Refused on 2026-09-05: name and tie nulled, office, dates and the president kept, and Greece is described from its chamber, which seats ND as leader either way."
     },
     {
       "nation": "Guatemala",
@@ -1700,7 +1700,7 @@
       "born": "1912-04-15",
       "tie": { "party": "kp_wpk" },
       "bloc_override": null,
-      "heir": { "name": "Kim Jong-il", "office": "Member of the Presidium of the WPK Politburo, designated successor", "since": "1980-10-10" },
+      "heir": { "name": "Kim Jong-il", "office": "Member of the Presidium of the WPK Politburo, designated successor", "since": "1980-10-14" },
       "must_leave_by": null,
       "also": [
         { "name": "Yon Hyong-muk", "office": "Premier of the Administration Council", "since": "1988-12-11", "party": "kp_wpk" }
@@ -1708,9 +1708,11 @@
       "sources": [
         "https://en.wikipedia.org/wiki/Kim_Il_Sung",
         "https://en.wikipedia.org/wiki/Kim_Jong_Il",
-        "https://en.wikipedia.org/wiki/Yon_Hyong-muk"
+        "https://en.wikipedia.org/wiki/Yon_Hyong-muk",
+        "https://en.wikipedia.org/wiki/6th_Congress_of_the_Workers%27_Party_of_Korea",
+        "https://en.wikipedia.org/wiki/6th_Central_Committee_of_the_Workers%27_Party_of_Korea"
       ],
-      "note": "Design says Party: tied to the WPK party row (kp_wpk), which the dormant table carries, rather than the Party pillar (the OGD), so the regime bloc seeds Communist from the party. Since is the general secretaryship (1966); presidency from 28 Dec 1972. Heir: the fetched Kim Jong Il page gives the 6th Congress as October 1980 (senior posts in the Presidium, Military Commission and Secretariat) with no day, and an earlier 1974 proclamation. The day 10 in the heir since was NOT read from a fetched page this run - integrator should verify the Congress opening date or hold the heir since at month precision."
+      "note": "Design says Party: tied to the WPK party row (kp_wpk), which the dormant table carries, rather than the Party pillar (the OGD), so the regime bloc seeds Communist from the party. Since is the general secretaryship (1966); presidency from 28 Dec 1972. Heir: the Kim Jong Il page gives the 6th Congress (October 1980) as the moment he was given senior posts in the Presidium, Military Commission and Secretariat and formally designated successor; the 6th Congress page dates the congress 10-14 Oct 1980 and says the 1st plenum of the 6th Central Committee, 'to elect the central party leadership', was held immediately after it; the 6th Central Committee page dates that 1st plenary session 14 October 1980. The heir since is that plenum. The earlier day 10 (the congress opening) was an unsourced guess and was corrected 2026-09-05."
     },
     {
       "nation": "Norway",
@@ -2428,7 +2430,7 @@
         "https://en.wikipedia.org/wiki/Turgut_%C3%96zal",
         "https://en.wikipedia.org/wiki/Y%C4%B1ld%C4%B1r%C4%B1m_Akbulut"
       ],
-      "note": "Design's decided case: Ozal, with Akbulut in also. Ozal formally left ANAP on taking the presidency (worldstatesmen still lists him AnaP); the tie is to the party he built and still steered through Akbulut."
+      "note": "Design's decided case: Ozal, with Akbulut in also. worldstatesmen lists Ozal as AnaP in the presidency; the tie is to the party he built and steered through Akbulut. (An earlier note's claim that he 'formally left ANAP' on taking office was not read from any cited page and was struck 2026-09-05.)"
     },
     {
       "nation": "UAE",

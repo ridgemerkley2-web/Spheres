@@ -1307,14 +1307,21 @@ mod tests {
     ///
     /// The full table, integrated 2026-09-05: one row for each of the 137
     /// nations in the 1990 roster (the 23 successor states have none by design
-    /// D2), of which exactly two are REFUSED — Chile, whose Pinochet belonged
-    /// to no party in a polity with no pillars, and Panama, whose Endara stood
-    /// on a party the table records as struck off. Every named row has a tie,
-    /// a native form and at least one fetched source; every refused row has a
-    /// note that says so. Watched red on the merged table by nulling Poland's
-    /// name without the REFUSED note and by nulling its tie with the name kept
-    /// (both refused by the loader, see `a_bad_leader_row_is_refused`), and by
-    /// changing the expected refusal count.
+    /// D2), of which exactly FIVE are REFUSED — Chile, whose Pinochet belonged
+    /// to no party in a polity with no pillars; Panama, whose Endara stood on a
+    /// party the table records as struck off; and, refused on the provenance
+    /// audit the same day, Comoros (Djohar non-party on 1 January, his Udzima
+    /// label a March 1990 fact), Cyprus (Vassiliou an independent; AKEL's
+    /// backing is not a membership) and Greece (Zolotas a non-party central
+    /// banker on a self-described "convenience tie" to ND). Every named row
+    /// has a tie, a native form and at least one fetched source; every refused
+    /// row has a note that says so. Watched red on the merged table by nulling
+    /// Poland's name without the REFUSED note and by nulling its tie with the
+    /// name kept (both refused by the loader, see `a_bad_leader_row_is_refused`),
+    /// and by changing the expected refusal count; and red again on 2026-09-05
+    /// when the three audit refusals landed against the old two-row list
+    /// (`left: ["Chile", "Comoros", "Cyprus", "Greece", "Panama"] right:
+    /// ["Chile", "Panama"]`).
     #[test]
     fn every_leader_row_loads_and_ties_to_its_polity() {
         let rows = parse_leaders(&EMBEDDED_LEADERS)
@@ -1367,7 +1374,11 @@ mod tests {
             // No nation appears twice: one face each.
             assert_eq!(rows.iter().filter(|r| r.nation == o.nation).count(), 1);
         }
-        assert_eq!(refused, vec!["Chile", "Panama"], "the refused rows of the 1990 table");
+        assert_eq!(
+            refused,
+            vec!["Chile", "Comoros", "Cyprus", "Greece", "Panama"],
+            "the refused rows of the 1990 table"
+        );
         // The decided cases of the design, as the table carries them.
         let row = |id: NationId| rows.iter().find(|o| o.nation == id).unwrap();
         assert_eq!(row(NationId::China).name.as_deref(), Some("Jiang Zemin"));
@@ -1375,6 +1386,9 @@ mod tests {
         assert_eq!(row(NationId::Sudan).bloc_override, Some(crate::government::Bloc::Islamist));
         assert_eq!(row(NationId::USA).must_leave_by.as_deref(), Some("1997-01-20"));
         assert_eq!(row(NationId::NorthKorea).heir.as_ref().map(|h| h.name.as_str()), Some("Kim Jong-il"));
+        // The heir's day was sourced on the audit: the 1st plenum of the 6th
+        // Central Committee, 14 October 1980.
+        assert_eq!(row(NationId::NorthKorea).heir.as_ref().map(|h| h.since.as_str()), Some("1980-10-14"));
         assert_eq!(row(NationId::Brazil).name.as_deref(), Some("Jose Sarney"), "Sarney, not Collor");
     }
 

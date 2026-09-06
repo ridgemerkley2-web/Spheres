@@ -1,5 +1,79 @@
 # SPHERES Roadmap
 
+## Done — the political arm, stages S0-S2: the bloc lens, the leader table, the government screen (2026-09-05)
+
+Built on Ridge's approval of "The Political Arm of SPHERES", revision 2, quoted:
+"Go ahead and build it with code." Branch `feat/ideology-blocs` off
+`origin/feat/hoi4-map-and-tech` (ae203ec), pushed as a fast-forward of that
+branch. SPEC §4 carries the design as built; BUGS.md P-1..P-12 carry every
+invented coefficient, every refused row and every disagreement with the page.
+
+- **Five blocs** — Western, Communist, Nationalist, Islamist, Non-Aligned, in
+  that fixed order, ties broken in it everywhere — read off the party tables
+  that already existed: `Family::bloc()` for the default, 37 `.aligned(...)`
+  rows in `POLITIES` for the sourced per-party overrides, `government::bloc_of`
+  as the one answer, and a pillar map (Army Nationalist, Security Non-Aligned,
+  Business Western, Party Communist only where the regime's largest party is,
+  Clergy Islamist where the clergy is Muslim: eight of the twelve).
+- **Shares and the ruling bloc.** Electoral: the sum of party support per
+  bloc, nothing stored; the coalition leader's bloc rules. Regime:
+  `GovState.movements` seeded FLAT from the leader row (ruling 0.60, remainder
+  split over the blocs present, floor 0.002) and `regime_bloc`. Monarchy
+  exception at authoritarianism ≥ 0.40 for a pillar-tied electoral polity —
+  Jordan, the court Non-Aligned over a Brotherhood chamber served as
+  `government_of_the_day`. **Discontent** over the existing `pains`:
+  0.50·order + 0.20·prices + 0.20·growth + 0.10·war, stability 40 alone
+  0.1667, stability 25 alone 0.2917. **Influence** = share + foreign backing,
+  backing empty until S3 and served as zero.
+- **The leader table**, `spheres-sim/data/leaders_1990.json`: who directed the
+  executive on 1 January 1990, one row for each of the 137 roster nations, 339
+  source URLs, every tie resolving against the row's own polity table, every
+  date a fact of that day, no name after the start except heirs and `also`.
+  **132 named, 5 REFUSED** (Chile, Panama, and — on the provenance audit —
+  Comoros, Cyprus, Greece: a row a source does not support is kept nameless
+  with its office and dates and a note that says why, never corrected to a
+  guess; BUGS P-7). The audit sampled 43 rows and roughly 95 URLs; one heir
+  date was corrected to a sourced day, two notes trimmed.
+- **The 1990 census as transcribed**: Western 67, Communist 17, Nationalist 7,
+  Islamist 3, Non-Aligned 43 — pinned. It disagrees with three bars of the
+  design brief (Communist 11-13; Islamist exactly Iran and Sudan; Libya
+  Nationalist); that bar is kept as written and parked `#[ignore]` for Ridge
+  (BUGS P-6).
+- **The takeover watch**, served closed: four roads as gauges with the
+  design's triggers, every road `open: false`, reason "not in this build".
+  The Ideology map's hatch reads threshold gauges at half their trigger — a
+  band has no half and is no longer read (fixed this run; it had hatched
+  every nation by itself) — and STILL covers all 137 living nations at the
+  1990 start on the design's own arithmetic; recorded per gauge and filed
+  (BUGS P-5), not bent.
+- **The surface.** `/api/state` per nation: `ruling_bloc`, `discontent`,
+  `blocs`, `leader`, `government_of_the_day`, `takeover` (null when the arm is
+  off). `GET /api/government?nation=` and the government screen on **I**: the
+  five-segment bar, the chamber grouped by bloc or the pillars with loyalty and
+  coup pressure, the watch, and the four government commands and two political
+  stratagems each with the sim's own `price_of` and `refusal_of` (`refusal_of`
+  is new: it says exactly what `apply_command` would, checked over fourteen
+  commands on Poland and Iraq, eleven refused, state hash unchanged). The
+  DISCONTENT chip (green < 25, amber 25-49, red ≥ 50), the ruling swatch
+  before the nation name, the ninth map mode Ideology. Nothing is computed in
+  JavaScript.
+- **Inert by measurement.** `ideology_blocs` and `ideology_takeover` default
+  false and serialise nothing when false; the browser turns the first on at
+  boot, new and load, the second stays off everywhere. With the switch off the
+  1990 hash is the tree's actual (0xe26e4bf8d6c60066) and twenty-year hashes
+  on six seeds equal the base branch's; with it on, gdp, stability, political
+  capital, authoritarianism, inflation, support, coalitions, pillars and
+  `rng.state` are bit-identical to off for 240 months. Headless digests, market
+  off: `run 35 1990` d1a2cfbf7c6958d7 (3501 lines), `run 35 7` 39dea3341a7f6e8c
+  (3983 lines), unchanged. The two goldens stay red at their unmoved actuals
+  (0xe26e4bf8d6c60066, 0xbe94d6125631829c) while BUGS E-3 is open; the third
+  deliberate red is E-3's own bar.
+- **Still design, not built** (S3-S5): the roads as mechanics, Ban and Back a
+  movement and the other three new commands, movement drift, foreign backing
+  and the regional sponsors flag, the census, leader mortality by the hazard
+  draw. D4's Nepal and Haiti dormant tables are transcribed to
+  `docs/political-arm/nepal-haiti-d4-pending.txt` and not landed (BUGS P-8).
+
 ## Integrated release — AI industrial supply manager (2026-09-04)
 
 Economic Competition governments now review evidenced Materials and Machinery
