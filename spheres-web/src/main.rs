@@ -910,6 +910,7 @@ fn foreign_commitments_json(w: &WorldState, id: NationId) -> serde_json::Value {
 
 fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
     let me = w.player;
+    let politics = spheres_sim::blocs::politics(w, n.id);
     let annual_budget = if me == Some(n.id) {
         let b = n.budget_for(w.year);
         Some(serde_json::json!({
@@ -982,6 +983,16 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "oil_mbd": n.oil_mbd,
         "command_economy": n.system == EconomySystem::Command,
         "authoritarianism": n.authoritarianism,
+        // THE POLITICAL ARM (S1). Six fields, every one computed by blocs.rs —
+        // bloc_shares / ruling_bloc / discontent / takeover_readout — and
+        // every one null while `rules.ideology_blocs` is off. The page reads
+        // them; it derives nothing from them.
+        "ruling_bloc": politics.as_ref().and_then(|p| p.ruling_bloc),
+        "discontent": politics.as_ref().map(|p| p.discontent),
+        "blocs": politics.as_ref().map(|p| &p.blocs),
+        "leader": politics.as_ref().and_then(|p| p.leader.as_ref()),
+        "government_of_the_day": politics.as_ref().and_then(|p| p.government_of_the_day.as_ref()),
+        "takeover": politics.as_ref().map(|p| &p.takeover),
         "at_war": w.at_war(n.id),
         "relation": me.map(|m| w.relation(m, n.id)),
         "sanctioned_by_me": me.is_some_and(|m| w.is_sanctioning(m, n.id)),
@@ -1042,6 +1053,225 @@ fn stratagems_json(w: &WorldState, id: NationId) -> serde_json::Value {
         "nation_name": id.name(),
         "political_capital": held,
         "offers": offers,
+    })
+}
+
+
+// ===========================================================================
+// THE GOVERNMENT SCREEN (S2 of "The Political Arm of SPHERES"). Every number
+// and every sentence the page prints is built HERE from the sim's own reads —
+// blocs.rs for the shares, the ruling bloc, the discontent gauge and the
+// takeover watch; government.rs for the parties, the pillars, strain and
+// upkeep; `price_of` and `refusal_of` for the actions. The page composes
+// nothing: it holds the five colours and nothing else.
+// ===========================================================================
+
+/// One action on the screen: the command the page would post, the price the
+/// sim would charge, and the sentence it would refuse it with (null where it
+/// would go through). `command` is the exact payload `parse_command` reads.
+fn action_json(
+    w: &WorldState,
+    cmd: &Command,
+    kind: &str,
+    label: String,
+    detail: Option<String>,
+    blurb: Option<&str>,
+    payload: serde_json::Value,
+) -> serde_json::Value {
+    serde_json::json!({
+        "kind": kind,
+        "label": label,
+        "detail": detail,
+        "blurb": blurb,
+        "command": payload,
+        "price": spheres_sim::price_of(w, cmd).unwrap_or(0.0),
+        "affordable": spheres_sim::affordable(w, cmd),
+        "refusal": spheres_sim::refusal_of(w, cmd),
+    })
+}
+
+/// GET /api/government?nation= — the polity, the bar, the parties grouped by
+/// bloc or the pillars, strain and upkeep and the next election, the takeover
+/// watch with every road closed and its reason, and the actions with their
+/// prices and refusals. `on` is false while `rules.ideology_blocs` is off,
+/// and the political fields are then null, as they are on /api/state.
+fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
+    use spheres_sim::blocs;
+    use spheres_sim::government as gov;
+    use spheres_sim::government::Bloc;
+    let pol = gov::polity(id);
+    let g = gov::state(w, id);
+    let electoral = gov::is_electoral(w, id);
+    let held = w.nation_opt(id).map_or(0.0, |n| n.political_capital);
+    let politics = blocs::politics(w, id);
+    let ruling = politics.as_ref().and_then(|p| p.ruling_bloc);
+    let bloc_of = |party: &str| gov::bloc_of(id, party);
+    // The governing blocs: an electoral nation's are the blocs of its
+    // coalition; a regime's is the one that rules.
+    let governing: Vec<Bloc> = match (electoral, g) {
+        (true, Some(g)) => {
+            let mut v: Vec<Bloc> = g.coalition.iter().map(|p| bloc_of(p)).collect();
+            v.sort();
+            v.dedup();
+            v
+        }
+        _ => ruling.into_iter().collect(),
+    };
+    let banned: Vec<Bloc> = g.map_or(vec![], |g| g.banned.clone());
+    let bar: Vec<serde_json::Value> = politics
+        .as_ref()
+        .map(|p| {
+            p.blocs
+                .iter()
+                .map(|r| {
+                    serde_json::json!({
+                        "bloc": r.bloc,
+                        "share": r.share,
+                        "backing": r.backing,
+                        "banned": r.banned,
+                        "governing": governing.contains(&r.bloc),
+                        "ruling": ruling == Some(r.bloc),
+                    })
+                })
+                .collect()
+        })
+        .unwrap_or_default();
+    // The party table grouped by bloc, in enum order, empty groups dropped.
+    let shares = blocs::bloc_shares(w, id);
+    let groups: Vec<serde_json::Value> = Bloc::ALL
+        .iter()
+        .filter_map(|b| {
+            let parties: Vec<serde_json::Value> = pol?
+                .parties
+                .iter()
+                .filter(|s| bloc_of(s.id) == *b)
+                .map(|s| {
+                    serde_json::json!({
+                        "id": s.id,
+                        "name": s.name,
+                        "native": s.native,
+                        "family": s.family.label(),
+                        "bloc": b,
+                        "pariah": s.pariah,
+                        "support": g.map_or(0.0, |g| g.support_of(s.id)),
+                        "seats": g.map_or(0.0, |g| g.seat_share(s.id)),
+                        "in_government": g.is_some_and(|g| g.in_government(s.id)),
+                        "leads": g.and_then(|g| g.leader()) == Some(s.id),
+                        "banned": banned.contains(b),
+                    })
+                })
+                .collect();
+            if parties.is_empty() {
+                return None;
+            }
+            Some(serde_json::json!({
+                "bloc": b,
+                "label": b.label(),
+                "share": shares[*b as usize].1,
+                "banned": banned.contains(b),
+                "parties": parties,
+            }))
+        })
+        .collect();
+    let pillars: Vec<serde_json::Value> = pol
+        .map(|p| {
+            p.pillars
+                .iter()
+                .map(|s| {
+                    serde_json::json!({
+                        "pillar": s.pillar,
+                        "key": s.pillar.key(),
+                        "name": s.name,
+                        "loyalty": g.map_or(1.0, |g| g.loyalty(s.pillar)),
+                        "bloc": gov::pillar_bloc(id, s.pillar),
+                    })
+                })
+                .collect()
+        })
+        .unwrap_or_default();
+    let next_election = g
+        .filter(|_| electoral)
+        .map(|g| g.next_election)
+        .filter(|(y, m)| *y != 0 || *m != 0)
+        .map(|(y, m)| format!("{:04}-{:02}", y, m));
+
+    // The actions. Electoral: an invitation for every party outside the
+    // cabinet, an expulsion for every partner in it, and the early election.
+    // Regime: a payment for every named institution. Both: the two political
+    // stratagems. Each carries the sim's price and the sim's refusal.
+    let mut actions: Vec<serde_json::Value> = vec![];
+    if let (Some(pol), Some(g)) = (pol, g) {
+        if electoral {
+            for s in pol.parties {
+                let party = s.id.to_string();
+                if g.in_government(s.id) {
+                    if g.leader() != Some(s.id) {
+                        let cmd = Command::ExpelFromGovernment { nation: id, party: party.clone() };
+                        actions.push(action_json(
+                            w, &cmd, "expel", format!("Expel {}", s.name), Some("from the government".into()), None,
+                            serde_json::json!({ "kind": "expel_from_government", "party": party }),
+                        ));
+                    }
+                } else {
+                    let cmd = Command::InviteToGovernment { nation: id, party: party.clone() };
+                    actions.push(action_json(
+                        w, &cmd, "invite", format!("Invite {}", s.name), Some("into the government".into()), None,
+                        serde_json::json!({ "kind": "invite_to_government", "party": party }),
+                    ));
+                }
+            }
+            let cmd = Command::CallElection { nation: id };
+            actions.push(action_json(
+                w, &cmd, "call_election", "Call an election".into(), Some("go to the country early".into()), None,
+                serde_json::json!({ "kind": "call_election" }),
+            ));
+        } else {
+            for s in pol.pillars {
+                let cmd = Command::SecurePillar { nation: id, pillar: s.pillar };
+                actions.push(action_json(
+                    w, &cmd, "secure_pillar", format!("Secure {}", s.name), Some("pay for its loyalty".into()), None,
+                    serde_json::json!({ "kind": "secure_pillar", "pillar": s.pillar.key() }),
+                ));
+            }
+        }
+    }
+    for sid in ["security_crackdown", "liberalisation"] {
+        if let Some(s) = spheres_sim::stratagems::by_id(sid) {
+            let cmd = Command::EnactStratagem { nation: id, id: sid.to_string() };
+            actions.push(action_json(
+                w, &cmd, "stratagem", s.name.to_string(), Some(s.because.to_string()), Some(s.blurb),
+                serde_json::json!({ "kind": "stratagem", "id": sid }),
+            ));
+        }
+    }
+
+    let gotd = politics.as_ref().and_then(|p| p.government_of_the_day.clone());
+    serde_json::json!({
+        "nation": format!("{:?}", id),
+        "nation_name": id.name(),
+        "on": w.rules.ideology_blocs,
+        "mine": w.player == Some(id),
+        "electoral": electoral,
+        "system": pol.map(|p| p.system.label()),
+        "term_months": pol.map(|p| p.term_months),
+        "ruling_institution": pol.map(|p| p.ruling),
+        "political_capital": held,
+        "ruling_bloc": ruling,
+        "discontent": politics.as_ref().map(|p| p.discontent),
+        "leader": politics.as_ref().and_then(|p| p.leader.as_ref()),
+        "government_of_the_day": gotd,
+        "government_of_the_day_name": gotd.as_deref().and_then(|p| gov::party_spec(id, p)).map(|s| s.name),
+        "bar": bar,
+        "groups": groups,
+        "pillars": pillars,
+        "coup_pressure": g.map_or(0.0, |g| g.coup_pressure),
+        "strain": gov::strain(w, id),
+        "upkeep": gov::upkeep(w, id),
+        "government_seats": g.map_or(0.0, |g| g.government_seats()),
+        "months_in_office": g.map_or(0, |g| g.months_in_office),
+        "next_election": next_election,
+        "takeover": politics.as_ref().map(|p| &p.takeover),
+        "actions": actions,
     })
 }
 
@@ -5547,6 +5777,22 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             nation: me,
             id: v.get("id")?.as_str()?.to_string(),
         },
+        // The government screen's four commands (government.rs). A party is
+        // its stable table id, a pillar its key; the sim refuses anything the
+        // polity does not carry, with its own sentence.
+        "invite_to_government" => Command::InviteToGovernment {
+            nation: me,
+            party: v.get("party")?.as_str()?.to_string(),
+        },
+        "expel_from_government" => Command::ExpelFromGovernment {
+            nation: me,
+            party: v.get("party")?.as_str()?.to_string(),
+        },
+        "call_election" => Command::CallElection { nation: me },
+        "secure_pillar" => Command::SecurePillar {
+            nation: me,
+            pillar: spheres_sim::government::Pillar::parse(v.get("pillar")?.as_str()?)?,
+        },
         // The card carries its stable generated id, never its position among
         // the three offers. Availability and generation are re-checked by the
         // sim when the command lands, so a stale browser cannot choose a card
@@ -5944,6 +6190,14 @@ fn asked_player(payload: &serde_json::Value) -> Result<Option<NationId>, String>
 fn play_rules(g: &mut Game) {
     spheres_sim::clock::enable_daily_play(&mut g.world);
     g.world.rules.resource_market = true;
+    // The political arm (S0-S2): the lens is on in the browser, the roads to
+    // power (S4) stay off everywhere. `ensure_all` runs the seating pass again
+    // so the leader table is loaded and every regime's movements are seeded
+    // before the first /api/state, not at the first tick; the pass is
+    // idempotent, draws no RNG and writes nothing the model reads.
+    g.world.rules.ideology_blocs = true;
+    g.world.rules.ideology_takeover = false;
+    spheres_sim::government::ensure_all(&mut g.world);
     g.world.rules.logistics_routes = true;
     g.world.rules.physical_logistics = true;
     g.world.rules.production_system = true;
@@ -6583,6 +6837,21 @@ fn main() {
                         "political_capital": 0.0,
                         "offers": [],
                     })),
+                };
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, path) if path.starts_with("/api/government") => {
+                // The government screen, on the /api/stratagems pattern:
+                // defaults to the player, `?nation=Iraq` asks about somebody
+                // else. The one route that serves the political arm whole.
+                // `path` is the URL with its query stripped; the param is on
+                // the full url, the way /api/stratagems reads it.
+                let asked = nation_param(request.url());
+                let g = game.lock().unwrap();
+                let r = match asked.or(g.world.player) {
+                    Some(id) => json_response(government_json(&g.world, id)),
+                    None => json_error(400, serde_json::json!({ "error": "no nation chosen" })),
                 };
                 let _ = request.respond(r);
                 continue;
@@ -14844,5 +15113,339 @@ mod tests {
             "province work markers must be absent from the resting globe"
         );
         assert!(INDEX.contains("k === \"q\" || k === \"Q\""));
+    }
+
+    // =======================================================================
+    // THE POLITICAL ARM (S1 surface + S2 screen). Every bar below was watched
+    // red before it was watched green; the mutation that reddened it is in
+    // its comment.
+    // =======================================================================
+
+    /// The lens is on in every world the browser plays and off in every world
+    /// it does not: `Game::new` (the headless rules) serves null for all six
+    /// political fields, `play_rules` turns `ideology_blocs` on — and never
+    /// `ideology_takeover` — loads the leader table and serves them. Measured
+    /// this run on seed 7: Poland reads Western under Tadeusz Mazowiecki
+    /// (pl_solidarity, Prime Minister since 1989-08-24) at discontent 0.2917
+    /// — the amber band; Iraq reads Nationalist under Saddam Hussein
+    /// (iq_baath); Jordan reads Non-Aligned (the court) with jo_ikhwan as the
+    /// government of the day; Chile, a REFUSED row, is described as "the
+    /// office-holder" with no name. Every one of the 137 living nations has a
+    /// ruling bloc: 67 Western, 43 Non-Aligned, 17 Communist, 7 Nationalist,
+    /// 3 Islamist. Watched red with `g.world.rules.ideology_blocs = true`
+    /// removed from `play_rules`: `ruling_bloc` came back null.
+    #[test]
+    fn the_political_arm_is_on_in_play_and_null_headless() {
+        let mut g = Game::new(7, Some(NationId::Poland));
+        assert!(!g.world.rules.ideology_blocs);
+        let off = nation_json(&g.world, g.world.nation(NationId::Poland));
+        for key in ["ruling_bloc", "discontent", "blocs", "leader", "government_of_the_day", "takeover"] {
+            assert!(off[key].is_null(), "{key} is served while the arm is off: {}", off[key]);
+        }
+        play_rules(&mut g);
+        assert!(g.world.rules.ideology_blocs, "play_rules must switch the lens on");
+        assert!(!g.world.rules.ideology_takeover, "the roads are S4 and stay off");
+        assert!(g.world.leadership.is_some(), "the leader table is loaded before the first /api/state");
+        let w = &g.world;
+        let pl = nation_json(w, w.nation(NationId::Poland));
+        assert_eq!(pl["ruling_bloc"], "Western");
+        assert_eq!(pl["leader"]["name"], "Tadeusz Mazowiecki");
+        assert_eq!(pl["leader"]["party"], "pl_solidarity");
+        assert_eq!(pl["leader"]["office"], "Prime Minister of Poland");
+        assert_eq!(pl["leader"]["since"], "1989-08-24");
+        assert!(pl["leader"]["described"].is_null());
+        let disc = pl["discontent"].as_f64().unwrap();
+        assert_eq!(disc, spheres_sim::blocs::discontent(w, NationId::Poland));
+        assert!((0.25..0.50).contains(&disc), "measured 0.2917 this run, read {disc}");
+        let blocs = pl["blocs"].as_array().unwrap();
+        assert_eq!(blocs.len(), 5);
+        let sum: f64 = blocs.iter().map(|b| b["share"].as_f64().unwrap()).sum();
+        assert!((sum - 1.0).abs() < 1e-9);
+        assert_eq!(blocs[0]["bloc"], "Western");
+        assert!((blocs[0]["share"].as_f64().unwrap() - 0.78).abs() < 1e-9, "Solidarity 0.60 + PSL 0.12 + SD 0.06");
+        assert_eq!(blocs[0]["backing"], 0.0, "foreign backing is S3 and reads zero");
+        assert_eq!(blocs[0]["banned"], false);
+        for road in ["coup", "uprising", "round_table", "collapse"] {
+            assert_eq!(pl["takeover"][road]["open"], false, "{road} must read closed in this build");
+            assert_eq!(pl["takeover"][road]["reason"], "not in this build");
+            assert!(!pl["takeover"][road]["gauges"].as_array().unwrap().is_empty());
+        }
+        assert!(pl["takeover"]["half_armed"].is_boolean());
+        let iq = nation_json(w, w.nation(NationId::Iraq));
+        assert_eq!(iq["ruling_bloc"], "Nationalist");
+        assert_eq!(iq["leader"]["name"], "Saddam Hussein");
+        assert_eq!(iq["leader"]["party"], "iq_baath");
+        let jo = nation_json(w, w.nation(NationId::Jordan));
+        assert_eq!(jo["ruling_bloc"], "NonAligned", "the monarchy exception: the court rules");
+        assert_eq!(jo["government_of_the_day"], "jo_ikhwan");
+        assert_eq!(jo["leader"]["pillar"], "Party");
+        let cl = nation_json(w, w.nation(NationId::Chile));
+        assert!(cl["leader"]["name"].is_null(), "a refused row names nobody");
+        assert_eq!(cl["leader"]["described"], "the office-holder");
+        assert_eq!(cl["leader"]["since"], "1974-12-17");
+        // Every living nation is coloured, and the tally is the transcribed one.
+        let mut tally = std::collections::BTreeMap::new();
+        let mut alive = 0;
+        for n in w.nations.iter().filter(|n| n.alive) {
+            alive += 1;
+            let v = nation_json(w, n);
+            let b = v["ruling_bloc"].as_str().unwrap_or_else(|| panic!("{:?} has no ruling bloc", n.id));
+            *tally.entry(b.to_string()).or_insert(0) += 1;
+        }
+        assert_eq!(alive, 137);
+        assert_eq!(tally["Western"], 67);
+        assert_eq!(tally["NonAligned"], 43);
+        assert_eq!(tally["Communist"], 17);
+        assert_eq!(tally["Nationalist"], 7);
+        assert_eq!(tally["Islamist"], 3);
+        // A loaded save is played with the lens on too.
+        let loaded = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
+        assert!(loaded.world.rules.ideology_blocs && !loaded.world.rules.ideology_takeover);
+        assert!(nation_json(&loaded.world, loaded.world.nation(NationId::Poland))["ruling_bloc"].is_string());
+    }
+
+    /// /api/government serves the screen whole, and every price and every
+    /// refusal on it is the sim's: each action's `command` payload parses back
+    /// to a `Command` whose `price_of` and `refusal_of` are the numbers and the
+    /// sentence served beside it. Measured this run, seed 7: Poland's chamber
+    /// has two bloc groups (three Western parties, one Communist), a
+    /// single-party government at strain 0 and upkeep 0 holding 60% of the
+    /// seats, its next election in 1991-10, and six actions — three
+    /// invitations, an early election refused "A government six months old
+    /// cannot go back to the country yet.", and two stratagems refused as "no
+    /// longer open"; Iraq's regime has three named pillars at loyalty 0.65,
+    /// coup pressure 0, three payments at 14.0 and two stratagems open. The
+    /// page reads the served fields by name and divides nothing. Watched red
+    /// with `"price": 0.0` in `action_json`: Poland's early election read 0
+    /// against a `price_of` of 25.0. Watched red again with the page reading
+    /// `g.value / g.trigger` for a gauge bar.
+    #[test]
+    fn the_government_screen_is_served_not_computed() {
+        let mut g = Game::new(7, Some(NationId::Poland));
+        play_rules(&mut g);
+        let w = &g.world;
+        let pl = government_json(w, NationId::Poland);
+        assert_eq!(pl["on"], true);
+        assert_eq!(pl["mine"], true);
+        assert_eq!(pl["electoral"], true);
+        assert_eq!(pl["ruling_bloc"], "Western");
+        let bar = pl["bar"].as_array().unwrap();
+        assert_eq!(bar.len(), 5);
+        assert_eq!(bar[0]["bloc"], "Western");
+        assert_eq!(bar[0]["governing"], true);
+        assert_eq!(bar[0]["ruling"], true);
+        assert_eq!(bar[1]["bloc"], "Communist");
+        assert_eq!(bar[1]["governing"], false);
+        let groups = pl["groups"].as_array().unwrap();
+        assert_eq!(groups.len(), 2);
+        assert_eq!(groups[0]["bloc"], "Western");
+        assert_eq!(groups[0]["parties"].as_array().unwrap().len(), 3);
+        assert_eq!(groups[0]["parties"][0]["id"], "pl_solidarity");
+        assert_eq!(groups[0]["parties"][0]["leads"], true);
+        assert_eq!(groups[1]["parties"][0]["id"], "pl_sld");
+        assert_eq!(pl["strain"], spheres_sim::government::strain(w, NationId::Poland));
+        assert_eq!(pl["upkeep"], spheres_sim::government::upkeep(w, NationId::Poland));
+        assert_eq!(pl["strain"], 0.0);
+        assert_eq!(pl["next_election"], "1991-10");
+        assert!((pl["government_seats"].as_f64().unwrap() - 0.6).abs() < 1e-9);
+        assert_eq!(pl["discontent"], spheres_sim::blocs::discontent(w, NationId::Poland));
+        let acts = pl["actions"].as_array().unwrap();
+        assert_eq!(acts.len(), 6, "three invitations, the election, two stratagems");
+        let kinds: Vec<&str> = acts.iter().map(|a| a["kind"].as_str().unwrap()).collect();
+        assert_eq!(kinds, ["invite", "invite", "invite", "call_election", "stratagem", "stratagem"]);
+        let election = &acts[3];
+        assert_eq!(election["refusal"], "A government six months old cannot go back to the country yet.");
+        assert_eq!(election["price"], 25.0);
+        assert_eq!(acts[4]["refusal"], "Security Crackdown is no longer open to Poland.");
+        assert!(acts[0]["refusal"].is_null(), "an invitation Poland can afford goes through");
+        // The pass that matters: every served price and refusal IS the sim's,
+        // for the very command the page would post.
+        let check = |v: &serde_json::Value, id: NationId| {
+            for a in v["actions"].as_array().unwrap() {
+                let cmd = parse_command(w, &a["command"], id)
+                    .unwrap_or_else(|| panic!("the page's payload does not parse: {}", a["command"]));
+                assert_eq!(a["price"], spheres_sim::price_of(w, &cmd).unwrap_or(0.0), "{}", a["label"]);
+                assert_eq!(a["refusal"], serde_json::json!(spheres_sim::refusal_of(w, &cmd)), "{}", a["label"]);
+                assert_eq!(a["affordable"], spheres_sim::affordable(w, &cmd), "{}", a["label"]);
+            }
+        };
+        check(&pl, NationId::Poland);
+        let iq = government_json(w, NationId::Iraq);
+        assert_eq!(iq["electoral"], false);
+        assert_eq!(iq["mine"], false);
+        assert_eq!(iq["ruling_bloc"], "Nationalist");
+        assert_eq!(iq["leader"]["name"], "Saddam Hussein");
+        let pillars = iq["pillars"].as_array().unwrap();
+        let names: Vec<&str> = pillars.iter().map(|p| p["name"].as_str().unwrap()).collect();
+        assert_eq!(names, ["the Republican Guard", "the Ba'ath Party apparatus", "the Mukhabarat"]);
+        for p in pillars {
+            assert_eq!(p["loyalty"], 0.65);
+        }
+        assert_eq!(iq["coup_pressure"], 0.0);
+        assert!(iq["next_election"].is_null());
+        let acts = iq["actions"].as_array().unwrap();
+        assert_eq!(acts.len(), 5, "three payments, two stratagems");
+        assert_eq!(acts[0]["kind"], "secure_pillar");
+        assert_eq!(acts[0]["price"], 14.0);
+        assert!(acts[0]["refusal"].is_null());
+        assert_eq!(acts[0]["command"], serde_json::json!({ "kind": "secure_pillar", "pillar": "army" }));
+        check(&iq, NationId::Iraq);
+        for road in ["coup", "uprising", "round_table", "collapse"] {
+            assert_eq!(iq["takeover"][road]["open"], false);
+            for gauge in iq["takeover"][road]["gauges"].as_array().unwrap() {
+                assert!(gauge["progress"].is_number(), "the bar is served, not divided on the page");
+                assert!(gauge["met"].is_boolean());
+            }
+        }
+        // Off: the screen says so and serves no political field.
+        let off = Game::new(7, Some(NationId::Poland));
+        let v = government_json(&off.world, NationId::Poland);
+        assert_eq!(v["on"], false);
+        assert!(v["ruling_bloc"].is_null() && v["discontent"].is_null() && v["takeover"].is_null());
+        assert!(v["bar"].as_array().unwrap().is_empty());
+        // The page: one fetch, the served names, and no arithmetic of its own.
+        assert!(INDEX.contains(r#"api("/api/government?nation=" + encodeURIComponent(gov.nation))"#));
+        let screen = page_fn("function renderGovernment() {");
+        for served in ["d.bar", "d.groups", "d.pillars", "d.takeover[k]", "d.actions", "d.strain", "d.upkeep",
+                       "d.next_election", "d.government_seats", "d.coup_pressure", "d.discontent", "d.ruling_bloc",
+                       "b.governing", "b.ruling", "b.banned", "g.progress", "g.met", "r.half_armed", "r.reason",
+                       "a.price", "a.refusal", "p.loyalty"] {
+            assert!(screen.contains(served), "the screen no longer reads the served `{served}`");
+        }
+        for computed in ["g.value / g.trigger", "g.trigger / g.value", "0.50 *", "RULING_SEED",
+                         "ChristianDemocratic", "SocialDemocratic", "BigTent", "discontent = "] {
+            assert!(!INDEX.contains(computed), "the page derives a bloc number of its own: `{computed}`");
+        }
+    }
+
+    /// The header's DISCONTENT chip and the ruling-bloc swatch: both read
+    /// served fields (`m.discontent`, `m.ruling_bloc`, `m.leader`), the chip
+    /// is banded green under 25, amber 25-49, red at 50 and above, and the
+    /// person comes before the nation — "Tadeusz Mazowiecki / Western ·
+    /// Poland". With the arm off the header falls back to the plain nation
+    /// name it always showed. Watched red with the amber threshold moved from
+    /// 25 to 30 in `discontentBand`.
+    #[test]
+    fn the_header_carries_the_discontent_chip_and_the_ruling_swatch() {
+        assert!(INDEX.contains(r#"<span class="metric" id="hdrDiscontentChip" hidden>DISCONTENT <b id="hdrDiscontent">—</b></span>"#));
+        assert!(INDEX.contains(r#"<i id="hdrBloc" class="blocdot" hidden></i><b id="hdrYou">—</b>"#));
+        assert!(INDEX.contains(
+            r#"function discontentBand(pct) { return pct < 25 ? "green" : pct < 50 ? "amber" : "red"; }"#
+        ));
+        let render = page_fn("function render() {");
+        assert!(render.contains(r##"$("#hdrYou").textContent = `${lead || "—"} / ${blocLabel(m.ruling_bloc)} · ${m.name}`;"##));
+        assert!(render.contains(r##"$("#hdrBloc").style.background = blocColor(m.ruling_bloc);"##));
+        assert!(render.contains("const pct = m.discontent * 100;"));
+        assert!(render.contains(r#"b.className = "band-" + discontentBand(pct);"#));
+        assert!(render.contains(r##"$("#hdrYou").textContent = S.player_name || "—";"##), "the off fallback is gone");
+        assert!(INDEX.contains("function leaderLine(n) { const l = n && n.leader; return l ? (l.name || l.described || null) : null; }"));
+        for band in ["green", "amber", "red"] {
+            assert!(INDEX.contains(&format!(".band-{band} {{ color:var(--{band}) !important; }}")));
+        }
+    }
+
+    /// The ninth map mode. "Ideology" colours a nation by its SERVED ruling
+    /// bloc in the five design colours, hatches one whose served
+    /// `takeover.half_armed` is true, carries no ground block (colour is the
+    /// data), and leaves Political and Stability — and the fronts' own paint
+    /// guard — exactly as they were. Watched red with the hatch block removed
+    /// from `paintPolitical`.
+    #[test]
+    fn the_ideology_map_mode_colours_by_ruling_bloc_and_hatches_the_watch() {
+        let modes = INDEX
+            .split_once("const MAP_MODES = {")
+            .expect("MAP_MODES is gone")
+            .1
+            .split_once("\r\n};")
+            .expect("MAP_MODES is brace-terminated")
+            .0;
+        let entries: Vec<&str> = modes.lines().filter(|l| {
+            let t = l.trim_end();
+            t.starts_with("  ") && !t.starts_with("   ") && t.ends_with(": {")
+        }).collect();
+        assert_eq!(entries.len(), 9, "eight modes plus Ideology: {entries:?}");
+        assert_eq!(entries[8].trim(), "ideology: {");
+        let at = modes.find("\n  ideology: {").expect("no Ideology mode");
+        let block = &modes[at + 1..];
+        let block = &block[..block.find("\n  },").map(|e| e + 1).unwrap_or(block.len())];
+        assert!(block.contains(r#"label: "Ideology","#));
+        assert!(block.contains("color: (n) => blocColor(n.ruling_bloc),"));
+        assert!(!block.contains("\n    ground: {"), "Ideology is thematic: colour IS the data, no ground");
+        assert!(INDEX.contains(
+            r##"const BLOC_COLOR = { Western: "#3465a4", Communist: "#b3261e", Nationalist: "#4a3728", Islamist: "#2e7d32", NonAligned: "#7a7a7a" };"##
+        ));
+        for swatch in [r##"["#3465a4", "Western"]"##, r##"["#b3261e", "Communist"]"##, r##"["#4a3728", "Nationalist"]"##,
+                       r##"["#2e7d32", "Islamist"]"##, r##"["#7a7a7a", "Non-Aligned"]"##] {
+            assert!(block.contains(swatch), "the legend lost {swatch}");
+        }
+        // The hatch, in the ideology mode alone, reading the served flag.
+        let paint = page_fn("function paintPolitical() {");
+        assert!(paint.contains(r#"if (ui.mapMode === "ideology") {"#));
+        assert!(paint.contains("if (!n.takeover || !n.takeover.half_armed) continue;"));
+        assert!(paint.contains("const pat = ctx.createPattern(HATCH, \"repeat\");"));
+        // The two readings the design leaves alone, and the front paint guard.
+        assert!(INDEX.contains("if (ui.mapMode !== \"political\" && ui.mapMode !== \"fronts\") return;"));
+        assert!(INDEX.contains("\n  stability: {\r\n    label: \"Stability\",") || INDEX.contains("\n  stability: {\n    label: \"Stability\","));
+        assert_eq!(INDEX.matches("\n    ground: {").count(), 4, "the ground count is the other test's; it must not have moved");
+    }
+
+    /// The government screen lives on I, a key nothing else takes; Escape
+    /// closes it; Space still reaches the clock from behind it (the board's
+    /// rule) and the advance digits do not; the screen refreshes with every
+    /// render; the dock button and the ? card both point at it. Watched red
+    /// with the `k === "i"` dispatch line removed.
+    #[test]
+    fn the_government_screen_has_its_own_key_and_escape_closes_it() {
+        let handler = page_fn("document.addEventListener(\"keydown\", (e) => {");
+        assert!(handler.contains(r#"else if (k === "i" || k === "I") toggleGovernment();"#));
+        assert_eq!(handler.matches(r#"k === "i" || k === "I""#).count(), 1, "I is bound exactly once");
+        assert!(handler.contains("if (gov.open) { closeGovernment(); return; }"), "Escape does not close the screen");
+        assert!(handler.contains("if (gov.open) { govKeys(e); return; }"), "the screen does not take the keyboard");
+        assert!(handler.contains("      && !gov.open\r\n"), "the pause-only branch must skip the screen, like the board");
+        // Space is bound ahead of the screen's dispatch, so pause reaches the clock.
+        let space = handler
+            .find("if (e.key === \" \" && !e.target?.closest?.('button, summary, select, [role=\"tab\"]')) {")
+            .expect("space is not bound ahead of the screens");
+        let govd = handler.find("if (gov.open) { govKeys(e); return; }").unwrap();
+        assert!(space < govd, "the government screen swallows the pause key");
+        assert!(handler.contains("} else if (gov.open) {"), "the press behind the screen must say what it did");
+        let keys = page_fn("function govKeys(e) {");
+        assert!(keys.contains(r#"if (k === "Escape") { e.preventDefault(); closeGovernment(); return; }"#));
+        assert!(!keys.contains("k === \" \""), "the screen must not swallow Space");
+        assert!(keys.contains(r#"if (k >= "0" && k <= "9") e.preventDefault();"#), "the advance digits leak through the screen");
+        assert!(INDEX.contains("if (gov.open) refreshGovernment();"), "the screen freezes at the month it opened");
+        assert!(INDEX.contains(r##"$("#govBtn").onclick = toggleGovernment;"##));
+        assert!(INDEX.contains(r#"<div class="row"><span>Government &mdash; who holds power, and the takeover watch</span><span><kbd>I</kbd></span></div>"#));
+        assert!(INDEX.contains(r#"<div id="govScreen" role="dialog" aria-modal="true" aria-label="Government" tabindex="-1">"#));
+        assert!(INDEX.contains("function openGovernment(id) {") && INDEX.contains("function closeGovernment() {"));
+    }
+
+    /// The four government commands reach the sim from the page as payloads
+    /// `parse_command` reads — a party by its stable id, a pillar by its key
+    /// — and an unreadable one is a refusal, not a guess. Watched red with the
+    /// `"call_election"` arm removed.
+    #[test]
+    fn the_government_commands_parse_from_the_page() {
+        let g = Game::new(7, Some(NationId::Poland));
+        let w = &g.world;
+        let me = NationId::Poland;
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "invite_to_government", "party": "pl_sld" }), me),
+            Some(Command::InviteToGovernment { nation: me, party: "pl_sld".into() })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "expel_from_government", "party": "pl_psl" }), me),
+            Some(Command::ExpelFromGovernment { nation: me, party: "pl_psl".into() })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "call_election" }), me),
+            Some(Command::CallElection { nation: me })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "secure_pillar", "pillar": "army" }), NationId::Iraq),
+            Some(Command::SecurePillar { nation: NationId::Iraq, pillar: spheres_sim::government::Pillar::Army })
+        );
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "secure_pillar", "pillar": "navy" }), me), None);
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "invite_to_government" }), me), None);
     }
 }
