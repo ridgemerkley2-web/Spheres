@@ -8113,6 +8113,30 @@ pub(crate) fn uprising(w: &mut WorldState, id: NationId) {
     w.headline(format!("Revolution in {}: the {} movement takes power.", id.name(), winner.label()));
 }
 
+/// Route 4 (S4), the round table as a DRIFT rather than an event: while
+/// `blocs::round_table_armed` (a regime; Western influence at or over 0.40;
+/// stability inside 30..70; the Party pillar — the weakest armed
+/// institution where there is none — under 0.55), authoritarianism walks
+/// down `ROUND_TABLE_STEP` a month to `blocs::ROUND_TABLE_FLOOR`. A polity
+/// with a party table crosses the electoral ceiling on the way, and the
+/// electoral branch schedules its first free elections through the seam;
+/// a party-less one stops at the floor as a regime. Deterministic; nothing
+/// while the takeover switch is off. INVENTED step (design S4).
+pub const ROUND_TABLE_STEP: f64 = 0.01;
+fn round_table_drift(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_takeover {
+        return;
+    }
+    if !crate::blocs::round_table_armed(w, id) {
+        return;
+    }
+    let dt = crate::clock::month_fraction(w);
+    let n = w.nation_mut(id);
+    if n.authoritarianism > crate::blocs::ROUND_TABLE_FLOOR {
+        n.authoritarianism = (n.authoritarianism - ROUND_TABLE_STEP * dt).max(crate::blocs::ROUND_TABLE_FLOOR);
+    }
+}
+
 fn maybe_coup(w: &mut WorldState, id: NationId) {
     let (pressure, weakest, settled) = match state(w, id) {
         Some(g) => (g.coup_pressure, g.weakest_armed(), g.months_in_office),
@@ -8361,6 +8385,9 @@ pub fn tick(w: &mut WorldState) {
             drift_movements(w, id);
             note_surges(w, id);
             maybe_coup(w, id);
+            // The roads (S4, route 4): the only drift of authoritarianism in
+            // the model. Returns at once with the takeover switch off.
+            round_table_drift(w, id);
         }
 
         // The bill for the government you are running, paid every month out of
@@ -10281,5 +10308,91 @@ mod tests {
                 assert!(is_electoral(&w, id), "seed {seed}: {} stopped voting", id.name());
             }
         }
+    }
+    /// Route 4 (S4). Indonesia — Golkar's regime with a live table and a
+    /// Party pillar — with the Western movement held at 0.45, stability at
+    /// 50 and Golkar's loyalty at 0.40: authoritarianism walks down 0.01 a
+    /// month from its transcribed value, crosses the 0.60 ceiling, and the
+    /// state opens — the next tick sets a date for its first free elections
+    /// through the seam and the country votes eighteen months later. Saudi
+    /// Arabia, party-less, under the same pressure (the merchant houses
+    /// carry the Western bloc) walks to the 0.55 floor exactly and stays a
+    /// regime. With the takeover switch off neither moves. Watched red with
+    /// `round_table_drift` not called from the tick: "Indonesia never opened
+    /// in 60 months".
+    #[test]
+    fn the_round_table_walks_authoritarianism_to_the_floor_and_opens_the_state() {
+        let press = |w: &mut WorldState, id: NationId| {
+            w.nation_mut(id).stability = 50.0;
+            if let Some(g) = state_mut(w, id) {
+                if g.movements.len() == 5 {
+                    let r = g.regime_bloc.unwrap();
+                    for e in g.movements.iter_mut() {
+                        e.1 = if e.0 == Bloc::Western { 0.45 } else if e.0 == r { 0.50 } else { 0.05 / 3.0 };
+                    }
+                    normalise_blocs(&mut g.movements);
+                    for e in g.pillars.iter_mut() {
+                        e.1 = 0.40;
+                    }
+                }
+            }
+        };
+        let (id_, sa) = (NationId::Indonesia, NationId::SaudiArabia);
+        // OFF.
+        let mut off = world_1990(on_rules(7));
+        off.player = Some(id_);
+        let auth0 = off.nation(id_).authoritarianism;
+        for _ in 0..60 {
+            press(&mut off, id_);
+            press(&mut off, sa);
+            crate::tick_month(&mut off, &[]);
+        }
+        assert_eq!(off.nation(id_).authoritarianism, auth0, "the switch off drifted Indonesia");
+        assert!(!is_electoral(&off, id_));
+
+        // ON: Indonesia opens.
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(id_);
+        let auth0 = w.nation(id_).authoritarianism;
+        assert!(auth0 >= ELECTORAL_CEILING, "{auth0}");
+        press(&mut w, id_);
+        assert!(crate::blocs::round_table_armed(&w, id_));
+        let road = crate::blocs::takeover_readout(&w, id_).round_table;
+        assert!(road.open && road.armed, "{road:?}");
+        let mut opened: Option<usize> = None;
+        let mut voted: Option<usize> = None;
+        let mut last_auth = auth0;
+        for m in 0..60 {
+            press(&mut w, id_);
+            press(&mut w, sa);
+            let news = crate::tick_month(&mut w, &[]);
+            let a = w.nation(id_).authoritarianism;
+            if opened.is_none() {
+                assert!((last_auth - a - 0.01).abs() < 1e-9 || is_electoral(&w, id_), "month {m}: {last_auth} -> {a}");
+            }
+            last_auth = a;
+            if news.iter().any(|h| h.starts_with("Indonesia sets a date for its first free elections")) {
+                opened = Some(m + 1);
+            }
+            if news.iter().any(|h| h.starts_with("Indonesia votes:")) {
+                voted = Some(m + 1);
+                break;
+            }
+        }
+        let opened = opened.expect("Indonesia never opened in 60 months");
+        let voted = voted.expect("Indonesia never voted in 60 months");
+        println!("route 4: Indonesia from {auth0:.2} opened in month {opened} and voted in month {voted}");
+        assert!(is_electoral(&w, id_));
+        assert_eq!(voted, opened + 18);
+        // Twenty steps of 0.01 from 0.80 land on the ceiling to within a
+        // rounding unit, so the crossing is the twentieth or the
+        // twenty-first step, and the date is set the tick after.
+        let steps = ((auth0 - ELECTORAL_CEILING) / 0.01).floor() as usize;
+        assert!((steps + 1..=steps + 2).contains(&opened), "the step is 0.01 a month: opened in month {opened}, {steps} steps to the ceiling");
+        // Saudi Arabia walks to the floor and stays a regime.
+        let a = w.nation(sa).authoritarianism;
+        assert!((a - crate::blocs::ROUND_TABLE_FLOOR).abs() < 1e-12, "{a}");
+        assert!(!is_electoral(&w, sa));
+        assert_eq!(crate::blocs::takeover_readout(&w, id_).round_table.reason, crate::blocs::ALREADY_ELECTORAL);
     }
 }

@@ -436,6 +436,60 @@ pub fn uprising_closed(w: &WorldState, id: NationId) -> Option<&'static str> {
 }
 
 // ---------------------------------------------------------------------------
+// The round table's arithmetic (S4, route 4), pure.
+// ---------------------------------------------------------------------------
+
+/// The loyalty the round table reads: the Party pillar's, or the weakest
+/// armed institution's where the regime has no Party pillar. 1.0 where
+/// there is no government.
+pub fn round_table_loyalty(w: &WorldState, id: NationId) -> f64 {
+    let g = match government::state(w, id) {
+        Some(g) => g,
+        None => return 1.0,
+    };
+    if g.pillars.iter().any(|(p, _)| *p == Pillar::Party) {
+        return g.loyalty(Pillar::Party);
+    }
+    g.weakest_armed().map_or(1.0, |(_, v)| v)
+}
+
+pub const ROUND_TABLE_WESTERN: f64 = 0.40;
+pub const ROUND_TABLE_LOYALTY: f64 = 0.55;
+pub const ROUND_TABLE_STABILITY: (f64, f64) = (30.0, 70.0);
+/// The floor the drift walks authoritarianism to: under the electoral
+/// ceiling (0.60), so a polity with a table opens on the way down and a
+/// party-less one stops here as a regime. INVENTED (design S4).
+pub const ROUND_TABLE_FLOOR: f64 = 0.55;
+
+/// Whether route 4 is armed this month: a regime, Western influence at or
+/// over 0.40, stability inside 30..70 (the upper bound exclusive), the
+/// round-table loyalty under 0.55. Pure.
+pub fn round_table_armed(w: &WorldState, id: NationId) -> bool {
+    if government::is_electoral(w, id) || government::state(w, id).is_none() {
+        return false;
+    }
+    let n = match w.nation_opt(id) {
+        Some(n) => n,
+        None => return false,
+    };
+    influence(w, id)[Bloc::Western as usize].1 >= ROUND_TABLE_WESTERN
+        && n.stability >= ROUND_TABLE_STABILITY.0
+        && n.stability < ROUND_TABLE_STABILITY.1
+        && round_table_loyalty(w, id) < ROUND_TABLE_LOYALTY
+}
+
+/// Why the round-table road is closed, or `None` where it is open.
+pub fn round_table_closed(w: &WorldState, id: NationId) -> Option<&'static str> {
+    if !w.rules.ideology_takeover {
+        return Some(CALIBRATION_PENDING);
+    }
+    if government::is_electoral(w, id) {
+        return Some(ALREADY_ELECTORAL);
+    }
+    None
+}
+
+// ---------------------------------------------------------------------------
 // The takeover watch
 // ---------------------------------------------------------------------------
 
@@ -617,6 +671,8 @@ pub const NO_CHALLENGER: &str = "no movement that could take power";
 /// The uprising road where the only challenger is Western in a party-less
 /// polity: closed until a table is transcribed.
 pub const NO_TABLE_FOR_WESTERN: &str = "no party table to seat a Western winner";
+/// The round-table road in a state that already votes.
+pub const ALREADY_ELECTORAL: &str = "already answers to an electorate";
 
 /// The takeover watch: per road, the gauges the S4 mechanics will read and
 /// whether the road is open. In this build every road is closed with
@@ -635,7 +691,6 @@ pub fn takeover_readout(w: &WorldState, id: NationId) -> TakeoverReadout {
     // a panic, because the browser asks about ids, not about nations.
     let stability = w.nation_opt(id).map_or(100.0, |n| n.stability);
     let g: Option<&GovState> = government::state(w, id);
-    let loyalty = |p: Pillar| g.map_or(1.0, |g| g.loyalty(p));
     let pressure = g.map_or(0.0, |g| g.coup_pressure);
     let disc = discontent(w, id);
     let infl = influence(w, id);
@@ -671,13 +726,15 @@ pub fn takeover_readout(w: &WorldState, id: NationId) -> TakeoverReadout {
         vec![Gauge::above("discontent", disc, UPRISING_DISCONTENT), challenger],
         uprising_closed(w, id),
     );
+    // Route 4: the loyalty gauge reads what the drift reads — the Party
+    // pillar, or the weakest armed institution where there is none.
     let round_table = Road::new(
         vec![
-            Gauge::above("Western influence", western, 0.40),
-            Gauge::below("party loyalty", loyalty(Pillar::Party), 0.55),
-            Gauge::inside("stability", stability, 30.0, 70.0),
+            Gauge::above("Western influence", western, ROUND_TABLE_WESTERN),
+            Gauge::below("party loyalty", round_table_loyalty(w, id), ROUND_TABLE_LOYALTY),
+            Gauge::inside("stability", stability, ROUND_TABLE_STABILITY.0, ROUND_TABLE_STABILITY.1),
         ],
-        if !on { Some(CALIBRATION_PENDING) } else { Some(NOT_IN_THIS_BUILD) },
+        round_table_closed(w, id),
     );
     let collapse = Road::new(
         vec![Gauge::below("stability", stability, 12.0)],
