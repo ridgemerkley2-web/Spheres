@@ -305,17 +305,30 @@ pub struct Gauge {
     /// challenger).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub bloc: Option<Bloc>,
+    /// `progress()` and `met()` at construction, SERVED so the screen draws
+    /// the bar the sim computed rather than dividing value by trigger itself.
+    /// `set_bloc` is the only later write and neither depends on the bloc.
+    pub progress: f64,
+    pub met: bool,
 }
 
 impl Gauge {
+    fn finish(mut self) -> Gauge {
+        self.progress = self.progress();
+        self.met = self.met();
+        self
+    }
     fn above(name: &'static str, value: f64, trigger: f64) -> Gauge {
-        Gauge { name, value, trigger, upper: None, sense: Sense::Above, bloc: None }
+        Gauge { name, value, trigger, upper: None, sense: Sense::Above, bloc: None, progress: 0.0, met: false }
+            .finish()
     }
     fn below(name: &'static str, value: f64, trigger: f64) -> Gauge {
-        Gauge { name, value, trigger, upper: None, sense: Sense::Below, bloc: None }
+        Gauge { name, value, trigger, upper: None, sense: Sense::Below, bloc: None, progress: 0.0, met: false }
+            .finish()
     }
     fn inside(name: &'static str, value: f64, lo: f64, hi: f64) -> Gauge {
-        Gauge { name, value, trigger: lo, upper: Some(hi), sense: Sense::Inside, bloc: None }
+        Gauge { name, value, trigger: lo, upper: Some(hi), sense: Sense::Inside, bloc: None, progress: 0.0, met: false }
+            .finish()
     }
     /// How far along the gauge is toward its trigger, 0 at rest and 1 at the
     /// trigger, so the map can hatch a nation whose watch is half-armed
@@ -369,9 +382,19 @@ pub struct Road {
     /// roads are S4 and `rules.ideology_takeover` is off everywhere.
     pub open: bool,
     pub reason: &'static str,
+    /// `armed()` and `half_armed()` at construction, served for the screen and
+    /// the map's hatch.
+    pub armed: bool,
+    pub half_armed: bool,
 }
 
 impl Road {
+    fn closed(gauges: Vec<Gauge>) -> Road {
+        let mut r = Road { gauges, open: false, reason: NOT_IN_THIS_BUILD, armed: false, half_armed: false };
+        r.armed = r.armed();
+        r.half_armed = r.half_armed();
+        r
+    }
     /// Whether every gauge is at its trigger — what `open` would read if the
     /// build were S4. Served so the screen can say "would be open" honestly.
     pub fn armed(&self) -> bool {
@@ -390,6 +413,9 @@ pub struct TakeoverReadout {
     pub uprising: Road,
     pub round_table: Road,
     pub collapse: Road,
+    /// `half_armed()` at construction: any gauge on any road at or past half
+    /// its trigger. The map's hatch reads this and nothing else.
+    pub half_armed: bool,
 }
 
 impl TakeoverReadout {
@@ -427,18 +453,19 @@ pub fn takeover_readout(w: &WorldState, id: NationId) -> TakeoverReadout {
     let disc = discontent(w, id);
     let infl = influence(w, id);
     let western = infl[Bloc::Western as usize].1;
-    let closed = |gauges: Vec<Gauge>| Road { gauges, open: false, reason: NOT_IN_THIS_BUILD };
+    let closed = Road::closed;
 
     let coup = closed(vec![
         Gauge::below("army loyalty", loyalty(Pillar::Army), 0.35),
         Gauge::above("discontent", disc, 0.25),
         Gauge::above("coup pressure", pressure, 1.0 / w.rules.crisis_intensity.max(0.1)),
     ]);
-    let mut challenger = Gauge::above("challenger influence", 0.0, 0.45);
-    if let Some((b, v)) = strongest_challenger(w, id) {
-        challenger.value = v;
-        challenger.bloc = Some(b);
-    }
+    let (cv, cb) = match strongest_challenger(w, id) {
+        Some((b, v)) => (v, Some(b)),
+        None => (0.0, None),
+    };
+    let mut challenger = Gauge::above("challenger influence", cv, 0.45);
+    challenger.bloc = cb;
     let uprising = closed(vec![Gauge::above("discontent", disc, 0.45), challenger]);
     let round_table = closed(vec![
         Gauge::above("Western influence", western, 0.40),
@@ -446,7 +473,199 @@ pub fn takeover_readout(w: &WorldState, id: NationId) -> TakeoverReadout {
         Gauge::inside("stability", stability, 30.0, 70.0),
     ]);
     let collapse = closed(vec![Gauge::below("stability", stability, 12.0)]);
-    TakeoverReadout { coup, uprising, round_table, collapse }
+    let mut out = TakeoverReadout { coup, uprising, round_table, collapse, half_armed: false };
+    out.half_armed = out.half_armed();
+    out
+}
+
+// ---------------------------------------------------------------------------
+// The surface (S1): what /api/state serves per nation, built here so the
+// browser prints numbers and never derives one
+// ---------------------------------------------------------------------------
+
+/// One bloc's line: its share S_B, its foreign backing F_B (zero in this
+/// build), and whether this government has proscribed it (nothing does yet).
+#[derive(Clone, Debug, PartialEq, Serialize)]
+pub struct BlocRow {
+    pub bloc: Bloc,
+    pub share: f64,
+    pub backing: f64,
+    pub banned: bool,
+}
+
+/// The five rows in enum order.
+pub fn bloc_rows(w: &WorldState, id: NationId) -> Vec<BlocRow> {
+    let shares = bloc_shares(w, id);
+    let back = backing(w, id);
+    let banned: &[Bloc] = government::state(w, id).map_or(&[], |g| g.banned.as_slice());
+    (0..5)
+        .map(|i| BlocRow {
+            bloc: shares[i].0,
+            share: shares[i].1,
+            backing: back[i].1,
+            banned: banned.contains(&shares[i].0),
+        })
+        .collect()
+}
+
+/// Who directs the executive, as the surface prints it. NAMED where the leader
+/// table carries a row for this nation; DESCRIBED by its real institution
+/// everywhere else — a successor state, a refused row, a nation the table has
+/// not reached (design D2: no name after 1 January 1990, and none invented).
+/// Exactly one of `name` and `described` is `Some`.
+#[derive(Clone, Debug, PartialEq, Serialize)]
+pub struct Leader {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub native: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub described: Option<String>,
+    pub office: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub since: Option<String>,
+    /// The party id the leader is tied to, where the tie is a party (or, for a
+    /// described electoral leader, the coalition leader's party).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub party: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub party_name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pillar: Option<Pillar>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pillar_name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub heir: Option<crate::data::Heir>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub must_leave_by: Option<String>,
+    pub also: Vec<crate::data::Also>,
+}
+
+fn party_name(id: NationId, party: &str) -> Option<String> {
+    government::party_spec(id, party).map(|s| s.name.to_string())
+}
+
+fn pillar_name(id: NationId, pillar: Pillar) -> Option<String> {
+    polity(id)?.pillars.iter().find(|s| s.pillar == pillar).map(|s| s.name.to_string())
+}
+
+/// The raw table row, refused or not — a refused row still carries a sourced
+/// office and date, which the description keeps.
+fn any_row(w: &WorldState, id: NationId) -> Option<&Office> {
+    w.leadership.as_ref()?.iter().find(|o| o.nation == id)
+}
+
+/// The leader card for one nation. `None` only where the nation has no polity.
+pub fn leader(w: &WorldState, id: NationId) -> Option<Leader> {
+    let pol = polity(id)?;
+    if let Some(row) = leader_row(w, id) {
+        let (party, pillar) = match &row.tie {
+            Some(Tie::Party(p)) => (Some(p.clone()), None),
+            Some(Tie::Pillar(pl)) => (None, Some(*pl)),
+            None => (None, None),
+        };
+        return Some(Leader {
+            name: row.name.clone(),
+            native: row.native.clone(),
+            described: None,
+            office: row.office.clone(),
+            since: Some(row.since.clone()),
+            party_name: party.as_deref().and_then(|p| party_name(id, p)),
+            party,
+            pillar_name: pillar.and_then(|p| pillar_name(id, p)),
+            pillar,
+            heir: row.heir.clone(),
+            must_leave_by: row.must_leave_by.clone(),
+            also: row.also.clone(),
+        });
+    }
+    // Described. A REFUSED row (Chile, Panama) keeps its sourced office, date
+    // and `also` for the record, and its holder is "the office-holder" — not
+    // the leader of the chamber's largest party, who is somebody else, and
+    // not the name in the row's note, which the refusal exists to withhold.
+    if let Some(r) = any_row(w, id) {
+        return Some(Leader {
+            name: None,
+            native: None,
+            described: Some("the office-holder".to_string()),
+            office: r.office.clone(),
+            since: Some(r.since.clone()),
+            party: None,
+            party_name: None,
+            pillar: None,
+            pillar_name: None,
+            heir: r.heir.clone(),
+            must_leave_by: r.must_leave_by.clone(),
+            also: r.also.clone(),
+        });
+    }
+    // No row at all — a successor state, or a nation the table has not
+    // reached: the chamber's leading party, or the regime's ruling institution.
+    let g = government::state(w, id);
+    if government::is_electoral(w, id) {
+        let party = g.and_then(|g| g.leader()).map(|s| s.to_string());
+        let pname = party.as_deref().and_then(|p| party_name(id, p));
+        return Some(Leader {
+            name: None,
+            native: None,
+            described: Some(match &pname {
+                Some(n) => format!("the leader of {}", n),
+                None => "the head of government".to_string(),
+            }),
+            office: "head of government".to_string(),
+            since: None,
+            party,
+            party_name: pname,
+            pillar: None,
+            pillar_name: None,
+            heir: None,
+            must_leave_by: None,
+            also: vec![],
+        });
+    }
+    Some(Leader {
+        name: None,
+        native: None,
+        described: Some(format!("the leadership of {}", pol.ruling)),
+        office: pol.ruling.to_string(),
+        since: None,
+        party: None,
+        party_name: None,
+        pillar: None,
+        pillar_name: None,
+        heir: None,
+        must_leave_by: None,
+        also: vec![],
+    })
+}
+
+/// Everything the political arm serves per nation, or `None` while
+/// `rules.ideology_blocs` is off — the browser then prints null for every one
+/// of these fields, and the page has nothing to compute from.
+#[derive(Clone, Debug, PartialEq, Serialize)]
+pub struct Politics {
+    pub ruling_bloc: Option<Bloc>,
+    pub discontent: f64,
+    pub blocs: Vec<BlocRow>,
+    pub leader: Option<Leader>,
+    /// Monarchy exception only: the party leading the chamber under a court
+    /// that appoints the government. Null everywhere else.
+    pub government_of_the_day: Option<String>,
+    pub takeover: TakeoverReadout,
+}
+
+pub fn politics(w: &WorldState, id: NationId) -> Option<Politics> {
+    if !w.rules.ideology_blocs {
+        return None;
+    }
+    Some(Politics {
+        ruling_bloc: ruling_bloc(w, id),
+        discontent: discontent(w, id),
+        blocs: bloc_rows(w, id),
+        leader: leader(w, id),
+        government_of_the_day: government_of_the_day(w, id),
+        takeover: takeover_readout(w, id),
+    })
 }
 
 #[cfg(test)]
@@ -896,5 +1115,125 @@ mod tests {
             let w = world_1990(GameRules::default());
             assert!(described_ruling_bloc(&w, pol.nation).is_some(), "{}", pol.nation.code());
         }
+    }
+
+    /// The surface: `politics` is `None` with the arm off — the browser then
+    /// serves null for every field — and whole with it on. On seed 7: Poland
+    /// is Western under a NAMED Mazowiecki tied to pl_solidarity; Chile's
+    /// REFUSED row is "the office-holder", nameless, with the row's sourced
+    /// office and date kept; every living nation's five rows sum to one; and
+    /// every gauge's SERVED `progress`/`met` equal the methods they were
+    /// taken from, every road's `armed`/`half_armed` likewise, the readout's
+    /// `half_armed` the any-of-roads it is defined as. Watched red with
+    /// `finish()` dropped from `Gauge::above`: the first nation in roster
+    /// order, the USA, served its coup discontent gauge at progress 0 against
+    /// a method reading 0.304.
+    #[test]
+    fn politics_is_null_off_and_served_whole_on() {
+        let off = world_1990(GameRules::default());
+        assert!(politics(&off, NationId::Poland).is_none());
+        let w = world_1990(on(7));
+        let pl = politics(&w, NationId::Poland).expect("the arm is on");
+        assert_eq!(pl.ruling_bloc, Some(Bloc::Western));
+        assert_eq!(pl.discontent, discontent(&w, NationId::Poland));
+        let lead = pl.leader.as_ref().unwrap();
+        assert_eq!(lead.name.as_deref(), Some("Tadeusz Mazowiecki"));
+        assert_eq!(lead.party.as_deref(), Some("pl_solidarity"));
+        assert_eq!(lead.party_name.as_deref(), Some("Solidarity Citizens' Committee"));
+        assert!(lead.described.is_none());
+        assert!(pl.government_of_the_day.is_none());
+        let cl = politics(&w, NationId::Chile).unwrap();
+        let lead = cl.leader.as_ref().unwrap();
+        assert!(lead.name.is_none());
+        assert_eq!(lead.described.as_deref(), Some("the office-holder"));
+        assert_eq!(lead.office, "President of the Republic and Commander-in-Chief of the Army");
+        assert_eq!(lead.since.as_deref(), Some("1974-12-17"));
+        assert!(lead.party.is_none(), "a refused row's office is not the chamber leader's");
+        let jo = politics(&w, NationId::Jordan).unwrap();
+        assert_eq!(jo.ruling_bloc, Some(Bloc::NonAligned));
+        assert_eq!(jo.government_of_the_day.as_deref(), Some("jo_ikhwan"));
+        for id in alive(&w) {
+            let p = politics(&w, id).unwrap();
+            assert_eq!(p.blocs.len(), 5);
+            let sum: f64 = p.blocs.iter().map(|r| r.share).sum();
+            if government::state(&w, id).is_some() {
+                assert!((sum - 1.0).abs() < 1e-9, "{}: shares sum to {sum}", id.code());
+            }
+            assert!(p.blocs.iter().all(|r| r.backing == 0.0 && !r.banned));
+            assert_eq!(p.blocs.iter().map(|r| r.bloc).collect::<Vec<_>>(), Bloc::ALL.to_vec());
+            let t = &p.takeover;
+            for r in t.roads() {
+                assert!(!r.open && r.reason == NOT_IN_THIS_BUILD);
+                assert_eq!(r.armed, r.armed(), "{}", id.code());
+                assert_eq!(r.half_armed, r.half_armed(), "{}", id.code());
+                for g in &r.gauges {
+                    assert_eq!(g.progress, g.progress(), "{}: {}", id.code(), g.name);
+                    assert_eq!(g.met, g.met(), "{}: {}", id.code(), g.name);
+                }
+            }
+            assert_eq!(t.half_armed, t.half_armed(), "{}", id.code());
+            assert!(p.leader.is_some(), "{}", id.code());
+        }
+        // Measured this run: with a gauge-level "any at half" every one of the
+        // 137 living nations hatches (the round table's stability band reads 1
+        // inside 30..70), and a road-level "every gauge on one road at half"
+        // would hatch 76. Recorded, not asserted: the reading is the design's
+        // and the number is for Ridge.
+        let hatched = alive(&w).into_iter().filter(|id| politics(&w, *id).unwrap().takeover.half_armed).count();
+        assert_eq!(hatched, 137);
+    }
+
+    /// `refusal_of` says exactly what `apply_command` would, read without
+    /// touching the world — the world's bar, then the treasury's, then the
+    /// command's own — for the commands the government screen serves, and a
+    /// command it would let through it answers `None` for. Watched red with
+    /// the treasury branch removed from `refusal_of`: the unaffordable
+    /// invitation read `None` against "Poland has not the standing: 0.0
+    /// political capital held, 24.3 needed."
+    #[test]
+    fn refusal_of_says_exactly_what_apply_command_would() {
+        use crate::{apply_command, refusal_of, Command};
+        let mut w = world_1990(on(7));
+        let pl = NationId::Poland;
+        let iq = NationId::Iraq;
+        let cases: Vec<Command> = vec![
+            Command::InviteToGovernment { nation: pl, party: "pl_sld".into() },
+            Command::InviteToGovernment { nation: pl, party: "pl_solidarity".into() },
+            Command::InviteToGovernment { nation: pl, party: "pl_nobody".into() },
+            Command::InviteToGovernment { nation: iq, party: "iq_baath".into() },
+            Command::ExpelFromGovernment { nation: pl, party: "pl_solidarity".into() },
+            Command::ExpelFromGovernment { nation: pl, party: "pl_sld".into() },
+            Command::CallElection { nation: pl },
+            Command::CallElection { nation: iq },
+            Command::SecurePillar { nation: pl, pillar: Pillar::Army },
+            Command::SecurePillar { nation: iq, pillar: Pillar::Clergy },
+            Command::SecurePillar { nation: iq, pillar: Pillar::Army },
+            Command::EnactStratagem { nation: pl, id: "security_crackdown".into() },
+            Command::EnactStratagem { nation: iq, id: "security_crackdown".into() },
+            Command::EnactStratagem { nation: pl, id: "no_such_thing".into() },
+        ];
+        let before = state_hash(&w);
+        let mut refused = 0;
+        for c in &cases {
+            let read = refusal_of(&w, c);
+            let mut trial = w.clone();
+            let did = apply_command(&mut trial, c);
+            assert_eq!(read, did.clone().err(), "{c:?}");
+            if read.is_some() {
+                refused += 1;
+            }
+        }
+        assert_eq!(refused, 11, "three of the fourteen go through: the affordable invitation, Iraq paying its Guard, Iraq's crackdown");
+        assert_eq!(state_hash(&w), before, "refusal_of wrote something");
+        // The treasury's sentence, word for word.
+        w.nation_mut(pl).political_capital = 0.0;
+        let c = Command::InviteToGovernment { nation: pl, party: "pl_sld".into() };
+        let read = refusal_of(&w, &c);
+        assert_eq!(read, apply_command(&mut w.clone(), &c).err());
+        assert_eq!(read.as_deref(), Some("Poland has not the standing: 0.0 political capital held, 24.3 needed."));
+        // Expulsion is ALWAYS available: no standing check, and its own refusal
+        // still answers.
+        let c = Command::ExpelFromGovernment { nation: pl, party: "pl_solidarity".into() };
+        assert_eq!(refusal_of(&w, &c).as_deref(), Some("A government cannot expel the party that leads it."));
     }
 }
