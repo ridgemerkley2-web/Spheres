@@ -743,7 +743,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (1990, 10),
         parties: &[
-            p("br_pmdb", "Brazilian Democratic Movement Party", "Partido do Movimento Democratico Brasileiro", Family::BigTent, 0.40),
+            // bloc -> Western: Democratic umbrella against the military regime, heterogeneous by design. https://en.wikipedia.org/wiki/Brazilian_Democratic_Movement
+            p("br_pmdb", "Brazilian Democratic Movement Party", "Partido do Movimento Democratico Brasileiro", Family::BigTent, 0.40).aligned(Bloc::Western),
             p("br_pfl", "Liberal Front Party", "Partido da Frente Liberal", Family::Conservative, 0.18),
             p("br_prn", "National Reconstruction Party", "Partido da Reconstrucao Nacional", Family::Liberal, 0.15),
             p("br_pt", "Workers' Party", "Partido dos Trabalhadores", Family::SocialDemocratic, 0.12),
@@ -971,8 +972,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (0, 0),
         parties: &[
-            // bloc -> Western: A Bosniak national party seeking Western recognition, not an Islamist one. https://en.wikipedia.org/wiki/Party_of_Democratic_Action
-            p("ba_sda", "Party of Democratic Action", "Stranka demokratske akcije", Family::Religious, 0.358).aligned(Bloc::Western),
+            // bloc -> Nationalist: DISAGREES WITH THE DESIGN (which lists it Western): the source describes the SDA at founding as "a party of the Muslim cultural-historical circle" and "a broad nationalist and conservative movement", transcribed 2026-09-05. https://en.wikipedia.org/wiki/Party_of_Democratic_Action
+            p("ba_sda", "Party of Democratic Action", "Stranka demokratske akcije", Family::Religious, 0.358).aligned(Bloc::Nationalist),
             p("ba_sds", "Serbian Democratic Party", "Srpska demokratska stranka", Family::Nationalist, 0.300),
             p("ba_hdz", "Croatian Democratic Union of BiH", "Hrvatska demokratska zajednica BiH", Family::Nationalist, 0.184),
             p("ba_sdp", "Social Democratic Party", "Socijaldemokratska partija", Family::SocialDemocratic, 0.060),
@@ -1877,7 +1878,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 60,
         next: (0, 0),
         parties: &[
-            p("am_hhsh", "Pan-Armenian National Movement", "Hayots Hamazgayin Sharzhum", Family::BigTent, 0.830),
+            // bloc -> Western: Liberal-nationalist democratic movement that won the 1990 Supreme Soviet against the party-state. https://en.wikipedia.org/wiki/Pan-Armenian_National_Movement
+            p("am_hhsh", "Pan-Armenian National Movement", "Hayots Hamazgayin Sharzhum", Family::BigTent, 0.830).aligned(Bloc::Western),
             p("am_ansd", "National Self-Determination Union", "Azgayin Inknoroshum Miavorum", Family::Nationalist, 0.072),
             p("am_hhd", "Armenian Revolutionary Federation", "Hay Heghapokhakan Dashnaktsutyun", Family::SocialDemocratic, 0.043),
         ],
@@ -1902,7 +1904,8 @@ pub const POLITIES: &[Polity] = &[
         next: (0, 0),
         parties: &[
             p("az_axc", "Popular Front of Azerbaijan", "Azarbaycan Xalq Cabhasi", Family::Nationalist, 0.594),
-            p("az_msi", "Independent Azerbaijan bloc", "Musteqil Azarbaycan", Family::BigTent, 0.330),
+            // bloc -> Western: The Popular Front opposition bloc of 1990: anti-communist, democratic, for independence. https://en.wikipedia.org/wiki/Azerbaijan_Popular_Front_Party
+            p("az_msi", "Independent Azerbaijan bloc", "Musteqil Azarbaycan", Family::BigTent, 0.330).aligned(Bloc::Western),
         ],
         ruling: "the Presidency of the Republic of Azerbaijan",
         pillars: &[
@@ -2201,7 +2204,8 @@ pub const POLITIES: &[Polity] = &[
         term_months: 48,
         next: (1993, 6),
         parties: &[
-            p("bo_mnr", "Nationalist Revolutionary Movement", "Movimiento Nacionalista Revolucionario", Family::BigTent, 0.257),
+            // bloc -> Western: A competitive democratic party (25.6% in 1989), moderate centre-left turning market-oriented, not a state party. https://en.wikipedia.org/wiki/Revolutionary_Nationalist_Movement
+            p("bo_mnr", "Nationalist Revolutionary Movement", "Movimiento Nacionalista Revolucionario", Family::BigTent, 0.257).aligned(Bloc::Western),
             p("bo_adn", "Nationalist Democratic Action", "Accion Democratica Nacionalista", Family::Conservative, 0.252),
             p("bo_mir", "Revolutionary Left Movement", "Movimiento de la Izquierda Revolucionaria", Family::SocialDemocratic, 0.218),
             p("bo_condepa", "Conscience of the Fatherland", "Conciencia de Patria", Family::Regionalist, 0.123),
@@ -2684,7 +2688,8 @@ pub const POLITIES: &[Polity] = &[
         next: (0, 0),
         parties: &[
             p("sd_umma", "National Umma Party", "Hizb al-Umma al-Qawmi", Family::Religious, 0.384),
-            p("sd_dup", "Democratic Unionist Party", "al-Hizb al-Ittihadi al-Dimuqrati", Family::Religious, 0.297),
+            // bloc -> Western: DISAGREES WITH THE DESIGN (which lists it Islamist): the Khatmiyya-tied DUP "espouses democratic pluralism, a mixed economy, and secularism" per the source, transcribed 2026-09-05. https://en.wikipedia.org/wiki/Democratic_Unionist_Party_(Sudan)
+            p("sd_dup", "Democratic Unionist Party", "al-Hizb al-Ittihadi al-Dimuqrati", Family::Religious, 0.297).aligned(Bloc::Western),
             p("sd_nif", "National Islamic Front", "al-Jabhah al-Islamiyah al-Qawmiyah", Family::Religious, 0.185),
             p("sd_snp", "Sudanese National Party", "al-Hizb al-Qawmi al-Sudani", Family::Regionalist, 0.022),
             p("sd_scp", "Sudanese Communist Party", "al-Hizb al-Shuyu'i al-Sudani", Family::Communist, 0.017),
@@ -7105,5 +7110,54 @@ mod tests {
             );
         }
     }
-}
 
+    /// Every bloc override in POLITIES is a transcribed decision with its
+    /// source on the row: the line above each `.aligned(Bloc::X)` is a comment
+    /// that names the same bloc after `bloc ->` and carries a URL, the override
+    /// differs from the family default (or it is not an override), and the
+    /// number of `Some` blocs in the table equals the number of such lines, so
+    /// none is written any other way. Read off this file's own text because the
+    /// source is a comment and a comment is all a const table can carry.
+    /// Integrated 2026-09-05 at 34 rows from blocs-data/overrides.json (the
+    /// 50 rows there whose bloc equals the family default are not overrides and
+    /// are not written). Watched red by deleting the comment above `ru_apr`
+    /// and by writing the comment's bloc as Western on `in_bjp`.
+    #[test]
+    fn every_bloc_override_has_a_source() {
+        let text = include_str!("government.rs");
+        let lines: Vec<&str> = text.lines().collect();
+        let mut sourced = 0usize;
+        for (i, line) in lines.iter().enumerate() {
+            let Some(at) = line.find(".aligned(Bloc::") else { continue };
+            let row = line.trim_start();
+            if !row.starts_with("p(") && !row.starts_with("pariah(") {
+                continue; // the builder's own definition, and this test
+            }
+            let id = line.split('"').nth(1).unwrap_or("?");
+            let bloc = &line[at + ".aligned(Bloc::".len()..];
+            let bloc = &bloc[..bloc.find(')').unwrap()];
+            let above = lines[i - 1].trim_start();
+            assert!(
+                above.starts_with("// bloc -> "),
+                "{id}: the line above the override is not a `bloc ->` comment: {above:?}"
+            );
+            assert!(
+                above.starts_with(&format!("// bloc -> {bloc}:")),
+                "{id}: the comment names a different bloc than the override: {above:?}"
+            );
+            assert!(above.contains("http"), "{id}: the override comment carries no URL: {above:?}");
+            sourced += 1;
+        }
+        let mut overridden = 0usize;
+        for pol in POLITIES {
+            for s in pol.parties {
+                if let Some(b) = s.bloc {
+                    overridden += 1;
+                    assert_ne!(b, s.family.bloc(), "{}: an override equal to the family default", s.id);
+                }
+            }
+        }
+        assert_eq!(overridden, sourced, "every override is written with a sourced comment above it");
+        assert_eq!(overridden, 34, "the override count as integrated on 2026-09-05");
+    }
+}
