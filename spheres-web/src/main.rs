@@ -1212,7 +1212,7 @@ fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
     use spheres_sim::blocs;
     use spheres_sim::government as gov;
     use spheres_sim::government::Bloc;
-    let pol = gov::polity(id);
+    let pol = gov::polity_in(w, id);
     let g = gov::state(w, id);
     let electoral = gov::is_electoral(w, id);
     let held = w.nation_opt(id).map_or(0.0, |n| n.political_capital);

@@ -1692,7 +1692,7 @@ pub(crate) fn ai_back_bloc_choice(w: &WorldState, sponsor: NationId, target: Nat
         return Some(b);
     }
     let own = own?;
-    if own == ruling || crate::blocs::bloc_in_table(target, own) {
+    if own == ruling || crate::blocs::bloc_in_table(w, target, own) {
         return None;
     }
     if w.relation(sponsor, target) <= HOSTILE_TARGET || rival_backed {
