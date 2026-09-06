@@ -807,20 +807,28 @@ mod tests {
     /// Twenty years, seeds 0..5, default rules: every hash equals the one the
     /// untouched tree produces. The six constants were measured on the S1 run
     /// by building origin/feat/hoi4-map-and-tech from `git archive` into a
-    /// separate CARGO_TARGET_DIR and running the same loop there. Then the
-    /// switch ON against OFF for twenty years on seed 0: every quantity the
-    /// tick reads is bit-identical nation by nation UNTIL THE FIRST
-    /// LIBERALISATION SEAM — the S3 design's one deliberate write into model
-    /// state: when a regime schedules its first free elections its party
-    /// support is reseeded from the movements, and the two worlds part there.
-    /// The month and the nation are PINNED as measured on this tree (2026-09-05,
-    /// S3 commit 1): month 146, Kuwait, whose court's Non-Aligned share has no
-    /// party to carry it. Before that month everything is bit-identical, and
-    /// in that month everything is STILL bit-identical except the one support
-    /// vector the seam rewrote — a leak of the arm into the model anywhere
-    /// else, or earlier, moves the pin. Under S1 the bar ran all 240 months
-    /// with no seam; that half was re-expressed here, not widened, because the
-    /// approved S3 design contradicts it by construction.
+    /// separate CARGO_TARGET_DIR and running the same loop there. That is the
+    /// inertness proof: the OFF world is the world the goldens pin.
+    ///
+    /// Then the switch ON against OFF on seed 1990, Libya in the player's
+    /// seat in both (so the one sponsor with a movement to back in January
+    /// 1990 — Libya over Chad's army — is not an AI actor): every quantity
+    /// the tick reads is bit-identical nation by nation, the RNG stream
+    /// identical, UNTIL THE FIRST MONTH THE ARM ACTS. S3 gives the switched-on
+    /// world three deliberate writes into the model — an AI sponsor's
+    /// BackBloc on the patrons' existing covert draw (a different op on the
+    /// same roll), the ideological sponsors' own draw, and the liberalisation
+    /// seam — and each leaves a stem in the headlines. The first month the
+    /// two worlds part is PINNED as measured (2026-09-06, S3 commit 3): month
+    /// 35, France's backing of the Western movement in Libya, caught by Libya
+    /// on the same roll that catches France's ordinary op in the OFF world.
+    /// Every month before it is bit-identical, and the parting month's
+    /// on-only news must carry an arm stem: a leak of the arm into the model
+    /// anywhere else, or earlier, moves the pin or fails the stem. Under S1
+    /// the bar ran all 240 months with nothing to act; the ON half was
+    /// re-expressed here, not widened, because the approved S3 design makes
+    /// the switched-on world act by construction. Watched red with a 1e-9
+    /// leak of the drift into support: "parted at month 0 with no stem".
     #[test]
     fn the_bloc_layer_is_inert_over_time() {
         const BASE: [u64; 6] = [
@@ -837,64 +845,57 @@ mod tests {
             let h = state_hash(&w);
             assert_eq!(h, BASE[seed as usize], "seed {seed} moved (actual {h:#018x})");
         }
-        const FIRST_SEAM: (usize, &str) = (146, "Kuwait");
+        const FIRST_ACT: (usize, &str) = (35, "backing the Western movement in Libya");
+        const STEMS: [&str; 4] =
+            ["Money and organisers reach", "backing the", "has no party to carry it", "comes to nothing"];
         let mut off = world_1990(GameRules::default());
         let mut on = world_1990(on(1990));
-        let mut seam: Option<(usize, String)> = None;
+        off.player = Some(NationId::Libya);
+        on.player = Some(NationId::Libya);
+        let mut parted: Option<usize> = None;
         for month in 0..240 {
-            tick_month(&mut off, &[]);
-            let news = tick_month(&mut on, &[]);
-            // A successor state born electoral also "sets a date", with no
-            // movements to reseed from and no seam: the seam is the month a
-            // support vector PARTS, and that month must carry the headline.
-            let parted: Vec<&str> = off
-                .governments
-                .states
-                .iter()
-                .zip(&on.governments.states)
-                .filter(|(a, b)| a.support != b.support)
-                .map(|(a, _)| a.nation.code())
-                .collect();
-            if seam.is_none() && !parted.is_empty() {
-                let who = parted[0];
-                let h = news
-                    .iter()
-                    .find(|h| h.starts_with(&format!("{} sets a date for its first free elections", NationId::from_code(who).unwrap().name())))
-                    .unwrap_or_else(|| panic!("support parted in {who} at month {month} with no seam headline: {news:?}"));
-                seam = Some((month, h.clone()));
-            }
+            let off_news = tick_month(&mut off, &[]);
+            let on_news = tick_month(&mut on, &[]);
+            let mut why: Vec<String> = vec![];
             assert_eq!(off.nations.len(), on.nations.len(), "month {month}");
             for (a, b) in off.nations.iter().zip(&on.nations) {
                 assert_eq!(a.id, b.id);
                 for (name, x, y) in [
                     ("gdp", a.gdp, b.gdp),
                     ("stability", a.stability, b.stability),
+                    ("political_capital", a.political_capital, b.political_capital),
                     ("authoritarianism", a.authoritarianism, b.authoritarianism),
                     ("inflation", a.inflation, b.inflation),
                 ] {
-                    assert!(x.to_bits() == y.to_bits(), "{} {name} month {month}: {x} vs {y}", a.id.code());
-                }
-                if seam.is_none() {
-                    let (x, y) = (a.political_capital, b.political_capital);
-                    assert!(x.to_bits() == y.to_bits(), "{} political_capital month {month}: {x} vs {y}", a.id.code());
+                    if x.to_bits() != y.to_bits() {
+                        why.push(format!("{} {name}: {x} vs {y}", a.id.code()));
+                    }
                 }
             }
-            assert_eq!(off.rng.state, on.rng.state, "the arm drew the RNG in month {month}");
+            if off.rng.state != on.rng.state {
+                why.push("rng".into());
+            }
             for (a, b) in off.governments.states.iter().zip(&on.governments.states) {
-                if a.support == b.support {
-                    assert_eq!(a.coalition, b.coalition, "{} month {month}", a.nation.code());
+                if a.support != b.support || a.coalition != b.coalition || a.pillars != b.pillars {
+                    why.push(format!("{} government", a.nation.code()));
                 }
-                assert_eq!(a.pillars, b.pillars, "{} month {month}", a.nation.code());
             }
-            if let Some((m, h)) = &seam {
-                assert_eq!(*m, FIRST_SEAM.0, "the first seam moved: {h}");
-                assert!(h.starts_with(FIRST_SEAM.1), "the first seam is another nation's: {h}");
-                assert!(h.contains("has no party to carry it"), "{h}");
-                assert_eq!(parted, vec![FIRST_SEAM.1], "the seam month rewrote more than the one support vector");
-                break;
+            let on_only: Vec<&String> = on_news.iter().filter(|h| !off_news.contains(h)).collect();
+            if !on_only.is_empty() {
+                why.push(format!("news {on_only:?}"));
             }
+            if why.is_empty() {
+                continue;
+            }
+            let stems: Vec<&&String> =
+                on_only.iter().filter(|h| STEMS.iter().any(|s| h.contains(s))).collect();
+            assert!(!stems.is_empty(), "parted at month {month} with no stem: {why:?}");
+            assert_eq!(month, FIRST_ACT.0, "the first act moved: {stems:?}");
+            assert!(stems.iter().any(|h| h.contains(FIRST_ACT.1)), "the first act is another's: {stems:?}");
+            parted = Some(month);
+            break;
         }
-        assert!(seam.is_some(), "no regime liberalised in twenty years on seed 1990");
+        assert!(parted.is_some(), "the arm never acted in twenty years");
     }
 
     /// Same seed twice with the arm on, one arm saved and reloaded at month
@@ -1664,6 +1665,102 @@ mod tests {
         // The card's arms quote the clamped room.
         let arms = crate::statecraft::back_bloc_effects(&on, usa, pl, Bloc::Communist);
         assert!(arms[0].contains("0.06 realised now"), "{}", arms[0]);
+    }
+
+    /// The AI covert arm backs a bloc only under its conditions, read off
+    /// the pure `ai_back_bloc_choice`: `None` with the switch off whatever
+    /// the state; never the target's ruling bloc; never a bloc under 0.15 of
+    /// influence (Egypt's Islamist reads 0.1327 on the flat seed, and 0.06
+    /// of backing lifts it over); a patron backs its own bloc anywhere, and
+    /// any qualifying bloc only in a rival's client; an ideological sponsor
+    /// backs its transcribed bloc and nothing else, even in a rival's client
+    /// with a stronger movement. The flag is on exactly five nations and is
+    /// not in `patrons()`. Then a twenty-year run on seed 7 with the switch
+    /// on, ai_aggression default: every stored entry is inside both caps and
+    /// its sponsor is a patron or an ideological sponsor, printed as
+    /// measured; the same run with the switch off stores nothing. Watched
+    /// red with the 0.15 line removed: Egypt read Some(Islamist) at 0.1327.
+    #[test]
+    fn the_ai_backs_a_bloc_only_under_its_conditions() {
+        use crate::nations::{ideological_sponsors, patrons};
+        use crate::politics::ai_back_bloc_choice;
+        use crate::statecraft::{add_backing, pledge_aid};
+        let (usa, ussr, iran, pl, eg) = (NationId::USA, NationId::USSR, NationId::Iran, NationId::Poland, NationId::Egypt);
+        assert_eq!(
+            ideological_sponsors().iter().map(|n| n.code()).collect::<Vec<_>>(),
+            ["Pakistan", "SaudiArabia", "Iran", "Cuba", "Libya"],
+            "registry order"
+        );
+        assert_eq!(iran.def().ideological_sponsor, Some(Bloc::Islamist));
+        assert_eq!(NationId::Libya.def().ideological_sponsor, Some(Bloc::Nationalist));
+        assert_eq!(NationId::Cuba.def().ideological_sponsor, Some(Bloc::Communist));
+        assert_eq!(usa.def().ideological_sponsor, None);
+        for s in ideological_sponsors() {
+            assert!(!patrons().contains(s), "{} leaked into patrons()", s.code());
+        }
+        // Off: nothing, whatever the state.
+        let off = world_1990(GameRules::default());
+        assert_eq!(ai_back_bloc_choice(&off, ussr, pl), None);
+        // On. Poland rules Western with the Communists at 0.22: the USSR
+        // (Communist) backs its own bloc there; the USA (Western) has no bloc
+        // to back — Western rules and Poland is nobody's client.
+        let mut w = world_1990(on(7));
+        assert_eq!(ruling_bloc(&w, pl), Some(Bloc::Western));
+        assert!(influence(&w, pl)[Bloc::Communist as usize].1 >= 0.15);
+        assert_eq!(ai_back_bloc_choice(&w, ussr, pl), Some(Bloc::Communist));
+        assert_eq!(ai_back_bloc_choice(&w, usa, pl), None, "the ruling bloc is never backed");
+        // Make Poland a Soviet client the USA is at odds with: now any
+        // qualifying bloc will do for the USA, and the Communists qualify.
+        pledge_aid(&mut w, ussr, pl, AidKind::Economic, 0.002).expect("pledged");
+        w.set_relation(usa, ussr, -40.0);
+        assert!(w.patrons_of(pl).contains(&ussr));
+        assert_eq!(ai_back_bloc_choice(&w, usa, pl), Some(Bloc::Communist));
+        // Egypt: Non-Aligned rules, Islamist present at 0.1327 — under the
+        // line for Iran until backing lifts it.
+        let islamist = influence(&w, eg)[Bloc::Islamist as usize].1;
+        assert!((islamist - 0.1327).abs() < 1e-3, "{islamist}");
+        assert_eq!(ai_back_bloc_choice(&w, iran, eg), None, "under the line at {islamist}");
+        add_backing(&mut w, NationId::SaudiArabia, eg, Bloc::Islamist);
+        assert!(influence(&w, eg)[Bloc::Islamist as usize].1 >= 0.15);
+        assert_eq!(ai_back_bloc_choice(&w, iran, eg), Some(Bloc::Islamist));
+        // An ideological sponsor backs its own bloc only: Egypt as a US
+        // client Iran is at odds with, its Western movement backed to the
+        // cap, still reads Islamist for Iran — and Western for the USSR, a
+        // patron in a rival's client, whose own bloc is absent there.
+        pledge_aid(&mut w, usa, eg, AidKind::Economic, 0.002).expect("pledged");
+        w.set_relation(iran, usa, -60.0);
+        w.set_relation(ussr, usa, -60.0);
+        for _ in 0..4 {
+            add_backing(&mut w, NationId::UK, eg, Bloc::Western);
+            add_backing(&mut w, NationId::France, eg, Bloc::Western);
+        }
+        let west = influence(&w, eg)[Bloc::Western as usize].1;
+        assert!(west > influence(&w, eg)[Bloc::Islamist as usize].1, "{west}");
+        assert_eq!(ai_back_bloc_choice(&w, iran, eg), Some(Bloc::Islamist));
+        assert_eq!(ai_back_bloc_choice(&w, ussr, eg), Some(Bloc::Western), "the strongest qualifying bloc in a rival's client");
+        // The invariant over a run, and the count for the record.
+        let mut on_w = world_1990(on(7));
+        let mut landed = 0usize;
+        for month in 0..240 {
+            let news = tick_month(&mut on_w, &[]);
+            landed += news.iter().filter(|h| h.starts_with("Money and organisers reach")).count();
+            for e in &on_w.statecraft.backing {
+                assert!(e.weight > 0.0 && e.weight <= crate::statecraft::BACKING_SPONSOR_CAP + 1e-12, "month {month}: {e:?}");
+                assert!(
+                    patrons().contains(&e.sponsor) || ideological_sponsors().contains(&e.sponsor),
+                    "month {month}: {e:?}"
+                );
+            }
+            for id in alive(&on_w) {
+                for (b, v) in backing_stock(&on_w, id) {
+                    assert!(v <= crate::statecraft::BACKING_TOTAL_CAP + 1e-12, "month {month} {} {b:?} {v}", id.code());
+                }
+            }
+        }
+        println!("AI backings landed in twenty years on seed 7: {landed}; entries at the end: {}", on_w.statecraft.backing.len());
+        let mut off_w = world_1990(GameRules { seed: 7, ..GameRules::default() });
+        run_months(&mut off_w, 240);
+        assert!(off_w.statecraft.backing.is_empty(), "the switch was off");
     }
 
     /// `refusal_of` says exactly what `apply_command` would, read without

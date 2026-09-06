@@ -1361,7 +1361,14 @@ fn ai_statecraft(w: &mut WorldState) {
                     let n = w.nation(t);
                     (n.stability, n.separatism)
                 };
-                let op = if sep > 0.25 {
+                // The political arm's leading arm (S3, gated on
+                // `rules.ideology_blocs` inside `ai_back_bloc_choice`, which
+                // answers `None` before reading anything with the switch
+                // off): back a movement where one is worth backing, else the
+                // three ops as before.
+                let op = if let Some(b) = ai_back_bloc_choice(w, p, t) {
+                    CovertOp::BackBloc(b)
+                } else if sep > 0.25 {
                     CovertOp::StirSeparatists
                 } else if stab < 50.0 {
                     CovertOp::FundOpposition
@@ -1372,6 +1379,37 @@ fn ai_statecraft(w: &mut WorldState) {
                     w,
                     &crate::Command::CovertAction { sponsor: p, target: t, op },
                 );
+            }
+        }
+    }
+
+    // ---- The regional ideological sponsors (design D3, S3): the same 0.022
+    // draw and the same target choice as a patron's covert arm, for their own
+    // bloc only, and nothing else — no aid, no guarantees, no other op. The
+    // whole block is behind the switch, so an off-world's RNG stream is
+    // untouched; and the DRAW COMES AFTER THE CHOICE, so a switched-on world
+    // in which no sponsor has a movement to back draws nothing either — the
+    // stream parts from the off-world's only in a month a sponsor could act
+    // (measured 2026-09-05: drawing first parted the two at month 0 on every
+    // seed tried, with nothing to show for it).
+    if w.rules.ideology_blocs {
+        let sponsors: Vec<NationId> = crate::nations::ideological_sponsors()
+            .iter()
+            .copied()
+            .filter(|p| w.nation_opt(*p).is_some_and(|n| n.alive) && Some(*p) != w.player)
+            .collect();
+        for p in sponsors {
+            if w.nation(p).stability < 25.0 {
+                continue;
+            }
+            let choice = best_covert_target(w, p).and_then(|t| ai_back_bloc_choice(w, p, t).map(|b| (t, b)));
+            if let Some((t, b)) = choice {
+                if monthly_chance(w, 0.022) {
+                    let _ = crate::apply_command(
+                        w,
+                        &crate::Command::CovertAction { sponsor: p, target: t, op: CovertOp::BackBloc(b) },
+                    );
+                }
             }
         }
     }
@@ -1498,9 +1536,41 @@ fn best_client(w: &WorldState, patron: NationId) -> Option<NationId> {
         .map(|(c, _)| c)
 }
 
+/// Which movement, if any, an AI sponsor would back in a target (S3): the
+/// strongest PRESENT non-ruling bloc B of the target with influence
+/// I_B >= 0.15 (ties in enum order), provided B is the sponsor's own bloc —
+/// a patron's ruling bloc, an ideological sponsor's transcribed one — or,
+/// for a patron only, the target is a rival's client (a patron of the target
+/// the sponsor is at under -20 with, the same test `best_covert_target`
+/// reads). Pure, and `None` before reading anything while
+/// `rules.ideology_blocs` is off. The 0.15 line is INVENTED (design S3).
+pub(crate) fn ai_back_bloc_choice(w: &WorldState, sponsor: NationId, target: NationId) -> Option<crate::government::Bloc> {
+    if !w.rules.ideology_blocs {
+        return None;
+    }
+    let sponsored = sponsor.def().ideological_sponsor;
+    let own = sponsored.or_else(|| crate::blocs::ruling_bloc(w, sponsor));
+    let ruling = crate::blocs::ruling_bloc(w, target)?;
+    let rivals_client =
+        sponsored.is_none() && w.patrons_of(target).iter().any(|q| w.relation(sponsor, *q) < -20.0);
+    let mut best: Option<(crate::government::Bloc, f64)> = None;
+    for (b, v) in crate::blocs::influence(w, target) {
+        if b == ruling || v < 0.15 || !crate::blocs::bloc_present(target, b) {
+            continue;
+        }
+        if Some(b) != own && !rivals_client {
+            continue;
+        }
+        if best.map_or(true, |(_, bv)| v > bv) {
+            best = Some((b, v));
+        }
+    }
+    best.map(|(b, _)| b)
+}
+
 /// Subversion goes where hostility meets brittleness. A rival's client is the
 /// classic target: cheaper to break than the rival, and it hurts the rival anyway.
-fn best_covert_target(w: &WorldState, sponsor: NationId) -> Option<NationId> {
+pub(crate) fn best_covert_target(w: &WorldState, sponsor: NationId) -> Option<NationId> {
     w.nations
         .iter()
         .filter(|n| n.alive && n.id != sponsor)
