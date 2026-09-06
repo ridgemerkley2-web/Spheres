@@ -70,6 +70,7 @@
         <div class="map-quick-modes" role="group" aria-label="Map view">${modes.map(key =>
           `<button type="button" data-map-mode="${key}" data-map-focus="mode-${key}" aria-pressed="${ui.mapMode === key}">${escape(MAP_MODES[key]?.label || key)}</button>`
         ).join("")}</div>
+        <button type="button" data-map-action="tilt" data-map-focus="tilt" aria-label="Toggle 3D terrain view" aria-pressed="${ui.mapTilt !== false}" title="Angled terrain / top view">3D</button>
         <details class="map-detail-menu"${detailsOpen ? " open" : ""}>
           <summary data-map-focus="details">Details</summary>
           <div class="map-detail-options" role="group" aria-label="Map detail layers">${Object.entries(details).map(([key, label]) =>
@@ -86,6 +87,7 @@
         <button type="button" data-map-action="west" data-map-focus="west" aria-label="Rotate globe west" title="Rotate west (Left arrow)">‹</button>
         <button type="button" data-map-action="east" data-map-focus="east" aria-label="Rotate globe east" title="Rotate east (Right arrow)">›</button>
       </div>
+      <output id="terrainStatus" class="map-terrain-status" aria-live="polite"></output>
     </section>`;
   }
   function sync() {
@@ -107,6 +109,8 @@
     const label = MAP_MODES[ui.mapMode]?.label || "Map";
     const status = controls.querySelector("#mapViewStatus");
     if (status) status.textContent = `${label} · ${zoom.toFixed(1)}×`;
+    const tilt = controls.querySelector('[data-map-action="tilt"]');
+    if (tilt) { tilt.setAttribute('aria-pressed', String(ui.mapTilt !== false)); tilt.textContent = ui.mapTilt !== false ? '3D' : 'Top'; }
     const zoomOut = controls.querySelector('[data-map-action="zoom-out"]');
     const zoomIn = controls.querySelector('[data-map-action="zoom-in"]');
     if (zoomOut) zoomOut.disabled = zoom <= min + 0.0001;
@@ -152,6 +156,12 @@
       case "home": homeNation(); break;
       case "west": globeNudge(-1, 0); break;
       case "east": globeNudge(1, 0); break;
+      case "tilt":
+        ui.mapTilt = ui.mapTilt === false || (Number(ui.cam?.k)||1) < 12;
+        if (ui.mapTilt) { ui.mapMode = 'terrain'; flags().relief = true; }
+        if (typeof GLOBE !== 'undefined' && GLOBE) GLOBE.setView(GLOBE.yaw, GLOBE.pitch, Math.max(24, GLOBE.zoom));
+        renderMap();
+        break;
       default: return;
     }
     sync();

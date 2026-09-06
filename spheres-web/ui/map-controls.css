@@ -35,9 +35,16 @@
 .map-detail-options button { display: flex; align-items: center; justify-content: space-between; gap: 24px; text-align: left; }
 .map-detail-state { font-size: 11px; opacity: .85; }
 .map-camera-controls { gap: 4px; }
+.map-city-card { position:absolute; z-index:6; right:14px; top:14px; width:290px; max-width:calc(100% - 28px); box-sizing:border-box; padding:18px; border:1px solid #9fb8a977; border-radius:14px; background:#15232eed; box-shadow:0 10px 32px #0006; color:#edf1e9; }
+.map-city-card h2 { margin:0 0 6px; font:600 25px/1.15 Georgia,serif; }
+.map-city-card p { margin:7px 0; font-size:12px; }
+.map-city-card .map-city-note { color:#afc0c7; line-height:1.5; }
+.map-city-card > div { display:flex; gap:5px; margin-top:12px; }
+.map-city-card button { min-height:44px; border:1px solid #73918688; background:#2b413f; color:#eaf1e8; border-radius:7px; padding:6px 10px; cursor:pointer; }
 .map-camera-controls button { padding: 6px; font-size: 23px; line-height: 1; }
 .map-camera-caption { display: block; font-size: 10px; margin-top: 3px; }
 .map-view-status { min-width: 97px; padding: 0 5px; text-align: center; font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.map-terrain-status:not(:empty) { padding:7px 10px; border-radius:7px; background:#15202edb; font-size:11px; color:#c7dace; }
 
 /* The dock already has its own space. Let province facts use the map's height,
    and retain the close control while the longer economic sections scroll. */
@@ -61,6 +68,7 @@
 #app.map-controls-ready .province-actions button { min-height: 44px; padding: 7px; font-size: 13px; }
 
 @media (max-width: 700px) {
+  .map-city-card { top:auto; bottom:8px; right:8px; padding:12px; width:270px; }
   #app.map-controls-ready .province-dossier { left: 8px; right: 8px; width: auto; }
   #app.map-controls-ready { --map-dock-space: 86px; }
   #app.map-controls-ready .timebtns { justify-content: flex-end; gap: 5px; }

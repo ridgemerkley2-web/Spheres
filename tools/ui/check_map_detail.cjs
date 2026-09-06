@@ -75,17 +75,21 @@ function glFixture() {
     return (...args) => calls.push([name, ...args]);
   } });
   const context = vm.createContext({ gl, calls, performance: { now: () => 1 }, $: () => null,
+    document: { getElementById: () => null },
     paintPolitical() {}, paintSelection() {}, glPerf() {} });
   run(context, `
     const GL = { inProof: false, ok: true, ready: true, maxLod: 7, shimmer: false, time: 0 };
     const GLR = { gl, u: new Proxy({}, { get: (_, name) => name }), vao: {}, progMap: {} };
     const GLCV = { isConnected: true, width: 1200, height: 700, style: {} };
     const GLBAKE = { W: 2400, SDF_MAX: 1 }, GLPROJ = { H_EXT: 1018.2 };
-    const WORLD = { w: 2400 }, POL = { dirty: false }, SEL = {};
+    const WORLD = { w: 2400, h: 1018.2 };
+    const POL = { dirty: false, canvas: { width: 4096, height: 1738 }, region: [0,0,WORLD.w,WORLD.h] };
+    const SEL = { dirty: false, canvas: { width: 4096, height: 1738 }, region: [0,0,WORLD.w,WORLD.h] };
     let ui = { mapMode: 'terrain' };
     function camDials() { return { ground: 1, sat: 1, shade: 1, sea: 1, haze: 0, ao: 1, glint: 0 }; }
     const view = { invBasis: [1,0,0,0,1,0,0,0,1], distance: 2, halfTan: .5,
-      pxPerWorld: 1, lk: 0 };
+      pxPerWorld: 1, lk: 0, zoom: 1, yaw: 0, pitch: 0, aspect: 1200/700,
+      camera: [0,0,2], rayBasis: [1,0,0,0,1,0,0,0,1] };
     ${pageFunction('glDrawGlobe')}
   `);
   return { context, calls, draw(mode) {

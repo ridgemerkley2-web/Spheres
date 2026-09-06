@@ -29,6 +29,9 @@ browser, npm install, running server or campaign. Run a single file with
 | `check_terrain_labels.cjs` | Sourced physical names, district-member anchors, camera-facing and shared collision bounds. |
 | `check_water_detail.cjs` | Unchanged river courses, display hierarchy, source-vertex name anchors and label density. |
 | `check_height_detail.cjs` | Independent elevation decode, graphics capability fallback and texture cleanup. |
+| `check_terrain_surface.cjs` | Native cell-centre sampling, displaced mesh, height gradients, tile seams, camera footprint, bounded requests/cache, constant tiles and failure fallback. |
+| `check_globe_terrain.cjs` | Angled terrain camera, elevated-ground projection and picking, camera clearance and the 192× zoom limit. |
+| `check_city_detail.cjs` | All 1,249 source settlement records, symbolic skylines, search, selection, collision bounds and clickable artwork. |
 | `check_shader_loader.cjs` | Responsive shader preparation, compile/link errors and context-loss cleanup. |
 | `check_polar_cap.cjs` | Unmapped north-cap shading and the existing globe picking limit. |
 | `check_city_labels.cjs` | Actual city overlay: measured text, collision handling, persistent markers and independent city/name visibility. |
@@ -76,8 +79,17 @@ Check both desktop and narrow layouts:
   fit. Verify the dock clears the legend, Details opens without clipping, and
   keyboard focus survives a map refresh. Verify named rivers and regional relief
   at close zoom, and compare lake/coastal alignment across Terrain and Political.
-  The independent detail height texture is sampled from NOAA ETOPO 2022; the
-  base coast, water and cover textures retain their original decode contracts.
+  Toggle **3D / Top**, inspect valley depth and peak silhouettes at 128×–192×,
+  and verify terrain picking agrees with the displaced surface. Use Find city
+  to enter a close view, select a skyline and open its province; city symbols
+  must remain grounded and clickable at desktop and narrow sizes. All 1,249
+  settlements retain sourced locations; skylines are symbols, not street data.
+  Native NOAA samples have 60-arc-second spacing (about 1.85 km at the equator),
+  and displayed heights use 3× vertical exaggeration. Check tile transitions and
+  loading fallback while dragging: the offline 127 MiB tile set uses at most six
+  concurrent requests and a 64-tile decoded cache. Confirm Baikal and the Great
+  Lakes show water surfaces using the sourced correction, without moving their
+  existing shorelines. Base coast, water and cover retain their decode contracts.
 - Setup and Global Command: labels match the rendered elements, character art
   stays intact, actions and supporting text remain readable.
 - Every room: Escape closes the expected layer, Tab stays within the active

@@ -2959,6 +2959,8 @@
 <script src="/terrain-labels.js"></script>
 <script src="/water-detail.js"></script>
 <script src="/height-detail.js"></script>
+<script src="/terrain-surface.js"></script>
+<script src="/city-detail.js"></script>
 <script src="/shader-loader.js"></script>
 <script src="/campaign-transport.js"></script>
 <script src="/area-art.js"></script>
@@ -9111,12 +9113,16 @@ const GL_DIALS_OVERRIDE = {};
    build step, no external reference.                                       */
 
 const GLSL_VS = `#version 300 es
+out highp vec3 vSurface;
+out highp float vElevation;
+out highp vec2 vSlope;
 // One full-screen triangle, no buffers: gl_VertexID drives it. NO camera work
 // here at all — the camera is inverted per-fragment from gl_FragCoord, which is
 // what makes the mapping exactly the svg's and nothing else's.
 void main() {
   vec2 p = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2));
   gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0);
+  vSurface = vec3(0.0); vElevation = 0.0; vSlope = vec2(0.0);
 }
 `;
 
@@ -9171,18 +9177,17 @@ const GLSL_MAP = `#version 300 es
 precision highp float;
 precision highp sampler2D;
 out vec4 fragColor;
+in vec3 vSurface;
+in float vElevation;
+in vec2 vSlope;
+uniform int uMesh;
+uniform vec3 uCamera;
+uniform mat3 uRayBasis;
 
-// ---- camera: a ray through a sphere, and nothing else ---------------------
-// The map is a globe. "Which point of the world is under this pixel" is
-// therefore a ray-sphere intersection followed by a FORWARD Robinson
-// projection, where the flat map had an affine inverse of the svg's own CTM.
-//
-// THAT IS THE ONLY THING THAT CHANGED IN THIS SHADER. Everything past the
-// preamble of main() reads "world" -- the same Robinson canvas coordinate the
-// flat map handed it -- so the entire ground (elevation, bathymetry, land
-// cover, hillshade, lakes, haze, water) is the same code sampling the same
-// bake, and a bug in it is a bug that predates the globe. The sphere is a
-// lens, not a second projection to keep in step with the first.
+// Both passes share the camera and physical palette. The world overview
+// raycasts a sphere; the regional pass shades true displaced triangles from
+// native elevation tiles. Both recover Robinson coordinates for geography,
+// and write the same perspective depth so peaks can occlude distant ground.
 uniform mat3  uInvRot;       // VIEW space -> MODEL space; globe3d.js's inverseRotate
 uniform float uCamDist;      // camera distance from the sphere centre, in radii
 uniform vec2  uHalf;         // (tan(fovY/2) * aspect, tan(fovY/2))
@@ -9200,6 +9205,7 @@ uniform float uMaxLod;       // 7, or 0 if the driver refused half-float mips
 // that move at the TICK, and projecting them per FRAME would pay sixty times
 // over for an answer that did not change. Premultiplied.
 uniform sampler2D uPol;
+uniform vec4 uOverlayRegion;
 uniform float uPolOp;        // the layer's own per-camera ramp (the svg's --fop)
 
 // ---- and the selection, which is a SECOND texture on purpose ---------------
@@ -9431,16 +9437,17 @@ vec3 gNormal;
 
 void main() {
   // ---- the ray ------------------------------------------------------------
+  gl_FragDepth = 1.0;
   // Solved in VIEW space, where the camera sits on +z looking down -z and the
   // sphere is the unit sphere at the origin, so the quadratic is two dot
   // products. Only the hit point is turned back into model space.
   vec2  ndc = (gl_FragCoord.xy / uRes) * 2.0 - 1.0;
-  vec3  dir = normalize(vec3(ndc * uHalf, -1.0));
-  vec3  cam = vec3(0.0, 0.0, uCamDist);
+  vec3  dir = uRayBasis * normalize(vec3(ndc * uHalf, -1.0));
+  vec3  cam = uCamera;
   float b   = dot(cam, dir);
   float cc  = dot(cam, cam) - 1.0;
   float disc = b * b - cc;
-  if (disc < 0.0) {
+  if (disc < 0.0 && uMesh == 0) {
     // A miss. The globe still owes the page an atmosphere: closest approach is
     // sqrt(1 - disc) radii, so the limb is exactly 1 and the halo falls off
     // from there. Without it the world is a disc cut out of the background with
@@ -9450,11 +9457,16 @@ void main() {
     fragColor = vec4(ATMO * halo, halo);
     return;
   }
-  float t = -b - sqrt(disc);
-  if (t < 0.0) { fragColor = vec4(0.0); return; }   // the sphere is behind us
+  float t = -b - sqrt(max(0.0, disc));
+  if (t < 0.0 && uMesh == 0) { fragColor = vec4(0.0); return; }
   vec3 hit = cam + dir * t;         // on the UNIT sphere, so the point IS the normal
   gNormal  = hit;
   vec3 mp  = uInvRot * hit;         // ... the same point, in model space
+  if (uMesh == 1) { mp = normalize(vSurface); hit = transpose(uInvRot) * vSurface; gNormal = normalize(hit); }
+  float cameraDepth = -(transpose(uRayBasis) * (hit - cam)).z;
+  // Same near/far mapping as TerrainSurface.vertexSource, so raised ridges
+  // occlude valleys and the underlying spherical map with real depth testing.
+  gl_FragDepth = 0.5 * ((10.001 / 9.999) - (0.02 / 9.999) / max(cameraDepth, 0.001)) + 0.5;
 
   float glat = degrees(asin(clamp(mp.y, -1.0, 1.0)));
   float glon = degrees(atan(mp.x, mp.z));
@@ -9511,6 +9523,7 @@ void main() {
   float heightCenter = C.r;
   if (heightMix > 0.0) heightCenter = textureLod(uHeightDetail, uv, heightL).r;
   float h = mix(C.r, heightCenter, heightMix);
+  if (uMesh == 1) h = vElevation;
   // .g is SIGNED: +ocean depth in metres on water, -baked sky occlusion on land
   // (GLSL_DECODE above states the contract). Every use of dep below clamps or
   // smoothsteps up from 0, so on land it reads exactly as the flat 0 it carried
@@ -9602,6 +9615,7 @@ void main() {
     gy = mix(gy, (south - north) / (2.0 * heightSt * my), heightMix);
   }
   float slope = length(vec2(gx, gy));
+  if (uMesh == 1) { gx = vSlope.x; gy = vSlope.y; slope = length(vSlope); }
 
   // Micro-relief amplitude is DERIVED, not baked. Measured over 655,694 land
   // texels, corr(log sigma_9x9, log(slope * sqrt(mx*my))) = 0.873, and the
@@ -9621,7 +9635,7 @@ void main() {
   // This is a per-fragment branch that is COHERENT AT REGION SCALE -- ocean and
   // land regions are vastly larger than a wavefront -- which is why it is cheap.
   // It is not a uniform branch and must not be described as one.
-  if (tMicro > 0.0 && isLand > 0.0) {
+  if (tMicro > 0.0 && isLand > 0.0 && uMesh == 0) {
     float amp = sigma * tMicro;
     vec2 g2 = vec2(0.0);
     float f = 1.0, w = 0.30;
@@ -9641,6 +9655,7 @@ void main() {
   // would otherwise explode at close zoom. Perceived strength stays roughly
   // constant while detail rises monotonically.
   float Z = mix(4.20, 1.35, smoothstep(0.0, 2.60, uLk));
+  if (uMesh == 1) Z = 3.0;
   vec3  n = normalize(vec3(-gx * Z, -gy * Z, 1.0));      // x=east, y=south, z=up
 
   // ================================================================ LAND
@@ -9969,13 +9984,15 @@ void main() {
   // Premultiplied, so this is a straight "over" scaled by the camera ramp the
   // svg used to spend on fill-opacity. uPolOp = 0 leaves the physical ground
   // alone, which is what a mode with no political reading wants.
-  vec4 pol = texture(uPol, uv);
+  vec2 overlayUv = (world - uOverlayRegion.xy) / uOverlayRegion.zw;
+  float overlayInside = step(0.0, overlayUv.x)*step(0.0,overlayUv.y)*step(overlayUv.x,1.0)*step(overlayUv.y,1.0);
+  vec4 pol = texture(uPol, overlayUv) * overlayInside;
   col = col * (1.0 - pol.a * uPolOp) + pol.rgb * uPolOp;
   // The selection rides ABOVE the ramp, at full strength: the point of a
   // highlight is to be seen, and dimming it with the same camera ramp that
   // quiets the political layer far out would hide it exactly when the player
   // is furthest away and needs it most.
-  vec4 sel = texture(uSel, uv);
+  vec4 sel = texture(uSel, overlayUv) * overlayInside;
   col = col * (1.0 - sel.a) + sel.rgb;
 
   // ---- the caps -----------------------------------------------------------
@@ -10376,13 +10393,14 @@ function glRampTex(gl, rows, w) {
 let GLR = null;   // {gl, progMap, progGrid, vao, phys, ramp, seaRamp, u, uGrid}
 
 async function glInit() {
+  GLR?.surface?.dispose();
   if (GL.forceFail === "ctx") throw new Error("forced failure (?glfail=ctx)");
   const gl = GLCV.getContext("webgl2", {
     // alpha because off-globe fragments write alpha 0 and the page background
     // must show through the projection envelope; the shader outputs
     // premultiplied, so premultipliedAlpha must be true.
-    alpha: true, premultipliedAlpha: true, antialias: false,
-    depth: false, stencil: false, preserveDrawingBuffer: false,
+    alpha: true, premultipliedAlpha: true, antialias: true,
+    depth: true, stencil: false, preserveDrawingBuffer: false,
     powerPreference: "low-power",
   });
   if (!gl) throw new Error("no webgl2 context");
@@ -10407,6 +10425,7 @@ async function glInit() {
   await glProbeDecode(gl, progDecode);
 
   const progMap = await ShaderLoader.program(gl, GLSL_VS, GLSL_MAP, "map");
+  const progSurface = await ShaderLoader.program(gl, TerrainSurface.vertexSource, GLSL_MAP, "terrain surface");
   const progGrid = GL.grid ? glProgram(gl, GLSL_GRID, "grid") : null;
   if (GL.forceFail === "link") throw new Error("forced failure (?glfail=link)");
   if (GL.forceFail === "tex") throw new Error("forced failure (?glfail=tex)");
@@ -10488,14 +10507,16 @@ async function glInit() {
     return o;
   };
   GLR = {
-    gl, progMap, progGrid, vao, phys: dec.tex, lake, ramp, seaRamp, heightDetail,
+    gl, progMap, progSurface, progGrid, vao, phys: dec.tex, lake, ramp, seaRamp, heightDetail,
     u: U(progMap, ["invRot", "camDist", "half", "res",
       "world", "texPerWorld", "pxPerWorld", "lk", "maxLod",
       "ground", "terrainView", "sat", "shade", "sea", "hazeMax", "shimmer", "time", "ao", "glint",
       "phys", "ramp", "seaRamp", "lake", "lakeMax", "pol", "polOp", "sel",
-      "heightDetail", "heightEnabled", "heightMaxLod"]),
+      "heightDetail", "heightEnabled", "heightMaxLod", "camera", "rayBasis", "mesh", "overlayRegion"]),
     uGrid: progGrid ? U(progGrid, ["frag2World", "world", "pxPerWorld"]) : null,
   };
+  GLR.uSurface = U(progSurface, Object.keys(GLR.u));
+  GLR.surface = TerrainSurface.create(gl, { onChange: () => GLOBE?.schedule(), exaggeration: 3 });
 
   gl.disable(gl.BLEND);
   gl.disable(gl.DEPTH_TEST);
@@ -10615,10 +10636,10 @@ function mapDetailStyle(modeKey, zoom) {
     provinceWidth: .5, riverOpacity: zoom >= ZB1 ? .55 : .25, riverWidth: .7,
   };
   return {
-    nationWidth: zramp(zoom, .95, .32, 1, 12),
+    nationWidth: zramp(zoom, .95, .32, 1, 12) * Math.min(1, 10/zoom),
     provinceOpacity: zramp(zoom, 0, .46, 1.35, 4),
-    provinceWidth: zramp(zoom, .52, .25, 1.35, 12),
-    riverOpacity: .82, riverWidth: zramp(zoom, .68, .34, 1, 12),
+    provinceWidth: zramp(zoom, .52, .25, 1.35, 12) * Math.min(1, 10/zoom),
+    riverOpacity: .82, riverWidth: zramp(zoom, .68, .34, 1, 12) * Math.min(1, 10/zoom),
   };
 }
 
@@ -10634,7 +10655,8 @@ function paintPolitical() {
   const borders = ui.mapDetails?.borders !== false;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, POL.canvas.width, POL.canvas.height);
-  ctx.setTransform(s, 0, 0, s, 0, 0);          // draw in CANVAS UNITS from here down
+  const region = POL.region || [0,0,WORLD.w,WORLD.h];
+  ctx.setTransform(s, 0, 0, POL.canvas.height/region[3], -region[0]*s, -region[1]*POL.canvas.height/region[3]);
   ctx.lineJoin = "round";
   ctx.lineCap = "round";
 
@@ -10839,7 +10861,8 @@ function paintSelection() {
   const ctx = SEL.ctx, s = SEL.s;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, SEL.canvas.width, SEL.canvas.height);
-  ctx.setTransform(s, 0, 0, s, 0, 0);
+  const region = SEL.region || [0,0,WORLD.w,WORLD.h];
+  ctx.setTransform(s, 0, 0, SEL.canvas.height/region[3], -region[0]*s, -region[1]*SEL.canvas.height/region[3]);
   ctx.lineJoin = "round";
   for (const [id, hot] of [[selected, false], [hoverNation, true]]) {
     if (!id) continue;
@@ -10854,7 +10877,7 @@ function paintSelection() {
     }
     ctx.globalAlpha = 1;
     ctx.strokeStyle = "#e8c87e";
-    ctx.lineWidth = hot ? 1.6 : 2.2;
+    ctx.lineWidth = (hot ? 1.6 : 2.2) * Math.min(1, 6/ui.cam.k);
     for (const c of codes) ctx.stroke(p2d(WORLD.countries[c]));
   }
   // A province click locks the exact polygon, independent of the nation
@@ -10866,7 +10889,7 @@ function paintSelection() {
     ctx.fill(p2d(d.path));
     ctx.globalAlpha = 1;
     ctx.strokeStyle = "#ffd77a";
-    ctx.lineWidth = 2.2;
+    ctx.lineWidth = 2.2 * Math.min(1, 6/ui.cam.k);
     ctx.stroke(p2d(d.path));
   }
   ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -10917,24 +10940,64 @@ function glDrawGlobe(view) {
   // computations that can disagree, and the flat map's long note about never
   // recomputing the fit applies word for word.
   const t0 = performance.now();
+  // Repaint source vectors into a regional texture on close approach. Growing
+  // a global raster was blurring borders and rivers even on a sharp ground.
+  let region = [0,0,WORLD.w,WORLD.h];
+  if (view.zoom >= 12) {
+    const footprint = TerrainSurface.footprint(view);
+    if (footprint) {
+      const box = TerrainSurface.paddedBounds(footprint, 3);
+      if (box.west >= -180 && box.east <= 180) {
+        const points=[];
+        for(let row=0;row<=8;row++) for(const lon of [box.west,box.east])
+          points.push(Globe3D.project(lon,box.south+(box.north-box.south)*row/8));
+        const left=Math.floor(Math.min(...points.map(p=>p[0]))*4)/4;
+        const top=Math.floor(Math.min(...points.map(p=>p[1]))*4)/4;
+        region=[left,top,Math.max(1,Math.ceil((Math.max(...points.map(p=>p[0]))-left)*4)/4),
+          Math.max(1,Math.ceil((Math.max(...points.map(p=>p[1]))-top)*4)/4)];
+      }
+    }
+  }
+  if (JSON.stringify(POL.region) !== JSON.stringify(region)) {
+    for (const layer of [POL,SEL]) { layer.region=region; layer.s=layer.canvas.width/region[2]; layer.dirty=true; }
+  }
   // The political layers, resolved before the pass that samples them. Both are
   // keyed and both are no-ops unless something they draw actually moved.
   if (POL.dirty) paintPolitical();
   paintSelection();
-  const t1 = performance.now();
-
-  const gl = GLR.gl, u = GLR.u;
+  const gl = GLR.gl;
   const dial = camDials();
   const cw = GLCV.width, ch = GLCV.height;
 
   gl.bindVertexArray(GLR.vao);
   gl.viewport(0, 0, cw, ch);
-  gl.clear(gl.COLOR_BUFFER_BIT);
-  gl.useProgram(GLR.progMap);
+  gl.enable(gl.DEPTH_TEST);
+  gl.depthFunc(gl.LEQUAL);
+  gl.clearDepth(1);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  const terrainActive = ui.mapMode === "terrain" && ui.mapDetails?.relief !== false && view.zoom >= 12;
+  if (terrainActive) GLR.surface.update(view);
+  const terrainStatus = document.getElementById('terrainStatus');
+  if (terrainStatus) {
+    const text = terrainActive ? (GLR.surface.ready ? 'Raised terrain · 3× relief' : GLR.surface.loading ? 'Loading local terrain…' : 'Global relief') : '';
+    if (terrainStatus.textContent !== text) terrainStatus.textContent = text;
+    terrainStatus.dataset.ready = String(terrainActive && GLR.surface.ready);
+  }
+  // Tile decoding/mesh construction is CPU work, paid when coverage changes;
+  // the existing GPU fallback guard must time only the actual draw submission.
+  const t1 = performance.now();
+  for (const isMesh of [false, true]) {
+  if (isMesh && !terrainActive) continue;
+  const u = isMesh ? GLR.uSurface : GLR.u;
+  gl.useProgram(isMesh ? GLR.progSurface : GLR.progMap);
 
   // ---- the camera, and it is the ONLY thing the globe changed ----
   gl.uniformMatrix3fv(u.invRot, false, view.invBasis);
   gl.uniform1f(u.camDist, view.distance);
+  gl.uniform3fv(u.camera, view.camera);
+  gl.uniformMatrix3fv(u.rayBasis, false, view.rayBasis);
+  gl.uniform1i(u.mesh, isMesh ? 1 : 0);
+  gl.uniform4fv(u.overlayRegion, region);
   gl.uniform2f(u.half, view.halfTan * (cw / ch), view.halfTan);
   gl.uniform2f(u.res, cw, ch);
 
@@ -10975,7 +11038,10 @@ function glDrawGlobe(view) {
   gl.activeTexture(gl.TEXTURE4); gl.bindTexture(gl.TEXTURE_2D, SEL.tex);
   gl.activeTexture(gl.TEXTURE5); gl.bindTexture(gl.TEXTURE_2D, GLR.lake);
   gl.activeTexture(gl.TEXTURE6); gl.bindTexture(gl.TEXTURE_2D, GLR.heightDetail?.texture || GLR.phys);
-  gl.drawArrays(gl.TRIANGLES, 0, 3);
+  if (isMesh) GLR.surface.draw(GLR.progSurface, view);
+  else gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+  gl.disable(gl.DEPTH_TEST);
 
   glPerf(t1 - t0, performance.now() - t1);
 }
@@ -12276,6 +12342,12 @@ const escText = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 function drawMapOverlay(ctx, view, globe) {
   const m = me();
   const r = view.ratio;
+  const mapRect = GLCV.getBoundingClientRect();
+  for (const element of document.querySelectorAll('#mapControls, #mapCityCard, #provinceDossier[aria-hidden="false"]')) {
+    const box = element.getBoundingClientRect();
+    if (box.width && box.height) globe.labelBoxes.push([
+      (box.left-mapRect.left+box.width/2)*r, (box.top-mapRect.top+box.height/2)*r, box.width*r, box.height*r]);
+  }
   ctx.textBaseline = "middle";
   ctx.textAlign = "center";
 
@@ -12431,6 +12503,10 @@ function globeBoot() {
     yaw: a.yaw, pitch: a.pitch, zoom: ui.cam.k,
     dprCap: () => GL.dprCap,
     onDraw: glDrawGlobe,
+    terrainEnabled: () => ui.mapMode === "terrain" && ui.mapDetails?.relief !== false,
+    terrainSurface: () => GLR?.surface,
+    tilted: () => ui.mapTilt !== false,
+    selectedCity: () => ui.selectedCity?.id,
     onOverlay: drawMapOverlay,
     onUserInput: camUserInput,
     onViewChange: camFromGlobe,
@@ -12460,14 +12536,56 @@ function onMapPick(e) {
     else if (work.district) selectProvince(work.district, true);
     return;
   }
+  if (GLOBE?.cityFrame && window.CityDetail) {
+    const rect = GLCV.getBoundingClientRect(), size = GLOBE.lastSize;
+    const city = CityDetail.pick(GLOBE.cityFrame,
+      (e.clientX - rect.left) * (size?.ratio || 1), (e.clientY - rect.top) * (size?.ratio || 1));
+    if (city) { selectMapCity(city, false); return; }
+  }
   const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);
   if (!w) return;
+  ui.selectedCity = null; renderMapCity();
   const code = countryAt(w[0], w[1]);
   if (!code) return;
   const d = districtAt(code, w[0], w[1]);
   if (d) { selectProvince(d.id, false); return; }
   const id = (d && nationOfDistrict(d.id)) || nationOfCode(code);
   if (id) openNation(id);
+}
+
+window.selectMapCity = function(city, focus = true) {
+  camUserInput();
+  ui.selectedCity = city;
+  closeProvince();
+  if (focus) {
+    ui.mapMode = 'terrain'; ui.mapTilt = true;
+    if (!ui.mapDetails) ui.mapDetails = {};
+    ui.mapDetails.relief = true; ui.mapDetails.cities = true; ui.mapDetails.labels = true;
+    showTab('map');
+    GLOBE.lookAt(city.lon, city.lat, Math.max(128, GLOBE.zoom));
+    renderMap();
+  }
+  renderMapCity();
+  GLOBE?.schedule();
+};
+function renderMapCity() {
+  document.getElementById('mapCityCard')?.remove();
+  const city = ui.selectedCity, stage = document.querySelector('#pane-map .globe-stage');
+  if (!city || !stage) return;
+  const card = document.createElement('aside'); card.id = 'mapCityCard'; card.className = 'map-city-card';
+  card.setAttribute('aria-label', 'Selected city');
+  const title = document.createElement('h2'); title.textContent = city.name;
+  const text = document.createElement('p');
+  text.textContent = `${city.capital ? 'Capital · ' : ''}${Math.abs(city.lat).toFixed(2)}°${city.lat<0?'S':'N'} ${Math.abs(city.lon).toFixed(2)}°${city.lon<0?'W':'E'}`;
+  const note = document.createElement('p'); note.className = 'map-city-note'; note.textContent = 'City location · zoom to explore the surrounding terrain';
+  const actions = document.createElement('div');
+  const focus = document.createElement('button'); focus.textContent = 'Explore city'; focus.onclick = () => selectMapCity(city, true);
+  const province = document.createElement('button'); province.textContent = 'Province'; province.onclick = () => {
+    const w = Globe3D.project(city.lon, city.lat), code = countryAt(w[0],w[1]), d = code && districtAt(code,w[0],w[1]);
+    ui.selectedCity = null; renderMapCity(); if (d) selectProvince(d.id,false);
+  };
+  const close = document.createElement('button'); close.textContent = 'Close'; close.setAttribute('aria-label','Close city'); close.onclick = () => { ui.selectedCity=null; renderMapCity(); GLOBE?.schedule(); };
+  actions.append(focus,province,close); card.append(title,text,note,actions); stage.append(card);
 }
 
 /// The keyboard, and the buttons that stand for it. Arrows turn the globe by a
@@ -12571,7 +12689,7 @@ function renderMap() {
     : ui.resOverlay ? resOverlayPanel(modeLegend) : `<div class="legend">
       ${modeLegend}${gap}
       <span>☢ nuclear</span><span>⊘ sanctioned</span>
-      <span class="map-legend-hint" style="color:var(--faint)">Drag to rotate · Scroll or pinch to zoom · Select a province to inspect</span>
+      <span class="map-legend-hint" style="color:var(--faint)">Drag to pan · Scroll to zoom · 3D for peaks & valleys · Find a city</span>
     </div>`;
 
   if (gap && (ui.mapMode === "resources" || ui.resOverlay)) {
@@ -12587,6 +12705,8 @@ function renderMap() {
   stage.appendChild(GLOVL);
   if (!GL.ready && !GL.reason) glBoot();
   renderProvinceDossier();
+
+  renderMapCity();
 
   if (ui.mapMode === "resources" || ui.resOverlay) {
     if (RESOURCES_STATE === "cold") loadResources();

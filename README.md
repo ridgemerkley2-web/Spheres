@@ -40,15 +40,21 @@ project, and use **Find** to open a province without hunting on the globe.
 **Decisions** contains diplomatic requests, standing policies, monetary choices
 and optional peaceful campaign aims. Domination remains an available aim.
 
-The map opens in **Terrain**. Use its corner controls to switch to **Political**
-or **Fronts**, zoom, rotate, return to **World**, or center **Home**. **Details**
-toggles detailed terrain, borders, provinces, cities, labels, physical names and an optional
-coordinate grid; **More layers** holds the economic and resource views.
-Terrain reveals a separate 4800×2036 NOAA elevation layer as you zoom in,
-along with physical-region names and a hierarchy of named rivers. Graphics
-hardware that cannot load this layer retains the base relief. Provincial
-boundaries appear gradually as you zoom in.
-Drag to rotate, scroll or pinch to zoom, and select a province to inspect it.
+The map opens in **Terrain**. Drag to rotate and scroll or pinch to zoom, up to
+**192×**. The corner controls switch to **Political** or **Fronts**, return to
+**World**, center **Home**, and toggle **3D / Top**. Close Terrain views use an
+actual displaced surface with valleys and peaks, shown at **3× vertical
+exaggeration**. **Details** toggles terrain, borders, provinces, cities, labels,
+physical names and the coordinate grid; **More layers** holds economic views.
+
+Use **Find** to search a city, then explore it at **128×** or closer. The map's
+1,249 sourced Natural Earth city points have selectable symbolic skylines;
+the buildings are map symbols, not surveyed streets or building footprints.
+NOAA elevation samples are spaced at 60 arc seconds, about 1.85 km at the
+equator. Further zoom enlarges that detail; it does not reveal street-level data.
+The 127 MiB of compressed native tiles ships offline and loads locally on demand
+through a bounded cache. Base relief remains available while tiles load or if
+the detailed renderer is unavailable. Select a province to inspect it.
 
 ## Campaigns and recovery
 

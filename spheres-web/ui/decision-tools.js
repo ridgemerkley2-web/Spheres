@@ -54,9 +54,20 @@ if(typeof window!=="undefined"){
   window.openBuildInfo=async function(){const box=toolsDialog("About SPHERES","<p>Reading build information…</p>"),seq=DTOOLS.seq;try{const b=await api("/api/build");if(seq!==DTOOLS.seq||!box.open)return;box.querySelector(".decision-body").innerHTML=`<p><strong>SPHERES ${toolsEsc(b.version)}</strong> · ${toolsEsc(b.revision)}</p><p>Branch: ${toolsEsc(b.branch)} · Built ${toolsEsc(new Date(b.built_at_unix_seconds*1000).toISOString())}</p><p>${toolsEsc(b.distribution)}</p><p>Save directory: <code>${toolsEsc(b.save_directory)}</code></p><p>${toolsEsc(b.campaign_format)}</p>${typeof openPerformanceSample==="function"?'<button onclick="openPerformanceSample()">Performance sample</button>':""}<button onclick="openPlaytestFeedback()">Record playtest feedback</button>`;}catch(e){if(seq===DTOOLS.seq&&box.open)box.querySelector(".decision-body").textContent=e.message;}};
   window.openWorldFinder=function(){
     if(!S)return;
-    const box=toolsDialog("Find a nation or province",`<label for="worldFindInput">Name, code or owner</label><input id="worldFindInput" type="search" autocomplete="off" placeholder="Japan, US-CA, Kuwait…"><p id="worldFindCount" role="status"></p><div id="worldFindRows" class="decision-list"></div>`);
+    const box=toolsDialog("Find a nation, province or city",`<label for="worldFindInput">Place name, code or owner</label><input id="worldFindInput" type="search" autocomplete="off" placeholder="Kathmandu, Tokyo, California…"><p id="worldFindCount" role="status"></p><div id="worldFindRows" class="decision-list"></div>`);
     const input=box.querySelector("input");
-    function update(){const rows=DecisionTools.search(S.nations,DINDEX,nationOfDistrict,input.value,S.player);box.querySelector("#worldFindCount").textContent=`${rows.length} matches${rows.length===60?" · refine your search for more":""}`;box.querySelector("#worldFindRows").innerHTML=rows.map(r=>`<button type="button" data-find-kind="${r.kind}" data-find-id="${toolsEsc(r.id)}"><strong>${toolsEsc(r.name)}</strong><span>${r.kind} · ${toolsEsc(r.owner||"Unassigned")}</span></button>`).join("");box.querySelectorAll("[data-find-id]").forEach(b=>b.onclick=()=>{box.close();showTab("map");if(b.dataset.findKind==="province")selectProvince(b.dataset.findId,true);else{const p=anchorOf(b.dataset.findId);if(p)camTween(p[0],p[1],2.2);openNation(b.dataset.findId);}});}
+    function update(){
+      const cities=window.CityDetail ? CityDetail.search(window.CITIES||[],input.value,12) : [];
+      const rows=[...cities.map(city=>({...city,kind:'city',owner:city.capital?'Capital':'Explore terrain'})),...DecisionTools.search(S.nations,DINDEX,nationOfDistrict,input.value,S.player)];
+      box.querySelector("#worldFindCount").textContent=`${rows.length} matches`;
+      box.querySelector("#worldFindRows").innerHTML=rows.map(r=>`<button type="button" data-find-kind="${r.kind}" data-find-id="${toolsEsc(r.id)}"><strong>${toolsEsc(r.name)}</strong><span>${r.kind} · ${toolsEsc(r.owner||"Unassigned")}</span></button>`).join("");
+      box.querySelectorAll("[data-find-id]").forEach(b=>b.onclick=()=>{
+        box.close();showTab("map");
+        if(b.dataset.findKind==='city'){const city=cities.find(c=>c.id===b.dataset.findId);if(city)selectMapCity(city,true);}
+        else if(b.dataset.findKind==="province")selectProvince(b.dataset.findId,true);
+        else{const p=anchorOf(b.dataset.findId);if(p)camTween(p[0],p[1],2.2);openNation(b.dataset.findId);}
+      });
+    }
     input.oninput=update;input.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();box.querySelector("[data-find-id]")?.click();}};update();input.focus();
   };
   window.openAdvisor=async function(){

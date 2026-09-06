@@ -2,9 +2,10 @@
 
 The mapgen pattern, verbatim: **run only when the data needs regenerating.**
 The outputs are committed, so the game itself never needs these tools or the
-Natural Earth source data. Almost everything here is transcription — terrain
-classes, feature names, rivers, lakes and river-crossed borders all come from
-the staged Natural Earth artifacts in `spheres-web/data/`; nothing is invented.
+source datasets. Terrain classes, feature names, rivers, lake outlines and
+river-crossed borders come from staged Natural Earth artifacts. Elevation comes
+from NOAA ETOPO 2022; six lake water levels come from HydroLAKES. Source rasters
+and archives are staging inputs; the generated data ships with the game.
 
 The one exception is named as such: `make_occlusion.py` **derives** a sky view
 factor from the baked heightmap. It is not a measurement of the world, it is a
@@ -61,7 +62,7 @@ its output is a pure function of `(R, G, B-on-water, coast.png)`, none of which
 it writes, so it reproduces its own output byte for byte, and it says so on the
 second run instead of asserting a fresh-file count it cannot see.
 
-## Inputs (all committed, under `spheres-web/data/` or `spheres-web/ui/`)
+## Inputs and independent detailed terrain
 
 Four stages read a *committed artifact* rather than a source raster —
 `make_coast` reads `world.js`, `make_lakes` reads `rivers.js`, and
@@ -86,10 +87,66 @@ Terrain fades it in at regional zoom. Its gradient sampling is independent
 of the existing coast, lake, vegetation, occlusion and bathymetry channels.
 **Details → Detailed terrain** compares it with the base relief. Unsupported
 texture/viewport sizes or a failed optional upload keep the base relief.
-This is cartographic relief; it does not add tactical districts or change
-simulation geography. Physical-region names use existing district-member
+This texture supplies cartographic relief beneath the separate displaced
+surface described below. Neither adds tactical districts or changes simulation
+geography. Physical-region names use existing district-member
 centers; river names use actual exported river vertices. River display tiers
 use projected course length as a presentation heuristic, not discharge.
+
+### Native geographic tiles and displaced ground
+
+`make_terrain_tiles.py` extracts the same pinned NOAA source at its original
+60-arc-second spacing, with no spatial resampling. This is about 1.85 km at the
+equator; east-west spacing decreases with latitude. It is a regional elevation
+grid, not street or building geometry, and grid spacing does not imply uniform
+survey accuracy.
+
+```sh
+python -B tools/terrain/make_terrain_tiles.py --source /path/to/ETOPO_2022_v1_60s_N90W180_surface.nc
+python -B tools/terrain/make_terrain_tiles.py --source /path/to/ETOPO_2022_v1_60s_N90W180_surface.nc --check
+python -B tools/terrain/test_terrain_tiles.py
+```
+
+The tools require NumPy, h5py and Pillow. Keep the 478,290,125-byte source netCDF
+outside the checkout if desired. Its SHA256 is pinned by the generator and
+recorded in `ui/terrain-tiles/manifest.json`, along with source attribution,
+tile bounds, encoding, landmarks and every PNG hash.
+
+The global 36×18 grid contains 648 ten-degree tiles. Each PNG has 600×600 native
+cell centres plus a one-pixel neighbor gutter: **602×602 RGB8**, north-up, with
+the same fixed RG16 decode above and B zero. Longitude gutters wrap and polar
+gutters clamp. Decode to metres before interpolation. The set has **608 PNGs,
+133,418,791 bytes (127.24 MiB)**, plus 40 exact constant-code entries requiring
+no PNG. `embed.rs` supplies the server's filename lookup. `--check` regenerates
+every artifact without writing, checking exact bytes, seams, poles, source
+landmarks, PNG integrity and maximum quantization error below 0.081 metres.
+
+At close Terrain zoom, `terrain-surface.js` bilinearly samples these heights into
+a regional triangle mesh with bounded subdivisions. Positive elevations displace
+the ground in 3D at **3× visual vertical exaggeration**; negative elevations stay
+at sea level geometrically. **3D / Top** changes the view. The camera reaches 192× and Find
+city opens at 128× or closer. Only needed local tiles load: at most six requests
+are active and at most 64 decoded tiles are retained. The ordinary globe stays
+visible during loading or a detail failure. The 1,249 Natural Earth city points
+carry symbolic skylines, not measured urban footprints; their source population
+values are undated, not 1990 census observations.
+
+### Lake water surfaces
+
+`make_lake_surfaces.py` transcribes the `Elevation` field from
+[HydroLAKES v1](https://www.hydrosheds.org/products/hydrolakes) for Baikal and the
+five Great Lakes, where the ETOPO layer represents lake beds. The correction
+uses the exact existing Natural Earth lake paths and affects visual terrain and
+picking only. These are representative DEM-derived water levels, not a model
+of historical 1990 water levels. `ui/lake-surfaces.json` records the six values,
+source archive hash, path identities, citation and CC BY 4.0 license.
+
+```sh
+python -B tools/terrain/make_lake_surfaces.py --hydrolakes /path/to/HydroLAKES_points_v10_shp.zip --natural-earth /path/to/ne_10m_lakes.geojson --check
+```
+
+Portable releases include the height provenance, native tile manifest and lake
+surface provenance under `attribution/`, together with this source guide.
 
 | file | used by |
 |---|---|
@@ -133,12 +190,16 @@ everything that is committed, including `make_coast.py`, whose only input is
 | `spheres-web/ui/coast.png` | 2400×1018 L8 signed distance to the coastline, sqrt-companded (make_coast.py) |
 | `spheres-web/ui/cover.png` | 1200×509 L8 vegetation index (make_cover.py) |
 | `spheres-web/ui/lake.png` | 2400×1018 L8 signed distance to the 29 lake shorelines, same encode, clip and polarity as coast.png (make_lakes.py) |
+| `spheres-web/ui/height-detail.png` and `.json` | Independent 4800×2036 averaged elevation and reproducibility record |
+| `spheres-web/ui/terrain-tiles/` | Native elevation PNGs, global manifest and generated Rust embedding lookup |
+| `spheres-web/ui/lake-surfaces.json` | Six sourced lake water elevations and their exact existing shoreline identities |
 
 ## The baked textures
 
-Five PNGs ship inside the server binary (`include_bytes!` in
+The five original terrain PNGs ship inside the server binary (`include_bytes!` in
 `spheres-web/src/main.rs`, one route each, `Cache-Control: public, max-age=86400`).
-The four new ones are read by the GL underlay as **numbers, not pictures**:
+The four GL fields below are read as **numbers, not pictures**. This table is the
+base-layer payload; the independent height texture and native tiles are additional.
 
 | file | dims | encoding | bytes |
 |---|---|---|---|

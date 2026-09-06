@@ -1,0 +1,88 @@
+{
+  "product": "Water-surface correction for the six rendered ETOPO bed lakes",
+  "scope": "Visual terrain and picking only; no simulation or historical water-level model.",
+  "method": "Transcribe HydroLAKES v1 Elevation. Apply only inside the exact existing RIVERS.lakes path, verified against the original Natural Earth projection pipeline. Other lake and land elevations remain NOAA ETOPO.",
+  "limitations": "HydroLAKES elevations are DEM-derived representative water levels, not surveyed summit values or a reconstruction of 1990 lake levels.",
+  "source": {
+    "title": "HydroLAKES version 1.0",
+    "url": "https://www.hydrosheds.org/products/hydrolakes",
+    "download_url": "https://data.hydrosheds.org/file/hydrolakes/HydroLAKES_points_v10_shp.zip",
+    "archive_bytes": 78725399,
+    "archive_sha256": "587df22034639230899498775d6272966c93adcfbda831fc704bb36b6cc9d681",
+    "documentation": "https://data.hydrosheds.org/file/technical-documentation/HydroLAKES_TechDoc_v10.pdf",
+    "field": "Elevation: lake water surface in metres above sea level",
+    "license": "Creative Commons Attribution 4.0 International",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "Messager, M.L., Lehner, B., Grill, G., Nedeva, I., Schmitt, O. (2016). Estimating the volume and age of water stored in global lakes using a geo-statistical approach. Nature Communications 7, 13603.",
+    "doi": "https://doi.org/10.1038/ncomms13603"
+  },
+  "shoreline_source": {
+    "title": "Natural Earth 1:10m lakes; existing simplified game paths",
+    "url": "https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-lakes/",
+    "geojson_sha256": "2d036f53dedec578001c5c30c2959ee7d4eebc1306900fa4367c49929ec8f2d9",
+    "license": "Public domain",
+    "rivers_js_sha256": "6704aaa83b75311e4b194bbfa0d0c4c299836fe23dce89dbd245adc1479cefa3"
+  },
+  "lakes": [
+    {
+      "name": "Lake Baikal",
+      "lake_index": 1,
+      "path_fnv1a": 4049581666,
+      "path_sha256": "6fc2479147fbcf6b7e77527ce4143b471e069717fb569922096487536ae9f165",
+      "surface_metres": 449,
+      "hydrolakes_id": 11,
+      "hydrolakes_name": "Baikal",
+      "hydrolakes_elevation_field": "449"
+    },
+    {
+      "name": "Lake Erie",
+      "lake_index": 4,
+      "path_fnv1a": 2943202480,
+      "path_sha256": "4128e071b209708a823cd75ff727c89de15562585b681ddf6e0fe8fb51fefe84",
+      "surface_metres": 172,
+      "hydrolakes_id": 9,
+      "hydrolakes_name": "Erie",
+      "hydrolakes_elevation_field": "172"
+    },
+    {
+      "name": "Lake Huron",
+      "lake_index": 9,
+      "path_fnv1a": 1824147311,
+      "path_sha256": "90d2a99064318c57b886f184e26f088e5ebd06f02f6bbf03f3b65f82054a92ff",
+      "surface_metres": 175,
+      "hydrolakes_id": 8,
+      "hydrolakes_name": "Huron",
+      "hydrolakes_elevation_field": "175"
+    },
+    {
+      "name": "Lake Michigan",
+      "lake_index": 14,
+      "path_fnv1a": 4191224988,
+      "path_sha256": "02c53115b69d19825e015ec55e6e35889e50ff34ed13f9a28dbc91aaf6debba1",
+      "surface_metres": 175,
+      "hydrolakes_id": 6,
+      "hydrolakes_name": "Michigan",
+      "hydrolakes_elevation_field": "175"
+    },
+    {
+      "name": "Lake Ontario",
+      "lake_index": 20,
+      "path_fnv1a": 2319471044,
+      "path_sha256": "e7905c584df7893a0eedf06005a0b90ad09ffcbf04ce6a27ed2aa5f79445aecb",
+      "surface_metres": 73,
+      "hydrolakes_id": 7,
+      "hydrolakes_name": "Ontario",
+      "hydrolakes_elevation_field": "73"
+    },
+    {
+      "name": "Lake Superior",
+      "lake_index": 23,
+      "path_fnv1a": 575582281,
+      "path_sha256": "c2dac02a39c3f6d3863e415950ab699fe85dc8676eca65c83144de0277d880d6",
+      "surface_metres": 179,
+      "hydrolakes_id": 5,
+      "hydrolakes_name": "Superior",
+      "hydrolakes_elevation_field": "179"
+    }
+  ]
+}

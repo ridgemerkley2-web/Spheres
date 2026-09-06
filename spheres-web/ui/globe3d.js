@@ -122,7 +122,7 @@
 
   const FOV_Y = 42 * DEG;            // vertical field of view
   const HALF_TAN = Math.tan(FOV_Y / 2);
-  const ZOOM_MIN = 1, ZOOM_MAX = 48;
+  const ZOOM_MIN = 1, ZOOM_MAX = 192;
 
   /// Camera distance from the sphere's CENTRE, in sphere radii. The near limit
   /// is 1 + a hair: the camera may approach the surface but never enter it.
@@ -155,6 +155,21 @@
     // ---- camera ----------------------------------------------------------
 
     distance() { return distanceFor(this.zoom); }
+
+    terrainEnabled() { return this.options.terrainEnabled ? this.options.terrainEnabled() : false; }
+    terrainHeight(longitude, latitude) {
+      if (!this.terrainEnabled() || this.zoom < 12) return 0;
+      const surface = this.options.terrainSurface?.();
+      return Math.max(0, surface?.sampleHeight(longitude, latitude) || 0);
+    }
+    camera() {
+      const tilt = this.terrainEnabled() && this.options.tilted?.() !== false
+        ? 55 * DEG * clamp((this.zoom - 8) / 12, 0, 1) : 0;
+      const c = Math.cos(tilt), s = Math.sin(tilt), altitude = this.distance() - 1;
+      const focus = this.terrainHeight(-this.yaw / DEG, this.pitch / DEG) * 3 / 6371000;
+      return { origin: [0, -s * altitude, 1 + focus + c * altitude],
+        basis: new Float32Array([1, 0, 0, 0, c, s, 0, -s, c]), tilt };
+    }
 
     /// Device pixels per Robinson canvas unit at the point the camera is over.
     /// This is what the ground shader's level-of-detail and its antialiasing
@@ -273,12 +288,15 @@
     /// The view the shader is handed. Everything in it is derived from yaw,
     /// pitch, zoom and the canvas size — there is no second camera to drift.
     view(size) {
+      const camera = this.camera();
       return {
         width: size.width, height: size.height, ratio: size.ratio, aspect: size.aspect,
         yaw: this.yaw, pitch: this.pitch, zoom: this.zoom,
         distance: this.distance(),
         halfTan: HALF_TAN,
         invBasis: this.inverseBasis(),
+        camera: camera.origin, rayBasis: camera.basis, tilt: camera.tilt,
+        half: [HALF_TAN * size.aspect, HALF_TAN], terrainExaggeration: 3,
         pxPerWorld: this.pixelsPerWorld(size),
         lk: Math.log2(Math.max(this.zoom, 1e-6)),
       };
@@ -311,17 +329,21 @@
     /// globe or off the frame. `lift` places the mark just above the surface so
     /// a label on a mountain is not z-fought by the mountain.
     projectGeo(longitude, latitude, view, lift) {
-      const p = rotate(pointOnSphere(longitude, latitude, lift || 1.004), this.yaw, this.pitch);
+      const terrain = this.terrainEnabled() && this.zoom >= 12;
+      const r = this.zoom >= 12 ? 1 + (terrain ? this.terrainHeight(longitude, latitude) * 3 / 6371000 : 0) + 0.00001 : (lift || 1.004);
+      const p = rotate(pointOnSphere(longitude, latitude, r), this.yaw, this.pitch);
       const distance = view.distance;
       // The horizon, exactly: a point on a sphere of radius r is visible from
       // distance d only while its z exceeds r^2/d. Using z > 0 instead would
       // let the far limb bleed a ring of labels around the edge.
-      const r = lift || 1.004;
-      if (p[2] <= r * r / distance) return null;
-      const divisor = distance - p[2];
+      const cam = view.camera || [0, 0, distance], basis = view.rayBasis || [1,0,0,0,1,0,0,0,1];
+      if (p[0]*cam[0] + p[1]*cam[1] + p[2]*cam[2] <= r*r) return null;
+      const d = p.map((v, i) => v - cam[i]);
+      const q = [0, 1, 2].map(i => d[0]*basis[i*3] + d[1]*basis[i*3+1] + d[2]*basis[i*3+2]);
+      const divisor = -q[2];
       if (divisor <= 1e-6) return null;
-      const ndcX = p[0] / HALF_TAN / view.aspect / divisor;
-      const ndcY = p[1] / HALF_TAN / divisor;
+      const ndcX = q[0] / HALF_TAN / view.aspect / divisor;
+      const ndcY = q[1] / HALF_TAN / divisor;
       if (Math.abs(ndcX) > 1.15 || Math.abs(ndcY) > 1.15) return null;
       return [(ndcX * .5 + .5) * view.width, (.5 - ndcY * .5) * view.height];
     }
@@ -380,18 +402,42 @@
       const aspect = last ? last.aspect : cw / ch;
       // Solved in VIEW space, where the camera is on +z and the ray needs no
       // rotation; only the hit point is turned back into model space.
-      const dir = [ndcX * aspect * HALF_TAN, ndcY * HALF_TAN, -1];
+      const camera = this.camera(), v = [ndcX * aspect * HALF_TAN, ndcY * HALF_TAN, -1];
+      const dir = [0,1,2].map(i => camera.basis[i]*v[0] + camera.basis[i+3]*v[1] + camera.basis[i+6]*v[2]);
       const len = Math.hypot(dir[0], dir[1], dir[2]);
       dir[0] /= len; dir[1] /= len; dir[2] /= len;
-      const distance = this.distance();
-      const b = dir[2] * distance;                 // dot(origin, dir), origin = (0,0,d)
-      const c = distance * distance - 1;
+      const origin = camera.origin;
+      const b = dir.reduce((sum, v, i) => sum + v*origin[i], 0);
+      const c = origin.reduce((sum,v) => sum+v*v, 0) - 1;
       const disc = b * b - c;
-      if (disc < 0) return null;
-      const t = -b - Math.sqrt(disc);
+      const terrain = this.terrainEnabled() && this.zoom >= 12;
+      const shell = disc + (1.005*1.005-1);
+      if (disc < 0 && (!terrain || shell < 0)) return null;
+      const t = disc >= 0 ? -b - Math.sqrt(disc) : -b + Math.sqrt(shell);
       if (t < 0) return null;
-      const hit = [dir[0] * t, dir[1] * t, distance + dir[2] * t];
-      return inverseRotate(hit, this.yaw, this.pitch);
+      let hit = origin.map((v,i) => v+dir[i]*t);
+      if (terrain) {
+        const start = Math.max(0, -b-Math.sqrt(Math.max(0,shell)));
+        const gap = time => {
+          const model = inverseRotate(origin.map((v,i) => v+dir[i]*time), this.yaw, this.pitch);
+          const radius = Math.hypot(...model);
+          const lon = Math.atan2(model[0],model[2])/DEG, lat = Math.asin(model[1]/radius)/DEG;
+          return radius - 1 - this.terrainHeight(lon,lat)*3/6371000;
+        };
+        let previous = start, found = false;
+        for (let i=1; i<=72; i++) {
+          const current = start+(t-start)*i/72;
+          if (gap(current) <= 0) {
+            let lo=previous, hi=current;
+            for (let j=0;j<12;j++) { const mid=(lo+hi)/2; if(gap(mid)>0)lo=mid; else hi=mid; }
+            hit=origin.map((v,k)=>v+dir[k]*(lo+hi)/2); found=true; break;
+          }
+          previous=current;
+        }
+        if (!found && disc < 0) return null;
+      }
+      const model = inverseRotate(hit, this.yaw, this.pitch), r = Math.hypot(...model);
+      return model.map(v => v/r);
     }
 
     /// Screen pixel -> lon/lat, or null off the disc.
@@ -427,6 +473,15 @@
     }
 
     drawCities(view) {
+      if (window.CityDetail) {
+        if (!this.cityPoints) this.cityPoints = CityDetail.build(this.options.cities || window.CITIES || []);
+        this.cityFrame = CityDetail.draw(this.overlayContext, view, this, this.cityPoints,
+          { enabled: this.options.showCities !== false, labels: this.options.showLabels !== false,
+            selectedId: this.options.selectedCity?.() });
+        this.citiesShown = this.cityFrame.shown;
+        this.options.onCitiesChange?.(this.citiesShown);
+        return;
+      }
       const source = this.options.cities || window.CITIES || [];
       if (!source.length || this.options.showCities === false) {
         this.citiesShown = 0;
@@ -511,8 +566,10 @@
           // same speed under the pointer as the globe grows. It is not the flat
           // map's exact 1:1 — a sphere cannot give that away from the
           // sub-camera point — but it holds there, which is where a drag starts.
-          const rate = 1 / (this.distance() - 1) * .0092;
-          this.setView(this.drag.yaw + dx * rate, this.drag.pitch + dy * rate, this.zoom);
+          const rate = (this.distance() - 1) * 2 * HALF_TAN / Math.max(1, this.canvas.clientHeight);
+          const horizontal = rate / Math.max(.15, Math.cos(this.drag.pitch));
+          const vertical = rate / Math.max(.4, Math.cos(this.camera().tilt));
+          this.setView(this.drag.yaw + dx * horizontal, this.drag.pitch + dy * vertical, this.zoom);
         }
         event.preventDefault();
       };

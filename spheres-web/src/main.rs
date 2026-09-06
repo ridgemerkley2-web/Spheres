@@ -44,6 +44,10 @@ const MAP_CONTROLS_JS: &str = include_str!("../ui/map-controls.js");
 const TERRAIN_LABELS_JS: &str = include_str!("../ui/terrain-labels.js");
 const WATER_DETAIL_JS: &str = include_str!("../ui/water-detail.js");
 const HEIGHT_DETAIL_JS: &str = include_str!("../ui/height-detail.js");
+const TERRAIN_SURFACE_JS: &str = include_str!("../ui/terrain-surface.js");
+const CITY_DETAIL_JS: &str = include_str!("../ui/city-detail.js");
+const TERRAIN_TILES_MANIFEST: &str = include_str!("../ui/terrain-tiles/manifest.json");
+mod terrain_tiles { include!("../ui/terrain-tiles/embed.rs"); }
 const SHADER_LOADER_JS: &str = include_str!("../ui/shader-loader.js");
 const HEIGHT_DETAIL_PNG: &[u8] = include_bytes!("../ui/height-detail.png");
 const AREA_ART_CSS: &str = include_str!("../ui/area-art.css");
@@ -6144,6 +6148,20 @@ fn main() {
             (Method::Get, "/height-detail.js") => Response::from_string(HEIGHT_DETAIL_JS)
                 .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
                 .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/terrain-surface.js") => Response::from_string(TERRAIN_SURFACE_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/city-detail.js") => Response::from_string(CITY_DETAIL_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/terrain-tiles/manifest.json") => Response::from_string(TERRAIN_TILES_MANIFEST)
+                .with_header(Header::from_bytes("Content-Type", "application/json").unwrap()),
+            (Method::Get, path) if path.starts_with("/terrain-tiles/") => {
+                let response = if let Some(bytes) = terrain_tiles::terrain_tile(&path["/terrain-tiles/".len()..]) {
+                    Response::from_data(bytes.to_vec())
+                        .with_header(Header::from_bytes("Content-Type", "image/png").unwrap())
+                } else { Response::from_data(b"Not found".to_vec()).with_status_code(404) };
+                let _ = request.respond(response.with_chunked_threshold(usize::MAX));
+                continue;
+            }
             (Method::Get, "/shader-loader.js") => Response::from_string(SHADER_LOADER_JS)
                 .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
                 .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
@@ -9860,9 +9878,22 @@ mod tests {
         assert_eq!(u32::from_be_bytes(HEIGHT_DETAIL_PNG[20..24].try_into().unwrap()), 2036);
         assert_eq!(&HEIGHT_DETAIL_PNG[24..26], &[8, 2], "packed height must stay RGB8");
         assert!(HEIGHT_DETAIL_JS.contains("/height-detail.png"));
-        for path in ["/terrain-labels.js", "/water-detail.js", "/height-detail.js", "/shader-loader.js"] {
+        for path in ["/terrain-labels.js", "/water-detail.js", "/height-detail.js", "/shader-loader.js", "/terrain-surface.js", "/city-detail.js"] {
             assert!(INDEX.contains(path), "missing map detail module {path}");
         }
+        let native: serde_json::Value = serde_json::from_str(TERRAIN_TILES_MANIFEST).unwrap();
+        let tiles = native["tiles"].as_object().unwrap();
+        assert_eq!(tiles.len(), 648, "native terrain must cover every geographic tile");
+        for tile in tiles.values() {
+            if let Some(file) = tile["file"].as_str() {
+                let bytes = terrain_tiles::terrain_tile(file).expect("manifest tile is absent from this binary");
+                assert!(bytes.starts_with(b"\x89PNG\r\n\x1a\n"));
+                assert_eq!(bytes.len() as u64, tile["bytes"].as_u64().unwrap());
+                assert_eq!(u32::from_be_bytes(bytes[16..20].try_into().unwrap()), 602);
+                assert_eq!(u32::from_be_bytes(bytes[20..24].try_into().unwrap()), 602);
+            } else { assert!(tile["constant_code"].as_u64().unwrap() <= 65535); }
+        }
+        assert!(terrain_tiles::terrain_tile("../save.json").is_none());
         // /terrain.png is DELIBERATELY UNREFERENCED. It was the fallback the GL
         // layer dropped back to on a lost context, and a sphere has no svg under
         // it to fall back onto -- so the <image> that fetched 613 KB on every

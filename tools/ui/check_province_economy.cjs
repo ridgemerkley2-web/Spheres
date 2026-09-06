@@ -270,7 +270,7 @@ function provinceRenderFixture() {
   // province drawer through a full parent replacement.
   c.MapControls={html:()=>'',bind(){}};
   c.GL={ready:true,reason:''};
-  for(const name of ['globeBoot','applyCam','glShimmerKick','camWork','invalidateProgramPreview'])c[name]=()=>{};
+  for(const name of ['globeBoot','applyCam','glShimmerKick','camWork','invalidateProgramPreview','renderMapCity'])c[name]=()=>{};
   c.globeReadout=()=>'';c.rglyph=()=>'';c.resHue=()=>'';
   c.nationOfDistrict=id=>id==='US-CA'?'USA':'France';
   c.nationById=id=>({id,name:id});c.escText=c.economyText;c.provinceDepositHtml=()=>'';

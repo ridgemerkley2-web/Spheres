@@ -33,8 +33,13 @@ def main():
         source=ROOT/name
         if source.exists():shutil.copy2(source,release/name)
     provenance=release/'attribution';provenance.mkdir()
-    shutil.copy2(ROOT/'spheres-web/ui/height-detail.json',provenance/'height-detail.json')
-    shutil.copy2(ROOT/'tools/terrain/README.md',provenance/'terrain-sources.md')
+    for src,dst in [('spheres-web/ui/height-detail.json','height-detail.json'),
+                    ('spheres-web/ui/terrain-tiles/manifest.json','terrain-tiles/manifest.json'),
+                    ('spheres-web/ui/lake-surfaces.json','lake-surfaces.json'),
+                    ('tools/terrain/README.md','terrain-sources.md')]:
+        target=provenance/dst
+        target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copy2(ROOT/src,target)
     for src,dst in [('spheres-web/data/nation_figures.json','nation-figures-and-rights.json'),('tools/avatars/historical_flags/sources.json','historical-flag-sources.json'),('tools/avatars/README.md','artwork-source-policy.md'),('tools/avatars/flag-icons-LICENSE','flag-icons-LICENSE'),('spheres-web/ui/display-art/manifest.json','display-derivatives.json'),('spheres-sim/data/sectors_1990.json','broad-sector-observations.json')]:
         shutil.copy2(ROOT/src,provenance/dst)
     # Ship reproducible artwork attribution, not the large source PNGs.
