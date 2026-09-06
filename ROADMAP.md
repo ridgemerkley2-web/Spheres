@@ -1,5 +1,79 @@
 # SPHERES Roadmap
 
+## Done — the political arm, S3/S4 shipped: the web surface, the skeptics' repairs, the census first reading (2026-09-06)
+
+Branch `feat/ideology-roads`, fast-forwarded onto `feat/hoi4-map-and-tech`
+from cd6e2ff: the S3/S4 commits above plus four on this pass — the web
+stage's surface (1cf18de), five repairs each red-checked (933e1c8), a web
+pin (8ce367a) and these docs. Every reading below is this pass's, on the
+final tree, watched in the foreground.
+
+- **The web surface** (1cf18de, the web stage's three files landed as
+  left): the five levers on the government screen with the sim's price,
+  refusal and effects list; `GET /api/covert` and the "Back a movement"
+  card on the target's dossier quoting `statecraft::covert_odds`, the
+  function `covert_action` rolls; the bar's hatched "backed from abroad"
+  row with the sponsor named only once exposed; the watch's served reason
+  and `armed`; the political stems filed and promoted; the header chip's
+  pulse and the dock naming the road from the served `half_armed`.
+- **The repairs** (933e1c8; BUGS R-1..R-5, R-7): a vote never unseats a
+  transcribed holder tied to a pillar (Jordan's Hussein, Morocco's Hassan
+  II keep the office; the chamber's winner is the government of the day);
+  the regime's own coup is `maybe_coup`'s block verbatim under the lens
+  and writes the mover's colour under the roads only, the deposed movement
+  latched so no false "passes a third" prints; the AI's levers ride the
+  deck's ONE 0.02 draw, the lever first; the ban loses its undesigned
+  cabinet arm; `backing_cools` gates on the switch; the web's action pins
+  re-expressed six → eleven (Poland) and five → eight (Iraq). Five new
+  tests, each watched red with its line reverted.
+- **Not repaired, by ruling pending:** D4's wiring (R-6 = S4-10 = P-8).
+- **Suite, watched, release profile after `cargo clean -p spheres-sim -p
+  spheres-web -p spheres-cli --release`** (`cargo test --release
+  --workspace --no-fail-fast`, run twice — once at 04:24 and again at 04:30
+  after the Iraq pin, identical but for that test): spheres-sim lib 452
+  passed / 3 failed / 25 ignored in 157.34 s — the three deliberate reds
+  only: `tests::the_1990_start_is_pinned` at actual 0xe26e4bf8d6c60066,
+  `tests::golden_hash_of_a_known_run` at actual 0xbe94d6125631829c (pins
+  untouched), `tech::tests::the_1990_endowment_does_not_move_year_one_growth`
+  (E-3); P-12's wall-clock bar and `the_resources_row_is_free` green in
+  both runs; spheres-web 160 / 0 / 2 in 43.30 s; spheres-cli 1 / 0; the
+  twenty-seven integration binaries all green (daily 7, daily_balance 10,
+  economic_ai_supply 18, economic_competition 18, economic_sovereignty 9,
+  economic_sphere_intervention 3, industry_planning 13, materials 17,
+  materials_accounting 8, materials_ai_bootstrap 12, materials_ai_timing 5,
+  materials_ai_warehouse 2, materials_planning 4, ministries 19, research
+  10, research_centers 15, small_country_modules 9, starting_industry 11,
+  starting_industry_planning 4, starting_industry_priority 1,
+  strategic_raw_supply 12, treasury 10; the rest ignored-only). Binaries
+  post-date their sources. The inertness trio and the daily identity green
+  in debug beside the goldens (14.51 s).
+- **Digests, market OFF, twice each:** `spheres-cli run 35 1990` →
+  d1a2cfbf7c6958d7 (3501 lines) both passes; `run 35 7` → 39dea3341a7f6e8c
+  (3983 lines) both passes; equal to cd6e2ff.
+- **Live, the release `spheres-web.exe` on port 7910 `--no-open`, killed
+  after:** Poland seed 7 — the suspension 40 PC refused "Poland is not in
+  the crisis a suspension needs: stability 55 (under 45) or a government
+  short of a majority (60% held)", four bans at 18 PC with Solidarity's
+  refused "A government cannot ban the party that leads it", the eleven
+  kinds in order; the watch reads every road CLOSED — CALIBRATION PENDING
+  with live gauges (discontent 0.2917 ≥ 0.25 met on the coup road, army
+  loyalty 1.00, pressure 0), `takeover.half_armed` true on all four roads,
+  the header chip `metric pulse` reading "DISCONTENT 29%" and the dock
+  "watch: coup, uprising, round table, collapse past half"; the government
+  screen on key I renders the levers with twelve effect sentences. The
+  United States seed 7 against Cuba — `/api/covert` works 0.3300 / exposed
+  0.2380, heat 0, six operations at 5 PC, backing the Communist movement
+  refused "You cannot back a government covertly — send aid". Zero console
+  errors on the landing, the map and the government screen.
+- **The census first reading** (the calibration skeptic on a6dbefc, BUGS
+  R-8, recorded and not acted on): 30 seeds × 240 months with both
+  switches on — coups against elected governments median 6 per seed (Sao
+  Tome 87 of 178), annulments median 3 (Ukraine and Belarus in every seed,
+  Algeria 23/30), Communist uprisings 4.87 per seed in 100% of seeds,
+  Islamist 0, states opened by 1996 median 2, the round-table lever and the
+  AI's suspension 0 in every seed. Anchors A2, A3 and A4 badly off; S5 is
+  the calibration, and `ideology_takeover` stays off until it is done.
+
 ## Done — the political arm, stage S4: the roads, succession, mortality (2026-09-06)
 
 Branch `feat/ideology-roads`, eight commits on part two (712de08), every one
