@@ -815,38 +815,200 @@ pub fn covert_action(
     }
 
     if exposed {
-        w.shift_relation(sponsor, target, -35.0);
-        w.shift_reputation(sponsor, -12.0);
-        w.add_covert_heat(sponsor, target, 0.25);
-        {
-            let t = w.nation_mut(target);
-            // Caught red-handed, a foreign hand is the best thing that can
-            // happen to an unpopular government.
-            t.stability = (t.stability + 6.0).min(100.0);
-            t.separatism = (t.separatism - 0.03).max(0.0);
-        }
-        let friends: Vec<NationId> = w
-            .nations
-            .iter()
-            .filter(|n| n.alive && n.id != sponsor && n.id != target)
-            .map(|n| n.id)
-            .filter(|x| w.relation(target, *x) >= 40.0)
-            .collect();
-        for x in friends {
-            w.shift_relation(sponsor, x, -5.0);
-        }
-        if let CovertOp::BackBloc(bloc) = op {
-            expose_backing(w, sponsor, target, bloc);
-        }
-        w.headline(format!(
-            "{} exposes {} {} in {} — the scandal rallies the country behind its government.",
-            target.name(),
-            sponsor.name(),
-            op.label(),
-            target.name()
-        ));
+        caught(w, sponsor, target, op);
     }
     Ok(())
+}
+
+/// What being caught costs, defined once: the block `covert_action` charges
+/// on its exposure roll, verbatim, and — under the roads (S4) — what a
+/// takeover charges a sponsor whose channel into the winner was already
+/// half-blown (`takeover_payoff`). Draws no RNG.
+pub(crate) fn caught(w: &mut WorldState, sponsor: NationId, target: NationId, op: CovertOp) {
+    w.shift_relation(sponsor, target, -35.0);
+    w.shift_reputation(sponsor, -12.0);
+    w.add_covert_heat(sponsor, target, 0.25);
+    {
+        let t = w.nation_mut(target);
+        // Caught red-handed, a foreign hand is the best thing that can
+        // happen to an unpopular government.
+        t.stability = (t.stability + 6.0).min(100.0);
+        t.separatism = (t.separatism - 0.03).max(0.0);
+    }
+    let friends: Vec<NationId> = w
+        .nations
+        .iter()
+        .filter(|n| n.alive && n.id != sponsor && n.id != target)
+        .map(|n| n.id)
+        .filter(|x| w.relation(target, *x) >= 40.0)
+        .collect();
+    for x in friends {
+        w.shift_relation(sponsor, x, -5.0);
+    }
+    if let CovertOp::BackBloc(bloc) = op {
+        expose_backing(w, sponsor, target, bloc);
+    }
+    w.headline(format!(
+        "{} exposes {} {} in {} — the scandal rallies the country behind its government.",
+        target.name(),
+        sponsor.name(),
+        op.label(),
+        target.name()
+    ));
+}
+
+// ---------------------------------------------------------------------------
+// The foreign payoff on a takeover (S4). Every number INVENTED (design S4)
+// and filed in BUGS.md.
+// ---------------------------------------------------------------------------
+
+/// The backing at or over which a sponsor is paid by the winner it backed.
+pub const PAYOFF_BACKING: f64 = 0.10;
+/// What the new regime's gratitude is worth in relation.
+pub const PAYOFF_SPONSOR: f64 = 40.0;
+/// What the sponsor loses with the target's previous top patron, whose
+/// client it has just taken.
+pub const PAYOFF_RIVAL: f64 = -25.0;
+/// The covert heat at or over which the sponsorship is exposed at the
+/// moment of the takeover, with the usual costs (`caught`).
+pub const PAYOFF_EXPOSED_HEAT: f64 = 0.50;
+/// What the democracies (authoritarianism under `government::
+/// DEMOCRACY_BELOW`) feel about a new regime: −8 for a Communist,
+/// Nationalist or Islamist one, +8 for a Western one, nothing for a
+/// Non-Aligned one.
+pub const PAYOFF_DEMOCRACY: f64 = 8.0;
+/// What a great-power patron ruling in the LOSER's colour feels.
+pub const PAYOFF_LOSER_PATRON: f64 = -10.0;
+
+/// Everything `takeover_payoff` writes, computed once (rule 8: the card
+/// quotes this plan).
+#[derive(Clone, Debug, PartialEq)]
+pub struct Payoff {
+    /// (sponsor, backing held, exposed at this moment).
+    pub sponsors: Vec<(NationId, f64, bool)>,
+    /// The target's previous top patron by aid share, if any.
+    pub top_patron: Option<NationId>,
+    /// (democracy, shift) — every democracy other than the target.
+    pub democracies: Vec<(NationId, f64)>,
+    /// Great-power patrons whose own ruling bloc is the loser's.
+    pub loser_patrons: Vec<NationId>,
+}
+
+/// The payoff plan for a non-ballot takeover of `target` by `winner` from
+/// `loser`, or `None` before any read while the takeover switch is off.
+pub fn takeover_payoff_plan(
+    w: &WorldState,
+    target: NationId,
+    winner: crate::government::Bloc,
+    loser: Option<crate::government::Bloc>,
+) -> Option<Payoff> {
+    use crate::government::Bloc;
+    if !w.rules.ideology_takeover {
+        return None;
+    }
+    let sponsors: Vec<(NationId, f64, bool)> = w
+        .statecraft
+        .backing
+        .iter()
+        .filter(|b| b.target == target && b.bloc == winner && b.weight >= PAYOFF_BACKING)
+        .filter(|b| w.nation_opt(b.sponsor).is_some_and(|n| n.alive))
+        .map(|b| (b.sponsor, b.weight, w.covert_heat(b.sponsor, target) >= PAYOFF_EXPOSED_HEAT))
+        .collect();
+    let mut top: Option<(NationId, f64)> = None;
+    for p in w.patrons_of(target) {
+        let share: f64 = w.statecraft.aid.iter().filter(|f| f.patron == p && f.client == target).map(|f| f.share_gdp).sum();
+        if top.map_or(true, |(_, s)| share > s) {
+            top = Some((p, share));
+        }
+    }
+    let democracy_shift = match winner {
+        Bloc::Communist | Bloc::Nationalist | Bloc::Islamist => -PAYOFF_DEMOCRACY,
+        Bloc::Western => PAYOFF_DEMOCRACY,
+        Bloc::NonAligned => 0.0,
+    };
+    let democracies: Vec<(NationId, f64)> = if democracy_shift == 0.0 {
+        vec![]
+    } else {
+        crate::government::democracies(w, target).into_iter().map(|d| (d, democracy_shift)).collect()
+    };
+    let loser_patrons: Vec<NationId> = match loser {
+        Some(l) => crate::nations::patrons()
+            .iter()
+            .copied()
+            .filter(|p| *p != target && w.nation_opt(*p).is_some_and(|n| n.alive))
+            .filter(|p| crate::blocs::ruling_bloc(w, *p) == Some(l))
+            .collect(),
+        None => vec![],
+    };
+    Some(Payoff { sponsors, top_patron: top.map(|(p, _)| p), democracies, loser_patrons })
+}
+
+/// The foreign payoff on any non-ballot takeover (S4): every sponsor holding
+/// `PAYOFF_BACKING` of the winner +40 with the new regime and −25 with the
+/// target's previous top patron, exposed on the spot (the usual costs)
+/// where its covert heat is at or over 0.50; the democracies −8 with a new
+/// Communist / Nationalist / Islamist regime and +8 with a new Western one;
+/// the great-power patrons ruling in the loser's colour −10. Writes
+/// nothing while the takeover switch is off. Draws no RNG.
+pub fn takeover_payoff(
+    w: &mut WorldState,
+    target: NationId,
+    winner: crate::government::Bloc,
+    loser: Option<crate::government::Bloc>,
+) {
+    let p = match takeover_payoff_plan(w, target, winner, loser) {
+        Some(p) => p,
+        None => return,
+    };
+    for (sponsor, _, exposed) in &p.sponsors {
+        w.shift_relation(*sponsor, target, PAYOFF_SPONSOR);
+        if let Some(top) = p.top_patron {
+            if top != *sponsor {
+                w.shift_relation(*sponsor, top, PAYOFF_RIVAL);
+            }
+        }
+        if *exposed {
+            caught(w, *sponsor, target, CovertOp::BackBloc(winner));
+        }
+    }
+    for (d, shift) in &p.democracies {
+        w.shift_relation(*d, target, *shift);
+    }
+    for patron in &p.loser_patrons {
+        w.shift_relation(*patron, target, PAYOFF_LOSER_PATRON);
+    }
+}
+
+/// The payoff's arms as the screen prints them, from the same plan.
+pub fn takeover_payoff_effects(
+    w: &WorldState,
+    target: NationId,
+    winner: crate::government::Bloc,
+    loser: Option<crate::government::Bloc>,
+) -> Vec<String> {
+    let p = match takeover_payoff_plan(w, target, winner, loser) {
+        Some(p) => p,
+        None => return vec![],
+    };
+    let mut out = vec![];
+    for (sponsor, held, exposed) in &p.sponsors {
+        out.push(format!(
+            "{} holds {:.3} of the {} movement's backing: relations {:+.0} with the new regime{}{}.",
+            sponsor.name(),
+            held,
+            winner.label(),
+            PAYOFF_SPONSOR,
+            p.top_patron.filter(|t| t != sponsor).map_or(String::new(), |t| format!(", {:+.0} with {}", PAYOFF_RIVAL, t.name())),
+            if *exposed { "; exposed on the spot" } else { "" }
+        ));
+    }
+    if let Some((_, shift)) = p.democracies.first() {
+        out.push(format!("Relations {:+.0} with {} democracies.", shift, p.democracies.len()));
+    }
+    for patron in &p.loser_patrons {
+        out.push(format!("Relations {:+.0} with {}, which rules in the old colour.", PAYOFF_LOSER_PATRON, patron.name()));
+    }
+    out
 }
 
 /// Offer `to` a trade agreement, which it may refuse.

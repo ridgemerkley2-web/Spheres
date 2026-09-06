@@ -7008,7 +7008,7 @@ pub const NO_MOVEMENTS: &str = "This world does not model ideological movements.
 pub const DEMOCRACY_BELOW: f64 = 0.30;
 
 /// Everyone alive under the democracy line but the actor, in roster order.
-fn democracies(w: &WorldState, except: NationId) -> Vec<NationId> {
+pub(crate) fn democracies(w: &WorldState, except: NationId) -> Vec<NationId> {
     w.nations
         .iter()
         .filter(|x| x.alive && x.authoritarianism < DEMOCRACY_BELOW && x.id != except)
@@ -8111,6 +8111,7 @@ pub(crate) fn uprising(w: &mut WorldState, id: NationId) {
         g.next_election = (0, 0);
     }
     w.headline(format!("Revolution in {}: the {} movement takes power.", id.name(), winner.label()));
+    crate::statecraft::takeover_payoff(w, id, winner, old);
 }
 
 /// Route 4 (S4), the round table as a DRIFT rather than an event: while
@@ -8216,6 +8217,9 @@ pub(crate) struct Break {
 /// between callers arrive in the [`Break`]: the authoritarianism rule and
 /// the colour. Draws no RNG.
 fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
+    // The colour that falls, read before anything is written and only
+    // under the roads, for the foreign payoff below.
+    let loser = if w.rules.ideology_takeover { crate::blocs::ruling_bloc(w, id) } else { None };
     {
         let n = w.nation_mut(id);
         n.stability = (n.stability - 16.0).max(5.0);
@@ -8239,6 +8243,10 @@ fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
         }
     }
     w.headline(b.headline);
+    // The foreign payoff (S4): nothing while the takeover switch is off.
+    if let Some(winner) = b.regime_bloc {
+        crate::statecraft::takeover_payoff(w, id, winner, loser);
+    }
 }
 
 /// AI regimes pay their bills. A government that will not spend on the people
@@ -10394,5 +10402,130 @@ mod tests {
         assert!((a - crate::blocs::ROUND_TABLE_FLOOR).abs() < 1e-12, "{a}");
         assert!(!is_electoral(&w, sa));
         assert_eq!(crate::blocs::takeover_readout(&w, id_).round_table.reason, crate::blocs::ALREADY_ELECTORAL);
+    }
+    /// The foreign payoff (S4). Sudan, backed by the Soviet Union behind its
+    /// Communist movement at 0.12 with a half-blown channel (heat 0.60), the
+    /// United States its top aid patron and the United Kingdom a smaller
+    /// one: on the Communist takeover the Soviet Union gains 40 with
+    /// Khartoum and loses 25 with Washington, and is exposed on the spot —
+    /// the usual costs (−35 with the target, so +5 net; reputation −12;
+    /// heat +0.25; the backing halved to 0.06 and marked) and the exposure
+    /// headline; every democracy other than Sudan loses 8 with it. The
+    /// Nationalist-over-Communist shape pays the Communist patrons −10
+    /// (Moscow, Beijing). Through the tick, the same Sudan's revolution
+    /// month carries the exposure line. With the switch off the plan is
+    /// `None` and nothing is written. Watched red with the payoff call
+    /// dropped from `uprising`: the relation with Khartoum did not move.
+    #[test]
+    fn the_sponsor_payoff_and_exposure_fire_on_takeover() {
+        use crate::statecraft::{self, add_backing, takeover_payoff, takeover_payoff_plan, PAYOFF_DEMOCRACY};
+        let (sd, su, us, uk, cn) = (NationId::Sudan, NationId::USSR, NationId::USA, NationId::UK, NationId::China);
+        let stage = |w: &mut WorldState| {
+            add_backing(w, su, sd, Bloc::Communist);
+            add_backing(w, su, sd, Bloc::Communist);
+            w.add_covert_heat(su, sd, 0.60);
+            w.statecraft.aid.push(AidFlow { patron: us, client: sd, kind: AidKind::Economic, share_gdp: 0.002, since_year: 1990 });
+            w.statecraft.aid.push(AidFlow { patron: uk, client: sd, kind: AidKind::Economic, share_gdp: 0.001, since_year: 1990 });
+        };
+        let mut off = world_1990(on_rules(7));
+        stage(&mut off);
+        assert_eq!(takeover_payoff_plan(&off, sd, Bloc::Communist, Some(Bloc::Islamist)), None);
+        let before = (crate::state_hash(&off), off.rng.state);
+        takeover_payoff(&mut off, sd, Bloc::Communist, Some(Bloc::Islamist));
+        assert_eq!((crate::state_hash(&off), off.rng.state), before, "the switch off wrote a payoff");
+
+        let mut w = world_1990(roads_rules(7));
+        stage(&mut w);
+        assert!((w.backing_of(su, sd, Bloc::Communist) - 0.12).abs() < 1e-12);
+        let plan = takeover_payoff_plan(&w, sd, Bloc::Communist, Some(Bloc::Islamist)).unwrap();
+        assert_eq!(plan.sponsors, vec![(su, 0.12, true)]);
+        assert_eq!(plan.top_patron, Some(us));
+        assert!(plan.loser_patrons.is_empty(), "no great power rules in the Islamist colour");
+        let dems = democracies(&w, sd);
+        assert!(dems.contains(&uk) && dems.contains(&us) && !dems.contains(&su));
+        assert_eq!(plan.democracies.len(), dems.len());
+        let (r_sd, r_us, r_uk, rep, stab) =
+            (w.relation(su, sd), w.relation(su, us), w.relation(uk, sd), w.reputation(su), w.nation(sd).stability);
+        let friend_us = w.relation(sd, us) >= 40.0;
+        let effects = statecraft::takeover_payoff_effects(&w, sd, Bloc::Communist, Some(Bloc::Islamist));
+        assert!(effects[0].contains("Soviet Union holds 0.120") && effects[0].contains("+40") && effects[0].contains("-25 with United States") && effects[0].contains("exposed on the spot"), "{effects:?}");
+        assert!(effects[1].contains(&format!("-8 with {} democracies", dems.len())), "{effects:?}");
+        takeover_payoff(&mut w, sd, Bloc::Communist, Some(Bloc::Islamist));
+        assert!((w.relation(su, sd) - (r_sd + 40.0 - 35.0)).abs() < 1e-9, "{} -> {}", r_sd, w.relation(su, sd));
+        let expected_us = r_us - 25.0 - if friend_us { 5.0 } else { 0.0 };
+        assert!((w.relation(su, us) - expected_us).abs() < 1e-9, "{} -> {} (friend {friend_us})", r_us, w.relation(su, us));
+        assert!((w.relation(uk, sd) - (r_uk - PAYOFF_DEMOCRACY)).abs() < 1e-9);
+        assert!((w.reputation(su) - (rep - 12.0)).abs() < 1e-9);
+        assert!((w.covert_heat(su, sd) - 0.85).abs() < 1e-9);
+        assert!((w.nation(sd).stability - (stab + 6.0).min(100.0)).abs() < 1e-9);
+        assert!((w.backing_of(su, sd, Bloc::Communist) - 0.06).abs() < 1e-12, "halved on exposure");
+        assert!(w.statecraft.backing.iter().any(|b| b.sponsor == su && b.target == sd && b.exposed));
+        assert!(w.headlines.iter().any(|h| h == "Sudan exposes Soviet Union backing the Communist movement in Sudan — the scandal rallies the country behind its government."), "{:?}", w.headlines);
+
+        // The loser's patrons: a Nationalist regime over a Communist one.
+        let mut w = world_1990(roads_rules(7));
+        let plan = takeover_payoff_plan(&w, sd, Bloc::Nationalist, Some(Bloc::Communist)).unwrap();
+        assert!(plan.loser_patrons.contains(&su) && plan.loser_patrons.contains(&cn), "{:?}", plan.loser_patrons);
+        let (r_su, r_cn) = (w.relation(su, sd), w.relation(cn, sd));
+        takeover_payoff(&mut w, sd, Bloc::Nationalist, Some(Bloc::Communist));
+        assert!((w.relation(su, sd) - (r_su - 10.0)).abs() < 1e-9);
+        assert!((w.relation(cn, sd) - (r_cn - 10.0)).abs() < 1e-9);
+
+        // Through the tick: the revolution month carries the exposure.
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(sd);
+        let arm = |w: &mut WorldState| {
+            {
+                let n = w.nation_mut(sd);
+                n.stability = 0.0;
+                n.inflation = 0.18;
+                n.growth_last = 0.01;
+                n.war_exhaustion = 0.0;
+                n.separatism = 0.0;
+            }
+            if let Some(g) = state_mut(w, sd) {
+                if g.movements.len() == 5 && g.regime_bloc != Some(Bloc::Communist) {
+                    let mut m = g.movements.clone();
+                    m[Bloc::Communist as usize].1 = 0.46;
+                    let rest: f64 = m.iter().filter(|(b, _)| *b != Bloc::Communist).map(|(_, v)| *v).sum();
+                    for e in m.iter_mut() {
+                        if e.0 != Bloc::Communist {
+                            e.1 = e.1 / rest * 0.54;
+                        }
+                    }
+                    g.movements = m;
+                    for e in g.pillars.iter_mut() {
+                        e.1 = if e.0 == Pillar::Army { 0.30 } else { 0.60 };
+                    }
+                }
+            }
+            // The stock cools 0.006 a month; kept at the sponsor cap.
+            for b in w.statecraft.backing.iter_mut() {
+                if b.sponsor == su && b.target == sd {
+                    b.weight = 0.12;
+                }
+            }
+            if w.backing_of(su, sd, Bloc::Communist) == 0.0 {
+                add_backing(w, su, sd, Bloc::Communist);
+                add_backing(w, su, sd, Bloc::Communist);
+            }
+            if w.covert_heat(su, sd) < 0.60 {
+                w.add_covert_heat(su, sd, 0.60 - w.covert_heat(su, sd));
+            }
+        };
+        let mut fired = None;
+        for m in 0..120 {
+            arm(&mut w);
+            let r_before = w.relation(su, sd);
+            let news = crate::tick_month(&mut w, &[]);
+            if news.iter().any(|h| h == "Revolution in Sudan: the Communist movement takes power.") {
+                assert!(news.iter().any(|h| h.starts_with("Sudan exposes Soviet Union backing the Communist movement")), "{news:?}");
+                assert!(w.relation(su, sd) > r_before, "Moscow was not paid: {r_before} -> {}", w.relation(su, sd));
+                fired = Some(m + 1);
+                break;
+            }
+        }
+        let fired = fired.expect("no revolution in 120 months");
+        println!("payoff: Sudan's revolution fired in month {fired} with the Soviet channel exposed");
     }
 }
