@@ -336,10 +336,12 @@ fn covert_channels_cool(w: &mut WorldState) {
 }
 
 /// Where covert channels cool, backing cools too: `BACKING_DECAY` a month,
-/// retained only while positive. Returns before touching anything while the
-/// stock is empty — every world the switch is off in — and draws no RNG.
+/// retained only while positive. Returns on the switch before touching
+/// anything (a save carrying a stock, loaded into a world with the lens
+/// off, keeps it as it was), and again while the stock is empty; draws no
+/// RNG.
 fn backing_cools(w: &mut WorldState) {
-    if w.statecraft.backing.is_empty() {
+    if !w.rules.ideology_blocs || w.statecraft.backing.is_empty() {
         return;
     }
     let dt = crate::clock::month_fraction(w);

@@ -2144,4 +2144,31 @@ mod tests {
         assert!(off.statecraft.backing.is_empty());
         assert_eq!(off.nation(pl).stability, 56.0);
     }
+    /// Repair (2026-09-06, the inertness skeptic's note): the backing stock
+    /// cools on the switch, not on emptiness alone. A stock written into a
+    /// world with the lens OFF (a save carried across a rules change) is
+    /// left exactly as it was by twelve months of `statecraft::tick`; the
+    /// same stock in the ON world cools 0.006 a month and is gone within
+    /// ten. Watched red with the switch dropped from `backing_cools`: the
+    /// off world's 0.06 read 0.0 after the year.
+    #[test]
+    fn a_backing_stock_does_not_cool_with_the_lens_off() {
+        use crate::statecraft::BACKING_DECAY;
+        use crate::world::Backing;
+        let entry = Backing { sponsor: NationId::USSR, target: NationId::Poland, bloc: Bloc::Communist, weight: 0.06, exposed: false };
+        let mut off = world_1990(GameRules::default());
+        off.statecraft.backing.push(entry.clone());
+        for _ in 0..12 {
+            crate::statecraft::tick(&mut off);
+        }
+        assert_eq!(off.statecraft.backing, vec![entry.clone()], "the lens is off and the stock moved");
+        let mut on_w = world_1990(on(7));
+        on_w.statecraft.backing.push(entry.clone());
+        crate::statecraft::tick(&mut on_w);
+        assert!((on_w.statecraft.backing[0].weight - (0.06 - BACKING_DECAY)).abs() < 1e-12);
+        for _ in 0..12 {
+            crate::statecraft::tick(&mut on_w);
+        }
+        assert!(on_w.statecraft.backing.is_empty(), "{:?}", on_w.statecraft.backing);
+    }
 }

@@ -7188,7 +7188,6 @@ pub struct BanPlan {
     /// The chamber re-read through `seats_from_legal` with the ban in force
     /// (an electoral nation), or unchanged (a regime's dormant chamber).
     pub seats_after: Vec<(String, f64)>,
-    pub leaves_cabinet: bool,
     pub democracies: Vec<NationId>,
 }
 
@@ -7247,7 +7246,6 @@ pub fn ban_plan(w: &WorldState, id: NationId, party: &str) -> Result<BanPlan, St
         support,
         seats_before: g.seat_share(party),
         seats_after,
-        leaves_cabinet: g.in_government(party),
         democracies: democracies(w, id),
     })
 }
@@ -7258,7 +7256,7 @@ pub fn ban_effects(w: &WorldState, id: NationId, party: &str) -> Vec<String> {
         Err(_) => return vec![],
     };
     let seats_now = p.seats_after.iter().find(|(q, _)| *q == p.party).map_or(0.0, |(_, v)| *v);
-    let mut out = vec![
+    let out = vec![
         format!(
             "{} holds no seats: {:.1}% → {:.1}% of the chamber; its {:.1}% of support is kept and still counts in influence.",
             p.name, p.seats_before * 100.0, seats_now * 100.0, p.support * 100.0
@@ -7267,9 +7265,6 @@ pub fn ban_effects(w: &WorldState, id: NationId, party: &str) -> Vec<String> {
         format!("Stability {:.0} → {:.0} (−3 when the party holds 15% or more).", p.stability_before, p.stability_after),
         format!("Relations −4 with {} democracies.", p.democracies.len()),
     ];
-    if p.leaves_cabinet {
-        out.push(format!("{} leaves the cabinet.", p.name));
-    }
     out
 }
 
@@ -7281,8 +7276,11 @@ pub fn ban_party(w: &mut WorldState, id: NationId, party: &str) -> Result<(), St
         n.stability = p.stability_after;
     }
     if let Some(g) = state_mut(w, id) {
+        // The design's ban takes seats, not the cabinet: a banned partner
+        // stays on the coalition record with no seats, and what that does
+        // to the government's majority is the chamber's arithmetic, not an
+        // arm of this lever.
         g.banned.push(p.party.clone());
-        g.coalition.retain(|q| *q != p.party);
         g.seats = p.seats_after.clone();
     }
     for d in &p.democracies {
@@ -8181,10 +8179,13 @@ fn maybe_coup(w: &mut WorldState, id: NationId) {
         Pillar::Clergy => (auth + 0.05).min(0.98),
         _ => (auth - 0.04).max(0.05),
     };
-    // Under the arm the institution that moved rules in its own colour; with
-    // the arm off nothing is written, because `regime_bloc` is never stored
-    // there.
-    let regime_bloc = if w.rules.ideology_blocs { Some(pillar_bloc(id, pillar)) } else { None };
+    // Under the ROADS the institution that moved rules in its own colour
+    // (and the foreign payoff reads it as the winner); under the lens alone
+    // this is `maybe_coup`'s pre-arm block verbatim and the regime keeps the
+    // colour it had, so a takeover effect is never live with
+    // `ideology_takeover` off. With everything off nothing is written,
+    // because `regime_bloc` is never stored there.
+    let regime_bloc = if w.rules.ideology_takeover { Some(pillar_bloc(id, pillar)) } else { None };
     let _ = loyalty;
     regime_break(
         w,
@@ -8252,6 +8253,12 @@ fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
         g.office_month_fraction = 0.0;
         if let Some(bloc) = b.regime_bloc {
             g.regime_bloc = Some(bloc);
+            // The deposed colour is now a non-ruling movement, usually the
+            // largest: latch it closed on whatever is already over the
+            // surge line, the way `seed_blocs`, the programme and the
+            // uprising do, or `note_surges` prints "passes a third" for a
+            // movement that did not move.
+            g.surging = latched_at_seed(&g.movements, bloc);
         }
     }
     w.headline(b.headline);
@@ -8541,6 +8548,16 @@ pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option
     };
     Some(match how {
         Succession::Election { leader } => {
+            // A transcribed holder tied to a PILLAR — a crown, a court, a
+            // party-state chief, a general presiding over the vote — is not
+            // an office a ballot fills: D2 removes a monarch only by a Party
+            // coup or a programme, and the chamber's winner is the government
+            // of the day, served beside the row. Read on the transcribed row
+            // alone; an emergent pillar holder (the junta after a coup) does
+            // give way to the party the first free elections seat.
+            if row.emergent.is_none() && holder_pillar.is_some() {
+                return None;
+            }
             // The transcribed person whose own party leads keeps the office;
             // an emergent holder is a description and gives way to the next.
             if row.emergent.is_none() && holder_party.as_deref() == Some(leader.as_str()) {
@@ -9580,7 +9597,7 @@ mod tests {
         assert!((g.seat_share("pl_solidarity") - 0.30 / 0.45).abs() < 1e-12, "{}", g.seat_share("pl_solidarity"));
         assert_eq!(g.banned, vec!["pl_sld".to_string()]);
         assert_eq!(g.leader(), Some("pl_solidarity"));
-        assert!(!plan.leaves_cabinet);
+        assert!(!effects.iter().any(|e| e.contains("cabinet")), "{effects:?}");
         assert_eq!(w.nation(pl).authoritarianism.to_bits(), plan.auth_after.to_bits());
         assert!((plan.auth_after - 0.39).abs() < 1e-12);
         assert_eq!(w.nation(pl).stability, 47.0);
@@ -10879,5 +10896,186 @@ mod tests {
         }
         println!("succession: {emergent} offices changed hands in forty years on the roads (seed 7)");
         assert!(emergent > 0, "forty years and nobody left office");
+    }
+    /// Repair (2026-09-06, the design skeptic's first departure): a vote does
+    /// not unseat a transcribed holder tied to a PILLAR. Jordan's row is
+    /// King Hussein, tie Party, an heir; the chamber is elected. With the
+    /// lens on, an election the tribal independents win over the Brotherhood
+    /// changes the government of the day and NOT the row: Hussein keeps the
+    /// office, the heir is untouched, `court_pillar` still reads the court
+    /// at authoritarianism 0.40 and up. Morocco's Hassan II (tie Party, no
+    /// heir, the chamber dissolved in the table) likewise when a vote seats
+    /// the Constitutional Union. A holder tied to a PARTY still gives way
+    /// to a new leading party (the existing D2 test). Watched red with the
+    /// pillar guard removed from `succession_seat`: Jordan read "the Tribal
+    /// and pro-government independents government" and the row's name None.
+    #[test]
+    fn an_election_changes_the_government_of_the_day_and_never_unseats_a_crown() {
+        for (id, winner, name) in [
+            (NationId::Jordan, "jo_tribal", "Hussein"),
+            (NationId::Morocco, "ma_uc", "Hassan II"),
+        ] {
+            let mut w = world_1990(on_rules(7));
+            let row = crate::blocs::leader_row(&w, id).expect("a transcribed row");
+            assert_eq!(row.name.as_deref(), Some(name));
+            let heir = row.heir.clone();
+            let parties: Vec<String> = pol_parties(id).iter().map(|p| p.id.to_string()).collect();
+            assert!(parties.iter().any(|p| p == winner), "{id:?}: {parties:?}");
+            let led_before = state(&w, id).unwrap().leader().map(|s| s.to_string());
+            assert_ne!(led_before.as_deref(), Some(winner));
+            {
+                let g = state_mut(&mut w, id).unwrap();
+                for e in g.support.iter_mut() {
+                    e.1 = if e.0 == winner { 0.70 } else { 0.30 / (parties.len() as f64 - 1.0) };
+                }
+            }
+            hold_election(&mut w, id);
+            let g = state(&w, id).unwrap();
+            assert_eq!(g.leader(), Some(winner), "{id:?}: the vote seated a new government of the day");
+            let row = crate::blocs::leader_row(&w, id).expect("the row still holds");
+            assert_eq!(row.name.as_deref(), Some(name), "{id:?}: the vote unseated the crown");
+            assert!(row.emergent.is_none(), "{id:?}: {:?}", row.emergent);
+            assert_eq!(row.heir, heir, "{id:?}: the heir was consumed");
+            w.nation_mut(id).authoritarianism = crate::blocs::COURT_RULES_ABOVE;
+            assert_eq!(crate::blocs::court_pillar(&w, id), Some(Pillar::Party), "{id:?}: the monarchy exception dissolved");
+        }
+    }
+
+    /// Repair (2026-09-06, the design skeptic's second departure): the
+    /// regime's own coup is `maybe_coup`'s block verbatim under the lens
+    /// alone — China's PLA removing the Central Committee leaves the regime
+    /// Communist, the colour it had — and writes the mover's colour only
+    /// under the roads, where the deposed colour (0.60 of the movements, the
+    /// seed) is latched closed the month it becomes a non-ruling movement,
+    /// so the next month prints no "passes a third". Watched red twice: with
+    /// the colour written under `ideology_blocs`, the lens-only regime read
+    /// Nationalist; with the latch line removed from `regime_break`, the
+    /// roads world printed "The Communist movement in China passes a third
+    /// of the country." the month after the coup.
+    #[test]
+    fn the_regime_s_own_coup_keeps_its_colour_under_the_lens_and_latches_the_deposed_movement_on_the_roads() {
+        let cn = NationId::China;
+        let stage = |w: &mut WorldState| {
+            let g = state_mut(w, cn).unwrap();
+            g.coup_pressure = 5.0;
+            g.months_in_office = 48;
+            for e in g.pillars.iter_mut() {
+                e.1 = if e.0 == Pillar::Army { 0.20 } else { 0.80 };
+            }
+        };
+        // The lens alone: the block verbatim, the colour kept.
+        let mut lens = world_1990(on_rules(7));
+        assert_eq!(state(&lens, cn).unwrap().regime_bloc, Some(Bloc::Communist));
+        stage(&mut lens);
+        maybe_coup(&mut lens, cn);
+        assert!(lens.headlines.iter().any(|h| h.starts_with("COUP IN CHINA")), "{:?}", lens.headlines);
+        let g = state(&lens, cn).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Communist), "a takeover effect ran with the roads off");
+        assert_eq!(crate::blocs::ruling_bloc(&lens, cn), Some(Bloc::Communist));
+        assert_eq!(g.months_in_office, 0);
+        assert!(g.pillars.iter().any(|(p, v)| *p == Pillar::Army && *v == 0.90));
+        // The roads: the PLA rules in its own colour, the deposed Communist
+        // movement latched, and no surge headline the next month.
+        let mut roads = world_1990(roads_rules(7));
+        stage(&mut roads);
+        maybe_coup(&mut roads, cn);
+        let g = state(&roads, cn).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Nationalist));
+        let communist = g.movements.iter().find(|(b, _)| *b == Bloc::Communist).map(|(_, s)| *s).unwrap();
+        assert!(communist >= 0.30, "{communist}");
+        assert!(g.surging.contains(&Bloc::Communist), "{:?}", g.surging);
+        let news = crate::tick_month(&mut roads, &[]);
+        assert!(
+            !news.iter().any(|h| h.contains("movement in China passes a third")),
+            "a movement that did not move made the news: {news:?}"
+        );
+    }
+
+    /// Repair (2026-09-06, the design skeptic's fourth departure): the AI's
+    /// levers ride the deck's ONE 0.02 monthly draw, they do not take a
+    /// second. Every capital in the world is set to nothing but Warsaw's,
+    /// which holds 80 with stability 29 and authoritarianism 0.25 — a
+    /// suspension the AI would ask for AND a stratagem it can afford — and
+    /// `ai_stratagems` is run once: the RNG steps exactly once. Watched red
+    /// with the lever loop restored under the deck's loop: two steps.
+    #[test]
+    fn the_ai_s_levers_ride_the_deck_s_one_draw() {
+        use crate::Command;
+        let pl = NationId::Poland;
+        let mut w = world_1990(on_rules(7));
+        for n in w.nations.iter_mut() {
+            n.political_capital = 0.0;
+        }
+        {
+            let n = w.nation_mut(pl);
+            n.stability = 29.0;
+            n.authoritarianism = 0.25;
+            n.political_capital = 80.0;
+        }
+        assert_eq!(ai_lever(&w, pl), Some(Command::SuspendConstitution { nation: pl }));
+        let options = crate::stratagems::available(&w, pl);
+        assert!(options.iter().any(|s| s.cost <= 60.0), "Poland can afford no stratagem: {:?}", options.iter().map(|s| (s.id, s.cost)).collect::<Vec<_>>());
+        let before = w.rng.clone();
+        crate::stratagems::ai_stratagems(&mut w);
+        let mut probe = before.clone();
+        let mut steps = 0;
+        while probe != w.rng && steps < 8 {
+            probe.next_u64();
+            steps += 1;
+        }
+        assert_eq!(probe, w.rng, "the RNG moved more than eight steps");
+        assert_eq!(steps, 1, "one government with a lever and a card drew {steps} times");
+        // And with the lens off the same month draws exactly as it always
+        // did: once, for the card.
+        let mut off = w1990();
+        for n in off.nations.iter_mut() {
+            n.political_capital = 0.0;
+        }
+        {
+            let n = off.nation_mut(pl);
+            n.stability = 29.0;
+            n.authoritarianism = 0.25;
+            n.political_capital = 80.0;
+        }
+        assert_eq!(ai_lever(&off, pl), None);
+        let before = off.rng.clone();
+        crate::stratagems::ai_stratagems(&mut off);
+        let mut probe = before.clone();
+        let mut steps = 0;
+        while probe != off.rng && steps < 8 {
+            probe.next_u64();
+            steps += 1;
+        }
+        assert_eq!(steps, 1);
+    }
+
+    /// Repair (2026-09-06, the design skeptic's fifth departure): a ban has
+    /// the design's four arms and no cabinet arm. A coalition partner banned
+    /// (Poland's People's Party at authoritarianism 0.50) keeps its place on
+    /// the coalition record with no seats; the majority the chamber then
+    /// reads is arithmetic, not an effect of the lever. Watched red with
+    /// `g.coalition.retain(|q| *q != p.party)` restored in `ban_party`.
+    #[test]
+    fn a_ban_takes_seats_and_not_the_cabinet() {
+        use crate::{apply_command, Command};
+        let pl = NationId::Poland;
+        let mut w = world_1990(on_rules(7));
+        w.nation_mut(pl).authoritarianism = 0.50;
+        w.nation_mut(pl).political_capital = 100.0;
+        {
+            let g = state_mut(&mut w, pl).unwrap();
+            g.coalition = vec!["pl_solidarity".to_string(), "pl_psl".to_string()];
+            assert!(g.in_government("pl_psl"));
+        }
+        let coalition_before = state(&w, pl).unwrap().coalition.clone();
+        let seats_before = state(&w, pl).unwrap().government_seats();
+        apply_command(&mut w, &Command::BanParty { nation: pl, party: "pl_psl".into() }).expect("goes through");
+        let g = state(&w, pl).unwrap();
+        assert_eq!(g.coalition, coalition_before, "the ban reached into the cabinet");
+        assert!(g.in_government("pl_psl"));
+        assert_eq!(g.seat_share("pl_psl"), 0.0);
+        assert!(g.government_seats() < seats_before);
+        assert_eq!(g.banned, vec!["pl_psl".to_string()]);
+        assert!(!ban_effects(&w, pl, "pl_sd").iter().any(|e| e.contains("cabinet")));
     }
 }

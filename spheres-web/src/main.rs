@@ -15472,9 +15472,15 @@ mod tests {
         assert!((pl["government_seats"].as_f64().unwrap() - 0.6).abs() < 1e-9);
         assert_eq!(pl["discontent"], spheres_sim::blocs::discontent(w, NationId::Poland));
         let acts = pl["actions"].as_array().unwrap();
-        assert_eq!(acts.len(), 6, "three invitations, the election, two stratagems");
+        // S3: the five levers join the list — for an electoral polity the
+        // suspension and one ban per party of the table, each served with
+        // the sim's price, refusal and effects (the levers' own test reads
+        // them in detail). Re-pinned 2026-09-06 from six to eleven when the
+        // web stage landed; the kinds are pinned in order so a lever that
+        // silently drops out reads red.
+        assert_eq!(acts.len(), 11, "three invitations, the election, two stratagems, the suspension, four bans");
         let kinds: Vec<&str> = acts.iter().map(|a| a["kind"].as_str().unwrap()).collect();
-        assert_eq!(kinds, ["invite", "invite", "invite", "call_election", "stratagem", "stratagem"]);
+        assert_eq!(kinds, ["invite", "invite", "invite", "call_election", "stratagem", "stratagem", "suspend", "ban", "ban", "ban", "ban"]);
         let election = &acts[3];
         assert_eq!(election["refusal"], "A government six months old cannot go back to the country yet.");
         assert_eq!(election["price"], 25.0);

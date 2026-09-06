@@ -432,39 +432,33 @@ pub fn ai_stratagems(w: &mut WorldState) {
             continue;
         }
         let options = available(w, id);
-        if options.is_empty() {
+        // The political arm's five levers (S3) ride THIS draw — the design's
+        // "on the existing 0.02 monthly stratagem draw" — so the government
+        // module keeps drawing nothing and a month holds one decision, a
+        // lever or a card, never both. `government::ai_lever` is pure and
+        // answers `None` before reading anything with the arm off, so the
+        // off world's stream is untouched, and a switched-on world parts from
+        // it only in a month a government has a lever and no card (the same
+        // finding as the sponsors' draw in `politics`). The lever comes
+        // first because its conditions are the narrower crisis.
+        let lever = crate::government::ai_lever(w, id);
+        if options.is_empty() && lever.is_none() {
             continue;
         }
         // Deck order is the priority order, so the choice is deterministic:
         // the first thing it can afford that its condition genuinely calls for.
         let choice = options.iter().find(|s| s.cost <= held - 20.0).map(|s| s.id);
-        if let Some(sid) = choice {
-            // Rare, because these are decisions of a whole term, not a month.
-            if w.rng.chance(crate::clock::chance(w, 0.02)) {
-                let cmd = crate::Command::EnactStratagem {
-                    nation: id,
-                    id: sid.to_string(),
-                };
-                let _ = crate::apply_command(w, &cmd);
-            }
-        }
-    }
-
-    // ---- The political arm's five levers (S3): the same 0.02 monthly draw
-    // as the deck, at the deck's own site, so the government module keeps
-    // drawing nothing. The whole block is behind the switch, and the DRAW
-    // COMES AFTER THE CHOICE — `government::ai_lever` is pure and answers
-    // `None` before reading anything with the arm off — so a switched-on
-    // world in which no government has a lever to pull draws nothing either,
-    // and its stream parts from the off world's only in a month one could
-    // act (the same finding as the sponsors' draw in `politics`).
-    if w.rules.ideology_blocs {
-        for id in actors.iter().copied() {
-            if let Some(cmd) = crate::government::ai_lever(w, id) {
-                if w.rng.chance(crate::clock::chance(w, 0.02)) {
-                    let _ = crate::apply_command(w, &cmd);
-                }
-            }
+        let cmd = match (lever, choice) {
+            (Some(cmd), _) => cmd,
+            (None, Some(sid)) => crate::Command::EnactStratagem {
+                nation: id,
+                id: sid.to_string(),
+            },
+            (None, None) => continue,
+        };
+        // Rare, because these are decisions of a whole term, not a month.
+        if w.rng.chance(crate::clock::chance(w, 0.02)) {
+            let _ = crate::apply_command(w, &cmd);
         }
     }
 }
