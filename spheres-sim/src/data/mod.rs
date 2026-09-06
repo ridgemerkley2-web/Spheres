@@ -299,6 +299,28 @@ pub struct MilitaryRecord {
     /// Abstract strength index.
     pub strength: f64,
     pub nuclear: bool,
+    /// ARMED-FORCES PERSONNEL, total, on 1 January 1990 — the count the
+    /// pay-per-soldier arm of the Army pillar divides by (M2, Ridge's ruling
+    /// of 2026-09-06; `government::army_pay_ratio`). Transcribed from the
+    /// World Bank API series MS.MIL.TOTL.P1 for 1990, falling back to the
+    /// nearest year in 1988-1992 and saying so in `sources`, and where the
+    /// API has nothing from the IISS Military Balance 1990-91 as cited on
+    /// the nation's armed-forces page; a nation with neither is REFUSED —
+    /// `None` here, the arm falls back to the share-only line, and the
+    /// nation is counted (BUGS H-3). Appended after `nuclear` with
+    /// `skip_serializing_if`, so a file without it round-trips byte for
+    /// byte and the 1990 save carries no new key.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub personnel_1990: Option<f64>,
+    /// MILITARY EXPENDITURE in 1990, billions of current US dollars, the
+    /// World Bank API series MS.MIL.XPND.CD (SIPRI), the same 1988-1992
+    /// fallback. Carried as the RECORD and the cross-check of the pay arm
+    /// — the arm itself reads the live `mil_spend_gdp · gdp` over the
+    /// personnel, so the transcribed budget is what `mil_spend_gdp` was
+    /// transcribed from, quoted in dollars; it enters no formula. Same
+    /// posture as `personnel_1990`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub milex_1990_usd_bn: Option<f64>,
 }
 
 /// The seed relations table.
@@ -398,6 +420,13 @@ fn check_record(file: &str, r: &NationRecord) -> Vec<LoadError> {
             &who,
             format!("economy.population_m is {}, expected a positive number", r.economy.population_m),
         ));
+    }
+    for (v, field) in [(r.military.personnel_1990, "military.personnel_1990"), (r.military.milex_1990_usd_bn, "military.milex_1990_usd_bn")] {
+        if let Some(v) = v {
+            if !(v.is_finite() && v > 0.0) {
+                e.push(LoadError::nation_level(file, &who, format!("{field} is {v}, expected a positive number or absent")));
+            }
+        }
     }
     if let Some(res) = r.economy.reserves_bn {
         if !(res.is_finite() && res >= 0.0) {
@@ -1310,6 +1339,40 @@ pub fn reserves_1990_bn(id: NationId) -> Option<f64> {
         .filter_map(|s| serde_json::from_str::<NationRecord>(s.json).ok())
         .find(|r| r.id == id)
         .and_then(|r| r.economy.reserves_bn)
+}
+
+/// The armed-forces personnel transcribed for this nation on 1 January 1990
+/// (`MilitaryRecord::personnel_1990`), or `None` where none was sourced —
+/// the pay arm's refusal (M2, BUGS H-3).
+///
+/// The same posture as `reserves_1990_bn`: an immutable start-of-game fact,
+/// not carried on `Nation`, never in a save, never in the timeline hash.
+/// Unlike the reserve it is read every tick for every regime, so the
+/// embedded set is parsed ONCE into a roster-indexed table rather than on
+/// every call.
+pub fn army_personnel_1990(id: NationId) -> Option<f64> {
+    static TABLE: std::sync::OnceLock<Vec<Option<f64>>> = std::sync::OnceLock::new();
+    let table = TABLE.get_or_init(|| {
+        let mut v = vec![None; crate::nations::nation_count()];
+        for s in EMBEDDED_NATIONS.iter() {
+            if let Ok(r) = serde_json::from_str::<NationRecord>(s.json) {
+                v[r.id.index()] = r.military.personnel_1990;
+            }
+        }
+        v
+    });
+    table.get(id.index()).copied().flatten()
+}
+
+/// The 1990 military expenditure transcribed beside the personnel, billions
+/// of current dollars, for the record and the cross-check (M2). Parsed on
+/// demand like `reserves_1990_bn`; no tick reads it.
+pub fn army_milex_1990_usd_bn(id: NationId) -> Option<f64> {
+    EMBEDDED_NATIONS
+        .iter()
+        .filter_map(|s| serde_json::from_str::<NationRecord>(s.json).ok())
+        .find(|r| r.id == id)
+        .and_then(|r| r.military.milex_1990_usd_bn)
 }
 
 /// What this nation was granted on 1 January 1990, and why, for showing to a

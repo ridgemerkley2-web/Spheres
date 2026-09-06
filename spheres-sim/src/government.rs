@@ -7784,11 +7784,104 @@ pub fn ai_lever(w: &WorldState, id: NationId) -> Option<crate::Command> {
 // The tick
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// The Army pillar's target (M2, Ridge's ruling of 2026-09-06): the share arm
+// as it always was, and — under the lens only — a pay-per-soldier arm.
+// ---------------------------------------------------------------------------
+
+/// The pay ratio the Army pillar reads under the lens (M2): military
+/// expenditure PER SOLDIER over GDP PER HEAD — `(mil_spend_gdp · gdp /
+/// personnel) / (gdp / population)`, which the output cancels out of, so it
+/// is the live defence share times the population over the transcribed
+/// 1990 personnel (`data::army_personnel_1990`; `Nation.population` is in
+/// millions). `None` where no personnel was sourced: the arm falls back to
+/// the share-only line and the nation is counted (BUGS H-3). Pure.
+pub fn army_pay_ratio(w: &WorldState, id: NationId) -> Option<f64> {
+    let personnel = crate::data::army_personnel_1990(id)?;
+    if !(personnel > 0.0) {
+        return None;
+    }
+    let n = w.nation_opt(id)?;
+    Some(n.mil_spend_gdp * n.population * 1_000_000.0 / personnel)
+}
+
+/// The pay ratio at and under which a soldier reads UNPAID on the pay arm:
+/// the national average income, the ruling's own line — "an army whose
+/// soldiers are paid below the national average income reads as unpaid
+/// whatever the defence share". The one constant here whose basis is the
+/// ruling's sentence rather than a fetched figure.
+pub const ARMY_PAY_UNPAID_AT: f64 = 1.0;
+/// The ratio at and over which a soldier reads fully PAID: "one paid well
+/// above it reads as paid even on a small share" — "well above" read as
+/// twice the average income. INVENTED (the FORM is invented and labelled,
+/// as the ruling requires); filed in BUGS H-3.
+pub const ARMY_PAY_FULL_AT: f64 = 2.0;
+/// The weight the ruling's two sentences REQUIRE of the pay arm, DERIVED
+/// from the pillar model's own line: for an unpaid army to read under 0.35
+/// "whatever the defence share" the share arm's whole 0.65 must be held
+/// under 0.15, so `0.20 + 0.65 · (1 − w) < 0.35` gives `w > 0.769`; 0.80
+/// is the round number above it, and it also clears the second sentence
+/// (`0.20 + 0.65 · 0.80 = 0.72` for a fully paid army with no budget).
+pub const ARMY_PAY_WEIGHT_RULED: f64 = 0.80;
+/// The weight the pay arm SHIPS with, sized by measurement ("the census
+/// decides"), and the measurement is ZERO. Transcribed from the World Bank
+/// series the ruling names (MS.MIL.TOTL.P1, MS.MIL.XPND.CD, 1990; the
+/// data pass's `stage1.json`, read against the roster's own `mil_spend_gdp`
+/// and `population_m`), the ruled ratio reads the 1990 roster's named
+/// coup-prone armies as the BEST-PAID in it — Sudan 19.8 average incomes a
+/// soldier, Pakistan 12.2, Haiti 9.4, Nigeria 8.3, Thailand 5.0 — against
+/// the stable set's Switzerland 4.9, Botswana 9.5, India 22.1, because
+/// dividing by a poor country's income per head inverts the poverty
+/// gradient Londregan and Poole (1990) describe: the same $4,500 a soldier
+/// that is 12 average incomes in Pakistan is 0.11 of one in Switzerland.
+/// Only Sao Tome (0.95) pays under the national average, so the first
+/// sentence never fires on this roster, and the second reads Nigeria's
+/// 0.8%-of-GDP army — which removed a government in 1993 — as paid, and
+/// Algeria's ANP (3.0) as paid, which is the annulment R2 measured at
+/// 53% of seeds gone to 0. No positive weight moves any named army toward
+/// the line; every one moves away. So the arm ships at 0.0, the form
+/// stands above it exactly as ruled and is exercised by its test at
+/// `ARMY_PAY_WEIGHT_RULED`, and the denominator is Ridge's to re-rule
+/// (H-3 tables the alternative Powell's own variable would give: pay per
+/// soldier in absolute 1990 dollars — Nigeria $4,596, Haiti $4,262,
+/// Pakistan $4,509, Thailand $7,837, Algeria $7,381 against Switzerland
+/// $196,218 and Botswana $27,867, with Sudan $24,812 and India $8,127 the
+/// two the transcribed pillars, not the pay, keep apart).
+pub const ARMY_PAY_WEIGHT: f64 = 0.0;
+
+/// The Army pillar's loyalty target (M2). `pay_ratio` `None` — the lens
+/// off, or no personnel transcribed — is the share arm EXACTLY as it has
+/// always been, `0.20 + min(1, mil/0.08) · 0.65 − exhaustion · 0.45`, the
+/// same operations in the same order, so the default path is
+/// byte-identical. With a ratio the two arms blend at `weight`:
+/// `0.20 + 0.65 · ((1 − w) · share + w · pay) − exhaustion · 0.45`, where
+/// `pay` is the ratio's position between `ARMY_PAY_UNPAID_AT` and
+/// `ARMY_PAY_FULL_AT`, clamped to 0..1. The FORM is INVENTED and labelled
+/// so (the ruling's words). Historical basis of the arm: Powell (2012,
+/// Journal of Conflict Resolution 56(6), "Determinants of the Attempting
+/// and Outcome of Coups d'etat") finds military expenditure per soldier
+/// the strongest deterrent of coup attempts in the 1950-2000 record;
+/// Londregan and Poole (1990, World Politics 42(2), "Poverty, the Coup
+/// Trap, and the Seizure of Executive Power") the poverty gradient. The
+/// share arm's own history is in `pillar_targets`' comment.
+pub fn army_loyalty_target(mil: f64, exhaustion: f64, pay_ratio: Option<f64>, weight: f64) -> f64 {
+    let share = (mil / 0.08).min(1.0);
+    match pay_ratio {
+        None => 0.20 + share * 0.65 - exhaustion * 0.45,
+        Some(r) => {
+            let pay = ((r - ARMY_PAY_UNPAID_AT) / (ARMY_PAY_FULL_AT - ARMY_PAY_UNPAID_AT)).clamp(0.0, 1.0);
+            0.20 + (share * (1.0 - weight) + pay * weight) * 0.65 - exhaustion * 0.45
+        }
+    }
+}
+
 /// What each named institution currently wants of the regime, 0..1 — the
 /// targets loyalty walks toward. Factored out of `regime_tick` so the arm's
 /// electoral army tick (S4, route 2) reads the Army and Security lines from
 /// the same formulas; every input is read at the same point and the
-/// arithmetic is untouched.
+/// arithmetic is untouched — the Army line is `army_loyalty_target`, the
+/// share arm verbatim with the lens off and the ONE place the lens changes
+/// a target with it on (M2).
 fn pillar_targets(w: &WorldState, id: NationId, pillars: &[Pillar]) -> Vec<(Pillar, f64)> {
     let (mil, _invest, growth, infl, stab, auth, exhaustion, sanctioned) = {
         let n = w.nation(id);
@@ -7812,7 +7905,12 @@ fn pillar_targets(w: &WorldState, id: NationId, pillars: &[Pillar]) -> Vec<(Pill
             // build. Twenty years of a defence budget cut to a tenth of a percent
             // of GDP produced no coup at all, because the model could not express
             // an army that had been abandoned.
-            Pillar::Army => 0.20 + (mil / 0.08).min(1.0) * 0.65 - exhaustion * 0.45,
+            Pillar::Army => army_loyalty_target(
+                mil,
+                exhaustion,
+                if w.rules.ideology_blocs { army_pay_ratio(w, id) } else { None },
+                ARMY_PAY_WEIGHT,
+            ),
             // The apparatus is loyal because it *is* the regime — it has nowhere
             // else to go — so its floor rises with how authoritarian the state
             // is. What moves it is the programme visibly failing and the country
@@ -10429,6 +10527,73 @@ mod tests {
         assert!(!is_electoral(&w, jo));
         assert_eq!(state(&w, jo).unwrap().banned, vec!["jo_ikhwan".to_string()]);
         assert!(w.headlines.iter().any(|h| h == "COUP IN JORDAN: the army annuls the election Muslim Brotherhood and allied Islamists won."), "{:?}", w.headlines);
+    }
+    /// M2 (Ridge's ruling, 2026-09-06). (1) The default path is
+    /// byte-identical: for every living nation of 1990, with the lens off,
+    /// the Army target `pillar_targets` serves is bit-for-bit the share
+    /// arm's literal `0.20 + min(1, mil/0.08) · 0.65 − exhaustion · 0.45`,
+    /// and the same holds with the lens on at the shipped weight (0.0) —
+    /// `ARMY_PAY_WEIGHT` is the census's verdict, and this clause pins it
+    /// until Ridge re-rules the denominator. (2) The FORM, at the weight
+    /// the ruling's sentences require (`ARMY_PAY_WEIGHT_RULED` 0.80): an
+    /// army paid half the national average income on an 8% budget reads
+    /// 0.33, under `ELECTORAL_COUP_ARMY`; one paid three times the average
+    /// on a 0.5% budget reads 0.72; a ratio of exactly the average reads as
+    /// the unpaid end of the ramp, twice it as the paid end. (3) The
+    /// refusal is counted: every nation without a transcribed personnel
+    /// figure reads `None` from `army_pay_ratio` and the share arm; the
+    /// count on this tree is printed. Watched red with the lens gate
+    /// dropped from `pillar_targets` and the weight forced to 0.80: the
+    /// off-world's Algeria read 0.322 against 0.74.
+    #[test]
+    fn the_army_target_is_the_share_arm_off_and_the_pay_arm_is_the_ruled_form() {
+        let off = world_1990(GameRules { seed: 7, ..GameRules::default() });
+        let on = world_1990(on_rules(7));
+        let mut with_data = 0usize;
+        let mut refused: Vec<&str> = vec![];
+        for n in off.nations.iter().filter(|n| n.alive) {
+            let id = n.id;
+            let literal = 0.20 + (n.mil_spend_gdp / 0.08).min(1.0) * 0.65 - n.war_exhaustion * 0.45;
+            let t_off = pillar_targets(&off, id, &[Pillar::Army])[0].1;
+            assert_eq!(t_off.to_bits(), literal.clamp(0.0, 1.0).to_bits(), "{} off", id.code());
+            let t_on = pillar_targets(&on, id, &[Pillar::Army])[0].1;
+            assert_eq!(t_on.to_bits(), t_off.to_bits(), "{} on at the shipped weight", id.code());
+            match army_pay_ratio(&on, id) {
+                Some(r) => {
+                    assert!(r.is_finite() && r > 0.0, "{} {r}", id.code());
+                    with_data += 1;
+                }
+                None => refused.push(id.code()),
+            }
+            assert_eq!(army_pay_ratio(&off, id).is_some(), army_pay_ratio(&on, id).is_some(), "the ratio reads the data, not the switch");
+        }
+        println!(
+            "M2 personnel transcribed for {with_data} of {} living nations; refused (share-only): {}",
+            with_data + refused.len(),
+            refused.len()
+        );
+        // The form at the ruled weight.
+        let w = ARMY_PAY_WEIGHT_RULED;
+        let unpaid = army_loyalty_target(0.08, 0.0, Some(0.5), w);
+        assert!(unpaid < ELECTORAL_COUP_ARMY, "{unpaid}");
+        assert!((unpaid - 0.33).abs() < 1e-12, "{unpaid}");
+        let paid_small = army_loyalty_target(0.005, 0.0, Some(3.0), w);
+        assert!(paid_small > ELECTORAL_COUP_ARMY, "{paid_small}");
+        assert!((paid_small - (0.20 + (0.0625 * 0.2 + 0.8) * 0.65)).abs() < 1e-12, "{paid_small}");
+        assert_eq!(army_loyalty_target(0.08, 0.0, Some(ARMY_PAY_UNPAID_AT), w), army_loyalty_target(0.08, 0.0, Some(0.0), w));
+        assert_eq!(army_loyalty_target(0.0, 0.0, Some(ARMY_PAY_FULL_AT), w), army_loyalty_target(0.0, 0.0, Some(9.0), w));
+        // The share arm and the pay arm at zero weight agree bit for bit.
+        for mil in [0.0, 0.008, 0.015, 0.026, 0.062, 0.15] {
+            let a = army_loyalty_target(mil, 0.1, None, 0.0);
+            let b = army_loyalty_target(mil, 0.1, Some(0.95), 0.0);
+            assert_eq!(a.to_bits(), b.to_bits(), "{mil}");
+        }
+        // The ratio's arithmetic, on the fetched 1990 figures for Algeria
+        // (World Bank MS.MIL.TOTL.P1 1990 = 126,000; the roster's 1.5% of
+        // $62.0bn over 25.4m people): 3.02 average incomes a soldier.
+        let (share, pop, personnel): (f64, f64, f64) = (0.015, 25.4, 126_000.0);
+        let dz = share * pop * 1_000_000.0 / personnel;
+        assert!((dz - 3.0238).abs() < 1e-3, "{dz}");
     }
     /// R2 (Ridge's ruling, 2026-09-06), the Algerian shape: Algeria on the
     /// roads in January 1990 — the FIS leading the table at 0.542, the ANP
