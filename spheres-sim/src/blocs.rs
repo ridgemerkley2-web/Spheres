@@ -719,6 +719,7 @@ mod tests {
         let text = save(&w);
         for key in [
             "\"movements\"",
+            "\"surging\"",
             "\"banned\"",
             "\"regime_bloc\"",
             "\"leadership\"",
@@ -731,6 +732,7 @@ mod tests {
         assert!(w.leadership.is_none());
         for g in &w.governments.states {
             assert!(g.movements.is_empty() && g.banned.is_empty() && g.regime_bloc.is_none());
+            assert!(g.surging.is_empty());
         }
         let h = state_hash(&w);
         assert_eq!(h, START_ACTUAL, "the arm moved the 1990 start (actual {h:#018x})");
@@ -745,12 +747,22 @@ mod tests {
     }
 
     /// Twenty years, seeds 0..5, default rules: every hash equals the one the
-    /// untouched tree produces. The six constants were measured this run by
-    /// building origin/feat/hoi4-map-and-tech from `git archive` into a
+    /// untouched tree produces. The six constants were measured on the S1 run
+    /// by building origin/feat/hoi4-map-and-tech from `git archive` into a
     /// separate CARGO_TARGET_DIR and running the same loop there. Then the
     /// switch ON against OFF for twenty years on seed 0: every quantity the
-    /// tick reads is bit-identical nation by nation, which is the proof that
-    /// the arm writes nothing the model reads.
+    /// tick reads is bit-identical nation by nation UNTIL THE FIRST
+    /// LIBERALISATION SEAM — the S3 design's one deliberate write into model
+    /// state: when a regime schedules its first free elections its party
+    /// support is reseeded from the movements, and the two worlds part there.
+    /// The month and the nation are PINNED as measured on this tree (2026-09-05,
+    /// S3 commit 1): month 146, Kuwait, whose court's Non-Aligned share has no
+    /// party to carry it. Before that month everything is bit-identical, and
+    /// in that month everything is STILL bit-identical except the one support
+    /// vector the seam rewrote — a leak of the arm into the model anywhere
+    /// else, or earlier, moves the pin. Under S1 the bar ran all 240 months
+    /// with no seam; that half was re-expressed here, not widened, because the
+    /// approved S3 design contradicts it by construction.
     #[test]
     fn the_bloc_layer_is_inert_over_time() {
         const BASE: [u64; 6] = [
@@ -767,31 +779,64 @@ mod tests {
             let h = state_hash(&w);
             assert_eq!(h, BASE[seed as usize], "seed {seed} moved (actual {h:#018x})");
         }
+        const FIRST_SEAM: (usize, &str) = (146, "Kuwait");
         let mut off = world_1990(GameRules::default());
         let mut on = world_1990(on(1990));
+        let mut seam: Option<(usize, String)> = None;
         for month in 0..240 {
             tick_month(&mut off, &[]);
-            tick_month(&mut on, &[]);
+            let news = tick_month(&mut on, &[]);
+            // A successor state born electoral also "sets a date", with no
+            // movements to reseed from and no seam: the seam is the month a
+            // support vector PARTS, and that month must carry the headline.
+            let parted: Vec<&str> = off
+                .governments
+                .states
+                .iter()
+                .zip(&on.governments.states)
+                .filter(|(a, b)| a.support != b.support)
+                .map(|(a, _)| a.nation.code())
+                .collect();
+            if seam.is_none() && !parted.is_empty() {
+                let who = parted[0];
+                let h = news
+                    .iter()
+                    .find(|h| h.starts_with(&format!("{} sets a date for its first free elections", NationId::from_code(who).unwrap().name())))
+                    .unwrap_or_else(|| panic!("support parted in {who} at month {month} with no seam headline: {news:?}"));
+                seam = Some((month, h.clone()));
+            }
             assert_eq!(off.nations.len(), on.nations.len(), "month {month}");
             for (a, b) in off.nations.iter().zip(&on.nations) {
                 assert_eq!(a.id, b.id);
                 for (name, x, y) in [
                     ("gdp", a.gdp, b.gdp),
                     ("stability", a.stability, b.stability),
-                    ("political_capital", a.political_capital, b.political_capital),
                     ("authoritarianism", a.authoritarianism, b.authoritarianism),
                     ("inflation", a.inflation, b.inflation),
                 ] {
                     assert!(x.to_bits() == y.to_bits(), "{} {name} month {month}: {x} vs {y}", a.id.code());
                 }
+                if seam.is_none() {
+                    let (x, y) = (a.political_capital, b.political_capital);
+                    assert!(x.to_bits() == y.to_bits(), "{} political_capital month {month}: {x} vs {y}", a.id.code());
+                }
             }
             assert_eq!(off.rng.state, on.rng.state, "the arm drew the RNG in month {month}");
             for (a, b) in off.governments.states.iter().zip(&on.governments.states) {
-                assert_eq!(a.support, b.support, "{} support month {month}", a.nation.code());
-                assert_eq!(a.coalition, b.coalition);
-                assert_eq!(a.pillars, b.pillars);
+                if a.support == b.support {
+                    assert_eq!(a.coalition, b.coalition, "{} month {month}", a.nation.code());
+                }
+                assert_eq!(a.pillars, b.pillars, "{} month {month}", a.nation.code());
+            }
+            if let Some((m, h)) = &seam {
+                assert_eq!(*m, FIRST_SEAM.0, "the first seam moved: {h}");
+                assert!(h.starts_with(FIRST_SEAM.1), "the first seam is another nation's: {h}");
+                assert!(h.contains("has no party to carry it"), "{h}");
+                assert_eq!(parted, vec![FIRST_SEAM.1], "the seam month rewrote more than the one support vector");
+                break;
             }
         }
+        assert!(seam.is_some(), "no regime liberalised in twenty years on seed 1990");
     }
 
     /// Same seed twice with the arm on, one arm saved and reloaded at month

@@ -5658,11 +5658,19 @@ pub struct GovState {
     /// elections, the standing of each bloc in the country — the thing a vote
     /// would measure if one were held — as (bloc, share) over all five blocs in
     /// enum order, summing to one. Seeded FLAT from the leader row on the first
-    /// switched-on `ensure` (design D5) and moved by nothing in this build;
-    /// drift is S3. Empty, and absent from the save, for an electoral nation
-    /// (whose shares are read off `support`) and whenever the arm is off.
+    /// switched-on `ensure` (design D5) and moved every month by
+    /// `drift_movements` (S3), the regime's sibling of `drift_support`. Empty,
+    /// and absent from the save, for an electoral nation (whose shares are
+    /// read off `support`) and whenever the arm is off.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub movements: Vec<(Bloc, f64)>,
+    /// The surge latch (S3): the non-ruling blocs whose movement has crossed
+    /// 0.30 upward and not yet fallen back under 0.25, so the headline "passes
+    /// a third of the country" fires once per crossing and not every month
+    /// above the line. Empty, and absent from the save, for an electoral
+    /// nation and whenever the arm is off.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub surging: Vec<Bloc>,
     /// Blocs this government has proscribed. Nothing writes it in this build —
     /// the Ban command is S3 — and it serialises nothing while empty.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -5773,6 +5781,7 @@ pub fn ensure(w: &mut WorldState, id: NationId) {
         months_in_office: 0,
         office_month_fraction: 0.0,
         movements: vec![],
+        surging: vec![],
         banned: vec![],
         regime_bloc: None,
     };
@@ -5827,9 +5836,16 @@ pub fn seed_blocs(w: &mut WorldState, id: NationId) {
         None => return,
     };
     let movements = crate::blocs::flat_seed(id, ruling);
+    // A bloc seeded at or over the surge line has not CROSSED it: the latch
+    // is seeded closed for it, so the first tick does not announce the
+    // seed as news (measured 2026-09-05: Iraq's and Syria's lone Non-Aligned
+    // 0.40 printed "passes a third" in January 1990 before this line).
+    let surging: Vec<Bloc> =
+        movements.iter().filter(|(b, s)| *b != ruling && *s >= 0.30).map(|(b, _)| *b).collect();
     if let Some(g) = state_mut(w, id) {
         g.regime_bloc = Some(ruling);
         g.movements = movements.to_vec();
+        g.surging = surging;
     }
 }
 
@@ -6109,6 +6125,218 @@ fn drift_support(w: &mut WorldState, id: NationId) {
         e.1 = e.1.max(0.002);
     }
     normalise(&mut g.support);
+}
+
+// ---------------------------------------------------------------------------
+// Movement drift (the political arm, S3)
+// ---------------------------------------------------------------------------
+
+/// The families that stand for a bloc in a polity whose dormant table carries
+/// no party of that bloc — a bloc present only through its installing pillar.
+/// Western is the MEAN of the three families that made up the Western
+/// mainstream of 1990 and Non-Aligned is the state big tent (design S3); the
+/// other three blocs map to one family each, so their representative is that
+/// family.
+fn representative_families(bloc: Bloc) -> &'static [Family] {
+    match bloc {
+        Bloc::Western => &[Family::Liberal, Family::SocialDemocratic, Family::Conservative],
+        Bloc::Communist => &[Family::Communist],
+        Bloc::Nationalist => &[Family::Nationalist],
+        Bloc::Islamist => &[Family::Religious],
+        Bloc::NonAligned => &[Family::BigTent],
+    }
+}
+
+/// appeal_B: the MEAN of `appeal` over the bloc's member families in the
+/// dormant table — never the max, so a bloc with one extreme party does not
+/// collect every grievance — and over `representative_families` where the
+/// table carries none. Floored at 0.01 as `drift_support` floors a party's.
+fn bloc_appeal(id: NationId, bloc: Bloc, pn: &Pains, development: f64) -> f64 {
+    let members: Vec<Family> = polity(id)
+        .map(|pol| {
+            pol.parties.iter().filter(|s| bloc_of(id, s.id) == bloc).map(|s| s.family).collect()
+        })
+        .unwrap_or_default();
+    let families: &[Family] =
+        if members.is_empty() { representative_families(bloc) } else { &members };
+    let sum: f64 = families.iter().map(|f| appeal(*f, pn, development)).sum();
+    (sum / families.len() as f64).max(0.01)
+}
+
+fn normalise_blocs(v: &mut [(Bloc, f64)]) {
+    let total: f64 = v.iter().map(|(_, s)| *s).sum();
+    if total <= 0.0 {
+        return;
+    }
+    for e in v.iter_mut() {
+        e.1 /= total;
+    }
+}
+
+/// One month of a regime's country changing its mind — the sibling of
+/// `drift_support` for a state that holds no elections, built to the same
+/// shape so the two cannot disagree in kind. The ruling bloc wears the
+/// government's record (the same `record` line, off the same `pains`); what
+/// it loses flows to the non-ruling blocs PRESENT in the polity in proportion
+/// to `bloc_appeal`; then everything reverts toward the flat seed at a quarter
+/// of the electorate's rate (0.005 against 0.020 — a country with no ballot
+/// has weaker anchors, INVENTED, design S3), every bloc is floored at
+/// `SHARE_FLOOR`, and the five are normalised. Draws no RNG.
+///
+/// INERT WITH THE SWITCH OFF: returns on `rules.ideology_blocs` before it
+/// reads anything, and with the switch on it touches `movements` and nothing
+/// the economy or the RNG reads.
+pub(crate) fn drift_movements(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_blocs {
+        return;
+    }
+    let (ruling, mut shares) = match state(w, id) {
+        Some(g) if g.movements.len() == 5 => match g.regime_bloc {
+            Some(r) => (r, g.movements.clone()),
+            None => return,
+        },
+        _ => return,
+    };
+    let dt = crate::clock::month_fraction(w);
+    let reversion = crate::clock::blend(w, 0.005);
+    let pn = pains(w, id);
+    let development = {
+        let n = w.nation(id);
+        (n.gdp * 1000.0 / n.population.max(0.001) / 20000.0).clamp(0.0, 1.0)
+    };
+    let record = 0.35 - (0.90 * pn.prices + 0.90 * pn.growth + 1.10 * pn.war);
+    let swing = record * 0.006 * dt;
+    let appeals: Vec<(Bloc, f64)> = Bloc::ALL
+        .iter()
+        .copied()
+        .filter(|b| *b != ruling && crate::blocs::bloc_present(id, *b))
+        .map(|b| (b, bloc_appeal(id, b, &pn, development)))
+        .collect();
+    let appeal_total: f64 = appeals.iter().map(|(_, a)| *a).sum();
+    let held = shares[ruling as usize].1;
+    // Bounded by what exists on each side, exactly as a party's transfer is.
+    let moved = if swing < 0.0 {
+        -(-swing * held).min(0.015 * dt)
+    } else {
+        (swing * (1.0 - held)).min(0.015 * dt)
+    };
+    if appeal_total > 0.0 {
+        shares[ruling as usize].1 += moved;
+        for (b, a) in &appeals {
+            shares[*b as usize].1 -= moved * (a / appeal_total);
+        }
+        for e in shares.iter_mut() {
+            e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+        }
+    }
+    let seed = crate::blocs::flat_seed(id, ruling);
+    for (i, e) in shares.iter_mut().enumerate() {
+        e.1 += (seed[i].1 - e.1) * reversion;
+        e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+    }
+    normalise_blocs(&mut shares);
+    if let Some(g) = state_mut(w, id) {
+        g.movements = shares;
+    }
+}
+
+/// A non-ruling movement crossing 0.30 upward is news once; the latch clears
+/// under 0.25 so a movement oscillating on the line does not print every
+/// month. Both lines INVENTED (design S3, "passes a third"). Reads nothing
+/// when the regime carries no movements, which is every regime with the
+/// switch off.
+fn note_surges(w: &mut WorldState, id: NationId) {
+    let (ruling, shares, latched) = match state(w, id) {
+        Some(g) if g.movements.len() == 5 => match g.regime_bloc {
+            Some(r) => (r, g.movements.clone(), g.surging.clone()),
+            None => return,
+        },
+        _ => return,
+    };
+    let mut fired: Vec<Bloc> = vec![];
+    let mut cleared: Vec<Bloc> = vec![];
+    for (b, s) in &shares {
+        if *b == ruling {
+            continue;
+        }
+        if *s >= 0.30 && !latched.contains(b) {
+            fired.push(*b);
+        } else if *s < 0.25 && latched.contains(b) {
+            cleared.push(*b);
+        }
+    }
+    if fired.is_empty() && cleared.is_empty() {
+        return;
+    }
+    if let Some(g) = state_mut(w, id) {
+        g.surging.retain(|b| !cleared.contains(b));
+        g.surging.extend(fired.iter().copied());
+    }
+    for b in fired {
+        w.headline(format!(
+            "The {} movement in {} passes a third of the country.",
+            b.label(),
+            id.name()
+        ));
+    }
+}
+
+/// The liberalisation seam (S3): when a regime's first free elections are
+/// scheduled, the dormant party table is seated from the MOVEMENTS rather than
+/// from the last pre-1990 result — each party receives its bloc's share times
+/// its table weight within the bloc. A bloc that has a movement but no party
+/// to carry it (present through a pillar alone: an army with no nationalist
+/// party) is dropped, the rest renormalised, and the loss is returned as a
+/// clause for the headline. Clears the regime's stored blocs, because an
+/// electoral nation stores none. Returns `None`, and writes nothing, with the
+/// switch off or where there are no movements to read.
+fn reseed_support_from_movements(w: &mut WorldState, id: NationId) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return None;
+    }
+    let movements = match state(w, id) {
+        Some(g) if g.movements.len() == 5 => g.movements.clone(),
+        _ => return None,
+    };
+    let pol = polity(id)?;
+    if pol.parties.is_empty() {
+        return None;
+    }
+    let share_of = |b: Bloc| movements.iter().find(|(x, _)| *x == b).map_or(0.0, |(_, s)| *s);
+    let mut support: Vec<(String, f64)> = vec![];
+    for s in pol.parties {
+        let bloc = bloc_of(id, s.id);
+        let within: f64 = pol
+            .parties
+            .iter()
+            .filter(|p| bloc_of(id, p.id) == bloc)
+            .map(|p| p.start.max(0.001))
+            .sum();
+        support.push((s.id.to_string(), share_of(bloc) * s.start.max(0.001) / within));
+    }
+    let mut lost: Vec<String> = vec![];
+    for b in Bloc::ALL {
+        let carried = pol.parties.iter().any(|p| bloc_of(id, p.id) == b);
+        if !carried && crate::blocs::bloc_present(id, b) {
+            lost.push(format!(
+                "the {} movement, {:.0}% of the country, has no party to carry it",
+                b.label(),
+                share_of(b) * 100.0
+            ));
+        }
+    }
+    normalise(&mut support);
+    if let Some(g) = state_mut(w, id) {
+        g.support = support;
+        g.movements.clear();
+        g.surging.clear();
+        g.regime_bloc = None;
+    }
+    if lost.is_empty() {
+        None
+    } else {
+        Some(lost.join(" and "))
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -6640,13 +6868,24 @@ pub fn tick(w: &mut WorldState) {
             let unscheduled = state(w, id).is_some_and(|g| g.next_election.0 == 0);
             if unscheduled {
                 let when = add_months(w.year, w.month, 18);
+                // The liberalisation seam (S3): the dormant table is seated
+                // from the movements, not from the last pre-1990 result. A
+                // no-op, returning `None`, with the arm off.
+                let lost = reseed_support_from_movements(w, id);
                 if let Some(g) = state_mut(w, id) {
                     g.next_election = when;
                     g.pillars.clear();
                     g.coup_pressure = 0.0;
                 }
                 form_government(w, id, false);
-                w.headline(format!("{} sets a date for its first free elections.", id.name()));
+                w.headline(match lost {
+                    None => format!("{} sets a date for its first free elections.", id.name()),
+                    Some(clause) => format!(
+                        "{} sets a date for its first free elections; {}.",
+                        id.name(),
+                        clause
+                    ),
+                });
             }
 
             drift_support(w, id);
@@ -6693,6 +6932,11 @@ pub fn tick(w: &mut WorldState) {
                 }
             }
             regime_tick(w, id);
+            // The political arm (S3): the country's movements move with the
+            // same pains the pillars just read. Both return at once with the
+            // switch off.
+            drift_movements(w, id);
+            note_surges(w, id);
             maybe_coup(w, id);
         }
 
@@ -7079,6 +7323,209 @@ mod tests {
                 }
             }
         }
+    }
+
+    fn on_rules(seed: u64) -> GameRules {
+        GameRules { seed, ideology_blocs: true, ai_aggression: 0.0, ..GameRules::default() }
+    }
+
+    fn share(w: &WorldState, id: NationId, b: Bloc) -> f64 {
+        state(w, id).unwrap().movements.iter().find(|(x, _)| *x == b).map(|(_, s)| *s).unwrap()
+    }
+
+    /// The equilibrium sibling of `support_finds_an_equilibrium_rather_than_
+    /// running_away`, for a regime's movements. `drift_movements` is called
+    /// directly with China's pains pinned, so the numbers are the function's
+    /// and not the economy's. Quiet (record +0.35): the ruling share climbs
+    /// from the 0.60 seed and SETTLES — the fixed point of the swing against
+    /// the 0.005 reversion is 0.0021(1-h) = 0.005(h-0.6), h = 0.718; MEASURED
+    /// 0.71316 after 480 months, moving 2.76e-5 a month. A catastrophe
+    /// (prices 1, growth 1, war 0.8: record -2.33): the share falls to the
+    /// fixed point 0.014h = 0.005(0.6-h), h = 0.158; MEASURED 0.15839, never
+    /// to the floor, and no month moves it more than the 0.015 bound. Under a
+    /// war the Nationalist bloc (the PLA's) gains more than the Western
+    /// (the coastal provinces'), because `bloc_appeal` reads the war. Watched
+    /// red with the reversion line removed: the quiet run read 0.8521 against
+    /// the 0.80 bar after 480 months, still climbing.
+    #[test]
+    fn a_regime_s_movements_move_with_the_pains_and_revert() {
+        let mut w = world_1990(on_rules(7));
+        let id = NationId::China;
+        assert!(!is_electoral(&w, id));
+        assert_eq!(state(&w, id).unwrap().regime_bloc, Some(Bloc::Communist));
+        let quiet = |n: &mut Nation| {
+            n.inflation = 0.03;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.stability = 60.0;
+            n.separatism = 0.0;
+        };
+        quiet(w.nation_mut(id));
+        let seed = share(&w, id, Bloc::Communist);
+        assert!((seed - 0.5988).abs() < 1e-3, "the flat seed: {seed}");
+        let mut last = seed;
+        for _ in 0..480 {
+            drift_movements(&mut w, id);
+            let h = share(&w, id, Bloc::Communist);
+            assert!(h >= last - 1e-12, "a quiet regime lost ground: {last} -> {h}");
+            last = h;
+        }
+        let settled = share(&w, id, Bloc::Communist);
+        assert!(settled > 0.65 && settled < 0.80, "the quiet equilibrium reads {settled}");
+        drift_movements(&mut w, id);
+        let step = (share(&w, id, Bloc::Communist) - settled).abs();
+        println!("quiet: settled {settled:.6} step {step:.3e}");
+        assert!(step < 1e-4, "not settled: moved {step:.3e} in one month at {settled}");
+        let sum: f64 = state(&w, id).unwrap().movements.iter().map(|(_, s)| *s).sum();
+        assert!((sum - 1.0).abs() < 1e-9);
+
+        // A catastrophe, and the bound on any one month's transfer.
+        let ruin = |n: &mut Nation| {
+            n.inflation = 0.30;
+            n.growth_last = -0.06;
+            n.war_exhaustion = 0.8;
+            n.stability = 30.0;
+        };
+        ruin(w.nation_mut(id));
+        let west0 = share(&w, id, Bloc::Western);
+        let nat0 = share(&w, id, Bloc::Nationalist);
+        let mut last = share(&w, id, Bloc::Communist);
+        for _ in 0..480 {
+            drift_movements(&mut w, id);
+            let h = share(&w, id, Bloc::Communist);
+            assert!(h <= last + 1e-12, "a ruined regime gained ground: {last} -> {h}");
+            assert!(last - h <= 0.015 + 1e-9, "one month moved {}", last - h);
+            last = h;
+        }
+        let fallen = share(&w, id, Bloc::Communist);
+        println!("ruin: fallen {fallen:.6} movements {:?}", state(&w, id).unwrap().movements);
+        assert!(fallen > 0.05 && fallen < 0.30, "the ruined equilibrium reads {fallen}");
+        for (b, s) in &state(&w, id).unwrap().movements {
+            // Floored BEFORE the normalisation, as the seed is, so an absent
+            // bloc reads a hair under 0.002 after it.
+            assert!(*s >= crate::blocs::SHARE_FLOOR * 0.99, "{b:?} fell through the floor: {s}");
+        }
+        assert!(
+            share(&w, id, Bloc::Nationalist) - nat0 > share(&w, id, Bloc::Western) - west0,
+            "a war did not favour the army's bloc"
+        );
+        // And with the switch off, nothing moves at all.
+        let mut off = world_1990(GameRules::default());
+        ruin(off.nation_mut(id));
+        drift_movements(&mut off, id);
+        assert!(state(&off, id).unwrap().movements.is_empty());
+    }
+
+    /// The liberalisation seam. Indonesia's dormant table carries Golkar
+    /// (Non-Aligned), the PPP (Islamist) and the PDI (Western); its army is
+    /// the Nationalist bloc's only presence. Movements written by hand, the
+    /// regime opened to 0.30, one tick: the parties are seated at their bloc's
+    /// share times their weight within it (a one-party bloc takes the whole
+    /// share), the Nationalist 0.30 is dropped and named in the headline with
+    /// its share, the Communist floor is dropped silently (no party AND no
+    /// pillar), and the regime's stored blocs are cleared. Watched red with the
+    /// `lost` clause never composed: the headline read the plain sentence.
+    #[test]
+    fn the_liberalisation_seam_reseeds_parties_from_movements() {
+        let mut w = world_1990(on_rules(7));
+        let id = NationId::Indonesia;
+        assert!(!is_electoral(&w, id));
+        assert!(crate::blocs::bloc_present(id, Bloc::Nationalist), "ABRI stands for it");
+        let hand = vec![
+            (Bloc::Western, 0.10),
+            (Bloc::Communist, 0.002),
+            (Bloc::Nationalist, 0.30),
+            (Bloc::Islamist, 0.20),
+            (Bloc::NonAligned, 0.398),
+        ];
+        state_mut(&mut w, id).unwrap().movements = hand.clone();
+        // The pure seam first, so the numbers are exact.
+        let mut probe = w.clone();
+        let clause = reseed_support_from_movements(&mut probe, id);
+        assert_eq!(
+            clause.as_deref(),
+            Some("the Nationalist movement, 30% of the country, has no party to carry it")
+        );
+        let g = state(&probe, id).unwrap();
+        let kept = 0.10 + 0.20 + 0.398;
+        assert!((g.support_of("id_golkar") - 0.398 / kept).abs() < 1e-9, "{:?}", g.support);
+        assert!((g.support_of("id_ppp") - 0.20 / kept).abs() < 1e-9, "{:?}", g.support);
+        assert!((g.support_of("id_pdi") - 0.10 / kept).abs() < 1e-9, "{:?}", g.support);
+        assert!(g.movements.is_empty() && g.regime_bloc.is_none() && g.surging.is_empty());
+        // Then through the tick, where the scheduling branch calls it.
+        w.nation_mut(id).authoritarianism = 0.30;
+        let news = crate::tick_month(&mut w, &[]);
+        let line = news
+            .iter()
+            .find(|h| h.starts_with("Indonesia sets a date"))
+            .expect("the first free elections were scheduled");
+        assert_eq!(
+            line,
+            "Indonesia sets a date for its first free elections; the Nationalist movement, 30% of the country, has no party to carry it."
+        );
+        let g = state(&w, id).unwrap();
+        assert!(g.movements.is_empty() && g.regime_bloc.is_none());
+        assert!(g.support_of("id_golkar") > g.support_of("id_ppp"));
+        // With the switch off the same opening prints the sentence it always
+        // printed and seats the table as transcribed.
+        let mut off = world_1990(GameRules { ai_aggression: 0.0, ..GameRules::default() });
+        off.nation_mut(id).authoritarianism = 0.30;
+        let news = crate::tick_month(&mut off, &[]);
+        assert!(news.iter().any(|h| h == "Indonesia sets a date for its first free elections."));
+    }
+
+    /// The surge latch: a movement crossing 0.30 upward is a headline once,
+    /// not every month above the line, and the latch clears under 0.25 so a
+    /// second crossing is news again. Written by hand into China's movements
+    /// and read through `note_surges`. Watched red with the latch never
+    /// written: the second call fired the same headline again.
+    #[test]
+    fn a_surge_is_news_once_per_crossing() {
+        let mut w = world_1990(on_rules(7));
+        let id = NationId::China;
+        let set = |w: &mut WorldState, nat: f64| {
+            let g = state_mut(w, id).unwrap();
+            for e in g.movements.iter_mut() {
+                e.1 = match e.0 {
+                    Bloc::Communist => 1.0 - nat - 0.006,
+                    Bloc::Nationalist => nat,
+                    _ => 0.002,
+                };
+            }
+        };
+        let fire = |w: &mut WorldState| -> Vec<String> {
+            w.headlines.clear();
+            note_surges(w, id);
+            w.headlines.clone()
+        };
+        set(&mut w, 0.29);
+        assert!(fire(&mut w).is_empty());
+        set(&mut w, 0.31);
+        assert_eq!(fire(&mut w), vec!["The Nationalist movement in China passes a third of the country.".to_string()]);
+        assert_eq!(state(&w, id).unwrap().surging, vec![Bloc::Nationalist]);
+        set(&mut w, 0.35);
+        assert!(fire(&mut w).is_empty(), "fired again above the line");
+        set(&mut w, 0.27);
+        assert!(fire(&mut w).is_empty(), "cleared inside the band");
+        assert_eq!(state(&w, id).unwrap().surging, vec![Bloc::Nationalist]);
+        set(&mut w, 0.24);
+        assert!(fire(&mut w).is_empty());
+        assert!(state(&w, id).unwrap().surging.is_empty(), "the latch did not clear under 0.25");
+        set(&mut w, 0.31);
+        assert_eq!(fire(&mut w).len(), 1, "a second crossing is news again");
+        // The ruling bloc never surges against itself.
+        set(&mut w, 0.24);
+        fire(&mut w);
+        assert!(fire(&mut w).is_empty());
+        // And the SEED is not a crossing: Iraq's and Syria's lone non-ruling
+        // bloc is seeded at 0.40, latched closed, and January 1990 prints no
+        // surge for anyone. Watched red with the latch unseeded: two
+        // headlines in the first month.
+        let mut w = world_1990(on_rules(1990));
+        assert_eq!(state(&w, NationId::Iraq).unwrap().surging, vec![Bloc::NonAligned]);
+        let news = crate::tick_month(&mut w, &[]);
+        let surges: Vec<&String> = news.iter().filter(|h| h.contains("passes a third")).collect();
+        assert!(surges.is_empty(), "the seed was announced as news: {surges:?}");
     }
 
     #[test]
