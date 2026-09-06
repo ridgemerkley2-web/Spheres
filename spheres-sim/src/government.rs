@@ -6054,7 +6054,7 @@ fn appeal(family: Family, pn: &Pains, development: f64) -> f64 {
 /// One month of the electorate changing its mind. Monthly, so the coefficients
 /// are small; a bad year moves five to ten points, which is about what a bad
 /// year does.
-fn drift_support(w: &mut WorldState, id: NationId) {
+pub(crate) fn drift_support(w: &mut WorldState, id: NationId) {
     let dt = crate::clock::month_fraction(w);
     let reversion = crate::clock::blend(w, 0.020);
     let pn = pains(w, id);
@@ -6237,6 +6237,43 @@ pub(crate) fn drift_movements(w: &mut WorldState, id: NationId) {
     normalise_blocs(&mut shares);
     if let Some(g) = state_mut(w, id) {
         g.movements = shares;
+    }
+}
+
+/// The taint of an exposed foreign hand (S3): `points` of support taken off
+/// one bloc and the rest renormalised — in an electoral nation off the
+/// bloc's parties in proportion to their size, in a regime off
+/// `movements[bloc]`. Bounded by what the bloc holds and floored at
+/// `SHARE_FLOOR`, so a bloc with nothing cannot go negative. Writes nothing
+/// where the nation has no government, and nothing to a regime that carries
+/// no movements (the switch off). Draws no RNG.
+pub fn taint_bloc(w: &mut WorldState, id: NationId, bloc: Bloc, points: f64) {
+    let electoral = is_electoral(w, id);
+    let g = match state_mut(w, id) {
+        Some(g) => g,
+        None => return,
+    };
+    if electoral {
+        let held: f64 = g
+            .support
+            .iter()
+            .filter(|(p, _)| bloc_of(id, p) == bloc)
+            .map(|(_, s)| *s)
+            .sum();
+        if held <= 0.0 {
+            return;
+        }
+        let taken = points.min(held);
+        for e in g.support.iter_mut() {
+            if bloc_of(id, &e.0) == bloc {
+                e.1 = (e.1 - taken * (e.1 / held)).max(0.002);
+            }
+        }
+        normalise(&mut g.support);
+    } else if g.movements.len() == 5 {
+        let e = &mut g.movements[bloc as usize];
+        e.1 = (e.1 - points).max(crate::blocs::SHARE_FLOOR);
+        normalise_blocs(&mut g.movements);
     }
 }
 

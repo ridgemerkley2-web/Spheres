@@ -571,6 +571,13 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         Command::Sanction { imposer, target } => sovereignty::hostility_reason(w, *imposer, *target),
         Command::LeaveEconomicUnion { nation } | Command::ReleaseSubject { nation, .. }
             if !w.nation_opt(*nation).is_some_and(|n| n.alive) => Some("This government no longer exists.".into()),
+        // A `BackBloc` is refused by the arm's own switch before the world
+        // reads anything else, then by the target's ruling bloc, then by the
+        // sovereignty gate every covert op meets.
+        Command::CovertAction { sponsor, target, op: CovertOp::BackBloc(bloc) } => {
+            statecraft::back_bloc_refusal(w, *target, *bloc)
+                .or_else(|| sovereignty::hostility_reason(w, *sponsor, *target))
+        }
         Command::CovertAction { sponsor, target, .. } => sovereignty::hostility_reason(w, *sponsor, *target),
         Command::ProposeEconomicUnion { patron, partner } | Command::JoinEconomicUnion { nation: partner, patron } => {
             let q = sovereignty::quote(w, *patron, *partner);

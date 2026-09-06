@@ -59,6 +59,27 @@ pub const MAX_CLIENT_SHARE: f64 = 0.004;
 /// https://en.wikipedia.org/wiki/Cuba%E2%80%93Soviet_Union_relations
 const MAX_INFUSION: f64 = 0.25;
 
+// ---------------------------------------------------------------------------
+// Foreign backing (the political arm, S3). Every number below is INVENTED —
+// a model coefficient of the approved design, not a transcribed figure — and
+// filed in BUGS.md with what would calibrate it.
+// ---------------------------------------------------------------------------
+
+/// What one clean `BackBloc` operation adds to a sponsor's weight behind a
+/// bloc. FIXED: the op draws no third die the way the other three do.
+pub const BACKING_STEP: f64 = 0.06;
+/// The most one sponsor can hold behind one bloc in one target: two clean
+/// operations' worth.
+pub const BACKING_SPONSOR_CAP: f64 = 0.12;
+/// The most a bloc's F_B can total from every source, sponsors and patronage
+/// gravity together (`blocs::backing` applies the same cap to the view).
+pub const BACKING_TOTAL_CAP: f64 = 0.25;
+/// Monthly cooling of every backing entry, at half the rate covert heat
+/// cools (0.012): money that stops arriving is spent within a year or two.
+pub const BACKING_DECAY: f64 = 0.006;
+/// What exposure costs the backed bloc's own support, in share points.
+pub const EXPOSURE_TAINT: f64 = 0.02;
+
 /// Monthly upkeep of the standing arrangements. Nothing here rolls dice: a
 /// treaty in force is not a gamble, it is a bill.
 pub fn tick(w: &mut WorldState) {
@@ -67,6 +88,7 @@ pub fn tick(w: &mut WorldState) {
     aid_flows(w);
     trade_deepens(w);
     covert_channels_cool(w);
+    backing_cools(w);
     // A seller's refusal is remembered, then gradually not (resources.rs,
     // spec section 6.3). Free while the memory is empty, which is every
     // world the market switch is off in. ONCE A CALENDAR MONTH: the memory
@@ -313,6 +335,108 @@ fn covert_channels_cool(w: &mut WorldState) {
     w.statecraft.covert_heat.retain(|(_, _, h)| *h > 0.0);
 }
 
+/// Where covert channels cool, backing cools too: `BACKING_DECAY` a month,
+/// retained only while positive. Returns before touching anything while the
+/// stock is empty — every world the switch is off in — and draws no RNG.
+fn backing_cools(w: &mut WorldState) {
+    if w.statecraft.backing.is_empty() {
+        return;
+    }
+    let dt = crate::clock::month_fraction(w);
+    for b in w.statecraft.backing.iter_mut() {
+        b.weight -= BACKING_DECAY * dt;
+    }
+    w.statecraft.backing.retain(|b| b.weight > 0.0);
+}
+
+/// Why a `BackBloc` would be refused, read without touching the world — the
+/// ONE place the prose lives, asked by `covert_action` and by
+/// `lib::world_refusal` before any state is read (the switch first, so a
+/// world without the arm refuses before it looks at a ruling bloc).
+pub fn back_bloc_refusal(w: &WorldState, target: NationId, bloc: crate::government::Bloc) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some("This world does not model ideological movements.".into());
+    }
+    if crate::blocs::ruling_bloc(w, target) == Some(bloc) {
+        return Some("You cannot back a government covertly — send aid.".into());
+    }
+    None
+}
+
+/// How much a clean operation would actually add for this sponsor behind
+/// this bloc in this target: `BACKING_STEP`, clipped by the sponsor's own
+/// cap and the bloc's total cap on the STORED stock. Pure; the arm
+/// `add_backing` charges exactly this, and the card quotes it (iron rule 8:
+/// an arm clamped downstream is quoted at its clamped value).
+pub fn backing_room(w: &WorldState, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) -> f64 {
+    let mine = w.backing_of(sponsor, target, bloc);
+    let total: f64 = w
+        .statecraft
+        .backing
+        .iter()
+        .filter(|b| b.target == target && b.bloc == bloc)
+        .map(|b| b.weight)
+        .sum();
+    BACKING_STEP
+        .min(BACKING_SPONSOR_CAP - mine)
+        .min(BACKING_TOTAL_CAP - total)
+        .max(0.0)
+}
+
+/// The arm of a clean `BackBloc`: `backing_room` added to the sponsor's
+/// entry, the stock kept sorted by (sponsor, target, bloc). Returns what was
+/// added. Writes nothing when the room is zero.
+pub fn add_backing(w: &mut WorldState, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) -> f64 {
+    let room = backing_room(w, sponsor, target, bloc);
+    if room <= 0.0 {
+        return 0.0;
+    }
+    match w
+        .statecraft
+        .backing
+        .iter_mut()
+        .find(|b| b.sponsor == sponsor && b.target == target && b.bloc == bloc)
+    {
+        Some(b) => b.weight += room,
+        None => w.statecraft.backing.push(Backing { sponsor, target, bloc, weight: room, exposed: false }),
+    }
+    w.statecraft.backing.sort_by_key(|b| (b.sponsor, b.target, b.bloc));
+    room
+}
+
+/// What exposure of a `BackBloc` does beyond the existing costs of being
+/// caught: every backing entry this sponsor holds in this target is halved
+/// and marked exposed, and the backed bloc is tainted `EXPOSURE_TAINT` of
+/// support — in an electoral target off its parties in proportion to their
+/// size, in a regime off `movements[bloc]` — then renormalised. Draws no RNG.
+pub fn expose_backing(w: &mut WorldState, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) {
+    for b in w.statecraft.backing.iter_mut() {
+        if b.sponsor == sponsor && b.target == target {
+            b.weight *= 0.5;
+            b.exposed = true;
+        }
+    }
+    crate::government::taint_bloc(w, target, bloc, EXPOSURE_TAINT);
+}
+
+/// The one-sentence arms of a `BackBloc`, from the same constants and the
+/// same `backing_room` the op charges, for the card (iron rule 8).
+pub fn back_bloc_effects(w: &WorldState, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) -> Vec<String> {
+    let room = backing_room(w, sponsor, target, bloc);
+    vec![
+        format!(
+            "If it works: +{:.2} backing for the {} movement (sponsor cap {:.2}, bloc cap {:.2}); {:.2} realised now.",
+            BACKING_STEP, bloc.label(), BACKING_SPONSOR_CAP, BACKING_TOTAL_CAP, room
+        ),
+        format!("Backing cools {:.3} a month while covert channels cool.", BACKING_DECAY),
+        format!(
+            "If exposed: every entry of {}'s backing in {} halved and named, the {} movement loses {:.2} of support, and the usual costs of being caught.",
+            sponsor.name(), target.name(), bloc.label(), EXPOSURE_TAINT
+        ),
+        "Backing never enters support: it counts in influence only.".to_string(),
+    ]
+}
+
 // ---------------------------------------------------------------------------
 // Commands
 // ---------------------------------------------------------------------------
@@ -541,6 +665,11 @@ pub fn covert_action(
     if !alive(w, sponsor) || !alive(w, target) {
         return Err("Nation no longer exists.".into());
     }
+    if let CovertOp::BackBloc(bloc) = op {
+        if let Some(why) = back_bloc_refusal(w, target, bloc) {
+            return Err(why);
+        }
+    }
 
     // Running a service costs money whether or not anything comes of it.
     // 0.0008 of output is the pre-treasury line unchanged.
@@ -619,6 +748,17 @@ pub fn covert_action(
                     target.name()
                 ));
             }
+            // FIXED effect, no third draw: the two `chance` rolls above are
+            // the whole of this op's randomness, so the stream is the stream
+            // the other three leave.
+            CovertOp::BackBloc(bloc) => {
+                add_backing(w, sponsor, target, bloc);
+                w.headline(format!(
+                    "Money and organisers reach the {} movement in {}; nobody can say from where.",
+                    bloc.label(),
+                    target.name()
+                ));
+            }
         }
     } else {
         w.headline(format!(
@@ -647,6 +787,9 @@ pub fn covert_action(
             .collect();
         for x in friends {
             w.shift_relation(sponsor, x, -5.0);
+        }
+        if let CovertOp::BackBloc(bloc) = op {
+            expose_backing(w, sponsor, target, bloc);
         }
         w.headline(format!(
             "{} exposes {} {} in {} — the scandal rallies the country behind its government.",

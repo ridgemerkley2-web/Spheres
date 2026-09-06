@@ -574,17 +574,32 @@ pub enum CovertOp {
     FundOpposition,
     StirSeparatists,
     SabotageIndustry,
+    /// The political arm (S3): money and organisers for one bloc's movement
+    /// inside the target. Fixed effect, no extra draw — see
+    /// `statecraft::add_backing`. Refused while `rules.ideology_blocs` is off
+    /// and against the target's own ruling bloc.
+    BackBloc(crate::government::Bloc),
 }
 impl CovertOp {
     pub fn label(&self) -> &'static str {
+        use crate::government::Bloc;
         match self {
             CovertOp::FundOpposition => "funding the opposition",
             CovertOp::StirSeparatists => "arming separatists",
             CovertOp::SabotageIndustry => "industrial sabotage",
+            CovertOp::BackBloc(Bloc::Western) => "backing the Western movement",
+            CovertOp::BackBloc(Bloc::Communist) => "backing the Communist movement",
+            CovertOp::BackBloc(Bloc::Nationalist) => "backing the Nationalist movement",
+            CovertOp::BackBloc(Bloc::Islamist) => "backing the Islamist movement",
+            CovertOp::BackBloc(Bloc::NonAligned) => "backing the Non-Aligned movement",
         }
     }
     pub fn parse(s: &str) -> Option<CovertOp> {
-        match s.trim().to_lowercase().as_str() {
+        let s = s.trim().to_lowercase();
+        if let Some(bloc) = s.strip_prefix("back:") {
+            return crate::government::Bloc::parse(bloc).map(CovertOp::BackBloc);
+        }
+        match s.as_str() {
             "opposition" | "fund" | "coup" => Some(CovertOp::FundOpposition),
             "separatists" | "separatism" | "stir" => Some(CovertOp::StirSeparatists),
             "sabotage" | "industry" => Some(CovertOp::SabotageIndustry),
@@ -607,10 +622,12 @@ pub struct Statecraft {
     /// simply absent and reads as the baseline.
     pub reputation: Vec<(NationId, f64)>,
     /// Foreign backing of a bloc inside another state — the F_B term of the
-    /// political arm's influence, I_B = S_B + F_B (design road 2, S3). Nothing
-    /// writes it in this build; it is declared so the influence readout and
-    /// the surface it feeds are complete, and it serialises nothing while
-    /// empty.
+    /// political arm's influence, I_B = S_B + F_B (design S3). Written by
+    /// `statecraft::add_backing` on a clean `CovertOp::BackBloc`, halved by
+    /// exposure, cooled by `statecraft::backing_cools`, and kept SORTED by
+    /// (sponsor, target, bloc) so a save and a tick walk it in one order. It
+    /// serialises nothing while empty, which is every world the switch is
+    /// off in, because the op is refused there.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub backing: Vec<Backing>,
 }
@@ -623,6 +640,11 @@ pub struct Backing {
     pub bloc: crate::government::Bloc,
     /// Added to the bloc's share to make its influence, 0..1.
     pub weight: f64,
+    /// Whether the target has caught the sponsor at it: the surface names the
+    /// sponsor only once this is true. Set by exposure, never cleared while
+    /// the entry lives.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub exposed: bool,
 }
 
 /// What a state's word is worth before it has spent any of it.
@@ -1424,6 +1446,15 @@ impl WorldState {
         } else {
             self.statecraft.reputation.push((id, v));
         }
+    }
+    /// The stored weight one sponsor holds behind one bloc in one target.
+    pub fn backing_of(&self, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) -> f64 {
+        self.statecraft
+            .backing
+            .iter()
+            .find(|b| b.sponsor == sponsor && b.target == target && b.bloc == bloc)
+            .map(|b| b.weight)
+            .unwrap_or(0.0)
     }
     pub fn covert_heat(&self, sponsor: NationId, target: NationId) -> f64 {
         self.statecraft

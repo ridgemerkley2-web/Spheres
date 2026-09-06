@@ -242,10 +242,9 @@ pub fn discontent(w: &WorldState, id: NationId) -> f64 {
     (0.50 * p.order.min(1.0) + 0.20 * p.prices + 0.20 * p.growth + 0.10 * p.war).clamp(0.0, 1.0)
 }
 
-/// F_B: foreign backing of each bloc in this state, summed from
-/// `Statecraft.backing`. Empty in this build (S3 fills it), so this reads zero
-/// everywhere — served rather than omitted so the surface is complete.
-pub fn backing(w: &WorldState, id: NationId) -> [(Bloc, f64); 5] {
+/// The STOCK of foreign backing per bloc: what sponsors have put in through
+/// `CovertOp::BackBloc`, summed from `Statecraft.backing`, uncapped.
+pub fn backing_stock(w: &WorldState, id: NationId) -> [(Bloc, f64); 5] {
     let mut out = zero_shares();
     for b in &w.statecraft.backing {
         if b.target == id {
@@ -253,6 +252,65 @@ pub fn backing(w: &WorldState, id: NationId) -> [(Bloc, f64); 5] {
         }
     }
     out
+}
+
+/// The weight patronage gravity puts behind a patron's bloc in a client that
+/// takes a tenth of its output from it; the full weight is reached at an
+/// infusion of [`GRAVITY_FULL_AT`]. INVENTED (design S3).
+pub const GRAVITY_WEIGHT: f64 = 0.10;
+pub const GRAVITY_FULL_AT: f64 = 0.10;
+
+/// Patronage gravity (S3), a VIEW and not a stock: for each live aid flow into
+/// this nation, the patron's ruling bloc counts `GRAVITY_WEIGHT * min(1,
+/// infusion / GRAVITY_FULL_AT)`, where infusion is the flow's annual value
+/// over the client's output — the same ratio `statecraft::aid_flows` reads.
+/// Gone the month the flow stops, because nothing is stored. Reads with the
+/// switch off as every readout here does; nothing the tick reads calls it
+/// unless the arm is on.
+pub fn gravity(w: &WorldState, id: NationId) -> [(Bloc, f64); 5] {
+    let mut out = zero_shares();
+    let client_gdp = match w.nation_opt(id) {
+        Some(n) => n.gdp.max(0.1),
+        None => return out,
+    };
+    for f in &w.statecraft.aid {
+        if f.client != id {
+            continue;
+        }
+        let patron = match w.nation_opt(f.patron) {
+            Some(p) if p.alive => p,
+            _ => continue,
+        };
+        let bloc = match ruling_bloc(w, f.patron) {
+            Some(b) => b,
+            None => continue,
+        };
+        let infusion = patron.gdp * f.share_gdp / client_gdp;
+        *slot(&mut out, bloc) += GRAVITY_WEIGHT * (infusion / GRAVITY_FULL_AT).min(1.0);
+    }
+    out
+}
+
+/// F_B: foreign backing of each bloc in this state — the stock plus
+/// patronage gravity, capped together at `statecraft::BACKING_TOTAL_CAP`.
+/// Zero everywhere nothing has been put in and nobody is paid.
+pub fn backing(w: &WorldState, id: NationId) -> [(Bloc, f64); 5] {
+    let stock = backing_stock(w, id);
+    let grav = gravity(w, id);
+    let mut out = zero_shares();
+    for i in 0..5 {
+        out[i].1 = (stock[i].1 + grav[i].1).min(crate::statecraft::BACKING_TOTAL_CAP);
+    }
+    out
+}
+
+/// Effective army loyalty (S3): the Army pillar's loyalty less the
+/// Nationalist bloc's foreign backing — an army with money behind its own
+/// bloc is that much less the government's. 1.0 where there is no
+/// government; the pillar reads 1.0 where there is no Army pillar.
+pub fn effective_army_loyalty(w: &WorldState, id: NationId) -> f64 {
+    let loyalty = government::state(w, id).map_or(1.0, |g| g.loyalty(Pillar::Army));
+    loyalty - backing(w, id)[Bloc::Nationalist as usize].1
 }
 
 /// I_B = S_B + F_B, per bloc in enum order. Not normalised: backing is added
@@ -470,7 +528,7 @@ pub fn takeover_readout(w: &WorldState, id: NationId) -> TakeoverReadout {
     let closed = Road::closed;
 
     let coup = closed(vec![
-        Gauge::below("army loyalty", loyalty(Pillar::Army), 0.35),
+        Gauge::below("army loyalty", effective_army_loyalty(w, id), 0.35),
         Gauge::above("discontent", disc, 0.25),
         Gauge::above("coup pressure", pressure, 1.0 / w.rules.crisis_intensity.max(0.1)),
     ]);
@@ -686,7 +744,7 @@ pub fn politics(w: &WorldState, id: NationId) -> Option<Politics> {
 mod tests {
     use super::*;
     use crate::init::world_1990;
-    use crate::{load, save, state_hash, tick_month};
+    use crate::{load, save, state_hash, tick_month, Command};
 
     fn on(seed: u64) -> GameRules {
         GameRules { seed, ideology_blocs: true, ..GameRules::default() }
@@ -1065,9 +1123,17 @@ mod tests {
                     assert!((sum - 1.0).abs() < 1e-9, "{} pass {pass}: {shares:?}", id.code());
                     assert!(shares.iter().all(|(_, v)| *v >= 0.0), "{}: {shares:?}", id.code());
                     assert_eq!(shares.iter().map(|(b, _)| *b).collect::<Vec<_>>(), Bloc::ALL.to_vec());
+                    // Influence is shares plus backing by definition; with
+                    // nothing put in, backing is patronage gravity alone,
+                    // zero at the start and a view of the aid flows later.
                     let infl = influence(&w, id);
+                    let back = backing(&w, id);
                     for i in 0..5 {
-                        assert_eq!(infl[i].1.to_bits(), shares[i].1.to_bits(), "backing is zero this run");
+                        assert_eq!(infl[i].1.to_bits(), (shares[i].1 + back[i].1).to_bits(), "{}", id.code());
+                        assert!(back[i].1 >= 0.0 && back[i].1 <= crate::statecraft::BACKING_TOTAL_CAP);
+                        if pass == 0 {
+                            assert_eq!(back[i].1, 0.0, "{}: backing at the start", id.code());
+                        }
                     }
                 }
                 run_months(&mut w, 120);
@@ -1310,6 +1376,294 @@ mod tests {
         assert_eq!(band_only, 0);
         assert_eq!(per_gauge["discontent"], 171);
         assert_eq!(per_gauge["stability (band, not read)"], 102);
+    }
+
+    // -----------------------------------------------------------------------
+    // Foreign backing (S3)
+    // -----------------------------------------------------------------------
+
+    fn back(w: &WorldState, id: NationId, b: Bloc) -> f64 {
+        backing(w, id)[b as usize].1
+    }
+    fn stock(w: &WorldState, id: NationId, b: Bloc) -> f64 {
+        backing_stock(w, id)[b as usize].1
+    }
+
+    /// The arm: two clean operations reach the per-sponsor cap (0.06, 0.12,
+    /// then nothing), and three sponsors reach the bloc's total cap (USA
+    /// 0.12 + USSR 0.12 + UK 0.01 = 0.25, the UK's second op adds nothing).
+    /// The stock stays sorted by (sponsor, target, bloc), influence reads
+    /// shares plus backing, and `backing_room` quotes exactly what
+    /// `add_backing` then charges. Then through the command: a `BackBloc`
+    /// draws exactly the two `chance` rolls the other ops draw and no
+    /// third, and a clean one lands 0.06 with its headline. Watched red with
+    /// the sponsor cap dropped from `backing_room`: the third USA op read
+    /// 0.18.
+    #[test]
+    fn two_clean_ops_reach_the_sponsor_cap_and_three_sponsors_the_total_cap() {
+        use crate::statecraft::{add_backing, backing_room, BACKING_SPONSOR_CAP, BACKING_STEP, BACKING_TOTAL_CAP};
+        let mut w = world_1990(on(7));
+        let (usa, ussr, uk, pl) = (NationId::USA, NationId::USSR, NationId::UK, NationId::Poland);
+        let b = Bloc::Communist;
+        assert_eq!(ruling_bloc(&w, pl), Some(Bloc::Western));
+        assert_eq!(back(&w, pl, b), 0.0);
+        for expected in [BACKING_STEP, BACKING_SPONSOR_CAP, BACKING_SPONSOR_CAP] {
+            let quoted = backing_room(&w, usa, pl, b);
+            let added = add_backing(&mut w, usa, pl, b);
+            assert_eq!(quoted, added, "the card and the arm disagree");
+            assert!((w.backing_of(usa, pl, b) - expected).abs() < 1e-12, "{}", w.backing_of(usa, pl, b));
+        }
+        assert_eq!(add_backing(&mut w, usa, pl, b), 0.0, "a capped sponsor adds nothing");
+        add_backing(&mut w, ussr, pl, b);
+        add_backing(&mut w, ussr, pl, b);
+        assert!((back(&w, pl, b) - 0.24).abs() < 1e-12);
+        let last = add_backing(&mut w, uk, pl, b);
+        assert!((last - 0.01).abs() < 1e-12, "the total cap clipped the UK to {last}");
+        assert_eq!(add_backing(&mut w, uk, pl, b), 0.0);
+        assert!((back(&w, pl, b) - BACKING_TOTAL_CAP).abs() < 1e-12);
+        assert!((stock(&w, pl, b) - BACKING_TOTAL_CAP).abs() < 1e-12);
+        let keys: Vec<(NationId, NationId, Bloc)> =
+            w.statecraft.backing.iter().map(|e| (e.sponsor, e.target, e.bloc)).collect();
+        let mut sorted = keys.clone();
+        sorted.sort();
+        assert_eq!(keys, sorted, "the stock is not sorted");
+        assert_eq!(keys.len(), 3);
+        let shares = bloc_shares(&w, pl);
+        let infl = influence(&w, pl);
+        for i in 0..5 {
+            assert_eq!(infl[i].1.to_bits(), (shares[i].1 + back(&w, pl, shares[i].0)).to_bits());
+        }
+        // The command. Exactly two draws, a fixed effect, and the headline.
+        let mut w = world_1990(on(7));
+        w.rules.ai_aggression = 0.0;
+        let mut landed = 0;
+        for _ in 0..40 {
+            let before = w.backing_of(usa, pl, b);
+            let mut probe = w.rng.clone();
+            probe.next_u64();
+            probe.next_u64();
+            w.headlines.clear();
+            crate::statecraft::covert_action(&mut w, usa, pl, CovertOp::BackBloc(b)).expect("not refused");
+            assert_eq!(w.rng.state, probe.state, "a BackBloc drew other than the two rolls");
+            let after = w.backing_of(usa, pl, b);
+            let clean = w.headlines.iter().any(|h| {
+                h == "Money and organisers reach the Communist movement in Poland; nobody can say from where."
+            });
+            // The two rolls are independent: an op can land AND be caught in
+            // the same month, in which case the step lands and is then halved.
+            let caught = w.headlines.iter().any(|h| h.contains("exposes United States"));
+            let step = if before >= BACKING_SPONSOR_CAP - 1e-12 { 0.0 } else { BACKING_STEP.min(BACKING_SPONSOR_CAP - before) };
+            let expected = match (clean, caught) {
+                (true, false) => before + step,
+                (true, true) => (before + step) * 0.5,
+                (false, true) => before * 0.5,
+                (false, false) => before,
+            };
+            if clean {
+                landed += 1;
+            }
+            assert!((after - expected).abs() < 1e-12, "{before} -> {after} (clean {clean}, caught {caught})");
+        }
+        assert!(landed > 0, "forty operations and none landed");
+        assert!(w.backing_of(usa, pl, b) <= BACKING_SPONSOR_CAP + 1e-12);
+    }
+
+    /// Backing never enters support. Poland (electoral) and China (a regime)
+    /// carry 0.12 of Communist and Western backing respectively; every party's
+    /// support and every movement is bit-identical to an unbacked twin before
+    /// and after 36 calls of the two drift functions — the only writers of
+    /// support and movements in the tick — while influence differs by exactly
+    /// the backing. Watched red with `bloc_shares` adding `backing` for a
+    /// regime: China's Communist share moved in the first call.
+    #[test]
+    fn backing_never_enters_support() {
+        use crate::government::{drift_movements, drift_support};
+        use crate::statecraft::add_backing;
+        let (usa, pl, cn) = (NationId::USA, NationId::Poland, NationId::China);
+        let mut backed = world_1990(on(7));
+        let clean = backed.clone();
+        add_backing(&mut backed, usa, pl, Bloc::Communist);
+        add_backing(&mut backed, usa, pl, Bloc::Communist);
+        add_backing(&mut backed, usa, cn, Bloc::Western);
+        add_backing(&mut backed, usa, cn, Bloc::Western);
+        assert!((back(&backed, pl, Bloc::Communist) - 0.12).abs() < 1e-12);
+        assert!((back(&backed, cn, Bloc::Western) - 0.12).abs() < 1e-12);
+        let bits = |w: &WorldState, id: NationId| -> Vec<(String, u64)> {
+            let g = government::state(w, id).unwrap();
+            let mut v: Vec<(String, u64)> = g.support.iter().map(|(p, s)| (p.clone(), s.to_bits())).collect();
+            v.extend(g.movements.iter().map(|(b, s)| (format!("{b:?}"), s.to_bits())));
+            v
+        };
+        let mut backed = backed;
+        let mut clean = clean;
+        for _ in 0..36 {
+            assert_eq!(bits(&backed, pl), bits(&clean, pl), "Poland's support parted");
+            assert_eq!(bits(&backed, cn), bits(&clean, cn), "China's movements parted");
+            for id in [pl, cn] {
+                let sb = bloc_shares(&backed, id);
+                let sc = bloc_shares(&clean, id);
+                let ib = influence(&backed, id);
+                let ic = influence(&clean, id);
+                for i in 0..5 {
+                    assert_eq!(sb[i].1.to_bits(), sc[i].1.to_bits(), "{} shares", id.code());
+                    let expected = ic[i].1 + back(&backed, id, sb[i].0);
+                    assert!((ib[i].1 - expected).abs() < 1e-15, "{} influence", id.code());
+                }
+            }
+            drift_support(&mut backed, pl);
+            drift_support(&mut clean, pl);
+            drift_movements(&mut backed, cn);
+            drift_movements(&mut clean, cn);
+        }
+        assert!(back(&backed, cn, Bloc::Western) > 0.0, "the backing was still there");
+    }
+
+    /// Exposure halves every entry of the sponsor's backing in the target and
+    /// marks it exposed, leaves other sponsors' entries alone, and taints the
+    /// bloc 0.02 of support: off Poland's Communist parties by size, off
+    /// China's Western movement — both then renormalised, so the bloc reads
+    /// (s - 0.02) / 0.98. Then through the command, until the target catches
+    /// the sponsor: that month the halving and the naming happen and the
+    /// headline names sponsor and bloc. Watched red with `expose_backing`
+    /// not called from the exposure branch: the caught month read 0.054
+    /// against the 0.024 a halving and one month's cooling leave.
+    #[test]
+    fn exposure_halves_backing_and_taints_the_bloc() {
+        use crate::statecraft::{add_backing, expose_backing, EXPOSURE_TAINT};
+        let (usa, ussr, pl, cn) = (NationId::USA, NationId::USSR, NationId::Poland, NationId::China);
+        let mut w = world_1990(on(7));
+        add_backing(&mut w, usa, pl, Bloc::Communist);
+        add_backing(&mut w, usa, pl, Bloc::Communist);
+        add_backing(&mut w, usa, pl, Bloc::NonAligned);
+        add_backing(&mut w, ussr, pl, Bloc::Communist);
+        add_backing(&mut w, usa, cn, Bloc::Western);
+        let pl_before = bloc_shares(&w, pl)[Bloc::Communist as usize].1;
+        let cn_before = bloc_shares(&w, cn)[Bloc::Western as usize].1;
+        let bits_before: Vec<u64> = government::state(&w, cn).unwrap().support.iter().map(|(_, s)| s.to_bits()).collect();
+        expose_backing(&mut w, usa, pl, Bloc::Communist);
+        assert!((w.backing_of(usa, pl, Bloc::Communist) - 0.06).abs() < 1e-12);
+        assert!((w.backing_of(usa, pl, Bloc::NonAligned) - 0.03).abs() < 1e-12, "every entry of the sponsor halves");
+        assert!((w.backing_of(ussr, pl, Bloc::Communist) - 0.06).abs() < 1e-12, "another sponsor's entry moved");
+        assert!((w.backing_of(usa, cn, Bloc::Western) - 0.06).abs() < 1e-12, "another target's entry moved");
+        for e in &w.statecraft.backing {
+            assert_eq!(e.exposed, e.sponsor == usa && e.target == pl, "{e:?}");
+        }
+        let pl_after = bloc_shares(&w, pl)[Bloc::Communist as usize].1;
+        assert!((pl_after - (pl_before - EXPOSURE_TAINT) / (1.0 - EXPOSURE_TAINT)).abs() < 1e-9, "{pl_before} -> {pl_after}");
+        let sum: f64 = government::state(&w, pl).unwrap().support.iter().map(|(_, s)| *s).sum();
+        assert!((sum - 1.0).abs() < 1e-9);
+        expose_backing(&mut w, usa, cn, Bloc::Western);
+        let cn_after = bloc_shares(&w, cn)[Bloc::Western as usize].1;
+        assert!((cn_after - (cn_before - EXPOSURE_TAINT) / (1.0 - EXPOSURE_TAINT)).abs() < 1e-9, "{cn_before} -> {cn_after}");
+        let bits_after: Vec<u64> = government::state(&w, cn).unwrap().support.iter().map(|(_, s)| s.to_bits()).collect();
+        assert_eq!(bits_before, bits_after, "a regime's dormant table moved");
+        // Through the command, until caught.
+        let mut w = world_1990(on(7));
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(usa);
+        // Until the target catches the sponsor with a stock to halve: an
+        // exposure with nothing yet landed has nothing to halve or to mark.
+        let mut caught_at: Option<(f64, f64, bool)> = None;
+        for _ in 0..120 {
+            let before = w.backing_of(usa, pl, Bloc::Communist);
+            let hl = crate::tick_month(
+                &mut w,
+                &[Command::CovertAction { sponsor: usa, target: pl, op: CovertOp::BackBloc(Bloc::Communist) }],
+            );
+            let caught = hl.iter().any(|h| h.contains("exposes United States backing the Communist movement in Poland"));
+            let clean = hl.iter().any(|h| h.contains("Money and organisers reach the Communist movement in Poland"));
+            if caught && (before > 0.0 || clean) {
+                caught_at = Some((before, w.backing_of(usa, pl, Bloc::Communist), clean));
+                break;
+            }
+        }
+        let (before, after, clean) = caught_at.expect("a hundred and twenty operations and never once caught with a stock");
+        // Halved after this month's own clean step, if any, then cooled once
+        // by the month's own decay.
+        let stepped = if clean { (before + 0.06).min(0.12) } else { before };
+        let expected = stepped * 0.5 - crate::statecraft::BACKING_DECAY;
+        assert!((after - expected).abs() < 1e-9, "{before} -> {after} (clean {clean}), expected {expected}");
+        assert!(w.statecraft.backing.iter().any(|e| e.sponsor == usa && e.target == pl && e.exposed));
+    }
+
+    /// Patronage gravity is a view: an aid flow puts 0.10 * min(1,
+    /// infusion / 0.10) of the patron's ruling bloc behind the client, read
+    /// off the same output ratio the flow itself reads; it is there the month
+    /// after; and it is gone the month the flow stops. The stock plus gravity
+    /// is capped at the bloc's 0.25 together. Watched red with `gravity`
+    /// returning zero shares: the small pledge read 0 against 0.0278.
+    #[test]
+    fn gravity_appears_with_an_aid_flow_and_vanishes_the_month_it_stops() {
+        use crate::statecraft::{add_backing, BACKING_TOTAL_CAP};
+        use crate::{apply_command, Command};
+        let (usa, eg) = (NationId::USA, NationId::Egypt);
+        let mut w = world_1990(on(7));
+        w.rules.ai_aggression = 0.0;
+        w.player = Some(usa);
+        assert_eq!(ruling_bloc(&w, usa), Some(Bloc::Western));
+        assert_eq!(back(&w, eg, Bloc::Western), 0.0);
+        apply_command(&mut w, &Command::PledgeAid { patron: usa, client: eg, kind: AidKind::Economic, share_gdp: 0.0002 })
+            .expect("pledged");
+        let infusion = w.nation(usa).gdp * 0.0002 / w.nation(eg).gdp.max(0.1);
+        assert!(infusion < GRAVITY_FULL_AT, "the small pledge is meant to sit under the knee: {infusion}");
+        let expected = GRAVITY_WEIGHT * (infusion / GRAVITY_FULL_AT);
+        assert!((back(&w, eg, Bloc::Western) - expected).abs() < 1e-12, "{} vs {expected}", back(&w, eg, Bloc::Western));
+        assert_eq!(stock(&w, eg, Bloc::Western), 0.0, "gravity is not a stock");
+        apply_command(&mut w, &Command::PledgeAid { patron: usa, client: eg, kind: AidKind::Economic, share_gdp: 0.004 })
+            .expect("raised");
+        assert!((back(&w, eg, Bloc::Western) - GRAVITY_WEIGHT).abs() < 1e-12, "past the knee the weight is the full 0.10");
+        tick_month(&mut w, &[]);
+        assert!((back(&w, eg, Bloc::Western) - GRAVITY_WEIGHT).abs() < 1e-12, "the month after");
+        assert!(w.statecraft.backing.is_empty(), "nothing was stored");
+        // Stock and gravity share one cap.
+        for _ in 0..4 {
+            add_backing(&mut w, NationId::UK, eg, Bloc::Western);
+            add_backing(&mut w, NationId::France, eg, Bloc::Western);
+        }
+        assert!((stock(&w, eg, Bloc::Western) - 0.24).abs() < 1e-12);
+        assert!((back(&w, eg, Bloc::Western) - BACKING_TOTAL_CAP).abs() < 1e-12, "{}", back(&w, eg, Bloc::Western));
+        w.statecraft.backing.clear();
+        apply_command(&mut w, &Command::EndAid { patron: usa, client: eg, kind: AidKind::Economic }).expect("ended");
+        assert_eq!(back(&w, eg, Bloc::Western), 0.0, "gone the moment the flow stops");
+        tick_month(&mut w, &[]);
+        assert_eq!(back(&w, eg, Bloc::Western), 0.0);
+    }
+
+    /// The refusals, from the one place the prose lives, read by
+    /// `refusal_of` and given by `apply_command` word for word: the switch
+    /// first (before any state, and no state or RNG touched by the refusal),
+    /// then the target's own ruling bloc. `CovertOp::parse` gains
+    /// `back:<bloc>` and keeps `coup` on FundOpposition. Watched red with
+    /// the `BackBloc` arm dropped from `world_refusal`: the off-world read
+    /// `None` against the sim's sentence.
+    #[test]
+    fn back_bloc_is_refused_off_and_against_the_ruling_bloc() {
+        use crate::{apply_command, refusal_of, Command};
+        let (usa, pl) = (NationId::USA, NationId::Poland);
+        let off = world_1990(GameRules::default());
+        let c = Command::CovertAction { sponsor: usa, target: pl, op: CovertOp::BackBloc(Bloc::Communist) };
+        let before = (state_hash(&off), off.rng.state);
+        let read = refusal_of(&off, &c);
+        assert_eq!(read.as_deref(), Some("This world does not model ideological movements."));
+        let mut trial = off.clone();
+        assert_eq!(apply_command(&mut trial, &c).err(), read);
+        assert_eq!((state_hash(&trial), trial.rng.state), before, "a refused op touched the world");
+        let on = world_1990(on(7));
+        let c = Command::CovertAction { sponsor: usa, target: pl, op: CovertOp::BackBloc(Bloc::Western) };
+        let read = refusal_of(&on, &c);
+        assert_eq!(read.as_deref(), Some("You cannot back a government covertly — send aid."));
+        assert_eq!(apply_command(&mut on.clone(), &c).err(), read);
+        let c = Command::CovertAction { sponsor: usa, target: pl, op: CovertOp::BackBloc(Bloc::Communist) };
+        assert_eq!(refusal_of(&on, &c), None);
+        assert!(apply_command(&mut on.clone(), &c).is_ok());
+        assert_eq!(CovertOp::parse("back:communist"), Some(CovertOp::BackBloc(Bloc::Communist)));
+        assert_eq!(CovertOp::parse("back:non-aligned"), Some(CovertOp::BackBloc(Bloc::NonAligned)));
+        assert_eq!(CovertOp::parse("back:martian"), None);
+        assert_eq!(CovertOp::parse("coup"), Some(CovertOp::FundOpposition));
+        assert_eq!(CovertOp::BackBloc(Bloc::Islamist).label(), "backing the Islamist movement");
+        // The card's arms quote the clamped room.
+        let arms = crate::statecraft::back_bloc_effects(&on, usa, pl, Bloc::Communist);
+        assert!(arms[0].contains("0.06 realised now"), "{}", arms[0]);
     }
 
     /// `refusal_of` says exactly what `apply_command` would, read without
