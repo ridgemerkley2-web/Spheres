@@ -6674,19 +6674,33 @@ fn would_be_leader(g: &GovState) -> Option<String> {
 }
 
 /// The annulment's conditions, read without touching the world: the winner
-/// the army would refuse, or `None`. A live Army pillar in the state; the
-/// would-be coalition leader's bloc Communist or Islamist; authoritarianism
-/// at or over `ANNULMENT_AUTH`; discontent at or over `ANNULMENT_DISCONTENT`;
-/// and the monarchy exception NOT holding (a court that appoints the
-/// government has no election to annul — it dismisses). Lines INVENTED
-/// (design S4, the Algerian shape). `None` before any read with the
-/// takeover switch off.
+/// the army would refuse, or `None`. A live Army pillar in the state, and
+/// — R2, below — a HOSTILE one; the would-be coalition leader's bloc
+/// Communist or Islamist; authoritarianism at or over `ANNULMENT_AUTH`;
+/// discontent at or over `ANNULMENT_DISCONTENT`; and the monarchy exception
+/// NOT holding (a court that appoints the government has no election to
+/// annul — it dismisses). Lines INVENTED (design S4, the Algerian shape).
+/// `None` before any read with the takeover switch off.
+///
+/// R2, Ridge's ruling of 2026-09-06, quoted: "an election is annulled only
+/// by a HOSTILE army - effective_army_loyalty below ELECTORAL_COUP_ARMY
+/// (0.35), no new constant - because that is what history shows: Algeria's
+/// ANP in January 1992 was an army at war with the FIS; Jordan's 1989
+/// chamber was never annulled because the throne, not the army, held the
+/// state; Turkey's 1997 memorandum came from a hostile general staff." The
+/// census had read the merely-present army the other way (BUGS S5-8:
+/// Belarus and Ukraine annulled in 200/200 with an army seeded at 0.65 and
+/// never asked), so the road now reads the same effective loyalty route 2
+/// reads, against the same line.
 pub fn annulment_check(w: &WorldState, id: NationId) -> Option<String> {
     if !w.rules.ideology_takeover {
         return None;
     }
     let g = state(w, id)?;
     if !g.pillars.iter().any(|(p, _)| *p == Pillar::Army) {
+        return None;
+    }
+    if crate::blocs::effective_army_loyalty(w, id) >= ELECTORAL_COUP_ARMY {
         return None;
     }
     let winner = would_be_leader(g)?;
@@ -10307,6 +10321,24 @@ mod tests {
     /// the election forms a government; the same Jordan at 0.38, under the
     /// court's line and over the annulment's, annuls. Watched red with the
     /// court check dropped from `annulment_check`: Jordan at 0.55 annulled.
+    ///
+    /// RE-EXPRESSED 2026-09-06 (R2, the one clause of this test the ruling
+    /// touches). The Jordan-at-0.38 assertion pinned the PRESENT-army
+    /// reading — an army merely in the state annuls — which the census
+    /// proved wrong (BUGS S5-8, S6-5: Belarus and Ukraine 200/200). Ridge's
+    /// ruling, quoted: "The Jordan assertion of
+    /// the_algeria_shaped_annulment_fires_under_its_conditions_and_not_
+    /// under_the_court pins the present-army reading the census proved
+    /// wrong, and is re-expressed to the hostile-army reading, recorded
+    /// with this ruling quoted." So: Jordan at 0.38 with its army PAID (the
+    /// seated 0.65) does NOT annul — the Ikhwan sit, as the 1989 chamber
+    /// did, because the throne and not the army held the state — and the
+    /// same Jordan with the army HOSTILE (loyalty 0.30, under
+    /// `ELECTORAL_COUP_ARMY`) annuls. The Algeria half is untouched: over
+    /// the twenty-three months to the vote the ANP walks from 0.65 toward
+    /// the share arm's 0.322 (a 1.5% defence budget) and crosses the line
+    /// before December 1991 — the army at war with the FIS reads hostile
+    /// from the transcribed budget alone.
     #[test]
     fn the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court() {
         let dz = NationId::Algeria;
@@ -10373,11 +10405,98 @@ mod tests {
         assert!(state(&w, jo).unwrap().banned.is_empty());
         w.nation_mut(jo).authoritarianism = 0.38;
         assert!(crate::blocs::government_of_the_day(&w, jo).is_none());
+        // R2: under the court's line and over the annulment's, but the army
+        // is PAID — the seated 0.65 reads over `ELECTORAL_COUP_ARMY` — so
+        // the throne's chamber sits.
+        let paid = crate::blocs::effective_army_loyalty(&w, jo);
+        assert!(paid >= ELECTORAL_COUP_ARMY, "{paid}");
+        assert_eq!(annulment_check(&w, jo), None, "a present-but-paid army does not annul");
+        hold_election(&mut w, jo);
+        assert!(is_electoral(&w, jo));
+        assert_eq!(state(&w, jo).unwrap().leader(), Some("jo_ikhwan"));
+        assert!(state(&w, jo).unwrap().banned.is_empty());
+        // The same Jordan with a HOSTILE army annuls.
+        if let Some(g) = state_mut(&mut w, jo) {
+            for e in g.pillars.iter_mut() {
+                if e.0 == Pillar::Army {
+                    e.1 = 0.30;
+                }
+            }
+        }
+        assert!(crate::blocs::effective_army_loyalty(&w, jo) < ELECTORAL_COUP_ARMY);
         assert_eq!(annulment_check(&w, jo).as_deref(), Some("jo_ikhwan"));
         hold_election(&mut w, jo);
         assert!(!is_electoral(&w, jo));
         assert_eq!(state(&w, jo).unwrap().banned, vec!["jo_ikhwan".to_string()]);
         assert!(w.headlines.iter().any(|h| h == "COUP IN JORDAN: the army annuls the election Muslim Brotherhood and allied Islamists won."), "{:?}", w.headlines);
+    }
+    /// R2 (Ridge's ruling, 2026-09-06), the Algerian shape: Algeria on the
+    /// roads in January 1990 — the FIS leading the table at 0.542, the ANP
+    /// a live pillar, authoritarianism 0.55, discontent 0.405 at the
+    /// transcribed stability 40 — with the ANP PAID (the seated 0.65, over
+    /// `ELECTORAL_COUP_ARMY`) holds its vote and seats the FIS; the same
+    /// Algeria with the ANP HOSTILE (0.30) annuls it, every Islamist party
+    /// banned, the regime Nationalist at max(0.55 + 0.25, 0.65) = 0.80.
+    /// Nationalist foreign backing behind the army counts the same way:
+    /// the ANP at 0.40 with 0.06 of Libyan money behind the Nationalist
+    /// movement reads 0.34 effective and annuls. Watched red with the
+    /// hostile-army line removed from `annulment_check`: "a paid army
+    /// annulled the election".
+    #[test]
+    fn a_paid_army_seats_the_islamists_and_a_hostile_one_annuls_the_algerian_way() {
+        let dz = NationId::Algeria;
+        let fresh = || {
+            let mut w = world_1990(roads_rules(7));
+            w.nation_mut(dz).stability = 40.0;
+            w.nation_mut(dz).inflation = 0.167;
+            w
+        };
+        let army = |w: &mut WorldState, v: f64| {
+            if let Some(g) = state_mut(w, dz) {
+                for e in g.pillars.iter_mut() {
+                    if e.0 == Pillar::Army {
+                        e.1 = v;
+                    }
+                }
+            }
+        };
+        // Paid.
+        let mut w = fresh();
+        assert!(crate::blocs::discontent(&w, dz) >= ANNULMENT_DISCONTENT);
+        assert!(w.nation(dz).authoritarianism >= ANNULMENT_AUTH);
+        assert_eq!(would_be_leader(state(&w, dz).unwrap()).as_deref(), Some("dz_fis"));
+        let paid = crate::blocs::effective_army_loyalty(&w, dz);
+        assert!(paid >= ELECTORAL_COUP_ARMY, "{paid}");
+        assert_eq!(annulment_check(&w, dz), None, "a paid army annulled the election");
+        hold_election(&mut w, dz);
+        assert!(is_electoral(&w, dz));
+        assert_eq!(state(&w, dz).unwrap().leader(), Some("dz_fis"));
+        assert!(!w.headlines.iter().any(|h| h.contains("COUP IN ALGERIA")), "{:?}", w.headlines);
+        // Hostile.
+        let mut w = fresh();
+        army(&mut w, 0.30);
+        assert!(crate::blocs::effective_army_loyalty(&w, dz) < ELECTORAL_COUP_ARMY);
+        assert_eq!(annulment_check(&w, dz).as_deref(), Some("dz_fis"));
+        hold_election(&mut w, dz);
+        assert!(!is_electoral(&w, dz));
+        let g = state(&w, dz).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Nationalist));
+        assert_eq!(g.banned, vec!["dz_fis".to_string()]);
+        assert!((w.nation(dz).authoritarianism - 0.80).abs() < 1e-12);
+        assert!(w.headlines.iter().any(|h| h == "COUP IN ALGERIA: the army annuls the election Islamic Salvation Front won."), "{:?}", w.headlines);
+        // Hostile through foreign money behind the army's colour.
+        let mut w = fresh();
+        army(&mut w, 0.40);
+        assert_eq!(annulment_check(&w, dz), None);
+        crate::statecraft::add_backing(&mut w, NationId::Libya, dz, Bloc::Nationalist);
+        let eff = crate::blocs::effective_army_loyalty(&w, dz);
+        assert!((eff - 0.34).abs() < 1e-9, "{eff}");
+        assert_eq!(annulment_check(&w, dz).as_deref(), Some("dz_fis"));
+        // Off: nothing, whatever the army reads.
+        let mut off = world_1990(GameRules { seed: 7, ideology_blocs: true, ..GameRules::default() });
+        off.nation_mut(dz).stability = 40.0;
+        army(&mut off, 0.30);
+        assert_eq!(annulment_check(&off, dz), None);
     }
     /// Route 3 (S4). Sudan — Bashir's army ruling as Islamist, the SCP a
     /// Communist party in its dormant table — with the Communist movement
