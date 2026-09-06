@@ -1,4 +1,5 @@
 /* Scoped map furniture; menus and simulation controls retain their handlers. */
+/* The module replaces this fallback with the dock's measured footprint. */
 #app.map-controls-ready { height: 100dvh; --map-dock-space: 108px; }
 #app.map-controls-ready > header { position: relative; z-index: 40; }
 #app.map-controls-ready .timebtns { flex-wrap: wrap; min-width: 0; }
@@ -22,6 +23,7 @@
 .map-controls button, .map-detail-menu > summary { min-width: 44px; min-height: 44px; padding: 9px 12px; border: 1px solid #b5c5d230; border-radius: 9px; background: #263547; color: #edf1f4; font: 650 13px/1.2 var(--arc-font); cursor: pointer; white-space: nowrap; }
 .map-controls button:hover:not(:disabled), .map-detail-menu > summary:hover { border-color: var(--arc-mint); background: #35495a; }
 .map-controls button[aria-pressed="true"] { color: #172c29; background: var(--arc-mint); border-color: var(--arc-mint); }
+.map-controls button[aria-pressed="true"]:hover:not(:disabled) { color: #172c29; background: #b9dfce; border-color: #b9dfce; }
 .map-controls button:disabled { opacity: .42; cursor: default; }
 .map-quick-modes { display: flex; gap: 4px; }
 .map-detail-menu { position: relative; }

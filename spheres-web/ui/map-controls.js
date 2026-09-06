@@ -6,11 +6,47 @@
   const details = { borders: "Borders", provinces: "Provinces", cities: "Cities", labels: "Labels" };
   let focusKey = null;
   let detailsOpen = false;
+  let dockResizeObserver = null;
+  let observedDock = null;
+  let dockResizeBound = false;
 
   const escape = value => String(value).replace(/[&<>"']/g, char => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   }[char]));
   const root = () => document.getElementById("mapControls");
+  function reserveDockSpace() {
+    const app = document.getElementById("app");
+    const dock = document.getElementById("commandDock");
+    if (!app || !dock) return;
+    const height = dock.getBoundingClientRect().height;
+    // A hidden campaign has no footprint yet. Keep the CSS fallback (or last
+    // visible measurement) until the dock is laid out again.
+    if (!(height > 0)) return;
+    const bottom = parseFloat(window.getComputedStyle(dock).bottom) || 0;
+    const space = `${Math.ceil(height + Math.max(0, bottom) + 8)}px`;
+    if (app.style.getPropertyValue("--map-dock-space") !== space) {
+      app.style.setProperty("--map-dock-space", space);
+    }
+  }
+  function bindDockSizing() {
+    const dock = document.getElementById("commandDock");
+    if (!dock) return;
+    if (typeof ResizeObserver === "function") {
+      if (!dockResizeObserver) dockResizeObserver = new ResizeObserver(reserveDockSpace);
+      if (observedDock !== dock) {
+        if (observedDock) dockResizeObserver.disconnect();
+        dockResizeObserver.observe(dock, { box: "border-box" });
+        observedDock = dock;
+      }
+    }
+    // Bottom offsets can change at a media breakpoint even when the dock's
+    // border box stays the same size. This also covers older browsers.
+    if (!dockResizeBound && typeof window.addEventListener === "function") {
+      window.addEventListener("resize", reserveDockSpace, { passive: true });
+      dockResizeBound = true;
+    }
+    reserveDockSpace();
+  }
   function flags() {
     if (!ui.mapDetails) ui.mapDetails = {};
     for (const key of Object.keys(details)) {
@@ -123,6 +159,7 @@
     const controls = root();
     if (!controls) return false;
     document.getElementById("app")?.classList.add("map-controls-ready");
+    bindDockSizing();
     controls.querySelectorAll("[data-map-mode]").forEach(button => {
       button.onclick = () => setMode(button.dataset.mapMode);
     });

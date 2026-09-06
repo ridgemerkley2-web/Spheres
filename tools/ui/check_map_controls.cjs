@@ -134,12 +134,24 @@ function makeDocument() {
   return document;
 }
 
-function fixture() {
-  const document = makeDocument(), calls = [];
+function fixture(options = {}) {
+  const document = makeDocument(), calls = [], observers = [], windowListeners = new Map(), styleWrites = [];
+  let dock = null;
+  const measurement = options.dock ? {...options.dock} : null;
+  class ResizeObserver {
+    constructor(callback) {this.callback = callback; this.observed = []; observers.push(this);}
+    observe(target) {this.observed.push(target);}
+    unobserve(target) {this.observed = this.observed.filter(node => node !== target);}
+    disconnect() {this.observed = [];}
+    deliver() {this.callback(this.observed.map(target => ({target, contentRect: target.getBoundingClientRect()})), this);}
+  }
   const simulation = {day: 12, orders: [{kind: 'budget', amount: 5}], running: true};
   const originalOrders = JSON.stringify(simulation.orders);
   const forbidden = name => (...args) => {throw new Error('View control invoked ' + name + ': ' + JSON.stringify(args));};
-  const c = vm.createContext({document, console, calls,
+  const c = vm.createContext({document, console, calls, ResizeObserver,
+    getComputedStyle: target => ({bottom: target === dock && measurement ? String(measurement.bottom ?? 0) + 'px' : '0px'}),
+    addEventListener: (type, listener) => {if (!windowListeners.has(type)) windowListeners.set(type, new Set()); windowListeners.get(type).add(listener);},
+    removeEventListener: (type, listener) => windowListeners.get(type)?.delete(listener),
     ui: {tab: 'map', mapMode: 'political', mapDetails: {borders: true, provinces: true, cities: true, labels: true}, cam: {k: 2}},
     MAP_MODES: {political: {label: 'Political'}, terrain: {label: 'Terrain'}, resources: {label: 'Resources'}, fronts: {label: 'Fronts'}},
     POL: {dirty: false}, SEL: {dirty: false}, S: {player: 'USA', day: 12}, queued: simulation.orders,
@@ -162,16 +174,71 @@ function fixture() {
   c.window = c;
   vm.runInContext(source, c, {filename: modulePath, timeout: 1000});
   const app = document.createElement('div'); app.id = 'app'; document.body.appendChild(app);
+  const styleValues = new Map();
+  app.style.setProperty = (name, value) => {styleValues.set(name, String(value)); styleWrites.push([name, String(value)]);};
+  app.style.getPropertyValue = name => styleValues.get(name) || '';
   app.innerHTML = '<details class="arc-map-tools"><summary>Map layers</summary></details><button id="outsideMapControls">Outside map controls</button>';
+  if (measurement) {
+    dock = document.createElement('nav'); dock.id = 'commandDock'; app.appendChild(dock);
+    dock.getBoundingClientRect = () => ({height: measurement.height, width: 800, top: 0, bottom: measurement.height, left: 0, right: 800});
+  }
   const root = document.createElement('div'); root.id = 'pane-map'; app.appendChild(root);
   const mount = () => {root.innerHTML = c.MapControls.html(); c.MapControls.bind(); c.MapControls.sync();};
   c.renderMap = () => {calls.push(['renderMap']); mount();};
   mount();
-  return {c, document, root, calls, mount, simulation,
+  return {c, document, root, calls, mount, simulation, app, dock, measurement, observers, styleWrites, windowListeners,
+    resizeWindow() {for (const listener of windowListeners.get('resize') || []) listener({type: 'resize'});},
     one: selector => {const found = document.querySelector(selector); assert(found, 'Missing actual rendered control ' + selector); return found;},
     assertViewOnly() {assert.equal(c.S.day, 12); assert.equal(c.clock.running, true); assert.equal(JSON.stringify(c.queued), originalOrders);},
   };
 }
+
+test('binding reserves the measured command dock height, bottom offset and an eight pixel gap', () => {
+  const f = fixture({dock: {height: 137.2, bottom: 11.5}});
+  assert.equal(f.app.style.getPropertyValue('--map-dock-space'), '157px');
+  assert.deepEqual(f.styleWrites, [['--map-dock-space', '157px']]); f.assertViewOnly();
+});
+
+test('repeated binding and map redraw share one observer and one dock observation', () => {
+  const f = fixture({dock: {height: 100, bottom: 12}});
+  for (let i = 0; i < 5; i++) {f.c.MapControls.bind(); f.c.MapControls.install(); f.mount();}
+  assert.equal(f.observers.length, 1, 'map rerenders must not accumulate observers');
+  assert.deepEqual(f.observers[0].observed, [f.dock], 'the persistent dock is observed exactly once');
+  assert.equal(f.windowListeners.get('resize')?.size, 1, 'one window listener covers bottom-offset changes');
+  assert.equal(f.styleWrites.length, 1, 'unchanged measurements do not invalidate layout repeatedly');
+  assert.equal(f.app.style.getPropertyValue('--map-dock-space'), '120px'); f.assertViewOnly();
+});
+
+test('dock observer updates a wrapped height and leaves identical measurements untouched', () => {
+  const f = fixture({dock: {height: 100, bottom: 8}});
+  assert.equal(f.observers.length, 1); f.measurement.height = 198.35; f.observers[0].deliver();
+  assert.equal(f.app.style.getPropertyValue('--map-dock-space'), '215px');
+  assert.equal(f.styleWrites.length, 2, 'the changed height updates the initial reserve once');
+  f.observers[0].deliver(); f.c.MapControls.bind(); f.c.MapControls.sync(); f.resizeWindow();
+  assert.equal(f.styleWrites.length, 2, 'unchanged observer/window callbacks do not write CSS again');
+  assert.equal(f.calls.length, 0, 'measuring a dock does not rerender the map or change the camera'); f.assertViewOnly();
+});
+
+test('window resizing remeasures the dock bottom inset and clamps a negative inset to zero', () => {
+  const f = fixture({dock: {height: 100.2, bottom: 10}});
+  assert.equal(f.app.style.getPropertyValue('--map-dock-space'), '119px');
+  f.measurement.bottom = 22.4; f.resizeWindow();
+  assert.equal(f.app.style.getPropertyValue('--map-dock-space'), '131px');
+  f.measurement.bottom = -5; f.resizeWindow();
+  assert.equal(f.app.style.getPropertyValue('--map-dock-space'), '109px');
+  assert.equal(f.styleWrites.length, 3); f.assertViewOnly();
+});
+
+test('a hidden dock preserves the CSS fallback until a visible size can be measured', () => {
+  const f = fixture({dock: {height: 0, bottom: 10}});
+  assert.equal(f.app.style.getPropertyValue('--map-dock-space'), '', 'zero-height setup/menu state must retain stylesheet fallback');
+  assert.equal(f.styleWrites.length, 0);
+  assert.equal(f.observers.length, 1); f.measurement.height = 72; f.observers[0].deliver();
+  assert.equal(f.app.style.getPropertyValue('--map-dock-space'), '90px'); assert.equal(f.styleWrites.length, 1);
+  f.measurement.height = 0; f.observers[0].deliver(); f.resizeWindow();
+  assert.equal(f.app.style.getPropertyValue('--map-dock-space'), '90px', 'temporarily hidden rooms keep the last valid reserve');
+  assert.equal(f.styleWrites.length, 1); f.assertViewOnly();
+});
 
 test('switching from History to Terrain changes only the view even while a day is in flight', () => {
   const f = fixture(); f.c.ui.tab = 'charts'; const camera = JSON.stringify(f.c.ui.cam);
