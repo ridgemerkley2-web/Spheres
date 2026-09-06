@@ -69,6 +69,28 @@ Four stages read a *committed artifact* rather than a source raster —
 every case: it is what makes the layers agree with the map by construction, and
 what lets them re-run on a clone that has none of the staging data.
 
+### Independent detailed elevation
+
+`make_detail_height.py --source /path/to/ETOPO_2022_v1_60s_N90W180_surface.nc`
+builds `ui/height-detail.png` and its adjacent provenance JSON. Add `--check`
+to regenerate and compare without writing. It samples the same public-domain
+[NOAA ETOPO 2022 source](https://www.ncei.noaa.gov/products/etopo-global-relief-model)
+at 9600×4072, then averages 2×2 elevations to produce 4800×2036. It does not
+resize the old height image. The fixed decode is
+`h = (R*256 + G)*(10500/65535) - 1500` metres; B is zero. The source hash,
+exact projection, landmark checks and output hash are recorded in the JSON.
+
+The browser decodes this separate RGB8 file into an R16F texture (about 25 MiB
+including mipmaps), so interpolation happens on metres, not packed bytes.
+Terrain fades it in at regional zoom. Its gradient sampling is independent
+of the existing coast, lake, vegetation, occlusion and bathymetry channels.
+**Details → Detailed terrain** compares it with the base relief. Unsupported
+texture/viewport sizes or a failed optional upload keep the base relief.
+This is cartographic relief; it does not add tactical districts or change
+simulation geography. Physical-region names use existing district-member
+centers; river names use actual exported river vertices. River display tiers
+use projected course length as a presentation heuristic, not discharge.
+
 | file | used by |
 |---|---|
 | `ne_10m_admin_1.geojson` | classify_districts, crossing_edges (district geometry, mapgen-exact ids) |

@@ -41,6 +41,11 @@ const AREA_ART_JS: &str = include_str!("../ui/area-art.js");
 const MAIN_MENU_CSS: &str = include_str!("../ui/main-menu.css");
 const MAP_CONTROLS_CSS: &str = include_str!("../ui/map-controls.css");
 const MAP_CONTROLS_JS: &str = include_str!("../ui/map-controls.js");
+const TERRAIN_LABELS_JS: &str = include_str!("../ui/terrain-labels.js");
+const WATER_DETAIL_JS: &str = include_str!("../ui/water-detail.js");
+const HEIGHT_DETAIL_JS: &str = include_str!("../ui/height-detail.js");
+const SHADER_LOADER_JS: &str = include_str!("../ui/shader-loader.js");
+const HEIGHT_DETAIL_PNG: &[u8] = include_bytes!("../ui/height-detail.png");
 const AREA_ART_CSS: &str = include_str!("../ui/area-art.css");
 /// Fixed local display assets only. Never resolve a request path on disk.
 fn area_art_asset(name: &str) -> Option<&'static [u8]> {
@@ -6130,6 +6135,21 @@ fn main() {
             (Method::Get, "/map-controls.js") => Response::from_string(MAP_CONTROLS_JS)
                 .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
                 .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/terrain-labels.js") => Response::from_string(TERRAIN_LABELS_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/water-detail.js") => Response::from_string(WATER_DETAIL_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/height-detail.js") => Response::from_string(HEIGHT_DETAIL_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/shader-loader.js") => Response::from_string(SHADER_LOADER_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/height-detail.png") => Response::from_data(HEIGHT_DETAIL_PNG.to_vec())
+                .with_header(Header::from_bytes("Content-Type", "image/png").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
             (Method::Get, "/area-art.css") => Response::from_string(AREA_ART_CSS)
                 .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
                 .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
@@ -9802,6 +9822,7 @@ mod tests {
             ("coast.png", COAST_PNG),
             ("cover.png", COVER_PNG),
             ("lake.png", LAKE_PNG),
+            ("height-detail.png", HEIGHT_DETAIL_PNG),
         ] {
             assert!(bytes.starts_with(b"\x89PNG\r\n\x1a\n"), "{name} is not a PNG");
             // relief.png, coast.png and lake.png are sampled as numbers, not looked at. A
@@ -9831,9 +9852,17 @@ mod tests {
         assert!(INDEX.contains("src=\"/rivers.js\""));
         assert!(INDEX.contains("src=\"/terrain.js\""));
         assert!(
-            INDEX.contains("for (const r of RIVERS.rivers) ctx.stroke(p2d(r.d));"),
+            INDEX.contains("WaterDetail.paint(ctx, RIVERS.rivers, detail,")
+                && WATER_DETAIL_JS.contains("ctx.stroke(settings.path(entry.path))"),
             "the rivers no longer reach the map"
         );
+        assert_eq!(u32::from_be_bytes(HEIGHT_DETAIL_PNG[16..20].try_into().unwrap()), 4800);
+        assert_eq!(u32::from_be_bytes(HEIGHT_DETAIL_PNG[20..24].try_into().unwrap()), 2036);
+        assert_eq!(&HEIGHT_DETAIL_PNG[24..26], &[8, 2], "packed height must stay RGB8");
+        assert!(HEIGHT_DETAIL_JS.contains("/height-detail.png"));
+        for path in ["/terrain-labels.js", "/water-detail.js", "/height-detail.js", "/shader-loader.js"] {
+            assert!(INDEX.contains(path), "missing map detail module {path}");
+        }
         // /terrain.png is DELIBERATELY UNREFERENCED. It was the fallback the GL
         // layer dropped back to on a lost context, and a sphere has no svg under
         // it to fall back onto -- so the <image> that fetched 613 KB on every

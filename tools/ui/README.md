@@ -26,6 +26,11 @@ browser, npm install, running server or campaign. Run a single file with
 | `check_map_controls.cjs` | Actual control module: view-only actions, detail flags, camera bounds, native states, repeated binding and focus across replacement. |
 | `check_map_focus.cjs` | Layer/filter focus after replacement, native commodity buttons, escaped labels and Escape priority for open navigation. |
 | `check_map_detail.cjs` | Actual map paint and draw functions: province ownership under decorative toggles, progressive borders, zoom-cache invalidation and Terrain shader uniform reset. |
+| `check_terrain_labels.cjs` | Sourced physical names, district-member anchors, camera-facing and shared collision bounds. |
+| `check_water_detail.cjs` | Unchanged river courses, display hierarchy, source-vertex name anchors and label density. |
+| `check_height_detail.cjs` | Independent elevation decode, graphics capability fallback and texture cleanup. |
+| `check_shader_loader.cjs` | Responsive shader preparation, compile/link errors and context-loss cleanup. |
+| `check_polar_cap.cjs` | Unmapped north-cap shading and the existing globe picking limit. |
 | `check_city_labels.cjs` | Actual city overlay: measured text, collision handling, persistent markers and independent city/name visibility. |
 | `check_competition.cjs` | Exchange view rendering, authoritative supply forecasts and saved AI review snapshots, escaping, all-size filters, served purchase quantities, repeat-safe receipts, campaign binding and stale-request invalidation. |
 
@@ -66,11 +71,13 @@ Check both desktop and narrow layouts:
 
 - Map: compare Terrain, Political and Fronts, then use More layers from History.
   Zoom from world to province scale, rotate, return to World and center Home.
-  Check Borders, Provinces, Cities and Labels separately; selection and changed
+  Check Borders, Provinces, Cities, Labels, Physical names and Coordinate grid separately; selection and changed
   provincial ownership must remain visible. City markers stay when names cannot
   fit. Verify the dock clears the legend, Details opens without clipping, and
-  keyboard focus survives a map refresh. Terrain uses the existing relief,
-  river and boundary data; this pass does not add new geographic measurements.
+  keyboard focus survives a map refresh. Verify named rivers and regional relief
+  at close zoom, and compare lake/coastal alignment across Terrain and Political.
+  The independent detail height texture is sampled from NOAA ETOPO 2022; the
+  base coast, water and cover textures retain their original decode contracts.
 - Setup and Global Command: labels match the rendered elements, character art
   stays intact, actions and supporting text remain readable.
 - Every room: Escape closes the expected layer, Tab stays within the active

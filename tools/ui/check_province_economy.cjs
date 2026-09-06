@@ -269,6 +269,7 @@ function provinceRenderFixture() {
   // Map furniture is a separate module; this fixture exercises the retained
   // province drawer through a full parent replacement.
   c.MapControls={html:()=>'',bind(){}};
+  c.GL={ready:true,reason:''};
   for(const name of ['globeBoot','applyCam','glShimmerKick','camWork','invalidateProgramPreview'])c[name]=()=>{};
   c.globeReadout=()=>'';c.rglyph=()=>'';c.resHue=()=>'';
   c.nationOfDistrict=id=>id==='US-CA'?'USA':'France';

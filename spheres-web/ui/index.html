@@ -2956,6 +2956,10 @@
 <script src="/cities.js"></script>
 <script src="/globe3d.js"></script>
 <script src="/map-controls.js"></script>
+<script src="/terrain-labels.js"></script>
+<script src="/water-detail.js"></script>
+<script src="/height-detail.js"></script>
+<script src="/shader-loader.js"></script>
 <script src="/campaign-transport.js"></script>
 <script src="/area-art.js"></script>
 <script src="/campaign-ui.js"></script>
@@ -3253,7 +3257,7 @@ let pickedNation = null;
 const ui = {
   tab: "map",
   mapMode: "terrain",
-  mapDetails: { borders: true, provinces: true, cities: true, labels: true },
+  mapDetails: { relief: true, borders: true, provinces: true, cities: true, labels: true, features: true, grid: false },
   resCommodity: "oil",   // which commodity the resource layer is painting ("__all" = every one)
   resOverlay: false,     // resource layer riding on TOP of whatever shading is selected
   resLimitsOpen: false,  // the "what this layer cannot say" disclosure, kept across ticks
@@ -8795,6 +8799,8 @@ const DINDEX = (() => {
     for (const d of DISTRICTS.byCountry[iso]) m[d.id] = { iso, ...d };
   return m;
 })();
+const TERRAIN_FEATURES = TerrainLabels.build(TERRAIN.byId, DINDEX, { worldWidth: WORLD.w });
+const RIVER_LABELS = WaterDetail.buildLabels(RIVERS.rivers);
 
 /* ---- province/state dossier -------------------------------------------
    Geometry answers what was clicked. The sim answers who owns it and how its
@@ -8867,31 +8873,31 @@ function provinceDossierHtml() {
   const links = neighbours.length ? neighbours.map((id) => `<button type="button" class="province-tag"
     onclick="selectProvince('${id}',true)">${escText(DINDEX[id] ? DINDEX[id].name : id)}</button>`).join("")
     : `<span class="province-tag">${spec ? "island / no land border" : "loading borders…"}</span>`;
-  return `<div class="province-head"><div class="province-lock">◆ province / state locked</div>
-    <div class="province-title"><h2>${escText(info.name)}</h2><button class="province-close"
+  return `<div class="province-head"><div class="province-lock">Selected province</div>
+    <div class="province-title"><h2 id="provinceTitle">${escText(info.name)}</h2><button class="province-close"
       onclick="closeProvince()" aria-label="Close">&times;</button></div>
     <div class="province-owner">${escText(owner ? owner.name : ownerId || "Unaligned")} · ${escText(did)}</div></div>
     <div class="province-body"><div class="province-stats">
       <div class="province-stat population"><div class="k">Population</div><div class="v">${residents}</div>
-        <div class="province-note">${escText(growth)} · residents remain with the province when borders move</div></div>
+        <div class="province-note">${escText(growth)}</div></div>
       <div class="province-stat"><div class="k">Terrain</div><div class="v">${escText(terrain)}</div></div>
       <div class="province-stat"><div class="k">Area</div><div class="v">${area}</div></div>
     </div>
+    <div class="province-feature"><span>Physical region</span>${escText(feature)}</div>
+    <div class="province-actions"><button onclick="centerProvince('${did}')">◎ Center on map</button>
+      <button onclick="openNation('${ownerId}')">Nation dashboard</button></div>
     ${provinceEconomyHtml(pop)}
-    <details data-detail-key="geography"><summary>Population &amp; geography</summary><div class="province-stats">
+    <details data-detail-key="geography"><summary>Population &amp; geography</summary>
+    <p class="province-note">The residents remain with the province when borders move.</p><div class="province-stats">
       <div class="province-stat"><div class="k">Density</div><div class="v">${density}</div></div>
       <div class="province-stat"><div class="k">National share</div><div class="v">${share}</div></div>
       <div class="province-stat"><div class="k">Population rank</div><div class="v">${rank}</div></div>
       <div class="province-stat"><div class="k">Borders</div><div class="v">${spec ? neighbours.length : "…"}</div></div>
-    </div>
-    <div class="province-section"><div class="province-section-title">Physical region</div>
-      <div class="province-tags"><span class="province-tag">${escText(feature)}</span></div></div></details>
+    </div></details>
     <div class="province-section"><div class="province-section-title">Strategic deposits</div>
       <div class="province-tags">${provinceDepositHtml(did)}</div></div>
     <details data-detail-key="borders"><summary>Bordering provinces / states · ${neighbours.length}</summary>
-      <div class="province-tags">${links}</div></details>
-    <div class="province-actions"><button onclick="centerProvince('${did}')">◎ center &amp; zoom</button>
-      <button onclick="openNation('${ownerId}')">open nation dossier</button></div></div>`;
+      <div class="province-tags">${links}</div></details></div>`;
 }
 
 function renderProvinceDossier() {
@@ -9229,6 +9235,9 @@ uniform float uAo;           // baked occlusion strength      0 .. 1
 uniform float uGlint;        // water-surface specular        0 .. 1
 
 uniform sampler2D uPhys;     // RGBA16F r=h(m) g=SIGNED depth/occ b=sdf(canvas) a=V
+uniform sampler2D uHeightDetail; // Independent 4800x2036 NOAA elevation, R16F metres
+uniform float uHeightEnabled;
+uniform float uHeightMaxLod;
 uniform sampler2D uRamp;     // 256x2 RGB8  land ramp: row0 arid, row1 humid
 uniform sampler2D uSeaRamp;  // 256x1 RGB8  bathymetric ramp
 uniform sampler2D uLake;     // R8 lake signed distance, LAND POSITIVE, canvas units
@@ -9255,7 +9264,6 @@ const float RX_T[19] = float[19](1.0000, 0.9986, 0.9954, 0.9900, 0.9822, 0.9730,
 // they are named and filled rather than smeared.
 const float LAT_TOP = 83.0;
 const float LAT_BOT = -58.0;
-const vec3  ICE_N = vec3(0.58, 0.66, 0.74);   // Arctic sea ice, above the clip
 const vec3  ICE_S = vec3(0.80, 0.85, 0.89);   // the ice sheet the bake stops short of
 const vec3  ATMO  = vec3(0.30, 0.62, 0.82);   // the rim, and the halo outside the limb
 // The ball's key light, normalised by hand: a const initialiser may legally
@@ -9450,10 +9458,9 @@ void main() {
 
   float glat = degrees(asin(clamp(mp.y, -1.0, 1.0)));
   float glon = degrees(atan(mp.x, mp.z));
-  // The caps the bake does not carry. mapgen clips at 83N/58S, so above and
-  // below that there is no texel to read and the honest thing is to say so in
-  // ice rather than to smear the last drawn parallel over the pole.
-  float capN = smoothstep(LAT_TOP - 0.6, LAT_TOP + 1.2, glat);
+  // The bake stops at 83N/58S. Begin the northern fallback beyond its last
+  // sampled parallel so mapped terrain and highlights remain untouched.
+  float capN = smoothstep(LAT_TOP, LAT_TOP + 1.2, glat);
   float capS = smoothstep(LAT_BOT + 0.6, LAT_BOT - 1.2, glat);
 
   vec2 world = robinsonFwd(glon, clamp(glat, LAT_BOT, LAT_TOP));
@@ -9488,7 +9495,12 @@ void main() {
   // mip floor still prevents aliasing; thematic maps retain their softer read.
   float macroBlur = mix(2.30, 0.65, uTerrainView);
   float L  = clamp(log2(max(texPerPx, 1e-6)) + mix(macroBlur, 0.0, tRelief), 0.0, uMaxLod);
-  float st = exp2(L) / uTexPerWorld;              // finite-difference step, canvas units
+  // Only Terrain brings in the denser measured elevation. Its sampling and
+  // gradients have their own resolution; water masks and cover retain theirs.
+  float heightMix = uHeightEnabled * uTerrainView * smoothstep(0.65, 1.65, uLk);
+  float heightL = clamp(log2(max(texPerPx * 2.0, 1e-6)) + mix(macroBlur, 0.0, tRelief), 0.0, uHeightMaxLod);
+  float st = exp2(L) / uTexPerWorld;
+  float heightSt = exp2(heightL) / (2.0 * uTexPerWorld);
 
   vec4 C  = textureLod(uPhys, uv, L);
   vec4 E  = textureLod(uPhys, (world + vec2( st, 0.0)) / uWorld, L);
@@ -9496,7 +9508,9 @@ void main() {
   vec4 S  = textureLod(uPhys, (world + vec2(0.0,  st)) / uWorld, L);
   vec4 N  = textureLod(uPhys, (world + vec2(0.0, -st)) / uWorld, L);
 
-  float h   = C.r;
+  float heightCenter = C.r;
+  if (heightMix > 0.0) heightCenter = textureLod(uHeightDetail, uv, heightL).r;
+  float h = mix(C.r, heightCenter, heightMix);
   // .g is SIGNED: +ocean depth in metres on water, -baked sky occlusion on land
   // (GLSL_DECODE above states the contract). Every use of dep below clamps or
   // smoothsteps up from 0, so on land it reads exactly as the flat 0 it carried
@@ -9569,8 +9583,24 @@ void main() {
   // On the 23 flat-plane lakes this is a measured no-op: their taps already
   // equal h. aaL is the SAME antialias half-width the coastline threshold uses.
   float aaL = aa;
-  float gx = (hTap(E.r, lE, h, aaL) - hTap(Wt.r, lW, h, aaL)) / (2.0 * st * mx);
-  float gy = (hTap(S.r, lS, h, aaL) - hTap(N.r, lN, h, aaL)) / (2.0 * st * my);
+  float gx = (hTap(E.r, lE, C.r, aaL) - hTap(Wt.r, lW, C.r, aaL)) / (2.0 * st * mx);
+  float gy = (hTap(S.r, lS, C.r, aaL) - hTap(N.r, lN, C.r, aaL)) / (2.0 * st * my);
+  if (heightMix > 0.0 && isLand > 0.0) {
+    vec2 dE = (world + vec2(heightSt, 0.0)) / uWorld;
+    vec2 dW = (world - vec2(heightSt, 0.0)) / uWorld;
+    vec2 dS = (world + vec2(0.0, heightSt)) / uWorld;
+    vec2 dN = (world - vec2(0.0, heightSt)) / uWorld;
+    vec4 lakeHeights = vec4(uLakeMax);
+    if (lC < heightSt + aa) {
+      lakeHeights = vec4(lakeAt(dE, L), lakeAt(dW, L), lakeAt(dS, L), lakeAt(dN, L));
+    }
+    float east = hTap(textureLod(uHeightDetail, dE, heightL).r, lakeHeights.x, heightCenter, aaL);
+    float west = hTap(textureLod(uHeightDetail, dW, heightL).r, lakeHeights.y, heightCenter, aaL);
+    float south = hTap(textureLod(uHeightDetail, dS, heightL).r, lakeHeights.z, heightCenter, aaL);
+    float north = hTap(textureLod(uHeightDetail, dN, heightL).r, lakeHeights.w, heightCenter, aaL);
+    gx = mix(gx, (east - west) / (2.0 * heightSt * mx), heightMix);
+    gy = mix(gy, (south - north) / (2.0 * heightSt * my), heightMix);
+  }
   float slope = length(vec2(gx, gy));
 
   // Micro-relief amplitude is DERIVED, not baked. Measured over 655,694 land
@@ -9704,6 +9734,11 @@ void main() {
   // political layer must stay the subject.
   float hM1 = textureLod(uPhys, uv, min(L + 3.0, uMaxLod)).r;   //  8-texel radius
   float hM2 = textureLod(uPhys, uv, min(L + 5.0, uMaxLod)).r;   // 32-texel radius
+  if (heightMix > 0.0) {
+    // One additional mip preserves the original 8/32 WORLD-unit radii.
+    hM1 = mix(hM1, textureLod(uHeightDetail, uv, min(L + 4.0, uHeightMaxLod)).r, heightMix);
+    hM2 = mix(hM2, textureLod(uHeightDetail, uv, min(L + 6.0, uHeightMaxLod)).r, heightMix);
+  }
   float op1 = sat(h - hM1, 248.0);
   float op2 = sat(h - hM2, 453.0);
   float gate8  = smoothstep(0.0, 8.0, sdf)  * smoothstep(0.0, 8.0, lC);
@@ -9950,7 +9985,9 @@ void main() {
   // player the continent is far bigger than it is. So the band immediately
   // below the clip stays ocean and the ice starts where the ice starts.
   vec3 capCol = mix(OCEAN_1, ICE_S, 1.0 - smoothstep(-69.0, -63.0, glat));
-  col = mix(col, ICE_N, capN);
+  // Continue the northern ocean palette across the unsampled cap. This is a
+  // neutral fallback; no polar land or sea-ice geometry is inferred here.
+  col = mix(col, OCEAN_0, capN);
   col = mix(col, capCol, capS);
 
   // ---- and now it is a ball ----------------------------------------------
@@ -10003,6 +10040,7 @@ void main() {
 /// one class comes off the svg, which restores #relief and lands the page on
 /// precisely today's rendering with all seven modes intact.
 function glFail(reason) {
+  document.getElementById("mapRenderStatus")?.remove();
   if (!GL.reason) GL.reason = String(reason);
   GL.ok = false;
   GL.ready = false;
@@ -10364,11 +10402,11 @@ async function glInit() {
   const vao = gl.createVertexArray();
   gl.bindVertexArray(vao);
 
-  const progDecode = glProgram(gl, GLSL_DECODE, "decode");
+  const progDecode = await ShaderLoader.program(gl, GLSL_VS, GLSL_DECODE, "decode");
   if (GL.forceFail === "probe") GLPROBE_RGB[0] = [128, 128, 128];   // RA1
   await glProbeDecode(gl, progDecode);
 
-  const progMap = glProgram(gl, GLSL_MAP, "map");
+  const progMap = await ShaderLoader.program(gl, GLSL_VS, GLSL_MAP, "map");
   const progGrid = GL.grid ? glProgram(gl, GLSL_GRID, "grid") : null;
   if (GL.forceFail === "link") throw new Error("forced failure (?glfail=link)");
   if (GL.forceFail === "tex") throw new Error("forced failure (?glfail=tex)");
@@ -10436,6 +10474,8 @@ async function glInit() {
     console.warn("[glmap] half-float mips unavailable; running at LOD 0");
   }
 
+  const heightDetail = await HeightDetail.create(gl, { bitmap: glBitmap,
+    program: (context, source, label) => ShaderLoader.program(context, GLSL_VS, source, label), upload: glUpload });
   const ramp = glRampTex(gl, [
     glRampRow(GL_RAMP_STOPS, GL_RAMP_ARID, 5200, 0.45, 256),
     glRampRow(GL_RAMP_STOPS, GL_RAMP_HUMID, 5200, 0.45, 256),
@@ -10448,11 +10488,12 @@ async function glInit() {
     return o;
   };
   GLR = {
-    gl, progMap, progGrid, vao, phys: dec.tex, lake, ramp, seaRamp,
+    gl, progMap, progGrid, vao, phys: dec.tex, lake, ramp, seaRamp, heightDetail,
     u: U(progMap, ["invRot", "camDist", "half", "res",
       "world", "texPerWorld", "pxPerWorld", "lk", "maxLod",
       "ground", "terrainView", "sat", "shade", "sea", "hazeMax", "shimmer", "time", "ao", "glint",
-      "phys", "ramp", "seaRamp", "lake", "lakeMax", "pol", "polOp", "sel"]),
+      "phys", "ramp", "seaRamp", "lake", "lakeMax", "pol", "polOp", "sel",
+      "heightDetail", "heightEnabled", "heightMaxLod"]),
     uGrid: progGrid ? U(progGrid, ["frag2World", "world", "pxPerWorld"]) : null,
   };
 
@@ -10602,10 +10643,10 @@ function paintPolitical() {
   S.nations.forEach((n) => (TERRITORY[n.id] || []).forEach((c) => (claimed[c] = n)));
 
   // 0. the graticule. Under everything, at the mode's own ramp.
-  if (g.gratop > 0) {
-    ctx.globalAlpha = g.gratop;
+  if (g.gratop > 0 && ui.mapDetails?.grid === true) {
+    ctx.globalAlpha = terrainView ? Math.min(g.gratop, .12) : g.gratop;
     ctx.strokeStyle = "#0f1826";
-    ctx.lineWidth = 1.1;
+    ctx.lineWidth = terrainView ? .55 : 1.1;
     for (const d of WORLD.graticule) ctx.stroke(p2d(d));
     ctx.globalAlpha = 1;
   }
@@ -10695,16 +10736,12 @@ function paintPolitical() {
 
   // 6. rivers and lakes, above the mesh so the mesh never rules through a
   // river, and quiet at world zoom for the same reason the mesh is absent.
-  const wet = detail.riverOpacity;
   if (RIVERS.lakes.length) {
     ctx.globalAlpha = ui.mapMode === "terrain" ? .55 : .3;
     ctx.fillStyle = terrainView ? "#386c8b" : "#4c8ee0";
     for (const d of RIVERS.lakes) ctx.fill(p2d(d));
   }
-  ctx.globalAlpha = wet;
-  ctx.strokeStyle = terrainView ? "#78adb7" : "#4c8ee0";
-  ctx.lineWidth = detail.riverWidth;
-  for (const r of RIVERS.rivers) ctx.stroke(p2d(r.d));
+  WaterDetail.paint(ctx, RIVERS.rivers, detail, { terrainView, zoom: ui.cam.k, path: p2d });
   ctx.globalAlpha = 1;
 
   ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -10910,6 +10947,8 @@ function glDrawGlobe(view) {
   gl.uniform1f(u.maxLod, GL.maxLod);
   gl.uniform1f(u.ground, dial.ground);
   gl.uniform1f(u.terrainView, ui.mapMode === "terrain" ? 1 : 0);
+  gl.uniform1f(u.heightEnabled, GLR.heightDetail && ui.mapDetails?.relief !== false ? 1 : 0);
+  gl.uniform1f(u.heightMaxLod, GLR.heightDetail?.maxLod || 0);
   gl.uniform1f(u.sat, dial.sat);
   gl.uniform1f(u.shade, dial.shade);
   gl.uniform1f(u.sea, dial.sea);
@@ -10928,12 +10967,14 @@ function glDrawGlobe(view) {
   gl.uniform1i(u.lake, 5);
   gl.uniform1i(u.pol, 3);
   gl.uniform1i(u.sel, 4);
+  gl.uniform1i(u.heightDetail, 6);
   gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, GLR.phys);
   gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, GLR.ramp);
   gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, GLR.seaRamp);
   gl.activeTexture(gl.TEXTURE3); gl.bindTexture(gl.TEXTURE_2D, POL.tex);
   gl.activeTexture(gl.TEXTURE4); gl.bindTexture(gl.TEXTURE_2D, SEL.tex);
   gl.activeTexture(gl.TEXTURE5); gl.bindTexture(gl.TEXTURE_2D, GLR.lake);
+  gl.activeTexture(gl.TEXTURE6); gl.bindTexture(gl.TEXTURE_2D, GLR.heightDetail?.texture || GLR.phys);
   gl.drawArrays(gl.TRIANGLES, 0, 3);
 
   glPerf(t1 - t0, performance.now() - t1);
@@ -11049,6 +11090,7 @@ function glBoot() {
   GL.reason = "";
   glInit().then(() => {
     glBooting = false;
+    document.getElementById("mapRenderStatus")?.remove();
     if (GL.shimmer && !GL.shimRaf) GL.shimRaf = requestAnimationFrame(glShimmerTick);
     glSchedule();
     if (GL.proof) setTimeout(glAlignmentProof, 0);
@@ -11194,7 +11236,8 @@ window.glStatus = () => ({
 // = 3,430,693 B). Nothing here blocks the page: every other screen — the
 // dossiers, the tech tree, the log, the ladder — is up and usable while they
 // land, and on failure glFail() says so on the stage.
-glBoot();
+// Graphics are prepared when the map is first opened, so campaign menus never
+// wait for a cold driver to compile shaders or upload elevation textures.
 
 /// Terrain class palette — muted earth tones on the page's steel-brass dark
 /// ground; the multiply hillshade above them does the modelling. The same six
@@ -12347,6 +12390,12 @@ function drawMapOverlay(ctx, view, globe) {
       placed.push(box);ctx.strokeText(d.name,p[0],p[1]);ctx.fillText(d.name,p[0],p[1]);
     }
   }
+  TerrainLabels.draw(ctx, view, globe, TERRAIN_FEATURES, {
+    enabled: ui.mapMode === "terrain" && ui.mapDetails?.features !== false && ui.mapDetails?.labels !== false,
+  });
+  WaterDetail.drawLabels(ctx, view, globe, RIVER_LABELS, {
+    enabled: ui.mapMode === "terrain" && ui.mapDetails?.features !== false && ui.mapDetails?.labels !== false,
+  });
   ctx.textAlign = "left";
 }
 
@@ -12505,7 +12554,8 @@ function renderMap() {
 
   let s = `<div class="globe-stage">
       ${MapControls.html()}
-      <aside class="province-dossier" id="provinceDossier" aria-hidden="true"></aside>
+      ${!GL.ready && !GL.reason ? '<div id="mapRenderStatus" class="map-render-status" role="status">Preparing terrain…</div>' : ''}
+      <aside class="province-dossier" id="provinceDossier" aria-labelledby="provinceTitle" aria-hidden="true"></aside>
       <noscript class="globe-fallback">The globe needs WebGL.</noscript>
     </div>`;
 
@@ -12535,6 +12585,7 @@ function renderMap() {
   const stage = $("#pane-map .globe-stage");
   stage.appendChild(GLCV);
   stage.appendChild(GLOVL);
+  if (!GL.ready && !GL.reason) glBoot();
   renderProvinceDossier();
 
   if (ui.mapMode === "resources" || ui.resOverlay) {

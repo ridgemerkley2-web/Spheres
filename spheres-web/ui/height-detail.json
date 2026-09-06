@@ -1,0 +1,196 @@
+{
+  "encoding": {
+    "blue": 0,
+    "clipped_above_maximum_texels": 0,
+    "clipped_below_minimum_texels": 5812141,
+    "decode": "(R * 256 + G) * (10500 / 65535) - 1500",
+    "maximum_metres": 9000.0,
+    "maximum_quantization_error_metres": 0.08010984909282115,
+    "minimum_metres": -1500.0,
+    "mode": "RGB8",
+    "red_green": "Big-endian uint16",
+    "sampled_maximum_metres": 6955.527858240728,
+    "sampled_minimum_metres": -10590.059271499606,
+    "step_metres": 0.16021972991531244
+  },
+  "landmark_note": "Coordinate neighbourhood samples at this texture resolution; not surveyed summit heights.",
+  "landmarks": [
+    {
+      "encoded_metres": -45.845731288624165,
+      "latitude": 36.14,
+      "longitude": -5.35,
+      "name": "Gibraltar",
+      "reference_error_metres": 0.0,
+      "supersample_mean_metres": -45.80293362310901,
+      "texel_xy": [
+        2333,
+        624
+      ]
+    },
+    {
+      "encoded_metres": 6.706340123598238,
+      "latitude": -55.98,
+      "longitude": -67.27,
+      "name": "Cape Horn",
+      "reference_error_metres": 4.886224758138269e-11,
+      "supersample_mean_metres": 6.709921176327555,
+      "texel_xy": [
+        1657,
+        2007
+      ]
+    },
+    {
+      "encoded_metres": -21.81277180132747,
+      "latitude": 35.5,
+      "longitude": 139.9,
+      "name": "Tokyo Bay",
+      "reference_error_metres": 1.9113599591946695e-12,
+      "supersample_mean_metres": -21.885999497231623,
+      "texel_xy": [
+        4154,
+        634
+      ]
+    },
+    {
+      "encoded_metres": 6955.596246280615,
+      "latitude": 27.9917,
+      "longitude": 86.925,
+      "name": "Everest coordinate",
+      "reference_error_metres": 9.094947017729282e-13,
+      "supersample_mean_metres": 6955.527858240728,
+      "texel_xy": [
+        3518,
+        747
+      ]
+    },
+    {
+      "encoded_metres": 37.14808880750752,
+      "latitude": -3.0,
+      "longitude": -62.0,
+      "name": "Amazon coordinate",
+      "reference_error_metres": 0.0,
+      "supersample_mean_metres": 37.119843455294955,
+      "texel_xy": [
+        1574,
+        1215
+      ]
+    },
+    {
+      "encoded_metres": -427.0084687571525,
+      "latitude": 31.5,
+      "longitude": 35.5,
+      "name": "Dead Sea",
+      "reference_error_metres": 0.0,
+      "supersample_mean_metres": -427.0,
+      "texel_xy": [
+        2851,
+        694
+      ]
+    },
+    {
+      "encoded_metres": 3341.519798580912,
+      "latitude": 45.833,
+      "longitude": 6.865,
+      "name": "Mont Blanc coordinate",
+      "reference_error_metres": 0.0,
+      "supersample_mean_metres": 3341.593510147796,
+      "texel_xy": [
+        2481,
+        479
+      ]
+    },
+    {
+      "encoded_metres": -1500.0,
+      "latitude": 11.35,
+      "longitude": 142.2,
+      "name": "Mariana Trench coordinate",
+      "reference_error_metres": 2.2737367544323206e-10,
+      "supersample_mean_metres": -9927.7695342162,
+      "texel_xy": [
+        4284,
+        998
+      ]
+    }
+  ],
+  "png": {
+    "blue_channel_all_zero": true,
+    "bytes": 6258094,
+    "chunk_types": [
+      "IDAT",
+      "IEND",
+      "IHDR"
+    ],
+    "color_chunks_absent": true,
+    "crc_valid": true,
+    "file": "height-detail.png",
+    "pixel_round_trip_exact": true,
+    "sha256": "2552e0449c2f938481527ecd07d8ff6f613ca8bb08af5ed4cbd7b8de5151d84a"
+  },
+  "product": "Separate higher-resolution elevation texture",
+  "projection": {
+    "canvas_height_exact": 1018.1941195106424,
+    "canvas_width": 2400.0,
+    "latitude_clip": [
+      -58.0,
+      83.0
+    ],
+    "max_inverse_round_trip_error_canvas_units": 1.6342482922482304e-13,
+    "name": "Robinson, exact existing mapgen canvas",
+    "off_globe_supersamples_edge_clamped": 3514150,
+    "radius": 450.06700061334845,
+    "y_top": 585.1448290912537
+  },
+  "reproducibility": {
+    "generator_sha256": "f475835e3fe6aa678411d84226ed01f6c1a2f037ff72ee2be053de38ba2b3315",
+    "h5py": "3.16.0",
+    "numpy": "2.3.5",
+    "pillow": "12.3.0",
+    "projection_helper_sha256": "e1ffa5f95f8a852da44436aed870db05ce17682838e06852dbd3228233a80f29",
+    "same_array_png_serialization_identical": true,
+    "source_code_hash_normalization": "UTF-8 text with LF line endings"
+  },
+  "sampling": {
+    "longitude": "Clamp projected longitude to +/-180, then wrap source columns across seam",
+    "method": "Bilinear source sampling; mean of 2x2 elevations before clipping and quantization",
+    "output_size": [
+      4800,
+      2036
+    ],
+    "supersample_size": [
+      9600,
+      4072
+    ]
+  },
+  "schema": 1,
+  "source": {
+    "bytes": 478290125,
+    "cell_registration": true,
+    "citation": "NOAA National Centers for Environmental Information (2022), ETOPO 2022, doi:10.25921/fd45-gt74.",
+    "dataset": "z",
+    "download_url": "https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO2022/60s/60s_surface_elev_netcdf/ETOPO_2022_v1_60s_N90W180_surface.nc",
+    "dtype": "float32",
+    "invalid_cells": 0,
+    "latitude_endpoints": [
+      -89.99166666666666,
+      89.99166666666667
+    ],
+    "latitude_increases_south_to_north": true,
+    "longitude_endpoints": [
+      -179.99166666666667,
+      179.99166666666667
+    ],
+    "maximum_metres": 8157.3564453125,
+    "minimum_metres": -10752.08203125,
+    "name": "ETOPO_2022_v1_60s_N90W180_surface.nc",
+    "northern_row_mean_metres": -4189.941458333334,
+    "product_url": "https://www.ncei.noaa.gov/products/etopo-global-relief-model",
+    "sha256": "74bbc5c23e85188d93f0beba8116babf69e1a8f160e8dc9f053bf8df01b197b6",
+    "shape": [
+      10800,
+      21600
+    ],
+    "southern_row_mean_metres": 2832.0515590752498,
+    "units": "metres",
+    "vertical_datum": "EGM2008"
+  }
+}

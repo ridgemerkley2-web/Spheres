@@ -3,7 +3,8 @@
 (function () {
   "use strict";
   const modes = ["terrain", "political", "fronts"];
-  const details = { borders: "Borders", provinces: "Provinces", cities: "Cities", labels: "Labels" };
+  const details = { relief: "Detailed terrain", borders: "Borders", provinces: "Provinces", cities: "Cities", labels: "Labels", features: "Physical names", grid: "Coordinate grid" };
+  const defaults = { relief: true, borders: true, provinces: true, cities: true, labels: true, features: true, grid: false };
   let focusKey = null;
   let detailsOpen = false;
   let dockResizeObserver = null;
@@ -50,7 +51,7 @@
   function flags() {
     if (!ui.mapDetails) ui.mapDetails = {};
     for (const key of Object.keys(details)) {
-      if (typeof ui.mapDetails[key] !== "boolean") ui.mapDetails[key] = true;
+      if (typeof ui.mapDetails[key] !== "boolean") ui.mapDetails[key] = defaults[key];
     }
     return ui.mapDetails;
   }

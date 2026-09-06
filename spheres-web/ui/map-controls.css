@@ -1,4 +1,5 @@
 /* Scoped map furniture; menus and simulation controls retain their handlers. */
+.map-render-status { position: absolute; z-index: 5; left: 50%; top: 55%; transform: translate(-50%, -50%); padding: 12px 18px; border: 1px solid #42566b; border-radius: 12px; background: #17232fe8; color: #d5e7df; font-size: 14px; pointer-events: none; }
 /* The module replaces this fallback with the dock's measured footprint. */
 #app.map-controls-ready { height: 100dvh; --map-dock-space: 108px; }
 #app.map-controls-ready > header { position: relative; z-index: 40; }
@@ -38,7 +39,29 @@
 .map-camera-caption { display: block; font-size: 10px; margin-top: 3px; }
 .map-view-status { min-width: 97px; padding: 0 5px; text-align: center; font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
+/* The dock already has its own space. Let province facts use the map's height,
+   and retain the close control while the longer economic sections scroll. */
+#app.map-controls-ready .province-dossier { top: 8px; bottom: auto; left: auto; right: 8px; width: min(430px,calc(100% - 16px)); max-height: min(680px,calc(100% - 16px)); border-radius: 16px; overscroll-behavior: contain; scroll-padding-top: 110px; }
+#app.map-controls-ready .province-head { position: sticky; top: 0; z-index: 2; padding: 12px 14px; background: #202c39; }
+#app.map-controls-ready .province-lock { font-size: 10px; letter-spacing: .1em; }
+#app.map-controls-ready .province-title { margin-top: 4px; align-items: center; }
+#app.map-controls-ready .province-title h2 { font-size: 25px; line-height: 1.12; }
+#app.map-controls-ready .province-owner { margin-top: 3px; font-size: 12px; }
+#app.map-controls-ready .province-body { padding: 12px 14px 16px; }
+#app.map-controls-ready .province-body > .province-stats { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 7px; }
+#app.map-controls-ready .province-stat { min-height: 0; padding: 10px; border-radius: 9px; }
+#app.map-controls-ready .province-stat.population { grid-column: auto; padding: 10px; }
+#app.map-controls-ready .province-stat .k { font-size: 11px; }
+#app.map-controls-ready .province-stat .v { font-size: 15px; overflow-wrap: anywhere; }
+#app.map-controls-ready .province-stat.population .v { font: 700 25px/1.1 var(--serif); }
+#app.map-controls-ready .province-note { font-size: 12px; line-height: 1.45; }
+#app.map-controls-ready .province-feature { display: flex; flex-wrap: wrap; gap: 5px 10px; margin-top: 10px; color: #d7ddcd; font-size: 13px; }
+#app.map-controls-ready .province-feature > span { color: var(--arc-muted); }
+#app.map-controls-ready .province-actions { margin: 12px 0 16px; gap: 7px; }
+#app.map-controls-ready .province-actions button { min-height: 44px; padding: 7px; font-size: 13px; }
+
 @media (max-width: 700px) {
+  #app.map-controls-ready .province-dossier { left: 8px; right: 8px; width: auto; }
   #app.map-controls-ready { --map-dock-space: 86px; }
   #app.map-controls-ready .timebtns { justify-content: flex-end; gap: 5px; }
   #app.map-controls-ready #commandDock { left: 7px; right: 7px; bottom: 6px; padding: 5px; }

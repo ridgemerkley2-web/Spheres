@@ -22,7 +22,7 @@ function canvasFixture() {
   const calls = [];
   const ctx = {
     globalAlpha: 1, lineWidth: 1, strokeStyle: '', fillStyle: '',
-    setTransform() {}, clearRect() {},
+    setTransform() {}, clearRect() {}, save() {}, restore() {},
     stroke(shape) { calls.push({ kind: 'stroke', shape, alpha: this.globalAlpha,
       width: this.lineWidth, color: this.strokeStyle }); },
     fill(shape, rule) { calls.push({ kind: 'fill', shape, rule, alpha: this.globalAlpha,
@@ -36,6 +36,8 @@ function canvasFixture() {
     polUpload: () => calls.push({ kind: 'upload' }),
     polColor: id => `color-${id}`,
   });
+  context.window = context;
+  run(context, fs.readFileSync(path.join(__dirname, '../../spheres-web/ui/water-detail.js'), 'utf8'));
   run(context, `
     let ui = { mapMode: 'terrain', cam: { k: 4 },
       mapDetails: { borders: true, provinces: true, cities: true, labels: true } };
@@ -107,6 +109,22 @@ test('political painting keeps transferred ownership and data overlays independe
   assert.equal(run(fixture.context, 'JSON.stringify(S)'), before);
   assert.equal(run(fixture.context, 'POL.dirty'), false);
   assert.equal(calls.at(-1).kind, 'upload');
+});
+
+test('the optional grid draws lightly in Terrain and never changes geographic fills', () => {
+  const fixture = canvasFixture();
+  const without = plain(fixture.paint());
+  assert(!without.some(call => call.shape === 'grid'));
+  run(fixture.context, 'ui.mapDetails.grid = true;');
+  const terrain = plain(fixture.paint());
+  const grid = terrain.find(call => call.kind === 'stroke' && call.shape === 'grid');
+  assert.equal(grid.alpha, .12); assert.equal(grid.width, .55);
+  assert.deepEqual(terrain.filter(call => call.kind === 'fill'), without.filter(call => call.kind === 'fill'));
+  run(fixture.context, "ui.mapMode = 'political';");
+  const political = fixture.paint().find(call => call.kind === 'stroke' && call.shape === 'grid');
+  assert.equal(political.alpha, .2); assert.equal(political.width, 1.1);
+  run(fixture.context, 'ui.mapDetails.grid = false;');
+  assert(!fixture.paint().some(call => call.shape === 'grid'));
 });
 
 test('detail switches suppress decorative boundaries while preserving country ownership, water, and fronts', () => {

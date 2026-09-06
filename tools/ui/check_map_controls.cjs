@@ -247,7 +247,7 @@ test('switching from History to Terrain changes only the view even while a day i
   assert.equal(f.c.POL.dirty, true); assert.equal(f.c.SEL.dirty, true);
   assert(f.calls.some(call => call[0] === 'renderMap'), 'the chosen shading must be rendered');
   assert.equal(JSON.stringify(f.c.ui.cam), camera, 'changing shading preserves camera position');
-  assert.deepEqual(Object.keys(f.c.ui.mapDetails).filter(key => !f.c.ui.mapDetails[key]), []);
+  assert.deepEqual(Object.keys(f.c.ui.mapDetails).filter(key => !f.c.ui.mapDetails[key]), ['grid']);
   f.assertViewOnly();
 });
 
@@ -258,11 +258,11 @@ test('unknown shading cannot replace the active mode or repaint the map', () => 
 });
 
 test('each detail toggle changes exactly its own flag and repaints without simulation commands', () => {
-  for (const key of ['borders', 'provinces', 'cities', 'labels']) {
+  for (const key of ['relief', 'borders', 'provinces', 'cities', 'labels', 'features']) {
     const f = fixture(); f.calls.length = 0;
     f.c.MapControls.toggleDetail(key);
     assert.equal(f.c.ui.mapDetails[key], false, key + ' switches off');
-    for (const other of ['borders', 'provinces', 'cities', 'labels'].filter(name => name !== key)) assert.equal(f.c.ui.mapDetails[other], true, other + ' remains on');
+    for (const other of ['relief', 'borders', 'provinces', 'cities', 'labels', 'features'].filter(name => name !== key)) assert.equal(f.c.ui.mapDetails[other], true, other + ' remains on');
     assert.equal(f.c.POL.dirty, true, key + ' invalidates political paint');
     assert.equal(f.c.SEL.dirty, true, key + ' invalidates selection paint');
     assert(f.calls.some(call => call[0] === 'globeRender' || call[0] === 'renderMap'), key + ' repaints immediately');
@@ -278,6 +278,20 @@ test('unknown detail keys cannot introduce state or repaint the map', () => {
   const f = fixture(); const original = JSON.stringify(f.c.ui.mapDetails); f.calls.length = 0;
   f.c.MapControls.toggleDetail('not-a-map-detail');
   assert.equal(JSON.stringify(f.c.ui.mapDetails), original); assert.equal(f.calls.length, 0); f.assertViewOnly();
+});
+
+test('the optional coordinate grid starts off and preserves its choice through map rebuilds', () => {
+  const f = fixture();
+  assert.equal(f.c.ui.mapDetails.grid, false);
+  f.one('[data-map-detail="grid"]').click();
+  assert.equal(f.c.ui.mapDetails.grid, true);
+  assert.equal(f.one('[data-map-detail="grid"]').getAttribute('aria-pressed'), 'true');
+  f.c.MapControls.setMode('terrain');
+  assert.equal(f.c.ui.mapDetails.grid, true);
+  f.one('[data-map-detail="grid"]').click(); f.mount();
+  assert.equal(f.c.ui.mapDetails.grid, false);
+  assert.equal(f.c.ui.mapDetails.features, true);
+  f.assertViewOnly();
 });
 
 test('sync exposes current shading and every toggle state through native controls', () => {
