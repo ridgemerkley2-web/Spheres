@@ -2351,6 +2351,7 @@
 <link rel="stylesheet" href="/agency.css">
 <link rel="stylesheet" href="/operations-ui.css">
 <link rel="stylesheet" href="/area-art.css">
+<link rel="stylesheet" href="/arsenal3d.css">
 <style>
 .session-pending button { min-height:44px; white-space:normal; }
 .session-pending button:focus-visible { outline:3px solid #6754b0; outline-offset:3px; }
@@ -2965,6 +2966,8 @@
 <script src="/campaign-transport.js"></script>
 <script src="/area-art.js"></script>
 <script src="/campaign-ui.js"></script>
+<script src="/arsenal-models.js"></script>
+<script src="/arsenal3d.js"></script>
 <script src="/chronicle-data.js"></script>
 <script src="/chronicle-ui.js"></script>
 <script src="/programs-ui.js"></script>
@@ -15431,6 +15434,14 @@ function manufacturingTone(line) {
   return status === "blocked" ? "blocked" : status === "paused" ? "paused" : status === "slowed" ? "slowed" : "building";
 }
 function manufacturingClassMark(value) { return MANU_CLASS_MARK[String(value || "").toLowerCase()] || "◆"; }
+/// The markup for one kit's 3D model, or nothing at all. Emitted next to the
+/// class glyph rather than instead of it: arsenal3d.js draws into the canvas and
+/// marks the card, and a browser with no WebGL2 -- or a kit id this build's
+/// models have never heard of -- drops the canvas and keeps the glyph. That is
+/// the whole fallback, and it is why nothing else here has to branch on it.
+function manufacturingKit3d(kit, cls) {
+  return window.Arsenal3D && Arsenal3D.available ? Arsenal3D.canvasHtml(kit, cls) : "";
+}
 function manufacturingBn(value, digits) { return `$${(+value || 0).toFixed(digits == null ? 2 : digits)}bn`; }
 function manufacturingRequirementHtml(requirement) {
   const quantity = requirement.draw != null ? +requirement.draw : +requirement.required || 0;
@@ -15491,7 +15502,7 @@ function manufacturingLineHtml(line) {
   const actualUnits = settled ? `${fmtQ(line.units_ordered_day || 0)} units last day · ${fmtQ(line.units_planned_day || 0)} planned`
     : `${fmtQ(line.units_planned_day || 0)} units planned for the next day`;
   return `<article class="work-card factory-card ${tone}${String(MANU.selected) === String(line.id) ? " selected" : ""}" tabindex="0" data-manu-line="${logisticsEscAttr(line.id)}">
-    <div class="work-top"><span class="work-art" aria-hidden="true">${manufacturingClassMark(line.class)}</span>
+    <div class="work-top"><span class="work-art" aria-hidden="true"><b class="mark">${manufacturingClassMark(line.class)}</b>${manufacturingKit3d(line.kit, line.class)}</span>
       <div class="work-title"><b>${escText(line.name || line.kit)}</b><span>${escText(province.name || province.id || "Arms plant")} · ${escText(line.class || "Equipment")}</span></div>
       <span class="work-state">${escText(String(line.status || "producing").toUpperCase())}</span></div>
     <div class="factory-output"><span>Actual last day<b>${actualMoney}</b></span><span>Last run<b>${actualSpeed}</b></span><span>Lead time<b>${lead ? `${lead} days` : "pending"}</b></span></div>
@@ -15508,8 +15519,8 @@ function manufacturingLineHtml(line) {
 
 function manufacturingLedgerHtml() {
   const holdings = manufacturingHoldings(), orders = manufacturingOrders();
-  const heldRows = holdings.slice(0, 12).map((row) => `<div class="factory-ledger-row"><b>${escText(row.name || row.kit)}</b><span>${fmtQ(row.units)} units · ${manufacturingBn(row.book_value_bn)}<br>${Math.round((+row.condition || 0) * 100)}% condition</span></div>`).join("");
-  const orderRows = orders.slice(0, 12).map((row) => `<div class="factory-ledger-row"><b>${escText(row.name || row.kit)}</b><span>${fmtQ(row.units)} units · ${escText(row.due_date || `${row.due_days || 0} days`)}<br>${manufacturingBn(row.value_bn)}</span></div>`).join("");
+  const heldRows = holdings.slice(0, 12).map((row) => `<div class="factory-ledger-row"><b>${manufacturingKit3d(row.kit, row.class)}${escText(row.name || row.kit)}</b><span>${fmtQ(row.units)} units · ${manufacturingBn(row.book_value_bn)}<br>${Math.round((+row.condition || 0) * 100)}% condition</span></div>`).join("");
+  const orderRows = orders.slice(0, 12).map((row) => `<div class="factory-ledger-row"><b>${manufacturingKit3d(row.kit, row.class)}${escText(row.name || row.kit)}</b><span>${fmtQ(row.units)} units · ${escText(row.due_date || `${row.due_days || 0} days`)}<br>${manufacturingBn(row.value_bn)}</span></div>`).join("");
   return `<details class="factory-ledger"><summary>Arsenal &amp; delivery pipeline · ${holdings.length} held · ${orders.length} orders</summary>
     <div class="factory-ledger-list">${orderRows || `<div class="production-empty">Nothing is on order.</div>`}${heldRows}</div></details>`;
 }
@@ -15545,7 +15556,7 @@ function manufacturingCatalogHtml() {
       ? `${manufacturingBn(kit.unit_cost_bn, 3)} / unit · ${kit.lead_days} days to field`
       : kit.lock_reason || (kit.tech && `Requires ${kit.tech.name || kit.tech.id}`) || "Technology locked";
     return `<button type="button" class="equipment-choice${kit.unlocked ? "" : " locked"}" data-class-mark="${logisticsEscAttr(manufacturingClassMark(kit.class))}" ${available ? `data-manu-kit="${logisticsEscAttr(kit.id)}"` : "disabled"}>
-      <b>${escText(kit.name)}</b><span>${escText(kit.class)} · service life ${Math.round((+kit.service_months || 0) / 12)} years</span><em>${escText(meta)}</em></button>`;
+      ${manufacturingKit3d(kit.id, kit.class)}<b>${escText(kit.name)}</b><span>${escText(kit.class)} · service life ${Math.round((+kit.service_months || 0) / 12)} years</span><em>${escText(meta)}</em></button>`;
   }).join("");
   return `${operationsHeroHtml("manufacturing", "Step 1 · Choose a programme", "Make your next move.", "Browse equipment your nation knows how to build. Choose a programme, then place it in a free arms-plant slot.")}
     <div class="production-stamp"><b>Equipment catalogue</b><span>Locked programmes stay tucked away until you need them</span></div>
@@ -15580,6 +15591,10 @@ function renderManufacturingPanel() {
   else body.innerHTML = manufacturingLinesHtml();
   operationsRestoreDetails(body, details);
   wireManufacturingPanel();
+  // The panel replaces its own innerHTML, so every mounted canvas died with the
+  // last render. Mounting is a draw call against buffers that are already on the
+  // card, so re-scanning is cheaper than trying to keep the old nodes alive.
+  if (window.Arsenal3D) Arsenal3D.scan(body);
 }
 
 function wireManufacturingPanel() {

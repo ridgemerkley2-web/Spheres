@@ -187,6 +187,11 @@ Two pillars from SPEC.md, and where each now stands:
   file, no build step and no CDN). It owns no game logic: it holds one WorldState,
   routes player actions through the same `Command` queue, and renders. Keep it that
   way — the sim stays the single source of truth.
+  The equipment models are the one asset set built rather than baked:
+  `ui/arsenal-models.js` holds a mesh for every id in `arsenal::DECK` and
+  `ui/arsenal3d.js` draws them from ONE WebGL2 context — see
+  `tools/arsenal/README.md` before adding a kit, and note the deck parity test
+  in main.rs fails in both directions.
 
 ## Owner preferences
 - Owner: Ridge. Wants playable results early, and wants to SEE the game — prefer

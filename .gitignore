@@ -32,3 +32,5 @@ saves/
 save.json.bak
 # Exact flag-icons build input is downloaded on demand (tools/avatars/README.md).
 .tmp-flag-icons/
+# Derived: node tools/arsenal/export_obj.js rebuilds every mesh in a second.
+tools/arsenal/obj/

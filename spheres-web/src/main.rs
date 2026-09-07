@@ -97,6 +97,15 @@ const COMPETITION_CSS: &str = include_str!("../ui/competition.css");
 const COMPETITION_UI_JS: &str = include_str!("../ui/competition-ui.js");
 const MILITARY_OPERATIONS_JS: &str = include_str!("../ui/operations-ui.js");
 const MILITARY_OPERATIONS_CSS: &str = include_str!("../ui/operations-ui.css");
+/// The equipment models: one low-poly mesh per id in `arsenal::DECK`, built in
+/// code because this page has no build step and no CDN to load a glTF from. The
+/// geometry half is DOM-free on purpose — `tools/arsenal/export_obj.js` runs the
+/// same file under node to dump the deck to Wavefront OBJ, and the tests below
+/// assert the two decks have not drifted apart.
+const ARSENAL_MODELS_JS: &str = include_str!("../ui/arsenal-models.js");
+/// The one WebGL2 context that draws those models into the equipment cards.
+const ARSENAL3D_JS: &str = include_str!("../ui/arsenal3d.js");
+const ARSENAL3D_CSS: &str = include_str!("../ui/arsenal3d.css");
 /// Baked country outlines — see `src/bin/mapgen.rs`.
 const WORLD_JS: &str = include_str!("../ui/world.js");
 /// Baked admin-1 district outlines, same projection and canvas as world.js.
@@ -6182,7 +6191,7 @@ fn main() {
                 }
                 continue;
             }
-            (Method::Get, path @ ("/arcade.css" | "/arcade-operations.css" | "/arcade-discovery.css" | "/chronicle.css" | "/programs.css" | "/province-economy.css" | "/competition.css" | "/agency.css")) => {
+            (Method::Get, path @ ("/arcade.css" | "/arcade-operations.css" | "/arcade-discovery.css" | "/chronicle.css" | "/programs.css" | "/province-economy.css" | "/competition.css" | "/agency.css" | "/arsenal3d.css")) => {
                 let css = match path {
                     "/arcade-operations.css" => ARCADE_OPERATIONS_CSS,
                     "/arcade-discovery.css" => ARCADE_DISCOVERY_CSS,
@@ -6191,6 +6200,7 @@ fn main() {
                     "/province-economy.css" => PROVINCE_ECONOMY_CSS,
                     "/competition.css" => COMPETITION_CSS,
                     "/agency.css" => AGENCY_CSS,
+                    "/arsenal3d.css" => ARSENAL3D_CSS,
                     _ => ARCADE_CSS,
                 };
                 let _ = request.respond(Response::from_string(css)
@@ -6198,8 +6208,8 @@ fn main() {
                     .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
                 continue;
             }
-            (Method::Get, path @ ("/chronicle-data.js" | "/chronicle-ui.js" | "/programs-ui.js" | "/province-economy-ui.js" | "/competition-ui.js" | "/agency-ui.js")) => {
-                let js = match path { "/chronicle-data.js" => CHRONICLE_DATA_JS, "/programs-ui.js" => PROGRAMS_UI_JS, "/province-economy-ui.js" => PROVINCE_ECONOMY_UI_JS, "/competition-ui.js" => COMPETITION_UI_JS, "/agency-ui.js" => AGENCY_UI_JS, _ => CHRONICLE_UI_JS };
+            (Method::Get, path @ ("/chronicle-data.js" | "/chronicle-ui.js" | "/programs-ui.js" | "/province-economy-ui.js" | "/competition-ui.js" | "/agency-ui.js" | "/arsenal-models.js" | "/arsenal3d.js")) => {
+                let js = match path { "/chronicle-data.js" => CHRONICLE_DATA_JS, "/programs-ui.js" => PROGRAMS_UI_JS, "/province-economy-ui.js" => PROVINCE_ECONOMY_UI_JS, "/competition-ui.js" => COMPETITION_UI_JS, "/agency-ui.js" => AGENCY_UI_JS, "/arsenal-models.js" => ARSENAL_MODELS_JS, "/arsenal3d.js" => ARSENAL3D_JS, _ => CHRONICLE_UI_JS };
                 let _ = request.respond(Response::from_string(js)
                     .with_header(Header::from_bytes("Content-Type", "text/javascript; charset=utf-8").unwrap())
                     .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
@@ -10141,6 +10151,84 @@ mod tests {
         }
         assert!(INDEX.contains("<script src=\"/cities.js\"></script>"));
         assert!(INDEX.contains("<script src=\"/globe3d.js\"></script>"));
+    }
+
+    #[test]
+    /// EVERY KIT IN THE DECK HAS A MODEL, AND UNDER THE NAME THE DECK GIVES IT.
+    ///
+    /// The deck is edited in Rust and the models are written in JavaScript, so
+    /// they can drift in both directions and neither language would say a word:
+    /// a kit added to `arsenal::DECK` would quietly draw its class's stand-in
+    /// forever, and a model left behind after a kit was removed would sit in
+    /// the payload of every page load with nothing to draw it for. This is the
+    /// only place the two decks are ever compared, so it checks both ways.
+    fn every_kit_in_the_deck_has_a_model() {
+        for def in spheres_sim::arsenal::registry() {
+            assert!(
+                ARSENAL_MODELS_JS.contains(&format!("\n    {}: {{", def.id)),
+                "kit {} is in the deck with no model in arsenal-models.js",
+                def.id
+            );
+            assert!(
+                ARSENAL_MODELS_JS.contains(&format!("name: \"{}\"", def.name)),
+                "kit {}'s model is named something other than {:?}",
+                def.id, def.name
+            );
+        }
+        // The other direction, counted rather than named: one `build` per model.
+        assert_eq!(
+            ARSENAL_MODELS_JS.matches("build(m) {").count(),
+            spheres_sim::arsenal::registry().len(),
+            "arsenal-models.js holds a different number of models than the deck \r
+             holds kits -- a model has outlived the kit it was drawn for"
+        );
+        // Six classes, six fallbacks. A browser handed an id from a newer build
+        // than its own must still draw the right KIND of thing.
+        for class in ["infantry", "armour", "air", "naval", "missile", "space"] {
+            assert!(
+                ARSENAL_MODELS_JS.contains(&format!("{class}: \"")),
+                "no fallback model for the {class} class"
+            );
+        }
+    }
+
+    #[test]
+    /// The models reach the cards, and they cost the page nothing it has not
+    /// already agreed to pay.
+    fn the_equipment_models_are_self_contained_and_degrade_to_the_glyph() {
+        for (name, src) in [("arsenal-models.js", ARSENAL_MODELS_JS), ("arsenal3d.js", ARSENAL3D_JS)] {
+            assert!(!src.contains("https://"), "{name} must stay self-contained -- no CDN");
+        }
+        // The split that makes the geometry testable outside a browser: the
+        // model file must not touch the DOM, and the renderer owns exactly one
+        // context for the whole page.
+        assert!(
+            !ARSENAL_MODELS_JS.contains("document.") && !ARSENAL_MODELS_JS.contains("getContext("),
+            "arsenal-models.js has grown a DOM dependency -- it is built and \r
+             exported under node by tools/arsenal/export_obj.js and must stay pure"
+        );
+        assert_eq!(
+            ARSENAL3D_JS.matches("getContext(\"webgl2\"").count(), 1,
+            "arsenal3d.js must keep ONE WebGL2 context for the whole panel; a \r
+             context per card is dropped by the browser once a grid gets long"
+        );
+        assert!(INDEX.contains("<script src=\"/arsenal-models.js\"></script>"));
+        assert!(INDEX.contains("<script src=\"/arsenal3d.js\"></script>"));
+        assert!(INDEX.contains("<link rel=\"stylesheet\" href=\"/arsenal3d.css\">"));
+        assert!(
+            INDEX.contains("Arsenal3D.scan(body);"),
+            "the manufacturing panel replaces its own innerHTML; without a \r
+             re-scan the models are drawn once and never again"
+        );
+        // THE FALLBACK IS THE GLYPH, and it only works while the glyph is still
+        // emitted. arsenal3d.css hides it on a card that got a model; a machine
+        // with no WebGL2 keeps every one of them.
+        assert!(
+            INDEX.contains("const MANU_CLASS_MARK = {")
+                && INDEX.contains("<b class=\"mark\">${manufacturingClassMark(line.class)}</b>"),
+            "the class glyph must stay in the markup -- it is the whole no-WebGL path"
+        );
+        assert!(ARSENAL3D_CSS.contains(".equipment-choice.has-kit3d::before { display: none; }"));
     }
 
     #[test]
