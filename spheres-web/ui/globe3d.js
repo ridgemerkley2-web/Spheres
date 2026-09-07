@@ -122,7 +122,30 @@
 
   const FOV_Y = 42 * DEG;            // vertical field of view
   const HALF_TAN = Math.tan(FOV_Y / 2);
-  const ZOOM_MIN = 1, ZOOM_MAX = 192;
+  /// THE CEILING MOVED WHEN THERE WAS SOMETHING TO SEE AT THE BOTTOM OF IT.
+  ///
+  /// 192 put the camera 81 km up, and every detail ramp in the fragment shader
+  /// had been saturated since zoom 21 — so the last six-fold of that range
+  /// magnified the ground instead of resolving it. With the procedural cover
+  /// layer the ground keeps gaining parcels and woodland the whole way in,
+  /// gated on metres per pixel rather than on zoom, so the range is worth
+  /// walking now.
+  ///
+  /// 512 IS DERIVED, NOT CHOSEN. The camera sits 2.45/zoom Earth radii above
+  /// the datum and the terrain mesh is drawn at 3x exaggeration, so Everest
+  /// stands 8848 x 3 / 6371000 = 0.004166 radii proud of it. The camera is
+  /// outside the terrain only while 2.45/zoom > 0.004166, which is zoom < 588.
+  /// 1024 was tried first and is INSIDE Everest by 11 km; so is 768. 512 leaves
+  /// 30.5 km of altitude against 26.5 km of exaggerated rock — about 15% clear —
+  /// and check_globe_terrain.cjs re-derives that inequality rather than pinning
+  /// the number, so raising the exaggeration cannot silently fly the camera
+  /// into a mountain.
+  ///
+  /// At 512 the ground runs about 20 m per pixel where the camera points, so a
+  /// 260 m field is a dozen pixels and reads as a field. Past that the ETOPO
+  /// tiles underneath (1,855 m per sample) have nothing left to say about the
+  /// SHAPE of the land even though its surface keeps improving.
+  const ZOOM_MIN = 1, ZOOM_MAX = 512;
 
   /// Camera distance from the sphere's CENTRE, in sphere radii. The near limit
   /// is 1 + a hair: the camera may approach the surface but never enter it.

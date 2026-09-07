@@ -10115,6 +10115,78 @@ void main() {
   // point of the floor that world zoom be flat, only that it be quieter.
   li  = 1.0 + (li - 1.0) * uShade * mix(0.75, 1.0, tRelief);
 
+  // ================================================== PROCEDURAL LAND COVER
+  //
+  // WHAT THIS IS, said before anything else: INVENTED GROUND. No dataset in
+  // this repo knows where a field or a wood is. The finest thing the map has
+  // is ETOPO at 1,855 m per sample and a vegetation index at 33 km per pixel,
+  // so everything below is generated, on exactly the footing make_occlusion.py
+  // states for its sky-view factor. It changes only how the ground is COLOURED.
+  // It never touches h, sampleHeight, or any metre the simulation reads.
+  //
+  // WHY IT EXISTS. Every detail ramp above is a smoothstep on log2(zoom) and
+  // the last completes at zoom 21, while the camera goes to 192 — so a
+  // six-fold zoom range added nothing and the ground went SOFTER the closer
+  // you got. What makes real ground legible at 50 m/px is not relief, it is
+  // parcels and woodland.
+  //
+  // THE GATES ARE IN METRES PER PIXEL, NOT ZOOM, and that is the whole trick:
+  // a feature fades in when the screen can resolve it and not before, so it
+  // cannot alias, it is free when far away, and it behaves the same on a phone
+  // and on a 4K panel. fwidth gives the true screen footprint on both the
+  // globe and the raised mesh without either needing to know about the other.
+  float worldPerPx = max(fwidth(world.x), fwidth(world.y));
+  float mPerPx = worldPerPx * mx;
+  vec2 wm = vec2(world.x, world.y);
+
+  // Cover can only sit where the existing model already says ground is ground:
+  // not under snow, not on bare rock, not in the sea.
+  float ground = (1.0 - snow) * (1.0 - rock) * smoothstep(0.0, 1.5, sdf);
+
+  // ---- FIELDS. Real parcels run about 100-400 m across; 260 m is the middle.
+  // Ploughing stops on a slope and where nothing grows, so the term carries the
+  // same slope and vegetation signals the biome model already trusts.
+  float fieldW  = 260.0 / max(mx, 1e-6);            // one parcel, in world units
+  float fieldPx = 260.0 / max(mPerPx, 1e-6);
+  float tField  = smoothstep(2.5, 7.0, fieldPx) * ground
+                * (1.0 - smoothstep(0.10, 0.34, slope))
+                * smoothstep(0.26, 0.52, V)
+                * (1.0 - smoothstep(1400.0, 2600.0, h));
+  if (tField > 0.0) {
+    // Rotated per REGION. The first draft used vnoise(wm * 0.55), which turns
+    // over once every 1.8 world units — about 30 km — so the angle swept
+    // several radians across a single screen and the lattice came out as
+    // scrambled noise rather than as fields. One turn per ~50 world units is
+    // roughly 800 km: a countryside keeps one grain, and the next one over has
+    // a different one.
+    float a = 6.2831853 * vnoise(wm * 0.02);
+    vec2  e = vec2(cos(a), sin(a));
+    vec2  fu = vec2(dot(wm, e), dot(wm, vec2(-e.y, e.x))) / fieldW;
+    float hc = hash12(floor(fu));
+    // Parcel tone. 0.17 was measured on screen and read as a faint mottle
+    // rather than as farmland; 0.30 is what makes a parcel a parcel at the
+    // 13 px a 260 m field occupies at the new ceiling.
+    base *= 1.0 + 0.30 * (hc - 0.5) * 2.0 * tField;
+    // The boundary: a hedge, a track, a ditch. Held to a fraction of a parcel
+    // so it stays a line rather than becoming a grid of its own.
+    vec2  gq = abs(fract(fu) - 0.5);
+    float lineW = clamp(0.055 * fieldPx / max(fieldPx - 1.0, 1.0), 0.02, 0.09);
+    float edge = smoothstep(0.5 - lineW, 0.5, max(gq.x, gq.y));
+    base *= 1.0 - 0.24 * edge * tField;
+  }
+
+  // ---- WOODLAND. Patches at about 700 m, only where the cover index already
+  // says there are trees, and thinning out as the ground steepens into rock.
+  float woodPx = 700.0 / max(mPerPx, 1e-6);
+  float tWood  = smoothstep(2.5, 8.0, woodPx) * ground
+               * smoothstep(0.44, 0.72, V)
+               * (1.0 - smoothstep(0.42, 0.80, slope));
+  if (tWood > 0.0) {
+    float w = vnoise(wm * (mx / 700.0));
+    w = smoothstep(0.52, 0.78, w);
+    base = mix(base, base * vec3(0.68, 0.84, 0.60), w * tWood * 0.70);
+  }
+
   vec3 land = base * li;
   land = mix(land, mix(SNOW_SHAD, SNOW_LIT, clamp(li * 0.72, 0.0, 1.0)), snow);
 
@@ -11317,7 +11389,19 @@ function glDrawGlobe(view) {
   if (terrainActive) GLR.surface.update(view);
   const terrainStatus = document.getElementById('terrainStatus');
   if (terrainStatus) {
-    const text = terrainActive ? (GLR.surface.ready ? 'Raised terrain · 3× relief' : GLR.surface.loading ? 'Loading local terrain…' : 'Global relief') : '';
+    // THE LEGEND HAS TO SAY WHEN THE GROUND STOPS BEING MEASURED. Past about
+    // 40 m per pixel the parcels and woodland under the camera are generated,
+    // not surveyed — the finest data here is ETOPO at 1,855 m — and a surface
+    // that looks like farmland beside a real place name is exactly where
+    // someone would assume otherwise. Relief stays measured throughout; it is
+    // the COVER that is invented, and the wording separates the two.
+    const generated = terrainActive && GLR.surface.ready && view.zoom >= 320;
+    const text = terrainActive
+      ? (GLR.surface.ready
+          ? (generated ? 'Raised terrain · 3× relief · generated ground cover'
+                       : 'Raised terrain · 3× relief')
+          : GLR.surface.loading ? 'Loading local terrain…' : 'Global relief')
+      : '';
     if (terrainStatus.textContent !== text) terrainStatus.textContent = text;
     terrainStatus.dataset.ready = String(terrainActive && GLR.surface.ready);
   }
