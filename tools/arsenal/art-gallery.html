@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SPHERES — art review bench</title>
+<!--
+  The review surface roadmap section 7.2 asks for: every P0 asset under one
+  neutral rig, at the angles that show silhouette, scale and pivot, with its
+  measured numbers beside it so a judgement can be argued with.
+
+  Open it directly — double-click, or `start tools/arsenal/art-gallery.html`.
+  It fetches nothing and needs no server; it loads the same generator files the
+  game loads, so what you see here is what the game draws. If a model looks
+  right here and wrong in the game, the card is at fault, not the mesh.
+
+  It is a BENCH, not a shipped page: no route serves it and the game never
+  loads it.
+-->
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; padding:22px; background:#0d141b; color:#e6edf3;
+    font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  h1 { margin:0 0 2px; font-size:21px; }
+  p.lede { margin:0 0 18px; color:#8fa3b4; max-width:70ch; }
+  .bar { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 18px; }
+  .bar button { padding:7px 14px; border:1px solid #2b3d4d; border-radius:999px;
+    background:#16222c; color:#b9c9d6; font:inherit; cursor:pointer; }
+  .bar button.on { background:#2c5f7a; border-color:#48839f; color:#fff; }
+  .grid { display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
+  .card { padding:12px; border:1px solid #22323f; border-radius:14px; background:#16222c; }
+  .card canvas { display:block; width:100%; height:190px; }
+  .card b { display:block; margin-top:8px; font-size:14px; }
+  .card span { display:block; color:#8fa3b4; font-size:12px; }
+  .card em { display:block; margin-top:3px; color:#6f8496; font-size:11.5px; font-style:normal; }
+  .over { color:#e0a05a; }
+  .warn { padding:14px; border:1px solid #6b3030; border-radius:12px; background:#2a1717; }
+</style>
+</head>
+<body>
+<h1>Art review bench</h1>
+<p class="lede">Every P0 asset, drawn by the same modules the game loads, under one neutral rig.
+Hover to turn. Triangle counts are measured live; a count outside its budget is marked.</p>
+<div class="bar" id="bar"></div>
+<div class="grid" id="grid"></div>
+
+<script src="../../spheres-web/ui/arsenal-models.js"></script>
+<script src="../../spheres-web/ui/arsenal3d.js"></script>
+<script src="../../spheres-web/ui/equipment-mesh.js"></script>
+<script src="../../spheres-web/ui/site-mesh.js"></script>
+<script src="../../spheres-web/ui/town-mesh.js"></script>
+<script src="../../spheres-web/ui/road-mesh.js"></script>
+<script src="../../spheres-web/ui/scatter-mesh.js"></script>
+<script src="../../spheres-web/ui/prop-mesh.js"></script>
+<script>
+(function () {
+  const grid = document.getElementById("grid"), bar = document.getElementById("bar");
+  if (!window.Arsenal3D || !Arsenal3D.available) {
+    grid.innerHTML = '<div class="warn">No WebGL2 here, so nothing to show — which is exactly what the game falls back to, minus the class glyphs.</div>';
+    return;
+  }
+  // Providers, the same shape index.html registers.
+  Arsenal3D.register("veh", (r) => { const [p, lod] = r.split("/");
+    return EquipmentMesh.build(+lod ? { platform: p, lod: +lod } : { platform: p }); });
+  Arsenal3D.register("site", (r) => { const [k, s, l] = r.split("/");
+    return SiteMesh.build(k, s, { level: +l || 1 }); });
+  Arsenal3D.register("siteFar", (r) => { const [k, s, l] = r.split("/");
+    return SiteMesh.build(k, s, { level: +l || 1, lod: "far" }); });
+  Arsenal3D.register("town", (r) => { const [id, d, lod] = r.split("/");
+    return TownMesh.block({ id, district: d, lod: lod || "close" }); });
+  Arsenal3D.register("road", (r) => { const [piece, lod] = r.split("/");
+    return RoadMesh.build(piece, +lod ? { lod: "map" } : {}); });
+  Arsenal3D.register("prop", (r) => { const [piece, lod] = r.split("/");
+    return PropMesh.build(piece, +lod ? { lod: "map" } : {}); });
+
+  const num = (n) => n.toLocaleString();
+  const card = (id, title, sub, tris, band) => {
+    const over = band && (tris < band[0] || tris > band[1]);
+    return `<article class="card has-kit3d"><canvas data-kit3d="${id}"></canvas>
+      <b>${title}</b><span>${sub}</span>
+      <em class="${over ? "over" : ""}">${num(tris)} triangles${band ? ` · budget ${num(band[0])}–${num(band[1])}${over ? " — OUTSIDE" : ""}` : ""}</em></article>`;
+  };
+
+  const VIEWS = {
+    "Vehicles LOD0": () => ["tank_standard","tank_heavy","tank_light","tank_destroyer",
+        "ground_ifv","ground_apc","ground_recon","ground_artillery","ground_air_defense"]
+      .map((p) => card(`veh:${p}/0`, p, "close inspection",
+        EquipmentMesh.build({ platform: p }).triangleCount, [4000, 150000])),
+    "Vehicles LOD1": () => ["tank_standard","ground_apc","ground_ifv","ground_artillery","ground_air_defense","ground_recon"]
+      .map((p) => card(`veh:${p}/1`, p, "catalogue card",
+        EquipmentMesh.build({ platform: p, lod: 1 }).triangleCount, [4000, 12000])),
+    "Vehicles LOD2": () => ["tank_standard","ground_apc","ground_ifv","ground_artillery","ground_air_defense","ground_recon"]
+      .map((p) => card(`veh:${p}/2`, p, "map scale",
+        EquipmentMesh.build({ platform: p, lod: 2 }).triangleCount, [300, 1500])),
+    "Sites complete": () => SiteMesh.kinds()
+      .map((k) => card(`site:${k}/complete/2`, SiteMesh.meta(k).name || k, "level 2, complete",
+        SiteMesh.build(k, "complete", { level: 2 }).triangleCount, [2000, 40000])),
+    "Sites at map LOD": () => SiteMesh.kinds()
+      .map((k) => card(`siteFar:${k}/complete/2`, SiteMesh.meta(k).name || k, "map sprite",
+        SiteMesh.build(k, "complete", { level: 2, lod: "far" }).triangleCount, [100, 800])),
+    "Arms plant stages": () => SiteMesh.stages("arms_plant")
+      .map((s) => card(`site:arms_plant/${s.key}/2`, s.name, `${Math.round(s.from * 100)}%–${Math.round(s.to * 100)}% of recorded work`,
+        SiteMesh.build("arms_plant", s.key, { level: 2 }).triangleCount, [2000, 40000])),
+    "Town": () => TownMesh.districts()
+      .map((d) => card(`town:1990/${d}/close`, d, "assembled block",
+        TownMesh.block({ id: 1990, district: d }).triangleCount, [2000, 400000])),
+    "Deck": () => ArsenalModels.ids()
+      .map((id) => { const g = ArsenalModels.build(id);
+        return card(id, g.name, g.cls, g.count / 3, null); }),
+    "Roads": () => RoadMesh.pieces()
+      .map((p) => card(`road:${p}/0`, p, "near", RoadMesh.build(p).triangleCount, [200, 1200])),
+    "Props": () => PropMesh.pieces()
+      .map((p) => card(`prop:${p}/0`, p, "near", PropMesh.build(p).triangleCount, [300, 2500])),
+  };
+
+  let view = "Vehicles LOD0";
+  function draw() {
+    let html = "";
+    try { html = VIEWS[view]().join(""); }
+    catch (e) { html = `<div class="warn">${view} failed to build: ${e.message}</div>`; }
+    grid.innerHTML = html;
+    Arsenal3D.scan(grid);
+  }
+  bar.innerHTML = Object.keys(VIEWS).map((k) =>
+    `<button data-v="${k}" class="${k === view ? "on" : ""}">${k}</button>`).join("");
+  bar.addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-v]"); if (!b) return;
+    view = b.dataset.v;
+    bar.querySelectorAll("button").forEach((x) => x.classList.toggle("on", x.dataset.v === view));
+    draw();
+  });
+  draw();
+})();
+</script>
+</body>
+</html>
