@@ -78,6 +78,7 @@ they really are the subject and really do fill the frame. Both are art decisions
 with a wider blast radius than a budget line, so I reverted to 214,044 and left
 it with you. The measurement is the useful part: the waste is real and large,
 and the fix is a tier of detail this kit does not yet have.
+
 ## The options
 
 1. **Revise the ceilings to match the art.** Sites to 40,000, platforms to
