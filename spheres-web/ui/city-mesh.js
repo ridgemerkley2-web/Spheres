@@ -551,7 +551,16 @@
     // the span cover the modelled extent exactly. Forced odd so there is a
     // centre cell for the core to sit on.
     const limits = SPAN[lod];
-    let span = clamp(Math.round(extent / BASE_CELL[lod]), limits.min, limits.max);
+    // THE CEILING IS THE CARD'S, AND THE MAP HAS THREE TIMES THE PIXELS. The
+    // close span cap of 81 was derived for a 252 px vignette, where a finer
+    // grid aliases into speckle. Drawn on the globe at 20 m per pixel the same
+    // city is 900 px across, and 81 cells leave Chicago with 224 m superblocks
+    // at 11 px each. A caller that knows its own pixel budget may raise the
+    // ceiling -- never lower the floor, and never above the module's own hard
+    // bound -- and the budget bars below keep grading the DEFAULT, so the card's
+    // numbers do not move when the map asks for more.
+    const maxSpan = Number.isFinite(o.maxSpan) ? clamp(Math.round(o.maxSpan), limits.min, 255) : limits.max;
+    let span = clamp(Math.round(extent / BASE_CELL[lod]), limits.min, maxSpan);
     if ((span & 1) === 0) span += 1;
     let cell = q(extent / span, 0.5);
     let cellClamped = false;

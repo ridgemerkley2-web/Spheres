@@ -10533,7 +10533,11 @@ void main() {
 /// triangles — so the cache is bounded by COUNT here and by the budget below;
 /// a player who tours the world would otherwise walk the same unbounded-cache
 /// path arsenal3d had to be rescued from.
-const CITY_LAYER = { minPx: 110, budget: 4, cache: 14 };
+/// cellPx is the grid pitch the map asks the city for, in screen pixels: the
+/// same 3 px legibility floor the card was derived from, with headroom. The
+/// cache came down 14 -> 8 with it -- a city at map resolution is three to six
+/// times the triangles of one at card resolution.
+const CITY_LAYER = { minPx: 110, budget: 4, cache: 8, cellPx: 4.5, maxSpan: 181 };
 function drawCityLayer(view, cw, ch) {
   const g = GLR; if (!g || !g.progCity || !window.CityLayer || !window.CityMesh) return;
   if (!window.CITIES || !window.TerrainSurface) return;
@@ -10592,8 +10596,13 @@ function cityBuffers(gl, hit) {
   let placed = null;
   try {
     const surface = GLR.surface;
+    // The map has the pixels the card did not: ask for as many cells as keep
+    // the pitch at CITY_LAYER.cellPx on screen, capped where the buffers get
+    // silly. Chicago at 20 m/px goes 81 cells -> ~180, 224 m -> ~90 m blocks.
+    const wantSpan = Math.min(CITY_LAYER.maxSpan, Math.round(hit.screenPx / CITY_LAYER.cellPx));
     const mesh = CityMesh.build(hit.city, {
       lod: "close",
+      maxSpan: wantSpan,
       height: (lon, lat) => (surface && surface.ready ? surface.sampleHeight(lon, lat) : null),
       // THE COAST COMES FROM THE ELEVATION, and it only half works — which is
       // worth saying rather than discovering. Measured: Sydney reads 0 m and
