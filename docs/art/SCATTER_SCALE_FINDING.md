@@ -1,4 +1,4 @@
-# The world map is 661 m/px, and that settles where scatter can live
+# The world map is 55-417 m/px, and that settles where scatter can live
 
 Measured 2026-09-07 in the running game, not argued from the source.
 
@@ -16,13 +16,28 @@ magnitude.
 
 ## The measurement
 
-Driven to the Olympic Peninsula in a live campaign, terrain surface ready:
+Measured in a live campaign with the terrain surface loaded, over San Francisco
+Bay (-122.25, 37.85) on an 1878x889 map, at `ZOOM_MAX`:
 
-| zoom | ground scale at screen centre | a 20 m tree is |
-| --- | --- | --- |
-| 64 | 1,134 m/px (vertical), ~526 m/px (horizontal) | 0.02 px |
-| 192 — `ZOOM_MAX`, the most the game allows | 661 m/px | **0.03 px** |
+| where in the view | east-west | north-south | a 20 m tree is |
+| --- | --- | --- | --- |
+| at the centre, where the camera is pointed | **55 m/px** | 112 m/px | **0.36 px at best** |
+| three quarters of the way to the horizon | 102 m/px | **417 m/px** | 0.05 px |
 
+The two axes differ because the camera is pitched: north-south is foreshortened
+and gets worse the further up the screen you read.
+
+**CORRECTED 2026-09-07.** An earlier version of this file said "661 m/px" and
+quoted it as *the* scale of the map. It was a real measurement but a horizon-ward
+one, taken through the resting camera tilt at a point far from the centre of the
+screen, and presenting it as the general figure overstated the coarseness by
+about twelve times against the best case. The scale is not one number: the camera
+is pitched, so it runs from about 55 m/px where you are looking to over 400 m/px
+near the horizon, and it also depends on the screen size.
+
+The CONCLUSION is unchanged and is why the correction did not reopen the
+decision: at the most generous reading on the largest screen, a 20 m tree is
+about a third of a pixel. Scatter still cannot live on this map.
 The visible footprint at maximum zoom is still 8.5 deg x 1.7 deg, roughly 640 km
 across. At zoom 64 it is 32 deg x 7.7 deg — Vancouver to Calgary.
 
@@ -69,3 +84,51 @@ obvious that a lat/lon placement pass is the tool for it either.
 
 Restoring the globe wiring means reverting this commit, and the numbers above
 say not to.
+
+## What actually limits zooming further (2026-09-07)
+
+Ridge asked to raise the map's resolution and zoom much further. Measured rather
+than assumed, and the answer is not the zoom cap:
+
+| source | resolution | what it feeds |
+| --- | --- | --- |
+| ETOPO terrain tiles | **1,855 m**/sample | the raised 3D mesh at zoom >= 12 |
+| `height-detail.png` 4800x2036 | 8,349 m/px | shading and the land ramp |
+| `relief/terrain/coast/lake.png` 2400x1018 | 16,698 m/px | the globe surface |
+| `cover.png` 1200x509 | 33,396 m/px | vegetation tint |
+
+`ZOOM_MAX` is 192, which puts the camera 81 km up. The best data under it is
+1,855 m per sample, so at 55 m/px the map is ALREADY magnifying its finest
+source about 34 times. Raising the cap was tried: at zoom 768 (35 m/px, 76 km
+across) the surface is a featureless olive field, and the terrain mesh has about
+eight elevation samples across the whole screen.
+
+AND THE SHADER STOPS ADDING DETAIL AT ZOOM 32. Every detail ramp in the fragment
+shader is a smoothstep on `uLk = log2(zoom)`, and the last of them, `tMicro`,
+completes at `uLk` 4.4 — zoom 21. Measured in the running game: `tDetail` and
+`tMicro` are both 1.000 at zoom 32, 64, 192, 768 and 4096, and the exaggeration
+term `Z` has been at its floor since zoom 16. So the whole range from 32 to the
+current cap of 192 — six-fold — is pure magnification, which is why the ground
+looks softer the closer you get.
+
+TWO REPAIRS WERE TRIED AND BOTH REVERTED, because neither could be shown to
+work. Enabling the micro-detail term on the raised-mesh path (it is gated
+`uMesh == 0`, undocumented) changed nothing visible; nor did extending the
+octave ladder so it keeps climbing past `uLk` 4.4. The likely reason is that the
+micro term is a MODULATION of existing slope — `sigma = 0.72 * slope * ...` — so
+on ground that is genuinely gentle it has nothing to multiply. Neither change
+shipped: a graphics change that cannot be demonstrated is not an improvement.
+
+So zooming much further needs one of two things, and both are decisions rather
+than work:
+
+1. **Higher-resolution elevation.** ETOPO 2022 also ships at 15 arc-seconds
+   (~460 m, 4x finer) and SRTM at 3 arc-seconds (~90 m, 20x). The pipeline in
+   `tools/terrain/` already reads a staged `etopo_60s.nc`, which is NOT committed
+   — the generators are one-shot and their inputs are staging only. So this is a
+   download and a re-bake, not new code.
+2. **Procedural land cover.** What makes real aerial imagery look sharp at 35 m/px
+   is not relief, it is fields, woodland, roads and settlement. That would be
+   invented surface, on the same footing as this repo's other declared models,
+   and it is the option that would also finally give the scatter, road and prop
+   kits somewhere to live.

@@ -53,7 +53,8 @@ finished terrain-following placement pass — stable under pan, samplers injecte
 17 checks including a ten-entry sabotage ledger where each defect must fail on
 its own named bar. It was wired onto the globe as ground dressing and the wiring
 came out the same session: at ZOOM_MAX the ground scale at screen centre is
-**661 m/px** and the visible footprint is still 8.5 x 1.7 degrees, so a 20 m
+**55 m/px at the centre of view, over 400 near the horizon** (corrected from a
+misquoted 661 on 2026-09-07) and the visible footprint is still 8.5 x 1.7 degrees, so a 20 m
 tree is 0.03 px and every sprite was about 500x too large. The rule against
 inventing geography covers inventing SCALE. `docs/art/SCATTER_SCALE_FINDING.md`
 carries the numbers, including where the kit does work: a town block is 148x104 m
@@ -124,7 +125,7 @@ bound, symmetry or determinism check could have seen that.
 
 What is NOT done, and is the honest state of this phase: roads, scatter and
 props are built and tested and have NO CONSUMER. The art library is largely
-finished; integration is what remains, and the 661 m/px finding above says the
+finished; integration is what remains, and the ground-scale finding above says the
 world map is not the surface for it. Choosing one is a design decision.
 
 Suite: spheres-web 199 / 0 / 3, node 887 / 0.
