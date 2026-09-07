@@ -19,10 +19,14 @@ const STAGES=['site','foundation','frame','enclosed','complete'];
 
 // BUDGET, and what moved. LOD1 is unchanged and is the hard one: sites are drawn
 // as baked sprites on the globe overlay and there can be many, so 100..800
-// stands. Measured worst case today is 710 (machinery_works/complete/L5) and the
-// detail pass added nothing to the coarse path — every addition below is behind
-// `d0.fine`, and that is deliberate, because the far mesh had under a hundred
-// triangles of headroom.
+// stands. Measured worst case today is 756 (infrastructure/complete/L5), and
+// the twelve compositions PAID for their map silhouettes rather than adding to
+// the far mesh: the coarse perimeter went from a line of posts to a line (168
+// triangles), the coarse lighting mast lost its lamp housings, the coarse
+// scaffold went to one lift on one bay, and mesh guarding, pallet racking and
+// handrails now draw nothing at map range at all. Every one of those is a thing
+// that is under a pixel there. The floor moved 100 -> 164 measured
+// (starter_industry/site/L1).
 //
 // LOD0's ceiling was RAISED from 12,000 to 40,000 on the owner's brief ("way
 // more detailed with realistic mesh"). The roadmap's own section 4 calls the
@@ -31,8 +35,10 @@ const STAGES=['site','foundation','frame','enclosed','complete'];
 // finished arms plant fitted in 6,356 triangles. The floor moved the other way,
 // 2,000 -> 6,000, which is a TIGHTENING: nothing in this file can now fall back
 // to the plain massing it used to be and still pass. Measured range today is
-// 7,658 (research_center/site/L1) to 36,788 (arms_plant/complete/L5), so the
-// ceiling keeps roughly nine per cent of headroom for the next pass.
+// 7,250 (starter_industry/site/L1) to 39,302 (civilian_industry/complete/L5) —
+// three halls, a service block and an external plant compound on the biggest
+// pad this file draws — so the ceiling keeps under two per cent of headroom and
+// the next composition to grow has to take something out first.
 const NEAR_MIN=6000,NEAR_MAX=40000,FAR_MIN=100,FAR_MAX=800;
 
 // The smoothing pass folds a corner's neighbours in only when they are within
@@ -487,7 +493,36 @@ test('a level upgrade extends the compound instead of cloning the building',()=>
   }
 });
 
-test('the arms plant is realised and the other twelve are declared placeholders',()=>{
+// WHICH KINDS HAVE HAD THEIR ART PASS, as a list rather than as a rule. It
+// used to be `key !== 'arms_plant'`, which was true exactly while twelve of the
+// thirteen were plain massing and stopped being true the moment any one of them
+// was finished. The list below is the whole claim this file makes about that,
+// and the count is asserted rather than described: a kind cannot be quietly
+// marked done, a kind that is NOT done cannot be quietly left out of the
+// number, and if any are left the failure message names them.
+const PLACEHOLDER_KINDS=[];
+
+test('the placeholder count is asserted, not described',()=>{
+  const declared=site.kinds().filter(key=>site.meta(key).placeholder).sort();
+  assert.deepEqual(declared,PLACEHOLDER_KINDS.slice().sort(),
+    `placeholder set disagrees with PLACEHOLDER_KINDS: ${declared.length} of ${site.kinds().length} kinds are flagged (${declared.join(', ')||'none'})`);
+  assert.equal(declared.length,PLACEHOLDER_KINDS.length,
+    `${declared.length} of ${site.kinds().length} kinds are still placeholders`);
+  for(const key of site.kinds()){
+    const placeholder=PLACEHOLDER_KINDS.includes(key);
+    // meta() and build() have to agree, or a card and a picker would disagree.
+    assert.equal(site.meta(key).placeholder,placeholder,`${key}: meta placeholder flag`);
+    for(const stage of STAGES){
+      const mesh=site.build(key,stage);
+      assert.equal(mesh.placeholder,placeholder,`${key}/${stage}: build placeholder flag`);
+      // A placeholder must SAY so on its own card, and a finished kind must not
+      // be allowed to keep the excuse.
+      assert.equal(mesh.description.includes('placeholder'),placeholder,`${key}/${stage}: description and flag disagree`);
+    }
+  }
+});
+
+test('the arms plant is realised and every kind declares what it is not',()=>{
   const plant=site.build('arms_plant','complete',{lod:0});
   validate(plant,'arms_plant/complete',0);
   assert.equal(plant.placeholder,false);
@@ -510,16 +545,257 @@ test('the arms plant is realised and the other twelve are declared placeholders'
     assert(!done.parts.some(part=>part.name.includes(gone)),`completed plant has no ${gone}`);
   for(const key of site.kinds()){
     const mesh=site.build(key,'complete');
-    assert.equal(mesh.placeholder,key!=='arms_plant',`${key}: placeholder flag`);
     assert(mesh.description.includes('not a real'),`${key}: description refuses to claim a real facility`);
     assert(mesh.description.includes('no capability of its own'),`${key}: description grants nothing`);
-    if(mesh.placeholder)assert(mesh.description.includes('placeholder'),`${key}: says it is a placeholder`);
+    assert(mesh.description.includes(site.meta(key).blurb),`${key}: the card says what the thing is`);
   }
-  // Retrofits are installed into a facility that already exists; they are not a
-  // new standalone building (roadmap section E).
+  // `generation` is the one kind the roadmap explicitly fences off: technology
+  // variants are a later pass, so this one must not name a technology and then
+  // stand behind it. Everything a player can read - the card, the blurb and
+  // every part name the picker shows - is checked, at every stage and every
+  // level, because that is where such a claim would actually be made.
+  const NAMED_TECH=/reactor|nuclear|coal|lignite|gas turbine|ccgt|combined cycle|photovoltaic|solar farm|wind turbine|hydro|geothermal|biomass/i;
+  for(const stage of STAGES){
+    for(const level of [1,5]){
+      for(const lod of [0,1]){
+        const mesh=site.build('generation',stage,{lod,level});
+        assert(!NAMED_TECH.test(mesh.description),`generation/${stage}: the card names a technology`);
+        for(const part of mesh.parts)assert(!NAMED_TECH.test(part.name),`generation/${stage}: part "${part.name}" names a technology`);
+      }
+    }
+    assert(site.build('generation',stage).description.includes('generic'),`generation/${stage}: says it is generic`);
+  }
+  assert(!NAMED_TECH.test(site.meta('generation').blurb),'the generation blurb names a technology');
+});
+
+// WHAT EACH KIND IS, taken from roadmap section E and asserted as geometry.
+// Triangle counts cannot express this and neither can a screenshot: the named
+// parts can, because a part is the unit the picker and the card already speak
+// in. Each row is [stage, fragment] pairs that MUST be present, and they are
+// the pieces that make that kind that kind rather than a shed with a different
+// paint code.
+const COMPOSITION={
+  infrastructure:[['site','carriageway formation'],['foundation','abutments and pier'],
+    ['frame','deck beams'],['enclosed','deck slab and approaches'],
+    ['complete','parapets, barrier and sign gantry'],['foundation','utility duct trench'],
+    ['complete','duct route reinstated'],['complete','precast and culvert stockpile']],
+  civilian_industry:[['frame','portal frames and haunches (module 2)'],
+    ['frame','portal frames and haunches'],['frame','module bases and movement joints'],
+    ['enclosed','high-level module links'],['complete','service block'],
+    ['complete','external plant compound']],
+  power_grid:[['site','earth grid and stone surfacing'],['foundation','equipment plinths and cable trench'],
+    ['frame','busbar gantries'],['enclosed','circuit breakers and disconnectors'],
+    ['enclosed','transformer bays'],['complete','line termination tower']],
+  research_center:[['frame','framed floors and columns'],['frame','glazed link and entrance'],
+    ['enclosed','spandrel panels and strip glazing'],['enclosed','roof deck and parapet'],
+    ['enclosed','fume extract and roof plant'],['complete','courtyard and planting']],
+  arms_plant:[['frame','portal frames'],['enclosed','loading dock and levellers'],
+    ['complete','test and service hardstand'],['complete','gatehouse']],
+  machinery_works:[['frame','overhead travelling crane'],['frame','portal frames and haunches (fitting bay)'],
+    ['enclosed','stillages and swarf skips'],['enclosed','compressor house'],
+    ['complete','outdoor crane rail']],
+  generation:[['frame','heat rejection bank'],['frame','consumables handling gallery'],
+    ['frame','portal frames and haunches (conversion block)'],['enclosed','tank farm'],
+    ['complete','takeoff gantry'],['complete','flue stack']],
+  processing_plant:[['foundation','vessel bases and bund slab'],['frame','process tower and access decks'],
+    ['enclosed','process vessels'],['enclosed','horizontal drum and pumps'],
+    ['frame','pipe rack'],['complete','road tanker loading bay']],
+  freight_terminal:[['site','rail formation and sidings'],['foundation','rail formation and sidings'],
+    ['frame','transfer gantry'],['enclosed','container stacks'],
+    ['enclosed','transfer canopy and doors'],['complete','trailer park and running lanes']],
+  warehouse:[['frame','sprinkler tank and pump house'],['enclosed','pallet racking'],
+    ['enclosed','dock elevation and canopy'],['complete','trailer standing']],
+  automation:[['site','floor broken out for machine bases'],['foundation','machine bases and isolation pads'],
+    ['frame','machine cell line'],['frame','guarding and interlocks'],
+    ['enclosed','control cabinets and cable tray'],['enclosed','compressed air and chiller skid']],
+  efficiency:[['foundation','skid plinth and trestle bases'],['frame','heat recovery skid and economiser'],
+    ['frame','insulated pipe run'],['enclosed','wall cladding (over-clad to host)'],
+    ['enclosed','roof insulation boards'],['enclosed','thermal buffer vessel'],
+    ['enclosed','controls kiosk and panel line']],
+  starter_industry:[['frame','blockwork store'],['enclosed','office pod and canopy'],
+    ['enclosed','open stock rack and compressor'],['complete','open lean-to']],
+};
+
+test('every kind is composed of what section E says it is',()=>{
+  assert.deepEqual(Object.keys(COMPOSITION).slice().sort(),site.kinds().slice().sort(),
+    'COMPOSITION covers exactly the thirteen project kinds');
+  for(const key of site.kinds()){
+    for(const [stage,fragment] of COMPOSITION[key]){
+      const mesh=site.build(key,stage,{lod:0});
+      assert(mesh.parts.some(part=>part.name.includes(fragment)),
+        `${key}/${stage}: composition is missing "${fragment}"`);
+      // and it has to still be there once the site is handed over, unless it is
+      // a stage-only piece of the works.
+      if(stage!=='complete'&&!/broken out|bases and|plinth and|formation and sidings|duct trench/.test(fragment)){
+        const done=site.build(key,'complete',{lod:0});
+        assert(done.parts.some(part=>part.name.includes(fragment)),
+          `${key}: "${fragment}" went missing between ${stage} and hand-over`);
+      }
+    }
+  }
+  // NO TWO KINDS ARE THE SAME COMPOSITION. Every kind must own at least three
+  // part names that no other kind draws at any stage — which a colour change,
+  // a different pad size or a different prop list cannot satisfy.
+  const owned=new Map();
+  for(const key of site.kinds()){
+    const names=new Set();
+    for(const stage of STAGES)for(const part of site.build(key,stage,{lod:0}).parts)names.add(part.name);
+    owned.set(key,names);
+  }
+  for(const key of site.kinds()){
+    const mine=[...owned.get(key)].filter(name=>{
+      for(const other of site.kinds())if(other!==key&&owned.get(other).has(name))return false;
+      return true;
+    });
+    assert(mine.length>=3,`${key}: only ${mine.length} part names are its own (${mine.join(', ')}) — is it a shed with a different colour?`);
+  }
+});
+
+test('the five stages of every kind are structurally different, not just heavier',()=>{
+  for(const key of site.kinds()){
+    for(const lod of [0,1]){
+      const sets=STAGES.map(stage=>new Set(site.build(key,stage,{lod,level:2}).parts.map(part=>part.name)));
+      for(let i=0;i+1<sets.length;i+=1){
+        // The SET OF NAMED PARTS has to change, not the triangle count. A stage
+        // that only grew is a stage that drew the same objects bigger, and the
+        // five states this file promises are five different states of a site.
+        const gained=[...sets[i+1]].filter(name=>!sets[i].has(name));
+        const lost=[...sets[i]].filter(name=>!sets[i+1].has(name));
+        // Two names at inspection range, one at map range. The map mesh has
+        // fewer objects to change because most of a composition draws nothing
+        // there, but a stage that changes NO named part is the previous stage
+        // drawn heavier, which is the failure this is for.
+        const floor=lod?1:2;
+        assert(gained.length+lost.length>=floor,
+          `${key}/lod${lod}: ${STAGES[i]} -> ${STAGES[i+1]} changes ${gained.length+lost.length} part names — the two stages are the same scene`);
+      }
+      for(let i=0;i<sets.length;i+=1){
+        for(let j=i+1;j<sets.length;j+=1){
+          const same=[...sets[i]].length===[...sets[j]].length&&[...sets[i]].every(name=>sets[j].has(name));
+          assert(!same,`${key}/lod${lod}: ${STAGES[i]} and ${STAGES[j]} draw the same set of parts`);
+        }
+      }
+    }
+    // AND THE KIND'S OWN WORK HAS TO MOVE, not just the shared stage kit. The
+    // hoarding coming down and the fence going up would satisfy the rule above
+    // on its own, which would let a composition ignore the stage entirely and
+    // still pass. `own` is the parts no other kind draws, so this is the
+    // permanent work of THIS facility and nothing else.
+    const shared=new Set();
+    for(const other of site.kinds()){
+      if(other===key)continue;
+      for(const stage of STAGES)for(const part of site.build(other,stage,{lod:0,level:2}).parts)shared.add(part.name);
+    }
+    const own=STAGES.map(stage=>site.build(key,stage,{lod:0,level:2}).parts
+      .map(part=>part.name).filter(name=>!shared.has(name)).sort().join('|'));
+    // FROM THE FRAME STAGE ON. Site establishment and foundations are the two
+    // stages roadmap section E asks to be built from ONE SHARED KIT - hoarding,
+    // huts, materials, dig, footings - and on most of these kinds what differs
+    // there is honestly the footprint and the pad and not a different set of
+    // objects. From the frame stage the permanent work of the facility is
+    // standing, and from there each kind's own work has to move at every step
+    // or the composition is not reading the stage at all.
+    for(let i=2;i+1<own.length;i+=1){
+      assert(own[i]!==own[i+1],
+        `${key}: its own work is identical at ${STAGES[i]} and ${STAGES[i+1]} — the composition is not reading the stage`);
+    }
+    // And by the commissioning stage every kind must have work of its own
+    // standing. Not at the frame stage: a steel portal frame is the same object
+    // on an assembly hall as on a warehouse, and pretending otherwise would be
+    // asking the art to lie about how buildings are put up.
+    assert(own[3].length>0,`${key}: nothing of its own is standing by the commissioning stage`);
+  }
+});
+
+// The bounding box of one named part, in model space.
+function partBox(mesh,fragment){
+  const part=mesh.parts.find(entry=>entry.name.includes(fragment));
+  if(!part)return null;
+  const box={min:[Infinity,Infinity,Infinity],max:[-Infinity,-Infinity,-Infinity]};
+  for(let i=part.first*3;i<(part.first+part.count)*3;i+=3){
+    for(let a=0;a<3;a+=1){
+      const v=mesh.positions[i+a];
+      if(v<box.min[a])box.min[a]=v;
+      if(v>box.max[a])box.max[a]=v;
+    }
+  }
+  return box;
+}
+
+test('the two retrofits are installed in a host that already stands',()=>{
+  // Roadmap section E, twice over: "Automation and efficiency are retrofit
+  // kits, not fictional new standalone buildings", and "do not pretend
+  // invisible software needs a giant external box". Three things follow, and
+  // all three are geometry rather than a flag.
   for(const key of ['automation','efficiency']){
-    assert.equal(site.meta(key).retrofit,true);
-    for(const stage of STAGES)assert(site.build(key,stage).parts.some(part=>part.name.includes('existing host facility')),`${key}/${stage}: host stands throughout`);
+    assert.equal(site.meta(key).retrofit,true,`${key}: declared a retrofit`);
+    let first=null;
+    for(const stage of STAGES){
+      const mesh=site.build(key,stage,{lod:0});
+      const host=partBox(mesh,'existing host facility');
+      assert(host,`${key}/${stage}: the host facility stands throughout`);
+      // 1. THE HOST IS NOT BUILT BY THIS PROJECT. It is the same object at every
+      //    stage, VERTEX FOR VERTEX: it was there before the job started. A
+      //    bounding box is not enough — a wall that grows under a roof taller
+      //    than it leaves the box alone — so this is the actual geometry.
+      const part=mesh.parts.find(entry=>entry.name.includes('existing host facility'));
+      const bytes=crypto.createHash('sha256')
+        .update(Buffer.from(mesh.positions.slice(part.first*3,(part.first+part.count)*3).buffer)).digest('hex');
+      if(first)assert.equal(bytes,first,`${key}/${stage}: the host is not the same geometry it was at the previous stage — it is being built, not retrofitted`);
+      else first=bytes;
+      // 2. THE NEW WORK IS ATTACHED TO IT. The retrofit's own envelope has to
+      //    touch the host, not stand in the same field as it.
+      const own=partBox(mesh,'wall cladding')||partBox(mesh,'portal frames');
+      if(own){
+        const gapX=Math.max(own.min[0]-host.max[0],host.min[0]-own.max[0]);
+        const gapZ=Math.max(own.min[2]-host.max[2],host.min[2]-own.max[2]);
+        assert(gapX<=0.6&&gapZ<=0.6,
+          `${key}/${stage}: the new structure stands ${Math.max(gapX,gapZ).toFixed(2)} m clear of the host — that is a new building, not a retrofit`);
+      }
+      // 3. IT IS SMALLER THAN THE HOST. A retrofit that out-masses the facility
+      //    it is fitted to is a facility.
+      const hostArea=(host.max[0]-host.min[0])*(host.max[2]-host.min[2]);
+      for(const part of mesh.parts){
+        if(!/^structure \//.test(part.name))continue;
+        if(part.name.includes('existing host'))continue;
+        if(part.label.startsWith('delivered wing'))continue;
+        const box=partBox(mesh,part.name);
+        const area=(box.max[0]-box.min[0])*(box.max[2]-box.min[2]);
+        assert(area<hostArea,`${key}/${stage}: "${part.name}" covers ${area.toFixed(0)} m2 against the host's ${hostArea.toFixed(0)} m2`);
+        assert(box.max[1]<=host.max[1]+0.5,`${key}/${stage}: "${part.name}" stands taller than the host it is fitted to`);
+      }
+    }
+    // And the controls are a kiosk and a panel line, not a building.
+    const done=site.build(key,'complete',{lod:0});
+    const controls=done.parts.find(part=>/cabinet|kiosk|panel line/.test(part.name));
+    assert(controls,`${key}: the control content is drawn`);
+    const box=partBox(done,controls.name);
+    assert((box.max[0]-box.min[0])*(box.max[2]-box.min[2])<40,
+      `${key}: "${controls.name}" is a building, and invisible software does not need one`);
+  }
+});
+
+test('delivered wings stand on the fill they were built on',()=>{
+  // The wings used to march off the lead block's flank at thirteen metres a
+  // level, which put wing four sixty metres out and hanging over nothing. The
+  // old check could not see it: the wings were themselves what made the
+  // bounding box grow, so `bounds.max[0]` still went up every level.
+  for(const key of site.kinds()){
+    for(const level of [2,3,4,5]){
+      for(const lod of [0,1]){
+        const mesh=site.build(key,'complete',{level,lod});
+        const halfW=mesh.compound.width/2,halfD=mesh.compound.depth/2;
+        const wings=mesh.parts.filter(part=>/delivered wing|\(wing \d\)/.test(part.name));
+        assert(wings.length>=level-1,`${key}/L${level}/lod${lod}: ${wings.length} wing parts`);
+        for(const part of wings){
+          const box=partBox(mesh,part.name);
+          assert(box.min[0]>=-halfW-0.05&&box.max[0]<=halfW+0.05,
+            `${key}/L${level}/lod${lod}: ${part.name} runs off the platform in x (${box.min[0].toFixed(1)}..${box.max[0].toFixed(1)} against +-${halfW})`);
+          assert(box.min[2]>=-halfD-0.05&&box.max[2]<=halfD+0.05,
+            `${key}/L${level}/lod${lod}: ${part.name} runs off the platform in z (${box.min[2].toFixed(1)}..${box.max[2].toFixed(1)} against +-${halfD})`);
+        }
+      }
+    }
   }
 });
 
