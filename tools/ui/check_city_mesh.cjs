@@ -74,9 +74,20 @@ const byName = (n) => CITIES.find((c) => c.name === n);
 // record in cities.js; `largest` is the band a city over two million must land
 // in, which is the half of the bar that catches the model quietly collapsing
 // into a small mesh for everyone.
-const CLOSE_CEILING = 120000, MAP_CEILING = 6000;
+// RE-DERIVED 2026-09-07 when the close span ceiling came down 141 -> 81. That
+// change was made for LEGIBILITY -- at 141 a cell is 1.8 px on the 252 px card
+// and a big city aliases into speckle -- and because the grid IS the cost, it
+// also cut the worst case in the dataset from 99,008 to 34,876. The old band
+// (close 40,000-120,000 for big cities) could no longer fire in either
+// direction, so it was re-measured rather than left decorative.
+//
+// Measured over all 1,249 real records at the new span: close 1,984 (Andorra)
+// to 34,876 (Vancouver), median 12,638, p99 32,754; cities over 2M run
+// 25,994 to 34,876; map 392 to 3,988 (San Francisco), median 760.
+// The ceilings carry ~15% and ~25% headroom over the worst real case.
+const CLOSE_CEILING = 40000, MAP_CEILING = 5000;
 const CLOSE_FLOOR = 250, MAP_FLOOR = 100;
-const BIG_POP = 2000000, BIG_MIN = 40000;
+const BIG_POP = 2000000, BIG_MIN = 24000;
 // What today's single representative town block costs, measured, and the reason
 // this kit exists: it must show an entire city for less than one block.
 const TOWN_BLOCK_CLOSE = 198462;
@@ -765,8 +776,8 @@ const SABOTAGE = [
   {
     defect: "the map level silently uses the close grid",
     expect: "the map level uses the close grid",
-    edits: [["  const SPAN = { close: { min: 25, max: 141 }, map: { min: 13, max: 27 } };",
-      "  const SPAN = { close: { min: 25, max: 141 }, map: { min: 25, max: 141 } };"]],
+    edits: [["  const SPAN = { close: { min: 25, max: 81 }, map: { min: 13, max: 27 } };",
+      "  const SPAN = { close: { min: 25, max: 81 }, map: { min: 25, max: 141 } };"]],
   },
   {
     defect: "the description stops saying the extent is a model",
@@ -805,7 +816,7 @@ const SABOTAGE = [
     // Measured: 141 -> 80,568, 165 -> 113,408, 181 -> 137,818.
     defect: "the close grid cap is raised, so the largest cities blow the triangle budget",
     expect: "close is over the declared ceiling",
-    edits: [["  const SPAN = { close: { min: 25, max: 141 }, map: { min: 13, max: 27 } };",
+    edits: [["  const SPAN = { close: { min: 25, max: 81 }, map: { min: 13, max: 27 } };",
       "  const SPAN = { close: { min: 25, max: 181 }, map: { min: 13, max: 27 } };"]],
   },
 ];

@@ -259,7 +259,20 @@
   /// of ten thousand is drawn at 40.5 m — a single plot with its lane — and
   /// reads as streets.
   const BASE_CELL = { close: 100, map: 400 };
-  const SPAN = { close: { min: 25, max: 141 }, map: { min: 13, max: 27 } };
+  /// THE CLOSE CEILING IS A LEGIBILITY BAR, NOT A COST ONE, and it was set at
+  /// 141 where a big city stops reading. The card is 252 device pixels wide, so
+  /// the span IS the pixels per cell: at 141 a cell is 1.8 px and Tokyo, Mumbai
+  /// and Hong Kong alias into uniform speckle, while Kazan at span 75 (3.4 px)
+  /// and Reykjavik at 33 (7.6 px) read as cities. Measured on the shipped card,
+  /// and the boundary between the two groups sits at about 3 px.
+  ///
+  /// 81 puts every city at 3.1 px or better. It costs nothing to do it — the
+  /// grid is the cost, so coarsening it CUTS the worst case in the whole
+  /// 1,249-record dataset from 99,008 triangles to 34,876 — which is the rare
+  /// case of legibility and budget pulling the same way. The price is honest
+  /// and stated: Tokyo's cell becomes 400 m, so its masses are districts rather
+  /// than superblocks, and the extent is what this asset exists to show.
+  const SPAN = { close: { min: 25, max: 81 }, map: { min: 13, max: 27 } };
   /// GUARDS, not design parameters, and the asymmetry between them is
   /// deliberate. The FLOOR bites — a hamlet's extent divided by the minimum
   /// span can be a couple of metres — and when it does it takes the span down
@@ -1107,9 +1120,9 @@
     /// over two million must land in. Both are asserted in
     /// tools/ui/check_city_mesh.cjs against the whole of cities.js.
     budget: Object.freeze({
-      ceiling: Object.freeze({ close: 120000, map: 6000 }),
+      ceiling: Object.freeze({ close: 40000, map: 5000 }),
       floor: Object.freeze({ close: 250, map: 100 }),
-      largest: Object.freeze({ overPop: 2000000, close: [40000, 120000] }),
+      largest: Object.freeze({ overPop: 2000000, close: [24000, 40000] }),
     }),
     baseCell: Object.freeze(Object.assign({}, BASE_CELL)),
     spanLimits: Object.freeze({ close: Object.assign({}, SPAN.close), map: Object.assign({}, SPAN.map) }),
