@@ -12,14 +12,14 @@ The user's requested full-detail standard is **approximately 100,000 triangles p
 
 | Current full-detail model | Triangles | GLB bytes |
 | --- | ---: | ---: |
-| Margaret Thatcher | 104,952 | 11,336,860 |
-| Neil Kinnock | 104,955 | 11,337,076 |
-| Paddy Ashdown | 106,211 | 11,472,884 |
-| George H. W. Bush | 106,523 | 11,506,528 |
+| Margaret Thatcher | 105,919 | 11,441,296 |
+| Neil Kinnock | 106,060 | 11,456,416 |
+| Paddy Ashdown | 107,223 | 11,582,180 |
+| George H. W. Bush | 107,535 | 11,615,824 |
 
 The exact same full-detail geometry appears on cards, in the studio and in downloads. There is no subdivision trick, hidden filler object or reduced-detail substitute for the studio. Surface sampling distributes the budget across each person's anatomy, hair and wardrobe; degenerate pole triangles are omitted. Tests require 100–110k real, finite, non-collapsed triangles, normalized normals, correct identity/era metadata and exact agreement with the exported file. Versioned v2 asset URLs avoid stale immutable downloads; v1 URLs remain available for an already-open viewer.
 
-The existing Arsenal3D renderer supplies one shared WebGL2 context and a bounded geometry cache. Characters use softer portrait lighting and matte shading, bypassing vehicle weathering and equipment lighting. Each card uses a 2D canvas copy of a real 3D render, while manual rotation and the larger viewer redraw the underlying geometry. There is no idle spinning or WebGL context per party. Camera listeners, observers and scheduled frames are disposed on Government redraw/close. The four characters occupy 422,641 triangles of the shared 1.2-million-triangle cache.
+The existing Arsenal3D renderer supplies one shared WebGL2 context and a bounded geometry cache. Characters use softer portrait lighting and matte shading, bypassing vehicle weathering and equipment lighting. Each card uses a 2D canvas copy of a real 3D render, while manual rotation and the larger viewer redraw the underlying geometry. There is no idle spinning or WebGL context per party. Camera listeners, observers and scheduled frames are disposed on Government redraw/close. The four characters occupy 426,737 triangles of the shared 1.2-million-triangle cache.
 
 | File | Responsibility |
 | --- | --- |

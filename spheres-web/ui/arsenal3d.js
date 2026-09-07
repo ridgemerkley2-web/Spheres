@@ -568,7 +568,12 @@
     // Close inspection moves toward the face, keeping the head visible while
     // the lower body leaves the frame as the player zooms in.
     if (entry.geom.assetKind === "character" && zoom > 1) {
-      pivot[1] += Math.min(1,(zoom-1)/1.3) * (entry.geom.bounds.max[1]-entry.geom.bounds.min[1]) * .37;
+      const t = Math.min(1,(zoom-1)/1.3);
+      if (entry.geom.portraitPivot) {
+        for (let i=0;i<3;i++) pivot[i] += (entry.geom.portraitPivot[i]-pivot[i])*t;
+      } else {
+        pivot[1] += t * (entry.geom.bounds.max[1]-entry.geom.bounds.min[1]) * .37;
+      }
     }
     const out = renderTo(id,"",w,h,yaw,pitch,fit.d/zoom,pivot);
     const ctx = canvas.getContext("2d");

@@ -82,15 +82,24 @@
       });
     };
     // A raised cloth panel with a rolled perimeter and a subtly convex face.
-    const panel=(outline,col,bulge=.012)=>{
+    const panel=(outline,col,bulge=.012,project=null)=>{
       const center=outline.reduce((a,b)=>add(a,mul(b,1/outline.length)),[0,0,0]);
       surface(outline.length*12,8,(u,v)=>{
         const f=u*outline.length,i=Math.min(outline.length-1,Math.floor(f)),t=f-i;
         const edge=mix(outline[i],outline[(i+1)%outline.length],t),q=mix(center,edge,v);
-        q[2]+=bulge*Math.sin(Math.PI*v)+.006;return q;
+        q[2]=(project?project(q):q[2])+bulge*Math.sin(Math.PI*v)+.006;return q;
       },col);
-      curve([...outline,outline[0]],.0045,tint(col,.93),outline.length*10,6);
+      const edge=[...outline,outline[0]];
+      curve(project?t=>{const q=spline(edge,t);q[2]=project(q)+.006;return q;}:edge,.0045,tint(col,.93),outline.length*10,6);
     };
+    const jacketSections=[[1.83,.447,.25],[1.87,.49,.289],[2.05,.502,.309],[2.37,.469,.30],[2.69,.56,.316],[2.94,.602,.285],[3.075,.49,.221],[3.17,.209,.161]];
+    const jacketLookup=Array.from({length:513},(_,i)=>spline(jacketSections,i/512));
+    const coatFront=(x,y,offset)=>{
+      let a=0,b=512;while(b-a>1){const i=(a+b)>>1;if(jacketLookup[i][0]<y)a=i;else b=i;}
+      const [,rx,rz]=mix(jacketLookup[a],jacketLookup[b],clamp((y-jacketLookup[a][0])/(jacketLookup[b][0]-jacketLookup[a][0])));
+      return rz*Math.sqrt(Math.max(0,1-(x/rx)**2))+offset;
+    };
+    const clothPanel=(outline,col,bulge=.012,offset=.023)=>panel(outline,col,bulge,q=>coatFront(q[0],q[1],offset));
     part("Shoes and legs",()=>{
       for(const side of [-1,1]) {
         const x=side*.255;
@@ -119,7 +128,7 @@
       }
     });
     part("Tailored jacket",()=>{
-      loft([[1.83,.447,.25],[1.87,.49,.289],[2.05,.502,.309],[2.37,.469,.30],[2.69,.56,.316],[2.94,.602,.285],[3.075,.49,.221],[3.17,.209,.161]],suit,64,48,(q,a,v)=>{
+      loft(jacketSections,suit,64,48,(q,a,v)=>{
         const fold=.008*Math.sin(a*6+v*20)*bell(v,.38,.13);q[0]+=Math.sin(a)*fold;q[2]+=Math.cos(a)*fold;return q;
       });
       for(const s of [-1,1]){
@@ -129,12 +138,12 @@
         });m.restore();
         m.save().move(s*.74,0,.019);loft([[1.82,.141,.146],[1.88,.145,.15],[1.935,.143,.148]],shirt,32,6);m.restore();
         for(let b=0;b<3;b++)ball(s*.841,1.98+b*.055,.108,.018,.018,.014,tint(dark,1.1),12,8);
-        panel([[s*.21,2.27,.32],[s*.431,2.27,.256],[s*.437,2.22,.258],[s*.21,2.22,.32]],tint(suit,1.035),.004);
+        clothPanel([[s*.21,2.27,.32],[s*.431,2.27,.256],[s*.437,2.22,.258],[s*.21,2.22,.32]],tint(suit,1.035),.004);
       }
-      panel([[-.235,3.13,.307],[0,2.43,.332],[.235,3.13,.307]],shirt,.018);
+      surface(40,32,(u,v)=>{const y=2.44+v*.73,x=(u*2-1)*(.009+v*.191);return [x,y,coatFront(x,y,.014)];},shirt);
       for(const s of [-1,1]){
-        panel([[s*.245,3.11,.315],[s*.394,2.964,.282],[s*.327,2.887,.31],[s*.426,2.906,.287],[s*.223,2.62,.338],[s*.024,2.425,.354]],tint(suit,1.1),.022);
-        panel([[s*.042,3.167,.272],[s*.226,3.115,.327],[s*.133,2.929,.361],[s*.071,3.053,.364]],white,.012);
+        clothPanel([[s*.19,3.15,.107],[s*.394,2.964,.238],[s*.327,2.887,.29],[s*.426,2.906,.234],[s*.223,2.62,.32],[s*.024,2.425,.344]],tint(suit,1.1),.016);
+        clothPanel([[s*.038,3.187,.166],[s*.195,3.15,.107],[s*.133,2.965,.304],[s*.071,3.07,.262]],white,.008,.03);
       }
       curve([[.02,2.43,.342],[.054,2.22,.33],[.048,1.88,.3]],.004,tint(suit,.75),28,6);
       for(const y of [2.35,2.09]){
@@ -142,11 +151,11 @@
         if(!p.pearls)for(const x of [.049,.061])ball(x,y,.338,.0028,.0028,.0016,shirt,8,6);
       }
       if(!p.pearls){
-        panel([[-.041,3.06,.368],[-.065,3.016,.382],[0,2.946,.384],[.064,3.016,.382],[.04,3.06,.368]],tie,.012);
-        panel([[-.035,2.96,.37],[-.077,2.607,.368],[0,2.533,.373],[.077,2.607,.368],[.035,2.96,.37]],tie,.012);
-        for(let i=0;i<5;i++)curve([[-.045,2.7+i*.041,.382],[.041,2.674+i*.041,.382]],.0025,tint(tie,1.27),10,6);
+        clothPanel([[-.041,3.06,.268],[-.065,3.016,.291],[0,2.946,.317],[.064,3.016,.291],[.04,3.06,.268]],tie,.012,.037);
+        clothPanel([[-.035,2.96,.307],[-.077,2.607,.339],[0,2.533,.346],[.077,2.607,.339],[.035,2.96,.307]],tie,.009,.029);
+        for(let i=0;i<5;i++)curve(t=>{const x=-.045+t*.086,y=2.7+i*.041-t*.026;return [x,y,coatFront(x,y,.044)];},.0025,tint(tie,1.27),10,6);
       }
-      panel([[-.432,2.744,.276],[-.4,2.823,.28],[-.358,2.78,.304],[-.334,2.816,.308],[-.298,2.75,.322]],white,.006);
+      clothPanel([[-.432,2.744,.276],[-.4,2.823,.28],[-.358,2.78,.304],[-.334,2.816,.308],[-.298,2.75,.322]],white,.006);
       curve([[-.438,2.738,.276],[-.301,2.743,.326]],.006,tint(suit,.78),16,6);
       ball(.319,2.954,.33,.022,.024,.009,gold,20,12);
     });
@@ -294,7 +303,7 @@
     });
     part("Personal accessories",()=>{
       if(p.pearls)for(let i=0;i<21;i++){
-        const a=Math.PI*i/20;ball(Math.cos(a)*.258,3.128-Math.sin(a)*.235,.392+Math.sin(a)*.018,.026,.027,.025,white,24,16);
+        const a=Math.PI*i/20,x=Math.cos(a)*.258,y=3.128-Math.sin(a)*.235;ball(x,y,coatFront(x,y,.04),.026,.027,.025,white,24,16);
       }
       if(p.handbag){
         m.save().move(-.955,0,.12);
@@ -313,6 +322,7 @@
     const mesh=m.finish();
     mesh.id="person:"+id;mesh.parts=parts;mesh.triangleCount=mesh.positions.length/9;
     mesh.bounds={min:mesh.min,max:mesh.max};mesh.assetKind="character";
+    mesh.portraitPivot=[0,3.3+.735*p.face_height,.03];
     mesh.description=record.credit;
     mesh.specification={person_id:record.person_id,appearance_from:record.from,appearance_until:record.to,status:record.status,sources:record.sources,detail_tier:"100k",geometry_revision:2};
     return mesh;
