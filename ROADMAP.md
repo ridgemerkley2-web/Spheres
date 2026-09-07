@@ -68,7 +68,34 @@ Also from the 7.8 pass, both passing: at 390 px the layout holds, the dock is a
 real horizontal scroller rather than clipped content, the globe canvas tracks
 DPR 2 with matching aspect, and the site card paints without overflowing.
 
-Suite: spheres-web 199 / 0 / 3, node 876 / 0.
+THE MODEL CACHE WAS UNBOUNDED, and this is the one to remember. arsenal3d kept
+every distinct model it had ever been asked for for the life of the page, and
+the only thing that ever cleared them was LOSING the context — the eviction
+policy was the failure mode. Measured on the ids a player can actually reach:
+40 close town blocks at 5,926,602 triangles (610 MiB) and 325 site
+configurations at 6,890,594 (710 MiB), so browsing cities and projects walks to
+**1,320 MiB of GPU buffers nothing frees**. It is very likely what I spent part
+of the night watching as repeated "the globe cannot draw: context lost" in a
+session that had mounted a few hundred models.
+
+Bounded by TRIANGLES rather than entries, because these differ a hundredfold (a
+far-LOD site is 164, a close town block 214,044). The cap is 1.2M, about
+124 MiB at the 108 bytes a triangle costs here, against a heaviest realistic
+working set of roughly 900k. Verified over the exact path: 235 distinct mounts
+peaked at 123.6 MiB and never breached the cap, and an evicted model redrew
+identically on remount. Two details make it correct rather than merely smaller —
+deleting a vertex array does NOT free its buffers, and an entry is reachable
+under two keys, so both aliases must go together.
+
+The alias sabotage PASSED at first and that is the lesson: no shipped provider
+currently creates a second alias, so churning real models left the branch
+untouched and the test slept through the exact trap it was named for. It now
+registers a provider that returns one geometry under two ids and asserts the
+branch ran before asserting anything about it. The designer's own renderer
+(equipment-model.js) was checked and is clean: it frees the previous buffers on
+every upload and holds one mesh at a time.
+
+Suite: spheres-web 199 / 0 / 3, node 882 / 0.
 
 ## Done — the equipment deck has models: 46 meshes, one WebGL2 context, and the three surfaces that show them (2026-09-06)
 
