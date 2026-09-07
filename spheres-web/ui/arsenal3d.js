@@ -37,11 +37,12 @@
   // Two-sided on purpose. These meshes are open in a few places by design — a
   // rotodome is a disc, a solar array is a sheet, a wing is a plate — and a
   // sheet lit from behind should be lit, not black.
-  const FRAG = `#version 300 es
+  const FRAG_TEMPLATE = `#version 300 es
   precision highp float;
   in vec3 vNrm; in vec3 vCol; in vec3 vPos;
   uniform vec3 uEye;
   uniform float uHeight;
+  __SURFACE__
   out vec4 outColor;
   void main() {
     vec3 N = normalize(vNrm);
@@ -55,9 +56,13 @@
     // most of the lighting: a 47,000-triangle tank came out looking like a
     // 5,000-triangle one. Ambient is down and the key is up, which costs
     // nothing and is what makes the geometry visible at all.
-    vec3 c = vCol * (0.19 + 0.19 * sky);
-    c += vCol * max(dot(N, key), 0.0) * 1.06;
-    c += vCol * max(dot(N, fil), 0.0) * 0.20 * vec3(0.75, 0.85, 1.0);
+    // The albedo a fragment shades with, after whatever surface treatment is
+    // installed. The default is the identity, so an uninstalled renderer is
+    // byte-for-byte the one that shipped.
+    vec3 alb = surface(vCol, N, vPos, V);
+    vec3 c = alb * (0.19 + 0.19 * sky);
+    c += alb * max(dot(N, key), 0.0) * 1.06;
+    c += alb * max(dot(N, fil), 0.0) * 0.20 * vec3(0.75, 0.85, 1.0);
     // Contact darkening. Not real occlusion — there is no neighbour
     // information here — but everything in this deck stands on y=0, so the
     // bottom of a hull IS the shadowed part, and grounding it stops a vehicle
@@ -70,11 +75,29 @@
     // material channel: rubber, track and tyre are the dark colours in every
     // palette here and they should stay matte, while steel, glass and lens are
     // the bright ones and should catch a highlight.
+    // vCol, not alb, and deliberately: this asks WHAT MATERIAL THIS IS, and
+    // the untouched palette value is the answer. A surface treatment that
+    // muddies a steel panel has not turned the steel into rubber, so the
+    // highlight should not go with the dirt.
     float lum = dot(vCol, vec3(0.299, 0.587, 0.114));
     float spec = pow(max(dot(reflect(-key, N), V), 0.0), 42.0);
     c += spec * (0.06 + 0.34 * lum);
     outColor = vec4(c, 1.0);
   }`;
+
+  /// SURFACE TREATMENT, INSTALLABLE AT RUNTIME.
+  ///
+  /// This renderer has no textures and no UVs and is not getting either: the
+  /// generators emit position, normal and colour, and an atlas would cost the
+  /// megabytes that the whole procedural approach exists to avoid. Surface
+  /// detail is therefore CODE spliced into the fragment shader — 3D noise read
+  /// from model-space position, which needs no parameterisation at all.
+  ///
+  /// It is swappable at runtime because the only honest way to choose between
+  /// treatments is to look at them on the same mesh in the same frame.
+  const DEFAULT_SURFACE = "vec3 surface(vec3 albedo, vec3 N, vec3 P, vec3 V) { return albedo; }";
+  let surfaceGlsl = DEFAULT_SURFACE;
+  function fragSource() { return FRAG_TEMPLATE.replace("__SURFACE__", surfaceGlsl); }
 
   let gl = null, prog = null, uMVP = null, uEye = null, uHeight = null, glCanvas = null;
   let lost = false;
@@ -88,7 +111,7 @@
   /// the restore path re-runs exactly this and repaints, rather than making a
   /// second canvas and orphaning the first.
   function setupGl() {
-    const vs = compile(gl.VERTEX_SHADER, VERT), fs = compile(gl.FRAGMENT_SHADER, FRAG);
+    const vs = compile(gl.VERTEX_SHADER, VERT), fs = compile(gl.FRAGMENT_SHADER, fragSource());
     if (!vs || !fs) return false;
     prog = gl.createProgram();
     gl.attachShader(prog, vs); gl.attachShader(prog, fs);
@@ -521,6 +544,30 @@
     return n;
   }
 
+  /// Install a surface treatment, or pass nothing to go back to flat albedo.
+  /// Relinks the program and drops the sprite cache, because a sprite is a
+  /// baked picture and would otherwise keep the old surface forever.
+  function setSurface(glsl) {
+    if (!init()) return false;
+    surfaceGlsl = (typeof glsl === "string" && glsl.trim()) ? glsl : DEFAULT_SURFACE;
+    const vs = compile(gl.VERTEX_SHADER, VERT), fs = compile(gl.FRAGMENT_SHADER, fragSource());
+    if (!vs || !fs) { surfaceGlsl = DEFAULT_SURFACE; return false; }
+    const next = gl.createProgram();
+    gl.attachShader(next, vs); gl.attachShader(next, fs);
+    gl.bindAttribLocation(next, 0, "aPos");
+    gl.bindAttribLocation(next, 1, "aNrm");
+    gl.bindAttribLocation(next, 2, "aCol");
+    gl.linkProgram(next);
+    if (!gl.getProgramParameter(next, gl.LINK_STATUS)) { surfaceGlsl = DEFAULT_SURFACE; return false; }
+    prog = next;
+    uMVP = gl.getUniformLocation(prog, "uMVP");
+    uEye = gl.getUniformLocation(prog, "uEye");
+    uHeight = gl.getUniformLocation(prog, "uHeight");
+    sprites.clear();
+    mounted.forEach((state, canvas) => { if (canvas.isConnected) paint(canvas, state); });
+    return true;
+  }
+
   /// A MODEL BAKED FLAT, ONCE, FOR THE 2D LAYERS.
   ///
   /// The globe's marker pass is a 2D context. It cannot hold a GL model and it
@@ -587,7 +634,7 @@
   }
 
   root.Arsenal3D = {
-    mount, scan, dataURL, renderTo, sprite,
+    mount, scan, dataURL, renderTo, sprite, setSurface,
     get available() { return init(); },
     register,
     canvasHtml(id, cls) {
